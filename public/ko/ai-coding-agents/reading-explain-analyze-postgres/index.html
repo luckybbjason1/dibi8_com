@@ -1,0 +1,142 @@
+<!doctype html><html lang=ko dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ko/ai-coding-agents/reading-explain-analyze-postgres/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/reading-explain-analyze-postgres/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/reading-explain-analyze-postgres/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/reading-explain-analyze-postgres/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/reading-explain-analyze-postgres/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ko/ai-coding-agents/reading-explain-analyze-postgres/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="ko"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Tool Guide","item":"https://dibi8.com/ko/ai-coding-agents/reading-explain-analyze-postgres/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” bottleneck detection, and database performance optimization. date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - AI application_domain: Ai Tools source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-15” draft: false aliases:\n/ko/posts/reading-explain-analyze-postgres/ faqs: - q: ‘EXPLAIN ANALYZE 출력에서 상단 줄의 actual time은 무엇을 의미하나요?’ a: ‘가장 바깥쪽 노드의 두 번째 actual time 값은 해당 노드가 한 번 실행되는 동안 전체 쿼리에 소요된 실제 벽시계 시간(밀리초 단위)입니다. 그 아래의 모든 노드는 그 총 시간이 어디에 쓰였는지를 세분화해서 보여줍니다.’ q: ‘EXPLAIN ANALYZE 의 행 수로 잘못된 쿼리 플랜을 어떻게 찾나요?’ a: ‘cost= 섹션의 rows=(플래너 추정값)와 actual time= 섹션의 rows=(실제값)을 비교하세요. 두 값이 10배 이상 차이가 나면 플래너가 오래된 통계를 사용한 것이며, 그 위의 모든 노드가 잘못된 가정을 바탕으로 선택된 것입니다. 이것이 거의 항상 버그의 원인입니다.’ q: ‘EXPLAIN ANALYZE 에서 특정 노드 하나에만 소요된 시간을 어떻게 계산하나요?’ a: ’loops=1인 노드의 경우, 자체 소요 시간은 대략 해당 노드의 마지막 행 시간(B)에서 자식 노드들의 마지막 행 시간의 합을 뺀 값입니다. loops=N이 큰 노드는 보고된 시간이 루프당 시간이므로, loops를 곱해야 총 소요 시간이 됩니다.' q: ‘EXPLAIN (ANALYZE, BUFFERS)에서 shared hit과 shared read의 차이는 무엇인가요?’ a: ‘shared hit은 이미 Postgres 버퍼 캐시에 있는 페이지 수로 비용이 낮고, shared read는 OS나 디스크에서 가져온 페이지 수로 비용이 높습니다. read가 지배적이라면 데이터가 캐시에 없다는 의미입니다. 쿼리를 두 번 실행해보세요. 두 번째 실행 결과가 정상 상태를 더 잘 반영합니다.’ q: ‘쿼리 플랜의 Sort 또는 Hash 노드에 temp written이 나타나면 무슨 뜻인가요?’ a: ‘정렬 또는 해시 작업이 work_mem에 맞지 않아 디스크로 스필된 것을 의미하며, 이로 인해 해당 노드의 시간이 쉽게 10배까지 늘어날 수 있습니다. 해결 방법은 해당 세션의 work_mem을 늘리고 EXPLAIN을 다시 실행하는 것입니다.’ PostgreSQL에서 EXPLAIN ANALYZE 출력 읽기 - 길을 잃지 않게 {\u003c/* resource-info */\u003e}\nEXPLAIN ANALYZE 출력은 실제로 중요한 세 숫자를 알기 전까지는 위협적으로 보입니다. 여기 내가 그것들을 읽는 순서와 특정 버그를 가리키는 패턴이 있습니다.\n실제로 중요한 세 숫자 1. 총 실행 시간 (Total Execution Time) Total runtime: 1234.567 ms 가장 중요한 지표입니다. 쿼리가 느리면 여기에서 알려줍니다.\n2. 실제 행 수 vs 예상 행 수 (Actual vs Estimated Rows) Seq Scan on users (cost=0.00..123.45 rows=1000 width=32) (actual time=1.234..567.890 rows=50000 loops=1) 거대한 차이는 플래너가 잘못된 가정을 했다는 것을 나타냅니다.\n3. 버퍼 히트 비율 (Buffer Hit Ratio) Buffers: shared hit=1000 read=50 높은 히트율 = 좋은 캐시 사용, 낮은 히트율 = 디스크 I/O 문제.\n읽는 순서 아래에서 시작 - 총 실행 시간 위쪽으로 작업 - 가장 비용이 많이 드는 노드 찾기 행 수 추정 확인 - 실제 vs 추정 버퍼 통계 보기 - I/O 패턴 일반적인 문제 패턴 인덱스 스캔이어야 할 때 순차 스캔 Seq Scan on large_table (cost=1000.00..2000.00 rows=100000 width=32) 해결책: 적절한 인덱스 추가\n해시 조인이어야 할 때 중첩 루프 Nested Loop (cost=1000.00..100000.00 rows=1000 width=64) -\u003e Seq Scan on users -\u003e Index Scan on orders 해결책: work_mem 증가 또는 쿼리 재작성\n너무 많은 버퍼 미스 Buffers: shared hit=10 read=1000 해결책: shared_buffers 증가 또는 쿼리 개선\n디스크로 정렬 오버플로 Sort Method: external merge Disk: 16384kB ```` **해결책**: work_mem 증가 ## 실제 적용 이러한 통찰은 내가 식별하고 수정하는 데 도움이 되었습니다: - 누락된 인덱스 - 비효율적인 조인 순서 - 메모리 부족 문제 - 캐시 미스 기억하세요: EXPLAIN ANALYZE는 쿼리 성능 디버거입니다. 그것을 읽는 법을 배우면 추측에 수많은 시간을 절약할 수 있습니다. * * * ## 추천 도구 오픈소스 AI 도구 개발/배포 시 권장: - **** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet. - **** — Anthropic Claude / OpenAI / DeepSeek API 프록시. 위의 AI 도구 대부분 (챗봇, 코드 생성, 번역, 검색 등) LLM API 키 필요 — 이 프록시로 안정적인 톱 모델 액세스, 공식 가격의 ~30%. *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"PostgreSQL에서 EXPLAIN ANALYZE 출력 읽기 - 길을 잃지 않게\", \"datePublished\": \"2026-05-15\", \"dateModified\": \"2026-05-15\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/kr/resources/reading-explain-analyze-postgres\" } } ## Why This Matters Understanding postgresql에서 explain analyze 출력 읽기 - 길을 잃지 않게 is crucial for modern AI development. Here's why: ### Key Benefits - **Efficiency**: Save time on repetitive tasks - **Quality**: Improve output consistency - **Scalability**: Handle larger workloads - **Cost**: Reduce operational expenses ### Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines ### Getting Started To implement this in your workflow: 1. **Assess Your Needs** - Identify repetitive tasks - Measure current time costs - Define success metrics 2. **Choose Your Approach** - Start with simple automations - Gradually increase complexity - Test and iterate 3. **Measure Results** - Track time savings - Monitor quality improvements - Calculate ROI ## Conclusion PostgreSQL에서 EXPLAIN ANALYZE 출력 읽기 - 길을 잃지 않게 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge. For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group * * * *Last updated: 2026-09-20* *Read time: ~5 minutes* ## Trading Bot Comparison | Bot | Exchange | Strategy | Cost | Difficulty | |-----|----------|----------|------|------------| | **Freqtrade** | Multi | Custom | Free | Medium | | **Hummingbot** | DEX/CEX | Market making | Free | Hard | | **Jesse** | Crypto | Backtesting | Free | Medium | | **Velocimeter** | Hyperliquid | Perps | Free | Easy | ","wordCount":"897","inLanguage":"ko","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ko/ai-coding-agents/reading-explain-analyze-postgres/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ko/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/ko/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/ko/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/ko/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/ko/>홈</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
+<a href>AI Coding Agents - dibi8</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>5 분</span>&nbsp;|&nbsp;<span>번역:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/reading-explain-analyze-postgres/>En</a></li><li><a href=https://dibi8.com/zh/ai-coding-agents/reading-explain-analyze-postgres/>Zh</a></li><li><a href=https://dibi8.com/vi/ai-coding-agents/reading-explain-analyze-postgres/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>목차</span></summary><div class=inner><ul><li><a href=#postgresql%ec%97%90%ec%84%9c-explain-analyze-%ec%b6%9c%eb%a0%a5-%ec%9d%bd%ea%b8%b0---%ea%b8%b8%ec%9d%84-%ec%9e%83%ec%a7%80-%ec%95%8a%ea%b2%8c aria-label="PostgreSQL에서 EXPLAIN ANALYZE 출력 읽기 - 길을 잃지 않게">PostgreSQL에서 EXPLAIN ANALYZE 출력 읽기 - 길을 잃지 않게</a><ul><li><a href=#%ec%8b%a4%ec%a0%9c%eb%a1%9c-%ec%a4%91%ec%9a%94%ed%95%9c-%ec%84%b8-%ec%88%ab%ec%9e%90 aria-label="실제로 중요한 세 숫자">실제로 중요한 세 숫자</a><ul><li><a href=#1-%ec%b4%9d-%ec%8b%a4%ed%96%89-%ec%8b%9c%ea%b0%84-total-execution-time aria-label="1. 총 실행 시간 (Total Execution Time)">1. 총 실행 시간 (Total Execution Time)</a></li><li><a href=#2-%ec%8b%a4%ec%a0%9c-%ed%96%89-%ec%88%98-vs-%ec%98%88%ec%83%81-%ed%96%89-%ec%88%98-actual-vs-estimated-rows aria-label="2. 실제 행 수 vs 예상 행 수 (Actual vs Estimated Rows)">2. 실제 행 수 vs 예상 행 수 (Actual vs Estimated Rows)</a></li><li><a href=#3-%eb%b2%84%ed%8d%bc-%ed%9e%88%ed%8a%b8-%eb%b9%84%ec%9c%a8-buffer-hit-ratio aria-label="3. 버퍼 히트 비율 (Buffer Hit Ratio)">3. 버퍼 히트 비율 (Buffer Hit Ratio)</a></li></ul></li><li><a href=#%ec%9d%bd%eb%8a%94-%ec%88%9c%ec%84%9c aria-label="읽는 순서">읽는 순서</a></li><li><a href=#%ec%9d%bc%eb%b0%98%ec%a0%81%ec%9d%b8-%eb%ac%b8%ec%a0%9c-%ed%8c%a8%ed%84%b4 aria-label="일반적인 문제 패턴">일반적인 문제 패턴</a><ul><li><a href=#%ec%9d%b8%eb%8d%b1%ec%8a%a4-%ec%8a%a4%ec%ba%94%ec%9d%b4%ec%96%b4%ec%95%bc-%ed%95%a0-%eb%95%8c-%ec%88%9c%ec%b0%a8-%ec%8a%a4%ec%ba%94 aria-label="인덱스 스캔이어야 할 때 순차 스캔">인덱스 스캔이어야 할 때 순차 스캔</a></li><li><a href=#%ed%95%b4%ec%8b%9c-%ec%a1%b0%ec%9d%b8%ec%9d%b4%ec%96%b4%ec%95%bc-%ed%95%a0-%eb%95%8c-%ec%a4%91%ec%b2%a9-%eb%a3%a8%ed%94%84 aria-label="해시 조인이어야 할 때 중첩 루프">해시 조인이어야 할 때 중첩 루프</a></li><li><a href=#%eb%84%88%eb%ac%b4-%eb%a7%8e%ec%9d%80-%eb%b2%84%ed%8d%bc-%eb%af%b8%ec%8a%a4 aria-label="너무 많은 버퍼 미스">너무 많은 버퍼 미스</a></li><li><a href=#%eb%94%94%ec%8a%a4%ed%81%ac%eb%a1%9c-%ec%a0%95%eb%a0%ac-%ec%98%a4%eb%b2%84%ed%94%8c%eb%a1%9c aria-label="디스크로 정렬 오버플로">디스크로 정렬 오버플로</a></li></ul></li></ul></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+description: &ldquo;Technical guide and comparison.&rdquo;
+bottleneck detection, and database performance optimization.
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
+tech_stack: - AI
+application_domain: Ai Tools
+source_version: &rsquo;'
+licensing_model: Open Source
+license_type: MIT
+file_size: &rsquo;'
+file_md5: &rsquo;'
+download_url: &rsquo;'
+backup_url: &rsquo;'
+last_maintained: &ldquo;2026-05-15&rdquo;
+draft: false
+aliases:</p><ul><li>/ko/posts/reading-explain-analyze-postgres/
+faqs: - q: &lsquo;EXPLAIN ANALYZE 출력에서 상단 줄의 actual time은 무엇을 의미하나요?&rsquo;
+a: &lsquo;가장 바깥쪽 노드의 두 번째 actual time 값은 해당 노드가 한 번 실행되는 동안 전체 쿼리에 소요된 실제 벽시계 시간(밀리초 단위)입니다. 그 아래의 모든 노드는 그 총 시간이 어디에 쓰였는지를 세분화해서 보여줍니다.&rsquo;</li><li>q: &lsquo;EXPLAIN ANALYZE 의 행 수로 잘못된 쿼리 플랜을 어떻게 찾나요?&rsquo;
+a: &lsquo;cost= 섹션의 rows=(플래너 추정값)와 actual time= 섹션의 rows=(실제값)을 비교하세요. 두 값이 10배 이상 차이가 나면 플래너가 오래된 통계를 사용한 것이며, 그 위의 모든 노드가 잘못된 가정을 바탕으로 선택된 것입니다. 이것이 거의 항상 버그의 원인입니다.&rsquo;</li><li>q: &lsquo;EXPLAIN ANALYZE 에서 특정 노드 하나에만 소요된 시간을 어떻게 계산하나요?&rsquo;
+a: &rsquo;loops=1인 노드의 경우, 자체 소요 시간은 대략 해당 노드의 마지막 행 시간(B)에서 자식 노드들의 마지막 행 시간의 합을 뺀 값입니다. loops=N이 큰 노드는 보고된 시간이 루프당 시간이므로, loops를 곱해야 총 소요 시간이 됩니다.'</li><li>q: &lsquo;EXPLAIN (ANALYZE, BUFFERS)에서 shared hit과 shared read의 차이는 무엇인가요?&rsquo;
+a: &lsquo;shared hit은 이미 Postgres 버퍼 캐시에 있는 페이지 수로 비용이 낮고, shared read는 OS나 디스크에서 가져온 페이지 수로 비용이 높습니다. read가 지배적이라면 데이터가 캐시에 없다는 의미입니다. 쿼리를 두 번 실행해보세요. 두 번째 실행 결과가 정상 상태를 더 잘 반영합니다.&rsquo;</li><li>q: &lsquo;쿼리 플랜의 Sort 또는 Hash 노드에 temp written이 나타나면 무슨 뜻인가요?&rsquo;
+a: &lsquo;정렬 또는 해시 작업이 work_mem에 맞지 않아 디스크로 스필된 것을 의미하며, 이로 인해 해당 노드의 시간이 쉽게 10배까지 늘어날 수 있습니다. 해결 방법은 해당 세션의 work_mem을 늘리고 EXPLAIN을 다시 실행하는 것입니다.&rsquo;</li></ul><hr><h1 id=postgresql에서-explain-analyze-출력-읽기---길을-잃지-않게>PostgreSQL에서 EXPLAIN ANALYZE 출력 읽기 - 길을 잃지 않게<a hidden class=anchor aria-hidden=true href=#postgresql에서-explain-analyze-출력-읽기---길을-잃지-않게>#</a></h1><p>{&lt;/* resource-info */>}</p><p>EXPLAIN ANALYZE 출력은 실제로 중요한 세 숫자를 알기 전까지는 위협적으로 보입니다. 여기 내가 그것들을 읽는 순서와 특정 버그를 가리키는 패턴이 있습니다.</p><h2 id=실제로-중요한-세-숫자>실제로 중요한 세 숫자<a hidden class=anchor aria-hidden=true href=#실제로-중요한-세-숫자>#</a></h2><h3 id=1-총-실행-시간-total-execution-time>1. <strong>총 실행 시간 (Total Execution Time)</strong><a hidden class=anchor aria-hidden=true href=#1-총-실행-시간-total-execution-time>#</a></h3><pre tabindex=0><code>Total runtime: 1234.567 ms
+</code></pre><p>가장 중요한 지표입니다. 쿼리가 느리면 여기에서 알려줍니다.</p><h3 id=2-실제-행-수-vs-예상-행-수-actual-vs-estimated-rows>2. <strong>실제 행 수 vs 예상 행 수 (Actual vs Estimated Rows)</strong><a hidden class=anchor aria-hidden=true href=#2-실제-행-수-vs-예상-행-수-actual-vs-estimated-rows>#</a></h3><pre tabindex=0><code>Seq Scan on users  (cost=0.00..123.45 rows=1000 width=32) (actual time=1.234..567.890 rows=50000 loops=1)
+</code></pre><p>거대한 차이는 플래너가 잘못된 가정을 했다는 것을 나타냅니다.</p><h3 id=3-버퍼-히트-비율-buffer-hit-ratio>3. <strong>버퍼 히트 비율 (Buffer Hit Ratio)</strong><a hidden class=anchor aria-hidden=true href=#3-버퍼-히트-비율-buffer-hit-ratio>#</a></h3><pre tabindex=0><code>Buffers: shared hit=1000 read=50
+</code></pre><p>높은 히트율 = 좋은 캐시 사용, 낮은 히트율 = 디스크 I/O 문제.</p><h2 id=읽는-순서>읽는 순서<a hidden class=anchor aria-hidden=true href=#읽는-순서>#</a></h2><ol><li><strong>아래에서 시작</strong> - 총 실행 시간</li><li><strong>위쪽으로 작업</strong> - 가장 비용이 많이 드는 노드 찾기</li><li><strong>행 수 추정 확인</strong> - 실제 vs 추정</li><li><strong>버퍼 통계 보기</strong> - I/O 패턴</li></ol><h2 id=일반적인-문제-패턴>일반적인 문제 패턴<a hidden class=anchor aria-hidden=true href=#일반적인-문제-패턴>#</a></h2><h3 id=인덱스-스캔이어야-할-때-순차-스캔><strong>인덱스 스캔이어야 할 때 순차 스캔</strong><a hidden class=anchor aria-hidden=true href=#인덱스-스캔이어야-할-때-순차-스캔>#</a></h3><pre tabindex=0><code>Seq Scan on large_table (cost=1000.00..2000.00 rows=100000 width=32)
+</code></pre><p><strong>해결책</strong>: 적절한 인덱스 추가</p><h3 id=해시-조인이어야-할-때-중첩-루프><strong>해시 조인이어야 할 때 중첩 루프</strong><a hidden class=anchor aria-hidden=true href=#해시-조인이어야-할-때-중첩-루프>#</a></h3><pre tabindex=0><code>Nested Loop (cost=1000.00..100000.00 rows=1000 width=64)
+  -&gt; Seq Scan on users
+  -&gt; Index Scan on orders
+</code></pre><p><strong>해결책</strong>: work_mem 증가 또는 쿼리 재작성</p><h3 id=너무-많은-버퍼-미스><strong>너무 많은 버퍼 미스</strong><a hidden class=anchor aria-hidden=true href=#너무-많은-버퍼-미스>#</a></h3><pre tabindex=0><code>Buffers: shared hit=10 read=1000
+</code></pre><p><strong>해결책</strong>: shared_buffers 증가 또는 쿼리 개선</p><h3 id=디스크로-정렬-오버플로><strong>디스크로 정렬 오버플로</strong><a hidden class=anchor aria-hidden=true href=#디스크로-정렬-오버플로>#</a></h3><pre tabindex=0><code>Sort Method: external merge  Disk: 16384kB
+````
+**해결책**: work_mem 증가
+
+## 실제 적용
+
+이러한 통찰은 내가 식별하고 수정하는 데 도움이 되었습니다: - 누락된 인덱스
+- 비효율적인 조인 순서
+- 메모리 부족 문제
+- 캐시 미스
+
+기억하세요: EXPLAIN ANALYZE는 쿼리 성능 디버거입니다. 그것을 읽는 법을 배우면 추측에 수많은 시간을 절약할 수 있습니다.
+
+* * *
+
+## 추천 도구
+
+오픈소스 AI 도구 개발/배포 시 권장: - **** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
+- **** — Anthropic Claude / OpenAI / DeepSeek API 프록시. 위의 AI 도구 대부분 (챗봇, 코드 생성, 번역, 검색 등) LLM API 키 필요 — 이 프록시로 안정적인 톱 모델 액세스, 공식 가격의 ~30%.
+
+*추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
+
+
+
+{
+  &#34;@context&#34;: &#34;https://schema.org&#34;,
+  &#34;@type&#34;: &#34;Article&#34;,
+  &#34;headline&#34;: &#34;PostgreSQL에서 EXPLAIN ANALYZE 출력 읽기 - 길을 잃지 않게&#34;,
+  &#34;datePublished&#34;: &#34;2026-05-15&#34;,
+  &#34;dateModified&#34;: &#34;2026-05-15&#34;,
+  &#34;author&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;
+  },
+  &#34;publisher&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;,
+    &#34;logo&#34;: {
+      &#34;@type&#34;: &#34;ImageObject&#34;,
+      &#34;url&#34;: &#34;https://dibi8.com/logo.png&#34;
+    }
+  },
+  &#34;mainEntityOfPage&#34;: {
+    &#34;@type&#34;: &#34;WebPage&#34;,
+    &#34;@id&#34;: &#34;https://dibi8.com/kr/resources/reading-explain-analyze-postgres&#34;
+  }
+}
+&lt;/script&gt;
+
+## Why This Matters
+
+Understanding postgresql에서 explain analyze 출력 읽기 - 길을 잃지 않게 is crucial for modern AI development. Here&#39;s why: ### Key Benefits
+- **Efficiency**: Save time on repetitive tasks
+- **Quality**: Improve output consistency  
+- **Scalability**: Handle larger workloads
+- **Cost**: Reduce operational expenses
+
+### Real-World Applications
+Organizations are using similar approaches to: 1. Automate code review processes
+2. Generate documentation automatically
+3. Build internal knowledge bases
+4. Streamline deployment pipelines
+
+### Getting Started
+To implement this in your workflow: 1. **Assess Your Needs**
+   - Identify repetitive tasks
+   - Measure current time costs
+   - Define success metrics
+
+2. **Choose Your Approach**
+   - Start with simple automations
+   - Gradually increase complexity
+   - Test and iterate
+
+3. **Measure Results**
+   - Track time savings
+   - Monitor quality improvements
+   - Calculate ROI
+
+## Conclusion
+
+PostgreSQL에서 EXPLAIN ANALYZE 출력 읽기 - 길을 잃지 않게 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.
+
+For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
+
+* * *
+
+*Last updated: 2026-09-20*
+*Read time: ~5 minutes*
+
+## Trading Bot Comparison
+
+| Bot | Exchange | Strategy | Cost | Difficulty |
+|-----|----------|----------|------|------------|
+| **Freqtrade** | Multi | Custom | Free | Medium |
+| **Hummingbot** | DEX/CEX | Market making | Free | Hard |
+| **Jesse** | Crypto | Backtesting | Free | Medium |
+| **Velocimeter** | Hyperliquid | Perps | Free | Easy |
+</code></pre></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/ko/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/ko/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/ko/ai-coding-agents/ragflow/><span class=title>« 이전 페이지</span>
+<span>AI Tool Guide</span>
+</a><a class=next href=https://dibi8.com/ko/ai-coding-agents/repomix-pack-repo-for-llm-context-2026/><span class=title>다음 페이지 »</span>
+<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/ko/>Dibi8</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="복사";function s(){t.innerHTML="복사 완료!",setTimeout(()=>{t.innerHTML="복사"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

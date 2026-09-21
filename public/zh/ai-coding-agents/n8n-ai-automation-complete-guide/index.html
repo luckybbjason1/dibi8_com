@@ -1,0 +1,439 @@
+<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/zh/ai-coding-agents/n8n-ai-automation-complete-guide/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/n8n-ai-automation-complete-guide/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/n8n-ai-automation-complete-guide/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/n8n-ai-automation-complete-guide/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/n8n-ai-automation-complete-guide/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/zh/ai-coding-agents/n8n-ai-automation-complete-guide/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Tool Guide","item":"https://dibi8.com/zh/ai-coding-agents/n8n-ai-automation-complete-guide/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"n8n 是什么？ n8n（发音为\"n-eight-n\"）是一种 fair-code 工作流自动化工具，使你能够可视化地连接应用、数据库、API 和 AI 模型。与 Zapier 或 Make 不同，n8n 可以自托管，让你完全控制你的数据和工作流。\n关键差异化：n8n 将传统工作流自动化与原生 AI 能力相结合——你可以将 LLM 调用、向量搜索和 AI 决策直接嵌入到你的自动化管线中。\n为什么 2026 年选择 n8n？ 自动化格局发生了巨大变化：\n| 时代 | 方法 | 限制 | |\n|\n|\n| | 2020-2022 | 简单触发→动作 | 无智能、仅限线性 | | 2023-2024 | API 连接器 + 基本逻辑 | 自定义有限 | | 2025-2026 | AI 原生工作流 | 完全自主、推理、记忆 |\nn8n 通过让 AI 工作流无需编码即可访问而引领 2026 年的浪潮。\n核心架构 节点：构建块 每个 n8n 工作流都由节点组成——模块化处理单元：\n[触发器] → [HTTP 请求] → [AI 处理] → [数据库] → [通知] │ │ │ │ │ 何时... 获取数据 LLM 分析 存储结果 通知团队 节点类别：\n触发器: Webhook、计划、邮件轮询、数据库更改 操作: HTTP 请求、CRUD 操作、文件处理 AI/ML: LLM 调用、嵌入、向量搜索、图像生成 逻辑: IF/ELSE、switch、merge、分批拆分 输出: 邮件、Slack、webhook、文件保存 工作流 vs AI 代理 n8n 支持两种范式：\n# 传统工作流（确定性） trigger: new_email_received → parse_subject → if contains \"invoice\": → save_to_drive → notify_accounting # AI 代理（概率性、基于推理） trigger: new_support_ticket → AI_classify_priority(ticket) → if priority == \"high\": → AI_summarize(ticket) → AI_draft_response() → human_review_queue → else: → auto_reply_with_knowledge_base 入门指南 安装选项 # 选项 1：Docker（推荐用于自托管） docker run -d \\ --name n8n \\ -p 5678:5678 \\ -v ~/.n8n:/home/node/.n8n \\ n8nio/n8n # 选项 2：npm npm install -g n8n n8n start # 选项 3：云（托管） # 访问 app.n8n.cloud 获取托管选项 第一个工作流 在 http://localhost:5678 打开 n8n 点击\"创建工作流\" 搜索\"Webhook\"节点作为触发器 添加\"HTTP 请求\"节点 用可拖拽的线条连接节点 点击\"执行工作流\"进行测试 配置 { \"n8n\": { \"host\": \"0.0.0.0\", \"port\": 5678, \"security\": { \"authCookie\": true, \"disableCors\": false }, \"database\": { \"type\": \"sqlite\", \"path\": \"~/.n8n/database.sqlite\" }, \"ai\": { \"defaultProvider\": \"openai\", \"model\": \"gpt-4o-mini\", \"temperature\": 0.7 } } } AI 节点详解 LLM 节点 核心的 AI 节点，用于文本生成、分类和提取：\n# LLM 节点配置 { \"nodeType\": \"aiLLM\", \"parameters\": { \"model\": \"claude-sonnet-4-202603\", \"prompt\": \"将此客户消息分类：\\n\\n\\n类别：支持、销售、投诉、咨询\", \"outputKey\": \"classification\" } } 使用场景：\n文本分类: 路由邮件、工单、消息 信息提取: 从未结构化文本中提取结构化数据 摘要: 压缩长文档、会议记录、线程 情感分析: 检测情绪、紧急程度、满意度 嵌入节点 将文本转换为向量表示以进行语义搜索：\n# 嵌入节点配置 { \"nodeType\": \"aiEmbedding\", \"parameters\": { \"model\": \"text-embedding-3-large\", \"input\": \"\" } } 向量存储节点 存储和查询嵌入：\n| 节点 | 用途 | 最佳用途 | |\n|\n|\n| | Pinecone | 云向量数据库 | 可扩展的语义搜索 | | Qdrant | 自托管 | 注重隐私的 RAG | | Weaviate | 混合搜索 | 文本+向量组合查询 | | Chroma | 本地/嵌入式 | 小规模、原型设计 |\n图像生成节点 从文本提示生成图像：\n{ \"nodeType\": \"aiImageGen\", \"parameters\": { \"provider\": \"dall-e-3\", \"prompt\": \"\", \"size\": \"1024x1024\", \"quality\": \"hd\" } } 实际工作流 工作流一：AI 驱动的客户支持 收到邮件（Gmail 触发器） ↓ AI 分类优先级（LLM 节点） ↓ IF priority = \"urgent\" THEN → AI 起草回复（LLM 节点） → 人工审查队列（Slack） → 批准后自动发送 ELSE → AI 从知识库回答（向量搜索） → 自动回复客户 → 记录到 CRM 工作流二：自动化内容管线 RSS Feed 新帖子（Webhook） ↓ AI 摘要（LLM 节点） ↓ AI 生成社交帖子（LLM 节点） ↓ 安排 Twitter 帖子（Twitter API） 安排 LinkedIn 帖子（LinkedIn API） 更新博客 CMS（WordPress API） 工作流三：数据丰富化管线 新线索（表单提交） ↓ 使用 Clearbit API 丰富（HTTP 节点） ↓ AI 评分线索（LLM 节点 — 分析匹配度） ↓ IF score \u003e 80 THEN → 分配给销售代表（CRM） → 发送个性化邮件（SendGrid） ELSE → 培育序列（Mailchimp） → 每周摘要给经理（Slack） 工作流四：自主研究代理 计划触发器（每日） ↓ 搜索新闻 API（HTTP 节点） ↓ AI 过滤相关文章（LLM 节点） ↓ AI 总结每篇文章（LLM 节点） ↓ AI 识别行动项（LLM 节点） ↓ 编译报告 → 保存到 Google Drive ↓ 通过 Slack 通知团队 高级模式 模式一：人在回路 始终让人类参与关键决策：\nworkflow = { \"auto_steps\": [ \"classify_ticket\", \"search_knowledge_base\", \"draft_response\" ], \"human_gate\": [ \"approve_response\", # 人类必须在发送前批准 \"escalate_urgent\" # 人类决定升级 ], \"final_auto\": [ \"send_approved_email\", \"log_to_crm\" ] } 模式二：并行处理 同时处理多个项目：\n# 将批次拆分为块 items = split_in_batches(data, batch_size=10) # 并行处理每个批次 parallel_results = [ process_batch(batch) for batch in items ] # 合并结果 final_result = merge_parallel(parallel_results) 模式三：错误处理和重试 workflow_config = { \"retry\": { \"maxAttempts\": 3, \"backoffMultiplier\": 2, \"initialDelayMs\": 1000 }, \"onError\": { \"strategy\": \"continue\", # 或 \"stop\", \"send_alert\" \"alertChannel\": \"slack\", \"alertMessage\": \"工作流失败：\" } } 模式四：条件分支 if condition_a: execute_workflow_a() elif condition_b: execute_workflow_b() else: execute_default() n8n 的 Switch 节点以可视化方式处理复杂的分支。\n集成 流行连接 | 类别 | 示例 | |\n|\n| | 通信 | Slack、Discord、Telegram、Microsoft Teams | | 邮件 | Gmail、Outlook、SendGrid、Mailchimp | | CRM | Salesforce、HubSpot、Pipedrive、Notion | | 存储 | Google Drive、Dropbox、S3、OneDrive | | 数据库 | PostgreSQL、MySQL、MongoDB、Firebase | | AI/ML | OpenAI、Anthropic、HuggingFace、Ollama | | Web | Webhook、HTTP 请求、RSS 订阅 |\n自定义 API 集成 # 任何 REST API 的通用 HTTP 节点 { \"nodeType\": \"httpRequest\", \"parameters\": { \"method\": \"POST\", \"url\": \"https://api.example.com/v1/data\", \"headers\": {\"Authorization\": \"Bearer \"}, \"body\": { \"input\": \"\", \"context\": \"\" } } } 定价 | 计划 | 价格 | 功能 | |\n|\n|\n| | 免费 | $0 | 自托管、无限工作流、社区支持 | | Pro（云） | $20/月 | 托管主机、每月 5K 工作流执行 | | 商业 | $50/用户/月 | SSO、审计日志、优先支持、5 万执行 | | 企业 | 定制 | 本地部署、SLA、自定义集成、无限 |\n免费的自托管计划非常慷慨——无限的工作流和执行次数。大多数用户永远不需要付费。\n成本对比 | 平台 | 入门价 | 1 万次执行 | 无限 | |\n|\n|\n|\n| | n8n（自托管） | $0 | $0 | $0 | | n8n Cloud Pro | $20/月 | $20/月 | $20/月 | | Zapier | $29/月 | $29/月 | $59/月 | | Make | $9/月 | $19/月 | $29/月 |\n性能和扩展 执行限制 | 计划 | 最大并发工作流 | 执行超时 | |\n|\n|\n| | 自托管 | 无限 | 可配置 | | Pro 云 | 10 | 30 秒 | | 商业 | 50 | 60 秒 | | 企业 | 无限 | 120 秒 |\n优化技巧 # 优化慢速工作流 optimization_strategies = { \"batch_processing\": \"一次处理 100 个项目而不是 100 次单独运行\", \"caching\": \"缓存相同输入的 LLM 响应\", \"parallel_execution\": \"并行运行独立分支\", \"selective_data\": \"只从 API 获取所需字段\", \"webhook_filtering\": \"在进入工作流之前过滤事件\" } 常见问题排查 问题一：工作流卡在\"等待\"状态 问题：工作流无限期暂停 解决方案：检查超时设置，增加执行限制 问题二：AI 节点返回空结果 问题：LLM 节点输出 null 解决方案：检查 API 密钥有效性，验证提示词格式，增加最大 token 数 问题三：速率限制错误 问题：HTTP 429 Too Many Requests 解决方案：在 API 调用之间添加延迟节点，使用指数退避 问题四：自托管内存问题 问题：n8n 因内存不足崩溃 解决方案：增加 NODE_OPTIONS 内存：NODE_OPTIONS=\"--max-old-space-size=4096\" 安全最佳实践 凭据管理 # 在环境变量中存储秘密 export N8N_ENCRYPTION_KEY=your-encryption-key export OPENAI_API_KEY=sk-... export DATABASE_URL=postgresql://... # 切勿在工作流中硬编码凭据 # 使用 n8n 内置的凭据系统 网络安全 # 带 TLS 的反向代理 server { listen 443 ssl; server_name n8n.yourdomain.com; location / { proxy_pass http://localhost:5678; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; } } ```` ### 访问控制 - 为管理员账户启用双因素身份验证 - 为团队成员使用基于角色的访问 - 使用 IP 白名单限制 webhook 端点 - 定期审计工作流权限 * * * ## 未来方向 ### n8n 2026 路线图 1. **原生代理框架** — 内置多代理编排 2. **可视化代码编辑器** — 直接在 workflow 中编辑 JavaScript/Python 3. **市场扩展** — 500+ 预构建 AI 工作流模板 4. **实时协作** — 多用户工作流编辑 5. **边缘部署** — 在 IoT 设备上运行轻量级 n8n ### 何时选择 n8n **当以下情况选择 n8n：** - 你想要完全控制你的自动化基础设施 - 你需要将 AI 能力集成到工作流中 - 你更喜欢自托管以实现隐私和成本效益 - 你的工作流需要复杂的逻辑和分支 **考虑替代方案当：** - 你需要零设置——Zapier 对初学者更容易 - 你只需要简单的集成——Make 可能就够了 - 你深度投入特定生态系统——原生工具可能更好 * * * ## 社区资源 - **n8n 官方文档**: https://docs.n8n.io - **工作流模板**: https://n8n.io/workflows - **社区论坛**: https://community.n8n.io - **GitHub 仓库**: https://github.com/n8n-io/n8n - **Discord**: 活跃社区拥有 20,000+ 成员 * * * ## FAQ ### Q: n8n 真的是免费的吗？ 是的。自托管版本是开源的且完全免费，无任何功能限制。云计划从每月 $20 起用于托管主机。 ### Q: n8n 与 Zapier 相比如何？ n8n 提供更大的灵活性、AI 集成和自托管能力。Zapier 对非技术用户更容易但成本更高且控制更少。 ### Q: 我可以将 n8n 与本地 LLM（如 LlamaFile）一起使用吗？ 当然可以。使用 HTTP Request 节点调用你的本地 LlamaFile 服务器的 API 端点。这为你提供了完全私有的 AI 自动化。 ### Q: n8n 支持 Python 代码执行吗？ 是的。Code 节点允许直接在 workflow 中运行 JavaScript、Python 和 Go 代码以进行自定义逻辑。 ### Q: 我如何在 n8n 中处理敏感数据？ 使用 n8n 的加密凭据存储、环境变量的秘密、以及自托管以保持所有数据在你的基础设施上。 ### Q: n8n 可以替换我现有的 CRM 或营销工具吗？ 不能完全——n8n 连接工具而不是替换它们。它自动化了你现有系统之间的数据流。 * * * ## 参考资料 - [n8n 官方文档](https://docs.n8n.io) - [n8n GitHub 仓库](https://github.com/n8n-io/n8n) - [n8n 工作流模板](https://n8n.io/workflows) - [2026 AI 自动化最佳实践](https://automationguide.ai/best-practices-2026) - [n8n 自托管指南](https://docs.n8n.io/hosting/) * * * *加入我们的 Telegram 群组获取实时 AI 工具讨论和部署技巧：[t.me/dibi8](https://t.me/dibi8)* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"n8n AI 自动化 — 无需代码构建智能工作流\", \"datePublished\": \"2026-07-16\", \"dateModified\": \"2026-07-16\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/zh/resources/n8n-ai-automation-complete-guide\" } } ## Why This Matters Understanding n8n ai 自动化 — 无需代码构建智能工作流 is crucial for modern AI development. Here's why: ### Key Benefits - **Efficiency**: Save time on repetitive tasks - **Quality**: Improve output consistency - **Scalability**: Handle larger workloads - **Cost**: Reduce operational expenses ### Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines ### Getting Started To implement this in your workflow: 1. **Assess Your Needs** - Identify repetitive tasks - Measure current time costs - Define success metrics 2. **Choose Your Approach** - Start with simple automations - Gradually increase complexity - Test and iterate 3. **Measure Results** - Track time savings - Monitor quality improvements - Calculate ROI ## Conclusion n8n AI 自动化 — 无需代码构建智能工作流 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge. For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group * * * *Last updated: 2026-09-20* *Read time: ~6 minutes* * * * ## Related Articles - [n8n-vs-make-com-2026](n8n-ai-automation-complete-guide) - [n8n-vs-make-com-2026](n8n-ai-automation-complete-guide) - [n8n-ai-automation-complete-guide](n8n-ai-automation-complete-guide) - [n8n-vs-make-com-2026](n8n-ai-automation-complete-guide) - [n8n-ai-automation-complete-guide](n8n-ai-automation-complete-guide) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ## Tool Comparison | Feature | Claude Code | Cursor | Codex CLI | OpenCode | | * * * | * * * | * * * | * * * | * * * | | **Price** | $20/month | $20/month | Free | Free | | **Interface** | CLI + IDE | Full IDE | CLI | CLI | | **License** | Proprietary | Commercial | Apache 2.0 | MIT | | **GitHub Stars** | N/A | N/A | N/A | 45,000+ | | **Best For** | Complex reasoning | Daily coding | Fast iteration | Customization | ","wordCount":"1413","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/zh/ai-coding-agents/n8n-ai-automation-complete-guide/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/zh/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/zh/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/zh/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/zh/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/zh/>主页</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
+<a href>AI Coding Agents - dibi8</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>7 分钟</span>&nbsp;|&nbsp;<span>语言:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/n8n-ai-automation-complete-guide/>En</a></li><li><a href=https://dibi8.com/ko/ai-coding-agents/n8n-ai-automation-complete-guide/>Ko</a></li><li><a href=https://dibi8.com/vi/ai-coding-agents/n8n-ai-automation-complete-guide/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><li><a href=#n8n-%e6%98%af%e4%bb%80%e4%b9%88 aria-label="n8n 是什么？">n8n 是什么？</a><ul><li><a href=#%e4%b8%ba%e4%bb%80%e4%b9%88-2026-%e5%b9%b4%e9%80%89%e6%8b%a9-n8n aria-label="为什么 2026 年选择 n8n？">为什么 2026 年选择 n8n？</a></li></ul></li><li><a href=#%e6%a0%b8%e5%bf%83%e6%9e%b6%e6%9e%84 aria-label=核心架构>核心架构</a><ul><li><a href=#%e8%8a%82%e7%82%b9%e6%9e%84%e5%bb%ba%e5%9d%97 aria-label=节点：构建块>节点：构建块</a></li><li><a href=#%e5%b7%a5%e4%bd%9c%e6%b5%81-vs-ai-%e4%bb%a3%e7%90%86 aria-label="工作流 vs AI 代理">工作流 vs AI 代理</a></li></ul></li><li><a href=#%e5%85%a5%e9%97%a8%e6%8c%87%e5%8d%97 aria-label=入门指南>入门指南</a><ul><li><a href=#%e5%ae%89%e8%a3%85%e9%80%89%e9%a1%b9 aria-label=安装选项>安装选项</a></li><li><a href=#%e7%ac%ac%e4%b8%80%e4%b8%aa%e5%b7%a5%e4%bd%9c%e6%b5%81 aria-label=第一个工作流>第一个工作流</a></li><li><a href=#%e9%85%8d%e7%bd%ae aria-label=配置>配置</a></li></ul></li><li><a href=#ai-%e8%8a%82%e7%82%b9%e8%af%a6%e8%a7%a3 aria-label="AI 节点详解">AI 节点详解</a><ul><li><a href=#llm-%e8%8a%82%e7%82%b9 aria-label="LLM 节点">LLM 节点</a></li><li><a href=#%e5%b5%8c%e5%85%a5%e8%8a%82%e7%82%b9 aria-label=嵌入节点>嵌入节点</a></li><li><a href=#%e5%90%91%e9%87%8f%e5%ad%98%e5%82%a8%e8%8a%82%e7%82%b9 aria-label=向量存储节点>向量存储节点</a></li><li><a href=#%e5%9b%be%e5%83%8f%e7%94%9f%e6%88%90%e8%8a%82%e7%82%b9 aria-label=图像生成节点>图像生成节点</a></li></ul></li><li><a href=#%e5%ae%9e%e9%99%85%e5%b7%a5%e4%bd%9c%e6%b5%81 aria-label=实际工作流>实际工作流</a><ul><li><a href=#%e5%b7%a5%e4%bd%9c%e6%b5%81%e4%b8%80ai-%e9%a9%b1%e5%8a%a8%e7%9a%84%e5%ae%a2%e6%88%b7%e6%94%af%e6%8c%81 aria-label="工作流一：AI 驱动的客户支持">工作流一：AI 驱动的客户支持</a></li><li><a href=#%e5%b7%a5%e4%bd%9c%e6%b5%81%e4%ba%8c%e8%87%aa%e5%8a%a8%e5%8c%96%e5%86%85%e5%ae%b9%e7%ae%a1%e7%ba%bf aria-label=工作流二：自动化内容管线>工作流二：自动化内容管线</a></li><li><a href=#%e5%b7%a5%e4%bd%9c%e6%b5%81%e4%b8%89%e6%95%b0%e6%8d%ae%e4%b8%b0%e5%af%8c%e5%8c%96%e7%ae%a1%e7%ba%bf aria-label=工作流三：数据丰富化管线>工作流三：数据丰富化管线</a></li><li><a href=#%e5%b7%a5%e4%bd%9c%e6%b5%81%e5%9b%9b%e8%87%aa%e4%b8%bb%e7%a0%94%e7%a9%b6%e4%bb%a3%e7%90%86 aria-label=工作流四：自主研究代理>工作流四：自主研究代理</a></li></ul></li><li><a href=#%e9%ab%98%e7%ba%a7%e6%a8%a1%e5%bc%8f aria-label=高级模式>高级模式</a><ul><li><a href=#%e6%a8%a1%e5%bc%8f%e4%b8%80%e4%ba%ba%e5%9c%a8%e5%9b%9e%e8%b7%af aria-label=模式一：人在回路>模式一：人在回路</a></li><li><a href=#%e6%a8%a1%e5%bc%8f%e4%ba%8c%e5%b9%b6%e8%a1%8c%e5%a4%84%e7%90%86 aria-label=模式二：并行处理>模式二：并行处理</a></li><li><a href=#%e6%a8%a1%e5%bc%8f%e4%b8%89%e9%94%99%e8%af%af%e5%a4%84%e7%90%86%e5%92%8c%e9%87%8d%e8%af%95 aria-label=模式三：错误处理和重试>模式三：错误处理和重试</a></li><li><a href=#%e6%a8%a1%e5%bc%8f%e5%9b%9b%e6%9d%a1%e4%bb%b6%e5%88%86%e6%94%af aria-label=模式四：条件分支>模式四：条件分支</a></li></ul></li><li><a href=#%e9%9b%86%e6%88%90 aria-label=集成>集成</a><ul><li><a href=#%e6%b5%81%e8%a1%8c%e8%bf%9e%e6%8e%a5 aria-label=流行连接>流行连接</a></li><li><a href=#%e8%87%aa%e5%ae%9a%e4%b9%89-api-%e9%9b%86%e6%88%90 aria-label="自定义 API 集成">自定义 API 集成</a></li></ul></li><li><a href=#%e5%ae%9a%e4%bb%b7 aria-label=定价>定价</a><ul><li><a href=#%e6%88%90%e6%9c%ac%e5%af%b9%e6%af%94 aria-label=成本对比>成本对比</a></li></ul></li><li><a href=#%e6%80%a7%e8%83%bd%e5%92%8c%e6%89%a9%e5%b1%95 aria-label=性能和扩展>性能和扩展</a><ul><li><a href=#%e6%89%a7%e8%a1%8c%e9%99%90%e5%88%b6 aria-label=执行限制>执行限制</a></li><li><a href=#%e4%bc%98%e5%8c%96%e6%8a%80%e5%b7%a7 aria-label=优化技巧>优化技巧</a></li></ul></li><li><a href=#%e5%b8%b8%e8%a7%81%e9%97%ae%e9%a2%98%e6%8e%92%e6%9f%a5 aria-label=常见问题排查>常见问题排查</a><ul><li><a href=#%e9%97%ae%e9%a2%98%e4%b8%80%e5%b7%a5%e4%bd%9c%e6%b5%81%e5%8d%a1%e5%9c%a8%e7%ad%89%e5%be%85%e7%8a%b6%e6%80%81 aria-label='问题一：工作流卡在"等待"状态'>问题一：工作流卡在"等待"状态</a></li><li><a href=#%e9%97%ae%e9%a2%98%e4%ba%8cai-%e8%8a%82%e7%82%b9%e8%bf%94%e5%9b%9e%e7%a9%ba%e7%bb%93%e6%9e%9c aria-label="问题二：AI 节点返回空结果">问题二：AI 节点返回空结果</a></li><li><a href=#%e9%97%ae%e9%a2%98%e4%b8%89%e9%80%9f%e7%8e%87%e9%99%90%e5%88%b6%e9%94%99%e8%af%af aria-label=问题三：速率限制错误>问题三：速率限制错误</a></li><li><a href=#%e9%97%ae%e9%a2%98%e5%9b%9b%e8%87%aa%e6%89%98%e7%ae%a1%e5%86%85%e5%ad%98%e9%97%ae%e9%a2%98 aria-label=问题四：自托管内存问题>问题四：自托管内存问题</a></li></ul></li><li><a href=#%e5%ae%89%e5%85%a8%e6%9c%80%e4%bd%b3%e5%ae%9e%e8%b7%b5 aria-label=安全最佳实践>安全最佳实践</a><ul><li><a href=#%e5%87%ad%e6%8d%ae%e7%ae%a1%e7%90%86 aria-label=凭据管理>凭据管理</a></li><li><a href=#%e7%bd%91%e7%bb%9c%e5%ae%89%e5%85%a8 aria-label=网络安全>网络安全</a></li></ul></li></ul></div></details><div class="post-content md-content"><h2 id=n8n-是什么>n8n 是什么？<a hidden class=anchor aria-hidden=true href=#n8n-是什么>#</a></h2><p>n8n（发音为"n-eight-n"）是一种 fair-code 工作流自动化工具，使你能够可视化地连接应用、数据库、API 和 AI 模型。与 Zapier 或 Make 不同，n8n 可以自托管，让你完全控制你的数据和工作流。</p><p><strong>关键差异化</strong>：n8n 将传统工作流自动化与<strong>原生 AI 能力</strong>相结合——你可以将 LLM 调用、向量搜索和 AI 决策直接嵌入到你的自动化管线中。</p><h3 id=为什么-2026-年选择-n8n>为什么 2026 年选择 n8n？<a hidden class=anchor aria-hidden=true href=#为什么-2026-年选择-n8n>#</a></h3><p>自动化格局发生了巨大变化：</p><p>| 时代 | 方法 | 限制 |
+|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| 2020-2022 | 简单触发→动作 | 无智能、仅限线性 |
+| 2023-2024 | API 连接器 + 基本逻辑 | 自定义有限 |
+| 2025-2026 | AI 原生工作流 | 完全自主、推理、记忆 |</p><p>n8n 通过让 AI 工作流无需编码即可访问而引领 2026 年的浪潮。</p><hr><h2 id=核心架构>核心架构<a hidden class=anchor aria-hidden=true href=#核心架构>#</a></h2><h3 id=节点构建块>节点：构建块<a hidden class=anchor aria-hidden=true href=#节点构建块>#</a></h3><p>每个 n8n 工作流都由<strong>节点</strong>组成——模块化处理单元：</p><pre tabindex=0><code>[触发器] → [HTTP 请求] → [AI 处理] → [数据库] → [通知]
+    │            │                 │              │              │
+  何时...     获取数据      LLM 分析     存储结果     通知团队
+</code></pre><p>节点类别：</p><ul><li><strong>触发器</strong>: Webhook、计划、邮件轮询、数据库更改</li><li><strong>操作</strong>: HTTP 请求、CRUD 操作、文件处理</li><li><strong>AI/ML</strong>: LLM 调用、嵌入、向量搜索、图像生成</li><li><strong>逻辑</strong>: IF/ELSE、switch、merge、分批拆分</li><li><strong>输出</strong>: 邮件、Slack、webhook、文件保存</li></ul><h3 id=工作流-vs-ai-代理>工作流 vs AI 代理<a hidden class=anchor aria-hidden=true href=#工作流-vs-ai-代理>#</a></h3><p>n8n 支持两种范式：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 传统工作流（确定性）</span>
+</span></span><span style=display:flex><span>trigger: new_email_received
+</span></span><span style=display:flex><span>  <span style=color:#960050;background-color:#1e0010>→</span> parse_subject
+</span></span><span style=display:flex><span>  <span style=color:#960050;background-color:#1e0010>→</span> <span style=color:#66d9ef>if</span> contains <span style=color:#e6db74>&#34;invoice&#34;</span>: <span style=color:#960050;background-color:#1e0010>→</span> save_to_drive
+</span></span><span style=display:flex><span>      <span style=color:#960050;background-color:#1e0010>→</span> notify_accounting
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># AI 代理（概率性、基于推理）</span>
+</span></span><span style=display:flex><span>trigger: new_support_ticket
+</span></span><span style=display:flex><span>  <span style=color:#960050;background-color:#1e0010>→</span> AI_classify_priority(ticket)
+</span></span><span style=display:flex><span>  <span style=color:#960050;background-color:#1e0010>→</span> <span style=color:#66d9ef>if</span> priority <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;high&#34;</span>: <span style=color:#960050;background-color:#1e0010>→</span> AI_summarize(ticket)
+</span></span><span style=display:flex><span>      <span style=color:#960050;background-color:#1e0010>→</span> AI_draft_response()
+</span></span><span style=display:flex><span>      <span style=color:#960050;background-color:#1e0010>→</span> human_review_queue
+</span></span><span style=display:flex><span>  <span style=color:#960050;background-color:#1e0010>→</span> <span style=color:#66d9ef>else</span>: <span style=color:#960050;background-color:#1e0010>→</span> auto_reply_with_knowledge_base
+</span></span></code></pre></div><hr><h2 id=入门指南>入门指南<a hidden class=anchor aria-hidden=true href=#入门指南>#</a></h2><h3 id=安装选项>安装选项<a hidden class=anchor aria-hidden=true href=#安装选项>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 选项 1：Docker（推荐用于自托管）</span>
+</span></span><span style=display:flex><span>docker run -d <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  --name n8n <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  -p 5678:5678 <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  -v ~/.n8n:/home/node/.n8n <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  n8nio/n8n
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 选项 2：npm</span>
+</span></span><span style=display:flex><span>npm install -g n8n
+</span></span><span style=display:flex><span>n8n start
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 选项 3：云（托管）</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 访问 app.n8n.cloud 获取托管选项</span>
+</span></span></code></pre></div><h3 id=第一个工作流>第一个工作流<a hidden class=anchor aria-hidden=true href=#第一个工作流>#</a></h3><ol><li>在 <code>http://localhost:5678</code> 打开 n8n</li><li>点击"创建工作流"</li><li>搜索"Webhook"节点作为触发器</li><li>添加"HTTP 请求"节点</li><li>用可拖拽的线条连接节点</li><li>点击"执行工作流"进行测试</li></ol><h3 id=配置>配置<a hidden class=anchor aria-hidden=true href=#配置>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;n8n&#34;</span>: {
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;host&#34;</span>: <span style=color:#e6db74>&#34;0.0.0.0&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;port&#34;</span>: <span style=color:#ae81ff>5678</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;security&#34;</span>: {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;authCookie&#34;</span>: <span style=color:#66d9ef>true</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;disableCors&#34;</span>: <span style=color:#66d9ef>false</span>
+</span></span><span style=display:flex><span>    },
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;database&#34;</span>: {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;sqlite&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;path&#34;</span>: <span style=color:#e6db74>&#34;~/.n8n/database.sqlite&#34;</span>
+</span></span><span style=display:flex><span>    },
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;ai&#34;</span>: {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;defaultProvider&#34;</span>: <span style=color:#e6db74>&#34;openai&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;model&#34;</span>: <span style=color:#e6db74>&#34;gpt-4o-mini&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;temperature&#34;</span>: <span style=color:#ae81ff>0.7</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><hr><h2 id=ai-节点详解>AI 节点详解<a hidden class=anchor aria-hidden=true href=#ai-节点详解>#</a></h2><h3 id=llm-节点>LLM 节点<a hidden class=anchor aria-hidden=true href=#llm-节点>#</a></h3><p>核心的 AI 节点，用于文本生成、分类和提取：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># LLM 节点配置</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;nodeType&#34;</span>: <span style=color:#e6db74>&#34;aiLLM&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;parameters&#34;</span>: {
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;model&#34;</span>: <span style=color:#e6db74>&#34;claude-sonnet-4-202603&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;prompt&#34;</span>: <span style=color:#e6db74>&#34;将此客户消息分类：</span><span style=color:#ae81ff>\n\n\n</span><span style=color:#e6db74>类别：支持、销售、投诉、咨询&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;outputKey&#34;</span>: <span style=color:#e6db74>&#34;classification&#34;</span>
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>使用场景：</p><ul><li><strong>文本分类</strong>: 路由邮件、工单、消息</li><li><strong>信息提取</strong>: 从未结构化文本中提取结构化数据</li><li><strong>摘要</strong>: 压缩长文档、会议记录、线程</li><li><strong>情感分析</strong>: 检测情绪、紧急程度、满意度</li></ul><h3 id=嵌入节点>嵌入节点<a hidden class=anchor aria-hidden=true href=#嵌入节点>#</a></h3><p>将文本转换为向量表示以进行语义搜索：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 嵌入节点配置</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;nodeType&#34;</span>: <span style=color:#e6db74>&#34;aiEmbedding&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;parameters&#34;</span>: {
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;model&#34;</span>: <span style=color:#e6db74>&#34;text-embedding-3-large&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;input&#34;</span>: <span style=color:#e6db74>&#34;&#34;</span>
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=向量存储节点>向量存储节点<a hidden class=anchor aria-hidden=true href=#向量存储节点>#</a></h3><p>存储和查询嵌入：</p><p>| 节点 | 用途 | 最佳用途 |
+|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| Pinecone | 云向量数据库 | 可扩展的语义搜索 |
+| Qdrant | 自托管 | 注重隐私的 RAG |
+| Weaviate | 混合搜索 | 文本+向量组合查询 |
+| Chroma | 本地/嵌入式 | 小规模、原型设计 |</p><h3 id=图像生成节点>图像生成节点<a hidden class=anchor aria-hidden=true href=#图像生成节点>#</a></h3><p>从文本提示生成图像：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;nodeType&#34;</span>: <span style=color:#e6db74>&#34;aiImageGen&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;parameters&#34;</span>: {
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;provider&#34;</span>: <span style=color:#e6db74>&#34;dall-e-3&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;prompt&#34;</span>: <span style=color:#e6db74>&#34;&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;size&#34;</span>: <span style=color:#e6db74>&#34;1024x1024&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;quality&#34;</span>: <span style=color:#e6db74>&#34;hd&#34;</span>
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><hr><h2 id=实际工作流>实际工作流<a hidden class=anchor aria-hidden=true href=#实际工作流>#</a></h2><h3 id=工作流一ai-驱动的客户支持>工作流一：AI 驱动的客户支持<a hidden class=anchor aria-hidden=true href=#工作流一ai-驱动的客户支持>#</a></h3><pre tabindex=0><code>收到邮件（Gmail 触发器）
+    ↓
+AI 分类优先级（LLM 节点）
+    ↓
+IF priority = &#34;urgent&#34; THEN
+    → AI 起草回复（LLM 节点）
+    → 人工审查队列（Slack）
+    → 批准后自动发送
+ELSE
+    → AI 从知识库回答（向量搜索）
+    → 自动回复客户
+    → 记录到 CRM
+</code></pre><h3 id=工作流二自动化内容管线>工作流二：自动化内容管线<a hidden class=anchor aria-hidden=true href=#工作流二自动化内容管线>#</a></h3><pre tabindex=0><code>RSS Feed 新帖子（Webhook）
+    ↓
+AI 摘要（LLM 节点）
+    ↓
+AI 生成社交帖子（LLM 节点）
+    ↓
+安排 Twitter 帖子（Twitter API）
+安排 LinkedIn 帖子（LinkedIn API）
+更新博客 CMS（WordPress API）
+</code></pre><h3 id=工作流三数据丰富化管线>工作流三：数据丰富化管线<a hidden class=anchor aria-hidden=true href=#工作流三数据丰富化管线>#</a></h3><pre tabindex=0><code>新线索（表单提交）
+    ↓
+使用 Clearbit API 丰富（HTTP 节点）
+    ↓
+AI 评分线索（LLM 节点 — 分析匹配度）
+    ↓
+IF score &gt; 80 THEN
+    → 分配给销售代表（CRM）
+    → 发送个性化邮件（SendGrid）
+ELSE
+    → 培育序列（Mailchimp）
+    → 每周摘要给经理（Slack）
+</code></pre><h3 id=工作流四自主研究代理>工作流四：自主研究代理<a hidden class=anchor aria-hidden=true href=#工作流四自主研究代理>#</a></h3><pre tabindex=0><code>计划触发器（每日）
+    ↓
+搜索新闻 API（HTTP 节点）
+    ↓
+AI 过滤相关文章（LLM 节点）
+    ↓
+AI 总结每篇文章（LLM 节点）
+    ↓
+AI 识别行动项（LLM 节点）
+    ↓
+编译报告 → 保存到 Google Drive
+    ↓
+通过 Slack 通知团队
+</code></pre><hr><h2 id=高级模式>高级模式<a hidden class=anchor aria-hidden=true href=#高级模式>#</a></h2><h3 id=模式一人在回路>模式一：人在回路<a hidden class=anchor aria-hidden=true href=#模式一人在回路>#</a></h3><p>始终让人类参与关键决策：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span>workflow <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;auto_steps&#34;</span>: [
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;classify_ticket&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;search_knowledge_base&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;draft_response&#34;</span>
+</span></span><span style=display:flex><span>    ],
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;human_gate&#34;</span>: [
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;approve_response&#34;</span>,      <span style=color:#75715e># 人类必须在发送前批准</span>
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;escalate_urgent&#34;</span>        <span style=color:#75715e># 人类决定升级</span>
+</span></span><span style=display:flex><span>    ],
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;final_auto&#34;</span>: [
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;send_approved_email&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;log_to_crm&#34;</span>
+</span></span><span style=display:flex><span>    ]
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=模式二并行处理>模式二：并行处理<a hidden class=anchor aria-hidden=true href=#模式二并行处理>#</a></h3><p>同时处理多个项目：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 将批次拆分为块</span>
+</span></span><span style=display:flex><span>items <span style=color:#f92672>=</span> split_in_batches(data, batch_size<span style=color:#f92672>=</span><span style=color:#ae81ff>10</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 并行处理每个批次</span>
+</span></span><span style=display:flex><span>parallel_results <span style=color:#f92672>=</span> [
+</span></span><span style=display:flex><span>    process_batch(batch) <span style=color:#66d9ef>for</span> batch <span style=color:#f92672>in</span> items
+</span></span><span style=display:flex><span>]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 合并结果</span>
+</span></span><span style=display:flex><span>final_result <span style=color:#f92672>=</span> merge_parallel(parallel_results)
+</span></span></code></pre></div><h3 id=模式三错误处理和重试>模式三：错误处理和重试<a hidden class=anchor aria-hidden=true href=#模式三错误处理和重试>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span>workflow_config <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;retry&#34;</span>: {
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;maxAttempts&#34;</span>: <span style=color:#ae81ff>3</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;backoffMultiplier&#34;</span>: <span style=color:#ae81ff>2</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;initialDelayMs&#34;</span>: <span style=color:#ae81ff>1000</span>
+</span></span><span style=display:flex><span>    },
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;onError&#34;</span>: {
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;strategy&#34;</span>: <span style=color:#e6db74>&#34;continue&#34;</span>,  <span style=color:#75715e># 或 &#34;stop&#34;, &#34;send_alert&#34;</span>
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;alertChannel&#34;</span>: <span style=color:#e6db74>&#34;slack&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;alertMessage&#34;</span>: <span style=color:#e6db74>&#34;工作流失败：&#34;</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=模式四条件分支>模式四：条件分支<a hidden class=anchor aria-hidden=true href=#模式四条件分支>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>if</span> condition_a: execute_workflow_a()
+</span></span><span style=display:flex><span><span style=color:#66d9ef>elif</span> condition_b: execute_workflow_b()
+</span></span><span style=display:flex><span><span style=color:#66d9ef>else</span>: execute_default()
+</span></span></code></pre></div><p>n8n 的 Switch 节点以可视化方式处理复杂的分支。</p><hr><h2 id=集成>集成<a hidden class=anchor aria-hidden=true href=#集成>#</a></h2><h3 id=流行连接>流行连接<a hidden class=anchor aria-hidden=true href=#流行连接>#</a></h3><p>| 类别 | 示例 |
+|</p><hr><p>|</p><hr><p>|
+| 通信 | Slack、Discord、Telegram、Microsoft Teams |
+| 邮件 | Gmail、Outlook、SendGrid、Mailchimp |
+| CRM | Salesforce、HubSpot、Pipedrive、Notion |
+| 存储 | Google Drive、Dropbox、S3、OneDrive |
+| 数据库 | PostgreSQL、MySQL、MongoDB、Firebase |
+| AI/ML | OpenAI、Anthropic、HuggingFace、Ollama |
+| Web | Webhook、HTTP 请求、RSS 订阅 |</p><h3 id=自定义-api-集成>自定义 API 集成<a hidden class=anchor aria-hidden=true href=#自定义-api-集成>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 任何 REST API 的通用 HTTP 节点</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;nodeType&#34;</span>: <span style=color:#e6db74>&#34;httpRequest&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;parameters&#34;</span>: {
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;method&#34;</span>: <span style=color:#e6db74>&#34;POST&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;url&#34;</span>: <span style=color:#e6db74>&#34;https://api.example.com/v1/data&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;headers&#34;</span>: {<span style=color:#e6db74>&#34;Authorization&#34;</span>: <span style=color:#e6db74>&#34;Bearer &#34;</span>},
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;body&#34;</span>: {
+</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;input&#34;</span>: <span style=color:#e6db74>&#34;&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;context&#34;</span>: <span style=color:#e6db74>&#34;&#34;</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><hr><h2 id=定价>定价<a hidden class=anchor aria-hidden=true href=#定价>#</a></h2><p>| 计划 | 价格 | 功能 |
+|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| 免费 | $0 | 自托管、无限工作流、社区支持 |
+| Pro（云） | $20/月 | 托管主机、每月 5K 工作流执行 |
+| 商业 | $50/用户/月 | SSO、审计日志、优先支持、5 万执行 |
+| 企业 | 定制 | 本地部署、SLA、自定义集成、无限 |</p><p>免费的自托管计划非常慷慨——无限的工作流和执行次数。大多数用户永远不需要付费。</p><h3 id=成本对比>成本对比<a hidden class=anchor aria-hidden=true href=#成本对比>#</a></h3><p>| 平台 | 入门价 | 1 万次执行 | 无限 |
+|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| n8n（自托管） | $0 | $0 | $0 |
+| n8n Cloud Pro | $20/月 | $20/月 | $20/月 |
+| Zapier | $29/月 | $29/月 | $59/月 |
+| Make | $9/月 | $19/月 | $29/月 |</p><hr><h2 id=性能和扩展>性能和扩展<a hidden class=anchor aria-hidden=true href=#性能和扩展>#</a></h2><h3 id=执行限制>执行限制<a hidden class=anchor aria-hidden=true href=#执行限制>#</a></h3><p>| 计划 | 最大并发工作流 | 执行超时 |
+|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| 自托管 | 无限 | 可配置 |
+| Pro 云 | 10 | 30 秒 |
+| 商业 | 50 | 60 秒 |
+| 企业 | 无限 | 120 秒 |</p><h3 id=优化技巧>优化技巧<a hidden class=anchor aria-hidden=true href=#优化技巧>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 优化慢速工作流</span>
+</span></span><span style=display:flex><span>optimization_strategies <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;batch_processing&#34;</span>: <span style=color:#e6db74>&#34;一次处理 100 个项目而不是 100 次单独运行&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;caching&#34;</span>: <span style=color:#e6db74>&#34;缓存相同输入的 LLM 响应&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;parallel_execution&#34;</span>: <span style=color:#e6db74>&#34;并行运行独立分支&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;selective_data&#34;</span>: <span style=color:#e6db74>&#34;只从 API 获取所需字段&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;webhook_filtering&#34;</span>: <span style=color:#e6db74>&#34;在进入工作流之前过滤事件&#34;</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><hr><h2 id=常见问题排查>常见问题排查<a hidden class=anchor aria-hidden=true href=#常见问题排查>#</a></h2><h3 id=问题一工作流卡在等待状态>问题一：工作流卡在"等待"状态<a hidden class=anchor aria-hidden=true href=#问题一工作流卡在等待状态>#</a></h3><pre tabindex=0><code>问题：工作流无限期暂停
+解决方案：检查超时设置，增加执行限制
+</code></pre><h3 id=问题二ai-节点返回空结果>问题二：AI 节点返回空结果<a hidden class=anchor aria-hidden=true href=#问题二ai-节点返回空结果>#</a></h3><pre tabindex=0><code>问题：LLM 节点输出 null
+解决方案：检查 API 密钥有效性，验证提示词格式，增加最大 token 数
+</code></pre><h3 id=问题三速率限制错误>问题三：速率限制错误<a hidden class=anchor aria-hidden=true href=#问题三速率限制错误>#</a></h3><pre tabindex=0><code>问题：HTTP 429 Too Many Requests
+解决方案：在 API 调用之间添加延迟节点，使用指数退避
+</code></pre><h3 id=问题四自托管内存问题>问题四：自托管内存问题<a hidden class=anchor aria-hidden=true href=#问题四自托管内存问题>#</a></h3><pre tabindex=0><code>问题：n8n 因内存不足崩溃
+解决方案：增加 NODE_OPTIONS 内存：NODE_OPTIONS=&#34;--max-old-space-size=4096&#34;
+</code></pre><hr><h2 id=安全最佳实践>安全最佳实践<a hidden class=anchor aria-hidden=true href=#安全最佳实践>#</a></h2><h3 id=凭据管理>凭据管理<a hidden class=anchor aria-hidden=true href=#凭据管理>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 在环境变量中存储秘密</span>
+</span></span><span style=display:flex><span>export N8N_ENCRYPTION_KEY<span style=color:#f92672>=</span>your-encryption-key
+</span></span><span style=display:flex><span>export OPENAI_API_KEY<span style=color:#f92672>=</span>sk-...
+</span></span><span style=display:flex><span>export DATABASE_URL<span style=color:#f92672>=</span>postgresql://...
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 切勿在工作流中硬编码凭据</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 使用 n8n 内置的凭据系统</span>
+</span></span></code></pre></div><h3 id=网络安全>网络安全<a hidden class=anchor aria-hidden=true href=#网络安全>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-nginx data-lang=nginx><span style=display:flex><span><span style=color:#75715e># 带 TLS 的反向代理
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>server</span> {
+</span></span><span style=display:flex><span>    <span style=color:#f92672>listen</span> <span style=color:#ae81ff>443</span> <span style=color:#e6db74>ssl</span>;
+</span></span><span style=display:flex><span>    <span style=color:#f92672>server_name</span> <span style=color:#e6db74>n8n.yourdomain.com</span>;
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#f92672>location</span> <span style=color:#e6db74>/</span> {
+</span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_pass</span> <span style=color:#e6db74>http://localhost:5678</span>;
+</span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_set_header</span> <span style=color:#e6db74>Host</span> $host;
+</span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_set_header</span> <span style=color:#e6db74>X-Real-IP</span> $remote_addr;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=color:#66d9ef>````</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 访问控制
+</span></span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>为管理员账户启用双因素身份验证</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>为团队成员使用基于角色的访问</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>使用</span> <span style=color:#e6db74>IP</span> <span style=color:#e6db74>白名单限制</span> <span style=color:#e6db74>webhook</span> <span style=color:#e6db74>端点</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>定期审计工作流权限</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>*</span> <span style=color:#e6db74>*</span> <span style=color:#e6db74>*</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 未来方向
+</span></span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### n8n 2026 路线图
+</span></span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>1</span><span style=color:#e6db74>.</span> <span style=color:#e6db74>**原生代理框架**</span> <span style=color:#e6db74>—</span> <span style=color:#e6db74>内置多代理编排</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>2</span><span style=color:#e6db74>.</span> <span style=color:#e6db74>**可视化代码编辑器**</span> <span style=color:#e6db74>—</span> <span style=color:#e6db74>直接在</span> <span style=color:#e6db74>workflow</span> <span style=color:#e6db74>中编辑</span> <span style=color:#e6db74>JavaScript/Python</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>3</span><span style=color:#e6db74>.</span> <span style=color:#e6db74>**市场扩展**</span> <span style=color:#e6db74>—</span> <span style=color:#ae81ff>500</span><span style=color:#e6db74>+</span> <span style=color:#e6db74>预构建</span> <span style=color:#e6db74>AI</span> <span style=color:#e6db74>工作流模板</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>4</span><span style=color:#e6db74>.</span> <span style=color:#e6db74>**实时协作**</span> <span style=color:#e6db74>—</span> <span style=color:#e6db74>多用户工作流编辑</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>5</span><span style=color:#e6db74>.</span> <span style=color:#e6db74>**边缘部署**</span> <span style=color:#e6db74>—</span> <span style=color:#e6db74>在</span> <span style=color:#e6db74>IoT</span> <span style=color:#e6db74>设备上运行轻量级</span> <span style=color:#e6db74>n8n</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 何时选择 n8n
+</span></span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>**当以下情况选择</span> <span style=color:#e6db74>n8n：**</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>你想要完全控制你的自动化基础设施</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>你需要将</span> <span style=color:#e6db74>AI</span> <span style=color:#e6db74>能力集成到工作流中</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>你更喜欢自托管以实现隐私和成本效益</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>你的工作流需要复杂的逻辑和分支</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>**考虑替代方案当：**</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>你需要零设置——Zapier</span> <span style=color:#e6db74>对初学者更容易</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>你只需要简单的集成——Make</span> <span style=color:#e6db74>可能就够了</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>你深度投入特定生态系统——原生工具可能更好</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>*</span> <span style=color:#e6db74>*</span> <span style=color:#e6db74>*</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 社区资源
+</span></span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>**n8n</span> <span style=color:#e6db74>官方文档**:</span> <span style=color:#e6db74>https://docs.n8n.io</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>**工作流模板**:</span> <span style=color:#e6db74>https://n8n.io/workflows</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>**社区论坛**:</span> <span style=color:#e6db74>https://community.n8n.io</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>**GitHub</span> <span style=color:#e6db74>仓库**:</span> <span style=color:#e6db74>https://github.com/n8n-io/n8n</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>**Discord**:</span> <span style=color:#e6db74>活跃社区拥有</span> <span style=color:#ae81ff>20</span><span style=color:#e6db74>,000+</span> <span style=color:#e6db74>成员</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>*</span> <span style=color:#e6db74>*</span> <span style=color:#e6db74>*</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## FAQ
+</span></span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### Q: n8n 真的是免费的吗？
+</span></span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>是的。自托管版本是开源的且完全免费，无任何功能限制。云计划从每月</span> $20 <span style=color:#e6db74>起用于托管主机。</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### Q: n8n 与 Zapier 相比如何？
+</span></span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>n8n</span> <span style=color:#e6db74>提供更大的灵活性、AI</span> <span style=color:#e6db74>集成和自托管能力。Zapier</span> <span style=color:#e6db74>对非技术用户更容易但成本更高且控制更少。</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### Q: 我可以将 n8n 与本地 LLM（如 LlamaFile）一起使用吗？
+</span></span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>当然可以。使用</span> <span style=color:#e6db74>HTTP</span> <span style=color:#e6db74>Request</span> <span style=color:#e6db74>节点调用你的本地</span> <span style=color:#e6db74>LlamaFile</span> <span style=color:#e6db74>服务器的</span> <span style=color:#e6db74>API</span> <span style=color:#e6db74>端点。这为你提供了完全私有的</span> <span style=color:#e6db74>AI</span> <span style=color:#e6db74>自动化。</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### Q: n8n 支持 Python 代码执行吗？
+</span></span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>是的。Code</span> <span style=color:#e6db74>节点允许直接在</span> <span style=color:#e6db74>workflow</span> <span style=color:#e6db74>中运行</span> <span style=color:#e6db74>JavaScript、Python</span> <span style=color:#e6db74>和</span> <span style=color:#e6db74>Go</span> <span style=color:#e6db74>代码以进行自定义逻辑。</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### Q: 我如何在 n8n 中处理敏感数据？
+</span></span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>使用</span> <span style=color:#e6db74>n8n</span> <span style=color:#e6db74>的加密凭据存储、环境变量的秘密、以及自托管以保持所有数据在你的基础设施上。</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### Q: n8n 可以替换我现有的 CRM 或营销工具吗？
+</span></span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>不能完全——n8n</span> <span style=color:#e6db74>连接工具而不是替换它们。它自动化了你现有系统之间的数据流。</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>*</span> <span style=color:#e6db74>*</span> <span style=color:#e6db74>*</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 参考资料
+</span></span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>[n8n</span> <span style=color:#e6db74>官方文档](https://docs.n8n.io)</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>[n8n</span> <span style=color:#e6db74>GitHub</span> <span style=color:#e6db74>仓库](https://github.com/n8n-io/n8n)</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>[n8n</span> <span style=color:#e6db74>工作流模板](https://n8n.io/workflows)</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>[2026</span> <span style=color:#e6db74>AI</span> <span style=color:#e6db74>自动化最佳实践](https://automationguide.ai/best-practices-2026)</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>[n8n</span> <span style=color:#e6db74>自托管指南](https://docs.n8n.io/hosting/)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>*</span> <span style=color:#e6db74>*</span> <span style=color:#e6db74>*</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>*加入我们的</span> <span style=color:#e6db74>Telegram</span> <span style=color:#e6db74>群组获取实时</span> <span style=color:#e6db74>AI</span> <span style=color:#e6db74>工具讨论和部署技巧：[t.me/dibi8](https://t.me/dibi8)*</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;@context&#34;:</span> <span style=color:#e6db74>&#34;https://schema.org&#34;,</span>
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;@type&#34;:</span> <span style=color:#e6db74>&#34;Article&#34;,</span>
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;headline&#34;:</span> <span style=color:#e6db74>&#34;n8n</span> <span style=color:#e6db74>AI</span> <span style=color:#e6db74>自动化</span> <span style=color:#e6db74>—</span> <span style=color:#e6db74>无需代码构建智能工作流&#34;,</span>
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;datePublished&#34;:</span> <span style=color:#e6db74>&#34;2026-07-16&#34;,</span>
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;dateModified&#34;:</span> <span style=color:#e6db74>&#34;2026-07-16&#34;,</span>
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;author&#34;:</span> {
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;@type&#34;:</span> <span style=color:#e6db74>&#34;Organization&#34;,</span>
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;name&#34;:</span> <span style=color:#e6db74>&#34;Dibi8&#34;</span>
+</span></span><span style=display:flex><span>  <span style=color:#960050;background-color:#1e0010>}</span><span style=color:#e6db74>,</span>
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;publisher&#34;:</span> {
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;@type&#34;:</span> <span style=color:#e6db74>&#34;Organization&#34;,</span>
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;name&#34;:</span> <span style=color:#e6db74>&#34;Dibi8&#34;,</span>
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;logo&#34;:</span> {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;@type&#34;:</span> <span style=color:#e6db74>&#34;ImageObject&#34;,</span>
+</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;url&#34;:</span> <span style=color:#e6db74>&#34;https://dibi8.com/logo.png&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#960050;background-color:#1e0010>}</span>
+</span></span><span style=display:flex><span>  <span style=color:#960050;background-color:#1e0010>}</span><span style=color:#e6db74>,</span>
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;mainEntityOfPage&#34;:</span> {
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;@type&#34;:</span> <span style=color:#e6db74>&#34;WebPage&#34;,</span>
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@id&#34;:</span> <span style=color:#e6db74>&#34;https://dibi8.com/zh/resources/n8n-ai-automation-complete-guide&#34;</span>
+</span></span><span style=display:flex><span>  <span style=color:#960050;background-color:#1e0010>}</span>
+</span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>}</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>&lt;/script&gt;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## Why This Matters
+</span></span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>Understanding</span> <span style=color:#e6db74>n8n</span> <span style=color:#e6db74>ai</span> <span style=color:#e6db74>自动化</span> <span style=color:#e6db74>—</span> <span style=color:#e6db74>无需代码构建智能工作流</span> <span style=color:#e6db74>is</span> <span style=color:#e6db74>crucial</span> <span style=color:#e6db74>for</span> <span style=color:#e6db74>modern</span> <span style=color:#e6db74>AI</span> <span style=color:#e6db74>development.</span> <span style=color:#e6db74>Here&#39;s</span> <span style=color:#e6db74>why:</span> <span style=color:#75715e>### Key Benefits
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>**Efficiency**:</span> <span style=color:#e6db74>Save</span> <span style=color:#e6db74>time</span> <span style=color:#66d9ef>on</span> <span style=color:#e6db74>repetitive</span> <span style=color:#e6db74>tasks</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>**Quality**:</span> <span style=color:#e6db74>Improve</span> <span style=color:#e6db74>output</span> <span style=color:#e6db74>consistency</span>  
+</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>**Scalability**:</span> <span style=color:#e6db74>Handle</span> <span style=color:#e6db74>larger</span> <span style=color:#e6db74>workloads</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>**Cost**:</span> <span style=color:#e6db74>Reduce</span> <span style=color:#e6db74>operational</span> <span style=color:#e6db74>expenses</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### Real-World Applications
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>Organizations</span> <span style=color:#e6db74>are</span> <span style=color:#e6db74>using</span> <span style=color:#e6db74>similar</span> <span style=color:#e6db74>approaches</span> <span style=color:#e6db74>to:</span> <span style=color:#ae81ff>1</span><span style=color:#e6db74>.</span> <span style=color:#e6db74>Automate</span> <span style=color:#e6db74>code</span> <span style=color:#e6db74>review</span> <span style=color:#e6db74>processes</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>2</span><span style=color:#e6db74>.</span> <span style=color:#e6db74>Generate</span> <span style=color:#e6db74>documentation</span> <span style=color:#e6db74>automatically</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>3</span><span style=color:#e6db74>.</span> <span style=color:#e6db74>Build</span> <span style=color:#e6db74>internal</span> <span style=color:#e6db74>knowledge</span> <span style=color:#e6db74>bases</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>4</span><span style=color:#e6db74>.</span> <span style=color:#e6db74>Streamline</span> <span style=color:#e6db74>deployment</span> <span style=color:#e6db74>pipelines</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### Getting Started
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>To</span> <span style=color:#e6db74>implement</span> <span style=color:#e6db74>this</span> <span style=color:#e6db74>in</span> <span style=color:#e6db74>your</span> <span style=color:#e6db74>workflow:</span> <span style=color:#ae81ff>1</span><span style=color:#e6db74>.</span> <span style=color:#e6db74>**Assess</span> <span style=color:#e6db74>Your</span> <span style=color:#e6db74>Needs**</span>
+</span></span><span style=display:flex><span>   <span style=color:#e6db74>-</span> <span style=color:#e6db74>Identify</span> <span style=color:#e6db74>repetitive</span> <span style=color:#e6db74>tasks</span>
+</span></span><span style=display:flex><span>   <span style=color:#e6db74>-</span> <span style=color:#e6db74>Measure</span> <span style=color:#e6db74>current</span> <span style=color:#e6db74>time</span> <span style=color:#e6db74>costs</span>
+</span></span><span style=display:flex><span>   <span style=color:#e6db74>-</span> <span style=color:#e6db74>Define</span> <span style=color:#e6db74>success</span> <span style=color:#e6db74>metrics</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>2</span><span style=color:#e6db74>.</span> <span style=color:#e6db74>**Choose</span> <span style=color:#e6db74>Your</span> <span style=color:#e6db74>Approach**</span>
+</span></span><span style=display:flex><span>   <span style=color:#e6db74>-</span> <span style=color:#e6db74>Start</span> <span style=color:#e6db74>with</span> <span style=color:#e6db74>simple</span> <span style=color:#e6db74>automations</span>
+</span></span><span style=display:flex><span>   <span style=color:#e6db74>-</span> <span style=color:#e6db74>Gradually</span> <span style=color:#e6db74>increase</span> <span style=color:#e6db74>complexity</span>
+</span></span><span style=display:flex><span>   <span style=color:#e6db74>-</span> <span style=color:#e6db74>Test</span> <span style=color:#e6db74>and</span> <span style=color:#e6db74>iterate</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>3</span><span style=color:#e6db74>.</span> <span style=color:#e6db74>**Measure</span> <span style=color:#e6db74>Results**</span>
+</span></span><span style=display:flex><span>   <span style=color:#e6db74>-</span> <span style=color:#e6db74>Track</span> <span style=color:#e6db74>time</span> <span style=color:#e6db74>savings</span>
+</span></span><span style=display:flex><span>   <span style=color:#e6db74>-</span> <span style=color:#e6db74>Monitor</span> <span style=color:#e6db74>quality</span> <span style=color:#e6db74>improvements</span>
+</span></span><span style=display:flex><span>   <span style=color:#e6db74>-</span> <span style=color:#e6db74>Calculate</span> <span style=color:#e6db74>ROI</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## Conclusion
+</span></span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>n8n</span> <span style=color:#e6db74>AI</span> <span style=color:#e6db74>自动化</span> <span style=color:#e6db74>—</span> <span style=color:#e6db74>无需代码构建智能工作流</span> <span style=color:#e6db74>represents</span> <span style=color:#e6db74>an</span> <span style=color:#e6db74>important</span> <span style=color:#e6db74>step</span> <span style=color:#e6db74>forward</span> <span style=color:#e6db74>in</span> <span style=color:#e6db74>AI-powered</span> <span style=color:#e6db74>development.</span> <span style=color:#e6db74>As</span> <span style=color:#e6db74>the</span> <span style=color:#e6db74>ecosystem</span> <span style=color:#e6db74>matures,</span> <span style=color:#e6db74>we</span> <span style=color:#e6db74>expect</span> <span style=color:#e6db74>to</span> <span style=color:#e6db74>see</span> <span style=color:#e6db74>even</span> <span style=color:#e6db74>more</span> <span style=color:#e6db74>powerful</span> <span style=color:#e6db74>capabilities</span> <span style=color:#e6db74>emerge.</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>For</span> <span style=color:#e6db74>the</span> <span style=color:#e6db74>latest</span> <span style=color:#e6db74>updates</span> <span style=color:#e6db74>and</span> <span style=color:#e6db74>community</span> <span style=color:#e6db74>discussions,</span> <span style=color:#e6db74>join</span> <span style=color:#e6db74>our</span> <span style=color:#e6db74>Telegram</span> <span style=color:#e6db74>channel:</span> <span style=color:#e6db74>https://t.me/DIBI8_Group</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>*</span> <span style=color:#e6db74>*</span> <span style=color:#e6db74>*</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>*Last</span> <span style=color:#e6db74>updated:</span> <span style=color:#ae81ff>2026</span><span style=color:#e6db74>-09-20*</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>*Read</span> <span style=color:#e6db74>time:</span> ~<span style=color:#e6db74>6</span> <span style=color:#e6db74>minutes*</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>*</span> <span style=color:#e6db74>*</span> <span style=color:#e6db74>*</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## Related Articles
+</span></span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>[n8n-vs-make-com-2026](n8n-ai-automation-complete-guide)</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>[n8n-vs-make-com-2026](n8n-ai-automation-complete-guide)</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>[n8n-ai-automation-complete-guide](n8n-ai-automation-complete-guide)</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>[n8n-vs-make-com-2026](n8n-ai-automation-complete-guide)</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>-</span> <span style=color:#e6db74>[n8n-ai-automation-complete-guide](n8n-ai-automation-complete-guide)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>*</span> <span style=color:#e6db74>*</span> <span style=color:#e6db74>*</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>*Found</span> <span style=color:#e6db74>this</span> <span style=color:#e6db74>helpful?</span> <span style=color:#e6db74>[Join</span> <span style=color:#e6db74>our</span> <span style=color:#e6db74>Telegram</span> <span style=color:#e6db74>community](https://t.me/DIBI8_Group)</span> <span style=color:#e6db74>for</span> <span style=color:#e6db74>daily</span> <span style=color:#e6db74>AI</span> <span style=color:#e6db74>tool</span> <span style=color:#e6db74>updates!*</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## Tool Comparison
+</span></span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>|</span> <span style=color:#e6db74>Feature</span> <span style=color:#e6db74>|</span> <span style=color:#e6db74>Claude</span> <span style=color:#e6db74>Code</span> <span style=color:#e6db74>|</span> <span style=color:#e6db74>Cursor</span> <span style=color:#e6db74>|</span> <span style=color:#e6db74>Codex</span> <span style=color:#e6db74>CLI</span> <span style=color:#e6db74>|</span> <span style=color:#e6db74>OpenCode</span> <span style=color:#e6db74>|</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>|</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>*</span> <span style=color:#e6db74>*</span> <span style=color:#e6db74>*</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>|</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>*</span> <span style=color:#e6db74>*</span> <span style=color:#e6db74>*</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>|</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>*</span> <span style=color:#e6db74>*</span> <span style=color:#e6db74>*</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>|</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>*</span> <span style=color:#e6db74>*</span> <span style=color:#e6db74>*</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>|</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>*</span> <span style=color:#e6db74>*</span> <span style=color:#e6db74>*</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>|</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>|</span> <span style=color:#e6db74>**Price**</span> <span style=color:#e6db74>|</span> $20/month <span style=color:#e6db74>|</span> $20/month <span style=color:#e6db74>|</span> <span style=color:#e6db74>Free</span> <span style=color:#e6db74>|</span> <span style=color:#e6db74>Free</span> <span style=color:#e6db74>|</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>|</span> <span style=color:#e6db74>**Interface**</span> <span style=color:#e6db74>|</span> <span style=color:#e6db74>CLI</span> <span style=color:#e6db74>+</span> <span style=color:#e6db74>IDE</span> <span style=color:#e6db74>|</span> <span style=color:#e6db74>Full</span> <span style=color:#e6db74>IDE</span> <span style=color:#e6db74>|</span> <span style=color:#e6db74>CLI</span> <span style=color:#e6db74>|</span> <span style=color:#e6db74>CLI</span> <span style=color:#e6db74>|</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>|</span> <span style=color:#e6db74>**License**</span> <span style=color:#e6db74>|</span> <span style=color:#e6db74>Proprietary</span> <span style=color:#e6db74>|</span> <span style=color:#e6db74>Commercial</span> <span style=color:#e6db74>|</span> <span style=color:#e6db74>Apache</span> <span style=color:#ae81ff>2</span><span style=color:#e6db74>.0</span> <span style=color:#e6db74>|</span> <span style=color:#e6db74>MIT</span> <span style=color:#e6db74>|</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>|</span> <span style=color:#e6db74>**GitHub</span> <span style=color:#e6db74>Stars**</span> <span style=color:#e6db74>|</span> <span style=color:#e6db74>N/A</span> <span style=color:#e6db74>|</span> <span style=color:#e6db74>N/A</span> <span style=color:#e6db74>|</span> <span style=color:#e6db74>N/A</span> <span style=color:#e6db74>|</span> <span style=color:#ae81ff>45</span><span style=color:#e6db74>,000+</span> <span style=color:#e6db74>|</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>|</span> <span style=color:#e6db74>**Best</span> <span style=color:#e6db74>For**</span> <span style=color:#e6db74>|</span> <span style=color:#e6db74>Complex</span> <span style=color:#e6db74>reasoning</span> <span style=color:#e6db74>|</span> <span style=color:#e6db74>Daily</span> <span style=color:#e6db74>coding</span> <span style=color:#e6db74>|</span> <span style=color:#e6db74>Fast</span> <span style=color:#e6db74>iteration</span> <span style=color:#e6db74>|</span> <span style=color:#e6db74>Customization</span> <span style=color:#e6db74>|</span>
+</span></span></code></pre></div></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/zh/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/zh/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/zh/ai-coding-agents/multi-modal-content-pipeline/><span class=title>« 上一页</span>
+<span>AI Tool Guide</span>
+</a><a class=next href=https://dibi8.com/zh/ai-coding-agents/n8n-ai-workflow-automation-self-hosted-2026/><span class=title>下一页 »</span>
+<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/zh/>Dibi8</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

@@ -1,0 +1,406 @@
+<!doctype html><html lang=vi dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/vi/ai-coding-agents/timesfm-google-time-series-foundation-model/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/timesfm-google-time-series-foundation-model/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/timesfm-google-time-series-foundation-model/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/vi/ai-coding-agents/timesfm-google-time-series-foundation-model/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="vi"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Tool Guide","item":"https://dibi8.com/vi/ai-coding-agents/timesfm-google-time-series-foundation-model/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"TimesFM 2.5: Mô hình nền tảng dự báo chuỗi thời gian mang tính cách mạng của Google Dự báo chuỗi thời gian từ lâu đã là một trong những vấn đề thách thức nhất trong khoa học dữ liệu. Từ dự đoán giá cổ phiếu đến dự báo mô hình thời tiết, từ dự báo doanh số đến ước tính mức tiêu thụ năng lượng — những dự đoán chính xác có thể tạo nên hoặc phá vỡ hoạt động kinh doanh.\nNhập TimesFM, mô hình nền tảng đột phá của Google Research để dự báo chuỗi thời gian. Với phiên bản 2.5 hiện đã có và hơn 23.000 sao GitHub, TimesFM thể hiện sự thay đổi mô hình trong cách chúng tôi tiếp cận phân tích dữ liệu thời gian.\nTrong hướng dẫn toàn diện này, chúng ta sẽ khám phá điều khiến TimesFM trở nên đặc biệt, cách cài đặt và sử dụng nó, so sánh nó với các phương pháp truyền thống và cung cấp các ví dụ thực tế để dự báo trong thế giới thực.\nTimesFM là gì? TimesFM (Mô hình nền tảng chuỗi thời gian) là mô hình nền tảng chỉ dành cho bộ giải mã do Google Research phát triển dành riêng cho dự báo chuỗi thời gian. Không giống như các phương pháp dự báo truyền thống yêu cầu đào tạo các mô hình riêng biệt cho từng tập dữ liệu, TimesFM được đào tạo trước trên lượng lớn dữ liệu thời gian và có thể khái quát hóa các nhiệm vụ dự báo mới với mức tinh chỉnh tối thiểu.\nNhững đổi mới quan trọng Mô hình này giới thiệu một số cải tiến mang tính đột phá: Kiến trúc chỉ dành cho bộ giải mã: Lấy cảm hứng từ sự thành công của bộ giải mã biến áp trong mô hình hóa ngôn ngữ, TimesFM sử dụng kiến trúc bộ giải mã thuần túy được tối ưu hóa cho dự đoán tuần tự Phương pháp tiếp cận mô hình nền tảng: Được đào tạo trước trên lượng lớn dữ liệu tạm thời, cho phép khả năng dự báo không có lần bắn và ít lần bắn Dự báo lượng tử liên tục: Cung cấp các ước tính về độ không đảm bảo cùng với dự báo điểm thông qua đầu lượng tử tùy chọn Cửa sổ ngữ cảnh mở rộng: Hỗ trợ tới 16.000 bước thời gian của dữ liệu lịch sử để cải thiện các mối phụ thuộc tầm xa Giảm số lượng tham số: Phiên bản 2.5 chỉ sử dụng 200M tham số (giảm từ 500M ở phiên bản 2.0) trong khi cải thiện độ chính xác Nghiên cứu đằng sau TimesFM Nghiên cứu cơ bản đã được công bố trên bài báo “Mô hình nền tảng chỉ dành cho bộ giải mã để dự báo chuỗi thời gian” tại ICML 2024. Kể từ đó, mô hình này đã phát triển qua nhiều phiên bản, trong đó v2.5 đại diện cho công nghệ tiên tiến nhất hiện nay trong mô hình nền tảng chuỗi thời gian.\nTimesFM 2.5: Những cải tiến lớn Phiên bản 2.5 được phát hành vào tháng 9 năm 2025 mang đến những cải tiến đáng kể so với các phiên bản trước: Tính năng TimesFM 2.0 TimesFM 2.5 Thông số 500M 200M Độ dài bối cảnh 2.048 16.000 Dự báo lượng tử Rời Rạc Liên tục (lên tới 1.000 đường chân trời) Chỉ báo tần số Bắt buộc Đã xóa Tốc độ suy luận Đường cơ sở Nhanh hơn 2,5 lần Sử dụng bộ nhớ Cao Tối ưu hóa Tại sao ít tham số hơn, kết quả tốt hơn? Sự cải tiến phản trực giác này đạt được thông qua: Dữ liệu đào tạo trước tốt hơn: Bộ dữ liệu thời gian đa dạng hơn và lớn hơn Tinh chỉnh kiến trúc: Cơ chế chú ý được tối ưu hóa cho chuỗi thời gian Mục tiêu đào tạo được cải thiện: Học tập đa tác vụ với nhiều tổn thất dự báo khác nhau Cải tiến đầu lượng tử: Đầu lượng tử 30M tùy chọn mang đến sự không chắc chắn mà không làm phồng mô hình chính Hướng dẫn cài đặt Bắt đầu với TimesFM rất đơn giản. Mô hình này có sẵn thông qua PyPI, giúp việc cài đặt trở nên đơn giản như: ### Cách 1: Cài đặt nhanh qua PyPI\n# Cài đặt với phụ trợ PyTorch cài đặt pip lầnfm[ngọn đuốc] # Hoặc với phần phụ trợ Flax/JAX (được khuyến nghị cho GPU/TPU) cài đặt pip lầnfm[flax] # Nếu bạn cần hỗ trợ đồng biến (XReg) cài đặt pip lầnfm[xreg] Tùy chọn 2: Cài đặt phát triển Dành cho những người muốn đóng góp hoặc truy cập các tính năng mới nhất: ````` bash\nSao chép kho lưu trữ bản sao git https://github.com/google-research/timesfm.git cd lầnfm\n#Tạo môi trường ảo uv venv nguồn .venv/bin/kích hoạt\nCài đặt ở chế độ có thể chỉnh sửa cài đặt uv pip -e .[đèn pin]\nHoặc cho phần phụ trợ Flax cài đặt uv pip -e .[flax]\n### Lựa chọn phụ trợ TimesFM hỗ trợ nhiều chương trình phụ trợ: - **PyTorch**: Tốt nhất cho người dùng CPU và GPU NVIDIA - **Flax/JAX**: Tối ưu cho môi trường TPU và Google Cloud - **Tiện ích mở rộng XReg**: Thêm hỗ trợ đồng biến cho các biến hồi quy bên ngoài Chọn chương trình phụ trợ dựa trên yêu cầu về phần cứng và triển khai của bạn. ## Cách sử dụng cơ bản Hãy bắt đầu với một ví dụ dự báo đơn giản: ### Dự báo không có phát bắn nào ````` con trăn nhập numpy dưới dạng np nhập lầnfm # Tải mô hình đã được huấn luyện trước mô hình = timefm.TimesFM_2p5_200M.from_pretrain( \"google/timesfm-2.5-200m-flax\" ) # Chuẩn bị dữ liệu chuỗi thời gian của bạn # Hình dạng: (num_series, context_length) lịch sử_data = np.random.randn(1, 1024) # Dự đoán 12 bước thời gian tiếp theo dự báo = model.forecast(lịch sử_data, chân trời=12) print(f\"Dự báo hình dạng: {forecast.shape}\") print(f\"Giá trị dự đoán: {forecast}\") Với dự báo lượng tử Để ước tính độ không đảm bảo, hãy bật đầu phân vị liên tục: ````` con trăn dự báo_with_uncertainty = model.forecast( dữ liệu lịch sử, chân trời=12, lượng tử=[0,1, 0,5, 0,9] # phân vị thứ 10, 50, 90 )\ndự báo_với_không chắc chắn chứa dự báo điểm và khoảng tin cậy point_forecast = dự báo_với_không chắc chắn[:, :, 1] # trung vị giới hạn thấp hơn = dự báo_với_không chắc chắn[:, :, 0] # phân vị thứ 10 giới hạn trên = dự báo_với_không chắc chắn[:, :, 2] # phân vị thứ 90\n### Sử dụng phần cuối PyTorch ````` con trăn ngọn đuốc nhập khẩu nhập lầnfm # Đặt độ chính xác để tính toán nhanh hơn torch.set_float32_matmul_precision(\"cao\") # Tải phiên bản PyTorch mô hình = timefm.TimesFM_2p5_200M_torch.from_pretrain( \"google/timesfm-2.5-200m-pytorch\" ) # Biên dịch để suy luận tối ưu model.compile( timefm.ForecastConfig( max_context=1024, max_horizon=256, normalize_inputs=Đúng, use_continuous_quantile_head=Đúng, Force_flip_invariance=Đúng, suy luận_is_posid=Đúng, fix_quantile_crossing=Đúng, ) ) # Đưa ra dự đoán point_forecast, quantile_forecast = model.forecast( chân trời=12, đầu vào=[ np.linspace(0, 1, 100), np.sin(np.linspace(0, 20, 67)), ] ) Tính năng nâng cao Tinh chỉnh với LoRA Một trong những tính năng mạnh mẽ nhất của TimesFM 2.5 là khả năng tinh chỉnh bằng cách sử dụng Thích ứng xếp hạng thấp (LoRA): ````` con trăn từ máy biến áp nhập khẩu AutoModelForSequenceClassification từ nhập peft LoraConfig, get_peft_model\nTải mô hình TimesFM cơ sở base_model = timefm.TimesFM_2p5_200M.from_pretrain( “google/timesfm-2.5-200m-flax” )\nCấu hình LoRA lora_config = LoraConfig( r=16, # Thứ hạng của ma trận cập nhật lora_alpha=32, # Hệ số tỷ lệ target_modules=[“query”, “value”], # Lớp để áp dụng LoRA cho lora_dropout=0,1, )\nÁp dụng LoRA vào mô hình mô hình = get_peft_model(base_model, lora_config)\nBây giờ bạn có thể tinh chỉnh tập dữ liệu cụ thể của mình Điều này yêu cầu ít tham số hơn đáng kể so với tinh chỉnh đầy đủ ### Hỗ trợ đồng biến với XReg Đối với các trường hợp trong đó bạn có các biến bên ngoài ảnh hưởng đến chuỗi thời gian của mình, TimesFM 2.5 hỗ trợ lập mô hình hiệp phương sai: ````` con trăn # Cài đặt có hỗ trợ XReg # pip cài đặt lầnfm[xreg] nhập lầnfm # Tải mô hình có hỗ trợ đồng biến mô hình = timefm.TimesFM_2p5_200M_XReg.from_pretrain( \"google/timesfm-2.5-200m-xreg\" ) # Dữ liệu chuỗi thời gian lịch sử y_train = np.random.randn(1000) # Các đồng biến bên ngoài (ví dụ: chi tiêu tiếp thị, các chỉ số thời vụ) X_train = np.random.randn(1000, 5) # Phù hợp với mô hình hiệp phương sai model.fit(y_train, X_train) # Dự báo với các đồng biến trong tương lai y_pred, độ tin cậy_intervals = model.predict( chân trời=12, X_future=np.random.randn(12, 5) ) Dự báo hàng loạt Đối với nhiều chuỗi thời gian cùng một lúc: ````` con trăn\nChuẩn bị chuỗi thời gian batch_data = np.random.randn(10, 1024) # 10 chuỗi, mỗi chuỗi 1024 dấu thời gian\nDự báo tất cả các chuỗi cùng một lúc dự báo = model.forecast(batch_data, Horizon=24)\nHình dạng: (10, 24) - 10 dự báo, mỗi dự báo 24 bước thời gian print(f\"Hình dạng dự báo hàng loạt: {forecasts.shape}\")\n### Dự báo hàng loạt Đối với nhiều chuỗi thời gian cùng một lúc: ````` con trăn # Chuẩn bị chuỗi thời gian batch_data = np.random.randn(10, 1024) # 10 chuỗi, mỗi chuỗi 1024 dấu thời gian # Dự báo tất cả các chuỗi cùng một lúc dự báo = model.forecast(batch_data, Horizon=24) # Hình dạng: (10, 24) - 10 dự báo, mỗi dự báo 24 bước thời gian print(f\"Hình dạng dự báo hàng loạt: {forecasts.shape}\") Dự báo hàng loạt Đối với nhiều chuỗi thời gian cùng một lúc: ````` con trăn\nChuẩn bị chuỗi thời gian batch_data = np.random.randn(10, 1024) # 10 chuỗi, mỗi chuỗi 1024 dấu thời gian\nDự báo tất cả các chuỗi cùng một lúc dự báo = model.forecast(batch_data, Horizon=24)\nHình dạng: (10, 24) - 10 dự báo, mỗi dự báo 24 bước thời gian print(f\"Hình dạng dự báo hàng loạt: {forecasts.shape}\")\n### Truyền suy luận Đối với các ứng dụng dự báo thời gian thực: ````` con trăn # Khởi tạo ứng dụng phát trực tuyến streaming_model = timefm.StreamingTimesFM( model_path=\"google/timesfm-2.5-200m-flax\" ) # Xử lý luồng dữ liệu đến trong khi Đúng: dữ liệu mới = get_next_time_step() dự báo = streaming_model.update_and_predict(new_data, Horizon=12) display_forecast(dự báo) Điểm chuẩn hiệu suất TimesFM 2.5 đạt được kết quả tiên tiến trên nhiều bộ dữ liệu điểm chuẩn: ### Kết quả điểm chuẩn\nBộ dữ liệu TimesFM 2.5 AutoARIMA Tiên tri N-BEATS ETTh1 0,312 0,487 0,523 0,398 Điện 0,234 0,312 0,298 0,267 Giao thông 0,198 0,287 0,276 0,245 Thời tiết 0,156 0,234 0,221 0,189 Tỷ giá hối đoái 0,287 0,398 0,412 0,334 Giá trị thấp hơn cho thấy hiệu suất tốt hơn (MSE chuẩn hóa).\nHiệu suất thực tế Trong môi trường sản xuất, TimesFM 2.5 đã chứng minh: - Độ chính xác 95% khi dự báo nhu cầu cho chuỗi bán lẻ\nGiảm 40% chi phí tồn kho so với phương pháp truyền thống nhanh hơn gấp 10 lần thời gian đào tạo so với các phương pháp tiếp cận mạng thần kinh tùy chỉnh Hiệu suất nhất quán trên nhiều lĩnh vực khác nhau (tài chính, chăm sóc sức khỏe, sản xuất) Tích hợp với các sản phẩm của Google Một trong những lợi thế độc đáo của TimesFM là khả năng tích hợp với hệ sinh thái của Google: ### BigQuery ML\nĐối với dự báo ở quy mô doanh nghiệp: `````sql – Sử dụng mô hình TimesFM trong BigQuery ML TẠO MÔ HÌNH my_project.my_timesfm_model TÙY CHỌN(model_type=‘TIMESFM\") NHƯ CHỌN dấu thời gian_col, giá trị_col, EXTRACT(HOUR TỪ timestamp_col) AS giờ_of_day TỪ my_dataset.time_series_data;\n### Tích hợp Google Trang tính Đối với người dùng không rành về kỹ thuật: 1. Cài đặt [tiện ích bổ sung TimesFM](https://workspaceupdates.googleblog.com/2026/02/forecast-data-in-connected-sheets-BigQueryML-TimesFM.html) 2. Chọn phạm vi dữ liệu của bạn 3. Chọn chân trời dự báo 4. Nhận dự đoán trực tiếp trong bảng tính của bạn ### Vườn mô hình AI của Vertex Để triển khai trên đám mây: ````` con trăn từ google.cloud nhập aiplatform # Triển khai mô hình TimesFM lên Vertex AI aiplatform.init(project=\"your-project\", location=\"us-central1\") điểm cuối = aiplatform.Endpoint.create( display_name=\"timesfm-forecasting-endpoint\", description=\"Điểm cuối dự báo TimesFM 2.5\" ) model = aiplatform.Model.upload( display_name=\"timesfm-2.5\", Artifact_uri=\"gs://your-bucket/timesfm-model\" ) endpoint.deploy(model=model, machine_type=\"n1-standard-4\") Ứng dụng trong thế giới thực Ứng dụng 1: Dự báo doanh số Các công ty bán lẻ có thể sử dụng TimesFM để dự đoán doanh số bán hàng trong tương lai: ````` con trăn nhập gấu trúc dưới dạng pd nhập lầnfm\nTải dữ liệu bán hàng lịch sử sales_data = pd.read_csv (“lịch sử_bán hàng.csv”)\nChuẩn bị chuỗi thời gian lịch sử_bán hàng = sales_data[“bán hàng”].values.reshape(1, -1)\nDự báo 30 ngày tới mô hình = timefm.TimesFM_2p5_200M.from_pretrain( “google/timesfm-2.5-200m-flax” )\ndự báo = model.forecast(lịch sử_bán hàng, chân trời=30) print(f\"Doanh số dự kiến tháng tới: {forecast.mean():.2f}\")\n### Ứng dụng 2: Dự đoán nhu cầu năng lượng Các công ty tiện ích có thể dự báo nhu cầu điện: ````` con trăn # Tải dữ liệu tiêu thụ năng lượng energy_data = pd.read_csv(\"energy_consumption.csv\") # Bao gồm các đồng biến thời tiết đồng biến = pd.DataFrame({ \"nhiệt độ\": Weather_data[\"temp\"], \"độ ẩm\": Weather_data[\"độ ẩm\"], \"day_of_week\": energy_data.index.dayofweek }) # Huấn luyện với đồng biến model.fit(energy_data[\"consumption\"], covariates.values) # Dự đoán nhu cầu trong tương lai Future_demand = model.predict( chân trời=24, X_future=future_covariates.values ) Ứng dụng 3: Phân tích thị trường tài chính Tuy không phải là lời khuyên tài chính nhưng TimesFM có thể giúp phân tích các mô hình thị trường: ````` con trăn #dự báo giá cổ phiếu stock_prices = pd.read_csv(“stock_history.csv”)[“close”].values\nNhiều cổ phiếu batch_stocks = np.array([ stock_price[:-100], # Apple stock_price[100:-100], # Google stock_price[200:] # Amazon ])\nDự báo tất cả cổ phiếu dự đoán = model.forecast(batch_stocks, Horizon=30)\n##So Sánh Với Phương Pháp Truyền Thống ### TimesFM so với ARIMA | Khía cạnh | TimesFM 2.5 | ARIMA | |--------|-------------|-------| | Thời gian thiết lập | Phút | Giờ-Ngày | | Điều chỉnh tham số | Tối thiểu | Mở rộng | | Nhiều loạt | Có | Không | | Mẫu phi tuyến tính | Xuất sắc | Hạn chế | | Khả năng giải thích | Hạ | Cao hơn | | Khả năng mở rộng | Cao | Trung bình | ### TimesFM vs. Nhà tiên tri | Khía cạnh | TimesFM 2.5 | Tiên tri | |--------|-------------|----------| | Mô Hình Nền Tảng | Có | Không | | Chuyển tiếp học tập | Có | Không | | Ước tính độ không đảm bảo | Liên tục | Rời Rạc | | Hiệu quả tính toán | Cao | Trung bình | | Hỗ trợ cộng đồng | Đang phát triển | Trưởng thành | ## Hạn chế và cân nhắc ### Hạn chế hiện tại 1. **Yêu cầu dữ liệu lịch sử**: Mặc dù việc học vài lần có ích nhưng vẫn cần một số dữ liệu lịch sử 2. **Tài nguyên tính toán**: Cửa sổ ngữ cảnh lớn yêu cầu bộ nhớ đáng kể 3. **Tính đặc hiệu của miền**: Có thể cần tinh chỉnh cho các miền chuyên dụng 4. **Khả năng diễn giải**: Giống như tất cả các mô hình học sâu, hoạt động nội bộ có phần không rõ ràng ### Các phương pháp hay nhất 1. **Chất lượng dữ liệu**: Đảm bảo dữ liệu chuỗi thời gian rõ ràng, nhất quán 2. **Độ dài ngữ cảnh**: Chọn cửa sổ lịch sử phù hợp cho trường hợp sử dụng của bạn 3. **Cập nhật thường xuyên**: Đào tạo lại định kỳ khi có dữ liệu mới 4. **Xác thực**: Luôn xác thực các dự đoán dựa trên các tập dữ liệu loại trừ ### TimesFM so với ARIMA | Khía cạnh | TimesFM 2.5 | ARIMA | |--------|-------------|-------| | Thời gian thiết lập | Phút | Giờ-Ngày | | Điều chỉnh tham số | Tối thiểu | Mở rộng | | Nhiều loạt | Có | Không | | Mẫu phi tuyến tính | Xuất sắc | Hạn chế | | Khả năng giải thích | Hạ | Cao hơn | | Khả năng mở rộng | Cao | Trung bình | ### TimesFM vs. Nhà tiên tri | Khía cạnh | TimesFM 2.5 | Tiên tri | |--------|-------------|----------| | Mô Hình Nền Tảng | Có | Không | | Chuyển tiếp học tập | Có | Không | | Ước tính độ không đảm bảo | Liên tục | Rời Rạc | | Hiệu quả tính toán | Cao | Trung bình | | Hỗ trợ cộng đồng | Đang phát triển | Trưởng thành | ## Hạn chế và cân nhắc ### Hạn chế hiện tại 1. **Yêu cầu dữ liệu lịch sử**: Mặc dù việc học vài lần có ích nhưng vẫn cần một số dữ liệu lịch sử 2. **Tài nguyên tính toán**: Cửa sổ ngữ cảnh lớn yêu cầu bộ nhớ đáng kể 3. **Tính đặc hiệu của miền**: Có thể cần tinh chỉnh cho các miền chuyên dụng 4. **Khả năng diễn giải**: Giống như tất cả các mô hình học sâu, hoạt động nội bộ có phần không rõ ràng ### Các phương pháp hay nhất 1. **Chất lượng dữ liệu**: Đảm bảo dữ liệu chuỗi thời gian rõ ràng, nhất quán 2. **Độ dài ngữ cảnh**: Chọn cửa sổ lịch sử phù hợp cho trường hợp sử dụng của bạn 3. **Cập nhật thường xuyên**: Đào tạo lại định kỳ khi có dữ liệu mới 4. **Xác thực**: Luôn xác thực các dự đoán dựa trên các tập dữ liệu loại trừ ## Tương lai của dự báo chuỗi thời gian TimesFM chỉ là bước khởi đầu cho những gì các mô hình nền tảng có thể đạt được trong phân tích dữ liệu thời gian. Những phát triển sắp tới bao gồm: ### Các tính năng dự kiến - **Dự báo đa biến**: Xử lý tốt hơn nhiều chuỗi thời gian liên quan - **Học theo thời gian thực**: Thích ứng trực tuyến mà không cần đào tạo lại đầy đủ - **Explainable AI**: Cải thiện khả năng diễn giải của các dự đoán - **Triển khai biên**: Phiên bản được tối ưu hóa cho thiết bị di động và thiết bị IoT - **Tích hợp đa phương thức**: Kết hợp chuỗi thời gian với hình ảnh, văn bản và các loại dữ liệu khác ### Hướng nghiên cứu Nhóm Nghiên cứu của Google tiếp tục vượt qua các ranh giới bằng công việc đang diễn ra về: - Cửa sổ ngữ cảnh dài hơn (32K+ bước thời gian) - Ít thông số hơn với hiệu suất tương đương hoặc tốt hơn - Khái quát hóa liên miền - Khả năng suy luận nhân quả ## Bắt đầu ngay hôm nay Bạn đã sẵn sàng cách mạng hóa quy trình dự báo của mình chưa? Đây là cách để bắt đầu: 1. **Cài đặt**: ````pip install Timesfm[flax]``` 2. **Tải mô hình**: Sử dụng điểm kiểm tra đã được huấn luyện trước từ Ôm mặt 3. **Chuẩn bị dữ liệu**: Định dạng chuỗi thời gian của bạn một cách thích hợp 4. **Dự báo**: Gọi phương thức dự báo với đường chân trời mong muốn của bạn 5. **Tinh chỉnh**: Tùy ý điều chỉnh mô hình cho phù hợp với miền cụ thể của bạn Cho dù bạn là nhà khoa học dữ liệu đang tìm kiếm các công cụ dự báo tốt hơn hay nhà phân tích kinh doanh muốn đưa ra dự đoán dựa trên dữ liệu, TimesFM 2.5 đều cung cấp giải pháp mạnh mẽ, linh hoạt, sẵn sàng triển khai ngay hôm nay. ## Câu hỏi thường gặp ### Hỏi: Sự khác biệt giữa TimesFM 2.0 và 2.5 là gì? TimesFM 2.5 chỉ sử dụng 200M tham số (giảm từ 500M ở 2.0) trong khi đạt được độ chính xác cao hơn. Nó hỗ trợ độ dài ngữ cảnh lên tới 16.000 (so với 2.048), dự báo lượng tử liên tục lên tới 1.000 đường chân trời và loại bỏ nhu cầu về chỉ báo tần số. ### Hỏi: Tôi có cần GPU để chạy TimesFM không? Không, TimesFM có thể chạy trên CPU, mặc dù khả năng tăng tốc GPU cải thiện đáng kể tốc độ suy luận. Phần phụ trợ Flax/JAX được khuyến nghị cho người dùng GPU TPU và NVIDIA, trong khi PyTorch hoạt động tốt cho các thiết lập CPU và GPU NVIDIA. ### Hỏi: Tôi có thể sử dụng TimesFM để dự báo tài chính không? Mặc dù về mặt kỹ thuật, TimesFM có thể dự báo chuỗi thời gian tài chính nhưng điều quan trọng cần lưu ý là thị trường tài chính bị ảnh hưởng bởi vô số yếu tố khó lường. Mô hình này nên được sử dụng như một công cụ trong số nhiều công cụ chứ không phải là cơ sở duy nhất cho các quyết định đầu tư. ### Hỏi: Tính năng tinh chỉnh hoạt động như thế nào với TimesFM? Tinh chỉnh sử dụng Thích ứng cấp thấp (LoRA) thông qua Máy biến áp ôm mặt. Bạn chuẩn bị dữ liệu dành riêng cho miền của mình, định cấu hình các tham số LoRA và huấn luyện trong một vài kỷ nguyên. Điều này điều chỉnh mô hình nền tảng cho phù hợp với nhiệm vụ dự báo cụ thể của bạn mà không yêu cầu đào tạo lại toàn bộ mô hình. ### Hỏi: Khoảng thời gian dự báo tối đa là bao nhiêu? TimesFM 2.5 hỗ trợ các chân trời lên tới 1.000 bước thời gian với đầu lượng tử liên tục. Đối với hầu hết các ứng dụng thực tế, khoảng thời gian 24-365 bước là đủ và mang lại độ chính xác tốt nhất. ### Hỏi: TimesFM có phù hợp để dự báo theo thời gian thực không? Có, sau khi được biên soạn và tối ưu hóa, TimesFM có thể đưa ra dự đoán theo thời gian thực. Các mô hình được biên dịch với cấu hình suy luận được tối ưu hóa có thể dự báo hàng trăm bước thời gian mỗi giây trên phần cứng hiện đại. ## Kết luận TimesFM 2.5 thể hiện bước nhảy vọt trong lĩnh vực dự báo chuỗi thời gian. Bằng cách kết hợp sức mạnh của các mô hình nền tảng với các tối ưu hóa theo miền cụ thể cho dữ liệu thời gian, nó đạt được độ chính xác vượt trội với chi phí thiết lập và tính toán tối thiểu. Với sự tích hợp vào hệ sinh thái của Google, cộng đồng phát triển tích cực và những cải tiến liên tục, TimesFM sẵn sàng trở thành tiêu chuẩn để dự báo chuỗi thời gian trong các ngành. Đối với bất kỳ ai làm việc với dữ liệu tạm thời, việc đầu tư thời gian vào việc tìm hiểu và triển khai TimesFM không chỉ mang lại lợi ích mà nó còn trở nên cần thiết. * * * **Nguồn:** - [Kho lưu trữ GitHub](https://github.com/google-research/timesfm) - [Bài báo ICML 2024](https://arxiv.org/abs/2310.10688) - [Blog nghiên cứu của Google](https://research.google/blog/a-decoding-only-foundation-model-for-time-series-forecasting/) - [Người mẫu ôm khuôn mặt](https://huggingface.co/collections/google/timesfm-release-66e4be5fdb56e960c1e482a6) **CTA:** Tham gia [nhóm Telegram DIBI8](https://t.me/DIBI8_Group/2) để biết thêm thông tin chi tiết về AI và khoa học dữ liệu! **Liên kết liên kết:** - [DigitalOcean](https://m.do.co/c/eca87ac14ee0) - Lưu trữ các mô hình ML của bạn - [HTStack](https://my.htstack.com/aff.php?aff=27187) - Lưu trữ máy chủ GPU đáng tin cậy - [虎网云](https://www.huwangyun.cn/gpu-server/?aff_id=f872dfc7e2864e62822c83c023354367) - Máy chủ GPU dành cho đào tạo (tiếng Trung) { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"TimesFM 2.5: Mô hình chuỗi thời gian cách mạng của Google cho dự báo\", \"datePublished\": \"2026-06-19\", \"dateModified\": \"2026-06-19\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/vi/resources/timesfm-google-time-series-foundation-model\" } } ","wordCount":"3980","inLanguage":"vi","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/vi/ai-coding-agents/timesfm-google-time-series-foundation-model/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/vi/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/vi/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/vi/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/vi/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/vi/>Trang chủ</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
+<a href>AI Coding Agents - dibi8</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>19 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/timesfm-google-time-series-foundation-model/>En</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Mục lục</span></summary><div class=inner><ul><li><a href=#timesfm-25-m%c3%b4-h%c3%acnh-n%e1%bb%81n-t%e1%ba%a3ng-d%e1%bb%b1-b%c3%a1o-chu%e1%bb%97i-th%e1%bb%9di-gian-mang-t%c3%adnh-c%c3%a1ch-m%e1%ba%a1ng-c%e1%bb%a7a-google aria-label="TimesFM 2.5: Mô hình nền tảng dự báo chuỗi thời gian mang tính cách mạng của Google">TimesFM 2.5: Mô hình nền tảng dự báo chuỗi thời gian mang tính cách mạng của Google</a><ul><li><a href=#timesfm-l%c3%a0-g%c3%ac aria-label="TimesFM là gì?">TimesFM là gì?</a><ul><li><a href=#nh%e1%bb%afng-%c4%91%e1%bb%95i-m%e1%bb%9bi-quan-tr%e1%bb%8dng aria-label="Những đổi mới quan trọng">Những đổi mới quan trọng</a></li><li><a href=#nghi%c3%aan-c%e1%bb%a9u-%c4%91%e1%ba%b1ng-sau-timesfm aria-label="Nghiên cứu đằng sau TimesFM">Nghiên cứu đằng sau TimesFM</a></li></ul></li><li><a href=#timesfm-25-nh%e1%bb%afng-c%e1%ba%a3i-ti%e1%ba%bfn-l%e1%bb%9bn aria-label="TimesFM 2.5: Những cải tiến lớn">TimesFM 2.5: Những cải tiến lớn</a><ul><li><a href=#t%e1%ba%a1i-sao-%c3%adt-tham-s%e1%bb%91-h%c6%a1n-k%e1%ba%bft-qu%e1%ba%a3-t%e1%bb%91t-h%c6%a1n aria-label="Tại sao ít tham số hơn, kết quả tốt hơn?">Tại sao ít tham số hơn, kết quả tốt hơn?</a></li></ul></li><li><a href=#h%c6%b0%e1%bb%9bng-d%e1%ba%abn-c%c3%a0i-%c4%91%e1%ba%b7t aria-label="Hướng dẫn cài đặt">Hướng dẫn cài đặt</a><ul><li><a href=#t%c3%b9y-ch%e1%bb%8dn-2-c%c3%a0i-%c4%91%e1%ba%b7t-ph%c3%a1t-tri%e1%bb%83n aria-label="Tùy chọn 2: Cài đặt phát triển">Tùy chọn 2: Cài đặt phát triển</a></li></ul></li></ul></li><li><a href=#sao-ch%c3%a9p-kho-l%c6%b0u-tr%e1%bb%af aria-label="Sao chép kho lưu trữ">Sao chép kho lưu trữ</a></li><li><a href=#c%c3%a0i-%c4%91%e1%ba%b7t-%e1%bb%9f-ch%e1%ba%bf-%c4%91%e1%bb%99-c%c3%b3-th%e1%bb%83-ch%e1%bb%89nh-s%e1%bb%ada aria-label="Cài đặt ở chế độ có thể chỉnh sửa">Cài đặt ở chế độ có thể chỉnh sửa</a></li><li><a href=#ho%e1%ba%b7c-cho-ph%e1%ba%a7n-ph%e1%bb%a5-tr%e1%bb%a3-flax aria-label="Hoặc cho phần phụ trợ Flax">Hoặc cho phần phụ trợ Flax</a><ul><ul><li><a href=#v%e1%bb%9bi-d%e1%bb%b1-b%c3%a1o-l%c6%b0%e1%bb%a3ng-t%e1%bb%ad aria-label="Với dự báo lượng tử">Với dự báo lượng tử</a></li></ul></ul></li><li><a href=#d%e1%bb%b1-b%c3%a1o_v%e1%bb%9bi_kh%c3%b4ng-ch%e1%ba%afc-ch%e1%ba%afn-ch%e1%bb%a9a-d%e1%bb%b1-b%c3%a1o-%c4%91i%e1%bb%83m-v%c3%a0-kho%e1%ba%a3ng-tin-c%e1%ba%ady aria-label="dự báo_với_không chắc chắn chứa dự báo điểm và khoảng tin cậy">dự báo_với_không chắc chắn chứa dự báo điểm và khoảng tin cậy</a><ul><li><a href=#t%c3%adnh-n%c4%83ng-n%c3%a2ng-cao aria-label="Tính năng nâng cao">Tính năng nâng cao</a><ul><li><a href=#tinh-ch%e1%bb%89nh-v%e1%bb%9bi-lora aria-label="Tinh chỉnh với LoRA">Tinh chỉnh với LoRA</a></li></ul></li></ul></li><li><a href=#t%e1%ba%a3i-m%c3%b4-h%c3%acnh-timesfm-c%c6%a1-s%e1%bb%9f aria-label="Tải mô hình TimesFM cơ sở">Tải mô hình TimesFM cơ sở</a></li><li><a href=#c%e1%ba%a5u-h%c3%acnh-lora aria-label="Cấu hình LoRA">Cấu hình LoRA</a></li><li><a href=#%c3%a1p-d%e1%bb%a5ng-lora-v%c3%a0o-m%c3%b4-h%c3%acnh aria-label="Áp dụng LoRA vào mô hình">Áp dụng LoRA vào mô hình</a></li><li><a href=#b%c3%a2y-gi%e1%bb%9d-b%e1%ba%a1n-c%c3%b3-th%e1%bb%83-tinh-ch%e1%bb%89nh-t%e1%ba%adp-d%e1%bb%af-li%e1%bb%87u-c%e1%bb%a5-th%e1%bb%83-c%e1%bb%a7a-m%c3%acnh aria-label="Bây giờ bạn có thể tinh chỉnh tập dữ liệu cụ thể của mình">Bây giờ bạn có thể tinh chỉnh tập dữ liệu cụ thể của mình</a></li><li><a href=#%c4%91i%e1%bb%81u-n%c3%a0y-y%c3%aau-c%e1%ba%a7u-%c3%adt-tham-s%e1%bb%91-h%c6%a1n-%c4%91%c3%a1ng-k%e1%bb%83-so-v%e1%bb%9bi-tinh-ch%e1%bb%89nh-%c4%91%e1%ba%a7y-%c4%91%e1%bb%a7 aria-label="Điều này yêu cầu ít tham số hơn đáng kể so với tinh chỉnh đầy đủ">Điều này yêu cầu ít tham số hơn đáng kể so với tinh chỉnh đầy đủ</a><ul><ul><li><a href=#d%e1%bb%b1-b%c3%a1o-h%c3%a0ng-lo%e1%ba%a1t aria-label="Dự báo hàng loạt">Dự báo hàng loạt</a></li></ul></ul></li><li><a href=#chu%e1%ba%a9n-b%e1%bb%8b-chu%e1%bb%97i-th%e1%bb%9di-gian aria-label="Chuẩn bị chuỗi thời gian">Chuẩn bị chuỗi thời gian</a></li><li><a href=#d%e1%bb%b1-b%c3%a1o-t%e1%ba%a5t-c%e1%ba%a3-c%c3%a1c-chu%e1%bb%97i-c%c3%b9ng-m%e1%bb%99t-l%c3%bac aria-label="Dự báo tất cả các chuỗi cùng một lúc">Dự báo tất cả các chuỗi cùng một lúc</a></li><li><a href=#h%c3%acnh-d%e1%ba%a1ng-10-24---10-d%e1%bb%b1-b%c3%a1o-m%e1%bb%97i-d%e1%bb%b1-b%c3%a1o-24-b%c6%b0%e1%bb%9bc-th%e1%bb%9di-gian aria-label="Hình dạng: (10, 24) - 10 dự báo, mỗi dự báo 24 bước thời gian">Hình dạng: (10, 24) - 10 dự báo, mỗi dự báo 24 bước thời gian</a><ul><ul><li><a href=#d%e1%bb%b1-b%c3%a1o-h%c3%a0ng-lo%e1%ba%a1t-1 aria-label="Dự báo hàng loạt">Dự báo hàng loạt</a></li></ul></ul></li><li><a href=#chu%e1%ba%a9n-b%e1%bb%8b-chu%e1%bb%97i-th%e1%bb%9di-gian-1 aria-label="Chuẩn bị chuỗi thời gian">Chuẩn bị chuỗi thời gian</a></li><li><a href=#d%e1%bb%b1-b%c3%a1o-t%e1%ba%a5t-c%e1%ba%a3-c%c3%a1c-chu%e1%bb%97i-c%c3%b9ng-m%e1%bb%99t-l%c3%bac-1 aria-label="Dự báo tất cả các chuỗi cùng một lúc">Dự báo tất cả các chuỗi cùng một lúc</a></li><li><a href=#h%c3%acnh-d%e1%ba%a1ng-10-24---10-d%e1%bb%b1-b%c3%a1o-m%e1%bb%97i-d%e1%bb%b1-b%c3%a1o-24-b%c6%b0%e1%bb%9bc-th%e1%bb%9di-gian-1 aria-label="Hình dạng: (10, 24) - 10 dự báo, mỗi dự báo 24 bước thời gian">Hình dạng: (10, 24) - 10 dự báo, mỗi dự báo 24 bước thời gian</a><ul><li><a href=#%c4%91i%e1%bb%83m-chu%e1%ba%a9n-hi%e1%bb%87u-su%e1%ba%a5t aria-label="Điểm chuẩn hiệu suất">Điểm chuẩn hiệu suất</a><ul><li><a href=#hi%e1%bb%87u-su%e1%ba%a5t-th%e1%bb%b1c-t%e1%ba%bf aria-label="Hiệu suất thực tế">Hiệu suất thực tế</a></li></ul></li><li><a href=#t%c3%adch-h%e1%bb%a3p-v%e1%bb%9bi-c%c3%a1c-s%e1%ba%a3n-ph%e1%ba%a9m-c%e1%bb%a7a-google aria-label="Tích hợp với các sản phẩm của Google">Tích hợp với các sản phẩm của Google</a></li><li><a href=#%e1%bb%a9ng-d%e1%bb%a5ng-trong-th%e1%ba%bf-gi%e1%bb%9bi-th%e1%bb%b1c aria-label="Ứng dụng trong thế giới thực">Ứng dụng trong thế giới thực</a><ul><li><a href=#%e1%bb%a9ng-d%e1%bb%a5ng-1-d%e1%bb%b1-b%c3%a1o-doanh-s%e1%bb%91 aria-label="Ứng dụng 1: Dự báo doanh số">Ứng dụng 1: Dự báo doanh số</a></li></ul></li></ul></li><li><a href=#t%e1%ba%a3i-d%e1%bb%af-li%e1%bb%87u-b%c3%a1n-h%c3%a0ng-l%e1%bb%8bch-s%e1%bb%ad aria-label="Tải dữ liệu bán hàng lịch sử">Tải dữ liệu bán hàng lịch sử</a></li><li><a href=#chu%e1%ba%a9n-b%e1%bb%8b-chu%e1%bb%97i-th%e1%bb%9di-gian-2 aria-label="Chuẩn bị chuỗi thời gian">Chuẩn bị chuỗi thời gian</a></li><li><a href=#d%e1%bb%b1-b%c3%a1o-30-ng%c3%a0y-t%e1%bb%9bi aria-label="Dự báo 30 ngày tới">Dự báo 30 ngày tới</a><ul><ul><li><a href=#%e1%bb%a9ng-d%e1%bb%a5ng-3-ph%c3%a2n-t%c3%adch-th%e1%bb%8b-tr%c6%b0%e1%bb%9dng-t%c3%a0i-ch%c3%adnh aria-label="Ứng dụng 3: Phân tích thị trường tài chính">Ứng dụng 3: Phân tích thị trường tài chính</a></li></ul></ul></li><li><a href=#nhi%e1%bb%81u-c%e1%bb%95-phi%e1%ba%bfu aria-label="Nhiều cổ phiếu">Nhiều cổ phiếu</a></li><li><a href=#d%e1%bb%b1-b%c3%a1o-t%e1%ba%a5t-c%e1%ba%a3-c%e1%bb%95-phi%e1%ba%bfu aria-label="Dự báo tất cả cổ phiếu">Dự báo tất cả cổ phiếu</a></li></ul></div></details><div class="post-content md-content"><h1 id=timesfm-25-mô-hình-nền-tảng-dự-báo-chuỗi-thời-gian-mang-tính-cách-mạng-của-google>TimesFM 2.5: Mô hình nền tảng dự báo chuỗi thời gian mang tính cách mạng của Google<a hidden class=anchor aria-hidden=true href=#timesfm-25-mô-hình-nền-tảng-dự-báo-chuỗi-thời-gian-mang-tính-cách-mạng-của-google>#</a></h1><p>Dự báo chuỗi thời gian từ lâu đã là một trong những vấn đề thách thức nhất trong khoa học dữ liệu. Từ dự đoán giá cổ phiếu đến dự báo mô hình thời tiết, từ dự báo doanh số đến ước tính mức tiêu thụ năng lượng — những dự đoán chính xác có thể tạo nên hoặc phá vỡ hoạt động kinh doanh.</p><p>Nhập <strong><a href=https://github.com/google-research/timesfm>TimesFM</a></strong>, mô hình nền tảng đột phá của Google Research để dự báo chuỗi thời gian. Với phiên bản 2.5 hiện đã có và hơn 23.000 sao GitHub, TimesFM thể hiện sự thay đổi mô hình trong cách chúng tôi tiếp cận phân tích dữ liệu thời gian.</p><p>Trong hướng dẫn toàn diện này, chúng ta sẽ khám phá điều khiến TimesFM trở nên đặc biệt, cách cài đặt và sử dụng nó, so sánh nó với các phương pháp truyền thống và cung cấp các ví dụ thực tế để dự báo trong thế giới thực.</p><h2 id=timesfm-là-gì>TimesFM là gì?<a hidden class=anchor aria-hidden=true href=#timesfm-là-gì>#</a></h2><p>TimesFM (Mô hình nền tảng chuỗi thời gian) là <strong>mô hình nền tảng chỉ dành cho bộ giải mã</strong> do Google Research phát triển dành riêng cho dự báo chuỗi thời gian. Không giống như các phương pháp dự báo truyền thống yêu cầu đào tạo các mô hình riêng biệt cho từng tập dữ liệu, TimesFM được đào tạo trước trên lượng lớn dữ liệu thời gian và có thể khái quát hóa các nhiệm vụ dự báo mới với mức tinh chỉnh tối thiểu.</p><h3 id=những-đổi-mới-quan-trọng>Những đổi mới quan trọng<a hidden class=anchor aria-hidden=true href=#những-đổi-mới-quan-trọng>#</a></h3><p>Mô hình này giới thiệu một số cải tiến mang tính đột phá: <img alt="Dự báo chuỗi thời gian" loading=lazy src=https://images.pexels.com/photos/6332224/pexels-photo-6332224.jpeg></p><ol><li><strong>Kiến trúc chỉ dành cho bộ giải mã</strong>: Lấy cảm hứng từ sự thành công của bộ giải mã biến áp trong mô hình hóa ngôn ngữ, TimesFM sử dụng kiến trúc bộ giải mã thuần túy được tối ưu hóa cho dự đoán tuần tự</li><li><strong>Phương pháp tiếp cận mô hình nền tảng</strong>: Được đào tạo trước trên lượng lớn dữ liệu tạm thời, cho phép khả năng dự báo không có lần bắn và ít lần bắn</li><li><strong>Dự báo lượng tử liên tục</strong>: Cung cấp các ước tính về độ không đảm bảo cùng với dự báo điểm thông qua đầu lượng tử tùy chọn</li><li><strong>Cửa sổ ngữ cảnh mở rộng</strong>: Hỗ trợ tới 16.000 bước thời gian của dữ liệu lịch sử để cải thiện các mối phụ thuộc tầm xa</li><li><strong>Giảm số lượng tham số</strong>: Phiên bản 2.5 chỉ sử dụng 200M tham số (giảm từ 500M ở phiên bản 2.0) trong khi cải thiện độ chính xác</li></ol><h3 id=nghiên-cứu-đằng-sau-timesfm>Nghiên cứu đằng sau TimesFM<a hidden class=anchor aria-hidden=true href=#nghiên-cứu-đằng-sau-timesfm>#</a></h3><p>Nghiên cứu cơ bản đã được công bố trên bài báo <strong>&ldquo;Mô hình nền tảng chỉ dành cho bộ giải mã để dự báo chuỗi thời gian&rdquo;</strong> tại ICML 2024. Kể từ đó, mô hình này đã phát triển qua nhiều phiên bản, trong đó v2.5 đại diện cho công nghệ tiên tiến nhất hiện nay trong mô hình nền tảng chuỗi thời gian.</p><h2 id=timesfm-25-những-cải-tiến-lớn>TimesFM 2.5: Những cải tiến lớn<a hidden class=anchor aria-hidden=true href=#timesfm-25-những-cải-tiến-lớn>#</a></h2><p>Phiên bản 2.5 được phát hành vào tháng 9 năm 2025 mang đến những cải tiến đáng kể so với các phiên bản trước: <img alt="Kiến trúc mô hình" loading=lazy src=https://images.pexels.com/photos/8386449/pexels-photo-8386449.jpeg></p><table><thead><tr><th>Tính năng</th><th>TimesFM 2.0</th><th>TimesFM 2.5</th></tr></thead><tbody><tr><td>Thông số</td><td>500M</td><td>200M</td></tr><tr><td>Độ dài bối cảnh</td><td>2.048</td><td>16.000</td></tr><tr><td>Dự báo lượng tử</td><td>Rời Rạc</td><td>Liên tục (lên tới 1.000 đường chân trời)</td></tr><tr><td>Chỉ báo tần số</td><td>Bắt buộc</td><td>Đã xóa</td></tr><tr><td>Tốc độ suy luận</td><td>Đường cơ sở</td><td>Nhanh hơn 2,5 lần</td></tr><tr><td>Sử dụng bộ nhớ</td><td>Cao</td><td>Tối ưu hóa</td></tr></tbody></table><h3 id=tại-sao-ít-tham-số-hơn-kết-quả-tốt-hơn>Tại sao ít tham số hơn, kết quả tốt hơn?<a hidden class=anchor aria-hidden=true href=#tại-sao-ít-tham-số-hơn-kết-quả-tốt-hơn>#</a></h3><p>Sự cải tiến phản trực giác này đạt được thông qua: <img alt="Mạng thần kinh" loading=lazy src=https://images.pexels.com/photos/3861959/pexels-photo-3861959.jpeg></p><ol><li><strong>Dữ liệu đào tạo trước tốt hơn</strong>: Bộ dữ liệu thời gian đa dạng hơn và lớn hơn</li><li><strong>Tinh chỉnh kiến trúc</strong>: Cơ chế chú ý được tối ưu hóa cho chuỗi thời gian</li><li><strong>Mục tiêu đào tạo được cải thiện</strong>: Học tập đa tác vụ với nhiều tổn thất dự báo khác nhau</li><li><strong>Cải tiến đầu lượng tử</strong>: Đầu lượng tử 30M tùy chọn mang đến sự không chắc chắn mà không làm phồng mô hình chính</li></ol><h2 id=hướng-dẫn-cài-đặt>Hướng dẫn cài đặt<a hidden class=anchor aria-hidden=true href=#hướng-dẫn-cài-đặt>#</a></h2><p>Bắt đầu với TimesFM rất đơn giản. Mô hình này có sẵn thông qua PyPI, giúp việc cài đặt trở nên đơn giản như: ### Cách 1: Cài đặt nhanh qua PyPI</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Cài đặt với phụ trợ PyTorch </span>
+</span></span><span style=display:flex><span>cài đặt pip lầnfm<span style=color:#f92672>[</span>ngọn đuốc<span style=color:#f92672>]</span> 
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Hoặc với phần phụ trợ Flax/JAX (được khuyến nghị cho GPU/TPU) </span>
+</span></span><span style=display:flex><span>cài đặt pip lầnfm<span style=color:#f92672>[</span>flax<span style=color:#f92672>]</span> 
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Nếu bạn cần hỗ trợ đồng biến (XReg) </span>
+</span></span><span style=display:flex><span>cài đặt pip lầnfm<span style=color:#f92672>[</span>xreg<span style=color:#f92672>]</span> 
+</span></span></code></pre></div><h3 id=tùy-chọn-2-cài-đặt-phát-triển>Tùy chọn 2: Cài đặt phát triển<a hidden class=anchor aria-hidden=true href=#tùy-chọn-2-cài-đặt-phát-triển>#</a></h3><p>Dành cho những người muốn đóng góp hoặc truy cập các tính năng mới nhất: ````` bash</p><h1 id=sao-chép-kho-lưu-trữ>Sao chép kho lưu trữ<a hidden class=anchor aria-hidden=true href=#sao-chép-kho-lưu-trữ>#</a></h1><p>bản sao git <a href=https://github.com/google-research/timesfm.git>https://github.com/google-research/timesfm.git</a>
+cd lầnfm</p><p>#Tạo môi trường ảo
+uv venv
+nguồn .venv/bin/kích hoạt</p><h1 id=cài-đặt-ở-chế-độ-có-thể-chỉnh-sửa>Cài đặt ở chế độ có thể chỉnh sửa<a hidden class=anchor aria-hidden=true href=#cài-đặt-ở-chế-độ-có-thể-chỉnh-sửa>#</a></h1><p>cài đặt uv pip -e .[đèn pin]</p><h1 id=hoặc-cho-phần-phụ-trợ-flax>Hoặc cho phần phụ trợ Flax<a hidden class=anchor aria-hidden=true href=#hoặc-cho-phần-phụ-trợ-flax>#</a></h1><p>cài đặt uv pip -e .[flax]</p><pre tabindex=0><code>
+### Lựa chọn phụ trợ 
+
+TimesFM hỗ trợ nhiều chương trình phụ trợ: - **PyTorch**: Tốt nhất cho người dùng CPU và GPU NVIDIA 
+- **Flax/JAX**: Tối ưu cho môi trường TPU và Google Cloud 
+- **Tiện ích mở rộng XReg**: Thêm hỗ trợ đồng biến cho các biến hồi quy bên ngoài 
+
+Chọn chương trình phụ trợ dựa trên yêu cầu về phần cứng và triển khai của bạn. 
+
+## Cách sử dụng cơ bản 
+
+Hãy bắt đầu với một ví dụ dự báo đơn giản: ### Dự báo không có phát bắn nào 
+
+````` con trăn 
+nhập numpy dưới dạng np 
+nhập lầnfm 
+
+# Tải mô hình đã được huấn luyện trước 
+mô hình = timefm.TimesFM_2p5_200M.from_pretrain( 
+&#34;google/timesfm-2.5-200m-flax&#34; 
+) 
+
+# Chuẩn bị dữ liệu chuỗi thời gian của bạn 
+# Hình dạng: (num_series, context_length) 
+lịch sử_data = np.random.randn(1, 1024) 
+
+# Dự đoán 12 bước thời gian tiếp theo 
+dự báo = model.forecast(lịch sử_data, chân trời=12) 
+print(f&#34;Dự báo hình dạng: {forecast.shape}&#34;) 
+print(f&#34;Giá trị dự đoán: {forecast}&#34;) 
+</code></pre><h3 id=với-dự-báo-lượng-tử>Với dự báo lượng tử<a hidden class=anchor aria-hidden=true href=#với-dự-báo-lượng-tử>#</a></h3><p>Để ước tính độ không đảm bảo, hãy bật đầu phân vị liên tục: ````` con trăn
+dự báo_with_uncertainty = model.forecast(
+dữ liệu lịch sử,
+chân trời=12,
+lượng tử=[0,1, 0,5, 0,9] # phân vị thứ 10, 50, 90
+)</p><h1 id=dự-báo_với_không-chắc-chắn-chứa-dự-báo-điểm-và-khoảng-tin-cậy>dự báo_với_không chắc chắn chứa dự báo điểm và khoảng tin cậy<a hidden class=anchor aria-hidden=true href=#dự-báo_với_không-chắc-chắn-chứa-dự-báo-điểm-và-khoảng-tin-cậy>#</a></h1><p>point_forecast = dự báo_với_không chắc chắn[:, :, 1] # trung vị
+giới hạn thấp hơn = dự báo_với_không chắc chắn[:, :, 0] # phân vị thứ 10
+giới hạn trên = dự báo_với_không chắc chắn[:, :, 2] # phân vị thứ 90</p><pre tabindex=0><code>
+### Sử dụng phần cuối PyTorch 
+
+````` con trăn 
+ngọn đuốc nhập khẩu 
+nhập lầnfm 
+
+# Đặt độ chính xác để tính toán nhanh hơn 
+torch.set_float32_matmul_precision(&#34;cao&#34;) 
+
+# Tải phiên bản PyTorch 
+mô hình = timefm.TimesFM_2p5_200M_torch.from_pretrain( 
+&#34;google/timesfm-2.5-200m-pytorch&#34; 
+) 
+
+# Biên dịch để suy luận tối ưu 
+model.compile( 
+timefm.ForecastConfig( 
+max_context=1024, 
+max_horizon=256, 
+normalize_inputs=Đúng, 
+use_continuous_quantile_head=Đúng, 
+Force_flip_invariance=Đúng, 
+suy luận_is_posid=Đúng, 
+fix_quantile_crossing=Đúng, 
+) 
+) 
+
+# Đưa ra dự đoán 
+point_forecast, quantile_forecast = model.forecast( 
+chân trời=12, 
+đầu vào=[ 
+np.linspace(0, 1, 100), 
+np.sin(np.linspace(0, 20, 67)), 
+] 
+) 
+</code></pre><h2 id=tính-năng-nâng-cao>Tính năng nâng cao<a hidden class=anchor aria-hidden=true href=#tính-năng-nâng-cao>#</a></h2><h3 id=tinh-chỉnh-với-lora>Tinh chỉnh với LoRA<a hidden class=anchor aria-hidden=true href=#tinh-chỉnh-với-lora>#</a></h3><p>Một trong những tính năng mạnh mẽ nhất của TimesFM 2.5 là khả năng tinh chỉnh bằng cách sử dụng Thích ứng xếp hạng thấp (LoRA): ````` con trăn
+từ máy biến áp nhập khẩu AutoModelForSequenceClassification
+từ nhập peft LoraConfig, get_peft_model</p><h1 id=tải-mô-hình-timesfm-cơ-sở>Tải mô hình TimesFM cơ sở<a hidden class=anchor aria-hidden=true href=#tải-mô-hình-timesfm-cơ-sở>#</a></h1><p>base_model = timefm.TimesFM_2p5_200M.from_pretrain(
+&ldquo;google/timesfm-2.5-200m-flax&rdquo;
+)</p><h1 id=cấu-hình-lora>Cấu hình LoRA<a hidden class=anchor aria-hidden=true href=#cấu-hình-lora>#</a></h1><p>lora_config = LoraConfig(
+r=16, # Thứ hạng của ma trận cập nhật
+lora_alpha=32, # Hệ số tỷ lệ
+target_modules=[&ldquo;query&rdquo;, &ldquo;value&rdquo;], # Lớp để áp dụng LoRA cho
+lora_dropout=0,1,
+)</p><h1 id=áp-dụng-lora-vào-mô-hình>Áp dụng LoRA vào mô hình<a hidden class=anchor aria-hidden=true href=#áp-dụng-lora-vào-mô-hình>#</a></h1><p>mô hình = get_peft_model(base_model, lora_config)</p><h1 id=bây-giờ-bạn-có-thể-tinh-chỉnh-tập-dữ-liệu-cụ-thể-của-mình>Bây giờ bạn có thể tinh chỉnh tập dữ liệu cụ thể của mình<a hidden class=anchor aria-hidden=true href=#bây-giờ-bạn-có-thể-tinh-chỉnh-tập-dữ-liệu-cụ-thể-của-mình>#</a></h1><h1 id=điều-này-yêu-cầu-ít-tham-số-hơn-đáng-kể-so-với-tinh-chỉnh-đầy-đủ>Điều này yêu cầu ít tham số hơn đáng kể so với tinh chỉnh đầy đủ<a hidden class=anchor aria-hidden=true href=#điều-này-yêu-cầu-ít-tham-số-hơn-đáng-kể-so-với-tinh-chỉnh-đầy-đủ>#</a></h1><pre tabindex=0><code>
+### Hỗ trợ đồng biến với XReg 
+
+Đối với các trường hợp trong đó bạn có các biến bên ngoài ảnh hưởng đến chuỗi thời gian của mình, TimesFM 2.5 hỗ trợ lập mô hình hiệp phương sai: ````` con trăn 
+# Cài đặt có hỗ trợ XReg 
+# pip cài đặt lầnfm[xreg] 
+
+nhập lầnfm 
+
+# Tải mô hình có hỗ trợ đồng biến 
+mô hình = timefm.TimesFM_2p5_200M_XReg.from_pretrain( 
+&#34;google/timesfm-2.5-200m-xreg&#34; 
+) 
+
+# Dữ liệu chuỗi thời gian lịch sử 
+y_train = np.random.randn(1000) 
+
+# Các đồng biến bên ngoài (ví dụ: chi tiêu tiếp thị, các chỉ số thời vụ) 
+X_train = np.random.randn(1000, 5) 
+
+# Phù hợp với mô hình hiệp phương sai 
+model.fit(y_train, X_train) 
+
+# Dự báo với các đồng biến trong tương lai 
+y_pred, độ tin cậy_intervals = model.predict( 
+chân trời=12, 
+X_future=np.random.randn(12, 5) 
+) 
+</code></pre><h3 id=dự-báo-hàng-loạt>Dự báo hàng loạt<a hidden class=anchor aria-hidden=true href=#dự-báo-hàng-loạt>#</a></h3><p>Đối với nhiều chuỗi thời gian cùng một lúc: ````` con trăn</p><h1 id=chuẩn-bị-chuỗi-thời-gian>Chuẩn bị chuỗi thời gian<a hidden class=anchor aria-hidden=true href=#chuẩn-bị-chuỗi-thời-gian>#</a></h1><p>batch_data = np.random.randn(10, 1024) # 10 chuỗi, mỗi chuỗi 1024 dấu thời gian</p><h1 id=dự-báo-tất-cả-các-chuỗi-cùng-một-lúc>Dự báo tất cả các chuỗi cùng một lúc<a hidden class=anchor aria-hidden=true href=#dự-báo-tất-cả-các-chuỗi-cùng-một-lúc>#</a></h1><p>dự báo = model.forecast(batch_data, Horizon=24)</p><h1 id=hình-dạng-10-24---10-dự-báo-mỗi-dự-báo-24-bước-thời-gian>Hình dạng: (10, 24) - 10 dự báo, mỗi dự báo 24 bước thời gian<a hidden class=anchor aria-hidden=true href=#hình-dạng-10-24---10-dự-báo-mỗi-dự-báo-24-bước-thời-gian>#</a></h1><p>print(f"Hình dạng dự báo hàng loạt: {forecasts.shape}")</p><pre tabindex=0><code>
+### Dự báo hàng loạt 
+
+Đối với nhiều chuỗi thời gian cùng một lúc: ````` con trăn 
+# Chuẩn bị chuỗi thời gian 
+batch_data = np.random.randn(10, 1024) # 10 chuỗi, mỗi chuỗi 1024 dấu thời gian 
+
+# Dự báo tất cả các chuỗi cùng một lúc 
+dự báo = model.forecast(batch_data, Horizon=24) 
+
+# Hình dạng: (10, 24) - 10 dự báo, mỗi dự báo 24 bước thời gian 
+print(f&#34;Hình dạng dự báo hàng loạt: {forecasts.shape}&#34;) 
+</code></pre><h3 id=dự-báo-hàng-loạt-1>Dự báo hàng loạt<a hidden class=anchor aria-hidden=true href=#dự-báo-hàng-loạt-1>#</a></h3><p>Đối với nhiều chuỗi thời gian cùng một lúc: ````` con trăn</p><h1 id=chuẩn-bị-chuỗi-thời-gian-1>Chuẩn bị chuỗi thời gian<a hidden class=anchor aria-hidden=true href=#chuẩn-bị-chuỗi-thời-gian-1>#</a></h1><p>batch_data = np.random.randn(10, 1024) # 10 chuỗi, mỗi chuỗi 1024 dấu thời gian</p><h1 id=dự-báo-tất-cả-các-chuỗi-cùng-một-lúc-1>Dự báo tất cả các chuỗi cùng một lúc<a hidden class=anchor aria-hidden=true href=#dự-báo-tất-cả-các-chuỗi-cùng-một-lúc-1>#</a></h1><p>dự báo = model.forecast(batch_data, Horizon=24)</p><h1 id=hình-dạng-10-24---10-dự-báo-mỗi-dự-báo-24-bước-thời-gian-1>Hình dạng: (10, 24) - 10 dự báo, mỗi dự báo 24 bước thời gian<a hidden class=anchor aria-hidden=true href=#hình-dạng-10-24---10-dự-báo-mỗi-dự-báo-24-bước-thời-gian-1>#</a></h1><p>print(f"Hình dạng dự báo hàng loạt: {forecasts.shape}")</p><pre tabindex=0><code>
+### Truyền suy luận 
+
+Đối với các ứng dụng dự báo thời gian thực: ````` con trăn 
+# Khởi tạo ứng dụng phát trực tuyến 
+streaming_model = timefm.StreamingTimesFM( 
+model_path=&#34;google/timesfm-2.5-200m-flax&#34; 
+) 
+
+# Xử lý luồng dữ liệu đến 
+trong khi Đúng: dữ liệu mới = get_next_time_step() 
+dự báo = streaming_model.update_and_predict(new_data, Horizon=12) 
+display_forecast(dự báo) 
+</code></pre><h2 id=điểm-chuẩn-hiệu-suất>Điểm chuẩn hiệu suất<a hidden class=anchor aria-hidden=true href=#điểm-chuẩn-hiệu-suất>#</a></h2><p>TimesFM 2.5 đạt được kết quả tiên tiến trên nhiều bộ dữ liệu điểm chuẩn: ### Kết quả điểm chuẩn</p><table><thead><tr><th>Bộ dữ liệu</th><th>TimesFM 2.5</th><th>AutoARIMA</th><th>Tiên tri</th><th>N-BEATS</th></tr></thead><tbody><tr><td>ETTh1</td><td>0,312</td><td>0,487</td><td>0,523</td><td>0,398</td></tr><tr><td>Điện</td><td>0,234</td><td>0,312</td><td>0,298</td><td>0,267</td></tr><tr><td>Giao thông</td><td>0,198</td><td>0,287</td><td>0,276</td><td>0,245</td></tr><tr><td>Thời tiết</td><td>0,156</td><td>0,234</td><td>0,221</td><td>0,189</td></tr><tr><td>Tỷ giá hối đoái</td><td>0,287</td><td>0,398</td><td>0,412</td><td>0,334</td></tr></tbody></table><p>Giá trị thấp hơn cho thấy hiệu suất tốt hơn (MSE chuẩn hóa).</p><h3 id=hiệu-suất-thực-tế>Hiệu suất thực tế<a hidden class=anchor aria-hidden=true href=#hiệu-suất-thực-tế>#</a></h3><p>Trong môi trường sản xuất, TimesFM 2.5 đã chứng minh: - <strong>Độ chính xác 95%</strong> khi dự báo nhu cầu cho chuỗi bán lẻ</p><ul><li><strong>Giảm 40%</strong> chi phí tồn kho so với phương pháp truyền thống</li><li><strong>nhanh hơn gấp 10 lần</strong> thời gian đào tạo so với các phương pháp tiếp cận mạng thần kinh tùy chỉnh</li><li><strong>Hiệu suất nhất quán</strong> trên nhiều lĩnh vực khác nhau (tài chính, chăm sóc sức khỏe, sản xuất)</li></ul><h2 id=tích-hợp-với-các-sản-phẩm-của-google>Tích hợp với các sản phẩm của Google<a hidden class=anchor aria-hidden=true href=#tích-hợp-với-các-sản-phẩm-của-google>#</a></h2><p>Một trong những lợi thế độc đáo của TimesFM là khả năng tích hợp với hệ sinh thái của Google: ### BigQuery ML</p><p>Đối với dự báo ở quy mô doanh nghiệp: `````sql
+&ndash; Sử dụng mô hình TimesFM trong BigQuery ML
+TẠO MÔ HÌNH my_project.my_timesfm_model
+TÙY CHỌN(model_type=&lsquo;TIMESFM") NHƯ
+CHỌN
+dấu thời gian_col,
+giá trị_col,
+EXTRACT(HOUR TỪ timestamp_col) AS giờ_of_day
+TỪ <code>my_dataset.time_series_data</code>;</p><pre tabindex=0><code>
+### Tích hợp Google Trang tính 
+
+Đối với người dùng không rành về kỹ thuật: 1. Cài đặt [tiện ích bổ sung TimesFM](https://workspaceupdates.googleblog.com/2026/02/forecast-data-in-connected-sheets-BigQueryML-TimesFM.html) 
+2. Chọn phạm vi dữ liệu của bạn 
+3. Chọn chân trời dự báo 
+4. Nhận dự đoán trực tiếp trong bảng tính của bạn 
+
+### Vườn mô hình AI của Vertex 
+
+Để triển khai trên đám mây: ````` con trăn 
+từ google.cloud nhập aiplatform 
+
+# Triển khai mô hình TimesFM lên Vertex AI 
+aiplatform.init(project=&#34;your-project&#34;, location=&#34;us-central1&#34;) 
+
+điểm cuối = aiplatform.Endpoint.create( 
+display_name=&#34;timesfm-forecasting-endpoint&#34;, 
+description=&#34;Điểm cuối dự báo TimesFM 2.5&#34; 
+) 
+
+model = aiplatform.Model.upload( 
+display_name=&#34;timesfm-2.5&#34;, 
+Artifact_uri=&#34;gs://your-bucket/timesfm-model&#34; 
+) 
+
+endpoint.deploy(model=model, machine_type=&#34;n1-standard-4&#34;) 
+</code></pre><h2 id=ứng-dụng-trong-thế-giới-thực>Ứng dụng trong thế giới thực<a hidden class=anchor aria-hidden=true href=#ứng-dụng-trong-thế-giới-thực>#</a></h2><h3 id=ứng-dụng-1-dự-báo-doanh-số>Ứng dụng 1: Dự báo doanh số<a hidden class=anchor aria-hidden=true href=#ứng-dụng-1-dự-báo-doanh-số>#</a></h3><p>Các công ty bán lẻ có thể sử dụng TimesFM để dự đoán doanh số bán hàng trong tương lai: ````` con trăn
+nhập gấu trúc dưới dạng pd
+nhập lầnfm</p><h1 id=tải-dữ-liệu-bán-hàng-lịch-sử>Tải dữ liệu bán hàng lịch sử<a hidden class=anchor aria-hidden=true href=#tải-dữ-liệu-bán-hàng-lịch-sử>#</a></h1><p>sales_data = pd.read_csv (&ldquo;lịch sử_bán hàng.csv&rdquo;)</p><h1 id=chuẩn-bị-chuỗi-thời-gian-2>Chuẩn bị chuỗi thời gian<a hidden class=anchor aria-hidden=true href=#chuẩn-bị-chuỗi-thời-gian-2>#</a></h1><p>lịch sử_bán hàng = sales_data[&ldquo;bán hàng&rdquo;].values.reshape(1, -1)</p><h1 id=dự-báo-30-ngày-tới>Dự báo 30 ngày tới<a hidden class=anchor aria-hidden=true href=#dự-báo-30-ngày-tới>#</a></h1><p>mô hình = timefm.TimesFM_2p5_200M.from_pretrain(
+&ldquo;google/timesfm-2.5-200m-flax&rdquo;
+)</p><p>dự báo = model.forecast(lịch sử_bán hàng, chân trời=30)
+print(f"Doanh số dự kiến tháng tới: {forecast.mean():.2f}")</p><pre tabindex=0><code>
+### Ứng dụng 2: Dự đoán nhu cầu năng lượng 
+
+Các công ty tiện ích có thể dự báo nhu cầu điện: ````` con trăn 
+# Tải dữ liệu tiêu thụ năng lượng 
+energy_data = pd.read_csv(&#34;energy_consumption.csv&#34;) 
+
+# Bao gồm các đồng biến thời tiết 
+đồng biến = pd.DataFrame({ 
+&#34;nhiệt độ&#34;: Weather_data[&#34;temp&#34;], 
+&#34;độ ẩm&#34;: Weather_data[&#34;độ ẩm&#34;], 
+&#34;day_of_week&#34;: energy_data.index.dayofweek 
+}) 
+
+# Huấn luyện với đồng biến 
+model.fit(energy_data[&#34;consumption&#34;], covariates.values) 
+
+# Dự đoán nhu cầu trong tương lai 
+Future_demand = model.predict( 
+chân trời=24, 
+X_future=future_covariates.values 
+) 
+</code></pre><h3 id=ứng-dụng-3-phân-tích-thị-trường-tài-chính>Ứng dụng 3: Phân tích thị trường tài chính<a hidden class=anchor aria-hidden=true href=#ứng-dụng-3-phân-tích-thị-trường-tài-chính>#</a></h3><p>Tuy không phải là lời khuyên tài chính nhưng TimesFM có thể giúp phân tích các mô hình thị trường: ````` con trăn
+#dự báo giá cổ phiếu
+stock_prices = pd.read_csv(&ldquo;stock_history.csv&rdquo;)[&ldquo;close&rdquo;].values</p><h1 id=nhiều-cổ-phiếu>Nhiều cổ phiếu<a hidden class=anchor aria-hidden=true href=#nhiều-cổ-phiếu>#</a></h1><p>batch_stocks = np.array([
+stock_price[:-100], # Apple
+stock_price[100:-100], # Google
+stock_price[200:] # Amazon
+])</p><h1 id=dự-báo-tất-cả-cổ-phiếu>Dự báo tất cả cổ phiếu<a hidden class=anchor aria-hidden=true href=#dự-báo-tất-cả-cổ-phiếu>#</a></h1><p>dự đoán = model.forecast(batch_stocks, Horizon=30)</p><pre tabindex=0><code>
+##So Sánh Với Phương Pháp Truyền Thống 
+
+### TimesFM so với ARIMA 
+
+| Khía cạnh | TimesFM 2.5 | ARIMA | 
+|--------|-------------|-------| 
+| Thời gian thiết lập | Phút | Giờ-Ngày | 
+| Điều chỉnh tham số | Tối thiểu | Mở rộng | 
+| Nhiều loạt | Có | Không | 
+| Mẫu phi tuyến tính | Xuất sắc | Hạn chế | 
+| Khả năng giải thích | Hạ | Cao hơn | 
+| Khả năng mở rộng | Cao | Trung bình | 
+
+### TimesFM vs. Nhà tiên tri 
+
+| Khía cạnh | TimesFM 2.5 | Tiên tri | 
+|--------|-------------|----------| 
+| Mô Hình Nền Tảng | Có | Không | 
+| Chuyển tiếp học tập | Có | Không | 
+| Ước tính độ không đảm bảo | Liên tục | Rời Rạc | 
+| Hiệu quả tính toán | Cao | Trung bình | 
+| Hỗ trợ cộng đồng | Đang phát triển | Trưởng thành | 
+
+## Hạn chế và cân nhắc 
+
+### Hạn chế hiện tại 
+
+1. **Yêu cầu dữ liệu lịch sử**: Mặc dù việc học vài lần có ích nhưng vẫn cần một số dữ liệu lịch sử 
+2. **Tài nguyên tính toán**: Cửa sổ ngữ cảnh lớn yêu cầu bộ nhớ đáng kể 
+3. **Tính đặc hiệu của miền**: Có thể cần tinh chỉnh cho các miền chuyên dụng 
+4. **Khả năng diễn giải**: Giống như tất cả các mô hình học sâu, hoạt động nội bộ có phần không rõ ràng 
+
+### Các phương pháp hay nhất 
+
+1. **Chất lượng dữ liệu**: Đảm bảo dữ liệu chuỗi thời gian rõ ràng, nhất quán 
+2. **Độ dài ngữ cảnh**: Chọn cửa sổ lịch sử phù hợp cho trường hợp sử dụng của bạn 
+3. **Cập nhật thường xuyên**: Đào tạo lại định kỳ khi có dữ liệu mới 
+4. **Xác thực**: Luôn xác thực các dự đoán dựa trên các tập dữ liệu loại trừ 
+
+### TimesFM so với ARIMA 
+
+| Khía cạnh | TimesFM 2.5 | ARIMA | 
+|--------|-------------|-------| 
+| Thời gian thiết lập | Phút | Giờ-Ngày | 
+| Điều chỉnh tham số | Tối thiểu | Mở rộng | 
+| Nhiều loạt | Có | Không | 
+| Mẫu phi tuyến tính | Xuất sắc | Hạn chế | 
+| Khả năng giải thích | Hạ | Cao hơn | 
+| Khả năng mở rộng | Cao | Trung bình | 
+
+### TimesFM vs. Nhà tiên tri
+
+| Khía cạnh | TimesFM 2.5 | Tiên tri | 
+|--------|-------------|----------| 
+| Mô Hình Nền Tảng | Có | Không | 
+| Chuyển tiếp học tập | Có | Không | 
+| Ước tính độ không đảm bảo | Liên tục | Rời Rạc | 
+| Hiệu quả tính toán | Cao | Trung bình | 
+| Hỗ trợ cộng đồng | Đang phát triển | Trưởng thành | 
+
+## Hạn chế và cân nhắc 
+
+### Hạn chế hiện tại 
+
+1. **Yêu cầu dữ liệu lịch sử**: Mặc dù việc học vài lần có ích nhưng vẫn cần một số dữ liệu lịch sử 
+2. **Tài nguyên tính toán**: Cửa sổ ngữ cảnh lớn yêu cầu bộ nhớ đáng kể 
+3. **Tính đặc hiệu của miền**: Có thể cần tinh chỉnh cho các miền chuyên dụng 
+4. **Khả năng diễn giải**: Giống như tất cả các mô hình học sâu, hoạt động nội bộ có phần không rõ ràng 
+
+### Các phương pháp hay nhất 
+
+1. **Chất lượng dữ liệu**: Đảm bảo dữ liệu chuỗi thời gian rõ ràng, nhất quán 
+2. **Độ dài ngữ cảnh**: Chọn cửa sổ lịch sử phù hợp cho trường hợp sử dụng của bạn 
+3. **Cập nhật thường xuyên**: Đào tạo lại định kỳ khi có dữ liệu mới 
+4. **Xác thực**: Luôn xác thực các dự đoán dựa trên các tập dữ liệu loại trừ 
+
+## Tương lai của dự báo chuỗi thời gian 
+
+TimesFM chỉ là bước khởi đầu cho những gì các mô hình nền tảng có thể đạt được trong phân tích dữ liệu thời gian. Những phát triển sắp tới bao gồm: ### Các tính năng dự kiến 
+
+- **Dự báo đa biến**: Xử lý tốt hơn nhiều chuỗi thời gian liên quan 
+- **Học theo thời gian thực**: Thích ứng trực tuyến mà không cần đào tạo lại đầy đủ 
+- **Explainable AI**: Cải thiện khả năng diễn giải của các dự đoán 
+- **Triển khai biên**: Phiên bản được tối ưu hóa cho thiết bị di động và thiết bị IoT 
+- **Tích hợp đa phương thức**: Kết hợp chuỗi thời gian với hình ảnh, văn bản và các loại dữ liệu khác 
+
+### Hướng nghiên cứu 
+
+Nhóm Nghiên cứu của Google tiếp tục vượt qua các ranh giới bằng công việc đang diễn ra về: - Cửa sổ ngữ cảnh dài hơn (32K+ bước thời gian) 
+- Ít thông số hơn với hiệu suất tương đương hoặc tốt hơn 
+- Khái quát hóa liên miền 
+- Khả năng suy luận nhân quả 
+
+## Bắt đầu ngay hôm nay 
+
+Bạn đã sẵn sàng cách mạng hóa quy trình dự báo của mình chưa? Đây là cách để bắt đầu: 1. **Cài đặt**: ````pip install Timesfm[flax]``` 
+2. **Tải mô hình**: Sử dụng điểm kiểm tra đã được huấn luyện trước từ Ôm mặt 
+3. **Chuẩn bị dữ liệu**: Định dạng chuỗi thời gian của bạn một cách thích hợp 
+4. **Dự báo**: Gọi phương thức dự báo với đường chân trời mong muốn của bạn 
+5. **Tinh chỉnh**: Tùy ý điều chỉnh mô hình cho phù hợp với miền cụ thể của bạn 
+
+Cho dù bạn là nhà khoa học dữ liệu đang tìm kiếm các công cụ dự báo tốt hơn hay nhà phân tích kinh doanh muốn đưa ra dự đoán dựa trên dữ liệu, TimesFM 2.5 đều cung cấp giải pháp mạnh mẽ, linh hoạt, sẵn sàng triển khai ngay hôm nay. 
+
+## Câu hỏi thường gặp 
+
+### Hỏi: Sự khác biệt giữa TimesFM 2.0 và 2.5 là gì? 
+
+TimesFM 2.5 chỉ sử dụng 200M tham số (giảm từ 500M ở 2.0) trong khi đạt được độ chính xác cao hơn. Nó hỗ trợ độ dài ngữ cảnh lên tới 16.000 (so với 2.048), dự báo lượng tử liên tục lên tới 1.000 đường chân trời và loại bỏ nhu cầu về chỉ báo tần số. 
+
+### Hỏi: Tôi có cần GPU để chạy TimesFM không? 
+
+Không, TimesFM có thể chạy trên CPU, mặc dù khả năng tăng tốc GPU cải thiện đáng kể tốc độ suy luận. Phần phụ trợ Flax/JAX được khuyến nghị cho người dùng GPU TPU và NVIDIA, trong khi PyTorch hoạt động tốt cho các thiết lập CPU và GPU NVIDIA. 
+
+### Hỏi: Tôi có thể sử dụng TimesFM để dự báo tài chính không? 
+
+Mặc dù về mặt kỹ thuật, TimesFM có thể dự báo chuỗi thời gian tài chính nhưng điều quan trọng cần lưu ý là thị trường tài chính bị ảnh hưởng bởi vô số yếu tố khó lường. Mô hình này nên được sử dụng như một công cụ trong số nhiều công cụ chứ không phải là cơ sở duy nhất cho các quyết định đầu tư. 
+
+### Hỏi: Tính năng tinh chỉnh hoạt động như thế nào với TimesFM? 
+
+Tinh chỉnh sử dụng Thích ứng cấp thấp (LoRA) thông qua Máy biến áp ôm mặt. Bạn chuẩn bị dữ liệu dành riêng cho miền của mình, định cấu hình các tham số LoRA và huấn luyện trong một vài kỷ nguyên. Điều này điều chỉnh mô hình nền tảng cho phù hợp với nhiệm vụ dự báo cụ thể của bạn mà không yêu cầu đào tạo lại toàn bộ mô hình. 
+
+### Hỏi: Khoảng thời gian dự báo tối đa là bao nhiêu? 
+
+TimesFM 2.5 hỗ trợ các chân trời lên tới 1.000 bước thời gian với đầu lượng tử liên tục. Đối với hầu hết các ứng dụng thực tế, khoảng thời gian 24-365 bước là đủ và mang lại độ chính xác tốt nhất.
+
+### Hỏi: TimesFM có phù hợp để dự báo theo thời gian thực không? 
+
+Có, sau khi được biên soạn và tối ưu hóa, TimesFM có thể đưa ra dự đoán theo thời gian thực. Các mô hình được biên dịch với cấu hình suy luận được tối ưu hóa có thể dự báo hàng trăm bước thời gian mỗi giây trên phần cứng hiện đại. 
+
+## Kết luận 
+
+TimesFM 2.5 thể hiện bước nhảy vọt trong lĩnh vực dự báo chuỗi thời gian. Bằng cách kết hợp sức mạnh của các mô hình nền tảng với các tối ưu hóa theo miền cụ thể cho dữ liệu thời gian, nó đạt được độ chính xác vượt trội với chi phí thiết lập và tính toán tối thiểu. 
+
+Với sự tích hợp vào hệ sinh thái của Google, cộng đồng phát triển tích cực và những cải tiến liên tục, TimesFM sẵn sàng trở thành tiêu chuẩn để dự báo chuỗi thời gian trong các ngành. 
+
+Đối với bất kỳ ai làm việc với dữ liệu tạm thời, việc đầu tư thời gian vào việc tìm hiểu và triển khai TimesFM không chỉ mang lại lợi ích mà nó còn trở nên cần thiết. 
+
+* * *
+
+**Nguồn:** 
+- [Kho lưu trữ GitHub](https://github.com/google-research/timesfm) 
+- [Bài báo ICML 2024](https://arxiv.org/abs/2310.10688) 
+- [Blog nghiên cứu của Google](https://research.google/blog/a-decoding-only-foundation-model-for-time-series-forecasting/) 
+- [Người mẫu ôm khuôn mặt](https://huggingface.co/collections/google/timesfm-release-66e4be5fdb56e960c1e482a6) 
+
+**CTA:** Tham gia [nhóm Telegram DIBI8](https://t.me/DIBI8_Group/2) để biết thêm thông tin chi tiết về AI và khoa học dữ liệu! 
+
+**Liên kết liên kết:** 
+- [DigitalOcean](https://m.do.co/c/eca87ac14ee0) - Lưu trữ các mô hình ML của bạn 
+- [HTStack](https://my.htstack.com/aff.php?aff=27187) - Lưu trữ máy chủ GPU đáng tin cậy 
+- [虎网云](https://www.huwangyun.cn/gpu-server/?aff_id=f872dfc7e2864e62822c83c023354367) - Máy chủ GPU dành cho đào tạo (tiếng Trung)
+
+
+{
+  &#34;@context&#34;: &#34;https://schema.org&#34;,
+  &#34;@type&#34;: &#34;Article&#34;,
+  &#34;headline&#34;: &#34;TimesFM 2.5: Mô hình chuỗi thời gian cách mạng của Google cho dự báo&#34;,
+  &#34;datePublished&#34;: &#34;2026-06-19&#34;,
+  &#34;dateModified&#34;: &#34;2026-06-19&#34;,
+  &#34;author&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;
+  },
+  &#34;publisher&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;,
+    &#34;logo&#34;: {
+      &#34;@type&#34;: &#34;ImageObject&#34;,
+      &#34;url&#34;: &#34;https://dibi8.com/logo.png&#34;
+    }
+  },
+  &#34;mainEntityOfPage&#34;: {
+    &#34;@type&#34;: &#34;WebPage&#34;,
+    &#34;@id&#34;: &#34;https://dibi8.com/vi/resources/timesfm-google-time-series-foundation-model&#34;
+  }
+}
+&lt;/script&gt;
+</code></pre></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/vi/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/vi/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/vi/ai-coding-agents/terax-ai-lightweight-ai-terminal/><span class=title>« Trang trước</span>
+<span>AI Tool Guide</span>
+</a><a class=next href=https://dibi8.com/vi/ai-coding-agents/top-10-open-source-ai-tools-2026/><span class=title>Trang tiếp theo »</span>
+<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/vi/>Dibi8</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="Sao chép";function s(){t.innerHTML="Đã sao chép!",setTimeout(()=>{t.innerHTML="Sao chép"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

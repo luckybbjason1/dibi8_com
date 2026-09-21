@@ -1,0 +1,296 @@
+<!doctype html><html lang=ko dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ko/ai-coding-agents/netdata/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/netdata/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/netdata/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/netdata/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/netdata/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ko/ai-coding-agents/netdata/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="ko"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Tool Guide","item":"https://dibi8.com/ko/ai-coding-agents/netdata/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Dev Utils source_version: ’' licensing_model: Open Source license_type: GPL-3.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“dev-utils”] tags: [“netdata”, “모니터링”, “관측 가능성”, “성능 튜닝”, “docker”, “kubernetes”, “실시간-메트릭”] aliases:\n/kr/posts/netdata/ 소개 대부분의 모니터링 도구는 30초 전에 발생한 일을 보여줍니다. 그 사이에 데이터베이스 연결 풀을 죽인 마이크로버스트는 이미 사라지고 — 의미 불명의 로그 항목과 화난 호출기만 남깁니다. Netdata는 초당 메트릭, 2초 미만의 시각화 지연, 60초 이내에 완료되는 단일 바이너리 설치로 이 간극을 해소합니다. GitHub에서 78,874개의 Star와 GPL-3.0 라이선스를 보유한 Netdata는 오늘날 프로덕션에서 가장 인기 있는 오픈소스 모니터링 에이전트 중 하나입니다. 이 가이드는 단일 노드 Docker 배포부터 스트리밍 Kubernetes 클러스터까지 완전한 Netdata 설정을 다루며, 즉시 적용할 수 있는 실제 성능 튜닝 설정을 포함합니다.\nNetdata란? Netdata는 초당 세분성으로 시스템 및 애플리케이션 메트릭을 수집, 저장, 시각화하는 분산 실시간 모니터링 에이전트입니다. 기존의 15–60초마다 샘플링하는 폴 기반 시스템과 달리 Netdata는 각 노드에서 직접 실행되어 수천 개의 메트릭을 로컬로 캡처하고 필요할 때 중앙 Parent 노드로 스트리밍합니다. C (54.2%), Go (29%), Rust (8.5%)로 작성되었으며 기본 설정에서 노드당 CPU 점유율 5% 미만, 메모리 약 150MB의 최소 리소스 오버헤드를 자랑합니다.\nNetdata 작동 방식 Netdata의 아키텍처는 에지 우선 분산 모델을 따릅니다. 각 노드는 독립적인 에이전트를 실행하며 별도의 설정 파일 없이 800개 이상의 통합을 자동으로 발견합니다.\n핵심 구성 요소:\n데이터 수집 레이어: CPU, 메모리, 디스크, 네트워크, 컨테이너, 데이터베이스 및 애플리케이션을 위한 내장 수집기. Telegraf나 Exporter 같은 외부 의존성이 필요 없습니다. 데이터베이스 엔진 (dbengine): 샘플당 약 0.5바이트의 사용자 정의 고성능 시계열 저장소이며 장기 보존을 위한 계층화된 저장을 지원합니다. ML 이상 탐지: 각 메트릭에서 엣지에서 18개의 비지도 ML 모델을 실행하여 합의 기반 이상 탐지로 오탐률을 99% 감소시킵니다. 스트리밍 및 부모-자식: 모든 에이전트가 다른 자식 노드의 “Parent” 역할을 할 수 있어 중앙 병목 없이 수평 확장이 가능합니다. Web 대시보드: 임베디드 정적 스레드 웹 서버가 에이전트의 19999 포트에서 직접 실시간 차트를 제공합니다. 설치 및 설정 원라인 설치 (Linux) 가장 빠른 설치 방법: ````bash\n모든 기본값으로 Netdata 설치 curl -Ss https://get.netdata.cloud/kickstart.sh | sudo bash\n설치 확인: `````bash sudo systemctl status netdata # Active: active (running) since ... http://localhost:19999에서 로컬 대시보드에 접속하세요.\nDocker 배포 컨테이너 환경을 위한 배포: `````bash docker run -d –name=netdata -p 19999:19999 -v /proc:/host/proc:ro -v /sys:/host/sys:ro -v /var/run/docker.sock:/var/run/docker.sock:ro –cap-add SYS_PTRACE –security-opt apparmor=unconfined netdata/netdata:latest\n### Docker Compose (프로덕션용) `````yaml version: '3.8' services: netdata: image: netdata/netdata:v2.5.0 container_name: netdata hostname: \"netdata-${HOSTNAME}\" ports: - \"19999:19999\" restart: unless-stopped cap_add: - SYS_PTRACE - SYS_ADMIN security_opt: - apparmor:unconfined volumes: - /proc:/host/proc:ro - /sys:/host/sys:ro - /etc/os-release:/host/etc/os-release:ro - /var/run/docker.sock:/var/run/docker.sock:ro - netdata-config:/etc/netdata - netdata-lib:/var/lib/netdata - netdata-cache:/var/cache/netdata environment: - NETDATA_CLAIM_TOKEN=${NETDATA_CLAIM_TOKEN} - NETDATA_CLAIM_URL=https://app.netdata.cloud - NETDATA_CLAIM_ROOMS=${NETDATA_CLAIM_ROOMS} volumes: netdata-config: netdata-lib: netdata-cache: ````` ![Netdata 시스템 모니터링](https://hackmag.com/wp-content/uploads/2025/07/10244_02-16-39.png) ### Kubernetes Helm 설치 `````bash # Netdata Helm 저장소 추가 helm repo add netdata https://netdata.github.io/helmchart/ helm repo update # 기본값으로 설치 helm install netdata netdata/netdata \\ --namespace monitoring \\ --create-namespace Pod 확인: `````bash kubectl get pods -n monitoring\nNAME READY STATUS netdata-parent-0 1/1 Running netdata-child-xxx 1/1 Running ### 현재 설정 생성 실행 중인 설정을 다운로드하여 사용자 정의: `````bash # 현재 적용 중인 설정 다운로드 curl -o /etc/netdata/netdata.conf http://localhost:19999/netdata.conf # 또는 edit-config 스크립트 사용 sudo /etc/netdata/edit-config netdata.conf 인기 도구와의 통합 Prometheus Remote Write 장기 저장 및 PromQL 쿼리를 위해 Netdata 메트릭을 Prometheus로 낸볷: `````bash sudo /etc/netdata/edit-config exporting.conf\n`````conf [prometheus:remote_write] enabled = yes destination = prometheus:9090 remote write URL path = /api/v1/write data source = average prefix = netdata send charts matching = * send hosts matching = * Netdata 재시작: `````bash sudo systemctl restart netdata\n### Grafana 대시보드 Netdata에 내장된 대시보드가 있지만, 많은 팀이 중앙 집중식 시각화를 위해 Grafana를 선호합니다. Grafana에서 Prometheus 데이터 소스로 Netdata를 추가: `````yaml # Grafana의 datasource.yaml apiVersion: 1 datasources: - name: Netdata-Prometheus type: prometheus url: http://netdata:19999/api/v1/allmetrics?format=prometheus access: proxy isDefault: false jsonData: timeInterval: \"1s\" Kubernetes DaemonSet (고급) 모든 K8s 노드에서 전체 호스트 수준 가시성 확보: `````yaml apiVersion: apps/v1 kind: DaemonSet metadata: name: netdata namespace: monitoring spec: selector: matchLabels: app: netdata template: metadata: labels: app: netdata spec: hostNetwork: true hostPID: true containers: - name: netdata image: netdata/netdata:v2.5.0 ports: - containerPort: 19999 hostPort: 19999 securityContext: capabilities: add: [SYS_PTRACE, SYS_ADMIN] volumeMounts: - name: proc mountPath: /host/proc readOnly: true - name: sys mountPath: /host/sys readOnly: true - name: docker-sock mountPath: /var/run/docker.sock readOnly: true volumes: - name: proc hostPath: path: /proc - name: sys hostPath: path: /sys - name: docker-sock hostPath: path: /var/run/docker.sock\n### PostgreSQL 모니터링 ``go.d/postgres.conf``에서 PostgreSQL 수집기 활성화: `````yaml jobs: - name: local dsn: 'postgres://netdata_monitor:password@localhost:5432/postgres' collect: - database_statistics - table_statistics - index_statistics - replication_statistics timeout: 2 수집기 테스트: `````bash sudo /etc/netdata/edit-config go.d/postgres.conf\n적용을 위해 재시작 sudo systemctl restart netdata\n### Nginx 모니터링 Nginx stub_status 및 액세스 로그 모니터링: `````yaml # /etc/netdata/go.d/nginx.conf jobs: - name: local url: http://localhost/stub_status - name: access_log path: /var/log/nginx/access.log parser: type: ltsv 벤치마크 / 실제 사용 사례 리소스 사용량 비교 암스테르담 대학교가 Docker 기반 시스템에서 Netdata를 가장 에너지 효율적인 모니터링 도구로 평가한 동행 심사 연구(ICSOC 2023)를 발표했습니다. 독립 벤치마크 결과: | 시나리오 | Netdata | Prometheus + Node Exporter | Zabbix Agent | |———-|———|—————————|————–| | CPU 오버헤드 (%) | 1–5% | 5–15% | 10–20% | | 노드당 메모리 | 100–150 MB | 200–500 MB | 150–300 MB | | 수집 간격 | 1초 | 15–60초 | 30–60초 | | 시작 시간 | \u003c 60초 | 30–60분 | 2–4시간 | | 노드당 메트릭 수 | 2,000+ | 500–1,000 | 1,000–2,000 | | 설정 필요 여부 | 없음 | 중간 | 많음 |\n스트리밍 확장 벤치마크 Netdata의 부모-자식 스트리밍 아키텍처는 수평으로 확장됩니다: - 단일 Parent: 초당 100만+ 샘플 수집, 메모리 약 3.5 GB\n10개 자식 노드: 노드당 20k 메트릭, 1초 보존 7일, 디스크 12 GB Active-Active 클러스터: 완전한 데이터 복제로 무제한 수평 확장 임시 노드: Parent로 메트릭 스트리밍, 노드 종료 후에도 데이터 유지 실제 배포 사례: 500노드 K8s 클러스터 중형 SaaS 회사가 500개의 Kubernetes 노드를 다음과 같이 운영: - 3개 가용 영역에 5개의 Netdata Parent (active-active) 배포\nDaemonSet을 통해 500개의 자식 에이전트 실행, 노드당 RAM 모드 (~50 MB) 계층화된 저장: 1초 해상도 7일, 1분 해상도 1개월, 1시간 해상도 1년 Parent당 총 저장: 25 GB (클릭스터 전체 125 GB) Netdata Cloud를 통해 PagerDuty 및 Slack으로 알림 라우팅 고급 사용법 / 프로덕션 강화 성능 튜닝: netdata.conf 기본 설정은 독립 실행형 사용에 최적화되어 있습니다. 프로덕션 시스템에서는 데이터베이스 엔진을 튜닝하고 불필요한 수집기를 비활성화합니다.\n최소 공간 점유 (프로덕션 자식 노드):\n[global] # 애플리케이션에 영향을 주지 않도록 최저 우선순위로 실행 process scheduling policy = batch process nice level = 19 # 제한된 노드에서 스레드 수 감소 libuv worker threads = 4 [db] # 자식 노드가 Parent로 스트리밍할 때 RAM 전용 모드 사용 mode = ram retention = 3600 # 로컬 버퍼링에는 단일 계층으로 충분 storage tiers = 1 [ml] # 자식 노드에서 ML 비활성화 — Parent에서 실행 enabled = no [health] # 자식 노드에서 로컬 알림 비활성화 enabled = no [web] # 보안을 위해 localhost에만 바인딩 bind to = 127.0.0.1 allow connections from = localhost [plugins] # CPU/메모리를 줄이기 위해 사용하지 않는 수집기 비활성화 ebpf = no perf = no nfacct = no fping = no ioping = no tc = no idlejitter = no debugfs = no systemd-journal = no 계층화된 저장이 있는 Parent 노드 (중앙 모니터링):\n[db] mode = dbengine storage tiers = 3 dbengine page cache size = 1.4GiB # 계층 0: 1초 해상도, 7일 update every = 1 dbengine tier 0 retention size = 12GiB dbengine tier 0 retention time = 7d # 계층 1: 1분 해상도, 1개월 dbengine tier 1 update every iterations = 60 dbengine tier 1 retention size = 4GiB dbengine tier 1 retention time = 1mo # 계층 2: 1시간 해상도, 1년 dbengine tier 2 update every iterations = 60 dbengine tier 2 retention size = 2GiB dbengine tier 2 retention time = 1y [ml] enabled = yes # 메트릭당 18개 ML 모델, 3시간마다 학습 train every = 10800 number of models per dimension = 18 [health] enabled = yes # 10초마다 상태 확인 실행 run at least every seconds = 10 [web] # 대시보드 접근을 위해 네트워크에 노출 bind to = * # 낶부 네트워크 접근 제한 allow connections from = 10.* 192.168.* 172.16.* 172.17.* 스트리밍 설정: stream.conf 자식 노드 설정 (/etc/netdata/stream.conf): `````conf [stream] enabled = yes destination = tcp:netdata-parent.monitoring.svc.cluster.local:19999 api key = YOUR_API_KEY_HERE timeout seconds = 60 default port = 19999 send charts matching = * buffer size bytes = 1048576 reconnect delay seconds = 5 initial clock resync iterations = 60\nParent 노드 설정 (``/etc/netdata/stream.conf``): `````conf [API_KEY] enabled = yes default memory mode = dbengine health enabled by default = yes 보안 강화 Web 인터페이스에 TLS 활성화: `````conf [web] tls version = 1.3 ssl key = /etc/netdata/ssl/key.pem ssl certificate = /etc/netdata/ssl/cert.pem # 모든 연결에 TLS 필요 bind to = *=dashboard|registry|badges|management|streaming|netdata.conf|readable|writable\n### Netdata 자체 모니터링 에이전트 자체의 리소스 사용량 추적: `````bash # 낶부 메트릭 보기 curl -s http://localhost:19999/api/v1/info | jq '.version, .hog' # dbengine 통계 확인 curl -s http://localhost:19999/api/v1/data?chart=netdata.dbengine_main_page_stats 대안과의 비교 기능 Netdata Prometheus Datadog Zabbix 수집 간격 1초 15–60초 15초 30–60초 에이전트 메모리 100–150 MB 200–500 MB 200–400 MB 150–300 MB 에이전트 CPU 1–5% 5–15% 3–8% 10–20% 설정 시간 \u003c 60초 30–60분 10–20분 2–4시간 자동 발견 800+ 통합 제한적 600+ 통합 템플릿 기반 내장 대시보드 예 (실시간) 아니오 (PromQL만) 예 예 (구식) ML 이상 탐지 메트릭당 18개 모델 아니오 (추가 필요) 예 제한적 장기 저장 계층형 dbengine 기본 15일 클라우드 외부 DB 라이선스 GPL-3.0 (묶) Apache-2.0 (묶) $15/호스트/월 GPL-2.0 (묶) 알림 라우팅 내장 + Cloud Alertmanager 내장 내장 K8s 네이티브 예 (Helm chart) 예 (operator) 예 (operator) 제한적 선택 가이드:\nNetdata: 단일 노드 가시성, 실시간 문제 해결, 리소스 제한 환경, 제로 설정 모니터링이 필요한 팀. Prometheus: 클라우드 네이티브 메트릭 집계, 복잡한 PromQL 쿼리, Thanos/VictoriaMetrics와의 장기 저장. Datadog: 엔터프라이즈 전체 관측 가능성 (메트릭 + 로그 + 추적 + APM), 관리형 SaaS, SOC 2 규정 준수. Zabbix: 혼합 인프라 (네트워크 장비 + 서버 + SNMP), 에이전트 + 에이전트리스 모니터링이 필요한 조직. 한계 / 솔직한 평가 Netdata는 모든 모니터링 시나리오에 적합한 도구가 아닙니다: 1. Netdata Cloud 없이는 중앙 집중식 다중 호스트 뷰가 없음: 오픈소스 에이전트 대시보드는 노드별입니다. 100개 이상 노드의 통합 뷰를 볼려면 Netdata Cloud (SaaS) 또는 외부 시각화와 함께하는 Parent 스트리밍 설정이 필요합니다. 2. 기본 설정의 장기 저장이 제한적: dbengine은 기본적으로 계층당 약 256 MB 디스크를 사용합니다. 규모에 맞게 수년간의 데이터를 보존하려면 명시적인 계층화된 저장 설정 또는 VictoriaMetrics 같은 외부 시계열 DB가 필요합니다. 3. 알림 파이프라인이 Alertmanager만큼 유연하지 않음: Netdata에는 내장 상태 확인과 알림이 있지만, 복잡한 라우팅 트리, 무음 설정, 담당자 로테이션은 Netdata Cloud 또는 PagerDuty/OpsGenie와의 통합이 필요합니다. 4. 완전한 관측 가능성 플랫폼은 아님: Netdata는 메트릭에 중점을 둡니다. 분산 추적, 구조화된 로깅, APM을 위해서는 Jaeger, Loki 또는 OpenTelemetry와 페어링하세요. 5. Windows 지원은 상대적으로 새로움: Windows 에이전트는 작동하지만 Linux보다 수집기가 적습니다. Windows 중심 환경에서는 배포 전 수집기 적용 범위를 확인하세요.\n자주 묻는 질문 Q: 프로덕션에서 Netdata가 실제로 얼마나 많은 메모리를 사용하나요?\nParent로 스트리밍하는 자식 노드에서는 위에 표시된 RAM 모드 설정으로 약 50MB입니다. 10개 노드의 7일간 1초 데이터를 저장하는 Parent 노드는 1.4GB 페이지 캐시로 2.5–3.5GB 메모리를 사용합니다. 에이전트는 사용 가능한 시스템 메모리에 따라 캐시 크기를 자동으로 조정합니다.\nQ: Netdata Cloud 없이 Netdata를 실행할 수 있나요?\n예. 오픈소스 에이전트는 클라우드 연결 없이도 완벽하게 작동합니다. 중앙 집계를 위한 부모-자식 스트리밍을 사용하고 모든 에이전트의 19999 포트에서 직접 대시보드에 접속하세요. Netdata Cloud는 통합 대시보드, 모바일 앱 및 고급 알림 라우팅을 추가하지만 필수는 아닙니다.\nQ: Netdata와 Prometheus + Grafana를 비교하면 어떻습니까?\nNetdata는 실시간 노드별 가시성과 제로 설정에서 뛰어납니다. Prometheus는 동적 임시 클러스터의 메트릭 집계와 PromQL에서 뛰어납니다. 많은 팀이 둘 다 실행합니다: 실시간 문제 해결을 위해 각 노드에 Netdata, 클러스터 수준 집계와 장기 추세 분석을 위해 Prometheus. Netdata는 OpenMetrics 형식으로 Prometheus에 메트릭을 낸볃할 수 있습니다.\nQ: Netdata는 최대 어느 정도 규모까지 처리할 수 있나요?\n단일 Parent 노드는 초당 100만 개 이상의 샘플을 수집할 수 있습니다. 수평 확장을 위해 active-active Parent 클러스터를 배포하세요. 이론상 한계는 없습니다 — 아키텍처 자체가 분산형으로 설계되었습니다. Netdata Cloud SaaS는 수백만 개의 노드를 처리합니다.\nQ: Netdata의 데이터베이스와 설정을 어떻게 백업하나요?\n설정은 /etc/netdata/에 있으며 Git, Ansible, Puppet 등으로 버전 관리할 수 있습니다. /var/cache/netdata/의 dbengine 데이터베이스는 자가 복구 기능이 있어 수동 백업이 필요 없습니다 — 여러 Parent 노드로의 스트리밍이 자연스러운 중복성을 제공합니다. 중요한 환경에서는 active-active Parent 쌍을 실행하세요.\nQ: Netdata는 사용자 정의 애플리케이션 메트릭을 지원하나요?\n예. 내장 StatsD 서버 (8125 포트), OpenMetrics 엔드포인트를 사용하거나 Python 또는 Go로 사용자 정의 수집기를 작성하세요. go.d.plugin 프레임워크는 최소한의 상용구 코드로 새 수집기를 구축하는 것을 지원합니다.\n결론 Netdata는 대부분의 모니터링 도구가 지키지 못하는 약속을 이행합니다: 무시할 수 있는 리소스 오버헤드로 즉각적인 초당 가시성을 제공합니다. Docker, Kubernetes 또는 베어 메탈 인프라를 실행하는 팀에게는 “아무것도 없음\"에서 “모든 것을 모니터링\"까지의 가장 빠른 경로입니다. 스트리밍 아키텍처는 단일 Raspberry Pi에서 다중 지역 Kubernetes 클러스터까지 확장되며, GPL-3.0 라이선스는 라이선스 비용이 전혀 없음을 의미합니다.\n실행 목록:\n오늘 가장 중요한 서버에서 원라인 설치 명령 실행 Kubernetes 클러스터에 Helm chart 배포 프로덕션 강화를 위해 부모-자식 스트리밍 설정 위의 설정을 사용하여 리소스 제한에 맞게 ````netdata.conf``` 튜닝 Netdata Telegram 커뮤니티에 가입하여 5,000명 이상의 엔지니어와 실시간 지원 및 토론을 나눠보세요.\nAffiliate 제휴 공개: 본 문서에는 DigitalOcean 및 HTStack의 제휴(affiliate) 링크가 포함되어 있습니다. 이 링크를 통해 호스팅 서비스를 구매하면 dibi8.com에서 추가 비용 없이 커미션을 받을 수 있습니다.\n추천 호스팅 및 인프라 위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - DigitalOcean — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.\nHTStack — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC. 제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.\n출처 및 추가 참고 자료 Netdata GitHub 저장소 — 78,874 Stars, GPL-3.0 공식 문서 Netdata Helm Chart 참조 배포 전략 및 부모-자식 스트리밍 메모리 요구사항 및 사이징 가이드 장기 데이터 보존 설정 무한 확장 — 수평 아키텍처 암스테르담 대학 에너지 효율성 연구 Netdata vs Zabbix 공식 비교 릴리스 노트 및 변경 로그 { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Netdata: 78K+ Star 실시간 모니터링 — 2026 성능 튜닝 가이드”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/netdata\" } } Related Articles trivy-production-security-scanner-2026 trivy-production-security-scanner-2026 worldmonitor-real-time-global-intelligence-dashboard apple-container freellmapi-openai-compatible-proxy-free-llm-tiers-2026 Found this helpful? Join our Telegram community for daily AI tool updates!\n","wordCount":"2278","inLanguage":"ko","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ko/ai-coding-agents/netdata/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ko/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/ko/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/ko/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/ko/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/ko/>홈</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
+<a href>AI Coding Agents - dibi8</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>11 분</span>&nbsp;|&nbsp;<span>번역:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/netdata/>En</a></li><li><a href=https://dibi8.com/zh/ai-coding-agents/netdata/>Zh</a></li><li><a href=https://dibi8.com/vi/ai-coding-agents/netdata/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>목차</span></summary><div class=inner><ul><ul><li><a href=#%ec%86%8c%ea%b0%9c aria-label=소개>소개</a></li><li><a href=#netdata%eb%9e%80 aria-label=Netdata란?>Netdata란?</a></li><li><a href=#netdata-%ec%9e%91%eb%8f%99-%eb%b0%a9%ec%8b%9d aria-label="Netdata 작동 방식">Netdata 작동 방식</a></li><li><a href=#%ec%84%a4%ec%b9%98-%eb%b0%8f-%ec%84%a4%ec%a0%95 aria-label="설치 및 설정">설치 및 설정</a><ul><li><a href=#%ec%9b%90%eb%9d%bc%ec%9d%b8-%ec%84%a4%ec%b9%98-linux aria-label="원라인 설치 (Linux)">원라인 설치 (Linux)</a></li></ul></li></ul><li><a href=#%eb%aa%a8%eb%93%a0-%ea%b8%b0%eb%b3%b8%ea%b0%92%ec%9c%bc%eb%a1%9c-netdata-%ec%84%a4%ec%b9%98 aria-label="모든 기본값으로 Netdata 설치">모든 기본값으로 Netdata 설치</a><ul><ul><li><a href=#docker-%eb%b0%b0%ed%8f%ac aria-label="Docker 배포">Docker 배포</a></li></ul></ul></li><li><a href=#name--------------------ready---status aria-label="NAME                    READY   STATUS">NAME READY STATUS</a></li><li><a href=#netdata-parent-0--------11-----running aria-label="netdata-parent-0        1/1     Running">netdata-parent-0 1/1 Running</a></li><li><a href=#netdata-child-xxx-------11-----running aria-label="netdata-child-xxx       1/1     Running">netdata-child-xxx 1/1 Running</a><ul><li><a href=#%ec%9d%b8%ea%b8%b0-%eb%8f%84%ea%b5%ac%ec%99%80%ec%9d%98-%ed%86%b5%ed%95%a9 aria-label="인기 도구와의 통합">인기 도구와의 통합</a><ul><li><a href=#prometheus-remote-write aria-label="Prometheus Remote Write">Prometheus Remote Write</a></li><li><a href=#kubernetes-daemonset-%ea%b3%a0%ea%b8%89 aria-label="Kubernetes DaemonSet (고급)">Kubernetes DaemonSet (고급)</a></li></ul></li></ul></li><li><a href=#%ec%a0%81%ec%9a%a9%ec%9d%84-%ec%9c%84%ed%95%b4-%ec%9e%ac%ec%8b%9c%ec%9e%91 aria-label="적용을 위해 재시작">적용을 위해 재시작</a><ul><li><a href=#%eb%b2%a4%ec%b9%98%eb%a7%88%ed%81%ac--%ec%8b%a4%ec%a0%9c-%ec%82%ac%ec%9a%a9-%ec%82%ac%eb%a1%80 aria-label="벤치마크 / 실제 사용 사례">벤치마크 / 실제 사용 사례</a><ul><li><a href=#%eb%a6%ac%ec%86%8c%ec%8a%a4-%ec%82%ac%ec%9a%a9%eb%9f%89-%eb%b9%84%ea%b5%90 aria-label="리소스 사용량 비교">리소스 사용량 비교</a></li><li><a href=#%ec%8a%a4%ed%8a%b8%eb%a6%ac%eb%b0%8d-%ed%99%95%ec%9e%a5-%eb%b2%a4%ec%b9%98%eb%a7%88%ed%81%ac aria-label="스트리밍 확장 벤치마크">스트리밍 확장 벤치마크</a></li><li><a href=#%ec%8b%a4%ec%a0%9c-%eb%b0%b0%ed%8f%ac-%ec%82%ac%eb%a1%80-500%eb%85%b8%eb%93%9c-k8s-%ed%81%b4%eb%9f%ac%ec%8a%a4%ed%84%b0 aria-label="실제 배포 사례: 500노드 K8s 클러스터">실제 배포 사례: 500노드 K8s 클러스터</a></li></ul></li><li><a href=#%ea%b3%a0%ea%b8%89-%ec%82%ac%ec%9a%a9%eb%b2%95--%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%ea%b0%95%ed%99%94 aria-label="고급 사용법 / 프로덕션 강화">고급 사용법 / 프로덕션 강화</a><ul><li><a href=#%ec%84%b1%eb%8a%a5-%ed%8a%9c%eb%8b%9d-netdataconf aria-label="성능 튜닝: netdata.conf">성능 튜닝: netdata.conf</a></li><li><a href=#%ec%8a%a4%ed%8a%b8%eb%a6%ac%eb%b0%8d-%ec%84%a4%ec%a0%95-streamconf aria-label="스트리밍 설정: stream.conf">스트리밍 설정: stream.conf</a></li><li><a href=#%eb%b3%b4%ec%95%88-%ea%b0%95%ed%99%94 aria-label="보안 강화">보안 강화</a></li></ul></li><li><a href=#%eb%8c%80%ec%95%88%ea%b3%bc%ec%9d%98-%eb%b9%84%ea%b5%90 aria-label="대안과의 비교">대안과의 비교</a></li><li><a href=#%ed%95%9c%ea%b3%84--%ec%86%94%ec%a7%81%ed%95%9c-%ed%8f%89%ea%b0%80 aria-label="한계 / 솔직한 평가">한계 / 솔직한 평가</a></li><li><a href=#%ec%9e%90%ec%a3%bc-%eb%ac%bb%eb%8a%94-%ec%a7%88%eb%ac%b8 aria-label="자주 묻는 질문">자주 묻는 질문</a></li><li><a href=#%ea%b2%b0%eb%a1%a0 aria-label=결론>결론</a></li><li><a href=#%ec%b6%94%ec%b2%9c-%ed%98%b8%ec%8a%a4%ed%8c%85-%eb%b0%8f-%ec%9d%b8%ed%94%84%eb%9d%bc aria-label="추천 호스팅 및 인프라">추천 호스팅 및 인프라</a></li><li><a href=#%ec%b6%9c%ec%b2%98-%eb%b0%8f-%ec%b6%94%ea%b0%80-%ec%b0%b8%ea%b3%a0-%ec%9e%90%eb%a3%8c aria-label="출처 및 추가 참고 자료">출처 및 추가 참고 자료</a></li><li><a href=#related-articles aria-label="Related Articles">Related Articles</a></li></ul></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+description: &ldquo;Technical guide and comparison.&rdquo;
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
+tech_stack: []
+application_domain: Dev Utils
+source_version: &rsquo;'
+licensing_model: Open Source
+license_type: GPL-3.0
+file_size: &rsquo;'
+file_md5: &rsquo;'
+download_url: &rsquo;'
+backup_url: &rsquo;'
+last_maintained: &ldquo;2026-05-19&rdquo;
+draft: false
+categories: [&ldquo;dev-utils&rdquo;]
+tags: [&ldquo;netdata&rdquo;, &ldquo;모니터링&rdquo;, &ldquo;관측 가능성&rdquo;, &ldquo;성능 튜닝&rdquo;, &ldquo;docker&rdquo;, &ldquo;kubernetes&rdquo;, &ldquo;실시간-메트릭&rdquo;]
+aliases:</p><ul><li>/kr/posts/netdata/</li></ul><hr><h2 id=소개>소개<a hidden class=anchor aria-hidden=true href=#소개>#</a></h2><p>대부분의 모니터링 도구는 30초 전에 발생한 일을 보여줍니다. 그 사이에 데이터베이스 연결 풀을 죽인 마이크로버스트는 이미 사라지고 — 의미 불명의 로그 항목과 화난 호출기만 남깁니다. Netdata는 초당 메트릭, 2초 미만의 시각화 지연, 60초 이내에 완료되는 단일 바이너리 설치로 이 간극을 해소합니다. GitHub에서 78,874개의 Star와 GPL-3.0 라이선스를 보유한 Netdata는 오늘날 프로덕션에서 가장 인기 있는 오픈소스 모니터링 에이전트 중 하나입니다. 이 가이드는 단일 노드 Docker 배포부터 스트리밍 Kubernetes 클러스터까지 완전한 Netdata 설정을 다루며, 즉시 적용할 수 있는 실제 성능 튜닝 설정을 포함합니다.</p><h2 id=netdata란>Netdata란?<a hidden class=anchor aria-hidden=true href=#netdata란>#</a></h2><p>Netdata는 초당 세분성으로 시스템 및 애플리케이션 메트릭을 수집, 저장, 시각화하는 분산 실시간 모니터링 에이전트입니다. 기존의 15–60초마다 샘플링하는 폴 기반 시스템과 달리 Netdata는 각 노드에서 직접 실행되어 수천 개의 메트릭을 로컬로 캡처하고 필요할 때 중앙 Parent 노드로 스트리밍합니다. C (54.2%), Go (29%), Rust (8.5%)로 작성되었으며 기본 설정에서 노드당 CPU 점유율 5% 미만, 메모리 약 150MB의 최소 리소스 오버헤드를 자랑합니다.</p><h2 id=netdata-작동-방식>Netdata 작동 방식<a hidden class=anchor aria-hidden=true href=#netdata-작동-방식>#</a></h2><p>Netdata의 아키텍처는 에지 우선 분산 모델을 따릅니다. 각 노드는 독립적인 에이전트를 실행하며 별도의 설정 파일 없이 800개 이상의 통합을 자동으로 발견합니다.</p><p><img alt="Netdata 아키텍처" loading=lazy src=https://raw.githubusercontent.com/netdata/netdata/master/web/gui/images/netdata.svg></p><p><img alt="Netdata 대시보드 개요" loading=lazy src=https://user-images.githubusercontent.com/24860547/201481889-0cf8e192-683f-4a80-9b96-4f69dd85490f.png></p><p><strong>핵심 구성 요소:</strong></p><ul><li><strong>데이터 수집 레이어</strong>: CPU, 메모리, 디스크, 네트워크, 컨테이너, 데이터베이스 및 애플리케이션을 위한 내장 수집기. Telegraf나 Exporter 같은 외부 의존성이 필요 없습니다.</li><li><strong>데이터베이스 엔진 (dbengine)</strong>: 샘플당 약 0.5바이트의 사용자 정의 고성능 시계열 저장소이며 장기 보존을 위한 계층화된 저장을 지원합니다.</li><li><strong>ML 이상 탐지</strong>: 각 메트릭에서 엣지에서 18개의 비지도 ML 모델을 실행하여 합의 기반 이상 탐지로 오탐률을 99% 감소시킵니다.</li><li><strong>스트리밍 및 부모-자식</strong>: 모든 에이전트가 다른 자식 노드의 &ldquo;Parent&rdquo; 역할을 할 수 있어 중앙 병목 없이 수평 확장이 가능합니다.</li><li><strong>Web 대시보드</strong>: 임베디드 정적 스레드 웹 서버가 에이전트의 19999 포트에서 직접 실시간 차트를 제공합니다.</li></ul><h2 id=설치-및-설정>설치 및 설정<a hidden class=anchor aria-hidden=true href=#설치-및-설정>#</a></h2><h3 id=원라인-설치-linux>원라인 설치 (Linux)<a hidden class=anchor aria-hidden=true href=#원라인-설치-linux>#</a></h3><p>가장 빠른 설치 방법: ````bash</p><h1 id=모든-기본값으로-netdata-설치>모든 기본값으로 Netdata 설치<a hidden class=anchor aria-hidden=true href=#모든-기본값으로-netdata-설치>#</a></h1><p>curl -Ss <a href=https://get.netdata.cloud/kickstart.sh>https://get.netdata.cloud/kickstart.sh</a> | sudo bash</p><pre tabindex=0><code>
+설치 확인: `````bash
+sudo systemctl status netdata
+# Active: active (running) since ...
+</code></pre><p><code>http://localhost:19999</code>에서 로컬 대시보드에 접속하세요.</p><h3 id=docker-배포>Docker 배포<a hidden class=anchor aria-hidden=true href=#docker-배포>#</a></h3><p>컨테이너 환경을 위한 배포: `````bash
+docker run -d &ndash;name=netdata<br>-p 19999:19999<br>-v /proc:/host/proc:ro<br>-v /sys:/host/sys:ro<br>-v /var/run/docker.sock:/var/run/docker.sock:ro<br>&ndash;cap-add SYS_PTRACE<br>&ndash;security-opt apparmor=unconfined<br>netdata/netdata:latest</p><pre tabindex=0><code>
+### Docker Compose (프로덕션용)
+
+`````yaml
+version: &#39;3.8&#39;
+services: netdata: image: netdata/netdata:v2.5.0
+    container_name: netdata
+    hostname: &#34;netdata-${HOSTNAME}&#34;
+    ports: - &#34;19999:19999&#34;
+    restart: unless-stopped
+    cap_add: - SYS_PTRACE
+      - SYS_ADMIN
+    security_opt: - apparmor:unconfined
+    volumes: - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /etc/os-release:/host/etc/os-release:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - netdata-config:/etc/netdata
+      - netdata-lib:/var/lib/netdata
+      - netdata-cache:/var/cache/netdata
+    environment: - NETDATA_CLAIM_TOKEN=${NETDATA_CLAIM_TOKEN}
+      - NETDATA_CLAIM_URL=https://app.netdata.cloud
+      - NETDATA_CLAIM_ROOMS=${NETDATA_CLAIM_ROOMS}
+volumes: netdata-config: netdata-lib: netdata-cache: `````
+
+![Netdata 시스템 모니터링](https://hackmag.com/wp-content/uploads/2025/07/10244_02-16-39.png)
+
+### Kubernetes Helm 설치
+
+`````bash
+# Netdata Helm 저장소 추가
+helm repo add netdata https://netdata.github.io/helmchart/
+helm repo update
+
+# 기본값으로 설치
+helm install netdata netdata/netdata \
+  --namespace monitoring \
+  --create-namespace
+</code></pre><p>Pod 확인: `````bash
+kubectl get pods -n monitoring</p><h1 id=name--------------------ready---status>NAME READY STATUS<a hidden class=anchor aria-hidden=true href=#name--------------------ready---status>#</a></h1><h1 id=netdata-parent-0--------11-----running>netdata-parent-0 1/1 Running<a hidden class=anchor aria-hidden=true href=#netdata-parent-0--------11-----running>#</a></h1><h1 id=netdata-child-xxx-------11-----running>netdata-child-xxx 1/1 Running<a hidden class=anchor aria-hidden=true href=#netdata-child-xxx-------11-----running>#</a></h1><pre tabindex=0><code>
+### 현재 설정 생성
+
+실행 중인 설정을 다운로드하여 사용자 정의: `````bash
+# 현재 적용 중인 설정 다운로드
+curl -o /etc/netdata/netdata.conf http://localhost:19999/netdata.conf
+# 또는 edit-config 스크립트 사용
+sudo /etc/netdata/edit-config netdata.conf
+</code></pre><h2 id=인기-도구와의-통합>인기 도구와의 통합<a hidden class=anchor aria-hidden=true href=#인기-도구와의-통합>#</a></h2><h3 id=prometheus-remote-write>Prometheus Remote Write<a hidden class=anchor aria-hidden=true href=#prometheus-remote-write>#</a></h3><p>장기 저장 및 PromQL 쿼리를 위해 Netdata 메트릭을 Prometheus로 낸볷: `````bash
+sudo /etc/netdata/edit-config exporting.conf</p><pre tabindex=0><code>
+`````conf
+[prometheus:remote_write]
+    enabled = yes
+    destination = prometheus:9090
+    remote write URL path = /api/v1/write
+    data source = average
+    prefix = netdata
+    send charts matching = *
+    send hosts matching = *
+</code></pre><p>Netdata 재시작: `````bash
+sudo systemctl restart netdata</p><pre tabindex=0><code>
+### Grafana 대시보드
+
+Netdata에 내장된 대시보드가 있지만, 많은 팀이 중앙 집중식 시각화를 위해 Grafana를 선호합니다. Grafana에서 Prometheus 데이터 소스로 Netdata를 추가: `````yaml
+# Grafana의 datasource.yaml
+apiVersion: 1
+datasources: - name: Netdata-Prometheus
+    type: prometheus
+    url: http://netdata:19999/api/v1/allmetrics?format=prometheus
+    access: proxy
+    isDefault: false
+    jsonData: timeInterval: &#34;1s&#34;
+</code></pre><h3 id=kubernetes-daemonset-고급>Kubernetes DaemonSet (고급)<a hidden class=anchor aria-hidden=true href=#kubernetes-daemonset-고급>#</a></h3><p>모든 K8s 노드에서 전체 호스트 수준 가시성 확보: `````yaml
+apiVersion: apps/v1
+kind: DaemonSet
+metadata: name: netdata
+namespace: monitoring
+spec: selector: matchLabels: app: netdata
+template: metadata: labels: app: netdata
+spec: hostNetwork: true
+hostPID: true
+containers: - name: netdata
+image: netdata/netdata:v2.5.0
+ports: - containerPort: 19999
+hostPort: 19999
+securityContext: capabilities: add: [SYS_PTRACE, SYS_ADMIN]
+volumeMounts: - name: proc
+mountPath: /host/proc
+readOnly: true
+- name: sys
+mountPath: /host/sys
+readOnly: true
+- name: docker-sock
+mountPath: /var/run/docker.sock
+readOnly: true
+volumes: - name: proc
+hostPath: path: /proc
+- name: sys
+hostPath: path: /sys
+- name: docker-sock
+hostPath: path: /var/run/docker.sock</p><pre tabindex=0><code>
+### PostgreSQL 모니터링
+
+``go.d/postgres.conf``에서 PostgreSQL 수집기 활성화: `````yaml
+jobs: - name: local
+    dsn: &#39;postgres://netdata_monitor:password@localhost:5432/postgres&#39;
+    collect: - database_statistics
+      - table_statistics
+      - index_statistics
+      - replication_statistics
+    timeout: 2
+</code></pre><p>수집기 테스트: `````bash
+sudo /etc/netdata/edit-config go.d/postgres.conf</p><h1 id=적용을-위해-재시작>적용을 위해 재시작<a hidden class=anchor aria-hidden=true href=#적용을-위해-재시작>#</a></h1><p>sudo systemctl restart netdata</p><pre tabindex=0><code>
+### Nginx 모니터링
+
+Nginx stub_status 및 액세스 로그 모니터링: `````yaml
+# /etc/netdata/go.d/nginx.conf
+jobs: - name: local
+    url: http://localhost/stub_status
+
+  - name: access_log
+    path: /var/log/nginx/access.log
+    parser: type: ltsv
+</code></pre><h2 id=벤치마크--실제-사용-사례>벤치마크 / 실제 사용 사례<a hidden class=anchor aria-hidden=true href=#벤치마크--실제-사용-사례>#</a></h2><h3 id=리소스-사용량-비교>리소스 사용량 비교<a hidden class=anchor aria-hidden=true href=#리소스-사용량-비교>#</a></h3><p>암스테르담 대학교가 Docker 기반 시스템에서 Netdata를 가장 에너지 효율적인 모니터링 도구로 평가한 동행 심사 연구(ICSOC 2023)를 발표했습니다. 독립 벤치마크 결과: | 시나리오 | Netdata | Prometheus + Node Exporter | Zabbix Agent |
+|&mdash;&mdash;&mdash;-|&mdash;&mdash;&mdash;|&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;|&mdash;&mdash;&mdash;&mdash;&ndash;|
+| CPU 오버헤드 (%) | 1–5% | 5–15% | 10–20% |
+| 노드당 메모리 | 100–150 MB | 200–500 MB | 150–300 MB |
+| 수집 간격 | 1초 | 15–60초 | 30–60초 |
+| 시작 시간 | &lt; 60초 | 30–60분 | 2–4시간 |
+| 노드당 메트릭 수 | 2,000+ | 500–1,000 | 1,000–2,000 |
+| 설정 필요 여부 | 없음 | 중간 | 많음 |</p><h3 id=스트리밍-확장-벤치마크>스트리밍 확장 벤치마크<a hidden class=anchor aria-hidden=true href=#스트리밍-확장-벤치마크>#</a></h3><p>Netdata의 부모-자식 스트리밍 아키텍처는 수평으로 확장됩니다: - <strong>단일 Parent</strong>: 초당 100만+ 샘플 수집, 메모리 약 3.5 GB</p><ul><li><strong>10개 자식 노드</strong>: 노드당 20k 메트릭, 1초 보존 7일, 디스크 12 GB</li><li><strong>Active-Active 클러스터</strong>: 완전한 데이터 복제로 무제한 수평 확장</li><li><strong>임시 노드</strong>: Parent로 메트릭 스트리밍, 노드 종료 후에도 데이터 유지</li></ul><h3 id=실제-배포-사례-500노드-k8s-클러스터>실제 배포 사례: 500노드 K8s 클러스터<a hidden class=anchor aria-hidden=true href=#실제-배포-사례-500노드-k8s-클러스터>#</a></h3><p>중형 SaaS 회사가 500개의 Kubernetes 노드를 다음과 같이 운영: - 3개 가용 영역에 5개의 Netdata Parent (active-active) 배포</p><ul><li>DaemonSet을 통해 500개의 자식 에이전트 실행, 노드당 RAM 모드 (~50 MB)</li><li>계층화된 저장: 1초 해상도 7일, 1분 해상도 1개월, 1시간 해상도 1년</li><li>Parent당 총 저장: 25 GB (클릭스터 전체 125 GB)</li><li>Netdata Cloud를 통해 PagerDuty 및 Slack으로 알림 라우팅</li></ul><h2 id=고급-사용법--프로덕션-강화>고급 사용법 / 프로덕션 강화<a hidden class=anchor aria-hidden=true href=#고급-사용법--프로덕션-강화>#</a></h2><h3 id=성능-튜닝-netdataconf>성능 튜닝: netdata.conf<a hidden class=anchor aria-hidden=true href=#성능-튜닝-netdataconf>#</a></h3><p>기본 설정은 독립 실행형 사용에 최적화되어 있습니다. 프로덕션 시스템에서는 데이터베이스 엔진을 튜닝하고 불필요한 수집기를 비활성화합니다.</p><p><strong>최소 공간 점유 (프로덕션 자식 노드):</strong></p><pre tabindex=0><code class=language-conf data-lang=conf>[global]
+    # 애플리케이션에 영향을 주지 않도록 최저 우선순위로 실행
+    process scheduling policy = batch
+    process nice level = 19
+    # 제한된 노드에서 스레드 수 감소
+    libuv worker threads = 4
+
+[db]
+    # 자식 노드가 Parent로 스트리밍할 때 RAM 전용 모드 사용
+    mode = ram
+    retention = 3600
+    # 로컬 버퍼링에는 단일 계층으로 충분
+    storage tiers = 1
+
+[ml]
+    # 자식 노드에서 ML 비활성화 — Parent에서 실행
+    enabled = no
+
+[health]
+    # 자식 노드에서 로컬 알림 비활성화
+    enabled = no
+
+[web]
+    # 보안을 위해 localhost에만 바인딩
+    bind to = 127.0.0.1
+    allow connections from = localhost
+
+[plugins]
+    # CPU/메모리를 줄이기 위해 사용하지 않는 수집기 비활성화
+    ebpf = no
+    perf = no
+    nfacct = no
+    fping = no
+    ioping = no
+    tc = no
+    idlejitter = no
+    debugfs = no
+    systemd-journal = no
+</code></pre><p><strong>계층화된 저장이 있는 Parent 노드 (중앙 모니터링):</strong></p><pre tabindex=0><code class=language-conf data-lang=conf>[db]
+    mode = dbengine
+    storage tiers = 3
+    dbengine page cache size = 1.4GiB
+
+    # 계층 0: 1초 해상도, 7일
+    update every = 1
+    dbengine tier 0 retention size = 12GiB
+    dbengine tier 0 retention time = 7d
+
+    # 계층 1: 1분 해상도, 1개월
+    dbengine tier 1 update every iterations = 60
+    dbengine tier 1 retention size = 4GiB
+    dbengine tier 1 retention time = 1mo
+
+    # 계층 2: 1시간 해상도, 1년
+    dbengine tier 2 update every iterations = 60
+    dbengine tier 2 retention size = 2GiB
+    dbengine tier 2 retention time = 1y
+
+[ml]
+    enabled = yes
+    # 메트릭당 18개 ML 모델, 3시간마다 학습
+    train every = 10800
+    number of models per dimension = 18
+
+[health]
+    enabled = yes
+    # 10초마다 상태 확인 실행
+    run at least every seconds = 10
+
+[web]
+    # 대시보드 접근을 위해 네트워크에 노출
+    bind to = *
+    # 낶부 네트워크 접근 제한
+    allow connections from = 10.* 192.168.* 172.16.* 172.17.*
+</code></pre><h3 id=스트리밍-설정-streamconf>스트리밍 설정: stream.conf<a hidden class=anchor aria-hidden=true href=#스트리밍-설정-streamconf>#</a></h3><p>자식 노드 설정 (<code>/etc/netdata/stream.conf</code>): `````conf
+[stream]
+enabled = yes
+destination = tcp:netdata-parent.monitoring.svc.cluster.local:19999
+api key = YOUR_API_KEY_HERE
+timeout seconds = 60
+default port = 19999
+send charts matching = *
+buffer size bytes = 1048576
+reconnect delay seconds = 5
+initial clock resync iterations = 60</p><pre tabindex=0><code>
+Parent 노드 설정 (``/etc/netdata/stream.conf``): `````conf
+[API_KEY]
+    enabled = yes
+    default memory mode = dbengine
+    health enabled by default = yes
+</code></pre><h3 id=보안-강화>보안 강화<a hidden class=anchor aria-hidden=true href=#보안-강화>#</a></h3><p>Web 인터페이스에 TLS 활성화: `````conf
+[web]
+tls version = 1.3
+ssl key = /etc/netdata/ssl/key.pem
+ssl certificate = /etc/netdata/ssl/cert.pem
+# 모든 연결에 TLS 필요
+bind to = *=dashboard|registry|badges|management|streaming|netdata.conf|readable|writable</p><pre tabindex=0><code>
+### Netdata 자체 모니터링
+
+에이전트 자체의 리소스 사용량 추적: `````bash
+# 낶부 메트릭 보기
+curl -s http://localhost:19999/api/v1/info | jq &#39;.version, .hog&#39;
+
+# dbengine 통계 확인
+curl -s http://localhost:19999/api/v1/data?chart=netdata.dbengine_main_page_stats
+</code></pre><h2 id=대안과의-비교>대안과의 비교<a hidden class=anchor aria-hidden=true href=#대안과의-비교>#</a></h2><table><thead><tr><th>기능</th><th>Netdata</th><th>Prometheus</th><th>Datadog</th><th>Zabbix</th></tr></thead><tbody><tr><td>수집 간격</td><td>1초</td><td>15–60초</td><td>15초</td><td>30–60초</td></tr><tr><td>에이전트 메모리</td><td>100–150 MB</td><td>200–500 MB</td><td>200–400 MB</td><td>150–300 MB</td></tr><tr><td>에이전트 CPU</td><td>1–5%</td><td>5–15%</td><td>3–8%</td><td>10–20%</td></tr><tr><td>설정 시간</td><td>&lt; 60초</td><td>30–60분</td><td>10–20분</td><td>2–4시간</td></tr><tr><td>자동 발견</td><td>800+ 통합</td><td>제한적</td><td>600+ 통합</td><td>템플릿 기반</td></tr><tr><td>내장 대시보드</td><td>예 (실시간)</td><td>아니오 (PromQL만)</td><td>예</td><td>예 (구식)</td></tr><tr><td>ML 이상 탐지</td><td>메트릭당 18개 모델</td><td>아니오 (추가 필요)</td><td>예</td><td>제한적</td></tr><tr><td>장기 저장</td><td>계층형 dbengine</td><td>기본 15일</td><td>클라우드</td><td>외부 DB</td></tr><tr><td>라이선스</td><td>GPL-3.0 (묶)</td><td>Apache-2.0 (묶)</td><td>$15/호스트/월</td><td>GPL-2.0 (묶)</td></tr><tr><td>알림 라우팅</td><td>내장 + Cloud</td><td>Alertmanager</td><td>내장</td><td>내장</td></tr><tr><td>K8s 네이티브</td><td>예 (Helm chart)</td><td>예 (operator)</td><td>예 (operator)</td><td>제한적</td></tr></tbody></table><p><strong>선택 가이드:</strong></p><ul><li><strong>Netdata</strong>: 단일 노드 가시성, 실시간 문제 해결, 리소스 제한 환경, 제로 설정 모니터링이 필요한 팀.</li><li><strong>Prometheus</strong>: 클라우드 네이티브 메트릭 집계, 복잡한 PromQL 쿼리, Thanos/VictoriaMetrics와의 장기 저장.</li><li><strong>Datadog</strong>: 엔터프라이즈 전체 관측 가능성 (메트릭 + 로그 + 추적 + APM), 관리형 SaaS, SOC 2 규정 준수.</li><li><strong>Zabbix</strong>: 혼합 인프라 (네트워크 장비 + 서버 + SNMP), 에이전트 + 에이전트리스 모니터링이 필요한 조직.</li></ul><h2 id=한계--솔직한-평가>한계 / 솔직한 평가<a hidden class=anchor aria-hidden=true href=#한계--솔직한-평가>#</a></h2><p>Netdata는 모든 모니터링 시나리오에 적합한 도구가 아닙니다: 1. <strong>Netdata Cloud 없이는 중앙 집중식 다중 호스트 뷰가 없음</strong>: 오픈소스 에이전트 대시보드는 노드별입니다. 100개 이상 노드의 통합 뷰를 볼려면 Netdata Cloud (SaaS) 또는 외부 시각화와 함께하는 Parent 스트리밍 설정이 필요합니다.
+2. <strong>기본 설정의 장기 저장이 제한적</strong>: dbengine은 기본적으로 계층당 약 256 MB 디스크를 사용합니다. 규모에 맞게 수년간의 데이터를 보존하려면 명시적인 계층화된 저장 설정 또는 VictoriaMetrics 같은 외부 시계열 DB가 필요합니다.
+3. <strong>알림 파이프라인이 Alertmanager만큼 유연하지 않음</strong>: Netdata에는 내장 상태 확인과 알림이 있지만, 복잡한 라우팅 트리, 무음 설정, 담당자 로테이션은 Netdata Cloud 또는 PagerDuty/OpsGenie와의 통합이 필요합니다.
+4. <strong>완전한 관측 가능성 플랫폼은 아님</strong>: Netdata는 메트릭에 중점을 둡니다. 분산 추적, 구조화된 로깅, APM을 위해서는 Jaeger, Loki 또는 OpenTelemetry와 페어링하세요.
+5. <strong>Windows 지원은 상대적으로 새로움</strong>: Windows 에이전트는 작동하지만 Linux보다 수집기가 적습니다. Windows 중심 환경에서는 배포 전 수집기 적용 범위를 확인하세요.</p><h2 id=자주-묻는-질문>자주 묻는 질문<a hidden class=anchor aria-hidden=true href=#자주-묻는-질문>#</a></h2><p><strong>Q: 프로덕션에서 Netdata가 실제로 얼마나 많은 메모리를 사용하나요?</strong></p><p>Parent로 스트리밍하는 자식 노드에서는 위에 표시된 RAM 모드 설정으로 약 50MB입니다. 10개 노드의 7일간 1초 데이터를 저장하는 Parent 노드는 1.4GB 페이지 캐시로 2.5–3.5GB 메모리를 사용합니다. 에이전트는 사용 가능한 시스템 메모리에 따라 캐시 크기를 자동으로 조정합니다.</p><p><strong>Q: Netdata Cloud 없이 Netdata를 실행할 수 있나요?</strong></p><p>예. 오픈소스 에이전트는 클라우드 연결 없이도 완벽하게 작동합니다. 중앙 집계를 위한 부모-자식 스트리밍을 사용하고 모든 에이전트의 19999 포트에서 직접 대시보드에 접속하세요. Netdata Cloud는 통합 대시보드, 모바일 앱 및 고급 알림 라우팅을 추가하지만 필수는 아닙니다.</p><p><strong>Q: Netdata와 Prometheus + Grafana를 비교하면 어떻습니까?</strong></p><p>Netdata는 실시간 노드별 가시성과 제로 설정에서 뛰어납니다. Prometheus는 동적 임시 클러스터의 메트릭 집계와 PromQL에서 뛰어납니다. 많은 팀이 둘 다 실행합니다: 실시간 문제 해결을 위해 각 노드에 Netdata, 클러스터 수준 집계와 장기 추세 분석을 위해 Prometheus. Netdata는 OpenMetrics 형식으로 Prometheus에 메트릭을 낸볃할 수 있습니다.</p><p><strong>Q: Netdata는 최대 어느 정도 규모까지 처리할 수 있나요?</strong></p><p>단일 Parent 노드는 초당 100만 개 이상의 샘플을 수집할 수 있습니다. 수평 확장을 위해 active-active Parent 클러스터를 배포하세요. 이론상 한계는 없습니다 — 아키텍처 자체가 분산형으로 설계되었습니다. Netdata Cloud SaaS는 수백만 개의 노드를 처리합니다.</p><p><strong>Q: Netdata의 데이터베이스와 설정을 어떻게 백업하나요?</strong></p><p>설정은 <code>/etc/netdata/</code>에 있으며 Git, Ansible, Puppet 등으로 버전 관리할 수 있습니다. <code>/var/cache/netdata/</code>의 dbengine 데이터베이스는 자가 복구 기능이 있어 수동 백업이 필요 없습니다 — 여러 Parent 노드로의 스트리밍이 자연스러운 중복성을 제공합니다. 중요한 환경에서는 active-active Parent 쌍을 실행하세요.</p><p><strong>Q: Netdata는 사용자 정의 애플리케이션 메트릭을 지원하나요?</strong></p><p>예. 내장 StatsD 서버 (8125 포트), OpenMetrics 엔드포인트를 사용하거나 Python 또는 Go로 사용자 정의 수집기를 작성하세요. <code>go.d.plugin</code> 프레임워크는 최소한의 상용구 코드로 새 수집기를 구축하는 것을 지원합니다.</p><h2 id=결론>결론<a hidden class=anchor aria-hidden=true href=#결론>#</a></h2><p>Netdata는 대부분의 모니터링 도구가 지키지 못하는 약속을 이행합니다: 무시할 수 있는 리소스 오버헤드로 즉각적인 초당 가시성을 제공합니다. Docker, Kubernetes 또는 베어 메탈 인프라를 실행하는 팀에게는 &ldquo;아무것도 없음"에서 &ldquo;모든 것을 모니터링"까지의 가장 빠른 경로입니다. 스트리밍 아키텍처는 단일 Raspberry Pi에서 다중 지역 Kubernetes 클러스터까지 확장되며, GPL-3.0 라이선스는 라이선스 비용이 전혀 없음을 의미합니다.</p><p><strong>실행 목록:</strong></p><ol><li>오늘 가장 중요한 서버에서 원라인 설치 명령 실행</li><li>Kubernetes 클러스터에 Helm chart 배포</li><li>프로덕션 강화를 위해 부모-자식 스트리밍 설정</li><li>위의 설정을 사용하여 리소스 제한에 맞게 ````netdata.conf``` 튜닝</li></ol><p><a href=https://t.me/netdata>Netdata Telegram 커뮤니티</a>에 가입하여 5,000명 이상의 엔지니어와 실시간 지원 및 토론을 나눠보세요.</p><p><strong>Affiliate 제휴 공개</strong>: 본 문서에는 DigitalOcean 및 HTStack의 제휴(affiliate) 링크가 포함되어 있습니다. 이 링크를 통해 호스팅 서비스를 구매하면 dibi8.com에서 추가 비용 없이 커미션을 받을 수 있습니다.</p><h2 id=추천-호스팅-및-인프라>추천 호스팅 및 인프라<a hidden class=anchor aria-hidden=true href=#추천-호스팅-및-인프라>#</a></h2><p>위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - <strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.</p><ul><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.</li></ul><p><em>제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.</em></p><h2 id=출처-및-추가-참고-자료>출처 및 추가 참고 자료<a hidden class=anchor aria-hidden=true href=#출처-및-추가-참고-자료>#</a></h2><ul><li><a href=https://github.com/netdata/netdata>Netdata GitHub 저장소</a> — 78,874 Stars, GPL-3.0</li><li><a href=https://learn.netdata.cloud/>공식 문서</a></li><li><a href=https://learn.netdata.cloud/docs/netdata-agent/installation/kubernetes>Netdata Helm Chart 참조</a></li><li><a href=https://github.com/netdata/netdata/blob/master/docs/deployment-guides/deployment-strategies.md>배포 전략 및 부모-자식 스트리밍</a></li><li><a href=https://github.com/netdata/netdata/blob/master/docs/netdata-agent/sizing-netdata-agents/ram-requirements.md>메모리 요구사항 및 사이징 가이드</a></li><li><a href=https://www.netdata.cloud/blog/long-term-data-retention/>장기 데이터 보존 설정</a></li><li><a href=https://www.netdata.cloud/blog/netdata-inifinite-scalability/>무한 확장 — 수평 아키텍처</a></li><li><a href=https://www.ivanomalavolta.com/files/papers/ICSOC_2023.pdf>암스테르담 대학 에너지 효율성 연구</a></li><li><a href=https://www.netdata.cloud/comparisons/zabbix/>Netdata vs Zabbix 공식 비교</a></li><li><a href=https://github.com/netdata/netdata/releases>릴리스 노트 및 변경 로그</a></li></ul><p>{
+&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+&ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;Netdata: 78K+ Star 실시간 모니터링 — 2026 성능 튜닝 가이드&rdquo;,
+&ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
+&ldquo;dateModified&rdquo;: &ldquo;2026-05-19&rdquo;,
+&ldquo;author&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;
+},
+&ldquo;publisher&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
+&ldquo;logo&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
+&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+}
+},
+&ldquo;mainEntityOfPage&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
+&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/kr/resources/netdata%22>https://dibi8.com/kr/resources/netdata"</a>
+}
+}</script></p><hr><h2 id=related-articles>Related Articles<a hidden class=anchor aria-hidden=true href=#related-articles>#</a></h2><ul><li><a href=/ko/ai-coding-agents/netdata/>trivy-production-security-scanner-2026</a></li><li><a href=/ko/ai-coding-agents/netdata/>trivy-production-security-scanner-2026</a></li><li><a href=/ko/ai-coding-agents/netdata/>worldmonitor-real-time-global-intelligence-dashboard</a></li><li><a href=/ko/ai-coding-agents/netdata/>apple-container</a></li><li><a href=/ko/ai-coding-agents/netdata/>freellmapi-openai-compatible-proxy-free-llm-tiers-2026</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/ko/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/ko/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/ko/ai-coding-agents/nanochat-karpathy-train-your-own-llm-100-dollars-2026/><span class=title>« 이전 페이지</span>
+<span>AI Tool Guide</span>
+</a><a class=next href=https://dibi8.com/ko/ai-coding-agents/noco-db-airtable-alternative/><span class=title>다음 페이지 »</span>
+<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/ko/>Dibi8</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="복사";function s(){t.innerHTML="복사 완료!",setTimeout(()=>{t.innerHTML="복사"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

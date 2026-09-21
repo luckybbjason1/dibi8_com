@@ -1,0 +1,235 @@
+<!doctype html><html lang=vi dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/vi/ai-coding-agents/vercel-ai-sdk-edge-compute/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/vercel-ai-sdk-edge-compute/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/vercel-ai-sdk-edge-compute/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/vercel-ai-sdk-edge-compute/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/vercel-ai-sdk-edge-compute/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/vi/ai-coding-agents/vercel-ai-sdk-edge-compute/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="vi"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Tool Guide","item":"https://dibi8.com/vi/ai-coding-agents/vercel-ai-sdk-edge-compute/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"TL;DR Vercel AI SDK là thư viện mã nguồn mở để xây dựng giao diện người dùng powered AI với streaming support across tất cả framework chính. Nó cung cấp API type-safe để tích hợp LLM provider(OpenAI, Anthropic, Google), automatic response streaming, built-in UI component cho React và seamless deployment đến edge runtime. Lợi thế chính: một SDK hoạt động ở mọi nơi — Next.js App Router, Remix, SvelteKit, Nuxt hoặc bất kỳ framework nào hỗ trợ fetch.\nVercel AI SDK Là Gì? Vercel AI SDK là thư viện mã nguồn mở abstract hóa complexity của việc xây dựng ứng dụng AI. Về cốt lõi, nó cung cấp ba capability chính: 1. Provider-agnostic API: Viết code một lần, deploy đến bất kỳ LLM provider nào 2. Streaming-first architecture: Response stream token-by-token đến frontend 3. Framework integration: Native support cho React, Next.js, Vue, Svelte và SolidJS\nTại Sao Edge-First Quan Trọng Cho Ứng Dụng AI Ứng dụng AI truyền thống theo pattern này: ```` User → Web Server → API Route → LLM Provider → Response\nMỗi hop thêm latency. Edge-first approach của Vercel loại bỏ middleman: ````` User → Edge Function → LLM Provider → Streaming Response Edge function chạy trên Cloudflare Worker, Fastly Compute@Edge hoặc Vercel Edge Function — node phân phối địa lý cách user 100-300ms. Cho chat application, điều này có nghĩa token đầu tiên đến trong dưới 500ms.\nCore Architecture // Provider abstraction layer import { createOpenAI } from \"@ai-sdk/openai\"; import { createAnthropic } from \"@ai-sdk/anthropic\"; import { createGoogleGenerativeAI } from \"@ai-sdk/google\"; const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY }); const anthropic = createAnthropic({ apiKey: process.env.ANTHROPIC_API_KEY }); // Unified API call bất kể provider const result = await streamText({ model: openai(\"gpt-4o\"), messages: [{ role: \"user\", content: \"Xin chào!\" }], system: \"Bạn là trợ lý hữu ích.\" }); Hàm streamText same hoạt động identically dù bạn gọi GPT-4o, Claude 3.5 Sonnet hay Gemini 1.5 Pro. Swap provider bằng cách thay đổi một dòng.\nBắt Đầu Bước 1: Cài Đặt Dependency # Tạo new Next.js project với TypeScript npx create-next-app@latest my-ai-app --typescript --tailwind --app cd my-ai-app # Cài đặt AI SDK và provider package npm install ai @ai-sdk/openai @ai-sdk/anthropic @ai-sdk/google # Optional: cho structured output npm install zod Bước 2: Cấu Hình Chat API Đầu Tiên Tạo app/api/chat/route.ts: `````typescript import { streamText } from “ai”; import { createOpenAI } from “@ai-sdk/openai”;\nconst openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY, baseURL: process.env.OPENAI_BASE_URL, // Optional: cho compatible API });\nexport async function POST(req: Request) { const { messages } = await req.json();\nconst result = streamText({ model: openai(“gpt-4o”), messages, system: Bạn là trợ lý lập trình hữu ích. Cung cấp ví dụ code khi liên quan., maxTokens: 2048, temperature: 0.7, });\nreturn result.toDataStreamResponse(); }\nChỉ vậy đó. Một file, 20 dòng code và bạn có fully streaming chat API. ### Bước 3: Xây Dựng Frontend Tạo ``app/page.tsx``: `````typescript \"use client\"; import { useChat } from \"ai/react\"; export default function Chat() { const { messages, input, handleSubmit, isLoading } = useChat(); return ( {/* Message list */} {messages.map((msg) =\u003e ( ","wordCount":"1158","inLanguage":"vi","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/vi/ai-coding-agents/vercel-ai-sdk-edge-compute/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/vi/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/vi/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/vi/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/vi/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/vi/>Trang chủ</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
+<a href>AI Coding Agents - dibi8</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>6 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/vercel-ai-sdk-edge-compute/>En</a></li><li><a href=https://dibi8.com/zh/ai-coding-agents/vercel-ai-sdk-edge-compute/>Zh</a></li><li><a href=https://dibi8.com/ko/ai-coding-agents/vercel-ai-sdk-edge-compute/>Ko</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Mục lục</span></summary><div class=inner><ul><li><a href=#tldr aria-label=TL;DR>TL;DR</a></li><li><a href=#vercel-ai-sdk-l%c3%a0-g%c3%ac aria-label="Vercel AI SDK Là Gì?">Vercel AI SDK Là Gì?</a><ul><li><a href=#t%e1%ba%a1i-sao-edge-first-quan-tr%e1%bb%8dng-cho-%e1%bb%a9ng-d%e1%bb%a5ng-ai aria-label="Tại Sao Edge-First Quan Trọng Cho Ứng Dụng AI">Tại Sao Edge-First Quan Trọng Cho Ứng Dụng AI</a></li><li><a href=#core-architecture aria-label="Core Architecture">Core Architecture</a></li></ul></li><li><a href=#b%e1%ba%aft-%c4%91%e1%ba%a7u aria-label="Bắt Đầu">Bắt Đầu</a><ul><li><a href=#b%c6%b0%e1%bb%9bc-1-c%c3%a0i-%c4%91%e1%ba%b7t-dependency aria-label="Bước 1: Cài Đặt Dependency">Bước 1: Cài Đặt Dependency</a></li><li><a href=#b%c6%b0%e1%bb%9bc-2-c%e1%ba%a5u-h%c3%acnh-chat-api-%c4%91%e1%ba%a7u-ti%c3%aan aria-label="Bước 2: Cấu Hình Chat API Đầu Tiên">Bước 2: Cấu Hình Chat API Đầu Tiên</a></li></ul></li><li><a href=#m%e1%ba%abu-n%c3%a2ng-cao aria-label="Mẫu Nâng Cao">Mẫu Nâng Cao</a><ul><li><a href=#m%e1%ba%abu-1-multi-provider-routing aria-label="Mẫu 1: Multi-Provider Routing">Mẫu 1: Multi-Provider Routing</a></li><li><a href=#m%e1%ba%abu-3-rag-pipeline-v%e1%bb%9bi-embedding aria-label="Mẫu 3: RAG Pipeline Với Embedding">Mẫu 3: RAG Pipeline Với Embedding</a></li></ul></li></ul></div></details><div class="post-content md-content"><h2 id=tldr>TL;DR<a hidden class=anchor aria-hidden=true href=#tldr>#</a></h2><p>Vercel AI SDK là thư viện mã nguồn mở để xây dựng giao diện người dùng powered AI với streaming support across tất cả framework chính. Nó cung cấp API type-safe để tích hợp LLM provider(OpenAI, Anthropic, Google), automatic response streaming, built-in UI component cho React và seamless deployment đến edge runtime. Lợi thế chính: một SDK hoạt động ở mọi nơi — Next.js App Router, Remix, SvelteKit, Nuxt hoặc bất kỳ framework nào hỗ trợ fetch.</p><hr><h2 id=vercel-ai-sdk-là-gì>Vercel AI SDK Là Gì?<a hidden class=anchor aria-hidden=true href=#vercel-ai-sdk-là-gì>#</a></h2><p>Vercel AI SDK là thư viện mã nguồn mở abstract hóa complexity của việc xây dựng ứng dụng AI. Về cốt lõi, nó cung cấp ba capability chính: 1. <strong>Provider-agnostic API</strong>: Viết code một lần, deploy đến bất kỳ LLM provider nào
+2. <strong>Streaming-first architecture</strong>: Response stream token-by-token đến frontend
+3. <strong>Framework integration</strong>: Native support cho React, Next.js, Vue, Svelte và SolidJS</p><h3 id=tại-sao-edge-first-quan-trọng-cho-ứng-dụng-ai>Tại Sao Edge-First Quan Trọng Cho Ứng Dụng AI<a hidden class=anchor aria-hidden=true href=#tại-sao-edge-first-quan-trọng-cho-ứng-dụng-ai>#</a></h3><p>Ứng dụng AI truyền thống theo pattern này: ````
+User → Web Server → API Route → LLM Provider → Response</p><pre tabindex=0><code>
+Mỗi hop thêm latency. Edge-first approach của Vercel loại bỏ middleman: `````
+User → Edge Function → LLM Provider → Streaming Response
+</code></pre><p>Edge function chạy trên Cloudflare Worker, Fastly Compute@Edge hoặc Vercel Edge Function — node phân phối địa lý cách user 100-300ms. Cho chat application, điều này có nghĩa token đầu tiên đến trong dưới 500ms.</p><h3 id=core-architecture>Core Architecture<a hidden class=anchor aria-hidden=true href=#core-architecture>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#75715e>// Provider abstraction layer
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>createOpenAI</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@ai-sdk/openai&#34;</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>createAnthropic</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@ai-sdk/anthropic&#34;</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>createGoogleGenerativeAI</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@ai-sdk/google&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>openai</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>createOpenAI</span>({ <span style=color:#a6e22e>apiKey</span>: <span style=color:#66d9ef>process.env.OPENAI_API_KEY</span> });
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>anthropic</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>createAnthropic</span>({ <span style=color:#a6e22e>apiKey</span>: <span style=color:#66d9ef>process.env.ANTHROPIC_API_KEY</span> });
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Unified API call bất kể provider
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>result</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>streamText</span>({
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>model</span>: <span style=color:#66d9ef>openai</span>(<span style=color:#e6db74>&#34;gpt-4o&#34;</span>),
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>messages</span><span style=color:#f92672>:</span> [{ <span style=color:#a6e22e>role</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;user&#34;</span>, <span style=color:#a6e22e>content</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Xin chào!&#34;</span> }],
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>system</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Bạn là trợ lý hữu ích.&#34;</span>
+</span></span><span style=display:flex><span>});
+</span></span></code></pre></div><p>Hàm <code>streamText</code> same hoạt động identically dù bạn gọi GPT-4o, Claude 3.5 Sonnet hay Gemini 1.5 Pro. Swap provider bằng cách thay đổi một dòng.</p><hr><h2 id=bắt-đầu>Bắt Đầu<a hidden class=anchor aria-hidden=true href=#bắt-đầu>#</a></h2><h3 id=bước-1-cài-đặt-dependency>Bước 1: Cài Đặt Dependency<a hidden class=anchor aria-hidden=true href=#bước-1-cài-đặt-dependency>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Tạo new Next.js project với TypeScript</span>
+</span></span><span style=display:flex><span>npx create-next-app@latest my-ai-app --typescript --tailwind --app
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>cd my-ai-app
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Cài đặt AI SDK và provider package</span>
+</span></span><span style=display:flex><span>npm install ai @ai-sdk/openai @ai-sdk/anthropic @ai-sdk/google
+</span></span><span style=display:flex><span><span style=color:#75715e># Optional: cho structured output</span>
+</span></span><span style=display:flex><span>npm install zod
+</span></span></code></pre></div><h3 id=bước-2-cấu-hình-chat-api-đầu-tiên>Bước 2: Cấu Hình Chat API Đầu Tiên<a hidden class=anchor aria-hidden=true href=#bước-2-cấu-hình-chat-api-đầu-tiên>#</a></h3><p>Tạo <code>app/api/chat/route.ts</code>: `````typescript
+import { streamText } from &ldquo;ai&rdquo;;
+import { createOpenAI } from &ldquo;@ai-sdk/openai&rdquo;;</p><p>const openai = createOpenAI({
+apiKey: process.env.OPENAI_API_KEY,
+baseURL: process.env.OPENAI_BASE_URL, // Optional: cho compatible API
+});</p><p>export async function POST(req: Request) {
+const { messages } = await req.json();</p><p>const result = streamText({
+model: openai(&ldquo;gpt-4o&rdquo;),
+messages,
+system: <code>Bạn là trợ lý lập trình hữu ích. Cung cấp ví dụ code khi liên quan.</code>,
+maxTokens: 2048,
+temperature: 0.7,
+});</p><p>return result.toDataStreamResponse();
+}</p><pre tabindex=0><code>
+Chỉ vậy đó. Một file, 20 dòng code và bạn có fully streaming chat API.
+
+### Bước 3: Xây Dựng Frontend
+
+Tạo ``app/page.tsx``: `````typescript
+&#34;use client&#34;;
+
+import { useChat } from &#34;ai/react&#34;;
+
+export default function Chat() {
+  const { messages, input, handleSubmit, isLoading } = useChat();
+
+  return (
+    &lt;div className=&#34;max-w-2xl mx-auto p-4&#34;&gt;
+      {/* Message list */}
+      &lt;div className=&#34;space-y-4 mb-4&#34;&gt;
+        {messages.map((msg) =&gt; (
+          &lt;div
+            key={msg.id}
+            className={````p-3 rounded-lg ${
+              msg.role === &#34;user&#34;
+                ? &#34;bg-blue-100 ml-8&#34;
+                : &#34;bg-gray-100 mr-8&#34;
+            }````}
+          &gt;
+            {msg.content}
+          &lt;/div&gt;
+        ))}
+      &lt;/div&gt;
+
+      {/* Input form */}
+      &lt;form onSubmit={handleSubmit} className=&#34;flex gap-2&#34;&gt;
+        &lt;input
+          value={input}
+          onChange={(e) =&gt; setInput(e.target.value)}
+          placeholder=&#34;Nhập tin nhắn...&#34;
+          className=&#34;flex-1 p-2 border rounded-lg&#34;
+        /&gt;
+        &lt;button
+          type=&#34;submit&#34;
+          disabled={isLoading}
+          className=&#34;px-4 py-2 bg-blue-600 text-white rounded-lg disabled:opacity-50&#34;
+        &gt;
+          {isLoading ? &#34;Đang suy nghĩ...&#34; : &#34;Gửi&#34;}
+        &lt;/button&gt;
+      &lt;/form&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre><p>Hook <code>useChat</code> xử lý everything: state management, streaming update, error handling và loading state.</p><hr><h2 id=mẫu-nâng-cao>Mẫu Nâng Cao<a hidden class=anchor aria-hidden=true href=#mẫu-nâng-cao>#</a></h2><h3 id=mẫu-1-multi-provider-routing>Mẫu 1: Multi-Provider Routing<a hidden class=anchor aria-hidden=true href=#mẫu-1-multi-provider-routing>#</a></h3><p>Route request đến model khác nhau dựa trên task type: `````typescript
+import { createOpenAI } from &ldquo;@ai-sdk/openai&rdquo;;
+import { createAnthropic } from &ldquo;@ai-sdk/anthropic&rdquo;;
+import { createGoogleGenerativeAI } from &ldquo;@ai-sdk/google&rdquo;;
+import { streamText } from &ldquo;ai&rdquo;;</p><p>const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });
+const anthropic = createAnthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+const google = createGoogleGenerativeAI({ apiKey: process.env.GOOGLE_API_KEY });</p><p>type TaskType = &ldquo;creative&rdquo; | &ldquo;analytical&rdquo; | &ldquo;code&rdquo; | &ldquo;summary&rdquo;;</p><p>const modelRouter: Record&lt;TaskType, any> = {
+creative: anthropic(&ldquo;claude-sonnet-4-20260514&rdquo;),
+analytical: openai(&ldquo;o3-mini&rdquo;),
+code: anthropic(&ldquo;claude-sonnet-4-20260514&rdquo;),
+summary: google(&ldquo;gemini-2.0-flash&rdquo;),
+};</p><p>export async function POST(req: Request) {
+const { messages, taskType }: { messages: any[]; taskType: TaskType } =
+await req.json();</p><p>const model = modelRouter[taskType] || modelRouter.creative;</p><p>const result = streamText({
+model,
+messages,
+maxTokens: taskType === &ldquo;code&rdquo; ? 4096 : 1024,
+temperature: taskType === &ldquo;creative&rdquo; ? 0.9 : 0.3,
+});</p><p>return result.toDataStreamResponse();
+}</p><pre tabindex=0><code>
+### Mẫu 2: Structured Output Với Zod
+
+Validate và parse LLM response thành typed object: `````typescript
+import { z } from &#34;zod&#34;;
+import { generateObject } from &#34;ai&#34;;
+import { createOpenAI } from &#34;@ai-sdk/openai&#34;;
+
+const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });
+
+const ArticleSchema = z.object({
+  title: &#34;AI Tool Guide&#34;
+  summary: z.string().describe(&#34;Tóm tắt một đoạn&#34;),
+  tags: z.array(z.string()).describe(&#34;Tag liên quan&#34;),
+  readingTime: z.number().describe(&#34;Thời gian đọc ước tính phút&#34;),
+  sentiment: z.enum([&#34;positive&#34;, &#34;neutral&#34;, &#34;negative&#34;]),
+});
+
+export async function POST(req: Request) {
+  const { text } = await req.json();
+
+  const { object } = await generateObject({
+    model: openai(&#34;gpt-4o&#34;),
+    schema: ArticleSchema,
+    prompt: ````Phân tích text này và trích xuất metadata bài viết: ${text}````,
+    temperature: 0,
+  });
+
+  return Response.json(object);
+}
+</code></pre><p>Response được guarantee match schema — TypeScript type flow end-to-end từ schema definition đến frontend component.</p><h3 id=mẫu-3-rag-pipeline-với-embedding>Mẫu 3: RAG Pipeline Với Embedding<a hidden class=anchor aria-hidden=true href=#mẫu-3-rag-pipeline-với-embedding>#</a></h3><p>Xây dựng retrieval-augmented generation trong single route: `````typescript
+import { embed, embedMany, streamText } from &ldquo;ai&rdquo;;
+import { createOpenAI } from &ldquo;@ai-sdk/openai&rdquo;;
+import { cosineSimilarity } from &ldquo;ai/embeddings&rdquo;;</p><p>const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });</p><p>let documentVectors: { embedding: number[]; content: string }[] = [];</p><p>async function addDocuments(documents: string[]) {
+const { embeddings } = await embedMany({
+model: openai.embedding(&ldquo;text-embedding-3-small&rdquo;),
+values: documents,
+});</p><p>documentVectors = documents.map((content, i) => ({
+embedding: embeddings[i],
+content,
+}));
+}</p><p>async function searchDocuments(query: string, topK: number = 3) {
+const { embedding } = await embed({
+model: openai.embedding(&ldquo;text-embedding-3-small&rdquo;),
+value: query,
+});</p><p>const scored = documentVectors
+.map((doc) => ({
+&mldr;doc,
+similarity: cosineSimilarity(embedding, doc.embedding),
+}))
+.sort((a, b) => b.similarity - a.similarity)
+.slice(0, topK);</p><p>return scored.map((s) => s.content);
+}</p><p>export async function POST(req: Request) {
+const { messages, documents } = await req.json();</p><p>if (documents?.length) {
+await addDocuments(documents);
+}</p><p>const lastMessage = messages[messages.length - 1];
+const context = await searchDocuments(lastMessage.content);</p><p>const result = streamText({
+model: openai(&ldquo;gpt-4o&rdquo;),
+messages,
+system: ````Chỉ trả lời dùng context sau.
+Nếu context không chứa thông tin relevant, nói vậy.</p><pre><code>Context: ${context.join(&quot;\n\n&quot;)}
+````,
+</code></pre><p>});</p><p>return result.toDataStreamResponse();
+}</p><pre tabindex=0><code>
+### Mẫu 4: Agent Tool Calling
+
+Cho LLM access đến external tool: ````typescript
+import { streamText, tool } from &#34;ai&#34;;
+import { createOpenAI } from &#34;@ai-sdk/openai&#34;;
+import { z } from &#34;zod&#34;;
+
+const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });
+
+const result = streamText({
+  model: openai(&#34;gpt-4o&#34;),
+  messages,
+  tools: {
+    searchWeb: tool({
+      description: &#34;Technical guide and comparison.&#34;
+      parameters: z.object({
+        query: z.string().describ...&#34;
+  },
+  &#34;publisher&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;,
+    &#34;logo&#34;: {
+      &#34;@type&#34;: &#34;ImageObject&#34;,
+      &#34;url&#34;: &#34;https://dibi8.com/logo.png&#34;
+    }
+  },
+  &#34;mainEntityOfPage&#34;: {
+    &#34;@type&#34;: &#34;WebPage&#34;,
+    &#34;@id&#34;: &#34;https://dibi8.com/vi/resources/vercel-ai-sdk-edge-compute&#34;
+  }
+}
+&lt;/script&gt;
+
+* * *
+
+## Related Articles
+
+- [12-factor-agents-production-llm-software-2026](vercel-ai-sdk-edge-compute)
+- [12-factor-agents](vercel-ai-sdk-edge-compute)
+- [1m-context-window-llm-2026-real-test](vercel-ai-sdk-edge-compute)
+- [9router-smart-llm-proxy-token-saver-free-coding](vercel-ai-sdk-edge-compute)
+- [ai-engineering-from-scratch](vercel-ai-sdk-edge-compute)
+
+* * *
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
+</code></pre></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/vi/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/vi/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/vi/ai-coding-agents/vector-db-2026-qdrant-weaviate-milvus/><span class=title>« Trang trước</span>
+<span>AI Tool Guide</span>
+</a><a class=next href=https://dibi8.com/vi/ai-coding-agents/vibe-coding-2026-korean-concept-explained/><span class=title>Trang tiếp theo »</span>
+<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/vi/>Dibi8</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="Sao chép";function s(){t.innerHTML="Đã sao chép!",setTimeout(()=>{t.innerHTML="Sao chép"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

@@ -1,0 +1,356 @@
+<!doctype html><html lang=vi dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/vi/ai-coding-agents/invokeai/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/invokeai/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/invokeai/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/invokeai/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/vi/ai-coding-agents/invokeai/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="vi"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Tool Guide","item":"https://dibi8.com/vi/ai-coding-agents/invokeai/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Ai Tools source_version: ’' licensing_model: Open Source license_type: Apache-2.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“ai-tools”] tags: [“invokeai”, “stable diffusion”, “tạo ảnh ai”, “docker”, “flux”, “sdxl”, “webui”, “mã nguồn mở”] aliases:\n/vi/posts/invokeai/ Giới thiệu Mọi lập trình viên đã thử chạy Stable Diffusion locally đều biết điều này: xung đột dependency, phiên bản CUDA không khớp, thiếu file cấu hình model, và các WebUI trông như thể được thiết kế từ năm 2003. Kể từ năm 2022, lĩnh vực tạo ảnh AI mã nguồn mở đã trưởng thành đáng kể, nhưng khoảng cách giữa “chạy được trên máy tôi” và triển khai production-ready vẫn còn lớn. InvokeAI, với 27.2K+ sao trên GitHub và bản phát hành v6.12.0 vào tháng 3/2026, đã thu hẹp khoảng cách đó. Nó kết hợp WebUI chuyên nghiệp với engine workflow dạng node, hỗ trợ đa ngườ dùng, và triển khai Docker — tất cả dưới giấy phép Apache-2.0. Hướng dẫn này đi qua cài đặt InvokeAI qua Docker và bare metal, tích hợp với Stable Diffusion và ControlNet, và chạy trong môi trường production.\nInvokeAI là gì? InvokeAI là một creative engine mã nguồn mở miễn phí để tạo ảnh bằng AI dựa trên các mô hình Stable Diffusion. Nó cung cấp giao diện web với trình chỉnh sửa canvas chuyên nghiệp, trình xây dựng workflow dạng node, và hệ thống quản lý model — phục vụ cả nghệ sĩ cá nhân lẫn các team cần pipeline tạo ảnh AI tự host, sẵn sàng cho production.\nInvokeAI hoạt động như thế nào? InvokeAI tuân theo kiến trúc client-server module. Backend là máy chủ API dựa trên Python (```invokeai.app.api_app````) xử lý việc tải model, tạo ảnh, và quản lý hàng đợi. Frontend là ứng dụng single-page dựa trên React cung cấp canvas, gallery, và trình chỉnh sửa workflow.\nCác thành phần cốt lõi:\nWeb Server \u0026 React UI — Chạy trên cổng 9090 theo mặc định, cung cấp giao diện tạo ảnh đầy đủ Unified Canvas — Canvas dạng layer với inpainting, outpainting, công cụ brush, và chỉnh sửa image-to-image Node-based Workflows — Trình xây dựng pipeline trực quan cho các pipeline có thể tái tạo và chia sẻ Model Manager — Tải và quản lý model tích hợp cho SD 1.5, SDXL, FLUX, Z-Image, và checkpoint tùy chỉnh Gallery \u0026 Boards — Lưu trữ ảnh có tổ chức với bảo toàn metadata và hỗ trợ kéo-thả Queue System — Xử lý job nền cho tạo ảnh hàng loạt và thực thi workflow Cài đặt \u0026 Thiết lập Phương pháp 1: Docker (Khuyến nghị cho Production) Docker là con đường nhanh nhất để thiết lập InvokeAI production-grade. Các image chính thức hỗ trợ NVIDIA (CUDA), AMD (ROCm), và chế độ CPU-only.\nYêu cầu:\nDocker Engine 24.0+ với BuildKit được bật Docker Compose plugin (V2) NVIDIA Container Toolkit (cho GPU) hoặc ROCm Docker runtime (cho AMD) 16GB+ RAM, 20GB+ dung lượng đĩa trống Bước 1 — Clone repository:\ngit clone https://github.com/invoke-ai/InvokeAI.git cd InvokeAI/docker Bước 2 — Cấu hình môi trường:\ncp .env.sample .env Chỉnh sửa file .env: `````bash\nCấu hình cốt lõi INVOKEAI_ROOT=/opt/invokeai-data INVOKEAI_PORT=9090 GPU_DRIVER=cuda CONTAINER_UID=1000 HUGGINGFACE_TOKEN=hf_your_token_here\n**Bước 3 — Khởi động container:** `````bash ./run.sh Hoặc dùng docker compose trực tiếp: `````bash docker compose up -d\nTruy cập UI tại ````http://localhost:9090````. ### Chạy Docker Nhanh (Không cần Compose) Để test nhanh không cần lưu trữ dữ liệu: `````bash # NVIDIA GPU docker run --runtime=nvidia --gpus=all \\ --publish 9090:9090 \\ ghcr.io/invoke-ai/invokeai:latest # AMD GPU docker run --device /dev/kfd --device /dev/dri \\ --publish 9090:9090 \\ ghcr.io/invoke-ai/invokeai:main-rocm # Có lưu trữ dữ liệu docker run --runtime=nvidia --gpus=all \\ --publish 9090:9090 \\ --volume /mnt/invokeai-data:/invokeai \\ ghcr.io/invoke-ai/invokeai:latest Phương pháp 2: Bare Metal (Linux/macOS) Bước 1 — Cài đặt launcher:\npip install invokeai Bước 2 — Chạy trình hướng dẫn cấu hình:\ninvokeai-configure Trình hướng dẫn tương tác này cài đặt đúng phiên bản PyTorch, tải model mặc định, và cấu hình thư mục runtime.\nBước 3 — Khởi động WebUI:\ninvokeai-web Phương pháp 3: Cloud VPS (DigitalOcean) Với các team không có phần cứng GPU local, instance cloud GPU cung cấp quyền truy cập InvokeAI đầy đủ. DigitalOcean GPU Droplets với card NVIDIA A10G hoặc H100 hoạt động tốt.\n# Trên Droplet GPU Ubuntu 24.04 mới sudo apt update \u0026\u0026 sudo apt install -y docker.io docker-compose-plugin sudo systemctl enable --now docker # Cài đặt NVIDIA Container Toolkit distribution=$(. /etc/os-release;echo $ID$VERSION_ID) curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add - curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | \\ sudo tee /etc/apt/sources.list.d/nvidia-docker.list sudo apt update \u0026\u0026 sudo apt install -y nvidia-container-toolkit sudo nvidia-ctk runtime configure --runtime=docker sudo systemctl restart docker # Triển khai InvokeAI git clone https://github.com/invoke-ai/InvokeAI.git cd InvokeAI/docker cp .env.sample .env # Chỉnh sửa .env: đặt INVOKEAI_ROOT và HUGGINGFACE_TOKEN sudo docker compose up -d Hướng dẫn này có chứa liên kết liên kết đến DigitalOcean. Đăng ký qua các liên kết này hỗ trợ trang web mà không phát sinh chi phí thêm cho bạn.\nTham khảo docker-compose.yml cho Production # Copyright (c) 2023 Eugene Brodsky https://github.com/ebr x-invokeai: \u0026invokeai image: \"ghcr.io/invoke-ai/invokeai:latest\" build: context: .. dockerfile: docker/Dockerfile env_file: - .env environment: - INVOKEAI_ROOT=${CONTAINER_INVOKEAI_ROOT:-/invokeai} - HF_HOME ports: - \"${INVOKEAI_PORT:-9090}:${INVOKEAI_PORT:-9090}\" volumes: - type: bind source: ${HOST_INVOKEAI_ROOT:-${INVOKEAI_ROOT:-~/invokeai}} target: ${CONTAINER_INVOKEAI_ROOT:-/invokeai} bind: create_host_path: true - ${HF_HOME:-~/.cache/huggingface}:${HF_HOME:-/invokeai/.cache/huggingface} tty: true stdin_open: true services: invokeai-cuda: \u003c\u003c: *invokeai deploy: resources: reservations: devices: - driver: nvidia count: 1 capabilities: [gpu] invokeai-cpu: \u003c\u003c: *invokeai profiles: - cpu invokeai-rocm: \u003c\u003c: *invokeai environment: - AMD_VISIBLE_DEVICES=all - RENDER_GROUP_ID=${RENDER_GROUP_ID} runtime: amd profiles: - rocm Tích hợp với Stable Diffusion, ComfyUI và ControlNet Sử dụng mô hình Stable Diffusion InvokeAI hỗ trợ nhiều họ mô hình ngay từ đầu: - SD 1.5 — Các mô hình cổ điển, hệ sinh thái LoRA rộng lớn\nSDXL — Độ phân giải cao hơn, tuân thủ prompt tốt hơn FLUX / FLUX.2 — Chất lượng tiên tiến nhất (2025-2026) Z-Image — Các mô hình undistilled thân thiện với fine-tuning Thêm model qua Model Manager:\nMở WebUI → tab Model Manager Click “Install Model” → dán URL Hugging Face hoặc đường dẫn local Model sẽ tự động tải xuống và chuyển đổi Thêm model thủ công:\n# Sao chép file .safetensors hoặc .ckpt vào thư mục model cp your-model.safetensors /opt/invokeai-data/models/sd-1/main/ # Khởi động lại container docker compose restart Tích hợp ControlNet InvokeAI có hỗ trợ ControlNet gốc thông qua node workspace. Các bộ xử lý có sẵn bao gồm depth map, Canny edges, OpenPose, segmentation, v.v.\nSử dụng ControlNet trong workflow:\nMở tab Workflow trong UI Thêm node ControlNet từ thư viện node Kết nối model cơ sở và ảnh tham chiếu Chọn bộ tiền xử lý (Canny, Depth, OpenPose, v.v.) Đặt cường độ điều khiển (khuyến nghị 0.5–1.0) Đưa vào hàng đợi để tạo Nhập workflow ComfyUI Mặc dù InvokeAI và ComfyUI sử dụng định dạng workflow khác nhau, bạn có thể tái tạo các pipeline ComfyUI trong trình chỉnh sửa node của InvokeAI. Thư viện node bao gồm: - KSampler / Sampler nodes\nCLIP Text Encode VAELoader / VAEDecode Image Scale nodes ControlNet processors # Ví dụ: Thiết lập tham số tạo ảnh qua REST API của InvokeAI (v6.12.0+) import requests response = requests.post( \"http://localhost:9090/api/v1/sessions\", json={ \"model\": \"stable-diffusion-xl-base-1.0\", \"width\": 1024, \"height\": 1024, \"steps\": 30, \"cfg_scale\": 7.5, \"scheduler\": \"euler_a\", \"positive_prompt\": \"Thành phố cyberpunk về đêm, đèn neon, chi tiết cao\", \"negative_prompt\": \"mờ, chất lượng thấp, méo mó\" } ) print(response.json()[\"session_id\"]) Benchmark / Các trường hợp sử dụng thực tế Tốc độ tạo ảnh SDXL (RTX 3060 Ti, 8GB VRAM) Nền tảng 768×1024 (trung bình) 1024×1024 (trung bình) Ghi chú InvokeAI 18.83 giây 24.44 giây UI chuyên nghiệp, hệ thống queue ComfyUI 16.16 giây 21.47 giây Tạo ảnh thô nhanh nhất AUTOMATIC1111 27.33 giây 36.00 giây Overhead VRAM cao nhất Fooocus ~22 giây ~28 giây Chỉ tối ưu cho SDXL Nguồn: Benchmark độc lập, Ryzen 5800X + RTX 3060 Ti, 30 bước, Euler ancestral, CFG 7, model MBB XL.\nSo sánh sử dụng VRAM (FLUX Dev, 1024×1024) Nền tảng Sử dụng VRAM Ghi chú InvokeAI 14.2 GB Cache model hiệu quả ComfyUI 13.8 GB Overhead thấp nhất AUTOMATIC1111 16.1 GB Kiến trúc monolithic Fooocus 12.5 GB Giới hạn workflow SDXL Các trường hợp sử dụng production thực tế Trường hợp 1: Studio thiết kế (20 chỗ ngồi)\nTriển khai InvokeAI v6.12.0 trên workstation RTX 4090 đơn Chế độ đa ngườ dùng với gallery riêng cho mỗi designer 150+ ảnh/ngày qua workflow SDXL và FLUX Hệ thống hàng đợi ngăn xung đột tạo ảnh Trường hợp 2: Chụp ảnh sản phẩm thương mại điện tử\nXóa phông nền tự động qua Canvas inpainting Xử lý hàng loạt 500+ ảnh sản phẩm/tuần Workflow tùy chỉnh cho ánh sáng và góc chụp nhất quán Model Manager đơn giản hóa việc chuyển đổi giữa danh mục sản phẩm Trường hợp 3: Pipeline asset game\nWorkflow dạng node để tạo texture ControlNet depth map cho texturing 3D-aware Mô hình FLUX cho portrait nhân vật chi tiết cao Tích hợp với quản lý asset hiện có qua REST API Sử dụng nâng cao / Hardening Production Chế độ đa ngườ dùng (v6.12.0+) InvokeAI hiện hỗ trợ nhiều tài khoản riêng biệt trên một backend: `````bash\nBật chế độ đa ngườ dùng trong .env INVOKEAI_ENABLE_MULTIUSER=true\nMỗi ngườ dùng có: - Board ảnh và gallery riêng - Trạng thái canvas độc lập - Tùy chỉnh UI riêng - Phân quyền dựa trên vai trò (admin vs ngườ dùng thường) Admin quản lý model và session queue; ngườ dùng thường không thể thêm hoặc xóa model hệ thống. ### Reverse Proxy với SSL `````nginx # Cấu hình Nginx cho production server { listen 443 ssl http2; server_name invokeai.yourdomain.com; ssl_certificate /etc/letsencrypt/live/yourdomain.com/fullchain.pem; ssl_certificate_key /etc/letsencrypt/live/yourdomain.com/privkey.pem; location / { proxy_pass http://localhost:9090; proxy_http_version 1.1; proxy_set_header Upgrade $http_upgrade; proxy_set_header Connection \"upgrade\"; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; proxy_set_header X-Forwarded-Proto $scheme; proxy_read_timeout 86400; } } Dịch vụ systemd # /etc/systemd/system/invokeai.service [Unit] Description=InvokeAI Creative Engine After=docker.service Requires=docker.service [Service] Type=oneshot RemainAfterExit=yes WorkingDirectory=/opt/InvokeAI/docker ExecStart=/usr/bin/docker compose up -d ExecStop=/usr/bin/docker compose down TimeoutStartSec=0 [Install] WantedBy=multi-user.target Kích hoạt và khởi động: `````bash sudo systemctl daemon-reload sudo systemctl enable –now invokeai\n### Giám sát với Prometheus `````yaml # docker-compose.monitoring.yml services: prometheus: image: prom/prometheus:latest volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml ports: - \"9091:9090\" dcgm-exporter: image: nvcr.io/nvidia/k8s/dcgm-exporter:latest runtime: nvidia ports: - \"9400:9400\" Sao lưu tự động #!/bin/bash # /opt/invokeai-backup/backup.sh BACKUP_DIR=\"/backups/invokeai\" DATE=$(date +%Y%m%d-%H%M%S) # Sao lưu ảnh đã tạo và model tar czf \"$BACKUP_DIR/images-$DATE.tar.gz\" /opt/invokeai-data/images tar czf \"$BACKUP_DIR/models-$DATE.tar.gz\" /opt/invokeai-data/models # Giữ lại 7 ngày gần nhất find \"$BACKUP_DIR\" -name \"*.tar.gz\" -mtime +7 -delete Thêm vào crontab: `````bash 0 2 * * * /opt/invokeai-backup/backup.sh\n## So sánh với các giải pháp thay thế | Tính năng | InvokeAI | AUTOMATIC1111 | ComfyUI | Fooocus | |-----------|----------|---------------|---------|---------| | **Độ hoàn thiện WebUI** | Chuyên nghiệp, thiết kế cho creatives | Đầy đủ chức năng nhưng lỗi thờ | Tối giản, tập trung node | Tối giản, tập trung prompt | | **Workflow dạng node** | Có, trình chỉnh sửa trực quan | Không (dựa trên extension) | Có, native | Không | | **Canvas (In/Outpainting)** | Canvas layer đầy đủ | Inpainting cơ bản | Qua custom node | Hạn chế | | **Hỗ trợ đa ngườ dùng** | Native (v6.12.0+) | Không | Không | Không | | **Hỗ trợ model** | SD 1.5, SDXL, FLUX, Z-Image | SD 1.5, SDXL, FLUX (qua ext) | Tất cả (qua custom node) | Chỉ SDXL | | **Thờ gian setup lần đầu** | 15 phút (Docker) | 10 phút | 15 phút | 5 phút | | **REST API** | API đầy đủ | Một phần | Không có API native | Không | | **Hiệu quả VRAM** | Tốt (FLUX 14.2 GB) | Kém (FLUX 16.1 GB) | Tốt nhất (FLUX 13.8 GB) | Tốt (SDXL 12.5 GB) | | **Quản lý Gallery** | Boards, tags, metadata | Trình duyệt file cơ bản | Không | Cơ bản | | **Giấy phép** | Apache-2.0 | AGPL-3.0 | GPL-3.0 | GPL-3.0 | | **Sao GitHub** | 27.2K | 75K+ | 75K+ | 40K+ | ## Hạn chế / Đánh giá trung thực **InvokeAI không phù hợp với:** 1. **Tạo ảnh casual một click** — Nếu bạn chỉ muốn gõ prompt và nhận ảnh, Fooocus thiết lập và sử dụng nhanh hơn. Sức mạnh của InvokeAI đi kèm với đường cong học tập. 2. **Pipeline thử nghiệm cao** — Hệ sinh thái node của ComfyUI lớn hơn và tiên tiến hơn. Các triển khai nghiên cứu mới (ví dụ: tạo video, 3D) thường ra mắt trên ComfyUI trước. 3. **VRAM dưới 8GB** — Các tính năng UI chuyên nghiệp của InvokeAI tiêu tốn thêm bộ nhớ. Với card 6-8GB, ComfyUI hoặc Forge cho hiệu suất tốt hơn. InvokeAI khuyến nghị 12GB+ VRAM cho workflow FLUX thoải mái. 4. **Tăng tốc GPU trên macOS** — Docker trên macOS không hỗ trợ GPU passthrough. Cài đặt native hoạt động nhưng chỉ chạy CPU và chậm đáng kể. Ngườ dùng Apple Silicon có thể thích DiffusionBee hoặc ComfyUI native hơn. 5. **Chỉnh sửa cộng tác real-time** — Chế độ đa ngườ dùng tách biệt ngườ dùng nhưng không hỗ trợ cộng tác canvas đồng thờ. Mỗi ngườ dùng làm việc độc lập. ## Câu hỏi thường gặp ### Chạy InvokeAI cần phần cứng gì? Tối thiểu: 8GB VRAM (NVIDIA RTX 3060 trở lên), 16GB RAM, 50GB dung lượng đĩa trống. Khuyến nghị: 12GB+ VRAM (RTX 3060 Ti / 4060 Ti), 32GB RAM, lưu trữ SSD. Cho model FLUX: 16GB+ VRAM (RTX 4080 / 4090). InvokeAI hỗ trợ NVIDIA CUDA, AMD ROCm, và fallback CPU-only. ### Chạy InvokeAI không có GPU được không? Được, InvokeAI chạy trên hệ thống CPU-only nhưng tạo ảnh chậm hơn 10-20 lần. Dùng CPU Docker profile: ````docker compose --profile cpu up -d````. Kỳ vọng 2-5 phút cho mỗi ảnh 1024×1024 trên CPU 8 nhân hiện đại. Phù hợp để test nhưng không cho production. ### InvokeAI xử lý giấy phép model như thế nào? InvokeAI có giấy phép Apache-2.0. Các model bạn tải xuống (SD 1.5, SDXL, FLUX) có giấy phép riêng. Model Manager của InvokeAI hiển thị thông tin giấy phép trước khi tải. Sử dụng thương mại phụ thuộc vào giấy phép model cụ thể — luôn xác minh trước khi triển khai production. ### Có thể migrate từ AUTOMATIC1111 sang InvokeAI không? Được. InvokeAI có thể sử dụng các model ````.safetensors```` và ````.ckpt```` hiện có từ cài đặt A1111. Chỉ ````INVOKEAI_ROOT```` đến thư mục model hiện có, hoặc sao chép model vào thư mục model của InvokeAI. Lưu ý các extension và script A1111 không chuyển đổi — InvokeAI dùng hệ thống workflow dạng node riêng. ### Làm sao cập nhật InvokeAI lên phiên bản mới? Với cài đặt Docker, pull image mới nhất và khởi động lại: `````bash cd InvokeAI/docker docker compose pull docker compose up -d Với cài đặt bare metal, dùng launcher: `````bash invokeai-update\nLuôn sao lưu thư mục ````INVOKEAI_ROOT```` trước khi cập nhật phiên bản lớn. ### Có phiên bản hosted/cloud của InvokeAI không? InvokeAI chủ yếu là tự host. Các nhà phát triển cung cấp Invoke for Teams (sản phẩm thương mại) thêm cloud hosting, cộng tác team, và hỗ trợ doanh nghiệp. Ngườ dùng cá nhân thường tự host trên GPU local hoặc cloud VPS (DigitalOcean, RunPod). ### Chế độ đa ngườ dùng trong v6.12.0 hoạt động thế nào? Chế độ đa ngườ dùng tạo các tài khoản riêng biệt với gallery, trạng thái canvas, và tùy chọn riêng. Tài khoản admin quản lý model và cài đặt hệ thống. Bật bằng ````INVOKEAI_ENABLE_MULTIUSER=true```. Mỗi ngườ dùng đăng nhập bằng tên ngườ dùng và mật khẩu. Được đánh dấu là thử nghiệm trong v6.12.0 — sẽ cải thiện trong các bản phát hành tới. ## Kết luận InvokeAI lấp đầy một phân khúc cụ thể trong hệ sinh thái tạo ảnh AI: một công cụ sáng tạo chuyên nghiệp, tự host kết hợp sức mạnh của Stable Diffusion với trải nghiệm ngườ dùng tinh tế. Bản phát hành v6.12.0 mang đến hỗ trợ đa ngườ dùng, khả năng tương thích FLUX mở rộng, và quản lý gallery cải tiến — khiến nó phù hợp với các studio nhỏ và team thiết kế. Triển khai dựa trên Docker đơn giản, hệ thống workflow dạng node mạnh mẽ, và giấy phép Apache-2.0 cho phép sử dụng thương mại không hạn chế. **Các bước tiếp theo:** 1. Clone repository và chạy Docker setup local 2. Cài đặt model SDXL hoặc FLUX đầu tiên qua Model Manager 3. Xây dựng workflow dạng node cho trường hợp sử dụng cụ thể 4. Tham gia cộng đồng: [InvokeAI Discord](https://discord.gg/ZmtBAhwWhy) Theo dõi kênh Telegram của chúng tôi để cập nhật công cụ AI mã nguồn mở hàng tuần: [dibi8 announcements](https://t.me/dibi8com) ## Hosting Và Hạ Tầng Được Đề Xuất Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source. - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com. *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.* ## Nguồn \u0026 Tài liệu tham khảo - [InvokeAI GitHub Repository](https://github.com/invoke-ai/InvokeAI) - [InvokeAI Tài liệu chính thức](https://invoke.ai/) - [InvokeAI v6.12.0 Release Notes](https://invoke.ai/releases/version/v6-12-0/) - [InvokeAI Docker Setup Guide](https://github.com/invoke-ai/InvokeAI/tree/main/docker) - [NVIDIA Container Toolkit Cài đặt](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html) - [AMD ROCm Docker Tài liệu](https://rocm.docs.amd.com/projects/install-on-linux/en/latest/how-to/docker.html) - [SDXL Speed Test: InvokeAI vs ComfyUI vs A1111](https://lilys.ai/en/notes/comfyui-20260115/sdxl-speed-test-comfyui-invokeai-a1111) - [ComfyUI vs InvokeAI vs Fooocus So sánh](https://toolhalla.ai/blog/comfyui-vs-invokeai-vs-fooocus-2026) - [InvokeAI PyPI Package](https://pypi.org/project/InvokeAI/) * * * *Bài viết này chứa liên kết liên kết đến DigitalOcean. Nếu bạn đăng ký qua các liên kết này, chúng tôi nhận được hoa hồng mà không phát sinh chi phí thêm cho bạn. Điều này giúp hỗ trợ trang web và nội dung mã nguồn mở của chúng tôi. Tất cả ý kiến và benchmark đều được sản xuất độc lập.* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"InvokeAI: 27.2K+ Stars — Hướng Dẫn Cài Đặt Đầy Đủ 2026\", \"datePublished\": \"2026-05-19\", \"dateModified\": \"2026-05-19\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/vi/resources/invokeai\" } } * * * ## Related Articles - [12-factor-agents](invokeai) - [2026-05-25-trending-ai-agents](invokeai) - [2026-06-01-trending-ai-agents](invokeai) - [2026-06-08-trending-ai-agents](invokeai) - [2026-06-15-trending-ai-agents](invokeai) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ","wordCount":"3097","inLanguage":"vi","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/vi/ai-coding-agents/invokeai/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/vi/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/vi/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/vi/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/vi/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/vi/>Trang chủ</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
+<a href>AI Coding Agents - dibi8</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>15 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span><ul class=i18n_list><li><a href=https://dibi8.com/zh/ai-coding-agents/invokeai/>Zh</a></li><li><a href=https://dibi8.com/ko/ai-coding-agents/invokeai/>Ko</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Mục lục</span></summary><div class=inner><ul><ul><li><a href=#gi%e1%bb%9bi-thi%e1%bb%87u aria-label="Giới thiệu">Giới thiệu</a></li><li><a href=#invokeai-l%c3%a0-g%c3%ac aria-label="InvokeAI là gì?">InvokeAI là gì?</a></li><li><a href=#invokeai-ho%e1%ba%a1t-%c4%91%e1%bb%99ng-nh%c6%b0-th%e1%ba%bf-n%c3%a0o aria-label="InvokeAI hoạt động như thế nào?">InvokeAI hoạt động như thế nào?</a></li><li><a href=#c%c3%a0i-%c4%91%e1%ba%b7t--thi%e1%ba%bft-l%e1%ba%adp aria-label="Cài đặt & Thiết lập">Cài đặt & Thiết lập</a><ul><li><a href=#ph%c6%b0%c6%a1ng-ph%c3%a1p-1-docker-khuy%e1%ba%bfn-ngh%e1%bb%8b-cho-production aria-label="Phương pháp 1: Docker (Khuyến nghị cho Production)">Phương pháp 1: Docker (Khuyến nghị cho Production)</a></li></ul></li></ul><li><a href=#c%e1%ba%a5u-h%c3%acnh-c%e1%bb%91t-l%c3%b5i aria-label="Cấu hình cốt lõi">Cấu hình cốt lõi</a><ul><ul><li><a href=#ph%c6%b0%c6%a1ng-ph%c3%a1p-2-bare-metal-linuxmacos aria-label="Phương pháp 2: Bare Metal (Linux/macOS)">Phương pháp 2: Bare Metal (Linux/macOS)</a></li><li><a href=#ph%c6%b0%c6%a1ng-ph%c3%a1p-3-cloud-vps-digitalocean aria-label="Phương pháp 3: Cloud VPS (DigitalOcean)">Phương pháp 3: Cloud VPS (DigitalOcean)</a></li><li><a href=#tham-kh%e1%ba%a3o-docker-composeyml-cho-production aria-label="Tham khảo docker-compose.yml cho Production">Tham khảo docker-compose.yml cho Production</a></li></ul><li><a href=#t%c3%adch-h%e1%bb%a3p-v%e1%bb%9bi-stable-diffusion-comfyui-v%c3%a0-controlnet aria-label="Tích hợp với Stable Diffusion, ComfyUI và ControlNet">Tích hợp với Stable Diffusion, ComfyUI và ControlNet</a><ul><li><a href=#s%e1%bb%ad-d%e1%bb%a5ng-m%c3%b4-h%c3%acnh-stable-diffusion aria-label="Sử dụng mô hình Stable Diffusion">Sử dụng mô hình Stable Diffusion</a></li><li><a href=#t%c3%adch-h%e1%bb%a3p-controlnet aria-label="Tích hợp ControlNet">Tích hợp ControlNet</a></li><li><a href=#nh%e1%ba%adp-workflow-comfyui aria-label="Nhập workflow ComfyUI">Nhập workflow ComfyUI</a></li></ul></li><li><a href=#benchmark--c%c3%a1c-tr%c6%b0%e1%bb%9dng-h%e1%bb%a3p-s%e1%bb%ad-d%e1%bb%a5ng-th%e1%bb%b1c-t%e1%ba%bf aria-label="Benchmark / Các trường hợp sử dụng thực tế">Benchmark / Các trường hợp sử dụng thực tế</a><ul><li><a href=#t%e1%bb%91c-%c4%91%e1%bb%99-t%e1%ba%a1o-%e1%ba%a3nh-sdxl-rtx-3060-ti-8gb-vram aria-label="Tốc độ tạo ảnh SDXL (RTX 3060 Ti, 8GB VRAM)">Tốc độ tạo ảnh SDXL (RTX 3060 Ti, 8GB VRAM)</a></li><li><a href=#so-s%c3%a1nh-s%e1%bb%ad-d%e1%bb%a5ng-vram-flux-dev-10241024 aria-label="So sánh sử dụng VRAM (FLUX Dev, 1024×1024)">So sánh sử dụng VRAM (FLUX Dev, 1024×1024)</a></li><li><a href=#c%c3%a1c-tr%c6%b0%e1%bb%9dng-h%e1%bb%a3p-s%e1%bb%ad-d%e1%bb%a5ng-production-th%e1%bb%b1c-t%e1%ba%bf aria-label="Các trường hợp sử dụng production thực tế">Các trường hợp sử dụng production thực tế</a></li></ul></li><li><a href=#s%e1%bb%ad-d%e1%bb%a5ng-n%c3%a2ng-cao--hardening-production aria-label="Sử dụng nâng cao / Hardening Production">Sử dụng nâng cao / Hardening Production</a><ul><li><a href=#ch%e1%ba%bf-%c4%91%e1%bb%99-%c4%91a-ng%c6%b0%e1%bb%9d-d%c3%b9ng-v6120 aria-label="Chế độ đa ngườ dùng (v6.12.0+)">Chế độ đa ngườ dùng (v6.12.0+)</a></li></ul></li></ul></li><li><a href=#b%e1%ba%adt-ch%e1%ba%bf-%c4%91%e1%bb%99-%c4%91a-ng%c6%b0%e1%bb%9d-d%c3%b9ng-trong-env aria-label="Bật chế độ đa ngườ dùng trong .env">Bật chế độ đa ngườ dùng trong .env</a><ul><ul><li><a href=#d%e1%bb%8bch-v%e1%bb%a5-systemd aria-label="Dịch vụ systemd">Dịch vụ systemd</a></li><li><a href=#sao-l%c6%b0u-t%e1%bb%b1-%c4%91%e1%bb%99ng aria-label="Sao lưu tự động">Sao lưu tự động</a></li></ul></ul></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+description: &ldquo;Technical guide and comparison.&rdquo;
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
+tech_stack: []
+application_domain: Ai Tools
+source_version: &rsquo;'
+licensing_model: Open Source
+license_type: Apache-2.0
+file_size: &rsquo;'
+file_md5: &rsquo;'
+download_url: &rsquo;'
+backup_url: &rsquo;'
+last_maintained: &ldquo;2026-05-19&rdquo;
+draft: false
+categories: [&ldquo;ai-tools&rdquo;]
+tags: [&ldquo;invokeai&rdquo;, &ldquo;stable diffusion&rdquo;, &ldquo;tạo ảnh ai&rdquo;, &ldquo;docker&rdquo;, &ldquo;flux&rdquo;, &ldquo;sdxl&rdquo;, &ldquo;webui&rdquo;, &ldquo;mã nguồn mở&rdquo;]
+aliases:</p><ul><li>/vi/posts/invokeai/</li></ul><hr><p><img alt="InvokeAI Logo" loading=lazy src=https://raw.githubusercontent.com/invoke-ai/InvokeAI/main/invokeai/assets/invokeai-logo.png></p><h2 id=giới-thiệu>Giới thiệu<a hidden class=anchor aria-hidden=true href=#giới-thiệu>#</a></h2><p>Mọi lập trình viên đã thử chạy Stable Diffusion locally đều biết điều này: xung đột dependency, phiên bản CUDA không khớp, thiếu file cấu hình model, và các WebUI trông như thể được thiết kế từ năm 2003. Kể từ năm 2022, lĩnh vực tạo ảnh AI mã nguồn mở đã trưởng thành đáng kể, nhưng khoảng cách giữa &ldquo;chạy được trên máy tôi&rdquo; và triển khai production-ready vẫn còn lớn. InvokeAI, với 27.2K+ sao trên GitHub và bản phát hành v6.12.0 vào tháng 3/2026, đã thu hẹp khoảng cách đó. Nó kết hợp WebUI chuyên nghiệp với engine workflow dạng node, hỗ trợ đa ngườ dùng, và triển khai Docker — tất cả dưới giấy phép Apache-2.0. Hướng dẫn này đi qua cài đặt InvokeAI qua Docker và bare metal, tích hợp với Stable Diffusion và ControlNet, và chạy trong môi trường production.</p><h2 id=invokeai-là-gì>InvokeAI là gì?<a hidden class=anchor aria-hidden=true href=#invokeai-là-gì>#</a></h2><p>InvokeAI là một creative engine mã nguồn mở miễn phí để tạo ảnh bằng AI dựa trên các mô hình Stable Diffusion. Nó cung cấp giao diện web với trình chỉnh sửa canvas chuyên nghiệp, trình xây dựng workflow dạng node, và hệ thống quản lý model — phục vụ cả nghệ sĩ cá nhân lẫn các team cần pipeline tạo ảnh AI tự host, sẵn sàng cho production.</p><h2 id=invokeai-hoạt-động-như-thế-nào>InvokeAI hoạt động như thế nào?<a hidden class=anchor aria-hidden=true href=#invokeai-hoạt-động-như-thế-nào>#</a></h2><p>InvokeAI tuân theo kiến trúc client-server module. Backend là máy chủ API dựa trên Python (```invokeai.app.api_app````) xử lý việc tải model, tạo ảnh, và quản lý hàng đợi. Frontend là ứng dụng single-page dựa trên React cung cấp canvas, gallery, và trình chỉnh sửa workflow.</p><p><strong>Các thành phần cốt lõi:</strong></p><ul><li><strong>Web Server & React UI</strong> — Chạy trên cổng 9090 theo mặc định, cung cấp giao diện tạo ảnh đầy đủ</li><li><strong>Unified Canvas</strong> — Canvas dạng layer với inpainting, outpainting, công cụ brush, và chỉnh sửa image-to-image</li><li><strong>Node-based Workflows</strong> — Trình xây dựng pipeline trực quan cho các pipeline có thể tái tạo và chia sẻ</li><li><strong>Model Manager</strong> — Tải và quản lý model tích hợp cho SD 1.5, SDXL, FLUX, Z-Image, và checkpoint tùy chỉnh</li><li><strong>Gallery & Boards</strong> — Lưu trữ ảnh có tổ chức với bảo toàn metadata và hỗ trợ kéo-thả</li><li><strong>Queue System</strong> — Xử lý job nền cho tạo ảnh hàng loạt và thực thi workflow</li></ul><h2 id=cài-đặt--thiết-lập>Cài đặt & Thiết lập<a hidden class=anchor aria-hidden=true href=#cài-đặt--thiết-lập>#</a></h2><h3 id=phương-pháp-1-docker-khuyến-nghị-cho-production>Phương pháp 1: Docker (Khuyến nghị cho Production)<a hidden class=anchor aria-hidden=true href=#phương-pháp-1-docker-khuyến-nghị-cho-production>#</a></h3><p>Docker là con đường nhanh nhất để thiết lập InvokeAI production-grade. Các image chính thức hỗ trợ NVIDIA (CUDA), AMD (ROCm), và chế độ CPU-only.</p><p><strong>Yêu cầu:</strong></p><ul><li>Docker Engine 24.0+ với BuildKit được bật</li><li>Docker Compose plugin (V2)</li><li>NVIDIA Container Toolkit (cho GPU) hoặc ROCm Docker runtime (cho AMD)</li><li>16GB+ RAM, 20GB+ dung lượng đĩa trống</li></ul><p><strong>Bước 1 — Clone repository:</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>git clone https://github.com/invoke-ai/InvokeAI.git
+</span></span><span style=display:flex><span>cd InvokeAI/docker
+</span></span></code></pre></div><p><strong>Bước 2 — Cấu hình môi trường:</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>cp .env.sample .env
+</span></span></code></pre></div><p>Chỉnh sửa file <code>.env</code>: `````bash</p><h1 id=cấu-hình-cốt-lõi>Cấu hình cốt lõi<a hidden class=anchor aria-hidden=true href=#cấu-hình-cốt-lõi>#</a></h1><p>INVOKEAI_ROOT=/opt/invokeai-data
+INVOKEAI_PORT=9090
+GPU_DRIVER=cuda
+CONTAINER_UID=1000
+HUGGINGFACE_TOKEN=hf_your_token_here</p><pre tabindex=0><code>
+**Bước 3 — Khởi động container:**
+
+`````bash
+./run.sh
+</code></pre><p>Hoặc dùng <code>docker compose</code> trực tiếp: `````bash
+docker compose up -d</p><pre tabindex=0><code>
+Truy cập UI tại ````http://localhost:9090````.
+
+### Chạy Docker Nhanh (Không cần Compose)
+
+Để test nhanh không cần lưu trữ dữ liệu: `````bash
+# NVIDIA GPU
+docker run --runtime=nvidia --gpus=all \
+  --publish 9090:9090 \
+  ghcr.io/invoke-ai/invokeai:latest
+
+# AMD GPU
+docker run --device /dev/kfd --device /dev/dri \
+  --publish 9090:9090 \
+  ghcr.io/invoke-ai/invokeai:main-rocm
+
+# Có lưu trữ dữ liệu
+docker run --runtime=nvidia --gpus=all \
+  --publish 9090:9090 \
+  --volume /mnt/invokeai-data:/invokeai \
+  ghcr.io/invoke-ai/invokeai:latest
+</code></pre><h3 id=phương-pháp-2-bare-metal-linuxmacos>Phương pháp 2: Bare Metal (Linux/macOS)<a hidden class=anchor aria-hidden=true href=#phương-pháp-2-bare-metal-linuxmacos>#</a></h3><p><strong>Bước 1 — Cài đặt launcher:</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>pip install invokeai
+</span></span></code></pre></div><p><strong>Bước 2 — Chạy trình hướng dẫn cấu hình:</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>invokeai-configure
+</span></span></code></pre></div><p>Trình hướng dẫn tương tác này cài đặt đúng phiên bản PyTorch, tải model mặc định, và cấu hình thư mục runtime.</p><p><strong>Bước 3 — Khởi động WebUI:</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>invokeai-web
+</span></span></code></pre></div><h3 id=phương-pháp-3-cloud-vps-digitalocean>Phương pháp 3: Cloud VPS (DigitalOcean)<a hidden class=anchor aria-hidden=true href=#phương-pháp-3-cloud-vps-digitalocean>#</a></h3><p>Với các team không có phần cứng GPU local, instance cloud GPU cung cấp quyền truy cập InvokeAI đầy đủ. DigitalOcean GPU Droplets với card NVIDIA A10G hoặc H100 hoạt động tốt.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Trên Droplet GPU Ubuntu 24.04 mới</span>
+</span></span><span style=display:flex><span>sudo apt update <span style=color:#f92672>&amp;&amp;</span> sudo apt install -y docker.io docker-compose-plugin
+</span></span><span style=display:flex><span>sudo systemctl enable --now docker
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Cài đặt NVIDIA Container Toolkit</span>
+</span></span><span style=display:flex><span>distribution<span style=color:#f92672>=</span><span style=color:#66d9ef>$(</span>. /etc/os-release;echo $ID$VERSION_ID<span style=color:#66d9ef>)</span>
+</span></span><span style=display:flex><span>curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
+</span></span><span style=display:flex><span>curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+</span></span><span style=display:flex><span>sudo apt update <span style=color:#f92672>&amp;&amp;</span> sudo apt install -y nvidia-container-toolkit
+</span></span><span style=display:flex><span>sudo nvidia-ctk runtime configure --runtime<span style=color:#f92672>=</span>docker
+</span></span><span style=display:flex><span>sudo systemctl restart docker
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Triển khai InvokeAI</span>
+</span></span><span style=display:flex><span>git clone https://github.com/invoke-ai/InvokeAI.git
+</span></span><span style=display:flex><span>cd InvokeAI/docker
+</span></span><span style=display:flex><span>cp .env.sample .env
+</span></span><span style=display:flex><span><span style=color:#75715e># Chỉnh sửa .env: đặt INVOKEAI_ROOT và HUGGINGFACE_TOKEN</span>
+</span></span><span style=display:flex><span>sudo docker compose up -d
+</span></span></code></pre></div><p><em>Hướng dẫn này có chứa liên kết liên kết đến DigitalOcean. Đăng ký qua các liên kết này hỗ trợ trang web mà không phát sinh chi phí thêm cho bạn.</em></p><h3 id=tham-khảo-docker-composeyml-cho-production>Tham khảo docker-compose.yml cho Production<a hidden class=anchor aria-hidden=true href=#tham-khảo-docker-composeyml-cho-production>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># Copyright (c) 2023 Eugene Brodsky https://github.com/ebr</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>x-invokeai</span>: <span style=color:#75715e>&amp;invokeai</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>image</span>: <span style=color:#e6db74>&#34;ghcr.io/invoke-ai/invokeai:latest&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>build: context</span>: <span style=color:#ae81ff>..</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>dockerfile</span>: <span style=color:#ae81ff>docker/Dockerfile</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>env_file</span>: - <span style=color:#ae81ff>.env</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>: - <span style=color:#ae81ff>INVOKEAI_ROOT=${CONTAINER_INVOKEAI_ROOT:-/invokeai}</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>HF_HOME</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;${INVOKEAI_PORT:-9090}:${INVOKEAI_PORT:-9090}&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes: - type</span>: <span style=color:#ae81ff>bind</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>source</span>: <span style=color:#ae81ff>${HOST_INVOKEAI_ROOT:-${INVOKEAI_ROOT:-~/invokeai}}</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>target</span>: <span style=color:#ae81ff>${CONTAINER_INVOKEAI_ROOT:-/invokeai}</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>bind: create_host_path</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>${HF_HOME:-~/.cache/huggingface}:${HF_HOME:-/invokeai/.cache/huggingface}</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>tty</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>stdin_open</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>services: invokeai-cuda: &lt;&lt;</span>: <span style=color:#75715e>*invokeai</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>deploy: resources: reservations: devices: - driver</span>: <span style=color:#ae81ff>nvidia</span>
+</span></span><span style=display:flex><span>              <span style=color:#f92672>count</span>: <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>              <span style=color:#f92672>capabilities</span>: [<span style=color:#ae81ff>gpu]</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>invokeai-cpu: &lt;&lt;</span>: <span style=color:#75715e>*invokeai</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>profiles</span>: - <span style=color:#ae81ff>cpu</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>invokeai-rocm: &lt;&lt;</span>: <span style=color:#75715e>*invokeai</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>: - <span style=color:#ae81ff>AMD_VISIBLE_DEVICES=all</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>RENDER_GROUP_ID=${RENDER_GROUP_ID}</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>runtime</span>: <span style=color:#ae81ff>amd</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>profiles</span>: - <span style=color:#ae81ff>rocm</span>
+</span></span></code></pre></div><h2 id=tích-hợp-với-stable-diffusion-comfyui-và-controlnet>Tích hợp với Stable Diffusion, ComfyUI và ControlNet<a hidden class=anchor aria-hidden=true href=#tích-hợp-với-stable-diffusion-comfyui-và-controlnet>#</a></h2><h3 id=sử-dụng-mô-hình-stable-diffusion>Sử dụng mô hình Stable Diffusion<a hidden class=anchor aria-hidden=true href=#sử-dụng-mô-hình-stable-diffusion>#</a></h3><p>InvokeAI hỗ trợ nhiều họ mô hình ngay từ đầu: - <strong>SD 1.5</strong> — Các mô hình cổ điển, hệ sinh thái LoRA rộng lớn</p><ul><li><strong>SDXL</strong> — Độ phân giải cao hơn, tuân thủ prompt tốt hơn</li><li><strong>FLUX / FLUX.2</strong> — Chất lượng tiên tiến nhất (2025-2026)</li><li><strong>Z-Image</strong> — Các mô hình undistilled thân thiện với fine-tuning</li></ul><p><strong>Thêm model qua Model Manager:</strong></p><ol><li>Mở WebUI → tab Model Manager</li><li>Click &ldquo;Install Model&rdquo; → dán URL Hugging Face hoặc đường dẫn local</li><li>Model sẽ tự động tải xuống và chuyển đổi</li></ol><p><strong>Thêm model thủ công:</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Sao chép file .safetensors hoặc .ckpt vào thư mục model</span>
+</span></span><span style=display:flex><span>cp your-model.safetensors /opt/invokeai-data/models/sd-1/main/
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Khởi động lại container</span>
+</span></span><span style=display:flex><span>docker compose restart
+</span></span></code></pre></div><h3 id=tích-hợp-controlnet>Tích hợp ControlNet<a hidden class=anchor aria-hidden=true href=#tích-hợp-controlnet>#</a></h3><p>InvokeAI có hỗ trợ ControlNet gốc thông qua node workspace. Các bộ xử lý có sẵn bao gồm depth map, Canny edges, OpenPose, segmentation, v.v.</p><p><strong>Sử dụng ControlNet trong workflow:</strong></p><ol><li>Mở tab Workflow trong UI</li><li>Thêm node ControlNet từ thư viện node</li><li>Kết nối model cơ sở và ảnh tham chiếu</li><li>Chọn bộ tiền xử lý (Canny, Depth, OpenPose, v.v.)</li><li>Đặt cường độ điều khiển (khuyến nghị 0.5–1.0)</li><li>Đưa vào hàng đợi để tạo</li></ol><h3 id=nhập-workflow-comfyui>Nhập workflow ComfyUI<a hidden class=anchor aria-hidden=true href=#nhập-workflow-comfyui>#</a></h3><p>Mặc dù InvokeAI và ComfyUI sử dụng định dạng workflow khác nhau, bạn có thể tái tạo các pipeline ComfyUI trong trình chỉnh sửa node của InvokeAI. Thư viện node bao gồm: - KSampler / Sampler nodes</p><ul><li>CLIP Text Encode</li><li>VAELoader / VAEDecode</li><li>Image Scale nodes</li><li>ControlNet processors</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Ví dụ: Thiết lập tham số tạo ảnh qua REST API của InvokeAI (v6.12.0+)</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> requests
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>response <span style=color:#f92672>=</span> requests<span style=color:#f92672>.</span>post(
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;http://localhost:9090/api/v1/sessions&#34;</span>,
+</span></span><span style=display:flex><span>    json<span style=color:#f92672>=</span>{
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;model&#34;</span>: <span style=color:#e6db74>&#34;stable-diffusion-xl-base-1.0&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;width&#34;</span>: <span style=color:#ae81ff>1024</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;height&#34;</span>: <span style=color:#ae81ff>1024</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;steps&#34;</span>: <span style=color:#ae81ff>30</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;cfg_scale&#34;</span>: <span style=color:#ae81ff>7.5</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;scheduler&#34;</span>: <span style=color:#e6db74>&#34;euler_a&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;positive_prompt&#34;</span>: <span style=color:#e6db74>&#34;Thành phố cyberpunk về đêm, đèn neon, chi tiết cao&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;negative_prompt&#34;</span>: <span style=color:#e6db74>&#34;mờ, chất lượng thấp, méo mó&#34;</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>print(response<span style=color:#f92672>.</span>json()[<span style=color:#e6db74>&#34;session_id&#34;</span>])
+</span></span></code></pre></div><h2 id=benchmark--các-trường-hợp-sử-dụng-thực-tế>Benchmark / Các trường hợp sử dụng thực tế<a hidden class=anchor aria-hidden=true href=#benchmark--các-trường-hợp-sử-dụng-thực-tế>#</a></h2><h3 id=tốc-độ-tạo-ảnh-sdxl-rtx-3060-ti-8gb-vram>Tốc độ tạo ảnh SDXL (RTX 3060 Ti, 8GB VRAM)<a hidden class=anchor aria-hidden=true href=#tốc-độ-tạo-ảnh-sdxl-rtx-3060-ti-8gb-vram>#</a></h3><table><thead><tr><th>Nền tảng</th><th>768×1024 (trung bình)</th><th>1024×1024 (trung bình)</th><th>Ghi chú</th></tr></thead><tbody><tr><td><strong>InvokeAI</strong></td><td>18.83 giây</td><td>24.44 giây</td><td>UI chuyên nghiệp, hệ thống queue</td></tr><tr><td><strong>ComfyUI</strong></td><td>16.16 giây</td><td>21.47 giây</td><td>Tạo ảnh thô nhanh nhất</td></tr><tr><td><strong>AUTOMATIC1111</strong></td><td>27.33 giây</td><td>36.00 giây</td><td>Overhead VRAM cao nhất</td></tr><tr><td><strong>Fooocus</strong></td><td>~22 giây</td><td>~28 giây</td><td>Chỉ tối ưu cho SDXL</td></tr></tbody></table><p><em>Nguồn: Benchmark độc lập, Ryzen 5800X + RTX 3060 Ti, 30 bước, Euler ancestral, CFG 7, model MBB XL.</em></p><h3 id=so-sánh-sử-dụng-vram-flux-dev-10241024>So sánh sử dụng VRAM (FLUX Dev, 1024×1024)<a hidden class=anchor aria-hidden=true href=#so-sánh-sử-dụng-vram-flux-dev-10241024>#</a></h3><table><thead><tr><th>Nền tảng</th><th>Sử dụng VRAM</th><th>Ghi chú</th></tr></thead><tbody><tr><td>InvokeAI</td><td>14.2 GB</td><td>Cache model hiệu quả</td></tr><tr><td>ComfyUI</td><td>13.8 GB</td><td>Overhead thấp nhất</td></tr><tr><td>AUTOMATIC1111</td><td>16.1 GB</td><td>Kiến trúc monolithic</td></tr><tr><td>Fooocus</td><td>12.5 GB</td><td>Giới hạn workflow SDXL</td></tr></tbody></table><h3 id=các-trường-hợp-sử-dụng-production-thực-tế>Các trường hợp sử dụng production thực tế<a hidden class=anchor aria-hidden=true href=#các-trường-hợp-sử-dụng-production-thực-tế>#</a></h3><p><strong>Trường hợp 1: Studio thiết kế (20 chỗ ngồi)</strong></p><ul><li>Triển khai InvokeAI v6.12.0 trên workstation RTX 4090 đơn</li><li>Chế độ đa ngườ dùng với gallery riêng cho mỗi designer</li><li>150+ ảnh/ngày qua workflow SDXL và FLUX</li><li>Hệ thống hàng đợi ngăn xung đột tạo ảnh</li></ul><p><strong>Trường hợp 2: Chụp ảnh sản phẩm thương mại điện tử</strong></p><ul><li>Xóa phông nền tự động qua Canvas inpainting</li><li>Xử lý hàng loạt 500+ ảnh sản phẩm/tuần</li><li>Workflow tùy chỉnh cho ánh sáng và góc chụp nhất quán</li><li>Model Manager đơn giản hóa việc chuyển đổi giữa danh mục sản phẩm</li></ul><p><strong>Trường hợp 3: Pipeline asset game</strong></p><ul><li>Workflow dạng node để tạo texture</li><li>ControlNet depth map cho texturing 3D-aware</li><li>Mô hình FLUX cho portrait nhân vật chi tiết cao</li><li>Tích hợp với quản lý asset hiện có qua REST API</li></ul><h2 id=sử-dụng-nâng-cao--hardening-production>Sử dụng nâng cao / Hardening Production<a hidden class=anchor aria-hidden=true href=#sử-dụng-nâng-cao--hardening-production>#</a></h2><h3 id=chế-độ-đa-ngườ-dùng-v6120>Chế độ đa ngườ dùng (v6.12.0+)<a hidden class=anchor aria-hidden=true href=#chế-độ-đa-ngườ-dùng-v6120>#</a></h3><p>InvokeAI hiện hỗ trợ nhiều tài khoản riêng biệt trên một backend: `````bash</p><h1 id=bật-chế-độ-đa-ngườ-dùng-trong-env>Bật chế độ đa ngườ dùng trong .env<a hidden class=anchor aria-hidden=true href=#bật-chế-độ-đa-ngườ-dùng-trong-env>#</a></h1><p>INVOKEAI_ENABLE_MULTIUSER=true</p><pre tabindex=0><code>
+Mỗi ngườ dùng có: - Board ảnh và gallery riêng
+- Trạng thái canvas độc lập
+- Tùy chỉnh UI riêng
+- Phân quyền dựa trên vai trò (admin vs ngườ dùng thường)
+
+Admin quản lý model và session queue; ngườ dùng thường không thể thêm hoặc xóa model hệ thống.
+
+### Reverse Proxy với SSL
+
+`````nginx
+# Cấu hình Nginx cho production
+server {
+    listen 443 ssl http2;
+    server_name invokeai.yourdomain.com;
+
+    ssl_certificate /etc/letsencrypt/live/yourdomain.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/yourdomain.com/privkey.pem;
+
+    location / {
+        proxy_pass http://localhost:9090;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection &#34;upgrade&#34;;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_read_timeout 86400;
+    }
+}
+</code></pre><h3 id=dịch-vụ-systemd>Dịch vụ systemd<a hidden class=anchor aria-hidden=true href=#dịch-vụ-systemd>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-ini data-lang=ini><span style=display:flex><span><span style=color:#75715e># /etc/systemd/system/invokeai.service</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>[Unit]</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>Description</span><span style=color:#f92672>=</span><span style=color:#e6db74>InvokeAI Creative Engine</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>After</span><span style=color:#f92672>=</span><span style=color:#e6db74>docker.service</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>Requires</span><span style=color:#f92672>=</span><span style=color:#e6db74>docker.service</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>[Service]</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>Type</span><span style=color:#f92672>=</span><span style=color:#e6db74>oneshot</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>RemainAfterExit</span><span style=color:#f92672>=</span><span style=color:#e6db74>yes</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>WorkingDirectory</span><span style=color:#f92672>=</span><span style=color:#e6db74>/opt/InvokeAI/docker</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>ExecStart</span><span style=color:#f92672>=</span><span style=color:#e6db74>/usr/bin/docker compose up -d</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>ExecStop</span><span style=color:#f92672>=</span><span style=color:#e6db74>/usr/bin/docker compose down</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>TimeoutStartSec</span><span style=color:#f92672>=</span><span style=color:#e6db74>0</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>[Install]</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>WantedBy</span><span style=color:#f92672>=</span><span style=color:#e6db74>multi-user.target</span>
+</span></span></code></pre></div><p>Kích hoạt và khởi động: `````bash
+sudo systemctl daemon-reload
+sudo systemctl enable &ndash;now invokeai</p><pre tabindex=0><code>
+### Giám sát với Prometheus
+
+`````yaml
+# docker-compose.monitoring.yml
+services: prometheus: image: prom/prometheus:latest
+    volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports: - &#34;9091:9090&#34;
+
+  dcgm-exporter: image: nvcr.io/nvidia/k8s/dcgm-exporter:latest
+    runtime: nvidia
+    ports: - &#34;9400:9400&#34;
+</code></pre><h3 id=sao-lưu-tự-động>Sao lưu tự động<a hidden class=anchor aria-hidden=true href=#sao-lưu-tự-động>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e>#!/bin/bash
+</span></span></span><span style=display:flex><span><span style=color:#75715e># /opt/invokeai-backup/backup.sh</span>
+</span></span><span style=display:flex><span>BACKUP_DIR<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/backups/invokeai&#34;</span>
+</span></span><span style=display:flex><span>DATE<span style=color:#f92672>=</span><span style=color:#66d9ef>$(</span>date +%Y%m%d-%H%M%S<span style=color:#66d9ef>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Sao lưu ảnh đã tạo và model</span>
+</span></span><span style=display:flex><span>tar czf <span style=color:#e6db74>&#34;</span>$BACKUP_DIR<span style=color:#e6db74>/images-</span>$DATE<span style=color:#e6db74>.tar.gz&#34;</span> /opt/invokeai-data/images
+</span></span><span style=display:flex><span>tar czf <span style=color:#e6db74>&#34;</span>$BACKUP_DIR<span style=color:#e6db74>/models-</span>$DATE<span style=color:#e6db74>.tar.gz&#34;</span> /opt/invokeai-data/models
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Giữ lại 7 ngày gần nhất</span>
+</span></span><span style=display:flex><span>find <span style=color:#e6db74>&#34;</span>$BACKUP_DIR<span style=color:#e6db74>&#34;</span> -name <span style=color:#e6db74>&#34;*.tar.gz&#34;</span> -mtime +7 -delete
+</span></span></code></pre></div><p>Thêm vào crontab: `````bash
+0 2 * * * /opt/invokeai-backup/backup.sh</p><pre tabindex=0><code>
+## So sánh với các giải pháp thay thế
+
+| Tính năng | InvokeAI | AUTOMATIC1111 | ComfyUI | Fooocus |
+|-----------|----------|---------------|---------|---------|
+| **Độ hoàn thiện WebUI** | Chuyên nghiệp, thiết kế cho creatives | Đầy đủ chức năng nhưng lỗi thờ | Tối giản, tập trung node | Tối giản, tập trung prompt |
+| **Workflow dạng node** | Có, trình chỉnh sửa trực quan | Không (dựa trên extension) | Có, native | Không |
+| **Canvas (In/Outpainting)** | Canvas layer đầy đủ | Inpainting cơ bản | Qua custom node | Hạn chế |
+| **Hỗ trợ đa ngườ dùng** | Native (v6.12.0+) | Không | Không | Không |
+| **Hỗ trợ model** | SD 1.5, SDXL, FLUX, Z-Image | SD 1.5, SDXL, FLUX (qua ext) | Tất cả (qua custom node) | Chỉ SDXL |
+| **Thờ gian setup lần đầu** | 15 phút (Docker) | 10 phút | 15 phút | 5 phút |
+| **REST API** | API đầy đủ | Một phần | Không có API native | Không |
+| **Hiệu quả VRAM** | Tốt (FLUX 14.2 GB) | Kém (FLUX 16.1 GB) | Tốt nhất (FLUX 13.8 GB) | Tốt (SDXL 12.5 GB) |
+| **Quản lý Gallery** | Boards, tags, metadata | Trình duyệt file cơ bản | Không | Cơ bản |
+| **Giấy phép** | Apache-2.0 | AGPL-3.0 | GPL-3.0 | GPL-3.0 |
+| **Sao GitHub** | 27.2K | 75K+ | 75K+ | 40K+ |
+
+## Hạn chế / Đánh giá trung thực
+
+**InvokeAI không phù hợp với:**
+
+1. **Tạo ảnh casual một click** — Nếu bạn chỉ muốn gõ prompt và nhận ảnh, Fooocus thiết lập và sử dụng nhanh hơn. Sức mạnh của InvokeAI đi kèm với đường cong học tập.
+
+2. **Pipeline thử nghiệm cao** — Hệ sinh thái node của ComfyUI lớn hơn và tiên tiến hơn. Các triển khai nghiên cứu mới (ví dụ: tạo video, 3D) thường ra mắt trên ComfyUI trước.
+
+3. **VRAM dưới 8GB** — Các tính năng UI chuyên nghiệp của InvokeAI tiêu tốn thêm bộ nhớ. Với card 6-8GB, ComfyUI hoặc Forge cho hiệu suất tốt hơn. InvokeAI khuyến nghị 12GB+ VRAM cho workflow FLUX thoải mái.
+
+4. **Tăng tốc GPU trên macOS** — Docker trên macOS không hỗ trợ GPU passthrough. Cài đặt native hoạt động nhưng chỉ chạy CPU và chậm đáng kể. Ngườ dùng Apple Silicon có thể thích DiffusionBee hoặc ComfyUI native hơn.
+
+5. **Chỉnh sửa cộng tác real-time** — Chế độ đa ngườ dùng tách biệt ngườ dùng nhưng không hỗ trợ cộng tác canvas đồng thờ. Mỗi ngườ dùng làm việc độc lập.
+
+## Câu hỏi thường gặp
+
+### Chạy InvokeAI cần phần cứng gì?
+
+Tối thiểu: 8GB VRAM (NVIDIA RTX 3060 trở lên), 16GB RAM, 50GB dung lượng đĩa trống. Khuyến nghị: 12GB+ VRAM (RTX 3060 Ti / 4060 Ti), 32GB RAM, lưu trữ SSD. Cho model FLUX: 16GB+ VRAM (RTX 4080 / 4090). InvokeAI hỗ trợ NVIDIA CUDA, AMD ROCm, và fallback CPU-only.
+
+### Chạy InvokeAI không có GPU được không?
+
+Được, InvokeAI chạy trên hệ thống CPU-only nhưng tạo ảnh chậm hơn 10-20 lần. Dùng CPU Docker profile: ````docker compose --profile cpu up -d````. Kỳ vọng 2-5 phút cho mỗi ảnh 1024×1024 trên CPU 8 nhân hiện đại. Phù hợp để test nhưng không cho production.
+
+### InvokeAI xử lý giấy phép model như thế nào?
+
+InvokeAI có giấy phép Apache-2.0. Các model bạn tải xuống (SD 1.5, SDXL, FLUX) có giấy phép riêng. Model Manager của InvokeAI hiển thị thông tin giấy phép trước khi tải. Sử dụng thương mại phụ thuộc vào giấy phép model cụ thể — luôn xác minh trước khi triển khai production.
+
+### Có thể migrate từ AUTOMATIC1111 sang InvokeAI không?
+
+Được. InvokeAI có thể sử dụng các model ````.safetensors```` và ````.ckpt```` hiện có từ cài đặt A1111. Chỉ ````INVOKEAI_ROOT```` đến thư mục model hiện có, hoặc sao chép model vào thư mục model của InvokeAI. Lưu ý các extension và script A1111 không chuyển đổi — InvokeAI dùng hệ thống workflow dạng node riêng.
+
+### Làm sao cập nhật InvokeAI lên phiên bản mới?
+
+Với cài đặt Docker, pull image mới nhất và khởi động lại: `````bash
+cd InvokeAI/docker
+docker compose pull
+docker compose up -d
+</code></pre><p>Với cài đặt bare metal, dùng launcher: `````bash
+invokeai-update</p><pre tabindex=0><code>
+Luôn sao lưu thư mục ````INVOKEAI_ROOT```` trước khi cập nhật phiên bản lớn.
+
+### Có phiên bản hosted/cloud của InvokeAI không?
+
+InvokeAI chủ yếu là tự host. Các nhà phát triển cung cấp Invoke for Teams (sản phẩm thương mại) thêm cloud hosting, cộng tác team, và hỗ trợ doanh nghiệp. Ngườ dùng cá nhân thường tự host trên GPU local hoặc cloud VPS (DigitalOcean, RunPod).
+
+### Chế độ đa ngườ dùng trong v6.12.0 hoạt động thế nào?
+
+Chế độ đa ngườ dùng tạo các tài khoản riêng biệt với gallery, trạng thái canvas, và tùy chọn riêng. Tài khoản admin quản lý model và cài đặt hệ thống. Bật bằng ````INVOKEAI_ENABLE_MULTIUSER=true```. Mỗi ngườ dùng đăng nhập bằng tên ngườ dùng và mật khẩu. Được đánh dấu là thử nghiệm trong v6.12.0 — sẽ cải thiện trong các bản phát hành tới.
+
+## Kết luận
+
+InvokeAI lấp đầy một phân khúc cụ thể trong hệ sinh thái tạo ảnh AI: một công cụ sáng tạo chuyên nghiệp, tự host kết hợp sức mạnh của Stable Diffusion với trải nghiệm ngườ dùng tinh tế. Bản phát hành v6.12.0 mang đến hỗ trợ đa ngườ dùng, khả năng tương thích FLUX mở rộng, và quản lý gallery cải tiến — khiến nó phù hợp với các studio nhỏ và team thiết kế. Triển khai dựa trên Docker đơn giản, hệ thống workflow dạng node mạnh mẽ, và giấy phép Apache-2.0 cho phép sử dụng thương mại không hạn chế.
+
+**Các bước tiếp theo:**
+1. Clone repository và chạy Docker setup local
+2. Cài đặt model SDXL hoặc FLUX đầu tiên qua Model Manager
+3. Xây dựng workflow dạng node cho trường hợp sử dụng cụ thể
+4. Tham gia cộng đồng: [InvokeAI Discord](https://discord.gg/ZmtBAhwWhy)
+
+Theo dõi kênh Telegram của chúng tôi để cập nhật công cụ AI mã nguồn mở hàng tuần: [dibi8 announcements](https://t.me/dibi8com)
+
+
+
+## Hosting Và Hạ Tầng Được Đề Xuất
+
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+- **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
+
+*Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
+
+## Nguồn &amp; Tài liệu tham khảo
+
+- [InvokeAI GitHub Repository](https://github.com/invoke-ai/InvokeAI)
+- [InvokeAI Tài liệu chính thức](https://invoke.ai/)
+- [InvokeAI v6.12.0 Release Notes](https://invoke.ai/releases/version/v6-12-0/)
+- [InvokeAI Docker Setup Guide](https://github.com/invoke-ai/InvokeAI/tree/main/docker)
+- [NVIDIA Container Toolkit Cài đặt](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
+- [AMD ROCm Docker Tài liệu](https://rocm.docs.amd.com/projects/install-on-linux/en/latest/how-to/docker.html)
+- [SDXL Speed Test: InvokeAI vs ComfyUI vs A1111](https://lilys.ai/en/notes/comfyui-20260115/sdxl-speed-test-comfyui-invokeai-a1111)
+- [ComfyUI vs InvokeAI vs Fooocus So sánh](https://toolhalla.ai/blog/comfyui-vs-invokeai-vs-fooocus-2026)
+- [InvokeAI PyPI Package](https://pypi.org/project/InvokeAI/)
+
+* * *
+
+*Bài viết này chứa liên kết liên kết đến DigitalOcean. Nếu bạn đăng ký qua các liên kết này, chúng tôi nhận được hoa hồng mà không phát sinh chi phí thêm cho bạn. Điều này giúp hỗ trợ trang web và nội dung mã nguồn mở của chúng tôi. Tất cả ý kiến và benchmark đều được sản xuất độc lập.*
+
+
+{
+  &#34;@context&#34;: &#34;https://schema.org&#34;,
+  &#34;@type&#34;: &#34;Article&#34;,
+  &#34;headline&#34;: &#34;InvokeAI: 27.2K+ Stars — Hướng Dẫn Cài Đặt Đầy Đủ 2026&#34;,
+  &#34;datePublished&#34;: &#34;2026-05-19&#34;,
+  &#34;dateModified&#34;: &#34;2026-05-19&#34;,
+  &#34;author&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;
+  },
+  &#34;publisher&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;,
+    &#34;logo&#34;: {
+      &#34;@type&#34;: &#34;ImageObject&#34;,
+      &#34;url&#34;: &#34;https://dibi8.com/logo.png&#34;
+    }
+  },
+  &#34;mainEntityOfPage&#34;: {
+    &#34;@type&#34;: &#34;WebPage&#34;,
+    &#34;@id&#34;: &#34;https://dibi8.com/vi/resources/invokeai&#34;
+  }
+}
+&lt;/script&gt;
+
+* * *
+
+## Related Articles
+
+- [12-factor-agents](invokeai)
+- [2026-05-25-trending-ai-agents](invokeai)
+- [2026-06-01-trending-ai-agents](invokeai)
+- [2026-06-08-trending-ai-agents](invokeai)
+- [2026-06-15-trending-ai-agents](invokeai)
+
+* * *
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
+</code></pre></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/vi/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/vi/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/vi/ai-coding-agents/instructor-structured-llm-output/><span class=title>« Trang trước</span>
+<span>AI Tool Guide</span>
+</a><a class=next href=https://dibi8.com/vi/ai-coding-agents/justhireme-ai-job-search-workbench/><span class=title>Trang tiếp theo »</span>
+<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/vi/>Dibi8</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="Sao chép";function s(){t.innerHTML="Đã sao chép!",setTimeout(()=>{t.innerHTML="Sao chép"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

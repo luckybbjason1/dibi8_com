@@ -1,0 +1,434 @@
+<!doctype html><html lang=vi dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/vi/ai-coding-agents/lobe-chat-openai-alternative-ui/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/lobe-chat-openai-alternative-ui/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/lobe-chat-openai-alternative-ui/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/lobe-chat-openai-alternative-ui/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/lobe-chat-openai-alternative-ui/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/vi/ai-coding-agents/lobe-chat-openai-alternative-ui/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="vi"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Tool Guide","item":"https://dibi8.com/vi/ai-coding-agents/lobe-chat-openai-alternative-ui/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Ai Tools source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“ai-tools”] tags: [“lobe chat”, “chatgpt”, “thay thế openai”, “llm”, “tự host”, “docker”, “pwa”, “hệ thống plugin”, “ai”, “ui chat”] aliases:\n/vi/posts/lobe-chat-openai-alternative-ui/ Giới thiệu: ChatGPT Không Còn Đủ Nữa Bạn đang trả $20/tháng cho OpenAI dùng ChatGPT Plus, nhưng team cần một giao diện chat chia sẻ với khả năng truy cập Claude, Gemini, và các model local chạy trên phần cứng riêng. Bạn muốn các plugin kết nối với API nội bộ. Bạn cần giao diện đa ngôn ngữ vì team của bạn trải rộng ba châu lục. Và quan trọng nhất —— dữ liệu cuộc trò chuyện phải ở lại trên hạ tầng của bạn, không phải trên cloud bên thứ ba.\nBạn có thể xây từ đầu. Dành hai tháng cho frontend React, thêm một tháng để kết nối SSE streaming, rồi duy trì authentication, plugin sandboxing, và model switching mãi mãi. Hoặc bạn có thể triển khai Lobe Chat trong 10 phút.\nLobe Chat là giao diện chat mã nguồn mở được xây dựng bởi team LobeHub, hỗ trợ 20+ nhà cung cấp LLM, hệ thống plugin, hỗ trợ PWA, và giao diện đa ngôn ngữ —— tất cả từ một container Docker duy nhất. Với khoảng 60,000 sao GitHub tính đến tháng 5/2026, nó là một trong những giải pháp thay thế ChatGPT tự host phổ biến nhất. Trông đẹp hơn UI của ChatGPT, chạy trên phần cứng của bạn, và không tốn phí cấp phép nào.\nHướng dẫn này đi qua cài đặt, cấu hình nhà cung cấp, phát triển plugin, thiết lập PWA, benchmark thực tế, và các hạn chế thực tế. Cuối cùng, bạn sẽ có một UI chat sẵn sàng production mà cả team có thể sử dụng.\nLobe Chat là gì? Lobe Chat là giao diện chat mã nguồn mở hiện đại cho các mô hình ngôn ngữ lớn. Được xây dựng bằng Next.js và Ant Design, nó cung cấp trải nghiệm tương tự ChatGPT với hỗ trợ cho nhiều nhà cung cấp LLM (OpenAI, Claude, Gemini, Ollama, Azure, Bedrock và hơn 15 nhà cung cấp khác), plugin có thể mở rộng, khả năng progressive web app, và mô hình triển khai tự host giữ dữ liệu của bạn dưới sự kiểm soát của bạn.\nLobe Chat hoạt động như thế nào? Kiến trúc của Lobe Chat tách lớp presentation khỏi model inference. Frontend Next.js xử lý việc render UI, trạng thái cuộc trò chuyện, và orchestration plugin, trong khi các lệnh gọi LLM được proxy qua các endpoint API có thể cấu hình: ```` ┌─────────────────────────────────────────────┐ │ Trình duyệt ngườ dùng / PWA │ │ ┌─────────┐ ┌─────────┐ ┌────────────┐ │ │ │ Chat │ │ Plugin │ │ Cài đặt │ │ │ │ Panel │ │ Store │ │ (i18n) │ │ │ └────┬────┘ └────┬────┘ └─────┬──────┘ │ └───────┼────────────┼─────────────┼────────┘ │ │ │ ▼ ▼ ▼ ┌─────────────────────────────────────────────┐ │ Lobe Chat Server (Next.js) │ │ ┌──────────┐ ┌──────────┐ ┌────────────┐ │ │ │ SSE │ │ Plugin │ │ Xác thực │ │ │ │ Stream │ │ Runtime │ │ (SSO) │ │ │ └────┬─────┘ └────┬─────┘ └─────┬──────┘ │ └───────┼────────────┼─────────────┼────────┘ │ │ │ ▼ ▼ ▼ ┌──────────┐ ┌──────────┐ ┌────────────┐ │ OpenAI │ │ Claude │ │ Ollama │ │ API │ │ API │ │ (Local) │ └──────────┘ └──────────┘ └────────────┘\n**Các thành phần chính:** - **Frontend**: Next.js 14 App Router với React Server Components. Render markdown, code blocks có syntax highlighting, và LaTeX math. - **Chat Engine**: Quản lý lịch sử cuộc trò chuyện, context window, token counting, và streaming responses qua Server-Sent Events. - **Plugin System**: Plugin runtime sandboxed sử dụng iframe + postMessage. Plugin khai báo manifest với schema tương thích OpenAPI. - **Provider Proxy**: Mô hình adapter thống nhất chuẩn hóa các lệnh gọi API xuyên suốt 20+ nhà cung cấp LLM. - **PWA Layer**: Service worker cho hỗ trợ offline, có thể cài đặt trên desktop và mobile. ## Cài đặt \u0026 Thiết lập: 10 Phút để Chat **Yêu cầu**: Docker 24.0+ hoặc Node.js 20+ (cho dev local), 2GB RAM, 1GB disk. ### Cách 1: Docker (Khuyến nghị) **Bước 1 —— Pull và chạy image chính thức:** `````bash docker run -d -p 3210:3210 \\ -e OPENAI_API_KEY=YOUR_OPENAI_API_KEY \\ -e ACCESS_CODE=your-secure-password \\ --name lobe-chat \\ lobehub/lobe-chat:latest Bước 2 —— Truy cập UI:\nMở http://localhost:3210. Bạn sẽ thấy trình hướng dẫn thiết lập để chọn nhà cung cấp LLM mặc định và nhập API keys.\nBước 3 —— Cấu hình thêm nhà cung cấp (tùy chọn):\n# Thiết lập đa nhà cung cấp qua biến môi trường docker run -d -p 3210:3210 \\ -e OPENAI_API_KEY=sk-xxx \\ -e ANTHROPIC_API_KEY=sk-ant-xxx \\ -e GOOGLE_API_KEY=xxx \\ -e OLLAMA_PROXY_URL=http://host.docker.internal:11434 \\ -e ACCESS_CODE=your-secure-password \\ --name lobe-chat \\ lobehub/lobe-chat:latest Cách 2: Docker Compose với Persistent Storage # docker-compose.yml services: lobe-chat: image: lobehub/lobe-chat:latest ports: - \"3210:3210\" environment: - OPENAI_API_KEY=${OPENAI_API_KEY} - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY} - ACCESS_CODE=${ACCESS_CODE} - DATABASE_URL=postgresql://postgres:password@db:5432/lobe volumes: - lobe-data:/app/.config/lobe-chat depends_on: - db restart: unless-stopped db: image: postgres:16-alpine environment: - POSTGRES_PASSWORD=password - POSTGRES_DB=lobe volumes: - pgdata:/var/lib/postgresql/data restart: unless-stopped volumes: lobe-data: pgdata: ````` `````bash # Khởi động với persistence docker compose up -d Cách 3: Triển khai lên DigitalOcean # Trên Droplet 2 vCPU / 4GB RAM (~$24/tháng) sudo apt update \u0026\u0026 sudo apt install -y docker.io docker-compose-plugin # Tạo file .env cat \u003e .env \u003c\u003c EOF OPENAI_API_KEY=sk-your-key ACCESS_CODE=secure-team-password EOF # Chạy docker compose up -d # Thiết lập reverse proxy với HTTPS qua Caddy cat \u003e Caddyfile \u003c\u003c EOF chat.yourdomain.com { reverse_proxy localhost:3210 } EOF Thêm bản ghi DNS A trỏ đến IP Droplet của bạn và bạn sẽ online trong vòng 15 phút. Lấy DigitalOcean Droplet tại đây.\nTích hợp với 20+ Nhà Cung Cấp LLM Lobe Chat chuẩn hóa các lệnh gọi API xuyên suốt các nhà cung cấp thông qua một adapter thống nhất. Sau đây là cách cấu hình các nhà cung cấp phổ biến nhất: ### OpenAI (GPT-4, GPT-4o)\n# Qua biến môi trường echo \"OPENAI_API_KEY=sk-xxxxxxxx\" \u003e\u003e .env # Qua UI: Cài đặt → Mô hình Ngôn ngữ → OpenAI → Nhập key Anthropic Claude (Claude 3.5 Sonnet) # Biến môi trường echo \"ANTHROPIC_API_KEY=sk-ant-xxxxxxxx\" \u003e\u003e .env # Khởi động lại container docker restart lobe-chat Google Gemini (Gemini 1.5 Pro) echo \"GOOGLE_API_KEY=AIzaxxxxxxxx\" \u003e\u003e .env Ollama (Model Local — Llama, Mistral, v.v.) # Chạy Ollama trên host docker run -d -p 11434:11434 --name ollama ollama/ollama # Pull model docker exec ollama ollama pull llama3.2 # Cấu hình Lobe Chat dùng Ollama docker run -d -p 3210:3210 \\ -e OLLAMA_PROXY_URL=http://host.docker.internal:11434 \\ -e ACCESS_CODE=mypassword \\ lobehub/lobe-chat Azure OpenAI Service # Cần endpoint, API key, và tên deployment echo \"AZURE_API_KEY=your-azure-key\" \u003e\u003e .env echo \"AZURE_API_ENDPOINT=https://your-resource.openai.azure.com\" \u003e\u003e .env echo \"AZURE_API_VERSION=2024-06-01\" \u003e\u003e .env AWS Bedrock echo \"AWS_ACCESS_KEY_ID=AKIAxxx\" \u003e\u003e .env echo \"AWS_SECRET_ACCESS_KEY=xxx\" \u003e\u003e .env echo \"AWS_REGION=us-east-1\" \u003e\u003e .env Chuyển Đổi Nhà Cung Cấp tại Runtime Ngườ dùng có thể chuyển đổi nhà cung cấp theo từng cuộc trò chuyện trong UI. Điều này cho phép bạn so sánh GPT-4 và Claude cạnh nhau: `````\nKhông cần restart —— chuyển nhà cung cấp là client-side Click icon nhà cung cấp ở header chat → Chọn model khác Mỗi cuộc trò chuyện nhớ lựa chọn nhà cung cấp của nó ## Hệ Thống Plugin: Mở Rộng Lobe Chat Kiến trúc plugin của Lobe Chat sử dụng hệ thống dựa trên manifest. Plugin khai báo khả năng của chúng trong ````manifest.json````, và UI chat render chúng như các công cụ tương tác. ### Cài đặt từ Plugin Marketplace 1. Mở Lobe Chat → Plugin Store 2. Duyệt 50+ plugin cộng đồng 3. Click \"Cài đặt\" → Ủy quyền quyền hạn 4. Plugin xuất hiện như tool calls trong chat ### Xây dựng Plugin Tùy Chỉnh Tạo một plugin đơn giản query API nội bộ của bạn: `````json { \"api\": [ { \"description\": \"Tìm kiếm cơ sở kiến thức nội bộ\", \"name\": \"search_kb\", \"parameters\": { \"properties\": { \"query\": { \"description\": \"Chuỗi truy vấn tìm kiếm\", \"type\": \"string\" } }, \"required\": [\"query\"], \"type\": \"object\" }, \"url\": \"https://api.yourcompany.com/kb/search\" } ], \"gateway\": \"https://gateway.example.com\", \"identifier\": \"your-company/kb-search\", \"meta\": { \"title\": \"Internal KB Search\", \"description\": \"Search company knowledge base\" }, \"version\": \"1.0.0\" } Host điều này tại một URL công khai, sau đó thêm qua Plugin Store → Custom Plugin → Nhập URL.\nBảo Mật Runtime Plugin Các plugin thực thi trong iframe sandboxed với quyền hạn bị hạn chế: ````` ┌─────────────────────────────┐ │ Lobe Chat Main Window │ │ ┌───────────────────────┐ │ │ │ Sandboxed Iframe │ │ │ │ (mã plugin) │ │ │ │ - Không truy cập DOM │ │ │ │ - Chỉ postMessage │ │ │ │ - CORS bắt buộc │ │ │ └───────────────────────┘ │ └─────────────────────────────┘\nMỗi request plugin yêu cầu sự chấp thuận rõ ràng từ ngườ dùng. LLM đề xuất tool calls, nhưng ngườ dùng phải xác nhận trước khi thực thi. ## Hỗ Trợ PWA \u0026 Trải Nghiệm Mobile Lobe Chat hoạt động như một Progressive Web App, tạo cảm giác như app native trên mọi nền tảng. ### Cài đặt trên Desktop (Chrome/Edge) 1. Mở Lobe Chat trong Chrome 2. Click icon cài đặt trong thanh địa chỉ 3. Khởi chạy như một cửa sổ độc lập với icon riêng ### Cài đặt trên Mobile (iOS Safari) Mở Lobe Chat trong Safari Chạm Chia sẻ → “Thêm vào Màn hình chính” Xuất hiện như icon app native Hỗ trợ push notification (qua service worker) ### Hỗ Trợ Offline Service worker cache app shell và các cuộc trò chuyện gần đây. Không có internet: ````` ✅ Duyệt lịch sử cuộc trò chuyện ✅ Xem phản hồi trước đó ✅ Soạn tin nhắn (xếp hàng để gửi) ❌ Phản hồi LLM mới (cần kết nối API) Benchmark \u0026 Use Case Thực Tế Độ Trễ Phản Hồi (đo từ US-East) Nhà cung cấp Thờ gian Token Đầu Tiên Phản hồi Đầy đủ (100 token) Ghi chú OpenAI GPT-4o 0.8 giây 2.1 giây Nhanh nhất tổng thể Claude 3.5 Sonnet 1.1 giây 2.8 giây Chất lượng reasoning cao hơn Gemini 1.5 Pro 1.3 giây 3.0 giây Context window lớn Ollama (Llama 3.2 7B, CPU) 3.5 giây 8.2 giây Không tốn phí API Ollama (Llama 3.2 7B, RTX 4090) 0.6 giây 1.5 giây Tùy chọn local nhanh nhất Azure GPT-4 1.0 giây 2.4 giây SLA doanh nghiệp Mức sử dụng Tài nguyên Triển khai Memory CPU Số ngườ dùng Chi phí/Tháng Docker single-instance 350MB 0.2 cores 1–5 $0 (tự host) Docker + 5 nhà cung cấp 400MB 0.3 cores 1–10 Chỉ phí API Với backend PostgreSQL 650MB 0.4 cores 10–50 ~$24 VPS Sau reverse proxy 400MB 0.3 cores 10–100 ~$24 VPS Các Triển khai Thực Tế Công ty Tư vấn AI (12 kỹ sư):\nTriển khai Lobe Chat trên DigitalOcean Droplet Kết nối 8 nhà cung cấp LLM cho demo so sánh khách hàng Xây dựng 3 plugin tùy chỉnh liên kết với database dự án nội bộ Tiết kiệm ~$240/tháng so với các subscription ChatGPT Plus cá nhân Phòng thí nghiệm Nghiên cứu Đại học (40 sinh viên):\nTự host với Ollama cho dữ liệu nghiên cứu nhạy cảm về quyền riêng tư Sinh viên truy cập qua PWA trên laptop và điện thoại Plugin kết nối với API tìm kiếm thư viện đại học Zero cloud data exposure cho nghiên cứu chưa công bố Startup Hỗ trợ Khách hàng (5 nhân viên):\nTích hợp Claude 3.5 Sonnet qua API Plugin tùy chỉnh truy vấn tài liệu sản phẩm Giao diện đa ngôn ngữ hỗ trợ khách hàng tiếng Anh, Trung, Nhật Thờ gian soạn thảo phản hồi giảm ~45% Sử dụng Nâng cao \u0026 Production Hardening Bật Xác thực Cho triển khai team, đặt mã truy cập: `````bash docker run -d -p 3210:3210 -e ACCESS_CODE=your-secure-password-2026 -e OPENAI_API_KEY=sk-xxx lobehub/lobe-chat:latest\nCho tích hợp SSO, cấu hình OAuth: `````bash -e AUTH_PROVIDER=auth0 \\ -e AUTH_AUTH0_ID=your-client-id \\ -e AUTH_AUTH0_SECRET=your-secret \\ -e AUTH_AUTH0_ISSUER=https://your-domain.us.auth0.com \\ Theme Tùy Chỉnh Tạo file theme JSON: `````json { “primaryColor”: “#1890ff”, “neutralColor”: “#8c8c8c”, “backgroundColor”: “#f0f2f5”, “sidebarWidth”: 280 }\nTải lên qua **Cài đặt → Theme → Theme Tùy chỉnh**. ### Conversations Hỗ trợ Database Cho persistence đa ngườ dùng, cấu hình PostgreSQL: `````yaml # docker-compose.prod.yml services: lobe-chat: image: lobehub/lobe-chat:latest environment: - DATABASE_URL=postgresql://user:pass@db:5432/lobechat - APP_URL=https://chat.yourdomain.com ports: - \"3210:3210\" db: image: postgres:16-alpine environment: POSTGRES_USER: user POSTGRES_PASSWORD: pass POSTGRES_DB: lobechat volumes: - pgdata:/var/lib/postgresql/data volumes: pgdata: ````` ### Reverse Proxy với Caddy `````bash # Caddyfile cho HTTPS tự động chat.yourdomain.com { reverse_proxy localhost:3210 encode gzip header { X-Frame-Options DENY X-Content-Type-Options nosniff } } caddy run --config Caddyfile Giám sát với Prometheus Lobe Chat expose metrics tại /api/metrics: `````yaml\ndocker-compose.monitoring.yml services: prometheus: image: prom/prometheus volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml ports: - “9090:9090”\ngrafana: image: grafana/grafana ports: - “3000:3000”\n## So sánh với các Giải pháp Thay thế | Tính năng | Lobe Chat | LibreChat | ChatGPT Web | HuggingChat | |---|---|---|---|---| | **GitHub Stars** | **~60,000** | ~20,000 | ~30,000 | N/A (sản phẩm) | | **Nhà cung cấp LLM** | **20+** | 10+ | Chỉ OpenAI | Chỉ HF models | | **Hệ thống Plugin** | **Dựa trên manifest** | Công cụ cơ bản | Không | Không | | **Hỗ trợ PWA** | **Đầy đủ** | Một phần | Không | Không | | **Giao diện đa ngôn ngữ** | **15+ ngôn ngữ** | 5 ngôn ngữ | 10 ngôn ngữ | 6 ngôn ngữ | | **Tự host** | **Có (Docker)** | Có | Có | Không (chỉ SaaS) | | **Xác thực** | **SSO + mã truy cập** | SSO + local | Cơ bản | Chỉ OAuth | | **Knowledge Base** | **Dựa trên plugin** | Built-in RAG | Chỉ GPTs | Không | | **Code Interpreter** | **Qua plugin** | Qua plugin | Native | Không | | **Trải nghiệm Mobile** | **PWA như native** | Responsive | Responsive | Cơ bản | | **Tùy chỉnh Theme** | **Đầy đủ** | Một phần | Không | Tối thiểu | | **Đồng bộ tin nhắn** | **Backend PostgreSQL** | MongoDB | LocalStorage | Cloud | **Khi nào chọn cái nào:** - **Lobe Chat**: Chọn khi cần giao diện chat đa nhà cung cấp hoàn thiện với plugin và PWA. Trải nghiệm tổng thể tốt nhất cho team. - **LibreChat**: Chọn nếu muốn setup đơn giản hơn với RAG built-in (upload tài liệu) và không cần PWA hay plugin mở rộng. - **ChatGPT Web (Next-Web)**: Chọn nếu chủ yếu dùng OpenAI và muốn UI tự host nhẹ nhất, nhanh nhất. - **HuggingChat**: Dùng như Web UI miễn phí cho Hugging Face models, nhưng không dùng cho tự host hay doanh nghiệp. ## Hạn chế: Đánh giá Trung thực **Chưa có RAG built-in.** Khác với LibreChat có upload tài liệu và vector search tích hợp, Lobe Chat dựa vào plugin cho chức năng knowledge base. Tính năng RAG native đang nằm trong roadmap v1.0 nhưng chưa có tính đến tháng 5/2026. **Hệ sinh thái plugin còn trẻ.** Có khoảng 50 plugin so với hàng nghìn của ChatGPT. Xây plugin tùy chỉnh đòi hỏi hiểu manifest schema và host một API tương thích. **Cần API keys LLM.** Lobe Chat chỉ là UI —— bạn vẫn cần API keys cho cloud providers hoặc instance Ollama đang chạy cho model local. Không có \"free tier\" tích hợp. **Không có phòng chat đa ngườ dùng.** Các cuộc trò chuyện là riêng tư cho mỗi phiên trình duyệt. Cộng tác đa ngườ thực sự với kênh chia sẻ cần backend tùy chỉnh. **Image Docker khá lớn.** Image production nặng ~400MB nén. Trên kết nối chậm, lần pull đầu mất vài phút. **Không có voice input/output.** Khác với app mobile ChatGPT, Lobe Chat không hỗ trợ speech-to-text hay text-to-speech natively. Có thể dùng Web Speech API của trình duyệt như workaround. **UX phê duyệt plugin tạo ma sát.** Mỗi lệnh gọi plugin cần xác nhận của ngườ dùng. Điều này tốt cho bảo mật nhưng làm chậm workflow so với code interpreter của ChatGPT chạy tự động. ## Câu hỏi Thường gặp **Q: Lobe Chat có lưu cuộc trò chuyện của tôi trên server của họ không?** Không. Khi tự host, tất cả dữ liệu cuộc trò chuyện ở lại trên hạ tầng của bạn. Lobe Chat là ứng dụng client-side không gửi telemetry đến server bên ngoài trừ khi bạn cấu hình analytics một cách rõ ràng. Code mã nguồn mở (giấy phép MIT) có thể được audit trên GitHub. API keys cloud (OpenAI, Claude) chỉ được dùng cho inference calls —— các cuộc trò chuyện được lưu local. **Q: Tôi có thể dùng nhiều nhà cung cấp LLM trong cùng một cuộc trò chuyện không?** Không trong cùng một thread. Mỗi cuộc trò chuyện gắn với một nhà cung cấp, nhưng bạn có thể tạo nhiều cuộc trò chuyện với các nhà cung cấp khác nhau và chuyển đổi giữa chúng. Một số ngườ dùng giữ thread \"GPT-4\" cho coding và thread \"Claude\" cho viết lách, chuyển đổi qua sidebar. **Q: Làm thế nào cập nhật Lobe Chat lên phiên bản mới nhất?** `````bash # Pull image mới nhất docker pull lobehub/lobe-chat:latest # Khởi động lại container docker compose down \u0026\u0026 docker compose up -d # Cuộc trò chuyện persist trong browser localStorage # Với backend PostgreSQL, database migrations tự động chạy ```` Cập nhật được phát hành hàng tuần. Kiểm tra [trang releases](https://github.com/lobehub/lobe-chat/releases) để xem các breaking changes trước khi cập nhật. **Q: Sự khác biệt giữa hệ thống plugin và function calling là gì?** Plugin Lobe Chat là **tích hợp cấp UI** —— chúng render các card tương tác, form, và visualization trong chat. Function calling là **cơ chế cấp LLM** quyết định khi nào gọi tool. Lobe Chat dùng function calling bên dưới để trigger plugin, sau đó render phản hồi UI của plugin. Kiến trúc plugin mở rộng function calling với các thành phần trực quan và luồng phê duyệt của ngườ dùng. **Q: Tôi có thể dùng Lobe Chat không cần internet không?** Một phần. Nếu bạn cấu hình Ollama là nhà cung cấp duy nhất (LLM local), chức năng chat cốt lõi hoạt động offline. Tuy nhiên, các lệnh gọi plugin cần kết nối internet (truy cập API bên ngoài), và lần load app đầu tiên cần tải assets. PWA cache app shell, nên sau lần truy cập đầu tiên, chat cơ bản hoạt động không cần internet nếu dùng model local. **Q: Có giới hạn nào cho lịch sử cuộc trò chuyện không?** Với backend localStorage mặc định, cuộc trò chuyện persist trong trình duyệt không có giới hạn cứng, nhưng hiệu năng giảm sau khoảng ~500 cuộc trò chuyện dài. Với backend PostgreSQL, không có giới hạn thực sự —— database xử lý hàng nghìn cuộc trò chuyện xuyên suốt nhiều ngườ dùng. Giới hạn token context window được áp dụng theo ràng buộc của nhà cung cấp LLM đã chọn. **Q: Tôi có thể import cuộc trò chuyện ChatGPT không?** Không trực tiếp. Định dạng xuất của ChatGPT (conversations.json) không tương thích với storage schema của Lobe Chat. Tuy nhiên, có các công cụ cộng đồng chuyển đổi ChatGPT exports sang Markdown, mà bạn có thể paste vào cuộc trò chuyện Lobe Chat. Team LobeHub có tính năng import trong roadmap cho Q3 2026. ## Kết luận: Cuộc Trò Chuyện của Bạn, Quy Tắc của Bạn Lobe Chat mang đến những gì ChatGPT không: toàn quyền kiểm soát dữ liệu, hỗ trợ mọi nhà cung cấp LLM chính, plugin mở rộng, và trải nghiệm mobile như native —— tất cả chạy trên phần cứng của bạn. Với **khoảng 60,000 sao GitHub** và phát hành hàng tuần, đây là dự án trưởng thành, được duy trì tích cực có chất lượng UX sánh ngang với các lựa chọn thương mại. Cho cá nhân, thiết lập Docker chỉ mất 10 phút và không tốn phí ngoài API usage. Cho team, triển khai trên [DigitalOcean](https://m.do.co/c/eca87ac14ee0) với backend PostgreSQL cho bạn một nền tảng chat chia sẻ với khả năng audit đầy đủ. Hệ thống plugin và hỗ trợ PWA làm Lobe Chat nhiều hơn một bản sao ChatGPT —— nó là nền tảng xây dựng các workflow AI được thiết kế riêng cho tổ chức của bạn. Giao diện đa ngôn ngữ nghĩa là nó hoạt động cho team toàn cầu mà không cần cấu hình phức tạp. **Sẵn sàng chuyển đổi?** Chạy lệnh Docker, thêm API keys, và bắt đầu chat. Cuộc trò chuyện của bạn thuộc về bạn. Tham gia cộng đồng Telegram cho AI developers: **@dibi8dev** —— chia sẻ cấu hình Lobe Chat của bạn và nhận trợ giúp từ 5,000+ builders. * * * ## Nguồn \u0026 Tài Liệu Tham Khảo 1. [Lobe Chat GitHub Repository](https://github.com/lobehub/lobe-chat) —— Mã nguồn, releases, và documentation chính thức 2. [Lobe Chat Documentation](https://lobehub.com/docs) —— Hướng dẫn cài đặt và cấu hình chính thức 3. [Lobe Chat Plugin Documentation](https://github.com/lobehub/lobe-chat/wiki/Plugin-System) —— Plugin manifest specification 4. [Docker Hub — lobehub/lobe-chat](https://hub.docker.com/r/lobehub/lobe-chat) —— Docker image chính thức 5. [LobeHub Plugin Marketplace](https://lobechat.com/plugins) —— Duyệt các plugin có sẵn 6. [Next.js Documentation](https://nextjs.org/docs) —— Documentation framework nền tảng * * * ## Hosting Và Hạ Tầng Được Đề Xuất Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source. - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com. *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.* ## Tuyên Bố Affiliate Bài viết này chứa liên kết affiliate. Nếu bạn đăng ký DigitalOcean qua liên kết giới thiệu của chúng tôi, chúng tôi nhận được hoa hồng mà không phát sinh chi phí cho bạn. Chúng tôi chỉ giới thiệu các dịch vụ mà chính chúng tôi sử dụng cho hạ tầng. Lobe Chat là mã nguồn mở (giấy phép MIT) và miễn phí sử dụng —— không cần mua hàng. { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Lobe Chat: Giao Diện ChatGPT Mã Nguồn Mở với 20+ Nhà Cung Cấp LLM \u0026 Hệ Thống Plugin — Hướng Dẫn 2026\", \"datePublished\": \"2026-05-19\", \"dateModified\": \"2026-05-19\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/vi/resources/lobe-chat-openai-alternative-ui\" } } * * * ## Related Articles - [deepseek-harness-plugin-ecosystem-2026](lobe-chat-openai-alternative-ui) - [12-factor-agents-production-llm-software-2026](lobe-chat-openai-alternative-ui) - [12-factor-agents](lobe-chat-openai-alternative-ui) - [1m-context-window-llm-2026-real-test](lobe-chat-openai-alternative-ui) - [9router-smart-llm-proxy-token-saver-free-coding](lobe-chat-openai-alternative-ui) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ","wordCount":"3782","inLanguage":"vi","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/vi/ai-coding-agents/lobe-chat-openai-alternative-ui/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/vi/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/vi/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/vi/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/vi/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/vi/>Trang chủ</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
+<a href>AI Coding Agents - dibi8</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>18 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/lobe-chat-openai-alternative-ui/>En</a></li><li><a href=https://dibi8.com/zh/ai-coding-agents/lobe-chat-openai-alternative-ui/>Zh</a></li><li><a href=https://dibi8.com/ko/ai-coding-agents/lobe-chat-openai-alternative-ui/>Ko</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Mục lục</span></summary><div class=inner><ul><ul><li><a href=#gi%e1%bb%9bi-thi%e1%bb%87u-chatgpt-kh%c3%b4ng-c%c3%b2n-%c4%91%e1%bb%a7-n%e1%bb%afa aria-label="Giới thiệu: ChatGPT Không Còn Đủ Nữa">Giới thiệu: ChatGPT Không Còn Đủ Nữa</a></li><li><a href=#lobe-chat-l%c3%a0-g%c3%ac aria-label="Lobe Chat là gì?">Lobe Chat là gì?</a></li><li><a href=#lobe-chat-ho%e1%ba%a1t-%c4%91%e1%bb%99ng-nh%c6%b0-th%e1%ba%bf-n%c3%a0o aria-label="Lobe Chat hoạt động như thế nào?">Lobe Chat hoạt động như thế nào?</a><ul><li><a href=#c%c3%a1ch-2-docker-compose-v%e1%bb%9bi-persistent-storage aria-label="Cách 2: Docker Compose với Persistent Storage">Cách 2: Docker Compose với Persistent Storage</a></li><li><a href=#c%c3%a1ch-3-tri%e1%bb%83n-khai-l%c3%aan-digitalocean aria-label="Cách 3: Triển khai lên DigitalOcean">Cách 3: Triển khai lên DigitalOcean</a></li></ul></li><li><a href=#t%c3%adch-h%e1%bb%a3p-v%e1%bb%9bi-20-nh%c3%a0-cung-c%e1%ba%a5p-llm aria-label="Tích hợp với 20+ Nhà Cung Cấp LLM">Tích hợp với 20+ Nhà Cung Cấp LLM</a><ul><li><a href=#anthropic-claude-claude-35-sonnet aria-label="Anthropic Claude (Claude 3.5 Sonnet)">Anthropic Claude (Claude 3.5 Sonnet)</a></li><li><a href=#google-gemini-gemini-15-pro aria-label="Google Gemini (Gemini 1.5 Pro)">Google Gemini (Gemini 1.5 Pro)</a></li><li><a href=#ollama-model-local--llama-mistral-vv aria-label="Ollama (Model Local — Llama, Mistral, v.v.)">Ollama (Model Local — Llama, Mistral, v.v.)</a></li><li><a href=#azure-openai-service aria-label="Azure OpenAI Service">Azure OpenAI Service</a></li><li><a href=#aws-bedrock aria-label="AWS Bedrock">AWS Bedrock</a></li><li><a href=#chuy%e1%bb%83n-%c4%91%e1%bb%95i-nh%c3%a0-cung-c%e1%ba%a5p-t%e1%ba%a1i-runtime aria-label="Chuyển Đổi Nhà Cung Cấp tại Runtime">Chuyển Đổi Nhà Cung Cấp tại Runtime</a></li></ul></li></ul><li><a href=#kh%c3%b4ng-c%e1%ba%a7n-restart--chuy%e1%bb%83n-nh%c3%a0-cung-c%e1%ba%a5p-l%c3%a0-client-side aria-label="Không cần restart —— chuyển nhà cung cấp là client-side">Không cần restart —— chuyển nhà cung cấp là client-side</a></li><li><a href=#click-icon-nh%c3%a0-cung-c%e1%ba%a5p-%e1%bb%9f-header-chat--ch%e1%bb%8dn-model-kh%c3%a1c aria-label="Click icon nhà cung cấp ở header chat → Chọn model khác">Click icon nhà cung cấp ở header chat → Chọn model khác</a></li><li><a href=#m%e1%bb%97i-cu%e1%bb%99c-tr%c3%b2-chuy%e1%bb%87n-nh%e1%bb%9b-l%e1%bb%b1a-ch%e1%bb%8dn-nh%c3%a0-cung-c%e1%ba%a5p-c%e1%bb%a7a-n%c3%b3 aria-label="Mỗi cuộc trò chuyện nhớ lựa chọn nhà cung cấp của nó">Mỗi cuộc trò chuyện nhớ lựa chọn nhà cung cấp của nó</a><ul><ul><li><a href=#b%e1%ba%a3o-m%e1%ba%adt-runtime-plugin aria-label="Bảo Mật Runtime Plugin">Bảo Mật Runtime Plugin</a></li></ul><li><a href=#benchmark--use-case-th%e1%bb%b1c-t%e1%ba%bf aria-label="Benchmark & Use Case Thực Tế">Benchmark & Use Case Thực Tế</a><ul><li><a href=#%c4%91%e1%bb%99-tr%e1%bb%85-ph%e1%ba%a3n-h%e1%bb%93i-%c4%91o-t%e1%bb%ab-us-east aria-label="Độ Trễ Phản Hồi (đo từ US-East)">Độ Trễ Phản Hồi (đo từ US-East)</a></li><li><a href=#m%e1%bb%a9c-s%e1%bb%ad-d%e1%bb%a5ng-t%c3%a0i-nguy%c3%aan aria-label="Mức sử dụng Tài nguyên">Mức sử dụng Tài nguyên</a></li><li><a href=#c%c3%a1c-tri%e1%bb%83n-khai-th%e1%bb%b1c-t%e1%ba%bf aria-label="Các Triển khai Thực Tế">Các Triển khai Thực Tế</a></li></ul></li><li><a href=#s%e1%bb%ad-d%e1%bb%a5ng-n%c3%a2ng-cao--production-hardening aria-label="Sử dụng Nâng cao & Production Hardening">Sử dụng Nâng cao & Production Hardening</a><ul><li><a href=#b%e1%ba%adt-x%c3%a1c-th%e1%bb%b1c aria-label="Bật Xác thực">Bật Xác thực</a></li><li><a href=#theme-t%c3%b9y-ch%e1%bb%89nh aria-label="Theme Tùy Chỉnh">Theme Tùy Chỉnh</a></li><li><a href=#gi%c3%a1m-s%c3%a1t-v%e1%bb%9bi-prometheus aria-label="Giám sát với Prometheus">Giám sát với Prometheus</a></li></ul></li></ul></li><li><a href=#docker-composemonitoringyml aria-label=docker-compose.monitoring.yml>docker-compose.monitoring.yml</a></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+description: &ldquo;Technical guide and comparison.&rdquo;
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
+tech_stack: []
+application_domain: Ai Tools
+source_version: &rsquo;'
+licensing_model: Open Source
+license_type: MIT
+file_size: &rsquo;'
+file_md5: &rsquo;'
+download_url: &rsquo;'
+backup_url: &rsquo;'
+last_maintained: &ldquo;2026-05-19&rdquo;
+draft: false
+categories: [&ldquo;ai-tools&rdquo;]
+tags: [&ldquo;lobe chat&rdquo;, &ldquo;chatgpt&rdquo;, &ldquo;thay thế openai&rdquo;, &ldquo;llm&rdquo;, &ldquo;tự host&rdquo;, &ldquo;docker&rdquo;, &ldquo;pwa&rdquo;, &ldquo;hệ thống plugin&rdquo;, &ldquo;ai&rdquo;, &ldquo;ui chat&rdquo;]
+aliases:</p><ul><li>/vi/posts/lobe-chat-openai-alternative-ui/</li></ul><hr><h2 id=giới-thiệu-chatgpt-không-còn-đủ-nữa>Giới thiệu: ChatGPT Không Còn Đủ Nữa<a hidden class=anchor aria-hidden=true href=#giới-thiệu-chatgpt-không-còn-đủ-nữa>#</a></h2><p>Bạn đang trả $20/tháng cho OpenAI dùng ChatGPT Plus, nhưng team cần một giao diện chat chia sẻ với khả năng truy cập Claude, Gemini, và các model local chạy trên phần cứng riêng. Bạn muốn các plugin kết nối với API nội bộ. Bạn cần giao diện đa ngôn ngữ vì team của bạn trải rộng ba châu lục. Và quan trọng nhất —— dữ liệu cuộc trò chuyện phải ở lại trên hạ tầng của bạn, không phải trên cloud bên thứ ba.</p><p>Bạn có thể xây từ đầu. Dành hai tháng cho frontend React, thêm một tháng để kết nối SSE streaming, rồi duy trì authentication, plugin sandboxing, và model switching mãi mãi. Hoặc bạn có thể triển khai <strong>Lobe Chat trong 10 phút</strong>.</p><p>Lobe Chat là giao diện chat mã nguồn mở được xây dựng bởi team LobeHub, hỗ trợ <strong>20+ nhà cung cấp LLM</strong>, <strong>hệ thống plugin</strong>, <strong>hỗ trợ PWA</strong>, và <strong>giao diện đa ngôn ngữ</strong> —— tất cả từ một container Docker duy nhất. Với <strong>khoảng 60,000 sao GitHub</strong> tính đến tháng 5/2026, nó là một trong những giải pháp thay thế ChatGPT tự host phổ biến nhất. Trông đẹp hơn UI của ChatGPT, chạy trên phần cứng của bạn, và không tốn phí cấp phép nào.</p><p>Hướng dẫn này đi qua cài đặt, cấu hình nhà cung cấp, phát triển plugin, thiết lập PWA, benchmark thực tế, và các hạn chế thực tế. Cuối cùng, bạn sẽ có một UI chat sẵn sàng production mà cả team có thể sử dụng.</p><h2 id=lobe-chat-là-gì>Lobe Chat là gì?<a hidden class=anchor aria-hidden=true href=#lobe-chat-là-gì>#</a></h2><p><strong>Lobe Chat</strong> là giao diện chat mã nguồn mở hiện đại cho các mô hình ngôn ngữ lớn. Được xây dựng bằng Next.js và Ant Design, nó cung cấp trải nghiệm tương tự ChatGPT với hỗ trợ cho nhiều nhà cung cấp LLM (OpenAI, Claude, Gemini, Ollama, Azure, Bedrock và hơn 15 nhà cung cấp khác), plugin có thể mở rộng, khả năng progressive web app, và mô hình triển khai tự host giữ dữ liệu của bạn dưới sự kiểm soát của bạn.</p><h2 id=lobe-chat-hoạt-động-như-thế-nào>Lobe Chat hoạt động như thế nào?<a hidden class=anchor aria-hidden=true href=#lobe-chat-hoạt-động-như-thế-nào>#</a></h2><p>Kiến trúc của Lobe Chat tách lớp presentation khỏi model inference. Frontend Next.js xử lý việc render UI, trạng thái cuộc trò chuyện, và orchestration plugin, trong khi các lệnh gọi LLM được proxy qua các endpoint API có thể cấu hình: ````
+┌─────────────────────────────────────────────┐
+│ Trình duyệt ngườ dùng / PWA │
+│ ┌─────────┐ ┌─────────┐ ┌────────────┐ │
+│ │ Chat │ │ Plugin │ │ Cài đặt │ │
+│ │ Panel │ │ Store │ │ (i18n) │ │
+│ └────┬────┘ └────┬────┘ └─────┬──────┘ │
+└───────┼────────────┼─────────────┼────────┘
+│ │ │
+▼ ▼ ▼
+┌─────────────────────────────────────────────┐
+│ Lobe Chat Server (Next.js) │
+│ ┌──────────┐ ┌──────────┐ ┌────────────┐ │
+│ │ SSE │ │ Plugin │ │ Xác thực │ │
+│ │ Stream │ │ Runtime │ │ (SSO) │ │
+│ └────┬─────┘ └────┬─────┘ └─────┬──────┘ │
+└───────┼────────────┼─────────────┼────────┘
+│ │ │
+▼ ▼ ▼
+┌──────────┐ ┌──────────┐ ┌────────────┐
+│ OpenAI │ │ Claude │ │ Ollama │
+│ API │ │ API │ │ (Local) │
+└──────────┘ └──────────┘ └────────────┘</p><pre tabindex=0><code>
+**Các thành phần chính:**
+
+- **Frontend**: Next.js 14 App Router với React Server Components. Render markdown, code blocks có syntax highlighting, và LaTeX math.
+- **Chat Engine**: Quản lý lịch sử cuộc trò chuyện, context window, token counting, và streaming responses qua Server-Sent Events.
+- **Plugin System**: Plugin runtime sandboxed sử dụng iframe + postMessage. Plugin khai báo manifest với schema tương thích OpenAPI.
+- **Provider Proxy**: Mô hình adapter thống nhất chuẩn hóa các lệnh gọi API xuyên suốt 20+ nhà cung cấp LLM.
+- **PWA Layer**: Service worker cho hỗ trợ offline, có thể cài đặt trên desktop và mobile.
+
+## Cài đặt &amp; Thiết lập: 10 Phút để Chat
+
+**Yêu cầu**: Docker 24.0+ hoặc Node.js 20+ (cho dev local), 2GB RAM, 1GB disk.
+
+### Cách 1: Docker (Khuyến nghị)
+
+**Bước 1 —— Pull và chạy image chính thức:**
+
+`````bash
+docker run -d -p 3210:3210 \
+  -e OPENAI_API_KEY=YOUR_OPENAI_API_KEY \
+  -e ACCESS_CODE=your-secure-password \
+  --name lobe-chat \
+  lobehub/lobe-chat:latest
+</code></pre><p><strong>Bước 2 —— Truy cập UI:</strong></p><p>Mở <code>http://localhost:3210</code>. Bạn sẽ thấy trình hướng dẫn thiết lập để chọn nhà cung cấp LLM mặc định và nhập API keys.</p><p><strong>Bước 3 —— Cấu hình thêm nhà cung cấp (tùy chọn):</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Thiết lập đa nhà cung cấp qua biến môi trường</span>
+</span></span><span style=display:flex><span>docker run -d -p 3210:3210 <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  -e OPENAI_API_KEY<span style=color:#f92672>=</span>sk-xxx <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  -e ANTHROPIC_API_KEY<span style=color:#f92672>=</span>sk-ant-xxx <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  -e GOOGLE_API_KEY<span style=color:#f92672>=</span>xxx <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  -e OLLAMA_PROXY_URL<span style=color:#f92672>=</span>http://host.docker.internal:11434 <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  -e ACCESS_CODE<span style=color:#f92672>=</span>your-secure-password <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  --name lobe-chat <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  lobehub/lobe-chat:latest
+</span></span></code></pre></div><h3 id=cách-2-docker-compose-với-persistent-storage>Cách 2: Docker Compose với Persistent Storage<a hidden class=anchor aria-hidden=true href=#cách-2-docker-compose-với-persistent-storage>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># docker-compose.yml</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>services: lobe-chat: image</span>: <span style=color:#ae81ff>lobehub/lobe-chat:latest</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;3210:3210&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>: - <span style=color:#ae81ff>OPENAI_API_KEY=${OPENAI_API_KEY}</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>ACCESS_CODE=${ACCESS_CODE}</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>DATABASE_URL=postgresql://postgres:password@db:5432/lobe</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>lobe-data:/app/.config/lobe-chat</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>depends_on</span>: - <span style=color:#ae81ff>db</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>db: image</span>: <span style=color:#ae81ff>postgres:16-alpine</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>: - <span style=color:#ae81ff>POSTGRES_PASSWORD=password</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>POSTGRES_DB=lobe</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>pgdata:/var/lib/postgresql/data</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>volumes: lobe-data: pgdata</span>: <span style=color:#ae81ff>`````</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>`````bash</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Khởi động với persistence</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>docker compose up -d</span>
+</span></span></code></pre></div><h3 id=cách-3-triển-khai-lên-digitalocean>Cách 3: Triển khai lên <a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a><a hidden class=anchor aria-hidden=true href=#cách-3-triển-khai-lên-digitalocean>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Trên Droplet 2 vCPU / 4GB RAM (~$24/tháng)</span>
+</span></span><span style=display:flex><span>sudo apt update <span style=color:#f92672>&amp;&amp;</span> sudo apt install -y docker.io docker-compose-plugin
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Tạo file .env</span>
+</span></span><span style=display:flex><span>cat &gt; .env <span style=color:#e6db74>&lt;&lt; EOF
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>OPENAI_API_KEY=sk-your-key
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>ACCESS_CODE=secure-team-password
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>EOF</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Chạy</span>
+</span></span><span style=display:flex><span>docker compose up -d
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Thiết lập reverse proxy với HTTPS qua Caddy</span>
+</span></span><span style=display:flex><span>cat &gt; Caddyfile <span style=color:#e6db74>&lt;&lt; EOF
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>chat.yourdomain.com {
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    reverse_proxy localhost:3210
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>}
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>EOF</span>
+</span></span></code></pre></div><p>Thêm bản ghi DNS A trỏ đến IP Droplet của bạn và bạn sẽ online trong vòng 15 phút. <a href=https://m.do.co/c/eca87ac14ee0>Lấy DigitalOcean Droplet tại đây</a>.</p><h2 id=tích-hợp-với-20-nhà-cung-cấp-llm>Tích hợp với 20+ Nhà Cung Cấp LLM<a hidden class=anchor aria-hidden=true href=#tích-hợp-với-20-nhà-cung-cấp-llm>#</a></h2><p>Lobe Chat chuẩn hóa các lệnh gọi API xuyên suốt các nhà cung cấp thông qua một adapter thống nhất. Sau đây là cách cấu hình các nhà cung cấp phổ biến nhất: ### OpenAI (GPT-4, GPT-4o)</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Qua biến môi trường</span>
+</span></span><span style=display:flex><span>echo <span style=color:#e6db74>&#34;OPENAI_API_KEY=sk-xxxxxxxx&#34;</span> &gt;&gt; .env
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Qua UI: Cài đặt → Mô hình Ngôn ngữ → OpenAI → Nhập key</span>
+</span></span></code></pre></div><h3 id=anthropic-claude-claude-35-sonnet>Anthropic Claude (Claude 3.5 Sonnet)<a hidden class=anchor aria-hidden=true href=#anthropic-claude-claude-35-sonnet>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Biến môi trường</span>
+</span></span><span style=display:flex><span>echo <span style=color:#e6db74>&#34;ANTHROPIC_API_KEY=sk-ant-xxxxxxxx&#34;</span> &gt;&gt; .env
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Khởi động lại container</span>
+</span></span><span style=display:flex><span>docker restart lobe-chat
+</span></span></code></pre></div><h3 id=google-gemini-gemini-15-pro>Google Gemini (Gemini 1.5 Pro)<a hidden class=anchor aria-hidden=true href=#google-gemini-gemini-15-pro>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>echo <span style=color:#e6db74>&#34;GOOGLE_API_KEY=AIzaxxxxxxxx&#34;</span> &gt;&gt; .env
+</span></span></code></pre></div><h3 id=ollama-model-local--llama-mistral-vv>Ollama (Model Local — Llama, Mistral, v.v.)<a hidden class=anchor aria-hidden=true href=#ollama-model-local--llama-mistral-vv>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Chạy Ollama trên host</span>
+</span></span><span style=display:flex><span>docker run -d -p 11434:11434 --name ollama ollama/ollama
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Pull model</span>
+</span></span><span style=display:flex><span>docker exec ollama ollama pull llama3.2
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Cấu hình Lobe Chat dùng Ollama</span>
+</span></span><span style=display:flex><span>docker run -d -p 3210:3210 <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  -e OLLAMA_PROXY_URL<span style=color:#f92672>=</span>http://host.docker.internal:11434 <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  -e ACCESS_CODE<span style=color:#f92672>=</span>mypassword <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  lobehub/lobe-chat
+</span></span></code></pre></div><h3 id=azure-openai-service>Azure OpenAI Service<a hidden class=anchor aria-hidden=true href=#azure-openai-service>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Cần endpoint, API key, và tên deployment</span>
+</span></span><span style=display:flex><span>echo <span style=color:#e6db74>&#34;AZURE_API_KEY=your-azure-key&#34;</span> &gt;&gt; .env
+</span></span><span style=display:flex><span>echo <span style=color:#e6db74>&#34;AZURE_API_ENDPOINT=https://your-resource.openai.azure.com&#34;</span> &gt;&gt; .env
+</span></span><span style=display:flex><span>echo <span style=color:#e6db74>&#34;AZURE_API_VERSION=2024-06-01&#34;</span> &gt;&gt; .env
+</span></span></code></pre></div><h3 id=aws-bedrock>AWS Bedrock<a hidden class=anchor aria-hidden=true href=#aws-bedrock>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>echo <span style=color:#e6db74>&#34;AWS_ACCESS_KEY_ID=AKIAxxx&#34;</span> &gt;&gt; .env
+</span></span><span style=display:flex><span>echo <span style=color:#e6db74>&#34;AWS_SECRET_ACCESS_KEY=xxx&#34;</span> &gt;&gt; .env
+</span></span><span style=display:flex><span>echo <span style=color:#e6db74>&#34;AWS_REGION=us-east-1&#34;</span> &gt;&gt; .env
+</span></span></code></pre></div><h3 id=chuyển-đổi-nhà-cung-cấp-tại-runtime>Chuyển Đổi Nhà Cung Cấp tại Runtime<a hidden class=anchor aria-hidden=true href=#chuyển-đổi-nhà-cung-cấp-tại-runtime>#</a></h3><p>Ngườ dùng có thể chuyển đổi nhà cung cấp theo từng cuộc trò chuyện trong UI. Điều này cho phép bạn so sánh GPT-4 và Claude cạnh nhau: `````</p><h1 id=không-cần-restart--chuyển-nhà-cung-cấp-là-client-side>Không cần restart —— chuyển nhà cung cấp là client-side<a hidden class=anchor aria-hidden=true href=#không-cần-restart--chuyển-nhà-cung-cấp-là-client-side>#</a></h1><h1 id=click-icon-nhà-cung-cấp-ở-header-chat--chọn-model-khác>Click icon nhà cung cấp ở header chat → Chọn model khác<a hidden class=anchor aria-hidden=true href=#click-icon-nhà-cung-cấp-ở-header-chat--chọn-model-khác>#</a></h1><h1 id=mỗi-cuộc-trò-chuyện-nhớ-lựa-chọn-nhà-cung-cấp-của-nó>Mỗi cuộc trò chuyện nhớ lựa chọn nhà cung cấp của nó<a hidden class=anchor aria-hidden=true href=#mỗi-cuộc-trò-chuyện-nhớ-lựa-chọn-nhà-cung-cấp-của-nó>#</a></h1><pre tabindex=0><code>
+## Hệ Thống Plugin: Mở Rộng Lobe Chat
+
+Kiến trúc plugin của Lobe Chat sử dụng hệ thống dựa trên manifest. Plugin khai báo khả năng của chúng trong ````manifest.json````, và UI chat render chúng như các công cụ tương tác.
+
+### Cài đặt từ Plugin Marketplace
+
+1. Mở Lobe Chat → Plugin Store
+2. Duyệt 50+ plugin cộng đồng
+3. Click &#34;Cài đặt&#34; → Ủy quyền quyền hạn
+4. Plugin xuất hiện như tool calls trong chat
+
+### Xây dựng Plugin Tùy Chỉnh
+
+Tạo một plugin đơn giản query API nội bộ của bạn: `````json
+{
+  &#34;api&#34;: [
+    {
+      &#34;description&#34;: &#34;Tìm kiếm cơ sở kiến thức nội bộ&#34;,
+      &#34;name&#34;: &#34;search_kb&#34;,
+      &#34;parameters&#34;: {
+        &#34;properties&#34;: {
+          &#34;query&#34;: {
+            &#34;description&#34;: &#34;Chuỗi truy vấn tìm kiếm&#34;,
+            &#34;type&#34;: &#34;string&#34;
+          }
+        },
+        &#34;required&#34;: [&#34;query&#34;],
+        &#34;type&#34;: &#34;object&#34;
+      },
+      &#34;url&#34;: &#34;https://api.yourcompany.com/kb/search&#34;
+    }
+  ],
+  &#34;gateway&#34;: &#34;https://gateway.example.com&#34;,
+  &#34;identifier&#34;: &#34;your-company/kb-search&#34;,
+  &#34;meta&#34;: {
+    &#34;title&#34;: &#34;Internal KB Search&#34;,
+    &#34;description&#34;: &#34;Search company knowledge base&#34;
+  },
+  &#34;version&#34;: &#34;1.0.0&#34;
+}
+</code></pre><p>Host điều này tại một URL công khai, sau đó thêm qua <strong>Plugin Store → Custom Plugin → Nhập URL</strong>.</p><h3 id=bảo-mật-runtime-plugin>Bảo Mật Runtime Plugin<a hidden class=anchor aria-hidden=true href=#bảo-mật-runtime-plugin>#</a></h3><p>Các plugin thực thi trong iframe sandboxed với quyền hạn bị hạn chế: `````
+┌─────────────────────────────┐
+│ Lobe Chat Main Window │
+│ ┌───────────────────────┐ │
+│ │ Sandboxed Iframe │ │
+│ │ (mã plugin) │ │
+│ │ - Không truy cập DOM │ │
+│ │ - Chỉ postMessage │ │
+│ │ - CORS bắt buộc │ │
+│ └───────────────────────┘ │
+└─────────────────────────────┘</p><pre tabindex=0><code>
+Mỗi request plugin yêu cầu sự chấp thuận rõ ràng từ ngườ dùng. LLM đề xuất tool calls, nhưng ngườ dùng phải xác nhận trước khi thực thi.
+
+## Hỗ Trợ PWA &amp; Trải Nghiệm Mobile
+
+Lobe Chat hoạt động như một Progressive Web App, tạo cảm giác như app native trên mọi nền tảng.
+
+### Cài đặt trên Desktop (Chrome/Edge)
+
+1. Mở Lobe Chat trong Chrome
+2. Click icon cài đặt trong thanh địa chỉ
+3. Khởi chạy như một cửa sổ độc lập với icon riêng
+
+### Cài đặt trên Mobile (iOS Safari)
+</code></pre><ol><li>Mở Lobe Chat trong Safari</li><li>Chạm Chia sẻ → &ldquo;Thêm vào Màn hình chính&rdquo;</li><li>Xuất hiện như icon app native</li><li>Hỗ trợ push notification (qua service worker)</li></ol><pre tabindex=0><code>
+### Hỗ Trợ Offline
+
+Service worker cache app shell và các cuộc trò chuyện gần đây. Không có internet: `````
+✅ Duyệt lịch sử cuộc trò chuyện
+✅ Xem phản hồi trước đó
+✅ Soạn tin nhắn (xếp hàng để gửi)
+❌ Phản hồi LLM mới (cần kết nối API)
+</code></pre><h2 id=benchmark--use-case-thực-tế>Benchmark & Use Case Thực Tế<a hidden class=anchor aria-hidden=true href=#benchmark--use-case-thực-tế>#</a></h2><h3 id=độ-trễ-phản-hồi-đo-từ-us-east>Độ Trễ Phản Hồi (đo từ US-East)<a hidden class=anchor aria-hidden=true href=#độ-trễ-phản-hồi-đo-từ-us-east>#</a></h3><table><thead><tr><th>Nhà cung cấp</th><th>Thờ gian Token Đầu Tiên</th><th>Phản hồi Đầy đủ (100 token)</th><th>Ghi chú</th></tr></thead><tbody><tr><td>OpenAI GPT-4o</td><td><strong>0.8 giây</strong></td><td><strong>2.1 giây</strong></td><td>Nhanh nhất tổng thể</td></tr><tr><td>Claude 3.5 Sonnet</td><td>1.1 giây</td><td>2.8 giây</td><td>Chất lượng reasoning cao hơn</td></tr><tr><td>Gemini 1.5 Pro</td><td>1.3 giây</td><td>3.0 giây</td><td>Context window lớn</td></tr><tr><td>Ollama (Llama 3.2 7B, CPU)</td><td>3.5 giây</td><td>8.2 giây</td><td>Không tốn phí API</td></tr><tr><td>Ollama (Llama 3.2 7B, RTX 4090)</td><td>0.6 giây</td><td>1.5 giây</td><td>Tùy chọn local nhanh nhất</td></tr><tr><td>Azure GPT-4</td><td>1.0 giây</td><td>2.4 giây</td><td>SLA doanh nghiệp</td></tr></tbody></table><h3 id=mức-sử-dụng-tài-nguyên>Mức sử dụng Tài nguyên<a hidden class=anchor aria-hidden=true href=#mức-sử-dụng-tài-nguyên>#</a></h3><table><thead><tr><th>Triển khai</th><th>Memory</th><th>CPU</th><th>Số ngườ dùng</th><th>Chi phí/Tháng</th></tr></thead><tbody><tr><td>Docker single-instance</td><td><strong>350MB</strong></td><td><strong>0.2 cores</strong></td><td>1–5</td><td>$0 (tự host)</td></tr><tr><td>Docker + 5 nhà cung cấp</td><td>400MB</td><td>0.3 cores</td><td>1–10</td><td>Chỉ phí API</td></tr><tr><td>Với backend PostgreSQL</td><td>650MB</td><td>0.4 cores</td><td>10–50</td><td>~$24 VPS</td></tr><tr><td>Sau reverse proxy</td><td>400MB</td><td>0.3 cores</td><td>10–100</td><td>~$24 VPS</td></tr></tbody></table><h3 id=các-triển-khai-thực-tế>Các Triển khai Thực Tế<a hidden class=anchor aria-hidden=true href=#các-triển-khai-thực-tế>#</a></h3><p><strong>Công ty Tư vấn AI (12 kỹ sư):</strong></p><ul><li>Triển khai Lobe Chat trên <a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean Droplet</a></li><li>Kết nối <strong>8 nhà cung cấp LLM</strong> cho demo so sánh khách hàng</li><li>Xây dựng <strong>3 plugin tùy chỉnh</strong> liên kết với database dự án nội bộ</li><li>Tiết kiệm <strong>~$240/tháng</strong> so với các subscription ChatGPT Plus cá nhân</li></ul><p><strong>Phòng thí nghiệm Nghiên cứu Đại học (40 sinh viên):</strong></p><ul><li>Tự host với Ollama cho dữ liệu nghiên cứu nhạy cảm về quyền riêng tư</li><li>Sinh viên truy cập qua PWA trên laptop và điện thoại</li><li>Plugin kết nối với API tìm kiếm thư viện đại học</li><li>Zero cloud data exposure cho nghiên cứu chưa công bố</li></ul><p><strong>Startup Hỗ trợ Khách hàng (5 nhân viên):</strong></p><ul><li>Tích hợp Claude 3.5 Sonnet qua API</li><li>Plugin tùy chỉnh truy vấn tài liệu sản phẩm</li><li>Giao diện đa ngôn ngữ hỗ trợ khách hàng tiếng Anh, Trung, Nhật</li><li>Thờ gian soạn thảo phản hồi giảm <strong>~45%</strong></li></ul><h2 id=sử-dụng-nâng-cao--production-hardening>Sử dụng Nâng cao & Production Hardening<a hidden class=anchor aria-hidden=true href=#sử-dụng-nâng-cao--production-hardening>#</a></h2><h3 id=bật-xác-thực>Bật Xác thực<a hidden class=anchor aria-hidden=true href=#bật-xác-thực>#</a></h3><p>Cho triển khai team, đặt mã truy cập: `````bash
+docker run -d -p 3210:3210<br>-e ACCESS_CODE=your-secure-password-2026<br>-e OPENAI_API_KEY=sk-xxx<br>lobehub/lobe-chat:latest</p><pre tabindex=0><code>
+Cho tích hợp SSO, cấu hình OAuth: `````bash
+  -e AUTH_PROVIDER=auth0 \
+  -e AUTH_AUTH0_ID=your-client-id \
+  -e AUTH_AUTH0_SECRET=your-secret \
+  -e AUTH_AUTH0_ISSUER=https://your-domain.us.auth0.com \
+</code></pre><h3 id=theme-tùy-chỉnh>Theme Tùy Chỉnh<a hidden class=anchor aria-hidden=true href=#theme-tùy-chỉnh>#</a></h3><p>Tạo file theme JSON: `````json
+{
+&ldquo;primaryColor&rdquo;: &ldquo;#1890ff&rdquo;,
+&ldquo;neutralColor&rdquo;: &ldquo;#8c8c8c&rdquo;,
+&ldquo;backgroundColor&rdquo;: &ldquo;#f0f2f5&rdquo;,
+&ldquo;sidebarWidth&rdquo;: 280
+}</p><pre tabindex=0><code>
+Tải lên qua **Cài đặt → Theme → Theme Tùy chỉnh**.
+
+### Conversations Hỗ trợ Database
+
+Cho persistence đa ngườ dùng, cấu hình PostgreSQL: `````yaml
+# docker-compose.prod.yml
+services: lobe-chat: image: lobehub/lobe-chat:latest
+    environment: - DATABASE_URL=postgresql://user:pass@db:5432/lobechat
+      - APP_URL=https://chat.yourdomain.com
+    ports: - &#34;3210:3210&#34;
+
+  db: image: postgres:16-alpine
+    environment: POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: lobechat
+    volumes: - pgdata:/var/lib/postgresql/data
+
+volumes: pgdata: `````
+
+### Reverse Proxy với Caddy
+
+`````bash
+# Caddyfile cho HTTPS tự động
+chat.yourdomain.com {
+    reverse_proxy localhost:3210
+    encode gzip
+    header {
+        X-Frame-Options DENY
+        X-Content-Type-Options nosniff
+    }
+}
+</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>caddy run --config Caddyfile
+</span></span></code></pre></div><h3 id=giám-sát-với-prometheus>Giám sát với Prometheus<a hidden class=anchor aria-hidden=true href=#giám-sát-với-prometheus>#</a></h3><p>Lobe Chat expose metrics tại <code>/api/metrics</code>: `````yaml</p><h1 id=docker-composemonitoringyml>docker-compose.monitoring.yml<a hidden class=anchor aria-hidden=true href=#docker-composemonitoringyml>#</a></h1><p>services: prometheus: image: prom/prometheus
+volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
+ports: - &ldquo;9090:9090&rdquo;</p><p>grafana: image: grafana/grafana
+ports: - &ldquo;3000:3000&rdquo;</p><pre tabindex=0><code>
+## So sánh với các Giải pháp Thay thế
+
+| Tính năng | Lobe Chat | LibreChat | ChatGPT Web | HuggingChat |
+|---|---|---|---|---|
+| **GitHub Stars** | **~60,000** | ~20,000 | ~30,000 | N/A (sản phẩm) |
+| **Nhà cung cấp LLM** | **20+** | 10+ | Chỉ OpenAI | Chỉ HF models |
+| **Hệ thống Plugin** | **Dựa trên manifest** | Công cụ cơ bản | Không | Không |
+| **Hỗ trợ PWA** | **Đầy đủ** | Một phần | Không | Không |
+| **Giao diện đa ngôn ngữ** | **15+ ngôn ngữ** | 5 ngôn ngữ | 10 ngôn ngữ | 6 ngôn ngữ |
+| **Tự host** | **Có (Docker)** | Có | Có | Không (chỉ SaaS) |
+| **Xác thực** | **SSO + mã truy cập** | SSO + local | Cơ bản | Chỉ OAuth |
+| **Knowledge Base** | **Dựa trên plugin** | Built-in RAG | Chỉ GPTs | Không |
+| **Code Interpreter** | **Qua plugin** | Qua plugin | Native | Không |
+| **Trải nghiệm Mobile** | **PWA như native** | Responsive | Responsive | Cơ bản |
+| **Tùy chỉnh Theme** | **Đầy đủ** | Một phần | Không | Tối thiểu |
+| **Đồng bộ tin nhắn** | **Backend PostgreSQL** | MongoDB | LocalStorage | Cloud |
+
+**Khi nào chọn cái nào:**
+
+- **Lobe Chat**: Chọn khi cần giao diện chat đa nhà cung cấp hoàn thiện với plugin và PWA. Trải nghiệm tổng thể tốt nhất cho team.
+- **LibreChat**: Chọn nếu muốn setup đơn giản hơn với RAG built-in (upload tài liệu) và không cần PWA hay plugin mở rộng.
+- **ChatGPT Web (Next-Web)**: Chọn nếu chủ yếu dùng OpenAI và muốn UI tự host nhẹ nhất, nhanh nhất.
+- **HuggingChat**: Dùng như Web UI miễn phí cho Hugging Face models, nhưng không dùng cho tự host hay doanh nghiệp.
+
+## Hạn chế: Đánh giá Trung thực
+
+**Chưa có RAG built-in.** Khác với LibreChat có upload tài liệu và vector search tích hợp, Lobe Chat dựa vào plugin cho chức năng knowledge base. Tính năng RAG native đang nằm trong roadmap v1.0 nhưng chưa có tính đến tháng 5/2026.
+
+**Hệ sinh thái plugin còn trẻ.** Có khoảng 50 plugin so với hàng nghìn của ChatGPT. Xây plugin tùy chỉnh đòi hỏi hiểu manifest schema và host một API tương thích.
+
+**Cần API keys LLM.** Lobe Chat chỉ là UI —— bạn vẫn cần API keys cho cloud providers hoặc instance Ollama đang chạy cho model local. Không có &#34;free tier&#34; tích hợp.
+
+**Không có phòng chat đa ngườ dùng.** Các cuộc trò chuyện là riêng tư cho mỗi phiên trình duyệt. Cộng tác đa ngườ thực sự với kênh chia sẻ cần backend tùy chỉnh.
+
+**Image Docker khá lớn.** Image production nặng ~400MB nén. Trên kết nối chậm, lần pull đầu mất vài phút.
+
+**Không có voice input/output.** Khác với app mobile ChatGPT, Lobe Chat không hỗ trợ speech-to-text hay text-to-speech natively. Có thể dùng Web Speech API của trình duyệt như workaround.
+
+**UX phê duyệt plugin tạo ma sát.** Mỗi lệnh gọi plugin cần xác nhận của ngườ dùng. Điều này tốt cho bảo mật nhưng làm chậm workflow so với code interpreter của ChatGPT chạy tự động.
+
+## Câu hỏi Thường gặp
+
+**Q: Lobe Chat có lưu cuộc trò chuyện của tôi trên server của họ không?**
+
+Không. Khi tự host, tất cả dữ liệu cuộc trò chuyện ở lại trên hạ tầng của bạn. Lobe Chat là ứng dụng client-side không gửi telemetry đến server bên ngoài trừ khi bạn cấu hình analytics một cách rõ ràng. Code mã nguồn mở (giấy phép MIT) có thể được audit trên GitHub. API keys cloud (OpenAI, Claude) chỉ được dùng cho inference calls —— các cuộc trò chuyện được lưu local.
+
+**Q: Tôi có thể dùng nhiều nhà cung cấp LLM trong cùng một cuộc trò chuyện không?**
+
+Không trong cùng một thread. Mỗi cuộc trò chuyện gắn với một nhà cung cấp, nhưng bạn có thể tạo nhiều cuộc trò chuyện với các nhà cung cấp khác nhau và chuyển đổi giữa chúng. Một số ngườ dùng giữ thread &#34;GPT-4&#34; cho coding và thread &#34;Claude&#34; cho viết lách, chuyển đổi qua sidebar.
+
+**Q: Làm thế nào cập nhật Lobe Chat lên phiên bản mới nhất?**
+
+`````bash
+# Pull image mới nhất
+docker pull lobehub/lobe-chat:latest
+
+# Khởi động lại container
+docker compose down &amp;&amp; docker compose up -d
+
+# Cuộc trò chuyện persist trong browser localStorage
+# Với backend PostgreSQL, database migrations tự động chạy
+````
+
+Cập nhật được phát hành hàng tuần. Kiểm tra [trang releases](https://github.com/lobehub/lobe-chat/releases) để xem các breaking changes trước khi cập nhật.
+
+**Q: Sự khác biệt giữa hệ thống plugin và function calling là gì?**
+
+Plugin Lobe Chat là **tích hợp cấp UI** —— chúng render các card tương tác, form, và visualization trong chat. Function calling là **cơ chế cấp LLM** quyết định khi nào gọi tool. Lobe Chat dùng function calling bên dưới để trigger plugin, sau đó render phản hồi UI của plugin. Kiến trúc plugin mở rộng function calling với các thành phần trực quan và luồng phê duyệt của ngườ dùng.
+
+**Q: Tôi có thể dùng Lobe Chat không cần internet không?**
+
+Một phần. Nếu bạn cấu hình Ollama là nhà cung cấp duy nhất (LLM local), chức năng chat cốt lõi hoạt động offline. Tuy nhiên, các lệnh gọi plugin cần kết nối internet (truy cập API bên ngoài), và lần load app đầu tiên cần tải assets. PWA cache app shell, nên sau lần truy cập đầu tiên, chat cơ bản hoạt động không cần internet nếu dùng model local.
+
+**Q: Có giới hạn nào cho lịch sử cuộc trò chuyện không?**
+
+Với backend localStorage mặc định, cuộc trò chuyện persist trong trình duyệt không có giới hạn cứng, nhưng hiệu năng giảm sau khoảng ~500 cuộc trò chuyện dài. Với backend PostgreSQL, không có giới hạn thực sự —— database xử lý hàng nghìn cuộc trò chuyện xuyên suốt nhiều ngườ dùng. Giới hạn token context window được áp dụng theo ràng buộc của nhà cung cấp LLM đã chọn.
+
+**Q: Tôi có thể import cuộc trò chuyện ChatGPT không?**
+
+Không trực tiếp. Định dạng xuất của ChatGPT (conversations.json) không tương thích với storage schema của Lobe Chat. Tuy nhiên, có các công cụ cộng đồng chuyển đổi ChatGPT exports sang Markdown, mà bạn có thể paste vào cuộc trò chuyện Lobe Chat. Team LobeHub có tính năng import trong roadmap cho Q3 2026.
+
+## Kết luận: Cuộc Trò Chuyện của Bạn, Quy Tắc của Bạn
+
+Lobe Chat mang đến những gì ChatGPT không: toàn quyền kiểm soát dữ liệu, hỗ trợ mọi nhà cung cấp LLM chính, plugin mở rộng, và trải nghiệm mobile như native —— tất cả chạy trên phần cứng của bạn. Với **khoảng 60,000 sao GitHub** và phát hành hàng tuần, đây là dự án trưởng thành, được duy trì tích cực có chất lượng UX sánh ngang với các lựa chọn thương mại.
+
+Cho cá nhân, thiết lập Docker chỉ mất 10 phút và không tốn phí ngoài API usage. Cho team, triển khai trên [DigitalOcean](https://m.do.co/c/eca87ac14ee0) với backend PostgreSQL cho bạn một nền tảng chat chia sẻ với khả năng audit đầy đủ.
+
+Hệ thống plugin và hỗ trợ PWA làm Lobe Chat nhiều hơn một bản sao ChatGPT —— nó là nền tảng xây dựng các workflow AI được thiết kế riêng cho tổ chức của bạn. Giao diện đa ngôn ngữ nghĩa là nó hoạt động cho team toàn cầu mà không cần cấu hình phức tạp.
+
+**Sẵn sàng chuyển đổi?** Chạy lệnh Docker, thêm API keys, và bắt đầu chat. Cuộc trò chuyện của bạn thuộc về bạn.
+
+Tham gia cộng đồng Telegram cho AI developers: **@dibi8dev** —— chia sẻ cấu hình Lobe Chat của bạn và nhận trợ giúp từ 5,000+ builders.
+
+* * *
+
+## Nguồn &amp; Tài Liệu Tham Khảo
+
+1. [Lobe Chat GitHub Repository](https://github.com/lobehub/lobe-chat) —— Mã nguồn, releases, và documentation chính thức
+2. [Lobe Chat Documentation](https://lobehub.com/docs) —— Hướng dẫn cài đặt và cấu hình chính thức
+3. [Lobe Chat Plugin Documentation](https://github.com/lobehub/lobe-chat/wiki/Plugin-System) —— Plugin manifest specification
+4. [Docker Hub — lobehub/lobe-chat](https://hub.docker.com/r/lobehub/lobe-chat) —— Docker image chính thức
+5. [LobeHub Plugin Marketplace](https://lobechat.com/plugins) —— Duyệt các plugin có sẵn
+6. [Next.js Documentation](https://nextjs.org/docs) —— Documentation framework nền tảng
+
+* * *
+
+
+
+## Hosting Và Hạ Tầng Được Đề Xuất
+
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+- **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
+
+*Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
+
+## Tuyên Bố Affiliate
+
+Bài viết này chứa liên kết affiliate. Nếu bạn đăng ký DigitalOcean qua liên kết giới thiệu của chúng tôi, chúng tôi nhận được hoa hồng mà không phát sinh chi phí cho bạn. Chúng tôi chỉ giới thiệu các dịch vụ mà chính chúng tôi sử dụng cho hạ tầng. Lobe Chat là mã nguồn mở (giấy phép MIT) và miễn phí sử dụng —— không cần mua hàng.
+
+
+{
+  &#34;@context&#34;: &#34;https://schema.org&#34;,
+  &#34;@type&#34;: &#34;Article&#34;,
+  &#34;headline&#34;: &#34;Lobe Chat: Giao Diện ChatGPT Mã Nguồn Mở với 20+ Nhà Cung Cấp LLM &amp; Hệ Thống Plugin — Hướng Dẫn 2026&#34;,
+  &#34;datePublished&#34;: &#34;2026-05-19&#34;,
+  &#34;dateModified&#34;: &#34;2026-05-19&#34;,
+  &#34;author&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;
+  },
+  &#34;publisher&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;,
+    &#34;logo&#34;: {
+      &#34;@type&#34;: &#34;ImageObject&#34;,
+      &#34;url&#34;: &#34;https://dibi8.com/logo.png&#34;
+    }
+  },
+  &#34;mainEntityOfPage&#34;: {
+    &#34;@type&#34;: &#34;WebPage&#34;,
+    &#34;@id&#34;: &#34;https://dibi8.com/vi/resources/lobe-chat-openai-alternative-ui&#34;
+  }
+}
+&lt;/script&gt;
+
+* * *
+
+## Related Articles
+
+- [deepseek-harness-plugin-ecosystem-2026](lobe-chat-openai-alternative-ui)
+- [12-factor-agents-production-llm-software-2026](lobe-chat-openai-alternative-ui)
+- [12-factor-agents](lobe-chat-openai-alternative-ui)
+- [1m-context-window-llm-2026-real-test](lobe-chat-openai-alternative-ui)
+- [9router-smart-llm-proxy-token-saver-free-coding](lobe-chat-openai-alternative-ui)
+
+* * *
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
+</code></pre></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/vi/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/vi/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/vi/ai-coding-agents/llms-txt-generator/><span class=title>« Trang trước</span>
+<span>AI Tool Guide</span>
+</a><a class=next href=https://dibi8.com/vi/ai-coding-agents/local-deep-research-local-first-ai-deep-research-tool/><span class=title>Trang tiếp theo »</span>
+<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/vi/>Dibi8</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="Sao chép";function s(){t.innerHTML="Đã sao chép!",setTimeout(()=>{t.innerHTML="Sao chép"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

@@ -1,0 +1,355 @@
+<!doctype html><html lang=vi dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/vi/ai-coding-agents/nvidia-cosmos-world-models-platform-2026/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/nvidia-cosmos-world-models-platform-2026/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/nvidia-cosmos-world-models-platform-2026/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/nvidia-cosmos-world-models-platform-2026/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/nvidia-cosmos-world-models-platform-2026/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/vi/ai-coding-agents/nvidia-cosmos-world-models-platform-2026/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="vi"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Tool Guide","item":"https://dibi8.com/vi/ai-coding-agents/nvidia-cosmos-world-models-platform-2026/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"\nNVIDIA Cosmos: Các mô hình thế giới mã nguồn mở cho Physical AI (10K Sao) Điều gì sẽ xảy ra nếu bạn có thể dự đoán cách thế giới vật lý vận hành — không phải bằng cách mô phỏng các phương trình vật lý, mà bằng cách học từ chính thế giới?\nNVIDIA Cosmos chính xác là thứ đó: một nền tảng mã nguồn mở của các mô hình thế giới được huấn luyện để hiểu và tạo ra thế giới vật lý. Nó không chỉ tạo ra hình ảnh của một robot di chuyển — nó dự đoán được vật lý, thời gian, và mối quan hệ nhân quả của chuyển động đó.\nCosmos 3 là họ mô hình mới nhất của NVIDIA, được xây dựng trên kiến trúc Mixture-of-Transformers (MoT) thống nhất xử lý ngôn ngữ, hình ảnh, video, âm thanh và chuỗi hành động cùng lúc. Hai chế độ runtime: một Reasoner (để hiểu thế giới và lập kế hoạch) và một Generator (để mô phỏng thế giới và tạo dữ liệu tổng hợp).\nCác mô hình có kích thước từ 16B (Nano) đến 64B (Super), có sẵn trên HuggingFace. Đây là cơ sở hạ tầng cho thế hệ Physical AI tiếp theo — robot, xe tự hành, cơ sở hạ tầng thông minh.\nNVIDIA Cosmos là gì? NVIDIA Cosmos là một nền tảng mở của các mô hình thế giới, tập dữ liệu và công cụ được thiết kế để xây dựng các hệ thống Physical AI. Nó vượt xa những gì AI truyền thống có thể làm: ```` AI truyền thống: Cosmos: Đầu vào → Đầu ra → Đầu vào → Lý luận → Đầu ra (ảnh vào, (hiểu vật lý, caption ra) dự đoán tương lai, tạo hành động)\nCác khả năng chính: - **Hiểu thế giới**: Phân tích video và hình ảnh để tạo mô tả, sự kiện theo thời gian, hành động tiếp theo, nền tảng không gian, tính hợp lý vật lý, và kết quả nhân quả - **Tạo thế giới**: Tạo ra hình ảnh, video, âm thanh đồng bộ, và chuỗi hành động có điều kiện từ đầu vào văn bản, hình ảnh, video hoặc hành động - **Mô hình hóa hành động**: Dự đoán hành động chính sách, động lực học ngược, và động lực học thuận cho robot, chuyển động máy quay, chuyển động góc nhìn thứ nhất, và lái xe tự hành Họ mô hình Cosmos 3 bao gồm: | Mô hình | Kích thước | Khả năng | |---------|---------|------------| | Cosmos3-Nano | 16B | Mô hình omnimodal gọn nhẹ cho hiểu và mô phỏng | | Cosmos3-Super | 64B | Mô hình quy mô tiên phong cho các tác vụ đa phương thức nâng cao | | Cosmos3-Super-Text2Image | 64B | Tạo hình ảnh từ văn bản chất lượng cao | | Cosmos3-Super-Image2Video | 64B | Chuyển ảnh sang video nhất quán về thời gian | | Cosmos3-Nano-Policy-DROID | 16B | Chính sách robot ngôn ngữ-ánh xạ cho thao tác DROID | ## Kiến trúc mô hình: Mixture-of-Transformers Cosmos 3 sử dụng kiến trúc **Mixture-of-Transformers (MoT)** thống nhất kết hợp: 1. **Transformer tự hồi quy (AR)** để lý luận — xử lý các token ngôn ngữ và hình ảnh thông qua tự attention nhân quả để dự đoán token tiếp theo 2. **Transformer khuếch tán (DM)** để tạo — loại nhiễu của các token hình ảnh, video, âm thanh và hành động thông qua full attention ┌─────────────────────────────────────────────┐ │ Cosmos 3: Thống nhất MoT │ ├─────────────────┬───────────────────────────┤ │ Chế độ Reasoner│ Chế độ Generator │ │ (Nhận thức) │ (Tạo dựng) │ ├─────────────────┼───────────────────────────┤ │ Văn bản + Thị giác│ Hình ảnh/Video/ │ │ → Văn bản │ Âm thanh/Hành động │ │ (hiểu biết) │ → Hình ảnh/Video/ │ │ │ Hành thanh/Audio sạch │ ├─────────────────┼───────────────────────────┤ │ Chia sẻ: │ │ │ - Các lớp Transformer │ │ - Các lớp đa phương thức attention │ │ - 3D mRoPE (mã hóa không gian + thời gian)│ └─────────────────┴──────────────────────────┘\nCả hai chế độ đều chia sẻ cùng kiến trúc transformer, các lớp đa phương thức attention, và một 3D embedding vị trí xoay đa chiều thống nhất (mRoPE) mã hóa cấu trúc không gian và thời gian xuyên suốt các phương thức. ## Hai bề mặt Runtime Cosmos 3 cung cấp hai bề mặt runtime riêng biệt: ### Reasoner (Hiểu biết) Xử lý đầu vào và tạo ra đầu ra văn bản cho các tác vụ hiểu thế giới: ````` Đầu vào: Văn bản + Hình ảnh + Video + Hành động ↓ Reasoner (AR Transformer) ↓ Đầu ra: Văn bản (mô tả, hành động tiếp theo, lý luận vật lý, kế hoạch tác vụ) Các trường hợp sử dụng: - Hiểu thế giới từ luồng video\nDự đoán hành động tiếp theo cho robot Kiểm tra tính hợp lý vật lý Dự đoán kết quả nhân quả Lý luận của tác nhân embody Generator (Sáng tạo) Tạo ra các đầu ra không phải văn bản được điều kiện hóa bởi đầu vào đa phương thức: ````` Đầu vào: Văn bản + Hình ảnh + Video + Âm thanh + Hành động ↓ Generator (Diffusion Transformer) ↓ Đầu ra: Hình ảnh + Video + Âm thanh + Hành động\n**Các trường hợp sử dụng**: - Tạo hình ảnh từ văn bản - Tạo video từ hình ảnh - Mô phỏng thế giới và dự đoán tương lai - Tạo dữ liệu tổng hợp để huấn luyện robot - Tạo video có điều kiện theo hành động - Học chính sách từ minh họa ## Bắt đầu nhanh: Cài đặt Cosmos chạy trên Linux với NVIDIA GPU (Ampere, Hopper hoặc Blackwell). Cài đặt sử dụng ````uv```` (trình quản lý gói Python tốc độ cao): ### Yêu cầu hệ thống - **Hệ điều hành**: Linux - **GPU**: NVIDIA GPU (Ampere/A100/H100/Blackwell RTX 6000+) - **CUDA**: 12.8 hoặc 13.0 - **Python**: 3.10+ - **RAM**: 64GB+ (khuyến nghị 128GB cho mô hình 64B) ### Cài đặt với uv `````bash # Cài đặt các phụ thuộc hệ thống sudo apt-get install -y --no-install-recommends curl ffmpeg git-lfs \\ libx11-dev tree wget # Clone framework git clone https://github.com/NVIDIA/cosmos-framework.git cd cosmos-framework # Cài đặt với uv (phiên bản CUDA 12.8) uv sync --all-extras --group=cu128-train source .venv/bin/activate # Hoặc CUDA 13.0 (khuyến nghị): # uv sync --all-extras --group=cu130-train Suy luận nhanh # Suy luận single-GPU với backend Diffusers python -m cosmos_framework.scripts.inference \\ --parallelism-preset=latency \\ -i inputs/omni/t2v.json \\ -o outputs/omni_nano \\ --checkpoint-path Cosmos3-Nano \\ --seed=0 Mô hình HuggingFace # Tải một mô hình từ HuggingFace huggingface-cli download nvidia/Cosmos3-Nano \\ --local-dir ~/cosmos/models/nano Chế độ Generator: Tạo thế giới Generator tạo ra các đầu ra hình ảnh, video, âm thanh và hành động được điều kiện hóa bởi đầu vào đa phương thức: ### Text-to-Image\nfrom cosmos_framework.scripts.inference import run_inference # Tạo hình ảnh từ văn bản result = run_inference( checkpoint=\"Cosmos3-Super-Text2Image\", input_type=\"text\", input_text=\"Một cánh tay robot lắp ráp mạch điện trong phòng thí nghiệm hiện đại\", output_type=\"image\", resolution=\"720p\", seed=42 ) # Đầu ra: Hình ảnh chất lượng cao của robot đang lắp ráp mạch điện Image-to-Video # Tạo video nhất quán về thời gian từ một hình ảnh duy nhất result = run_inference( checkpoint=\"Cosmos3-Super-Image2Video\", input_type=\"image\", input_image=\"robot_lab.jpg\", output_type=\"video\", frame_count=189, # mặc định: 189 frames (~7.8s ở 24fps) fps=24, resolution=\"720p\" ) # Đầu ra: Video của cảnh phòng thí nghiệm robot đang chuyển động Text-to-Video # Tạo video trực tiếp từ prompt văn bản result = run_inference( checkpoint=\"Cosmos3-Nano\", input_type=\"text\", input_text=\"Một xe tự hành di chuyển qua cơn mưa lớn vào ban đêm, ánh sáng thành phố phản chiếu trên mặt đường ướt\", output_type=\"video\", frame_count=300, fps=30, resolution=\"720p\" ) # Đầu ra: Video có âm thanh đồng bộ (AAC stereo 48kHz) Các cài đặt tạo được hỗ trợ Tham số Tùy chọn Độ phân giải 256p, 480p, 720p (mặc định: 480p) Tỷ lệ khung hình 16:9, 4:3, 1:1, 3:4, 9:16 (mặc định: 16:9) Tốc độ khung hình 10, 16, 24, 30 FPS (mặc định: 24) Số khung hình 5 đến 300 frames (mặc định: 189) Độ chính xác BF16 (đã kiểm tra) Chế độ Reasoner: Hiểu thế giới Reasoner cung cấp đầu ra văn bản để hiểu và lập kế hoạch: `````python\nHiểu thế giới từ video result = run_inference( checkpoint=“Cosmos3-Nano”, input_type=“video”, input_video=“warehouse_robots.mp4”, output_type=“text”, task=“describe_temporal_events” )\nĐầu ra: “Ở frame 0-30, hai cánh tay robot phối hợp…” Dự đoán hành động tiếp theo cho một robot result = run_inference( checkpoint=“Cosmos3-Nano-Policy-DROID”, input_type=“image+text”, input_image=“robot_workspace.jpg”, input_text=“Robot nên làm gì tiếp theo?”, output_type=“text” )\nĐầu ra: “Nhấc linh kiện màu đỏ từ khay bên trái…” Kiểm tra tính hợp lý vật lý result = run_inference( checkpoint=“Cosmos3-Super”, input_type=“video”, input_video=“physics_demo.mp4”, output_type=“text”, task=“check_physical_plausibility” )\nĐầu ra: “Quỹ đạo quả bóng vi phạm định luật trọng lực…” ## Các trường hợp sử dụng ### Huấn luyện robot với dữ liệu tổng hợp Cosmos tạo ra dữ liệu huấn luyện tổng hợp cho robot, giảm nhu cầu thu thập dữ liệu thực tế đắt tiền: `````bash # Tạo 1000 clip video tổng hợp của robot trong kho # để huấn luyện chính sách thao tác cosmos_framework.scripts.training.train \\ --recipe examples/launch_sft_vision_nano.sh \\ --num-samples 1000 \\ --output-dir /data/warehouse_synthetic Mô phỏng xe tự hành # Mô phỏng các kịch bản lái xe tự hành result = run_inference( checkpoint=\"Cosmos3-Nano\", input_type=\"text+image\", input_text=\"Một xe tự hành tại ngã tư có đèn đỏ\", input_image=\"intersection.jpg\", output_type=\"video+action\", task=\"predict_vehicle_dynamics\" ) # Đầu ra: Video xe dừng + vector hành động (lái, ga, phanh) Giám sát cơ sở hạ tầng thông minh # Phân tích footage camera bảo mật để phát hiện bất thường result = run_inference( checkpoint=\"Cosmos3-Super\", input_type=\"video\", input_video=\"factory_cam_01.mp4\", output_type=\"text\", task=\"detect_anomalies\" ) # Đầu ra: \"Lúc 14:32:15, xe không nhãn đã xâm nhập khu vực hạn chế...\" Huấn luyện: Fine-tuning các mô hình Cosmos Framework Cosmos bao gồm các script huấn luyện cho supervised fine-tuning (SFT) trên dữ liệu tùy chỉnh: `````bash\nHuấn luyện SFT multi-GPU trên 8× H100 80GB bash examples/launch_sft_vision_nano.sh\nCác tùy chọn cấu hình chính - Các chiến lược song song DP/CP/FSDP - Checkpoint DCP native với HuggingFace safetensors - Các adapter tập dữ liệu JSONL / WebDataset / LeRobot - Huấn luyện mixed precision - Hỗ trợ tiếp tục checkpoint `````python # Ví dụ cấu hình huấn luyện training_config = { \"model\": \"Cosmos3-Nano\", \"num_gpus\": 8, \"parallelism\": \"FSDP\", # Fully Sharded Data Parallel \"mixed_precision\": \"bf16\", \"batch_size_per_gpu\": 4, \"dataset\": { \"type\": \"jsonl\", \"path\": \"/data/training_samples.jsonl\" }, \"checkpoint_dir\": \"/checkpoints/sft_nano\" } ```` ## So sánh với các lựa chọn thay thế | Tính năng | NVIDIA Cosmos | Runway Gen-3 | Sora | Pika Labs | |---------|--------------|-------------|------|-----------| | **Mã nguồn mở** | ✅ Có | ❌ Đóng | ❌ Đóng | ❌ Đóng | | **Chế độ lý luận** | ✅ Tích hợp | ❌ | ❌ | ❌ | | **Tạo hành động** | ✅ Tích hợp | ❌ | ❌ | ❌ | | **Chính sách robot** | ✅ Mô hình DROID | ❌ | ❌ | ❌ | | **Suy luận cục bộ** | ✅ Có | ❌ API only | ❌ API only | ❌ API only | | **Dữ liệu tổng hợp** | ✅ Tích hợp | ❌ | ❌ | ❌ | | **Fine-tuning** | ✅ Được hỗ trợ | ❌ | ❌ | ❌ | | **Mô hình có sẵn** | 5 (Nano + Super variants) | 1 | 1 | 1 | | **Yêu cầu GPU** | Khuyến nghị H100/A100 | Chỉ cloud | Chỉ cloud | Chỉ cloud | | **Giấy phép** | Apache-2.0 | Đóng | Đóng | Đóng | | Tính năng | NVIDIA Cosmos | Stable Video Diffusion | Luma Dream Machine | |---------|--------------|----------------------|------------------| | **Mã nguồn mở** | ✅ Có | ✅ Có | ❌ Đóng | | **Đa phương thức** | ✅ Văn bản+Hình+Video+Âm thanh+Hành động | ❌ Chỉ Ảnh→Video | ❌ Chỉ Văn bản→Video | | **Lý luận vật lý** | ✅ Tích hợp | ❌ | ❌ | | **Hỗ trợ robotics** | ✅ Mô hình chính sách DROID | ❌ | ❌ | ## Benchmark ### Chất lượng tạo Các mô hình Cosmos 3 được đánh giá trên nhiều benchmark: | Benchmark | Cosmos3-Nano | Cosmos3-Super | Runway Gen-3 | Sora | |-----------|-------------|---------------|-------------|------| | VideoFID (↓) | 8.2 | 5.1 | 6.3 | 4.8 | | Điểm CLIP-I (↑) | 0.89 | 0.93 | 0.91 | 0.92 | | Tính hợp lý vật lý (↑) | 0.76 | 0.89 | N/A | N/A | | Độ chính xác hành động (↑) | 0.71 | 0.84 | N/A | N/A | **Nguồn**: Đánh giá nội bộ NVIDIA, tháng 5 năm 2026. VideoFID: càng thấp càng tốt. CLIP-I: càng cao càng tốt (alignment hình ảnh-văn bản). Tính hợp lý vật lý: điểm đánh giá của con người về độ chính xác vật lý. Độ chính xác hành động: hành động dự đoán so với ground truth. ### Tốc độ suy luận | Mô hình | Độ phân giải | Số khung hình | GPU | Thời gian | |-------|-----------|-------------|-----|------| | Cosmos3-Nano | 480p | 189 frames | 1×H100 | ~45 giây | | Cosmos3-Nano | 720p | 189 frames | 1×H100 | ~90 giây | | Cosmos3-Super | 480p | 189 frames | 1×H100 | ~180 giây | | Cosmos3-Super | 720p | 189 frames | 2×H100 | ~240 giây | ## Hạn chế và đánh giá trung thực Cosmos là một bước đột phá, nhưng quan trọng là phải hiểu rõ những hạn chế của nó: 1. **Yêu cầu phần cứng nặng**: Bạn cần ít nhất một GPU cấp H100/A100 cho hiệu suất khá. Các mô hình 64B có thể yêu cầu 2+ GPU. Đây không phải thứ có thể chạy trên phần cứng tiêu dùng. 2. **Chỉ Linux**: Framework chỉ chạy trên Linux, với CUDA. Hiện không hỗ trợ macOS. 3. **Dự án rất non trẻ**: Commit đầu tiên tháng 12 năm 2024. Mặc dù có nguồn lực của NVIDIA, đây vẫn là một dự án đang phát triển nhanh với các thay đổi có thể phá vỡ. 4. **Không có API thân thiện người dùng**: Không giống như Runway, Sora hoặc Pika, Cosmos yêu cầu bạn tự thiết lập framework. Không có giao diện \"click and generate\" (dù trang web tại nvidia.com/en-us/ai/cosmos/ cung cấp trải nghiệm có hướng dẫn). 5. **Phụ thuộc vào tập dữ liệu**: Chất lượng của Cosmos phụ thuộc rất nhiều vào dữ liệu huấn luyện. Nếu bạn cố gắng fine-tune trên domain riêng (hình ảnh y khoa, trực quan hóa khoa học), bạn sẽ cần dữ liệu huấn luyện đặc thù domain. 6. **Khóa hệ sinh thái NVIDIA**: Mặc dù các mô hình là mã nguồn mở (Apache-2.0), toàn bộ toolchain (Cosmos framework, NGC images, tối ưu hóa NVIDIA) được gắn chặt với phần cứng NVIDIA. Chạy trên AMD hoặc Intel GPU hiện không được hỗ trợ. 7. **Cộng đồng nhỏ**: 19 issues mở, 657 forks. Dự án đang phát triển nhanh, nhưng cộng đồng nhỏ so với các mô hình như Stable Diffusion hay Llama. ## Câu hỏi thường gặp **H: Tôi có thể chạy Cosmos trên GPU tiêu dùng không?** Về mặt kỹ thuật, bạn có thể chạy Cosmos3-Nano trên GPU cao cấp tiêu dùng (RTX 4090 với 24GB VRAM) cho các tác vụ nhỏ (256p, video ngắn), nhưng hiệu suất sẽ bị giới hạn. Các mô hình 64B yêu cầu GPU cấp A100/H100. **H: Cosmos khác gì so với Stable Video Diffusion?** SVD chỉ là mô hình ảnh sang video. Cosmos là một nền tảng đa phương thức thống nhất xử lý văn bản sang ảnh, văn bản sang video, ảnh sang video, hiểu video, lý luận vật lý và dự đoán chính sách robot — tất cả trong một framework. **H: Tôi có thể fine-tune Cosmos trên dữ liệu của mình không?** Có. Framework hỗ trợ supervised fine-tuning (SFT) với định dạng JSONL, WebDataset và LeRobot. Bạn cần 8× GPU H100 để fine-tune đầy đủ mô hình 64B. Đối với mô hình nhỏ hơn (Nano), 4 GPU có thể đủ. **H: Cosmos có sẵn dưới dạng API không?** Không trực tiếp. Tuy nhiên, NVIDIA cung cấp Cosmos thông qua nền tảng NIM (NVIDIA Inference Microservices) của họ, cung cấp API tương thích OpenAI cho các mô hình Cosmos. **H: Giấy phép là gì?** Apache-2.0 cho mã nguồn, với trọng số mô hình có sẵn dưới giấy phép nghiên cứu của NVIDIA. Sử dụng thương mại được phép với ghi nhận thích đáng. ## Kết luận NVIDIA Cosmos đại diện cho một sự chuyển đổi căn bản trong cách chúng ta tiếp cận AI và thế giới vật lý. Thay vì xử lý tạo video, tạo ảnh, chính sách robot và lý luận vật lý như các vấn đề riêng biệt, Cosmos thống nhất chúng trong một kiến trúc Mixture-of-Transformers duy nhất. Sự kết hợp của Chế độ Reasoner (hiểu biết) và Chế độ Generator (sáng tạo) — cả hai chia sẻ cùng backbone transformer — có nghĩa là bạn có thể chuyển từ hiểu một cảnh sang tạo tương lai của cảnh đó trong một pipeline duy nhất. Đối với robotics, lái xe tự hành và cơ sở hạ tầng thông minh, Cosmos không chỉ là một mô hình AI khác. Đó là cơ sở hạ tầng. Nếu bạn đang xây dựng các hệ thống Physical AI, Cosmos nên nằm ở đầu danh sách nghiên cứu của bạn. * * * **Nguồn \u0026 Đọc thêm**: - Báo cáo kỹ thuật: https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf - Mô hình Cosmos 3: https://huggingface.co/collections/nvidia/cosmos3 - Cosmos Framework: https://github.com/NVIDIA/cosmos-framework - Website: https://www.nvidia.com/en-us/ai/cosmos/ * * * **Trải nghiệm NVIDIA Cosmos**: Truy cập [nvidia.com/en-us/ai/cosmos/](https://www.nvidia.com/en-us/ai/cosmos/) cho trải nghiệm có hướng dẫn, hoặc clone [github.com/NVIDIA/cosmos-framework](https://github.com/NVIDIA/cosmos-framework) cho full framework. Tham gia cộng đồng: [Telegram](https://t.me/DIBI8_Group) · [HuggingFace](https://huggingface.co/collections/nvidia/cosmos3) Internal links: [Runway Gen-3 Review 2026](https://dibi8.com/runway-gen3-review-2026) · [Stability AI Stable Video Diffusion](https://dibi8.com/stability-ai-stable-video-diffusion) ** Disclosure**: Bài viết này đề cập đến các công cụ có thể có quan hệ affiliate. Chúng tôi không chấp nhận thanh toán cho đánh giá tích cực. Tất cả benchmark đều do tự thực hiện hoặc sourced từ tài liệu chính thức. { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"NVIDIA Cosmos: Các mô hình thế giới mã nguồn mở cho Physical AI (10K Sao)\", \"datePublished\": \"2026-06-13\", \"dateModified\": \"2026-06-13\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/vi/resources/nvidia-cosmos-world-models-platform-2026\" } } * * * ## Related Articles - [nvidia-cosmos-world-models-platform-2026](nvidia-cosmos-world-models-platform-2026) - [2026-05-25-trending-ai-agents](nvidia-cosmos-world-models-platform-2026) - [2026-06-01-trending-ai-agents](nvidia-cosmos-world-models-platform-2026) - [2026-06-08-trending-ai-agents](nvidia-cosmos-world-models-platform-2026) - [2026-06-15-trending-ai-agents](nvidia-cosmos-world-models-platform-2026) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ","wordCount":"3084","inLanguage":"vi","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/vi/ai-coding-agents/nvidia-cosmos-world-models-platform-2026/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/vi/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/vi/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/vi/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/vi/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/vi/>Trang chủ</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
+<a href>AI Coding Agents - dibi8</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>15 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/nvidia-cosmos-world-models-platform-2026/>En</a></li><li><a href=https://dibi8.com/zh/ai-coding-agents/nvidia-cosmos-world-models-platform-2026/>Zh</a></li><li><a href=https://dibi8.com/ko/ai-coding-agents/nvidia-cosmos-world-models-platform-2026/>Ko</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Mục lục</span></summary><div class=inner><ul><li><a href=#nvidia-cosmos-c%c3%a1c-m%c3%b4-h%c3%acnh-th%e1%ba%bf-gi%e1%bb%9bi-m%c3%a3-ngu%e1%bb%93n-m%e1%bb%9f-cho-physical-ai-10k-sao aria-label="NVIDIA Cosmos: Các mô hình thế giới mã nguồn mở cho Physical AI (10K Sao)">NVIDIA Cosmos: Các mô hình thế giới mã nguồn mở cho Physical AI (10K Sao)</a><ul><li><a href=#nvidia-cosmos-l%c3%a0-g%c3%ac aria-label="NVIDIA Cosmos là gì?">NVIDIA Cosmos là gì?</a><ul><li><a href=#generator-s%c3%a1ng-t%e1%ba%a1o aria-label="Generator (Sáng tạo)">Generator (Sáng tạo)</a></li><li><a href=#suy-lu%e1%ba%adn-nhanh aria-label="Suy luận nhanh">Suy luận nhanh</a></li><li><a href=#m%c3%b4-h%c3%acnh-huggingface aria-label="Mô hình HuggingFace">Mô hình HuggingFace</a></li></ul></li><li><a href=#ch%e1%ba%bf-%c4%91%e1%bb%99-generator-t%e1%ba%a1o-th%e1%ba%bf-gi%e1%bb%9bi aria-label="Chế độ Generator: Tạo thế giới">Chế độ Generator: Tạo thế giới</a><ul><li><a href=#image-to-video aria-label=Image-to-Video>Image-to-Video</a></li><li><a href=#text-to-video aria-label=Text-to-Video>Text-to-Video</a></li><li><a href=#c%c3%a1c-c%c3%a0i-%c4%91%e1%ba%b7t-t%e1%ba%a1o-%c4%91%c6%b0%e1%bb%a3c-h%e1%bb%97-tr%e1%bb%a3 aria-label="Các cài đặt tạo được hỗ trợ">Các cài đặt tạo được hỗ trợ</a></li></ul></li><li><a href=#ch%e1%ba%bf-%c4%91%e1%bb%99-reasoner-hi%e1%bb%83u-th%e1%ba%bf-gi%e1%bb%9bi aria-label="Chế độ Reasoner: Hiểu thế giới">Chế độ Reasoner: Hiểu thế giới</a></li></ul></li><li><a href=#hi%e1%bb%83u-th%e1%ba%bf-gi%e1%bb%9bi-t%e1%bb%ab-video aria-label="Hiểu thế giới từ video">Hiểu thế giới từ video</a></li><li><a href=#%c4%91%e1%ba%a7u-ra-%e1%bb%9f-frame-0-30-hai-c%c3%a1nh-tay-robot-ph%e1%bb%91i-h%e1%bb%a3p aria-label="Đầu ra: &ldquo;Ở frame 0-30, hai cánh tay robot phối hợp&mldr;&rdquo;">Đầu ra: &ldquo;Ở frame 0-30, hai cánh tay robot phối hợp&mldr;&rdquo;</a></li><li><a href=#d%e1%bb%b1-%c4%91o%c3%a1n-h%c3%a0nh-%c4%91%e1%bb%99ng-ti%e1%ba%bfp-theo-cho-m%e1%bb%99t-robot aria-label="Dự đoán hành động tiếp theo cho một robot">Dự đoán hành động tiếp theo cho một robot</a></li><li><a href=#%c4%91%e1%ba%a7u-ra-nh%e1%ba%a5c-linh-ki%e1%bb%87n-m%c3%a0u-%c4%91%e1%bb%8f-t%e1%bb%ab-khay-b%c3%aan-tr%c3%a1i aria-label="Đầu ra: &ldquo;Nhấc linh kiện màu đỏ từ khay bên trái&mldr;&rdquo;">Đầu ra: &ldquo;Nhấc linh kiện màu đỏ từ khay bên trái&mldr;&rdquo;</a></li><li><a href=#ki%e1%bb%83m-tra-t%c3%adnh-h%e1%bb%a3p-l%c3%bd-v%e1%ba%adt-l%c3%bd aria-label="Kiểm tra tính hợp lý vật lý">Kiểm tra tính hợp lý vật lý</a></li><li><a href=#%c4%91%e1%ba%a7u-ra-qu%e1%bb%b9-%c4%91%e1%ba%a1o-qu%e1%ba%a3-b%c3%b3ng-vi-ph%e1%ba%a1m-%c4%91%e1%bb%8bnh-lu%e1%ba%adt-tr%e1%bb%8dng-l%e1%bb%b1c aria-label="Đầu ra: &ldquo;Quỹ đạo quả bóng vi phạm định luật trọng lực&mldr;&rdquo;">Đầu ra: &ldquo;Quỹ đạo quả bóng vi phạm định luật trọng lực&mldr;&rdquo;</a><ul><ul><li><a href=#m%c3%b4-ph%e1%bb%8fng-xe-t%e1%bb%b1-h%c3%a0nh aria-label="Mô phỏng xe tự hành">Mô phỏng xe tự hành</a></li><li><a href=#gi%c3%a1m-s%c3%a1t-c%c6%a1-s%e1%bb%9f-h%e1%ba%a1-t%e1%ba%a7ng-th%c3%b4ng-minh aria-label="Giám sát cơ sở hạ tầng thông minh">Giám sát cơ sở hạ tầng thông minh</a></li></ul><li><a href=#hu%e1%ba%a5n-luy%e1%bb%87n-fine-tuning-c%c3%a1c-m%c3%b4-h%c3%acnh-cosmos aria-label="Huấn luyện: Fine-tuning các mô hình Cosmos">Huấn luyện: Fine-tuning các mô hình Cosmos</a></li></ul></li><li><a href=#hu%e1%ba%a5n-luy%e1%bb%87n-sft-multi-gpu-tr%c3%aan-8-h100-80gb aria-label="Huấn luyện SFT multi-GPU trên 8× H100 80GB">Huấn luyện SFT multi-GPU trên 8× H100 80GB</a></li><li><a href=#c%c3%a1c-t%c3%b9y-ch%e1%bb%8dn-c%e1%ba%a5u-h%c3%acnh-ch%c3%adnh aria-label="Các tùy chọn cấu hình chính">Các tùy chọn cấu hình chính</a></li><li><a href=#--c%c3%a1c-chi%e1%ba%bfn-l%c6%b0%e1%bb%a3c-song-song-dpcpfsdp aria-label="- Các chiến lược song song DP/CP/FSDP">- Các chiến lược song song DP/CP/FSDP</a></li><li><a href=#--checkpoint-dcp-native-v%e1%bb%9bi-huggingface-safetensors aria-label="- Checkpoint DCP native với HuggingFace safetensors">- Checkpoint DCP native với HuggingFace safetensors</a></li><li><a href=#--c%c3%a1c-adapter-t%e1%ba%adp-d%e1%bb%af-li%e1%bb%87u-jsonl--webdataset--lerobot aria-label="- Các adapter tập dữ liệu JSONL / WebDataset / LeRobot">- Các adapter tập dữ liệu JSONL / WebDataset / LeRobot</a></li><li><a href=#--hu%e1%ba%a5n-luy%e1%bb%87n-mixed-precision aria-label="- Huấn luyện mixed precision">- Huấn luyện mixed precision</a></li><li><a href=#--h%e1%bb%97-tr%e1%bb%a3-ti%e1%ba%bfp-t%e1%bb%a5c-checkpoint aria-label="- Hỗ trợ tiếp tục checkpoint">- Hỗ trợ tiếp tục checkpoint</a></li></ul></div></details><div class="post-content md-content"><p><img alt="Nền tảng NVIDIA Cosmos" loading=lazy src=https://raw.githubusercontent.com/NVIDIA/cosmos/main/cookbooks/cosmos3/cosmos3-model-architecture.png></p><h1 id=nvidia-cosmos-các-mô-hình-thế-giới-mã-nguồn-mở-cho-physical-ai-10k-sao>NVIDIA Cosmos: Các mô hình thế giới mã nguồn mở cho Physical AI (10K Sao)<a hidden class=anchor aria-hidden=true href=#nvidia-cosmos-các-mô-hình-thế-giới-mã-nguồn-mở-cho-physical-ai-10k-sao>#</a></h1><p>Điều gì sẽ xảy ra nếu bạn có thể dự đoán cách thế giới vật lý vận hành — không phải bằng cách mô phỏng các phương trình vật lý, mà bằng cách học từ chính thế giới?</p><p>NVIDIA Cosmos chính xác là thứ đó: một nền tảng mã nguồn mở của các mô hình thế giới được huấn luyện để hiểu và tạo ra thế giới vật lý. Nó không chỉ tạo ra hình ảnh của một robot di chuyển — nó dự đoán được vật lý, thời gian, và mối quan hệ nhân quả của chuyển động đó.</p><p>Cosmos 3 là họ mô hình mới nhất của NVIDIA, được xây dựng trên kiến trúc Mixture-of-Transformers (MoT) thống nhất xử lý ngôn ngữ, hình ảnh, video, âm thanh và chuỗi hành động cùng lúc. Hai chế độ runtime: một <strong>Reasoner</strong> (để hiểu thế giới và lập kế hoạch) và một <strong>Generator</strong> (để mô phỏng thế giới và tạo dữ liệu tổng hợp).</p><p>Các mô hình có kích thước từ 16B (Nano) đến 64B (Super), có sẵn trên HuggingFace. Đây là cơ sở hạ tầng cho thế hệ Physical AI tiếp theo — robot, xe tự hành, cơ sở hạ tầng thông minh.</p><h2 id=nvidia-cosmos-là-gì>NVIDIA Cosmos là gì?<a hidden class=anchor aria-hidden=true href=#nvidia-cosmos-là-gì>#</a></h2><p>NVIDIA Cosmos là một <strong>nền tảng mở của các mô hình thế giới, tập dữ liệu và công cụ</strong> được thiết kế để xây dựng các hệ thống Physical AI. Nó vượt xa những gì AI truyền thống có thể làm: ````
+AI truyền thống: Cosmos: Đầu vào → Đầu ra → Đầu vào → Lý luận → Đầu ra
+(ảnh vào, (hiểu vật lý,
+caption ra) dự đoán tương lai,
+tạo hành động)</p><pre tabindex=0><code>
+Các khả năng chính: - **Hiểu thế giới**: Phân tích video và hình ảnh để tạo mô tả, sự kiện theo thời gian, hành động tiếp theo, nền tảng không gian, tính hợp lý vật lý, và kết quả nhân quả
+- **Tạo thế giới**: Tạo ra hình ảnh, video, âm thanh đồng bộ, và chuỗi hành động có điều kiện từ đầu vào văn bản, hình ảnh, video hoặc hành động
+- **Mô hình hóa hành động**: Dự đoán hành động chính sách, động lực học ngược, và động lực học thuận cho robot, chuyển động máy quay, chuyển động góc nhìn thứ nhất, và lái xe tự hành
+
+Họ mô hình Cosmos 3 bao gồm: | Mô hình | Kích thước | Khả năng |
+|---------|---------|------------|
+| Cosmos3-Nano | 16B | Mô hình omnimodal gọn nhẹ cho hiểu và mô phỏng |
+| Cosmos3-Super | 64B | Mô hình quy mô tiên phong cho các tác vụ đa phương thức nâng cao |
+| Cosmos3-Super-Text2Image | 64B | Tạo hình ảnh từ văn bản chất lượng cao |
+| Cosmos3-Super-Image2Video | 64B | Chuyển ảnh sang video nhất quán về thời gian |
+| Cosmos3-Nano-Policy-DROID | 16B | Chính sách robot ngôn ngữ-ánh xạ cho thao tác DROID |
+
+## Kiến trúc mô hình: Mixture-of-Transformers
+
+Cosmos 3 sử dụng kiến trúc **Mixture-of-Transformers (MoT)** thống nhất kết hợp: 1. **Transformer tự hồi quy (AR)** để lý luận — xử lý các token ngôn ngữ và hình ảnh thông qua tự attention nhân quả để dự đoán token tiếp theo
+2. **Transformer khuếch tán (DM)** để tạo — loại nhiễu của các token hình ảnh, video, âm thanh và hành động thông qua full attention
+</code></pre><p>┌─────────────────────────────────────────────┐
+│ Cosmos 3: Thống nhất MoT │
+├─────────────────┬───────────────────────────┤
+│ Chế độ Reasoner│ Chế độ Generator │
+│ (Nhận thức) │ (Tạo dựng) │
+├─────────────────┼───────────────────────────┤
+│ Văn bản + Thị giác│ Hình ảnh/Video/ │
+│ → Văn bản │ Âm thanh/Hành động │
+│ (hiểu biết) │ → Hình ảnh/Video/ │
+│ │ Hành thanh/Audio sạch │
+├─────────────────┼───────────────────────────┤
+│ Chia sẻ: │ │
+│ - Các lớp Transformer │
+│ - Các lớp đa phương thức attention │
+│ - 3D mRoPE (mã hóa không gian + thời gian)│
+└─────────────────┴──────────────────────────┘</p><pre tabindex=0><code>
+Cả hai chế độ đều chia sẻ cùng kiến trúc transformer, các lớp đa phương thức attention, và một 3D embedding vị trí xoay đa chiều thống nhất (mRoPE) mã hóa cấu trúc không gian và thời gian xuyên suốt các phương thức.
+
+## Hai bề mặt Runtime
+
+Cosmos 3 cung cấp hai bề mặt runtime riêng biệt: ### Reasoner (Hiểu biết)
+
+Xử lý đầu vào và tạo ra đầu ra văn bản cho các tác vụ hiểu thế giới: `````
+Đầu vào: Văn bản + Hình ảnh + Video + Hành động
+         ↓
+    Reasoner (AR Transformer)
+         ↓
+Đầu ra: Văn bản (mô tả, hành động tiếp theo, lý luận vật lý, kế hoạch tác vụ)
+</code></pre><p><strong>Các trường hợp sử dụng</strong>: - Hiểu thế giới từ luồng video</p><ul><li>Dự đoán hành động tiếp theo cho robot</li><li>Kiểm tra tính hợp lý vật lý</li><li>Dự đoán kết quả nhân quả</li><li>Lý luận của tác nhân embody</li></ul><h3 id=generator-sáng-tạo>Generator (Sáng tạo)<a hidden class=anchor aria-hidden=true href=#generator-sáng-tạo>#</a></h3><p>Tạo ra các đầu ra không phải văn bản được điều kiện hóa bởi đầu vào đa phương thức: `````
+Đầu vào: Văn bản + Hình ảnh + Video + Âm thanh + Hành động
+↓
+Generator (Diffusion Transformer)
+↓
+Đầu ra: Hình ảnh + Video + Âm thanh + Hành động</p><pre tabindex=0><code>
+**Các trường hợp sử dụng**: - Tạo hình ảnh từ văn bản
+- Tạo video từ hình ảnh
+- Mô phỏng thế giới và dự đoán tương lai
+- Tạo dữ liệu tổng hợp để huấn luyện robot
+- Tạo video có điều kiện theo hành động
+- Học chính sách từ minh họa
+
+## Bắt đầu nhanh: Cài đặt
+
+Cosmos chạy trên Linux với NVIDIA GPU (Ampere, Hopper hoặc Blackwell). Cài đặt sử dụng ````uv```` (trình quản lý gói Python tốc độ cao): ### Yêu cầu hệ thống
+
+- **Hệ điều hành**: Linux
+- **GPU**: NVIDIA GPU (Ampere/A100/H100/Blackwell RTX 6000+)
+- **CUDA**: 12.8 hoặc 13.0
+- **Python**: 3.10+
+- **RAM**: 64GB+ (khuyến nghị 128GB cho mô hình 64B)
+
+### Cài đặt với uv
+
+`````bash
+# Cài đặt các phụ thuộc hệ thống
+sudo apt-get install -y --no-install-recommends curl ffmpeg git-lfs \
+  libx11-dev tree wget
+
+# Clone framework
+git clone https://github.com/NVIDIA/cosmos-framework.git
+cd cosmos-framework
+
+# Cài đặt với uv (phiên bản CUDA 12.8)
+uv sync --all-extras --group=cu128-train
+source .venv/bin/activate
+
+# Hoặc CUDA 13.0 (khuyến nghị): # uv sync --all-extras --group=cu130-train
+</code></pre><h3 id=suy-luận-nhanh>Suy luận nhanh<a hidden class=anchor aria-hidden=true href=#suy-luận-nhanh>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Suy luận single-GPU với backend Diffusers</span>
+</span></span><span style=display:flex><span>python <span style=color:#f92672>-</span>m cosmos_framework<span style=color:#f92672>.</span>scripts<span style=color:#f92672>.</span>inference \
+</span></span><span style=display:flex><span>    <span style=color:#f92672>--</span>parallelism<span style=color:#f92672>-</span>preset<span style=color:#f92672>=</span>latency \
+</span></span><span style=display:flex><span>    <span style=color:#f92672>-</span>i inputs<span style=color:#f92672>/</span>omni<span style=color:#f92672>/</span>t2v<span style=color:#f92672>.</span>json \
+</span></span><span style=display:flex><span>    <span style=color:#f92672>-</span>o outputs<span style=color:#f92672>/</span>omni_nano \
+</span></span><span style=display:flex><span>    <span style=color:#f92672>--</span>checkpoint<span style=color:#f92672>-</span>path Cosmos3<span style=color:#f92672>-</span>Nano \
+</span></span><span style=display:flex><span>    <span style=color:#f92672>--</span>seed<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>
+</span></span></code></pre></div><h3 id=mô-hình-huggingface>Mô hình HuggingFace<a hidden class=anchor aria-hidden=true href=#mô-hình-huggingface>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Tải một mô hình từ HuggingFace</span>
+</span></span><span style=display:flex><span>huggingface-cli download nvidia/Cosmos3-Nano <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>    --local-dir ~/cosmos/models/nano
+</span></span></code></pre></div><h2 id=chế-độ-generator-tạo-thế-giới>Chế độ Generator: Tạo thế giới<a hidden class=anchor aria-hidden=true href=#chế-độ-generator-tạo-thế-giới>#</a></h2><p>Generator tạo ra các đầu ra hình ảnh, video, âm thanh và hành động được điều kiện hóa bởi đầu vào đa phương thức: ### Text-to-Image</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> cosmos_framework.scripts.inference <span style=color:#f92672>import</span> run_inference
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Tạo hình ảnh từ văn bản</span>
+</span></span><span style=display:flex><span>result <span style=color:#f92672>=</span> run_inference(
+</span></span><span style=display:flex><span>    checkpoint<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Cosmos3-Super-Text2Image&#34;</span>,
+</span></span><span style=display:flex><span>    input_type<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text&#34;</span>,
+</span></span><span style=display:flex><span>    input_text<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Một cánh tay robot lắp ráp mạch điện trong phòng thí nghiệm hiện đại&#34;</span>,
+</span></span><span style=display:flex><span>    output_type<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;image&#34;</span>,
+</span></span><span style=display:flex><span>    resolution<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;720p&#34;</span>,
+</span></span><span style=display:flex><span>    seed<span style=color:#f92672>=</span><span style=color:#ae81ff>42</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span><span style=color:#75715e># Đầu ra: Hình ảnh chất lượng cao của robot đang lắp ráp mạch điện</span>
+</span></span></code></pre></div><h3 id=image-to-video>Image-to-Video<a hidden class=anchor aria-hidden=true href=#image-to-video>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Tạo video nhất quán về thời gian từ một hình ảnh duy nhất</span>
+</span></span><span style=display:flex><span>result <span style=color:#f92672>=</span> run_inference(
+</span></span><span style=display:flex><span>    checkpoint<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Cosmos3-Super-Image2Video&#34;</span>,
+</span></span><span style=display:flex><span>    input_type<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;image&#34;</span>,
+</span></span><span style=display:flex><span>    input_image<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;robot_lab.jpg&#34;</span>,
+</span></span><span style=display:flex><span>    output_type<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;video&#34;</span>,
+</span></span><span style=display:flex><span>    frame_count<span style=color:#f92672>=</span><span style=color:#ae81ff>189</span>,  <span style=color:#75715e># mặc định: 189 frames (~7.8s ở 24fps)</span>
+</span></span><span style=display:flex><span>    fps<span style=color:#f92672>=</span><span style=color:#ae81ff>24</span>,
+</span></span><span style=display:flex><span>    resolution<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;720p&#34;</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span><span style=color:#75715e># Đầu ra: Video của cảnh phòng thí nghiệm robot đang chuyển động</span>
+</span></span></code></pre></div><h3 id=text-to-video>Text-to-Video<a hidden class=anchor aria-hidden=true href=#text-to-video>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Tạo video trực tiếp từ prompt văn bản</span>
+</span></span><span style=display:flex><span>result <span style=color:#f92672>=</span> run_inference(
+</span></span><span style=display:flex><span>    checkpoint<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Cosmos3-Nano&#34;</span>,
+</span></span><span style=display:flex><span>    input_type<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text&#34;</span>,
+</span></span><span style=display:flex><span>    input_text<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Một xe tự hành di chuyển qua cơn mưa lớn vào ban đêm, ánh sáng thành phố phản chiếu trên mặt đường ướt&#34;</span>,
+</span></span><span style=display:flex><span>    output_type<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;video&#34;</span>,
+</span></span><span style=display:flex><span>    frame_count<span style=color:#f92672>=</span><span style=color:#ae81ff>300</span>,
+</span></span><span style=display:flex><span>    fps<span style=color:#f92672>=</span><span style=color:#ae81ff>30</span>,
+</span></span><span style=display:flex><span>    resolution<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;720p&#34;</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span><span style=color:#75715e># Đầu ra: Video có âm thanh đồng bộ (AAC stereo 48kHz)</span>
+</span></span></code></pre></div><h3 id=các-cài-đặt-tạo-được-hỗ-trợ>Các cài đặt tạo được hỗ trợ<a hidden class=anchor aria-hidden=true href=#các-cài-đặt-tạo-được-hỗ-trợ>#</a></h3><table><thead><tr><th>Tham số</th><th>Tùy chọn</th></tr></thead><tbody><tr><td>Độ phân giải</td><td>256p, 480p, 720p (mặc định: 480p)</td></tr><tr><td>Tỷ lệ khung hình</td><td>16:9, 4:3, 1:1, 3:4, 9:16 (mặc định: 16:9)</td></tr><tr><td>Tốc độ khung hình</td><td>10, 16, 24, 30 FPS (mặc định: 24)</td></tr><tr><td>Số khung hình</td><td>5 đến 300 frames (mặc định: 189)</td></tr><tr><td>Độ chính xác</td><td>BF16 (đã kiểm tra)</td></tr></tbody></table><h2 id=chế-độ-reasoner-hiểu-thế-giới>Chế độ Reasoner: Hiểu thế giới<a hidden class=anchor aria-hidden=true href=#chế-độ-reasoner-hiểu-thế-giới>#</a></h2><p>Reasoner cung cấp đầu ra văn bản để hiểu và lập kế hoạch: `````python</p><h1 id=hiểu-thế-giới-từ-video>Hiểu thế giới từ video<a hidden class=anchor aria-hidden=true href=#hiểu-thế-giới-từ-video>#</a></h1><p>result = run_inference(
+checkpoint=&ldquo;Cosmos3-Nano&rdquo;,
+input_type=&ldquo;video&rdquo;,
+input_video=&ldquo;warehouse_robots.mp4&rdquo;,
+output_type=&ldquo;text&rdquo;,
+task=&ldquo;describe_temporal_events&rdquo;
+)</p><h1 id=đầu-ra-ở-frame-0-30-hai-cánh-tay-robot-phối-hợp>Đầu ra: &ldquo;Ở frame 0-30, hai cánh tay robot phối hợp&mldr;&rdquo;<a hidden class=anchor aria-hidden=true href=#đầu-ra-ở-frame-0-30-hai-cánh-tay-robot-phối-hợp>#</a></h1><h1 id=dự-đoán-hành-động-tiếp-theo-cho-một-robot>Dự đoán hành động tiếp theo cho một robot<a hidden class=anchor aria-hidden=true href=#dự-đoán-hành-động-tiếp-theo-cho-một-robot>#</a></h1><p>result = run_inference(
+checkpoint=&ldquo;Cosmos3-Nano-Policy-DROID&rdquo;,
+input_type=&ldquo;image+text&rdquo;,
+input_image=&ldquo;robot_workspace.jpg&rdquo;,
+input_text=&ldquo;Robot nên làm gì tiếp theo?&rdquo;,
+output_type=&ldquo;text&rdquo;
+)</p><h1 id=đầu-ra-nhấc-linh-kiện-màu-đỏ-từ-khay-bên-trái>Đầu ra: &ldquo;Nhấc linh kiện màu đỏ từ khay bên trái&mldr;&rdquo;<a hidden class=anchor aria-hidden=true href=#đầu-ra-nhấc-linh-kiện-màu-đỏ-từ-khay-bên-trái>#</a></h1><h1 id=kiểm-tra-tính-hợp-lý-vật-lý>Kiểm tra tính hợp lý vật lý<a hidden class=anchor aria-hidden=true href=#kiểm-tra-tính-hợp-lý-vật-lý>#</a></h1><p>result = run_inference(
+checkpoint=&ldquo;Cosmos3-Super&rdquo;,
+input_type=&ldquo;video&rdquo;,
+input_video=&ldquo;physics_demo.mp4&rdquo;,
+output_type=&ldquo;text&rdquo;,
+task=&ldquo;check_physical_plausibility&rdquo;
+)</p><h1 id=đầu-ra-quỹ-đạo-quả-bóng-vi-phạm-định-luật-trọng-lực>Đầu ra: &ldquo;Quỹ đạo quả bóng vi phạm định luật trọng lực&mldr;&rdquo;<a hidden class=anchor aria-hidden=true href=#đầu-ra-quỹ-đạo-quả-bóng-vi-phạm-định-luật-trọng-lực>#</a></h1><pre tabindex=0><code>
+## Các trường hợp sử dụng
+
+### Huấn luyện robot với dữ liệu tổng hợp
+
+Cosmos tạo ra dữ liệu huấn luyện tổng hợp cho robot, giảm nhu cầu thu thập dữ liệu thực tế đắt tiền: `````bash
+# Tạo 1000 clip video tổng hợp của robot trong kho
+# để huấn luyện chính sách thao tác
+cosmos_framework.scripts.training.train \
+    --recipe examples/launch_sft_vision_nano.sh \
+    --num-samples 1000 \
+    --output-dir /data/warehouse_synthetic
+</code></pre><h3 id=mô-phỏng-xe-tự-hành>Mô phỏng xe tự hành<a hidden class=anchor aria-hidden=true href=#mô-phỏng-xe-tự-hành>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Mô phỏng các kịch bản lái xe tự hành</span>
+</span></span><span style=display:flex><span>result <span style=color:#f92672>=</span> run_inference(
+</span></span><span style=display:flex><span>    checkpoint<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Cosmos3-Nano&#34;</span>,
+</span></span><span style=display:flex><span>    input_type<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text+image&#34;</span>,
+</span></span><span style=display:flex><span>    input_text<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Một xe tự hành tại ngã tư có đèn đỏ&#34;</span>,
+</span></span><span style=display:flex><span>    input_image<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;intersection.jpg&#34;</span>,
+</span></span><span style=display:flex><span>    output_type<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;video+action&#34;</span>,
+</span></span><span style=display:flex><span>    task<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;predict_vehicle_dynamics&#34;</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span><span style=color:#75715e># Đầu ra: Video xe dừng + vector hành động (lái, ga, phanh)</span>
+</span></span></code></pre></div><h3 id=giám-sát-cơ-sở-hạ-tầng-thông-minh>Giám sát cơ sở hạ tầng thông minh<a hidden class=anchor aria-hidden=true href=#giám-sát-cơ-sở-hạ-tầng-thông-minh>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Phân tích footage camera bảo mật để phát hiện bất thường</span>
+</span></span><span style=display:flex><span>result <span style=color:#f92672>=</span> run_inference(
+</span></span><span style=display:flex><span>    checkpoint<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Cosmos3-Super&#34;</span>,
+</span></span><span style=display:flex><span>    input_type<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;video&#34;</span>,
+</span></span><span style=display:flex><span>    input_video<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;factory_cam_01.mp4&#34;</span>,
+</span></span><span style=display:flex><span>    output_type<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text&#34;</span>,
+</span></span><span style=display:flex><span>    task<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;detect_anomalies&#34;</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span><span style=color:#75715e># Đầu ra: &#34;Lúc 14:32:15, xe không nhãn đã xâm nhập khu vực hạn chế...&#34;</span>
+</span></span></code></pre></div><h2 id=huấn-luyện-fine-tuning-các-mô-hình-cosmos>Huấn luyện: Fine-tuning các mô hình Cosmos<a hidden class=anchor aria-hidden=true href=#huấn-luyện-fine-tuning-các-mô-hình-cosmos>#</a></h2><p>Framework Cosmos bao gồm các script huấn luyện cho supervised fine-tuning (SFT) trên dữ liệu tùy chỉnh: `````bash</p><h1 id=huấn-luyện-sft-multi-gpu-trên-8-h100-80gb>Huấn luyện SFT multi-GPU trên 8× H100 80GB<a hidden class=anchor aria-hidden=true href=#huấn-luyện-sft-multi-gpu-trên-8-h100-80gb>#</a></h1><p>bash examples/launch_sft_vision_nano.sh</p><h1 id=các-tùy-chọn-cấu-hình-chính>Các tùy chọn cấu hình chính<a hidden class=anchor aria-hidden=true href=#các-tùy-chọn-cấu-hình-chính>#</a></h1><h1 id=--các-chiến-lược-song-song-dpcpfsdp>- Các chiến lược song song DP/CP/FSDP<a hidden class=anchor aria-hidden=true href=#--các-chiến-lược-song-song-dpcpfsdp>#</a></h1><h1 id=--checkpoint-dcp-native-với-huggingface-safetensors>- Checkpoint DCP native với HuggingFace safetensors<a hidden class=anchor aria-hidden=true href=#--checkpoint-dcp-native-với-huggingface-safetensors>#</a></h1><h1 id=--các-adapter-tập-dữ-liệu-jsonl--webdataset--lerobot>- Các adapter tập dữ liệu JSONL / WebDataset / LeRobot<a hidden class=anchor aria-hidden=true href=#--các-adapter-tập-dữ-liệu-jsonl--webdataset--lerobot>#</a></h1><h1 id=--huấn-luyện-mixed-precision>- Huấn luyện mixed precision<a hidden class=anchor aria-hidden=true href=#--huấn-luyện-mixed-precision>#</a></h1><h1 id=--hỗ-trợ-tiếp-tục-checkpoint>- Hỗ trợ tiếp tục checkpoint<a hidden class=anchor aria-hidden=true href=#--hỗ-trợ-tiếp-tục-checkpoint>#</a></h1><pre tabindex=0><code>
+`````python
+# Ví dụ cấu hình huấn luyện
+training_config = {
+    &#34;model&#34;: &#34;Cosmos3-Nano&#34;,
+    &#34;num_gpus&#34;: 8,
+    &#34;parallelism&#34;: &#34;FSDP&#34;,  # Fully Sharded Data Parallel
+    &#34;mixed_precision&#34;: &#34;bf16&#34;,
+    &#34;batch_size_per_gpu&#34;: 4,
+    &#34;dataset&#34;: {
+        &#34;type&#34;: &#34;jsonl&#34;,
+        &#34;path&#34;: &#34;/data/training_samples.jsonl&#34;
+    },
+    &#34;checkpoint_dir&#34;: &#34;/checkpoints/sft_nano&#34;
+}
+````
+
+## So sánh với các lựa chọn thay thế
+
+| Tính năng | NVIDIA Cosmos | Runway Gen-3 | Sora | Pika Labs |
+|---------|--------------|-------------|------|-----------|
+| **Mã nguồn mở** | ✅ Có | ❌ Đóng | ❌ Đóng | ❌ Đóng |
+| **Chế độ lý luận** | ✅ Tích hợp | ❌ | ❌ | ❌ |
+| **Tạo hành động** | ✅ Tích hợp | ❌ | ❌ | ❌ |
+| **Chính sách robot** | ✅ Mô hình DROID | ❌ | ❌ | ❌ |
+| **Suy luận cục bộ** | ✅ Có | ❌ API only | ❌ API only | ❌ API only |
+| **Dữ liệu tổng hợp** | ✅ Tích hợp | ❌ | ❌ | ❌ |
+| **Fine-tuning** | ✅ Được hỗ trợ | ❌ | ❌ | ❌ |
+| **Mô hình có sẵn** | 5 (Nano + Super variants) | 1 | 1 | 1 |
+| **Yêu cầu GPU** | Khuyến nghị H100/A100 | Chỉ cloud | Chỉ cloud | Chỉ cloud |
+| **Giấy phép** | Apache-2.0 | Đóng | Đóng | Đóng |
+
+| Tính năng | NVIDIA Cosmos | Stable Video Diffusion | Luma Dream Machine |
+|---------|--------------|----------------------|------------------|
+| **Mã nguồn mở** | ✅ Có | ✅ Có | ❌ Đóng |
+| **Đa phương thức** | ✅ Văn bản+Hình+Video+Âm thanh+Hành động | ❌ Chỉ Ảnh→Video | ❌ Chỉ Văn bản→Video |
+| **Lý luận vật lý** | ✅ Tích hợp | ❌ | ❌ |
+| **Hỗ trợ robotics** | ✅ Mô hình chính sách DROID | ❌ | ❌ |
+
+## Benchmark
+
+### Chất lượng tạo
+
+Các mô hình Cosmos 3 được đánh giá trên nhiều benchmark: | Benchmark | Cosmos3-Nano | Cosmos3-Super | Runway Gen-3 | Sora |
+|-----------|-------------|---------------|-------------|------|
+| VideoFID (↓) | 8.2 | 5.1 | 6.3 | 4.8 |
+| Điểm CLIP-I (↑) | 0.89 | 0.93 | 0.91 | 0.92 |
+| Tính hợp lý vật lý (↑) | 0.76 | 0.89 | N/A | N/A |
+| Độ chính xác hành động (↑) | 0.71 | 0.84 | N/A | N/A |
+
+**Nguồn**: Đánh giá nội bộ NVIDIA, tháng 5 năm 2026. VideoFID: càng thấp càng tốt. CLIP-I: càng cao càng tốt (alignment hình ảnh-văn bản). Tính hợp lý vật lý: điểm đánh giá của con người về độ chính xác vật lý. Độ chính xác hành động: hành động dự đoán so với ground truth.
+
+### Tốc độ suy luận
+
+| Mô hình | Độ phân giải | Số khung hình | GPU | Thời gian |
+|-------|-----------|-------------|-----|------|
+| Cosmos3-Nano | 480p | 189 frames | 1×H100 | ~45 giây |
+| Cosmos3-Nano | 720p | 189 frames | 1×H100 | ~90 giây |
+| Cosmos3-Super | 480p | 189 frames | 1×H100 | ~180 giây |
+| Cosmos3-Super | 720p | 189 frames | 2×H100 | ~240 giây |
+
+## Hạn chế và đánh giá trung thực
+
+Cosmos là một bước đột phá, nhưng quan trọng là phải hiểu rõ những hạn chế của nó: 1. **Yêu cầu phần cứng nặng**: Bạn cần ít nhất một GPU cấp H100/A100 cho hiệu suất khá. Các mô hình 64B có thể yêu cầu 2+ GPU. Đây không phải thứ có thể chạy trên phần cứng tiêu dùng.
+
+2. **Chỉ Linux**: Framework chỉ chạy trên Linux, với CUDA. Hiện không hỗ trợ macOS.
+
+3. **Dự án rất non trẻ**: Commit đầu tiên tháng 12 năm 2024. Mặc dù có nguồn lực của NVIDIA, đây vẫn là một dự án đang phát triển nhanh với các thay đổi có thể phá vỡ.
+
+4. **Không có API thân thiện người dùng**: Không giống như Runway, Sora hoặc Pika, Cosmos yêu cầu bạn tự thiết lập framework. Không có giao diện &#34;click and generate&#34; (dù trang web tại nvidia.com/en-us/ai/cosmos/ cung cấp trải nghiệm có hướng dẫn).
+
+5. **Phụ thuộc vào tập dữ liệu**: Chất lượng của Cosmos phụ thuộc rất nhiều vào dữ liệu huấn luyện. Nếu bạn cố gắng fine-tune trên domain riêng (hình ảnh y khoa, trực quan hóa khoa học), bạn sẽ cần dữ liệu huấn luyện đặc thù domain.
+
+6. **Khóa hệ sinh thái NVIDIA**: Mặc dù các mô hình là mã nguồn mở (Apache-2.0), toàn bộ toolchain (Cosmos framework, NGC images, tối ưu hóa NVIDIA) được gắn chặt với phần cứng NVIDIA. Chạy trên AMD hoặc Intel GPU hiện không được hỗ trợ.
+
+7. **Cộng đồng nhỏ**: 19 issues mở, 657 forks. Dự án đang phát triển nhanh, nhưng cộng đồng nhỏ so với các mô hình như Stable Diffusion hay Llama.
+
+## Câu hỏi thường gặp
+
+**H: Tôi có thể chạy Cosmos trên GPU tiêu dùng không?**
+Về mặt kỹ thuật, bạn có thể chạy Cosmos3-Nano trên GPU cao cấp tiêu dùng (RTX 4090 với 24GB VRAM) cho các tác vụ nhỏ (256p, video ngắn), nhưng hiệu suất sẽ bị giới hạn. Các mô hình 64B yêu cầu GPU cấp A100/H100.
+
+**H: Cosmos khác gì so với Stable Video Diffusion?**
+SVD chỉ là mô hình ảnh sang video. Cosmos là một nền tảng đa phương thức thống nhất xử lý văn bản sang ảnh, văn bản sang video, ảnh sang video, hiểu video, lý luận vật lý và dự đoán chính sách robot — tất cả trong một framework.
+
+**H: Tôi có thể fine-tune Cosmos trên dữ liệu của mình không?**
+Có. Framework hỗ trợ supervised fine-tuning (SFT) với định dạng JSONL, WebDataset và LeRobot. Bạn cần 8× GPU H100 để fine-tune đầy đủ mô hình 64B. Đối với mô hình nhỏ hơn (Nano), 4 GPU có thể đủ.
+
+**H: Cosmos có sẵn dưới dạng API không?**
+Không trực tiếp. Tuy nhiên, NVIDIA cung cấp Cosmos thông qua nền tảng NIM (NVIDIA Inference Microservices) của họ, cung cấp API tương thích OpenAI cho các mô hình Cosmos.
+
+**H: Giấy phép là gì?**
+Apache-2.0 cho mã nguồn, với trọng số mô hình có sẵn dưới giấy phép nghiên cứu của NVIDIA. Sử dụng thương mại được phép với ghi nhận thích đáng.
+
+## Kết luận
+
+NVIDIA Cosmos đại diện cho một sự chuyển đổi căn bản trong cách chúng ta tiếp cận AI và thế giới vật lý. Thay vì xử lý tạo video, tạo ảnh, chính sách robot và lý luận vật lý như các vấn đề riêng biệt, Cosmos thống nhất chúng trong một kiến trúc Mixture-of-Transformers duy nhất.
+
+Sự kết hợp của Chế độ Reasoner (hiểu biết) và Chế độ Generator (sáng tạo) — cả hai chia sẻ cùng backbone transformer — có nghĩa là bạn có thể chuyển từ hiểu một cảnh sang tạo tương lai của cảnh đó trong một pipeline duy nhất.
+
+Đối với robotics, lái xe tự hành và cơ sở hạ tầng thông minh, Cosmos không chỉ là một mô hình AI khác. Đó là cơ sở hạ tầng.
+
+Nếu bạn đang xây dựng các hệ thống Physical AI, Cosmos nên nằm ở đầu danh sách nghiên cứu của bạn.
+
+* * *
+
+**Nguồn &amp; Đọc thêm**: - Báo cáo kỹ thuật: https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf
+- Mô hình Cosmos 3: https://huggingface.co/collections/nvidia/cosmos3
+- Cosmos Framework: https://github.com/NVIDIA/cosmos-framework
+- Website: https://www.nvidia.com/en-us/ai/cosmos/
+
+* * *
+
+**Trải nghiệm NVIDIA Cosmos**: Truy cập [nvidia.com/en-us/ai/cosmos/](https://www.nvidia.com/en-us/ai/cosmos/) cho trải nghiệm có hướng dẫn, hoặc clone [github.com/NVIDIA/cosmos-framework](https://github.com/NVIDIA/cosmos-framework) cho full framework.
+
+Tham gia cộng đồng: [Telegram](https://t.me/DIBI8_Group) · [HuggingFace](https://huggingface.co/collections/nvidia/cosmos3)
+
+Internal links: [Runway Gen-3 Review 2026](https://dibi8.com/runway-gen3-review-2026) · [Stability AI Stable Video Diffusion](https://dibi8.com/stability-ai-stable-video-diffusion)
+
+** Disclosure**: Bài viết này đề cập đến các công cụ có thể có quan hệ affiliate. Chúng tôi không chấp nhận thanh toán cho đánh giá tích cực. Tất cả benchmark đều do tự thực hiện hoặc sourced từ tài liệu chính thức.
+
+
+{
+  &#34;@context&#34;: &#34;https://schema.org&#34;,
+  &#34;@type&#34;: &#34;Article&#34;,
+  &#34;headline&#34;: &#34;NVIDIA Cosmos: Các mô hình thế giới mã nguồn mở cho Physical AI (10K Sao)&#34;,
+  &#34;datePublished&#34;: &#34;2026-06-13&#34;,
+  &#34;dateModified&#34;: &#34;2026-06-13&#34;,
+  &#34;author&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;
+  },
+  &#34;publisher&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;,
+    &#34;logo&#34;: {
+      &#34;@type&#34;: &#34;ImageObject&#34;,
+      &#34;url&#34;: &#34;https://dibi8.com/logo.png&#34;
+    }
+  },
+  &#34;mainEntityOfPage&#34;: {
+    &#34;@type&#34;: &#34;WebPage&#34;,
+    &#34;@id&#34;: &#34;https://dibi8.com/vi/resources/nvidia-cosmos-world-models-platform-2026&#34;
+  }
+}
+&lt;/script&gt;
+
+* * *
+
+## Related Articles
+
+- [nvidia-cosmos-world-models-platform-2026](nvidia-cosmos-world-models-platform-2026)
+- [2026-05-25-trending-ai-agents](nvidia-cosmos-world-models-platform-2026)
+- [2026-06-01-trending-ai-agents](nvidia-cosmos-world-models-platform-2026)
+- [2026-06-08-trending-ai-agents](nvidia-cosmos-world-models-platform-2026)
+- [2026-06-15-trending-ai-agents](nvidia-cosmos-world-models-platform-2026)
+
+* * *
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
+</code></pre></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/vi/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/vi/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/vi/ai-coding-agents/nuwa-skill-distill-thinking-model-ai-agent-skills/><span class=title>« Trang trước</span>
+<span>AI Tool Guide</span>
+</a><a class=next href=https://dibi8.com/vi/ai-coding-agents/obscura-rust-headless-browser-ai-agents-web-scraping/><span class=title>Trang tiếp theo »</span>
+<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/vi/>Dibi8</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="Sao chép";function s(){t.innerHTML="Đã sao chép!",setTimeout(()=>{t.innerHTML="Sao chép"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

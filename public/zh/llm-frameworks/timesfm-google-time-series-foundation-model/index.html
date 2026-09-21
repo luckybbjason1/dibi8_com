@@ -1,0 +1,303 @@
+<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/zh/llm-frameworks/timesfm-google-time-series-foundation-model/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh href=https://dibi8.com/zh/llm-frameworks/timesfm-google-time-series-foundation-model/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/llm-frameworks/timesfm-google-time-series-foundation-model/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/zh/llm-frameworks/timesfm-google-time-series-foundation-model/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh"><meta property="og:type" content="article"><meta property="article:section" content="llm-frameworks"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Tool Guide","item":"https://dibi8.com/zh/llm-frameworks/timesfm-google-time-series-foundation-model/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"TimesFM 2.5：Google 革命性的预测时间序列基础模型 时间序列预测长期以来一直是数据科学中最具挑战性的问题之一。 从预测股票价格到预测天气模式，从销售预测到能源消耗估算——准确的预测可以成就企业，也可以毁掉企业。\n输入 TimesFM，Google Research 用于时间序列预测的突破性基础模型。 TimesFM 现已推出 2.5 版本，并拥有超过 23,000 名 GitHub star，它代表了我们处理时态数据分析方式的范式转变。\n在这份综合指南中，我们将探讨 TimesFM 的特殊之处、如何安装和使用它、将其与传统方法进行比较，并为现实世界的预测提供实际示例。\nTimesFM 是什么？ TimesFM（时间序列基础模型）是 Google Research 专门针对时间序列预测开发的仅解码器基础模型。 与需要为每个数据集训练单独模型的传统预测方法不同，TimesFM 在大量时态数据上进行预训练，并且可以通过最少的微调推广到新的预测任务。\n关键创新 该模型引入了多项突破性创新：\n仅解码器架构：受到语言建模中变压器解码器成功的启发，TimesFM 使用针对顺序预测优化的纯解码器架构 基础模型方法：对大量时态数据进行预训练，实现零样本和少样本预测能力 连续分位数预测：通过可选的分位数头提供不确定性估计以及点预测 扩展上下文窗口：支持多达 16,000 个时间步长的历史数据，以改善远程依赖性 减少参数数量：2.5 版本仅使用 200M 参数（低于 v2.0 中的 500M），同时提高了准确性 TimesFM 背后的研究 该基础研究发表在 ICML 2024 上的论文**“用于时间序列预测的仅解码器基础模型”**中。此后，该模型经历了多个版本的演变，其中 v2.5 代表了当前时间序列基础建模的最先进水平。\nTimesFM 2.5：重大改进 2.5 版本于 2025 年 9 月发布，较之前版本带来了显着改进：\n| 特色 | 时代FM 2.0 | 时代FM 2.5 | |\n|\n|\n| | 参数| 500M | 200M | | 上下文长度 | 2,048 | 2,048 16,000 | | 分位数预测 | 离散| 连续（最多 1,000 个水平线）| | 频率指示器| 必填| 已删除 | | 推理速度 | 基线| 快 2.5 倍 | | 内存使用情况| 高| 优化|\n为什么参数更少，结果更好？ 这种违反直觉的改进是通过以下方式实现的：\n更好的预训练数据：更多样化、更大的时间数据集 架构改进：优化时间序列的注意力机制 改进的训练目标：具有各种预测损失的多任务学习 分位数头创新：可选的30M分位数头提供了不确定性，而不会使主模型膨胀 安装指南 TimesFM 入门非常简单。 该模型可通过 PyPI 获得，安装非常简单：\n选项 1：通过 PyPI 快速安装 # 使用 PyTorch 后端安装 pip install timesfm[火炬] # 或者使用 Flax/JAX 后端（推荐用于 GPU/TPU） pip 安装 timesfm[flax] # 如果需要协变量支持 (XReg) pip 安装 timesfm[xreg] 选项 2：开发安装 对于那些想要贡献或访问最新功能的人：\n# 克隆存储库 git 克隆 https://github.com/google-research/timesfm.git 光盘时代调频 # 创建虚拟环境 紫外线 源 .venv/bin/activate # 以可编辑模式安装 uv pip install -e .[火炬] # 或者对于 Flax 后端 uv pip install -e .[亚麻] 后端选择 TimesFM 支持多个后端：\nPyTorch：最适合 CPU 和 NVIDIA GPU 用户 Flax/JAX：最适合 TPU 和 Google Cloud 环境 XReg 扩展：添加对外部回归量的协变量支持 根据您的硬件和部署要求选择后端。\n基本用法 让我们从一个简单的预测示例开始：\n零样本预测 将 numpy 导入为 np 导入时间调频 # 加载预训练模型 模型 = timesfm.TimesFM_2p5_200M.from_pretrained( “谷歌/timesfm-2.5-200m-flax” ） # 准备你的时间序列数据 # 形状：(num_series, context_length) 历史数据 = np.random.randn(1, 1024) # 预测接下来的12个时间步 预测= model.forecast（历史数据，地平线= 12） print(f\"预测形状：{forecast.shape}\") print(f\"预测值：{预测}\") 使用分位数预测 对于不确定性估计，启用连续分位数头：\nForecast_with_uncertainty = model.forecast( 历史数据， 地平线=12， 分位数=[0.1, 0.5, 0.9] # 第 10、50、90 个百分位数 ） # Forecast_with_uncertainty 包含点预测和置信区间 point_forecast = Forecast_with_uncertainty[:, :, 1] # 中位数 lower_bound = Forecast_with_uncertainty[:, :, 0] # 第 10 个百分位数 upper_bound = Forecast_with_uncertainty[:, :, 2] # 第 90 个百分位 使用 PyTorch 后端 进口火炬 导入时间调频 # 设置精度以加快计算速度 torch.set_float32_matmul_ precision（“高”） # 加载 PyTorch 版本 模型 = timesfm.TimesFM_2p5_200M_torch.from_pretrained( “谷歌/timesfm-2.5-200m-pytorch” ） # 编译优化推理 模型.编译( timesfm.ForecastConfig( 最大上下文=1024， 最大地平线=256， Normalize_inputs=真， use_continuous_quantile_head=真， force_flip_invariance=真， infer_is_positive=真， fix_quantile_crossing=真， ） ） # 进行预测 point_forecast, quantile_forecast = model.forecast( 地平线=12， 输入=[ np.linspace(0, 1, 100), np.sin(np.linspace(0, 20, 67)), ] ） 高级功能 使用 LoRA 进行微调 TimesFM 2.5 最强大的功能之一是使用低秩适应 (LoRA) 进行微调的能力：\n从变压器导入 AutoModelForSequenceClassification 从 peft 导入 LoraConfig，get_peft_model # 加载基本 TimesFM 模型 base_model = timesfm.TimesFM_2p5_200M.from_pretrained( “谷歌/timesfm-2.5-200m-flax” ） # 配置LoRA 洛拉配置 = 洛拉配置（ r=16, # 更新矩阵的秩 lora_alpha=32, # 缩放因子 target_modules=[\"query\", \"value\"], # 应用 LoRA 的层 劳拉_dropout=0.1, ） # 将 LoRA 应用于模型 模型 = get_peft_model(base_model, lora_config) # 现在您可以对特定数据集进行微调 # 与完全微调相比，这需要明显更少的参数 XReg 的协变量支持 对于有影响时间序列的外部变量的场景，TimesFM 2.5 支持协变量建模：\n# 安装 XReg 支持 # pip 安装 timesfm[xreg] 导入时间调频 # 加载具有协变量支持的模型 模型 = timesfm.TimesFM_2p5_200M_XReg.from_pretrained( “谷歌/timesfm-2.5-200m-xreg” ） # 历史时间序列数据 y_train = np.random.randn(1000) # 外部协变量（例如营销支出、季节性指标） X_train = np.random.randn(1000, 5) # 拟合协变量模型 model.fit(y_train, X_train) # 使用未来协变量进行预测 y_pred，confidence_intervals = model.predict（ 地平线=12， X_future=np.random.randn(12, 5) ） 批量预测 同时对于多个时间序列：\n# 准备一批时间序列 batch_data = np.random.randn(10, 1024) # 10 个系列，每个系列 1024 个时间步 # 一次性预测所有系列 预测 = model.forecast(batch_data, Horizon=24) # 形状：(10, 24) - 10 个预测，每个预测 24 个时间步长 print(f\"批量预测形状：{forecasts.shape}\") 批量预测 同时对于多个时间序列：\n# 准备一批时间序列 batch_data = np.random.randn(10, 1024) # 10 个系列，每个系列 1024 个时间步 # 一次性预测所有系列 预测 = model.forecast(batch_data, Horizon=24) # 形状：(10, 24) - 10 个预测，每个预测 24 个时间步长 print(f\"批量预测形状：{forecasts.shape}\") 批量预测 同时对于多个时间序列：\n# 准备一批时间序列 batch_data = np.random.randn(10, 1024) # 10 个系列，每个系列 1024 个时间步 # 一次性预测所有系列 预测 = model.forecast(batch_data, Horizon=24) # 形状：(10, 24) - 10 个预测，每个预测 24 个时间步长 print(f\"批量预测形状：{forecasts.shape}\") 流式推理 对于实时预测应用：\n# 初始化流媒体客户端 Streaming_model = timesfm.StreamingTimesFM( model_path=\"google/timesfm-2.5-200m-flax\" ） # 处理传入的数据流 而真实： 新数据 = get_next_time_step() 预测=streaming_model.update_and_predict（new_data，地平线= 12） 显示预测（预测） 性能基准 TimesFM 2.5 在多个基准数据集上取得了最先进的结果：\n基准测试结果 | 数据集 | 时代FM 2.5 | 自动ARIMA | 先知| N-节拍 | |\n|\n|\n|\n|\n| | ETTh1 | 0.312 | 0.312 0.487 | 0.487 0.523 | 0.523 0.398 | 0.398 | 电力 | 0.234 | 0.234 0.312 | 0.312 0.298 | 0.298 0.267 | 0.267 | 交通 | 0.198 | 0.198 0.287 | 0.287 0.276 | 0.276 0.245 | 0.245 | 天气 | 0.156 | 0.156 0.234 | 0.234 0.221 | 0.221 0.189 | 0.189 | 汇率 | 0.287 | 0.287 0.398 | 0.398 0.412 | 0.412 0.334 | 0.334\n值越低表示性能越好（标准化 MSE）。\n真实世界性能 在生产环境中，TimesFM 2.5 展示了：\n95% 准确度 零售连锁店的需求预测 与传统方法相比，库存成本降低 40% 与自定义神经网络方法相比，训练时间快 10 倍 在不同领域（金融、医疗保健、制造）保持一致的性能 与 Google 产品集成 TimesFM 的独特优势之一是它与 Google 生态系统的集成：\nBigQuery 机器学习 对于企业规模的预测：\n-- 在 BigQuery ML 中使用 TimesFM 模型 创建模型 my_project.my_timesfm_model 选项(model_type='TIMESFM') AS 选择 时间戳_列， 值_列， EXTRACT(HOUR FROM timestamp_col) AS hour_of_day 来自````my_dataset.time_series_data````； Google 表格集成 对于非技术用户：\n安装 TimesFM 插件 选择您的数据范围 选择预测范围 直接在电子表格中获取预测 Vertex AI 模型花园 对于云部署：\n从 google.cloud 导入 aiplatform # 将 TimesFM 模型部署到 Vertex AI aiplatform.init（项目=“您的项目”，位置=“us-central1”） 端点 = aiplatform.Endpoint.create( display_name=\"timesfm-forecasting-endpoint\", 描述=“TimesFM 2.5 预测端点” ） 模型 = aiplatform.Model.upload( 显示名称=“timesfm-2.5”， artifact_uri =“gs://your-bucket/timesfm-model” ） 端点.部署（模型=模型，machine_type =“n1-standard-4”） 实际应用 应用1：销售预测 零售公司可以使用 TimesFM 来预测未来的销售：\n将 pandas 导入为 pd 导入时间调频 # 加载历史销售数据 sales_data = pd.read_csv(\"historical_sales.csv\") # 准备时间序列 历史销售 = sales_data[\"销售\"].values.reshape(1, -1) # 未来 30 天的预测 模型 = timesfm.TimesFM_2p5_200M.from_pretrained( “谷歌/timesfm-2.5-200m-flax” ） 预测 = model.forecast(historical_sales, Horizon=30) print(f\"下个月预计销售额：{forecast.mean():.2f}\") 应用2：能源需求预测 公用事业公司可以预测电力需求：\n# 加载能耗数据 energy_data = pd.read_csv(\"energy_conspiration.csv\") # 包括天气协变量 协变量 = pd.DataFrame({ “温度”：weather_data[“温度”]， “湿度”：weather_data[“湿度”]， “day_of_week”：energy_data.index.dayofweek }) # 使用协变量进行训练 model.fit(energy_data[\"消耗\"], covariates.values) # 预测未来需求 future_demand = model.predict( 地平线=24， X_future=future_covariates.values ） 应用3：金融市场分析 TimesFM 虽然不是财务建议，但可以帮助分析市场模式：\n# 股价预测 stock_prices = pd.read_csv(\"stock_history.csv\")[\"close\"].values # 多只股票 batch_stocks = np.array([ stock_prices[:-100], # 苹果 stock_prices[100:-100], # 谷歌 stock_prices[200:] # 亚马逊 ]） # 预测所有股票 预测 = model.forecast(batch_stocks, Horizon=30) 与传统方法的比较 TimesFM 与 ARIMA | 方面| 时代FM 2.5 | 华睿玛 | |\n|\n|\n| | 设置时间| 分钟 | 小时-天 | | 参数调优 | 最小 | 广泛 | | 多系列 | 是的 | 没有 | | 非线性模式| 优秀| 有限公司| | 可解释性| 降低| 更高 | | 可扩展性| 高| 中等|\nTimesFM vs. Prophet | 方面| 时代FM 2.5 | 先知| |\n|\n|\n| | 基础模型| 是的 | 没有 | | 迁移学习 | 是的 | 没有 | | 不确定性估计| 连续 | 离散| | 计算效率 | 高| 中等| | 社区支持 | 成长| 成熟|\n限制和注意事项 当前限制 需要历史数据：虽然小样本学习有帮助，但仍然需要一些历史数据 计算资源：大型上下文窗口需要大量内存 领域特异性：可能需要针对专业领域进行微调 可解释性：像所有深度学习模型一样，内部运作有些不透明 最佳实践 数据质量：确保时间序列数据干净、一致 上下文长度：为您的用例选择适当的历史窗口 定期更新：当新数据可用时定期重新训练 验证：始终根据保留数据集验证预测 TimesFM 与 ARIMA | 方面| 时代FM 2.5 | 华睿玛 | |\n|\n|\n| | 设置时间| 分钟 | 小时-天 | | 参数调优 | 最小 | 广泛 | | 多系列 | 是的 | 没有 | | 非线性模式| 优秀| 有限公司| | 可解释性| 降低| 更高 | | 可扩展性| 高| 中等|\nTimesFM vs. Prophet | 方面| 时代FM 2.5 | 先知| |\n|\n|\n| | 基础模型| 是的 | 没有 | | 迁移学习 | 是的 | 没有 | | 不确定性估计| 连续 | 离散| | 计算效率 | 高| 中等| | 社区支持 | 成长| 成熟|\n限制和注意事项 当前限制 需要历史数据：虽然小样本学习有帮助，但仍然需要一些历史数据 计算资源：大型上下文窗口需要大量内存 领域特异性：可能需要针对专业领域进行微调 可解释性：像所有深度学习模型一样，内部运作有些不透明 最佳实践 数据质量：确保时间序列数据干净、一致 上下文长度：为您的用例选择适当的历史窗口 定期更新：当新数据可用时定期重新训练 验证：始终根据保留数据集验证预测 时间序列预测的未来 TimesFM 代表了基础模型在时态数据分析中可以实现的目标的开始。 即将到来的发展包括：\n计划的功能 多元预测：更好地处理多个相关时间序列 实时学习：在线适应，无需完全再培训 可解释的人工智能：提高预测的可解释性 边缘部署：针对移动和物联网设备的优化版本 多模态集成：将时间序列与图像、文本和其他数据类型相结合 研究方向 Google 研究团队不断突破界限，开展以下工作：\n更长的上下文窗口（32K+ 时间步长） 更少的参数具有相同或更好的性能 跨域泛化 因果推理能力 今天开始 准备好彻底改变您的预测工作流程了吗？ 以下是如何开始：\n安装：````pip install timesfm[flax]``` 加载模型：使用 Hugging Face 中的预训练检查点 准备数据：适当设置时间序列的格式 预测：根据您想要的范围调用预测方法 微调：可选择使模型适应您的特定领域 无论您是寻求更好预测工具的数据科学家，还是想要进行数据驱动预测的业务分析师，TimesFM 2.5 都提供了强大、灵活的解决方案，可以立即部署。\n常见问题 问：TimesFM 2.0 和 2.5 有什么区别？ TimesFM 2.5 仅使用 200M 参数（低于 2.0 中的 500M），同时实现了更好的准确性。 它支持高达 16,000 个上下文长度（相对于 2,048 个）、高达 1,000 个范围的连续分位数预测，并且无需频率指示​​器。\n问：我需要 GPU 来运行 TimesFM 吗？ 不，TimesFM 可以在 CPU 上运行，尽管 GPU 加速显着提高了推理速度。 建议 TPU 和 NVIDIA GPU 用户使用 Flax/JAX 后端，而 PyTorch 非常适合 CPU 和 NVIDIA GPU 设置。\n问：我可以使用 TimesFM 进行财务预测吗？ 虽然 TimesFM 从技术上可以预测金融时间序列，但值得注意的是，金融市场受到无数不可预测因素的影响。 该模型应作为众多工具中的一种，而不是作为投资决策的唯一依据。\n问：如何使用 TimesFM 进行微调？ 微调通过 HuggingFace Transformers 使用低秩适应 (LoRA)。 您准备特定于域的数据、配置 LoRA 参数并训练几个时期。 这可以使基础模型适应您的特定预测任务，而不需要完整的模型重新训练。\n问：最大预测范围是多少？ TimesFM 2.5 通过其连续分位数头支持高达 1,000 个时间步的范围。 对于大多数实际应用，24-365 个时间步长的范围就足够了，并且可以提供最佳精度。\n问：TimesFM 适合实时预测吗？ 是的，一旦编译和优化，TimesFM 就可以提供实时预测。 具有优化推理配置的编译模型可以在现代硬件上每秒预测数百个时间步。\n结论 TimesFM 2.5 代表了时间序列预测的巨大飞跃。 通过将基础模型的强大功能与时态数据的特定领域优化相结合，它以最小的设置和计算开销实现了卓越的准确性。\n通过融入 Google 的生态系统、活跃的开发社区和持续改进，TimesFM 有望成为跨行业时间序列预测的标准。\n对于任何使用时态数据的人来说，投入时间学习和部署 TimesFM 不仅是有益的，而且变得至关重要。\n来源：\nGitHub 存储库 ICML 2024 论文 谷歌研究博客 拥抱脸部模型 CTA： 加入 DIBI8 Telegram 群组 了解更多人工智能和数据科学见解！\n附属链接：\nDigitalOcean - 托管您的 ML 模型 HTStack - 可靠的 GPU 服务器托管 虎网云 - 用于训练的GPU服务器（中文） { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “TimesFM 2.5：用于预测的谷歌革命性时间序列基础模型”, “datePublished”: “2026-06-19”, “dateModified”: “2026-06-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/zh/resources/timesfm-google-time-series-foundation-model\" } } Why This Matters Understanding timesfm 2.5：用于预测的谷歌革命性时间序列基础模型 is crucial for modern AI development. Here’s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion TimesFM 2.5：用于预测的谷歌革命性时间序列基础模型 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~6 minutes\n","wordCount":"1336","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/zh/llm-frameworks/timesfm-google-time-series-foundation-model/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/zh/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/zh/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/zh/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/zh/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/zh/>主页</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
+<a href>LLM Frameworks - dibi8</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>7 分钟</span>&nbsp;|&nbsp;<span>语言:</span><ul class=i18n_list><li><a href=https://dibi8.com/ko/llm-frameworks/timesfm-google-time-series-foundation-model/>Ko</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><li><a href=#timesfm-25google-%e9%9d%a9%e5%91%bd%e6%80%a7%e7%9a%84%e9%a2%84%e6%b5%8b%e6%97%b6%e9%97%b4%e5%ba%8f%e5%88%97%e5%9f%ba%e7%a1%80%e6%a8%a1%e5%9e%8b aria-label="TimesFM 2.5：Google 革命性的预测时间序列基础模型">TimesFM 2.5：Google 革命性的预测时间序列基础模型</a><ul><li><a href=#timesfm-%e6%98%af%e4%bb%80%e4%b9%88 aria-label="TimesFM 是什么？">TimesFM 是什么？</a><ul><li><a href=#%e5%85%b3%e9%94%ae%e5%88%9b%e6%96%b0 aria-label=关键创新>关键创新</a></li><li><a href=#timesfm-%e8%83%8c%e5%90%8e%e7%9a%84%e7%a0%94%e7%a9%b6 aria-label="TimesFM 背后的研究">TimesFM 背后的研究</a></li></ul></li><li><a href=#timesfm-25%e9%87%8d%e5%a4%a7%e6%94%b9%e8%bf%9b aria-label="TimesFM 2.5：重大改进">TimesFM 2.5：重大改进</a><ul><li><a href=#%e4%b8%ba%e4%bb%80%e4%b9%88%e5%8f%82%e6%95%b0%e6%9b%b4%e5%b0%91%e7%bb%93%e6%9e%9c%e6%9b%b4%e5%a5%bd aria-label=为什么参数更少，结果更好？>为什么参数更少，结果更好？</a></li></ul></li><li><a href=#%e5%ae%89%e8%a3%85%e6%8c%87%e5%8d%97 aria-label=安装指南>安装指南</a><ul><li><a href=#%e9%80%89%e9%a1%b9-1%e9%80%9a%e8%bf%87-pypi-%e5%bf%ab%e9%80%9f%e5%ae%89%e8%a3%85 aria-label="选项 1：通过 PyPI 快速安装">选项 1：通过 PyPI 快速安装</a></li><li><a href=#%e9%80%89%e9%a1%b9-2%e5%bc%80%e5%8f%91%e5%ae%89%e8%a3%85 aria-label="选项 2：开发安装">选项 2：开发安装</a></li><li><a href=#%e5%90%8e%e7%ab%af%e9%80%89%e6%8b%a9 aria-label=后端选择>后端选择</a></li></ul></li><li><a href=#%e5%9f%ba%e6%9c%ac%e7%94%a8%e6%b3%95 aria-label=基本用法>基本用法</a><ul><li><a href=#%e9%9b%b6%e6%a0%b7%e6%9c%ac%e9%a2%84%e6%b5%8b aria-label=零样本预测>零样本预测</a></li><li><a href=#%e4%bd%bf%e7%94%a8%e5%88%86%e4%bd%8d%e6%95%b0%e9%a2%84%e6%b5%8b aria-label=使用分位数预测>使用分位数预测</a></li><li><a href=#%e4%bd%bf%e7%94%a8-pytorch-%e5%90%8e%e7%ab%af aria-label="使用 PyTorch 后端">使用 PyTorch 后端</a></li></ul></li><li><a href=#%e9%ab%98%e7%ba%a7%e5%8a%9f%e8%83%bd aria-label=高级功能>高级功能</a><ul><li><a href=#%e4%bd%bf%e7%94%a8-lora-%e8%bf%9b%e8%a1%8c%e5%be%ae%e8%b0%83 aria-label="使用 LoRA 进行微调">使用 LoRA 进行微调</a></li><li><a href=#xreg-%e7%9a%84%e5%8d%8f%e5%8f%98%e9%87%8f%e6%94%af%e6%8c%81 aria-label="XReg 的协变量支持">XReg 的协变量支持</a></li><li><a href=#%e6%89%b9%e9%87%8f%e9%a2%84%e6%b5%8b aria-label=批量预测>批量预测</a></li><li><a href=#%e6%89%b9%e9%87%8f%e9%a2%84%e6%b5%8b-1 aria-label=批量预测>批量预测</a></li><li><a href=#%e6%89%b9%e9%87%8f%e9%a2%84%e6%b5%8b-2 aria-label=批量预测>批量预测</a></li><li><a href=#%e6%b5%81%e5%bc%8f%e6%8e%a8%e7%90%86 aria-label=流式推理>流式推理</a></li></ul></li><li><a href=#%e6%80%a7%e8%83%bd%e5%9f%ba%e5%87%86 aria-label=性能基准>性能基准</a><ul><li><a href=#%e5%9f%ba%e5%87%86%e6%b5%8b%e8%af%95%e7%bb%93%e6%9e%9c aria-label=基准测试结果>基准测试结果</a></li><li><a href=#%e7%9c%9f%e5%ae%9e%e4%b8%96%e7%95%8c%e6%80%a7%e8%83%bd aria-label=真实世界性能>真实世界性能</a></li></ul></li><li><a href=#%e4%b8%8e-google-%e4%ba%a7%e5%93%81%e9%9b%86%e6%88%90 aria-label="与 Google 产品集成">与 Google 产品集成</a><ul><li><a href=#bigquery-%e6%9c%ba%e5%99%a8%e5%ad%a6%e4%b9%a0 aria-label="BigQuery 机器学习">BigQuery 机器学习</a></li><li><a href=#google-%e8%a1%a8%e6%a0%bc%e9%9b%86%e6%88%90 aria-label="Google 表格集成">Google 表格集成</a></li><li><a href=#vertex-ai-%e6%a8%a1%e5%9e%8b%e8%8a%b1%e5%9b%ad aria-label="Vertex AI 模型花园">Vertex AI 模型花园</a></li></ul></li><li><a href=#%e5%ae%9e%e9%99%85%e5%ba%94%e7%94%a8 aria-label=实际应用>实际应用</a><ul><li><a href=#%e5%ba%94%e7%94%a81%e9%94%80%e5%94%ae%e9%a2%84%e6%b5%8b aria-label=应用1：销售预测>应用1：销售预测</a></li><li><a href=#%e5%ba%94%e7%94%a82%e8%83%bd%e6%ba%90%e9%9c%80%e6%b1%82%e9%a2%84%e6%b5%8b aria-label=应用2：能源需求预测>应用2：能源需求预测</a></li><li><a href=#%e5%ba%94%e7%94%a83%e9%87%91%e8%9e%8d%e5%b8%82%e5%9c%ba%e5%88%86%e6%9e%90 aria-label=应用3：金融市场分析>应用3：金融市场分析</a></li></ul></li><li><a href=#%e4%b8%8e%e4%bc%a0%e7%bb%9f%e6%96%b9%e6%b3%95%e7%9a%84%e6%af%94%e8%be%83 aria-label=与传统方法的比较>与传统方法的比较</a><ul><li><a href=#timesfm-%e4%b8%8e-arima aria-label="TimesFM 与 ARIMA">TimesFM 与 ARIMA</a></li><li><a href=#timesfm-vs-prophet aria-label="TimesFM vs. Prophet">TimesFM vs. Prophet</a></li></ul></li><li><a href=#%e9%99%90%e5%88%b6%e5%92%8c%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a1%b9 aria-label=限制和注意事项>限制和注意事项</a><ul><li><a href=#%e5%bd%93%e5%89%8d%e9%99%90%e5%88%b6 aria-label=当前限制>当前限制</a></li><li><a href=#%e6%9c%80%e4%bd%b3%e5%ae%9e%e8%b7%b5 aria-label=最佳实践>最佳实践</a></li><li><a href=#timesfm-%e4%b8%8e-arima-1 aria-label="TimesFM 与 ARIMA">TimesFM 与 ARIMA</a></li><li><a href=#timesfm-vs-prophet-1 aria-label="TimesFM vs. Prophet">TimesFM vs. Prophet</a></li></ul></li><li><a href=#%e9%99%90%e5%88%b6%e5%92%8c%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a1%b9-1 aria-label=限制和注意事项>限制和注意事项</a><ul><li><a href=#%e5%bd%93%e5%89%8d%e9%99%90%e5%88%b6-1 aria-label=当前限制>当前限制</a></li><li><a href=#%e6%9c%80%e4%bd%b3%e5%ae%9e%e8%b7%b5-1 aria-label=最佳实践>最佳实践</a></li></ul></li><li><a href=#%e6%97%b6%e9%97%b4%e5%ba%8f%e5%88%97%e9%a2%84%e6%b5%8b%e7%9a%84%e6%9c%aa%e6%9d%a5 aria-label=时间序列预测的未来>时间序列预测的未来</a><ul><li><a href=#%e8%ae%a1%e5%88%92%e7%9a%84%e5%8a%9f%e8%83%bd aria-label=计划的功能>计划的功能</a></li><li><a href=#%e7%a0%94%e7%a9%b6%e6%96%b9%e5%90%91 aria-label=研究方向>研究方向</a></li></ul></li><li><a href=#%e4%bb%8a%e5%a4%a9%e5%bc%80%e5%a7%8b aria-label=今天开始>今天开始</a></li><li><a href=#%e5%b8%b8%e8%a7%81%e9%97%ae%e9%a2%98 aria-label=常见问题>常见问题</a><ul><li><a href=#%e9%97%aetimesfm-20-%e5%92%8c-25-%e6%9c%89%e4%bb%80%e4%b9%88%e5%8c%ba%e5%88%ab aria-label="问：TimesFM 2.0 和 2.5 有什么区别？">问：TimesFM 2.0 和 2.5 有什么区别？</a></li><li><a href=#%e9%97%ae%e6%88%91%e9%9c%80%e8%a6%81-gpu-%e6%9d%a5%e8%bf%90%e8%a1%8c-timesfm-%e5%90%97 aria-label="问：我需要 GPU 来运行 TimesFM 吗？">问：我需要 GPU 来运行 TimesFM 吗？</a></li><li><a href=#%e9%97%ae%e6%88%91%e5%8f%af%e4%bb%a5%e4%bd%bf%e7%94%a8-timesfm-%e8%bf%9b%e8%a1%8c%e8%b4%a2%e5%8a%a1%e9%a2%84%e6%b5%8b%e5%90%97 aria-label="问：我可以使用 TimesFM 进行财务预测吗？">问：我可以使用 TimesFM 进行财务预测吗？</a></li><li><a href=#%e9%97%ae%e5%a6%82%e4%bd%95%e4%bd%bf%e7%94%a8-timesfm-%e8%bf%9b%e8%a1%8c%e5%be%ae%e8%b0%83 aria-label="问：如何使用 TimesFM 进行微调？">问：如何使用 TimesFM 进行微调？</a></li><li><a href=#%e9%97%ae%e6%9c%80%e5%a4%a7%e9%a2%84%e6%b5%8b%e8%8c%83%e5%9b%b4%e6%98%af%e5%a4%9a%e5%b0%91 aria-label=问：最大预测范围是多少？>问：最大预测范围是多少？</a></li><li><a href=#%e9%97%aetimesfm-%e9%80%82%e5%90%88%e5%ae%9e%e6%97%b6%e9%a2%84%e6%b5%8b%e5%90%97 aria-label="问：TimesFM 适合实时预测吗？">问：TimesFM 适合实时预测吗？</a></li></ul></li><li><a href=#%e7%bb%93%e8%ae%ba aria-label=结论>结论</a></li><li><a href=#why-this-matters aria-label="Why This Matters">Why This Matters</a><ul><li><a href=#real-world-applications aria-label="Real-World Applications">Real-World Applications</a></li><li><a href=#getting-started aria-label="Getting Started">Getting Started</a></li></ul></li><li><a href=#conclusion aria-label=Conclusion>Conclusion</a></li></ul></li></ul></div></details><div class="post-content md-content"><h1 id=timesfm-25google-革命性的预测时间序列基础模型>TimesFM 2.5：Google 革命性的预测时间序列基础模型<a hidden class=anchor aria-hidden=true href=#timesfm-25google-革命性的预测时间序列基础模型>#</a></h1><p>时间序列预测长期以来一直是数据科学中最具挑战性的问题之一。 从预测股票价格到预测天气模式，从销售预测到能源消耗估算——准确的预测可以成就企业，也可以毁掉企业。</p><p>输入 <strong><a href=https://github.com/google-research/timesfm>TimesFM</a></strong>，Google Research 用于时间序列预测的突破性基础模型。 TimesFM 现已推出 2.5 版本，并拥有超过 23,000 名 GitHub star，它代表了我们处理时态数据分析方式的范式转变。</p><p>在这份综合指南中，我们将探讨 TimesFM 的特殊之处、如何安装和使用它、将其与传统方法进行比较，并为现实世界的预测提供实际示例。</p><h2 id=timesfm-是什么>TimesFM 是什么？<a hidden class=anchor aria-hidden=true href=#timesfm-是什么>#</a></h2><p>TimesFM（时间序列基础模型）是 Google Research 专门针对时间序列预测开发的<strong>仅解码器基础模型</strong>。 与需要为每个数据集训练单独模型的传统预测方法不同，TimesFM 在大量时态数据上进行预训练，并且可以通过最少的微调推广到新的预测任务。</p><h3 id=关键创新>关键创新<a hidden class=anchor aria-hidden=true href=#关键创新>#</a></h3><p>该模型引入了多项突破性创新：</p><p><img alt=时间序列预测 loading=lazy src=https://images.pexels.com/photos/6332224/pexels-photo-6332224.jpeg></p><ol><li><strong>仅解码器架构</strong>：受到语言建模中变压器解码器成功的启发，TimesFM 使用针对顺序预测优化的纯解码器架构</li><li><strong>基础模型方法</strong>：对大量时态数据进行预训练，实现零样本和少样本预测能力</li><li><strong>连续分位数预测</strong>：通过可选的分位数头提供不确定性估计以及点预测</li><li><strong>扩展上下文窗口</strong>：支持多达 16,000 个时间步长的历史数据，以改善远程依赖性</li><li><strong>减少参数数量</strong>：2.5 版本仅使用 200M 参数（低于 v2.0 中的 500M），同时提高了准确性</li></ol><h3 id=timesfm-背后的研究>TimesFM 背后的研究<a hidden class=anchor aria-hidden=true href=#timesfm-背后的研究>#</a></h3><p>该基础研究发表在 ICML 2024 上的论文**“用于时间序列预测的仅解码器基础模型”**中。此后，该模型经历了多个版本的演变，其中 v2.5 代表了当前时间序列基础建模的最先进水平。</p><h2 id=timesfm-25重大改进>TimesFM 2.5：重大改进<a hidden class=anchor aria-hidden=true href=#timesfm-25重大改进>#</a></h2><p>2.5 版本于 2025 年 9 月发布，较之前版本带来了显着改进：</p><p><img alt=模型架构 loading=lazy src=https://images.pexels.com/photos/8386449/pexels-photo-8386449.jpeg></p><p>| 特色 | 时代FM 2.0 | 时代FM 2.5 |
+|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| 参数| 500M | 200M |
+| 上下文长度 | 2,048 | 2,048 16,000 |
+| 分位数预测 | 离散| 连续（最多 1,000 个水平线）|
+| 频率指示器| 必填| 已删除 |
+| 推理速度 | 基线| 快 2.5 倍 |
+| 内存使用情况| 高| 优化|</p><h3 id=为什么参数更少结果更好>为什么参数更少，结果更好？<a hidden class=anchor aria-hidden=true href=#为什么参数更少结果更好>#</a></h3><p>这种违反直觉的改进是通过以下方式实现的：</p><p><img alt=神经网络 loading=lazy src=https://images.pexels.com/photos/3861959/pexels-photo-3861959.jpeg></p><ol><li><strong>更好的预训练数据</strong>：更多样化、更大的时间数据集</li><li><strong>架构改进</strong>：优化时间序列的注意力机制</li><li><strong>改进的训练目标</strong>：具有各种预测损失的多任务学习</li><li><strong>分位数头创新</strong>：可选的30M分位数头提供了不确定性，而不会使主模型膨胀</li></ol><h2 id=安装指南>安装指南<a hidden class=anchor aria-hidden=true href=#安装指南>#</a></h2><p>TimesFM 入门非常简单。 该模型可通过 PyPI 获得，安装非常简单：</p><h3 id=选项-1通过-pypi-快速安装>选项 1：通过 PyPI 快速安装<a hidden class=anchor aria-hidden=true href=#选项-1通过-pypi-快速安装>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 使用 PyTorch 后端安装</span>
+</span></span><span style=display:flex><span>pip install timesfm<span style=color:#f92672>[</span>火炬<span style=color:#f92672>]</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 或者使用 Flax/JAX 后端（推荐用于 GPU/TPU）</span>
+</span></span><span style=display:flex><span>pip 安装 timesfm<span style=color:#f92672>[</span>flax<span style=color:#f92672>]</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 如果需要协变量支持 (XReg)</span>
+</span></span><span style=display:flex><span>pip 安装 timesfm<span style=color:#f92672>[</span>xreg<span style=color:#f92672>]</span>
+</span></span></code></pre></div><h3 id=选项-2开发安装>选项 2：开发安装<a hidden class=anchor aria-hidden=true href=#选项-2开发安装>#</a></h3><p>对于那些想要贡献或访问最新功能的人：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 克隆存储库</span>
+</span></span><span style=display:flex><span>git 克隆 https://github.com/google-research/timesfm.git
+</span></span><span style=display:flex><span>光盘时代调频
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 创建虚拟环境</span>
+</span></span><span style=display:flex><span>紫外线
+</span></span><span style=display:flex><span>源 .venv/bin/activate
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 以可编辑模式安装</span>
+</span></span><span style=display:flex><span>uv pip install -e .<span style=color:#f92672>[</span>火炬<span style=color:#f92672>]</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 或者对于 Flax 后端</span>
+</span></span><span style=display:flex><span>uv pip install -e .<span style=color:#f92672>[</span>亚麻<span style=color:#f92672>]</span>
+</span></span></code></pre></div><h3 id=后端选择>后端选择<a hidden class=anchor aria-hidden=true href=#后端选择>#</a></h3><p>TimesFM 支持多个后端：</p><ul><li><strong>PyTorch</strong>：最适合 CPU 和 NVIDIA GPU 用户</li><li><strong>Flax/JAX</strong>：最适合 TPU 和 Google Cloud 环境</li><li><strong>XReg 扩展</strong>：添加对外部回归量的协变量支持</li></ul><p>根据您的硬件和部署要求选择后端。</p><h2 id=基本用法>基本用法<a hidden class=anchor aria-hidden=true href=#基本用法>#</a></h2><p>让我们从一个简单的预测示例开始：</p><h3 id=零样本预测>零样本预测<a hidden class=anchor aria-hidden=true href=#零样本预测>#</a></h3><pre tabindex=0><code class=language-蟒蛇 data-lang=蟒蛇>将 numpy 导入为 np
+导入时间调频
+
+# 加载预训练模型
+模型 = timesfm.TimesFM_2p5_200M.from_pretrained(
+“谷歌/timesfm-2.5-200m-flax”
+）
+
+# 准备你的时间序列数据
+# 形状：(num_series, context_length)
+历史数据 = np.random.randn(1, 1024)
+
+# 预测接下来的12个时间步
+预测= model.forecast（历史数据，地平线= 12）
+print(f&#34;预测形状：{forecast.shape}&#34;)
+print(f&#34;预测值：{预测}&#34;)
+</code></pre><h3 id=使用分位数预测>使用分位数预测<a hidden class=anchor aria-hidden=true href=#使用分位数预测>#</a></h3><p>对于不确定性估计，启用连续分位数头：</p><pre tabindex=0><code class=language-蟒蛇 data-lang=蟒蛇>Forecast_with_uncertainty = model.forecast(
+历史数据，
+地平线=12，
+分位数=[0.1, 0.5, 0.9] # 第 10、50、90 个百分位数
+）
+
+# Forecast_with_uncertainty 包含点预测和置信区间
+point_forecast = Forecast_with_uncertainty[:, :, 1] # 中位数
+lower_bound = Forecast_with_uncertainty[:, :, 0] # 第 10 个百分位数
+upper_bound = Forecast_with_uncertainty[:, :, 2] # 第 90 个百分位
+</code></pre><h3 id=使用-pytorch-后端>使用 PyTorch 后端<a hidden class=anchor aria-hidden=true href=#使用-pytorch-后端>#</a></h3><pre tabindex=0><code class=language-蟒蛇 data-lang=蟒蛇>进口火炬
+导入时间调频
+
+# 设置精度以加快计算速度
+torch.set_float32_matmul_ precision（“高”）
+
+# 加载 PyTorch 版本
+模型 = timesfm.TimesFM_2p5_200M_torch.from_pretrained(
+“谷歌/timesfm-2.5-200m-pytorch”
+）
+
+# 编译优化推理
+模型.编译(
+timesfm.ForecastConfig(
+最大上下文=1024，
+最大地平线=256，
+Normalize_inputs=真，
+use_continuous_quantile_head=真，
+force_flip_invariance=真，
+infer_is_positive=真，
+fix_quantile_crossing=真，
+）
+）
+
+# 进行预测
+point_forecast, quantile_forecast = model.forecast(
+地平线=12，
+输入=[
+np.linspace(0, 1, 100),
+np.sin(np.linspace(0, 20, 67)),
+]
+）
+</code></pre><h2 id=高级功能>高级功能<a hidden class=anchor aria-hidden=true href=#高级功能>#</a></h2><h3 id=使用-lora-进行微调>使用 LoRA 进行微调<a hidden class=anchor aria-hidden=true href=#使用-lora-进行微调>#</a></h3><p>TimesFM 2.5 最强大的功能之一是使用低秩适应 (LoRA) 进行微调的能力：</p><pre tabindex=0><code class=language-蟒蛇 data-lang=蟒蛇>从变压器导入 AutoModelForSequenceClassification
+从 peft 导入 LoraConfig，get_peft_model
+
+# 加载基本 TimesFM 模型
+base_model = timesfm.TimesFM_2p5_200M.from_pretrained(
+“谷歌/timesfm-2.5-200m-flax”
+）
+
+# 配置LoRA
+洛拉配置 = 洛拉配置（
+r=16, # 更新矩阵的秩
+lora_alpha=32, # 缩放因子
+target_modules=[&#34;query&#34;, &#34;value&#34;], # 应用 LoRA 的层
+劳拉_dropout=0.1,
+）
+
+# 将 LoRA 应用于模型
+模型 = get_peft_model(base_model, lora_config)
+
+# 现在您可以对特定数据集进行微调
+# 与完全微调相比，这需要明显更少的参数
+</code></pre><h3 id=xreg-的协变量支持>XReg 的协变量支持<a hidden class=anchor aria-hidden=true href=#xreg-的协变量支持>#</a></h3><p>对于有影响时间序列的外部变量的场景，TimesFM 2.5 支持协变量建模：</p><pre tabindex=0><code class=language-蟒蛇 data-lang=蟒蛇># 安装 XReg 支持
+# pip 安装 timesfm[xreg]
+
+导入时间调频
+
+# 加载具有协变量支持的模型
+模型 = timesfm.TimesFM_2p5_200M_XReg.from_pretrained(
+“谷歌/timesfm-2.5-200m-xreg”
+）
+
+# 历史时间序列数据
+y_train = np.random.randn(1000)
+
+# 外部协变量（例如营销支出、季节性指标）
+X_train = np.random.randn(1000, 5)
+
+# 拟合协变量模型
+model.fit(y_train, X_train)
+
+# 使用未来协变量进行预测
+y_pred，confidence_intervals = model.predict（
+地平线=12，
+X_future=np.random.randn(12, 5)
+）
+</code></pre><h3 id=批量预测>批量预测<a hidden class=anchor aria-hidden=true href=#批量预测>#</a></h3><p>同时对于多个时间序列：</p><pre tabindex=0><code class=language-蟒蛇 data-lang=蟒蛇># 准备一批时间序列
+batch_data = np.random.randn(10, 1024) # 10 个系列，每个系列 1024 个时间步
+
+# 一次性预测所有系列
+预测 = model.forecast(batch_data, Horizon=24)
+
+# 形状：(10, 24) - 10 个预测，每个预测 24 个时间步长
+print(f&#34;批量预测形状：{forecasts.shape}&#34;)
+</code></pre><h3 id=批量预测-1>批量预测<a hidden class=anchor aria-hidden=true href=#批量预测-1>#</a></h3><p>同时对于多个时间序列：</p><pre tabindex=0><code class=language-蟒蛇 data-lang=蟒蛇># 准备一批时间序列
+batch_data = np.random.randn(10, 1024) # 10 个系列，每个系列 1024 个时间步
+
+# 一次性预测所有系列
+预测 = model.forecast(batch_data, Horizon=24)
+
+# 形状：(10, 24) - 10 个预测，每个预测 24 个时间步长
+print(f&#34;批量预测形状：{forecasts.shape}&#34;)
+</code></pre><h3 id=批量预测-2>批量预测<a hidden class=anchor aria-hidden=true href=#批量预测-2>#</a></h3><p>同时对于多个时间序列：</p><pre tabindex=0><code class=language-蟒蛇 data-lang=蟒蛇># 准备一批时间序列
+batch_data = np.random.randn(10, 1024) # 10 个系列，每个系列 1024 个时间步
+
+# 一次性预测所有系列
+预测 = model.forecast(batch_data, Horizon=24)
+
+# 形状：(10, 24) - 10 个预测，每个预测 24 个时间步长
+print(f&#34;批量预测形状：{forecasts.shape}&#34;)
+</code></pre><h3 id=流式推理>流式推理<a hidden class=anchor aria-hidden=true href=#流式推理>#</a></h3><p>对于实时预测应用：</p><pre tabindex=0><code class=language-蟒蛇 data-lang=蟒蛇> # 初始化流媒体客户端
+ Streaming_model = timesfm.StreamingTimesFM(
+ model_path=&#34;google/timesfm-2.5-200m-flax&#34;
+ ）
+
+ # 处理传入的数据流
+ 而真实：
+ 新数据 = get_next_time_step()
+ 预测=streaming_model.update_and_predict（new_data，地平线= 12）
+ 显示预测（预测）
+</code></pre><h2 id=性能基准>性能基准<a hidden class=anchor aria-hidden=true href=#性能基准>#</a></h2><p>TimesFM 2.5 在多个基准数据集上取得了最先进的结果：</p><h3 id=基准测试结果>基准测试结果<a hidden class=anchor aria-hidden=true href=#基准测试结果>#</a></h3><p>| 数据集 | 时代FM 2.5 | 自动ARIMA | 先知| N-节拍 |
+|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| ETTh1 | 0.312 | 0.312 0.487 | 0.487 0.523 | 0.523 0.398 | 0.398
+| 电力 | 0.234 | 0.234 0.312 | 0.312 0.298 | 0.298 0.267 | 0.267
+| 交通 | 0.198 | 0.198 0.287 | 0.287 0.276 | 0.276 0.245 | 0.245
+| 天气 | 0.156 | 0.156 0.234 | 0.234 0.221 | 0.221 0.189 | 0.189
+| 汇率 | 0.287 | 0.287 0.398 | 0.398 0.412 | 0.412 0.334 | 0.334</p><p>值越低表示性能越好（标准化 MSE）。</p><h3 id=真实世界性能>真实世界性能<a hidden class=anchor aria-hidden=true href=#真实世界性能>#</a></h3><p>在生产环境中，TimesFM 2.5 展示了：</p><ul><li><strong>95% 准确度</strong> 零售连锁店的需求预测</li><li>与传统方法相比，<strong>库存成本降低 40%</strong></li><li>与自定义神经网络方法相比，<strong>训练时间快 10 倍</strong></li><li><strong>在不同领域（金融、医疗保健、制造）保持一致的性能</strong></li></ul><h2 id=与-google-产品集成>与 Google 产品集成<a hidden class=anchor aria-hidden=true href=#与-google-产品集成>#</a></h2><p>TimesFM 的独特优势之一是它与 Google 生态系统的集成：</p><h3 id=bigquery-机器学习>BigQuery 机器学习<a hidden class=anchor aria-hidden=true href=#bigquery-机器学习>#</a></h3><p>对于企业规模的预测：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sql data-lang=sql><span style=display:flex><span><span style=color:#75715e>-- 在 BigQuery ML 中使用 TimesFM 模型
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>创建模型</span> my_project.my_timesfm_model
+</span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>选项</span>(model_type<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;TIMESFM&#39;</span>) <span style=color:#66d9ef>AS</span>
+</span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>选择</span>
+</span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>时间戳</span>_列<span style=color:#960050;background-color:#1e0010>，</span>
+</span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>值</span>_列<span style=color:#960050;background-color:#1e0010>，</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>EXTRACT</span>(HOUR <span style=color:#66d9ef>FROM</span> timestamp_col) <span style=color:#66d9ef>AS</span> hour_of_day
+</span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>来自</span><span style=color:#f92672>````</span>my_dataset.time_series_data<span style=color:#f92672>````</span><span style=color:#960050;background-color:#1e0010>；</span>
+</span></span></code></pre></div><h3 id=google-表格集成>Google 表格集成<a hidden class=anchor aria-hidden=true href=#google-表格集成>#</a></h3><p>对于非技术用户：</p><ol><li>安装 <a href=https://workspaceupdates.googleblog.com/2026/02/forecast-data-in-connected-sheets-BigQueryML-TimesFM.html>TimesFM 插件</a></li><li>选择您的数据范围</li><li>选择预测范围</li><li>直接在电子表格中获取预测</li></ol><h3 id=vertex-ai-模型花园>Vertex AI 模型花园<a hidden class=anchor aria-hidden=true href=#vertex-ai-模型花园>#</a></h3><p>对于云部署：</p><pre tabindex=0><code class=language-蟒蛇 data-lang=蟒蛇> 从 google.cloud 导入 aiplatform
+
+ # 将 TimesFM 模型部署到 Vertex AI
+ aiplatform.init（项目=“您的项目”，位置=“us-central1”）
+
+ 端点 = aiplatform.Endpoint.create(
+ display_name=&#34;timesfm-forecasting-endpoint&#34;,
+ 描述=“TimesFM 2.5 预测端点”
+ ）
+
+ 模型 = aiplatform.Model.upload(
+ 显示名称=“timesfm-2.5”，
+ artifact_uri =“gs://your-bucket/timesfm-model”
+ ）
+
+ 端点.部署（模型=模型，machine_type =“n1-standard-4”）
+</code></pre><h2 id=实际应用>实际应用<a hidden class=anchor aria-hidden=true href=#实际应用>#</a></h2><h3 id=应用1销售预测>应用1：销售预测<a hidden class=anchor aria-hidden=true href=#应用1销售预测>#</a></h3><p>零售公司可以使用 TimesFM 来预测未来的销售：</p><pre tabindex=0><code class=language-蟒蛇 data-lang=蟒蛇>将 pandas 导入为 pd
+导入时间调频
+
+# 加载历史销售数据
+sales_data = pd.read_csv(&#34;historical_sales.csv&#34;)
+
+# 准备时间序列
+历史销售 = sales_data[&#34;销售&#34;].values.reshape(1, -1)
+
+# 未来 30 天的预测
+模型 = timesfm.TimesFM_2p5_200M.from_pretrained(
+“谷歌/timesfm-2.5-200m-flax”
+）
+
+预测 = model.forecast(historical_sales, Horizon=30)
+print(f&#34;下个月预计销售额：{forecast.mean():.2f}&#34;)
+</code></pre><h3 id=应用2能源需求预测>应用2：能源需求预测<a hidden class=anchor aria-hidden=true href=#应用2能源需求预测>#</a></h3><p>公用事业公司可以预测电力需求：</p><pre tabindex=0><code class=language-蟒蛇 data-lang=蟒蛇># 加载能耗数据
+energy_data = pd.read_csv(&#34;energy_conspiration.csv&#34;)
+
+# 包括天气协变量
+协变量 = pd.DataFrame({
+“温度”：weather_data[“温度”]，
+“湿度”：weather_data[“湿度”]，
+“day_of_week”：energy_data.index.dayofweek
+})
+
+# 使用协变量进行训练
+model.fit(energy_data[&#34;消耗&#34;], covariates.values)
+
+# 预测未来需求
+future_demand = model.predict(
+地平线=24，
+X_future=future_covariates.values
+）
+</code></pre><h3 id=应用3金融市场分析>应用3：金融市场分析<a hidden class=anchor aria-hidden=true href=#应用3金融市场分析>#</a></h3><p>TimesFM 虽然不是财务建议，但可以帮助分析市场模式：</p><pre tabindex=0><code class=language-蟒蛇 data-lang=蟒蛇># 股价预测
+stock_prices = pd.read_csv(&#34;stock_history.csv&#34;)[&#34;close&#34;].values
+
+# 多只股票
+batch_stocks = np.array([
+stock_prices[:-100], # 苹果
+stock_prices[100:-100], # 谷歌
+stock_prices[200:] # 亚马逊
+]）
+
+# 预测所有股票
+预测 = model.forecast(batch_stocks, Horizon=30)
+</code></pre><h2 id=与传统方法的比较>与传统方法的比较<a hidden class=anchor aria-hidden=true href=#与传统方法的比较>#</a></h2><h3 id=timesfm-与-arima>TimesFM 与 ARIMA<a hidden class=anchor aria-hidden=true href=#timesfm-与-arima>#</a></h3><p>| 方面| 时代FM 2.5 | 华睿玛 |
+|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| 设置时间| 分钟 | 小时-天 |
+| 参数调优 | 最小 | 广泛 |
+| 多系列 | 是的 | 没有 |
+| 非线性模式| 优秀| 有限公司|
+| 可解释性| 降低| 更高 |
+| 可扩展性| 高| 中等|</p><h3 id=timesfm-vs-prophet>TimesFM vs. Prophet<a hidden class=anchor aria-hidden=true href=#timesfm-vs-prophet>#</a></h3><p>| 方面| 时代FM 2.5 | 先知|
+|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| 基础模型| 是的 | 没有 |
+| 迁移学习 | 是的 | 没有 |
+| 不确定性估计| 连续 | 离散|
+| 计算效率 | 高| 中等|
+| 社区支持 | 成长| 成熟|</p><h2 id=限制和注意事项>限制和注意事项<a hidden class=anchor aria-hidden=true href=#限制和注意事项>#</a></h2><h3 id=当前限制>当前限制<a hidden class=anchor aria-hidden=true href=#当前限制>#</a></h3><ol><li><strong>需要历史数据</strong>：虽然小样本学习有帮助，但仍然需要一些历史数据</li><li><strong>计算资源</strong>：大型上下文窗口需要大量内存</li><li><strong>领域特异性</strong>：可能需要针对专业领域进行微调</li><li><strong>可解释性</strong>：像所有深度学习模型一样，内部运作有些不透明</li></ol><h3 id=最佳实践>最佳实践<a hidden class=anchor aria-hidden=true href=#最佳实践>#</a></h3><ol><li><strong>数据质量</strong>：确保时间序列数据干净、一致</li><li><strong>上下文长度</strong>：为您的用例选择适当的历史窗口</li><li><strong>定期更新</strong>：当新数据可用时定期重新训练</li><li><strong>验证</strong>：始终根据保留数据集验证预测</li></ol><h3 id=timesfm-与-arima-1>TimesFM 与 ARIMA<a hidden class=anchor aria-hidden=true href=#timesfm-与-arima-1>#</a></h3><p>| 方面| 时代FM 2.5 | 华睿玛 |
+|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| 设置时间| 分钟 | 小时-天 |
+| 参数调优 | 最小 | 广泛 |
+| 多系列 | 是的 | 没有 |
+| 非线性模式| 优秀| 有限公司|
+| 可解释性| 降低| 更高 |
+| 可扩展性| 高| 中等|</p><h3 id=timesfm-vs-prophet-1>TimesFM vs. Prophet<a hidden class=anchor aria-hidden=true href=#timesfm-vs-prophet-1>#</a></h3><p>| 方面| 时代FM 2.5 | 先知|
+|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| 基础模型| 是的 | 没有 |
+| 迁移学习 | 是的 | 没有 |
+| 不确定性估计| 连续 | 离散|
+| 计算效率 | 高| 中等|
+| 社区支持 | 成长| 成熟|</p><h2 id=限制和注意事项-1>限制和注意事项<a hidden class=anchor aria-hidden=true href=#限制和注意事项-1>#</a></h2><h3 id=当前限制-1>当前限制<a hidden class=anchor aria-hidden=true href=#当前限制-1>#</a></h3><ol><li><strong>需要历史数据</strong>：虽然小样本学习有帮助，但仍然需要一些历史数据</li><li><strong>计算资源</strong>：大型上下文窗口需要大量内存</li><li><strong>领域特异性</strong>：可能需要针对专业领域进行微调</li><li><strong>可解释性</strong>：像所有深度学习模型一样，内部运作有些不透明</li></ol><h3 id=最佳实践-1>最佳实践<a hidden class=anchor aria-hidden=true href=#最佳实践-1>#</a></h3><ol><li><strong>数据质量</strong>：确保时间序列数据干净、一致</li><li><strong>上下文长度</strong>：为您的用例选择适当的历史窗口</li><li><strong>定期更新</strong>：当新数据可用时定期重新训练</li><li><strong>验证</strong>：始终根据保留数据集验证预测</li></ol><h2 id=时间序列预测的未来>时间序列预测的未来<a hidden class=anchor aria-hidden=true href=#时间序列预测的未来>#</a></h2><p>TimesFM 代表了基础模型在时态数据分析中可以实现的目标的开始。 即将到来的发展包括：</p><h3 id=计划的功能>计划的功能<a hidden class=anchor aria-hidden=true href=#计划的功能>#</a></h3><ul><li><strong>多元预测</strong>：更好地处理多个相关时间序列</li><li><strong>实时学习</strong>：在线适应，无需完全再培训</li><li><strong>可解释的人工智能</strong>：提高预测的可解释性</li><li><strong>边缘部署</strong>：针对移动和物联网设备的优化版本</li><li><strong>多模态集成</strong>：将时间序列与图像、文本和其他数据类型相结合</li></ul><h3 id=研究方向>研究方向<a hidden class=anchor aria-hidden=true href=#研究方向>#</a></h3><p>Google 研究团队不断突破界限，开展以下工作：</p><ul><li>更长的上下文窗口（32K+ 时间步长）</li><li>更少的参数具有相同或更好的性能</li><li>跨域泛化</li><li>因果推理能力</li></ul><h2 id=今天开始>今天开始<a hidden class=anchor aria-hidden=true href=#今天开始>#</a></h2><p>准备好彻底改变您的预测工作流程了吗？ 以下是如何开始：</p><ol><li><strong>安装</strong>：````pip install timesfm[flax]```</li><li><strong>加载模型</strong>：使用 Hugging Face 中的预训练检查点</li><li><strong>准备数据</strong>：适当设置时间序列的格式</li><li><strong>预测</strong>：根据您想要的范围调用预测方法</li><li><strong>微调</strong>：可选择使模型适应您的特定领域</li></ol><p>无论您是寻求更好预测工具的数据科学家，还是想要进行数据驱动预测的业务分析师，TimesFM 2.5 都提供了强大、灵活的解决方案，可以立即部署。</p><h2 id=常见问题>常见问题<a hidden class=anchor aria-hidden=true href=#常见问题>#</a></h2><h3 id=问timesfm-20-和-25-有什么区别>问：TimesFM 2.0 和 2.5 有什么区别？<a hidden class=anchor aria-hidden=true href=#问timesfm-20-和-25-有什么区别>#</a></h3><p>TimesFM 2.5 仅使用 200M 参数（低于 2.0 中的 500M），同时实现了更好的准确性。 它支持高达 16,000 个上下文长度（相对于 2,048 个）、高达 1,000 个范围的连续分位数预测，并且无需频率指示​​器。</p><h3 id=问我需要-gpu-来运行-timesfm-吗>问：我需要 GPU 来运行 TimesFM 吗？<a hidden class=anchor aria-hidden=true href=#问我需要-gpu-来运行-timesfm-吗>#</a></h3><p>不，TimesFM 可以在 CPU 上运行，尽管 GPU 加速显着提高了推理速度。 建议 TPU 和 NVIDIA GPU 用户使用 Flax/JAX 后端，而 PyTorch 非常适合 CPU 和 NVIDIA GPU 设置。</p><h3 id=问我可以使用-timesfm-进行财务预测吗>问：我可以使用 TimesFM 进行财务预测吗？<a hidden class=anchor aria-hidden=true href=#问我可以使用-timesfm-进行财务预测吗>#</a></h3><p>虽然 TimesFM 从技术上可以预测金融时间序列，但值得注意的是，金融市场受到无数不可预测因素的影响。 该模型应作为众多工具中的一种，而不是作为投资决策的唯一依据。</p><h3 id=问如何使用-timesfm-进行微调>问：如何使用 TimesFM 进行微调？<a hidden class=anchor aria-hidden=true href=#问如何使用-timesfm-进行微调>#</a></h3><p>微调通过 HuggingFace Transformers 使用低秩适应 (LoRA)。 您准备特定于域的数据、配置 LoRA 参数并训练几个时期。 这可以使基础模型适应您的特定预测任务，而不需要完整的模型重新训练。</p><h3 id=问最大预测范围是多少>问：最大预测范围是多少？<a hidden class=anchor aria-hidden=true href=#问最大预测范围是多少>#</a></h3><p>TimesFM 2.5 通过其连续分位数头支持高达 1,000 个时间步的范围。 对于大多数实际应用，24-365 个时间步长的范围就足够了，并且可以提供最佳精度。</p><h3 id=问timesfm-适合实时预测吗>问：TimesFM 适合实时预测吗？<a hidden class=anchor aria-hidden=true href=#问timesfm-适合实时预测吗>#</a></h3><p>是的，一旦编译和优化，TimesFM 就可以提供实时预测。 具有优化推理配置的编译模型可以在现代硬件上每秒预测数百个时间步。</p><h2 id=结论>结论<a hidden class=anchor aria-hidden=true href=#结论>#</a></h2><p>TimesFM 2.5 代表了时间序列预测的巨大飞跃。 通过将基础模型的强大功能与时态数据的特定领域优化相结合，它以最小的设置和计算开销实现了卓越的准确性。</p><p>通过融入 Google 的生态系统、活跃的开发社区和持续改进，TimesFM 有望成为跨行业时间序列预测的标准。</p><p>对于任何使用时态数据的人来说，投入时间学习和部署 TimesFM 不仅是有益的，而且变得至关重要。</p><hr><p><strong>来源：</strong></p><ul><li><a href=https://github.com/google-research/timesfm>GitHub 存储库</a></li><li><a href=https://arxiv.org/abs/2310.10688>ICML 2024 论文</a></li><li><a href=https://research.google/blog/a-decoder-only-foundation-model-for-time-series-forecasting/>谷歌研究博客</a></li><li><a href=https://huggingface.co/collections/google/timesfm-release-66e4be5fdb56e960c1e482a6>拥抱脸部模型</a></li></ul><p><strong>CTA：</strong> 加入 <a href=https://t.me/DIBI8_Group/2>DIBI8 Telegram 群组</a> 了解更多人工智能和数据科学见解！</p><p><strong>附属链接：</strong></p><ul><li><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a> - 托管您的 ML 模型</li><li><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a> - 可靠的 GPU 服务器托管</li><li><a href="https://www.huwangyun.cn/gpu-server/?aff_id=f872dfc7e2864e62822c83c023354367">虎网云</a> - 用于训练的GPU服务器（中文）</li></ul><p>{
+&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+&ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;TimesFM 2.5：用于预测的谷歌革命性时间序列基础模型&rdquo;,
+&ldquo;datePublished&rdquo;: &ldquo;2026-06-19&rdquo;,
+&ldquo;dateModified&rdquo;: &ldquo;2026-06-19&rdquo;,
+&ldquo;author&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;
+},
+&ldquo;publisher&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
+&ldquo;logo&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
+&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+}
+},
+&ldquo;mainEntityOfPage&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
+&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/zh/resources/timesfm-google-time-series-foundation-model%22>https://dibi8.com/zh/resources/timesfm-google-time-series-foundation-model"</a>
+}
+}</script></p><h2 id=why-this-matters>Why This Matters<a hidden class=anchor aria-hidden=true href=#why-this-matters>#</a></h2><p>Understanding timesfm 2.5：用于预测的谷歌革命性时间序列基础模型 is crucial for modern AI development. Here&rsquo;s why: ### Key Benefits</p><ul><li><strong>Efficiency</strong>: Save time on repetitive tasks</li><li><strong>Quality</strong>: Improve output consistency</li><li><strong>Scalability</strong>: Handle larger workloads</li><li><strong>Cost</strong>: Reduce operational expenses</li></ul><h3 id=real-world-applications>Real-World Applications<a hidden class=anchor aria-hidden=true href=#real-world-applications>#</a></h3><p>Organizations are using similar approaches to: 1. Automate code review processes
+2. Generate documentation automatically
+3. Build internal knowledge bases
+4. Streamline deployment pipelines</p><h3 id=getting-started>Getting Started<a hidden class=anchor aria-hidden=true href=#getting-started>#</a></h3><p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p><ul><li>Identify repetitive tasks</li><li>Measure current time costs</li><li>Define success metrics</li></ul><ol start=2><li><p><strong>Choose Your Approach</strong></p><ul><li>Start with simple automations</li><li>Gradually increase complexity</li><li>Test and iterate</li></ul></li><li><p><strong>Measure Results</strong></p><ul><li>Track time savings</li><li>Monitor quality improvements</li><li>Calculate ROI</li></ul></li></ol><h2 id=conclusion>Conclusion<a hidden class=anchor aria-hidden=true href=#conclusion>#</a></h2><p>TimesFM 2.5：用于预测的谷歌革命性时间序列基础模型 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p><p>For the latest updates and community discussions, join our Telegram channel: <a href=https://t.me/DIBI8_Group>https://t.me/DIBI8_Group</a></p><hr><p><em>Last updated: 2026-09-20</em>
+<em>Read time: ~6 minutes</em></p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/zh/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/zh/tags/tools/>Tools</a></li></ul></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/zh/>Dibi8</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

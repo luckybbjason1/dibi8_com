@@ -1,0 +1,367 @@
+<!doctype html><html lang=ko dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ko/ai-coding-agents/noco-db-airtable-alternative/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/noco-db-airtable-alternative/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/noco-db-airtable-alternative/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ko/ai-coding-agents/noco-db-airtable-alternative/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="ko"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Tool Guide","item":"https://dibi8.com/ko/ai-coding-agents/noco-db-airtable-alternative/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"소개: 스프레드시트의 한계에 부딪힐 때 모든 엔지니어링 팀에는 그 하나의 “마스터 스프레드시트\"가 있습니다. 고객 온볼딩을 추적하는 Google Sheet, 재고 SKU CSV, 프로젝트 예산 공유 Excel 파일로 시작합니다. 그런 다음 혼란이 찾아옵니다: 누군가 공식을 덮어쓰고, 버전 기록이 읽을 수 없게 되며, 65,000행 제한이 먹구름처럼 다가옵니다.\nAirtable은 수백만 팀에게 이 문제를 해결했지만 대가가 따릅니다. Pro 플랜은 사용자당 월 $20입니다. 20인 팀은 고급 스프레드시트 하나에 연간 $4,800을 지불합니다. 더 나쁜 것은 데이터가 Airtable 서버에 저장되고, 납품은 제한되며, API에는 실제 작업량을 제한하는 속도 제한이 있다는 점입니다.\nNocoDB가 등장합니다 — 모든 MySQL, PostgreSQL, SQL Server, SQLite 또는 MariaDB 데이터베이스를 스마트한 협업형 스프레드시트 인터페이스로 변환하는 오픈소스 플랫폼입니다. 53,000+ GitHub Stars, 5분 미만의 Docker 배포, 데이터 마이그레이션 불필요로, NocoDB는 Airtable의 사용 편의성과 실제 SQL 데이터베이스의 강력함과 소유권을 모두 제공합니다.\n이 가이드는 완전한 프로덕션 설정을 안내합니다: 로컬 Docker 배포, 기존 PostgreSQL 데이터베이스 연결, 역할 기반 접근 제어 구성, REST API 생성, 프로덕션 하드닝. 모든 명령어는 복사-붙여넣기로 실행할 수 있습니다.\nNocoDB란? NocoDB는 기존 관계형 데이터베이스 위에 스프레드시트와 유사한 인터페이스를 추가하는 오픈소스 노코드 데이터베이스 플랫폼입니다. Airtable은 데이터를 자체 독점 백엔드에 저장하지만, NocoDB는 사용자의 MySQL, PostgreSQL, SQL Server, SQLite 또는 MariaDB 데이터베이스에 연결하여 데이터를 한 행도 이동하지 않고 그리드, 칸반, 갤러리, 양식, 캘린더 뷰를 제공합니다.\n비기술 팀원이 실제로 사용할 수 있는 시각적 관리자 패널로 생각하세요. 마케팅팀은 캠페인 데이터를 업데이트하고, 운영팀은 재고를 편집하고, 인사팀은 채용 파이프라인을 관리할 수 있습니다. 모두 익숙한 스프레드시트 UI를 통해 이루어지며, 데이터는 엔지니어가 SQL로 쿼리하고 Metabase에 연결하거나 데이터 웨어하우스에 복제할 수 있는 PostgreSQL 데이터베이스에 그대로 유지됩니다.\nNocoDB 작동 방식: 아키텍처 개요 NocoDB는 데이터베이스 우선 아키텍처를 따릅니다. 비즈니스 데이터를 직접 저장하지 않습니다. 대신 기존 데이터베이스 스키마를 조사하고, 테이블 구조, 인덱스, 관계를 읽은 다음 이를 인터랙티브 뷰로 렌더링합니다.\n핵심 컴포넌트:\nNocoDB Server — 표준 드라이버(pg, mysql2, sqlite3)를 통해 데이터베이스에 연결하는 Node.js 백엔드 Web GUI — 스프레드시트 인터페이스를 제공하는 Vue.js 프론트엔드 메타 데이터베이스 — 프로젝트 메타데이터, 뷰 구성, 사용자 권한, 웹훅 설정을 저장하는 경량 SQLite 데이터베이스(기본값) 또는 전용 PostgreSQL/MySQL 인스턴스 REST/GraphQL API 레이어 — Swagger 문서와 함께 모든 테이블에 대해 자동 생성되는 엔드포인트 사용자가 그리드 뷰에서 셀을 편집하면 NocoDB는 해당 작업을 데이터베이스에 대해 직접 실행되는 매개변수화된 SQL ```UPDATE```` 문으로 변환합니다. 칸반 뷰를 생성하면 NocoDB는 메타 데이터베이스에 뷰 구성을 저장하는 동안 기본 데이터는 절대 이동하지 않습니다.\n이 분리가 핵심입니다: 데이터는 데이터베이스에 그대로 유지됩니다. NocoDB는 스마트 렌즈일 뿐입니다.\n설치 및 설정: 5분 만에 실행까지 옵션 1: Docker(개발용 권장) 로컬에서 NocoDB를 실행하는 가장 빠른 방법: `````bash\nNocoDB 데이터 디렉토리 생성 mkdir -p ~/nocodb-data \u0026\u0026 cd ~/nocodb-data\nDocker로 NocoDB 실행 (SQLite 메타 DB 포함) docker run -d –name nocodb -p 8080:8080 -v “$(pwd)/nocodb:/usr/app/data” nocodb/nocodb:latest\n````http://localhost:8080````에 접속하고 관리자 이메일과 비밀번호로 가입합니다. 완료. ### 옵션 2: 기존 PostgreSQL과 Docker Compose 프로덕션 환경용, 기존 PostgreSQL 데이터베이스에 연결: `````bash # docker-compose.yml version: \"3.8\" services: nocodb: image: nocodb/nocodb:0.260.7 ports: - \"8080:8080\" environment: - NC_DB=\"pg://host.docker.internal:5432?u=postgres\u0026p=yourpassword\u0026d=nocodb_meta\" - DATABASE_URL=\"postgres://postgres:yourpassword@host.docker.internal:5432/myapp_production\" - NC_AUTH_JWT_SECRET=\"change-this-to-a-64-char-random-string\" - NC_PUBLIC_URL=https://nocodb.yourcompany.com volumes: - ./nocodb-data:/usr/app/data restart: unless-stopped 시작: `````bash docker-compose up -d\n### 옵션 3: DigitalOcean에 배포 (프로덕션) 프로덕션 VPS 배포를 위해 [DigitalOcean에서 월 $6 Droplet을 생성](https://m.do.co/c/eca87ac14ee0)하고 실행합니다: `````bash # 시스템 업데이트 sudo apt update \u0026\u0026 sudo apt upgrade -y # Docker 설치 curl -fsSL https://get.docker.com | sh sudo usermod -aG docker $USER newgrp docker # 영구 스토리지로 NocoDB 실행 docker run -d \\ --name nocodb \\ -p 8080:8080 \\ -e NC_DB=\"pg://your-db-host:5432?u=nocodb\u0026p=SECURE_PASS\u0026d=nocodb_meta\" \\ -e NC_AUTH_JWT_SECRET=\"$(openssl rand -hex 32)\" \\ -v /opt/nocodb:/usr/app/data \\ --restart unless-stopped \\ nocodb/nocodb:0.260.7 첫 번째 데이터 소스 추가 NocoDB UI에 로그인한 후: 1. “Add New Base” → “Connect to Data Source” 클릭 2. PostgreSQL (또는 MySQL/SQLite) 선택 3. 연결 정보 입력: `````yaml\nPostgreSQL 데이터베이스 연결 예시 Host: db.yourcompany.com Port: 5432 Username: app_readwrite Password: ********** Database: production_app SSL: Require\nNocoDB는 약 10초 만에 스키마를 조사하고 모든 테이블을 인터랙티브 스프레드시트 뷰로 표시합니다. ## 통합: 기존 스택에 NocoDB 연결 ### REST API 자동 생성 모든 테이블은 자동으로 완전한 REST API를 갖습니다. 테이블에서 **\"API\"**를 클릭하면 Swagger 문서를 볼 수 있습니다: `````bash # \"customers\" 테이블의 모든 레코드 나열 curl -X GET \"https://nocodb.yourcompany.com/api/v2/tables/customers/records\" \\ -H \"xc-token: YOUR_API_TOKEN\" \\ -H \"Content-Type: application/json\" # 새 레코드 생성 curl -X POST \"https://nocodb.yourcompany.com/api/v2/tables/customers/records\" \\ -H \"xc-token: YOUR_API_TOKEN\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"Email\": \"alice@example.com\", \"Status\": \"Active\", \"Plan\": \"Enterprise\" }' # 필터로 업데이트 curl -X PATCH \"https://nocodb.yourcompany.com/api/v2/tables/customers/records\" \\ -H \"xc-token: YOUR_API_TOKEN\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"id\": 42, \"Status\": \"Churned\" }\" Webhook 자동화 데이터 변경 시 외부 워크플로우 트리거: 1. Base → Automation → Webhooks로 이동 2. “Add Webhook” 클릭 3. 트리거 구성: `````json { “title”: “Notify Slack on New Order”, “event”: “after.insert”, “table”: “orders”, “hook”: { “method”: “POST”, “url”: “https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXX\", “headers”: { “Content-Type”: “application/json” }, “body”: { “text”: “New order # from — Amount: $” } } }\n### n8n 통합 NocoDB는 [n8n 워크플로우 자동화](n8n-workflow-automation-dibi8-internal-link)와 원활하게 작동합니다: `````bash # n8n NocoDB 노드 자격 증명 Host: https://nocodb.yourcompany.com API Token: noco_xxxxxxxxxxxx Base ID: your-base-id Metabase / BI 통합 데이터가 PostgreSQL에 그대로 있으므로 Metabase를 동일한 데이터베이스에 직접 연결하여 분석하고, NocoDB는 운영 편집 레이어를 처리합니다: `````yaml\nMetabase는 동일한 PostgreSQL 데이터베이스에 연결 NocoDB는 데이터 입력 처리, Metabase는 대시보드 처리 둘 다 동일한 단일 진실 공급원에서 읽기 ### Airtable에서 동기화 (마이그레이션 경로) Airtable에서 이전하나요? CSV로 낸 후 NocoDB로 가져오기: 1. **Airtable** → 각 테이블 **CSV 다운로드** 2. **NocoDB** → **Add New Table** → **Import CSV** 3. Linked Record 필드를 NocoDB의 **Links**(외래 키 관계)로 다시 생성 4. NocoDB의 뷰 빌더로 뷰(Grid, Kanban, Gallery) 다시 생성 ## 벤치마크 및 실제 사용 사례 ### 성능: NocoDB vs Airtable | 지표 | NocoDB (셀프호스팅) | Airtable Pro | |---|---|---| | 베이스당 레코드 수 | **무제한** | 50,000 | | 파일 첨부 | **디스크 제한** | 20 GB | | API 속도 제한 | **없음 (자체 서버)** | 10 req/sec | | 동시 사용자 | **테스트: 200+** | 50 (Pro 플랜) | | 행 업데이트 지연 | **~15ms** (로컬 PG) | ~200-500ms | | 20명 사용자 비용 | **월 $6 (VPS)** | 월 $400 | ### 실제 배포 데이터 커뮤니티 보고서와 부하 테스트 기준: - **스타트업 CRM**: 150,000 고객 레코드, 15명 팀원, 테이블당 3개 뷰. 4 vCPU VPS의 PostgreSQL 14. 평균 쿼리 시간: **23ms**. - **재고 관리**: 8개 창고의 50,000 SKU. REST API가 3개 클라이언트 애플리케이션에서 사용됨. watchtower 자동 업데이트로 6개월간 **무중단**. - **HR 지원자 추적**: 12명 채용 담당자, 8,000명 지원자, 채용 단계별 칸반 뷰. Airtable에서 전환하여 연간 **$2,800 절약**. ### GitHub 통계 (2026년 5월) - **53,000+ Stars** - **1,200+ 기여자** - **최신 릴리스**: v0.260.7 (2026년 4월) - **Docker Pull**: 500만+ - **활발한 Discord**: 4,800+ 멤버 ## 고급 사용법: 프로덕션 하드닝 ### 1. Nginx 리버스 프록시로 HTTPS `````nginx # /etc/nginx/sites-available/nocodb server { listen 443 ssl http2; server_name nocodb.yourcompany.com; ssl_certificate /etc/letsencrypt/live/yourcompany.com/fullchain.pem; ssl_certificate_key /etc/letsencrypt/live/yourcompany.com/privkey.pem; location / { proxy_pass http://localhost:8080; proxy_http_version 1.1; proxy_set_header Upgrade $http_upgrade; proxy_set_header Connection \"upgrade\"; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; proxy_set_header X-Forwarded-Proto $scheme; } } 활성화 및 재시작: `````bash sudo ln -s /etc/nginx/sites-available/nocodb /etc/nginx/sites-enabled/ sudo nginx -t \u0026\u0026 sudo systemctl restart nginx\n### 2. 환경 변수 보안 `````bash # 비밀 파일 생성 sudo mkdir -p /opt/nocodb sudo tee /opt/nocodb/.env \u003e /dev/null \u003c\u003c EOF NC_DB=pg://db:5432?u=nocodb\u0026p=CHANGE_ME\u0026d=nocodb_meta NC_AUTH_JWT_SECRET=CHANGE_TO_64_CHAR_RANDOM_STRING NC_REDIS_URL=redis://redis:6379 NC_SENTRY_DSN=https://xxx@sentry.io/yyy NC_PUBLIC_URL=https://nocodb.yourcompany.com EOF sudo chmod 600 /opt/nocodb/.env 3. 역할 기반 접근 제어 각 베이스에 대해 세분화된 권한 구성: 1. Project Settings → Data Sources → Users 2. 역할 할당: - Owner — 전체 제어, 베이스 삭제 가능\nCreator — 테이블, 뷰, 자동화 생성 Editor — 레코드 편집, 스키마 수정 불가 Commenter — 댓글만 추가 Viewer — 읽기 전용 접근 열 수준 권한을 설정하여 비인사팀 사용자로부터 민감한 필드(예: 급여, 주민등록번호)를 숨깁니다.\n4. 데이터베이스 백업 전략 #!/bin/bash # /opt/backup/nocodb-backup.sh # PostgreSQL 데이터 백업 (실제 비즈니스 데이터) pg_dump -h db.yourcompany.com -U postgres myapp_db \u003e \\ /backups/postgres-$(date +%Y%m%d).sql # NocoDB 메타 데이터베이스 백업 docker exec nocodb-db-1 pg_dump -U nocodb nocodb_meta \u003e \\ /backups/nocodb-meta-$(date +%Y%m%d).sql # S3로 동기화 (선택) aws s3 sync /backups/ s3://yourcompany-backups/nocodb/ # 7일만 유지 find /backups -name \"*.sql\" -mtime +7 -delete crontab에 추가: `````bash 0 2 * * * /opt/backup/nocodb-backup.sh » /var/log/nocodb-backup.log 2\u003e\u00261\n### 5. Prometheus로 모니터링 `````yaml # docker-compose.monitoring.yml services: prometheus: image: prom/prometheus:v2.51.0 volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml ports: - \"9090:9090\" grafana: image: grafana/grafana:10.4.0 ports: - \"3000:3000\" volumes: - grafana-data:/var/lib/grafana volumes: grafana-data: ````` ## 대안과의 비교 | 기능 | NocoDB | Airtable | Baserow | Teable | |---|---|---|---|---| | **라이선스** | AGPL-3.0 | 독점 | MIT | AGPL-3.0 | | **셀프호스팅** | 예 | 아니오 | 예 | 예 | | **기존 DB 연결** | **예** (PG, MySQL, SQLite) | 아니오 | 아니오 | 예 | | **REST API** | 자동 생성 | 제한적 속도 | 자동 생성 | 자동 생성 | | **칸반 뷰** | 예 | 예 | 예 | 예 | | **양식 뷰** | 예 | 예 | 예 | 예 | | **파일 첨부** | 예 | 20 GB (Pro) | 예 | 예 | | **역할 기반 접근** | 예 | 예 | 예 | 예 | | **Webhook 자동화** | 예 | 유료 플랜 | 예 | 제한적 | | **20명 사용자 가격** | **월 $6 (VPS)** | **월 $400** | 월 $100 | $0 (셀프호스팅) | | **레코드 제한** | **무제한** | 50,000 (Pro) | 무제한 | 무제한 | | **GitHub Stars** | **53,000** | 해당 없음 | 8,200 | 14,500 | **각 대안 대비 NocoDB를 선택하는 시기:** - **Airtable 대비**: 데이터 소유권, 낮은 비용, 레코드 제한 없음, 기존 데이터베이스 연결 능력이 필요할 때. - **Baserow 대비**: 새 데이터베이스를 만드는 것이 아닌 기존 PostgreSQL/MySQL 데이터베이스에 연결해야 할 때. Baserow는 UI가 더 세련됐지만 자체 데이터 모델을 강요합니다. - **Teable 대비**: 더 넓은 데이터베이스 드라이버 지원이 필요할 때(NocoDB는 SQL Server와 MariaDB를 지원, Teable은 PostgreSQL에 집중). Teable은 더 강력한 AI 통합을, NocoDB는 더 깊은 스프레드시트 기능을 갖습니다. ## 한계: 정직한 평가 **NocoDB는 완벽하지 않습니다.** 투입하기 전 다음 제약을 고려하세요: 1. **UI 세련도 격차**: Airtable의 인터페이스가 더 부드럽습니다. NocoDB의 그리드는 브라우저에서 100,000+ 행 처리 시 느릴 수 있으나 — 기본 데이터베이스는 원활하게 처리합니다. 2. **네이티브 모바일 앱 없음**: 반응형 웹 UI가 제공되나, Airtable이 제공하는 것과 같은 전용 iOS/Android 앱은 없습니다. 3. **제한된 수식 지원**: 수식은 Excel 구문이 아닌 SQL 표현식을 사용합니다. 비기술 사용자는 짧은 학습 곡선이 필요합니다. 4. **셀프호스팅 부담**: 백업, 업데이트, 보안을 직접 처리합니다. 클라우드 옵션은 있지만 사용자당 월 $8부터 시작하여 비용 이점을 줄입니다. 5. **라이선스 고려사항**: NocoDB의 AGPL-3.0 라이선스는 소프트웨어를 배포하는 경우 수정사항을 공개할 것을 요구합니다. 내용 회사 사용의 경우 이는 문제가 되지 않습니다. NocoDB 기반 SaaS 제품의 경우 법무팀에 문의하세요. 6. **Single Sign-On (SSO)**: 내장 SSO(SAML, OIDC)는 Enterprise 티어가 필요합니다. 셀프호스팅 사용자는 리버스 프록시 인증 레이어로 우회할 수 있습니다. ## 자주 묻는 질문 ### NocoDB는 여러 데이터베이스에 동시 연결을 지원하나요? 예. 단일 NocoDB 인스턴스는 여러 데이터 소스에 연결할 수 있습니다. 하나의 베이스는 PostgreSQL에, 다른 것은 MySQL에, 세 번째는 내장 SQLite를 사용할 수 있습니다 — 모두 동일한 대시보드에서 접근 가능합니다. 각 베이스는 자체 권한과 뷰를 가진 독립적 엔티티입니다. ### NocoDB는 기본 데이터베이스의 스키마 변경을 어떻게 처리하나요? NocoDB는 스키마 변경을 자동으로 동기화합니다. PostgreSQL에서 ````ALTER TABLE````로 열을 추가하면 베이스 설정에서 **\"Sync Now\"**를 클릭하고, 새 열은 수 초 내에 NocoDB에 나타납니다. 기존 뷰는 보존; 필요한 뷰에 새 필드를 추가하기만 하면 됩니다. ### NocoDB를 고객 대상 애플리케이션의 백엔드로 사용할 수 있나요? 예, REST API를 통해 가능합니다. 그러나 NocoDB는 낮관리 도구용으로 설계되었지 공개 API 서버용은 아닙니다. 고객 대상 앱의 경우, 팀용 관리 패널로 NocoDB를 사용하고 비즈니스 로직을 검증하는 별도 API 레이어를 동일한 데이터베이스에 구축하세요. ### NocoDB가 다울되면 어떻게 되나요? 내 데이터는 안전한가요? 데이터는 PostgreSQL/MySQL 데이터베이스에 저장되며 NocoDB와 완전히 분리되어 있습니다. NocoDB 컨테이너가 중지되어도 데이터는 영향을 받지 않습니다. 동일한 데이터베이스를 읽는 다른 애플리케이션은 정상적으로 계속 작동합니다. NocoDB는 메타 데이터베이스에 뷰 구성, 사용자 계정, 웹훅 정의만 저장합니다. ### Airtable에서 NocoDB로 어떻게 마이그레이션하나요? 각 Airtable 테이블을 CSV로 낸 후, NocoDB에서 테이블을 생성하고 **\"Import CSV\"**로 데이터를 채웁니다. Airtable의 \"Linked Records\"를 NocoDB의 **\"Links\"**(외래 키 관계)로 다시 생성합니다. 뷰(Grid, Kanban, Gallery)를 수동으로 재구축합니다. NocoDB 커뮤니티에는 GitHub에서 벌크 변환을 처리하는 Airtable-to-NocoDB 마이그레이션 스크립트가 있습니다. ### NocoDB는 Airtable과 같은 실시간 협업을 지원하나요? 예, 단 주의사항이 있습니다. 여러 사용자가 동시에 동일한 베이스를 편집할 수 있으며, 변경사항은 WebSocket을 통해 실시간으로 표시됩니다. 그러나 충돌 해결은 operational transforms가 아닌 last-write-wins입니다. 대부분의 사용 사례(다른 사용자가 다른 행 편집)에는 이것으로 충분합니다. 동일 행의 대량 동시 편집은 덮어쓰기를 일으킬 수 있습니다. ### Docker 없이 NocoDB를 실행할 방법이 있나요? 예. NocoDB는 Linux, macOS, Windows용 독립 실행형 바이너리를 제공합니다. GitHub 릴리스 페이지에서 최신 바이너리를 다운로드하고, 실행 권한을 부여하고, ````./nocodb````를 실행합니다. 그러나 업데이트와 의존성 관리가 더 쉬워 Docker가 프로덕션 배포의 권장 방법으로 남아 있습니다. ## 결론: 당신의 데이터, 당신의 규칙 NocoDB는 특정 공백을 채웁니다: 비기술 팀에게 Airtable의 사용 편의성을 제공하면서 데이터는 엔지니어가 제어하는 데이터베이스에 유지합니다. **53,000 GitHub Stars**, 활발한 릴리스 주기, 성장하는 플러그인 생태계로 2026년 및 그 이후에도 실용적인 선택입니다. Airtable에 월 $200+를 지불하고 이미 PostgreSQL 또는 MySQL 데이터베이스를 실행 중이라면, NocoDB는 첫 달에 비용을 회수합니다. Docker 설정은 5분입니다. Airtable에서의 마이그레이션은 주말 프로젝트입니다. 데이터를 소유하는 자유는 영구적입니다. **지금 시작**: 월 $6 Droplet으로 [DigitalOcean에서 NocoDB 배포](https://m.do.co/c/eca87ac14ee0)하거나, 또는 커밋하기 전에 탐색을 위해 로컬에서 ````docker run nocodb/nocodb:latest```를 실행하세요. **커뮤니티 가입**: [NocoDB Discord](https://discord.gg/5ZjDgHEG5H) | [GitHub Discussions](https://github.com/nocodb/nocodb/discussions) **관련 도구**: [n8n 워크플로우 자동화](n8n-workflow-automation-dibi8-internal-link) | [Metabase BI 설정 가이드](metabase-bi-setup-dibi8-internal-link) * * * ## 추천 호스팅 및 인프라 위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택. - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC. *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.* ## 출처 및 추가 자료 - [NocoDB 공식 문서](https://docs.nocodb.com/) - [NocoDB GitHub 저장소](https://github.com/nocodb/nocodb) — 53,000+ Stars - [NocoDB Docker Hub](https://hub.docker.com/r/nocodb/nocodb) - [NocoDB API 참조](https://docs.nocodb.com/developer-resources/rest-APIs/) - [NocoDB vs Airtable: 기능 비교](https://nocodb.com/compare/airtable) - [PostgreSQL 공식 문서](https://www.postgresql.org/docs/) * * * *본 문서에는 제휴 링크가 포함될 수 있습니다. 당사의 추천 링크를 통해 DigitalOcean에 가입하시면 추가 비용 없이 커미션을 받습니다. 당사는 직접 사용하는 서비스만을 추천합니다.* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"NocoDB 2026 완벽 가이드: 모든 데이터베이스를 스마트 스프레드시트로 만드는 오픈소스 Airtable 대안\", \"datePublished\": \"2026-05-19\", \"dateModified\": \"2026-05-19\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/kr/resources/noco-db-airtable-alternative\" } } * * * ## Related Articles - [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](noco-db-airtable-alternative) - [paperclip-open-source-agent-workplace-managing-ai-agents-at-scale](noco-db-airtable-alternative) - [open-notebook-open-source-notebooklm-alternative-15-ai-providers](noco-db-airtable-alternative) - [egonex-understand-anything-interactive-knowledge-graph-ai](noco-db-airtable-alternative) - [bytedance-ui-tars-desktop-ai-agent-guide](noco-db-airtable-alternative) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ","wordCount":"2280","inLanguage":"ko","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ko/ai-coding-agents/noco-db-airtable-alternative/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ko/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/ko/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/ko/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/ko/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/ko/>홈</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
+<a href>AI Coding Agents - dibi8</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>11 분</span>&nbsp;|&nbsp;<span>번역:</span><ul class=i18n_list><li><a href=https://dibi8.com/zh/ai-coding-agents/noco-db-airtable-alternative/>Zh</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>목차</span></summary><div class=inner><ul><ul><li><a href=#%ec%86%8c%ea%b0%9c-%ec%8a%a4%ed%94%84%eb%a0%88%eb%93%9c%ec%8b%9c%ed%8a%b8%ec%9d%98-%ed%95%9c%ea%b3%84%ec%97%90-%eb%b6%80%eb%94%aa%ed%9e%90-%eb%95%8c aria-label="소개: 스프레드시트의 한계에 부딪힐 때">소개: 스프레드시트의 한계에 부딪힐 때</a></li><li><a href=#nocodb%eb%9e%80 aria-label=NocoDB란?>NocoDB란?</a></li><li><a href=#nocodb-%ec%9e%91%eb%8f%99-%eb%b0%a9%ec%8b%9d-%ec%95%84%ed%82%a4%ed%85%8d%ec%b2%98-%ea%b0%9c%ec%9a%94 aria-label="NocoDB 작동 방식: 아키텍처 개요">NocoDB 작동 방식: 아키텍처 개요</a></li><li><a href=#%ec%84%a4%ec%b9%98-%eb%b0%8f-%ec%84%a4%ec%a0%95-5%eb%b6%84-%eb%a7%8c%ec%97%90-%ec%8b%a4%ed%96%89%ea%b9%8c%ec%a7%80 aria-label="설치 및 설정: 5분 만에 실행까지">설치 및 설정: 5분 만에 실행까지</a><ul><li><a href=#%ec%98%b5%ec%85%98-1-docker%ea%b0%9c%eb%b0%9c%ec%9a%a9-%ea%b6%8c%ec%9e%a5 aria-label="옵션 1: Docker(개발용 권장)">옵션 1: Docker(개발용 권장)</a></li></ul></li></ul><li><a href=#nocodb-%eb%8d%b0%ec%9d%b4%ed%84%b0-%eb%94%94%eb%a0%89%ed%86%a0%eb%a6%ac-%ec%83%9d%ec%84%b1 aria-label="NocoDB 데이터 디렉토리 생성">NocoDB 데이터 디렉토리 생성</a></li><li><a href=#docker%eb%a1%9c-nocodb-%ec%8b%a4%ed%96%89-sqlite-%eb%a9%94%ed%83%80-db-%ed%8f%ac%ed%95%a8 aria-label="Docker로 NocoDB 실행 (SQLite 메타 DB 포함)">Docker로 NocoDB 실행 (SQLite 메타 DB 포함)</a><ul><ul><li><a href=#%ec%b2%ab-%eb%b2%88%ec%a7%b8-%eb%8d%b0%ec%9d%b4%ed%84%b0-%ec%86%8c%ec%8a%a4-%ec%b6%94%ea%b0%80 aria-label="첫 번째 데이터 소스 추가">첫 번째 데이터 소스 추가</a></li></ul></ul></li><li><a href=#postgresql-%eb%8d%b0%ec%9d%b4%ed%84%b0%eb%b2%a0%ec%9d%b4%ec%8a%a4-%ec%97%b0%ea%b2%b0-%ec%98%88%ec%8b%9c aria-label="PostgreSQL 데이터베이스 연결 예시">PostgreSQL 데이터베이스 연결 예시</a><ul><ul><li><a href=#webhook-%ec%9e%90%eb%8f%99%ed%99%94 aria-label="Webhook 자동화">Webhook 자동화</a></li><li><a href=#metabase--bi-%ed%86%b5%ed%95%a9 aria-label="Metabase / BI 통합">Metabase / BI 통합</a></li></ul></ul></li><li><a href=#metabase%eb%8a%94-%eb%8f%99%ec%9d%bc%ed%95%9c-postgresql-%eb%8d%b0%ec%9d%b4%ed%84%b0%eb%b2%a0%ec%9d%b4%ec%8a%a4%ec%97%90-%ec%97%b0%ea%b2%b0 aria-label="Metabase는 동일한 PostgreSQL 데이터베이스에 연결">Metabase는 동일한 PostgreSQL 데이터베이스에 연결</a></li><li><a href=#nocodb%eb%8a%94-%eb%8d%b0%ec%9d%b4%ed%84%b0-%ec%9e%85%eb%a0%a5-%ec%b2%98%eb%a6%ac-metabase%eb%8a%94-%eb%8c%80%ec%8b%9c%eb%b3%b4%eb%93%9c-%ec%b2%98%eb%a6%ac aria-label="NocoDB는 데이터 입력 처리, Metabase는 대시보드 처리">NocoDB는 데이터 입력 처리, Metabase는 대시보드 처리</a></li><li><a href=#%eb%91%98-%eb%8b%a4-%eb%8f%99%ec%9d%bc%ed%95%9c-%eb%8b%a8%ec%9d%bc-%ec%a7%84%ec%8b%a4-%ea%b3%b5%ea%b8%89%ec%9b%90%ec%97%90%ec%84%9c-%ec%9d%bd%ea%b8%b0 aria-label="둘 다 동일한 단일 진실 공급원에서 읽기">둘 다 동일한 단일 진실 공급원에서 읽기</a><ul><ul><li><a href=#3-%ec%97%ad%ed%95%a0-%ea%b8%b0%eb%b0%98-%ec%a0%91%ea%b7%bc-%ec%a0%9c%ec%96%b4 aria-label="3. 역할 기반 접근 제어">3. 역할 기반 접근 제어</a></li><li><a href=#4-%eb%8d%b0%ec%9d%b4%ed%84%b0%eb%b2%a0%ec%9d%b4%ec%8a%a4-%eb%b0%b1%ec%97%85-%ec%a0%84%eb%9e%b5 aria-label="4. 데이터베이스 백업 전략">4. 데이터베이스 백업 전략</a></li></ul></ul></li></ul></div></details><div class="post-content md-content"><h2 id=소개-스프레드시트의-한계에-부딪힐-때>소개: 스프레드시트의 한계에 부딪힐 때<a hidden class=anchor aria-hidden=true href=#소개-스프레드시트의-한계에-부딪힐-때>#</a></h2><p>모든 엔지니어링 팀에는 그 하나의 &ldquo;마스터 스프레드시트"가 있습니다. 고객 온볼딩을 추적하는 Google Sheet, 재고 SKU CSV, 프로젝트 예산 공유 Excel 파일로 시작합니다. 그런 다음 혼란이 찾아옵니다: 누군가 공식을 덮어쓰고, 버전 기록이 읽을 수 없게 되며, 65,000행 제한이 먹구름처럼 다가옵니다.</p><p>Airtable은 수백만 팀에게 이 문제를 해결했지만 대가가 따릅니다. Pro 플랜은 사용자당 월 <strong>$20</strong>입니다. 20인 팀은 고급 스프레드시트 하나에 연간 <strong>$4,800</strong>을 지불합니다. 더 나쁜 것은 데이터가 Airtable 서버에 저장되고, 납품은 제한되며, API에는 실제 작업량을 제한하는 속도 제한이 있다는 점입니다.</p><p><strong>NocoDB</strong>가 등장합니다 — 모든 MySQL, PostgreSQL, SQL Server, SQLite 또는 MariaDB 데이터베이스를 스마트한 협업형 스프레드시트 인터페이스로 변환하는 오픈소스 플랫폼입니다. <strong>53,000+ GitHub Stars</strong>, 5분 미만의 Docker 배포, 데이터 마이그레이션 불필요로, NocoDB는 Airtable의 사용 편의성과 실제 SQL 데이터베이스의 강력함과 소유권을 모두 제공합니다.</p><p>이 가이드는 완전한 프로덕션 설정을 안내합니다: 로컬 Docker 배포, 기존 PostgreSQL 데이터베이스 연결, 역할 기반 접근 제어 구성, REST API 생성, 프로덕션 하드닝. 모든 명령어는 복사-붙여넣기로 실행할 수 있습니다.</p><h2 id=nocodb란>NocoDB란?<a hidden class=anchor aria-hidden=true href=#nocodb란>#</a></h2><p><strong>NocoDB</strong>는 기존 관계형 데이터베이스 위에 스프레드시트와 유사한 인터페이스를 추가하는 오픈소스 노코드 데이터베이스 플랫폼입니다. Airtable은 데이터를 자체 독점 백엔드에 저장하지만, NocoDB는 사용자의 MySQL, PostgreSQL, SQL Server, SQLite 또는 MariaDB 데이터베이스에 연결하여 데이터를 한 행도 이동하지 않고 그리드, 칸반, 갤러리, 양식, 캘린더 뷰를 제공합니다.</p><p>비기술 팀원이 실제로 사용할 수 있는 시각적 관리자 패널로 생각하세요. 마케팅팀은 캠페인 데이터를 업데이트하고, 운영팀은 재고를 편집하고, 인사팀은 채용 파이프라인을 관리할 수 있습니다. 모두 익숙한 스프레드시트 UI를 통해 이루어지며, 데이터는 엔지니어가 SQL로 쿼리하고 Metabase에 연결하거나 데이터 웨어하우스에 복제할 수 있는 PostgreSQL 데이터베이스에 그대로 유지됩니다.</p><h2 id=nocodb-작동-방식-아키텍처-개요>NocoDB 작동 방식: 아키텍처 개요<a hidden class=anchor aria-hidden=true href=#nocodb-작동-방식-아키텍처-개요>#</a></h2><p>NocoDB는 <strong>데이터베이스 우선 아키텍처</strong>를 따릅니다. 비즈니스 데이터를 직접 저장하지 않습니다. 대신 기존 데이터베이스 스키마를 조사하고, 테이블 구조, 인덱스, 관계를 읽은 다음 이를 인터랙티브 뷰로 렌더링합니다.</p><p><strong>핵심 컴포넌트:</strong></p><ul><li><strong>NocoDB Server</strong> — 표준 드라이버(pg, mysql2, sqlite3)를 통해 데이터베이스에 연결하는 Node.js 백엔드</li><li><strong>Web GUI</strong> — 스프레드시트 인터페이스를 제공하는 Vue.js 프론트엔드</li><li><strong>메타 데이터베이스</strong> — 프로젝트 메타데이터, 뷰 구성, 사용자 권한, 웹훅 설정을 저장하는 경량 SQLite 데이터베이스(기본값) 또는 전용 PostgreSQL/MySQL 인스턴스</li><li><strong>REST/GraphQL API 레이어</strong> — Swagger 문서와 함께 모든 테이블에 대해 자동 생성되는 엔드포인트</li></ul><p>사용자가 그리드 뷰에서 셀을 편집하면 NocoDB는 해당 작업을 데이터베이스에 대해 직접 실행되는 매개변수화된 SQL ```UPDATE```` 문으로 변환합니다. 칸반 뷰를 생성하면 NocoDB는 메타 데이터베이스에 뷰 구성을 저장하는 동안 기본 데이터는 절대 이동하지 않습니다.</p><p>이 분리가 핵심입니다: 데이터는 데이터베이스에 그대로 유지됩니다. NocoDB는 스마트 렌즈일 뿐입니다.</p><h2 id=설치-및-설정-5분-만에-실행까지>설치 및 설정: 5분 만에 실행까지<a hidden class=anchor aria-hidden=true href=#설치-및-설정-5분-만에-실행까지>#</a></h2><h3 id=옵션-1-docker개발용-권장>옵션 1: Docker(개발용 권장)<a hidden class=anchor aria-hidden=true href=#옵션-1-docker개발용-권장>#</a></h3><p>로컬에서 NocoDB를 실행하는 가장 빠른 방법: `````bash</p><h1 id=nocodb-데이터-디렉토리-생성>NocoDB 데이터 디렉토리 생성<a hidden class=anchor aria-hidden=true href=#nocodb-데이터-디렉토리-생성>#</a></h1><p>mkdir -p ~/nocodb-data && cd ~/nocodb-data</p><h1 id=docker로-nocodb-실행-sqlite-메타-db-포함>Docker로 NocoDB 실행 (SQLite 메타 DB 포함)<a hidden class=anchor aria-hidden=true href=#docker로-nocodb-실행-sqlite-메타-db-포함>#</a></h1><p>docker run -d<br>&ndash;name nocodb<br>-p 8080:8080<br>-v &ldquo;$(pwd)/nocodb:/usr/app/data&rdquo;<br>nocodb/nocodb:latest</p><pre tabindex=0><code>
+````http://localhost:8080````에 접속하고 관리자 이메일과 비밀번호로 가입합니다. 완료.
+
+### 옵션 2: 기존 PostgreSQL과 Docker Compose
+
+프로덕션 환경용, 기존 PostgreSQL 데이터베이스에 연결: `````bash
+# docker-compose.yml
+version: &#34;3.8&#34;
+
+services: nocodb: image: nocodb/nocodb:0.260.7
+    ports: - &#34;8080:8080&#34;
+    environment: - NC_DB=&#34;pg://host.docker.internal:5432?u=postgres&amp;p=yourpassword&amp;d=nocodb_meta&#34;
+      - DATABASE_URL=&#34;postgres://postgres:yourpassword@host.docker.internal:5432/myapp_production&#34;
+      - NC_AUTH_JWT_SECRET=&#34;change-this-to-a-64-char-random-string&#34;
+      - NC_PUBLIC_URL=https://nocodb.yourcompany.com
+    volumes: - ./nocodb-data:/usr/app/data
+    restart: unless-stopped
+</code></pre><p>시작: `````bash
+docker-compose up -d</p><pre tabindex=0><code>
+### 옵션 3: DigitalOcean에 배포 (프로덕션)
+
+프로덕션 VPS 배포를 위해 [DigitalOcean에서 월 $6 Droplet을 생성](https://m.do.co/c/eca87ac14ee0)하고 실행합니다: `````bash
+# 시스템 업데이트
+sudo apt update &amp;&amp; sudo apt upgrade -y
+
+# Docker 설치
+curl -fsSL https://get.docker.com | sh
+sudo usermod -aG docker $USER
+newgrp docker
+
+# 영구 스토리지로 NocoDB 실행
+docker run -d \
+  --name nocodb \
+  -p 8080:8080 \
+  -e NC_DB=&#34;pg://your-db-host:5432?u=nocodb&amp;p=SECURE_PASS&amp;d=nocodb_meta&#34; \
+  -e NC_AUTH_JWT_SECRET=&#34;$(openssl rand -hex 32)&#34; \
+  -v /opt/nocodb:/usr/app/data \
+  --restart unless-stopped \
+  nocodb/nocodb:0.260.7
+</code></pre><h3 id=첫-번째-데이터-소스-추가>첫 번째 데이터 소스 추가<a hidden class=anchor aria-hidden=true href=#첫-번째-데이터-소스-추가>#</a></h3><p>NocoDB UI에 로그인한 후: 1. <strong>&ldquo;Add New Base&rdquo;</strong> → <strong>&ldquo;Connect to Data Source&rdquo;</strong> 클릭
+2. <strong>PostgreSQL</strong> (또는 MySQL/SQLite) 선택
+3. 연결 정보 입력: `````yaml</p><h1 id=postgresql-데이터베이스-연결-예시>PostgreSQL 데이터베이스 연결 예시<a hidden class=anchor aria-hidden=true href=#postgresql-데이터베이스-연결-예시>#</a></h1><p>Host: db.yourcompany.com
+Port: 5432
+Username: app_readwrite
+Password: **********
+Database: production_app
+SSL: Require</p><pre tabindex=0><code>
+NocoDB는 약 10초 만에 스키마를 조사하고 모든 테이블을 인터랙티브 스프레드시트 뷰로 표시합니다.
+
+## 통합: 기존 스택에 NocoDB 연결
+
+### REST API 자동 생성
+
+모든 테이블은 자동으로 완전한 REST API를 갖습니다. 테이블에서 **&#34;API&#34;**를 클릭하면 Swagger 문서를 볼 수 있습니다: `````bash
+# &#34;customers&#34; 테이블의 모든 레코드 나열
+curl -X GET &#34;https://nocodb.yourcompany.com/api/v2/tables/customers/records&#34; \
+  -H &#34;xc-token: YOUR_API_TOKEN&#34; \
+  -H &#34;Content-Type: application/json&#34;
+
+# 새 레코드 생성
+curl -X POST &#34;https://nocodb.yourcompany.com/api/v2/tables/customers/records&#34; \
+  -H &#34;xc-token: YOUR_API_TOKEN&#34; \
+  -H &#34;Content-Type: application/json&#34; \
+  -d &#39;{
+    &#34;Email&#34;: &#34;alice@example.com&#34;,
+    &#34;Status&#34;: &#34;Active&#34;,
+    &#34;Plan&#34;: &#34;Enterprise&#34;
+  }&#39;
+
+# 필터로 업데이트
+curl -X PATCH &#34;https://nocodb.yourcompany.com/api/v2/tables/customers/records&#34; \
+  -H &#34;xc-token: YOUR_API_TOKEN&#34; \
+  -H &#34;Content-Type: application/json&#34; \
+  -d &#39;{
+    &#34;id&#34;: 42,
+    &#34;Status&#34;: &#34;Churned&#34;
+  }&#34;
+</code></pre><h3 id=webhook-자동화>Webhook 자동화<a hidden class=anchor aria-hidden=true href=#webhook-자동화>#</a></h3><p>데이터 변경 시 외부 워크플로우 트리거: 1. <strong>Base</strong> → <strong>Automation</strong> → <strong>Webhooks</strong>로 이동
+2. <strong>&ldquo;Add Webhook&rdquo;</strong> 클릭
+3. 트리거 구성: `````json
+{
+&ldquo;title&rdquo;: &ldquo;Notify Slack on New Order&rdquo;,
+&ldquo;event&rdquo;: &ldquo;after.insert&rdquo;,
+&ldquo;table&rdquo;: &ldquo;orders&rdquo;,
+&ldquo;hook&rdquo;: {
+&ldquo;method&rdquo;: &ldquo;POST&rdquo;,
+&ldquo;url&rdquo;: &ldquo;<a href=https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXX%22>https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXX"</a>,
+&ldquo;headers&rdquo;: {
+&ldquo;Content-Type&rdquo;: &ldquo;application/json&rdquo;
+},
+&ldquo;body&rdquo;: {
+&ldquo;text&rdquo;: &ldquo;New order # from — Amount: $&rdquo;
+}
+}
+}</p><pre tabindex=0><code>
+### n8n 통합
+
+NocoDB는 [n8n 워크플로우 자동화](n8n-workflow-automation-dibi8-internal-link)와 원활하게 작동합니다: `````bash
+# n8n NocoDB 노드 자격 증명
+Host: https://nocodb.yourcompany.com
+API Token: noco_xxxxxxxxxxxx
+Base ID: your-base-id
+</code></pre><h3 id=metabase--bi-통합>Metabase / BI 통합<a hidden class=anchor aria-hidden=true href=#metabase--bi-통합>#</a></h3><p>데이터가 PostgreSQL에 그대로 있으므로 Metabase를 동일한 데이터베이스에 직접 연결하여 분석하고, NocoDB는 운영 편집 레이어를 처리합니다: `````yaml</p><h1 id=metabase는-동일한-postgresql-데이터베이스에-연결>Metabase는 동일한 PostgreSQL 데이터베이스에 연결<a hidden class=anchor aria-hidden=true href=#metabase는-동일한-postgresql-데이터베이스에-연결>#</a></h1><h1 id=nocodb는-데이터-입력-처리-metabase는-대시보드-처리>NocoDB는 데이터 입력 처리, Metabase는 대시보드 처리<a hidden class=anchor aria-hidden=true href=#nocodb는-데이터-입력-처리-metabase는-대시보드-처리>#</a></h1><h1 id=둘-다-동일한-단일-진실-공급원에서-읽기>둘 다 동일한 단일 진실 공급원에서 읽기<a hidden class=anchor aria-hidden=true href=#둘-다-동일한-단일-진실-공급원에서-읽기>#</a></h1><pre tabindex=0><code>
+### Airtable에서 동기화 (마이그레이션 경로)
+
+Airtable에서 이전하나요? CSV로 낸 후 NocoDB로 가져오기: 1. **Airtable** → 각 테이블 **CSV 다운로드**
+2. **NocoDB** → **Add New Table** → **Import CSV**
+3. Linked Record 필드를 NocoDB의 **Links**(외래 키 관계)로 다시 생성
+4. NocoDB의 뷰 빌더로 뷰(Grid, Kanban, Gallery) 다시 생성
+
+## 벤치마크 및 실제 사용 사례
+
+### 성능: NocoDB vs Airtable
+
+| 지표 | NocoDB (셀프호스팅) | Airtable Pro |
+|---|---|---|
+| 베이스당 레코드 수 | **무제한** | 50,000 |
+| 파일 첨부 | **디스크 제한** | 20 GB |
+| API 속도 제한 | **없음 (자체 서버)** | 10 req/sec |
+| 동시 사용자 | **테스트: 200+** | 50 (Pro 플랜) |
+| 행 업데이트 지연 | **~15ms** (로컬 PG) | ~200-500ms |
+| 20명 사용자 비용 | **월 $6 (VPS)** | 월 $400 |
+
+### 실제 배포 데이터
+
+커뮤니티 보고서와 부하 테스트 기준: - **스타트업 CRM**: 150,000 고객 레코드, 15명 팀원, 테이블당 3개 뷰. 4 vCPU VPS의 PostgreSQL 14. 평균 쿼리 시간: **23ms**.
+- **재고 관리**: 8개 창고의 50,000 SKU. REST API가 3개 클라이언트 애플리케이션에서 사용됨. watchtower 자동 업데이트로 6개월간 **무중단**.
+- **HR 지원자 추적**: 12명 채용 담당자, 8,000명 지원자, 채용 단계별 칸반 뷰. Airtable에서 전환하여 연간 **$2,800 절약**.
+
+### GitHub 통계 (2026년 5월)
+
+- **53,000+ Stars**
+- **1,200+ 기여자**
+- **최신 릴리스**: v0.260.7 (2026년 4월)
+- **Docker Pull**: 500만+
+- **활발한 Discord**: 4,800+ 멤버
+
+## 고급 사용법: 프로덕션 하드닝
+
+### 1. Nginx 리버스 프록시로 HTTPS
+
+`````nginx
+# /etc/nginx/sites-available/nocodb
+server {
+    listen 443 ssl http2;
+    server_name nocodb.yourcompany.com;
+
+    ssl_certificate /etc/letsencrypt/live/yourcompany.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/yourcompany.com/privkey.pem;
+
+    location / {
+        proxy_pass http://localhost:8080;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection &#34;upgrade&#34;;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+</code></pre><p>활성화 및 재시작: `````bash
+sudo ln -s /etc/nginx/sites-available/nocodb /etc/nginx/sites-enabled/
+sudo nginx -t && sudo systemctl restart nginx</p><pre tabindex=0><code>
+### 2. 환경 변수 보안
+
+`````bash
+# 비밀 파일 생성
+sudo mkdir -p /opt/nocodb
+sudo tee /opt/nocodb/.env &gt; /dev/null &lt;&lt; EOF
+NC_DB=pg://db:5432?u=nocodb&amp;p=CHANGE_ME&amp;d=nocodb_meta
+NC_AUTH_JWT_SECRET=CHANGE_TO_64_CHAR_RANDOM_STRING
+NC_REDIS_URL=redis://redis:6379
+NC_SENTRY_DSN=https://xxx@sentry.io/yyy
+NC_PUBLIC_URL=https://nocodb.yourcompany.com
+EOF
+
+sudo chmod 600 /opt/nocodb/.env
+</code></pre><h3 id=3-역할-기반-접근-제어>3. 역할 기반 접근 제어<a hidden class=anchor aria-hidden=true href=#3-역할-기반-접근-제어>#</a></h3><p>각 베이스에 대해 세분화된 권한 구성: 1. <strong>Project Settings</strong> → <strong>Data Sources</strong> → <strong>Users</strong>
+2. 역할 할당: - <strong>Owner</strong> — 전체 제어, 베이스 삭제 가능</p><ul><li><strong>Creator</strong> — 테이블, 뷰, 자동화 생성</li><li><strong>Editor</strong> — 레코드 편집, 스키마 수정 불가</li><li><strong>Commenter</strong> — 댓글만 추가</li><li><strong>Viewer</strong> — 읽기 전용 접근</li></ul><p><strong>열 수준 권한</strong>을 설정하여 비인사팀 사용자로부터 민감한 필드(예: 급여, 주민등록번호)를 숨깁니다.</p><h3 id=4-데이터베이스-백업-전략>4. 데이터베이스 백업 전략<a hidden class=anchor aria-hidden=true href=#4-데이터베이스-백업-전략>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e>#!/bin/bash
+</span></span></span><span style=display:flex><span><span style=color:#75715e># /opt/backup/nocodb-backup.sh</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># PostgreSQL 데이터 백업 (실제 비즈니스 데이터)</span>
+</span></span><span style=display:flex><span>pg_dump -h db.yourcompany.com -U postgres myapp_db &gt; <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  /backups/postgres-<span style=color:#66d9ef>$(</span>date +%Y%m%d<span style=color:#66d9ef>)</span>.sql
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># NocoDB 메타 데이터베이스 백업</span>
+</span></span><span style=display:flex><span>docker exec nocodb-db-1 pg_dump -U nocodb nocodb_meta &gt; <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  /backups/nocodb-meta-<span style=color:#66d9ef>$(</span>date +%Y%m%d<span style=color:#66d9ef>)</span>.sql
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># S3로 동기화 (선택)</span>
+</span></span><span style=display:flex><span>aws s3 sync /backups/ s3://yourcompany-backups/nocodb/
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 7일만 유지</span>
+</span></span><span style=display:flex><span>find /backups -name <span style=color:#e6db74>&#34;*.sql&#34;</span> -mtime +7 -delete
+</span></span></code></pre></div><p>crontab에 추가: `````bash
+0 2 * * * /opt/backup/nocodb-backup.sh &#187; /var/log/nocodb-backup.log 2>&amp;1</p><pre tabindex=0><code>
+### 5. Prometheus로 모니터링
+
+`````yaml
+# docker-compose.monitoring.yml
+services: prometheus: image: prom/prometheus:v2.51.0
+    volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports: - &#34;9090:9090&#34;
+
+  grafana: image: grafana/grafana:10.4.0
+    ports: - &#34;3000:3000&#34;
+    volumes: - grafana-data:/var/lib/grafana
+
+volumes: grafana-data: `````
+
+## 대안과의 비교
+
+| 기능 | NocoDB | Airtable | Baserow | Teable |
+|---|---|---|---|---|
+| **라이선스** | AGPL-3.0 | 독점 | MIT | AGPL-3.0 |
+| **셀프호스팅** | 예 | 아니오 | 예 | 예 |
+| **기존 DB 연결** | **예** (PG, MySQL, SQLite) | 아니오 | 아니오 | 예 |
+| **REST API** | 자동 생성 | 제한적 속도 | 자동 생성 | 자동 생성 |
+| **칸반 뷰** | 예 | 예 | 예 | 예 |
+| **양식 뷰** | 예 | 예 | 예 | 예 |
+| **파일 첨부** | 예 | 20 GB (Pro) | 예 | 예 |
+| **역할 기반 접근** | 예 | 예 | 예 | 예 |
+| **Webhook 자동화** | 예 | 유료 플랜 | 예 | 제한적 |
+| **20명 사용자 가격** | **월 $6 (VPS)** | **월 $400** | 월 $100 | $0 (셀프호스팅) |
+| **레코드 제한** | **무제한** | 50,000 (Pro) | 무제한 | 무제한 |
+| **GitHub Stars** | **53,000** | 해당 없음 | 8,200 | 14,500 |
+
+**각 대안 대비 NocoDB를 선택하는 시기:**
+
+- **Airtable 대비**: 데이터 소유권, 낮은 비용, 레코드 제한 없음, 기존 데이터베이스 연결 능력이 필요할 때.
+- **Baserow 대비**: 새 데이터베이스를 만드는 것이 아닌 기존 PostgreSQL/MySQL 데이터베이스에 연결해야 할 때. Baserow는 UI가 더 세련됐지만 자체 데이터 모델을 강요합니다.
+- **Teable 대비**: 더 넓은 데이터베이스 드라이버 지원이 필요할 때(NocoDB는 SQL Server와 MariaDB를 지원, Teable은 PostgreSQL에 집중). Teable은 더 강력한 AI 통합을, NocoDB는 더 깊은 스프레드시트 기능을 갖습니다.
+
+## 한계: 정직한 평가
+
+**NocoDB는 완벽하지 않습니다.** 투입하기 전 다음 제약을 고려하세요: 1. **UI 세련도 격차**: Airtable의 인터페이스가 더 부드럽습니다. NocoDB의 그리드는 브라우저에서 100,000+ 행 처리 시 느릴 수 있으나 — 기본 데이터베이스는 원활하게 처리합니다.
+
+2. **네이티브 모바일 앱 없음**: 반응형 웹 UI가 제공되나, Airtable이 제공하는 것과 같은 전용 iOS/Android 앱은 없습니다.
+
+3. **제한된 수식 지원**: 수식은 Excel 구문이 아닌 SQL 표현식을 사용합니다. 비기술 사용자는 짧은 학습 곡선이 필요합니다.
+
+4. **셀프호스팅 부담**: 백업, 업데이트, 보안을 직접 처리합니다. 클라우드 옵션은 있지만 사용자당 월 $8부터 시작하여 비용 이점을 줄입니다.
+
+5. **라이선스 고려사항**: NocoDB의 AGPL-3.0 라이선스는 소프트웨어를 배포하는 경우 수정사항을 공개할 것을 요구합니다. 내용 회사 사용의 경우 이는 문제가 되지 않습니다. NocoDB 기반 SaaS 제품의 경우 법무팀에 문의하세요.
+
+6. **Single Sign-On (SSO)**: 내장 SSO(SAML, OIDC)는 Enterprise 티어가 필요합니다. 셀프호스팅 사용자는 리버스 프록시 인증 레이어로 우회할 수 있습니다.
+
+## 자주 묻는 질문
+
+### NocoDB는 여러 데이터베이스에 동시 연결을 지원하나요?
+
+예. 단일 NocoDB 인스턴스는 여러 데이터 소스에 연결할 수 있습니다. 하나의 베이스는 PostgreSQL에, 다른 것은 MySQL에, 세 번째는 내장 SQLite를 사용할 수 있습니다 — 모두 동일한 대시보드에서 접근 가능합니다. 각 베이스는 자체 권한과 뷰를 가진 독립적 엔티티입니다.
+
+### NocoDB는 기본 데이터베이스의 스키마 변경을 어떻게 처리하나요?
+
+NocoDB는 스키마 변경을 자동으로 동기화합니다. PostgreSQL에서 ````ALTER TABLE````로 열을 추가하면 베이스 설정에서 **&#34;Sync Now&#34;**를 클릭하고, 새 열은 수 초 내에 NocoDB에 나타납니다. 기존 뷰는 보존; 필요한 뷰에 새 필드를 추가하기만 하면 됩니다.
+
+### NocoDB를 고객 대상 애플리케이션의 백엔드로 사용할 수 있나요?
+
+예, REST API를 통해 가능합니다. 그러나 NocoDB는 낮관리 도구용으로 설계되었지 공개 API 서버용은 아닙니다. 고객 대상 앱의 경우, 팀용 관리 패널로 NocoDB를 사용하고 비즈니스 로직을 검증하는 별도 API 레이어를 동일한 데이터베이스에 구축하세요.
+
+### NocoDB가 다울되면 어떻게 되나요? 내 데이터는 안전한가요?
+
+데이터는 PostgreSQL/MySQL 데이터베이스에 저장되며 NocoDB와 완전히 분리되어 있습니다. NocoDB 컨테이너가 중지되어도 데이터는 영향을 받지 않습니다. 동일한 데이터베이스를 읽는 다른 애플리케이션은 정상적으로 계속 작동합니다. NocoDB는 메타 데이터베이스에 뷰 구성, 사용자 계정, 웹훅 정의만 저장합니다.
+
+### Airtable에서 NocoDB로 어떻게 마이그레이션하나요?
+
+각 Airtable 테이블을 CSV로 낸 후, NocoDB에서 테이블을 생성하고 **&#34;Import CSV&#34;**로 데이터를 채웁니다. Airtable의 &#34;Linked Records&#34;를 NocoDB의 **&#34;Links&#34;**(외래 키 관계)로 다시 생성합니다. 뷰(Grid, Kanban, Gallery)를 수동으로 재구축합니다. NocoDB 커뮤니티에는 GitHub에서 벌크 변환을 처리하는 Airtable-to-NocoDB 마이그레이션 스크립트가 있습니다.
+
+### NocoDB는 Airtable과 같은 실시간 협업을 지원하나요?
+
+예, 단 주의사항이 있습니다. 여러 사용자가 동시에 동일한 베이스를 편집할 수 있으며, 변경사항은 WebSocket을 통해 실시간으로 표시됩니다. 그러나 충돌 해결은 operational transforms가 아닌 last-write-wins입니다. 대부분의 사용 사례(다른 사용자가 다른 행 편집)에는 이것으로 충분합니다. 동일 행의 대량 동시 편집은 덮어쓰기를 일으킬 수 있습니다.
+
+### Docker 없이 NocoDB를 실행할 방법이 있나요?
+
+예. NocoDB는 Linux, macOS, Windows용 독립 실행형 바이너리를 제공합니다. GitHub 릴리스 페이지에서 최신 바이너리를 다운로드하고, 실행 권한을 부여하고, ````./nocodb````를 실행합니다. 그러나 업데이트와 의존성 관리가 더 쉬워 Docker가 프로덕션 배포의 권장 방법으로 남아 있습니다.
+
+## 결론: 당신의 데이터, 당신의 규칙
+
+NocoDB는 특정 공백을 채웁니다: 비기술 팀에게 Airtable의 사용 편의성을 제공하면서 데이터는 엔지니어가 제어하는 데이터베이스에 유지합니다. **53,000 GitHub Stars**, 활발한 릴리스 주기, 성장하는 플러그인 생태계로 2026년 및 그 이후에도 실용적인 선택입니다.
+
+Airtable에 월 $200+를 지불하고 이미 PostgreSQL 또는 MySQL 데이터베이스를 실행 중이라면, NocoDB는 첫 달에 비용을 회수합니다. Docker 설정은 5분입니다. Airtable에서의 마이그레이션은 주말 프로젝트입니다. 데이터를 소유하는 자유는 영구적입니다.
+
+**지금 시작**: 월 $6 Droplet으로 [DigitalOcean에서 NocoDB 배포](https://m.do.co/c/eca87ac14ee0)하거나, 또는 커밋하기 전에 탐색을 위해 로컬에서 ````docker run nocodb/nocodb:latest```를 실행하세요.
+
+**커뮤니티 가입**: [NocoDB Discord](https://discord.gg/5ZjDgHEG5H) | [GitHub Discussions](https://github.com/nocodb/nocodb/discussions)
+
+**관련 도구**: [n8n 워크플로우 자동화](n8n-workflow-automation-dibi8-internal-link) | [Metabase BI 설정 가이드](metabase-bi-setup-dibi8-internal-link)
+
+* * *
+
+
+
+## 추천 호스팅 및 인프라
+
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+- **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
+
+*제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
+
+## 출처 및 추가 자료
+
+- [NocoDB 공식 문서](https://docs.nocodb.com/)
+- [NocoDB GitHub 저장소](https://github.com/nocodb/nocodb) — 53,000+ Stars
+- [NocoDB Docker Hub](https://hub.docker.com/r/nocodb/nocodb)
+- [NocoDB API 참조](https://docs.nocodb.com/developer-resources/rest-APIs/)
+- [NocoDB vs Airtable: 기능 비교](https://nocodb.com/compare/airtable)
+- [PostgreSQL 공식 문서](https://www.postgresql.org/docs/)
+
+* * *
+
+*본 문서에는 제휴 링크가 포함될 수 있습니다. 당사의 추천 링크를 통해 DigitalOcean에 가입하시면 추가 비용 없이 커미션을 받습니다. 당사는 직접 사용하는 서비스만을 추천합니다.*
+
+
+{
+  &#34;@context&#34;: &#34;https://schema.org&#34;,
+  &#34;@type&#34;: &#34;Article&#34;,
+  &#34;headline&#34;: &#34;NocoDB 2026 완벽 가이드: 모든 데이터베이스를 스마트 스프레드시트로 만드는 오픈소스 Airtable 대안&#34;,
+  &#34;datePublished&#34;: &#34;2026-05-19&#34;,
+  &#34;dateModified&#34;: &#34;2026-05-19&#34;,
+  &#34;author&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;
+  },
+  &#34;publisher&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;,
+    &#34;logo&#34;: {
+      &#34;@type&#34;: &#34;ImageObject&#34;,
+      &#34;url&#34;: &#34;https://dibi8.com/logo.png&#34;
+    }
+  },
+  &#34;mainEntityOfPage&#34;: {
+    &#34;@type&#34;: &#34;WebPage&#34;,
+    &#34;@id&#34;: &#34;https://dibi8.com/kr/resources/noco-db-airtable-alternative&#34;
+  }
+}
+&lt;/script&gt;
+
+* * *
+
+## Related Articles
+
+- [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](noco-db-airtable-alternative)
+- [paperclip-open-source-agent-workplace-managing-ai-agents-at-scale](noco-db-airtable-alternative)
+- [open-notebook-open-source-notebooklm-alternative-15-ai-providers](noco-db-airtable-alternative)
+- [egonex-understand-anything-interactive-knowledge-graph-ai](noco-db-airtable-alternative)
+- [bytedance-ui-tars-desktop-ai-agent-guide](noco-db-airtable-alternative)
+
+* * *
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
+</code></pre></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/ko/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/ko/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/ko/ai-coding-agents/netdata/><span class=title>« 이전 페이지</span>
+<span>AI Tool Guide</span>
+</a><a class=next href=https://dibi8.com/ko/ai-coding-agents/nuwa-skill-distill-thinking-model-ai-agent-skills/><span class=title>다음 페이지 »</span>
+<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/ko/>Dibi8</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="복사";function s(){t.innerHTML="복사 완료!",setTimeout(()=>{t.innerHTML="복사"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

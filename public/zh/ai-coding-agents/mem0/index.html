@@ -1,0 +1,532 @@
+<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/zh/ai-coding-agents/mem0/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/mem0/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/mem0/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/mem0/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/mem0/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/zh/ai-coding-agents/mem0/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Tool Guide","item":"https://dibi8.com/zh/ai-coding-agents/mem0/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: Apache-2.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“llm-frameworks”] tags: [“mem0”, “ai-agent-memory”, “持久化记忆”, “langchain”, “向量存储”, “内存调优”, “mem0教程”, “mem0-vs-langchain”, “crewai”, “开源”] aliases:\n/zh/posts/mem0/- 引言 每位 AI 智能体开发者都会撞上同一堵墙：智能体失忆。用户在一个会话中告诉聊天机器人自己是素食者且对坚果过敏，两小时后智能体却推荐花生咖喱。这不是提示工程的问题——这是记忆架构的问题。无状态的 LLM 没有内置机制来跨会话持久化事实。Mem0 (mem0ai/mem0) 通过一个即插即用的记忆层解决了这个问题，获得 56,205+ GitHub Stars，90,000+ 开发者采用。本指南涵盖从安装到生产级调优的完整 mem0 设置流程，包含真实基准测试、向量存储配置，以及与 LangChain、CrewAI 和 OpenAI 智能体的集成代码。\nMem0 是什么？ Mem0 是一款面向 LLM 应用和 AI 智能体的开源通用记忆层。它采用混合架构，结合向量相似度搜索与结构化记忆提取，跨对话提取、存储和检索用户特定的事实。系统会自动将原始聊天消息提炼成语义事实（“用户是素食者”），去重后并在推理时返回最相关的记忆——全部通过 REST API 或 Python/TypeScript SDK 完成。\nMem0 的工作原理 Mem0 的架构将记忆分为四个操作层：\n1. 提取层：一个 LLM（可配置，默认 GPT-4o-mini）处理传入消息并提取结构化事实。2026 年 4 月发布的 token 高效算法采用单遍层次提取，相比全上下文基线 token 用量减少 3-4 倍。\n2. 嵌入层：提取的事实使用嵌入模型（默认：text-embedding-3-small）向量化后存储到向量数据库。Mem0 支持 19 种向量存储后端，包括 Qdrant、Chroma、PGVector、Pinecone、Weaviate、Milvus 和 Azure AI Search。\n3. 检索层：查询时，Mem0 执行混合检索，结合向量相似度、元数据过滤、重排序和多信号评分。多信号检索综合考虑时效性、相关性和重要性来返回最优记忆。\n4. 图层（Pro 版）：超越平面向量存储，Mem0 Pro 构建知识图谱，理解实体关系——支持多跳推理（“James 和谁一起工作？“需要连接 “James 在 TechCorp 工作” + “Sarah 在 TechCorp 工作”）。\n┌──────────────────────────────────────────────────────┐ │ 用户消息 │ └──────────────────────┬───────────────────────────────┘ │ ┌────────────▼────────────┐ │ 提取层 (LLM) │ ← 提取事实 └────────────┬────────────┘ │ ┌────────────▼────────────┐ │ 嵌入模型 │ ← 向量化 └────────────┬────────────┘ │ ┌────────────▼────────────┐ │ 向量存储 │ ← Qdrant/Chroma/PGVector └────────────┬────────────┘ │ ┌────────────▼────────────┐ │ 混合检索 │ ← 搜索 + 重排序 └────────────┬────────────┘ │ ┌────────────▼────────────┐ │ 注入提示词 │ ← 上下文增强 └─────────────────────────┘ 安装与设置 云端设置（最快路径） # 安装 Python 客户端 pip install mem0ai # 设置 API 密钥（从 https://app.mem0.ai 获取） export MEM0_API_KEY=\"m0-your-key-here\" # mem0_quickstart.py import os from mem0 import MemoryClient client = MemoryClient(api_key=os.getenv(\"MEM0_API_KEY\")) # 从对话中存储记忆 messages = [ {\"role\": \"user\", \"content\": \"I'm a vegetarian and allergic to nuts.\"}, {\"role\": \"assistant\", \"content\": \"Got it! I'll remember your dietary preferences.\"}, ] client.add(messages, user_id=\"user123\") # 检索相关记忆 results = client.search( \"What are my dietary restrictions?\", user_id=\"user123\" ) print(results) 自托管设置（Docker） 适合需要数据驻留或离线部署的团队：\n# 克隆仓库 git clone https://github.com/mem0ai/mem0.git cd mem0 # 使用 Docker 启动 make bootstrap # 创建管理员用户，生成 API 密钥，启动服务器和管理面板 # docker-compose.yml 生产环境配置 docker run -d \\ -p 8000:8000 \\ -e MEM0_API_KEY=your-admin-key \\ -e VECTOR_STORE_PROVIDER=qdrant \\ -e VECTOR_STORE_URL=http://qdrant:6333 \\ -e LLM_PROVIDER=openai \\ -e OPENAI_API_KEY=$OPENAI_API_KEY \\ mem0/mem0-server:latest 开源 SDK（本地） pip install mem0ai openai chromadb from mem0 import Memory # 使用自定义向量存储初始化 m = Memory() # 添加对话 messages = [ {\"role\": \"user\", \"content\": \"I'm planning to watch a movie tonight.\"}, {\"role\": \"assistant\", \"content\": \"How about thrillers?\"}, {\"role\": \"user\", \"content\": \"I love sci-fi but hate horror.\"}, ] m.add(messages, user_id=\"alice\", metadata={\"category\": \"movies\"}) # 使用元数据过滤搜索 results = m.search(\"movie recommendations\", filters={\"user_id\": \"alice\"}) 内存配置与性能调优 使用 YAML 自定义配置 mem0config.yaml 文件控制记忆流水线的每个组件：\n# mem0config.yaml — 生产级调优配置 llm: provider: openai config: model: \"gpt-4o-mini\" temperature: 0.1 max_tokens: 2000 embedder: provider: openai config: model: \"text-embedding-3-small\" embedding_dims: 1536 vector_store: provider: qdrant config: host: \"localhost\" port: 6333 collection_name: \"mem0\" on_disk: true # 启用持久化存储 reranker: provider: cohere config: model: \"rerank-multilingual-v3.0\" custom_instructions: | 提取用户偏好、个人事实和上下文。 重点关注饮食限制、过敏和技术偏好。 忽略临时状态和一次性请求。 from mem0 import Memory # 加载自定义配置 config_path = \"mem0config.yaml\" m = Memory.from_config(config_path) 向量存储后端对比 | 后端 | 适用场景 | 延迟 | 持久化 | 扩展性 | |\n|\n|\n|\n|\n| | Qdrant | 生产环境、混合搜索 | \u003c10ms | 磁盘 | 水平扩展 | | Chroma | 本地开发、原型设计 | \u003c20ms | 文件 | 单节点 | | PGVector | PostgreSQL 生态 | \u003c30ms | 数据库管理 | 读副本 | | Pinecone | 无服务器、托管 | \u003c15ms | 云 | 自动扩展 | | Milvus | 十亿级规模 | \u003c20ms | 分布式 | 分片 |\n性能调优清单 # 1. 为高吞吐量应用启用异步记忆 from mem0 import MemoryClient import asyncio client = MemoryClient() async def batch_store(messages_list): tasks = [client.add_async(msgs, user_id=f\"user_{i}\") for i, msgs in enumerate(messages_list)] return await asyncio.gather(*tasks) # 2. 使用元数据过滤限定搜索范围 results = client.search( \"project updates\", filters={ \"user_id\": \"alice\", \"metadata.category\": \"work\" }, limit=10 ) # 3. 使用 top_k 调整检索深度 results = client.search( \"dietary preferences\", user_id=\"alice\", top_k=5, # 减少提升速度，增加提升覆盖度 rerank=True ) 带自定义指令的记忆 # 引导提取和存储哪些事实 m = Memory.from_config({ \"custom_instructions\": \"\"\" 提取并存储： - 用户的姓名、职业、地点 - 技术偏好（语言、框架、工具） - 饮食限制和过敏 - 沟通偏好 不要存储： - 临时情绪或情感状态 - 一次性请求 - 未经同意的第三方信息 \"\"\" }) 与 LangChain、CrewAI 和 OpenAI 集成 LangChain 集成 pip install langchain langchain-openai mem0ai # langchain_mem0_agent.py import os from typing import List, Dict from langchain_openai import ChatOpenAI from langchain_core.messages import SystemMessage, HumanMessage, AIMessage from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder from mem0 import MemoryClient # 初始化 llm = ChatOpenAI(model=\"gpt-4o-mini\") mem0 = MemoryClient(api_key=os.getenv(\"MEM0_API_KEY\")) # 带记忆注入的提示词模板 prompt = ChatPromptTemplate.from_messages([ (\"system\", \"\"\"你是拥有长期记忆的助手。 关于用户的相关历史上下文： {memories} 使用这些上下文来个性化你的回答。\"\"\"), MessagesPlaceholder(variable_name=\"history\"), (\"human\", \"{input}\") ]) def get_memories(user_id: str, query: str) -\u003e str: \"\"\"检索相关记忆并格式化为字符串。\"\"\" results = mem0.search(query, user_id=user_id, limit=5) return \"\\n\".join([r[\"memory\"] for r in results]) def chat(user_id: str, message: str, history: List = None): \"\"\"带记忆增强上下文的对话。\"\"\" if history is None: history = [] memories = get_memories(user_id, message) formatted_prompt = prompt.format_messages( memories=memories, history=history, input=message ) response = llm.invoke(formatted_prompt) # 存储交互 messages = [ {\"role\": \"user\", \"content\": message}, {\"role\": \"assistant\", \"content\": response.content} ] mem0.add(messages, user_id=user_id) return response.content # 运行对话 user_id = \"traveler_42\" response1 = chat(user_id, \"I'm planning a trip to Tokyo next month.\") print(response1) # 后续会话 — 智能体记住了 response2 = chat(user_id, \"What should I pack for my trip?\") # 输出引用东京、时间以及旅行者的偏好 CrewAI 集成 pip install crewai mem0ai # crewai_mem0_crew.py import os from crewai import Agent, Task, Crew from crewai_tools import tool from mem0 import MemoryClient mem0 = MemoryClient(api_key=os.getenv(\"MEM0_API_KEY\")) @tool def retrieve_user_context(user_id: str, query: str) -\u003e str: \"\"\"检索关于用户的记忆用于个性化。\"\"\" results = mem0.search(query, user_id=user_id, limit=5) return \"\\n\".join([f\"- {r[memory]}\" for r in results]) @tool def store_interaction(user_id: str, content: str) -\u003e str: \"\"\"存储智能体交互中学到的事实。\"\"\" messages = [{\"role\": \"assistant\", \"content\": content}] mem0.add(messages, user_id=user_id) return \"Stored.\" # 定义带有记忆工具的智能体 researcher = Agent( role=\"Personal Researcher\", goal=\"Provide personalized research based on user history\", backstory=\"You remember user preferences and tailor research accordingly.\", tools=[retrieve_user_context, store_interaction], verbose=True, memory=True ) # 使用记忆的任务 task = Task( description=\"\"\"Research travel options for user . First retrieve their preferences, then provide personalized recommendations. Query: travel preferences\"\"\", expected_output=\"Personalized travel recommendations\", agent=researcher ) crew = Crew(agents=[researcher], tasks=[task]) result = crew.kickoff(inputs={\"user_id\": \"user123\"}) print(result) OpenAI Agents SDK 集成 pip install openai-agents mem0ai # openai_agents_mem0.py import os from dataclasses import dataclass from agents import Agent, Runner, function_tool from mem0 import MemoryClient mem0 = MemoryClient(api_key=os.getenv(\"MEM0_API_KEY\")) @dataclass class UserContext: user_id: str @function_tool def add_to_memory(ctx, messages: str) -\u003e str: \"\"\"存储关于用户的事实。\"\"\" parsed = [{\"role\": \"user\", \"content\": m} for m in messages.split(\"\\n\")] mem0.add(parsed, user_id=ctx.context.user_id) return \"Memory stored.\" @function_tool def search_memory(ctx, query: str) -\u003e str: \"\"\"搜索相关记忆。\"\"\" results = mem0.search(query, user_id=ctx.context.user_id, limit=5) return \"\\n\".join([r[\"memory\"] for r in results]) memory_agent = Agent( name=\"MemoryAgent\", instructions=\"You are a helpful assistant that remembers user preferences.\", tools=[add_to_memory, search_memory], model=\"gpt-4o-mini\" ) async def run_agent(): context = UserContext(user_id=\"user_42\") result = await Runner.run( memory_agent, \"I'm a vegetarian who loves Italian food.\", context=context ) print(result.final_output) # asyncio.run(run_agent()) Docker Compose 生产级部署 # mem0-production-stack.yml version: \"3.8\" services: qdrant: image: qdrant/qdrant:latest ports: - \"6333:6333\" - \"6334:6334\" volumes: - qdrant_storage:/qdrant/storage environment: - QDRANT__SERVICE__GRPC_PORT=6334 mem0-server: image: mem0/mem0-server:latest ports: - \"8000:8000\" environment: - MEM0_API_KEY=${MEM0_API_KEY} - VECTOR_STORE_PROVIDER=qdrant - VECTOR_STORE_URL=http://qdrant:6333 - LLM_PROVIDER=openai - OPENAI_API_KEY=${OPENAI_API_KEY} - EMBEDDER_PROVIDER=openai - OPENAI_EMBEDDING_MODEL=text-embedding-3-small depends_on: - qdrant mem0-dashboard: image: mem0/mem0-dashboard:latest ports: - \"3000:3000\" environment: - MEM0_API_URL=http://mem0-server:8000 - MEM0_API_KEY=${MEM0_API_KEY} volumes: qdrant_storage: ````` ## 基准测试 / 实际用例 ### LoCoMo 和 LongMemEval 结果 Mem0 的新型 token 高效算法（2026 年 4 月发布）在更低 token 成本下实现显著精度提升： | 基准测试 | 指标 | 旧算法 | 新算法（2026年4月） | 提升 | | * * * | * * * | * * * | * * * | * * * | | LoCoMo | 总体准确率 | 66.9% | **92.5%** | +25.6 个百分点 | | LoCoMo | 平均 Token/查询 | ~26,000 | **6,956** | 3.7 倍减少 | | LongMemEval | 总体准确率 | 65.3% | **94.4%** | +29.1 个百分点 | | LongMemEval | 平均 Token/查询 | ~25,000 | **6,787** | 3.7 倍减少 | | BEAM (1M) | 准确率 | 42.5% | **64.1%** | +21.6 个百分点 | | BEAM (10M) | 准确率 | 30.2% | **48.6%** | +18.4 个百分点 | ### 分类别细分（LoCoMo） | 类别 | 旧分数 | 新分数 | 增量 | | * * * | * * * | * * * | * * * | | 单跳 | 76.6% | 94.6% | +18.0 | | 多跳 | 70.2% | 95.4% | +25.2 | | 开放域 | 57.3% | 82.3% | +25.0 | | 时间性 | 63.2% | 92.5% | +29.3 | ### 生产用例 **用例：客户支持智能体** - 公司：50K+ 用户的 SaaS 平台 - 配置：Mem0 OSS + Qdrant + GPT-4o-mini - 成果：重复问题减少 40%，解决速度提升 25% - 记忆存储：180K 对话中 2.3M 条事实 **用例：AI 编程助手** - 配置：Claude Code 的 Mem0 插件 - 成果：智能体记住编码偏好（tab vs 空格、偏好库）、项目结构上下文 - 关键特性：无需重新索引即可实现跨会话文件上下文 **用例：医疗预约机器人** - 配置：Mem0 企业版（HIPAA 合规） - 成果：持久化的患者偏好、预约历史、保险验证状态 - 合规：SOC 2 Type I + HIPAA BAA ## 高级用法 / 生产加固 ### 安全配置 `````python # 使用元数据进行记忆访问控制 def store_sensitive_memory(user_id: str, fact: str, classification: str): \"\"\"存储带安全等级的记忆。\"\"\" messages = [{\"role\": \"user\", \"content\": fact}] mem0.add( messages, user_id=user_id, metadata={ \"classification\": classification, # \"public\", \"internal\", \"confidential\" \"encrypted\": True, \"retention_days\": 90 } ) # 带分类过滤的搜索 results = client.search( \"project preferences\", filters={ \"user_id\": \"alice\", \"metadata.classification\": [\"public\", \"internal\"] } ) 多租户隔离 # 面向 SaaS 应用的组织级记忆隔离 def add_org_scoped_memory(org_id: str, user_id: str, messages: list): \"\"\"存储同时按组织和用户范围隔离的记忆。\"\"\" client.add( messages, user_id=f\"{org_id}:{user_id}\", metadata={\"org_id\": org_id, \"isolation\": \"org-scoped\"} ) # 管理员跨用户查询组织内所有记忆 results = client.get_all( filters={\"metadata.org_id\": \"org_123\"}, limit=100 ) 记忆监控与可观测性 # 追踪记忆指标 import time def timed_search(user_id: str, query: str): \"\"\"带延迟日志的搜索。\"\"\" start = time.time() results = client.search(query, user_id=user_id) latency = (time.time() - start) * 1000 print(f\"搜索延迟: {latency:.1f}ms | 结果数: {len(results)}\") # 记录到你的监控系统 # prometheus_histogram.observe(latency) return results # 定期记忆健康检查 def memory_health_check(user_id: str): \"\"\"验证用户记忆的完整性。\"\"\" all_memories = client.get_all(filters={\"user_id\": user_id}) return { \"total_memories\": len(all_memories), \"oldest_memory\": min(m[\"created_at\"] for m in all_memories) if all_memories else None, \"categories\": len(set(m.get(\"metadata\", {}).get(\"category\", \"\") for m in all_memories)), \"avg_score\": sum(m.get(\"score\", 0) for m in all_memories) / len(all_memories) if all_memories else 0 } 速率限制与成本控制 # 客户端速率限制实现 from functools import wraps import time class Mem0RateLimiter: \"\"\"Mem0 API 调用的简单速率限制器。\"\"\" def __init__(self, max_calls_per_minute=100): self.max_calls = max_calls_per_minute self.calls = [] def can_call(self) -\u003e bool: now = time.time() self.calls = [c for c in self.calls if now - c \u003c 60] return len(self.calls) \u003c self.max_calls def record_call(self): self.calls.append(time.time()) limiter = Mem0RateLimiter(max_calls_per_minute=60) def rate_limited_add(messages, user_id): if not limiter.can_call(): # 稍后排队或跳过非关键记忆 print(\"触发速率限制，记忆入队\") return {\"status\": \"queued\"} limiter.record_call() return client.add(messages, user_id=user_id) 与替代品对比 | 特性 | Mem0 | LangChain Memory | LlamaIndex Memory | Chroma（原始） | |\n|\n|\n|\n|\n| | 架构 | 混合 向量+图+KV | 键值+向量 | 向量+索引 | 纯向量数据库 | | GitHub Stars | 56,205 | 100K+ (LangChain) | 41,000 | 18,500 | | LOCOMO 分数 | 92.5%（新算法） | 58.10% | 62.47% | N/A（仅存储） | | LongMemEval 分数 | 94.4% | 49.0% | 52.9% | N/A | | 图记忆 | Pro 版 ($249/月) | 无 | 部分 | 无 | | 托管服务 | 是 (app.mem0.ai) | 否 | 否 | 否 | | 自托管 | Docker，完整栈 | 仅库 | 仅库 | Docker | | SOC 2 / HIPAA | 是 (企业版) | 否 | 否 | 否 | | 向量后端 | 19 种支持 | 10+ | 15+ | 仅自身 | | 多智能体共享 | 是 (OSS) | 有限 | 否 | 手动 | | 入门定价 | 免费 (10K 记忆) | 免费 (OSS) | 免费 (OSS) | 免费 (OSS) | | 时间推理 | 良好 (82.3% 开放域) | 有限 | 基础 | 无 | | LLM 提取 | 自动事实提取 | 手动/摘要 | 手动 | 无 | | 集成范围 | 20+ 框架 | LangChain 原生 | LlamaIndex 原生 | 任意 |\n选择建议 选择 Mem0：当你需要托管记忆服务，支持自动事实提取，广泛的框架支持，以及生产级合规。 选择 LangChain Memory：当你完全使用 LangGraph，希望零额外基础设施，并需要过程记忆支持。 选择 LlamaIndex Memory：当你的主要需求是以文档为中心的 RAG 配合记忆增强，而非对话持久化。 选择 Chroma：当你仅需要向量数据库并计划自行构建所有记忆逻辑。 局限性 / 诚实评估 Mem0 并非适合所有用例。以下是它不太擅长的领域：\n1. 时间推理差距：在 LongMemEval 时间性子任务上，Mem0 得分 49-82%（视类别而定）。Zep 配合 Graphiti 由于显式时间锚定图存储，在时间任务上达到 63.8-71.2%。如果你的智能体需要推理事件序列（“X 之前发生了什么？\"），Mem0 可能不足。\n2. 图记忆定价：图功能锁定在 $249/月的 Pro 版。$19/月的 Starter 版仅提供向量相似度搜索。对于预算有限但需要关系感知记忆的团队，Zep（$25/月）或 Cognee（免费自托管）等替代品提供更低价位的图功能。\n3. 有损提取：Mem0 从对话中提取结构化事实，这意味着会丢失一些细节——说话者归属、精确时间戳和中间推理步骤可能被丢弃。对于逐字对话回忆，原始 RAG 存储消息的方式优于 Mem0（逐字回忆基准上 61.4% vs 86%+）。\n4. 不是完整的智能体框架：Mem0 是记忆层，不是智能体编排框架。你仍然需要 LangChain、CrewAI 或 OpenAI Agents SDK 进行工具调用、规划和多步推理。\n5. 自托管复杂性：Docker 设置简单，但生产级自托管需要管理向量存储（Qdrant/Chroma）、LLM API 密钥、嵌入流水线和监控。托管平台消除了这个负担，但引入了数据驻留顾虑。\n常见问题 Q: Mem0 Platform 和 Mem0 Open Source 有什么区别？\nA: Mem0 Platform (app.mem0.ai) 是托管云服务，提供自动扩展、仪表板分析和 SOC 2 合规。Mem0 Open Source 是自托管版本，让你完全控制数据和基础设施。OSS 版本拥有相同的核心记忆引擎，但需要你自己管理向量存储、LLM 提供者和扩展。\nQ: mem0 与 langchain memory 在生产环境中如何选择？\nA: LangChain Memory (LangMem) 免费且原生集成 LangGraph，但缺乏托管服务、自动事实提取和企业合规认证。Mem0 提供跨任何框架的独立 API，支持自动记忆提取，企业版提供 SOC 2/HIPAA 合规。如果你不是专门使用 LangGraph，Mem0 是更灵活的选择。\nQ: 能否在不发送数据到外部 API 的情况下使用 Mem0？\nA: 可以。Mem0 Open Source 支持完全本地部署，使用 Ollama 进行 LLM 推理，以及本地向量存储如 Chroma 或 Qdrant。将 LLM 提供者配置为 “ollama” 搭配本地模型（如 llama3），嵌入器使用本地 sentence-transformers 模型。数据不会离开你的网络。\nQ: 生产环境应使用什么向量存储？\nA: Qdrant 是生产部署的推荐选择，因为它具备混合搜索能力（稠密+稀疏向量）、水平扩展支持和亚 10ms 查询延迟。如果已运行 PostgreSQL，PGVector 是理想选择。Pinecone 适合需要自动扩展且无需运维开销的无服务器部署。\nQ: 如何从 LangChain Memory 迁移到 Mem0？\nA: 迁移是渐进的。首先在现有 LangChain 记忆旁初始化 Mem0。在两个系统中同时存储新对话。使用 Mem0 的 search() API 检索记忆并通过 memories 变量注入 LangChain 提示词。建立信心后，完全切换到 Mem0。Mem0 文档提供了迁移指南。\nQ: Mem0 的大规模使用定价如何？\nA: Hobby 版免费，每月 10K 记忆和 1K 检索。Starter 版 $19/月，50K 记忆和 5K 检索。Pro 版 $249/月，无限记忆、图记忆和分析。Enterprise 版定制定价，包含本地部署、SSO 和 SLA 保证。从 Starter 到 Pro 的跃升是需要图功能的团队的主要定价顾虑。\nQ: Mem0 是否支持多模态记忆（图像、音频）？\nA: 是，Mem0 Open Source 支持多模态输入，包括图像和音频文件。多模态功能从非文本内容中提取语义信息并存储为可检索的记忆条目。这需要 GPT-4o 或 Claude 3.5 Sonnet 等多模态 LLM。\n结论 Mem0 解决了 AI 智能体开发中最持久的问题之一：跨会话记忆。凭借 56,205 GitHub Stars、19 种向量存储后端，以及新型 token 高效算法（在 LoCoMo 上达到 92.5%，token 成本比全上下文基线低 3.7 倍），它是生产环境中采用最广泛的开源记忆层。免费版可处理 10K 记忆用于原型设计，自托管 Docker 栈为企业部署提供完整的数据控制权。\n行动项：\n克隆 mem0ai/mem0 仓库，使用 ````pip install mem0ai``` 运行快速入门 在 app.mem0.ai 注册免费 API 密钥 将 Mem0 搜索集成到你的 LangChain 或 CrewAI 智能体提示词中 在你自己的对话数据集上，将当前记忆解决方案与 Mem0 的检索进行基准对比 加入社区： t.me/dibi8community — 分享你的 Mem0 部署经验，并从其他构建记忆驱动智能体的开发者那里获取帮助。\n本文中的部分链接为联盟链接。如果你通过这些链接购买，我们可能会获得佣金，不会额外收取费用。这有助于我们维护 dibi8.com 并资助开源研究。\n推荐部署与基础设施 上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：\nDigitalOcean — 新用户 60 天 $200 免费额度，14+ 全球节点。运行开源 AI 工具的首选。 HTStack — 香港 VPS，国内访问低延迟，dibi8.com 自己也跑在它上面，生产环境验证过。 Aff 链接 — 不增加你的成本，但能帮 dibi8 持续运营。\n来源与延伸阅读 Mem0 官方文档: https://docs.mem0.ai/introduction Mem0 GitHub 仓库: https://github.com/mem0ai/mem0 Mem0 研究 — 基准测试: https://mem0.ai/research LangChain 集成指南: https://docs.mem0.ai/integrations/langchain CrewAI 集成: https://docs.mem0.ai/integrations/crewai OpenAI Agents SDK 集成: https://docs.mem0.ai/integrations/openai-agents-sdk Mem0 平台定价: https://mem0.ai/pricing LoCoMo 基准论文: https://arxiv.org/abs/2402.03771 LongMemEval 基准: https://github.com/memory-benchmark/LongMemEval PRISM 论文（帕累托高效检索）: https://arxiv.org/html/2605.12260v1 AWS Agent SDK + Mem0 公告: https://aws.amazon.com/blogs/machine-learning Atlan — 2026 最佳 AI 智能体记忆框架: https://atlan.com/know/best-ai-agent-memory-frameworks-2026/ Evermind — Mem0 替代品 2026: https://evermind.ai/blogs/mem0-alternative { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Mem0: 56K+ Stars — AI智能体内存性能调优指南 2026”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/zh/resources/mem0\" } } Related Articles 2026-06-22-trending-ai-agents bytedance-ui-tars-desktop-ai-agent-guide egonex-understand-anything-interactive-knowledge-graph-ai mattpocock-skills-ai-agent-framework-guide nanochat-karpathy-100-chatgpt-single-gpu Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n","wordCount":"2138","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/zh/ai-coding-agents/mem0/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/zh/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/zh/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/zh/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/zh/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/zh/>主页</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
+<a href>AI Coding Agents - dibi8</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>11 分钟</span>&nbsp;|&nbsp;<span>语言:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/mem0/>En</a></li><li><a href=https://dibi8.com/ko/ai-coding-agents/mem0/>Ko</a></li><li><a href=https://dibi8.com/vi/ai-coding-agents/mem0/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><li><a href=#%e5%bc%95%e8%a8%80 aria-label=引言>引言</a></li><li><a href=#mem0-%e6%98%af%e4%bb%80%e4%b9%88 aria-label="Mem0 是什么？">Mem0 是什么？</a></li><li><a href=#mem0-%e7%9a%84%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86 aria-label="Mem0 的工作原理">Mem0 的工作原理</a></li><li><a href=#%e5%ae%89%e8%a3%85%e4%b8%8e%e8%ae%be%e7%bd%ae aria-label=安装与设置>安装与设置</a><ul><li><a href=#%e4%ba%91%e7%ab%af%e8%ae%be%e7%bd%ae%e6%9c%80%e5%bf%ab%e8%b7%af%e5%be%84 aria-label=云端设置（最快路径）>云端设置（最快路径）</a></li><li><a href=#%e8%87%aa%e6%89%98%e7%ae%a1%e8%ae%be%e7%bd%aedocker aria-label=自托管设置（Docker）>自托管设置（Docker）</a></li><li><a href=#%e5%bc%80%e6%ba%90-sdk%e6%9c%ac%e5%9c%b0 aria-label="开源 SDK（本地）">开源 SDK（本地）</a></li></ul></li><li><a href=#%e5%86%85%e5%ad%98%e9%85%8d%e7%bd%ae%e4%b8%8e%e6%80%a7%e8%83%bd%e8%b0%83%e4%bc%98 aria-label=内存配置与性能调优>内存配置与性能调优</a><ul><li><a href=#%e4%bd%bf%e7%94%a8-yaml-%e8%87%aa%e5%ae%9a%e4%b9%89%e9%85%8d%e7%bd%ae aria-label="使用 YAML 自定义配置">使用 YAML 自定义配置</a></li><li><a href=#%e5%90%91%e9%87%8f%e5%ad%98%e5%82%a8%e5%90%8e%e7%ab%af%e5%af%b9%e6%af%94 aria-label=向量存储后端对比>向量存储后端对比</a></li><li><a href=#%e6%80%a7%e8%83%bd%e8%b0%83%e4%bc%98%e6%b8%85%e5%8d%95 aria-label=性能调优清单>性能调优清单</a></li><li><a href=#%e5%b8%a6%e8%87%aa%e5%ae%9a%e4%b9%89%e6%8c%87%e4%bb%a4%e7%9a%84%e8%ae%b0%e5%bf%86 aria-label=带自定义指令的记忆>带自定义指令的记忆</a></li></ul></li><li><a href=#%e4%b8%8e-langchaincrewai-%e5%92%8c-openai-%e9%9b%86%e6%88%90 aria-label="与 LangChain、CrewAI 和 OpenAI 集成">与 LangChain、CrewAI 和 OpenAI 集成</a><ul><li><a href=#langchain-%e9%9b%86%e6%88%90 aria-label="LangChain 集成">LangChain 集成</a></li><li><a href=#crewai-%e9%9b%86%e6%88%90 aria-label="CrewAI 集成">CrewAI 集成</a></li><li><a href=#openai-agents-sdk-%e9%9b%86%e6%88%90 aria-label="OpenAI Agents SDK 集成">OpenAI Agents SDK 集成</a></li><li><a href=#docker-compose-%e7%94%9f%e4%ba%a7%e7%ba%a7%e9%83%a8%e7%bd%b2 aria-label="Docker Compose 生产级部署">Docker Compose 生产级部署</a></li><li><a href=#%e5%a4%9a%e7%a7%9f%e6%88%b7%e9%9a%94%e7%a6%bb aria-label=多租户隔离>多租户隔离</a></li><li><a href=#%e8%ae%b0%e5%bf%86%e7%9b%91%e6%8e%a7%e4%b8%8e%e5%8f%af%e8%a7%82%e6%b5%8b%e6%80%a7 aria-label=记忆监控与可观测性>记忆监控与可观测性</a></li><li><a href=#%e9%80%9f%e7%8e%87%e9%99%90%e5%88%b6%e4%b8%8e%e6%88%90%e6%9c%ac%e6%8e%a7%e5%88%b6 aria-label=速率限制与成本控制>速率限制与成本控制</a></li></ul></li><li><a href=#%e4%b8%8e%e6%9b%bf%e4%bb%a3%e5%93%81%e5%af%b9%e6%af%94 aria-label=与替代品对比>与替代品对比</a><ul><li><a href=#%e9%80%89%e6%8b%a9%e5%bb%ba%e8%ae%ae aria-label=选择建议>选择建议</a></li></ul></li><li><a href=#%e5%b1%80%e9%99%90%e6%80%a7--%e8%af%9a%e5%ae%9e%e8%af%84%e4%bc%b0 aria-label="局限性 / 诚实评估">局限性 / 诚实评估</a></li><li><a href=#%e5%b8%b8%e8%a7%81%e9%97%ae%e9%a2%98 aria-label=常见问题>常见问题</a></li><li><a href=#%e7%bb%93%e8%ae%ba aria-label=结论>结论</a></li><li><a href=#%e6%8e%a8%e8%8d%90%e9%83%a8%e7%bd%b2%e4%b8%8e%e5%9f%ba%e7%a1%80%e8%ae%be%e6%96%bd aria-label=推荐部署与基础设施>推荐部署与基础设施</a></li><li><a href=#%e6%9d%a5%e6%ba%90%e4%b8%8e%e5%bb%b6%e4%bc%b8%e9%98%85%e8%af%bb aria-label=来源与延伸阅读>来源与延伸阅读</a></li><li><a href=#related-articles aria-label="Related Articles">Related Articles</a></li><li><a href=#frequently-asked-questions-faq aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+description: &ldquo;Technical guide and comparison.&rdquo;
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
+tech_stack: []
+application_domain: Llm Frameworks
+source_version: &rsquo;'
+licensing_model: Open Source
+license_type: Apache-2.0
+file_size: &rsquo;'
+file_md5: &rsquo;'
+download_url: &rsquo;'
+backup_url: &rsquo;'
+last_maintained: &ldquo;2026-05-19&rdquo;
+draft: false
+categories: [&ldquo;llm-frameworks&rdquo;]
+tags: [&ldquo;mem0&rdquo;, &ldquo;ai-agent-memory&rdquo;, &ldquo;持久化记忆&rdquo;, &ldquo;langchain&rdquo;, &ldquo;向量存储&rdquo;, &ldquo;内存调优&rdquo;, &ldquo;mem0教程&rdquo;, &ldquo;mem0-vs-langchain&rdquo;, &ldquo;crewai&rdquo;, &ldquo;开源&rdquo;]
+aliases:</p><ul><li>/zh/posts/mem0/-</li></ul><hr><h2 id=引言>引言<a hidden class=anchor aria-hidden=true href=#引言>#</a></h2><p>每位 AI 智能体开发者都会撞上同一堵墙：智能体失忆。用户在一个会话中告诉聊天机器人自己是素食者且对坚果过敏，两小时后智能体却推荐花生咖喱。这不是提示工程的问题——这是记忆架构的问题。无状态的 LLM 没有内置机制来跨会话持久化事实。Mem0 (mem0ai/mem0) 通过一个即插即用的记忆层解决了这个问题，获得 56,205+ GitHub Stars，90,000+ 开发者采用。本指南涵盖从安装到生产级调优的完整 mem0 设置流程，包含真实基准测试、向量存储配置，以及与 LangChain、CrewAI 和 OpenAI 智能体的集成代码。</p><h2 id=mem0-是什么>Mem0 是什么？<a hidden class=anchor aria-hidden=true href=#mem0-是什么>#</a></h2><p>Mem0 是一款面向 LLM 应用和 AI 智能体的开源通用记忆层。它采用混合架构，结合向量相似度搜索与结构化记忆提取，跨对话提取、存储和检索用户特定的事实。系统会自动将原始聊天消息提炼成语义事实（&ldquo;用户是素食者&rdquo;），去重后并在推理时返回最相关的记忆——全部通过 REST API 或 Python/TypeScript SDK 完成。</p><h2 id=mem0-的工作原理>Mem0 的工作原理<a hidden class=anchor aria-hidden=true href=#mem0-的工作原理>#</a></h2><p>Mem0 的架构将记忆分为四个操作层：</p><p><strong>1. 提取层</strong>：一个 LLM（可配置，默认 GPT-4o-mini）处理传入消息并提取结构化事实。2026 年 4 月发布的 token 高效算法采用单遍层次提取，相比全上下文基线 token 用量减少 3-4 倍。</p><p><strong>2. 嵌入层</strong>：提取的事实使用嵌入模型（默认：text-embedding-3-small）向量化后存储到向量数据库。Mem0 支持 19 种向量存储后端，包括 Qdrant、Chroma、PGVector、Pinecone、Weaviate、Milvus 和 Azure AI Search。</p><p><strong>3. 检索层</strong>：查询时，Mem0 执行混合检索，结合向量相似度、元数据过滤、重排序和多信号评分。多信号检索综合考虑时效性、相关性和重要性来返回最优记忆。</p><p><strong>4. 图层（Pro 版）</strong>：超越平面向量存储，Mem0 Pro 构建知识图谱，理解实体关系——支持多跳推理（&ldquo;James 和谁一起工作？&ldquo;需要连接 &ldquo;James 在 TechCorp 工作&rdquo; + &ldquo;Sarah 在 TechCorp 工作&rdquo;）。</p><pre tabindex=0><code>┌──────────────────────────────────────────────────────┐
+│                    用户消息                           │
+└──────────────────────┬───────────────────────────────┘
+                       │
+          ┌────────────▼────────────┐
+          │   提取层 (LLM)           │  ← 提取事实
+          └────────────┬────────────┘
+                       │
+          ┌────────────▼────────────┐
+          │   嵌入模型               │  ← 向量化
+          └────────────┬────────────┘
+                       │
+          ┌────────────▼────────────┐
+          │   向量存储               │  ← Qdrant/Chroma/PGVector
+          └────────────┬────────────┘
+                       │
+          ┌────────────▼────────────┐
+          │   混合检索               │  ← 搜索 + 重排序
+          └────────────┬────────────┘
+                       │
+          ┌────────────▼────────────┐
+          │   注入提示词             │  ← 上下文增强
+          └─────────────────────────┘
+</code></pre><h2 id=安装与设置>安装与设置<a hidden class=anchor aria-hidden=true href=#安装与设置>#</a></h2><h3 id=云端设置最快路径>云端设置（最快路径）<a hidden class=anchor aria-hidden=true href=#云端设置最快路径>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 安装 Python 客户端</span>
+</span></span><span style=display:flex><span>pip install mem0ai
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 设置 API 密钥（从 https://app.mem0.ai 获取）</span>
+</span></span><span style=display:flex><span>export MEM0_API_KEY<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;m0-your-key-here&#34;</span>
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># mem0_quickstart.py</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> os
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> mem0 <span style=color:#f92672>import</span> MemoryClient
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>client <span style=color:#f92672>=</span> MemoryClient(api_key<span style=color:#f92672>=</span>os<span style=color:#f92672>.</span>getenv(<span style=color:#e6db74>&#34;MEM0_API_KEY&#34;</span>))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 从对话中存储记忆</span>
+</span></span><span style=display:flex><span>messages <span style=color:#f92672>=</span> [
+</span></span><span style=display:flex><span>    {<span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;user&#34;</span>, <span style=color:#e6db74>&#34;content&#34;</span>: <span style=color:#e6db74>&#34;I&#39;m a vegetarian and allergic to nuts.&#34;</span>},
+</span></span><span style=display:flex><span>    {<span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;assistant&#34;</span>, <span style=color:#e6db74>&#34;content&#34;</span>: <span style=color:#e6db74>&#34;Got it! I&#39;ll remember your dietary preferences.&#34;</span>},
+</span></span><span style=display:flex><span>]
+</span></span><span style=display:flex><span>client<span style=color:#f92672>.</span>add(messages, user_id<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;user123&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 检索相关记忆</span>
+</span></span><span style=display:flex><span>results <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>search(
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;What are my dietary restrictions?&#34;</span>,
+</span></span><span style=display:flex><span>    user_id<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;user123&#34;</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>print(results)
+</span></span></code></pre></div><h3 id=自托管设置docker>自托管设置（Docker）<a hidden class=anchor aria-hidden=true href=#自托管设置docker>#</a></h3><p>适合需要数据驻留或离线部署的团队：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 克隆仓库</span>
+</span></span><span style=display:flex><span>git clone https://github.com/mem0ai/mem0.git
+</span></span><span style=display:flex><span>cd mem0
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 使用 Docker 启动</span>
+</span></span><span style=display:flex><span>make bootstrap
+</span></span><span style=display:flex><span><span style=color:#75715e># 创建管理员用户，生成 API 密钥，启动服务器和管理面板</span>
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># docker-compose.yml 生产环境配置</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>docker run -d \</span>
+</span></span><span style=display:flex><span>  -<span style=color:#ae81ff>p 8000:8000 \</span>
+</span></span><span style=display:flex><span>  -<span style=color:#ae81ff>e MEM0_API_KEY=your-admin-key \</span>
+</span></span><span style=display:flex><span>  -<span style=color:#ae81ff>e VECTOR_STORE_PROVIDER=qdrant \</span>
+</span></span><span style=display:flex><span>  -<span style=color:#ae81ff>e VECTOR_STORE_URL=http://qdrant:6333 \</span>
+</span></span><span style=display:flex><span>  -<span style=color:#ae81ff>e LLM_PROVIDER=openai \</span>
+</span></span><span style=display:flex><span>  -<span style=color:#ae81ff>e OPENAI_API_KEY=$OPENAI_API_KEY \</span>
+</span></span><span style=display:flex><span>  <span style=color:#ae81ff>mem0/mem0-server:latest</span>
+</span></span></code></pre></div><h3 id=开源-sdk本地>开源 SDK（本地）<a hidden class=anchor aria-hidden=true href=#开源-sdk本地>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>pip install mem0ai openai chromadb
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> mem0 <span style=color:#f92672>import</span> Memory
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 使用自定义向量存储初始化</span>
+</span></span><span style=display:flex><span>m <span style=color:#f92672>=</span> Memory()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 添加对话</span>
+</span></span><span style=display:flex><span>messages <span style=color:#f92672>=</span> [
+</span></span><span style=display:flex><span>    {<span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;user&#34;</span>, <span style=color:#e6db74>&#34;content&#34;</span>: <span style=color:#e6db74>&#34;I&#39;m planning to watch a movie tonight.&#34;</span>},
+</span></span><span style=display:flex><span>    {<span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;assistant&#34;</span>, <span style=color:#e6db74>&#34;content&#34;</span>: <span style=color:#e6db74>&#34;How about thrillers?&#34;</span>},
+</span></span><span style=display:flex><span>    {<span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;user&#34;</span>, <span style=color:#e6db74>&#34;content&#34;</span>: <span style=color:#e6db74>&#34;I love sci-fi but hate horror.&#34;</span>},
+</span></span><span style=display:flex><span>]
+</span></span><span style=display:flex><span>m<span style=color:#f92672>.</span>add(messages, user_id<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;alice&#34;</span>, metadata<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;category&#34;</span>: <span style=color:#e6db74>&#34;movies&#34;</span>})
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 使用元数据过滤搜索</span>
+</span></span><span style=display:flex><span>results <span style=color:#f92672>=</span> m<span style=color:#f92672>.</span>search(<span style=color:#e6db74>&#34;movie recommendations&#34;</span>, filters<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;user_id&#34;</span>: <span style=color:#e6db74>&#34;alice&#34;</span>})
+</span></span></code></pre></div><h2 id=内存配置与性能调优>内存配置与性能调优<a hidden class=anchor aria-hidden=true href=#内存配置与性能调优>#</a></h2><h3 id=使用-yaml-自定义配置>使用 YAML 自定义配置<a hidden class=anchor aria-hidden=true href=#使用-yaml-自定义配置>#</a></h3><p><code>mem0config.yaml</code> 文件控制记忆流水线的每个组件：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># mem0config.yaml — 生产级调优配置</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>llm: provider</span>: <span style=color:#ae81ff>openai</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>config: model</span>: <span style=color:#e6db74>&#34;gpt-4o-mini&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>temperature</span>: <span style=color:#ae81ff>0.1</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>max_tokens</span>: <span style=color:#ae81ff>2000</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>embedder: provider</span>: <span style=color:#ae81ff>openai</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>config: model</span>: <span style=color:#e6db74>&#34;text-embedding-3-small&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>embedding_dims</span>: <span style=color:#ae81ff>1536</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>vector_store: provider</span>: <span style=color:#ae81ff>qdrant</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>config: host</span>: <span style=color:#e6db74>&#34;localhost&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>port</span>: <span style=color:#ae81ff>6333</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>collection_name</span>: <span style=color:#e6db74>&#34;mem0&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>on_disk</span>: <span style=color:#66d9ef>true</span>  <span style=color:#75715e># 启用持久化存储</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>reranker: provider</span>: <span style=color:#ae81ff>cohere</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>config: model</span>: <span style=color:#e6db74>&#34;rerank-multilingual-v3.0&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>custom_instructions</span>: |<span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>  提取用户偏好、个人事实和上下文。
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>  重点关注饮食限制、过敏和技术偏好。
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>  忽略临时状态和一次性请求。</span>
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> mem0 <span style=color:#f92672>import</span> Memory
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 加载自定义配置</span>
+</span></span><span style=display:flex><span>config_path <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;mem0config.yaml&#34;</span>
+</span></span><span style=display:flex><span>m <span style=color:#f92672>=</span> Memory<span style=color:#f92672>.</span>from_config(config_path)
+</span></span></code></pre></div><h3 id=向量存储后端对比>向量存储后端对比<a hidden class=anchor aria-hidden=true href=#向量存储后端对比>#</a></h3><p>| 后端 | 适用场景 | 延迟 | 持久化 | 扩展性 |
+|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| Qdrant | 生产环境、混合搜索 | &lt;10ms | 磁盘 | 水平扩展 |
+| Chroma | 本地开发、原型设计 | &lt;20ms | 文件 | 单节点 |
+| PGVector | PostgreSQL 生态 | &lt;30ms | 数据库管理 | 读副本 |
+| Pinecone | 无服务器、托管 | &lt;15ms | 云 | 自动扩展 |
+| Milvus | 十亿级规模 | &lt;20ms | 分布式 | 分片 |</p><h3 id=性能调优清单>性能调优清单<a hidden class=anchor aria-hidden=true href=#性能调优清单>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 1. 为高吞吐量应用启用异步记忆</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> mem0 <span style=color:#f92672>import</span> MemoryClient
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> asyncio
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>client <span style=color:#f92672>=</span> MemoryClient()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>batch_store</span>(messages_list): tasks <span style=color:#f92672>=</span> [client<span style=color:#f92672>.</span>add_async(msgs, user_id<span style=color:#f92672>=</span><span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;user_</span><span style=color:#e6db74>{</span>i<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>             <span style=color:#66d9ef>for</span> i, msgs <span style=color:#f92672>in</span> enumerate(messages_list)]
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>await</span> asyncio<span style=color:#f92672>.</span>gather(<span style=color:#f92672>*</span>tasks)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 2. 使用元数据过滤限定搜索范围</span>
+</span></span><span style=display:flex><span>results <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>search(
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;project updates&#34;</span>,
+</span></span><span style=display:flex><span>    filters<span style=color:#f92672>=</span>{
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;user_id&#34;</span>: <span style=color:#e6db74>&#34;alice&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;metadata.category&#34;</span>: <span style=color:#e6db74>&#34;work&#34;</span>
+</span></span><span style=display:flex><span>    },
+</span></span><span style=display:flex><span>    limit<span style=color:#f92672>=</span><span style=color:#ae81ff>10</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 3. 使用 top_k 调整检索深度</span>
+</span></span><span style=display:flex><span>results <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>search(
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;dietary preferences&#34;</span>,
+</span></span><span style=display:flex><span>    user_id<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;alice&#34;</span>,
+</span></span><span style=display:flex><span>    top_k<span style=color:#f92672>=</span><span style=color:#ae81ff>5</span>,  <span style=color:#75715e># 减少提升速度，增加提升覆盖度</span>
+</span></span><span style=display:flex><span>    rerank<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>
+</span></span><span style=display:flex><span>)
+</span></span></code></pre></div><h3 id=带自定义指令的记忆>带自定义指令的记忆<a hidden class=anchor aria-hidden=true href=#带自定义指令的记忆>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 引导提取和存储哪些事实</span>
+</span></span><span style=display:flex><span>m <span style=color:#f92672>=</span> Memory<span style=color:#f92672>.</span>from_config({
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;custom_instructions&#34;</span>: <span style=color:#e6db74>&#34;&#34;&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    提取并存储：
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    - 用户的姓名、职业、地点
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    - 技术偏好（语言、框架、工具）
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    - 饮食限制和过敏
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    - 沟通偏好
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    不要存储：
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    - 临时情绪或情感状态
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    - 一次性请求
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    - 未经同意的第三方信息
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>})
+</span></span></code></pre></div><h2 id=与-langchaincrewai-和-openai-集成>与 LangChain、CrewAI 和 OpenAI 集成<a hidden class=anchor aria-hidden=true href=#与-langchaincrewai-和-openai-集成>#</a></h2><h3 id=langchain-集成>LangChain 集成<a hidden class=anchor aria-hidden=true href=#langchain-集成>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>pip install langchain langchain-openai mem0ai
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># langchain_mem0_agent.py</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> os
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> typing <span style=color:#f92672>import</span> List, Dict
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> langchain_openai <span style=color:#f92672>import</span> ChatOpenAI
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> langchain_core.messages <span style=color:#f92672>import</span> SystemMessage, HumanMessage, AIMessage
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> langchain_core.prompts <span style=color:#f92672>import</span> ChatPromptTemplate, MessagesPlaceholder
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> mem0 <span style=color:#f92672>import</span> MemoryClient
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 初始化</span>
+</span></span><span style=display:flex><span>llm <span style=color:#f92672>=</span> ChatOpenAI(model<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;gpt-4o-mini&#34;</span>)
+</span></span><span style=display:flex><span>mem0 <span style=color:#f92672>=</span> MemoryClient(api_key<span style=color:#f92672>=</span>os<span style=color:#f92672>.</span>getenv(<span style=color:#e6db74>&#34;MEM0_API_KEY&#34;</span>))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 带记忆注入的提示词模板</span>
+</span></span><span style=display:flex><span>prompt <span style=color:#f92672>=</span> ChatPromptTemplate<span style=color:#f92672>.</span>from_messages([
+</span></span><span style=display:flex><span>    (<span style=color:#e6db74>&#34;system&#34;</span>, <span style=color:#e6db74>&#34;&#34;&#34;你是拥有长期记忆的助手。
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    关于用户的相关历史上下文：
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    </span><span style=color:#e6db74>{memories}</span><span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    使用这些上下文来个性化你的回答。&#34;&#34;&#34;</span>),
+</span></span><span style=display:flex><span>    MessagesPlaceholder(variable_name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;history&#34;</span>),
+</span></span><span style=display:flex><span>    (<span style=color:#e6db74>&#34;human&#34;</span>, <span style=color:#e6db74>&#34;</span><span style=color:#e6db74>{input}</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>])
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_memories</span>(user_id: str, query: str) <span style=color:#f92672>-&gt;</span> str: <span style=color:#e6db74>&#34;&#34;&#34;检索相关记忆并格式化为字符串。&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>    results <span style=color:#f92672>=</span> mem0<span style=color:#f92672>.</span>search(query, user_id<span style=color:#f92672>=</span>user_id, limit<span style=color:#f92672>=</span><span style=color:#ae81ff>5</span>)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span><span style=color:#f92672>.</span>join([r[<span style=color:#e6db74>&#34;memory&#34;</span>] <span style=color:#66d9ef>for</span> r <span style=color:#f92672>in</span> results])
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>chat</span>(user_id: str, message: str, history: List <span style=color:#f92672>=</span> <span style=color:#66d9ef>None</span>): <span style=color:#e6db74>&#34;&#34;&#34;带记忆增强上下文的对话。&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> history <span style=color:#f92672>is</span> <span style=color:#66d9ef>None</span>: history <span style=color:#f92672>=</span> []
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    memories <span style=color:#f92672>=</span> get_memories(user_id, message)
+</span></span><span style=display:flex><span>    formatted_prompt <span style=color:#f92672>=</span> prompt<span style=color:#f92672>.</span>format_messages(
+</span></span><span style=display:flex><span>        memories<span style=color:#f92672>=</span>memories,
+</span></span><span style=display:flex><span>        history<span style=color:#f92672>=</span>history,
+</span></span><span style=display:flex><span>        input<span style=color:#f92672>=</span>message
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    response <span style=color:#f92672>=</span> llm<span style=color:#f92672>.</span>invoke(formatted_prompt)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># 存储交互</span>
+</span></span><span style=display:flex><span>    messages <span style=color:#f92672>=</span> [
+</span></span><span style=display:flex><span>        {<span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;user&#34;</span>, <span style=color:#e6db74>&#34;content&#34;</span>: message},
+</span></span><span style=display:flex><span>        {<span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;assistant&#34;</span>, <span style=color:#e6db74>&#34;content&#34;</span>: response<span style=color:#f92672>.</span>content}
+</span></span><span style=display:flex><span>    ]
+</span></span><span style=display:flex><span>    mem0<span style=color:#f92672>.</span>add(messages, user_id<span style=color:#f92672>=</span>user_id)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> response<span style=color:#f92672>.</span>content
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 运行对话</span>
+</span></span><span style=display:flex><span>user_id <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;traveler_42&#34;</span>
+</span></span><span style=display:flex><span>response1 <span style=color:#f92672>=</span> chat(user_id, <span style=color:#e6db74>&#34;I&#39;m planning a trip to Tokyo next month.&#34;</span>)
+</span></span><span style=display:flex><span>print(response1)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 后续会话 — 智能体记住了</span>
+</span></span><span style=display:flex><span>response2 <span style=color:#f92672>=</span> chat(user_id, <span style=color:#e6db74>&#34;What should I pack for my trip?&#34;</span>)
+</span></span><span style=display:flex><span><span style=color:#75715e># 输出引用东京、时间以及旅行者的偏好</span>
+</span></span></code></pre></div><h3 id=crewai-集成>CrewAI 集成<a hidden class=anchor aria-hidden=true href=#crewai-集成>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>pip install crewai mem0ai
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># crewai_mem0_crew.py</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> os
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> crewai <span style=color:#f92672>import</span> Agent, Task, Crew
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> crewai_tools <span style=color:#f92672>import</span> tool
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> mem0 <span style=color:#f92672>import</span> MemoryClient
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>mem0 <span style=color:#f92672>=</span> MemoryClient(api_key<span style=color:#f92672>=</span>os<span style=color:#f92672>.</span>getenv(<span style=color:#e6db74>&#34;MEM0_API_KEY&#34;</span>))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>@tool</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>retrieve_user_context</span>(user_id: str, query: str) <span style=color:#f92672>-&gt;</span> str: <span style=color:#e6db74>&#34;&#34;&#34;检索关于用户的记忆用于个性化。&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>    results <span style=color:#f92672>=</span> mem0<span style=color:#f92672>.</span>search(query, user_id<span style=color:#f92672>=</span>user_id, limit<span style=color:#f92672>=</span><span style=color:#ae81ff>5</span>)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span><span style=color:#f92672>.</span>join([<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;- </span><span style=color:#e6db74>{</span>r[memory]<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span> <span style=color:#66d9ef>for</span> r <span style=color:#f92672>in</span> results])
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>@tool</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>store_interaction</span>(user_id: str, content: str) <span style=color:#f92672>-&gt;</span> str: <span style=color:#e6db74>&#34;&#34;&#34;存储智能体交互中学到的事实。&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>    messages <span style=color:#f92672>=</span> [{<span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;assistant&#34;</span>, <span style=color:#e6db74>&#34;content&#34;</span>: content}]
+</span></span><span style=display:flex><span>    mem0<span style=color:#f92672>.</span>add(messages, user_id<span style=color:#f92672>=</span>user_id)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;Stored.&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 定义带有记忆工具的智能体</span>
+</span></span><span style=display:flex><span>researcher <span style=color:#f92672>=</span> Agent(
+</span></span><span style=display:flex><span>    role<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Personal Researcher&#34;</span>,
+</span></span><span style=display:flex><span>    goal<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Provide personalized research based on user history&#34;</span>,
+</span></span><span style=display:flex><span>    backstory<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;You remember user preferences and tailor research accordingly.&#34;</span>,
+</span></span><span style=display:flex><span>    tools<span style=color:#f92672>=</span>[retrieve_user_context, store_interaction],
+</span></span><span style=display:flex><span>    verbose<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,
+</span></span><span style=display:flex><span>    memory<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 使用记忆的任务</span>
+</span></span><span style=display:flex><span>task <span style=color:#f92672>=</span> Task(
+</span></span><span style=display:flex><span>    description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;&#34;&#34;Research travel options for user .
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    First retrieve their preferences, then provide personalized recommendations.
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    Query: travel preferences&#34;&#34;&#34;</span>,
+</span></span><span style=display:flex><span>    expected_output<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Personalized travel recommendations&#34;</span>,
+</span></span><span style=display:flex><span>    agent<span style=color:#f92672>=</span>researcher
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>crew <span style=color:#f92672>=</span> Crew(agents<span style=color:#f92672>=</span>[researcher], tasks<span style=color:#f92672>=</span>[task])
+</span></span><span style=display:flex><span>result <span style=color:#f92672>=</span> crew<span style=color:#f92672>.</span>kickoff(inputs<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;user_id&#34;</span>: <span style=color:#e6db74>&#34;user123&#34;</span>})
+</span></span><span style=display:flex><span>print(result)
+</span></span></code></pre></div><h3 id=openai-agents-sdk-集成>OpenAI Agents SDK 集成<a hidden class=anchor aria-hidden=true href=#openai-agents-sdk-集成>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>pip install openai-agents mem0ai
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># openai_agents_mem0.py</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> os
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> dataclasses <span style=color:#f92672>import</span> dataclass
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> agents <span style=color:#f92672>import</span> Agent, Runner, function_tool
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> mem0 <span style=color:#f92672>import</span> MemoryClient
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>mem0 <span style=color:#f92672>=</span> MemoryClient(api_key<span style=color:#f92672>=</span>os<span style=color:#f92672>.</span>getenv(<span style=color:#e6db74>&#34;MEM0_API_KEY&#34;</span>))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>@dataclass</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>UserContext</span>: user_id: str
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>@function_tool</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>add_to_memory</span>(ctx, messages: str) <span style=color:#f92672>-&gt;</span> str: <span style=color:#e6db74>&#34;&#34;&#34;存储关于用户的事实。&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>    parsed <span style=color:#f92672>=</span> [{<span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;user&#34;</span>, <span style=color:#e6db74>&#34;content&#34;</span>: m} <span style=color:#66d9ef>for</span> m <span style=color:#f92672>in</span> messages<span style=color:#f92672>.</span>split(<span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>)]
+</span></span><span style=display:flex><span>    mem0<span style=color:#f92672>.</span>add(parsed, user_id<span style=color:#f92672>=</span>ctx<span style=color:#f92672>.</span>context<span style=color:#f92672>.</span>user_id)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;Memory stored.&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>@function_tool</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>search_memory</span>(ctx, query: str) <span style=color:#f92672>-&gt;</span> str: <span style=color:#e6db74>&#34;&#34;&#34;搜索相关记忆。&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>    results <span style=color:#f92672>=</span> mem0<span style=color:#f92672>.</span>search(query, user_id<span style=color:#f92672>=</span>ctx<span style=color:#f92672>.</span>context<span style=color:#f92672>.</span>user_id, limit<span style=color:#f92672>=</span><span style=color:#ae81ff>5</span>)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span><span style=color:#f92672>.</span>join([r[<span style=color:#e6db74>&#34;memory&#34;</span>] <span style=color:#66d9ef>for</span> r <span style=color:#f92672>in</span> results])
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>memory_agent <span style=color:#f92672>=</span> Agent(
+</span></span><span style=display:flex><span>    name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;MemoryAgent&#34;</span>,
+</span></span><span style=display:flex><span>    instructions<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;You are a helpful assistant that remembers user preferences.&#34;</span>,
+</span></span><span style=display:flex><span>    tools<span style=color:#f92672>=</span>[add_to_memory, search_memory],
+</span></span><span style=display:flex><span>    model<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;gpt-4o-mini&#34;</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>run_agent</span>(): context <span style=color:#f92672>=</span> UserContext(user_id<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;user_42&#34;</span>)
+</span></span><span style=display:flex><span>    result <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> Runner<span style=color:#f92672>.</span>run(
+</span></span><span style=display:flex><span>        memory_agent,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;I&#39;m a vegetarian who loves Italian food.&#34;</span>,
+</span></span><span style=display:flex><span>        context<span style=color:#f92672>=</span>context
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>    print(result<span style=color:#f92672>.</span>final_output)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># asyncio.run(run_agent())</span>
+</span></span></code></pre></div><h3 id=docker-compose-生产级部署>Docker Compose 生产级部署<a hidden class=anchor aria-hidden=true href=#docker-compose-生产级部署>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># mem0-production-stack.yml</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>version</span>: <span style=color:#e6db74>&#34;3.8&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>services: qdrant: image</span>: <span style=color:#ae81ff>qdrant/qdrant:latest</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;6333:6333&#34;</span>
+</span></span><span style=display:flex><span>      - <span style=color:#e6db74>&#34;6334:6334&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>qdrant_storage:/qdrant/storage</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>: - <span style=color:#ae81ff>QDRANT__SERVICE__GRPC_PORT=6334</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>mem0-server: image</span>: <span style=color:#ae81ff>mem0/mem0-server:latest</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;8000:8000&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>: - <span style=color:#ae81ff>MEM0_API_KEY=${MEM0_API_KEY}</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>VECTOR_STORE_PROVIDER=qdrant</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>VECTOR_STORE_URL=http://qdrant:6333</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>LLM_PROVIDER=openai</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>OPENAI_API_KEY=${OPENAI_API_KEY}</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>EMBEDDER_PROVIDER=openai</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>OPENAI_EMBEDDING_MODEL=text-embedding-3-small</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>depends_on</span>: - <span style=color:#ae81ff>qdrant</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>mem0-dashboard: image</span>: <span style=color:#ae81ff>mem0/mem0-dashboard:latest</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;3000:3000&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>: - <span style=color:#ae81ff>MEM0_API_URL=http://mem0-server:8000</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>MEM0_API_KEY=${MEM0_API_KEY}</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>volumes: qdrant_storage</span>: <span style=color:#ae81ff>`````</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 基准测试 / 实际用例</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### LoCoMo 和 LongMemEval 结果</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>Mem0 的新型 token 高效算法（2026 年 4 月发布）在更低 token 成本下实现显著精度提升：</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>| 基准测试 | 指标 | 旧算法 | 新算法（2026年4月） | 提升 |</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>|</span>
+</span></span><span style=display:flex><span>* * *
+</span></span><span style=display:flex><span><span style=color:#ae81ff>|</span>
+</span></span><span style=display:flex><span>* * *
+</span></span><span style=display:flex><span><span style=color:#ae81ff>|</span>
+</span></span><span style=display:flex><span>* * *
+</span></span><span style=display:flex><span><span style=color:#ae81ff>|</span>
+</span></span><span style=display:flex><span>* * *
+</span></span><span style=display:flex><span><span style=color:#ae81ff>|</span>
+</span></span><span style=display:flex><span>* * *
+</span></span><span style=display:flex><span><span style=color:#ae81ff>|</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>| LoCoMo | 总体准确率 | 66.9% | **92.5%** | +25.6 个百分点 |</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>| LoCoMo | 平均 Token/查询 | ~26,000 | **6,956** | 3.7 倍减少 |</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>| LongMemEval | 总体准确率 | 65.3% | **94.4%** | +29.1 个百分点 |</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>| LongMemEval | 平均 Token/查询 | ~25,000 | **6,787** | 3.7 倍减少 |</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>| BEAM (1M) | 准确率 | 42.5% | **64.1%** | +21.6 个百分点 |</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>| BEAM (10M) | 准确率 | 30.2% | **48.6%** | +18.4 个百分点 |</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 分类别细分（LoCoMo）</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>| 类别 | 旧分数 | 新分数 | 增量 |</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>|</span>
+</span></span><span style=display:flex><span>* * *
+</span></span><span style=display:flex><span><span style=color:#ae81ff>|</span>
+</span></span><span style=display:flex><span>* * *
+</span></span><span style=display:flex><span><span style=color:#ae81ff>|</span>
+</span></span><span style=display:flex><span>* * *
+</span></span><span style=display:flex><span><span style=color:#ae81ff>|</span>
+</span></span><span style=display:flex><span>* * *
+</span></span><span style=display:flex><span><span style=color:#ae81ff>|</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>| 单跳 | 76.6% | 94.6% | +18.0 |</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>| 多跳 | 70.2% | 95.4% | +25.2 |</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>| 开放域 | 57.3% | 82.3% | +25.0 |</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>| 时间性 | 63.2% | 92.5% | +29.3 |</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 生产用例</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>**用例：客户支持智能体**</span>
+</span></span><span style=display:flex><span>- <span style=color:#ae81ff>公司：50K+ 用户的 SaaS 平台</span>
+</span></span><span style=display:flex><span>- <span style=color:#ae81ff>配置：Mem0 OSS + Qdrant + GPT-4o-mini</span>
+</span></span><span style=display:flex><span>- <span style=color:#ae81ff>成果：重复问题减少 40%，解决速度提升 25%</span>
+</span></span><span style=display:flex><span>- <span style=color:#ae81ff>记忆存储：180K 对话中 2.3M 条事实</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>**用例：AI</span> <span style=color:#ae81ff>编程助手**</span>
+</span></span><span style=display:flex><span>- <span style=color:#ae81ff>配置：Claude Code 的 Mem0 插件</span>
+</span></span><span style=display:flex><span>- <span style=color:#ae81ff>成果：智能体记住编码偏好（tab vs 空格、偏好库）、项目结构上下文</span>
+</span></span><span style=display:flex><span>- <span style=color:#ae81ff>关键特性：无需重新索引即可实现跨会话文件上下文</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>**用例：医疗预约机器人**</span>
+</span></span><span style=display:flex><span>- <span style=color:#ae81ff>配置：Mem0 企业版（HIPAA 合规）</span>
+</span></span><span style=display:flex><span>- <span style=color:#ae81ff>成果：持久化的患者偏好、预约历史、保险验证状态</span>
+</span></span><span style=display:flex><span>- <span style=color:#ae81ff>合规：SOC 2 Type I + HIPAA BAA</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 高级用法 / 生产加固</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 安全配置</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>`````python</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 使用元数据进行记忆访问控制</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>def store_sensitive_memory(user_id: str, fact: str, classification: str)</span>: <span style=color:#e6db74>&#34;&#34;&#34;存储带安全等级的记忆。&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#ae81ff>messages = [{&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: fact}]</span>
+</span></span><span style=display:flex><span>    <span style=color:#ae81ff>mem0.add(</span>
+</span></span><span style=display:flex><span>        <span style=color:#ae81ff>messages,</span>
+</span></span><span style=display:flex><span>        <span style=color:#ae81ff>user_id=user_id,</span>
+</span></span><span style=display:flex><span>        <span style=color:#ae81ff>metadata={</span>
+</span></span><span style=display:flex><span>            <span style=color:#f92672>&#34;classification&#34;: </span><span style=color:#ae81ff>classification, </span> <span style=color:#75715e># &#34;public&#34;, &#34;internal&#34;, &#34;confidential&#34;</span>
+</span></span><span style=display:flex><span>            <span style=color:#f92672>&#34;encrypted&#34;: </span><span style=color:#66d9ef>True</span>,
+</span></span><span style=display:flex><span>            <span style=color:#f92672>&#34;retention_days&#34;: </span><span style=color:#ae81ff>90</span>
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    <span style=color:#ae81ff>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 带分类过滤的搜索</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>results = client.search(</span>
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;project preferences&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#ae81ff>filters={</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;user_id&#34;: </span><span style=color:#e6db74>&#34;alice&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;metadata.classification&#34;: </span>[<span style=color:#e6db74>&#34;public&#34;</span>, <span style=color:#e6db74>&#34;internal&#34;</span>]
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span><span style=color:#ae81ff>)</span>
+</span></span></code></pre></div><h3 id=多租户隔离>多租户隔离<a hidden class=anchor aria-hidden=true href=#多租户隔离>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 面向 SaaS 应用的组织级记忆隔离</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>add_org_scoped_memory</span>(org_id: str, user_id: str, messages: list): <span style=color:#e6db74>&#34;&#34;&#34;存储同时按组织和用户范围隔离的记忆。&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>    client<span style=color:#f92672>.</span>add(
+</span></span><span style=display:flex><span>        messages,
+</span></span><span style=display:flex><span>        user_id<span style=color:#f92672>=</span><span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>{</span>org_id<span style=color:#e6db74>}</span><span style=color:#e6db74>:</span><span style=color:#e6db74>{</span>user_id<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>,
+</span></span><span style=display:flex><span>        metadata<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;org_id&#34;</span>: org_id, <span style=color:#e6db74>&#34;isolation&#34;</span>: <span style=color:#e6db74>&#34;org-scoped&#34;</span>}
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 管理员跨用户查询组织内所有记忆</span>
+</span></span><span style=display:flex><span>results <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>get_all(
+</span></span><span style=display:flex><span>    filters<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;metadata.org_id&#34;</span>: <span style=color:#e6db74>&#34;org_123&#34;</span>},
+</span></span><span style=display:flex><span>    limit<span style=color:#f92672>=</span><span style=color:#ae81ff>100</span>
+</span></span><span style=display:flex><span>)
+</span></span></code></pre></div><h3 id=记忆监控与可观测性>记忆监控与可观测性<a hidden class=anchor aria-hidden=true href=#记忆监控与可观测性>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 追踪记忆指标</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> time
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>timed_search</span>(user_id: str, query: str): <span style=color:#e6db74>&#34;&#34;&#34;带延迟日志的搜索。&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>    start <span style=color:#f92672>=</span> time<span style=color:#f92672>.</span>time()
+</span></span><span style=display:flex><span>    results <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>search(query, user_id<span style=color:#f92672>=</span>user_id)
+</span></span><span style=display:flex><span>    latency <span style=color:#f92672>=</span> (time<span style=color:#f92672>.</span>time() <span style=color:#f92672>-</span> start) <span style=color:#f92672>*</span> <span style=color:#ae81ff>1000</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;搜索延迟: </span><span style=color:#e6db74>{</span>latency<span style=color:#e6db74>:</span><span style=color:#e6db74>.1f</span><span style=color:#e6db74>}</span><span style=color:#e6db74>ms | 结果数: </span><span style=color:#e6db74>{</span>len(results)<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># 记录到你的监控系统</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># prometheus_histogram.observe(latency)</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> results
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 定期记忆健康检查</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>memory_health_check</span>(user_id: str): <span style=color:#e6db74>&#34;&#34;&#34;验证用户记忆的完整性。&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>    all_memories <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>get_all(filters<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;user_id&#34;</span>: user_id})
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> {
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;total_memories&#34;</span>: len(all_memories),
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;oldest_memory&#34;</span>: min(m[<span style=color:#e6db74>&#34;created_at&#34;</span>] <span style=color:#66d9ef>for</span> m <span style=color:#f92672>in</span> all_memories) <span style=color:#66d9ef>if</span> all_memories <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>None</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;categories&#34;</span>: len(set(m<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;metadata&#34;</span>, {})<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;category&#34;</span>, <span style=color:#e6db74>&#34;&#34;</span>) <span style=color:#66d9ef>for</span> m <span style=color:#f92672>in</span> all_memories)),
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;avg_score&#34;</span>: sum(m<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;score&#34;</span>, <span style=color:#ae81ff>0</span>) <span style=color:#66d9ef>for</span> m <span style=color:#f92672>in</span> all_memories) <span style=color:#f92672>/</span> len(all_memories) <span style=color:#66d9ef>if</span> all_memories <span style=color:#66d9ef>else</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>    }
+</span></span></code></pre></div><h3 id=速率限制与成本控制>速率限制与成本控制<a hidden class=anchor aria-hidden=true href=#速率限制与成本控制>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 客户端速率限制实现</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> functools <span style=color:#f92672>import</span> wraps
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> time
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Mem0RateLimiter</span>: <span style=color:#e6db74>&#34;&#34;&#34;Mem0 API 调用的简单速率限制器。&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>__init__</span>(self, max_calls_per_minute<span style=color:#f92672>=</span><span style=color:#ae81ff>100</span>): self<span style=color:#f92672>.</span>max_calls <span style=color:#f92672>=</span> max_calls_per_minute
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>calls <span style=color:#f92672>=</span> []
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>can_call</span>(self) <span style=color:#f92672>-&gt;</span> bool: now <span style=color:#f92672>=</span> time<span style=color:#f92672>.</span>time()
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>calls <span style=color:#f92672>=</span> [c <span style=color:#66d9ef>for</span> c <span style=color:#f92672>in</span> self<span style=color:#f92672>.</span>calls <span style=color:#66d9ef>if</span> now <span style=color:#f92672>-</span> c <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>60</span>]
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> len(self<span style=color:#f92672>.</span>calls) <span style=color:#f92672>&lt;</span> self<span style=color:#f92672>.</span>max_calls
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>record_call</span>(self): self<span style=color:#f92672>.</span>calls<span style=color:#f92672>.</span>append(time<span style=color:#f92672>.</span>time())
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>limiter <span style=color:#f92672>=</span> Mem0RateLimiter(max_calls_per_minute<span style=color:#f92672>=</span><span style=color:#ae81ff>60</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>rate_limited_add</span>(messages, user_id): <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> limiter<span style=color:#f92672>.</span>can_call(): <span style=color:#75715e># 稍后排队或跳过非关键记忆</span>
+</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>&#34;触发速率限制，记忆入队&#34;</span>)
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> {<span style=color:#e6db74>&#34;status&#34;</span>: <span style=color:#e6db74>&#34;queued&#34;</span>}
+</span></span><span style=display:flex><span>    limiter<span style=color:#f92672>.</span>record_call()
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> client<span style=color:#f92672>.</span>add(messages, user_id<span style=color:#f92672>=</span>user_id)
+</span></span></code></pre></div><h2 id=与替代品对比>与替代品对比<a hidden class=anchor aria-hidden=true href=#与替代品对比>#</a></h2><p>| 特性 | Mem0 | LangChain Memory | LlamaIndex Memory | Chroma（原始） |
+|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| <strong>架构</strong> | 混合 向量+图+KV | 键值+向量 | 向量+索引 | 纯向量数据库 |
+| <strong>GitHub Stars</strong> | 56,205 | 100K+ (LangChain) | 41,000 | 18,500 |
+| <strong>LOCOMO 分数</strong> | 92.5%（新算法） | 58.10% | 62.47% | N/A（仅存储） |
+| <strong>LongMemEval 分数</strong> | 94.4% | 49.0% | 52.9% | N/A |
+| <strong>图记忆</strong> | Pro 版 ($249/月) | 无 | 部分 | 无 |
+| <strong>托管服务</strong> | 是 (app.mem0.ai) | 否 | 否 | 否 |
+| <strong>自托管</strong> | Docker，完整栈 | 仅库 | 仅库 | Docker |
+| <strong>SOC 2 / HIPAA</strong> | 是 (企业版) | 否 | 否 | 否 |
+| <strong>向量后端</strong> | 19 种支持 | 10+ | 15+ | 仅自身 |
+| <strong>多智能体共享</strong> | 是 (OSS) | 有限 | 否 | 手动 |
+| <strong>入门定价</strong> | 免费 (10K 记忆) | 免费 (OSS) | 免费 (OSS) | 免费 (OSS) |
+| <strong>时间推理</strong> | 良好 (82.3% 开放域) | 有限 | 基础 | 无 |
+| <strong>LLM 提取</strong> | 自动事实提取 | 手动/摘要 | 手动 | 无 |
+| <strong>集成范围</strong> | 20+ 框架 | LangChain 原生 | LlamaIndex 原生 | 任意 |</p><h3 id=选择建议>选择建议<a hidden class=anchor aria-hidden=true href=#选择建议>#</a></h3><ul><li><strong>选择 Mem0</strong>：当你需要托管记忆服务，支持自动事实提取，广泛的框架支持，以及生产级合规。</li><li><strong>选择 LangChain Memory</strong>：当你完全使用 LangGraph，希望零额外基础设施，并需要过程记忆支持。</li><li><strong>选择 LlamaIndex Memory</strong>：当你的主要需求是以文档为中心的 RAG 配合记忆增强，而非对话持久化。</li><li><strong>选择 Chroma</strong>：当你仅需要向量数据库并计划自行构建所有记忆逻辑。</li></ul><h2 id=局限性--诚实评估>局限性 / 诚实评估<a hidden class=anchor aria-hidden=true href=#局限性--诚实评估>#</a></h2><p>Mem0 并非适合所有用例。以下是它不太擅长的领域：</p><p><strong>1. 时间推理差距</strong>：在 LongMemEval 时间性子任务上，Mem0 得分 49-82%（视类别而定）。Zep 配合 Graphiti 由于显式时间锚定图存储，在时间任务上达到 63.8-71.2%。如果你的智能体需要推理事件序列（&ldquo;X 之前发生了什么？"），Mem0 可能不足。</p><p><strong>2. 图记忆定价</strong>：图功能锁定在 $249/月的 Pro 版。$19/月的 Starter 版仅提供向量相似度搜索。对于预算有限但需要关系感知记忆的团队，Zep（$25/月）或 Cognee（免费自托管）等替代品提供更低价位的图功能。</p><p><strong>3. 有损提取</strong>：Mem0 从对话中提取结构化事实，这意味着会丢失一些细节——说话者归属、精确时间戳和中间推理步骤可能被丢弃。对于逐字对话回忆，原始 RAG 存储消息的方式优于 Mem0（逐字回忆基准上 61.4% vs 86%+）。</p><p><strong>4. 不是完整的智能体框架</strong>：Mem0 是记忆层，不是智能体编排框架。你仍然需要 LangChain、CrewAI 或 OpenAI Agents SDK 进行工具调用、规划和多步推理。</p><p><strong>5. 自托管复杂性</strong>：Docker 设置简单，但生产级自托管需要管理向量存储（Qdrant/Chroma）、LLM API 密钥、嵌入流水线和监控。托管平台消除了这个负担，但引入了数据驻留顾虑。</p><h2 id=常见问题>常见问题<a hidden class=anchor aria-hidden=true href=#常见问题>#</a></h2><p><strong>Q: Mem0 Platform 和 Mem0 Open Source 有什么区别？</strong></p><p>A: Mem0 Platform (app.mem0.ai) 是托管云服务，提供自动扩展、仪表板分析和 SOC 2 合规。Mem0 Open Source 是自托管版本，让你完全控制数据和基础设施。OSS 版本拥有相同的核心记忆引擎，但需要你自己管理向量存储、LLM 提供者和扩展。</p><p><strong>Q: mem0 与 langchain memory 在生产环境中如何选择？</strong></p><p>A: LangChain Memory (LangMem) 免费且原生集成 LangGraph，但缺乏托管服务、自动事实提取和企业合规认证。Mem0 提供跨任何框架的独立 API，支持自动记忆提取，企业版提供 SOC 2/HIPAA 合规。如果你不是专门使用 LangGraph，Mem0 是更灵活的选择。</p><p><strong>Q: 能否在不发送数据到外部 API 的情况下使用 Mem0？</strong></p><p>A: 可以。Mem0 Open Source 支持完全本地部署，使用 Ollama 进行 LLM 推理，以及本地向量存储如 Chroma 或 Qdrant。将 LLM 提供者配置为 &ldquo;ollama&rdquo; 搭配本地模型（如 llama3），嵌入器使用本地 sentence-transformers 模型。数据不会离开你的网络。</p><p><strong>Q: 生产环境应使用什么向量存储？</strong></p><p>A: Qdrant 是生产部署的推荐选择，因为它具备混合搜索能力（稠密+稀疏向量）、水平扩展支持和亚 10ms 查询延迟。如果已运行 PostgreSQL，PGVector 是理想选择。Pinecone 适合需要自动扩展且无需运维开销的无服务器部署。</p><p><strong>Q: 如何从 LangChain Memory 迁移到 Mem0？</strong></p><p>A: 迁移是渐进的。首先在现有 LangChain 记忆旁初始化 Mem0。在两个系统中同时存储新对话。使用 Mem0 的 <code>search()</code> API 检索记忆并通过 <code>memories</code> 变量注入 LangChain 提示词。建立信心后，完全切换到 Mem0。Mem0 文档提供了迁移指南。</p><p><strong>Q: Mem0 的大规模使用定价如何？</strong></p><p>A: Hobby 版免费，每月 10K 记忆和 1K 检索。Starter 版 $19/月，50K 记忆和 5K 检索。Pro 版 $249/月，无限记忆、图记忆和分析。Enterprise 版定制定价，包含本地部署、SSO 和 SLA 保证。从 Starter 到 Pro 的跃升是需要图功能的团队的主要定价顾虑。</p><p><strong>Q: Mem0 是否支持多模态记忆（图像、音频）？</strong></p><p>A: 是，Mem0 Open Source 支持多模态输入，包括图像和音频文件。多模态功能从非文本内容中提取语义信息并存储为可检索的记忆条目。这需要 GPT-4o 或 Claude 3.5 Sonnet 等多模态 LLM。</p><h2 id=结论>结论<a hidden class=anchor aria-hidden=true href=#结论>#</a></h2><p>Mem0 解决了 AI 智能体开发中最持久的问题之一：跨会话记忆。凭借 56,205 GitHub Stars、19 种向量存储后端，以及新型 token 高效算法（在 LoCoMo 上达到 92.5%，token 成本比全上下文基线低 3.7 倍），它是生产环境中采用最广泛的开源记忆层。免费版可处理 10K 记忆用于原型设计，自托管 Docker 栈为企业部署提供完整的数据控制权。</p><p><strong>行动项：</strong></p><ol><li>克隆 mem0ai/mem0 仓库，使用 ````pip install mem0ai``` 运行快速入门</li><li>在 app.mem0.ai 注册免费 API 密钥</li><li>将 Mem0 搜索集成到你的 LangChain 或 CrewAI 智能体提示词中</li><li>在你自己的对话数据集上，将当前记忆解决方案与 Mem0 的检索进行基准对比</li></ol><p><strong>加入社区：</strong> <a href=https://t.me/dibi8community>t.me/dibi8community</a> — 分享你的 Mem0 部署经验，并从其他构建记忆驱动智能体的开发者那里获取帮助。</p><p><em>本文中的部分链接为联盟链接。如果你通过这些链接购买，我们可能会获得佣金，不会额外收取费用。这有助于我们维护 dibi8.com 并资助开源研究。</em></p><h2 id=推荐部署与基础设施>推荐部署与基础设施<a hidden class=anchor aria-hidden=true href=#推荐部署与基础设施>#</a></h2><p>上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：</p><ul><li><strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — 新用户 60 天 $200 免费额度，14+ 全球节点。运行开源 AI 工具的首选。</li><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — 香港 VPS，国内访问低延迟，dibi8.com 自己也跑在它上面，生产环境验证过。</li></ul><p><em>Aff 链接 — 不增加你的成本，但能帮 dibi8 持续运营。</em></p><h2 id=来源与延伸阅读>来源与延伸阅读<a hidden class=anchor aria-hidden=true href=#来源与延伸阅读>#</a></h2><ul><li>Mem0 官方文档: <a href=https://docs.mem0.ai/introduction>https://docs.mem0.ai/introduction</a></li><li>Mem0 GitHub 仓库: <a href=https://github.com/mem0ai/mem0>https://github.com/mem0ai/mem0</a></li><li>Mem0 研究 — 基准测试: <a href=https://mem0.ai/research>https://mem0.ai/research</a></li><li>LangChain 集成指南: <a href=https://docs.mem0.ai/integrations/langchain>https://docs.mem0.ai/integrations/langchain</a></li><li>CrewAI 集成: <a href=https://docs.mem0.ai/integrations/crewai>https://docs.mem0.ai/integrations/crewai</a></li><li>OpenAI Agents SDK 集成: <a href=https://docs.mem0.ai/integrations/openai-agents-sdk>https://docs.mem0.ai/integrations/openai-agents-sdk</a></li><li>Mem0 平台定价: <a href=https://mem0.ai/pricing>https://mem0.ai/pricing</a></li><li>LoCoMo 基准论文: <a href=https://arxiv.org/abs/2402.03771>https://arxiv.org/abs/2402.03771</a></li><li>LongMemEval 基准: <a href=https://github.com/memory-benchmark/LongMemEval>https://github.com/memory-benchmark/LongMemEval</a></li><li>PRISM 论文（帕累托高效检索）: <a href=https://arxiv.org/html/2605.12260v1>https://arxiv.org/html/2605.12260v1</a></li><li>AWS Agent SDK + Mem0 公告: <a href=https://aws.amazon.com/blogs/machine-learning>https://aws.amazon.com/blogs/machine-learning</a></li><li>Atlan — 2026 最佳 AI 智能体记忆框架: <a href=https://atlan.com/know/best-ai-agent-memory-frameworks-2026/>https://atlan.com/know/best-ai-agent-memory-frameworks-2026/</a></li><li>Evermind — Mem0 替代品 2026: <a href=https://evermind.ai/blogs/mem0-alternative>https://evermind.ai/blogs/mem0-alternative</a></li></ul><p>{
+&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+&ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;Mem0: 56K+ Stars — AI智能体内存性能调优指南 2026&rdquo;,
+&ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
+&ldquo;dateModified&rdquo;: &ldquo;2026-05-19&rdquo;,
+&ldquo;author&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;
+},
+&ldquo;publisher&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
+&ldquo;logo&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
+&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+}
+},
+&ldquo;mainEntityOfPage&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
+&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/zh/resources/mem0%22>https://dibi8.com/zh/resources/mem0"</a>
+}
+}</script></p><hr><h2 id=related-articles>Related Articles<a hidden class=anchor aria-hidden=true href=#related-articles>#</a></h2><ul><li><a href=/zh/ai-coding-agents/mem0/>2026-06-22-trending-ai-agents</a></li><li><a href=/zh/ai-coding-agents/mem0/>bytedance-ui-tars-desktop-ai-agent-guide</a></li><li><a href=/zh/ai-coding-agents/mem0/>egonex-understand-anything-interactive-knowledge-graph-ai</a></li><li><a href=/zh/ai-coding-agents/mem0/>mattpocock-skills-ai-agent-framework-guide</a></li><li><a href=/zh/ai-coding-agents/mem0/>nanochat-karpathy-100-chatgpt-single-gpu</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p><h2 id=frequently-asked-questions-faq>Frequently Asked Questions (FAQ)<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions-faq>#</a></h2><p><strong>问：AI Agent和传统自动化有什么区别？</strong></p><p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p><p><strong>问：如何选择合适的AI Agent框架？</strong></p><p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p><p><strong>问：AI Agent的安全性如何保证？</strong></p><p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p><p><strong>问：AI Agent的学习成本有多高？</strong></p><p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p><p><strong>问：能否自定义AI Agent的行为？</strong></p><p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/zh/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/zh/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/zh/ai-coding-agents/melotts/><span class=title>« 上一页</span>
+<span>AI Tool Guide</span>
+</a><a class=next href=https://dibi8.com/zh/ai-coding-agents/mempalace-guide/><span class=title>下一页 »</span>
+<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/zh/>Dibi8</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

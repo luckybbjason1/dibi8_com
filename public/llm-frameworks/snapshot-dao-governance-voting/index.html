@@ -1,0 +1,713 @@
+<!doctype html><html lang=en dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/llm-frameworks/snapshot-dao-governance-voting/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/llm-frameworks/snapshot-dao-governance-voting/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/llm-frameworks/snapshot-dao-governance-voting/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/llm-frameworks/snapshot-dao-governance-voting/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/llm-frameworks/snapshot-dao-governance-voting/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/llm-frameworks/snapshot-dao-governance-voting/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="llm-frameworks"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Tool Guide","item":"https://dibi8.com/llm-frameworks/snapshot-dao-governance-voting/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"Date: 2026-05-19\nCategory: AI Trading\nTags: Snapshot, DAO, Governance, Voting, DeFi, Web3, IPFS, Blockchain\nTool: Snapshot\nGitHub: snapshot-labs/snapshot — ⭐ 9,500 stars, MIT License\nInterested in trading governance tokens? Register on Binance to get started with DAO token trading.\n1. Introduction: Why DAO Governance Matters in 2026 Decentralized Autonomous Organizations (DAOs) have fundamentally transformed how communities make collective decisions. By 2026, DAOs manage over $50 billion in treasury assets across DeFi protocols, NFT projects, infrastructure networks, and investment collectives. However, on-chain voting on networks like Ethereum remains prohibitively expensive during high congestion periods, with single votes costing $5–$50 in gas fees. This financial barrier disenfranchises smaller token holders and undermines the democratic ethos of decentralization.\nSnapshot emerged as the definitive solution to this challenge. Launched by Snapshot Labs, Snapshot is an open-source, off-chain voting platform that enables gas-free governance for DAOs. With over 10 million votes processed, 9,500+ GitHub stars, and adoption by virtually every major DeFi protocol — including Uniswap, Aave, Compound, Balancer, and Gitcoin — Snapshot has become the industry standard for DAO governance.\nUnlike on-chain voting systems that execute every vote as a blockchain transaction, Snapshot leverages IPFS for decentralized data storage and Ethereum Signed Messages for vote authentication. This architecture eliminates gas costs entirely while maintaining cryptographic verifiability and transparency. Votes are signed with users’ private keys, proving token ownership without spending gas.\nThis comprehensive guide explores Snapshot’s architecture, voting strategies, delegation mechanisms, SDK integration, and real-world implementation patterns for developers and DAO operators in 2026.\n2. Core Architecture: How Snapshot Enables Gas-Free Voting 2.1 The Off-Chain Voting Paradigm Snapshot’s revolutionary approach rests on separating vote signaling from vote execution. Traditional on-chain governance requires every participant to submit a transaction, paying gas fees proportional to network congestion. Snapshot inverts this model: ````typescript // Traditional on-chain voting (expensive) // Each voter pays gas for this transaction await governorContract.castVote( proposalId, // uint256 support, // 0=against, 1=for, 2=abstain { value: 0, gasPrice: 50000000000 } // ~$5-50 in gas );\n`````typescript // Snapshot off-chain voting (gas-free) // User signs a message with their wallet — zero gas cost const voteMessage = { from: userAddress, space: \"uniswap.eth\", // DAO namespace proposal: proposalId, // IPFS hash of proposal choice: 1, // 1=for, 2=against, 3=abstain reason: \"Support treasury diversification\", app: \"snapshot\", // voting client metadata: '{}' // optional JSON metadata }; // Sign with EIP-712 typed data — completely gas-free const signature = await signer.signTypedData( domain, types, voteMessage ); The signed message is broadcast to Snapshot’s hub and pinned to IPFS, creating a permanent, verifiable record without any blockchain transaction.\n2.2 IPFS-Backed Data Storage All Snapshot data — proposals, votes, and spaces — is stored on the InterPlanetary File System (IPFS), ensuring censorship resistance and permanence: `````json { “proposal”: { “id”: “QmYwAPJzv5CZsnAzt8auVK914vhC2pW9e4iPApvb1xUcGz”, “ipfs”: “QmYwAPJzv5CZsnAzt8auVK914vhC2pW9e4iPApvb1xUcGz”, “title”: “Treasury Diversification Proposal Q2 2026”, “body”: “## Summary\\n\\nThis proposal seeks approval…”, “choices”: [“For”, “Against”, “Abstain”], “start”: 1716105600, “end”: 1716710400, “snapshot”: 18945231, “state”: “closed”, “author”: “0x2775b1c75658Be0F640272CCb8c72ac986009e38”, “space”: { “id”: “uniswap.eth”, “name”: “Uniswap” }, “type”: “single-choice”, “scores”: [12500000, 3200000, 450000], “scores_total”: 16150000, “scores_updated”: 1716710400, “votes”: 1847 } }\nThe ````snapshot```` field specifies the Ethereum block number at which token balances are counted, preventing flash loan attacks and ensuring fair vote weight calculation. * * * ## 3. Setting Up a DAO Space on Snapshot ### 3.1 Creating Your Space Any project can create a governance space on Snapshot. The process involves ENS domain configuration and strategy selection: `````bash # Step 1: Ensure you own an ENS domain # Your space ID will be your ENS name (e.g., mydao.eth) # Step 2: Set ENS text records # Set snapshot record to point to your space settings ens records set mydao.eth text snapshot \"ipfs://Qm...\" // Step 3: Configure space settings via Snapshot API import snapshot from '@snapshot-labs/snapshot.js'; const spaceConfig = { name: \"MyDAO Governance\", about: \"Decentralized governance for MyDAO protocol\", avatar: \"https://mydao.xyz/logo.png\", network: \"1\", // Ethereum mainnet symbol: \"MYDAO\", // Token symbol skin: \"mydao\", // Custom theme // Voting validation validation: { name: \"basic\", params: {} }, // Voting strategies (token-weighted) strategies: [ { name: \"erc20-balance-of\", params: { address: \"0x1234...abcd\", // MYDAO token contract decimals: 18, symbol: \"MYDAO\" } } ], // Proposal thresholds filters: { minScore: 1000, // Min tokens to create proposal onlyMembers: false }, // Voting parameters voting: { delay: 86400, // 1 day voting delay period: 172800, // 2 day voting period type: \"single-choice\", // Voting method quorum: 100000 // Minimum participation } }; // Submit space configuration await snapshot.utils.subgraphRequest( 'https://hub.snapshot.org/graphql', { space: { __args: { id: 'mydao.eth' }, ...spaceConfig } } ); 3.2 Space Verification After configuration, verify your space is accessible: `````bash\nQuery space via GraphQL curl -X POST https://hub.snapshot.org/graphql -H “Content-Type: application/json” -d ‘{ “query”: “query { space(id: “mydao.eth”) { id name about network symbol strategies { name params } } }” }’\n`````python # Python verification script import requests def verify_snapshot_space(space_id: str) -\u003e dict: \"\"\"Verify Snapshot space configuration.\"\"\" query = \"\"\" query GetSpace($id: String!) { space(id: $id) { id name about network symbol members admins moderators strategies { name params } filters { minScore onlyMembers } voting { delay period type quorum } } } \"\"\" response = requests.post( \"https://hub.snapshot.org/graphql\", json={\"query\": query, \"variables\": {\"id\": space_id}}, headers={\"Content-Type\": \"application/json\"} ) data = response.json() if data.get(\"data\", {}).get(\"space\"): space = data[\"data\"][\"space\"] print(f\"Space '{space[name]}' verified successfully!\") print(f\"Network: {space[network]}\") print(f\"Strategies: {[s[name] for s in space[strategies]]}\") print(f\"Min Score: {space[filters][minScore]}\") return space else: raise ValueError(f\"Space '{space_id}' not found\") # Verify space = verify_snapshot_space(\"mydao.eth\") 4. Voting Strategies: Flexible Token-Weighted Governance 4.1 Built-in Strategy Library Snapshot supports 50+ voting strategies that determine how voting power is calculated. The most commonly used strategies include: | Strategy | Use Case | Example DAOs | |\n|\n|\n| | erc20-balance-of | Simple token balance | Uniswap, Aave | | erc721 | NFT ownership | Bored Ape Yacht Club | | contract-call | Custom logic via smart contract | Compound | | delegation | Delegated voting power | Gitcoin | | whitelist | Pre-approved voters | Investment DAOs | | snapshot-multichain | Multi-chain token balances | Across Protocol |\n4.2 Configuring Custom Strategies // Multi-strategy configuration for complex DAOs const advancedStrategies = [ // Strategy 1: Base governance token { name: \"erc20-balance-of\", params: { address: \"0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984\", // UNI decimals: 18, symbol: \"UNI\" } }, // Strategy 2: Staked tokens in vault { name: \"contract-call\", params: { address: \"0xA4eC3511849f88F1A6b09E8426f85e0fc70F6e5B\", decimals: 18, symbol: \"stUNI\", methodABI: { name: \"balanceOf\", type: \"function\", inputs: [{ name: \"account\", type: \"address\" }], outputs: [{ name: \"balance\", type: \"uint256\" }], stateMutability: \"view\" } } }, // Strategy 3: LP tokens with multiplier { name: \"erc20-balance-of-with-multiplier\", params: { address: \"0x1d42064Fc4Beb5F8aAF85F4617AE8b3b5B8Bd801\", // UNI/ETH LP decimals: 18, symbol: \"UNI-LP\", multiplier: 2 // 2x voting power for LP holders } } ]; // Calculate voting power for an address async function getVotingPower( address: string, strategies: any[], snapshot: number // block number ): Promise\u003cbigint\u003e { const response = await fetch('https://score.snapshot.org/api/scores', { method: POST, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ params: { space: \"mydao.eth\", network: \"1\", strategies, addresses: [address], snapshot } }) }); const data = await response.json(); return BigInt(data.result.scores[0][address] || 0); } // Example usage const votingPower = await getVotingPower( \"0x2775b1c75658Be0F640272CCb8c72ac986009e38\", advancedStrategies, 18945231 ); console.log(````Voting power: ${votingPower} tokens````); 4.3 Quadratic Voting Strategy For DAOs seeking more democratic outcomes, Snapshot supports quadratic voting: `````json { “strategy”: { “name”: “quadratic-balance-of”, “params”: { “address”: “0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984”, “decimals”: 18, “symbol”: “UNI”, “coefficient”: 1 // sqrt(token_balance) * coefficient } } }\nWith quadratic voting, a user with 10,000 tokens has 100 voting power (√10,000), while a user with 100 tokens has 10 voting power (√100) — reducing the influence of whale holders. * * * ## 5. Delegation: Representative Democracy in DAOs ### 5.1 How Delegation Works Delegation allows token holders to assign their voting power to trusted representatives, increasing participation rates and enabling governance specialization: `````solidity // SPDX-License-Identifier: MIT pragma solidity ^0.8.20; interface IVotingDelegate { /// @notice Delegate voting power to a representative /// @param delegatee Address to delegate voting power to function delegate(address delegatee) external; /// @notice Get current votes for an account /// @param account Address to check /// @return votes Current voting power function getCurrentVotes(address account) external view returns (uint96); /// @notice Get prior votes at a specific block /// @param account Address to check /// @param blockNumber Block number for historical lookup /// @return votes Voting power at that block function getPriorVotes( address account, uint256 blockNumber ) external view returns (uint96); } // Snapshot delegation setup import Snapshot from '@snapshot-labs/snapshot.js'; const client = new Snapshot.Client712('https://hub.snapshot.org'); // Create delegation transaction (gas-free via signature) async function delegateVotingPower( signer: any, delegator: string, delegatee: string, space: string // \"uniswap.eth\" or empty for global ): Promise\u003cstring\u003e { const delegation = { delegatee, space, // Empty string = global delegation timestamp: Math.floor(Date.now() / 1000) }; const receipt = await client.delegate( signer, delegator, delegation ); return receipt; // IPFS hash of delegation record } // Delegate UNI votes to a governance expert const txHash = await delegateVotingPower( signer, \"0xMyAddress...\", \"0xGovernanceExpert...\", // Trusted delegate \"uniswap.eth\" // Space-specific delegation ); console.log(````Delegation recorded: ${txHash}````); 5.2 Delegation Dashboard Query # Query current delegations for a space query GetDelegations($space: String!, $delegate: String!) { delegations( where: { space: $space, delegate: $delegate }, orderBy: timestamp, orderDirection: desc ) { id delegator delegate space timestamp } } # Execute delegation query curl -X POST https://hub.snapshot.org/graphql \\ -H \"Content-Type: application/json\" \\ -d '{ \"query\": \"query { delegations(where: {space: \"uniswap.eth\", delegate: \"0x2775b1c75658Be0F640272CCb8c72ac986009e38\"}) { delegator timestamp } }\" }' 6. Programmatic Integration: Snapshot SDK 6.1 Installation and Setup # Install Snapshot.js SDK npm install @snapshot-labs/snapshot.js ethers # Or with yarn yarn add @snapshot-labs/snapshot.js ethers // Initialize Snapshot client import snapshot from '@snapshot-labs/snapshot.js'; import { Wallet } from ethers; const hub = 'https://hub.snapshot.org'; // Mainnet hub const client = new snapshot.Client712(hub); // Setup provider and signer const provider = new ethers.JsonRpcProvider('https://eth.llamarpc.com'); const signer = new Wallet(process.env.PRIVATE_KEY, provider); 6.2 Creating Proposals Programmatically // Create a governance proposal via SDK async function createProposal( signer: any, author: string, space: string ): Promise\u003cstring\u003e { const proposal = { space: \"mydao.eth\", type: \"single-choice\", // \"single-choice\" | \"approval\" | \"quadratic\" | \"ranked-choice\" | \"weighted\" title: \"Q2 2026 Treasury Allocation Proposal\", body: ````## Summary This proposal allocates treasury funds for Q2 2026 operations. ## Details - Development: 40% (800 ETH) - Marketing: 30% (600 ETH) - Security audits: 20% (400 ETH) - Community grants: 10% (200 ETH) ## Implementation If passed, the treasury multi-sig will execute transfers within 7 days. ## References - [Treasury Report Q1 2026](https://mydao.xyz/treasury/q1-2026) - [Budget Spreadsheet](https://mydao.xyz/budget/q2-2026)````, choices: [\"For\", \"Against\", \"Abstain\"], start: Math.floor(Date.now() / 1000) + 86400, // Start in 24h end: Math.floor(Date.now() / 1000) + 259200, // End in 72h snapshot: await provider.getBlockNumber(), // Current block discussion: \"https://forum.mydao.xyz/t/q2-treasury\", plugins: '{}', app: \"mydao-governance\" }; const receipt = await client.proposal( signer, author, proposal ); return receipt; // Returns IPFS hash } // Execute const proposalId = await createProposal( signer, \"0xAuthorAddress...\", \"mydao.eth\" ); console.log(````Proposal created: ${proposalId}````); 6.3 Casting Votes via API // Submit a vote programmatically async function castVote( signer: any, voter: string, proposalId: string, choice: number, // 1=For, 2=Against, 3=Abstain reason: string ): Promise\u003cstring\u003e { const vote = { space: \"mydao.eth\", proposal: proposalId, // IPFS hash from proposal creation type: \"single-choice\", choice: choice, reason: reason, app: \"mydao-governance\", metadata: '{}' }; const receipt = await client.vote( signer, voter, vote ); return receipt; // IPFS hash of vote } // Cast a vote with reasoning const voteReceipt = await castVote( signer, \"0xVoterAddress...\", \"QmYwAPJzv5CZsnAzt8auVK914vhC2pW9e4iPApvb1xUcGz\", 1, // For \"Supporting this proposal because the budget allocation aligns with our strategic priorities outlined in the roadmap.\" ); console.log(````Vote recorded: ${voteReceipt}````); 6.4 Batch Vote Queries // Query all votes for a proposal async function getProposalVotes( proposalId: string, first: number = 100, skip: number = 0 ): Promise\u003cany[]\u003e { const query = ```` query GetVotes($proposal: String!, $first: Int!, $skip: Int!) { votes( where: { proposal: $proposal } first: $first skip: $skip orderBy: \"created\" orderDirection: desc ) { id voter choice vp # voting power vp_by_strategy reason created ipfs } } ````; const response = await fetch('https://hub.snapshot.org/graphql', { method: POST, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ query, variables: { proposal: proposalId, first, skip } }) }); const data = await response.json(); return data.data.votes; } // Get vote statistics async function getVoteStats(proposalId: string): Promise\u003cany\u003e { const votes = await getProposalVotes(proposalId, 1000); const stats = { totalVotes: votes.length, totalVotingPower: votes.reduce((sum, v) =\u003e sum + parseFloat(v.vp), 0), results: {} }; votes.forEach(vote =\u003e { const choice = vote.choice; if (!stats.results[choice]) { stats.results[choice] = { count: 0, vp: 0 }; } stats.results[choice].count++; stats.results[choice].vp += parseFloat(vote.vp); }); return stats; } // Usage const stats = await getVoteStats(\"QmYwAPJzv5CZsnAzt8auVK914vhC2pW9e4iPApvb1xUcGz\"); console.log(````Total voters: ${stats.totalVotes}````); console.log(````Total VP: ${stats.totalVotingPower}````); console.log(\"Results:\", stats.results); 7. Multi-Chain and Cross-Platform Integration 7.1 Multi-Chain Voting Strategies Snapshot supports voting across multiple blockchains simultaneously: `````typescript // Multi-chain strategy: aggregate tokens across networks const multichainStrategies = [ { name: “erc20-balance-of”, network: “1”, // Ethereum params: { address: “0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984”, decimals: 18, symbol: “UNI” } }, { name: “erc20-balance-of”, network: “137”, // Polygon params: { address: “0xb33EaAd8d922B1083446DC23f610c2567fB5180f”, decimals: 18, symbol: “UNI” } }, { name: “erc20-balance-of”, network: “42161”, // Arbitrum params: { address: “0xFa7F8980b0f1E64A2062791cc3b0871572f1F7f0”, decimals: 18, symbol: “UNI” } } ];\n// Fetch combined voting power across chains const scores = await snapshot.utils.getScores( “uniswap.eth”, multichainStrategies, “1”, // Main network [“0xVoterAddress…”], await provider.getBlockNumber() );\nconsole.log(“Cross-chain voting power:”, scores);\n### 7.2 Webhook Notifications `````typescript // Set up webhook for proposal events import express from express; const app = express(); app.use(express.json()); // Snapshot webhook endpoint app.post('/webhooks/snapshot', (req, res) =\u003e { const event = req.body; switch (event.event) { case 'proposal/created': console.log(````New proposal: ${event.id}````); notifyDiscord(event); break; case 'proposal/end': console.log(````Voting ended: ${event.id}````); tallyResults(event); break; case vote: console.log(````New vote on ${event.proposal.id}````); updateLeaderboard(event); break; } res.status(200).send(OK); }); function notifyDiscord(proposal: any) { // Send notification to Discord webhook const message = { embeds: [{ title: \"AI Tool Guide\" url: ````https://snapshot.org/#/${proposal.space.id}/proposal/${proposal.id}````, description: \"Technical guide and comparison.\" fields: [ { name: Space, value: proposal.space.name, inline: true }, { name: Author, value: proposal.author, inline: true }, { name: 'End Date', value: new Date(proposal.end * 1000).toISOString(), inline: true } ], timestamp: new Date().toISOString() }] }; fetch(process.env.DISCORD_WEBHOOK_URL, { method: POST, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(message) }); } app.listen(3000, () =\u003e console.log('Webhook server listening on port 3000')); 8. Real-World Use Cases and Best Practices 8.1 Protocol Parameter Changes DeFi protocols use Snapshot to vote on critical parameters: `````typescript // Aave-style risk parameter proposal interface RiskParameterProposal { asset: string; // Token address parameter: string; // “ltv” | “liquidationThreshold” | “reserveFactor” currentValue: number; proposedValue: number; justification: string; riskAnalysis: string; // Link to Gauntlet/Chaos analysis }\nconst aaveProposal: RiskParameterProposal = { asset: “0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2”, // WETH parameter: “liquidationThreshold”, currentValue: 8250, // 82.5% proposedValue: 8000, // 80.0% justification: “Reduce risk exposure due to market volatility”, riskAnalysis: “https://gauntlet.network/analyses/aave-weth-2026-05\" };\n### 8.2 Treasury Management `````typescript // Treasury allocation voting categories interface TreasuryProposal { totalAllocation: bigint; allocations: Allocation[]; vestingSchedule: VestingTerms; } interface Allocation { category: string; percentage: number; amount: bigint; recipient: string; unlockDate: number; } const treasuryVote: TreasuryProposal = { totalAllocation: BigInt(\"2000000000000000000000\"), // 2,000 ETH allocations: [ { category: \"Development\", percentage: 40, amount: BigInt(\"800000000000000000000\"), recipient: \"0xDevMultisig...\", unlockDate: 1719792000 }, { category: \"Marketing\", percentage: 30, amount: BigInt(\"600000000000000000000\"), recipient: \"0xMktMultisig...\", unlockDate: 1719792000 }, { category: \"Security\", percentage: 20, amount: BigInt(\"400000000000000000000\"), recipient: \"0xSecMultisig...\", unlockDate: 1719792000 }, { category: \"Grants\", percentage: 10, amount: BigInt(\"200000000000000000000\"), recipient: \"0xGrtMultisig...\", unlockDate: 1719792000 } ], vestingSchedule: { cliff: 90 * 86400, // 90 day cliff duration: 365 * 86400, // 1 year vesting interval: 30 * 86400 // Monthly releases } }; 8.3 Security Best Practices # snapshot-security-checklist.yml space_security: admin_keys: - use_multisig: true - minimum_signers: 3 - hardware_wallets_required: true proposal_validation: - min_score_threshold: 10000 - require_forum_discussion: true - discussion_min_duration: \"7 days\" voting_security: - snapshot_block: \"use_proposal_creation_block\" - voting_delay: \"minimum_24_hours\" - voting_period: \"minimum_3_days\" - quorum_required: true monitoring: - enable_webhooks: true - discord_notifications: true - unusual_activity_alerts: true - delegate_change_alerts: true 9. Frequently Asked Questions (FAQ) 9.1 What is Snapshot and how does it differ from on-chain governance? Snapshot is an off-chain voting platform for DAOs that eliminates gas costs while maintaining cryptographic security. Unlike on-chain governance (e.g., Compound’s Governor Bravo), where every vote is a blockchain transaction costing $5–$50 in gas, Snapshot uses EIP-712 signed messages that are stored on IPFS. This makes participation accessible to all token holders regardless of portfolio size. The trade-off is that Snapshot votes are not automatically executable — they require a separate on-chain transaction (often via a multi-sig or timelock contract) to implement the decision.\n9.2 Is Snapshot voting secure? Can votes be manipulated? Snapshot votes are cryptographically secure. Each vote is signed with the voter’s private key using EIP-712 typed data signing, making them tamper-proof. The vote data is pinned to IPFS, ensuring permanent, censorship-resistant storage. However, Snapshot’s off-chain nature means vote execution is not automatic — the DAO’s multi-sig signers must execute the will of the voters on-chain. This creates a “social contract” layer of trust. Many DAOs mitigate this by using Snapshot + Safe (Gnosis Safe) together, where the multi-sig signers are contractually or reputationally bound to execute passed proposals.\n9.3 How are voting power and token balances calculated? Voting power is determined by strategies configured for each space. The most common strategy is erc20-balance-of, which checks the voter’s token balance at a specific block number (the ````snapshot``` block). This prevents: - Flash loan attacks: Tokens borrowed in the same transaction cannot be used for voting\nDouble voting: The same tokens cannot be moved and voted again Last-minute accumulation: Users cannot buy tokens after a proposal is created to influence the vote Multiple strategies can be combined, and custom strategies allow for complex logic like staked tokens, LP positions, NFT holdings, or delegated voting power.\n9.4 Can I delegate my voting power to someone else? Yes, delegation is a core feature of Snapshot governance. Token holders can delegate their voting power to trusted representatives — often governance experts, core contributors, or active community members. This is particularly valuable for: - Small holders who lack time to research proposals\nInstitutional holders who prefer professional governance participation Increasing quorum by aggregating otherwise inactive votes Delegation can be space-specific (only for one DAO) or global (across all Snapshot spaces). Delegated votes can be reclaimed at any time, and delegates can be changed without penalty. The Snapshot UI provides a dedicated delegation page for managing delegations.\n9.5 How do I integrate Snapshot into my own application? Snapshot provides multiple integration options: - Snapshot.js SDK: Full-featured JavaScript SDK for proposal creation, voting, and delegation\nGraphQL API: Query proposals, votes, spaces, and voting power via the public GraphQL endpoint Webhooks: Real-time notifications for proposal events Embed: iframe integration for embedding voting interfaces in your dApp The most common integration pattern is using the GraphQL API to display governance data in your frontend, combined with the SDK for vote submission. All integrations require an Ethereum-compatible wallet connection (MetaMask, WalletConnect, etc.).\nRecommended Hosting \u0026 Infrastructure Before you deploy any of the tools above into production, you’ll need solid infrastructure. Two options dibi8 actually uses and recommends: - DigitalOcean — $200 free credit for 60 days across 14+ global regions.\nHTStack — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com. Affiliate links — they don’t cost you extra and they help keep dibi8.com running.\n10. Conclusion: The Future of Decentralized Governance Snapshot has fundamentally democratized DAO governance by removing the financial barrier to participation. With 10 million+ votes processed, support for 50+ voting strategies, multi-chain compatibility, and a robust SDK ecosystem, Snapshot stands as the foundational infrastructure for decentralized decision-making in 2026.\nAs DAOs evolve toward greater automation, we expect to see deeper integration between Snapshot’s off-chain signaling and on-chain execution through Safe{Core}, Zodiac modules, and Account Abstraction (ERC-4337). The emergence of AI-assisted governance — where language models analyze proposals and provide voting recommendations — will further transform how communities participate in collective decision-making.\nFor developers building the next generation of governance tools, Snapshot’s MIT-licensed codebase, active developer community, and modular architecture provide an ideal foundation. Whether you’re launching a new DeFi protocol, managing an NFT community, or building infrastructure for decentralized organizations, Snapshot offers the flexibility, security, and scalability required for modern DAO governance.\nStart trading governance tokens today! Register on Binance to buy, sell, and stake tokens from leading DAOs like Uniswap, Aave, and Compound.\nLicense: MIT\nMaintainer: Snapshot Labs\nGitHub Stars: 9,500+\nWebsite: snapshot.org\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “snapshot-dao-governance-voting”, “datePublished”: “2026-05-20”, “dateModified”: “2026-05-20”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/snapshot-dao-governance-voting\" } } Frequently Asked Questions (FAQ) 问：量化交易的风险有多大？\n取决于策略设计、资金管理、市场波动。建议先用模拟账户测试。\n问：如何选择适合的交易策略？\n根据风险承受能力、时间投入、资金规模选择。高频需要技术，低频需要分析。\n问：回测结果可信吗？\n回测有局限性，需警惕过拟合、前视偏差、忽略滑点和手续费。\n问：需要编程基础吗？\n基础策略可使用低代码平台，高级策略需要Python/C++编程能力。\n问：交易系统的维护成本？\n包括服务器费用、数据订阅、算法更新、以及监控维护时间。\n","wordCount":"3412","inLanguage":"en","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/llm-frameworks/snapshot-dao-governance-voting/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>Home</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
+<a href>LLM Frameworks - dibi8</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>17 min</span>&nbsp;|&nbsp;<span>Translations:</span><ul class=i18n_list><li><a href=https://dibi8.com/zh/llm-frameworks/snapshot-dao-governance-voting/>Zh</a></li><li><a href=https://dibi8.com/ko/llm-frameworks/snapshot-dao-governance-voting/>Ko</a></li><li><a href=https://dibi8.com/vi/llm-frameworks/snapshot-dao-governance-voting/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Table of Contents</span></summary><div class=inner><ul><ul><li><a href=#1-introduction-why-dao-governance-matters-in-2026 aria-label="1. Introduction: Why DAO Governance Matters in 2026">1. Introduction: Why DAO Governance Matters in 2026</a></li><li><a href=#2-core-architecture-how-snapshot-enables-gas-free-voting aria-label="2. Core Architecture: How Snapshot Enables Gas-Free Voting">2. Core Architecture: How Snapshot Enables Gas-Free Voting</a><ul><li><a href=#21-the-off-chain-voting-paradigm aria-label="2.1 The Off-Chain Voting Paradigm">2.1 The Off-Chain Voting Paradigm</a></li><li><a href=#22-ipfs-backed-data-storage aria-label="2.2 IPFS-Backed Data Storage">2.2 IPFS-Backed Data Storage</a></li><li><a href=#32-space-verification aria-label="3.2 Space Verification">3.2 Space Verification</a></li></ul></li></ul><li><a href=#query-space-via-graphql aria-label="Query space via GraphQL">Query space via GraphQL</a><ul><li><a href=#4-voting-strategies-flexible-token-weighted-governance aria-label="4. Voting Strategies: Flexible Token-Weighted Governance">4. Voting Strategies: Flexible Token-Weighted Governance</a><ul><li><a href=#41-built-in-strategy-library aria-label="4.1 Built-in Strategy Library">4.1 Built-in Strategy Library</a></li><li><a href=#42-configuring-custom-strategies aria-label="4.2 Configuring Custom Strategies">4.2 Configuring Custom Strategies</a></li><li><a href=#43-quadratic-voting-strategy aria-label="4.3 Quadratic Voting Strategy">4.3 Quadratic Voting Strategy</a></li><li><a href=#52-delegation-dashboard-query aria-label="5.2 Delegation Dashboard Query">5.2 Delegation Dashboard Query</a></li></ul></li><li><a href=#6-programmatic-integration-snapshot-sdk aria-label="6. Programmatic Integration: Snapshot SDK">6. Programmatic Integration: Snapshot SDK</a><ul><li><a href=#61-installation-and-setup aria-label="6.1 Installation and Setup">6.1 Installation and Setup</a></li><li><a href=#62-creating-proposals-programmatically aria-label="6.2 Creating Proposals Programmatically">6.2 Creating Proposals Programmatically</a></li><li><a href=#63-casting-votes-via-api aria-label="6.3 Casting Votes via API">6.3 Casting Votes via API</a></li><li><a href=#64-batch-vote-queries aria-label="6.4 Batch Vote Queries">6.4 Batch Vote Queries</a></li></ul></li><li><a href=#7-multi-chain-and-cross-platform-integration aria-label="7. Multi-Chain and Cross-Platform Integration">7. Multi-Chain and Cross-Platform Integration</a><ul><li><a href=#71-multi-chain-voting-strategies aria-label="7.1 Multi-Chain Voting Strategies">7.1 Multi-Chain Voting Strategies</a></li></ul></li><li><a href=#8-real-world-use-cases-and-best-practices aria-label="8. Real-World Use Cases and Best Practices">8. Real-World Use Cases and Best Practices</a><ul><li><a href=#81-protocol-parameter-changes aria-label="8.1 Protocol Parameter Changes">8.1 Protocol Parameter Changes</a></li><li><a href=#83-security-best-practices aria-label="8.3 Security Best Practices">8.3 Security Best Practices</a></li></ul></li><li><a href=#9-frequently-asked-questions-faq aria-label="9. Frequently Asked Questions (FAQ)">9. Frequently Asked Questions (FAQ)</a><ul><li><a href=#91-what-is-snapshot-and-how-does-it-differ-from-on-chain-governance aria-label="9.1 What is Snapshot and how does it differ from on-chain governance?">9.1 What is Snapshot and how does it differ from on-chain governance?</a></li><li><a href=#92-is-snapshot-voting-secure-can-votes-be-manipulated aria-label="9.2 Is Snapshot voting secure? Can votes be manipulated?">9.2 Is Snapshot voting secure? Can votes be manipulated?</a></li><li><a href=#93-how-are-voting-power-and-token-balances-calculated aria-label="9.3 How are voting power and token balances calculated?">9.3 How are voting power and token balances calculated?</a></li><li><a href=#94-can-i-delegate-my-voting-power-to-someone-else aria-label="9.4 Can I delegate my voting power to someone else?">9.4 Can I delegate my voting power to someone else?</a></li><li><a href=#95-how-do-i-integrate-snapshot-into-my-own-application aria-label="9.5 How do I integrate Snapshot into my own application?">9.5 How do I integrate Snapshot into my own application?</a></li></ul></li><li><a href=#recommended-hosting--infrastructure aria-label="Recommended Hosting & Infrastructure">Recommended Hosting & Infrastructure</a></li><li><a href=#10-conclusion-the-future-of-decentralized-governance aria-label="10. Conclusion: The Future of Decentralized Governance">10. Conclusion: The Future of Decentralized Governance</a></li><li><a href=#frequently-asked-questions-faq aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a></li></ul></li></ul></div></details><div class="post-content md-content"><p><strong>Date:</strong> 2026-05-19<br><strong>Category:</strong> AI Trading<br><strong>Tags:</strong> Snapshot, DAO, Governance, Voting, DeFi, Web3, IPFS, Blockchain<br><strong>Tool:</strong> <a href=https://snapshot.org>Snapshot</a><br><strong>GitHub:</strong> <a href=https://github.com/snapshot-labs/snapshot>snapshot-labs/snapshot</a> — ⭐ 9,500 stars, MIT License</p><hr><blockquote><p>Interested in trading governance tokens? Register on <a href="https://www.bsmkweb.cc/register?ref=DIBI8">Binance</a> to get started with DAO token trading.</p></blockquote><hr><h2 id=1-introduction-why-dao-governance-matters-in-2026>1. Introduction: Why DAO Governance Matters in 2026<a hidden class=anchor aria-hidden=true href=#1-introduction-why-dao-governance-matters-in-2026>#</a></h2><p>Decentralized Autonomous Organizations (DAOs) have fundamentally transformed how communities make collective decisions. By 2026, DAOs manage over $50 billion in treasury assets across DeFi protocols, NFT projects, infrastructure networks, and investment collectives. However, on-chain voting on networks like Ethereum remains prohibitively expensive during high congestion periods, with single votes costing $5–$50 in gas fees. This financial barrier disenfranchises smaller token holders and undermines the democratic ethos of decentralization.</p><p><strong>Snapshot</strong> emerged as the definitive solution to this challenge. Launched by <a href=https://github.com/snapshot-labs>Snapshot Labs</a>, Snapshot is an open-source, off-chain voting platform that enables gas-free governance for DAOs. With over <strong>10 million votes processed</strong>, 9,500+ GitHub stars, and adoption by virtually every major DeFi protocol — including Uniswap, Aave, Compound, Balancer, and Gitcoin — Snapshot has become the industry standard for DAO governance.</p><p>Unlike on-chain voting systems that execute every vote as a blockchain transaction, Snapshot leverages <strong>IPFS</strong> for decentralized data storage and <strong>Ethereum Signed Messages</strong> for vote authentication. This architecture eliminates gas costs entirely while maintaining cryptographic verifiability and transparency. Votes are signed with users&rsquo; private keys, proving token ownership without spending gas.</p><p>This comprehensive guide explores Snapshot&rsquo;s architecture, voting strategies, delegation mechanisms, SDK integration, and real-world implementation patterns for developers and DAO operators in 2026.</p><hr><h2 id=2-core-architecture-how-snapshot-enables-gas-free-voting>2. Core Architecture: How Snapshot Enables Gas-Free Voting<a hidden class=anchor aria-hidden=true href=#2-core-architecture-how-snapshot-enables-gas-free-voting>#</a></h2><h3 id=21-the-off-chain-voting-paradigm>2.1 The Off-Chain Voting Paradigm<a hidden class=anchor aria-hidden=true href=#21-the-off-chain-voting-paradigm>#</a></h3><p>Snapshot&rsquo;s revolutionary approach rests on separating <strong>vote signaling</strong> from <strong>vote execution</strong>. Traditional on-chain governance requires every participant to submit a transaction, paying gas fees proportional to network congestion. Snapshot inverts this model: ````typescript
+// Traditional on-chain voting (expensive)
+// Each voter pays gas for this transaction
+await governorContract.castVote(
+proposalId, // uint256
+support, // 0=against, 1=for, 2=abstain
+{ value: 0, gasPrice: 50000000000 } // ~$5-50 in gas
+);</p><pre tabindex=0><code>
+`````typescript
+// Snapshot off-chain voting (gas-free)
+// User signs a message with their wallet — zero gas cost
+const voteMessage = {
+  from: userAddress,
+  space: &#34;uniswap.eth&#34;,           // DAO namespace
+  proposal: proposalId,           // IPFS hash of proposal
+  choice: 1,                      // 1=for, 2=against, 3=abstain
+  reason: &#34;Support treasury diversification&#34;,
+  app: &#34;snapshot&#34;,                // voting client
+  metadata: &#39;{}&#39;                  // optional JSON metadata
+};
+
+// Sign with EIP-712 typed data — completely gas-free
+const signature = await signer.signTypedData(
+  domain,
+  types,
+  voteMessage
+);
+</code></pre><p>The signed message is broadcast to Snapshot&rsquo;s hub and pinned to IPFS, creating a permanent, verifiable record without any blockchain transaction.</p><h3 id=22-ipfs-backed-data-storage>2.2 IPFS-Backed Data Storage<a hidden class=anchor aria-hidden=true href=#22-ipfs-backed-data-storage>#</a></h3><p>All Snapshot data — proposals, votes, and spaces — is stored on the <strong>InterPlanetary File System (IPFS)</strong>, ensuring censorship resistance and permanence: `````json
+{
+&ldquo;proposal&rdquo;: {
+&ldquo;id&rdquo;: &ldquo;QmYwAPJzv5CZsnAzt8auVK914vhC2pW9e4iPApvb1xUcGz&rdquo;,
+&ldquo;ipfs&rdquo;: &ldquo;QmYwAPJzv5CZsnAzt8auVK914vhC2pW9e4iPApvb1xUcGz&rdquo;,
+&ldquo;title&rdquo;: &ldquo;Treasury Diversification Proposal Q2 2026&rdquo;,
+&ldquo;body&rdquo;: &ldquo;## Summary\n\nThis proposal seeks approval&mldr;&rdquo;,
+&ldquo;choices&rdquo;: [&ldquo;For&rdquo;, &ldquo;Against&rdquo;, &ldquo;Abstain&rdquo;],
+&ldquo;start&rdquo;: 1716105600,
+&ldquo;end&rdquo;: 1716710400,
+&ldquo;snapshot&rdquo;: 18945231,
+&ldquo;state&rdquo;: &ldquo;closed&rdquo;,
+&ldquo;author&rdquo;: &ldquo;0x2775b1c75658Be0F640272CCb8c72ac986009e38&rdquo;,
+&ldquo;space&rdquo;: {
+&ldquo;id&rdquo;: &ldquo;uniswap.eth&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Uniswap&rdquo;
+},
+&ldquo;type&rdquo;: &ldquo;single-choice&rdquo;,
+&ldquo;scores&rdquo;: [12500000, 3200000, 450000],
+&ldquo;scores_total&rdquo;: 16150000,
+&ldquo;scores_updated&rdquo;: 1716710400,
+&ldquo;votes&rdquo;: 1847
+}
+}</p><pre tabindex=0><code>
+The ````snapshot```` field specifies the Ethereum block number at which token balances are counted, preventing flash loan attacks and ensuring fair vote weight calculation.
+
+* * *
+## 3. Setting Up a DAO Space on Snapshot
+
+### 3.1 Creating Your Space
+
+Any project can create a governance space on Snapshot. The process involves ENS domain configuration and strategy selection: `````bash
+# Step 1: Ensure you own an ENS domain
+# Your space ID will be your ENS name (e.g., mydao.eth)
+
+# Step 2: Set ENS text records
+# Set snapshot record to point to your space settings
+ens records set mydao.eth text snapshot &#34;ipfs://Qm...&#34;
+</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#75715e>// Step 3: Configure space settings via Snapshot API
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>snapshot</span> <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#39;@snapshot-labs/snapshot.js&#39;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>spaceConfig</span> <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;MyDAO Governance&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>about</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Decentralized governance for MyDAO protocol&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>avatar</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;https://mydao.xyz/logo.png&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>network</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;1&#34;</span>,                    <span style=color:#75715e>// Ethereum mainnet
+</span></span></span><span style=display:flex><span>  <span style=color:#66d9ef>symbol</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;MYDAO&#34;</span>,                 <span style=color:#75715e>// Token symbol
+</span></span></span><span style=display:flex><span>  <span style=color:#a6e22e>skin</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;mydao&#34;</span>,                   <span style=color:#75715e>// Custom theme
+</span></span></span><span style=display:flex><span>  <span style=color:#75715e>// Voting validation
+</span></span></span><span style=display:flex><span>  <span style=color:#a6e22e>validation</span><span style=color:#f92672>:</span> {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;basic&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>params</span><span style=color:#f92672>:</span> {}
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Voting strategies (token-weighted)
+</span></span></span><span style=display:flex><span>  <span style=color:#a6e22e>strategies</span><span style=color:#f92672>:</span> [
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;erc20-balance-of&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>params</span><span style=color:#f92672>:</span> {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>address</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;0x1234...abcd&#34;</span>,  <span style=color:#75715e>// MYDAO token contract
+</span></span></span><span style=display:flex><span>        <span style=color:#a6e22e>decimals</span>: <span style=color:#66d9ef>18</span>,
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>symbol</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;MYDAO&#34;</span>
+</span></span><span style=display:flex><span>      }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  ],
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Proposal thresholds
+</span></span></span><span style=display:flex><span>  <span style=color:#a6e22e>filters</span><span style=color:#f92672>:</span> {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>minScore</span>: <span style=color:#66d9ef>1000</span>,               <span style=color:#75715e>// Min tokens to create proposal
+</span></span></span><span style=display:flex><span>    <span style=color:#a6e22e>onlyMembers</span>: <span style=color:#66d9ef>false</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Voting parameters
+</span></span></span><span style=display:flex><span>  <span style=color:#a6e22e>voting</span><span style=color:#f92672>:</span> {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>delay</span>: <span style=color:#66d9ef>86400</span>,                 <span style=color:#75715e>// 1 day voting delay
+</span></span></span><span style=display:flex><span>    <span style=color:#a6e22e>period</span>: <span style=color:#66d9ef>172800</span>,               <span style=color:#75715e>// 2 day voting period
+</span></span></span><span style=display:flex><span>    <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;single-choice&#34;</span>,        <span style=color:#75715e>// Voting method
+</span></span></span><span style=display:flex><span>    <span style=color:#a6e22e>quorum</span>: <span style=color:#66d9ef>100000</span>                <span style=color:#75715e>// Minimum participation
+</span></span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>};
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Submit space configuration
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>await</span> <span style=color:#a6e22e>snapshot</span>.<span style=color:#a6e22e>utils</span>.<span style=color:#a6e22e>subgraphRequest</span>(
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#39;https://hub.snapshot.org/graphql&#39;</span>,
+</span></span><span style=display:flex><span>  {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>space</span><span style=color:#f92672>:</span> {
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>__args</span><span style=color:#f92672>:</span> { <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;mydao.eth&#39;</span> },
+</span></span><span style=display:flex><span>      ...<span style=color:#a6e22e>spaceConfig</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>);
+</span></span></code></pre></div><h3 id=32-space-verification>3.2 Space Verification<a hidden class=anchor aria-hidden=true href=#32-space-verification>#</a></h3><p>After configuration, verify your space is accessible: `````bash</p><h1 id=query-space-via-graphql>Query space via GraphQL<a hidden class=anchor aria-hidden=true href=#query-space-via-graphql>#</a></h1><p>curl -X POST <a href=https://hub.snapshot.org/graphql>https://hub.snapshot.org/graphql</a><br>-H &ldquo;Content-Type: application/json&rdquo;<br>-d &lsquo;{
+&ldquo;query&rdquo;: &ldquo;query { space(id: &ldquo;mydao.eth&rdquo;) { id name about network symbol strategies { name params } } }&rdquo;
+}&rsquo;</p><pre tabindex=0><code>
+`````python
+# Python verification script
+import requests
+
+def verify_snapshot_space(space_id: str) -&gt; dict: &#34;&#34;&#34;Verify Snapshot space configuration.&#34;&#34;&#34;
+    query = &#34;&#34;&#34;
+    query GetSpace($id: String!) {
+      space(id: $id) {
+        id
+        name
+        about
+        network
+        symbol
+        members
+        admins
+        moderators
+        strategies {
+          name
+          params
+        }
+        filters {
+          minScore
+          onlyMembers
+        }
+        voting {
+          delay
+          period
+          type
+          quorum
+        }
+      }
+    }
+    &#34;&#34;&#34;
+
+    response = requests.post(
+        &#34;https://hub.snapshot.org/graphql&#34;,
+        json={&#34;query&#34;: query, &#34;variables&#34;: {&#34;id&#34;: space_id}},
+        headers={&#34;Content-Type&#34;: &#34;application/json&#34;}
+    )
+
+    data = response.json()
+
+    if data.get(&#34;data&#34;, {}).get(&#34;space&#34;): space = data[&#34;data&#34;][&#34;space&#34;]
+        print(f&#34;Space &#39;{space[name]}&#39; verified successfully!&#34;)
+        print(f&#34;Network: {space[network]}&#34;)
+        print(f&#34;Strategies: {[s[name] for s in space[strategies]]}&#34;)
+        print(f&#34;Min Score: {space[filters][minScore]}&#34;)
+        return space
+    else: raise ValueError(f&#34;Space &#39;{space_id}&#39; not found&#34;)
+
+# Verify
+space = verify_snapshot_space(&#34;mydao.eth&#34;)
+</code></pre><hr><h2 id=4-voting-strategies-flexible-token-weighted-governance>4. Voting Strategies: Flexible Token-Weighted Governance<a hidden class=anchor aria-hidden=true href=#4-voting-strategies-flexible-token-weighted-governance>#</a></h2><h3 id=41-built-in-strategy-library>4.1 Built-in Strategy Library<a hidden class=anchor aria-hidden=true href=#41-built-in-strategy-library>#</a></h3><p>Snapshot supports 50+ voting strategies that determine how voting power is calculated. The most commonly used strategies include: | Strategy | Use Case | Example DAOs |
+|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| <code>erc20-balance-of</code> | Simple token balance | Uniswap, Aave |
+| <code>erc721</code> | NFT ownership | Bored Ape Yacht Club |
+| <code>contract-call</code> | Custom logic via smart contract | Compound |
+| <code>delegation</code> | Delegated voting power | Gitcoin |
+| <code>whitelist</code> | Pre-approved voters | Investment DAOs |
+| <code>snapshot-multichain</code> | Multi-chain token balances | Across Protocol |</p><h3 id=42-configuring-custom-strategies>4.2 Configuring Custom Strategies<a hidden class=anchor aria-hidden=true href=#42-configuring-custom-strategies>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#75715e>// Multi-strategy configuration for complex DAOs
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>advancedStrategies</span> <span style=color:#f92672>=</span> [
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Strategy 1: Base governance token
+</span></span></span><span style=display:flex><span>  {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;erc20-balance-of&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>params</span><span style=color:#f92672>:</span> {
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>address</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984&#34;</span>, <span style=color:#75715e>// UNI
+</span></span></span><span style=display:flex><span>      <span style=color:#a6e22e>decimals</span>: <span style=color:#66d9ef>18</span>,
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>symbol</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;UNI&#34;</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Strategy 2: Staked tokens in vault
+</span></span></span><span style=display:flex><span>  {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;contract-call&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>params</span><span style=color:#f92672>:</span> {
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>address</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;0xA4eC3511849f88F1A6b09E8426f85e0fc70F6e5B&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>decimals</span>: <span style=color:#66d9ef>18</span>,
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>symbol</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;stUNI&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>methodABI</span><span style=color:#f92672>:</span> {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;balanceOf&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;function&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>inputs</span><span style=color:#f92672>:</span> [{ <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;account&#34;</span>, <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;address&#34;</span> }],
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>outputs</span><span style=color:#f92672>:</span> [{ <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;balance&#34;</span>, <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;uint256&#34;</span> }],
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>stateMutability</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;view&#34;</span>
+</span></span><span style=display:flex><span>      }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Strategy 3: LP tokens with multiplier
+</span></span></span><span style=display:flex><span>  {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;erc20-balance-of-with-multiplier&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>params</span><span style=color:#f92672>:</span> {
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>address</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;0x1d42064Fc4Beb5F8aAF85F4617AE8b3b5B8Bd801&#34;</span>, <span style=color:#75715e>// UNI/ETH LP
+</span></span></span><span style=display:flex><span>      <span style=color:#a6e22e>decimals</span>: <span style=color:#66d9ef>18</span>,
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>symbol</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;UNI-LP&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>multiplier</span>: <span style=color:#66d9ef>2</span>  <span style=color:#75715e>// 2x voting power for LP holders
+</span></span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>];
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Calculate voting power for an address
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>getVotingPower</span>(
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>address</span>: <span style=color:#66d9ef>string</span>,
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>strategies</span>: <span style=color:#66d9ef>any</span>[],
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>snapshot</span>: <span style=color:#66d9ef>number</span>  <span style=color:#75715e>// block number
+</span></span></span><span style=display:flex><span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>Promise</span>&lt;<span style=color:#f92672>bigint</span>&gt; {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>response</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>fetch</span>(<span style=color:#e6db74>&#39;https://score.snapshot.org/api/scores&#39;</span>, {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>method</span>: <span style=color:#66d9ef>POST</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>headers</span><span style=color:#f92672>:</span> { <span style=color:#e6db74>&#39;Content-Type&#39;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;application/json&#39;</span> },
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>body</span>: <span style=color:#66d9ef>JSON.stringify</span>({
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>params</span><span style=color:#f92672>:</span> {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>space</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;mydao.eth&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>network</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;1&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>strategies</span>,
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>addresses</span><span style=color:#f92672>:</span> [<span style=color:#a6e22e>address</span>],
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>snapshot</span>
+</span></span><span style=display:flex><span>      }
+</span></span><span style=display:flex><span>    })
+</span></span><span style=display:flex><span>  });
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>data</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>response</span>.<span style=color:#a6e22e>json</span>();
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>BigInt</span>(<span style=color:#a6e22e>data</span>.<span style=color:#a6e22e>result</span>.<span style=color:#a6e22e>scores</span>[<span style=color:#ae81ff>0</span>][<span style=color:#a6e22e>address</span>] <span style=color:#f92672>||</span> <span style=color:#ae81ff>0</span>);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Example usage
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>votingPower</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>getVotingPower</span>(
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;0x2775b1c75658Be0F640272CCb8c72ac986009e38&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>advancedStrategies</span>,
+</span></span><span style=display:flex><span>  <span style=color:#ae81ff>18945231</span>
+</span></span><span style=display:flex><span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>````</span><span style=color:#a6e22e>Voting</span> <span style=color:#a6e22e>power</span>: <span style=color:#66d9ef>$</span>{<span style=color:#a6e22e>votingPower</span>} <span style=color:#a6e22e>tokens</span><span style=color:#e6db74>````</span>);
+</span></span></code></pre></div><h3 id=43-quadratic-voting-strategy>4.3 Quadratic Voting Strategy<a hidden class=anchor aria-hidden=true href=#43-quadratic-voting-strategy>#</a></h3><p>For DAOs seeking more democratic outcomes, Snapshot supports quadratic voting: `````json
+{
+&ldquo;strategy&rdquo;: {
+&ldquo;name&rdquo;: &ldquo;quadratic-balance-of&rdquo;,
+&ldquo;params&rdquo;: {
+&ldquo;address&rdquo;: &ldquo;0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984&rdquo;,
+&ldquo;decimals&rdquo;: 18,
+&ldquo;symbol&rdquo;: &ldquo;UNI&rdquo;,
+&ldquo;coefficient&rdquo;: 1 // sqrt(token_balance) * coefficient
+}
+}
+}</p><pre tabindex=0><code>
+With quadratic voting, a user with 10,000 tokens has 100 voting power (√10,000), while a user with 100 tokens has 10 voting power (√100) — reducing the influence of whale holders.
+
+* * *
+
+## 5. Delegation: Representative Democracy in DAOs
+
+### 5.1 How Delegation Works
+
+Delegation allows token holders to assign their voting power to trusted representatives, increasing participation rates and enabling governance specialization: `````solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+interface IVotingDelegate {
+    /// @notice Delegate voting power to a representative
+    /// @param delegatee Address to delegate voting power to
+    function delegate(address delegatee) external;
+
+    /// @notice Get current votes for an account
+    /// @param account Address to check
+    /// @return votes Current voting power
+    function getCurrentVotes(address account) external view returns (uint96);
+
+    /// @notice Get prior votes at a specific block
+    /// @param account Address to check
+    /// @param blockNumber Block number for historical lookup
+    /// @return votes Voting power at that block
+    function getPriorVotes(
+        address account,
+        uint256 blockNumber
+    ) external view returns (uint96);
+}
+</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#75715e>// Snapshot delegation setup
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>Snapshot</span> <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#39;@snapshot-labs/snapshot.js&#39;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>client</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Snapshot</span>.<span style=color:#a6e22e>Client712</span>(<span style=color:#e6db74>&#39;https://hub.snapshot.org&#39;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Create delegation transaction (gas-free via signature)
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>delegateVotingPower</span>(
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>signer</span>: <span style=color:#66d9ef>any</span>,
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>delegator</span>: <span style=color:#66d9ef>string</span>,
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>delegatee</span>: <span style=color:#66d9ef>string</span>,
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>space</span>: <span style=color:#66d9ef>string</span>  <span style=color:#75715e>// &#34;uniswap.eth&#34; or empty for global
+</span></span></span><span style=display:flex><span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>Promise</span>&lt;<span style=color:#f92672>string</span>&gt; {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>delegation</span> <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>delegatee</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>space</span>,        <span style=color:#75715e>// Empty string = global delegation
+</span></span></span><span style=display:flex><span>    <span style=color:#a6e22e>timestamp</span>: <span style=color:#66d9ef>Math.floor</span>(Date.<span style=color:#a6e22e>now</span>() <span style=color:#f92672>/</span> <span style=color:#ae81ff>1000</span>)
+</span></span><span style=display:flex><span>  };
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>receipt</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>client</span>.<span style=color:#a6e22e>delegate</span>(
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>signer</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>delegator</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>delegation</span>
+</span></span><span style=display:flex><span>  );
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>receipt</span>;  <span style=color:#75715e>// IPFS hash of delegation record
+</span></span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Delegate UNI votes to a governance expert
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>txHash</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>delegateVotingPower</span>(
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>signer</span>,
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;0xMyAddress...&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;0xGovernanceExpert...&#34;</span>,  <span style=color:#75715e>// Trusted delegate
+</span></span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;uniswap.eth&#34;</span>             <span style=color:#75715e>// Space-specific delegation
+</span></span></span><span style=display:flex><span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>````</span><span style=color:#a6e22e>Delegation</span> <span style=color:#a6e22e>recorded</span>: <span style=color:#66d9ef>$</span>{<span style=color:#a6e22e>txHash</span>}<span style=color:#e6db74>````</span>);
+</span></span></code></pre></div><h3 id=52-delegation-dashboard-query>5.2 Delegation Dashboard Query<a hidden class=anchor aria-hidden=true href=#52-delegation-dashboard-query>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-graphql data-lang=graphql><span style=display:flex><span><span style=color:#75715e># Query current delegations for a space</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>query</span> <span style=color:#a6e22e>GetDelegations</span>($space: <span style=color:#a6e22e>String</span>!, $delegate: <span style=color:#a6e22e>String</span>!) {
+</span></span><span style=display:flex><span>  delegations(
+</span></span><span style=display:flex><span>    where: {
+</span></span><span style=display:flex><span>      space: $space,
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>delegate</span>: $delegate
+</span></span><span style=display:flex><span>    },
+</span></span><span style=display:flex><span>    orderBy: <span style=color:#a6e22e>timestamp</span>,
+</span></span><span style=display:flex><span>    orderDirection: <span style=color:#a6e22e>desc</span>
+</span></span><span style=display:flex><span>  ) {
+</span></span><span style=display:flex><span>    id
+</span></span><span style=display:flex><span>    delegator
+</span></span><span style=display:flex><span>    delegate
+</span></span><span style=display:flex><span>    space
+</span></span><span style=display:flex><span>    timestamp
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Execute delegation query</span>
+</span></span><span style=display:flex><span>curl -X POST https://hub.snapshot.org/graphql <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  -H <span style=color:#e6db74>&#34;Content-Type: application/json&#34;</span> <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  -d <span style=color:#e6db74>&#39;{
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;query&#34;: &#34;query { delegations(where: {space: &#34;uniswap.eth&#34;, delegate: &#34;0x2775b1c75658Be0F640272CCb8c72ac986009e38&#34;}) { delegator timestamp } }&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>  }&#39;</span>
+</span></span></code></pre></div><hr><h2 id=6-programmatic-integration-snapshot-sdk>6. Programmatic Integration: Snapshot SDK<a hidden class=anchor aria-hidden=true href=#6-programmatic-integration-snapshot-sdk>#</a></h2><h3 id=61-installation-and-setup>6.1 Installation and Setup<a hidden class=anchor aria-hidden=true href=#61-installation-and-setup>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Install Snapshot.js SDK</span>
+</span></span><span style=display:flex><span>npm install @snapshot-labs/snapshot.js ethers
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Or with yarn</span>
+</span></span><span style=display:flex><span>yarn add @snapshot-labs/snapshot.js ethers
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#75715e>// Initialize Snapshot client
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>snapshot</span> <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#39;@snapshot-labs/snapshot.js&#39;</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Wallet</span> } <span style=color:#66d9ef>from</span> <span style=color:#a6e22e>ethers</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>hub</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;https://hub.snapshot.org&#39;</span>;  <span style=color:#75715e>// Mainnet hub
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>client</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>snapshot</span>.<span style=color:#a6e22e>Client712</span>(<span style=color:#a6e22e>hub</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Setup provider and signer
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>provider</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>ethers</span>.<span style=color:#a6e22e>JsonRpcProvider</span>(<span style=color:#e6db74>&#39;https://eth.llamarpc.com&#39;</span>);
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>signer</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Wallet</span>(<span style=color:#a6e22e>process</span>.<span style=color:#a6e22e>env</span>.<span style=color:#a6e22e>PRIVATE_KEY</span>, <span style=color:#a6e22e>provider</span>);
+</span></span></code></pre></div><h3 id=62-creating-proposals-programmatically>6.2 Creating Proposals Programmatically<a hidden class=anchor aria-hidden=true href=#62-creating-proposals-programmatically>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#75715e>// Create a governance proposal via SDK
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>createProposal</span>(
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>signer</span>: <span style=color:#66d9ef>any</span>,
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>author</span>: <span style=color:#66d9ef>string</span>,
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>space</span>: <span style=color:#66d9ef>string</span>
+</span></span><span style=display:flex><span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>Promise</span>&lt;<span style=color:#f92672>string</span>&gt; {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>proposal</span> <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>space</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;mydao.eth&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;single-choice&#34;</span>,        <span style=color:#75715e>// &#34;single-choice&#34; | &#34;approval&#34; | &#34;quadratic&#34; | &#34;ranked-choice&#34; | &#34;weighted&#34;
+</span></span></span><span style=display:flex><span>    <span style=color:#a6e22e>title</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Q2 2026 Treasury Allocation Proposal&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>body</span><span style=color:#f92672>:</span> <span style=color:#e6db74>````</span><span style=color:#960050;background-color:#1e0010>##</span> <span style=color:#a6e22e>Summary</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>This</span> <span style=color:#a6e22e>proposal</span> <span style=color:#a6e22e>allocates</span> <span style=color:#a6e22e>treasury</span> <span style=color:#a6e22e>funds</span> <span style=color:#66d9ef>for</span> <span style=color:#a6e22e>Q2</span> <span style=color:#ae81ff>2026</span> <span style=color:#a6e22e>operations</span>.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>##</span> <span style=color:#a6e22e>Details</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>-</span> <span style=color:#a6e22e>Development</span>: <span style=color:#66d9ef>40</span><span style=color:#f92672>%</span> (<span style=color:#ae81ff>800</span> <span style=color:#a6e22e>ETH</span>)
+</span></span><span style=display:flex><span><span style=color:#f92672>-</span> <span style=color:#a6e22e>Marketing</span>: <span style=color:#66d9ef>30</span><span style=color:#f92672>%</span> (<span style=color:#ae81ff>600</span> <span style=color:#a6e22e>ETH</span>)
+</span></span><span style=display:flex><span><span style=color:#f92672>-</span> <span style=color:#a6e22e>Security</span> <span style=color:#a6e22e>audits</span>: <span style=color:#66d9ef>20</span><span style=color:#f92672>%</span> (<span style=color:#ae81ff>400</span> <span style=color:#a6e22e>ETH</span>)
+</span></span><span style=display:flex><span><span style=color:#f92672>-</span> <span style=color:#a6e22e>Community</span> <span style=color:#a6e22e>grants</span>: <span style=color:#66d9ef>10</span><span style=color:#f92672>%</span> (<span style=color:#ae81ff>200</span> <span style=color:#a6e22e>ETH</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>##</span> <span style=color:#a6e22e>Implementation</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>If</span> <span style=color:#a6e22e>passed</span>, <span style=color:#a6e22e>the</span> <span style=color:#a6e22e>treasury</span> <span style=color:#a6e22e>multi</span><span style=color:#f92672>-</span><span style=color:#a6e22e>sig</span> <span style=color:#a6e22e>will</span> <span style=color:#a6e22e>execute</span> <span style=color:#a6e22e>transfers</span> <span style=color:#a6e22e>within</span> <span style=color:#ae81ff>7</span> <span style=color:#a6e22e>days</span>.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>##</span> <span style=color:#a6e22e>References</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>-</span> [<span style=color:#a6e22e>Treasury</span> <span style=color:#a6e22e>Report</span> <span style=color:#a6e22e>Q1</span> <span style=color:#ae81ff>2026</span>](<span style=color:#a6e22e>https</span><span style=color:#f92672>:</span><span style=color:#75715e>//mydao.xyz/treasury/q1-2026)
+</span></span></span><span style=display:flex><span><span style=color:#f92672>-</span> [<span style=color:#a6e22e>Budget</span> <span style=color:#a6e22e>Spreadsheet</span>](<span style=color:#a6e22e>https</span><span style=color:#f92672>:</span><span style=color:#75715e>//mydao.xyz/budget/q2-2026)````,
+</span></span></span><span style=display:flex><span>    <span style=color:#a6e22e>choices</span><span style=color:#f92672>:</span> [<span style=color:#e6db74>&#34;For&#34;</span>, <span style=color:#e6db74>&#34;Against&#34;</span>, <span style=color:#e6db74>&#34;Abstain&#34;</span>],
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>start</span>: <span style=color:#66d9ef>Math.floor</span>(Date.<span style=color:#a6e22e>now</span>() <span style=color:#f92672>/</span> <span style=color:#ae81ff>1000</span>) <span style=color:#f92672>+</span> <span style=color:#ae81ff>86400</span>,    <span style=color:#75715e>// Start in 24h
+</span></span></span><span style=display:flex><span>    <span style=color:#a6e22e>end</span>: <span style=color:#66d9ef>Math.floor</span>(Date.<span style=color:#a6e22e>now</span>() <span style=color:#f92672>/</span> <span style=color:#ae81ff>1000</span>) <span style=color:#f92672>+</span> <span style=color:#ae81ff>259200</span>,      <span style=color:#75715e>// End in 72h
+</span></span></span><span style=display:flex><span>    <span style=color:#a6e22e>snapshot</span>: <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>provider</span>.<span style=color:#a6e22e>getBlockNumber</span>(),         <span style=color:#75715e>// Current block
+</span></span></span><span style=display:flex><span>    <span style=color:#a6e22e>discussion</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;https://forum.mydao.xyz/t/q2-treasury&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>plugins</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;{}&#39;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>app</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;mydao-governance&#34;</span>
+</span></span><span style=display:flex><span>  };
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>receipt</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>client</span>.<span style=color:#a6e22e>proposal</span>(
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>signer</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>author</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>proposal</span>
+</span></span><span style=display:flex><span>  );
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>receipt</span>;  <span style=color:#75715e>// Returns IPFS hash
+</span></span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Execute
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>proposalId</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>createProposal</span>(
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>signer</span>,
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;0xAuthorAddress...&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;mydao.eth&#34;</span>
+</span></span><span style=display:flex><span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>````</span><span style=color:#a6e22e>Proposal</span> <span style=color:#a6e22e>created</span>: <span style=color:#66d9ef>$</span>{<span style=color:#a6e22e>proposalId</span>}<span style=color:#e6db74>````</span>);
+</span></span></code></pre></div><h3 id=63-casting-votes-via-api>6.3 Casting Votes via API<a hidden class=anchor aria-hidden=true href=#63-casting-votes-via-api>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#75715e>// Submit a vote programmatically
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>castVote</span>(
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>signer</span>: <span style=color:#66d9ef>any</span>,
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>voter</span>: <span style=color:#66d9ef>string</span>,
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>proposalId</span>: <span style=color:#66d9ef>string</span>,
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>choice</span>: <span style=color:#66d9ef>number</span>,      <span style=color:#75715e>// 1=For, 2=Against, 3=Abstain
+</span></span></span><span style=display:flex><span>  <span style=color:#a6e22e>reason</span>: <span style=color:#66d9ef>string</span>
+</span></span><span style=display:flex><span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>Promise</span>&lt;<span style=color:#f92672>string</span>&gt; {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>vote</span> <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>space</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;mydao.eth&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>proposal</span>: <span style=color:#66d9ef>proposalId</span>,     <span style=color:#75715e>// IPFS hash from proposal creation
+</span></span></span><span style=display:flex><span>    <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;single-choice&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>choice</span>: <span style=color:#66d9ef>choice</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>reason</span>: <span style=color:#66d9ef>reason</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>app</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;mydao-governance&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>metadata</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;{}&#39;</span>
+</span></span><span style=display:flex><span>  };
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>receipt</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>client</span>.<span style=color:#a6e22e>vote</span>(
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>signer</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>voter</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>vote</span>
+</span></span><span style=display:flex><span>  );
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>receipt</span>;  <span style=color:#75715e>// IPFS hash of vote
+</span></span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Cast a vote with reasoning
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>voteReceipt</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>castVote</span>(
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>signer</span>,
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;0xVoterAddress...&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;QmYwAPJzv5CZsnAzt8auVK914vhC2pW9e4iPApvb1xUcGz&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#ae81ff>1</span>,  <span style=color:#75715e>// For
+</span></span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;Supporting this proposal because the budget allocation aligns with our strategic priorities outlined in the roadmap.&#34;</span>
+</span></span><span style=display:flex><span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>````</span><span style=color:#a6e22e>Vote</span> <span style=color:#a6e22e>recorded</span>: <span style=color:#66d9ef>$</span>{<span style=color:#a6e22e>voteReceipt</span>}<span style=color:#e6db74>````</span>);
+</span></span></code></pre></div><h3 id=64-batch-vote-queries>6.4 Batch Vote Queries<a hidden class=anchor aria-hidden=true href=#64-batch-vote-queries>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#75715e>// Query all votes for a proposal
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>getProposalVotes</span>(
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>proposalId</span>: <span style=color:#66d9ef>string</span>,
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>first</span>: <span style=color:#66d9ef>number</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>100</span>,
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>skip</span>: <span style=color:#66d9ef>number</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>Promise</span>&lt;<span style=color:#f92672>any</span><span style=color:#960050;background-color:#1e0010>[]</span>&gt; {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>query</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>````</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>query</span> <span style=color:#a6e22e>GetVotes</span>(<span style=color:#a6e22e>$proposal</span>: <span style=color:#66d9ef>String</span><span style=color:#f92672>!</span>, <span style=color:#a6e22e>$first</span>: <span style=color:#66d9ef>Int</span><span style=color:#f92672>!</span>, <span style=color:#a6e22e>$skip</span>: <span style=color:#66d9ef>Int</span><span style=color:#f92672>!</span>) {
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>votes</span>(
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>where</span><span style=color:#f92672>:</span> { <span style=color:#a6e22e>proposal</span>: <span style=color:#66d9ef>$proposal</span> }
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>first</span>: <span style=color:#66d9ef>$first</span>
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>skip</span>: <span style=color:#66d9ef>$skip</span>
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>orderBy</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;created&#34;</span>
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>orderDirection</span>: <span style=color:#66d9ef>desc</span>
+</span></span><span style=display:flex><span>      ) {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>id</span>
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>voter</span>
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>choice</span>
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>vp</span>          <span style=color:#960050;background-color:#1e0010>#</span> <span style=color:#a6e22e>voting</span> <span style=color:#a6e22e>power</span>
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>vp_by_strategy</span>
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>reason</span>
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>created</span>
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>ipfs</span>
+</span></span><span style=display:flex><span>      }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>````</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>response</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>fetch</span>(<span style=color:#e6db74>&#39;https://hub.snapshot.org/graphql&#39;</span>, {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>method</span>: <span style=color:#66d9ef>POST</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>headers</span><span style=color:#f92672>:</span> { <span style=color:#e6db74>&#39;Content-Type&#39;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;application/json&#39;</span> },
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>body</span>: <span style=color:#66d9ef>JSON.stringify</span>({
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>query</span>,
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>variables</span><span style=color:#f92672>:</span> { <span style=color:#a6e22e>proposal</span>: <span style=color:#66d9ef>proposalId</span>, <span style=color:#a6e22e>first</span>, <span style=color:#a6e22e>skip</span> }
+</span></span><span style=display:flex><span>    })
+</span></span><span style=display:flex><span>  });
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>data</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>response</span>.<span style=color:#a6e22e>json</span>();
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>data</span>.<span style=color:#a6e22e>data</span>.<span style=color:#a6e22e>votes</span>;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Get vote statistics
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>getVoteStats</span>(<span style=color:#a6e22e>proposalId</span>: <span style=color:#66d9ef>string</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>Promise</span>&lt;<span style=color:#f92672>any</span>&gt; {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>votes</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>getProposalVotes</span>(<span style=color:#a6e22e>proposalId</span>, <span style=color:#ae81ff>1000</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>stats</span> <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>totalVotes</span>: <span style=color:#66d9ef>votes.length</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>totalVotingPower</span>: <span style=color:#66d9ef>votes.reduce</span>((<span style=color:#a6e22e>sum</span>, <span style=color:#a6e22e>v</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>sum</span> <span style=color:#f92672>+</span> parseFloat(<span style=color:#a6e22e>v</span>.<span style=color:#a6e22e>vp</span>), <span style=color:#ae81ff>0</span>),
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>results</span><span style=color:#f92672>:</span> {}
+</span></span><span style=display:flex><span>  };
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>votes</span>.<span style=color:#a6e22e>forEach</span>(<span style=color:#a6e22e>vote</span> <span style=color:#f92672>=&gt;</span> {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>choice</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>vote</span>.<span style=color:#a6e22e>choice</span>;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#a6e22e>stats</span>.<span style=color:#a6e22e>results</span>[<span style=color:#a6e22e>choice</span>]) {
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>stats</span>.<span style=color:#a6e22e>results</span>[<span style=color:#a6e22e>choice</span>] <span style=color:#f92672>=</span> { <span style=color:#a6e22e>count</span>: <span style=color:#66d9ef>0</span>, <span style=color:#a6e22e>vp</span>: <span style=color:#66d9ef>0</span> };
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>stats</span>.<span style=color:#a6e22e>results</span>[<span style=color:#a6e22e>choice</span>].<span style=color:#a6e22e>count</span><span style=color:#f92672>++</span>;
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>stats</span>.<span style=color:#a6e22e>results</span>[<span style=color:#a6e22e>choice</span>].<span style=color:#a6e22e>vp</span> <span style=color:#f92672>+=</span> parseFloat(<span style=color:#a6e22e>vote</span>.<span style=color:#a6e22e>vp</span>);
+</span></span><span style=display:flex><span>  });
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>stats</span>;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Usage
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>stats</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>getVoteStats</span>(<span style=color:#e6db74>&#34;QmYwAPJzv5CZsnAzt8auVK914vhC2pW9e4iPApvb1xUcGz&#34;</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>````</span><span style=color:#a6e22e>Total</span> <span style=color:#a6e22e>voters</span>: <span style=color:#66d9ef>$</span>{<span style=color:#a6e22e>stats</span>.<span style=color:#a6e22e>totalVotes</span>}<span style=color:#e6db74>````</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>````</span><span style=color:#a6e22e>Total</span> <span style=color:#a6e22e>VP</span>: <span style=color:#66d9ef>$</span>{<span style=color:#a6e22e>stats</span>.<span style=color:#a6e22e>totalVotingPower</span>}<span style=color:#e6db74>````</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;Results:&#34;</span>, <span style=color:#a6e22e>stats</span>.<span style=color:#a6e22e>results</span>);
+</span></span></code></pre></div><hr><h2 id=7-multi-chain-and-cross-platform-integration>7. Multi-Chain and Cross-Platform Integration<a hidden class=anchor aria-hidden=true href=#7-multi-chain-and-cross-platform-integration>#</a></h2><h3 id=71-multi-chain-voting-strategies>7.1 Multi-Chain Voting Strategies<a hidden class=anchor aria-hidden=true href=#71-multi-chain-voting-strategies>#</a></h3><p>Snapshot supports voting across multiple blockchains simultaneously: `````typescript
+// Multi-chain strategy: aggregate tokens across networks
+const multichainStrategies = [
+{
+name: &ldquo;erc20-balance-of&rdquo;,
+network: &ldquo;1&rdquo;, // Ethereum
+params: {
+address: &ldquo;0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984&rdquo;,
+decimals: 18,
+symbol: &ldquo;UNI&rdquo;
+}
+},
+{
+name: &ldquo;erc20-balance-of&rdquo;,
+network: &ldquo;137&rdquo;, // Polygon
+params: {
+address: &ldquo;0xb33EaAd8d922B1083446DC23f610c2567fB5180f&rdquo;,
+decimals: 18,
+symbol: &ldquo;UNI&rdquo;
+}
+},
+{
+name: &ldquo;erc20-balance-of&rdquo;,
+network: &ldquo;42161&rdquo;, // Arbitrum
+params: {
+address: &ldquo;0xFa7F8980b0f1E64A2062791cc3b0871572f1F7f0&rdquo;,
+decimals: 18,
+symbol: &ldquo;UNI&rdquo;
+}
+}
+];</p><p>// Fetch combined voting power across chains
+const scores = await snapshot.utils.getScores(
+&ldquo;uniswap.eth&rdquo;,
+multichainStrategies,
+&ldquo;1&rdquo;, // Main network
+[&ldquo;0xVoterAddress&mldr;&rdquo;],
+await provider.getBlockNumber()
+);</p><p>console.log(&ldquo;Cross-chain voting power:&rdquo;, scores);</p><pre tabindex=0><code>
+### 7.2 Webhook Notifications
+
+`````typescript
+// Set up webhook for proposal events
+import express from express;
+
+const app = express();
+app.use(express.json());
+
+// Snapshot webhook endpoint
+app.post(&#39;/webhooks/snapshot&#39;, (req, res) =&gt; {
+  const event = req.body;
+
+  switch (event.event) {
+    case &#39;proposal/created&#39;: console.log(````New proposal: ${event.id}````);
+      notifyDiscord(event);
+      break;
+    case &#39;proposal/end&#39;: console.log(````Voting ended: ${event.id}````);
+      tallyResults(event);
+      break;
+    case vote: console.log(````New vote on ${event.proposal.id}````);
+      updateLeaderboard(event);
+      break;
+  }
+
+  res.status(200).send(OK);
+});
+
+function notifyDiscord(proposal: any) {
+  // Send notification to Discord webhook
+  const message = {
+    embeds: [{
+title: &#34;AI Tool Guide&#34;
+      url: ````https://snapshot.org/#/${proposal.space.id}/proposal/${proposal.id}````,
+      description: &#34;Technical guide and comparison.&#34;
+      fields: [
+        { name: Space, value: proposal.space.name, inline: true },
+        { name: Author, value: proposal.author, inline: true },
+        { name: &#39;End Date&#39;, value: new Date(proposal.end * 1000).toISOString(), inline: true }
+      ],
+      timestamp: new Date().toISOString()
+    }]
+  };
+
+  fetch(process.env.DISCORD_WEBHOOK_URL, {
+    method: POST,
+    headers: { &#39;Content-Type&#39;: &#39;application/json&#39; },
+    body: JSON.stringify(message)
+  });
+}
+
+app.listen(3000, () =&gt; console.log(&#39;Webhook server listening on port 3000&#39;));
+</code></pre><hr><h2 id=8-real-world-use-cases-and-best-practices>8. Real-World Use Cases and Best Practices<a hidden class=anchor aria-hidden=true href=#8-real-world-use-cases-and-best-practices>#</a></h2><h3 id=81-protocol-parameter-changes>8.1 Protocol Parameter Changes<a hidden class=anchor aria-hidden=true href=#81-protocol-parameter-changes>#</a></h3><p>DeFi protocols use Snapshot to vote on critical parameters: `````typescript
+// Aave-style risk parameter proposal
+interface RiskParameterProposal {
+asset: string; // Token address
+parameter: string; // &ldquo;ltv&rdquo; | &ldquo;liquidationThreshold&rdquo; | &ldquo;reserveFactor&rdquo;
+currentValue: number;
+proposedValue: number;
+justification: string;
+riskAnalysis: string; // Link to Gauntlet/Chaos analysis
+}</p><p>const aaveProposal: RiskParameterProposal = {
+asset: &ldquo;0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2&rdquo;, // WETH
+parameter: &ldquo;liquidationThreshold&rdquo;,
+currentValue: 8250, // 82.5%
+proposedValue: 8000, // 80.0%
+justification: &ldquo;Reduce risk exposure due to market volatility&rdquo;,
+riskAnalysis: &ldquo;<a href=https://gauntlet.network/analyses/aave-weth-2026-05%22>https://gauntlet.network/analyses/aave-weth-2026-05"</a>
+};</p><pre tabindex=0><code>
+### 8.2 Treasury Management
+
+`````typescript
+// Treasury allocation voting categories
+interface TreasuryProposal {
+  totalAllocation: bigint;
+  allocations: Allocation[];
+  vestingSchedule: VestingTerms;
+}
+
+interface Allocation {
+  category: string;
+  percentage: number;
+  amount: bigint;
+  recipient: string;
+  unlockDate: number;
+}
+
+const treasuryVote: TreasuryProposal = {
+  totalAllocation: BigInt(&#34;2000000000000000000000&#34;), // 2,000 ETH
+  allocations: [
+    { category: &#34;Development&#34;, percentage: 40, amount: BigInt(&#34;800000000000000000000&#34;), recipient: &#34;0xDevMultisig...&#34;, unlockDate: 1719792000 },
+    { category: &#34;Marketing&#34;, percentage: 30, amount: BigInt(&#34;600000000000000000000&#34;), recipient: &#34;0xMktMultisig...&#34;, unlockDate: 1719792000 },
+    { category: &#34;Security&#34;, percentage: 20, amount: BigInt(&#34;400000000000000000000&#34;), recipient: &#34;0xSecMultisig...&#34;, unlockDate: 1719792000 },
+    { category: &#34;Grants&#34;, percentage: 10, amount: BigInt(&#34;200000000000000000000&#34;), recipient: &#34;0xGrtMultisig...&#34;, unlockDate: 1719792000 }
+  ],
+  vestingSchedule: {
+    cliff: 90 * 86400,      // 90 day cliff
+    duration: 365 * 86400,  // 1 year vesting
+    interval: 30 * 86400    // Monthly releases
+  }
+};
+</code></pre><h3 id=83-security-best-practices>8.3 Security Best Practices<a hidden class=anchor aria-hidden=true href=#83-security-best-practices>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># snapshot-security-checklist.yml</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>space_security: admin_keys: - use_multisig</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>    - <span style=color:#f92672>minimum_signers</span>: <span style=color:#ae81ff>3</span>
+</span></span><span style=display:flex><span>    - <span style=color:#f92672>hardware_wallets_required</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>proposal_validation: - min_score_threshold</span>: <span style=color:#ae81ff>10000</span>
+</span></span><span style=display:flex><span>    - <span style=color:#f92672>require_forum_discussion</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>    - <span style=color:#f92672>discussion_min_duration</span>: <span style=color:#e6db74>&#34;7 days&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>voting_security: - snapshot_block</span>: <span style=color:#e6db74>&#34;use_proposal_creation_block&#34;</span>
+</span></span><span style=display:flex><span>    - <span style=color:#f92672>voting_delay</span>: <span style=color:#e6db74>&#34;minimum_24_hours&#34;</span>
+</span></span><span style=display:flex><span>    - <span style=color:#f92672>voting_period</span>: <span style=color:#e6db74>&#34;minimum_3_days&#34;</span>
+</span></span><span style=display:flex><span>    - <span style=color:#f92672>quorum_required</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>monitoring: - enable_webhooks</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>    - <span style=color:#f92672>discord_notifications</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>    - <span style=color:#f92672>unusual_activity_alerts</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>    - <span style=color:#f92672>delegate_change_alerts</span>: <span style=color:#66d9ef>true</span>
+</span></span></code></pre></div><hr><h2 id=9-frequently-asked-questions-faq>9. Frequently Asked Questions (FAQ)<a hidden class=anchor aria-hidden=true href=#9-frequently-asked-questions-faq>#</a></h2><h3 id=91-what-is-snapshot-and-how-does-it-differ-from-on-chain-governance>9.1 What is Snapshot and how does it differ from on-chain governance?<a hidden class=anchor aria-hidden=true href=#91-what-is-snapshot-and-how-does-it-differ-from-on-chain-governance>#</a></h3><p>Snapshot is an <strong>off-chain voting platform</strong> for DAOs that eliminates gas costs while maintaining cryptographic security. Unlike on-chain governance (e.g., Compound&rsquo;s Governor Bravo), where every vote is a blockchain transaction costing $5–$50 in gas, Snapshot uses <strong>EIP-712 signed messages</strong> that are stored on IPFS. This makes participation accessible to all token holders regardless of portfolio size. The trade-off is that Snapshot votes are not automatically executable — they require a separate on-chain transaction (often via a multi-sig or timelock contract) to implement the decision.</p><h3 id=92-is-snapshot-voting-secure-can-votes-be-manipulated>9.2 Is Snapshot voting secure? Can votes be manipulated?<a hidden class=anchor aria-hidden=true href=#92-is-snapshot-voting-secure-can-votes-be-manipulated>#</a></h3><p>Snapshot votes are cryptographically secure. Each vote is signed with the voter&rsquo;s private key using EIP-712 typed data signing, making them tamper-proof. The vote data is pinned to IPFS, ensuring permanent, censorship-resistant storage. However, Snapshot&rsquo;s <strong>off-chain nature means vote execution is not automatic</strong> — the DAO&rsquo;s multi-sig signers must execute the will of the voters on-chain. This creates a &ldquo;social contract&rdquo; layer of trust. Many DAOs mitigate this by using <strong>Snapshot + Safe (Gnosis Safe)</strong> together, where the multi-sig signers are contractually or reputationally bound to execute passed proposals.</p><h3 id=93-how-are-voting-power-and-token-balances-calculated>9.3 How are voting power and token balances calculated?<a hidden class=anchor aria-hidden=true href=#93-how-are-voting-power-and-token-balances-calculated>#</a></h3><p>Voting power is determined by <strong>strategies</strong> configured for each space. The most common strategy is <code>erc20-balance-of</code>, which checks the voter&rsquo;s token balance at a specific block number (the ````snapshot``` block). This prevents: - <strong>Flash loan attacks</strong>: Tokens borrowed in the same transaction cannot be used for voting</p><ul><li><strong>Double voting</strong>: The same tokens cannot be moved and voted again</li><li><strong>Last-minute accumulation</strong>: Users cannot buy tokens after a proposal is created to influence the vote</li></ul><p>Multiple strategies can be combined, and custom strategies allow for complex logic like staked tokens, LP positions, NFT holdings, or delegated voting power.</p><h3 id=94-can-i-delegate-my-voting-power-to-someone-else>9.4 Can I delegate my voting power to someone else?<a hidden class=anchor aria-hidden=true href=#94-can-i-delegate-my-voting-power-to-someone-else>#</a></h3><p>Yes, <strong>delegation</strong> is a core feature of Snapshot governance. Token holders can delegate their voting power to trusted representatives — often governance experts, core contributors, or active community members. This is particularly valuable for: - <strong>Small holders</strong> who lack time to research proposals</p><ul><li><strong>Institutional holders</strong> who prefer professional governance participation</li><li><strong>Increasing quorum</strong> by aggregating otherwise inactive votes</li></ul><p>Delegation can be <strong>space-specific</strong> (only for one DAO) or <strong>global</strong> (across all Snapshot spaces). Delegated votes can be reclaimed at any time, and delegates can be changed without penalty. The Snapshot UI provides a <a href=https://snapshot.org/#/delegate>dedicated delegation page</a> for managing delegations.</p><h3 id=95-how-do-i-integrate-snapshot-into-my-own-application>9.5 How do I integrate Snapshot into my own application?<a hidden class=anchor aria-hidden=true href=#95-how-do-i-integrate-snapshot-into-my-own-application>#</a></h3><p>Snapshot provides multiple integration options: - <strong>Snapshot.js SDK</strong>: Full-featured JavaScript SDK for proposal creation, voting, and delegation</p><ul><li><strong>GraphQL API</strong>: Query proposals, votes, spaces, and voting power via the public GraphQL endpoint</li><li><strong>Webhooks</strong>: Real-time notifications for proposal events</li><li><strong>Embed</strong>: iframe integration for embedding voting interfaces in your dApp</li></ul><p>The most common integration pattern is using the GraphQL API to display governance data in your frontend, combined with the SDK for vote submission. All integrations require an Ethereum-compatible wallet connection (MetaMask, WalletConnect, etc.).</p><hr><h2 id=recommended-hosting--infrastructure>Recommended Hosting & Infrastructure<a hidden class=anchor aria-hidden=true href=#recommended-hosting--infrastructure>#</a></h2><p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions.</p><ul><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com.</li></ul><p><em>Affiliate links — they don&rsquo;t cost you extra and they help keep dibi8.com running.</em></p><h2 id=10-conclusion-the-future-of-decentralized-governance>10. Conclusion: The Future of Decentralized Governance<a hidden class=anchor aria-hidden=true href=#10-conclusion-the-future-of-decentralized-governance>#</a></h2><p>Snapshot has fundamentally democratized DAO governance by removing the financial barrier to participation. With <strong>10 million+ votes processed</strong>, support for <strong>50+ voting strategies</strong>, multi-chain compatibility, and a robust SDK ecosystem, Snapshot stands as the foundational infrastructure for decentralized decision-making in 2026.</p><p>As DAOs evolve toward greater automation, we expect to see deeper integration between Snapshot&rsquo;s off-chain signaling and on-chain execution through <strong>Safe{Core}</strong>, <strong>Zodiac modules</strong>, and <strong>Account Abstraction (ERC-4337)</strong>. The emergence of <strong>AI-assisted governance</strong> — where language models analyze proposals and provide voting recommendations — will further transform how communities participate in collective decision-making.</p><p>For developers building the next generation of governance tools, Snapshot&rsquo;s MIT-licensed codebase, active developer community, and modular architecture provide an ideal foundation. Whether you&rsquo;re launching a new DeFi protocol, managing an NFT community, or building infrastructure for decentralized organizations, Snapshot offers the flexibility, security, and scalability required for modern DAO governance.</p><hr><blockquote><p><strong>Start trading governance tokens today!</strong> Register on <a href="https://www.bsmkweb.cc/register?ref=DIBI8">Binance</a> to buy, sell, and stake tokens from leading DAOs like Uniswap, Aave, and Compound.</p></blockquote><hr><p><strong>License:</strong> MIT<br><strong>Maintainer:</strong> <a href=https://github.com/snapshot-labs>Snapshot Labs</a><br><strong>GitHub Stars:</strong> 9,500+<br><strong>Website:</strong> <a href=https://snapshot.org>snapshot.org</a></p><p>{
+&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+&ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;snapshot-dao-governance-voting&rdquo;,
+&ldquo;datePublished&rdquo;: &ldquo;2026-05-20&rdquo;,
+&ldquo;dateModified&rdquo;: &ldquo;2026-05-20&rdquo;,
+&ldquo;author&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;
+},
+&ldquo;publisher&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
+&ldquo;logo&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
+&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+}
+},
+&ldquo;mainEntityOfPage&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
+&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/resources/snapshot-dao-governance-voting%22>https://dibi8.com/resources/snapshot-dao-governance-voting"</a>
+}
+}</script></p><h2 id=frequently-asked-questions-faq>Frequently Asked Questions (FAQ)<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions-faq>#</a></h2><p><strong>问：量化交易的风险有多大？</strong></p><p>取决于策略设计、资金管理、市场波动。建议先用模拟账户测试。</p><p><strong>问：如何选择适合的交易策略？</strong></p><p>根据风险承受能力、时间投入、资金规模选择。高频需要技术，低频需要分析。</p><p><strong>问：回测结果可信吗？</strong></p><p>回测有局限性，需警惕过拟合、前视偏差、忽略滑点和手续费。</p><p><strong>问：需要编程基础吗？</strong></p><p>基础策略可使用低代码平台，高级策略需要Python/C++编程能力。</p><p><strong>问：交易系统的维护成本？</strong></p><p>包括服务器费用、数据订阅、算法更新、以及监控维护时间。</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/tags/tools/>Tools</a></li></ul></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

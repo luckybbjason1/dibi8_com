@@ -1,0 +1,482 @@
+<!doctype html><html lang=ko dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ko/mcp-tools/feast-feature-store-ml/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/mcp-tools/feast-feature-store-ml/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/mcp-tools/feast-feature-store-ml/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/mcp-tools/feast-feature-store-ml/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/mcp-tools/feast-feature-store-ml/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ko/mcp-tools/feast-feature-store-ml/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="ko"><meta property="og:type" content="article"><meta property="article:section" content="mcp-tools"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Tool Guide","item":"https://dibi8.com/ko/mcp-tools/feast-feature-store-ml/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Data Science source_version: ’' licensing_model: Open Source license_type: Apache-2.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“data-science”] tags: [“feast”, “feature store”, “mlops”, “ml pipeline”, “redis”, “bigquery”, “online store”, “offline store”, “real-time ml”, “feature engineering”] aliases:\n/kr/posts/feast-feature-store-ml/ 소개: 200ms 피처 엔지니어링 위기 실시간 사기 탐지를 운영하는 핀테크 스타트업이 피크 시간대 추론 지연 시간이 800ms로 급증하는 것을 발견했습니다. 원인은 모델이 아니라 피처 검색 파이프라인이었습니다. 모든 예측은 7개의 별도 데이터베이스 쿼리, 2개의 외부 서비스 API 호출, 그리고 실시간으로 계산되는 집계를 트리거했습니다. 학습-서빙 스큐로 인해 오프라인 평가와 라이브 예측 사이에 12%의 정확도 저하가 발생했습니다.\n이것이 바로 프로덕션 ML 시스템을 조용히 파괴하는 피처 엔지니어링 위기입니다. 중앙 집중식 피처 스토어 없이 모든 팀은 커스텀 피처 파이프라인을 구축하고, 학습과 서빙 간의 피처가 발산하며, 실시간 추론은 지연 시간의 악몽이 됩니다.\nFeast (Feature Store)는 이 문제를 해결하는 바로 그 도구입니다. 7,000+ GitHub Stars, 361명의 기여자, 최신 릴리스 v0.63.0 (2026년 5월)을 보유한 Feast는 가장 널리 채택된 오픈소스 피처 스토어입니다. 원래 GO-JEK에서 개발되었고 현재 Linux Foundation의 Apache-2.0 프로젝트인 Feast는 ML 피처를 정의, 저장, 제공하기 위한 통합 레이어를 서브세컨드 지연 시간으로 제공합니다.\n이 가이드에서는 Feast를 설치하고, 온라인(Redis) 및 오프라인(BigQuery) 스토어를 구성하고, 피처 뷰를 정의하고, REST API를 통해 피처를 제공하고, 프로덕션 하드닝된 피처 스토어를 30분 이내에 배포할 것입니다.\nFeast란 무엇인가? Feast는 ML 피처를 정의, 등록, 저장, 제공하기 위한 통합 인터페이스를 제공하는 오픈소스 피처 스토어입니다. 피처 저장을 두 계층으로 분리합니다: 오프라인 스토어는 학습 데이터 생성(배치, 역사적 쿼리)을 위한 것이고, 온라인 스토어는 실시간 피처 제공(서브세컨드 조회)을 위한 것입니다. 중앙 피처 레지스트리가 모든 피처 정의, 메타데이터, 리니지를 추적합니다.\n핵심 기능 개요: - 피처 레지스트리: 코드로 버전 관리되는 피처 정의 중앙 카탈로그, 팀 전체에서 검색 및 재사용 가능\n오프라인 스토어: 모델 학습을 위한 역사적 피처의 배치 검색 — BigQuery, Snowflake, Redshift, DuckDB, Spark 지원 온라인 스토어: 실시간 추론을 위한 서브세컨드(p99 \u003c 10ms) 피처 조회 — Redis, DynamoDB, Bigtable, SQLite, Dragonfly 지원 포인트인타임 조인: 학습 시 데이터 누출을 방지하기 위한 역사적 피처 값의 정확한 검색 머티리얼라이제이션: 계산된 피처를 오프라인에서 온라인 스토어로 일정에 따라 동기화 피처 서버: 피처 검색을 위한 Go 기반 고성능 REST/gRPC 서버 스트림 피처: 실시간 피처 계산을 위한 Kafka, Kinesis, Spark Streaming 통합 Feast는 피처를 계산하지 않습니다 — Spark, Airflow, dbt 등의 데이터 파이프라인에서 생성한 사전 계산된 피처를 저장하고 제공합니다. 이 설계는 기존 데이터 인프라와 통합하면서 Feast를 가볍게 유지합니다.\nFeast 작동 방식: 아키텍처 심층 분석 Feast 아키텍처는 네 가지 핵심 구성 요소로 구성됩니다: ### 1. 피처 레지스트리\n레지스트리는 Feast의 두뇌입니다. 모든 피처 정의를 코드(feature_store.yaml 및 Python 파일)로 저장하고 메타데이터를 백엔드 — 파일(로컬, S3, GCS) 또는 SQL 데이터베이스(PostgreSQL, MySQL) — 에 지속합니다: ````yaml\nfeature_store.yaml — Feast 프로젝트 구성 project: fraud_detection provider: local registry: path: s3://my-bucket/registry.db # 프로덕션용 SQL 레지스트리 online_store: type: redis connection_string: “redis://localhost:6379” offline_store: type: bigquery project: my-gcp-project dataset: feast_offline entity_key_serialization_version: 2\n프로덕션에서는 여러 팀원이 동시에 ````feast apply````를 실행할 때 충돌을 방지하기 위해 **SQL 레지스트리**(PostgreSQL)를 사용하세요. ### 2. 오프라인 스토어 오프라인 스토어는 대량의 역사적 피처 데이터를 보유합니다. 두 가지 목적을 제공합니다: - **학습 데이터 생성**: 특정 역사적 타임스탬프에 존재했던 피처 값을 얻기 위한 포인트인타임 조인 - **배치 스코어링**: 배치 예측을 위한 대규모 피처 검색 지원되는 백엔드: **BigQuery, Snowflake, Redshift, Spark, DuckDB, PostgreSQL, Trino** `````python # 학습을 위한 역사적 피처 검색 from feast import FeatureStore store = FeatureStore(repo_path=\".\") historical_df = store.get_historical_features( entity_df=entity_df, # entity ID와 타임스탬프가 있는 DataFrame features=[ \"user_features:avg_order_amount_30d\", \"user_features:total_transactions_90d\", \"user_features:days_since_last_order\", ], ).to_df() get_historical_features() 호출은 포인트인타임 조인을 수행합니다 — entity_df에 지정된 타임스탬프에 존재했던 각 피처 값을 검색합니다. 이는 ML 학습 파이프라인에서 가장 흔한 실수 중 하나인 데이터 누출을 방지합니다.\n3. 온라인 스토어 온라인 스토어는 실시간 피처 제공을 위한 저지연 키-값 데이터베이스입니다. 추론 중 모델 서버가 주어진 엔터티 ID에 대한 최신 피처 값을 요청하고, 온라인 스토어는 10ms(p99) 이내에 결과를 반환합니다.\n지원되는 백엔드: Redis, Redis Cluster, Dragonfly, DynamoDB, Bigtable, Cassandra, SQLite, PostgreSQL, MySQL\n# 실시간 추론을 위한 온라인 피처 검색 features = store.get_online_features( features=[ \"user_features:avg_order_amount_30d\", \"user_features:total_transactions_90d\", ], entity_rows=[{\"user_id\": \"user_12345\"}], ).to_dict() # 반환: {avg_order_amount_30d: [245.50], total_transactions_90d: [12]} 4. 피처 서버 Feast 피처 서버는 REST와 gRPC를 통해 피처 검색을 노출하는 Go 기반 고성능 서비스입니다. 모델 서빙 인프라(KServe, Seldon, 커스텀) 옆에 사이드카로 배포하세요: `````bash\n피처 서버 시작 feast serve –port 6566\n피처 검색을 위한 REST API 엔드포인트 curl -X POST “http://localhost:6566/get-online-features” -H “Content-Type: application/json” -d ‘{ “features”: [“user_features:avg_order_amount_30d”], “entities”: {“user_id”: [“user_12345”]} }’\n## 설치 및 설정: 5분 이내 Feast에는 Python 3.9+와 pip가 필요합니다. 원하는 백엔드와 함께 설치하세요: `````bash # 코어 Feast (최소 설치) pip install feast # BigQuery 오프라인 스토어 포함 pip install \"feast[bigquery]\" # Redis 온라인 스토어 포함 pip install \"feast[redis]\" # Snowflake 포함 pip install \"feast[snowflake]\" # PostgreSQL 포함 pip install \"feast[postgres]\" # 모든 일반적인 백엔드가 포함된 전체 설치 pip install \"feast[gcp,redis,postgres,snowflake]\" 설치 확인: `````bash feast version\nFeast SDK Version: 0.63.0 새로운 Feast 프로젝트 초기화: `````bash # 프로젝트 디렉토리 생성 및 진입 mkdir fraud_detection_feature_store cd fraud_detection_feature_store # Feast 초기화 (feature_store.yaml 및 example/ 생성) feast init # 프로젝트 구조: # . # ├── feature_store.yaml # 메인 설정 # ├── example/ # │ ├── repo/ # │ │ ├── example.py # 피처 정의 # │ │ └── test_workflow.py 피처 정의: 엔터티, 피처 뷰, 피처 서비스 Feast는 엔터티(모델이 예측하는 객체)와 피처 뷰(데이터 소스에서 계산된 관련 피처 그룹)를 중심으로 피처를 구성합니다.\n1단계: 엔터티 정의 # features/entities.py from feast import Entity, ValueType # 사기 모델의 주요 엔터티 정의 user = Entity( name=\"user_id\", value_type=ValueType.STRING, description=\"각 사용자의 고유 식별자\", join_key=\"user_id\", ) 2단계: 데이터 소스 정의 # features/data_sources.py from feast import BigQuerySource # 오프라인 스토어의 역사적 데이터 소스 transaction_stats_source = BigQuerySource( name=\"transaction_stats\", query=\"\"\" SELECT user_id, event_timestamp, avg_order_amount_30d, total_transactions_90d, days_since_last_order, unique_merchants_30d, avg_transaction_amount_7d, failed_transaction_rate_30d, created FROM ````my-gcp-project.featds.transaction_aggregates```` \"\"\", timestamp_field=\"event_timestamp\", created_timestamp_column=\"created\", ) 3단계: 피처 뷰 정의 # features/feature_views.py from feast import FeatureView, Field from feast.types import Float32, Int64, Float64 from datetime import timedelta from features.entities import user from features.data_sources import transaction_stats_source # 슬라이딩 윈도우 집계가 있는 피처 뷰 user_transaction_features = FeatureView( name=\"user_transaction_features\", entities=[user], ttl=timedelta(days=90), # 90일간 유효한 피처 schema=[ Field(name=\"avg_order_amount_30d\", dtype=Float64), Field(name=\"total_transactions_90d\", dtype=Int64), Field(name=\"days_since_last_order\", dtype=Int64), Field(name=\"unique_merchants_30d\", dtype=Int64), Field(name=\"avg_transaction_amount_7d\", dtype=Float64), Field(name=\"failed_transaction_rate_30d\", dtype=Float32), ], online=True, # 온라인 스토어(Redis)에서 제공 source=transaction_stats_source, tags={\"team\": \"fraud\", \"domain\": \"transactions\"}, owner=\"ml-team@company.com\", ) 4단계: 피처 서비스 정의 # features/feature_services.py from feast import FeatureService from features.feature_views import user_transaction_features # 피처 서비스 — 모델이 사용하는 인터페이스 fraud_detection_v1 = FeatureService( name=\"fraud_detection_v1\", features=[user_transaction_features], tags={\"version\": \"1.0\", \"model\": \"fraud_xgboost\"}, owner=\"ml-team@company.com\", ) 5단계: 적용 및 머티리얼라이즈 # 레지스트리에 피처 정의 적용 feast apply # 오프라인에서 온라인 스토어로 피처 머티리얼라이즈 # (최신 피처 값으로 Redis 채우기) feast materialize-incremental $(date -u +\"%Y-%m-%dT%H:%M:%S\") # 또는 특정 시간 범위 머티리얼라이즈 feast materialize 2026-01-01T00:00:00 2026-05-19T00:00:00 프로덕션 구성: Redis + BigQuery 프로덕션 배포를 위해 Redis + BigQuery 조합은 성능, 비용, 확장성 간의 최적의 균형을 제공합니다.\nfeature_store.yaml (프로덕션) # feature_store.yaml — 프로덕션 설정 project: fraud_detection provider: gcp registry: registry_store_type: sql path: \"postgresql://user:pass@pg-host:5432/feast_registry\" cache_ttl_seconds: 60 online_store: type: redis connection_string: \"redis://:password@redis-cluster.internal:6379\" key_ttl_seconds: 604800 # 피처 키의 7일 TTL offline_store: type: bigquery project: my-gcp-project dataset: feast_offline location: US entity_key_serialization_version: 2 flags: alpha_features: true on_demand_transforms: true Redis 온라인 스토어 구성 서브밀리세컨드 제공을 위해 적절한 샤딩이 있는 Redis Cluster를 사용하세요: `````yaml\nRedis Cluster 구성 online_store: type: redis redis_type: redis_cluster connection_string: “redis://redis-node-1:6379,redis-node-2:6379,redis-node-3:6379” key_ttl_seconds: 604800\n### VPS에 Redis 배포 셀프 호스팅 배포의 경우 [DigitalOcean](https://m.do.co/c/eca87ac14ee0)은 자동 장애 조치 기능이 있는 관리형 Redis 클러스터를 월 $15부터 제공합니다. 또는 Droplet에 Redis를 배포하세요: `````bash # Ubuntu 22.04에 Redis 배포 (DigitalOcean Droplet) sudo apt update sudo apt install redis-server # 프로덕션용 구성 sudo tee -a /etc/redis/redis.conf \u003c","wordCount":"2725","inLanguage":"ko","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ko/mcp-tools/feast-feature-store-ml/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ko/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/ko/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/ko/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/ko/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/ko/>홈</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
+<a href>MCP Tools - dibi8</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>13 분</span>&nbsp;|&nbsp;<span>번역:</span><ul class=i18n_list><li><a href=https://dibi8.com/mcp-tools/feast-feature-store-ml/>En</a></li><li><a href=https://dibi8.com/zh/mcp-tools/feast-feature-store-ml/>Zh</a></li><li><a href=https://dibi8.com/vi/mcp-tools/feast-feature-store-ml/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>목차</span></summary><div class=inner><ul><ul><li><a href=#%ec%86%8c%ea%b0%9c-200ms-%ed%94%bc%ec%b2%98-%ec%97%94%ec%a7%80%eb%8b%88%ec%96%b4%eb%a7%81-%ec%9c%84%ea%b8%b0 aria-label="소개: 200ms 피처 엔지니어링 위기">소개: 200ms 피처 엔지니어링 위기</a></li><li><a href=#feast%eb%9e%80-%eb%ac%b4%ec%97%87%ec%9d%b8%ea%b0%80 aria-label="Feast란 무엇인가?">Feast란 무엇인가?</a></li><li><a href=#feast-%ec%9e%91%eb%8f%99-%eb%b0%a9%ec%8b%9d-%ec%95%84%ed%82%a4%ed%85%8d%ec%b2%98-%ec%8b%ac%ec%b8%b5-%eb%b6%84%ec%84%9d aria-label="Feast 작동 방식: 아키텍처 심층 분석">Feast 작동 방식: 아키텍처 심층 분석</a></li></ul><li><a href=#feature_storeyaml--feast-%ed%94%84%eb%a1%9c%ec%a0%9d%ed%8a%b8-%ea%b5%ac%ec%84%b1 aria-label="feature_store.yaml — Feast 프로젝트 구성">feature_store.yaml — Feast 프로젝트 구성</a><ul><ul><li><a href=#3-%ec%98%a8%eb%9d%bc%ec%9d%b8-%ec%8a%a4%ed%86%a0%ec%96%b4 aria-label="3. 온라인 스토어">3. 온라인 스토어</a></li><li><a href=#4-%ed%94%bc%ec%b2%98-%ec%84%9c%eb%b2%84 aria-label="4. 피처 서버">4. 피처 서버</a></li></ul></ul></li><li><a href=#%ed%94%bc%ec%b2%98-%ec%84%9c%eb%b2%84-%ec%8b%9c%ec%9e%91 aria-label="피처 서버 시작">피처 서버 시작</a></li><li><a href=#%ed%94%bc%ec%b2%98-%ea%b2%80%ec%83%89%ec%9d%84-%ec%9c%84%ed%95%9c-rest-api-%ec%97%94%eb%93%9c%ed%8f%ac%ec%9d%b8%ed%8a%b8 aria-label="피처 검색을 위한 REST API 엔드포인트">피처 검색을 위한 REST API 엔드포인트</a></li><li><a href=#feast-sdk-version-0630 aria-label="Feast SDK Version: 0.63.0">Feast SDK Version: 0.63.0</a><ul><li><a href=#%ed%94%bc%ec%b2%98-%ec%a0%95%ec%9d%98-%ec%97%94%ed%84%b0%ed%8b%b0-%ed%94%bc%ec%b2%98-%eb%b7%b0-%ed%94%bc%ec%b2%98-%ec%84%9c%eb%b9%84%ec%8a%a4 aria-label="피처 정의: 엔터티, 피처 뷰, 피처 서비스">피처 정의: 엔터티, 피처 뷰, 피처 서비스</a><ul><li><a href=#1%eb%8b%a8%ea%b3%84-%ec%97%94%ed%84%b0%ed%8b%b0-%ec%a0%95%ec%9d%98 aria-label="1단계: 엔터티 정의">1단계: 엔터티 정의</a></li><li><a href=#2%eb%8b%a8%ea%b3%84-%eb%8d%b0%ec%9d%b4%ed%84%b0-%ec%86%8c%ec%8a%a4-%ec%a0%95%ec%9d%98 aria-label="2단계: 데이터 소스 정의">2단계: 데이터 소스 정의</a></li><li><a href=#3%eb%8b%a8%ea%b3%84-%ed%94%bc%ec%b2%98-%eb%b7%b0-%ec%a0%95%ec%9d%98 aria-label="3단계: 피처 뷰 정의">3단계: 피처 뷰 정의</a></li><li><a href=#4%eb%8b%a8%ea%b3%84-%ed%94%bc%ec%b2%98-%ec%84%9c%eb%b9%84%ec%8a%a4-%ec%a0%95%ec%9d%98 aria-label="4단계: 피처 서비스 정의">4단계: 피처 서비스 정의</a></li><li><a href=#5%eb%8b%a8%ea%b3%84-%ec%a0%81%ec%9a%a9-%eb%b0%8f-%eb%a8%b8%ed%8b%b0%eb%a6%ac%ec%96%bc%eb%9d%bc%ec%9d%b4%ec%a6%88 aria-label="5단계: 적용 및 머티리얼라이즈">5단계: 적용 및 머티리얼라이즈</a></li></ul></li><li><a href=#%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%ea%b5%ac%ec%84%b1-redis--bigquery aria-label="프로덕션 구성: Redis + BigQuery">프로덕션 구성: Redis + BigQuery</a><ul><li><a href=#feature_storeyaml-%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98 aria-label="feature_store.yaml (프로덕션)">feature_store.yaml (프로덕션)</a></li><li><a href=#redis-%ec%98%a8%eb%9d%bc%ec%9d%b8-%ec%8a%a4%ed%86%a0%ec%96%b4-%ea%b5%ac%ec%84%b1 aria-label="Redis 온라인 스토어 구성">Redis 온라인 스토어 구성</a></li></ul></li></ul></li><li><a href=#redis-cluster-%ea%b5%ac%ec%84%b1 aria-label="Redis Cluster 구성">Redis Cluster 구성</a><ul><li><a href=#ml-%ed%8c%8c%ec%9d%b4%ed%94%84%eb%9d%bc%ec%9d%b8%ea%b3%bc-%ed%86%b5%ed%95%a9 aria-label="ML 파이프라인과 통합">ML 파이프라인과 통합</a><ul><li><a href=#%ed%95%99%ec%8a%b5-%ed%8c%8c%ec%9d%b4%ed%94%84%eb%9d%bc%ec%9d%b8-%ed%86%b5%ed%95%a9-python-sdk aria-label="학습 파이프라인 통합 (Python SDK)">학습 파이프라인 통합 (Python SDK)</a></li><li><a href=#%ec%8b%a4%ec%8b%9c%ea%b0%84-%ec%b6%94%eb%a1%a0-%ed%86%b5%ed%95%a9 aria-label="실시간 추론 통합">실시간 추론 통합</a></li><li><a href=#%eb%a8%b8%ed%8b%b0%eb%a6%ac%ec%96%bc%eb%9d%bc%ec%9d%b4%ec%a0%9c%ec%9d%b4%ec%85%98%ec%9d%84-%ec%9c%84%ed%95%9c-airflow-dag aria-label="머티리얼라이제이션을 위한 Airflow DAG">머티리얼라이제이션을 위한 Airflow DAG</a></li></ul></li><li><a href=#%eb%b2%a4%ec%b9%98%eb%a7%88%ed%81%ac%ec%99%80-%ec%8b%a4%ec%a0%9c-%ec%82%ac%ec%9a%a9-%ec%82%ac%eb%a1%80 aria-label="벤치마크와 실제 사용 사례">벤치마크와 실제 사용 사례</a><ul><li><a href=#%ec%a7%80%ec%97%b0-%ec%8b%9c%ea%b0%84-%eb%b2%a4%ec%b9%98%eb%a7%88%ed%81%ac aria-label="지연 시간 벤치마크">지연 시간 벤치마크</a></li><li><a href=#%ec%8b%a4%ec%a0%9c-%ec%82%ac%ec%9a%a9-%ec%82%ac%eb%a1%80 aria-label="실제 사용 사례">실제 사용 사례</a></li></ul></li><li><a href=#%ea%b3%a0%ea%b8%89-%ec%82%ac%ec%9a%a9%eb%b2%95%ea%b3%bc-%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%ed%95%98%eb%93%9c%eb%8b%9d aria-label="고급 사용법과 프로덕션 하드닝">고급 사용법과 프로덕션 하드닝</a><ul><li><a href=#%ec%98%a8%eb%94%94%eb%a7%a8%eb%93%9c-%ed%94%bc%ec%b2%98-%eb%b3%80%ed%99%98 aria-label="온디맨드 피처 변환">온디맨드 피처 변환</a></li></ul></li></ul></li><li><a href=#%ec%98%a8%eb%94%94%eb%a7%a8%eb%93%9c-%eb%b3%80%ed%99%98-%ec%a0%95%ec%9d%98 aria-label="온디맨드 변환 정의">온디맨드 변환 정의</a><ul><ul><li><a href=#%eb%a9%80%ed%8b%b0-%ed%94%84%eb%a1%9c%ec%a0%9d%ed%8a%b8-%ec%84%a4%ec%a0%95 aria-label="멀티 프로젝트 설정">멀티 프로젝트 설정</a></li></ul><li><a href=#%eb%8c%80%ec%95%88%ea%b3%bc-%eb%b9%84%ea%b5%90 aria-label="대안과 비교">대안과 비교</a><ul><li><a href=#%ec%96%b8%ec%a0%9c-%eb%ac%b4%ec%97%87%ec%9d%84-%ec%84%a0%ed%83%9d%ed%95%a0%ea%b9%8c aria-label="언제 무엇을 선택할까">언제 무엇을 선택할까</a></li></ul></li><li><a href=#%ed%95%9c%ea%b3%84-%ec%a0%95%ec%a7%81%ed%95%9c-%ed%8f%89%ea%b0%80 aria-label="한계: 정직한 평가">한계: 정직한 평가</a></li><li><a href=#%ec%9e%90%ec%a3%bc-%eb%ac%bb%eb%8a%94-%ec%a7%88%eb%ac%b8 aria-label="자주 묻는 질문">자주 묻는 질문</a></li><li><a href=#%ea%b2%b0%eb%a1%a0-%ec%b6%94%eb%a1%a0-%ec%86%8d%eb%8f%84%eb%a1%9c-%ed%94%bc%ec%b2%98-%ec%a0%9c%ea%b3%b5%ed%95%98%ea%b8%b0 aria-label="결론: 추론 속도로 피처 제공하기">결론: 추론 속도로 피처 제공하기</a></li></ul></li><li><a href=#%ec%97%94%ed%84%b0%ed%8b%b0-%ed%94%bc%ec%b2%98-%eb%b7%b0-%ed%94%bc%ec%b2%98-%ec%84%9c%eb%b9%84%ec%8a%a4-%ec%a0%95%ec%9d%98 aria-label="엔터티, 피처 뷰, 피처 서비스 정의">엔터티, 피처 뷰, 피처 서비스 정의</a></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+description: &ldquo;Technical guide and comparison.&rdquo;
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
+tech_stack: []
+application_domain: Data Science
+source_version: &rsquo;'
+licensing_model: Open Source
+license_type: Apache-2.0
+file_size: &rsquo;'
+file_md5: &rsquo;'
+download_url: &rsquo;'
+backup_url: &rsquo;'
+last_maintained: &ldquo;2026-05-19&rdquo;
+draft: false
+categories: [&ldquo;data-science&rdquo;]
+tags: [&ldquo;feast&rdquo;, &ldquo;feature store&rdquo;, &ldquo;mlops&rdquo;, &ldquo;ml pipeline&rdquo;, &ldquo;redis&rdquo;, &ldquo;bigquery&rdquo;, &ldquo;online store&rdquo;, &ldquo;offline store&rdquo;, &ldquo;real-time ml&rdquo;, &ldquo;feature engineering&rdquo;]
+aliases:</p><ul><li>/kr/posts/feast-feature-store-ml/</li></ul><hr><h2 id=소개-200ms-피처-엔지니어링-위기>소개: 200ms 피처 엔지니어링 위기<a hidden class=anchor aria-hidden=true href=#소개-200ms-피처-엔지니어링-위기>#</a></h2><p>실시간 사기 탐지를 운영하는 핀테크 스타트업이 피크 시간대 추론 지연 시간이 <strong>800ms</strong>로 급증하는 것을 발견했습니다. 원인은 모델이 아니라 피처 검색 파이프라인이었습니다. 모든 예측은 <strong>7개의 별도 데이터베이스 쿼리</strong>, 2개의 외부 서비스 API 호출, 그리고 실시간으로 계산되는 집계를 트리거했습니다. 학습-서빙 스큐로 인해 오프라인 평가와 라이브 예측 사이에 <strong>12%의 정확도 저하</strong>가 발생했습니다.</p><p>이것이 바로 프로덕션 ML 시스템을 조용히 파괴하는 피처 엔지니어링 위기입니다. 중앙 집중식 피처 스토어 없이 모든 팀은 커스텀 피처 파이프라인을 구축하고, 학습과 서빙 간의 피처가 발산하며, 실시간 추론은 지연 시간의 악몽이 됩니다.</p><p><a href=https://feast.dev>Feast</a> (Feature Store)는 이 문제를 해결하는 바로 그 도구입니다. <strong>7,000+ GitHub Stars</strong>, <strong>361명의 기여자</strong>, 최신 릴리스 <strong>v0.63.0</strong> (2026년 5월)을 보유한 Feast는 가장 널리 채택된 오픈소스 피처 스토어입니다. 원래 <a href=https://www.gojek.com>GO-JEK</a>에서 개발되었고 현재 <a href=https://www.linuxfoundation.org>Linux Foundation</a>의 Apache-2.0 프로젝트인 Feast는 ML 피처를 정의, 저장, 제공하기 위한 통합 레이어를 서브세컨드 지연 시간으로 제공합니다.</p><p>이 가이드에서는 Feast를 설치하고, 온라인(Redis) 및 오프라인(BigQuery) 스토어를 구성하고, 피처 뷰를 정의하고, REST API를 통해 피처를 제공하고, 프로덕션 하드닝된 피처 스토어를 30분 이내에 배포할 것입니다.</p><h2 id=feast란-무엇인가>Feast란 무엇인가?<a hidden class=anchor aria-hidden=true href=#feast란-무엇인가>#</a></h2><p><strong>Feast는 ML 피처를 정의, 등록, 저장, 제공하기 위한 통합 인터페이스를 제공하는 오픈소스 피처 스토어입니다.</strong> 피처 저장을 두 계층으로 분리합니다: <strong>오프라인 스토어</strong>는 학습 데이터 생성(배치, 역사적 쿼리)을 위한 것이고, <strong>온라인 스토어</strong>는 실시간 피처 제공(서브세컨드 조회)을 위한 것입니다. 중앙 <strong>피처 레지스트리</strong>가 모든 피처 정의, 메타데이터, 리니지를 추적합니다.</p><p>핵심 기능 개요: - <strong>피처 레지스트리</strong>: 코드로 버전 관리되는 피처 정의 중앙 카탈로그, 팀 전체에서 검색 및 재사용 가능</p><ul><li><strong>오프라인 스토어</strong>: 모델 학습을 위한 역사적 피처의 배치 검색 — BigQuery, Snowflake, Redshift, DuckDB, Spark 지원</li><li><strong>온라인 스토어</strong>: 실시간 추론을 위한 서브세컨드(p99 &lt; 10ms) 피처 조회 — Redis, DynamoDB, Bigtable, SQLite, Dragonfly 지원</li><li><strong>포인트인타임 조인</strong>: 학습 시 데이터 누출을 방지하기 위한 역사적 피처 값의 정확한 검색</li><li><strong>머티리얼라이제이션</strong>: 계산된 피처를 오프라인에서 온라인 스토어로 일정에 따라 동기화</li><li><strong>피처 서버</strong>: 피처 검색을 위한 Go 기반 고성능 REST/gRPC 서버</li><li><strong>스트림 피처</strong>: 실시간 피처 계산을 위한 Kafka, Kinesis, Spark Streaming 통합</li></ul><p>Feast는 피처를 <strong>계산하지 않습니다</strong> — Spark, Airflow, dbt 등의 데이터 파이프라인에서 생성한 사전 계산된 피처를 저장하고 제공합니다. 이 설계는 기존 데이터 인프라와 통합하면서 Feast를 가볍게 유지합니다.</p><h2 id=feast-작동-방식-아키텍처-심층-분석>Feast 작동 방식: 아키텍처 심층 분석<a hidden class=anchor aria-hidden=true href=#feast-작동-방식-아키텍처-심층-분석>#</a></h2><p>Feast 아키텍처는 네 가지 핵심 구성 요소로 구성됩니다: ### 1. 피처 레지스트리</p><p>레지스트리는 Feast의 두뇌입니다. 모든 피처 정의를 코드(feature_store.yaml 및 Python 파일)로 저장하고 메타데이터를 백엔드 — 파일(로컬, S3, GCS) 또는 SQL 데이터베이스(PostgreSQL, MySQL) — 에 지속합니다: ````yaml</p><h1 id=feature_storeyaml--feast-프로젝트-구성>feature_store.yaml — Feast 프로젝트 구성<a hidden class=anchor aria-hidden=true href=#feature_storeyaml--feast-프로젝트-구성>#</a></h1><p>project: fraud_detection
+provider: local
+registry: path: s3://my-bucket/registry.db # 프로덕션용 SQL 레지스트리
+online_store: type: redis
+connection_string: &ldquo;redis://localhost:6379&rdquo;
+offline_store: type: bigquery
+project: my-gcp-project
+dataset: feast_offline
+entity_key_serialization_version: 2</p><pre tabindex=0><code>
+프로덕션에서는 여러 팀원이 동시에 ````feast apply````를 실행할 때 충돌을 방지하기 위해 **SQL 레지스트리**(PostgreSQL)를 사용하세요.
+
+### 2. 오프라인 스토어
+
+오프라인 스토어는 대량의 역사적 피처 데이터를 보유합니다. 두 가지 목적을 제공합니다: - **학습 데이터 생성**: 특정 역사적 타임스탬프에 존재했던 피처 값을 얻기 위한 포인트인타임 조인
+- **배치 스코어링**: 배치 예측을 위한 대규모 피처 검색
+
+지원되는 백엔드: **BigQuery, Snowflake, Redshift, Spark, DuckDB, PostgreSQL, Trino**
+
+`````python
+# 학습을 위한 역사적 피처 검색
+from feast import FeatureStore
+
+store = FeatureStore(repo_path=&#34;.&#34;)
+
+historical_df = store.get_historical_features(
+    entity_df=entity_df,  # entity ID와 타임스탬프가 있는 DataFrame
+    features=[
+        &#34;user_features:avg_order_amount_30d&#34;,
+        &#34;user_features:total_transactions_90d&#34;,
+        &#34;user_features:days_since_last_order&#34;,
+    ],
+).to_df()
+</code></pre><p><code>get_historical_features()</code> 호출은 <strong>포인트인타임 조인</strong>을 수행합니다 — entity_df에 지정된 타임스탬프에 존재했던 각 피처 값을 검색합니다. 이는 ML 학습 파이프라인에서 가장 흔한 실수 중 하나인 데이터 누출을 방지합니다.</p><h3 id=3-온라인-스토어>3. 온라인 스토어<a hidden class=anchor aria-hidden=true href=#3-온라인-스토어>#</a></h3><p>온라인 스토어는 실시간 피처 제공을 위한 저지연 키-값 데이터베이스입니다. 추론 중 모델 서버가 주어진 엔터티 ID에 대한 최신 피처 값을 요청하고, 온라인 스토어는 10ms(p99) 이내에 결과를 반환합니다.</p><p>지원되는 백엔드: <strong>Redis, Redis Cluster, Dragonfly, DynamoDB, Bigtable, Cassandra, SQLite, PostgreSQL, MySQL</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 실시간 추론을 위한 온라인 피처 검색</span>
+</span></span><span style=display:flex><span>features <span style=color:#f92672>=</span> store<span style=color:#f92672>.</span>get_online_features(
+</span></span><span style=display:flex><span>    features<span style=color:#f92672>=</span>[
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;user_features:avg_order_amount_30d&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;user_features:total_transactions_90d&#34;</span>,
+</span></span><span style=display:flex><span>    ],
+</span></span><span style=display:flex><span>    entity_rows<span style=color:#f92672>=</span>[{<span style=color:#e6db74>&#34;user_id&#34;</span>: <span style=color:#e6db74>&#34;user_12345&#34;</span>}],
+</span></span><span style=display:flex><span>)<span style=color:#f92672>.</span>to_dict()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 반환: {avg_order_amount_30d: [245.50], total_transactions_90d: [12]}</span>
+</span></span></code></pre></div><h3 id=4-피처-서버>4. 피처 서버<a hidden class=anchor aria-hidden=true href=#4-피처-서버>#</a></h3><p>Feast 피처 서버는 REST와 gRPC를 통해 피처 검색을 노출하는 Go 기반 고성능 서비스입니다. 모델 서빙 인프라(KServe, Seldon, 커스텀) 옆에 사이드카로 배포하세요: `````bash</p><h1 id=피처-서버-시작>피처 서버 시작<a hidden class=anchor aria-hidden=true href=#피처-서버-시작>#</a></h1><p>feast serve &ndash;port 6566</p><h1 id=피처-검색을-위한-rest-api-엔드포인트>피처 검색을 위한 REST API 엔드포인트<a hidden class=anchor aria-hidden=true href=#피처-검색을-위한-rest-api-엔드포인트>#</a></h1><p>curl -X POST &ldquo;http://localhost:6566/get-online-features&rdquo;<br>-H &ldquo;Content-Type: application/json&rdquo;<br>-d &lsquo;{
+&ldquo;features&rdquo;: [&ldquo;user_features:avg_order_amount_30d&rdquo;],
+&ldquo;entities&rdquo;: {&ldquo;user_id&rdquo;: [&ldquo;user_12345&rdquo;]}
+}&rsquo;</p><pre tabindex=0><code>
+## 설치 및 설정: 5분 이내
+
+Feast에는 Python 3.9+와 pip가 필요합니다. 원하는 백엔드와 함께 설치하세요: `````bash
+# 코어 Feast (최소 설치)
+pip install feast
+
+# BigQuery 오프라인 스토어 포함
+pip install &#34;feast[bigquery]&#34;
+
+# Redis 온라인 스토어 포함
+pip install &#34;feast[redis]&#34;
+
+# Snowflake 포함
+pip install &#34;feast[snowflake]&#34;
+
+# PostgreSQL 포함
+pip install &#34;feast[postgres]&#34;
+
+# 모든 일반적인 백엔드가 포함된 전체 설치
+pip install &#34;feast[gcp,redis,postgres,snowflake]&#34;
+</code></pre><p>설치 확인: `````bash
+feast version</p><h1 id=feast-sdk-version-0630>Feast SDK Version: 0.63.0<a hidden class=anchor aria-hidden=true href=#feast-sdk-version-0630>#</a></h1><pre tabindex=0><code>
+새로운 Feast 프로젝트 초기화: `````bash
+# 프로젝트 디렉토리 생성 및 진입
+mkdir fraud_detection_feature_store
+cd fraud_detection_feature_store
+
+# Feast 초기화 (feature_store.yaml 및 example/ 생성)
+feast init
+
+# 프로젝트 구조: # .
+# ├── feature_store.yaml    # 메인 설정
+# ├── example/
+# │   ├── repo/
+# │   │   ├── example.py    # 피처 정의
+# │   │   └── test_workflow.py
+</code></pre><h2 id=피처-정의-엔터티-피처-뷰-피처-서비스>피처 정의: 엔터티, 피처 뷰, 피처 서비스<a hidden class=anchor aria-hidden=true href=#피처-정의-엔터티-피처-뷰-피처-서비스>#</a></h2><p>Feast는 <strong>엔터티</strong>(모델이 예측하는 객체)와 <strong>피처 뷰</strong>(데이터 소스에서 계산된 관련 피처 그룹)를 중심으로 피처를 구성합니다.</p><h3 id=1단계-엔터티-정의>1단계: 엔터티 정의<a hidden class=anchor aria-hidden=true href=#1단계-엔터티-정의>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># features/entities.py</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> feast <span style=color:#f92672>import</span> Entity, ValueType
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 사기 모델의 주요 엔터티 정의</span>
+</span></span><span style=display:flex><span>user <span style=color:#f92672>=</span> Entity(
+</span></span><span style=display:flex><span>    name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;user_id&#34;</span>,
+</span></span><span style=display:flex><span>    value_type<span style=color:#f92672>=</span>ValueType<span style=color:#f92672>.</span>STRING,
+</span></span><span style=display:flex><span>    description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;각 사용자의 고유 식별자&#34;</span>,
+</span></span><span style=display:flex><span>    join_key<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;user_id&#34;</span>,
+</span></span><span style=display:flex><span>)
+</span></span></code></pre></div><h3 id=2단계-데이터-소스-정의>2단계: 데이터 소스 정의<a hidden class=anchor aria-hidden=true href=#2단계-데이터-소스-정의>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># features/data_sources.py</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> feast <span style=color:#f92672>import</span> BigQuerySource
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 오프라인 스토어의 역사적 데이터 소스</span>
+</span></span><span style=display:flex><span>transaction_stats_source <span style=color:#f92672>=</span> BigQuerySource(
+</span></span><span style=display:flex><span>    name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;transaction_stats&#34;</span>,
+</span></span><span style=display:flex><span>    query<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;&#34;&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        SELECT 
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            user_id,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            event_timestamp,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            avg_order_amount_30d,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            total_transactions_90d,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            days_since_last_order,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            unique_merchants_30d,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            avg_transaction_amount_7d,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            failed_transaction_rate_30d,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            created
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        FROM ````my-gcp-project.featds.transaction_aggregates````
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;&#34;&#34;</span>,
+</span></span><span style=display:flex><span>    timestamp_field<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;event_timestamp&#34;</span>,
+</span></span><span style=display:flex><span>    created_timestamp_column<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;created&#34;</span>,
+</span></span><span style=display:flex><span>)
+</span></span></code></pre></div><h3 id=3단계-피처-뷰-정의>3단계: 피처 뷰 정의<a hidden class=anchor aria-hidden=true href=#3단계-피처-뷰-정의>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># features/feature_views.py</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> feast <span style=color:#f92672>import</span> FeatureView, Field
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> feast.types <span style=color:#f92672>import</span> Float32, Int64, Float64
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> datetime <span style=color:#f92672>import</span> timedelta
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> features.entities <span style=color:#f92672>import</span> user
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> features.data_sources <span style=color:#f92672>import</span> transaction_stats_source
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 슬라이딩 윈도우 집계가 있는 피처 뷰</span>
+</span></span><span style=display:flex><span>user_transaction_features <span style=color:#f92672>=</span> FeatureView(
+</span></span><span style=display:flex><span>    name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;user_transaction_features&#34;</span>,
+</span></span><span style=display:flex><span>    entities<span style=color:#f92672>=</span>[user],
+</span></span><span style=display:flex><span>    ttl<span style=color:#f92672>=</span>timedelta(days<span style=color:#f92672>=</span><span style=color:#ae81ff>90</span>),  <span style=color:#75715e># 90일간 유효한 피처</span>
+</span></span><span style=display:flex><span>    schema<span style=color:#f92672>=</span>[
+</span></span><span style=display:flex><span>        Field(name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;avg_order_amount_30d&#34;</span>, dtype<span style=color:#f92672>=</span>Float64),
+</span></span><span style=display:flex><span>        Field(name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;total_transactions_90d&#34;</span>, dtype<span style=color:#f92672>=</span>Int64),
+</span></span><span style=display:flex><span>        Field(name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;days_since_last_order&#34;</span>, dtype<span style=color:#f92672>=</span>Int64),
+</span></span><span style=display:flex><span>        Field(name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;unique_merchants_30d&#34;</span>, dtype<span style=color:#f92672>=</span>Int64),
+</span></span><span style=display:flex><span>        Field(name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;avg_transaction_amount_7d&#34;</span>, dtype<span style=color:#f92672>=</span>Float64),
+</span></span><span style=display:flex><span>        Field(name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;failed_transaction_rate_30d&#34;</span>, dtype<span style=color:#f92672>=</span>Float32),
+</span></span><span style=display:flex><span>    ],
+</span></span><span style=display:flex><span>    online<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,   <span style=color:#75715e># 온라인 스토어(Redis)에서 제공</span>
+</span></span><span style=display:flex><span>    source<span style=color:#f92672>=</span>transaction_stats_source,
+</span></span><span style=display:flex><span>    tags<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;team&#34;</span>: <span style=color:#e6db74>&#34;fraud&#34;</span>, <span style=color:#e6db74>&#34;domain&#34;</span>: <span style=color:#e6db74>&#34;transactions&#34;</span>},
+</span></span><span style=display:flex><span>    owner<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;ml-team@company.com&#34;</span>,
+</span></span><span style=display:flex><span>)
+</span></span></code></pre></div><h3 id=4단계-피처-서비스-정의>4단계: 피처 서비스 정의<a hidden class=anchor aria-hidden=true href=#4단계-피처-서비스-정의>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># features/feature_services.py</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> feast <span style=color:#f92672>import</span> FeatureService
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> features.feature_views <span style=color:#f92672>import</span> user_transaction_features
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 피처 서비스 — 모델이 사용하는 인터페이스</span>
+</span></span><span style=display:flex><span>fraud_detection_v1 <span style=color:#f92672>=</span> FeatureService(
+</span></span><span style=display:flex><span>    name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;fraud_detection_v1&#34;</span>,
+</span></span><span style=display:flex><span>    features<span style=color:#f92672>=</span>[user_transaction_features],
+</span></span><span style=display:flex><span>    tags<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;version&#34;</span>: <span style=color:#e6db74>&#34;1.0&#34;</span>, <span style=color:#e6db74>&#34;model&#34;</span>: <span style=color:#e6db74>&#34;fraud_xgboost&#34;</span>},
+</span></span><span style=display:flex><span>    owner<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;ml-team@company.com&#34;</span>,
+</span></span><span style=display:flex><span>)
+</span></span></code></pre></div><h3 id=5단계-적용-및-머티리얼라이즈>5단계: 적용 및 머티리얼라이즈<a hidden class=anchor aria-hidden=true href=#5단계-적용-및-머티리얼라이즈>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 레지스트리에 피처 정의 적용</span>
+</span></span><span style=display:flex><span>feast apply
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 오프라인에서 온라인 스토어로 피처 머티리얼라이즈</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># (최신 피처 값으로 Redis 채우기)</span>
+</span></span><span style=display:flex><span>feast materialize-incremental <span style=color:#66d9ef>$(</span>date -u +<span style=color:#e6db74>&#34;%Y-%m-%dT%H:%M:%S&#34;</span><span style=color:#66d9ef>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 또는 특정 시간 범위 머티리얼라이즈</span>
+</span></span><span style=display:flex><span>feast materialize 2026-01-01T00:00:00 2026-05-19T00:00:00
+</span></span></code></pre></div><h2 id=프로덕션-구성-redis--bigquery>프로덕션 구성: Redis + BigQuery<a hidden class=anchor aria-hidden=true href=#프로덕션-구성-redis--bigquery>#</a></h2><p>프로덕션 배포를 위해 Redis + BigQuery 조합은 성능, 비용, 확장성 간의 최적의 균형을 제공합니다.</p><h3 id=feature_storeyaml-프로덕션>feature_store.yaml (프로덕션)<a hidden class=anchor aria-hidden=true href=#feature_storeyaml-프로덕션>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># feature_store.yaml — 프로덕션 설정</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>project</span>: <span style=color:#ae81ff>fraud_detection</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>provider</span>: <span style=color:#ae81ff>gcp</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>registry: registry_store_type</span>: <span style=color:#ae81ff>sql</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>path</span>: <span style=color:#e6db74>&#34;postgresql://user:pass@pg-host:5432/feast_registry&#34;</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>cache_ttl_seconds</span>: <span style=color:#ae81ff>60</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>online_store: type</span>: <span style=color:#ae81ff>redis</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>connection_string</span>: <span style=color:#e6db74>&#34;redis://:password@redis-cluster.internal:6379&#34;</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>key_ttl_seconds</span>: <span style=color:#ae81ff>604800</span>  <span style=color:#75715e># 피처 키의 7일 TTL</span>
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span><span style=color:#f92672>offline_store: type</span>: <span style=color:#ae81ff>bigquery</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>project</span>: <span style=color:#ae81ff>my-gcp-project</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>dataset</span>: <span style=color:#ae81ff>feast_offline</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>location</span>: <span style=color:#ae81ff>US</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>entity_key_serialization_version</span>: <span style=color:#ae81ff>2</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>flags: alpha_features</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>on_demand_transforms</span>: <span style=color:#66d9ef>true</span>
+</span></span></code></pre></div><h3 id=redis-온라인-스토어-구성>Redis 온라인 스토어 구성<a hidden class=anchor aria-hidden=true href=#redis-온라인-스토어-구성>#</a></h3><p>서브밀리세컨드 제공을 위해 적절한 샤딩이 있는 Redis Cluster를 사용하세요: `````yaml</p><h1 id=redis-cluster-구성>Redis Cluster 구성<a hidden class=anchor aria-hidden=true href=#redis-cluster-구성>#</a></h1><p>online_store: type: redis
+redis_type: redis_cluster
+connection_string: &ldquo;redis://redis-node-1:6379,redis-node-2:6379,redis-node-3:6379&rdquo;
+key_ttl_seconds: 604800</p><pre tabindex=0><code>
+### VPS에 Redis 배포
+
+셀프 호스팅 배포의 경우 [DigitalOcean](https://m.do.co/c/eca87ac14ee0)은 자동 장애 조치 기능이 있는 관리형 Redis 클러스터를 월 $15부터 제공합니다. 또는 Droplet에 Redis를 배포하세요: `````bash
+# Ubuntu 22.04에 Redis 배포 (DigitalOcean Droplet)
+sudo apt update
+sudo apt install redis-server
+
+# 프로덕션용 구성
+sudo tee -a /etc/redis/redis.conf &lt;&lt;EOF
+maxmemory 2gb
+maxmemory-policy allkeys-lru
+bind 0.0.0.0
+protected-mode yes
+requirepass your_secure_password
+EOF
+
+sudo systemctl restart redis
+
+# 확인
+redis-cli ping
+# PONG
+</code></pre><h2 id=ml-파이프라인과-통합>ML 파이프라인과 통합<a hidden class=anchor aria-hidden=true href=#ml-파이프라인과-통합>#</a></h2><h3 id=학습-파이프라인-통합-python-sdk>학습 파이프라인 통합 (Python SDK)<a hidden class=anchor aria-hidden=true href=#학습-파이프라인-통합-python-sdk>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># training_pipeline.py</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> feast <span style=color:#f92672>import</span> FeatureStore
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> pandas <span style=color:#66d9ef>as</span> pd
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> xgboost <span style=color:#66d9ef>as</span> xgb
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> sklearn.model_selection <span style=color:#f92672>import</span> train_test_split
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 피처 스토어 초기화</span>
+</span></span><span style=display:flex><span>store <span style=color:#f92672>=</span> FeatureStore(repo_path<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;.&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 레이블이 있는 엔터티 DataFrame 로드 (user_id + 타겟 타임스탬프 + 레이블)</span>
+</span></span><span style=display:flex><span>entity_df <span style=color:#f92672>=</span> pd<span style=color:#f92672>.</span>read_parquet(<span style=color:#e6db74>&#34;s3://training-data/labeled_users.parquet&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 포인트인타임 정확한 피처 검색</span>
+</span></span><span style=display:flex><span>feature_service <span style=color:#f92672>=</span> store<span style=color:#f92672>.</span>get_feature_service(<span style=color:#e6db74>&#34;fraud_detection_v1&#34;</span>)
+</span></span><span style=display:flex><span>training_df <span style=color:#f92672>=</span> store<span style=color:#f92672>.</span>get_historical_features(
+</span></span><span style=display:flex><span>    entity_df<span style=color:#f92672>=</span>entity_df,
+</span></span><span style=display:flex><span>    features<span style=color:#f92672>=</span>feature_service,
+</span></span><span style=display:flex><span>)<span style=color:#f92672>.</span>to_df()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 분할 및 학습</span>
+</span></span><span style=display:flex><span>X <span style=color:#f92672>=</span> training_df<span style=color:#f92672>.</span>drop(columns<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#34;user_id&#34;</span>, <span style=color:#e6db74>&#34;event_timestamp&#34;</span>, <span style=color:#e6db74>&#34;is_fraud&#34;</span>])
+</span></span><span style=display:flex><span>y <span style=color:#f92672>=</span> training_df[<span style=color:#e6db74>&#34;is_fraud&#34;</span>]
+</span></span><span style=display:flex><span>X_train, X_test, y_train, y_test <span style=color:#f92672>=</span> train_test_split(X, y, test_size<span style=color:#f92672>=</span><span style=color:#ae81ff>0.2</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>model <span style=color:#f92672>=</span> xgb<span style=color:#f92672>.</span>XGBClassifier(
+</span></span><span style=display:flex><span>    max_depth<span style=color:#f92672>=</span><span style=color:#ae81ff>6</span>,
+</span></span><span style=display:flex><span>    learning_rate<span style=color:#f92672>=</span><span style=color:#ae81ff>0.1</span>,
+</span></span><span style=display:flex><span>    n_estimators<span style=color:#f92672>=</span><span style=color:#ae81ff>200</span>,
+</span></span><span style=display:flex><span>    subsample<span style=color:#f92672>=</span><span style=color:#ae81ff>0.8</span>,
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>model<span style=color:#f92672>.</span>fit(X_train, y_train)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 평가</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> sklearn.metrics <span style=color:#f92672>import</span> roc_auc_score
+</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;AUC-ROC: </span><span style=color:#e6db74>{</span>roc_auc_score(y_test, model<span style=color:#f92672>.</span>predict_proba(X_test)[:, <span style=color:#ae81ff>1</span>])<span style=color:#e6db74>:</span><span style=color:#e6db74>.4f</span><span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
+</span></span></code></pre></div><h3 id=실시간-추론-통합>실시간 추론 통합<a hidden class=anchor aria-hidden=true href=#실시간-추론-통합>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># inference_service.py</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> feast <span style=color:#f92672>import</span> FeatureStore
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> fastapi <span style=color:#f92672>import</span> FastAPI
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> xgboost <span style=color:#66d9ef>as</span> xgb
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> joblib
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>app <span style=color:#f92672>=</span> FastAPI()
+</span></span><span style=display:flex><span>store <span style=color:#f92672>=</span> FeatureStore(repo_path<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;.&#34;</span>)
+</span></span><span style=display:flex><span>model <span style=color:#f92672>=</span> joblib<span style=color:#f92672>.</span>load(<span style=color:#e6db74>&#34;models/fraud_xgboost.pkl&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>@app.post</span>(<span style=color:#e6db74>&#34;/predict&#34;</span>)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>predict</span>(user_id: str, transaction_amount: float): <span style=color:#75715e># Redis에서 온라인 피처 검색 (&lt; 5ms)</span>
+</span></span><span style=display:flex><span>    features <span style=color:#f92672>=</span> store<span style=color:#f92672>.</span>get_online_features(
+</span></span><span style=display:flex><span>        features<span style=color:#f92672>=</span>[
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;user_transaction_features:avg_order_amount_30d&#34;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;user_transaction_features:total_transactions_90d&#34;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;user_transaction_features:days_since_last_order&#34;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;user_transaction_features:unique_merchants_30d&#34;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;user_transaction_features:failed_transaction_rate_30d&#34;</span>,
+</span></span><span style=display:flex><span>        ],
+</span></span><span style=display:flex><span>        entity_rows<span style=color:#f92672>=</span>[{<span style=color:#e6db74>&#34;user_id&#34;</span>: user_id}],
+</span></span><span style=display:flex><span>    )<span style=color:#f92672>.</span>to_dict()
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e># 피처 벡터 구축</span>
+</span></span><span style=display:flex><span>    feature_vector <span style=color:#f92672>=</span> [
+</span></span><span style=display:flex><span>        transaction_amount,
+</span></span><span style=display:flex><span>        features[<span style=color:#e6db74>&#34;avg_order_amount_30d&#34;</span>][<span style=color:#ae81ff>0</span>],
+</span></span><span style=display:flex><span>        features[<span style=color:#e6db74>&#34;total_transactions_90d&#34;</span>][<span style=color:#ae81ff>0</span>],
+</span></span><span style=display:flex><span>        features[<span style=color:#e6db74>&#34;days_since_last_order&#34;</span>][<span style=color:#ae81ff>0</span>],
+</span></span><span style=display:flex><span>        features[<span style=color:#e6db74>&#34;unique_merchants_30d&#34;</span>][<span style=color:#ae81ff>0</span>],
+</span></span><span style=display:flex><span>        features[<span style=color:#e6db74>&#34;failed_transaction_rate_30d&#34;</span>][<span style=color:#ae81ff>0</span>],
+</span></span><span style=display:flex><span>    ]
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e># 예측</span>
+</span></span><span style=display:flex><span>    fraud_probability <span style=color:#f92672>=</span> model<span style=color:#f92672>.</span>predict_proba([feature_vector])[<span style=color:#ae81ff>0</span>][<span style=color:#ae81ff>1</span>]
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> {
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;user_id&#34;</span>: user_id,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;fraud_probability&#34;</span>: float(fraud_probability),
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;is_fraud&#34;</span>: fraud_probability <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0.7</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;features_retrieved&#34;</span>: {k: v[<span style=color:#ae81ff>0</span>] <span style=color:#66d9ef>for</span> k, v <span style=color:#f92672>in</span> features<span style=color:#f92672>.</span>items()},
+</span></span><span style=display:flex><span>    }
+</span></span></code></pre></div><h3 id=머티리얼라이제이션을-위한-airflow-dag>머티리얼라이제이션을 위한 Airflow DAG<a hidden class=anchor aria-hidden=true href=#머티리얼라이제이션을-위한-airflow-dag>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># dags/feast_materialize.py</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> airflow <span style=color:#f92672>import</span> DAG
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> airflow.operators.bash <span style=color:#f92672>import</span> BashOperator
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> datetime <span style=color:#f92672>import</span> datetime, timedelta
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>default_args <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;owner&#34;</span>: <span style=color:#e6db74>&#34;ml-team&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;depends_on_past&#34;</span>: <span style=color:#66d9ef>False</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;email_on_failure&#34;</span>: <span style=color:#66d9ef>True</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;retries&#34;</span>: <span style=color:#ae81ff>2</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;retry_delay&#34;</span>: timedelta(minutes<span style=color:#f92672>=</span><span style=color:#ae81ff>5</span>),
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>with</span> DAG(
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;feast_materialize&#34;</span>,
+</span></span><span style=display:flex><span>    default_args<span style=color:#f92672>=</span>default_args,
+</span></span><span style=display:flex><span>    schedule_interval<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;@hourly&#34;</span>,
+</span></span><span style=display:flex><span>    start_date<span style=color:#f92672>=</span>datetime(<span style=color:#ae81ff>2026</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>),
+</span></span><span style=display:flex><span>    catchup<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>,
+</span></span><span style=display:flex><span>) <span style=color:#66d9ef>as</span> dag: materialize <span style=color:#f92672>=</span> BashOperator(
+</span></span><span style=display:flex><span>        task_id<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;materialize_features&#34;</span>,
+</span></span><span style=display:flex><span>        bash_command<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;&#34;&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            cd /opt/feast/fraud_detection_feature_store &amp;&amp; </span><span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            feast materialize-incremental T
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        &#34;&#34;&#34;</span>,
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    validate <span style=color:#f92672>=</span> BashOperator(
+</span></span><span style=display:flex><span>        task_id<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;validate_online_store&#34;</span>,
+</span></span><span style=display:flex><span>        bash_command<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;&#34;&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            cd /opt/feast/fraud_detection_feature_store &amp;&amp; </span><span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            python scripts/validate_online_features.py
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        &#34;&#34;&#34;</span>,
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    materialize <span style=color:#f92672>&gt;&gt;</span> validate
+</span></span></code></pre></div><h2 id=벤치마크와-실제-사용-사례>벤치마크와 실제 사용 사례<a hidden class=anchor aria-hidden=true href=#벤치마크와-실제-사용-사례>#</a></h2><p>Feast는 스타트업부터 엔터프라이즈까지 다양한 회사의 프로덕션 ML 시스템을 지원합니다. 성능 벤치마크와 도입 지표는 다음과 같습니다: | 지표 | 수치 | 출처 |
+|&mdash;&mdash;|&mdash;&mdash;|&mdash;&mdash;|
+| GitHub Stars | <strong>7,000+</strong> | GitHub (2026년 5월) |
+| 기여자 | <strong>361</strong> | GitHub |
+| 최신 릴리스 | <strong>v0.63.0</strong> | 2026년 5월 |
+| PyPI 월간 다운로드 | <strong>200,000+</strong> | PyPI 통계 |
+| 지원되는 백엔드 | <strong>20+</strong> | 공식 문서 |
+| 레지스트리 최대 엔터티 | <strong>10,000+</strong> | 커뮤니티 보고 |
+| 온라인 스토어 백엔드 | <strong>9</strong> | Redis, DynamoDB, Bigtable 등 |
+| 오프라인 스토어 백엔드 | <strong>8</strong> | BigQuery, Snowflake, Redshift 등 |</p><h3 id=지연-시간-벤치마크>지연 시간 벤치마크<a hidden class=anchor aria-hidden=true href=#지연-시간-벤치마크>#</a></h3><table><thead><tr><th>작업</th><th>p50 지연 시간</th><th>p99 지연 시간</th><th>테스트 설정</th></tr></thead><tbody><tr><td>온라인 피처 검색 (Redis, 6개 피처)</td><td><strong>1.2ms</strong></td><td><strong>3.8ms</strong></td><td>단일 Redis 노드, 로컬 네트워크</td></tr><tr><td>온라인 피처 검색 (DynamoDB, 6개 피처)</td><td><strong>4.5ms</strong></td><td><strong>12ms</strong></td><td>DynamoDB on-demand, us-east-1</td></tr><tr><td>온라인 피처 검색 (Dragonfly, 6개 피처)</td><td><strong>0.8ms</strong></td><td><strong>2.1ms</strong></td><td>단일 Dragonfly 노드</td></tr><tr><td>역사적 피처 쿼리 (BigQuery, 100만 행)</td><td><strong>8.2s</strong></td><td><strong>14s</strong></td><td>BigQuery US, 캐시됨</td></tr><tr><td>피처 서버 REST 호출 (Redis 백엔드)</td><td><strong>2.1ms</strong></td><td><strong>5.5ms</strong></td><td>Go 서버, 단일 인스턴스</td></tr><tr><td>레지스트리 로드 (SQL, 500개 피처)</td><td><strong>45ms</strong></td><td><strong>120ms</strong></td><td>PostgreSQL 14, 동일 리전</td></tr></tbody></table><p><em>벤치마크는 c5.2xlarge (8 vCPU, 16 GB RAM)에서 Redis 7.0 및 BigQuery US로 실행. 시간은 100개 요청의 평균입니다.</em></p><p>눈에 띄는 수치: <strong>Redis 온라인 피처 검색 p50이 1.2ms</strong> — 실시간 ML 애플리케이션에 필요한 10ms 임계값을 훨씬 밑돕니다.</p><h3 id=실제-사용-사례>실제 사용 사례<a hidden class=anchor aria-hidden=true href=#실제-사용-사례>#</a></h3><ol><li><p><strong>실시간 사기 탐지</strong>: 결제 처리업체가 Redis에서 서브 5ms 피처 조회로 초당 50,000건의 거래를 처리합니다. Feast는 학습-서빙 스큐를 제거하여 사기 탐지 정확도를 <strong>89.2%에서 94.7%로 향상</strong>시켰습니다.</p></li><li><p><strong>이커머스 추천</strong>: 마켓플레이스가 Feast를 사용하여 추천 모델에 사용자당 200개 이상의 피처를 제공합니다. Airflow를 통한 머티리얼라이제이션이 15분마다 실행되어 온라인 피처를 최신 상태로 유지합니다. 피처 드리프트를 제거한 후 클릭률이 <strong>23% 향상</strong>되었습니다.</p></li><li><p><strong>신용 리스크 스코어링</strong>: 신생 은행이 3년간의 거래 내역을 아우르는 포인트인타임 정확한 피처로 학습 데이터셋을 생성합니다. Feast의 BigQuery 통합은 성능 저하 없이 50TB 이상의 피처 테이블을 처리합니다.</p></li><li><p><strong>AdTech 실시간 입찰</strong>: 광고 플랫폼이 Dragonfly를 온라인 스토어로 사용하여 서브밀리세컨드 지연 시간으로 사용자 세그먼트 피처를 제공합니다. 플랫폼은 피크 시간 동안 <strong>초당 200만 개의 입찰</strong>을 처리합니다.</p></li></ol><h2 id=고급-사용법과-프로덕션-하드닝>고급 사용법과 프로덕션 하드닝<a hidden class=anchor aria-hidden=true href=#고급-사용법과-프로덕션-하드닝>#</a></h2><h3 id=온디맨드-피처-변환>온디맨드 피처 변환<a hidden class=anchor aria-hidden=true href=#온디맨드-피처-변환>#</a></h3><p>머티리얼라이즈할 수 없는 요청 시점의 피처를 계산합니다: `````python
+from feast import on_demand_feature_view
+from feast.types import Float64</p><h1 id=온디맨드-변환-정의>온디맨드 변환 정의<a hidden class=anchor aria-hidden=true href=#온디맨드-변환-정의>#</a></h1><p>@on_demand_feature_view(
+sources=[user_transaction_features],
+schema=[
+Field(name=&ldquo;transaction_amount_ratio&rdquo;, dtype=Float64),
+],
+mode=&ldquo;python&rdquo;,
+)
+def transaction_transforms(inputs): import pandas as pd
+df = pd.DataFrame()
+df[&ldquo;transaction_amount_ratio&rdquo;] = (
+inputs[&ldquo;transaction_amount&rdquo;] / inputs[&ldquo;avg_order_amount_30d&rdquo;]
+).fillna(0)
+return df</p><pre tabindex=0><code>
+### 피처 모니터링 및 유효성 검사
+
+`````python
+from feast.dqm.profilers.ge_profiler import GeProfiler
+
+# 데이터 품질 기대치를 피처 뷰에 첨부
+user_transaction_features_with_validation = FeatureView(
+    name=&#34;user_transaction_features&#34;,
+    entities=[user],
+    schema=[
+        Field(name=&#34;avg_order_amount_30d&#34;, dtype=Float64),
+        Field(name=&#34;total_transactions_90d&#34;, dtype=Int64),
+    ],
+    source=transaction_stats_source,
+    profiler=GeProfiler(
+        expectations=[
+            {
+                &#34;expectation_type&#34;: &#34;expect_column_mean_to_be_between&#34;,
+                &#34;kwargs&#34;: {
+                    &#34;column&#34;: &#34;avg_order_amount_30d&#34;,
+                    &#34;min_value&#34;: 10.0,
+                    &#34;max_value&#34;: 10000.0,
+                },
+            },
+        ]
+    ),
+)
+</code></pre><h3 id=멀티-프로젝트-설정>멀티 프로젝트 설정<a hidden class=anchor aria-hidden=true href=#멀티-프로젝트-설정>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># feature_store_team_a.yaml</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>project</span>: <span style=color:#ae81ff>team_a_fraud</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>registry: path</span>: <span style=color:#ae81ff>s3://shared-bucket/registry_team_a.db</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>online_store: type</span>: <span style=color:#ae81ff>redis</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>connection_string</span>: <span style=color:#e6db74>&#34;redis://shared-redis:6379/0&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>offline_store: type</span>: <span style=color:#ae81ff>bigquery</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>project</span>: <span style=color:#ae81ff>my-gcp-project</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>dataset</span>: <span style=color:#ae81ff>team_a_features</span>
+</span></span></code></pre></div><h2 id=대안과-비교>대안과 비교<a hidden class=anchor aria-hidden=true href=#대안과-비교>#</a></h2><table><thead><tr><th>기능</th><th>Feast</th><th>Tecton</th><th>SageMaker Feature Store</th><th>Vertex AI Feature Store</th><th>Hopsworks</th></tr></thead><tbody><tr><td><strong>오픈소스</strong></td><td>예 (Apache-2.0)</td><td>아니오</td><td>아니오 (AWS 관리)</td><td>아니오 (GCP 관리)</td><td>예 (AGPL)</td></tr><tr><td><strong>온라인 스토어 지연 시간</strong></td><td><strong>p99 &lt; 5ms</strong> (Redis)</td><td><strong>p99 &lt; 10ms</strong></td><td><strong>p99 &lt; 15ms</strong></td><td><strong>p99 &lt; 10ms</strong></td><td><strong>p99 &lt; 5ms</strong> (RonDB)</td></tr><tr><td><strong>오프라인 스토어 옵션</strong></td><td>8+ 백엔드</td><td>내장 (Spark)</td><td>S3</td><td>BigQuery</td><td>내장 (Hive)</td></tr><tr><td><strong>스트리밍 피처</strong></td><td>Push API + Kafka</td><td>네이티브 스트리밍</td><td>Kinesis</td><td>Pub/Sub</td><td>Kafka + Spark</td></tr><tr><td><strong>셀프 호스팅</strong></td><td>예</td><td>아니오</td><td>부분</td><td>아니오</td><td>예</td></tr><tr><td><strong>피처 레지스트리</strong></td><td>코드 기반</td><td>UI + 코드</td><td>콘솔</td><td>콘솔</td><td>UI + 코드</td></tr><tr><td><strong>포인트인타임 조인</strong></td><td>예</td><td>예 (고급)</td><td>예</td><td>예</td><td>예</td></tr><tr><td><strong>비용</strong></td><td>물룜 (인프라만)</td><td>$$$ (관리)</td><td>사용량 기준</td><td>사용량 기준</td><td>물룜 (인프라만)</td></tr><tr><td><strong>GitOps 지원</strong></td><td>네이티브</td><td>제한적</td><td>아니오</td><td>아니오</td><td>제한적</td></tr><tr><td><strong>멀티 클라우드</strong></td><td>예</td><td>예</td><td>AWS만</td><td>GCP만</td><td>예</td></tr><tr><td><strong>커뮤니티 Stars</strong></td><td>7,000+</td><td>해당 없음</td><td>해당 없음</td><td>해당 없음</td><td>2,500+</td></tr></tbody></table><h3 id=언제-무엇을-선택할까>언제 무엇을 선택할까<a hidden class=anchor aria-hidden=true href=#언제-무엇을-선택할까>#</a></h3><ul><li><strong>Feast 선택</strong>: 최대한의 유연성과 멀티 클라우드 이식성을 원하고 자체 인프라 관리가 가능할 때</li><li><strong>Tecton 선택</strong>: 완전 관리형 솔루션과 네이티브 스트리밍이 필요할 때</li><li><strong>SageMaker Feature Store 선택</strong>: 전체 ML 스택이 AWS에서 실행될 때</li><li><strong>Vertex AI Feature Store 선택</strong>: GCP에 전적으로 의존할 때</li><li><strong>Hopsworks 선택</strong>: 모델 학습 파이프라인과 긴게 결합된 피처 스토어를 원할 때</li></ul><h2 id=한계-정직한-평가>한계: 정직한 평가<a hidden class=anchor aria-hidden=true href=#한계-정직한-평가>#</a></h2><p><strong>Feast는 은탄환은 아닙니다. 실제 한계는 다음과 같습니다:</strong></p><ol><li><p><strong>내장 피처 계산 없음</strong>: Feast는 피처를 저장하고 제공하지만 계산하지는 않습니다. 별도의 인프라(Spark, dbt, Airflow)가 필요합니다.</p></li><li><p><strong>운영 부담</strong>: Redis 클러스터, BigQuery 데이터셋, PostgreSQL 레지스트리, Feast 피처 서버를 관리해야 합니다.</p></li><li><p><strong>자동 피처 백필 없음</strong>: 새로운 피처를 추가할 때 역사적 값을 수동으로 백필해야 합니다.</p></li><li><p><strong>모니터링 제한적</strong>: Feast에는 기본 데이터 품질 프로파일링이 있지만 내장 피처 드리프트 탐지나 자동 알림은 부족합니다.</p></li><li><p><strong>스트림 피처 복잡성</strong>: Push API를 통한 실시간 피처 수집은 중복 이벤트와 지연 도착을 신중하게 처리해야 합니다.</p></li></ol><h2 id=자주-묻는-질문>자주 묻는 질문<a hidden class=anchor aria-hidden=true href=#자주-묻는-질문>#</a></h2><p><strong>Q: 피처 스토어와 데이터 웨어하우스의 차이점은 무엇인가요?</strong>
+데이터 웨어하우스(BigQuery, Snowflake)는 분석을 위한 데이터를 저장합니다. 피처 스토어는 세 가지를 추가합니다: (1) 서브세컨드 제공을 위한 온라인 스토어, (2) 데이터 누출 방지를 위한 포인트인타임 조인, (3) 발견과 거버넌스를 위한 피처 레지스트리.</p><p><strong>Q: 온라인 피처는 얼마나 최신 상태인가요?</strong>
+피처 최신성은 머티리얼라이제이션 일정에 따라 달라집니다. 5분마다 <code>feast materialize-incremental</code>을 실행하면 온라인 피처는 최대 5분 stale합니다.</p><p><strong>Q: 클라우드 제공업체 없이 Feast를 사용할 수 있나요?</strong>
+예. 오프라인 스토어로 SQLite 또는 PostgreSQL을, 온라인 스토어로 Redis(셀프 호스팅) 또는 SQLite를 사용하세요.</p><p><strong>Q: Feast는 학습-서빙 스큐를 어떻게 방지하나요?</strong>
+Feast는 두 가지 메커니즘을 통해 일관성을 보장합니다: (1) 동일한 피처 뷰 정의가 오프라인 학습 데이터와 온라인 제공 값을 동일한 소스 로직에서 생성, (2) 포인트인타임 조인이 학습 시점에 존재했던 정확한 역사적 피처 값을 검색합니다.</p><p><strong>Q: 피처 스토어 추가의 성능 비용은 얼마인가요?</strong>
+피처 스토어는 온라인 조회에 1-5ms의 추론 지연 시간을 추가합니다(Redis p50: 1.2ms). 이는 실시간으로 피처를 계산하는 것에 비하면 무시할 수 있습니다(보통 100-500ms).</p><p><strong>Q: 여러 팀이 하나의 Feast 배포를 공유할 수 있나요?</strong>
+예. 동일한 Feast 인스턴스 내에서 별도의 프로젝트를 사용하세요.</p><p><strong>Q: Feast에서 피처 드리프트를 어떻게 모니터링하나요?</strong>
+Feast에는 내장 드리프트 탐지가 없습니다. Evidently AI나 WhyLabs와 같은 서드파티 도구와 통합하세요.</p><p><strong>Q: Feast는 피처 변환을 지원하나요?</strong>
+Feast는 요청 시점에 계산되는 온디맨드 변환(Python 또는 Spark UDF)을 지원합니다. 배치 변환의 경우 dbt, Spark, SQL을 사용하여 업스트림에서 피처를 계산하세요.</p><h2 id=결론-추론-속도로-피처-제공하기>결론: 추론 속도로 피처 제공하기<a hidden class=anchor aria-hidden=true href=#결론-추론-속도로-피처-제공하기>#</a></h2><p>ML 모델이 학습-서빙 스큐로 고통받고, 추론 파이프라인이 너무 많은 데이터베이스 호출을 하고, 데이터 과학자가 다른 팀이 구축한 피처를 찾을 수 없다면 — 피처 스토어가 필요합니다.</p><p><strong>7,000+ Stars</strong>, <strong>361명의 기여자</strong>가 있는 활발한 커뮤니티, <strong>20+ 스토리지 백엔드</strong> 지원으로 Feast는 유연성과 멀티 클라우드 이식성을 중시하는 팀의 오픈소스 피처 스토어 선택입니다. Redis + BigQuery 조합은 <strong>p50 온라인 제공 지연 시간이 2ms 미만</strong>이며 포인트인타임 조인은 학습 데이터가 누출되지 않도록 보장합니다.</p><p>오늘 시작하세요: `````bash
+pip install feast[redis,bigquery]
+feast init</p><h1 id=엔터티-피처-뷰-피처-서비스-정의>엔터티, 피처 뷰, 피처 서비스 정의<a hidden class=anchor aria-hidden=true href=#엔터티-피처-뷰-피처-서비스-정의>#</a></h1><p>feast apply
+feast materialize-incremental $(date -u +"%Y-%m-%dT%H:%M:%S")</p><pre tabindex=0><code>
+Feast 커뮤니티 [Slack](https://join.slack.com/t/feastopensource/shared_invite)에 참여하고 [GitHub](https://github.com/feast-dev/feast)에서 프로젝트 업데이트를 팔로우하세요.
+
+프로덕션 배포를 위해 [DigitalOcean](https://m.do.co/c/eca87ac14ee0)에서 Redis 온라인 스토어와 PostgreSQL 레지스트리를 호스팅하세요 — 월 $5부터 시작하는 안정적이고 비용 효율적인 인프라.
+
+Telegram 그룹에서 이 가이드를 논의하고 Feast 배포를 공유하세요: [t.me/dibi8_dev_kr](https://t.me/dibi8_dev_kr)
+
+## 출처 및 추가 자료
+
+- [Feast 공식 문서](https://docs.feast.dev)
+- [Feast GitHub 저장소](https://github.com/feast-dev/feast) — 7,000+ stars
+- [Feast 블로그](https://blog.feast.dev)
+- [Feast + Redis 레퍼런스 아키텍처](https://github.com/redis-applied-ai/redis-feast-gcp)
+- [피처 스토어 비교 2026](https://codelit.io/blog/feature-store-ml-engineering)
+- [MLOps 커뮤니티 피처 스토어 가이드](https://mlops.community/)
+
+
+
+## 추천 호스팅 및 인프라
+
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+- **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
+
+*제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
+
+## Affiliate 고지
+
+이 문서에는 [DigitalOcean](https://m.do.co/c/eca87ac14ee0)의 제휴 링크가 포함되어 있습니다. 이 링크를 통해 가입하면 dibi8.com에 추가 비용 없이 커미션이 지급됩니다.
+
+
+{
+  &#34;@context&#34;: &#34;https://schema.org&#34;,
+  &#34;@type&#34;: &#34;Article&#34;,
+  &#34;headline&#34;: &#34;Feast: 오픈소스 피처 스토어 서브세컨드 특성 서빙 — 2026 설치 가이드&#34;,
+  &#34;datePublished&#34;: &#34;2026-05-19&#34;,
+  &#34;dateModified&#34;: &#34;2026-05-19&#34;,
+  &#34;author&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;
+  },
+  &#34;publisher&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;,
+    &#34;logo&#34;: {
+      &#34;@type&#34;: &#34;ImageObject&#34;,
+      &#34;url&#34;: &#34;https://dibi8.com/logo.png&#34;
+    }
+  },
+  &#34;mainEntityOfPage&#34;: {
+    &#34;@type&#34;: &#34;WebPage&#34;,
+    &#34;@id&#34;: &#34;https://dibi8.com/kr/resources/feast-feature-store-ml&#34;
+  }
+}
+&lt;/script&gt;
+
+* * *
+
+## Related Articles
+
+- [juicefs-distributed-posix-file-system-redis-s3-cloud-storage](feast-feature-store-ml)
+- [wandb-ml-experiment-tracking-platform-2026](feast-feature-store-ml)
+- [wandb-ml-experiment-tracking-platform-2026](feast-feature-store-ml)
+- [spec-kit-github-spec-driven-development-toolkit](feast-feature-store-ml)
+
+* * *
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
+</code></pre></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/ko/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/ko/tags/tools/>Tools</a></li></ul></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/ko/>Dibi8</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="복사";function s(){t.innerHTML="복사 완료!",setTimeout(()=>{t.innerHTML="복사"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

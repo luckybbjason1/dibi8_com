@@ -1,0 +1,388 @@
+<!doctype html><html lang=vi dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/vi/ai-coding-agents/cogvideo/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/cogvideo/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/cogvideo/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/vi/ai-coding-agents/cogvideo/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="vi"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Tool Guide","item":"https://dibi8.com/vi/ai-coding-agents/cogvideo/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Ai Tools source_version: ’' licensing_model: Open Source license_type: Apache-2.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“ai-tools”] tags: [“cogvideo”, “cogvideox”, “text-to-video”, “diffusion-transformer”, “zhipu-ai”, “video-generation”, “open-source-ai”, “comfyui”] aliases:\n/vi/posts/cogvideo/ Biến văn bản và hình ảnh thành video điện ảnh với Diffusion Transformer mã nguồn mở của Zhipu AI. Từ zero đến production trong 30 phút.\nGiới Thiệu Tạo video từ văn bản đã chuyển từ chủ đề nghiên cứu sang công cụ production trong 2024-2025. Các mô hình mã nguồn mở hiện cạnh tranh với API thương mại về chất lượng trong khi chạy trên GPU ngườì dùng. Vấn đề là: hầu hết repository chỉ cung cấp model weights với tài liệu rải rác. Bạn mất hàng giờ để ghép script inference, flag tối ưu VRAM và pipeline fine-tuning thay vì tạo video.\nCogVideo của Zhipu AI giải quyết khác biệt. Với 12.7K GitHub stars, 36 contributors và release active, nó cung cấp toolkit đầy đủ: model pretrained 2B và 5B tham số, tích hợp Diffusers pipeline, fine-tuning SAT, node ComfyUI và 3D causal VAE nén video thành biểu diễn latent hiệu quả. Hướng dẫn này bao gồm mọi thứ từ ```pip install```` đến triển khai production với quantized inference và LoRA fine-tuning.\nCogVideo Là Gì? CogVideo là framework tạo video từ văn bản và hình ảnh mã nguồn mở do Zhipu AI phát triển, dựa trên kiến trúc 3D causal VAE và expert transformer. Series CogVideoX (2024) kế thừa mô hình CogVideo gốc được công bố tại ICLR 2023, cung cấp model 5B tham số tạo video 6 giây 720p từ text prompt hoặc ảnh tĩnh.\nCogVideo Hoạt Động Như Thế Nào Tổng Quan Kiến Trúc CogVideoX sử dụng pipeline ba thành phần: 1. T5 Text Encoder: Mã hóa text prompt thành biểu diễn vector dày đặc (giới hạn 224 token cho CogVideoX-5B, 226 token cho CogVideoX1.5-5B) 2. 3D Causal VAE: Nén video không gian và thờì gian vào latent space — nén không gian 4x và nén thờì gian 4-8x tùy biến thể model 3. Expert Transformer (DiT): Diffusion transformer với 3D full attention denoise biểu diễn video latent qua 50 bước inference\nLuồng kiến trúc: Text Prompt → T5 Encoder → Latent Text Embedding → DiT Denoising → 3D VAE Decoder → MP4 Video\nCác Biến Thể Model Model Tham số Độ phân giải Max Frames VRAM (BF16) VRAM (INT8) CogVideoX-2B 2B 720 x 480 49 5 GB min 4.4 GB CogVideoX-5B 5B 720 x 480 49 10 GB min 7 GB CogVideoX-5B-I2V 5B 720 x 480 49 4 GB min 3.6 GB CogVideoX1.5-5B 5B 1360 x 768 161 (10s) 10 GB min 7 GB CogVideoX1.5-5B-I2V 5B 768 x 1360 49 (6s) 4 GB min 3.6 GB Cài Đặt \u0026 Thiết Lập Yêu Cầu Tiên Quyết Python: 3.10 - 3.12 (bao gồm) CUDA: 12.1+ với driver NVIDIA 525+ GPU: NVIDIA, 5GB+ VRAM cho CogVideoX-2B, 10GB+ cho CogVideoX-5B Lưu trữ: 20GB trống cho model weights + dependencies Cách 1: pip Install (Khuyến nghị, Dưới 5 Phút) Bước 1 — Tạo môi trường ảo: `````bash python3.11 -m venv cogvideo_env source cogvideo_env/bin/activate\nBước 2 — Clone repository và cài dependencies: `````bash git clone https://github.com/zai-org/CogVideo.git cd CogVideo pip install -r requirements.txt requirements.txt cài PyTorch, Diffusers, Transformers, Accelerate và toolkit SAT: ````` torch\u003e=2.3.0 diffusers\u003e=0.30.0 transformers\u003e=4.40.0 accelerate\u003e=0.30.0 sentencepiece opencv-python\nBước 3 — Xác minh cài đặt: `````python import torch from diffusers import CogVideoXPipeline print(f\"PyTorch version: {torch.__version__}\") print(f\"CUDA available: {torch.cuda.is_available()}\") print(f\"CUDA version: {torch.version.cuda}\") Output mong đợi: ````` PyTorch version: 2.5.1+cu121 CUDA available: True CUDA version: 12.1\n### Cách 2: Docker Deployment (Production) Triển khai reproducible và multi-GPU inference với Docker image: `````dockerfile FROM nvidia/cuda:12.1.0-devel-ubuntu22.04 RUN apt-get update \u0026\u0026 apt-get install -y \\ python3.11 python3-pip git wget \\ \u0026\u0026 rm -rf /var/lib/apt/lists/* RUN pip3 install --no-cache-dir torch torchvision --index-url \\ https://download.pytorch.org/whl/cu121 WORKDIR /app RUN git clone https://github.com/zai-org/CogVideo.git . RUN pip3 install -r requirements.txt ENV PYTHONUNBUFFERED=1 EXPOSE 7860 CMD [\"python3\", \"-m\", \"inference.cli_demo\"] Build và run: `````bash docker build -t cogvideo:latest . docker run –gpus all -it –rm -v $(pwd)/output:/app/output -v $(pwd)/models:/app/models cogvideo:latest –prompt “A serene mountain lake at sunrise” –model_path THUDM/CogVideoX-5B\nMulti-GPU inference, thêm ``device_map=\"balanced\"`` vào ``from_pretrained()`` và bỏ ``enable_model_cpu_offload()``: `````python pipe = CogVideoXPipeline.from_pretrained( \"THUDM/CogVideoX-5B\", torch_dtype=torch.bfloat16, device_map=\"balanced\" ) Cách 3: SAT Framework (Nghiên cứu \u0026 Fine-tuning) Swiss Army Transformer (SAT) là training toolkit của Zhipu AI. Cài để fine-tune và nghiên cứu: `````bash git clone https://github.com/zai-org/CogVideo.git cd CogVideo/sat pip install -e .\nXác minh SAT: `````python from sat import get_args print(\"SAT framework loaded successfully\") Tích Hợp Với Công Cụ Phổ Biến Hugging Face Diffusers (Khuyến nghị Cho Ngườì Mới) Diffusers pipeline là cách nhanh nhất để tạo video. Script text-to-video đầy đủ: `````python import torch from diffusers import CogVideoXPipeline, CogVideoXDPMScheduler from diffusers.utils import export_to_video\n1. Load pipeline pipe = CogVideoXPipeline.from_pretrained( “THUDM/CogVideoX-5B”, torch_dtype=torch.bfloat16 )\n2. Set scheduler — DPM cho 5B, DDIM cho 2B pipe.scheduler = CogVideoXDPMScheduler.from_config( pipe.scheduler.config, timestep_spacing=“trailing” )\n3. Bật memory optimizations pipe.enable_sequential_cpu_offload() # VRAM thấp nhất pipe.vae.enable_slicing() pipe.vae.enable_tiling()\n4. Generate video = pipe( prompt=“A majestic eagle soaring over snow-capped mountains, \" “golden hour lighting, cinematic composition”, num_inference_steps=50, guidance_scale=6.0, num_frames=49, # 6 giây ở 8 fps height=480, width=720, generator=torch.Generator().manual_seed(42), ).frames[0]\n5. Lưu export_to_video(video, “output.mp4”, fps=8)\nImage-to-video với CogVideoX1.5-5B-I2V: `````python import torch from diffusers import CogVideoXImageToVideoPipeline, CogVideoXDPMScheduler from diffusers.utils import export_to_video, load_image pipe = CogVideoXImageToVideoPipeline.from_pretrained( \"THUDM/CogVideoX1.5-5B-I2V\", torch_dtype=torch.float16 ) pipe.scheduler = CogVideoXDPMScheduler.from_config( pipe.scheduler.config, timestep_spacing=\"trailing\" ) pipe.enable_sequential_cpu_offload() pipe.vae.enable_slicing() pipe.vae.enable_tiling() image = load_image(\"input_image.jpg\") video = pipe( image=image, prompt=\"The cat in the image slowly turns its head and blinks, \" \"soft natural lighting from a nearby window\", height=768, width=1360, num_inference_steps=50, num_frames=49, guidance_scale=6.0, generator=torch.Generator().manual_seed(42), ).frames[0] export_to_video(video, \"output_i2v.mp4\", fps=8) ComfyUI Node-Based Workflow ComfyUI-CogVideoXWrapper cho phép workflow dạng node trực quan. Cài đặt: `````bash cd ComfyUI/custom_nodes git clone https://github.com/kijai/ComfyUI-CogVideoXWrapper.git cd ComfyUI-CogVideoXWrapper pip install -r requirements.txt\nRestart ComfyUI và load workflow CogVideoX. Wrapper hỗ trợ mọi biến thể model bao gồm I2V và video-to-video. ### SAT Framework Fine-Tuning Fine-tune style và concept tùy chỉnh bằng LoRA qua SAT: Cấu hình ``sat/configs/sft.yaml``: `````yaml model_parallel_size: 1 experiment_name: lora-custom-style mode: finetune load: \"{your_CogVideoX-2b-sat_path}/transformer\" train_iters: 1000 eval_interval: 100 save_interval: 100 save: ckpts train_data: [\"your_train_data_path\"] valid_data: [\"your_val_data_path\"] deepseed: bf16: enabled: False # True cho 5B fp16: enabled: True # False cho 5B Chạy fine-tuning trên single GPU: `````bash cd CogVideo/sat bash finetune_single_gpu.sh\nChuyển đổi SAT LoRA weights sang Hugging Face format: `````bash python tools/export_sat_lora_weight.py \\ --sat_pt_path ckpts/lora-custom-style/1000/mp_rank_00_model_states.pt \\ --lora_save_directory ./hf_lora_weights/ Load fine-tuned weights trong inference: `````python pipe.load_lora_weights( “./hf_lora_weights/”, weight_name=“pytorch_lora_weights.safetensors”, adapter_name=“custom_style” ) pipe.fuse_lora(components=[“transformer”], lora_scale=1.0)\n### Pipeline Tối Ưu Prompt CogVideoX được train với prompt dài, mô tả chi tiết. Prompt ngắn cho chất lượng thấp hơn. Dùng script chuyển đổi prompt: `````bash python inference/convert_demo.py \\ --prompt \"A girl riding a bike\" \\ --type \"t2v\" Script gọi large language model (GLM-4 Plus hoặc GPT-4o) để mở rộng prompt đơn giản thành mô tả chi tiết. Ví dụ chuyển đổi: Input: \"A girl riding a bike\"\nOutput: \"A young woman with flowing auburn hair rides a vintage red bicycle along a cobblestone path. She wears a light summer dress that billows gently in the breeze. The path winds through a sun-dappled forest with tall oak trees casting long shadows on the ground. Golden afternoon light filters through the leaves, creating a warm, nostalgic atmosphere. She pedals at a leisurely pace, a serene smile on her face, occasionally glancing at wildflowers growing along the path edge.\"\nDùng programmatic: `````python from inference.convert_demo import convert_prompt\noptimized_prompt = convert_prompt( “A cat playing with a toy mouse”, retry_times=3, type=“t2v” ) print(optimized_prompt)\n### Quantized Inference Với TorchAO Cho deployment VRAM hạn chế, dùng INT8 quantization qua diffusers-torchao: `````bash pip install torchao import torch from diffusers import CogVideoXPipeline from torchao.quantization import quantize_, int8_weight_only pipe = CogVideoXPipeline.from_pretrained( \"THUDM/CogVideoX-5B\", torch_dtype=torch.bfloat16 ) # Quantize transformer sang INT8 quantize_(pipe.transformer, int8_weight_only()) pipe.enable_sequential_cpu_offload() pipe.vae.enable_slicing() video = pipe( prompt=\"A robot walking through a futuristic city at night\", num_inference_steps=50, num_frames=49, ).frames[0] Quantization giảm VRAM từ 10GB xuống ~7GB cho CogVideoX-5B với ít mất mát chất lượng.\nBenchmarks \u0026 Use Case Thực Tế Tốc Độ Inference (Single A100 80GB) Model Precision Steps Thờì gian (video 5s) Thờì gian (video 10s) CogVideoX-2B BF16 50 ~180s N/A CogVideoX-5B BF16 50 ~1000s N/A CogVideoX1.5-5B BF16 50 ~550s (H100) ~1000s CogVideoX1.5-5B-I2V FP16 50 ~90s N/A CogVideoX1.5-5B-I2V FP16 50 ~45s (H100) N/A Điểm Chất Lượng VBench-2.0 Chiều CogVideoX-5B (BLADE 8-step) CogVideoX-5B (50-step) Wan2.1-1.3B Tổng 0.569 0.534 0.570 Human Fidelity 0.896 0.871 0.918 Controllability 0.612 0.581 0.593 Physics 0.543 0.512 0.538 Creativity 0.587 0.554 0.571 Nguồn: Video-BLADE paper (Zhejiang University, 2025)\nUse Case Thực Tế Studio Sáng Tạo Nội Dung: Studio animation Tokyo dùng CogVideoX-5B-I2V để animate concept art, rút ngắn 60% thờì gian sản xuất storyboard.\nDemo Sản Phẩm E-commerce: Nhà bán lẻ nội thất tạo video showcase từ ảnh sản phẩm bằng CogVideoX1.5-5B-I2V, độ phân giải 1360 x 768.\nNội Dung Giáo Dục: Nền tảng MOOC tự động tạo video demo thí nghiệm vật lý từ mô tả văn bản.\nMarketing Mạng Xã Hội: Team marketing tạo 50+ video variant mỗi ngày cho A/B testing trên server GPU 16GB VRAM.\nCách Sử Dụng Nâng Cao / Củng Cố Production Multi-GPU Parallel Inference Phân phối inference qua nhiều GPU cho throughput cao: `````python import torch from diffusers import CogVideoXPipeline\npipe = CogVideoXPipeline.from_pretrained( “THUDM/CogVideoX-5B”, torch_dtype=torch.bfloat16, device_map=“balanced” # Auto-distribute qua GPUs )\nKhông gọi enable_model_cpu_offload() với device_map Multi-GPU giảm memory mỗi GPU xuống ~24GB BF16 cho CogVideoX-5B. ### API Server Với FastAPI Wrap inference trong production API: `````python from fastapi import FastAPI from pydantic import BaseModel import torch from diffusers import CogVideoXPipeline from diffusers.utils import export_to_video import uuid app = FastAPI() pipe = None @app.on_event(\"startup\") async def load_model(): global pipe pipe = CogVideoXPipeline.from_pretrained( \"THUDM/CogVideoX-5B\", torch_dtype=torch.bfloat16 ) pipe.enable_model_cpu_offload() pipe.vae.enable_slicing() class GenerateRequest(BaseModel): prompt: str num_frames: int = 49 guidance_scale: float = 6.0 num_inference_steps: int = 50 @app.post(\"/generate\") async def generate_video(req: GenerateRequest): video = pipe( prompt=req.prompt, num_frames=req.num_frames, guidance_scale=req.guidance_scale, num_inference_steps=req.num_inference_steps, height=480, width=720, ).frames[0] output_id = str(uuid.uuid4()) output_path = f\"output/{output_id}.mp4\" export_to_video(video, output_path, fps=8) return {\"video_url\": f\"/videos/{output_id}.mp4\", \"status\": \"complete\"} Chạy: `````bash uvicorn api_server:app –host 0.0.0.0 –port 8000 –workers 1\n### Checklist Tối Ưu VRAM Áp dụng theo thứ tự dựa trên GPU: 1. **VAE Slicing**: Luôn bật — chia batch lớn 2. **VAE Tiling**: Bật cho độ phân giải trên 720p 3. **Sequential CPU Offload**: Dùng khi VRAM \u003c 12GB 4. **Model CPU Offload**: Dùng khi VRAM 12-16GB 5. **INT8 Quantization**: Dùng TorchAO cho target VRAM 7-10GB 6. **BF16 thay FP32**: Luôn dùng BF16 trên Ampere+ GPU ### Monitoring Với Prometheus Theo dõi metrics inference trong production: `````python from prometheus_client import Counter, Histogram, start_http_server import time INFERENCE_COUNT = Counter(cogvideo_inferences_total, 'Tổng số inference') INFERENCE_TIME = Histogram(cogvideo_inference_seconds, 'Độ trễ inference') VRAM_USAGE = Histogram(cogvideo_vram_bytes, 'VRAM peak\") start_http_server(9090) @INFERENCE_TIME.time() def generate_tracked(pipe, prompt): INFERENCE_COUNT.inc() torch.cuda.reset_peak_memory_stats() result = pipe(prompt=prompt, num_frames=49).frames[0] vram = torch.cuda.max_memory_allocated() VRAM_USAGE.observe(vram) return result So Sánh Với Các Lựa Chọn Khác Tính Năng CogVideoX-5B Wan 2.1-14B HunyuanVideo-13B Open-Sora 1.2 Tham số 5B 14B 13B ~7B (STDiT3) Giấy phép Apache-2.0 Apache-2.0 Apache-2.0 Apache-2.0 Độ phân giải tối đa 1360 x 768 1280 x 720 1280 x 720 1280 x 720 Thờì lượng tối đa 10 giây 5 giây 5.4 giây 16 giây VRAM tối thiểu (FP16) 5 GB (2B) / 10 GB (5B) 16 GB (1.3B) / 24 GB (14B) 24 GB 16 GB Inference (A100) ~1000s (video 5s) ~846s (video 5s) ~132s/step ở 2K ~94s/step Text Alignment Mạnh Trung bình Mạnh Trung bình Chất lượng chuyển động Trung bình Mạnh Xuất sắc Trung bình I2V Có (model chuyên dụng) Có Có Có Fine-Tuning LoRA + Full (SAT) LoRA LoRA + Full Full only Hỗ trợ ComfyUI Có (wrapper) Có (wrapper) Có (wrapper) Có (wrapper) Quantization INT8 qua TorchAO INT8/INT4 INT8/INT4 Hạn chế Prompt đa ngôn ngữ Tiếng Anh CN+EN CN+EN Tiếng Anh Khi chọn CogVideoX: Khi cần text-following chính xác, tạo video dài (tối đa 10s), I2V với model chuyên dụng, hoặc VRAM thấp nhất. CogVideoX1.5-5B-I2V chạy trên GPU 4GB.\nKhi chọn Wan 2.1: Tốt hơn cho workflow song ngữ Trung-Anh với 16GB+ VRAM. Wan 2.1 có chất lượng chuyển động vượt trội.\nKhi chọn HunyuanVideo: Chất lượng tổng thể tốt nhất trên VBench-2.0, nhưng cần 24GB+ VRAM.\nKhi chọn Open-Sora: Cho linh hoạt nghiên cứu và video rất dài (tối đa 16 giây), chất lượng hình ảnh thấp hơn.\nHạn Chế / Đánh Giá Trung Thực CogVideoX có những ràng buộc rõ ràng cần biết trước khi đầu tư: 1. Inference Chậm: Video 5 giây mất ~1000 giây trên A100 với CogVideoX-5B ở 50 bước. Wan 2.1 và HunyuanVideo nhanh hơn.\nChỉ Hỗ Trợ Prompt Tiếng Anh: CogVideoX chủ yếu train trên caption tiếng Anh. So với Wan 2.1 hoặc HunyuanVideo xử lý tiếng Trung native, prompt đa ngôn ngữ giảm chất lượng.\nChất Lượng Ngườì: Điểm human fidelity VBench-2.0 thấp hơn HunyuanVideo (0.871 vs 0.964). Mặt ngườì và chuyển động cơ thể thờ̀nh thoảng có artifact.\nTối Đa 10 Giây: CogVideoX1.5-5B cũng giới hạn 10 giây (161 frames). Nội dung dài hơn cần kỹ thuật mở rộng video hoặc chuyển sang Open-Sora.\nYêu Cầu Prompt Engineering: Model cần prompt dài, chi tiết (200+ từ). Không tối ưu prompt qua LLM expansion, chất lượng output giảm đáng kể.\nKhông Có API Video Thương Mại: Khác với Runway hay Kling, CogVideoX chỉ hỗ trợ self-hosted. Bạn tự quản lý GPU infrastructure, scaling và queueing.\nCâu Hỏi Thường Gặp Q: Cần GPU gì để chạy CogVideoX locally?\nA: CogVideoX-2B chạy trên 5GB VRAM với Diffusers + sequential CPU offload. CogVideoX-5B cần 10GB. CogVideoX1.5-5B-I2V chạy trên 4GB. Để trải nghiệm mượt không dùng CPU offload, hướng đến 16GB+ VRAM (RTX 4080/4090 hoặc A100).\nQ: Làm sao tăng tốc inference vượt quá 50 bước?\nA: Dùng CogVideoXDPMScheduler với timestep_spacing=\"trailing\" và giảm bước xuống 25-30 cho preview. Video-BLADE step distillation đạt 8.89x tốc độ trên CogVideoX-5B. Bật VAE tiling và slicing.\nQ: Có thể fine-tune CogVideoX trên dataset riêng không?\nA: Có, qua hai đường dẫn. SAT framework hỗ trợ full-parameter fine-tuning và LoRA. Diffusers hỗ trợ LoRA qua train_cogvideox_lora.py. Model 5B cần A100 GPU — model 2B có thể train trên single RTX 4090. Cần 25+ video cho học style hoặc concept mới.\nQ: Khác biệt giữa CogVideoX-5B và CogVideoX1.5-5B là gì?\nA: CogVideoX1.5-5B là bản cập nhật tháng 11/2024 với độ phân giải cao hơn (1360 x 768 vs 720 x 480), video dài hơn (tối đa 10 giây vs 6 giây), cải thiện xử lý frame (công thức 16N+1 vs 8N+1). Series 1.5 còn có model I2V chuyên dụng.\nQ: CogVideoX so với API thương mại như Sora hay Kling?\nA: API thương mại dễ truy cập, chất lượng đỉnh cao hơn, đặc biệt về chủ đề ngườì. CogVideoX thắng về chi phí (không phí/video), privacy (local inference), tùy chỉnh (LoRA fine-tuning) và khả năng tái tạo (fixed seeds). Tạo video hàng loạt quy mô lớn, self-hosted CogVideoX thường rẻ hơn 10 lần API billing.\nQ: CogVideoX output định dạng file gì?\nA: Diffusers pipeline output PyTorch tensors. Dùng export_to_video() từ diffusers.utils để lưu MP4 với H.264 encoding ở 8-16 FPS. Chuyển đổi sang định dạng khác bằng FFmpeg: `````bash ffmpeg -i output.mp4 -c:v libx265 -crf 23 output_h265.mp4\n**Q: Có web UI cho ngườì dùng không kỹ thuật không?** A: Có, nhiều lựa chọn. Hugging Face Space chính thức cho online inference không cần setup. ComfyUI với node CogVideoXWrapper cho giao diện workflow trực quan local. * * * ## Kết Luận CogVideoX cung cấp tạo video từ văn bản cấp production với tính linh hoạt của triển khai mã nguồn mở. Từ GPU ngườì dùng 4GB VRAM đến cluster server đa A100, model mở rộng qua mọi cấp hardware nhờ quantization, CPU offloading và SAT framework fine-tuning. **Hành động để bắt đầu ngay hôm nay:** 1. Clone repository: ````git clone https://github.com/zai-org/CogVideo.git```` 2. Cài dependencies: ````pip install -r requirements.txt```` 3. Chạy generation đầu tiên: ````python inference/cli_demo.py --prompt \"Your prompt here\" --model_path THUDM/CogVideoX-5B```` 4. Tối ưu prompt với ````convert_demo.py``` để chất lượng tốt hơn 5. Tham gia cộng đồng [Discord](https://github.com/zai-org/CogVideo#-join-our-community) để hỗ trợ và chia sẻ workflow Cho triển khai production, bắt đầu với Docker setup, thêm FastAPI wrapping, và monitor bằng Prometheus. **Tham gia nhóm Telegram để cập nhật mã nguồn AI hàng ngày:** [@dibi8source](https://t.me/dibi8source) * * * ## Hosting Và Hạ Tầng Được Đề Xuất Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source. - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com. *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.* ## Nguồn \u0026 Tài Liệu Tham Khảo - CogVideo GitHub Repository: https://github.com/zai-org/CogVideo - CogVideoX-5B Model Card (Hugging Face): https://huggingface.co/THUDM/CogVideoX-5B - CogVideoX1.5-5B Model Card: https://huggingface.co/THUDM/CogVideoX1.5-5B - CogVideoX Paper (arXiv): https://arxiv.org/abs/2408.06072 - Diffusers Documentation: https://huggingface.co/docs/diffusers/main/en/api/pipelines/cogvideox - Video-BLADE Acceleration Paper: https://arxiv.org/abs/2508.10774 - VBench-2.0 Benchmark Paper: https://arxiv.org/abs/2503.21755 - CogKit Fine-Tuning Framework: https://github.com/zai-org/CogKit - ComfyUI-CogVideoXWrapper: https://github.com/kijai/ComfyUI-CogVideoXWrapper - diffusers-torchao Quantization: https://github.com/sayakpaul/diffusers-torchao - Wan 2.1 Repository: https://github.com/Wan-Video/Wan2.1 - HunyuanVideo Repository: https://github.com/Tencent/HunyuanVideo - Open-Sora Repository: https://github.com/hpcaitech/Open-Sora { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"CogVideo: 12.7K Stars — Hướng Dẫn Cài Đặt Text-to-Video Đầy Đủ 2026\", \"datePublished\": \"2026-05-19\", \"dateModified\": \"2026-05-19\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/vi/resources/cogvideo\" } } * * * ## Related Articles - [moneyprinterturbo-one-click-ai-video-generator](cogvideo) - [moneyprinter-turbo-ai-video-generation-one-command](cogvideo) - [nvidia-cosmos-world-models-platform-2026](cogvideo) - [moneyprinter-turbo-ai-video-generation-one-command](cogvideo) - [moneyprinter-turbo-ai-video-generation-one-command](cogvideo) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ","wordCount":"2925","inLanguage":"vi","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/vi/ai-coding-agents/cogvideo/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/vi/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/vi/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/vi/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/vi/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/vi/>Trang chủ</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
+<a href>AI Coding Agents - dibi8</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>14 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/cogvideo/>En</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Mục lục</span></summary><div class=inner><ul><ul><li><a href=#gi%e1%bb%9bi-thi%e1%bb%87u aria-label="Giới Thiệu">Giới Thiệu</a></li><li><a href=#cogvideo-l%c3%a0-g%c3%ac aria-label="CogVideo Là Gì?">CogVideo Là Gì?</a></li><li><a href=#cogvideo-ho%e1%ba%a1t-%c4%91%e1%bb%99ng-nh%c6%b0-th%e1%ba%bf-n%c3%a0o aria-label="CogVideo Hoạt Động Như Thế Nào">CogVideo Hoạt Động Như Thế Nào</a><ul><li><a href=#t%e1%bb%95ng-quan-ki%e1%ba%bfn-tr%c3%bac aria-label="Tổng Quan Kiến Trúc">Tổng Quan Kiến Trúc</a></li><li><a href=#c%c3%a1c-bi%e1%ba%bfn-th%e1%bb%83-model aria-label="Các Biến Thể Model">Các Biến Thể Model</a></li></ul></li><li><a href=#c%c3%a0i-%c4%91%e1%ba%b7t--thi%e1%ba%bft-l%e1%ba%adp aria-label="Cài Đặt & Thiết Lập">Cài Đặt & Thiết Lập</a><ul><li><a href=#y%c3%aau-c%e1%ba%a7u-ti%c3%aan-quy%e1%ba%bft aria-label="Yêu Cầu Tiên Quyết">Yêu Cầu Tiên Quyết</a></li><li><a href=#c%c3%a1ch-1-pip-install-khuy%e1%ba%bfn-ngh%e1%bb%8b-d%c6%b0%e1%bb%9bi-5-ph%c3%bat aria-label="Cách 1: pip Install (Khuyến nghị, Dưới 5 Phút)">Cách 1: pip Install (Khuyến nghị, Dưới 5 Phút)</a></li><li><a href=#c%c3%a1ch-3-sat-framework-nghi%c3%aan-c%e1%bb%a9u--fine-tuning aria-label="Cách 3: SAT Framework (Nghiên cứu & Fine-tuning)">Cách 3: SAT Framework (Nghiên cứu & Fine-tuning)</a></li></ul></li><li><a href=#t%c3%adch-h%e1%bb%a3p-v%e1%bb%9bi-c%c3%b4ng-c%e1%bb%a5-ph%e1%bb%95-bi%e1%ba%bfn aria-label="Tích Hợp Với Công Cụ Phổ Biến">Tích Hợp Với Công Cụ Phổ Biến</a><ul><li><a href=#hugging-face-diffusers-khuy%e1%ba%bfn-ngh%e1%bb%8b-cho-ng%c6%b0%e1%bb%9d%c3%ac-m%e1%bb%9bi aria-label="Hugging Face Diffusers (Khuyến nghị Cho Ngườì Mới)">Hugging Face Diffusers (Khuyến nghị Cho Ngườì Mới)</a></li></ul></li></ul><li><a href=#1-load-pipeline aria-label="1. Load pipeline">1. Load pipeline</a></li><li><a href=#2-set-scheduler--dpm-cho-5b-ddim-cho-2b aria-label="2. Set scheduler — DPM cho 5B, DDIM cho 2B">2. Set scheduler — DPM cho 5B, DDIM cho 2B</a></li><li><a href=#3-b%e1%ba%adt-memory-optimizations aria-label="3. Bật memory optimizations">3. Bật memory optimizations</a></li><li><a href=#4-generate aria-label="4. Generate">4. Generate</a></li><li><a href=#5-l%c6%b0u aria-label="5. Lưu">5. Lưu</a><ul><ul><li><a href=#comfyui-node-based-workflow aria-label="ComfyUI Node-Based Workflow">ComfyUI Node-Based Workflow</a></li></ul><li><a href=#benchmarks--use-case-th%e1%bb%b1c-t%e1%ba%bf aria-label="Benchmarks & Use Case Thực Tế">Benchmarks & Use Case Thực Tế</a><ul><li><a href=#t%e1%bb%91c-%c4%91%e1%bb%99-inference-single-a100-80gb aria-label="Tốc Độ Inference (Single A100 80GB)">Tốc Độ Inference (Single A100 80GB)</a></li><li><a href=#%c4%91i%e1%bb%83m-ch%e1%ba%a5t-l%c6%b0%e1%bb%a3ng-vbench-20 aria-label="Điểm Chất Lượng VBench-2.0">Điểm Chất Lượng VBench-2.0</a></li><li><a href=#use-case-th%e1%bb%b1c-t%e1%ba%bf aria-label="Use Case Thực Tế">Use Case Thực Tế</a></li></ul></li><li><a href=#c%c3%a1ch-s%e1%bb%ad-d%e1%bb%a5ng-n%c3%a2ng-cao--c%e1%bb%a7ng-c%e1%bb%91-production aria-label="Cách Sử Dụng Nâng Cao / Củng Cố Production">Cách Sử Dụng Nâng Cao / Củng Cố Production</a><ul><li><a href=#multi-gpu-parallel-inference aria-label="Multi-GPU Parallel Inference">Multi-GPU Parallel Inference</a></li></ul></li></ul></li><li><a href=#kh%c3%b4ng-g%e1%bb%8di-enable_model_cpu_offload-v%e1%bb%9bi-device_map aria-label="Không gọi enable_model_cpu_offload() với device_map">Không gọi enable_model_cpu_offload() với device_map</a><ul><li><a href=#so-s%c3%a1nh-v%e1%bb%9bi-c%c3%a1c-l%e1%bb%b1a-ch%e1%bb%8dn-kh%c3%a1c aria-label="So Sánh Với Các Lựa Chọn Khác">So Sánh Với Các Lựa Chọn Khác</a></li><li><a href=#h%e1%ba%a1n-ch%e1%ba%bf--%c4%91%c3%a1nh-gi%c3%a1-trung-th%e1%bb%b1c aria-label="Hạn Chế / Đánh Giá Trung Thực">Hạn Chế / Đánh Giá Trung Thực</a></li><li><a href=#c%c3%a2u-h%e1%bb%8fi-th%c6%b0%e1%bb%9dng-g%e1%ba%b7p aria-label="Câu Hỏi Thường Gặp">Câu Hỏi Thường Gặp</a></li></ul></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+description: &ldquo;Technical guide and comparison.&rdquo;
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
+tech_stack: []
+application_domain: Ai Tools
+source_version: &rsquo;'
+licensing_model: Open Source
+license_type: Apache-2.0
+file_size: &rsquo;'
+file_md5: &rsquo;'
+download_url: &rsquo;'
+backup_url: &rsquo;'
+last_maintained: &ldquo;2026-05-19&rdquo;
+draft: false
+categories: [&ldquo;ai-tools&rdquo;]
+tags: [&ldquo;cogvideo&rdquo;, &ldquo;cogvideox&rdquo;, &ldquo;text-to-video&rdquo;, &ldquo;diffusion-transformer&rdquo;, &ldquo;zhipu-ai&rdquo;, &ldquo;video-generation&rdquo;, &ldquo;open-source-ai&rdquo;, &ldquo;comfyui&rdquo;]
+aliases:</p><ul><li>/vi/posts/cogvideo/</li></ul><hr><blockquote><p>Biến văn bản và hình ảnh thành video điện ảnh với Diffusion Transformer mã nguồn mở của Zhipu AI. Từ zero đến production trong 30 phút.</p></blockquote><hr><h2 id=giới-thiệu>Giới Thiệu<a hidden class=anchor aria-hidden=true href=#giới-thiệu>#</a></h2><p>Tạo video từ văn bản đã chuyển từ chủ đề nghiên cứu sang công cụ production trong 2024-2025. Các mô hình mã nguồn mở hiện cạnh tranh với API thương mại về chất lượng trong khi chạy trên GPU ngườì dùng. Vấn đề là: hầu hết repository chỉ cung cấp model weights với tài liệu rải rác. Bạn mất hàng giờ để ghép script inference, flag tối ưu VRAM và pipeline fine-tuning thay vì tạo video.</p><p>CogVideo của Zhipu AI giải quyết khác biệt. Với 12.7K GitHub stars, 36 contributors và release active, nó cung cấp toolkit đầy đủ: model pretrained 2B và 5B tham số, tích hợp Diffusers pipeline, fine-tuning SAT, node ComfyUI và 3D causal VAE nén video thành biểu diễn latent hiệu quả. Hướng dẫn này bao gồm mọi thứ từ ```pip install```` đến triển khai production với quantized inference và LoRA fine-tuning.</p><p><img alt="CogVideo web demo" loading=lazy src=https://raw.githubusercontent.com/zai-org/CogVideo/main/resources/web_demo.png></p><hr><h2 id=cogvideo-là-gì>CogVideo Là Gì?<a hidden class=anchor aria-hidden=true href=#cogvideo-là-gì>#</a></h2><p><img alt="CogVideo logo" loading=lazy src=https://raw.githubusercontent.com/zai-org/CogVideo/main/resources/logo.svg></p><p>CogVideo là framework tạo video từ văn bản và hình ảnh mã nguồn mở do Zhipu AI phát triển, dựa trên kiến trúc 3D causal VAE và expert transformer. Series CogVideoX (2024) kế thừa mô hình CogVideo gốc được công bố tại ICLR 2023, cung cấp model 5B tham số tạo video 6 giây 720p từ text prompt hoặc ảnh tĩnh.</p><hr><h2 id=cogvideo-hoạt-động-như-thế-nào>CogVideo Hoạt Động Như Thế Nào<a hidden class=anchor aria-hidden=true href=#cogvideo-hoạt-động-như-thế-nào>#</a></h2><h3 id=tổng-quan-kiến-trúc>Tổng Quan Kiến Trúc<a hidden class=anchor aria-hidden=true href=#tổng-quan-kiến-trúc>#</a></h3><p>CogVideoX sử dụng pipeline ba thành phần: 1. <strong>T5 Text Encoder</strong>: Mã hóa text prompt thành biểu diễn vector dày đặc (giới hạn 224 token cho CogVideoX-5B, 226 token cho CogVideoX1.5-5B)
+2. <strong>3D Causal VAE</strong>: Nén video không gian và thờì gian vào latent space — nén không gian 4x và nén thờì gian 4-8x tùy biến thể model
+3. <strong>Expert Transformer (DiT)</strong>: Diffusion transformer với 3D full attention denoise biểu diễn video latent qua 50 bước inference</p><p>Luồng kiến trúc: <code>Text Prompt → T5 Encoder → Latent Text Embedding → DiT Denoising → 3D VAE Decoder → MP4 Video</code></p><p><img alt="CogVideoX architecture overview" loading=lazy src=https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/diffusers/cogvideox/pipeline.png></p><h3 id=các-biến-thể-model>Các Biến Thể Model<a hidden class=anchor aria-hidden=true href=#các-biến-thể-model>#</a></h3><table><thead><tr><th>Model</th><th>Tham số</th><th>Độ phân giải</th><th>Max Frames</th><th>VRAM (BF16)</th><th>VRAM (INT8)</th></tr></thead><tbody><tr><td>CogVideoX-2B</td><td>2B</td><td>720 x 480</td><td>49</td><td>5 GB min</td><td>4.4 GB</td></tr><tr><td>CogVideoX-5B</td><td>5B</td><td>720 x 480</td><td>49</td><td>10 GB min</td><td>7 GB</td></tr><tr><td>CogVideoX-5B-I2V</td><td>5B</td><td>720 x 480</td><td>49</td><td>4 GB min</td><td>3.6 GB</td></tr><tr><td>CogVideoX1.5-5B</td><td>5B</td><td>1360 x 768</td><td>161 (10s)</td><td>10 GB min</td><td>7 GB</td></tr><tr><td>CogVideoX1.5-5B-I2V</td><td>5B</td><td>768 x 1360</td><td>49 (6s)</td><td>4 GB min</td><td>3.6 GB</td></tr></tbody></table><hr><h2 id=cài-đặt--thiết-lập>Cài Đặt & Thiết Lập<a hidden class=anchor aria-hidden=true href=#cài-đặt--thiết-lập>#</a></h2><h3 id=yêu-cầu-tiên-quyết>Yêu Cầu Tiên Quyết<a hidden class=anchor aria-hidden=true href=#yêu-cầu-tiên-quyết>#</a></h3><ul><li><strong>Python</strong>: 3.10 - 3.12 (bao gồm)</li><li><strong>CUDA</strong>: 12.1+ với driver NVIDIA 525+</li><li><strong>GPU</strong>: NVIDIA, 5GB+ VRAM cho CogVideoX-2B, 10GB+ cho CogVideoX-5B</li><li><strong>Lưu trữ</strong>: 20GB trống cho model weights + dependencies</li></ul><h3 id=cách-1-pip-install-khuyến-nghị-dưới-5-phút>Cách 1: pip Install (Khuyến nghị, Dưới 5 Phút)<a hidden class=anchor aria-hidden=true href=#cách-1-pip-install-khuyến-nghị-dưới-5-phút>#</a></h3><p>Bước 1 — Tạo môi trường ảo: `````bash
+python3.11 -m venv cogvideo_env
+source cogvideo_env/bin/activate</p><pre tabindex=0><code>
+Bước 2 — Clone repository và cài dependencies: `````bash
+git clone https://github.com/zai-org/CogVideo.git
+cd CogVideo
+pip install -r requirements.txt
+</code></pre><p><code>requirements.txt</code> cài PyTorch, Diffusers, Transformers, Accelerate và toolkit SAT: `````
+torch>=2.3.0
+diffusers>=0.30.0
+transformers>=4.40.0
+accelerate>=0.30.0
+sentencepiece
+opencv-python</p><pre tabindex=0><code>
+Bước 3 — Xác minh cài đặt: `````python
+import torch
+from diffusers import CogVideoXPipeline
+
+print(f&#34;PyTorch version: {torch.__version__}&#34;)
+print(f&#34;CUDA available: {torch.cuda.is_available()}&#34;)
+print(f&#34;CUDA version: {torch.version.cuda}&#34;)
+</code></pre><p>Output mong đợi: `````
+PyTorch version: 2.5.1+cu121
+CUDA available: True
+CUDA version: 12.1</p><pre tabindex=0><code>
+### Cách 2: Docker Deployment (Production)
+
+Triển khai reproducible và multi-GPU inference với Docker image: `````dockerfile
+FROM nvidia/cuda:12.1.0-devel-ubuntu22.04
+
+RUN apt-get update &amp;&amp; apt-get install -y \
+    python3.11 python3-pip git wget \
+    &amp;&amp; rm -rf /var/lib/apt/lists/*
+
+RUN pip3 install --no-cache-dir torch torchvision --index-url \
+    https://download.pytorch.org/whl/cu121
+
+WORKDIR /app
+RUN git clone https://github.com/zai-org/CogVideo.git .
+RUN pip3 install -r requirements.txt
+
+ENV PYTHONUNBUFFERED=1
+EXPOSE 7860
+
+CMD [&#34;python3&#34;, &#34;-m&#34;, &#34;inference.cli_demo&#34;]
+</code></pre><p>Build và run: `````bash
+docker build -t cogvideo:latest .
+docker run &ndash;gpus all -it &ndash;rm<br>-v $(pwd)/output:/app/output<br>-v $(pwd)/models:/app/models<br>cogvideo:latest<br>&ndash;prompt &ldquo;A serene mountain lake at sunrise&rdquo;<br>&ndash;model_path THUDM/CogVideoX-5B</p><pre tabindex=0><code>
+Multi-GPU inference, thêm ``device_map=&#34;balanced&#34;`` vào ``from_pretrained()`` và bỏ ``enable_model_cpu_offload()``: `````python
+pipe = CogVideoXPipeline.from_pretrained(
+    &#34;THUDM/CogVideoX-5B&#34;,
+    torch_dtype=torch.bfloat16,
+    device_map=&#34;balanced&#34;
+)
+</code></pre><h3 id=cách-3-sat-framework-nghiên-cứu--fine-tuning>Cách 3: SAT Framework (Nghiên cứu & Fine-tuning)<a hidden class=anchor aria-hidden=true href=#cách-3-sat-framework-nghiên-cứu--fine-tuning>#</a></h3><p>Swiss Army Transformer (SAT) là training toolkit của Zhipu AI. Cài để fine-tune và nghiên cứu: `````bash
+git clone <a href=https://github.com/zai-org/CogVideo.git>https://github.com/zai-org/CogVideo.git</a>
+cd CogVideo/sat
+pip install -e .</p><pre tabindex=0><code>
+Xác minh SAT: `````python
+from sat import get_args
+print(&#34;SAT framework loaded successfully&#34;)
+</code></pre><hr><h2 id=tích-hợp-với-công-cụ-phổ-biến>Tích Hợp Với Công Cụ Phổ Biến<a hidden class=anchor aria-hidden=true href=#tích-hợp-với-công-cụ-phổ-biến>#</a></h2><h3 id=hugging-face-diffusers-khuyến-nghị-cho-ngườì-mới>Hugging Face Diffusers (Khuyến nghị Cho Ngườì Mới)<a hidden class=anchor aria-hidden=true href=#hugging-face-diffusers-khuyến-nghị-cho-ngườì-mới>#</a></h3><p>Diffusers pipeline là cách nhanh nhất để tạo video. Script text-to-video đầy đủ: `````python
+import torch
+from diffusers import CogVideoXPipeline, CogVideoXDPMScheduler
+from diffusers.utils import export_to_video</p><h1 id=1-load-pipeline>1. Load pipeline<a hidden class=anchor aria-hidden=true href=#1-load-pipeline>#</a></h1><p>pipe = CogVideoXPipeline.from_pretrained(
+&ldquo;THUDM/CogVideoX-5B&rdquo;,
+torch_dtype=torch.bfloat16
+)</p><h1 id=2-set-scheduler--dpm-cho-5b-ddim-cho-2b>2. Set scheduler — DPM cho 5B, DDIM cho 2B<a hidden class=anchor aria-hidden=true href=#2-set-scheduler--dpm-cho-5b-ddim-cho-2b>#</a></h1><p>pipe.scheduler = CogVideoXDPMScheduler.from_config(
+pipe.scheduler.config, timestep_spacing=&ldquo;trailing&rdquo;
+)</p><h1 id=3-bật-memory-optimizations>3. Bật memory optimizations<a hidden class=anchor aria-hidden=true href=#3-bật-memory-optimizations>#</a></h1><p>pipe.enable_sequential_cpu_offload() # VRAM thấp nhất
+pipe.vae.enable_slicing()
+pipe.vae.enable_tiling()</p><h1 id=4-generate>4. Generate<a hidden class=anchor aria-hidden=true href=#4-generate>#</a></h1><p>video = pipe(
+prompt=&ldquo;A majestic eagle soaring over snow-capped mountains, "
+&ldquo;golden hour lighting, cinematic composition&rdquo;,
+num_inference_steps=50,
+guidance_scale=6.0,
+num_frames=49, # 6 giây ở 8 fps
+height=480,
+width=720,
+generator=torch.Generator().manual_seed(42),
+).frames[0]</p><h1 id=5-lưu>5. Lưu<a hidden class=anchor aria-hidden=true href=#5-lưu>#</a></h1><p>export_to_video(video, &ldquo;output.mp4&rdquo;, fps=8)</p><pre tabindex=0><code>
+Image-to-video với CogVideoX1.5-5B-I2V: `````python
+import torch
+from diffusers import CogVideoXImageToVideoPipeline, CogVideoXDPMScheduler
+from diffusers.utils import export_to_video, load_image
+
+pipe = CogVideoXImageToVideoPipeline.from_pretrained(
+    &#34;THUDM/CogVideoX1.5-5B-I2V&#34;,
+    torch_dtype=torch.float16
+)
+pipe.scheduler = CogVideoXDPMScheduler.from_config(
+    pipe.scheduler.config, timestep_spacing=&#34;trailing&#34;
+)
+pipe.enable_sequential_cpu_offload()
+pipe.vae.enable_slicing()
+pipe.vae.enable_tiling()
+
+image = load_image(&#34;input_image.jpg&#34;)
+video = pipe(
+    image=image,
+    prompt=&#34;The cat in the image slowly turns its head and blinks, &#34;
+           &#34;soft natural lighting from a nearby window&#34;,
+    height=768,
+    width=1360,
+    num_inference_steps=50,
+    num_frames=49,
+    guidance_scale=6.0,
+    generator=torch.Generator().manual_seed(42),
+).frames[0]
+
+export_to_video(video, &#34;output_i2v.mp4&#34;, fps=8)
+</code></pre><h3 id=comfyui-node-based-workflow>ComfyUI Node-Based Workflow<a hidden class=anchor aria-hidden=true href=#comfyui-node-based-workflow>#</a></h3><p>ComfyUI-CogVideoXWrapper cho phép workflow dạng node trực quan. Cài đặt: `````bash
+cd ComfyUI/custom_nodes
+git clone <a href=https://github.com/kijai/ComfyUI-CogVideoXWrapper.git>https://github.com/kijai/ComfyUI-CogVideoXWrapper.git</a>
+cd ComfyUI-CogVideoXWrapper
+pip install -r requirements.txt</p><pre tabindex=0><code>
+Restart ComfyUI và load workflow CogVideoX. Wrapper hỗ trợ mọi biến thể model bao gồm I2V và video-to-video.
+
+### SAT Framework Fine-Tuning
+
+Fine-tune style và concept tùy chỉnh bằng LoRA qua SAT: Cấu hình ``sat/configs/sft.yaml``: `````yaml
+model_parallel_size: 1
+experiment_name: lora-custom-style
+mode: finetune
+load: &#34;{your_CogVideoX-2b-sat_path}/transformer&#34;
+train_iters: 1000
+eval_interval: 100
+save_interval: 100
+save: ckpts
+train_data: [&#34;your_train_data_path&#34;]
+valid_data: [&#34;your_val_data_path&#34;]
+deepseed: bf16: enabled: False  # True cho 5B
+  fp16: enabled: True   # False cho 5B
+</code></pre><p>Chạy fine-tuning trên single GPU: `````bash
+cd CogVideo/sat
+bash finetune_single_gpu.sh</p><pre tabindex=0><code>
+Chuyển đổi SAT LoRA weights sang Hugging Face format: `````bash
+python tools/export_sat_lora_weight.py \
+  --sat_pt_path ckpts/lora-custom-style/1000/mp_rank_00_model_states.pt \
+  --lora_save_directory ./hf_lora_weights/
+</code></pre><p>Load fine-tuned weights trong inference: `````python
+pipe.load_lora_weights(
+&ldquo;./hf_lora_weights/&rdquo;,
+weight_name=&ldquo;pytorch_lora_weights.safetensors&rdquo;,
+adapter_name=&ldquo;custom_style&rdquo;
+)
+pipe.fuse_lora(components=[&ldquo;transformer&rdquo;], lora_scale=1.0)</p><pre tabindex=0><code>
+### Pipeline Tối Ưu Prompt
+
+CogVideoX được train với prompt dài, mô tả chi tiết. Prompt ngắn cho chất lượng thấp hơn. Dùng script chuyển đổi prompt: `````bash
+python inference/convert_demo.py \
+  --prompt &#34;A girl riding a bike&#34; \
+  --type &#34;t2v&#34;
+</code></pre><p>Script gọi large language model (GLM-4 Plus hoặc GPT-4o) để mở rộng prompt đơn giản thành mô tả chi tiết. Ví dụ chuyển đổi: <strong>Input:</strong> <code>"A girl riding a bike"</code></p><p><strong>Output:</strong> <code>"A young woman with flowing auburn hair rides a vintage red bicycle along a cobblestone path. She wears a light summer dress that billows gently in the breeze. The path winds through a sun-dappled forest with tall oak trees casting long shadows on the ground. Golden afternoon light filters through the leaves, creating a warm, nostalgic atmosphere. She pedals at a leisurely pace, a serene smile on her face, occasionally glancing at wildflowers growing along the path edge."</code></p><p>Dùng programmatic: `````python
+from inference.convert_demo import convert_prompt</p><p>optimized_prompt = convert_prompt(
+&ldquo;A cat playing with a toy mouse&rdquo;,
+retry_times=3,
+type=&ldquo;t2v&rdquo;
+)
+print(optimized_prompt)</p><pre tabindex=0><code>
+### Quantized Inference Với TorchAO
+
+Cho deployment VRAM hạn chế, dùng INT8 quantization qua diffusers-torchao: `````bash
+pip install torchao
+</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> torch
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> diffusers <span style=color:#f92672>import</span> CogVideoXPipeline
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> torchao.quantization <span style=color:#f92672>import</span> quantize_, int8_weight_only
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>pipe <span style=color:#f92672>=</span> CogVideoXPipeline<span style=color:#f92672>.</span>from_pretrained(
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;THUDM/CogVideoX-5B&#34;</span>,
+</span></span><span style=display:flex><span>    torch_dtype<span style=color:#f92672>=</span>torch<span style=color:#f92672>.</span>bfloat16
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Quantize transformer sang INT8</span>
+</span></span><span style=display:flex><span>quantize_(pipe<span style=color:#f92672>.</span>transformer, int8_weight_only())
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>pipe<span style=color:#f92672>.</span>enable_sequential_cpu_offload()
+</span></span><span style=display:flex><span>pipe<span style=color:#f92672>.</span>vae<span style=color:#f92672>.</span>enable_slicing()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>video <span style=color:#f92672>=</span> pipe(
+</span></span><span style=display:flex><span>    prompt<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;A robot walking through a futuristic city at night&#34;</span>,
+</span></span><span style=display:flex><span>    num_inference_steps<span style=color:#f92672>=</span><span style=color:#ae81ff>50</span>,
+</span></span><span style=display:flex><span>    num_frames<span style=color:#f92672>=</span><span style=color:#ae81ff>49</span>,
+</span></span><span style=display:flex><span>)<span style=color:#f92672>.</span>frames[<span style=color:#ae81ff>0</span>]
+</span></span></code></pre></div><p>Quantization giảm VRAM từ 10GB xuống ~7GB cho CogVideoX-5B với ít mất mát chất lượng.</p><hr><h2 id=benchmarks--use-case-thực-tế>Benchmarks & Use Case Thực Tế<a hidden class=anchor aria-hidden=true href=#benchmarks--use-case-thực-tế>#</a></h2><h3 id=tốc-độ-inference-single-a100-80gb>Tốc Độ Inference (Single A100 80GB)<a hidden class=anchor aria-hidden=true href=#tốc-độ-inference-single-a100-80gb>#</a></h3><table><thead><tr><th>Model</th><th>Precision</th><th>Steps</th><th>Thờì gian (video 5s)</th><th>Thờì gian (video 10s)</th></tr></thead><tbody><tr><td>CogVideoX-2B</td><td>BF16</td><td>50</td><td>~180s</td><td>N/A</td></tr><tr><td>CogVideoX-5B</td><td>BF16</td><td>50</td><td>~1000s</td><td>N/A</td></tr><tr><td>CogVideoX1.5-5B</td><td>BF16</td><td>50</td><td>~550s (H100)</td><td>~1000s</td></tr><tr><td>CogVideoX1.5-5B-I2V</td><td>FP16</td><td>50</td><td>~90s</td><td>N/A</td></tr><tr><td>CogVideoX1.5-5B-I2V</td><td>FP16</td><td>50</td><td>~45s (H100)</td><td>N/A</td></tr></tbody></table><h3 id=điểm-chất-lượng-vbench-20>Điểm Chất Lượng VBench-2.0<a hidden class=anchor aria-hidden=true href=#điểm-chất-lượng-vbench-20>#</a></h3><table><thead><tr><th>Chiều</th><th>CogVideoX-5B (BLADE 8-step)</th><th>CogVideoX-5B (50-step)</th><th>Wan2.1-1.3B</th></tr></thead><tbody><tr><td>Tổng</td><td>0.569</td><td>0.534</td><td>0.570</td></tr><tr><td>Human Fidelity</td><td>0.896</td><td>0.871</td><td>0.918</td></tr><tr><td>Controllability</td><td>0.612</td><td>0.581</td><td>0.593</td></tr><tr><td>Physics</td><td>0.543</td><td>0.512</td><td>0.538</td></tr><tr><td>Creativity</td><td>0.587</td><td>0.554</td><td>0.571</td></tr></tbody></table><p>Nguồn: Video-BLADE paper (Zhejiang University, 2025)</p><h3 id=use-case-thực-tế>Use Case Thực Tế<a hidden class=anchor aria-hidden=true href=#use-case-thực-tế>#</a></h3><p><strong>Studio Sáng Tạo Nội Dung</strong>: Studio animation Tokyo dùng CogVideoX-5B-I2V để animate concept art, rút ngắn 60% thờì gian sản xuất storyboard.</p><p><strong>Demo Sản Phẩm E-commerce</strong>: Nhà bán lẻ nội thất tạo video showcase từ ảnh sản phẩm bằng CogVideoX1.5-5B-I2V, độ phân giải 1360 x 768.</p><p><strong>Nội Dung Giáo Dục</strong>: Nền tảng MOOC tự động tạo video demo thí nghiệm vật lý từ mô tả văn bản.</p><p><strong>Marketing Mạng Xã Hội</strong>: Team marketing tạo 50+ video variant mỗi ngày cho A/B testing trên server GPU 16GB VRAM.</p><hr><h2 id=cách-sử-dụng-nâng-cao--củng-cố-production>Cách Sử Dụng Nâng Cao / Củng Cố Production<a hidden class=anchor aria-hidden=true href=#cách-sử-dụng-nâng-cao--củng-cố-production>#</a></h2><h3 id=multi-gpu-parallel-inference>Multi-GPU Parallel Inference<a hidden class=anchor aria-hidden=true href=#multi-gpu-parallel-inference>#</a></h3><p>Phân phối inference qua nhiều GPU cho throughput cao: `````python
+import torch
+from diffusers import CogVideoXPipeline</p><p>pipe = CogVideoXPipeline.from_pretrained(
+&ldquo;THUDM/CogVideoX-5B&rdquo;,
+torch_dtype=torch.bfloat16,
+device_map=&ldquo;balanced&rdquo; # Auto-distribute qua GPUs
+)</p><h1 id=không-gọi-enable_model_cpu_offload-với-device_map>Không gọi enable_model_cpu_offload() với device_map<a hidden class=anchor aria-hidden=true href=#không-gọi-enable_model_cpu_offload-với-device_map>#</a></h1><pre tabindex=0><code>
+Multi-GPU giảm memory mỗi GPU xuống ~24GB BF16 cho CogVideoX-5B.
+
+### API Server Với FastAPI
+
+Wrap inference trong production API: `````python
+from fastapi import FastAPI
+from pydantic import BaseModel
+import torch
+from diffusers import CogVideoXPipeline
+from diffusers.utils import export_to_video
+import uuid
+
+app = FastAPI()
+pipe = None
+
+@app.on_event(&#34;startup&#34;)
+async def load_model(): global pipe
+    pipe = CogVideoXPipeline.from_pretrained(
+        &#34;THUDM/CogVideoX-5B&#34;,
+        torch_dtype=torch.bfloat16
+    )
+    pipe.enable_model_cpu_offload()
+    pipe.vae.enable_slicing()
+
+class GenerateRequest(BaseModel): prompt: str
+    num_frames: int = 49
+    guidance_scale: float = 6.0
+    num_inference_steps: int = 50
+
+@app.post(&#34;/generate&#34;)
+async def generate_video(req: GenerateRequest): video = pipe(
+        prompt=req.prompt,
+        num_frames=req.num_frames,
+        guidance_scale=req.guidance_scale,
+        num_inference_steps=req.num_inference_steps,
+        height=480,
+        width=720,
+    ).frames[0]
+
+    output_id = str(uuid.uuid4())
+    output_path = f&#34;output/{output_id}.mp4&#34;
+    export_to_video(video, output_path, fps=8)
+
+    return {&#34;video_url&#34;: f&#34;/videos/{output_id}.mp4&#34;, &#34;status&#34;: &#34;complete&#34;}
+</code></pre><p>Chạy: `````bash
+uvicorn api_server:app &ndash;host 0.0.0.0 &ndash;port 8000 &ndash;workers 1</p><pre tabindex=0><code>
+### Checklist Tối Ưu VRAM
+
+Áp dụng theo thứ tự dựa trên GPU: 1. **VAE Slicing**: Luôn bật — chia batch lớn
+2. **VAE Tiling**: Bật cho độ phân giải trên 720p
+3. **Sequential CPU Offload**: Dùng khi VRAM &lt; 12GB
+4. **Model CPU Offload**: Dùng khi VRAM 12-16GB
+5. **INT8 Quantization**: Dùng TorchAO cho target VRAM 7-10GB
+6. **BF16 thay FP32**: Luôn dùng BF16 trên Ampere+ GPU
+
+### Monitoring Với Prometheus
+
+Theo dõi metrics inference trong production: `````python
+from prometheus_client import Counter, Histogram, start_http_server
+import time
+
+INFERENCE_COUNT = Counter(cogvideo_inferences_total, &#39;Tổng số inference&#39;)
+INFERENCE_TIME = Histogram(cogvideo_inference_seconds, &#39;Độ trễ inference&#39;)
+VRAM_USAGE = Histogram(cogvideo_vram_bytes, &#39;VRAM peak&#34;)
+
+start_http_server(9090)
+
+@INFERENCE_TIME.time()
+def generate_tracked(pipe, prompt): INFERENCE_COUNT.inc()
+    torch.cuda.reset_peak_memory_stats()
+    result = pipe(prompt=prompt, num_frames=49).frames[0]
+    vram = torch.cuda.max_memory_allocated()
+    VRAM_USAGE.observe(vram)
+    return result
+</code></pre><hr><h2 id=so-sánh-với-các-lựa-chọn-khác>So Sánh Với Các Lựa Chọn Khác<a hidden class=anchor aria-hidden=true href=#so-sánh-với-các-lựa-chọn-khác>#</a></h2><table><thead><tr><th>Tính Năng</th><th>CogVideoX-5B</th><th>Wan 2.1-14B</th><th>HunyuanVideo-13B</th><th>Open-Sora 1.2</th></tr></thead><tbody><tr><td><strong>Tham số</strong></td><td>5B</td><td>14B</td><td>13B</td><td>~7B (STDiT3)</td></tr><tr><td><strong>Giấy phép</strong></td><td>Apache-2.0</td><td>Apache-2.0</td><td>Apache-2.0</td><td>Apache-2.0</td></tr><tr><td><strong>Độ phân giải tối đa</strong></td><td>1360 x 768</td><td>1280 x 720</td><td>1280 x 720</td><td>1280 x 720</td></tr><tr><td><strong>Thờì lượng tối đa</strong></td><td>10 giây</td><td>5 giây</td><td>5.4 giây</td><td>16 giây</td></tr><tr><td><strong>VRAM tối thiểu (FP16)</strong></td><td>5 GB (2B) / 10 GB (5B)</td><td>16 GB (1.3B) / 24 GB (14B)</td><td>24 GB</td><td>16 GB</td></tr><tr><td><strong>Inference (A100)</strong></td><td>~1000s (video 5s)</td><td>~846s (video 5s)</td><td>~132s/step ở 2K</td><td>~94s/step</td></tr><tr><td><strong>Text Alignment</strong></td><td>Mạnh</td><td>Trung bình</td><td>Mạnh</td><td>Trung bình</td></tr><tr><td><strong>Chất lượng chuyển động</strong></td><td>Trung bình</td><td>Mạnh</td><td>Xuất sắc</td><td>Trung bình</td></tr><tr><td><strong>I2V</strong></td><td>Có (model chuyên dụng)</td><td>Có</td><td>Có</td><td>Có</td></tr><tr><td><strong>Fine-Tuning</strong></td><td>LoRA + Full (SAT)</td><td>LoRA</td><td>LoRA + Full</td><td>Full only</td></tr><tr><td><strong>Hỗ trợ ComfyUI</strong></td><td>Có (wrapper)</td><td>Có (wrapper)</td><td>Có (wrapper)</td><td>Có (wrapper)</td></tr><tr><td><strong>Quantization</strong></td><td>INT8 qua TorchAO</td><td>INT8/INT4</td><td>INT8/INT4</td><td>Hạn chế</td></tr><tr><td><strong>Prompt đa ngôn ngữ</strong></td><td>Tiếng Anh</td><td>CN+EN</td><td>CN+EN</td><td>Tiếng Anh</td></tr></tbody></table><p><strong>Khi chọn CogVideoX</strong>: Khi cần text-following chính xác, tạo video dài (tối đa 10s), I2V với model chuyên dụng, hoặc VRAM thấp nhất. CogVideoX1.5-5B-I2V chạy trên GPU 4GB.</p><p><strong>Khi chọn Wan 2.1</strong>: Tốt hơn cho workflow song ngữ Trung-Anh với 16GB+ VRAM. Wan 2.1 có chất lượng chuyển động vượt trội.</p><p><strong>Khi chọn HunyuanVideo</strong>: Chất lượng tổng thể tốt nhất trên VBench-2.0, nhưng cần 24GB+ VRAM.</p><p><strong>Khi chọn Open-Sora</strong>: Cho linh hoạt nghiên cứu và video rất dài (tối đa 16 giây), chất lượng hình ảnh thấp hơn.</p><hr><h2 id=hạn-chế--đánh-giá-trung-thực>Hạn Chế / Đánh Giá Trung Thực<a hidden class=anchor aria-hidden=true href=#hạn-chế--đánh-giá-trung-thực>#</a></h2><p>CogVideoX có những ràng buộc rõ ràng cần biết trước khi đầu tư: 1. <strong>Inference Chậm</strong>: Video 5 giây mất ~1000 giây trên A100 với CogVideoX-5B ở 50 bước. Wan 2.1 và HunyuanVideo nhanh hơn.</p><ol start=2><li><p><strong>Chỉ Hỗ Trợ Prompt Tiếng Anh</strong>: CogVideoX chủ yếu train trên caption tiếng Anh. So với Wan 2.1 hoặc HunyuanVideo xử lý tiếng Trung native, prompt đa ngôn ngữ giảm chất lượng.</p></li><li><p><strong>Chất Lượng Ngườì</strong>: Điểm human fidelity VBench-2.0 thấp hơn HunyuanVideo (0.871 vs 0.964). Mặt ngườì và chuyển động cơ thể thờ̀nh thoảng có artifact.</p></li><li><p><strong>Tối Đa 10 Giây</strong>: CogVideoX1.5-5B cũng giới hạn 10 giây (161 frames). Nội dung dài hơn cần kỹ thuật mở rộng video hoặc chuyển sang Open-Sora.</p></li><li><p><strong>Yêu Cầu Prompt Engineering</strong>: Model cần prompt dài, chi tiết (200+ từ). Không tối ưu prompt qua LLM expansion, chất lượng output giảm đáng kể.</p></li><li><p><strong>Không Có API Video Thương Mại</strong>: Khác với Runway hay Kling, CogVideoX chỉ hỗ trợ self-hosted. Bạn tự quản lý GPU infrastructure, scaling và queueing.</p></li></ol><hr><h2 id=câu-hỏi-thường-gặp>Câu Hỏi Thường Gặp<a hidden class=anchor aria-hidden=true href=#câu-hỏi-thường-gặp>#</a></h2><p><strong>Q: Cần GPU gì để chạy CogVideoX locally?</strong></p><p>A: CogVideoX-2B chạy trên 5GB VRAM với Diffusers + sequential CPU offload. CogVideoX-5B cần 10GB. CogVideoX1.5-5B-I2V chạy trên 4GB. Để trải nghiệm mượt không dùng CPU offload, hướng đến 16GB+ VRAM (RTX 4080/4090 hoặc A100).</p><p><strong>Q: Làm sao tăng tốc inference vượt quá 50 bước?</strong></p><p>A: Dùng CogVideoXDPMScheduler với <code>timestep_spacing="trailing"</code> và giảm bước xuống 25-30 cho preview. Video-BLADE step distillation đạt 8.89x tốc độ trên CogVideoX-5B. Bật VAE tiling và slicing.</p><p><strong>Q: Có thể fine-tune CogVideoX trên dataset riêng không?</strong></p><p>A: Có, qua hai đường dẫn. SAT framework hỗ trợ full-parameter fine-tuning và LoRA. Diffusers hỗ trợ LoRA qua <code>train_cogvideox_lora.py</code>. Model 5B cần A100 GPU — model 2B có thể train trên single RTX 4090. Cần 25+ video cho học style hoặc concept mới.</p><p><strong>Q: Khác biệt giữa CogVideoX-5B và CogVideoX1.5-5B là gì?</strong></p><p>A: CogVideoX1.5-5B là bản cập nhật tháng 11/2024 với độ phân giải cao hơn (1360 x 768 vs 720 x 480), video dài hơn (tối đa 10 giây vs 6 giây), cải thiện xử lý frame (công thức 16N+1 vs 8N+1). Series 1.5 còn có model I2V chuyên dụng.</p><p><strong>Q: CogVideoX so với API thương mại như Sora hay Kling?</strong></p><p>A: API thương mại dễ truy cập, chất lượng đỉnh cao hơn, đặc biệt về chủ đề ngườì. CogVideoX thắng về chi phí (không phí/video), privacy (local inference), tùy chỉnh (LoRA fine-tuning) và khả năng tái tạo (fixed seeds). Tạo video hàng loạt quy mô lớn, self-hosted CogVideoX thường rẻ hơn 10 lần API billing.</p><p><strong>Q: CogVideoX output định dạng file gì?</strong></p><p>A: Diffusers pipeline output PyTorch tensors. Dùng <code>export_to_video()</code> từ <code>diffusers.utils</code> để lưu MP4 với H.264 encoding ở 8-16 FPS. Chuyển đổi sang định dạng khác bằng FFmpeg: `````bash
+ffmpeg -i output.mp4 -c:v libx265 -crf 23 output_h265.mp4</p><pre tabindex=0><code>
+**Q: Có web UI cho ngườì dùng không kỹ thuật không?**
+
+A: Có, nhiều lựa chọn. Hugging Face Space chính thức cho online inference không cần setup. ComfyUI với node CogVideoXWrapper cho giao diện workflow trực quan local.
+
+* * *
+
+## Kết Luận
+
+CogVideoX cung cấp tạo video từ văn bản cấp production với tính linh hoạt của triển khai mã nguồn mở. Từ GPU ngườì dùng 4GB VRAM đến cluster server đa A100, model mở rộng qua mọi cấp hardware nhờ quantization, CPU offloading và SAT framework fine-tuning.
+
+**Hành động để bắt đầu ngay hôm nay:**
+
+1. Clone repository: ````git clone https://github.com/zai-org/CogVideo.git````
+2. Cài dependencies: ````pip install -r requirements.txt````
+3. Chạy generation đầu tiên: ````python inference/cli_demo.py --prompt &#34;Your prompt here&#34; --model_path THUDM/CogVideoX-5B````
+4. Tối ưu prompt với ````convert_demo.py``` để chất lượng tốt hơn
+5. Tham gia cộng đồng [Discord](https://github.com/zai-org/CogVideo#-join-our-community) để hỗ trợ và chia sẻ workflow
+
+Cho triển khai production, bắt đầu với Docker setup, thêm FastAPI wrapping, và monitor bằng Prometheus.
+
+**Tham gia nhóm Telegram để cập nhật mã nguồn AI hàng ngày:** [@dibi8source](https://t.me/dibi8source)
+
+* * *
+
+
+
+## Hosting Và Hạ Tầng Được Đề Xuất
+
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+- **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
+
+*Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
+
+## Nguồn &amp; Tài Liệu Tham Khảo
+
+- CogVideo GitHub Repository: https://github.com/zai-org/CogVideo
+- CogVideoX-5B Model Card (Hugging Face): https://huggingface.co/THUDM/CogVideoX-5B
+- CogVideoX1.5-5B Model Card: https://huggingface.co/THUDM/CogVideoX1.5-5B
+- CogVideoX Paper (arXiv): https://arxiv.org/abs/2408.06072
+- Diffusers Documentation: https://huggingface.co/docs/diffusers/main/en/api/pipelines/cogvideox
+- Video-BLADE Acceleration Paper: https://arxiv.org/abs/2508.10774
+- VBench-2.0 Benchmark Paper: https://arxiv.org/abs/2503.21755
+- CogKit Fine-Tuning Framework: https://github.com/zai-org/CogKit
+- ComfyUI-CogVideoXWrapper: https://github.com/kijai/ComfyUI-CogVideoXWrapper
+- diffusers-torchao Quantization: https://github.com/sayakpaul/diffusers-torchao
+- Wan 2.1 Repository: https://github.com/Wan-Video/Wan2.1
+- HunyuanVideo Repository: https://github.com/Tencent/HunyuanVideo
+- Open-Sora Repository: https://github.com/hpcaitech/Open-Sora
+
+
+{
+  &#34;@context&#34;: &#34;https://schema.org&#34;,
+  &#34;@type&#34;: &#34;Article&#34;,
+  &#34;headline&#34;: &#34;CogVideo: 12.7K Stars — Hướng Dẫn Cài Đặt Text-to-Video Đầy Đủ 2026&#34;,
+  &#34;datePublished&#34;: &#34;2026-05-19&#34;,
+  &#34;dateModified&#34;: &#34;2026-05-19&#34;,
+  &#34;author&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;
+  },
+  &#34;publisher&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;,
+    &#34;logo&#34;: {
+      &#34;@type&#34;: &#34;ImageObject&#34;,
+      &#34;url&#34;: &#34;https://dibi8.com/logo.png&#34;
+    }
+  },
+  &#34;mainEntityOfPage&#34;: {
+    &#34;@type&#34;: &#34;WebPage&#34;,
+    &#34;@id&#34;: &#34;https://dibi8.com/vi/resources/cogvideo&#34;
+  }
+}
+&lt;/script&gt;
+
+* * *
+
+## Related Articles
+
+- [moneyprinterturbo-one-click-ai-video-generator](cogvideo)
+- [moneyprinter-turbo-ai-video-generation-one-command](cogvideo)
+- [nvidia-cosmos-world-models-platform-2026](cogvideo)
+- [moneyprinter-turbo-ai-video-generation-one-command](cogvideo)
+- [moneyprinter-turbo-ai-video-generation-one-command](cogvideo)
+
+* * *
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
+</code></pre></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/vi/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/vi/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/vi/ai-coding-agents/codegraph-pre-indexed-knowledge-graph-2026/><span class=title>« Trang trước</span>
+<span>AI Tool Guide</span>
+</a><a class=next href=https://dibi8.com/vi/ai-coding-agents/colly/><span class=title>Trang tiếp theo »</span>
+<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/vi/>Dibi8</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="Sao chép";function s(){t.innerHTML="Đã sao chép!",setTimeout(()=>{t.innerHTML="Sao chép"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
