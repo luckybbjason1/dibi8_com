@@ -1,14 +1,10 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/best-ai-image-generators" />
 title: 'Best AI Image Generators 2026'
-lang: en
 description: 'The best open-source and freemium AI image generators in 2026 — from Stable Diffusion to Flux, ComfyUI to SDXL. Compare quality, speed, and pricing.'
 layout: simple
 date: 2026-06-28 00:00:00+08:00
 lastmod: 2026-06-28 00:00:00+08:00
 ---
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -67,9 +63,7 @@ This guide will help you get started with the topic. Whether you're a beginner o
 
 ### Prerequisites
 
-Before diving in, make sure you have:
-
-```bash
+Before diving in, make sure you have: ```bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
@@ -94,9 +88,7 @@ This guide will help you get started with the topic. Whether you're a beginner o
 
 ### Prerequisites
 
-Before diving in, make sure you have:
-
-```bash
+Before diving in, make sure you have: ```bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
@@ -121,9 +113,7 @@ This guide will help you get started with the topic. Whether you're a beginner o
 
 ### Prerequisites
 
-Before diving in, make sure you have:
-
-```bash
+Before diving in, make sure you have: ```bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
@@ -148,9 +138,7 @@ This guide will help you get started with the topic. Whether you're a beginner o
 
 ### Prerequisites
 
-Before diving in, make sure you have:
-
-```bash
+Before diving in, make sure you have: ```bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
@@ -175,9 +163,7 @@ This guide will help you get started with the topic. Whether you're a beginner o
 
 ### Prerequisites
 
-Before diving in, make sure you have:
-
-```bash
+Before diving in, make sure you have: ```bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
@@ -202,9 +188,7 @@ This guide will help you get started with the topic. Whether you're a beginner o
 
 ### Prerequisites
 
-Before diving in, make sure you have:
-
-```bash
+Before diving in, make sure you have: ```bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
@@ -224,3 +208,5 @@ npm install
 # Start development server
 npm run dev
 ```
+
+---

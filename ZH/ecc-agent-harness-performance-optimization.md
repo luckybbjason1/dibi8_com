@@ -1,22 +1,14 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ecc-agent-harness-performance-optimization" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ecc-agent-harness-performance-optimization" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ecc-agent-harness-performance-optimization" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ecc-agent-harness-performance-optimization" />
 title: 'ECC：使用 Agent Harness 调优优化 Claude Code、Codex 和 Cursor 性能 ...
 description: 'ECC（Agent Harness 性能优化）可减少上下文窗口用量并加快 AI 编码代理的响应速度。兼容 Claude Code、Codex、Opencode、Cursor 等。涵盖性能调优、技能系统和 MCP 服务器配置。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-13
-lastmod:  2026-06-13slug: 'ecc-agent-harness-performance-optimization'
+lastmod: 2026-06-13
+slug: 'ecc-agent-harness-performance-optimization'
 category: dev-utils
 tags: ['ECC', 'agent-optimization', 'claude-code', 'codex', 'cursor', 'performance', 'mcp']
 github_repo: 'https://github.com/affaan-m/ECC'
 license: 'MIT'
-lang: zh
-featureImage: /articles/docker-compose-37-393-github-stars-multi-a62205.png/images/articles/docker-compose-37-393-github-stars-multi-a62205.png
----
-
-<!-- canonical: https://dibi8.com/zh/tools/ecc-agent-harness-performance-optimization/ -->
+featureImage: /articles/docker-compose-37-393-github-stars-multi-a62205.png/images/articles/docker-compose-37-393-github-stars-multi-a62205.png---
 
 # ECC：Agent Harness 性能优化 — 2026 指南
 
@@ -165,11 +157,8 @@ ECC 可集成到 CI 流水线中以降低 token 成本：
 
 ```yaml
 # .github/workflows/ecc-optimization.yml
-jobs:
-  optimize:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: optimize: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - name: 安装 ECC
         run: npm install -g ecc-universal
       - name: 运行 ECC 优化
@@ -183,7 +172,15 @@ jobs:
 在 500 多个实际代理会话（5-30 分钟编码会话）中测试：
 
 | 输出类型 | ECC 之前 | ECC 之后 | 减少幅度 |
-|----------|---------:|--------:|--------:|
+|
+---
+|
+---
+:|
+---
+:|
+---
+:|
 | npm install 输出 | 14.2 KB | 2.1 KB | 85% |
 | git diff（大型 PR）| 28.7 KB | 8.4 KB | 71% |
 | 完整文件读取（500 行）| 18.5 KB | 2.8 KB | 85% |
@@ -295,7 +292,17 @@ docker run -d \
 ## 与替代方案的比较
 
 | 功能 | ECC | headroom | Claude Code 内置 | 无优化 |
-|------|-----|----------|-----------------|--------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Token 减少 | 平均 73% | 60-95% | 无 | 0% |
 | 多代理支持 | 20+ 工具 | 库 + 代理 | 仅 Claude Code | N/A |
 | 自定义配置 | ✅ | ❌ | ❌ | N/A |
@@ -368,12 +375,11 @@ ECC 代表了一种实用的方法来解决每个 AI 编码代理用户都面临
 
 **加入我们的社区**：https://t.me/DIBI8_Group
 
----
 
+---
 **披露**：本文包含联盟链接。如果你通过我们的链接注册，我们可能会获得佣金，对你不会产生额外费用。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -401,25 +407,20 @@ ECC 代表了一种实用的方法来解决每个 AI 编码代理用户都面临
 
 ## Why This Matters
 
-Understanding ecc：使用 agent harness 调优优化 claude code、codex 和 cursor 性能 — 2026 指南 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding ecc：使用 agent harness 调优优化 claude code、codex 和 cursor 性能 — 2026 指南 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -440,8 +441,8 @@ ECC：使用 Agent Harness 调优优化 Claude Code、Codex 和 Cursor 性能 �
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -485,7 +486,17 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

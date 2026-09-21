@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/rtk-rust-cli-proxy-ai-token-saver" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/rtk-rust-cli-proxy-ai-token-saver" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/rtk-rust-cli-proxy-ai-token-saver" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/rtk-rust-cli-proxy-ai-token-saver" />
 title: 'RTK：让 AI 编码助手 token 消耗直降 60-90% 的开源神器，45k+ Stars 的 Rust ...
 description: 'RTK（Rust Token Killer）是一款开源 Rust CLI 代理，可将 Claude Code、Cursor、Copilot 等 AI 编码助手的 LLM token 消耗降低 60-90%。单二进制文件、零依赖、安装只需一条命令。本文含完整安装教程、原理解析与实测数据。'
 date: 2026-05-14 00:00:00+08:00
@@ -23,16 +18,13 @@ maintainer: ''
 last_maintained: '2026-05-14'
 featureImage: ''
 draft: false
-aliases:
-- /posts/rtk-rust-cli-proxy-ai-token-saver/
+aliases: - /posts/rtk-rust-cli-proxy-ai-token-saver/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/rtk-rust-cli-proxy-ai-token-saver/ -->
 
 {</* resource-info */>}
 
----
 
+---
 ## 为什么你的 AI 编码账单在偷偷暴涨
 
 2026 年，Claude Code、GitHub Copilot、Cursor、Codex、Gemini CLI 这些 AI 编码助手已经成为开发者日常工具链的核心。但有一个问题被大多数人忽视了：**它们正在以惊人的速度消耗你的 token 预算**。
@@ -41,8 +33,8 @@ aliases:
 
 你付费的并不是 AI 的"智能"，而是那些被重复读取的无用上下文。
 
----
 
+---
 ## RTK 是什么：不是另一个 AI 工具，而是一个"智能节流阀"
 
 **RTK**（全称 Rust Token Killer）是一个用 Rust 编写的高性能 CLI 代理，在 GitHub 已获得 **45,000+ Stars**（截至 2026 年 5 月）。它并不替代你的 AI 编码助手，而是安静地坐在 shell 和 LLM 之间，像一个过滤器，把命令输出中冗余、低价值的内容压缩掉，只保留对模型真正有用的信号。
@@ -52,7 +44,11 @@ aliases:
 ### RTK 的核心特点
 
 | 特性 | 说明 |
-|------|------|
+|
+---
+|
+---
+|
 | **单二进制文件** | 一个 Rust 可执行文件，零外部依赖，<10ms 运行时开销 |
 | **零配置安装** | 一条命令安装，自动 hook 进你的 shell，不改变工作流 |
 | **100+ 命令覆盖** | 内置 git、测试框架、构建工具、包管理器等常见命令的智能过滤规则 |
@@ -173,7 +169,15 @@ rtk gain --session=last
 ### 中型 Rust 项目（约 200 个源文件）
 
 | 指标 | 无 RTK | 启用 RTK | 节省 |
-|------|--------|----------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 30 分钟会话总 token | ~118,000 | ~23,900 | **~80%** |
 | `cargo test` 单次调用 | ~4,200 | ~340 | **~92%** |
 | `git status` 单次调用 | ~2,100 | ~180 | **~91%** |
@@ -182,7 +186,15 @@ rtk gain --session=last
 ### TypeScript / Node.js 项目（Next.js 全栈）
 
 | 指标 | 无 RTK | 启用 RTK | 节省 |
-|------|--------|----------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | `npm test` 单次调用 | ~3,800 | ~420 | **~89%** |
 | `npm run build` 错误输出 | ~6,200 | ~890 | **~86%** |
 | ESLint 批量输出 | ~5,400 | ~560 | **~90%** |
@@ -222,8 +234,7 @@ rtk bypass --command="git log"
 
 ```yaml
 # .rtk.yml 示例（项目级配置）
-rules:
-  - command: "pytest"
+rules: - command: "pytest"
     keep: "FAILED|ERROR|skipped summary"
     compress_passed: true
   - command: "docker compose logs"
@@ -242,7 +253,17 @@ RTK 处理的是命令**输出**而非命令本身。当命令执行失败时，
 ## 与其他 token 优化方案对比
 
 | 方案 | 原理 | 节省幅度 | 侵入性 | 适用场景 |
-|------|------|----------|--------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **RTK** | 命令输出压缩 | 60-90% | 极低（shell hook） | 所有 Bash 命令 |
 | context-mode | 沙盒输出隔离 | 98% | 中等（需集成 SDK） | 多平台代理 |
 | lean-ctx | Shell hook + MCP server | 89-99% | 中等 | 需要 MCP 的场景 |
@@ -295,7 +316,6 @@ RTK 代表了这一波工具演进的方向：**不是堆叠更强大的模型�
 *Tags: RTK, AI coding assistant, LLM token optimization, Rust CLI, open source developer tools, Claude Code, Cursor, GitHub Copilot, Codex, token cost reduction, 2026 developer tools*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -323,25 +343,20 @@ RTK 代表了这一波工具演进的方向：**不是堆叠更强大的模型�
 
 ## Why This Matters
 
-Understanding rtk：让 ai 编码助手 token 消耗直降 60-90% 的开源神器，45k+ stars 的 rust cli 代理实战指南 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding rtk：让 ai 编码助手 token 消耗直降 60-90% 的开源神器，45k+ stars 的 rust cli 代理实战指南 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -370,7 +385,17 @@ For the latest updates and community discussions, join our Telegram channel: htt
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

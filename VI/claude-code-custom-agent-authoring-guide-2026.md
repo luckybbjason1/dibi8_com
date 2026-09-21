@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-code-custom-agent-authoring-guide-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-custom-agent-authoring-guide-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-custom-agent-authoring-guide-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-custom-agent-authoring-guide-2026" />
 title: 'Viết Custom Agent cho Claude Code: Tạo Subagent Tái Sử D...
 description: 'Hướng dẫn đầy đủ về cách viết custom subagent cho Claude Code — các trường frontmatter, thiết kế system prompt, danh sách công cụ được phép, và hai ví dụ sẵn sàng đưa vào sản xuất (trình duyệt migration, cổng bảo mật) cùng những lỗi cần tránh.'
 date: 2026-05-28 00:00:00+08:00
@@ -25,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['claude-code', subagents, 'custom-agents', 'agent-sdk', 'ai-coding-agents', 'llm-frameworks', 'developer-tools']
-aliases:
-- /posts/claude-code-custom-agent-authoring/
-faq:
-  - q: "Các tệp định nghĩa custom agent nằm ở đâu, và chúng có định dạng gì?"
+aliases: - /posts/claude-code-custom-agent-authoring/
+faq: - q: "Các tệp định nghĩa custom agent nằm ở đâu, và chúng có định dạng gì?"
     a: "Custom agent là các tệp Markdown có YAML frontmatter, được lưu trong .claude/agents/ ở dự án của bạn (hoặc ~/.claude/agents/ cho những agent bạn muốn dùng được trên mọi dự án). Tên tệp bỏ phần đuôi .md không phải là danh tính của agent — trường name trong frontmatter mới là. Frontmatter khai báo name, description, một danh sách tools tùy chọn, và một model tùy chọn; mọi thứ bên dưới dấu --- kết thúc chính là system prompt của agent."
   - q: "Sự khác biệt giữa trường description và phần thân system prompt là gì?"
     a: "Description là tín hiệu định tuyến: đó là thứ mà agent cha đọc khi quyết định có giao việc cho subagent này hay không, nên nó phải nói rõ KHI NÀO dùng agent, chứ không chỉ là nó là gì. Phần thân system prompt là tập chỉ dẫn mà subagent chạy theo một khi được gọi — vai trò, phương pháp, và hợp đồng đầu ra của nó. Một description xuất sắc đi kèm phần thân mơ hồ sẽ được gọi đúng lúc nhưng làm việc tầm thường; một phần thân xuất sắc đi kèm description mơ hồ sẽ làm việc tuyệt vời nhưng không bao giờ được kích hoạt."
@@ -42,7 +35,6 @@ faq:
     a: "Chúng hoạt động ở cả hai. Cùng những định nghĩa trong .claude/agents/ sẽ được nhận diện khi bạn chạy Claude Code phi-tương-tác (chế độ -p / print dùng trong CI). Vì chúng là các tệp được quản lý phiên bản trong repo của bạn, mọi đồng nghiệp và mọi tác vụ CI đều thấy những định nghĩa agent y hệt nhau — đó chính là toàn bộ ý nghĩa của việc mã hóa một danh sách rà soát thành agent thay vì một trang wiki mà chẳng ai buồn mở."
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/claude-code-custom-agent-authoring-guide-2026/ -->
 # Viết Custom Agent cho Claude Code: Tạo Subagent Tái Sử Dụng Để Thực Thi Tiêu Chuẩn Của Bạn (2026)
 
 
@@ -56,14 +48,10 @@ Nếu bạn chưa từng giao việc cho một subagent, hãy đọc [bài về 
 
 ## Cấu Tạo Giải Phẫu Của Một Custom Agent
 
-Một custom agent chỉ là một tệp Markdown duy nhất có YAML frontmatter. Nó nằm ở một trong hai nơi:
-
-- `.claude/agents/<name>.md` — phạm vi dự án, được quản lý phiên bản, chia sẻ với cả đội của bạn
+Một custom agent chỉ là một tệp Markdown duy nhất có YAML frontmatter. Nó nằm ở một trong hai nơi: - `.claude/agents/<name>.md` — phạm vi dự án, được quản lý phiên bản, chia sẻ với cả đội của bạn
 - `~/.claude/agents/<name>.md` — phạm vi người dùng, dùng được trên mọi dự án trên máy bạn
 
-Cấu trúc cực kỳ đơn giản:
-
-```markdown
+Cấu trúc cực kỳ đơn giản: ```markdown
 ---
 name: migration-reviewer
 description: Reviews database migrations for safety. Use when a PR touches db/migrate/, schema files, or any SQL DDL.
@@ -87,9 +75,7 @@ Danh tính của agent — đây là chuỗi mà agent cha truyền vào dưới
 
 ### `description` (bắt buộc — và là trường người ta đánh giá thấp)
 
-Đây là **tín hiệu định tuyến**. Khi agent cha quyết định có giao việc hay không, nó đọc các description, chứ không phải system prompt. Vậy nên một description phải mã hóa *khi nào* nên tìm đến agent này, với các điều kiện kích hoạt cụ thể:
-
-> ❌ `description: A code reviewer.`
+Đây là **tín hiệu định tuyến**. Khi agent cha quyết định có giao việc hay không, nó đọc các description, chứ không phải system prompt. Vậy nên một description phải mã hóa *khi nào* nên tìm đến agent này, với các điều kiện kích hoạt cụ thể: > ❌ `description: A code reviewer.`
 > ✅ `description: Reviews code changes for correctness and security. Use proactively after writing a non-trivial diff, before committing, especially for auth, payments, or concurrency-sensitive code.`
 
 Từ "proactively" (chủ động) là chịu lực — nó thúc agent cha gọi mà không cần được yêu cầu rõ ràng. Nếu agent của bạn dường như chẳng bao giờ khởi động, gần như luôn là vì description.
@@ -104,15 +90,10 @@ Ghim một bậc: `haiku` cho các lượt xử lý cơ học rẻ tiền, `sonn
 
 ## Viết System Prompt
 
-Phần thân là nơi phần lớn agent thắng hay thua. Ba quy tắc tạo ra những công nhân đáng tin cậy:
+Phần thân là nơi phần lớn agent thắng hay thua. Ba quy tắc tạo ra những công nhân đáng tin cậy: **1. Nêu vai trò và ranh giới ngay câu đầu tiên.** "You are a migration reviewer. You do not write code or apply fixes — you report findings." Nói cho agent biết nó *không* được làm gì cũng quan trọng như chính công việc.
 
-**1. Nêu vai trò và ranh giới ngay câu đầu tiên.** "You are a migration reviewer. You do not write code or apply fixes — you report findings." Nói cho agent biết nó *không* được làm gì cũng quan trọng như chính công việc.
-
-**2. Quy định hợp đồng đầu ra.** Prompt mơ hồ tạo ra văn xuôi; bạn muốn cấu trúc. Hãy viết nó ra rõ ràng:
-
-```markdown
-Report your findings as a list. For each issue:
-- SEVERITY: blocker | warning | nit
+**2. Quy định hợp đồng đầu ra.** Prompt mơ hồ tạo ra văn xuôi; bạn muốn cấu trúc. Hãy viết nó ra rõ ràng: ```markdown
+Report your findings as a list. For each issue: - SEVERITY: blocker | warning | nit
 - LOCATION: file:line
 - PROBLEM: one sentence
 - FIX: the concrete change
@@ -125,9 +106,7 @@ End with a one-line VERDICT: SAFE TO MERGE or NEEDS CHANGES.
 
 Đây là cái bẫy. Để trống `tools`, và "reviewer" của bạn kế thừa `Write`, `Edit`, và `Bash`. Lần đầu tiên nó tìm thấy một vấn đề, nó có thể "nhiệt tình" sửa luôn — làm biến đổi cây làm việc của bạn, chạy lệnh, và phá hủy chính sự độc lập đã khiến lần rà soát này đáng để yêu cầu.
 
-Giải pháp là đặc quyền tối thiểu. Hãy khớp công cụ với công việc:
-
-| Loại agent | Công cụ |
+Giải pháp là đặc quyền tối thiểu. Hãy khớp công cụ với công việc: | Loại agent | Công cụ |
 | --- | --- |
 | Reviewer / kiểm toán | `Read, Grep, Glob` |
 | Nghiên cứu / thám hiểm | `Read, Grep, Glob, WebSearch, WebFetch` |
@@ -149,15 +128,13 @@ model: sonnet
 You are a database migration reviewer. You do NOT edit files or run
 migrations — you read the proposed migration and report risks.
 
-Check every migration against this list:
-1. Adding a column with a NOT NULL constraint and no default on a large table (locks).
+Check every migration against this list: 1. Adding a column with a NOT NULL constraint and no default on a large table (locks).
 2. Adding an index without CONCURRENTLY (blocks writes).
 3. Renaming or dropping a column still referenced by application code.
 4. A data backfill running inside the same transaction as the schema change.
 5. Missing a corresponding rollback / down path.
 
-Report findings as:
-- SEVERITY: blocker | warning | nit
+Report findings as: - SEVERITY: blocker | warning | nit
 - LOCATION: file:line
 - PROBLEM / FIX
 End with VERDICT: SAFE TO MERGE or NEEDS CHANGES.
@@ -178,8 +155,7 @@ model: opus
 You are a security reviewer with a threat-modeling mindset. Assume the
 input is hostile. You report only — you never modify code.
 
-For the diff, check:
-- Authn/authz: can this path be reached without the expected check?
+For the diff, check: - Authn/authz: can this path be reached without the expected check?
 - Injection: is user input concatenated into SQL, shell, or HTML?
 - Secrets: any key, token, or password added to code or logs?
 - IDOR: are object references scoped to the authenticated user?
@@ -195,9 +171,7 @@ Lưu ý bậc model `opus` và chỉ dẫn "default to flagging when uncertain" 
 
 Đừng đưa lên một agent mà bạn chưa thử lừa nó. Dựng một [git worktree](/vi/resources/llm-frameworks/claude-code-subagent-patterns-multi-agent-workflows-2026/) hoặc một nhánh dùng-một-lần với một vấn đề *được cài cắm* — một migration thiếu `CONCURRENTLY`, một endpoint thiếu kiểm tra quyền sở hữu — rồi gọi agent.
 
-Bạn đang kiểm thử hai điều độc lập với nhau:
-
-- **Nó có được kích hoạt** bởi một yêu cầu tự nhiên không? Nếu không, hãy sửa `description`.
+Bạn đang kiểm thử hai điều độc lập với nhau: - **Nó có được kích hoạt** bởi một yêu cầu tự nhiên không? Nếu không, hãy sửa `description`.
 - **Nó có bắt được con bug cài cắm không?** Nếu không, hãy sửa danh sách kiểm tra trong system prompt.
 
 Hai điều này thất bại vì những lý do khác nhau, nên hãy lặp tinh chỉnh chúng riêng rẽ. Một bất ngờ thường gặp: agent hoạt động hoàn hảo khi bạn gọi đích danh nó nhưng chẳng bao giờ tự khởi động — đó luôn là vấn đề description, không bao giờ là vấn đề phần thân.
@@ -216,9 +190,7 @@ Một custom agent chính là **tri thức tổ chức có thể thực thi đư
 
 ## Thiết Lập Claude Code Cấp Sản Xuất
 
-Để chạy các pipeline custom agent ở quy mô lớn, bạn cần hạ tầng ổn định:
-
-1. **Một máy chủ đáng tin cậy cho các phiên chạy lâu dài và CI.** Custom agent tỏa sáng trong CI, nơi chúng làm cổng kiểm cho mọi PR. Bạn cần một cỗ máy không làm rớt tác vụ. **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hong Kong, truy cập độ trễ thấp từ Trung Quốc đại lục và định tuyến BGP ổn định. Đó cũng chính là IDC đang lưu trữ dibi8.com, nên chúng tôi chạy các pipeline agent của mình ngay trên nó. Bậc giá hời chạy từ $5-12/tháng.
+Để chạy các pipeline custom agent ở quy mô lớn, bạn cần hạ tầng ổn định: 1. **Một máy chủ đáng tin cậy cho các phiên chạy lâu dài và CI.** Custom agent tỏa sáng trong CI, nơi chúng làm cổng kiểm cho mọi PR. Bạn cần một cỗ máy không làm rớt tác vụ. **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hong Kong, truy cập độ trễ thấp từ Trung Quốc đại lục và định tuyến BGP ổn định. Đó cũng chính là IDC đang lưu trữ dibi8.com, nên chúng tôi chạy các pipeline agent của mình ngay trên nó. Bậc giá hời chạy từ $5-12/tháng.
 
 2. **Dư địa đám mây cho các cổng kiểm song song.** Khi một bộ điều phối phân nhánh ra migration-reviewer + security-gate + perf-checker cùng lúc, bạn muốn có CPU dự phòng. **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 tín dụng miễn phí trong 60 ngày trải khắp 14+ khu vực, rất hợp để đặt các CI runner ngay cạnh ứng dụng của bạn.
 
@@ -238,7 +210,6 @@ Custom agent biến các thực hành tốt nhất của đội bạn từ tài 
 Hãy bắt đầu với một cái — trình duyệt migration ở trên là agent đầu tiên có đòn bẩy cao nhất cho phần lớn các đội. Cài một con bug vào, xác nhận nó bắt được, rồi commit tệp đó. Từ giây phút ấy, mọi đồng nghiệp đều có một reviewer không bao giờ mệt mỏi và không bao giờ bỏ qua một bước nào.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

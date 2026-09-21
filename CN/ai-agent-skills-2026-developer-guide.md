@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/ai-agent-skills-2026-developer-guide" />
 title: 'AI Agent Skills Explained: The 2026 Developer''s Guide t...
 description: 'AI Agent Skills Explained: The 2026 Developer''''s Guide to Production-Grade Agent Workflows'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-16 00:00:00+08:00
@@ -20,10 +18,8 @@ maintainer: ''
 last_maintained: '2026-05-16'
 featureImage: ''
 draft: false
-aliases:
-- /posts/ai-agent-skills-2026-developer-guide/
+aliases: - /posts/ai-agent-skills-2026-developer-guide/-
 ---
-
 {</* resource-info */>}
 
 **Meta Description:** Master AI Agent Skills in 2026 with our comprehensive guide. Learn how mattpocock/skills, obra/superpowers, and agentmemory are transforming Claude Code, Cursor, and Codex CLI workflows. Step-by-step installation, usage, and custom skill authoring included.
@@ -32,21 +28,19 @@ aliases:
 **Reading Time:** 12 minutes
 **Keywords:** AI agent skills, Claude Code skills tutorial, mattpocock skills guide, agent workflow 2026, AI coding agent skills, how to write agent skills, Cursor skills vs prompts, MCP vs skills, production AI agent workflows
 
----
 
+---
 ## TL;DR: Why Agent Skills Are the Defining Developer Tool of 2026
 
 For two consecutive weeks in May 2026, GitHub Trending has been dominated by a single concept: **AI Agent Skills**. mattpocock/skills sits at #1 with 75,000+ stars. obra/superpowers commands the largest community at 188,000 stars. And rohitg00/agentmemory solves the memory amnesia that plagues every AI coding agent.
 
 Skills are not prompts. They are reusable, structured workflow definitions that turn inconsistent AI assistance into predictable, team-scalable engineering processes. If you are not using them yet, you are working with one hand tied behind your back.
 
----
 
+---
 ## What Are AI Agent Skills, Really?
 
-The fastest way to understand Skills is to understand what they fix. Every developer who has used Claude Code, Cursor, or Codex CLI has experienced these failure modes:
-
-- **The Agent does something completely different from what you wanted** — because your instructions were interpreted through the model's general training, not your specific context.
+The fastest way to understand Skills is to understand what they fix. Every developer who has used Claude Code, Cursor, or Codex CLI has experienced these failure modes: - **The Agent does something completely different from what you wanted** — because your instructions were interpreted through the model's general training, not your specific context.
 - **The Agent forgets project conventions between sessions** — because each conversation starts from a blank slate.
 - **The Agent skips critical steps** — like writing tests before implementation, or reviewing the existing codebase before proposing changes.
 - **Different team members get different results from the same request** — because each person phrases their prompts differently.
@@ -56,7 +50,15 @@ Skills solve all four problems by replacing improvisation with procedure.
 ### Skills vs Prompts vs MCP: The Three-Layer Stack
 
 | Layer | Analogy | Scope | What It Does |
-|-------|---------|-------|--------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Prompts** | Conversation | Single session | Expresses immediate intent |
 | **Skills** | Standard Operating Procedure | Project/team | Defines *how* work gets done |
 | **MCP** | API Integration | Cross-application | Connects agents to external systems |
@@ -152,8 +154,7 @@ docker pull rohitg00/agentmemory
 
 ### Step 1 — Prerequisites
 
-Ensure Claude Code is installed:
-```bash
+Ensure Claude Code is installed: ```bash
 curl -fsSL https://claude.ai/install.sh | bash
 claude --version
 ```
@@ -176,14 +177,11 @@ ls .claude/skills/
 
 ### Step 3 — Natural Invocation
 
-No special syntax required. Describe what you need in plain language, and the agent matches your intent to the skill:
-
-**Scenario: Starting a feature with TDD**
+No special syntax required. Describe what you need in plain language, and the agent matches your intent to the skill: **Scenario: Starting a feature with TDD**
 ```
 I need to implement JWT-based authentication for the API. Use test-driven development.
 ```
-The `tdd` skill triggers automatically:
-1. Analyzes existing codebase structure
+The `tdd` skill triggers automatically: 1. Analyzes existing codebase structure
 2. Writes the first failing authentication test
 3. Runs the test and confirms the failure is for the right reason
 4. Implements the minimal passing code
@@ -194,8 +192,7 @@ The `tdd` skill triggers automatically:
 ```
 Users report intermittent 500 errors on the checkout page. Can you investigate?
 ```
-The `triage` skill activates:
-1. Searches for checkout-related code paths
+The `triage` skill activates: 1. Searches for checkout-related code paths
 2. Attempts to reproduce the error
 3. Identifies root cause through instrumentation
 4. Documents findings in a structured report
@@ -205,8 +202,7 @@ The `triage` skill activates:
 ```
 I want to migrate our state management from Redux to Zustand. Help me plan this.
 ```
-The `to-prd` skill engages:
-1. Explores current Redux implementation
+The `to-prd` skill engages: 1. Explores current Redux implementation
 2. Maps state slices and dependencies
 3. Produces a migration PRD with phased rollout plan
 4. Files it as a GitHub Issue with linked sub-tasks
@@ -217,9 +213,7 @@ The `to-prd` skill engages:
 
 ### Anatomy of a High-Quality Skill
 
-Create `.claude/skills/code-review/SKILL.md`:
-
-```markdown
+Create `.claude/skills/code-review/SKILL.md`: ```markdown
 # Code Review Skill
 
 ## Description
@@ -276,9 +270,7 @@ authentication, payment, or data integrity paths.
 
 ### Design Principles From the 75K-Star Repository
 
-Matt Pocock's skills follow rules that transfer to any custom skill:
-
-1. **Include trigger phrases in descriptions** — Start with "Use when..." so the agent knows when to activate
+Matt Pocock's skills follow rules that transfer to any custom skill: 1. **Include trigger phrases in descriptions** — Start with "Use when..." so the agent knows when to activate
 2. **Keep SKILL.md under 100 lines** — If it exceeds, the skill scope is too broad; split it
 3. **Avoid time-sensitive information** — No "current version is X" or "as of May 2026"
 4. **Maintain consistent terminology** — Pick one vocabulary and use it throughout
@@ -291,15 +283,13 @@ Matt Pocock's skills follow rules that transfer to any custom skill:
 npx skills@latest add mattpocock/skills/write-a-skill
 ```
 
-Then in Claude Code:
-```
+Then in Claude Code: ```
 I need a skill that automatically generates migration scripts when I modify 
 database models. It should detect schema changes, produce rollback-capable 
 migrations, and include test data seeding.
 ```
 
-The `write-a-skill` skill walks you through:
-1. Defining purpose and triggers
+The `write-a-skill` skill walks you through: 1. Defining purpose and triggers
 2. Structuring the workflow steps
 3. Deciding on companion scripts for deterministic operations
 4. Choosing single-file vs multi-file organization
@@ -311,9 +301,7 @@ The `write-a-skill` skill walks you through:
 
 ### From Personal Dotfiles to Team Infrastructure
 
-The Skills evolution follows a predictable maturity curve:
-
-**Phase 1 (Early 2026):** Individual `.claude` directories shared on GitHub as personal dotfiles. Adoption is artisanal — each developer curates their own.
+The Skills evolution follows a predictable maturity curve: **Phase 1 (Early 2026):** Individual `.claude` directories shared on GitHub as personal dotfiles. Adoption is artisanal — each developer curates their own.
 
 **Phase 2 (Mid 2026 — Now):** Registry platforms like explainx.ai launch Skill marketplaces. Monetization emerges: specialized Skills for legal AI, medical compliance, financial auditing.
 
@@ -379,7 +367,6 @@ mattpocock/skills brings production-tested discipline. obra/superpowers brings c
 *Star counts and repository statistics reflect GitHub API data as of May 13, 2026. All repositories are actively maintained with recent commits.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

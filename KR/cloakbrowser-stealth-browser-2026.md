@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/cloakbrowser-stealth-browser-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cloakbrowser-stealth-browser-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cloakbrowser-stealth-browser-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cloakbrowser-stealth-browser-2026" />
 title: 'CloakBrowser 완벽 가이드 2026: 무료 오픈소스 스텔스 브라우저로 봇 감지 완벽 우회하기...
 description: '2026년 5월 GitHub Trending 2위 CloakBrowser. C++ 소스코드 레벨 49개 지문 패치, reCAPTCHA v3 0.9점, 30개 이상 봇 감지 통과. 월 $299 상용 툴을 무료로 대체하는 최강 오픈소스 스텔스 브라우저.'
 date: 2026-05-14 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: ''
 last_maintained: '2026-05-14'
 featureImage: ''
 draft: false
-aliases:
-- /posts/cloakbrowser-stealth-browser-2026/
+aliases: - /posts/cloakbrowser-stealth-browser-2026/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/cloakbrowser-stealth-browser-2026/ -->
 
 {</* resource-info */>}
 
@@ -72,9 +64,7 @@ Playwright나 Puppeteer, Selenium으로 웹 스크래핑이나 브라우저 자�
 
 CloakBrowser는 근본적으로 다른 길을 간다. **Chromium의 포크를 유지**하며, 49개의 C++ 패치를 엔진 소스코드에 직접 적용한다. 이 패치들은 브라우저 바이너리로 컴파일된다. 감지 시스템이 `navigator.webdriver`를 조회하면, 엔진의 네이티브 구현이 `false`를 반환한다 — JS 스크립트가 덮어씌운 것이 아니라, `navigator.webdriver`를 구현하는 C++ 코드가 컴파일 시점에 수정됐기 때문이다.
 
-49개 패치가 커버하는 영역:
-
-- **Canvas 2D 및 WebGL 렌더링 파이프라인** — 실제 Chrome과 픽셀 수준 동일한 출력
+49개 패치가 커버하는 영역: - **Canvas 2D 및 WebGL 렌더링 파이프라인** — 실제 Chrome과 픽셀 수준 동일한 출력
 - **AudioContext DSP** — 신호 처리 체인이 실제 하드웨어와 일치하도록 수정
 - **폰트 서브시스템** — 플랫폼별로 현실적인 시스템 폰트 목록 반환
 - **GPU 리포팅** — WebGL 벤더/렌더러 문자열이 실제 NVIDIA/Intel/AMD 하드웨어와 일치
@@ -90,9 +80,7 @@ CloakBrowser는 근본적으로 다른 길을 간다. **Chromium의 포크를 �
 
 ## 벤치마크 결과: 30/30 감지 서비스 통과
 
-2026년 4월 독립적인 제3자 테스트 결과:
-
-| 감지 서비스 | 기본 Playwright | playwright-stealth | undetected-chromedriver | **CloakBrowser** |
+2026년 4월 독립적인 제3자 테스트 결과: | 감지 서비스 | 기본 Playwright | playwright-stealth | undetected-chromedriver | **CloakBrowser** |
 |---|---|---|---|---|
 | reCAPTCHA v3 (서버 검증) | 0.1 (봇) | 0.3~0.5 | 0.3~0.7 | **0.9 (인간)** |
 | Cloudflare Turnstile (비상호작용) | 실패 | 가끔 통과 | 가끔 통과 | **통과** |
@@ -145,17 +133,13 @@ await browser.close();
 
 ### Docker (설치 불필요)
 
-즉시 스텔스 기능 테스트:
-
-```bash
+즉시 스텔스 기능 테스트: ```bash
 docker run --rm cloakhq/cloakbrowser cloaktest
 ```
 
 ### Playwright에서 마이그레이션
 
-**한 줄만 변경**하면 된다:
-
-```python
+**한 줄만 변경**하면 된다: ```python
 # 이전
 from playwright.sync_api import sync_playwright
 pw = sync_playwright().start()
@@ -265,7 +249,6 @@ CloakBrowser는 *런타임 마스킹*에서 *소스 레벨 재구성*으로의 �
 *2026년 5월 14일 발행. 벤치마크는 CloakBrowser v0.3.26 (Chromium 146) 및 독립적인 제3자 테스트 데이터를 기반으로 함.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

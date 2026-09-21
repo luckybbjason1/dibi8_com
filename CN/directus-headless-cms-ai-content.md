@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/directus-headless-cms-ai-content" />
 title: 'Directus: The Open-Source Headless CMS Powering AI Conte...
 description: 'Complete guide to Directus 11.x — the open-source headless CMS with dynamic API generation, content versioning, AI content workflows, and self-hosted Docker deployment. REST and GraphQL API benchmarks.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [directus, 'headless cms', 'content management', api, docker, 'open source', ai, graphql, rest, 'self-hosted']
-aliases:
-- /posts/directus-headless-cms-ai-content/
+aliases: - /posts/directus-headless-cms-ai-content/-
 ---
-
 {{</* resource-info */>}}
 
 ## Introduction: Why Your CMS Is Still a Bottleneck in 2026
@@ -38,9 +34,7 @@ Directus is an open-source headless CMS that wraps any SQL database with a dynam
 
 ## What Is Directus?
 
-Directus sits on top of your existing SQL database (PostgreSQL, MySQL, SQLite, Oracle, MS SQL, CockroachDB, or Supabase) and automatically generates:
-
-- **REST API** — Full CRUD with filtering, sorting, aggregation, and field selection
+Directus sits on top of your existing SQL database (PostgreSQL, MySQL, SQLite, Oracle, MS SQL, CockroachDB, or Supabase) and automatically generates: - **REST API** — Full CRUD with filtering, sorting, aggregation, and field selection
 - **GraphQL API** — Schema-introspectable endpoint with subscriptions support
 - **Admin App** — Vue.js-based no-code interface for content editors
 - **File Asset Management** — Storage adapters for local, S3, GCS, Azure, with on-the-fly image transforms
@@ -71,9 +65,7 @@ Unlike traditional CMS platforms that own your data structure, Directus is **dat
 └─────────────────────────────────────────────────────────────┘
 ```
 
-Key architectural decisions:
-
-- **Database-first**: Directus does not abstract your database — it enhances it. Every collection maps 1:1 to a table. Migrations are standard SQL.
+Key architectural decisions: - **Database-first**: Directus does not abstract your database — it enhances it. Every collection maps 1:1 to a table. Migrations are standard SQL.
 - **Stateless API server**: Horizontal scaling is trivial — just add more API container replicas behind a load balancer.
 - **File storage abstraction**: Adapters for S3, Google Cloud Storage, Azure Blob, and local disk. Image transforms via URL parameters (e.g., `?width=800&height=600&fit=cover`).
 - **Extension system**: Custom endpoints, hooks (event-driven), interfaces (custom UI components), displays, and dashboard panels — all hot-reloaded.
@@ -95,17 +87,12 @@ mkdir ~/directus && cd ~/directus
 # Create compose file
 cat > docker-compose.yml << EOF
 version: "3"
-services:
-  directus:
-    image: directus/directus:11.3.0
-    ports:
-      - 8055:8055
-    volumes:
-      - ./uploads:/directus/uploads
+services: directus: image: directus/directus:11.3.0
+    ports: - 8055:8055
+    volumes: - ./uploads:/directus/uploads
       - ./extensions:/directus/extensions
       - ./templates:/directus/templates
-    environment:
-      SECRET: "your-random-secret-key-here"
+    environment: SECRET: "your-random-secret-key-here"
       ADMIN_EMAIL: "admin@example.com"
       ADMIN_PASSWORD: "SecureAdminPass123!"
       DB_CLIENT: "pg"
@@ -117,28 +104,19 @@ services:
       WEBSOCKETS_ENABLED: "true"
       CORS_ENABLED: "true"
       CORS_ORIGIN: "true"
-    depends_on:
-      - database
+    depends_on: - database
       - redis
 
-  database:
-    image: postgres:16-alpine
-    environment:
-      POSTGRES_DB: "directus"
+  database: image: postgres:16-alpine
+    environment: POSTGRES_DB: "directus"
       POSTGRES_USER: "directus"
       POSTGRES_PASSWORD: "directus-pass"
-    volumes:
-      - pg-data:/var/lib/postgresql/data
+    volumes: - pg-data:/var/lib/postgresql/data
 
-  redis:
-    image: redis:7-alpine
-    volumes:
-      - redis-data:/data
+  redis: image: redis:7-alpine
+    volumes: - redis-data:/data
 
-volumes:
-  pg-data:
-  redis-data:
-EOF
+volumes: pg-data: redis-data: EOF
 ```
 
 ### Step 2: Start the Stack
@@ -205,9 +183,7 @@ For a production deployment on a [DigitalOcean droplet](https://m.do.co/c/eca87a
 
 Via the admin UI: Settings → Data Model → Create Collection → `articles`.
 
-Or via the API:
-
-```bash
+Or via the API: ```bash
 # Create collection via REST API
 curl -X POST http://localhost:8055/collections \
   -H "Content-Type: application/json" \
@@ -323,9 +299,7 @@ console.log('Created:', newArticle.id);
 
 ## AI Content Workflows: Connecting Directus to LLMs
 
-Directus Flows + Extensions enable AI-powered content pipelines without external tools. Here is a complete AI content workflow:
-
-### Step 1: Create a Flow for AI Draft Generation
+Directus Flows + Extensions enable AI-powered content pipelines without external tools. Here is a complete AI content workflow: ### Step 1: Create a Flow for AI Draft Generation
 
 ```bash
 # Create a Flow via API that triggers when an article is created with ai_flag=true
@@ -427,10 +401,18 @@ await client.request(
 
 ## Benchmarks / Real-World Use Cases
 
-I tested Directus 11.3.0 on a [DigitalOcean droplet](https://m.do.co/c/eca87ac14ee0) (2 vCPU / 4GB RAM / $24/month):
-
-| Operation | Directus 11.3.0 | Strapi 5.x | Sanity (Managed) | Contentful (Managed) |
-|-----------|----------------|------------|------------------|---------------------|
+I tested Directus 11.3.0 on a [DigitalOcean droplet](https://m.do.co/c/eca87ac14ee0) (2 vCPU / 4GB RAM / $24/month): | Operation | Directus 11.3.0 | Strapi 5.x | Sanity (Managed) | Contentful (Managed) |
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Read single item (cached) | **~8ms** | ~15ms | ~25ms | ~40ms |
 | Read 100 items with relations | **~35ms** | ~80ms | ~60ms | ~120ms |
 | Create item | **~22ms** | ~30ms | ~45ms | ~55ms |
@@ -450,27 +432,19 @@ I tested Directus 11.3.0 on a [DigitalOcean droplet](https://m.do.co/c/eca87ac14
 ```bash
 # Scale the API horizontally with read replicas
 version: "3"
-services:
-  directus-api-1:
-    image: directus/directus:11.3.0
-    environment:
-      DB_CLIENT: "pg"
+services: directus-api-1: image: directus/directus:11.3.0
+    environment: DB_CLIENT: "pg"
       DB_HOST: "postgres-primary"
       # ... other env
 
-  directus-api-2:
-    image: directus/directus:11.3.0
-    environment:
-      DB_CLIENT: "pg"
+  directus-api-2: image: directus/directus:11.3.0
+    environment: DB_CLIENT: "pg"
       DB_HOST: "postgres-replica"
       # ... other env
 
-  nginx:
-    image: nginx:alpine
-    ports:
-      - "8055:8055"
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
+  nginx: image: nginx:alpine
+    ports: - "8055:8055"
+    volumes: - ./nginx.conf:/etc/nginx/nginx.conf
 ```
 
 ### 2. Automated Backups
@@ -555,9 +529,7 @@ const adminPermissions = {
 
 ### 5. Monitoring with Prometheus
 
-Directus exposes metrics via the `/server/health` endpoint and can be extended for Prometheus:
-
-```javascript
+Directus exposes metrics via the `/server/health` endpoint and can be extended for Prometheus: ```javascript
 // extensions/endpoints/metrics/index.js
 import { defineEndpoint } from '@directus/extensions-sdk';
 
@@ -584,7 +556,19 @@ export default defineEndpoint((router, { database }) => {
 ## Comparison with Alternatives
 
 | Feature | Directus 11.x | Strapi 5.x | Sanity | Contentful | Ghost |
-|---------|--------------|------------|--------|-----------|-------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Open Source | **GPL-3.0** | MIT | MIT (partial) | No | MIT |
 | GitHub Stars | **29,100+** | 65,000+ | 3,500+ | N/A | 49,000+ |
 | Database | **Any SQL (your choice)** | SQLite/MySQL/PostgreSQL | Proprietary (GROQ) | Cloud-only | SQLite/MySQL |
@@ -636,9 +620,7 @@ For CRUD-heavy applications with content management needs, Directus replaces 80%
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -664,12 +646,12 @@ Deploy it on a [DigitalOcean droplet](https://m.do.co/c/eca87ac14ee0) in minutes
 **Affiliate Disclosure**
 This article contains affiliate links to [DigitalOcean](https://m.do.co/c/eca87ac14ee0) and [HTStack](https://my.htstack.com/aff.php?aff=27187). If you purchase hosting through these links, dibi8.com earns a commission at no extra cost to you. We only recommend services we use for our own infrastructure. All benchmarks were conducted independently on paid instances.
 
+
 ---
 *Article published: 2026-05-19 | Category: dev-utils | Tool: Directus 11.3.0*
 *Join the dibi8 developer community: [English](https://t.me/dibi8en) | [Chinese](https://t.me/dibi8zh) | [Korean](https://t.me/dibi8ko) | [Vietnamese](https://t.me/dibi8vn)*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -695,8 +677,8 @@ This article contains affiliate links to [DigitalOcean](https://m.do.co/c/eca87a
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](directus-headless-cms-ai-content)
@@ -706,5 +688,4 @@ This article contains affiliate links to [DigitalOcean](https://m.do.co/c/eca87a
 - [12-factor-agents](directus-headless-cms-ai-content)
 
 ---
-
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

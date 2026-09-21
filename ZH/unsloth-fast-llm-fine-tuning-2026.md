@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/unsloth-fast-llm-fine-tuning-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/unsloth-fast-llm-fine-tuning-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/unsloth-fast-llm-fine-tuning-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/unsloth-fast-llm-fine-tuning-2026" />
 title: 'Unsloth 2026：64.9k 星快速 LLM 微调 —— 2× 速度、70% 少 VRAM、单 GPU 友好'
 description: 'Unsloth 微调 LLM 比 HuggingFace TRL 基线快 2× 且少用 70% VRAM。GitHub 64.9k 星，双 Apache 2.0 + AGPL-3.0 license。支持 Llama 3 / Mistral / Qwen 3 / Gemma / DeepSeek 的 LoRA / QLoRA / DPO / GRPO。2026 完整单 GPU 微调指南。'
 date: 2026-05-21 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [unsloth, 微调, lora, qlora, grpo, 快速训练]
-aliases:
-  - /posts/unsloth-fast-llm-fine-tuning-2026/
+aliases: - /posts/unsloth-fast-llm-fine-tuning-2026/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/unsloth-fast-llm-fine-tuning-2026/ -->
 
 如果 [Axolotl](/zh/resources/llm-frameworks/axolotl-llm-fine-tuning-framework-2026/) 是生产多 GPU 微调框架，**Unsloth** 是单 GPU 速度之王。通过用自定义 Triton + Python 重写 LLM 训练 kernel 而不依赖 PyTorch 通用 autograd，Unsloth 比 HuggingFace TRL 基线**快 2×** 且**少用 70% VRAM**。
 
@@ -59,7 +51,11 @@ aliases:
 ## 2. 硬件现实
 
 | GPU | 能 QLoRA 微调的模型大小（带 Unsloth 70% VRAM 减少）|
-|---|---|
+|
+---
+|
+---
+|
 | 8 GB（RTX 3060 8GB）| Llama 3.2 3B QLoRA, Phi-4 mini |
 | 12 GB（RTX 3060 12GB / 4070）| Llama 3.2 8B QLoRA, Mistral 7B QLoRA |
 | 24 GB（RTX 3090 / 4090）| Llama 3.3 70B QLoRA（是的，单 4090 上！）|
@@ -132,8 +128,7 @@ PatchFastRL("GRPO", FastLanguageModel)
 
 # ... 用 FastLanguageModel 加载模型如第 3 节 ...
 
-def reward_fn(completions, **kwargs):
-    return [1.0 if "correct" in c else 0.0 for c in completions]  # 你的奖励逻辑
+def reward_fn(completions, **kwargs): return [1.0 if "correct" in c else 0.0 for c in completions]  # 你的奖励逻辑
 
 trainer = GRPOTrainer(
     model=model,
@@ -149,7 +144,11 @@ trainer.train()
 ## 6. Unsloth vs Axolotl vs HuggingFace TRL
 
 | 挑 | 何时 |
-|---|---|
+|
+---
+|
+---
+|
 | **Unsloth** | 单 GPU，快速迭代，RL 微调，消费级硬件，原型 |
 | **Axolotl** | 多 GPU 生产，多节点，广方法支持（DPO/IPO/KTO/ORPO/GRPO/GDPO），YAML config-as-code。看 [Axolotl 2026 指南](/zh/resources/llm-frameworks/axolotl-llm-fine-tuning-framework-2026/) |
 | **HuggingFace TRL** | 直接 API 访问，自定义 RL 算法研究，要修改 trainer 内部 |
@@ -204,12 +203,11 @@ Unsloth = **单 GPU LLM 微调速度之王**。64.9k 星，vs HuggingFace TRL �
 
 配 [Axolotl](/zh/resources/llm-frameworks/axolotl-llm-fine-tuning-framework-2026/) 做生产多 GPU 阶段。要训练时租 {{< aff "digitalocean" "footer-cta" "GPU 实例" >}} 或用 Vast.ai。
 
----
 
+---
 *dibi8 Fine-Tuning Stack 的一部分 —— 见即将上线的 Fine-Tuning Stack 合集，覆盖从数据集准备到生产部署的完整管线。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -237,25 +235,20 @@ Unsloth = **单 GPU LLM 微调速度之王**。64.9k 星，vs HuggingFace TRL �
 
 ## Why This Matters
 
-Understanding unsloth 2026：64.9k 星快速 llm 微调 —— 2× 速度、70% 少 vram、单 gpu 友好 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding unsloth 2026：64.9k 星快速 llm 微调 —— 2× 速度、70% 少 vram、单 gpu 友好 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -276,8 +269,8 @@ Unsloth 2026：64.9k 星快速 LLM 微调 —— 2× 速度、70% 少 VRAM、单
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/bat" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/bat" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/bat" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/bat" />
 title: 'bat: 58K+ Stars 的语法高亮 cat 替代品 — 2026年对比 cat、less'
 description: 'bat 是带语法高亮和 Git 集成的 cat(1) 克隆。兼容 Rust、Git、Homebrew、Cargo。涵盖安装教程、性能基准测试、配置文件以及与 cat、less、ccat 的对比。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [bat, 'cat 替代品', 语法高亮, 命令行工具, rust, 终端工具, 文件查看器, cli]
-aliases:
-- /zh/posts/bat/
+aliases: - /zh/posts/bat/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/bat/ -->
 
 {{</* resource-info */>}}
 
@@ -47,10 +39,26 @@ aliases:
 *截图：bat 显示 Rust 文件，包含语法高亮、行号和 Git 集成。来源：sharkdp/bat GitHub 仓库。*
 
 ```
-+---------+    +----------------+    +----------------+    +---------+
++
+---
++    +
+---
++    +
+---
++    +
+---
++
 |  输入   | -> | 语言           | -> | syntect        | -> | 分页器  |
 |  文件   |    | 自动检测       |    | 语法高亮       |    | (less)  |
-+---------+    +----------------+    +----------------+    +---------+
++
+---
++    +
+---
++    +
+---
++    +
+---
++
                     |                      |
                     v                      v
               文件扩展名匹配          主题选择
@@ -246,7 +254,17 @@ tmux split-window -h "bat src/main.rs"
 由于 Rust 二进制文件启动开销和语法检测成本，`bat` 比 `cat` 慢。但对于交互式文件查看，差异几乎察觉不到。在批量处理的紧循环中，请使用 `cat`。
 
 | 场景 | cat | bat (默认) | bat --plain | bat --no-config |
-|------|-----|------------|-------------|-----------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 4 字节文件 | 0.001s | 0.14s | 0.10s | 0.08s |
 | 100 行 Python | 0.002s | 0.16s | 0.11s | 0.09s |
 | 10,000 行 JSON | 0.05s | 0.35s | 0.18s | 0.15s |
@@ -348,7 +366,17 @@ docker run --rm -v $(pwd):/files bat-viewer /files/README.md
 ## 与替代品对比
 
 | 功能 | bat | cat | less | ccat |
-|------|-----|-----|------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 语法高亮 | 200+ 种语言 | 无 | 无 | 10+ 种语言 |
 | 行号 | 支持 | 无 | 无 | 无 |
 | Git 集成 | 变更标记 | 无 | 无 | 无 |
@@ -444,7 +472,6 @@ docker run --rm -v $(pwd):/files bat-viewer /files/README.md
 - [与替代品对比](https://github.com/sharkdp/bat#project-goals-and-alternatives) —— bat 维护者的官方对比。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -472,25 +499,20 @@ docker run --rm -v $(pwd):/files bat-viewer /files/README.md
 
 ## Why This Matters
 
-Understanding bat: 58k+ stars 的语法高亮 cat 替代品 — 2026年对比 cat、less is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding bat: 58k+ stars 的语法高亮 cat 替代品 — 2026年对比 cat、less is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -511,13 +533,13 @@ bat: 58K+ Stars 的语法高亮 cat 替代品 — 2026年对比 cat、less repre
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
 
+---
 ## Related Articles
 
 - [claude-code-vs-aider](bat)

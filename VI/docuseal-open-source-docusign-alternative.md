@@ -1,17 +1,11 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/docuseal-open-source-docusign-alternative" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/docuseal-open-source-docusign-alternative" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/docuseal-open-source-docusign-alternative" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/docuseal-open-source-docusign-alternative" />
 title: Đánh giá DocuSeal：Giảm 90% chi phí ký tài liệu với lựa ch...
   mã nguồn mở
 description: DocuSeal là nền tảng mã nguồn mở 15.7k star thay thế DocuSign bằng ký. Comprehensive guide covering features, pricing, and best practices for 2026.
   tài liệu kỹ thuật số tự lưu trữ, xây dựng biểu mẫu PDF và quy trình eSignature white-label.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
-tech_stack:
-- Docker
+tech_stack: - Docker
 - Go
 - JavaScript
 - Python
@@ -29,10 +23,8 @@ maintainer: ''
 last_maintained: '2026-05-15'
 featureImage: ''
 draft: false
-aliases:
-- /vi/posts/docuseal-open-source-docusign-alternative/
-faqs:
-  - q: 'DocuSeal có phải là lựa chọn thay thế miễn phí cho DocuSign không?'
+aliases: - /vi/posts/docuseal-open-source-docusign-alternative/
+faqs: - q: 'DocuSeal có phải là lựa chọn thay thế miễn phí cho DocuSign không?'
     a: 'Có. DocuSeal là nền tảng ký tài liệu kỹ thuật số mã nguồn mở, tự lưu trữ, không mất phí bản quyền — thay thế DocuSign vốn tính phí $10-$60 mỗi người dùng mỗi tháng. Một công ty 100 người có thể tiết kiệm khoảng 94% chi phí trong ba năm nhờ tự lưu trữ.'
   - q: 'DocuSeal sử dụng giấy phép nào và có thể dùng cho mục đích thương mại không?'
     a: 'DocuSeal được phân phối theo giấy phép AGPLv3 kèm Điều khoản Bổ sung Section 7(b). Sử dụng thương mại được phép nhưng phải tuân thủ các điều khoản giấy phép đó; các tính năng Pro nâng cao như white-label, SSO/SAML và gửi hàng loạt được cung cấp qua giấy phép thương mại trả phí riêng.'
@@ -43,8 +35,6 @@ faqs:
   - q: 'DocuSeal có thể lưu trữ tài liệu đã ký ở đâu?'
     a: 'DocuSeal hỗ trợ lưu trữ trên đĩa cục bộ với SQLite theo mặc định, PostgreSQL hoặc MySQL cho quy mô production, và lưu trữ đối tượng đám mây trên AWS S3, Google Cloud Storage hoặc Azure Blob. Khuyến nghị dùng PostgreSQL với SSL và S3 với mã hóa phía máy chủ cho các triển khai đa người dùng trong môi trường production.'
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/docuseal-open-source-docusign-alternative/ -->
 
 {</* resource-info */>}
 
@@ -71,8 +61,7 @@ DocuSeal là một **nền tảng mã nguồn mở để ký và xử lý tài l
 
 ### 1. Trình tạo biểu mẫu PDF (WYSIWYG)
 
-DocuSeal bao gồm trình tạo biểu mẫu kéo và thả với **12 loại trường**:
-- Chữ ký (vẽ, nhập hoặc tải lên)
+DocuSeal bao gồm trình tạo biểu mẫu kéo và thả với **12 loại trường**: - Chữ ký (vẽ, nhập hoặc tải lên)
 - Trình chọn ngày
 - Tải lên tệp
 - Hộp kiểm và nút radio
@@ -83,8 +72,7 @@ Bạn thiết kế biểu mẫu trực quan, và DocuSeal tự động tạo PDF
 
 ### 2. Nhiều người gửi cho mỗi tài liệu
 
-Gửi một tài liệu cho nhiều người ký theo trình tự hoặc song song. Hoàn hảo cho:
-- Hợp đồng lao động (HR → Nhân viên)
+Gửi một tài liệu cho nhiều người ký theo trình tự hoặc song song. Hoàn hảo cho: - Hợp đồng lao động (HR → Nhân viên)
 - Nghị quyết hội đồng quản trị (Chủ tịch → Giám đốc)
 - Thỏa thuận nhà cung cấp (Pháp lý → Nhà cung cấp → CFO)
 
@@ -94,8 +82,7 @@ Cấu hình máy chủ SMTP của riêng bạn (Gmail, SendGrid, AWS SES, v.v.) 
 
 ### 4. Lưu trữ tệp linh hoạt
 
-Lưu trữ tài liệu đã ký trên:
-- Đĩa cục bộ (mặc định, SQLite)
+Lưu trữ tài liệu đã ký trên: - Đĩa cục bộ (mặc định, SQLite)
 - PostgreSQL hoặc MySQL (quy mô sản xuất)
 - AWS S3, Google Cloud Storage hoặc Azure Blob
 
@@ -109,9 +96,7 @@ Trải nghiệm ký hoạt động hoàn hảo trên điện thoại và máy t�
 
 ### 7. API & Webhooks
 
-Tích hợp DocuSeal vào stack hiện có của bạn:
-
-```bash
+Tích hợp DocuSeal vào stack hiện có của bạn: ```bash
 # Tạo mẫu qua API
 curl -X POST https://your-docuseal.com/api/templates   -H "Authorization: Bearer YOUR_API_KEY"   -d '{"name":"Mẫu NDA","fields":[{"type":"signature","role":"signer"}]}'
 ```
@@ -126,8 +111,7 @@ Webhooks kích hoạt trên các sự kiện: `document_signed`, `submitter_comp
 
 ## Các tính năng Pro (Phụ phí trả tiền)
 
-DocuSeal cung cấp giấy phép thương mại với các tính năng nâng cao:
-- **White-label**: Logo, tên miền, thương hiệu của bạn
+DocuSeal cung cấp giấy phép thương mại với các tính năng nâng cao: - **White-label**: Logo, tên miền, thương hiệu của bạn
 - **Vai trò người dùng**: Quyền quản trị viên, biên tập viên, người xem
 - **Nhắc nhở tự động**: Email nhắc nhở hàng ngày/hàng tuần
 - **Xác minh SMS**: Xác nhận danh tính qua tin nhắn
@@ -204,8 +188,7 @@ Một nhà tư vấn độc lập gửi 30+ hợp đồng mỗi tháng qua DocuS
 
 ## SEO và tiềm năng lưu lượng
 
-DocuSeal xếp hạng tốt cho các từ khóa có ý định cao:
-- "DocuSign alternative free"
+DocuSeal xếp hạng tốt cho các từ khóa có ý định cao: - "DocuSign alternative free"
 - "open source electronic signature"
 - "self-hosted document signing"
 - "PDF form builder open source"
@@ -226,9 +209,7 @@ DocuSeal được xây dựng trên Ruby on Rails 8.1.2 với kiến trúc mô-�
 
 ### Đường ống xử lý tài liệu
 
-Khi người dùng tải lên PDF, DocuSeal chạy nó qua đường ống sau:
-
-1. **Phân tích PDF**: Sử dụng gem `pdf-reader` để trích xuất văn bản, trường và siêu dữ liệu.
+Khi người dùng tải lên PDF, DocuSeal chạy nó qua đường ống sau: 1. **Phân tích PDF**: Sử dụng gem `pdf-reader` để trích xuất văn bản, trường và siêu dữ liệu.
 2. **Phát hiện trường biểu mẫu**: Tự động phát hiện các trường AcroForm hiện có và đề xuất ánh xạ sang các loại trường DocuSeal.
 3. **Đặt trường**: Trình tạo WYSIWYG hiển thị PDF trong lớp canvas nơi quản trị viên kéo các trường vào tọa độ cụ thể.
 4. **Tạo lược đồ**: Một lược đồ JSON được tạo mô tả các loại trường, quy tắc xác thực, logic có điều kiện và định tuyến người ký.
@@ -236,9 +217,7 @@ Khi người dùng tải lên PDF, DocuSeal chạy nó qua đường ống sau:
 
 ### Mật mã chữ ký
 
-DocuSeal triển khai chữ ký số tuân thủ ISO 32000-1 bằng cách sử dụng chữ ký tách PKCS#7. Mỗi chữ ký bao gồm:
-
-- Bản tóm tắt SHA-256 của nội dung tài liệu
+DocuSeal triển khai chữ ký số tuân thủ ISO 32000-1 bằng cách sử dụng chữ ký tách PKCS#7. Mỗi chữ ký bao gồm: - Bản tóm tắt SHA-256 của nội dung tài liệu
 - Mã thông báo dấu thời gian từ TSA đáng tin cậy (Cơ quan cấp dấu thời gian)
 - Siêu dữ liệu danh tính người ký (email, IP, dấu thời gian)
 - Dấu vân tay tài liệu duy nhất để phát hiện giả mạo
@@ -247,9 +226,7 @@ DocuSeal triển khai chữ ký số tuân thủ ISO 32000-1 bằng cách sử d
 
 ### Danh sách kiểm tra bảo mật tự lưu trữ
 
-Khi triển khai DocuSeal trên cơ sở hạ tầng của riêng bạn, hãy làm theo hướng dẫn củng cố này:
-
-1. **Cơ sở dữ liệu**: Sử dụng PostgreSQL với mã hóa SSL/TLS khi truyền tải và khi lưu trữ. Tránh SQLite cho triển khai đa người dùng sản xuất.
+Khi triển khai DocuSeal trên cơ sở hạ tầng của riêng bạn, hãy làm theo hướng dẫn củng cố này: 1. **Cơ sở dữ liệu**: Sử dụng PostgreSQL với mã hóa SSL/TLS khi truyền tải và khi lưu trữ. Tránh SQLite cho triển khai đa người dùng sản xuất.
 2. **Lưu trữ tệp**: Cấu hình AWS S3 với mã hóa phía máy chủ (SSE-S3 hoặc SSE-KMS). Bật phiên bản bucket cho dấu vết kiểm toán.
 3. **Mạng**: Đặt DocuSeal phía sau proxy ngược (Nginx hoặc Caddy) với giới hạn tốc độ, quy tắc WAF và bảo vệ DDoS.
 4. **Xác thực**: Bật SSO/SAML cho triển khai doanh nghiệp. Vô hiệu hóa tài khoản quản trị mặc định sau thiết lập ban đầu.
@@ -258,17 +235,12 @@ Khi triển khai DocuSeal trên cơ sở hạ tầng của riêng bạn, hãy l�
 
 ## Các mẫu tích hợp API
 
-API REST và hệ thống webhook của DocuSeal cho phép các kịch bản tự động hóa mạnh mẽ:
+API REST và hệ thống webhook của DocuSeal cho phép các kịch bản tự động hóa mạnh mẽ: ### Mẫu 1: Tạo hợp đồng do CRM kích hoạt
 
-### Mẫu 1: Tạo hợp đồng do CRM kích hoạt
-
-Khi giao dịch đạt giai đoạn "Closed-Won" trong Salesforce:
-
-```python
+Khi giao dịch đạt giai đoạn "Closed-Won" trong Salesforce: ```python
 import requests
 
-def generate_contract(opportunity_id):
-    opp = salesforce.get_opportunity(opportunity_id)
+def generate_contract(opportunity_id): opp = salesforce.get_opportunity(opportunity_id)
     template_id = "msa-template-v3"
     
     response = requests.post(
@@ -292,9 +264,7 @@ def generate_contract(opportunity_id):
 
 ### Mẫu 2: Cấp phát do Webhook điều khiển
 
-Khi tài liệu được ký đầy đủ, hãy kích hoạt các hành động hạ nguồn:
-
-```javascript
+Khi tài liệu được ký đầy đủ, hãy kích hoạt các hành động hạ nguồn: ```javascript
 // Trình xử lý webhook Express
 app.post('/webhooks/docuseal', (req, res) => {
     const event = req.body.event;
@@ -314,34 +284,27 @@ app.post('/webhooks/docuseal', (req, res) => {
 
 ### Mẫu 3: Onboarding HR hàng loạt
 
-Đối với đỉnh điểm tuyển dụng theo mùa, hãy sử dụng API gửi hàng loạt:
-
-```bash
+Đối với đỉnh điểm tuyển dụng theo mùa, hãy sử dụng API gửi hàng loạt: ```bash
 curl -X POST https://docuseal.yourcompany.com/api/bulk_submissions   -H "Authorization: Bearer API_KEY"   -F "template_id=employee-agreement"   -F "file=@new_hires.csv"   -F "column_mapping={"email":"submitter_email","name":"full_name"}"
 ```
 
 ## Hiệu suất và khả năng mở rộng
 
-DocuSeal xử lý các kịch bản ký hàng loạt thông qua mở rộng theo chiều ngang:
-
-| Chỉ số | Một phiên bản | Cụm Docker Compose | Kubernetes |
+DocuSeal xử lý các kịch bản ký hàng loạt thông qua mở rộng theo chiều ngang: | Chỉ số | Một phiên bản | Cụm Docker Compose | Kubernetes |
 |--------|--------------|-------------------|------------|
 | Người ký đồng thời | 50 | 500 | 5.000+ |
 | Tài liệu/giờ | 200 | 2.000 | 20.000+ |
 | Yêu cầu API/phút | 1.000 | 10.000 | 100.000+ |
 | Lưu trữ | Đĩa cục bộ | S3/GCS/Azure | Kho lưu trữ đối tượng phân tán |
 
-Đối với triển khai doanh nghiệp, nhóm DocuSeal khuyến nghị:
-- 2 lõi CPU và 4GB RAM cho mỗi phiên bản container
+Đối với triển khai doanh nghiệp, nhóm DocuSeal khuyến nghị: - 2 lõi CPU và 4GB RAM cho mỗi phiên bản container
 - Redis để lưu trữ phiên và hàng đợi công việc
 - Sidekiq để xử lý công việc nền (gửi email, tạo PDF)
 - Bản sao chỉ đọc cho PostgreSQL để giảm tải truy vấn báo cáo
 
 ## Phân tích chi phí: DocuSeal so với các lựa chọn thay thế thương mại
 
-Hãy phân tích chi phí sở hữu thực tế cho một công ty 100 người trong 3 năm:
-
-| Hạng mục chi phí | DocuSeal (Tự lưu trữ) | DocuSign Business Pro | PandaDoc Business |
+Hãy phân tích chi phí sở hữu thực tế cho một công ty 100 người trong 3 năm: | Hạng mục chi phí | DocuSeal (Tự lưu trữ) | DocuSign Business Pro | PandaDoc Business |
 |-----------------|----------------------|----------------------|-------------------|
 | Phí cấp phép | $0 | $64.800 (3 năm) | $70.200 (3 năm) |
 | Hạ tầng | $1.440 (VPS) | $0 | $0 |
@@ -354,9 +317,7 @@ Các con số này giả định một VPS tầm trung ($40/tháng) và không b
 
 ## Cộng đồng và hệ sinh thái
 
-DocuSeal có một hệ sinh thái đang phát triển nhanh chóng:
-
-- **Cộng đồng Discord**: 2.400+ thành viên chia sẻ mẹo triển khai và mẫu tùy chỉnh
+DocuSeal có một hệ sinh thái đang phát triển nhanh chóng: - **Cộng đồng Discord**: 2.400+ thành viên chia sẻ mẹo triển khai và mẫu tùy chỉnh
 - **Thị trường mẫu**: Mẫu đóng góp của cộng đồng cho NDA, thỏa thuận lao động và hợp đồng nhà cung cấp
 - **SDK plugin**: Ruby gem để mở rộng DocuSeal với các loại trường và trình xác thực tùy chỉnh
 - **SDK di động**: Trình bao bọc iOS và Android gốc cho ký nhúng
@@ -392,9 +353,7 @@ DocuSeal là dự án mã nguồn mở hiếm hoi trực tiếp thay thế một
 
 ## Công Cụ Đề Xuất
 
-Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
+Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
 - **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Proxy Anthropic Claude / OpenAI / DeepSeek API. Hầu hết AI tool ở trên (chatbot, code gen, translation, search, v.v.) cần LLM API key — proxy này cho access ổn định top model với ~30% giá chính thức.
 - **{{< aff "hostinger" "footer-cta-legacy" "Hostinger" >}}** — Lựa chọn VPS giá tốt cho thị trường Việt Nam.
 
@@ -402,7 +361,6 @@ Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

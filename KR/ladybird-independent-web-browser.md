@@ -1,16 +1,10 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ladybird-independent-web-browser" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ladybird-independent-web-browser" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ladybird-independent-web-browser" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ladybird-independent-web-browser" />
 title: 'Ladybird: 진정한 독립 웹 브라우저 — 브라우저 독립의 새로운 시대'
 description: Ladybird를 발견하세요 — 처음부터 구축된 진정한 독립 웹 브라우저. Chrome 의존성 없음, 기업 영향 없음, 순수. Comprehensive guide covering features, pricing, and best practices for 2026.
   오픈소스.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
-tech_stack:
-- C++
+tech_stack: - C++
 - Docker
 - Java
 - JavaScript
@@ -28,10 +22,8 @@ maintainer: "LadybirdBrowser"
 last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases:
-- /ko/posts/ladybird-independent-web-browser/
-faqs:
-  - q: 'Ladybird 브라우저란 무엇인가요?'
+aliases: - /ko/posts/ladybird-independent-web-browser/
+faqs: - q: 'Ladybird 브라우저란 무엇인가요?'
     a: 'Ladybird는 Chromium, Firefox 또는 기존의 어떤 브라우저 엔진에도 의존하지 않고 완전히 처음부터 만들어진 진정한 독립 웹 브라우저입니다. C++로 작성된 자체 렌더링 엔진(LibWeb)과 JavaScript 엔진(LibJS)을 사용합니다.'
   - q: 'Ladybird 브라우저는 누가 만들었나요?'
     a: 'Ladybird는 SerenityOS의 창시자이자 전 Apple Safari 엔지니어인 Andreas Kling이 만들었습니다. 현재 이 프로젝트는 전 세계 100명 이상의 오픈소스 기여자들로 구성된 커뮤니티가 함께 개발하고 있습니다.'
@@ -43,7 +35,6 @@ faqs:
     a: 'GitHub 저장소를 클론한 후 의존성(Ubuntu/Debian 기준: build-essential, cmake, ninja-build)을 설치하고, CMake와 Ninja로 빌드한 뒤 ./bin/Ladybird를 실행하면 소스에서 직접 빌드할 수 있습니다. 실험적인 Docker 이미지도 제공됩니다.'
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/ladybird-independent-web-browser/ -->
 {</* resource-info */>}
 
 ## Ladybird란?
@@ -86,8 +77,7 @@ faqs:
 
 ### 처음부터 구축
 
-Ladybird는 Chromium이나 Firefox를 포크하지 않습니다. 모든 것을 새로 구축합니다:
-- **웹 엔진**: "LibWeb"이라는 새로운 렌더링 엔진
+Ladybird는 Chromium이나 Firefox를 포크하지 않습니다. 모든 것을 새로 구축합니다: - **웹 엔진**: "LibWeb"이라는 새로운 렌더링 엔진
 - **JavaScript 엔진**: 커스텀 JS 엔진 "LibJS"
 - **네트워크 스택**: 독립적인 네트워킹
 - **그래픽**: 커스텀 그래픽 렌더링
@@ -268,16 +258,13 @@ docker run -it ladybird/browser
 
 ## 추천 도구
 
-오픈소스 AI 도구 개발/배포 시 권장:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
+오픈소스 AI 도구 개발/배포 시 권장: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
 - **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Anthropic Claude / OpenAI / DeepSeek API 프록시. 위의 AI 도구 대부분 (챗봇, 코드 생성, 번역, 검색 등) LLM API 키 필요 — 이 프록시로 안정적인 톱 모델 액세스, 공식 가격의 ~30%.
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -305,25 +292,20 @@ docker run -it ladybird/browser
 
 ## Why This Matters
 
-Understanding ladybird: 진정한 독립 웹 브라우저 — 브라우저 독립의 새로운 시대 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding ladybird: 진정한 독립 웹 브라우저 — 브라우저 독립의 새로운 시대 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

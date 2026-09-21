@@ -1,22 +1,14 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/design-md-google-open-source-format-ai-coding-agents-design-systems" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/design-md-google-open-source-format-ai-coding-agents-design-systems" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/design-md-google-open-source-format-ai-coding-agents-design-systems" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/design-md-google-open-source-format-ai-coding-agents-design-systems" />
 title: "DESIGN.md：谷歌用于为 AI 编码代理提供设计系统的开源格式"
 description: 'DESIGN.md 由 Google Labs Code 提供，是一种开源格式规范，用于向 AI 编码代理描述视觉识别。拥有 20.8k 个 GitHub 星标。了解它如何通过 YAML 令牌和基于文本的约束桥接设计系统与 AI 代码生成。'
 tags: ["guide", "open-source", "ai-agents", "design-systems", "reference", "google"]
 date: 2026-06-27
-lastmod:  2026-06-27slug: 'design-md-google-open-source-format-ai-coding-agents-design-systems'
+lastmod: 2026-06-27
+slug: 'design-md-google-open-source-format-ai-coding-agents-design-systems'
 category: dev-utils
 github_repo: 'https://github.com/google-labs-code/design.md'
 license: Apache-2.0
-lang: zh
-featureImage: /images/articles/design-md-format-specification-for-ai-coding-agents.png
----
-
-<!-- canonical: https://dibi8.com/zh/tools/design-md-google-open-source-format-ai-coding-agents-design-systems/ -->
+featureImage: /images/articles/design-md-format-specification-for-ai-coding-agents.png---
 # DESIGN.md：谷歌用于为 AI 编码代理提供设计系统的开源格式
 
 
@@ -47,7 +39,7 @@ DESIGN.md 是一个 Markdown 文件，作为项目视觉识别的唯一真实来
 │                                                  │
 │  ## Colors                                     │
 │  ```yaml                                       │
-│  colors:                                       │
+│  colors: │
 │    paper: '#F4F0E4'                             │
 │    ink: '#1E1A14'                               │
 │    accent: '#C3402A'                            │
@@ -58,7 +50,7 @@ DESIGN.md 是一个 Markdown 文件，作为项目视觉识别的唯一真实来
 │                                                  │
 │  ## Typography                                 │
 │  ```yaml                                       │
-│  typography:                                   │
+│  typography: │
 │    heading: 'Playfair Display'                 │
 │    body: 'Source Serif 4'                      │
 │    mono: 'JetBrains Mono'                      │
@@ -66,7 +58,7 @@ DESIGN.md 是一个 Markdown 文件，作为项目视觉识别的唯一真实来
 │                                                  │
 │  ## Spacing                                    │
 │  ```yaml                                       │
-│  spacing:                                      │
+│  spacing: │
 │    unit: 8px                                   │
 │    scale: [4, 8, 16, 24, 32, 48, 64]           │
 │  ```                                           │
@@ -135,15 +127,15 @@ npx @google/design.md lint DESIGN.md
 从最基本的必要结构开始：
 
 ```markdown
+
 ---
 name: My Project Design
----
 
+---
 ## Colors
 
 ```yaml
-colors:
-  primary: '#2563EB'
+colors: primary: '#2563EB'
   background: '#FFFFFF'
   text: '#111827'
 ```
@@ -153,8 +145,7 @@ A clean blue-and-white system for a professional SaaS product.
 ## Typography
 
 ```yaml
-typography:
-  heading: 'Inter'
+typography: heading: 'Inter'
   body: 'Inter'
   mono: 'JetBrains Mono'
 ```
@@ -164,8 +155,7 @@ Single-family typography system for consistency.
 ## Spacing
 
 ```yaml
-spacing:
-  unit: 4px
+spacing: unit: 4px
   scale: [4, 8, 16, 24, 32, 48, 64]
 ```
 
@@ -174,9 +164,7 @@ spacing:
 
 ### 3. Ship It to Your Coding Agents
 
-Add DESIGN.md to your project repository. When working with any coding agent, reference the file in your system prompt:
-
-```
+Add DESIGN.md to your project repository. When working with any coding agent, reference the file in your system prompt: ```
 System: Read the DESIGN.md file in the project root.
 All UI components must follow the design specifications defined there.
 ```
@@ -185,9 +173,7 @@ The agent will now consistently apply your design system across every generation
 
 ## Real-World Examples
 
-The repository includes several example DESIGN.md files demonstrating different aesthetic approaches:
-
-**Graduate Lecture Handout**: A warm paper canvas with single-ink typography and vermilion accents limited to diagrams. The prose specifies "A graduate-level computer science lecture handout in the tradition of an old established university" — instantly communicating margins, serif fonts, and restraint.
+The repository includes several example DESIGN.md files demonstrating different aesthetic approaches: **Graduate Lecture Handout**: A warm paper canvas with single-ink typography and vermilion accents limited to diagrams. The prose specifies "A graduate-level computer science lecture handout in the tradition of an old established university" — instantly communicating margins, serif fonts, and restraint.
 
 **Motion Design System**: Defines timing constants for UI feedback (120ms for hover/press, 250ms for content transitions) with a mechanical easing curve. The prose emphasizes "Nothing bounces, nothing overshoots, nothing lingers" — giving agents a clear temporal aesthetic.
 
@@ -199,8 +185,7 @@ DESIGN.md addresses a fundamental bottleneck in AI-assisted development: **desig
 
 Without a design specification, every AI-generated page, component, or screen is a fresh creative exercise. The agent doesn't know your brand colors beyond what's in the prompt, doesn't understand your spacing philosophy, and has no memory of what "done" looks like for your project.
 
-With DESIGN.md:
-- **Agents have persistent design memory** — the file lives in your repo, version-controlled and reviewed
+With DESIGN.md: - **Agents have persistent design memory** — the file lives in your repo, version-controlled and reviewed
 - **Multiple agents stay consistent** — Claude, ChatGPT, and Codex all read the same file
 - **Design reviews become automated** — the linter catches violations before they reach production
 - **New developers onboard instantly** — the file *is* the design system documentation
@@ -209,9 +194,7 @@ The format is particularly powerful for teams using multiple AI coding tools. In
 
 ## Limitations and Trade-offs
 
-DESIGN.md is not a silver bullet. Several considerations:
-
-1. **Agent-dependent quality**: The effectiveness depends on how well each agent reads and follows the prose. Some agents may parse the YAML but ignore the narrative descriptions.
+DESIGN.md is not a silver bullet. Several considerations: 1. **Agent-dependent quality**: The effectiveness depends on how well each agent reads and follows the prose. Some agents may parse the YAML but ignore the narrative descriptions.
 
 2. **No visual rendering**: DESIGN.md is a specification, not a rendering engine. You still need the agent (or a human designer) to translate the specs into actual code.
 
@@ -223,9 +206,7 @@ DESIGN.md is not a silver bullet. Several considerations:
 
 ## Community and Adoption
 
-DESIGN.md is developed by Google Labs Code and has attracted significant attention:
-
-- **20,800+ stars** on GitHub (2,319 gained in a single day)
+DESIGN.md is developed by Google Labs Code and has attracted significant attention: - **20,800+ stars** on GitHub (2,319 gained in a single day)
 - **1,700+ forks** with active community contributions
 - **40+ commits** in 2 months with rapid iteration
 - **18 issues** and **17 pull requests** showing active development
@@ -252,9 +233,7 @@ Check out internal guides on AI Coding Agent Comparison and Developer Tooling Be
 Join the DIBI8 community on [Telegram](https://t.me/DIBI8_Group) for daily discussions on AI tools, dev utilities, and open-source projects.
 
 ---
-
-**Sources & Further Reading**:
-- Official repository: https://github.com/google-labs-code/design.md
+**Sources & Further Reading**: - Official repository: https://github.com/google-labs-code/design.md
 - DESIGN.md philosophy: https://github.com/google-labs-code/design.md/blob/main/PHILOSOPHY.md
 - CLI toolkit: https://github.com/google-labs-code/design.md/tree/main/packages/cli
 - Example DESIGN.md files: https://github.com/google-labs-code/design.md/tree/main/examples
@@ -264,7 +243,6 @@ Join the DIBI8 community on [Telegram](https://t.me/DIBI8_Group) for daily discu
 **Disclosure**: This article contains affiliate links. If you sign up through our links, we may earn a small commission at no additional cost to you. This helps support independent tech journalism and keeps resources like dibi8.com free and ad-free.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -292,25 +270,20 @@ Join the DIBI8 community on [Telegram](https://t.me/DIBI8_Group) for daily discu
 
 ## Why This Matters
 
-Understanding design.md：谷歌用于为 ai 编码代理提供设计系统的开源格式 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding design.md：谷歌用于为 ai 编码代理提供设计系统的开源格式 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

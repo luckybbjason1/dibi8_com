@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/hunyuan-video" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hunyuan-video" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hunyuan-video" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hunyuan-video" />
 title: 'HunyuanVideo: 12.1K+ Stars — Hướng Dẫn Triển Khai Produc...
 description: 'HunyuanVideo (HYV) là framework tạo video nguồn mở 13B tham số do Tencent phát triển. Hỗ trợ ComfyUI, Diffusers, Gradio API. Bao gồm Docker, FP8 quantization, đa GPU, và production hardening.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: ['tạo-video', 'diffusion-transformer', tencent, hunyuanvideo, comfyui, docker, fp8, 'đa-phương-thức']
-aliases:
-- /vi/posts/hunyuan-video/
+aliases: - /vi/posts/hunyuan-video/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/hunyuan-video/ -->
 
 {{</* resource-info */>}}
 
@@ -41,9 +33,7 @@ HunyuanVideo là một framework hệ thống cho các mô hình tạo video quy
 
 ## HunyuanVideo hoạt động như thế nào?
 
-Kiến trúc theo một pipeline latent diffusion với ba thành phần chính:
-
-![Kiến trúc tổng thể HunyuanVideo](https://raw.githubusercontent.com/Tencent-Hunyuan/HunyuanVideo/main/assets/backbone.png)
+Kiến trúc theo một pipeline latent diffusion với ba thành phần chính: ![Kiến trúc tổng thể HunyuanVideo](https://raw.githubusercontent.com/Tencent-Hunyuan/HunyuanVideo/main/assets/backbone.png)
 
 **Causal 3D VAE** nén video đầu vào vào không gian latent với tỷ lệ nén thờ gian 4x và không gian 8x. Điều này giảm số lượng token đưa vào transformer, cho phép tạo ở độ phân giải cao hơn mà không cần tăng tính toán tỷ lệ thuận.
 
@@ -147,9 +137,7 @@ Flag `--use-cpu-offload` là bắt buộc cho GPU có dưới 80GB VRAM. Nó off
 
 ### ComfyUI (Node Gốc)
 
-ComfyUI đã thêm hỗ trợ HunyuanVideo gốc vào đầu 2025. Tải các tệp mô hình repackaged từ Comfy-Org:
-
-```bash
+ComfyUI đã thêm hỗ trợ HunyuanVideo gốc vào đầu 2025. Tải các tệp mô hình repackaged từ Comfy-Org: ```bash
 # Tệp mô hình đặt vào ComfyUI/models/
 # - text_encoders/clip_l.safetensors
 # - text_encoders/llava_llama3_vision.safetensors
@@ -161,9 +149,7 @@ Tải workflow chính thức bằng cách kéo JSON vào ComfyUI. Các node chí
 
 ### HunyuanVideoWrapper của Kijai (Nâng cao)
 
-Cho suy luận FP8, video-to-video, và image-to-video, sử dụng wrapper cộng đồng:
-
-```bash
+Cho suy luận FP8, video-to-video, và image-to-video, sử dụng wrapper cộng đồng: ```bash
 # Cài qua ComfyUI Manager hoặc git
 cd ComfyUI/custom_nodes
 git clone https://github.com/kijai/ComfyUI-HunyuanVideoWrapper.git
@@ -226,16 +212,12 @@ Giao diện Gradio expose các tham số cho prompt, độ phân giải, số kh
 
 ### DigitalOcean GPU Droplets
 
-Cho các team không có phần cứng GPU tại chỗ, DigitalOcean GPU Droplets cung cấp instance NVIDIA H100 và A100 theo nhu cầu:
-
-```yaml
+Cho các team không có phần cứng GPU tại chỗ, DigitalOcean GPU Droplets cung cấp instance NVIDIA H100 và A100 theo nhu cầu: ```yaml
 #cloud-config
 package_update: true
-packages:
-  - docker.io
+packages: - docker.io
   - nvidia-container-toolkit
-runcmd:
-  - systemctl restart docker
+runcmd: - systemctl restart docker
   - docker pull hunyuanvideo/hunyuanvideo:cuda_12
   - docker run -d --gpus all --name hunyuan \
       -p 8081:8081 -v /mnt/models:/models \
@@ -245,9 +227,7 @@ runcmd:
 
 ## Benchmark / Trường hợp Sử dụng Thực tế
 
-Benchmark cộng đồng từ thử nghiệm RTX 4090 và GPU datacenter (tháng 3/2026):
-
-| Mô hình | Tham số | VRAM (720p) | Thờ gian Tạo (5s, RTX 4090) | Chất lượng Thẩm mỹ |
+Benchmark cộng đồng từ thử nghiệm RTX 4090 và GPU datacenter (tháng 3/2026): | Mô hình | Tham số | VRAM (720p) | Thờ gian Tạo (5s, RTX 4090) | Chất lượng Thẩm mỹ |
 |---|---|---|---|---|
 | HunyuanVideo (gốc) | 13B | ~60GB | ~5:50 | 8.8/10 |
 | HunyuanVideo-1.5 | 8.3B | ~24GB (INT8) | ~3:20 | 8.5/10 |
@@ -293,9 +273,7 @@ Flag `--use-fp8` kích hoạt pipeline FP8 trong `hyvideo/modules/fp8_optimizati
 
 ### Suy luận Song song Đa GPU với xDiT
 
-Cho workload production, xDiT cung cấp Unified Sequence Parallelism mở rộng trên nhiều GPU:
-
-```bash
+Cho workload production, xDiT cung cấp Unified Sequence Parallelism mở rộng trên nhiều GPU: ```bash
 # Suy luận song song 8 GPU
 torchrun --nproc_per_node=8 sample_video.py \
     --video-size 1280 720 \
@@ -309,9 +287,7 @@ torchrun --nproc_per_node=8 sample_video.py \
     --save-path ./results
 ```
 
-Độ trễ mở rộng trên 1280x720, 129 khung hình, 50 bước:
-
-| GPU | Độ trễ (giây) | Tăng tốc |
+Độ trễ mở rộng trên 1280x720, 129 khung hình, 50 bước: | GPU | Độ trễ (giây) | Tăng tốc |
 |---|---|---|
 | 1 | 1904 | 1.00x |
 | 2 | 934 | 2.04x |
@@ -334,9 +310,7 @@ python gradio_server.py \
   --queue-timeout 300
 ```
 
-Sau reverse proxy Nginx với giới hạn tốc độ:
-
-```nginx
+Sau reverse proxy Nginx với giới hạn tốc độ: ```nginx
 upstream hunyuan {
     server 127.0.0.1:8081;
     keepalive 32;
@@ -373,8 +347,7 @@ inference_duration = Histogram(hunyuan_inference_seconds, 'Độ trễ suy luậ
 queue_depth = Gauge(hunyuan_queue_depth, 'Độ sâu hàng đợi hiện tại')
 
 @inference_duration.time()
-def generate_video(prompt, height, width, frames, steps):
-    inference_count.inc()
+def generate_video(prompt, height, width, frames, steps): inference_count.inc()
     # ... logic suy luận hiện có
     return video
 
@@ -453,9 +426,7 @@ A: Đội Tencent duy trì máy chủ Discord và nhóm WeChat được liên k�
 
 HunyuanVideo là một framework tạo video đẳng cấp production bắc nhịp giữa API thương mại đóng và khả năng tiếp cận nguồn mở. Với bản 1.5 mang 8.3 tỷ tham số, attention SSTA, và khả năng tương thích GPU ngườ dùng, nó đã trở thành lựa chọn thực tế cho cả studio và ngườ sáng tạo độc lập.
 
-Các hành động để bắt đầu ngay hôm nay:
-
-1. Clone repository và chạy Docker image trên instance GPU — image CUDA 12 chính thức là con đường nhanh nhất.
+Các hành động để bắt đầu ngay hôm nay: 1. Clone repository và chạy Docker image trên instance GPU — image CUDA 12 chính thức là con đường nhanh nhất.
 2. Tải trọng số FP8 và chạy tạo 720p đầu tiên với `sample_video.py`.
 3. Tích hợp với ComfyUI bằng wrapper của Kijai để chỉnh sửa workflow trực quan.
 4. Tham gia [nhóm Telegram dibi8](https://t.me/dibi8Channel) để thảo luận chiến lược triển khai và chia sẻ video đã tạo.
@@ -466,9 +437,7 @@ Các hành động để bắt đầu ngay hôm nay:
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -487,7 +456,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - DigitalOcean GPU Droplets: https://www.digitalocean.com/products/gpu-droplets
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/melotts" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/melotts" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/melotts" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/melotts" />
 title: 'MeloTTS: 7.4K+ Stars — 다국어 TTS 벤치마크 Coqui TTS, ChatTTS, ...
 description: 'MeloTTS는 7.4K+ Stars를 보유한 고품질 다국어 텍스트 음성 변환 라이브러리입니다. Coqui TTS, ChatTTS, Bark와의 벤치마크 비교. Python 설치, Docker 배포, 실시간 추론, 프로덕션 하드닝을 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [melotts, 텍스트음성변환, tts, 다국어, python, 음성합성, 오픈소스, cpu추론]
-aliases:
-- /kr/posts/melotts/
+aliases: - /kr/posts/melotts/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/melotts/ -->
 
 {{</* resource-info */>}}
 
@@ -39,8 +31,7 @@ aliases:
 
 MeloTTS는 VITS, VITS2, Bert-VITS2 아키텍처를 기반으로 한 고품질 다국어 텍스트 음성 변환 라이브러리입니다. 영어(미국, 영국, 인도, 호주, 기본 억양), 스페인어, 프랑스어, 중국어(중영 혼합 지원), 일본어, 한국어를 지원합니다. 이 프로젝트는 MyShell.ai에서 유지관리하며 MIT 연구원들이 기여하고 있으며, 전체 코드베이스는 MIT 라이선스 — 상업적 및 비상업적 사용 모두 물론 묣료입니다.
 
-핵심 차별화 특징:
-- **CPU 실시간 추론**, Intel i7-12700에서 RTF(Real-Time Factor)가 0.41로 낮음
+핵심 차별화 특징: - **CPU 실시간 추론**, Intel i7-12700에서 RTF(Real-Time Factor)가 0.41로 낮음
 - **모델 크기 약 180-300MB**, 엣지 디바이스 배포에 충분히 작음
 - **혼합 언어 지원** — 중국어 화자가 동일한 문장에서 영어 단어를 원활하게 처리
 - **0.5x에서 2.0x까지 속도 제어**, 왜곡 없음
@@ -48,9 +39,7 @@ MeloTTS는 VITS, VITS2, Bert-VITS2 아키텍처를 기반으로 한 고품질 �
 
 ## MeloTTS 작동 방식
 
-MeloTTS는 VITS2에서 파생된 비자기회귀(Non-Autoregressive) 종단간 신경 아키텍처를 사용하며 BERT 기반 텍스트 인코딩을 결합합니다. 파이프라인은 네 단계로 구성됩니다:
-
-1. **텍스트 처리**: 대부분의 언어에 대해 `espeak-ng`를 통한 G2P(그래핌-투-포넴) 변환; 중국어와 일본어는 BERT 토크나이저 사용(via `unidic`). 중영 혼합 텍스트는 자동으로 분할되어 해당 음소 추출기로 라우팅됩니다.
+MeloTTS는 VITS2에서 파생된 비자기회귀(Non-Autoregressive) 종단간 신경 아키텍처를 사용하며 BERT 기반 텍스트 인코딩을 결합합니다. 파이프라인은 네 단계로 구성됩니다: 1. **텍스트 처리**: 대부분의 언어에 대해 `espeak-ng`를 통한 G2P(그래핌-투-포넴) 변환; 중국어와 일본어는 BERT 토크나이저 사용(via `unidic`). 중영 혼합 텍스트는 자동으로 분할되어 해당 음소 추출기로 라우팅됩니다.
 
 2. **BERT 인코더**: 경량 MiniLM 인코더가 입력 텍스트에서 맥락적 표현을 추출하여 운율과 의미적 뉘앙스를 포착합니다.
 
@@ -68,9 +57,7 @@ MeloTTS는 VITS2에서 파생된 비자기회귀(Non-Autoregressive) 종단간 �
 
 ### 사전 요구사항
 
-MeloTTS를 설치하기 전에 다음을 확인하세요:
-
-```bash
+MeloTTS를 설치하기 전에 다음을 확인하세요: ```bash
 # Ubuntu/Debian
 sudo apt-get update && sudo apt-get install -y espeak-ng libsndfile1 ffmpeg
 
@@ -113,9 +100,7 @@ docker build -t melotts .
 docker run -it -p 8888:8888 melotts
 ```
 
-GPU 가속 버전:
-
-```bash
+GPU 가속 버전: ```bash
 docker run --gpus all -it -p 8888:8888 melotts
 ```
 
@@ -222,25 +207,20 @@ app = FastAPI()
 
 # 지원 언어 모델 사전 로드
 models = {}
-for lang in [EN, ZH, ES, FR, JA, KO]:
-    models[lang] = TTS(language=lang, device=auto)
+for lang in [EN, ZH, ES, FR, JA, KO]: models[lang] = TTS(language=lang, device=auto)
 
-class TTSRequest(BaseModel):
-    text: str
+class TTSRequest(BaseModel): text: str
     language: str = EN
     speaker: str = 'EN-Default'
     speed: float = 1.0
 
 @app.post("/tts")
-async def text_to_speech(req: TTSRequest):
-    if req.language not in models:
-        raise HTTPException(status_code=400, detail=f"지원하지 않는 언어 {req.language}")
+async def text_to_speech(req: TTSRequest): if req.language not in models: raise HTTPException(status_code=400, detail=f"지원하지 않는 언어 {req.language}")
     
     model = models[req.language]
     speaker_ids = model.hps.data.spk2id
     
-    if req.speaker not in speaker_ids:
-        raise HTTPException(status_code=400, detail=f"화자를 찾을 수 없음 {req.speaker}")
+    if req.speaker not in speaker_ids: raise HTTPException(status_code=400, detail=f"화자를 찾을 수 없음 {req.speaker}")
     
     output_path = tempfile.mktemp(suffix='.wav')
     model.tts_to_file(req.text, speaker_ids[req.speaker], output_path, speed=req.speed)
@@ -248,9 +228,7 @@ async def text_to_speech(req: TTSRequest):
     return {"audio_file": output_path}
 ```
 
-API 실행:
-
-```bash
+API 실행: ```bash
 uvicorn tts_api:app --host 0.0.0.0 --port 8000 --workers 2
 ```
 
@@ -259,25 +237,15 @@ uvicorn tts_api:app --host 0.0.0.0 --port 8000 --workers 2
 ```yaml
 version: '3.8'
 
-services:
-  melotts:
-    build:
-      context: .
+services: melotts: build: context: .
       dockerfile: Dockerfile
-    ports:
-      - "8888:8888"
-    environment:
-      - NVIDIA_VISIBLE_DEVICES=all
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+    ports: - "8888:8888"
+    environment: - NVIDIA_VISIBLE_DEVICES=all
+    deploy: resources: reservations: devices: - driver: nvidia
               count: 1
               capabilities: [gpu]
     restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8888"]
+    healthcheck: test: ["CMD", "curl", "-f", "http://localhost:8888"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -294,16 +262,13 @@ from melo.api import TTS
 model = TTS(language=EN, device=auto)
 speaker_ids = model.hps.data.spk2id
 
-async def tts_stream(websocket, path):
-    async for message in websocket:
-        data = json.loads(message)
+async def tts_stream(websocket, path): async for message in websocket: data = json.loads(message)
         text = data.get(text, '')
         speaker = data.get(speaker, 'EN-Default')
         speed = data.get(speed, 1.0)
         
         # 오디오 청크 스트리밍
-        for chunk in model.stream_tts(text, speaker_ids[speaker], speed=speed):
-            await websocket.send(chunk)
+        for chunk in model.stream_tts(text, speaker_ids[speaker], speed=speed): await websocket.send(chunk)
 
 start_server = websockets.serve(tts_stream, '0.0.0.0', 8765)
 asyncio.get_event_loop().run_until_complete(start_server)
@@ -320,8 +285,7 @@ model = TTS(language=EN, device=auto)
 speaker_ids = model.hps.data.spk2id
 speaker_names = list(speaker_ids.keys())
 
-def synthesize(text, speaker, speed):
-    output_path = '/tmp/gradio_output.wav'
+def synthesize(text, speaker, speed): output_path = '/tmp/gradio_output.wav'
     model.tts_to_file(text, speaker_ids[speaker], output_path, speed=float(speed))
     return output_path
 
@@ -397,9 +361,7 @@ RTF(Real-Time Factor)는 재생 길이에 상대적인 오디오 생성 속도�
 
 MeloTTS는 Coqui XTTS보다 6분의 1 이하의 메모리를 사용하여 AWS t3.medium(4GB RAM)이나 소형 VPS와 같은 리소스 제한 환경에서도 배포가 가능합니다. 여러 TTS 인스턴스를 동시에 실행하는 SaaS 제공업체에게 이는 더 낮은 운영 비용으로 직접 전환됩니다.
 
-동일 하드웨어(Intel i7-12700, 32GB RAM)에서의 직접 비교:
-
-- **MeloTTS**: 0.41 RTF — 10초 오디오를 4.1초에 처리
+동일 하드웨어(Intel i7-12700, 32GB RAM)에서의 직접 비교: - **MeloTTS**: 0.41 RTF — 10초 오디오를 4.1초에 처리
 - **Coqui TTS (XTTS-v2)**: GPU 0.55, CPU 2.8+ — GPU 없이 사용 불가
 - **ChatTTS**: CPU 1.2 RTF — GPU에서만 간신히 사용 가능
 - **Bark**: CPU 3.5+, GPU(A100) 0.3 — 고급 GPU 필요
@@ -408,20 +370,16 @@ MeloTTS는 Coqui XTTS보다 6분의 1 이하의 메모리를 사용하여 AWS t3
 
 ### 모델 프리워밍
 
-프로덕션에서는 항상 시작 시 모델을 로드하여 콜드 스타트 지연을 방지합니다:
-
-```python
+프로덕션에서는 항상 시작 시 모델을 로드하여 콜드 스타트 지연을 방지합니다: ```python
 from melo.api import TTS
 import functools
 
 @functools.lru_cache(maxsize=6)
-def get_model(language):
-    """캐시된 모델 로더 — 모델은 한 번만 로드되고 재사용됨."""
+def get_model(language): """캐시된 모델 로더 — 모델은 한 번만 로드되고 재사용됨."""
     return TTS(language=language, device=auto)
 
 # 시작 시 모든 언어 프리워밍
-for lang in [EN, ZH, ES, FR, JA, KO]:
-    get_model(lang)
+for lang in [EN, ZH, ES, FR, JA, KO]: get_model(lang)
 print("모든 모델이 로드되었습니다.")
 ```
 
@@ -440,14 +398,12 @@ texts = [
     "세 번째 합성할 문장입니다.",
 ]
 
-def synth(text):
-    output_path = f"batch_{hash(text)}.wav"
+def synth(text): output_path = f"batch_{hash(text)}.wav"
     model.tts_to_file(text, speaker_ids['EN-Default'], output_path)
     return output_path
 
 # 병렬 배치 처리
-with concurrent.futures.ThreadPoolExecutor(max_workers=4) as executor:
-    results = list(executor.map(synth, texts))
+with concurrent.futures.ThreadPoolExecutor(max_workers=4) as executor: results = list(executor.map(synth, texts))
 ```
 
 ### Gunicorn + FastAPI 프로덕션 서버
@@ -487,9 +443,7 @@ RestartSec=5s
 WantedBy=multi-user.target
 ```
 
-설치 및 시작:
-
-```bash
+설치 및 시작: ```bash
 sudo cp melotts.service /etc/systemd/system/
 sudo systemctl daemon-reload
 sudo systemctl enable melotts
@@ -508,13 +462,10 @@ tts_requests = Counter(melotts_requests_total, '총 TTS 요청', [language, spea
 tts_duration = Histogram(melotts_duration_seconds, 'TTS 생성 시간')
 
 @app.get("/metrics")
-async def metrics():
-    return Response(content=generate_latest(), media_type="text/plain")
+async def metrics(): return Response(content=generate_latest(), media_type="text/plain")
 
 @app.post("/tts")
-async def text_to_speech(req: TTSRequest):
-    with tts_duration.time():
-        # ... 기존 TTS 로직 ...
+async def text_to_speech(req: TTSRequest): with tts_duration.time(): # ... 기존 TTS 로직 ...
         tts_requests.labels(language=req.language, speaker=req.speaker).inc()
 ```
 
@@ -573,9 +524,7 @@ server {
 
 ## 한계 / 정직한 평가
 
-MeloTTS는 만능 솔루션이 아닙니다. 고려해야 할 구체적인 한계:
-
-1. **음성 클로닝 없음**: Coqui XTTS나 Bark와 달리 MeloTTS는 참조 오디오에서 화자를 클론할 수 없습니다. 각 언어별 내장 화자로 제한됩니다.
+MeloTTS는 만능 솔루션이 아닙니다. 고려해야 할 구체적인 한계: 1. **음성 클로닝 없음**: Coqui XTTS나 Bark와 달리 MeloTTS는 참조 오디오에서 화자를 클론할 수 없습니다. 각 언어별 내장 화자로 제한됩니다.
 
 2. **감정 제어 없음**: 속도는 조절 가능하지만, 기쁨, 슬픔, 분노 등의 감정을 제어하는 매개변수는 없습니다. Bark와 ChatTTS가 더 풍부한 감정 표현을 제공합니다.
 
@@ -633,9 +582,7 @@ MeloTTS는 오픈소스 TTS 환경에서 독특한 위치를 차지합니다: �
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -657,7 +604,6 @@ MeloTTS는 오픈소스 TTS 환경에서 독특한 위치를 차지합니다: �
 - [MeloTTS 성능 심층 분석](https://blog.csdn.net/gitblog_02862/article/details/150221387)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

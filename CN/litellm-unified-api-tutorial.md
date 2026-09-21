@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/litellm-unified-api-tutorial" />
 title: 'LiteLLM Tutorial 2025: One API to Access 100+ LLMs'
 description: 'Complete LiteLLM tutorial 2025. Learn how to use one unified API to access 100+ LLM providers including OpenAI, Anthropic, Azure, and open-source models.'
 date: 2026-05-18 00:00:00+08:00
@@ -20,10 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/litellm-unified-api-tutorial/
+aliases: - /posts/litellm-unified-api-tutorial/-
 ---
-
 {</* resource-info */>}
 
 Managing multiple LLM providers in production is a nightmare most developers know too well. Each provider has its own API format, authentication method, error handling, and rate limits. Switching from GPT-4 to Claude 3.5 Sonnet means rewriting API calls. Adding a fallback to Gemini means more boilerplate. This fragmentation burns engineering time and introduces brittle code paths.
@@ -44,9 +40,7 @@ The project started in early 2023 and has grown to become one of the most popula
 
 Building direct integrations for each LLM provider requires maintaining separate SDKs, handling different authentication headers, parsing unique response formats, and managing provider-specific error codes. LiteLLM eliminates this overhead entirely.
 
-Key benefits include:
-
-- **Single API format**: Write once, call any provider using the OpenAI SDK structure
+Key benefits include: - **Single API format**: Write once, call any provider using the OpenAI SDK structure
 - **Automatic fallbacks**: If OpenAI's API is down, route to Anthropic or Gemini instantly
 - **Load balancing**: Distribute traffic across multiple providers to reduce latency and cost
 - **Unified logging**: Track all LLM calls across providers in one place
@@ -63,9 +57,7 @@ Additional enterprise features include role-based access control (RBAC), SSO int
 
 ### OpenAI, Anthropic, Google (Gemini)
 
-LiteLLM supports all major commercial LLM providers with full feature parity:
-
-- **OpenAI**: GPT-4o, GPT-4 Turbo, GPT-4, GPT-3.5 Turbo, DALL-E, Whisper, text-embedding-3-large
+LiteLLM supports all major commercial LLM providers with full feature parity: - **OpenAI**: GPT-4o, GPT-4 Turbo, GPT-4, GPT-3.5 Turbo, DALL-E, Whisper, text-embedding-3-large
 - **Anthropic**: Claude 3.5 Sonnet, Claude 3 Opus, Claude 3 Sonnet, Claude 3 Haiku
 - **Google**: Gemini 1.5 Pro, Gemini 1.5 Flash, Gemini Pro, Gemini Ultra
 
@@ -81,9 +73,7 @@ LiteLLM connects to any model hosted on [Hugging Face](https://huggingface.co) t
 
 ### Local Models via Ollama, vLLM
 
-For privacy-sensitive applications or cost reduction, LiteLLM integrates with local model servers:
-
-- **Ollama**: Run Llama 3, Mistral, or Gemma locally and expose them through LiteLLM's unified API
+For privacy-sensitive applications or cost reduction, LiteLLM integrates with local model servers: - **Ollama**: Run Llama 3, Mistral, or Gemma locally and expose them through LiteLLM's unified API
 - **vLLM**: High-throughput serving of open-source models with PagedAttention
 - **LM Studio**: Local model management with LiteLLM-compatible endpoints
 
@@ -91,9 +81,7 @@ This means your development environment can use local models while production us
 
 ### Cloud Providers: AWS Bedrock, Vertex AI
 
-Enterprise cloud deployments are fully supported:
-
-- **AWS Bedrock**: Access Claude, Llama 3, Titan, and Command models through your AWS account
+Enterprise cloud deployments are fully supported: - **AWS Bedrock**: Access Claude, Llama 3, Titan, and Command models through your AWS account
 - **Google Vertex AI**: Use Gemini and PaLM models via Google Cloud
 - **Azure AI**: Native integration with Azure's model catalog
 
@@ -101,9 +89,7 @@ LiteLLM handles the IAM authentication, region selection, and model ID translati
 
 ### Specialized Providers: Cohere, Groq, Together AI
 
-Niche providers with unique strengths are also covered:
-
-- **Groq**: Extremely fast inference (500+ tokens/second) for Llama 3 and Mixtral
+Niche providers with unique strengths are also covered: - **Groq**: Extremely fast inference (500+ tokens/second) for Llama 3 and Mixtral
 - **Together AI**: Optimized inference for open-source models at competitive pricing
 - **Cohere**: Command models and Embed v3 embeddings
 - **Mistral AI**: Direct API access to Mistral models
@@ -113,15 +99,11 @@ Niche providers with unique strengths are also covered:
 
 ### Installing LiteLLM (pip install litellm)
 
-Getting started takes under 60 seconds. Install the LiteLLM Python SDK via pip:
-
-```bash
+Getting started takes under 60 seconds. Install the LiteLLM Python SDK via pip: ```bash
 pip install litellm
 ```
 
-For the proxy server with all enterprise features, install the full package:
-
-```bash
+For the proxy server with all enterprise features, install the full package: ```bash
 pip install 'litellm[proxy]'
 ```
 
@@ -129,9 +111,7 @@ Both options require Python 3.8 or higher. LiteLLM has minimal dependencies and 
 
 ### Making Your First Unified API Call
 
-Here is a basic completion call that works with any supported provider:
-
-```python
+Here is a basic completion call that works with any supported provider: ```python
 import litellm
 from litellm import completion
 
@@ -164,14 +144,11 @@ Provider-specific parameters can be passed through the `extra_body` parameter. A
 
 ### Async Support Overview
 
-For production applications handling concurrent requests, LiteLLM provides `acompletion()`:
-
-```python
+For production applications handling concurrent requests, LiteLLM provides `acompletion()`: ```python
 from litellm import acompletion
 import asyncio
 
-async def call_llm():
-    response = await acompletion(
+async def call_llm(): response = await acompletion(
         model="gpt-4o",
         messages=[{"role": "user", "content": "Async call"}]
     )
@@ -190,15 +167,11 @@ Async mode is essential for high-throughput applications and integrates seamless
 
 The LiteLLM Proxy Server transforms LiteLLM from a Python library into a production-grade API gateway. Any application that speaks OpenAI's API can connect to the proxy without code changes.
 
-Start the proxy server with a configuration file:
-
-```bash
+Start the proxy server with a configuration file: ```bash
 litellm --config /path/to/config.yaml
 ```
 
-Or deploy via Docker:
-
-```bash
+Or deploy via Docker: ```bash
 docker run -p 4000:4000 \
   -v $(pwd)/config.yaml:/app/config.yaml \
   ghcr.io/berriai/litellm:main-latest \
@@ -209,32 +182,24 @@ The proxy exposes the standard OpenAI endpoints: `/chat/completions`, `/completi
 
 ### Configuration File (config.yaml) Deep Dive
 
-The `config.yaml` file defines your model inventory, routing rules, and enterprise settings. Here is a production-ready example:
-
-```yaml
-model_list:
-  - model_name: gpt-4
-    litellm_params:
-      model: gpt-4o
+The `config.yaml` file defines your model inventory, routing rules, and enterprise settings. Here is a production-ready example: ```yaml
+model_list: - model_name: gpt-4
+    litellm_params: model: gpt-4o
       api_key: os.environ/OPENAI_API_KEY
 
   - model_name: claude-3-5
-    litellm_params:
-      model: claude-3-5-sonnet-20241022
+    litellm_params: model: claude-3-5-sonnet-20241022
       api_key: os.environ/ANTHROPIC_API_KEY
 
   - model_name: llama-3
-    litellm_params:
-      model: ollama/llama3
+    litellm_params: model: ollama/llama3
       api_base: http://localhost:11434
 
-router_settings:
-  routing_strategy: simple-shuffle
+router_settings: routing_strategy: simple-shuffle
   fallbacks: [{"gpt-4": ["claude-3-5"]}]
   cooldown_time: 30
 
-general_settings:
-  master_key: sk-litellm-master-key
+general_settings: master_key: sk-litellm-master-key
   database_url: os.environ/DATABASE_URL
 ```
 
@@ -242,9 +207,7 @@ This configuration defines three model aliases (`gpt-4`, `claude-3-5`, `llama-3`
 
 ### Virtual Key Management
 
-The proxy generates virtual keys that map to specific models and budgets. Create a virtual key via the API:
-
-```bash
+The proxy generates virtual keys that map to specific models and budgets. Create a virtual key via the API: ```bash
 curl -X POST http://localhost:4000/key/generate \
   -H "Authorization: Bearer sk-litellm-master-key" \
   -H "Content-Type: application/json" \
@@ -266,18 +229,13 @@ Budget alerts trigger webhooks when spend thresholds are reached. Teams can conf
 
 ### Load Balancing Across Providers
 
-The proxy supports multiple routing strategies:
-
-- **Simple shuffle**: Round-robin across healthy providers
+The proxy supports multiple routing strategies: - **Simple shuffle**: Round-robin across healthy providers
 - **Latency-based**: Route to the provider with the lowest response time
 - **Cost-based**: Send requests to the cheapest available model
 - **Rate-limit aware**: Avoid providers approaching their rate limits
 
-Configure routing in `config.yaml`:
-
-```yaml
-router_settings:
-  routing_strategy: latency-based-routing
+Configure routing in `config.yaml`: ```yaml
+router_settings: routing_strategy: latency-based-routing
   timeout: 30
   num_retries: 3
 ```
@@ -286,9 +244,7 @@ router_settings:
 
 ### Router: Intelligent Model Selection
 
-The `Router` class provides programmatic control over model selection in Python:
-
-```python
+The `Router` class provides programmatic control over model selection in Python: ```python
 from litellm import Router
 
 router = Router(
@@ -310,9 +266,7 @@ The router automatically tracks latency per deployment and routes requests to th
 
 ### Fallbacks and Retries
 
-When a provider returns an error (rate limit, timeout, server error), LiteLLM can automatically retry with the same provider or fall back to a different one:
-
-```python
+When a provider returns an error (rate limit, timeout, server error), LiteLLM can automatically retry with the same provider or fall back to a different one: ```python
 response = completion(
     model="gpt-4o",
     messages=messages,
@@ -325,9 +279,7 @@ This ensures 99.9%+ uptime even when individual providers experience outages.
 
 ### Caching Responses
 
-LiteLLM supports Redis-based caching to avoid redundant API calls:
-
-```python
+LiteLLM supports Redis-based caching to avoid redundant API calls: ```python
 litellm.cache = litellm.Cache(type="redis", host="localhost", port=6379)
 
 # First call hits the API
@@ -341,26 +293,21 @@ Caching supports TTL configuration, cache-key customization, and cache invalidat
 
 ### Streaming Support
 
-All providers support streaming responses through a unified interface:
-
-```python
+All providers support streaming responses through a unified interface: ```python
 response = completion(
     model="gpt-4o",
     messages=messages,
     stream=True
 )
 
-for chunk in response:
-    print(chunk.choices[0].delta.content, end="")
+for chunk in response: print(chunk.choices[0].delta.content, end="")
 ```
 
 The streaming format is normalized across all providers, so your frontend code works identically regardless of which LLM serves the request.
 
 ### Function Calling Across Providers
 
-Function calling (tool use) works across all supported providers with automatic format translation:
-
-```python
+Function calling (tool use) works across all supported providers with automatic format translation: ```python
 tools = [{
     "type": "function",
     "function": {
@@ -375,9 +322,7 @@ response = completion(model="gpt-4o", messages=messages, tools=tools)
 
 ### Embedding Models Unified API
 
-LiteLLM unifies embedding APIs across providers:
-
-```python
+LiteLLM unifies embedding APIs across providers: ```python
 from litellm import embedding
 
 # OpenAI embeddings
@@ -394,9 +339,7 @@ response = embedding(model="ollama/nomic-embed-text", input=["Hello world"])
 
 ### Using LiteLLM with LangChain
 
-LiteLLM integrates with [LangChain](https://python.langchain.com) through the `ChatLiteLLM` class:
-
-```python
+LiteLLM integrates with [LangChain](https://python.langchain.com) through the `ChatLiteLLM` class: ```python
 from langchain_community.chat_models import ChatLiteLLM
 
 llm = ChatLiteLLM(model="gpt-4o")
@@ -407,9 +350,7 @@ LangChain's chains, agents, and RAG pipelines work transparently with any LiteLL
 
 ### Using LiteLLM with LlamaIndex
 
-[LlamaIndex](https://docs.llamaindex.ai) supports LiteLLM as a drop-in LLM backend:
-
-```python
+[LlamaIndex](https://docs.llamaindex.ai) supports LiteLLM as a drop-in LLM backend: ```python
 from llama_index.llms.litellm import LiteLLM
 
 llm = LiteLLM(model="claude-3-5-sonnet-20241022")
@@ -419,9 +360,7 @@ LlamaIndex's query engines, chat engines, and agent frameworks work seamlessly w
 
 ### Drop-in Replacement Patterns
 
-The most powerful integration pattern is using the LiteLLM Proxy as an OpenAI API replacement. Configure any tool that expects an OpenAI-compatible endpoint to use your LiteLLM proxy instead:
-
-```python
+The most powerful integration pattern is using the LiteLLM Proxy as an OpenAI API replacement. Configure any tool that expects an OpenAI-compatible endpoint to use your LiteLLM proxy instead: ```python
 import openai
 
 client = openai.OpenAI(
@@ -447,9 +386,7 @@ The admin dashboard provides real-time spend tracking with breakdowns by user, m
 
 ### Logging and Observability
 
-LiteLLM integrates with popular observability platforms:
-
-- **LangSmith**: Trace requests through complex chains
+LiteLLM integrates with popular observability platforms: - **LangSmith**: Trace requests through complex chains
 - **Langfuse**: Open-source LLM observability
 - **PromptLayer**: Prompt management and analytics
 - **Weights & Biases**: Experiment tracking
@@ -467,16 +404,11 @@ Enterprise deployments can require SSO authentication for proxy access. LiteLLM 
 
 ### Routing to Cheapest Provider
 
-Configure the proxy to route non-critical requests to the cheapest available model:
-
-```yaml
-model_list:
+Configure the proxy to route non-critical requests to the cheapest available model: ```yaml
+model_list: - model_name: "cheap-llm"
+    litellm_params: model: "together_ai/llama-3-8b"
   - model_name: "cheap-llm"
-    litellm_params:
-      model: "together_ai/llama-3-8b"
-  - model_name: "cheap-llm"
-    litellm_params:
-      model: "groq/llama-3-8b"
+    litellm_params: model: "groq/llama-3-8b"
 ```
 
 With `routing_strategy: cost-based`, requests automatically go to the lowest-cost option.
@@ -498,7 +430,13 @@ Review the admin dashboard weekly to identify optimization opportunities. Common
 ### LiteLLM vs Direct API Integration
 
 | Feature | Direct Integration | LiteLLM |
-|---------|-------------------|---------|
+|
+---
+|
+---
+|
+---
+|
 | Lines of code per provider | 50-100+ | 1 (model string) |
 | Fallback handling | Manual | Automatic |
 | Provider switching | Rewrite API calls | Change model string |
@@ -518,9 +456,7 @@ LangChain provides model abstractions but requires separate integration code for
 
 ### Docker Deployment
 
-The recommended production deployment uses the official Docker image:
-
-```dockerfile
+The recommended production deployment uses the official Docker image: ```dockerfile
 FROM ghcr.io/berriai/litellm:main-latest
 COPY config.yaml /app/config.yaml
 CMD ["--config", "/app/config.yaml", "--port", "4000"]
@@ -528,9 +464,7 @@ CMD ["--config", "/app/config.yaml", "--port", "4000"]
 
 ### Kubernetes Helm Chart
 
-LiteLLM provides an official Helm chart for Kubernetes deployment:
-
-```bash
+LiteLLM provides an official Helm chart for Kubernetes deployment: ```bash
 helm repo add litellm https://berriai.github.io/litellm
 helm install litellm litellm/litellm -f values.yaml
 ```
@@ -579,20 +513,17 @@ Absolutely. LiteLLM integrates with Ollama, vLLM, LM Studio, Hugging Face TGI, a
 
 The LiteLLM Python SDK is a library you import in Python code for programmatic LLM access. The Proxy Server is a standalone HTTP service that exposes OpenAI-compatible endpoints for applications in any language. Use the SDK for Python applications and the proxy for multi-language teams or when you need features like virtual key management, rate limiting, and spend tracking.
 
----
 
+---
 ## Recommended Infrastructure
 
-To run any of the tools above reliably 24/7, infrastructure matters:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.
+To run any of the tools above reliably 24/7, infrastructure matters: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low latency for mainland China access. This is the same IDC hosting dibi8.com — production-proven.
 
 *Affiliate links — no extra cost to you, helps keep dibi8.com running.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -639,3 +570,5 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 
 使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。
 
+
+---

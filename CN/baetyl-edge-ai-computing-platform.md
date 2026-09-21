@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/baetyl-edge-ai-computing-platform" />
 title: 'Baetyl: The Cloud-Native Edge AI Computing Platform Depl...
 description: 'Deploy Baetyl v2.4 to bring Kubernetes-native edge computing to IoT devices. AI model inference, MQTT/BACnet support, OTA updates, K3s runtime, and cloud-edge synchronization.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [baetyl, 'edge-computing', iot, kubernetes, k3s, 'ai-inference', mqtt, 'edge-ai', 'ota-updates', 'lf-edge']
-aliases:
-- /posts/baetyl-edge-ai-computing-platform/
+aliases: - /posts/baetyl-edge-ai-computing-platform/-
 ---
-
 {{</* resource-info */>}}
 
 ## Introduction: The $12 Trillion Edge AI Gap
@@ -40,28 +36,34 @@ In this guide, you will install the Baetyl edge framework on a K3s node, deploy 
 
 Baetyl is an open-source edge computing framework under the LF Edge umbrella that seamlessly extends cloud computing, data, and services to edge devices. Originally developed by Baidu's Intelligent Edge (BIE) team, it provides temporary offline, low-latency computing services including device connection, message routing, remote synchronization, function computing, video capture, AI inference, status reporting, and configuration OTA.
 
-Baetyl v2 (current stable: v2.4.3, released October 2024) is architected as two complementary systems:
-
-- **Edge Computing Framework** (`baetyl/baetyl`): Runs on Kubernetes/K3s at the edge node. Manages and deploys all applications through system services (baetyl-init, baetyl-core, baetyl-function).
+Baetyl v2 (current stable: v2.4.3, released October 2024) is architected as two complementary systems: - **Edge Computing Framework** (`baetyl/baetyl`): Runs on Kubernetes/K3s at the edge node. Manages and deploys all applications through system services (baetyl-init, baetyl-core, baetyl-function).
 - **Cloud Management Suite** (`baetyl/baetyl-cloud`): Deploys on Kubernetes in the cloud. Provides RESTful APIs for node management, application deployment, configuration, and batch provisioning.
 
 The edge framework supports Linux/amd64, Linux/arm64, and Linux/armv7. For resource-constrained devices, K3s (lightweight Kubernetes) is recommended with a minimum of **1GB RAM and 1 CPU core**.
 
 ## How Baetyl Works: Cloud-Edge Architecture
 
-Baetyl's v2 architecture uses a declarative, shadow-based synchronization model inspired by Kubernetes controllers and IoT device shadows:
-
-```
+Baetyl's v2 architecture uses a declarative, shadow-based synchronization model inspired by Kubernetes controllers and IoT device shadows: ```
 Cloud Side (Kubernetes)              Edge Side (K3s/Kubernetes)
-+---------------------+              +---------------------+
++
+---
++              +
+---
++
 |  baetyl-cloud       |  Report    |  baetyl-init        |
-|  (Management API)   | <--------> |  (One-time setup)   |
+|  (Management API)   | <
+---
+> |  (One-time setup)   |
 |                     |  Desire    |                     |
 |  - Node registry    |              |  baetyl-core        |
-|  - App deployment   | <--------> |  - Local node mgmt  |
+|  - App deployment   | <
+---
+> |  - Local node mgmt  |
 |  - Config mgmt      |   sync     |  - Cloud sync       |
 |  - Batch provision  |              |  - App engine       |
-+---------------------+              |                     |
++
+---
++              |                     |
        |                             |  baetyl-function    |
        |   HTTPS/WSS                 |  - Function proxy   |
        v                             |                     |
@@ -69,7 +71,9 @@ Cloud Side (Kubernetes)              Edge Side (K3s/Kubernetes)
   (State store)                      |  - AI inference     |
                                      |  - MQTT broker      |
                                      |  - Stream processor |
-                                     +---------------------+
+                                     +
+---
++
 ```
 
 The shadow synchronization works through two fields: **Report** (what the edge reports about itself) and **Desire** (what the cloud wants the edge to become). When you update an application spec in the cloud, baetyl-core detects the Desire change, pulls the new container image, and redeploys locally. This enables reliable OTA updates even over intermittent connections.
@@ -129,8 +133,7 @@ mysql -u root -p < scripts/sql/data.sql
 
 # Configure database connection
 cat > scripts/charts/baetyl-cloud/conf/cloud.yml << EOF
-database:
-  type: "mysql"
+database: type: "mysql"
   url: "baetyl:password@tcp(localhost:3306)/baetyl_cloud?charset=utf8&parseTime=true"
 EOF
 
@@ -178,34 +181,24 @@ curl http://localhost:30004/v1/nodes/edge-prod-01
 
 ## Integration with 4 Mainstream Protocols
 
-Baetyl connects to diverse IoT ecosystems through built-in protocol adapters:
+Baetyl connects to diverse IoT ecosystems through built-in protocol adapters: **1. MQTT Message Broker**
 
-**1. MQTT Message Broker**
-
-The baetyl-broker module provides an edge-side MQTT broker that routes messages between devices, cloud, and local applications:
-
-```yaml
+The baetyl-broker module provides an edge-side MQTT broker that routes messages between devices, cloud, and local applications: ```yaml
 # Application configuration for MQTT broker
 name: mqtt-app
 version: v1
-services:
-  - name: broker
+services: - name: broker
     image: baetyl-broker:v2.4.3
-    ports:
-      - "1883:1883"
+    ports: - "1883:1883"
       - "8883:8883"
-    volumeMounts:
-      - name: broker-conf
+    volumeMounts: - name: broker-conf
         mountPath: /etc/baetyl
-volumes:
-  - name: broker-conf
-    config:
-      name: broker-conf
+volumes: - name: broker-conf
+    config: name: broker-conf
       version: v1
 ```
 
-Test connectivity:
-```bash
+Test connectivity: ```bash
 mosquitto_pub -h localhost -p 1883 -t "devices/sensor01/temp" -m "23.5"
 mosquitto_sub -h localhost -p 1883 -t "devices/+/temp"
 ```
@@ -215,18 +208,14 @@ mosquitto_sub -h localhost -p 1883 -t "devices/+/temp"
 ```yaml
 # Modbus device connector configuration
 name: modbus-app
-services:
-  - name: modbus-connector
+services: - name: modbus-connector
     image: baetyl-modbus:v2.4.3
-    devices:
-      - name: temperature-sensor
-        modbus:
-          mode: tcp
+    devices: - name: temperature-sensor
+        modbus: mode: tcp
           address: 192.168.1.100:502
           slaveid: 1
           interval: 5s
-          read:
-            - function: 3
+          read: - function: 3
               address: 0
               quantity: 2
               type: float
@@ -237,24 +226,18 @@ services:
 ```yaml
 # BACnet connector for HVAC systems
 name: bacnet-app
-services:
-  - name: bacnet-connector
+services: - name: bacnet-connector
     image: baetyl-bacnet:v2.4.3
-    config:
-      devices:
-        - device_id: 1234
+    config: devices: - device_id: 1234
           address: 192.168.10.50
-          objects:
-            - type: analog-input
+          objects: - type: analog-input
               instance: 0
               property: present-value
 ```
 
 **4. eKuiper Stream Processing Integration**
 
-Baetyl v2.4.3+ integrates eKuiper (formerly EMQ X Kuiper) as an optional system application for edge stream processing:
-
-```bash
+Baetyl v2.4.3+ integrates eKuiper (formerly EMQ X Kuiper) as an optional system application for edge stream processing: ```bash
 # Enable eKuiper when creating/updating a node
 curl -X PUT http://localhost:30004/v1/nodes/edge-prod-01 \
   -H "Content-Type: application/json" \
@@ -269,10 +252,14 @@ curl -X PUT http://localhost:30004/v1/nodes/edge-prod-01 \
 
 ## Benchmarks / Real-World Edge AI Deployment
 
-Performance comparison: cloud inference vs. Baetyl edge inference on NVIDIA Jetson Nano:
-
-| Metric | Cloud (AWS g4dn) | Baetyl Edge (Jetson Nano) |
-|--------|-----------------|---------------------------|
+Performance comparison: cloud inference vs. Baetyl edge inference on NVIDIA Jetson Nano: | Metric | Cloud (AWS g4dn) | Baetyl Edge (Jetson Nano) |
+|
+---
+|
+---
+|
+---
+|
 | Network Round-Trip | 120-280ms | **0ms** (local) |
 | Model Load Time | 1.2s (cold) | **800ms** (cached) |
 | Inference Latency (ResNet-50) | 45ms + RTT | **85ms** total |
@@ -293,35 +280,24 @@ Performance comparison: cloud inference vs. Baetyl edge inference on NVIDIA Jets
 # PyTorch image classification model on edge
 name: ai-inference-app
 version: v1
-services:
-  - name: defect-detector
+services: - name: defect-detector
     image: myregistry/defect-model:trt-v3.2
     runtime: nvidia
-    resources:
-      limits:
-        nvidia.com/gpu: 1
+    resources: limits: nvidia.com/gpu: 1
         memory: "2Gi"
         cpu: "1000m"
-    ports:
-      - "8080:8080"
-    volumeMounts:
-      - name: model-cache
+    ports: - "8080:8080"
+    volumeMounts: - name: model-cache
         mountPath: /models
-volumes:
-  - name: model-cache
-    hostPath:
-      path: /opt/baetyl/models
+volumes: - name: model-cache
+    hostPath: path: /opt/baetyl/models
 ```
 
 **GPU Monitoring and Sharing:**
 
-Baetyl-core can monitor GPU memory usage, temperature, and energy consumption in real-time. Multiple applications can share GPU resources:
-
-```yaml
+Baetyl-core can monitor GPU memory usage, temperature, and energy consumption in real-time. Multiple applications can share GPU resources: ```yaml
 # GPU resource configuration
-resources:
-  limits:
-    nvidia.com/gpu.shared: 0.5  # Share GPU between apps
+resources: limits: nvidia.com/gpu.shared: 0.5  # Share GPU between apps
 ```
 
 **OTA Update Rollout Strategy:**
@@ -352,16 +328,12 @@ curl -X PUT http://cloud:30004/v1/apps/defect-model-v4 \
 # Deploy SQLite for local data caching at edge
 cat > sqlite-app.yml << EOF
 name: local-cache
-services:
-  - name: sqlite
+services: - name: sqlite
     image: baetyl-sqlite:v2.4.3
-    volumeMounts:
-      - name: data
+    volumeMounts: - name: data
         mountPath: /data
-volumes:
-  - name: data
-    hostPath:
-      path: /opt/baetyl/sqlite
+volumes: - name: data
+    hostPath: path: /opt/baetyl/sqlite
 EOF
 
 baetyl apply -f sqlite-app.yml
@@ -395,7 +367,17 @@ curl -X POST http://cloud:30004/v1/nodes/edge-prod-01/secrets \
 ## Comparison with Alternatives
 
 | Feature | Baetyl v2.4 | KubeEdge v1.18 | EdgeX Foundry 3.1 | Azure IoT Edge |
-|---------|-------------|----------------|-------------------|----------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | License | **Apache-2.0** | Apache-2.0 | Apache-2.0 | Proprietary |
 | Kubernetes Native | **Yes (K3s/K8s)** | Yes (K8s) | No (Docker) | No (Docker) |
 | Cloud Mgmt Suite | **Yes (open source)** | CloudCore | No (Edge only) | Azure Portal |
@@ -472,9 +454,7 @@ For teams evaluating edge platforms, the decision often comes down to control ve
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -484,7 +464,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 This article contains affiliate links for DigitalOcean. If you sign up through our link, we receive a commission at no additional cost to you. All recommendations are based on actual testing and are not influenced by the affiliate program. Baetyl is fully open-source and free to use under the Apache-2.0 license.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -510,8 +489,8 @@ This article contains affiliate links for DigitalOcean. If you sign up through o
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [trivy-production-security-scanner-2026](baetyl-edge-ai-computing-platform)
@@ -519,6 +498,6 @@ This article contains affiliate links for DigitalOcean. If you sign up through o
 - [oh-my-pi](baetyl-edge-ai-computing-platform)
 - [oh-my-pi](baetyl-edge-ai-computing-platform)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

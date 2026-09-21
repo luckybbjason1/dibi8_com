@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/instructor-structured-llm-output" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/instructor-structured-llm-output" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/instructor-structured-llm-output" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/instructor-structured-llm-output" />
 # Instructor: Thư Viện Python Đảm Bảo LLM Xuất JSON Hợp Lệ 100% — Hướng Dẫn 2026
 
 *Cập nhật lần cuối: 19 tháng 5, 2026*
@@ -14,7 +9,6 @@ Instructor là một thư viện Python sửa đổi khách hàng OpenAI (và h�
 
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/instructor-structured-llm-output/ -->
 ---
 ## Instructor và Tại Sao Nó Quan Trọng?
 
@@ -45,8 +39,7 @@ from pydantic import BaseModel
 client = instructor.from_openai(OpenAI())
 
 # Định nghĩa cấu trúc dữ liệu đầu ra như một mô hình Pydantic
-class UserProfile(BaseModel):
-    name: str
+class UserProfile(BaseModel): name: str
     age: int
     email: str
     interests: list[str]
@@ -91,29 +84,23 @@ Khi mô hình LLM sản xuất ra kết quả không hợp lệ, hành vi mặc 
 ```python
 from pydantic import BaseModel, Field, field_validator
 
-class ValidatedProduct(BaseModel):
-    name: str = Field(description="Tên sản phẩm, tối đa 50 ký tự")
+class ValidatedProduct(BaseModel): name: str = Field(description="Tên sản phẩm, tối đa 50 ký tự")
     price: float = Field(description="Giá USD, phải dương")
     category: str = Field(description="Một trong những loại sau: điện tử, quần áo, thực phẩm, sách")
     
     @field_validator('category')
     @classmethod
-    def validate_category(cls, v):
-        allowed = {'electronics', 'clothing', 'food', 'books'}
-        if v.lower() not in allowed:
-            raise ValueError(f"Loại sản phẩm phải là một trong: {allowed}")
+    def validate_category(cls, v): allowed = {'electronics', 'clothing', 'food', 'books'}
+        if v.lower() not in allowed: raise ValueError(f"Loại sản phẩm phải là một trong: {allowed}")
         return v.lower()
     
     @field_validator('price')
     @classmethod
-    def validate_price(cls, v):
-        if v <= 0:
-            raise ValueError("Giá phải dương")
+    def validate_price(cls, v): if v <= 0: raise ValueError("Giá phải dương")
         return round(v, 2)
 
 # Instructor tự động thử lại khi có lỗi kiểm tra
-def parse_product(description: str) -> ValidatedProduct:
-    return client.chat.completions.create(
+def parse_product(description: str) -> ValidatedProduct: return client.chat.completions.create(
         model="gpt-4o",
         response_model=ValidatedProduct,
         max_retries=3,  # Thử lại tối đa 3 lần với phản hồi
@@ -141,24 +128,20 @@ Các ứng dụng thực tế cần hơn những cấu trúc phẳng. Instructor
 from typing import Optional, List
 from pydantic import BaseModel, Field
 
-class Address(BaseModel):
-    street: str
+class Address(BaseModel): street: str
     city: str
     state: str = Field(description="2-letter state code")
     zip_code: str
     country: str = "US"
 
-class OrderItem(BaseModel):
-    product_name: str
+class OrderItem(BaseModel): product_name: str
     quantity: int = Field(ge=1, description="Must be at least 1")
     unit_price: float = Field(gt=0)
     
     @property
-    def total(self) -> float:
-        return self.quantity * self.unit_price
+    def total(self) -> float: return self.quantity * self.unit_price
 
-class CustomerOrder(BaseModel):
-    customer_name: str
+class CustomerOrder(BaseModel): customer_name: str
     customer_email: str
     shipping_address: Address
     billing_address: Optional[Address] = None
@@ -166,11 +149,9 @@ class CustomerOrder(BaseModel):
     order_notes: Optional[str] = None
     
     @property
-    def grand_total(self) -> float:
-        return sum(item.total for item in self.items)
+    def grand_total(self) -> float: return sum(item.total for item in self.items)
 
-def extract_order(email_text: str) -> CustomerOrder:
-    return client.chat.completions.create(
+def extract_order(email_text: str) -> CustomerOrder: return client.chat.completions.create(
         model="gpt-4o",
         response_model=CustomerOrder,
         messages=[
@@ -184,8 +165,7 @@ Hi, I'd like to place an order.
 Customer: John Smith (john.smith@email.com)
 Ship to: 123 Oak Street, San Francisco, CA 94102
 
-Items:
-- MacBook Pro M3, qty 1, $1999
+Items: - MacBook Pro M3, qty 1, $1999
 - USB-C Hub, qty 2, $49 each
 
 Please gift wrap the laptop.
@@ -202,8 +182,7 @@ from pydantic import BaseModel
 from typing import Optional
 from datetime import datetime
 
-class Event(BaseModel):
-    name: str
+class Event(BaseModel): name: str
     start_time: datetime
     end_time: Optional[datetime] = None
     location: Optional[str] = None
@@ -240,14 +219,12 @@ from pydantic import BaseModel
 # Sử dụng client async cho xử lý lô
 async_client = instructor.from_openai(AsyncOpenAI())
 
-class SentimentResult(BaseModel):
-    text: str
+class SentimentResult(BaseModel): text: str
     sentiment: str  # "positive", "negative", "neutral"
     confidence: float
     key_phrases: list[str]
 
-async def analyze_single(text: str) -> SentimentResult:
-    return await async_client.chat.completions.create(
+async def analyze_single(text: str) -> SentimentResult: return await async_client.chat.completions.create(
         model="gpt-4o-mini",
         response_model=SentimentResult,
         messages=[
@@ -255,8 +232,7 @@ async def analyze_single(text: str) -> SentimentResult:
         ]
     )
 
-async def analyze_batch(texts: list[str]) -> list[SentimentResult]:
-    """Xử lý nhiều văn bản đồng thời."""
+async def analyze_batch(texts: list[str]) -> list[SentimentResult]: """Xử lý nhiều văn bản đồng thời."""
     tasks = [analyze_single(text) for text in texts]
     results = await asyncio.gather(*tasks)
     return results
@@ -284,14 +260,12 @@ Cho ứng dụng thời gian thực, Instructor hỗ trợ việc truyền tải
 from typing import Iterable
 from pydantic import BaseModel
 
-class PartialArticle(BaseModel):
-    title: str
+class PartialArticle(BaseModel): title: str
     sections: list[str]
     key_points: list[str]
 
 # Truyền tải dữ liệu đa dạng hóa theo thời gian thực khi nó được tạo ra
-def stream_article(topic: str) -> Iterable[PartialArticle]:
-    return client.chat.completions.create_partial(
+def stream_article(topic: str) -> Iterable[PartialArticle]: return client.chat.completions.create_partial(
         model="gpt-4o",
         response_model=PartialArticle,
         stream=True,
@@ -301,8 +275,7 @@ def stream_article(topic: str) -> Iterable[PartialArticle]:
     )
 
 # Xử lý kết quả phần tử khi chúng đến
-for partial in stream_article("trends về năng lượng tái tạo 2026"):
-    print(f"Tiêu đề: {partial.title}")
+for partial in stream_article("trends về năng lượng tái tạo 2026"): print(f"Tiêu đề: {partial.title}")
     print(f"Số phần đã có: {len(partial.sections)}")
     print("---")
 ```
@@ -316,28 +289,23 @@ Hệ thống retry của giáo viên không chỉ lặp lại yêu cầu — nó
 ```python
 from pydantic import BaseModel, field_validator
 
-class StrictDateRange(BaseModel):
-    start_date: str = Field(description="Định dạng YYYY-MM-DD")
-lastmod:  str = Field(description="Định dạng YYYY-MM-DD")    end_date: str = Field(description="Định dạng YYYY-MM-DD, phải sau ngày bắt đầu")
+class StrictDateRange(BaseModel): start_date: str = Field(description="Định dạng YYYY-MM-DD")
+lastmod: str = Field(description="Định dạng YYYY-MM-DD")    end_date: str = Field(description="Định dạng YYYY-MM-DD, phải sau ngày bắt đầu")
     
     @field_validator('start_date', 'end_date')
     @classmethod
-    def validate_date_format(cls, v):
-        from datetime import datetime
+    def validate_date_format(cls, v): from datetime import datetime
         datetime.strptime(v, "%Y-%m-%d")
         return v
     
     @field_validator('end_date')
     @classmethod
-    def validate_order(cls, end, info):
-        start = info.data.get('start_date')
-        if start and end <= start:
-            raise ValueError("end_date phải sau start_date")
+    def validate_order(cls, end, info): start = info.data.get('start_date')
+        if start and end <= start: raise ValueError("end_date phải sau start_date")
         return end
 
 # Giáo viên sẽ retry với phản hồi lỗi kiểm tra cụ thể
-def extract_date_range(text: str) -> StrictDateRange:
-    return client.chat.completions.create(
+def extract_date_range(text: str) -> StrictDateRange: return client.chat.completions.create(
         model="gpt-4o",
         response_model=StrictDateRange,
         max_retries=3,
@@ -348,13 +316,11 @@ def extract_date_range(text: str) -> StrictDateRange:
 
 # Ngay cả khi mô hình thay đổi ngày hoặc sử dụng định dạng sai ban đầu,
 # Giáo viên sẽ nhắc lại với thông báo lỗi cụ thể
-try:
-    result = extract_date_range(
+try: result = extract_date_range(
         "Dự án đã chạy từ 15 tháng 3 năm 2026 đến 10 tháng 1 năm 2026"
     )
     print(result)
-except Exception as e:
-    print(f"Thất bại sau số lần retry tối đa: {e}")
+except Exception as e: print(f"Thất bại sau số lần retry tối đa: {e}")
 ```
 
 ---
@@ -366,8 +332,7 @@ except Exception as e:
 ```python
 from typing import Literal
 
-class SupportTicket(BaseModel):
-    customer_query: str
+class SupportTicket(BaseModel): customer_query: str
     category: Literal[
         "billing", 
         "technical_support", 
@@ -379,8 +344,7 @@ class SupportTicket(BaseModel):
     priority: Literal["low", "medium", "high", "urgent"]
     suggested_response: str
 
-def classify_ticket(ticket_text: str) -> SupportTicket:
-    return client.chat.completions.create(
+def classify_ticket(ticket_text: str) -> SupportTicket: return client.chat.completions.create(
         model="gpt-4o-mini",
         response_model=SupportTicket,
         messages=[
@@ -405,14 +369,12 @@ print(f"Khẩn cấp: {ticket.priority}")  # Luôn một trong bốn giá trị
 # Trích xuất thông tin cấu trúc từ các tài liệu dài
 from pydantic import BaseModel
 
-class ExtractedFact(BaseModel):
-    subject: str
+class ExtractedFact(BaseModel): subject: str
     predicate: str
     object_: str
     confidence: float
 
-class DocumentExtraction(BaseModel):
-    title: str
+class DocumentExtraction(BaseModel): title: str
     facts: list[ExtractedFact]
     entities: list[str]
     summary: str
@@ -439,9 +401,7 @@ print(f"Số lượng thông tin: {len(extraction.facts)}")
 ---
 ## Kết hợp với FastAPI cho API Sản xuất
 
-Instructor tỏa sáng trong phát triển API. Dưới đây là một điểm cuối hoàn chỉnh của FastAPI với đầu ra LLM được cấu trúc:
-
-```python
+Instructor tỏa sáng trong phát triển API. Dưới đây là một điểm cuối hoàn chỉnh của FastAPI với đầu ra LLM được cấu trúc: ```python
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import instructor
@@ -451,21 +411,17 @@ app = FastAPI(title="API Đầu ra LLM Cấu Trúc")
 client = instructor.from_openai(OpenAI())
 
 # Schema yêu cầu
-class ExtractionRequest(BaseModel):
-    text: str
+class ExtractionRequest(BaseModel): text: str
     extract_fields: list[str]
 
 # Schema trả lời
-class ExtractedData(BaseModel):
-    entities: list[dict]
+class ExtractedData(BaseModel): entities: list[dict]
     relationships: list[dict]
     summary: str
 
 @app.post("/extract", response_model=ExtractedData)
-async def extract_entities(request: ExtractionRequest):
-    """Trích xuất các entitie cấu trúc từ văn bản không cấu trúc."""
-    try:
-        result = client.chat.completions.create(
+async def extract_entities(request: ExtractionRequest): """Trích xuất các entitie cấu trúc từ văn bản không cấu trúc."""
+    try: result = client.chat.completions.create(
             model="gpt-4o",
             response_model=ExtractedData,
             messages=[
@@ -480,8 +436,7 @@ async def extract_entities(request: ExtractionRequest):
             ]
         )
         return result
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+    except Exception as e: raise HTTPException(status_code=500, detail=str(e))
 
 # Chạy với: uvicorn main:app --reload
 ```
@@ -495,14 +450,12 @@ Instructor có thể thay thế gọi hàm của OpenAI bằng các phương án
 ```python
 from typing import Type
 
-class SearchQuery(BaseModel):
-    """Tạo câu hỏi tìm kiếm với các tham số"""
+class SearchQuery(BaseModel): """Tạo câu hỏi tìm kiếm với các tham số"""
     keywords: list[str]
     filters: dict[str, str]
     sort_by: Literal["relevance", "date", "price_asc", "price_desc"]
     
-def generate_search(user_request: str) -> SearchQuery:
-    return client.chat.completions.create(
+def generate_search(user_request: str) -> SearchQuery: return client.chat.completions.create(
         model="gpt-4o",
         response_model=SearchQuery,
         messages=[
@@ -599,7 +552,6 @@ Nếu bạn vẫn đang phân tích đầu ra gốc từ LLM bằng `json.loads(
 
 ---
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

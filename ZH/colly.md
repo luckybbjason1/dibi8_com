@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/colly" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/colly" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/colly" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/colly" />
 title: 'Colly: 25,302 GitHub Stars — Benchmark Go 网页抓取框架 2026'
 description: 'Colly 是一款快速、优雅的 Go 网页抓取框架，吞吐量达 1,000+ req/sec。涵盖 colly 教程、colly vs scrapy 基准测试、Docker 部署、Redis 缓存、代理轮换以及大规模数据提取的生产部署模式。'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [colly, go, 网页抓取, 爬虫, golang, scrapy, 基准测试, 代理]
-aliases:
-- /zh/posts/colly/
+aliases: - /zh/posts/colly/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/colly/ -->
 
 {{</* resource-info */>}}
 
@@ -162,20 +154,12 @@ docker run --rm colly-scraper
 
 ```yaml
 version: '3.8'
-services:
-  scraper:
-    build: .
-    depends_on:
-      - redis
-    environment:
-      - REDIS_URL=redis:6379
-  redis:
-    image: redis:7-alpine
-    volumes:
-      - redis-data:/data
-  volumes:
-    redis-data:
-```
+services: scraper: build: .
+    depends_on: - redis
+    environment: - REDIS_URL=redis:6379
+  redis: image: redis:7-alpine
+    volumes: - redis-data:/data
+  volumes: redis-data: ```
 
 ## 与流行工具的集成
 
@@ -196,10 +180,10 @@ func main() {
 
 	// 使用 Redis 作为持久化存储
 	redisStore := &storage.RedisStorage{
-		Address:  "redis:6379",
+		Address: "redis:6379",
 		Password: "",
-		DB:       0,
-		Prefix:   "colly",
+		DB: 0,
+		Prefix: "colly",
 	}
 
 	if err := redisStore.Open(); err != nil {
@@ -245,9 +229,9 @@ func main() {
 
 	// 尊重目标服务器
 	c.Limit(&colly.LimitRule{
-		DomainGlob:  "*",
+		DomainGlob: "*",
 		Parallelism: 10,
-		Delay:       1 * time.Second,
+		Delay: 1 * time.Second,
 	})
 
 	c.Visit("https://example.com")
@@ -343,7 +327,17 @@ func main() {
 我们在 AWS `c6i.xlarge`（4 vCPU, 8GB RAM）上针对四个工具进行了抓取 1,000 个静态 HTML 页面的受控基准测试：
 
 | 工具 | 时间（1000 页面） | 内存占用 | 请求/秒 | 二进制体积 |
-|------|-----------------|---------|---------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Colly**（并行） | ~7秒 | 25 MB | ~1,200 | 12 MB |
 | **Colly**（同步） | ~52秒 | 20 MB | ~19 | 12 MB |
 | Scrapy（Python） | ~18秒 | 180 MB | ~280 | N/A |
@@ -388,9 +382,9 @@ func main() {
 
 	// 严格的每域名速率限制
 	c.Limit(&colly.LimitRule{
-		DomainGlob:  "*example.com",
+		DomainGlob: "*example.com",
 		Parallelism: 5,
-		Delay:       2 * time.Second,
+		Delay: 2 * time.Second,
 		RandomDelay: 500 * time.Millisecond,
 	})
 
@@ -417,7 +411,7 @@ func main() {
 	// 创建 Redis 支持的队列
 	q, _ := queue.New(100, &queue.RedisStorage{
 		Address: "redis:6379",
-		DB:      0,
+		DB: 0,
 	})
 
 	c.OnHTML("a[href]", func(e *colly.HTMLElement) {
@@ -454,10 +448,10 @@ func main() {
 
 	// 替换默认 HTTP 客户端
 	c.WithTransport(&http.Transport{
-		MaxIdleConns:        100,
+		MaxIdleConns: 100,
 		MaxIdleConnsPerHost: 10,
-		IdleConnTimeout:     30 * time.Second,
-		DisableCompression:  false,
+		IdleConnTimeout: 30 * time.Second,
+		DisableCompression: false,
 	})
 
 	c.SetRequestTimeout(15 * time.Second)
@@ -509,7 +503,17 @@ func main() {
 ## 与替代方案的比较
 
 | 特性 | Colly | Scrapy | Puppeteer | goquery |
-|------|-------|--------|-----------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **语言** | Go | Python | Node.js | Go |
 | **请求/秒**（单核） | 1,000+ | ~300 | ~3 | ~20 |
 | **每千页内存** | 15-25 MB | 150-200 MB | 400-600 MB | 35-50 MB |
@@ -608,7 +612,6 @@ Colly 为 Go 开发者提供了抓取框架所需的一切：速度、简洁和�
 - [Colly Benchmarks](https://webscraping.ai/faq/colly/what-are-the-performance-benchmarks-for-colly-compared-to-other-go-scrapers) — 性能数据
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -634,8 +637,8 @@ Colly 为 Go 开发者提供了抓取框架所需的一切：速度、简洁和�
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [headroom-token-compression-proxy-library-mcp-server](colly)
@@ -644,6 +647,6 @@ Colly 为 Go 开发者提供了抓取框架所需的一切：速度、简洁和�
 - [langflow-visual-llm-workflow-builder-2026](colly)
 - [juicefs-distributed-posix-file-system-redis-s3-cloud-storage](colly)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

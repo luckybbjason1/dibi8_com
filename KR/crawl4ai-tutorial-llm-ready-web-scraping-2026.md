@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/crawl4ai-tutorial-llm-ready-web-scraping-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/crawl4ai-tutorial-llm-ready-web-scraping-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/crawl4ai-tutorial-llm-ready-web-scraping-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/crawl4ai-tutorial-llm-ready-web-scraping-2026" />
 title: 'Crawl4AI 완벽 가이드 2026: GitHub 63k+ Stars 오픈소스 웹 크롤러로 LLM ...
 description: '2026년 GitHub 트렌딩 1위 오픈소스 웹 크롤러 Crawl4AI를 소개합니다. LLM·RAG·AI 에이전트에 최적화된 Markdown 출력, LLM 기반 구조화 추출, 딥 크롤링, Firecrawl·ScrapeGraphAI와의 상세 비교, Docker 프로덕션 배포까지 한국어 실전 튜토리얼로 정리했습니다.'
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,9 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [crawl4ai, 'web-scraping', 'llm-rag', 'open-source']
-aliases:
-- /kr/posts/crawl4ai-tutorial-llm-ready-web-scraping-2026/
+aliases: - /kr/posts/crawl4ai-tutorial-llm-ready-web-scraping-2026/
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/crawl4ai-tutorial-llm-ready-web-scraping-2026/ -->
 # Crawl4AI 완벽 가이드 2026: GitHub 63k+ Stars 오픈소스 웹 크롤러로 LLM 데이터 파이프라인 구축하기
 
 
@@ -86,9 +79,7 @@ pip install crawl4ai
 playwright install chromium
 ```
 
-동기 버전이 필요하면:
-
-```bash
+동기 버전이 필요하면: ```bash
 pip install crawl4ai[sync]
 ```
 
@@ -104,13 +95,10 @@ docker pull unclecode/crawl4ai:latest
 import asyncio
 from crawl4ai import AsyncWebCrawler
 
-async def main():
-    async with AsyncWebCrawler() as crawler:
-        result = await crawler.arun(url="https://crawl4ai.com")
+async def main(): async with AsyncWebCrawler() as crawler: result = await crawler.arun(url="https://crawl4ai.com")
         print(result.markdown[:1000])
 
-if __name__ == "__main__":
-    asyncio.run(main())
+if __name__ == "__main__": asyncio.run(main())
 ```
 
 10줄이면 충분합니다. 임베딩 모델에 바로 투입할 수 있는 깨끗한 Markdown이 출력됩니다.
@@ -136,8 +124,7 @@ Crawl4AI가 ‘게임 체인저’로 불리는 이유입니다. 사이트가 CS
 ```python
 from pydantic import BaseModel, Field
 
-class ModelPricing(BaseModel):
-    model_name: str = Field(..., description="모델명")
+class ModelPricing(BaseModel): model_name: str = Field(..., description="모델명")
     input_cost: str = Field(..., description="입력 토큰당 1M 기준 비용")
     output_cost: str = Field(..., description="출력 토큰당 1M 기준 비용")
 ```
@@ -150,8 +137,7 @@ import asyncio
 from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
 from crawl4ai.extraction_strategy import LLMExtractionStrategy
 
-async def main():
-    browser_config = BrowserConfig(verbose=True)
+async def main(): browser_config = BrowserConfig(verbose=True)
     
     run_config = CrawlerRunConfig(
         word_count_threshold=1,
@@ -170,15 +156,13 @@ async def main():
         cache_mode=CacheMode.BYPASS,
     )
 
-    async with AsyncWebCrawler(config=browser_config) as crawler:
-        result = await crawler.arun(
+    async with AsyncWebCrawler(config=browser_config) as crawler: result = await crawler.arun(
             url='https://openai.com/api/pricing/',
             config=run_config
         )
         print(result.extracted_content)
 
-if __name__ == "__main__":
-    asyncio.run(main())
+if __name__ == "__main__": asyncio.run(main())
 ```
 
 ### 지원 LLM 프로바이더
@@ -204,8 +188,7 @@ from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
 from crawl4ai.deep_crawling import BFSDeepCrawlStrategy
 from crawl4ai.content_scraping_strategy import LXMLWebScrapingStrategy
 
-async def main():
-    config = CrawlerRunConfig(
+async def main(): config = CrawlerRunConfig(
         deep_crawl_strategy=BFSDeepCrawlStrategy(
             max_depth=2,
             include_external=False  # 외부 링크 제외
@@ -214,22 +197,17 @@ async def main():
         verbose=True
     )
 
-    async with AsyncWebCrawler() as crawler:
-        results = await crawler.arun("https://docs.crawl4ai.com/", config=config)
+    async with AsyncWebCrawler() as crawler: results = await crawler.arun("https://docs.crawl4ai.com/", config=config)
         print(f"총 {len(results)}개 페이지 크롤링 완료")
         
-        for r in results[:5]:
-            print(f"URL: {r.url} | 깊이: {r.metadata.get(depth, 0)}")
+        for r in results[:5]: print(f"URL: {r.url} | 깊이: {r.metadata.get(depth, 0)}")
 
-if __name__ == "__main__":
-    asyncio.run(main())
+if __name__ == "__main__": asyncio.run(main())
 ```
 
 ### BM25 콘텐츠 필터링: RAG 파이프라인용 관련성 높은 텍스트만 추출
 
-지식베이스 구축 시 전체 페이지가 아니라 쿼리와 관련된 문단만 필요한 경우:
-
-```python
+지식베이스 구축 시 전체 페이지가 아니라 쿼리와 관련된 문단만 필요한 경우: ```python
 from crawl4ai.content_filter import BM25ContentFilter
 
 filter = BM25ContentFilter(
@@ -270,17 +248,13 @@ BM25 필터는 페이지 내 모든 텍스트 청크를 쿼리와 비교해 관�
 
 ### FastAPI + JWT 인증 Docker 배포
 
-Crawl4AI를 내부 마이크로서비스로 배포:
-
-```bash
+Crawl4AI를 내부 마이크로서비스로 배포: ```bash
 docker run -p 8000:8000 \
   -e CRAWL4AI_API_TOKEN=your_jwt_secret \
   unclecode/crawl4ai:latest
 ```
 
-애플리케이션에서 호출:
-
-```bash
+애플리케이션에서 호출: ```bash
 curl -X POST http://localhost:8000/crawl \
   -H "Authorization: Bearer your_jwt_secret" \
   -d '{"url": "https://example.com", "output_format": "markdown"}'
@@ -288,9 +262,7 @@ curl -X POST http://localhost:8000/crawl \
 
 ### 프록시 및 동시성 설정
 
-프로덕션 규모에서는 프록시 순환과 헤드리스 브라우저 풀을 구성합니다:
-
-```python
+프로덕션 규모에서는 프록시 순환과 헤드리스 브라우저 풀을 구성합니다: ```python
 browser_config = BrowserConfig(
     headless=True,
     proxy_config={
@@ -317,9 +289,7 @@ browser_config = BrowserConfig(
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -355,7 +325,6 @@ Crawl4AI는 모든 스크래핑 니즈의 만능 해결사는 아닙니다. 하�
 *2026-05-19 발행. 데이터는 GitHub, 공식 문서, 공개 벤치마크를 기반으로 합니다. Crawl4AI는 빠르게 업데이트되므로 최신 문서와 상호 참조하시기 바랍니다.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -383,25 +352,20 @@ Crawl4AI는 모든 스크래핑 니즈의 만능 해결사는 아닙니다. 하�
 
 ## Why This Matters
 
-Understanding crawl4ai 완벽 가이드 2026: github 63k+ stars 오픈소스 웹 크롤러로 llm 데이터 파이프라인 구축하기 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding crawl4ai 완벽 가이드 2026: github 63k+ stars 오픈소스 웹 크롤러로 llm 데이터 파이프라인 구축하기 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

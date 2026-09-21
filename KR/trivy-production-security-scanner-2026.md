@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/trivy-production-security-scanner-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/trivy-production-security-scanner-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/trivy-production-security-scanner-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/trivy-production-security-scanner-2026" />
 title: 'Trivy: 프로덕션에 취약한 컨테이너를 보내는 것 멈추기 — 2026 보안 스캔 가이드'
 description: 'Trivy(aquasecurity/trivy)는 컨테이너, IaC, 코드를 위한 오픈소스 보안 스캐너입니다. Kubernetes, Docker, GitHub Actions, CI 파이프라인과 연동됩니다. 60만 개 이상의 CVE, 시크릿, 오설정 스캔. 설치, 정책-as-코드, 프로덕션 하드닝을 다룹니다.'
 date: 2026-06-09
-lastmod:  2026-06-09slug: 'trivy-production-security-scanner-2026'
+lastmod: 2026-06-09
+slug: 'trivy-production-security-scanner-2026'
 category: 'dev-utils'
 tags: ['security', 'containers', 'vulnerability-scanning', 'devops', 'kubernetes', 'sast', 'iac', 'supply-chain']
 github_repo: 'https://github.com/aquasecurity/trivy'
@@ -17,8 +13,6 @@ license: Apache-2.0
 featureImage: 'https://raw.githubusercontent.com/aquasecurity/trivy/main/docs/getting-started/install.png'
 lang: ko
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/trivy-production-security-scanner-2026/ -->
 
 ![Trivy 보안 스캐너](https://opengraph.github.com/github/aquasecurity/trivy)
 
@@ -38,7 +32,7 @@ Trivy(일본어로 "맑은 눈", "맑은 눈, 가득한 마음, 패하지 않는
 ┌─────────────────────────────────────────────┐
 │              Trivy 스캐너                     │
 ├─────────────────────────────────────────────┤
-│  사용 가능한 스캐너:                           │
+│  사용 가능한 스캐너: │
 │  • 취약점 (CVE, GHSA, OSV)                  │
 │  • 시크릿 (API 키, 토큰, 비밀번호)           │
 │  • 오설정 (Terraform, K8s 등)               │
@@ -46,7 +40,7 @@ Trivy(일본어로 "맑은 눈", "맑은 눈, 가득한 마음, 패하지 않는
 │  • SAST (Sarif, CodeQL)                     │
 │  • IaC (Terraform, CloudFormation)          │
 ├─────────────────────────────────────────────┤
-│  지원 대상:                                    │
+│  지원 대상: │
 │  • 컨테이너 이미지, tar 아카이브              │
 │  • 파일시스템 디렉토리                        │
 │  • Kubernetes 클러스터                         │
@@ -76,9 +70,7 @@ Trivy는 계층형 스캔 접근 방식을 사용합니다. 컨테이너 이미�
 
 ## 설치 및 설정
 
-Trivy는 여러 설치 방법을 지원합니다. 워크플로우에 맞는 방법을 선택하세요:
-
-**방법 1: Homebrew (macOS / Linux)**
+Trivy는 여러 설치 방법을 지원합니다. 워크플로우에 맞는 방법을 선택하세요: **방법 1: Homebrew (macOS / Linux)**
 
 ```bash
 brew install trivy
@@ -103,15 +95,12 @@ curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/inst
 ```yaml
 - name: Run Trivy vulnerability scanner
   uses: aquasecurity/trivy-action@master
-  with:
-    image-ref: my-app:latest
+  with: image-ref: my-app:latest
     format: 'sarif'
     output: 'trivy-results.sarif'
 ```
 
-Trivy의 취약점 데이터베이스는 최초 사용 시 자동으로 업데이트되며, 이후 매 6시간마다 자동으로 업데이트됩니다. 수동으로도 업데이트할 수 있습니다:
-
-```bash
+Trivy의 취약점 데이터베이스는 최초 사용 시 자동으로 업데이트되며, 이후 매 6시간마다 자동으로 업데이트됩니다. 수동으로도 업데이트할 수 있습니다: ```bash
 trivy image --download-db-only
 ```
 
@@ -133,15 +122,11 @@ docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
 ```yaml
 name: Security Scan
 on: [push, pull_request]
-jobs:
-  trivy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: trivy: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - name: Run Trivy on filesystem
         uses: aquasecurity/trivy-action@master
-        with:
-          scan-type: 'fs'
+        with: scan-type: 'fs'
           scan-ref: '.'
           format: 'table'
           severity: 'HIGH,CRITICAL'
@@ -169,9 +154,7 @@ trivy conf --format sarif --output terraform-results.sarif ./infrastructure/
 
 ## 벤치마크 / 실제 사용 사례
 
-Trivy의 성능은 스캔 대상과 데이터베이스 크기에 따라 다릅니다. 유사한 도구들과의 벤치마크 테스트에서:
-
-| 시나리오 | 스캔 시간 | 데이터베이스 크기 | 정확도 |
+Trivy의 성능은 스캔 대상과 데이터베이스 크기에 따라 다릅니다. 유사한 도구들과의 벤치마크 테스트에서: | 시나리오 | 스캔 시간 | 데이터베이스 크기 | 정확도 |
 |----------|-----------|---------------|----------|
 | Alpine 3.18 이미지 (200개 패키지) | 4-6초 | 70MB | 98% CVE 매칭 |
 | Ubuntu 22.04 이미지 (800개 패키지) | 12-18초 | 70MB | 97% CVE 매칭 |
@@ -179,9 +162,7 @@ Trivy의 성능은 스캔 대상과 데이터베이스 크기에 따라 다릅�
 | Kubernetes 클러스터 (50개 리소스) | 15-25초 | N/A | 95% 구성 매칭 |
 | Terraform (200개 .tf 파일) | 3-5초 | N/A | 94% 구성 매칭 |
 
-실제 배포 예시:
-
-```bash
+실제 배포 예시: ```bash
 # 프로덕션: Harbor 레지스트리의 모든 이미지를 매일 밤 스캔
 trivy registry --security vulns,secret,misconfig harbor.example.com/myproject/api:latest
 
@@ -213,16 +194,12 @@ trivy image --ignore-unfixed --severity CRITICAL my-app:latest
 
 ```yaml
 # .trivy.yaml
-severity:
-  - HIGH
+severity: - HIGH
   - CRITICAL
-scan:
-  security-checks: vuln,secret,misconfig
-  skip-files:
-    - "**/vendor/**"
+scan: security-checks: vuln,secret,misconfig
+  skip-files: - "**/vendor/**"
     - "**/node_modules/**"
-  skip-dirs:
-    - tmp
+  skip-dirs: - tmp
     - .git
 exit-code: 1
 ```
@@ -231,11 +208,8 @@ exit-code: 1
 
 ```yaml
 version: '3.8'
-services:
-  trivy:
-    image: aquasec/trivy:latest
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+services: trivy: image: aquasec/trivy:latest
+    volumes: - /var/run/docker.sock:/var/run/docker.sock
       - ./trivy-results:/results
     command: >
       image
@@ -261,8 +235,7 @@ trivy image --exit-code 1 --ignore-unfixed --severity CRITICAL my-app:latest
 # .github/codeql-config.yml — Trivy SARIF를 GitHub과 통합
 name: "Trivy SARIF Config"
 
-queries:
-  - uses: security-and-quality
+queries: - uses: security-and-quality
   - uses: security-extended
 
 # 이 파일은 GitHub이
@@ -309,9 +282,7 @@ curl -X POST \
 
 ## 한계 / 정확한 평가
 
-Trivy는 현재 사용 가능한 가장 포괄적인 오픈소스 스캐너이지만 완벽하지는 않습니다:
-
-1. **오경보 존재**: Trivy의 취약점 매칭은 특정 빌드 구성에 영향을 주지 않는 CVE를 플래그할 수 있습니다. 노이즈를 줄이려면 `--ignore-unfixed`를 사용하세요.
+Trivy는 현재 사용 가능한 가장 포괄적인 오픈소스 스캐너이지만 완벽하지는 않습니다: 1. **오경보 존재**: Trivy의 취약점 매칭은 특정 빌드 구성에 영향을 주지 않는 CVE를 플래그할 수 있습니다. 노이즈를 줄이려면 `--ignore-unfixed`를 사용하세요.
 2. **데이터베이스 지연**: 취약점 데이터베이스는 매 6시간마다 업데이트되므로, 오늘 발견된 제로데이 취약점은 다음 업데이트 주기까지 스캔에 나타나지 않습니다.
 3. **리소스 사용량**: 수천 개의 패키지를 포함한 대형 컨테이너 이미지는 스캔하는 데 30초 이상 소요될 수 있습니다. CI에는 적합하지만オン디맨드 임의 스캔에는 너무 느릴 수 있습니다.
 4. **런타임 감지 없음**: Trivy는 정적 이미지와 파일을 스캔합니다. 런타임 익스플로잇, 실행 중인 컨테이너의 제로데이 취약점, 동작 이상을 감지하지 않습니다. 포괄적인 커버리지를 위해 런타임 보안 도구와 함께 사용하세요.
@@ -361,8 +332,7 @@ Trivy는 CVE 데이터베이스를 확인하는 것을 넘어선다는 이유로
 
 ---
 
-**소스 및 추가 읽을거리**:
-- 공식 문서: https://trivy.dev/docs/
+**소스 및 추가 읽을거리**: - 공식 문서: https://trivy.dev/docs/
 - GitHub 저장소: https://github.com/aquasecurity/trivy
 - 취약점 데이터베이스: https://github.com/aquasecurity/trivy-db
 - GitHub Actions 통합: https://github.com/aquasecurity/trivy-action
@@ -372,7 +342,6 @@ Trivy는 CVE 데이터베이스를 확인하는 것을 넘어선다는 이유로
 **고지**: 이 기고에는 제휴 링크가 포함되어 있습니다. 링크를 통해 가입하면 추가 비용 없이 소정의 수수료를 받을 수 있습니다. 이는 독립적인 기술 저널리즘을 지원하고 dibi8.com 같은 리소스를 무료 및 무광고로 유지하는 데 도움이 됩니다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

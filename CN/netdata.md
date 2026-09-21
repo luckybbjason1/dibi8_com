@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/netdata" />
 title: 'Netdata: Real-Time Monitoring with 78K+ Stars — Performa...
 description: 'Netdata (ND) is a high-performance real-time monitoring agent with per-second metrics and visualization. Compatible with Docker, Kubernetes, Prometheus, and Grafana. Covers netdata tutorial, netdata setup, real time monitoring, netdata vs prometheus, and netdata performance tuning.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [netdata, monitoring, observability, 'performance-tuning', docker, kubernetes, 'real-time-metrics']
-aliases:
-- /posts/netdata/
+aliases: - /posts/netdata/-
 ---
-
 {{</* resource-info */>}}
 
 ## Introduction
@@ -56,15 +52,11 @@ Netdata's architecture follows an edge-first, distributed model. Each node runs 
 
 ### One-Line Install (Linux)
 
-The fastest way to get Netdata running:
-
-```bash
+The fastest way to get Netdata running: ```bash
 # Install Netdata with all defaultscurl -Ss https://get.netdata.cloud/kickstart.sh | sudo bash
 ```
 
-Verify the installation:
-
-```bash
+Verify the installation: ```bash
 sudo systemctl status netdata
 # Active: active (running) since ...
 ```
@@ -73,9 +65,7 @@ Access the local dashboard at `http://localhost:19999`.
 
 ### Docker Deploy
 
-For containerized environments:
-
-```bash
+For containerized environments: ```bash
 docker run -d --name=netdata \
   -p 19999:19999 \
   -v /proc:/host/proc:ro \
@@ -90,36 +80,25 @@ docker run -d --name=netdata \
 
 ```yaml
 version: '3.8'
-services:
-  netdata:
-    image: netdata/netdata:v2.5.0
+services: netdata: image: netdata/netdata:v2.5.0
     container_name: netdata
     hostname: "netdata-${HOSTNAME}"
-    ports:
-      - "19999:19999"
+    ports: - "19999:19999"
     restart: unless-stopped
-    cap_add:
-      - SYS_PTRACE
+    cap_add: - SYS_PTRACE
       - SYS_ADMIN
-    security_opt:
-      - apparmor:unconfined
-    volumes:
-      - /proc:/host/proc:ro
+    security_opt: - apparmor:unconfined
+    volumes: - /proc:/host/proc:ro
       - /sys:/host/sys:ro
       - /etc/os-release:/host/etc/os-release:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - netdata-config:/etc/netdata
       - netdata-lib:/var/lib/netdata
       - netdata-cache:/var/cache/netdata
-    environment:
-      - NETDATA_CLAIM_TOKEN=${NETDATA_CLAIM_TOKEN}
+    environment: - NETDATA_CLAIM_TOKEN=${NETDATA_CLAIM_TOKEN}
       - NETDATA_CLAIM_URL=https://app.netdata.cloud
       - NETDATA_CLAIM_ROOMS=${NETDATA_CLAIM_ROOMS}
-volumes:
-  netdata-config:
-  netdata-lib:
-  netdata-cache:
-```
+volumes: netdata-config: netdata-lib: netdata-cache: ```
 
 ![Netdata System Monitoring](https://hackmag.com/wp-content/uploads/2025/07/10244_02-16-39.png)
 
@@ -136,9 +115,7 @@ helm install netdata netdata/netdata \
   --create-namespace
 ```
 
-Verify the pods:
-
-```bash
+Verify the pods: ```bash
 kubectl get pods -n monitoring
 # NAME                    READY   STATUS
 # netdata-parent-0        1/1     Running
@@ -147,9 +124,7 @@ kubectl get pods -n monitoring
 
 ### Generate Current Config
 
-Download the running configuration to customize:
-
-```bash
+Download the running configuration to customize: ```bash
 # Download current effective config
 curl -o /etc/netdata/netdata.conf http://localhost:19999/netdata.conf
 # Or use the edit-config script
@@ -160,9 +135,7 @@ sudo /etc/netdata/edit-config netdata.conf
 
 ### Prometheus Remote Write
 
-Export Netdata metrics to Prometheus for long-term storage and PromQL queries:
-
-```bash
+Export Netdata metrics to Prometheus for long-term storage and PromQL queries: ```bash
 sudo /etc/netdata/edit-config exporting.conf
 ```
 
@@ -177,61 +150,40 @@ sudo /etc/netdata/edit-config exporting.conf
     send hosts matching = *
 ```
 
-Restart Netdata:
-
-```bash
+Restart Netdata: ```bash
 sudo systemctl restart netdata
 ```
 
 ### Grafana Dashboard
 
-While Netdata has a built-in dashboard, many teams prefer Grafana for centralized visualization. Add Netdata as a Prometheus data source in Grafana:
-
-```yaml
+While Netdata has a built-in dashboard, many teams prefer Grafana for centralized visualization. Add Netdata as a Prometheus data source in Grafana: ```yaml
 # datasource.yaml in Grafana
 apiVersion: 1
-datasources:
-  - name: Netdata-Prometheus
+datasources: - name: Netdata-Prometheus
     type: prometheus
     url: http://netdata:19999/api/v1/allmetrics?format=prometheus
     access: proxy
     isDefault: false
-    jsonData:
-      timeInterval: "1s"
+    jsonData: timeInterval: "1s"
 ```
 
 ### Kubernetes DaemonSet (Advanced)
 
-For full host-level visibility on every K8s node:
-
-```yaml
+For full host-level visibility on every K8s node: ```yaml
 apiVersion: apps/v1
 kind: DaemonSet
-metadata:
-  name: netdata
+metadata: name: netdata
   namespace: monitoring
-spec:
-  selector:
-    matchLabels:
-      app: netdata
-  template:
-    metadata:
-      labels:
-        app: netdata
-    spec:
-      hostNetwork: true
+spec: selector: matchLabels: app: netdata
+  template: metadata: labels: app: netdata
+    spec: hostNetwork: true
       hostPID: true
-      containers:
-        - name: netdata
+      containers: - name: netdata
           image: netdata/netdata:v2.5.0
-          ports:
-            - containerPort: 19999
+          ports: - containerPort: 19999
               hostPort: 19999
-          securityContext:
-            capabilities:
-              add: [SYS_PTRACE, SYS_ADMIN]
-          volumeMounts:
-            - name: proc
+          securityContext: capabilities: add: [SYS_PTRACE, SYS_ADMIN]
+          volumeMounts: - name: proc
               mountPath: /host/proc
               readOnly: true
             - name: sys
@@ -240,37 +192,27 @@ spec:
             - name: docker-sock
               mountPath: /var/run/docker.sock
               readOnly: true
-      volumes:
-        - name: proc
-          hostPath:
-            path: /proc
+      volumes: - name: proc
+          hostPath: path: /proc
         - name: sys
-          hostPath:
-            path: /sys
+          hostPath: path: /sys
         - name: docker-sock
-          hostPath:
-            path: /var/run/docker.sock
+          hostPath: path: /var/run/docker.sock
 ```
 
 ### PostgreSQL Monitoring
 
-Enable the PostgreSQL collector in `go.d/postgres.conf`:
-
-```yaml
-jobs:
-  - name: local
+Enable the PostgreSQL collector in `go.d/postgres.conf`: ```yaml
+jobs: - name: local
     dsn: 'postgres://netdata_monitor:password@localhost:5432/postgres'
-    collect:
-      - database_statistics
+    collect: - database_statistics
       - table_statistics
       - index_statistics
       - replication_statistics
     timeout: 2
 ```
 
-Test the collector:
-
-```bash
+Test the collector: ```bash
 sudo /etc/netdata/edit-config go.d/postgres.conf
 # Restart to apply
 sudo systemctl restart netdata
@@ -278,28 +220,30 @@ sudo systemctl restart netdata
 
 ### Nginx Monitoring
 
-Monitor Nginx stub_status and access logs:
-
-```yaml
+Monitor Nginx stub_status and access logs: ```yaml
 # /etc/netdata/go.d/nginx.conf
-jobs:
-  - name: local
+jobs: - name: local
     url: http://localhost/stub_status
 
   - name: access_log
     path: /var/log/nginx/access.log
-    parser:
-      type: ltsv
+    parser: type: ltsv
 ```
 
 ## Benchmarks / Real-World Use Cases
 
 ### Resource Footprint Comparison
 
-The University of Amsterdam published a peer-reviewed study (ICSOC 2023) ranking Netdata as the most energy-efficient monitoring tool for Docker-based systems. Independent benchmarks confirm:
-
-| Scenario | Netdata | Prometheus + Node Exporter | Zabbix Agent |
-|----------|---------|---------------------------|--------------|
+The University of Amsterdam published a peer-reviewed study (ICSOC 2023) ranking Netdata as the most energy-efficient monitoring tool for Docker-based systems. Independent benchmarks confirm: | Scenario | Netdata | Prometheus + Node Exporter | Zabbix Agent |
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | CPU Overhead (%) | 1–5% | 5–15% | 10–20% |
 | RAM per Node | 100–150 MB | 200–500 MB | 150–300 MB |
 | Collection Interval | 1 second | 15–60 seconds | 30–60 seconds |
@@ -309,18 +253,14 @@ The University of Amsterdam published a peer-reviewed study (ICSOC 2023) ranking
 
 ### Streaming Scale Benchmarks
 
-Netdata's parent-child streaming architecture scales horizontally:
-
-- **Single Parent**: 1 million+ samples/second ingestion, ~3.5 GB RAM
+Netdata's parent-child streaming architecture scales horizontally: - **Single Parent**: 1 million+ samples/second ingestion, ~3.5 GB RAM
 - **10 Child Nodes**: 20k metrics each, 1-second retention for 7 days, 12 GB disk
 - **Active-Active Cluster**: Unlimited horizontal scaling with full data replication
 - **Ephemeral Nodes**: Stream metrics to parents, retain data after node termination
 
 ### Real-World Deployment: 500-Node K8s Cluster
 
-A mid-size SaaS company running 500 Kubernetes nodes uses:
-
-- 5 Netdata parents (active-active) across 3 availability zones
+A mid-size SaaS company running 500 Kubernetes nodes uses: - 5 Netdata parents (active-active) across 3 availability zones
 - 500 child agents via DaemonSet, each running in RAM mode (~50 MB)
 - Tiered storage: 1-second for 7 days, 1-minute for 1 month, 1-hour for 1 year
 - Total parent storage: 25 GB per parent (125 GB cluster-wide)
@@ -418,9 +358,7 @@ The default configuration is optimized for standalone use. For production system
 
 ### Streaming Configuration: stream.conf
 
-On child nodes (`/etc/netdata/stream.conf`):
-
-```conf
+On child nodes (`/etc/netdata/stream.conf`): ```conf
 [stream]
     enabled = yes
     destination = tcp:netdata-parent.monitoring.svc.cluster.local:19999
@@ -433,9 +371,7 @@ On child nodes (`/etc/netdata/stream.conf`):
     initial clock resync iterations = 60
 ```
 
-On the parent (`/etc/netdata/stream.conf`):
-
-```conf
+On the parent (`/etc/netdata/stream.conf`): ```conf
 [API_KEY]
     enabled = yes
     default memory mode = dbengine
@@ -444,9 +380,7 @@ On the parent (`/etc/netdata/stream.conf`):
 
 ### Security Hardening
 
-Enable TLS for the web interface:
-
-```conf
+Enable TLS for the web interface: ```conf
 [web]
     tls version = 1.3
     ssl key = /etc/netdata/ssl/key.pem
@@ -457,9 +391,7 @@ Enable TLS for the web interface:
 
 ### Monitoring Netdata Itself
 
-Track the agent's own resource usage:
-
-```bash
+Track the agent's own resource usage: ```bash
 # View internal metrics
 curl -s http://localhost:19999/api/v1/info | jq '.version, .hog'
 
@@ -470,7 +402,17 @@ curl -s http://localhost:19999/api/v1/data?chart=netdata.dbengine_main_page_stat
 ## Comparison with Alternatives
 
 | Feature | Netdata | Prometheus | Datadog | Zabbix |
-|---------|---------|------------|---------|--------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Collection Interval | 1 second | 15–60 seconds | 15 seconds | 30–60 seconds |
 | Agent RAM | 100–150 MB | 200–500 MB | 200–400 MB | 150–300 MB |
 | Agent CPU | 1–5% | 5–15% | 3–8% | 10–20% |
@@ -492,9 +434,7 @@ curl -s http://localhost:19999/api/v1/data?chart=netdata.dbengine_main_page_stat
 
 ## Limitations / Honest Assessment
 
-Netdata is not the right tool for every monitoring scenario:
-
-1. **No centralized multi-host view without Netdata Cloud**: The open-source agent dashboards are per-node. For a unified view across 100+ nodes, you either need Netdata Cloud (SaaS) or a parent streaming setup with external visualization.
+Netdata is not the right tool for every monitoring scenario: 1. **No centralized multi-host view without Netdata Cloud**: The open-source agent dashboards are per-node. For a unified view across 100+ nodes, you either need Netdata Cloud (SaaS) or a parent streaming setup with external visualization.
 2. **Limited long-term storage in default config**: The dbengine defaults to ~256 MB disk per tier. For years of retention at scale, you need explicit tiered storage configuration or an external TSDB like VictoriaMetrics.
 3. **Alerting pipeline less flexible than Alertmanager**: While Netdata has built-in health checks and notifications, complex routing trees, silencing, and on-call rotation require Netdata Cloud or integration with PagerDuty/OpsGenie.
 4. **Not a full observability platform**: Netdata focuses on metrics. For distributed tracing, structured logging, and APM, pair it with Jaeger, Loki, or OpenTelemetry.
@@ -545,9 +485,7 @@ Join the [Netdata community on Telegram](https://t.me/netdata) for real-time sup
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -566,7 +504,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [Release Notes & Changelog](https://github.com/netdata/netdata/releases)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -592,8 +529,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [trivy-production-security-scanner-2026](netdata)
@@ -602,8 +539,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [12-factor-agents](netdata)
 - [12-factor-agents](netdata)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

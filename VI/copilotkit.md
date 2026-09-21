@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/copilotkit" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/copilotkit" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/copilotkit" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/copilotkit" />
 title: 'CopilotKit: 31K+ Stars — Thêm AI Copilot vào Mọi Ứng Dụn...
 description: 'CopilotKit là frontend stack mã nguồn mở cho AI copilot và generative UI trong ứng dụng. Xây dựng React Angular AI assistant với components có sẵn, hooks useCopilotAction, và triển khai production. Bao gồm cài đặt, tích hợp LangChain, self-hosting, và so sánh hiệu suất với Vercel AI SDK.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [copilotkit, 'react-ai', 'generative-ui', 'ai-copilot', langchain, 'frontend-agents', typescript, 'open-source']
-aliases:
-- /vi/posts/copilotkit/
+aliases: - /vi/posts/copilotkit/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/copilotkit/ -->
 
 {{</* resource-info */>}}
 
@@ -51,9 +43,7 @@ Dự án được duy trì bởi CopilotKit Inc., cấp phép MIT, và đã huy 
 
 ## CopilotKit hoạt động như thế nào?
 
-CopilotKit nằm giữa ứng dụng frontend và backend LLM hoặc agent. Nó xử lý streaming chat, tool calling, state synchronization, và generative UI rendering thông qua kiến trúc 3 lớp rõ ràng:
-
-| Lớp | Trách nhiệm | File chính |
+CopilotKit nằm giữa ứng dụng frontend và backend LLM hoặc agent. Nó xử lý streaming chat, tool calling, state synchronization, và generative UI rendering thông qua kiến trúc 3 lớp rõ ràng: | Lớp | Trách nhiệm | File chính |
 |---|---|---|
 | **UI Components** | Render chat sidebar, popup, hoặc inline chat | `CopilotSidebar`, `CopilotChat`, `CopilotPopup` |
 | **React Hooks** | Expose state và actions cho LLM | `useCopilotReadable`, `useCopilotAction` |
@@ -103,9 +93,7 @@ COPILOTKIT_API_KEY=ck-your-copilot-cloud-key  # Tùy chọn, cho tính năng clo
 
 ### Bước 3: Tạo Runtime Endpoint
 
-Tạo `app/api/copilotkit/route.ts` trong project Next.js:
-
-```typescript
+Tạo `app/api/copilotkit/route.ts` trong project Next.js: ```typescript
 import {
   CopilotRuntime,
   OpenAIAdapter,
@@ -135,9 +123,7 @@ export const POST = async (req: NextRequest) => {
 
 ### Bước 4: Wrap Ứng dụng với Provider
 
-Cập nhật root layout hoặc page component:
-
-```tsx
+Cập nhật root layout hoặc page component: ```tsx
 // app/layout.tsx hoặc app/page.tsx
 "use client";
 
@@ -177,9 +163,7 @@ npm run dev
 
 ### OpenAI Adapter (Đơn giản nhất)
 
-OpenAI adapter là con đường nhanh nhất đến production. Kết nối trực tiếp đến GPT-4o mà không cần backend infrastructure bổ sung:
-
-```typescript
+OpenAI adapter là con đường nhanh nhất đến production. Kết nối trực tiếp đến GPT-4o mà không cần backend infrastructure bổ sung: ```typescript
 // app/api/copilotkit/route.ts — Phiên bản OpenAI
 import { CopilotRuntime, OpenAIAdapter } from "@copilotkit/runtime";
 import { copilotRuntimeNextJSAppRouterEndpoint } from "@copilotkit/runtime";
@@ -199,9 +183,7 @@ export const POST = (req: NextRequest) =>
 
 ### LangChain Adapter
 
-Cho các team đã đầu tư vào LangChain, sử dụng LangChain adapter để cắm custom chains, retrievers, và agents:
-
-```typescript
+Cho các team đã đầu tư vào LangChain, sử dụng LangChain adapter để cắm custom chains, retrievers, và agents: ```typescript
 // app/api/copilotkit/route.ts — Phiên bản LangChain
 import { CopilotRuntime, LangChainAdapter } from "@copilotkit/runtime";
 import { ChatOpenAI } from "@langchain/openai";
@@ -228,9 +210,7 @@ export const POST = async (req: NextRequest) => {
 
 ### LangGraph Agent (Nâng cao)
 
-Cho các agent multi-step có trạng thái, kết nối đến LangGraph backend:
-
-```typescript
+Cho các agent multi-step có trạng thái, kết nối đến LangGraph backend: ```typescript
 // app/api/copilotkit/route.ts — Phiên bản LangGraph
 import {
   CopilotRuntime,
@@ -260,9 +240,7 @@ export const POST = (req: NextRequest) =>
 
 ### Groq Adapter (Inference Nhanh)
 
-Cho phản hồi độ trễ thấp với Llama models qua Groq:
-
-```typescript
+Cho phản hồi độ trễ thấp với Llama models qua Groq: ```typescript
 import {
   CopilotRuntime,
   GroqAdapter,
@@ -433,9 +411,7 @@ useCopilotAction({
 
 ## Benchmark / Use Case Thực tế
 
-CopilotKit đã được deploy trên nhiều ứng dụng production. Dưới đây là các chỉ số và use case đã xác minh:
-
-| Use Case | Công ty / Loại | Quy mô | Tích hợp |
+CopilotKit đã được deploy trên nhiều ứng dụng production. Dưới đây là các chỉ số và use case đã xác minh: | Use Case | Công ty / Loại | Quy mô | Tích hợp |
 |---|---|---|---|
 | Task management copilot | SaaS startups | 5K-50K MAU | React + OpenAI |
 | CRM data assistant | Sales platforms | 10K+ users | Angular + LangChain |
@@ -478,17 +454,12 @@ CMD ["npm", "start"]
 ```yaml
 # docker-compose.yml
 version: "3.8"
-services:
-  app:
-    build: .
-    ports:
-      - "3000:3000"
-    environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
+services: app: build: .
+    ports: - "3000:3000"
+    environment: - OPENAI_API_KEY=${OPENAI_API_KEY}
       - COPILOTKIT_API_KEY=${COPILOTKIT_API_KEY}
     restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
+    healthcheck: test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -594,9 +565,7 @@ const runtime = new CopilotRuntime({
 
 ## Hạn chế / Đánh giá Trung thực
 
-CopilotKit không phải công cụ phù hợp cho mọi dự án. Đây là những trade-off thực sự:
-
-1. **Hệ sinh thái tập trung React.** Angular được hỗ trợ nhưng tích hợp React đáng tin cậy hơn đáng kể. Developer Vue và Svelte sẽ cần wrap CopilotKit hoặc tìm giải pháp khác.
+CopilotKit không phải công cụ phù hợp cho mọi dự án. Đây là những trade-off thực sự: 1. **Hệ sinh thái tập trung React.** Angular được hỗ trợ nhưng tích hợp React đáng tin cậy hơn đáng kể. Developer Vue và Svelte sẽ cần wrap CopilotKit hoặc tìm giải pháp khác.
 
 2. **Tính năng premium đằng sau paywall.** Headless UI mode, analytics cockpit, self-learning agents, và extended thread retention yêu cầu gói trả phí (Pro từ $39/dev/tháng, Team từ $500/tháng).
 
@@ -661,9 +630,7 @@ CopilotKit lấp đầy một khoảng trống cụ thể: nhúng AI copilots b�
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -686,7 +653,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 **Tuyên bố:** Bài viết này chứa liên kết affiliate của DigitalOcean. Nếu bạn đăng ký qua liên kết của chúng tôi, dibi8.com có thể nhận được hoa hồng mà không phát sinh chi phí thêm cho bạn. Mọi ý kiến và benchmark đều độc lập. DigitalOcean cung cấp $200 tín dụng miễn phí cho ngườ dùng mới để thử deploy CopilotKit.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/autogen" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/autogen" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/autogen" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/autogen" />
 title: 'AutoGen: 58K+ Stars — 멀티 에이전트 프레임워크 심층 분석: CrewAI, LangG...
 description: 'AutoGen(마이크로소프트)는 멀티 에이전트 AI 시스템 구축을 위한 이벤트 기반 프로그래밍 프레임워크입니다. OpenAI, Azure, Ollama, Docker, VS Code와 호환됩니다. 설치, 그룹 챗 설정, 프로덕션 강화 및 대안과의 비교를 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,12 +20,9 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [autogen, 멀티에이전트, 마이크로소프트, llm프레임워크, 에이전틱ai, python, crewai대안, langgraph대안]
-aliases:
-- /kr/posts/autogen/
+aliases: - /kr/posts/autogen/
 - /kr/resources/llm-frameworks/autogen-multi-agent-framework/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/autogen/ -->
 
 {{</* resource-info */>}}
 
@@ -44,9 +36,7 @@ AutoGen은 멀티 에이전트 AI 애플리케이션을 구축하기 위한 오�
 
 ## AutoGen의 작동 방식
 
-AutoGen의 아키텍처는 네 개의 계층으로 구분됩니다:
-
-| 계층 | 목적 | 진입점 |
+AutoGen의 아키텍처는 네 개의 계층으로 구분됩니다: | 계층 | 목적 | 진입점 |
 |------|------|--------|
 | **Core** | 에이전트 메시징 및 상태를 위한 이벤트 기반 런타임 | `autogen-core` |
 | **AgentChat** | Core 위에 구축된 고수준 대화형 에이전트 | `autogen-agentchat` |
@@ -63,9 +53,7 @@ AutoGen의 아키텍처는 네 개의 계층으로 구분됩니다:
 
 *그림 2: AutoGen의 계층형 아키텍처 — Core는 이벤트 기반 런타임을 제공하고, AgentChat은 대화 추상화를 추가하고, Extensions는 도구 통합을 제공하고, Studio는 노코드 UI를 제공합니다.*
 
-모든 개발자가 이해해야 하는 핵심 개념:
-
-- **에이전트(Agent)**: LLM 백엔드, 시스템 메시지, 선택적 도구 세트를 가진 엔터티입니다.
+모든 개발자가 이해해야 하는 핵심 개념: - **에이전트(Agent)**: LLM 백엔드, 시스템 메시지, 선택적 도구 세트를 가진 엔터티입니다.
 - **대화(Conversation)**: 에이전트 간에 교환되는 메시지 시퀀스입니다.
 - **그룹 챗(Group Chat)**: 중앙 라우터가 관리하는 멀티 에이전트 대화입니다.
 - **코드 실행기(Code Executor)**: 생성된 코드를 안전하게 실행하는 샌드박스(로컬 또는 Docker)입니다.
@@ -106,8 +94,7 @@ import asyncio
 from autogen_agentchat.agents import AssistantAgent
 from autogen_ext.models.openai import OpenAIChatCompletionClient
 
-async def main() -> None:
-    agent = AssistantAgent(
+async def main() -> None: agent = AssistantAgent(
         name="assistant",
         model_client=OpenAIChatCompletionClient(
             model="gpt-4o",
@@ -121,9 +108,7 @@ async def main() -> None:
 asyncio.run(main())
 ```
 
-실행:
-
-```bash
+실행: ```bash
 export OPENAI_API_KEY="sk-..."
 python hello_agent.py
 ```
@@ -145,9 +130,7 @@ docker run -it \
 
 ### OpenAI / Azure OpenAI
 
-AutoGen의 AgentChat은 OpenAI와 Azure 엔드포인트 모두에 `OpenAIChatCompletionClient`를 사용합니다:
-
-```python
+AutoGen의 AgentChat은 OpenAI와 Azure 엔드포인트 모두에 `OpenAIChatCompletionClient`를 사용합니다: ```python
 from autogen_ext.models.openai import OpenAIChatCompletionClient
 
 # OpenAI 직접 연결
@@ -205,9 +188,7 @@ code_agent = CodeExecutorAgent(
 
 ### VS Code 확장
 
-AutoGen VS Code 확장은 에이전트 대화를 위한 인라인 디버깅을 제공합니다:
-
-```bash
+AutoGen VS Code 확장은 에이전트 대화를 위한 인라인 디버깅을 제공합니다: ```bash
 # 마켓플레이스에서 설치 ("AutoGen" 검색)
 # 또는 CLI를 통해
 code --install-extension microsoft.autogen
@@ -215,9 +196,7 @@ code --install-extension microsoft.autogen
 
 ### Model Context Protocol (MCP)
 
-AutoGen 0.5+는 도구 검색을 위한 MCP 서버를 지원합니다:
-
-```python
+AutoGen 0.5+는 도구 검색을 위한 MCP 서버를 지원합니다: ```python
 from autogen_ext.tools.mcp import McpWorkbench
 
 workbench = McpWorkbench(
@@ -231,9 +210,7 @@ workbench = McpWorkbench(
 
 ### 작업 완료 벤치마크
 
-2026년 연구의 독립 벤치마크는 표준화된 에이전트 작업에서 AutoGen의 성능을 보여줍니다:
-
-| 벤치마크 | AutoGen | CrewAI | LangGraph | 참고 |
+2026년 연구의 독립 벤치마크는 표준화된 에이전트 작업에서 AutoGen의 성능을 보여줍니다: | 벤치마크 | AutoGen | CrewAI | LangGraph | 참고 |
 |----------|---------|--------|-----------|------|
 | SimpleQA Verified (F1) | 0.62 | **0.71** | 0.68 | CrewAI가 최고이나 55-140% 느림 |
 | BIRD-SQL (실행 %) | 54.1 | 54.3 | **55.9** | LangGraph가 NL2SQL에서 선도 |
@@ -249,9 +226,7 @@ workbench = McpWorkbench(
 
 ### 비용 및 지연 시간
 
-**연간 10,000건 결정** 워크로드의 프로덕션 비용 추정치(2026년 커뮤니티 보고):
-
-| 프레임워크 | 연간 예상 비용 | 평균 지연 시간(단순) | 평균 지연 시간(복잡) |
+**연간 10,000건 결정** 워크로드의 프로덕션 비용 추정치(2026년 커뮤니티 보고): | 프레임워크 | 연간 예상 비용 | 평균 지연 시간(단순) | 평균 지연 시간(복잡) |
 |-----------|---------------|---------------------|---------------------|
 | LangGraph | $220–$365 | 180ms | 1.2s |
 | CrewAI | $220–$365 | 220ms | 1.5s |
@@ -261,9 +236,7 @@ AutoGen의 더 높은 비용은 대화 패턴에서 비롯됩니다: 각 작업�
 
 ### AutoGen이 우세한 경우
 
-AutoGen은 특정 시나리오에서 대안을 능가합니다:
-
-- **멀티 에이전트 연구**: 서로 다른 역할을 가진 에이전트가 솔루션을 토론하여 단일 에이전트가 놓치는 오류를 잡아냅니다. 공급망 최적화 연구에서 AutoGen은 단일 에이전트 시스템보다 3배 적은 코드와 더 적은 인간 개입이 필요했습니다.
+AutoGen은 특정 시나리오에서 대안을 능가합니다: - **멀티 에이전트 연구**: 서로 다른 역할을 가진 에이전트가 솔루션을 토론하여 단일 에이전트가 놓치는 오류를 잡아냅니다. 공급망 최적화 연구에서 AutoGen은 단일 에이전트 시스템보다 3배 적은 코드와 더 적은 인간 개입이 필요했습니다.
 - **반복적 코드 개선**: Coder + Executor 루프가 연속적인 오류 수정을 통해 작동하는 코드를 생성합니다. 내장된 Docker 샌드박스가 Python을 안전하게 실행합니다.
 - **인간 참여 워크플로우**: 대화를 일시 중지하고, 인간 입력을 기다리고, 외부 오케스트레이션 없이 재개하는 기본 지원.
 
@@ -278,8 +251,7 @@ from autogen_agentchat.teams import GroupChat, RoundRobinGroupChat
 from autogen_agentchat.conditions import MaxMessageTermination, TextMentionTermination
 from autogen_ext.models.openai import OpenAIChatCompletionClient
 
-async def main():
-    model_client = OpenAIChatCompletionClient(model="gpt-4o")
+async def main(): model_client = OpenAIChatCompletionClient(model="gpt-4o")
 
     # 전문 에이전트 정의
     researcher = AssistantAgent(
@@ -311,8 +283,7 @@ async def main():
     )
 
     result = await team.run(task="Write a one-paragraph summary of quantum computing.")
-    for msg in result.messages:
-        print(f"[{msg.source}]: {msg.content[:100]}...")
+    for msg in result.messages: print(f"[{msg.source}]: {msg.content[:100]}...")
 
 asyncio.run(main())
 ```
@@ -338,8 +309,7 @@ team = SelectorGroupChat(
 from autogen_core.tools import FunctionTool
 from autogen_agentchat.agents import AssistantAgent
 
-def search_knowledge_base(query: str) -> str:
-    """Search internal knowledge base."""
+def search_knowledge_base(query: str) -> str: """Search internal knowledge base."""
     # 검색 로직
     return f"Results for '{query}': ..."
 
@@ -364,12 +334,10 @@ state = await team.save_state()
 
 # Redis / 데이터베이스에 저장
 import json
-with open("team_state.json", "w") as f:
-    json.dump(state, f)
+with open("team_state.json", "w") as f: json.dump(state, f)
 
 # 나중에: 복원하고 재개
-with open("team_state.json") as f:
-    state = json.load(f)
+with open("team_state.json") as f: state = json.load(f)
 await team.load_state(state)
 result = await team.run(task="Continue from where we left off.")
 ```
@@ -381,8 +349,7 @@ from autogen_ext.code_executors.docker import DockerCommandLineCodeExecutor
 import tempfile
 
 # 신뢰할 수 없는 코드에는 항상 Docker 사용
-with tempfile.TemporaryDirectory() as work_dir:
-    executor = DockerCommandLineCodeExecutor(
+with tempfile.TemporaryDirectory() as work_dir: executor = DockerCommandLineCodeExecutor(
         image="python:3.12-slim",
         work_dir=work_dir,
         timeout=30,
@@ -443,9 +410,7 @@ tracer = trace.get_tracer("autogen.production")
 
 ## 한계 / 정직한 평가
 
-AutoGen은 모든 작업에 적합한 도구가 아닙니다. 다음은 그것이 적합하지 않은 것들입니다:
-
-1. **고처리량 프로덕션 API**: 대화 패턴은 작업당 20번 이상의 LLM 호출을 생성합니다. 1,000요청/분에서 LLM 비용과 지연 시간이 받아들일 수 없게 됩니다. 트랜잭션 워크로드에는 LangGraph를 사용하세요.
+AutoGen은 모든 작업에 적합한 도구가 아닙니다. 다음은 그것이 적합하지 않은 것들입니다: 1. **고처리량 프로덕션 API**: 대화 패턴은 작업당 20번 이상의 LLM 호출을 생성합니다. 1,000요청/분에서 LLM 비용과 지연 시간이 받아들일 수 없게 됩니다. 트랜잭션 워크로드에는 LangGraph를 사용하세요.
 
 2. **단순한 선형 파이프라인**: 워크플로우가 "A가 1단계, B가 2단계, C가 3단계"이고 백트래킹이 없다면, CrewAI의 `Process.sequential`이 더 간단하고 저렴합니다.
 
@@ -475,29 +440,22 @@ Ollama 또는 모든 OpenAI 호환 로컬 서버를 사용하세요. `OpenAIChat
 
 **Q: AutoGen은 스트리밍 응답을 지원하나요?**
 
-네, AgentChat은 `run_stream()`을 통해 스트리밍을 지원합니다:
-
-```python
-async for message in team.run_stream(task="Explain Kubernetes"):
-    if message.source == "assistant":
-        print(message.content, end="", flush=True)
+네, AgentChat은 `run_stream()`을 통해 스트리밍을 지원합니다: ```python
+async for message in team.run_stream(task="Explain Kubernetes"): if message.source == "assistant": print(message.content, end="", flush=True)
 ```
 
 스트리밍은 메시지당입니다(토큰당 아님), 따라서 세분성은 원시 OpenAI 스트리밍보다 거칩니다.
 
 **Q: 잘못 진행된 멀티 에이전트 대화를 어떻게 디버깅하나요?**
 
-자세한 로깅을 활성화하고 대화 상태를 저장하세요:
-
-```python
+자세한 로깅을 활성화하고 대화 상태를 저장하세요: ```python
 # 진행 중인 모든 메시지 출력
 team = RoundRobinGroupChat(
     participants=[agent1, agent2],
     termination_condition=termination
 )
 result = await team.run(task="Debug task", max_turns=10)
-for msg in result.messages:
-    print(f"{msg.source} -> {msg.content[:200]}")
+for msg in result.messages: print(f"{msg.source} -> {msg.content[:200]}")
 ```
 
 ## 결론
@@ -518,9 +476,7 @@ AutoGen은 어려운 문제를 해결하여 58,196개의 스타를 얻었습니�
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -539,7 +495,6 @@ AutoGen은 어려운 문제를 해결하여 58,196개의 스타를 얻었습니�
 - [AutoGen vs CrewAI: 2026 벤치마크 가이드](https://dev.to/kunpeng-ai-2026/autogen-vs-crewai-a-comprehensive-benchmark-and-selection-guide-for-2026-2nh1)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

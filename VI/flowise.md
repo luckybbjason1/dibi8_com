@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/flowise" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/flowise" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/flowise" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/flowise" />
 title: 'Flowise: 52K+ Stars Xây Dựng AI Agent Trực Quan — Hướng ...
 description: 'Flowise là công cụ xây dựng workflow LLM và AI Agent trực quan mã nguồn mở. Tích hợp LangChain, Ollama, OpenAI, Qdrant, Weaviate, Chroma. Hướng dẫn cài đặt Docker, bảo mật production, triển khai API và đánh giá trung thực.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,12 +20,9 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [flowise, langchain, 'ai agent', rag, docker, llm, 'mã nguồn mở', 'no-code']
-aliases:
-- /vi/posts/flowise/
+aliases: - /vi/posts/flowise/
 - /vi/resources/ai-tools/flowise-ai-workflow-builder-lowcode/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/flowise/ -->
 
 {{</* resource-info */>}}
 
@@ -64,9 +56,7 @@ Flowise sử dụng kiến trúc module, ánh xạ trực tiếp các node trự
 
 ### Ba chế độ xây dựng
 
-Flowise cung cấp ba công cụ xây dựng trực quan:
-
-- **Assistant** —— Công cụ xây dựng chatbot thân thiện cho ngườ mới, hỗ trợ RAG. Tải lên tài liệu, cấu hình phản hồi và triển khai.
+Flowise cung cấp ba công cụ xây dựng trực quan: - **Assistant** —— Công cụ xây dựng chatbot thân thiện cho ngườ mới, hỗ trợ RAG. Tải lên tài liệu, cấu hình phản hồi và triển khai.
 - **Chatflow** —— Canvas node-based đầy đủ để xây dựng conversational AI tùy chỉnh với quyền kiểm soát tường minh mọi thành phần.
 - **Agentflow** —— Workflow agent đa bước với logic điều kiện, vòng lặp, gọi công cụ và phê duyệt bởi con ngườ.
 
@@ -115,13 +105,9 @@ Truy cập `http://localhost:3000` và đăng nhập bằng thông tin bạn đ�
 ```yaml
 # docker-compose.yml
 version: '3.8'
-services:
-  flowise:
-    image: flowiseai/flowise:latest
-    ports:
-      - "3000:3000"
-    environment:
-      - PORT=3000
+services: flowise: image: flowiseai/flowise:latest
+    ports: - "3000:3000"
+    environment: - PORT=3000
       - DATABASE_TYPE=postgres
       - DATABASE_HOST=postgres
       - DATABASE_PORT=5432
@@ -133,30 +119,20 @@ services:
       - SECRETKEY_PATH=/root/.flowise
       - JWT_AUTH_TOKEN_SECRET=${JWT_SECRET:-random-secret-change-in-prod}
       - JWT_REFRESH_TOKEN_SECRET=${JWT_REFRESH:-another-random-secret}
-    volumes:
-      - flowise_data:/root/.flowise
-    depends_on:
-      - postgres
+    volumes: - flowise_data:/root/.flowise
+    depends_on: - postgres
     restart: unless-stopped
 
-  postgres:
-    image: postgres:16-alpine
-    environment:
-      - POSTGRES_USER=flowise
+  postgres: image: postgres:16-alpine
+    environment: - POSTGRES_USER=flowise
       - POSTGRES_PASSWORD=${DB_PASSWORD:-changeme}
       - POSTGRES_DB=flowise
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+    volumes: - postgres_data:/var/lib/postgresql/data
     restart: unless-stopped
 
-volumes:
-  flowise_data:
-  postgres_data:
-```
+volumes: flowise_data: postgres_data: ```
 
-Khởi động:
-
-```bash
+Khởi động: ```bash
 docker compose up -d
 ```
 
@@ -179,9 +155,7 @@ cp .env.example .env
 nano .env
 ```
 
-Ví dụ `.env` cho triển khai DigitalOcean:
-
-```bash
+Ví dụ `.env` cho triển khai DigitalOcean: ```bash
 PORT=3000
 DATABASE_TYPE=sqlite
 DATABASE_PATH=/root/.flowise
@@ -194,9 +168,7 @@ JWT_AUTH_TOKEN_SECRET=$(openssl rand -hex 32)
 JWT_REFRESH_TOKEN_SECRET=$(openssl rand -hex 32)
 ```
 
-Khởi động dịch vụ:
-
-```bash
+Khởi động dịch vụ: ```bash
 docker compose up -d
 ```
 
@@ -234,33 +206,21 @@ Chạy mô hình local với Ollama loại bỏ chi phí API và giữ dữ li�
 ```yaml
 # docker-compose-ollama.yml
 version: '3.8'
-services:
-  ollama:
-    image: ollama/ollama:latest
-    ports:
-      - "11434:11434"
-    volumes:
-      - ollama_data:/root/.ollama
+services: ollama: image: ollama/ollama:latest
+    ports: - "11434:11434"
+    volumes: - ollama_data:/root/.ollama
     restart: unless-stopped
 
-  flowise:
-    image: flowiseai/flowise:latest
-    ports:
-      - "3000:3000"
-    environment:
-      - PORT=3000
+  flowise: image: flowiseai/flowise:latest
+    ports: - "3000:3000"
+    environment: - PORT=3000
       - OLLAMA_BASE_URL=http://ollama:11434
-    depends_on:
-      - ollama
+    depends_on: - ollama
     restart: unless-stopped
 
-volumes:
-  ollama_data:
-```
+volumes: ollama_data: ```
 
-Pull mô hình và bắt đầu sử dụng:
-
-```bash
+Pull mô hình và bắt đầu sử dụng: ```bash
 # Pull mô hình nhẹ để test
 docker exec -it ollama ollama pull qwen2:7b
 
@@ -276,18 +236,13 @@ Trên canvas Flowise, chọn node `ChatOllama` và đặt tên mô hình thành 
 
 ```yaml
 # Thêm vào docker-compose.yml
-  chroma:
-    image: chromadb/chroma:latest
-    ports:
-      - "8000:8000"
-    volumes:
-      - chroma_data:/chroma/chroma
+  chroma: image: chromadb/chroma:latest
+    ports: - "8000:8000"
+    volumes: - chroma_data:/chroma/chroma
     restart: unless-stopped
 ```
 
-Xây dựng pipeline RAG trong Flowise:
-
-1. Kéo thả node **PDF Loader** hoặc **Text File**
+Xây dựng pipeline RAG trong Flowise: 1. Kéo thả node **PDF Loader** hoặc **Text File**
 2. Kết nối với node **Text Splitter** (đặt chunk size 1000, overlap 200)
 3. Kết nối với node **OpenAI Embeddings** (hoặc **Ollama Embeddings**)
 4. Kết nối với node vector store **Chroma**
@@ -301,13 +256,10 @@ Xây dựng pipeline RAG trong Flowise:
 
 ```yaml
 # Thêm Qdrant vào compose file
-  qdrant:
-    image: qdrant/qdrant:latest
-    ports:
-      - "6333:6333"
+  qdrant: image: qdrant/qdrant:latest
+    ports: - "6333:6333"
       - "6334:6334"
-    volumes:
-      - qdrant_data:/qdrant/storage
+    volumes: - qdrant_data:/qdrant/storage
     restart: unless-stopped
 ```
 
@@ -316,16 +268,12 @@ Trong Flowise, sử dụng node vector store `Qdrant` với host `http://qdrant:
 ### Weaviate (Vector Database doanh nghiệp)
 
 ```yaml
-  weaviate:
-    image: semitechnologies/weaviate:latest
-    ports:
-      - "8080:8080"
-    environment:
-      QUERY_DEFAULTS_LIMIT: 25
+  weaviate: image: semitechnologies/weaviate:latest
+    ports: - "8080:8080"
+    environment: QUERY_DEFAULTS_LIMIT: 25
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: true
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
-    volumes:
-      - weaviate_data:/var/lib/weaviate
+    volumes: - weaviate_data:/var/lib/weaviate
     restart: unless-stopped
 ```
 
@@ -345,9 +293,7 @@ curl -X POST "http://localhost:3000/api/v1/prediction/your-chatflow-id" \
   }'
 ```
 
-Phản hồi:
-
-```json
+Phản hồi: ```json
 {
   "text": "Theo tài liệu của chúng tôi, chính sách đổi trả cho phép đổi trả trong vòng 30 ngày kể từ ngày mua với biên lai gốc.",
   "sourceDocuments": [
@@ -359,15 +305,12 @@ Phản hồi:
 }
 ```
 
-Ví dụ Python SDK:
-
-```python
+Ví dụ Python SDK: ```python
 import requests
 
 FLOWISE_API = "http://localhost:3000/api/v1/prediction/your-chatflow-id"
 
-def ask(question, session_id="user_001"):
-    resp = requests.post(FLOWISE_API, json={
+def ask(question, session_id="user_001"): resp = requests.post(FLOWISE_API, json={
         "question": question,
         "overrideConfig": {"sessionId": session_id}
     })
@@ -379,14 +322,11 @@ print(answer)
 
 ### Nhúng vào website
 
-Flowise tạo đoạn mã JavaScript nhúng cho mọi chatflow. Dán vào bất kỳ trang HTML nào:
-
-![Flowise Embed Widget](https://raw.githubusercontent.com/FlowiseAI/FlowiseChatEmbed/main/assets/embedded-chat-config.png)
+Flowise tạo đoạn mã JavaScript nhúng cho mọi chatflow. Dán vào bất kỳ trang HTML nào: ![Flowise Embed Widget](https://raw.githubusercontent.com/FlowiseAI/FlowiseChatEmbed/main/assets/embedded-chat-config.png)
 *Widget chat nhúng với tùy chỉnh giao diện —— triển khai lên bất kỳ website nào chỉ với một thẻ script*
 
 ```html
-<script type="module">
-  import Chatbot from 'https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js';
+import Chatbot from 'https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js';
   Chatbot.init({
     chatflowid: 'your-chatflow-id',
     apiHost: 'https://your-flowise-server.com',
@@ -411,9 +351,7 @@ Flowise tạo đoạn mã JavaScript nhúng cho mọi chatflow. Dán vào bất 
 
 ## Benchmark / Các trường hợp sử dụng thực tế
 
-Đặc tính hiệu suất Flowise dựa trên báo cáo cộng đồng và thử nghiệm của chúng tôi:
-
-| Chỉ số | Giá trị | Ghi chú |
+Đặc tính hiệu suất Flowise dựa trên báo cáo cộng đồng và thử nghiệm của chúng tôi: | Chỉ số | Giá trị | Ghi chú |
 |--------|---------|---------|
 | Khởi động lạnh (Docker) | 3-5 giây | Trên VPS 2 vCPU |
 | Độ trễ phản hồi đầu tiên | 1.5-3 giây | Với GPT-4o, phụ thuộc prompt |
@@ -457,9 +395,7 @@ Flowise tạo đoạn mã JavaScript nhúng cho mọi chatflow. Dán vào bất 
 
 ### Danh sách kiểm tra bảo mật
 
-Trước khi đưa Flowise ra internet, hoàn thành các bước sau:
-
-```bash
+Trước khi đưa Flowise ra internet, hoàn thành các bước sau: ```bash
 # 1. Bật xác thực (BẮT BUỘC)
 FLOWISE_USERNAME=admin
 FLOWISE_PASSWORD=$(openssl rand -base64 24)
@@ -469,8 +405,7 @@ JWT_AUTH_TOKEN_SECRET=$(openssl rand -hex 64)
 JWT_REFRESH_TOKEN_SECRET=$(openssl rand -hex 64)
 
 # 3. Chạy sau HTTPS với reverse proxy
-# Đoạn cấu hình Nginx:
-server {
+# Đoạn cấu hình Nginx: server {
     listen 443 ssl http2;
     server_name flowise.yourdomain.com;
 
@@ -501,32 +436,23 @@ CORS_ORIGINS=https://yourdomain.com,https://app.yourdomain.com
 ```yaml
 # docker-compose-queue.yml
 version: '3.8'
-services:
-  redis:
-    image: redis:alpine
+services: redis: image: redis:alpine
     restart: unless-stopped
 
-  flowise:
-    image: flowiseai/flowise:latest
-    ports:
-      - "3000:3000"
-    environment:
-      - PORT=3000
+  flowise: image: flowiseai/flowise:latest
+    ports: - "3000:3000"
+    environment: - PORT=3000
       - QUEUE_NAME=flowise-queue
       - QUEUE_REDIS_URL=redis://redis:6379
     restart: unless-stopped
 
-  flowise-worker:
-    image: flowiseai/flowise-worker:latest
-    environment:
-      - QUEUE_NAME=flowise-queue
+  flowise-worker: image: flowiseai/flowise-worker:latest
+    environment: - QUEUE_NAME=flowise-queue
       - QUEUE_REDIS_URL=redis://redis:6379
     restart: unless-stopped
 ```
 
-Mở rộng worker theo chiều ngang:
-
-```bash
+Mở rộng worker theo chiều ngang: ```bash
 docker compose -f docker-compose-queue.yml up -d --scale flowise-worker=3
 ```
 
@@ -559,9 +485,7 @@ curl http://localhost:3000/api/v1/ping
 
 ## Hạn chế / Đánh giá trung thực
 
-Flowise không phải công cụ phù hợp cho mọi dự án AI. Sau đây là những gì Flowise KHÔNG làm tốt:
-
-1. **Điều phối Multi-Agent phức tạp**: Flowise Agentflow hỗ trợ agent tuần tự, nhưng các pattern multi-agent dạng chu kỳ (như trong LangGraph hoặc AutoGen) cần cách giải quyết thay thế. Các team xây dựng agent nghiên cứu hoặc hệ thống multi-agent tranh luận nên xem xét LangGraph trực tiếp.
+Flowise không phải công cụ phù hợp cho mọi dự án AI. Sau đây là những gì Flowise KHÔNG làm tốt: 1. **Điều phối Multi-Agent phức tạp**: Flowise Agentflow hỗ trợ agent tuần tự, nhưng các pattern multi-agent dạng chu kỳ (như trong LangGraph hoặc AutoGen) cần cách giải quyết thay thế. Các team xây dựng agent nghiên cứu hoặc hệ thống multi-agent tranh luận nên xem xét LangGraph trực tiếp.
 
 2. **Workflow phi-chat**: Flowise được tối ưu hóa cho conversational AI. Xử lý tài liệu theo batch, pipeline ETL, hoặc chuyển đổi dữ liệu theo lịch phù hợp hơn với n8n hoặc Python script.
 
@@ -601,9 +525,7 @@ Mọi Chatflow và Agentflow tự động nhận REST API endpoint tại `/api/v
 
 ### Cách nâng cấp Flowise lên phiên bản mới?
 
-Triển khai Docker: Pull image mới nhất và khởi động lại:
-
-```bash
+Triển khai Docker: Pull image mới nhất và khởi động lại: ```bash
 docker pull flowiseai/flowise:latest
 docker compose up -d
 ```
@@ -628,9 +550,7 @@ Bắt đầu với `npx flowise start` cho prototype local. Chuyển sang Docker
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -649,7 +569,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 10. [Hướng dẫn triển khai Docker trên DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-24-04) —— Hướng dẫn cài Docker trên Ubuntu
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

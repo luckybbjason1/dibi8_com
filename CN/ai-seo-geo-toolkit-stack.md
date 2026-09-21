@@ -1,12 +1,9 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/ai-seo-geo-toolkit-stack" />
 title: 'AI-SEO & GEO Toolkit Stack 2026: 6 Free Tools for Tradit...
 description: 'The complete free toolkit for SEO in the AI era: llms.txt generator + AI-crawler robots.txt + meta tags + Schema.org JSON-LD + hreflang + OG card preview. Covers both classic search (Google/Bing) and generative engines (ChatGPT, Claude, Perplexity). All browser-based, no signup.'
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-30 00:00:00+08:00
-tech_stack:
-  - HTML
+tech_stack: - HTML
   - JavaScript
   - JSON-LD
   - SEO
@@ -27,10 +24,8 @@ featureImage: ''
 draft: false
 categories: [collections]
 tags: [seo, geo, 'llms.txt', schema, 'meta tags', stack, collection]
-aliases:
-  - /posts/ai-seo-geo-toolkit-stack/
-faqs:
-  - q: 'What is llms.txt and why does it matter for SEO in 2026?'
+aliases: - /posts/ai-seo-geo-toolkit-stack/
+faqs: - q: 'What is llms.txt and why does it matter for SEO in 2026?'
     a: 'llms.txt is the "robots.txt for AI" — a file that tells generative-engine crawlers like ChatGPT, Claude, and Perplexity how to read your site''s structure. It matters because generative engines are a new discovery surface, and being citable by AI search is the 2026 equivalent of ranking on Google''s page 1.'
   - q: 'How do I control which AI crawlers can access my website?'
     a: 'Use a robots.txt file with AI-crawler-specific rules to explicitly allow or block bots like GPTBot, ClaudeBot, PerplexityBot, CCBot, and Google-Extended. This gives you direct control over which generative engines may crawl and cite your content.'
@@ -49,7 +44,17 @@ SEO in 2026 is two jobs, not one. **Classic search** (Google, Bing) still reward
 ## TL;DR — The AI-SEO Stack at a Glance
 
 | # | Tool | Layer | Role | Open it |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 1 | **llms.txt Generator** | GEO | The "robots.txt for AI" — tell ChatGPT/Claude/Perplexity crawlers how to read your site | [Open tool](/tools/llms-txt-generator/) |
 | 2 | **robots.txt Generator** | GEO + Classic | Standard crawl rules **+ AI-crawler controls** (GPTBot, ClaudeBot, PerplexityBot, CCBot, Google-Extended) | [Open tool](/tools/robots-txt-generator/) |
 | 3 | **Meta Tags Generator** | Classic | SEO title/description + Open Graph + Twitter Card in one paste | [Open tool](/tools/meta-tags-generator/) |
@@ -78,7 +83,6 @@ These tools generate the code; you still need a site to put it on. A reliable ho
 SEO in 2026 = classic on-page **plus** generative-engine optimization. Most sites do the first half and ignore the second — which is exactly the gap to exploit. Run all 6 tools in order: lock down how AI crawlers see you (llms.txt + robots), nail the on-page basics (meta + schema + hreflang), polish the share card. Free, browser-based, ten minutes. Then go get cited by the AI engines your competitors forgot to optimize for.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -106,25 +110,20 @@ SEO in 2026 = classic on-page **plus** generative-engine optimization. Most site
 
 ## Why This Matters
 
-Understanding ai-seo & geo toolkit stack 2026: 6 free tools for traditional seo + generative engine optimization is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding ai-seo & geo toolkit stack 2026: 6 free tools for traditional seo + generative engine optimization is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -145,13 +144,13 @@ AI-SEO & GEO Toolkit Stack 2026: 6 Free Tools for Traditional SEO + Generative E
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
 
+---
 ## Related Articles
 
 - [ai-seo-geo-dibi8-methodology-google-sge-perplexity](ai-seo-geo-toolkit-stack)

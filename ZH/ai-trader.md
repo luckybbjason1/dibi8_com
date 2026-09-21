@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-trader" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-trader" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-trader" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-trader" />
 title: "AI-Trader：14K⭐全自动AI交易代理，让AI帮你24小时盯盘赚钱"
-description: "AI-Trader是香港大学数据科学实验室Open Source的全自动AI交易代理系统，14K+ Stars，支持股票、加密货币、外汇多市场自动交易，基于强化学习和多智能体协作。". Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "AI-Trader是香港大学数据科学实验室Open Source的全自动AI交易代理系统，14K+ Stars，支持股票、加密货币、外汇多市场自动交易，基于强化学习和多智能体协作。"
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Python
+tech_stack: - Python
 application_domain: "Llm Frameworks"
 source_version: ""
 licensing_model: "Open Source"
@@ -24,10 +18,8 @@ maintainer: "HKUDS"
 last_maintained: "2026-05-13"
 featureImage: ""
 draft: false
-aliases:
-- /zh/posts/ai-trader/
-faqs:
-  - q: 'HKUDS 开发的 AI-Trader 是什么？'
+aliases: - /zh/posts/ai-trader/
+faqs: - q: 'HKUDS 开发的 AI-Trader 是什么？'
     a: 'AI-Trader 是由香港大学数据科学实验室（HKUDS）开发的开源全自动 AI 交易 Agent 系统。它采用强化学习与多 Agent 协作机制，支持股票、加密货币、外汇及期货交易，并以 MIT 许可证发布。'
   - q: 'AI-Trader 支持哪些市场和资产？'
     a: 'AI-Trader 支持四大市场：股票（美股、港股及 A 股）、加密货币（BTC、ETH 及山寨币）、外汇（主流货币对）以及期货（大宗商品和指数）。每个市场均采用针对性策略类型，如动量策略、趋势跟踪、套息交易和价差交易。'
@@ -36,10 +28,7 @@ faqs:
   - q: 'AI-Trader 的多 Agent 架构是如何组织的？'
     a: 'AI-Trader 将交易任务拆分给各专职 Agent：分析 Agent（技术面、基本面、情绪面）负责信息收集；决策 Agent 负责选择买入/卖出/持有；风险 Agent 负责监控组合风险并执行止损；执行 Agent 负责下单以及控制滑点。'
   - q: '我可以在不承担真实资金风险的情况下测试 AI-Trader 吗？'
-    a: '可以。AI-Trader 内置高保真回测引擎用于历史模拟，同时提供模拟交易模式（在配置文件中设置 mode: paper）。项目文档建议在切换至实盘交易前务必先使用模拟交易模式进行验证。'
----
-
-<!-- canonical: https://dibi8.com/zh/tools/ai-trader/ -->
+    a: '可以。AI-Trader 内置高保真回测引擎用于历史模拟，同时提供模拟交易模式（在配置文件中设置 mode: paper）。项目文档建议在切换至实盘交易前务必先使用模拟交易模式进行验证。'---
 {</* resource-info */>}
 
 ## AI-Trader 是什么？
@@ -51,7 +40,11 @@ faqs:
 **GitHub：** [https://github.com/HKUDS/AI-Trader](https://github.com/HKUDS/AI-Trader)
 
 | 指标 | 数值 |
-|------|------|
+|
+---
+|
+---
+|
 | Stars | 14,311+ |
 | Forks | 2,418+ |
 | 语言 | Python |
@@ -72,7 +65,13 @@ faqs:
 ### 2. 多市场支持
 
 | 市场 | 资产 | 策略类型 |
-|------|------|----------|
+|
+---
+|
+---
+|
+---
+|
 | 股票 | 美股、港股、A股 | 动量 + 均值回归 |
 | 加密货币 | BTC、ETH、山寨币 | 趋势跟踪 + 套利 |
 | 外汇 | 主要货币对 | 套利交易 + 技术面 |
@@ -163,28 +162,22 @@ python trade.py --mode paper --config config.yaml
 
 ```yaml
 # config.yaml
-trading:
-  mode: paper  # paper | live
+trading: mode: paper  # paper | live
   initial_capital: 100000  # 美元
   max_positions: 10
   
-agents:
-  market_analyst:
-    indicators: [rsi, macd, bollinger, ichimoku]
+agents: market_analyst: indicators: [rsi, macd, bollinger, ichimoku]
     timeframe: 1h
     
-  risk_manager:
-    max_drawdown: 0.10  # 10%
+  risk_manager: max_drawdown: 0.10  # 10%
     max_position_size: 0.20  # 单仓位20%
     stop_loss: 0.05  # 5%
     
-  execution:
-    exchange: binance
+  execution: exchange: binance
     order_type: limit
     slippage_tolerance: 0.001
 
-risk:
-  daily_loss_limit: 2000  # 美元
+risk: daily_loss_limit: 2000  # 美元
   correlation_threshold: 0.7
 ```
 
@@ -193,7 +186,15 @@ risk:
 基于回测结果（2020-2025）：
 
 | 策略 | 年化收益 | 最大回撤 | 夏普比率 |
-|------|----------|----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 动量策略 | 45.2% | 18.3% | 1.82 |
 | 均值回归 | 32.1% | 12.7% | 1.65 |
 | 多智能体 | 58.7% | 15.2% | 2.14 |
@@ -255,12 +256,12 @@ risk:
 4. 定期监控表现
 5. 保持软件更新
 
----
 
+---
 *最后更新：2026-05-08 | Stars：14,311+ | 协议：MIT*
 
----
 
+---
 ## 推荐工具
 
 跑或部署开源 AI 工具时，推荐：
@@ -279,7 +280,6 @@ risk:
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -307,25 +307,20 @@ risk:
 
 ## Why This Matters
 
-Understanding ai-trader：14k⭐全自动ai交易代理，让ai帮你24小时盯盘赚钱 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding ai-trader：14k⭐全自动ai交易代理，让ai帮你24小时盯盘赚钱 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -377,7 +372,17 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

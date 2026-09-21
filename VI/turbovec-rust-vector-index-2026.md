@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/turbovec-rust-vector-index-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/turbovec-rust-vector-index-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/turbovec-rust-vector-index-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/turbovec-rust-vector-index-2026" />
 title: 'TurboVec: Chỉ Số Vector Được Đưa Mạnh Bởi Rust Nhanh Gấp...
 description: 'TurboVec (RyanCodrai/turbovec) là chỉ số vector được xây dựng trên TurboQuant, viết bằng Rust với Python bindings. Thay thế trực tiếp cho LangChain, LlamaIndex, Haystack và Agno. Tăng tốc 10 lần với quantization. Bao gồm tích hợp Python, benchmark và triển khai sản xuất.'
 date: 2026-06-09
-lastmod:  2026-06-09slug: 'turbovec-rust-vector-index-2026'
+lastmod: 2026-06-09
+slug: 'turbovec-rust-vector-index-2026'
 category: 'ai-tools'
 tags: ['vector-search', 'rust', 'quantization', 'langchain', 'llamaindex', 'RAG', 'embeddings', 'turboquant']
 github_repo: 'https://github.com/RyanCodrai/turbovec'
@@ -17,8 +13,6 @@ license: MIT
 featureImage: 'https://raw.githubusercontent.com/RyanCodrai/turbovec/main/assets/hero.png'
 lang: vi
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/turbovec-rust-vector-index-2026/ -->
 
 ![TurboVec Vector Index](https://opengraph.github.com/github/RyanCodrai/turbovec)
 
@@ -189,9 +183,7 @@ Lợi thế hiệu suất của TurboVec đến từ việc nén 4-bit của Tur
 | Độ chính xác (đã quantize) | 99.2% | 97.8% | 99.5% | 99.1% |
 | Vectors tối đa per index | 100M | 100M | 2M | 10M |
 
-Lệnh benchmark thực tế:
-
-```bash
+Lệnh benchmark thực tế: ```bash
 # Run TurboVec's built-in benchmark suite
 cargo test --release benchmarks
 
@@ -220,8 +212,7 @@ index = turbovec.Index(
 )
 
 # Add vectors over time
-for batch in document_batches:
-    embeddings = embed(batch)
+for batch in document_batches: embeddings = embed(batch)
     index.add(embeddings)
 
 # Save checkpoint to disk
@@ -254,8 +245,7 @@ import time
 
 # Benchmark current index throughput
 start = time.perf_counter()
-for _ in range(1000):
-    index.search(query_emb, k=10)
+for _ in range(1000): index.search(query_emb, k=10)
 elapsed = time.perf_counter() - start
 print(f"Throughput: {1000/elapsed:.0f} queries/sec")
 print(f"Average latency: {elapsed/1000*1000:.2f} ms per query")
@@ -287,10 +277,8 @@ from transformers import AutoTokenizer, AutoModel
 tokenizer = AutoTokenizer.from_pretrained("sentence-transformers/all-MiniLM-L6-v2")
 model = AutoModel.from_pretrained("sentence-transformers/all-MiniLM-L6-v2")
 
-def embed_texts(texts):
-    inputs = tokenizer(texts, padding=True, truncation=True, return_tensors="pt")
-    with torch.no_grad():
-        outputs = model(**inputs)
+def embed_texts(texts): inputs = tokenizer(texts, padding=True, truncation=True, return_tensors="pt")
+    with torch.no_grad(): outputs = model(**inputs)
     return outputs.last_hidden_state.mean(dim=1).numpy()
 
 # Build index
@@ -300,23 +288,17 @@ index.add(embed_texts(document_chunks))
 # Query pipeline
 query_emb = embed_texts(["What is machine learning?"])[0]
 results = index.search(query_emb, k=5)
-for i, (idx, score) in enumerate(results):
-    print(f"  [{i}] score={score:.4f} chunk={document_chunks[idx][:100]}")
+for i, (idx, score) in enumerate(results): print(f"  [{i}] score={score:.4f} chunk={document_chunks[idx][:100]}")
 ```
 
 **Docker Compose Cho Production Serving**
 
 ```yaml
 version: '3.8'
-services:
-  turbovec:
-    image: ryan-codrai/turbovec:latest
-    ports:
-      - "8000:8000"
-    volumes:
-      - ./index:/data
-    environment:
-      - TURBOVEC_CAPACITY=10000000
+services: turbovec: image: ryan-codrai/turbovec:latest
+    ports: - "8000:8000"
+    volumes: - ./index:/data
+    environment: - TURBOVEC_CAPACITY=10000000
       - TURBOVEC_DIM=1536
       - TURBOVEC_METRIC=cosine
 ```
@@ -340,9 +322,7 @@ services:
 
 ## Hạn Chế / Đánh Giá Khách Quan
 
-TurboVec rất ấn tượng với hồ sơ hiệu suất của nó, nhưng có những hạn chế cần xem xét:
-
-1. **Thư viện mới hơn**: Với 10.500 stars so với 60.000+ của FAISS, TurboVec có ít tài liệu cộng đồng và hướng dẫn bên thứ ba hơn. Các team sản xuất nên dành thời gian cho các bài test thử nghiệm.
+TurboVec rất ấn tượng với hồ sơ hiệu suất của nó, nhưng có những hạn chế cần xem xét: 1. **Thư viện mới hơn**: Với 10.500 stars so với 60.000+ của FAISS, TurboVec có ít tài liệu cộng đồng và hướng dẫn bên thứ ba hơn. Các team sản xuất nên dành thời gian cho các bài test thử nghiệm.
 2. **Phụ thuộc Rust**: Build từ source yêu cầu `cargo` và Rust toolchain. Đường dẫn pip install tránh điều này, nhưng các custom build cần Rust 1.70+.
 3. **Chỉ single-node**: Không giống như Weaviate hay Qdrant, TurboVec không có sẵn khả năng scale ngang. Đối với các index vượt quá 100M vectors, bạn cần sharding across multiple instances.
 4. **Giới hạn vector types**: Hiện tại chỉ hỗ trợ dense vector search. Sparse vectors, hybrid search và graph-based indexing chưa khả dụng.
@@ -392,8 +372,7 @@ Tham gia cộng đồng DIBI8 trên [Telegram](https://t.me/DIBI8_Group) để t
 
 ---
 
-**Nguồn & Đọc Thêm**:
-- Official repository: https://github.com/RyanCodrai/turbovec
+**Nguồn & Đọc Thêm**: - Official repository: https://github.com/RyanCodrai/turbovec
 - TurboQuant paper: https://github.com/RyanCodrai/turbovec/blob/main/docs/turboquant.md
 - LangChain integration docs: https://github.com/RyanCodrai/turbovec/blob/main/docs/integrations/langchain.md
 - LlamaIndex integration docs: https://github.com/RyanCodrai/turbovec/blob/main/docs/integrations/llama_index.md
@@ -403,7 +382,6 @@ Tham gia cộng đồng DIBI8 trên [Telegram](https://t.me/DIBI8_Group) để t
 **Tiết lộ**: Bài viết này chứa các liên kết affiliate. Nếu bạn đăng ký qua các liên kết của chúng tôi, chúng tôi có thể nhận được một khoản hoa hồng nhỏ mà không tốn thêm chi phí cho bạn. Điều này giúp hỗ trợ báo chí công nghệ độc lập và giữ cho các tài nguyên như dibi8.com miễn phí và không có quảng cáo.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-tools-directory" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-tools-directory" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-tools-directory" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-tools-directory" />
 title: "Thư Mục Công Cụ AI 2024: Hướng Dẫn Hoàn Chỉnh Về Các Côn...
 description: "Khám phá các công cụ AI tốt nhất năm 2024. Thư mục hoàn chỉnh với hơn 200 công cụ AI cho viết, tạo hình ảnh, lập trình, marketing và nhiều hơn nữa. Tùy chọn miễn phí và trả phí với đánh giá chi tiết."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Go
+tech_stack: - Go
   - JavaScript
 application_domain: "Dev Utils"
 source_version: ""
@@ -25,8 +19,7 @@ maintainer: ""
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-faqs:
-  - q: 'Những công cụ AI miễn phí tốt nhất năm 2024 là gì?'
+faqs: - q: 'Những công cụ AI miễn phí tốt nhất năm 2024 là gì?'
     a: 'Các công cụ AI miễn phí tốt nhất bao gồm: ChatGPT và Claude cho chatbot, Canva AI cho thiết kế, Grammarly cho viết lách, Remove.bg để xóa nền ảnh, Codeium hỗ trợ lập trình, Notion AI tăng năng suất, và Buffer lên lịch đăng mạng xã hội. Codeium cung cấp gợi ý code không giới hạn hoàn toàn miễn phí, trong khi Stable Diffusion hoàn toàn miễn phí khi tự triển khai.'
   - q: 'Công cụ AI lập trình nào tốt nhất cho gợi ý code miễn phí và không giới hạn?'
     a: 'Codeium là lựa chọn miễn phí nổi bật nhất, sử dụng không giới hạn mà không tốn chi phí. Các công cụ lập trình có bản miễn phí khác gồm Cursor (miễn phí / $20/mo), Bolt.new và V0 by Vercel để tạo giao diện React, trong khi GitHub Copilot có giá từ $10/mo.'
@@ -37,8 +30,6 @@ faqs:
   - q: 'Công cụ AI nào tốt nhất để tạo ra bài hát hoàn chỉnh có giọng hát?'
     a: 'Suno là lựa chọn tốt nhất để tạo bài hát hoàn chỉnh có giọng hát (miễn phí / $10/mo). Các công cụ tạo nhạc khác gồm Udio cho âm nhạc chất lượng cao, AIVA cho nhạc cổ điển và điện ảnh, và Soundraw cho nhạc nền không bản quyền.'
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/ai-tools-directory/ -->
 
 {</* resource-info */>}
 
@@ -353,9 +344,7 @@ Không muốn chi tiền? Đây là các công cụ AI miễn phí tốt nhất.
 
 ## 💡 Hướng Dẫn Chọn Công Cụ AI
 
-Không chắc chọn công cụ AI nào? Làm theo hướng dẫn này:
-
-### Bước 1: Xác định nhu cầu của bạn
+Không chắc chọn công cụ AI nào? Làm theo hướng dẫn này: ### Bước 1: Xác định nhu cầu của bạn
 - **Viết**: Blog, email, mạng xã hội
 - **Hình ảnh**: Marketing, thiết kế, ảnh sản phẩm
 - **Video**: Mạng xã hội, giáo dục, marketing
@@ -413,9 +402,7 @@ Không chắc chọn công cụ AI nào? Làm theo hướng dẫn này:
 
 ## 📝 Lời Cuối
 
-Lĩnh vực công cụ AI đang phát triển nhanh chóng. Công cụ mới ra mắt mỗi ngày, và công cụ hiện có liên tục được cải thiện. Chìa khóa là:
-
-1. **Bắt đầu từ nhu cầu**: Đừng áp dụng AI vì lợi ích của nó
+Lĩnh vực công cụ AI đang phát triển nhanh chóng. Công cụ mới ra mắt mỗi ngày, và công cụ hiện có liên tục được cải thiện. Chìa khóa là: 1. **Bắt đầu từ nhu cầu**: Đừng áp dụng AI vì lợi ích của nó
 2. **Thử trước khi cam kết**: Sử dụng tầng miễn phí và bản dùng thử
 3. **Cập nhật tin tức**: Theo dõi tin tức và xu hướng AI
 4. **Chia sẻ kinh nghiệm**: Giúp người khác tìm công cụ phù hợp
@@ -429,9 +416,7 @@ Có công cụ AI yêu thích không có trong danh sách? Cho chúng tôi biế
 
 ## Công Cụ Đề Xuất
 
-Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
+Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
 - **{{< aff "shiyunapi" "category-footer" "Shiyunapi Claude API" >}}** — Proxy Claude / OpenAI / DeepSeek API. Hầu hết AI tool trong directory như này cần LLM key — proxy này cho access ổn định với ~30% giá chính thức.
 - **{{< aff "hostinger" "footer-cta-legacy" "Hostinger" >}}** — Lựa chọn VPS giá tốt cho thị trường Việt Nam.
 
@@ -442,7 +427,6 @@ Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
 *Hướng dẫn này được cập nhật定期 để phản ánh các công cụ và xu hướng AI mới nhất. Đánh dấu trang này và kiểm tra thường xuyên để biết nội dung mới.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

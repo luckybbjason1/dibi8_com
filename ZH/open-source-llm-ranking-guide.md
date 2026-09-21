@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/open-source-llm-ranking-guide" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/open-source-llm-ranking-guide" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/open-source-llm-ranking-guide" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/open-source-llm-ranking-guide" />
 title: '开源LLM排行榜及选型指南2025：Llama、Mistral、Qwen、DeepSeek全面对比'
 description: '2025年开源大模型排行：Llama 3.3、Mistral、Qwen2.5、DeepSeek V3、Gemma、Phi-4全面对比，含 benchmark 数据、许可证分析与硬件需求指南。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/open-source-llm-ranking-guide/
+aliases: - /posts/open-source-llm-ranking-guide/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/open-source-llm-ranking-guide/ -->
 # 开源LLM排行榜及选型指南2025：Llama、Mistral、Qwen、DeepSeek全面对比
 
 
@@ -51,7 +43,13 @@ aliases:
 ### 关键 benchmark 说明
 
 | Benchmark | 测试内容 | 分数范围 |
-|-----------|----------|----------|
+|
+---
+|
+---
+|
+---
+|
 | MMLU | 57 个学科的多选题 | 0-100% |
 | HumanEval | Python 编程题 | 0-100% |
 | LMSYS Arena ELO | 人类偏好对战评分 | 约 1200-1400 |
@@ -68,7 +66,15 @@ Meta 的 Llama 系列依然是 2025 年开源模型的**事实标准**。截至 
 ### 模型变体
 
 | 版本 | 参数量 | 上下文长度 | 定位 |
-|------|--------|-----------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Llama 3.2 1B/3B | 1B/3B | 128K | 端侧/移动设备 |
 | Llama 3.1/3.3 8B | 8B | 128K | 高效推理、消费级 GPU |
 | Llama 3.1/3.3 70B | 70B | 128K | 高性能、专业任务 |
@@ -92,7 +98,13 @@ Llama 3 采用 Llama 3 License，允许商业使用，但月活用户超过 7 �
 ### 产品线概览
 
 | 模型 | 参数量/架构 | 特点 |
-|------|-----------|------|
+|
+---
+|
+---
+|
+---
+|
 | Mistral 7B | 7B | 2023 年的突破之作，超越 Llama 2 13B |
 | Mixtral 8x7B | 8x7B MoE | 专家混合架构，激活参数仅 13B |
 | Mixtral 8x22B | 8x22B MoE | 141B 总参数，激活 39B |
@@ -115,7 +127,15 @@ Qwen（通义千问）是阿里巴巴达摩院开发的大模型系列，2025 �
 ### Qwen2.5 系列
 
 | 模型 | 参数量 | 上下文 | 定位 |
-|------|--------|--------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Qwen2.5 0.5B | 0.5B | 32K | 端侧、嵌入式 |
 | Qwen2.5 1.5B | 1.5B | 32K | 轻量级应用 |
 | Qwen2.5 7B | 7.6B | 128K | 主力通用模型 |
@@ -167,7 +187,13 @@ DeepSeek 的 MoE 设计有几个独特之处：
 Gemma 是 Google 推出的开源模型系列，主打**轻量级 + 高性能**的组合。
 
 | 模型 | 参数量 | 特点 |
-|------|--------|------|
+|
+---
+|
+---
+|
+---
+|
 | Gemma 2 2B | 2B | 可在手机端运行，知识蒸馏自大模型 |
 | Gemma 2 9B | 9B | 性能接近 Llama 3 8B，但参数量更少 |
 | Gemma 2 27B | 27B | 性能超越 Llama 3 70B（部分任务） |
@@ -194,7 +220,19 @@ Phi-4 证明了：数据质量比模型规模更重要。
 ### 综合 Benchmark 对比
 
 | 模型 | 参数量 | MMLU | HumanEval | MT-Bench | LMSYS ELO |
-|------|--------|------|-----------|----------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | GPT-4o（闭源参考） | - | 88.7% | 90.2% | 9.20 | 1318 |
 | Llama 3.1 405B | 405B | 85.2% | 89.0% | 8.88 | 1290 |
 | DeepSeek V3 | 671B/37B | 88.5% | 92.0% | 8.90 | 1298 |
@@ -211,7 +249,15 @@ Phi-4 证明了：数据质量比模型规模更重要。
 ### 显存需求与推理配置
 
 | 模型 | FP16 显存 | 4-bit 量化 | 推荐 GPU（4-bit） |
-|------|----------|-----------|-----------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Llama 3.2 3B | 6GB | 2GB | RTX 3060 12GB |
 | Qwen2.5 7B | 14GB | 5GB | RTX 3060 12GB |
 | Llama 3.1 8B | 16GB | 5GB | RTX 4060 Ti 16GB |
@@ -227,7 +273,11 @@ Phi-4 证明了：数据质量比模型规模更重要。
 ### 编程开发场景
 
 | 推荐模型 | 理由 |
-|----------|------|
+|
+---
+|
+---
+|
 | **DeepSeek Coder V2** | 338 种语言，SWE-bench 超越 GPT-4o |
 | **CodeQwen 1.5 7B/14B** | 中文注释理解强，HumanEval 86%+ |
 | **Codestral 22B** | 80+ 语言，填充补全（FIM）优秀 |
@@ -235,7 +285,11 @@ Phi-4 证明了：数据质量比模型规模更重要。
 ### 中文对话场景
 
 | 推荐模型 | 理由 |
-|----------|------|
+|
+---
+|
+---
+|
 | **Qwen2.5 72B** | 中文 benchmark 持续领先，多语言 29 种 |
 | **Llama 3.3 70B** | 多语言支持改善，社区生态最丰富 |
 | **DeepSeek V3** | 综合能力最强，开源免费 |
@@ -243,7 +297,11 @@ Phi-4 证明了：数据质量比模型规模更重要。
 ### 本地部署场景
 
 | 推荐模型 | 理由 |
-|----------|------|
+|
+---
+|
+---
+|
 | **Phi-4 14B** | MIT 许可证，小参数高性能 |
 | **Gemma 2 9B** | Google 官方优化，端侧友好 |
 | **Llama 3.2 3B** | 移动端可用，Meta 生态完善 |
@@ -251,7 +309,11 @@ Phi-4 证明了：数据质量比模型规模更重要。
 ### 企业级部署场景
 
 | 推荐模型 | 理由 |
-|----------|------|
+|
+---
+|
+---
+|
 | **Llama 3.3 70B** | 生态最成熟，vLLM/TensorRT 优化完善 |
 | **Qwen2.5 72B** | 中文场景首选，工具调用稳定 |
 | **Mistral Large 2** | 欧洲数据合规，MoE 架构高效 |
@@ -345,12 +407,12 @@ ollama run phi4            # 运行 Phi-4
 
 对于预算有限的团队，建议优先尝试 Qwen2.5 32B 或 DeepSeek V3 的 MoE 架构，用更少的硬件获得接近的质量。
 
----
 
+---
 更多模型详情可参考各模型官方页面：[Meta Llama](https://ai.meta.com/llama)、[Mistral AI](https://mistral.ai/)、[Qwen 系列](https://huggingface.co/Qwen)、[DeepSeek](https://deepseek.com/)，以及 [Hugging Face Open LLM Leaderboard](https://huggingface.co/spaces/open-llm-leaderboard) 和 [LMSYS Arena](https://chat.lmsys.org/)。
 
----
 
+---
 ## 推荐基础设施
 
 要 7×24 稳跑上述工具，服务器选择关键：
@@ -362,7 +424,6 @@ ollama run phi4            # 运行 Phi-4
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -390,25 +451,20 @@ ollama run phi4            # 运行 Phi-4
 
 ## Why This Matters
 
-Understanding 开源llm排行榜及选型指南2025：llama、mistral、qwen、deepseek全面对比 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding 开源llm排行榜及选型指南2025：llama、mistral、qwen、deepseek全面对比 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

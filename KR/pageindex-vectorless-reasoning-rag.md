@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/pageindex-vectorless-reasoning-rag" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/pageindex-vectorless-reasoning-rag" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/pageindex-vectorless-reasoning-rag" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/pageindex-vectorless-reasoning-rag" />
 title: "PageIndex：29K⭐벡터 없는 RAG 시스템, 문서 검색의 혁명"
 description: "PageIndex는 VectifyAI가 개발한 오픈소스 벡터 없는 RAG 시스템입니다. 29K+ Stars, 문서 트리 구조를 통해 인간과 같은 검색을 구현하며 FinanceBench에서 98.7% 정확도를 달성했습니다."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Go
+tech_stack: - Go
   - Python
 application_domain: "Llm Frameworks"
 source_version: ""
@@ -25,10 +19,8 @@ maintainer: "VectifyAI"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases:
-- /kr/posts/pageindex-vectorless-reasoning-rag/
-faqs:
-  - q: 'PageIndex란 무엇이며 기존 RAG와 어떻게 다른가요?'
+aliases: - /kr/posts/pageindex-vectorless-reasoning-rag/
+faqs: - q: 'PageIndex란 무엇이며 기존 RAG와 어떻게 다른가요?'
     a: 'PageIndex는 VectifyAI에서 만든 오픈소스 RAG 시스템으로, 벡터 데이터베이스 없이 정보를 검색합니다. 문서를 임베딩하거나 청킹하는 대신, 각 문서를 계층적 트리 구조로 구축하고 LLM 추론을 사용해 이를 탐색합니다. 이는 인간 전문가가 목차를 보고 관련 섹션을 찾는 방식을 모방한 것입니다.'
   - q: 'PageIndex는 벡터 데이터베이스나 문서 청킹이 필요한가요?'
     a: '아닙니다. PageIndex는 두 가지 모두 없앴습니다. 벡터 임베딩을 저장하지 않아 값비싼 벡터 저장 비용을 피하며, 문서를 청킹하지 않아 문서를 잘라내는 대신 본래의 논리적 구조를 그대로 보존합니다.'
@@ -40,7 +32,6 @@ faqs:
     a: 'PageIndex는 구조가 중요하고 설명 가능한 인용이 필요한 길고 전문적인 문서를 위해 설계되었습니다. 예를 들어 재무 보고서와 사업설명서, 법률 계약서와 판례법, 의학 문헌과 임상시험 보고서, 그리고 API 레퍼런스나 운영 매뉴얼 같은 기술 문서 등이 있습니다.'
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/pageindex-vectorless-reasoning-rag/ -->
 {</* resource-info */>}
 
 ![PageIndex 공식 hero 배너](/images/articles/pageindex-vectorless-reasoning-rag/banner.png)
@@ -75,8 +66,7 @@ Stars: **29,202+** | 언어: Python | 라이선스: Apache-2.0
 
 ### PageIndex의 해결책
 
-PageIndex는 **인간 전문가**가 문서를 읽는 방식을 모방합니다:
-1. 먼저 목차 구조(트리 인덱스)를 확인
+PageIndex는 **인간 전문가**가 문서를 읽는 방식을 모방합니다: 1. 먼저 목차 구조(트리 인덱스)를 확인
 2. 질문에 따라 어떤 장으로 가야 할지 추론
 3. 관련 장에서 깊이 찾아보기
 
@@ -86,9 +76,7 @@ PageIndex는 **인간 전문가**가 문서를 읽는 방식을 모방합니다:
 
 ### 1. 문서 트리 구조 생성
 
-PageIndex는 PDF를 계층적 트리 구조로 변환합니다:
-
-```json
+PageIndex는 PDF를 계층적 트리 구조로 변환합니다: ```json
 {
   "title": "Financial Stability",
   "node_id": "0006",
@@ -108,16 +96,14 @@ PageIndex는 PDF를 계층적 트리 구조로 변환합니다:
 
 ### 2. 추론 기반 트리 검색
 
-사용자가 질문하면 LLM은 다음을 수행합니다:
-1. **질문 이해** — 쿼리 의도 분석
+사용자가 질문하면 LLM은 다음을 수행합니다: 1. **질문 이해** — 쿼리 의도 분석
 2. **트리 구조 탐색** — 어떤 노드에 답이 있을지 추론
 3. **관련 노드 심층 탐색** — 후보 노드에서 구체적인 정보 찾기
 4. **결과 반환** — 출처 인용(페이지, 장)과 함께
 
 ### 3. AlphaGo와 유사한 몬테카를로 트리 검색
 
-PageIndex는 AlphaGo에서 영감을 받아 **트리 검색 알고리즘**을 사용합니다:
-- **선택** — 가장 유망한 노드 선택
+PageIndex는 AlphaGo에서 영감을 받아 **트리 검색 알고리즘**을 사용합니다: - **선택** — 가장 유망한 노드 선택
 - **확장** — 하위 노드 펼치기
 - **평가** — LLM이 노드 관련성 평가
 - **역전파** — 노드 가중치 업데이트
@@ -234,24 +220,21 @@ result = pi.query(
 
 ### 1. 엔터프라이즈 문서 분석
 
-PageIndex의 Apache-2.0 라이선스는 상업적 사용을 허용합니다:
-- **금융 분석** — 재무 보고서, SEC 파일 자동 분석
+PageIndex의 Apache-2.0 라이선스는 상업적 사용을 허용합니다: - **금융 분석** — 재무 보고서, SEC 파일 자동 분석
 - **법률 상담** — 계약 검토, 사례 연구
 - **의료 문서** — 병록 분석, 의학 문헄
 - **정부 파일** — 정책 분석, 법규 검색
 
 ### 2. SaaS 제품 구축
 
-PageIndex 기반으로 다음을 구축:
-- **지능형 문서 Q&A 플랫폼**
+PageIndex 기반으로 다음을 구축: - **지능형 문서 Q&A 플랫폼**
 - **엔터프라이즈 지식 베이스 시스템**
 - **자동 보고서 생성기**
 - **컴플라이언스 검토 도구**
 
 ### 3. 컨설팅 서비스
 
-PageIndex 관련 다음을 제공:
-- **기술 컨설팅**
+PageIndex 관련 다음을 제공: - **기술 컨설팅**
 - **맞춤형 개발**
 - **교육 서비스**
 
@@ -311,9 +294,7 @@ python3 run_pageindex.py --pdf_path your.pdf
 
 ## 요약
 
-PageIndex는 RAG 기술의 차세대 진화입니다:
-
-✅ **29K+ Stars** — 커뮤니티 인정  
+PageIndex는 RAG 기술의 차세대 진화입니다: ✅ **29K+ Stars** — 커뮤니티 인정  
 ✅ **벡터 DB 불필요** — 비싼 인프라 비용 절감  
 ✅ **추론 기반** — 문서 구조를 진정으로 이해  
 ✅ **98.7% 정확도** — 업계 최고  
@@ -344,9 +325,7 @@ PageIndex는 RAG 기술의 차세대 진화입니다:
 
 ## 자체 호스팅 추천 인프라
 
-24/7 안정 운영을 위해 인프라 선택이 중요하다:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 60일 $200 크레딧, 글로벌 14+ 리전. 오픈소스 AI 도구 자체 호스팅에 적합.
+24/7 안정 운영을 위해 인프라 선택이 중요하다: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 60일 $200 크레딧, 글로벌 14+ 리전. 오픈소스 AI 도구 자체 호스팅에 적합.
 - **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — 홍콩 VPS, 중국 본토 접근 시 저지연. dibi8.com 자체가 호스팅된 검증된 IDC.
 
 *추천 링크입니다. 추가 비용 없이 dibi8.com 운영에 도움이 됩니다.*
@@ -354,7 +333,6 @@ PageIndex는 RAG 기술의 차세대 진화입니다:
 *Last updated: 2026-05-07*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -382,25 +360,20 @@ PageIndex는 RAG 기술의 차세대 진화입니다:
 
 ## Why This Matters
 
-Understanding pageindex：29k⭐벡터 없는 rag 시스템, 문서 검색의 혁명 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding pageindex：29k⭐벡터 없는 rag 시스템, 문서 검색의 혁명 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

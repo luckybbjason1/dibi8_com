@@ -1,3 +1,4 @@
+---
 # Archify: Generate Production-Ready Architecture Diagrams in 2026
 
 Archify by tt-a1i has emerged as one of the most popular architecture visualization tools in 2026, gaining **59,700 stars** and **3,900 forks** in a single month. This self-contained HTML tool generates beautiful, interactive diagrams from code analysis without requiring external dependencies.
@@ -6,9 +7,7 @@ This guide explores how Archify works, its integration with AI coding agents, an
 
 ## What is Archify?
 
-Archify is an agent skill that transforms codebases into visual architecture diagrams. Unlike traditional diagramming tools that require manual drawing, Archify analyzes your code structure and automatically generates:
-
-- **Workflow diagrams**: Show execution flow and dependencies
+Archify is an agent skill that transforms codebases into visual architecture diagrams. Unlike traditional diagramming tools that require manual drawing, Archify analyzes your code structure and automatically generates: - **Workflow diagrams**: Show execution flow and dependencies
 -  Sequence diagrams**: Illustrate component interactions
 - **Data flow diagrams**: Track data movement through systems
 - **Lifecycle diagrams**: Map object and request lifecycles
@@ -38,9 +37,7 @@ cd archify
 
 ### For Other Agents
 
-Archify works with any agent supporting Markdown skills:
-
-```markdown
+Archify works with any agent supporting Markdown skills: ```markdown
 # Using Archify
 
 1. Point at your repository
@@ -67,9 +64,7 @@ archify --interactive
 
 ### Analysis Pipeline
 
-Archify follows a multi-stage analysis process:
-
-1. **Code Parsing**: Scans source files to understand structure
+Archify follows a multi-stage analysis process: 1. **Code Parsing**: Scans source files to understand structure
 2. **Dependency Mapping**: Identifies imports, exports, and relationships
 3. **Pattern Detection**: Recognizes common architectural patterns
 4. **Diagram Generation**: Creates visual representations
@@ -77,9 +72,7 @@ Archify follows a multi-stage analysis process:
 
 ### Supported Languages
 
-Archify has built-in parsers for:
-
-- **JavaScript/TypeScript**: Node.js, React, Vue, Next.js
+Archify has built-in parsers for: - **JavaScript/TypeScript**: Node.js, React, Vue, Next.js
 - **Python**: Django, Flask, FastAPI, FastAPI
 - **Go**: Standard library patterns, microservices
 - **Rust**: Cargo projects, async applications
@@ -91,9 +84,7 @@ Archify has built-in parsers for:
 
 #### 1. Workflow Diagrams
 
-Show the sequence of operations in a system:
-
-```
+Show the sequence of operations in a system: ```
 User Request → API Gateway → Auth Service → Database
                     ↓
               Rate Limiter → Cache Layer
@@ -107,9 +98,7 @@ User Request → API Gateway → Auth Service → Database
 
 #### 2. Sequence Diagrams
 
-Illustrate interactions between components:
-
-```
+Illustrate interactions between components: ```
 Client        Server        Database
   │             │             │
   │──Request──▶│             │
@@ -126,9 +115,7 @@ Client        Server        Database
 
 #### 3. Data Flow Diagrams
 
-Track how data moves through systems:
-
-```
+Track how data moves through systems: ```
 ┌─────────┐    ┌─────────┐    ┌─────────┐
 │  Source  │───▶│Processor│───▶│Storage  │
 │ (API)   │    │(Transform)│   │(Database)│
@@ -143,9 +130,7 @@ Track how data moves through systems:
 
 #### 4. Lifecycle Diagrams
 
-Map object and request lifetimes:
-
-```
+Map object and request lifetimes: ```
 Created → Initialized → Active → Idle → Destroyed
     ↑                                 │
     └────────── Recycled ─────────────┘
@@ -159,9 +144,7 @@ Created → Initialized → Active → Idle → Destroyed
 
 #### 5. Component Diagrams
 
-Display system architecture:
-
-```
+Display system architecture: ```
 ┌─────────────────────────────────────┐
 │           Frontend Layer            │
 │  ┌─────────┐  ┌─────────┐          │
@@ -218,8 +201,7 @@ archify --interactive --port=8080
 
 ```python
 # In your documentation pipeline
-def generate_architecture_docs(repo_url, output_dir):
-    # Clone repo
+def generate_architecture_docs(repo_url, output_dir): # Clone repo
     subprocess.run(["git", "clone", repo_url, "/tmp/app"])
     
     # Generate diagrams
@@ -315,8 +297,7 @@ archify --repo=. --animate --output=walkthrough.html
 > Export as SVG for documentation
 ```
 
-Claude Code can then:
-1. Run Archify analysis
+Claude Code can then: 1. Run Archify analysis
 2. Interpret results
 3. Generate explanations
 4. Create documentation
@@ -325,8 +306,7 @@ Claude Code can then:
 
 ```python
 # In your Codex workflow
-def analyze_system(repo_path):
-    # Generate diagrams
+def analyze_system(repo_path): # Generate diagrams
     archify_result = run_archify(repo_path)
     
     # Analyze with AI
@@ -344,15 +324,10 @@ def analyze_system(repo_path):
 # .github/workflows/archify.yml
 name: Generate Architecture Docs
 
-on:
-  push:
-    branches: [main]
+on: push: branches: [main]
 
-jobs:
-  generate:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: generate: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       
       - name: Install Archify
         run: npm install -g @tt-a1i/archify
@@ -371,9 +346,7 @@ jobs:
 
 ### Theme Options
 
-Archify supports multiple visual themes:
-
-```bash
+Archify supports multiple visual themes: ```bash
 # Available themes
 archify --theme=dark      # Dark background, light text
 archify --theme=light     # Light background, dark text
@@ -383,9 +356,7 @@ archify --theme=colorful  # Vibrant colors, engaging
 
 ### Style Customization
 
-Control diagram appearance:
-
-```bash
+Control diagram appearance: ```bash
 # Node styling
 archify --node-style=filled    # Solid colored nodes
 archify --node-style=outlined  # Outlined nodes
@@ -422,9 +393,7 @@ archify --export=html --interactive --output=diagram.html
 
 ### Real-time Collaboration
 
-Archify supports collaborative editing:
-
-```bash
+Archify supports collaborative editing: ```bash
 # Start collaborative session
 archify --collab --port=3000
 
@@ -435,9 +404,7 @@ archify --collab --port=3000
 
 ### Version Comparison
 
-Compare architecture across branches:
-
-```bash
+Compare architecture across branches: ```bash
 # Diff between main and feature branch
 archify --compare=main,feature/auth \
         --output=comparison/ \
@@ -450,9 +417,7 @@ archify --compare=main,feature/auth \
 
 ### Performance Analysis
 
-Identify bottlenecks from diagrams:
-
-```bash
+Identify bottlenecks from diagrams: ```bash
 # Analyze performance implications
 archify --analyze=performance --output=report.html
 
@@ -462,9 +427,7 @@ archify --hotpaths --top=10 --output=hotpaths.md
 
 ### Security Analysis
 
-Detect security patterns and issues:
-
-```bash
+Detect security patterns and issues: ```bash
 # Analyze auth flows
 archify --focus=authentication --output=security/
 
@@ -501,7 +464,13 @@ archify --focus=data-flow --check=exposure
 ### Processing Speed
 
 | Repository Size | Analysis Time | Diagram Generation |
-|----------------|---------------|-------------------|
+|
+---
+|
+---
+|
+---
+|
 | < 10K LOC | < 5 seconds | < 2 seconds |
 | 10K - 100K LOC | 10-30 seconds | 3-5 seconds |
 | 100K - 500K LOC | 1-3 minutes | 5-10 seconds |
@@ -524,7 +493,13 @@ archify --focus=data-flow --check=exposure
 ### Archify vs. Mermaid
 
 | Feature | Archify | Mermaid |
-|---------|---------|---------|
+|
+---
+|
+---
+|
+---
+|
 | Auto-generation | ✅ Yes | ❌ Manual |
 | Code Analysis | ✅ Deep | ❌ None |
 | Interactive | ✅ Yes | Limited |
@@ -537,7 +512,13 @@ archify --focus=data-flow --check=exposure
 ### Archify vs. Draw.io
 
 | Feature | Archify | Draw.io |
-|---------|---------|---------|
+|
+---
+|
+---
+|
+---
+|
 | Automation | ✅ Full | ❌ None |
 | Design Quality | High | High |
 | Collaboration | Real-time | Cloud-based |
@@ -549,7 +530,13 @@ archify --focus=data-flow --check=exposure
 ### Archify vs. PlantUML
 
 | Feature | Archify | PlantUML |
-|---------|---------|----------|
+|
+---
+|
+---
+|
+---
+|
 | Auto-generation | ✅ Yes | ❌ Manual |
 | Language Support | Multiple | Java-focused |
 | Output Quality | Modern | Traditional |
@@ -569,9 +556,7 @@ archify --focus=data-flow --check=exposure
 
 ### Integration Ecosystem
 
-Archify integrates with:
-
-- **AI Agents**: Claude Code, Codex, Cursor, GitHub Copilot
+Archify integrates with: - **AI Agents**: Claude Code, Codex, Cursor, GitHub Copilot
 - **CI/CD**: GitHub Actions, GitLab CI, Jenkins
 - **Documentation**: MkDocs, Docusaurus, Hugo
 - **Design Tools**: Figma, Sketch (via export)
@@ -579,9 +564,7 @@ Archify integrates with:
 
 ### Contributing
 
-Ways to contribute:
-
-1. **Report Issues**: Bug reports and feature requests
+Ways to contribute: 1. **Report Issues**: Bug reports and feature requests
 2. **Submit PRs**: Code improvements and new parsers
 3. **Add Parsers**: Support for more languages
 4. **Improve Docs**: Tutorials and examples
@@ -636,14 +619,14 @@ As codebases grow more complex, the need for clear documentation becomes critica
 
 The tool doesn't replace human design thinking—it enhances it by handling the tedious parts of documentation while you focus on the important architectural decisions.
 
----
 
+---
 **GitHub Repository**: https://github.com/tt-a1i/archify  
 **Stars**: 59,700 ⭐ | **Forks**: 3,900 🍴 | **License**: MIT  
 **Last Updated**: September 2026
 
----
 
+---
 *Found this helpful? Join our Telegram community for daily AI tool updates: https://t.me/DIBI8_Group*
 
 ## Frequently Asked Questions (FAQ)
@@ -668,3 +651,5 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
 
+
+---

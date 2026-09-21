@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-agent-code-of-ethics" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-agent-code-of-ethics" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-agent-code-of-ethics" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-agent-code-of-ethics" />
 title: 'Bộ Quy Tắc Đạo Đức cho AI Agent (2026): Khung Quản Trị T...
 description: 'Một bộ quy tắc đạo đức thực tiễn cho các AI agent tự hành dành cho kỹ sư — không phải khẩu hiệu trừu tượng, mà là bảy quy tắc bắt buộc, mỗi quy tắc đi kèm một biện pháp kiểm soát kỹ thuật cụ thể: cấp quyền tối thiểu, khả năng kiểm toán đầy đủ, tính đảo ngược có con người trong vòng lặp, tự chủ có giới hạn, chuỗi trách nhiệm không gián đoạn, mặc định an toàn khi lỗi, và thiết kế ưu tiên quyền riêng tư. Kèm danh sách kiểm tra trước khi triển khai dành cho lập trình viên năm 2026.'
 date: 2026-06-04 00:00:00+08:00
 lastmod: 2026-06-04 00:00:00+08:00
-tech_stack:
-  - AI Agents
+tech_stack: - AI Agents
   - LLM
   - Governance
   - Security
@@ -29,10 +23,8 @@ featureImage: ''
 draft: false
 categories: [collections]
 tags: ['ai agent', 'đạo đức ai', 'ai có trách nhiệm', 'quản trị ai', 'an toàn agent', 'căn chỉnh', 'quy tắc đạo đức']
-aliases:
-  - /vi/posts/ai-agent-code-of-ethics/
-faqs:
-  - q: 'Đạo đức AI agent khác gì với đạo đức chatbot?'
+aliases: - /vi/posts/ai-agent-code-of-ethics/
+faqs: - q: 'Đạo đức AI agent khác gì với đạo đức chatbot?'
     a: 'Chatbot tạo ra văn bản; agent thực hiện hành động — nó gọi công cụ, chuyển tiền, gửi email, sửa tệp và gây ra hậu quả trong thế giới thực. Đạo đức chatbot chủ yếu xoay quanh "nói gì" (thiên kiến, độc hại, thông tin sai). Đạo đức agent xoay quanh "làm gì": cấp quyền, tính đảo ngược, và trách nhiệm cho các hành động không thể hoàn tác. Bề mặt gây hại thuộc về vận hành chứ không chỉ thông tin, nên biện pháp kiểm soát phải là kiểm soát kỹ thuật, không phải bộ lọc nội dung.'
   - q: 'Cấp quyền tối thiểu cho một AI agent là gì?'
     a: 'Cấp quyền tối thiểu nghĩa là agent chỉ được trao đúng phạm vi quyền hẹp nhất cần cho tác vụ trước mắt, giới hạn cả về thời gian lẫn phạm vi ảnh hưởng, thay vì quyền truy cập thường trực rộng rãi. Trên thực tế: dùng thông tin xác thực theo từng tác vụ thay cho API key dài hạn, mặc định chỉ đọc và phải nâng quyền tường minh để ghi, đặt trần chi tiêu, dùng danh sách trắng cho công cụ và tên miền, tự hết hạn khi tác vụ kết thúc. Nếu agent bị xâm phạm hoặc lệch hướng, cấp quyền tối thiểu sẽ giới hạn thiệt hại.'
@@ -46,7 +38,6 @@ faqs:
     a: 'Phần lớn đều cưỡng chế được bằng mã. Cấp quyền tối thiểu là thông tin xác thực giới hạn phạm vi và danh sách trắng; khả năng kiểm toán là ghi log có cấu trúc cho mọi lệnh gọi công cụ; tính đảo ngược là cổng phê duyệt phân tầng rủi ro cộng hoàn tác/idempotent; tự chủ có giới hạn là trần tốc độ và chi tiêu; an toàn khi lỗi là ngưỡng tin cậy và nút dừng khẩn. Chỉ có ý định đằng sau — quyết định hành động nào là rủi ro cao — mới cần phán đoán của con người. Đạo đức không cưỡng chế được chỉ là trang trí.'
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/ai-agent-code-of-ethics/ -->
 # Bộ Quy Tắc Đạo Đức cho AI Agent (2026): Khung Quản Trị Thực Tiễn cho Agent Tự Hành
 
 
@@ -145,9 +136,7 @@ Nếu bạn không trả lời được "thiệt hại tối đa agent này có 
 
 ## Danh sách kiểm tra trước khi triển khai
 
-Trước khi một agent tự hành lên sóng, bạn phải tick được mọi ô:
-
-- [ ] **Phạm vi** —— Tôi có thể nêu thiệt hại tối đa agent này gây ra ngay bây giờ trong một câu không?
+Trước khi một agent tự hành lên sóng, bạn phải tick được mọi ô: - [ ] **Phạm vi** —— Tôi có thể nêu thiệt hại tối đa agent này gây ra ngay bây giờ trong một câu không?
 - [ ] **Thông tin xác thực** —— Nó chạy trên quyền truy cập tối thiểu, giới hạn thời gian, chứ không phải khóa thường trực rộng rãi?
 - [ ] **Kiểm toán** —— Mọi lệnh gọi công cụ đều được ghi log, quy được trách nhiệm, xem lại được sau đó?
 - [ ] **Cổng** —— Hành động không thể đảo ngược và rủi ro cao đều sau một xác nhận tường minh của con người?
@@ -163,9 +152,7 @@ Chỉ cần một ô chưa tick, agent đó chưa sẵn sàng — không phải 
 
 Những quy tắc này cố ý trung lập với framework. Dù bạn xây trên một agent SDK được quản lý, một framework điều phối mã nguồn mở, hay vòng lặp tự viết, bảy biện pháp kiểm soát đều ánh xạ vào cùng những vị trí: lớp thông tin xác thực, ranh giới lệnh gọi công cụ, đường ống ghi log, và bước phê duyệt của con người.
 
-Vài mỏ neo thực tiễn:
-
-- **Chạy agent trên hạ tầng cô lập, dùng một lần** để một lần chạy lỗi bị giam lại và nút dừng khẩn thực sự "dừng". Một instance đám mây rẻ, tách biệt — [DigitalOcean](https://m.do.co/c/eca87ac14ee0) cho sandbox nhanh, hoặc một VPS tách biệt như [HTStack](https://my.htstack.com/aff.php?aff=27187) — tốt hơn việc chạy agent tự hành trên cùng máy với mọi thứ bạn trân trọng.
+Vài mỏ neo thực tiễn: - **Chạy agent trên hạ tầng cô lập, dùng một lần** để một lần chạy lỗi bị giam lại và nút dừng khẩn thực sự "dừng". Một instance đám mây rẻ, tách biệt — [DigitalOcean](https://m.do.co/c/eca87ac14ee0) cho sandbox nhanh, hoặc một VPS tách biệt như [HTStack](https://my.htstack.com/aff.php?aff=27187) — tốt hơn việc chạy agent tự hành trên cùng máy với mọi thứ bạn trân trọng.
 - **Đối xử với log kiểm toán như dữ liệu production**, không phải thứ phụ để debug — có cấu trúc, bền vững và truy vấn được ngay từ ngày đầu.
 - **Làm cho nút dừng khẩn thật và đã được kiểm thử.** Một nút dừng khẩn bạn chưa từng bấm là một hy vọng, không phải một biện pháp kiểm soát.
 
@@ -176,7 +163,6 @@ Vài mỏ neo thực tiễn:
 *Bộ quy tắc đạo đức này được phát hành theo giấy phép CC-BY-4.0 — hãy tự do chuyển thể nó vào tài liệu quản trị agent của riêng bạn. Nếu đội của bạn đang phát hành agent tự hành trong năm 2026, thời điểm đúng để gắn những biện pháp kiểm soát này là trước lần chạy production đầu tiên, không phải sau sự cố đầu tiên.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

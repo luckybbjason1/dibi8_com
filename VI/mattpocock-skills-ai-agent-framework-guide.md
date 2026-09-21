@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mattpocock-skills-ai-agent-framework-guide" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mattpocock-skills-ai-agent-framework-guide" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mattpocock-skills-ai-agent-framework-guide" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mattpocock-skills-ai-agent-framework-guide" />
 title: "Matt Pocock's Skills: Framework CLI mang đến Siêu năng l...
 description: "Tìm hiểu cách sử dụng framework Skills của Matt Pocock để trang bị cho các AI coding agents như Claude Code, Cursor và Gemini CLI các khả năng thực sự vượt xa code — cơ sở dữ liệu, filesystem, CI/CD và hơn nữa. Hướng dẫn cài đặt npx từng bước, phân tích kiến trúc và benchmark thực tế."
 date: 2026-06-10
-lastmod:  2026-06-10slug: "mattpocock-skills-ai-agent-framework-guide"
+lastmod: 2026-06-10
+slug: "mattpocock-skills-ai-agent-framework-guide"
 category: dev-utils
 tags: [matt-pocock, skills, AI agents, CLI framework, AI coding tools, agent capabilities, developer tools, open-source]
 github_repo: "https://github.com/mattpocock/skills"
@@ -17,8 +13,6 @@ license: MIT
 featureImage: "https://res.cloudinary.com/total-typescript/image/upload/v1777382277/skill-repo-light_2x.png"
 lang: vi
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/mattpocock-skills-ai-agent-framework-guide/ -->
 
 ## Giới thiệu
 
@@ -32,9 +26,7 @@ Skills là một framework mã nguồn mở, nhẹ mở rộng các AI coding ag
 
 Skills là **một framework có thể mở rộng để trang bị cho AI coding agents các khả năng thực sự** vượt xa code generation. Nó hoạt động bằng cách định nghĩa các capabilities dưới dạng plugins — các module nhỏ, độc lập mà agent có thể invoke để thực hiện các task cụ thể. Hãy tưởng tượng nó như việc trao cho AI agent của bạn một cây Swiss Army knife: thay vì viết một công cụ mới cho mỗi task, Skills cung cấp một bộ công cụ được chọn lọc mà agent có thể sử dụng ngay lập tức.
 
-Các khả năng chính bao gồm:
-
-- **Truy cập database** — Chạy SQL queries, quản lý schemas, migrate data
+Các khả năng chính bao gồm: - **Truy cập database** — Chạy SQL queries, quản lý schemas, migrate data
 - **Thao tác filesystem** — Đọc, viết, tìm kiếm và thao tác với files
 - **Tích hợp CI/CD** — Trigger builds, chạy tests, deploy lên staging
 - **Cloud operations** — Quản lý Docker containers, Kubernetes pods, cloud resources
@@ -53,9 +45,7 @@ Framework sử dụng một cấu hình file đơn giản (`skills.json`) liệt
 
 Khi bạn yêu cầu một agent "Thiết lập database PostgreSQL cho dự án này," Skills cung cấp một database skill có thể tạo database, cấu hình connection và chạy các migrations ban đầu. Khi bạn yêu cầu "Deploy cái này lên staging," nó cung cấp một deployment skill trigger CI/CD pipeline của bạn. Agent không cần biết các task này hoạt động như thế nào — nó chỉ cần biết rằng Skills có thể xử lý chúng.
 
-Ecosystem skills hoạt động như sau:
-
-1. **Skill discovery** — Agent đọc cấu hình skills.json để học các capabilities có sẵn
+Ecosystem skills hoạt động như sau: 1. **Skill discovery** — Agent đọc cấu hình skills.json để học các capabilities có sẵn
 2. **Skill selection** — Dựa trên request của user, agent chọn skill phù hợp
 3. **Parameter extraction** — Agent trích xuất các parameters liên quan từ request
 4. **Execution** — Skill thực hiện các commands hoặc API calls đã định nghĩa
@@ -131,8 +121,7 @@ curl -s https://www.aihero.dev/s/skills-newsletter
 
 ### Skills Hub
 
-Duyệt tất cả các skills có sẵn tại official skills hub:
-- Skills site: https://skills.sh/mattpocock/skills
+Duyệt tất cả các skills có sẵn tại official skills hub: - Skills site: https://skills.sh/mattpocock/skills
 - Newsletter: https://www.aihero.dev/s/skills-newsletter
 
 ## Ví dụ sử dụng cơ bản
@@ -285,9 +274,7 @@ npx skills@latest run custom-http --url https://api.example.com/users --method G
 
 ### Tỷ lệ hoàn thành Task của Agent
 
-Kiểm tra tỷ lệ hoàn thành task AI agent với và không có Skills trên một benchmark 50 task:
-
-| Task Category | Without Skills | With Skills |
+Kiểm tra tỷ lệ hoàn thành task AI agent với và không có Skills trên một benchmark 50 task: | Task Category | Without Skills | With Skills |
 |---------------|---------------|-------------|
 | Database setup | 0% (agent writes code but cannot run it) | 100% |
 | File management | 30% | 95% |
@@ -298,9 +285,7 @@ Kiểm tra tỷ lệ hoàn thành task AI agent với và không có Skills trê
 
 ### Use case thực tế: Team phát triển Startup
 
-Một startup 5 người sử dụng Skills với Claude Code để tự động hóa toàn bộ development workflow:
-
-```bash
+Một startup 5 người sử dụng Skills với Claude Code để tự động hóa toàn bộ development workflow: ```bash
 #!/bin/bash
 # Automated weekly deployment pipeline
 npx skills@latest init
@@ -314,9 +299,7 @@ Team báo cáo giảm 70% thời gian deployment và khả năng cho AI agents c
 
 ### Use case thực tế: Freelance Developer
 
-Một freelance developer sử dụng Skills để quản lý nhiều dự án client:
-
-```bash
+Một freelance developer sử dụng Skills để quản lý nhiều dự án client: ```bash
 # Export client-specific skills
 npx skills@latest export --project client-a > client-a-skills.json
 npx skills@latest export --project client-b > client-b-skills.json
@@ -380,9 +363,7 @@ Skills nổi bật vì sự đơn giản và khả năng tương thích AI agent
 
 ## Hạn chế / Đánh giá khách quan
 
-Mặc dù Skills rất mạnh, nó có một số hạn chế cần lưu ý:
-
-1. **Agent compatibility** — Skills hoạt động tốt nhất với các agent hỗ trợ tool calling. Các agent không có capabilities tool calling có thể không tận dụng được fully.
+Mặc dù Skills rất mạnh, nó có một số hạn chế cần lưu ý: 1. **Agent compatibility** — Skills hoạt động tốt nhất với các agent hỗ trợ tool calling. Các agent không có capabilities tool calling có thể không tận dụng được fully.
 2. **Skill coverage** — Trong khi các built-in skills cover các developer tasks phổ biến, các niche hoặc custom workflows có thể cần custom skill development.
 3. **Security considerations** — Skills trao cho agents các capabilities thực sự, vì vậy permissions và access controls cần được quản lý cẩn thận.
 4. **Configuration overhead** — Thiết lập environment variables và connection parameters yêu cầu cấu hình ban đầu.
@@ -443,7 +424,6 @@ Tham gia [nhóm Telegram tiếng Anh của dibi8](https://t.me/DIBI8_Group/2) đ
 Một số liên kết trên là affiliate links. dibi8.com có thể kiếm được commission nếu bạn đăng ký, mà không tốn thêm chi phí nào cho bạn. Giúp giữ cho trang web hoạt động và nội dung miễn phí.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

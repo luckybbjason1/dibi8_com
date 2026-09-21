@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/vanna-ai-sql-generation" />
 title: 'vanna-ai-sql-generation'
 description: '{'en': ''Explore Vanna AI, the open-source Python library that trains on your database schema to generate SQL from natural language with 90%+ accuracy. Features self-hosting, Jupyter integration, SQL validation, multiple LLM backends, and privacy-first design.'', 'zh': ''探索 Vanna AI，这款基于你的数据库 Schema 训练以 90%+ 准确率从自然语言生成 SQL 的开源 Python 库。支持自托管、Jupyter 集成、SQL 验证、多 LLM 后端和隐私优先设计。'', 'ko': ''데이터베이스 스키마에서 학습하여 90%+ 정확도로 자연어에서 SQL을 생성하는 오픈소스 Python 라이브러리 Vanna AI를 살펴 보세요. 자체 호스팅, Jupyter 통합, SQL 검증, 다중 LLM 백엔드, 개인정보 보호 중심 설계를 제공합니다.'', 'vi': ''Khám phá Vanna AI, thư viện Python mã nguồn mở được huấn luyện trên schema cơ sở dữ liệu của bạn để tạo SQL từ ngôn ngữ tự nhiên với độ chính xác 90%+. Có tính năng tự lưu trữ, tích hợp Jupyter, xác thực SQL, nhiều backend LLM, và thiết kế ưu tiên quyền riêng tư.''}'
 date: 2026-05-20 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['vanna ai']
-aliases:
-- /posts/vanna-ai-sql-generation/
+aliases: - /posts/vanna-ai-sql-generation/-
 ---
-
 {{</* resource-info */>}}
 
 The ability to interact with databases using natural language has long been the holy grail of data analytics. Every day, countless hours are lost translating business questions into SQL queries — a process that requires deep knowledge of database schemas, table relationships, and SQL syntax. In 2026, this bottleneck is rapidly dissolving thanks to **Vanna AI**, an open-source Python library that trains on your database schema and generates production-ready SQL from plain English with over 90% accuracy.
@@ -34,15 +30,13 @@ With more than 18,000 GitHub stars and an MIT license, Vanna AI has emerged as t
 
 In this comprehensive guide, we will walk through everything you need to know about Vanna AI: from installation and schema training to advanced SQL generation, validation, and integration into your analytics workflows. Whether you are a data analyst who wants to ask questions in English, or an engineer building natural language interfaces for your data platform, Vanna AI provides the tools you need to make text-to-SQL a reality.
 
----
 
+---
 ## What Is Vanna AI? Natural Language Meets SQL
 
 Vanna AI is an open-source Python library that bridges the gap between human language and structured query language. At its core, Vanna is a ** Retrieval-Augmented Generation (RAG) ** framework built specifically for SQL generation. Unlike generic LLM chatbots that occasionally hallucinate table names or invent column references, Vanna trains on your actual database schema — learning your tables, columns, relationships, and even your organization's naming conventions.
 
-The workflow is elegantly simple:
-
-1. **Connect** Vanna to your database
+The workflow is elegantly simple: 1. **Connect** Vanna to your database
 2. **Train** it on your schema (DDL statements, documentation, sample queries)
 3. **Ask** questions in natural language
 4. **Receive** accurate, executable SQL
@@ -76,15 +70,13 @@ print(sql)
 
 The generated SQL is not just syntactically correct — it is semantically accurate, referencing the correct tables, columns, and relationships from your actual schema.
 
----
 
+---
 ## Why Vanna AI Matters in 2026
 
 The explosion of Large Language Models in recent years has created enormous opportunities for natural language interfaces. However, generic LLMs struggle with SQL generation for several critical reasons: they hallucinate schema elements, ignore database-specific syntax, and have no awareness of your actual data model. Sending your raw data to third-party API endpoints also raises serious privacy and compliance concerns.
 
-Vanna AI addresses all of these challenges head-on:
-
-- **Schema-Aware Generation**: Vanna learns your specific schema, eliminating hallucination
+Vanna AI addresses all of these challenges head-on: - **Schema-Aware Generation**: Vanna learns your specific schema, eliminating hallucination
 - **Privacy-First Design**: Your data never leaves your infrastructure unless you choose otherwise
 - **Self-Hosted Option**: Run everything locally with open-source LLMs
 - **SQL Validation**: Every generated query is validated against your database before being returned
@@ -95,9 +87,7 @@ Vanna AI addresses all of these challenges head-on:
 from vanna.ollama import Ollama
 from vanna.chromadb import ChromaDB_VectorStore
 
-class MyVanna(ChromaDB_VectorStore, Ollama):
-    def __init__(self, config=None):
-        ChromaDB_VectorStore.__init__(self, config=config)
+class MyVanna(ChromaDB_VectorStore, Ollama): def __init__(self, config=None): ChromaDB_VectorStore.__init__(self, config=config)
         Ollama.__init__(self, config={"model": "llama3"})
 
 # Fully local, self-hosted setup
@@ -134,9 +124,7 @@ pip install "vanna[bigquery]"
 pip install "vanna[all]"
 ```
 
-Quick configuration for the most common setup:
-
-```python
+Quick configuration for the most common setup: ```python
 from vanna.remote import VannaDefault
 
 # Use Vanna's hosted service (easiest setup)
@@ -155,15 +143,11 @@ vn.connect_to_postgres(
 )
 ```
 
-For a fully self-hosted setup with local LLMs:
-
-```python
+For a fully self-hosted setup with local LLMs: ```python
 from vanna.ollama import Ollama
 from vanna.chromadb import ChromaDB_VectorStore
 
-class LocalVanna(ChromaDB_VectorStore, Ollama):
-    def __init__(self, config=None):
-        ChromaDB_VectorStore.__init__(self, config=config)
+class LocalVanna(ChromaDB_VectorStore, Ollama): def __init__(self, config=None): ChromaDB_VectorStore.__init__(self, config=config)
         Ollama.__init__(self, config={"model": "codellama:13b"})
 
 vn = LocalVanna()
@@ -236,8 +220,7 @@ cursor.execute("""
 """)
 tables = cursor.fetchall()
 
-for (table_name,) in tables:
-    cursor.execute(f"""
+for (table_name,) in tables: cursor.execute(f"""
         SELECT column_name, data_type, is_nullable
         FROM information_schema.columns
         WHERE table_name = '{table_name}';
@@ -263,8 +246,7 @@ Beyond raw schema, you can train Vanna on business context — helping it unders
 vn.train(documentation="""
 The sales table records all completed transactions.
 The amount column is in USD and includes tax.
-The region column uses standard US Census regions:
-Northeast, Midwest, South, and West.
+The region column uses standard US Census regions: Northeast, Midwest, South, and West.
 A high_value_customer is anyone with lifetime purchases > $10,000.
 """)
 
@@ -351,9 +333,7 @@ sql = vn.generate_sql(
 print(sql)
 ```
 
-Vanna also supports generating SQL with specific constraints or patterns:
-
-```python
+Vanna also supports generating SQL with specific constraints or patterns: ```python
 # Generate SQL with explanation
 sql, explanation = vn.generate_sql(
     "Which customers haven't placed an order in the last 90 days?",
@@ -382,11 +362,9 @@ vn = VannaDefault(model="my-model", api_key="vn-...",
                   config={"validate_sql": True})
 
 # Invalid queries are caught and corrected
-try:
-    sql = vn.generate_sql("Show me the top 10 products by revenue")
+try: sql = vn.generate_sql("Show me the top 10 products by revenue")
     print(f"Validated SQL: {sql}")
-except Exception as e:
-    print(f"Validation failed: {e}")
+except Exception as e: print(f"Validation failed: {e}")
     # Vanna will attempt to fix and regenerate
     sql = vn.generate_sql_with_retry(
         "Show me the top 10 products by revenue",
@@ -394,9 +372,7 @@ except Exception as e:
     )
 ```
 
-Vanna can also handle follow-up questions that reference previous context:
-
-```python
+Vanna can also handle follow-up questions that reference previous context: ```python
 # First question
 result1 = vn.ask("What were total sales in 2026?")
 
@@ -426,8 +402,7 @@ vn.set_prompt_template("""
 You are an expert SQL analyst. Given the following database schema,
 generate a PostgreSQL-compatible query to answer the user's question.
 
-Schema:
-{schema}
+Schema: {schema}
 
 User Question: {question}
 
@@ -458,9 +433,7 @@ hr_sql = vn_hr.generate_sql("Employee count by department")
 from vanna.pinecone import Pinecone_VectorStore
 from vanna.openai import OpenAI_Chat
 
-class PineconeVanna(Pinecone_VectorStore, OpenAI_Chat):
-    def __init__(self, config=None):
-        Pinecone_VectorStore.__init__(self, config=config)
+class PineconeVanna(Pinecone_VectorStore, OpenAI_Chat): def __init__(self, config=None): Pinecone_VectorStore.__init__(self, config=config)
         OpenAI_Chat.__init__(self, config=config)
 
 vn = PineconeVanna(config={
@@ -488,9 +461,7 @@ vn.connect_to_postgres(host="localhost", dbname="analytics",
 vn.ask("What are the top selling products?")
 ```
 
-The `ask()` method in Jupyter returns rich output including the generated SQL, explanation, and results table. For a full interactive experience:
-
-```python
+The `ask()` method in Jupyter returns rich output including the generated SQL, explanation, and results table. For a full interactive experience: ```python
 # Launch the interactive web UI within Jupyter
 from vanna.flask import VannaFlaskApp
 
@@ -498,9 +469,7 @@ app = VannaFlaskApp(vn)
 app.run()
 ```
 
-Vanna also generates visualizations automatically when appropriate:
-
-```python
+Vanna also generates visualizations automatically when appropriate: ```python
 # Generate SQL and auto-create chart
 vn.ask("Plot monthly sales trends for 2026")
 
@@ -545,17 +514,13 @@ Understanding Vanna's architecture is key to deploying it securely in production
 └─────────────────────────────────────────────────────────────┘
 ```
 
-The privacy model works as follows:
-
-```python
+The privacy model works as follows: ```python
 # Privacy-First Configuration (Recommended)
 from vanna.ollama import Ollama
 from vanna.chromadb import ChromaDB_VectorStore
 
-class PrivateVanna(ChromaDB_VectorStore, Ollama):
-    """Fully self-hosted. Zero data leaves your network."""
-    def __init__(self, config=None):
-        ChromaDB_VectorStore.__init__(self, config=config)
+class PrivateVanna(ChromaDB_VectorStore, Ollama): """Fully self-hosted. Zero data leaves your network."""
+    def __init__(self, config=None): ChromaDB_VectorStore.__init__(self, config=config)
         Ollama.__init__(self, config={"model": "llama3:70b"})
 
 vn = PrivateVanna()
@@ -572,9 +537,7 @@ vn.connect_to_postgres(host="internal-db", dbname="analytics",
 
 ## Benchmarks and Accuracy
 
-Vanna's accuracy depends heavily on the quality and quantity of training data. Here are typical performance characteristics observed in 2026:
-
-```python
+Vanna's accuracy depends heavily on the quality and quantity of training data. Here are typical performance characteristics observed in 2026: ```python
 # Accuracy evaluation script
 import pandas as pd
 
@@ -600,19 +563,15 @@ test_cases = [
 ]
 
 correct = 0
-for test in test_cases:
-    generated = vn.generate_sql(test["question"])
+for test in test_cases: generated = vn.generate_sql(test["question"])
     # Semantic comparison (normalized)
-    if normalize_sql(generated) == normalize_sql(test["expected_sql"]):
-        correct += 1
+    if normalize_sql(generated) == normalize_sql(test["expected_sql"]): correct += 1
 
 accuracy = correct / len(test_cases) * 100
 print(f"Accuracy: {accuracy:.1f}%")
 ```
 
-With comprehensive training (DDL + documentation + example queries), Vanna consistently achieves:
-
-- **90-95% accuracy** on common analytical queries
+With comprehensive training (DDL + documentation + example queries), Vanna consistently achieves: - **90-95% accuracy** on common analytical queries
 - **85-90% accuracy** on complex multi-table joins
 - **80-85% accuracy** on queries requiring business context
 - Near **100% accuracy** when question-SQL pairs are provided as training data
@@ -632,9 +591,7 @@ Yes, Vanna AI is open-source under the MIT license and free to use. The core lib
 from vanna.ollama import Ollama
 from vanna.chromadb import ChromaDB_VectorStore
 
-class FreeVanna(ChromaDB_VectorStore, Ollama):
-    def __init__(self, config=None):
-        ChromaDB_VectorStore.__init__(self, config=config)
+class FreeVanna(ChromaDB_VectorStore, Ollama): def __init__(self, config=None): ChromaDB_VectorStore.__init__(self, config=config)
         Ollama.__init__(self, config={"model": "llama3"})
 ```
 
@@ -696,9 +653,7 @@ vn.connect_to_duckdb("mydb.duckdb")
 
 ### How can I improve Vanna's accuracy for my specific use case?
 
-The most effective way to improve accuracy is through comprehensive training. Follow this hierarchy of training data quality:
-
-1. **Question-SQL pairs** (highest impact — near 100% accuracy)
+The most effective way to improve accuracy is through comprehensive training. Follow this hierarchy of training data quality: 1. **Question-SQL pairs** (highest impact — near 100% accuracy)
 2. **Example SQL queries** (high impact — teaches patterns)
 3. **Business documentation** (medium impact — adds context)
 4. **DDL statements** (foundational — eliminates hallucination)
@@ -707,10 +662,8 @@ The most effective way to improve accuracy is through comprehensive training. Fo
 # Maximum accuracy training regimen
 vn.train(ddl=all_schema_ddl)
 vn.train(documentation=business_context)
-for example in curated_sql_examples:
-    vn.train(sql=example)
-for qa in historical_question_sql_pairs:
-    vn.train(question=qa["question"], sql=qa["sql"])
+for example in curated_sql_examples: vn.train(sql=example)
+for qa in historical_question_sql_pairs: vn.train(question=qa["question"], sql=qa["sql"])
 ```
 
 ---
@@ -719,9 +672,7 @@ for qa in historical_question_sql_pairs:
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -733,7 +684,6 @@ Vanna AI represents a significant leap forward in democratizing database access.
 In 2026, as the gap between data analysts and database experts continues to narrow, Vanna AI stands at the forefront — turning "What were our Q2 sales by region?" into executable SQL in seconds, not minutes. For any team looking to reduce the SQL bottleneck and let people ask questions in the language they think in, Vanna AI is an investment that pays dividends immediately.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

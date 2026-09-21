@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/qiaomu-anything-to-notebooklm" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/qiaomu-anything-to-notebooklm" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/qiaomu-anything-to-notebooklm" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/qiaomu-anything-to-notebooklm" />
 title: "Qiaomu 万物转 NotebookLM：将任意内容源转换为 Google NotebookLM"
 description: "Qiaomu 万物转 NotebookLM 是一个 Claude Code 技能和 Python 工具包，可将 15 多种内容源——YouTube 视频、播客、文章、PDF——转换为 Google NotebookLM 知识库，并具有绕过付费墙的能力。"
 date: 2026-06-10
-lastmod:  2026-06-10slug: qiaomu-anything-to-notebooklm
+lastmod: 2026-06-10
+slug: qiaomu-anything-to-notebooklm
 category: data-science
 tags: [qiaomu-notebooklm, notebooklm, 内容转换, Claude Code, 知识管理, AI 工具]
 github_repo: https://github.com/joeseesun/qiaomu-anything-to-notebooklm
@@ -15,10 +11,7 @@ stars: 5015
 maintainer: joeseesun
 license: MIT
 featureImage: https://raw.githubusercontent.com/joeseesun/qiaomu-anything-to-notebooklm/main/docs/assets/notebooklm-converter-banner.png
-lang: zh
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/qiaomu-anything-to-notebooklm/ -->
 
 ## 简介
 
@@ -50,7 +43,11 @@ Qiaomu 万物转 NotebookLM 是一个全面的工具包，可将来自 15 多种
 该工具包支持令人印象深刻的内容来源范围。以下是完整列表：
 
 | 类别 | 来源 |
-|----------|---------|
+|
+---
+|
+---
+|
 | 视频 | YouTube、Vimeo、哔哩哔哩 |
 | 音频 | 播客（RSS 订阅）、MP3 文件、Spotify（通过转录） |
 | 网页 | 网站、博客文章、Twitter/X 帖子、Reddit 帖子 |
@@ -120,8 +117,7 @@ converter.export(
 
 # 列出已导出的文件
 import os
-for f in os.listdir("./notebooklm_sources/"):
-    filepath = os.path.join("./notebooklm_sources/", f)
+for f in os.listdir("./notebooklm_sources/"): filepath = os.path.join("./notebooklm_sources/", f)
     size = os.path.getsize(filepath)
     print(f"{f}: {size / 1024:.1f} KB")
 ```
@@ -216,8 +212,7 @@ results = converter.batch_convert(
     concurrent_workers=4
 )
 
-for url, result in results.items():
-    status = "成功" if result.success else "失败"
+for url, result in results.items(): status = "成功" if result.success else "失败"
     print(f"[{status}] {url}: {result.word_count} 个单词已转换")
 ```
 
@@ -230,8 +225,7 @@ import schedule
 import time
 from datetime import datetime
 
-def daily_content_sync():
-    """每日检查新内容并转换为 NotebookLM。"""
+def daily_content_sync(): """每日检查新内容并转换为 NotebookLM。"""
     converter = ContentConverter()
     
     # 监控 YouTube 频道
@@ -248,15 +242,13 @@ def daily_content_sync():
     
     # 上传到 NotebookLM
     notebooklm = converter.connect_notebooklm()
-    for result in youtube_results + rss_results:
-        notebooklm.upload_source(result.file_path)
+    for result in youtube_results + rss_results: notebooklm.upload_source(result.file_path)
         print(f"已上传: {result.file_path}")
 
 # 每天 6 点定时
 schedule.every().day.at("06:00").do(daily_content_sync)
 
-while True:
-    schedule.run_pending()
+while True: schedule.run_pending()
     time.sleep(60)
 ```
 
@@ -289,7 +281,13 @@ result = converter.convert(
 ### 转换准确率
 
 | 内容类型 | 准确率 | 平均处理时间 |
-|-------------|----------|---------------------|
+|
+---
+|
+---
+|
+---
+|
 | YouTube 视频 | 98.5% | 45 秒 |
 | 播客转录 | 97.2% | 30 秒 |
 | 博客文章 | 96.8% | 15 秒 |
@@ -301,7 +299,13 @@ result = converter.convert(
 ### 批处理性能
 
 | 批处理大小 | 总时间 | 吞吐量 |
-|-----------|-----------|-----------|
+|
+---
+|
+---
+|
+---
+|
 | 10 项 | 4 分钟 | 2.5 项/分钟 |
 | 50 项 | 18 分钟 | 2.8 项/分钟 |
 | 100 项 | 35 分钟 | 2.9 项/分钟 |
@@ -317,9 +321,7 @@ result = converter.convert(
 from qiaomu_notebooklm.plugins import BaseExtractor
 
 @BaseExtractor.register("my_custom_source")
-class MyCustomExtractor(BaseExtractor):
-    def extract(self, url: str) -> dict:
-        """从自定义来源提取内容。"""
+class MyCustomExtractor(BaseExtractor): def extract(self, url: str) -> dict: """从自定义来源提取内容。"""
         # 你的自定义提取逻辑
         content = self.fetch_content(url)
         cleaned = self.clean_content(content)
@@ -359,14 +361,12 @@ projects = {
     ]
 }
 
-for notebook_name, urls in projects.items():
-    notebook = notebooklm.create_notebook(
+for notebook_name, urls in projects.items(): notebook = notebooklm.create_notebook(
         title=f"{notebook_name.replace('_', ' ').title()} 来源",
         description=f"{notebook_name} 的精选题源"
     )
     
-    for url in urls:
-        result = converter.convert(url, output_format="notebooklm")
+    for url in urls: result = converter.convert(url, output_format="notebooklm")
         notebook.upload_source(result.file_path)
         print(f"已添加到 {notebook_name}: {url}")
 ```
@@ -399,7 +399,17 @@ print(f"找到 {len(entities)} 个实体: {[e.name for e in entities]}")
 Qiaomu 万物转 NotebookLM 与其他内容转笔记本解决方案相比如何？
 
 | 功能 | Qiaomu | NotebookLM 原生 | Notion AI | Obsidian + AI |
-|---------|--------|-------------------|-----------|---------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 来源支持 | 15+ 格式 | 仅手动上传 | 有限 | 依赖插件 |
 | 自动转换 | 是 | 否 | 有限 | 依赖插件 |
 | 绕过付费墙 | 是 | 否 | 否 | 依赖插件 |
@@ -480,7 +490,6 @@ pip install qiaomu-notebooklm
 6. [WebShare - 数据管道代理服务](https://webshare.io/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -508,25 +517,20 @@ pip install qiaomu-notebooklm
 
 ## Why This Matters
 
-Understanding qiaomu 万物转 notebooklm：将任意内容源转换为 google notebooklm is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding qiaomu 万物转 notebooklm：将任意内容源转换为 google notebooklm is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -547,13 +551,13 @@ Qiaomu 万物转 NotebookLM：将任意内容源转换为 Google NotebookLM repr
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
 
+---
 ## Related Articles
 
 - [qiaomu-anything-to-notebooklm](qiaomu-anything-to-notebooklm)
@@ -592,7 +596,17 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

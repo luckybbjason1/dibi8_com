@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/haystack-rag-pipeline-framework" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/haystack-rag-pipeline-framework" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/haystack-rag-pipeline-framework" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/haystack-rag-pipeline-framework" />
 title: 'Haystack 2026: \ud504\ub85c\ub355\uc158 RAG \ubc0f \uc5d...
 description: '2026\ub144 Haystack \uc644\ubcbd \uac00\uc774\ub4dc: \ud504\ub85c\ub355\uc158 RAG \ud30c\uc774\ud504\ub77c\uc778, \ubb38\uc11c \uc800\uc7a5\uc18c, \ub9ac\ud2b8\ub9ac\ubc84, \uc5d0\uc774\uc804\ud2b8, \ud3c9\uac00 \ub3c4\uad6c, \ubc0f Docker \ubc30\ud3ec\ub97c \uc704\ud55c \uc624\ud508\uc18c\uc2a4 NLP \ud504\ub808\uc784\uc6cc\ud06c.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: [haystack, nlp, rag, python, llm, '\ubb38\uc11c \uc800\uc7a5\uc18c', '\ub9ac\ud2b8\ub9ac\ubc84', '\uc5d0\uc774\uc804\ud2b8', openai, docker, '\ud30c\uc774\ud504\ub77c\uc778']
-aliases:
-- /kr/posts/haystack-rag-pipeline-framework/
+aliases: - /kr/posts/haystack-rag-pipeline-framework/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/haystack-rag-pipeline-framework/ -->
 
 {{</* resource-info */>}}
 
@@ -47,9 +39,7 @@ Haystack\uc740 **\uc624\ud508\uc18c\uc2a4 NLP \ud504\ub808\uc784\uc6cc\ud06c**\u
 
 \ucd94\ucd9c\uc2dd QA\uc5d0 \ucd08\uc810\uc744 \ub9de\ucdb0 2.0 \ubc1c\ub839\uc744 \uae30\uc810\uc73c\ub85c \uc0dd\uc131\ud615 AI\ub97c \uc218\uc6a9\ud588\ub2e4. v2.12(2026\ub144 5\uc6d4) \uae30\uc900 **30+ \ubb38\uc11c \uc800\uc7a5\uc18c**\ub97c \uc9c0\uc6d0\ud558\uba70, \uba40\ud2f0\ubaa8\ub2ec \uac80\uc0c9, **\ud234 \ud638\ucd9c\uc774 \uac00\ub2a5\ud55c \uc5d0\uc774\uc804\ud2b8 \ud30c\uc774\ud504\ub77c\uc778**, \ub0b4\uc7a5 \ud3c9\uac00, \ub124\uc774\ud2f0\ube0c \ube44\ub3d9\uae30 \uc2e4\ud589\uc744 \uc81c\uacf5\ud55c\ub2e4. Apache-2.0 \ub77c\uc774\uc120\uc2a4\ub85c deepset\uc774 \uc720\uc9c0\ubcf4\uc218\ud558\uba70 **21,000+ Stars**\ub97c \ubcf4\uc720\ud558\uace0 \uc788\ub2e4.
 
-\ub2e8\uc77c \ud504\ub808\uc784\uc6cc\ud06c\uc640 \ub2ec\ub9ac Haystack\uc740 \uad00\uc2ec\uc0ac\uc744 \ub2e8\uc21c\uba85\ub8e8\ud558\uac8c \ubd84\ub9ac\ud55c\ub2e4:
-
-- **\ucef4\ud3ec\ub10c\ud2b8**\ub294 \uc790\ub3d9\uc870\uc808\ud558\ub294 \ub2e8\uc704(\uc608: `OpenAIDocumentEmbedder`)
+\ub2e8\uc77c \ud504\ub808\uc784\uc6cc\ud06c\uc640 \ub2ec\ub9ac Haystack\uc740 \uad00\uc2ec\uc0ac\uc744 \ub2e8\uc21c\uba85\ub8e8\ud558\uac8c \ubd84\ub9ac\ud55c\ub2e4: - **\ucef4\ud3ec\ub10c\ud2b8**\ub294 \uc790\ub3d9\uc870\uc808\ud558\ub294 \ub2e8\uc704(\uc608: `OpenAIDocumentEmbedder`)
 - **\ud30c\uc774\ud504\ub77c\uc778**\uc740 \ucef4\ud3ec\ub10c\ud2b8\ub97c \uc720\ub3c4\uadf8\ub798\ud504\ub85c \uc5f0\uacb0\ud55c\ub2e4
 - **\ubb38\uc11c \uc800\uc7a5\uc18c**\ub294 \uc601\uc18d\uc131\uacfc \ubca1\ud130 \uac80\uc0c9\uc744 \ucc98\ub9ac\ud55c\ub2e4
 - **\uc5d0\uc774\uc804\ud2b8**\ub294 \ud234 \uc811\uadfc\uacfc \ud568\uaed8 \uc0ac\uace0 \ub8e8\ud504\ub97c \ucd94\uac00\ud55c\ub2e4
@@ -121,9 +111,7 @@ export OPENAI_API_KEY="sk-your-key-here"
 pip install transformers torch sentence-transformers
 ```
 
-\uc804\uc2a4\ud0dd \ud655\uc778:
-
-```python
+\uc804\uc2a4\ud0dd \ud655\uc778: ```python
 # verify_setup.py
 from haystack import Pipeline
 from haystack.components.embedders import SentenceTransformersDocumentEmbedder
@@ -200,9 +188,7 @@ result = rag.run({
 print(result["generator"]["replies"][0])
 ```
 
-\uc800\uc7a5 \ubc0f \uc2e4\ud589:
-
-```bash
+\uc800\uc7a5 \ubc0f \uc2e4\ud589: ```bash
 python basic_rag.py
 ```
 
@@ -364,12 +350,10 @@ from haystack import component
 from typing import Any, Dict, List
 
 @component
-class TokenCounter:
-    """\uc785\ub825 \ud14d\uc2a4\ud2b8\uc758 \ud1a0\ud070 \uc218\ub97c \uc138\ub294 \ucee4\uc2a4\ud140 \ucef4\ud3ec\ub10c\ud2b8."""
+class TokenCounter: """\uc785\ub825 \ud14d\uc2a4\ud2b8\uc758 \ud1a0\ud070 \uc218\ub97c \uc138\ub294 \ucee4\uc2a4\ud140 \ucef4\ud3ec\ub10c\ud2b8."""
 
     @component.output_types(token_count=int, text=str)
-    def run(self, text: str) -> Dict[str, Any]:
-        token_count = len(text.split())
+    def run(self, text: str) -> Dict[str, Any]: token_count = len(text.split())
         return {"token_count": token_count, "text": text}
 
 # \ud30c\uc774\ud504\ub77c\uc778\uc5d0 \uc0ac\uc6a9
@@ -422,9 +406,7 @@ print(result["generator"]["replies"][0])
 
 ### \ud30c\uc774\ud504\ub77c\uc778 \uc9c0\uc5f0 \ubc29\uc9c0\ub825 \uae30\uc900
 
-4\ucf54\uc5b4 VPS\uc5d0\uc11c Python 3.11\ub85c \uce21\uc815:
-
-| \ud30c\uc774\ud504\ub77c\uc778 \uc720\ud615 | \ud3c9\uade0 \uc9c0\uc5f0 | P95 \uc9c0\uc5f0 | \ucc98\ub9ac\ub7c9 (\uc694\uccad/\ucd08) |
+4\ucf54\uc5b4 VPS\uc5d0\uc11c Python 3.11\ub85c \uce21\uc815: | \ud30c\uc774\ud504\ub77c\uc778 \uc720\ud615 | \ud3c9\uade0 \uc9c0\uc5f0 | P95 \uc9c0\uc5f0 | \ucc98\ub9ac\ub7c9 (\uc694\uccad/\ucd08) |
 |---|---|---|---|
 | \uae30\ubcf8 RAG (InMemory, GPT-4o-mini) | **1,240 ms** | **1,890 ms** | **0.8** |
 | RAG + \uc7ac\ub79c\ud0b9 (cross-encoder) | **1,580 ms** | **2,340 ms** | **0.6** |
@@ -436,9 +418,7 @@ print(result["generator"]["replies"][0])
 
 ### \uc0ac\ub840 \uc5f0\uad6c: \ubc95\ub960 \ubb38\uc11c \uac80\uc0c9
 
-\ubc95\ub960 \uae30\uc220 \ud68c\uc0ac\uac00 **240\ub9cc \uac74\uc758 \ubc95\uc6d0 \ubb38\uc11c**\uc744 \uac80\uc0c9\ud558\uae30 \uc704\ud574 Haystack\uc744 \ubc30\ud3ec\ud588\ub2e4. 6\uac1c\uc6d4 \ud6c4 \uacb0\uacfc:
-
-- \ub0b4\ubd80 QA \ubca4\uce58\ub9c8\ud06c\uc5d0\uc11c \uc815\ud655\ub3c4 **94.2%**(\ud0a4\uc6cc\ub4dc \uac80\uc0c9\uc758 78%\uc5d0\uc11c \ud5a5\uc0c1)
+\ubc95\ub960 \uae30\uc220 \ud68c\uc0ac\uac00 **240\ub9cc \uac74\uc758 \ubc95\uc6d0 \ubb38\uc11c**\uc744 \uac80\uc0c9\ud558\uae30 \uc704\ud574 Haystack\uc744 \ubc30\ud3ec\ud588\ub2e4. 6\uac1c\uc6d4 \ud6c4 \uacb0\uacfc: - \ub0b4\ubd80 QA \ubca4\uce58\ub9c8\ud06c\uc5d0\uc11c \uc815\ud655\ub3c4 **94.2%**(\ud0a4\uc6cc\ub4dc \uac80\uc0c9\uc758 78%\uc5d0\uc11c \ud5a5\uc0c1)
 - \uc0c1\uc704 5\uac1c \ubb38\uc11c \uac80\uc0c9\uc758 \ud3c9\uade0 \uc751\ub2f5 \uc2dc\uac04 **2\ucd08 \ubbf8\ub9cc**
 - \ud30c\uc774\ud504\ub77c\uc778 \uc9c1\ub82c\ud654\uc640 \ud56b\uc2a4\uc6cc\ud551\uc73c\ub85c \uac1c\ubc1c\uc790 \ubc18\ubcf5 \uc2dc\uac04 **60% \uac10\uc18c**
 \n## \uace0\uae09 \uc0ac\uc6a9\ubc95: \ud504\ub85c\ub355\uc158 \uac15\ud654
@@ -452,8 +432,7 @@ from haystack import Pipeline
 from haystack.components.generators import OpenAIGenerator
 from haystack.components.builders import PromptBuilder
 
-async def run_queries(queries: list):
-    pipeline = Pipeline()
+async def run_queries(queries: list): pipeline = Pipeline()
     pipeline.add_component("builder", PromptBuilder(
         template="Answer concisely: {{ query }}"
     ))
@@ -505,8 +484,7 @@ ground_truth = [
 
 # \ud30c\uc774\ud504\ub77c\uc778 \uc2e4\ud589 \ubc0f \uc608\ucd95 \uac12 \uc218\uc9d1
 predictions = []
-for item in ground_truth:
-    result = rag_pipeline.run({
+for item in ground_truth: result = rag_pipeline.run({
         "embedder": {"text": item["query"]},
         "prompt_builder": {"query": item["query"]},
     })
@@ -545,12 +523,10 @@ import yaml
 app = FastAPI()
 
 # \uc2dc\uc791 \uc2dc \ud55c \ubc88 \ud30c\uc774\ud504\ub77c\uc778 \ub85c\ub4dc
-with open("rag_pipeline.yaml") as f:
-    pipeline = Pipeline.loads(f.read())
+with open("rag_pipeline.yaml") as f: pipeline = Pipeline.loads(f.read())
 
 @app.post("/query")
-async def query(question: str):
-    result = pipeline.run({
+async def query(question: str): result = pipeline.run({
         "embedder": {"text": question},
         "prompt_builder": {"query": question},
     })
@@ -563,29 +539,18 @@ async def query(question: str):
 ```yaml
 # docker-compose.yml
 version: "3.8"
-services:
-  haystack-api:
-    build: .
-    ports:
-      - "8000:8000"
-    environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
-    depends_on:
-      - opensearch
+services: haystack-api: build: .
+    ports: - "8000:8000"
+    environment: - OPENAI_API_KEY=${OPENAI_API_KEY}
+    depends_on: - opensearch
 
-  opensearch:
-    image: opensearchproject/opensearch:2.14.0
-    environment:
-      - discovery.type=single-node
+  opensearch: image: opensearchproject/opensearch:2.14.0
+    environment: - discovery.type=single-node
       - DISABLE_SECURITY_PLUGIN=true
-    ports:
-      - "9200:9200"
-    volumes:
-      - osdata:/usr/share/opensearch/data
+    ports: - "9200:9200"
+    volumes: - osdata:/usr/share/opensearch/data
 
-volumes:
-  osdata:
-```
+volumes: osdata: ```
 
 \ud06c\ub77c\uc6b0\ub4dc VPS \ubc30\ud3ec\uc758 \uacbd\uc6b0, [DigitalOcean](https://m.do.co/c/eca87ac14ee0) App Platform\uc740 Git\uc5d0\uc11c \uc9c1\uc811 Docker \ubc30\ud3ec\ub97c \uc9c0\uc6d0\ud55c\ub2e4. `Dockerfile`\uc744 \ud478\uc2dc\ud558\uace0 \uc800\uc7a5\uc18c\ub97c \uc5f0\uacb0\ud558\uba74 \ud50c\ub7ab\ud3fc\uc774 \uc124\uc815 \uc5c6\uc774 Haystack API\ub97c \ube4c\ub4dc\ud558\uace0 \ud638\uc2a4\ud305\ud55c\ub2e4.
 
@@ -631,8 +596,7 @@ Haystack 2.x(2024\ub144 1\uc6d4 \ubc1c\ub839)\ub294 2026\ub144 5\uc6d4 \uae30\uc
 
 ### \ubb38\uc11c \uc800\uc7a5\uc18c\ub97c \uc5b4\ub5bb\uac8c \uc120\ud0dd\ud558\ub098?
 
-\ud504\ub85c\ud1a0\ud0c0\uc774\ud551\uc5d0\uc11c\ub294 `InMemoryDocumentStore`\ub97c \uc0ac\uc6a9\ud558\ub77c. \ud504\ub85c\ub355\uc158\uc5d0\uc11c:
-- **OpenSearch:** \uc774\ubbf8 Elasticsearch/OpenSearch \ud074\ub7ec\uc2a4\ud130\ub97c \uc6b4\uc601\ud558\uace0 \uc788\ub2e4\uba74 \ucd5c\uc120
+\ud504\ub85c\ud1a0\ud0c0\uc774\ud551\uc5d0\uc11c\ub294 `InMemoryDocumentStore`\ub97c \uc0ac\uc6a9\ud558\ub77c. \ud504\ub85c\ub355\uc158\uc5d0\uc11c: - **OpenSearch:** \uc774\ubbf8 Elasticsearch/OpenSearch \ud074\ub7ec\uc2a4\ud130\ub97c \uc6b4\uc601\ud558\uace0 \uc788\ub2e4\uba74 \ucd5c\uc120
 - **Qdrant:** \uc21c\uc218 \ubca1\ud130 \uac80\uc0c9\uc5d0 \ucd5c\uc801, \ub0ae\uc740 \ub9ac\uc18c\uc2a4 \uc0ac\uc6a9
 - **Weaviate:** \ud558\uc774\ube0c\ub9ac\ub4dc \uac80\uc0c9(BM25 + \ubca1\ud130)\uc758 \ub0b4\uc7a5 \uae30\ub2a5\uc774 \uc6b0\uc218\ud568
 - **PostgreSQL + pgvector:** \ubaa8\ub4e0 \uac83\uc744 \ud558\ub098\uc758 \ub370\uc774\ud130\ubca0\uc774\uc2a4\ub85c \ucc98\ub9ac\ud558\uace0 \uc2f6\ub2e4\uba74 \ucd5c\uc120
@@ -661,9 +625,7 @@ Haystack 2.x(2024\ub144 1\uc6d4 \ubc1c\ub839)\ub294 2026\ub144 5\uc6d4 \uae30\uc
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -681,7 +643,6 @@ Haystack 2.x(2024\ub144 1\uc6d4 \ubc1c\ub839)\ub294 2026\ub144 5\uc6d4 \uae30\uc
 **\uc81c\ud734 \uacf5\uac1c:** \ubcf8 \uae00\uc758 \uc77c\ubd80 \ub9c1\ud06c\ub294 \uc81c\ud734 \ub9c1\ud06c\uc774\ub2e4. \uc6b0\ub9ac\uc758 [DigitalOcean \ucd94\ucc9c \ub9c1\ud06c](https://m.do.co/c/eca87ac14ee0)\ub97c \ud1b5\ud574 \uac00\uc785\ud558\uba74 $200 \ud06c\ub808\ub527\uc744 \ubc1b\uace0 \uc6b0\ub9ac\ub3c4 \ucd94\ucc9c \ubcf4\ub108\uc2a4\ub97c \ubc1b\ub2e4 \u2014 \ucda9\uac00 \ube44\uc6a9\uc5c6\uc774. \uc774\ub294 \uc6b0\ub9ac\uc758 \ub3c5\ub9bd\uc801\uc778 \uc5f0\uad6c\uc744 \uc9c0\uc6d0\ud558\uace0 \ucf58\ud150\ucce4\uc744 \ubb34\ub8cc\ub85c \uc720\uc9c0\ud55c\ub2e4.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

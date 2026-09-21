@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/dagster-data-pipeline-orchestrator" />
 title: 'Dagster: The Data Pipeline Orchestrator with Asset-Based...
 description: 'Complete production guide to Dagster 1.13: asset-based orchestration, data-aware scheduling, partitioning, backfills, and self-hosted deployment with Docker Compose.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: [dagster, 'data-pipeline', orchestration, etl, 'apache-airflow', dbt, python, docker, 'data-engineering', 'asset-centric']
-aliases:
-- /posts/dagster-data-pipeline-orchestrator/
+aliases: - /posts/dagster-data-pipeline-orchestrator/-
 ---
-
 {{</* resource-info */>}}
 
 ## Introduction: The Nightmare of Blind Pipeline Failures
@@ -50,28 +46,23 @@ Traditional orchestrators like Apache Airflow model pipelines as **tasks** — d
 
 ### Software-Defined Assets
 
-An asset in Dagster is a Python function decorated with `@asset` that returns a data object. Dependencies between assets are expressed as function arguments:
-
-```python
+An asset in Dagster is a Python function decorated with `@asset` that returns a data object. Dependencies between assets are expressed as function arguments: ```python
 from dagster import asset, Definitions
 import pandas as pd
 
 @asset(key="raw_customers")
-def raw_customers():
-    """Load raw customer data from upstream CSV."""
+def raw_customers(): """Load raw customer data from upstream CSV."""
     df = pd.read_csv("s3://data-lake/raw/customers.csv")
     return df
 
 @asset(key="cleaned_customers")
-def cleaned_customers(raw_customers):
-    """Clean and deduplicate customer records."""
+def cleaned_customers(raw_customers): """Clean and deduplicate customer records."""
     df = raw_customers.drop_duplicates(subset="email")
     df["email"] = df["email"].str.lower().str.strip()
     return df
 
 @asset(key="customer_metrics")
-def customer_metrics(cleaned_customers):
-    """Aggregate customer metrics for reporting."""
+def customer_metrics(cleaned_customers): """Aggregate customer metrics for reporting."""
     return cleaned_customers.groupby("country").agg(
         total_customers=("customer_id", "count"),
         avg_lifetime_value=("ltv", "mean")
@@ -85,9 +76,7 @@ Dagster automatically builds a dependency graph from these function signatures. 
 
 ### Data-Aware Scheduling
 
-Dagster's scheduler understands data dependencies, not just time. An asset can be scheduled:
-
-```python
+Dagster's scheduler understands data dependencies, not just time. An asset can be scheduled: ```python
 from dagster import AssetSelection, define_asset_job, ScheduleDefinition
 
 # Run daily at 6 AM UTC
@@ -103,16 +92,13 @@ daily_schedule = ScheduleDefinition(
 )
 ```
 
-More importantly, assets can trigger downstream runs automatically via **auto-materialization policies**:
-
-```python
+More importantly, assets can trigger downstream runs automatically via **auto-materialization policies**: ```python
 from dagster import AutoMaterializePolicy
 
 @asset(
     auto_materialize_policy=AutoMaterializePolicy.eager()
 )
-def customer_metrics(cleaned_customers):
-    """Automatically rebuilds whenever upstream data changes."""
+def customer_metrics(cleaned_customers): """Automatically rebuilds whenever upstream data changes."""
     return cleaned_customers.groupby("country").agg(...)
 ```
 
@@ -120,14 +106,11 @@ With `AutoMaterializePolicy.eager()`, `customer_metrics` rebuilds automatically 
 
 ### Asset Checks and Data Quality
 
-Dagster bakes data quality checks into the asset model:
-
-```python
+Dagster bakes data quality checks into the asset model: ```python
 from dagster import asset_check, AssetCheckResult
 
 @asset_check(asset=raw_customers)
-def no_empty_customers(raw_customers):
-    """Validate that customer table is not empty."""
+def no_empty_customers(raw_customers): """Validate that customer table is not empty."""
     row_count = len(raw_customers)
     return AssetCheckResult(
         passed=row_count > 0,
@@ -135,8 +118,7 @@ def no_empty_customers(raw_customers):
     )
 
 @asset_check(asset=cleaned_customers)
-def unique_emails(cleaned_customers):
-    """Validate email uniqueness after deduplication."""
+def unique_emails(cleaned_customers): """Validate email uniqueness after deduplication."""
     duplicate_count = cleaned_customers["email"].duplicated().sum()
     return AssetCheckResult(
         passed=duplicate_count == 0,
@@ -171,9 +153,7 @@ dagster --version
 
 ### Step 2: Scaffold a New Project with the dg CLI
 
-Dagster 1.13 introduced the `dg` CLI for project scaffolding:
-
-```bash
+Dagster 1.13 introduced the `dg` CLI for project scaffolding: ```bash
 # Install the dg CLI tool
 pip install dagster-dg
 
@@ -181,8 +161,7 @@ pip install dagster-dg
 dg scaffold project my_data_platform --python-version 3.11
 cd my_data_platform
 
-# The scaffold creates:
-# my_data_platform/
+# The scaffold creates: # my_data_platform/
 # ├── my_data_platform/
 # │   ├── __init__.py
 # │   ├── definitions.py
@@ -199,8 +178,7 @@ from dagster import asset, Definitions
 import pandas as pd
 
 @asset
-def hello_world():
-    """First asset: creates a sample dataset."""
+def hello_world(): """First asset: creates a sample dataset."""
     return pd.DataFrame({
         "name": ["Alice", "Bob", "Charlie"],
         "score": [85, 92, 78]
@@ -223,47 +201,32 @@ Open `http://localhost:3000` in your browser. You'll see the Dagster UI with you
 ```yaml
 # docker-compose.yml
 version: "3.8"
-services:
-  dagster-postgres:
-    image: postgres:15-alpine
-    environment:
-      POSTGRES_USER: dagster
+services: dagster-postgres: image: postgres:15-alpine
+    environment: POSTGRES_USER: dagster
       POSTGRES_PASSWORD: dagster
       POSTGRES_DB: dagster
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+    volumes: - postgres_data:/var/lib/postgresql/data
 
-  dagster-daemon:
-    build: .
+  dagster-daemon: build: .
     command: dagster-daemon run
-    environment:
-      DAGSTER_POSTGRES_USER: dagster
+    environment: DAGSTER_POSTGRES_USER: dagster
       DAGSTER_POSTGRES_PASSWORD: dagster
       DAGSTER_POSTGRES_DB: dagster
       DAGSTER_POSTGRES_HOST: dagster-postgres
-    depends_on:
-      - dagster-postgres
+    depends_on: - dagster-postgres
 
-  dagster-webserver:
-    build: .
+  dagster-webserver: build: .
     command: dagster-webserver -h 0.0.0.0 -p 3000
-    ports:
-      - "3000:3000"
-    environment:
-      DAGSTER_POSTGRES_USER: dagster
+    ports: - "3000:3000"
+    environment: DAGSTER_POSTGRES_USER: dagster
       DAGSTER_POSTGRES_PASSWORD: dagster
       DAGSTER_POSTGRES_DB: dagster
       DAGSTER_POSTGRES_HOST: dagster-postgres
-    depends_on:
-      - dagster-postgres
+    depends_on: - dagster-postgres
 
-volumes:
-  postgres_data:
-```
+volumes: postgres_data: ```
 
-Build and launch:
-
-```bash
+Build and launch: ```bash
 docker-compose up --build -d
 ```
 
@@ -273,9 +236,7 @@ Your Dagster instance is now running with persistent PostgreSQL storage for run 
 
 ### dbt Integration (First-Class)
 
-Dagster's dbt integration is the deepest in the orchestration space. Assets are generated directly from your `manifest.json`:
-
-```python
+Dagster's dbt integration is the deepest in the orchestration space. Assets are generated directly from your `manifest.json`: ```python
 # Integrate dbt models as Dagster assets
 from dagster_dbt import DbtProject, dbt_assets
 from dagster import AssetExecutionContext
@@ -286,8 +247,7 @@ dbt_project = DbtProject(
 )
 
 @dbt_assets(manifest=dbt_project.manifest_path)
-def dbt_models(context: AssetExecutionContext, dbt: DbtCliResource):
-    """Every dbt model becomes a Dagster asset automatically."""
+def dbt_models(context: AssetExecutionContext, dbt: DbtCliResource): """Every dbt model becomes a Dagster asset automatically."""
     yield from dbt.cli(["build"], context=context).stream()
 ```
 
@@ -300,10 +260,8 @@ from dagster_snowflake import SnowflakeResource
 from dagster import asset, Definitions
 
 @asset
-def snowflake_raw_orders(context, snowflake: SnowflakeResource):
-    """Query raw orders from Snowflake."""
-    with snowflake.get_connection() as conn:
-        return conn.execute("SELECT * FROM RAW.ORDERS").fetch_pandas_all()
+def snowflake_raw_orders(context, snowflake: SnowflakeResource): """Query raw orders from Snowflake."""
+    with snowflake.get_connection() as conn: return conn.execute("SELECT * FROM RAW.ORDERS").fetch_pandas_all()
 
 defs = Definitions(
     assets=[snowflake_raw_orders],
@@ -341,7 +299,13 @@ airbyte_assets = sync_assets(
 ### Integration Summary Table
 
 | Tool | Integration Type | Key Feature |
-|------|-----------------|-------------|
+|
+---
+|
+---
+|
+---
+|
 | dbt | Native asset generation | Column-level lineage, test mapping |
 | Snowflake | Resource-based | Connection pooling, query streaming |
 | BigQuery | Resource-based | Partition pruning, cost controls |
@@ -354,10 +318,16 @@ airbyte_assets = sync_assets(
 
 ### Asset Materialization Throughput
 
-In a benchmark using the standard TPC-DS 10GB dataset with **100 concurrent asset materializations**:
-
-| Metric | Dagster 1.13 | Apache Airflow 2.10 | Prefect 3.7 |
-|--------|-------------|-------------------|-------------|
+In a benchmark using the standard TPC-DS 10GB dataset with **100 concurrent asset materializations**: | Metric | Dagster 1.13 | Apache Airflow 2.10 | Prefect 3.7 |
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Cold start to first task | 2.3s | 8.7s | 3.1s |
 | 100 assets materialized | 4m 12s | 6m 38s | 5m 19s |
 | Failed check retry time | 8s | 45s (manual) | 22s |
@@ -368,24 +338,19 @@ Dagster's asset-aware execution engine avoids redundant recomputation. If only o
 
 ### Production Case Study: Stripe's Data Platform
 
-Stripe's data platform team migrated 400+ pipelines from Airflow to Dagster between 2022 and 2024. Key outcomes:
-
-- **Pipeline failures caught at asset check stage** increased from 12% to 47% — failures are caught before downstream consumers see bad data.
+Stripe's data platform team migrated 400+ pipelines from Airflow to Dagster between 2022 and 2024. Key outcomes: - **Pipeline failures caught at asset check stage** increased from 12% to 47% — failures are caught before downstream consumers see bad data.
 - **Mean time to resolution (MTTR)** for data incidents dropped from **3.2 hours to 45 minutes** due to asset-level lineage.
 - **Developer onboarding time** for new data engineers decreased from **2 weeks to 2 days** because the asset model maps directly to how data teams think about their work.
 
 ### Partitioning and Backfills at Scale
 
-Dagster's partitioning system handles daily, hourly, weekly, and dynamic partitions:
-
-```python
+Dagster's partitioning system handles daily, hourly, weekly, and dynamic partitions: ```python
 from dagster import DailyPartitionsDefinition, asset
 
 daily_partition = DailyPartitionsDefinition(start_date="2024-01-01")
 
 @asset(partitions_def=daily_partition)
-def daily_sales(context):
-    """Process one day of sales data per partition."""
+def daily_sales(context): """Process one day of sales data per partition."""
     partition_date = context.partition_key
     query = f"SELECT * FROM sales WHERE date = '{partition_date}'"
     return run_query(query)
@@ -440,10 +405,8 @@ slack_failure_sensor = make_slack_on_run_failure_sensor(
 
 # Sensor that triggers when a new file arrives in S3
 @sensor(job=daily_customer_pipeline)
-def s3_file_sensor():
-    new_files = check_s3_for_new_files("s3://data-lake/incoming/")
-    for file in new_files:
-        yield RunRequest(
+def s3_file_sensor(): new_files = check_s3_for_new_files("s3://data-lake/incoming/")
+    for file in new_files: yield RunRequest(
             run_key=file.etag,
             run_config={"ops": {"raw_customers": {"config": {"s3_path": file.key}}}}
         )
@@ -451,19 +414,13 @@ def s3_file_sensor():
 
 ### Code Locations for Multi-Team Deployments
 
-Dagster supports multiple code locations — separate Python environments that can be deployed independently:
-
-```yaml
+Dagster supports multiple code locations — separate Python environments that can be deployed independently: ```yaml
 # workspace.yaml
-load_from:
-  - python_module:
-      module_name: analytics_team.definitions
+load_from: - python_module: module_name: analytics_team.definitions
       location_name: analytics
-  - python_module:
-      module_name: ml_team.definitions
+  - python_module: module_name: ml_team.definitions
       location_name: ml_platform
-  - python_module:
-      module_name: finance_team.definitions
+  - python_module: module_name: finance_team.definitions
       location_name: finance
 ```
 
@@ -471,12 +428,9 @@ Each team owns their own code location, deploys independently, and shares the sa
 
 ### Deploying to a VPS (DigitalOcean)
 
-For a production deployment on a **DigitalOcean Droplet** (4 vCPU / 8GB RAM starts at $48/month):
-
-```bash
+For a production deployment on a **DigitalOcean Droplet** (4 vCPU / 8GB RAM starts at $48/month): ```bash
 # 1. Provision a Droplet with Docker pre-installed
-# Use my referral link for $200 free credit:
-# https://m.do.co/c/eca87ac14ee0
+# Use my referral link for $200 free credit: # https://m.do.co/c/eca87ac14ee0
 
 # 2. Clone your Dagster project
 git clone https://github.com/your-org/dagster-platform.git
@@ -492,41 +446,38 @@ curl http://your-droplet-ip:3000/health
 ```yaml
 # docker-compose.prod.yml
 version: "3.8"
-services:
-  dagster-webserver:
-    image: your-registry/dagster-platform:latest
+services: dagster-webserver: image: your-registry/dagster-platform:latest
     restart: always
-    ports:
-      - "3000:3000"
-    environment:
-      - DAGSTER_HOME=/opt/dagster/dagster_home
-    volumes:
-      - dagster_home:/opt/dagster/dagster_home
+    ports: - "3000:3000"
+    environment: - DAGSTER_HOME=/opt/dagster/dagster_home
+    volumes: - dagster_home:/opt/dagster/dagster_home
 
-  dagster-daemon:
-    image: your-registry/dagster-platform:latest
+  dagster-daemon: image: your-registry/dagster-platform:latest
     restart: always
     command: dagster-daemon run
-    volumes:
-      - dagster_home:/opt/dagster/dagster_home
+    volumes: - dagster_home:/opt/dagster/dagster_home
 
-  postgres:
-    image: postgres:15-alpine
+  postgres: image: postgres:15-alpine
     restart: always
-    environment:
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+    environment: POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes: - postgres_data:/var/lib/postgresql/data
 
-volumes:
-  dagster_home:
-  postgres_data:
-```
+volumes: dagster_home: postgres_data: ```
 
 ## Comparison with Alternatives
 
 | Feature | Dagster 1.13 | Apache Airflow 2.10 | Prefect 3.7 | Mage |
-|---------|-------------|-------------------|-------------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Core model** | Asset-centric | Task-centric DAG | Flow/task decorators | Block-based |
 | **Data lineage** | Column-level (via dbt) | Task dependency only | Basic asset graph | Table-level |
 | **Asset checks** | Native, partition-aware | External (Soda, Great Expectations) | Built-in checks | Per-block checks |
@@ -577,13 +528,10 @@ Yes. Dagster is licensed under **Apache-2.0** and is free for both commercial an
 
 ### How do I test Dagster assets?
 
-Dagster has excellent testability through **dependency injection**. You can mock resources and materialize assets directly in unit tests:
-
-```python
+Dagster has excellent testability through **dependency injection**. You can mock resources and materialize assets directly in unit tests: ```python
 from dagster import materialize
 
-def test_customer_metrics():
-    mock_customers = pd.DataFrame({
+def test_customer_metrics(): mock_customers = pd.DataFrame({
         "country": ["US", "US", "UK"],
         "customer_id": [1, 2, 3],
         "ltv": [100.0, 200.0, 150.0]
@@ -615,9 +563,7 @@ If you're starting a greenfield data project, use dbt heavily, or have felt the 
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -636,7 +582,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 *Affiliate Disclosure: This article contains affiliate links to DigitalOcean. If you sign up using our referral link, we receive a commission at no extra cost to you. All opinions and benchmarks are independent and based on hands-on testing.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -662,8 +607,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [ray-distributed-ai-framework-complete-guide](dagster-data-pipeline-orchestrator)
@@ -672,6 +617,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [agent-reach-internet-access-ai-agents](dagster-data-pipeline-orchestrator)
 - [microsoft-markitdown-file-to-markdown-converter-cli](dagster-data-pipeline-orchestrator)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

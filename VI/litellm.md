@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/litellm" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/litellm" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/litellm" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/litellm" />
 title: 'LiteLLM: 22,500 Stars — Triển khai Một API cho 100+ LLM,...
 description: 'LiteLLM (litellm) là cổng AI mã nguồn mở cung cấp API thống nhất cho 100+ LLM. Tương thích với OpenAI, Anthropic, Ollama, Cohere, Gemini, Bedrock. Bao gồm triển khai Docker, khóa ảo, cân bằng tải, bộ nhớ đệm và cứng hóa production.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,12 +20,9 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [litellm, 'llm-gateway', 'mã-nguồn-mở', docker, production, 'hạ-tầng-ai', 'proxy-server', 'đa-mô-hình']
-aliases:
-- /vi/posts/litellm/
+aliases: - /vi/posts/litellm/
 - /vi/resources/llm-frameworks/litellm-unified-api-tutorial/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/litellm/ -->
 
 {{</* resource-info */>}}
 
@@ -50,9 +42,7 @@ Với **22,500+ sao GitHub** và **1,500+ ngườI đóng góp**, LiteLLM đã t
 
 LiteLLM là một cổng proxy LLM và Python SDK mã nguồn mở, cung cấp giao diện thống nhất để gọi 100+ API LLM — OpenAI, Anthropic, Azure, Google Vertex AI, AWS Bedrock, Cohere, Ollama, v.v. — sử dụng định dạng API tương thích OpenAI duy nhất.
 
-Hai chế độ tồn tại:
-
-- **Python SDK** — `import litellm; completion(...)` trong code, không phụ thuộc nhà cung cấp
+Hai chế độ tồn tại: - **Python SDK** — `import litellm; completion(...)` trong code, không phụ thuộc nhà cung cấp
 - **Proxy Server** — gateway HTTP tự lưu trữ tại `:4000`, bất kỳ client OpenAI SDK nào cũng có thể trỏ đến
 
 Chế độ proxy là những gì hầu hết các đội production sử dụng. Nó thêm khóa ảo, quản lý đội, kiểm soát ngân sách, giới hạn tốc độ, bộ nhớ đệm, và khả năng quan sát — tất cả được cấu hình qua một tệp `config.yaml`.
@@ -114,68 +104,54 @@ EOF
 
 ```yaml
 # litellm_config.yaml
-model_list:
-  - model_name: gpt-4o
-    litellm_params:
-      model: openai/gpt-4o
+model_list: - model_name: gpt-4o
+    litellm_params: model: openai/gpt-4o
       api_key: os.environ/OPENAI_API_KEY
       rpm: 500
       tpm: 150000
 
   - model_name: claude-sonnet
-    litellm_params:
-      model: anthropic/claude-sonnet-4-20250514
+    litellm_params: model: anthropic/claude-sonnet-4-20250514
       api_key: os.environ/ANTHROPIC_API_KEY
       rpm: 200
       tpm: 40000
 
   - model_name: gemini-flash
-    litellm_params:
-      model: gemini/gemini-2.0-flash
+    litellm_params: model: gemini/gemini-2.0-flash
       api_key: os.environ/GEMINI_API_KEY
       rpm: 1000
 
   - model_name: ollama-llama
-    litellm_params:
-      model: ollama/llama3.3
+    litellm_params: model: ollama/llama3.3
       api_base: http://ollama:11434
-    model_info:
-      mode: chat
+    model_info: mode: chat
 
   # Mô hình nhúng
   - model_name: text-embedding
-    litellm_params:
-      model: openai/text-embedding-3-small
+    litellm_params: model: openai/text-embedding-3-small
       api_key: os.environ/OPENAI_API_KEY
 
-general_settings:
-  master_key: os.environ/LITELLM_MASTER_KEY
+general_settings: master_key: os.environ/LITELLM_MASTER_KEY
   database_url: os.environ/DATABASE_URL
   max_budget: 10000.00
   budget_duration: 30d
-  alerting:
-    - slack
+  alerting: - slack
   alerting_threshold: 300
   global_max_parallel_requests: 200
 
-litellm_settings:
-  drop_params: true
+litellm_settings: drop_params: true
   num_retries: 3
   request_timeout: 120
 
   # Tự động chuyển đổi dự phòng
-  fallbacks:
-    - gpt-4o:
-      - claude-sonnet
+  fallbacks: - gpt-4o: - claude-sonnet
       - gemini-flash
-    - claude-sonnet:
-      - gpt-4o
+    - claude-sonnet: - gpt-4o
       - gemini-flash
 
   # Bộ nhớ đệm Redis
   cache: true
-  cache_params:
-    type: redis
+  cache_params: type: redis
     host: redis
     port: 6379
     ttl: 3600
@@ -280,13 +256,10 @@ print(response.content[0].text)
 
 ```yaml
 # Thêm vào litellm_config.yaml
-model_list:
-  - model_name: local-llama
-    litellm_params:
-      model: ollama/llama3.3
+model_list: - model_name: local-llama
+    litellm_params: model: ollama/llama3.3
       api_base: http://localhost:11434
-    model_info:
-      mode: chat
+    model_info: mode: chat
 ```
 
 ```bash
@@ -303,10 +276,8 @@ curl http://localhost:4000/v1/chat/completions \
 ### Cohere
 
 ```yaml
-model_list:
-  - model_name: cohere-command
-    litellm_params:
-      model: cohere/command-r-plus
+model_list: - model_name: cohere-command
+    litellm_params: model: cohere/command-r-plus
       api_key: os.environ/COHERE_API_KEY
 ```
 
@@ -325,9 +296,7 @@ response = client.chat.completions.create(
 
 ### Kịch bản: Nền tảng AI Đa Đội (Startup SaaS)
 
-Startup AI 50 ngườI phục vụ 5 đội nội bộ và khách hàng API bên ngoài:
-
-| Chỉ số | Trước LiteLLM | Sau LiteLLM |
+Startup AI 50 ngườI phục vụ 5 đội nội bộ và khách hàng API bên ngoài: | Chỉ số | Trước LiteLLM | Sau LiteLLM |
 |--------|---------------|-------------|
 | SDK nhà cung cấp duy trì | 4 (OpenAI, Anthropic, Gemini, Ollama) | 1 (Tương thích OpenAI) |
 | Quản lý khóa API | Khóa chung trong biến môi trường | Khóa ảo mỗi đội/khách hàng |
@@ -375,8 +344,7 @@ curl -X POST http://localhost:4000/key/generate \
     }
   }'
 
-# Phản hồi:
-# {
+# Phản hồi: # {
 #   "key": "sk-litellm-abc123...",
 #   "expires": null,
 #   "max_budget": 500.00,
@@ -387,23 +355,16 @@ curl -X POST http://localhost:4000/key/generate \
 ### Giới hạn Ngân sách Cấp Nhà cung cấp
 
 ```yaml
-general_settings:
-  provider_budget_config:
-    openai:
-      monthly_budget: 5000.00
-    anthropic:
-      monthly_budget: 3000.00
-    gemini:
-      monthly_budget: 1000.00
+general_settings: provider_budget_config: openai: monthly_budget: 5000.00
+    anthropic: monthly_budget: 3000.00
+    gemini: monthly_budget: 1000.00
 ```
 
 ### Định tuyến Dựa trên Độ trễ
 
 ```yaml
-router_settings:
-  routing_strategy: latency-based-routing
-  routing_strategy_args:
-    ttl: 60
+router_settings: routing_strategy: latency-based-routing
+  routing_strategy_args: ttl: 60
   allowed_fails: 3
   cooldown_time: 60
   num_retries: 2
@@ -415,20 +376,17 @@ router_settings:
 
 ```yaml
 # config.yaml được cứng hóa bảo mật
-general_settings:
-  master_key: os.environ/LITELLM_MASTER_KEY
+general_settings: master_key: os.environ/LITELLM_MASTER_KEY
   database_url: os.environ/DATABASE_URL
 
   # Buộc HTTPS trong production
   # Chạy phía sau Nginx hoặc AWS ALB với TLS termination
 
   # Vô hiệu hóa ghi log chi tiết
-  litellm_settings:
-    set_verbose: false
+  litellm_settings: set_verbose: false
 
   # Mã hóa khóa khi lưu trữ
-  litellm_settings:
-    key_generation_algorithm: "rsa"
+  litellm_settings: key_generation_algorithm: "rsa"
     allow_user_auth: false
 ```
 
@@ -453,14 +411,11 @@ helm install litellm-gateway ./litellm-helm \
 
 ```yaml
 # Thêm vào config.yaml
-litellm_settings:
-  success_callback: ["prometheus"]
+litellm_settings: success_callback: ["prometheus"]
   failure_callback: ["prometheus"]
 ```
 
-Các chỉ số Prometheus chính hiển thị tại `/metrics`:
-
-```promql
+Các chỉ số Prometheus chính hiển thị tại `/metrics`: ```promql
 # Tốc độ yêu cầu theo mô hình
 rate(litellm_request_total_requests[5m])
 
@@ -504,9 +459,7 @@ Nhập [dashboard Grafana chính thức](https://github.com/BerriAI/litellm/blob
 
 ## Hạn chế / Đánh giá Trung thực
 
-LiteLLM không phải công cụ phù hợp cho mọi tình huống. Đây là nơi nó còn thiếu:
-
-1. **Chi phí vận hành** — Không giống gateway quản lý, bạn chịu trách nhiệm về thờI gian hoạt động, mở rộng, vá bảo mật, và sao lưu cơ sở dữ liệu. Dự trù 0.5–1 FTE cho bảo trì production.
+LiteLLM không phải công cụ phù hợp cho mọi tình huống. Đây là nơi nó còn thiếu: 1. **Chi phí vận hành** — Không giống gateway quản lý, bạn chịu trách nhiệm về thờI gian hoạt động, mở rộng, vá bảo mật, và sao lưu cơ sở dữ liệu. Dự trù 0.5–1 FTE cho bảo trì production.
 
 2. **Không có quản lý prompt tích hợp** — UI phiên bản prompt của Portkey với A/B testing không tồn tại trong LiteLLM. Bạn quản lý template prompt trong ứng dụng hoặc công cụ bên ngoài.
 
@@ -567,9 +520,7 @@ Với đội chi tiêu $5,000+/tháng cho API LLM và có năng lực DevOps cơ
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -588,7 +539,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [Tài liệu Helicone](https://docs.helicone.ai) — Giải pháp thay thế tập trung quan sát
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/time-series-analysis-tools-python-libraries" />
 title: 'Time Series Analysis in Python: Complete Toolkit with Pr...
 description: 'Master Python time series analysis with Prophet, sktime, statsmodels ARIMA, and Darts. Compare tools, build forecasting pipelines, and avoid common pitfalls.'
 date: 2026-05-18 00:00:00+08:00
@@ -20,8 +18,7 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/time-series-analysis-tools-python-libraries/
+aliases: - /posts/time-series-analysis-tools-python-libraries/
 ---
 # Time Series Analysis in Python: Complete Toolkit with Prophet, sktime, ARIMA & Darts
 
@@ -84,9 +81,7 @@ Darts' `TimeSeries` class provides a consistent data structure across all models
 
 ## Feature Engineering for Time Series
 
-Regardless of which library you choose, feature engineering dramatically impacts forecasting accuracy. The most impactful features for traditional ML approaches include:
-
-- **Lag features**: values at previous time steps (y(t-1), y(t-7), y(t-365))
+Regardless of which library you choose, feature engineering dramatically impacts forecasting accuracy. The most impactful features for traditional ML approaches include: - **Lag features**: values at previous time steps (y(t-1), y(t-7), y(t-365))
 - **Rolling statistics**: moving averages, standard deviations, min/max over sliding windows
 - **Datetime features**: hour, day of week, month, quarter, year, is_holiday flags
 - **Fourier terms**: sine and cosine transforms of time indices to capture seasonality
@@ -98,7 +93,17 @@ Time-based train-test splitting is critical and frequently done incorrectly. Sta
 ## Complete Tool Comparison Matrix
 
 | Dimension | Prophet | sktime | statsmodels | Darts |
-|-----------|---------|--------|-------------|-------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Model Types** | Additive regression | Statistical + ML reduction | Statistical (ARIMA, VAR, ETS) | Deep learning + classical |
 | **Ease of Use** | Excellent (minimal API) | Good (scikit-learn pattern) | Moderate (statistical knowledge) | Moderate (deep learning concepts) |
 | **Scalability** | Single machine, ~1M rows | Single machine | Single machine | GPU accelerated, distributed |
@@ -114,9 +119,7 @@ The matrix reveals complementary strengths rather than direct competition. Proph
 
 ## Building an End-to-End Forecasting Pipeline
 
-A complete forecasting workflow proceeds through defined stages:
-
-1. **Data exploration**: Plot the series, check for trends, seasonality, and anomalies. Use statsmodels' seasonal decomposition to isolate components.
+A complete forecasting workflow proceeds through defined stages: 1. **Data exploration**: Plot the series, check for trends, seasonality, and anomalies. Use statsmodels' seasonal decomposition to isolate components.
 
 2. **Preprocessing**: Handle missing values through interpolation, detect and treat outliers, ensure regular frequency (resample if needed).
 
@@ -168,20 +171,17 @@ Follow three rules strictly. First, never use future information to compute feat
 
 Real-time forecasting (sub-second predictions on streaming data) requires specific architectural choices. Prophet is unsuitable — it refits models from scratch and has no incremental update mechanism. statsmodels ARIMA supports `apply` for updating fitted models with new observations, making it viable for moderate-frequency updates. Darts' deep learning models can score single observations quickly on GPU once trained, but model retraining remains batch-oriented. For true real-time systems, consider dedicated streaming libraries like River (formerly creme) for online learning, or deploy Darts/Prophet models with scheduled batch retraining rather than continuous updates.
 
----
 
+---
 ## Recommended Infrastructure
 
-To run any of the tools above reliably 24/7, infrastructure matters:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.
+To run any of the tools above reliably 24/7, infrastructure matters: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low latency for mainland China access. This is the same IDC hosting dibi8.com — production-proven.
 
 *Affiliate links — no extra cost to you, helps keep dibi8.com running.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -206,3 +206,4 @@ To run any of the tools above reliably 24/7, infrastructure matters:
   }
 }
 </script>
+---

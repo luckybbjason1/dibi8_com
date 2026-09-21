@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/goose-ai-agent-open-source-automation" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/goose-ai-agent-open-source-automation" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/goose-ai-agent-open-source-automation" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/goose-ai-agent-open-source-automation" />
 title: "Goose AI Agent：44K⭐오픈소스 AI 에이전트, 코딩부터 자동화까지 전부 처리"
 description: "Goose는 Linux Foundation이 지원하는 오픈소스 AI Agent로, 15개 이상의 LLM 제공업체와 70개 이상의 MCP 확장 기능을 지원합니다. 데스크톱 앱 + CLI + API를 Rust로 구축하여 성능이 뛰어납니다."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Go
+tech_stack: - Go
   - Python
   - Rust
 application_domain: "Llm Frameworks"
@@ -26,8 +20,7 @@ maintainer: "aaif-goose"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-faqs:
-  - q: 'Goose AI agent란 무엇인가요?'
+faqs: - q: 'Goose AI agent란 무엇인가요?'
     a: 'Goose는 원래 Block이 개발하여 Linux Foundation 산하 Agentic AI Foundation (AAIF)에 기증한 범용 오픈소스 AI agent입니다. 전문 코딩 어시스턴트와 달리 코드 작성, 데이터 분석, 파일 관리, 터미널 명령 실행, 워크플로우 자동화 등 어떤 작업이든 처리할 수 있습니다.'
   - q: 'Goose는 어떤 LLM 제공업체를 지원하나요?'
     a: 'Goose는 모델에 구애받지 않으며 OpenAI GPT-4 및 GPT-3.5, Anthropic Claude, Google Gemini, Ollama를 통한 로컬 모델, 그리고 OpenAI 호환 API를 모두 지원합니다.'
@@ -39,7 +32,6 @@ faqs:
     a: 'Goose에는 위험한 명령을 실행하기 전에 묻는 승인 모드(approval mode), 격리된 환경에서 명령을 실행하는 샌드박스 모드(sandbox mode), 모든 작업을 추적하는 감사 로그(audit log), 그리고 API 남용을 방지하는 속도 제한(rate limiting)이 포함되어 있습니다.'
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/goose-ai-agent-open-source-automation/ -->
 {</* resource-info */>}
 
 ## Goose란?
@@ -60,9 +52,7 @@ Stars: **44,261+** | 언어: Rust | 라이선스: Apache-2.0
 
 ### 1. 코드뿐만 아니라 모든 것
 
-Goose는 **범용 AI Agent**로, 프로그래밍에만 국한되지 않습니다:
-
-| 시나리오 | 기능 |
+Goose는 **범용 AI Agent**로, 프로그래밍에만 국한되지 않습니다: | 시나리오 | 기능 |
 |----------|------|
 | 프로그래밍 | 코드 작성, 디버깅, 테스트, 리팩토링 |
 | 데이터 분석 | CSV 처리, 차트 생성, 보고서 작성 |
@@ -72,9 +62,7 @@ Goose는 **범용 AI Agent**로, 프로그래밍에만 국한되지 않습니다
 
 ### 2. 15개 이상 LLM 제공업체 지원
 
-Goose는 특정 AI 회사에 종속되지 않습니다:
-
-- **Anthropic** (Claude)
+Goose는 특정 AI 회사에 종속되지 않습니다: - **Anthropic** (Claude)
 - **OpenAI** (GPT-4o)
 - **Google** (Gemini)
 - **Ollama** (로컬 모델)
@@ -83,9 +71,7 @@ Goose는 특정 AI 회사에 종속되지 않습니다:
 
 ### 3. 70개 이상 MCP 확장 생태계
 
-**Model Context Protocol (MCP)** 개방형 표준을 통해 Goose는 다음을 연결할 수 있습니다:
-
-- 🌐 브라우저 제어
+**Model Context Protocol (MCP)** 개방형 표준을 통해 Goose는 다음을 연결할 수 있습니다: - 🌐 브라우저 제어
 - 📁 파일 시스템 작업
 - 🗄️ 데이터베이스 쿼리
 - 🔍 검색 엔진
@@ -173,22 +159,19 @@ goose run "이 앱을 AWS에 배포하고 로드 밸런싱과 자동 확장을 �
 
 ### 1. 엔터프라이즈 배포
 
-Goose의 Apache-2.0 라이선스는 상업적 사용을 허용합니다:
-- 내부 AI 워크플로우 플랫폼
+Goose의 Apache-2.0 라이선스는 상업적 사용을 허용합니다: - 내부 AI 워크플로우 플랫폼
 - 자동화된 운영 도구
 - 지능형 고객 서비스 시스템
 
 ### 2. MCP 확장 개발
 
-Goose용 MCP 확장을 개발하여 판매:
-- 엔터프라이즈 시스템 통합
+Goose용 MCP 확장을 개발하여 판매: - 엔터프라이즈 시스템 통합
 - 업종별 특화 도구
 - 자동화 워크플로우
 
 ### 3. AI Agent 컨설팅
 
-Goose 기반으로 다음을 제공:
-- AI 자동화 컨설팅
+Goose 기반으로 다음을 제공: - AI 자동화 컨설팅
 - 맞춤형 개발 서비스
 - 교육 및 구현
 
@@ -205,9 +188,7 @@ Goose 기반으로 다음을 제공:
 
 ## 요약
 
-Goose는 2026년 가장 주목할 만한 오픈소스 AI Agent입니다:
-
-✅ **44K+ Stars** — 높은 커뮤니티 인정  
+Goose는 2026년 가장 주목할 만한 오픈소스 AI Agent입니다: ✅ **44K+ Stars** — 높은 커뮤니티 인정  
 ✅ **Linux Foundation** — 장기적인 발전 보장  
 ✅ **15+ LLM** — 단일 공급업체에 종속되지 않음  
 ✅ **70+ MCP** — 무한한 확장 가능성  
@@ -238,9 +219,7 @@ Goose는 2026년 가장 주목할 만한 오픈소스 AI Agent입니다:
 
 ## 자체 호스팅 추천 인프라
 
-24/7 안정 운영을 위해 인프라 선택이 중요하다:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 60일 $200 크레딧, 글로벌 14+ 리전. 오픈소스 AI 도구 자체 호스팅에 적합.
+24/7 안정 운영을 위해 인프라 선택이 중요하다: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 60일 $200 크레딧, 글로벌 14+ 리전. 오픈소스 AI 도구 자체 호스팅에 적합.
 - **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — 홍콩 VPS, 중국 본토 접근 시 저지연. dibi8.com 자체가 호스팅된 검증된 IDC.
 
 *추천 링크입니다. 추가 비용 없이 dibi8.com 운영에 도움이 됩니다.*
@@ -248,7 +227,6 @@ Goose는 2026년 가장 주목할 만한 오픈소스 AI Agent입니다:
 *Last updated: 2026-05-07*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -276,25 +254,20 @@ Goose는 2026년 가장 주목할 만한 오픈소스 AI Agent입니다:
 
 ## Why This Matters
 
-Understanding goose ai agent：44k⭐오픈소스 ai 에이전트, 코딩부터 자동화까지 전부 처리 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding goose ai agent：44k⭐오픈소스 ai 에이전트, 코딩부터 자동화까지 전부 처리 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-code-mcp-advanced-10-server-stack-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-mcp-advanced-10-server-stack-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-mcp-advanced-10-server-stack-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-mcp-advanced-10-server-stack-2026" />
 title: 'Claude Code MCP Nâng Cao 2026: Stack 10 Server Cho Produ...
 description: 'Sau khi chạy Claude Code với nhiều tổ hợp MCP server khác nhau, chúng tôi đã chốt một stack 10 server cấp production, cân bằng giữa sức mạnh, bảo mật và thời gian khởi động. Bài viết phân tích từng server, lý do được chọn, chức năng, và cách cấu hình cho cá nhân so với nhóm.'
 date: 2026-05-25 00:00:00+08:00
@@ -21,10 +16,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['claude-code', mcp, configuration, production, 2026]
-aliases:
-- /vi/posts/claude-code-mcp-advanced-10-server-stack-2026/
-faq:
-  - q: "Bao nhiêu MCP server là quá nhiều?"
+aliases: - /vi/posts/claude-code-mcp-advanced-10-server-stack-2026/
+faq: - q: "Bao nhiêu MCP server là quá nhiều?"
     a: "Vượt quá 10 server bắt đầu gây độ trễ khởi động đáng kể. Mỗi server thêm 100-300ms vào quá trình init của Claude Code. Stack 10 server dưới đây là điểm cân bằng tối ưu — phủ 90% workflow mà không làm khởi động chậm chạp."
   - q: "Nên dùng cấu hình MCP toàn cục hay theo từng dự án?"
     a: "Theo dự án (.claude/mcp.json hoặc .cursor/mcp.json) cho các server gắn liền với dự án (postgres riêng cho ứng dụng này, GitHub PAT giới hạn cho repo này). Toàn cục (~/.claude/mcp.json) cho công cụ cá nhân dùng chung (filesystem giới hạn ở thư mục home, sequentialthinking)."
@@ -33,8 +26,6 @@ faq:
   - q: "Đánh đổi giữa server HTTP/SSE và stdio là gì?"
     a: "HTTP: trạng thái bền vững, quản lý credential tập trung, phụ thuộc uptime của server. stdio: không độ trễ, không lộ credential, kết thúc cùng phiên làm việc. Mặc định dùng stdio. Chỉ dùng HTTP khi (a) cần trạng thái bền vững giữa các phiên, hoặc (b) tích hợp với SaaS không có bản local tương đương."
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/claude-code-mcp-advanced-10-server-stack-2026/ -->
 
 {{</* resource-info */>}}
 
@@ -112,9 +103,7 @@ Hệ sinh thái MCP đã vượt 1000+ server trong năm 2026. Phần lớn ngư
 
 ## Cấu Hình
 
-`~/.claude/mcp.json` (toàn cục, công cụ dùng chung):
-
-```json
+`~/.claude/mcp.json` (toàn cục, công cụ dùng chung): ```json
 {
   "mcpServers": {
     "filesystem": {"command": "npx", "args": ["-y", "@modelcontextprotocol/server-filesystem", "/Users/me/work"]},
@@ -128,9 +117,7 @@ Hệ sinh thái MCP đã vượt 1000+ server trong năm 2026. Phần lớn ngư
 }
 ```
 
-`.claude/mcp.json` (theo dự án, công cụ nhạy cảm):
-
-```json
+`.claude/mcp.json` (theo dự án, công cụ nhạy cảm): ```json
 {
   "mcpServers": {
     "github": {"command": "...", "env": {"GITHUB_PAT": "${PROJECT_GITHUB_PAT}"}},
@@ -158,8 +145,7 @@ Tương tự — cài theo dự án. Đừng để credential cloud truy cập �
 
 Mỗi server thêm ~100-300ms. Với 10 server: tổng khởi động khoảng 1,5 giây. Trên 15 server: chậm rõ rệt.
 
-Mẹo:
-- Ưu tiên stdio (local) thay vì HTTP khi cả hai cùng tồn tại
+Mẹo: - Ưu tiên stdio (local) thay vì HTTP khi cả hai cùng tồn tại
 - Kiểm tra thời gian khởi động của từng server — đo bằng `time npx <server>`
 - Thay server cộng đồng chậm bằng phương án chính thức của Anthropic khi có sẵn
 
@@ -173,8 +159,7 @@ Mẹo:
 
 ## Hạ Tầng Đề Xuất
 
-Cho MCP server self-host (dùng chung trong team):
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — credit 200 USD
+Cho MCP server self-host (dùng chung trong team): - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — credit 200 USD
 - **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hong Kong, độ trễ thấp tại châu Á
 
 *Liên kết tiếp thị — giá không đổi, ủng hộ dibi8.com.*
@@ -190,7 +175,6 @@ Ghi đè theo dự án quan trọng hơn cấu hình toàn cục. Hãy giới h�
 **Liên quan**: [Xếp Hạng MCP Server 2026](https://dibi8.com/vi/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/) · [Kiểm Toán Bảo Mật MCP Server 2026](https://dibi8.com/vi/resources/llm-frameworks/mcp-server-security-audit-2026-real-cases/) · [Hướng Dẫn Cài Đặt Claude Code](https://dibi8.com/vi/resources/llm-frameworks/claude-code/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -218,25 +202,20 @@ Ghi đè theo dự án quan trọng hơn cấu hình toàn cục. Hãy giới h�
 
 ## Why This Matters
 
-Understanding claude code mcp nâng cao 2026: stack 10 server cho production is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding claude code mcp nâng cao 2026: stack 10 server cho production is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

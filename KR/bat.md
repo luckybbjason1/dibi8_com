@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/bat" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/bat" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/bat" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/bat" />
 title: 'bat: 58K+ Stars 구문 강조 cat 클론 — 2026년 cat, less, ccat 비교'
 description: 'bat은 구문 강조와 Git 통합을 갖춘 cat(1) 클론. Rust, Git, Homebrew, Cargo와 호환. 설치 튜토리얼, 성능 벤치마크, 설정 파일 및 cat, less, ccat과의 비교를 다룸.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [bat, 'cat 대체', '구문 강조', 'cli 도구', rust, 터미널, '파일 뷰어', 명령줄]
-aliases:
-- /kr/posts/bat/
+aliases: - /kr/posts/bat/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/bat/ -->
 
 {{</* resource-info */>}}
 
@@ -57,9 +49,7 @@ aliases:
               Shebang 파싱            Git diff 마커
 ```
 
-모든 사용자가 알아야 할 핵심 개념:
-
-- **언어 자동 감지**: `bat`은 파일 확장자(`.rs`, `.py`, `.md`)나 shebang 라인(`#!/bin/bash`)에서 구문을 판별한다.
+모든 사용자가 알아야 할 핵심 개념: - **언어 자동 감지**: `bat`은 파일 확장자(`.rs`, `.py`, `.md`)나 shebang 라인(`#!/bin/bash`)에서 구문을 판별한다.
 - **Syntect 엔진**: TextMate/Sublime Text와 동일한 문법 정의가 하이라이팅을 구동하므로, 현대 에디터와 동등한 정확도를 제공한다.
 - **페이저 위임**: 기본적으로 출력이 한 화면을 넘어가면 `less`로 페이징한다. 비대화형 환경(다른 프로세스로 파이프)에서는 `cat`과 동일하게 동작한다.
 - **Git 통합**: Git 저장소 내 파일은 여백에 수정 표시기가 표시된다 —— 추가된 줄은 녹색, 수정된 줄은 노란색.
@@ -85,8 +75,7 @@ bat --version
 sudo apt install bat
 
 # 일부 Debian/Ubuntu 시스템에서는 이진 파일 이름이 batcat으로冲돌을 피함
-# 필요한 경우 별칭 생성:
-mkdir -p ~/.local/bin
+# 필요한 경우 별칭 생성: mkdir -p ~/.local/bin
 ln -s /usr/bin/batcat ~/.local/bin/bat
 ```
 
@@ -127,9 +116,7 @@ sudo cp target/release/bat /usr/local/bin/
 
 ### 설치 후 구성
 
-구성 디렉토리와 구성 파일 생성:
-
-```bash
+구성 디렉토리와 구성 파일 생성: ```bash
 # 구성 디렉토리 생성
 mkdir -p "$(bat --config-dir)"
 
@@ -138,9 +125,7 @@ bat --config-file
 # 경로 출력, 예: ~/.config/bat/config
 ```
 
-구성 파일 편집:
-
-```bash
+구성 파일 편집: ```bash
 # ~/.config/bat/config
 --theme="TwoDark"
 --style="numbers,changes,header"
@@ -152,9 +137,7 @@ bat --config-file
 
 ### Git — 컬러 파일 히스토리
 
-특정 Git 리비전의 파일을 완전한 구문 강조와 함께 조회:
-
-```bash
+특정 Git 리비전의 파일을 완전한 구문 강조와 함께 조회: ```bash
 # 특정 태그의 파일 보기
 git show v0.26.1:src/main.rs | bat -l rs
 
@@ -167,9 +150,7 @@ git diff --cached | bat -l diff
 ![구문 강조 및 줄 번호가 있는 파일 미리보기를 보여주는 fzf와 bat의 통합](https://raw.githubusercontent.com/sharkdp/bat/master/doc/screenshot.png)
 *fzf 파일 선택기가 구문 강조된 파일 미리보기를 위해 bat을 프리뷰 엔진으로 사용.*
 
-`bat`은 `fzf`와 깔끔하게 통합되어 프리뷰 엔진으로 동작한다:
-
-```bash
+`bat`은 `fzf`와 깔끔하게 통합되어 프리뷰 엔진으로 동작한다: ```bash
 # bat을 fzf 프리뷰어로 사용
 fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'
 
@@ -177,18 +158,14 @@ fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'
 fzf --preview 'bat --color=always {}' --preview-window=right:60%:wrap
 ```
 
-`.bashrc` 또는 `.zshrc`에 추가:
-
-```bash
+`.bashrc` 또는 `.zshrc`에 추가: ```bash
 # ~/.bashrc
 export FZF_DEFAULT_OPTS="--preview 'bat --color=always --style=numbers --line-range=:500 {}'"
 ```
 
 ### man — 구문 강조 매뉴얼 페이지
 
-`bat`을 man 페이저로 설정:
-
-```bash
+`bat`을 man 페이저로 설정: ```bash
 # ~/.bashrc 또는 ~/.zshrc
 export MANPAGER="bat -plman"
 
@@ -199,9 +176,7 @@ man bash
 
 ### 셸 별칭 — cat 대체
 
-대부분의 사용자는 대화형 세션을 위해 `cat`을 `bat`으로 별칭한다:
-
-```bash
+대부분의 사용자는 대화형 세션을 위해 `cat`을 `bat`으로 별칭한다: ```bash
 # ~/.bashrc 또는 ~/.zshrc
 alias cat='bat --paging=never'
 
@@ -209,9 +184,7 @@ alias cat='bat --paging=never'
 alias b=bat
 ```
 
-zsh 사용자는 글로벌 별칭으로 `--help` 출력에 색상을 추가할 수 있다:
-
-```bash
+zsh 사용자는 글로벌 별칭으로 `--help` 출력에 색상을 추가할 수 있다: ```bash
 # ~/.zshrc
 alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 ```
@@ -225,9 +198,7 @@ tmux split-window -h "bat src/main.rs"
 
 ### delta — 향상된 Git Diff
 
-`bat`이 파일 보기를 담당한다면, `delta`(같은 Rust CLI 생태계)는 diff 보기를 담당한다. 둘을 함께 사용:
-
-```bash
+`bat`이 파일 보기를 담당한다면, `delta`(같은 Rust CLI 생태계)는 diff 보기를 담당한다. 둘을 함께 사용: ```bash
 # ~/.gitconfig
 [pager]
     diff = delta
@@ -256,9 +227,7 @@ Rust 바이너리 시작 비용과 구문 감지 오버헤드로 인해 `bat`은
 
 ### 비대화형 파이프 모드
 
-`bat`이 비대화형 터미널(파이프 출력)을 감지하면 자동으로 평문 모드로 전환 —— `cat` 동작과 일치:
-
-```bash
+`bat`이 비대화형 터미널(파이프 출력)을 감지하면 자동으로 평문 모드로 전환 —— `cat` 동작과 일치: ```bash
 # bat이 여기서 자동으로 평문 모드로 전환됨
 cat large_file.txt | wc -l
 bat large_file.txt | wc -l
@@ -277,9 +246,7 @@ bat large_file.txt | wc -l
 
 ### 사용자 정의 테마
 
-`bat`은 20개 이상의 내장 테마와 함께 제공. 나열하고 미리보기:
-
-```bash
+`bat`은 20개 이상의 내장 테마와 함께 제공. 나열하고 미리보기: ```bash
 # 사용 가능한 모든 테마 나열
 bat --list-themes
 
@@ -292,9 +259,7 @@ echo '--theme="Dracula"' >> "$(bat --config-file)"
 
 ### 사용자 정의 구문 정의
 
-`bat`이 기본적으로 지원하지 않는 언어에 Sublime Text `.sublime-syntax` 파일 추가:
-
-```bash
+`bat`이 기본적으로 지원하지 않는 언어에 Sublime Text `.sublime-syntax` 파일 추가: ```bash
 # 구문 디렉토리 생성
 mkdir -p "$(bat --config-dir)/syntaxes"
 
@@ -309,17 +274,13 @@ bat cache --build
 bat --list-languages | grep -i purescript
 ```
 
-기본값으로 재설정:
-
-```bash
+기본값으로 재설정: ```bash
 bat cache --clear
 ```
 
 ### 속도를 위한 기능 비활성화
 
-수천 개 파일을 처리하는 스크립트에서 오버헤드를 최소화:
-
-```bash
+수천 개 파일을 처리하는 스크립트에서 오버헤드를 최소화: ```bash
 # 대량 처리 시 가장 빠른 bat 호출 방식
 bat --no-config --style=plain --paging=never --no-custom-assets file.txt
 ```
@@ -426,9 +387,7 @@ docker run --rm -v $(pwd):/files bat-viewer /files/README.md
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -444,7 +403,6 @@ docker run --rm -v $(pwd):/files bat-viewer /files/README.md
 - [대안과의 비교](https://github.com/sharkdp/bat#project-goals-and-alternatives) —— bat 관리자의 공식 비교.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

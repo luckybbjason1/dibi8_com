@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/crewai-multi-agent-orchestration" />
 title: 'CrewAI: Build Multi-Agent AI Teams That Collaborate Auto...
 description: 'A hands-on 2026 guide to CrewAI — the Python framework for building multi-agent AI systems with role-based agents, task delegation, memory sharing, and autonomous collaboration patterns.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [crewai, 'multi-agent', 'ai-agents', orchestration, 'autonomous-agents', llm, python, 'open-source']
-aliases:
-- /posts/crewai-multi-agent-orchestration/
+aliases: - /posts/crewai-multi-agent-orchestration/-
 ---
-
 {{</* resource-info */>}}
 
 ## Introduction: One LLM Call Is Not Enough Anymore
@@ -50,10 +46,14 @@ CrewAI's architecture revolves around four primitives: **Agents**, **Tasks**, **
 
 ### Agents: Role-Based AI Workers
 
-An Agent in CrewAI is more than an LLM instance. It is a defined role with:
-
-| Attribute | Purpose | Example |
-|-----------|---------|---------|
+An Agent in CrewAI is more than an LLM instance. It is a defined role with: | Attribute | Purpose | Example |
+|
+---
+|
+---
+|
+---
+|
 | `role` | Job title / identity | `"Senior Research Analyst"` |
 | `goal` | What the agent aims to achieve | `"Find detailed pricing data for 3 competitors"` |
 | `backstory` | Personality / context | `"You are a meticulous analyst with 10 years of experience"` |
@@ -65,10 +65,14 @@ The `backstory` is not fluff — it shapes how the LLM responds. A `"careless in
 
 ### Tasks: Defined Units of Work
 
-Tasks specify what needs to be done, who does it, and what output is expected:
-
-| Attribute | Purpose | Example |
-|-----------|---------|---------|
+Tasks specify what needs to be done, who does it, and what output is expected: | Attribute | Purpose | Example |
+|
+---
+|
+---
+|
+---
+|
 | `description` | What to do (can include `{variables}`) | `"Research {company} pricing plans"` |
 | `expected_output` | Quality specification | `"A table with plan names, prices, and features"` |
 | `agent` | Who performs the task | `researcher` |
@@ -79,10 +83,14 @@ The `expected_output` field is critical — it acts as a quality rubric that gui
 
 ### Processes: How Agents Collaborate
 
-CrewAI supports three collaboration patterns:
-
-| Process | Pattern | Best For |
-|---------|---------|----------|
+CrewAI supports three collaboration patterns: | Process | Pattern | Best For |
+|
+---
+|
+---
+|
+---
+|
 | `Process.sequential` | Linear handoff: A → B → C | Workflows with clear dependencies |
 | `Process.hierarchical` | Manager delegates to workers | Complex projects requiring oversight |
 | `Process.parallel` | Multiple agents work simultaneously | Independent tasks, speed optimization |
@@ -91,9 +99,7 @@ In **hierarchical** mode, you designate a `manager_llm` (often a stronger model 
 
 ### Tools: Extending Agent Capabilities
 
-CrewAI agents can use any LangChain-compatible tool. Common ones include:
-
-- **Web search** — SerpAPI, DuckDuckGo, Tavily
+CrewAI agents can use any LangChain-compatible tool. Common ones include: - **Web search** — SerpAPI, DuckDuckGo, Tavily
 - **Web scraping** — BeautifulSoup, ScrapingBee
 - **Code execution** — Python REPL, Jupyter kernel
 - **Database queries** — SQL connectors
@@ -353,16 +359,14 @@ from crewai.tools import tool
 import requests
 
 @tool("Stock Price Checker")
-def check_stock_price(ticker: str) -> str:
-    """Get the current stock price for a given ticker symbol."""
+def check_stock_price(ticker: str) -> str: """Get the current stock price for a given ticker symbol."""
     url = f"https://api.example.com/stocks/{ticker}"
     response = requests.get(url)
     data = response.json()
     return f"{ticker}: ${data[price]} (change: {data[change]}%)"
 
 @tool("Weather Lookup")
-def get_weather(city: str) -> str:
-    """Get current weather for a city."""
+def get_weather(city: str) -> str: """Get current weather for a city."""
     # Implementation here
     return f"Weather in {city}: 22°C, sunny"
 
@@ -381,16 +385,13 @@ analyst = Agent(
 from crewai import Crew
 
 # Step callback for monitoring
-def on_step_callback(step_output):
-    print(f"[STEP] Agent: {step_output.agent}, Task: {step_output.task[:50]}")
+def on_step_callback(step_output): print(f"[STEP] Agent: {step_output.agent}, Task: {step_output.task[:50]}")
 
 # Task callback for logging
-def on_task_callback(task_output):
-    print(f"[TASK DONE] {task_output.summary}")
+def on_task_callback(task_output): print(f"[TASK DONE] {task_output.summary}")
 
 # Crew callback for completion
-def on_crew_callback(crew_output):
-    print(f"[CREW DONE] Total tokens: {crew_output.token_usage}")
+def on_crew_callback(crew_output): print(f"[CREW DONE] Total tokens: {crew_output.token_usage}")
 
 monitored_crew = Crew(
     agents=[researcher, writer],
@@ -415,8 +416,7 @@ query_engine = index.as_query_engine()
 
 # Wrap as a CrewAI tool
 @tool("Company Knowledge Base")
-def query_knowledge_base(query: str) -> str:
-    """Query the company's internal knowledge base for policies and procedures."""
+def query_knowledge_base(query: str) -> str: """Query the company's internal knowledge base for policies and procedures."""
     response = query_engine.query(query)
     return str(response)
 
@@ -433,10 +433,18 @@ policy_expert = Agent(
 
 ### Performance Benchmarks
 
-I tested CrewAI with varying team sizes and task complexities on an **8-core CPU, 32GB RAM**, using GPT-4o via API:
-
-| Crew Size | Tasks | Process | Avg Time | Token Cost |
-|-----------|-------|---------|----------|------------|
+I tested CrewAI with varying team sizes and task complexities on an **8-core CPU, 32GB RAM**, using GPT-4o via API: | Crew Size | Tasks | Process | Avg Time | Token Cost |
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 2 agents | 2 tasks | sequential | 18s | $0.04 |
 | 3 agents | 3 tasks | sequential | 45s | $0.12 |
 | 3 agents | 3 tasks | hierarchical | 52s | $0.15 |
@@ -449,7 +457,15 @@ I tested CrewAI with varying team sizes and task complexities on an **8-core CPU
 ### Comparison: Single Prompt vs Multi-Agent
 
 | Metric | Single Prompt | 3-Agent Crew | Improvement |
-|--------|---------------|-------------|-------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Factual accuracy | 62% | 91% | +46% |
 | Output completeness | 55% | 88% | +60% |
 | Source citation rate | 12% | 89% | +640% |
@@ -504,8 +520,7 @@ crew = Crew(
 from pydantic import BaseModel, Field
 from crewai import Task
 
-class CompetitorAnalysis(BaseModel):
-    company_name: str = Field(description="Name of the competitor")
+class CompetitorAnalysis(BaseModel): company_name: str = Field(description="Name of the competitor")
     pricing_tier: str = Field(description="Free, Starter, Pro, or Enterprise")
     monthly_price: float = Field(description="Monthly price in USD")
     key_features: list[str] = Field(description="List of key product features")
@@ -530,11 +545,8 @@ from tenacity import retry, stop_after_attempt, wait_exponential
     wait=wait_exponential(multiplier=1, min=4, max=10),
     reraise=True,
 )
-def run_crew_with_retry(crew: Crew):
-    try:
-        return crew.kickoff()
-    except Exception as e:
-        print(f"Crew failed: {e}. Retrying...")
+def run_crew_with_retry(crew: Crew): try: return crew.kickoff()
+    except Exception as e: print(f"Crew failed: {e}. Retrying...")
         raise
 
 result = run_crew_with_retry(my_crew)
@@ -575,24 +587,19 @@ app = FastAPI(title="CrewAI Service")
 # Store results
 results_db = {}
 
-class CrewRequest(BaseModel):
-    topic: str
+class CrewRequest(BaseModel): topic: str
     depth: str = "standard"  # standard | deep
 
 @app.post("/crew/run")
-async def run_crew(request: CrewRequest, background: BackgroundTasks):
-    job_id = str(uuid.uuid4())
+async def run_crew(request: CrewRequest, background: BackgroundTasks): job_id = str(uuid.uuid4())
     background.add_task(execute_crew, job_id, request)
     return {"job_id": job_id, "status": "started"}
 
 @app.get("/crew/status/{job_id}")
-async def get_status(job_id: str):
-    if job_id not in results_db:
-        return {"status": "not_found"}
+async def get_status(job_id: str): if job_id not in results_db: return {"status": "not_found"}
     return results_db[job_id]
 
-def execute_crew(job_id: str, request: CrewRequest):
-    researcher = Agent(
+def execute_crew(job_id: str, request: CrewRequest): researcher = Agent(
         role="Researcher",
         goal=f"Research {request.topic}",
         backstory="Expert researcher.",
@@ -647,7 +654,17 @@ crew = Crew(
 ## Comparison with Alternatives
 
 | Feature | CrewAI | AutoGen | LangGraph | MetaGPT |
-|---------|--------|---------|-----------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | GitHub stars | 28,000+ | 36,000+ | 11,000+ | 48,000+ |
 | License | MIT | MIT | MIT | MIT |
 | Language | Python | Python | Python | Python |
@@ -672,9 +689,7 @@ crew = Crew(
 
 ## Limitations: Honest Assessment
 
-CrewAI is powerful but not a silver bullet. Production realities you should know:
-
-**1. LLM costs scale with agent count.** A 5-agent crew running 8 tasks with GPT-4o can cost $0.50-2.00 per run. With 1,000 runs per day, that is $500-2,000/day. Budget accordingly or use cheaper models for less critical agents.
+CrewAI is powerful but not a silver bullet. Production realities you should know: **1. LLM costs scale with agent count.** A 5-agent crew running 8 tasks with GPT-4o can cost $0.50-2.00 per run. With 1,000 runs per day, that is $500-2,000/day. Budget accordingly or use cheaper models for less critical agents.
 
 **2. Token limits constrain context sharing.** When Agent A passes output to Agent B, that output consumes tokens in Agent B's context window. With 5 agents each producing 2K tokens, the final agent may hit GPT-4o's 128K limit. Use `max_iter` and summarize intermediate outputs.
 
@@ -730,9 +745,7 @@ Join our developer community on Telegram: **t.me/dibi8en** — share your agent 
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -750,12 +763,11 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [Building Multi-Agent Systems Guide](https://docs.crewai.com/how-to/Creating-a-Crew-and-kick-it-off/)
 - Related: [LangChain](dibi8-internal-link), [AutoGen Guide](dibi8-internal-link), [LangGraph Patterns](dibi8-internal-link)
 
----
 
+---
 *Affiliate Disclosure: This article contains affiliate links to DigitalOcean. If you sign up through these links, we earn a commission at no extra cost to you. CrewAI is open-source and free to use; we have no commercial relationship with the CrewAI project. Opinions are based on hands-on testing and production deployments.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -781,8 +793,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [12-factor-agents-production-llm-software-2026](crewai-multi-agent-orchestration)

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/zerion-wallet-portfolio-tracker" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/zerion-wallet-portfolio-tracker" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/zerion-wallet-portfolio-tracker" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/zerion-wallet-portfolio-tracker" />
 title: 'zerion-wallet-portfolio-tracker'
 description: ''. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: [zerion]
-aliases:
-- /vi/posts/zerion-wallet-portfolio-tracker/
+aliases: - /vi/posts/zerion-wallet-portfolio-tracker/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/zerion-wallet-portfolio-tracker/ -->
 
 {{</* resource-info */>}}
 
@@ -95,8 +87,7 @@ const signature = await signer.signMessage(message);
 ### Bước 4 — Xem Bảng Điều Khiển Danh Mục CủA Bạn
 
 ```bash
-# Bảng điều khiển danh mục của bạn hiển thị:
-# - Tổng Giá Trị Danh Mục (tương đương USD)
+# Bảng điều khiển danh mục của bạn hiển thị: # - Tổng Giá Trị Danh Mục (tương đương USD)
 # - Thay ĐổI 24h (%) và Tuyệt đốI ($)
 # - Phân Bổ Tài Sản theo ChuỗI
 # - Phân Bổ Tài Sản theo Giao Thức
@@ -114,38 +105,31 @@ Một trong những tính năng nổi bật của Zerion là khả năng tổng 
 
 ```yaml
 # Danh sách đầy đủ các mạng được Zerion hỗ trợ
-ethereum:
-  chain_id: 1
+ethereum: chain_id: 1
   type: "Layer 1"
   features: ["Hỗ trợ đầy đủ", "Theo dõi NFT", "Vị thế DeFi"]
 
-polygon:
-  chain_id: 137
+polygon: chain_id: 137
   type: "Layer 2 / Sidechain"
   features: ["Hỗ trợ đầy đủ", "Theo dõi gas thấp"]
 
-arbitrum:
-  chain_id: 42161
+arbitrum: chain_id: 42161
   type: "Optimistic Rollup"
   features: ["Hỗ trợ đầy đủ", "Tương thích nâng cấp Nitro"]
 
-optimism:
-  chain_id: 10
+optimism: chain_id: 10
   type: "Optimistic Rollup"
   features: ["Hỗ trợ đầy đủ", "Tương thích nâng cấp Bedrock"]
 
-base:
-  chain_id: 8453
+base: chain_id: 8453
   type: "Optimistic Rollup"
   features: ["Hỗ trợ đầy đủ", "Tích hợp Coinbase"]
 
-bnb_chain:
-  chain_id: 56
+bnb_chain: chain_id: 56
   type: "Layer 1"
   features: ["Hỗ trợ đầy đủ", "Giao thức DeFi BSC"]
 
-avalanche:
-  chain_id: 43114
+avalanche: chain_id: 43114
   type: "Layer 1 (Subnet)"
   features: ["Hỗ trợ C-Chain", "Vị thế DeFi"]
 ```
@@ -331,8 +315,7 @@ ws.onmessage = (event) => {
 ```bash
 # iOS: https://apps.apple.com/app/zerion-wallet/id1456732565
 # Android: https://play.google.com/store/apps/details?id=io.zerion.android
-# Các tính năng chính:
-# - Thông báo đẩy cho giao dịch lớn
+# Các tính năng chính: # - Thông báo đẩy cho giao dịch lớn
 # - Tích hợp WalletConnect v2
 # - Chức năng hoán đổI tích hợp (0x API)
 # - Phòng trưng bày NFT với xem trước AR
@@ -401,7 +384,6 @@ Trong thế giớI DeFi đa chuỗI phân mảnh, Zerion nổi bật như giải
 *Tuyên bố Miễn trừ: Bài viết này chỉ nhằm mục đích thông tin và không cấu thành lờI khuyên tài chính. Các khoản đầu tư tiền điện tử mang theo rủi ro đáng kể. Luôn thực hiện nghiên cứu của riêng bạn trước khi đưa ra quyết định đầu tư. Bài đăng này chứa các liên kết liên kết — chúng tôi có thể nhận được khoản bồi thường khi bạn sử dụng liên kết đối tác của chúng tôi mà không phát sinh thêm chi phí cho bạn.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

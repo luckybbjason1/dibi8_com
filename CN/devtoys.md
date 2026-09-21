@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/devtoys" />
 title: 'DevToys: 31,533 GitHub Stars — Complete Setup Guide for ...
 description: 'DevToys is a free, open-source, offline Swiss Army knife for developers. Cross-platform utilities for JSON, Base64, JWT, regex, and 30+ tools on Windows, macOS, and Linux with Smart Detection and CLI support.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [devtoys, 'developer-tools', 'offline-utilities', 'json-formatter', 'base64-encoder', 'jwt-decoder', 'regex-tester', 'cross-platform', 'open-source']
-aliases:
-- /posts/devtoys/
+aliases: - /posts/devtoys/-
 ---
-
 {{</* resource-info */>}}
 
 ![DevToys Logo](https://raw.githubusercontent.com/DevToys-app/DevToys/main/assets/logo/Logo.png)
@@ -44,9 +40,7 @@ Every developer has been there: you need to format a blob of JSON, decode a JWT 
 
 ### Architecture Overview
 
-DevToys follows a modular plugin-based architecture. The core application provides the shell, UI framework, and Smart Detection engine. Individual tools are packaged as extensions that register themselves with the host:
-
-```
+DevToys follows a modular plugin-based architecture. The core application provides the shell, UI framework, and Smart Detection engine. Individual tools are packaged as extensions that register themselves with the host: ```
 ┌─────────────────────────────────────────┐
 │           DevToys Shell (C#)            │
 │  ┌─────────┐  ┌─────────┐  ┌──────────┐ │
@@ -126,9 +120,7 @@ cp -R "/Volumes/DevToys/DevToys.app" /Applications
 hdiutil detach "/Volumes/DevToys"
 ```
 
-Or install via Homebrew (if available in your tap):
-
-```bash
+Or install via Homebrew (if available in your tap): ```bash
 brew install --cask devtoys
 ```
 
@@ -155,9 +147,7 @@ unzip devtoys_linux_x64_portable.zip -d ~/devtoys
 
 ### DevToys CLI Installation
 
-The CLI is distributed separately and is useful for headless environments and CI pipelines:
-
-```bash
+The CLI is distributed separately and is useful for headless environments and CI pipelines: ```bash
 # Windows
 wget https://github.com/DevToys-app/DevToys/releases/download/v2.0.9.0/devtoys.cli_win_x64_portable.zip
 
@@ -168,18 +158,14 @@ wget https://github.com/DevToys-app/DevToys/releases/download/v2.0.9.0/devtoys.c
 wget https://github.com/DevToys-app/DevToys/releases/download/v2.0.9.0/devtoys.cli_linux_x64_portable.zip
 ```
 
-After installation, verify the CLI works:
-
-```bash
+After installation, verify the CLI works: ```bash
 devtoys --version
 # Output: DevToys CLI 2.0.9.0
 ```
 
 ### First Launch & Configuration
 
-On first launch, DevToys opens with a dark-themed sidebar listing all 30+ tools. Open **Settings** to configure:
-
-```yaml
+On first launch, DevToys opens with a dark-themed sidebar listing all 30+ tools. Open **Settings** to configure: ```yaml
 # Recommended settings for production workflows
 Smart Detection: Enabled      # Auto-suggest tools from clipboard
 Theme: System default        # Or force Dark/Light
@@ -192,9 +178,7 @@ Telemetry: Disabled          # DevToys has no telemetry by default
 
 ### VS Code
 
-While DevToys runs as a standalone app, you can launch it directly from VS Code using keybindings. Add this to your `keybindings.json`:
-
-```json
+While DevToys runs as a standalone app, you can launch it directly from VS Code using keybindings. Add this to your `keybindings.json`: ```json
 [
   {
     "key": "ctrl+alt+d",
@@ -209,9 +193,7 @@ For a fully integrated experience, install the **DevToys for VSCode** extension 
 
 ### PowerShell / Terminal
 
-DevToys supports deep linking to individual tools via command-line arguments. This is useful for scripting and aliases:
-
-```powershell
+DevToys supports deep linking to individual tools via command-line arguments. This is useful for scripting and aliases: ```powershell
 # Open specific tools directly
 start devtoys:?tool=jsonformat     # JSON Formatter
 start devtoys:?tool=jsonyaml       # JSON <> YAML Converter
@@ -227,16 +209,11 @@ start devtoys:?tool=diff           # Text Comparer
 
 ### CI/CD Pipelines (GitHub Actions)
 
-DevToys CLI integrates cleanly into CI workflows. Here is a GitHub Actions example that validates JSON files in a repository:
-
-```yaml
+DevToys CLI integrates cleanly into CI workflows. Here is a GitHub Actions example that validates JSON files in a repository: ```yaml
 name: Validate JSON
 on: [push, pull_request]
-jobs:
-  validate:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: validate: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       
       - name: Install DevToys CLI
         run: |
@@ -251,9 +228,7 @@ jobs:
 
 ### Docker (Unofficial)
 
-For containerized workflows, you can wrap DevToys CLI in a lightweight image:
-
-```dockerfile
+For containerized workflows, you can wrap DevToys CLI in a lightweight image: ```dockerfile
 FROM mcr.microsoft.com/dotnet/runtime:8.0
 
 RUN apt-get update && apt-get install -y wget unzip \
@@ -265,9 +240,7 @@ RUN apt-get update && apt-get install -y wget unzip \
 ENTRYPOINT ["/app/devtoys"]
 ```
 
-Build and run:
-
-```bash
+Build and run: ```bash
 docker build -t devtoys-cli .
 echo '{"key":"value"}' | docker run -i devtoys-cli json format
 ```
@@ -278,10 +251,18 @@ echo '{"key":"value"}' | docker run -i devtoys-cli json format
 
 ### Performance Benchmarks
 
-DevToys processes data entirely in-memory on your local machine. Here are measured performance figures on a standard developer laptop (AMD Ryzen 7, 16 GB RAM):
-
-| Operation | Data Size | DevToys (Desktop) | DevToys CLI | Online Alternative |
-|-----------|-----------|-------------------|-------------|-------------------|
+DevToys processes data entirely in-memory on your local machine. Here are measured performance figures on a standard developer laptop (AMD Ryzen 7, 16 GB RAM): | Operation | Data Size | DevToys (Desktop) | DevToys CLI | Online Alternative |
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | JSON Format | 1 MB | ~45 ms | ~38 ms | ~200-500 ms* |
 | JSON Format | 10 MB | ~320 ms | ~280 ms | ~2-5 s* |
 | Base64 Encode | 5 MB image | ~85 ms | ~72 ms | ~1-3 s* |
@@ -309,36 +290,28 @@ Before deploying a web application, use the PNG/JPEG Compressor to shrink image 
 
 ### Running in Air-Gapped Environments
 
-DevToys works entirely offline — no network connection is ever required for the core tools. For organizations with strict security policies:
-
-1. Download the portable ZIP from the GitHub releases page on an internet-connected machine
+DevToys works entirely offline — no network connection is ever required for the core tools. For organizations with strict security policies: 1. Download the portable ZIP from the GitHub releases page on an internet-connected machine
 2. Transfer the archive via approved media to the air-gapped network
 3. Extract and run without any installation or network dependency
 
 ### Smart Detection Configuration
 
-Fine-tune Smart Detection to avoid false positives:
-
-```yaml
+Fine-tune Smart Detection to avoid false positives: ```yaml
 # Settings > Smart Detection
 Behavior: "Always ask"        # Options: Auto-open, Always ask, Disabled
 Minimum confidence: 85%       # Adjust threshold for detection
-Excluded tools:               # Disable detection for specific tools
+Excluded tools: # Disable detection for specific tools
   - "Lorem Ipsum Generator"
   - "Password Generator"
 ```
 
 ### Extension Development
 
-Create custom tools using the DevToys SDK. Install the SDK NuGet package:
-
-```bash
+Create custom tools using the DevToys SDK. Install the SDK NuGet package: ```bash
 dotnet add package DevToys.Sdk --version 2.0.0
 ```
 
-A minimal extension implements the `IGuiTool` interface:
-
-```csharp
+A minimal extension implements the `IGuiTool` interface: ```csharp
 using DevToys.Api;
 using System.ComponentModel.Composition;
 
@@ -374,9 +347,7 @@ internal sealed class MyCustomTool : IGuiTool
 
 ### Monitoring Usage in Teams
 
-While DevToys has no built-in telemetry, you can track which tools your team uses most by wrapping the CLI with a logging script:
-
-```bash
+While DevToys has no built-in telemetry, you can track which tools your team uses most by wrapping the CLI with a logging script: ```bash
 #!/bin/bash
 # /usr/local/bin/devtoys-wrapped
 LOGFILE="/var/log/devtoys/usage.log"
@@ -389,7 +360,17 @@ echo "$(date '+%Y-%m-%d %H:%M:%S') | User: $(whoami) | Tool: $1 $2" >> "$LOGFILE
 When evaluating **devtoys vs cyberchef** and other alternatives, it helps to look at the specific capabilities each tool provides. The table below breaks down the key differences across platform support, licensing, extensibility, and workflow integration.
 
 | Feature | DevToys | CyberChef | DevUtils | Boop |
-|---------|---------|-----------|----------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Platform** | Windows, macOS, Linux | Web (any browser) | macOS only | macOS only |
 | **Price** | Free | Free | $25-40 (one-time) | Free |
 | **License** | MIT | Apache-2.0 | Proprietary | MIT |
@@ -414,9 +395,7 @@ When evaluating **devtoys vs cyberchef** and other alternatives, it helps to loo
 
 ## Limitations / Honest Assessment
 
-DevToys is not the right tool for every situation. Here is what it does not do well:
-
-**No complex data pipelines.** CyberChef's "recipe" system lets you chain operations (Base64 decode → GZip decompress → JSON parse) in a single workflow. DevToys requires manual copy-paste between tools.
+DevToys is not the right tool for every situation. Here is what it does not do well: **No complex data pipelines.** CyberChef's "recipe" system lets you chain operations (Base64 decode → GZip decompress → JSON parse) in a single workflow. DevToys requires manual copy-paste between tools.
 
 **No mobile support.** There is no iOS or Android version. Developers working primarily on tablets will need to look elsewhere.
 
@@ -479,9 +458,7 @@ Join the [dibi8 Telegram group](https://t.me/dibi8channel) for more developer to
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -499,7 +476,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - DevToys SDK NuGet: https://www.nuget.org/packages/DevToys.Sdk
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -525,8 +501,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [superpowers](devtoys)
@@ -535,6 +511,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [2026-05-25-trending-ai-agents](devtoys)
 - [2026-06-01-trending-ai-agents](devtoys)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/signoz-apm-observability-open-source" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/signoz-apm-observability-open-source" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/signoz-apm-observability-open-source" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/signoz-apm-observability-open-source" />
 title: 'SigNoz: Datadog 비용의 10%로 대체하는 오픈소스 APM — 분산 추적 설정 가이드 2026'
 description: '5분 만에 SigNoz를 배포하세요. OpenTelemetry 기반 오픈소스 APM으로 분산 추적, 메트릭, 로그 관리를 제공하며 Datadog 비용의 10%만으로 운영 가능합니다.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [signoz, apm, 가시성, '분산 추적', opentelemetry, 'datadog 대안', 셀프호스팅, docker, kubernetes, 메트릭, 로그, 모니터링]
-aliases:
-- /kr/posts/signoz-apm-observability-open-source/
+aliases: - /kr/posts/signoz-apm-observability-open-source/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/signoz-apm-observability-open-source/ -->
 
 {{</* resource-info */>}}
 
@@ -49,8 +41,7 @@ OpenTelemetry 기반으로 네이티브하게 구축된 MIT 라이선스 오픈�
 
 SigNoz Inc.가 2021년에 출시했으며 Go(백엔드)와 React(프론트엔드)로 작성되었습니다. 추적 및 로그를 위한 컬럼 기반 저장소 엔진으로 ClickHouse를 사용하고 장기 메트릭 집계를 위해 Kafka + Druid를 사용합니다. OpenTelemetry 네이티브이기 때문에 OTel 데이터를 낼는 모든 언어 또는 프레임워크와 작동합니다. 벤더 락인이나 전용 에이전트가 없습니다.
 
-2026년 5월 기준 주요 사실:
-- **GitHub 스타**: 22,000+
+2026년 5월 기준 주요 사실: - **GitHub 스타**: 22,000+
 - **라이선스**: MIT
 - **최신 안정 버전**: v0.76.0(2026-04-22 릴리스)
 - **저장소 엔진**: ClickHouse(추적/로그), Kafka + Druid(메트릭)
@@ -62,9 +53,7 @@ SigNoz Inc.가 2021년에 출시했으며 Go(백엔드)와 React(프론트엔드
 
 ### 아키텍처 개요
 
-SigNoz는 현대적인 가시성 파이프라인 아키텍처를 따릅니다:
-
-1. **OpenTelemetry Collector**: OTLP/gRPC 또는 OTLP/HTTP를 통해 계측된 애플리케이션으로부터 텔레메트리 데이터(추적, 메트릭, 로그)를 수신합니다
+SigNoz는 현대적인 가시성 파이프라인 아키텍처를 따릅니다: 1. **OpenTelemetry Collector**: OTLP/gRPC 또는 OTLP/HTTP를 통해 계측된 애플리케이션으로부터 텔레메트리 데이터(추적, 메트릭, 로그)를 수신합니다
 2. **Kafka**: 내구성 및 백프레셔 처리를 위한 수신 데이터 버퍼링
 3. **ClickHouse**: 추적 및 로그를 저장하는 컬럼 기반 데이터베이스로, 효율적인 압축 제공(Elasticsearch 대비 ~10배)
 4. **Druid**: 메트릭 집계 및 장기 보존을 위한 시계열 데이터베이스
@@ -89,18 +78,14 @@ SigNoz는 현대적인 가시성 파이프라인 아키텍처를 따릅니다:
 
 ### 추적 및 로그에 ClickHouse를 사용하는 이유?
 
-ClickHouse는 대규모 데이터셋에 대한 분석 쿼리를 위해 최적화된 컬럼 기반 OLAP 데이터베이스입니다. 가시성 워크로드에 대해 다음을 제공합니다:
-
-- **추적 데이터에 대해 Elasticsearch보다 10배 나은 압축률**
+ClickHouse는 대규모 데이터셋에 대한 분석 쿼리를 위해 최적화된 컬럼 기반 OLAP 데이터베이스입니다. 가시성 워크로드에 대해 다음을 제공합니다: - **추적 데이터에 대해 Elasticsearch보다 10배 나은 압축률**
 - **수십억 스팬에서 서브세컨드 쿼리 지연 시간**
 - **높은 친잘성 태그에서 효율적인 필터링**(user_id, request_path, status_code)
 - **더 낮은 리소스 사용량**: 단일 ClickHouse 노드가 3노드 Elasticsearch 클러스터가 필요로 하는 것을 처리합니다
 
 ### OpenTelemetry 네이티브 설계
 
-Datadog이나 New Relic과 같이 전용 에이전트가 필요한 것과 달리, SigNoz는 표준 OpenTelemetry 데이터를 소비합니다:
-
-```python
+Datadog이나 New Relic과 같이 전용 에이전트가 필요한 것과 달리, SigNoz는 표준 OpenTelemetry 데이터를 소비합니다: ```python
 # 벤더별 SDK가 필요 없음 — 표준 OTel만 사용
 from opentelemetry import trace
 from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
@@ -140,8 +125,7 @@ cd signoz/deploy/docker
 # 2. 설치 스크립트 실행
 ./install.sh
 
-# 스크립트가 수행하는 작업:
-# - Docker 및 Docker Compose 버전 확인
+# 스크립트가 수행하는 작업: # - Docker 및 Docker Compose 버전 확인
 # - 필요한 모든 이미지 가져오기(ClickHouse, Kafka, 쿼리 서비스, 프론트엔드)
 # - 모든 서비스 시작
 # - 접속 URL 출력
@@ -172,80 +156,52 @@ kubectl port-forward svc/signoz-frontend 3301:3301 -n signoz
 
 ### 옵션 C: 프로덕션 VPS 배포
 
-[DigitalOcean](https://m.do.co/c/eca87ac14ee0) 또는 [HTStack](https://my.htstack.com/aff.php?aff=27187)에서의 프로덕션 배포를 위해:
-
-```bash
+[DigitalOcean](https://m.do.co/c/eca87ac14ee0) 또는 [HTStack](https://my.htstack.com/aff.php?aff=27187)에서의 프로덕션 배포를 위해: ```bash
 # docker-compose.production.yml
 version: "3.8"
-services:
-  signoz-frontend:
-    image: signoz/frontend:0.76.0
+services: signoz-frontend: image: signoz/frontend:0.76.0
     restart: unless-stopped
-    ports:
-      - "3301:3301"
-    depends_on:
-      - signoz-query-service
+    ports: - "3301:3301"
+    depends_on: - signoz-query-service
 
-  signoz-query-service:
-    image: signoz/query-service:0.76.0
+  signoz-query-service: image: signoz/query-service:0.76.0
     restart: unless-stopped
-    environment:
-      - ClickHouseUrl=tcp://clickhouse:9000
+    environment: - ClickHouseUrl=tcp://clickhouse:9000
       - DruidUrl=http://druid-router:8888
       - STORAGE=clickhouse
-    depends_on:
-      - clickhouse
+    depends_on: - clickhouse
       - druid
 
-  signoz-otel-collector:
-    image: signoz/signoz-otel-collector:0.76.0
+  signoz-otel-collector: image: signoz/signoz-otel-collector:0.76.0
     restart: unless-stopped
-    ports:
-      - "4317:4317"    # OTLP gRPC
+    ports: - "4317:4317"    # OTLP gRPC
       - "4318:4318"    # OTLP HTTP
       - "8889:8889"    # Prometheus 메트릭
-    volumes:
-      - ./otel-collector-config.yaml:/etc/otel-collector-config.yaml
+    volumes: - ./otel-collector-config.yaml:/etc/otel-collector-config.yaml
     command: ["--config", "/etc/otel-collector-config.yaml"]
 
-  clickhouse:
-    image: clickhouse/clickhouse-server:24.3-alpine
+  clickhouse: image: clickhouse/clickhouse-server:24.3-alpine
     restart: unless-stopped
-    ulimits:
-      nofile:
-        soft: 262144
+    ulimits: nofile: soft: 262144
         hard: 262144
-    volumes:
-      - clickhouse-data:/var/lib/clickhouse
-    environment:
-      - CLICKHOUSE_DB=signoz_metrics
+    volumes: - clickhouse-data:/var/lib/clickhouse
+    environment: - CLICKHOUSE_DB=signoz_metrics
       - CLICKHOUSE_USER=admin
       - CLICKHOUSE_PASSWORD=${CLICKHOUSE_PASSWORD}
 
-  zookeeper:
-    image: zookeeper:3.9
+  zookeeper: image: zookeeper:3.9
     restart: unless-stopped
-    volumes:
-      - zookeeper-data:/data
+    volumes: - zookeeper-data:/data
       - zookeeper-logs:/datalog
 
-  kafka:
-    image: bitnami/kafka:3.7
+  kafka: image: bitnami/kafka:3.7
     restart: unless-stopped
-    environment:
-      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+    environment: - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
       - ALLOW_PLAINTEXT_LISTENER=yes
-    volumes:
-      - kafka-data:/bitnami/kafka
-    depends_on:
-      - zookeeper
+    volumes: - kafka-data:/bitnami/kafka
+    depends_on: - zookeeper
 
-volumes:
-  clickhouse-data:
-  kafka-data:
-  zookeeper-data:
-  zookeeper-logs:
-```
+volumes: clickhouse-data: kafka-data: zookeeper-data: zookeeper-logs: ```
 
 `docker compose -f docker-compose.production.yml up -d`로 배포합니다.
 
@@ -255,8 +211,7 @@ volumes:
 # 모든 컨테이너가 실행 중인지 확인
 docker ps --format "table {{.Names}}\t{{.Status}}"
 
-# 예상 출력:
-# NAMES                        STATUS
+# 예상 출력: # NAMES                        STATUS
 # docker-clickhouse-1          Up 2 minutes (healthy)
 # docker-kafka-1               Up 2 minutes
 # docker-signoz-frontend-1     Up 2 minutes
@@ -273,9 +228,7 @@ curl http://localhost:3301/api/v1/health
 
 ### 자동 계측(퀵 스타트 권장)
 
-SigNoz는 대부분의 언어에 대해 코드 변경 없이 자동 계측을 지원합니다:
-
-```bash
+SigNoz는 대부분의 언어에 대해 코드 변경 없이 자동 계측을 지원합니다: ```bash
 # Node.js —— 코드 변경 없음
 OTEL_EXPORTER_OTLP_ENDPOINT="http://localhost:4317" \
 OTEL_RESOURCE_ATTRIBUTES="service.name=payment-service" \
@@ -300,9 +253,7 @@ go run main.go
 
 ### 수동 계측(프로덕션급)
 
-프로덕션 서비스의 경우 수동 계측이 더 나은 제어를 제공합니다:
-
-```python
+프로덕션 서비스의 경우 수동 계측이 더 나은 제어를 제공합니다: ```python
 # 수동 계측이 있는 Python Flask
 from opentelemetry import trace
 from opentelemetry.sdk.trace import TracerProvider
@@ -323,17 +274,13 @@ app = Flask(__name__)
 tracer = trace.get_tracer(__name__)
 
 @app.route("/process-payment", methods=["POST"])
-def process_payment():
-    with tracer.start_as_current_span("process_payment") as span:
-        span.set_attribute("payment.amount", 149.00)
+def process_payment(): with tracer.start_as_current_span("process_payment") as span: span.set_attribute("payment.amount", 149.00)
         span.set_attribute("payment.currency", "USD")
 
-        with tracer.start_as_current_span("validate_card"):
-            # 카드 검증 로직
+        with tracer.start_as_current_span("validate_card"): # 카드 검증 로직
             pass
 
-        with tracer.start_as_current_span("charge_stripe"):
-            # Stripe API 호출
+        with tracer.start_as_current_span("charge_stripe"): # Stripe API 호출
             pass
 
         return {"status": "success"}
@@ -341,9 +288,7 @@ def process_payment():
 
 ### 커스텀 대시보드 및 메트릭
 
-데이터가 흐르기 시작하면 SigNoz UI 또는 API에서 대시보드를 생성합니다:
-
-```bash
+데이터가 흐르기 시작하면 SigNoz UI 또는 API에서 대시보드를 생성합니다: ```bash
 # API를 통한 커스텀 대시보드 생성
 curl -X POST http://localhost:3301/api/v1/dashboards \
   -H "Content-Type: application/json" \
@@ -391,9 +336,7 @@ curl -X POST http://localhost:3301/api/v1/dashboards \
 
 ### 성능 벤치마크
 
-일일 100만 스팬 수집을 위해 4 vCPU / 8 GB RAM VPS에서 테스트:
-
-| 지표 | 결과 |
+일일 100만 스팬 수집을 위해 4 vCPU / 8 GB RAM VPS에서 테스트: | 지표 | 결과 |
 |------|------|
 | 스팬 수집률 | 지속 12,000 스팬/초 |
 | 쿼리 지연 시간(최근 1시간) | p95 45ms |
@@ -415,41 +358,28 @@ curl -X POST http://localhost:3301/api/v1/dashboards \
 
 ```yaml
 # docker-compose.ha.yml — ZooKeeper가 있는 다중 노드 ClickHouse
-services:
-  clickhouse-1:
-    image: clickhouse/clickhouse-server:24.3-alpine
-    volumes:
-      - clickhouse1-data:/var/lib/clickhouse
+services: clickhouse-1: image: clickhouse/clickhouse-server:24.3-alpine
+    volumes: - clickhouse1-data:/var/lib/clickhouse
       - ./clickhouse-config.xml:/etc/clickhouse-server/config.d/cluster.xml
-    environment:
-      - CLICKHOUSE_USER=admin
+    environment: - CLICKHOUSE_USER=admin
       - CLICKHOUSE_PASSWORD=${CLICKHOUSE_PASSWORD}
 
-  clickhouse-2:
-    image: clickhouse/clickhouse-server:24.3-alpine
-    volumes:
-      - clickhouse2-data:/var/lib/clickhouse
+  clickhouse-2: image: clickhouse/clickhouse-server:24.3-alpine
+    volumes: - clickhouse2-data:/var/lib/clickhouse
       - ./clickhouse-config.xml:/etc/clickhouse-server/config.d/cluster.xml
-    environment:
-      - CLICKHOUSE_USER=admin
+    environment: - CLICKHOUSE_USER=admin
       - CLICKHOUSE_PASSWORD=${CLICKHOUSE_PASSWORD}
 
-  clickhouse-3:
-    image: clickhouse/clickhouse-server:24.3-alpine
-    volumes:
-      - clickhouse3-data:/var/lib/clickhouse
+  clickhouse-3: image: clickhouse/clickhouse-server:24.3-alpine
+    volumes: - clickhouse3-data:/var/lib/clickhouse
       - ./clickhouse-config.xml:/etc/clickhouse-server/config.d/cluster.xml
-    environment:
-      - CLICKHOUSE_USER=admin
+    environment: - CLICKHOUSE_USER=admin
       - CLICKHOUSE_PASSWORD=${CLICKHOUSE_PASSWORD}
 
   # ClickHouse용 Nginx 로드 밸런서
-  clickhouse-lb:
-    image: nginx:alpine
-    volumes:
-      - ./nginx-clickhouse.conf:/etc/nginx/nginx.conf
-    ports:
-      - "8123:8123"
+  clickhouse-lb: image: nginx:alpine
+    volumes: - ./nginx-clickhouse.conf:/etc/nginx/nginx.conf
+    ports: - "8123:8123"
       - "9000:9000"
 ```
 
@@ -488,10 +418,8 @@ services:
 
 ```yaml
 # alert-rules.yml — SigNoz 알림 관리자 규칙
-groups:
-  - name: payment_service_alerts
-    rules:
-      - alert: HighErrorRate
+groups: - name: payment_service_alerts
+    rules: - alert: HighErrorRate
         expr: |
           (
             sum(rate(signoz_calls_total{service_name="payment-service",status_code="STATUS_CODE_ERROR"}[5m]))
@@ -499,28 +427,22 @@ groups:
             sum(rate(signoz_calls_total{service_name="payment-service"}[5m]))
           ) > 0.05
         for: 2m
-        labels:
-          severity: critical
-        annotations:
-          summary: "결제 서비스 오류율 > 5%"
+        labels: severity: critical
+        annotations: summary: "결제 서비스 오류율 > 5%"
           description: "오류율이 {{ $value }}입니다"
 
       - alert: HighP95Latency
         expr: histogramQuantile(0.95)(rate(signoz_latency_bucket{service_name="payment-service"}[5m])) > 500000000
         for: 5m
-        labels:
-          severity: warning
-        annotations:
-          summary: "결제 서비스 P95 지연 시간 > 500ms"
+        labels: severity: warning
+        annotations: summary: "결제 서비스 P95 지연 시간 > 500ms"
           description: "P95 지연 시간이 {{ $value }}ns입니다"
 
       - alert: LogErrorSpike
         expr: rate(signoz_logs_total{severity="ERROR"}[5m]) > 100
         for: 2m
-        labels:
-          severity: warning
-        annotations:
-          summary: "로그 오류 스파이크 감지"
+        labels: severity: warning
+        annotations: summary: "로그 오류 스파이크 감지"
           description: "{{ $value }} 오류/분"
 ```
 
@@ -532,34 +454,24 @@ SigNoz UI의 설정 → 알림 채널에서 알림 채널(Slack, PagerDuty, 이�
 # signoz-otel-collector-service.yaml
 apiVersion: v1
 kind: Service
-metadata:
-  name: signoz-otel-collector
+metadata: name: signoz-otel-collector
   namespace: signoz
-spec:
-  ports:
-    - name: otlp-grpc
+spec: ports: - name: otlp-grpc
       port: 4317
       protocol: TCP
     - name: otlp-http
       port: 4318
       protocol: TCP
-  selector:
-    app.kubernetes.io/name: otel-collector
+  selector: app.kubernetes.io/name: otel-collector
 
 ---
 # OTel 환경 변수 추가로 Deployment 계측
 apiVersion: apps/v1
 kind: Deployment
-metadata:
-  name: payment-service
-spec:
-  template:
-    spec:
-      containers:
-        - name: payment-service
+metadata: name: payment-service
+spec: template: spec: containers: - name: payment-service
           image: payment-service:1.2.3
-          env:
-            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+          env: - name: OTEL_EXPORTER_OTLP_ENDPOINT
               value: "http://signoz-otel-collector.signoz.svc.cluster.local:4317"
             - name: OTEL_RESOURCE_ATTRIBUTES
               value: "service.name=payment-service,service.namespace=production"
@@ -571,25 +483,15 @@ spec:
 
 ### 고트래픽 서비스의 샘플링 전략
 
-초당 10,000건 이상의 요청을 처리하는 서비스의 경우 헤드 기반 샘플링을 구현합니다:
-
-```yaml
+초당 10,000건 이상의 요청을 처리하는 서비스의 경우 헤드 기반 샘플링을 구현합니다: ```yaml
 # otel-collector-config.yaml
-receivers:
-  otlp:
-    protocols:
-      grpc:
-        endpoint: 0.0.0.0:4317
-      http:
-        endpoint: 0.0.0.0:4318
+receivers: otlp: protocols: grpc: endpoint: 0.0.0.0:4317
+      http: endpoint: 0.0.0.0:4318
 
-processors:
-  tail_sampling:
-    decision_wait: 10s
+processors: tail_sampling: decision_wait: 10s
     num_traces: 100000
     expected_new_traces_per_sec: 1000
-    policies:
-      - name: errors
+    policies: - name: errors
         type: status_code
         status_code: {status_codes: [ERROR]}
       - name: slow_requests
@@ -599,15 +501,10 @@ processors:
         type: probabilistic
         probabilistic: {sampling_percentage: 10}
 
-exporters:
-  clickhousetraces:
-    datasource: tcp://clickhouse:9000
+exporters: clickhousetraces: datasource: tcp://clickhouse:9000
     database: signoz_traces
 
-service:
-  pipelines:
-    traces:
-      receivers: [otlp]
+service: pipelines: traces: receivers: [otlp]
       processors: [tail_sampling]
       exporters: [clickhousetraces]
 ```
@@ -661,16 +558,9 @@ SigNoz은 통합 경험을 제공합니다: 추적, 메트릭, 로그를 위한 
 
 **Q: 기존 Prometheus 메트릭을 SigNoz와 함께 사용할 수 있나요?**
 
-예. SigNoz의 OTel Collector에는 Prometheus 수신기가 포함되어 있습니다. `otel-collector-config.yaml`에서 구성합니다:
-
-```yaml
-receivers:
-  prometheus:
-    config:
-      scrape_configs:
-        - job_name: 'my-app'
-          static_configs:
-            - targets: ['my-app:9090']
+예. SigNoz의 OTel Collector에는 Prometheus 수신기가 포함되어 있습니다. `otel-collector-config.yaml`에서 구성합니다: ```yaml
+receivers: prometheus: config: scrape_configs: - job_name: 'my-app'
+          static_configs: - targets: ['my-app:9090']
 ```
 
 기존 Prometheus 스크랩 구성을 직접 가져올 수 있습니다. SigNoz은 장기 쿼리를 위해 Druid에 메트릭을 저장합니다.
@@ -701,9 +591,7 @@ SigNoz은 규모가 있는 엔지니어링 팀이 실제로 필요로 하는 것
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -723,7 +611,6 @@ SigNoz은 규모가 있는 엔지니어링 팀이 실제로 필요로 하는 것
 *제휴 공개: 본 문서에는 DigitalOcean과 HTStack의 제휴 링크가 포함되어 있습니다. 이 링크를 통해 서비스를 구매하면 dibi8.com에 추가 비용 없이 수수료가 지급됩니다. 모든 추천은 실제 테스트를 기반으로 하며, 제휴 가용성이 아닌 실제 성능에 근거합니다.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

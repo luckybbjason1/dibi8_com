@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/daily-stock-analysis-llm-powered-multi-market-stock-intelligence" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/daily-stock-analysis-llm-powered-multi-market-stock-intelligence" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/daily-stock-analysis-llm-powered-multi-market-stock-intelligence" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/daily-stock-analysis-llm-powered-multi-market-stock-intelligence" />
 title: 'Phân Tích Cổ Phiếu Hàng Ngày: Hệ Thống Thông Minh Đa Thị...
 description: 'Hệ thống phân tích cổ phiếu đa thị trường do LLM điều khiển với tin tức thời gian thực, bảng điều khiển ra quyết định và thông báo tự động. 48K sao. Hỗ trợ chạy theo lịch trình miễn phí.'
 date: 2026-06-25
@@ -17,10 +12,6 @@ lang: vi
 github_repo: https://github.com/dailystockai/daily-stock
 license: MIT
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/daily-stock-analysis-llm-powered-multi-market-stock-intelligence/ -->
-
-
 
 # Phân Tích Cổ Phiếu Hàng Ngày: Thông Minh Đa Thị Trường Được Hỗ Trợ Bởi LLM
 
@@ -36,9 +27,7 @@ Phân Tích Cổ Phiếu Hàng Ngày kết hợp dữ liệu thị trường th�
 
 Phân Tích Cổ Phiếu Hàng Ngày là một nền tảng thông minh cổ phiếu toàn diện tận dụng các mô hình ngôn ngữ lớn để phân tích dữ liệu thị trường, cảm xúc tin tức và các chỉ báo kỹ thuật. Khác với các công cụ biểu đồ truyền thống chỉ hiển thị biến động giá, hệ thống này cung cấp phân tích ngữ cảnh giải thích TẠI SAO thị trường đang di chuyển VÀ ĐIỀU GÌ CÓ THỂ XẢY RA TIẾP THEO.
 
-Nền tảng hỗ trợ nhiều thị trường và nguồn dữ liệu:
-
-- **Thị trường Mỹ**: NYSE, NASDAQ, với dữ liệu thời gian thực và trễ
+Nền tảng hỗ trợ nhiều thị trường và nguồn dữ liệu: - **Thị trường Mỹ**: NYSE, NASDAQ, với dữ liệu thời gian thực và trễ
 - **Cổ phiếu A**: Thị trường Thượng Hải và Thâm Quyến với phạm vi bao phủ toàn diện
 - **Tiền điện tử**: Các giao dịch chính bao gồm Binance, Coinbase và Kraken
 - **Hợp đồng tương lai & Hàng hóa**: Dầu, vàng, nông sản và chỉ số
@@ -101,9 +90,7 @@ python main.py --market us --date $(date +%Y-%m-%d)
 
 ### Tùy Chọn 3: Thiết Lập LLM Cục Bộ (Miễn Phí)
 
-Dành cho người dùng muốn tránh hoàn toàn chi phí API:
-
-```bash
+Dành cho người dùng muốn tránh hoàn toàn chi phí API: ```bash
 # Cài đặt Ollama cho suy luận LLM cục bộ
 curl -fsSL https://ollama.ai/install.sh | sh
 
@@ -112,8 +99,7 @@ ollama pull qwen2.5:14b
 
 # Cập nhật config.yaml để sử dụng mô hình cục bộ
 cat >> config.yaml << EOF
-llm:
-  provider: ollama
+llm: provider: ollama
   model: qwen2.5:14b
   base_url: http://localhost:11434
 EOF
@@ -126,9 +112,7 @@ python main.py --market a_shares --date $(date +%Y-%m-%d)
 
 ### Tích Hợp AKShare (Dữ Liệu Cổ Phiếu A Miễn Phí)
 
-AKShare cung cấp quyền truy cập miễn phí vào dữ liệu thị trường Trung Quốc mà không cần khóa API:
-
-```python
+AKShare cung cấp quyền truy cập miễn phí vào dữ liệu thị trường Trung Quốc mà không cần khóa API: ```python
 import akshare as ak
 
 # Lấy dữ liệu thị trường cổ phiếu A hàng ngày
@@ -151,9 +135,7 @@ print(sector_df)
 
 ### Tích Hợp Tushare (Dữ Liệu Cổ Phiếu A Cao Cấp)
 
-Để dữ liệu cổ phiếu A toàn diện hơn bao gồm thông tin cơ bản:
-
-```python
+Để dữ liệu cổ phiếu A toàn diện hơn bao gồm thông tin cơ bản: ```python
 import tushare as ts
 
 # Khởi tạo với token API của bạn
@@ -197,8 +179,7 @@ recommendations = ticker.recommendations
 
 # Lấy cảm xúc tin tức
 news = ticker.news
-for item in news:
-    print(f"{item['title']}: {item['providerPublishTime']}")
+for item in news: print(f"{item['title']}: {item['providerPublishTime']}")
 ```
 
 ### Dữ Liệu Tiền Điện Tử
@@ -227,9 +208,7 @@ print(f"Chúc bán: {order_book['asks'][0][0]}")
 
 ### Pipeline Phân Tích Cảm Xúc
 
-Trọng tâm của Phân Tích Cổ Phiếu Hàng Ngày là pipeline phân tích cảm xúc do LLM cung cấp:
-
-```python
+Trọng tâm của Phân Tích Cổ Phiếu Hàng Ngày là pipeline phân tích cảm xúc do LLM cung cấp: ```python
 from daily_stock_analysis.llm import LLMAnalyzer
 from daily_stock_analysis.data import MarketDataProvider
 
@@ -265,13 +244,10 @@ print(f"Mức Độ Rủi Ro: {analysis.risk_level}")
 
 ### Prompt Phân Tích Tùy Chỉnh
 
-Bạn có thể tùy chỉnh prompt phân tích LLM cho các trường hợp sử dụng khác nhau:
-
-```python
+Bạn có thể tùy chỉnh prompt phân tích LLM cho các trường hợp sử dụng khác nhau: ```python
 # Prompt phân tích kỹ thuật
 tech_prompt = """
-Phân tích các chỉ báo kỹ thuật cổ phiếu sau và cung cấp:
-1. Hướng xu hướng (bullish/bearish/trung tính)
+Phân tích các chỉ báo kỹ thuật cổ phiếu sau và cung cấp: 1. Hướng xu hướng (bullish/bearish/trung tính)
 2. Mức hỗ trợ và kháng cự chính
 3. Đánh giá động lượng
 4. Giải thích phân tích khối lượng
@@ -282,8 +258,7 @@ Dữ liệu: {market_data}
 
 # Prompt phân tích cơ bản
 fund_prompt = """
-Phân tích dữ liệu cơ bản sau và cung cấp:
-1. Đánh giá tăng trưởng doanh thu
+Phân tích dữ liệu cơ bản sau và cung cấp: 1. Đánh giá tăng trưởng doanh thu
 2. Đánh giá khả năng sinh lời
 3. Tính bền vững của nợ
 4. So sánh định giá
@@ -303,9 +278,7 @@ combined = llm.analyze(
 
 ### Phân Tích So Sánh Đa Thị Trường
 
-So sánh cổ phiếu trên các thị trường khác nhau đồng thời:
-
-```python
+So sánh cổ phiếu trên các thị trường khác nhau đồng thời: ```python
 # So sánh cổ phiếu công nghệ Mỹ
 us_techs = llm.compare_stocks(
     symbols=["AAPL", "MSFT", "GOOGL", "AMZN", "META"],
@@ -325,18 +298,14 @@ a_share_sectors = llm.compare_sectors(
 
 ### Thiết Lập Bảng Điều Khiển Web
 
-Phân Tích Cổ Phiếu Hàng Ngày bao gồm bảng điều khiển web tích hợp:
-
-```bash
+Phân Tích Cổ Phiếu Hàng Ngày bao gồm bảng điều khiển web tích hợp: ```bash
 # Khởi động máy chủ bảng điều khiển
 python dashboard.py --host 0.0.0.0 --port 8080
 
 # Truy cập tại http://localhost:8080
 ```
 
-Bảng điều khiển cung cấp:
-
-- Tổng quan thị trường thời gian thực với bản đồ nhiệt
+Bảng điều khiển cung cấp: - Tổng quan thị trường thời gian thực với bản đồ nhiệt
 - Phân tích cổ phiếu cá nhân với biểu đồ tương tác
 - So sánh hiệu suất ngành
 - Dòng thời gian cảm xúc tin tức
@@ -346,11 +315,9 @@ Bảng điều khiển cung cấp:
 
 ```yaml
 # dashboard_config.yaml
-dashboard:
-  refresh_interval: 300  # 5 phút
+dashboard: refresh_interval: 300  # 5 phút
   default_market: "a_shares"
-  charts:
-    - type: "heatmap"
+  charts: - type: "heatmap"
       title: "Bản Đồ Nhiệt Thị Trường"
       data_source: "sector_performance"
     - type: "line"
@@ -359,8 +326,7 @@ dashboard:
     - type: "sentiment"
       title: "Cảm Xúc Tin Tức"
       data_source: "llm_sentiment"
-  alerts:
-    - threshold: 0.8
+  alerts: - threshold: 0.8
       action: "notification"
       channels: ["email", "telegram"]
 ```
@@ -382,9 +348,7 @@ python report_generator.py --format csv --output analysis_data.csv
 
 ### Thiết Lập Cron Job
 
-Lên lịch chạy phân tích tự động:
-
-```bash
+Lên lịch chạy phân tích tự động: ```bash
 # Chỉnh sửa crontab
 crontab -e
 
@@ -400,9 +364,7 @@ crontab -e
 
 ### Dịch Vụ Systemd
 
-Cho hoạt động nền liên tục:
-
-```ini
+Cho hoạt động nền liên tục: ```ini
 # /etc/systemd/system/daily-stock-analysis.service
 [Unit]
 Description=Dịch Vụ Phân Tích Cổ Phiếu Hàng Ngày
@@ -497,7 +459,6 @@ Liên kết nội bộ: [nvidia-cosmos-world-models-platform-2026](https://dibi8
 **Tiết lộ**: Bài viết này đề cập đến các công cụ có thể có quan hệ liên kết. Chúng tôi không chấp nhận thanh toán cho đánh giá. Tất cả ý kiến đều là của riêng chúng tôi.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

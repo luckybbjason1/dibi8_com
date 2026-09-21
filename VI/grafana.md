@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/grafana" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/grafana" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/grafana" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/grafana" />
 title: 'Grafana: 73,876 GitHub Stars — Hướng Dẫn Triển Khai Dock...
 description: 'Grafana là nền tảng trực quan hóa và phân tích mã nguồn mở cho giám sát và quan sát. Hỗ trợ Prometheus, Loki, InfluxDB, Elasticsearch. Bao gồm thiết lập Docker, cứng hóa production, so sánh với Datadog, Kibana, New Relic.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [grafana, docker, 'giám sát', prometheus, 'quan sát', dashboard, devops]
-aliases:
-- /vi/posts/grafana/
+aliases: - /vi/posts/grafana/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/grafana/ -->
 
 {{</* resource-info */>}}
 
@@ -63,9 +55,7 @@ Một dashboard production Grafana điển hình kết hợp nhiều loại pane
 
 ### Docker CLI — Container Đơn (30 giây)
 
-Cách nhanh nhất để chạy Grafana cho việc khám phá local:
-
-```bash
+Cách nhanh nhất để chạy Grafana cho việc khám phá local: ```bash
 # Tạo volume bền vững cho dữ liệu Grafana
 docker volume create grafana-storage
 
@@ -81,9 +71,7 @@ Truy cập `http://localhost:3000`. Thông tin xác thực mặc định là `ad
 
 ### Docker Compose — Stack Sẵn sàng Production
 
-Để có stack giám sát cấp production, kết hợp Grafana với Prometheus và Loki. Tạo cấu trúc thư mục sau:
-
-```bash
+Để có stack giám sát cấp production, kết hợp Grafana với Prometheus và Loki. Tạo cấu trúc thư mục sau: ```bash
 mkdir -p ~/grafana-stack/{prometheus,loki,grafana/provisioning/datasources,grafana/provisioning/dashboards,grafana/dashboards}
 cd ~/grafana-stack
 ```
@@ -93,99 +81,68 @@ cd ~/grafana-stack
 ```yaml
 version: "3.8"
 
-services:
-  grafana:
-    image: grafana/grafana-enterprise:11.6.0
+services: grafana: image: grafana/grafana-enterprise:11.6.0
     container_name: grafana
     restart: unless-stopped
-    ports:
-      - "3000:3000"
-    environment:
-      - GF_SECURITY_ADMIN_USER=${GRAFANA_ADMIN_USER:-admin}
+    ports: - "3000:3000"
+    environment: - GF_SECURITY_ADMIN_USER=${GRAFANA_ADMIN_USER:-admin}
       - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD:-admin}
       - GF_USERS_ALLOW_SIGN_UP=false
       - GF_SERVER_ROOT_URL=https://grafana.yourdomain.com
       - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-piechart-panel
-    volumes:
-      - grafana-data:/var/lib/grafana
+    volumes: - grafana-data:/var/lib/grafana
       - ./grafana/provisioning:/etc/grafana/provisioning
       - ./grafana/dashboards:/var/lib/grafana/dashboards
-    networks:
-      - monitoring
-    depends_on:
-      - prometheus
+    networks: - monitoring
+    depends_on: - prometheus
       - loki
 
-  prometheus:
-    image: prom/prometheus:v3.2.0
+  prometheus: image: prom/prometheus:v3.2.0
     container_name: prometheus
     restart: unless-stopped
-    ports:
-      - "9090:9090"
-    volumes:
-      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports: - "9090:9090"
+    volumes: - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus-data:/prometheus
-    command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
+    command: - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
       - '--storage.tsdb.retention.time=30d'
       - '--web.enable-lifecycle'
-    networks:
-      - monitoring
+    networks: - monitoring
 
-  loki:
-    image: grafana/loki:3.4.0
+  loki: image: grafana/loki:3.4.0
     container_name: loki
     restart: unless-stopped
-    ports:
-      - "3100:3100"
-    volumes:
-      - ./loki/loki-config.yml:/etc/loki/local-config.yaml
+    ports: - "3100:3100"
+    volumes: - ./loki/loki-config.yml:/etc/loki/local-config.yaml
       - loki-data:/loki
     command: -config.file=/etc/loki/local-config.yaml
-    networks:
-      - monitoring
+    networks: - monitoring
 
-  promtail:
-    image: grafana/promtail:3.4.0
+  promtail: image: grafana/promtail:3.4.0
     container_name: promtail
     restart: unless-stopped
-    volumes:
-      - /var/log:/var/log:ro
+    volumes: - /var/log:/var/log:ro
       - ./loki/promtail-config.yml:/etc/promtail/config.yml
     command: -config.file=/etc/promtail/config.yml
-    networks:
-      - monitoring
+    networks: - monitoring
 
-volumes:
-  grafana-data:
-  prometheus-data:
-  loki-data:
-
-networks:
-  monitoring:
-    driver: bridge
+volumes: grafana-data: prometheus-data: loki-data: networks: monitoring: driver: bridge
 ```
 
 **prometheus/prometheus.yml:**
 
 ```yaml
-global:
-  scrape_interval: 15s
+global: scrape_interval: 15s
   evaluation_interval: 15s
 
-scrape_configs:
-  - job_name: prometheus
-    static_configs:
-      - targets: ['localhost:9090']
+scrape_configs: - job_name: prometheus
+    static_configs: - targets: ['localhost:9090']
 
   - job_name: 'node-exporter'
-    static_configs:
-      - targets: ['node-exporter:9100']
+    static_configs: - targets: ['node-exporter:9100']
 
   - job_name: grafana
-    static_configs:
-      - targets: ['grafana:3000']
+    static_configs: - targets: ['grafana:3000']
 ```
 
 **loki/loki-config.yml:**
@@ -193,76 +150,53 @@ scrape_configs:
 ```yaml
 auth_enabled: false
 
-server:
-  http_listen_port: 3100
+server: http_listen_port: 3100
   grpc_listen_port: 9096
 
-ingester:
-  wal:
-    enabled: true
+ingester: wal: enabled: true
     dir: /loki/wal
-  lifecycler:
-    address: 127.0.0.1
-    ring:
-      kvstore:
-        store: inmemory
+  lifecycler: address: 127.0.0.1
+    ring: kvstore: store: inmemory
       replication_factor: 1
     final_sleep: 0s
   chunk_idle_period: 5m
   chunk_retain_period: 30s
 
-schema_config:
-  configs:
-    - from: 2020-05-15
+schema_config: configs: - from: 2020-05-15
       store: tsdb
       object_store: filesystem
       schema: v13
-      index:
-        prefix: index_
+      index: prefix: index_
         period: 24h
 
-storage_config:
-  tsdb_shipper:
-    active_index_directory: /loki/index
+storage_config: tsdb_shipper: active_index_directory: /loki/index
     cache_location: /loki/cache
-  filesystem:
-    directory: /loki/chunks
+  filesystem: directory: /loki/chunks
 
-compactor:
-  working_directory: /loki/compactor
+compactor: working_directory: /loki/compactor
   retention_enabled: true
   retention_delete_delay: 2h
 
-limits_config:
-  retention_period: 720h
+limits_config: retention_period: 720h
 ```
 
 **loki/promtail-config.yml:**
 
 ```yaml
-server:
-  http_listen_port: 9080
+server: http_listen_port: 9080
   grpc_listen_port: 0
 
-positions:
-  filename: /tmp/positions.yaml
+positions: filename: /tmp/positions.yaml
 
-clients:
-  - url: http://loki:3100/loki/api/v1/push
+clients: - url: http://loki:3100/loki/api/v1/push
 
-scrape_configs:
-  - job_name: system-logs
-    static_configs:
-      - targets:
-          - localhost
-        labels:
-          job: system-logs
+scrape_configs: - job_name: system-logs
+    static_configs: - targets: - localhost
+        labels: job: system-logs
           __path__: /var/log/*.log
 ```
 
-Khởi động stack:
-
-```bash
+Khởi động stack: ```bash
 docker compose up -d
 ```
 
@@ -270,13 +204,10 @@ Truy cập Grafana tại `http://your-server-ip:3000`. Prometheus có sẵn trê
 
 ### Cung cấp Nguồn dữ liệu Tự động
 
-Thay vì click thủ công qua UI để thêm nguồn dữ liệu, hãy dùng hệ thống provisioning của Grafana. Tạo `grafana/provisioning/datasources/datasources.yml`:
-
-```yaml
+Thay vì click thủ công qua UI để thêm nguồn dữ liệu, hãy dùng hệ thống provisioning của Grafana. Tạo `grafana/provisioning/datasources/datasources.yml`: ```yaml
 apiVersion: 1
 
-datasources:
-  - name: Prometheus
+datasources: - name: Prometheus
     type: prometheus
     access: proxy
     url: http://prometheus:9090
@@ -296,9 +227,7 @@ datasources:
     editable: false
 ```
 
-Khởi động lại Grafana và các nguồn dữ liệu sẽ xuất hiện đã được cấu hình sẵn:
-
-```bash
+Khởi động lại Grafana và các nguồn dữ liệu sẽ xuất hiện đã được cấu hình sẵn: ```bash
 docker compose restart grafana
 ```
 
@@ -306,9 +235,7 @@ docker compose restart grafana
 
 ### Prometheus — Dashboard Metrics
 
-Prometheus là nguồn metrics thực tế cho Grafana. Một panel giám sát CPU điển hình dùng PromQL:
-
-```promql
+Prometheus là nguồn metrics thực tế cho Grafana. Một panel giám sát CPU điển hình dùng PromQL: ```promql
 # Phần trăm sử dụng CPU
 100 - (avg by(instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100)
 
@@ -323,9 +250,7 @@ Nhập dashboard Node Exporter Full chính thức (ID: `1860`) từ thư viện 
 
 ### Loki — Tổng hợp Log
 
-Loki tích hợp các dòng log cùng với metrics trong cùng một dashboard. Một truy vấn LogQL để tìm dòng lỗi:
-
-```logql
+Loki tích hợp các dòng log cùng với metrics trong cùng một dashboard. Một truy vấn LogQL để tìm dòng lỗi: ```logql
 # Đếm log lỗi theo ứng dụng
 sum by(app) (rate({job="system-logs"} |= "ERROR" [5m]))
 
@@ -335,18 +260,14 @@ sum by(app) (rate({job="system-logs"} |= "ERROR" [5m]))
 
 ### InfluxDB — Dữ liệu Chuỗi thờii gian
 
-Đối với các workload IoT và metrics cardinality cao, InfluxDB kết hợp tốt với Grafana:
-
-```sql
+Đối với các workload IoT và metrics cardinality cao, InfluxDB kết hợp tốt với Grafana: ```sql
 -- Ví dụ InfluxQL: nhiệt độ trung bình theo cảm biến
 SELECT mean("temperature") FROM "sensors" WHERE $timeFilter GROUP BY "sensor_id", time($__interval) fill(null)
 ```
 
 ### Elasticsearch — Tìm kiếm Log
 
-Đối với các team đã đầu tư vào Elastic Stack, Grafana có thể truy vấn trực tiếp các index Elasticsearch:
-
-```json
+Đối với các team đã đầu tư vào Elastic Stack, Grafana có thể truy vấn trực tiếp các index Elasticsearch: ```json
 {
   "query": {
     "bool": {
@@ -373,9 +294,7 @@ SELECT mean("temperature") FROM "sensors" WHERE $timeFilter GROUP BY "sensor_id"
 
 **Netflix** chạy Grafana ở quy mô lớn trên hàng nghìn microservice, sử dụng các plugin nguồn dữ liệu tùy chỉnh để tương quan metrics từ nhiều hệ thống nội bộ. **PayPal** sử dụng Grafana với Prometheus để giám sát 200,000+ container. **eBay** đã thay thế công cụ giám sát thương mại cũ bằng Grafana, giảm thờii gian tạo dashboard từ vài ngày xuống vài giờ.
 
-Một nền tảng thương mại điện tử vừa (50 host, 2M chuỗi hoạt động) chạy Grafana tự quản lý với Prometheus và Loki thường thấy:
-
-- Chi phí hạ tầng hàng tháng: $200-500 (máy tính + lưu trữ)
+Một nền tảng thương mại điện tử vừa (50 host, 2M chuỗi hoạt động) chạy Grafana tự quản lý với Prometheus và Loki thường thấy: - Chi phí hạ tầng hàng tháng: $200-500 (máy tính + lưu trữ)
 - Chi phí Datadog tương đương: $9,500+/tháng
 - Thờii gian tạo dashboard: 30 phút so với 2+ giờ với UI tùy chỉnh
 - Thờii gian phát hiện trung bình (MTTD): Giảm 40-60% sau khi áp dụng Grafana
@@ -388,108 +307,81 @@ Dashboard timeline cảnh báo của Grafana trực quan hóa các mẫu kích h
 
 ### Chấm dứt SSL/TLS với Reverse Proxy
 
-Không bao giờ phơi bày Grafana trực tiếp ra internet. Dùng Traefik hoặc Nginx làm reverse proxy:
-
-```yaml
+Không bao giờ phơi bày Grafana trực tiếp ra internet. Dùng Traefik hoặc Nginx làm reverse proxy: ```yaml
 # Phần bổ sung docker-compose.yml
-  traefik:
-    image: traefik:v3.3
-    command:
-      - "--api.insecure=true"
+  traefik: image: traefik:v3.3
+    command: - "--api.insecure=true"
       - "--providers.docker=true"
       - "--entrypoints.websecure.address=:443"
       - "--certificatesresolvers.letsencrypt.acme.tlschallenge=true"
       - "--certificatesresolvers.letsencrypt.acme.email=admin@yourdomain.com"
       - "--certificatesresolvers.letsencrypt.acme.storage=/letsencrypt/acme.json"
-    ports:
-      - "443:443"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+    ports: - "443:443"
+    volumes: - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./letsencrypt:/letsencrypt
-    networks:
-      - monitoring
+    networks: - monitoring
 ```
 
 ### Thiết lập High Availability
 
-Đối với các môi trường production yêu cầu zero downtime:
-
-```yaml
+Đối với các môi trường production yêu cầu zero downtime: ```yaml
 # Grafana HA yêu cầu cơ sở dữ liệu dùng chung (PostgreSQL hoặc MySQL)
 # và nhiều instance Grafana phía sau load balancer
 
-  postgres:
-    image: postgres:17-alpine
-    environment:
-      POSTGRES_DB: grafana
+  postgres: image: postgres:17-alpine
+    environment: POSTGRES_DB: grafana
       POSTGRES_USER: grafana
       POSTGRES_PASSWORD: ${DB_PASSWORD}
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
+    volumes: - postgres-data:/var/lib/postgresql/data
 
-  grafana-1:
-    image: grafana/grafana-enterprise:11.6.0
-    environment:
-      - GF_DATABASE_TYPE=postgres
+  grafana-1: image: grafana/grafana-enterprise:11.6.0
+    environment: - GF_DATABASE_TYPE=postgres
       - GF_DATABASE_HOST=postgres:5432
       - GF_DATABASE_NAME=grafana
       - GF_DATABASE_USER=grafana
       - GF_DATABASE_PASSWORD=${DB_PASSWORD}
       - GF_REMOTE_CACHE_TYPE=redis
       - GF_REMOTE_CACHE_CONNSTR=redis:6379
-    depends_on:
-      - postgres
+    depends_on: - postgres
 ```
 
 ### Cấu hình Cảnh báo dưới dạng Code
 
-Định nghĩa quy tắc cảnh báo thông qua provisioning:
-
-```yaml
+Định nghĩa quy tắc cảnh báo thông qua provisioning: ```yaml
 # grafana/provisioning/alerting/alert-rules.yml
 apiVersion: 1
-groups:
-  - orgId: 1
+groups: - orgId: 1
     name: infrastructure
     folder: Infrastructure
     interval: 60s
-    rules:
-      - uid: high-cpu-usage
+    rules: - uid: high-cpu-usage
         title: Mức sử dụng CPU Trên 80%
         condition: B
-        data:
-          - refId: A
-            relativeTimeRange:
-              from: 300
+        data: - refId: A
+            relativeTimeRange: from: 300
               to: 0
             datasourceUid: prometheus
-            model:
-              expr: 100 - (avg by(instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 80
+            model: expr: 100 - (avg by(instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 80
         noDataState: NoData
         execErrState: Error
         for: 5m
-        annotations:
-          summary: "Mức sử dụng CPU cao trên {{ $labels.instance }}"
+        annotations: summary: "Mức sử dụng CPU cao trên {{ $labels.instance }}"
 ```
 
 ### Provisioning Dashboard từ Git
 
-Lưu dashboard dưới dạng JSON trong repository của bạn và tự động provision:
-
-```yaml
+Lưu dashboard dưới dạng JSON trong repository của bạn và tự động provision: ```yaml
 # grafana/provisioning/dashboards/dashboards.yml
 apiVersion: 1
 
-providers:
-  - name: default
+providers: - name: default
     orgId: 1
     folder: ''
     type: file
     disableDeletion: false
     editable: false
     updateIntervalSeconds: 30
-    options:
-      path: /var/lib/grafana/dashboards
+    options: path: /var/lib/grafana/dashboards
       foldersFromFilesStructure: true
 ```
 
@@ -529,9 +421,7 @@ providers:
 
 ## Hạn chế / Đánh giá Trung thực
 
-Grafana không phải là giải pháp vạn năng. Hiểu các hạn chế này trước khi cam kết:
-
-1. **Không có khả năng thu thập dữ liệu tích hợp** — Grafana trực quan hóa dữ liệu; nó không thu thập dữ liệu. Bạn vẫn cần Prometheus, Loki hoặc backend khác. Điều này thêm gánh nặng vận hành so với các nền tảng SaaS all-in-one.
+Grafana không phải là giải pháp vạn năng. Hiểu các hạn chế này trước khi cam kết: 1. **Không có khả năng thu thập dữ liệu tích hợp** — Grafana trực quan hóa dữ liệu; nó không thu thập dữ liệu. Bạn vẫn cần Prometheus, Loki hoặc backend khác. Điều này thêm gánh nặng vận hành so với các nền tảng SaaS all-in-one.
 
 2. **Tìm kiếm log không phải Lucene** — Loki sử dụng lọc dựa trên nhãn với regex, không phải tìm kiếm toàn văn như Elasticsearch. Các truy vấn log phức tạp có thể chậm hơn và kém trực quan hơn.
 
@@ -589,9 +479,7 @@ Grafana xứng đáng với 73,876 sao GitHub của mình bằng cách giải qu
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -610,7 +498,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [HTStack — Máy chủ Cloud Quản lý](https://htstack.com/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

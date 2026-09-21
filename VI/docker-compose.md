@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/docker-compose" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/docker-compose" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/docker-compose" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/docker-compose" />
 title: 'Docker Compose: 37,393 GitHub Stars — Hướng Dẫn Thiết Lậ...
 description: 'Define and run multi-container applications with Docker using declarative YAML configuration.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: ['docker-compose', 'orchestrator-container', devops, docker, microservices, 'triển-khai', yaml, 'đa-container']
-aliases:
-- /vi/posts/docker-compose/
+aliases: - /vi/posts/docker-compose/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/docker-compose/ -->
 
 {{</* resource-info */>}}
 
@@ -47,9 +39,7 @@ Docker Compose là công cụ xác định và chạy ứng dụng Docker đa co
 
 ![Kiến trúc Docker Compose](https://docs.docker.com/get-started/docker-concepts/running-containers/images/multi-container-apps-compose.png)
 
-Kiến trúc rất đơn giản. Bạn viết file `compose.yaml` mô tả các service, network và volume. CLI plugin `docker compose` đọc file này và dịch thành các lệnh gọi API Docker Engine. Đây là những gì diễn ra bên dưới:
-
-1. **Cách ly project**: Compose tạo một Docker network chuyên dụng tên là `<project>_<network>` (mặc định: tên thư mục + `_default`). Tất cả service trong project giao tiếp qua network bridge bị cách ly này.
+Kiến trúc rất đơn giản. Bạn viết file `compose.yaml` mô tả các service, network và volume. CLI plugin `docker compose` đọc file này và dịch thành các lệnh gọi API Docker Engine. Đây là những gì diễn ra bên dưới: 1. **Cách ly project**: Compose tạo một Docker network chuyên dụng tên là `<project>_<network>` (mặc định: tên thư mục + `_default`). Tất cả service trong project giao tiếp qua network bridge bị cách ly này.
 2. **Service discovery**: Các container tiếp cận nhau bằng tên service. Nếu bạn có service `db`, container `api` kết nối đến `db:5432` mà không cần cấu hình DNS.
 3. **Quản lý volume**: Named volume giữ dữ liệu qua các lần restart container. Compose thêm tiền tố tên project vào tên volume để tránh xung đột.
 4. **Sắp xếp thứ tự phụ thuộc**: Chỉ thị `depends_on` kiểm soát thứ tự khởi động. Kết hợp với `condition: service_healthy`, nó đảm bảo database sẵn sàng trước khi ứng dụng khởi động.
@@ -128,9 +118,7 @@ docker compose version
 
 ### Cài Đặt Binary Thủ Công
 
-Cho môi trường không có package manager:
-
-```bash
+Cho môi trường không có package manager: ```bash
 DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
 mkdir -p $DOCKER_CONFIG/cli-plugins
 curl -SL https://github.com/docker/compose/releases/download/v2.36.0/docker-compose-linux-x86_64 \
@@ -143,30 +131,21 @@ docker compose version
 
 ### Traefik (Reverse Proxy & Load Balancer)
 
-Traefik tự động phát hiện container Docker và định tuyến traffic dựa trên label. Điều này loại bỏ việc cấu hình nginx thủ công:
-
-```yaml
+Traefik tự động phát hiện container Docker và định tuyến traffic dựa trên label. Điều này loại bỏ việc cấu hình nginx thủ công: ```yaml
 # compose.yaml — Traefik + Whoami ví dụ
 name: proxy-demo
 
-services:
-  traefik:
-    image: traefik:v3.3
-    command:
-      - "--api.insecure=true"
+services: traefik: image: traefik:v3.3
+    command: - "--api.insecure=true"
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
       - "--entrypoints.web.address=:80"
-    ports:
-      - "80:80"
+    ports: - "80:80"
       - "8080:8080"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+    volumes: - /var/run/docker.sock:/var/run/docker.sock:ro
 
-  whoami:
-    image: traefik/whoami
-    labels:
-      - "traefik.enable=true"
+  whoami: image: traefik/whoami
+    labels: - "traefik.enable=true"
       - "traefik.http.routers.whoami.rule=Host(`whoami.localhost`)"
       - "traefik.http.routers.whoami.entrypoints=web"
 ```
@@ -179,33 +158,20 @@ Khởi động bằng `docker compose up -d` và truy cập `http://whoami.local
 # compose.yaml — Stack giám sát
 name: monitoring
 
-services:
-  prometheus:
-    image: prom/prometheus:v3.2.0
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+services: prometheus: image: prom/prometheus:v3.2.0
+    volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
       - prometheus_data:/prometheus
-    ports:
-      - "9090:9090"
-    command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports: - "9090:9090"
+    command: - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
 
-  grafana:
-    image: grafana/grafana:11.5.0
-    ports:
-      - "3000:3000"
-    volumes:
-      - grafana_data:/var/lib/grafana
-    environment:
-      - GF_SECURITY_ADMIN_PASSWORD=admin
-    depends_on:
-      - prometheus
+  grafana: image: grafana/grafana:11.5.0
+    ports: - "3000:3000"
+    volumes: - grafana_data:/var/lib/grafana
+    environment: - GF_SECURITY_ADMIN_PASSWORD=admin
+    depends_on: - prometheus
 
-volumes:
-  prometheus_data:
-  grafana_data:
-```
+volumes: prometheus_data: grafana_data: ```
 
 Prometheus thu thập metric container; Grafana trực quan hóa chúng. Thêm nguồn dữ liệu Prometheus tại `http://prometheus:9090` sau khi đăng nhập.
 
@@ -215,77 +181,52 @@ Prometheus thu thập metric container; Grafana trực quan hóa chúng. Thêm n
 # compose.yaml — Ứng dụng 3-tier sẵn sàng production
 name: myapp
 
-services:
-  db:
-    image: postgres:16-alpine
-    environment:
-      POSTGRES_USER: appuser
+services: db: image: postgres:16-alpine
+    environment: POSTGRES_USER: appuser
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: appdb
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U appuser -d appdb"]
+    volumes: - postgres_data:/var/lib/postgresql/data
+    healthcheck: test: ["CMD-SHELL", "pg_isready -U appuser -d appdb"]
       interval: 10s
       timeout: 5s
       retries: 5
       start_period: 30s
     restart: unless-stopped
 
-  redis:
-    image: redis:7-alpine
-    volumes:
-      - redis_data:/data
-    healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
+  redis: image: redis:7-alpine
+    volumes: - redis_data:/data
+    healthcheck: test: ["CMD", "redis-cli", "ping"]
       interval: 10s
       timeout: 3s
       retries: 3
     restart: unless-stopped
 
-  api:
-    build:
-      context: ./api
+  api: build: context: ./api
       dockerfile: Dockerfile
-    environment:
-      DATABASE_URL: postgresql://appuser:${DB_PASSWORD}@db:5432/appdb
+    environment: DATABASE_URL: postgresql://appuser:${DB_PASSWORD}@db:5432/appdb
       REDIS_URL: redis://redis:6379/0
-    depends_on:
-      db:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+    depends_on: db: condition: service_healthy
+      redis: condition: service_healthy
+    healthcheck: test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 20s
     restart: unless-stopped
 
-  nginx:
-    image: nginx:1.27-alpine
-    ports:
-      - "80:80"
-    volumes:
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
-    depends_on:
-      api:
-        condition: service_healthy
+  nginx: image: nginx:1.27-alpine
+    ports: - "80:80"
+    volumes: - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on: api: condition: service_healthy
     restart: unless-stopped
 
-volumes:
-  postgres_data:
-  redis_data:
-```
+volumes: postgres_data: redis_data: ```
 
 Các pattern chính được minh họa: dependency có kiểm tra sức khỏe, named volume để persistence, build context cho image tùy chỉnh, và `restart: unless-stopped` cho khả năng phục hồi.
 
 ## Benchmark / Các Trường Hợp Sử Dụng Thực Tế
 
-Docker Compose xuất sắc trong các tình huống cụ thể. Dưới đây là số liệu từ các triển khai production và so sánh:
-
-| Chỉ số | Docker Compose | Kubernetes | Podman Compose | Nomad |
+Docker Compose xuất sắc trong các tình huống cụ thể. Dưới đây là số liệu từ các triển khai production và so sánh: | Chỉ số | Docker Compose | Kubernetes | Podman Compose | Nomad |
 |--------|---------------|------------|----------------|-------|
 | **RAM Control Plane** | ~50 MB | ~2 GB | 0 MB (không daemon) | ~100 MB |
 | **Số Node Hỗ Trợ** | Một node | Không giới hạn | Một node | Không giới hạn |
@@ -305,81 +246,50 @@ Docker Compose xuất sắc trong các tình huống cụ thể. Dưới đây l
 
 ### Health Checks và Thứ Tự Khởi Động
 
-Không bao giờ triển khai production mà không có health check. Container hiển thị trạng thái `Up` chỉ có nghĩa là tiến trình đã khởi động——không phải ứng dụng đang hoạt động:
-
-```yaml
-services:
-  api:
-    image: myapp:v1.2.3
-    healthcheck:
-      test: ["CMD", "curl", "-fsS", "http://localhost:8080/ready"]
+Không bao giờ triển khai production mà không có health check. Container hiển thị trạng thái `Up` chỉ có nghĩa là tiến trình đã khởi động——không phải ứng dụng đang hoạt động: ```yaml
+services: api: image: myapp:v1.2.3
+    healthcheck: test: ["CMD", "curl", "-fsS", "http://localhost:8080/ready"]
       interval: 15s
       timeout: 5s
       retries: 3
       start_period: 30s
-    depends_on:
-      db:
-        condition: service_healthy
+    depends_on: db: condition: service_healthy
     restart: unless-stopped
 ```
 
 ### Xoay Vòng Log
 
-Log JSON không giới hạn sẽ lấp đầy đĩa. Cấu hình driver logging local với rotation:
-
-```yaml
-services:
-  api:
-    image: myapp:v1.2.3
-    logging:
-      driver: "local"
-      options:
-        max-size: "10m"
+Log JSON không giới hạn sẽ lấp đầy đĩa. Cấu hình driver logging local với rotation: ```yaml
+services: api: image: myapp:v1.2.3
+    logging: driver: "local"
+      options: max-size: "10m"
         max-file: "3"
         compress: "true"
 ```
 
 ### Giới Hạn Tài Nguyên
 
-Ngăn một container bất thường làm cạn kiệt tài nguyên của các container khác:
-
-```yaml
-services:
-  worker:
-    image: myapp-worker:v1.2.3
-    deploy:
-      resources:
-        limits:
-          cpus: '1.0'
+Ngăn một container bất thường làm cạn kiệt tài nguyên của các container khác: ```yaml
+services: worker: image: myapp-worker:v1.2.3
+    deploy: resources: limits: cpus: '1.0'
           memory: 512M
-        reservations:
-          cpus: '0.25'
+        reservations: cpus: '0.25'
           memory: 128M
 ```
 
 ### Profiles để Phân Tách Môi Trường
 
-Sử dụng profiles để định nghĩa service chỉ dùng cho dev mà không cần duy trì nhiều file:
+Sử dụng profiles để định nghĩa service chỉ dùng cho dev mà không cần duy trì nhiều file: ```yaml
+services: api: image: myapp:latest
+    ports: - "8080:8080"
 
-```yaml
-services:
-  api:
-    image: myapp:latest
-    ports:
-      - "8080:8080"
+  db: image: postgres:16
+    environment: POSTGRES_PASSWORD: devpass
 
-  db:
-    image: postgres:16
-    environment:
-      POSTGRES_PASSWORD: devpass
-
-  pgadmin:
-    image: dpage/pgadmin4:latest
+  pgadmin: image: dpage/pgadmin4:latest
     profiles: ["debug"]
-    ports:
-      - "5050:80"
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin@local.dev
+    ports: - "5050:80"
+    environment: PGADMIN_DEFAULT_EMAIL: admin@local.dev
       PGADMIN_DEFAULT_PASSWORD: admin
 ```
 
@@ -387,32 +297,21 @@ Chỉ chạy công cụ debug khi cần: `docker compose --profile debug up -d`.
 
 ### Quản Lý Secrets
 
-Không bao giờ commit mật khẩu vào file compose. Sử dụng Docker secrets hoặc file môi trường:
+Không bao giờ commit mật khẩu vào file compose. Sử dụng Docker secrets hoặc file môi trường: ```yaml
+services: api: image: myapp:latest
+    secrets: - db_password
+    environment: DB_PASSWORD_FILE: /run/secrets/db_password
 
-```yaml
-services:
-  api:
-    image: myapp:latest
-    secrets:
-      - db_password
-    environment:
-      DB_PASSWORD_FILE: /run/secrets/db_password
-
-secrets:
-  db_password:
-    file: ./secrets/db_password.txt
+secrets: db_password: file: ./secrets/db_password.txt
 ```
 
 ### Chỉ Thị `include` (Compose v2.20+)
 
-Chia project lớn thành các file compose module:
-
-```yaml
+Chia project lớn thành các file compose module: ```yaml
 # compose.yaml — file gốc
 name: platform
 
-include:
-  - path: ./infra/postgres.yaml
+include: - path: ./infra/postgres.yaml
   - path: ./infra/redis.yaml
   - path: ./apps/api.yaml
   - path: ./apps/worker.yaml
@@ -423,9 +322,7 @@ Mỗi file được include là một file compose hợp lệ với service, net
 
 ### Triển Khai Blue/Green
 
-Để cập nhật zero-downtime mà không cần Kubernetes, sử dụng hai project compose và reverse proxy:
-
-```bash
+Để cập nhật zero-downtime mà không cần Kubernetes, sử dụng hai project compose và reverse proxy: ```bash
 #!/bin/bash
 # deploy.sh
 CURRENT=$(cat /tmp/current_slot 2>/dev/null || echo "blue")
@@ -462,9 +359,7 @@ echo "$NEW" > /tmp/current_slot
 
 ## Hạn Chế / Đánh Giá Trung Thực
 
-Docker Compose không phải giải pháp vạn năng. Đây là những nơi nó còn thiếu sót:
-
-**Ràng buộc một node**: Compose chạy trên một host. Nếu host đó gặp sự cố, toàn bộ stack sẽ down. Đối với yêu cầu high availability, bạn cần Kubernetes, Nomad hoặc Docker Swarm.
+Docker Compose không phải giải pháp vạn năng. Đây là những nơi nó còn thiếu sót: **Ràng buộc một node**: Compose chạy trên một host. Nếu host đó gặp sự cố, toàn bộ stack sẽ down. Đối với yêu cầu high availability, bạn cần Kubernetes, Nomad hoặc Docker Swarm.
 
 **Không có auto-scaling native**: `docker compose up --scale api=3` hoạt động, nhưng nó là thủ công. Không có horizontal pod autoscaling dựa trên CPU hoặc memory như Kubernetes HPA.
 
@@ -521,9 +416,7 @@ Tham gia [nhóm Telegram](https://t.me/dibi8dev) của chúng tôi để chia s�
 
 ## Công Cụ Được Đề Xuất
 
-Các sản phẩm chúng tôi đề xuất bổ sung cho hướng dẫn này:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — DigitalOcean
+Các sản phẩm chúng tôi đề xuất bổ sung cho hướng dẫn này: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — DigitalOcean
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — HTStack
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -542,7 +435,6 @@ Các sản phẩm chúng tôi đề xuất bổ sung cho hướng dẫn này:
 - [Giá Cả & Giấy Phép Docker Desktop](https://www.docker.com/pricing/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

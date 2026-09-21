@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ollama" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ollama" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ollama" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ollama" />
 title: 'Ollama: 137K+ Stars — Chạy LLM Local bằng Một Lệnh, Hướn...
 description: 'Ollama là cách đơn giản nhất để chạy Llama, DeepSeek, Mistral và các LLM khác trên local. Tương thích với LangChain, OpenWebUI, Continue.dev và Dify. Bao gồm thiết lập Docker, tùy chỉnh Modelfile, REST API, production hardening và benchmark hiệu năng.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,12 +20,9 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [ollama, 'llm-local', 'llama.cpp', deepseek, mistral, docker, modelfile, 'open-source']
-aliases:
-- /vi/posts/ollama/
+aliases: - /vi/posts/ollama/
 - /vi/resources/llm-frameworks/ollama-local-llm-guide/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/ollama/ -->
 
 {{</* resource-info */>}}
 
@@ -175,9 +167,7 @@ vector = embeddings.embed_query("Hello world")
 
 ### Continue.dev (Trợ lý lập trình AI cho VS Code/Cursor)
 
-Thêm vào `~/.continue/config.json`:
-
-```json
+Thêm vào `~/.continue/config.json`: ```json
 {
   "models": [
     {
@@ -197,9 +187,7 @@ Thêm vào `~/.continue/config.json`:
 
 ### Dify (Nền tảng workflow AI tự host)
 
-Trong **Cài đặt > Nhà cung cấp Model > Ollama** của Dify, cấu hình:
-
-```
+Trong **Cài đặt > Nhà cung cấp Model > Ollama** của Dify, cấu hình: ```
 Tên model: llama3.2:8b
 URL cơ sở: http://host.docker.internal:11434
 Cửa sổ ngữ cảnh: 8192
@@ -239,45 +227,28 @@ curl http://localhost:11434/api/embed -d '{
 # docker-compose.yml
 version: "3.8"
 
-services:
-  ollama:
-    image: ollama/ollama:0.6.7
+services: ollama: image: ollama/ollama:0.6.7
     container_name: ollama
-    ports:
-      - "11434:11434"
-    volumes:
-      - ollama_data:/root/.ollama
-    environment:
-      - OLLAMA_KEEP_ALIVE=24h
+    ports: - "11434:11434"
+    volumes: - ollama_data:/root/.ollama
+    environment: - OLLAMA_KEEP_ALIVE=24h
       - OLLAMA_NUM_PARALLEL=4
       - OLLAMA_MAX_LOADED_MODELS=2
     restart: unless-stopped
     # Hỗ trợ GPU NVIDIA
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+    deploy: resources: reservations: devices: - driver: nvidia
               count: all
               capabilities: [gpu]
 
-  open-webui:
-    image: ghcr.io/open-webui/open-webui:main
+  open-webui: image: ghcr.io/open-webui/open-webui:main
     container_name: open-webui
-    ports:
-      - "3000:8080"
-    environment:
-      - OLLAMA_BASE_URL=http://ollama:11434
-    volumes:
-      - openwebui_data:/app/backend/data
-    depends_on:
-      - ollama
+    ports: - "3000:8080"
+    environment: - OLLAMA_BASE_URL=http://ollama:11434
+    volumes: - openwebui_data:/app/backend/data
+    depends_on: - ollama
     restart: unless-stopped
 
-volumes:
-  ollama_data:
-  openwebui_data:
-```
+volumes: ollama_data: openwebui_data: ```
 
 Khởi động bằng `docker compose up -d`.
 
@@ -300,36 +271,22 @@ sudo systemctl restart docker
 
 ### Thiết lập GPU AMD ROCm
 
-Dùng image tag dành riêng cho ROCm:
-
-```yaml
-services:
-  ollama:
-    image: ollama/ollama:rocm
-    devices:
-      - /dev/kfd
+Dùng image tag dành riêng cho ROCm: ```yaml
+services: ollama: image: ollama/ollama:rocm
+    devices: - /dev/kfd
       - /dev/dri
-    group_add:
-      - video
-    environment:
-      - HSA_OVERRIDE_GFX_VERSION=11.0.0
+    group_add: - video
+    environment: - HSA_OVERRIDE_GFX_VERSION=11.0.0
 ```
 
 ### Serve đồng thờ nhiều model
 
 ```yaml
-services:
-  ollama:
-    image: ollama/ollama:0.6.7
-    environment:
-      - OLLAMA_NUM_PARALLEL=4      # 4 request đồng thờ
+services: ollama: image: ollama/ollama:0.6.7
+    environment: - OLLAMA_NUM_PARALLEL=4      # 4 request đồng thờ
       - OLLAMA_MAX_LOADED_MODELS=2  # Giữ 2 model trong VRAM
       - OLLAMA_KEEP_ALIVE=30m      # Unload sau 30 phút idle
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+    deploy: resources: reservations: devices: - driver: nvidia
               count: all
               capabilities: [gpu]
 ```
@@ -365,9 +322,7 @@ TEMPLATE """{{ if .System }}<|start_header_id|>system<|end_header_id|>
 {{ .Response }}<|eot_id|>"""
 ```
 
-Build và chạy:
-
-```bash
+Build và chạy: ```bash
 # Tạo model tùy chỉnh
 ollama create senior-dev -f Modelfile
 
@@ -384,14 +339,12 @@ ollama show senior-dev --modelfile
 # Modelfile.code-review
 FROM codellama:7b-code
 
-SYSTEM """Bạn là trợ lý review code. Phân tích code được cung cấp để tìm:
-1. Bug và lỗi logic
+SYSTEM """Bạn là trợ lý review code. Phân tích code được cung cấp để tìm: 1. Bug và lỗi logic
 2. Lỗ hổng bảo mật (SQL injection, XSS, buffer overflow)
 3. Vấn đề hiệu năng (truy vấn N+1, cấp phát không cần thiết)
 4. Phong cách và khả năng đọc
 
-Định dạng phản hồi:
-- [CRITICAL] cho bug/bảo mật
+Định dạng phản hồi: - [CRITICAL] cho bug/bảo mật
 - [WARN] cho hiệu năng
 - [INFO] cho gợi ý phong cách
 
@@ -529,9 +482,7 @@ server {
 
 ### Xác thực API Key (không hỗ trợ native)
 
-Ollama không có xác thực API key tích hợp. Thêm qua reverse proxy:
-
-```python
+Ollama không có xác thực API key tích hợp. Thêm qua reverse proxy: ```python
 # ollama-auth-proxy.py (Ví dụ Flask)
 from flask import Flask, request, Response
 import requests
@@ -542,10 +493,8 @@ VALID_KEYS = {"sk-your-api-key-here"}
 
 @app.route('/', defaults={path: ''}, methods=[GET, POST, PUT, DELETE])
 @app.route('/<path:path>', methods=[GET, POST, PUT, DELETE])
-def proxy(path):
-    api_key = request.headers.get(Authorization, '').replace('Bearer ', '')
-    if api_key not in VALID_KEYS:
-        return {"error": "API key không hợp lệ"}, 401
+def proxy(path): api_key = request.headers.get(Authorization, '').replace('Bearer ', '')
+    if api_key not in VALID_KEYS: return {"error": "API key không hợp lệ"}, 401
     
     resp = requests.request(
         method=request.method,
@@ -557,15 +506,12 @@ def proxy(path):
     return Response(resp.iter_content(chunk_size=1024), status=resp.status_code,
                    content_type=resp.headers.get('Content-Type'))
 
-if __name__ == __main__:
-    app.run(host='0.0.0.0', port=11435)
+if __name__ == __main__: app.run(host='0.0.0.0', port=11435)
 ```
 
 ### Giám sát với Prometheus
 
-Ollama expose các metric cơ bản qua API:
-
-```bash
+Ollama expose các metric cơ bản qua API: ```bash
 # Liệt kê model đang chạy kèm mức sử dụng bộ nhớ
 curl http://localhost:11434/api/ps
 ```
@@ -682,9 +628,7 @@ Với developer cá nhân và nhóm nhỏ, Ollama là điểm khởi đầu th�
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -704,7 +648,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - Tài liệu Continue.dev: https://docs.continue.dev
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

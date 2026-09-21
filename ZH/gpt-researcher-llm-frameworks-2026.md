@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/gpt-researcher-llm-frameworks-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/gpt-researcher-llm-frameworks-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/gpt-researcher-llm-frameworks-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/gpt-researcher-llm-frameworks-2026" />
 title: 'GPT Researcher：自主深度研究报告智能体——2026 实战指南'
 description: 'GPT Researcher 是一个开源深度研究智能体，能针对任意任务执行联网与本地研究并生成带引用的报告。27,473 GitHub 星标，Apache-2.0 许可。涵盖安装、异步 Python API、Docker 与真实代码示例。'
 date: 2026-06-02 00:00:00+08:00
@@ -25,10 +20,8 @@ featureImage: 'https://contrib.rocks/image?repo=assafelovic/gpt-researcher&max=1
 draft: false
 categories: ['llm-frameworks']
 tags: []
-aliases:
-- /posts/gpt-researcher-llm-frameworks-2026/
-faqs:
-  - q: '如何安装 gpt-researcher？'
+aliases: - /posts/gpt-researcher-llm-frameworks-2026/
+faqs: - q: '如何安装 gpt-researcher？'
     a: '通过 pip 安装 Python 包： ```bash pip install gpt-researcher ```'
   - q: '可以用哪些 LLM 提供商和搜索引擎？'
     a: '默认 LLM 是 OpenAI，默认检索器是 Tavily，但两者都可通过环境变量和配置文件更换，智能体还支持包括基于 MCP 的来源在内的其他检索器。'
@@ -37,10 +30,7 @@ faqs:
   - q: '如何运行带 Web 界面的完整应用？'
     a: '克隆仓库并运行 `docker-compose up --build`。这会在 `localhost:8000` 启动 FastAPI 服务端，在 `localhost:3000` 启动前端。你也可以只启动服务端：`python -m uvicorn main:app --reload`。'
   - q: 'conduct_research() 和 write_report() 是同步的吗？'
-    a: '不是。两者都是异步方法。要在 async 函数内用 `await` 调用，并用 `asyncio.run()` 运行该函数。'
----
-
-<!-- canonical: https://dibi8.com/zh/tools/gpt-researcher-llm-frameworks-2026/ -->
+    a: '不是。两者都是异步方法。要在 async 函数内用 `await` 调用，并用 `asyncio.run()` 运行该函数。'---
 # GPT Researcher：自主深度研究报告智能体——2026 实战指南
 
 
@@ -139,8 +129,7 @@ Python API 围绕 `GPTResearcher` 类构建。研究和撰写报告都是**异�
 import asyncio
 from gpt_researcher import GPTResearcher
 
-async def main():
-    query = "why is Nvidia stock going up?"
+async def main(): query = "why is Nvidia stock going up?"
     researcher = GPTResearcher(query=query)
     # Conduct research: plan, search, scrape, and gather context
     research_result = await researcher.conduct_research()
@@ -159,8 +148,7 @@ asyncio.run(main())
 import asyncio
 from gpt_researcher import GPTResearcher
 
-async def main():
-    researcher = GPTResearcher(
+async def main(): researcher = GPTResearcher(
         query="What are the latest advancements in natural language processing?",
         report_type="detailed_report",
     )
@@ -179,8 +167,7 @@ asyncio.run(main())
 import asyncio
 from gpt_researcher import GPTResearcher
 
-async def main():
-    researcher = GPTResearcher(query="How does AI impact society?")
+async def main(): researcher = GPTResearcher(query="How does AI impact society?")
     await researcher.conduct_research()
     report = await researcher.write_report()
 
@@ -217,8 +204,7 @@ export RETRIEVER=tavily,mcp
 import asyncio
 from gpt_researcher import GPTResearcher
 
-async def research(topic: str) -> str:
-    researcher = GPTResearcher(query=topic)
+async def research(topic: str) -> str: researcher = GPTResearcher(query=topic)
     await researcher.conduct_research()
     return await researcher.write_report()
 
@@ -251,7 +237,11 @@ README 没有公布正式的准确率基准，因此对于任何关于性能的�
 GPT Researcher 属于「自主研究智能体」这一类。与其编造竞品数字，不如这样诚实地对照：
 
 | 维度 | GPT Researcher |
-|----------------------|----------------------------------------|
+|
+---
+|
+---
+|
 | **星标** | 27,473 |
 | **语言** | Python |
 | **许可** | Apache-2.0 |
@@ -290,21 +280,18 @@ GPT Researcher 很能干，但要清楚它的取舍：
 - 加入 [dibi8 英文 Telegram 群](https://t.me/DIBI8_Group/2)，获取开源 AI 工具速递。
 - 延伸阅读：[dibi8 相关指南](dibi8-internal-link)。
 
----
 
+---
 **来源与延伸阅读**：
 - GitHub 仓库：https://github.com/assafelovic/gpt-researcher
 - 官方文档 / README：https://github.com/assafelovic/gpt-researcher#readme
 
 *以上部分链接为联盟链接。若你通过它们注册，dibi8.com 可能获得一笔佣金，而你不会因此多付任何费用。这有助于维持网站运营、保持内容免费。*
 
-<!-- internal-link-candidates:
   related open-source tools -> ai-tools-directory
   related guides on dibi8 -> ai-coding-agent-landscape-2026-skills-mcp-opensource
--->
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -332,25 +319,20 @@ GPT Researcher 很能干，但要清楚它的取舍：
 
 ## Why This Matters
 
-Understanding gpt researcher：自主深度研究报告智能体——2026 实战指南 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding gpt researcher：自主深度研究报告智能体——2026 实战指南 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -371,8 +353,8 @@ GPT Researcher：自主深度研究报告智能体——2026 实战指南 repres
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -402,7 +384,17 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 ## Framework Comparison
 
 | Framework | Primary Use | Learning Curve | Community | Production Ready |
-|-----------|-------------|----------------|-----------|------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **LangChain** | General-purpose | Medium | Large | ✅ Yes |
 | **LlamaIndex** | RAG/Retrieval | Low | Growing | ✅ Yes |
 | **Haystack** | Document processing | Medium | Medium | ✅ Yes |

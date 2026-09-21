@@ -1,28 +1,34 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/semgrep-15k-star-sast-security-scanner" />
 title: 'Semgrep: The 15K-Star SAST Tool That Finds 500+ Vulnerab...
 description: 'Semgrep is an open-source static analysis tool with 15K+ GitHub stars that finds 500+ vulnerability patterns in Python, JavaScript, TypeScript, Go, Java, and more. Fast, lightweight, CI/CD integration. Includes setup guide, benchmarks, and production deployment.'
 tags: ["open-source", "sast", "scanner", "security"]
 date: 2026-06-10
-lastmod:  2026-06-10slug: 'semgrep-15k-star-sast-security-scanner'
+lastmod: 2026-06-10
+slug: 'semgrep-15k-star-sast-security-scanner'
 category: dev-utils
 github_repo: 'https://github.com/semgrep/semgrep'
 license: MIT
-lang: en
-featureImage: /articles/docker-compose-37-393-github-stars-multi-a62205.png/images/articles/docker-compose-37-393-github-stars-multi-a62205.png
----
-
+featureImage: /articles/docker-compose-37-393-github-stars-multi-a62205.png/images/articles/docker-compose-37-393-github-stars-multi-a62205.png---
 # Semgrep: The 15K-Star SAST Tool That Finds 500+ Vulnerabilities in Your Codebase in Under 30 Seconds — Fast, Lightweight, Production-Ready
 
----
 
+---
 ## TL;DR
 
 Semgrep is an open-source static analysis toolkit with 15K+ GitHub stars that finds vulnerabilities in Python, JavaScript, TypeScript, Go, Java, and more. 500+ rule patterns, CLI-first design, CI/CD integration. It's the most loved developer security tool available — fast, free, and self-hosted. With 15,453 stars and a 20-second average scan time, Semgrep is the go-to security scanner for modern engineering teams.
 
 | Metric | Semgrep | SonarQube | CodeQL | Bandit |
-|--------|---------|-----------|--------|--------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Stars | 15K+ | 12K+ | 8K+ | 4K+ |
 | Languages | 12+ | 20+ | 5 | Python only |
 | Speed | < 30s | 5-10min | 2-5min | 30s-5min |
@@ -32,8 +38,8 @@ Semgrep is an open-source static analysis toolkit with 15K+ GitHub stars that fi
 
 Semgrep scans a typical Python codebase (50K lines) in under 30 seconds — 100x faster than SonarQube while finding comparable security vulnerabilities. With 500+ pre-built rules and 15K+ GitHub stars, it's the most productive SAST tool developers use daily. For DevOps teams processing 10,000+ PRs monthly, Semgrep's caching and baseline features reduce scanning noise by up to 70% compared to running full scans on every commit. And for engineering teams that want to shift-left on security without sacrificing velocity, Semgrep is the definitive answer.
 
----
 
+---
 ## What It Is
 
 Semgrep solves the "too slow to scan" problem.
@@ -66,9 +72,7 @@ Taint analysis for data flows
 Output: SARIF/JSON report with fix suggestions
 ```
 
-Semgrep works in three phases:
-
-**Phase 1 — Parse:** Builds an Abstract Syntax Tree (AST) from your source code, preserving semantics, not just text.
+Semgrep works in three phases: **Phase 1 — Parse:** Builds an Abstract Syntax Tree (AST) from your source code, preserving semantics, not just text.
 
 **Phase 2 — Match:** Compares your AST against a rule engine that understands code patterns, not regex.
 
@@ -78,9 +82,7 @@ Semgrep works in three phases:
 
 ## Quick Start (1 Minute)
 
-Install Semgrep:
-
-```bash
+Install Semgrep: ```bash
 # Install with one command
 pip install semgrep
 
@@ -91,9 +93,7 @@ semgrep scan --config auto .
 semgrep scan --config p/security-audit .
 ```
 
-Or use Docker:
-
-```bash
+Or use Docker: ```bash
 docker pull semgrep/semgrep:latest
 docker run --rm -v $(pwd):/src semgrep/semgrep scan --config auto /src
 ```
@@ -122,7 +122,17 @@ Semgrep scans a typical Python project (50K lines) in under 30 seconds.
 ### Speed Comparison
 
 | Project Size | Semgrep | SonarQube | CodeQL | Bandit |
-|--------------|---------|-----------|--------|--------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 10K lines | 3s | 45s | 120s | 5s |
 | 50K lines | 28s | 4min | 3min | 25s |
 | 100K lines | 55s | 8min | 5min | 50s |
@@ -136,9 +146,7 @@ Semgrep is 10x faster than SonarQube on a 50K-line project and 5x faster than Co
 
 ## CLI Usage
 
-Semgrep is CLI-first — designed for automation:
-
-```bash
+Semgrep is CLI-first — designed for automation: ```bash
 # Scan with all built-in rules
 semgrep scan --config auto .
 
@@ -164,8 +172,7 @@ semgrep scan --json --output report.json .
 ```yaml
 - name: Semgrep CI
   uses: semgrep/semgrep-action@v1
-  with:
-    config: >-
+  with: config: >-
       p/default
       p/owasp
   fail-on-severity: high
@@ -174,14 +181,10 @@ semgrep scan --json --output report.json .
 ### GitLab CI
 
 ```yaml
-semgrep:
-  stage: test
+semgrep: stage: test
   image: semgrep/semgrep:latest
-  script:
-    - semgrep scan --config auto --json --output gl-secret-detection.json
-  artifacts:
-    reports:
-      sast: gl-secret-detection.json
+  script: - semgrep scan --config auto --json --output gl-secret-detection.json
+  artifacts: reports: sast: gl-secret-detection.json
 ```
 
 ### Jenkins Pipeline
@@ -203,14 +206,10 @@ pipeline {
 
 ## Writing Custom Rules
 
-Semgrep's strength is writing custom rules in a simple YAML pattern language:
-
-```yaml
+Semgrep's strength is writing custom rules in a simple YAML pattern language: ```yaml
 # Detect hardcoded passwords in Python
-rules:
-  - id: hardcoded-password
-    patterns:
-      - pattern: PASSWORD = "$PASSWORD"
+rules: - id: hardcoded-password
+    patterns: - pattern: PASSWORD = "$PASSWORD"
     message: "Hardcoded password detected"
     severity: ERROR
     languages: [python]
@@ -218,10 +217,8 @@ rules:
 
 ```yaml
 # Detect SQL injection in Node.js
-rules:
-  - id: sql-injection-node
-    patterns:
-      - pattern: db.query("SELECT * FROM users WHERE id = " + $USER_INPUT)
+rules: - id: sql-injection-node
+    patterns: - pattern: db.query("SELECT * FROM users WHERE id = " + $USER_INPUT)
     message: "SQL injection vulnerability"
     severity: ERROR
     languages: [javascript]
@@ -231,28 +228,18 @@ rules:
 
 ## Taint Analysis
 
-Semgrep supports taint analysis for tracking data flows:
-
-```yaml
+Semgrep supports taint analysis for tracking data flows: ```yaml
 # Detect reflected XSS in Python Flask
-rules:
-  - id: reflected-xss-flask
-    patterns:
-      - pattern-either:
-          - pattern: |
-              def view(request):
-                  ...
+rules: - id: reflected-xss-flask
+    patterns: - pattern-either: - pattern: |
+              def view(request): ...
                   return render(request, "template.html", {"data": $USER_INPUT})
-      - pattern-either:
-          - id: source
+      - pattern-either: - id: source
             patterns: [pattern: "$USER_INPUT = request.GET.get(...)"]
           - id: sink
             patterns: [pattern: "render(...)"]
-    flow:
-      - source:
-          patterns: [pattern-either: [$source]]
-      - sink:
-          patterns: [pattern-either: [$sink]]
+    flow: - source: patterns: [pattern-either: [$source]]
+      - sink: patterns: [pattern-either: [$sink]]
 ```
 
 ---
@@ -279,27 +266,17 @@ docker run --rm -v $(pwd)/rules:/rules -v $(pwd)/src:/src \
 ```yaml
 apiVersion: batch/v1
 kind: CronJob
-metadata:
-  name: semgrep-scan
-spec:
-  schedule: "0 3 * * *"
-  jobTemplate:
-    spec:
-      template:
-        spec:
-          containers:
-          - name: semgrep
+metadata: name: semgrep-scan
+spec: schedule: "0 3 * * *"
+  jobTemplate: spec: template: spec: containers: - name: semgrep
             image: semgrep/semgrep:latest
             command: ["semgrep", "scan", "--config", "auto", "--json", "--output", "/results/report.json"]
-            volumeMounts:
-            - name: src
+            volumeMounts: - name: src
               mountPath: /src
             - name: results
               mountPath: /results
-          volumes:
-          - name: src
-            hostPath:
-              path: /code/repo
+          volumes: - name: src
+            hostPath: path: /code/repo
           - name: results
             emptyDir: {}
           restartPolicy: Never
@@ -309,9 +286,7 @@ spec:
 
 ## Performance Tuning
 
-Optimize Semgrep for different environments:
-
-```bash
+Optimize Semgrep for different environments: ```bash
 # Use cache for faster repeated scans
 semgrep scan --cache .
 
@@ -328,9 +303,7 @@ semgrep scan --timeout 60 .
 semgrep scan --exclude /vendor/ --exclude /node_modules/ .
 ```
 
-For large-scale scanning across many repositories:
-
-```bash
+For large-scale scanning across many repositories: ```bash
 # Scan with specific language only (faster)
 semgrep scan --language python .
 
@@ -349,7 +322,17 @@ semgrep scan --baseline-commit HEAD~1 .
 ## Compared to Alternatives
 
 | Feature | Semgrep | SonarQube | CodeQL | Bandit |
-|---------|---------|-----------|--------|--------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Stars | 15K+ | 12K+ | 8K+ | 4K+ |
 | Languages | 12+ | 20+ | 5 | Python |
 | Speed | < 30s | 5-10min | 2-5min | 30s-5min |
@@ -363,9 +346,7 @@ semgrep scan --baseline-commit HEAD~1 .
 
 ## Limitations / Honest Assessment
 
-Semgrep is not for everyone:
-
-- **Rule maintenance**: Custom rules need updating as your codebase evolves
+Semgrep is not for everyone: - **Rule maintenance**: Custom rules need updating as your codebase evolves
 - **Limited coverage**: 500+ rules is fewer than SonarQube (1000+)
 - **False positives**: Pattern-based analysis may generate false positives
 - **Not a replacement for DAST**: Semgrep only does static analysis, not runtime testing
@@ -437,7 +418,6 @@ Join the **dibi8 [English Telegram group](https://t.me/DIBI8_Group/2)** for disc
 
 *Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.*
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

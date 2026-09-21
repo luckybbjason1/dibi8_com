@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/rtk-rust-cli-proxy-ai-token-saver" />
 title: 'RTK: The Open-Source Rust CLI Proxy That Slashes AI Codi...
 description: 'RTK (Rust Token Killer) is an open-source CLI proxy written in Rust that reduces LLM token consumption by 60-90% for Claude Code, Cursor, Copilot, Codex, and Gemini CLI. Single binary, zero dependencies, install in one command. Includes setup tutorial, architecture breakdown, and real benchmarks.'
 date: 2026-05-14 00:00:00+08:00
@@ -20,14 +18,12 @@ maintainer: ''
 last_maintained: '2026-05-14'
 featureImage: ''
 draft: false
-aliases:
-- /posts/rtk-rust-cli-proxy-ai-token-saver/
+aliases: - /posts/rtk-rust-cli-proxy-ai-token-saver/-
 ---
-
 {</* resource-info */>}
 
----
 
+---
 ## The Hidden Tax of AI-Powered Development
 
 In 2026, AI coding agents like Claude Code, GitHub Copilot, Cursor, OpenAI Codex, and Gemini CLI have become embedded in daily developer workflows. But one cost is bleeding budgets silently: **token consumption from routine shell commands**.
@@ -36,8 +32,8 @@ Here is what actually happens under the hood. When Claude Code runs `cargo test`
 
 You are not paying for AI intelligence. You are paying for redundant context that the model never needed.
 
----
 
+---
 ## What Is RTK? A "Smart Throttle," Not Another AI Tool
 
 **RTK** (Rust Token Killer) is a high-performance CLI proxy written in Rust, now sitting at **45,000+ GitHub Stars**. It does not replace your AI coding assistant. It sits transparently between your shell and the LLM, filtering and compressing command output so only actionable signal reaches the model.
@@ -47,7 +43,11 @@ The project states its value in one line: *"Reduces LLM token consumption by 60-
 ### Key Characteristics
 
 | Feature | Detail |
-|---------|--------|
+|
+---
+|
+---
+|
 | **Single binary** | One Rust executable, zero runtime dependencies, <10ms overhead |
 | **Zero-friction setup** | One-command install, auto-hooks into your shell, no workflow changes |
 | **100+ command rules** | Built-in smart filters for git, test runners, build tools, package managers |
@@ -64,22 +64,19 @@ RTK is built on a simple insight: **roughly 80% of command output carries no dec
 
 **Scenario 1: `git status` output**
 
-Raw output may list 50 modified files with full paths and status markers. RTK:
-- Keeps the critical summary (files modified / added / deleted)
+Raw output may list 50 modified files with full paths and status markers. RTK: - Keeps the critical summary (files modified / added / deleted)
 - Collapses repeated path prefixes
 - Drops detailed diff markers irrelevant to the current task
 
 **Scenario 2: Test runner output**
 
-When `pytest` or `cargo test` executes:
-- Passing tests compress to a single statistic ("47 passed")
+When `pytest` or `cargo test` executes: - Passing tests compress to a single statistic ("47 passed")
 - Only failing tests retain full error traces and logs
 - The bulk of successful test noise never enters the LLM context
 
 **Scenario 3: Build and compile logs**
 
-`npm run build` or `go build` output is stripped of:
-- Progress bars and timing metadata
+`npm run build` or `go build` output is stripped of: - Progress bars and timing metadata
 - Everything except errors and warnings
 - Successful builds reduce to a confirmation signal
 
@@ -114,9 +111,7 @@ The binary is placed in `~/.local/bin/` or `~/.cargo/bin/`.
 
 ### Step 2: Enable the Shell Hook
 
-RTK intercepts AI agent commands via a shell hook. Choose your shell:
-
-**Bash / Zsh:**
+RTK intercepts AI agent commands via a shell hook. Choose your shell: **Bash / Zsh:**
 ```bash
 echo 'eval "$(rtk hook bash)"' >> ~/.bashrc
 echo 'eval "$(rtk hook zsh)"' >> ~/.zshrc
@@ -168,7 +163,15 @@ Data sourced from official RTK benchmarks and community-verified measurements.
 ### Mid-Sized Rust Project (~200 source files)
 
 | Metric | Without RTK | With RTK | Saved |
-|--------|-------------|----------|-------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 30-minute session total | ~118,000 | ~23,900 | **~80%** |
 | Single `cargo test` call | ~4,200 | ~340 | **~92%** |
 | Single `git status` call | ~2,100 | ~180 | **~91%** |
@@ -177,7 +180,15 @@ Data sourced from official RTK benchmarks and community-verified measurements.
 ### TypeScript / Node.js Project (Next.js Full-Stack)
 
 | Metric | Without RTK | With RTK | Saved |
-|--------|-------------|----------|-------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Single `npm test` call | ~3,800 | ~420 | **~89%** |
 | `npm run build` errors | ~6,200 | ~890 | **~86%** |
 | ESLint batch output | ~5,400 | ~560 | **~90%** |
@@ -194,9 +205,7 @@ Data sourced from official RTK benchmarks and community-verified measurements.
 
 ### Writing Custom Filters
 
-RTK supports project-specific and command-specific compression policies:
-
-```bash
+RTK supports project-specific and command-specific compression policies: ```bash
 # Add a custom rule for a proprietary command
 rtk rule add "my-custom-command" --keep-pattern="ERROR|WARN" --discard-pattern="INFO|DEBUG"
 
@@ -209,16 +218,13 @@ rtk bypass --command="git log"
 
 ### Team-Level Deployment
 
-Organizations looking to centralize AI cost control can deploy RTK as a shared proxy layer:
-
-1. **Shared configuration**: Commit `.rtk.yml` to the repo so all team members use identical filtering policies.
+Organizations looking to centralize AI cost control can deploy RTK as a shared proxy layer: 1. **Shared configuration**: Commit `.rtk.yml` to the repo so all team members use identical filtering policies.
 2. **CI/CD integration**: Enable RTK in build pipelines to reduce token burn during automated testing.
 3. **Usage reporting**: Pipe `rtk gain` output into team dashboards for cross-project token visibility.
 
 ```yaml
 # Example .rtk.yml (project-level config)
-rules:
-  - command: "pytest"
+rules: - command: "pytest"
     keep: "FAILED|ERROR|skipped summary"
     compress_passed: true
   - command: "docker compose logs"
@@ -237,7 +243,17 @@ RTK processes **command output**, not the commands themselves. When a command fa
 ## Comparison with Other Token Optimization Strategies
 
 | Approach | Mechanism | Savings | Intrusiveness | Best For |
-|----------|-----------|---------|---------------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **RTK** | Command output compression | 60-90% | Minimal (shell hook) | All Bash-driven agents |
 | context-mode | Sandbox output isolation | 98% | Medium (SDK integration) | Multi-platform agents |
 | lean-ctx | Shell hook + MCP server | 89-99% | Medium | MCP-enabled setups |
@@ -290,7 +306,6 @@ RTK represents a maturation in the tooling stack: **not bigger models, but smart
 *Tags: RTK, AI coding agent, LLM token optimization, Rust CLI tool, open source developer tools, Claude Code, Cursor IDE, GitHub Copilot, OpenAI Codex, token cost reduction, developer productivity 2026*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ds4-deepseek-4-flash-local-inference-engine" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ds4-deepseek-4-flash-local-inference-engine" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ds4-deepseek-4-flash-local-inference-engine" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ds4-deepseek-4-flash-local-inference-engine" />
 title: 'ds4: 2026년 개발자들이 전환하는 오픈소스 도구 — 완전 가이드'
 description: 'ds4 is DeepSeek 4 Flash local inference engine for Metal and CUDA. Compatible with Claude Code, Cursor, GitHub Copilot, and VS Code. Includes installation tutor'
 date: 2026-05-20 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: ''
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
-aliases:
-- /posts/ds4/
+aliases: - /posts/ds4/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/ds4-deepseek-4-flash-local-inference-engine/ -->
 
 {</* resource-info */>}
 # ds4: 2026년 개발자들이 전환하는 오픈소스 도구 — 완전 가이드
@@ -59,9 +51,7 @@ Architecture: ds4 core components
 
 ## 설치 및 설정
 
-Get ds4 running in under 5 minutes:
-
-**Option 1: Install via package manager**
+Get ds4 running in under 5 minutes: **Option 1: Install via package manager**
 
 ```bash
 # Clone the repository
@@ -151,18 +141,15 @@ echo "copilot.ds4.enabled=true" >> ~/.github/copilot.yml
 ### Production Hardening Checklist
 
 ```yaml
-security:
-  - enable_rate_limiting: true
+security: - enable_rate_limiting: true
   - max_requests_per_minute: 120
   - authentication: required
 
-monitoring:
-  - health_check_endpoint: /health
+monitoring: - health_check_endpoint: /health
   - metrics_port: 9090
   - log_level: info
 
-scaling:
-  - min_replicas: 2
+scaling: - min_replicas: 2
   - max_replicas: 10
   - target_cpu_utilization: 70%
 ```
@@ -231,7 +218,6 @@ With 10,913 developers already using it in production, the question isn't whethe
 *Published on dibi8.com | Source: [antirez/ds4](https://github.com/antirez/ds4) | ⭐ 10,913*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -259,25 +245,20 @@ With 10,913 developers already using it in production, the question isn't whethe
 
 ## Why This Matters
 
-Understanding ds4: 2026년 개발자들이 전환하는 오픈소스 도구 — 완전 가이드 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding ds4: 2026년 개발자들이 전환하는 오픈소스 도구 — 완전 가이드 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

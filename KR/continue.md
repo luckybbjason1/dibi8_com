@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/continue" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/continue" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/continue" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/continue" />
 title: 'Continue.dev: 33K+ Stars — 오픈소스 AI 코딩 어시스턴트, Copilot·Cur...
 description: 'Continue.dev(오픈소스 AI 코딩 어시스턴트) VS Code/JetBrains 플러그인. Ollama, OpenAI, Anthropic, Gemini 등 모든 LLM 지원. GitHub Copilot, Cursor, Tabby와 비교. 설치 튜토리얼, 설정 예제, 벤치마크.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['continue.dev', 'ai-coding-assistant', 'vs-code', jetbrains, 'open-source', ollama, 'copilot-alternative', 'local-llm', mcp]
-aliases:
-- /kr/posts/continue/
+aliases: - /kr/posts/continue/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/continue/ -->
 
 {{</* resource-info */>}}
 
@@ -43,9 +35,7 @@ GitHub Copilot을 사용해 본 개발자라면 AI 지원 코딩이 주는 생�
 
 **Continue.dev**는 VS Code, JetBrains IDE, Neovim에 AI 지원 코딩 보조 기능을 제공하는 오픈소스 IDE 확장 프로그램과 CLI 도구다. 폐쇄형 대안과 달리 Continue.dev는 OpenAI GPT-4o, Anthropic Claude, Google Gemini, 로컬 Ollama 인스턴스, 자체 호스팅 vLLM 엔드포인트 등 어떤 LLM 제공자에도 연결할 수 있다. 개발자가 어떤 모델이 코드를 처리하고 데이터가 어디에 저장되는지 완전히 제어할 수 있다. 처음에는 VS Code 플러그인으로 출시되었으나, CI 통합 PR 체크, 자율 다단계 작업을 위한 Agent 모드, 도구 통합을 위한 MCP(Model Context Protocol) 지원까지 갖춘 완전한 "Continuous AI" 플랫폼으로 진화했다.
 
-핵심 수치 요약:
-
-| 지표 | 수치 |
+핵심 수치 요약: | 지표 | 수치 |
 |------|------|
 | GitHub Stars | 33,277+ |
 | 기여자 | 473+ |
@@ -59,9 +49,7 @@ GitHub Copilot을 사용해 본 개발자라면 AI 지원 코딩이 주는 생�
 
 ## Continue.dev 작동 방식
 
-Continue.dev는 IDE 확장 프로그램으로 작동하며, 편집기 컨텍스트를 가로채 구성 가능한 LLM 백엔드로 라우팅한다. 아키텍처는 세 레이어로 구성된다:
-
-**IDE 레이어** — 확장 프로그램이 채팅 패널, 인라인 자동완성 엔진, Agent 실행기를 VS Code나 JetBrains에 직접 임베드한다. IDE의 네이티브 API를 통해 파일 콘텐츠, 터미널 출력, 프로젝트 구조를 읽는다.
+Continue.dev는 IDE 확장 프로그램으로 작동하며, 편집기 컨텍스트를 가로채 구성 가능한 LLM 백엔드로 라우팅한다. 아키텍처는 세 레이어로 구성된다: **IDE 레이어** — 확장 프로그램이 채팅 패널, 인라인 자동완성 엔진, Agent 실행기를 VS Code나 JetBrains에 직접 임베드한다. IDE의 네이티브 API를 통해 파일 콘텐츠, 터미널 출력, 프로젝트 구조를 읽는다.
 
 **설정 레이어** — 단일 `config.yaml`(또는 레거시 `config.json`) 파일이 어떤 작업에 어떤 모델을 사용할지 정의한다. Continue는 "모델 역할"을 사용하여 채팅, 자동완성, 편집, Agent 작업에 서로 다른 LLM을 할당한다. 이는 복잡한 추론에는 Claude Sonnet을 사용하면서 빠른 로컬 1.5B 모델로 탭 완성을 처리할 수 있음을 의미한다.
 
@@ -95,18 +83,14 @@ Continue.dev는 IDE 확장 프로그램으로 작동하며, 편집기 컨텍스�
 
 ### 설치 확인
 
-Continue 채팅 패널을 열어 버전을 확인한다:
-
-```bash
+Continue 채팅 패널을 열어 버전을 확인한다: ```bash
 # VS Code: 사이드바 열기 (Ctrl+L) → 톱니바퀴 아이콘 → 버전 v1.2.22 표시
 # 예상 결과: 왼쪽 사이드바에 주황색 "C" 아이콘 표시
 ```
 
 ### 첫 모델 설정 (config.yaml)
 
-전역 설정 파일을 생성한다:
-
-```bash
+전역 설정 파일을 생성한다: ```bash
 # macOS / Linux
 mkdir -p ~/.continue
 cat > ~/.continue/config.yaml << EOF
@@ -114,14 +98,12 @@ name: 내 개발 환경
 version: 1.0.0
 schema: v1
 
-models:
-  - name: Claude Sonnet
+models: - name: Claude Sonnet
     provider: anthropic
     model: claude-sonnet-4-6
     apiKey: ${{ secrets.ANTHROPIC_API_KEY }}
     roles: [chat, edit, agent]
-    defaultCompletionOptions:
-      temperature: 0.1
+    defaultCompletionOptions: temperature: 0.1
       maxTokens: 8192
 
   - name: GPT-4o
@@ -158,11 +140,8 @@ ollama pull nomic-embed-text       # @codebase용 임베딩
 ollama serve
 ```
 
-`config.yaml`에 추가:
-
-```yaml
-models:
-  - name: Qwen Coder 7B
+`config.yaml`에 추가: ```yaml
+models: - name: Qwen Coder 7B
     provider: ollama
     model: qwen2.5-coder:7b
     apiBase: http://localhost:11434
@@ -173,8 +152,7 @@ models:
     model: qwen2.5-coder:1.5b
     apiBase: http://localhost:11434
     roles: [autocomplete]
-    autocompleteOptions:
-      debounceDelay: 300
+    autocompleteOptions: debounceDelay: 300
       maxPromptTokens: 512
 
   - name: Nomic Embed
@@ -202,46 +180,32 @@ CMD ["continue", "check", "--config", "/root/.continue/config.yaml"]
 ```yaml
 # docker-compose.yml 팀 Ollama + Continue
 version: '3.8'
-services:
-  ollama:
-    image: ollama/ollama:latest
-    volumes:
-      - ollama-data:/root/.ollama
-    ports:
-      - "11434:11434"
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+services: ollama: image: ollama/ollama:latest
+    volumes: - ollama-data:/root/.ollama
+    ports: - "11434:11434"
+    deploy: resources: reservations: devices: - driver: nvidia
               count: 1
               capabilities: [gpu]
 
-volumes:
-  ollama-data:
-```
+volumes: ollama-data: ```
 
 ## VS Code, Ollama, OpenAI, Anthropic, JetBrains 통합
 
 ### VS Code: 다중 모델 워크플로우
 
-Continue.dev의 VS Code 핵심 기능은 **서로 다른 작업에 서로 다른 모델을 사용**하는 것이다. 프로덕션급 설정 예시:
-
-```yaml
+Continue.dev의 VS Code 핵심 기능은 **서로 다른 작업에 서로 다른 모델을 사용**하는 것이다. 프로덕션급 설정 예시: ```yaml
 # ~/.continue/config.yaml — 프로덕션 VS Code 설정
 name: 프로덕션 VS Code
 version: 1.0.0
 schema: v1
 
-models:
-  # 주력: 복잡한 작업용 Claude
+models: # 주력: 복잡한 작업용 Claude
   - name: Claude Sonnet 4.6
     provider: anthropic
     model: claude-sonnet-4-6
     apiKey: ${{ secrets.ANTHROPIC_API_KEY }}
     roles: [chat, edit, agent]
-    defaultCompletionOptions:
-      temperature: 0.1
+    defaultCompletionOptions: temperature: 0.1
       maxTokens: 8192
 
   # 폴리백: 속도용 GPT-4o
@@ -265,15 +229,13 @@ models:
     apiBase: http://localhost:11434
     roles: [embed]
 
-context:
-  - provider: code
+context: - provider: code
   - provider: docs
   - provider: diff
   - provider: terminal
   - provider: codebase
 
-rules:
-  - name: TypeScript 표준
+rules: - name: TypeScript 표준
     pattern: "**/*.ts"
     rule: |
       엄격한 TypeScript 사용. type 대신 interface 우선.
@@ -295,14 +257,12 @@ curl http://localhost:11434/api/tags
 ### Anthropic Claude 통합
 
 ```yaml
-models:
-  - name: Claude Opus
+models: - name: Claude Opus
     provider: anthropic
     model: claude-opus-4-6
     apiKey: ${{ secrets.ANTHROPIC_API_KEY }}
     roles: [chat, edit, agent]
-    defaultCompletionOptions:
-      temperature: 0.2
+    defaultCompletionOptions: temperature: 0.2
       maxTokens: 16384
 ```
 
@@ -311,8 +271,7 @@ Claude 모델은 MCP 도구 사용을 네이티브 지원하여 Continue의 Agen
 ### OpenAI 통합
 
 ```yaml
-models:
-  - name: GPT-4o
+models: - name: GPT-4o
     provider: openai
     model: gpt-4o
     apiKey: ${{ secrets.OPENAI_API_KEY }}
@@ -323,15 +282,12 @@ models:
     model: gpt-4o-mini
     apiKey: ${{ secrets.OPENAI_API_KEY }}
     roles: [autocomplete]
-    defaultCompletionOptions:
-      maxTokens: 1024
+    defaultCompletionOptions: maxTokens: 1024
 ```
 
 ### JetBrains: 전체 기능 설정
 
-JetBrains의 Continue는 동일한 `config.yaml`을 지원한다. 위치:
-
-```bash
+JetBrains의 Continue는 동일한 `config.yaml`을 지원한다. 위치: ```bash
 # 전역 (모든 프로젝트)
 # macOS: ~/.continue/config.yaml
 # Windows: %USERPROFILE%\.continue\config.yaml
@@ -340,26 +296,21 @@ JetBrains의 Continue는 동일한 `config.yaml`을 지원한다. 위치:
 # <프로젝트 루트>/.continue/config.yaml
 ```
 
-JetBrains 단축키:
-- `Cmd/Ctrl + J` — Continue 채팅 열기
+JetBrains 단축키: - `Cmd/Ctrl + J` — Continue 채팅 열기
 - `Tab` — 자동완성 수락
 - `Cmd/Ctrl + Shift + L` — 인라인 편집 전환
 
 ### MCP(Model Context Protocol) 통합
 
-Continue.dev는 MCP 서버의 도구 사용을 지원한다. `config.yaml`에 추가:
-
-```yaml
-mcpServers:
-  - name: filesystem
+Continue.dev는 MCP 서버의 도구 사용을 지원한다. `config.yaml`에 추가: ```yaml
+mcpServers: - name: filesystem
     command: npx
     args: ["-y", "@modelcontextprotocol/server-filesystem", "/home/user/projects"]
 
   - name: github
     command: npx
     args: ["-y", "@modelcontextprotocol/server-github"]
-    env:
-      GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    env: GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   - name: postgres
     command: npx
@@ -383,21 +334,16 @@ mcpServers:
 
 ### 사례: 규제 기업 (금융)
 
-12인 개발팀을 보유한 유럽 핀테크 기업이 Copilot Business에서 낸 GPU 서버에서 실행되는 Continue.dev + Ollama로 전환. 3개월 후 결과:
-
-- **비용**: 월 $0 (Copilot Business 대비 월 $228)
+12인 개발팀을 보유한 유럽 핀테크 기업이 Copilot Business에서 낸 GPU 서버에서 실행되는 Continue.dev + Ollama로 전환. 3개월 후 결과: - **비용**: 월 $0 (Copilot Business 대비 월 $228)
 - **지연 시간**: A100에서 Qwen 2.5 Coder 7B로 평균 자동완성 0.4초
 - **규정 준수**: 100% 에어갭, SOC 2 감사 통과
 - **개발자 만족도**: 8.2/10 (Copilot은 모델 제한으로 6.5/10)
 
 ### 사례: 개인 풀스택 개발자
 
-로컬과 클라우드 모델을 혼합하여 사용하는 개발자:
-
-```yaml
+로컬과 클라우드 모델을 혼합하여 사용하는 개발자: ```yaml
 # 비용-성능 최적화 설정
-models:
-  - name: Claude Haiku
+models: - name: Claude Haiku
     provider: anthropic
     model: claude-haiku-4-5
     apiKey: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -415,18 +361,14 @@ models:
 
 ### Agent 모드 자율 워크플로우
 
-Continue.dev의 2026년 Agent 모드는 자율적으로 다단계 작업을 계획하고 실행한다:
-
-```yaml
+Continue.dev의 2026년 Agent 모드는 자율적으로 다단계 작업을 계획하고 실행한다: ```yaml
 # 도구 정책이 있는 Agent 모드 활성화
-models:
-  - name: Claude Sonnet Agent
+models: - name: Claude Sonnet Agent
     provider: anthropic
     model: claude-sonnet-4-6
     apiKey: ${{ secrets.ANTHROPIC_API_KEY }}
     roles: [chat, edit, agent]
-    capabilities:
-      - tool_use
+    capabilities: - tool_use
       - image_input
 ```
 
@@ -440,8 +382,7 @@ name: TypeScript 규칙
 version: 1.0.0
 schema: v1
 
-rules:
-  - pattern: "**/*.ts"
+rules: - pattern: "**/*.ts"
     rule: |
       1. 엄격한 TypeScript 사용 (noImplicitAny, strictNullChecks)
       2. 객체 형태는 `interface`를 `type`보다 우선 사용
@@ -452,9 +393,7 @@ rules:
 
 ### 더 깊은 이해를 위한 컨텍스트 제공자
 
-Continue의 `@` 명령은 AI에 정확한 컨텍스트를 제공한다:
-
-```
+Continue의 `@` 명령은 AI에 정확한 컨텍스트를 제공한다: ```
 @codebase    — 전체 프로젝트의 의미론적 검색
 @docs        — 외부 문서 사이트 참조
 @terminal    — 마지막 명령 출력 포함
@@ -463,9 +402,7 @@ Continue의 `@` 명령은 AI에 정확한 컨텍스트를 제공한다:
 @github      — 이슈와 PR 가져오기
 ```
 
-채팅 예시:
-
-```
+채팅 예시: ```
 > @codebase 이 프로젝트의 인증 미들웨어 작동 방식 설명
 > @docs https://docs.nestjs.com/security/authentication
 > 문서의 패턴을 사용하여 로그인 핸들러 리팩토링
@@ -474,15 +411,12 @@ Continue의 `@` 명령은 AI에 정확한 컨텍스트를 제공한다:
 ### 보안: 시크릿 관리
 
 ```yaml
-# API 키를 절대 하드코딩하지 마라. 환경 변수 대체 사용:
-models:
-  - name: Claude
+# API 키를 절대 하드코딩하지 마라. 환경 변수 대체 사용: models: - name: Claude
     provider: anthropic
     model: claude-sonnet-4-6
     apiKey: ${{ secrets.ANTHROPIC_API_KEY }}  # 환경 변수에서
 
-# CI/CD에서는 러너의 시크릿 저장소 사용:
-# GitHub Actions: ${{ secrets.ANTHROPIC_API_KEY }}
+# CI/CD에서는 러너의 시크릿 저장소 사용: # GitHub Actions: ${{ secrets.ANTHROPIC_API_KEY }}
 # GitLab CI: $ANTHROPIC_API_KEY (CI/CD 변수)
 ```
 
@@ -490,11 +424,9 @@ models:
 
 ```bash
 # 모델별 API 비용 추적
-# 쉘 프로파일에 추가:
-export CONTINUE_LOG_LEVEL=debug
+# 쉘 프로파일에 추가: export CONTINUE_LOG_LEVEL=debug
 
-# 로그가 기록되는 위치:
-# macOS: ~/Library/Logs/Continue/
+# 로그가 기록되는 위치: # macOS: ~/Library/Logs/Continue/
 # Linux: ~/.config/Continue/logs/
 # Windows: %APPDATA%\Continue\logs\
 ```
@@ -528,9 +460,7 @@ export CONTINUE_LOG_LEVEL=debug
 
 ## 한계 / 솔직한 평가
 
-Continue.dev가 모든 개발자에게 적합한 것은 아니다. 솔직한 한계:
-
-**1. 자동완성 불안정성.** 탭 완성 기능은 여러 버전에서 알려진 신뢰성 문제가 있다. 특정 모델(Codestral, Qwen 2.5 Coder)에서는 잘 작동하지만 다른 모델에서는 오류가 발생하거나 조용히 실패할 수 있다. 자동완성이 주요 요구사항이라면 Copilot이나 Tabby가 더 신뢰할 수 있다.
+Continue.dev가 모든 개발자에게 적합한 것은 아니다. 솔직한 한계: **1. 자동완성 불안정성.** 탭 완성 기능은 여러 버전에서 알려진 신뢰성 문제가 있다. 특정 모델(Codestral, Qwen 2.5 Coder)에서는 잘 작동하지만 다른 모델에서는 오류가 발생하거나 조용히 실패할 수 있다. 자동완성이 주요 요구사항이라면 Copilot이나 Tabby가 더 신뢰할 수 있다.
 
 **2. 수동 설정 부담.** 모델을 변경할 때마다 `config.yaml`을 편집해야 한다. 설치하면 바로 작동하는 Copilot과 비교해 본다. Continue는 뜯어고치기를 좋아하는 사용자에게 보상을 주고, 제로 설정을 원하는 사용자를 벌한다.
 
@@ -590,9 +520,7 @@ Continue.dev는 33,277+ GitHub Stars, 모든 LLM 유연성, 완전한 오프라�
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -610,7 +538,6 @@ Continue.dev는 33,277+ GitHub Stars, 모든 LLM 유연성, 완전한 오프라�
 - [Continue.dev 블로그](https://blog.continue.dev/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/anythingllm-architecture-local-rag" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/anythingllm-architecture-local-rag" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/anythingllm-architecture-local-rag" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/anythingllm-architecture-local-rag" />
 title: "Tại Sao Doanh Nghiệp Sợ Hãi ChatGPT?"
 description: "Tại Sao Doanh Nghiệp Sợ Hãi ChatGPT?". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Docker
+tech_stack: - Docker
   - Go
   - JavaScript
   - Python
@@ -27,8 +21,7 @@ maintainer: "Mintplex-Labs"
 last_maintained: "2026-05-16"
 featureImage: ""
 draft: false
-faqs:
-  - q: 'Làm thế nào để khắc phục lỗi ''Connection Refused'' của AnythingLLM khi kết nối tới Ollama bên trong Docker?'
+faqs: - q: 'Làm thế nào để khắc phục lỗi ''Connection Refused'' của AnythingLLM khi kết nối tới Ollama bên trong Docker?'
     a: 'Bên trong một container Docker, localhost trỏ đến chính container chứ không phải máy chủ host, vì vậy hãy trỏ LLM URL của AnythingLLM tới http://host.docker.internal:11434. Bạn cũng phải khởi chạy Ollama với biến môi trường OLLAMA_HOST=0.0.0.0 để cho phép truy cập trên các giao diện mạng.'
   - q: 'AnythingLLM sử dụng chiến lược chunking nào cho RAG?'
     a: 'AnythingLLM sử dụng RecursiveCharacterTextSplitter của LangChain với chunkSize mặc định là 1000 và chunkOverlap là 200, chia theo thứ tự ưu tiên đoạn văn và ký tự xuống dòng (các dấu phân tách "\n\n", "\n", " ", ""). Phần chồng lấp 200 token giúp bảo toàn ngữ cảnh giữa các đoạn văn để ý nghĩa không bị mất do cắt cụt tùy tiện.'
@@ -40,7 +33,6 @@ faqs:
     a: 'Các cơ sở dữ liệu vector nhúng mặc định (LanceDB/Chroma) gặp vấn đề khóa file khi ghi đồng thời với tần suất cao, gây ra lỗi SQLITE_BUSY hoặc lỗi khóa ghi khi nhiều người dùng tải lên các tệp PDF lớn vào cùng một workspace. Trong môi trường sản xuất với nhiều nhân viên, hãy chuyển Vector DB sang một instance Qdrant hoặc Milvus độc lập.'
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/anythingllm-architecture-local-rag/ -->
 {</* resource-info */>}
 
 # Tại Sao Doanh Nghiệp Sợ Hãi ChatGPT?
@@ -104,8 +96,7 @@ async function processDocument(documentText, workspaceConfig) {
 }
 ```
 
-**Bóc tách chuyên sâu**:
-Đoạn code này bộc lộ sự tinh tế của AnythingLLM. Việc kẹp `RecursiveCharacterTextSplitter` với lượng `chunkOverlap` khủng lên tới 200 token đảm bảo rằng các logic liên kết chéo đoạn văn (Ví dụ: Nếu... thì...) không bị bốc hơi do cắt cụt chữ. Việc băm chữ có tính gối đầu (overlap) này là yếu tố sống còn để giữ cho IQ của con LLM local không bị tuột luốt.
+**Bóc tách chuyên sâu**: Đoạn code này bộc lộ sự tinh tế của AnythingLLM. Việc kẹp `RecursiveCharacterTextSplitter` với lượng `chunkOverlap` khủng lên tới 200 token đảm bảo rằng các logic liên kết chéo đoạn văn (Ví dụ: Nếu... thì...) không bị bốc hơi do cắt cụt chữ. Việc băm chữ có tính gối đầu (overlap) này là yếu tố sống còn để giữ cho IQ của con LLM local không bị tuột luốt.
 
 ### 2. Giao Tiếp Frontend-Backend: Chảy Dữ Liệu Qua Server-Sent Events (SSE)
 
@@ -139,14 +130,11 @@ app.post('/api/workspace/:slug/chat', async (request, response) => {
 });
 ```
 
-**Bóc tách chuyên sâu**:
-Thay vì xài WebSocket lằng nhằng nặng nề, AnythingLLM chọn SSE - giao thức truyền dữ liệu một chiều siêu nhẹ. Đây là một nước cờ kiến trúc cực gắt, vì khi đem đi deploy ở mạng nội bộ doanh nghiệp (thường bị kẹp qua mấy lớp Nginx Reverse Proxy), tỷ lệ đâm thủng cực cao và gần như miễn nhiễm với trò chặn giao thức WebSocket của hệ thống tường lửa (Firewall).
+**Bóc tách chuyên sâu**: Thay vì xài WebSocket lằng nhằng nặng nề, AnythingLLM chọn SSE - giao thức truyền dữ liệu một chiều siêu nhẹ. Đây là một nước cờ kiến trúc cực gắt, vì khi đem đi deploy ở mạng nội bộ doanh nghiệp (thường bị kẹp qua mấy lớp Nginx Reverse Proxy), tỷ lệ đâm thủng cực cao và gần như miễn nhiễm với trò chặn giao thức WebSocket của hệ thống tường lửa (Firewall).
 
 ## Thực Chiến Engineering: Những Cái Bẫy "Tử Thần" Khi Deploy Private
 
-Khi thi triển tuyệt kĩ **kết hợp Ollama và AnythingLLM** lên server private, cấm tuyệt đối không được giẫm phải 2 quả mìn sau:
-
-1. **Cạm bẫy 1: Cách Ly Mạng Docker & Lỗi Connection Refused Của Ollama**
+Khi thi triển tuyệt kĩ **kết hợp Ollama và AnythingLLM** lên server private, cấm tuyệt đối không được giẫm phải 2 quả mìn sau: 1. **Cạm bẫy 1: Cách Ly Mạng Docker & Lỗi Connection Refused Của Ollama**
    - **Triệu chứng**: AnythingLLM (đang chạy phè phè trong Docker container) điên cuồng văng lỗi `Connection Refused` do không chọc được vào service Ollama nằm trên máy Host.
    - **Cách fix**: Nhớ cho kỹ, ở trong container Docker, `localhost` là chính bản thân cái container đó chứ không phải máy Host! Bạn bắt buộc phải trỏ cái cấu hình LLM của AnythingLLM sang `http://host.docker.internal:11434`. Chưa hết, lúc khởi động Ollama nhớ phải chích thêm biến môi trường `OLLAMA_HOST=0.0.0.0` để nó chịu mở cửa cho network interface khác chui vào.
 
@@ -156,13 +144,10 @@ Khi thi triển tuyệt kĩ **kết hợp Ollama và AnythingLLM** lên server p
 
 ## Vòng Lặp Thương Mại: Định Luật Bán "Bảo Mật Tuyệt Đối" Giá Cắt Cổ Cho B2B
 
-Đừng đi so kèo "miễn phí" với mấy anh em chơi open-source, hãy đi bán "sự an tâm" cho những doanh nghiệp rủng rỉnh tiền bạc. Có AnythingLLM trong tay, con đường hóa giá tài sản của bạn sáng rực rỡ:
-
-- **Hệ Thống Hỏi Đáp Báo Cáo Nội Bộ Cho Công Ty Chứng Khoán**: Báo cáo tài chính nội bộ và list khách hàng VIP là tuyệt mật. Bạn xách một con Workstation hầm hố cài sẵn AnythingLLM và model Qwen (thậm chí rút luôn dây mạng Internet) đâm thẳng vào phòng server của họ. Thứ bạn bán không phải phần mềm, bạn đang bán một cái "Két sắt AI bảo mật dữ liệu tài chính" với giá bill vài trăm triệu.
+Đừng đi so kèo "miễn phí" với mấy anh em chơi open-source, hãy đi bán "sự an tâm" cho những doanh nghiệp rủng rỉnh tiền bạc. Có AnythingLLM trong tay, con đường hóa giá tài sản của bạn sáng rực rỡ: - **Hệ Thống Hỏi Đáp Báo Cáo Nội Bộ Cho Công Ty Chứng Khoán**: Báo cáo tài chính nội bộ và list khách hàng VIP là tuyệt mật. Bạn xách một con Workstation hầm hố cài sẵn AnythingLLM và model Qwen (thậm chí rút luôn dây mạng Internet) đâm thẳng vào phòng server của họ. Thứ bạn bán không phải phần mềm, bạn đang bán một cái "Két sắt AI bảo mật dữ liệu tài chính" với giá bill vài trăm triệu.
 - **Tool Tăng Tốc Tra Cứu Hồ Sơ Cho Văn Phòng Luật Sư Xịn**: Mấy thầy luật sư ngày nào cũng ngụp lặn trong biển hồ sơ vụ án. Xài tính năng Workspace của AnythingLLM, tạo cho mỗi vụ án một không gian kiến thức độc lập, vỗ ngực cam đoan dữ liệu của các vụ án cách ly vật lý tuyệt đối. Cuối tháng thong thả thu phí bảo trì và nâng cấp model với cái giá trên trời.
 
-### Tham Khảo Quyền Uy Bên Ngoài:
-1. [AnythingLLM Official GitHub Repository](https://github.com/Mintplex-Labs/anything-llm)
+### Tham Khảo Quyền Uy Bên Ngoài: 1. [AnythingLLM Official GitHub Repository](https://github.com/Mintplex-Labs/anything-llm)
 2. [Tài Liệu Cấu Trúc Và Hướng Dẫn Chính Thức AnythingLLM](https://docs.useanything.com/)
 
 **Tổng kết**: AnythingLLM dùng cái vỏ Frontend lộng lẫy và phân quyền cực gắt của mình để che đậy đi cái sự khô khan, tàn bạo của cái máy cày RAG bên dưới. Master được nó, bạn có thể đóng gói đám model lạnh lẽo và Vector DB ngầm thành một thứ tài sản kỹ thuật số thượng hạng, đặt chễm chệ trên bàn làm việc của các sếp bự B2B và khiến họ vui vẻ ký séc cái rụp.
@@ -171,9 +156,7 @@ Khi thi triển tuyệt kĩ **kết hợp Ollama và AnythingLLM** lên server p
 
 ## Hạ Tầng Đề Xuất Cho Tự Lưu Trữ
 
-Để chạy stack này 24/7 ổn định, lựa chọn hạ tầng rất quan trọng:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu. Lựa chọn mặc định cho developer độc lập.
+Để chạy stack này 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu. Lựa chọn mặc định cho developer độc lập.
 - **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — VPS Hong Kong, độ trễ thấp với người dùng Việt Nam. dibi8.com cũng được host ở đây.
 - **{{< aff "hostinger" "footer-cta-legacy" "Hostinger" >}}** — Lựa chọn VPS giá tốt cho thị trường Việt Nam, giảm 60% gói đầu tiên.
 
@@ -181,7 +164,6 @@ Khi thi triển tuyệt kĩ **kết hợp Ollama và AnythingLLM** lên server p
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

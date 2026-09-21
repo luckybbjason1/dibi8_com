@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ruv-pi" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ruv-pi" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ruv-pi" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ruv-pi" />
 title: "Ruv Pi: CLI Đại diện Mã tự mở rộng với API LLM Đa nhà cu...
 description: "Ruv Pi là CLI đại diện mã tự mở rộng từ Earendil Works, cung cấp API LLM đa nhà cung cấp thống nhất, cho phép nhà phát triển xây dựng, chạy và mở rộng đại diện mã hóa AI với hỗ trợ cho Claude, OpenAI, Gemini và nhiều hơn nữa."
 date: 2026-06-10
-lastmod:  2026-06-10slug: ruv-pi
+lastmod: 2026-06-10
+slug: ruv-pi
 category: llm-frameworks
 tags: [ruv-pi, pi-agent, coding agent, LLM, multi-provider, AI coding, self-extensible]
 github_repo: https://github.com/earendil-works/pi
@@ -17,8 +13,6 @@ license: MIT
 featureImage: https://raw.githubusercontent.com/earendil-works/pi/main/docs/assets/pi-hero-banner.png
 lang: vi
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/ruv-pi/ -->
 
 ## Giới thiệu
 
@@ -34,9 +28,7 @@ Landscape của công cụ mã hóa AI đã trở nên fragmented đáng chú ý
 
 Ruv Pi là một CLI đại diện mã hóa tự mở rộng cung cấp agent runtime với khả năng gọi công cụ và API LLM đa nhà cung cấp thống nhất. Hãy xem nó như cầu nối giữa nhu cầu mã hóa của bạn và thế giới ngày càng mở rộng của nhà cung cấp LLM.
 
-Tại lõi, Pi được xây dựng trên hai pillar:
-
-1. **Agent Runtime Tự mở rộng** — Agent có thể thêm tool mới, sửa đổi hành vi và mở rộng khả năng tại runtime. Nếu một task yêu cầu tool không tồn tại, Pi có thể tạo ra nó.
+Tại lõi, Pi được xây dựng trên hai pillar: 1. **Agent Runtime Tự mở rộng** — Agent có thể thêm tool mới, sửa đổi hành vi và mở rộng khả năng tại runtime. Nếu một task yêu cầu tool không tồn tại, Pi có thể tạo ra nó.
 2. **API LLM Đa nhà cung cấp Thống nhất** — Một call API duy nhất hoạt động với OpenAI, Anthropic, Google và các provider khác. Bạn chỉ định model bạn muốn; Pi xử lý phần còn lại.
 
 **Hình ảnh tính năng:**
@@ -45,9 +37,7 @@ Tại lõi, Pi được xây dựng trên hai pillar:
 
 ## Kiến trúc Cốt lõi
 
-Kiến trúc của Pi được thiết kế xung quanh ba component chính:
-
-### Agent Runtime
+Kiến trúc của Pi được thiết kế xung quanh ba component chính: ### Agent Runtime
 
 Agent runtime là não của hệ thống. Nó duy trì conversation context, quản lý execution tool và orchestrate sự tương tác giữa user, LLM và external tool. Runtime là stateful, duy trì conversation history và tool state qua nhiều interaction.
 
@@ -65,8 +55,7 @@ def calculate_compound_interest(
     rate: float,
     time: int,
     compounds_per_year: int = 12
-) -> dict:
-    """Tính lãi suất kép cho các tham số cho trước."""
+) -> dict: """Tính lãi suất kép cho các tham số cho trước."""
     result = principal * (1 + rate / compounds_per_year) ** (compounds_per_year * time)
     return {
         "final_amount": round(result, 2),
@@ -98,9 +87,7 @@ export PI_PROVIDER=auto
 
 ## Cách hoạt động
 
-Pi hoạt động qua một continuous loop của ba phase:
-
-1. **Think** — Agent phân tích request của user, breaking down thành subtask và xác định tool nào cần thiết.
+Pi hoạt động qua một continuous loop của ba phase: 1. **Think** — Agent phân tích request của user, breaking down thành subtask và xác định tool nào cần thiết.
 2. **Act** — Agent gọi tool phù hợp, thực thi mã, đọc file, query database hoặc thực hiện API call.
 3. **Reflect** — Agent đánh giá kết quả, checking lỗi hoặc incomplete work và quyết định tiếp tục hay báo cáo hoàn thành.
 
@@ -130,9 +117,7 @@ pi sessions archive abc123
 
 ## Cài đặt
 
-Cài đặt Pi khá straightforward. Phương pháp cài đặt chính là qua pip:
-
-```bash
+Cài đặt Pi khá straightforward. Phương pháp cài đặt chính là qua pip: ```bash
 # Cài đặt qua pip
 pip install pi-agent
 
@@ -143,9 +128,7 @@ pi --version
 pi providers list
 ```
 
-Ngoài ra, bạn có thể cài đặt qua npm nếu prefer một setup dựa trên JavaScript:
-
-```bash
+Ngoài ra, bạn có thể cài đặt qua npm nếu prefer một setup dựa trên JavaScript: ```bash
 # Cài đặt qua npm
 npm install @earendil-works/pi-coding-agent
 
@@ -153,9 +136,7 @@ npm install @earendil-works/pi-coding-agent
 npx pi --version
 ```
 
-Cho development hoặc để contribute cho project:
-
-```bash
+Cho development hoặc để contribute cho project: ```bash
 # Clone repository
 git clone https://github.com/earendil-works/pi.git
 
@@ -171,13 +152,9 @@ pytest tests/
 
 ## Integration Patterns
 
-Pi được thiết kế để integrate seamless vào existing development workflow. Sau đây là key integration pattern:
+Pi được thiết kế để integrate seamless vào existing development workflow. Sau đây là key integration pattern: ### Git Integration
 
-### Git Integration
-
-Pi có thể tương tác với Git repository của bạn, thực hiện commit, tạo branch và quản lý pull request:
-
-```bash
+Pi có thể tương tác với Git repository của bạn, thực hiện commit, tạo branch và quản lý pull request: ```bash
 # Cấu hình Git integration
 export PI_GIT_ENABLED="true"
 export PI_GIT_AUTO_COMMIT="true"
@@ -189,9 +166,7 @@ pi start --task "Refactor database module và commit changes"
 
 ### CI/CD Pipeline Integration
 
-Pi có thể được integrate vào CI/CD pipeline cho automated testing, code review và deployment:
-
-```bash
+Pi có thể được integrate vào CI/CD pipeline cho automated testing, code review và deployment: ```bash
 # Cấu hình Pi cho CI/CD
 export PI_CI_ENABLED="true"
 export PI_CI_MODE="review"  # review, test hoặc deploy
@@ -202,9 +177,7 @@ pi ci-review --base main --head feature-branch
 
 ### IDE Integration
 
-Pi làm việc cùng IDE ưa thích của bạn, cung cấp intelligent suggestion và thực thi task:
-
-```bash
+Pi làm việc cùng IDE ưa thích của bạn, cung cấp intelligent suggestion và thực thi task: ```bash
 # Start Pi trong watch mode, monitoring file change
 pi watch --directory ./src --interval 5
 
@@ -214,25 +187,17 @@ pi watch --directory ./src --interval 5
 
 ### Multi-Provider Routing
 
-Một trong những feature powerful nhất của Pi là intelligent model routing. Dựa trên task type, Pi có thể automatic select model tốt nhất:
-
-```yaml
+Một trong những feature powerful nhất của Pi là intelligent model routing. Dựa trên task type, Pi có thể automatic select model tốt nhất: ```yaml
 # pi-config.yaml
-routing:
-  code_generation:
-    model: claude-sonnet-4-20250514
+routing: code_generation: model: claude-sonnet-4-20250514
     temperature: 0.3
-  code_review:
-    model: gpt-4o
+  code_review: model: gpt-4o
     temperature: 0.1
-  debugging:
-    model: claude-sonnet-4-20250514
+  debugging: model: claude-sonnet-4-20250514
     temperature: 0.5
-  documentation:
-    model: gemini-pro
+  documentation: model: gemini-pro
     temperature: 0.3
-  default:
-    model: auto
+  default: model: auto
     temperature: 0.7
 ```
 
@@ -242,9 +207,7 @@ routing:
 
 ### Model Comparison
 
-API thống nhất của Pi cho phép direct comparison của các model khác nhau trên cùng task:
-
-| Task Type | Model Tốt nhất (Pi Auto-Select) | Avg. Latency | Chi phí/1K token |
+API thống nhất của Pi cho phép direct comparison của các model khác nhau trên cùng task: | Task Type | Model Tốt nhất (Pi Auto-Select) | Avg. Latency | Chi phí/1K token |
 |-----------|--------------------------------|--------------|-----------------|
 | Code generation | Claude Sonnet 4 | 1.2s | $0.003 |
 | Code review | GPT-4o | 0.8s | $0.005 |
@@ -254,9 +217,7 @@ API thống nhất của Pi cho phép direct comparison của các model khác n
 
 ### Self-Extension Performance
 
-Khả năng tự mở rộng của Pi đã được benchmark trên một suite của complex coding task:
-
-| Metric | Value |
+Khả năng tự mở rộng của Pi đã được benchmark trên một suite của complex coding task: | Metric | Value |
 |--------|-------|
 | Average tools generated per complex task | 3.2 |
 | Tool success rate (first try) | 94.5% |
@@ -268,9 +229,7 @@ Khả năng tự mở rộng của Pi đã được benchmark trên một suite 
 
 ### Custom Tool Development
 
-Cho power user, creating custom tool cho bạn full control over khả năng của Pi:
-
-```python
+Cho power user, creating custom tool cho bạn full control over khả năng của Pi: ```python
 # Advanced custom tool với error handling
 from pi_agent import tool, ToolResponse
 
@@ -278,10 +237,8 @@ from pi_agent import tool, ToolResponse
     name="deploy_to_docker",
     description="Build và deploy một Docker container"
 )
-def deploy_docker(image_name: str, tag: str = "latest") -> ToolResponse:
-    """Deploy một Docker image với comprehensive error handling."""
-    try:
-        # Build image
+def deploy_docker(image_name: str, tag: str = "latest") -> ToolResponse: """Deploy một Docker image với comprehensive error handling."""
+    try: # Build image
         build_result = subprocess.run(
             ["docker", "build", "-t", f"{image_name}:{tag}", "."],
             capture_output=True, text=True, check=True
@@ -296,17 +253,14 @@ def deploy_docker(image_name: str, tag: str = "latest") -> ToolResponse:
         return ToolResponse.success(
             f"Successfully deployed {image_name}:{tag}"
         )
-    except subprocess.CalledProcessError as e:
-        return ToolResponse.error(
+    except subprocess.CalledProcessError as e: return ToolResponse.error(
             f"Deployment thất bại: {e.stderr}"
         )
 ```
 
 ### Agent Memory và Context Management
 
-Cho session dài-running, managing context là critical:
-
-```bash
+Cho session dài-running, managing context là critical: ```bash
 # Cấu hình context window
 export PI_CONTEXT_WINDOW="200000"
 export PI_CONTEXT_STRATEGY="summary"  # summary, truncate hoặc keep-all
@@ -321,9 +275,7 @@ pi context status
 
 ### Multi-Agent Collaboration
 
-Pi hỗ trợ multi-agent collaboration cho complex task yêu cầu specialized expertise:
-
-```bash
+Pi hỗ trợ multi-agent collaboration cho complex task yêu cầu specialized expertise: ```bash
 # Launch một collaborative session
 pi collaborate --agents research,implementation,review
 
@@ -335,9 +287,7 @@ pi collaborate --agents research,implementation,review
 
 ### Plugin System
 
-Pi có một rich plugin ecosystem mở rộng khả năng của nó:
-
-```bash
+Pi có một rich plugin ecosystem mở rộng khả năng của nó: ```bash
 # Liệt kê plugin có sẵn
 pi plugins list
 
@@ -369,9 +319,7 @@ Pi nổi bật cho self-extensible architecture và multi-provider support. Tron
 
 ## Giới hạn
 
-Trong khi Pi là một powerful tool, nó có một số limitation đáng chú ý:
-
-**Model Provider Coverage.** Trong khi Pi hỗ trợ nhiều provider, nó không hỗ trợ every available model. Nếu provider ưa thích của bạn không nằm trong supported list, bạn sẽ cần sử dụng API directly hoặc request support qua GitHub issues.
+Trong khi Pi là một powerful tool, nó có một số limitation đáng chú ý: **Model Provider Coverage.** Trong khi Pi hỗ trợ nhiều provider, nó không hỗ trợ every available model. Nếu provider ưa thích của bạn không nằm trong supported list, bạn sẽ cần sử dụng API directly hoặc request support qua GitHub issues.
 
 **Self-Extension Reliability.** Khả năng self-extending, trong khi impressive, không hoàn hảo. Generated tool succeed on first try khoảng 94.5% thời gian, nghĩa là roughly 1 trong 20 custom tool có thể cần manual adjustment.
 
@@ -430,7 +378,6 @@ Visit official documentation tại [https://pi.dev/docs/latest](https://pi.dev/d
 7. [WebShare - Dịch vụ Proxy cho Pipeline Dữ liệu](https://webshare.io/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

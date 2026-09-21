@@ -1,19 +1,14 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/taste-skill" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/taste-skill" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/taste-skill" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/taste-skill" />
 title: "테이스트 스킬: AI가 범용적인 저질을 생성하는 것을 막아라 — 에이전트 스킬 프레임워크 2026"
 description: "테이스트 스킬(Taste Skill)은 AI가 구축한 인터페이스의 레이아웃, 타이포그래피, 모션, 여백을 강화하는 포트폴리오형 에이전트 스킬 프레임워크입니다. Codex, Cursor, Claude Code, ChatGPT Images와 함께 작동합니다."
 date: 2026-06-15
-lastmod:  2026-06-15slug: taste-skill
+lastmod: 2026-06-15
+slug: taste-skill
 category: dev-utils
 tags: ['ai 디자인', '에이전트 스킬', '저질 방지', '프론트엔드', 'codex', 'cursor', 'claude code', '프롬프트 엔지니어링']
 github_repo: "https://github.com/Leonxlnx/taste-skill"
 license: MIT
-images:
-  - url: "https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/assets/readme-banner.png"
+images: - url: "https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/assets/readme-banner.png"
     alt: "Taste Skill 배너"
     role: hero
   - url: "https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/assets/taste-skill-logo.webp"
@@ -26,8 +21,6 @@ lang: kr
 featureImage: /images/articles/taste-skill-stop-ai-from-generating-generic-slop-agent-skill.jpg
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/taste-skill/ -->
-
 ## TL;DR
 
 테이스트 스킬은 AI 에이전트에 디자인 감각을 부여합니다. 모든 AI 도구가 만들어내는 동일하고 지루하며 가운데 정렬된 범용 UI 대신,更强的 레이아웃 변화와 의도적인 모션, 프리미엄한 시각적 밀도를 적용합니다. Codex, Cursor, Claude Code, ChatGPT Images와 함께 작동하는 포트폴리오형 SKILL.md 파일로 제공됩니다.
@@ -38,9 +31,7 @@ featureImage: /images/articles/taste-skill-stop-ai-from-generating-generic-slop-
 
 테이스트 스킬은 AI 생성 프론트엔드 출력을 업그레이드하도록 설계된 포트폴리오형 에이전트 스킬 모음입니다. 각 스킬은 하나의 작업을 수행합니다: 특정 디자인 규칙을 강제하거나, 레퍼런스 이미지를 생성하거나, 특정 시각적 스타일을 적용합니다. 이 프레임워크는 **어떠한 단일 코딩 에이전트나 프레임워크에 종속되지 않으며**, React, Vue, Svelte, 정적 HTML 전반에서 작동합니다.
 
-핵심 통찰은 간단합니다. AI 모델은 동일한 인터넷으로 학습되므로 동일한 레이아웃을 생성합니다. 테이스트 스킬은 명시적인 디자인 제약 조건을 제공하여 이러한 패턴을 깨뜨립니다. 출력값을 통제하는 세 개의 조정 다이얼이 있습니다:
-
-- **DESIGN_VARIANCE (1-10):** 레이아웃 실험 — 낮으면 가운데/깔끔함, 높으면 비대칭/현대적
+핵심 통찰은 간단합니다. AI 모델은 동일한 인터넷으로 학습되므로 동일한 레이아웃을 생성합니다. 테이스트 스킬은 명시적인 디자인 제약 조건을 제공하여 이러한 패턴을 깨뜨립니다. 출력값을 통제하는 세 개의 조정 다이얼이 있습니다: - **DESIGN_VARIANCE (1-10):** 레이아웃 실험 — 낮으면 가운데/깔끔함, 높으면 비대칭/현대적
 - **MOTION_INTENSITY (1-10):** 애니메이션 깊이 — 낮으면 호버 효과, 높으면 스크롤/자기자석 애니메이션
 - **VISUAL_DENSITY (1-10):** 뷰포트당 정보량 — 낮으면 여유로운 레이아웃, 높으면 밀도 높은 대시보드
 
@@ -59,9 +50,7 @@ npx skills add https://github.com/Leonxlnx/taste-skill --skill "design-taste-fro
 
 ## 테이스트 스킬의 작동 방식
 
-테이스트 스킬은 3층 아키텍처로 동작합니다:
-
-1. **구현 스킬** — 프로덕션 수준 코드를 출력합니다. 플래그십 `design-taste-frontend` 스킬은 프로젝트 명세를 읽고 디자인 언어를 추론하며, 세 개의 다이얼을 튜닝하고 엄격한 반복 방지 규칙으로 코드를 생성합니다.
+테이스트 스킬은 3층 아키텍처로 동작합니다: 1. **구현 스킬** — 프로덕션 수준 코드를 출력합니다. 플래그십 `design-taste-frontend` 스킬은 프로젝트 명세를 읽고 디자인 언어를 추론하며, 세 개의 다이얼을 튜닝하고 엄격한 반복 방지 규칙으로 코드를 생성합니다.
 
 2. **이미지 생성 스킬** — 코드 대신 레퍼런스 보드를 생성합니다. `imagegen-frontend-web`은 웹사이트 컴포즈를 생성하고, `imagegen-frontend-mobile`은 모바일 플로우를 만들며, `brandkit`은 아이덴티티 보드를 생성합니다. 이들을 Codex나 ChatGPT Images에 피드하여 구현에 활용합니다.
 
@@ -94,9 +83,7 @@ ls ~/.hermes/skills/ | grep taste
 
 ### v2로 업데이트
 
-v1이 설치되어 있고 실험적 v2로 업그레이드하려면:
-
-```bash
+v1이 설치되어 있고 실험적 v2로 업그레이드하려면: ```bash
 # 설치 재실행 — 설치 이름은 변경되지 않았습니다
 npx skills add https://github.com/Leonxlnx/taste-skill --skill "design-taste-frontend"
 
@@ -106,9 +93,7 @@ curl -sL https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/CHANGELOG.m
 
 ### 수동 설치
 
-SKILL.md를 프로젝트에 직접 복사하거나 ChatGPT/Codex 대화에 붙여넣을 수도 있습니다:
-
-```bash
+SKILL.md를 프로젝트에 직접 복사하거나 ChatGPT/Codex 대화에 붙여넣을 수도 있습니다: ```bash
 # 수동 접근을 위해 클론
 curl -sL "https://github.com/Leonxlnx/taste-skill/archive/refs/heads/main.zip" -o /tmp/taste-skill.zip
 unzip -q /tmp/taste-skill.zip -d /tmp
@@ -117,9 +102,7 @@ ls /tmp/taste-skill-main/skills/
 
 ### 사용 가능한 스킬 목록
 
-설치 후 사용할 수 있는 스킬을 확인하세요:
-
-```bash
+설치 후 사용할 수 있는 스킬을 확인하세요: ```bash
 # 설치된 모든 스킬 목록
 npx skills list | grep taste
 
@@ -134,9 +117,7 @@ curl -sL "https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/CHANGELOG.
 
 ## 주요 코딩 에이전트와의 통합
 
-테이스트 스킬은 프레임워크에 독립적이며 모든 주요 AI 코딩 에이전트와 함께 작동합니다:
-
-|| 에이전트 | 통합 방법 | 최적 스킬 |
+테이스트 스킬은 프레임워크에 독립적이며 모든 주요 AI 코딩 에이전트와 함께 작동합니다: || 에이전트 | 통합 방법 | 최적 스킬 |
 ||-------|-------------------|------------|
 || **Codex** | `npx skills add` + CLI | `gpt-taste` (더 엄격한 변형) |
 || **Cursor** | `.cursorrules`에 SKILL.md 붙여넣기 | `design-taste-frontend` |
@@ -161,9 +142,7 @@ curl -sL "https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/skills/des
 
 ## 벤치마크: 테이스트 스킬 vs 범용 AI 출력
 
-테이스트 스킬이 생성한 인터페이스와 범용 AI 출力的 차이는 여러 차원에서 측정 가능합니다:
-
-```
+테이스트 스킬이 생성한 인터페이스와 범용 AI 출力的 차이는 여러 차원에서 측정 가능합니다: ```
 Metric              | Generic AI | Taste Skill v2
 --------------------|-----------|----------------
 Layout Variance     | 1-2       | 7-9
@@ -178,9 +157,7 @@ Frame-to-Code Time  | 2-3 hours | 30-45 min
 
 ### 코드 품질 비교
 
-범용 AI 출력은 일반적으로 가운데 정렬된 레이아웃, 균일한 여백, 반복적인 컴포넌트 패턴, 최소한의 시각적 계층구조를 생성합니다. 테이스트 스킬은 다음을 강제합니다:
-
-- **비대칭 레이아웃**과 의도적인 시각적 무게 분배
+범용 AI 출력은 일반적으로 가운데 정렬된 레이아웃, 균일한 여백, 반복적인 컴포넌트 패턴, 최소한의 시각적 계층구조를 생성합니다. 테이스트 스킬은 다음을 강제합니다: - **비대칭 레이아웃**과 의도적인 시각적 무게 분배
 - **다단계 타이포그래피**(디스플레이, 제목, 본문, 캡션)와 적절한 스케일 비율
 - **의도적인 모션** — 장식이 아닌 내비게이션을 위한
 - **맥락별 시각적 밀도** — 히어로 섹션은 여유롭게, 데이터 패널은 밀도 높게
@@ -188,8 +165,7 @@ Frame-to-Code Time  | 2-3 hours | 30-45 min
 ```bash
 # 생성된 출력이 맛 검사를 통과하는지 확인
 # 테이스트 스킬은 SKILL.md에 사전 비행 체크리스트를 포함합니다
-# 주요 체크 항목:
-# - 가운데 정렬만 사용하지 않음
+# 주요 체크 항목: # - 가운데 정렬만 사용하지 않음
 # - 최소 3단계 타이포그래피
 # - 적어도 하나의 의도적 비대칭 포함
 # - 모션은 기능에 봉사함, 장식이 아님
@@ -267,9 +243,7 @@ VISUAL_DENSITY: 5
 
 ### 실제 다이얼 구성 예시
 
-다양한 프로젝트 유형은 서로 다른 다이얼 조합의 혜택을 받습니다. 다음은 테이스트 스킬의 자체 예시에서 검증된 구성입니다:
-
-```yaml
+다양한 프로젝트 유형은 서로 다른 다이얼 조합의 혜택을 받습니다. 다음은 테이스트 스킬의 자체 예시에서 검증된 구성입니다: ```yaml
 # 자기자석 스크롤 애니메이션을 포함한 포트폴리오
 DESIGN_VARIANCE: 8
 MOTION_INTENSITY: 9
@@ -295,9 +269,7 @@ VISUAL_DENSITY: 4
 
 ## 대체재와의 비교
 
-테이스트 스킬만이 GitHub에서 디자인 강제 스킬은 아닙니다. 가장 가까운 대체재들과 비교하면 다음과 같습니다:
-
-|| 기능 | 테이스트 스킬 v2 | PromptHero | Uiverse | AI UI Generator |
+테이스트 스킬만이 GitHub에서 디자인 강제 스킬은 아닙니다. 가장 가까운 대체재들과 비교하면 다음과 같습니다: || 기능 | 테이스트 스킬 v2 | PromptHero | Uiverse | AI UI Generator |
 ||---------|---------------|------------|---------|-----------------|
 || 스타 | 44,229 | 8,400 | 12,300 | N/A (SaaS) |
 || 프레임워크 독립 | 예 | 부분 | 아니오 | 아니오 |
@@ -311,9 +283,7 @@ VISUAL_DENSITY: 4
 
 ## 한계: 테이스트 스킬이 도움이 안 될 때
 
-테이스트 스킬은 강력하지만 만능 해결책은 아닙니다. 다음과 같은 상황에서는 문제가 해결되지 않습니다:
-
-1. **복잡한 백엔드 로직** — 테이스트 스킬은 프론트엔드 디자인에 집중합니다. API, 데이터베이스 스키마, 인증 흐름을 설계하지는 않습니다.
+테이스트 스킬은 강력하지만 만능 해결책은 아닙니다. 다음과 같은 상황에서는 문제가 해결되지 않습니다: 1. **복잡한 백엔드 로직** — 테이스트 스킬은 프론트엔드 디자인에 집중합니다. API, 데이터베이스 스키마, 인증 흐름을 설계하지는 않습니다.
 
 2. **브랜아이덴티티 처음부터** — 전체 브랜드 시스템(로고, 컬러 팔레트, 타이포그래피 선택)이 필요하다면, 테이스트 스킬은 이미 디자인 방향성이 있다고 가정합니다. `brandkit`은 레퍼런스 보드를 생성하지만 최종 브랜드 결정은 귀하가 내립니다.
 
@@ -388,15 +358,13 @@ npx skills add https://github.com/Leonxlnx/taste-skill --skill "design-taste-fro
 
 ---
 
-**소스 및 추가 읽을거리**:
-- 공식 사이트: https://tasteskill.dev
+**소스 및 추가 읽을거리**: - 공식 사이트: https://tasteskill.dev
 - GitHub 레포지토리: https://github.com/Leonxlnx/taste-skill
 - 변경 기록: https://www.tasteskill.dev/changelog
 - 커뮤니티: [@lexnlin on X](https://x.com/lexnlin), [@blueemi99 on X](https://x.com/blueemi99)
 
 
-**Sources & Further Reading**:
-- 공식 사이트: https://tasteskill.dev
+**Sources & Further Reading**: - 공식 사이트: https://tasteskill.dev
 - GitHub 저장소: https://github.com/Leonxlnx/taste-skill
 - 변경 로그: https://www.tasteskill.dev/changelog
 - 커뮤니티: [@lexnlin on X](https://x.com/lexnlin), [@blueemi99 on X](https://x.com/blueemi99)
@@ -405,7 +373,6 @@ npx skills add https://github.com/Leonxlnx/taste-skill --skill "design-taste-fro
 **고지사항**: 이 기사에는 제휴 링크가 포함되어 있습니다. 링크를 통해 가입하시면 추가 비용 없이 저희가 커미션을 받을 수 있습니다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

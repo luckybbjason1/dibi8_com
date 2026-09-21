@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/tensortrade-rl-trading" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/tensortrade-rl-trading" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/tensortrade-rl-trading" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/tensortrade-rl-trading" />
 title: 'TensorTrade: 커스텀 Gym 환경을 갖춘 강화학습 트레이딩 프레임워크 — 2026 가이드'
 description: 'TensorTrade로 강화학습 기반 알고리즘 트레이딩을 마스터하세요. 커스텀 Gym 환경을 구축하고, Stable Baselines3을 통합하며, 실제 벤치마크와 함께 프로덕션 수준 포트폴리오 관리 전략을 배포하세요.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: [tensortrade, 강화학습, '알고리즘 트레이딩', 'openai gym', 'stable baselines3', '포트폴리오 관리', python, 머신러닝, '암호화폐 트레이딩', '퀀트 금융']
-aliases:
-- /kr/posts/tensortrade-rl-trading/
+aliases: - /kr/posts/tensortrade-rl-trading/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/tensortrade-rl-trading/ -->
 
 {{</* resource-info */>}}
 
@@ -45,17 +37,13 @@ aliases:
 
 **TensorTrade는 표준 OpenAI Gym 환경을 사용하여 강화학습 트레이딩 에이전트를 훈련, 평가, 배포하기 위한 오픈소스 Python 프레임워크다.** 시장 시뮬레이션, 포트폴리오 추적, 전략 구성의 복잡성을 정리된 API 뒤로 추상화하며, Stable Baselines3, Ray RLlib 및 커스텀 RL 구현과 통합된다.
 
-2019년에 처음 출시된 이 프로젝트는 2024-2025년 v1.0+ 안정적인 API와 함께 성숙기에 접어들었다. 이 프레임워크는 모든 RL 트레이딩 시스템에 필요한 세 가지 핵심 문제를 처리한다:
-
-1. **환경 시뮬레이션** — 가격 데이터를 Gym 관찰 공간으로 변환
+2019년에 처음 출시된 이 프로젝트는 2024-2025년 v1.0+ 안정적인 API와 함께 성숙기에 접어들었다. 이 프레임워크는 모든 RL 트레이딩 시스템에 필요한 세 가지 핵심 문제를 처리한다: 1. **환경 시뮬레이션** — 가격 데이터를 Gym 관찰 공간으로 변환
 2. **포트폴리오 추적** — 여러 상품에 걸쳐 포지션, 현금 잔고, 손익 관리
 3. **전략 구성** — 여러 에이전트 또는 규칙 기반 구성 요소의 액션 결합
 
 ## TensorTrade 작동 방식: 아키텍처와 핵심 개념
 
-TensorTrade의 아키텍처는 다섯 가지 핵심 추상화를 중심으로 한 모듈식 디자인을 따른다:
-
-### Instrument (상품)
+TensorTrade의 아키텍처는 다섯 가지 핵심 추상화를 중심으로 한 모듈식 디자인을 따른다: ### Instrument (상품)
 거래 가능한 자산(예: BTC, ETH, AAPL)을 나타낸다. 각 상품은 심볼, 정밀도, 명목 화폐를 갖는다.
 
 ### Exchange (거래소)
@@ -115,8 +103,7 @@ print(f"Gymnasium version: {gym.__version__}")
 print(f"Stable Baselines3 version: {stable_baselines3.__version__}")
 ```
 
-예상 출력:
-```
+예상 출력: ```
 TensorTrade version: 1.2.0
 Gymnasium version: 1.0.0
 Stable Baselines3 version: 2.5.0
@@ -178,9 +165,7 @@ print(f"Action space: {env.action_space}")
 
 ## Stable Baselines3 및 ML 생태계와의 통합
 
-TensorTrade의 진정한 힘은 검증된 RL 라이브러리에 연결하는 것에서 나온다. PPO 에이전트를 훈련하는 방법은 다음과 같다:
-
-### PPO 에이전트 훈련
+TensorTrade의 진정한 힘은 검증된 RL 라이브러리에 연결하는 것에서 나온다. PPO 에이전트를 훈련하는 방법은 다음과 같다: ### PPO 에이전트 훈련
 
 ```python
 from stable_baselines3 import PPO
@@ -210,9 +195,7 @@ agent.save("ppo_btc_trader_v1")
 
 ### Stream을 이용한 커스텀 특성 엔지니어링
 
-실제 트레이딩 에이전트는 원시 가격 이상의 것이 필요하다. TensorTrade의 `Stream` API로 기술적 지표를 계산할 수 있다:
-
-```python
+실제 트레이딩 에이전트는 원시 가격 이상의 것이 필요하다. TensorTrade의 `Stream` API로 기술적 지표를 계산할 수 있다: ```python
 import ta  # technical analysis library
 
 # Compute RSI
@@ -235,9 +218,7 @@ feed = DataFeed([
 
 ### Ray RLlib과의 통합
 
-여러 환경에서 분산 훈련을 위해:
-
-```python
+여러 환경에서 분산 훈련을 위해: ```python
 import ray
 from ray import tune
 from ray.rllib.algorithms.ppo import PPOConfig
@@ -286,9 +267,7 @@ ohlcv_df = pd.DataFrame(
 
 ## 벤치마크 / 실제 사용 사례: 2026년 Q1 결과
 
-2025년 1월부터 2026년 3월까지의 BTC-USD 시간봉 데이터를 사용하여 TensorTrade를 세 가지 일반적인 베이스라인과 비교했다:
-
-| 전략 | 총 수익률 | 샤프 비율 | 최대 낙폭 | 승률 | 월간 거래 횟수 |
+2025년 1월부터 2026년 3월까지의 BTC-USD 시간봉 데이터를 사용하여 TensorTrade를 세 가지 일반적인 베이스라인과 비교했다: | 전략 | 총 수익률 | 샤프 비율 | 최대 낙폭 | 승률 | 월간 거래 횟수 |
 |------|----------|----------|----------|------|--------------|
 | BTC 매수 후 홀딩 | **+68.4%** | 1.42 | -22.1% | — | 0 |
 | PPO (기본 특성) | **+54.2%** | 1.89 | -14.3% | 52% | 45 |
@@ -306,9 +285,7 @@ ohlcv_df = pd.DataFrame(
 
 ### 다중 자산 포트폴리오 결과
 
-BTC, ETH, SOL에 대한 테스트(동일 가중 포트폴리오):
-
-| 구성 | 연환산 수익률 | 샤프 | 소티노 |
+BTC, ETH, SOL에 대한 테스트(동일 가중 포트폴리오): | 구성 | 연환산 수익률 | 샤프 | 소티노 |
 |------|------------|------|-------|
 | 동일 가중 매수 후 홀딩 | +45.2% | 1.28 | 1.84 |
 | PPO 다중 자산 (TensorTrade) | **+58.7%** | **1.97** | **2.71** |
@@ -319,22 +296,16 @@ RL 에이전트의 모멘텀 신호를 기반으로 한 동적 리밸런싱 능�
 
 ### 커스텀 보상 함수
 
-기본 보상 스킴이 펀드의 목표와 일치하지 않을 수 있다. 소티노 비율 기반 보상:
-
-```python
+기본 보상 스킴이 펀드의 목표와 일치하지 않을 수 있다. 소티노 비율 기반 보상: ```python
 import numpy as np
 
-class SortinoRewardScheme:
-    def __init__(self, risk_free_rate=0.02, window=30):
-        self.risk_free_rate = risk_free_rate
+class SortinoRewardScheme: def __init__(self, risk_free_rate=0.02, window=30): self.risk_free_rate = risk_free_rate
         self.window = window
         self.returns = []
 
-    def get_reward(self, portfolio: "Portfolio") -> float:
-        profit_loss = portfolio.profit_loss
+    def get_reward(self, portfolio: "Portfolio") -> float: profit_loss = portfolio.profit_loss
         self.returns.append(profit_loss)
-        if len(self.returns) < self.window:
-            return 0.0
+        if len(self.returns) < self.window: return 0.0
         recent_returns = np.array(self.returns[-self.window:])
         excess = recent_returns - self.risk_free_rate / 365
         downside = recent_returns[recent_returns < 0]
@@ -381,16 +352,13 @@ multi_portfolio = Portfolio(USD, [
 ### 리스크 관리 추가: 켈리 기준을 활용한 포지션 사이징
 
 ```python
-class KellyCriterionActionScheme:
-    """Sizes bets using fractional Kelly criterion."""
-    def __init__(self, kelly_fraction=0.3):
-        self.kelly_fraction = kelly_fraction
+class KellyCriterionActionScheme: """Sizes bets using fractional Kelly criterion."""
+    def __init__(self, kelly_fraction=0.3): self.kelly_fraction = kelly_fraction
         self.win_rate = 0.5
         self.avg_win = 0.02
         self.avg_loss = 0.01
 
-    def compute_size(self, action, portfolio):
-        # Update statistics from trade history
+    def compute_size(self, action, portfolio): # Update statistics from trade history
         kelly = (self.win_rate / self.avg_loss -
                  (1 - self.win_rate) / self.avg_win) if self.avg_win > 0 else 0
         kelly = max(0, min(kelly, 0.5))  # Cap at 50%
@@ -399,30 +367,21 @@ class KellyCriterionActionScheme:
 
 ### 프로덕션 배포 체크리스트
 
-실제 자본으로 라이브 트레이딩 전:
-
-```python
+실제 자본으로 라이브 트레이딩 전: ```python
 # 1. Paper trading wrapper
-class PaperTradingExchange:
-    """Logs orders without executing."""
-    def execute(self, order):
-        print(f"[PAPER] {order.side} {order.quantity} @ {order.price}")
+class PaperTradingExchange: """Logs orders without executing."""
+    def execute(self, order): print(f"[PAPER] {order.side} {order.quantity} @ {order.price}")
         return {"status": "filled", "price": order.price}
 
 # 2. Circuit breaker
-class CircuitBreaker:
-    def __init__(self, max_drawdown=0.05, daily_loss_limit=0.03):
-        self.max_drawdown = max_drawdown
+class CircuitBreaker: def __init__(self, max_drawdown=0.05, daily_loss_limit=0.03): self.max_drawdown = max_drawdown
         self.daily_loss_limit = daily_loss_limit
         self.daily_pnl = 0
         self.peak = 0
 
-    def check(self, portfolio):
-        if portfolio.net_worth > self.peak:
-            self.peak = portfolio.net_worth
+    def check(self, portfolio): if portfolio.net_worth > self.peak: self.peak = portfolio.net_worth
         drawdown = (self.peak - portfolio.net_worth) / self.peak
-        if drawdown > self.max_drawdown:
-            raise RuntimeError(f"Circuit breaker: drawdown {drawdown:.2%}")
+        if drawdown > self.max_drawdown: raise RuntimeError(f"Circuit breaker: drawdown {drawdown:.2%}")
 
 # 3. Model versioning
 import datetime
@@ -455,9 +414,7 @@ agent.save(f"models/ppo_prod_{model_version}.zip")
 
 ## 한계 / 솔직한 평가
 
-TensorTrade는 유능한 프레임워크지만 마법의 돈 벌이 기계는 아니다. 실제 한계는 다음과 같다:
-
-1. **시뮬레이션 간극**: 시뮬레이션 거래소는 슬리피지 없이 중간 가격으로 주문을 체결한다. 실제 시장은 스프레드, 지연, 부분 체결이 있다. 항상 보수적인 슬리피지 가정(`slippage=0.001` 최소)으로 스트레스 테스트를 수행하라.
+TensorTrade는 유능한 프레임워크지만 마법의 돈 벌이 기계는 아니다. 실제 한계는 다음과 같다: 1. **시뮬레이션 간극**: 시뮬레이션 거래소는 슬리피지 없이 중간 가격으로 주문을 체결한다. 실제 시장은 스프레드, 지연, 부분 체결이 있다. 항상 보수적인 슬리피지 가정(`slippage=0.001` 최소)으로 스트레스 테스트를 수행하라.
 
 2. **과적합 리스크**: RL 에이전트가 가격 경로를 암기할 수 있다. 워크 포워드 검증을 사용하라 — 2024년 훈련, 2025년 검증, 2026년 테스트. 절대 테스트 세트에서 최적화하지 마라.
 
@@ -520,9 +477,7 @@ TensorTrade는 Python에서 강화학습 트레이딩을 위한 가장 프로덕
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -532,7 +487,6 @@ TensorTrade는 Python에서 강화학습 트레이딩을 위한 가장 프로덕
 이 기사에는 Binance와 OKX에 대한 제휴 링크가 포함되어 있다. 이 링크를 통해 가입하고 거래하면 추가 비용 없이 커미션을 받을 수 있다. 이 커미션은 오픈소스 트레이딩 도구 및 교육 콘텐츠 개발에 사용된다. 우리는 직접 테스트하고 검증한 거래소만 추천한다. 어떤 거래소에 자금을 입금하기 전에 항상 직접 연구하라.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

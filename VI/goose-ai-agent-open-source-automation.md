@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/goose-ai-agent-open-source-automation" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/goose-ai-agent-open-source-automation" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/goose-ai-agent-open-source-automation" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/goose-ai-agent-open-source-automation" />
 title: "Goose AI Agent：44K⭐Công cụ AI mã nguồn mở, tự động hóa m...
 description: "Goose là AI Agent mã nguồn mở được Linux Foundation hỗ trợ, 44K+ Stars, hỗ trợ 15+ nhà cung cấp LLM và 70+ tiện ích mở rộng MCP. Ứng dụng desktop + CLI + API được xây dựng bằng Rust, hiệu suất vượt trội."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Go
+tech_stack: - Go
   - Python
   - Rust
 application_domain: "Llm Frameworks"
@@ -26,8 +20,7 @@ maintainer: "aaif-goose"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-faqs:
-  - q: 'Goose AI agent là gì?'
+faqs: - q: 'Goose AI agent là gì?'
     a: 'Goose là một AI agent mã nguồn mở đa năng, ban đầu được Block phát triển và sau đó hiến tặng cho Agentic AI Foundation (AAIF) thuộc Linux Foundation. Khác với các trợ lý lập trình chuyên biệt, nó có thể xử lý mọi tác vụ, bao gồm viết code, phân tích dữ liệu, quản lý tệp, chạy lệnh terminal và tự động hóa quy trình làm việc.'
   - q: 'Goose hỗ trợ những nhà cung cấp LLM nào?'
     a: 'Goose không phụ thuộc vào mô hình cụ thể và hỗ trợ OpenAI GPT-4 và GPT-3.5, Anthropic Claude, Google Gemini, các mô hình cục bộ thông qua Ollama, cùng mọi API tương thích với OpenAI.'
@@ -39,7 +32,6 @@ faqs:
     a: 'Goose bao gồm chế độ phê duyệt (approval mode) hỏi trước khi thực thi các lệnh nguy hiểm, chế độ sandbox (sandbox mode) để chạy lệnh trong môi trường cô lập, nhật ký kiểm toán (audit log) để theo dõi mọi hành động, và giới hạn tốc độ (rate limiting) để ngăn lạm dụng API.'
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/goose-ai-agent-open-source-automation/ -->
 {</* resource-info */>}
 
 ## Goose là gì?
@@ -60,9 +52,7 @@ Stars: **44.261+** | Ngôn ngữ: Rust | Giấy phép: Apache-2.0
 
 ### 1. Không chỉ code, mà là mọi thứ
 
-Goose được định vị là **AI Agent đa năng**, không giới hạn ở lập trình:
-
-| Kịch bản | Khả năng |
+Goose được định vị là **AI Agent đa năng**, không giới hạn ở lập trình: | Kịch bản | Khả năng |
 |----------|----------|
 | Lập trình | Viết code, debug, test, refactor |
 | Phân tích dữ liệu | Xử lý CSV, tạo biểu đồ, viết báo cáo |
@@ -72,9 +62,7 @@ Goose được định vị là **AI Agent đa năng**, không giới hạn ở 
 
 ### 2. Hỗ trợ 15+ nhà cung cấp LLM
 
-Goose không ràng buộc với bất kỳ công ty AI nào:
-
-- **Anthropic** (Claude)
+Goose không ràng buộc với bất kỳ công ty AI nào: - **Anthropic** (Claude)
 - **OpenAI** (GPT-4o)
 - **Google** (Gemini)
 - **Ollama** (mô hình cục bộ)
@@ -83,9 +71,7 @@ Goose không ràng buộc với bất kỳ công ty AI nào:
 
 ### 3. Hệ sinh thái 70+ tiện ích mở rộng MCP
 
-Thông qua tiêu chuẩn mở **Model Context Protocol (MCP)**, Goose có thể kết nối:
-
-- 🌐 Điều khiển trình duyệt
+Thông qua tiêu chuẩn mở **Model Context Protocol (MCP)**, Goose có thể kết nối: - 🌐 Điều khiển trình duyệt
 - 📁 Thao tác hệ thống file
 - 🗄️ Truy vấn cơ sở dữ liệu
 - 🔍 Công cụ tìm kiếm
@@ -173,22 +159,19 @@ goose run "Triển khai ứng dụng này lên AWS, cấu hình load balancing v
 
 ### 1. Triển khai doanh nghiệp
 
-Giấy phép Apache-2.0 của Goose cho phép sử dụng thương mại:
-- Nền tảng workflow AI nội bộ
+Giấy phép Apache-2.0 của Goose cho phép sử dụng thương mại: - Nền tảng workflow AI nội bộ
 - Công cụ vận hành tự động
 - Hệ thống chăm sóc khách hàng thông minh
 
 ### 2. Phát triển tiện ích mở rộng MCP
 
-Phát triển và bán tiện ích mở rộng MCP cho Goose:
-- Tích hợp hệ thống doanh nghiệp
+Phát triển và bán tiện ích mở rộng MCP cho Goose: - Tích hợp hệ thống doanh nghiệp
 - Công cụ chuyên biệt theo ngành
 - Workflow tự động
 
 ### 3. Tư vấn AI Agent
 
-Dựa trên Goose cung cấp:
-- Tư vấn tự động hóa AI
+Dựa trên Goose cung cấp: - Tư vấn tự động hóa AI
 - Dịch vụ phát triển tùy chỉnh
 - Đào tạo và triển khai
 
@@ -205,9 +188,7 @@ Dựa trên Goose cung cấp:
 
 ## Tóm tắt
 
-Goose là AI Agent mã nguồn mở đáng chú ý nhất năm 2026:
-
-✅ **44K+ Stars** — Cộng đồng công nhận cao  
+Goose là AI Agent mã nguồn mở đáng chú ý nhất năm 2026: ✅ **44K+ Stars** — Cộng đồng công nhận cao  
 ✅ **Linux Foundation** — Đảm bảo phát triển lâu dài  
 ✅ **15+ LLM** — Không phụ thuộc nhà cung cấp duy nhất  
 ✅ **70+ MCP** — Khả năng mở rộng vô hạn  
@@ -238,9 +219,7 @@ Goose là AI Agent mã nguồn mở đáng chú ý nhất năm 2026:
 
 ## Hạ Tầng Đề Xuất Cho Tự Lưu Trữ
 
-Để chạy stack này 24/7 ổn định, lựa chọn hạ tầng rất quan trọng:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu. Lựa chọn mặc định cho developer độc lập.
+Để chạy stack này 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu. Lựa chọn mặc định cho developer độc lập.
 - **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — VPS Hong Kong, độ trễ thấp với người dùng Việt Nam. dibi8.com cũng được host ở đây.
 - **{{< aff "hostinger" "footer-cta-legacy" "Hostinger" >}}** — Lựa chọn VPS giá tốt cho thị trường Việt Nam, giảm 60% gói đầu tiên.
 
@@ -249,7 +228,6 @@ Goose là AI Agent mã nguồn mở đáng chú ý nhất năm 2026:
 *Last updated: 2026-05-07*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -277,25 +255,20 @@ Goose là AI Agent mã nguồn mở đáng chú ý nhất năm 2026:
 
 ## Why This Matters
 
-Understanding goose ai agent：44k⭐công cụ ai mã nguồn mở, tự động hóa mọi thứ từ coding đến nghiên cứu is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding goose ai agent：44k⭐công cụ ai mã nguồn mở, tự động hóa mọi thứ từ coding đến nghiên cứu is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

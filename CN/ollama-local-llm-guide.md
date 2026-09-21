@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/ollama-local-llm-guide" />
 title: 'Ollama Complete Guide 2025: Run LLMs Locally on Any Hard...
 description: 'Master Ollama in 2025. Install, configure, and run LLMs locally. Model guide, API reference, hardware requirements, and production deployment tips.'
 date: 2026-05-18 00:00:00+08:00
@@ -20,10 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/ollama-local-llm-guide/
+aliases: - /posts/ollama-local-llm-guide/-
 ---
-
 {</* resource-info */>}
 
 Every request you send to OpenAI or Anthropic travels across the internet, hits someone else's server, and potentially gets logged for training purposes. For many developers and organizations, that is unacceptable. Healthcare companies cannot send patient data to external APIs. Financial institutions face regulatory restrictions. Individual developers simply want control over their AI stack.
@@ -38,9 +34,7 @@ Think of Ollama as Docker for LLMs. Just as `docker pull nginx` fetches and runs
 
 ### Why Run LLMs Locally?
 
-Running models locally offers several advantages over cloud APIs:
-
-- **Privacy**: Your data never leaves your machine — critical for healthcare, legal, and financial applications
+Running models locally offers several advantages over cloud APIs: - **Privacy**: Your data never leaves your machine — critical for healthcare, legal, and financial applications
 - **No rate limits**: Process thousands of requests without throttling
 - **Zero API costs**: Pay only for electricity and hardware depreciation
 - **Offline operation**: Works without an internet connection once models are downloaded
@@ -49,7 +43,13 @@ Running models locally offers several advantages over cloud APIs:
 ### Ollama vs Cloud LLM APIs: Pros and Cons
 
 | Factor | Ollama (Local) | Cloud APIs (OpenAI/Claude) |
-|--------|----------------|---------------------------|
+|
+---
+|
+---
+|
+---
+|
 | **Privacy** | Complete data control | Data sent to third parties |
 | **Cost** | Hardware + electricity only | Per-token pricing |
 | **Setup** | Requires GPU/CPU resources | Instant, no setup |
@@ -90,9 +90,7 @@ The script detects your GPU and installs appropriate drivers. For NVIDIA GPUs, e
 docker run -d -v ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
 ```
 
-For GPU support, add the appropriate runtime flag:
-
-```bash
+For GPU support, add the appropriate runtime flag: ```bash
 # NVIDIA
 docker run --gpus all -d -v ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
 
@@ -120,10 +118,16 @@ ollama pull llama3.1:8b
 
 This downloads the 8-billion-parameter Llama 3.1 model (approximately 4.7 GB). The model is downloaded in chunks and cached locally. Subsequent pulls only fetch updates.
 
-Other popular starter models:
-
-| Model | Command | Size | Best For |
-|-------|---------|------|----------|
+Other popular starter models: | Model | Command | Size | Best For |
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Llama 3.1 8B** | `ollama pull llama3.1:8b` | 4.7 GB | General purpose, chat |
 | **Llama 3.2 3B** | `ollama pull llama3.2:3b` | 2.0 GB | Fast inference, edge devices |
 | **Mistral 7B** | `ollama pull mistral` | 4.1 GB | Reasoning, instruction following |
@@ -140,9 +144,7 @@ This drops you into a chat session. Type your message, press Enter, and the mode
 
 ### Using the REST API
 
-Ollama exposes a REST API on port 11434:
-
-```bash
+Ollama exposes a REST API on port 11434: ```bash
 curl http://localhost:11434/api/generate -d '{
   "model": "llama3.1:8b",
   "prompt": "Why is the sky blue?",
@@ -150,9 +152,7 @@ curl http://localhost:11434/api/generate -d '{
 }'
 ```
 
-Chat completion endpoint (OpenAI-compatible):
-
-```bash
+Chat completion endpoint (OpenAI-compatible): ```bash
 curl http://localhost:11434/api/chat -d '{
   "model": "llama3.1:8b",
   "messages": [
@@ -206,7 +206,15 @@ For coding-specific tasks, CodeLlama (based on Llama) and StarCoder 2 offer spec
 ### RAM Requirements by Model Size
 
 | Model Size | Minimum RAM | Recommended RAM | GPU VRAM (Q4) |
-|------------|-------------|-----------------|---------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 1B - 3B | 4 GB | 8 GB | 2-3 GB |
 | 7B - 8B | 8 GB | 16 GB | 4-6 GB |
 | 13B - 14B | 16 GB | 32 GB | 8-10 GB |
@@ -225,19 +233,23 @@ Ollama runs models entirely in memory. If you lack sufficient RAM, the system wi
 
 ### CPU-Only Performance Tips
 
-If you lack a GPU:
-
-- Use smaller models (3B parameters work well on CPU)
+If you lack a GPU: - Use smaller models (3B parameters work well on CPU)
 - Enable quantization (Q4_K_M reduces memory and improves CPU cache efficiency)
 - Use fewer CPU threads if inference is memory-bandwidth limited
 - Consider cloud GPU instances for larger models
 
 ### Quantization Levels Explained
 
-Ollama models use GGUF format with various quantization levels. Understanding them helps you balance quality against resource usage:
-
-| Quantization | Size vs FP16 | Quality Loss | Use Case |
-|-------------|-------------|--------------|----------|
+Ollama models use GGUF format with various quantization levels. Understanding them helps you balance quality against resource usage: | Quantization | Size vs FP16 | Quality Loss | Use Case |
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Q4_K_M** | ~25% | Minimal | Best balance, recommended default |
 | **Q5_K_M** | ~31% | Very small | Better quality, slightly slower |
 | **Q6_K** | ~37% | Negligible | Near-lossless on most tasks |
@@ -250,9 +262,7 @@ Ollama defaults to Q4_K_M, which offers the best quality-to-size ratio for most 
 
 ### REST API Full Reference
 
-Ollama provides a comprehensive REST API:
-
-```bash
+Ollama provides a comprehensive REST API: ```bash
 # Generate (completion)
 POST /api/generate
 
@@ -277,9 +287,7 @@ POST /api/pull
 
 ### Python Integration (ollama-python)
 
-The official Python client simplifies integration:
-
-```bash
+The official Python client simplifies integration: ```bash
 pip install ollama
 ```
 
@@ -294,8 +302,7 @@ response = ollama.chat(
 print(response['message']['content'])
 
 # Streaming
-for chunk in ollama.chat(model='llama3.1:8b', messages=messages, stream=True):
-    print(chunk['message']['content'], end='', flush=True)
+for chunk in ollama.chat(model='llama3.1:8b', messages=messages, stream=True): print(chunk['message']['content'], end='', flush=True)
 
 # Generate
 response = ollama.generate(model='llama3.1:8b', prompt='Write a haiku about coding')
@@ -320,9 +327,7 @@ console.log(response.message.content);
 
 ### LangChain + Ollama Integration
 
-LangChain integrates with Ollama seamlessly:
-
-```python
+LangChain integrates with Ollama seamlessly: ```python
 from langchain_ollama import OllamaLLM, ChatOllama
 
 # Use Ollama with LangChain
@@ -335,9 +340,7 @@ chat = ChatOllama(model="llama3.1:8b")
 
 ### OpenAI-Compatible API Endpoint
 
-Ollama provides an OpenAI-compatible endpoint at `/v1/chat/completions`, allowing you to use Ollama with any OpenAI-compatible client:
-
-```bash
+Ollama provides an OpenAI-compatible endpoint at `/v1/chat/completions`, allowing you to use Ollama with any OpenAI-compatible client: ```bash
 curl http://localhost:11434/v1/chat/completions \
   -H "Content-Type: application/json" \
   -d '{
@@ -352,9 +355,7 @@ This compatibility means tools built for OpenAI (including LangChain, AutoGen, a
 
 ### Custom Modelfile Creation
 
-A Modelfile defines how Ollama runs a model. Create custom behavior:
-
-```dockerfile
+A Modelfile defines how Ollama runs a model. Create custom behavior: ```dockerfile
 FROM llama3.1:8b
 
 # System prompt
@@ -369,18 +370,14 @@ PARAMETER top_k 40
 LICENSE "MIT"
 ```
 
-Build and run:
-
-```bash
+Build and run: ```bash
 ollama create my-coder -f Modelfile
 ollama run my-coder
 ```
 
 ### Creating Custom Models with System Prompts
 
-Custom models are useful for role-specific applications:
-
-```dockerfile
+Custom models are useful for role-specific applications: ```dockerfile
 FROM mistral
 SYSTEM """You are a medical research assistant. Provide evidence-based answers and cite sources when possible. Never provide medical advice to individuals."""
 PARAMETER temperature 0.3
@@ -388,9 +385,7 @@ PARAMETER temperature 0.3
 
 ### Multi-Model Serving
 
-Ollama can serve multiple models simultaneously. Each model loads into memory on first use and stays resident. Monitor memory usage with `ollama ps`:
-
-```bash
+Ollama can serve multiple models simultaneously. Each model loads into memory on first use and stays resident. Monitor memory usage with `ollama ps`: ```bash
 ollama run llama3.1:8b &
 ollama run codellama:7b &
 ```
@@ -409,53 +404,31 @@ Unlike stateless API calls, Ollama's interactive chat maintains conversation con
 
 ```yaml
 version: '3.8'
-services:
-  ollama:
-    image: ollama/ollama:latest
-    ports:
-      - "11434:11434"
-    volumes:
-      - ollama-data:/root/.ollama
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+services: ollama: image: ollama/ollama:latest
+    ports: - "11434:11434"
+    volumes: - ollama-data:/root/.ollama
+    deploy: resources: reservations: devices: - driver: nvidia
               count: 1
               capabilities: [gpu]
-volumes:
-  ollama-data:
-```
+volumes: ollama-data: ```
 
 ### Load Balancing Multiple Instances
 
-For high-availability deployments, run multiple Ollama instances:
-
-```yaml
-services:
-  ollama-1:
-    image: ollama/ollama
-    volumes:
-      - shared-ollama:/root/.ollama
+For high-availability deployments, run multiple Ollama instances: ```yaml
+services: ollama-1: image: ollama/ollama
+    volumes: - shared-ollama:/root/.ollama
     runtime: nvidia
-  ollama-2:
-    image: ollama/ollama
-    volumes:
-      - shared-ollama:/root/.ollama
+  ollama-2: image: ollama/ollama
+    volumes: - shared-ollama:/root/.ollama
     runtime: nvidia
-  nginx:
-    image: nginx:alpine
-    ports:
-      - "11434:80"
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
+  nginx: image: nginx:alpine
+    ports: - "11434:80"
+    volumes: - ./nginx.conf:/etc/nginx/nginx.conf
 ```
 
 ### Monitoring and Logging
 
-Monitor Ollama with standard tools:
-
-```bash
+Monitor Ollama with standard tools: ```bash
 # GPU utilization
 watch -n 1 nvidia-smi
 
@@ -495,7 +468,17 @@ vLLM optimizes for high-throughput serving with PagedAttention, a memory managem
 GPT4All targets desktop users with a focus on privacy and ease of use. It includes a desktop GUI and runs on modest hardware. Ollama targets developers with its API-first design and broader model support. GPT4All is easier for beginners; Ollama is more powerful for application development.
 
 | Tool | Best For | GUI | API | Docker |
-|------|----------|-----|-----|--------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Ollama** | Developers, production APIs | No | Yes | Yes |
 | **LM Studio** | GUI users, experimentation | Yes | Limited | No |
 | **llama.cpp** | Maximum performance, embedded | No | Manual | No |
@@ -506,9 +489,7 @@ GPT4All targets desktop users with a focus on privacy and ease of use. It includ
 
 ### Slow Inference Fixes
 
-If inference is slower than expected:
-
-1. **Check GPU usage**: Run `nvidia-smi` (NVIDIA) or `ollama ps` to verify GPU acceleration is active
+If inference is slower than expected: 1. **Check GPU usage**: Run `nvidia-smi` (NVIDIA) or `ollama ps` to verify GPU acceleration is active
 2. **Verify quantization**: Ensure you are running a quantized model, not FP16
 3. **Reduce context size**: Shorter prompts process faster
 4. **Check CPU throttling**: On laptops, power settings may throttle performance
@@ -516,18 +497,14 @@ If inference is slower than expected:
 
 ### Model Download Failures
 
-If `ollama pull` fails:
-
-1. Check internet connectivity
+If `ollama pull` fails: 1. Check internet connectivity
 2. Verify disk space: Models require significant storage
 3. Try a different mirror or CDN
 4. For large models, ensure stable connection (resumable downloads usually work)
 
 ### Out of Memory Errors
 
-OOM errors mean your hardware cannot fit the model:
-
-1. **Use a smaller model**: Drop from 8B to 3B parameters
+OOM errors mean your hardware cannot fit the model: 1. **Use a smaller model**: Drop from 8B to 3B parameters
 2. **Use more aggressive quantization**: Q3 instead of Q4
 3. **Close other applications**: Free up RAM/VRAM
 4. **Enable system swap**: Slow but prevents crashes (Linux: increase swap size)
@@ -535,9 +512,7 @@ OOM errors mean your hardware cannot fit the model:
 
 ### Network and Proxy Configuration
 
-If running behind a corporate proxy:
-
-```bash
+If running behind a corporate proxy: ```bash
 export HTTP_PROXY=http://proxy.company.com:8080
 export HTTPS_PROXY=http://proxy.company.com:8080
 ollama pull llama3.1:8b
@@ -579,20 +554,17 @@ The future of AI infrastructure is hybrid — some workloads in the cloud, some 
 
 Download Ollama at [ollama.com](https://ollama.com), explore the model library, and join the growing community of developers running AI on their own terms.
 
----
 
+---
 ## Recommended Infrastructure
 
-To run any of the tools above reliably 24/7, infrastructure matters:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.
+To run any of the tools above reliably 24/7, infrastructure matters: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low latency for mainland China access. This is the same IDC hosting dibi8.com — production-proven.
 
 *Affiliate links — no extra cost to you, helps keep dibi8.com running.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -639,3 +611,5 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 
 使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。
 
+
+---

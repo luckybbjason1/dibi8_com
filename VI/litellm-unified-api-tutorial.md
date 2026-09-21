@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/litellm-unified-api-tutorial" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/litellm-unified-api-tutorial" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/litellm-unified-api-tutorial" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/litellm-unified-api-tutorial" />
 title: 'Hướng Dẫn LiteLLM 2025: Một API Để Truy Cập 100+ LLM'
 description: 'Hướng dẫn chi tiết LiteLLM 2025 — cách dùng một API thống nhất để kết nối 100+ mô hình LLM từ OpenAI, Anthropic, Google, Azure và nguồn mở.'
 date: 2026-05-18 00:00:00+08:00
@@ -23,11 +18,9 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/litellm-unified-api-tutorial/
+aliases: - /posts/litellm-unified-api-tutorial/
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/litellm-unified-api-tutorial/ -->
 # Hướng Dẫn LiteLLM 2025: Một API Để Truy Cập 100+ LLM
 
 
@@ -39,18 +32,14 @@ Khi doanh nghiệp tích hợp AI vào hệ thống production, một thách th�
 
 ### Gateway API Đa Năng Cho Mọi LLM
 
-LiteLLM hoạt động như một lớp trung gian giữa ứng dụng của bạn và các nhà cung cấp LLM. Thay vì viết code tích hợp riêng cho từng API, bạn chỉ cần gọi một hàm duy nhất — `completion()` — và LiteLLM sẽ tự động định tuyến request đến đúng provider. Từ góc độ kiến trúc, LiteLLM có hai chế độ hoạt động chính:
-
-- **SDK Mode**: Import thư viện Python và gọi trực tiếp trong code
+LiteLLM hoạt động như một lớp trung gian giữa ứng dụng của bạn và các nhà cung cấp LLM. Thay vì viết code tích hợp riêng cho từng API, bạn chỉ cần gọi một hàm duy nhất — `completion()` — và LiteLLM sẽ tự động định tuyến request đến đúng provider. Từ góc độ kiến trúc, LiteLLM có hai chế độ hoạt động chính: - **SDK Mode**: Import thư viện Python và gọi trực tiếp trong code
 - **Proxy Server**: Triển khai như một server độc lập với khả năng quản lý key, rate limit, và load balancing
 
 Dự án được phát triển bởi BerriAI, hiện có hơn 12.000 stars trên GitHub và được sử dụng bởi hàng nghìn tổ chức từ startup đến doanh nghiệp lớn [^1^](https://github.com/BerriAI/litellm).
 
 ### Những Tính Năng Cốt Lõi
 
-LiteLLM cung cấp bộ tính năng toàn diện giúp đơn giản hóa việc quản lý LLM ở quy mô production:
-
-- **Hơn 100 providers được hỗ trợ** với cùng một định dạng API
+LiteLLM cung cấp bộ tính năng toàn diện giúp đơn giản hóa việc quản lý LLM ở quy mô production: - **Hơn 100 providers được hỗ trợ** với cùng một định dạng API
 - **Router thông minh** tự động chọn model phù hợp dựa trên độ trễ, chi phí, hoặc tính khả dụng
 - **Fallback và retry** tự động chuyển sang provider dự phòng khi lỗi
 - **Caching tích hợp** giảm chi phí và độ trễ cho các truy vấn lặp lại
@@ -63,9 +52,7 @@ LiteLLM cung cấp bộ tính năng toàn diện giúp đơn giản hóa việc 
 
 ### Các Provider LLM Hàng Đầu
 
-LiteLLM hỗ trợ hầu hết các nhà cung cấp LLM phổ biến trên thị trường:
-
-| Provider | Các Model Tiêu Biểu | Yêu Cầu API Key |
+LiteLLM hỗ trợ hầu hết các nhà cung cấp LLM phổ biến trên thị trường: | Provider | Các Model Tiêu Biểu | Yêu Cầu API Key |
 |----------|---------------------|-----------------|
 | OpenAI | GPT-4o, GPT-4 Turbo, GPT-3.5 Turbo | `OPENAI_API_KEY` |
 | Anthropic | Claude 3.5 Sonnet, Claude 3 Opus | `ANTHROPIC_API_KEY` |
@@ -79,9 +66,7 @@ LiteLLM hỗ trợ hầu hết các nhà cung cấp LLM phổ biến trên thị
 
 ### Mô Hình Nguồn Mở Và Local
 
-Ngoài các dịch vụ cloud, LiteLLM còn hỗ trợ triển khai mô hình local thông qua:
-
-- **Ollama**: Chạy model trên máy cá nhân với API tương thích OpenAI
+Ngoài các dịch vụ cloud, LiteLLM còn hỗ trợ triển khai mô hình local thông qua: - **Ollama**: Chạy model trên máy cá nhân với API tương thích OpenAI
 - **vLLM**: Engine suy luận hiệu suất cao cho mô hình nguồn mở
 - **Hugging Face TGI**: Text Generation Inference cho deployment production
 - **llama.cpp**: Chạy model quantized trên CPU
@@ -90,23 +75,17 @@ Ngoài các dịch vụ cloud, LiteLLM còn hỗ trợ triển khai mô hình lo
 
 ### Cài Đặt LiteLLM
 
-Cài đặt LiteLLM cực kỳ đơn giản với pip:
-
-```bash
+Cài đặt LiteLLM cực kỳ đơn giản với pip: ```bash
 pip install litellm
 ```
 
-Với proxy server, bạn cần thêm một số dependencies:
-
-```bash
+Với proxy server, bạn cần thêm một số dependencies: ```bash
 pip install "litellm[proxy]"
 ```
 
 ### Gọi API Đầu Tiên
 
-Dưới đây là ví dụ gọi Claude 3.5 Sonnet qua LiteLLM với cú pháp OpenAI:
-
-```python
+Dưới đây là ví dụ gọi Claude 3.5 Sonnet qua LiteLLM với cú pháp OpenAI: ```python
 import litellm
 
 response = litellm.completion(
@@ -116,21 +95,16 @@ response = litellm.completion(
 print(response.choices[0].message.content)
 ```
 
-Để chuyển sang GPT-4o, bạn chỉ cần thay đổi một dòng:
-
-```python
+Để chuyển sang GPT-4o, bạn chỉ cần thay đổi một dòng: ```python
 model="gpt-4o"  # Thay vì anthropic/claude-3-5-sonnet
 ```
 
 ### Hỗ Trợ Bất Đồng Bộ
 
-LiteLLM cung cấp hàm `acompletion()` cho các ứng dụng async:
-
-```python
+LiteLLM cung cấp hàm `acompletion()` cho các ứng dụng async: ```python
 import asyncio
 
-async def chat_with_llm():
-    response = await litellm.acompletion(
+async def chat_with_llm(): response = await litellm.acompletion(
         model="gpt-4o",
         messages=[{"role": "user", "content": "Hello!"}]
     )
@@ -141,48 +115,36 @@ async def chat_with_llm():
 
 ### Thiết Lập Proxy Server
 
-Proxy server là thành phần mạnh mẽ nhất của LiteLLM, biến nó thành một LLM gateway hoàn chỉnh. Để khởi động proxy [^2^](https://docs.litellm.ai/docs/proxy):
-
-```bash
+Proxy server là thành phần mạnh mẽ nhất của LiteLLM, biến nó thành một LLM gateway hoàn chỉnh. Để khởi động proxy [^2^](https://docs.litellm.ai/docs/proxy): ```bash
 litellm --config config.yaml
 ```
 
 ### File Cấu Hình Chi Tiết
 
-File `config.yaml` là trái tim của proxy server:
-
-```yaml
-model_list:
-  - model_name: gpt-4
-    litellm_params:
-      model: gpt-4
+File `config.yaml` là trái tim của proxy server: ```yaml
+model_list: - model_name: gpt-4
+    litellm_params: model: gpt-4
       api_key: os.environ/OPENAI_API_KEY
   
   - model_name: claude-sonnet
-    litellm_params:
-      model: anthropic/claude-3-5-sonnet-20241022
+    litellm_params: model: anthropic/claude-3-5-sonnet-20241022
       api_key: os.environ/ANTHROPIC_API_KEY
   
   - model_name: gemini-pro
-    litellm_params:
-      model: gemini/gemini-1.5-pro
+    litellm_params: model: gemini/gemini-1.5-pro
       api_key: os.environ/GEMINI_API_KEY
 
-router_settings:
-  routing_strategy: simple-shuffle
+router_settings: routing_strategy: simple-shuffle
   num_retries: 3
   timeout: 30
 
-general_settings:
-  master_key: os.environ/LITELLM_MASTER_KEY
+general_settings: master_key: os.environ/LITELLM_MASTER_KEY
   database_url: os.environ/DATABASE_URL
 ```
 
 ### Quản Lý Virtual Key
 
-LiteLLM proxy cho phép tạo virtual keys — những API key nội bộ có quyền hạn và ngân sách riêng:
-
-```bash
+LiteLLM proxy cho phép tạo virtual keys — những API key nội bộ có quyền hạn và ngân sách riêng: ```bash
 curl -X POST 'http://localhost:4000/key/generate' \
   -H 'Authorization: Bearer sk-master-123' \
   -H 'Content-Type: application/json' \
@@ -195,17 +157,13 @@ curl -X POST 'http://localhost:4000/key/generate' \
 
 ### Rate Limiting Và Kiểm Soát Ngân Sách
 
-Bạn có thể đặt giới hạn cho từng key hoặc từng team:
-
-- **Rate limits**: TPM (tokens per minute), RPM (requests per minute)
+Bạn có thể đặt giới hạn cho từng key hoặc từng team: - **Rate limits**: TPM (tokens per minute), RPM (requests per minute)
 - **Budget controls**: Giới hạn chi tiêu hàng ngày, hàng tháng
 - **Model access**: Giới hạn model nào mỗi key có thể gọi
 
 ### Load Balancing Giữa Các Providers
 
-LiteLLM hỗ trợ nhiều chiến lược routing:
-
-- **Simple Shuffle**: Phân phối đều giữa các model
+LiteLLM hỗ trợ nhiều chiến lược routing: - **Simple Shuffle**: Phân phối đều giữa các model
 - **Least Busy**: Gửi đến model có ít request nhất
 - **Lowest Latency**: Tự động chọn model phản hồi nhanh nhất
 - **Lowest Cost**: Ưu tiên model có giá rẻ nhất
@@ -214,34 +172,24 @@ LiteLLM hỗ trợ nhiều chiến lược routing:
 
 ### Router Thông Minh
 
-Router của LiteLLM có khả năng tự động chọn model dựa trên nhiều tiêu chí. Ví dụ cấu hình routing theo chi phí:
-
-```yaml
-router_settings:
-  routing_strategy: lowest-cost
+Router của LiteLLM có khả năng tự động chọn model dựa trên nhiều tiêu chí. Ví dụ cấu hình routing theo chi phí: ```yaml
+router_settings: routing_strategy: lowest-cost
   fallback_strategy: ["gpt-3.5-turbo", "claude-haiku"]
 ```
 
 ### Fallback Và Retry Tự Động
 
-Khi một provider gặp lỗi hoặc quá tải, LiteLLM tự động chuyển sang provider dự phòng:
-
-```yaml
-model_list:
-  - model_name: production-llm
-    litellm_params:
-      model: gpt-4
+Khi một provider gặp lỗi hoặc quá tải, LiteLLM tự động chuyển sang provider dự phòng: ```yaml
+model_list: - model_name: production-llm
+    litellm_params: model: gpt-4
     fallback: ["anthropic/claude-3-opus", "gemini/gemini-1.5-pro"]
 ```
 
 ### Caching Phản Hồi
 
-LiteLLM hỗ trợ caching qua Redis hoặc in-memory để giảm chi phí cho các truy vấn lặp lại [^3^](https://docs.litellm.ai):
-
-```yaml
+LiteLLM hỗ trợ caching qua Redis hoặc in-memory để giảm chi phí cho các truy vấn lặp lại [^3^](https://docs.litellm.ai): ```yaml
 cache: true
-cache_params:
-  type: redis
+cache_params: type: redis
   host: localhost
   port: 6379
 ```
@@ -265,9 +213,7 @@ Chỉ cần thay đổi tên model để chuyển sang Cohere, Azure, hoặc b�
 
 ### Sử Dụng LiteLLM Với LangChain
 
-LiteLLM có thể hoạt động như một drop-in replacement cho model trong LangChain [^4^](https://python.langchain.com):
-
-```python
+LiteLLM có thể hoạt động như một drop-in replacement cho model trong LangChain [^4^](https://python.langchain.com): ```python
 from langchain_community.chat_models import ChatLiteLLM
 
 llm = ChatLiteLLM(model="gpt-4o")
@@ -290,25 +236,19 @@ llm = LiteLLM(model="anthropic/claude-3-5-sonnet")
 
 ### Quản Lý Ngườii Dùng Và RBAC
 
-LiteLLM cung cấp hệ thống phân quyền chi tiết:
-
-- **Internal users**: Ngườii dùng nội bộ với các quyền khác nhau
+LiteLLM cung cấp hệ thống phân quyền chi tiết: - **Internal users**: Ngườii dùng nội bộ với các quyền khác nhau
 - **Teams**: Nhóm ngườii dùng với ngân sách chung
 - **RBAC**: Role-based access control cho từng tính năng
 
 ### Theo Dõi Chi Tiêu
 
-Dashboard của LiteLLM cho phép theo dõi chi tiêu theo thờii gian thực:
-
-- Chi tiêu theo key, theo team, theo model
+Dashboard của LiteLLM cho phép theo dõi chi tiêu theo thờii gian thực: - Chi tiêu theo key, theo team, theo model
 - Cảnh báo khi vượt ngân sách
 - Dự đoán chi phí dựa trên lịch sử sử dụng
 
 ### Logging Và Observability
 
-LiteLLM tích hợp với nhiều dịch vụ logging:
-
-- **LangSmith**: Theo dõi request/response
+LiteLLM tích hợp với nhiều dịch vụ logging: - **LangSmith**: Theo dõi request/response
 - **Langfuse**: Open-source observability
 - **Helicone**: Logging và analytics
 - **PromptLayer**: Quản lý prompt
@@ -321,9 +261,7 @@ LiteLLM có thể được triển khai on-premises hoặc trên private cloud, 
 
 ### Định Tuyến Đến Provider Rẻ Nhất
 
-Với chiến lược `lowest-cost`, LiteLLM tự động chọn provider có giá tốt nhất cho mỗi request:
-
-| Model | OpenAI | Azure | Groq | Tiết Kiệm |
+Với chiến lược `lowest-cost`, LiteLLM tự động chọn provider có giá tốt nhất cho mỗi request: | Model | OpenAI | Azure | Groq | Tiết Kiệm |
 |-------|--------|-------|------|-----------|
 | GPT-4o | $5.00/M | $5.00/M | — | — |
 | Llama 3 70B | — | — | $0.89/M | ~82% |
@@ -369,18 +307,14 @@ CMD ["--config", "/app/config.yaml", "--port", "4000"]
 
 ### Kubernetes Helm Chart
 
-LiteLLM cung cấp Helm chart chính thức cho triển khai Kubernetes:
-
-```bash
+LiteLLM cung cấp Helm chart chính thức cho triển khai Kubernetes: ```bash
 helm repo add litellm https://berriai.github.io/litellm
 helm install litellm litellm/litellm -f values.yaml
 ```
 
 ### Giám Sát Và Cảnh Báo
 
-Nên tích hợp Prometheus và Grafana để giám sát:
-
-- Request rate và latency
+Nên tích hợp Prometheus và Grafana để giám sát: - Request rate và latency
 - Error rate theo provider
 - Chi phí theo thờii gian thực
 - Token usage patterns
@@ -425,9 +359,7 @@ Hoàn toàn có. LiteLLM hỗ trợ Ollama, vLLM, llama.cpp, Hugging Face TGI v�
 
 ## Hạ Tầng Đề Xuất
 
-Để chạy các công cụ trên 24/7 ổn định, lựa chọn hạ tầng rất quan trọng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu.
+Để chạy các công cụ trên 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp. dibi8.com cũng host ở đây.
 - **[Hostinger](https://www.hostinger.com/vn?REFERRALCODE=22RPIAOJIYJN)** — VPS giá tốt cho thị trường Việt Nam.
 
@@ -435,7 +367,6 @@ Hoàn toàn có. LiteLLM hỗ trợ Ollama, vLLM, llama.cpp, Hugging Face TGI v�
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

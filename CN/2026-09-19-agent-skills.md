@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/2026-09-19-agent-skills" />
 title: 'Addy Osmani\'s Agent Skills: 96K-Star Framework for Prod...
 description: 'Learn how Addy Osmani built a skills system that transforms Claude Code, Cursor, and other AI editors into powerful, composable workspaces. Complete guide to implementation, deployment, and advanced patterns.'
 date: 2026-09-19
@@ -12,9 +10,8 @@ stars: 96378
 maintainer: 'addyosmani'
 license: MIT
 featureImage: 'https://opengraph.github.com/github/addyosmani/agent-skills'
-lang: en
+
 ---
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -54,9 +51,7 @@ This isn't just another tool — it's a complete philosophy for building reliabl
 
 ## Who Is Addy Osmani?
 
-Before diving in, let's understand why this matters:
-
-- Former Google Chrome engineer
+Before diving in, let's understand why this matters: - Former Google Chrome engineer
 - Lead of web.dev performance team
 - Creator of Lighthouse
 - Author of "Web Almanac"
@@ -66,9 +61,7 @@ When someone with Addy's track record says "build skills for AI agents," you lis
 
 ## What Are Agent Skills?
 
-Agent Skills is a framework for creating reusable, shareable capabilities for AI coding assistants. Think of it as npm for agent behaviors:
-
-```
+Agent Skills is a framework for creating reusable, shareable capabilities for AI coding assistants. Think of it as npm for agent behaviors: ```
 Skills = Your organization's AI knowledge
         = Pre-built workflows
         = Custom commands
@@ -125,13 +118,14 @@ skills/
 
 ### Skill Definition
 ```markdown
+
 ---
 name: my-skill
 description: "One-line description of what this skill does"
 version: 1.0.0
 author: your-name
----
 
+---
 # My Skill
 
 Detailed description here...
@@ -169,9 +163,7 @@ export class MySkill extends Skill {
 ## Real-World Skill Examples
 
 ### 1. Security Scanner
-Automated security checks before commits:
-
-```typescript
+Automated security checks before commits: ```typescript
 class SecurityScanSkill extends Skill {
   async execute(ctx) {
     const files = await this.getModifiedFiles();
@@ -195,9 +187,7 @@ class SecurityScanSkill extends Skill {
 ```
 
 ### 2. Documentation Generator
-Auto-generate docs from code:
-
-```typescript
+Auto-generate docs from code: ```typescript
 class DocGeneratorSkill extends Skill {
   async execute(ctx) {
     const api = await this.extractAPI(ctx.code);
@@ -214,9 +204,7 @@ class DocGeneratorSkill extends Skill {
 ```
 
 ### 3. Performance Profiler
-Measure and optimize code:
-
-```typescript
+Measure and optimize code: ```typescript
 class PerformanceProfileSkill extends Skill {
   async execute(ctx) {
     const metrics = await this.profileCode(ctx.code);
@@ -350,21 +338,24 @@ claude code
 name: Run Skills
 on: [push]
 
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: test: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - run: skills test
       - run: skills lint
 ```
 
 ## Performance Benchmarks
 
-Testing Agent Skills vs vanilla assistants:
-
-| Metric | Vanilla | With Skills | Improvement |
-|--------|---------|-------------|-------------|
+Testing Agent Skills vs vanilla assistants: | Metric | Vanilla | With Skills | Improvement |
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Task completion | 65% | 89% | +24% |
 | Error rate | 12% | 3% | -75% |
 | Token usage | 100% | 78% | -22% |
@@ -373,8 +364,7 @@ Testing Agent Skills vs vanilla assistants:
 **Key insight:** Skills provide structured guidance that reduces both hallucinations and token waste. The 75% error rate reduction comes from pre-defined validation steps that catch issues before they propagate.
 
 ### Long-Term Metrics
-After 3 months of production use:
-- **First-month bug rate:** 8.2 bugs per 1000 lines
+After 3 months of production use: - **First-month bug rate:** 8.2 bugs per 1000 lines
 - **Six-month bug rate:** 2.1 bugs per 1000 lines (74% reduction)
 - **Onboarding time:** Reduced from 2 weeks to 3 days for new developers
 - **Code review cycle:** Shortened by 40% due to automated checks
@@ -383,9 +373,7 @@ After 3 months of production use:
 
 ### Pitfall 1: Skills Overlap
 **Problem:** Multiple skills do similar things.
-**Solution:** Use skill composition, not duplication:
-
-```typescript
+**Solution:** Use skill composition, not duplication: ```typescript
 // Instead of duplicating logic
 class AuthSkill extends Skill { /* auth logic */ }
 class APIKeySkill extends Skill { /* more auth logic */ }
@@ -402,9 +390,7 @@ class AuthenticatedRequest extends Skill {
 
 ### Pitfall 2: State Leakage
 **Problem:** Skills interfere with each other's state.
-**Solution:** Isolate state per skill instance:
-
-```typescript
+**Solution:** Isolate state per skill instance: ```typescript
 class IsolatedSkill extends Skill {
   async execute(ctx) {
     const localState = this.createIsolatedState();
@@ -415,9 +401,7 @@ class IsolatedSkill extends Skill {
 
 ### Pitfall 3: Performance Degradation
 **Problem:** Too many skills slow down the assistant.
-**Solution:** Lazy loading:
-
-```typescript
+**Solution:** Lazy loading: ```typescript
 class LazySkill extends Skill {
   async load() {
     // Only load when needed
@@ -429,9 +413,7 @@ class LazySkill extends Skill {
 ## Deployment Patterns
 
 ### Containerized Deployment
-Run Agent Skills in Docker for isolated environments:
-
-```dockerfile
+Run Agent Skills in Docker for isolated environments: ```dockerfile
 FROM node:18-alpine
 WORKDIR /app
 COPY package*.json ./
@@ -446,18 +428,13 @@ docker run -v $(pwd)/skills:/app/skills agent-skills-app
 ```
 
 ### CI/CD Integration
-Automate skill testing in your pipeline:
-
-```yaml
+Automate skill testing in your pipeline: ```yaml
 # .github/workflows/skills-test.yml
 name: Test Skills
 on: [push, pull_request]
 
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: test: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - run: npm install -g agent-skills
       - run: skills test
       - run: skills lint
@@ -465,27 +442,29 @@ jobs:
 ```
 
 ### Multi-Team Setup
-For organizations with multiple teams:
-
-```yaml
+For organizations with multiple teams: ```yaml
 # skills-config.yaml
-global:
-  pluginsDir: ~/.agent-skills/plugins
+global: pluginsDir: ~/.agent-skills/plugins
   cacheDir: ~/.agent-skills/cache
 
-teams:
-  platform:
-    skillsDir: ./skills/platform
+teams: platform: skillsDir: ./skills/platform
     members: [alice, bob]
-  data:
-    skillsDir: ./skills/data
+  data: skillsDir: ./skills/data
     members: [charlie, diana]
 ```
 
 ## Comparison with Alternatives
 
 | Feature | Agent Skills | DeepSeek Harness | Superpowers |
-|---------|--------------|------------------|-------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Creator | Addy Osmani | DeepSeek AI | Unknown |
 | Stars | 96K | 229K | 204K |
 | Primary Use | Production workflows | Plugin ecosystem | General purpose |
@@ -497,9 +476,7 @@ teams:
 
 ## Limitations & Honest Assessment
 
-Agent Skills isn't perfect. Here's what you should know before adopting it:
-
-### Strengths
+Agent Skills isn't perfect. Here's what you should know before adopting it: ### Strengths
 1. **Production-ready** — Designed for enterprise workflows, not just experiments
 2. **Addy's track record** — Former Google engineer with proven performance expertise
 3. **Active maintenance** — Regular updates and bug fixes
@@ -569,8 +546,7 @@ npm run build
 ```
 
 ### Common Issue: Memory Leak in Long Sessions
-Enable memory limits in your skill config:
-```typescript
+Enable memory limits in your skill config: ```typescript
 // skill.config.ts
 export default {
   memory: {
@@ -581,8 +557,7 @@ export default {
 ```
 
 ### Common Issue: Plugin Conflicts
-When multiple skills conflict:
-```bash
+When multiple skills conflict: ```bash
 # List all loaded skills
 skills list --all
 
@@ -591,8 +566,7 @@ skills disable skill-name
 ```
 
 ### Common Issue: Plugin Conflicts
-When multiple skills conflict:
-```bash
+When multiple skills conflict: ```bash
 # List all loaded skills
 skills list --all
 
@@ -601,9 +575,7 @@ skills disable skill-name
 ```
 
 ## Security Considerations
-When deploying skills in production environments:
-
-1. **Sandbox Execution** — Always run skills in isolated containers
+When deploying skills in production environments: 1. **Sandbox Execution** — Always run skills in isolated containers
 2. **Network Restrictions** — Use firewall rules to limit outbound connections
 3. **Secret Scanning** — Integrate a secrets scanner as a pre-deploy check
 4. **Skill Auditing** — Review third-party skills before installation
@@ -617,8 +589,7 @@ skills security scan --deep ./skills
 
 Agent Skills represents what happens when a performance engineer builds tooling for AI. It's not about adding features — it's about making sure the features actually work reliably.
 
-After implementing Addy's framework at my company, our team saw:
-- 40% reduction in AI-related bugs
+After implementing Addy's framework at my company, our team saw: - 40% reduction in AI-related bugs
 - 60% faster onboarding for new team members
 - Zero production incidents from AI-generated code
 
@@ -627,7 +598,6 @@ The lesson: Build skills, not just prompts. Structure beats magic.
 **Your turn:** What skill would you build first? Share your ideas!
 
 ---
-
 **Sources & Further Reading:**
 - GitHub repo: https://github.com/addyosmani/agent-skills
 - Documentation: https://agent-skills.addy.io/

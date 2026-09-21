@@ -1,13 +1,10 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/polymarket-agents-ai-trading-bot-framework" />
 title: 'Polymarket Agents: Build AI Trading Bots for Prediction ...
 description: Polymarket Agents is an open-source developer framework for building. Comprehensive guide covering features, pricing, and best practices for 2026.
   AI agents that trade autonomously on Polymarket prediction markets.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
-tech_stack:
-- Docker
+tech_stack: - Docker
 - Go
 - Python
 - TypeScript
@@ -25,12 +22,10 @@ maintainer: "Polymarket"
 last_maintained: "2024-11-05"
 featureImage: ''
 draft: false
-aliases:
-- /en/posts/polymarket-agents-ai-trading-bot-framework/
+aliases: - /en/posts/polymarket-agents-ai-trading-bot-framework/
 - /posts/ai-trader-fully-automated-trading-agent/
 - /posts/polymarket-agents-ai-trading-bot-framework/
-faqs:
-  - q: 'What is Polymarket Agents?'
+faqs: - q: 'What is Polymarket Agents?'
     a: 'Polymarket Agents is an open-source, MIT-licensed developer framework for building AI agents that trade autonomously on Polymarket prediction markets. It provides utilities to analyze markets, integrate with the Polymarket API for real-time data, and execute trades automatically.'
   - q: 'What do I need to set up before running Polymarket Agents?'
     a: 'You need a Polygon wallet private key and an OpenAI API key set in a .env file, plus a Python 3.9 virtual environment with dependencies installed from requirements.txt. You must also fund your Polygon wallet with USDC, since trades on Polymarket are settled in USDC.'
@@ -39,7 +34,7 @@ faqs:
   - q: 'What trading strategies does Polymarket Agents support?'
     a: 'The framework supports news-based trading (LLM sentiment analysis of events), arbitrage detection across related markets, trend following based on volume and price movements, and fundamental analysis using RAG to query historical data.'
   - q: 'How do I execute a trade with the Polymarket Agents CLI?'
-    a: 'Run the CLI command ''python scripts/python/cli.py trade --market-id <MARKET_ID> --side buy --size <SIZE>''. You can also list markets with ''get-all-markets --sort-by volume'' or inspect a single market with ''get-market --market-id <MARKET_ID>''.'
+    a: 'Run the CLI command ''python scripts/python/cli.py trade --market-id  --side buy --size ''. You can also list markets with ''get-all-markets --sort-by volume'' or inspect a single market with ''get-market --market-id ''.'
 ---
 {</* resource-info */>}
 
@@ -50,8 +45,7 @@ faqs:
 
 **Polymarket Agents** is an open-source developer framework and set of utilities for building AI agents that trade autonomously on **Polymarket** — the world's largest prediction market platform.
 
-This framework enables developers to:
-- 🤖 Build AI agents that analyze markets and execute trades automatically
+This framework enables developers to: - 🤖 Build AI agents that analyze markets and execute trades automatically
 - 📊 Integrate with Polymarket API for real-time market data
 - 🔍 Use RAG (Retrieval-Augmented Generation) for informed trading decisions
 - 📰 Source data from betting services, news providers, and web search
@@ -59,13 +53,11 @@ This framework enables developers to:
 
 🔗 **GitHub**: [https://github.com/Polymarket/agents](https://github.com/Polymarket/agents)
 
----
 
+---
 ## What is Polymarket?
 
-**Polymarket** is a decentralized prediction market platform where users trade on the outcomes of real-world events:
-
-- **Politics** — Election results, policy decisions
+**Polymarket** is a decentralized prediction market platform where users trade on the outcomes of real-world events: - **Politics** — Election results, policy decisions
 - **Crypto** — Bitcoin price predictions, ETF approvals
 - **Sports** — Game outcomes, championship winners
 - **Science** — Research breakthroughs, space missions
@@ -73,12 +65,16 @@ This framework enables developers to:
 
 Traders buy "Yes" or "No" shares based on their predictions, with prices reflecting the market's consensus probability.
 
----
 
+---
 ## Key Features
 
 | Feature | Description |
-|---------|-------------|
+|
+---
+|
+---
+|
 | **Polymarket API Integration** | Full access to market data, order book, and trade execution |
 | **AI Agent Utilities** | Tools for building autonomous trading agents |
 | **Local & Remote RAG** | Vector database support for news and market data retrieval |
@@ -92,12 +88,14 @@ Traders buy "Yes" or "No" shares based on their predictions, with prices reflect
 
 ## Architecture
 
-Polymarket Agents features modular components that can be maintained and extended by the community:
-
-### Core APIs
+Polymarket Agents features modular components that can be maintained and extended by the community: ### Core APIs
 
 | Component | Purpose |
-|-----------|---------|
+|
+---
+|
+---
+|
 | **Chroma.py** | Vector database for news sources and API data |
 | **Gamma.py** | Polymarket Gamma API client for market metadata |
 | **Polymarket.py** | Main API class for market data and trade execution |
@@ -105,9 +103,7 @@ Polymarket Agents features modular components that can be maintained and extende
 
 ### CLI Commands
 
-The primary user interface for interacting with Polymarket:
-
-```bash
+The primary user interface for interacting with Polymarket: ```bash
 # Get all markets sorted by volume
 python scripts/python/cli.py get-all-markets --limit 10 --sort-by volume
 
@@ -142,9 +138,7 @@ pip install -r requirements.txt
 
 ### 3. Configure API Keys
 
-Create `.env` file:
-
-```env
+Create `.env` file: ```env
 POLYGON_WALLET_PRIVATE_KEY="your-wallet-private-key"
 OPENAI_API_KEY="your-openai-api-key"
 ```
@@ -163,9 +157,7 @@ export PYTHONPATH="."
 python scripts/python/cli.py
 ```
 
-Or execute trades directly:
-
-```bash
+Or execute trades directly: ```bash
 python agents/application/trade.py
 ```
 
@@ -180,9 +172,7 @@ python agents/application/trade.py
 
 ## Trading Strategies
 
-Polymarket Agents supports various AI-driven trading strategies:
-
-### 1. News-Based Trading
+Polymarket Agents supports various AI-driven trading strategies: ### 1. News-Based Trading
 - Monitor news sources for event developments
 - Use LLM to analyze sentiment and impact
 - Execute trades based on predicted outcomes
@@ -206,10 +196,14 @@ Polymarket Agents supports various AI-driven trading strategies:
 
 ## Data Sources
 
-The framework integrates multiple data sources:
-
-| Source | Type | Use Case |
-|--------|------|----------|
+The framework integrates multiple data sources: | Source | Type | Use Case |
+|
+---
+|
+---
+|
+---
+|
 | **News APIs** | Real-time news | Event tracking |
 | **Web Search** | General information | Background research |
 | **Betting Services** | Odds comparison | Price discovery |
@@ -220,9 +214,7 @@ The framework integrates multiple data sources:
 
 ## RAG Implementation
 
-Retrieval-Augmented Generation for informed trading:
-
-1. **Vector Database** — Chroma DB stores news articles and market data
+Retrieval-Augmented Generation for informed trading: 1. **Vector Database** — Chroma DB stores news articles and market data
 2. **Embedding** — Convert text to vectors for semantic search
 3. **Retrieval** — Query relevant information based on market context
 4. **Generation** — LLM synthesizes retrieved data into trading decisions
@@ -231,10 +223,12 @@ Retrieval-Augmented Generation for informed trading:
 
 ## Risk Management
 
-Important considerations for automated trading:
-
-| Risk | Mitigation |
-|------|-----------|
+Important considerations for automated trading: | Risk | Mitigation |
+|
+---
+|
+---
+|
 | **Market Risk** | Position sizing, stop-losses |
 | **Liquidity Risk** | Trade in high-volume markets |
 | **Model Risk** | Backtest strategies before live trading |
@@ -246,7 +240,15 @@ Important considerations for automated trading:
 ## Comparison with Other Tools
 
 | Feature | Polymarket Agents | Custom Bot | Manual Trading |
-|---------|------------------|------------|----------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Open Source** | ✅ | Varies | N/A |
 | **AI Integration** | ✅ | Optional | ❌ |
 | **RAG Support** | ✅ | Rare | ❌ |
@@ -285,7 +287,11 @@ Important considerations for automated trading:
 ## Related Repositories
 
 | Repository | Purpose |
-|-----------|---------|
+|
+---
+|
+---
+|
 | [py-clob-client](https://github.com/Polymarket/py-clob-client) | Python client for Polymarket CLOB |
 | [python-order-utils](https://github.com/Polymarket/python-order-utils) | Order generation and signing |
 | [clob-client](https://github.com/Polymarket/clob-client) | TypeScript client for CLOB |
@@ -320,20 +326,18 @@ Important considerations for automated trading:
 ---
 
 
+-
 ---
 
 ## Recommended Infrastructure for Self-Hosting
 
-If you want to run this stack reliably 24/7, infrastructure choice matters:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+If you want to run this stack reliably 24/7, infrastructure choice matters: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
 
 *Last updated: 2026-05-06*
 
-<!--auto-references-->
 ## References & Sources
 
 - [Polymarket Agents](https://github.com/Polymarket/agents)
@@ -344,7 +348,6 @@ If you want to run this stack reliably 24/7, infrastructure choice matters:
 - [Chroma](https://docs.trychroma.com)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -372,25 +375,20 @@ If you want to run this stack reliably 24/7, infrastructure choice matters:
 
 ## Why This Matters
 
-Understanding polymarket agents: build ai trading bots for prediction markets is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding polymarket agents: build ai trading bots for prediction markets is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

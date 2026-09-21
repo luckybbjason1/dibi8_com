@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/pancake-trading-bot-defi-bsc" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/pancake-trading-bot-defi-bsc" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/pancake-trading-bot-defi-bsc" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/pancake-trading-bot-defi-bsc" />
 title: 'PancakeSwap 트레이딩 봇 2026: Python으로 BSC에서 자동화된 DeFi 전략 구축 ...
 description: 'Binance Smart Chain에서 프로덕션 수준의 PancakeSwap 트레이딩 봇을 구축하세요. Web3.py 통합, 자동화 전략, 유동성 풀 모니터링, MEV 보호 및 Python 봇 프레임워크 — 2026년 실제 벤치마크 포함.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: [pancakeswap, defi, 'binance smart chain', 'web3.py', '트레이딩 봇', bsc, '자동화 트레이딩', '유동성 풀', 'mev 보호', python, '암호화폐 봇', 'dex 트레이딩']
-aliases:
-- /kr/posts/pancake-trading-bot-defi-bsc/
+aliases: - /kr/posts/pancake-trading-bot-defi-bsc/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/pancake-trading-bot-defi-bsc/ -->
 
 {{</* resource-info */>}}
 
@@ -45,9 +37,7 @@ aliases:
 
 **PancakeSwap은 Binance Smart Chain(BSC)에서 가장 큰 탈중앙화 거래소(DEX)로, **12,800개 이상의 유동성 페어**에서 하루 120만 건 이상의 거래를 처리한다.** Uniswap이 개척한 자동 마켓 메이커(AMM) 메커니즘을 기반으로, PancakeSwap은 전통적인 오더북 없이 자산을 가격 책정하기 위해 일정한 곡선(`x * y = k`)을 사용한다.
 
-DeFi 시장은 24/7 운영되며 기회는 수 초간만 지속되므로 자동화가 중요하다. 수동 트레이딩으로는 포착할 수 없다:
-
-- PancakeSwap과 중앙화 거래소 간 **차익 거래 갭**(일반적으로 0.1-0.5%, 30초 이내에 종료)
+DeFi 시장은 24/7 운영되며 기회는 수 초간만 지속되므로 자동화가 중요하다. 수동 트레이딩으로는 포착할 수 없다: - PancakeSwap과 중앙화 거래소 간 **차익 거래 갭**(일반적으로 0.1-0.5%, 30초 이내에 종료)
 - 변동성이 큰 풀에서의 **유동성 리밸런싱**(비영구적 손실 헤지)
 - **새 풀 런칭**(트렌디한 토큰의 선점优势)
 - **수익 농사 최적화**(자동 복리, 풀 호핑)
@@ -56,13 +46,9 @@ PancakeSwap 코어 컨트랙트(`pancake-swap-core`, **2,500+ GitHub stars**, GP
 
 ## PancakeSwap AMM 작동 방식: 핵심 개념
 
-봇 개발을 위해서는 AMM 메커니즘을 이해하는 것이 필수적이다. 난막 뒤에서 일어나는 일은 다음과 같다:
+봇 개발을 위해서는 AMM 메커니즘을 이해하는 것이 필수적이다. 난막 뒤에서 일어나는 일은 다음과 같다: ### 일정한 곡선 공식
 
-### 일정한 곡선 공식
-
-예비 자산이 `x`(토큰 A)와 `y`(토큰 B)인 모든 유동성 풀에 대해 불변성이 유지된다:
-
-```python
+예비 자산이 `x`(토큰 A)와 `y`(토큰 B)인 모든 유동성 풀에 대해 불변성이 유지된다: ```python
 x * y = k
 
 # Price of token A in terms of token B
@@ -76,8 +62,7 @@ price_a = y / x
 
 ### Router V2 vs V3
 
-PancakeSwap은 두 가지 라우터 버전을 운영한다:
-- **Router V2**: 0.25% 수수료가 있는 클래식 AMM (0.17% LP, 0.03% 국고, 0.05% CAKE 환매)
+PancakeSwap은 두 가지 라우터 버전을 운영한다: - **Router V2**: 0.25% 수수료가 있는 클래식 AMM (0.17% LP, 0.03% 국고, 0.05% CAKE 환매)
 - **Router V3**: 맞춤형 수수료 등급이 있는 집중 유동성 (0.01%, 0.05%, 0.25%, 1.0%)
 
 대부분의 봇은 단순함을 위해 V2를 사용하지만, V3는 안정적인 페어에서 더 나은 가격을 제공한다. 이 가이드는 둘 다 다룬다.
@@ -86,8 +71,7 @@ PancakeSwap은 두 가지 라우터 버전을 운영한다:
 
 ```python
 # Slippage calculation for a swap
-def calculate_min_output(amount_in, reserve_in, reserve_out, slippage_tolerance=0.005):
-    """Calculate minimum output with 0.5% slippage tolerance."""
+def calculate_min_output(amount_in, reserve_in, reserve_out, slippage_tolerance=0.005): """Calculate minimum output with 0.5% slippage tolerance."""
     amount_in_with_fee = amount_in * 9975 // 10000  # 0.25% fee
     numerator = amount_in_with_fee * reserve_out
     denominator = reserve_in + amount_in_with_fee
@@ -102,9 +86,7 @@ def calculate_min_output(amount_in, reserve_in, reserve_out, slippage_tolerance=
 
 ### 단계 1: BSC RPC 엔드포인트 가져오기
 
-BSC 노드에 연결해야 한다. 옵션:
-
-```bash
+BSC 노드에 연결해야 한다. 옵션: ```bash
 # Option A: Public endpoint (rate-limited, NOT for production)
 BSC_RPC = "https://bsc-dataseed.binance.org/"
 
@@ -199,14 +181,11 @@ from web3 import Web3
 from web3.middleware import geth_poa_middleware
 import config
 
-class BSCClient:
-    def __init__(self):
-        self.w3 = Web3(Web3.HTTPProvider(config.BSC_RPC))
+class BSCClient: def __init__(self): self.w3 = Web3(Web3.HTTPProvider(config.BSC_RPC))
         # BSC uses PoA consensus — required middleware
         self.w3.middleware_onion.inject(geth_poa_middleware, layer=0)
 
-        if not self.w3.is_connected():
-            raise ConnectionError("Failed to connect to BSC node")
+        if not self.w3.is_connected(): raise ConnectionError("Failed to connect to BSC node")
 
         print(f"Connected to BSC. Block: {self.w3.eth.block_number}")
         print(f"Gas price: {self.w3.from_wei(self.w3.eth.gas_price, gwei):.2f} gwei")
@@ -215,17 +194,14 @@ class BSCClient:
         self.address = self.account.address
 
         # Load PancakeSwap Router contract
-        with open("abi/router_v2.json") as f:
-            router_abi = f.read()
+        with open("abi/router_v2.json") as f: router_abi = f.read()
         self.router = self.w3.eth.contract(
             address=Web3.to_checksum_address(config.PANCAKE_ROUTER_V2),
             abi=router_abi
         )
 
-    def get_balance(self, token_address=None):
-        """Get BNB or token balance."""
-        if token_address is None:
-            return self.w3.from_wei(
+    def get_balance(self, token_address=None): """Get BNB or token balance."""
+        if token_address is None: return self.w3.from_wei(
                 self.w3.eth.get_balance(self.address), "ether"
             )
         token = self.w3.eth.contract(
@@ -242,21 +218,16 @@ print(f"BNB Balance: {client.get_balance():.4f} BNB")
 
 ### 토큰 승인
 
-스왑하기 전에 라우터는 토큰을 지출할 수 있는 승인이 필요하다:
-
-```python
+스왑하기 전에 라우터는 토큰을 지출할 수 있는 승인이 필요하다: ```python
 # bot/swap.py — swap execution with full safety checks
 from web3 import Web3
 import config
 
-class PancakeSwapBot:
-    def __init__(self, client):
-        self.client = client
+class PancakeSwapBot: def __init__(self, client): self.client = client
         self.w3 = client.w3
         self.router = client.router
 
-    def approve_token(self, token_address, spender=None, amount=None):
-        """Approve router to spend tokens."""
+    def approve_token(self, token_address, spender=None, amount=None): """Approve router to spend tokens."""
         spender = spender or config.PANCAKE_ROUTER_V2
         amount = amount or 2**256 - 1  # Max uint256 (unlimited)
 
@@ -270,8 +241,7 @@ class PancakeSwapBot:
 
         # Check existing allowance
         current = token.functions.allowance(self.client.address, spender).call()
-        if current >= amount // 2:
-            print(f"Token {token_address} already approved")
+        if current >= amount // 2: print(f"Token {token_address} already approved")
             return True
 
         tx = token.functions.approve(
@@ -301,8 +271,7 @@ class PancakeSwapBot:
         token_out,
         slippage=None,
         deadline_seconds=300
-    ):
-        """Execute a token swap with slippage protection."""
+    ): """Execute a token swap with slippage protection."""
         slippage = slippage or config.DEFAULT_SLIPPAGE
 
         # Get expected output
@@ -336,17 +305,14 @@ class PancakeSwapBot:
         tx_hash = self.w3.eth.send_raw_transaction(signed.raw_transaction)
         receipt = self.w3.eth.wait_for_transaction_receipt(tx_hash, timeout=120)
 
-        if receipt["status"] == 1:
-            print(f"Swap success: {tx_hash.hex()}")
+        if receipt["status"] == 1: print(f"Swap success: {tx_hash.hex()}")
             gas_cost = receipt["gasUsed"] * tx["gasPrice"]
             print(f"Gas cost: {self.w3.from_wei(gas_cost, ether):.6f} BNB")
-        else:
-            print(f"Swap FAILED: {tx_hash.hex()}")
+        else: print(f"Swap FAILED: {tx_hash.hex()}")
 
         return receipt
 
-    def swap_bnb_for_tokens(self, bnb_amount, token_out, slippage=None):
-        """Swap BNB for tokens (wraps BNB to WBNB internally)."""
+    def swap_bnb_for_tokens(self, bnb_amount, token_out, slippage=None): """Swap BNB for tokens (wraps BNB to WBNB internally)."""
         amount_in_wei = self.w3.to_wei(bnb_amount, "ether")
         path = [config.WBNB, token_out]
 
@@ -380,41 +346,32 @@ import json
 from web3 import Web3
 import config
 
-class PoolMonitor:
-    def __init__(self, client):
-        self.client = client
+class PoolMonitor: def __init__(self, client): self.client = client
         self.w3 = client.w3
-        with open("abi/factory_v2.json") as f:
-            factory_abi = json.load(f)
-        with open("abi/pair.json") as f:
-            pair_abi = json.load(f)
+        with open("abi/factory_v2.json") as f: factory_abi = json.load(f)
+        with open("abi/pair.json") as f: pair_abi = json.load(f)
         self.factory = self.w3.eth.contract(
             address=Web3.to_checksum_address(config.PANCAKE_FACTORY_V2),
             abi=factory_abi
         )
         self.pair_abi = pair_abi
 
-    def get_pair_address(self, token_a, token_b):
-        """Get the LP pair address for two tokens."""
+    def get_pair_address(self, token_a, token_b): """Get the LP pair address for two tokens."""
         return self.factory.functions.getPair(
             Web3.to_checksum_address(token_a),
             Web3.to_checksum_address(token_b)
         ).call()
 
-    def get_pool_reserves(self, token_a, token_b):
-        """Get current reserves and compute price."""
+    def get_pool_reserves(self, token_a, token_b): """Get current reserves and compute price."""
         pair_address = self.get_pair_address(token_a, token_b)
-        if pair_address == "0x0000000000000000000000000000000000000000":
-            return None
+        if pair_address == "0x0000000000000000000000000000000000000000": return None
 
         pair = self.w3.eth.contract(address=pair_address, abi=self.pair_abi)
         reserves = pair.functions.getReserves().call()
         token0 = pair.functions.token0().call()
 
-        if token0 == Web3.to_checksum_address(token_a):
-            reserve_a, reserve_b = reserves[0], reserves[1]
-        else:
-            reserve_a, reserve_b = reserves[1], reserves[0]
+        if token0 == Web3.to_checksum_address(token_a): reserve_a, reserve_b = reserves[0], reserves[1]
+        else: reserve_a, reserve_b = reserves[1], reserves[0]
 
         price = reserve_b / reserve_a if reserve_a > 0 else 0
 
@@ -428,11 +385,9 @@ class PoolMonitor:
             "block_timestamp": reserves[2]
         }
 
-    def calculate_price_impact(self, token_a, token_b, amount_in_wei):
-        """Calculate price impact of a trade."""
+    def calculate_price_impact(self, token_a, token_b, amount_in_wei): """Calculate price impact of a trade."""
         pool = self.get_pool_reserves(token_a, token_b)
-        if not pool:
-            return None
+        if not pool: return None
 
         reserve_in = pool["reserve_a"]
         reserve_out = pool["reserve_b"]
@@ -459,17 +414,13 @@ class PoolMonitor:
 ### 연속 풀 감시기
 
 ```python
-    def watch_pool(self, token_a, token_b, callback, interval=12):
-        """Watch pool and call callback on significant changes."""
+    def watch_pool(self, token_a, token_b, callback, interval=12): """Watch pool and call callback on significant changes."""
         import time
         last_price = None
 
-        while True:
-            pool = self.get_pool_reserves(token_a, token_b)
-            if pool:
-                current_price = pool["price_a_per_b"]
-                if last_price and abs(current_price - last_price) / last_price > 0.005:
-                    callback({
+        while True: pool = self.get_pool_reserves(token_a, token_b)
+            if pool: current_price = pool["price_a_per_b"]
+                if last_price and abs(current_price - last_price) / last_price > 0.005: callback({
                         "event": "PRICE_CHANGE",
                         "old_price": last_price,
                         "new_price": current_price,
@@ -490,18 +441,14 @@ MEV(Maximal Extractable Value) 공격은 2025년 단일 해에 DeFi 트레이더
 # utils/gas.py — gas optimization and MEV protection
 import random
 
-class MEVProtection:
-    def __init__(self, client):
-        self.client = client
+class MEVProtection: def __init__(self, client): self.client = client
         self.w3 = client.w3
 
-    def calculate_safe_slippage(self, token_in, token_out, amount_in_wei):
-        """Dynamic slippage based on pool depth and volatility."""
+    def calculate_safe_slippage(self, token_in, token_out, amount_in_wei): """Dynamic slippage based on pool depth and volatility."""
         monitor = PoolMonitor(self.client)
         impact = monitor.calculate_price_impact(token_in, token_out, amount_in_wei)
 
-        if not impact:
-            return 0.02
+        if not impact: return 0.02
 
         base_slippage = impact["price_impact"] * 2
         volatility_buffer = self.estimate_volatility(token_in, token_out)
@@ -509,29 +456,22 @@ class MEVProtection:
         safe_slippage = min(base_slippage + volatility_buffer, 0.05)
         return max(safe_slippage, 0.005)
 
-    def estimate_volatility(self, token_a, token_b, blocks=50):
-        """Estimate recent price volatility from on-chain data."""
+    def estimate_volatility(self, token_a, token_b, blocks=50): """Estimate recent price volatility from on-chain data."""
         monitor = PoolMonitor(self.client)
         prices = []
 
-        for i in range(blocks):
-            try:
-                pool = monitor.get_pool_reserves(token_a, token_b)
-                if pool:
-                    prices.append(pool["price_a_per_b"])
-            except Exception:
-                pass
+        for i in range(blocks): try: pool = monitor.get_pool_reserves(token_a, token_b)
+                if pool: prices.append(pool["price_a_per_b"])
+            except Exception: pass
 
-        if len(prices) < 10:
-            return 0.01
+        if len(prices) < 10: return 0.01
 
         import numpy as np
         returns = np.diff(np.log(prices))
         volatility = np.std(returns) * np.sqrt(24 * 3600 / 3)
         return min(volatility, 0.03)
 
-    def generate_private_tx(self, tx_dict):
-        """Add randomness to transaction to prevent front-running."""
+    def generate_private_tx(self, tx_dict): """Add randomness to transaction to prevent front-running."""
         base_gas = tx_dict.get("gasPrice", self.w3.eth.gas_price)
         jitter = random.randint(-0.05 * base_gas, 0.05 * base_gas)
         tx_dict["gasPrice"] = base_gas + jitter
@@ -542,31 +482,24 @@ class MEVProtection:
 ### 프라이빗 RPC 엔드포인트 (BSC의 Flashbots 대안)
 
 ```python
-class PrivateTransactionSender:
-    """Send transactions via private mempool to avoid sandwich attacks."""
+class PrivateTransactionSender: """Send transactions via private mempool to avoid sandwich attacks."""
 
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, client): self.client = client
         self.private_rpcs = [
             "https://bsc.private.rpc.endpoint1",
             "https://bsc.private.rpc.endpoint2",
         ]
 
-    def send_private(self, signed_tx):
-        """Try sending via private RPC first, fallback to public."""
+    def send_private(self, signed_tx): """Try sending via private RPC first, fallback to public."""
         import requests
-        for rpc in self.private_rpcs:
-            try:
-                resp = requests.post(rpc, json={
+        for rpc in self.private_rpcs: try: resp = requests.post(rpc, json={
                     "jsonrpc": "2.0",
                     "method": "eth_sendRawTransaction",
                     "params": [signed_tx.raw_transaction.hex()],
                     "id": 1
                 }, timeout=10)
-                if resp.status_code == 200:
-                    return resp.json()["result"]
-            except Exception as e:
-                print(f"Private RPC failed: {e}")
+                if resp.status_code == 200: return resp.json()["result"]
+            except Exception as e: print(f"Private RPC failed: {e}")
                 continue
 
         return self.client.w3.eth.send_raw_transaction(signed_tx.raw_transaction)
@@ -581,9 +514,7 @@ class PrivateTransactionSender:
 import time
 from datetime import datetime
 
-class MomentumStrategy:
-    def __init__(self, bot, monitor, config_overrides=None):
-        self.bot = bot
+class MomentumStrategy: def __init__(self, bot, monitor, config_overrides=None): self.bot = bot
         self.monitor = monitor
         self.price_history = []
         self.max_history = 20
@@ -591,10 +522,8 @@ class MomentumStrategy:
         self.overbought = 70
         self.oversold = 30
 
-    def calculate_rsi(self, prices, period=14):
-        """Calculate Relative Strength Index."""
-        if len(prices) < period + 1:
-            return 50
+    def calculate_rsi(self, prices, period=14): """Calculate Relative Strength Index."""
+        if len(prices) < period + 1: return 50
 
         import numpy as np
         deltas = np.diff(prices)
@@ -607,41 +536,32 @@ class MomentumStrategy:
         rs = avg_gain / avg_loss
         return 100 - (100 / (1 + rs))
 
-    def run(self, token_in, token_out, trade_size_bnb=0.1):
-        """Main loop: buy oversold, sell overbought."""
+    def run(self, token_in, token_out, trade_size_bnb=0.1): """Main loop: buy oversold, sell overbought."""
         print(f"Starting momentum strategy on {token_in} -> {token_out}")
         position = 0
 
-        while True:
-            pool = self.monitor.get_pool_reserves(token_in, token_out)
-            if not pool:
-                time.sleep(12)
+        while True: pool = self.monitor.get_pool_reserves(token_in, token_out)
+            if not pool: time.sleep(12)
                 continue
 
             price = pool["price_a_per_b"]
             self.price_history.append(price)
-            if len(self.price_history) > self.max_history:
-                self.price_history.pop(0)
+            if len(self.price_history) > self.max_history: self.price_history.pop(0)
 
             rsi = self.calculate_rsi(self.price_history)
             print(f"[{datetime.now()}] Price: {price:.8f}, RSI: {rsi:.1f}")
 
-            if rsi < self.oversold and position == 0:
-                print("OVERSOLD — BUY signal")
+            if rsi < self.oversold and position == 0: print("OVERSOLD — BUY signal")
                 receipt = self.bot.swap_bnb_for_tokens(trade_size_bnb, token_out)
-                if receipt["status"] == 1:
-                    position = 1
+                if receipt["status"] == 1: position = 1
 
-            elif rsi > self.overbought and position == 1:
-                print("OVERBOUGHT — SELL signal")
+            elif rsi > self.overbought and position == 1: print("OVERBOUGHT — SELL signal")
                 balance = self.bot.client.get_balance(token_out)
-                if balance > 0:
-                    receipt = self.bot.swap_exact_tokens_for_tokens(
+                if balance > 0: receipt = self.bot.swap_exact_tokens_for_tokens(
                         self.bot.client.w3.to_wei(balance, "ether"),
                         token_out, config.WBNB
                     )
-                    if receipt["status"] == 1:
-                        position = 0
+                    if receipt["status"] == 1: position = 0
 
             time.sleep(12)
 ```
@@ -652,45 +572,35 @@ class MomentumStrategy:
 # strategies/arbitrage.py — cross-market arbitrage
 import requests
 
-class ArbitrageStrategy:
-    def __init__(self, bot, monitor):
-        self.bot = bot
+class ArbitrageStrategy: def __init__(self, bot, monitor): self.bot = bot
         self.monitor = monitor
         self.min_profit_bnb = config.MIN_PROFIT_BNB
         self.binance_api = "https://api.binance.com/api/v3"
 
-    def get_binance_price(self, symbol="BNBUSDT"):
-        """Get Binance spot price."""
-        try:
-            resp = requests.get(
+    def get_binance_price(self, symbol="BNBUSDT"): """Get Binance spot price."""
+        try: resp = requests.get(
                 f"{self.binance_api}/ticker/price",
                 params={"symbol": symbol},
                 timeout=5
             )
             return float(resp.json()["price"])
-        except Exception as e:
-            print(f"Binance API error: {e}")
+        except Exception as e: print(f"Binance API error: {e}")
             return None
 
-    def get_pancake_price(self, token_a, token_b):
-        """Get PancakeSwap price from pool reserves."""
+    def get_pancake_price(self, token_a, token_b): """Get PancakeSwap price from pool reserves."""
         pool = self.monitor.get_pool_reserves(token_a, token_b)
-        if pool:
-            return pool["price_a_per_b"]
+        if pool: return pool["price_a_per_b"]
         return None
 
-    def find_arbitrage(self):
-        """Compare prices and find profitable arbitrage."""
+    def find_arbitrage(self): """Compare prices and find profitable arbitrage."""
         binance_price = self.get_binance_price("BNBUSDT")
         pancake_price = self.get_pancake_price(config.WBNB, config.BUSD)
 
-        if not binance_price or not pancake_price:
-            return None
+        if not binance_price or not pancake_price: return None
 
         diff_pct = abs(pancake_price - binance_price) / binance_price
 
-        if diff_pct > 0.002:
-            direction = "BUY_BINANCE_SELL_PANCAKE" if binance_price < pancake_price else "BUY_PANCAKE_SELL_BINANCE"
+        if diff_pct > 0.002: direction = "BUY_BINANCE_SELL_PANCAKE" if binance_price < pancake_price else "BUY_PANCAKE_SELL_BINANCE"
             return {
                 "direction": direction,
                 "binance": binance_price,
@@ -700,13 +610,10 @@ class ArbitrageStrategy:
             }
         return None
 
-    def execute_arbitrage(self, opportunity):
-        """Execute arbitrage trade."""
+    def execute_arbitrage(self, opportunity): """Execute arbitrage trade."""
         print(f"Arbitrage found: {opportunity}")
-        if opportunity["direction"] == "BUY_PANCAKE_SELL_BINANCE":
-            receipt = self.bot.swap_bnb_for_tokens(0.1, config.BUSD)
-            if receipt["status"] == 1:
-                print("PancakeSwap buy executed — sell on Binance via API")
+        if opportunity["direction"] == "BUY_PANCAKE_SELL_BINANCE": receipt = self.bot.swap_bnb_for_tokens(0.1, config.BUSD)
+            if receipt["status"] == 1: print("PancakeSwap buy executed — sell on Binance via API")
 ```
 
 ### 전략 3: 수익 농사 자동 복리
@@ -716,29 +623,24 @@ class ArbitrageStrategy:
 import time
 import json
 
-class YieldOptimizer:
-    def __init__(self, client, bot):
-        self.client = client
+class YieldOptimizer: def __init__(self, client, bot): self.client = client
         self.bot = bot
         self.min_cake_to_harvest = 1.0
         self.compound_interval = 3600
 
         self.MASTERCHEF_V2 = "0xa5f8C5Dbd5F286960b9d90539899c60F9665A72f"
-        with open("abi/masterchef.json") as f:
-            masterchef_abi = json.load(f)
+        with open("abi/masterchef.json") as f: masterchef_abi = json.load(f)
         self.masterchef = self.client.w3.eth.contract(
             address=self.MASTERCHEF_V2, abi=masterchef_abi
         )
 
-    def get_pending_cake(self, pid):
-        """Get pending CAKE rewards for a farm pool."""
+    def get_pending_cake(self, pid): """Get pending CAKE rewards for a farm pool."""
         return self.client.w3.from_wei(
             self.masterchef.functions.pendingCake(pid, self.client.address).call(),
             "ether"
         )
 
-    def harvest(self, pid):
-        """Harvest CAKE rewards from a farm."""
+    def harvest(self, pid): """Harvest CAKE rewards from a farm."""
         tx = self.masterchef.functions.deposit(
             pid, 0
         ).build_transaction({
@@ -752,34 +654,26 @@ class YieldOptimizer:
         tx_hash = self.client.w3.eth.send_raw_transaction(signed.raw_transaction)
         receipt = self.client.w3.eth.wait_for_transaction_receipt(tx_hash)
 
-        if receipt["status"] == 1:
-            print(f"Harvested from pool {pid}: {tx_hash.hex()}")
+        if receipt["status"] == 1: print(f"Harvested from pool {pid}: {tx_hash.hex()}")
         return receipt
 
-    def compound(self, pid):
-        """Harvest CAKE and restake into the farm."""
+    def compound(self, pid): """Harvest CAKE and restake into the farm."""
         self.harvest(pid)
         cake_balance = self.client.get_balance(config.CAKE)
-        if cake_balance < self.min_cake_to_harvest:
-            print(f"Not enough CAKE to compound: {cake_balance:.4f}")
+        if cake_balance < self.min_cake_to_harvest: print(f"Not enough CAKE to compound: {cake_balance:.4f}")
             return
         print(f"Compounding {cake_balance:.4f} CAKE...")
 
-    def run(self, pid=0):
-        """Main loop for auto-compounding."""
-        while True:
-            pending = self.get_pending_cake(pid)
+    def run(self, pid=0): """Main loop for auto-compounding."""
+        while True: pending = self.get_pending_cake(pid)
             print(f"Pending CAKE: {pending:.4f}")
-            if pending >= self.min_cake_to_harvest:
-                self.compound(pid)
+            if pending >= self.min_cake_to_harvest: self.compound(pid)
             time.sleep(self.compound_interval)
 ```
 
 ## 벤치마크 / 실제 결과: 2026년 Q1
 
-2026년 1월부터 3월까지 BSC 테스트넷(및 메인넷 데이터 대비 검증)에 세 가지 봇 구성을 배포했다:
-
-| 전략 | 일일 거래 | 거래당 평균 이익 | 승률 | 일일 가스 비용 | 월 순이익 |
+2026년 1월부터 3월까지 BSC 테스트넷(및 메인넷 데이터 대비 검증)에 세 가지 봇 구성을 배포했다: | 전략 | 일일 거래 | 거래당 평균 이익 | 승률 | 일일 가스 비용 | 월 순이익 |
 |------|----------|----------------|------|--------------|----------|
 | 모멘텀 (RSI) | 3-5 | **0.003 BNB** | 54% | 0.015 BNB | **+0.21 BNB** |
 | 차익 (BSC-Binance) | 8-12 | **0.008 BNB** | 72% | 0.04 BNB | **+1.44 BNB** |
@@ -811,17 +705,13 @@ class YieldOptimizer:
 import asyncio
 from web3 import AsyncWeb3
 
-class AsyncBSCBot:
-    def __init__(self, rpc_url):
-        self.w3 = AsyncWeb3(AsyncWeb3.AsyncHTTPProvider(rpc_url))
+class AsyncBSCBot: def __init__(self, rpc_url): self.w3 = AsyncWeb3(AsyncWeb3.AsyncHTTPProvider(rpc_url))
 
-    async def monitor_multiple_pairs(self, pairs):
-        """Monitor multiple pairs concurrently."""
+    async def monitor_multiple_pairs(self, pairs): """Monitor multiple pairs concurrently."""
         tasks = [self.check_pair(p) for p in pairs]
         return await asyncio.gather(*tasks)
 
-    async def check_pair(self, pair):
-        pool = await self.get_pool_async(pair["token_a"], pair["token_b"])
+    async def check_pair(self, pair): pool = await self.get_pool_async(pair["token_a"], pair["token_b"])
         return {
             "pair": pair["name"],
             "price": pool["price"],
@@ -835,14 +725,11 @@ class AsyncBSCBot:
 # utils/alerts.py
 import requests
 
-class TelegramAlerter:
-    def __init__(self, bot_token, chat_id):
-        self.bot_token = bot_token
+class TelegramAlerter: def __init__(self, bot_token, chat_id): self.bot_token = bot_token
         self.chat_id = chat_id
         self.base_url = f"https://api.telegram.org/bot{bot_token}"
 
-    def send(self, message, level="INFO"):
-        emoji = {"INFO": "ℹ️", "WARNING": "⚠️", "ERROR": "🚨", "PROFIT": "💰"}
+    def send(self, message, level="INFO"): emoji = {"INFO": "ℹ️", "WARNING": "⚠️", "ERROR": "🚨", "PROFIT": "💰"}
         text = f"{emoji.get(level, '')} PancakeBot: {message}"
         requests.post(
             f"{self.base_url}/sendMessage",
@@ -857,9 +744,7 @@ class TelegramAlerter:
 import sqlite3
 from datetime import datetime
 
-class TradeLogger:
-    def __init__(self, db_path="trades.db"):
-        self.conn = sqlite3.connect(db_path)
+class TradeLogger: def __init__(self, db_path="trades.db"): self.conn = sqlite3.connect(db_path)
         self.conn.execute("""
             CREATE TABLE IF NOT EXISTS trades (
                 id INTEGER PRIMARY KEY,
@@ -875,8 +760,7 @@ class TradeLogger:
             )
         """)
 
-    def log_trade(self, strategy, token_in, token_out, amount_in, amount_out, gas_cost, profit, tx_hash):
-        self.conn.execute("""
+    def log_trade(self, strategy, token_in, token_out, amount_in, amount_out, gas_cost, profit, tx_hash): self.conn.execute("""
             INSERT INTO trades (timestamp, strategy, token_in, token_out, amount_in, amount_out, gas_cost, profit, tx_hash)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
         """, (datetime.now().isoformat(), strategy, token_in, token_out, amount_in, amount_out, gas_cost, profit, tx_hash))
@@ -908,9 +792,7 @@ class TradeLogger:
 
 ## 한계 / 솔직한 평가
 
-PancakeSwap 봇을 구축하는 것은 수익성이 있지만 쉽지 않다. 가이드가 말해주지 않는 것은 다음과 같다:
-
-1. **가스 경쟁**: BSC도 가스 전쟁에서 자유롭지 않다. 높은 변동성 기간 동안 가스 가격이 **3-5배** 급등하여 수익성 있는 거래를 손실로 만든다. 봇은 동적으로 가스를 조정하거나 거래를 건을 수 있어야 한다.
+PancakeSwap 봇을 구축하는 것은 수익성이 있지만 쉽지 않다. 가이드가 말해주지 않는 것은 다음과 같다: 1. **가스 경쟁**: BSC도 가스 전쟁에서 자유롭지 않다. 높은 변동성 기간 동안 가스 가격이 **3-5배** 급등하여 수익성 있는 거래를 손실로 만든다. 봇은 동적으로 가스를 조정하거나 거래를 건을 수 있어야 한다.
 
 2. **LP 포지션의 비영구적 손실**: 전략에 유동성 공급이 포함된 경우, IL이 트레이딩 이익을 삭제할 수 있다. 이를 명시적으로 모델링하라 — 50% 가격 변동은 **~5.7% IL**을 유발한다.
 
@@ -942,22 +824,16 @@ PancakeSwap 봇을 구축하는 것은 수익성이 있지만 쉽지 않다. 가
 
 ### 실패한 트랜잭션을 어떻게 처리하는가?
 
-논스 관리자와 재시도 로직을 구현하라:
-
-```python
-class NonceManager:
-    def __init__(self, w3, address):
-        self.w3 = w3
+논스 관리자와 재시도 로직을 구현하라: ```python
+class NonceManager: def __init__(self, w3, address): self.w3 = w3
         self.address = address
         self._nonce = w3.eth.get_transaction_count(address)
 
-    def next(self):
-        nonce = self._nonce
+    def next(self): nonce = self._nonce
         self._nonce += 1
         return nonce
 
-    def reset(self):
-        self._nonce = self.w3.eth.get_transaction_count(self.address)
+    def reset(self): self._nonce = self.w3.eth.get_transaction_count(self.address)
 ```
 
 실패한 트랜잭션 후에는 항상 논스를 재설정하여 "nonce too high" 오류를 피하라.
@@ -991,9 +867,7 @@ DeFi 개발자 커뮤니티에 참여하라: **t.me/dibi8defi**
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -1003,7 +877,6 @@ DeFi 개발자 커뮤니티에 참여하라: **t.me/dibi8defi**
 이 기사에는 Binance와 Minara에 대한 제휴 링크가 포함되어 있다. 이 링크를 통해 가입하고 거래하면 추가 비용 없이 커미션을 받을 수 있다. 이 커미션은 오픈소스 트레이딩 도구 및 교육 콘텐츠 개발에 사용된다. 우리는 직접 테스트한 플랫폼만 추천한다. 암호화폐 트레이딩에는 상당한 위험이 수반된다 — 절대 잃을 수 있는 것보다 더 많이 투자하지 마라.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

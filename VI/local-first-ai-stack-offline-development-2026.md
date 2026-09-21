@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/local-first-ai-stack-offline-development-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/local-first-ai-stack-offline-development-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/local-first-ai-stack-offline-development-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/local-first-ai-stack-offline-development-2026" />
 title: 'Stack AI Local-First 2026: Môi Trường Phát Triển AI Hoàn...
 description: 'Xây dựng môi trường lập trình AI hoàn toàn offline năm 2026: Ollama cho LLM, Aider làm coding agent, ChromaDB cho RAG — tất cả chạy local. Hướng dẫn cài đặt, thực tế phần cứng, và những tình huống offline thực sự quan trọng (riêng tư, tuân thủ, air-gapped, đi công tác).'
 date: 2026-05-25 00:00:00+08:00
@@ -21,10 +16,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['local-first', offline, ollama, 'ai-coding', privacy, 2026]
-aliases:
-- /vi/posts/local-first-ai-stack-offline-development-2026/
-faq:
-  - q: "Tại sao phải đi hoàn toàn offline trong năm 2026?"
+aliases: - /vi/posts/local-first-ai-stack-offline-development-2026/
+faq: - q: "Tại sao phải đi hoàn toàn offline trong năm 2026?"
     a: "Ba lý do thực tế: (1) Riêng tư/tuân thủ — các ngành chịu quản lý nghiêm như tài chính, y tế, chính phủ không thể gửi code lên OpenAI/Anthropic. (2) Môi trường air-gapped — công việc yêu cầu phân loại bảo mật. (3) Độ tin cậy — đi công tác quốc tế kết nối kém, hoặc làm việc khi API bị down."
   - q: "Thực tế tôi cần phần cứng gì?"
     a: "Cấu hình thực tế: MacBook M3 Max (hoặc desktop RTX 4090) với từ 32GB unified memory trở lên. Mô hình chạy được: Llama 3.3 70B Q4 lượng tử hóa, Mistral Large, DeepSeek Coder. Dưới 16GB RAM thì chỉ chạy được mô hình nhỏ hơn (lớp 8B-13B) — dùng được nhưng khoảng cách chất lượng so với thương mại sẽ rộng ra rõ rệt."
@@ -33,8 +26,6 @@ faq:
   - q: "Có thể kết hợp workflow local và cloud không?"
     a: "Có. Mẫu phổ biến: Ollama local làm chính, fallback sang API thương mại cho các tác vụ khó. Aider hỗ trợ chuyển mô hình ngay giữa phiên. Đa số developer chạy hybrid — local mặc định, cloud cho 10-20% thực sự cần."
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/local-first-ai-stack-offline-development-2026/ -->
 
 {{</* resource-info */>}}
 
@@ -56,8 +47,7 @@ Phần lớn lập trình AI năm 2026 vẫn chạy trên API cloud. Nhưng có 
 
 ## Tại Sao Local-First Trong 2026
 
-Cục diện cloud-vs-local đã thay đổi trong 2026:
-- Chất lượng cloud cải thiện (Claude Sonnet 4.6, GPT-5) — khoảng cách với local rộng hơn
+Cục diện cloud-vs-local đã thay đổi trong 2026: - Chất lượng cloud cải thiện (Claude Sonnet 4.6, GPT-5) — khoảng cách với local rộng hơn
 - Chất lượng local cải thiện (Llama 3.3, Mistral Large) — khoảng cách hẹp hơn so với 2024
 - Chi phí cloud tăng (Anthropic Max 200 USD/tháng, OpenAI tính theo usage)
 - Phần cứng rẻ hơn (RTX 4090 cũ 1000-1500 USD, M3 Max phổ biến rộng rãi)
@@ -129,8 +119,7 @@ Dưới 16GB: dùng được nhưng chỉ với mô hình nhỏ. Khoảng cách 
 
 ## Mẫu Hybrid (Thực Tế Nhất)
 
-Phần lớn developer "local-first" thực ra chạy hybrid:
-- Local làm mặc định (~80% tác vụ)
+Phần lớn developer "local-first" thực ra chạy hybrid: - Local làm mặc định (~80% tác vụ)
 - Fallback sang API thương mại cho tác vụ khó (~20%)
 - Aider hỗ trợ chuyển mô hình giữa phiên
 
@@ -138,8 +127,7 @@ Cách này cho bạn riêng tư theo mặc định, chất lượng khi cần.
 
 ## Use Case Thực: Cấu Hình Air-Gapped
 
-Một nhà thầu quốc phòng chúng tôi biết đang chạy:
-- Workstation air-gapped với RTX A6000 48GB
+Một nhà thầu quốc phòng chúng tôi biết đang chạy: - Workstation air-gapped với RTX A6000 48GB
 - Llama 3.3 70B + fine-tune tùy chỉnh trên codebase nội bộ
 - Aider cho lập trình hằng ngày
 - ChromaDB lập chỉ mục tài liệu nội bộ
@@ -149,8 +137,7 @@ Năng suất: ~85% so với cloud, tuân thủ đầy đủ.
 
 ## Hạ Tầng Khuyến Nghị
 
-Nếu bạn cần GPU droplet để fine-tune mô hình local:
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — 200 USD credit, GPU droplet
+Nếu bạn cần GPU droplet để fine-tune mô hình local: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — 200 USD credit, GPU droplet
 - **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hong Kong
 
 *Liên kết affiliate — giá như nhau, ủng hộ dibi8.com.*
@@ -166,7 +153,6 @@ Hybrid đúng đắn là local mặc định + API thương mại dự phòng. P
 **Bài liên quan**: [Self-Hosted LLM 2026: Ollama vs vLLM vs LocalAI](https://dibi8.com/vi/resources/llm-frameworks/self-hosted-llm-2026-ollama-vllm-localai/) · [Hướng Dẫn Cài Đặt Ollama](https://dibi8.com/vi/resources/llm-frameworks/ollama/) · [Kiến Trúc Production Stack AI Local-First 2026](https://dibi8.com/vi/resources/llm-frameworks/2026-local-first-ai-stack-production-architecture/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -194,25 +180,20 @@ Hybrid đúng đắn là local mặc định + API thương mại dự phòng. P
 
 ## Why This Matters
 
-Understanding stack ai local-first 2026: môi trường phát triển ai hoàn toàn offline is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding stack ai local-first 2026: môi trường phát triển ai hoàn toàn offline is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

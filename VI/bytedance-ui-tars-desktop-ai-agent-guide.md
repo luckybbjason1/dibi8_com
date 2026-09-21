@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/bytedance-ui-tars-desktop-ai-agent-guide" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/bytedance-ui-tars-desktop-ai-agent-guide" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/bytedance-ui-tars-desktop-ai-agent-guide" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/bytedance-ui-tars-desktop-ai-agent-guide" />
 title: "ByteDance UI-TARS Desktop: Đại Diện AI Ngôn Ngữ-Thị Giác...
 description: "Tìm hiểu cách triển khai UI-TARS Desktop của ByteDance, một đại diện AI ngôn ngữ-thị giác có thể xem màn hình của bạn và điều khiển ứng dụng thông qua ngôn ngữ tự nhiên. Cài đặt từng bước, benchmark thực tế và so sánh với các giải pháp thay thế."
 date: 2026-06-10
-lastmod:  2026-06-10slug: "bytedance-ui-tars-desktop-ai-agent-guide"
+lastmod: 2026-06-10
+slug: "bytedance-ui-tars-desktop-ai-agent-guide"
 category: ai-tools
 tags: [bytedance, ui-tars, vision-language-model, AI-agent, desktop-automation, GUI-agent, open-source, multimodal-ai]
 github_repo: "https://github.com/bytedance/UI-TARS-desktop"
@@ -17,8 +13,6 @@ license: Apache-2.0
 featureImage: "https://raw.githubusercontent.com/bytedance/UI-TARS-desktop/main/images/tars.png"
 lang: vi
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/bytedance-ui-tars-desktop-ai-agent-guide/ -->
 
 ## Giới Thiệu
 
@@ -32,9 +26,7 @@ UI-TARS (User Interface TARS) là một đại diện AI máy tính để bàn �
 
 UI-TARS Desktop là **một đại diện AI ngôn ngữ-thị giác điều khiển máy tính của bạn bằng cách xem màn hình**. Nó sử dụng một mô hình ngôn ngữ-thị giác chuyên biệt được huấn luyện để hiểu giao diện máy tính để bàn — nhận diện nút, menu, biểu mẫu và trường văn bản — sau đó tạo các lệnh có thể thực thi để tương tác với chúng.
 
-Các khả năng chính bao gồm:
-
-- **Hiểu trực quan** — Phân tích ảnh chụp màn hình để nhận diện các yếu tố UI, văn bản và bố cục bằng nhận thức VLM
+Các khả năng chính bao gồm: - **Hiểu trực quan** — Phân tích ảnh chụp màn hình để nhận diện các yếu tố UI, văn bản và bố cục bằng nhận thức VLM
 - **Tạo hành động** — Tạo các lệnh nhấp chuột, nhập bàn phím, cuộn và thao tác kéo
 - **Giao diện ngôn ngữ tự nhiên** — Điều khiển bất kỳ ứng dụng máy tính để bàn nào thông qua hướng dẫn bằng tiếng Anh thông thường
 - **Hỗ trợ đa ứng dụng** — Hoạt động với bất kỳ ứng dụng GUI nào mà không cần tích hợp hoặc khóa API
@@ -45,9 +37,7 @@ Các khả năng chính bao gồm:
 
 ## UI-TARS Hoạt Động Như Thế Nào
 
-UI-TARS hoạt động thông qua chu kỳ nhận thức-hành động:
-
-1. **Nhận thức** — Đại diện chụp ảnh màn hình của trạng thái máy tính để bàn hiện tại bằng API chụp màn hình gốc của nền tảng
+UI-TARS hoạt động thông qua chu kỳ nhận thức-hành động: 1. **Nhận thức** — Đại diện chụp ảnh màn hình của trạng thái máy tính để bàn hiện tại bằng API chụp màn hình gốc của nền tảng
 2. **Hiểu** — Mô hình ngôn ngữ-thị giác phân tích ảnh chụp màn hình để nhận diện các yếu tố UI, nhãn của chúng và vị trí pixel trên màn hình
 3. **Lên kế hoạch** — Đại diện xác định hành động nào cần thực hiện dựa trên hướng dẫn của người dùng và trạng thái màn hình hiện tại
 4. **Thực thi** — Đại diện thực hiện hành động (nhấp, gõ, cuộn, v.v.) thông qua API tự động hóa nhập liệu của nền tảng
@@ -151,11 +141,8 @@ agent-tars run --task "Open the browser and search for 'machine learning tutoria
 agent-tars run --task-file tasks.yaml --model ui-tars-7b
 ```
 
-Trong đó `tasks.yaml` chứa:
-
-```yaml
-tasks:
-  - "Open the file explorer"
+Trong đó `tasks.yaml` chứa: ```yaml
+tasks: - "Open the file explorer"
   - "Navigate to Desktop"
   - "Right-click and create a new folder"
   - "Name the folder 'My Project'"
@@ -210,9 +197,7 @@ agent-tars export-logs --output uitars-logs.json
 
 ### Chọn Mô Hình
 
-UI-TARS hỗ trợ nhiều kích thước mô hình cho các sự thỏa thuận hiệu suất khác nhau:
-
-```bash
+UI-TARS hỗ trợ nhiều kích thước mô hình cho các sự thỏa thuận hiệu suất khác nhau: ```bash
 # Mô hình 7B tham số (khuyến nghị cho hầu hết các trường hợp sử dụng)
 agent-tars --model ui-tars-7b
 
@@ -227,24 +212,18 @@ agent-tars --model ui-tars-72b
 
 ```yaml
 # uitars-config.yaml
-agent:
-  model: ui-tars-7b
+agent: model: ui-tars-7b
   max_steps: 30
   confidence_threshold: 0.85
   screenshot_interval: 1.0
   action_delay: 0.5
 
-actions:
-  click:
-    method: mouse
+actions: click: method: mouse
     move_to_center: true
-  type:
-    delay_between_keys: 0.02
-  scroll:
-    pixels_per_step: 120
+  type: delay_between_keys: 0.02
+  scroll: pixels_per_step: 120
 
-environment:
-  resolution: 1920x1080
+environment: resolution: 1920x1080
   scale_factor: 1.0
   language: en
 ```
@@ -331,8 +310,7 @@ result = agent.run(task)
 
 # Nhận kết quả
 print(f"Actions executed: {len(result.actions)}")
-for action in result.actions:
-    print(f"  {action.type}: {action.target}")
+for action in result.actions: print(f"  {action.type}: {action.target}")
 
 print(f"Success: {result.success}")
 print(f"Reason: {result.explanation}")
@@ -372,9 +350,7 @@ print(f"Reason: {result.explanation}")
 
 ### Trường Hợp Thực Tế: Nhóm Kiểm Tra QA
 
-Một nhóm QA gồm 8 kỹ sư sử dụng UI-TARS để tự động hóa kiểm tra GUI trên các ứng dụng web và máy tính để bàn của họ:
-
-```bash
+Một nhóm QA gồm 8 kỹ sư sử dụng UI-TARS để tự động hóa kiểm tra GUI trên các ứng dụng web và máy tính để bàn của họ: ```bash
 #!/bin/bash
 # Bộ kiểm tra regression tự động
 agent-tars batch --task-file regression-tests.yaml \
@@ -385,9 +361,7 @@ Nhóm báo cáo giảm 60% thời gian kiểm tra regression và khả năng ki�
 
 ### Trường Hợp Thực Tế: Tự Động Hóa Truy Cập
 
-Một công ty sử dụng UI-TARS để tự động hóa kiểm tra truy cập trên các ứng dụng của họ:
-
-```bash
+Một công ty sử dụng UI-TARS để tự động hóa kiểm tra truy cập trên các ứng dụng của họ: ```bash
 # Kiểm tra nhiều trạng thái UI
 agent-tars run --task "Navigate to all menus and verify keyboard shortcuts work" \
   --model ui-tars-7b --max-steps 50
@@ -460,9 +434,7 @@ UI-TARS Desktop nổi bật nhờ khả năng hiểu trực quan. Không giống
 
 ## Hạn Chế / Đánh Giá Trung Thực
 
-Mặc dù UI-TARS Desktop rất mạnh mẽ, hãy nhận thức về những hạn chế sau:
-
-1. **Yêu cầu GPU** — Chạy mô hình 7B yêu cầu ít nhất 8GB GPU VRAM. Mô hình 72B yêu cầu 40GB+. Mô hình 1B có thể chạy trên CPU nhưng với độ chính xác giảm.
+Mặc dù UI-TARS Desktop rất mạnh mẽ, hãy nhận thức về những hạn chế sau: 1. **Yêu cầu GPU** — Chạy mô hình 7B yêu cầu ít nhất 8GB GPU VRAM. Mô hình 72B yêu cầu 40GB+. Mô hình 1B có thể chạy trên CPU nhưng với độ chính xác giảm.
 2. **Độ trễ** — Mỗi hành động yêu cầu một ảnh chụp màn hình và suy luận mô hình, thêm độ trễ vào mỗi bước. Các nhiệm vụ đa bước có thể mất vài phút.
 3. **Xem xét bảo mật** — Đại diện có toàn quyền kiểm soát máy tính để bàn của bạn. Chỉ sử dụng trong môi trường đáng tin cậy và giới hạn truy cập với xác thực thích hợp.
 4. **Nhập văn bản phức tạp** — Nhập văn bản dài hoặc phức tạp đôi khi có thể tạo ra lỗi trong nhận diện ký tự hoặc mô phỏng nhập liệu.
@@ -522,7 +494,6 @@ Tham gia [nhóm Telegram tiếng Anh dibi8](https://t.me/DIBI8_Group/2) để th
 Một số liên kết trên là liên kết tiếp thị liên kết. dibi8.com có thể kiếm hoa hồng nếu bạn đăng ký, không tốn thêm chi phí cho bạn. Điều này giúp giữ trang web hoạt động và nội dung miễn phí.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

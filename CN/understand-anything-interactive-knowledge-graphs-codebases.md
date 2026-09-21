@@ -1,18 +1,14 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/understand-anything-interactive-knowledge-graphs-codebases" />
-title: "Understand-Anything: Interactive Knowledge Graphs for Co...
+title: "Understand-Anything: Interactive Knowledge Graphs for Co..."
 description: "Understand-Anything turns any codebase into an interactive knowledge graph you can explore, search, and query. Works with Claude Code, Codex, Cursor, Copilot, Gemini CLI. 60,339 GitHub stars."
 tags: ["open-source"]
 date: 2026-06-15
-lastmod:  2026-06-15slug: understand-anything-interactive-knowledge-graphs-codebases
+lastmod: 2026-06-15
+slug: understand-anything-interactive-knowledge-graphs-codebases
 category: ai-tools
 github_repo: "https://github.com/Egonex-AI/Understand-Anything"
 license: MIT
-lang: en
-featureImage: /images/articles/egonex-understand-anything-interactive-knowledge-graphs-from.jpg
----
-
+featureImage: /images/articles/egonex-understand-anything-interactive-knowledge-graphs-from.jpg---
 ## Introduction
 
 You clone a new codebase. 50,000 lines of code across 200 files. You open VS Code and stare at the file tree. Where do you even start?
@@ -45,9 +41,7 @@ The tool works with Claude Code, Codex, Cursor, Copilot, Gemini CLI, OpenCode, a
 
 ## How Understand-Anything Works
 
-The pipeline has three stages: parsing, graph construction, and indexing:
-
-```
+The pipeline has three stages: parsing, graph construction, and indexing: ```
 Source Code (all languages)
         │
         ▼
@@ -58,8 +52,7 @@ Source Code (all languages)
          │
          ▼
 ┌─────────────────┐
-│  Graph Builder   │  Creates nodes + edges:
-│                  │  Nodes: files, classes, funcs
+│  Graph Builder   │  Creates nodes + edges: │                  │  Nodes: files, classes, funcs
 │                  │  Edges: calls, imports, extends
 └────────┬────────┘
          │
@@ -187,7 +180,15 @@ npx @egonex/vscode-extension install
 ### Analysis Speed by Codebase Size
 
 | Codebase Size | Files | Analysis Time | Graph Nodes |
-|---------------|-------|---------------|-------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Small (CLI tool) | 50 | 2 seconds | 120 |
 | Medium (library) | 500 | 15 seconds | 1,200 |
 | Large (full app) | 5,000 | 2 minutes | 12,000 |
@@ -198,7 +199,13 @@ Analysis time scales roughly linearly with file count. The graph construction is
 ### Query Performance
 
 | Query Type | Response Time | Notes |
-|-----------|---------------|-------|
+|
+---
+|
+---
+|
+---
+|
 | Structural (find imports) | <10ms | Graph traversal |
 | Semantic (natural language) | 50-200ms | Vector search + graph |
 | Cross-language references | 100-500ms | Multi-AST join |
@@ -206,14 +213,11 @@ Analysis time scales roughly linearly with file count. The graph construction is
 
 ### Use Case: Onboarding New Developers
 
-A team of 15 developers joined a 50,000-line TypeScript project. Before Understand-Anything, onboarding took 2 weeks of reading code. After:
-
-```bash
+A team of 15 developers joined a 50,000-line TypeScript project. Before Understand-Anything, onboarding took 2 weeks of reading code. After: ```bash
 # Generate onboarding graph
 understand-anything analyze ./src --onboarding
 
-# Outputs:
-# - Architecture overview (HLD + LLD)
+# Outputs: # - Architecture overview (HLD + LLD)
 # - Key entry points
 # - Module dependency map
 # - Common patterns and anti-patterns
@@ -278,11 +282,8 @@ understand-anything gql "cycle where type == 'import'"
 name: Knowledge Graph CI
 on: [pull_request]
 
-jobs:
-  analyze:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: analyze: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - name: Build knowledge graph
         run: |
           npx understand-anything analyze ./src --format ci
@@ -293,8 +294,7 @@ jobs:
       - name: Upload violations
         if: failure()
         uses: actions/upload-artifact@v4
-        with:
-          name: graph-violations
+        with: name: graph-violations
           path: graph-violations.json
 ```
 
@@ -335,7 +335,17 @@ understand-anything analyze ./src --format html -o graph.html
 ## Comparison with Alternatives
 
 | Feature | Understand-Anything | Code2Prompt | Sourcery | SonarQube |
-|---------|-------------------|-------------|----------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Knowledge Graph | ✅ Interactive | ❌ Flat AST | ❌ | ❌ |
 | Natural Language Query | ✅ | ❌ | ❌ | ❌ |
 | AI Agent Integration | ✅ 10+ tools | ❌ | ❌ | ❌ |
@@ -351,9 +361,7 @@ Understand-Anything is the only tool that combines interactive visualization, na
 
 ## Limitations / Honest Assessment
 
-Understand-Anything is powerful but has honest limitations:
-
-1. **Generated code is not analyzed.** Dynamic code (eval, exec, runtime-generated classes) won't appear in the graph. This is a fundamental limitation of static analysis — no tool solves this perfectly.
+Understand-Anything is powerful but has honest limitations: 1. **Generated code is not analyzed.** Dynamic code (eval, exec, runtime-generated classes) won't appear in the graph. This is a fundamental limitation of static analysis — no tool solves this perfectly.
 
 2. **Third-party libraries need separate analysis.** The graph focuses on your codebase. To include dependencies, you need to analyze `node_modules`, `vendor/`, or equivalent separately.
 
@@ -411,10 +419,9 @@ Try it on your next project. Clone a repo, run `understand-anything analyze .`, 
 
 For more on AI coding tools, check out our guides on [Claude Code mastery](dibi8-claude-code-mastery) and [Cursor IDE optimization](dibi8-cursor-optimization).
 
----
 
-**Sources & Further Reading**:
-- Official docs: https://github.com/Egonex-AI/Understand-Anything
+---
+**Sources & Further Reading**: - Official docs: https://github.com/Egonex-AI/Understand-Anything
 - GitHub repository: https://github.com/Egonex-AI/Understand-Anything
 - Live demo: https://egonex.ai/understand-anything/demo
 - Community discussion: https://github.com/Egonex-AI/Understand-Anything/discussions
@@ -427,7 +434,6 @@ For more on AI coding tools, check out our guides on [Claude Code mastery](dibi8
 - Proxy for web scraping: [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -453,8 +459,8 @@ For more on AI coding tools, check out our guides on [Claude Code mastery](dibi8
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [2026-05-25-trending-ai-agents](understand-anything-interactive-knowledge-graphs-codebases)

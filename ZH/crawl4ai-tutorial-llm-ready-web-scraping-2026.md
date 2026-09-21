@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/crawl4ai-tutorial-llm-ready-web-scraping-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/crawl4ai-tutorial-llm-ready-web-scraping-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/crawl4ai-tutorial-llm-ready-web-scraping-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/crawl4ai-tutorial-llm-ready-web-scraping-2026" />
 title: 'Crawl4AI 深度实战教程：2026 年 GitHub 最火开源爬虫，零成本搭建 LLM 数据采集与 RAG...
 description: 'Crawl4AI 是 2026 年 GitHub 排名第一的开源网页爬虫，63k+ Stars，专为 LLM、AI Agent 和 RAG 管道设计。本文提供完整中文教程，涵盖安装、LLM 结构化提取、深度爬取、对比 Firecrawl 与 ScrapeGraphAI，以及生产环境部署方案。'
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [crawl4ai, 'web-scraping', 'llm-rag', 'open-source']
-aliases:
-- /zh/posts/crawl4ai-tutorial-llm-ready-web-scraping-2026/
+aliases: - /zh/posts/crawl4ai-tutorial-llm-ready-web-scraping-2026/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/crawl4ai-tutorial-llm-ready-web-scraping-2026/ -->
 
 {</* resource-info */>}
 
@@ -47,8 +39,8 @@ Crawl4AI 的核心价值主张很直接：**把任意网站转化为干净、LLM
 - 与 Firecrawl、ScrapeGraphAI 的横向对比，帮你选对工具
 - Docker 生产部署与性能调优
 
----
 
+---
 ## 一、Crawl4AI 是什么？AI 时代的数据采集基础设施
 
 ### 1.1 项目定位与核心特性
@@ -56,7 +48,11 @@ Crawl4AI 的核心价值主张很直接：**把任意网站转化为干净、LLM
 Crawl4AI（GitHub: `unclecode/crawl4ai`）是一个基于 Python 的异步网页爬虫框架，底层使用 Playwright 驱动浏览器。它与传统爬虫的最大区别在于**输出形态**：不是原始 HTML 或需要二次清洗的 DOM 树，而是**经过噪声过滤的 Markdown**——恰好是 LLM 上下文窗口最高效的输入格式。
 
 | 特性 | 说明 |
-|------|------|
+|
+---
+|
+---
+|
 | **LLM-Ready Markdown** | 自动去除导航栏、广告、Cookie Banner，输出结构化 Markdown |
 | **异步并行** | `AsyncWebCrawler` 支持多 URL 并发，适合大规模采集 |
 | **JavaScript 渲染** | Playwright 驱动，完美处理 React/Vue 等动态站点 |
@@ -72,8 +68,8 @@ Crawl4AI（GitHub: `unclecode/crawl4ai`）是一个基于 Python 的异步网页
 - **数据分析师**：无需维护脆弱的 XPath/CSS 选择器，用自然语言描述提取需求
 - **合规敏感团队**：数据不出境，本地运行，无第三方 SaaS 依赖
 
----
 
+---
 ## 二、5 分钟上手：安装、首次爬取与 Markdown 输出
 
 ### 2.1 环境准备与安装
@@ -105,13 +101,10 @@ docker pull unclecode/crawl4ai:latest
 import asyncio
 from crawl4ai import AsyncWebCrawler
 
-async def main():
-    async with AsyncWebCrawler() as crawler:
-        result = await crawler.arun(url="https://crawl4ai.com")
+async def main(): async with AsyncWebCrawler() as crawler: result = await crawler.arun(url="https://crawl4ai.com")
         print(result.markdown[:1000])
 
-if __name__ == "__main__":
-    asyncio.run(main())
+if __name__ == "__main__": asyncio.run(main())
 ```
 
 **输出示例**（已自动过滤导航和广告）：
@@ -145,8 +138,7 @@ Crawl4AI 最性感的功能，是让 LLM 代替你写 CSS 选择器。你只需�
 ```python
 from pydantic import BaseModel, Field
 
-class OpenAIModelFee(BaseModel):
-    model_name: str = Field(..., description="模型名称")
+class OpenAIModelFee(BaseModel): model_name: str = Field(..., description="模型名称")
     input_fee: str = Field(..., description="输入 Token 单价")
     output_fee: str = Field(..., description="输出 Token 单价")
 ```
@@ -159,8 +151,7 @@ import asyncio
 from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
 from crawl4ai.extraction_strategy import LLMExtractionStrategy
 
-async def main():
-    browser_config = BrowserConfig(verbose=True)
+async def main(): browser_config = BrowserConfig(verbose=True)
     
     run_config = CrawlerRunConfig(
         word_count_threshold=1,
@@ -179,15 +170,13 @@ async def main():
         cache_mode=CacheMode.BYPASS,
     )
 
-    async with AsyncWebCrawler(config=browser_config) as crawler:
-        result = await crawler.arun(
+    async with AsyncWebCrawler(config=browser_config) as crawler: result = await crawler.arun(
             url='https://openai.com/api/pricing/',
             config=run_config
         )
         print(result.extracted_content)
 
-if __name__ == "__main__":
-    asyncio.run(main())
+if __name__ == "__main__": asyncio.run(main())
 ```
 
 **关键参数说明**：
@@ -227,8 +216,7 @@ from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
 from crawl4ai.deep_crawling import BFSDeepCrawlStrategy
 from crawl4ai.content_scraping_strategy import LXMLWebScrapingStrategy
 
-async def main():
-    config = CrawlerRunConfig(
+async def main(): config = CrawlerRunConfig(
         deep_crawl_strategy=BFSDeepCrawlStrategy(
             max_depth=2,
             include_external=False  # 不爬出站链接
@@ -237,15 +225,12 @@ async def main():
         verbose=True
     )
 
-    async with AsyncWebCrawler() as crawler:
-        results = await crawler.arun("https://docs.crawl4ai.com/", config=config)
+    async with AsyncWebCrawler() as crawler: results = await crawler.arun("https://docs.crawl4ai.com/", config=config)
         print(f"共抓取 {len(results)} 个页面")
         
-        for r in results[:3]:
-            print(f"URL: {r.url} | 深度: {r.metadata.get(depth, 0)}")
+        for r in results[:3]: print(f"URL: {r.url} | 深度: {r.metadata.get(depth, 0)}")
 
-if __name__ == "__main__":
-    asyncio.run(main())
+if __name__ == "__main__": asyncio.run(main())
 ```
 
 ### 4.2 BM25 内容过滤：只保留与查询相关的片段
@@ -270,7 +255,17 @@ filter = BM25ContentFilter(
 选型是生产落地的第一步。以下是 2026 年 5 月的最新对比：
 
 | 维度 | Crawl4AI | Firecrawl | ScrapeGraphAI | Scrapy |
-|------|----------|-----------|---------------|--------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **GitHub Stars** | 63k+ | 78k+ | 23k+ | 50k+ |
 | **部署方式** | 自托管 / Docker | SaaS API / 开源 | 开源 Python 库 | 开源框架 |
 | **LLM 提取** | 原生支持 | 支持 | 核心特性（图遍历） | 需自行集成 |
@@ -328,7 +323,13 @@ browser_config = BrowserConfig(
 ### 6.3 常见问题与解决
 
 | 问题 | 原因 | 解决 |
-|------|------|------|
+|
+---
+|
+---
+|
+---
+|
 | 页面内容为空 | 单页应用（SPA）未渲染完成 | 增加 `wait_until="networkidle"` 或延迟 |
 | 被反爬拦截 | User-Agent / 指纹检测 | 开启 Stealth Mode，使用住宅代理 |
 | LLM 提取超时 | 页面过大，Token 过多 | 先用 CSS 选择器缩小范围，再送 LLM |
@@ -376,7 +377,6 @@ Crawl4AI 不是银弹，但它在「LLM 时代的数据采集」这个细分领�
 *本文发布于 2026-05-19，数据基于 GitHub、官方文档及公开评测。Crawl4AI 版本迭代较快，建议阅读时核对最新文档。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -404,25 +404,20 @@ Crawl4AI 不是银弹，但它在「LLM 时代的数据采集」这个细分领�
 
 ## Why This Matters
 
-Understanding crawl4ai 深度实战教程：2026 年 github 最火开源爬虫，零成本搭建 llm 数据采集与 rag 知识库 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding crawl4ai 深度实战教程：2026 年 github 最火开源爬虫，零成本搭建 llm 数据采集与 rag 知识库 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -488,7 +483,17 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/tensortrade-rl-trading" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/tensortrade-rl-trading" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/tensortrade-rl-trading" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/tensortrade-rl-trading" />
 title: 'TensorTrade: 强化学习交易框架与自定义 Gym 环境 — 2026 完整指南'
 description: '掌握 TensorTrade 进行基于强化学习的算法交易。构建自定义 Gym 环境，集成 Stable Baselines3，部署生产级投资组合管理策略并获取真实基准测试数据。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: [tensortrade, 强化学习, 算法交易, 'openai gym', 'stable baselines3', 投资组合管理, python, 机器学习, 加密货币交易, 量化金融]
-aliases:
-- /zh/posts/tensortrade-rl-trading/
+aliases: - /zh/posts/tensortrade-rl-trading/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/tensortrade-rl-trading/ -->
 
 {{</* resource-info */>}}
 
@@ -289,7 +281,19 @@ ohlcv_df = pd.DataFrame(
 我们使用2025年1月至2026年3月的BTC-USD小时数据，对TensorTrade与三种常见基准策略进行了比较：
 
 | 策略 | 总收益 | 夏普比率 | 最大回撤 | 胜率 | 月均交易次数 |
-|------|--------|----------|----------|------|-------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | BTC 买入持有 | **+68.4%** | 1.42 | -22.1% | — | 0 |
 | PPO（默认特征） | **+54.2%** | 1.89 | -14.3% | 52% | 45 |
 | PPO（+RSI/MACD/成交量） | **+71.6%** | **2.34** | -11.7% | 58% | 38 |
@@ -309,7 +313,15 @@ ohlcv_df = pd.DataFrame(
 在BTC、ETH和SOL上的测试（等权重投资组合）：
 
 | 配置 | 年化收益 | 夏普比率 | 索提诺比率 |
-|------|----------|----------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 等权重买入持有 | +45.2% | 1.28 | 1.84 |
 | PPO 多资产（TensorTrade） | **+58.7%** | **1.97** | **2.71** |
 
@@ -324,17 +336,13 @@ RL智能体根据动量信号动态再平衡的能力，相比被动配置产生
 ```python
 import numpy as np
 
-class SortinoRewardScheme:
-    def __init__(self, risk_free_rate=0.02, window=30):
-        self.risk_free_rate = risk_free_rate
+class SortinoRewardScheme: def __init__(self, risk_free_rate=0.02, window=30): self.risk_free_rate = risk_free_rate
         self.window = window
         self.returns = []
 
-    def get_reward(self, portfolio: "Portfolio") -> float:
-        profit_loss = portfolio.profit_loss
+    def get_reward(self, portfolio: "Portfolio") -> float: profit_loss = portfolio.profit_loss
         self.returns.append(profit_loss)
-        if len(self.returns) < self.window:
-            return 0.0
+        if len(self.returns) < self.window: return 0.0
         recent_returns = np.array(self.returns[-self.window:])
         excess = recent_returns - self.risk_free_rate / 365
         downside = recent_returns[recent_returns < 0]
@@ -381,16 +389,13 @@ multi_portfolio = Portfolio(USD, [
 ### 添加风险管理：基于凯利准则的仓位管理
 
 ```python
-class KellyCriterionActionScheme:
-    """Sizes bets using fractional Kelly criterion."""
-    def __init__(self, kelly_fraction=0.3):
-        self.kelly_fraction = kelly_fraction
+class KellyCriterionActionScheme: """Sizes bets using fractional Kelly criterion."""
+    def __init__(self, kelly_fraction=0.3): self.kelly_fraction = kelly_fraction
         self.win_rate = 0.5
         self.avg_win = 0.02
         self.avg_loss = 0.01
 
-    def compute_size(self, action, portfolio):
-        # Update statistics from trade history
+    def compute_size(self, action, portfolio): # Update statistics from trade history
         kelly = (self.win_rate / self.avg_loss -
                  (1 - self.win_rate) / self.avg_win) if self.avg_win > 0 else 0
         kelly = max(0, min(kelly, 0.5))  # Cap at 50%
@@ -403,26 +408,19 @@ class KellyCriterionActionScheme:
 
 ```python
 # 1. Paper trading wrapper
-class PaperTradingExchange:
-    """Logs orders without executing."""
-    def execute(self, order):
-        print(f"[PAPER] {order.side} {order.quantity} @ {order.price}")
+class PaperTradingExchange: """Logs orders without executing."""
+    def execute(self, order): print(f"[PAPER] {order.side} {order.quantity} @ {order.price}")
         return {"status": "filled", "price": order.price}
 
 # 2. Circuit breaker
-class CircuitBreaker:
-    def __init__(self, max_drawdown=0.05, daily_loss_limit=0.03):
-        self.max_drawdown = max_drawdown
+class CircuitBreaker: def __init__(self, max_drawdown=0.05, daily_loss_limit=0.03): self.max_drawdown = max_drawdown
         self.daily_loss_limit = daily_loss_limit
         self.daily_pnl = 0
         self.peak = 0
 
-    def check(self, portfolio):
-        if portfolio.net_worth > self.peak:
-            self.peak = portfolio.net_worth
+    def check(self, portfolio): if portfolio.net_worth > self.peak: self.peak = portfolio.net_worth
         drawdown = (self.peak - portfolio.net_worth) / self.peak
-        if drawdown > self.max_drawdown:
-            raise RuntimeError(f"Circuit breaker: drawdown {drawdown:.2%}")
+        if drawdown > self.max_drawdown: raise RuntimeError(f"Circuit breaker: drawdown {drawdown:.2%}")
 
 # 3. Model versioning
 import datetime
@@ -433,7 +431,19 @@ agent.save(f"models/ppo_prod_{model_version}.zip")
 ## 与替代方案的对比
 
 | 功能 | TensorTrade | Backtrader | QuantConnect | FinRL | Gym Trading Env |
-|------|------------|------------|--------------|-------|----------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **RL原生设计** | 是（原生Gym） | 否（需包装器） | 部分支持 | 是 | 是 |
 | **Stable Baselines 集成** | 无缝 | 需自定义包装器 | 否 | 内置 | 需手动设置 |
 | **多交易所支持** | 是（OMS层） | 仅单交易所 | 是 | 需自定义代码 | 否 |
@@ -532,7 +542,6 @@ TensorTrade为Python中的强化学习交易提供了最成熟的生产就绪开
 本文包含指向Binance和OKX的联盟链接。如果你通过这些链接注册并交易，我们可能会获得佣金，而你无需支付额外费用。这些佣金有助于资助开源交易工具和教育内容的开发。我们只推荐我们亲自测试和验证过的交易所。在任何交易所存款前，请务必自行调研。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -560,25 +569,20 @@ TensorTrade为Python中的强化学习交易提供了最成熟的生产就绪开
 
 ## Why This Matters
 
-Understanding tensortrade: 强化学习交易框架与自定义 gym 环境 — 2026 完整指南 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding tensortrade: 强化学习交易框架与自定义 gym 环境 — 2026 完整指南 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -599,13 +603,13 @@ TensorTrade: 强化学习交易框架与自定义 Gym 环境 — 2026 完整指�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
 
+---
 ## Related Articles
 
 - [ai-engineering-from-scratch](tensortrade-rl-trading)

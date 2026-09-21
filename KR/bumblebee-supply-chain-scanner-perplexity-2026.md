@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/bumblebee-supply-chain-scanner-perplexity-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/bumblebee-supply-chain-scanner-perplexity-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/bumblebee-supply-chain-scanner-perplexity-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/bumblebee-supply-chain-scanner-perplexity-2026" />
 title: 'Bumblebee 2026: Perplexity AI 내부 공급망 스캐너 오픈소스화 — MCP 설정·...
 description: 'Bumblebee는 Perplexity AI의 오픈소스 읽기 전용 공급망 스캐너입니다. npm, PyPI, Go 모듈, MCP 설정, 에디터 확장, 브라우저 확장에서 알려진 침해 패키지를 검사하며, 코드를 단 한 줄도 실행하지 않습니다.'
 date: 2026-06-09 00:00:00+08:00
@@ -25,10 +20,8 @@ featureImage: '/images/articles/bumblebee-supply-chain-scanner-perplexity-2026/c
 draft: false
 categories: ['dev-utils']
 tags: [bumblebee, '공급망-보안', mcp, security, go, npm, pypi, 'perplexity-ai']
-aliases:
-- /kr/posts/bumblebee-supply-chain-scanner-perplexity-2026/
-faqs:
-  - q: 'Bumblebee란 무엇이며 무엇을 스캔합니까?'
+aliases: - /kr/posts/bumblebee-supply-chain-scanner-perplexity-2026/
+faqs: - q: 'Bumblebee란 무엇이며 무엇을 스캔합니까?'
     a: 'Bumblebee는 Perplexity AI가 오픈소스로 공개한 읽기 전용 개발자 엔드포인트 스캐너입니다. npm, pnpm, Yarn, PyPI, Go 모듈, RubyGems, MCP 설정, 에디터 확장(VS Code, Cursor, Windsurf, Zed), 브라우저 확장의 디스크 메타데이터를 스캔합니다. 설치 스크립트를 실행하거나 패키지 관리자를 호출하지 않습니다.'
   - q: 'AI 개발자에게 MCP 스캔이 왜 중요합니까?'
     a: 'MCP(Model Context Protocol) 서버는 개발자 머신에서 높은 권한으로 실행됩니다. 침해된 MCP 패키지는 데이터를 유출하거나 임의 코드를 실행할 수 있습니다. Bumblebee는 MCP 설정 파일(claude_desktop_config.json, mcp_settings.json 등)을 위협 인텔리전스 카탈로그와 대조해 스캔하는 최초의 공개 도구입니다.'
@@ -37,8 +30,6 @@ faqs:
   - q: 'Bumblebee 설치 방법은?'
     a: 'go install github.com/perplexityai/bumblebee/cmd/bumblebee@v0.1.1을 실행합니다. 일상 인벤토리는 bumblebee scan --profile baseline > inventory.ndjson, 특정 취약점 노출 검사는 bumblebee scan --profile deep --root "$HOME" --exposure-catalog ./catalog.json --findings-only를 사용합니다.'
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/bumblebee-supply-chain-scanner-perplexity-2026/ -->
 
 ![Bumblebee 2026: Perplexity AI 공급망 스캐너 — dibi8.com](/images/articles/bumblebee-supply-chain-scanner-perplexity-2026/cover.jpg)
 
@@ -73,9 +64,7 @@ bumblebee scan --profile deep \
 
 ## MCP 설정 지원
 
-2026년 AI 개발자에게 가장 중요한 기능입니다. Bumblebee가 스캔하는 경로:
-
-| 파일 | 도구 |
+2026년 AI 개발자에게 가장 중요한 기능입니다. Bumblebee가 스캔하는 경로: | 파일 | 도구 |
 |------|------|
 | `~/.claude.json` | Claude CLI |
 | `claude_desktop_config.json` | Claude Desktop |
@@ -98,7 +87,6 @@ go install github.com/perplexityai/bumblebee/cmd/bumblebee@v0.1.1
 **GitHub:** [perplexityai/bumblebee](https://github.com/perplexityai/bumblebee) · v0.1.1 · Apache-2.0
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -126,25 +114,20 @@ go install github.com/perplexityai/bumblebee/cmd/bumblebee@v0.1.1
 
 ## Why This Matters
 
-Understanding bumblebee 2026: perplexity ai 내부 공급망 스캐너 오픈소스화 — mcp 설정·에디터 확장 지원 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding bumblebee 2026: perplexity ai 내부 공급망 스캐너 오픈소스화 — mcp 설정·에디터 확장 지원 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

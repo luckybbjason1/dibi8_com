@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/skillspector-nvidia-open-source-security-scanner-ai-agent-skills" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/skillspector-nvidia-open-source-security-scanner-ai-agent-skills" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/skillspector-nvidia-open-source-security-scanner-ai-agent-skills" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/skillspector-nvidia-open-source-security-scanner-ai-agent-skills" />
 title: 'SkillSpector: AI 에이전트 스킬을 위한 NVIDIA의 오픈소스 보안 스캐너'
 description: 에이전트 스킬 설치 전 취약점, 악성 패턴 및 보안 위험을 감지하는 AI 에이전트 스킬 전용 보안 스캐너. NVIDIA에서 10K 스타 획득. Claude Code, Codex CLI 및 기타 에이전트 프레임워크를 보호하세요.
 date: 2026-06-25
@@ -17,10 +12,6 @@ lang: kr
 github_repo: https://github.com/NVIDIA/SkillSpector
 license: Apache-2.0
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/skillspector-nvidia-open-source-security-scanner-ai-agent-skills/ -->
-
-
 
 # SkillSpector: AI 에이전트 스킬을 위한 NVIDIA의 오픈소스 보안 스캐너
 
@@ -36,9 +27,7 @@ AI 에이전트 스킬이 점점 더 인기를 얻으면서 검증되지 않은 
 
 SkillSpector은 중요한 관찰에서 탄생했습니다: AI 에이전트 스킬이 개발자 워크플로우 전반에 확산되면서 보안 공격 표면이 극적으로 확대되고 있습니다. 엄격한 코드 검토를 거치는 전통적인 소프트웨어 패키지와 달리 많은 에이전트 스킬은 간단한 텍스트 파일(SKILL.md)로, 임의의 작업을 수행하도록 LLM에게 지시합니다 — 셸 명령 실행, API 접근, 파일 수정 등을 포함합니다.
 
-이 도구는 다음을 제공합니다:
-
-- **AI 에이전트 스킬 파일에 대한 자동화된 취약점 스캔**
+이 도구는 다음을 제공합니다: - **AI 에이전트 스킬 파일에 대한 자동화된 취약점 스캔**
 - **패턴 기반 악성 동작 감지** — 명령 삽입, 데이터 유출, 권한 상승 포함
 - **프레임워크별 분석** — Claude Code, GitHub Copilot, Codex CLI 등 지원
 - **복구 지침** — 감지된 취약점에 대한 구체적인 수정 사항 제공
@@ -109,9 +98,7 @@ docker run -d \
 
 ### 취약점 감지 카테고리
 
-SkillSpector는 여러 카테고리에서 취약점을 감지합니다:
-
-| 카테고리 | 설명 | 심각도 |
+SkillSpector는 여러 카테고리에서 취약점을 감지합니다: | 카테고리 | 설명 | 심각도 |
 |
 커뮤니티 가입: [Telegram](https://t.me/DIBI8_Group) · [HuggingFace](https://huggingface.co/collections/nvidia/cosmos3)
 
@@ -120,7 +107,6 @@ SkillSpector는 여러 카테고리에서 취약점을 감지합니다:
 **고지 사항**: 본 기사는 제휴 관계가 있을 수 있는 도구를 언급합니다. 우리는 리뷰에 대한 대가를 받지 않습니다. 모든 의견은 우리 자신의 것입니다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -148,25 +134,20 @@ SkillSpector는 여러 카테고리에서 취약점을 감지합니다:
 
 ## Why This Matters
 
-Understanding skillspector: ai 에이전트 스킬을 위한 nvidia의 오픈소스 보안 스캐너 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding skillspector: ai 에이전트 스킬을 위한 nvidia의 오픈소스 보안 스캐너 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -229,9 +210,7 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
 
 
-When deploying AI agents in production, follow these best practices:
-
-1. **Start Small**: Begin with a single tool and simple prompt, then gradually add complexity
+When deploying AI agents in production, follow these best practices: 1. **Start Small**: Begin with a single tool and simple prompt, then gradually add complexity
 2. **Implement Guardrails**: Use permission prompts and approval workflows for dangerous operations
 3. **Monitor Everything**: Log all agent actions for debugging and compliance
 4. **Handle Failures Gracefully**: Implement retry logic and fallback mechanisms
@@ -239,9 +218,7 @@ When deploying AI agents in production, follow these best practices:
 
 ### Security Considerations
 
-AI agents have access to sensitive systems. Always:
-
-- Use least-privilege principles
+AI agents have access to sensitive systems. Always: - Use least-privilege principles
 - Implement audit logging
 - Encrypt sensitive data at rest and in transit
 - Regular security assessments

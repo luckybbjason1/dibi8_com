@@ -1,8 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/codebase-memory-mcp-deep-code-intelligence" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/codebase-memory-mcp-deep-code-intelligence" />
-lang: zh
 description: 'Codebase Memory MCP is a high-performance code intelligence server that indexes entire codebases into persistent memory for AI agents. Transform any LLM into a codebase-aware assistant.'
 date: 2026-07-03T09:00:00+09:00
 lastmod: 2026-07-03T09:00:00+09:00
@@ -12,14 +8,10 @@ category: llm-frameworks
 tags: ['mcp', 'code-intelligence', 'ai-agents', 'vector-search', 'open-source']
 github_repo: 'https://github.com/DeusData/codebase-memory-mcp'
 license: 'MIT'
-tech_stack:
-  - C
+tech_stack: - C
   - Rust
   - Python
-featureImage: /images/articles/code-quality-tools-eslint-prettier-black-ruff.jpg
----
-
-<!-- canonical: https://dibi8.com/zh/tools/codebase-memory-mcp-deep-code-intelligence/ -->
+featureImage: /images/articles/code-quality-tools-eslint-prettier-black-ruff.jpg---
 
 
 <<<<<<< HEAD
@@ -259,14 +251,11 @@ period_ms: elapsed.as_millis() as u64,
 ### 矢量搜索管道
 
 ```python
-class SearchPipeline:
-    def __init__(self, vector_store, reranker=None):
-        self.store = vector_store
+class SearchPipeline: def __init__(self, vector_store, reranker=None): self.store = vector_store
         self.reranker = reranker
 <<<<<<< HEAD
     
-    def search(self, query: str, top_k: int = 10) -> List[Document]:
-        # Step 1: Embed the query
+    def search(self, query: str, top_k: int = 10) -> List[Document]: # Step 1: Embed the query
         query_embedding = self._embed(query)
         
         # Step 2: Retrieve candidate documents
@@ -275,13 +264,11 @@ class SearchPipeline:
         )
         
         # Step 3: Rerank if a reranker is available
-        if self.reranker:
-            candidates = self.reranker.rank(query, candidates)
+        if self.reranker: candidates = self.reranker.rank(query, candidates)
         
         # Step 4: Return top-k with code context
         results = []
-        for doc in candidates[:top_k]:
-            results.append({
+        for doc in candidates[:top_k]: results.append({
                 'path': doc.path,
                 'snippet': doc.extract_context(window=5),
                 'score': doc.score,
@@ -295,8 +282,7 @@ class SearchPipeline:
 ## Advanced Usage: Custom Indexing Rules
 =======
 
-def search(self, query: str, top_k: int = 10) -> 列表[文档]:
-# 第 1 步：嵌入查询
+def search(self, query: str, top_k: int = 10) -> 列表[文档]: # 第 1 步：嵌入查询
 query_embedding = self._embed(查询)
 
 # 第 2 步：检索候选文档
@@ -334,8 +320,7 @@ query_embedding = self._embed(查询)
 from codebase_memory.parsers import BaseParser, register_parser
 
 @register_parser("mylang")
-类 MyLangParser(BaseParser):
-def 解析（自身，文件路径）：
+类 MyLangParser(BaseParser): def 解析（自身，文件路径）：
 将 open(file_path) 作为 f：
 内容 = f.read()
 段= []
@@ -415,8 +400,7 @@ results = multi_indexer.search("认证流程")
 
 ```
 Q: How does the user authentication flow work?
-A: Authentication flows through:
-   1. JWT token generation in auth/middleware.ts (line 45-89)
+A: Authentication flows through: 1. JWT token generation in auth/middleware.ts (line 45-89)
    2. Token validation in api/routes/login.ts (line 12-34)
    3. Session storage in redis/session.ts (line 78-102)
 ```
@@ -445,15 +429,17 @@ docs = indexer.generate_documentation(
 ## 与替代方案的比较
 
 |特色 |代码库内存 MCP |来源图科迪 | GitHub 副驾驶 |继续.dev |
-|------
+|---
 
-|---------------------
+|-
+---
 
-|------------------
+|---
 
-|----------------
+|-
+---
 
-|------------------------
+|---
 
 |
 |协议| MCP|专有|专有| LSP |
@@ -530,8 +516,8 @@ docs = indexer.generate_documentation(
 - [GitHub API — 星数验证](https://api.github.com/repos/DeusData/codebase-memory-mcp)
 - [代码库内存 MCP 自述文件](https://github.com/DeusData/codebase-memory-mcp/blob/main/README.md)
 
----
 
+---
 <<<<<<< HEAD
 *本文由Dibi8编辑团队独立研究撰写。我们可能会从附属链接中赚取佣金，但这并不影响我们的编辑独立性。*
 =======
@@ -539,7 +525,6 @@ docs = indexer.generate_documentation(
 >>>>>>> 0f428019e6f21508f05fc402fc21585e618ed533
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -567,25 +552,20 @@ docs = indexer.generate_documentation(
 
 ## Why This Matters
 
-Understanding 代码库内存mcp：24k+星型ai代码智能服务器 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding 代码库内存mcp：24k+星型ai代码智能服务器 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -606,8 +586,8 @@ To implement this in your workflow:
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -628,7 +608,17 @@ For the latest updates and community discussions, join our Telegram channel: htt
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

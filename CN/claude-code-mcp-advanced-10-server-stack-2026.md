@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/claude-code-mcp-advanced-10-server-stack-2026" />
 title: 'Claude Code MCP Advanced 2026: The 10-Server Production ...
 description: 'After running Claude Code with various MCP server combinations, settled on a 10-server production stack that balances power, security, and startup time. Each server, why it is in, what it does, and how to configure for solo vs team use.'
 date: 2026-05-25 00:00:00+08:00
@@ -18,10 +16,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['claude-code', mcp, configuration, production, 2026]
-aliases:
-- /posts/claude-code-mcp-advanced-10-server-stack-2026/
-faq:
-  - q: "How many MCP servers is too many?"
+aliases: - /posts/claude-code-mcp-advanced-10-server-stack-2026/
+faq: - q: "How many MCP servers is too many?"
     a: "Above 10 starts adding noticeable startup latency. Each server adds 100-300ms to Claude Code init. The 10-server stack below is the sweet spot — covers 90% of workflows without making startup feel sluggish."
   - q: "Should I use global or per-project MCP config?"
     a: "Per-project (.claude/mcp.json or .cursor/mcp.json) for project-specific servers (postgres for this app, GitHub PAT scoped to this repo). Global config (~/.claude/mcp.json) for personal universal tools (filesystem scoped to home dir, sequentialthinking)."
@@ -30,7 +26,6 @@ faq:
   - q: "What's the trade-off for using HTTP/SSE servers vs stdio?"
     a: "HTTP: persistent state, centralized credentials, depends on server uptime. stdio: zero latency, no credential exposure, dies with session. Default to stdio. Use HTTP only when (a) needing persistent state across sessions, or (b) integrating with a SaaS that has no local equivalent."
 ---
-
 {{</* resource-info */>}}
 
 # Claude Code MCP Advanced 2026: The 10-Server Production Stack
@@ -107,9 +102,7 @@ The MCP ecosystem hit 1000+ servers in 2026. Most users either install too few (
 
 ## Configuration
 
-`~/.claude/mcp.json` (global, universal tools):
-
-```json
+`~/.claude/mcp.json` (global, universal tools): ```json
 {
   "mcpServers": {
     "filesystem": {"command": "npx", "args": ["-y", "@modelcontextprotocol/server-filesystem", "/Users/me/work"]},
@@ -123,9 +116,7 @@ The MCP ecosystem hit 1000+ servers in 2026. Most users either install too few (
 }
 ```
 
-`.claude/mcp.json` (per-project, sensitive tools):
-
-```json
+`.claude/mcp.json` (per-project, sensitive tools): ```json
 {
   "mcpServers": {
     "github": {"command": "...", "env": {"GITHUB_PAT": "${PROJECT_GITHUB_PAT}"}},
@@ -153,8 +144,7 @@ Same — per-project install. Don't keep cloud creds globally accessible.
 
 Each server adds ~100-300ms. With 10 servers: ~1.5 sec total startup. Above 15 servers: noticeably sluggish.
 
-Tips:
-- Use stdio (local) over HTTP whenever both exist
+Tips: - Use stdio (local) over HTTP whenever both exist
 - Audit each server's startup time — `time npx <server>` to measure
 - Replace slow community servers with Anthropic alternatives when available
 
@@ -168,8 +158,7 @@ Tips:
 
 ## Recommended Infrastructure
 
-For self-hosted MCP servers (team-shared):
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit
+For self-hosted MCP servers (team-shared): - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit
 - **{{< aff "htstack" "footer-cta" "HTStack" >}}** — Hong Kong VPS, low-latency Asia
 
 *Affiliate links — same price, supports dibi8.com.*
@@ -180,12 +169,11 @@ For self-hosted MCP servers (team-shared):
 
 Per-project overrides matter more than global config. Keep sensitive tokens scoped to their project. The discipline of "only what this project needs" prevents credential bleed and keeps startup snappy.
 
----
 
+---
 **Related**: [MCP Servers 2026 Rankings](https://dibi8.com/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/) · [MCP Server Security Audit 2026](https://dibi8.com/resources/llm-frameworks/mcp-server-security-audit-2026-real-cases/) · [Claude Code Setup Guide](https://dibi8.com/resources/llm-frameworks/claude-code/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -213,25 +201,20 @@ Per-project overrides matter more than global config. Keep sensitive tokens scop
 
 ## Why This Matters
 
-Understanding claude code mcp advanced 2026: the 10-server production stack is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding claude code mcp advanced 2026: the 10-server production stack is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -252,8 +235,8 @@ Claude Code MCP Advanced 2026: The 10-Server Production Stack represents an impo
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -297,7 +280,17 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

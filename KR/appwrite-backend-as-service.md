@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/appwrite-backend-as-service" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/appwrite-backend-as-service" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/appwrite-backend-as-service" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/appwrite-backend-as-service" />
 title: 'Appwrite 2026: Auth, DB, Storage를 갖춘 오픈소스 Firebase 대안 — ...
 description: 'Appwrite 1.6 완벽 가이드 — 인증, 데이터베이스, 스토리지, 클라우드 함수, 실시간 구독 기능을 갖춘 셀프호스팅 오픈소스 백엔드. Docker 설치, SDK 통합, 벤치마크, 프로덕션 하드닝.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [appwrite, 'backend-as-a-service', 'firebase 대안', docker, 오픈소스, 인증, 데이터베이스, '클우드 함수', 셀프호스팅]
-aliases:
-- /kr/posts/appwrite-backend-as-service/
+aliases: - /kr/posts/appwrite-backend-as-service/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/appwrite-backend-as-service/ -->
 
 {{</* resource-info */>}}
 
@@ -43,9 +35,7 @@ Appwrite는 인증, 데이터베이스, 스토리지, 클라우드 함수, 실�
 
 ## Appwrite란 무엇인가?
 
-Appwrite는 Docker 스택으로 패키징된 셀프호스팅 백엔드 서버로 다음 기능을 제공한다:
-
-- **인증(Authentication)** — 이메일/비밀번호, OAuth2, 매직 링크, 휴태폰 OTP, 익명 로그인
+Appwrite는 Docker 스택으로 패키징된 셀프호스팅 백엔드 서버로 다음 기능을 제공한다: - **인증(Authentication)** — 이메일/비밀번호, OAuth2, 매직 링크, 휴태폰 OTP, 익명 로그인
 - **데이터베이스** — MongoDB/MariaDB 기반 문서 지향 NoSQL
 - **스토리지** — 압축, 암호화, CDN 지원 전송을 갖춘 파일 업로드
 - **클우드 함수** — 15개 이상의 런타임을 지원하는 서버리스 함수
@@ -56,9 +46,7 @@ Appwrite는 Docker 스택으로 패키징된 셀프호스팅 백엔드 서버로
 
 ## Appwrite 작동 방식: 아키텍처 개요
 
-Appwrite는 Docker로 컨테이너화된 모듈형 마이크로서비스 아키텍처를 따른다:
-
-```
+Appwrite는 Docker로 컨테이너화된 모듈형 마이크로서비스 아키텍처를 따른다: ```
 ┌─────────────────────────────────────────────────────┐
 │                    Appwrite 스택                     │
 ├─────────────┬─────────────┬─────────────┬───────────┤
@@ -73,9 +61,7 @@ Appwrite는 Docker로 컨테이너화된 모듈형 마이크로서비스 아키�
 └─────────────────────────────────────────────────────┘
 ```
 
-주요 아키텍처 결정:
-
-- **Traefik**이 리버스 프록시와 Let's Encrypt를 통한 자동 SSL을 처리
+주요 아키텍처 결정: - **Traefik**이 리버스 프록시와 Let's Encrypt를 통한 자동 SSL을 처리
 - **MariaDB**가 기본 데이터베이스 (MongoDB 선택 가능); Redis가 세션을 캐싱
 - **MinIO**가 로컬 S3 호환 객체 스토리지 제공
 - **함수 실행기(Functions executor)**가 Firecracker 마이크로VM에서 각 서버리스 호출을 격리 (v1.6+)
@@ -111,9 +97,7 @@ sed -i 's|_APP_DOMAIN=localhost|_APP_DOMAIN=api.yourdomain.com|' .env
 sed -i 's|_APP_OPTIONS_ABUSE=enabled|_APP_OPTIONS_ABUSE=enabled|' .env
 ```
 
-[DigitalOcean 드롭릿](https://m.do.co/c/eca87ac14ee0)에서 프로덕션 SSL 구성:
-
-```bash
+[DigitalOcean 드롭릿](https://m.do.co/c/eca87ac14ee0)에서 프로덕션 SSL 구성: ```bash
 # 먼저 도메인을 드롭릿 IP로 향하게 설정
 export _APP_DOMAIN=api.yourdomain.com
 export _APP_ENV=production
@@ -146,15 +130,11 @@ curl -X POST http://localhost/v1/account \
 
 ### Web / Node.js SDK
 
-SDK 설치:
-
-```bash
+SDK 설치: ```bash
 npm install appwrite@16.1.0
 ```
 
-클리언트 초기화 및 문서 생성:
-
-```javascript
+클리언트 초기화 및 문서 생성: ```javascript
 import { Client, Account, Databases, ID } from appwrite;
 
 const client = new Client()
@@ -218,8 +198,7 @@ print(f"Found {results[total]} matching documents")
 
 ```yaml
 # pubspec.yaml
-dependencies:
-  appwrite: ^15.0.0
+dependencies: appwrite: ^15.0.0
 ```
 
 ```dart
@@ -259,15 +238,12 @@ class AppwriteService {
 
 ### n8n 워크플로우 자동화
 
-Appwrite에는 공식 n8n 커뮤니티 노드가 있다. 설치:
-
-```bash
+Appwrite에는 공식 n8n 커뮤니티 노드가 있다. 설치: ```bash
 cd ~/.n8n/custom && npm install n8n-nodes-appwrite
 # n8n 재시작
 ```
 
-워크플로우에서 Appwrite 노드를 사용하여:
-1. **트리거**: 컬렉션의 새 문서 모니터링 (폴링 또는 웹훅 사용)
+워크플로우에서 Appwrite 노드를 사용하여: 1. **트리거**: 컬렉션의 새 문서 모니터링 (폴링 또는 웹훅 사용)
 2. **액션**: Stripe 결제 후 사용자 생성
 3. **쿼리**: 보고용 조건에 맞는 문서 가져오기
 
@@ -292,9 +268,7 @@ cd ~/.n8n/custom && npm install n8n-nodes-appwrite
 
 ## 클라우드 함수: 락인 없는 서버리스
 
-Appwrite 함수는 15개 이상의 런타임을 지원한다. 다음은 데이터베이스 이벤트로 트리거되는 Node.js 함수이다:
-
-```javascript
+Appwrite 함수는 15개 이상의 런타임을 지원한다. 다음은 데이터베이스 이벤트로 트리거되는 Node.js 함수이다: ```javascript
 // src/main.js
 import { Client, Databases, Messaging } from 'node-appwrite';
 
@@ -333,9 +307,7 @@ export default async ({ req, res, log, error }) => {
 };
 ```
 
-CLI를 통한 배포:
-
-```bash
+CLI를 통한 배포: ```bash
 # Appwrite CLI 설치
 npm install -g appwrite-cli@6.2.0
 
@@ -348,9 +320,7 @@ appwrite push function --id order-processor --source ./order-processor
 
 ## 벤치마크 / 실전 활용 사례
 
-[DigitalOcean 드롭릿](https://m.do.co/c/eca87ac14ee0) (4 vCPU / 8GB RAM / 월 $48)에서 Appwrite 1.6.1을 대표적인 백엔드 작업으로 테스트했다:
-
-| 작업 | Appwrite 1.6.1 | Firebase (US-Central) | Supabase (Small) |
+[DigitalOcean 드롭릿](https://m.do.co/c/eca87ac14ee0) (4 vCPU / 8GB RAM / 월 $48)에서 Appwrite 1.6.1을 대표적인 백엔드 작업으로 테스트했다: | 작업 | Appwrite 1.6.1 | Firebase (US-Central) | Supabase (Small) |
 |------|---------------|----------------------|------------------|
 | 인증 가입 (이메일) | **~45ms** | ~120ms | ~80ms |
 | DB 문서 생성 | **~18ms** | ~35ms | ~25ms |
@@ -370,11 +340,9 @@ appwrite push function --id order-processor --source ./order-processor
 
 ```bash
 # docker-compose.yml의 services 아래에 추가
-redis:
-  image: redis:7-alpine
+redis: image: redis:7-alpine
   restart: unless-stopped
-  volumes:
-    - redis-data:/data
+  volumes: - redis-data:/data
 
 # .env에 추가
 _APP_REDIS_HOST=redis
@@ -424,14 +392,10 @@ await databases.createDocument(
 
 ### 4. Prometheus 모니터링
 
-Appwrite는 Prometheus 수집을 위한 `/_metrics` 엔드포인트를 노출한다:
-
-```yaml
+Appwrite는 Prometheus 수집을 위한 `/_metrics` 엔드포인트를 노출한다: ```yaml
 # prometheus.yml
-scrape_configs:
-  - job_name: appwrite
-    static_configs:
-      - targets: ['appwrite:80']
+scrape_configs: - job_name: appwrite
+    static_configs: - targets: ['appwrite:80']
     metrics_path: '/_metrics'
 ```
 
@@ -498,9 +462,7 @@ Appwrite는 인스턴스당 고유한 데이터베이스, 스토리지, 인증�
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -530,7 +492,6 @@ Appwrite 1.6은 2026년에 사용 가능한 가장 성숙한 Firebase 오픈소�
 *dibi8 개발자 커뮤니티 참여: [English](https://t.me/dibi8en) | [Chinese](https://t.me/dibi8zh) | [Korean](https://t.me/dibi8ko) | [Vietnamese](https://t.me/dibi8vn)*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/flowise-ai-workflow-builder-lowcode" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/flowise-ai-workflow-builder-lowcode" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/flowise-ai-workflow-builder-lowcode" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/flowise-ai-workflow-builder-lowcode" />
 title: 'Flowise 2026 완벽 가이드: LangChain Agent를 시각적으로 배포하는 로우코드 AI...
 description: 'Flowise 2026 완벽 가이드 — 100개 이상의 통합을 갖춘 오픈소스 로우코드 AI 워크플로우 빌더. 시각적 LangChain 에이전트 생성, Docker 배포, API 엔드포인트 및 실제 벤치마크.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [flowise, langchain, 로우코드, ai워크플로우, docker, 셀프호스팅, 에이전트빌더, 노코드, 오픈소스, 챗봇]
-aliases:
-- /kr/posts/flowise-ai-workflow-builder-lowcode/
+aliases: - /kr/posts/flowise-ai-workflow-builder-lowcode/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/flowise-ai-workflow-builder-lowcode/ -->
 
 {{</* resource-info */>}}
 
@@ -49,9 +41,7 @@ aliases:
 
 ## Flowise 작동 방식: 아키텍처 및 핵심 개념
 
-Flowise의 아키텍처는 세 개의 계층으로 구성됩니다:
-
-```yaml
+Flowise의 아키텍처는 세 개의 계층으로 구성됩니다: ```yaml
 ┌─────────────────────────────────────────────┐
 │           프론트엔드 (React + Flow Editor)  │
 │           - 드래그 앤 드롭 캔버스           │
@@ -109,13 +99,9 @@ mkdir -p ~/flowise && cd ~/flowise
 
 # docker-compose.yml 생성
 cat > docker-compose.yml << EOF
-services:
-  flowise:
-    image: flowiseai/flowise:2.2.0
-    ports:
-      - "3000:3000"
-    environment:
-      - PORT=3000
+services: flowise: image: flowiseai/flowise:2.2.0
+    ports: - "3000:3000"
+    environment: - PORT=3000
       - FLOWISE_USERNAME=admin
       - FLOWISE_PASSWORD=your-secure-password
       - DATABASE_TYPE=sqlite
@@ -124,13 +110,10 @@ services:
       - SECRETKEY_PATH=/root/.flowise
       - LOG_PATH=/root/.flowise/logs
       - BLOB_STORAGE_PATH=/root/.flowise/storage
-    volumes:
-      - flowise_data:/root/.flowise
+    volumes: - flowise_data:/root/.flowise
     restart: unless-stopped
 
-volumes:
-  flowise_data:
-EOF
+volumes: flowise_data: EOF
 
 # 실행
 docker compose up -d
@@ -145,22 +128,15 @@ curl -s http://localhost:3000/api/v1/health | jq .
 
 ```yaml
 # docker-compose.prod.yml
-services:
-  postgres:
-    image: postgres:16-alpine
-    environment:
-      POSTGRES_USER: flowise
+services: postgres: image: postgres:16-alpine
+    environment: POSTGRES_USER: flowise
       POSTGRES_PASSWORD: strong-db-password
       POSTGRES_DB: flowise
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+    volumes: - postgres_data:/var/lib/postgresql/data
 
-  flowise:
-    image: flowiseai/flowise:2.2.0
-    ports:
-      - "3000:3000"
-    environment:
-      - DATABASE_TYPE=postgres
+  flowise: image: flowiseai/flowise:2.2.0
+    ports: - "3000:3000"
+    environment: - DATABASE_TYPE=postgres
       - DATABASE_HOST=postgres
       - DATABASE_PORT=5432
       - DATABASE_USER=flowise
@@ -168,15 +144,10 @@ services:
       - DATABASE_NAME=flowise
       - FLOWISE_USERNAME=admin
       - FLOWISE_PASSWORD=${FLOWISE_PASSWORD}
-    depends_on:
-      - postgres
-    volumes:
-      - flowise_storage:/root/.flowise
+    depends_on: - postgres
+    volumes: - flowise_storage:/root/.flowise
 
-volumes:
-  postgres_data:
-  flowise_storage:
-```
+volumes: postgres_data: flowise_storage: ```
 
 ### 환경 변수 참조
 
@@ -212,8 +183,7 @@ Flowise를 `http://localhost:3000`에서 열기 → **챗플로우** → **새�
 ### 2단계: 벡터 저장소 검색기 추가
 
 ```bash
-# 왼쪽 패널에서 이러한 노드를 캔버스로 드래그:
-# 1. 벡터 저장소 → "인메모리 벡터 저장소" (테스트용)
+# 왼쪽 패널에서 이러한 노드를 캔버스로 드래그: # 1. 벡터 저장소 → "인메모리 벡터 저장소" (테스트용)
 #    또는 "Chroma" / "Qdrant" / "Pinecone" (프로덕션용)
 # 2. 문서 로더 → "PDF 파일" 또는 "일반 텍스트"
 # 3. 임베딩 → "OpenAI 임베딩" 또는 "Ollama 임베딩"
@@ -223,11 +193,9 @@ Flowise를 `http://localhost:3000`에서 열기 → **챗플로우** → **새�
 ### 3단계: 문서 수집 체인 연결
 
 ```
-# 이 순서대로 노드를 연결:
-# [PDF 파일] → [재귀 문자 텍스트 분할기] → [OpenAI 임베딩] → [벡터 저장소]
+# 이 순서대로 노드를 연결: # [PDF 파일] → [재귀 문자 텍스트 분할기] → [OpenAI 임베딩] → [벡터 저장소]
 #
-# 각 노드의 구성:
-# - PDF 파일: 문서 업로드
+# 각 노드의 구성: # - PDF 파일: 문서 업로드
 # - 텍스트 분할기: chunkSize=1000, chunkOverlap=200
 # - 임베딩: model=text-embedding-3-small
 # - 벡터 저장소: collectionName=my-docs
@@ -236,15 +204,13 @@ Flowise를 `http://localhost:3000`에서 열기 → **챗플로우** → **새�
 ### 4단계: 대화형 RAG 체인 추가
 
 ```
-# 쿼리 측면에 이러한 노드를 추가:
-# [채팅 프롬프트 템플릿] → [OpenAI 채팅 모델] → [출력 파서]
+# 쿼리 측면에 이러한 노드를 추가: # [채팅 프롬프트 템플릿] → [OpenAI 채팅 모델] → [출력 파서]
 #         ↑
 # [벡터 저장소 검색기] ← [벡터 저장소 (위와 동일)]
 #         ↑
 # [대화형 검색 QA 체인]
 #
-# 연결:
-# - 벡터 저장소 출력 → 벡터 저장소 검색기 입력
+# 연결: # - 벡터 저장소 출력 → 벡터 저장소 검색기 입력
 # - 검색기 출력 → QA 체인의 "source_documents" 입력
 # - QA 체인 출력 → 채팅 모델 입력
 ```
@@ -256,11 +222,9 @@ Flowise를 `http://localhost:3000`에서 열기 → **챗플로우** → **새�
 SYSTEM_PROMPT = """제공된 컨텍스트를 기반으로 질문에 답변하는 유용한 어시스턴트입니다.
 컨텍스트에 답이 없으면 "해당 질문에 답변할 충분한 정보가 없습니다."라고 말하세요.
 
-컨텍스트:
-{context}
+컨텍스트: {context}
 
-질문:
-{question}
+질문: {question}
 
 답변:"""
 
@@ -278,8 +242,7 @@ SYSTEM_PROMPT = """제공된 컨텍스트를 기반으로 질문에 답변하는
 # 어떤 청크가 검색되었는지 본려면 "사용 컨텍스트" 탭 확인
 
 # API로 배포: "API 엔드포인트" 버튼 클릭
-# curl 명령 복사:
-curl -X POST http://localhost:3000/api/v1/prediction/your-chatflow-id \
+# curl 명령 복사: curl -X POST http://localhost:3000/api/v1/prediction/your-chatflow-id \
   -H "Content-Type: application/json" \
   -d '{"question": "이 문서의 주요 주제는 무엇입니까?"}'
 ```
@@ -291,8 +254,7 @@ Flowise v2.2.0의 **에이전트플로우** 기능을 사용하면 오케스트�
 ### 연구 에이전트 팀 구축
 
 ```
-# 3-에이전트 연구 팀의 캔버스 레이아웃:
-#
+# 3-에이전트 연구 팀의 캔버스 레이아웃: #
 #                    ┌─────────────────┐
 #                    │  Supervisor     │
 #                    │  (오케스트레이터)│
@@ -312,23 +274,19 @@ Flowise v2.2.0의 **에이전트플로우** 기능을 사용하면 오케스트�
 ### 노드 구성
 
 ```bash
-# Supervisor 에이전트 노드:
-# - LLM: gpt-4.1-nano
+# Supervisor 에이전트 노드: # - LLM: gpt-4.1-nano
 # - 타입: supervisor
 # - 시스템 프롬프트: "당신은 연구 코디네이터입니다. 작업을 적절한 전문가 에이전트로 라우팅하세요."
 
-# 웹 검색 에이전트 노드:
-# - LLM: gpt-4.1-nano
+# 웹 검색 에이전트 노드: # - LLM: gpt-4.1-nano
 # - 도구: DuckDuckGo 검색, 웹사이트 스크래퍼
 # - 시스템 프롬프트: "현재 정보를 위해 웹을 검색하세요."
 
-# 코드 실행 에이전트 노드:
-# - LLM: gpt-4.1-nano
+# 코드 실행 에이전트 노드: # - LLM: gpt-4.1-nano
 # - 도구: Python REPL 도구
 # - 시스템 프롬프트: "데이터 분석을 위해 Python 코드를 작성하고 실행하세요."
 
-# 문서 분석 에이전트 노드:
-# - LLM: gpt-4.1-nano
+# 문서 분석 에이전트 노드: # - LLM: gpt-4.1-nano
 # - 도구: 벡터 저장소 검색기
 # - 시스템 프롬프트: "제공된 문서에서 관련 정보를 분석하세요."
 ```
@@ -346,8 +304,7 @@ curl -X POST http://localhost:3000/api/v1/prediction/research-agent-team \
     }
   }'
 
-# 응답에 각 하위 작업을 처리한 에이전트가 포함됨:
-# {
+# 응답에 각 하위 작업을 처리한 에이전트가 포함됨: # {
 #   "text": "분석을 기반으로...",
 #   "agentSteps": [
 #     {"agent": "document_analyst", "action": "판매 데이터 검색"},
@@ -359,9 +316,7 @@ curl -X POST http://localhost:3000/api/v1/prediction/research-agent-team \
 
 ## 100개 이상의 도구 및 서비스와의 통합
 
-Flowise는 다음 카테고리에서 **100개 이상의 통합**을 지원합니다:
-
-| 카테고리 | 인기 통합 | 수량 |
+Flowise는 다음 카테고리에서 **100개 이상의 통합**을 지원합니다: | 카테고리 | 인기 통합 | 수량 |
 |---|---|---|
 | **LLM 제공자** | OpenAI, Anthropic, Google, Ollama, Groq, Mistral, Cohere | 15+ |
 | **벡터 저장소** | Chroma, Qdrant, Pinecone, Weaviate, LanceDB, Milvus, Redis | 10+ |
@@ -413,9 +368,7 @@ module.exports = { JiraTicketTool };
 
 ### 지연 시간 벤치마크 (Flowise v2.2.0)
 
-OpenAI API를 사용한 로컬 Docker에서 **Intel i7-13700K + 32 GB RAM**으로 테스트:
-
-| 워크플로우 타입 | 노드 수 | 평균 지연 시간 | 95번째 백분위수 | 토큰/초 |
+OpenAI API를 사용한 로컬 Docker에서 **Intel i7-13700K + 32 GB RAM**으로 테스트: | 워크플로우 타입 | 노드 수 | 평균 지연 시간 | 95번째 백분위수 | 토큰/초 |
 |---|---|---|---|---|
 | 단순 LLM 호출 | 3 | 0.8초 | 1.2초 | 142 |
 | RAG (1 문서, 10페이지) | 7 | 2.1초 | 3.4초 | 98 |
@@ -453,9 +406,7 @@ OpenAI API를 사용한 로컬 Docker에서 **Intel i7-13700K + 32 GB RAM**으�
 ### 채팅 위젯으로 Flowise 임베딩
 
 ```html
-<!-- 모든 웹페이지에 추가 -->
-<script type="module">
-  import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed@2.2.0/dist/web.js";
+import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed@2.2.0/dist/web.js";
   Chatbot.init({
     chatflowid: "your-chatflow-id",
     apiHost: "https://flowise.yourdomain.com",
@@ -487,8 +438,7 @@ curl -X POST http://localhost:3000/api/v1/prediction/your-chatflow-id \
   -H "Content-Type: application/json" \
   -d '{"question": "Hello"}'
 
-# 프로덕션의 경우 Nginx 속도 제한 추가:
-# limit_req_zone $binary_remote_addr zone=flowise:10m rate=10r/s;
+# 프로덕션의 경우 Nginx 속도 제한 추가: # limit_req_zone $binary_remote_addr zone=flowise:10m rate=10r/s;
 # limit_req zone=flowise burst=20 nodelay;
 ```
 
@@ -537,28 +487,18 @@ find /backups/flowise -type d -mtime +14 -exec rm -rf {} +
 
 ```yaml
 # docker-compose.monitoring.yml
-services:
-  prometheus:
-    image: prom/prometheus:v3.0
-    ports:
-      - "9090:9090"
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+services: prometheus: image: prom/prometheus:v3.0
+    ports: - "9090:9090"
+    volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
 
-  grafana:
-    image: grafana/grafana:11.0
-    ports:
-      - "3001:3000"
-    volumes:
-      - grafana_data:/var/lib/grafana
+  grafana: image: grafana/grafana:11.0
+    ports: - "3001:3000"
+    volumes: - grafana_data:/var/lib/grafana
 
-  flowise:
-    image: flowiseai/flowise:2.2.0
-    environment:
-      - METRICS_ENABLED=true
+  flowise: image: flowiseai/flowise:2.2.0
+    environment: - METRICS_ENABLED=true
       - METRICS_PORT=9091
-    ports:
-      - "3000:3000"
+    ports: - "3000:3000"
       - "9091:9091"
 ```
 
@@ -615,8 +555,7 @@ API 키는 `FLOWISE_SECRETKEY_OVERWRITE` 환경 변수에서 파생된 키로 AE
 
 ### Flowise v1.x에서 v2.x로 어떻게 마이그레이션하나요?
 
-v1.x에서 v2.2.0으로 업그레이드하려면:
-1. JSON 날추를 통해 모든 챗플로우 백업
+v1.x에서 v2.2.0으로 업그레이드하려면: 1. JSON 날추를 통해 모든 챗플로우 백업
 2. 새 Docker 이미지 가져오기: `flowiseai/flowise:2.2.0`
 3. 첫 시작 시 데이터베이스 마이그레이션 자동 실행
 4. 모든 더 이상 사용되지 않는 노드 확인 및 재구성
@@ -659,9 +598,7 @@ AI 워크플로우 빌더를 위한 Telegram 그룹에 참여하세요: **[@dibi
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -671,7 +608,6 @@ AI 워크플로우 빌더를 위한 Telegram 그룹에 참여하세요: **[@dibi
 이 문서에는 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 및 [AppSumo](https://appsumo.com/s/106nifb/)의 제휴 링크가 포함되어 있습니다. 이 링크를 통해 가입하면 추가 비용 없이 커미션을 받습니다. 우리는 자체 배포에 활발히 사용하는 서비스만 추천합니다. 모든 벤치마크와 의견은 독립적으로 제작되었으며 어떤 제휴 파트너십의 영향도 받지 않았습니다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

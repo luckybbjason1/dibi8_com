@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/jesse-ai-trading-framework" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/jesse-ai-trading-framework" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/jesse-ai-trading-framework" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/jesse-ai-trading-framework" />
 title: 'Jesse: Framework Giao Dịch Crypto Python Nâng Cao Với 30...
 description: 'Hướng dẫn sản xuất về framework giao dịch AI Jesse — cài đặt, backtest với 30+ chỉ báo, xây dựng chiến lược tùy chỉnh và triển khai bot giao dịch crypto trực tiếp bằng Python.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: [jesse, 'giao dịch crypto', python, backtest, 'chỉ báo kỹ thuật', 'giao dịch thuật toán', 'ai trading', 'giao dịch định lượng']
-aliases:
-- /vi/posts/jesse-ai-trading-framework/
+aliases: - /vi/posts/jesse-ai-trading-framework/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/jesse-ai-trading-framework/ -->
 
 {{</* resource-info */>}}
 
@@ -47,9 +39,7 @@ Trong hướng dẫn này, bạn sẽ cài đặt Jesse trong vòng 5 phút, vi�
 
 Jesse là một **framework giao dịch crypto Python nâng cao** tập trung vào phát triển chiến lược định lượng, backtesting và thực thi trực tiếp. Khác với các thư viện wrapper nhẹ, Jesse cung cấp pipeline đầy đủ từ nghiên cứu đến production: thu thập dữ liệu, tính chỉ báo, logic chiến lược, theo dõi danh mục và thực thi lệnh — tất cả trong một kiến trúc thống nhất và có thể mở rộng.
 
-Các dữ kiện chính tính đến tháng 5/2026:
-
-- **GitHub stars**: 6,200+
+Các dữ kiện chính tính đến tháng 5/2026: - **GitHub stars**: 6,200+
 - **Giấy phép**: MIT
 - **Phiên bản ổn định mới nhất**: v1.7.2 (phát hành 2026-04-28)
 - **Python hỗ trợ**: 3.10–3.12
@@ -77,9 +67,7 @@ Engine backtest của Jesse mô phỏng giao dịch bằng dữ liệu lịch s�
 ### 5. Mô-đun Giao dịch trực tiếp
 Mô-đun trực tiếp kết nối với API sàn giao dịch qua WebSocket để nhận dữ liệu giá real-time và REST để thực thi lệnh. Nó bao gồm hệ thống thông báo (Telegram, Discord, Slack), trình theo dõi danh mục và xử lý kết nối lại tự động.
 
-Sơ đồ luồng dữ liệu cấp cao:
-
-```
+Sơ đồ luồng dữ liệu cấp cao: ```
 Sàn giao dịch API → Mô-đun Dữ liệu → Logic chiến lược → Quản lý rủi ro → Thực thi lệnh → Sàn giao dịch API
                                     ↑
                               Mô-đun Chỉ báo
@@ -109,9 +97,7 @@ mkdir my-trading-bot && cd my-trading-bot
 jesse init
 ```
 
-Sau khi chạy `jesse init`, cấu trúc dự án của bạn như sau:
-
-```
+Sau khi chạy `jesse init`, cấu trúc dự án của bạn như sau: ```
 my-trading-bot/
 ├── config.py          # API key sàn, cơ sở dữ liệu, thông báo
 ├── routes.py          # Cặp giao dịch và khung thờ gian
@@ -123,9 +109,7 @@ my-trading-bot/
 
 ### Bước 3: Cấu hình cơ sở dữ liệu
 
-Chỉnh sửa `config.py` để thiết lập kết nối cơ sở dữ liệu:
-
-```python
+Chỉnh sửa `config.py` để thiết lập kết nối cơ sở dữ liệu: ```python
 # config.py — cấu hình cơ sở dữ liệu
 DATABASES = {
     default: {
@@ -139,9 +123,7 @@ DATABASES = {
 }
 ```
 
-Dùng SQLite để test nhanh:
-
-```python
+Dùng SQLite để test nhanh: ```python
 DATABASES = {
     default: {
         driver: sqlite,
@@ -152,9 +134,7 @@ DATABASES = {
 
 ### Bước 4: Định nghĩa các route giao dịch
 
-Chỉnh sửa `routes.py` để chỉ định cặp giao dịch và khung thờ gian:
-
-```python
+Chỉnh sửa `routes.py` để chỉ định cặp giao dịch và khung thờ gian: ```python
 # routes.py — định nghĩa cặp giao dịch
 from jesse.enums import timeframes
 
@@ -177,38 +157,28 @@ jesse import-candles Binance BTC-USDT 2025-01-01
 
 ### Bước 6: Tạo chiến lược đầu tiên
 
-Tạo `strategies/SimpleMA/__init__.py`:
-
-```python
+Tạo `strategies/SimpleMA/__init__.py`: ```python
 # strategies/SimpleMA/__init__.py
 from jesse.strategies import Strategy
 import jesse.indicators as ta
 
-class SimpleMA(Strategy):
-    def __init__(self):
-        super().__init__()
+class SimpleMA(Strategy): def __init__(self): super().__init__()
         self.period = 20
 
-    def should_long(self) -> bool:
-        # Vào lệnh long khi giá cắt lên trên SMA 20 chu kỳ
+    def should_long(self) -> bool: # Vào lệnh long khi giá cắt lên trên SMA 20 chu kỳ
         sma = ta.sma(self.candles, self.period)
         return self.close > sma and self.close[-2] <= sma[-2]
 
-    def should_short(self) -> bool:
-        return False  # Không short trong ví dụ đơn giản này
+    def should_short(self) -> bool: return False  # Không short trong ví dụ đơn giản này
 
-    def go_long(self):
-        qty = self.capital / self.close
+    def go_long(self): qty = self.capital / self.close
         self.buy = qty, self.close
 
-    def go_short(self):
-        pass
+    def go_short(self): pass
 
-    def update_position(self):
-        # Thoát khi giá rớt xuống dưới SMA
+    def update_position(self): # Thoát khi giá rớt xuống dưới SMA
         sma = ta.sma(self.candles, self.period)
-        if self.close < sma:
-            self.liquidate()
+        if self.close < sma: self.liquidate()
 ```
 
 ### Bước 7: Chạy backtest
@@ -218,9 +188,7 @@ class SimpleMA(Strategy):
 jesse backtest 2025-01-01 2025-12-31
 ```
 
-Bạn sẽ thấy kết quả như sau:
-
-```
+Bạn sẽ thấy kết quả như sau: ```
 Loading candles...
 Executing backtest...
 =====================================
@@ -243,13 +211,10 @@ Jesse tích hợp mượt mà với hệ sinh thái giao dịch định lượng
 import numpy as np
 import jesse.indicators as ta
 
-def custom_zscore(candles, period=20):
-    closes = np.array([c[2] for c in candles[-period:]])
+def custom_zscore(candles, period=20): closes = np.array([c[2] for c in candles[-period:]])
     return (closes[-1] - closes.mean()) / closes.std()
 
-class ZScoreStrategy(Strategy):
-    def should_long(self):
-        z = custom_zscore(self.candles, 20)
+class ZScoreStrategy(Strategy): def should_long(self): z = custom_zscore(self.candles, 20)
         return z < -2.0  # Mua khi giá thấp hơn trung bình 2 độ lệch chuẩn
 ```
 
@@ -260,15 +225,12 @@ class ZScoreStrategy(Strategy):
 from sklearn.ensemble import RandomForestClassifier
 import numpy as np
 
-class MLStrategy(Strategy):
-    def __init__(self):
-        super().__init__()
+class MLStrategy(Strategy): def __init__(self): super().__init__()
         self.model = RandomForestClassifier(n_estimators=100)
         self.features = []
         self.labels = []
 
-    def should_long(self):
-        rsi = ta.rsi(self.candles, 14)
+    def should_long(self): rsi = ta.rsi(self.candles, 14)
         sma20 = ta.sma(self.candles, 20)
         sma50 = ta.sma(self.candles, 50)
         atr = ta.atr(self.candles, 14)
@@ -308,30 +270,20 @@ CMD ["jesse", "run"]
 ```yaml
 # docker-compose.yml
 version: '3.8'
-services:
-  postgres:
-    image: postgres:16
-    environment:
-      POSTGRES_DB: jesse_db
+services: postgres: image: postgres:16
+    environment: POSTGRES_DB: jesse_db
       POSTGRES_USER: jesse_user
       POSTGRES_PASSWORD: your_password
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+    volumes: - pgdata:/var/lib/postgresql/data
 
-  jesse:
-    build: .
-    depends_on:
-      - postgres
-    environment:
-      DATABASE_URL: postgres://jesse_user:your_password@postgres:5432/jesse_db
-    volumes:
-      - ./strategies:/app/strategies
+  jesse: build: .
+    depends_on: - postgres
+    environment: DATABASE_URL: postgres://jesse_user:your_password@postgres:5432/jesse_db
+    volumes: - ./strategies:/app/strategies
       - ./config.py:/app/config.py
       - ./routes.py:/app/routes.py
 
-volumes:
-  pgdata:
-```
+volumes: pgdata: ```
 
 ### 5. Giám sát Prometheus & Grafana
 
@@ -375,9 +327,7 @@ Phần cứng: AMD Ryzen 7 5800X, 32GB RAM, SSD. PostgreSQL 16.
 
 ### Nghiên cứu điển hình: Quỹ cộng đồng (Ẩn danh, 2024–2025)
 
-Một nhóm quant nhỏ báo cáo chạy **8 chiến lược trên 4 cặp** (BTC, ETH, SOL, AVAX) bằng Jesse với kết quả hàng năm:
-
-- **Vốn ban đầu**: $50,000
+Một nhóm quant nhỏ báo cáo chạy **8 chiến lược trên 4 cặp** (BTC, ETH, SOL, AVAX) bằng Jesse với kết quả hàng năm: - **Vốn ban đầu**: $50,000
 - **Vốn cuối kỳ**: $71,400
 - **Tổng lợi nhuận**: **42.8%**
 - **Drawdown tối đa**: -11.3%
@@ -404,13 +354,10 @@ RISK_MANAGEMENT = {
 
 ```python
 # Chiến lược đa khung thờ gian
-class MultiTFStrategy(Strategy):
-    def prepare(self):
-        # Lấy nến 4h để xác định xu hướng
+class MultiTFStrategy(Strategy): def prepare(self): # Lấy nến 4h để xác định xu hướng
         self.h4_candles = self.get_candles(Binance, 'BTC-USDT', 4h)
 
-    def should_long(self):
-        h4_sma50 = ta.sma(self.h4_candles, 50)
+    def should_long(self): h4_sma50 = ta.sma(self.h4_candles, 50)
         h1_sma20 = ta.sma(self.candles, 20)
 
         # Chỉ long khi xu hướng 4h tăng và 1h có động lượng
@@ -421,9 +368,7 @@ class MultiTFStrategy(Strategy):
 
 ```python
 # Logic thoát lệnh nâng cao
-class RiskManagedStrategy(Strategy):
-    def go_long(self):
-        entry = self.close
+class RiskManagedStrategy(Strategy): def go_long(self): entry = self.close
         stop_loss = entry * 0.97       # Stop 3%
         take_profit = entry * 1.06     # Target 6%
         qty = (self.capital * 0.02) / (entry - stop_loss)
@@ -474,9 +419,7 @@ tail -f storage/logs/live-trading.log
 
 ## Hạn chế: Đánh giá trung thực
 
-Không có framework nào là hoàn hảo. Dưới đây là các hạn chế thực sự của Jesse tính đến v1.7.2:
-
-1. **Hỗ trợ sàn hạn chế**: Chỉ 4 sàn (Binance, Bitfinex, Coinbase Pro, Bybit) so với 10+ của Freqtrade. Nếu cần các sàn nhỏ hơn, bạn sẽ phải viết driver tùy chỉnh.
+Không có framework nào là hoàn hảo. Dưới đây là các hạn chế thực sự của Jesse tính đến v1.7.2: 1. **Hỗ trợ sàn hạn chế**: Chỉ 4 sàn (Binance, Bitfinex, Coinbase Pro, Bybit) so với 10+ của Freqtrade. Nếu cần các sàn nhỏ hơn, bạn sẽ phải viết driver tùy chỉnh.
 
 2. **Cộng đồng nhỏ hơn**: Với 6,200 stars, cộng đồng Jesse xấp xỉ bằng 1/5 quy mô của Freqtrade. Tìm plugin hoặc template chiến lược có sẵn đòi hỏi nhiều nỗ lực hơn.
 
@@ -510,9 +453,7 @@ Không. Jesse được thiết kế cho swing và position trading trên khung t
 
 ### Làm thế nào để bảo mật API key trong production?
 
-Không bao giờ commit API key vào version control. Dùng biến môi trường:
-
-```python
+Không bao giờ commit API key vào version control. Dùng biến môi trường: ```python
 # config.py — xử lý API key an toàn
 import os
 
@@ -541,9 +482,7 @@ Sẵn sàng bắt đầu? Lấy [API key Binance](https://www.bsmkweb.cc/registe
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -562,7 +501,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 *Tiết lộ liên kết liên kết: Bài viết này chứa liên kết liên kết đến Binance, OKX, Minara, DigitalOcean và HTStack. Nếu bạn đăng ký qua các liên kết này, dibi8.com có thể nhận được hoa hồng mà không phát sinh thêm chi phí cho bạn. Chúng tôi chỉ giới thiệu các công cụ đã kiểm tra hoặc nghiên cứu kỹ lưỡng.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

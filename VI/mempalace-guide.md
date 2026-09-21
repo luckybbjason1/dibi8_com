@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mempalace-guide" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mempalace-guide" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mempalace-guide" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mempalace-guide" />
 title: "Thêm Trí Nhớ Cho Claude Code: Tích Hợp MemPalace Đạt 96....
 description: "Thêm Trí Nhớ Cho Claude Code: Tích Hợp MemPalace Đạt 96.6% Recall (Hướng Dẫn 2026)". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - AI
+tech_stack: - AI
 application_domain: "Ai Tools"
 source_version: ""
 licensing_model: "Open Source"
@@ -24,10 +18,8 @@ maintainer: ""
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases:
-- /vi/posts/mempalace-guide/
-faqs:
-  - q: 'Làm thế nào để thêm bộ nhớ lâu dài vào Claude Code?'
+aliases: - /vi/posts/mempalace-guide/
+faqs: - q: 'Làm thế nào để thêm bộ nhớ lâu dài vào Claude Code?'
     a: 'Chạy MemPalace cục bộ và kết nối endpoint MCP của nó với Claude Code bằng cách cấu hình claude_code_config.json trỏ đến http://localhost:8787/mcp với quyền đọc/ghi. Sau đó Claude sẽ truy vấn MemPalace như một cơ sở dữ liệu vector ngữ nghĩa bất cứ khi nào cần ngữ cảnh lịch sử.'
   - q: 'Bộ nhớ của Claude Code có được duy trì qua các phiên làm việc và sau khi khởi động lại không?'
     a: 'Có. Vì MemPalace ghi dữ liệu vào instance SQLite/ChromaDB trên đĩa cục bộ, bộ nhớ của AI được duy trì qua các lần khởi động lại, sự cố và các phiên terminal hoàn toàn mới, thay vì bị mất khi đóng terminal.'
@@ -39,8 +31,6 @@ faqs:
     a: 'Có. MemPalace là mã nguồn mở theo giấy phép MIT và hoàn toàn miễn phí $0, không có phí API hay phí đăng ký, khác với Pinecone vốn tính phí theo gói đăng ký hoặc theo mức sử dụng.'
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/mempalace-guide/ -->
-
 {</* resource-info */>}
 
 # Thêm Trí Nhớ Cho Claude Code: Tích Hợp MemPalace Đạt 96.6% Recall (Hướng Dẫn 2026)
@@ -51,9 +41,7 @@ Trong bài phân tích chuyên sâu này, chúng ta sẽ xem cách cắm cổng 
 
 ## Bảng So Sánh Benchmark: Giải Pháp Trí Nhớ Cho Claude Code
 
-Nếu bạn muốn con AI nhớ lịch sử dự án, có vài đường để đi. Dưới đây là lý do vì sao MemPalace đè bẹp các đối thủ trong năm 2026:
-
-| Chỉ số / Framework | MemPalace (Chạy Local MCP) | Pinecone (Chạy Cloud) | Claude Code Cởi Truồng |
+Nếu bạn muốn con AI nhớ lịch sử dự án, có vài đường để đi. Dưới đây là lý do vì sao MemPalace đè bẹp các đối thủ trong năm 2026: | Chỉ số / Framework | MemPalace (Chạy Local MCP) | Pinecone (Chạy Cloud) | Claude Code Cởi Truồng |
 | :--- | :--- | :--- | :--- |
 | **Tỷ Lệ Recall** | **96.6%** | 81.2% | 0% (Tắt là quên) |
 | **Bảo Mật Source Code** | **100% Local (ChromaDB)** | Đẩy dữ liệu lên máy chủ | N/A |
@@ -77,9 +65,7 @@ A: Vì MemPalace ghi thẳng dữ liệu xuống đĩa cứng bằng SQLite/Chro
 
 ## Công Cụ Đề Xuất
 
-Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
+Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
 - **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Proxy Anthropic Claude / OpenAI / DeepSeek API. Hầu hết AI tool ở trên (chatbot, code gen, translation, search, v.v.) cần LLM API key — proxy này cho access ổn định top model với ~30% giá chính thức.
 - **{{< aff "hostinger" "footer-cta-legacy" "Hostinger" >}}** — Lựa chọn VPS giá tốt cho thị trường Việt Nam.
 
@@ -87,7 +73,6 @@ Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -115,25 +100,20 @@ Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
 
 ## Why This Matters
 
-Understanding thêm trí nhớ cho claude code: tích hợp mempalace đạt 96.6% recall (hướng dẫn 2026) is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding thêm trí nhớ cho claude code: tích hợp mempalace đạt 96.6% recall (hướng dẫn 2026) is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

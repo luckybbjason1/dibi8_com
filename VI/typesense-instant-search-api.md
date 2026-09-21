@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/typesense-instant-search-api" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/typesense-instant-search-api" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/typesense-instant-search-api" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/typesense-instant-search-api" />
 title: 'Typesense 2026: API Tìm Kiếm Tức Thì Mã Nguồn Mở Xử Lý 1...
 description: 'Thiết lập Typesense 27.1 cho tìm kiếm tức thì với khả năng chịu lỗi chính tả, thởi gian phản hồi dưới 50ms. Hướng dẫn triển khai Docker, tích hợp SDK, và đánh giá hiệu suất production.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: []
-aliases:
-- /vi/posts/typesense-instant-search-api/
+aliases: - /vi/posts/typesense-instant-search-api/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/typesense-instant-search-api/ -->
 
 {{</* resource-info */>}}
 
@@ -45,9 +37,7 @@ Hãy làm quen với **Typesense** — một công cụ tìm kiếm mã nguồn 
 
 **Typesense** là một công cụ tìm kiếm mã nguồn mở, chịu lỗi chính tả, được tối ưu hóa cho trải nghiệm tìm kiếm tức thì. Khác với Elasticsearch — một kho lưu trữ tài liệu đa năng, Typesense tập trung độc quyền vào việc cung cấp **kết quả tìm kiếm có độ trễ thấp, được tinh chỉnh về mức độ liên quan** với cấu hình tối thiểu. Nó cung cấp API RESTful sạch sẽ và duy trì SDK chính thức cho 8+ ngôn ngữ lập trình.
 
-Các sự kiện chính:
-
-| Thuộc tính | Chi tiết |
+Các sự kiện chính: | Thuộc tính | Chi tiết |
 |---|---|
 | **Phiên bản mới nhất** | 27.1 (Tháng 4/2026) |
 | **GitHub Stars** | 23.200+ |
@@ -72,9 +62,7 @@ Typesense sử dụng **khoảng cách Levenshtein** để tự động xử lý
 
 ### Tìm Kiếm Phân Loại, Lọc, và Địa Lý
 
-Typesense hỗ trợ:
-
-- **Tìm kiếm phân loại (Faceted search)** — tổng hợp đếm động theo danh mục
+Typesense hỗ trợ: - **Tìm kiếm phân loại (Faceted search)** — tổng hợp đếm động theo danh mục
 - **Bộ lọc phạm vi số** — `price:>=10&&<=100`
 - **Tìm kiếm địa lý** — tìm kết quả trong phạm vi X km từ vĩ độ/kinh độ
 - **Sắp xếp** — theo mức độ liên quan, trường số, hoặc khoảng cách địa lý
@@ -111,18 +99,14 @@ docker run -d \
   --enable-cors
 ```
 
-Xác minh container đang chạy:
-
-```bash
+Xác minh container đang chạy: ```bash
 curl -s "http://localhost:8108/health" | jq .
 # Kỳ vọng: { "ok": true }
 ```
 
 ### Bước 2: Tạo Bộ Sưu Tập Đầu Tiên
 
-Một collection trong Typesense giống như một bảng trong SQL hoặc một index trong Elasticsearch. Định nghĩa schema và lập chỉ mục các tài liệu:
-
-```bash
+Một collection trong Typesense giống như một bảng trong SQL hoặc một index trong Elasticsearch. Định nghĩa schema và lập chỉ mục các tài liệu: ```bash
 # Định nghĩa schema cho catalog sản phẩm thương mại điện tử
 curl -s "http://localhost:8108/collections" \
   -X POST \
@@ -240,15 +224,12 @@ results = client.collections[products].documents.search({
 })
 
 print(f"Total: {results[found]}")
-for hit in results[hits]:
-    print(f"  {hit[document][name]} - ${hit[document][price]}")
+for hit in results[hits]: print(f"  {hit[document][name]} - ${hit[document][price]}")
 ```
 
 ### Tích Hợp React InstantSearch
 
-Với ứng dụng React, sử dụng `typesense-instantsearch-adapter` để kết nối Typesense với các UI component InstantSearch của Algolia:
-
-```bash
+Với ứng dụng React, sử dụng `typesense-instantsearch-adapter` để kết nối Typesense với các UI component InstantSearch của Algolia: ```bash
 npm install typesense-instantsearch-adapter react-instantsearch-dom
 ```
 
@@ -334,10 +315,10 @@ func main() {
     )
 
     searchParams := &api.SearchCollectionParams{
-        Q:        "keyboard",
-        QueryBy:  "name,description",
+        Q: "keyboard",
+        QueryBy: "name,description",
         FilterBy: "in_stock:true",
-        SortBy:   "rating:desc",
+        SortBy: "rating:desc",
     }
 
     results, err := client.Collection("products").Documents().Search(searchParams)
@@ -384,9 +365,7 @@ Chúng tôi đã đánh giá Typesense 27.1 trên một **DigitalOcean droplet**
 
 ### Công Thức Lập Kế Hoạch Tài Nguyên
 
-Sử dụng công thức này để ước tính nhu cầu RAM:
-
-```
+Sử dụng công thức này để ước tính nhu cầu RAM: ```
 RAM (GB) ≈ (Số tài liệu × Kích thước tài liệu trung bình × 3) / 1GB
 ```
 
@@ -396,9 +375,7 @@ Hệ số `×3` tính đến chi phí overhead của inverted index trong bộ n
 
 ### 1. Kích Hoạt HTTPS với Reverse Proxy
 
-Không bao giờ phơi bày Typesense trực tiếp ra internet. Sử dụng Nginx hoặc Caddy:
-
-```nginx
+Không bao giờ phơi bày Typesense trực tiếp ra internet. Sử dụng Nginx hoặc Caddy: ```nginx
 # /etc/nginx/sites-available/typesense
 server {
     listen 443 ssl http2;
@@ -422,43 +399,28 @@ server {
 # docker-compose.yml
 version: '3.8'
 
-services:
-  typesense:
-    image: typesense/typesense:27.1
+services: typesense: image: typesense/typesense:27.1
     restart: unless-stopped
-    ports:
-      - "127.0.0.1:8108:8108"
-    volumes:
-      - typesense-data:/data
-    environment:
-      TYPESENSE_API_KEY: ${TYPESENSE_API_KEY}
+    ports: - "127.0.0.1:8108:8108"
+    volumes: - typesense-data:/data
+    environment: TYPESENSE_API_KEY: ${TYPESENSE_API_KEY}
     command: >
       --data-dir /data
       --api-key ${TYPESENSE_API_KEY}
       --enable-cors
       --ssl-refresh-interval-seconds 86400
-    deploy:
-      resources:
-        limits:
-          memory: 4G
-        reservations:
-          memory: 1G
+    deploy: resources: limits: memory: 4G
+        reservations: memory: 1G
 
   # Tùy chọn: Caddy cho HTTPS tự động
-  caddy:
-    image: caddy:2-alpine
+  caddy: image: caddy:2-alpine
     restart: unless-stopped
-    ports:
-      - "80:80"
+    ports: - "80:80"
       - "443:443"
-    volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile
+    volumes: - ./Caddyfile:/etc/caddy/Caddyfile
       - caddy-data:/data
 
-volumes:
-  typesense-data:
-  caddy-data:
-```
+volumes: typesense-data: caddy-data: ```
 
 Triển khai trên bất kỳ VPS nào. Nếu bạn cần một máy chủ đáng tin cậy, [DigitalOcean](https://m.do.co/c/eca87ac14ee0) cung cấp **$200 tín dụng miễn phí** cho ngưởi dùng mới — đủ để chạy Typesense trong 8 tháng trên droplet 4GB.
 
@@ -486,9 +448,7 @@ console.log('Scoped key cho Electronics:', scopedKey);
 
 ### 4. Clustering cho Tính Sẵn Sàng Cao
 
-Typesense sử dụng đồng thuận Raft cho clustering. Cluster 3 node chịu được 1 node lỗi:
-
-```bash
+Typesense sử dụng đồng thuận Raft cho clustering. Cluster 3 node chịu được 1 node lỗi: ```bash
 # Node 1
 docker run -d -p 8108:8108 \
   -v typesense-data:/data \
@@ -547,9 +507,7 @@ curl -s "http://localhost:8108/collections/products/overrides" \
 
 ## Hạn Chế / Đánh Giá Trung Thực
 
-Typesense không phải là cơ sở dữ liệu đa năng. Đây là các hạn chế thực tế:
-
-1. **Phụ thuộc RAM**: Toàn bộ chỉ mục phải vừa với bộ nhớ. Bộ dữ liệu 50 triệu tài liệu có thể cần 128GB+ RAM. Cho các bộ dữ liệu khổng lồ, cách tiếp cận dựa trên đĩa của Elasticsearch kinh tế hơn.
+Typesense không phải là cơ sở dữ liệu đa năng. Đây là các hạn chế thực tế: 1. **Phụ thuộc RAM**: Toàn bộ chỉ mục phải vừa với bộ nhớ. Bộ dữ liệu 50 triệu tài liệu có thể cần 128GB+ RAM. Cho các bộ dữ liệu khổng lồ, cách tiếp cận dựa trên đĩa của Elasticsearch kinh tế hơn.
 
 2. **Bắt buộc schema**: Typesense yêu cầu bạn định nghĩa kiểu trường từ trước. Khác với Meilisearch (tự động phát hiện), bạn phải lập kế hoạch schema. Điều này nghiêm ngặt hơn nhưng ngăn lỗi kiểu runtime.
 
@@ -601,9 +559,7 @@ Tham gia cộng đồng lập trình viên trên **Telegram: [dibi8dev_vi](https
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -623,7 +579,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 *Tuyên bố liên kết: Bài viết này chứa liên kết liên kết đến DigitalOcean. Nếu bạn đăng ký qua liên kết của chúng tôi, chúng tôi nhận hoa hồng mà không phát sinh thêm chi phí cho bạn. Chúng tôi độc lập đề xuất các dịch vụ dựa trên kiểm thử thực tế. Typesense là phần mềm mã nguồn mở miễn phí — chi phí duy nhất là chi phí lưu trữ.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

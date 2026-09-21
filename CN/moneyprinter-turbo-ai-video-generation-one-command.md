@@ -1,10 +1,9 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/moneyprinter-turbo-ai-video-generation-one-command" />
 title: 'MoneyPrinterTurbo: Generate HD Short Videos with AI in O...
 description: 'MoneyPrinterTurbo (83,031 GitHub stars) generates HD short videos with one click using AI LLM. Script, voice, subtitles, background music — all automated. Includes setup tutorial, pipeline breakdown, and real video benchmarks.'
 date: 2026-06-08
-lastmod:  2026-06-08slug: 'moneyprinter-turbo-ai-video-generation-one-command'
+lastmod: 2026-06-08
+slug: 'moneyprinter-turbo-ai-video-generation-one-command'
 category: 'ai-tools'
 tags: ['AI video generation', 'MoneyPrinterTurbo', 'short video AI', 'automated video creation', 'AI video tool', 'video automation', 'content generation', 'video editing AI']
 github_repo: 'https://github.com/harry0703/MoneyPrinterTurbo'
@@ -12,9 +11,7 @@ stars: 83031
 maintainer: 'harry0703'
 license: MIT
 featureImage: 'https://avatars.githubusercontent.com/u/13691804'
-lang: en
 ---
-
 # MoneyPrinterTurbo: Generate HD Short Videos with AI in One Command — 83,000 Stars Open-Source Video Creator — A Practical Guide 2026
 
 ```
@@ -48,8 +45,7 @@ Content creation doesn't have to mean hours in video editors. MoneyPrinterTurbo 
 
 MoneyPrinterTurbo is **an open-source AI video generation tool** that automates the entire short-video production pipeline. From topic to finished video in minutes, not hours. It integrates multiple AI services: LLM for script writing, TTS for voice synthesis, and FFmpeg for video assembly.
 
-Key capabilities:
-- **AI script generation** — Generate engaging scripts from a topic or keyword
+Key capabilities: - **AI script generation** — Generate engaging scripts from a topic or keyword
 - **Multi-language TTS** — Generate voiceover in 50+ languages using OpenAI, ElevenLabs, or local models
 - **Auto subtitles** — Synced, styled subtitles in any language
 - **Background media** — Auto-select stock footage and AI-generated images
@@ -81,8 +77,7 @@ pip install -r requirements.txt
 ```bash
 # Configure API keys
 cp .env.example .env
-# Edit .env:
-echo 'OPENAI_API_KEY=sk-...' >> .env
+# Edit .env: echo 'OPENAI_API_KEY=sk-...' >> .env
 echo 'ELEVENLABS_API_KEY=sk-...' >> .env
 # Or use edge-tts (free, no API key needed)
 echo 'TTS_PROVIDER=edge-tts' >> .env
@@ -107,8 +102,7 @@ cd MoneyPrinterTurbo
 
 # Configure API keys
 cp .env.example .env
-# Edit .env:
-echo 'OPENAI_API_KEY=sk-...' >> .env
+# Edit .env: echo 'OPENAI_API_KEY=sk-...' >> .env
 echo 'ELEVENLABS_API_KEY=sk-...' >> .env
 # Or use edge-tts (free, no API key needed)
 echo 'TTS_PROVIDER=edge-tts' >> .env
@@ -154,12 +148,9 @@ Note: Requires Docker Compose v2 (not the legacy v1 plugin). Verify with `docker
 
 ### Video Template Customization
 
-Customize video templates for different content styles:
-
-```yaml
+Customize video templates for different content styles: ```yaml
 # templates/news.yaml
-template:
-  name: "Daily News"
+template: name: "Daily News"
   intro_duration: 3
   scene_duration: 5
   outro_duration: 2
@@ -190,12 +181,20 @@ done
 done
 ## Integration with AI Voice, Image, and Media Providers
 
-MoneyPrinterTurbo supports multiple AI service providers:
-
-### Voice Synthesis Providers
+MoneyPrinterTurbo supports multiple AI service providers: ### Voice Synthesis Providers
 
 | Provider | Quality | Cost | Languages | Setup |
-|----------|---------|------|-----------|-------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | OpenAI TTS | High | $15/M | 6 voices | API key |
 | ElevenLabs | Very High | $5-22/mo | 30+ voices | API key |
 | edge-tts | Good | Free | 100+ languages | None |
@@ -205,18 +204,14 @@ MoneyPrinterTurbo supports multiple AI service providers:
 
 ```yaml
 # config.yaml — Media sources configuration
-media:
-  stock_videos:
-    provider: "pexels"  # "pexels" | "pixabay" | "coverr"
+media: stock_videos: provider: "pexels"  # "pexels" | "pixabay" | "coverr"
     api_key: "${PEXELS_API_KEY}"
   
-  ai_images:
-    provider: "dall-e"   # "dall-e" | "stable-diffusion" | "openai"
+  ai_images: provider: "dall-e"   # "dall-e" | "stable-diffusion" | "openai"
     model: "dall-e-3"
     resolution: "1024x1024"
   
-  background_music:
-    provider: "freepd"   # "freepd" | "incompetech" | "local"
+  background_music: provider: "freepd"   # "freepd" | "incompetech" | "local"
     mood: "upbeat"
     volume_db: -20
 ```
@@ -232,7 +227,17 @@ MoneyPrinterTurbo automates the entire video production pipeline. The process in
 ### Supported TTS Providers
 
 | Provider | Quality | Cost | Languages | Setup |
-|----------|---------|------|-----------|-------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | OpenAI TTS | High | $15/M | 6 voices | API key |
 | ElevenLabs | Very High | $5-22/mo | 30+ voices | API key |
 | edge-tts | Good | Free | 100+ languages | None |
@@ -240,9 +245,7 @@ MoneyPrinterTurbo automates the entire video production pipeline. The process in
 
 ### Background Media Sources
 
-The tool supports multiple background media providers:
-
-- **Pexels** — Stock video footage with free API access
+The tool supports multiple background media providers: - **Pexels** — Stock video footage with free API access
 - **Pixabay** — Large library of free stock videos and images
 - **Coverr** — Cinematic stock footage for creative projects
 - **DALL-E** — AI-generated images for custom backgrounds
@@ -250,9 +253,7 @@ The tool supports multiple background media providers:
 
 ### Real-World Use Case: YouTube Channel
 
-A creator produces daily tech news videos:
-
-```bash
+A creator produces daily tech news videos: ```bash
 # Daily automation script
 for topic in $(cat topics.txt); do
     streamlit run ./webui/Main.py \
@@ -269,14 +270,12 @@ done
 
 ```yaml
 # templates/tech-review.yaml
-template:
-  intro_duration: 5
+template: intro_duration: 5
   scene_duration: 8
   outro_duration: 3
   transitions: "fade"
   music_volume: -25
-  subtitle_style:
-    font: "Arial"
+  subtitle_style: font: "Arial"
     size: 36
     color: "#FFFFFF"
     position: "bottom"
@@ -296,9 +295,7 @@ crontab -e
 
 ### Post-Processing with FFmpeg
 
-Use FFmpeg for additional video editing tasks after generation:
-
-```bash
+Use FFmpeg for additional video editing tasks after generation: ```bash
 # Extract audio track from generated video
 ffmpeg -i ./output/video.mp4 -vn -acodec pcm_s16le ./output/audio.wav
 
@@ -311,7 +308,17 @@ ffmpeg -i ./output/video.mp4 -i ./music.mp3 \
 ## Comparison with Alternatives
 
 | Feature | MoneyPrinterTurbo | Pictory | InVideo AI | Synthesia |
-|---------|-------------------|---------|-----------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Open source | Yes (MIT) | No | No | No |
 | Self-hosted | Yes | No | No | No |
 | Free tier | Full features | 3 min free | 5 min free | No free tier |
@@ -326,9 +333,7 @@ ffmpeg -i ./output/video.mp4 -i ./music.mp3 \
 
 ## Limitations / Honest Assessment
 
-MoneyPrinterTurbo is not for everyone:
-
-1. **Professional-grade production** — The output is suitable for social media, YouTube Shorts, and educational content, but lacks the cinematic quality of manually edited videos. For brand content or commercial ads, invest in professional editing.
+MoneyPrinterTurbo is not for everyone: 1. **Professional-grade production** — The output is suitable for social media, YouTube Shorts, and educational content, but lacks the cinematic quality of manually edited videos. For brand content or commercial ads, invest in professional editing.
 
 2. **API costs add up** — While the tool is free, TTS (ElevenLabs/OpenAI) and image generation (DALL-E) have per-call costs. A 3-minute video with premium TTS + DALL-E images costs ~$0.50-1.50 per video.
 
@@ -403,7 +408,6 @@ Some links above are affiliate links. dibi8.com may earn a commission if you sig
 For batch video generation at scale, configure the `BATCH_SIZE` environment variable and use the `--parallel` flag with `uv run streamlit run ./webui/Main.py`. Each parallel worker uses a separate GPU process, allowing up to 4 concurrent video generations on a single RTX 4090. Monitor GPU usage with `nvidia-smi --query-gpu=memory.used,utilization.gpu --format=csv -l 5`.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -429,8 +433,8 @@ For batch video generation at scale, configure the `BATCH_SIZE` environment vari
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [impeccable-ai-design-language-harness-quality-ui](moneyprinter-turbo-ai-video-generation-one-command)
@@ -439,6 +443,6 @@ For batch video generation at scale, configure the `BATCH_SIZE` environment vari
 - [moneyprinterturbo-one-click-ai-video-generator](moneyprinter-turbo-ai-video-generation-one-command)
 - [12-factor-agents](moneyprinter-turbo-ai-video-generation-one-command)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

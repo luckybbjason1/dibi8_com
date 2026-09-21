@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/hyperliquid-perp-dex-trading" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hyperliquid-perp-dex-trading" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hyperliquid-perp-dex-trading" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hyperliquid-perp-dex-trading" />
 title: 'Hyperliquid 2026: 일일 거래량 $2B+ 처리하는 온체인 영구 DEX — 트레이딩 봇 통...
 description: '일일 거래량 $2B+, 100개 이상 거래 페어, 최대 50배 레버리지, HyperEVM 스마트 컨트랙트 및 봇 통합용 Python SDK를 갖춘 완전 온체인 영구 DEX Hyperliquid에 대한 종합 가이드.'
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: [hyperliquid, 'perpetual dex', 'on-chain trading', 'leverage trading', 'trading bot', hyperevm, 'python sdk', 'websocket api', clob, 'defi trading', 'algorithmic trading']
-aliases:
-- /kr/posts/hyperliquid-perp-dex-trading/
+aliases: - /kr/posts/hyperliquid-perp-dex-trading/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/hyperliquid-perp-dex-trading/ -->
 
 {{</* resource-info */>}}
 
@@ -58,9 +50,7 @@ Hyperliquid는 중앙화와 탈중앙화 플랫폼 사이에서 트레이더가 
 
 vAMM(가상 AMM)과 같은 AMM 모델을 기반으로 한 기존 영구 DEX는 고유한 한계가 있습니다: 현재 가격 주변의 집중된 유동성, 대규모 주문의 상당한 슬리피지, 유동성 제공자의 비영구적 손실 노출. Hyperliquid의 **CLOB(Central Limit Order Book)** 아키텍처는 이러한 문제를 완전히 제거합니다.
 
-CLOB 시스템에서 트레이더는 특정 가격에 지정가 주문을 배치하여 각 가격 수준에서 존재하는 유동성을 정확히 보여주는 가시적인 뎁스 차트를 만듭니다. 이를 통해 다음이 가능합니다:
-
-- **더 좁은 스프레드** — 시장 메이커가 직접 경쟁하여 입찰-ask 스프레드를 바이낸스 및 바이비트 수준으로 좁힘
+CLOB 시스템에서 트레이더는 특정 가격에 지정가 주문을 배치하여 각 가격 수준에서 존재하는 유동성을 정확히 보여주는 가시적인 뎁스 차트를 만듭니다. 이를 통해 다음이 가능합니다: - **더 좁은 스프레드** — 시장 메이커가 직접 경쟁하여 입찰-ask 스프레드를 바이낸스 및 바이비트 수준으로 좁힘
 - **지정가 주문 제로 슬리피지** — 대규모 주문이 지정된 가격(또는 더 나은 가격)에서 정확히 체결됨
 - **투명한 가격 발견** — 모든 주문이 온체인에서 가시적이어서 숨겨진 조작 방지
 - **효율적인 자본 활용** — 유동성 풀에 자본을 잠글 필요 없음; 자본은 주문이 체결될 때만 사용됨
@@ -69,9 +59,7 @@ Hyperliquid의 오더북은 독점 L1 체인에서 완전히 결제되며, **1�
 
 ### HyperEVM: 스마트 컨트랙트와 고빈도 트레이딩의 만남
 
-2024년 말 **HyperEVM**의 도입은 Hyperliquid의 획기적인 순간이었습니다. 이 EVM 호환 실행 레이어는 다음을 가능하게 합니다:
-
-- **스마트 컨트랙트 지갑** — 고급 액세스 제어 및 자동 실행을 위한 프로그래밍 가능한 계정 로직
+2024년 말 **HyperEVM**의 도입은 Hyperliquid의 획기적인 순간이었습니다. 이 EVM 호환 실행 레이어는 다음을 가능하게 합니다: - **스마트 컨트랙트 지갑** — 고급 액세스 제어 및 자동 실행을 위한 프로그래밍 가능한 계정 로직
 - **조합 가능한 DeFi 전략** — 대출 프로토콜, 수익 최적화기 및 기타 온체인 프리미티브와의 통합
 - **사용자 정의 주문 유형** — 스마트 컨트랙트 자동화를 통한 조걶 주문, 추적 손절 및 TWAP 실행
 - **가스 없는 트랜잭션** — 수수료를 어떤 토큰으로도 지불하거나 타사가 후원할 수 있는 메타 트랜잭션 지원
@@ -94,9 +82,7 @@ pip install hyperliquid-python-sdk
 pip install websockets aiohttp pandas numpy python-dotenv
 ```
 
-`.env` 파일 생성:
-
-```bash
+`.env` 파일 생성: ```bash
 # .env — 절대 버전 관리에 커밋하지 마세요
 PRIVATE_KEY=your_ethereum_private_key_here
 WALLET_ADDRESS=0x_your_wallet_address
@@ -114,11 +100,9 @@ from hyperliquid.utils import constants
 
 load_dotenv()
 
-class HyperliquidTrader:
-    """프로덕션 레디 Hyperliquid 트레이딩 클라이언트."""
+class HyperliquidTrader: """프로덕션 레디 Hyperliquid 트레이딩 클라이언트."""
     
-    def __init__(self, use_testnet=True):
-        self.private_key = os.getenv(PRIVATE_KEY)
+    def __init__(self, use_testnet=True): self.private_key = os.getenv(PRIVATE_KEY)
         self.wallet_address = os.getenv(WALLET_ADDRESS)
         self.base_url = constants.TESTNET_API_URL if use_testnet else constants.MAINNET_API_URL
         
@@ -127,8 +111,7 @@ class HyperliquidTrader:
         
         print(f"Hyperliquid {테스트넷 if use_testnet else 메인넷}에 연결됨")
     
-    def get_account_summary(self):
-        """종합 계정 정보 조회."""
+    def get_account_summary(self): """종합 계정 정보 조회."""
         user_state = self.info.user_state(self.wallet_address)
         account_value = float(user_state[marginSummary][accountValue])
         total_margin_used = float(user_state[marginSummary][totalMarginUsed])
@@ -151,43 +134,30 @@ trader.get_account_summary()
 import json
 import websockets
 
-class HyperliquidWebSocketFeed:
-    """Hyperliquid용 고성능 WebSocket 데이터 피드."""
+class HyperliquidWebSocketFeed: """Hyperliquid용 고성능 WebSocket 데이터 피드."""
     
-    def __init__(self):
-        self.ws_url = "wss://api.hyperliquid.xyz/ws"
+    def __init__(self): self.ws_url = "wss://api.hyperliquid.xyz/ws"
         self.subscriptions = {}
         self.orderbook_cache = {}
         self.running = False
     
-    async def connect(self):
-        """자동 재연결이 있는 WebSocket 연결 설정."""
-        while True:
-            try:
-                async with websockets.connect(self.ws_url) as ws:
-                    print("WebSocket 연결됨")
+    async def connect(self): """자동 재연결이 있는 WebSocket 연결 설정."""
+        while True: try: async with websockets.connect(self.ws_url) as ws: print("WebSocket 연결됨")
                     self.ws = ws
                     self.running = True
                     
-                    for sub in self.subscriptions.values():
-                        await ws.send(json.dumps(sub))
+                    for sub in self.subscriptions.values(): await ws.send(json.dumps(sub))
                     
                     await self._listen()
-            except Exception as e:
-                print(f"WebSocket 오류: {e}. 5초 후 재연결...")
+            except Exception as e: print(f"WebSocket 오류: {e}. 5초 후 재연결...")
                 await asyncio.sleep(5)
     
-    async def _listen(self):
-        """수신 메시지 처리."""
-        async for message in self.ws:
-            msg = json.loads(message)
-            if msg.get("channel") == "l2Book":
-                await self._handle_orderbook(msg[data])
-            elif msg.get("channel") == "trades":
-                await self._handle_trades(msg[data])
+    async def _listen(self): """수신 메시지 처리."""
+        async for message in self.ws: msg = json.loads(message)
+            if msg.get("channel") == "l2Book": await self._handle_orderbook(msg[data])
+            elif msg.get("channel") == "trades": await self._handle_trades(msg[data])
     
-    async def _handle_orderbook(self, data):
-        """L2 오더북 업데이트 처리."""
+    async def _handle_orderbook(self, data): """L2 오더북 업데이트 처리."""
         coin = data[coin]
         levels = data[levels]
         self.orderbook_cache[coin] = {
@@ -195,44 +165,37 @@ class HyperliquidWebSocketFeed:
             asks: [{px: float(a[px]), sz: float(a[sz])} for a in levels[1]],
         }
     
-    async def subscribe_orderbook(self, coin):
-        """특정 시장의 실시간 오더북 구독."""
+    async def subscribe_orderbook(self, coin): """특정 시장의 실시간 오더북 구독."""
         sub = {
             "method": "subscribe",
             "subscription": {"type": "l2Book", "coin": coin}
         }
         self.subscriptions[f"book_{coin}"] = sub
-        if self.running:
-            await self.ws.send(json.dumps(sub))
+        if self.running: await self.ws.send(json.dumps(sub))
         print(f"{coin} 오더북 구독됨")
     
-    async def subscribe_trades(self, coin):
-        """실시간 체결 내역 구독."""
+    async def subscribe_trades(self, coin): """실시간 체결 내역 구독."""
         sub = {
             "method": "subscribe",
             "subscription": {"type": "trades", "coin": coin}
         }
         self.subscriptions[f"trades_{coin}"] = sub
-        if self.running:
-            await self.ws.send(json.dumps(sub))
+        if self.running: await self.ws.send(json.dumps(sub))
 ```
 
 ### 주문 유형: 시장가, 지정가, 조걶 주문
 
 ```python
-    def place_market_order(self, coin: str, is_buy: bool, sz: float):
-        """슬리피지 보호가 있는 시장가 주문 실행."""
+    def place_market_order(self, coin: str, is_buy: bool, sz: float): """슬리피지 보호가 있는 시장가 주문 실행."""
         order_type = {"limit": {"tif": "Ioc"}}  # Immediate-or-Cancel
         result = self.exchange.order(coin, is_buy, sz, 0, order_type, reduce_only=False)
         print(f"시장가 {매수 if is_buy else 매도} {sz} {coin}")
         print(f"상태: {result[status]}")
         return result
     
-    def place_limit_order(self, coin: str, is_buy: bool, sz: float, px: float, tif: str = "Gtc"):
-        """지정된 시간 유효 조건으로 지정가 주문 배치.
+    def place_limit_order(self, coin: str, is_buy: bool, sz: float, px: float, tif: str = "Gtc"): """지정된 시간 유효 조건으로 지정가 주문 배치.
         
-        TIF 옵션:
-        - Gtc: Good-til-Cancelled (취소까지 유효)
+        TIF 옵션: - Gtc: Good-til-Cancelled (취소까지 유효)
         - Ioc: Immediate-or-Cancel (즉시 실행 또는 취소)
         - Fok: Fill-or-Kill (전량 체결 또는 취소)
         """
@@ -241,8 +204,7 @@ class HyperliquidWebSocketFeed:
         print(f"지정가 {매수 if is_buy else 매도} {sz} {coin} @ {px}")
         return result
     
-    def place_stop_loss_order(self, coin: str, is_buy: bool, sz: float, trigger_px: float, limit_px: float):
-        """트리거 가격이 있는 손절 주문 배치."""
+    def place_stop_loss_order(self, coin: str, is_buy: bool, sz: float, trigger_px: float, limit_px: float): """트리거 가격이 있는 손절 주문 배치."""
         order_type = {
             "trigger": {
                 "triggerPx": str(trigger_px),
@@ -254,13 +216,11 @@ class HyperliquidWebSocketFeed:
         print(f"손절 {매수 if is_buy else 매도} {sz} {coin}")
         return result
     
-    def get_positions(self):
-        """손익 세부 정보가 포함된 모든 미결 포지션 조회."""
+    def get_positions(self): """손익 세부 정보가 포함된 모든 미결 포지션 조회."""
         user_state = self.info.user_state(self.wallet_address)
         positions = user_state.get(assetPositions, [])
         active_positions = []
-        for pos in positions:
-            position = pos[position]
+        for pos in positions: position = pos[position]
             entry_px = float(position[entryPx])
             current_px = float(position[markPx])
             size = float(position[szi])
@@ -276,12 +236,9 @@ class HyperliquidWebSocketFeed:
             })
         return active_positions
     
-    def close_position(self, coin: str):
-        """특정 시장의 전체 포지션 청산."""
+    def close_position(self, coin: str): """특정 시장의 전체 포지션 청산."""
         positions = self.get_positions()
-        for pos in positions:
-            if pos[coin] == coin and pos[size] != 0:
-                is_buy = pos[size] < 0
+        for pos in positions: if pos[coin] == coin and pos[size] != 0: is_buy = pos[size] < 0
                 sz = abs(pos[size])
                 return self.place_market_order(coin, is_buy, sz)
         print(f"{coin}에 미결 포지션이 없습니다")
@@ -295,11 +252,9 @@ import time
 import pandas as pd
 from datetime import datetime, timedelta
 
-class TrendFollowingBot:
-    """Hyperliquid용 EMA 크로스오버 트렌드 팔로잉 봇."""
+class TrendFollowingBot: """Hyperliquid용 EMA 크로스오버 트렌드 팔로잉 봇."""
     
-    def __init__(self, trader: HyperliquidTrader, coin: str = "BTC"):
-        self.trader = trader
+    def __init__(self, trader: HyperliquidTrader, coin: str = "BTC"): self.trader = trader
         self.coin = coin
         self.fast_ema_period = 9
         self.slow_ema_period = 21
@@ -307,8 +262,7 @@ class TrendFollowingBot:
         self.in_position = False
         self.position_side = None
     
-    def check_signals(self) -> str:
-        """EMA 크로스오버 신호 확인."""
+    def check_signals(self) -> str: """EMA 크로스오버 신호 확인."""
         candles = self.trader.info.candles(
             coin=self.coin, interval="5m",
             startTime=int((datetime.now() - timedelta(hours=12)).timestamp() * 1000),
@@ -316,67 +270,51 @@ class TrendFollowingBot:
         )
         closes = pd.Series([float(c[c]) for c in candles if c in c])
         
-        if len(closes) < self.slow_ema_period + 5:
-            return "HOLD"
+        if len(closes) < self.slow_ema_period + 5: return "HOLD"
         
         fast_ema = closes.ewm(span=self.fast_ema_period).mean()
         slow_ema = closes.ewm(span=self.slow_ema_period).mean()
         
-        if fast_ema.iloc[-2] <= slow_ema.iloc[-2] and fast_ema.iloc[-1] > slow_ema.iloc[-1]:
-            return "BUY"
-        if fast_ema.iloc[-2] >= slow_ema.iloc[-2] and fast_ema.iloc[-1] < slow_ema.iloc[-1]:
-            return "SELL"
+        if fast_ema.iloc[-2] <= slow_ema.iloc[-2] and fast_ema.iloc[-1] > slow_ema.iloc[-1]: return "BUY"
+        if fast_ema.iloc[-2] >= slow_ema.iloc[-2] and fast_ema.iloc[-1] < slow_ema.iloc[-1]: return "SELL"
         return "HOLD"
     
-    def execute_signal(self, signal: str):
-        """적절한 위험 관리로 트레이딩 신호 실행."""
-        if signal == "HOLD":
-            return
+    def execute_signal(self, signal: str): """적절한 위험 관리로 트레이딩 신호 실행."""
+        if signal == "HOLD": return
         
-        if self.in_position:
-            if (signal == "BUY" and self.position_side == "SHORT") or \
-               (signal == "SELL" and self.position_side == "LONG"):
-                self.trader.close_position(self.coin)
+        if self.in_position: if (signal == "BUY" and self.position_side == "SHORT") or \
+               (signal == "SELL" and self.position_side == "LONG"): self.trader.close_position(self.coin)
                 self.in_position = False
                 time.sleep(1)
-            else:
-                return
+            else: return
         
         mids = self.trader.info.all_mids()
         current_px = float(mids.get(self.coin, 0))
-        if current_px == 0:
-            return
+        if current_px == 0: return
         
         account = self.trader.get_account_summary()
         account_value = float(account[marginSummary][accountValue])
         sz = round(account_value * self.risk_per_trade / current_px, 4)
         
-        if signal == "BUY":
-            self.trader.place_market_order(self.coin, True, sz)
+        if signal == "BUY": self.trader.place_market_order(self.coin, True, sz)
             self.position_side = "LONG"
-        elif signal == "SELL":
-            self.trader.place_market_order(self.coin, False, sz)
+        elif signal == "SELL": self.trader.place_market_order(self.coin, False, sz)
             self.position_side = "SHORT"
         self.in_position = True
     
-    def run(self, check_interval: int = 60):
-        """메인 봇 루프."""
+    def run(self, check_interval: int = 60): """메인 봇 루프."""
         print(f"{self.coin} 트렌드 봇 시작")
         print(f"Fast EMA: {self.fast_ema_period}, Slow EMA: {self.slow_ema_period}")
         
-        while True:
-            try:
-                signal = self.check_signals()
+        while True: try: signal = self.check_signals()
                 print(f"[{datetime.now()}] 신호: {signal}")
                 self.execute_signal(signal)
                 
                 positions = self.trader.get_positions()
-                for pos in positions:
-                    print(f"  {pos[coin]}: {pos[size]} | PnL: ${pos[unrealized_pnl]:+.2f}")
+                for pos in positions: print(f"  {pos[coin]}: {pos[size]} | PnL: ${pos[unrealized_pnl]:+.2f}")
                 
                 time.sleep(check_interval)
-            except Exception as e:
-                print(f"봇 루프 오류: {e}")
+            except Exception as e: print(f"봇 루프 오류: {e}")
                 time.sleep(10)
 ```
 
@@ -387,63 +325,46 @@ class TrendFollowingBot:
 ### 펀딩 비율 및 역사적 데이터
 
 ```python
-    def get_funding_rates(self):
-        """모든 시장의 현재 펀딩 비율 조회."""
+    def get_funding_rates(self): """모든 시장의 현재 펀딩 비율 조회."""
         meta = self.info.meta()
         assets = meta[universe]
         funding_data = []
-        for asset in assets[:20]:
-            name = asset[name]
+        for asset in assets[:20]: name = asset[name]
             ctx = self.info.funding_history(name, 1)
-            if ctx:
-                funding_data.append({
+            if ctx: funding_data.append({
                     coin: name,
                     funding_rate: float(ctx[0].get(fundingRate, 0)),
                     predicted_rate: float(ctx[0].get(predictedFundingRate, 0))
                 })
         funding_data.sort(key=lambda x: abs(x[funding_rate]), reverse=True)
         print("\n펀딩 비율 상위:")
-        for f in funding_data[:10]:
-            print(f"  {f[coin]}: {f[funding_rate]*100:+.4f}%")
+        for f in funding_data[:10]: print(f"  {f[coin]}: {f[funding_rate]*100:+.4f}%")
         return funding_data
 ```
 
 ### 다중 자산 WebSocket 관리
 
 ```python
-class MultiAssetWebSocketManager:
-    """여러 자산에 대한 동시 WebSocket 연결 관리."""
+class MultiAssetWebSocketManager: """여러 자산에 대한 동시 WebSocket 연결 관리."""
     
-    def __init__(self, assets: list):
-        self.assets = assets
+    def __init__(self, assets: list): self.assets = assets
         self.ws_url = "wss://api.hyperliquid.xyz/ws"
         self.handlers = {}
         self.data_cache = {asset: {mid: 0, spread: 0} for asset in assets}
     
-    async def subscribe_all(self, ws):
-        """일괄로 모든 자산 구독."""
+    async def subscribe_all(self, ws): """일괄로 모든 자산 구독."""
         sub = {"method": "subscribe", "subscription": {"type": "allMids"}}
         await ws.send(json.dumps(sub))
-        for asset in self.assets:
-            sub = {"method": "subscribe", "subscription": {"type": "l2Book", "coin": asset}}
+        for asset in self.assets: sub = {"method": "subscribe", "subscription": {"type": "l2Book", "coin": asset}}
             await ws.send(json.dumps(sub))
     
-    async def run(self):
-        async with websockets.connect(self.ws_url) as ws:
-            await self.subscribe_all(ws)
-            async for message in ws:
-                msg = json.loads(message)
-                if msg.get("channel") == "allMids":
-                    for asset, price in msg[data].items():
-                        if asset in self.data_cache:
-                            self.data_cache[asset][mid] = float(price)
-                elif msg.get("channel") == "l2Book":
-                    coin = msg[data][coin]
-                    if coin in self.data_cache:
-                        bids = msg[data][levels][0]
+    async def run(self): async with websockets.connect(self.ws_url) as ws: await self.subscribe_all(ws)
+            async for message in ws: msg = json.loads(message)
+                if msg.get("channel") == "allMids": for asset, price in msg[data].items(): if asset in self.data_cache: self.data_cache[asset][mid] = float(price)
+                elif msg.get("channel") == "l2Book": coin = msg[data][coin]
+                    if coin in self.data_cache: bids = msg[data][levels][0]
                         asks = msg[data][levels][1]
-                        if bids and asks:
-                            self.data_cache[coin][spread] = float(asks[0][px]) - float(bids[0][px])
+                        if bids and asks: self.data_cache[coin][spread] = float(asks[0][px]) - float(bids[0][px])
 ```
 
 ---
@@ -453,14 +374,12 @@ class MultiAssetWebSocketManager:
 ### 고립형 vs. 교차 마진
 
 ```python
-    def set_cross_margin(self, coin: str):
-        """교차 마진 모드 활성화."""
+    def set_cross_margin(self, coin: str): """교차 마진 모드 활성화."""
         result = self.exchange.update_isolated_margin(coin, False, None)
         print(f"{coin} 교차 마진 활성화됨")
         return result
     
-    def set_isolated_margin(self, coin: str, leverage: int):
-        """특정 레버리지로 고립형 마진 활성화."""
+    def set_isolated_margin(self, coin: str, leverage: int): """특정 레버리지로 고립형 마진 활성화."""
         result = self.exchange.update_isolated_margin(coin, True, leverage)
         print(f"{coin} 고립형 마진 {leverage}x 활성화됨")
         return result
@@ -469,38 +388,30 @@ class MultiAssetWebSocketManager:
 ### 자동화된 리스크 컨트롤
 
 ```python
-class RiskManager:
-    """Hyperliquid 트레이딩을 위한 종합 리스크 관리 시스템."""
+class RiskManager: """Hyperliquid 트레이딩을 위한 종합 리스크 관리 시스템."""
     
-    def __init__(self, trader: HyperliquidTrader):
-        self.trader = trader
+    def __init__(self, trader: HyperliquidTrader): self.trader = trader
         self.max_daily_loss = 0.05
         self.max_position_size = 0.50
         self.max_leverage = 25
         self.daily_pnl = 0
         self.last_reset = datetime.now().date()
     
-    def check_daily_limit(self) -> bool:
-        """일일 손실 한도 확인."""
+    def check_daily_limit(self) -> bool: """일일 손실 한도 확인."""
         today = datetime.now().date()
-        if today != self.last_reset:
-            self.daily_pnl = 0
+        if today != self.last_reset: self.daily_pnl = 0
             self.last_reset = today
         account = self.trader.get_account_summary()
         account_value = float(account[marginSummary][accountValue])
         loss_pct = abs(min(self.daily_pnl, 0)) / account_value if account_value > 0 else 0
-        if loss_pct >= self.max_daily_loss:
-            print(f"일일 손실 한도 도달: {loss_pct*100:.2f}%")
+        if loss_pct >= self.max_daily_loss: print(f"일일 손실 한도 도달: {loss_pct*100:.2f}%")
             return False
         return True
     
-    def emergency_close_all(self):
-        """모든 포지션 긴급 청산."""
+    def emergency_close_all(self): """모든 포지션 긴급 청산."""
         print("모든 포지션 긴급 청산")
         positions = self.trader.get_positions()
-        for pos in positions:
-            if pos[size] != 0:
-                self.trader.close_position(pos[coin])
+        for pos in positions: if pos[size] != 0: self.trader.close_position(pos[coin])
                 time.sleep(0.5)
 ```
 
@@ -537,9 +448,7 @@ Hyperliquid는 API를 통해 **묣은 역사적 데이터**를 제공합니다. 
 
 ## 추천 도구
 
-이 가이드와 함께 사용하기를 추천하는 제품:
-
-- **[Minara](https://minara.ai/r/OSXG4X)** — AI-powered automated trading bot
+이 가이드와 함께 사용하기를 추천하는 제품: - **[Minara](https://minara.ai/r/OSXG4X)** — AI-powered automated trading bot
 - **[Binance](https://www.bsmkweb.cc/register?ref=DIBI8)** — World's leading cryptocurrency exchange
 
 *제휴 링크 — 추가 비용 없이 dibi8.com 운영을 지원합니다.*
@@ -561,7 +470,6 @@ Python SDK, 고성능 REST 및 WebSocket API, 완전한 온체인 투명성의 �
 - [Binance 거래소](https://www.bsmkweb.cc/register?ref=DIBI8)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

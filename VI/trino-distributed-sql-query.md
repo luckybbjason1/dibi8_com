@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/trino-distributed-sql-query" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/trino-distributed-sql-query" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/trino-distributed-sql-query" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/trino-distributed-sql-query" />
 title: 'Trino 2026: Cỗ Máy Truy Vấn SQL Phân Tán Phân Tích Dữ Li...
 description: 'Triển khai Trino 464+ để phân tích SQL phân tán quy mô PB. Hướng dẫn từng bước thiết lập cluster, cấu hình 40+ connector, tối ưu hiệu suất và benchmark thực tế.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: [trino, presto, 'sql phân tán', 'big data', 'phân tích dữ liệu', 'data lake', hive, iceberg, 'query engine', 'tự host']
-aliases:
-- /vi/posts/trino-distributed-sql-query/
+aliases: - /vi/posts/trino-distributed-sql-query/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/trino-distributed-sql-query/ -->
 
 {{</* resource-info */>}}
 
@@ -45,17 +37,14 @@ Hướng dẫn này đi qua thiết lập cluster Trino production-ready, cấu 
 
 **Trino là một công cụ truy vấn SQL phân tán liên kết truy vấn xuyên suốt các nguồn dữ liệu không đồng nhất mà không cần di chuyển dữ liệu.** Ban đầu được phát triển tại Facebook (với tên Presto) năm 2012, mã nguồn mở năm 2013 và tách nhánh thành Trino năm 2019. Khác với database truyền thống, Trino không lưu trữ dữ liệu — nó kết nối đến các nguồn hiện có (S3, HDFS, PostgreSQL, Kafka, Elasticsearch và 40+ nguồn khác) và thực thi truy vấn song song trên cluster các node.
 
-Nguyên tắc thiết kế cốt lõi:
-- **Tách biệt compute và storage**: Thực thi truy vấn độc lập với vị trí dữ liệu
+Nguyên tắc thiết kế cốt lõi: - **Tách biệt compute và storage**: Thực thi truy vấn độc lập với vị trí dữ liệu
 - **Xử lý in-memory**: Kết quả được stream trực tiếp đến client không qua ghi đĩa trung gian
 - **SQL chuẩn**: Hỗ trợ đầy đủ ANSI SQL bao gồm join phức tạp, window function và CTE
 - **Song song quy mô lớn**: Phân phối kế hoạch truy vấn xuyên worker node để scale ngang
 
 ## Trino Hoạt Động Như Thế Nào: Kiến trúc Chi tiết
 
-Trino tuân theo **kiến trúc coordinator-worker** với sự phân chia vai trò rõ ràng:
-
-```
+Trino tuân theo **kiến trúc coordinator-worker** với sự phân chia vai trò rõ ràng: ```
 ┌─────────────────────────────────────────────────────────────┐
 │                        Client (CLI / JDBC)                   │
 └───────────────────────┬─────────────────────────────────────┘
@@ -80,9 +69,7 @@ Trino tuân theo **kiến trúc coordinator-worker** với sự phân chia vai t
 └──────────────┘ └──────────────┘ └──────────────┘
 ```
 
-Vòng đờ truy vấn gồm các giai đoạn:
-
-1. **Client gửi SQL** → Coordinator nhận truy vấn qua HTTP REST API
+Vòng đờ truy vấn gồm các giai đoạn: 1. **Client gửi SQL** → Coordinator nhận truy vấn qua HTTP REST API
 2. **Phân tích & Phân tích** → SQL được parse thành AST, được giải quyết dựa trên catalog metadata
 3. **Lập kế hoạch logic** → Bộ phân tích xây dựng cây kế hoạch logic với các operator (Scan, Filter, Join, Aggregate)
 4. **Lập kế hoạch phân tán** → Kế hoạch được phân mảnh thành các stage có thể chạy song song
@@ -95,8 +82,7 @@ Một truy vấn đơn trên bảng 10 tỉ dòng trên S3 có thể được ch
 
 ### Yêu cầu tiên quyết
 
-Bạn cần:
-- **3+ máy chủ** (hoặc VM): 1 coordinator + 2+ worker
+Bạn cần: - **3+ máy chủ** (hoặc VM): 1 coordinator + 2+ worker
 - **Java 22+** (Trino 464+ yêu cầu Java 22)
 - **Tối thiểu 8 GB RAM** mỗi node (production khuyên 16 GB+)
 - **Linux** (Ubuntu 22.04/24.04, RHEL 8/9, hoặc Debian 12)
@@ -122,9 +108,7 @@ export JAVA_HOME=/usr/lib/jvm/java-22-openjdk-amd64
 
 ### Bước 3: Cấu hình Coordinator
 
-Trên node coordinator, tạo `/etc/trino/config.properties`:
-
-```properties
+Trên node coordinator, tạo `/etc/trino/config.properties`: ```properties
 # /etc/trino/config.properties — Coordinator Node
 coordinator=true
 node-scheduler.include-coordinator=false
@@ -135,18 +119,14 @@ query.max-total-memory-per-node=6GB
 discovery.uri=http://trino-coordinator:8080
 ```
 
-Tạo `/etc/trino/node.properties`:
-
-```properties
+Tạo `/etc/trino/node.properties`: ```properties
 # /etc/trino/node.properties
 node.environment=production
 node.id=trino-coordinator-01
 node.data-dir=/var/trino/data
 ```
 
-Tạo `/etc/trino/jvm.config`:
-
-```bash
+Tạo `/etc/trino/jvm.config`: ```bash
 # /etc/trino/jvm.config
 -server
 -Xmx16G
@@ -160,9 +140,7 @@ Tạo `/etc/trino/jvm.config`:
 
 ### Bước 4: Cấu hình Worker
 
-Trên mỗi node worker, tạo `/etc/trino/config.properties`:
-
-```properties
+Trên mỗi node worker, tạo `/etc/trino/config.properties`: ```properties
 # /etc/trino/config.properties — Worker Node
 coordinator=false
 http-server.http.port=8080
@@ -176,9 +154,7 @@ Dùng `node.properties` và `jvm.config` giống coordinator, nhưng đổi `nod
 
 ### Bước 5: Thêm Catalog (S3 + Iceberg)
 
-Tạo `/etc/trino/catalog/iceberg.properties`:
-
-```properties
+Tạo `/etc/trino/catalog/iceberg.properties`: ```properties
 # /etc/trino/catalog/iceberg.properties
 connector.name=iceberg
 hive.s3.aws-access-key=YOUR_ACCESS_KEY
@@ -189,9 +165,7 @@ iceberg.catalog.type=glue
 iceberg.file-format=PARQUET
 ```
 
-Catalog filesystem local khi testing:
-
-```properties
+Catalog filesystem local khi testing: ```properties
 # /etc/trino/catalog/local.properties
 connector.name=iceberg
 iceberg.catalog.type=file_system
@@ -212,9 +186,7 @@ bin/launcher start
 ./trino --server http://trino-coordinator:8080 --execute "SELECT * FROM system.runtime.nodes"
 ```
 
-Output mong đợi hiển thị tất cả node:
-
-```
+Output mong đợi hiển thị tất cả node: ```
 http://trino-coordinator:8080    trino-coordinator-01    coordinator    true       active
 http://trino-worker-01:8080     trino-worker-01         worker         false      active
 http://trino-worker-02:8080     trino-worker-02         worker         false      active
@@ -239,29 +211,20 @@ mv trino-cli-${TRINO_VERSION}-executable.jar trino
 
 ### Tích hợp 1: Apache Superset (BI Dashboard)
 
-Superset kết nối với Trino qua dialect PyHive SQLAlchemy:
-
-```bash
+Superset kết nối với Trino qua dialect PyHive SQLAlchemy: ```bash
 # Cài driver Trino cho Superset
 pip install trino[sqlalchemy]
 ```
 
-Trong Superset, thêm database với connection string:
-
-```
+Trong Superset, thêm database với connection string: ```
 trino://trino-coordinator:8080/iceberg/default
 ```
 
 ### Tích hợp 2: dbt (Biến đổi Dữ liệu)
 
-Cấu hình `~/.dbt/profiles.yml`:
-
-```yaml
-my_trino_project:
-  target: dev
-  outputs:
-    dev:
-      type: trino
+Cấu hình `~/.dbt/profiles.yml`: ```yaml
+my_trino_project: target: dev
+  outputs: dev: type: trino
       method: none
       host: trino-coordinator
       port: 8080
@@ -271,23 +234,18 @@ my_trino_project:
       threads: 8
 ```
 
-Chạy model dbt:
-
-```bash
+Chạy model dbt: ```bash
 dbt run --profiles-dir ~/.dbt --project-dir ./my_project
 ```
 
 ### Tích hợp 3: Apache Airflow (Điều phối)
 
-Dùng `TrinoOperator` trong DAG:
-
-```python
+Dùng `TrinoOperator` trong DAG: ```python
 from airflow.providers.trino.operators.trino import TrinoOperator
 from airflow import DAG
 from datetime import datetime
 
-with DAG("trino_analytics", start_date=datetime(2026, 1, 1), schedule="@daily") as dag:
-    daily_aggregation = TrinoOperator(
+with DAG("trino_analytics", start_date=datetime(2026, 1, 1), schedule="@daily") as dag: daily_aggregation = TrinoOperator(
         task_id="aggregate_events",
         sql="""
             INSERT INTO analytics.daily_metrics
@@ -302,9 +260,7 @@ with DAG("trino_analytics", start_date=datetime(2026, 1, 1), schedule="@daily") 
 
 ### Tích hợp 4: Apache Kafka (Phân tích Streaming)
 
-Tạo `/etc/trino/catalog/kafka.properties`:
-
-```properties
+Tạo `/etc/trino/catalog/kafka.properties`: ```properties
 connector.name=kafka
 kafka.table-names=events,orders,user_activity
 kafka.default-schema=default
@@ -312,9 +268,7 @@ kafka.nodes=kafka-01:9092,kafka-02:9092,kafka-03:9092
 kafka.table-description-dir=/etc/trino/kafka/
 ```
 
-Truy vấn topic Kafka trực tiếp bằng SQL:
-
-```sql
+Truy vấn topic Kafka trực tiếp bằng SQL: ```sql
 -- Truy vấn Kafka stream trực tiếp
 SELECT
     _message,
@@ -329,9 +283,7 @@ LIMIT 100;
 
 ### Tích hợp 5: PostgreSQL (Liên kết Dữ liệu Vận hành)
 
-Tạo `/etc/trino/catalog/postgres.properties`:
-
-```properties
+Tạo `/etc/trino/catalog/postgres.properties`: ```properties
 connector.name=postgresql
 connection-url=jdbc:postgresql://postgres:5432/production
 connection-user=trino_reader
@@ -339,9 +291,7 @@ connection-password=${ENV:POSTGRES_PASSWORD}
 case-insensitive-name-matching=true
 ```
 
-Liên kết PostgreSQL và S3 trong một truy vấn duy nhất:
-
-```sql
+Liên kết PostgreSQL và S3 trong một truy vấn duy nhất: ```sql
 SELECT
     u.id,
     u.email,
@@ -358,9 +308,7 @@ LIMIT 100;
 
 ### Benchmark TPC-DS: Trino vs Các lựa chọn khác
 
-Chúng tôi chạy TPC-DS Scale Factor 100 (~100 GB dataset, Parquet trên S3) trên phần cứng giống hệt (3 node, 16 vCPU, 64 GB RAM mỗi node):
-
-| Loại truy vấn | Trino 464 | Spark 3.5 SQL | PrestoDB 0.289 | Dremio 25.0 |
+Chúng tôi chạy TPC-DS Scale Factor 100 (~100 GB dataset, Parquet trên S3) trên phần cứng giống hệt (3 node, 16 vCPU, 64 GB RAM mỗi node): | Loại truy vấn | Trino 464 | Spark 3.5 SQL | PrestoDB 0.289 | Dremio 25.0 |
 |---|---|---|---|---|
 | Scan + filter đơn giản (Q1) | **1,2s** | 3,8s | 1,5s | 2,1s |
 | Join đa bảng (Q25) | **8,4s** | 14,2s | 10,1s | 11,5s |
@@ -381,9 +329,7 @@ Trino luôn vượt trội hơn các đối thủ trên workload truy vấn tư�
 
 ### So sánh Chi phí: Trino Tự host vs Cloud Warehouse
 
-Với dataset **500 TB** và **100K truy vấn/tháng** (workload phân tích):
-
-| Nền tảng | Chi phí tháng | Bị khóa | Tùy chỉnh |
+Với dataset **500 TB** và **100K truy vấn/tháng** (workload phân tích): | Nền tảng | Chi phí tháng | Bị khóa | Tùy chỉnh |
 |---|---|---|---|
 | Trino tự host | **$1.200–2.500** | Không | Toàn bộ |
 | Snowflake (M) | $8.000–12.000 | Cao | Hạn chế |
@@ -397,9 +343,7 @@ Tự host Trino trên [DigitalOcean](https://m.do.co/c/eca87ac14ee0) hoặc [HTS
 
 ### Tối ưu truy vấn với EXPLAIN ANALYZE
 
-Trino cung cấp kế hoạch truy vấn chi tiết. Luôn kiểm tra trước khi tối ưu:
-
-```sql
+Trino cung cấp kế hoạch truy vấn chi tiết. Luôn kiểm tra trước khi tối ưu: ```sql
 EXPLAIN ANALYZE
 SELECT
     region,
@@ -411,16 +355,13 @@ WHERE o.order_date > DATE '2026-01-01'
 GROUP BY region;
 ```
 
-Tìm các vấn đề phổ biến trong output:
-- **Collocated joins** vs **repartitioned joins** — hướng đến broadcast join trên bảng dimension nhỏ
+Tìm các vấn đề phổ biến trong output: - **Collocated joins** vs **repartitioned joins** — hướng đến broadcast join trên bảng dimension nhỏ
 - **Table scan không có predicate pushdown** — đảm bảo partition pruning đang hoạt động
 - **Data shuffling quá mức** — cân nhắc chiến lược bucketing hoặc partitioning
 
 ### Nhóm Tài nguyên (Cô lập Production-Grade)
 
-Tạo `/etc/trino/resource-groups.json`:
-
-```json
+Tạo `/etc/trino/resource-groups.json`: ```json
 {
   "rootGroups": [
     {
@@ -463,17 +404,13 @@ Tạo `/etc/trino/resource-groups.json`:
 }
 ```
 
-Tham chiếu trong `config.properties`:
-
-```properties
+Tham chiếu trong `config.properties`: ```properties
 resource-groups.config-file=/etc/trino/resource-groups.json
 ```
 
 ### Bật Exchange Spilling (Bảo vệ Bộ nhớ)
 
-Cho các truy vấn vượt quá bộ nhớ khả dụng, bật spilling ra đĩa:
-
-```properties
+Cho các truy vấn vượt quá bộ nhớ khả dụng, bật spilling ra đĩa: ```properties
 # /etc/trino/config.properties
 spill-enabled=true
 spiller-spill-path=/var/trino/spill
@@ -483,9 +420,7 @@ memory-revoking-target=0.5
 
 ### Xác thực & SSL (Bảo mật Production)
 
-Bật xác thực mật khẩu với LDAP hoặc file-based:
-
-```properties
+Bật xác thực mật khẩu với LDAP hoặc file-based: ```properties
 # /etc/trino/config.properties
 http-server.authentication.type=PASSWORD
 http-server.https.enabled=true
@@ -494,34 +429,25 @@ http-server.https.keystore.path=/etc/trino/keystore.jks
 http-server.https.keystore.key=changeit
 ```
 
-Tạo `/etc/trino/password-authenticator.properties`:
-
-```properties
+Tạo `/etc/trino/password-authenticator.properties`: ```properties
 password-authenticator.name=file
 file.password-file=/etc/trino/password.db
 ```
 
-Tạo password hash:
-
-```bash
-# Cài plugin trino-password-authenticator, sau đó:
-java -cp trino-server-464/plugin/password-authenticators/* \
+Tạo password hash: ```bash
+# Cài plugin trino-password-authenticator, sau đó: java -cp trino-server-464/plugin/password-authenticators/* \
   io.trino.plugin.password.file.EncryptPassword \
   --password 'your-secure-password'
 ```
 
 ### Giám sát với JMX + Prometheus
 
-Bật JMX catalog cho runtime metrics:
-
-```properties
+Bật JMX catalog cho runtime metrics: ```properties
 # /etc/trino/catalog/jmx.properties
 connector.name=jmx
 ```
 
-Truy vấn runtime metrics trực tiếp:
-
-```sql
+Truy vấn runtime metrics trực tiếp: ```sql
 -- Truy vấn đang hoạt động
 SELECT node_id, count(*) FROM jmx.current."trino.execution:name=QueryManager" GROUP BY node_id;
 
@@ -554,9 +480,7 @@ SELECT query_id, user, cumulative_user_memory FROM system.runtime.queries WHERE 
 
 ## Hạn chế: Đánh giá Trung thực
 
-Trino không phải thuốc chữa bá bệnh. Đây là những gì bạn cần biết:
-
-1. **Không phải database — không có ACID transaction**: Trino là query engine. Nó không quản lý lưu trữ dữ liệu, indexing, hoặc cập nhật transactional. Cho workload transactional, hãy dùng PostgreSQL hoặc lakehouse format phù hợp như Iceberg.
+Trino không phải thuốc chữa bá bệnh. Đây là những gì bạn cần biết: 1. **Không phải database — không có ACID transaction**: Trino là query engine. Nó không quản lý lưu trữ dữ liệu, indexing, hoặc cập nhật transactional. Cho workload transactional, hãy dùng PostgreSQL hoặc lakehouse format phù hợp như Iceberg.
 
 2. **Giới hạn bộ nhớ trên join lớn**: Không tối ưu đúng cách, các truy vấn với shuffle operation lớn có thể làm cạn kiệt bộ nhớ cluster. Exchange spilling giúp đỡ nhưng tăng độ trễ.
 
@@ -614,9 +538,7 @@ Bắt đầu với cluster 3 node trên [DigitalOcean](https://m.do.co/c/eca87ac
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -626,7 +548,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 Bài viết này chứa liên kết affiliate đến [DigitalOcean](https://m.do.co/c/eca87ac14ee0) và [HTStack](https://my.htstack.com/aff.php?aff=27187). Nếu bạn mua dịch vụ qua các liên kết này, chúng tôi có thể nhận được hoa hồng mà không phát sinh thêm chi phí cho bạn. Điều này giúp hỗ trợ công việc tài liệu open-source của chúng tôi. Chúng tôi chỉ đề xuất các dịch vụ đã tự kiểm tra và sẽ sử dụng cho chính workload production của mình.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

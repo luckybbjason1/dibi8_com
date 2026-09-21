@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/invokeai" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/invokeai" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/invokeai" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/invokeai" />
 title: 'InvokeAI: 27.2K+ Stars — 2026 완벽 설치 가이드'
 description: 'InvokeAI(Invoke)는 업계 최고의 WebUI를 갖춘 Stable Diffusion 모델용 크리에이티브 엔진이다. SD 1.5, SDXL, FLUX 및 ControlNet과 호환된다. Docker 설치, 워크플로우 설정, AUTOMATIC1111 및 ComfyUI와의 벤치마크, 프로덕션 강화를 다룬다.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [invokeai, 'stable diffusion', 'ai 이미지 생성', docker, flux, sdxl, webui, 오픈소스]
-aliases:
-- /kr/posts/invokeai/
+aliases: - /kr/posts/invokeai/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/invokeai/ -->
 
 {{</* resource-info */>}}
 
@@ -81,9 +73,7 @@ cd InvokeAI/docker
 cp .env.sample .env
 ```
 
-`.env` 파일을 편집한다:
-
-```bash
+`.env` 파일을 편집한다: ```bash
 # 핵심 설정
 INVOKEAI_ROOT=/opt/invokeai-data
 INVOKEAI_PORT=9090
@@ -98,9 +88,7 @@ HUGGINGFACE_TOKEN=hf_your_token_here
 ./run.sh
 ```
 
-또는 직접 실행:
-
-```bash
+또는 직접 실행: ```bash
 docker compose up -d
 ```
 
@@ -108,9 +96,7 @@ docker compose up -d
 
 ### 빠른 Docker 실행 (Compose 없이)
 
-데이터 유지 없이 빠르게 테스트하려면:
-
-```bash
+데이터 유지 없이 빠르게 테스트하려면: ```bash
 # NVIDIA GPU
 docker run --runtime=nvidia --gpus=all \
   --publish 9090:9090 \
@@ -183,59 +169,40 @@ sudo docker compose up -d
 
 x-invokeai: &invokeai
     image: "ghcr.io/invoke-ai/invokeai:latest"
-    build:
-      context: ..
+    build: context: ..
       dockerfile: docker/Dockerfile
-    env_file:
-      - .env
-    environment:
-      - INVOKEAI_ROOT=${CONTAINER_INVOKEAI_ROOT:-/invokeai}
+    env_file: - .env
+    environment: - INVOKEAI_ROOT=${CONTAINER_INVOKEAI_ROOT:-/invokeai}
       - HF_HOME
-    ports:
-      - "${INVOKEAI_PORT:-9090}:${INVOKEAI_PORT:-9090}"
-    volumes:
-      - type: bind
+    ports: - "${INVOKEAI_PORT:-9090}:${INVOKEAI_PORT:-9090}"
+    volumes: - type: bind
         source: ${HOST_INVOKEAI_ROOT:-${INVOKEAI_ROOT:-~/invokeai}}
         target: ${CONTAINER_INVOKEAI_ROOT:-/invokeai}
-        bind:
-          create_host_path: true
+        bind: create_host_path: true
       - ${HF_HOME:-~/.cache/huggingface}:${HF_HOME:-/invokeai/.cache/huggingface}
     tty: true
     stdin_open: true
 
-services:
-  invokeai-cuda:
-    <<: *invokeai
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+services: invokeai-cuda: <<: *invokeai
+    deploy: resources: reservations: devices: - driver: nvidia
               count: 1
               capabilities: [gpu]
 
-  invokeai-cpu:
-    <<: *invokeai
-    profiles:
-      - cpu
+  invokeai-cpu: <<: *invokeai
+    profiles: - cpu
 
-  invokeai-rocm:
-    <<: *invokeai
-    environment:
-      - AMD_VISIBLE_DEVICES=all
+  invokeai-rocm: <<: *invokeai
+    environment: - AMD_VISIBLE_DEVICES=all
       - RENDER_GROUP_ID=${RENDER_GROUP_ID}
     runtime: amd
-    profiles:
-      - rocm
+    profiles: - rocm
 ```
 
 ## Stable Diffusion, ComfyUI 및 ControlNet 통합
 
 ### Stable Diffusion 모델 사용
 
-InvokeAI는 다양한 모델 계열을 기본적으로 지원한다:
-
-- **SD 1.5** — 클래식 모델, 방대한 LoRA 생태계
+InvokeAI는 다양한 모델 계열을 기본적으로 지원한다: - **SD 1.5** — 클래식 모델, 방대한 LoRA 생태계
 - **SDXL** — 더 높은 해상도, 더 나은 프롬프트 준수
 - **FLUX / FLUX.2** — 2025-2026년 최신 기술 수준의 품질
 - **Z-Image** — 미세 조정에 최적화된 언디스틸 모델
@@ -271,9 +238,7 @@ InvokeAI는 노드 워크스페이스를 통해 기본 ControlNet을 지원한�
 
 ### ComfyUI 워크플로우 가져오기
 
-InvokeAI와 ComfyUI는 서로 다른 워크플로우 형식을 사용하지만, ComfyUI 파이프라인을 InvokeAI의 노드 에디터에서 재현할 수 있다. 노드 라이브러리는 다음을 포함한다:
-
-- KSampler / Sampler 노드
+InvokeAI와 ComfyUI는 서로 다른 워크플로우 형식을 사용하지만, ComfyUI 파이프라인을 InvokeAI의 노드 에디터에서 재현할 수 있다. 노드 라이브러리는 다음을 포함한다: - KSampler / Sampler 노드
 - CLIP Text Encode
 - VAELoader / VAEDecode
 - Image Scale 노드
@@ -325,15 +290,12 @@ print(response.json()["session_id"])
 
 ### 멀티유저 모드 (v6.12.0+)
 
-InvokeAI는 이제 단일 백엔드에서 여러 격리된 계정을 지원한다:
-
-```bash
+InvokeAI는 이제 단일 백엔드에서 여러 격리된 계정을 지원한다: ```bash
 # .env에서 멀티유저 모드 활성화
 INVOKEAI_ENABLE_MULTIUSER=true
 ```
 
-각 사용자는 다음을 갖는다:
-- 별도의 이미지 보드 및 갤러리
+각 사용자는 다음을 갖는다: - 별도의 이미지 보드 및 갤러리
 - 독립적인 캔버스 상태
 - 독립적인 UI 환경 설정
 - 역할 기반 접근 (관리자 vs 일반 사용자)
@@ -386,9 +348,7 @@ TimeoutStartSec=0
 WantedBy=multi-user.target
 ```
 
-활성화 및 시작:
-
-```bash
+활성화 및 시작: ```bash
 sudo systemctl daemon-reload
 sudo systemctl enable --now invokeai
 ```
@@ -397,19 +357,13 @@ sudo systemctl enable --now invokeai
 
 ```yaml
 # docker-compose.monitoring.yml
-services:
-  prometheus:
-    image: prom/prometheus:latest
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
-    ports:
-      - "9091:9090"
+services: prometheus: image: prom/prometheus:latest
+    volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports: - "9091:9090"
 
-  dcgm-exporter:
-    image: nvcr.io/nvidia/k8s/dcgm-exporter:latest
+  dcgm-exporter: image: nvcr.io/nvidia/k8s/dcgm-exporter:latest
     runtime: nvidia
-    ports:
-      - "9400:9400"
+    ports: - "9400:9400"
 ```
 
 ### 자동 백업
@@ -428,9 +382,7 @@ tar czf "$BACKUP_DIR/models-$DATE.tar.gz" /opt/invokeai-data/models
 find "$BACKUP_DIR" -name "*.tar.gz" -mtime +7 -delete
 ```
 
-crontab에 추가:
-
-```bash
+crontab에 추가: ```bash
 0 2 * * * /opt/invokeai-backup/backup.sh
 ```
 
@@ -484,17 +436,13 @@ InvokeAI 자체는 Apache-2.0 라이선스이다. 다운로드하는 모델(SD 1
 
 ### InvokeAI를 새 버전으로 업데이트하려면?
 
-Docker 설치의 경우 최신 이미지를 가져오고 재시작한다:
-
-```bash
+Docker 설치의 경우 최신 이미지를 가져오고 재시작한다: ```bash
 cd InvokeAI/docker
 docker compose pull
 docker compose up -d
 ```
 
-베어 메탈 설치의 경우 런처를 사용한다:
-
-```bash
+베어 메탈 설치의 경우 런처를 사용한다: ```bash
 invokeai-update
 ```
 
@@ -524,9 +472,7 @@ InvokeAI는 AI 이미지 생성 생태계에서 특정 틈새를 채운다. 전�
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -548,7 +494,6 @@ InvokeAI는 AI 이미지 생성 생태계에서 특정 틈새를 채운다. 전�
 *이 기사에는 DigitalOcean 제휴 링크가 포함되어 있다. 이 링크를 통해 가입하면 추가 비용 없이 우리에게 커미션이 지급된다. 이는 사이트와 오픈소스 콘텐츠 지원에 도움이 된다. 모든 의견과 벤치마크는 독립적으로 제작되었다.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

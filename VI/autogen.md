@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/autogen" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/autogen" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/autogen" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/autogen" />
 title: 'AutoGen: 58K+ Stars — Khám Phá Sâu Framework Multi-Agent...
 description: 'AutoGen (Microsoft) là framework lập trình hướng sự kiện để xây dựng hệ thống AI multi-agent. Tương thích với OpenAI, Azure, Ollama, Docker, và VS Code. Bao gồm cài đặt, thiết lập group chat, production hardening và so sánh trung thực với các lựa chọn thay thế.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,12 +20,9 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [autogen, 'multi-agent', microsoft, 'llm-framework', 'agentic-ai', python, 'crewai-alternative', 'langgraph-alternative']
-aliases:
-- /vi/posts/autogen/
+aliases: - /vi/posts/autogen/
 - /vi/resources/llm-frameworks/autogen-multi-agent-framework/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/autogen/ -->
 
 {{</* resource-info */>}}
 
@@ -44,9 +36,7 @@ AutoGen là framework lập trình mã nguồn mở để xây dựng ứng dụ
 
 ## AutoGen Hoạt Động Như Thế Nào
 
-Kiến trúc của AutoGen được chia thành bốn lớp:
-
-| Lớp | Mục Đích | Điểm Vào |
+Kiến trúc của AutoGen được chia thành bốn lớp: | Lớp | Mục Đích | Điểm Vào |
 |------|---------|----------|
 | **Core** | Runtime hướng sự kiện cho messaging và trạng thái agent | `autogen-core` |
 | **AgentChat** | Agent hội thoại cấp cao xây dựng trên Core | `autogen-agentchat` |
@@ -63,9 +53,7 @@ Mô hình tư duy cốt lõi là truyền tin giữa các agent. `AssistantAgent
 
 *Hình 2: Kiến trúc phân lớp của AutoGen — Core cung cấp runtime hướng sự kiện, AgentChat thêm abstraction hội thoại, Extensions cung cấp tích hợp công cụ, và Studio cung cấp UI no-code.*
 
-Các khái niệm cốt lõi mà mọi developer cần hiểu:
-
-- **Agent**: Thực thể có backend LLM, system message, và bộ công cụ tùy chọn.
+Các khái niệm cốt lõi mà mọi developer cần hiểu: - **Agent**: Thực thể có backend LLM, system message, và bộ công cụ tùy chọn.
 - **Conversation**: Chuỗi tin nhắn được trao đổi giữa các agent.
 - **Group Chat**: Cuộc hội thoại multi-agent được quản lý bởi router trung tâm.
 - **Code Executor**: Sandbox (local hoặc Docker) nơi code được tạo chạy an toàn.
@@ -106,8 +94,7 @@ import asyncio
 from autogen_agentchat.agents import AssistantAgent
 from autogen_ext.models.openai import OpenAIChatCompletionClient
 
-async def main() -> None:
-    agent = AssistantAgent(
+async def main() -> None: agent = AssistantAgent(
         name="assistant",
         model_client=OpenAIChatCompletionClient(
             model="gpt-4o",
@@ -121,9 +108,7 @@ async def main() -> None:
 asyncio.run(main())
 ```
 
-Chạy:
-
-```bash
+Chạy: ```bash
 export OPENAI_API_KEY="sk-..."
 python hello_agent.py
 ```
@@ -145,9 +130,7 @@ docker run -it \
 
 ### OpenAI / Azure OpenAI
 
-AgentChat của AutoGen sử dụng `OpenAIChatCompletionClient` cho cả endpoint OpenAI và Azure:
-
-```python
+AgentChat của AutoGen sử dụng `OpenAIChatCompletionClient` cho cả endpoint OpenAI và Azure: ```python
 from autogen_ext.models.openai import OpenAIChatCompletionClient
 
 # OpenAI trực tiếp
@@ -205,9 +188,7 @@ code_agent = CodeExecutorAgent(
 
 ### Tiện Ích Mở Rộng VS Code
 
-Tiện ích mở rộng AutoGen VS Code cung cấp inline debugging cho hội thoại agent:
-
-```bash
+Tiện ích mở rộng AutoGen VS Code cung cấp inline debugging cho hội thoại agent: ```bash
 # Cài đặt từ marketplace (tìm kiếm "AutoGen")
 # Hoặc qua CLI
 code --install-extension microsoft.autogen
@@ -215,9 +196,7 @@ code --install-extension microsoft.autogen
 
 ### Model Context Protocol (MCP)
 
-AutoGen 0.5+ hỗ trợ MCP server cho khám phá công cụ:
-
-```python
+AutoGen 0.5+ hỗ trợ MCP server cho khám phá công cụ: ```python
 from autogen_ext.tools.mcp import McpWorkbench
 
 workbench = McpWorkbench(
@@ -231,9 +210,7 @@ workbench = McpWorkbench(
 
 ### Benchmark Hoàn Thành Tác Vụ
 
-Các benchmark độc lập từ nghiên cứu 2026 cho thấy AutoGen hoạt động như thế nào trên các tác vụ agent tiêu chuẩn:
-
-| Benchmark | AutoGen | CrewAI | LangGraph | Ghi Chú |
+Các benchmark độc lập từ nghiên cứu 2026 cho thấy AutoGen hoạt động như thế nào trên các tác vụ agent tiêu chuẩn: | Benchmark | AutoGen | CrewAI | LangGraph | Ghi Chú |
 |-----------|---------|--------|-----------|---------|
 | SimpleQA Verified (F1) | 0.62 | **0.71** | 0.68 | CrewAI cao nhất nhưng chậm hơn 55-140% |
 | BIRD-SQL (Thực thi %) | 54.1 | 54.3 | **55.9** | LangGraph dẫn đầu NL2SQL |
@@ -249,9 +226,7 @@ Nguồn: [Open Agent Specification Technical Report](https://arxiv.org/html/2510
 
 ### Chi Phí và Độ Trễ
 
-Ước tính chi phí production cho workload **10.000 quyết định/năm** (báo cáo cộng đồng, 2026):
-
-| Framework | Chi Phí Ước Tính Hàng Năm | Độ Trễ TB (đơn giản) | Độ Trễ TB (phức tạp) |
+Ước tính chi phí production cho workload **10.000 quyết định/năm** (báo cáo cộng đồng, 2026): | Framework | Chi Phí Ước Tính Hàng Năm | Độ Trễ TB (đơn giản) | Độ Trễ TB (phức tạp) |
 |-----------|--------------------------|---------------------|---------------------|
 | LangGraph | $220–$365 | 180ms | 1.2s |
 | CrewAI | $220–$365 | 220ms | 1.5s |
@@ -261,9 +236,7 @@ Chi phí cao hơn của AutoGen bắt nguồn từ pattern hội thoại của n
 
 ### Khi Nào AutoGen Thắng
 
-AutoGen vượt trội hơn các lựa chọn thay thế trong các kịch bản cụ thể:
-
-- **Nghiên cứu multi-agent**: Các agent với vai trò khác nhau tranh luận giải pháp, bắt lỗi mà agent đơn lẻ bỏ sót. Một nghiên cứu tối ưu hóa chuỗi cung ứng cho thấy AutoGen cần ít code hơn 3 lần và ít can thiệp của con ngườ hơn so với hệ thống agent đơn lẻ.
+AutoGen vượt trội hơn các lựa chọn thay thế trong các kịch bản cụ thể: - **Nghiên cứu multi-agent**: Các agent với vai trò khác nhau tranh luận giải pháp, bắt lỗi mà agent đơn lẻ bỏ sót. Một nghiên cứu tối ưu hóa chuỗi cung ứng cho thấy AutoGen cần ít code hơn 3 lần và ít can thiệp của con ngườ hơn so với hệ thống agent đơn lẻ.
 - **Tinh chỉnh code lặp đi lặp lại**: Vòng lặp Coder + Executor tạo code hoạt động thông qua sửa lỗi liên tiếp. Sandbox Docker tích hợp thực thi Python an toàn.
 - **Workflow human-in-the-loop**: Hỗ trợ native cho tạm dừng hội thoại, chờ input con ngườ, và tiếp tục — không cần điều phối bên ngoài.
 
@@ -278,8 +251,7 @@ from autogen_agentchat.teams import GroupChat, RoundRobinGroupChat
 from autogen_agentchat.conditions import MaxMessageTermination, TextMentionTermination
 from autogen_ext.models.openai import OpenAIChatCompletionClient
 
-async def main():
-    model_client = OpenAIChatCompletionClient(model="gpt-4o")
+async def main(): model_client = OpenAIChatCompletionClient(model="gpt-4o")
 
     # Định nghĩa các agent chuyên gia
     researcher = AssistantAgent(
@@ -311,8 +283,7 @@ async def main():
     )
 
     result = await team.run(task="Write a one-paragraph summary of quantum computing.")
-    for msg in result.messages:
-        print(f"[{msg.source}]: {msg.content[:100]}...")
+    for msg in result.messages: print(f"[{msg.source}]: {msg.content[:100]}...")
 
 asyncio.run(main())
 ```
@@ -338,8 +309,7 @@ team = SelectorGroupChat(
 from autogen_core.tools import FunctionTool
 from autogen_agentchat.agents import AssistantAgent
 
-def search_knowledge_base(query: str) -> str:
-    """Search internal knowledge base."""
+def search_knowledge_base(query: str) -> str: """Search internal knowledge base."""
     # Logic tìm kiếm của bạn
     return f"Results for '{query}': ..."
 
@@ -364,12 +334,10 @@ state = await team.save_state()
 
 # Lưu vào Redis / cơ sở dữ liệu
 import json
-with open("team_state.json", "w") as f:
-    json.dump(state, f)
+with open("team_state.json", "w") as f: json.dump(state, f)
 
 # Sau đó: khôi phục và tiếp tục
-with open("team_state.json") as f:
-    state = json.load(f)
+with open("team_state.json") as f: state = json.load(f)
 await team.load_state(state)
 result = await team.run(task="Continue from where we left off.")
 ```
@@ -381,8 +349,7 @@ from autogen_ext.code_executors.docker import DockerCommandLineCodeExecutor
 import tempfile
 
 # Luôn sử dụng Docker cho code không đáng tin cậy
-with tempfile.TemporaryDirectory() as work_dir:
-    executor = DockerCommandLineCodeExecutor(
+with tempfile.TemporaryDirectory() as work_dir: executor = DockerCommandLineCodeExecutor(
         image="python:3.12-slim",
         work_dir=work_dir,
         timeout=30,
@@ -443,9 +410,7 @@ tracer = trace.get_tracer("autogen.production")
 
 ## Hạn Chế / Đánh Giá Trung Thực
 
-AutoGen không phải công cụ phù hợp cho mọi công việc. Đây là những gì nó KHÔNG phù hợp:
-
-1. **API production throughput cao**: Pattern hội thoại tạo ra 20+ lần gọi LLM mỗi tác vụ. Ở 1.000 yêu cầu/phút, hóa đơn LLM và độ trễ của bạn sẽ không thể chấp nhận được. Sử dụng LangGraph cho workload giao dịch.
+AutoGen không phải công cụ phù hợp cho mọi công việc. Đây là những gì nó KHÔNG phù hợp: 1. **API production throughput cao**: Pattern hội thoại tạo ra 20+ lần gọi LLM mỗi tác vụ. Ở 1.000 yêu cầu/phút, hóa đơn LLM và độ trễ của bạn sẽ không thể chấp nhận được. Sử dụng LangGraph cho workload giao dịch.
 
 2. **Pipeline tuyến tính đơn giản**: Nếu workflow của bạn là "A làm bước 1, B làm bước 2, C làm bước 3" mà không cần backtracking, `Process.sequential` của CrewAI đơn giản và rẻ hơn.
 
@@ -475,29 +440,22 @@ Giới hạn thực tế là 5-8 agent. Ngoài con số đó, bộ chọn hội 
 
 **Q: AutoGen có hỗ trợ phản hồi streaming không?**
 
-Có, AgentChat hỗ trợ streaming qua `run_stream()`:
-
-```python
-async for message in team.run_stream(task="Explain Kubernetes"):
-    if message.source == "assistant":
-        print(message.content, end="", flush=True)
+Có, AgentChat hỗ trợ streaming qua `run_stream()`: ```python
+async for message in team.run_stream(task="Explain Kubernetes"): if message.source == "assistant": print(message.content, end="", flush=True)
 ```
 
 Streaming ở cấp mỗi tin nhắn (không phải mỗi token), nên độ chi tiết thô hơn so với streaming OpenAI thô.
 
 **Q: Làm thế nào để debug một cuộc hội thoại multi-agent bị lỗi?**
 
-Bật logging chi tiết và lưu trạng thái hội thoại:
-
-```python
+Bật logging chi tiết và lưu trạng thái hội thoại: ```python
 # In mọi tin nhắn khi nó xảy ra
 team = RoundRobinGroupChat(
     participants=[agent1, agent2],
     termination_condition=termination
 )
 result = await team.run(task="Debug task", max_turns=10)
-for msg in result.messages:
-    print(f"{msg.source} -> {msg.content[:200]}")
+for msg in result.messages: print(f"{msg.source} -> {msg.content[:200]}")
 ```
 
 ## Kết Luận
@@ -518,9 +476,7 @@ Sự linh hoạt tương tự trở thành trở ngại ở quy mô production. 
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -539,7 +495,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [AutoGen vs CrewAI: Hướng Dẫn Benchmark 2026](https://dev.to/kunpeng-ai-2026/autogen-vs-crewai-a-comprehensive-benchmark-and-selection-guide-for-2026-2nh1)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/vanna-ai-sql-generation" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/vanna-ai-sql-generation" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/vanna-ai-sql-generation" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/vanna-ai-sql-generation" />
 title: 'vanna-ai-sql-generation'
 description: '{'en': ''Explore Vanna AI, the open-source Python library that trains on your database schema to generate SQL from natural language with 90%+ accuracy. Features self-hosting, Jupyter integration, SQL validation, multiple LLM backends, and privacy-first design.'', 'zh': ''探索 Vanna AI，这款基于你的数据库 Schema 训练以 90%+ 准确率从自然语言生成 SQL 的开源 Python 库。支持自托管、Jupyter 集成、SQL 验证、多 LLM 后端和隐私优先设计。'', 'ko': ''데이터베이스 스키마에서 학습하여 90%+ 정확도로 자연어에서 SQL을 생성하는 오픈소스 Python 라이브러리 Vanna AI를 살펴 보세요. 자체 호스팅, Jupyter 통합, SQL 검증, 다중 LLM 백엔드, 개인정보 보호 중심 설계를 제공합니다.'', 'vi': ''Khám phá Vanna AI, thư viện Python mã nguồn mở được huấn luyện trên schema cơ sở dữ liệu của bạn để tạo SQL từ ngôn ngữ tự nhiên với độ chính xác 90%+. Có tính năng tự lưu trữ, tích hợp Jupyter, xác thực SQL, nhiều backend LLM, và thiết kế ưu tiên quyền riêng tư.''}'
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['vanna ai']
-aliases:
-- /vi/posts/vanna-ai-sql-generation/
+aliases: - /vi/posts/vanna-ai-sql-generation/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/vanna-ai-sql-generation/ -->
 
 {{</* resource-info */>}}
 
@@ -45,9 +37,7 @@ Trong hướng dẫn toàn diện này, chúng ta sẽ đi qua mọi thứ bạn
 
 Vanna AI là một thư viện Python mã nguồn mở bắc cầu khoảng cách giữa ngôn ngữ con ngườ và ngôn ngữ truy vấn có cấu trúc. Về cốt lõi, Vanna là một framework **Retrieval-Augmented Generation (RAG)** được xây dựng đặc biệt cho SQL generation. Khác với các chatbot LLM chung chung thỉnh thoảng ảo giác tên bảng hay bịa ra tham chiếu cột, Vanna được huấn luyện trên schema cơ sở dữ liệu thực tế của bạn — học các bảng, cột, mối quan hệ, và thậm chí quy ước đặt tên của tổ chức bạn.
 
-Quy trình làm việc đầy thanh lịch:
-
-1. **Kết nối** Vanna với cơ sở dữ liệu của bạn
+Quy trình làm việc đầy thanh lịch: 1. **Kết nối** Vanna với cơ sở dữ liệu của bạn
 2. **Huấn luyện** nó trên schema của bạn (các câu lệnh DDL, tài liệu, truy vấn mẫu)
 3. **Đặt câu hỏi** bằng ngôn ngữ tự nhiên
 4. **Nhận** SQL chính xác, có thể thực thi
@@ -87,9 +77,7 @@ SQL được tạo ra không chỉ đúng về mặt cú pháp — nó còn chí
 
 Sự bùng nổ của các Mô hình Ngôn ngữ Lớn trong những năm gần đây đã tạo ra cơ hội to lớn cho các giao diện ngôn ngữ tự nhiên. Tuy nhiên, các LLM chung chung gặp khó khăn với SQL generation vì một số lý do quan trọng: chúng ảo giác các phần tử schema, bỏ qua cú pháp đặc thù của cơ sở dữ liệu, và không có nhận thức về mô hình dữ liệu thực tế của bạn. Gửi dữ liệu thô của bạn đến các điểm cuối API của bên thứ ba cũng gây ra những lo ngại nghiêm trọng về quyền riêng tư và tuân thủ.
 
-Vanna AI giải quyết tất cả những thách thức này một cách trực diện:
-
-- **Schema-Aware Generation**: Vanna học schema cụ thể của bạn, loại bỏ ảo giác
+Vanna AI giải quyết tất cả những thách thức này một cách trực diện: - **Schema-Aware Generation**: Vanna học schema cụ thể của bạn, loại bỏ ảo giác
 - **Thiết kế Ưu tiên Quyền riêng tư**: Dữ liệu của bạn không bao giờ rờ khỏi cơ sở hạ tầng của bạn trừ khi bạn chọn
 - **Tùy chọn Tự lưu trữ**: Chạy mọi thứ cục bộ với các LLM mã nguồn mở
 - **Xác thực SQL**: Mỗi truy vấn được tạo được xác thực trước cơ sở dữ liệu của bạn trước khi được trả về
@@ -100,9 +88,7 @@ Vanna AI giải quyết tất cả những thách thức này một cách trực
 from vanna.ollama import Ollama
 from vanna.chromadb import ChromaDB_VectorStore
 
-class MyVanna(ChromaDB_VectorStore, Ollama):
-    def __init__(self, config=None):
-        ChromaDB_VectorStore.__init__(self, config=config)
+class MyVanna(ChromaDB_VectorStore, Ollama): def __init__(self, config=None): ChromaDB_VectorStore.__init__(self, config=config)
         Ollama.__init__(self, config={"model": "llama3"})
 
 # Thiết lập hoàn toàn cục bộ, tự lưu trữ
@@ -139,9 +125,7 @@ pip install "vanna[bigquery]"
 pip install "vanna[all]"
 ```
 
-Cấu hình nhanh cho thiết lập phổ biến nhất:
-
-```python
+Cấu hình nhanh cho thiết lập phổ biến nhất: ```python
 from vanna.remote import VannaDefault
 
 # Sử dụng dịch vụ được lưu trữ của Vanna (thiết lập dễ nhất)
@@ -160,15 +144,11 @@ vn.connect_to_postgres(
 )
 ```
 
-Để thiết lập hoàn toàn tự lưu trữ với LLM cục bộ:
-
-```python
+Để thiết lập hoàn toàn tự lưu trữ với LLM cục bộ: ```python
 from vanna.ollama import Ollama
 from vanna.chromadb import ChromaDB_VectorStore
 
-class LocalVanna(ChromaDB_VectorStore, Ollama):
-    def __init__(self, config=None):
-        ChromaDB_VectorStore.__init__(self, config=config)
+class LocalVanna(ChromaDB_VectorStore, Ollama): def __init__(self, config=None): ChromaDB_VectorStore.__init__(self, config=config)
         Ollama.__init__(self, config={"model": "codellama:13b"})
 
 vn = LocalVanna()
@@ -241,8 +221,7 @@ cursor.execute("""
 """)
 tables = cursor.fetchall()
 
-for (table_name,) in tables:
-    cursor.execute(f"""
+for (table_name,) in tables: cursor.execute(f"""
         SELECT column_name, data_type, is_nullable
         FROM information_schema.columns
         WHERE table_name = '{table_name}';
@@ -268,8 +247,7 @@ Vượt ra khỏi schema thô, bạn có thể huấn luyện Vanna trên bối 
 vn.train(documentation="""
 The sales table records all completed transactions.
 The amount column is in USD and includes tax.
-The region column uses standard US Census regions:
-Northeast, Midwest, South, and West.
+The region column uses standard US Census regions: Northeast, Midwest, South, and West.
 A high_value_customer is anyone with lifetime purchases > $10,000.
 """)
 
@@ -356,9 +334,7 @@ sql = vn.generate_sql(
 print(sql)
 ```
 
-Vanna cũng hỗ trợ tạo SQL với các ràng buộc hoặc mẫu cụ thể:
-
-```python
+Vanna cũng hỗ trợ tạo SQL với các ràng buộc hoặc mẫu cụ thể: ```python
 # Tạo SQL với giải thích
 sql, explanation = vn.generate_sql(
     "Which customers haven't placed an order in the last 90 days?",
@@ -387,11 +363,9 @@ vn = VannaDefault(model="my-model", api_key="vn-...",
                   config={"validate_sql": True})
 
 # Các truy vấn không hợp lệ bị bắt và sửa
-try:
-    sql = vn.generate_sql("Show me the top 10 products by revenue")
+try: sql = vn.generate_sql("Show me the top 10 products by revenue")
     print(f"Validated SQL: {sql}")
-except Exception as e:
-    print(f"Validation failed: {e}")
+except Exception as e: print(f"Validation failed: {e}")
     # Vanna sẽ cố gắng sửa và tạo lại
     sql = vn.generate_sql_with_retry(
         "Show me the top 10 products by revenue",
@@ -399,9 +373,7 @@ except Exception as e:
     )
 ```
 
-Vanna cũng có thể xử lý các câu hỏi tiếp theo tham chiếu đến ngữ cảnh trước đó:
-
-```python
+Vanna cũng có thể xử lý các câu hỏi tiếp theo tham chiếu đến ngữ cảnh trước đó: ```python
 # Câu hỏi đầu tiên
 result1 = vn.ask("What were total sales in 2026?")
 
@@ -431,8 +403,7 @@ vn.set_prompt_template("""
 You are an expert SQL analyst. Given the following database schema,
 generate a PostgreSQL-compatible query to answer the user's question.
 
-Schema:
-{schema}
+Schema: {schema}
 
 User Question: {question}
 
@@ -463,9 +434,7 @@ hr_sql = vn_hr.generate_sql("Employee count by department")
 from vanna.pinecone import Pinecone_VectorStore
 from vanna.openai import OpenAI_Chat
 
-class PineconeVanna(Pinecone_VectorStore, OpenAI_Chat):
-    def __init__(self, config=None):
-        Pinecone_VectorStore.__init__(self, config=config)
+class PineconeVanna(Pinecone_VectorStore, OpenAI_Chat): def __init__(self, config=None): Pinecone_VectorStore.__init__(self, config=config)
         OpenAI_Chat.__init__(self, config=config)
 
 vn = PineconeVanna(config={
@@ -493,9 +462,7 @@ vn.connect_to_postgres(host="localhost", dbname="analytics",
 vn.ask("What are the top selling products?")
 ```
 
-Phương thức `ask()` trong Jupyter trả về đầu ra phong phú bao gồm SQL được tạo, giải thích, và bảng kết quả. Để có trải nghiệm tương tác đầy đủ:
-
-```python
+Phương thức `ask()` trong Jupyter trả về đầu ra phong phú bao gồm SQL được tạo, giải thích, và bảng kết quả. Để có trải nghiệm tương tác đầy đủ: ```python
 # Khởi chạy giao diện Web UI tương tác trong Jupyter
 from vanna.flask import VannaFlaskApp
 
@@ -503,9 +470,7 @@ app = VannaFlaskApp(vn)
 app.run()
 ```
 
-Vanna cũng tạo các trực quan tự động khi phù hợp:
-
-```python
+Vanna cũng tạo các trực quan tự động khi phù hợp: ```python
 # Tạo SQL và tự động tạo biểu đồ
 vn.ask("Plot monthly sales trends for 2026")
 
@@ -550,17 +515,13 @@ Hiểu kiến trúc của Vanna là chìa khóa để triển khai nó an toàn 
 └─────────────────────────────────────────────────────────────┘
 ```
 
-Mô hình quyền riêng tư hoạt động như sau:
-
-```python
+Mô hình quyền riêng tư hoạt động như sau: ```python
 # Cấu hình Ưu tiên Quyền riêng tư (Khuyến nghị)
 from vanna.ollama import Ollama
 from vanna.chromadb import ChromaDB_VectorStore
 
-class PrivateVanna(ChromaDB_VectorStore, Ollama):
-    """Hoàn toàn tự lưu trữ. Không dữ liệu nào rờ khỏi mạng của bạn."""
-    def __init__(self, config=None):
-        ChromaDB_VectorStore.__init__(self, config=config)
+class PrivateVanna(ChromaDB_VectorStore, Ollama): """Hoàn toàn tự lưu trữ. Không dữ liệu nào rờ khỏi mạng của bạn."""
+    def __init__(self, config=None): ChromaDB_VectorStore.__init__(self, config=config)
         Ollama.__init__(self, config={"model": "llama3:70b"})
 
 vn = PrivateVanna()
@@ -577,9 +538,7 @@ vn.connect_to_postgres(host="internal-db", dbname="analytics",
 
 ## Benchmark và Độ chính xác
 
-Độ chính xác của Vanna phụ thuộc nhiều vào chất lượng và số lượng dữ liệu huấn luyện. Dưới đây là các đặc điểm hiệu suất điển hình được quan sát vào năm 2026:
-
-```python
+Độ chính xác của Vanna phụ thuộc nhiều vào chất lượng và số lượng dữ liệu huấn luyện. Dưới đây là các đặc điểm hiệu suất điển hình được quan sát vào năm 2026: ```python
 # Script đánh giá độ chính xác
 import pandas as pd
 
@@ -605,19 +564,15 @@ test_cases = [
 ]
 
 correct = 0
-for test in test_cases:
-    generated = vn.generate_sql(test["question"])
+for test in test_cases: generated = vn.generate_sql(test["question"])
     # So sánh ngữ nghĩa (được chuẩn hóa)
-    if normalize_sql(generated) == normalize_sql(test["expected_sql"]):
-        correct += 1
+    if normalize_sql(generated) == normalize_sql(test["expected_sql"]): correct += 1
 
 accuracy = correct / len(test_cases) * 100
 print(f"Độ chính xác: {accuracy:.1f}%")
 ```
 
-Với việc huấn luyện toàn diện (DDL + tài liệu + các truy vấn mẫu), Vanna liên tục đạt được:
-
-- **Độ chính xác 90-95%** trên các truy vấn phân tích thông thường
+Với việc huấn luyện toàn diện (DDL + tài liệu + các truy vấn mẫu), Vanna liên tục đạt được: - **Độ chính xác 90-95%** trên các truy vấn phân tích thông thường
 - **Độ chính xác 85-90%** trên các phép join đa bảng phức tạp
 - **Độ chính xác 80-85%** trên các truy vấn đòi hỏi ngữ cảnh kinh doanh
 - Gần như **100% độ chính xác** khi các cặp câu hỏi-SQL được cung cấp làm dữ liệu huấn luyện
@@ -637,9 +592,7 @@ Có, Vanna AI là mã nguồn mở theo giấy phép MIT và miễn phí sử d�
 from vanna.ollama import Ollama
 from vanna.chromadb import ChromaDB_VectorStore
 
-class FreeVanna(ChromaDB_VectorStore, Ollama):
-    def __init__(self, config=None):
-        ChromaDB_VectorStore.__init__(self, config=config)
+class FreeVanna(ChromaDB_VectorStore, Ollama): def __init__(self, config=None): ChromaDB_VectorStore.__init__(self, config=config)
         Ollama.__init__(self, config={"model": "llama3"})
 ```
 
@@ -701,9 +654,7 @@ vn.connect_to_duckdb("mydb.duckdb")
 
 ### Làm thế nào để cải thiện độ chính xác của Vanna cho trường hợp sử dụng cụ thể của tôi?
 
-Cách hiệu quả nhất để cải thiện độ chính xác là thông qua huấn luyện toàn diện. Tuân theo hệ thống phân cấp chất lượng dữ liệu huấn luyện này:
-
-1. **Các cặp Câu hỏi-SQL** (tác động cao nhất — gần 100% độ chính xác)
+Cách hiệu quả nhất để cải thiện độ chính xác là thông qua huấn luyện toàn diện. Tuân theo hệ thống phân cấp chất lượng dữ liệu huấn luyện này: 1. **Các cặp Câu hỏi-SQL** (tác động cao nhất — gần 100% độ chính xác)
 2. **Các truy vấn SQL mẫu** (tác động cao — dạy các mẫu)
 3. **Tài liệu Kinh doanh** (tác động trung bình — thêm ngữ cảnh)
 4. **Các câu lệnh DDL** (nền tảng — loại bỏ ảo giác)
@@ -712,10 +663,8 @@ Cách hiệu quả nhất để cải thiện độ chính xác là thông qua h
 # Chế độ huấn luyện độ chính xác tối đa
 vn.train(ddl=all_schema_ddl)
 vn.train(documentation=business_context)
-for example in curated_sql_examples:
-    vn.train(sql=example)
-for qa in historical_question_sql_pairs:
-    vn.train(question=qa["question"], sql=qa["sql"])
+for example in curated_sql_examples: vn.train(sql=example)
+for qa in historical_question_sql_pairs: vn.train(question=qa["question"], sql=qa["sql"])
 ```
 
 ---
@@ -736,7 +685,6 @@ Vanna AI đại diện cho một bước nhảy vọt đáng kể trong việc d
 Vào năm 2026, khi khoảng cách giữa các nhà phân tích dữ liệu và các chuyên gia cơ sở dữ liệu tiếp tục thu hẹp, Vanna AI đứng ở tuyến đầu — biến "Doanh thu Q2 theo khu vực của chúng ta là bao nhiêu?" thành SQL có thể thực thi trong vài giây, không phải vài phút. Đối với bất kỳ team nào muốn giảm nút thắt cổ chai SQL và cho phép mọi ngườ đặt câu hỏi bằng ngôn ngữ họ suy nghĩ, Vanna AI là một khoản đầu tư mang lại lợi nhuận ngay lập tức.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

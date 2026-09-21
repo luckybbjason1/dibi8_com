@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/litellm" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/litellm" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/litellm" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/litellm" />
 title: 'LiteLLM: 22,500 Stars — 部署一个 API 调用 100+ LLM，内置故障转移 — 20...
 description: 'LiteLLM (litellm) 是开源 AI 网关，提供统一 API 调用 100+ LLM。兼容 OpenAI、Anthropic、Ollama、Cohere、Gemini、Bedrock。涵盖 Docker 部署、虚拟密钥、负载均衡、缓存和生产加固。'
 date: 2026-05-19 00:00:00+08:00
@@ -25,12 +20,9 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [litellm, llm网关, 开源, docker, 生产部署, ai基础设施, 代理服务器, 多模型]
-aliases:
-- /zh/posts/litellm/
-- /zh/resources/llm-frameworks/litellm-unified-api-tutorial/
+aliases: - /zh/posts/litellm/
+- /zh/resources/llm-frameworks/litellm-unified-api-tutorial/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/litellm/ -->
 
 {{</* resource-info */>}}
 
@@ -44,8 +36,8 @@ aliases:
 
 凭借 **22,500+ GitHub stars** 和 **1,500+ 贡献者**，LiteLLM 已成为想要网关级控制且无供应商锁定的团队的首选。本指南在 30 分钟内带你完成生产级配置——从 Docker 部署到虚拟密钥管理再到监控。
 
----
 
+---
 ## LiteLLM 是什么？
 
 LiteLLM 是一个开源 LLM 代理网关和 Python SDK，提供统一接口调用 100+ LLM API——OpenAI、Anthropic、Azure、Google Vertex AI、AWS Bedrock、Cohere、Ollama 等——使用单一 OpenAI 兼容 API 格式。
@@ -57,8 +49,8 @@ LiteLLM 是一个开源 LLM 代理网关和 Python SDK，提供统一接口调�
 
 代理模式是大多数生产团队使用的。它增加了虚拟密钥、团队管理、预算控制、速率限制、缓存和可观测性——全部通过单个 `config.yaml` 文件配置。
 
----
 
+---
 ## LiteLLM 工作原理
 
 ![LiteLLM 架构图](images/litellm-architecture.png)
@@ -75,7 +67,13 @@ LiteLLM 是一个开源 LLM 代理网关和 Python SDK，提供统一接口调�
 **核心组件：**
 
 | 组件 | 用途 | 外部依赖 |
-|------|------|----------|
+|
+---
+|
+---
+|
+---
+|
 | 代理服务器 | HTTP API、路由、认证 | 无（Python/FastAPI） |
 | PostgreSQL | 虚拟密钥、消费日志、团队数据 | 生产必需 |
 | Redis | 限流协调、缓存 | 推荐 |
@@ -114,68 +112,54 @@ EOF
 
 ```yaml
 # litellm_config.yaml
-model_list:
-  - model_name: gpt-4o
-    litellm_params:
-      model: openai/gpt-4o
+model_list: - model_name: gpt-4o
+    litellm_params: model: openai/gpt-4o
       api_key: os.environ/OPENAI_API_KEY
       rpm: 500
       tpm: 150000
 
   - model_name: claude-sonnet
-    litellm_params:
-      model: anthropic/claude-sonnet-4-20250514
+    litellm_params: model: anthropic/claude-sonnet-4-20250514
       api_key: os.environ/ANTHROPIC_API_KEY
       rpm: 200
       tpm: 40000
 
   - model_name: gemini-flash
-    litellm_params:
-      model: gemini/gemini-2.0-flash
+    litellm_params: model: gemini/gemini-2.0-flash
       api_key: os.environ/GEMINI_API_KEY
       rpm: 1000
 
   - model_name: ollama-llama
-    litellm_params:
-      model: ollama/llama3.3
+    litellm_params: model: ollama/llama3.3
       api_base: http://ollama:11434
-    model_info:
-      mode: chat
+    model_info: mode: chat
 
   # 嵌入模型
   - model_name: text-embedding
-    litellm_params:
-      model: openai/text-embedding-3-small
+    litellm_params: model: openai/text-embedding-3-small
       api_key: os.environ/OPENAI_API_KEY
 
-general_settings:
-  master_key: os.environ/LITELLM_MASTER_KEY
+general_settings: master_key: os.environ/LITELLM_MASTER_KEY
   database_url: os.environ/DATABASE_URL
   max_budget: 10000.00
   budget_duration: 30d
-  alerting:
-    - slack
+  alerting: - slack
   alerting_threshold: 300
   global_max_parallel_requests: 200
 
-litellm_settings:
-  drop_params: true
+litellm_settings: drop_params: true
   num_retries: 3
   request_timeout: 120
 
   # 自动故障转移
-  fallbacks:
-    - gpt-4o:
-      - claude-sonnet
+  fallbacks: - gpt-4o: - claude-sonnet
       - gemini-flash
-    - claude-sonnet:
-      - gpt-4o
+    - claude-sonnet: - gpt-4o
       - gemini-flash
 
   # Redis 缓存
   cache: true
-  cache_params:
-    type: redis
+  cache_params: type: redis
     host: redis
     port: 6379
     ttl: 3600
@@ -280,13 +264,10 @@ print(response.content[0].text)
 
 ```yaml
 # 添加到 litellm_config.yaml
-model_list:
-  - model_name: local-llama
-    litellm_params:
-      model: ollama/llama3.3
+model_list: - model_name: local-llama
+    litellm_params: model: ollama/llama3.3
       api_base: http://localhost:11434
-    model_info:
-      mode: chat
+    model_info: mode: chat
 ```
 
 ```bash
@@ -303,10 +284,8 @@ curl http://localhost:4000/v1/chat/completions \
 ### Cohere
 
 ```yaml
-model_list:
-  - model_name: cohere-command
-    litellm_params:
-      model: cohere/command-r-plus
+model_list: - model_name: cohere-command
+    litellm_params: model: cohere/command-r-plus
       api_key: os.environ/COHERE_API_KEY
 ```
 
@@ -328,7 +307,13 @@ response = client.chat.completions.create(
 一个 50 人的 AI 创业公司，服务 5 个内部团队和外部 API 客户：
 
 | 指标 | 使用 LiteLLM 前 | 使用 LiteLLM 后 |
-|------|----------------|----------------|
+|
+---
+|
+---
+|
+---
+|
 | 维护的提供商 SDK | 4（OpenAI、Anthropic、Gemini、Ollama） | 1（OpenAI 兼容） |
 | API 密钥管理 | 共享密钥在环境变量中 | 每个团队/客户的虚拟密钥 |
 | 费用归属 | 手动 CSV 导出 | 实时后台的按密钥消费 |
@@ -338,7 +323,15 @@ response = client.chat.completions.create(
 ### 性能基准（自托管，4 vCPU / 8 GB RAM）
 
 | 负载 | 吞吐量 | P50 延迟 | P99 延迟 |
-|------|--------|---------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 50 RPS 对话 (GPT-4o) | 稳定 | 45ms 开销 | 120ms 开销 |
 | 200 RPS 嵌入 | 稳定 | 12ms 开销 | 35ms 开销 |
 | 故障转移触发 | — | 180ms 切换 | 280ms 切换 |
@@ -387,23 +380,16 @@ curl -X POST http://localhost:4000/key/generate \
 ### 提供商级预算上限
 
 ```yaml
-general_settings:
-  provider_budget_config:
-    openai:
-      monthly_budget: 5000.00
-    anthropic:
-      monthly_budget: 3000.00
-    gemini:
-      monthly_budget: 1000.00
+general_settings: provider_budget_config: openai: monthly_budget: 5000.00
+    anthropic: monthly_budget: 3000.00
+    gemini: monthly_budget: 1000.00
 ```
 
 ### 基于延迟的路由
 
 ```yaml
-router_settings:
-  routing_strategy: latency-based-routing
-  routing_strategy_args:
-    ttl: 60
+router_settings: routing_strategy: latency-based-routing
+  routing_strategy_args: ttl: 60
   allowed_fails: 3
   cooldown_time: 60
   num_retries: 2
@@ -415,20 +401,17 @@ router_settings:
 
 ```yaml
 # 安全加固版 config.yaml
-general_settings:
-  master_key: os.environ/LITELLM_MASTER_KEY
+general_settings: master_key: os.environ/LITELLM_MASTER_KEY
   database_url: os.environ/DATABASE_URL
 
   # 生产环境强制 HTTPS
   # 在 Nginx 或 AWS ALB 后部署，启用 TLS 终止
 
   # 禁用详细日志
-  litellm_settings:
-    set_verbose: false
+  litellm_settings: set_verbose: false
 
   # 静态加密密钥
-  litellm_settings:
-    key_generation_algorithm: "rsa"
+  litellm_settings: key_generation_algorithm: "rsa"
     allow_user_auth: false
 ```
 
@@ -453,8 +436,7 @@ helm install litellm-gateway ./litellm-helm \
 
 ```yaml
 # 添加到 config.yaml
-litellm_settings:
-  success_callback: ["prometheus"]
+litellm_settings: success_callback: ["prometheus"]
   failure_callback: ["prometheus"]
 ```
 
@@ -481,7 +463,17 @@ histogram_quantile(0.95, litellm_overhead_latency_ms_bucket)
 ## 与替代方案对比
 
 | 功能 | LiteLLM | Portkey | OpenRouter | Helicone |
-|------|---------|---------|------------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **许可证** | MIT（开源） | 闭源核心 + 开源 SDK | 闭源（托管） | 闭源（托管 + 自托管） |
 | **部署方式** | 自托管 / Docker / K8s | 云端 + 混合 | 仅托管 | 云端 + 自托管 |
 | **支持的模型** | 100+ 提供商 | 200+ | 300+ | 依赖提供商 |
@@ -588,7 +580,6 @@ LiteLLM 解决了生产多 LLM 部署的混乱现实：多个 SDK、分散的 AP
 - [Helicone 文档](https://docs.helicone.ai) — 可观测性聚焦的替代方案
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -616,25 +607,20 @@ LiteLLM 解决了生产多 LLM 部署的混乱现实：多个 SDK、分散的 AP
 
 ## Why This Matters
 
-Understanding litellm: 22,500 stars — 部署一个 api 调用 100+ llm，内置故障转移 — 2026 生产级网关配置 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding litellm: 22,500 stars — 部署一个 api 调用 100+ llm，内置故障转移 — 2026 生产级网关配置 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

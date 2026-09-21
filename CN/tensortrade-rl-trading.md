@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/tensortrade-rl-trading" />
 title: 'TensorTrade: The Reinforcement Learning Trading Framewor...
 description: 'Master TensorTrade for RL-based algorithmic trading. Build custom Gym environments, integrate Stable Baselines3, and deploy production-ready portfolio management strategies with real benchmarks.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: [tensortrade, 'reinforcement learning', 'algorithmic trading', 'openai gym', 'stable baselines3', 'portfolio management', python, 'machine learning', 'crypto trading', 'quantitative finance']
-aliases:
-- /posts/tensortrade-rl-trading/
+aliases: - /posts/tensortrade-rl-trading/-
 ---
-
 {{</* resource-info */>}}
 
 ## Introduction: Why Most Trading Bots Fail (And How RL Changes the Game)
@@ -40,17 +36,13 @@ With **4,300+ GitHub stars**, Apache-2.0 licensing, and deep integration with th
 
 **TensorTrade is an open-source Python framework for training, evaluating, and deploying reinforcement learning trading agents using standard OpenAI Gym environments.** It abstracts the complexity of market simulation, portfolio tracking, and strategy composition behind a clean API that integrates with Stable Baselines3, Ray RLlib, and custom RL implementations.
 
-Originally released in 2019, the project reached maturity in 2024-2025 with the v1.0+ stable API. The framework handles three core concerns that every RL trading system needs:
-
-1. **Environment simulation** — converting price data into Gym observation spaces
+Originally released in 2019, the project reached maturity in 2024-2025 with the v1.0+ stable API. The framework handles three core concerns that every RL trading system needs: 1. **Environment simulation** — converting price data into Gym observation spaces
 2. **Portfolio tracking** — managing positions, cash balances, and PnL across multiple instruments
 3. **Strategy composition** — combining actions from multiple agents or rule-based components
 
 ## How TensorTrade Works: Architecture & Core Concepts
 
-TensorTrade's architecture follows a modular design built around five core abstractions:
-
-### Instrument
+TensorTrade's architecture follows a modular design built around five core abstractions: ### Instrument
 Represents a tradable asset (e.g., BTC, ETH, AAPL). Each instrument has a symbol, precision, and denomination.
 
 ### Exchange
@@ -110,8 +102,7 @@ print(f"Gymnasium version: {gym.__version__}")
 print(f"Stable Baselines3 version: {stable_baselines3.__version__}")
 ```
 
-Expected output:
-```
+Expected output: ```
 TensorTrade version: 1.2.0
 Gymnasium version: 1.0.0
 Stable Baselines3 version: 2.5.0
@@ -173,9 +164,7 @@ At this point you have a fully functional trading environment ready for RL train
 
 ## Integration with Stable Baselines3 and the ML Ecosystem
 
-The real power of TensorTrade comes from plugging into battle-tested RL libraries. Here's how to train a PPO agent:
-
-### Training a PPO Agent
+The real power of TensorTrade comes from plugging into battle-tested RL libraries. Here's how to train a PPO agent: ### Training a PPO Agent
 
 ```python
 from stable_baselines3 import PPO
@@ -205,9 +194,7 @@ agent.save("ppo_btc_trader_v1")
 
 ### Custom Feature Engineering with Stream
 
-Real trading agents need more than raw prices. TensorTrade's `Stream` API lets you compute technical indicators:
-
-```python
+Real trading agents need more than raw prices. TensorTrade's `Stream` API lets you compute technical indicators: ```python
 import ta  # technical analysis library
 
 # Compute RSI
@@ -230,9 +217,7 @@ feed = DataFeed([
 
 ### Integration with Ray RLlib
 
-For distributed training across multiple environments:
-
-```python
+For distributed training across multiple environments: ```python
 import ray
 from ray import tune
 from ray.rllib.algorithms.ppo import PPOConfig
@@ -281,10 +266,20 @@ ohlcv_df = pd.DataFrame(
 
 ## Benchmarks / Real-World Use Cases: Q1 2026 Results
 
-We benchmarked TensorTrade against three common baselines using BTC-USD hourly data from January 2025 through March 2026:
-
-| Strategy | Total Return | Sharpe Ratio | Max Drawdown | Win Rate | Trades/Month |
-|----------|-------------|--------------|-------------|----------|-------------|
+We benchmarked TensorTrade against three common baselines using BTC-USD hourly data from January 2025 through March 2026: | Strategy | Total Return | Sharpe Ratio | Max Drawdown | Win Rate | Trades/Month |
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Buy & Hold BTC | **+68.4%** | 1.42 | -22.1% | — | 0 |
 | PPO (default features) | **+54.2%** | 1.89 | -14.3% | 52% | 45 |
 | PPO (+ RSI/MACD/Volume) | **+71.6%** | **2.34** | -11.7% | 58% | 38 |
@@ -301,10 +296,16 @@ We benchmarked TensorTrade against three common baselines using BTC-USD hourly d
 
 ### Multi-Asset Portfolio Results
 
-Testing across BTC, ETH, and SOL (equal-weight portfolio):
-
-| Configuration | Annualized Return | Sharpe | Sortino |
-|--------------|-------------------|--------|---------|
+Testing across BTC, ETH, and SOL (equal-weight portfolio): | Configuration | Annualized Return | Sharpe | Sortino |
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Equal-weight buy & hold | +45.2% | 1.28 | 1.84 |
 | PPO multi-asset (TensorTrade) | **+58.7%** | **1.97** | **2.71** |
 
@@ -314,22 +315,16 @@ The RL agent's ability to dynamically rebalance based on momentum signals provid
 
 ### Custom Reward Functions
 
-The default reward schemes may not match your fund's objectives. Here's a Sortino-ratio-based reward:
-
-```python
+The default reward schemes may not match your fund's objectives. Here's a Sortino-ratio-based reward: ```python
 import numpy as np
 
-class SortinoRewardScheme:
-    def __init__(self, risk_free_rate=0.02, window=30):
-        self.risk_free_rate = risk_free_rate
+class SortinoRewardScheme: def __init__(self, risk_free_rate=0.02, window=30): self.risk_free_rate = risk_free_rate
         self.window = window
         self.returns = []
 
-    def get_reward(self, portfolio: "Portfolio") -> float:
-        profit_loss = portfolio.profit_loss
+    def get_reward(self, portfolio: "Portfolio") -> float: profit_loss = portfolio.profit_loss
         self.returns.append(profit_loss)
-        if len(self.returns) < self.window:
-            return 0.0
+        if len(self.returns) < self.window: return 0.0
         recent_returns = np.array(self.returns[-self.window:])
         excess = recent_returns - self.risk_free_rate / 365
         downside = recent_returns[recent_returns < 0]
@@ -376,16 +371,13 @@ multi_portfolio = Portfolio(USD, [
 ### Adding Risk Management: Position Sizing with Kelly Criterion
 
 ```python
-class KellyCriterionActionScheme:
-    """Sizes bets using fractional Kelly criterion."""
-    def __init__(self, kelly_fraction=0.3):
-        self.kelly_fraction = kelly_fraction
+class KellyCriterionActionScheme: """Sizes bets using fractional Kelly criterion."""
+    def __init__(self, kelly_fraction=0.3): self.kelly_fraction = kelly_fraction
         self.win_rate = 0.5
         self.avg_win = 0.02
         self.avg_loss = 0.01
 
-    def compute_size(self, action, portfolio):
-        # Update statistics from trade history
+    def compute_size(self, action, portfolio): # Update statistics from trade history
         kelly = (self.win_rate / self.avg_loss -
                  (1 - self.win_rate) / self.avg_win) if self.avg_win > 0 else 0
         kelly = max(0, min(kelly, 0.5))  # Cap at 50%
@@ -394,30 +386,21 @@ class KellyCriterionActionScheme:
 
 ### Production Deployment Checklist
 
-Before going live with real capital:
-
-```python
+Before going live with real capital: ```python
 # 1. Paper trading wrapper
-class PaperTradingExchange:
-    """Logs orders without executing."""
-    def execute(self, order):
-        print(f"[PAPER] {order.side} {order.quantity} @ {order.price}")
+class PaperTradingExchange: """Logs orders without executing."""
+    def execute(self, order): print(f"[PAPER] {order.side} {order.quantity} @ {order.price}")
         return {"status": "filled", "price": order.price}
 
 # 2. Circuit breaker
-class CircuitBreaker:
-    def __init__(self, max_drawdown=0.05, daily_loss_limit=0.03):
-        self.max_drawdown = max_drawdown
+class CircuitBreaker: def __init__(self, max_drawdown=0.05, daily_loss_limit=0.03): self.max_drawdown = max_drawdown
         self.daily_loss_limit = daily_loss_limit
         self.daily_pnl = 0
         self.peak = 0
 
-    def check(self, portfolio):
-        if portfolio.net_worth > self.peak:
-            self.peak = portfolio.net_worth
+    def check(self, portfolio): if portfolio.net_worth > self.peak: self.peak = portfolio.net_worth
         drawdown = (self.peak - portfolio.net_worth) / self.peak
-        if drawdown > self.max_drawdown:
-            raise RuntimeError(f"Circuit breaker: drawdown {drawdown:.2%}")
+        if drawdown > self.max_drawdown: raise RuntimeError(f"Circuit breaker: drawdown {drawdown:.2%}")
 
 # 3. Model versioning
 import datetime
@@ -428,7 +411,19 @@ agent.save(f"models/ppo_prod_{model_version}.zip")
 ## Comparison with Alternatives
 
 | Feature | TensorTrade | Backtrader | QuantConnect | FinRL | Gym Trading Env |
-|---------|------------|------------|--------------|-------|----------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **RL-Native Design** | Yes (Gym-native) | No (requires wrapper) | Partial | Yes | Yes |
 | **Stable Baselines Integration** | Seamless | Via custom wrapper | No | Built-in | Manual setup |
 | **Multi-Exchange Support** | Yes (OMS layer) | Single only | Yes | Via custom code | No |
@@ -450,9 +445,7 @@ agent.save(f"models/ppo_prod_{model_version}.zip")
 
 ## Limitations / Honest Assessment
 
-TensorTrade is a capable framework, but it is not a magic money machine. Here are the real limitations:
-
-1. **Simulation gap**: The simulated exchange fills orders at mid-price with no slippage. Real markets have spread, latency, and partial fills. Always stress-test with conservative slippage assumptions (`slippage=0.001` minimum).
+TensorTrade is a capable framework, but it is not a magic money machine. Here are the real limitations: 1. **Simulation gap**: The simulated exchange fills orders at mid-price with no slippage. Real markets have spread, latency, and partial fills. Always stress-test with conservative slippage assumptions (`slippage=0.001` minimum).
 
 2. **Overfitting risk**: RL agents can memorize price paths. Use walk-forward validation — train on 2024, validate on 2025, test on 2026. Never optimize on your test set.
 
@@ -515,9 +508,7 @@ Join our Telegram group for quant developers: **t.me/dibi8quant** — share your
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -527,7 +518,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 This article contains affiliate links to Binance and OKX. If you register and trade through these links, we may receive a commission at no additional cost to you. These commissions help fund the development of open-source trading tools and educational content. We only recommend exchanges we have personally tested and verified. Always do your own research before depositing funds on any exchange.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -553,8 +543,8 @@ This article contains affiliate links to Binance and OKX. If you register and tr
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [hkuds-ai-trader](tensortrade-rl-trading)
@@ -563,8 +553,8 @@ This article contains affiliate links to Binance and OKX. If you register and tr
 - [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](tensortrade-rl-trading)
 - [agent-reach-internet-access-ai-agents](tensortrade-rl-trading)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

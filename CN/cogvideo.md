@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/cogvideo" />
 title: 'CogVideo: 12.7K Stars — Complete Text-to-Video Setup Gui...
 description: 'CogVideo (CogVideoX) is a text and image-to-video generation model from Zhipu AI. Supports ComfyUI, Diffusers, SAT, and Wan/HunyuanVideo/Open-Sora integration. Covers installation, Docker, inference, fine-tuning, and benchmarks.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,16 +20,14 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [cogvideo, cogvideox, 'text-to-video', 'diffusion-transformer', 'zhipu-ai', comfyui, 'open-source-ai', 'video-generation']
-aliases:
-- /posts/cogvideo/
+aliases: - /posts/cogvideo/-
 ---
-
 {{</* resource-info */>}}
 
 > Turn text and images into cinematic video with Zhipu AI's open-source diffusion transformer. From zero to production in under 30 minutes.
 
----
 
+---
 ## Introduction
 
 Text-to-video generation moved from research curiosity to production tool in 2024-2025. Open-source models now compete with commercial APIs on quality while running on consumer GPUs. The problem: most repositories ship as bare model weights with scattered documentation. You spend hours piecing together inference scripts, VRAM optimization flags, and fine-tuning pipelines instead of generating video.
@@ -40,8 +36,8 @@ CogVideo from Zhipu AI solves this differently. With 12.7K GitHub stars, 36 cont
 
 ![CogVideo web demo](https://raw.githubusercontent.com/zai-org/CogVideo/main/resources/web_demo.png)
 
----
 
+---
 ## What Is CogVideo?
 
 ![CogVideo logo](https://raw.githubusercontent.com/zai-org/CogVideo/main/resources/logo.svg)
@@ -56,9 +52,7 @@ CogVideo is an open-source text-to-video and image-to-video generation framework
 
 ### Architecture Overview
 
-CogVideoX uses a three-component pipeline:
-
-1. **T5 Text Encoder**: Encodes text prompts into dense vector representations (224-token limit for CogVideoX-5B, 226 tokens for CogVideoX1.5-5B)
+CogVideoX uses a three-component pipeline: 1. **T5 Text Encoder**: Encodes text prompts into dense vector representations (224-token limit for CogVideoX-5B, 226 tokens for CogVideoX1.5-5B)
 2. **3D Causal VAE**: Compresses video spatially and temporally into latent space — 4x spatial compression and 4x-8x temporal compression depending on the model variant
 3. **Expert Transformer (DiT)**: A diffusion transformer with 3D full attention that denoises latent video representations over 50 inference steps
 
@@ -71,7 +65,19 @@ The architecture follows the flow: `Text Prompt → T5 Encoder → Latent Text E
 ### Model Variants
 
 | Model | Parameters | Resolution | Max Frames | VRAM (BF16) | VRAM (INT8) |
-|---|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | CogVideoX-2B | 2B | 720 x 480 | 49 | 5 GB min | 4.4 GB |
 | CogVideoX-5B | 5B | 720 x 480 | 49 | 10 GB min | 7 GB |
 | CogVideoX-5B-I2V | 5B | 720 x 480 | 49 | 4 GB min | 3.6 GB |
@@ -91,24 +97,18 @@ The architecture follows the flow: `Text Prompt → T5 Encoder → Latent Text E
 
 ### Method 1: pip Install (Recommended, Under 5 Minutes)
 
-Step 1 — Create a virtual environment:
-
-```bash
+Step 1 — Create a virtual environment: ```bash
 python3.11 -m venv cogvideo_env
 source cogvideo_env/bin/activate
 ```
 
-Step 2 — Clone the repository and install dependencies:
-
-```bash
+Step 2 — Clone the repository and install dependencies: ```bash
 git clone https://github.com/zai-org/CogVideo.git
 cd CogVideo
 pip install -r requirements.txt
 ```
 
-The `requirements.txt` installs PyTorch, Diffusers, Transformers, Accelerate, and the SAT toolkit:
-
-```
+The `requirements.txt` installs PyTorch, Diffusers, Transformers, Accelerate, and the SAT toolkit: ```
 torch>=2.3.0
 diffusers>=0.30.0
 transformers>=4.40.0
@@ -117,9 +117,7 @@ sentencepiece
 opencv-python
 ```
 
-Step 3 — Verify the installation:
-
-```python
+Step 3 — Verify the installation: ```python
 import torch
 from diffusers import CogVideoXPipeline
 
@@ -128,9 +126,7 @@ print(f"CUDA available: {torch.cuda.is_available()}")
 print(f"CUDA version: {torch.version.cuda}")
 ```
 
-Expected output:
-
-```
+Expected output: ```
 PyTorch version: 2.5.1+cu121
 CUDA available: True
 CUDA version: 12.1
@@ -138,9 +134,7 @@ CUDA version: 12.1
 
 ### Method 2: Docker Deployment (Production)
 
-For reproducible deployments and multi-GPU inference, use **CogVideo Docker** containers. This **cogvideo docker** approach ensures identical environments across dev and production:
-
-```dockerfile
+For reproducible deployments and multi-GPU inference, use **CogVideo Docker** containers. This **cogvideo docker** approach ensures identical environments across dev and production: ```dockerfile
 FROM nvidia/cuda:12.1.0-devel-ubuntu22.04
 
 RUN apt-get update && apt-get install -y \
@@ -160,9 +154,7 @@ EXPOSE 7860
 CMD ["python3", "-m", "inference.cli_demo"]
 ```
 
-Build and run:
-
-```bash
+Build and run: ```bash
 docker build -t cogvideo:latest .
 docker run --gpus all -it --rm \
   -v $(pwd)/output:/app/output \
@@ -172,9 +164,7 @@ docker run --gpus all -it --rm \
   --model_path THUDM/CogVideoX-5B
 ```
 
-For multi-GPU inference, add `device_map="balanced"` to `from_pretrained()` and remove `enable_model_cpu_offload()`:
-
-```python
+For multi-GPU inference, add `device_map="balanced"` to `from_pretrained()` and remove `enable_model_cpu_offload()`: ```python
 pipe = CogVideoXPipeline.from_pretrained(
     "THUDM/CogVideoX-5B",
     torch_dtype=torch.bfloat16,
@@ -184,17 +174,13 @@ pipe = CogVideoXPipeline.from_pretrained(
 
 ### Method 3: SAT Framework (Research & Fine-Tuning)
 
-The Swiss Army Transformer (SAT) framework is Zhipu AI's training toolkit. Install it for fine-tuning and research:
-
-```bash
+The Swiss Army Transformer (SAT) framework is Zhipu AI's training toolkit. Install it for fine-tuning and research: ```bash
 git clone https://github.com/zai-org/CogVideo.git
 cd CogVideo/sat
 pip install -e .
 ```
 
-Verify SAT installation:
-
-```python
+Verify SAT installation: ```python
 from sat import get_args
 print("SAT framework loaded successfully")
 ```
@@ -205,9 +191,7 @@ print("SAT framework loaded successfully")
 
 ### Hugging Face Diffusers (Recommended for Beginners)
 
-The Diffusers pipeline is the fastest way to generate video. Here is a complete text-to-video script:
-
-```python
+The Diffusers pipeline is the fastest way to generate video. Here is a complete text-to-video script: ```python
 import torch
 from diffusers import CogVideoXPipeline, CogVideoXDPMScheduler
 from diffusers.utils import export_to_video
@@ -244,9 +228,7 @@ video = pipe(
 export_to_video(video, "output.mp4", fps=8)
 ```
 
-For image-to-video with CogVideoX1.5-5B-I2V:
-
-```python
+For image-to-video with CogVideoX1.5-5B-I2V: ```python
 import torch
 from diffusers import CogVideoXImageToVideoPipeline, CogVideoXDPMScheduler
 from diffusers.utils import export_to_video, load_image
@@ -280,9 +262,7 @@ export_to_video(video, "output_i2v.mp4", fps=8)
 
 ### ComfyUI Node-Based Workflow
 
-ComfyUI-CogVideoXWrapper enables visual node-based workflows. Install it:
-
-```bash
+ComfyUI-CogVideoXWrapper enables visual node-based workflows. Install it: ```bash
 cd ComfyUI/custom_nodes
 git clone https://github.com/kijai/ComfyUI-CogVideoXWrapper.git
 cd ComfyUI-CogVideoXWrapper
@@ -293,11 +273,7 @@ Restart ComfyUI and load the CogVideoX workflow. The wrapper supports all model 
 
 ### SAT Framework Fine-Tuning
 
-For custom styles and concepts, fine-tune with LoRA using SAT:
-
-Configure `sat/configs/sft.yaml`:
-
-```yaml
+For custom styles and concepts, fine-tune with LoRA using SAT: Configure `sat/configs/sft.yaml`: ```yaml
 model_parallel_size: 1
 experiment_name: lora-custom-style
 mode: finetune
@@ -308,31 +284,22 @@ save_interval: 100
 save: ckpts
 train_data: ["your_train_data_path"]
 valid_data: ["your_val_data_path"]
-deepseed:
-  bf16:
-    enabled: False  # True for 5B
-  fp16:
-    enabled: True   # False for 5B
+deepseed: bf16: enabled: False  # True for 5B
+  fp16: enabled: True   # False for 5B
 ```
 
-Run fine-tuning on a single GPU:
-
-```bash
+Run fine-tuning on a single GPU: ```bash
 cd CogVideo/sat
 bash finetune_single_gpu.sh
 ```
 
-Convert SAT LoRA weights to Hugging Face format:
-
-```bash
+Convert SAT LoRA weights to Hugging Face format: ```bash
 python tools/export_sat_lora_weight.py \
   --sat_pt_path ckpts/lora-custom-style/1000/mp_rank_00_model_states.pt \
   --lora_save_directory ./hf_lora_weights/
 ```
 
-Load the fine-tuned weights in inference:
-
-```python
+Load the fine-tuned weights in inference: ```python
 pipe.load_lora_weights(
     "./hf_lora_weights/",
     weight_name="pytorch_lora_weights.safetensors",
@@ -343,23 +310,17 @@ pipe.fuse_lora(components=["transformer"], lora_scale=1.0)
 
 ### Prompt Optimization Pipeline
 
-CogVideoX is trained on long, descriptive prompts. Short prompts produce lower quality video. Use the prompt conversion script:
-
-```bash
+CogVideoX is trained on long, descriptive prompts. Short prompts produce lower quality video. Use the prompt conversion script: ```bash
 python inference/convert_demo.py \
   --prompt "A girl riding a bike" \
   --type "t2v"
 ```
 
-The script calls a large language model (GLM-4 Plus or GPT-4o) to expand simple prompts into detailed descriptions. Example conversion:
-
-**Input:** `"A girl riding a bike"`
+The script calls a large language model (GLM-4 Plus or GPT-4o) to expand simple prompts into detailed descriptions. Example conversion: **Input:** `"A girl riding a bike"`
 
 **Output:** `"A young woman with flowing auburn hair rides a vintage red bicycle along a cobblestone path. She wears a light summer dress that billows gently in the breeze. The path winds through a sun-dappled forest with tall oak trees casting long shadows on the ground. Golden afternoon light filters through the leaves, creating a warm, nostalgic atmosphere. She pedals at a leisurely pace, a serene smile on her face, occasionally glancing at wildflowers growing along the path edge."`
 
-For programmatic use:
-
-```python
+For programmatic use: ```python
 from inference.convert_demo import convert_prompt
 
 optimized_prompt = convert_prompt(
@@ -372,9 +333,7 @@ print(optimized_prompt)
 
 ### Quantized Inference with TorchAO
 
-For limited VRAM deployments, use INT8 quantization via diffusers-torchao:
-
-```bash
+For limited VRAM deployments, use INT8 quantization via diffusers-torchao: ```bash
 pip install torchao
 ```
 
@@ -410,7 +369,17 @@ Quantization reduces VRAM from 10GB to approximately 7GB for CogVideoX-5B with m
 ### Inference Speed (Single A100 80GB)
 
 | Model | Precision | Steps | Time (5s video) | Time (10s video) |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | CogVideoX-2B | BF16 | 50 | ~180s | N/A |
 | CogVideoX-5B | BF16 | 50 | ~1000s | N/A |
 | CogVideoX1.5-5B | BF16 | 50 | ~550s (H100) | ~1000s |
@@ -420,7 +389,15 @@ Quantization reduces VRAM from 10GB to approximately 7GB for CogVideoX-5B with m
 ### VBench-2.0 Quality Scores
 
 | Dimension | CogVideoX-5B (BLADE 8-step) | CogVideoX-5B (50-step) | Wan2.1-1.3B |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Overall | 0.569 | 0.534 | 0.570 |
 | Human Fidelity | 0.896 | 0.871 | 0.918 |
 | Controllability | 0.612 | 0.581 | 0.593 |
@@ -445,9 +422,7 @@ Source: Video-BLADE paper (Zhejiang University, 2025)
 
 ### Multi-GPU Parallel Inference
 
-For high-throughput deployments, distribute across multiple GPUs:
-
-```python
+For high-throughput deployments, distribute across multiple GPUs: ```python
 import torch
 from diffusers import CogVideoXPipeline
 
@@ -463,9 +438,7 @@ Multi-GPU reduces per-GPU memory to approximately 24GB BF16 for CogVideoX-5B.
 
 ### API Server with FastAPI
 
-Wrap inference in a production API:
-
-```python
+Wrap inference in a production API: ```python
 from fastapi import FastAPI
 from pydantic import BaseModel
 import torch
@@ -478,8 +451,7 @@ app = FastAPI()
 pipe = None
 
 @app.on_event("startup")
-async def load_model():
-    global pipe
+async def load_model(): global pipe
     pipe = CogVideoXPipeline.from_pretrained(
         "THUDM/CogVideoX-5B",
         torch_dtype=torch.bfloat16
@@ -487,15 +459,13 @@ async def load_model():
     pipe.enable_model_cpu_offload()
     pipe.vae.enable_slicing()
 
-class GenerateRequest(BaseModel):
-    prompt: str
+class GenerateRequest(BaseModel): prompt: str
     num_frames: int = 49
     guidance_scale: float = 6.0
     num_inference_steps: int = 50
 
 @app.post("/generate")
-async def generate_video(req: GenerateRequest):
-    video = pipe(
+async def generate_video(req: GenerateRequest): video = pipe(
         prompt=req.prompt,
         num_frames=req.num_frames,
         guidance_scale=req.guidance_scale,
@@ -511,17 +481,13 @@ async def generate_video(req: GenerateRequest):
     return {"video_url": f"/videos/{output_id}.mp4", "status": "complete"}
 ```
 
-Run with:
-
-```bash
+Run with: ```bash
 uvicorn api_server:app --host 0.0.0.0 --port 8000 --workers 1
 ```
 
 ### VRAM Optimization Checklist
 
-Apply these optimizations in order based on your GPU:
-
-1. **VAE Slicing**: Always enable — splits large batches with negligible overhead
+Apply these optimizations in order based on your GPU: 1. **VAE Slicing**: Always enable — splits large batches with negligible overhead
 2. **VAE Tiling**: Enable for resolutions above 720p — processes in patches
 3. **Sequential CPU Offload**: Use with < 12GB VRAM — moves layers to CPU between steps
 4. **Model CPU Offload**: Use with 12-16GB VRAM — faster than sequential but uses more memory
@@ -530,9 +496,7 @@ Apply these optimizations in order based on your GPU:
 
 ### Monitoring with Prometheus
 
-Track inference metrics in production:
-
-```python
+Track inference metrics in production: ```python
 from prometheus_client import Counter, Histogram, start_http_server
 import time
 
@@ -543,8 +507,7 @@ VRAM_USAGE = Histogram(cogvideo_vram_bytes, 'Peak VRAM usage')
 start_http_server(9090)
 
 @INFERENCE_TIME.time()
-def generate_tracked(pipe, prompt):
-    INFERENCE_COUNT.inc()
+def generate_tracked(pipe, prompt): INFERENCE_COUNT.inc()
     torch.cuda.reset_peak_memory_stats()
     result = pipe(prompt=prompt, num_frames=49).frames[0]
     vram = torch.cuda.max_memory_allocated()
@@ -557,7 +520,17 @@ def generate_tracked(pipe, prompt):
 ## Comparison with Alternatives
 
 | Feature | CogVideoX-5B | Wan 2.1-14B | HunyuanVideo-13B | Open-Sora 1.2 |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Parameters** | 5B | 14B | 13B | ~7B (STDiT3) |
 | **License** | Apache-2.0 | Apache-2.0 | Apache-2.0 | Apache-2.0 |
 | **Max Resolution** | 1360 x 768 | 1280 x 720 | 1280 x 720 | 1280 x 720 |
@@ -584,9 +557,7 @@ def generate_tracked(pipe, prompt):
 
 ## Limitations / Honest Assessment
 
-CogVideoX has clear constraints you should know before committing:
-
-1. **Slow Inference**: A single 5-second video takes ~1000 seconds on A100 with CogVideoX-5B at 50 steps. Wan 2.1 and HunyuanVideo are faster on equivalent hardware. The upcoming BLADE acceleration (8.89x speedup) helps but requires separate model conversion.
+CogVideoX has clear constraints you should know before committing: 1. **Slow Inference**: A single 5-second video takes ~1000 seconds on A100 with CogVideoX-5B at 50 steps. Wan 2.1 and HunyuanVideo are faster on equivalent hardware. The upcoming BLADE acceleration (8.89x speedup) helps but requires separate model conversion.
 
 2. **English-Only Prompts**: CogVideoX is trained primarily on English captions. Multilingual prompts degrade compared to Wan 2.1 or HunyuanVideo which handle Chinese natively.
 
@@ -624,9 +595,7 @@ A: Commercial APIs offer simpler access and higher peak quality, especially for 
 
 **Q: What file formats does CogVideoX output?**
 
-A: The Diffusers pipeline outputs PyTorch tensors. Use `export_to_video()` from `diffusers.utils` to save as MP4 with H.264 encoding at 8-16 FPS depending on the model. For other formats, convert the MP4 with FFmpeg:
-
-```bash
+A: The Diffusers pipeline outputs PyTorch tensors. Use `export_to_video()` from `diffusers.utils` to save as MP4 with H.264 encoding at 8-16 FPS depending on the model. For other formats, convert the MP4 with FFmpeg: ```bash
 ffmpeg -i output.mp4 -c:v libx265 -crf 23 output_h265.mp4
 ```
 
@@ -658,9 +627,7 @@ For production deployments, start with the Docker setup, add FastAPI wrapping, a
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -682,7 +649,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - Open-Sora Repository: https://github.com/hpcaitech/Open-Sora
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

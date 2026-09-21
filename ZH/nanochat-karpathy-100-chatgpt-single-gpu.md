@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/nanochat-karpathy-100-chatgpt-single-gpu" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/nanochat-karpathy-100-chatgpt-single-gpu" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/nanochat-karpathy-100-chatgpt-single-gpu" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/nanochat-karpathy-100-chatgpt-single-gpu" />
 title: 'nanochat: Karpathy 的 100 美元 ChatGPT — 单 GPU 上自建 AI 聊天应用 ...
 description: 'nanochat（54,800 GitHub 星标）是 Andrej Karpathy 的开源 ChatGPT 克隆项目，可在单张 100 美元 GPU 上运行。使用 SGLang 从头训练或通过 vLLM 提供预训练模型服务。包含设置指南、训练基准和部署示例。'
 date: 2026-06-08
-lastmod:  2026-06-08slug: 'nanochat-karpathy-100-chatgpt-single-gpu'
+lastmod: 2026-06-08
+slug: 'nanochat-karpathy-100-chatgpt-single-gpu'
 category: 'ai-tools'
 tags: ['karpathy nanochat', '从头训练 LLM', '单 GPU 聊天', '开源 ChatGPT', 'SGLang', 'vLLM', '本地 LLM', 'AI 聊天应用']
 github_repo: 'https://github.com/karpathy/nanochat'
@@ -15,10 +11,7 @@ stars: 54800
 maintainer: 'karpathy'
 license: MIT
 featureImage: 'https://raw.githubusercontent.com/karpathy/nanochat/master/dev/nanochat.png'
-lang: zh
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/nanochat-karpathy-100-chatgpt-single-gpu/ -->
 
 # nanochat: Karpathy 的 100 美元 ChatGPT — 单 GPU 上自建 AI 聊天应用 — 2026 实战指南
 
@@ -200,7 +193,15 @@ sampling_params = SamplingParams(
 nanochat 支持任何遵循标准 transformer 架构的 HuggingFace 模型。模型列表包括：
 
 | 模型 | 参数量 | 所需 VRAM | 质量 |
-|------|--------|----------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Qwen2.5-1.5B-Instruct | 15 亿 | ~4 GB | 简单聊天很好 |
 | Qwen2.5-3B-Instruct | 30 亿 | ~6 GB | 极好平衡 |
 | Qwen2.5-7B-Instruct | 70 亿 | ~14 GB | 优秀质量 |
@@ -216,7 +217,15 @@ nanochat 支持任何遵循标准 transformer 架构的 HuggingFace 模型。模
 在单张 RTX 4090（24 GB VRAM）上，在 10GB 文本语料库上训练 10 亿参数的 GPT 模型：
 
 | 轮次 | 训练时间 | 结束时损失 | VRAM 峰值 |
-|------|---------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 1 | ~4 小时 | 2.87 | 18 GB |
 | 2 | ~8 小时 | 2.34 | 18 GB |
 | 3 | ~12 小时 | 2.01 | 19 GB |
@@ -227,7 +236,13 @@ nanochat 支持任何遵循标准 transformer 架构的 HuggingFace 模型。模
 在单张 A10G（24 GB VRAM）上提供 Qwen2.5-7B-Instruct：
 
 | 批大小 | 吞吐量（tok/s） | 延迟（ms/token） |
-|--------|----------------|-----------------|
+|
+---
+|
+---
+|
+---
+|
 | 1 | 45 tok/s | 22 ms |
 | 8 | 280 tok/s | 28 ms |
 | 16 | 420 tok/s | 38 ms |
@@ -316,7 +331,17 @@ docker run -d --gpus all -p 8501:8501 \
 ## Comparison with Alternatives
 
 | 功能 | nanochat | ChatGPT（API） | LM Studio | Ollama |
-|------|----------|---------------|-----------|--------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 可自训练 | 是（SGLang） | 否 | 否 | 否 |
 | 需要 GPU | 是（8+ GB） | 否（云端） | 是（4+ GB） | 是（4+ GB） |
 | 月成本 | ~100 美元一次性计算 | 20+ 美元/月 | 免费 | 免费 |
@@ -384,7 +409,6 @@ nanochat 证明你不需要 20 美元的月 API 订阅或数据中心来运行 C
 上方部分链接含联盟推广。如通过链接注册，dibi8.com 可能获得佣金，不影响你的成本。这帮助 dibi8 持续免费运营。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -412,25 +436,20 @@ nanochat 证明你不需要 20 美元的月 API 订阅或数据中心来运行 C
 
 ## Why This Matters
 
-Understanding nanochat: karpathy 的 100 美元 chatgpt — 单 gpu 上自建 ai 聊天应用 — 2026 实战指南 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding nanochat: karpathy 的 100 美元 chatgpt — 单 gpu 上自建 ai 聊天应用 — 2026 实战指南 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -451,13 +470,13 @@ nanochat: Karpathy 的 100 美元 ChatGPT — 单 GPU 上自建 AI 聊天应用 
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
 
+---
 ## Related Articles
 
 - [nanochat-karpathy-100-chatgpt-single-gpu](nanochat-karpathy-100-chatgpt-single-gpu)

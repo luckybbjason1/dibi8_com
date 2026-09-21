@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/alpaca-trading-api-stock-broker" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/alpaca-trading-api-stock-broker" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/alpaca-trading-api-stock-broker" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/alpaca-trading-api-stock-broker" />
 # API Giao Dịch Chứng Khoán Alpaca 2026: API Hoạch Định Mô Hình Giao Dịch Tự Động Không Phí Hoa Hồng — Hướng Dẫn Cài Đặt
 
 > 📌 **Bình luận về chương trình giới thiệu**: Bài viết này chứa các liên kết giới thiệu. Chúng tôi có thể nhận được hoa hồng nếu bạn đăng ký thông qua liên kết của chúng tôi - không có chi phí bổ sung cho bạn. Các đánh giá của chúng tôi độc lập và dựa trên nghiên cứu kỹ lưỡng.
@@ -63,11 +58,8 @@ Theo một nghiên cứu của Aite-Novarica Group năm 2025, các chiến lư�
 
 ### Bước 2: Tạo API KEY
 
-Sau khi tài khoản của bạn được phê duyệt, chuyển đến phần Paper Trading để tạo API key đầu tiên:
-
-```python
-# API credentials sẽ như sau:
-API_KEY = 'PKABCDEF1234567890EXAMPLE'
+Sau khi tài khoản của bạn được phê duyệt, chuyển đến phần Paper Trading để tạo API key đầu tiên: ```python
+# API credentials sẽ như sau: API_KEY = 'PKABCDEF1234567890EXAMPLE'
 API_SECRET = 'abcdefghijklmnopqrstuvwxyz1234567890example'
 BASE_URL = 'https://paper-api.alpaca.markets'  # Endpoint Paper Trading
 ```
@@ -79,9 +71,7 @@ const API_SECRET = 'abcdefghijklmnopqrstuvwxyz1234567890example';
 const BASE_URL = 'https://paper-api.alpaca.markets';
 ```
 
-Giữ key bí mật an toàn — đừng bao giờ commit nó vào quản lý phiên bản. Sử dụng biến môi trường hoặc một dịch vụ quản lý secrets:
-
-```python
+Giữ key bí mật an toàn — đừng bao giờ commit nó vào quản lý phiên bản. Sử dụng biến môi trường hoặc một dịch vụ quản lý secrets: ```python
 # Quản lý credentials an toàn với biến môi trường
 import os
 from alpaca_trade_api import REST
@@ -118,9 +108,7 @@ go get github.com/alpacahq/alpaca-trade-api-go/v3/alpaca
 
 ### Placing Your First Order — Đặt Đơn Hàng Đầu Tiên Của Bạn
 
-Alpaca hỗ trợ nhiều loại lệnh giao dịch bao gồm lệnh thị trường, hạn mức, dừng, dừng-hạn mức và dừng theo dõi. Dưới đây là cách đặt mỗi loại lệnh:
-
-```python
+Alpaca hỗ trợ nhiều loại lệnh giao dịch bao gồm lệnh thị trường, hạn mức, dừng, dừng-hạn mức và dừng theo dõi. Dưới đây là cách đặt mỗi loại lệnh: ```python
 from alpaca_trade_api import REST
 import os
 
@@ -193,9 +181,7 @@ trailing_stop = api.submit_order(
 
 ### Giao Dịch Chia Phép (Fractional Share Trading)
 
-Một trong những đặc điểm nổi bật của Alpaca là **giao dịch chia phép**, cho phép bạn đầu tư số tiền chính xác thay vì lượng cổ phiếu:
-
-```python
+Một trong những đặc điểm nổi bật của Alpaca là **giao dịch chia phép**, cho phép bạn đầu tư số tiền chính xác thay vì lượng cổ phiếu: ```python
 # Mua 500 USD Apple — không phụ thuộc vào giá cổ phiếu
 fractional_order = api.submit_order(
     symbol='AAPL',
@@ -215,8 +201,7 @@ portfolio = {
     'VNQ': 500.00     # Nhà đất
 }
 
-for symbol, amount in portfolio.items():
-    order = api.submit_order(
+for symbol, amount in portfolio.items(): order = api.submit_order(
         symbol=symbol,
         notional=amount,
         side='buy',
@@ -228,9 +213,7 @@ for symbol, amount in portfolio.items():
 
 ### Giao Dịch Trong Giờ Nghiên Cứu (24/5)
 
-Alpaca hỗ trợ **giao dịch 24/5**, cho phép bạn giao dịch ngoài giờ làm việc thông thường (9:30 AM – 4:00 PM ET):
-
-```python
+Alpaca hỗ trợ **giao dịch 24/5**, cho phép bạn giao dịch ngoài giờ làm việc thông thường (9:30 AM – 4:00 PM ET): ```python
 # Đặt đơn hàng để thực hiện trong giờ nghiên cứu
 extended_hours_order = api.submit_order(
     symbol='SPY',
@@ -261,21 +244,16 @@ print(f"Giờ đóng tiếp theo: {clock.next_close}")
 
 ### Cài Đặt Lưu Trữ Dữ Liệu qua Giao Ph WHETHER THE TEXT IS CORRECT DEP WebSocket
 
-Alpaca's WebSocket API cung cấp lưu trữ dữ liệu thời gian thực về các giao dịch, báo giá và thanh khoản phút. Điều này rất quan trọng đối với chiến lược phản ứng với sự kiện thị trường trong thời gian thực:
-
-```python
+Alpaca's WebSocket API cung cấp lưu trữ dữ liệu thời gian thực về các giao dịch, báo giá và thanh khoản phút. Điều này rất quan trọng đối với chiến lược phản ứng với sự kiện thị trường trong thời gian thực: ```python
 import asyncio
 from alpaca_trade_api.stream import Stream
 
 # Lấy dữ liệu qua giao thức WebSocket
-async def xu_ly_giao_dich(t):
-    print(f"Giao dịch: {t.symbol} @ ${t.price} x {t.size}")
+async def xu_ly_giao_dich(t): print(f"Giao dịch: {t.symbol} @ ${t.price} x {t.size}")
 
-async def xu_ly_bao_gia(q):
-    print(f"Báo giá: {q.symbol} Mua cao: ${q.bid_price} Bán thấp: ${q.ask_price}")
+async def xu_ly_bao_gia(q): print(f"Báo giá: {q.symbol} Mua cao: ${q.bid_price} Bán thấp: ${q.ask_price}")
 
-async def xu_ly_than_khoan(bar):
-    print(f"Thanh khoản: {bar.symbol} M:{bar.open} C:{bar.high} D:{bar.low} L:{bar.close}")
+async def xu_ly_than_khoan(bar): print(f"Thanh khoản: {bar.symbol} M:{bar.open} C:{bar.high} D:{bar.low} L:{bar.close}")
 
 # Khởi tạo lưu trữ
 stream = Stream(
@@ -300,17 +278,14 @@ stream.run()
 import asyncio
 from alpaca_trade_api.stream import Stream
 
-async def chay_strategi_gia_tri():
-    stream = Stream(
+async def chay_strategi_gia_tri(): stream = Stream(
         key_id='YOUR_API_KEY',
         secret_key='YOUR_SECRET_KEY',
         data_feed='iex'
     )
     
-    async def on_than_khoan(bar):
-        # Logic chiến lược của bạn ở đây
-        if bar.close > bar.vwap * 1.02:
-            print(f"Potencial breakout: {bar.symbol} at ${bar.close}")
+    async def on_than_khoan(bar): # Logic chiến lược của bạn ở đây
+        if bar.close > bar.vwap * 1.02: print(f"Potencial breakout: {bar.symbol} at ${bar.close}")
     
     stream.subscribe_bars(on_than_khoan, 'AAPL', 'MSFT', 'GOOGL', 'AMZN')
     
@@ -371,8 +346,7 @@ print(fSố lượng giao dịch trong ngày: {account.daytrade_count}")
 positions = api.list_positions()
 print(f"Số lượng vị trí: {len(positions)}")
 
-for pos in positions:
-    print(f"{pos.symbol}: {pos.qty} cổ phiếu @ ${pos.avg_entry_price}")
+for pos in positions: print(f"{pos.symbol}: {pos.qty} cổ phiếu @ ${pos.avg_entry_price}")
     print(f"  Hiện tại: ${pos.current_price} | Lợi nhuận chưa thực hiện: ${pos.unrealized_pl} ({pos.unrealized_plpc}%)")
 ```
 
@@ -389,8 +363,7 @@ print(fLợi nhuận chưa thực hiện: ${aapl_position.unrealized_pl}")
 ```python
 # Danh sách tất cả các lệnh mở
 open_orders = api.list_orders(status='open')
-for order in open_orders:
-    print(f"Lệnh {order.id}: {order.side} {order.qty} {order.symbol} @ {order.type}")
+for order in open_orders: print(f"Lệnh {order.id}: {order.side} {order.qty} {order.symbol} @ {order.type}")
 ```
 
 ```python
@@ -413,8 +386,7 @@ closed_orders = api.list_orders(
     after='2026-05-01T00:00:00Z'
 )
 
-for order in closed_orders:
-    print(f"{order.symbol}: {order.side} {order.filled_qty}/{order.qty} @ ${order.filled_avg_price}")
+for order in closed_orders: print(f"{order.symbol}: {order.side} {order.filled_qty}/{order.qty} @ ${order.filled_avg_price}")
 ```
 
 ---
@@ -477,8 +449,7 @@ import pandas as pd
 symbols = ['AAPL', 'MSFT', 'GOOGL', 'AMZN', 'META']
 all_bars = {}
 
-for symbol in symbols:
-    bars = api.get_bars(
+for symbol in symbols: bars = api.get_bars(
         symbol,
         timeframe='1Day',
         start='2026-01-01T00:00:00Z',
@@ -501,9 +472,7 @@ print(returns.head())
 ---
 ## Xây Dựng Một Chiến Lược Giao Dịch Completed
 
-Đây là một bot giao dịch động lượng hoàn chỉnh kết hợp tất cả những gì chúng ta đã đề cập:
-
-```python
+Đây là một bot giao dịch động lượng hoàn chỉnh kết hợp tất cả những gì chúng ta đã đề cập: ```python
 """
 Bot Giao Dịch Động Lượng Alpaca
 Strategi: Mua khi giá vượt qua SMA 20 kỳ với xác nhận khối lượng
@@ -522,46 +491,33 @@ WATCHLIST = ['AAPL', 'MSFT', 'GOOGL', 'AMZN', 'NVDA']
 POSITION_SIZE = 1000  # Số tiền mỗi giao dịch
 SMA_PERIOD = 20
 
-class MomentumTrader:
-    def __init__(self):
-        self.api = REST(key_id=API_KEY, secret_key=API_SECRET, base_url=BASE_URL)
+class MomentumTrader: def __init__(self): self.api = REST(key_id=API_KEY, secret_key=API_SECRET, base_url=BASE_URL)
         self.price_history = {s: [] for s in WATCHLIST}
         self.positions_held = set()
     
-    def get_sma(self, prices, period):
-        """Tính trung bình động đơn giản"""
-        if len(prices) < period:
-            return None
+    def get_sma(self, prices, period): """Tính trung bình động đơn giản"""
+        if len(prices) < period: return None
         return sum(prices[-period:]) / period
     
-    def check_for_signal(self, symbol, current_price):
-        """Tạo tín hiệu mua/bán dựa trên việc cắt nhau của SMA"""
+    def check_for_signal(self, symbol, current_price): """Tạo tín hiệu mua/bán dựa trên việc cắt nhau của SMA"""
         self.price_history[symbol].append(current_price)
         
-        if len(self.price_history[symbol]) < SMA_PERIOD + 5:
-            return None
+        if len(self.price_history[symbol]) < SMA_PERIOD + 5: return None
         
         sma = self.get_sma(self.price_history[symbol], SMA_PERIOD)
         prev_price = self.price_history[symbol][-2]
         prev_sma = self.get_sma(self.price_history[symbol][:-1], SMA_PERIOD)
         
         # Tín hiệu mua: giá vượt qua SMA
-        if prev_price <= prev_sma and current_price > sma:
-            if symbol not in self.positions_held:
-                return 'mua'
+        if prev_price <= prev_sma and current_price > sma: if symbol not in self.positions_held: return 'mua'
         
         # Tín hiệu bán: giá dưới SMA
-        if prev_price >= prev_sma and current_price < sma:
-            if symbol in self.positions_held:
-                return 'bán'
+        if prev_price >= prev_sma and current_price < sma: if symbol in self.positions_held: return 'bán'
         
         return None
     
-    def execute_trade(self, symbol, signal):
-        """Thực hiện một giao dịch dựa trên tín hiệu"""
-        try:
-            if signal == 'mua':
-                order = self.api.submit_order(
+    def execute_trade(self, symbol, signal): """Thực hiện một giao dịch dựa trên tín hiệu"""
+        try: if signal == 'mua': order = self.api.submit_order(
                     symbol=symbol,
                     notional=POSITION_SIZE,
                     side='buy',
@@ -571,8 +527,7 @@ class MomentumTrader:
                 self.positions_held.add(symbol)
                 print(f"MUA {symbol}: ${POSITION_SIZE} | ID Đơn Hàng: {order.id}")
             
-            elif signal == 'bán':
-                position = self.api.get_position(symbol)
+            elif signal == 'bán': position = self.api.get_position(symbol)
                 order = self.api.submit_order(
                     symbol=symbol,
                     qty=position.qty,
@@ -583,37 +538,28 @@ class MomentumTrader:
                 self.positions_held.discard(symbol)
                 print(f"BÁN {symbol}: {position.qty} cổ phiếu | ID Đơn Hàng: {order.id}")
         
-        except Exception as e:
-            print(f"Lỗi trong giao dịch cho {symbol}: {e}")
+        except Exception as e: print(f"Lỗi trong giao dịch cho {symbol}: {e}")
     
-    def run(self):
-        """Hàm lặp chính sử dụng polling"""
+    def run(self): """Hàm lặp chính sử dụng polling"""
         print("Bot Giao Dịch Động Lượng bắt đầu...")
         
-        while True:
-            try:
-                clock = self.api.get_clock()
-                if not clock.is_open:
-                    print(f"Thị trường đóng cửa. Mở tiếp theo: {clock.next_open}")
+        while True: try: clock = self.api.get_clock()
+                if not clock.is_open: print(f"Thị trường đóng cửa. Mở tiếp theo: {clock.next_open}")
                     time.sleep(60)
                     continue
                 
-                for symbol in WATCHLIST:
-                    # Lấy giá mới nhất
+                for symbol in WATCHLIST: # Lấy giá mới nhất
                     bars = self.api.get_latest_bar(symbol)
                     signal = self.check_for_signal(symbol, bars.c)
                     
-                    if signal:
-                        self.execute_trade(symbol, signal)
+                    if signal: self.execute_trade(symbol, signal)
                 
                 time.sleep(60)  # Kiểm tra mỗi phút
                 
-            except Exception as e:
-                print(f"Lỗi trong vòng lặp chính: {e}")
+            except Exception as e: print(f"Lỗi trong vòng lặp chính: {e}")
                 time.sleep(60)
 
-if __name__ == '__main__':
-    trader = MomentumTrader()
+if __name__ == '__main__': trader = MomentumTrader()
     trader.run()
 ```
 
@@ -623,9 +569,7 @@ if __name__ == '__main__':
 
 ### Sử Dụng Các Loại Đặt Hàng Nâng Cao (OCO, IOC)
 
-Với Alpaca Elite, bạn có thể truy cập các loại đặt hàng phức tạp:
-
-```python
+Với Alpaca Elite, bạn có thể truy cập các loại đặt hàng phức tạp: ```python
 # One-Cancels-Other (OCO) bracket order
 bracket_order = api.submit_order(
     symbol='TSLA',
@@ -663,13 +607,11 @@ app = Flask(__name__)
 api = REST(key_id='YOUR_KEY', secret_key='YOUR_SECRET')
 
 @app.route('/webhook/trading-signal', methods=['POST'])
-def handle_trading_signal():
-    data = request.json
+def handle_trading_signal(): data = request.json
     symbol = data.get('symbol')
     signal = data.get('signal')  # 'buy' or 'sell'
     
-    if signal == 'buy':
-        order = api.submit_order(
+    if signal == 'buy': order = api.submit_order(
             symbol=symbol,
             notional=1000,
             side='buy',
@@ -678,8 +620,7 @@ def handle_trading_signal():
         )
         return jsonify({'status': 'success', 'order_id': order.id})
     
-    elif signal == 'sell':
-        position = api.get_position(symbol)
+    elif signal == 'sell': position = api.get_position(symbol)
         order = api.submit_order(
             symbol=symbol,
             qty=position.qty,
@@ -691,8 +632,7 @@ def handle_trading_signal():
     
     return jsonify({'status': 'unknown_signal'}), 400
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+if __name__ == '__main__': app.run(host='0.0.0.0', port=5000)
 ```
 
 ---
@@ -738,7 +678,6 @@ Dù bạn đang xây dựng một bot đầu tư theo phương pháp bình quân
 *Cuối cùng được cập nhật: 2026-05-19 | API Alpaca phiên bản: v2*
 ---
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,21 +1,14 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/modal-serverless-gpu-compute" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/modal-serverless-gpu-compute" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/modal-serverless-gpu-compute" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/modal-serverless-gpu-compute" />
 title: Modal 서버리스 GPU 컴퓨팅 — 인프라 없이 ML 파이프라인 실행
 description: Modal 서버리스 GPU 인프라 완전 가이드. 클러스터 관리 없이 LLM 추론, 파인튜닝 파이프라인, 배치 ML 워크로드 배포. 가격, 벤치마크, 실제 패턴 비교.. Comprehensive guide covering features, pricing, and best practices for 2026.
 tags: ['serverless', 'gpu', 'machine-learning', 'inference', 'llm', 'cloud-compute']
 category: llm-frameworks
 featureImage: /images/articles/modal-serverless-gpu-compute.jpg
 date: 2026-07-15T00:00:00+00:00
-lastmod:  2026-07-15T00:00:00+00:00draft: false
+lastmod: 2026-07-15T00:00:00+00:00draft: false
 slug: modal-serverless-gpu-compute
 lang: ko
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/modal-serverless-gpu-compute/ -->
 
 ## TL;DR
 
@@ -31,9 +24,7 @@ Modal은 머신러닝과 데이터 집약적 워크로드를 위해 특별히 �
 
 ### 왜 서버리스 GPU가 AI에 중요한가
 
-GPU 인프라는 역사적으로 AI 개발의 가장 큰 병목 현상이었습니다. 전통적인 접근 방식은 다음과 같습니다:
-
-- GPU 인스턴스 사전 프로비저닝(비싼 유휴 시간)
+GPU 인프라는 역사적으로 AI 개발의 가장 큰 병목 현상이었습니다. 전통적인 접근 방식은 다음과 같습니다: - GPU 인스턴스 사전 프로비저닝(비싼 유휴 시간)
 - 오케스트레이션을 위한 Kubernetes 클러스터 관리(복잡한 ops 오버헤드)
 - 추론 엔드포인트의 콜드 스타트 처리(지연 시간 문제)
 - 0에서 수천 개의 동시 요청으로 스케일링(수동 튜닝)
@@ -95,10 +86,8 @@ stub = modal.Stub("llm-inference")
     gpu="A10G",
     memory=8192
 )
-class LLMEndpoint:
-    @modal.enter()
-    def load_model(self):
-        self.model = AutoModelForCausalLM.from_pretrained(
+class LLMEndpoint: @modal.enter()
+    def load_model(self): self.model = AutoModelForCausalLM.from_pretrained(
             "meta-llama/Llama-3.2-3B-Instruct",
             torch_dtype="auto",
             device_map="auto"
@@ -106,8 +95,7 @@ class LLMEndpoint:
         self.tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-3.2-3B-Instruct")
 
     @modal.method()
-    def generate(self, prompt: str, max_tokens: int = 512) -> str:
-        inputs = self.tokenizer(prompt, return_tensors="pt").to(self.model.device)
+    def generate(self, prompt: str, max_tokens: int = 512) -> str: inputs = self.tokenizer(prompt, return_tensors="pt").to(self.model.device)
         outputs = self.model.generate(**inputs, max_new_tokens=max_tokens)
         return self.tokenizer.decode(outputs[0], skip_special_tokens=True)
 ```
@@ -132,46 +120,37 @@ modal run my_app::LLMEndpoint.generate --prompt "양자 컴퓨팅 설명해줘" 
 
 ### 패턴 1: 고투율 추론 엔드포인트
 
-프로덕션 LLM 서빙에는 Modal의 내장 컨커런시와 요청 큐를 사용하세요:
-
-```python
+프로덕션 LLM 서빙에는 Modal의 내장 컨커런시와 요청 큐를 사용하세요: ```python
 @stub.cls(
     gpu="L4",
     concurrency_limit=20,
     allow_concurrent_inputs=10,
     keep_warm=2  # 최소 2개 컨테이너 웜 상태로 유지
 )
-class ProductionLLM:
-    @modal.enter()
-    def load_model(self):
-        self.model = load_optimized_model()
+class ProductionLLM: @modal.enter()
+    def load_model(self): self.model = load_optimized_model()
         self.tokenizer = AutoTokenizer.from_pretrained("your-model")
 
     @modal.web_endpoint(method="POST")
-    def infer(self, req: dict):
-        prompt = req.get("prompt", "")
+    def infer(self, req: dict): prompt = req.get("prompt", "")
         result = self.model.generate(prompt, max_tokens=req.get("max_tokens", 256))
         return {"response": result}
 ```
 
-핵심 설정:
-- `keep_warm=2`: 버스트 트래픽을 처리할 2개의 컨테이너를 항상 핫하게 유지
+핵심 설정: - `keep_warm=2`: 버스트 트래픽을 처리할 2개의 컨테이너를 항상 핫하게 유지
 - `allow_concurrent_inputs=10`: 각 컨테이너가 10개의 동시 요청 처리
 - `concurrency_limit=20`: 총 최대 20개 컨테이너(비용 제어)
 
 ### 패턴 2: 배치 처리 파이프라인
 
-LLM을 통해 수천 개의 문서를 처리하려면:
-
-```python
+LLM을 통해 수천 개의 문서를 처리하려면: ```python
 @stub.function(
     image=image,
     gpu="A100-80GB",
     timeout=3600,  # 최대 1시간
     retries=2
 )
-def batch_embed(docs: list[str]) -> list[list[float]]:
-    """배치 문서 처리 후 임베딩 반환."""
+def batch_embed(docs: list[str]) -> list[list[float]]: """배치 문서 처리 후 임베딩 반환."""
     model = get_embedding_model()
     return model.encode(docs, batch_size=64).tolist()
 
@@ -189,8 +168,7 @@ Modal은 청킹, 실패한 배치 재시도, 여러 GPU 컨테이너 간 병렬�
     memory=16384,
     timeout=14400  # 4시간
 )
-def run_finetune(dataset_path: str, output_dir: str):
-    """데이터셋에서 LoRA 파인튜닝 실행."""
+def run_finetune(dataset_path: str, output_dir: str): """데이터셋에서 LoRA 파인튜닝 실행."""
     from trl import SFTTrainer
     from peft import LoraConfig
 
@@ -220,9 +198,7 @@ def run_finetune(dataset_path: str, output_dir: str):
 
 ### Modal의 가격 모델 이해
 
-Modal은 컨테이너가 실제로 사용하는 리소스에 따라 청구합니다:
-
-| 리소스 | 가격(대략) |
+Modal은 컨테이너가 실제로 사용하는 리소스에 따라 청구합니다: | 리소스 | 가격(대략) |
 |----------|---------------------|
 | A10G GPU | $0.60/시간 |
 | L4 GPU | $0.80/시간 |
@@ -241,14 +217,12 @@ _대략적인 가격이며 최신 요금은 [modal.com/pricing](https://modal.co
 # 3B 파라미터 모델에 H100 사용하지 마세요
 # 대신 A10G 사용 — 비용 75% 절감
 @stub.function(gpu="A10G", memory=4096)
-def light_inference(prompt: str):
-    model = load_small_model()  # 3B 파라미터는 쉽게 수용
+def light_inference(prompt: str): model = load_small_model()  # 3B 파라미터는 쉽게 수용
     return model.generate(prompt)
 
 # 대규모 파인튜닝에만 H100 예약
 @stub.function(gpu="H100-80GB", memory=32768)
-def heavy_finetune(config: dict):
-    return run_large_scale_training(config)
+def heavy_finetune(config: dict): return run_large_scale_training(config)
 ```
 
 **전략 2: `keep_warm`을 전략적으로 사용**
@@ -256,13 +230,11 @@ def heavy_finetune(config: dict):
 ```python
 # 예측 가능한 트래픽: 비즈니스 시간 동안만 웜 상태 유지
 @stub.function(gpu="L4", keep_warm=1)
-def production_endpoint():
-    ...
+def production_endpoint(): ...
 
 # 버스트 트래픽: 더 높은 concurrency_limit 사용
 @stub.function(gpu="L4", concurrency_limit=50, keep_warm=3)
-def bursty_endpoint():
-    ...
+def bursty_endpoint(): ...
 ```
 
 **전략 3: `@stub.cls`로 컨테이너 재사용**
@@ -272,20 +244,16 @@ def bursty_endpoint():
 ```python
 # ❌ 나쁨: 매번 모델을 로드
 @stub.function(gpu="A10G")
-def bad_approach(prompt: str):
-    model = load_model()  # 호출마다 다시 로드!
+def bad_approach(prompt: str): model = load_model()  # 호출마다 다시 로드!
     return model.generate(prompt)
 
 # ✅ 좋음: 한 번 로드하고 요청 간 재사용
 @stub.cls(gpu="A10G")
-class GoodApproach:
-    @modal.enter()
-    def setup(self):
-        self.model = load_model()  # 시작 시 한 번만 로드
+class GoodApproach: @modal.enter()
+    def setup(self): self.model = load_model()  # 시작 시 한 번만 로드
     
     @modal.method()
-    def generate(self, prompt: str):
-        return self.model.generate(prompt)  # 로드된 모델 재사용
+    def generate(self, prompt: str): return self.model.generate(prompt)  # 로드된 모델 재사용
 ```
 
 ### 실제 세계 비용 비교
@@ -302,9 +270,7 @@ class GoodApproach:
 
 ### 시크릿 관리
 
-API 키를 하드코딩하지 마세요. Modal의 시크릿 관리자는 런타임에 자격 증명을 주입합니다:
-
-```python
+API 키를 하드코딩하지 마세요. Modal의 시크릿 관리자는 런타임에 자격 증명을 주입합니다: ```python
 import modal
 
 stub = modal.Stub("secret-demo")
@@ -315,24 +281,20 @@ stub = modal.Stub("secret-demo")
         modal.Secret.from_name("openai-key"),
     ]
 )
-def secure_inference(prompt: str):
-    import os
+def secure_inference(prompt: str): import os
     hf_token = os.environ["HF_TOKEN"]  # 시크릿에서 주입
     openai_key = os.environ["OPENAI_API_KEY"]
     return call_api(prompt, hf_token, openai_key)
 ```
 
-시크릿 한 번 생성:
-```bash
+시크릿 한 번 생성: ```bash
 modal secret create huggingface-token HF_TOKEN=your_token_here
 modal secret create openai-key OPENAI_API_KEY=sk-...
 ```
 
 ### 영구 저장을 위한 볼륨 마운트
 
-Modal 볼륨은 함수 호출 간 공유된 영구 파일시스템을 제공합니다:
-
-```python
+Modal 볼륨은 함수 호출 간 공유된 영구 파일시스템을 제공합니다: ```python
 # 모델 체크포인트용 볼륨 생성
 checkpoint_volume = modal.Volume.from_name("model-checkpoints", create_if_missing=True)
 
@@ -341,8 +303,7 @@ checkpoint_volume = modal.Volume.from_name("model-checkpoints", create_if_missin
     volumes={"/checkpoints": checkpoint_volume},
     timeout=7200
 )
-def fine_tune_and_save(dataset_url: str):
-    dataset = load_dataset(dataset_url)
+def fine_tune_and_save(dataset_url: str): dataset = load_dataset(dataset_url)
     
     trainer.train()
     trainer.save_model("/checkpoints/final-model")
@@ -350,8 +311,7 @@ def fine_tune_and_save(dataset_url: str):
     print(f"체크포인트 볼륨에 저장됨. 크기: {os.path.getsize('/checkpoints/final-model')}")
 
 @stub.function(volumes={"/checkpoints": checkpoint_volume})
-def load_and_infer(prompt: str):
-    model = AutoModelForCausalLM.from_pretrained("/checkpoints/final-model")
+def load_and_infer(prompt: str): model = AutoModelForCausalLM.from_pretrained("/checkpoints/final-model")
     return model.generate(prompt)
 ```
 
@@ -359,24 +319,19 @@ def load_and_infer(prompt: str):
 
 ### 이그레스 컨트롤
 
-보안과 비용 관리를 위해 아웃바운드 네트워크 접근을 제어하세요:
-
-```python
+보안과 비용 관리를 위해 아웃바운드 네트워크 접근을 제어하세요: ```python
 @stub.function(
     gpu="L4",
     network_mounts={"/etc/resolv.conf": modal.NetworkMount()},
     blocked_subnets=["169.254.0.0/16"],  # 메타데이터 서비스 차단
     allowed_domains=["api.openai.com"]   # 특정 도메인만 허용
 )
-def restricted_inference(prompt: str):
-    return call_openai(prompt)
+def restricted_inference(prompt: str): return call_openai(prompt)
 ```
 
 ### 커스텀 Docker 이미지
 
-`pip_install`로 커버되지 않는 복잡한 의존성이 있을 때:
-
-```python
+`pip_install`로 커버되지 않는 복잡한 의존성이 있을 때: ```python
 custom_image = (
     modal.Image.from_dockerhub("nvidia/cuda:12.2.0-devel-ubuntu22.04")
     .apt_install("git", "cmake", "build-essential")
@@ -385,8 +340,7 @@ custom_image = (
 )
 
 @stub.function(image=custom_image, gpu="A100-80GB")
-def custom_model_inference(request: dict):
-    model = torch.load("/app/model/best.pt")
+def custom_model_inference(request: dict): model = torch.load("/app/model/best.pt")
     return model.predict(request["input"])
 ```
 
@@ -400,18 +354,14 @@ def custom_model_inference(request: dict):
 에러: 메모리 제한 초과로 컨테이너 종료
 ```
 
-**해결**: 메모리 할당을 늘리고 스왑 활성화:
-
-```python
+**해결**: 메모리 할당을 늘리고 스왑 활성화: ```python
 @stub.cls(
     gpu="A100-80GB",
     memory=32768,  # 대형 모델용 32GB RAM
     ephemeral_disk=100_000  # 모델 가중치용 100GB 디스크
 )
-class LargeModel:
-    @modal.enter()
-    def load(self):
-        self.model = AutoModel.from_pretrained(
+class LargeModel: @modal.enter()
+    def load(self): self.model = AutoModel.from_pretrained(
             "big-model",
             torch_dtype=torch.float16,  # 반정밀도 사용
             device_map="auto"
@@ -424,18 +374,14 @@ class LargeModel:
 경고: 첫 번째 요청에 180초 소요(모델 로딩)
 ```
 
-**해결**: `keep_warm` 사용 및 컨테이너 프리워밍:
-
-```python
+**해결**: `keep_warm` 사용 및 컨테이너 프리워밍: ```python
 @stub.cls(
     gpu="A10G",
     keep_warm=3,  # 항상 3개의 웜 컨테이너 유지
     timeout=600
 )
-class WarmEndpoint:
-    @modal.enter()
-    def load(self):
-        self.model = load_model()
+class WarmEndpoint: @modal.enter()
+    def load(self): self.model = load_model()
         print("모델 로드 완료")
 ```
 
@@ -445,19 +391,14 @@ class WarmEndpoint:
 에러: 함수가 3600초 후 타임아웃
 ```
 
-**해결**: 타임아웃 증가 및 체크포인트 저장을 위한 볼륨 사용:
-
-```python
+**해결**: 타임아웃 증가 및 체크포인트 저장을 위한 볼륨 사용: ```python
 @stub.function(
     gpu="H100-80GB",
     timeout=28800,  # 8시간
     volumes={"/data": modal.Volume.from_name("training-data")}
 )
-def long_training_job(config_path: str):
-    for epoch in range(10):
-        train_epoch(config_path)
-        if epoch % 2 == 0:
-            save_checkpoint(f"/data/checkpoint-{epoch}")
+def long_training_job(config_path: str): for epoch in range(10): train_epoch(config_path)
+        if epoch % 2 == 0: save_checkpoint(f"/data/checkpoint-{epoch}")
 ```
 
 ### 문제 4: 컨커런시 스로틀링
@@ -466,19 +407,15 @@ def long_training_job(config_path: str):
 에러: 너무 많은 동시 입력(제한: 10)
 ```
 
-**해결**: 컨커런시 설정 조정:
-
-```python
+**해결**: 컨커런시 설정 조정: ```python
 @stub.cls(
     gpu="L4",
     concurrency_limit=100,       # 최대 컨테이너 수
     allow_concurrent_inputs=20,  # 컨테이너당 요청 수
     keep_warm=5                  # 웜 풀 크기
 )
-class ScalableEndpoint:
-    @modal.method()
-    def handle(self, request: dict):
-        return process(request)
+class ScalableEndpoint: @modal.method()
+    def handle(self, request: dict): return process(request)
 ```
 
 ---
@@ -487,9 +424,7 @@ class ScalableEndpoint:
 
 ### Modal의 2026 로드맵
 
-Modal은 ML 인프라에 지속적으로 대규모 투자를 하고 있습니다. 주요 예정 기능:
-
-1. **멀티노드 분산 훈련**: 8개 이상의 GPU 간 자동 데이터 병렬화된 훈련 지원
+Modal은 ML 인프라에 지속적으로 대규모 투자를 하고 있습니다. 주요 예정 기능: 1. **멀티노드 분산 훈련**: 8개 이상의 GPU 간 자동 데이터 병렬화된 훈련 지원
 2. **GPU 공유**: 저트래픽 기간 중 더 나은 활용을 위한 GPU 타임 슬라이싱
 3. **커스텀 GPU 타입**: 사용 가능해지면 차세대 GPU(Blackwell B200) 지원
 4. **엣지 배포**: 서브-50ms 추론 지연时间来 엣지 로케이션에 Modal 함수 배포
@@ -513,9 +448,7 @@ Modal은 ML 인프라에 지속적으로 대규모 투자를 하고 있습니다
 
 ## 커뮤니티 업데이트
 
-서버리스 GPU 공간이 빠르게 뜨거워지고 있습니다. 2026년 중반, 여러 신규 참가자가 시장에 진입했습니다:
-
-- **RunPod Serverless**가 A10G 기준 $0.30/시간의 경쟁력 있는 GPU 가격 발표
+서버리스 GPU 공간이 빠르게 뜨거워지고 있습니다. 2026년 중반, 여러 신규 참가자가 시장에 진입했습니다: - **RunPod Serverless**가 A10G 기준 $0.30/시간의 경쟁력 있는 GPU 가격 발표
 - **Replicate**가 500개 이상의 패키지된 ML 모델 라이브러리 확장
 - **AWS Lambda GPU**가 Graviton4 + Inferentia2 조합의 일반 가용성 발표
 
@@ -566,7 +499,6 @@ Modal은 `modal.com/apps`에서 실시간 메트릭(호출 횟수, 지연 시간
 *실시간 AI 도구 토론 및 배포 팁을 위한 Telegram 그룹 가입: [t.me/dibi8](https://t.me/dibi8)*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mcp-server-registry-comprehensive-guide-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mcp-server-registry-comprehensive-guide-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mcp-server-registry-comprehensive-guide-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mcp-server-registry-comprehensive-guide-2026" />
 title: 'Hướng Dẫn MCP Server Registry 2026: 19,700+ Server, 7 Cá...
 description: 'Hướng dẫn toàn diện khám phá MCP server 2026. 7 server reference Anthropic, awesome list 87.3k star, so sánh registry Smithery vs mcp.so, top server từng category, và cây quyết định lựa chọn — không phải MCP là gì, mà là cái gì bạn có thể cắm vào MCP host của mình.'
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
-tech_stack:
-  - TypeScript
+tech_stack: - TypeScript
   - Python
   - Docker
 application_domain: Llm Frameworks
@@ -28,11 +22,9 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [mcp, 'model context protocol', registry, 'hub article']
-aliases:
-  - /posts/mcp-server-registry-comprehensive-guide-2026/
+aliases: - /posts/mcp-server-registry-comprehensive-guide-2026/
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/mcp-server-registry-comprehensive-guide-2026/ -->
 # Hướng Dẫn MCP Server Registry 2026: 19,700+ Server, 7 Cái Chính Thức, Tìm Đúng Cái Trong 60 Giây
 
 
@@ -42,9 +34,7 @@ Hướng dẫn này trả lời chính xác câu đó. Chúng tôi **không gi�
 
 ## 1. Vì Sao Số MCP Server Bùng Nổ 100× Trong 6 Tháng
 
-Ba điều kết hợp:
-
-1. **Áp dụng đa nền tảng**: Đầu 2026, Anthropic, OpenAI, Google DeepMind đều hỗ trợ MCP. Server bạn viết một lần chạy được trong Claude Desktop, ChatGPT, Gemini
+Ba điều kết hợp: 1. **Áp dụng đa nền tảng**: Đầu 2026, Anthropic, OpenAI, Google DeepMind đều hỗ trợ MCP. Server bạn viết một lần chạy được trong Claude Desktop, ChatGPT, Gemini
 2. **Tooling trưởng thành**: SDK TypeScript, Python, Go, Rust, Swift — xây server là dự án 50 dòng một buổi chiều
 3. **Roadmap 2026 đáp đất**: Khả năng mở rộng transport (server scale ngang không giữ state session), auth doanh nghiệp (SSO/audit trail), MCP Apps (extension UI qua SEP-1865) làm protocol sẵn sàng production
 
@@ -65,9 +55,7 @@ Phần còn lại bài này mở từng dòng.
 
 ## 3. 7 Server Reference Của Anthropic — Đường Cơ Sở
 
-Repo chính thức [modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers) (86k GitHub star) ship 7 implementation reference được bảo trì. Đây là các server Anthropic dùng nội bộ và đóng dấu "đường vui" của protocol:
-
-| Server | Làm gì | Use case điển hình |
+Repo chính thức [modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers) (86k GitHub star) ship 7 implementation reference được bảo trì. Đây là các server Anthropic dùng nội bộ và đóng dấu "đường vui" của protocol: | Server | Làm gì | Use case điển hình |
 |---|---|---|
 | **Everything** | Server demo expose mọi MCP primitive (tools, resources, prompts) | Đọc reference cho tác giả protocol |
 | **Fetch** | HTTP/HTTPS fetcher + html→markdown | LLM đọc URL bất kỳ on demand |
@@ -77,18 +65,14 @@ Repo chính thức [modelcontextprotocol/servers](https://github.com/modelcontex
 | **Sequential Thinking** | Scaffold reasoning đa bước (chain-of-thought như tool) | Task lên kế hoạch phức tạp |
 | **Time** | Thao tác date/time nhận thức timezone | Agent lên lịch, bot lịch |
 
-Hai server reference cũ đã nghỉ hưu:
-
-- **Brave Search** — chuyển sang [brave/brave-search-mcp-server](https://github.com/brave/brave-search-mcp-server), Brave tự bảo trì
+Hai server reference cũ đã nghỉ hưu: - **Brave Search** — chuyển sang [brave/brave-search-mcp-server](https://github.com/brave/brave-search-mcp-server), Brave tự bảo trì
 - **Slack** — giờ do Zencoder cộng đồng bảo trì
 
 Nếu bắt đầu hôm nay, copy config bao gồm **Filesystem + Fetch + Memory** — đó là "bộ tối thiểu hữu ích" cho coding agent tự trị.
 
 ## 4. awesome-mcp-servers — Chỉ Mục Cộng Đồng 87.3k Star
 
-[punkpeye/awesome-mcp-servers](https://github.com/punkpeye/awesome-mcp-servers) là catalog cộng đồng de facto: **87.3k star, 10.5k fork, 1.6k PR**. Server nhóm thành ~40 category. Đây là các category quan trọng nhất cho workflow AI dev 2026:
-
-- **Aggregators** — Compose nhiều MCP server đằng sau một endpoint (`1mcp/agent`, `a2asearch-mcp`)
+[punkpeye/awesome-mcp-servers](https://github.com/punkpeye/awesome-mcp-servers) là catalog cộng đồng de facto: **87.3k star, 10.5k fork, 1.6k PR**. Server nhóm thành ~40 category. Đây là các category quan trọng nhất cho workflow AI dev 2026: - **Aggregators** — Compose nhiều MCP server đằng sau một endpoint (`1mcp/agent`, `a2asearch-mcp`)
 - **Browser Automation** — `playwright-mcp`, `browsermcp/mcp`, `real-browser-mcp`
 - **Cloud Platforms** — `terraform-mcp-server`, `aws-mcp-server`, `k8s-mcp-server`, `localstack-mcp-server`
 - **Code Execution** — `e2b-sandbox-mcp` (sandbox cloud), `piston-mcp` (multi-lang runner), `pydantic-ai/mcp-run-python`
@@ -128,9 +112,7 @@ Khi awesome list vượt 500 server tháng 1/2026, hai nền tảng registry xu�
 
 ## 6. Top MCP Server Theo Category (Tháng 5/2026)
 
-Dựa trên star cộng đồng, độ phủ tích hợp, hoạt động commit gần đây:
-
-**Filesystem & Code**
+Dựa trên star cộng đồng, độ phủ tích hợp, hoạt động commit gần đây: **Filesystem & Code**
 - `modelcontextprotocol/server-filesystem` (chính thức) — FS sandboxed
 - `cyanheads/git-mcp-server` — thao tác Git vượt scope server Git reference
 - `tools-mcp/codemap-mcp` — điều hướng code ngữ nghĩa
@@ -179,9 +161,7 @@ VPS 4GB thoải mái chạy 10+ MCP server stdio-bridged hoặc HTTP song song. 
 
 ## 8. Cách Chọn + Nơi Tự Xây
 
-**Checklist chọn (30 giây mỗi candidate)**:
-
-1. **Star > 500** + **commit cuối < 90 ngày** = project hoạt động (không thì tìm chỗ khác)
+**Checklist chọn (30 giây mỗi candidate)**: 1. **Star > 500** + **commit cuối < 90 ngày** = project hoạt động (không thì tìm chỗ khác)
 2. **Open issue có label "good first issue"** = maintainer kỳ vọng đóng góp (khỏe)
 3. **License = MIT/Apache 2.0** = an toàn dùng thương mại
 4. **README có snippet `claude_desktop_config.json`** = tác giả test path cài
@@ -193,9 +173,7 @@ Walkthrough "tự xây MCP server" đầy đủ — bao gồm setup transport st
 
 ## TL;DR
 
-Hệ sinh thái MCP server 2026 có 4 layer đáng biết:
-
-1. **7 server reference Anthropic** — đường cơ sở (Filesystem + Fetch + Memory tối thiểu)
+Hệ sinh thái MCP server 2026 có 4 layer đáng biết: 1. **7 server reference Anthropic** — đường cơ sở (Filesystem + Fetch + Memory tối thiểu)
 2. **awesome-mcp-servers (87.3k star)** — index cộng đồng kinh điển, duyệt theo category
 3. **Smithery + mcp.so** — nền tảng registry (Smithery cho CLI install, mcp.so cho độ rộng)
 4. **Self-host vs cloud-host** — tuân thủ/latency thiên self-host; prototype/compute-heavy thiên cloud
@@ -207,7 +185,6 @@ Phần khó không còn là tìm server. Mà là **chọn đúng cái** — dùn
 *Muốn self-host 5+ MCP server (postgres + filesystem + git + memory + tavily-search) mà không đốt bill cloud? Bật một {{< aff "digitalocean" "footer-cta" "DigitalOcean droplet" >}} $6/tháng, chạy chúng dưới một supervisor duy nhất (systemd hoặc PM2), và trỏ `claude_desktop_config.json` của Claude Desktop vào host. Xong trong một buổi chiều.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

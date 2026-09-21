@@ -1,10 +1,4 @@
 # Moralis 2026: API Dữ liệu Web3 Động lực cho hơn 100.000 DApps với Dữ liệu Blockchain Thực tế - Hướng dẫn Cài đặt
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/moralis-web3-data-api" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/moralis-web3-data-api" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/moralis-web3-data-api" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/moralis-web3-data-api" />
-
 Dữ liệu blockchain là máu sống của mỗi ứng dụng phi tập trung. Dù bạn đang xây dựng bảng điều khiển DeFi, thị trường NFT, công cụ theo dõi ví, hay bot giao dịch, ứng dụng của bạn đều cần truy cập nhanh chóng và đáng tin cậy vào dữ liệu on-chain. Trong năm 2026, Moralis vẫn là API Dữ liệu Web3 được sử dụng rộng rãi nhất, phục vụ hơn 100.000 ứng dụng phân tán với dữ liệu blockchain thực tế trên hơn mười chuỗi tương thích với EVM.
 
 Moralis tách rời sự phức tạp của việc chạy các nút blockchain riêng, các lớp chỉ mục, và các luồng dữ liệu. Thay vì dành nhiều tuần để thiết lập cơ sở hạ tầng, các nhà phát triển có thể bắt đầu truy vấn số dư ví, giá token, thông tin NFT, và lịch sử giao dịch chỉ trong vài phút. Bài hướng dẫn này cung cấp một hướng dẫn toàn diện từ việc cài đặt ban đầu đến các tích hợp nâng cao với Moralis, giúp bạn tận dụng tối đa tiềm năng của nó cho dự án Web3 tiếp theo của bạn.
@@ -15,9 +9,7 @@ Moralis là một nền tảng dữ liệu Web3 thống nhất và nền tảng 
 
 Nền tảng hỗ trợ Ethereum, Polygon, BNB Chain, Arbitrum, Optimism, Avalanche, Base và một số mạng EVM khác. Nó cũng cung cấp hỗ trợ non-EVM cho Solana và các chuỗi khác. Giá trị cốt lõi của sản phẩm là đơn giản: thay vì vận hành cơ sở hạ tầng nút phức tạp và xây dựng chỉ mục viên tùy chỉnh, các nhà phát triển có thể gọi một điểm cuối API Moralis và nhận được dữ liệu cấu trúc, dễ đọc cho con người.
 
-Moralis cung cấp các nhóm API chính sau:
-
-- **API Web3** — Các truy vấn blockchain chung, dữ liệu khối và chi tiết giao dịch
+Moralis cung cấp các nhóm API chính sau: - **API Web3** — Các truy vấn blockchain chung, dữ liệu khối và chi tiết giao dịch
 - **API Token** — Bảng cân đối tiền token, chuyển nhượng, dữ liệu giá và thông tin metadữ liệu
 - **API NFT** — Sở hữu NFT, thông tin metadữ liệu, chuyển nhượng và thống kê bộ sưu tập
 - **API Wallet** — Theo dõi danh mục đầu tư, tính toán giá trị tài sản ròng và lịch sử giao dịch
@@ -96,8 +88,7 @@ from moralis import evm_api
 import os
 
 api_key = os.environ.get('MORALIS_API_KEY')
-if not api_key:
-    raise ValueError("MORALIS_API_KEY biến môi trường là bắt buộc")
+if not api_key: raise ValueError("MORALIS_API_KEY biến môi trường là bắt buộc")
 
 print("SDK Python của Moralis đã sẵn sàng")
 ```

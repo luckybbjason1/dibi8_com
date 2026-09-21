@@ -1,15 +1,11 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/microsoft-presidio-pii-detection-redaction-sdk" />
-lang: en
 slug: microsoft-presidio-pii-detection-redaction-sdk
-title: "Presidio Review: Microsoft's Open-Source PII Detection a...
+title: "Presidio Review: Microsoft's Open-Source PII Detection a..."
 description: "Presidio (9.4K+ GitHub stars) from Microsoft is an open-source framework for detecting, redacting, masking, and anonymizing sensitive data (PII) across text, images, and structured data. Supports NLP, regex, rule-based recognition, DICOM image redaction, and customizable pipelines. MIT licensed, OpenSSF Best Practices certified."
 tags: ["open-source", "self-hosted"]
 date: "2026-06-22 00:00:00+08:00"
 lastmod: "2026-06-22 00:00:00+08:00"
-tech_stack:
-  - Python 3.8+
+tech_stack: - Python 3.8+
   - spaCy
   - Transformers
   - Docker
@@ -26,10 +22,8 @@ github_repo: 'https://github.com/microsoft/presidio'
 last_maintained: '2026-06-21'
 draft: false
 categories: ['dev-utils']
-aliases:
-- /posts/microsoft-presidio-pii-detection-redaction-sdk/
-faqs:
-  - q: 'What is Microsoft Presidio?'
+aliases: - /posts/microsoft-presidio-pii-detection-redaction-sdk/
+faqs: - q: 'What is Microsoft Presidio?'
     a: 'Presidio is an open-source SDK from Microsoft for detecting, redacting, masking, and anonymizing personally identifiable information (PII) across text, images, and structured data. Named after the Latin word for "protection" or "garrison," it provides context-aware, pluggable, and customizable PII de-identification modules. It supports Named Entity Recognition (NER), regular expressions, rule-based logic, and checksum validation across multiple languages.'
   - q: 'What components make up Presidio?'
     a: 'Presidio consists of four main components: (1) **Presidio Analyzer** — detects PII in text using predefined or custom recognizers leveraging NER, regex, rule-based logic, and checksums; (2) **Presidio Anonymizer** — redacts, masks, hashes, or replaces detected PII with configurable transformations; (3) **Presidio Image Redactor** — redacts PII from images including standard image types and DICOM medical images; (4) **Presidio Structured** — detects PII in tabular/structured data like CSV and Excel files.'
@@ -41,9 +35,7 @@ faqs:
     a: 'Presidio Image Redactor uses computer vision models to detect and redact PII from images. It supports standard image formats (PNG, JPEG, etc.) and DICOM medical images. The redaction can replace detected text with black boxes, blur regions, or remove the text entirely. This is particularly valuable for healthcare organizations that need to anonymize medical imaging data before sharing or publication.'
   - q: 'Can Presidio run in production at scale?'
     a: 'Yes. Presidio supports multiple deployment options: Python or PySpark workloads, Docker containers, and Kubernetes deployments. The analyzer and anonymizer can run as REST APIs, and the structured component can process large tabular datasets. It is designed for both fully automated and semi-automated PII de-identification flows across multiple platforms.'
-featureImage: /images/articles/pii-detection-redaction-7b4e12.png
----
-
+featureImage: /images/articles/pii-detection-redaction-7b4e12.png---
 ## Why PII Detection Matters More Than Ever
 
 Every organization that processes user data faces the same growing challenge: **knowing where sensitive information lives and protecting it**. Credit card numbers in customer support chats. Social security numbers in HR documents. Patient names in medical images. Email addresses in marketing databases.
@@ -56,9 +48,7 @@ Presidio provides **fast identification and anonymization modules** for private 
 
 ## Presidio Architecture
 
-Presidio is organized into four main components, each addressing a different data type and processing stage:
-
-```
+Presidio is organized into four main components, each addressing a different data type and processing stage: ```
 presidio/
 ├── presidio-analyzer/     # PII detection in text (NER + regex + rules)
 ├── presidio-anonymizer/   # PII redaction/transformation in text
@@ -69,10 +59,14 @@ presidio/
 
 ### Presidio Analyzer — The Detection Engine
 
-The Analyzer is the heart of Presidio. It detects PII in text using multiple recognition strategies:
-
-| Strategy | Description | Example |
-|----------|-------------|---------|
+The Analyzer is the heart of Presidio. It detects PII in text using multiple recognition strategies: | Strategy | Description | Example |
+|
+---
+|
+---
+|
+---
+|
 | **Named Entity Recognition (NER)** | ML models that identify entities like persons, organizations, locations | "John Smith went to New York" → PERSON: John Smith, GPE: New York |
 | **Regular Expressions** | Pattern matching for structured data formats | Credit card numbers, email addresses, phone numbers |
 | **Rule-Based Logic** | Custom business rules and contextual analysis | Detecting "SSN:" followed by a 9-digit number |
@@ -83,10 +77,14 @@ The Analyzer supports multiple languages and can be extended with custom recogni
 
 ### Presidio Anonymizer — The Transformation Engine
 
-Once PII is detected, the Anonymizer applies transformations:
-
-| Transformation | What It Does | Use Case |
-|---------------|-------------|----------|
+Once PII is detected, the Anonymizer applies transformations: | Transformation | What It Does | Use Case |
+|
+---
+|
+---
+|
+---
+|
 | **Redact** | Replace with placeholder (e.g., `[PHONE_NUMBER]`) | General-purpose masking |
 | **Mask** | Hide part of the value (e.g., `***-**-1234`) | Partial obfuscation |
 | **Hash** | Replace with cryptographic hash | Analytics-friendly anonymization |
@@ -97,9 +95,7 @@ Each detected entity can be transformed independently, and transformations can b
 
 ### Presidio Image Redactor — Visual PII Removal
 
-The Image Redactor extends PII protection beyond text:
-
-- **Standard images** (PNG, JPEG, WebP) — detects and redacts text visible in images
+The Image Redactor extends PII protection beyond text: - **Standard images** (PNG, JPEG, WebP) — detects and redacts text visible in images
 - **DICOM medical images** — specifically designed for healthcare data anonymization
 - **Multiple redaction methods** — black boxes, blur, pixelation, or complete text removal
 
@@ -111,9 +107,7 @@ The Structured component detects PII in tabular data formats (CSV, Excel, Parque
 
 ## Installation and Setup
 
-Presidio can be installed via pip, Docker, or from source:
-
-### Using pip
+Presidio can be installed via pip, Docker, or from source: ### Using pip
 
 ```bash
 pip install presidio-analyzer presidio-anonymizer
@@ -150,14 +144,12 @@ analyzer = AnalyzerEngine()
 text = "John Smith's SSN is 123-45-6789 and his email is john@example.com"
 results = analyzer.analyze(text=text, language=en)
 
-for result in results:
-    print(f"Entity: {result.entity_type}, "
+for result in results: print(f"Entity: {result.entity_type}, "
           f"Score: {result.score:.2f}, "
           f"Position: {result.start}-{result.end}")
 ```
 
-Output:
-```
+Output: ```
 Entity: PERSON, Score: 0.85, Position: 0-10
 Entity: PHONE_NUMBER, Score: 0.95, Position: 26-38
 Entity: EMAIL_ADDRESS, Score: 0.99, Position: 57-73
@@ -217,23 +209,18 @@ results = analyzer.analyze(df=df, columns=["name", "email", "phone"])
 
 ## Custom Recognizers
 
-One of Presidio\'s strongest features is the ability to define custom PII recognizers for domain-specific data:
-
-```python
+One of Presidio\'s strongest features is the ability to define custom PII recognizers for domain-specific data: ```python
 from presidio_analyzer import AnalyzerEngine
 from presidio_analyzer.recognizer_registry import RecognizerRegistry
 from presidio_analyzer.nlp_engine import NlpEngineProvider
 
 # Define a custom recognizer for employee IDs
-class EmployeeIdRecognizer(TextRegexRecognizer):
-    NAME = "employee_id"
+class EmployeeIdRecognizer(TextRegexRecognizer): NAME = "employee_id"
     DEFAULT_SCORE = 0.85
 
-    def build_regex(self):
-        return r"EMP-\d{4}-\d{4}"
+    def build_regex(self): return r"EMP-\d{4}-\d{4}"
 
-    def validate_result(self, list_output):
-        # Additional validation logic
+    def validate_result(self, list_output): # Additional validation logic
         pass
 
 # Register the custom recognizer
@@ -244,17 +231,14 @@ analyzer = AnalyzerEngine(registry=registry)
 results = analyzer.analyze("Employee ID: EMP-1234-5678", language=en)
 ```
 
-Custom recognizers can leverage:
-- **Regex patterns** for structured data formats
+Custom recognizers can leverage: - **Regex patterns** for structured data formats
 - **Contextual keywords** (e.g., "SSN:" prefix)
 - **Checksum validation** (Luhn for credit cards, Modulo-11 for ISBN)
 - **Cross-field validation** (multiple fields that together indicate PII)
 
 ## Deployment Options
 
-Presidio supports multiple deployment patterns:
-
-### REST API (Docker)
+Presidio supports multiple deployment patterns: ### REST API (Docker)
 
 ```bash
 docker run -d -p 5002:5002 mcr.microsoft.com/presidio-analyzer:latest
@@ -265,35 +249,21 @@ The Analyzer exposes `POST /analyze` and the Anonymizer exposes `POST /anonymize
 
 ### Docker Compose Deployment
 
-For multi-component deployments, use Docker Compose to run all Presidio services together:
-
-```yaml
+For multi-component deployments, use Docker Compose to run all Presidio services together: ```yaml
 version: '3.8'
-services:
-  analyzer:
-    image: mcr.microsoft.com/presidio-analyzer:latest
-    ports:
-      - "5002:5002"
-    environment:
-      - PORT=5002
+services: analyzer: image: mcr.microsoft.com/presidio-analyzer:latest
+    ports: - "5002:5002"
+    environment: - PORT=5002
 
-  anonymizer:
-    image: mcr.microsoft.com/presidio-anonymizer:latest
-    ports:
-      - "5001:5001"
-    environment:
-      - PORT=5001
-    depends_on:
-      - analyzer
+  anonymizer: image: mcr.microsoft.com/presidio-anonymizer:latest
+    ports: - "5001:5001"
+    environment: - PORT=5001
+    depends_on: - analyzer
 
-  image-redactor:
-    image: mcr.microsoft.com/presidio-image-redactor:latest
-    ports:
-      - "5003:5003"
-    environment:
-      - PORT=5003
-    depends_on:
-      - analyzer
+  image-redactor: image: mcr.microsoft.com/presidio-image-redactor:latest
+    ports: - "5003:5003"
+    environment: - PORT=5003
+    depends_on: - analyzer
 ```
 
 Deploy with `docker compose up -d` and access all components at their respective ports.
@@ -308,10 +278,12 @@ For big data workloads, Presidio\'s structured component integrates with PySpark
 
 ## Supported PII Entity Types
 
-Presidio includes built-in recognizers for dozens of PII types:
-
-| Category | Entity Types |
-|----------|-------------|
+Presidio includes built-in recognizers for dozens of PII types: | Category | Entity Types |
+|
+---
+|
+---
+|
 | **Financial** | CREDIT_CARD, IBAN, PET_CODE, CRYPTO, UK_NHS, US_BANK_NUMBER, US_ITIN, US_DRIVER_LICENSE, US_PASSPORT |
 | **Personal** | PERSON, AGE, NRP, RECOGNIZABLE_EVENT_DATE, DATE_TIME |
 | **Contact** | EMAIL_ADDRESS, PHONE_NUMBER, US_STATE, ZIP_CODE |
@@ -323,7 +295,17 @@ Presidio includes built-in recognizers for dozens of PII types:
 ## Comparing Presidio to Alternatives
 
 | Feature | Presidio | OpenNRE | Amazon Comprehend | Google DLP |
-|---------|----------|---------|-------------------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **License** | MIT (free) | Apache 2.0 | N/A (paid API) | N/A (paid API) |
 | **Self-hosted** | Yes | Yes | No | No |
 | **Image redaction** | Yes (incl. DICOM) | No | No | No |
@@ -360,9 +342,7 @@ Presidio provides the technical foundation for data subject access requests, rig
 
 ## Custom NER Model Integration
 
-Presidio supports swapping the default NER models for domain-specific alternatives:
-
-```python
+Presidio supports swapping the default NER models for domain-specific alternatives: ```python
 from presidio_analyzer.nlp_engine import SpacyNlpEngine
 
 # Load a custom spaCy model
@@ -385,10 +365,16 @@ Domain-specific models significantly improve detection accuracy for specialized 
 
 ## Performance and Scalability
 
-Presidio\'s performance characteristics:
-
-| Component | Throughput | Latency | Notes |
-|-----------|-----------|---------|-------|
+Presidio\'s performance characteristics: | Component | Throughput | Latency | Notes |
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Analyzer (CPU)** | ~100-500 docs/sec | 10-50ms/doc | Depends on NER model size |
 | **Analyzer (GPU)** | ~1000-5000 docs/sec | 1-10ms/doc | With transformer acceleration |
 | **Anonymizer** | ~1000+ docs/sec | <5ms/doc | Lightweight text transformation |
@@ -399,9 +385,7 @@ For production deployments, horizontal scaling of the Docker containers handles 
 
 ## Limitations and Honest Assessment
 
-Presidio is excellent but not a silver bullet:
-
-1. **NER model accuracy.** The default spaCy and transformer-based NER models are strong but not perfect. False positives and false negatives occur, especially with domain-specific entities. Custom recognizers help but require maintenance.
+Presidio is excellent but not a silver bullet: 1. **NER model accuracy.** The default spaCy and transformer-based NER models are strong but not perfect. False positives and false negatives occur, especially with domain-specific entities. Custom recognizers help but require maintenance.
 
 2. **Image redaction quality.** The image redactor depends on OCR accuracy. Handwritten text, stylized fonts, and low-resolution images may not be detected reliably. The DICOM support is more mature than general image redaction.
 
@@ -415,9 +399,7 @@ Presidio is excellent but not a silver bullet:
 
 ## Getting Started
 
-The quickest path to using Presidio:
-
-```bash
+The quickest path to using Presidio: ```bash
 # Install all components
 pip install presidio-analyzer presidio-anonymizer presidio-image-redactor presidio-structured
 
@@ -429,14 +411,11 @@ results = analyzer.analyze(
     text='Call John at 555-123-4567 or email john@example.com',
     language=en
 )
-for r in results:
-    print(f'{r.entity_type}: {r.start}-{r.end} (score: {r.score:.2f})')
+for r in results: print(f'{r.entity_type}: {r.start}-{r.end} (score: {r.score:.2f})')
 "
 ```
 
-Or deploy via Docker for a production-ready API:
-
-```bash
+Or deploy via Docker for a production-ready API: ```bash
 docker run -d -p 5002:5002 --name presidio-analyzer mcr.microsoft.com/presidio-analyzer:latest
 curl -X POST http://localhost:5002/analyze   -H "Content-Type: application/json"   -d '{"text":"John Smith lives in New York", "language":"en"}'
 ```
@@ -449,8 +428,8 @@ Whether you are building GDPR compliance pipelines, anonymizing healthcare data,
 
 For infrastructure, consider [DigitalOcean](https://m.do.co/c/eca87ac14ee0) for simple self-hosted deployments or [HTStack](https://my.htstack.com/aff.php?aff=27187) for GPU-accelerated NER inference. Need reliable proxies for web scraping and data collection? [WebShare.io](https://www.webshare.io/?referral_code=oa14d5f0wx4f) provides the networking layer. Looking for data processing deals? Check [Bitget Web3](https://web3.bitget.com/share/3Wla0s?inviteCode=irBqLe) and [Crypto.com](https://www.bsmkweb.cc/register?aff=dibi8) for exclusive offers. For marketing automation, [PromoOhLy](https://www.promoohubly.com/join/12190433) provides powerful funnel tools.
 
----
 
+---
 **Sources:** [Presidio GitHub](https://github.com/microsoft/presidio) · [Documentation](https://microsoft.github.io/presidio) · [Demo](https://aka.ms/presidio-demo) · [OpenSSF Badge](https://www.bestpractices.dev/projects/6076)
 
 **Join the community:** [GitHub Discussions](https://github.com/microsoft/presidio/discussions) · [GitHub Issues](https://github.com/microsoft/presidio/issues)
@@ -458,7 +437,6 @@ For infrastructure, consider [DigitalOcean](https://m.do.co/c/eca87ac14ee0) for 
 📢 **Stay updated:** Join our [Telegram group](https://t.me/DIBI8_Group/2) for daily AI tool reviews and early access to new content.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -484,8 +462,8 @@ For infrastructure, consider [DigitalOcean](https://m.do.co/c/eca87ac14ee0) for 
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [2026-06-15-trending-ai-agents](microsoft-presidio-pii-detection-redaction-sdk)

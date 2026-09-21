@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/tradingagents-llm-multi-agent-trading-framework-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/tradingagents-llm-multi-agent-trading-framework-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/tradingagents-llm-multi-agent-trading-framework-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/tradingagents-llm-multi-agent-trading-framework-2026" />
 title: 'TradingAgents: Framework Giao Dịch Đa Tác Tử LLM 82.000 ...
 description: 'TradingAgents là framework đa tác tử LLM mã nguồn mở (82,254 GitHub stars, Apache-2.0) mô phỏng một công ty giao dịch: các tác tử phân tích, nghiên cứu, trader và quản trị rủi ro tranh luận ra quyết định BUY/SELL/HOLD. Dựa trên LangGraph. Bao gồm cài đặt, pipeline tác tử, CLI + Python API, và so sánh thẳng thắn với Qlib và bot đơn tác tử.'
 date: 2026-06-02
-lastmod:  2026-06-02slug: 'tradingagents-llm-multi-agent-trading-framework-2026'
+lastmod: 2026-06-02
+slug: 'tradingagents-llm-multi-agent-trading-framework-2026'
 category: 'ai-trading'
 tags: ['TradingAgents', 'tác tử LLM', 'giao dịch thuật toán', 'LangGraph', 'đa tác tử', 'AI trading', 'quant', 'AI tài chính']
 github_repo: 'https://github.com/TauricResearch/TradingAgents'
@@ -17,8 +13,6 @@ license: Apache-2.0
 featureImage: 'https://raw.githubusercontent.com/TauricResearch/TradingAgents/main/assets/schema.png'
 lang: vi
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/tradingagents-llm-multi-agent-trading-framework-2026/ -->
 
 # TradingAgents: Framework Giao Dịch Đa Tác Tử LLM 82.000 Sao — Hướng Dẫn Thực Chiến 2026
 
@@ -72,23 +66,17 @@ conda create -n tradingagents python=3.10 -y && conda activate tradingagents
 pip install -r requirements.txt
 ```
 
-Thích virtualenv thuần thay vì conda? Cả hai đều được:
-
-```bash
+Thích virtualenv thuần thay vì conda? Cả hai đều được: ```bash
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Đặt hai API key bắt buộc làm biến môi trường:
-
-```bash
+Đặt hai API key bắt buộc làm biến môi trường: ```bash
 export OPENAI_API_KEY=sk-your-key-here
 export FINNHUB_API_KEY=your-finnhub-key   # bậc miễn phí đủ để test
 ```
 
-Hoặc giữ trong `.env` cục bộ để khỏi export lại mỗi shell:
-
-```bash
+Hoặc giữ trong `.env` cục bộ để khỏi export lại mỗi shell: ```bash
 # .env  (đừng bao giờ commit file này)
 OPENAI_API_KEY=sk-your-key-here
 FINNHUB_API_KEY=your-finnhub-key
@@ -98,15 +86,11 @@ Nếu thấy `KeyError: 'FINNHUB_API_KEY'`, biến chưa được export trong s
 
 ## Cách dùng cốt lõi
 
-Đường nhanh nhất là CLI tương tác, nó hỏi bạn mã cổ phiếu và ngày rồi stream suy luận của từng tác tử:
-
-```bash
+Đường nhanh nhất là CLI tương tác, nó hỏi bạn mã cổ phiếu và ngày rồi stream suy luận của từng tác tử: ```bash
 python -m cli.main
 ```
 
-Để tự động hóa, điều khiển từ Python bằng API `TradingAgentsGraph`. Bạn truyền mã và ngày, nhận lại trạng thái tác tử cùng quyết định cuối:
-
-```python
+Để tự động hóa, điều khiển từ Python bằng API `TradingAgentsGraph`. Bạn truyền mã và ngày, nhận lại trạng thái tác tử cùng quyết định cuối: ```python
 from tradingagents.graph.trading_graph import TradingAgentsGraph
 from tradingagents.default_config import DEFAULT_CONFIG
 
@@ -116,9 +100,7 @@ _, decision = ta.propagate("NVDA", "2024-05-10")
 print(decision)   # -> BUY / SELL / HOLD + lý do
 ```
 
-Bạn kiểm soát chi phí và độ sâu qua config. TradingAgents chia việc giữa một mô hình "deep-thinking" (suy luận nặng) và một mô hình "quick-thinking" (rẻ, gọi nhiều):
-
-```python
+Bạn kiểm soát chi phí và độ sâu qua config. TradingAgents chia việc giữa một mô hình "deep-thinking" (suy luận nặng) và một mô hình "quick-thinking" (rẻ, gọi nhiều): ```python
 config = DEFAULT_CONFIG.copy()
 config["llm_provider"] = "openai"
 config["deep_think_llm"] = "gpt-4o"        # dùng cho tranh luận / suy luận khó
@@ -130,25 +112,18 @@ ta = TradingAgentsGraph(debug=True, config=config)
 
 Đặt `max_debate_rounds` thấp khi đang học — mỗi vòng thêm nhân lên số lệnh gọi LLM trên toàn đội tác tử.
 
-Bạn cũng có thể chọn chạy nhà phân tích nào, để cắt chi phí khi chỉ quan tâm, ví dụ, cơ bản và tin tức:
-
-```python
+Bạn cũng có thể chọn chạy nhà phân tích nào, để cắt chi phí khi chỉ quan tâm, ví dụ, cơ bản và tin tức: ```python
 config["selected_analysts"] = ["fundamentals", "news"]  # bỏ qua tâm lý + kỹ thuật
 ta = TradingAgentsGraph(debug=True, config=config)
 ```
 
-Để quét một danh sách theo dõi, lặp lệnh gọi qua nhiều mã cho cùng một ngày:
-
-```python
+Để quét một danh sách theo dõi, lặp lệnh gọi qua nhiều mã cho cùng một ngày: ```python
 watchlist = ["NVDA", "AAPL", "TSLA"]
-for ticker in watchlist:
-    _, decision = ta.propagate(ticker, "2024-05-10")
+for ticker in watchlist: _, decision = ta.propagate(ticker, "2024-05-10")
     print(f"{ticker}: {decision.splitlines()[0]}")   # dòng đầu = quyết định
 ```
 
-Trạng thái trả về chứa toàn bộ cuộc tranh luận để bạn xem *tại sao*, không chỉ *cái gì*:
-
-```python
+Trạng thái trả về chứa toàn bộ cuộc tranh luận để bạn xem *tại sao*, không chỉ *cái gì*: ```python
 final_state, decision = ta.propagate("NVDA", "2024-05-10")
 print(final_state["investment_debate_state"]["bull_history"])   # lập luận phe tăng
 print(final_state["investment_debate_state"]["bear_history"])   # lập luận phe giảm
@@ -157,27 +132,20 @@ print(final_state["final_trade_decision"])                       # lý do cuối
 
 ## Tích hợp
 
-Vì bước quyết định chỉ là một lệnh gọi Python trả về BUY/SELL/HOLD kèm lý do, TradingAgents lắp vào nửa nghiên cứu của pipeline. Nó **không tự đặt lệnh** — bạn nối đầu ra của nó vào lớp thực thi hoặc ghi log của riêng mình:
-
-```python
+Vì bước quyết định chỉ là một lệnh gọi Python trả về BUY/SELL/HOLD kèm lý do, TradingAgents lắp vào nửa nghiên cứu của pipeline. Nó **không tự đặt lệnh** — bạn nối đầu ra của nó vào lớp thực thi hoặc ghi log của riêng mình: ```python
 _, decision = ta.propagate("AAPL", "2024-06-01")
-if "BUY" in decision:
-    log_signal("AAPL", "BUY", source="tradingagents")
+if "BUY" in decision: log_signal("AAPL", "BUY", source="tradingagents")
     # chuyển tiếp tới lớp broker / paper-trading của bạn ở đây
 ```
 
 Lớp dữ liệu cũng có thể thay thế: FinnHub cho cơ bản và tin tức, công cụ giá/chỉ báo cho kỹ thuật, và nguồn mạng xã hội cho tâm lý.
 
-Để tái tạo quyết định mỗi sáng phiên, gói một script trong cron:
-
-```bash
+Để tái tạo quyết định mỗi sáng phiên, gói một script trong cron: ```bash
 # Chạy quét danh sách theo dõi lúc 08:00 các ngày trong tuần
 0 8 * * 1-5 cd /opt/TradingAgents && /opt/.venv/bin/python screen_watchlist.py >> /var/log/ta.log 2>&1
 ```
 
-Bạn không bị khóa vào OpenAI — trỏ mô hình deep/quick sang nhà cung cấp khác qua cùng config:
-
-```python
+Bạn không bị khóa vào OpenAI — trỏ mô hình deep/quick sang nhà cung cấp khác qua cùng config: ```python
 config["llm_provider"] = "anthropic"
 config["deep_think_llm"] = "claude-sonnet-4-6"
 config["quick_think_llm"] = "claude-haiku-4-5"
@@ -191,20 +159,15 @@ TradingAgents được dùng làm bàn thử nghiệm nghiên cứu: bạn phát
 
 *Đội rủi ro kiểm tra áp lực mọi kế hoạch giao dịch trước khi quản lý danh mục ký duyệt (nguồn: TauricResearch/TradingAgents, via phân tích dibi8)*
 
-Một lần chạy hoàn tất trả về một quyết định kèm chuỗi suy luận — đại khái:
-
-```text
+Một lần chạy hoàn tất trả về một quyết định kèm chuỗi suy luận — đại khái: ```text
 FINAL TRANSACTION PROPOSAL: BUY
 Rationale: Nhà phân tích cơ bản nêu doanh thu data-center tăng tốc;
 luận điểm phe tăng (mở rộng biên lợi nhuận) thắng phe giảm (định giá) qua 2 vòng;
 đội rủi ro: lập trường trung lập, kích thước vị thế thận trọng. Quản lý danh mục: duyệt.
 ```
 
-Vì bản ghi tranh luận được lưu, bạn có thể so sánh quyết định thay đổi ra sao khi đổi mô hình hoặc thêm vòng tranh luận:
-
-```python
-for rounds in (1, 3):
-    config["max_debate_rounds"] = rounds
+Vì bản ghi tranh luận được lưu, bạn có thể so sánh quyết định thay đổi ra sao khi đổi mô hình hoặc thêm vòng tranh luận: ```python
+for rounds in (1, 3): config["max_debate_rounds"] = rounds
     ta = TradingAgentsGraph(config=config)
     _, d = ta.propagate("NVDA", "2024-05-10")
     print(rounds, "rounds ->", d.splitlines()[0])
@@ -267,20 +230,12 @@ TradingAgents là dự án mã nguồn mở thú vị nhất 2026 để nghiên 
 
 ---
 
-**Nguồn & Đọc thêm**:
-- Kho GitHub: https://github.com/TauricResearch/TradingAgents
+**Nguồn & Đọc thêm**: - Kho GitHub: https://github.com/TauricResearch/TradingAgents
 - Tài liệu chính thức / README: https://github.com/TauricResearch/TradingAgents#readme
 - LangGraph (điều phối): https://github.com/langchain-ai/langgraph
 
 *Một số liên kết bên trên là liên kết tiếp thị. Nếu bạn đăng ký qua các liên kết này, dibi8.com có thể nhận hoa hồng mà bạn không tốn thêm chi phí.*
 
-<!-- internal-link-candidates:
-  công cụ mã nguồn mở liên quan -> ai-tools-directory
-  các hướng dẫn liên quan trên dibi8 -> ai-coding-agent-landscape-2026-skills-mcp-opensource
--->
-
-
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/multi-modal-content-pipeline" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/multi-modal-content-pipeline" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/multi-modal-content-pipeline" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/multi-modal-content-pipeline" />
 title: '多模态内容 Pipeline 2026：AI 播客/视频/视觉内容的 5 组件 stack（$30-80/月）'
 description: '自托管多模态内容 stack：faster-whisper（STT）+ ChatTTS（对话式 TTS）+ Stable Diffusion WebUI（图像）+ ComfyUI（工作流引擎 + 视频）+ FFmpeg（合成）。$30-80/月做播客 / 短视频 / AI 插画文章，vs SaaS $200-500/月。'
 date: 2026-05-21 00:00:00+08:00
@@ -25,18 +20,25 @@ featureImage: ''
 draft: false
 categories: [collections]
 tags: [多模态, '内容 pipeline', 播客, 视频, tts, stack, 合集]
-aliases:
-  - /posts/multi-modal-content-pipeline/
+aliases: - /posts/multi-modal-content-pipeline/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/multi-modal-content-pipeline/ -->
 
 2026 创作者经济跑在多模态内容上 —— AI 共主持的播客、AI 旁白配生成视觉的短视频、AI 插画 header 的博客、稳定 AI 声音读的有声书。SaaS-stack 走法每月 $200-500（ElevenLabs + Midjourney + Descript + Pictory + 十几个其他）。这个合集组装的是**$30-80/月的自托管 5 组件替代方案** —— 用 SaaS 服务商一样的模型，跑在你按小时租的 GPU 上。
 
 ## TL;DR —— Stack 全貌
 
 | # | 组件 | 模态 | 角色 | 深度指南 |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 1 | **faster-whisper** | 音频 → 文本 | 转录 / 字幕 / 字幕生成 | [faster-whisper 指南](/zh/resources/ai-tools/faster-whisper/) |
 | 2 | **ChatTTS** | 文本 → 音频 | 对话级 TTS 含 prosody 控制 | [ChatTTS 2026](/zh/resources/ai-tools/chattts-dialogue-tts-2026/) |
 | 3 | **Stable Diffusion WebUI** | 文本 → 图像 | 轻度单图生成（SDXL 焦点）| [SD WebUI 2026](/zh/resources/ai-tools/stable-diffusion-webui-2026/) |
@@ -107,8 +109,7 @@ from faster_whisper import WhisperModel
 model = WhisperModel("large-v3", device="cuda", compute_type="float16")
 segments, info = model.transcribe("input.mp3", beam_size=5)
 
-for segment in segments:
-    print(f"[{segment.start:.2f} → {segment.end:.2f}] {segment.text}")
+for segment in segments: print(f"[{segment.start:.2f} → {segment.end:.2f}] {segment.text}")
 ```
 
 **成本**：自托管 $0。RTX 3060 上 ~5× 实时，RTX 4090 上 ~30× 实时。
@@ -183,7 +184,15 @@ ffmpeg -i source.mp4 -c:v libx264 -crf 23 -preset slow -c:a aac -b:a 192k upload
 ## 9. 成本拆解
 
 | 项 | 玩票（4 小时/天）| 制作者（8 小时/天）| 工作室（常驻）|
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | GPU（24 GB，Vast.ai/RunPod）| $25-35/月 | $50-80/月 | — |
 | 独立 GPU（DO / HTStack）| — | — | $120-200/月 |
 | 存储（模型文件 + 输出）| $5 | $10 | $30 |
@@ -214,12 +223,11 @@ ffmpeg -i source.mp4 -c:v libx264 -crf 23 -preset slow -c:a aac -b:a 192k upload
 
 要生产时租 {{< aff "digitalocean" "footer-cta" "GPU droplet" >}}，不生产关。每天 ~2 小时积极内容生产就开始打赢 SaaS。
 
----
 
+---
 *配套合集：[自托管 AI 编程工作流](/zh/collections/self-hosted-ai-coding-workflow/) 和 [知识库 Stack](/zh/collections/knowledge-base-stack/) 给 dev 侧。[便宜 LLM Stack](/zh/collections/cheap-llm-stack/) 覆盖脚本生成成本侧。[AI Agent 工具链](/zh/collections/ai-agent-tool-chain/) 让 agent 自主驱动这个管线。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -247,25 +255,20 @@ ffmpeg -i source.mp4 -c:v libx264 -crf 23 -preset slow -c:a aac -b:a 192k upload
 
 ## Why This Matters
 
-Understanding 多模态内容 pipeline 2026：ai 播客/视频/视觉内容的 5 组件 stack（$30-80/月） is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding 多模态内容 pipeline 2026：ai 播客/视频/视觉内容的 5 组件 stack（$30-80/月） is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -286,8 +289,8 @@ To implement this in your workflow:
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 

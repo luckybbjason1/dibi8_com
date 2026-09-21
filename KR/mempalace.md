@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mempalace" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mempalace" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mempalace" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mempalace" />
 title: "MemPalace vs Mem0: 96.6% 리콜 벤치마크 및 2026년 최강 AI 메모리 프레임워크"
 description: "GitHub 51,745 Star를 받은 MemPalace는 무료 오픈소스 AI 메모리 시스템입니다. AI 어시스턴트가 장기 대화 기록, 사용자 취향, 문맥을 기억하도록 구현하는 방법을 코드와 함께 상세히 설명합니다."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Go
+tech_stack: - Go
   - JavaScript
   - Python
 application_domain: "Ai Tools"
@@ -26,10 +20,8 @@ maintainer: ""
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases:
-- /kr/posts/mempalace/
-faqs:
-  - q: 'MemPalace란 무엇이며, AI에게 어떻게 기억 기능을 부여하나요?'
+aliases: - /kr/posts/mempalace/
+faqs: - q: 'MemPalace란 무엇이며, AI에게 어떻게 기억 기능을 부여하나요?'
     a: 'MemPalace는 무료 오픈소스 로컬 우선 AI 메모리 시스템으로, 대화와 프로젝트 이력을 원문 그대로 저장하고 시맨틱 검색으로 불러옵니다. 모델 외부에 구조화된 메모리 레이어를 만들어, AI 어시스턴트가 매번 새 대화를 처음부터 시작하는 대신 과거의 정확한 맥락을 기억할 수 있게 합니다.'
   - q: 'MemPalace는 어떻게 설치하나요?'
     a: 'MemPalace는 Python 도구로, uv（uv tool install mempalace）또는 pip（pip install mempalace）를 통해 설치할 수 있습니다. 설치 후 mempalace init ~/projects/myapp 명령을 실행하면 프로젝트에 대한 초기화가 완료됩니다.'
@@ -41,14 +33,10 @@ faqs:
     a: '네. MemPalace는 Claude Code를 위한 .claude-plugin 디렉터리, OpenAI Codex를 위한 .codex-plugin 디렉터리, MCP 호환 도구를 위한 .agents/plugins 디렉터리, 그리고 Gemini CLI 및 로컬 모델 지원을 포함한 네이티브 플러그인을 기본 제공합니다. 기본적으로 MCP 호환 엔드포인트를 노출해 지속적인 코딩 에이전트 메모리를 지원합니다.'
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/mempalace/ -->
-
 {</* resource-info */>}
 
 ## 벤치마크 비교: MemPalace vs Mem0 vs Mastra
-AI 메모리 시스템을 평가할 때 성능과 리소스 소비는 핵심입니다. **LongMemEval** 벤치마크에서 MemPalace가 경쟁자들을 어떻게 압살하는지 확인하십시오:
-
-| 주요 기능/지표 | MemPalace | Mem0 | Mastra | Hindsight |
+AI 메모리 시스템을 평가할 때 성능과 리소스 소비는 핵심입니다. **LongMemEval** 벤치마크에서 MemPalace가 경쟁자들을 어떻게 압살하는지 확인하십시오: | 주요 기능/지표 | MemPalace | Mem0 | Mastra | Hindsight |
 | :--- | :--- | :--- | :--- | :--- |
 | **컨텍스트 리콜(Recall)** | **96.6%** | 89.2% | 85.5% | 91.0% |
 | **API 호출 요구사항**| **없음 (완전 로컬)** | OpenAI API (유료) | Anthropic API | 없음 |
@@ -71,9 +59,7 @@ AI 어시스턴트와 대화할 때 매번 "내 이름이 뭐라고 했지?"라�
 
 현대 LLM(Large Language Model)의 가장 큰 한계는 **상태 비저장(stateless)** 설계입니다. 각 API 호출은 독립적이며, 이전 대화 맥락을 전달하지 않으면 AI는 전혀 다른 사람처럼 행동합니다.
 
-이로 인해 발생하는 문제들:
-
-- **사용자 취향 반복 설명**: "나는 간결한 답변을 선호해"를 매번 입력
+이로 인해 발생하는 문제들: - **사용자 취향 반복 설명**: "나는 간결한 답변을 선호해"를 매번 입력
 - **장기 프로젝트 맥락 상실**: 3일 전에 기획한 내용을 AI가 기억 못 함
 - **개인화 실패**: 사용자별 맞춤 응답 불가능
 
@@ -83,9 +69,7 @@ MemPalace는 이 문제를 **벡터 기반 의미 검색 + 계층적 메모리 �
 
 ## MemPalace의 핵심 아키텍처
 
-MemPalace는 세 가지 메모리 계층으로 구성됩니다:
-
-| 계층 | 역할 | 저장 위치 |
+MemPalace는 세 가지 메모리 계층으로 구성됩니다: | 계층 | 역할 | 저장 위치 |
 |------|------|----------|
 | **Working Memory** | 현재 세션의 단기 대화 맥락 | 인메모리 / Redis |
 | **Short-term Memory** | 최근 N턴의 대요약 | SQLite / PostgreSQL |
@@ -169,8 +153,7 @@ context = memory.build_context(
 )
 
 print(context)
-# 출력 예시:
-# [과거 기억]
+# 출력 예시: # [과거 기억]
 # - 사용자는 Python과 React를 주로 사용함
 # - 사용자의 회사는 '디비에이트'이며 SaaS 분야에 종사함
 # [현재 대화]
@@ -184,14 +167,12 @@ from openai import OpenAI
 
 client = OpenAI()
 
-def chat_with_memory(user_message: str) -> str:
-    # 1. 관련 메모리 검색
+def chat_with_memory(user_message: str) -> str: # 1. 관련 메모리 검색
     memories = memory.recall(user_message, top_k=5)
     
     # 2. 컨텍스트 구성
     system_prompt = f"""당신은 사용자의 개인 AI 어시스턴트입니다.
-다음은 사용자에 대해 알고 있는 정보입니다:
-{memory.format_memories(memories)}
+다음은 사용자에 대해 알고 있는 정보입니다: {memory.format_memories(memories)}
 
 이 정보를 참고하여 개인화된 답변을 제공하세요."""
     
@@ -327,16 +308,13 @@ A: MemPalace는 로컬 ChromaDB를 사용하여 지연 시간(Latency) 0, API �
 
 ## 추천 도구
 
-오픈소스 AI 도구 개발/배포 시 권장:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
+오픈소스 AI 도구 개발/배포 시 권장: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
 - **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Anthropic Claude / OpenAI / DeepSeek API 프록시. 위의 AI 도구 대부분 (챗봇, 코드 생성, 번역, 검색 등) LLM API 키 필요 — 이 프록시로 안정적인 톱 모델 액세스, 공식 가격의 ~30%.
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -364,25 +342,20 @@ A: MemPalace는 로컬 ChromaDB를 사용하여 지연 시간(Latency) 0, API �
 
 ## Why This Matters
 
-Understanding mempalace vs mem0: 96.6% 리콜 벤치마크 및 2026년 최강 ai 메모리 프레임워크 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding mempalace vs mem0: 96.6% 리콜 벤치마크 및 2026년 최강 ai 메모리 프레임워크 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

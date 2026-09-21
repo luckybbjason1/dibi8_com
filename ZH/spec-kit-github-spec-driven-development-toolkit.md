@@ -1,20 +1,11 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/spec-kit-github-spec-driven-development-toolkit" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/spec-kit-github-spec-driven-development-toolkit" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/spec-kit-github-spec-driven-development-toolkit" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/spec-kit-github-spec-driven-development-toolkit" />
 title: "规格套件：GitHub"
-description: "GitHub 的 Spec Kit 完整指南——通过规范驱动开发改变开发者构建软件方式的开源工具包。安装、工作流程和实际案例。". Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "GitHub 的 Spec Kit 完整指南——通过规范驱动开发改变开发者构建软件方式的开源工具包。安装、工作流程和实际案例。"
 date: 2026-06-20
-lastmod:  2026-06-20tags: [ai-tools, coding-agents, desktop-app, tauri, rust]
+lastmod: 2026-06-20tags: [ai-tools, coding-agents, desktop-app, tauri, rust]
 category: "dev-utils"
-lang: zh
 slug: spec-kit-github-spec-driven-development-toolkit
-featureImage: /images/articles/spec-kit-github-spec-driven-development-toolkit-80967985.png
----
-
-<!-- canonical: https://dibi8.com/zh/tools/spec-kit-github-spec-driven-development-toolkit/ -->
+featureImage: /images/articles/spec-kit-github-spec-driven-development-toolkit-80967985.png---
 
 # 规格套件：GitHub 革命性的规格驱动开发工具包
 
@@ -205,7 +196,11 @@ Spec Kit 是由 GitHub 开发的一个**开源工具包**，它支持**规范驱
  Spec Kit 可与多种 AI 编码代理配合使用：
 
  | 代理| 积分方法|
- |--------|--------------------|
+ |
+---
+|
+---
+|
  | GitHub 副驾驶 | `/speckit.*` 斜线命令 |
  | 法典 CLI | `$speckit-*` 命令 |
  | 克劳德·代码 | 代理提示模板|
@@ -365,7 +360,13 @@ Spec Kit 是由 GitHub 开发的一个**开源工具包**，它支持**规范驱
  ### 规格套件与传统 PRD
 
  | 方面| 传统珠三角| 规格套件 |
- |--------------------|----------------|----------|
+ |
+---
+|
+---
+|
+---
+|
  | 格式| 自由格式文档 | 结构化规范|
  | 生活状况| 已经过时了| 始终保持同步 |
  | AI耗材| 没有 | 是的 |
@@ -376,7 +377,13 @@ Spec Kit 是由 GitHub 开发的一个**开源工具包**，它支持**规范驱
  ### 规格套件与敏捷用户故事
 
  | 方面| 用户故事 | 规格套件 |
- |--------|--------------|----------|
+ |
+---
+|
+---
+|
+---
+|
  | 粒度| 高水平| 详细 |
  | 技术规格| 分开| 包含 |
  | 测试标准| 隐式| 明确 |
@@ -489,7 +496,6 @@ Spec Kit 与敏捷工作流程集成：
 
  💬 加入我们的电报群讨论群组: [t.me/DIBI8_Group](https://t.me/DIBI8_Group)
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -517,25 +523,20 @@ Spec Kit 与敏捷工作流程集成：
 
 ## Why This Matters
 
-Understanding 规格套件：github is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding 规格套件：github is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -556,13 +557,13 @@ To implement this in your workflow:
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
 
+---
 ## Related Articles
 
 - [free-mcp-tools-top10-2026](spec-kit-github-spec-driven-development-toolkit)
@@ -578,7 +579,17 @@ For the latest updates and community discussions, join our Telegram channel: htt
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

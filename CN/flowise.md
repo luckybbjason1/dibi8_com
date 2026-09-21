@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/flowise" />
 title: 'Flowise: Build AI Agents Visually with 52K+ Stars — 5-Mi...
 description: 'Flowise is an open-source visual builder for LLM workflows and AI agents. Integrates with LangChain, Ollama, OpenAI, Qdrant, Weaviate, Chroma. Covers Docker install, production hardening, API deployment, and honest limitations.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,11 +20,9 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [flowise, langchain, 'ai agents', rag, docker, llm, 'open source', 'no-code']
-aliases:
-- /posts/flowise/
-- /resources/ai-tools/flowise-ai-workflow-builder-lowcode/
+aliases: - /posts/flowise/
+- /resources/ai-tools/flowise-ai-workflow-builder-lowcode/-
 ---
-
 {{</* resource-info */>}}
 
 ## Introduction
@@ -59,9 +55,7 @@ Flowise is built on a modular architecture that maps visual nodes directly to La
 
 ### Three Builder Modes
 
-Flowise offers three distinct visual builders:
-
-- **Assistant** — Beginner-friendly chatbot builder with RAG support. Upload documents, configure responses, and deploy.
+Flowise offers three distinct visual builders: - **Assistant** — Beginner-friendly chatbot builder with RAG support. Upload documents, configure responses, and deploy.
 - **Chatflow** — Full node-based canvas for building custom conversational AI with explicit control over every component.
 - **Agentflow** — Multi-step agent workflows with conditional logic, loops, tool calling, and human-in-the-loop approval.
 
@@ -110,13 +104,9 @@ For persistent deployments, use Docker Compose with PostgreSQL and volume mounts
 ```yaml
 # docker-compose.yml
 version: '3.8'
-services:
-  flowise:
-    image: flowiseai/flowise:latest
-    ports:
-      - "3000:3000"
-    environment:
-      - PORT=3000
+services: flowise: image: flowiseai/flowise:latest
+    ports: - "3000:3000"
+    environment: - PORT=3000
       - DATABASE_TYPE=postgres
       - DATABASE_HOST=postgres
       - DATABASE_PORT=5432
@@ -128,30 +118,20 @@ services:
       - SECRETKEY_PATH=/root/.flowise
       - JWT_AUTH_TOKEN_SECRET=${JWT_SECRET:-random-secret-change-in-prod}
       - JWT_REFRESH_TOKEN_SECRET=${JWT_REFRESH:-another-random-secret}
-    volumes:
-      - flowise_data:/root/.flowise
-    depends_on:
-      - postgres
+    volumes: - flowise_data:/root/.flowise
+    depends_on: - postgres
     restart: unless-stopped
 
-  postgres:
-    image: postgres:16-alpine
-    environment:
-      - POSTGRES_USER=flowise
+  postgres: image: postgres:16-alpine
+    environment: - POSTGRES_USER=flowise
       - POSTGRES_PASSWORD=${DB_PASSWORD:-changeme}
       - POSTGRES_DB=flowise
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+    volumes: - postgres_data:/var/lib/postgresql/data
     restart: unless-stopped
 
-volumes:
-  flowise_data:
-  postgres_data:
-```
+volumes: flowise_data: postgres_data: ```
 
-Start with:
-
-```bash
+Start with: ```bash
 docker compose up -d
 ```
 
@@ -174,9 +154,7 @@ cp .env.example .env
 nano .env
 ```
 
-Example `.env` for DigitalOcean deployment:
-
-```bash
+Example `.env` for DigitalOcean deployment: ```bash
 PORT=3000
 DATABASE_TYPE=sqlite
 DATABASE_PATH=/root/.flowise
@@ -189,9 +167,7 @@ JWT_AUTH_TOKEN_SECRET=$(openssl rand -hex 32)
 JWT_REFRESH_TOKEN_SECRET=$(openssl rand -hex 32)
 ```
 
-Start the service:
-
-```bash
+Start the service: ```bash
 docker compose up -d
 ```
 
@@ -200,7 +176,13 @@ docker compose up -d
 ### Environment Variables Reference
 
 | Variable | Description | Default |
-|----------|-------------|---------|
+|
+---
+|
+---
+|
+---
+|
 | `PORT` | HTTP server port | 3000 |
 | `DATABASE_TYPE` | Database engine (sqlite, postgres) | sqlite |
 | `DATABASE_PATH` | SQLite file path | ~/.flowise |
@@ -229,33 +211,21 @@ Running local models with Ollama eliminates API costs and keeps data on-premise.
 ```yaml
 # docker-compose-ollama.yml
 version: '3.8'
-services:
-  ollama:
-    image: ollama/ollama:latest
-    ports:
-      - "11434:11434"
-    volumes:
-      - ollama_data:/root/.ollama
+services: ollama: image: ollama/ollama:latest
+    ports: - "11434:11434"
+    volumes: - ollama_data:/root/.ollama
     restart: unless-stopped
 
-  flowise:
-    image: flowiseai/flowise:latest
-    ports:
-      - "3000:3000"
-    environment:
-      - PORT=3000
+  flowise: image: flowiseai/flowise:latest
+    ports: - "3000:3000"
+    environment: - PORT=3000
       - OLLAMA_BASE_URL=http://ollama:11434
-    depends_on:
-      - ollama
+    depends_on: - ollama
     restart: unless-stopped
 
-volumes:
-  ollama_data:
-```
+volumes: ollama_data: ```
 
-Pull a model and start using it:
-
-```bash
+Pull a model and start using it: ```bash
 # Pull a lightweight model for testing
 docker exec -it ollama ollama pull qwen2:7b
 
@@ -271,18 +241,13 @@ For production RAG pipelines, Chroma provides a lightweight vector database that
 
 ```yaml
 # Add to docker-compose.yml
-  chroma:
-    image: chromadb/chroma:latest
-    ports:
-      - "8000:8000"
-    volumes:
-      - chroma_data:/chroma/chroma
+  chroma: image: chromadb/chroma:latest
+    ports: - "8000:8000"
+    volumes: - chroma_data:/chroma/chroma
     restart: unless-stopped
 ```
 
-Build a RAG pipeline in Flowise:
-
-1. Drag a **PDF Loader** or **Text File** node
+Build a RAG pipeline in Flowise: 1. Drag a **PDF Loader** or **Text File** node
 2. Connect to a **Text Splitter** node (set chunk size to 1000, overlap to 200)
 3. Connect to an **OpenAI Embeddings** (or **Ollama Embeddings**) node
 4. Connect to a **Chroma** vector store node
@@ -296,13 +261,10 @@ For high-throughput RAG with hybrid search, Qdrant outperforms in-memory stores.
 
 ```yaml
 # Add Qdrant to your compose file
-  qdrant:
-    image: qdrant/qdrant:latest
-    ports:
-      - "6333:6333"
+  qdrant: image: qdrant/qdrant:latest
+    ports: - "6333:6333"
       - "6334:6334"
-    volumes:
-      - qdrant_data:/qdrant/storage
+    volumes: - qdrant_data:/qdrant/storage
     restart: unless-stopped
 ```
 
@@ -311,16 +273,12 @@ In Flowise, use the `Qdrant` vector store node with host `http://qdrant:6333`.
 ### Weaviate (Enterprise Vector Database)
 
 ```yaml
-  weaviate:
-    image: semitechnologies/weaviate:latest
-    ports:
-      - "8080:8080"
-    environment:
-      QUERY_DEFAULTS_LIMIT: 25
+  weaviate: image: semitechnologies/weaviate:latest
+    ports: - "8080:8080"
+    environment: QUERY_DEFAULTS_LIMIT: 25
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: true
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
-    volumes:
-      - weaviate_data:/var/lib/weaviate
+    volumes: - weaviate_data:/var/lib/weaviate
     restart: unless-stopped
 ```
 
@@ -340,9 +298,7 @@ curl -X POST "http://localhost:3000/api/v1/prediction/your-chatflow-id" \
   }'
 ```
 
-Response:
-
-```json
+Response: ```json
 {
   "text": "Based on our documentation, the return policy allows returns within 30 days of purchase with the original receipt.",
   "sourceDocuments": [
@@ -354,15 +310,12 @@ Response:
 }
 ```
 
-Python SDK example:
-
-```python
+Python SDK example: ```python
 import requests
 
 FLOWISE_API = "http://localhost:3000/api/v1/prediction/your-chatflow-id"
 
-def ask(question, session_id="user_001"):
-    resp = requests.post(FLOWISE_API, json={
+def ask(question, session_id="user_001"): resp = requests.post(FLOWISE_API, json={
         "question": question,
         "overrideConfig": {"sessionId": session_id}
     })
@@ -379,11 +332,8 @@ Flowise generates a JavaScript embed snippet for any chatflow. The widget suppor
 ![Flowise Embed Widget](https://raw.githubusercontent.com/FlowiseAI/FlowiseChatEmbed/main/assets/embedded-chat-config.png)
 *Customizable embed chat widget with theming options — deploy to any website with one script tag*
 
-Paste this into any HTML page:
-
-```html
-<script type="module">
-  import Chatbot from 'https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js';
+Paste this into any HTML page: ```html
+import Chatbot from 'https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js';
   Chatbot.init({
     chatflowid: 'your-chatflow-id',
     apiHost: 'https://your-flowise-server.com',
@@ -408,10 +358,14 @@ Paste this into any HTML page:
 
 ## Benchmarks / Real-World Use Cases
 
-Flowise performance characteristics based on community reports and our own testing:
-
-| Metric | Value | Notes |
-|--------|-------|-------|
+Flowise performance characteristics based on community reports and our own testing: | Metric | Value | Notes |
+|
+---
+|
+---
+|
+---
+|
 | Cold start (Docker) | 3-5 seconds | On 2 vCPU VPS |
 | First response latency | 1.5-3s | With GPT-4o, depends on prompt |
 | RAG query end-to-end | 2-4s | Chroma vector store, 1K chunks |
@@ -425,7 +379,17 @@ Flowise performance characteristics based on community reports and our own testi
 ### Comparison: Flowise vs Alternatives
 
 | Feature | Flowise | Dify | n8n | LangChain |
-|---------|---------|------|-----|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | GitHub Stars | 52,948 | 50,000+ | 49,500 | 110,000+ |
 | License | MIT | Apache-2.0 | Fair-code | MIT |
 | Visual Builder | Drag-and-drop canvas | App-centric UI | Workflow editor | Code-only |
@@ -454,9 +418,7 @@ Flowise performance characteristics based on community reports and our own testi
 
 ### Security Checklist
 
-Before exposing Flowise to the internet, complete these steps:
-
-```bash
+Before exposing Flowise to the internet, complete these steps: ```bash
 # 1. Enable authentication (REQUIRED)
 FLOWISE_USERNAME=admin
 FLOWISE_PASSWORD=$(openssl rand -base64 24)
@@ -466,8 +428,7 @@ JWT_AUTH_TOKEN_SECRET=$(openssl rand -hex 64)
 JWT_REFRESH_TOKEN_SECRET=$(openssl rand -hex 64)
 
 # 3. Run behind HTTPS with a reverse proxy
-# Nginx configuration snippet:
-server {
+# Nginx configuration snippet: server {
     listen 443 ssl http2;
     server_name flowise.yourdomain.com;
 
@@ -498,32 +459,23 @@ For high-traffic deployments, Flowise supports queue-based processing with Redis
 ```yaml
 # docker-compose-queue.yml
 version: '3.8'
-services:
-  redis:
-    image: redis:alpine
+services: redis: image: redis:alpine
     restart: unless-stopped
 
-  flowise:
-    image: flowiseai/flowise:latest
-    ports:
-      - "3000:3000"
-    environment:
-      - PORT=3000
+  flowise: image: flowiseai/flowise:latest
+    ports: - "3000:3000"
+    environment: - PORT=3000
       - QUEUE_NAME=flowise-queue
       - QUEUE_REDIS_URL=redis://redis:6379
     restart: unless-stopped
 
-  flowise-worker:
-    image: flowiseai/flowise-worker:latest
-    environment:
-      - QUEUE_NAME=flowise-queue
+  flowise-worker: image: flowiseai/flowise-worker:latest
+    environment: - QUEUE_NAME=flowise-queue
       - QUEUE_REDIS_URL=redis://redis:6379
     restart: unless-stopped
 ```
 
-Scale workers horizontally:
-
-```bash
+Scale workers horizontally: ```bash
 docker compose -f docker-compose-queue.yml up -d --scale flowise-worker=3
 ```
 
@@ -556,9 +508,7 @@ curl http://localhost:3000/api/v1/ping
 
 ## Limitations / Honest Assessment
 
-Flowise is not the right tool for every AI project. Here is what it does NOT do well:
-
-1. **Complex Multi-Agent Orchestration**: Flowise Agentflow supports sequential agents, but cyclic multi-agent patterns (like those in LangGraph or AutoGen) require workarounds. Teams building research agents or debate-style multi-agent systems should consider LangGraph directly.
+Flowise is not the right tool for every AI project. Here is what it does NOT do well: 1. **Complex Multi-Agent Orchestration**: Flowise Agentflow supports sequential agents, but cyclic multi-agent patterns (like those in LangGraph or AutoGen) require workarounds. Teams building research agents or debate-style multi-agent systems should consider LangGraph directly.
 
 2. **Non-Chat Workflows**: Flowise is optimized for conversational AI. Batch document processing, ETL pipelines, or scheduled data transformations are better handled by n8n or Python scripts.
 
@@ -598,9 +548,7 @@ Every chatflow and agentflow automatically gets a REST API endpoint at `/api/v1/
 
 ### How do I upgrade Flowise to a new version?
 
-For Docker deployments, pull the latest image and restart:
-
-```bash
+For Docker deployments, pull the latest image and restart: ```bash
 docker pull flowiseai/flowise:latest
 docker compose up -d
 ```
@@ -623,9 +571,7 @@ Start with `npx flowise start` for a local prototype. Move to Docker Compose wit
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -644,7 +590,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 10. [DigitalOcean Docker Deployment Guide](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-24-04) — Docker setup for Ubuntu servers
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -670,8 +615,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [12-factor-agents-production-llm-software-2026](flowise)
@@ -680,8 +625,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [9router-smart-llm-proxy-token-saver-free-coding](flowise)
 - [ai-engineering-from-scratch](flowise)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

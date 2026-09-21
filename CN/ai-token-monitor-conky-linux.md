@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/ai-token-monitor-conky-linux" />
 title: 'AI Token Monitor: Track Claude, Gemini, Grok, Kimi Quota...
 description: 'Free open-source desktop widget for Linux that shows real-time AI token quotas with HP-bar progress visualization inside Conky. Supports Claude, Gemini, Grok, and Kimi with live API polling and reset countdowns.'
 date: 2026-06-06 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: '/images/articles/ai-token-monitor-conky-linux.png'
 draft: false
 categories: ['dev-utils']
 tags: ['ai token monitor', 'claude quota', 'gemini quota tracker', 'grok token', 'kimi api', 'conky widget', 'linux desktop', 'open source', python, 'developer tools']
-aliases:
-- /posts/ai-token-monitor-conky-linux/
-faqs:
-  - q: 'Does the AI Token Monitor work on macOS or Windows?'
+aliases: - /posts/ai-token-monitor-conky-linux/
+faqs: - q: 'Does the AI Token Monitor work on macOS or Windows?'
     a: 'Currently the widget requires Conky, which is Linux-only. The core Python scripts (api_fetcher.py) work on any OS, but the visual display layer depends on Conky. A cross-platform version using tkinter exists in the repo (monitor.py) but is experimental — GNOME users report the frameless window may not render correctly.'
   - q: 'How does the tool read Claude API token balance?'
     a: 'It sends a minimal POST request to /v1/messages with max_tokens=1 and reads the anthropic-ratelimit-tokens-remaining and anthropic-ratelimit-tokens-limit response headers. This costs roughly 10 input tokens per check (cron every 5 min = ~2,880 tokens/day) — negligible for most plans.'
@@ -34,9 +30,7 @@ faqs:
   - q: 'Can I add a custom AI service not listed (e.g., Mistral, Together AI)?'
     a: 'Yes. In api_fetcher.py, add a block that calls your service API and writes to the cache dict with keys ok (bool), label (display string), and optionally pct (float 0-1). Then add the service name to the SERVICES list in conky_ai.py with its reset_h value.'
   - q: 'Why does Grok show "耗尽" (depleted) even when my account has credits?'
-    a: 'The Grok check calls GET /v1/models — it returns 200 if authenticated and credits available, 403 if credits are exhausted. A 403 from xAI specifically means account balance is zero. If you have credits but see 403, verify the API key is correct in ~/.config/.ai_monitor_keys.'
----
-
+    a: 'The Grok check calls GET /v1/models — it returns 200 if authenticated and credits available, 403 if credits are exhausted. A 403 from xAI specifically means account balance is zero. If you have credits but see 403, verify the API key is correct in ~/.config/.ai_monitor_keys.'---
 {{< resource-info >}}
 
 ## The Problem: Juggling Six AI Services and Never Knowing Which One Is Out
@@ -58,9 +52,7 @@ The result: you hit a rate limit mid-task, spend five minutes switching browser 
 
 ## How It Works
 
-The monitor has two components:
-
-**`api_fetcher.py`** — a background script (cron every 5 min) that polls each service API and writes results to `~/token-monitor/api_cache.json`.
+The monitor has two components: **`api_fetcher.py`** — a background script (cron every 5 min) that polls each service API and writes results to `~/token-monitor/api_cache.json`.
 
 **`conky_ai.py`** — reads the cache every 30 seconds and outputs Conky-formatted text with inline `${color}` tags. Conky renders this as the desktop widget.
 
@@ -73,10 +65,12 @@ This architecture means API failures never freeze your desktop. The cache always
 
 ## HP-Bar Progress Visualization
 
-The key feature is the **blood-bar style quota display** — a row of Unicode block characters that visually represent remaining quota:
-
-| Color | State |
-|-------|-------|
+The key feature is the **blood-bar style quota display** — a row of Unicode block characters that visually represent remaining quota: | Color | State |
+|
+---
+|
+---
+|
 | `█████████` green | Above 50% quota |
 | `████░░░░░` orange | 20–50% remaining |
 | `█░░░░░░░░` red | Below 20% |
@@ -102,15 +96,20 @@ nano ~/.config/.ai_monitor_keys
 pkill conky && conky --daemonize --pause=1
 ```
 
-The installer automatically:
-- Copies scripts to `~/token-monitor/`
+The installer automatically: - Copies scripts to `~/token-monitor/`
 - Adds `${execpi 30 python3 ~/token-monitor/conky_ai.py}` to your Conky config
 - Sets up the cron job for `api_fetcher.py`
 
 ## Supported Services and API Methods
 
 | Service | API Endpoint | What We Detect |
-|---------|-------------|----------------|
+|
+---
+|
+---
+|
+---
+|
 | **Kimi** (Moonshot) | `GET /v1/users/me` | Exact token quota remaining |
 | **Claude** (Anthropic) | `POST /v1/messages` | Rate-limit headers per window |
 | **Gemini** (Google) | `POST .../generateContent` | 429 = quota exceeded |
@@ -127,17 +126,12 @@ For the cautious: review `api_fetcher.py` before installing. It makes only GET/P
 
 ## Adding Custom Services
 
-Open `api_fetcher.py` and add a block after the existing services:
-
-```python
+Open `api_fetcher.py` and add a block after the existing services: ```python
 # ── Your Service ─────────────────────────────────
 key = keys.get(yourservice)
-if key:
-    try:
-        r = requests.get('https://api.yourservice.com/v1/usage',
+if key: try: r = requests.get('https://api.yourservice.com/v1/usage',
                          headers={Authorization: f'Bearer {key}'}, timeout=8)
-        if r.status_code == 200:
-            data = r.json()
+        if r.status_code == 200: data = r.json()
             remain = data[quota_remaining]
             total  = data[quota_total]
             cache[YourService] = {
@@ -145,19 +139,15 @@ if key:
                 label: f'{remain//1000}K剩',
                 pct: remain / total
             }
-        else:
-            cache[YourService] = {ok: False, label: 'API Error'}
-    except Exception:
-        pass
+        else: cache[YourService] = {ok: False, label: 'API Error'}
+    except Exception: pass
 ```
 
 Then add `{name: YourService, reset_h: 24}` to the `SERVICES` list in `conky_ai.py`.
 
 ## Related Tools on dibi8
 
-If you are managing multiple AI API costs, also check:
-
-- [AI Coding 2026 Q2 Shootout — Claude Code vs Cursor vs Codex](/en/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) — real usage cost comparison for dev workflows
+If you are managing multiple AI API costs, also check: - [AI Coding 2026 Q2 Shootout — Claude Code vs Cursor vs Codex](/en/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) — real usage cost comparison for dev workflows
 - [RTK Rust CLI Proxy — 80% AI Cost Savings](/en/resources/dev-utils/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/) — automatically routes prompts to cut AI API costs by up to 80%
 - [AI Coding Monthly Bill 2026](/en/resources/dev-utils/ai-coding-agent-monthly-bill-2026-real-receipts/) — actual receipts from six months of production AI usage
 
@@ -170,7 +160,6 @@ The tool is fully open source under MIT license.
 Star the repo if it saved you from a mid-task rate-limit surprise. Issues and PRs welcome — especially for adding macOS support or new service integrations.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -198,25 +187,20 @@ Star the repo if it saved you from a mid-task rate-limit surprise. Issues and PR
 
 ## Why This Matters
 
-Understanding ai token monitor: track claude, gemini, grok, kimi quota live on your linux desktop is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding ai token monitor: track claude, gemini, grok, kimi quota live on your linux desktop is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -237,13 +221,13 @@ AI Token Monitor: Track Claude, Gemini, Grok, Kimi Quota Live on Your Linux Desk
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
 
+---
 ## Related Articles
 
 - [deepseek-reasonix-terminal-ai-coding-agent-prefix-cache](ai-token-monitor-conky-linux)

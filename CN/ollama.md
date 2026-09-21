@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/ollama" />
 title: 'Ollama: 137K+ Stars — Run LLMs Locally with One Command,...
 description: 'Ollama is the simplest way to run Llama, DeepSeek, Mistral, and other LLMs locally. Compatible with LangChain, OpenWebUI, Continue.dev, and Dify. Covers Docker setup, Modelfile customization, REST API, production hardening, and performance benchmarks.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,11 +20,9 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [ollama, 'local-llm', 'llama.cpp', deepseek, mistral, docker, modelfile, 'open-source']
-aliases:
-- /posts/ollama/
-- /resources/llm-frameworks/ollama-local-llm-guide/
+aliases: - /posts/ollama/
+- /resources/llm-frameworks/ollama-local-llm-guide/-
 ---
-
 {{</* resource-info */>}}
 
 Running large language models used to mean wrestling with Python environments, CUDA drivers, and gigabytes of dependencies. In 2026, that friction is gone. [Ollama](https://ollama.com) lets you pull, configure, and serve production-grade LLMs with a single command — no PyTorch installation, no manual GPU tuning, no Docker mandatory. With 137,000+ GitHub stars and a thriving ecosystem of integrations, Ollama has become the default runtime for developers who want local inference without operational headaches.
@@ -117,7 +113,13 @@ The first time you run a model, Ollama downloads it. A quantized 8B parameter mo
 ### Quick Model Selection by Hardware
 
 | Hardware | Recommended Model | Command |
-|----------|------------------|---------|
+|
+---
+|
+---
+|
+---
+|
 | 6–8 GB VRAM | Qwen3 8B | `ollama run qwen3:8b` |
 | 10–12 GB VRAM | Llama 3.1 8B Q4 | `ollama run llama3.1:8b` |
 | 16+ GB VRAM | DeepSeek-R1 14B | `ollama run deepseek-r1:14b` |
@@ -170,9 +172,7 @@ vector = embeddings.embed_query("Hello world")
 
 ### Continue.dev (VS Code/Cursor AI Coding Assistant)
 
-Add to `~/.continue/config.json`:
-
-```json
+Add to `~/.continue/config.json`: ```json
 {
   "models": [
     {
@@ -192,9 +192,7 @@ Add to `~/.continue/config.json`:
 
 ### Dify (Self-Hosted AI Workflow Platform)
 
-In Dify's **Settings > Model Provider > Ollama**, configure:
-
-```
+In Dify's **Settings > Model Provider > Ollama**, configure: ```
 Model Name: llama3.2:8b
 Base URL: http://host.docker.internal:11434
 Context Window: 8192
@@ -234,45 +232,28 @@ curl http://localhost:11434/api/embed -d '{
 # docker-compose.yml
 version: "3.8"
 
-services:
-  ollama:
-    image: ollama/ollama:0.6.7
+services: ollama: image: ollama/ollama:0.6.7
     container_name: ollama
-    ports:
-      - "11434:11434"
-    volumes:
-      - ollama_data:/root/.ollama
-    environment:
-      - OLLAMA_KEEP_ALIVE=24h
+    ports: - "11434:11434"
+    volumes: - ollama_data:/root/.ollama
+    environment: - OLLAMA_KEEP_ALIVE=24h
       - OLLAMA_NUM_PARALLEL=4
       - OLLAMA_MAX_LOADED_MODELS=2
     restart: unless-stopped
     # NVIDIA GPU support
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+    deploy: resources: reservations: devices: - driver: nvidia
               count: all
               capabilities: [gpu]
 
-  open-webui:
-    image: ghcr.io/open-webui/open-webui:main
+  open-webui: image: ghcr.io/open-webui/open-webui:main
     container_name: open-webui
-    ports:
-      - "3000:8080"
-    environment:
-      - OLLAMA_BASE_URL=http://ollama:11434
-    volumes:
-      - openwebui_data:/app/backend/data
-    depends_on:
-      - ollama
+    ports: - "3000:8080"
+    environment: - OLLAMA_BASE_URL=http://ollama:11434
+    volumes: - openwebui_data:/app/backend/data
+    depends_on: - ollama
     restart: unless-stopped
 
-volumes:
-  ollama_data:
-  openwebui_data:
-```
+volumes: ollama_data: openwebui_data: ```
 
 Start with `docker compose up -d`.
 
@@ -295,36 +276,22 @@ sudo systemctl restart docker
 
 ### AMD ROCm GPU Setup
 
-Use the ROCm-specific image tag:
-
-```yaml
-services:
-  ollama:
-    image: ollama/ollama:rocm
-    devices:
-      - /dev/kfd
+Use the ROCm-specific image tag: ```yaml
+services: ollama: image: ollama/ollama:rocm
+    devices: - /dev/kfd
       - /dev/dri
-    group_add:
-      - video
-    environment:
-      - HSA_OVERRIDE_GFX_VERSION=11.0.0
+    group_add: - video
+    environment: - HSA_OVERRIDE_GFX_VERSION=11.0.0
 ```
 
 ### Multi-Model Concurrent Serving
 
 ```yaml
-services:
-  ollama:
-    image: ollama/ollama:0.6.7
-    environment:
-      - OLLAMA_NUM_PARALLEL=4      # 4 concurrent requests
+services: ollama: image: ollama/ollama:0.6.7
+    environment: - OLLAMA_NUM_PARALLEL=4      # 4 concurrent requests
       - OLLAMA_MAX_LOADED_MODELS=2  # Keep 2 models in VRAM
       - OLLAMA_KEEP_ALIVE=30m      # Unload after 30min idle
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+    deploy: resources: reservations: devices: - driver: nvidia
               count: all
               capabilities: [gpu]
 ```
@@ -360,9 +327,7 @@ TEMPLATE """{{ if .System }}<|start_header_id|>system<|end_header_id|>
 {{ .Response }}<|eot_id|>"""
 ```
 
-Build and run:
-
-```bash
+Build and run: ```bash
 # Create the custom model
 ollama create senior-dev -f Modelfile
 
@@ -379,14 +344,12 @@ ollama show senior-dev --modelfile
 # Modelfile.code-review
 FROM codellama:7b-code
 
-SYSTEM """You are a code review assistant. Analyze the provided code for:
-1. Bugs and logic errors
+SYSTEM """You are a code review assistant. Analyze the provided code for: 1. Bugs and logic errors
 2. Security vulnerabilities (SQL injection, XSS, buffer overflow)
 3. Performance issues (N+1 queries, unnecessary allocations)
 4. Style and readability
 
-Format your response as:
-- [CRITICAL] for bugs/security
+Format your response as: - [CRITICAL] for bugs/security
 - [WARN] for performance
 - [INFO] for style suggestions
 
@@ -441,7 +404,15 @@ ollama ps
 ### Single-User Throughput (RTX 4090, Llama 3.1 8B)
 
 | Tool | Format | Tokens/sec | Setup Time |
-|------|--------|-----------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Ollama | Q4_K_M | ~62 tok/s | < 2 min |
 | vLLM | FP16 | ~71 tok/s | ~10 min |
 | llama.cpp (CLI) | Q4_K_M | ~65 tok/s | ~5 min |
@@ -452,7 +423,15 @@ ollama ps
 ### Concurrent Load (50 Users, RTX 4090)
 
 | Tool | Aggregate tok/s | p99 Latency | Architecture |
-|------|----------------|-------------|--------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Ollama | ~155 tok/s | ~24.7s | FIFO queue |
 | vLLM | ~920 tok/s | ~2.8s | Continuous batching |
 | llama.cpp server | ~140 tok/s | ~26s | FIFO queue |
@@ -463,7 +442,15 @@ ollama ps
 ### Memory Footprint (7B Parameter Model)
 
 | Tool | Idle RAM | Loaded RAM | Cold Start |
-|------|----------|-----------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Ollama | 150 MB | 5.2 GB | 2s |
 | vLLM | 400 MB | 5.5 GB | 5s |
 | LocalAI | 400 MB | 5.5 GB | 8s |
@@ -524,9 +511,7 @@ server {
 
 ### API Key Authentication (No Native Support)
 
-Ollama does not include built-in API key authentication. Add it via a reverse proxy:
-
-```python
+Ollama does not include built-in API key authentication. Add it via a reverse proxy: ```python
 # ollama-auth-proxy.py (Flask example)
 from flask import Flask, request, Response
 import requests
@@ -537,10 +522,8 @@ VALID_KEYS = {"sk-your-api-key-here"}
 
 @app.route('/', defaults={path: ''}, methods=[GET, POST, PUT, DELETE])
 @app.route('/<path:path>', methods=[GET, POST, PUT, DELETE])
-def proxy(path):
-    api_key = request.headers.get(Authorization, '').replace('Bearer ', '')
-    if api_key not in VALID_KEYS:
-        return {"error": "Invalid API key"}, 401
+def proxy(path): api_key = request.headers.get(Authorization, '').replace('Bearer ', '')
+    if api_key not in VALID_KEYS: return {"error": "Invalid API key"}, 401
     
     resp = requests.request(
         method=request.method,
@@ -552,20 +535,16 @@ def proxy(path):
     return Response(resp.iter_content(chunk_size=1024), status=resp.status_code,
                    content_type=resp.headers.get('Content-Type'))
 
-if __name__ == __main__:
-    app.run(host='0.0.0.0', port=11435)
+if __name__ == __main__: app.run(host='0.0.0.0', port=11435)
 ```
 
 ### Monitoring with Prometheus
 
-Ollama exposes basic metrics via the API:
-
-```bash
+Ollama exposes basic metrics via the API: ```bash
 # List running models with memory usage
 curl http://localhost:11434/api/ps
 
-# Expected output:
-# {
+# Expected output: # {
 #   "models": [
 #     {
 #       "name": "llama3.2:8b",
@@ -611,7 +590,17 @@ sudo systemctl start ollama
 ## Comparison with Alternatives
 
 | Feature | Ollama | llama.cpp | vLLM | LocalAI |
-|---------|--------|-----------|------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **GitHub Stars** | 137K+ | 75K+ | 45K+ | 35K+ |
 | **Setup Time** | < 2 min | ~5 min | ~10 min | ~15 min |
 | **Single-User tok/s** | ~62 (Q4) | ~65 (Q4) | ~71 (FP16) | ~38 (Q4) |
@@ -690,9 +679,7 @@ For solo developers and small teams, Ollama is the pragmatic starting point. Whe
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -712,7 +699,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - Continue.dev Documentation: https://docs.continue.dev
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -738,8 +724,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [llm-inference-cost-optimization-guide-2026](ollama)
@@ -748,8 +734,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [ollama-vs-vllm](ollama)
 - [ollama-vs-vllm](ollama)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

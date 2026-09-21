@@ -1,12 +1,9 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/toprank" />
-title: "Toprank: Open-Source Claude Code Skills That Automate SE...
+title: "Toprank: Open-Source Claude Code Skills That Automate SE..."
 description: "Toprank is a trending open-source Claude Code skills suite for SEO audits, GEO optimization, Google Ads management, and Meta Ads automation. Install once, get automatic updates, and let AI handle your marketing stack."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Go
+tech_stack: - Go
 application_domain: "Ai Tools"
 source_version: ""
 licensing_model: "Open Source"
@@ -21,10 +18,8 @@ maintainer: "nowork-studio"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases:
-- /posts/toprank/
-faqs:
-  - q: 'What is Toprank and how is it different from SEO SaaS tools?'
+aliases: - /posts/toprank/
+faqs: - q: 'What is Toprank and how is it different from SEO SaaS tools?'
     a: 'Toprank is an open-source suite of Claude Code skills that turns Anthropic''s Claude Code CLI into a marketing automation engine. Unlike web-dashboard SaaS tools, it runs inside your existing development environment with no browser tabs, monthly seat fees, or context switching.'
   - q: 'What SEO tasks can Toprank automate?'
     a: 'Toprank''s SEO module includes skills for technical audits with Google Search Console data (seo-analysis), EEAT content drafting (content-writer), keyword research with topic clustering, meta tag and Open Graph optimization, JSON-LD schema generation, single-page Core Web Vitals analysis (seo-page), and broken-link/orphan-page checking. It also has a dedicated geo-optimizer skill for Generative Engine Optimization.'
@@ -49,9 +44,7 @@ The project is open-source, hosted at [github.com/nowork-studio/toprank](https:/
 
 ## SEO Skills: A Complete Audit and Content Stack
 
-Toprank's SEO module covers the full lifecycle of organic search optimization:
-
-- **seo-analysis** — Runs a comprehensive technical SEO audit and pulls Google Search Console (GSC) data to surface indexing issues, CTR opportunities, and ranking drops.
+Toprank's SEO module covers the full lifecycle of organic search optimization: - **seo-analysis** — Runs a comprehensive technical SEO audit and pulls Google Search Console (GSC) data to surface indexing issues, CTR opportunities, and ranking drops.
 - **content-writer** — Generates EEAT-compliant content drafts with proper entity coverage, semantic structure, and citation suggestions.
 - **keyword-research** — Discovers keywords and automatically groups them into topic clusters, complete with search intent classification.
 - **meta-tags-optimizer** — Rewrites page titles, meta descriptions, and Open Graph tags for maximum CTR and social shareability.
@@ -64,9 +57,7 @@ Each skill returns structured output you can pipe into CI/CD workflows, Slack al
 
 ## Google Ads and Meta Ads: Direct Account Integration
 
-Where Toprank differentiates itself from generic SEO tools is its direct integration with paid media platforms:
-
-- **google-ads-audit** — Connects to your Google Ads account, scores campaign health across bidding strategies, ad group structure, and keyword overlap, then delivers a printable scorecard.
+Where Toprank differentiates itself from generic SEO tools is its direct integration with paid media platforms: - **google-ads-audit** — Connects to your Google Ads account, scores campaign health across bidding strategies, ad group structure, and keyword overlap, then delivers a printable scorecard.
 - **google-ads-copy** — Generates responsive search ad headlines and descriptions tailored to your landing page content and audience segments.
 - **google-ads** — The execution layer: applies negative keywords, adjusts bids, pauses underperformers, and pushes changes live without leaving your terminal.
 - **meta-ads-audit** — Mirrors the Google Ads audit for Facebook and Instagram campaigns, evaluating creative fatigue, audience overlap, and CPM trends.
@@ -96,22 +87,19 @@ The project is still new and trending, which means early adopters have an opport
 
 Visit the repository at [github.com/nowork-studio/toprank](https://github.com/nowork-studio/toprank) to read the setup guide, browse the skill catalog, and join the growing community of developers treating SEO and paid media as code.
 
----
 
+---
 *Built by nowork-studio / notfair.co. Open source. Automatically updated. Designed for Claude Code.*
 
----
 
+---
 ## Recommended Tools
 
-For developers building or deploying open-source AI tools, we recommend:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
+For developers building or deploying open-source AI tools, we recommend: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
 - **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Anthropic Claude / OpenAI / DeepSeek API proxy. Most AI tools above (chatbots, code gen, translation, search, etc) need an LLM API key — this proxy delivers stable access to top models at ~30% of official pricing.
 
 *Affiliate link — supports dibi8.com at no cost to you.*
 
-<!--auto-references-->
 ## References & Sources
 
 - [Toprank (nowork-studio)](https://github.com/nowork-studio/toprank)
@@ -121,7 +109,6 @@ For developers building or deploying open-source AI tools, we recommend:
 - [Schema.org JSON-LD](https://schema.org/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -149,25 +136,20 @@ For developers building or deploying open-source AI tools, we recommend:
 
 ## Why This Matters
 
-Understanding toprank: open-source claude code skills that automate seo, geo, and ad campaign optimization is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding toprank: open-source claude code skills that automate seo, geo, and ad campaign optimization is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

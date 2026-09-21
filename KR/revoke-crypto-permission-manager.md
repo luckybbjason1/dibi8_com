@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/revoke-crypto-permission-manager" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/revoke-crypto-permission-manager" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/revoke-crypto-permission-manager" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/revoke-crypto-permission-manager" />
 title: 'revoke-crypto-permission-manager'
 description: ''. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: ['revoke.cash']
-aliases:
-- /kr/posts/revoke-crypto-permission-manager/
+aliases: - /kr/posts/revoke-crypto-permission-manager/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/revoke-crypto-permission-manager/ -->
 
 {{</* resource-info */>}}
 
@@ -57,8 +49,7 @@ Uniswap에서 토큰을 교환하거나, 수익 볼트에 입금하거나, NFT�
 
 DeFi 프로토콜과 상호 작용하려면 먼저 프로토콜의 스마트 계약이 귀하의 토큰에 액세스할 수 있도록 **승인**해야 합니다. 이는 ERC-20 메커니즘으로, 계약이 임의로 자금을 사용하는 것을 방지하도록 설계되었습니다. 그러나 대부분의 dApp은 사용자가 향후 거래에서 가스를 절약할 수 있도록 **무제한 승인**(`type(uint256).max`)을 요청합니다.
 
-문제는 무엇입니까? 해당 승인은 다음 경우에도 영원히 지속됩니다:
-- 프로토콜이 해킹당한 경우
+문제는 무엇입니까? 해당 승인은 다음 경우에도 영원히 지속됩니다: - 프로토콜이 해킹당한 경우
 - dApp 사용을 중단한 경우
 - 악의적인 프론트엔드가 합법적인 프론트엔드를 대체한 경우
 - 프로토콜이 취약한 업그레이드를 배포한 경우
@@ -77,8 +68,7 @@ interface IERC20 {
     function allowance(address owner, address spender) external view returns (uint256);
 }
 
-// Uniswap을 "승인"하면 다음이 발생합니다:
-// token.approve(uniswapRouter, 115792089237316195423570985008687907853269984665640564039457584007913129639935)
+// Uniswap을 "승인"하면 다음이 발생합니다: // token.approve(uniswapRouter, 115792089237316195423570985008687907853269984665640564039457584007913129639935)
 // 이 숫자 = type(uint256).max = 무제한
 ```
 
@@ -94,8 +84,7 @@ Revoke.cash로 시작하는 데 2분이 채 걸리지 않습니다. 승인을 �
 # 공식 웹사이트(URL 항상 확인)
 # https://revoke.cash
 # 
-# 피싱 도메인:
-# - revokecash.com (가짜)
+# 피싱 도메인: # - revokecash.com (가짜)
 # - revoke-cash.app (가짜)
 # - revok3.cash (가짜)
 # 첫 방문 후 공식 URL을 즐겨찾기에 추가하세요
@@ -120,8 +109,7 @@ const supportedWallets = [
 ### 3단계 — 모든 활성 승인 보기
 
 ```bash
-# Revoke.cash 대시보드 표시:
-# ┌────────────────┬─────────────────┬──────────────┬──────────┐
+# Revoke.cash 대시보드 표시: # ┌────────────────┬─────────────────┬──────────────┬──────────┐
 # │ 토큰           │ 승인된 지출자   │ 금액         │ 위험     │
 # ├────────────────┼─────────────────┼──────────────┼──────────┤
 # │ USDC           │ Uniswap V3      │ 무제한       │ ⚠️ 높음  │
@@ -232,38 +220,31 @@ Revoke.cash는 모든 주요 EVM 호환 체인을 지원하여 DeFi와 상호 �
 
 ```yaml
 # 2026년 완전한 네트워크 지원
-ethereum:
-  chain_id: 1
+ethereum: chain_id: 1
   rpc_required: true
   features: ["전체 지원", "NFT 승인", "Permit2"]
 
-polygon:
-  chain_id: 137
+polygon: chain_id: 137
   rpc_required: true
   features: ["전체 지원", "낮은 가스 취소"]
 
-arbitrum:
-  chain_id: 42161
+arbitrum: chain_id: 42161
   rpc_required: true
   features: ["전체 지원", "Nitro 호환"]
 
-optimism:
-  chain_id: 10
+optimism: chain_id: 10
   rpc_required: true
   features: ["전체 지원", "Bedrock 호환"]
 
-base:
-  chain_id: 8453
+base: chain_id: 8453
   rpc_required: true
   features: ["전체 지원", "Coinbase 생태계"]
 
-bnb_chain:
-  chain_id: 56
+bnb_chain: chain_id: 56
   rpc_required: true
   features: ["전체 지원", "PancakeSwap 승인"]
 
-avalanche:
-  chain_id: 43114
+avalanche: chain_id: 43114
   rpc_required: true
   features: ["C-Chain 지원", "TraderJoe 승인"]
 ```
@@ -295,14 +276,11 @@ Revoke.cash는 잠재적으로 위험한 승인에 서명하기 전에 사전 �
 ### 확장 프로그램 설치
 
 ```bash
-# Chrome 웹 스토어:
-# https://chrome.google.com/webstore/detail/revokecash/revokecash-extension
+# Chrome 웹 스토어: # https://chrome.google.com/webstore/detail/revokecash/revokecash-extension
 
-# Firefox 부가 기능:
-# https://addons.mozilla.org/firefox/addon/revokecash/
+# Firefox 부가 기능: # https://addons.mozilla.org/firefox/addon/revokecash/
 
-# 기능:
-# - 무제한 승인에 서명하기 전에 경고
+# 기능: # - 무제한 승인에 서명하기 전에 경고
 # - 알려진 악성 계약 승인 시 알림
 # - 위험에 처한 예상 USD 가치 표시
 # - 팝업에서 원클릭 취소
@@ -412,8 +390,7 @@ const batchRevoke = async (revocations) => {
 # - 이른 새벽 UTC(오전 2시 - 오전 6시)가 보통 가장 저렴합니다
 # - https://etherscan.io/gastracker를 사용하여 모니터링하세요
 
-# 취소를 위한 예상 가스 비용:
-# ┌─────────────────┬──────────────┬──────────────────┐
+# 취소를 위한 예상 가스 비용: # ┌─────────────────┬──────────────┬──────────────────┐
 # │ 네트워크         │ 가스 단위     │ 비용(20 gwei 기준)│
 # ├─────────────────┼──────────────┼──────────────────┤
 # │ Ethereum        │ ~46,000      │ ~$2.30           │
@@ -454,18 +431,15 @@ const subscribeToAlerts = async (address) => {
 ### 보안 체크리스트
 
 ```bash
-# 주간 루틴:
-# 1. revoke.cash를 방문하여 모든 활성 승인을 스캔합니다
+# 주간 루틴: # 1. revoke.cash를 방문하여 모든 활성 승인을 스캔합니다
 # 2. 적극적으로 사용하지 않는 프로토콜에 대한 무제한 승인을 취소합니다
 # 3. 알 수 없는 지출자에 대해 "위험" 열을 확인합니다
 
-# 모든 주요 거래 전:
-# 1. Etherscan에서 계약 주소를 확인합니다
+# 모든 주요 거래 전: # 1. Etherscan에서 계약 주소를 확인합니다
 # 2. 지출자가 알려진 프로토콜인지 확인합니다
 # 3. 무제한 승인을 요청하는 경우 대신 사용자 지정 한도를 설정합니다
 
-# 프로토콜 취약점 발생 후:
-# 1. 해당 프로토콜을 사용한 적이 있는지 즉시 revoke.cash를 확인합니다
+# 프로토콜 취약점 발생 후: # 1. 해당 프로토콜을 사용한 적이 있는지 즉시 revoke.cash를 확인합니다
 # 2. 손상된 계약의 모든 승인을 취소합니다
 # 3. 승인되지 않은 이체에 대해 주소를 모니터링합니다
 ```
@@ -492,8 +466,7 @@ await setLimitedApproval(usdcContract, uniswapRouter, "1000");
 ### "번거 지갑" 전략
 
 ```javascript
-// 새로운/테스트되지 않은 프로토콜 탐색을 위한:
-// 1. 별도의 "번거" 지갑 생성
+// 새로운/테스트되지 않은 프로토콜 탐색을 위한: // 1. 별도의 "번거" 지갑 생성
 // 2. 잃을 수 있는 자금만 이체
 // 3. 번거 지갑에서 승인 부여
 // 4. 사용 후 모든 승인을 취소하고 남은 자금을 다시 스윕
@@ -557,7 +530,6 @@ DeFi에서 보안은 일회성 설정이 아니라 지속적인 관행입니다.
 *면책 조항: 본 문서는 정보 제공 목적으로만 작성되었으며 재무 또는 보안 조언을 구성하지 않습니다. 항상 계약 주소를 확인하고, 상당한 보유 자산에는 하드웨어 지갑을 사용하고, 좋은 운영 보안을 실천하세요. 이 게시물에는 제휴 링크가 포함되어 있으며, 파트너 링크를 사용하실 때 추가 비용 없이 보상을 받을 수 있습니다.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

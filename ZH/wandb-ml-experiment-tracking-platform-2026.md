@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/wandb-ml-experiment-tracking-platform-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/wandb-ml-experiment-tracking-platform-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/wandb-ml-experiment-tracking-platform-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/wandb-ml-experiment-tracking-platform-2026" />
 title: 'Weights & Biases (W&B)：像专业人士一样跟踪每个实验 — ML 实验平台 2026'
 description: 'Weights & Biases (wandb/wandb) 是 AI 开发者平台，用于跟踪、比较和部署 ML 实验。支持 PyTorch、TensorFlow、Hugging Face 和 LLM 微调。涵盖实验跟踪、数据集版本控制、模型注册表和生产监控。'
 date: 2026-06-09
-lastmod:  2026-06-09slug: 'wandb-ml-experiment-tracking-platform-2026'
+lastmod: 2026-06-09
+slug: 'wandb-ml-experiment-tracking-platform-2026'
 category: 'data-science'
 tags: ['ml-ops', 'experiment-tracking', 'deep-learning', 'pytorch', 'llm', 'model-registry', 'mlops']
 github_repo: 'https://github.com/wandb/wandb'
@@ -15,10 +11,7 @@ stars: 11114
 maintainer: 'wandb'
 license: MIT
 featureImage: 'https://raw.githubusercontent.com/wandb/wandb/main/assets/screenshots/launch.png'
-lang: zh
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/wandb-ml-experiment-tracking-platform-2026/ -->
 
 ![Weights & Biases Dashboard](https://opengraph.github.com/github/wandb/wandb)
 
@@ -78,9 +71,7 @@ wandb.init(
     }
 )
 
-for epoch in range(config.epochs):
-    for batch in train_dataloader:
-        loss = model.train_step(batch)
+for epoch in range(config.epochs): for batch in train_dataloader: loss = model.train_step(batch)
         # Log metrics — W&B handles the rest
         wandb.log({"train_loss": loss, "lr": config.learning_rate})
 ```
@@ -127,9 +118,7 @@ W&B 与几乎所有流行的 ML 框架集成。以下是最常见的设置。
 import pytorch_lightning as pl
 from pytorch_lightning.callbacks import WandbCallback
 
-class MyModel(pl.LightningModule):
-    def training_step(self, batch, batch_idx):
-        loss = self.forward(batch)
+class MyModel(pl.LightningModule): def training_step(self, batch, batch_idx): loss = self.forward(batch)
         self.log("train_loss", loss)
         return loss
 
@@ -168,8 +157,7 @@ import wandb
 
 ray.init()
 
-def train_model(config):
-    # W&B automatically captures the sweep config
+def train_model(config): # W&B automatically captures the sweep config
     wandb.init(config=config)
     score = my_training_function(config)
     wandb.log({"score": score})
@@ -190,7 +178,17 @@ sweep = tune.run(
 W&B 的日志性能已在各种训练规模下进行了基准测试。在典型的训练工作负载下，开销可以忽略不计：
 
 || 场景 | 日志开销 | 网络带宽 | 仪表板加载时间 |
-|----------|---------|----------|----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 小模型（1 万参数） | 0.5% | <1 MB/run | <1 秒 |
 | 中等模型（1 亿参数） | 1.2% | <5 MB/run | <2 秒 |
 | 大模型（10 亿参数） | 2.1% | <20 MB/run | <3 秒 |
@@ -263,19 +261,13 @@ report.save("experiment-report")
 # sweeps.yaml
 name: nlp-sweep
 program: train.py
-metric:
-  name: val_accuracy
+metric: name: val_accuracy
   goal: maximize
-parameters:
-  learning_rate:
-    values: [1e-5, 2e-5, 5e-5, 1e-4]
-  optimizer:
-    values: [adamw, adam]
-  warmup_ratio:
-    min: 0.0
+parameters: learning_rate: values: [1e-5, 2e-5, 5e-5, 1e-4]
+  optimizer: values: [adamw, adam]
+  warmup_ratio: min: 0.0
     max: 0.1
-command:
-  - python
+command: - python
   - train.py
 ```
 
@@ -317,11 +309,9 @@ config.batch_size = 64
 model = MyModel()
 optimizer = AdamW(model.parameters(), lr=config.learning_rate)
 
-for epoch in range(config.epochs):
-    model.train()
+for epoch in range(config.epochs): model.train()
     epoch_loss = 0
-    for i, (x, y) in enumerate(train_loader):
-        optimizer.zero_grad()
+    for i, (x, y) in enumerate(train_loader): optimizer.zero_grad()
         output = model(x)
         loss = criterion(output, y)
         loss.backward()
@@ -329,8 +319,7 @@ for epoch in range(config.epochs):
         epoch_loss += loss.item()
         
         # Log every 100 steps
-        if i % 100 == 0:
-            wandb.log({
+        if i % 100 == 0: wandb.log({
                 "train_loss": loss.item(),
                 "learning_rate": config.learning_rate,
                 "epoch": epoch
@@ -370,7 +359,17 @@ data_path = clean_data.download()
 ## 与替代方案的比较
 
 || 功能 | W&B | MLflow | Weights & Biases | TensorBoard | Neptune.ai |
-|-----|--------|------------------|-------------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 实验跟踪 | ✓ | ✓ | ✓ | ✓ | ✓ |
 | 超参数扫描 | ✓（原生） | ✓ | ✓ | 否 | ✓ |
 | 数据集版本控制 | ✓（Artifacts） | ✓（MLflow） | ✓ | 否 | ✓ |
@@ -434,8 +433,8 @@ Weights & Biases 改变了 ML 团队对待实验跟踪的方式。通过结合�
 
 加入 DIBI8 社区 [Telegram](https://t.me/DIBI8_Group) 群组，参与关于 ML 工具、实验跟踪和 MLOps 实践的持续讨论。
 
----
 
+---
 **来源与延伸阅读**：
 - W&B 文档：https://docs.wandb.ai/
 - W&B GitHub 仓库：https://github.com/wandb/wandb
@@ -447,7 +446,6 @@ Weights & Biases 改变了 ML 团队对待实验跟踪的方式。通过结合�
 **披露**：本文包含附属链接。如果您通过我们的链接注册，我们可能会赚取少量佣金，而您无需支付额外费用。这有助于支持独立技术新闻，并使 dibi8.com 等资源保持免费且无广告。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -475,25 +473,20 @@ Weights & Biases 改变了 ML 团队对待实验跟踪的方式。通过结合�
 
 ## Why This Matters
 
-Understanding weights & biases (w&b)：像专业人士一样跟踪每个实验 — ml 实验平台 2026 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding weights & biases (w&b)：像专业人士一样跟踪每个实验 — ml 实验平台 2026 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -514,8 +507,8 @@ Weights & Biases (W&B)：像专业人士一样跟踪每个实验 — ML 实验�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 

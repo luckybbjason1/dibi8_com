@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-trader" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-trader" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-trader" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-trader" />
 title: "AI-Trader: 14K⭐ Hệ thống Giao dịch AI Tự động Hoàn toàn,...
 description: "AI-Trader là hệ thống đại lý giao dịch AI tự động hoàn toàn mã nguồn mở do HKUDS phát triển, 14K+ Stars, hỗ trợ giao dịch tự động đa thị trường chứng khoán, tiền điện tử, ngoại hối."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Python
+tech_stack: - Python
 application_domain: "Llm Frameworks"
 source_version: ""
 licensing_model: "Open Source"
@@ -24,10 +18,8 @@ maintainer: "HKUDS"
 last_maintained: "2026-05-13"
 featureImage: ""
 draft: false
-aliases:
-- /vi/posts/ai-trader/
-faqs:
-  - q: 'AI-Trader của HKUDS là gì?'
+aliases: - /vi/posts/ai-trader/
+faqs: - q: 'AI-Trader của HKUDS là gì?'
     a: 'AI-Trader là hệ thống giao dịch AI tự động hoàn toàn mã nguồn mở, được phát triển bởi Phòng thí nghiệm Khoa học Dữ liệu của Đại học Hồng Kông (HKUDS). Hệ thống sử dụng học tăng cường và cơ chế cộng tác đa tác nhân để giao dịch cổ phiếu, tiền mã hóa, ngoại hối và hợp đồng tương lai, được phát hành theo giấy phép MIT.'
   - q: 'AI-Trader hỗ trợ những thị trường và tài sản nào?'
     a: 'AI-Trader hỗ trợ bốn thị trường: cổ phiếu (Mỹ, Hồng Kông và cổ phiếu hạng A), tiền mã hóa (BTC, ETH và altcoin), ngoại hối (các cặp tiền tệ chính) và hợp đồng tương lai (hàng hóa và chỉ số). Mỗi thị trường áp dụng các loại chiến lược riêng biệt như momentum, theo xu hướng, carry trade và giao dịch chênh lệch giá.'
@@ -39,7 +31,6 @@ faqs:
     a: 'Hoàn toàn có thể. AI-Trader tích hợp công cụ backtest độ trung thực cao để mô phỏng lịch sử và chế độ giao dịch thử nghiệm (đặt mode: paper trong file cấu hình). Tài liệu dự án khuyến nghị luôn sử dụng chế độ giao dịch thử nghiệm trước khi triển khai vào giao dịch thực tế.'
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/ai-trader/ -->
 {</* resource-info */>}
 
 ## AI-Trader là gì?
@@ -62,9 +53,7 @@ Khác với các bot giao dịch truyền thống dựa vào quy tắc cố đ�
 
 ### 1. Kiến trúc Gốc Đại lý 100%
 
-Các bot giao dịch truyền thống là "gốc kịch bản" — chúng thực thi các quy tắc được lập trình trước. AI-Trader là "gốc đại lý":
-
-- **Ra quyết định tự chủ** — AI quyết định khi nào mua, bán hoặc giữ
+Các bot giao dịch truyền thống là "gốc kịch bản" — chúng thực thi các quy tắc được lập trình trước. AI-Trader là "gốc đại lý": - **Ra quyết định tự chủ** — AI quyết định khi nào mua, bán hoặc giữ
 - **Tác nhân phân tích thị trường** — Nhiều tác nhân chuyên môn phân tích các khía cạnh khác nhau (kỹ thuật, cơ bản, tâm lý)
 - **Tác nhân quản lý rủi ro** — Các tác nhân chuyên dụng giám sát rủi ro danh mục và thực thi cắt lỗ
 - **Tác nhân thực thi** — Xử lý đặt lệnh, kiểm soát trượt giá và tương tác sàn giao dịch
@@ -80,9 +69,7 @@ Các bot giao dịch truyền thống là "gốc kịch bản" — chúng thực
 
 ### 3. Cốt lõi Học tăng cường
 
-AI-Trader sử dụng **Học tăng cường Sâu (DRL)** để tối ưu hóa chiến lược:
-
-```python
+AI-Trader sử dụng **Học tăng cường Sâu (DRL)** để tối ưu hóa chiến lược: ```python
 # Vòng lặp huấn luyện đơn giản
 from ai_trader import TradingAgent, MarketEnv
 
@@ -102,9 +89,7 @@ agent.deploy(mode='paper', exchange='binance')
 
 ### 4. Hợp tác Đa tác nhân
 
-Hệ thống sử dụng **kiến trúc đa tác nhân phân cấp**:
-
-```
+Hệ thống sử dụng **kiến trúc đa tác nhân phân cấp**: ```
 ┌─────────────────────────────────────┐
 │      Tác nhân Quản lý Danh mục      │
 │    (Phân bổ vốn, cân bằng lại)     │
@@ -163,9 +148,7 @@ python trade.py --mode paper --config config.yaml
 
 ## Hiệu suất Benchmark
 
-Dựa trên kết quả backtest (2020-2025):
-
-| Chiến lược | Lợi nhuận Hàng năm | Drawdown Tối đa | Tỷ lệ Sharpe |
+Dựa trên kết quả backtest (2020-2025): | Chiến lược | Lợi nhuận Hàng năm | Drawdown Tối đa | Tỷ lệ Sharpe |
 |------------|-------------------|-----------------|--------------|
 | Động lượng | 45.2% | 18.3% | 1.82 |
 | Hồi quy trung bình | 32.1% | 12.7% | 1.65 |
@@ -188,8 +171,7 @@ Dựa trên kết quả backtest (2020-2025):
 
 ## Tuyên bố Miễn trừ Trách nhiệm
 
-**Giao dịch liên quan đến rủi ro mất mát đáng kể.** AI-Trader chỉ dành cho mục đích giáo dục và nghiên cứu. Luôn:
-1. Bắt đầu bằng giao dịch giả lập
+**Giao dịch liên quan đến rủi ro mất mát đáng kể.** AI-Trader chỉ dành cho mục đích giáo dục và nghiên cứu. Luôn: 1. Bắt đầu bằng giao dịch giả lập
 2. Không bao giờ rủi ro nhiều hơn số tiền bạn có thể chịu mất
 3. Hiểu chiến lược trước khi triển khai
 4. Theo dõi hiệu suất thường xuyên
@@ -202,9 +184,7 @@ Dựa trên kết quả backtest (2020-2025):
 
 ## Công Cụ Đề Xuất
 
-Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
+Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
 - **{{< aff "hostinger" "footer-cta-legacy" "Hostinger" >}}** — Lựa chọn VPS giá tốt cho thị trường Việt Nam.
 
 *Affiliate link — không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.*
@@ -221,7 +201,6 @@ Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -249,25 +228,20 @@ Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
 
 ## Why This Matters
 
-Understanding ai-trader: 14k⭐ hệ thống giao dịch ai tự động hoàn toàn, để ai giám sát thị trường 24/7 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding ai-trader: 14k⭐ hệ thống giao dịch ai tự động hoàn toàn, để ai giám sát thị trường 24/7 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

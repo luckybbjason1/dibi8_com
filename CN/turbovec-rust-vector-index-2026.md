@@ -1,10 +1,9 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/turbovec-rust-vector-index-2026" />
 title: 'TurboVec: Rust-Powered Vector Index 10x Faster Than FAIS...
 description: 'TurboVec (RyanCodrai/turbovec) is a vector index built on TurboQuant, written in Rust with Python bindings. Drop-in replacements for LangChain, LlamaIndex, Haystack, and Agno. Delivers 10x speedup with quantization. Covers Python integration, benchmarks, and production deployment.'
 date: 2026-06-09
-lastmod:  2026-06-09slug: 'turbovec-rust-vector-index-2026'
+lastmod: 2026-06-09
+slug: 'turbovec-rust-vector-index-2026'
 category: 'ai-tools'
 tags: ['vector-search', 'rust', 'quantization', 'langchain', 'llamaindex', 'RAG', 'embeddings', 'turboquant']
 github_repo: 'https://github.com/RyanCodrai/turbovec'
@@ -12,9 +11,7 @@ stars: 10513
 maintainer: 'RyanCodrai'
 license: MIT
 featureImage: 'https://raw.githubusercontent.com/RyanCodrai/turbovec/main/assets/hero.png'
-lang: en
 ---
-
 ![TurboVec Vector Index](https://opengraph.github.com/github/RyanCodrai/turbovec)
 
 ![TurboQuant Benchmark](https://opengraph.github.com/github/RyanCodrai/turbovec/tree/main/benchmarks)
@@ -177,16 +174,24 @@ documents = retriever.run(query="your query")
 TurboVec's performance advantage comes from TurboQuant's 4-bit compression combined with Rust's zero-cost abstractions.
 
 | Metric | TurboVec | FAISS IVF | Pinecone | Weaviate |
-|--------|----------|-----------|----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Query latency (100K vectors) | 2.3 ms | 8.7 ms | 15 ms | 12 ms |
 | Query speed (1M) | 4.1 ms | 23 ms | 28 ms | 21 ms |
 | Memory efficiency | 0.5B/dim | 4B/dim | N/A | 4B/dim |
 | Accuracy (quantized) | 99.2% | 97.8% | 99.5% | 99.1% |
 | Max vectors per index | 100M | 100M | 2M | 10M |
 
-Real-world benchmark command:
-
-```bash
+Real-world benchmark command: ```bash
 # Run TurboVec's built-in benchmark suite
 cargo test --release benchmarks
 
@@ -215,8 +220,7 @@ index = turbovec.Index(
 )
 
 # Add vectors over time
-for batch in document_batches:
-    embeddings = embed(batch)
+for batch in document_batches: embeddings = embed(batch)
     index.add(embeddings)
 
 # Save checkpoint to disk
@@ -249,8 +253,7 @@ import time
 
 # Benchmark current index throughput
 start = time.perf_counter()
-for _ in range(1000):
-    index.search(query_emb, k=10)
+for _ in range(1000): index.search(query_emb, k=10)
 elapsed = time.perf_counter() - start
 print(f"Throughput: {1000/elapsed:.0f} queries/sec")
 print(f"Average latency: {elapsed/1000*1000:.2f} ms per query")
@@ -282,10 +285,8 @@ from transformers import AutoTokenizer, AutoModel
 tokenizer = AutoTokenizer.from_pretrained("sentence-transformers/all-MiniLM-L6-v2")
 model = AutoModel.from_pretrained("sentence-transformers/all-MiniLM-L6-v2")
 
-def embed_texts(texts):
-    inputs = tokenizer(texts, padding=True, truncation=True, return_tensors="pt")
-    with torch.no_grad():
-        outputs = model(**inputs)
+def embed_texts(texts): inputs = tokenizer(texts, padding=True, truncation=True, return_tensors="pt")
+    with torch.no_grad(): outputs = model(**inputs)
     return outputs.last_hidden_state.mean(dim=1).numpy()
 
 # Build index
@@ -295,23 +296,17 @@ index.add(embed_texts(document_chunks))
 # Query pipeline
 query_emb = embed_texts(["What is machine learning?"])[0]
 results = index.search(query_emb, k=5)
-for i, (idx, score) in enumerate(results):
-    print(f"  [{i}] score={score:.4f} chunk={document_chunks[idx][:100]}")
+for i, (idx, score) in enumerate(results): print(f"  [{i}] score={score:.4f} chunk={document_chunks[idx][:100]}")
 ```
 
 **Docker Compose for Production Serving**
 
 ```yaml
 version: '3.8'
-services:
-  turbovec:
-    image: ryan-codrai/turbovec:latest
-    ports:
-      - "8000:8000"
-    volumes:
-      - ./index:/data
-    environment:
-      - TURBOVEC_CAPACITY=10000000
+services: turbovec: image: ryan-codrai/turbovec:latest
+    ports: - "8000:8000"
+    volumes: - ./index:/data
+    environment: - TURBOVEC_CAPACITY=10000000
       - TURBOVEC_DIM=1536
       - TURBOVEC_METRIC=cosine
 ```
@@ -319,7 +314,17 @@ services:
 ## Comparison with Alternatives
 
 | Feature | TurboVec | FAISS | Pinecone | Weaviate |
-|---------|----------|-------|----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Self-hostable | ✓ | ✓ | No | ✓ |
 | Python API | ✓ | ✓ | ✓ | ✓ |
 | Rust implementation | ✓ | C++ | No | Go |
@@ -335,9 +340,7 @@ services:
 
 ## Limitations / Honest Assessment
 
-TurboVec is impressive for its performance profile, but there are honest limitations to consider:
-
-1. **Newer library**: With 10,500 stars vs FAISS's 60,000+, TurboVec has less community documentation and fewer third-party tutorials. Production teams should budget time for trial runs.
+TurboVec is impressive for its performance profile, but there are honest limitations to consider: 1. **Newer library**: With 10,500 stars vs FAISS's 60,000+, TurboVec has less community documentation and fewer third-party tutorials. Production teams should budget time for trial runs.
 2. **Rust dependency**: Building from source requires `cargo` and a Rust toolchain. The pip install path avoids this, but custom builds need Rust 1.70+.
 3. **Single-node only**: Unlike Weaviate or Qdrant, TurboVec does not have built-in horizontal scaling. For indexes exceeding 100M vectors, you need to shard across multiple instances.
 4. **Limited vector types**: Currently only supports dense vector search. Sparse vectors, hybrid search, and graph-based indexing are not yet available.
@@ -385,10 +388,9 @@ Read more about [Building RAG Pipelines with Vector Search](dibi8-internal-link)
 
 Join the DIBI8 community on [Telegram](https://t.me/DIBI8_Group) for discussions on AI tools, Rust, and developer infrastructure.
 
----
 
-**Sources & Further Reading**:
-- Official repository: https://github.com/RyanCodrai/turbovec
+---
+**Sources & Further Reading**: - Official repository: https://github.com/RyanCodrai/turbovec
 - TurboQuant paper: https://github.com/RyanCodrai/turbovec/blob/main/docs/turboquant.md
 - LangChain integration docs: https://github.com/RyanCodrai/turbovec/blob/main/docs/integrations/langchain.md
 - LlamaIndex integration docs: https://github.com/RyanCodrai/turbovec/blob/main/docs/integrations/llama_index.md
@@ -397,7 +399,6 @@ Join the DIBI8 community on [Telegram](https://t.me/DIBI8_Group) for discussions
 
 **Disclosure**: This article contains affiliate links. If you sign up through our links, we may earn a small commission at no additional cost to you. This helps support independent tech journalism and keeps resources like dibi8.com free and ad-free.
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -423,8 +424,8 @@ Join the DIBI8 community on [Telegram](https://t.me/DIBI8_Group) for discussions
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [turbovec-rust-vector-index-2026](turbovec-rust-vector-index-2026)

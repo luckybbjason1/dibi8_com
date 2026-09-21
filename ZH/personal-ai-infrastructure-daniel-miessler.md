@@ -1,22 +1,14 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/personal-ai-infrastructure-daniel-miessler" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/personal-ai-infrastructure-daniel-miessler" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/personal-ai-infrastructure-daniel-miessler" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/personal-ai-infrastructure-daniel-miessler" />
 title: 'Personal AI Infrastructure：Daniel Miessler 为人类打造的 Agenti...
 description: 'Daniel Miessler 的个人 AI 基础设施（PAI）是一个生活操作系统，包含 45 个技能、171 个工作流、Pulse 守护进程和 Algorithm v6.3.0。一键安装，MIT 许可。将策略、执行和反思融为一体。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-13
-lastmod:  2026-06-13slug: 'personal-ai-infrastructure-daniel-miessler'
+lastmod: 2026-06-13
+slug: 'personal-ai-infrastructure-daniel-miessler'
 category: data-science
 tags: ['pai', 'personal-ai', 'daniel-miessler', 'life-os', 'algorithm', 'skills', 'automation']
 github_repo: 'https://github.com/danielmiessler/Personal_AI_Infrastructure'
 license: 'MIT'
-lang: zh
-featureImage: /articles/fine-tuning-stack-2026--5-component-pipeline-from-dataset-to-production-deployed.png/images/articles/fine-tuning-stack-2026--5-component-pipeline-from-dataset-to-production-deployed.png
----
-
-<!-- canonical: https://dibi8.com/zh/tools/personal-ai-infrastructure-daniel-miessler/ -->
+featureImage: /articles/fine-tuning-stack-2026--5-component-pipeline-from-dataset-to-production-deployed.png/images/articles/fine-tuning-stack-2026--5-component-pipeline-from-dataset-to-production-deployed.png---
 
 # Personal AI Infrastructure：为人类打造的 Agentic AI 设置 — 2026 指南
 
@@ -72,7 +64,13 @@ PAI 的核心是一个定制算法，通过七阶段循环驱动从当前状态�
 每个阶段有特定的用途：
 
 | 阶段 | 目的 | 输出 |
-|------|------|------|
+|
+---
+|
+---
+|
+---
+|
 | **观察** | 收集关于当前状态的事实 | 状态文档 |
 | **思考** | 使用第一性原理分析 | 根本原因分析 |
 | **规划** | 定义通往理想状态的路径 | 实施计划 |
@@ -331,7 +329,13 @@ PAI 通过隔离区域提供结构化隐私。每个区域隔离数据和 AI 交
 PAI 与更广泛的 AI 生态系统集成：
 
 | 工具 | 集成方式 | 方向 |
-|------|---------|------|
+|
+---
+|
+---
+|
+---
+|
 | Claude Code | 技能层 | PAI → Claude |
 | Cursor | 身份文件 | PAI → Cursor |
 | Obsidian | 知识库 | 双向 |
@@ -374,7 +378,15 @@ pulse sync --target github --issues
 用户报告采用 PAI 后决策质量大幅提升：
 
 | 指标 | 没有 PAI | 有 PAI | 改进 |
-|------|---------|--------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 决策重新评估率 | 40% | 8% | -80% |
 | 从问题到解决方案的时间 | 3.2 天 | 0.8 天 | -75% |
 | 跨项目知识复用 | 5% | 45% | +800% |
@@ -405,7 +417,15 @@ pulse reflect --today
 ### 成本比较
 
 | 方案 | 月度成本 | 节省时间 | 捕获知识 |
-|------|---------|---------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 纯 AI 工具 | $50-200 | 低 | 无 |
 | PAI + AI 工具 | $50-200 | 高 | 完整 |
 | 人类顾问 | $2,000-10,000 | 中 | 部分 |
@@ -524,8 +544,8 @@ Personal AI Infrastructure 代表了创建综合 AI 操作系统的最雄心勃�
 - [Compound Engineering](/zh/resources/llm-frameworks/compound-engineering-multi-agent-coding-claude-codex-cursor/) — 结构化的多代理工作流
 
 
----
 
+---
 **来源与延伸阅读**：
 - GitHub 仓库：https://github.com/danielmiessler/Personal_AI_Infrastructure
 - 博客文章：https://danielmiessler.com/blog/personal-ai-infrastructure
@@ -534,12 +554,11 @@ Personal AI Infrastructure 代表了创建综合 AI 操作系统的最雄心勃�
 
 **加入我们的社区**：https://t.me/DIBI8_Group
 
----
 
+---
 **披露**：本文包含联盟链接。如果你通过我们的链接注册，我们可能会获得佣金，对你不会产生额外费用。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -567,25 +586,20 @@ Personal AI Infrastructure 代表了创建综合 AI 操作系统的最雄心勃�
 
 ## Why This Matters
 
-Understanding personal ai infrastructure：daniel miessler 为人类打造的 agentic ai 设置 — 2026 完整指南 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding personal ai infrastructure：daniel miessler 为人类打造的 agentic ai 设置 — 2026 完整指南 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

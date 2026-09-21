@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/feast-feature-store-ml" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/feast-feature-store-ml" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/feast-feature-store-ml" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/feast-feature-store-ml" />
 title: 'Feast: 오픈소스 피처 스토어 서브세컨드 특성 서빙 — 2026 설치 가이드'
 description: 'Feast 완벽 가이드 — 가장 널리 사용되는 오픈소스 피처 스토어. 피처 레지스트리, 온라인/오프라인 스토어, 서브세컨드 서빙, Redis/BigQuery 백엔드, 배치 및 실시간 피처, 프로덕션 배포를 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: [feast, 'feature store', mlops, 'ml pipeline', redis, bigquery, 'online store', 'offline store', 'real-time ml', 'feature engineering']
-aliases:
-- /kr/posts/feast-feature-store-ml/
+aliases: - /kr/posts/feast-feature-store-ml/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/feast-feature-store-ml/ -->
 
 {{</* resource-info */>}}
 
@@ -47,9 +39,7 @@ aliases:
 
 **Feast는 ML 피처를 정의, 등록, 저장, 제공하기 위한 통합 인터페이스를 제공하는 오픈소스 피처 스토어입니다.** 피처 저장을 두 계층으로 분리합니다: **오프라인 스토어**는 학습 데이터 생성(배치, 역사적 쿼리)을 위한 것이고, **온라인 스토어**는 실시간 피처 제공(서브세컨드 조회)을 위한 것입니다. 중앙 **피처 레지스트리**가 모든 피처 정의, 메타데이터, 리니지를 추적합니다.
 
-핵심 기능 개요:
-
-- **피처 레지스트리**: 코드로 버전 관리되는 피처 정의 중앙 카탈로그, 팀 전체에서 검색 및 재사용 가능
+핵심 기능 개요: - **피처 레지스트리**: 코드로 버전 관리되는 피처 정의 중앙 카탈로그, 팀 전체에서 검색 및 재사용 가능
 - **오프라인 스토어**: 모델 학습을 위한 역사적 피처의 배치 검색 — BigQuery, Snowflake, Redshift, DuckDB, Spark 지원
 - **온라인 스토어**: 실시간 추론을 위한 서브세컨드(p99 < 10ms) 피처 조회 — Redis, DynamoDB, Bigtable, SQLite, Dragonfly 지원
 - **포인트인타임 조인**: 학습 시 데이터 누출을 방지하기 위한 역사적 피처 값의 정확한 검색
@@ -61,23 +51,16 @@ Feast는 피처를 **계산하지 않습니다** — Spark, Airflow, dbt 등의 
 
 ## Feast 작동 방식: 아키텍처 심층 분석
 
-Feast 아키텍처는 네 가지 핵심 구성 요소로 구성됩니다:
+Feast 아키텍처는 네 가지 핵심 구성 요소로 구성됩니다: ### 1. 피처 레지스트리
 
-### 1. 피처 레지스트리
-
-레지스트리는 Feast의 두뇌입니다. 모든 피처 정의를 코드(feature_store.yaml 및 Python 파일)로 저장하고 메타데이터를 백엔드 — 파일(로컬, S3, GCS) 또는 SQL 데이터베이스(PostgreSQL, MySQL) — 에 지속합니다:
-
-```yaml
+레지스트리는 Feast의 두뇌입니다. 모든 피처 정의를 코드(feature_store.yaml 및 Python 파일)로 저장하고 메타데이터를 백엔드 — 파일(로컬, S3, GCS) 또는 SQL 데이터베이스(PostgreSQL, MySQL) — 에 지속합니다: ```yaml
 # feature_store.yaml — Feast 프로젝트 구성
 project: fraud_detection
 provider: local
-registry: 
-  path: s3://my-bucket/registry.db  # 프로덕션용 SQL 레지스트리
-online_store:
-  type: redis
+registry: path: s3://my-bucket/registry.db  # 프로덕션용 SQL 레지스트리
+online_store: type: redis
   connection_string: "redis://localhost:6379"
-offline_store:
-  type: bigquery
+offline_store: type: bigquery
   project: my-gcp-project
   dataset: feast_offline
 entity_key_serialization_version: 2
@@ -87,9 +70,7 @@ entity_key_serialization_version: 2
 
 ### 2. 오프라인 스토어
 
-오프라인 스토어는 대량의 역사적 피처 데이터를 보유합니다. 두 가지 목적을 제공합니다:
-
-- **학습 데이터 생성**: 특정 역사적 타임스탬프에 존재했던 피처 값을 얻기 위한 포인트인타임 조인
+오프라인 스토어는 대량의 역사적 피처 데이터를 보유합니다. 두 가지 목적을 제공합니다: - **학습 데이터 생성**: 특정 역사적 타임스탬프에 존재했던 피처 값을 얻기 위한 포인트인타임 조인
 - **배치 스코어링**: 배치 예측을 위한 대규모 피처 검색
 
 지원되는 백엔드: **BigQuery, Snowflake, Redshift, Spark, DuckDB, PostgreSQL, Trino**
@@ -133,9 +114,7 @@ features = store.get_online_features(
 
 ### 4. 피처 서버
 
-Feast 피처 서버는 REST와 gRPC를 통해 피처 검색을 노출하는 Go 기반 고성능 서비스입니다. 모델 서빙 인프라(KServe, Seldon, 커스텀) 옆에 사이드카로 배포하세요:
-
-```bash
+Feast 피처 서버는 REST와 gRPC를 통해 피처 검색을 노출하는 Go 기반 고성능 서비스입니다. 모델 서빙 인프라(KServe, Seldon, 커스텀) 옆에 사이드카로 배포하세요: ```bash
 # 피처 서버 시작
 feast serve --port 6566
 
@@ -150,9 +129,7 @@ curl -X POST "http://localhost:6566/get-online-features" \
 
 ## 설치 및 설정: 5분 이내
 
-Feast에는 Python 3.9+와 pip가 필요합니다. 원하는 백엔드와 함께 설치하세요:
-
-```bash
+Feast에는 Python 3.9+와 pip가 필요합니다. 원하는 백엔드와 함께 설치하세요: ```bash
 # 코어 Feast (최소 설치)
 pip install feast
 
@@ -172,16 +149,12 @@ pip install "feast[postgres]"
 pip install "feast[gcp,redis,postgres,snowflake]"
 ```
 
-설치 확인:
-
-```bash
+설치 확인: ```bash
 feast version
 # Feast SDK Version: 0.63.0
 ```
 
-새로운 Feast 프로젝트 초기화:
-
-```bash
+새로운 Feast 프로젝트 초기화: ```bash
 # 프로젝트 디렉토리 생성 및 진입
 mkdir fraud_detection_feature_store
 cd fraud_detection_feature_store
@@ -189,8 +162,7 @@ cd fraud_detection_feature_store
 # Feast 초기화 (feature_store.yaml 및 example/ 생성)
 feast init
 
-# 프로젝트 구조:
-# .
+# 프로젝트 구조: # .
 # ├── feature_store.yaml    # 메인 설정
 # ├── example/
 # │   ├── repo/
@@ -314,37 +286,30 @@ feast materialize 2026-01-01T00:00:00 2026-05-19T00:00:00
 # feature_store.yaml — 프로덕션 설정
 project: fraud_detection
 provider: gcp
-registry:
-  registry_store_type: sql
+registry: registry_store_type: sql
   path: "postgresql://user:pass@pg-host:5432/feast_registry"
   cache_ttl_seconds: 60
 
-online_store:
-  type: redis
+online_store: type: redis
   connection_string: "redis://:password@redis-cluster.internal:6379"
   key_ttl_seconds: 604800  # 피처 키의 7일 TTL
   
-offline_store:
-  type: bigquery
+offline_store: type: bigquery
   project: my-gcp-project
   dataset: feast_offline
   location: US
 
 entity_key_serialization_version: 2
 
-flags:
-  alpha_features: true
+flags: alpha_features: true
   on_demand_transforms: true
 ```
 
 ### Redis 온라인 스토어 구성
 
-서브밀리세컨드 제공을 위해 적절한 샤딩이 있는 Redis Cluster를 사용하세요:
-
-```yaml
+서브밀리세컨드 제공을 위해 적절한 샤딩이 있는 Redis Cluster를 사용하세요: ```yaml
 # Redis Cluster 구성
-online_store:
-  type: redis
+online_store: type: redis
   redis_type: redis_cluster
   connection_string: "redis://redis-node-1:6379,redis-node-2:6379,redis-node-3:6379"
   key_ttl_seconds: 604800
@@ -352,9 +317,7 @@ online_store:
 
 ### VPS에 Redis 배포
 
-셀프 호스팅 배포의 경우 [DigitalOcean](https://m.do.co/c/eca87ac14ee0)은 자동 장애 조치 기능이 있는 관리형 Redis 클러스터를 월 $15부터 제공합니다. 또는 Droplet에 Redis를 배포하세요:
-
-```bash
+셀프 호스팅 배포의 경우 [DigitalOcean](https://m.do.co/c/eca87ac14ee0)은 자동 장애 조치 기능이 있는 관리형 Redis 클러스터를 월 $15부터 제공합니다. 또는 Droplet에 Redis를 배포하세요: ```bash
 # Ubuntu 22.04에 Redis 배포 (DigitalOcean Droplet)
 sudo apt update
 sudo apt install redis-server
@@ -431,8 +394,7 @@ store = FeatureStore(repo_path=".")
 model = joblib.load("models/fraud_xgboost.pkl")
 
 @app.post("/predict")
-async def predict(user_id: str, transaction_amount: float):
-    # Redis에서 온라인 피처 검색 (< 5ms)
+async def predict(user_id: str, transaction_amount: float): # Redis에서 온라인 피처 검색 (< 5ms)
     features = store.get_online_features(
         features=[
             "user_transaction_features:avg_order_amount_30d",
@@ -487,9 +449,7 @@ with DAG(
     schedule_interval="@hourly",
     start_date=datetime(2026, 1, 1),
     catchup=False,
-) as dag:
-    
-    materialize = BashOperator(
+) as dag: materialize = BashOperator(
         task_id="materialize_features",
         bash_command="""
             cd /opt/feast/fraud_detection_feature_store && \
@@ -510,9 +470,7 @@ with DAG(
 
 ## 벤치마크와 실제 사용 사례
 
-Feast는 스타트업부터 엔터프라이즈까지 다양한 회사의 프로덕션 ML 시스템을 지원합니다. 성능 벤치마크와 도입 지표는 다음과 같습니다:
-
-| 지표 | 수치 | 출처 |
+Feast는 스타트업부터 엔터프라이즈까지 다양한 회사의 프로덕션 ML 시스템을 지원합니다. 성능 벤치마크와 도입 지표는 다음과 같습니다: | 지표 | 수치 | 출처 |
 |------|------|------|
 | GitHub Stars | **7,000+** | GitHub (2026년 5월) |
 | 기여자 | **361** | GitHub |
@@ -552,9 +510,7 @@ Feast는 스타트업부터 엔터프라이즈까지 다양한 회사의 프로�
 
 ### 온디맨드 피처 변환
 
-머티리얼라이즈할 수 없는 요청 시점의 피처를 계산합니다:
-
-```python
+머티리얼라이즈할 수 없는 요청 시점의 피처를 계산합니다: ```python
 from feast import on_demand_feature_view
 from feast.types import Float64
 
@@ -566,8 +522,7 @@ from feast.types import Float64
     ],
     mode="python",
 )
-def transaction_transforms(inputs):
-    import pandas as pd
+def transaction_transforms(inputs): import pandas as pd
     df = pd.DataFrame()
     df["transaction_amount_ratio"] = (
         inputs["transaction_amount"] / inputs["avg_order_amount_30d"]
@@ -609,13 +564,10 @@ user_transaction_features_with_validation = FeatureView(
 ```yaml
 # feature_store_team_a.yaml
 project: team_a_fraud
-registry:
-  path: s3://shared-bucket/registry_team_a.db
-online_store:
-  type: redis
+registry: path: s3://shared-bucket/registry_team_a.db
+online_store: type: redis
   connection_string: "redis://shared-redis:6379/0"
-offline_store:
-  type: bigquery
+offline_store: type: bigquery
   project: my-gcp-project
   dataset: team_a_features
 ```
@@ -690,9 +642,7 @@ ML 모델이 학습-서빙 스큐로 고통받고, 추론 파이프라인이 너
 
 **7,000+ Stars**, **361명의 기여자**가 있는 활발한 커뮤니티, **20+ 스토리지 백엔드** 지원으로 Feast는 유연성과 멀티 클라우드 이식성을 중시하는 팀의 오픈소스 피처 스토어 선택입니다. Redis + BigQuery 조합은 **p50 온라인 제공 지연 시간이 2ms 미만**이며 포인트인타임 조인은 학습 데이터가 누출되지 않도록 보장합니다.
 
-오늘 시작하세요:
-
-```bash
+오늘 시작하세요: ```bash
 pip install feast[redis,bigquery]
 feast init
 # 엔터티, 피처 뷰, 피처 서비스 정의
@@ -719,9 +669,7 @@ Telegram 그룹에서 이 가이드를 논의하고 Feast 배포를 공유하세
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -731,7 +679,6 @@ Telegram 그룹에서 이 가이드를 논의하고 Feast 배포를 공유하세
 이 문서에는 [DigitalOcean](https://m.do.co/c/eca87ac14ee0)의 제휴 링크가 포함되어 있습니다. 이 링크를 통해 가입하면 dibi8.com에 추가 비용 없이 커미션이 지급됩니다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/perplexity-api-rag-search" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/perplexity-api-rag-search" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/perplexity-api-rag-search" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/perplexity-api-rag-search" />
 title: 'perplexity-api-rag-search'
 description: '{'en': ''Learn how to build RAG-enhanced search applications using the Perplexity API. Covers Sonar models, real-time web citations, streaming, and production integration patterns.'', 'zh': ''学习如何使用Perplexity API构建RAG增强搜索应用。涵盖Sonar模型、实时网络引用、流式传输和生产集成模式。'', 'ko': ''Perplexity API를 사용하여 RAG 강화 검색 애플리케이션을构建하는 방법을 알아보세요. Sonar 모델, 실시간 웹 인용, 스트리밍 및 프로덕션 통합 패턴을 다룹니다.'', 'vi': ''Tìm hiểu cách xây dựng ứng dụng tìm kiếm tăng cường RAG bằng Perplexity API. Bao gồm mô hình Sonar, trích dẫn web thờigian thực, streaming và các mẫu tích hợp sản xuất.''}'
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['perplexity api']
-aliases:
-- /vi/posts/perplexity-api-rag-search/
+aliases: - /vi/posts/perplexity-api-rag-search/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/perplexity-api-rag-search/ -->
 
 {{</* resource-info */>}}
 
@@ -117,8 +109,7 @@ Perplexity API triển khai giao diện chat completions tương thích với Op
 import requests
 import json
 
-def perplexity_query(query: str, model: str = "sonar-pro") -> dict:
-    """Gửi một truy vấn được tăng cường RAG duy nhất đến Perplexity API."""
+def perplexity_query(query: str, model: str = "sonar-pro") -> dict: """Gửi một truy vấn được tăng cường RAG duy nhất đến Perplexity API."""
     url = f"{BASE_URL}/chat/completions"
     
     payload = {
@@ -150,9 +141,7 @@ print(result["choices"][0]["message"]["content"])
 
 Lưu ý rằng không cần tham số tìm kiếm, ID tài liệu hoặc cấu hình truy xuất. Perplexity tự động xác định xem có cần tìm kiếm web hay không, thực hiện truy xuất và căn cứ phản hồi trên tài liệu có nguồn.
 
-Phản hồi bao gồm không chỉ văn bản được tạo mà cả siêu dữ liệu trích dẫn:
-
-```python
+Phản hồi bao gồm không chỉ văn bản được tạo mà cả siêu dữ liệu trích dẫn: ```python
 # Trích xuất trích dẫn từ phản hồi
 message = result["choices"][0]["message"]
 answer_text = message["content"]
@@ -160,8 +149,7 @@ citations = message.get("citations", [])
 
 print(f"Câu trả lờ: {answer_text[:200]}...")
 print(f"\nSố nguồn được trích dẫn: {len(citations)}")
-for i, citation in enumerate(citations[:5], 1):
-    print(f"  [{i}] {citation}")
+for i, citation in enumerate(citations[:5], 1): print(f"  [{i}] {citation}")
 ```
 
 ---
@@ -175,15 +163,13 @@ Trích dẫn là đặc điểm xác định của triển khai RAG của Perple
 Perplexity trả về trích dẫn dưới dạng danh sách URL trong trường `citations` của tin nhắn trợ lý. Trong văn bản nội dung, các trích dẫn được tham chiếu bằng chỉ số trong ngoặc vuông `[1]`, `[2]`, v.v., khớp với thứ tự của mảng trích dẫn.
 
 ```python
-def format_response_with_citations(result: dict) -> str:
-    """Định dạng phản hồi Perplexity với các liên kết trích dẫn có thể nhấp."""
+def format_response_with_citations(result: dict) -> str: """Định dạng phản hồi Perplexity với các liên kết trích dẫn có thể nhấp."""
     message = result["choices"][0]["message"]
     content = message["content"]
     citations = message.get("citations", [])
     
     formatted = f"{content}\n\n---\n**Nguồn:**\n"
-    for i, url in enumerate(citations, 1):
-        formatted += f"\n[{i}] [{url}]({url})"
+    for i, url in enumerate(citations, 1): formatted += f"\n[{i}] [{url}]({url})"
     
     return formatted
 
@@ -192,10 +178,7 @@ print(format_response_with_citations(result))
 
 ### Hiển thị Trích dẫn trong Ứng dụng Web
 
-Khi xây dựng giao diện web, hiển thị trích dẫn dưới dạng chú thích tương tác hoặc tham chiếu thanh bên:
-
-```html
-<!-- Thành phần React cho phản hồi có trích dẫn -->
+Khi xây dựng giao diện web, hiển thị trích dẫn dưới dạng chú thích tương tác hoặc tham chiếu thanh bên: ```html
 function CitedResponse({ content, citations }) {
   // Phân tích các đánh dấu [1], [2] trong nội dung
   const parts = content.split(/(\[\d+\])/g);
@@ -234,8 +217,7 @@ function CitedResponse({ content, citations }) {
 import sseclient
 import io
 
-def perplexity_stream(query: str, model: str = "sonar-pro"):
-    """Phát trực tiếp phản hồi truy vấn RAG từng token."""
+def perplexity_stream(query: str, model: str = "sonar-pro"): """Phát trực tiếp phản hồi truy vấn RAG từng token."""
     url = f"{BASE_URL}/chat/completions"
     
     payload = {
@@ -255,22 +237,18 @@ def perplexity_stream(query: str, model: str = "sonar-pro"):
     full_content = []
     citations = []
     
-    for event in client.events():
-        if event.data == "[DONE]":
-            break
+    for event in client.events(): if event.data == "[DONE]": break
         
         chunk = json.loads(event.data)
         delta = chunk["choices"][0].get("delta", {})
         
         # Tích lũy các token nội dung
-        if "content" in delta:
-            token = delta["content"]
+        if "content" in delta: token = delta["content"]
             full_content.append(token)
             print(token, end="", flush=True)
         
         # Chụp các trích dẫn từ chunk cuối cùng
-        if "citations" in delta:
-            citations.extend(delta["citations"])
+        if "citations" in delta: citations.extend(delta["citations"])
     
     print(f"\n\nNguồn: {citations}")
     return "".join(full_content), citations
@@ -326,18 +304,14 @@ async function streamPerplexity(query) {
 Perplexity duy trì ngữ cảnh hội thoại xuyên suốt nhiều lượt, cho phép các câu hỏi tiếp theo tham chiếu các cuộc trao đổi trước đó. Hệ thống tìm kiếm thích ứng với luồng hội thoại, tinh chỉnh các truy xuất dựa trên ngữ cảnh tích lũy.
 
 ```python
-class PerplexityConversation:
-    """Trình xử lý hội thoại trạng thái với bộ nhớ tìm kiếm RAG."""
+class PerplexityConversation: """Trình xử lý hội thoại trạng thái với bộ nhớ tìm kiếm RAG."""
     
-    def __init__(self, model: str = "sonar-pro", system_prompt: str = None):
-        self.model = model
+    def __init__(self, model: str = "sonar-pro", system_prompt: str = None): self.model = model
         self.messages = []
-        if system_prompt:
-            self.messages.append({"role": "system", "content": system_prompt})
+        if system_prompt: self.messages.append({"role": "system", "content": system_prompt})
         self.citation_history = []
     
-    def ask(self, query: str) -> dict:
-        """Gửi tin nhắn và duy trì lịch sử hội thoại."""
+    def ask(self, query: str) -> dict: """Gửi tin nhắn và duy trì lịch sử hội thoại."""
         self.messages.append({"role": "user", "content": query})
         
         payload = {
@@ -365,8 +339,7 @@ class PerplexityConversation:
         
         return result
     
-    def get_conversation_summary(self) -> str:
-        """Tạo tóm tắt về cuộc hội thoại và các nguồn đã sử dụng."""
+    def get_conversation_summary(self) -> str: """Tạo tóm tắt về cuộc hội thoại và các nguồn đã sử dụng."""
         unique_sources = list(set(self.citation_history))
         return f"Lượt: {len(self.messages)//2}, Nguồn duy nhất: {len(unique_sources)}"
 
@@ -396,11 +369,8 @@ Vượt ra ngoài Q&A cơ bản, Perplexity API hỗ trợ các mẫu truy vấn
 
 ### Nhắm mục tiêu Miền Tìm kiếm
 
-Hạn chế tìm kiếm vào các miền cụ thể để có nguồn có thẩm quyền trong các lĩnh vực chuyên môn:
-
-```python
-def targeted_search(query: str, domains: list[str]) -> dict:
-    """Tìm kiếm trong các miền đã chỉ định để có kết quả có thẩm quyền."""
+Hạn chế tìm kiếm vào các miền cụ thể để có nguồn có thẩm quyền trong các lĩnh vực chuyên môn: ```python
+def targeted_search(query: str, domains: list[str]) -> dict: """Tìm kiếm trong các miền đã chỉ định để có kết quả có thẩm quyền."""
     payload = {
         "model": "sonar-pro",
         "messages": [
@@ -430,11 +400,8 @@ medical_result = targeted_search(
 
 ### Lọc Thờigian gần đây
 
-Kiểm soát phạm vi thờigian của tìm kiếm web để đảm bảo độ mới:
-
-```python
-def recent_search(query: str, recency_days: int = 7) -> dict:
-    """Chỉ tìm kiếm thông tin gần đây."""
+Kiểm soát phạm vi thờigian của tìm kiếm web để đảm bảo độ mới: ```python
+def recent_search(query: str, recency_days: int = 7) -> dict: """Chỉ tìm kiếm thông tin gần đây."""
     payload = {
         "model": "sonar-pro",
         "messages": [{"role": "user", "content": query}],
@@ -455,13 +422,10 @@ breaking = recent_search("Các thương vụ công nghệ lớn hôm nay", recen
 
 ### Chế độ JSON để Trích xuất Có cấu trúc
 
-Khi xây dựng đường ống dữ liệu, yêu cầu đầu ra có cấu trúc để phân tích tự động:
-
-```python
+Khi xây dựng đường ống dữ liệu, yêu cầu đầu ra có cấu trúc để phân tích tự động: ```python
 import json
 
-def structured_search(query: str, schema: dict) -> dict:
-    """Tìm kiếm và trả về JSON có cấu trúc phù hợp với lược đồ."""
+def structured_search(query: str, schema: dict) -> dict: """Tìm kiếm và trả về JSON có cấu trúc phù hợp với lược đồ."""
     payload = {
         "model": "sonar-pro",
         "messages": [
@@ -513,11 +477,9 @@ Các tích hợp sản xuất đòi hỏi khả năng xử lý mạnh mẽ các 
 import time
 from functools import wraps
 
-class PerplexityClient:
-    """Khách hàng API Perplexity sẵn sàng sản xuất với thử lại và giớ hạn tốc độ."""
+class PerplexityClient: """Khách hàng API Perplexity sẵn sàng sản xuất với thử lại và giớ hạn tốc độ."""
     
-    def __init__(self, api_key: str, model: str = "sonar-pro", max_retries: int = 3):
-        self.api_key = api_key
+    def __init__(self, api_key: str, model: str = "sonar-pro", max_retries: int = 3): self.api_key = api_key
         self.model = model
         self.max_retries = max_retries
         self.headers = {
@@ -527,23 +489,18 @@ class PerplexityClient:
         self.request_count = 0
         self.last_reset = time.time()
     
-    def _rate_limit_check(self, rpm_limit: int = 50):
-        """Kiểm soát tốc độ cơ bản để duy trì trong giớ hạn cấp."""
+    def _rate_limit_check(self, rpm_limit: int = 50): """Kiểm soát tốc độ cơ bản để duy trì trong giớ hạn cấp."""
         now = time.time()
-        if now - self.last_reset >= 60:
-            self.request_count = 0
+        if now - self.last_reset >= 60: self.request_count = 0
             self.last_reset = now
         
-        if self.request_count >= rpm_limit:
-            sleep_time = 60 - (now - self.last_reset)
-            if sleep_time > 0:
-                print(f"Đã đạt giớ hạn tốc độ. Tạm dừng {sleep_time:.1f}s")
+        if self.request_count >= rpm_limit: sleep_time = 60 - (now - self.last_reset)
+            if sleep_time > 0: print(f"Đã đạt giớ hạn tốc độ. Tạm dừng {sleep_time:.1f}s")
                 time.sleep(sleep_time)
             self.request_count = 0
             self.last_reset = time.time()
     
-    def query(self, user_query: str, temperature: float = 0.2, **kwargs) -> dict:
-        """Thực thi truy vấn với tự động thử lại khi lỗi."""
+    def query(self, user_query: str, temperature: float = 0.2, **kwargs) -> dict: """Thực thi truy vấn với tự động thử lại khi lỗi."""
         self._rate_limit_check()
         
         payload = {
@@ -554,17 +511,14 @@ class PerplexityClient:
             **kwargs
         }
         
-        for attempt in range(self.max_retries):
-            try:
-                response = requests.post(
+        for attempt in range(self.max_retries): try: response = requests.post(
                     f"{BASE_URL}/chat/completions",
                     headers=self.headers,
                     json=payload,
                     timeout=30
                 )
                 
-                if response.status_code == 429:
-                    retry_after = int(response.headers.get("Retry-After", 2 ** attempt))
+                if response.status_code == 429: retry_after = int(response.headers.get("Retry-After", 2 ** attempt))
                     print(f"Bị giớ hạn tốc độ. Thử lại sau {retry_after}s")
                     time.sleep(retry_after)
                     continue
@@ -573,13 +527,10 @@ class PerplexityClient:
                 self.request_count += 1
                 return response.json()
                 
-            except requests.exceptions.Timeout:
-                print(f"Hết thờigian ở lần thử {attempt + 1}")
+            except requests.exceptions.Timeout: print(f"Hết thờigian ở lần thử {attempt + 1}")
                 time.sleep(2 ** attempt)
-            except requests.exceptions.HTTPError as e:
-                print(f"Lỗi HTTP: {e}")
-                if attempt < self.max_retries - 1:
-                    time.sleep(2 ** attempt)
+            except requests.exceptions.HTTPError as e: print(f"Lỗi HTTP: {e}")
+                if attempt < self.max_retries - 1: time.sleep(2 ** attempt)
         
         raise Exception("Đã vượt quá số lần thử lại tối đa")
 
@@ -594,13 +545,10 @@ queries = [
 ]
 
 results = []
-for q in queries:
-    try:
-        result = client.query(q)
+for q in queries: try: result = client.query(q)
         results.append(result)
         print(f"✓ Truy vấn hoàn thành: {q[:50]}...")
-    except Exception as e:
-        print(f"✗ Truy vấn thất bại: {q[:50]}... - {e}")
+    except Exception as e: print(f"✗ Truy vấn thất bại: {q[:50]}... - {e}")
 ```
 
 ---
@@ -623,15 +571,12 @@ CORS(app)
 PERPLEXITY_KEY = os.environ["PERPLEXITY_API_KEY"]
 BASE_URL = "https://api.perplexity.ai"
 
-class RAGSearchService:
-    def __init__(self):
-        self.headers = {
+class RAGSearchService: def __init__(self): self.headers = {
             "Authorization": f"Bearer {PERPLEXITY_KEY}",
             "Content-Type": "application/json"
         }
     
-    def search(self, query: str, model: str = "sonar-pro", stream: bool = False):
-        """Thực thi tìm kiếm RAG với tùy chọn streaming."""
+    def search(self, query: str, model: str = "sonar-pro", stream: bool = False): """Thực thi tìm kiếm RAG với tùy chọn streaming."""
         payload = {
             "model": model,
             "messages": [
@@ -658,17 +603,14 @@ class RAGSearchService:
 service = RAGSearchService()
 
 @app.route("/search", methods=["POST"])
-def search():
-    """Điểm cuối tìm kiếm RAG đồng bộ."""
+def search(): """Điểm cuối tìm kiếm RAG đồng bộ."""
     data = request.get_json()
     query = data.get("query", "")
     model = data.get("model", "sonar-pro")
     
-    if not query:
-        return jsonify({"error": "Cần có truy vấn"}), 400
+    if not query: return jsonify({"error": "Cần có truy vấn"}), 400
     
-    try:
-        result = service.search(query, model=model)
+    try: result = service.search(query, model=model)
         data = result.json()
         
         message = data["choices"][0]["message"]
@@ -678,26 +620,19 @@ def search():
             "model": model,
             "usage": data.get("usage", {})
         })
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
+    except Exception as e: return jsonify({"error": str(e)}), 500
 
 @app.route("/search/stream", methods=["POST"])
-def search_stream():
-    """Điểm cuối tìm kiếm RAG streaming với Server-Sent Events."""
+def search_stream(): """Điểm cuối tìm kiếm RAG streaming với Server-Sent Events."""
     data = request.get_json()
     query = data.get("query", "")
     model = data.get("model", "sonar-pro")
     
-    if not query:
-        return jsonify({"error": "Cần có truy vấn"}), 400
+    if not query: return jsonify({"error": "Cần có truy vấn"}), 400
     
-    def generate():
-        response = service.search(query, model=model, stream=True)
-        for line in response.iter_lines():
-            if line:
-                decoded = line.decode("utf-8")
-                if decoded.startswith("data: "):
-                    yield f"{decoded}\n\n"
+    def generate(): response = service.search(query, model=model, stream=True)
+        for line in response.iter_lines(): if line: decoded = line.decode("utf-8")
+                if decoded.startswith("data: "): yield f"{decoded}\n\n"
     
     return Response(
         generate(),
@@ -706,12 +641,10 @@ def search_stream():
     )
 
 @app.route("/health", methods=["GET"])
-def health():
-    """Điểm cuối kiểm tra sức khỏe."""
+def health(): """Điểm cuối kiểm tra sức khỏe."""
     return jsonify({"status": "healthy", "service": "rag-search"})
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+if __name__ == "__main__": app.run(host="0.0.0.0", port=5000, debug=True)
 ```
 
 ```bash
@@ -733,16 +666,11 @@ CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5000", "app:app"]
 ```yaml
 # docker-compose.yml
 version: "3.8"
-services:
-  rag-search:
-    build: .
-    ports:
-      - "5000:5000"
-    environment:
-      - PERPLEXITY_API_KEY=${PERPLEXITY_API_KEY}
+services: rag-search: build: .
+    ports: - "5000:5000"
+    environment: - PERPLEXITY_API_KEY=${PERPLEXITY_API_KEY}
     restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+    healthcheck: test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -800,7 +728,6 @@ Perplexity API đại diện cho một bước tiến đáng kể trong công ng
 Khi chúng ta bước qua năm 2026, kỳ vọng rằng các ứng dụng AI cung cấp câu trả lờ có nguồn gốc, có thể xác minh đang trở thành tiêu chuẩn, không phải ngoại lệ. Tích hợp API tìm kiếm RAG của Perplexity định vị các ứng dụng của bạn để đáp ứng kỳ vọng này, mang lại trải nghiệm mà ngườ dùng có thể tin tưởng vì mọi câu trả lờ đều dựa trên nền tảng của các nguồn thực, có thể trích dẫn.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

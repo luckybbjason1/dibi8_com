@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/vector-db-2026-qdrant-weaviate-milvus" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/vector-db-2026-qdrant-weaviate-milvus" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/vector-db-2026-qdrant-weaviate-milvus" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/vector-db-2026-qdrant-weaviate-milvus" />
 title: 'Lựa Chọn Vector DB 2026: Qdrant vs Weaviate vs Milvus (T...
 description: 'Đã test Qdrant, Weaviate, Milvus trên cùng workload 5 triệu vector. Độ trễ, throughput, bộ nhớ, độ phức tạp cài đặt. Loại nào hợp cho prototype vs production, và khi nào nên bỏ qua vector DB để dùng SQLite FTS5.'
 date: 2026-05-25 00:00:00+08:00
@@ -21,10 +16,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['vector-database', qdrant, weaviate, milvus, rag, 2026]
-aliases:
-- /vi/posts/vector-db-2026-qdrant-weaviate-milvus/
-faq:
-  - q: "Vector DB nào tốt nhất năm 2026?"
+aliases: - /vi/posts/vector-db-2026-qdrant-weaviate-milvus/
+faq: - q: "Vector DB nào tốt nhất năm 2026?"
     a: "Qdrant cho RAG cá nhân/đội nhỏ (đơn giản nhất, nhanh nhất trên một node). Weaviate cho production có hybrid search (vector + keyword + filter). Milvus cho workload tỷ vector (mở rộng ngang tốt nhất). Cả ba đều vững chắc trong năm 2026."
   - q: "Khi nào nên bỏ qua vector DB và dùng SQLite FTS5?"
     a: "Dưới khoảng 10K tài liệu: full-text search của SQLite (FTS5) thường vượt vector DB về độ liên quan và đơn giản hơn 10 lần về vận hành. Vector DB chỉ xứng đáng với độ phức tạp của nó khi vượt khoảng 50K tài liệu hoặc khi sự tương đồng ngữ nghĩa (không phải keyword) thực sự quan trọng."
@@ -33,8 +26,6 @@ faq:
   - q: "Cần bao nhiêu phần cứng?"
     a: "1 triệu vector @ 768 chiều: khoảng 3GB RAM. 10 triệu vector: khoảng 30GB. Hầu hết workload production chạy thoải mái trên một VM 32GB. Trên 100 triệu vector cần lên kế hoạch sharding."
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/vector-db-2026-qdrant-weaviate-milvus/ -->
 
 {{</* resource-info */>}}
 
@@ -100,16 +91,12 @@ Thị trường vector DB đã ổn định trong năm 2026. Qdrant, Weaviate, M
 
 ## Khi Nào Nên Bỏ Qua Vector DB Hoàn Toàn
 
-Dưới 10K tài liệu, **SQLite FTS5** thường vượt vector DB vì các lý do sau:
-
-- BM25 + keyword match xử lý tốt hầu hết tình huống truy vấn thực tế
+Dưới 10K tài liệu, **SQLite FTS5** thường vượt vector DB vì các lý do sau: - BM25 + keyword match xử lý tốt hầu hết tình huống truy vấn thực tế
 - Vận hành đơn giản hơn 100 lần (một file, không cần server)
 - Độ trễ truy vấn < 1ms
 - Không có overhead bộ nhớ ngoài chính file
 
-Thử cái này trước:
-
-```python
+Thử cái này trước: ```python
 import sqlite3
 conn = sqlite3.connect("docs.db")
 conn.execute("CREATE VIRTUAL TABLE docs USING fts5(title, content)")
@@ -130,9 +117,7 @@ Cần hybrid search (vector + keyword + filter) → Weaviate
 
 ## Hạ Tầng Đề Xuất
 
-Cho hosting vector DB:
-
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit, droplet NVMe
+Cho hosting vector DB: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit, droplet NVMe
 - **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hong Kong cho truy vấn độ trễ thấp ở châu Á
 
 *Affiliate link — cùng giá, ủng hộ dibi8.com.*
@@ -148,7 +133,6 @@ Bài học thực sự: hầu hết các đội thiết kế quá mức tầng r
 **Bài liên quan**: [Khung Quyết Định RAG vs Fine-Tuning 2026](https://dibi8.com/vi/resources/llm-frameworks/rag-vs-fine-tuning-2026-decision-framework/) · [So Sánh Vector Database](https://dibi8.com/vi/resources/llm-frameworks/vector-database-comparison/) · [Bảng Xếp Hạng MCP Server 2026](https://dibi8.com/vi/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -176,25 +160,20 @@ Bài học thực sự: hầu hết các đội thiết kế quá mức tầng r
 
 ## Why This Matters
 
-Understanding lựa chọn vector db 2026: qdrant vs weaviate vs milvus (test workload thực tế) is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding lựa chọn vector db 2026: qdrant vs weaviate vs milvus (test workload thực tế) is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/playwright-browser-automation-testing" />
 title: 'Playwright 2026: The Cross-Browser Automation Tool Testi...
 description: 'Master Playwright 1.51 for cross-browser automation. Chrome, Firefox, WebKit support. Auto-wait, tracing, codegen, and parallel testing. 3x faster than Selenium with complete setup guide.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [playwright, 'browser automation', testing, 'web scraping', python, e2e]
-aliases:
-- /posts/playwright-browser-automation-testing/
+aliases: - /posts/playwright-browser-automation-testing/-
 ---
-
 {{</* resource-info */>}}
 
 ## Introduction: The Flakiness Epidemic in Browser Automation
@@ -79,8 +75,7 @@ The `playwright install` command downloads browser binaries (~180MB per browser)
 ```python
 from playwright.sync_api import sync_playwright
 
-with sync_playwright() as p:
-    browser = p.chromium.launch()
+with sync_playwright() as p: browser = p.chromium.launch()
     page = browser.new_page()
     page.goto("https://httpbin.org/get")
     print(f"Title: {page.title()}")
@@ -94,9 +89,7 @@ print("Playwright is ready!")
 ```python
 from playwright.sync_api import sync_playwright
 
-def test_login_flow():
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
+def test_login_flow(): with sync_playwright() as p: browser = p.chromium.launch(headless=True)
         context = browser.new_context(
             viewport={"width": 1920, "height": 1080}
         )
@@ -119,8 +112,7 @@ def test_login_flow():
         context.close()
         browser.close()
 
-if __name__ == "__main__":
-    test_login_flow()
+if __name__ == "__main__": test_login_flow()
     print("Test passed!")
 ```
 
@@ -136,15 +128,12 @@ import pytest
 from playwright.sync_api import sync_playwright
 
 @pytest.fixture(scope="session")
-def browser():
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
+def browser(): with sync_playwright() as p: browser = p.chromium.launch(headless=True)
         yield browser
         browser.close()
 
 @pytest.fixture
-def page(browser):
-    context = browser.new_context(
+def page(browser): context = browser.new_context(
         viewport={"width": 1920, "height": 1080}
     )
     page = context.new_page()
@@ -154,16 +143,14 @@ def page(browser):
 
 ```python
 # test_ecommerce.py
-def test_add_to_cart(page):
-    page.goto("https://example.com/products")
+def test_add_to_cart(page): page.goto("https://example.com/products")
     page.click("button[data-testid='add-to-cart']")
     
     # Auto-waits for cart badge to update
     cart_count = page.inner_text(".cart-badge")
     assert cart_count == "1"
 
-def test_search_results(page):
-    page.goto("https://example.com")
+def test_search_results(page): page.goto("https://example.com")
     page.fill("[name=q]", "laptop")
     page.press("[name=q]", "Enter")
     
@@ -179,29 +166,22 @@ def test_search_results(page):
 # .github/workflows/playwright.yml
 name: Playwright Tests
 on: [push, pull_request]
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: test: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
+        with: python-version: "3.12"
       - run: pip install playwright==1.51.0 pytest
       - run: playwright install chromium
       - run: pytest --tracing=retain-on-failure
       - uses: actions/upload-artifact@v4
         if: failure()
-        with:
-          name: playwright-traces
+        with: name: playwright-traces
           path: test-results/
 ```
 
 ### Integration with Code Generation
 
-Playwright can generate test code by recording your manual browser actions:
-
-```bash
+Playwright can generate test code by recording your manual browser actions: ```bash
 # Launch codegen and record interactions
 playwright codegen https://example.com
 
@@ -220,14 +200,11 @@ The codegen tool opens a browser window and an inspector panel. Every click, typ
 import asyncio
 from playwright.async_api import async_playwright
 
-async def scrape_multiple_pages():
-    async with async_playwright() as p:
-        browser = await p.chromium.launch()
+async def scrape_multiple_pages(): async with async_playwright() as p: browser = await p.chromium.launch()
         
         # Run 5 pages concurrently
         tasks = []
-        for i in range(5):
-            context = await browser.new_context()
+        for i in range(5): context = await browser.new_context()
             page = await context.new_page()
             task = page.goto(f"https://httpbin.org/get?page={i}")
             tasks.append(task)
@@ -277,7 +254,15 @@ For production test infrastructure, deploy your Playwright suites on **[DigitalO
 ### Performance Benchmarks (Playwright vs. Selenium vs. Cypress)
 
 | Metric | Selenium 4.26 | Cypress 14.0 | Playwright 1.51 |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Login test (ms) | 2,840 | 1,920 | **680** |
 | Add-to-cart test (ms) | 3,120 | 2,100 | **720** |
 | Form submission test (ms) | 2,560 | 1,780 | **590** |
@@ -308,9 +293,7 @@ A market research firm uses Playwright to scrape **data from 850 JavaScript-rend
 ```python
 from playwright.sync_api import sync_playwright
 
-def test_with_mocked_api():
-    with sync_playwright() as p:
-        browser = p.chromium.launch()
+def test_with_mocked_api(): with sync_playwright() as p: browser = p.chromium.launch()
         page = browser.new_page()
         
         # Intercept and mock API responses
@@ -331,9 +314,7 @@ def test_with_mocked_api():
 from playwright.sync_api import sync_playwright
 import json
 
-def save_auth_state():
-    with sync_playwright() as p:
-        browser = p.chromium.launch()
+def save_auth_state(): with sync_playwright() as p: browser = p.chromium.launch()
         context = browser.new_context()
         page = context.new_page()
         
@@ -348,9 +329,7 @@ def save_auth_state():
         context.storage_state(path="auth.json")
         browser.close()
 
-def test_with_saved_auth():
-    with sync_playwright() as p:
-        browser = p.chromium.launch()
+def test_with_saved_auth(): with sync_playwright() as p: browser = p.chromium.launch()
         # Reuse saved authentication
         context = browser.new_context(storage_state="auth.json")
         page = context.new_page()
@@ -368,9 +347,7 @@ This pattern reduces test time by **40-60%** for suites where most tests require
 ```python
 from playwright.sync_api import sync_playwright
 
-def test_visual_regression():
-    with sync_playwright() as p:
-        browser = p.chromium.launch()
+def test_visual_regression(): with sync_playwright() as p: browser = p.chromium.launch()
         page = browser.new_page(viewport={"width": 1920, "height": 1080})
         
         page.goto("https://example.com/landing")
@@ -391,9 +368,7 @@ from playwright.sync_api import sync_playwright
 
 iphone = sync_playwright().start().devices["iPhone 14 Pro Max"]
 
-def test_mobile_viewport():
-    with sync_playwright() as p:
-        browser = p.chromium.launch()
+def test_mobile_viewport(): with sync_playwright() as p: browser = p.chromium.launch()
         context = browser.new_context(**p.devices["iPhone 14 Pro Max"])
         page = context.new_page()
         
@@ -414,9 +389,7 @@ Playwright supports **40+ pre-configured device profiles** including iPhones, iP
 ```python
 from playwright.sync_api import sync_playwright
 
-def test_api_contract():
-    with sync_playwright() as p:
-        browser = p.chromium.launch()
+def test_api_contract(): with sync_playwright() as p: browser = p.chromium.launch()
         page = browser.new_page()
         
         responses = []
@@ -443,9 +416,7 @@ def test_api_contract():
 ```python
 from playwright.sync_api import sync_playwright
 
-def scrape_with_stealth():
-    with sync_playwright() as p:
-        browser = p.chromium.launch(
+def scrape_with_stealth(): with sync_playwright() as p: browser = p.chromium.launch(
             headless=True,
             args=["--disable-blink-features=AutomationControlled"]
         )
@@ -469,7 +440,17 @@ def scrape_with_stealth():
 ## Comparison with Alternatives
 
 | Feature | Playwright 1.51 | Selenium 4.26 | Cypress 14.0 | Puppeteer 24.0 |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Browser support | Chromium, Firefox, WebKit | Chrome, Firefox, Safari, Edge | Chromium only | Chromium only |
 | Auto-wait | **Full (all actions)** | Manual only | Partial | Limited |
 | Parallel execution | **Native (contexts)** | Grid/Selenium 4 | No | Limited |
@@ -549,15 +530,11 @@ Start with `playwright codegen` to record your first tests, integrate with pytes
 - [Migrating from Selenium to Playwright](https://playwright.dev/python/docs/selenium)
 - [Playwright Docker Images](https://mcr.microsoft.com/en-us/product/playwright/about)
 
+
 ---
-
-
-
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -567,7 +544,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 This article contains affiliate links to DigitalOcean. If you purchase services through these links, we may earn a commission at no additional cost to you. This recommendation is based on genuine utility for CI/CD and browser automation infrastructure. All benchmarks were conducted independently.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

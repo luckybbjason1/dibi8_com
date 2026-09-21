@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/trivy-production-security-scanner-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/trivy-production-security-scanner-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/trivy-production-security-scanner-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/trivy-production-security-scanner-2026" />
 title: 'Trivy: Dừng Gửi Container Thiếu An Toàn Vào Môi Trường P...
 description: 'Trivy (aquasecurity/trivy) là công cụ quét bảo mật mã nguồn mở cho container, IaC và mã. Tương thích với Kubernetes, Docker, GitHub Actions và CI pipelines. Quét 600K+ CVE, khóa bí mật và cấu hình sai. Bao gồm cài đặt, policy-as-code và hardening production.'
 date: 2026-06-09
-lastmod:  2026-06-09slug: 'trivy-production-security-scanner-2026'
+lastmod: 2026-06-09
+slug: 'trivy-production-security-scanner-2026'
 category: 'dev-utils'
 tags: ['security', 'containers', 'vulnerability-scanning', 'devops', 'kubernetes', 'sast', 'iac', 'supply-chain']
 github_repo: 'https://github.com/aquasecurity/trivy'
@@ -17,8 +13,6 @@ license: Apache-2.0
 featureImage: 'https://raw.githubusercontent.com/aquasecurity/trivy/main/docs/getting-started/install.png'
 lang: vi
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/trivy-production-security-scanner-2026/ -->
 
 ![Trivy Security Scanner](https://opengraph.github.com/github/aquasecurity/trivy)
 
@@ -38,7 +32,7 @@ Trivy (tiếng Nhật có nghĩa là "đôi mắt sáng," từ cụm từ "đôi
 ┌─────────────────────────────────────────────┐
 │              Trivy Scanner                    │
 ├─────────────────────────────────────────────┤
-│  Các Scanner Available:                        │
+│  Các Scanner Available: │
 │  • Vulnerabilities (CVE, GHSA, OSV)         │
 │  • Secrets (API keys, tokens, passwords)     │
 │  • Misconfigurations (Terraform, K8s, etc)  │
@@ -46,7 +40,7 @@ Trivy (tiếng Nhật có nghĩa là "đôi mắt sáng," từ cụm từ "đôi
 │  • SAST (Sarif, CodeQL)                     │
 │  • IaC (Terraform, CloudFormation)          │
 ├─────────────────────────────────────────────┤
-│  Targets Supported:                          │
+│  Targets Supported: │
 │  • Container images, tar archives           │
 │  • Filesystem directories                   │
 │  • Kubernetes clusters                       │
@@ -76,9 +70,7 @@ Container Image → Layer Extraction → Package Detection
 
 ## Cài đặt & Cấu hình
 
-Trivy hỗ trợ nhiều phương pháp cài đặt. Chọn phương pháp phù hợp với workflow của bạn:
-
-**Tùy chọn 1: Homebrew (macOS / Linux)**
+Trivy hỗ trợ nhiều phương pháp cài đặt. Chọn phương pháp phù hợp với workflow của bạn: **Tùy chọn 1: Homebrew (macOS / Linux)**
 
 ```bash
 brew install trivy
@@ -103,15 +95,12 @@ curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/inst
 ```yaml
 - name: Run Trivy vulnerability scanner
   uses: aquasecurity/trivy-action@master
-  with:
-    image-ref: my-app:latest
+  with: image-ref: my-app:latest
     format: 'sarif'
     output: 'trivy-results.sarif'
 ```
 
-Cơ sở dữ liệu lỗ hổng của Trivy tự động cập nhật khi sử dụng lần đầu và mỗi 6 giờ sau đó. Bạn cũng có thể cập nhật thủ công:
-
-```bash
+Cơ sở dữ liệu lỗ hổng của Trivy tự động cập nhật khi sử dụng lần đầu và mỗi 6 giờ sau đó. Bạn cũng có thể cập nhật thủ công: ```bash
 trivy image --download-db-only
 ```
 
@@ -133,15 +122,11 @@ docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
 ```yaml
 name: Security Scan
 on: [push, pull_request]
-jobs:
-  trivy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: trivy: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - name: Run Trivy on filesystem
         uses: aquasecurity/trivy-action@master
-        with:
-          scan-type: 'fs'
+        with: scan-type: 'fs'
           scan-ref: '.'
           format: 'table'
           severity: 'HIGH,CRITICAL'
@@ -169,9 +154,7 @@ trivy conf --format sarif --output terraform-results.sarif ./infrastructure/
 
 ## Benchmarks / Trường hợp sử dụng thực tế
 
-Hiệu suất của Trivy phụ thuộc vào mục tiêu quét và kích thước cơ sở dữ liệu. Trong các bài kiểm tra benchmark so với các công cụ tương đương:
-
-| Scenario | Scan Time | Database Size | Accuracy |
+Hiệu suất của Trivy phụ thuộc vào mục tiêu quét và kích thước cơ sở dữ liệu. Trong các bài kiểm tra benchmark so với các công cụ tương đương: | Scenario | Scan Time | Database Size | Accuracy |
 |----------|-----------|---------------|----------|
 | Alpine 3.18 image (200 packages) | 4-6 giây | 70 MB | 98% CVE match |
 | Ubuntu 22.04 image (800 packages) | 12-18 giây | 70 MB | 97% CVE match |
@@ -179,9 +162,7 @@ Hiệu suất của Trivy phụ thuộc vào mục tiêu quét và kích thướ
 | Kubernetes cluster (50 resources) | 15-25 giây | N/A | 95% config match |
 | Terraform (200 .tf files) | 3-5 giây | N/A | 94% config match |
 
-Ví dụ triển khai thực tế:
-
-```bash
+Ví dụ triển khai thực tế: ```bash
 # Production: quét đêm tất cả images trong Harbor registry
 trivy registry --security vulns,secret,misconfig harbor.example.com/myproject/api:latest
 
@@ -213,16 +194,12 @@ trivy image --ignore-unfixed --severity CRITICAL my-app:latest
 
 ```yaml
 # .trivy.yaml
-severity:
-  - HIGH
+severity: - HIGH
   - CRITICAL
-scan:
-  security-checks: vuln,secret,misconfig
-  skip-files:
-    - "**/vendor/**"
+scan: security-checks: vuln,secret,misconfig
+  skip-files: - "**/vendor/**"
     - "**/node_modules/**"
-  skip-dirs:
-    - tmp
+  skip-dirs: - tmp
     - .git
 exit-code: 1
 ```
@@ -231,11 +208,8 @@ exit-code: 1
 
 ```yaml
 version: '3.8'
-services:
-  trivy:
-    image: aquasec/trivy:latest
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+services: trivy: image: aquasec/trivy:latest
+    volumes: - /var/run/docker.sock:/var/run/docker.sock
       - ./trivy-results:/results
     command: >
       image
@@ -261,8 +235,7 @@ trivy image --exit-code 1 --ignore-unfixed --severity CRITICAL my-app:latest
 # .github/codeql-config.yml — integrate Trivy SARIF với GitHub
 name: "Trivy SARIF Config"
 
-queries:
-  - uses: security-and-quality
+queries: - uses: security-and-quality
   - uses: security-extended
 
 # File này nói cho GitHub cách hiển thị kết quả Trivy
@@ -309,9 +282,7 @@ curl -X POST \
 
 ## Limitations / Đánh giá khách quan
 
-Trivy là công cụ quét mã nguồn mở toàn diện nhất hiện có, nhưng không hoàn hảo:
-
-1. **False positives tồn tại**: Việc match vulnerability của Trivy có thể đánh dấu các CVE không ảnh hưởng đến cấu hình build cụ thể của bạn. Sử dụng `--ignore-unfixed` để giảm noise.
+Trivy là công cụ quét mã nguồn mở toàn diện nhất hiện có, nhưng không hoàn hảo: 1. **False positives tồn tại**: Việc match vulnerability của Trivy có thể đánh dấu các CVE không ảnh hưởng đến cấu hình build cụ thể của bạn. Sử dụng `--ignore-unfixed` để giảm noise.
 2. **Database latency**: Cơ sở dữ liệu vulnerability cập nhật mỗi 6 giờ, vì vậy các lỗ hổng zero-day phát hiện hôm nay sẽ không xuất hiện trong kết quả quét cho đến chu kỳ cập nhật tiếp theo.
 3. **Resource usage**: Container image lớn với hàng nghìn package có thể mất hơn 30 giây để quét. Điều này chấp nhận được cho CI nhưng có thể quá chậm cho các ad-hoc scan theo yêu cầu.
 4. **Không có runtime detection**: Trivy quét static images và files. Nó không phát hiện runtime exploits, zero-day vulnerabilities trong container đang chạy hoặc behavioral anomalies. Kết hợp với các công cụ runtime security để bao phủ toàn diện.
@@ -361,8 +332,7 @@ Tham gia cộng đồng DIBI8 trên [Telegram](https://t.me/DIBI8_Group) để t
 
 ---
 
-**Nguồn & Đọc thêm**:
-- Tài liệu chính thức: https://trivy.dev/docs/
+**Nguồn & Đọc thêm**: - Tài liệu chính thức: https://trivy.dev/docs/
 - GitHub repository: https://github.com/aquasecurity/trivy
 - Vulnerability database: https://github.com/aquasecurity/trivy-db
 - GitHub Actions integration: https://github.com/aquasecurity/trivy-action
@@ -372,7 +342,6 @@ Tham gia cộng đồng DIBI8 trên [Telegram](https://t.me/DIBI8_Group) để t
 **Disclosure**: Bài viết này chứa các affiliate links. Nếu bạn đăng ký qua các links của chúng tôi, chúng tôi có thể nhận được một khoản hoa hồng nhỏ mà không gây thêm chi phí cho bạn. Điều này giúp hỗ trợ báo chí công nghệ độc lập và giữ cho các tài nguyên như dibi8.com miễn phí và không có quảng cáo.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/wandb-ml-experiment-tracking-platform-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/wandb-ml-experiment-tracking-platform-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/wandb-ml-experiment-tracking-platform-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/wandb-ml-experiment-tracking-platform-2026" />
 title: 'Weights & Biases (W&B): Theo Dõi Mọi Thực Nghiệm Như Chu...
 description: 'Weights & Biases (wandb/wandb) là nền tảng nhà phát triển AI để theo dõi, so sánh và triển khai các thực nghiệm ML. Hỗ trợ PyTorch, TensorFlow, Hugging Face và tinh chỉnh LLM. Bao gồm theo dõi thực nghiệm, versioning tập dữ liệu, model registry và giám sát sản xuất.'
 date: 2026-06-09
-lastmod:  2026-06-09slug: 'wandb-ml-experiment-tracking-platform-2026'
+lastmod: 2026-06-09
+slug: 'wandb-ml-experiment-tracking-platform-2026'
 category: 'data-science'
 tags: ['ml-ops', 'experiment-tracking', 'deep-learning', 'pytorch', 'llm', 'model-registry', 'mlops']
 github_repo: 'https://github.com/wandb/wandb'
@@ -17,8 +13,6 @@ license: MIT
 featureImage: 'https://raw.githubusercontent.com/wandb/wandb/main/assets/screenshots/launch.png'
 lang: vi
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/wandb-ml-experiment-tracking-platform-2026/ -->
 
 ![Weights & Biases Dashboard](https://opengraph.github.com/github/wandb/wandb)
 
@@ -78,9 +72,7 @@ wandb.init(
     }
 )
 
-for epoch in range(config.epochs):
-    for batch in train_dataloader:
-        loss = model.train_step(batch)
+for epoch in range(config.epochs): for batch in train_dataloader: loss = model.train_step(batch)
         # Log metrics — W&B handles the rest
         wandb.log({"train_loss": loss, "lr": config.learning_rate})
 ```
@@ -127,9 +119,7 @@ W&B tích hợp với hầu hết mọi framework ML phổ biến. Dưới đây
 import pytorch_lightning as pl
 from pytorch_lightning.callbacks import WandbCallback
 
-class MyModel(pl.LightningModule):
-    def training_step(self, batch, batch_idx):
-        loss = self.forward(batch)
+class MyModel(pl.LightningModule): def training_step(self, batch, batch_idx): loss = self.forward(batch)
         self.log("train_loss", loss)
         return loss
 
@@ -168,8 +158,7 @@ import wandb
 
 ray.init()
 
-def train_model(config):
-    # W&B automatically captures the sweep config
+def train_model(config): # W&B automatically captures the sweep config
     wandb.init(config=config)
     score = my_training_function(config)
     wandb.log({"score": score})
@@ -187,9 +176,7 @@ sweep = tune.run(
 
 ## Benchmark / Trường hợp sử dụng thực tế
 
-Hiệu năng logging của W&B đã được benchmark trên nhiều quy mô huấn luyện khác nhau. Với tải huấn luyện thông thường, overhead là không đáng kể:
-
-| Tình huống | Logging Overhead | Băng thông mạng | Thời gian tải Dashboard |
+Hiệu năng logging của W&B đã được benchmark trên nhiều quy mô huấn luyện khác nhau. Với tải huấn luyện thông thường, overhead là không đáng kể: | Tình huống | Logging Overhead | Băng thông mạng | Thời gian tải Dashboard |
 |----------|-----------------|-------------------|---------------------|
 | Mô hình nhỏ (10K params) | 0.5% | <1 MB/run | <1 giây |
 | Mô hình trung bình (100M params) | 1.2% | <5 MB/run | <2 giây |
@@ -197,9 +184,7 @@ Hiệu năng logging của W&B đã được benchmark trên nhiều quy mô hu�
 | Tinh chỉnh LLM (7B params) | 3.5% | <50 MB/run | <5 giây |
 | Huấn luyện phân tán (8 GPU) | 4.0% | <100 MB/run | <3 giây |
 
-Ví dụ sử dụng thực tế:
-
-```python
+Ví dụ sử dụng thực tế: ```python
 # Log a confusion matrix as a W&B table
 import numpy as np
 import wandb
@@ -263,25 +248,17 @@ report.save("experiment-report")
 # sweeps.yaml
 name: nlp-sweep
 program: train.py
-metric:
-  name: val_accuracy
+metric: name: val_accuracy
   goal: maximize
-parameters:
-  learning_rate:
-    values: [1e-5, 2e-5, 5e-5, 1e-4]
-  optimizer:
-    values: [adamw, adam]
-  warmup_ratio:
-    min: 0.0
+parameters: learning_rate: values: [1e-5, 2e-5, 5e-5, 1e-4]
+  optimizer: values: [adamw, adam]
+  warmup_ratio: min: 0.0
     max: 0.1
-command:
-  - python
+command: - python
   - train.py
 ```
 
-Chạy sweep:
-
-```bash
+Chạy sweep: ```bash
 wandb sweep sweeps.yaml
 wandb agent $SWEEP_ID
 ```
@@ -317,11 +294,9 @@ config.batch_size = 64
 model = MyModel()
 optimizer = AdamW(model.parameters(), lr=config.learning_rate)
 
-for epoch in range(config.epochs):
-    model.train()
+for epoch in range(config.epochs): model.train()
     epoch_loss = 0
-    for i, (x, y) in enumerate(train_loader):
-        optimizer.zero_grad()
+    for i, (x, y) in enumerate(train_loader): optimizer.zero_grad()
         output = model(x)
         loss = criterion(output, y)
         loss.backward()
@@ -329,8 +304,7 @@ for epoch in range(config.epochs):
         epoch_loss += loss.item()
         
         # Log every 100 steps
-        if i % 100 == 0:
-            wandb.log({
+        if i % 100 == 0: wandb.log({
                 "train_loss": loss.item(),
                 "learning_rate": config.learning_rate,
                 "epoch": epoch
@@ -386,9 +360,7 @@ data_path = clean_data.download()
 
 ## Hạn chế / Đánh giá Trung thực
 
-W&B là nền tảng theo dõi ML tinh tế nhất hiện có, nhưng có một số đánh đổi:
-
-1. **Mô hình ưu tiên đám mây**: Free tier của W&B yêu cầu sử dụng nền tảng đám mây của họ. Mặc dù họ cung cấp W&B Enterprise self-hosted cho các đội cần triển khai on-premise, free tier không hỗ trợ self-hosting. Nếu tổ chức của bạn yêu cầu tất cả dữ liệu phải nằm trong hạ tầng nội bộ, đây có thể là điểm không chấp nhận được.
+W&B là nền tảng theo dõi ML tinh tế nhất hiện có, nhưng có một số đánh đổi: 1. **Mô hình ưu tiên đám mây**: Free tier của W&B yêu cầu sử dụng nền tảng đám mây của họ. Mặc dù họ cung cấp W&B Enterprise self-hosted cho các đội cần triển khai on-premise, free tier không hỗ trợ self-hosting. Nếu tổ chức của bạn yêu cầu tất cả dữ liệu phải nằm trong hạ tầng nội bộ, đây có thể là điểm không chấp nhận được.
 2. **Giới hạn free tier**: Free tier bị giới hạn ở 1 thành viên nhóm. Đối với các nhóm nghiên cứu lớn hơn, các gói trả phí bắt đầu ở chi phí đáng kể, đặc biệt khi bạn tính đến lượng lưu trữ bổ sung cần thiết cho các artifact mô hình lớn.
 3. **Đường cong học tập cho tính năng nâng cao**: Logging cơ bản rất đơn giản, nhưng các tính năng như sweeps, versioning artifact và báo cáo tùy chỉnh đòi hỏi phải hiểu mô hình dữ liệu của W&B. Người dùng mới có thể cần 1-2 giờ để làm quen với đầy đủ khả năng của nền tảng.
 4. **Khả năng offline hạn chế**: Nếu môi trường huấn luyện của bạn có kết nối internet không liên tục, W&B sẽ đồng bộ dữ liệu khi kết nối được khôi phục. Tuy nhiên, SDK hỗ trợ `wandb.init(mode="offline")` cho các môi trường hoàn toàn ngắt kết nối, với đồng bộ hóa thủ công sau đó.
@@ -436,8 +408,7 @@ Tham gia cộng đồng DIBI8 trên [Telegram](https://t.me/DIBI8_Group) để t
 
 ---
 
-**Nguồn & Đọc Thêm**:
-- Tài liệu W&B: https://docs.wandb.ai/
+**Nguồn & Đọc Thêm**: - Tài liệu W&B: https://docs.wandb.ai/
 - Repository GitHub W&B: https://github.com/wandb/wandb
 - Tham chiếu API W&B: https://docs.wandb.ai/ref/python/
 - Tài liệu Sweeps: https://docs.wandb.ai/guides/sweeps
@@ -447,7 +418,6 @@ Tham gia cộng đồng DIBI8 trên [Telegram](https://t.me/DIBI8_Group) để t
 **Tiết lộ**: Bài viết này chứa các liên kết affiliate. Nếu bạn đăng ký thông qua các liên kết của chúng tôi, chúng tôi có thể nhận được một khoản hoa hồng nhỏ mà không có thêm chi phí cho bạn. Điều này giúp hỗ trợ báo chí công nghệ độc lập và giữ cho các tài nguyên như dibi8.com miễn phí và không quảng cáo.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-coding-agent-landscape-2026-skills-mcp-opensource" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agent-landscape-2026-skills-mcp-opensource" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agent-landscape-2026-skills-mcp-opensource" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-coding-agent-landscape-2026-skills-mcp-opensource" />
 title: '2026년 AI 코딩 에이전트 혁명: 클로드 코드 스킬 생태계 폭발, MCP 표준화, 그리고 오픈소스...
 description: '2026년 AI 코딩 보조 도구 시장이 중대 기로에 섰다. 클로드 코드 스킬이 3,000개를 돌파하고 MCP 프로토콜이 표준이 되는 가운데, 오픈소스 대안 OpenCode와 헤르메스 에이전트가 급성장하고 있다. 벤더 종속에서 벗어나는 실전 전략과 MCP 기반 워크플로우 구축법을 상세히 다룬다.'
 date: 2026-05-18 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/ai-coding-agent-landscape-2026-skills-mcp-opensource/
+aliases: - /posts/ai-coding-agent-landscape-2026-skills-mcp-opensource/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/ai-coding-agent-landscape-2026-skills-mcp-opensource/ -->
 
 {</* resource-info */>}
 
@@ -71,8 +63,7 @@ claude
 > run the profiling skill on this Go module
 ```
 
-스킬 파일은 구조화된 마크다운로, 네 가지 섹션으로 구성된다:
-- **트리거** — 스킬을 활성화하는 자연어 패턴
+스킬 파일은 구조화된 마크다운로, 네 가지 섹션으로 구성된다: - **트리거** — 스킬을 활성화하는 자연어 패턴
 - **컨텍스트 주입** — 로드할 파일, 환경 변수, 참조 데이터
 - **실행 단계** — 사고의 연결고리 + 도구 호출 시퀀스
 - **검증 규칙** — 출력 형식 강제 및 경계 조건 체크
@@ -81,9 +72,7 @@ claude
 
 원시 프롬프트는 휘발성이다. 대화가 끝나면 사라지고, 컨텍스트 윈도우 잘림에 취약하며, 버전 관리가 불가능하다.
 
-스킬은 모범 사례를 재사용 가능한 모듈로 고정시킨다—AI 어시스턴트를 위한 근육 기억이다. 프로덕션급 팀 스킬은 다음을 포함할 수 있다:
-
-- **코드 컨벤션** — 네이밍 표준, 에러 처리 패턴, 임포트 조직화
+스킬은 모범 사례를 재사용 가능한 모듈로 고정시킨다—AI 어시스턴트를 위한 근육 기억이다. 프로덕션급 팀 스킬은 다음을 포함할 수 있다: - **코드 컨벤션** — 네이밍 표준, 에러 처리 패턴, 임포트 조직화
 - **프레임워크 스캐폴드** — Next.js App Router + Prisma + tRPC 보일러플레이트
 - **내부 API 래퍼** — 자동 인증, 페이지네이션, 재시도 로직
 - **CI/CD 플레이북** — 빌드 → 테스트 → 배포 시퀀스와 검증 게이트
@@ -104,9 +93,7 @@ MCP의 세계: 도구들이 자신의 능력을 자체 기술한다(USB-C처럼 
 
 ### 2.2 세 가지 MCP 원시 요소
 
-MCP 서버—로컬이나 원격에서 실행—는 AI에 세 가지 상호작용 원시 요소를 노출한다:
-
-| 원시 요소 | 목적 | 예시 |
+MCP 서버—로컬이나 원격에서 실행—는 AI에 세 가지 상호작용 원시 요소를 노출한다: | 원시 요소 | 목적 | 예시 |
 |-----------|------|------|
 | **Resources** | AI가 참조할 수 있는 읽기 전용 데이터 | 데이터베이스 스키마, API 문서, 디자인 파일 |
 | **Tools** | AI가 호출할 수 있는 함수 | 셸 명령 실행, API 호출, 파일 읽기/쓰기 |
@@ -116,9 +103,7 @@ MCP 서버—로컬이나 원격에서 실행—는 AI에 세 가지 상호작�
 
 ### 2.3 2026년 5월 현재 MCP 생태계
 
-현재 공식 및 커뮤니티 유지보수 MCP 서버는 다음을 커버한다:
-
-- **개발 환경:** 깃허브, 깃랩, VS 코드, 제트브레인, 네오빔
+현재 공식 및 커뮤니티 유지보수 MCP 서버는 다음을 커버한다: - **개발 환경:** 깃허브, 깃랩, VS 코드, 제트브레인, 네오빔
 - **데이터 계층:** PostgreSQL, MongoDB, Redis, SQLite, 수파베이스
 - **인프라:** 도커, 쿠버네티스, AWS, 버셀, 클라우드플레어
 - **협업 도구:** 슬랙, 디스코드, 노션, 리니어, 피그마
@@ -132,9 +117,7 @@ MCP 서버—로컬이나 원격에서 실행—는 AI에 세 가지 상호작�
 
 ### 3.1 개발자들이 "출구"를 찾는 이유
 
-2026년 4~5월, 해커 뉴스와 레딧에서 개발자 정서가 뚜렷하게 변화했다:
-
-- **우버가 4개월 만에 2026년 전체 AI 예산을 소진**했다—대부분 클로드 코드에—AI 지출의 통제 불가능함에 대한 공포가 확산됨
+2026년 4~5월, 해커 뉴스와 레딧에서 개발자 정서가 뚜렷하게 변화했다: - **우버가 4개월 만에 2026년 전체 AI 예산을 소진**했다—대부분 클로드 코드에—AI 지출의 통제 불가능함에 대한 공포가 확산됨
 - **앤트로픽이 갑작스럽게 구독 단계를 변경하고 프로그래매틱 접근을 제한**했고, 여러 프로젝트가 클로드 디자인 구독 해지 후 접근 권한을 상실함
 - **클로드 코드의 버셀 플러그인에서 텔레메트리 우려**가 제기되며 프라이버시 논쟁이 가열됨
 
@@ -232,9 +215,7 @@ mcp server add fs --command npx -y @modelcontextprotocol/server-filesystem
 
 **단계 3: 에이전트가 MCP를 사용하도록 구성**
 
-클로드 코드의 경우, `~/.claude/config.json` 편집:
-
-```json
+클로드 코드의 경우, `~/.claude/config.json` 편집: ```json
 {
   "mcpServers": {
     "github": {
@@ -249,12 +230,8 @@ mcp server add fs --command npx -y @modelcontextprotocol/server-filesystem
 }
 ```
 
-오픈코드의 경우, `opencode.yaml`에:
-
-```yaml
-mcp:
-  servers:
-    - name: github
+오픈코드의 경우, `opencode.yaml`에: ```yaml
+mcp: servers: - name: github
       command: npx -y @modelcontextprotocol/server-github
     - name: postgres
       command: uvx mcp-server-postgres postgresql://localhost/mydb
@@ -262,9 +239,7 @@ mcp:
 
 **단계 4: 팀 스킬 작성**
 
-`team-standard.md` 생성:
-
-```markdown
+`team-standard.md` 생성: ```markdown
 ---
 skill: team-standard
 version: "1.0"
@@ -278,9 +253,7 @@ version: "1.0"
 - 타입/인터페이스: PascalCase
 
 ## 에러 처리 패턴
-모든 비동기 함수는 try/catch와 requestId 추적 필수:
-
-```typescript
+모든 비동기 함수는 try/catch와 requestId 추적 필수: ```typescript
 const requestId = crypto.randomUUID();
 try {
   await riskyOperation();
@@ -321,8 +294,7 @@ try {
 
 AI 에이전트가 프로덕션 시스템에 대한 실제 실행 권한을 갖게 되면, "무엇을 했는가?"는 호기심의 문제가 아니라 컴플라이언스의 문제가 된다.
 
-다음을 기대하라:
-- 위변조 방지 감사 추적이 있는 스킬 실행 로그
+다음을 기대하라: - 위변조 방지 감사 추적이 있는 스킬 실행 로그
 - MCP 호출 승인 워크플로우(에이전트 행동에 대한 사중 확인 원칙)
 - 에이전트 행동 재생 및 포렌식 분석
 - "AI 에이전트 오류"를 커버하는 보험 상품
@@ -355,9 +327,7 @@ AI 에이전트가 프로덕션 시스템에 대한 실제 실행 권한을 갖�
 
 ## 추천 자체 호스팅 인프라
 
-Part 3에서 다룬 락인 방지 전략에 따라 Hermes Agent, OpenCode, 또는 자체 MCP 게이트웨이를 호스팅하려면 서버 스택 선택이 중요하다:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 신규 가입자 $200 크레딧 60일 제공, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet. 인디 개발자가 오픈소스 에이전트를 운영하기 적합한 검증된 옵션.
+Part 3에서 다룬 락인 방지 전략에 따라 Hermes Agent, OpenCode, 또는 자체 MCP 게이트웨이를 호스팅하려면 서버 스택 선택이 중요하다: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 신규 가입자 $200 크레딧 60일 제공, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet. 인디 개발자가 오픈소스 에이전트를 운영하기 적합한 검증된 옵션.
 
 이 링크는 추천 링크로, 추가 비용 없이 dibi8.com 운영을 지원합니다.
 
@@ -387,7 +357,6 @@ Part 3에서 다룬 락인 방지 전략에 따라 Hermes Agent, OpenCode, 또�
 *의도적으로 배치된 키워드: AI 코딩 에이전트 비교 2026, 클로드 코드 스킬 마켓플레이스, 모델 컨텍스트 프로토콜 튜토리얼, 오픈소스 AI 코드 어시스턴트, 오픈코드 설치 가이드, 헤르메스 에이전트 vs 클로드 코드, AI 벤더 종속 탈출, 로컬 LLM 코딩 어시스턴트, MCP 서버 설정, AI 개발자 생산성 도구*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

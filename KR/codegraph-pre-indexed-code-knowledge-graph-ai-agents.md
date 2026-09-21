@@ -1,19 +1,12 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/codegraph-pre-indexed-code-knowledge-graph-ai-agents" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/codegraph-pre-indexed-code-knowledge-graph-ai-agents" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/codegraph-pre-indexed-code-knowledge-graph-ai-agents" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/codegraph-pre-indexed-code-knowledge-graph-ai-agents" />
 title: "CodeGraph: 코드베이스 전체에서 코드 지식 그래프 구축"
 slug: "codegraph-pre-indexed-code-knowledge-graph-ai-agents"
 category: "dev-utils"
 publish_date: "2026-06-10"
-lastmod:  "2026-06-10"author: "DIBI8"
+lastmod: "2026-06-10"author: "DIBI8"
 tags: ["kotlin", "graph", "code-analysis", "devtools", "knowledge-graph"]
 featureImage: "https://avatars.githubusercontent.com/u/11434"
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/codegraph-pre-indexed-code-knowledge-graph-ai-agents/ -->
 
 # CodeGraph: 코드베이스 전체에서 코드 지식 그래프 구축
 
@@ -31,9 +24,7 @@ CodeGraph는 소스 코드를 파싱하고 포괄적인 그래프 표현을 구�
 
 ## 핵심 기능
 
-CodeGraph는 간결한 패키지에 놀라울 정도로 많은 기능을 담고 있습니다:
-
-- **자동 코드 파싱**: 소스 코드에서 전체 의존성 그래프 구축
+CodeGraph는 간결한 패키지에 놀라울 정도로 많은 기능을 담고 있습니다: - **자동 코드 파싱**: 소스 코드에서 전체 의존성 그래프 구축
 - **쿼리 API**: 노드 검색, 관계 탐색, 결과 필터링을 위한 프로그래밍 방식 쿼리
 - **CLI 도구**: 한 번의 명령으로 그래프 생성 및 터미널에서 인터랙티브 쿼리
 - **내보내기 기능**: 그래프를 JSON, DOT(Graphviz), GraphML 형식으로 내보내기
@@ -47,9 +38,7 @@ CodeGraph 설치는 간단합니다. 가장 일반적인 방법은 Gradle 플러
 
 ### Gradle로 설치하기
 
-`build.gradle.kts`에 CodeGraph를 의존성으로 추가합니다:
-
-```kotlin
+`build.gradle.kts`에 CodeGraph를 의존성으로 추가합니다: ```kotlin
 plugins {
     id("org.jetbrains.kotlin.jvm") version "1.9.22"
 }
@@ -72,25 +61,19 @@ dependencies {
 
 ### CLI 설치하기
 
-최신 CLI JAR을 다운로드하여 직접 실행하세요:
-
-```bash
+최신 CLI JAR을 다운로드하여 직접 실행하세요: ```bash
 curl -L -o codegraph-cli.jar https://repo.maven.apache.org/maven2/io/codegraph/codegraph-cli/1.2.0/codegraph-cli-1.2.0.jar
 java -jar codegraph-cli.jar --version
 ```
 
-또는 macOS에서 Homebrew로 설치합니다:
-
-```bash
+또는 macOS에서 Homebrew로 설치합니다: ```bash
 brew tap codegraph/tap
 brew install codegraph
 ```
 
 ## 첫 번째 그래프 구축하기
 
-CodeGraph를 설치한 후, 코드베이스에서 지식 그래프를 생성하는 것은 한 줄의 명령어로 끝납니다:
-
-```bash
+CodeGraph를 설치한 후, 코드베이스에서 지식 그래프를 생성하는 것은 한 줄의 명령어로 끝납니다: ```bash
 codegraph scan \
   --source-dir ./src/main \
   --output-dir ./codegraph-output \
@@ -99,9 +82,7 @@ codegraph scan \
 
 이 명령은 `./src/main` 아래의 모든 Kotlin 및 Java 소스 파일을 스캔하고, 의존성 그래프를 구축한 다음, JSON 형식으로 `./codegraph-output`에 내보냅니다. `json` 대신 `dot`(Graphviz 형식)이나 `graphml`(그래프 데이터베이스 도구와 호환되는 형식)로 변경할 수 있습니다.
 
-생성 후 출력을 확인합니다:
-
-```bash
+생성 후 출력을 확인합니다: ```bash
 codegraph inspect \
   --input ./codegraph-output/graph.json \
   --query "classes package=com.example.service"
@@ -109,9 +90,7 @@ codegraph inspect \
 
 ## 프로그래밍 API 사용하기
 
-더 깊은 통합을 위해 CodeGraph는 풍부한 프로그래밍 API를 제공합니다. 다음은 그래프를 로드하고 쿼리하며 프로그래밍 방식으로 관계를 추출하는 예시입니다:
-
-```kotlin
+더 깊은 통합을 위해 CodeGraph는 풍부한 프로그래밍 API를 제공합니다. 다음은 그래프를 로드하고 쿼리하며 프로그래밍 방식으로 관계를 추출하는 예시입니다: ```kotlin
 import io.codegraph.*
 import io.codegraph.query.*
 
@@ -151,9 +130,7 @@ fun main() {
 
 ## 내장 쿼리 언어로 그래프 쿼리하기
 
-CodeGraph는 강력한 선언형 쿼리 언어를 제공합니다. 다음은 몇 가지 일반적인 사용 패턴입니다:
-
-### 패키지의 모든 클래스 찾기
+CodeGraph는 강력한 선언형 쿼리 언어를 제공합니다. 다음은 몇 가지 일반적인 사용 패턴입니다: ### 패키지의 모든 클래스 찾기
 
 ```bash
 codegraph query \
@@ -196,9 +173,7 @@ codegraph query \
 
 ## 활용 사례
 
-CodeGraph는 다양한 개발 시나리오에 활용됩니다. 가장 영향력 있는 사례들을 소개합니다:
-
-### 신규 개발자 온보딩
+CodeGraph는 다양한 개발 시나리오에 활용됩니다. 가장 영향력 있는 사례들을 소개합니다: ### 신규 개발자 온보딩
 
 새로운 팀원은 모든 파일을 읽지 않고도 그래프를 쿼리하여 코드베이스 구조를 파악할 수 있습니다. `classes package=com.example`과 같은 간단한 쿼리는 패키지로 정리된 모든 클래스의 깔끔한 목록을 반환하여 아키텍처에 대한 즉각적인 mentale map을 제공합니다.
 
@@ -208,9 +183,7 @@ CodeGraph는 다양한 개발 시나리오에 활용됩니다. 가장 영향력 
 
 ### 아키텍처 위반 감지
 
-CodeGraph는 아키텍처 위반을 자동으로 감지할 수 있습니다. 예를 들어, 서비스 레이어를 우회하는 UI 레이어에서 데이터 레이어로의 모든 의존성을 쿼리할 수 있습니다:
-
-```bash
+CodeGraph는 아키텍처 위반을 자동으로 감지할 수 있습니다. 예를 들어, 서비스 레이어를 우회하는 UI 레이어에서 데이터 레이어로의 모든 의존성을 쿼리할 수 있습니다: ```bash
 codegraph query \
   --input ./codegraph-output/graph.json \
   --filter "classes package=ui" \
@@ -221,9 +194,7 @@ codegraph query \
 
 ### 기술 부채 식별
 
-과도한 진입 에지가 있거나 호출자가 없는 함수는 유지보수 부담을 나타낼 수 있습니다. CodeGraph는 다음 쿼리로 이러한 문제를 플래그합니다:
-
-```bash
+과도한 진입 에지가 있거나 호출자가 없는 함수는 유지보수 부담을 나타낼 수 있습니다. CodeGraph는 다음 쿼리로 이러한 문제를 플래그합니다: ```bash
 codegraph query \
   --input ./codegraph-output/graph.json \
   --filter "functions with callers > 20"
@@ -252,9 +223,7 @@ codegraph query \
 
 ## 실제 예시: GraphQL 서버 구축하기
 
-Ktor를 사용하여 GraphQL 서버를 구축한다고 가정해 봅시다. CodeGraph는 데이터 모델, GraphQL 타입, 리졸버 간의 관계를 시각화하는 데 도움을 줍니다:
-
-```kotlin
+Ktor를 사용하여 GraphQL 서버를 구축한다고 가정해 봅시다. CodeGraph는 데이터 모델, GraphQL 타입, 리졸버 간의 관계를 시각화하는 데 도움을 줍니다: ```kotlin
 import io.codegraph.*
 
 fun analyzeGraphQLServer() {
@@ -305,24 +274,16 @@ fun analyzeGraphQLServer() {
 
 ## CI/CD 파이프라인과 통합하기
 
-CodeGraph는 CI/CD 파이프라인에 매끄럽게 통합되어 아키텍처 규칙을 자동으로 강제합니다:
-
-```yaml
+CodeGraph는 CI/CD 파이프라인에 매끄럽게 통합되어 아키텍처 규칙을 자동으로 강제합니다: ```yaml
 # .github/workflows/codegraph.yml
 name: CodeGraph 분석
-on:
-  pull_request:
-    branches: [main]
+on: pull_request: branches: [main]
 
-jobs:
-  analyze:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: analyze: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - name: JDK 설정
         uses: actions/setup-java@v4
-        with:
-          java-version: '17'
+        with: java-version: '17'
           distribution: 'temurin'
       - name: Code Graph 생성
         run: |
@@ -333,16 +294,13 @@ jobs:
       - name: 그래프 보고서 내보내기
         if: always()
         uses: actions/upload-artifact@v4
-        with:
-          name: codegraph-report
+        with: name: codegraph-report
           path: build/codegraph/
 ```
 
 ## 제한사항
 
-CodeGraph는 강력하지만 몇 가지 중요한 제한사항이 있습니다:
-
-1. **JVM 언어만 지원**: 현재 Kotlin과 Java만 지원합니다. JavaScript, Python 등 비-JVM 언어는 지원하지 않습니다.
+CodeGraph는 강력하지만 몇 가지 중요한 제한사항이 있습니다: 1. **JVM 언어만 지원**: 현재 Kotlin과 Java만 지원합니다. JavaScript, Python 등 비-JVM 언어는 지원하지 않습니다.
 2. **런타임 분석 없음**: CodeGraph는 컴파일 타임 정적 구조만 분석합니다. 동적 디스패치, 리플렉션 기반 호출, 런타임 생성 코드는 볼 수 없습니다.
 3. **타사 라이브러리 커버리지**: 외부 JAR에서의 의존성은 소스가 제공되지 않으면 완전히 분석되지 않을 수 있습니다.
 4. **메모리 사용량**: 대규모 코드베이스(50만 라인 이상)는 그래프 구축에 상당한 힙 공간이 필요합니다. 최소 4GB RAM을 권장합니다.
@@ -358,17 +316,13 @@ CodeGraph는 현재 Kotlin과 Java를 지원합니다. Kotlin 컴파일러의 �
 
 ### Q2: CodeGraph는 Gradle 멀티모듈 프로젝트를 분석할 수 있나요?
 
-네. CodeGraph는 네이티브로 Gradle과 Maven 멀티모듈 프로젝트를 처리합니다. 프로젝트 루트에서 `codegraph scan`을 실행하면 모든 모듈과 모듈 간 의존성을 자동으로 감지합니다. `--multi-module` 플래그는 추가적인 모듈 간 분석을 활성화합니다:
-
-```bash
+네. CodeGraph는 네이티브로 Gradle과 Maven 멀티모듈 프로젝트를 처리합니다. 프로젝트 루트에서 `codegraph scan`을 실행하면 모든 모듈과 모듈 간 의존성을 자동으로 감지합니다. `--multi-module` 플래그는 추가적인 모듈 간 분석을 활성화합니다: ```bash
 codegraph scan --source-dir . --multi-module
 ```
 
 ### Q3: CodeGraph는 얼마나 큰 코드베이스를 처리할 수 있나요?
 
-CodeGraph는 최대 200만 라인 코드의 코드베이스로 테스트되었습니다. 성능은 코드 크기에 거의 선형적으로 스케일합니다. 매우 대규모 코드베이스(100만 라인 이상)의 경우 JVM 힙 크기를 8GB 이상으로 늘리세요:
-
-```bash
+CodeGraph는 최대 200만 라인 코드의 코드베이스로 테스트되었습니다. 성능은 코드 크기에 거의 선형적으로 스케일합니다. 매우 대규모 코드베이스(100만 라인 이상)의 경우 JVM 힙 크기를 8GB 이상으로 늘리세요: ```bash
 java -Xmx8g -jar codegraph-cli.jar scan --source-dir ./src
 ```
 
@@ -378,9 +332,7 @@ JVM에서 컴파일되는 프로젝트라면 CodeGraph를 사용할 수 있습�
 
 ### Q5: CodeGraph는 동적으로 생성된 코드를 처리하나요?
 
-CodeGraph는 정적으로 컴파일된 소스 코드를 분석합니다. 프로젝트에서 코드 생성(Kotlin Poet, jOOQ codegen, Protobuf 등)을 사용하는 경우, 생성된 코드를 스캔 대상에 포함해야 합니다. 생성된 소스 디렉토리를 스캔 경로에 추가하세요:
-
-```bash
+CodeGraph는 정적으로 컴파일된 소스 코드를 분석합니다. 프로젝트에서 코드 생성(Kotlin Poet, jOOQ codegen, Protobuf 등)을 사용하는 경우, 생성된 코드를 스캔 대상에 포함해야 합니다. 생성된 소스 디렉토리를 스캔 경로에 추가하세요: ```bash
 codegraph scan \
   --source-dir ./src/main \
   --source-dir ./build/generated
@@ -388,9 +340,7 @@ codegraph scan \
 
 ### Q6: CodeGraph를 코드 품질 메트릭에 사용할 수 있나요?
 
-네. CodeGraph는 그래프 구조에서 다양한 코드 품질 메트릭을 계산할 수 있습니다: AST 분석과 결합한 순환 복잡도, 결합도 메트릭, 응집도 점수, 의존성 깊이 등. `codegraph metrics` 서브커맨드를 사용하세요:
-
-```bash
+네. CodeGraph는 그래프 구조에서 다양한 코드 품질 메트릭을 계산할 수 있습니다: AST 분석과 결합한 순환 복잡도, 결합도 메트릭, 응집도 점수, 의존성 깊이 등. `codegraph metrics` 서브커맨드를 사용하세요: ```bash
 codegraph metrics --input ./codegraph-output/graph.json --output ./report.json
 ```
 
@@ -425,7 +375,6 @@ IDE 도구는 현재 열려 있는 파일에 대한 실시간 분석을 제공�
 DIBI8는 최고의 오픈소스 도구, AI 혁신, 개발자 리소스를 발견하는 당신의 게이트웨이입니다. 기술 분야에서 가장 영향력 있는 프로젝트에 대한 일일 업데이트를 위해 Telegram 채널을 구독하세요.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

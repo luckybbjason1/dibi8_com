@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/whisperx" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/whisperx" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/whisperx" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/whisperx" />
 title: 'WhisperX: 22K+ Stars — 프로덕션 ASR 배포 가이드 2026'
 description: 'WhisperX는 단어 수준 타임스탬프와 화자 분리를 제공하는 오픈소스 ASR 툴킷입니다. faster-whisper, pyannote.audio, OpenAI Whisper 모델과 호환됩니다. Docker 배포, Python API, 벤치마크, 프로덕션 하드닝을 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [whisperx, asr, 음성인식, 화자분리, 단어타임스탬프, 'faster-whisper', pyannote, docker]
-aliases:
-- /kr/posts/whisperx/
+aliases: - /kr/posts/whisperx/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/whisperx/ -->
 
 {{</* resource-info */>}}
 
@@ -49,9 +41,7 @@ Whisper의 구간 수준 타임스탬프(1-3초 드리프트)와 달리, Whisper
 
 ## WhisperX의 작동 원리
 
-WhisperX는 세 단계 파이프라인으로 작동하며, 각 단계는 점진적으로 풍부한 출력을 생성합니다:
-
-```
+WhisperX는 세 단계 파이프라인으로 작동하며, 각 단계는 점진적으로 풍부한 출력을 생성합니다: ```
 ┌─────────────────┐    ┌──────────────────┐    ┌──────────────────┐
 │  단계 1: ASR    │ →  │  단계 2: 정렬    │ →  │  단계 3: 분리    │
 │ (faster-whisper)│    │ (wav2vec2 강제)  │    │ (pyannote.audio) │
@@ -136,13 +126,10 @@ docker run --gpus all -v $(pwd)/audio:/workspace/audio \
 
 ### Hugging Face 토큰 설정 (분리에 필요)
 
-화자 분리를 위해서는 pyannote 모델 라이선스 수락이 필요합니다:
-
-```bash
+화자 분리를 위해서는 pyannote 모델 라이선스 수락이 필요합니다: ```bash
 # 1. https://huggingface.co 에서 계정 생성
 # 2. https://huggingface.co/settings/tokens 에서 읽기 토큰 생성
-# 3. 다음 모델 라이선스 수락:
-#    - pyannote/speaker-diarization-community-1
+# 3. 다음 모델 라이선스 수락: #    - pyannote/speaker-diarization-community-1
 #    - pyannote/segmentation-3.0
 
 # 토큰 낳출
@@ -156,9 +143,7 @@ whisperx audio.wav --diarize --hf_token $HF_TOKEN
 
 ### faster-whisper
 
-WhisperX는 CTranslate2를 통해 `faster-whisper`를 기본 ASR 백엔드로 사용합니다. 속도/정확도 균형을 위해 빔 크기와 계산 유형을 구성할 수 있습니다:
-
-```python
+WhisperX는 CTranslate2를 통해 `faster-whisper`를 기본 ASR 백엔드로 사용합니다. 속도/정확도 균형을 위해 빔 크기와 계산 유형을 구성할 수 있습니다: ```python
 import whisperx
 
 # faster-whisper 백엔드로 모델 로드
@@ -177,9 +162,7 @@ model = whisperx.load_model(
 
 ### pyannote.audio
 
-분리는 pyannote.audio 3.1+ 모델을 사용합니다. `DiarizationPipeline`은 pyannote를 래핑하고 WhisperX 특정 화자 할당 기능을 추가합니다:
-
-```python
+분리는 pyannote.audio 3.1+ 모델을 사용합니다. `DiarizationPipeline`은 pyannote를 래핑하고 WhisperX 특정 화자 할당 기능을 추가합니다: ```python
 from whisperx.diarize import DiarizationPipeline
 
 # pyannote 백엔드로 분리 초기화
@@ -203,9 +186,7 @@ result = whisperx.assign_word_speakers(diarize_segments, result)
 
 ### OpenAI Whisper
 
-WhisperX는 OpenAI의 Whisper 가중치를 로드하지만 4배 더 빠른 추론을 위해 CTranslate2 형식으로 변환합니다. `--model` 플래그로 Whisper 변형을 선택합니다:
-
-```bash
+WhisperX는 OpenAI의 Whisper 가중치를 로드하지만 4배 더 빠른 추론을 위해 CTranslate2 형식으로 변환합니다. `--model` 플래그로 Whisper 변형을 선택합니다: ```bash
 # 모델 크기 옵션: tiny, base, small, medium, large-v1, large-v2, large-v3
 whisperx audio.wav --model large-v3 --language en
 
@@ -219,18 +200,13 @@ whisperx audio.wav --model large-v2 --compute_type int8
 # docker-compose.yml
 version: "3.8"
 
-services:
-  whisperx:
-    build:
-      context: .
+services: whisperx: build: context: .
       dockerfile: Dockerfile.whisperx
     runtime: nvidia
-    environment:
-      - NVIDIA_VISIBLE_DEVICES=all
+    environment: - NVIDIA_VISIBLE_DEVICES=all
       - HF_TOKEN=${HF_TOKEN}
       - CUDA_VISIBLE_DEVICES=0
-    volumes:
-      - ./audio:/workspace/audio:ro
+    volumes: - ./audio:/workspace/audio:ro
       - ./output:/workspace/output
       - ./models:/root/.cache:rw
     command: >
@@ -242,19 +218,13 @@ services:
       --output_format json
       --batch_size 16
       --compute_type float16
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+    deploy: resources: reservations: devices: - driver: nvidia
               count: 1
               capabilities: [gpu]
 
   # 선택: 배치 작업용 Redis 큐
-  redis:
-    image: redis:7-alpine
-    ports:
-      - "6379:6379"
+  redis: image: redis:7-alpine
+    ports: - "6379:6379"
 ```
 
 ### FastAPI 서비스 래퍼
@@ -285,14 +255,11 @@ async def transcribe(
     file: UploadFile = File(...),
     diarize: bool = True,
     language: str = "en"
-):
-    """단어 수준 타임스탬프와 화자 라벨로 오디오 전사."""
-    with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as tmp:
-        tmp.write(await file.read())
+): """단어 수준 타임스탬프와 화자 라벨로 오디오 전사."""
+    with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as tmp: tmp.write(await file.read())
         tmp_path = tmp.name
 
-    try:
-        # 오디오 로드
+    try: # 오디오 로드
         audio = whisperx.load_audio(tmp_path)
 
         # 단계 1: 전사
@@ -305,8 +272,7 @@ async def transcribe(
         )
 
         # 단계 3: 분리 (선택)
-        if diarize:
-            diarize_segments = DIARIZE_MODEL(audio)
+        if diarize: diarize_segments = DIARIZE_MODEL(audio)
             result = whisperx.assign_word_speakers(diarize_segments, result)
 
         return {
@@ -319,17 +285,13 @@ async def transcribe(
                 for w in s.get("words", [])
             )) if diarize else []
         }
-    finally:
-        os.unlink(tmp_path)
+    finally: os.unlink(tmp_path)
 
 @app.get("/health")
-async def health():
-    return {"status": "ok", "device": DEVICE, "model": "large-v2"}
+async def health(): return {"status": "ok", "device": DEVICE, "model": "large-v2"}
 ```
 
-API 실행:
-
-```bash
+API 실행: ```bash
 # 의존성 설치
 pip install fastapi uvicorn python-multipart
 
@@ -345,9 +307,7 @@ curl -X POST "http://localhost:8000/transcribe?diarize=true" \
 
 ### 속도 벤치마크: 1시간 오디오
 
-AMD RX 7700 XT, CUDA 12.8에서 테스트:
-
-| 모델 | OpenAI Whisper | faster-whisper | WhisperX (전체) | Whisper 대비 속도 향상 |
+AMD RX 7700 XT, CUDA 12.8에서 테스트: | 모델 | OpenAI Whisper | faster-whisper | WhisperX (전체) | Whisper 대비 속도 향상 |
 |------|---------------|----------------|-----------------|-------------------|
 | tiny | ~12분 | ~1.5분 | ~2분 | 6x |
 | base | ~20분 | ~2.5분 | ~3.5분 | 5.7x |
@@ -359,18 +319,14 @@ WhisperX는 정렬과 분리로 인해 faster-whisper보다 약 30-40% 오버헤
 
 ### 정확도 벤치마크: 단어 분할 및 WER
 
-WhisperX 논문(Bain et al., INTERSPEECH 2023), TEDLIUM, AMI, Switchboard 코퍼스에서 테스트:
-
-| 메트릭 | Whisper | wav2vec2 | WhisperX | 개선 |
+WhisperX 논문(Bain et al., INTERSPEECH 2023), TEDLIUM, AMI, Switchboard 코퍼스에서 테스트: | 메트릭 | Whisper | wav2vec2 | WhisperX | 개선 |
 |--------|---------|----------|----------|------|
 | WER (TEDLIUM) | 4.2% | 6.8% | **3.9%** | Whisper 대비 -7% |
 | 단어 분할 정밀도 | 62% | 71% | **89%** | wav2vec2 대비 +18% |
 | 단어 분할 재현율 | 58% | 68% | **86%** | wav2vec2 대비 +18% |
 | 타임스탬프 드리프트 | ~1.5s | N/A | **<80ms** | 18배 개선 |
 
-독립 연구의 실제 WER (2024-2025):
-
-| 시나리오 | Whisper WER | WhisperX WER | 비고 |
+독립 연구의 실제 WER (2024-2025): | 시나리오 | Whisper WER | WhisperX WER | 비고 |
 |----------|-------------|--------------|------|
 | 스튜디오 품질, 1명 | 5.2% | **4.8%** | 깨끗한 팟캐스트 오디오 |
 | 다중 화자 회의 (AMI) | 12.1% | **8.8%** | 3-4명 화자 |
@@ -391,9 +347,7 @@ WhisperX 논문(Bain et al., INTERSPEECH 2023), TEDLIUM, AMI, Switchboard 코퍼
 
 ### 메모리 제한 배포
 
-VRAM이 제한된 GPU의 경우:
-
-```bash
+VRAM이 제한된 GPU의 경우: ```bash
 # INT8 양자화: VRAM 30-40% 절감, 최소 정확도 손실
 whisperx audio.wav \
   --model large-v2 \
@@ -454,8 +408,7 @@ REQUEST_COUNT = Counter(
     ["model", "status"]
 )
 
-def transcribe_with_metrics(audio_path, model_name="large-v2"):
-    start = time.time()
+def transcribe_with_metrics(audio_path, model_name="large-v2"): start = time.time()
     audio = whisperx.load_audio(audio_path)
 
     # 단계 1
@@ -506,48 +459,29 @@ docker run --gpus all \
 # k8s-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
-metadata:
-  name: whisperx-asr
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: whisperx
-  template:
-    metadata:
-      labels:
-        app: whisperx
-    spec:
-      runtimeClassName: nvidia
-      containers:
-      - name: whisperx
+metadata: name: whisperx-asr
+spec: replicas: 2
+  selector: matchLabels: app: whisperx
+  template: metadata: labels: app: whisperx
+    spec: runtimeClassName: nvidia
+      containers: - name: whisperx
         image: whisperx:latest
-        resources:
-          limits:
-            nvidia.com/gpu: 1
+        resources: limits: nvidia.com/gpu: 1
             memory: "16Gi"
-          requests:
-            nvidia.com/gpu: 1
+          requests: nvidia.com/gpu: 1
             memory: "8Gi"
-        env:
-        - name: HF_TOKEN
-          valueFrom:
-            secretKeyRef:
-              name: hf-token-secret
+        env: - name: HF_TOKEN
+          valueFrom: secretKeyRef: name: hf-token-secret
               key: token
-        volumeMounts:
-        - name: model-cache
+        volumeMounts: - name: model-cache
           mountPath: /root/.cache
         - name: audio-input
           mountPath: /workspace/audio
           readOnly: true
-      volumes:
-      - name: model-cache
-        persistentVolumeClaim:
-          claimName: whisperx-model-cache
+      volumes: - name: model-cache
+        persistentVolumeClaim: claimName: whisperx-model-cache
       - name: audio-input
-        nfs:
-          server: 10.0.0.5
+        nfs: server: 10.0.0.5
           path: /shared/audio
 ```
 
@@ -630,9 +564,7 @@ WhisperX는 오픈소스 ASR 스택의 중요한 격차를 메웁니다: 70배 �
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -650,7 +582,6 @@ WhisperX는 오픈소스 ASR 스택의 중요한 격차를 메웁니다: 70배 �
 - [WhisperX 예제](https://github.com/m-bain/whisperX/blob/main/EXAMPLES.md) — 다국어 사용 샘플
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

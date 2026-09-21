@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/howtocook-programmer-open-source-cookbook" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/howtocook-programmer-open-source-cookbook" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/howtocook-programmer-open-source-cookbook" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/howtocook-programmer-open-source-cookbook" />
 title: "HowToCook 프로그래머 요리 가이드: 코딩을 더 향기롭게 하는 297개 오픈소스 레시피"
 description: "HowToCook 프로그래머 요리 가이드를 탐색하세요 — 코드처럼 정확하게 요리하는 297개 오픈소스 레시피. 토마토 계란볶음부터 베이징 덕까지, 난이도 분류, 명확한 단계.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Docker
+tech_stack: - Docker
   - JavaScript
 application_domain: "Ai Tools"
 source_version: ""
@@ -25,10 +19,8 @@ maintainer: "Anduin2017"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases:
-- /kr/posts/howtocook-programmer-open-source-cookbook/
-faqs:
-  - q: 'HowToCook이란 무엇인가요?'
+aliases: - /kr/posts/howtocook-programmer-open-source-cookbook/
+faqs: - q: 'HowToCook이란 무엇인가요?'
     a: 'HowToCook(程序员做饭指南)은 프로그래머 Anduin2017이 만든 오픈 소스 레시피 프로젝트로, 개발자가 문서에서 기대하는 수준의 정밀함과 명확함으로 작성된 297가지 레시피를 담고 있습니다.'
   - q: 'HowToCook은 기존 레시피와 어떻게 다른가요?'
     a: '''소금 약간''이나 ''노릇해질 때까지 볶기'' 같은 모호한 표현 대신, 모든 레시피에 정확한 계량(예: ''소금 3g''), 정확한 시간(예: ''한 면당 90초 볶기''), 완전한 사전 재료 목록, 필요 도구 목록, 그리고 1-5성 난이도 등급이 명시되어 있습니다.'
@@ -40,7 +32,6 @@ faqs:
     a: '저장소를 Fork하고, 템플릿 레시피를 복사한 뒤, 프로젝트의 구조화된 형식에 맞게 레시피를 작성하고 Pull Request를 제출하면 됩니다. 이 프로젝트에는 200명 이상의 기여자가 있으며 중국어, 영어, 일본어를 지원합니다.'
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/howtocook-programmer-open-source-cookbook/ -->
 {</* resource-info */>}
 
 ## HowToCook란?
@@ -175,15 +166,11 @@ docker run -d -p 5000:5000 ghcr.io/anduin2017/how-to-cook:latest
 
 ## NPM 패키지
 
-Node.js 패키지로 설치:
-
-```bash
+Node.js 패키지로 설치: ```bash
 npm install how-to-cook
 ```
 
-프로그래밍 방식 사용:
-
-```javascript
+프로그래밍 방식 사용: ```javascript
 const recipes = require('how-to-cook');
 
 // 레시피 검색
@@ -222,9 +209,7 @@ const dinner = recipes.random();
 
 ## 왜 이 프로젝트가 주목받아야 하는가
 
-**HowToCook**은 다음의 완벽한 예시입니다:
-
-1. **커뮤니티 기반 콘텐츠**: 200+ 기여자가 진정한 콘텐츠를 창조
+**HowToCook**은 다음의 완벽한 예시입니다: 1. **커뮤니티 기반 콘텐츠**: 200+ 기여자가 진정한 콘텐츠를 창조
 2. **구조화된 데이터**: 레시피는 schema.org 형식을 따름
 3. **롱테일 키워드**: "프로그래머 요리 가이드", "how to cook for developers"
 4. **에버그린 콘텐츠**: 요리는 결코 시대에 뒤떨어지지 않음
@@ -246,16 +231,13 @@ const dinner = recipes.random();
 
 ## 추천 도구
 
-오픈소스 AI 도구 개발/배포 시 권장:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
+오픈소스 AI 도구 개발/배포 시 권장: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
 - **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Anthropic Claude / OpenAI / DeepSeek API 프록시. 위의 AI 도구 대부분 (챗봇, 코드 생성, 번역, 검색 등) LLM API 키 필요 — 이 프록시로 안정적인 톱 모델 액세스, 공식 가격의 ~30%.
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -283,25 +265,20 @@ const dinner = recipes.random();
 
 ## Why This Matters
 
-Understanding howtocook 프로그래머 요리 가이드: 코딩을 더 향기롭게 하는 297개 오픈소스 레시피 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding howtocook 프로그래머 요리 가이드: 코딩을 더 향기롭게 하는 297개 오픈소스 레시피 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

@@ -1,20 +1,14 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/2026-06-29-trending-ai-agents" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/2026-06-29-trending-ai-agents" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/2026-06-29-trending-ai-agents" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/2026-06-29-trending-ai-agents" />
 title: "Tuần Này trong Các Tác Nhân AI Mã Nguồn Mở — Các Repo Gi...
 description: "Tổng hợp hàng tuần được chỉnh sửa thủ công về các dự án AI agent, LLM và MCP mã nguồn mở đang thịnh hành trên GitHub — dữ liệu được tự động thu thập bởi Dibi8 Tribe Intel, phân tích bởi đội ngũ biên tập Dibi8."
 tags: ["ai-agent", "automation", "ci-cd", "github", "open-source", "self-hosted", "trending", "weekly"]
 date: 2026-06-29 00:00:00+09:00
-lastmod:  2026-06-29 00:00:00+09:00categories: ["llm-frameworks"]
+lastmod: 2026-06-29 00:00:00+09:00categories: ["llm-frameworks"]
 slug: this-week-ai-agents-2026-w26
 author: "Dibi8 Tribe Intel (data collection) + Dibi8 editorial team (analysis & edit)"
 showAuthor: true
 showSummary: true
-sources:
-  - name: "GitHub Trending"
+sources: - name: "GitHub Trending"
     url: "https://github.com/trending"
     type: "data"
 methodology: "Open-source script at home-hermes/服务器hermes/scripts/tribe-os-intel.sh"
@@ -22,11 +16,8 @@ review_status: "AWAITING_EDITOR_REVIEW"
 featureImage: /images/articles/b62165fb-this-week-open-source-agents.png
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/2026-06-29-trending-ai-agents/ -->
 # Tuần Này trong Các Tác Nhân AI Mã Nguồn Mở — Các Repo GitHub Xu Hướng Hàng Đầu (Tuần của ngày 29 tháng 6, 2026)
 ---
-
-<!-- Dibi8 Tribe Intel — Weekly Trending Report | Week 26 (June 29, 2026) -->
 
 > **TL;DR**: This week's trending repos span AI video editing, cybersecurity skills for agents, open-source design tools, AI website cloning, and privacy-first messaging. Palmier Pro leads with 6,126 stars/week as the first AI-native macOS video editor.
 
@@ -84,9 +75,7 @@ Mỗi kỹ năng là một lời nhắc có cấu trúc hoặc định nghĩa c�
 
 ### Why It Matters
 
-Điều này đại diện cho một sự thay đổi mô hình trong cách các chuyên gia an ninh làm việc với AI. Thay vì tự chạy các công cụ bảo mật, các tác nhân được trang bị những kỹ năng này có thể:
-
-- **Tự động quét** cơ sở hạ tầng để tìm lỗ hổng
+Điều này đại diện cho một sự thay đổi mô hình trong cách các chuyên gia an ninh làm việc với AI. Thay vì tự chạy các công cụ bảo mật, các tác nhân được trang bị những kỹ năng này có thể: - **Tự động quét** cơ sở hạ tầng để tìm lỗ hổng
 - **Thực hiện kiểm tra xâm nhập có cấu trúc** với các kỹ thuật được ánh xạ theo MITRE
 - **Tiến hành phản ứng sự cố** với các kịch bản đã định sẵn
 - **Tạo báo cáo tình báo mối đe dọa** từ dữ liệu thô
@@ -119,9 +108,7 @@ Penpot hỗ trợ hợp tác thiết kế-đến-mã theo thời gian thực, ch
 
 Thị trường công cụ thiết kế đang bị thống trị bởi Figma (Adobe), và Penpot là đối thủ mã nguồn mở nghiêm túc duy nhất. Với tổng cộng 54.379 sao, nó đã chứng minh được khả năng tồn tại và sự ủng hộ từ cộng đồng.
 
-Đối với các tổ chức cần công cụ thiết kế mà không phụ thuộc vào đám mây, Penpot cung cấp:
-
-- **Triển khai tự lưu trữ** — kiểm soát toàn bộ dữ liệu thiết kế
+Đối với các tổ chức cần công cụ thiết kế mà không phụ thuộc vào đám mây, Penpot cung cấp: - **Triển khai tự lưu trữ** — kiểm soát toàn bộ dữ liệu thiết kế
 - **Quy trình thiết kế tới mã** — các nhà phát triển nhận được đầu ra CSS/SVG sạch
 - **Cộng tác thời gian thực** — nhiều nhà thiết kế làm việc đồng thời
 - **Định dạng tệp mở** — không bị khóa nhà cung cấp cho tài sản thiết kế
@@ -135,24 +122,15 @@ Stack Clojure/ClojureScript của Penpot khá bất thường đối với một
 
 ### Quick Start: Self-Hosting Penpot
 
-Penpot cung cấp một thiết lập Docker Compose để tự lưu trữ:
-
-```yaml
+Penpot cung cấp một thiết lập Docker Compose để tự lưu trữ: ```yaml
 version: "3.6"
-services:
-  penpot-backend:
-    image: penpotapp/backend:latest
-    ports:
-      - 9001:9001
-    environment:
-      - PENPET_PUBLIC_URI=http://localhost:9000
+services: penpot-backend: image: penpotapp/backend:latest
+    ports: - 9001:9001
+    environment: - PENPET_PUBLIC_URI=http://localhost:9000
       - PENPET_SECRET_KEY=penpot-secrets-change-me
-  penpot-frontend:
-    image: penpotapp/frontend:latest
-    ports:
-      - 9000:80
-    environment:
-      - PENPET_PUBLIC_URI=http://localhost:9000
+  penpot-frontend: image: penpotapp/frontend:latest
+    ports: - 9000:80
+    environment: - PENPET_PUBLIC_URI=http://localhost:9000
       - PENPET_BACKEND_URI=http://localhost:9001
 ```
 
@@ -176,9 +154,7 @@ Không giống như các công cụ thu thập dữ liệu tạo ra HTML lộn x
 
 ### Why It Matters
 
-Việc sao chép trang web có tiếng xấu vì thường được sử dụng cho phishing và vi phạm bản quyền. Tuy nhiên, các trường hợp sử dụng hợp pháp là rất đáng kể:
-
-- **Phân tích cảm hứng thiết kế** — nghiên cứu cách đối thủ cấu trúc các trang web của họ
+Việc sao chép trang web có tiếng xấu vì thường được sử dụng cho phishing và vi phạm bản quyền. Tuy nhiên, các trường hợp sử dụng hợp pháp là rất đáng kể: - **Phân tích cảm hứng thiết kế** — nghiên cứu cách đối thủ cấu trúc các trang web của họ
 - **Di cư hệ thống cũ** — hiện đại hóa các trang web cũ với mã sạch do AI tạo ra
 - **Mục đích giáo dục** — học phát triển web bằng cách xem xét các ví dụ thực tế
 - **Tái cấu trúc danh mục đầu tư** — xây dựng lại các trang web lưu trữ của riêng bạn
@@ -227,9 +203,7 @@ Quyền riêng tư ngày càng quan trọng trong kỷ nguyên giám sát hàng 
 
 ## This Week's Trends
 
-Nhìn vào các kho lưu trữ đang thịnh hành của W26, ba mô hình xuất hiện:
-
-1. **Các tác nhân AI chuyên ngành** — Từ chỉnh sửa video (Palmier Pro) đến an ninh mạng (Anthropic Skills), các tác nhân AI đang trở thành công cụ chuyên biệt thay vì trợ lý đa năng.
+Nhìn vào các kho lưu trữ đang thịnh hành của W26, ba mô hình xuất hiện: 1. **Các tác nhân AI chuyên ngành** — Từ chỉnh sửa video (Palmier Pro) đến an ninh mạng (Anthropic Skills), các tác nhân AI đang trở thành công cụ chuyên biệt thay vì trợ lý đa năng.
 
 2. **Mức độ trưởng thành của cơ sở hạ tầng mã nguồn mở** — 54K+ sao của Penpot và mức tăng trưởng hàng tuần ổn định cho thấy các giải pháp mở thay thế cho các công cụ thương mại đang đạt mức tương đương và được chấp nhận rộng rãi.
 
@@ -237,9 +211,7 @@ Nhìn vào các kho lưu trữ đang thịnh hành của W26, ba mô hình xuấ
 
 ## Looking Ahead
 
-Tuần tới, chúng ta sẽ theo dõi:
-
-- **Công cụ video AI** — Sự tăng trưởng của Palmier Pro gợi ý rằng có thể sẽ xuất hiện nhiều đối thủ hơn trong lĩnh vực chỉnh sửa video bản địa AI
+Tuần tới, chúng ta sẽ theo dõi: - **Công cụ video AI** — Sự tăng trưởng của Palmier Pro gợi ý rằng có thể sẽ xuất hiện nhiều đối thủ hơn trong lĩnh vực chỉnh sửa video bản địa AI
 - **Thư viện kỹ năng bảo mật** — Sự thành công của 817 kỹ năng an ninh mạng chỉ ra nhu cầu về các khả năng tác nhân theo lĩnh vực chuyên môn
 - **Cơ sở hạ tầng quyền riêng tư** — Cách tiếp cận của SimpleX thách thức quan niệm thông thường về danh tính người dùng trong nhắn tin
 
@@ -283,10 +255,6 @@ A: Không. Dibi8 duy trì sự độc lập biên tập nghiêm ngặt. Tất c�
 
 *Tuần này trong các Tác nhân AI Mã nguồn mở được xuất bản hàng tuần bởi Dibi8 Tribe Intel. Dữ liệu được thu thập: ngày 29 tháng 6, 2026. Số tiếp theo: ngày 6 tháng 7, 2026.*
 
-<!-- Disclosure: This article contains no affiliate links. Dibi8 maintains editorial independence. -->
-
-
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

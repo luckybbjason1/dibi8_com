@@ -1,19 +1,14 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/knowledge-work-plugins" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/knowledge-work-plugins" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/knowledge-work-plugins" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/knowledge-work-plugins" />
 title: "Plugin Làm việc Tri thức: Hệ sinh thái Plugin của Anthro...
 description: "Knowledge Work Plugins (20.728 sao) của Anthropic mở rộng Claude với các công cụ mạnh mẽ cho chỉnh sửa tài liệu, phân tích mã, duyệt web và thao tác tệp. Xây dựng plugin tùy chỉnh cho quy trình làm việc của bạn."
 date: 2026-06-15
-lastmod:  2026-06-15slug: knowledge-work-plugins
+lastmod: 2026-06-15
+slug: knowledge-work-plugins
 category: dev-utils
 tags: ['anthropic', 'claude', 'plugin', 'năng suất', 'chỉnh sửa tài liệu', 'phân tích mã', 'duyệt web', 'sử dụng công cụ']
 github_repo: "https://github.com/anthropics/knowledge-work-plugins"
 license: Apache-2.0
-images:
-  - url: "https://opengraph.github.com/github/anthropics/knowledge-work-plugins"
+images: - url: "https://opengraph.github.com/github/anthropics/knowledge-work-plugins"
     alt: "Knowledge Work Plugins GitHub OG"
     role: reference
   - url: "https://raw.githubusercontent.com/anthropics/knowledge-work-plugins/main/assets/plugin-diagram.png"
@@ -25,8 +20,6 @@ images:
 lang: vi
 featureImage: /images/articles/ai-trading-stack-2026--7-th-nh-ph-n-workflow-quant-m--ngu-n-m--cho-crypto---th--.png
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/knowledge-work-plugins/ -->
 
 ## TL;DR
 
@@ -58,9 +51,7 @@ npx skills list | grep knowledge-work
 
 ## Hệ thống Plugin Hoạt động Như thế nào
 
-Hệ thống plugin hoạt động thông qua một vòng lặp ba bước:
-
-1. **Claude xác định nhiệm vụ** — LLM xác định rằng nó cần thực hiện một hành động vượt ngoài tạo văn bản
+Hệ thống plugin hoạt động thông qua một vòng lặp ba bước: 1. **Claude xác định nhiệm vụ** — LLM xác định rằng nó cần thực hiện một hành động vượt ngoài tạo văn bản
 2. **Cuộc gọi công cụ được gửi** — Claude gửi một yêu cầu JSON có cấu trúc xác định hành động và tham số
 3. **Plugin thực thi và trả về** — Hệ thống plugin chạy hành động trong môi trường sandbox và trả kết quả về cho Claude
 
@@ -89,9 +80,7 @@ Sandboxing đảm bảo Claude không thể thực hiện các thao tác phá h�
 
 ## Cài đặt & Thiết lập
 
-Cài đặt Knowledge Work Plugins yêu cầu Python 3.10+ và tích hợp Claude Code hoặc Anthropic API hoạt động:
-
-```bash
+Cài đặt Knowledge Work Plugins yêu cầu Python 3.10+ và tích hợp Claude Code hoặc Anthropic API hoạt động: ```bash
 # Sao chép kho lưu trữ
 git clone https://github.com/anthropics/knowledge-work-plugins.git
 cd knowledge-work-plugins
@@ -105,15 +94,10 @@ cp plugins.config.example.yaml plugins.config.yaml
 
 ### Cấu hình Plugin
 
-Mỗi plugin được cấu hình độc lập trong `plugins.config.yaml`:
-
-```yaml
-plugins:
-  document-edit:
-    enabled: true
+Mỗi plugin được cấu hình độc lập trong `plugins.config.yaml`: ```yaml
+plugins: document-edit: enabled: true
     max_file_size: 1048576  # 1MB
-    allowed_extensions:
-      - .md
+    allowed_extensions: - .md
       - .txt
       - .json
       - .yaml
@@ -121,19 +105,15 @@ plugins:
       - .js
       - .ts
 
-  code-analysis:
-    enabled: true
-    linters:
-      - pylint
+  code-analysis: enabled: true
+    linters: - pylint
       - eslint
       - tsc
-    test_frameworks:
-      - pytest
+    test_frameworks: - pytest
       - jest
       - vitest
 
-  web-browse:
-    enabled: true
+  web-browse: enabled: true
     max_results: 20
     timeout: 30
     user_agent: "Knowledge-Work-Plugins/1.0"
@@ -149,9 +129,7 @@ docker run -v $(pwd)/plugins.config.yaml:/app/config.yaml knowledge-work-plugins
 
 ## Tích hợp với Quy trình Phát triển
 
-Knowledge Work Plugins tích hợp với mọi môi trường phát triển chính:
-
-| Môi trường | Phương thức Tích hợp | Plugin Tốt nhất |
+Knowledge Work Plugins tích hợp với mọi môi trường phát triển chính: | Môi trường | Phương thức Tích hợp | Plugin Tốt nhất |
 |-------------|-------------------|----------------|
 | **Claude Code** | Trình tải plugin tích hợp | document-edit |
 | **Cursor** | Plugin SDK + VS Code extension | code-analysis |
@@ -166,22 +144,16 @@ Knowledge Work Plugins tích hợp với mọi môi trường phát triển chí
 # .github/workflows/plugin-audit.yml
 name: Plugin Audit
 on: [pull_request]
-jobs:
-  audit:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: audit: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - uses: anthropics/knowledge-work-plugins@v1
-        with:
-          plugins: "code-analysis,docker-lint"
+        with: plugins: "code-analysis,docker-lint"
           config: plugins.config.yaml
 ```
 
 ## Đánh giá Hiệu năng: AI có Plugin vs AI Tiêu chuẩn
 
-Tác động hiệu năng của việc thêm công cụ có cấu trúc cho các tác nhân AI là có thể đo lường được:
-
-```
+Tác động hiệu năng của việc thêm công cụ có cấu trúc cho các tác nhân AI là có thể đo lường được: ```
 Nhiệm vụ                         | AI Tiêu chuẩn | AI có Plugin    | Cải thiện
 -------------------------------- | ------------- | --------------- | ---------
 Sửa bug trong cơ sở mã 10K LOC  | 2.3 giờ       | 18 phút         | 7.7x
@@ -208,21 +180,17 @@ Giảm tỷ lệ lỗi đến từ khả năng xác thực đầu ra của hệ 
 
 ## Sử dụng Nâng cao: Phát triển Plugin Tùy chỉnh
 
-SDK plugin giúp dễ dàng xây dựng các công cụ tùy chỉnh cho quy trình làm việc cụ thể của bạn:
-
-### Xây dựng Plugin Tùy chỉnh
+SDK plugin giúp dễ dàng xây dựng các công cụ tùy chỉnh cho quy trình làm việc cụ thể của bạn: ### Xây dựng Plugin Tùy chỉnh
 
 ```python
 # Plugin tùy chỉnh: Tự động hóa review PR
 from knowledge_work_plugins import PluginBase, PluginResult
 
-class PRReviewPlugin(PluginBase):
-    name = "pr-review"
+class PRReviewPlugin(PluginBase): name = "pr-review"
     version = "1.0.0"
     description = "Review PR tự động với chấm điểm mức độ nghiêm trọng"
 
-    async def execute(self, params):
-        pr_url = params.get("pr_url")
+    async def execute(self, params): pr_url = params.get("pr_url")
         review_depth = params.get("depth", "standard")  # standard | deep
 
         # Lấy diff PR
@@ -241,20 +209,16 @@ class PRReviewPlugin(PluginBase):
             recommendations=review["recommendations"]
         )
 
-    def analyze_diff(self, diff, depth="standard"):
-        # Chi tiết triển khai...
+    def analyze_diff(self, diff, depth="standard"): # Chi tiết triển khai...
         pass
 
-    def generate_review(self, issues):
-        # Tạo review có cấu trúc...
+    def generate_review(self, issues): # Tạo review có cấu trúc...
         pass
 ```
 
 ### Tổ hợp Plugin
 
-Các nhiệm vụ phức tạp có thể được giải quyết bằng cách tổ hợp nhiều plugin:
-
-```python
+Các nhiệm vụ phức tạp có thể được giải quyết bằng cách tổ hợp nhiều plugin: ```python
 # Tổ hợp: tìm kiếm → phân tích → chỉnh sửa → xác minh
 from knowledge_work_plugins import Pipeline
 
@@ -273,34 +237,26 @@ result = pipeline.execute(
 
 ### Xử lý Lỗi Plugin
 
-Xử lý lỗi mạnh mẽ là yếu tố quan trọng cho việc sử dụng plugin production. SDK cung cấp các loại lỗi có cấu trúc và logic tự động retry:
-
-```python
+Xử lý lỗi mạnh mẽ là yếu tố quan trọng cho việc sử dụng plugin production. SDK cung cấp các loại lỗi có cấu trúc và logic tự động retry: ```python
 from knowledge_work_plugins import Pipeline, PluginError
 
 pipeline = Pipeline(["document-edit", "code-analysis"])
 
-try:
-    result = pipeline.execute(task="Tái cấu trúc module authentication")
-except PluginError.TimeoutError as e:
-    print(f"Plugin hết giờ sau {e.timeout}s")
+try: result = pipeline.execute(task="Tái cấu trúc module authentication")
+except PluginError.TimeoutError as e: print(f"Plugin hết giờ sau {e.timeout}s")
     # Retry với timeout tăng
     result = pipeline.execute(task="Tái cấu trúc module authentication", timeout=600)
-except PluginError.PermissionDenied as e:
-    print(f"Từ chối quyền: {e.plugin}")
+except PluginError.PermissionDenied as e: print(f"Từ chối quyền: {e.plugin}")
     # Yêu cầu quyền nâng cao
     result = pipeline.execute(task="Tái cấu trúc module authentication", elevated=True)
-except PluginError.ValidationError as e:
-    print(f"Xác thực thất bại: {e.message}")
+except PluginError.ValidationError as e: print(f"Xác thực thất bại: {e.message}")
     # Sửa và retry
     result = pipeline.execute(task=f"Sửa: {e.suggestion}")
 ```
 
 ### Giám sát và Nhật ký Plugin
 
-Theo dõi thực thi plugin với khả năng quan sát tích hợp:
-
-```python
+Theo dõi thực thi plugin với khả năng quan sát tích hợp: ```python
 # Bật nhật ký chi tiết
 import logging
 logging.basicConfig(level=logging.DEBUG)
@@ -318,9 +274,7 @@ print(f"Tỷ lệ lỗi: {metrics.error_rate:.1%}")
 
 ### Tối ưu hóa Hiệu năng
 
-Đối với cơ sở mã lớn, thực thi plugin có thể được tối ưu hóa với caching và song song hóa:
-
-```python
+Đối với cơ sở mã lớn, thực thi plugin có thể được tối ưu hóa với caching và song song hóa: ```python
 # Bật thực thi plugin song song
 pipeline.set_parallel(True, max_workers=4)
 
@@ -337,9 +291,7 @@ pipeline.set_budget(
 
 ## So sánh với Các Giải pháp Thay thế
 
-Knowledge Work Plugins nổi bật so với các framework sử dụng công cụ cạnh tranh:
-
-| Tính năng | Knowledge Work Plugins | LangChain Tools | AutoGPT Tools | OpenAI Tools |
+Knowledge Work Plugins nổi bật so với các framework sử dụng công cụ cạnh tranh: | Tính năng | Knowledge Work Plugins | LangChain Tools | AutoGPT Tools | OpenAI Tools |
 |---------|----------------------|-----------------|---------------|--------------|
 | Sao | 20.728 | 50K+ | 140K+ | N/A |
 | Nhà phát triển | Anthropic | LangChain | AutoGPT | OpenAI |
@@ -356,9 +308,7 @@ Lợi thế chính là **tích hợp sâu của Anthropic**. Knowledge Work Plug
 
 ## Hạn chế: Khi Plugin Không Phải là Câu Trả lời
 
-Knowledge Work Plugins mạnh mẽ nhưng không phải vạn năng:
-
-1. **Phụ thuộc API** — Plugin yêu cầu Claude API hoặc Claude Code. Chúng không hoạt động với các nhà cung cấp LLM khác mà không có điều chỉnh.
+Knowledge Work Plugins mạnh mẽ nhưng không phải vạn năng: 1. **Phụ thuộc API** — Plugin yêu cầu Claude API hoặc Claude Code. Chúng không hoạt động với các nhà cung cấp LLM khác mà không có điều chỉnh.
 
 2. **Kích thước hệ sinh thái plugin** — Mặc dù đang tăng trưởng nhanh, danh mục plugin chính thức nhỏ hơn 200+ tích hợp của LangChain.
 
@@ -419,14 +369,12 @@ npx skills add https://github.com/anthropics/knowledge-work-plugins
 
 ---
 
-**Nguồn & Đọc thêm**:
-- Kho lưu trữ GitHub: https://github.com/anthropics/knowledge-work-plugins
+**Nguồn & Đọc thêm**: - Kho lưu trữ GitHub: https://github.com/anthropics/knowledge-work-plugins
 - Tài liệu SDK Plugin: https://github.com/anthropics/knowledge-work-plugins/blob/main/docs/sdk.md
 - Tham chiếu API Claude: https://docs.anthropic.com/claude/reference/
 
 
-**Sources & Further Reading**:
-- GitHub repository: https://github.com/anthropics/knowledge-work-plugins
+**Sources & Further Reading**: - GitHub repository: https://github.com/anthropics/knowledge-work-plugins
 - Plugin SDK documentation: https://github.com/anthropics/knowledge-work-plugins/blob/main/docs/sdk.md
 - Claude API reference: https://docs.anthropic.com/claude/reference/
 **CTA**: Tham gia cộng đồng nhà phát triển DIBI8 trên Telegram — [t.me/DIBI8_Group](https://t.me/DIBI8_Group)
@@ -434,7 +382,6 @@ npx skills add https://github.com/anthropics/knowledge-work-plugins
 **Disclosure**: Bài viết này chứa các liên kết tiếp thị liên kết. Nếu bạn đăng ký qua các liên kết của chúng tôi, chúng tôi có thể kiếm được hoa hồng mà không phát sinh chi phí bổ sung cho bạn.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

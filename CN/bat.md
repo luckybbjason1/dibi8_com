@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/bat" />
 title: 'bat: Syntax-Highlighting cat Clone with 58K+ Stars — Com...
 description: 'bat is a cat(1) clone with syntax highlighting and Git integration. Compatible with Rust, Git, Homebrew, Cargo. Covers installation, benchmark, configuration, and comparison with cat, less, ccat.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [bat, 'cat clone', 'syntax highlighting', 'cli tools', rust, terminal, 'file viewer', 'command line']
-aliases:
-- /posts/bat/
+aliases: - /posts/bat/-
 ---
-
 {{</* resource-info */>}}
 
 The `cat` command has been the default file viewer on Unix-like systems since 1971. It dumps raw bytes to stdout. No colors, no line numbers, no Git awareness. When you are reading a 200-line Python file at 2 AM, staring at unformatted text adds unnecessary friction. `bat` replaces this four-decade-old workflow with syntax highlighting, Git integration, and automatic paging — without breaking the muscle memory every terminal user already has.
@@ -42,19 +38,33 @@ The `cat` command has been the default file viewer on Unix-like systems since 19
 *Screenshot: bat displaying a Rust file with syntax highlighting, line numbers, and Git integration. Source: sharkdp/bat GitHub repository.*
 
 ```
-+---------+    +----------------+    +----------------+    +---------+
++
+---
++    +
+---
++    +
+---
++    +
+---
++
 |  Input  | -> | Language       | -> | syntect        | -> |  Pager  |
 |  File   |    | Detection      |    | Highlighting   |    | (less)  |
-+---------+    +----------------+    +----------------+    +---------+
++
+---
++    +
+---
++    +
+---
++    +
+---
++
                     |                      |
                     v                      v
               File extension          Theme selection
               Shebang parsing         Git diff markers
 ```
 
-Core concepts every user should know:
-
-- **Language auto-detection**: `bat` determines the syntax from the file extension (`.rs`, `.py`, `.md`) or the shebang line (`#!/bin/bash`).
+Core concepts every user should know: - **Language auto-detection**: `bat` determines the syntax from the file extension (`.rs`, `.py`, `.md`) or the shebang line (`#!/bin/bash`).
 - **Syntect engine**: The same TextMate/Sublime Text grammar definitions power the highlighting, so accuracy is on par with modern editors.
 - **Pager delegation**: By default, `bat` pipes to `less` when output exceeds one screen. In non-interactive contexts (piping to another process), it behaves exactly like `cat`.
 - **Git integration**: Files inside a Git repository show modification bars in the gutter — green for added lines, yellow for modified lines.
@@ -80,8 +90,7 @@ bat --version
 sudo apt install bat
 
 # On some Debian/Ubuntu systems, the binary is named batcat to avoid conflict
-# Create an alias if needed:
-mkdir -p ~/.local/bin
+# Create an alias if needed: mkdir -p ~/.local/bin
 ln -s /usr/bin/batcat ~/.local/bin/bat
 ```
 
@@ -122,9 +131,7 @@ sudo cp target/release/bat /usr/local/bin/
 
 ### Post-Install Configuration
 
-Create the config directory and a configuration file:
-
-```bash
+Create the config directory and a configuration file: ```bash
 # Create config directory
 mkdir -p "$(bat --config-dir)"
 
@@ -133,9 +140,7 @@ bat --config-file
 # Shows path, e.g. ~/.config/bat/config
 ```
 
-Edit the config file:
-
-```bash
+Edit the config file: ```bash
 # ~/.config/bat/config
 --theme="TwoDark"
 --style="numbers,changes,header"
@@ -147,9 +152,7 @@ Edit the config file:
 
 ### Git — Colorized File History
 
-View any file at a specific Git revision with full syntax highlighting:
-
-```bash
+View any file at a specific Git revision with full syntax highlighting: ```bash
 # View file at specific tag
 git show v0.26.1:src/main.rs | bat -l rs
 
@@ -162,9 +165,7 @@ git diff --cached | bat -l diff
 ![fzf integration with bat showing a file preview panel with syntax highlighting and line numbers](https://raw.githubusercontent.com/junegunn/fzf/master/man/man1/fzf-preview.1)
 *Concept: fzf file picker using bat as the preview engine for syntax-highlighted file previews.*
 
-`bat` integrates cleanly with `fzf` as a preview engine:
-
-```bash
+`bat` integrates cleanly with `fzf` as a preview engine: ```bash
 # Use bat as fzf previewer
 fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'
 
@@ -172,18 +173,14 @@ fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'
 fzf --preview 'bat --color=always {}' --preview-window=right:60%:wrap
 ```
 
-Add this to your `.bashrc` or `.zshrc`:
-
-```bash
+Add this to your `.bashrc` or `.zshrc`: ```bash
 # ~/.bashrc
 export FZF_DEFAULT_OPTS="--preview 'bat --color=always --style=numbers --line-range=:500 {}'"
 ```
 
 ### man — Syntax-Highlighted Manual Pages
 
-Set `bat` as your man pager:
-
-```bash
+Set `bat` as your man pager: ```bash
 # ~/.bashrc or ~/.zshrc
 export MANPAGER="bat -plman"
 
@@ -194,9 +191,7 @@ man bash
 
 ### Shell Alias — Replace cat
 
-Most users alias `cat` to `bat` for interactive sessions:
-
-```bash
+Most users alias `cat` to `bat` for interactive sessions: ```bash
 # ~/.bashrc or ~/.zshrc
 alias cat='bat --paging=never'
 
@@ -204,9 +199,7 @@ alias cat='bat --paging=never'
 alias b=bat
 ```
 
-For `zsh` users, global aliases can colorize `--help` output:
-
-```bash
+For `zsh` users, global aliases can colorize `--help` output: ```bash
 # ~/.zshrc
 alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 ```
@@ -220,9 +213,7 @@ tmux split-window -h "bat src/main.rs"
 
 ### delta — Enhanced Git Diff
 
-While `bat` handles file viewing, `delta` (also by the Rust CLI ecosystem) handles diff viewing. Pair them together:
-
-```bash
+While `bat` handles file viewing, `delta` (also by the Rust CLI ecosystem) handles diff viewing. Pair them together: ```bash
 # ~/.gitconfig
 [pager]
     diff = delta
@@ -241,7 +232,17 @@ While `bat` handles file viewing, `delta` (also by the Rust CLI ecosystem) handl
 `bat` is slower than `cat` due to its Rust binary startup cost and syntax detection overhead. For interactive file viewing, the difference is imperceptible. For bulk processing in tight loops, use `cat`.
 
 | Scenario | cat | bat (default) | bat --plain | bat --no-config |
-|----------|-----|---------------|-------------|-----------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 4-byte file | 0.001s | 0.14s | 0.10s | 0.08s |
 | 100-line Python | 0.002s | 0.16s | 0.11s | 0.09s |
 | 10,000-line JSON | 0.05s | 0.35s | 0.18s | 0.15s |
@@ -251,9 +252,7 @@ While `bat` handles file viewing, `delta` (also by the Rust CLI ecosystem) handl
 
 ### Non-Interactive Pipe Mode
 
-When `bat` detects a non-interactive terminal (piped output), it automatically drops to plain mode — matching `cat` behavior:
-
-```bash
+When `bat` detects a non-interactive terminal (piped output), it automatically drops to plain mode — matching `cat` behavior: ```bash
 # bat automatically switches to plain mode here
 cat large_file.txt | wc -l
 bat large_file.txt | wc -l
@@ -272,9 +271,7 @@ bat large_file.txt | wc -l
 
 ### Custom Themes
 
-`bat` ships with 20+ built-in themes. List and preview them:
-
-```bash
+`bat` ships with 20+ built-in themes. List and preview them: ```bash
 # List all available themes
 bat --list-themes
 
@@ -287,9 +284,7 @@ echo '--theme="Dracula"' >> "$(bat --config-file)"
 
 ### Custom Syntax Definitions
 
-Add Sublime Text `.sublime-syntax` files for languages `bat` does not support natively:
-
-```bash
+Add Sublime Text `.sublime-syntax` files for languages `bat` does not support natively: ```bash
 # Create syntax directory
 mkdir -p "$(bat --config-dir)/syntaxes"
 
@@ -304,17 +299,13 @@ bat cache --build
 bat --list-languages | grep -i purescript
 ```
 
-To reset to defaults:
-
-```bash
+To reset to defaults: ```bash
 bat cache --clear
 ```
 
 ### Disabling Features for Speed
 
-When processing thousands of files in a script, minimize overhead:
-
-```bash
+When processing thousands of files in a script, minimize overhead: ```bash
 # Fastest bat invocation for bulk processing
 bat --no-config --style=plain --paging=never --no-custom-assets file.txt
 ```
@@ -343,7 +334,17 @@ docker run --rm -v $(pwd):/files bat-viewer /files/README.md
 ## Comparison with Alternatives
 
 | Feature | bat | cat | less | ccat |
-|---------|-----|-----|------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Syntax highlighting | 200+ languages | None | None | 10+ languages |
 | Line numbers | Yes | No | No | No |
 | Git integration | Change markers | None | None | None |
@@ -421,9 +422,7 @@ Yes. Install via `scoop install bat`, `choco install bat`, or download prebuilt 
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -439,7 +438,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [Comparison with Alternatives](https://github.com/sharkdp/bat#project-goals-and-alternatives) — Official comparison from the bat maintainers.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -465,8 +463,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [deepseek-reasonix-terminal-ai-coding-agent-prefix-cache](bat)
@@ -475,6 +473,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [moneyprinterturbo-one-click-ai-video-generator](bat)
 - [pm-skills-68-product-management-skills-ai-agents](bat)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

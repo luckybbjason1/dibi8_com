@@ -1,14 +1,10 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/design-md-google-open-source-format-ai-coding-agents-design-systems" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/design-md-google-open-source-format-ai-coding-agents-design-systems" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/design-md-google-open-source-format-ai-coding-agents-design-systems" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/design-md-google-open-source-format-ai-coding-agents-design-systems" />
 title: 'DESIGN.md: AI 코딩 에이전트를 위한 디자인 시스템을 제공하는 구글의 오픈소스 포맷'
 description: 'Google Labs Code의 DESIGN.md는 AI 코딩 에이전트에 시각적 아이덴티티를 설명하기 위한 오픈소스 형식 사양입니다. GitHub 스타 20.8k. YAML 토큰과 문서 기반 제약 조건을 통해 디자인 시스템과 AI 코드 생성을 연결하는 방법을 알아보세요.'
 tags: ["guide", "open-source", "ai-agents", "design-systems", "reference", "google"]
 date: 2026-06-27
-lastmod:  2026-06-27slug: 'design-md-google-open-source-format-ai-coding-agents-design-systems'
+lastmod: 2026-06-27
+slug: 'design-md-google-open-source-format-ai-coding-agents-design-systems'
 category: dev-utils
 github_repo: 'https://github.com/google-labs-code/design.md'
 license: Apache-2.0
@@ -16,7 +12,6 @@ lang: ko
 featureImage: /images/articles/design-md-format-specification-for-ai-coding-agents.png
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/design-md-google-open-source-format-ai-coding-agents-design-systems/ -->
 # DESIGN.md: AI 코딩 에이전트를 위한 디자인 시스템을 제공하는 구글의 오픈소스 포맷
 
 
@@ -36,9 +31,7 @@ AI 코딩 에이전트에게 랜딩 페이지를 만들라고 요청하면, 기�
 
 DESIGN.md는 프로젝트의 시각적 정체성에 대한 단일 진실의 출처 역할을 하는 마크다운 파일입니다. 이 파일은 AI 코딩 에이전트(Claude, ChatGPT, Codex, Cursor 등)가 읽을 수 있도록 설계되어, UI가 항상 브랜드에 맞게 일관되게 생성되도록 하며 — 매번 디자인 시스템을 다시 설명할 필요가 없도록 합니다.
 
-그 형식은 두 개의 상호 보완적인 층으로 이루어져 있습니다:
-
-```
+그 형식은 두 개의 상호 보완적인 층으로 이루어져 있습니다: ```
 ┌──────────────────────────────────────────────────┐
 │              DESIGN.md Structure                  │
 ├──────────────────────────────────────────────────┤
@@ -49,7 +42,7 @@ DESIGN.md는 프로젝트의 시각적 정체성에 대한 단일 진실의 출�
 │                                                  │
 │  ## Colors                                     │
 │  ```yaml                                       │
-│  colors:                                       │
+│  colors: │
 │    paper: '#F4F0E4'                             │
 │    ink: '#1E1A14'                               │
 │    accent: '#C3402A'                            │
@@ -60,7 +53,7 @@ DESIGN.md는 프로젝트의 시각적 정체성에 대한 단일 진실의 출�
 │                                                  │
 │  ## Typography                                 │
 │  ```yaml                                       │
-│  typography:                                   │
+│  typography: │
 │    heading: 'Playfair Display'                 │
 │    body: 'Source Serif 4'                      │
 │    mono: 'JetBrains Mono'                      │
@@ -68,7 +61,7 @@ DESIGN.md는 프로젝트의 시각적 정체성에 대한 단일 진실의 출�
 │                                                  │
 │  ## Spacing                                    │
 │  ```yaml                                       │
-│  spacing:                                      │
+│  spacing: │
 │    unit: 8px                                   │
 │    scale: [4, 8, 16, 24, 32, 48, 64]           │
 │  ```                                           │
@@ -84,9 +77,7 @@ YAML 토큰은 기계가 읽을 수 있는 값을 제공합니다. 산문은 사
 
 ## 산문이 토큰보다 더 중요한 이유
 
-DESIGN.md 뒤에 있는 디자이너들은 의도적인 선택을 했습니다: **산문이 사양에서 가장 중요한 부분입니다**. 그들의 철학 문서는 이를 완벽하게 설명합니다:
-
-"> *'오래-established된 대학의 전통에 따른 1970년대 졸업생 강의 유인물'을 참고한 디자인은 완전한 세계를 불러일으킨다: 하나의 잉크 색, 넉넉한 여백, 읽기 크기로 설정된 세리프체, 그리고 장식의 부재. 그 한 문장이 수십 개의 수치 값보다 더 유용한 정보를 전달한다.*"
+DESIGN.md 뒤에 있는 디자이너들은 의도적인 선택을 했습니다: **산문이 사양에서 가장 중요한 부분입니다**. 그들의 철학 문서는 이를 완벽하게 설명합니다: "> *'오래-established된 대학의 전통에 따른 1970년대 졸업생 강의 유인물'을 참고한 디자인은 완전한 세계를 불러일으킨다: 하나의 잉크 색, 넉넉한 여백, 읽기 크기로 설정된 세리프체, 그리고 장식의 부재. 그 한 문장이 수십 개의 수치 값보다 더 유용한 정보를 전달한다.*"
 
 이것은 AI 지원 개발에 대한 깊은 통찰입니다. LLM에게 "따뜻하고 고급스러운 편집 미학을 사용하라"고 말하면, 그것은 일반적인 것을 생성합니다. 하지만 "1970년대 대학 졸업 강의 유인물"이라고 말하면, 모델은 전체 문화적 참조를 이해합니다 — 종이 질감, 절제된 타이포그래피, 장식 요소의 부재까지. 모델은 훈련 데이터에서 모든 공백을 채웁니다.
 
@@ -94,9 +85,7 @@ DESIGN.md는 이 원칙을 공식화합니다. 토큰은 지시가 아니라 맥
 
 ## 내부 작동 방식
 
-DESIGN.md 저장소는 조정을 위해 Turbo를 사용하는 Bun 모노레포 구조로 되어 있습니다:
-
-```
+DESIGN.md 저장소는 조정을 위해 Turbo를 사용하는 Bun 모노레포 구조로 되어 있습니다: ```
 design.md/
 ├── packages/
 │   └── cli/                    # @google/design.md CLI toolkit
@@ -111,8 +100,7 @@ design.md/
 └── PHILOSOPHY.md               # Design philosophy manifesto
 ```
 
-CLI 도구(`@google/design.md`)는 다음을 제공합니다:
-- **린팅**: DESIGN.md 파일을 명세 스키마에 따라 검증합니다
+CLI 도구(`@google/design.md`)는 다음을 제공합니다: - **린팅**: DESIGN.md 파일을 명세 스키마에 따라 검증합니다
 - **토큰 추출**: YAML 블록을 구조화된 데이터로 파싱합니다
 - **에이전트 통합**: Claude, ChatGPT 및 기타 코딩 에이전트를 위한 `.agents/skills/` 정의로 제공됩니다
 
@@ -126,17 +114,13 @@ CLI 도구(`@google/design.md`)는 다음을 제공합니다:
 bun install -g @google/design.md
 ```
 
-또는 npx로 직접 사용하세요:
-
-```bash
+또는 npx로 직접 사용하세요: ```bash
 npx @google/design.md lint DESIGN.md
 ```
 
 ### 2. 첫 번째 DESIGN.md 만들기
 
-최소한 필요한 구조부터 시작하세요:
-
-```markdown
+최소한 필요한 구조부터 시작하세요: ```markdown
 ---
 name: My Project Design
 ---
@@ -144,8 +128,7 @@ name: My Project Design
 ## 색상
 
 ```yaml
-colors:
-  primary: '#2563EB'
+colors: primary: '#2563EB'
   background: '#FFFFFF'
   text: '#111827'
 ```
@@ -155,8 +138,7 @@ colors:
 ## 타이포그래피
 
 ```yaml
-typography:
-  heading: 'Inter'
+typography: heading: 'Inter'
   body: 'Inter'
   mono: 'JetBrains Mono'
 ```
@@ -166,8 +148,7 @@ typography:
 ## 간격
 
 ```yaml
-spacing:
-  unit: 4px
+spacing: unit: 4px
   scale: [4, 8, 16, 24, 32, 48, 64]
 ```
 
@@ -175,9 +156,7 @@ spacing:
 
 ### 3. 그것을 여러분의 코딩 에이전트에게 보내세요
 
-프로젝트 저장소에 DESIGN.md를 추가하세요. 어떤 코딩 에이전트와 작업할 때든, 시스템 프롬프트에서 해당 파일을 참조하세요:
-
-```
+프로젝트 저장소에 DESIGN.md를 추가하세요. 어떤 코딩 에이전트와 작업할 때든, 시스템 프롬프트에서 해당 파일을 참조하세요: ```
 System: Read the DESIGN.md file in the project root.
 All UI components must follow the design specifications defined there.
 ```
@@ -186,9 +165,7 @@ All UI components must follow the design specifications defined there.
 
 ## 실제 사례
 
-이 저장소에는 다양한 미적 접근 방식을 보여주는 여러 예제 DESIGN.md 파일이 포함되어 있습니다:
-
-**대학원 강의 유인물**: 단일 잉크 타이포그래피와 도표에만 사용된 진홍색 강조가 있는 따뜻한 질감의 종이 캔버스. 본문에는 '오래된 전통 있는 대학의 대학원 수준 컴퓨터 과학 강의 유인물'이라고 명시되어 있어, 즉시 여백, 세리프 글꼴, 절제된 표현을 전달한다.
+이 저장소에는 다양한 미적 접근 방식을 보여주는 여러 예제 DESIGN.md 파일이 포함되어 있습니다: **대학원 강의 유인물**: 단일 잉크 타이포그래피와 도표에만 사용된 진홍색 강조가 있는 따뜻한 질감의 종이 캔버스. 본문에는 '오래된 전통 있는 대학의 대학원 수준 컴퓨터 과학 강의 유인물'이라고 명시되어 있어, 즉시 여백, 세리프 글꼴, 절제된 표현을 전달한다.
 
 **모션 디자인 시스템**: UI 피드백에 대한 타이밍 상수를 정의합니다(호버/프레스에 120ms, 콘텐츠 전환에 250ms)과 기계적 완화 곡선을 사용합니다. 글에서는 '아무 것도 튀지 않고, 아무 것도 넘치지 않으며, 아무 것도 오래 남지 않는다'라고 강조하여 에이전트에게 명확한 시간적 미학을 제공합니다.
 
@@ -200,8 +177,7 @@ DESIGN.md는 AI 지원 개발에서 근본적인 병목 현상을 해결합니�
 
 디자인 명세가 없으면, AI가 생성한 모든 페이지, 컴포넌트, 또는 화면은 새로운 창작 연습이 됩니다. 에이전트는 프롬프트에 있는 것 외에는 당신의 브랜드 색상을 알지 못하며, 당신의 간격 철학을 이해하지 못하고, 프로젝트에서 '완성'이 무엇인지 기억하지 못합니다.
 
-DESIGN.md와 함께:
-- **에이전트는 지속적인 디자인 메모리를 가집니다** — 이 파일은 당신의 저장소에 있으며, 버전 관리되고 검토됩니다
+DESIGN.md와 함께: - **에이전트는 지속적인 디자인 메모리를 가집니다** — 이 파일은 당신의 저장소에 있으며, 버전 관리되고 검토됩니다
 - **여러 에이전트가 일관성을 유지합니다** — Claude, ChatGPT, Codex 모두 동일한 파일을 읽습니다
 - **디자인 리뷰가 자동화됩니다** — 린터가 위반 사항을 프로덕션에 도달하기 전에 잡아냅니다
 - **새로운 개발자가 즉시 적응합니다** — 이 파일이 *바로* 디자인 시스템 문서입니다
@@ -210,9 +186,7 @@ DESIGN.md와 함께:
 
 ## 제한 사항과 절충
 
-DESIGN.md는 만능 해결책이 아닙니다. 몇 가지 고려 사항:
-
-1. **에이전트 의존 품질**: 효과는 각 에이전트가 산문을 얼마나 잘 읽고 따르는지에 달려 있습니다. 일부 에이전트는 YAML을 분석할 수 있지만 이야기 설명을 무시할 수 있습니다.
+DESIGN.md는 만능 해결책이 아닙니다. 몇 가지 고려 사항: 1. **에이전트 의존 품질**: 효과는 각 에이전트가 산문을 얼마나 잘 읽고 따르는지에 달려 있습니다. 일부 에이전트는 YAML을 분석할 수 있지만 이야기 설명을 무시할 수 있습니다.
 
 2. **시각적 렌더링 없음**: DESIGN.md는 렌더링 엔진이 아니라 명세서입니다. 여전히 명세를 실제 코드로 변환하기 위해 에이전트(또는 인간 디자이너)가 필요합니다.
 
@@ -224,9 +198,7 @@ DESIGN.md는 만능 해결책이 아닙니다. 몇 가지 고려 사항:
 
 ## 커뮤니티와 채택
 
-DESIGN.md는 Google Labs Code에서 개발되었으며 상당한 주목을 받았습니다:
-
-- **20,800+ stars** on GitHub (2,319 gained in a single day)
+DESIGN.md는 Google Labs Code에서 개발되었으며 상당한 주목을 받았습니다: - **20,800+ stars** on GitHub (2,319 gained in a single day)
 - **1,700+ forks** with active community contributions
 - **40+ commits** in 2 months with rapid iteration
 - **18 issues** and **17 pull requests** showing active development
@@ -254,8 +226,7 @@ AI 지원 디자인 워크플로를 구축하는 팀에게는 시도해볼 가�
 
 ---
 
-**출처 및 추가 자료**:
-- 공식 저장소: https://github.com/google-labs-code/design.md
+**출처 및 추가 자료**: - 공식 저장소: https://github.com/google-labs-code/design.md
 - DESIGN.md 철학: https://github.com/google-labs-code/design.md/blob/main/PHILOSOPHY.md
 - CLI 도구 모음: https://github.com/google-labs-code/design.md/tree/main/packages/cli
 - DESIGN.md 예시 파일: https://github.com/google-labs-code/design.md/tree/main/examples
@@ -264,7 +235,6 @@ AI 지원 디자인 워크플로를 구축하는 팀에게는 시도해볼 가�
 
 **공개**: 이 글에는 제휴 링크가 포함되어 있습니다. 만약 저희 링크를 통해 가입하시면, 추가 비용 없이 저희가 소정의 커미션을 받을 수 있습니다. 이는 독립적인 기술 저널리즘을 지원하고 dibi8.com과 같은 리소스를 무료이자 광고 없이 유지하는 데 도움이 됩니다.
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/openhands" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/openhands" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/openhands" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/openhands" />
 title: 'OpenHands: 74K+ Stars — 能写代码能运行的 AI 软件工程师 (2026 安装教程)'
 description: 'OpenHands 是一款 AI 驱动的软件开发平台，可作为软件工程智能体。兼容 VS Code、Docker、GitHub、GitLab、Claude 和 OpenAI。涵盖 Docker 安装、模型配置、无头 CI/CD 模式和生产环境加固。'
 date: 2026-05-19 00:00:00+08:00
@@ -25,12 +20,9 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [openhands, 'ai 编程智能体', docker, 'swe-bench', claude, openai, 自托管, 自动化]
-aliases:
-- /zh/posts/openhands/
-- /zh/resources/llm-frameworks/openhands-architecture-ai-programmer-agent/
+aliases: - /zh/posts/openhands/
+- /zh/resources/llm-frameworks/openhands-architecture-ai-programmer-agent/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/openhands/ -->
 
 {{</* resource-info */>}}
 
@@ -275,23 +267,17 @@ docker run -it --rm \
 
 ```yaml
 version: "3.8"
-services:
-  openhands:
-    image: ghcr.io/openhands/openhands:latest
-    ports:
-      - "3000:3000"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+services: openhands: image: ghcr.io/openhands/openhands:latest
+    ports: - "3000:3000"
+    volumes: - /var/run/docker.sock:/var/run/docker.sock
       - ./workspace:/workspace
-    environment:
-      - SANDBOX_RUNTIME_CONTAINER_IMAGE=ghcr.io/openhands/openhands:latest
+    environment: - SANDBOX_RUNTIME_CONTAINER_IMAGE=ghcr.io/openhands/openhands:latest
       - LLM_API_KEY=${LLM_API_KEY}
       - LLM_MODEL=anthropic/claude-sonnet-4-20250514
       - SANDBOX_NETWORK_DISABLED=true
       - LOG_LEVEL=info
     restart: unless-stopped
-    security_opt:
-      - no-new-privileges:true
+    security_opt: - no-new-privileges:true
 ```
 
 部署：
@@ -321,15 +307,10 @@ GitHub Actions 工作流示例：
 
 ```yaml
 name: OpenHands 自动修复
-on:
-  issues:
-    types: [labeled]
-jobs:
-  fix:
-    if: github.event.label.name == 'auto-fix'
+on: issues: types: [labeled]
+jobs: fix: if: github.event.label.name == 'auto-fix'
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+    steps: - uses: actions/checkout@v4
       - name: 运行 OpenHands
         run: |
           docker run --rm \
@@ -367,7 +348,13 @@ OpenHands 支持 Model Context Protocol (MCP) 服务器以扩展功能：
 SWE-bench Verified 在 500 个真实 GitHub Issue 上测试智能体。得分越高表示智能体能够自主解决更多生产环境 Bug。
 
 | 智能体 + 模型 | SWE-bench Verified | 备注 |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | OpenHands + Claude Opus 4.6 | ~72% | 开源框架最佳成绩 |
 | OpenHands + Claude Sonnet 4.6 | ~67% | 推荐的成本/质量平衡 |
 | OpenHands + GPT-5 | ~55% | 适合已使用 OpenAI 的团队 |
@@ -381,7 +368,15 @@ SWE-bench Verified 在 500 个真实 GitHub Issue 上测试智能体。得分越
 典型 SWE-bench 任务消耗约 55K Token：
 
 | 模型 | 每次尝试成本 | 成功率 | 每次成功成本 |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Claude Opus 4.7 | ~$1.50 | 87.6% | ~$1.71 |
 | GPT-5.3-Codex | ~$0.90 | 85.0% | ~$1.06 |
 | Claude Sonnet 4.6 | ~$0.40 | 67% | ~$0.60 |
@@ -411,8 +406,7 @@ AMD、Apple、Google 和 Netflix 均已内部部署 OpenHands 用于自动化维
 **1. 沙盒网络隔离**
 
 ```yaml
-environment:
-  - SANDBOX_NETWORK_DISABLED=true
+environment: - SANDBOX_NETWORK_DISABLED=true
 ```
 
 这会阻止沙盒容器发出出站请求。仅在需要安装依赖包的任务中有选择地启用。
@@ -443,11 +437,9 @@ docker run --security-opt no-new-privileges \
 将密钥挂载为只读卷，而非环境变量：
 
 ```yaml
-volumes:
-  - /var/run/docker.sock:/var/run/docker.sock
+volumes: - /var/run/docker.sock:/var/run/docker.sock
   - /opt/secrets:/secrets:ro
-environment:
-  - LLM_API_KEY_FILE=/secrets/anthropic_key
+environment: - LLM_API_KEY_FILE=/secrets/anthropic_key
 ```
 
 ### 多智能体委派
@@ -517,7 +509,17 @@ helm install openhands openhands/openhands \
 ## 与替代方案对比
 
 | 功能 | OpenHands | Claude Code | Aider | Codex CLI |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **许可证** | MIT (开源) | 专有 (闭源) | Apache-2.0 (开源) | 专有 (闭源) |
 | **GitHub Stars** | 74,200 | 不适用 | 39,000 | 不适用 |
 | **界面** | Web UI + CLI | 仅 CLI | 仅 CLI | 仅 CLI |
@@ -619,12 +621,11 @@ OpenHands 是 2026 年最出色的开源 AI 软件工程智能体。其 74,000+ 
 - [OpenHands 社区论坛](https://github.com/OpenHands/OpenHands/discussions) — 问答和故障排除
 - [Agent Control Plane 文档](https://docs.openhands.dev/openhands/usage/key-features) — VS Code 集成和多智能体设置
 
----
 
+---
 *本指南独立维护并定期更新。最后验证时间：2026年5月。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -650,8 +651,8 @@ OpenHands 是 2026 年最出色的开源 AI 软件工程智能体。其 74,000+ 
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [12-factor-agents](openhands)

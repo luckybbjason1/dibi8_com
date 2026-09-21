@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/flowise" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/flowise" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/flowise" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/flowise" />
 title: 'Flowise: 52K+ Stars 시각적 드래그 앤 드롭 AI Agent 구축 — 2026 5분 완...
 description: 'Flowise는 오픈소스 시각적 LLM 워크플로우 및 AI Agent 빌더입니다. LangChain, Ollama, OpenAI, Qdrant, Weaviate, Chroma 등 200+ 통합을 지원합니다. Docker 설치, 프로덕션 하드닝, API 배포 및 솔직한 한계 분석을 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,12 +20,9 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [flowise, langchain, 'ai agent', rag, docker, llm, 오픈소스, 노코드]
-aliases:
-- /kr/posts/flowise/
+aliases: - /kr/posts/flowise/
 - /kr/resources/ai-tools/flowise-ai-workflow-builder-lowcode/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/flowise/ -->
 
 {{</* resource-info */>}}
 
@@ -64,9 +56,7 @@ Flowise는 시각적 노드를 LangChain 클래스와 1:1로 매핑하는 모듈
 
 ### 세 가지 빌더 모드
 
-Flowise는 세 가지 시각적 빌더를 제공합니다:
-
-- **Assistant** —— 초보자를 위한 챗봇 빌더로 RAG 지원. 문서 업로드, 응답 구성, 배포까지 한 번에.
+Flowise는 세 가지 시각적 빌더를 제공합니다: - **Assistant** —— 초보자를 위한 챗봇 빌더로 RAG 지원. 문서 업로드, 응답 구성, 배포까지 한 번에.
 - **Chatflow** —— 모든 구성 요소를 명시적으로 제어할 수 있는 전체 노드 기반 캔버스.
 - **Agentflow** —— 조걸 로직, 반복, 도구 호출, 인간 승인이 포함된 다단계 에이전트 워크플로우.
 
@@ -115,13 +105,9 @@ docker run -d -p 3000:3000 \
 ```yaml
 # docker-compose.yml
 version: '3.8'
-services:
-  flowise:
-    image: flowiseai/flowise:latest
-    ports:
-      - "3000:3000"
-    environment:
-      - PORT=3000
+services: flowise: image: flowiseai/flowise:latest
+    ports: - "3000:3000"
+    environment: - PORT=3000
       - DATABASE_TYPE=postgres
       - DATABASE_HOST=postgres
       - DATABASE_PORT=5432
@@ -133,30 +119,20 @@ services:
       - SECRETKEY_PATH=/root/.flowise
       - JWT_AUTH_TOKEN_SECRET=${JWT_SECRET:-random-secret-change-in-prod}
       - JWT_REFRESH_TOKEN_SECRET=${JWT_REFRESH:-another-random-secret}
-    volumes:
-      - flowise_data:/root/.flowise
-    depends_on:
-      - postgres
+    volumes: - flowise_data:/root/.flowise
+    depends_on: - postgres
     restart: unless-stopped
 
-  postgres:
-    image: postgres:16-alpine
-    environment:
-      - POSTGRES_USER=flowise
+  postgres: image: postgres:16-alpine
+    environment: - POSTGRES_USER=flowise
       - POSTGRES_PASSWORD=${DB_PASSWORD:-changeme}
       - POSTGRES_DB=flowise
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+    volumes: - postgres_data:/var/lib/postgresql/data
     restart: unless-stopped
 
-volumes:
-  flowise_data:
-  postgres_data:
-```
+volumes: flowise_data: postgres_data: ```
 
-시작 명령:
-
-```bash
+시작 명령: ```bash
 docker compose up -d
 ```
 
@@ -179,9 +155,7 @@ cp .env.example .env
 nano .env
 ```
 
-DigitalOcean 배포용 `.env` 예시:
-
-```bash
+DigitalOcean 배포용 `.env` 예시: ```bash
 PORT=3000
 DATABASE_TYPE=sqlite
 DATABASE_PATH=/root/.flowise
@@ -194,9 +168,7 @@ JWT_AUTH_TOKEN_SECRET=$(openssl rand -hex 32)
 JWT_REFRESH_TOKEN_SECRET=$(openssl rand -hex 32)
 ```
 
-서비스 시작:
-
-```bash
+서비스 시작: ```bash
 docker compose up -d
 ```
 
@@ -232,33 +204,21 @@ Ollama로 로컬 모델을 실행하면 API 비용을 없애고 데이터를 서
 ```yaml
 # docker-compose-ollama.yml
 version: '3.8'
-services:
-  ollama:
-    image: ollama/ollama:latest
-    ports:
-      - "11434:11434"
-    volumes:
-      - ollama_data:/root/.ollama
+services: ollama: image: ollama/ollama:latest
+    ports: - "11434:11434"
+    volumes: - ollama_data:/root/.ollama
     restart: unless-stopped
 
-  flowise:
-    image: flowiseai/flowise:latest
-    ports:
-      - "3000:3000"
-    environment:
-      - PORT=3000
+  flowise: image: flowiseai/flowise:latest
+    ports: - "3000:3000"
+    environment: - PORT=3000
       - OLLAMA_BASE_URL=http://ollama:11434
-    depends_on:
-      - ollama
+    depends_on: - ollama
     restart: unless-stopped
 
-volumes:
-  ollama_data:
-```
+volumes: ollama_data: ```
 
-모델 Pull 및 사용 시작:
-
-```bash
+모델 Pull 및 사용 시작: ```bash
 # 가벼운 테스트 모델 Pull
 docker exec -it ollama ollama pull qwen2:7b
 
@@ -274,18 +234,13 @@ Flowise 캔버스에서 `ChatOllama` 노드를 선택하고 모델 이름을 `qw
 
 ```yaml
 # docker-compose.yml에 추가
-  chroma:
-    image: chromadb/chroma:latest
-    ports:
-      - "8000:8000"
-    volumes:
-      - chroma_data:/chroma/chroma
+  chroma: image: chromadb/chroma:latest
+    ports: - "8000:8000"
+    volumes: - chroma_data:/chroma/chroma
     restart: unless-stopped
 ```
 
-Flowise에서 RAG 파이프라인 구축:
-
-1. **PDF Loader** 또는 **Text File** 노드를 드래그
+Flowise에서 RAG 파이프라인 구축: 1. **PDF Loader** 또는 **Text File** 노드를 드래그
 2. **Text Splitter** 노드에 연결 (chunk size 1000, overlap 200 설정)
 3. **OpenAI Embeddings** (또는 **Ollama Embeddings**) 노드에 연결
 4. **Chroma** 벡터 스토어 노드에 연결
@@ -299,13 +254,10 @@ Flowise에서 RAG 파이프라인 구축:
 
 ```yaml
 # Compose 파일에 Qdrant 추가
-  qdrant:
-    image: qdrant/qdrant:latest
-    ports:
-      - "6333:6333"
+  qdrant: image: qdrant/qdrant:latest
+    ports: - "6333:6333"
       - "6334:6334"
-    volumes:
-      - qdrant_data:/qdrant/storage
+    volumes: - qdrant_data:/qdrant/storage
     restart: unless-stopped
 ```
 
@@ -314,16 +266,12 @@ Flowise에서 `Qdrant` 벡터 스토어 노드를 사용하고 host를 `http://q
 ### Weaviate (엔터프라이즈 벡터 데이터베이스)
 
 ```yaml
-  weaviate:
-    image: semitechnologies/weaviate:latest
-    ports:
-      - "8080:8080"
-    environment:
-      QUERY_DEFAULTS_LIMIT: 25
+  weaviate: image: semitechnologies/weaviate:latest
+    ports: - "8080:8080"
+    environment: QUERY_DEFAULTS_LIMIT: 25
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: true
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
-    volumes:
-      - weaviate_data:/var/lib/weaviate
+    volumes: - weaviate_data:/var/lib/weaviate
     restart: unless-stopped
 ```
 
@@ -343,9 +291,7 @@ curl -X POST "http://localhost:3000/api/v1/prediction/your-chatflow-id" \
   }'
 ```
 
-응답:
-
-```json
+응답: ```json
 {
   "text": "문서에 따른 반품 정책은 구매 후 30일 이내에 원본 영수증과 함께 반품이 가능합니다.",
   "sourceDocuments": [
@@ -357,15 +303,12 @@ curl -X POST "http://localhost:3000/api/v1/prediction/your-chatflow-id" \
 }
 ```
 
-Python SDK 예시:
-
-```python
+Python SDK 예시: ```python
 import requests
 
 FLOWISE_API = "http://localhost:3000/api/v1/prediction/your-chatflow-id"
 
-def ask(question, session_id="user_001"):
-    resp = requests.post(FLOWISE_API, json={
+def ask(question, session_id="user_001"): resp = requests.post(FLOWISE_API, json={
         "question": question,
         "overrideConfig": {"sessionId": session_id}
     })
@@ -383,8 +326,7 @@ Flowise는 모든 챗플로우에 대해 JavaScript 임베드 코드를 생성�
 *커스텀 테마가 적용된 임베드 채팅 위젯 —— 하나의 script 태그로 임의의 웹사이트에 배포*
 
 ```html
-<script type="module">
-  import Chatbot from 'https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js';
+import Chatbot from 'https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js';
   Chatbot.init({
     chatflowid: 'your-chatflow-id',
     apiHost: 'https://your-flowise-server.com',
@@ -409,9 +351,7 @@ Flowise는 모든 챗플로우에 대해 JavaScript 임베드 코드를 생성�
 
 ## 벤치마크 / 실전 활용 사례
 
-커뮤니티 보고 및 실제 테스트를 기반으로 한 Flowise 성능 특성:
-
-| 메트릭 | 값 | 참고 |
+커뮤니티 보고 및 실제 테스트를 기반으로 한 Flowise 성능 특성: | 메트릭 | 값 | 참고 |
 |--------|------|------|
 | Docker 콜드 스타트 | 3-5초 | 2 vCPU VPS 기준 |
 | 첫 응답 지연 시간 | 1.5-3초 | GPT-4o 기준, 프롬프트에 따라 다름 |
@@ -455,9 +395,7 @@ Flowise는 모든 챗플로우에 대해 JavaScript 임베드 코드를 생성�
 
 ### 보안 체크리스트
 
-Flowise를 인터넷에 노출하기 전에 다음 단계를 완료하세요:
-
-```bash
+Flowise를 인터넷에 노출하기 전에 다음 단계를 완료하세요: ```bash
 # 1. 인증 활성화 (필수)
 FLOWISE_USERNAME=admin
 FLOWISE_PASSWORD=$(openssl rand -base64 24)
@@ -467,8 +405,7 @@ JWT_AUTH_TOKEN_SECRET=$(openssl rand -hex 64)
 JWT_REFRESH_TOKEN_SECRET=$(openssl rand -hex 64)
 
 # 3. 리버스 프록시로 HTTPS 활성화
-# Nginx 설정 예시:
-server {
+# Nginx 설정 예시: server {
     listen 443 ssl http2;
     server_name flowise.yourdomain.com;
 
@@ -499,32 +436,23 @@ CORS_ORIGINS=https://yourdomain.com,https://app.yourdomain.com
 ```yaml
 # docker-compose-queue.yml
 version: '3.8'
-services:
-  redis:
-    image: redis:alpine
+services: redis: image: redis:alpine
     restart: unless-stopped
 
-  flowise:
-    image: flowiseai/flowise:latest
-    ports:
-      - "3000:3000"
-    environment:
-      - PORT=3000
+  flowise: image: flowiseai/flowise:latest
+    ports: - "3000:3000"
+    environment: - PORT=3000
       - QUEUE_NAME=flowise-queue
       - QUEUE_REDIS_URL=redis://redis:6379
     restart: unless-stopped
 
-  flowise-worker:
-    image: flowiseai/flowise-worker:latest
-    environment:
-      - QUEUE_NAME=flowise-queue
+  flowise-worker: image: flowiseai/flowise-worker:latest
+    environment: - QUEUE_NAME=flowise-queue
       - QUEUE_REDIS_URL=redis://redis:6379
     restart: unless-stopped
 ```
 
-워커 수평 확장:
-
-```bash
+워커 수평 확장: ```bash
 docker compose -f docker-compose-queue.yml up -d --scale flowise-worker=3
 ```
 
@@ -557,9 +485,7 @@ curl http://localhost:3000/api/v1/ping
 
 ## 한계 / 솔직한 평가
 
-Flowise는 모든 AI 프로젝트에 적합한 도구가 아닙니다. 다음은 Flowise가 잘 하지 못하는 것들입니다:
-
-1. **복잡한 멀티 에이전트 오케스트레이션**: Flowise Agentflow는 순차 에이전트를 지원하지만, 순환 멀티 에이전트 패턴(LangGraph나 AutoGen의 패턴)은 우회 방법이 필요합니다. 연구 에이전트나 토론형 멀티 에이전트 시스템을 구축하는 팀은 LangGraph를 직접 고려해야 합니다.
+Flowise는 모든 AI 프로젝트에 적합한 도구가 아닙니다. 다음은 Flowise가 잘 하지 못하는 것들입니다: 1. **복잡한 멀티 에이전트 오케스트레이션**: Flowise Agentflow는 순차 에이전트를 지원하지만, 순환 멀티 에이전트 패턴(LangGraph나 AutoGen의 패턴)은 우회 방법이 필요합니다. 연구 에이전트나 토론형 멀티 에이전트 시스템을 구축하는 팀은 LangGraph를 직접 고려해야 합니다.
 
 2. **비대화형 워크플로우**: Flowise는 대화형 AI에 최적화되어 있습니다. 배치 문서 처리, ETL 파이프라인, 예약된 데이터 변환은 n8n이나 Python 스크립트가 더 적합합니다.
 
@@ -599,9 +525,7 @@ SQLite와 함께 $5/월 VPS(1 vCPU / 1 GB RAM)가 중소 규모 워크로드를 
 
 ### Flowise를 새 버전으로 어떻게 업그레이드하나요?
 
-Docker 배포: 최신 이미지를 Pull하고 재시작합니다:
-
-```bash
+Docker 배포: 최신 이미지를 Pull하고 재시작합니다: ```bash
 docker pull flowiseai/flowise:latest
 docker compose up -d
 ```
@@ -626,9 +550,7 @@ Flowise는 아이디어와 배포된 AI Agent 사이의 장벽을 제거합니�
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -647,7 +569,6 @@ Flowise는 아이디어와 배포된 AI Agent 사이의 장벽을 제거합니�
 10. [DigitalOcean Docker 배포 가이드](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-24-04) —— Ubuntu 서버 Docker 설치 튜토리얼
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

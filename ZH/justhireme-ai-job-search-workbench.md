@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/justhireme-ai-job-search-workbench" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/justhireme-ai-job-search-workbench" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/justhireme-ai-job-search-workbench" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/justhireme-ai-job-search-workbench" />
 title: "JustHireMe：AI 帮你自动找工作，从投递到拿到 Offer"
-description: "JustHireMe 开源 AI 求职工作台评测。本地优先的求职情报系统，自动抓取职位、AI 匹配度评分、生成定制简历和求职信。". Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "JustHireMe 开源 AI 求职工作台评测。本地优先的求职情报系统，自动抓取职位、AI 匹配度评分、生成定制简历和求职信。"
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - JavaScript
+tech_stack: - JavaScript
   - Python
   - TypeScript
 application_domain: "Ai Tools"
@@ -26,10 +20,8 @@ maintainer: "vasu-devs"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases:
-- /zh/posts/justhireme-ai-job-search-workbench/
-faqs:
-  - q: 'JustHireMe 是免费开源的吗？'
+aliases: - /zh/posts/justhireme-ai-job-search-workbench/
+faqs: - q: 'JustHireMe 是免费开源的吗？'
     a: '是的。JustHireMe 采用 MIT 许可证开源发布，没有订阅费，也没有任何隐藏费用。你的简历和数据完全归你所有，评分算法也是公开透明的。'
   - q: 'JustHireMe 需要 AI API Key，或者会把我的数据上传到云端吗？'
     a: '不需要，也不会。JustHireMe 坚持本地优先原则：所有 AI 计算均在本地完成，无需任何 API Key，你的数据存储在本机的本地 SQLite 数据库中，不会上传到云端。'
@@ -38,10 +30,7 @@ faqs:
   - q: 'JustHireMe 的职位匹配评分是如何工作的？'
     a: '它采用语义理解而非关键词匹配，将你的技能、经验、薪资期望和职业目标与每个职位的要求进行对比分析。每个职位列表都会得到一个 0-100 的评分，让你可以专注于 80 分以上的高匹配度职位。'
   - q: 'JustHireMe 的技术栈是什么？'
-    a: '桌面端使用 Tauri 2 搭配 React 19 与 TypeScript；后端运行 Python 3.13，采用 FastAPI 与 WebSockets；数据存储层使用 SQLite、Kuzu 图数据库和 LanceDB 向量数据库；Playwright 负责处理抓取和自动投递的浏览器自动化任务。'
----
-
-<!-- canonical: https://dibi8.com/zh/tools/justhireme-ai-job-search-workbench/ -->
+    a: '桌面端使用 Tauri 2 搭配 React 19 与 TypeScript；后端运行 Python 3.13，采用 FastAPI 与 WebSockets；数据存储层使用 SQLite、Kuzu 图数据库和 LanceDB 向量数据库；Playwright 负责处理抓取和自动投递的浏览器自动化任务。'---
 {</* resource-info */>}
 
 ## 问题：找工作就是一份全职工作
@@ -118,7 +107,11 @@ HR 看得出来是模板还是用心写的。
 ## 技术架构
 
 | 层级 | 技术 |
-|------|------|
+|
+---
+|
+---
+|
 | 桌面端 | Tauri 2 + React 19 + TypeScript |
 | 后端 | Python 3.13 + FastAPI + WebSockets |
 | 数据库 | SQLite + Kuzu 图数据库 + LanceDB 向量库 |
@@ -175,14 +168,14 @@ npm run tauri dev
 - [Free Claude Code：不花一分钱，让顶级 AI 帮你写代码](/zh/resources/ai-tools/free-claude-code-open-source-proxy/)
 - [OpenClaw 42 个真实用例：AI 代理已经这样改变我们的生活](/zh/resources/llm-frameworks/awesome-openclaw-usecases-ai-agent-daily-life/)
 
----
 
+---
 **项目地址**：[github.com/vasu-devs/JustHireMe](https://github.com/vasu-devs/JustHireMe)
 
 **Stars**：471 ⭐ | **Forks**：91 | **语言**：Python 47.3%, TypeScript 27.5%
 
----
 
+---
 ## 推荐工具
 
 跑或部署开源 AI 工具时，推荐：
@@ -194,7 +187,6 @@ npm run tauri dev
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -222,25 +214,20 @@ npm run tauri dev
 
 ## Why This Matters
 
-Understanding justhireme：ai 帮你自动找工作，从投递到拿到 offer is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding justhireme：ai 帮你自动找工作，从投递到拿到 offer is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -266,9 +253,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
-Understanding these core concepts will help you master the topic:
-
-1. **Abstraction**: Hide complexity behind simple interfaces
+Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces
 2. **Composition**: Build complex systems from simple parts
 3. **Immutability**: Prefer immutable data structures
 4. **Error Handling**: Handle failures gracefully
@@ -289,9 +274,7 @@ Understanding these core concepts will help you master the topic:
                      └─────────────┘
 ```
 
-Understanding these core concepts will help you master the topic:
-
-1. **Abstraction**: Hide complexity behind simple interfaces
+Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces
 2. **Composition**: Build complex systems from simple parts
 3. **Immutability**: Prefer immutable data structures
 4. **Error Handling**: Handle failures gracefully

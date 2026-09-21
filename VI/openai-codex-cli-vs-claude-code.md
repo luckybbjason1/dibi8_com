@@ -1,17 +1,11 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/openai-codex-cli-vs-claude-code" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/openai-codex-cli-vs-claude-code" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/openai-codex-cli-vs-claude-code" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/openai-codex-cli-vs-claude-code" />
 title: 'OpenAI Codex CLI vs Claude Code 2026: Agent nào tốt hơn?'
 description: 'So sánh trực tiếp OpenAI Codex CLI (gpt-5-codex) và Anthropic Claude Code (Sonnet 4.6, ngữ cảnh 1M) — giá, sandbox, doanh nghiệp, tích hợp công cụ. Cập nhật 2026.'
 date: 2026-05-22 00:00:00+08:00
-lastmod:  2026-05-22 00:00:00+08:00draft: false
+lastmod: 2026-05-22 00:00:00+08:00draft: false
 tags: [openai-codex-cli, claude-code, gpt-5-codex, sonnet-4-6, ai-coding, comparison, agent-cli]
 categories: [vs]
-faqs:
-  - q: 'OpenAI Codex CLI có miễn phí không?'
+faqs: - q: 'OpenAI Codex CLI có miễn phí không?'
     a: 'Bản thân CLI là mã nguồn mở (Apache 2.0, ra mắt tháng 11/2025) và miễn phí cài đặt. Bạn chỉ trả cho lệnh gọi API mô hình — sử dụng gpt-5-codex được tính qua OpenAI API key của bạn (khoảng $1.50/1M đầu vào, $10/1M đầu ra tính đến 2026). Claude Code cũng miễn phí cài đặt nhưng cần đăng ký Pro/Max ($20-$200/tháng) hoặc trả theo dùng qua Sonnet 4.6.'
   - q: 'Cửa sổ ngữ cảnh nào lớn hơn?'
     a: 'Claude Code (Sonnet 4.6) thắng tuyệt đối — cửa sổ ngữ cảnh 1M token so với 400K của gpt-5-codex. Với monorepo 200K+ LOC, suy luận toàn codebase, hoặc task migration dài, Claude Code giữ được toàn bộ repo trong đầu. 400K của Codex CLI vẫn mạnh cho project trung bình (dưới 80K LOC) nhưng buộc bạn chọn lọc file kỹ hơn trên repo lớn.'
@@ -23,7 +17,6 @@ faqs:
     a: 'Claude Code có câu chuyện doanh nghiệp trưởng thành hơn trong 2026 — Anthropic cung cấp SOC 2 Type II, HIPAA qua API, Claude Enterprise với triển khai VPC riêng. OpenAI Codex CLI mới hơn (mở mã nguồn 11/2025), kết nối vào gói OpenAI Enterprise tiêu chuẩn, nhưng bản thân CLI chưa có tầng doanh nghiệp riêng. Cho ngành được quản lý, hôm nay Claude Code thắng; OpenAI đang bám sát nhanh.'
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/openai-codex-cli-vs-claude-code/ -->
 # OpenAI Codex CLI vs Claude Code 2026: Agent nào tốt hơn?
 
 
@@ -99,12 +92,10 @@ Claude Enterprise cung cấp SOC 2 Type II, triển khai đủ điều kiện HI
 
 ### Claude Code
 - **Binary CLI**: Miễn phí
-- **Tầng đăng ký**:
-  - Claude Pro: $20/tháng — kèm sử dụng Claude Code (có giới hạn)
+- **Tầng đăng ký**: - Claude Pro: $20/tháng — kèm sử dụng Claude Code (có giới hạn)
   - Claude Max 5x: $100/tháng — gấp 5 giới hạn Pro
   - Claude Max 20x: $200/tháng — gấp 20 giới hạn Pro
-- **Trả theo dùng** (qua Anthropic API key):
-  - Sonnet 4.6: ~$3/1M đầu vào, ~$15/1M đầu ra
+- **Trả theo dùng** (qua Anthropic API key): - Sonnet 4.6: ~$3/1M đầu vào, ~$15/1M đầu ra
   - Prompt caching: ~$0.30/1M đọc cache (giảm 90%)
 
 → **Chi phí tháng cho power user**: **$20-$200** cố định (Pro/Max) hoặc khoảng $50-$150 PAYG tùy lượng token.
@@ -160,9 +151,7 @@ Chạy cả hai CLI trên codebase thật để quyết định? Spin up {{< aff
 
 ## Các lựa chọn thay thế đáng thử
 
-Nếu cả Codex CLI lẫn Claude Code đều không phù hợp, xem:
-
-- **[Cursor vs Claude Code](https://dibi8.com/vi/vs/cursor-vs-claude-code/)** — Phân tích IDE vs agent CLI
+Nếu cả Codex CLI lẫn Claude Code đều không phù hợp, xem: - **[Cursor vs Claude Code](https://dibi8.com/vi/vs/cursor-vs-claude-code/)** — Phân tích IDE vs agent CLI
 - **[Gemini CLI vs Claude Code](https://dibi8.com/vi/vs/gemini-cli-vs-claude-code/)** — Lựa chọn 1M ngữ cảnh miễn phí của Google
 - **[Claude Code vs Aider](https://dibi8.com/vi/vs/claude-code-vs-aider/)** — So sánh agent CLI mã nguồn mở
 - **[cc-switch](https://dibi8.com/vi/resources/dev-utils/cc-switch-claude-code-api-router/)** — Định tuyến Claude Code qua provider rẻ hơn, giảm 60-80%
@@ -207,7 +196,6 @@ Câu trả lời trung thực cho hầu hết dev trong 2026: thử cả hai m�
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

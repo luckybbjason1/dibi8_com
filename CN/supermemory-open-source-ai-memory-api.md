@@ -1,22 +1,18 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/supermemory-open-source-ai-memory-api" />
 title: 'Supermemory: The Fastest Open-Source AI Memory API for B...
 description: 'Supermemory is an open-source memory engine and app for AI applications. Fast, scalable memory API with vector search, graph search, and session management. Integrates with LangChain, LlamaIndex, CrewAI, and any Python/JS app. Self-hosted, zero external dependencies. Includes setup guide, benchmarks, and production deployment.'
 tags: ["ai-agent", "ai-memory", "api", "memory", "open-source", "persistence", "self-hosted"]
 date: 2026-06-10
-lastmod:  2026-06-10slug: 'supermemory-open-source-ai-memory-api'
+lastmod: 2026-06-10
+slug: 'supermemory-open-source-ai-memory-api'
 category: llm-frameworks
 github_repo: 'https://github.com/supermemoryai/supermemory'
 license: MIT
-lang: en
-featureImage: /articles/aitoearn-open-source-ai-content-monetiza-9c8ad4.png/images/articles/aitoearn-open-source-ai-content-monetiza-9c8ad4.png
----
-
+featureImage: /articles/aitoearn-open-source-ai-content-monetiza-9c8ad4.png/images/articles/aitoearn-open-source-ai-content-monetiza-9c8ad4.png---
 # Supermemory: The Fastest Open-Source AI Memory API for Building LLM Apps That Remember Everything
 
----
 
+---
 ## TL;DR
 
 Supermemory is an open-source memory engine and app for AI applications. It provides a memory API with vector search, graph search, and session management. It's the fastest self-hosted memory solution, designed for LLM apps that need persistent memory without external dependencies.
@@ -24,7 +20,15 @@ Supermemory is an open-source memory engine and app for AI applications. It prov
 Supermemory is an open-source memory engine and app for AI applications. It provides a memory API with vector search, graph search, and session management. It's the fastest self-hosted memory solution, designed for LLM apps that need persistent memory without external dependencies.
 
 | Metric | Supermemory | Mem0 | LangChain Memory |
-|--------|-------------|------|------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Latency | < 5ms | 15-30ms | 50-100ms |
 | Setup | `pip install supermemory` | Docker | Complex |
 | Dependencies | None | Cloud API | Many |
@@ -32,8 +36,8 @@ Supermemory is an open-source memory engine and app for AI applications. It prov
 
 Supermemory achieves sub-5ms latency for memory retrieval — the fastest among open-source memory engines. It's designed for developers who want persistent memory for their LLM apps without external dependencies. All data stays on your infrastructure, giving you full control over privacy and security. With support for 1M+ entries, 50+ languages, and 3+ search modes (vector, graph, full-text), Supermemory is the most scalable memory solution for AI applications.
 
----
 
+---
 ## What It Is
 
 Supermemory solves one problem: **LLM apps forget everything between sessions.**
@@ -65,9 +69,7 @@ User Input → Supermemory API → Memory Store
               LLM Gets Rich Context
 ```
 
-Supermemory works in three layers:
-
-**Layer 1 — Storage:** Conversations, preferences, and facts are stored as structured data. Each memory entry has metadata: user ID, timestamp, source, and relationships.
+Supermemory works in three layers: **Layer 1 — Storage:** Conversations, preferences, and facts are stored as structured data. Each memory entry has metadata: user ID, timestamp, source, and relationships.
 
 **Layer 2 — Index:** Memories are indexed for both vector search (semantic similarity) and graph search (relationship querying). This dual-indexing enables both "find similar memories" and "find memories about person X from project Y."
 
@@ -77,9 +79,7 @@ Supermemory works in three layers:
 
 ## Quickstart (60 Seconds)
 
-Install Supermemory in your Python project:
-
-```bash
+Install Supermemory in your Python project: ```bash
 pip install supermemory
 
 # Initialize memory for your app
@@ -94,9 +94,7 @@ memories = m.search("dietary preferences")
 print(memories)
 ```
 
-Or using Docker for production:
-
-```bash
+Or using Docker for production: ```bash
 docker run -d \
   --name supermemory \
   -p 8000:8000 \
@@ -129,7 +127,15 @@ Supermemory achieves sub-5ms latency for memory retrieval — the fastest among 
 ### Performance Comparison
 
 | Metric | Supermemory | Mem0 | LangChain |
-|--------|-------------|------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Latency | < 5ms | 15-30ms | 50-100ms |
 | Setup Time | 60s | 5min | 30min |
 | Memory Limit | 1M entries | 100K entries | 10K entries |
@@ -190,9 +196,7 @@ The Python API provides full CRUD operations, metadata filtering, and session ma
 
 ## Docker Production Deployment
 
-For production environments, use Docker to deploy Supermemory:
-
-```bash
+For production environments, use Docker to deploy Supermemory: ```bash
 # Build the Docker image
 docker build -t supermemory-server .
 
@@ -212,8 +216,7 @@ docker logs -f supermemory
 curl http://localhost:8000/health
 ```
 
-Docker deployment supports:
-- Persistent data storage via volume mounts
+Docker deployment supports: - Persistent data storage via volume mounts
 - Environment variable configuration
 - Health check endpoints
 - Log management and monitoring
@@ -223,9 +226,7 @@ Docker deployment supports:
 
 ## API Reference
 
-Supermemory exposes a REST API for programmatic access:
-
-```bash
+Supermemory exposes a REST API for programmatic access: ```bash
 # Get all memories
 curl http://localhost:8000/memories
 
@@ -241,8 +242,7 @@ curl "http://localhost:8000/memories/search?q=dark+mode&limit=5"
 curl -X DELETE http://localhost:8000/memories/{id}
 ```
 
-The API supports:
-- CRUD operations for memories
+The API supports: - CRUD operations for memories
 - Vector search queries
 - Graph relationship queries
 - Session management endpoints
@@ -320,7 +320,15 @@ print(chat_history.messages)
 ## Compared to Alternatives
 
 | Feature | Supermemory | Mem0 | LangChain Memory |
-|---------|-------------|------|------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Self-hosted | ✓ | Limited | N/A |
 | Vector Search | ✓ | ✓ | ✓ |
 | Graph Search | ✓ | ✗ | ✗ |
@@ -335,9 +343,7 @@ Supermemory's dual-indexing approach enables both semantic and relationship quer
 
 ## Limitations / Honest Assessment
 
-Supermemory is not for everyone:
-
-- **Not for cloud teams**: Self-hosted means you manage the infrastructure
+Supermemory is not for everyone: - **Not for cloud teams**: Self-hosted means you manage the infrastructure
 - **Python-first**: JavaScript API exists but Python is the primary language
 - **No team sharing**: Memory is per-app, not shared across organizations
 
@@ -347,9 +353,7 @@ It's built for **individual developers and small teams** who want persistent mem
 
 ## Security Considerations
 
-For production deployments, ensure you:
-
-- Use HTTPS for all API connections
+For production deployments, ensure you: - Use HTTPS for all API connections
 - Enable authentication via API keys or JWT tokens
 - Regularly backup your memory data
 - Monitor access logs for suspicious activity
@@ -435,12 +439,10 @@ Supermemory solves the "goldfish LLM app" problem by providing persistent memory
 
 Join the **dibi8 [English Telegram group](https://t.me/DIBI8_Group/2)** for discussions on AI memory systems and LLM app architecture.
 
-Related articles:
-- [Vector Database Comparison](/resources/llm-frameworks/vector-database-comparison/)
+Related articles: - [Vector Database Comparison](/resources/llm-frameworks/vector-database-comparison/)
 
 *Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.*
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

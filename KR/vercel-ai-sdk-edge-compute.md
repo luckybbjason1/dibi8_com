@@ -1,21 +1,14 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/vercel-ai-sdk-edge-compute" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/vercel-ai-sdk-edge-compute" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/vercel-ai-sdk-edge-compute" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/vercel-ai-sdk-edge-compute" />
 title: Vercel AI SDK — Edge-First 아키텍처로 스트리밍 AI 앱 구축
 description: Vercel AI SDK 완전 가이드. LLM 응답 스트리밍, 여러 제공자 통합, 제로 구성으로 엣지에 배포. React, Next.js 및 모든 프레임워크 지원.. Comprehensive guide covering features, pricing, and best practices for 2026.
 tags: ['ai-sdk', 'streaming', 'vercel', 'edge-compute', 'react', 'llm']
 category: llm-frameworks
 featureImage: /images/articles/vercel-ai-sdk-edge-compute.jpg
 date: 2026-07-15T00:00:00+00:00
-lastmod:  2026-07-15T00:00:00+00:00draft: false
+lastmod: 2026-07-15T00:00:00+00:00draft: false
 slug: vercel-ai-sdk-edge-compute
 lang: ko
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/vercel-ai-sdk-edge-compute/ -->
 
 ## TL;DR
 
@@ -25,23 +18,17 @@ Vercel AI SDK는 스트리밍 지원을 갖춘 AI 기반 사용자 인터페이�
 
 ## Vercel AI SDK란?
 
-Vercel AI SDK는 AI 앱 구축의 복잡성을 추상화하는 오픈소스 라이브러리입니다. 핵심 세 가지 주요 기능:
-
-1. **제공자 비종속 API**: 코드 한 번 작성, 모든 LLM 제공자에 배포
+Vercel AI SDK는 AI 앱 구축의 복잡성을 추상화하는 오픈소스 라이브러리입니다. 핵심 세 가지 주요 기능: 1. **제공자 비종속 API**: 코드 한 번 작성, 모든 LLM 제공자에 배포
 2. **스트리밍 우선 아키텍처**: 응답을 토큰 단위로 프론트엔드로 스트리밍
 3. **프레임워크 통합**: React, Next.js, Vue, Svelte, SolidJS 네이티브 지원
 
 ### 왜 Edge-First가 AI 앱에 중요한가
 
-전통적 AI 앱은 이런 패턴을 따릅니다:
-
-```
+전통적 AI 앱은 이런 패턴을 따릅니다: ```
 사용자 → 웹 서버 → API 라우트 → LLM 제공자 → 응답
 ```
 
-각 홉마다 지연 시간이 추가됩니다. Vercel의 엣지 우선 접근법은 미들맨을 제거합니다:
-
-```
+각 홉마다 지연 시간이 추가됩니다. Vercel의 엣지 우선 접근법은 미들맨을 제거합니다: ```
 사용자 → 엣지 함수 → LLM 제공자 → 스트리밍 응답
 ```
 
@@ -88,9 +75,7 @@ npm install zod
 
 ### 단계 2: 첫 번째 채팅 API 구성
 
-`app/api/chat/route.ts` 생성:
-
-```typescript
+`app/api/chat/route.ts` 생성: ```typescript
 import { streamText } from "ai";
 import { createOpenAI } from "@ai-sdk/openai";
 
@@ -119,9 +104,7 @@ export async function POST(req: Request) {
 
 ### 단계 3: 프론트엔드 구축
 
-`app/page.tsx` 생성:
-
-```typescript
+`app/page.tsx` 생성: ```typescript
 "use client";
 
 import { useChat } from "ai/react";
@@ -174,9 +157,7 @@ export default function Chat() {
 
 ### 패턴 1: 멀티 제공자 라우팅
 
-작업 유형에 따라 요청을 다른 모델로 라우팅:
-
-```typescript
+작업 유형에 따라 요청을 다른 모델로 라우팅: ```typescript
 import { createOpenAI } from "@ai-sdk/openai";
 import { createAnthropic } from "@ai-sdk/anthropic";
 import { createGoogleGenerativeAI } from "@ai-sdk/google";
@@ -212,9 +193,7 @@ export async function POST(req: Request) {
 
 ### 패턴 2: Zod와 함께 구조화된 출력
 
-LLM 응답을 검증하고 타입 객체로 파싱:
-
-```typescript
+LLM 응답을 검증하고 타입 객체로 파싱: ```typescript
 import { z } from "zod";
 import { generateObject } from "ai";
 import { createOpenAI } from "@ai-sdk/openai";
@@ -245,9 +224,7 @@ export async function POST(req: Request) {
 
 ### 패턴 3: 임베딩이 있는 RAG 파이프라인
 
-단일 라우트에서 검색 증강 생성 구축:
-
-```typescript
+단일 라우트에서 검색 증강 생성 구축: ```typescript
 import { embed, embedMany, streamText } from "ai";
 import { createOpenAI } from "@ai-sdk/openai";
 import { cosineSimilarity } from "ai/embeddings";
@@ -292,8 +269,7 @@ export async function POST(req: Request) {
     system: `다음 컨텍스트만 사용하여 답변하세요.
     컨텍스트에 관련 정보가 없으면 그렇게 말하세요.
     
-    컨텍스트:
-    ${context.join("\n\n")}
+    컨텍스트: ${context.join("\n\n")}
     `,
   });
 
@@ -303,9 +279,7 @@ export async function POST(req: Request) {
 
 ### 패턴 4: 에이전트 도구 호출
 
-LLM에게 외부 도구 접근 권한 부여:
-
-```typescript
+LLM에게 외부 도구 접근 권한 부여: ```typescript
 import { streamText, tool } from "ai";
 import { createOpenAI } from "@ai-sdk/openai";
 import { z } from "zod";
@@ -350,9 +324,7 @@ const result = streamText({
 
 ### 빌트인 UI 컴포넌트 사용
 
-SDK에는 공통 AI 패턴을 위한 React 컴포넌트가 포함되어 있습니다:
-
-```bash
+SDK에는 공통 AI 패턴을 위한 React 컴포넌트가 포함되어 있습니다: ```bash
 npm install @ai-sdk/react
 ```
 
@@ -479,9 +451,7 @@ CMD ["npm", "start"]
 Access to fetch at 'http://localhost:30000/api/chat' blocked by CORS policy
 ```
 
-**해결**: API 라우트가 올바른 CORS 헤더를 반환하는지 확인:
-
-```typescript
+**해결**: API 라우트가 올바른 CORS 헤더를 반환하는지 확인: ```typescript
 export async function POST(req: Request) {
   const corsHeaders = {
     "Access-Control-Allow-Origin": "*",
@@ -494,16 +464,12 @@ export async function POST(req: Request) {
 
 ### 문제 2: 프로덕션에서 스트리밍 작동 안 함
 
-프론트엔드가 스트리밍 대신 전체 응답을 한 번에 표시하는 경우:
-
-**확인 1**: API 라우트가 `ReadableStream`을 반환하는지 확인
+프론트엔드가 스트리밍 대신 전체 응답을 한 번에 표시하는 경우: **확인 1**: API 라우트가 `ReadableStream`을 반환하는지 확인
 **확인 2**: 완전한 충실도를 위해 `toTextStreamResponse()` 대신 `toDataStreamResponse()`를 사용하는지 확인
 
 ### 문제 3: 엣지 함수에서의 모델 타임아웃
 
-엣지 함수는 60초 타임아웃 제한이 있습니다. 장기간 실행 모델의 경우:
-
-```typescript
+엣지 함수는 60초 타임아웃 제한이 있습니다. 장기간 실행 모델의 경우: ```typescript
 const result = streamText({
   model: openai("o3-mini"),
   messages,
@@ -520,9 +486,7 @@ const result = streamText({
 Argument of type '"gpt-4-turbo"' is not assignable to parameter of type...
 ```
 
-**해결**: 제공자 버전과 일치하는 올바른 모델 식별자를 사용하는지 확인:
-
-```bash
+**해결**: 제공자 버전과 일치하는 올바른 모델 식별자를 사용하는지 확인: ```bash
 npm update ai @ai-sdk/openai
 ```
 
@@ -556,9 +520,7 @@ npm update ai @ai-sdk/openai
 
 ## 커뮤니티 업데이트
 
-AI SDK 생태계가 크게 성숙했습니다:
-
-- **제공자 커버리지**: OpenAI, Anthropic, Google, AWS Bedrock, Cohere, Mistral, Groq, Ollama 포함 15개 이상 공식 제공자 통합
+AI SDK 생태계가 크게 성숙했습니다: - **제공자 커버리지**: OpenAI, Anthropic, Google, AWS Bedrock, Cohere, Mistral, Groq, Ollama 포함 15개 이상 공식 제공자 통합
 - **커뮤니티 패키지**: 200개 이상의 커뮤니티 기여 도구, 유틸리티 및 통합
 - **프레임워크 지원**: Next.js, Remix, SvelteKit, Nuxt, Astro, Qwik용 공식 어댑터
 - **엔터프라이즈 채택**: Stripe, Shopify, Notion 등 회사에서 프로덕션 AI 기능에 사용
@@ -579,9 +541,7 @@ SDK는 `ReadableStream`을 통해 Server-Sent Events(SSE)를 사용합니다. `s
 
 ### Q: LLM 응답을 캐시하여 비용을 절감할 수 있나요?
 
-예. API 라우트 수준에서 캐싱을 구현합니다:
-
-```typescript
+예. API 라우트 수준에서 캐싱을 구현합니다: ```typescript
 const cachedChat = cache(async (messages: any[]) => {
   const hash = JSON.stringify(messages);
   const cached = await redis.get(hash);
@@ -600,9 +560,7 @@ const cachedChat = cache(async (messages: any[]) => {
 
 ### Q: AI 앱 인증을 어떻게 처리하나요?
 
-미들웨어를 사용하여 API 라우트를 보호합니다:
-
-```typescript
+미들웨어를 사용하여 API 라우트를 보호합니다: ```typescript
 export function middleware(request: NextRequest) {
   const token = request.cookies.get("auth-token");
   if (!token && request.nextUrl.pathname.startsWith("/api/chat")) {
@@ -629,7 +587,6 @@ export function middleware(request: NextRequest) {
 *실시간 AI 도구 토론 및 배포 팁을 위한 Telegram 그룹 가입: [t.me/dibi8](https://t.me/dibi8)*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

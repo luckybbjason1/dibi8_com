@@ -1,20 +1,11 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/openhuman" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/openhuman" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/openhuman" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/openhuman" />
 title: '什么是 OpenHuman？'
-lang: zh
 description: 'content/zh/resources/openhuman.md'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-18
-lastmod:  2026-06-18layout: article
+lastmod: 2026-06-18layout: article
 category: resources
 slug: openhuman
-featureImage: /articles/what-is-openhuman.jpg/images/articles/what-is-openhuman.jpg
----
-
-<!-- canonical: https://dibi8.com/zh/tools/openhuman/ -->
+featureImage: /articles/what-is-openhuman.jpg/images/articles/what-is-openhuman.jpg---
 
 
 # OpenHuman：增长最快的本地 AI 智能体（31K Stars）—— 2026 开源 AI 开发框架
@@ -41,8 +32,7 @@ OpenHuman 是一个**开源的代理式助手**，旨在融入你的日常工作
 ```yaml
 # OpenHuman 配置 —— Memory Tree 位置
 # 默认情况下所有数据都保留在你的机器上
-memory:
-  vault_path: ~/.openhuman/vault
+memory: vault_path: ~/.openhuman/vault
   sync_mode: local  # 或 "managed" 用于可选的云端同步
   model_default: gpt-4o
   model_fallback: claude-sonnet-4
@@ -222,7 +212,6 @@ openhuman config models \
 |
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -250,25 +239,20 @@ openhuman config models \
 
 ## Why This Matters
 
-Understanding 什么是 openhuman？ is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding 什么是 openhuman？ is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -289,7 +273,9 @@ To implement this in your workflow:
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
+
+---

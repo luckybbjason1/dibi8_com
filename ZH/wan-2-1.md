@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/wan-2-1" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/wan-2-1" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/wan-2-1" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/wan-2-1" />
 title: 'Wan 2.1: 16.1K+ Stars — 开源视频生成深度解析 vs HunyuanVideo、CogVi...
 description: 'Wan 2.1 是阿里巴巴开源的视频基础模型套件，具备 SOTA 性能。支持 ComfyUI、Diffusers 和 Gradio。涵盖 T2V、I2V、视频编辑和文本生成，提供 1.3B 和 14B 两种参数规模。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: ['wan-2-1', 视频生成, 扩散transformer, ai视频, 开源, 阿里巴巴, comfyui, diffusers]
-aliases:
-- /zh/posts/wan-2-1/
+aliases: - /zh/posts/wan-2-1/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/wan-2-1/ -->
 
 {{</* resource-info */>}}
 
@@ -60,7 +52,17 @@ Wan 2.1 基于 Diffusion Transformer（DiT）范式，采用 Flow Matching 框�
 ### 模型规格
 
 | 模型 | 参数量 | 分辨率 | 显存（单 GPU） | 典型生成时间 |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | T2V-1.3B | 1.3B | 480P | 8.19 GB | RTX 4090 约 4 分钟 |
 | T2V-14B | 14B | 480P / 720P | 40–48 GB (480P fp8) | H100 约 4 分钟 (480P) |
 | I2V-14B | 14B | 480P / 720P | 65–80 GB (720P) | H100 约 10–12 分钟 (720P) |
@@ -349,7 +351,15 @@ Wan 2.1 使用 1,035 个内部提示词，在 14 个主要维度和 26 个子维
 不同 GPU 上的性能表现（总时间 秒 / 峰值显存 GB）：
 
 | GPU | 1.3B 480P | 14B 480P | 14B 720P |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | RTX 4090 (24GB) | 281s / 8.2GB | 不支持 | 不支持 |
 | A5000 (24GB) | 462s / 8.2GB | 不支持 | 不支持 |
 | A40 (48GB) | 350s / 8.2GB | 1083s / 42GB | 不支持 |
@@ -362,7 +372,19 @@ Wan 2.1 使用 1,035 个内部提示词，在 14 个主要维度和 26 个子维
 2026 年初云 GPU 视频生成的成本估算：
 
 | 模型 | 分辨率 | 时长 | 生成时间 | GPU 成本 | 每条成本 |
-|---|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Wan 2.1 1.3B | 480P | 5s | ~4 分钟 | RTX 4090 本地 | ~$0.02 (电费) |
 | Wan 2.1 14B | 480P | 5s | ~4 分钟 | $2.50/时 (H100) | ~$0.17 |
 | Wan 2.1 14B | 720P | 5s | ~10 分钟 | $2.50/时 (H100) | ~$0.42 |
@@ -398,7 +420,13 @@ python generate.py \
 ### 显存优化参数
 
 | 参数 | 说明 | 显存影响 |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | `--offload_model True` | 步骤间将 Transformer 卸载到 CPU | -15–20GB |
 | `--t5_cpu` | 在 CPU 上运行 T5 编码器 | -2–3GB |
 | `--dit_fsdp` | 跨 GPU 分片 DiT | 除以 GPU 数量 |
@@ -439,8 +467,7 @@ import time
 import psutil
 import torch
 
-def generate_with_monitoring(prompt, **kwargs):
-    process = psutil.Process()
+def generate_with_monitoring(prompt, **kwargs): process = psutil.Process()
     start_mem = process.memory_info().rss / 1024**3
     start_time = time.time()
     
@@ -477,7 +504,17 @@ python -m diffsynth.train \
 ## 与替代方案对比
 
 | 特性 | Wan 2.1 | HunyuanVideo | CogVideoX-1.5-5B | Open-Sora 2.0 |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **参数量** | 1.3B / 14B | ~13B | 5B | 7B |
 | **最小显存 (T2V)** | 8.19GB (1.3B) | 12GB (量化) | 5GB (diffusers) | 24GB |
 | **最大分辨率** | 720P | 1080P | 1360x768 | 768P |
@@ -600,7 +637,6 @@ Wan 2.1 兑现了少数开源视频模型未能实现的承诺：在可获取的
 - [Open-Sora 2.0 技术报告](https://arxiv.org/abs/2503.09642)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -626,8 +662,8 @@ Wan 2.1 兑现了少数开源视频模型未能实现的承诺：在可获取的
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [2026-06-22-trending-ai-agents](wan-2-1)
@@ -636,6 +672,6 @@ Wan 2.1 兑现了少数开源视频模型未能实现的承诺：在可获取的
 - [mattpocock-skills-ai-agent-framework-guide](wan-2-1)
 - [nanochat-karpathy-100-chatgpt-single-gpu](wan-2-1)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

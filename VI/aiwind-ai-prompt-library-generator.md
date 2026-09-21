@@ -1,17 +1,11 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/aiwind-ai-prompt-library-generator" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/aiwind-ai-prompt-library-generator" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/aiwind-ai-prompt-library-generator" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/aiwind-ai-prompt-library-generator" />
 title: AiWind：1000+ AI 绘画提示词宝库，让 GPT-Image 2 和 Nanobanana 产出惊艳作品
 description: AiWind là thư viện prompt AI miễn phí với 1000+ prompt chuyên nghiệp. Comprehensive guide covering features, pricing, and best practices for 2026.
   cho GPT-Image 2, Nanobanana, Stable Diffusion, Midjourney và các mô hình chính khác,
   bao phủ nhiều phong cách từ chân dung chân thực đến cyberpunk và 3D render.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
-tech_stack:
-- Go
+tech_stack: - Go
 application_domain: Ai Tools
 source_version: ''
 licensing_model: Open Source
@@ -26,10 +20,8 @@ maintainer: ''
 last_maintained: '2026-05-15'
 featureImage: ''
 draft: false
-aliases:
-- /vi/posts/aiwind-ai-prompt-library/
-faqs:
-  - q: 'AiWind có miễn phí không?'
+aliases: - /vi/posts/aiwind-ai-prompt-library/
+faqs: - q: 'AiWind có miễn phí không?'
     a: 'Có, AiWind là thư viện prompt AI hoàn toàn miễn phí tại aiwind.org, không có gói trả phí. Nó cung cấp hơn 1000 prompt chuyên nghiệp và được cập nhật liên tục.'
   - q: 'AiWind hỗ trợ prompt cho những mô hình AI tạo ảnh nào?'
     a: 'AiWind bao gồm hơn 10 mô hình như GPT-Image 2, Nanobanana, Stable Diffusion, Midjourney, Flux-Kontext, Tencent Hunyuan, Google Imagen và ByteDance Seedream. Mỗi prompt đều có gợi ý về mô hình phù hợp nhất để sử dụng.'
@@ -40,7 +32,6 @@ faqs:
   - q: 'AiWind so sánh với PromptHero, Lexica và Civitai như thế nào?'
     a: 'AiWind nổi bật nhờ truy cập hoàn toàn miễn phí, hỗ trợ tiếng Trung mạnh mẽ và phủ sóng hơn 10 mô hình, trong khi Lexica chỉ hỗ trợ khoảng 3 mô hình và Civitai tập trung chủ yếu vào Stable Diffusion. AiWind, PromptHero và Civitai đều hỗ trợ cộng đồng đóng góp prompt, còn Lexica thì không.'
 ---
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -72,15 +63,11 @@ faqs:
 </script>
 
 
-<!-- canonical: https://dibi8.com/vi/tools/aiwind-ai-prompt-library-generator/ -->
-
 {</* resource-info */>}
 
 ## Vấn đề: Tại sao AI vẽ của bạn luôn "thiếu gì đó"?
 
-Bạn đã chi tiền đăng ký GPT-Image 2, Midjourney hoặc Stable Diffusion, nhưng hình ảnh tạo ra luôn:
-
-- Biểu cảm nhân vật cứng nhắc như ma-nơ-canh nhựa
+Bạn đã chi tiền đăng ký GPT-Image 2, Midjourney hoặc Stable Diffusion, nhưng hình ảnh tạo ra luôn: - Biểu cảm nhân vật cứng nhắc như ma-nơ-canh nhựa
 - Phong cảnh thiếu chiều sâu như dán sticker
 - Phong cách không thống nhất, mâu thuẫn
 - Thiếu chi tiết, phóng to thì thảm họa
@@ -195,17 +182,14 @@ Truy cập [aiwind.org](https://aiwind.org/), duyệt 1000+ prompt. Hỗ trợ l
 
 ### Bước 2: Xem chi tiết
 
-Nhấn vào bất kỳ prompt nào để xem:
-- Prompt tiếng Anh đầy đủ
+Nhấn vào bất kỳ prompt nào để xem: - Prompt tiếng Anh đầy đủ
 - Mô hình và tham số được đề xuất
 - Hình ảnh ví dụ
 - Phân loại thẻ
 
 ### Bước 3: Sao chép sử dụng
 
-Sao chép prompt vào công cụ tạo hình ảnh AI của bạn:
-
-```
+Sao chép prompt vào công cụ tạo hình ảnh AI của bạn: ```
 # Ví dụ Midjourney
 /imagine prompt: Siêu mẫu tóc vàng Dubai đêm, dubai night blonde, 
 fashion photography, golden hour lighting, 
@@ -229,8 +213,7 @@ Nếu bạn có prompt xuất sắc, hãy đóng góp cho AiWind để giúp c�
 ```
 [Chủ thể] + [Phong cách] + [Ánh sáng] + [Bố cục] + [Từ chất lượng]
 
-Ví dụ:
-Chủ thể: Siêu mẫu tóc vàng đứng trước cảnh đêm Dubai
+Ví dụ: Chủ thể: Siêu mẫu tóc vàng đứng trước cảnh đêm Dubai
 Phong cách: Nhiếp ảnh thời trang, phong cách editorial Vogue
 Ánh sáng: Giờ vàng, ánh đèn thành phố làm nền
 Bố cục: Cận cảnh, quy tắc một phần ba
@@ -298,9 +281,7 @@ Nếu bạn luôn cảm thấy "thiếu gì đó" khi tạo hình ảnh bằng A
 
 ## Công Cụ Đề Xuất
 
-Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
+Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
 - **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Proxy Anthropic Claude / OpenAI / DeepSeek API. Hầu hết AI tool ở trên (chatbot, code gen, translation, search, v.v.) cần LLM API key — proxy này cho access ổn định top model với ~30% giá chính thức.
 - **{{< aff "hostinger" "footer-cta-legacy" "Hostinger" >}}** — Lựa chọn VPS giá tốt cho thị trường Việt Nam.
 

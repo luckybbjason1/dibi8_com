@@ -1,10 +1,9 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/tradingagents-llm-multi-agent-trading-framework-2026" />
 title: 'TradingAgents：8.2 万星的 LLM 多智能体交易框架 — 2026 实战指南'
 description: 'TradingAgents 是开源的 LLM 多智能体框架（82,254 GitHub stars，Apache-2.0），模拟一家交易公司：分析师、研究员、交易员、风控智能体辩论出 BUY/SELL/HOLD 决策。基于 LangGraph。涵盖安装、智能体流水线、CLI + Python API，以及与 Qlib、单智能体 bot 的诚实对比。'
 date: 2026-06-02
-lastmod:  2026-06-02slug: 'tradingagents-llm-multi-agent-trading-framework-2026'
+lastmod: 2026-06-02
+slug: 'tradingagents-llm-multi-agent-trading-framework-2026'
 category: 'ai-trading'
 tags: ['TradingAgents', 'LLM 智能体', '算法交易', 'LangGraph', '多智能体', 'AI 交易', '量化', '金融 AI']
 github_repo: 'https://github.com/TauricResearch/TradingAgents'
@@ -12,9 +11,7 @@ stars: 82254
 maintainer: 'TauricResearch'
 license: Apache-2.0
 featureImage: 'https://raw.githubusercontent.com/TauricResearch/TradingAgents/main/assets/schema.png'
-lang: zh
 ---
-
 # TradingAgents：8.2 万星的 LLM 多智能体交易框架 — 2026 实战指南
 
 ## 引言
@@ -136,8 +133,7 @@ ta = TradingAgentsGraph(debug=True, config=config)
 
 ```python
 watchlist = ["NVDA", "AAPL", "TSLA"]
-for ticker in watchlist:
-    _, decision = ta.propagate(ticker, "2024-05-10")
+for ticker in watchlist: _, decision = ta.propagate(ticker, "2024-05-10")
     print(f"{ticker}: {decision.splitlines()[0]}")   # 第一行 = 决策
 ```
 
@@ -156,8 +152,7 @@ print(final_state["final_trade_decision"])                       # 最终理由
 
 ```python
 _, decision = ta.propagate("AAPL", "2024-06-01")
-if "BUY" in decision:
-    log_signal("AAPL", "BUY", source="tradingagents")
+if "BUY" in decision: log_signal("AAPL", "BUY", source="tradingagents")
     # 在这里转发给你的券商 / 模拟盘层
 ```
 
@@ -198,8 +193,7 @@ Rationale: 基本面分析师指出数据中心营收加速；
 因为辩论记录被保存下来，你可以对比换模型或加辩论轮数时决策如何变化：
 
 ```python
-for rounds in (1, 3):
-    config["max_debate_rounds"] = rounds
+for rounds in (1, 3): config["max_debate_rounds"] = rounds
     ta = TradingAgentsGraph(config=config)
     _, d = ta.propagate("NVDA", "2024-05-10")
     print(rounds, "rounds ->", d.splitlines()[0])
@@ -212,7 +206,15 @@ for rounds in (1, 3):
 TradingAgents、Qlib 和单智能体 bot 解决的是不同问题。这里讲清楚它们到底差在哪。
 
 | 特性 | TradingAgents | Qlib | 单智能体 LLM bot |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 方法 | LLM 多智能体辩论 | ML 因子模型 | 一个 LLM + 提示词 |
 | 核心单元 | 分析师/研究员/交易员/风控 智能体 | LightGBM/LSTM 信号 | 单次决策调用 |
 | 可解释性 | 高（完整辩论记录） | 中（特征重要性） | 低 |
@@ -260,8 +262,8 @@ TradingAgents 是 2026 年研究"一队 LLM 智能体如何推理出一个交易
 - 延伸阅读：[dibi8 上的相关指南](dibi8-internal-link)。
 - 在 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 上开一台研究机，今晚就跑你的第一次分析。
 
----
 
+---
 **资料来源与延伸阅读**：
 - GitHub 仓库：https://github.com/TauricResearch/TradingAgents
 - 官方文档 / README：https://github.com/TauricResearch/TradingAgents#readme
@@ -269,13 +271,10 @@ TradingAgents 是 2026 年研究"一队 LLM 智能体如何推理出一个交易
 
 *上方部分链接含联盟推广。如通过链接注册，dibi8.com 可能获得佣金，不影响你的成本。这帮助 dibi8 持续免费运营。*
 
-<!-- internal-link-candidates:
   相关开源工具 -> ai-tools-directory
   dibi8 上的相关指南 -> ai-coding-agent-landscape-2026-skills-mcp-opensource
--->
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -303,25 +302,20 @@ TradingAgents 是 2026 年研究"一队 LLM 智能体如何推理出一个交易
 
 ## Why This Matters
 
-Understanding tradingagents：8.2 万星的 llm 多智能体交易框架 — 2026 实战指南 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding tradingagents：8.2 万星的 llm 多智能体交易框架 — 2026 实战指南 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -342,8 +336,8 @@ TradingAgents：8.2 万星的 LLM 多智能体交易框架 — 2026 实战指南
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 

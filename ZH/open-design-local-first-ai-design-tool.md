@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/open-design-local-first-ai-design-tool" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/open-design-local-first-ai-design-tool" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/open-design-local-first-ai-design-tool" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/open-design-local-first-ai-design-tool" />
 title: "Open Design: 替代 Claude Design 的终极本地优先 AI 设计工具"
-description: "深入了解 Open Design，这款拥有 39K+ Star 的开源本地优先 Claude Design 替代品。19 项 AI 技能、71 套设计系统，支持生成原型、幻灯片、视频及多格式导出。". Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "深入了解 Open Design，这款拥有 39K+ Star 的开源本地优先 Claude Design 替代品。19 项 AI 技能、71 套设计系统，支持生成原型、幻灯片、视频及多格式导出。"
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Go
+tech_stack: - Go
   - JavaScript
   - TypeScript
 application_domain: "Dev Utils"
@@ -26,10 +20,8 @@ maintainer: ""
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases:
-- /zh/posts/open-design-local-first-ai-design-tool/
-faqs:
-  - q: 'Open Design 是什么？它与 Claude Design 有何不同？'
+aliases: - /zh/posts/open-design-local-first-ai-design-tool/
+faqs: - q: 'Open Design 是什么？它与 Claude Design 有何不同？'
     a: 'Open Design 是 Anthropic 的 Claude Design 的开源、本地优先替代品，可生成 Web 原型、移动和桌面界面、幻灯片、图片、视频以及交互式 HyperFrame。与仅限云端的专有 Claude Design 不同，它在完成初始设置后可完全离线运行，采用 MIT 许可证且免费，所有数据均保存在您自己的机器上。'
   - q: 'Open Design 支持哪些 AI 编程助手？'
     a: 'Open Design 与九款以上的助手集成：Claude Code、GitHub Copilot、Cursor、Gemini、Codex、OpenCode、Qwen、Hermes 和 Kimi CLI。您只需为实际计划使用的服务商配置 API 密钥。'
@@ -38,10 +30,7 @@ faqs:
   - q: '安装 Open Design 的系统要求是什么？'
     a: '您需要 Node.js 18.0 或更高版本、npm 9.0 或更高版本（或 pnpm/yarn），以及 Git，同时还需要至少 4GB 可用内存用于 AI 模型运算，以及 2GB 磁盘空间用于存放依赖项和缓存模型。'
   - q: '使用 Open Design 需要付费吗？'
-    a: '该工具本身基于 MIT 许可证，免费且开源，无需订阅费或按席位收费。唯一的成本是您实际消耗的 AI 服务商 API 用量，因此您只需为向 Anthropic、OpenAI 或 Google 等服务商发起的实际调用付费。'
----
-
-<!-- canonical: https://dibi8.com/zh/tools/open-design-local-first-ai-design-tool/ -->
+    a: '该工具本身基于 MIT 许可证，免费且开源，无需订阅费或按席位收费。唯一的成本是您实际消耗的 AI 服务商 API 用量，因此您只需为向 Anthropic、OpenAI 或 Google 等服务商发起的实际调用付费。'---
 
 {</* resource-info */>}
 
@@ -90,7 +79,13 @@ Open Design 内置了 **19 项专业 AI 技能**，覆盖设计与原型制作�
 Open Design 最突出的亮点之一是其 **71 套预配置、可用于生产环境的设计系统**。这些并非基础模板，而是由大品牌广泛使用的完整设计语言，经过精心重建以支持 AI 驱动生成：
 
 | 设计系统 | 类别 | 最佳适用场景 |
-|----------|------|--------------|
+|
+---
+|
+---
+|
+---
+|
 | Material Design 3 | 移动端/网页 | Android 应用、跨平台 UI |
 | Apple Human Interface | iOS/macOS | Apple 生态系统原生应用 |
 | Fluent UI | 桌面端/网页 | 兼容 Microsoft 的企业工具 |
@@ -239,7 +234,13 @@ npm run install:claude-plugin
 ## Open Design 与 Claude Design 详细对比
 
 | 特性 | Open Design | Claude Design |
-|------|-------------|---------------|
+|
+---
+|
+---
+|
+---
+|
 | **定价** | 免费开源 | 付费订阅 |
 | **部署方式** | 本地优先，支持离线 | 仅限云端 |
 | **数据隐私** | 所有数据保留在本地 | 数据在 Anthropic 服务器处理 |
@@ -314,12 +315,12 @@ Open Design 代表了技术团队处理创意自动化的重要转变。通过�
 
 如需了解更多关于 AI 驱动开发工具的见解，请查看 dibi8 的相关文章：[AI 编程助手 2026 年度盘点](/resources/llm-frameworks/agent-skills-production-grade-ai-coding/)、[本地优先架构指南](/resources/llm-frameworks/anythingllm-architecture-local-rag/)，以及[开源 AI 工具替代方案](/resources/llm-frameworks/top-10-open-source-ai-tools-2026/)。
 
----
 
+---
 *你在项目中使用过 Open Design 吗？欢迎在评论区分享你的经验，或联系 dibi8 Tech Team 探讨合作机会。*
 
----
 
+---
 ## 推荐自托管基础设施
 
 要 7×24 稳定跑这套，服务器选择很关键：
@@ -331,7 +332,6 @@ Open Design 代表了技术团队处理创意自动化的重要转变。通过�
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -359,25 +359,20 @@ Open Design 代表了技术团队处理创意自动化的重要转变。通过�
 
 ## Why This Matters
 
-Understanding open design: 替代 claude design 的终极本地优先 ai 设计工具 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding open design: 替代 claude design 的终极本地优先 ai 设计工具 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -429,7 +424,17 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

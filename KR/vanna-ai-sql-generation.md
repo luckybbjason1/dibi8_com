@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/vanna-ai-sql-generation" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/vanna-ai-sql-generation" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/vanna-ai-sql-generation" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/vanna-ai-sql-generation" />
 title: 'vanna-ai-sql-generation'
 description: '{'en': ''Explore Vanna AI, the open-source Python library that trains on your database schema to generate SQL from natural language with 90%+ accuracy. Features self-hosting, Jupyter integration, SQL validation, multiple LLM backends, and privacy-first design.'', 'zh': ''探索 Vanna AI，这款基于你的数据库 Schema 训练以 90%+ 准确率从自然语言生成 SQL 的开源 Python 库。支持自托管、Jupyter 集成、SQL 验证、多 LLM 后端和隐私优先设计。'', 'ko': ''데이터베이스 스키마에서 학습하여 90%+ 정확도로 자연어에서 SQL을 생성하는 오픈소스 Python 라이브러리 Vanna AI를 살펴 보세요. 자체 호스팅, Jupyter 통합, SQL 검증, 다중 LLM 백엔드, 개인정보 보호 중심 설계를 제공합니다.'', 'vi': ''Khám phá Vanna AI, thư viện Python mã nguồn mở được huấn luyện trên schema cơ sở dữ liệu của bạn để tạo SQL từ ngôn ngữ tự nhiên với độ chính xác 90%+. Có tính năng tự lưu trữ, tích hợp Jupyter, xác thực SQL, nhiều backend LLM, và thiết kế ưu tiên quyền riêng tư.''}'
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['vanna ai']
-aliases:
-- /kr/posts/vanna-ai-sql-generation/
+aliases: - /kr/posts/vanna-ai-sql-generation/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/vanna-ai-sql-generation/ -->
 
 {{</* resource-info */>}}
 
@@ -45,9 +37,7 @@ aliases:
 
 Vanna AI는 인간의 언어와 구조화된 쿼리 언어 사이의 간극을 메우는 오픈소스 Python 라이브러리입니다. 핵심적으로 Vanna는 SQL 생성을 위해 특별히 구축된 **검색 증강 생성(RAG)** 프레임워크입니다. 때때로 테이블 이름을 환각하거나 열 참조를 지어내는 범용 LLM 챗봇과 달리, Vanna는 실제 데이터베이스 스키마에서 학습하여 — 테이블, 열, 관계, 심지어 조직의 명명 규칙까지 학습합니다.
 
-워크플로우는 우아하게 단순합니다:
-
-1. 데이터베이스에 Vanna **연결**
+워크플로우는 우아하게 단순합니다: 1. 데이터베이스에 Vanna **연결**
 2. 스키마에 대해 **학습** (DDL 문, 문서, 샘플 쿼리)
 3. 자연어로 **질문**
 4. 정확하고 실행 가능한 SQL **수신**
@@ -87,9 +77,7 @@ print(sql)
 
 최근 몇 년간 대형 언어 모델의 폭발적인 성장은 자연어 인터페이스에 엄청난 기회를 창출했습니다. 그러나 범용 LLM은 SQL 생성에 있어 몇 가지 중요한 이유로 어려움을 겪습니다: 스키마 요소를 환각하고, 데이터베이스별 구문을 무시하며, 실제 데이터 모델에 대한 인식이 없습니다. 원시 데이터를 타사 API 엔드포인트로 본낼 때 심각한 프라이버시 및 규정 준수 문제도 발생합니다.
 
-Vanna AI는 이러한 모든 과제에 정면으로 대응합니다:
-
-- **스키마 인식 생성**: Vanna는 특정 스키마를 학습하여 환각을 제거합니다
+Vanna AI는 이러한 모든 과제에 정면으로 대응합니다: - **스키마 인식 생성**: Vanna는 특정 스키마를 학습하여 환각을 제거합니다
 - **프라이버시 우선 설계**: 원하는 경우가 아니면 데이터가 인프라를 벗어나지 않습니다
 - **자체 호스팅 옵션**: 오픈소스 LLM으로 모든 것을 로컬에서 실행
 - **SQL 검증**: 생성된 모든 쿼리가 반환되기 전에 데이터베이스에 대해 검증됩니다
@@ -100,9 +88,7 @@ Vanna AI는 이러한 모든 과제에 정면으로 대응합니다:
 from vanna.ollama import Ollama
 from vanna.chromadb import ChromaDB_VectorStore
 
-class MyVanna(ChromaDB_VectorStore, Ollama):
-    def __init__(self, config=None):
-        ChromaDB_VectorStore.__init__(self, config=config)
+class MyVanna(ChromaDB_VectorStore, Ollama): def __init__(self, config=None): ChromaDB_VectorStore.__init__(self, config=config)
         Ollama.__init__(self, config={"model": "llama3"})
 
 # 완전 로컬, 자체 호스팅 설정
@@ -139,9 +125,7 @@ pip install "vanna[bigquery]"
 pip install "vanna[all]"
 ```
 
-가장 일반적인 설정에 대한 빠른 구성:
-
-```python
+가장 일반적인 설정에 대한 빠른 구성: ```python
 from vanna.remote import VannaDefault
 
 # Vanna의 호스팅 서비스 사용 (가장 쉬운 설정)
@@ -160,15 +144,11 @@ vn.connect_to_postgres(
 )
 ```
 
-로컬 LLM을 사용하는 완전 자체 호스팅 설정의 경우:
-
-```python
+로컬 LLM을 사용하는 완전 자체 호스팅 설정의 경우: ```python
 from vanna.ollama import Ollama
 from vanna.chromadb import ChromaDB_VectorStore
 
-class LocalVanna(ChromaDB_VectorStore, Ollama):
-    def __init__(self, config=None):
-        ChromaDB_VectorStore.__init__(self, config=config)
+class LocalVanna(ChromaDB_VectorStore, Ollama): def __init__(self, config=None): ChromaDB_VectorStore.__init__(self, config=config)
         Ollama.__init__(self, config={"model": "codellama:13b"})
 
 vn = LocalVanna()
@@ -241,8 +221,7 @@ cursor.execute("""
 """)
 tables = cursor.fetchall()
 
-for (table_name,) in tables:
-    cursor.execute(f"""
+for (table_name,) in tables: cursor.execute(f"""
         SELECT column_name, data_type, is_nullable
         FROM information_schema.columns
         WHERE table_name = '{table_name}';
@@ -268,8 +247,7 @@ conn.close()
 vn.train(documentation="""
 The sales table records all completed transactions.
 The amount column is in USD and includes tax.
-The region column uses standard US Census regions:
-Northeast, Midwest, South, and West.
+The region column uses standard US Census regions: Northeast, Midwest, South, and West.
 A high_value_customer is anyone with lifetime purchases > $10,000.
 """)
 
@@ -356,9 +334,7 @@ sql = vn.generate_sql(
 print(sql)
 ```
 
-Vanna는 특정 제약이나 패턴이 있는 SQL 생성도 지원합니다:
-
-```python
+Vanna는 특정 제약이나 패턴이 있는 SQL 생성도 지원합니다: ```python
 # 설명이 포함된 SQL 생성
 sql, explanation = vn.generate_sql(
     "Which customers haven't placed an order in the last 90 days?",
@@ -387,11 +363,9 @@ vn = VannaDefault(model="my-model", api_key="vn-...",
                   config={"validate_sql": True})
 
 # 잘못된 쿼리가 포착되고 수정됩니다
-try:
-    sql = vn.generate_sql("Show me the top 10 products by revenue")
+try: sql = vn.generate_sql("Show me the top 10 products by revenue")
     print(f"Validated SQL: {sql}")
-except Exception as e:
-    print(f"Validation failed: {e}")
+except Exception as e: print(f"Validation failed: {e}")
     # Vanna는 수정하고 재생성을 시도할 것입니다
     sql = vn.generate_sql_with_retry(
         "Show me the top 10 products by revenue",
@@ -399,9 +373,7 @@ except Exception as e:
     )
 ```
 
-Vanna는 이전 맥락을 참조하는 후속 질문도 처리할 수 있습니다:
-
-```python
+Vanna는 이전 맥락을 참조하는 후속 질문도 처리할 수 있습니다: ```python
 # 첫 번째 질문
 result1 = vn.ask("What were total sales in 2026?")
 
@@ -431,8 +403,7 @@ vn.set_prompt_template("""
 You are an expert SQL analyst. Given the following database schema,
 generate a PostgreSQL-compatible query to answer the user's question.
 
-Schema:
-{schema}
+Schema: {schema}
 
 User Question: {question}
 
@@ -463,9 +434,7 @@ hr_sql = vn_hr.generate_sql("Employee count by department")
 from vanna.pinecone import Pinecone_VectorStore
 from vanna.openai import OpenAI_Chat
 
-class PineconeVanna(Pinecone_VectorStore, OpenAI_Chat):
-    def __init__(self, config=None):
-        Pinecone_VectorStore.__init__(self, config=config)
+class PineconeVanna(Pinecone_VectorStore, OpenAI_Chat): def __init__(self, config=None): Pinecone_VectorStore.__init__(self, config=config)
         OpenAI_Chat.__init__(self, config=config)
 
 vn = PineconeVanna(config={
@@ -493,9 +462,7 @@ vn.connect_to_postgres(host="localhost", dbname="analytics",
 vn.ask("What are the top selling products?")
 ```
 
-Jupyter에서 `ask()` 메서드는 생성된 SQL, 설명 및 결과 테이블을 포함한 풍부한 출력을 반환합니다. 완전한 대화형 경험을 위해:
-
-```python
+Jupyter에서 `ask()` 메서드는 생성된 SQL, 설명 및 결과 테이블을 포함한 풍부한 출력을 반환합니다. 완전한 대화형 경험을 위해: ```python
 # Jupyter 내에서 대화형 Web UI 시작
 from vanna.flask import VannaFlaskApp
 
@@ -503,9 +470,7 @@ app = VannaFlaskApp(vn)
 app.run()
 ```
 
-Vanna는 적절할 때 자동으로 시각화도 생성합니다:
-
-```python
+Vanna는 적절할 때 자동으로 시각화도 생성합니다: ```python
 # SQL을 생성하고 자동으로 차트 생성
 vn.ask("Plot monthly sales trends for 2026")
 
@@ -550,17 +515,13 @@ Vanna의 아키텍처를 이해하는 것은 프로덕션 환경에 안전하게
 └─────────────────────────────────────────────────────────────┘
 ```
 
-프라이버시 모델은 다음과 같이 작동합니다:
-
-```python
+프라이버시 모델은 다음과 같이 작동합니다: ```python
 # 프라이버시 우선 구성 (권장)
 from vanna.ollama import Ollama
 from vanna.chromadb import ChromaDB_VectorStore
 
-class PrivateVanna(ChromaDB_VectorStore, Ollama):
-    """완전히 자체 호스팅. 데이터가 네트워크를 벗어나지 않습니다."""
-    def __init__(self, config=None):
-        ChromaDB_VectorStore.__init__(self, config=config)
+class PrivateVanna(ChromaDB_VectorStore, Ollama): """완전히 자체 호스팅. 데이터가 네트워크를 벗어나지 않습니다."""
+    def __init__(self, config=None): ChromaDB_VectorStore.__init__(self, config=config)
         Ollama.__init__(self, config={"model": "llama3:70b"})
 
 vn = PrivateVanna()
@@ -577,9 +538,7 @@ vn.connect_to_postgres(host="internal-db", dbname="analytics",
 
 ## 벤치마크 및 정확도
 
-Vanna의 정확도는 학습 데이터의 품질과 양에 크게 의존합니다. 2026년에 관찰된 전형적인 성능 특성은 다음과 같습니다:
-
-```python
+Vanna의 정확도는 학습 데이터의 품질과 양에 크게 의존합니다. 2026년에 관찰된 전형적인 성능 특성은 다음과 같습니다: ```python
 # 정확도 평가 스크립트
 import pandas as pd
 
@@ -605,19 +564,15 @@ test_cases = [
 ]
 
 correct = 0
-for test in test_cases:
-    generated = vn.generate_sql(test["question"])
+for test in test_cases: generated = vn.generate_sql(test["question"])
     # 의미론적 비교 (정규화됨)
-    if normalize_sql(generated) == normalize_sql(test["expected_sql"]):
-        correct += 1
+    if normalize_sql(generated) == normalize_sql(test["expected_sql"]): correct += 1
 
 accuracy = correct / len(test_cases) * 100
 print(f"정확도: {accuracy:.1f}%")
 ```
 
-포괄적인 학습 (DDL + 문서 + 예제 쿼리)을 통해 Vanna는 일관되게 다음을 달성합니다:
-
-- 일반적인 분석 쿼리에 대해 **90-95% 정확도**
+포괄적인 학습 (DDL + 문서 + 예제 쿼리)을 통해 Vanna는 일관되게 다음을 달성합니다: - 일반적인 분석 쿼리에 대해 **90-95% 정확도**
 - 복잡한 다중 테이블 조인에 대해 **85-90% 정확도**
 - 비즈니스 맥락이 필요한 쿼리에 대해 **80-85% 정확도**
 - 질문-SQL 쌍이 학습 데이터로 제공될 때 거의 **100% 정확도**
@@ -637,9 +592,7 @@ print(f"정확도: {accuracy:.1f}%")
 from vanna.ollama import Ollama
 from vanna.chromadb import ChromaDB_VectorStore
 
-class FreeVanna(ChromaDB_VectorStore, Ollama):
-    def __init__(self, config=None):
-        ChromaDB_VectorStore.__init__(self, config=config)
+class FreeVanna(ChromaDB_VectorStore, Ollama): def __init__(self, config=None): ChromaDB_VectorStore.__init__(self, config=config)
         Ollama.__init__(self, config={"model": "llama3"})
 ```
 
@@ -701,9 +654,7 @@ vn.connect_to_duckdb("mydb.duckdb")
 
 ### 내 특정 사용 사례에서 Vanna의 정확도를 어떻게 향상시킬 수 있나요?
 
-정확도를 향상시키는 가장 효과적인 방법은 포괄적인 학습을 통하는 것입니다. 다음 학습 데이터 품질 계층 구조를 따르세요:
-
-1. **질문-SQL 쌍** (가장 높은 영향 — 거의 100% 정확도)
+정확도를 향상시키는 가장 효과적인 방법은 포괄적인 학습을 통하는 것입니다. 다음 학습 데이터 품질 계층 구조를 따르세요: 1. **질문-SQL 쌍** (가장 높은 영향 — 거의 100% 정확도)
 2. **예제 SQL 쿼리** (높은 영향 — 패턴 가르침)
 3. **비즈니스 문서** (중간 영향 — 맥락 추가)
 4. **DDL 문** (기초 — 환각 제거)
@@ -712,10 +663,8 @@ vn.connect_to_duckdb("mydb.duckdb")
 # 최대 정확도 학습 요법
 vn.train(ddl=all_schema_ddl)
 vn.train(documentation=business_context)
-for example in curated_sql_examples:
-    vn.train(sql=example)
-for qa in historical_question_sql_pairs:
-    vn.train(question=qa["question"], sql=qa["sql"])
+for example in curated_sql_examples: vn.train(sql=example)
+for qa in historical_question_sql_pairs: vn.train(question=qa["question"], sql=qa["sql"])
 ```
 
 ---
@@ -736,7 +685,6 @@ Vanna AI는 데이터베이스 접근 대중화에서 중대한 도약을 대표
 2026년, 데이터 분석가와 데이터베이스 전문가 사이의 간격이 계속 좁아지면서, Vanna AI는 최전선에 서 있습니다 — "우리 지역별 Q2 매출은 얼마입니까?"를 몇 분이 아닌 몇 초 내에 실행 가능한 SQL로 변환합니다. SQL 병목 현상을 줄이고 사람들이 생각하는 언어로 질문할 수 있게 하려는 모든 팀에게 Vanna AI는 즉시 배당금을 지불하는 투자입니다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

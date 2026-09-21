@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/vimax-agentic-video-generation-multi-agent-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/vimax-agentic-video-generation-multi-agent-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/vimax-agentic-video-generation-multi-agent-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/vimax-agentic-video-generation-multi-agent-2026" />
 title: 'ViMax 评测：HKUDS 出品的智能体多场景视频生成框架（导演·编剧·制片·生成器，2026）'
 description: 'ViMax（GitHub 7.1K+ stars）由香港大学数据科学实验室推出，是首个被广泛采纳的开源智能体视频生成框架。不再像 Sora、Runway 那样一句 prompt 直出短片，它把四个 AI 角色——导演、编剧、制片、视频生成器——编排起来，从一个想法生成长篇多场景视频。完整拆解智能体流水线、支持的后端（Gemini Flash、MiniMax、Google Veo）、安装步骤、idea-to-video 与 script-to-video 工作流，并诚实对比 Sora、OpenSora、Runway。'
 date: 2026-05-23 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [vimax, 'agentic-video', 'ai-video-generation', hkuds, 'multi-agent', veo, 'long-form-video', 'video-ai', 'open-source-video', 'rag-screenwriting']
-aliases:
-- /zh/posts/vimax-agentic-video-generation-multi-agent-2026/
+aliases: - /zh/posts/vimax-agentic-video-generation-multi-agent-2026/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/vimax-agentic-video-generation-multi-agent-2026/ -->
 
 ## 2025 年压垮 AI 视频的三道天花板
 
@@ -45,8 +37,8 @@ aliases:
 
 它的 slogan 说得很直接：**"Director, Screenwriter, Producer, and Video Generator All-in-One."**
 
----
 
+---
 ## 四个智能体角色
 
 ViMax 的架构赌注是：现实世界里的视频制作本来就是多角色流水线，那 AI 视频制作也应该是。框架定义了四个自主智能体角色，每个都有不同的 LLM 驱动任务：
@@ -65,8 +57,8 @@ ViMax 的架构赌注是：现实世界里的视频制作本来就是多角色�
 
 每个角色都是一个独立的 LLM 智能体，自带 prompt、自带上下文窗口、自带确定性输出契约——教科书级的 [12-Factor Agents](https://dibi8.com/zh/resources/llm-frameworks/12-factor-agents-production-llm-software-2026/) 第 10 条（"小而专注的智能体"）应用。
 
----
 
+---
 ## 技术栈
 
 - **语言**：Python 3.12，用 `uv` 管理依赖。
@@ -110,7 +102,13 @@ style = "Cartoon"
 ## 它与 Sora、Runway、OpenSora 的差别
 
 | 维度 | ViMax | Sora / Runway / OpenSora |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | **流水线** | 多智能体（剧本 → 分镜 → 素材 → 视频） | 直接 prompt → 视频 |
 | **叙事** | 基于 RAG 的结构化剧本生成 | 单 prompt，无剧本结构 |
 | **一致性** | 制片 Agent + MLLM 校验 + 参考图筛选 | 镜头间帧级漂移 |
@@ -188,7 +186,6 @@ MIT 协议 + HKUDS 的学术背景 + 几个月攒出来的 7,100 stars，指向�
 **GitHub**：[HKUDS/ViMax](https://github.com/HKUDS/ViMax) · **协议**：MIT · **Stars**：7.1K+ · **作者**：香港大学数据科学实验室 · **状态**：积极开发中，尚无正式 tag release
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -216,25 +213,20 @@ MIT 协议 + HKUDS 的学术背景 + 几个月攒出来的 7,100 stars，指向�
 
 ## Why This Matters
 
-Understanding vimax 评测：hkuds 出品的智能体多场景视频生成框架（导演·编剧·制片·生成器，2026） is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding vimax 评测：hkuds 出品的智能体多场景视频生成框架（导演·编剧·制片·生成器，2026） is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

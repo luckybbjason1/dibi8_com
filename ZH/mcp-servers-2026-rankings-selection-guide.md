@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mcp-servers-2026-rankings-selection-guide" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mcp-servers-2026-rankings-selection-guide" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mcp-servers-2026-rankings-selection-guide" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mcp-servers-2026-rankings-selection-guide" />
 title: 'MCP 服务器 2026: 100+ 生态地图 + 选型决策树'
 description: 'Model Context Protocol 生态在 2026 年中突破 1000+ 公开服务器。本指南按类目排名前 30 个，解释 stdio、HTTP/SSE 和 OAuth-bridged 服务器的架构权衡，并给出不淹没在注册表中的选型决策树。'
 date: 2026-05-26 00:00:00+08:00
@@ -25,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [mcp, 'model-context-protocol', 'claude-code', 'ai-agents', 开发者工具, 集成, 2026]
-aliases:
-- /zh/posts/mcp-servers-2026-rankings-selection-guide/
-faq:
-  - q: "什么是 MCP？为什么 2026 年这么重要？"
+aliases: - /zh/posts/mcp-servers-2026-rankings-selection-guide/
+faq: - q: "什么是 MCP？为什么 2026 年这么重要？"
     a: "Model Context Protocol（MCP）是 Anthropic 2024 年底开源的协议，用于连接 AI agent 到外部工具、数据源和服务。2026 年它成为事实上的 AI agent 插件标准，被 Claude Code、Cursor、Codex CLI、Gemini CLI 等主流 AI 编码 agent 支持。生态从 2024 年底约 30 个服务器增长到 2026 年中 1000+ 公开服务器。"
   - q: "stdio、HTTP 还是 SSE-based MCP server 怎么选？"
     a: "stdio 适合本地服务器（filesystem、git、localhost 上的数据库）— 最低延迟、零网络。HTTP/SSE 适合远程 SaaS 集成（GitHub、Linear、Notion），服务器由第三方托管。MCP 2025-06 spec 新增 OAuth bridge 给凭证管理型服务器。大多数生产环境混用：80% stdio 本地 + 20% HTTP for SaaS。"
@@ -41,8 +34,6 @@ faq:
   - q: "MCP 会不会很快被替代？"
     a: "2026-2027 不太可能。MCP 跨 vendor adoption（Anthropic、OpenAI 参考实现、Google Gemini），open spec，1000+ 公开服务器。MCP 之上的下一层 — agent-to-agent 协议、能力发现 — 仍在演进。MCP 是集成层；预计至少 18-24 月内保持稳定。"
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/mcp-servers-2026-rankings-selection-guide/ -->
 
 {{</* resource-info */>}}
 
@@ -66,8 +57,8 @@ faq:
 >
 > **不要无脑装**：每个社区 MCP 服务器都是用你本地权限运行的代码。审核源码、优先活跃维护者、永不给你不愿明文复制粘贴的凭证。
 
----
 
+---
 ## MCP 在 2026 年实际是什么
 
 Model Context Protocol 是基于 JSON-RPC 的规范，用来连接 AI agent 到外部工具。它故意简单：MCP 服务器暴露 `tools`、`resources`、`prompts`。MCP 客户端（Claude Code、Cursor、你选的 agent）在模型决定需要外部动作时调用这些工具。
@@ -139,7 +130,17 @@ MCP 服务器编排 OAuth 流程为每个 session 颁发 scoped 凭证。最新�
 ### Tier 1：通用默认（全局装）
 
 | 服务器 | Transport | 维护者 | 用途 | 风险评级 |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **filesystem** | stdio | Anthropic | 读写列在 scoped 目录的文件 | 低（scope 限制） |
 | **git** | stdio | Anthropic | 检查仓库、diff、blame、log | 低（read-mostly） |
 | **github** | HTTP | Anthropic | PR、issues、搜索、评论 | 中（token scope 重要） |
@@ -151,7 +152,17 @@ MCP 服务器编排 OAuth 流程为每个 session 颁发 scoped 凭证。最新�
 ### Tier 2：工作流专项（按项目装）
 
 | 服务器 | Transport | 维护者 | 用途 | 风险评级 |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **postgres** | stdio | 社区 | 查 Postgres 数据库 | 高（DB 访问） |
 | **sqlite** | stdio | 社区 | 查 SQLite 文件 | 低 |
 | **playwright** | stdio | 微软 | 浏览器自动化、爬虫 | 中 |
@@ -169,7 +180,13 @@ MCP 服务器编排 OAuth 流程为每个 session 颁发 scoped 凭证。最新�
 ### Tier 3：专项但优秀
 
 | 服务器 | Transport | 用途 |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | **kubernetes** | stdio | Kubectl wrapper 用于集群检查 |
 | **terraform** | stdio | 基础设施状态查询 |
 | **aws** | HTTP | AWS 资源枚举（只读安全） |
@@ -270,12 +287,11 @@ Anthropic 维护参考服务器：[github.com/modelcontextprotocol/servers](http
 
 **解药是筛选，不是丰富**。挑你五个核心 stdio 服务器，每仓库加 2-3 个项目专项的，装新服务器前审计，把 MCP 服务器当成恰好符合人体工学的安全相关代码。这是接下来 18 个月可扩展的工作流，直到下一个协议来。
 
----
 
+---
 **参考**：[github.com/modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers) · **Spec**：MCP 2025-06 · **Stars**（生态合计）：参考仓库累计 60K+
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -303,25 +319,20 @@ Anthropic 维护参考服务器：[github.com/modelcontextprotocol/servers](http
 
 ## Why This Matters
 
-Understanding mcp 服务器 2026: 100+ 生态地图 + 选型决策树 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding mcp 服务器 2026: 100+ 生态地图 + 选型决策树 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

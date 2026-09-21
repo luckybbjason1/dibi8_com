@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/exo-dev-utils-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/exo-dev-utils-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/exo-dev-utils-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/exo-dev-utils-2026" />
 title: 'exo: Chạy AI tiên phong trên chính các thiết bị của bạn ...
 description: 'exo biến các máy Mac, PC và cả điện thoại của bạn thành một cụm duy nhất để chạy các mô hình AI tiên phong ngay tại chỗ. 45.088 sao GitHub, giấy phép Apache-2.0. Bao gồm cài đặt, bảng điều khiển, API tương thích OpenAI/Claude/Ollama, các lệnh thực tế và một so sánh thẳng thắn.'
 date: 2026-06-02 00:00:00+08:00
@@ -25,10 +20,8 @@ featureImage: 'https://raw.githubusercontent.com/exo-explore/exo/main/docs/imgs/
 draft: false
 categories: ['dev-utils']
 tags: []
-aliases:
-- /posts/exo-dev-utils-2026/
-faqs:
-  - q: 'Làm sao để cài exo?'
+aliases: - /posts/exo-dev-utils-2026/
+faqs: - q: 'Làm sao để cài exo?'
     a: 'Trên Mac, cách dễ nhất là dùng ứng dụng dựng sẵn: ```bash brew install --cask exo ``` Để chạy mã nguồn mới nhất trên macOS hoặc Linux, clone kho và khởi động bằng `uv`: ```bash git clone https://github.com/exo-explore/exo cd exo/dashboard && npm install && npm run build && cd .. uv run exo ```'
   - q: 'exo chạy trên phần cứng nào?'
     a: 'exo chạy trên macOS và Linux. Tăng tốc GPU hiện nhắm tới Apple Silicon (ví dụ M3 Ultra và các máy Mac M4); Linux tạm thời chỉ dùng CPU, hỗ trợ GPU đang được phát triển. Bạn gộp nhiều thiết bị thành một cụm để gom bộ nhớ và sức tính toán của chúng.'
@@ -39,8 +32,6 @@ faqs:
   - q: 'Xem trạng thái cụm ở đâu?'
     a: 'Mở bảng điều khiển trong trình duyệt tại `http://localhost:52415`. Nó hiển thị mọi thiết bị được phát hiện, cách mô hình được chia trên chúng, cùng thông lượng và mức dùng bộ nhớ theo thời gian thực.'
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/exo-dev-utils-2026/ -->
 
 {{< resource-info >}}
 
@@ -56,9 +47,7 @@ Dự án do nhóm exo-explore (exo labs) duy trì và phát hành theo giấy ph
 
 ## exo hoạt động thế nào
 
-Đây là những gì exo làm ở bên dưới:
-
-1. **Thực thi tại chỗ**: mô hình chạy trên chính các thiết bị của bạn, nên prompt và dữ liệu không rời khỏi mạng của bạn, đồng thời tránh được chi phí đám mây tính theo token.
+Đây là những gì exo làm ở bên dưới: 1. **Thực thi tại chỗ**: mô hình chạy trên chính các thiết bị của bạn, nên prompt và dữ liệu không rời khỏi mạng của bạn, đồng thời tránh được chi phí đám mây tính theo token.
 2. **Tự động lập cụm**: exo tự tìm ra các thiết bị khác đang chạy exo trong cùng mạng—không có tệp cấu hình liệt kê các nút, cũng không phải tự tay viết thiết lập kiểu "máy chủ/máy thợ".
 3. **Phân chia theo tô-pô mạng**: exo đo tài nguyên và độ trễ của từng nút theo thời gian thực, rồi quyết định cách chia các lớp của mô hình lên chúng, nhờ vậy một mô hình quá lớn với bất kỳ máy đơn lẻ nào vẫn chạy được trên cả cụm.
 
@@ -70,9 +59,7 @@ Nếu bạn muốn exo luôn sẵn sàng truy cập suốt ngày đêm (chẳng 
 
 ### Ứng dụng macOS (dễ nhất)
 
-Cách đơn giản nhất trên Mac là dùng ứng dụng đã dựng sẵn. Cài bằng Homebrew:
-
-```bash
+Cách đơn giản nhất trên Mac là dùng ứng dụng đã dựng sẵn. Cài bằng Homebrew: ```bash
 brew install --cask exo
 ```
 
@@ -80,25 +67,19 @@ Hoặc tải trực tiếp bản DMG mới nhất từ `https://assets.exolabs.n
 
 ### Dựng từ mã nguồn (macOS hoặc Linux)
 
-Để chạy mã mới nhất, hãy clone kho và khởi động bằng `uv`. Trước tiên bạn cần cài `uv`, Node 18+ và bộ công cụ Rust phiên bản nightly (trên macOS còn cần Xcode, Homebrew và `macmon`):
-
-```bash
+Để chạy mã mới nhất, hãy clone kho và khởi động bằng `uv`. Trước tiên bạn cần cài `uv`, Node 18+ và bộ công cụ Rust phiên bản nightly (trên macOS còn cần Xcode, Homebrew và `macmon`): ```bash
 git clone https://github.com/exo-explore/exo
 cd exo/dashboard && npm install && npm run build && cd ..
 uv run exo
 ```
 
-Nếu bạn dùng Nix, có thể bỏ qua hoàn toàn các yêu cầu tiên quyết:
-
-```bash
+Nếu bạn dùng Nix, có thể bỏ qua hoàn toàn các yêu cầu tiên quyết: ```bash
 nix run .#exo
 ```
 
 ### Lỗi thường gặp và cách khắc phục
 
-Một trục trặc hay gặp ở lần chạy đầu là bảng điều khiển không tải được vì phần giao diện chưa bao giờ được dựng. Giao diện web được biên dịch từ thư mục `dashboard/`, nên nếu bạn clone kho rồi chạy `uv run exo` mà chưa dựng nó, hãy dựng lại bảng điều khiển trước khi khởi động:
-
-```bash
+Một trục trặc hay gặp ở lần chạy đầu là bảng điều khiển không tải được vì phần giao diện chưa bao giờ được dựng. Giao diện web được biên dịch từ thư mục `dashboard/`, nên nếu bạn clone kho rồi chạy `uv run exo` mà chưa dựng nó, hãy dựng lại bảng điều khiển trước khi khởi động: ```bash
 cd dashboard && npm install && npm run build && cd ..
 uv run exo
 ```
@@ -114,22 +95,16 @@ Sau khi cài exo xong, quy trình ngắn gọn đến mức dễ chịu: khởi 
 
 ### Khởi động một nút
 
-Chạy exo trên mọi thiết bị bạn muốn đưa vào cụm:
-
-```bash
+Chạy exo trên mọi thiết bị bạn muốn đưa vào cụm: ```bash
 uv run exo
 ```
 
-Mỗi nút tự động tìm ra các nút khác trong cùng mạng—không cần đăng ký thủ công. Vài cờ tiện dụng:
-
-- `--no-worker`: chạy nút chỉ làm điều phối, bản thân nó không thực hiện suy luận.
+Mỗi nút tự động tìm ra các nút khác trong cùng mạng—không cần đăng ký thủ công. Vài cờ tiện dụng: - `--no-worker`: chạy nút chỉ làm điều phối, bản thân nó không thực hiện suy luận.
 - `--legacy-daemon`: chạy exo dưới dạng tiến trình nền (daemon).
 
 ### Giám sát cụm
 
-exo phục vụ một bảng điều khiển ở cổng `52415`. Mở nó trong trình duyệt:
-
-```sh
+exo phục vụ một bảng điều khiển ở cổng `52415`. Mở nó trong trình duyệt: ```sh
 http://localhost:52415
 ```
 
@@ -137,9 +112,7 @@ Bạn sẽ thấy mọi thiết bị mà exo đã phát hiện, mô hình hiện
 
 ### Gọi mô hình
 
-exo cung cấp một API HTTP tương thích với các định dạng OpenAI, Claude (Anthropic Messages) và Ollama, nên hầu hết mã client sẵn có dùng được mà không phải sửa. Một yêu cầu chat dạng streaming trông như sau:
-
-```bash
+exo cung cấp một API HTTP tương thích với các định dạng OpenAI, Claude (Anthropic Messages) và Ollama, nên hầu hết mã client sẵn có dùng được mà không phải sửa. Một yêu cầu chat dạng streaming trông như sau: ```bash
 curl -X POST http://localhost:52415/v1/chat/completions \
   -H 'Content-Type: application/json' \
   -d '{"model": "model-id", "messages": [{"role": "user", "content": "prompt"}], "stream": true}'
@@ -160,9 +133,7 @@ Vì exo "nói" được API của OpenAI, Claude và Ollama, nó hòa vào hầu
 
 ### Tái sử dụng client OpenAI sẵn có
 
-Trỏ bất kỳ client tương thích OpenAI nào tới điểm cuối exo cục bộ và nó chạy ngay:
-
-```python
+Trỏ bất kỳ client tương thích OpenAI nào tới điểm cuối exo cục bộ và nó chạy ngay: ```python
 # Nói chuyện với cụm exo cục bộ bằng client OpenAI chuẩn
 from openai import OpenAI
 
@@ -180,9 +151,7 @@ print(response.choices[0].message.content)
 
 ### Dùng trong Jupyter notebook
 
-Cùng một client cũng chạy được trong notebook, rất tiện để thử nghiệm nhanh với cụm:
-
-```python
+Cùng một client cũng chạy được trong notebook, rất tiện để thử nghiệm nhanh với cụm: ```python
 # Thử nhanh trong Jupyter notebook
 from openai import OpenAI
 
@@ -201,9 +170,7 @@ Vì mọi thứ đều đi qua một API HTTP chuẩn, bạn có thể tích h�
 
 ### Các benchmark hiệu năng
 
-exo đã được trình diễn chạy những mô hình rất lớn trên các cụm gồm nhiều máy Mac Apple Silicon—kiểu khối lượng công việc mà không một máy tiêu dùng đơn lẻ nào kham nổi. Các hình dưới đây cho thấy những lần chạy cụm thực tế:
-
-![Dashboard Cluster View](https://raw.githubusercontent.com/exo-explore/exo/main/docs/imgs/dashboard-cluster-view.png)
+exo đã được trình diễn chạy những mô hình rất lớn trên các cụm gồm nhiều máy Mac Apple Silicon—kiểu khối lượng công việc mà không một máy tiêu dùng đơn lẻ nào kham nổi. Các hình dưới đây cho thấy những lần chạy cụm thực tế: ![Dashboard Cluster View](https://raw.githubusercontent.com/exo-explore/exo/main/docs/imgs/dashboard-cluster-view.png)
 *Hình 1: Bảng điều khiển exo hiển thị chế độ xem cụm.*
 
 ![Mac Studio Cluster AI Full 1](https://raw.githubusercontent.com/exo-explore/exo/main/docs/benchmarks/jeffgeerling/mac-studio-cluster-ai-full-1-qwen3-235b.jpeg)
@@ -248,9 +215,7 @@ Tóm tắt thẳng thắn: nếu mô hình của bạn vừa thoải mái trong 
 
 ## Hạn chế & Đánh giá thẳng thắn
 
-exo thực sự hữu ích, nhưng đây là một dự án còn trẻ và biến đổi nhanh. Vài lưu ý thành thật:
-
-1. **Apple Silicon là con đường mạnh.** Tăng tốc GPU hiện nhắm tới Apple Silicon. Linux tạm thời chỉ chạy CPU (hỗ trợ GPU đang được làm), nên một máy Linux có GPU có thể không nhanh như bạn tưởng.
+exo thực sự hữu ích, nhưng đây là một dự án còn trẻ và biến đổi nhanh. Vài lưu ý thành thật: 1. **Apple Silicon là con đường mạnh.** Tăng tốc GPU hiện nhắm tới Apple Silicon. Linux tạm thời chỉ chạy CPU (hỗ trợ GPU đang được làm), nên một máy Linux có GPU có thể không nhanh như bạn tưởng.
 
 2. **Nó sinh ra cho cụm mô hình lớn.** Nếu mô hình của bạn đã vừa một máy, bộ máy phân tán của exo là thừa thãi—một công cụ một-máy sẽ đơn giản hơn.
 
@@ -271,19 +236,11 @@ exo của exo-explore là một công cụ hấp dẫn để chạy AI tiên pho
 
 ---
 
-**Sources & Further Reading**:
-- GitHub repository: https://github.com/exo-explore/exo
+**Sources & Further Reading**: - GitHub repository: https://github.com/exo-explore/exo
 - Official docs / README: https://github.com/exo-explore/exo#readme
 
 *Một số liên kết ở trên là liên kết tiếp thị (affiliate). dibi8.com có thể nhận hoa hồng nếu bạn đăng ký, mà bạn không phải trả thêm bất kỳ chi phí nào. Điều này giúp duy trì hoạt động của trang và giữ cho nội dung miễn phí.*
 
-<!-- internal-link-candidates:
-  related open-source tools -> ai-tools-directory
-  related guides on dibi8 -> ai-coding-agent-landscape-2026-skills-mcp-opensource
--->
-
-
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

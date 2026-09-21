@@ -1,28 +1,20 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/temporal-ai-workflow-orchestration" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/temporal-ai-workflow-orchestration" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/temporal-ai-workflow-orchestration" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/temporal-ai-workflow-orchestration" />
 title: Temporal AI 工作流编排 — 可靠的多步骤 AI 流水线
 description: Temporal 编排 AI/ML 工作流的完全指南。构建可靠的 LLM 流水线、多 Agent 系统和 ML 训练任务，内置持久性、重试和可观测性。. Comprehensive guide covering features, pricing, and best practices for 2026.
 tags: ['workflow', 'orchestration', 'temporal', 'machine-learning', 'llm', 'reliability']
 category: dev-utils
 featureImage: /images/articles/temporal-ai-workflow-orchestration.jpg
 date: 2026-07-15T00:00:00+00:00
-lastmod:  2026-07-15T00:00:00+00:00draft: false
+lastmod: 2026-07-15T00:00:00+00:00draft: false
 slug: temporal-ai-workflow-orchestration
-lang: zh-CN
----
-
-<!-- canonical: https://dibi8.com/zh/tools/temporal-ai-workflow-orchestration/ -->
+-CN---
 
 ## TL;DR
 
 Temporal 是一个持久化执行平台，让构建可靠的 AI 工作流变得极其简单。无需与 Kubernetes CronJob、死信队列和手动重试逻辑搏斗，你只需将 Python 函数装饰为 Temporal 的 workflow 和 activity。Temporal 保证恰好一次执行、自动指数退避重试和开箱即用的完整可观测性。
 
----
 
+---
 ## Temporal 是什么？
 
 Temporal 是用于以规模运行容错工作流的开源分布式系统。其核心提供**持久化执行**——你的代码在 Temporal 管理的基础设施中运行，它自动处理故障、重试、检查点和状态持久化。
@@ -52,7 +44,17 @@ Temporal 通过让你的 Python 代码**天然可恢复**来消除所有这些�
 ### Temporal vs 替代方案
 
 | 特性 | Temporal | Airflow | Celery + Redis | Kubernetes CronJob |
-|---------|----------|---------|----------------|--------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 代码即工作流定义 | ✅（Python 装饰器） | ❌（DAG YAML/Python） | ❌（仅是任务队列） | ❌（Shell 脚本） |
 | 自动重试 | ✅（可配置策略） | ⚠️（基础） | ⚠️（手动配置） | ❌（无） |
 | 状态持久化 | ✅（内置） | ⚠️（外部数据库） | ❌（内存中） | ❌ |
@@ -60,8 +62,8 @@ Temporal 通过让你的 Python 代码**天然可恢复**来消除所有这些�
 | 交互式调试 | ✅（Web UI + CLI） | ⚠️（有限） | ❌ | ❌ |
 | ML 友好集成 | ✅（原生） | ⚠️（插件） | ❌ | ❌ |
 
----
 
+---
 ## 快速开始
 
 ### 第一步：安装 Temporal 栈
@@ -101,16 +103,14 @@ from temporalio.common import RetryPolicy
 
 # 定义 activity（各个步骤）
 @activity.defn
-async def load_dataset(dataset_name: str):
-    """加载并验证数据集。"""
+async def load_dataset(dataset_name: str): """加载并验证数据集。"""
     print(f"正在加载数据集: {dataset_name}")
     data = {"samples": 10000, "features": 128}
     activity.info(f"已加载 {data['samples']} 个样本")
     return data
 
 @activity.defn
-async def preprocess(data: dict):
-    """清洗和规范化数据。"""
+async def preprocess(data: dict): """清洗和规范化数据。"""
     print("正在预处理数据...")
     processed = {
         "cleaned_samples": data["samples"],
@@ -120,8 +120,7 @@ async def preprocess(data: dict):
     return processed
 
 @activity.defn
-async def train_model(preprocessed_data: dict, epochs: int = 10):
-    """在预处理数据上训练模型。"""
+async def train_model(preprocessed_data: dict, epochs: int = 10): """在预处理数据上训练模型。"""
     print(f"正在训练模型 {epochs} 轮...")
     metrics = {
         "final_loss": 0.0234,
@@ -132,8 +131,7 @@ async def train_model(preprocessed_data: dict, epochs: int = 10):
     return metrics
 
 @activity.defn
-async def deploy_model(metrics: dict):
-    """将训练的模型部署到生产环境。"""
+async def deploy_model(metrics: dict): """将训练的模型部署到生产环境。"""
     print("正在将模型部署到生产环境...")
     deployment = {
         "model_id": f"model-{metrics['final_accuracy']:.4f}",
@@ -145,10 +143,8 @@ async def deploy_model(metrics: dict):
 
 # 定义 workflow
 @workflow.defn
-class MLTrainingPipeline:
-    @workflow.run
-    async def run(self, dataset_name: str, epochs: int = 10) -> dict:
-        # 每个步骤是一个 activity 调用
+class MLTrainingPipeline: @workflow.run
+    async def run(self, dataset_name: str, epochs: int = 10) -> dict: # 每个步骤是一个 activity 调用
         data = await workflow.execute_activity(
             load_dataset,
             dataset_name,
@@ -185,8 +181,7 @@ import asyncio
 from temporalio.worker import Worker
 from my_workflow import MLTrainingPipeline, load_dataset, preprocess, train_model, deploy_model
 
-async def main():
-    worker = Worker(
+async def main(): worker = Worker(
         client,  # Temporal Client 实例
         task_queue="ml-pipeline",
         workflows=[MLTrainingPipeline],
@@ -195,8 +190,7 @@ async def main():
     print("Worker 已启动。按 Ctrl+C 退出。")
     await worker.run()
 
-if __name__ == "__main__":
-    asyncio.run(main())
+if __name__ == "__main__": asyncio.run(main())
 ```
 
 ---
@@ -211,44 +205,35 @@ if __name__ == "__main__":
 from temporalio import workflow, activity
 
 @activity.defn
-async def generate_with_gpt4(prompt: str) -> str:
-    """先尝试 GPT-4。"""
+async def generate_with_gpt4(prompt: str) -> str: """先尝试 GPT-4。"""
     response = await call_openai(prompt, model="gpt-4o")
     return response
 
 @activity.defn
-async def generate_with_claude(prompt: str) -> str:
-    """回退到 Claude。"""
+async def generate_with_claude(prompt: str) -> str: """回退到 Claude。"""
     response = await call_anthropic(prompt, model="claude-sonnet-4")
     return response
 
 @activity.defn
-async def generate_with_local(prompt: str) -> str:
-    """最后手段：本地模型。"""
+async def generate_with_local(prompt: str) -> str: """最后手段：本地模型。"""
     response = await call_ollama(prompt, model="llama3.2")
     return response
 
 @workflow.defn
-class ResilientLLMChain:
-    @workflow.run
-    async def run(self, prompt: str) -> dict:
-        try:
-            result = await workflow.execute_activity(
+class ResilientLLMChain: @workflow.run
+    async def run(self, prompt: str) -> dict: try: result = await workflow.execute_activity(
                 generate_with_gpt4, prompt,
                 timeout=timedelta(minutes=5),
                 retry=RetryPolicy(max_attempts=2)
             )
             model_used = "gpt-4o"
-        except Exception:
-            try:
-                result = await workflow.execute_activity(
+        except Exception: try: result = await workflow.execute_activity(
                     generate_with_claude, prompt,
                     timeout=timedelta(minutes=5),
                     retry=RetryPolicy(max_attempts=2)
                 )
                 model_used = "claude-sonnet-4"
-            except Exception:
-                result = await workflow.execute_activity(
+            except Exception: result = await workflow.execute_activity(
                     generate_with_local, prompt,
                     timeout=timedelta(minutes=10),
                     retry=RetryPolicy(max_attempts=3)
@@ -264,28 +249,23 @@ class ResilientLLMChain:
 
 ```python
 @activity.defn
-async def agent_research(query: str) -> dict:
-    """研究 Agent：从网络收集信息。"""
+async def agent_research(query: str) -> dict: """研究 Agent：从网络收集信息。"""
     results = await search_web(query)
     return {"type": "research", "sources": len(results), "summary": summarize(results)}
 
 @activity.defn
-async def agent_analysis(research_data: dict) -> dict:
-    """分析 Agent：评估发现。"""
+async def agent_analysis(research_data: dict) -> dict: """分析 Agent：评估发现。"""
     analysis = await analyze_findings(research_data["summary"])
     return {"type": "analysis", "confidence": analysis["confidence_score"]}
 
 @activity.defn
-async def agent_synthesis(research: dict, analysis: dict) -> dict:
-    """综合 Agent：将研究和综合分析成报告。"""
+async def agent_synthesis(research: dict, analysis: dict) -> dict: """综合 Agent：将研究和综合分析成报告。"""
     report = await synthesize_report(research, analysis)
     return {"type": "synthesis", "report_length": len(report)}
 
 @workflow.defn
-class MultiAgentResearch:
-    @workflow.run
-    async def run(self, query: str) -> dict:
-        research_handle = workflow.execute_activity(
+class MultiAgentResearch: @workflow.run
+    async def run(self, query: str) -> dict: research_handle = workflow.execute_activity(
             agent_research, query, start_to_close_timeout=timedelta(minutes=5)
         )
         
@@ -310,39 +290,32 @@ class MultiAgentResearch:
 
 ```python
 @activity.defn
-async def save_checkpoint(epoch: int, model_state: dict) -> str:
-    """将训练检查点保存到持久化存储。"""
+async def save_checkpoint(epoch: int, model_state: dict) -> str: """将训练检查点保存到持久化存储。"""
     checkpoint_path = f"s3://my-bucket/checkpoints/epoch_{epoch}.pt"
     await upload_to_s3(model_state, checkpoint_path)
     activity.info(f"检查点已保存: {checkpoint_path}")
     return checkpoint_path
 
 @activity.defn
-async def load_checkpoint(checkpoint_path: str) -> dict:
-    """从检查点加载模型状态。"""
+async def load_checkpoint(checkpoint_path: str) -> dict: """从检查点加载模型状态。"""
     model_state = await download_from_s3(checkpoint_path)
     activity.info(f"检查点已加载: {checkpoint_path}")
     return model_state
 
 @workflow.defn
-class ResumableTraining:
-    @workflow.run
-    async def run(self, dataset_url: str, total_epochs: int, lr: float = 0.001) -> dict:
-        checkpoint_path = workflow.info().get_memo_field("last_checkpoint")
+class ResumableTraining: @workflow.run
+    async def run(self, dataset_url: str, total_epochs: int, lr: float = 0.001) -> dict: checkpoint_path = workflow.info().get_memo_field("last_checkpoint")
         
-        if checkpoint_path:
-            model_state = await workflow.execute_activity(
+        if checkpoint_path: model_state = await workflow.execute_activity(
                 load_checkpoint, checkpoint_path,
                 start_to_close_timeout=timedelta(minutes=2)
             )
             start_epoch = int(checkpoint_path.split("_")[-1].split(".")[0])
             activity.info(f"从第 {start_epoch} 轮恢复")
-        else:
-            model_state = initialize_model(dataset_url)
+        else: model_state = initialize_model(dataset_url)
             start_epoch = 0
         
-        for epoch in range(start_epoch, total_epochs):
-            result = await workflow.execute_activity(
+        for epoch in range(start_epoch, total_epochs): result = await workflow.execute_activity(
                 train_epoch, model_state, epoch, lr,
                 start_to_close_timeout=timedelta(minutes=30),
                 retry=RetryPolicy(max_attempts=3, backoff_coefficient=2.0)
@@ -350,8 +323,7 @@ class ResumableTraining:
             
             model_state = result["state"]
             
-            if (epoch + 1) % 5 == 0:
-                cp_path = await workflow.execute_activity(
+            if (epoch + 1) % 5 == 0: cp_path = await workflow.execute_activity(
                     save_checkpoint, epoch + 1, model_state,
                     start_to_close_timeout=timedelta(minutes=5)
                 )
@@ -366,11 +338,9 @@ class ResumableTraining:
 
 ```python
 @activity.defn
-async def stream_llm_response(prompt: str, max_tokens: int = 1024) -> list[str]:
-    """从 LLM 流式传输 token 并以列表返回。"""
+async def stream_llm_response(prompt: str, max_tokens: int = 1024) -> list[str]: """从 LLM 流式传输 token 并以列表返回。"""
     tokens = []
-    async for token in call_streaming_api(prompt, max_tokens):
-        tokens.append(token)
+    async for token in call_streaming_api(prompt, max_tokens): tokens.append(token)
         await asyncio.sleep(0.01)
     return tokens
 ```
@@ -385,25 +355,19 @@ async def stream_llm_response(prompt: str, max_tokens: int = 1024) -> list[str]:
 
 ```python
 @workflow.defn
-class PriorityWorkflow:
-    def __init__(self):
-        self.priority = "normal"
+class PriorityWorkflow: def __init__(self): self.priority = "normal"
         self.cancel_requested = False
     
     @workflow.signal
-    def set_priority(self, new_priority: str):
-        self.priority = new_priority
+    def set_priority(self, new_priority: str): self.priority = new_priority
         workflow.logger.info(f"优先级已更改为 {new_priority}")
     
     @workflow.signal
-    def cancel_workflow(self):
-        self.cancel_requested = True
+    def cancel_workflow(self): self.cancel_requested = True
         workflow.logger.info("取消请求已发送")
     
     @workflow.run
-    async def run(self, task_data: dict) -> dict:
-        while not self.cancel_requested:
-            result = await process_task(task_data, self.priority)
+    async def run(self, task_data: dict) -> dict: while not self.cancel_requested: result = await process_task(task_data, self.priority)
             await asyncio.sleep(0.1)
         return {"status": "cancelled", "partial_result": result}
 ```
@@ -414,18 +378,14 @@ class PriorityWorkflow:
 
 ```python
 @workflow.defn
-class DataPreparation:
-    @workflow.run
-    async def run(self, raw_data: dict) -> dict:
-        cleaned = await workflow.execute_activity(clean_data, raw_data)
+class DataPreparation: @workflow.run
+    async def run(self, raw_data: dict) -> dict: cleaned = await workflow.execute_activity(clean_data, raw_data)
         validated = await workflow.execute_activity(validate_data, cleaned)
         return validated
 
 @workflow.defn
-class FullMLPipeline:
-    @workflow.run
-    async def run(self, raw_data: dict, model_config: dict) -> dict:
-        prepared_data = await workflow.child_execute(DataPreparation.run, raw_data)
+class FullMLPipeline: @workflow.run
+    async def run(self, raw_data: dict, model_config: dict) -> dict: prepared_data = await workflow.child_execute(DataPreparation.run, raw_data)
         trained_model = await workflow.child_execute(ModelTraining.run, prepared_data, model_config)
         eval_results = await workflow.child_execute(ModelEvaluation.run, trained_model)
         return eval_results
@@ -487,11 +447,9 @@ from temporalio import activity
 logger = structlog.get_logger()
 
 @activity.defn
-async def train_with_logging(model_config: dict) -> dict:
-    logger.info("training_start", config=model_config)
+async def train_with_logging(model_config: dict) -> dict: logger.info("training_start", config=model_config)
     
-    for epoch in range(10):
-        loss = perform_training_epoch(model_config)
+    for epoch in range(10): loss = perform_training_epoch(model_config)
         logger.info("epoch_complete", epoch=epoch, loss=loss, learning_rate=model_config["lr"])
     
     logger.info("training_complete", final_loss=loss)
@@ -510,9 +468,7 @@ async def train_with_logging(model_config: dict) -> dict:
 
 ```python
 @activity.defn
-async def long_training_job(config: dict):
-    for epoch in range(100):
-        activity.heartbeat(f"第 {epoch}/100 轮完成")
+async def long_training_job(config: dict): for epoch in range(100): activity.heartbeat(f"第 {epoch}/100 轮完成")
         loss = train_one_epoch(config)
     return {"final_loss": loss}
 ```
@@ -532,7 +488,13 @@ worker = Worker(
 ### 成本对比
 
 | 方案 | 月成本（每月 100 个训练任务） | 运维开销 |
-|------|---------------------------|----------|
+|
+---
+|
+---
+|
+---
+|
 | Kubernetes + CronJob | $800（常驻节点）+ 20 小时/月 DevOps | 高 |
 | AWS Batch | $450（抢占式实例）+ 10 小时/月配置 | 中 |
 | Temporal Cloud | $200（计算）+ $0 运维 | 无 |
@@ -630,7 +592,6 @@ Temporal 工作流可以无限期运行——没有硬性超时。有记录的�
 *加入我们的 Telegram 群组获取实时 AI 工具讨论和部署技巧：[t.me/dibi8](https://t.me/dibi8)*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/aider-cline-openhands-2026-honest-comparison" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/aider-cline-openhands-2026-honest-comparison" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/aider-cline-openhands-2026-honest-comparison" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/aider-cline-openhands-2026-honest-comparison" />
 title: 'Aider vs Cline vs OpenHands 2026: 정직한 3자 오픈소스 코딩 에이전트 비교'
 description: '동일한 5K LOC TypeScript 코드베이스에서 세 가지 오픈소스 AI 코딩 에이전트를 모두 테스트했습니다. 구체적인 벤치마크 수치, 각자가 빛나는 지점, 각자의 한계, 그리고 BYO API 키 비용의 현실과 상용 대안 비교.'
 date: 2026-05-25 00:00:00+08:00
@@ -21,10 +16,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: ['ai-coding', 'open-source', aider, cline, openhands, 2026]
-aliases:
-- /kr/posts/aider-cline-openhands-2026-honest-comparison/
-faq:
-  - q: "2026년 최고의 오픈소스 코딩 에이전트는 무엇인가요?"
+aliases: - /kr/posts/aider-cline-openhands-2026-honest-comparison/
+faq: - q: "2026년 최고의 오픈소스 코딩 에이전트는 무엇인가요?"
     a: "상황에 따라 다릅니다. 터미널 우선 git 인식 편집은 Aider(모델 독립적, 가장 빠름). IDE 네이티브 VS Code 통합은 Cline(비 CLI 사용자에게 최고의 UX). 완전 자율 멀티스텝 에이전트 작업은 OpenHands(브라우저 + 셸 + 리포). 숙련된 사용자 대부분은 Aider를 기본값으로 두고 특정 작업용으로 Cline이나 OpenHands를 추가합니다."
   - q: "Claude Code나 Cursor와 비용을 비교하면 어떤가요?"
     a: "BYO API 키 모델은 토큰당 지불을 의미합니다. Sonnet 4.6을 월 60시간 사용 시: 약 $80-130 (vs Claude Max $200). GPT-5의 경우: 약 $100-180. '상용보다 저렴'이라는 프레임은 컨텍스트 크기를 잘 관리할 때만 참이고, 방치하면 거짓입니다."
@@ -37,8 +30,6 @@ faq:
   - q: "각각의 학습 곡선은 어떤가요?"
     a: "Aider: 생산성까지 15분(명확한 패턴을 따르는 CLI일 뿐). Cline: 30분(VS Code 확장 설정 + 모델 설정). OpenHands: 2-3시간(Docker 설정, 브라우저 도구 구성, 에이전트 루프 튜닝). Aider가 진입 장벽이 가장 낮고, OpenHands가 천장이 가장 높습니다."
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/aider-cline-openhands-2026-honest-comparison/ -->
 
 {{</* resource-info */>}}
 
@@ -81,9 +72,7 @@ VS Code 사이드바에 거주하는 에이전트. 멀티스텝 변경을 계획
 
 ## 벤치마크: 동일 워크로드, 세 에이전트
 
-작업 세트(각 에이전트가 5K LOC TypeScript 앱에서 동일한 5개 작업 수행):
-
-### 작업 1: 새 기능 추가 (3개 파일, 약 150 LOC)
+작업 세트(각 에이전트가 5K LOC TypeScript 앱에서 동일한 5개 작업 수행): ### 작업 1: 새 기능 추가 (3개 파일, 약 150 LOC)
 
 | 에이전트 | 시간 | 첫 시도 성공 | 토큰 | 비용 (Sonnet 4.6) |
 |---|---|---|---|---|
@@ -135,20 +124,16 @@ VS Code 사이드바에 거주하는 에이전트. 멀티스텝 변경을 계획
 
 ## 규모에서의 비용 현실
 
-Sonnet 4.6(이 도구들에 가장 균형 잡힌 모델)로 BYO API 키:
+Sonnet 4.6(이 도구들에 가장 균형 잡힌 모델)로 BYO API 키: ```
+월 60시간 사용: Aider: ~$80-110  (가장 효율적인 컨텍스트 사용)
+  Cline: ~$95-140  (더 장황한 계획 = 더 많은 토큰)
+  OpenHands: ~$120-180 (자율 루프 = 더 많은 반복)
 
-```
-월 60시간 사용:
-  Aider:        ~$80-110  (가장 효율적인 컨텍스트 사용)
-  Cline:        ~$95-140  (더 장황한 계획 = 더 많은 토큰)
-  OpenHands:    ~$120-180 (자율 루프 = 더 많은 반복)
-
-vs Claude Max:  $200 무제한
+vs Claude Max: $200 무제한
 vs Cursor Pro + API: $87 (에이전트 작업 훨씬 적음)
 ```
 
-"상용보다 저렴" 주장은 다음 조건에서만 성립:
-- 컨텍스트 크기 주시 (모든 호출에 전체 리포 전달하지 않기)
+"상용보다 저렴" 주장은 다음 조건에서만 성립: - 컨텍스트 크기 주시 (모든 호출에 전체 리포 전달하지 않기)
 - 일상 작업에는 Opus가 아닌 Sonnet 사용
 - 폭주하는 자율 루프 조기 취소
 
@@ -156,28 +141,24 @@ vs Cursor Pro + API: $87 (에이전트 작업 훨씬 적음)
 
 ## 각자가 정말로 빛나는 지점
 
-### Aider가 빛날 때:
-- 당신이 터미널에 산다
+### Aider가 빛날 때: - 당신이 터미널에 산다
 - git 워크플로가 신성하다(모든 변경이 설명적 메시지의 깨끗한 커밋)
 - 예측 가능한 토큰 지출을 원한다
 - 디버깅 중이다 — 신중한 단계별 접근이 당신이 원하는 것
 
-### Cline이 빛날 때:
-- 당신이 하루 종일 VS Code에 있다
+### Cline이 빛날 때: - 당신이 하루 종일 VS Code에 있다
 - IDE 사이드바 에이전트의 편리함을 원한다
 - 작업이 "AI에게 묻기" + "파일 직접 편집" + "셸 실행"을 섞는다
 - 실시간 시각적 피드백을 중요시한다
 
-### OpenHands가 빛날 때:
-- 작업이 "쏘고 잊는" 자율 작업이다
+### OpenHands가 빛날 때: - 작업이 "쏘고 잊는" 자율 작업이다
 - 브라우저 + 셸 + 리포 조율을 원한다
 - 감독할 수 없는 장시간 작업(야간 작업, 배치 처리)
 - 설정 시간을 감당할 수 있다
 
 ## 안전 패턴
 
-세 가지 모두에:
-- 프로덕션 작업에서 **자동 승인 비활성화**
+세 가지 모두에: - 프로덕션 작업에서 **자동 승인 비활성화**
 - 푸시 전 **모든 커밋 검토**
 - **자율 루프 샌드박스화** (특히 OpenHands는 Docker / firejail)
 - 사용 상한이 있는 **범위 지정 API 키 사용**
@@ -187,22 +168,19 @@ OpenHands는 기본값이 Docker 샌드박스 — 가장 안전. Aider는 명령
 
 ## OSS 스택 vs 상용 스택 결정
 
-**OSS 선택 조건 (Aider + OpenHands + 아마도 Cline)**:
-- 완전한 통제와 BYO API 키 유연성을 원함
+**OSS 선택 조건 (Aider + OpenHands + 아마도 Cline)**: - 완전한 통제와 BYO API 키 유연성을 원함
 - 터미널 + Docker + 설정 파일에 익숙
 - 벤더 독립성(모델 독립적)을 중시
 - 사용량 < 월 80시간
 
-**상용 선택 조건 (Claude Code + Cursor)**:
-- 다듬어진 경험, UX, 오류 복구를 원함
+**상용 선택 조건 (Claude Code + Cursor)**: - 다듬어진 경험, UX, 오류 복구를 원함
 - 사용량 > 월 80시간
 - 지원, 예측 가능한 청구를 중시
 - 설정 시간이 장기 비용보다 중요
 
 ## 권장 인프라
 
-자체 호스팅 OpenHands나 로컬에서 파인튜닝 모델 실행:
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 크레딧, GPU 드롭릿 가능
+자체 호스팅 OpenHands나 로컬에서 파인튜닝 모델 실행: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 크레딧, GPU 드롭릿 가능
 - **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 홍콩 VPS, 저지연
 
 *제휴 링크 — 동일 가격, dibi8.com 지원.*
@@ -218,7 +196,6 @@ OpenHands는 기본값이 Docker 샌드박스 — 가장 안전. Aider는 명령
 **관련**: [AI 코딩 2026-Q2 슛아웃](https://dibi8.com/kr/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) · [Cursor 대안 2026](https://dibi8.com/kr/resources/dev-utils/cursor-alternatives-2026-best-ai-coding-tools/) · [OpenCode 설정](https://dibi8.com/kr/resources/llm-frameworks/opencode-open-source-claude-code-alternative-2026/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -246,25 +223,20 @@ OpenHands는 기본값이 Docker 샌드박스 — 가장 안전. Aider는 명령
 
 ## Why This Matters
 
-Understanding aider vs cline vs openhands 2026: 정직한 3자 오픈소스 코딩 에이전트 비교 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding aider vs cline vs openhands 2026: 정직한 3자 오픈소스 코딩 에이전트 비교 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

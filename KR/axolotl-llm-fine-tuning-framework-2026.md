@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/axolotl-llm-fine-tuning-framework-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/axolotl-llm-fine-tuning-framework-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/axolotl-llm-fine-tuning-framework-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/axolotl-llm-fine-tuning-framework-2026" />
 title: 'Axolotl 2026: 12k 별 YAML 주도 LLM 파인튜닝 프레임워크 완전 가이드'
 description: 'Axolotl은 단일 YAML 구성으로 full / LoRA / QLoRA / DPO / GRPO 커버하는 오픈소스 LLM 파인튜닝 프레임워크. 12k GitHub 별, Apache 2.0. Llama / Mistral / Qwen / GLM / 10+ 패밀리 지원. 2026 완전 설치 가이드 + Axolotl이 Unsloth와 원시 HuggingFace TRL을 이기는 때.'
 date: 2026-05-21 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [axolotl, 파인튜닝, lora, qlora, dpo, 오픈소스]
-aliases:
-  - /posts/axolotl-llm-fine-tuning-framework-2026/
+aliases: - /posts/axolotl-llm-fine-tuning-framework-2026/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/axolotl-llm-fine-tuning-framework-2026/ -->
 
 Llama 모델 파인튜닝 시도하고 300줄 PyTorch + DeepSpeed config + Hugging Face Trainer 래퍼 작성한 적 있다면 **Axolotl**이 채우는 갭을 느낌. 한 YAML 파일이 전체 파인튜닝 실행 설명 — 모델, 데이터셋, LoRA config, 하이퍼파라미터, 분산 전략 — 그리고 Axolotl이 나머지 처리.
 
@@ -48,9 +40,7 @@ Llama 모델 파인튜닝 시도하고 300줄 PyTorch + DeepSpeed config + Huggi
 
 ## 1. Axolotl 존재 이유 (해결 문제)
 
-대체하는 3가지 일반 패턴:
-
-1. **커스텀 HF Trainer 스크립트** — 실험당 300줄 보일러플레이트, 깨지기 쉬움, 프레임워크 버전 bump 안 견딤
+대체하는 3가지 일반 패턴: 1. **커스텀 HF Trainer 스크립트** — 실험당 300줄 보일러플레이트, 깨지기 쉬움, 프레임워크 버전 bump 안 견딤
 2. **DeepSpeed config 고고학** — 모델 크기 + GPU에 어떤 조합 `zero_stage`, `offload_optimizer`, `gradient_checkpointing` 작동하는지 알아내기
 3. **클라우드 파인튜닝 플랫폼** (Together, Fireworks 등) — 쉽지만 결과 가중치나 프로세스 소유 안 함
 
@@ -76,13 +66,10 @@ cd axolotl
 pip install -e '.[flash-attn,deepspeed]'
 ```
 
-최소 훈련 실행 — 샘플 데이터셋에 QLoRA로 Llama 3.2 8B 파인튜닝:
-
-```yaml
+최소 훈련 실행 — 샘플 데이터셋에 QLoRA로 Llama 3.2 8B 파인튜닝: ```yaml
 # config.yml
 base_model: meta-llama/Llama-3.2-8B
-datasets:
-  - path: tatsu-lab/alpaca
+datasets: - path: tatsu-lab/alpaca
     type: alpaca
 adapter: qlora
 lora_r: 16
@@ -100,9 +87,7 @@ axolotl train config.yml
 
 ## 4. YAML 구성이 킬러 기능
 
-YAML이 여기서 진짜 올바른 추상화인 이유:
-
-- **Git 친화**: 모든 파인튜닝이 repo의 config 파일. 체크아웃으로 재현 가능
+YAML이 여기서 진짜 올바른 추상화인 이유: - **Git 친화**: 모든 파인튜닝이 repo의 config 파일. 체크아웃으로 재현 가능
 - **실험 매트릭스**: `yq` 치환 또는 W&B sweep 통한 파라미터 sweep. 복사-붙여넣기 50 스크립트 없음
 - **팀 핸드오프**: ML 엔지니어 YAML 작성, ops 엔지니어 실행. 명확한 계약
 - **자동 업그레이드**: Axolotl이 버전 간 config 하위 호환 유지, 6개월 전 실험도 여전히 실행
@@ -162,9 +147,7 @@ YAML이 여기서 진짜 올바른 추상화인 이유:
 
 ## 8. 프로덕션 팁
 
-Axolotl 첫 사용자가 처음 부딪히는 5가지:
-
-1. **Tokenizer pad token** — 많은 config가 `tokenizer.pad_token = eos_token` 누락. Axolotl 기본값이 알려진 모델 처리; 새 모델은 직접 verify
+Axolotl 첫 사용자가 처음 부딪히는 5가지: 1. **Tokenizer pad token** — 많은 config가 `tokenizer.pad_token = eos_token` 누락. Axolotl 기본값이 알려진 모델 처리; 새 모델은 직접 verify
 2. **`max_seq_length`와 OOM** — 작게 시작 (1024), OOM까지 올림, 그 후 10% 후퇴. 추측하지 마세요
 3. **Flash Attention 컴파일 시간** — 첫 설치가 FA2 컴파일에 20-30분 걸릴 수 있음. 인내
 4. **데이터셋 포맷 불일치** — `type` 필드가 데이터와 매치해야 함. `alpaca` ≠ `sharegpt` ≠ `chat_template`. 문서 읽기
@@ -188,7 +171,6 @@ H100 인스턴스 띄우고, 3절의 20줄 YAML 작성하고, 15분 후 파인�
 *dibi8의 Fine-Tuning Stack 일부 — [빠른 단일 GPU 반복용 Unsloth](/kr/resources/llm-frameworks/unsloth-fast-llm-fine-tuning-2026/)와 페어. 전체 LLM ops 그림은 다가오는 Fine-Tuning Stack 컬렉션 참조.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -216,25 +198,20 @@ H100 인스턴스 띄우고, 3절의 20줄 YAML 작성하고, 15분 후 파인�
 
 ## Why This Matters
 
-Understanding axolotl 2026: 12k 별 yaml 주도 llm 파인튜닝 프레임워크 완전 가이드 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding axolotl 2026: 12k 별 yaml 주도 llm 파인튜닝 프레임워크 완전 가이드 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

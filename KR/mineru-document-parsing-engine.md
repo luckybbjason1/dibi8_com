@@ -1,16 +1,10 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mineru-document-parsing-engine" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mineru-document-parsing-engine" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mineru-document-parsing-engine" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mineru-document-parsing-engine" />
-
 lang: kr
 title: 'MinerU: 별 70.6K개 — 모든 문서를 LLM 지원 마크다운으로 변환'
 description: 'MinerU(70,600개 이상의 GitHub 스타)는 LLM, RAG 및 에이전트 워크플로를 위해 PDF, DOCX, PPTX, XLSX, 이미지 및 웹 페이지를 구조화된 Markdown 및 JSON으로 변환합니다. 109개 언어 OCR, 수식-LaTeX, 테이블-HTML을 지원하고 CPU 또는 GPU에서 실행됩니다.'
 tags: ["guide", "open-source", "ai-agents", "rag", "pdf", "ocr", "reference", "tutorial"]
 date: 2026-06-27 00:00:00+08:00
-lastmod:  2026-06-27 00:00:00+08:00slug: 'mineru-document-parsing-engine'
+lastmod: 2026-06-27 00:00:00+08:00slug: 'mineru-document-parsing-engine'
 category: ai-tools
 github_repo: 'https://github.com/opendatalab/MinerU'
 license: MinerU Open Source License (Apache 2.0-based)
@@ -18,9 +12,6 @@ lang: kr
 featureImage: /images/articles/mineru-docs.png
 
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/mineru-document-parsing-engine/ -->
-
 
 ![MinerU logo](https://gcore.jsdelivr.net/gh/opendatalab/MinerU@master/docs/images/MinerU-logo.png)
 
@@ -51,9 +42,7 @@ MinerU는 중국 대형 언어 모델인 [InternLM](https://github.com/InternLM/
 
 ## Installation and Setup
 
-MinerU는 필요에 따라 다양한 설치 경로를 제공합니다:
-
-### pip (대부분의 사용자에게 권장)
+MinerU는 필요에 따라 다양한 설치 경로를 제공합니다: ### pip (대부분의 사용자에게 권장)
 
 ```bash
 pip install mineru
@@ -121,9 +110,7 @@ mineru ./document.pdf -o ./output/ --engine hybrid-engine --effort medium
 
 ## Supported Formats
 
-MinerU는 광범위한 입력 형식을 지원합니다:
-
-| Format | Support Level | Notes |
+MinerU는 광범위한 입력 형식을 지원합니다: | Format | Support Level | Notes |
 |--------|--------------|-------|
 | PDF | Native | Text PDFs, scanned PDFs, garbled PDFs |
 | DOCX | Native | Full structural preservation |
@@ -261,7 +248,6 @@ RAG 시스템을 구축하든, 도메인별 LLM을 교육하든, AI 에이전트
 
 **공개**: 이 기사에는 제휴사 링크가 포함되어 있습니다. 당사 링크를 통해 가입하시면 추가 비용 없이 소액의 커미션을 받으실 수 있습니다. 이는 독립적인 기술 저널리즘을 지원하고 dibi8.com과 같은 리소스를 광고 없이 무료로 유지하는 데 도움이 됩니다.
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -289,25 +275,20 @@ RAG 시스템을 구축하든, 도메인별 LLM을 교육하든, AI 에이전트
 
 ## Why This Matters
 
-Understanding mineru: 별 70.6k개 — 모든 문서를 llm 지원 마크다운으로 변환 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding mineru: 별 70.6k개 — 모든 문서를 llm 지원 마크다운으로 변환 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

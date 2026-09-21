@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-code-mcp-advanced-10-server-stack-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-mcp-advanced-10-server-stack-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-mcp-advanced-10-server-stack-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-mcp-advanced-10-server-stack-2026" />
 title: 'Claude Code MCP 进阶 2026：10 服务器生产级技术栈'
 description: '在使用 Claude Code 搭配各种 MCP 服务器组合后，最终敲定了一套 10 服务器的生产级技术栈，在能力、安全性与启动时间之间取得平衡。本文逐一说明每个服务器、为何入选、它能做什么，以及如何针对个人 vs 团队场景进行配置。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-25 00:00:00+08:00
@@ -21,10 +16,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['claude-code', mcp, configuration, production, 2026]
-aliases:
-- /zh/posts/claude-code-mcp-advanced-10-server-stack-2026/
-faq:
-  - q: "多少个 MCP 服务器算太多？"
+aliases: - /zh/posts/claude-code-mcp-advanced-10-server-stack-2026/
+faq: - q: "多少个 MCP 服务器算太多？"
     a: "超过 10 个就会带来明显的启动延迟。每个服务器会给 Claude Code 初始化增加 100-300ms。下文这套 10 服务器技术栈是甜蜜点——能覆盖 90% 的工作流，又不会让启动变得迟钝。"
   - q: "应该使用全局还是按项目的 MCP 配置？"
     a: "针对项目专属的服务器（本应用专用的 postgres、限定到本仓库的 GitHub PAT）使用按项目配置（.claude/mcp.json 或 .cursor/mcp.json）。针对个人通用工具（限定到 home 目录的 filesystem、sequentialthinking）使用全局配置（~/.claude/mcp.json）。"
@@ -33,8 +26,6 @@ faq:
   - q: "使用 HTTP/SSE 服务器 vs stdio 的取舍是什么？"
     a: "HTTP：持久化状态、集中式凭证管理、依赖服务器可用性。stdio：零延迟、不暴露凭证、随会话结束而终止。默认使用 stdio。仅在 (a) 需要跨会话持久化状态，或 (b) 集成无本地对应方案的 SaaS 时才使用 HTTP。"
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/claude-code-mcp-advanced-10-server-stack-2026/ -->
 
 {{</* resource-info */>}}
 
@@ -185,12 +176,11 @@ faq:
 
 按项目覆盖比全局配置更重要。把敏感令牌限定在它所属的项目中。坚持「本项目只用本项目需要的」纪律，能避免凭证泄漏并让启动保持轻快。
 
----
 
+---
 **相关阅读**：[MCP 服务器 2026 排行榜](https://dibi8.com/zh/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/) · [MCP 服务器安全审计 2026](https://dibi8.com/zh/resources/llm-frameworks/mcp-server-security-audit-2026-real-cases/) · [Claude Code 配置指南](https://dibi8.com/zh/resources/llm-frameworks/claude-code/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -218,25 +208,20 @@ faq:
 
 ## Why This Matters
 
-Understanding claude code mcp 进阶 2026：10 服务器生产级技术栈 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding claude code mcp 进阶 2026：10 服务器生产级技术栈 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -257,8 +242,8 @@ Claude Code MCP 进阶 2026：10 服务器生产级技术栈 represents an impor
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -299,9 +284,7 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
 
 
-When deploying AI agents in production, follow these best practices:
-
-1. **Start Small**: Begin with a single tool and simple prompt, then gradually add complexity
+When deploying AI agents in production, follow these best practices: 1. **Start Small**: Begin with a single tool and simple prompt, then gradually add complexity
 2. **Implement Guardrails**: Use permission prompts and approval workflows for dangerous operations
 3. **Monitor Everything**: Log all agent actions for debugging and compliance
 4. **Handle Failures Gracefully**: Implement retry logic and fallback mechanisms
@@ -309,9 +292,7 @@ When deploying AI agents in production, follow these best practices:
 
 ### Security Considerations
 
-AI agents have access to sensitive systems. Always:
-
-- Use least-privilege principles
+AI agents have access to sensitive systems. Always: - Use least-privilege principles
 - Implement audit logging
 - Encrypt sensitive data at rest and in transit
 - Regular security assessments
@@ -319,7 +300,17 @@ AI agents have access to sensitive systems. Always:
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

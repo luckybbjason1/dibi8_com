@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/openclaw-self-hosted-ai-assistant-setup-guide-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/openclaw-self-hosted-ai-assistant-setup-guide-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/openclaw-self-hosted-ai-assistant-setup-guide-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/openclaw-self-hosted-ai-assistant-setup-guide-2026" />
 title: 'OpenClaw Hướng Dẫn Chi Tiết: Cách Tự Lưu Trữ Trợ Lý AI M...
 description: 'GitHub 362K+ Star — OpenClaw là dự án AI mã nguồn mở tăng trưởng nhanh nhất lịch sử. Hướng dẫn chi tiết kiến trúc, cài đặt tự lưu trữ, tích hợp đa nền tảng, và cách xây dựng trợ lý AI cục bộ miễn phí với OpenClaw.'
 date: 2026-05-18 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: 'steipete'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/openclaw-self-hosted-ai-assistant-setup-guide-2026/
+aliases: - /posts/openclaw-self-hosted-ai-assistant-setup-guide-2026/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/openclaw-self-hosted-ai-assistant-setup-guide-2026/ -->
 
 {</* resource-info */>}
 
@@ -51,9 +43,7 @@ Sự bùng nổ này không phải ngẫu nhiên. Cộng đồng lập trình vi
 
 ### 1.2 Định Vị Cốt Lõi: Không Chỉ Là Chatbot, Mà Là "Nhà Điều Hành Thông Minh" Liên Tục
 
-Hầu hết các "trợ lý AI" trên thị trường thực chất chỉ là vỏ bọc prompt — hỏi và đáp một lượt, ngữ cảnh bị xóa sạch khi phiên làm việc kết thúc. Kiến trúc OpenClaw được thiết kế với tư duy hệ thống cấp sản xuất:
-
-- **Bộ nhớ liên tục**: Ngữ cảnh dự án, sở thích người dùng và tiến độ công việc được giữ lại qua các phiên làm việc
+Hầu hết các "trợ lý AI" trên thị trường thực chất chỉ là vỏ bọc prompt — hỏi và đáp một lượt, ngữ cảnh bị xóa sạch khi phiên làm việc kết thúc. Kiến trúc OpenClaw được thiết kế với tư duy hệ thống cấp sản xuất: - **Bộ nhớ liên tục**: Ngữ cảnh dự án, sở thích người dùng và tiến độ công việc được giữ lại qua các phiên làm việc
 - **Tích hợp đa kênh bản địa**: Không chỉ gọi API, mà nhúng sâu vào luồng tin nhắn Telegram / WhatsApp / Slack / Discord / iMessage
 - **Thực thi công cụ có kiểm soát**: Chế độ sandbox và danh sách cho phép (allowlist) giới hạn chính xác tài nguyên mà agent có thể truy cập
 - **Phân phối tác vụ con (sub-agent)**: Công việc phức tạp tự động phân rã thành các tác vụ con, giao cho các sub-agent chuyên biệt xử lý song song
@@ -65,9 +55,7 @@ Hầu hết các "trợ lý AI" trên thị trường thực chất chỉ là v�
 
 ### 2.1 Tầng Gateway: Trung Tâm Tin Nhắn
 
-Gateway là cửa ngõ vào của OpenClaw, đảm nhận:
-
-- Nhận tin nhắn thời gian thực từ mọi nền tảng (Telegram Bot API, WhatsApp Web, Slack RTM,...)
+Gateway là cửa ngõ vào của OpenClaw, đảm nhận: - Nhận tin nhắn thời gian thực từ mọi nền tảng (Telegram Bot API, WhatsApp Web, Slack RTM,...)
 - Xác thực và ghép cặp DM (ngăn người dùng chưa được ủy quyền gửi lệnh đến agent của bạn)
 - Định tuyến tin nhắn: Quyết định tin nhắn nào vào phiên chính, tin nhắn nào kích hoạt tác vụ cron
 - Xác minh quyền gọi công cụ
@@ -76,13 +64,9 @@ Gateway là cửa ngõ vào của OpenClaw, đảm nhận:
 
 ### 2.2 Tầng Agent: Động Cơ Nhận Thức
 
-Tầng Agent là "bộ não" của OpenClaw, gồm ba thành phần lõi:
+Tầng Agent là "bộ não" của OpenClaw, gồm ba thành phần lõi: #### SOUL.md — Neo Nhân Cách
 
-#### SOUL.md — Neo Nhân Cách
-
-Đây là một trong những thiết kế độc đáo nhất của OpenClaw. Bạn định nghĩa tính cách, cách nói chuyện, chuyên môn và ranh giới quyết định của agent bằng văn bản thuần túy. Không phải kỹ thuật prompt engineering, mà là nhận thức bản thân liên tục:
-
-```markdown
+Đây là một trong những thiết kế độc đáo nhất của OpenClaw. Bạn định nghĩa tính cách, cách nói chuyện, chuyên môn và ranh giới quyết định của agent bằng văn bản thuần túy. Không phải kỹ thuật prompt engineering, mà là nhận thức bản thân liên tục: ```markdown
 # SOUL.md — Bạn Là Ai
 
 ## Chế Độ Làm Việc
@@ -108,17 +92,13 @@ SOUL.md được tải vào ngữ cảnh mỗi khi phiên làm việc bắt đ�
 
 #### Chiến Lược Định Tuyến Mô Hình
 
-OpenClaw không bị khóa vào một mô hình duy nhất. Trong `openclaw.json` bạn cấu hình:
-
-- **Mô hình cục bộ** (Ollama / Docker Model Runner): Q&A thường ngày, thao tác rủi ro thấp
+OpenClaw không bị khóa vào một mô hình duy nhất. Trong `openclaw.json` bạn cấu hình: - **Mô hình cục bộ** (Ollama / Docker Model Runner): Q&A thường ngày, thao tác rủi ro thấp
 - **Mô hình đám mây** (Claude 4.6 / GPT-5.5): Suy luận phức tạp, đánh giá code, phân tích ngữ cảnh dài
 - **Chuyển đổi nhận thức chi phí**: Tự động chọn mô hình theo độ phức tạp tác vụ, giữ chi phí API hàng ngày trong khoảng $1–3
 
 ### 2.3 Tầng Skills: Thị Trường Mở Rộng Năng Lực
 
-ClawHub là sổ đăng ký kỹ năng của OpenClaw, hiện có hơn 5.700 kỹ năng cộng đồng, bao gồm:
-
-- **Quản lý lịch**: Lark/Feishu Calendar, Google Calendar, phát hiện xung đột Outlook
+ClawHub là sổ đăng ký kỹ năng của OpenClaw, hiện có hơn 5.700 kỹ năng cộng đồng, bao gồm: - **Quản lý lịch**: Lark/Feishu Calendar, Google Calendar, phát hiện xung đột Outlook
 - **Đánh giá code**: Phân tích tự động PR GitHub, kiểm tra style, quét lỗ hổng bảo mật
 - **Tự động hóa nghiên cứu**: Thu thập web, tóm tắt bài báo, giám sát đối thủ
 - **Nhà thông minh**: Tích hợp Home Assistant, điều khiển thiết bị Zigbee/Z-Wave
@@ -157,16 +137,13 @@ Script tự động phát hiện môi trường, cài đặt phụ thuộc Node.
 openclaw onboard
 ```
 
-Làm theo hướng dẫn để đặt:
-- Tên agent (ví dụ: `Home-Hermes`)
+Làm theo hướng dẫn để đặt: - Tên agent (ví dụ: `Home-Hermes`)
 - LLM Provider (chọn Ollama hoặc OpenAI / Anthropic API)
 - Kênh ban đầu (nên chọn Telegram Bot vì dễ debug nhất)
 
 #### Bước 3: Cấu hình mô hình cục bộ (tùy chọn)
 
-Nếu dùng Ollama làm backend suy luận cục bộ:
-
-```bash
+Nếu dùng Ollama làm backend suy luận cục bộ: ```bash
 # Cài đặt Ollama
 curl -fsSL https://ollama.com/install.sh | sh
 
@@ -177,9 +154,7 @@ ollama pull llama3:8b
 ollama run llama3:8b "Xin chào, hãy giới thiệu bản thân"
 ```
 
-Cấu hình định tuyến mô hình trong `~/.openclaw/openclaw.json`:
-
-```json
+Cấu hình định tuyến mô hình trong `~/.openclaw/openclaw.json`: ```json
 {
   "models": {
     "default": {
@@ -199,9 +174,7 @@ Cấu hình định tuyến mô hình trong `~/.openclaw/openclaw.json`:
 ### 3.3 Kết Nối Telegram (Kênh Khuyến Nghị Cho Debug)
 
 1. Tạo Bot mới qua [@BotFather](https://t.me/botfather) và sao chép API Token
-2. Sửa `~/.openclaw/channels/telegram.json`:
-
-```json
+2. Sửa `~/.openclaw/channels/telegram.json`: ```json
 {
   "enabled": true,
   "botToken": "YOUR_BOT_TOKEN_HERE",
@@ -214,9 +187,7 @@ Cấu hình định tuyến mô hình trong `~/.openclaw/openclaw.json`:
 
 ### 3.4 Danh Sách Kiểm Tra Bảo Mật Production
 
-Trước khi đưa vào vận hành thực tế, bắt buộc phải hoàn thành các bước bảo mật sau:
-
-- [ ] **Ghép cặp DM**: Chỉ người dùng Telegram / WhatsApp đã ghép cặp mới được tương tác với agent
+Trước khi đưa vào vận hành thực tế, bắt buộc phải hoàn thành các bước bảo mật sau: - [ ] **Ghép cặp DM**: Chỉ người dùng Telegram / WhatsApp đã ghép cặp mới được tương tác với agent
 - [ ] **Allowlist**: Liệt kê rõ ràng công cụ agent có thể gọi trong `tools.md`; chặn thao tác nguy hiểm (`rm -rf`, `DROP TABLE`)
 - [ ] **Chế độ sandbox**: Bật sandbox hệ thống file, giới hạn agent chỉ truy cập thư mục `~/workspace/`
 - [ ] **Giới hạn chi phí**: Đặt ngân sách gọi API hàng ngày/tháng cho mô hình đám mây, ngăn tác vụ heartbeat tiêu tốn quá mức
@@ -228,10 +199,7 @@ Trước khi đưa vào vận hành thực tế, bắt buộc phải hoàn thàn
 
 ### 4.1 Phân Loại Hộp Thư Thông Minh (Inbox Triage)
 
-Cấu hình tác vụ heartbeat kiểm tra hộp thư Lark / Gmail mỗi 2 giờ:
-
-```markdown
-<!-- HEARTBEAT.md -->
+Cấu hình tác vụ heartbeat kiểm tra hộp thư Lark / Gmail mỗi 2 giờ: ```markdown
 - Kiểm tra email chưa đọc, gắn nhãn mức độ khẩn (cao / trung bình / thấp)
 - Mức cao → Gửi tóm tắt ngay lập tức qua Telegram
 - Mức trung bình → Thêm vào việc cần làm hôm nay
@@ -242,9 +210,7 @@ Hiệu quả thực tế: Thời gian xử lý email hàng ngày giảm từ 45 
 
 ### 4.2 Tự Động Hóa Đánh Giá Code
 
-Khi có PR GitHub được gửi, agent tự động:
-
-1. Pull code nhánh PR
+Khi có PR GitHub được gửi, agent tự động: 1. Pull code nhánh PR
 2. Kiểm tra style code (ESLint / Prettier / Black)
 3. Chạy unit test
 4. Phân tích lỗ hổng bảo mật tiềm ẩn (SQL injection, XSS, secret cứng)
@@ -252,9 +218,7 @@ Khi có PR GitHub được gửi, agent tự động:
 
 ### 4.3 Trung Tâm Nhà Thông Minh
 
-Kết hợp tích hợp Home Assistant, điều khiển bằng ngôn ngữ tự nhiên:
-
-| Bạn nói | Agent thực hiện |
+Kết hợp tích hợp Home Assistant, điều khiển bằng ngôn ngữ tự nhiên: | Bạn nói | Agent thực hiện |
 |---------|---------------|
 | "7 giờ có khách đến" | Tăng sáng phòng khách → Phát playlist chào đón → Kiểm tra thiết bị phòng tắm |
 | "Bật chế độ tiết kiệm" | Tắt đèn phòng không người → Điều hòa 18°C → Khởi động robot hút bụi |
@@ -330,8 +294,7 @@ Nếu bạn vẫn đang tìm kiếm một trợ lý AI đủ nghiêm túc, đủ
 
 *Bài viết được cập nhật lần cuối ngày 18 tháng 5 năm 2026. Chi tiết kỹ thuật có thể thay đổi theo phiên bản, vui lòng tham khảo [tài liệu chính thức OpenClaw](https://docs.openclaw.ai).*
 
-**Tài liệu tham khảo**:
-- [Hướng dẫn triển khai LLM cục bộ với Ollama](https://ollama.com/blog)
+**Tài liệu tham khảo**: - [Hướng dẫn triển khai LLM cục bộ với Ollama](https://ollama.com/blog)
 - [Giao thức MCP: Tiêu chuẩn mới cho lời gọi công cụ AI Agent](https://modelcontextprotocol.io)
 - [Bản tin hàng tuần về công cụ AI mã nguồn mở 2026](https://buildmvpfast.com/blog)
 
@@ -339,9 +302,7 @@ Nếu bạn vẫn đang tìm kiếm một trợ lý AI đủ nghiêm túc, đủ
 
 ## Hạ Tầng Đề Xuất Cho Tự Host OpenClaw
 
-Để chạy OpenClaw 24/7 cần một dịch vụ host ổn định. Hai lựa chọn phù hợp nhất cho độc giả dibi8:
-
-- **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. **Đây cũng chính là IDC đang host dibi8.com** — đã được kiểm chứng cho triển khai OpenClaw production.
+Để chạy OpenClaw 24/7 cần một dịch vụ host ổn định. Hai lựa chọn phù hợp nhất cho độc giả dibi8: - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. **Đây cũng chính là IDC đang host dibi8.com** — đã được kiểm chứng cho triển khai OpenClaw production.
 - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu. Lựa chọn tốt nhất cho developer ngoài châu Á.
 - **[Hostinger](https://www.hostinger.com/vn?REFERRALCODE=22RPIAOJIYJN)** — Tùy chọn VPS giá tốt cho thị trường Việt Nam, giảm 60% gói đầu tiên.
 
@@ -350,7 +311,6 @@ Với cấu hình đề xuất (4 vCPU / 8GB RAM), cả hai nhà cung cấp ở 
 Đây là liên kết affiliate, không phát sinh chi phí thêm cho bạn nhưng giúp dibi8.com duy trì hoạt động.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

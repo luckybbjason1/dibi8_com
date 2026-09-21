@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/docmost-team-docs-collaboration" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/docmost-team-docs-collaboration" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/docmost-team-docs-collaboration" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/docmost-team-docs-collaboration" />
 title: 'Docmost 2026: Phương án thay thế Notion mã nguồn mở cho ...
 description: 'Hướng dẫn tự host đầy đủ cho Docmost, nền tảng wiki cộng tác mã nguồn mở với chỉnh sửa thờói gian thực, trình chỉnh sửa khối kiểu Notion, trang lồng nhau và backend PostgreSQL. Triển khai trong 5 phút.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [docmost, 'thay thế notion', wiki, 'cộng tác thờói gian thực', 'tự host', 'tài liệu', postgresql, docker, 'mã nguồn mở', 'tài liệu nhóm']
-aliases:
-- /vi/posts/docmost-team-docs-collaboration/
+aliases: - /vi/posts/docmost-team-docs-collaboration/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/docmost-team-docs-collaboration/ -->
 
 {{</* resource-info */>}}
 
@@ -49,9 +41,7 @@ Docmost là nền tảng wiki và tài liệu cộng tác tự host mã nguồn 
 
 ## Docmost hoạt động như thế nào: Kiến trúc & Khái niệm cốt lõi
 
-Docmost sử dụng kiến trúc ba tầng hiện đại tách biệt máy chủ ứng dụng, cơ sở dữ liệu và lớp cộng tác thờói gian thực:
-
-| Tầng | Công nghệ |
+Docmost sử dụng kiến trúc ba tầng hiện đại tách biệt máy chủ ứng dụng, cơ sở dữ liệu và lớp cộng tác thờói gian thực: | Tầng | Công nghệ |
 |---|---|
 | **Backend** | Node.js / NestJS (TypeScript) |
 | **Frontend** | React với trình chỉnh sửa khối |
@@ -80,47 +70,32 @@ Docmost yêu cầu **PostgreSQL và Redis** —— cả hai đều có thể đ�
 ```yaml
 version: '3.8'
 
-services:
-  docmost:
-    image: docmost/docmost:0.8.2
+services: docmost: image: docmost/docmost:0.8.2
     container_name: docmost
-    depends_on:
-      - db
+    depends_on: - db
       - redis
-    environment:
-      APP_URL: 'http://localhost:3000'
+    environment: APP_URL: 'http://localhost:3000'
       APP_SECRET: 'your-super-secret-key-change-this'
       DATABASE_URL: 'postgresql://docmost:your_db_password@db:5432/docmost?schema=public'
       REDIS_URL: 'redis://redis:6379'
-    ports:
-      - "3000:3000"
+    ports: - "3000:3000"
     restart: unless-stopped
-    volumes:
-      - docmost_data:/app/data/storage
+    volumes: - docmost_data:/app/data/storage
 
-  db:
-    image: postgres:16-alpine
+  db: image: postgres:16-alpine
     container_name: docmost_db
-    environment:
-      POSTGRES_DB: docmost
+    environment: POSTGRES_DB: docmost
       POSTGRES_USER: docmost
       POSTGRES_PASSWORD: your_db_password
     restart: unless-stopped
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+    volumes: - postgres_data:/var/lib/postgresql/data
 
-  redis:
-    image: redis:7.2-alpine
+  redis: image: redis:7.2-alpine
     container_name: docmost_redis
     restart: unless-stopped
-    volumes:
-      - redis_data:/data
+    volumes: - redis_data:/data
 
-volumes:
-  docmost_data:
-  postgres_data:
-  redis_data:
-```
+volumes: docmost_data: postgres_data: redis_data: ```
 
 Điều này định nghĩa ba dịch vụ: ứng dụng Docmost trên cổng 3000, PostgreSQL 16 cho lưu trữ liên tục, và Redis 7.2 cho trạng thái cộng tác thờói gian thực và cache.
 
@@ -227,9 +202,7 @@ ALLOW_PUBLIC_SIGNUP=false
 
 ## Cộng tác thờói gian thực trong thực tế
 
-Tính năng đầu trang của Docmost là chỉnh sửa đa ngườói dùng đồng thờói. Dưới đây là cách hoạt động trong thực tế:
-
-1. **Ngườói dùng A** mở trang và bắt đầu gõ. Thay đổi được đồng bộ hóa với máy chủ qua WebSocket mỗi 300ms.
+Tính năng đầu trang của Docmost là chỉnh sửa đa ngườói dùng đồng thờói. Dưới đây là cách hoạt động trong thực tế: 1. **Ngườói dùng A** mở trang và bắt đầu gõ. Thay đổi được đồng bộ hóa với máy chủ qua WebSocket mỗi 300ms.
 2. **Ngườói dùng B** mở cùng trang. Máy chủ gửi trạng thái tài liệu hiện tại cùng vị trí con trỏ của Ngườói A.
 3. **Cả hai ngườói** gõ đồng thờói. Operational Transformation tự động giải quyết xung đột —— không khóa, không merge conflict.
 4. **Con trỏ** hiển thị thờói gian thực, mã màu theo ngườói dùng.
@@ -237,8 +210,7 @@ Tính năng đầu trang của Docmost là chỉnh sửa đa ngườói dùng đ
 
 ```javascript
 // Docmost sử dụng Yjs (thư viện CRDT) bên dưới cho OT
-// Tin nhắn WebSocket trông như thế này:
-{
+// Tin nhắn WebSocket trông như thế này: {
   "type": "doc:update",
   "pageId": "abc-123",
   "updates": [/* Cập nhật nhị phân Yjs */],
@@ -251,9 +223,7 @@ Tính năng đầu trang của Docmost là chỉnh sửa đa ngườói dùng đ
 
 ## Sơ đồ, Embed & Nội dung phong phú
 
-Docmost hỗ trợ sơ đồ inline mà không cần rờói khỏi trình chỉnh sửa:
-
-```markdown
+Docmost hỗ trợ sơ đồ inline mà không cần rờói khỏi trình chỉnh sửa: ```markdown
 # Lệnh gạch chéo cho sơ đồ
 /drawio     - Mở trình chỉnh sửa Draw.io inline
 /mermaid    - Khối sơ đồ Mermaid
@@ -275,9 +245,7 @@ File đính kèm được lưu trữ cục bộ (trong volume `docmost_data`) ho
 
 ## Benchmark & Hiệu suất thực tế
 
-Tôi triển khai Docmost v0.8.2 trên VPS 2 vCPU / 4GB RAM và chạy bài kiểm tra tải 30 phút mô phỏng 20 ngườói dùng đồng thờói chỉnh sửa và đọc trang:
-
-| Chỉ số | Giá trị |
+Tôi triển khai Docmost v0.8.2 trên VPS 2 vCPU / 4GB RAM và chạy bài kiểm tra tải 30 phút mô phỏng 20 ngườói dùng đồng thờói chỉnh sửa và đọc trang: | Chỉ số | Giá trị |
 |---|---|
 | Thờói gian khởi động lạnh | 2.8 giây |
 | Tải trang (trung bình) | 150ms |
@@ -302,16 +270,11 @@ Cho ngữ cảnh: Notion tính $10/ngườói/tháng. Với 20 ngườói dùng,
 # .github/workflows/publish-to-docmost.yml
 name: Publish Docs to Docmost
 
-on:
-  push:
-    branches: [main]
+on: push: branches: [main]
     paths: ['docs/**']
 
-jobs:
-  publish:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: publish: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
 
       - name: Convert Markdown to JSON
         run: |
@@ -359,12 +322,9 @@ find "$BACKUP_DIR" -name "*.gz" -mtime +14 -delete
 
 ```yaml
 # Thêm vào docker-compose.yml cho monitoring
-  postgres_exporter:
-    image: prometheuscommunity/postgres-exporter:v0.15.0
-    environment:
-      DATA_SOURCE_NAME: "postgresql://docmost:your_db_password@db:5432/docmost?sslmode=disable"
-    ports:
-      - "9187:9187"
+  postgres_exporter: image: prometheuscommunity/postgres-exporter:v0.15.0
+    environment: DATA_SOURCE_NAME: "postgresql://docmost:your_db_password@db:5432/docmost?sslmode=disable"
+    ports: - "9187:9187"
 ```
 
 ### Endpoint kiểm tra sức khỏe
@@ -400,22 +360,17 @@ Với cài đặt này, chỉ admin workspace hiện tại mới có thể mờ�
 
 ### Connection pooling cơ sở dữ liệu
 
-Cho đội ngũ 50+ ngườói dùng, thêm connection pooling qua PgBouncer:
-
-```yaml
+Cho đội ngũ 50+ ngườói dùng, thêm connection pooling qua PgBouncer: ```yaml
 # Thêm vào docker-compose.yml
-  pgbouncer:
-    image: pgbouncer/pgbouncer:1.22
-    environment:
-      DATABASES_HOST: db
+  pgbouncer: image: pgbouncer/pgbouncer:1.22
+    environment: DATABASES_HOST: db
       DATABASES_PORT: 5432
       DATABASES_DATABASE: docmost
       DATABASES_USER: docmost
       DATABASES_PASSWORD: your_db_password
       POOL_MODE: transaction
       MAX_CLIENT_CONN: 200
-    ports:
-      - "6432:6432"
+    ports: - "6432:6432"
 ```
 
 Cập nhật `DATABASE_URL` của Docmost để trỏ đến `pgbouncer:6432` thay vì `db:5432`.
@@ -465,9 +420,7 @@ location /auth/login {
 
 ## Hạn chế: Đánh giá trung thực
 
-Docmost là dự án trẻ (ra mắt giữa 2024) và điều đó thể hiện ở một số khía cạnh:
-
-**Không có chế độ offline.** Khác với Notion có ứng dụng desktop và mobile với chỉnh sửa offline, Docmost yêu cầu kết nối mạng chủ động. Trình chỉnh sửa chạy trong trình duyệt và tính đến v0.8.2 chưa có ứng dụng desktop native. Nếu đội của bạn thường xuyên làm việc offline, đây là khoảng cách đáng kể.
+Docmost là dự án trẻ (ra mắt giữa 2024) và điều đó thể hiện ở một số khía cạnh: **Không có chế độ offline.** Khác với Notion có ứng dụng desktop và mobile với chỉnh sửa offline, Docmost yêu cầu kết nối mạng chủ động. Trình chỉnh sửa chạy trong trình duyệt và tính đến v0.8.2 chưa có ứng dụng desktop native. Nếu đội của bạn thường xuyên làm việc offline, đây là khoảng cách đáng kể.
 
 **Xác thực Community edition bị hạn chế.** SSO, SAML, OIDC và LDAP là tính năng Enterprise-only. Community edition chỉ hỗ trợ xác thực email/password với tùy chọn Google OAuth. Cho đội cần quản lý danh tính tập trung, điều này có nghĩa là nâng cấp lên Enterprise hoặc đặt Docmost sau reverse proxy có xác thực (như Authelia).
 
@@ -529,9 +482,7 @@ Tham gia cộng đồng dibi8.com: [Nhóm Telegram](https://t.me/dibi8opensource
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -541,7 +492,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 Bài viết này chứa liên kết liên kết đến [DigitalOcean](https://m.do.co/c/eca87ac14ee0). Nếu bạn đăng ký qua liên kết của chúng tôi, chúng tôi nhận được tín dụng giới thiệu mà bạn không phải trả thêm phí. Chúng tôi chỉ giới thiệu cơ sở hạ tầng mà chúng tôi tự sử dụng. Phiên bản Community của Docmost miễn phí và mã nguồn mở theo AGPL-3.0 —— không có mối quan hệ liên kết nào với ngườói duy trì Docmost.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

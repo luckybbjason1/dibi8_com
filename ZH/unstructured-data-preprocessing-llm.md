@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/unstructured-data-preprocessing-llm" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/unstructured-data-preprocessing-llm" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/unstructured-data-preprocessing-llm" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/unstructured-data-preprocessing-llm" />
 title: 'Unstructured.io: 将任何文档转换为LLM就绪数据块的预处理流水线 — 2026指南'
 description: 'Unstructured.io 实用2026指南 — 这款开源文档预处理库可将PDF、DOCX、PPTX和图像转换为干净、结构化的文本块，为LLM和RAG流水线做好准备。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: [unstructured, 文档解析, 大语言模型, rag, 数据预处理, pdf, 分块, 开源]
-aliases:
-- /zh/posts/unstructured-data-preprocessing-llm/
+aliases: - /zh/posts/unstructured-data-preprocessing-llm/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/unstructured-data-preprocessing-llm/ -->
 
 {{</* resource-info */>}}
 
@@ -56,7 +48,15 @@ Unstructured 的流水线包含三个不同阶段：**分区 → 清洗 → 分�
 `partition` 函数是 Unstructured 的核心。它自动检测文件类型并将其路由到专门的解析器：
 
 | 分区策略 | 速度 | 准确率 | 适用场景 |
-|---------|------|--------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | `auto` | 中等 | 高 | 通用场景，混合文档类型 |
 | `fast` | 快 | 中等 | 简单文本型PDF，批量处理 |
 | `hi_res` | 慢 | 最高 | 复杂排版，表格，扫描文档 |
@@ -83,7 +83,13 @@ Unstructured 输出 20+ 种元素类型。对于 LLM 工作最重要的：
 原始元素要么太小（单个单词），要么太大（整页）。Unstructured 的分块策略智能地组合和拆分元素：
 
 | 分块策略 | 行为 | 适用场景 |
-|---------|------|----------|
+|
+---
+|
+---
+|
+---
+|
 | `basic` | 固定大小带重叠 | 简单流水线，可预测的token数 |
 | `by_title` | 尊重章节边界 | 保持语义连贯性 |
 | `by_similarity` | 语义聚类 | 主题转换的长文档 |
@@ -114,8 +120,7 @@ from unstructured.partition.auto import partition
 
 elements = partition(filename="test.pdf")
 print(f"提取了 {len(elements)} 个元素")
-for el in elements[:5]:
-    print(f"  {el.category}: {str(el)[:60]}...")
+for el in elements[:5]: print(f"  {el.category}: {str(el)[:60]}...")
 ```
 
 ### 方案B：通过Docker自托管API（生产环境）
@@ -151,8 +156,7 @@ docker run -d \
 ```python
 import requests
 
-with open("annual_report.pdf", "rb") as f:
-    response = requests.post(
+with open("annual_report.pdf", "rb") as f: response = requests.post(
         "http://localhost:8000/general/v0/general",
         files={"files": ("annual_report.pdf", f)},
         data={
@@ -250,8 +254,7 @@ client = chromadb.PersistentClient(path="./chroma_db")
 collection = client.get_or_create_collection("contracts")
 
 model = SentenceTransformer("all-MiniLM-L6-v2")
-for i, chunk in enumerate(chunks):
-    embedding = model.encode(str(chunk)).tolist()
+for i, chunk in enumerate(chunks): embedding = model.encode(str(chunk)).tolist()
     collection.add(
         ids=[f"chunk_{i}"],
         embeddings=[embedding],
@@ -271,7 +274,17 @@ for i, chunk in enumerate(chunks):
 Unstructured v0.17.0 支持 **25+ 种文件格式**：
 
 | 格式 | 读取 | 表格 | OCR | 备注 |
-|------|------|------|-----|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | PDF（文本型） | 是 | 是 | 不适用 | 最佳支持格式 |
 | PDF（扫描/图像型） | 是 | 部分 | 是 | 需要 tesseract |
 | DOCX | 是 | 是 | 不适用 | 完整保留结构 |
@@ -288,7 +301,17 @@ Unstructured v0.17.0 支持 **25+ 种文件格式**：
 在 **8核Intel i7, 32GB内存, 无GPU** 上的基准测试：
 
 | 文档 | 大小 | 策略 | 耗时 | 元素数 |
-|------|------|------|------|--------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 10页文本PDF | 2.1 MB | fast | 1.2秒 | 47 |
 | 10页文本PDF | 2.1 MB | hi_res | 8.4秒 | 52 |
 | 47页扫描PDF | 18 MB | hi_res + OCR | 94秒 | 203 |
@@ -302,7 +325,13 @@ Unstructured v0.17.0 支持 **25+ 种文件格式**：
 我在50份法律合同（平均15页）上进行了对照测试，测量 top-3 检索准确率：
 
 | 预处理方法 | 平均块质量 | RAG Top-3 准确率 |
-|-----------|-----------|-----------------|
+|
+---
+|
+---
+|
+---
+|
 | 原始 `pdftotext` + 拆分 | 0.31 | 34% |
 | PyPDF2 + 字符拆分 | 0.38 | 41% |
 | Unstructured `fast` + basic 分块 | 0.67 | 72% |
@@ -341,8 +370,7 @@ filtered = [
 ]
 
 # 第3步：清洗文本内容
-for el in filtered:
-    el.text = clean(
+for el in filtered: el.text = clean(
         el.text,
         extra_whitespace=True,
         dashes=True,           # 统一破折号
@@ -368,9 +396,7 @@ import concurrent.futures
 from pathlib import Path
 from unstructured.partition.auto import partition
 
-def process_file(path: Path) -> dict:
-    try:
-        elements = partition(
+def process_file(path: Path) -> dict: try: elements = partition(
             filename=str(path),
             strategy="fast",
         )
@@ -379,8 +405,7 @@ def process_file(path: Path) -> dict:
             "elements": len(elements),
             "status": "success",
         }
-    except Exception as e:
-        return {
+    except Exception as e: return {
             "file": path.name,
             "elements": 0,
             "status": "error",
@@ -391,8 +416,7 @@ def process_file(path: Path) -> dict:
 pdf_dir = Path("./documents")
 pdf_files = list(pdf_dir.glob("*.pdf"))
 
-with concurrent.futures.ThreadPoolExecutor(max_workers=8) as executor:
-    results = list(executor.map(process_file, pdf_files))
+with concurrent.futures.ThreadPoolExecutor(max_workers=8) as executor: results = list(executor.map(process_file, pdf_files))
 
 success = sum(1 for r in results if r["status"] == "success")
 print(f"成功处理了: {success}/{len(results)} 个文件")
@@ -408,13 +432,11 @@ import hashlib
 from pathlib import Path
 from unstructured.staging.base import elements_to_dicts, dicts_to_elements
 
-def partition_with_cache(file_path: str, strategy: str = "hi_res"):
-    file_hash = hashlib.md5(open(file_path, "rb").read()).hexdigest()
+def partition_with_cache(file_path: str, strategy: str = "hi_res"): file_hash = hashlib.md5(open(file_path, "rb").read()).hexdigest()
     cache_path = Path(f"./cache/{file_hash}_{strategy}.json")
     cache_path.parent.mkdir(exist_ok=True)
 
-    if cache_path.exists():
-        return dicts_to_elements(json.load(open(cache_path)))
+    if cache_path.exists(): return dicts_to_elements(json.load(open(cache_path)))
 
     elements = partition_pdf(file_path, strategy=strategy)
     cache_path.write_text(json.dumps(elements_to_dicts(elements), indent=2))
@@ -427,39 +449,23 @@ def partition_with_cache(file_path: str, strategy: str = "hi_res"):
 # unstructured-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
-metadata:
-  name: unstructured-api
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: unstructured-api
-  template:
-    metadata:
-      labels:
-        app: unstructured-api
-    spec:
-      containers:
-      - name: api
+metadata: name: unstructured-api
+spec: replicas: 3
+  selector: matchLabels: app: unstructured-api
+  template: metadata: labels: app: unstructured-api
+    spec: containers: - name: api
         image: downloads.unstructured.io/unstructured-io/unstructured-api:latest
-        ports:
-        - containerPort: 8000
-        resources:
-          limits:
-            nvidia.com/gpu: 1
+        ports: - containerPort: 8000
+        resources: limits: nvidia.com/gpu: 1
             memory: "8Gi"
-          requests:
-            memory: "4Gi"
+          requests: memory: "4Gi"
+
 ---
 apiVersion: v1
 kind: Service
-metadata:
-  name: unstructured-api
-spec:
-  selector:
-    app: unstructured-api
-  ports:
-  - port: 80
+metadata: name: unstructured-api
+spec: selector: app: unstructured-api
+  ports: - port: 80
     targetPort: 8000
 ```
 
@@ -468,7 +474,17 @@ spec:
 ## 与替代方案对比
 
 | 特性 | Unstructured.io | LlamaParse | Docling | PyMuPDF + 自定义 |
-|------|----------------|------------|---------|---------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 开源 | 是 (Apache-2.0) | 否 (商业) | 是 (MIT) | 是 (混合) |
 | GitHub Stars | 10,500+ | N/A (闭源) | 5,200+ | N/A |
 | 免费额度 | 自托管无限 | 每日1K页 | 无限 | N/A |
@@ -571,12 +587,11 @@ Unstructured.io 解决了LLM流水线中最被低估的问题：将现实世界�
 - [Unstructured 平台（企业版）](https://unstructured.io/platform)
 - 相关文章: [LangChain](dibi8-internal-link), [LlamaIndex](dibi8-internal-link), [RAG流水线优化](dibi8-internal-link)
 
----
 
+---
 *联盟营销披露: 本文包含 DigitalOcean 的联盟链接。如果你通过这些链接注册，我们赚取佣金，不额外收费。Unstructured.io 是开源免费使用的；我们与 Unstructured-IO 没有商业关系。观点基于实际测试。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -603,7 +618,6 @@ Unstructured.io 解决了LLM流水线中最被低估的问题：将现实世界�
 </script>
 
 ---
-
 ## Related Articles
 
 - [mineru-document-parsing-engine](unstructured-data-preprocessing-llm)

@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/atuin" />
 title: 'Atuin: 29,794 GitHub Stars — Shell History Sync Setup Gu...
 description: 'Atuin replaces shell history with a SQLite database, records command context (exit code, cwd, duration), and syncs encrypted history across machines. Supports Bash, Zsh, Fish, Nushell. Covers install, self-hosting, config, and Atuin vs mcfly vs fzf vs Hstr.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [atuin, 'shell-history', 'cli-tools', sqlite, rust, sync, bash, zsh, fish]
-aliases:
-- /posts/atuin/
+aliases: - /posts/atuin/-
 ---
-
 {{</* resource-info */>}}
 
 ![Atuin Shell History](https://raw.githubusercontent.com/atuinsh/atuin/main/docs/static/img/atuin.png)
@@ -55,25 +51,59 @@ Atuin operates as a client-side history interceptor and optional sync client. Un
 ### Architecture Overview
 
 ```
-+-------------+     preexec/precmd hooks     +------------------+
-|   Shell     |  -------------------------->  |   Atuin Client   |
++
+---
++     preexec/precmd hooks     +
+---
++
+|   Shell     |  
+---
+>  |   Atuin Client   |
 | (bash/zsh)  |                             |   (Rust binary)  |
-+-------------+                             +--------+---------+
++
+---
++                             +
+---
++
+---
++
                                                      |
-                                            +--------v---------+
+                                            +
+---
+v
+---
++
                                             |   SQLite (local) |
                                             |   ~/.local/share |
-                                            +--------+---------+
+                                            +
+---
++
+---
++
                                                      |
-                              +----------------------v----------------------+
+                              +
+---
+v
+---
++
                               |              Sync Protocol V2                |
                               |   PASETO V4 (XChaCha20-Poly1305 + Blake2b) |
-                              +----------------------+----------------------+
+                              +
+---
++
+---
++
                                                      |
-                              +----------------------v----------------------+
+                              +
+---
+v
+---
++
                               |         Atuin Server (self-hosted or cloud)  |
                               |         PostgreSQL or SQLite backend         |
-                              +---------------------------------------------+
+                              +
+---
++
 ```
 
 ### Key Components
@@ -86,7 +116,13 @@ Atuin operates as a client-side history interceptor and optional sync client. Un
 ### Encryption Details
 
 | Protocol | Algorithm | Status |
-|----------|-----------|--------|
+|
+---
+|
+---
+|
+---
+|
 | V1 (legacy) | XSalsa20Poly1305 (NaCl secretbox) | Phasing out |
 | V2 (current) | PASETO V4 Local (XChaCha20-Poly1305 + Blake2b) | Active |
 
@@ -94,9 +130,7 @@ V2 uses envelope encryption: each record gets a random CEK wrapped with the user
 
 ### Why SQLite over Plain Text?
 
-Traditional shell history stores commands as newline-delimited text. This works for `history | grep` but breaks down at scale:
-
-- **Query performance**: SQLite with proper indexes can search 500,000 commands in under 50ms. Grep on a 50MB text file takes 200ms+ and blocks the shell.
+Traditional shell history stores commands as newline-delimited text. This works for `history | grep` but breaks down at scale: - **Query performance**: SQLite with proper indexes can search 500,000 commands in under 50ms. Grep on a 50MB text file takes 200ms+ and blocks the shell.
 - **Structured metadata**: Plain text cannot store exit codes, directories, or durations without fragile parsing.
 - **Concurrent access**: SQLite WAL mode allows the shell to write history while Atuin's TUI reads it, without file locks corrupting data.
 - **Deduplication and pruning**: SQL `DELETE` with `WHERE` clauses lets you surgically remove entries (e.g., all commands containing `password`) rather than editing a text file.
@@ -141,9 +175,7 @@ winget install -e Atuinsh.Atuin
 
 ### Shell Integration
 
-After installation, add Atuin to your shell's rc file:
-
-```bash
+After installation, add Atuin to your shell's rc file: ```bash
 # Bash — add to ~/.bashrc
 eval "$(atuin init bash)"
 
@@ -191,13 +223,9 @@ Checking for diagnostics
 
 ## Core Configuration
 
-Atuin's config file lives at `~/.config/atuin/config.toml`. Before diving into settings, here is what the search interface looks like in practice with different filter modes applied:
+Atuin's config file lives at `~/.config/atuin/config.toml`. Before diving into settings, here is what the search interface looks like in practice with different filter modes applied: ![Atuin Search UI](https://docs.atuin.sh/assets/images/search.png)
 
-![Atuin Search UI](https://docs.atuin.sh/assets/images/search.png)
-
-*Atuin's TUI showing the inline search window with fuzzy matching and directory-scoped results.* Here is a production-hardened configuration:
-
-```toml
+*Atuin's TUI showing the inline search window with fuzzy matching and directory-scoped results.* Here is a production-hardened configuration: ```toml
 # ~/.config/atuin/config.toml
 [settings]
 # Search mode: prefix, fulltext, fuzzy, skim
@@ -279,9 +307,7 @@ atuin search --delete "rm -rf /accident"
 
 ### Starship Prompt
 
-Starship works alongside Atuin without conflicts. Both hook into shell events independently:
-
-```toml
+Starship works alongside Atuin without conflicts. Both hook into shell events independently: ```toml
 # ~/.config/starship.toml — no special config needed
 # Atuin handles history; Starship handles the prompt
 # Just ensure Atuin init runs before Starship init in your rc file
@@ -295,9 +321,7 @@ eval "$(starship init zsh)"    # Starship second
 
 ### tmux
 
-Atuin integrates cleanly with tmux sessions. Each tmux window gets its own session ID, enabling per-window history filtering:
-
-```bash
+Atuin integrates cleanly with tmux sessions. Each tmux window gets its own session ID, enabling per-window history filtering: ```bash
 # ~/.tmux.conf — bind a key to open Atuin search
 bind-key r run-shell "tmux send-keys C-r"
 
@@ -307,9 +331,7 @@ bind-key r run-shell "tmux send-keys C-r"
 
 ### fzf
 
-Some users pair Atuin with fzf for file fuzzy-finding while using Atuin for history:
-
-```bash
+Some users pair Atuin with fzf for file fuzzy-finding while using Atuin for history: ```bash
 # Keep fzf for files, Atuin for history
 # Disable fzf history binding (in ~/.bashrc or ~/.zshrc)
 export FZF_DEFAULT_COMMAND='fd --type f --hidden'
@@ -323,9 +345,7 @@ alias ff='fzf --preview "bat --style=numbers --color=always {}"'
 
 ### Nushell
 
-Nushell integration requires explicit setup since Nushell uses a different config system:
-
-```nushell
+Nushell integration requires explicit setup since Nushell uses a different config system: ```nushell
 # config.nu
 source ~/.config/nushell/atuin.nu
 
@@ -351,47 +371,34 @@ For teams or privacy-conscious users, Atuin's sync server can be self-hosted wit
 ```yaml
 # docker-compose.yml
 version: "3"
-services:
-  atuin:
-    restart: always
+services: atuin: restart: always
     image: ghcr.io/atuinsh/atuin:latest
     command: server start
-    volumes:
-      - ./config:/config
+    volumes: - ./config:/config
       - ./atuin-data:/atuin-data
-    links:
-      - postgresql
-    ports:
-      - "8888:8888"
-    environment:
-      ATUIN_HOST: "0.0.0.0"
+    links: - postgresql
+    ports: - "8888:8888"
+    environment: ATUIN_HOST: "0.0.0.0"
       ATUIN_PORT: "8888"
       ATUIN_OPEN_REGISTRATION: "true"
       ATUIN_DB_URI: "postgres://atuin:change-me@postgresql/atuin"
       RUST_LOG: "info,atuin_server=debug"
     user: "1000:1000"
 
-  postgresql:
-    image: postgres:14
+  postgresql: image: postgres:14
     restart: always
-    volumes:
-      - ./postgres-data:/var/lib/postgresql/data
-    environment:
-      POSTGRES_USER: atuin
+    volumes: - ./postgres-data:/var/lib/postgresql/data
+    environment: POSTGRES_USER: atuin
       POSTGRES_PASSWORD: change-me
       POSTGRES_DB: atuin
     user: "1000:1000"
 
   # Optional: automated backups
-  backup:
-    image: prodrigestivill/postgres-backup-local
+  backup: image: prodrigestivill/postgres-backup-local
     restart: always
-    volumes:
-      - ./backups:/backups
-    links:
-      - postgresql
-    environment:
-      POSTGRES_HOST: postgresql
+    volumes: - ./backups:/backups
+    links: - postgresql
+    environment: POSTGRES_HOST: postgresql
       POSTGRES_DB: atuin
       POSTGRES_USER: atuin
       POSTGRES_PASSWORD: change-me
@@ -445,42 +452,26 @@ atuin sync
 # atuin-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
-metadata:
-  name: atuin-server
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: atuin
-  template:
-    metadata:
-      labels:
-        app: atuin
-    spec:
-      containers:
-        - name: atuin
+metadata: name: atuin-server
+spec: replicas: 2
+  selector: matchLabels: app: atuin
+  template: metadata: labels: app: atuin
+    spec: containers: - name: atuin
           image: ghcr.io/atuinsh/atuin:18.16.1
           command: ["atuin", "server", "start"]
-          ports:
-            - containerPort: 8888
-          env:
-            - name: ATUIN_HOST
+          ports: - containerPort: 8888
+          env: - name: ATUIN_HOST
               value: "0.0.0.0"
             - name: ATUIN_DB_URI
-              valueFrom:
-                secretKeyRef:
-                  name: atuin-db-secret
+              valueFrom: secretKeyRef: name: atuin-db-secret
                   key: uri
+
 ---
 apiVersion: v1
 kind: Service
-metadata:
-  name: atuin-service
-spec:
-  selector:
-    app: atuin
-  ports:
-    - port: 8888
+metadata: name: atuin-service
+spec: selector: app: atuin
+  ports: - port: 8888
       targetPort: 8888
 ```
 
@@ -488,10 +479,14 @@ spec:
 
 ### Performance Characteristics
 
-Atuin's Rust implementation and SQLite backend provide consistent performance across large history datasets. These numbers were measured on an AMD Ryzen 5 5600X with NVMe storage and 32GB RAM:
-
-| Metric | Value | Notes |
-|--------|-------|-------|
+Atuin's Rust implementation and SQLite backend provide consistent performance across large history datasets. These numbers were measured on an AMD Ryzen 5 5600X with NVMe storage and 32GB RAM: | Metric | Value | Notes |
+|
+---
+|
+---
+|
+---
+|
 | History query (100K entries) | ~15ms | fuzzy search, cold cache |
 | History query (500K entries) | ~45ms | fuzzy search, warm cache |
 | History query (1M entries) | ~85ms | fuzzy search, warm cache |
@@ -522,15 +517,13 @@ $ atuin stats
 [▮         ]  1,357 rg
 [▮         ]  1,348 cd
 [▮         ]  1,322 git log
-Total commands:   62,849
-Unique commands:  26,908
+Total commands: 62,849
+Unique commands: 26,908
 ```
 
 ### Migrating from Other History Tools
 
-If you are switching from `mcfly`, `Hstr`, or plain shell history, the migration path is straightforward:
-
-```bash
+If you are switching from `mcfly`, `Hstr`, or plain shell history, the migration path is straightforward: ```bash
 # Step 1: Install Atuin (your existing history stays untouched)
 curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
 
@@ -544,8 +537,7 @@ eval "$(atuin init zsh)"  # or bash/fish
 atuin stats
 history | wc -l  # native history still works
 
-# Step 5: After a week of testing, disable native history in rc file:
-# echo 'unset HISTFILE' >> ~/.zshrc
+# Step 5: After a week of testing, disable native history in rc file: # echo 'unset HISTFILE' >> ~/.zshrc
 ```
 
 Atuin does not delete or interfere with your existing `~/.bash_history` or `~/.zsh_history` file. The original history remains intact as a fallback.
@@ -554,9 +546,7 @@ Atuin does not delete or interfere with your existing `~/.bash_history` or `~/.z
 
 ### History Privacy Filters
 
-Prevent sensitive commands from entering the database:
-
-```toml
+Prevent sensitive commands from entering the database: ```toml
 # ~/.config/atuin/config.toml
 [settings]
 history_filter = [
@@ -625,9 +615,7 @@ accent = "#89b4fa"
 
 ### Multi-Machine Key Migration
 
-When setting up a new machine, transfer your encryption key securely:
-
-```bash
+When setting up a new machine, transfer your encryption key securely: ```bash
 # On old machine — copy key to clipboard (or secure transfer)
 cat ~/.local/share/atuin/key
 
@@ -644,7 +632,17 @@ atuin stats
 ## Comparison with Alternatives
 
 | Feature | Atuin | mcfly | fzf + history | Hstr |
-|---------|-------|-------|---------------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Database** | SQLite | SQLite | Plain text file | Plain text file |
 | **Cross-machine sync** | Yes (E2EE) | No | No | No |
 | **Search UI** | Built-in TUI | Built-in TUI | fzf integration | Built-in TUI |
@@ -667,9 +665,7 @@ atuin stats
 
 ## Limitations / Honest Assessment
 
-Atuin is not the right tool for every scenario:
-
-1. **No Executor Tracking**: Atuin records the command but not whether it was typed manually, executed by a script, or generated by an AI coding assistant. All sources look identical in the database.
+Atuin is not the right tool for every scenario: 1. **No Executor Tracking**: Atuin records the command but not whether it was typed manually, executed by a script, or generated by an AI coding assistant. All sources look identical in the database.
 
 2. **Local Database is Unencrypted**: The SQLite database at `~/.local/share/atuin/` is stored in plaintext for performance. History sync is encrypted, but local storage is not. Use filesystem encryption (LUKS, FileVault) for protection.
 
@@ -685,9 +681,7 @@ Atuin is not the right tool for every scenario:
 
 ### How do I disable the up-arrow binding?
 
-Add `filter_mode_shell_up_key = "global"` or `show_preview = false` in your config. To completely disable Atuin on up-arrow, add `export ATUIN_NOBIND=1` before the init line and manually bind only `Ctrl+R`:
-
-```bash
+Add `filter_mode_shell_up_key = "global"` or `show_preview = false` in your config. To completely disable Atuin on up-arrow, add `export ATUIN_NOBIND=1` before the init line and manually bind only `Ctrl+R`: ```bash
 # ~/.bashrc
 export ATUIN_NOBIND=1
 eval "$(atuin init bash)"
@@ -737,9 +731,7 @@ Atuin turns shell history from a flat text file into a structured, searchable, a
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -757,7 +749,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [Hstr GitHub Repository](https://github.com/dvorka/hstr)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -783,8 +774,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [ohmyzsh](atuin)
@@ -794,5 +785,4 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [zed-vs-cursor](atuin)
 
 ---
-
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

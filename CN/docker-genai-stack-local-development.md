@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/docker-genai-stack-local-development" />
 title: 'Docker GenAI Stack: Spin Up LangChain, Vector DB & LLM i...
 description: 'Set up a complete local GenAI development environment with Docker GenAI Stack. Includes LangChain, Neo4j, Ollama, and vector databases in a single docker-compose. Production-ready tutorial for 2026.'
 date: 2026-05-20 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: ['docker genai stack']
-aliases:
-- /posts/docker-genai-stack-local-development/
+aliases: - /posts/docker-genai-stack-local-development/-
 ---
-
 {{</* resource-info */>}}
 
 ## Introduction: The GenAI Dev Environment Nightmare
@@ -42,14 +38,11 @@ In this guide, you'll go from zero to a working RAG pipeline backed by a knowled
 
 ## How Docker GenAI Stack Works
 
-The architecture follows a modular pipeline pattern. Each service is an independent container, and they communicate over Docker's internal network:
-
-```yaml
-cervices:
-  llm:          # Ollama — local LLM inference
-  database:     # Neo4j — knowledge graph + vector search
-  loader:       # Document ingestion pipeline
-  bot:          # LangChain-powered chat interface
+The architecture follows a modular pipeline pattern. Each service is an independent container, and they communicate over Docker's internal network: ```yaml
+cervices: llm: # Ollama — local LLM inference
+  database: # Neo4j — knowledge graph + vector search
+  loader: # Document ingestion pipeline
+  bot: # LangChain-powered chat interface
   pdf-frontend: # Optional UI for PDF interaction
 ```
 
@@ -79,9 +72,7 @@ cd genai-stack
 cp .env.example .env
 ```
 
-Edit `.env` to select your LLM and embedding models:
-
-```bash
+Edit `.env` to select your LLM and embedding models: ```bash
 # .env — minimal configuration for local Ollama
 LLM=ollama
 EMBEDDING_MODEL=sentence_transformer
@@ -96,9 +87,7 @@ NEO4J_PASSWORD=password
 docker compose up --build
 ```
 
-The first pull builds all images and downloads models. Grab coffee — this takes **3–5 minutes** on a modern connection. You'll see Ollama pulling the default model (typically Llama 3.2 7B):
-
-```
+The first pull builds all images and downloads models. Grab coffee — this takes **3–5 minutes** on a modern connection. You'll see Ollama pulling the default model (typically Llama 3.2 7B): ```
 [+] Running 6/6
  ⠿ Network genai-stack_default       Created
  ⠿ Container genai-stack-database-1  Started
@@ -128,9 +117,7 @@ Navigate to `http://localhost:8501` for the Streamlit chat UI, or `http://localh
 
 ### LangChain Integration
 
-The stack uses LangChain's `Neo4jVector` and `GraphCypherQAChain` for retrieval-augmented generation over knowledge graphs:
-
-```python
+The stack uses LangChain's `Neo4jVector` and `GraphCypherQAChain` for retrieval-augmented generation over knowledge graphs: ```python
 # Example: Query the knowledge graph with LangChain
 from langchain_community.graphs import Neo4jGraph
 from langchain.chains import GraphCypherQAChain
@@ -156,9 +143,7 @@ print(result[result])
 
 ### Neo4j Knowledge Graph Setup
 
-The stack auto-creates vector indexes on Neo4j startup. You can inspect and extend the graph schema:
-
-```bash
+The stack auto-creates vector indexes on Neo4j startup. You can inspect and extend the graph schema: ```bash
 # Access Neo4j Browser at http://localhost:7474
 # Login: neo4j / password
 
@@ -179,9 +164,7 @@ OPTIONS {indexConfig: {
 
 ### Ollama Model Management
 
-Switch between models without restarting the stack:
-
-```bash
+Switch between models without restarting the stack: ```bash
 # Pull a different model
 docker compose exec llm ollama pull mistral:7b
 
@@ -192,18 +175,14 @@ docker compose exec llm ollama list
 docker compose exec llm ollama run llama3.2 "Explain Docker containers"
 ```
 
-Override the default model via environment variable:
-
-```bash
+Override the default model via environment variable: ```bash
 # In .env or docker-compose.override.yml
 OLLAMA_MODEL=mistral:7b docker compose up
 ```
 
 ### Connecting External Vector Databases
 
-While Neo4j handles vectors natively, you can swap in Pinecone, Weaviate, or pgvector by modifying the LangChain vector store initialization:
-
-```python
+While Neo4j handles vectors natively, you can swap in Pinecone, Weaviate, or pgvector by modifying the LangChain vector store initialization: ```python
 # Swap Neo4jVector for Pinecone (requires PINECONE_API_KEY in .env)
 from langchain_pinecone import PineconeVectorStore
 
@@ -219,7 +198,15 @@ vectorstore = PineconeVectorStore.from_documents(
 ### Startup Time Comparison
 
 | Setup Method | First Boot | Rebuild | Disk Used |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Docker GenAI Stack | **3–5 min** | **45 sec** | **~8 GB** |
 | Manual pip install | 45–90 min | 10–20 min | ~12 GB |
 | Conda env + services | 30–60 min | 5–10 min | ~15 GB |
@@ -228,7 +215,15 @@ vectorstore = PineconeVectorStore.from_documents(
 ### Resource Usage (measured on Ubuntu 24.04, 16GB RAM, 6-core CPU)
 
 | Service | Memory | CPU | Notes |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Ollama (llama3.2 7B) | **3.2 GB** | 0.8 cores | GPU offloading reduces to 800MB |
 | Neo4j Community | **1.8 GB** | 0.3 cores | Vector indexes loaded in memory |
 | LangChain Bot | **400 MB** | 0.2 cores | Per-request spikes to 1GB |
@@ -255,17 +250,9 @@ vectorstore = PineconeVectorStore.from_documents(
 
 ### GPU Acceleration for Ollama
 
-Enable NVIDIA GPU support for 5–10x faster inference:
-
-```yaml
+Enable NVIDIA GPU support for 5–10x faster inference: ```yaml
 # docker-compose.override.yml
-services:
-  llm:
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+services: llm: deploy: resources: reservations: devices: - driver: nvidia
               count: 1
               capabilities: [gpu]
 ```
@@ -278,27 +265,19 @@ nvidia-smi
 
 ### Persistent Data Volumes
 
-By default, Neo4j data lives in a Docker volume. For production-grade persistence:
-
-```yaml
-services:
-  database:
-    volumes:
-      - ./neo4j-data:/data
+By default, Neo4j data lives in a Docker volume. For production-grade persistence: ```yaml
+services: database: volumes: - ./neo4j-data:/data
       - ./neo4j-logs:/logs
       - ./neo4j-plugins:/plugins
 ```
 
 ### Custom Document Loaders
 
-Extend the loader service to ingest from your data sources:
-
-```python
+Extend the loader service to ingest from your data sources: ```python
 # loader/custom_loader.py
 from langchain_community.document_loaders import ConfluenceLoader
 
-def load_confluence():
-    loader = ConfluenceLoader(
+def load_confluence(): loader = ConfluenceLoader(
         url="https://your-domain.atlassian.net",
         username="email@example.com",
         api_key="your-api-key"
@@ -313,8 +292,7 @@ def load_confluence():
 openssl rand -base64 32
 
 # Enable Neo4j auth (default is already on)
-# In .env:
-NEO4J_AUTH=neo4j/YOUR_SECURE_PASSWORD_HERE
+# In .env: NEO4J_AUTH=neo4j/YOUR_SECURE_PASSWORD_HERE
 
 # Restrict Ollama to internal network only
 # Remove port 11434 from docker-compose.yml
@@ -323,18 +301,14 @@ NEO4J_AUTH=neo4j/YOUR_SECURE_PASSWORD_HERE
 
 ### Deploying to [DigitalOcean](https://m.do.co/c/eca87ac14ee0)
 
-For team-shared instances or client demos, the stack runs well on a **4 vCPU / 8GB RAM Droplet** (~$48/month):
-
-```bash
+For team-shared instances or client demos, the stack runs well on a **4 vCPU / 8GB RAM Droplet** (~$48/month): ```bash
 # On your DigitalOcean Droplet (Ubuntu 24.04)
 sudo apt update && sudo apt install -y docker.io docker-compose-plugin
 git clone https://github.com/docker/genai-stack.git
 cd genai-stack && docker compose up -d
 ```
 
-Add a reverse proxy with HTTPS:
-
-```nginx
+Add a reverse proxy with HTTPS: ```nginx
 # /etc/nginx/sites-available/genai
 server {
     listen 443 ssl;
@@ -355,7 +329,17 @@ server {
 ## Comparison with Alternatives
 
 | Feature | Docker GenAI Stack | LangChain Docker Template | Haystack Docker | LocalAI All-in-One |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Official maintainer** | Docker (verified) | Community | deepset | LocalAI community |
 | **Knowledge graph** | Neo4j built-in | Manual setup | Custom | Not included |
 | **Vector DB** | Neo4j (+ swappable) | Chroma/Pinecone | OpenSearch | FAISS |
@@ -425,8 +409,8 @@ The stack won't solve every GenAI problem — you'll still need to design prompt
 
 Join our developer community on Telegram: **@dibi8dev** — share your GenAI stack configs and get help from 5,000+ builders.
 
----
 
+---
 ## Sources & Further Reading
 
 1. [Docker GenAI Stack GitHub Repository](https://github.com/docker/genai-stack) — Official source code and latest releases
@@ -438,13 +422,9 @@ Join our developer community on Telegram: **@dibi8dev** — share your GenAI sta
 
 ---
 
-
-
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -454,7 +434,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 This article contains affiliate links. If you sign up for DigitalOcean using our referral link, we receive a commission at no extra cost to you. We only recommend services we use for our own infrastructure. The Docker GenAI Stack is open-source (MIT license) and free to use — no purchase is required.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

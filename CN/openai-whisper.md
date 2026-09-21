@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/openai-whisper" />
 title: 'OpenAI Whisper: 99.8K+ Stars — Complete ASR Setup Tutori...
 description: 'OpenAI Whisper (ASR) robust speech recognition via large-scale weak supervision. Compatible with WhisperX, faster-whisper, LibreTranslate. Covers whisper tutorial, whisper vs whisperx, speech recognition setup, whisper python, whisper docker.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [whisper, 'speech-recognition', asr, openai, 'faster-whisper', whisperx, python, docker, 'machine-learning']
-aliases:
-- /posts/openai-whisper/
+aliases: - /posts/openai-whisper/-
 ---
-
 {{</* resource-info */>}}
 
 ## Introduction
@@ -50,7 +46,19 @@ Whisper follows an encoder-decoder Transformer architecture. The audio input is 
 - **Conditioning on previous text**: The decoder receives prior segment tokens for consistent formatting across boundaries
 
 | Model | Parameters | English WER | Multilingual WER | VRAM (GPU) | Relative Speed |
-|-------|-----------|-------------|------------------|------------|----------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | tiny  | 39M       | ~7.6%       | ~12%            | ~1 GB      | ~10x           |
 | base  | 74M       | ~5.0%       | ~10%            | ~1 GB      | ~7x            |
 | small | 244M      | ~3.4%       | ~7%             | ~2 GB      | ~4x            |
@@ -76,9 +84,7 @@ whisper --version
 
 ### System Dependencies
 
-FFmpeg is required for audio preprocessing:
-
-```bash
+FFmpeg is required for audio preprocessing: ```bash
 # Ubuntu/Debian
 sudo apt update && sudo apt install ffmpeg
 
@@ -140,8 +146,7 @@ result = model.transcribe("audio.mp3")
 print(result["text"])
 
 # Get segments with timestamps
-for segment in result["segments"]:
-    print(f"[{segment[start]:.2f}s -> {segment[end]:.2f}s] {segment[text]}")
+for segment in result["segments"]: print(f"[{segment[start]:.2f}s -> {segment[end]:.2f}s] {segment[text]}")
 ```
 
 ### CLI Usage Examples
@@ -206,8 +211,7 @@ diarize_segments = diarize_model(audio)
 result = whisperx.assign_word_speakers(diarize_segments, result)
 
 # Print speaker-labeled transcript
-for segment in result["segments"]:
-    speaker = segment.get("speaker", "UNKNOWN")
+for segment in result["segments"]: speaker = segment.get("speaker", "UNKNOWN")
     start = segment["start"]
     end = segment["end"]
     text = segment["text"]
@@ -250,8 +254,7 @@ segments, info = model.transcribe(
 
 print(f"Detected language: {info.language} (probability: {info.language_probability:.2f})")
 
-for segment in segments:
-    print(f"[{segment.start:.2f}s -> {segment.end:.2f}s] {segment.text}")
+for segment in segments: print(f"[{segment.start:.2f}s -> {segment.end:.2f}s] {segment.text}")
 ```
 
 ### LibreTranslate Integration (Translation Pipeline)
@@ -267,8 +270,7 @@ result = model.transcribe(audio_path, language="ja")
 japanese_text = result["text"]
 
 # Translate via LibreTranslate API
-def translate(text, source="ja", target="en"):
-    response = requests.post(
+def translate(text, source="ja", target="en"): response = requests.post(
         "http://localhost:5000/translate",
         headers={"Content-Type": "application/json"},
         json={"q": text, "source": source, "target": target}
@@ -292,9 +294,7 @@ app = FastAPI()
 model = WhisperModel("medium", device="cuda", compute_type="float16")
 
 @app.post("/transcribe")
-async def transcribe(file: UploadFile = File(...)):
-    with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as tmp:
-        tmp.write(await file.read())
+async def transcribe(file: UploadFile = File(...)): with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as tmp: tmp.write(await file.read())
         tmp_path = tmp.name
 
     segments, info = model.transcribe(
@@ -341,8 +341,7 @@ TRANSCRIPTION_DURATION = Histogram(
     ["model"]
 )
 
-def transcribe_with_metrics(audio_path, model_name="medium"):
-    start = time.time()
+def transcribe_with_metrics(audio_path, model_name="medium"): start = time.time()
     segments, info = model.transcribe(audio_path)
     duration = time.time() - start
 
@@ -362,7 +361,17 @@ start_http_server(9090)
 ### Word Error Rate Comparison (LibriSpeech test-clean)
 
 | Model / Engine | WER (clean) | WER (other) | Multilingual | Year |
-|----------------|-------------|-------------|--------------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Whisper tiny   | 7.6%        | 12.0%       | 12.0%        | 2022 |
 | Whisper base   | 5.0%        | 8.1%        | 10.0%        | 2022 |
 | Whisper small  | 3.4%        | 5.8%        | 7.0%         | 2022 |
@@ -376,7 +385,17 @@ start_http_server(9090)
 ### Inference Speed Benchmark (1-hour audio, NVIDIA RTX 4090)
 
 | Engine | Model | Time | VRAM | Notes |
-|--------|-------|------|------|-------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | OpenAI Whisper | large-v3 | ~90 min | ~10 GB | Baseline |
 | faster-whisper | large-v3 | ~18 min | ~6 GB | float16, 4-8x speedup |
 | faster-whisper | large-v3 | ~12 min | ~4 GB | int8 quantization |
@@ -387,7 +406,17 @@ start_http_server(9090)
 ### Production Deployment Scenarios
 
 | Use Case | Recommended Model | Engine | Hardware | Daily Volume |
-|----------|------------------|--------|----------|--------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Podcast transcription | large-v3 | faster-whisper | 1x A100 | 500+ hours |
 | Real-time meeting notes | turbo | faster-whisper | 1x RTX 4090 | 200+ hours |
 | Call center analytics | medium | faster-whisper (int8) | 2x RTX 3080 | 1000+ hours |
@@ -420,24 +449,21 @@ from faster_whisper import WhisperModel
 
 model = WhisperModel("medium", device="cuda", compute_type="float16")
 
-def process_file(audio_path):
-    segments, info = model.transcribe(
+def process_file(audio_path): segments, info = model.transcribe(
         audio_path,
         vad_filter=True,
         beam_size=5
     )
     text = " ".join([s.text for s in segments])
     output_path = audio_path.replace(".mp3", ".txt")
-    with open(output_path, "w") as f:
-        f.write(text)
+    with open(output_path, "w") as f: f.write(text)
     return output_path
 
 # Process directory of audio files
 audio_dir = "/data/audio/"
 files = [os.path.join(audio_dir, f) for f in os.listdir(audio_dir) if f.endswith(".mp3")]
 
-with ThreadPoolExecutor(max_workers=4) as executor:
-    results = list(executor.map(process_file, files))
+with ThreadPoolExecutor(max_workers=4) as executor: results = list(executor.map(process_file, files))
 
 print(f"Processed {len(results)} files")
 ```
@@ -474,8 +500,7 @@ app = FastAPI()
 model = WhisperModel("medium", device="cuda", compute_type="float16")
 
 @app.get("/health")
-async def health():
-    gpu_available = torch.cuda.is_available()
+async def health(): gpu_available = torch.cuda.is_available()
     gpu_memory = torch.cuda.get_device_properties(0).total_memory if gpu_available else 0
     return {
         "status": "healthy",
@@ -496,11 +521,8 @@ import time
 r = redis.Redis(host=localhost, port=6379, db=0)
 model = WhisperModel("medium", device="cuda", compute_type="float16")
 
-def worker():
-    while True:
-        job = r.blpop("transcription_queue", timeout=5)
-        if job:
-            _, data = job
+def worker(): while True: job = r.blpop("transcription_queue", timeout=5)
+        if job: _, data = job
             task = json.loads(data)
             segments, info = model.transcribe(task["file_path"])
             result = {
@@ -511,8 +533,7 @@ def worker():
             r.setex(f"result:{task[job_id]}", 3600, json.dumps(result))
         time.sleep(0.1)
 
-if __name__ == "__main__":
-    worker()
+if __name__ == "__main__": worker()
 ```
 
 ## Comparison with Alternatives
@@ -520,7 +541,17 @@ if __name__ == "__main__":
 ![Whisper model variants comparison](https://opengraph.githubassets.com/1/openai/whisper)
 
 | Feature | OpenAI Whisper | WhisperX | faster-whisper | DeepSpeech |
-|---------|---------------|----------|----------------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **GitHub Stars** | 99,800 | 19,700 | 20,400 | 26,700 (archived) |
 | **License** | MIT | BSD-2 | MIT | MPL-2.0 |
 | **Speed vs Baseline** | 1x (baseline) | 0.8-1x | 4-8x | 2x |
@@ -535,9 +566,7 @@ if __name__ == "__main__":
 
 ## Limitations / Honest Assessment
 
-Whisper is not the right tool for every speech task. Here is what the README does not tell you:
-
-1. **No streaming support**: Whisper processes 30-second chunks; it is not designed for true real-time (<200ms latency) transcription. For streaming ASR, look at NVIDIA Parakeet or Moonshine v2.
+Whisper is not the right tool for every speech task. Here is what the README does not tell you: 1. **No streaming support**: Whisper processes 30-second chunks; it is not designed for true real-time (<200ms latency) transcription. For streaming ASR, look at NVIDIA Parakeet or Moonshine v2.
 
 2. **Hallucination on silence**: Large-v3 occasionally generates hallucinated text on silent segments. Use VAD filtering (built into faster-whisper) to mitigate.
 
@@ -592,9 +621,7 @@ OpenAI Whisper remains the pragmatic choice for production speech recognition in
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -611,7 +638,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [Whisper API Blog — Model Comparison](https://whisperapi.com/accuracy-benchmarks-top-free-open-source-speech-to-text-offerings)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -637,8 +663,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [apple-container](openai-whisper)
@@ -647,6 +673,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](openai-whisper)
 - [moneyprinterturbo-one-click-ai-video-generator](openai-whisper)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

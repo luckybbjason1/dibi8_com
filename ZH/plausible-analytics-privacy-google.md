@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/plausible-analytics-privacy-google" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/plausible-analytics-privacy-google" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/plausible-analytics-privacy-google" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/plausible-analytics-privacy-google" />
 title: 'Plausible Analytics：隐私优先的Google Analytics替代品 — 加载速度提升45倍...
 description: 'Plausible Analytics完整自建部署指南。隐私优先、GDPR合规、追踪脚本<1KB。比Google Analytics快45倍。真实基准测试和Docker部署。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [plausible, analytics, 隐私, gdpr, 'google-analytics替代品', 自建部署, docker, elixir, 轻量级]
-aliases:
-- /zh/posts/plausible-analytics-privacy-google/
+aliases: - /zh/posts/plausible-analytics-privacy-google/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/plausible-analytics-privacy-google/ -->
 
 {{</* resource-info */>}}
 
@@ -79,7 +71,15 @@ Plausible采用了与传统分析工具截然不同的方法。它不进行客�
 Plausible使用 **ClickHouse** 作为其分析数据库——与Yandex和Cloudflare分析使用的列式DBMS相同。这个选择是经过深思熟虑的：
 
 | 特性 | PostgreSQL | ClickHouse | 影响 |
-|------|-----------|------------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 写入吞吐量 | ~2万行/秒 | **100万+行/秒** | 处理流量峰值 |
 | 聚合查询速度 | 秒级 | **毫秒级** | 仪表盘即时加载 |
 | 存储效率 | 高 | **极高** | 90%+压缩比 |
@@ -88,7 +88,13 @@ Plausible使用 **ClickHouse** 作为其分析数据库——与Yandex和Cloudfl
 ### 核心组件
 
 | 组件 | 用途 | 扩展注意事项 |
-|------|------|-------------|
+|
+---
+|
+---
+|
+---
+|
 | Phoenix 应用 | Web仪表盘、REST API、事件接收 | 无状态——水平扩展 |
 | ClickHouse | 事件数据存储、聚合 | 单节点可处理100亿+事件 |
 | PostgreSQL | 用户账户、站点配置、API密钥 | 数据量小——单节点足够 |
@@ -97,9 +103,7 @@ Plausible使用 **ClickHouse** 作为其分析数据库——与Yandex和Cloudfl
 ### 1KB脚本：它实际做了什么
 
 ```html
-<!-- 标准Plausible追踪脚本 -->
-<script defer data-domain="yourdomain.com"
-  src="https://plausible.yourdomain.com/js/script.js"></script>
+</script>
 ```
 
 这个脚本只做三件事：(1)发送当前页面URL和引荐来源，(2)发送浏览器视口大小以分类桌面/移动端，(3)监听SPA导航事件。它 **不会**：设置Cookie、使用localStorage、生成指纹哈希或执行第三方请求。结果是gzip压缩后不到1KB的payload，在4G网络上的执行时间不到10毫秒。
@@ -220,13 +224,9 @@ Plausible.Release.created_admin_user("admin@yourdomain.com", "YourSecurePassword
 ### 添加追踪到你的网站
 
 ```html
-<!-- 添加到网站 <head> -->
-<script defer data-domain="yourdomain.com"
-  src="https://analytics.yourdomain.com/js/script.js"></script>
+</script>
 
-<!-- SPA（React、Vue、Angular）— 添加页面浏览触发 -->
-<script defer data-domain="yourdomain.com"
-  src="https://analytics.yourdomain.com/js/script.pageview-props.js"></script>
+</script>
 ```
 
 ## 与框架、CMS和构建工具的集成
@@ -301,7 +301,7 @@ export default defineNuxtPlugin(() => {
 
 # 选项2：手动 — 添加到主题的 header.php
 <?php if (!is_user_logged_in()): ?>
-<script defer data-domain="<?php echo $_SERVER[HTTP_HOST]; ?>"
+"
   src="https://analytics.yourdomain.com/js/script.js"></script>
 <?php endif; ?>
 ```
@@ -309,10 +309,8 @@ export default defineNuxtPlugin(() => {
 ### 静态网站生成器（Hugo、Jekyll、Astro）
 
 ```html
-<!-- layouts/partials/analytics.html (Hugo) -->
 {{ if not hugo.IsServer }}
-<script defer data-domain="{{ .Site.Params.plausibleDomain }}"
-  src="{{ .Site.Params.plausibleHost }}/js/script.js"></script>
+</script>
 {{ end }}
 ```
 
@@ -364,7 +362,15 @@ plausible(Purchase, {
 ### 速度对比：Plausible 对比 Google Analytics
 
 | 指标 | Google Analytics 4 | Plausible（Cloud） | Plausible（自建） |
-|------|-------------------|-------------------|-----------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **脚本大小** | **45KB** (gtag.js + analytics.js) | **<1KB** | **<1KB** |
 | **DNS查询** | 5+ (google-analytics等) | **1** | **1** |
 | **设置的Cookie** | **多个** | **0** | **0** |
@@ -378,7 +384,15 @@ plausible(Purchase, {
 ### 隐私合规对比
 
 | 功能 | Google Analytics 4 | Matomo | Plausible |
-|------|-------------------|--------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **无需同意即GDPR合规** | **否**（需同意横幅） | 部分 | **是** |
 | **无Cookie追踪** | **否** | 可选 | **是（始终）** |
 | **不收集个人数据** | **否** | 可配置 | **是（设计如此）** |
@@ -390,7 +404,13 @@ plausible(Purchase, {
 ### 负载下的性能（2GB VPS上运行v3.0）
 
 | 指标 | 数值 | 说明 |
-|------|------|------|
+|
+---
+|
+---
+|
+---
+|
 | 冷启动 | 4.1秒 | Docker容器 + ClickHouse |
 | 事件接收速率 | **5万事件/秒** | 单节点ClickHouse |
 | 仪表盘加载时间 | **120ms** | P95，已认证 |
@@ -402,7 +422,17 @@ plausible(Purchase, {
 ### 实际部署场景
 
 | 站点类型 | 月PV | VPS费用 | GA4等价方案 | Plausible费用 |
-|---------|------|---------|------------|--------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 个人博客 | 1万 | **$6** (1GB) | 免费 | **$6** |
 | SaaS落地页 | 10万 | **$12** (2GB) | $0-150 | **$12** |
 | 电商店铺 | 50万 | **$24** (4GB) | $150+ | **$24** |
@@ -439,9 +469,7 @@ SCRIPT_NAME=script.outbound-links.file-downloads.hash.js
 ```
 
 ```html
-<!-- 使用增强版脚本 -->
-<script defer data-domain="yourdomain.com"
-  src="https://analytics.yourdomain.com/js/script.outbound-links.file-downloads.js"></script>
+</script>
 ```
 
 ### API集成用于自定义仪表盘
@@ -486,8 +514,7 @@ response = requests.get(
 )
 
 data = response.json()
-for entry in data["results"]:
-    print(f"{entry[date]}: {entry[visitors]} 访客, {entry[pageviews]} 页面浏览")
+for entry in data["results"]: print(f"{entry[date]}: {entry[visitors]} 访客, {entry[pageviews]} 页面浏览")
 ```
 
 ### 备份策略
@@ -524,34 +551,24 @@ find /backup/plausible -maxdepth 1 -type d -mtime +30 -exec rm -rf {} \;
 ```yaml
 # docker-compose.ha.yaml — ClickHouse多节点复制
 version: '3.8'
-services:
-  plausible:
-    image: plausible/analytics:v3.0
-    deploy:
-      replicas: 2
-    environment:
-      - DATABASE_URL=postgres://postgres:postgres@plausible_db:5432/plausible_db
+services: plausible: image: plausible/analytics:v3.0
+    deploy: replicas: 2
+    environment: - DATABASE_URL=postgres://postgres:postgres@plausible_db:5432/plausible_db
       - CLICKHOUSE_DATABASE_URL=http://clickhouse-1:8123/plausible_events_db;http://clickhouse-2:8123/plausible_events_db
 
-  clickhouse-1:
-    image: clickhouse/clickhouse-server:24.3
-    volumes:
-      - clickhouse_data_1:/var/lib/clickhouse
+  clickhouse-1: image: clickhouse/clickhouse-server:24.3
+    volumes: - clickhouse_data_1:/var/lib/clickhouse
 
-  clickhouse-2:
-    image: clickhouse/clickhouse-server:24.3
-    volumes:
-      - clickhouse_data_2:/var/lib/clickhouse
+  clickhouse-2: image: clickhouse/clickhouse-server:24.3
+    volumes: - clickhouse_data_2:/var/lib/clickhouse
 ```
 
 ### 使用Prometheus监控
 
 ```yaml
 # 添加到你的 prometheus.yml
-scrape_configs:
-  - job_name: plausible
-    static_configs:
-      - targets: ['analytics.yourdomain.com:8000']
+scrape_configs: - job_name: plausible
+    static_configs: - targets: ['analytics.yourdomain.com:8000']
     metrics_path: '/metrics'
     scrape_interval: 30s
 ```
@@ -570,8 +587,7 @@ wget "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&l
 tar -xzf GeoLite2-City.tar.gz --strip-components=1
 
 # 在docker-compose.yml中挂载
-# volumes:
-#   - ./geoip/GeoLite2-City.mmdb:/geoip/GeoLite2-City.mmdb:ro
+# volumes: #   - ./geoip/GeoLite2-City.mmdb:/geoip/GeoLite2-City.mmdb:ro
 
 # 添加到plausible-conf.env：
 # GEOLITE2_COUNTRY_DB=/geoip/GeoLite2-Country.mmdb
@@ -581,7 +597,19 @@ tar -xzf GeoLite2-City.tar.gz --strip-components=1
 ## 与替代方案对比
 
 | 功能 | Plausible | Google Analytics 4 | Matomo（自建） | Fathom | Umami |
-|------|-----------|-------------------|--------------|--------|-------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **许可证** | AGPL-3.0 | 专有 | GPL-3.0 | 专有 | MIT |
 | **脚本大小** | **<1KB** | **45KB** | ~22KB | **<1KB** | **<2KB** |
 | **需要Cookie** | **否** | **是（多个）** | 可选 | **否** | **否** |
@@ -642,10 +670,7 @@ Plausible可预测地扩展。**2GB VPS处理约50万PV/月**。**4GB VPS处理�
 每个域名在Plausible中是独立的"站点"，但你可以用共享登录来组织它们。对于子域名追踪（如 `blog.yourdomain.com` 和 `app.yourdomain.com`），你有两个选择：分开追踪以获得细粒度报告，或使用 `data-api-host` 属性汇总到同一个站点ID。跨子域名追踪无需特殊配置即可工作，因为Plausible不使用Cookie或会话存储。
 
 ```html
-<!-- 将子域名汇总到一个报告 -->
-<script defer data-domain="yourdomain.com"
-  data-api="https://analytics.yourdomain.com/api/event"
-  src="https://analytics.yourdomain.com/js/script.js"></script>
+</script>
 ```
 
 **自托管Plausible真的永久免费吗？**
@@ -662,10 +687,8 @@ Plausible Analytics证明了你不需要用隐私换取洞察力。**不到1KB�
 
 **加入我们的Telegram群组讨论开源工具**：[t.me/dibi8zh](https://t.me/dibi8zh)
 
+
 ---
-
-
-
 ## 推荐部署与基础设施
 
 上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：
@@ -692,7 +715,6 @@ Plausible Analytics证明了你不需要用隐私换取洞察力。**不到1KB�
 *本文包含DigitalOcean的联盟链接。如果你通过这些链接购买VPS服务，dibi8.com可能会获得佣金，而你无需额外付费。所有推荐均基于实际测试和真实部署经验。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

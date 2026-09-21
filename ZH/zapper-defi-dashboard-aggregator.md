@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/zapper-defi-dashboard-aggregator" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/zapper-defi-dashboard-aggregator" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/zapper-defi-dashboard-aggregator" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/zapper-defi-dashboard-aggregator" />
 title: 'zapper-defi-dashboard-aggregator'
 description: '{'en': ''Comprehensive guide to Zapper, the DeFi dashboard aggregator tracking 500+ protocols. Learn portfolio tracking, yield farming analytics, Zap In/Out transactions, API integration, and custom dashboard building.'', 'zh': ''Zapper综合指南，这个追踪500+协议的DeFi仪表盘聚合器。了解投资组合追踪、收益耕作分析、Zap In/Out交易、API集成和自定义仪表盘构建。'', 'ko': ''500개 이상의 프로토콜을 추적하는 DeFi 대시보드 애그리게이터 Zapper에 대한 종합 가이드. 포트폴리오 추적, 이자 농사 분석, Zap In/Out 트랜잭션, API 통합, 커스텀 대시보드 구축을 알아보세요.'', 'vi': ''Hướng dẫn toàn diện về Zapper, bảng điều khiển DeFi tổng hợp theo dõi 500+ giao thức. Tìm hiểu theo dõi danh mục, phân tích yield farming, giao dịch Zap In/Out, tích hợp API, và xây dựng bảng điều khiển tùy chỉnh.''}'
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: [zapper, defi, dashboard, portfolio, 'yield-farming', nft, api, 'zap-in', 'zap-out', aggregator]
-aliases:
-- /zh/posts/zapper-defi-dashboard-aggregator/
+aliases: - /zh/posts/zapper-defi-dashboard-aggregator/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/zapper-defi-dashboard-aggregator/ -->
 
 {{</* resource-info */>}}
 
@@ -39,12 +31,12 @@ aliases:
 **工具：** [Zapper](https://zapper.xyz)  
 **GitHub：** [Zapper-fi](https://github.com/Zapper-fi) — ⭐ 300+ 星标, MIT许可证
 
----
 
+---
 > 立即开始追踪您的DeFi投资组合！在[币安](https://www.bsmkweb.cc/register?ref=DIBI8)或[OKX](https://www.promoohubly.com/join/12190433)注册，开始您的DeFi之旅。
 
----
 
+---
 ## 1. 引言：2026年DeFi仪表盘的革命
 
 去中心化金融（DeFi）已爆炸式增长为一个涵盖借贷协议、去中心化交易所（DEX）、收益聚合器、衍生品平台和NFT市场的数万亿美元生态系统。到2026年，成熟的DeFi用户同时与20-50+个协议互动，使得投资组合追踪和仓位管理日益复杂。流动性在Layer-1链、Layer-2 Rollup和应用链之间的分散，对统一仪表盘解决方案的需求变得更加迫切。
@@ -144,21 +136,13 @@ async function getPortfolio(address: string): Promise<PortfolioSummary> {
     
     // 分类仓位
     switch (position.appId) {
-      case tokens:
-        portfolio.categories.wallet.push(position);
+      case tokens: portfolio.categories.wallet.push(position);
         break;
-      case 'aave-v3':
-      case compound:
-      case morpho:
-        portfolio.categories.lending.push(position);
+      case 'aave-v3': case compound: case morpho: portfolio.categories.lending.push(position);
         break;
-      case 'uniswap-v3':
-      case 'balancer-v2':
-      case curve:
-        portfolio.categories.liquidity.push(position);
+      case 'uniswap-v3': case 'balancer-v2': case curve: portfolio.categories.liquidity.push(position);
         break;
-      default:
-        if (position.positionType === staking) {
+      default: if (position.positionType === staking) {
           portfolio.categories.staking.push(position);
         }
     }
@@ -302,8 +286,7 @@ async function getFullPortfolio(address: string) {
     const category = categorizePosition(position);
     
     switch (category) {
-      case wallet:
-        breakdown.wallet.value += position.balanceUSD;
+      case wallet: breakdown.wallet.value += position.balanceUSD;
         breakdown.wallet.tokens.push({
           symbol: position.symbol,
           balance: formatUnits(position.balance, position.decimals),
@@ -311,8 +294,7 @@ async function getFullPortfolio(address: string) {
         });
         break;
         
-      case lending:
-        const supplied = position.balances?.supplied?.balanceUSD || 0;
+      case lending: const supplied = position.balances?.supplied?.balanceUSD || 0;
         const borrowed = position.balances?.borrowed?.balanceUSD || 0;
         breakdown.lending.supplied += supplied;
         breakdown.lending.borrowed += borrowed;
@@ -320,8 +302,7 @@ async function getFullPortfolio(address: string) {
         breakdown.lending.protocols.push(position.appName);
         break;
         
-      case liquidity:
-        breakdown.liquidityPools.value += position.balanceUSD;
+      case liquidity: breakdown.liquidityPools.value += position.balanceUSD;
         breakdown.liquidityPools.pools.push({
           protocol: position.appName,
           tokens: position.tokens.map((t: any) => t.symbol),
@@ -330,8 +311,7 @@ async function getFullPortfolio(address: string) {
         });
         break;
         
-      case staking:
-        breakdown.staking.value += position.balanceUSD;
+      case staking: breakdown.staking.value += position.balanceUSD;
         breakdown.staking.positions.push(position);
         break;
     }
@@ -735,17 +715,13 @@ const ws = new ZapperWebSocket({
 // 订阅地址更新
 ws.subscribe('address:0xMyAddress...', (update: any) => {
   switch (update.type) {
-    case balance_change:
-      console.log(`💰 余额更新: ${update.token} = ${update.newBalance}`);
+    case balance_change: console.log(`💰 余额更新: ${update.token} = ${update.newBalance}`);
       break;
-    case new_position:
-      console.log(`📈 检测到新仓位: ${update.protocol} — ${update.valueUSD}`);
+    case new_position: console.log(`📈 检测到新仓位: ${update.protocol} — ${update.valueUSD}`);
       break;
-    case yield_claimed:
-      console.log(`🎁 已领取奖励: ${update.amount} ${update.token}`);
+    case yield_claimed: console.log(`🎁 已领取奖励: ${update.amount} ${update.token}`);
       break;
-    case nft_transfer:
-      console.log(`🖼️ NFT已转移: ${update.collection} #${update.tokenId}`);
+    case nft_transfer: console.log(`🖼️ NFT已转移: ${update.collection} #${update.tokenId}`);
       break;
   }
 });
@@ -1021,20 +997,17 @@ class YieldMonitor {
         if (alert.protocol && alert.protocol !== position.protocol) continue;
 
         switch (alert.condition) {
-          case apy_drop:
-            if (prev && (position.apy.total / prev.apy - 1) * 100 < -alert.threshold) {
+          case apy_drop: if (prev && (position.apy.total / prev.apy - 1) * 100 < -alert.threshold) {
               await this.sendAlert(`🚨 ${position.poolName}的APY下降了${alert.threshold}%: ${position.apy.total.toFixed(2)}%`);
             }
             break;
 
-          case il_warning:
-            if (position.impermanentLoss && position.impermanentLoss > alert.threshold) {
+          case il_warning: if (position.impermanentLoss && position.impermanentLoss > alert.threshold) {
               await this.sendAlert(`⚠️ ${position.poolName}的IL警告: ${position.impermanentLoss.toFixed(2)}%`);
             }
             break;
 
-          case reward_change:
-            const rewardChange = position.rewardTokens.reduce(
+          case reward_change: const rewardChange = position.rewardTokens.reduce(
               (sum, r) => sum + r.dailyValueUSD, 0
             );
             if (prev && Math.abs(rewardChange - prev.dailyRewards) > alert.threshold) {
@@ -1142,7 +1115,6 @@ Zapper提供**RESTful API**，在[docs.zapper.xyz](https://docs.zapper.xyz)有�
 **网站：** [zapper.xyz](https://zapper.xyz)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

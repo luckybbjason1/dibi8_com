@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/revoke-crypto-permission-manager" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/revoke-crypto-permission-manager" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/revoke-crypto-permission-manager" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/revoke-crypto-permission-manager" />
 title: 'revoke-crypto-permission-manager'
 description: ''. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: ['revoke.cash']
-aliases:
-- /vi/posts/revoke-crypto-permission-manager/
+aliases: - /vi/posts/revoke-crypto-permission-manager/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/revoke-crypto-permission-manager/ -->
 
 {{</* resource-info */>}}
 
@@ -57,8 +49,7 @@ Mối đe dọa vô hình này đã dẫn đến hàng trăm triệu đô la thi
 
 Khi bạn tương tác vớI một giao thức DeFi, trước tiên bạn phải **phê duyệt** hợp đồng thông minh của giao thức để truy cập token của bạn. Đây là một cơ chế ERC-20 được thiết kế để ngăn các hợp đồng tùy ý chi tiêu tiền của bạn. Tuy nhiên, hầu hết các dApp đều yêu cầu **phê duyệt không giớI hạn** (`type(uint256).max`) để tiết kiệm gas cho ngườI dùng trong các giao dịch tương lai.
 
-Vấn đề? Phê duyệt đó tồn tại mãi mãi — ngay cả khi:
-- Giao thức bị tấn công
+Vấn đề? Phê duyệt đó tồn tại mãi mãi — ngay cả khi: - Giao thức bị tấn công
 - Bạn ngừng sử dụng dApp
 - Frontend độc hạI thay thế frontend hợp pháp
 - Giao thức triển khaI bản nâng cấp dễ bị tổn thương
@@ -77,8 +68,7 @@ interface IERC20 {
     function allowance(address owner, address spender) external view returns (uint256);
 }
 
-// Khi bạn "phê duyệt" Uniswap, điều này sẽ xảy ra:
-// token.approve(uniswapRouter, 115792089237316195423570985008687907853269984665640564039457584007913129639935)
+// Khi bạn "phê duyệt" Uniswap, điều này sẽ xảy ra: // token.approve(uniswapRouter, 115792089237316195423570985008687907853269984665640564039457584007913129639935)
 // Con số này = type(uint256).max = KHÔNG GIỚI HẠN
 ```
 
@@ -94,8 +84,7 @@ Bắt đầu vớI Revoke.cash mất chưa đầy hai phút. Sau đây là cách
 # Trang web chính thức (luôn xác minh URL)
 # https://revoke.cash
 # 
-# Các tên miền lừa đảo phổ biến cần TRÁNH:
-# - revokecash.com (giả mạo)
+# Các tên miền lừa đảo phổ biến cần TRÁNH: # - revokecash.com (giả mạo)
 # - revoke-cash.app (giả mạo)
 # - revok3.cash (giả mạo)
 # Luôn đánh dấu URL chính thức sau lần truy cập đầu tiên
@@ -120,8 +109,7 @@ const supportedWallets = [
 ### Bước 3 — Xem Tất Cả Các Phê Duyệt Đang Hoạt Động
 
 ```bash
-# Bảng điều khiển Revoke.cash hiển thị:
-# ┌────────────────┬─────────────────┬──────────────┬──────────┐
+# Bảng điều khiển Revoke.cash hiển thị: # ┌────────────────┬─────────────────┬──────────────┬──────────┐
 # │ Token          │ NgườI Chi Tiêu  │ Số Lượng     │ Rủi Ro   │
 # │                │ Được Phê Duyệt  │              │          │
 # ├────────────────┼─────────────────┼──────────────┼──────────┤
@@ -233,38 +221,31 @@ Revoke.cash hỗ trợ tất cả các chuỗI tương thích EVM chính, cho ph
 
 ```yaml
 # Hỗ trợ mạng đầy đủ tính đến năm 2026
-ethereum:
-  chain_id: 1
+ethereum: chain_id: 1
   rpc_required: true
   features: ["Hỗ trợ đầy đủ", "Phê duyệt NFT", "Permit2"]
 
-polygon:
-  chain_id: 137
+polygon: chain_id: 137
   rpc_required: true
   features: ["Hỗ trợ đầy đủ", "Thu hồI phí gas thấp"]
 
-arbitrum:
-  chain_id: 42161
+arbitrum: chain_id: 42161
   rpc_required: true
   features: ["Hỗ trợ đầy đủ", "Tương thích Nitro"]
 
-optimism:
-  chain_id: 10
+optimism: chain_id: 10
   rpc_required: true
   features: ["Hỗ trợ đầy đủ", "Tương thích Bedrock"]
 
-base:
-  chain_id: 8453
+base: chain_id: 8453
   rpc_required: true
   features: ["Hỗ trợ đầy đủ", "Hệ sinh thái Coinbase"]
 
-bnb_chain:
-  chain_id: 56
+bnb_chain: chain_id: 56
   rpc_required: true
   features: ["Hỗ trợ đầy đủ", "Phê duyệt PancakeSwap"]
 
-avalanche:
-  chain_id: 43114
+avalanche: chain_id: 43114
   rpc_required: true
   features: ["Hỗ trợ C-Chain", "Phê duyệt TraderJoe"]
 ```
@@ -296,14 +277,11 @@ Revoke.cash cung cấp **tiện ích mở rộng trình duyệt** cung cấp c�
 ### Cài Đặt Tiện Ích Mở Rộng
 
 ```bash
-# Cửa hàng Chrome Web:
-# https://chrome.google.com/webstore/detail/revokecash/revokecash-extension
+# Cửa hàng Chrome Web: # https://chrome.google.com/webstore/detail/revokecash/revokecash-extension
 
-# Tiện ích bổ sung Firefox:
-# https://addons.mozilla.org/firefox/addon/revokecash/
+# Tiện ích bổ sung Firefox: # https://addons.mozilla.org/firefox/addon/revokecash/
 
-# Tính năng:
-# - Cảnh báo trước khi ký các phê duyệt không giớI hạn
+# Tính năng: # - Cảnh báo trước khi ký các phê duyệt không giớI hạn
 # - Cảnh báo khi phê duyệt các hợp đồng độc hạI đã biết
 # - Hiển thị giá trị USD ước tính có rủi ro
 # - Thu hồI chỉ bằng một cú nhấp chuột từ cửa sổ bật lên
@@ -413,8 +391,7 @@ const batchRevoke = async (revocations) => {
 # - Sáng sớm UTC (2AM - 6AM) thường là rẻ nhất
 # - Sử dụng https://etherscan.io/gastracker để theo dõI
 
-# Chi phí gas ước tính để thu hồI:
-# ┌─────────────────┬──────────────┬──────────────────┐
+# Chi phí gas ước tính để thu hồI: # ┌─────────────────┬──────────────┬──────────────────┐
 # │ Mạng            │ Đơn Vị Gas   │ Chi Phí (20 gwei)│
 # ├─────────────────┼──────────────┼──────────────────┤
 # │ Ethereum        │ ~46,000      │ ~$2.30           │
@@ -455,18 +432,15 @@ const subscribeToAlerts = async (address) => {
 ### Danh Sách Kiểm Tra Bảo Mật
 
 ```bash
-# THÓI QUEN HÀNG TUẦN:
-# 1. Truy cập revoke.cash và quét tất cả các phê duyệt đang hoạt động
+# THÓI QUEN HÀNG TUẦN: # 1. Truy cập revoke.cash và quét tất cả các phê duyệt đang hoạt động
 # 2. Thu hồI các phê duyệt không giớI hạn cho các giao thức bạn không sử dụng tích cực
 # 3. Kiểm tra cột "Rủi ro" để tìm ngườI chi tiêu không xác định
 
-# TRƯỚC MỌI GIAO DỊCH QUAN TRỌNG:
-# 1. Xác minh địa chỉ hợp đồng trên Etherscan
+# TRƯỚC MỌI GIAO DỊCH QUAN TRỌNG: # 1. Xác minh địa chỉ hợp đồng trên Etherscan
 # 2. Kiểm tra xem ngườI chi tiêu có phảI là giao thức đã biết không
 # 3. Nếu được nhắc phê duyệt không giớI hạn, hãy đặt giớI hạn tùy chỉnh
 
-# SAU KHI GIAO THỨC BỊ TẤN CÔNG:
-# 1. Ngay lập tức kiểm tra revoke.cash xem bạn có từng sử dụng giao thức không
+# SAU KHI GIAO THỨC BỊ TẤN CÔNG: # 1. Ngay lập tức kiểm tra revoke.cash xem bạn có từng sử dụng giao thức không
 # 2. Thu hồI TẤT CẢ các phê duyệt vớI hợp đồng bị xâm phạm
 # 3. Theo dõI địa chỉ của bạn để phát hiện chuyển khoản trái phép
 ```
@@ -493,8 +467,7 @@ await setLimitedApproval(usdcContract, uniswapRouter, "1000");
 ### Chiến Lược "Ví Dùng Một Lần"
 
 ```javascript
-// Để khám phá các giao thức mới/chưa được kiểm tra:
-// 1. Tạo một ví "dùng một lần" riêng biệt
+// Để khám phá các giao thức mới/chưa được kiểm tra: // 1. Tạo một ví "dùng một lần" riêng biệt
 // 2. Chỉ chuyển tiền bạn có thể đủ khả năng để mất
 // 3. Cấp phê duyệt từ ví dùng một lần
 // 4. Sau khi sử dụng, thu hồI tất cả phê duyệt và quét số dư còn lạI
@@ -558,7 +531,6 @@ VớI hơn **1 tỷ USD tài sản được bảo vệ** và các cảnh báo b�
 *Tuyên bố Miễn trừ: Bài viết này chỉ nhằm mục đích thông tin và không cấu thành lờI khuyên tài chính hoặc bảo mật. Luôn xác minh địa chỉ hợp đồng, sử dụng ví phần cứng cho các khoản nắm giữ đáng kể và thực hành bảo mật vận hành tốt. Bài đăng này chứa các liên kết liên kết — chúng tôi có thể nhận được khoản bồi thường khi bạn sử dụng liên kết đối tác của chúng tôi mà không phát sinh thêm chi phí cho bạn.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

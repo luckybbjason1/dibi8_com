@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/aider" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/aider" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/aider" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/aider" />
 title: 'Aider: 45K+ Stars — 터미널 AI 페어 프로그래밍 vs Claude Code, Curs...
 description: 'Aider는 로컬 git 저장소에서 코드를 편집하는 터미널 AI 페어 프로그래밍 도구입니다. OpenAI, Claude, DeepSeek, Gemini을 지원합니다. Aider 설치, 튜토리얼, Git 통합, 벤치마크, Claude Code 및 Cursor와의 비교를 알아보세요.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [aider, 'ai-페어-프로그래밍', '터미널-ai', 'cli-코딩', 'git-ai', 'llm-도구', 오픈소스]
-aliases:
-- /kr/posts/aider/
+aliases: - /kr/posts/aider/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/aider/ -->
 
 {{</* resource-info */>}}
 
@@ -131,9 +123,7 @@ docker run -it --rm \
 
 ### VS Code
 
-Aider는 VS Code 확장이 필요 없다. 프로젝트 터미널에서 Aider를 시작한 다음 VS Code에서 평소처럼 파일을 편집하면 된다. Aider는 git 저장소를 감시하고 변경 사항을 자동으로 커밋한다. 더 급박한 워크플로우를 위해 `--watch-files` 플래그를 사용한다:
-
-```bash
+Aider는 VS Code 확장이 필요 없다. 프로젝트 터미널에서 Aider를 시작한 다음 VS Code에서 평소처럼 파일을 편집하면 된다. Aider는 git 저장소를 감시하고 변경 사항을 자동으로 커밋한다. 더 급박한 워크플로우를 위해 `--watch-files` 플래그를 사용한다: ```bash
 # 터미널 1: aider 시작
 aider --model sonnet --watch-files
 
@@ -143,9 +133,7 @@ aider --model sonnet --watch-files
 
 ### Vim / Neovim
 
-Aider는 Vim 워크플로우에 자연스럽게 맞는다. tmux 분할 화면에서 에디터와 나란히 실행한다:
-
-```bash
+Aider는 Vim 워크플로우에 자연스럽게 맞는다. tmux 분할 화면에서 에디터와 나란히 실행한다: ```bash
 # tmux 구성: aider + vim
 tmux new-session -d -s aider-vim
 tmux split-window -h -t aider-vim
@@ -156,15 +144,12 @@ tmux attach -t aider-vim
 
 ### Git 및 GitHub
 
-Aider의 git 통합은 독보적인 기능이다. 모든 AI 보조 편집이 별도의 커밋이 된다:
-
-```bash
+Aider의 git 통합은 독보적인 기능이다. 모든 AI 보조 편집이 별도의 커밋이 된다: ```bash
 # aider 세션 내에서
 > /add src/auth.js src/middleware.js
 > auth 미들웨어에 JWT 토큰 검증 추가
 
-# Aider가 변경을 수행하고 커밋:
-# [main a1b2c3d] feat: auth 미들웨어에 JWT 토큰 검증 추가
+# Aider가 변경을 수행하고 커밋: # [main a1b2c3d] feat: auth 미들웨어에 JWT 토큰 검증 추가
 #  2 files changed, 45 insertions(+), 12 deletions(-)
 
 # 푸시 전 커밋 검토
@@ -179,24 +164,18 @@ git push origin main
 
 ```yaml
 # .gitlab-ci.yml - AI 코드 리뷰 파이프라인
-ai-review:
-  image: python:3.12
-  before_script:
-    - pip install aider-chat
-  script:
-    - aider --model sonnet --message "이 MR의 보안 문제 검토" --no-auto-commits
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+ai-review: image: python:3.12
+  before_script: - pip install aider-chat
+  script: - aider --model sonnet --message "이 MR의 보안 문제 검토" --no-auto-commits
+  rules: - if: $CI_PIPELINE_SOURCE == "merge_request_event"
 ```
 
 ### Pre-commit 훅
 
 ```yaml
 # .pre-commit-config.yaml
-repos:
-  - repo: local
-    hooks:
-      - id: aider-lint
+repos: - repo: local
+    hooks: - id: aider-lint
         name: aider lint 수정 실행
         entry: aider --lint-cmd "npm run lint" --lint
         language: system
@@ -223,9 +202,7 @@ Aider는 업계에서 가장 널리 인용되는 LLM 코딩 벤치마크를 유�
 
 ### Aider 자체 벤치마크
 
-Aider는 실제 코딩 작업에서도 자체 벤치마크를 수행한다:
-
-| 모델 | 통과율 | 평균 토큰 | 지연 시간 |
+Aider는 실제 코딩 작업에서도 자체 벤치마크를 수행한다: | 모델 | 통과율 | 평균 토큰 | 지연 시간 |
 |------|--------|-----------|-----------|
 | Claude Sonnet 4 | 72% | 18,400 | 45초 |
 | GPT-4.1 | 68% | 22,100 | 38초 |
@@ -234,9 +211,7 @@ Aider는 실제 코딩 작업에서도 자체 벤치마크를 수행한다:
 
 ### 실제 생산성 데이터
 
-2026년 커뮤니티 보고서 및 개발자 설문조사 기반:
-
-- **개인 개발자:** Sonnet 또는 GPT-5와 함께 Aider를 사용할 때 보일러플레이트 코딩 시간이 평균 35-45% 감소
+2026년 커뮤니티 보고서 및 개발자 설문조사 기반: - **개인 개발자:** Sonnet 또는 GPT-5와 함께 Aider를 사용할 때 보일러플레이트 코딩 시간이 평균 35-45% 감소
 - **리팩토링 작업:** 수동으로 4-6시간 소요되던 다중 파일 리팩토링을 Aider로 45-90분 내에 완료
 - **테스트 생성:** Aider를 사용하여 기존 코드에 대한 테스트를 작성할 때 라인 커버리지가 평균 60%에서 85%로 증가
 - **Git 기록:** 자동 커밋의 세분화로 인해 Aider 사용자는 하루 커밋 횟수가 3-5배 증가했다고 보고
@@ -256,9 +231,7 @@ echo "config/prod.yml" >> .aiderignore
 
 ### 비용 절감을 위한 프롬프트 캐싱
 
-Aider는 Anthropic Claude 및 OpenAI 모델에 대한 프롬프트 캐싱을 지원하여 다중 턴 대화에서 API 비용을 40-60% 절감한다:
-
-```bash
+Aider는 Anthropic Claude 및 OpenAI 모델에 대한 프롬프트 캐싱을 지원하여 다중 턴 대화에서 API 비용을 40-60% 절감한다: ```bash
 # 캐싱을 지원하는 모델은 자동으로 프롬프트 캐싱을 사용
 aider --model sonnet --cache-prompts
 
@@ -270,16 +243,13 @@ aider --model sonnet --cache-prompts
 
 ```bash
 # ~/.aider.conf.yml
-model-alias:
-  - fast: gpt-4.1
+model-alias: - fast: gpt-4.1
   - smart: claude-sonnet-4
   - cheap: deepseek/deepseek-chat
   - local: ollama/qwen2.5-coder:32b
 ```
 
-사용법:
-
-```bash
+사용법: ```bash
 aider --model fast    # gpt-4.1 사용
 aider --model smart   # claude-sonnet-4 사용
 aider --model cheap   # DeepSeek 사용
@@ -366,9 +336,7 @@ aider --model sonnet --analytics-log ./logs/aider.jsonl
 
 ## 한계 / 정직한 평가
 
-Aider는 모든 개발자나 모든 상황에 적합한 도구가 아니다. 다음은 잘 맞지 않는 경우이다:
-
-**GUI에 의존하는 워크플로우:** 렌더링된 UI 보기, 드래그 앤 드롭 파일 관리 또는 시각적 diff 검토가 필요한 경우 Aider의 터미널 인터페이스가 답답할 수 있다. Cursor나 Windsurf가 더 적합하다.
+Aider는 모든 개발자나 모든 상황에 적합한 도구가 아니다. 다음은 잘 맞지 않는 경우이다: **GUI에 의존하는 워크플로우:** 렌더링된 UI 보기, 드래그 앤 드롭 파일 관리 또는 시각적 diff 검토가 필요한 경우 Aider의 터미널 인터페이스가 답답할 수 있다. Cursor나 Windsurf가 더 적합하다.
 
 **개발자가 아닌 사용자:** Aider는 git 숙련도, 터미널 편안함, API 키 관리를 전제로 한다. 환경 변수 설정 방법을 모르는 개발자는 어려움을 겪을 수 있다. Cursor의 원클릭 설치가 더 나은 입문 선택이다.
 
@@ -421,9 +389,7 @@ Aider는 2026년에 사용할 수 있는 가장 유연하고 비용 효율적인
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -445,7 +411,6 @@ Aider는 2026년에 사용할 수 있는 가장 유연하고 비용 효율적인
 *이 문서는 정보 제공 목적으로 작성되었다. Aider는 Apache-2.0 라이선스 하의 오픈소스 소프트웨어이다. 프로덕션에 배포하기 전에 항상 AI가 생성한 코드를 검토하라.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

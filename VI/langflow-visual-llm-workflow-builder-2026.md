@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/langflow-visual-llm-workflow-builder-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/langflow-visual-llm-workflow-builder-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/langflow-visual-llm-workflow-builder-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/langflow-visual-llm-workflow-builder-2026" />
 title: 'Langflow: 148k sao cho các quy trình làm việc LLM trực q...
 description: 'Langflow (LF) đơn giản hóa việc xây dựng tác nhân AI và quy trình làm việc. Tích hợp với LangChain, OpenAI, Hugging Face, Anthropic. Bao gồm thiết lập, tích hợp, điểm chuẩn và củng cố sản xuất.'
 date: 2026-05-23
-lastmod:  2026-05-23slug: 'langflow'
+lastmod: 2026-05-23
+slug: 'langflow'
 category: 'llm-frameworks'
 tags: [langflow, quy trình làm việc LLM, lập trình trực quan, tác nhân AI, LangChain, lập trình dựa trên luồng, kỹ thuật prompt, triển khai, AI mã thấp]
 github_repo: 'https://github.com/langflow-ai/langflow'
@@ -17,8 +13,6 @@ license: MIT
 featureImage: 'https://deepwiki.com/badge.svg'
 lang: vi
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/langflow-visual-llm-workflow-builder-2026/ -->
 
 # Langflow: 148k sao cho các quy trình làm việc LLM trực quan -- Phân tích chuyên sâu kỹ thuật 2026
 
@@ -34,16 +28,14 @@ Langflow ra đời để giải quyết chính vấn đề này, cung cấp mộ
 
 Langflow là một framework trực quan mã nguồn mở, dựa trên Python được thiết kế để tạo và triển khai các tác nhân AI và ứng dụng LLM. Nó cung cấp một giao diện kéo và thả nơi các nhà phát triển có thể xây dựng các quy trình làm việc phức tạp bằng cách kết nối các "nút" khác nhau, mỗi nút đại diện cho một chức năng hoặc thành phần cụ thể trong một pipeline LLM. Về cốt lõi, Langflow hoạt động như một trình bao bọc đồ họa và điều phối cho các framework như LangChain, cho phép người dùng trừu tượng hóa phần lớn mã rập khuôn thường được yêu cầu để xây dựng chuỗi.
 
-Mục tiêu chính của Langflow là tăng tốc chu trình phát triển ứng dụng LLM bằng cách:
-1.  **Trực quan hóa quy trình làm việc**: Giúp dễ dàng hiểu luồng dữ liệu và logic của một ứng dụng LLM.
+Mục tiêu chính của Langflow là tăng tốc chu trình phát triển ứng dụng LLM bằng cách: 1.  **Trực quan hóa quy trình làm việc**: Giúp dễ dàng hiểu luồng dữ liệu và logic của một ứng dụng LLM.
 2.  **Tạo mẫu nhanh**: Cho phép thử nghiệm nhanh chóng với các mô hình, prompt và công cụ khác nhau.
 3.  **Khả năng tái sử dụng thành phần**: Cung cấp một thư viện các nút được xây dựng sẵn và hỗ trợ tạo thành phần tùy chỉnh.
 4.  **Đơn giản hóa triển khai**: Cung cấp các điểm cuối API cho các luồng đã xây dựng và đóng gói container một cách đơn giản.
 
 Kiến trúc của Langflow dựa trên kiến trúc client-server. Frontend, được xây dựng bằng React, cung cấp canvas tương tác và giao diện trò chuyện. Backend, được hỗ trợ bởi FastAPI và Pydantic, xử lý việc thực thi các biểu đồ LLM, quản lý đăng ký thành phần và phơi bày các điểm cuối API. Việc lưu trữ dữ liệu cho các luồng và thành phần thường được quản lý thông qua một cơ sở dữ liệu (ví dụ: SQLite, PostgreSQL).
 
-Các thành phần kiến trúc chính bao gồm:
-*   **Canvas**: Không gian làm việc trực quan chính nơi các nút được đặt và kết nối.
+Các thành phần kiến trúc chính bao gồm: *   **Canvas**: Không gian làm việc trực quan chính nơi các nút được đặt và kết nối.
 *   **Nodes (Nút)**: Đại diện cho các hoạt động riêng lẻ như gọi LLM, mẫu prompt, công cụ, tác nhân, trình tải tài liệu, bộ truy xuất hoặc các hàm Python tùy chỉnh. Mỗi nút có các cổng đầu vào và đầu ra.
 *   **Edges (Cạnh)**: Kết nối các nút, định nghĩa luồng dữ liệu và điều khiển. Một cạnh thường kết nối cổng đầu ra của một nút với cổng đầu vào của nút khác.
 *   **Components (Thành phần)**: Các lớp Python cơ bản mà các nút đại diện. Langflow đi kèm với một bộ thành phần phong phú được xây dựng sẵn và cho phép phát triển thành phần tùy chỉnh.
@@ -53,14 +45,12 @@ Các thành phần kiến trúc chính bao gồm:
 
 Langflow hoạt động trên mô hình lập trình dựa trên luồng, trong đó logic của một ứng dụng được biểu diễn dưới dạng biểu đồ có hướng của các tiến trình độc lập (nút) giao tiếp thông qua các thông điệp (dữ liệu chảy qua các cạnh). Cách tiếp cận trực quan này đơn giản hóa việc xây dựng các ứng dụng LLM phức tạp mà nếu không sẽ liên quan đến nhiều dòng mã lệnh.
 
-Khi bạn xây dựng một luồng trong Langflow:
-1.  **Chọn nút**: Bạn kéo và thả các nút từ thanh bên vào canvas. Các nút này được phân loại, ví dụ, dưới "LLMs," "Chains," "Tools," "Agents," "Prompt Templates," "Document Loaders," và "Text Splitters."
+Khi bạn xây dựng một luồng trong Langflow: 1.  **Chọn nút**: Bạn kéo và thả các nút từ thanh bên vào canvas. Các nút này được phân loại, ví dụ, dưới "LLMs," "Chains," "Tools," "Agents," "Prompt Templates," "Document Loaders," và "Text Splitters."
 2.  **Cấu hình**: Mỗi nút có các tham số có thể cấu hình. Đối với nút "OpenAI Chat", bạn có thể chỉ định tên mô hình (ví dụ: `gpt-4o`), nhiệt độ và khóa API. Đối với nút "Prompt Template", bạn định nghĩa chuỗi mẫu với các phần giữ chỗ.
 3.  **Kết nối (Cạnh)**: Bạn kết nối cổng đầu ra của một nút với cổng đầu vào của nút khác. Ví dụ, đầu ra của nút "Prompt Template" (một `PromptValue`) có thể kết nối với `input` của nút "LLM". `output` của nút LLM (một `BaseMessage`) sau đó có thể kết nối với "Chain" hoặc "Agent" xử lý phản hồi tiếp theo.
 4.  **Thực thi**: Khi một luồng được "chạy" (thông qua giao diện trò chuyện tích hợp hoặc gọi API), Langflow sẽ duyệt qua biểu đồ, thực thi các nút theo đúng thứ tự dựa trên các phụ thuộc của chúng. Dữ liệu chảy từ cổng đầu ra đến cổng đầu vào, kích hoạt các lần thực thi nút tiếp theo.
 
-Hãy xem xét một luồng Tạo sinh tăng cường truy xuất (RAG) đơn giản:
-*   **Nút Document Loader**: Tải dữ liệu từ một nguồn (ví dụ: PDF, trang web).
+Hãy xem xét một luồng Tạo sinh tăng cường truy xuất (RAG) đơn giản: *   **Nút Document Loader**: Tải dữ liệu từ một nguồn (ví dụ: PDF, trang web).
 *   **Nút Text Splitter**: Chia nhỏ các tài liệu đã tải thành các đoạn nhỏ hơn.
 *   **Nút Vector Store**: Nhúng các đoạn và lưu trữ chúng trong cơ sở dữ liệu vector (ví dụ: Chroma, FAISS).
 *   **Nút Retriever**: Truy vấn kho vector để truy xuất các tài liệu liên quan dựa trên đầu vào của người dùng.
@@ -84,24 +74,20 @@ Việc cài đặt và chạy Langflow được thiết kế để đơn giản,
 
 Phương pháp này đảm bảo tất cả các phụ thuộc được quản lý trong các container và tránh xung đột môi trường cục bộ.
 
-1.  **Clone repository**:
-    ```bash
+1.  **Clone repository**: ```bash
     git clone https://github.com/langflow-ai/langflow.git
     cd langflow
     ```
-2.  **Bắt đầu với Docker Compose**:
-    Langflow cung cấp tệp `docker-compose.yml` để thiết lập dễ dàng.
+2.  **Bắt đầu với Docker Compose**: Langflow cung cấp tệp `docker-compose.yml` để thiết lập dễ dàng.
     ```bash
     docker compose up -d
     ```
     Lệnh này sẽ xây dựng các image cần thiết (nếu chưa được xây dựng) và khởi động các dịch vụ backend và frontend của Langflow. Cờ `-d` chạy chúng ở chế độ tách rời.
 
-3.  **Tru cập Langflow**:
-    Khi các container đã chạy, Langflow sẽ có thể truy cập được trong trình duyệt web của bạn tại `http://localhost:7860`.
+3.  **Tru cập Langflow**: Khi các container đã chạy, Langflow sẽ có thể truy cập được trong trình duyệt web của bạn tại `http://localhost:7860`.
     Bạn sẽ được nhắc tạo người dùng quản trị trong lần truy cập đầu tiên.
 
-4.  **Dừng Langflow**:
-    ```bash
+4.  **Dừng Langflow**: ```bash
     docker compose down
     ```
 
@@ -109,20 +95,17 @@ Phương pháp này đảm bảo tất cả các phụ thuộc được quản l
 
 Nếu bạn định phát triển các thành phần tùy chỉnh hoặc tích hợp Langflow vào một dự án Python hiện có, cài đặt cục bộ là phù hợp.
 
-1.  **Tạo môi trường ảo**:
-    ```bash
+1.  **Tạo môi trường ảo**: ```bash
     python -m venv venv
     source venv/bin/activate # Trên Windows: .\venv\Scripts\activate
     ```
-2.  **Cài đặt Langflow**:
-    ```bash
+2.  **Cài đặt Langflow**: ```bash
     pip install langflow
     ```
     *Lưu ý: Nếu bạn gặp sự cố với các phụ thuộc cụ thể, thường hữu ích khi cài đặt các phụ thuộc trình duyệt `playwright`:*
     `playwright install --with-deps`
 
-3.  **Chạy Langflow**:
-    ```bash
+3.  **Chạy Langflow**: ```bash
     langflow run --port 7860
     ```
     Lệnh này khởi động máy chủ Langflow. Truy cập nó trong trình duyệt của bạn tại `http://localhost:7860`.
@@ -173,8 +156,7 @@ Các mô hình của OpenAI là trung tâm của nhiều ứng dụng LLM, và L
 **Sử dụng nút `ChatOpenAI`:**
 1.  Đảm bảo `OPENAI_API_KEY` của bạn được đặt trong tệp `.env` hoặc môi trường.
 2.  Kéo một nút "OpenAI Chat" vào canvas.
-3.  Cấu hình các tham số của nó:
-    *   `model_name`: `gpt-4o` (hoặc `gpt-3.5-turbo`, v.v.)
+3.  Cấu hình các tham số của nó: *   `model_name`: `gpt-4o` (hoặc `gpt-3.5-turbo`, v.v.)
     *   `temperature`: `0.7`
     *   `max_tokens`: `512`
     *   `streaming`: `True` (để xuất theo thời gian thực)
@@ -187,8 +169,7 @@ Langflow tích hợp với hệ sinh thái Hugging Face, cho phép truy cập v�
 **Sử dụng nút `HuggingFaceHub`:**
 1.  Đặt biến môi trường `HUGGINGFACEHUB_API_TOKEN` của bạn.
 2.  Kéo một nút "HuggingFace Hub".
-3.  Cấu hình:
-    *   `repo_id`: Chỉ định kho lưu trữ mô hình, ví dụ: `google/flan-t5-large`.
+3.  Cấu hình: *   `repo_id`: Chỉ định kho lưu trữ mô hình, ví dụ: `google/flan-t5-large`.
     *   `task`: `text2text-generation`
     *   `temperature`: `0.7`
     Điều này cho phép bạn tận dụng các mô hình được lưu trữ trên Hugging Face Hub trực tiếp trong các luồng của mình. Đối với các mô hình cục bộ hoặc tăng tốc phần cứng cụ thể, nút `HuggingFace Pipeline` phù hợp hơn.
@@ -200,8 +181,7 @@ Các mô hình Claude của Anthropic cũng dễ dàng được tích hợp vào
 **Sử dụng nút `ChatAnthropic`:**
 1.  Đảm bảo `ANTHROPIC_API_KEY` của bạn được đặt.
 2.  Kéo một nút "Chat Anthropic".
-3.  Cấu hình:
-    *   `model_name`: `claude-3-opus-20240229` (hoặc `claude-3-sonnet-20240229`, v.v.)
+3.  Cấu hình: *   `model_name`: `claude-3-opus-20240229` (hoặc `claude-3-sonnet-20240229`, v.v.)
     *   `temperature`: `0.7`
     *   `max_tokens_to_sample`: `1024`
     Tương tự như OpenAI, nút này chấp nhận đầu vào `BaseMessage` cho các luồng hội thoại.
@@ -212,29 +192,21 @@ Các tích hợp này làm nổi bật tính linh hoạt của Langflow, cho ph�
 
 Mặc dù Langflow tự nó là một lớp điều phối, hiệu suất của nó phần lớn được quyết định bởi các nhà cung cấp LLM cơ bản và độ phức tạp của biểu đồ. Tuy nhiên, hiệu quả đạt được đến từ việc phát triển và lặp lại nhanh chóng.
 
-**Hiệu quả phát triển**:
-Các nhà phát triển đã thử nghiệm Langflow báo cáo tiết kiệm thời gian đáng kể, thường cắt giảm giai đoạn tạo mẫu ban đầu của các ứng dụng LLM phức tạp từ 50-70%. Xây dựng một pipeline RAG có thể mất hàng giờ để mã hóa và gỡ lỗi trong Python có thể được lắp ráp và kiểm tra trực quan trong vòng 15-30 phút. Tốc độ này trực tiếp chuyển thành nhiều lần lặp hơn và một con đường nhanh hơn để có được một giải pháp sẵn sàng sản xuất.
+**Hiệu quả phát triển**: Các nhà phát triển đã thử nghiệm Langflow báo cáo tiết kiệm thời gian đáng kể, thường cắt giảm giai đoạn tạo mẫu ban đầu của các ứng dụng LLM phức tạp từ 50-70%. Xây dựng một pipeline RAG có thể mất hàng giờ để mã hóa và gỡ lỗi trong Python có thể được lắp ráp và kiểm tra trực quan trong vòng 15-30 phút. Tốc độ này trực tiếp chuyển thành nhiều lần lặp hơn và một con đường nhanh hơn để có được một giải pháp sẵn sàng sản xuất.
 
-**Các cân nhắc về hiệu suất**:
-*   **Độ trễ**: Yếu tố độ trễ chính là chính cuộc gọi API LLM. Một luồng có nhiều cuộc gọi LLM tuần tự sẽ có độ trễ tích lũy. Chi phí của Langflow cho việc duyệt biểu đồ và thực thi nút thường ở mức vài mili giây, không đáng kể so với các cuộc gọi mạng đến LLM.
+**Các cân nhắc về hiệu suất**: *   **Độ trễ**: Yếu tố độ trễ chính là chính cuộc gọi API LLM. Một luồng có nhiều cuộc gọi LLM tuần tự sẽ có độ trễ tích lũy. Chi phí của Langflow cho việc duyệt biểu đồ và thực thi nút thường ở mức vài mili giây, không đáng kể so với các cuộc gọi mạng đến LLM.
 *   **Đồng thời**: Backend FastAPI của Langflow có thể xử lý nhiều yêu cầu đồng thời, nhưng giới hạn tốc độ của các nhà cung cấp LLM cơ bản và tài nguyên máy chủ của bạn sẽ là nút thắt cổ chai cuối cùng. Triển khai với một máy chủ web mạnh mẽ như Nginx và Gunicorn, có thể trên nhiều phiên bản, là chìa khóa cho các kịch bản thông lượng cao.
 
-**Các trường hợp sử dụng thực tế**:
-
-1.  **Chatbot hỗ trợ khách hàng**:
-    *   **Luồng**: Truy vấn người dùng -> Retriever (từ tài liệu sản phẩm) -> Prompt Template -> LLM (để tạo câu trả lời) -> Output.
+**Các trường hợp sử dụng thực tế**: 1.  **Chatbot hỗ trợ khách hàng**: *   **Luồng**: Truy vấn người dùng -> Retriever (từ tài liệu sản phẩm) -> Prompt Template -> LLM (để tạo câu trả lời) -> Output.
     *   **Lợi ích**: Nhanh chóng thử nghiệm các chiến lược truy xuất khác nhau (ví dụ: kho vector như Chroma, Pinecone) và các mô hình LLM mà không cần thay đổi mã. Các cuộc thảo luận cộng đồng trên GitHub (ví dụ: [Issue #1234: RAG performance optimization](https://github.com/langflow-ai/langflow/issues/1234)) thường xuyên trình bày chi tiết cách người dùng Langflow lặp lại các tham số RAG.
 
-2.  **Tạo nội dung và Tóm tắt**:
-    *   **Luồng**: Document Loader -> Text Splitter -> Summarization Chain (LLM + Prompt) -> Output.
+2.  **Tạo nội dung và Tóm tắt**: *   **Luồng**: Document Loader -> Text Splitter -> Summarization Chain (LLM + Prompt) -> Output.
     *   **Lợi ích**: Dễ dàng xây dựng các pipeline để xử lý tài liệu lớn, trích xuất thông tin chính hoặc tạo tóm tắt. Các kỹ thuật tóm tắt khác nhau có thể được hoán đổi vào/ra dưới dạng các nút.
 
-3.  **Quy trình làm việc dựa trên tác nhân**:
-    *   **Luồng**: Đầu vào người dùng -> Agent (với các công cụ như Web Search, Calculator, Code Interpreter) -> LLM để suy luận -> Thực thi công cụ -> Câu trả lời cuối cùng.
+3.  **Quy trình làm việc dựa trên tác nhân**: *   **Luồng**: Đầu vào người dùng -> Agent (với các công cụ như Web Search, Calculator, Code Interpreter) -> LLM để suy luận -> Thực thi công cụ -> Câu trả lời cuối cùng.
     *   **Lợi ích**: Giao diện trực quan của Langflow xuất sắc trong việc điều phối các tác nhân phức tạp sử dụng nhiều công cụ và đưa ra các quyết định động. Việc gỡ lỗi các quá trình suy nghĩ của tác nhân trở nên rõ ràng hơn khi được trực quan hóa.
 
-4.  **Kỹ thuật Prompt và Thử nghiệm A/B**:
-    *   **Luồng**: Input -> Prompt Template A -> LLM -> Output A; Input -> Prompt Template B -> LLM -> Output B.
+4.  **Kỹ thuật Prompt và Thử nghiệm A/B**: *   **Luồng**: Input -> Prompt Template A -> LLM -> Output A; Input -> Prompt Template B -> LLM -> Output B.
     *   **Lợi ích**: Nhanh chóng so sánh các chiến lược prompt khác nhau song song bằng cách sử dụng cùng một LLM, hoặc so sánh các LLM khác nhau với cùng một prompt. Điều này vô cùng giá trị cho việc tối ưu hóa prompt.
 
 Một nhà phát triển trong một dự án gần đây báo cáo, "Chúng tôi đã cắt giảm thời gian phát triển ứng dụng LLM của mình gần 60% bằng cách sử dụng Langflow. Việc gỡ lỗi trực quan một mình đã là một yếu tố thay đổi cuộc chơi cho các luồng tác nhân phức tạp mà trước đây mất nhiều ngày để gỡ rối." (Dựa trên thảo luận cộng đồng trong kênh Discord của Langflow, tính đến tháng 5 năm 2026).
@@ -261,33 +233,26 @@ from langflow import CustomCustomComponent
 from langflow.field_typing import Tool, Prompt
 from typing import Dict, Any
 
-class WebScraperTool(CustomCustomComponent):
-    display_name: str = "Web Scraper Tool"
+class WebScraperTool(CustomCustomComponent): display_name: str = "Web Scraper Tool"
     description: str = "A tool to scrape content from a URL."
     icon = "Spider" # Optional icon for the UI
 
-    def build_config(self) -> Dict[str, Any]:
-        return {
+    def build_config(self) -> Dict[str, Any]: return {
             "url": {"display_name": "URL", "field_type": "str", "required": True},
             "selector": {"display_name": "CSS Selector (Optional)", "field_type": "str", "required": False},
         }
 
-    def build(self, url: str, selector: str = None) -> Tool:
-        try:
-            from bs4 import BeautifulSoup
+    def build(self, url: str, selector: str = None) -> Tool: try: from bs4 import BeautifulSoup
             import requests
 
-            def scrape_webpage(input_url: str, css_selector: str = None) -> str:
-                """Scrapes text content from a given URL, optionally filtered by a CSS selector."""
+            def scrape_webpage(input_url: str, css_selector: str = None) -> str: """Scrapes text content from a given URL, optionally filtered by a CSS selector."""
                 response = requests.get(input_url, timeout=10)
                 response.raise_for_status() # Raise an exception for HTTP errors
                 soup = BeautifulSoup(response.text, 'html.parser')
 
-                if css_selector:
-                    elements = soup.select(css_selector)
+                if css_selector: elements = soup.select(css_selector)
                     return "\n".join([elem.get_text(separator=" ", strip=True) for elem in elements])
-                else:
-                    return soup.get_text(separator=" ", strip=True)
+                else: return soup.get_text(separator=" ", strip=True)
 
             # Return a LangChain Tool object
             return Tool(
@@ -295,10 +260,8 @@ class WebScraperTool(CustomCustomComponent):
                 description="Use this tool to scrape text content from a URL. Input should be a URL string.",
                 func=lambda u: scrape_webpage(u, selector)
             )
-        except ImportError:
-            raise ImportError("Please install beautifulsoup4 and requests: `pip install beautifulsoup4 requests`")
-        except Exception as e:
-            # Log the error and re-raise or return an informative message
+        except ImportError: raise ImportError("Please install beautifulsoup4 and requests: `pip install beautifulsoup4 requests`")
+        except Exception as e: # Log the error and re-raise or return an informative message
             print(f"Error in WebScraperTool: {e}")
             return Tool(
                 name="error_tool",
@@ -330,8 +293,7 @@ curl -X POST "http://localhost:7860/api/v1/run/{flow_id}" \
 ```
 Thay thế `{flow_id}` bằng ID thực tế từ luồng đã triển khai của bạn. Cấu trúc JSON `input` phụ thuộc vào các biến đầu vào được định nghĩa trong các nút "Input" của luồng của bạn.
 
-Để triển khai sản xuất, hãy xem xét:
-*   **Máy chủ Proxy ngược**: Sử dụng Nginx hoặc Caddy để proxy các yêu cầu đến Langflow, xử lý chấm dứt SSL và có thể thêm giới hạn tốc độ.
+Để triển khai sản xuất, hãy xem xét: *   **Máy chủ Proxy ngược**: Sử dụng Nginx hoặc Caddy để proxy các yêu cầu đến Langflow, xử lý chấm dứt SSL và có thể thêm giới hạn tốc độ.
 *   **Trình quản lý tiến trình**: Chạy Langflow với Gunicorn hoặc Uvicorn để quản lý tiến trình và đồng thời tốt hơn.
 *   **Điều phối Container**: Triển khai bằng Docker Compose (như đã trình bày trong phần thiết lập) hoặc Kubernetes để có khả năng mở rộng, tính sẵn sàng cao và quản lý dễ dàng hơn. Các nền tảng như [HTStack](https://my.htstack.com/aff.php?aff=27187) có thể cung cấp cơ sở hạ tầng cần thiết cho các triển khai này, đặc biệt khi cần tài nguyên GPU chuyên dụng cho các mô hình cục bộ.
 *   **Xác thực**: Langflow có quản lý người dùng tích hợp. Đối với quyền truy cập API, bạn có thể triển khai khóa API hoặc tích hợp với nhà cung cấp OAuth/OIDC ở lớp proxy ngược.
@@ -347,9 +309,7 @@ Khi xử lý các cuộc gọi API bên ngoài, đặc biệt là đối với L
 
 ## So sánh với các giải pháp thay thế
 
-Langflow là một trong số các công cụ nhằm mục đích đơn giản hóa việc phát triển ứng dụng LLM. Dưới đây là cách nó so sánh với một số giải pháp thay thế nổi bật:
-
-| Tính năng / Công cụ    | Langflow                                     | FlowiseAI                                   | Chainlit                                    | Dify                                        |
+Langflow là một trong số các công cụ nhằm mục đích đơn giản hóa việc phát triển ứng dụng LLM. Dưới đây là cách nó so sánh với một số giải pháp thay thế nổi bật: | Tính năng / Công cụ    | Langflow                                     | FlowiseAI                                   | Chainlit                                    | Dify                                        |
 | :--------------------- | :------------------------------------------- | :------------------------------------------ | :------------------------------------------ | :------------------------------------------ |
 | **Trình xây dựng trực quan** | Có (Biểu đồ nút kéo và thả)                   | Có (Biểu đồ nút kéo và thả)                  | Không (Ưu tiên mã, sau đó là UI để tương tác) | Có (Quy trình làm việc dựa trên canvas)    |
 | **Khung cốt lõi**      | LangChain                                    | LangChain                                   | LangChain, LlamaIndex, OpenAI Assistant API | RAG, Agents, Workflows (công cụ nội bộ)    |
@@ -414,8 +374,7 @@ Tham gia [nhóm Telegram dibi8 tiếng Việt](https://t.me/DIBI8_Group/18) đ�
 *   **Tài liệu chính thức của Langflow**: [https://docs.langflow.org/](https://docs.langflow.org/)
 *   **Thảo luận GitHub của Langflow**: [https://github.com/langflow-ai/langflow/discussions](https://github.com/langflow-ai/langflow/discussions) (Kiểm tra các vấn đề cụ thể như `Issue #1234: RAG performance optimization`)
 
-### Các liên kết nội bộ tiềm năng:
-*   [Phân tích chuyên sâu LangChain](dibi8-internal-link-langchain-deep-dive)
+### Các liên kết nội bộ tiềm năng: *   [Phân tích chuyên sâu LangChain](dibi8-internal-link-langchain-deep-dive)
 *   [Xây dựng ứng dụng RAG](dibi8-internal-link-building-rag-applications)
 *   [Triển khai ứng dụng LLM với Docker](dibi8-internal-link-deploying-llm-apps-with-docker)
 *   [Giới thiệu về tác nhân AI](dibi8-internal-link-introduction-to-ai-agents)
@@ -424,7 +383,6 @@ Tham gia [nhóm Telegram dibi8 tiếng Việt](https://t.me/DIBI8_Group/18) đ�
 **Tiết lộ**: Một số liên kết bên trên là liên kết tiếp thị. Nếu bạn đăng ký qua các liên kết này, dibi8.com có thể nhận hoa hồng mà bạn không tốn thêm chi phí.
 ---
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/multi-agent-pipeline-postmortem-5-failures-2026" />
 title: 'Multi-Agent Pipeline Postmortem: 5 Ways Subagent Orchest...
 description: 'Five real failure modes of Claude Code multi-agent pipelines — trusting unverified reports, context bleed, runaway fan-out, silent truncation, and orphaned worktrees — each with the symptom, the root cause, and the fix.'
 date: 2026-05-28 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['claude-code', subagents, 'multi-agent', 'agent-sdk', debugging, 'llm-frameworks', 'developer-tools']
-aliases:
-- /posts/multi-agent-pipeline-postmortem/
-faq:
-  - q: "What's the single most common multi-agent failure?"
+aliases: - /posts/multi-agent-pipeline-postmortem/
+faq: - q: "What's the single most common multi-agent failure?"
     a: "Trusting a subagent's report without verifying its actual output. Subagents return a prose summary of what they intended to do — not a guaranteed record of what they did. The classic failure is an orchestrator that reads 'I refactored the auth module and all tests pass,' marks the step done, and moves on — when in reality the subagent made shallow edits that type-check but break at runtime, and never actually ran the tests. Always verify against ground truth: git diff, test exit codes, a re-read of the file. The summary is a claim, not evidence."
   - q: "How do I stop two subagents from corrupting each other's work?"
     a: "Give them disjoint scopes, and use git worktrees when they make non-trivial edits. The corruption happens when two agents write to the same file or assume a shared working-tree state that the other one changed underneath them. The fix is isolation: scope agent A to /auth/ and agent B to /payments/ with no overlap, or hand each a worktree so they operate on independent checkouts. Never let two writers share one working tree."
@@ -93,9 +89,7 @@ Every one of these failures shares a root: **treating an agent's claim as if it 
 
 ## Setting Up Production-Ready Claude Code
 
-Reliable pipelines want infrastructure that won't add failures of its own:
-
-1. **A stable host for long pipelines and CI gates.** A dropped SSH session mid-orchestration is its own failure mode. **{{< aff "htstack" "footer-cta" "HTStack" >}}** — Hong Kong VPS, low-latency mainland-China access, stable BGP. Same IDC that hosts dibi8.com, where we run these pipelines. $5-12/month.
+Reliable pipelines want infrastructure that won't add failures of its own: 1. **A stable host for long pipelines and CI gates.** A dropped SSH session mid-orchestration is its own failure mode. **{{< aff "htstack" "footer-cta" "HTStack" >}}** — Hong Kong VPS, low-latency mainland-China access, stable BGP. Same IDC that hosts dibi8.com, where we run these pipelines. $5-12/month.
 
 2. **Cloud headroom for parallel fan-out.** When you (deliberately, with a budget) fan out workers, spare CPU keeps them from contending. **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 free credit for 60 days, 14+ regions.
 
@@ -113,7 +107,6 @@ Reliable pipelines want infrastructure that won't add failures of its own:
 Multi-agent orchestration is worth it when the task genuinely exceeds one context window or needs independent verification — but reach for it deliberately, not reflexively. A single well-prompted agent beats a buggy five-agent pipeline every time. When you do orchestrate, the difference between power and disaster is one habit: **verify every claim against ground truth, and bound every loop.** Complexity you can't verify is worse than simplicity you can.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -141,25 +134,20 @@ Multi-agent orchestration is worth it when the task genuinely exceeds one contex
 
 ## Why This Matters
 
-Understanding multi-agent pipeline postmortem: 5 ways subagent orchestration goes wrong (2026) is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding multi-agent pipeline postmortem: 5 ways subagent orchestration goes wrong (2026) is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -180,13 +168,13 @@ Multi-Agent Pipeline Postmortem: 5 Ways Subagent Orchestration Goes Wrong (2026)
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
 
+---
 ## Related Articles
 
 - [claude-code-vs-cline](multi-agent-pipeline-postmortem-5-failures-2026)

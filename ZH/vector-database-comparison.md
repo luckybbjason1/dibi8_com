@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/vector-database-comparison" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/vector-database-comparison" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/vector-database-comparison" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/vector-database-comparison" />
 title: '向量数据库对比2025：Pinecone vs Weaviate vs Chroma vs Milvus选型指南'
 description: '2025年主流向量数据库全面对比：Pinecone、Weaviate、Chroma、Milvus的功能、性能、价格及适用场景分析，助你选出最适合RAG的向量数据库。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/vector-database-comparison/
+aliases: - /posts/vector-database-comparison/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/vector-database-comparison/ -->
 
 {</* resource-info */>}
 
@@ -65,7 +57,13 @@ Pinecone 是向量数据库领域的先行者，2025 年已全面转向 **Server
 Pinecone 采用按存储 + 查询量计费的模式：
 
 | 指标 | Serverless 定价 | 说明 |
-|------|----------------|------|
+|
+---
+|
+---
+|
+---
+|
 | 存储 | ~$0.10/GB/月 | 按实际存储向量占用计算 |
 | 查询 | ~$0.10/百万次查询 | 含检索和元数据过滤 |
 
@@ -97,7 +95,13 @@ Weaviate 来自荷兰，以其 **GraphQL 接口** 和 **模块化 AI 集成** �
 ### 部署选项
 
 | 部署方式 | 适用场景 | 价格区间 |
-|----------|----------|----------|
+|
+---
+|
+---
+|
+---
+|
 | Weaviate Cloud (WCD) | 不想运维的团队 | $0.05-$0.25/百万查询 |
 | 自托管（Docker/K8s） | 数据敏感型企业 | 免费（仅基础设施费用） |
 | Embedded | 本地开发测试 | 免费 |
@@ -164,7 +168,13 @@ Milvus 由 Zilliz 公司开发并开源，是**吞吐量最高、最成熟**的�
 ### Zilliz Cloud（托管版 Milvus）
 
 | 实例类型 | 适用场景 | 起步价格 |
-|----------|----------|----------|
+|
+---
+|
+---
+|
+---
+|
 | Serverless | 开发测试/可变负载 | 按查询 + 存储计费 |
 | Dedicated | 生产环境稳定负载 | ~$65/月起 |
 | BYOC | 数据合规要求 | 联系销售 |
@@ -187,7 +197,17 @@ Milvus 由 Zilliz 公司开发并开源，是**吞吐量最高、最成熟**的�
 ## 四款向量数据库横向对比
 
 | 维度 | Pinecone | Weaviate | Chroma | Milvus |
-|------|----------|----------|--------|--------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **部署方式** | 仅云托管 | 云 + 自托管 | 本地/嵌入式 | 自托管 + Zilliz Cloud |
 | **开源协议** | 闭源 | BSD-3 | Apache 2.0 | Apache 2.0 |
 | **最大规模** | 十亿级向量 | 十亿级向量 | 百万级（单机） | 百亿级向量 |
@@ -206,7 +226,15 @@ Milvus 由 Zilliz 公司开发并开源，是**吞吐量最高、最成熟**的�
 2025 年初，Zilliz 团队发布的向量数据库基准测试（ANN-Benchmarks）显示：
 
 | 数据库 | QPS (1M 向量, 768维) | 召回率@10 | P99 延迟 |
-|--------|---------------------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Milvus (HNSW) | 8,500+ | 0.98 | 2.1ms |
 | Pinecone | 7,200+ | 0.97 | 3.5ms |
 | Weaviate | 5,800+ | 0.96 | 4.2ms |
@@ -292,12 +320,12 @@ Chroma 是嵌入式/本地优先的轻量方案，开源免费但功能相对简
 
 在 ANN-Benchmarks 测试中，Milvus 在吞吐量和延迟方面表现最优，尤其是启用了 GPU 索引加速后。Pinecone 的 Serverless 架构在弹性扩展方面表现突出。具体选择应结合实际数据规模和查询模式测试验证。
 
----
 
+---
 更多技术细节可参考各数据库官方文档：[Pinecone Docs](https://docs.pinecone.io/)、[Weaviate Docs](https://weaviate.io/developers/weaviate)、[Chroma Docs](https://docs.trychroma.com/)、[Milvus Docs](https://milvus.io/docs)。
 
----
 
+---
 ## 推荐基础设施
 
 要 7×24 稳跑上述工具，服务器选择关键：
@@ -309,7 +337,6 @@ Chroma 是嵌入式/本地优先的轻量方案，开源免费但功能相对简
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -337,25 +364,20 @@ Chroma 是嵌入式/本地优先的轻量方案，开源免费但功能相对简
 
 ## Why This Matters
 
-Understanding 向量数据库对比2025：pinecone vs weaviate vs chroma vs milvus选型指南 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding 向量数据库对比2025：pinecone vs weaviate vs chroma vs milvus选型指南 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -407,7 +429,17 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 ## Framework Comparison
 
 | Framework | Primary Use | Learning Curve | Community | Production Ready |
-|-----------|-------------|----------------|-----------|------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **LangChain** | General-purpose | Medium | Large | ✅ Yes |
 | **LlamaIndex** | RAG/Retrieval | Low | Growing | ✅ Yes |
 | **Haystack** | Document processing | Medium | Medium | ✅ Yes |

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/dagger" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/dagger" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/dagger" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/dagger" />
 title: 'Dagger: 可编程 CI/CD 15K+ Stars — 对比 GitHub Actions、GitLab ...
 description: 'Dagger 是一个可编程 CI/CD 引擎，在容器中运行流水线。兼容 Docker、Go、Python、TypeScript。涵盖 Dagger 安装配置、教程、与 GitHub Actions 对比以及生产环境加固。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [cicd, devops, 容器, 流水线即代码, docker, 'github-actions', 'gitlab-ci', 构建自动化]
-aliases:
-- /zh/posts/dagger/
+aliases: - /zh/posts/dagger/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/dagger/ -->
 
 {{</* resource-info */>}}
 
@@ -107,7 +99,11 @@ Dagger 的架构由四层组成：
 ### 核心概念
 
 | 概念 | 描述 |
-|---------|-------------|
+|
+---
+|
+---
+|
 | **模块** | 在 `dagger.json` 清单中定义的可复用 Dagger 函数包 |
 | **函数** | 接受输入并产生输出的类型化、沙箱化操作 |
 | **目录** | 在函数之间传递的内容寻址文件系统树 |
@@ -187,10 +183,8 @@ import dagger
 from dagger import dag, function, object_type
 
 @object_type
-class MyPipeline:
-    @function
-    async def hello(self, name: str = "World") -> str:
-        return await dag.container()
+class MyPipeline: @function
+    async def hello(self, name: str = "World") -> str: return await dag.container()
             .from_("alpine:latest")
             .with_exec(["echo", f"Hello, {name}!"])
             .stdout()
@@ -216,8 +210,7 @@ import dagger
 from dagger import dag, function, object_type, Directory
 
 @object_type
-class CiPipeline:
-    @function
+class CiPipeline: @function
     async def build_and_push(
         self,
         source: Directory,
@@ -226,8 +219,7 @@ class CiPipeline:
         password: dagger.Secret,
         repository: str,
         tag: str = "latest"
-    ) -> str:
-        # 从源目录中的 Dockerfile 构建容器
+    ) -> str: # 从源目录中的 Dockerfile 构建容器
         image = await dag.container()
             .build(source, dockerfile="Dockerfile")
 
@@ -302,10 +294,8 @@ import dagger
 from dagger import dag, function, object_type, Directory, Service
 
 @object_type
-class TestPipeline:
-    @function
-    async def integration_test(self, source: Directory) -> str:
-        # 启动 PostgreSQL 服务容器
+class TestPipeline: @function
+    async def integration_test(self, source: Directory) -> str: # 启动 PostgreSQL 服务容器
         postgres = dag.service(
             dag.container()
             .from_("postgres:16-alpine")
@@ -364,7 +354,17 @@ class BuildPipeline {
 Dagger 的内容寻址缓存在传统 CI 系统上提供了显著的速度提升。在构建一个 Go 微服务（约 50 个依赖）的 10 次连续运行控制基准测试中：
 
 | 场景 | GitHub Actions | GitLab CI | Dagger (本地缓存) | Dagger (共享缓存) |
-|----------|---------------|-----------|---------------------|----------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 冷构建 | 4分12秒 | 3分48秒 | 4分05秒 | 4分05秒 |
 | 第2次运行（无代码变更） | 3分55秒 | 3分30秒 | 8秒 | 8秒 |
 | 仅依赖变更 | 4分05秒 | 3分42秒 | 1分15秒 | 1分15秒 |
@@ -410,14 +410,12 @@ import dagger
 from dagger import dag, function, object_type, Secret
 
 @object_type
-class SecurePipeline:
-    @function
+class SecurePipeline: @function
     async def deploy(
         self,
         kubeconfig: Secret,
         image_digest: str
-    ) -> str:
-        return await (
+    ) -> str: return await (
             dag.container()
             .from_("bitnami/kubectl:latest")
             .with_mounted_secret("/root/.kube/config", kubeconfig)
@@ -447,10 +445,8 @@ import asyncio
 from dagger import dag, function, object_type, Directory
 
 @object_type
-class ParallelPipeline:
-    @function
-    async def run_parallel(self, source: Directory) -> list[str]:
-        # 这三个操作自动并行运行
+class ParallelPipeline: @function
+    async def run_parallel(self, source: Directory) -> list[str]: # 这三个操作自动并行运行
         results = await asyncio.gather(
             self.lint(source),
             self.unit_tests(source),
@@ -458,24 +454,21 @@ class ParallelPipeline:
         )
         return list(results)
 
-    async def lint(self, source: Directory) -> str:
-        return await dag.container()
+    async def lint(self, source: Directory) -> str: return await dag.container()
             .from_("golangci/golangci-lint:latest")
             .with_mounted_directory("/src", source)
             .with_workdir("/src")
             .with_exec(["golangci-lint", "run", "--timeout=5m"])
             .stdout()
 
-    async def unit_tests(self, source: Directory) -> str:
-        return await dag.container()
+    async def unit_tests(self, source: Directory) -> str: return await dag.container()
             .from_("golang:1.24")
             .with_mounted_directory("/src", source)
             .with_workdir("/src")
             .with_exec(["go", "test", "-short", "./..."])
             .stdout()
 
-    async def security_scan(self, source: Directory) -> str:
-        return await dag.container()
+    async def security_scan(self, source: Directory) -> str: return await dag.container()
             .from_("aquasec/trivy:latest")
             .with_mounted_directory("/src", source)
             .with_workdir("/src")
@@ -505,21 +498,16 @@ name: Dagger CI
 
 on: [push, pull_request]
 
-jobs:
-  ci:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: ci: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
 
       - name: 运行 Dagger 流水线
         uses: dagger/dagger-for-github@v7
-        with:
-          version: "0.19.7"
+        with: version: "0.19.7"
           verb: call
           module: .
           args: run --source=.
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        env: GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 ### CI 集成 — GitLab CI
@@ -528,22 +516,15 @@ jobs:
 # .gitlab-ci.yml
 stages: [build]
 
-dagger:build:
-  stage: build
+dagger:build: stage: build
   image: docker:24-dind
-  services:
-    - docker:24-dind
-  variables:
-    DAGGER_VERSION: "0.19.7"
-  before_script:
-    - apk add --no-cache curl
+  services: - docker:24-dind
+  variables: DAGGER_VERSION: "0.19.7"
+  before_script: - apk add --no-cache curl
     - curl -fsSL https://dl.dagger.io/dagger/install.sh | BIN_DIR=/usr/local/bin sh
-  script:
-    - dagger call run --source=.
-  cache:
-    key: dagger-cache
-    paths:
-      - .dagger-cache/
+  script: - dagger call run --source=.
+  cache: key: dagger-cache
+    paths: - .dagger-cache/
 ```
 
 ### CI 集成 — Jenkins
@@ -572,7 +553,17 @@ pipeline {
 ## 与替代方案对比
 
 | 特性 | Dagger | GitHub Actions | GitLab CI | Jenkins |
-|---------|--------|---------------|-----------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **流水线定义** | Go/Python/TypeScript 代码 | YAML 工作流 | YAML `.gitlab-ci.yml` | Groovy/Java DSL |
 | **本地执行** | 原生 — 与 CI 完全一致 | 不支持（act 是部分支持） | 有限 (`gitlab-runner exec`) | 完全支持 |
 | **缓存粒度** | 操作级（内容寻址） | 键值 + Docker 层缓存 | 键值 + 缓存层 | 插件依赖 |
@@ -686,7 +677,6 @@ Dagger 为 CI/CD 带来了根本不同的方法：流水线作为真正的代码
 - [Dagger for GitHub Action](https://github.com/dagger/dagger-for-github)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -712,8 +702,8 @@ Dagger 为 CI/CD 带来了根本不同的方法：流水线作为真正的代码
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [apple-container](dagger)
@@ -722,6 +712,6 @@ Dagger 为 CI/CD 带来了根本不同的方法：流水线作为真正的代码
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](dagger)
 - [moneyprinterturbo-one-click-ai-video-generator](dagger)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

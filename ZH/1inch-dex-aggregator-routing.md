@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/1inch-dex-aggregator-routing" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/1inch-dex-aggregator-routing" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/1inch-dex-aggregator-routing" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/1inch-dex-aggregator-routing" />
 title: '1inch-dex-aggregator-routing'
 description: '{'en': ''Master 1inch DEX aggregator in 2026. Learn how Pathfinder routes trades across 300+ liquidity sources, implement Fusion+ gasless swaps, limit orders, and portfolio tracking with the TypeScript SDK.'', 'zh': ''掌握 2026 年 1inch DEX 聚合器。了解 Pathfinder 如何跨 300+ 流动性来源路由交易，使用 TypeScript SDK 实现 Fusion+ 无 Gas 兑换、限价单和 portfolio 追踪。'', 'ko': ''2026년 1inch DEX 집계기를 마스터하세요. Pathfinder가 300개 이상의 유동성 소스에서 거래를 라우팅하는 방법, Fusion+ 가스 없는 스왑, 한도 주문 및 TypeScript SDK를 사용한 포트폴리오 추적을 구현하세요.'', 'vi': ''Làm chủ trình tổng hợp DEX 1inch năm 2026. Tìm hiểu cách Pathfinder định tuyến giao dịch qua 300+ nguồn thanh khoản, triển khai hoán đổi không gas Fusion+, lệnh giới hạn và theo dõi danh mục với SDK TypeScript.''}'
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: [1inch]
-aliases:
-- /zh/posts/1inch-dex-aggregator-routing/
+aliases: - /zh/posts/1inch-dex-aggregator-routing/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/1inch-dex-aggregator-routing/ -->
 
 {{</* resource-info */>}}
 
@@ -46,7 +38,13 @@ DEX 聚合器解决了 DeFi 中最持久的挑战之一：**流动性碎片化**
 1inch 通过在单个 DEX 之上充当**元层**来解决这一问题。1inch 的 Pathfinder 算法不是在一个交易所上执行兑换，而是同时检查所有可用的流动性来源，构建复杂的跨多个协议甚至多个区块链的多跳路由。2026 年，这一网络已覆盖：
 
 | 链 | 主要 DEX 来源 | 近似流动性 |
-|-------|-------------------|----------------------|
+|
+---
+|
+---
+|
+---
+|
 | Ethereum | Uniswap v3, Curve, Balancer, SushiSwap | $2.8B+ |
 | Arbitrum | Camelot, Uniswap v3, SushiSwap | $890M+ |
 | Optimism | Velodrome, Uniswap v3, Curve | $420M+ |
@@ -377,7 +375,15 @@ async function executeFusionSwap() {
 ### 5.2 Fusion+ 预设说明
 
 | 预设 | 拍卖持续时间 | 优先级 | 最适合 |
-|--------|-----------------|----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | `fast` | 60 秒 | 高 | 时间敏感的兑换，解析器费用较高 |
 | `medium` | 180 秒 | 中 | 速度与成本的平衡 |
 | `slow` | 600 秒 | 低 | 最大化节省，耐心执行 |
@@ -753,7 +759,6 @@ const wallet = new ethers.Wallet(
 今天就开始使用 1inch 构建，为你的用户提供 DeFi 所能提供的最佳价格执行。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -782,13 +787,11 @@ const wallet = new ethers.Wallet(
 
 ## Related Articles
 
-Explore more articles in this category:
-
-1. [Aave V4 Defi Lending Protocol](/zh/aave-v4-defi-lending-protocol)
+Explore more articles in this category: 1. [Aave V4 Defi Lending Protocol](/zh/aave-v4-defi-lending-protocol)
 2. [Alpaca Trading Api Stock Broker](/zh/alpaca-trading-api-stock-broker)
 
----
 
+---
 ## Frequently Asked Questions (FAQ)
 
 **问：量化交易的风险有多大？**
@@ -811,3 +814,5 @@ Explore more articles in this category:
 
 包括服务器费用、数据订阅、算法更新、以及监控维护时间。
 
+
+---

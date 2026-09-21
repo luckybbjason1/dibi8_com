@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/agno" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/agno" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/agno" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/agno" />
 title: 'Agno: 40K+ Stars — 轻量级 AI Agent 框架深度解析 vs CrewAI, AutoGe...
 description: 'Agno 是开源 Python SDK，用于构建 AI Agent 平台，GitHub 40K+ Star。支持 OpenAI、Anthropic、Ollama、Docker、AWS。涵盖安装、多 Agent 系统、基准测试、生产加固，以及与 CrewAI、AutoGen、LangChain 的对比。'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [agno, 'ai-agent', 'python-sdk', 多智能体, 开源, 轻量级框架, agent平台, ollama, openai]
-aliases:
-- /zh/posts/agno/
+aliases: - /zh/posts/agno/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/agno/ -->
 
 {{</* resource-info */>}}
 
@@ -217,16 +209,11 @@ CMD ["python", "workbench.py"]
 ```yaml
 # docker-compose.yml
 version: '3.8'
-services:
-  agentos:
-    build: .
-    ports:
-      - "8000:8000"
-    environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
+services: agentos: build: .
+    ports: - "8000:8000"
+    environment: - OPENAI_API_KEY=${OPENAI_API_KEY}
       - AGNO_ENV=production
-    volumes:
-      - ./data:/app/data
+    volumes: - ./data:/app/data
     restart: unless-stopped
 ```
 
@@ -258,7 +245,17 @@ Agno 的轻量级设计在对比测试中展现出可衡量的优势：
 ![Agno 官方文档](https://docs.agno.com/introduction)
 
 | 指标 | Agno | CrewAI | AutoGen | LangGraph |
-|------|------|--------|---------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Agent 初始化 | ~3 μs | ~12 ms | ~45 ms | ~150 ms |
 | 每个 Agent 内存占用 | ~6.5 KiB | ~320 KiB | ~1.2 MiB | ~2.8 MiB |
 | 冷启动（本地） | 45 ms | 890 ms | 2.1 s | 4.5 s |
@@ -410,7 +407,17 @@ AgentOS.serve(host="0.0.0.0", port=8000)
 ## 与替代方案对比
 
 | 功能 | Agno | CrewAI | AutoGen | LangChain + LangGraph |
-|------|------|--------|---------|----------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **GitHub Star** | 40,233 | 51,000+ | 58,000+ | 96,000+ / 31,000+ |
 | **许可证** | Apache-2.0 | MIT | MIT (代码) / CC-BY-4.0 (文档) | MIT |
 | **架构** | SDK + FastAPI 运行时 + 控制平面 | 基于角色的团队 | 对话式多 Agent | 基于图的编排 |
@@ -550,20 +557,15 @@ AgentOS 的无状态设计使其天然适合水平扩展。我们使用 AWS ECS 
 
 ```yaml
 # ecs-service.yml
-service:
-  name: agentos-service
+service: name: agentos-service
   launchType: FARGATE
   desiredCount: 2
-  deploymentConfiguration:
-    maximumPercent: 200
+  deploymentConfiguration: maximumPercent: 200
     minimumHealthyPercent: 100
-  networkConfiguration:
-    awsvpcConfiguration:
-      subnets: [subnet-xxx]
+  networkConfiguration: awsvpcConfiguration: subnets: [subnet-xxx]
       securityGroups: [sg-xxx]
       assignPublicIp: ENABLED
-  serviceRegistries:
-    - registryArn: arn:aws:servicediscovery:xxx
+  serviceRegistries: - registryArn: arn:aws:servicediscovery:xxx
 ```
 
 ### 监控与告警
@@ -660,12 +662,11 @@ Agno 在 Agent 框架领域中填补了特定的空白：它为 Python 团队提
 - [AI Agents Kit 对比 2026](https://aiagentskit.com/blog/best-ai-agent-frameworks-compared/) — 社区驱动的框架排名
 - [Agno vs CrewAI 详细对比](https://respan.ai/market-map/compare/agno-vs-crewai) — 带社区评论的逐项功能分析
 
----
 
+---
 *本文包含推广链接。如果你通过这些链接注册服务，dibi8.com 可能会获得佣金，而你无需支付额外费用。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -691,8 +692,8 @@ Agno 在 Agent 框架领域中填补了特定的空白：它为 Python 团队提
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [tradingagents-llm-multi-agent-trading-framework-2026](agno)

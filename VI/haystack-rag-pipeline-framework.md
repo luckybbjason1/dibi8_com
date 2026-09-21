@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/haystack-rag-pipeline-framework" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/haystack-rag-pipeline-framework" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/haystack-rag-pipeline-framework" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/haystack-rag-pipeline-framework" />
 title: 'Haystack 2026: Framework NLP End-to-End cho Pipeline RAG...
 description: 'Hướng dẫn đầy đủ Haystack 2026: framework NLP mã nguồn mở cho pipeline RAG sản xuất, document store, retriever, agent, công cụ đánh giá và triển khai Docker.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: [haystack, nlp, rag, python, llm, 'document store', retriever, agent, openai, docker, pipeline]
-aliases:
-- /vi/posts/haystack-rag-pipeline-framework/
+aliases: - /vi/posts/haystack-rag-pipeline-framework/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/haystack-rag-pipeline-framework/ -->
 
 {{</* resource-info */>}}
 
@@ -47,9 +39,7 @@ Haystack là **framework NLP mã nguồn mở** cho phép bạn xây dựng hệ
 
 Ban đầu tập trung vào extractive QA (thờ tiền-LLM), Haystack chuyển hướng sang generative AI với bản phát hành 2.0. Tính đến v2.12 (tháng 5/2026), nó hỗ trợ **30+ document store** (OpenSearch, Weaviate, Qdrant, PostgreSQL, v.v.), **multi-modal retrieval**, **agentic pipelines với tool calling**, evaluation tích hợp, và thực thi async native. Framework được cấp phép Apache-2.0 và duy trì bởi deepset với **21,000+ stars**.
 
-Khác với các framework nguyên khối, Haystack phân tách rõ ràng các mối quan tâm:
-
-- **Components** là các đơn vị tự chứa (ví dụ: `OpenAIDocumentEmbedder`, `InMemoryEmbeddingRetriever`)
+Khác với các framework nguyên khối, Haystack phân tách rõ ràng các mối quan tâm: - **Components** là các đơn vị tự chứa (ví dụ: `OpenAIDocumentEmbedder`, `InMemoryEmbeddingRetriever`)
 - **Pipelines** nối các thành phần thành đồ thị có hướng
 - **Document Stores** xử lý persistence và vector search
 - **Agents** thêm reasoning loops với tool access
@@ -121,9 +111,7 @@ export OPENAI_API_KEY="sk-your-key-here"
 pip install transformers torch sentence-transformers
 ```
 
-Xác minh stack đầy đủ:
-
-```python
+Xác minh stack đầy đủ: ```python
 # verify_setup.py
 from haystack import Pipeline
 from haystack.components.embedders import SentenceTransformersDocumentEmbedder
@@ -200,9 +188,7 @@ result = rag.run({
 print(result["generator"]["replies"][0])
 ```
 
-Lưu và chạy:
-
-```bash
+Lưu và chạy: ```bash
 python basic_rag.py
 ```
 
@@ -364,12 +350,10 @@ from haystack import component
 from typing import Any, Dict, List
 
 @component
-class TokenCounter:
-    """Component tùy chỉnh đếm token trong văn bản đầu vào."""
+class TokenCounter: """Component tùy chỉnh đếm token trong văn bản đầu vào."""
 
     @component.output_types(token_count=int, text=str)
-    def run(self, text: str) -> Dict[str, Any]:
-        token_count = len(text.split())
+    def run(self, text: str) -> Dict[str, Any]: token_count = len(text.split())
         return {"token_count": token_count, "text": text}
 
 # Dùng trong pipeline
@@ -422,9 +406,7 @@ print(result["generator"]["replies"][0])
 
 ### Benchmark Độ trễ Pipeline
 
-Đo trên VPS 4 lõi với Python 3.11:
-
-| Loại Pipeline | Độ trễ Trung bình | Độ trễ P95 | Thông lượng (req/s) |
+Đo trên VPS 4 lõi với Python 3.11: | Loại Pipeline | Độ trễ Trung bình | Độ trễ P95 | Thông lượng (req/s) |
 |---|---|---|---|
 | RAG Cơ bản (InMemory, GPT-4o-mini) | **1,240 ms** | **1,890 ms** | **0.8** |
 | RAG + Reranker (cross-encoder) | **1,580 ms** | **2,340 ms** | **0.6** |
@@ -436,18 +418,14 @@ Các con số này là cho cold start. Với warm components và async execution
 
 ### Case Study: Tìm kiếm Tài liệu Pháp lý
 
-Một công ty legal-tech triển khai Haystack để tìm kiếm trên **2.4 triệu tài liệu tòa án**. Kết quả sau 6 tháng:
-
-- **94.2% độ chính xác** trên benchmark QA nội bộ (tăng từ 78% với tìm kiếm keyword)
+Một công ty legal-tech triển khai Haystack để tìm kiếm trên **2.4 triệu tài liệu tòa án**. Kết quả sau 6 tháng: - **94.2% độ chính xác** trên benchmark QA nội bộ (tăng từ 78% với tìm kiếm keyword)
 - Thờ gian phản hồi trung bình **<2 giây** cho truy xuất top-5 tài liệu
 - Giảm **60%** thờ gian lặp lại phát triển nhờ pipeline serialization và hot-swapping
 - Di chuyển từ Elasticsearch sang Qdrant cho vector search mà không viết lại logic pipeline — chỉ thay component document store
 
 ### Case Study: Hỗ trợ Khách hàng Đa ngôn ngữ
 
-Một nền tảng thương mại điện tử sử dụng Haystack cho **hỗ trợ khách hàng 7 ngôn ngữ**:
-
-- Một pipeline duy nhất phục vụ tất cả ngôn ngữ thông qua language router component
+Một nền tảng thương mại điện tử sử dụng Haystack cho **hỗ trợ khách hàng 7 ngôn ngữ**: - Một pipeline duy nhất phục vụ tất cả ngôn ngữ thông qua language router component
 - Backend OpenSearch chia sẻ với **340,000** chunk tài liệu sản phẩm
 - Giảm **23%** chuyển tiếp ticket hỗ trợ sau triển khai
 - Evaluation loop sử dụng `SASEvaluator` của Haystack chạy hàng tuần để phát hiện pipeline drift
@@ -463,8 +441,7 @@ from haystack import Pipeline
 from haystack.components.generators import OpenAIGenerator
 from haystack.components.builders import PromptBuilder
 
-async def run_queries(queries: list):
-    pipeline = Pipeline()
+async def run_queries(queries: list): pipeline = Pipeline()
     pipeline.add_component("builder", PromptBuilder(
         template="Answer concisely: {{ query }}"
     ))
@@ -516,8 +493,7 @@ ground_truth = [
 
 # Chạy pipeline và thu thập dự đoán
 predictions = []
-for item in ground_truth:
-    result = rag_pipeline.run({
+for item in ground_truth: result = rag_pipeline.run({
         "embedder": {"text": item["query"]},
         "prompt_builder": {"query": item["query"]},
     })
@@ -556,12 +532,10 @@ import yaml
 app = FastAPI()
 
 # Load pipeline một lần khi khởi động
-with open("rag_pipeline.yaml") as f:
-    pipeline = Pipeline.loads(f.read())
+with open("rag_pipeline.yaml") as f: pipeline = Pipeline.loads(f.read())
 
 @app.post("/query")
-async def query(question: str):
-    result = pipeline.run({
+async def query(question: str): result = pipeline.run({
         "embedder": {"text": question},
         "prompt_builder": {"query": question},
     })
@@ -574,29 +548,18 @@ async def query(question: str):
 ```yaml
 # docker-compose.yml
 version: "3.8"
-services:
-  haystack-api:
-    build: .
-    ports:
-      - "8000:8000"
-    environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
-    depends_on:
-      - opensearch
+services: haystack-api: build: .
+    ports: - "8000:8000"
+    environment: - OPENAI_API_KEY=${OPENAI_API_KEY}
+    depends_on: - opensearch
 
-  opensearch:
-    image: opensearchproject/opensearch:2.14.0
-    environment:
-      - discovery.type=single-node
+  opensearch: image: opensearchproject/opensearch:2.14.0
+    environment: - discovery.type=single-node
       - DISABLE_SECURITY_PLUGIN=true
-    ports:
-      - "9200:9200"
-    volumes:
-      - osdata:/usr/share/opensearch/data
+    ports: - "9200:9200"
+    volumes: - osdata:/usr/share/opensearch/data
 
-volumes:
-  osdata:
-```
+volumes: osdata: ```
 
 Cho triển khai VPS cloud, [DigitalOcean](https://m.do.co/c/eca87ac14ee0) App Platform hỗ trợ triển khai Docker trực tiếp từ Git. Push `Dockerfile`, kết nối repo, và nền tảng build và host API Haystack của bạn với cấu hình zero.
 
@@ -642,8 +605,7 @@ Hoàn toàn được. Haystack hỗ trợ **bất kỳ generator nào** triển 
 
 ### Làm sao chọn document store?
 
-Cho prototyping, dùng `InMemoryDocumentStore`. Cho sản xuất:
-- **OpenSearch:** Tốt nhất nếu bạn đang chạy cluster Elasticsearch/OpenSearch
+Cho prototyping, dùng `InMemoryDocumentStore`. Cho sản xuất: - **OpenSearch:** Tốt nhất nếu bạn đang chạy cluster Elasticsearch/OpenSearch
 - **Qdrant:** Xuất sắc cho pure vector search, tài nguyên thấp
 - **Weaviate:** Tích hợp hybrid search tốt (BM25 + vectors)
 - **PostgreSQL + pgvector:** Tốt nhất nếu muốn một database cho tất cả
@@ -672,9 +634,7 @@ Cho các nhóm mở rộng tìm kiếm tài liệu đến sản xuất, Haystack
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -694,7 +654,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 **Tuyên bố Liên kết:** Một số liên kết trong bài viết này là liên kết affiliate. Nếu bạn dùng [liên kết giới thiệu DigitalOcean](https://m.do.co/c/eca87ac14ee0) của chúng tôi để đăng ký, bạn nhận được $200 tín dụng và chúng tôi nhận thưởng giới thiệu — không tốn thêm chi phí cho bạn. Điều này hỗ trợ nghiên cứu độc lập của chúng tôi và giữ nội dung miễn phí.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

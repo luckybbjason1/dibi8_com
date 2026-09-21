@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/shellcheck" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/shellcheck" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/shellcheck" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/shellcheck" />
 title: 'ShellCheck: 39,456 GitHub Stars — 셸 스크립트 분석을 위한 완전 설치 및 ...
 description: 'ShellCheck (SC)는 bash/sh 셸 스크립트용 정적 분석 도구입니다. Docker, GitHub Actions, VS Code 통합을 지원하며 설치 구성, CI/CD 파이프라인 통합, 프로덕션 강화를 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [shellcheck, bash, 정적분석, 린트, 셸스크립트, devops, 'ci-cd', docker]
-aliases:
-- /kr/posts/shellcheck/
+aliases: - /kr/posts/shellcheck/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/shellcheck/ -->
 
 {{</* resource-info */>}}
 
@@ -78,9 +70,7 @@ ShellCheck는 다단계 분석 파이프라인으로 작동합니다. 이 아키
 
 ### 심각도 수준
 
-모든 ShellCheck 결과는 다음 네 가지 심각도 수준 중 하나를 갖습니다:
-
-| 수준 | 종료 코드 영향 | 예시 |
+모든 ShellCheck 결과는 다음 네 가지 심각도 수준 중 하나를 갖습니다: | 수준 | 종료 코드 영향 | 예시 |
 |------|---------------|------|
 | 오류 | 비영 종료 | 구문 오류, 정의되지 않은 변수 |
 | 경고 | 비영 종료 | 인용되지 않은 변수 (SC2086) |
@@ -180,11 +170,9 @@ cabal install
 
 ```bash
 # .pre-commit-config.yaml에 추가
-repos:
-  - repo: https://github.com/koalaman/shellcheck-precommit
+repos: - repo: https://github.com/koalaman/shellcheck-precommit
     rev: v0.11.0
-    hooks:
-      - id: shellcheck
+    hooks: - id: shellcheck
         args: ["--severity=warning"]
 ```
 
@@ -208,9 +196,7 @@ Timon Wong의 **ShellCheck** 확장을 설치합니다 (마켓플레이스 ID: `
 
 ### Vim / Neovim
 
-ALE(비동기 린트 엔진) 사용:
-
-```vim
+ALE(비동기 린트 엔진) 사용: ```vim
 " .vimrc 또는 init.vim
 let g:ale_linters = {
 \   sh: [shellcheck],
@@ -221,9 +207,7 @@ let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = always
 ```
 
-Neovim에서 네이티브 LSP 사용:
-
-```lua
+Neovim에서 네이티브 LSP 사용: ```lua
 -- init.lua (nvim-lspconfig)
 require(lspconfig).bashls.setup {
   settings = {
@@ -270,36 +254,26 @@ name: ShellCheck
 
 on: [push, pull_request]
 
-jobs:
-  shellcheck:
-    runs-on: ubuntu-latest
-    steps:
-      - name: 저장소 체크아웃
+jobs: shellcheck: runs-on: ubuntu-latest
+    steps: - name: 저장소 체크아웃
         uses: actions/checkout@v4
 
       - name: ShellCheck 실행
         uses: ludeeus/action-shellcheck@master
-        env:
-          SEVERITY: warning
-        with:
-          ignore_paths: >-
+        env: SEVERITY: warning
+        with: ignore_paths: >-
             ./vendor
             ./third_party
 ```
 
-수동 설정 (버전 고정):
-
-```yaml
+수동 설정 (버전 고정): ```yaml
 # .github/workflows/shellcheck-manual.yml
 name: ShellCheck Manual
 
 on: [push, pull_request]
 
-jobs:
-  shellcheck:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: shellcheck: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
 
       - name: ShellCheck 설치
         run: |
@@ -316,16 +290,12 @@ jobs:
 
 ```yaml
 # .gitlab-ci.yml
-stages:
-  - lint
+stages: - lint
 
-shellcheck:
-  stage: lint
+shellcheck: stage: lint
   image: koalaman/shellcheck-alpine:stable
-  script:
-    - find . -name "*.sh" -type f -exec shellcheck --severity=warning {} +
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  script: - find . -name "*.sh" -type f -exec shellcheck --severity=warning {} +
+  rules: - if: $CI_PIPELINE_SOURCE == "merge_request_event"
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 ```
 
@@ -368,14 +338,9 @@ pipeline {
 ```yaml
 # .circleci/config.yml
 version: 2.1
-orbs:
-  shellcheck: circleci/shellcheck@3.2.0
+orbs: shellcheck: circleci/shellcheck@3.2.0
 
-workflows:
-  lint:
-    jobs:
-      - shellcheck/check:
-          severity: "warning"
+workflows: lint: jobs: - shellcheck/check: severity: "warning"
           exclude: "SC1090,SC1091"
 ```
 
@@ -455,9 +420,7 @@ ShellCheck 도입은 개인 개발자부터 엔터프라이즈 CI/CD 파이프�
 
 ### 성능 벤치마크
 
-2024 표준 CI 러너에서 테스트 (Ubuntu 24.04, 2 vCPU, 4 GB RAM):
-
-| 스크립트 크기 | 줄 수 | 분석 시간 | 메모리 사용 |
+2024 표준 CI 러너에서 테스트 (Ubuntu 24.04, 2 vCPU, 4 GB RAM): | 스크립트 크기 | 줄 수 | 분석 시간 | 메모리 사용 |
 |-------------|-------|-----------|-------------|
 | 소형 | 50 | 0.05초 | 12 MB |
 | 중형 | 500 | 0.3초 | 28 MB |
@@ -515,14 +478,10 @@ echo "모든 스크립트가 심각도 $SEVERITY 로 ShellCheck 통과"
 name: Security Scan
 on: [push, pull_request]
 
-jobs:
-  scan:
-    runs-on: ubuntu-latest
-    permissions:
-      security-events: write
+jobs: scan: runs-on: ubuntu-latest
+    permissions: security-events: write
       contents: read
-    steps:
-      - uses: actions/checkout@v4
+    steps: - uses: actions/checkout@v4
 
       - name: ShellCheck SARIF 실행
         run: |
@@ -532,8 +491,7 @@ jobs:
       - name: GitHub Security에 업로드
         uses: github/codeql-action/upload-sarif@v3
         if: always()
-        with:
-          sarif_file: shellcheck.sarif
+        with: sarif_file: shellcheck.sarif
 ```
 
 ### Dockerfile 린팅 단계
@@ -552,9 +510,7 @@ ENTRYPOINT ["/usr/local/bin/deploy.sh"]
 
 ### CI에서 ShellCheck 모니터링
 
-팀 메트릭으로 ShellCheck 실패를 추적:
-
-```bash
+팀 메트릭으로 ShellCheck 실패를 추적: ```bash
 #!/bin/bash
 # ci-metrics.sh — 시간 경과에 따른 shellcheck 경고 수 추적
 
@@ -643,9 +599,7 @@ ShellCheck은 명령 주입(SC2096), 안전하지 않은 eval 사용, 악의적�
 
 ShellCheck은 셸 스크립트용 가장 성숙하고 널리 채택된 정적 분석 도구입니다. 39,456개 이상의 GitHub 스타, 포괄적인 CI/CD 통합, 모든 주요 에디터 지원을 갖춘 ShellCheck은 모든 개발자의 툴체인에 속해야 합니다. Docker 한 줄 명령으로 즉각적인 피드백부터 시작하고, 팀 일관성을 위해 `.shellcheckrc` 프로젝트 구성을 추가하고, 버그를 병합 전에 잡기 위해 GitHub Actions에 연결하세요.
 
-팀을 위한 액션 아이템:
-
-1. 오늘 가장 중요한 상위 5개 배포 스크립트에 `shellcheck` 실행
+팀을 위한 액션 아이템: 1. 오늘 가장 중요한 상위 5개 배포 스크립트에 `shellcheck` 실행
 2. 실시간 피드백을 위해 VS Code 확장이나 Vim ALE 통합 설치
 3. 저장소 루트에 프로젝트별 규칙으로 `.shellcheckrc` 생성
 4. 경고가 있는 병합을 차단하는 GitHub Actions 워크플로 설정
@@ -656,9 +610,7 @@ ShellCheck은 셸 스크립트용 가장 성숙하고 널리 채택된 정적 �
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -677,7 +629,6 @@ ShellCheck은 셸 스크립트용 가장 성숙하고 널리 채택된 정적 �
 - [POSIX.1-2017 셸 명령어 언어](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

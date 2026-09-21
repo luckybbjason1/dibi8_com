@@ -1,16 +1,10 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/pixelle-video-ai-short-video-generator" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/pixelle-video-ai-short-video-generator" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/pixelle-video-ai-short-video-generator" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/pixelle-video-ai-short-video-generator" />
 title: 'Pixelle-Video 리뷰: AI 완전 자동 쇼트 비디오 생성 엔진, 주제 입력으로 완성된 영상'
 description: Pixelle-Video는 오픈소스 AI 완전 자동 쇼트 비디오 생성 엔진입니다. 주제를 입력하면 자동으로 스크립트, AI. Comprehensive guide covering features, pricing, and best practices for 2026.
   이미지, 음성 해설, 배경음악이 포함된 완성된 영상을 생성합니다.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
-tech_stack:
-- Python
+tech_stack: - Python
 application_domain: Ai Tools
 source_version: ''
 licensing_model: Open Source
@@ -25,10 +19,8 @@ maintainer: "AIDC-AI"
 last_maintained: "2026-05-06"
 featureImage: ''
 draft: false
-aliases:
-- /ko/posts/pixelle-video-ai-short-video-generator/
-faqs:
-  - q: 'Pixelle-Video란 무엇인가요?'
+aliases: - /ko/posts/pixelle-video-ai-short-video-generator/
+faqs: - q: 'Pixelle-Video란 무엇인가요?'
     a: 'Pixelle-Video는 단 하나의 주제를 입력하면 완성된 짧은 동영상을 자동으로 만들어 주는 오픈소스 MIT 라이선스 AI 엔진입니다. 하나의 입력으로 스크립트 작성, 장면에 맞는 AI 이미지 또는 영상 생성, TTS를 이용한 보이스오버 합성, 배경음악 추가까지 자동으로 처리한 뒤 최종 영상을 렌더링합니다.'
   - q: 'Pixelle-Video는 무료이고 오픈소스인가요?'
     a: '네. Pixelle-Video는 AIDC-AI가 MIT 라이선스로 배포하며 직접 서버에 설치해 무료로 사용할 수 있습니다. 로컬 배포 시 GPU만 있으면 별도 비용이 들지 않지만, 로컬 하드웨어가 없을 경우 이미지 생성에 RunningHub 같은 종량제 클라우드 서비스를 선택적으로 활용할 수 있습니다.'
@@ -39,7 +31,6 @@ faqs:
   - q: 'Pixelle-Video는 기본 영상 생성 외에 어떤 기능이 있나요?'
     a: '세 가지 확장 모듈이 포함되어 있습니다. 디지털 휴먼 아바타는 사진 한 장을 한국어·중국어·영어 립싱크가 지원되는 토킹헤드 영상으로 변환합니다. Image-to-Video는 정지 이미지를 동영상으로 만들어 줍니다. Motion Transfer는 참조 영상의 움직임을 정지 이미지에 적용합니다.'
 ---
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -71,7 +62,6 @@ faqs:
 </script>
 
 
-<!-- canonical: https://dibi8.com/kr/tools/pixelle-video-ai-short-video-generator/ -->
 # Pixelle-Video 리뷰: AI 완전 자동 쇼트 비디오 생성 엔진, 주제 입력으로 완성된 영상
 
 {</* resource-info */>}
@@ -81,9 +71,7 @@ faqs:
 
 ## Pixelle-Video란?
 
-**Pixelle-Video**는 오픈소스 AI 완전 자동 쇼트 비디오 생성 엔진입니다. **주제**만 입력하면 전체 비디오 제작 과정을 자동으로 완료합니다:
-
-- ✍️ **AI 스마트 스크립트** — 주제에 따라 자동으로 해설词 생성
+**Pixelle-Video**는 오픈소스 AI 완전 자동 쇼트 비디오 생성 엔진입니다. **주제**만 입력하면 전체 비디오 제작 과정을 자동으로 완료합니다: - ✍️ **AI 스마트 스크립트** — 주제에 따라 자동으로 해설词 생성
 - 🎨 **AI 이미지/비디오 생성** — 각 장면에 맞는 AI 일러스트 또는 동영상 생성
 - 🗣️ **AI 음성 합성** — 스크립트를 자연스러운 음성으로 변환
 - 🎵 **배경음악** — 분위기를 높이는 BGM 자동 추가
@@ -114,9 +102,7 @@ faqs:
 
 ## 비디오 생성 파이프라인
 
-Pixelle-Video는 모듈식 설계를 채택하여 명확한 워크플로를 제공합니다:
-
-**텍스트 입력 → 스크립트 생성 → 이미지 기획 → 프레임 처리 → 비디오 합성**
+Pixelle-Video는 모듈식 설계를 채택하여 명확한 워크플로를 제공합니다: **텍스트 입력 → 스크립트 생성 → 이미지 기획 → 프레임 처리 → 비디오 합성**
 
 각 단계는 유연한 커스터마이징을 지원 — AI 모델, 오디오 엔진, 비주얼 스타일 등을 개인화하여 선택할 수 있습니다.
 
@@ -124,9 +110,7 @@ Pixelle-Video는 모듈식 설계를 채택하여 명확한 워크플로를 제�
 
 ## 확장 모듈
 
-기본 비디오 생성 외에도 Pixelle-Video는 강력한 확장 기능을 제공합니다:
-
-### 👤 디지털 휴먼 아바타
+기본 비디오 생성 외에도 Pixelle-Video는 강력한 확장 기능을 제공합니다: ### 👤 디지털 휴먼 아바타
 사진을 업로드하여 입 모양 동기화된 말하는 영상 생성. 한국어, 중국어, 영어 등 다국어 지원.
 
 ### 🖼️ 이미지를 비디오로
@@ -178,9 +162,7 @@ pip install -r requirements.txt
 
 ### 3. API 키 구성
 
-`config.json`을 편집하여 API 키 입력:
-
-```json
+`config.json`을 편집하여 API 키 입력: ```json
 {
   "llm": {
     "api_key": "당신의 API 키",
@@ -226,9 +208,7 @@ python webui.py
 
 ## 비디오 스타일 예시
 
-Pixelle-Video는 다양한 비디오 스타일을 지원합니다:
-
-- 🌄 **다큐멘터리 스타일** — 여행, 자연, 인문 이야기
+Pixelle-Video는 다양한 비디오 스타일을 지원합니다: - 🌄 **다큐멘터리 스타일** — 여행, 자연, 인문 이야기
 - 🔍 **문화 분석** — 트렌드와 현상의 심층 분석
 - 🔭 **과학 철학** — 복잡한 개념을 쉽게 설명
 - 🌱 **개인 성장** — 자기 계발, 생산성 향상
@@ -242,9 +222,7 @@ Pixelle-Video는 다양한 비디오 스타일을 지원합니다:
 
 ## 기술 아키텍처
 
-Pixelle-Video는 **ComfyUI** 아키텍처 기반:
-
-- **모듈식 워크플로** — 각 구성 요소(LLM, TTS, 이미지 생성)가 독립 노드
+Pixelle-Video는 **ComfyUI** 아키텍처 기반: - **모듈식 워크플로** — 각 구성 요소(LLM, TTS, 이미지 생성)가 독립 노드
 - **커스터마이징 파이프라인** — 모델 또는 서비스 쉽게 교체
 - **API 우선 설계** — 모든 기능 REST API로 노출
 - **Web UI** — Gradio 기반의 사용하기 쉬운 인터페이스
@@ -260,8 +238,7 @@ Pixelle-Video는 **ComfyUI** 아키텍처 기반:
 | **RunningHub 클라우드** | 사용량 기반 과금 | 즉시 | 높음 |
 | **혼합 모드** | 유연 | 균형 | 높음 |
 
-초보자 추천 구성:
-- LLM: DeepSeek API (저렴, 품질 좋음)
+초보자 추천 구성: - LLM: DeepSeek API (저렴, 품질 좋음)
 - 이미지: RunningHub (로컬 GPU 불필요)
 - TTS: Edge-TTS (무료, 다국어)
 
@@ -316,9 +293,7 @@ ComfyUI 기반 아키텍처는 단순한 블랙박스가 아닙니다 — 각 �
 
 ## 추천 도구
 
-오픈소스 AI 도구 개발/배포 시 권장:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
+오픈소스 AI 도구 개발/배포 시 권장: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
 - **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Anthropic Claude / OpenAI / DeepSeek API 프록시. 위의 AI 도구 대부분 (챗봇, 코드 생성, 번역, 검색 등) LLM API 키 필요 — 이 프록시로 안정적인 톱 모델 액세스, 공식 가격의 ~30%.
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*

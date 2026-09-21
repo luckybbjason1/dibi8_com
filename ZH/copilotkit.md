@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/copilotkit" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/copilotkit" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/copilotkit" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/copilotkit" />
 title: 'CopilotKit: 31K+ Stars — 为任何 React 或 Angular 应用添加 AI Cop...
 description: 'CopilotKit 是用于应用内 AI Copilot 和生成式 UI 的开源前端框架。使用预构建组件、useCopilotAction Hooks 和生产级部署构建 React Angular AI 助手。涵盖安装、LangChain 集成、自托管和与 Vercel AI SDK 的性能对比。'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [copilotkit, 'react-ai', 生成式ui, 'ai-copilot', langchain, 前端智能体, typescript, 开源]
-aliases:
-- /zh/posts/copilotkit/
+aliases: - /zh/posts/copilotkit/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/copilotkit/ -->
 
 {{</* resource-info */>}}
 
@@ -39,22 +31,28 @@ CopilotKit 是一个开源前端框架，可以将任何 React 或 Angular 应�
 
 ![CopilotKit Logo](https://raw.githubusercontent.com/CopilotKit/CopilotKit/main/docs/static/img/logo.png)
 
----
 
+---
 ## CopilotKit 是什么？
 
 **CopilotKit** 是一个用于构建应用内 AI Copilot 和生成式 UI 体验的前端框架。它提供预构建的 React 组件（`CopilotSidebar`、`CopilotChat`、`CopilotPopup`）、类型安全的 Hooks（`useCopilotReadable`、`useCopilotAction`），以及可插拔的运行时，可连接 OpenAI、LangChain、LangGraph、Groq 或任何自定义智能体后端。
 
 该项目由 CopilotKit Inc. 维护，采用 MIT 许可证，迄今为止已获得 2700 万美元融资。约 25 名工程师组成的团队每周发布新版本，并维护 AG-UI 开放协议——这是一种智能体到前端的通信线标准，目前已获得 Google、Microsoft、Amazon、LangChain 和 Mastra 的支持。
 
----
 
+---
 ## CopilotKit 的工作原理
 
 CopilotKit 位于你的前端应用和 LLM 或智能体后端之间。它通过清晰的三层架构处理流式聊天、工具调用、状态同步和生成式 UI 渲染：
 
 | 层级 | 职责 | 关键文件 |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | **UI 组件** | 渲染聊天侧边栏、弹窗或内联聊天 | `CopilotSidebar`、`CopilotChat`、`CopilotPopup` |
 | **React Hooks** | 向 LLM 暴露状态和操作 | `useCopilotReadable`、`useCopilotAction` |
 | **Copilot 运行时** | 将请求路由到 LLM/智能体后端 | `app/api/copilotkit/route.ts` |
@@ -316,25 +314,25 @@ export function TaskManager() {
 
   // 向 LLM 暴露任务状态
   useCopilotReadable({
-    description: "用户当前的任务列表，包括完成状态和优先级",
+    description: "用户当前的任务列表，包括完成状态和优先级"
     value: tasks,
   });
 
   // 操作：添加新任务
   useCopilotAction({
     name: "addTask",
-    description: "向任务列表添加新任务",
+    description: "向任务列表添加新任务"
     parameters: [
       {
         name: "title",
         type: "string",
-        description: "要添加的任务标题",
+        description: "要添加的任务标题"
         required: true,
       },
       {
         name: "priority",
         type: "string",
-        description: "优先级：low、medium 或 high",
+        description: "优先级：low、medium 或 high"
         required: false,
       },
     ],
@@ -353,12 +351,12 @@ export function TaskManager() {
   // 操作：将任务标记为完成
   useCopilotAction({
     name: "completeTask",
-    description: "按标题或 ID 将任务标记为已完成",
+    description: "按标题或 ID 将任务标记为已完成"
     parameters: [
       {
         name: "taskId",
         type: "string",
-        description: "要标记为完成的任务 ID",
+        description: "要标记为完成的任务 ID"
         required: true,
       },
     ],
@@ -373,12 +371,12 @@ export function TaskManager() {
   // 操作：删除任务
   useCopilotAction({
     name: "deleteTask",
-    description: "从列表中删除任务",
+    description: "从列表中删除任务"
     parameters: [
       {
         name: "taskId",
         type: "string",
-        description: "要删除的任务 ID",
+        description: "要删除的任务 ID"
         required: true,
       },
     ],
@@ -410,9 +408,10 @@ export function TaskManager() {
 // 在 Copilot 聊天中渲染任务卡片
 useCopilotAction({
   name: "showTaskDetails",
-  description: "在聊天中显示详细的任务卡片",
+  description: "在聊天中显示详细的任务卡片"
   parameters: [
-    { name: "taskId", type: "string", description: "要显示的任务 ID", required: true },
+    { name: "taskId", type: "string", description: "要显示的任务 ID"
+, required: true },
   ],
   render: ({ taskId }) => {
     const task = tasks.find((t) => t.id === taskId);
@@ -436,7 +435,15 @@ useCopilotAction({
 CopilotKit 已部署在各种生产应用中。以下是经过验证的部署指标和用例：
 
 | 用例 | 公司 / 类型 | 规模 | 集成方案 |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 任务管理 Copilot | SaaS 初创公司 | 5K-50K 月活 | React + OpenAI |
 | CRM 数据助手 | 销售平台 | 10K+ 用户 | Angular + LangChain |
 | 代码审查自动化 | 开发工具 | 1K+ 团队 | Next.js + LangGraph |
@@ -446,7 +453,13 @@ CopilotKit 已部署在各种生产应用中。以下是经过验证的部署指
 **性能基准（在 DigitalOcean Droplet 上测量，2 vCPU / 4GB RAM）：**
 
 | 指标 | CopilotKit + GPT-4o | CopilotKit + Groq Llama 3 |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | 首 token 时间 | 800ms | 180ms |
 | 完整响应（100 tokens） | 2.1s | 0.9s |
 | 稳定并发用户 | 150 | 300 |
@@ -478,17 +491,12 @@ CMD ["npm", "start"]
 ```yaml
 # docker-compose.yml
 version: "3.8"
-services:
-  app:
-    build: .
-    ports:
-      - "3000:3000"
-    environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
+services: app: build: .
+    ports: - "3000:3000"
+    environment: - OPENAI_API_KEY=${OPENAI_API_KEY}
       - COPILOTKIT_API_KEY=${COPILOTKIT_API_KEY}
     restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
+    healthcheck: test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -567,7 +575,17 @@ const runtime = new CopilotRuntime({
 ## 与替代方案对比
 
 | 功能 | CopilotKit | Vercel AI SDK | LangChain | Dify |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **预构建 React 组件** | CopilotSidebar, CopilotChat, CopilotPopup | AI Elements（shadcn 风格） | 无——需自建 | 无——仅 API |
 | **前端状态共享** | useCopilotReadable Hook | 通过 useChat 手动实现 | 不适用 | 不适用 |
 | **前端操作（LLM → UI）** | useCopilotAction Hook | 自定义工具渲染 | 不适用 | 不适用 |
@@ -686,7 +704,6 @@ CopilotKit 填补了一个特定的空白：在现有 React 应用中嵌入 AI C
 **披露声明：** 本文包含 DigitalOcean 的联盟链接。如果你通过我们的链接注册，dibi8.com 可能会获得佣金，无需你额外付费。所有观点和基准测试均为独立评估。DigitalOcean 为新用户提供 $200 免费额度用于试用 CopilotKit 部署。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

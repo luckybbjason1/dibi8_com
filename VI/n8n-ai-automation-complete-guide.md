@@ -1,21 +1,14 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/n8n-ai-automation-complete-guide" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/n8n-ai-automation-complete-guide" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/n8n-ai-automation-complete-guide" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/n8n-ai-automation-complete-guide" />
 title: n8n AI Automation — Xây dựng Workflows thông minh không c...
 description: Hướng dẫn toàn diện về workflow automation AI của n8n. Kết nối 400+ apps với AI nodes, xây dựng autonomous agents và tự động hóa quy trình kinh doanh phức tạp. Giá cả, templates và examples thực tế.
 tags: [n8n, 'workflow-automation', 'ai-automation', 'no-code', 'agent-automation', 'business-process']
 category: dev-utils
 featureImage: /images/articles/n8n-ai-automation.jpg
 date: 2026-07-16T00:00:00+00:00
-lastmod:  2026-07-16T00:00:00+00:00draft: false
+lastmod: 2026-07-16T00:00:00+00:00draft: false
 slug: n8n-ai-automation-complete-guide
 lang: vi
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/n8n-ai-automation-complete-guide/ -->
 
 ## TL;DR
 
@@ -31,9 +24,7 @@ n8n (phát âm "n-eight-n") là một công cụ workflow automation fair-code c
 
 ### Tại sao n8n vào năm 2026?
 
-Automation landscape đã thay đổi đáng kể:
-
-| Era | Approach | Limitation |
+Automation landscape đã thay đổi đáng kể: | Era | Approach | Limitation |
 |-----|----------|------------|
 | 2020-2022 | Simple trigger→action | Không intelligence, linear only |
 | 2023-2024 | API connectors + basic logic | Customization limited |
@@ -47,16 +38,13 @@ n8n dẫn đầu wave 2026 bằng cách làm cho AI workflows accessible không 
 
 ### Nodes: Các Building Blocks
 
-Mỗi n8n workflow bao gồm **nodes** — các modular processing units:
-
-```
+Mỗi n8n workflow bao gồm **nodes** — các modular processing units: ```
 [Trigger] → [HTTP Request] → [AI Process] → [Database] → [Notification]
     │            │                 │              │              │
   Khi nào...   Fetch data      LLM analyzes   Store result    Alert team
 ```
 
-Node categories:
-- **Triggers**: Webhooks, schedules, email polling, database changes
+Node categories: - **Triggers**: Webhooks, schedules, email polling, database changes
 - **Operations**: HTTP requests, CRUD operations, file processing
 - **AI/ML**: LLM calls, embeddings, vector search, image generation
 - **Logic**: IF/ELSE, switch, merge, split in batches
@@ -64,25 +52,20 @@ Node categories:
 
 ### Workflows vs AI Agents
 
-n8n hỗ trợ cả hai paradigms:
-
-```python
+n8n hỗ trợ cả hai paradigms: ```python
 # Traditional Workflow (deterministic)
 trigger: new_email_received
   → parse_subject
-  → if contains "invoice":
-      → save_to_drive
+  → if contains "invoice": → save_to_drive
       → notify_accounting
 
 # AI Agent (probabilistic, reasoning-based)
 trigger: new_support_ticket
   → AI_classify_priority(ticket)
-  → if priority == "high":
-      → AI_summarize(ticket)
+  → if priority == "high": → AI_summarize(ticket)
       → AI_draft_response()
       → human_review_queue
-  → else:
-      → auto_reply_with_knowledge_base
+  → else: → auto_reply_with_knowledge_base
 ```
 
 ---
@@ -146,9 +129,7 @@ n8n start
 
 ### LLM Node
 
-The core AI node cho text generation, classification và extraction:
-
-```python
+The core AI node cho text generation, classification và extraction: ```python
 # LLM Node configuration
 {
   "nodeType": "aiLLM",
@@ -160,17 +141,14 @@ The core AI node cho text generation, classification và extraction:
 }
 ```
 
-Use cases:
-- **Text Classification**: Route emails, tickets, messages
+Use cases: - **Text Classification**: Route emails, tickets, messages
 - **Information Extraction**: Pull structured data from unstructured text
 - **Summarization**: Condense long documents, meeting notes, threads
 - **Sentiment Analysis**: Detect mood, urgency, satisfaction
 
 ### Embedding Node
 
-Convert text to vector representations cho semantic search:
-
-```python
+Convert text to vector representations cho semantic search: ```python
 # Embedding Node configuration
 {
   "nodeType": "aiEmbedding",
@@ -183,9 +161,7 @@ Convert text to vector representations cho semantic search:
 
 ### Vector Store Nodes
 
-Store và query embeddings:
-
-| Node | Purpose | Best For |
+Store và query embeddings: | Node | Purpose | Best For |
 |------|---------|----------|
 | Pinecone | Cloud vector DB | Scalable semantic search |
 | Qdrant | Self-hosted | Privacy-focused RAG |
@@ -194,9 +170,7 @@ Store và query embeddings:
 
 ### Image Generation Node
 
-Generate images từ text prompts:
-
-```python
+Generate images từ text prompts: ```python
 {
   "nodeType": "aiImageGen",
   "parameters": {
@@ -284,9 +258,7 @@ Notify Team via Slack
 
 ### Pattern 1: Human-in-the-Loop
 
-Luôn giữ humans trong loop cho critical decisions:
-
-```python
+Luôn giữ humans trong loop cho critical decisions: ```python
 workflow = {
     "auto_steps": [
         "classify_ticket",
@@ -306,9 +278,7 @@ workflow = {
 
 ### Pattern 2: Parallel Processing
 
-Process multiple items simultaneously:
-
-```python
+Process multiple items simultaneously: ```python
 # Split batch into chunks
 items = split_in_batches(data, batch_size=10)
 
@@ -341,12 +311,9 @@ workflow_config = {
 ### Pattern 4: Conditional Branching
 
 ```python
-if condition_a:
-    execute_workflow_a()
-elif condition_b:
-    execute_workflow_b()
-else:
-    execute_default()
+if condition_a: execute_workflow_a()
+elif condition_b: execute_workflow_b()
+else: execute_default()
 ```
 
 n8n's Switch node handles complex branching visually.
@@ -582,7 +549,6 @@ Not entirely — n8n connects tools thay vì replacing them. Nó automates the f
 *Tham gia nhóm Telegram để thảo luận công cụ AI thời gian thực và mẹo deployment: [t.me/dibi8](https://t.me/dibi8)*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

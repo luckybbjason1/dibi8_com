@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/openai-codex-cli-terminal-ai-coding-agent-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/openai-codex-cli-terminal-ai-coding-agent-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/openai-codex-cli-terminal-ai-coding-agent-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/openai-codex-cli-terminal-ai-coding-agent-2026" />
 title: 'OpenAI Codex CLI: Hướng Dẫn Toàn Diện 2026 về AI Coding ...
 description: 'Làm chủ OpenAI Codex CLI—agent coding AI mã nguồn mở tăng trưởng nhanh nhất 2026. Hướng dẫn toàn diện từ cài đặt zero-to-hero, cấu hình AGENTS.md, phát triển song song đa agent, tích hợp MCP, sandbox bảo mật, và so sánh trực diện với Claude Code. Nâng cao năng suất developer ngay hôm nay.'
 date: 2026-05-17 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: 'openai'
 last_maintained: '2026-05-17'
 featureImage: ''
 draft: false
-aliases:
-- /posts/openai-codex-cli-terminal-ai-coding-agent-2026/
+aliases: - /posts/openai-codex-cli-terminal-ai-coding-agent-2026/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/openai-codex-cli-terminal-ai-coding-agent-2026/ -->
 
 {</* resource-info */>}
 
@@ -37,9 +29,7 @@ Hệ sinh thái công cụ developer đã thay đổi mạnh mẽ giữa 2025 v�
 
 OpenAI Codex CLI nằm ở trung tâm cuộc chuyển dịch này. Với **hơn 83.000 GitHub stars** và một trong những quỹ đạo tăng trưởng nhanh nhất trong danh mục công cụ AI developer, đây không chỉ là wrapper chatbot. Đây là một agent coding mã nguồn mở, được xây bằng Rust, có thể đọc file, sửa code, chạy lệnh shell, thực thi test, review code, và ủy thác các tác vụ chạy dài cho sandbox cloud.
 
-Điểm khác biệt của Codex CLI so với các công cụ thế hệ trước:
-
-- **Không có chi phí biên cho người đăng ký ChatGPT** — Nếu bạn đã trả Plus ($20/tháng) hoặc Pro ($200/tháng), sử dụng Codex CLI được bao gồm. Không tính phí API riêng.
+Điểm khác biệt của Codex CLI so với các công cụ thế hệ trước: - **Không có chi phí biên cho người đăng ký ChatGPT** — Nếu bạn đã trả Plus ($20/tháng) hoặc Pro ($200/tháng), sử dụng Codex CLI được bao gồm. Không tính phí API riêng.
 - **Hoàn toàn mã nguồn mở (Apache-2.0)** — Fork, kiểm toán, mở rộng tùy ý. Việc viết lại bằng Rust từ TypeScript gốc mang lại cold start dưới một giây.
 - **Bốn điểm vào, một trạng thái chung** — Bắt đầu task trong VS Code, giao nó cho cloud agent khi bạn ngủ, và merge PR từ GitHub vào sáng hôm sau.
 - **Đồng thời đa agent** — Chạy đến 6 sub-agent song song với các vai trò riêng: explorer, worker, reviewer, tester.
@@ -89,31 +79,23 @@ codex login
 
 Trình duyệt mặc định mở luồng ủy quyền OpenAI. Đăng nhập bằng tài khoản ChatGPT, phê duyệt request OAuth, và quay lại terminal. Không quản lý API key. Không bảng điều khiển thanh toán riêng. Sử dụng của bạn được tính vào hạn mức gói ChatGPT.
 
-Đối với team yêu cầu chế độ API-key (phổ biến trong môi trường doanh nghiệp khi subscription chung không đủ):
-
-```bash
+Đối với team yêu cầu chế độ API-key (phổ biến trong môi trường doanh nghiệp khi subscription chung không đủ): ```bash
 export OPENAI_API_KEY="sk-..."
 codex
 ```
 
-Hoặc lưu vĩnh viễn trong `~/.codex/config.toml`:
-
-```toml
+Hoặc lưu vĩnh viễn trong `~/.codex/config.toml`: ```toml
 preferred_auth_method = "apikey"
 ```
 
 ### Task Đầu Tiên: Kiểm Tra Smoke Test Chuẩn
 
-Điều hướng đến bất kỳ repo nào và phát hành task có giới hạn:
-
-```bash
+Điều hướng đến bất kỳ repo nào và phát hành task có giới hạn: ```bash
 cd ~/projects/your-repo
 codex "Thêm unit test cho hàm parseDate trong src/utils/date.ts. Bao phủ input hợp lệ, edge case, và format không hợp lệ. Chạy bộ test và xác nhận tất cả test pass."
 ```
 
-Theo dõi Codex:
-
-1. Quét repo để xác định framework test (Jest, Vitest, Mocha, pytest, v.v.)
+Theo dõi Codex: 1. Quét repo để xác định framework test (Jest, Vitest, Mocha, pytest, v.v.)
 2. Đọc implementation của `parseDate`
 3. Tạo file test với các case có ý nghĩa
 4. Thực thi các test
@@ -138,8 +120,7 @@ Sự thích ứng quan trọng nhất khi sử dụng Codex CLI là thay đổi 
 
 **Prompt mạnh:**
 
-> "Xây dựng hệ thống xác thực người dùng cho dự án Go/Gin này:
-> 1. Endpoint REST đăng ký và đăng nhập với JWT token
+> "Xây dựng hệ thống xác thực người dùng cho dự án Go/Gin này: > 1. Endpoint REST đăng ký và đăng nhập với JWT token
 > 2. Schema bảng user MySQL khớp quy ước hiện có trong db/schema.sql
 > 3. Chạy server và đưa cho tôi lệnh curl để xác minh đăng ký và đăng nhập end-to-end."
 
@@ -153,9 +134,7 @@ Codex sẽ tạo scaffold cấu trúc package, viết handler, kết nối lớp
 | **Read Only** | Tự động cho phép | Cấm | Cấm | Khám phá codebase, onboarding, kiểm toán |
 | **Full Access** | Tự động cho phép | Tự động cho phép | Tự động cho phép | Container CI/CD, VM cô lập, tự động hóa đáng tin |
 
-Cờ khởi chạy:
-
-```bash
+Cờ khởi chạy: ```bash
 codex --sandbox read-only              # Phân tích thuần; rủi ro biến đổi bằng 0
 codex --sandbox workspace-write        # Có thể sửa file; lệnh không tin cậy vẫn cần phê duyệt
 codex --full-auto                      # Tự động phê duyệt; sandbox vẫn hoạt động
@@ -218,9 +197,7 @@ Codex CLI sau tháng 4/2026 giới thiệu **Subagents**—các agent chuyên bi
 
 ### Workflow Song Song Thực Tế
 
-Hãy tưởng tượng thêm feature "giảm giá thân thiết" vào backend e-commerce. Thay vì tuần tự, bạn song song hóa trên ba bề mặt:
-
-**Terminal 1 — Triển khai (CLI):**
+Hãy tưởng tượng thêm feature "giảm giá thân thiết" vào backend e-commerce. Thay vì tuần tự, bạn song song hóa trên ba bề mặt: **Terminal 1 — Triển khai (CLI):**
 
 ```bash
 codex "Thêm `loyalty_discount(price, customer_tier)` vào pricing.py. Tier: bronze(0%), silver(5%), gold(10%). Từ chối tier không xác định bằng ValueError. Không sửa hàm khác."
@@ -242,16 +219,12 @@ Cả ba task tiến triển đồng thời. Khi implementation đến, test xác
 
 ### Tích Hợp Model Context Protocol (MCP)
 
-MCP đã trở thành adapter phổ quát cho công cụ AI năm 2026. Codex CLI mặc định hỗ trợ MCP hạng nhất, cho phép kết nối trực tiếp với:
-
-- **PostgreSQL / MySQL / Redis** — Truy vấn schema và dữ liệu mẫu làm ngữ cảnh sinh code
+MCP đã trở thành adapter phổ quát cho công cụ AI năm 2026. Codex CLI mặc định hỗ trợ MCP hạng nhất, cho phép kết nối trực tiếp với: - **PostgreSQL / MySQL / Redis** — Truy vấn schema và dữ liệu mẫu làm ngữ cảnh sinh code
 - **API Stripe / Twilio / SendGrid** — Đọc spec OpenAPI để tạo lời gọi SDK có type
 - **Notion / Confluence / Wiki nội bộ** — Kéo quy tắc nghiệp vụ và spec feature vào phiên coding
 - **Datadog / Sentry / CloudWatch** — Tiếp nhận error trace để tự chẩn đoán và vá sự cố production
 
-Tham chiếu lệnh:
-
-```bash
+Tham chiếu lệnh: ```bash
 codex /mcp          # Liệt kê MCP server và tool đã cấu hình
 codex /apps         # Duyệt và kích hoạt connector ứng dụng có sẵn
 ```
@@ -264,9 +237,7 @@ Pattern prompt lặp lại nên được đóng gói thành **Skills**—các t�
 $skill-creator      # Trình hướng dẫn tương tác để soạn skill mới
 ```
 
-Skills tuân theo chuẩn Agent Skills mở, làm cho chúng có thể chuyển giữa Codex CLI, Claude Code, và GitHub Copilot. Ứng dụng skill điển hình:
-
-- Tạo PR localization (trích string → dịch → mở PR)
+Skills tuân theo chuẩn Agent Skills mở, làm cho chúng có thể chuyển giữa Codex CLI, Claude Code, và GitHub Copilot. Ứng dụng skill điển hình: - Tạo PR localization (trích string → dịch → mở PR)
 - Checklist kiểm toán bảo mật (quét SQL injection, XSS, rò rỉ secret)
 - Soạn release note từ lịch sử commit
 - Script migration (Python 2→3, Flask→FastAPI, JavaScript→TypeScript)
@@ -275,9 +246,7 @@ Skills tuân theo chuẩn Agent Skills mở, làm cho chúng có thể chuyển 
 
 ## 7. Kiến Trúc Bảo Mật: Tại Sao Doanh Nghiệp Phê Duyệt Codex CLI
 
-Việc developer áp dụng chỉ là một nửa trận chiến; team bảo mật doanh nghiệp là người gác cổng. Codex CLI giải quyết mối quan ngại của họ bằng mô hình phòng thủ đa tầng:
-
-| Lớp | Công nghệ | Bảo vệ điều gì |
+Việc developer áp dụng chỉ là một nửa trận chiến; team bảo mật doanh nghiệp là người gác cổng. Codex CLI giải quyết mối quan ngại của họ bằng mô hình phòng thủ đa tầng: | Lớp | Công nghệ | Bảo vệ điều gì |
 |---|---|---|
 | **Sandbox filesystem** | Linux Landlock / macOS Seatbelt | Hạn chế truy cập file vào cây workspace được chỉ định |
 | **Kiểm soát egress mạng** | Mặc định từ chối; opt-in mỗi lệnh | Ngăn rò rỉ dữ liệu vô tình đến endpoint trái phép |
@@ -285,9 +254,7 @@ Việc developer áp dụng chỉ là một nửa trận chiến; team bảo m�
 | **Trail kiểm toán** | DB SQLite cục bộ | Mọi file đọc, sửa, và thực thi lệnh đều có timestamp và diff |
 | **Lọc biến môi trường** | Allowlist/denylist có thể cấu hình | Chặn secret (API key, password) bị log hoặc truyền |
 
-Cho ngành nghề được điều chỉnh, các kiểm soát doanh nghiệp bổ sung bao gồm:
-
-- **Hook Engine**: Chặn prompt trước khi gửi để quét tuân thủ; tự kích hoạt test sau thực thi
+Cho ngành nghề được điều chỉnh, các kiểm soát doanh nghiệp bổ sung bao gồm: - **Hook Engine**: Chặn prompt trước khi gửi để quét tuân thủ; tự kích hoạt test sau thực thi
 - **RBAC Workspaces**: Tách phạm vi admin và user với ngưỡng phê duyệt khác nhau
 - **Context Compaction**: Tự động nén lịch sử phiên chạy dài để ngăn dữ liệu nhạy cảm tồn đọng trong context window
 
@@ -304,17 +271,13 @@ Codex CLI mặc định dùng `gpt-5.3-codex`, mô hình flagship tối ưu codi
 
 Spark được đồng kỹ thuật với Cerebras trên chip wafer-scale WSE-3—mô hình production OpenAI đầu tiên không chạy trên silicon NVIDIA. Nó tối thiểu hóa các sửa đổi target theo mặc định và không tự động chạy test, nên phù hợp nhất cho vòng lặp phản hồi chặt thay vì task chân trời dài tự trị.
 
-Chuyển mô hình theo thời gian thực:
-
-```bash
+Chuyển mô hình theo thời gian thực: ```bash
 codex -m gpt-5.3-codex
 codex -m gpt-5.3-codex-spark
 /model                    # Menu mô hình tương tác trong phiên
 ```
 
-Điều chỉnh nỗ lực suy luận theo loại task:
-
-```toml
+Điều chỉnh nỗ lực suy luận theo loại task: ```toml
 # ~/.codex/config.toml
 model_reasoning_effort = "high"      # Kiến trúc, debug, kiểm toán
 model_reasoning_effort = "medium"    # Coding hàng ngày, test, refactor (mặc định)
@@ -475,7 +438,6 @@ Kỷ nguyên vibe coding không phải đang đến. Nó đã ở đây. Và Cod
 *Cập nhật lần cuối: 17/5/2026. Codex CLI đang trong giai đoạn lặp nhanh; xác minh khả năng hiện tại với tài liệu chính thức.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

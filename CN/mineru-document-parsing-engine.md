@@ -1,19 +1,13 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/mineru-document-parsing-engine" />
-lang: en
-title: "MinerU: 70.6K Stars — Convert Any Document to LLM-Ready ...
+title: "MinerU: 70.6K Stars — Convert Any Document to LLM-Ready ..."
 description: 'MinerU (70,600+ GitHub stars) transforms PDF, DOCX, PPTX, XLSX, images and web pages into structured Markdown and JSON for LLM, RAG and Agent workflows. Supports 109-language OCR, formula-to-LaTeX, table-to-HTML, and runs on CPU or GPU.'
 tags: ["guide", "open-source", "ai-agents", "rag", "pdf", "ocr", "reference", "tutorial"]
 date: 2026-06-27 00:00:00+08:00
-lastmod:  2026-06-27 00:00:00+08:00slug: 'mineru-document-parsing-engine'
+lastmod: 2026-06-27 00:00:00+08:00slug: 'mineru-document-parsing-engine'
 category: ai-tools
 github_repo: 'https://github.com/opendatalab/MinerU'
 license: MinerU Open Source License (Apache 2.0-based)
-lang: en
-featureImage: /images/articles/mineru-docs.png
----
-
+featureImage: /images/articles/mineru-docs.png---
 ![MinerU logo](https://gcore.jsdelivr.net/gh/opendatalab/MinerU@master/docs/images/MinerU-logo.png)
 
 *MinerU — the open-source document parsing engine that turned 70,600 GitHub stars in just over a year.*
@@ -30,9 +24,7 @@ MinerU was born during the pre-training process of [InternLM](https://github.com
 
 So they built MinerU.
 
-Unlike traditional PDF parsers that just extract raw text, MinerU understands document structure:
-
-- **Removes** headers, footers, footnotes, and page numbers that break semantic coherence
+Unlike traditional PDF parsers that just extract raw text, MinerU understands document structure: - **Removes** headers, footers, footnotes, and page numbers that break semantic coherence
 - **Preserves** reading order for single-column, multi-column, and complex layouts
 - **Converts** formulas to LaTeX, tables to HTML
 - **Detects** scanned and garbled PDFs and automatically enables OCR
@@ -43,9 +35,7 @@ The result is document content that AI agents and LLMs can actually understand.
 
 ## Installation and Setup
 
-MinerU offers multiple installation paths depending on your needs:
-
-### pip (Recommended for most users)
+MinerU offers multiple installation paths depending on your needs: ### pip (Recommended for most users)
 
 ```bash
 pip install mineru
@@ -66,9 +56,7 @@ cd MinerU
 pip install -e .
 ```
 
-MinerU supports both **CPU-only** and **GPU-accelerated** inference. For GPU acceleration, install with CUDA support:
-
-```bash
+MinerU supports both **CPU-only** and **GPU-accelerated** inference. For GPU acceleration, install with CUDA support: ```bash
 pip install mineru[cuda]
 ```
 
@@ -76,9 +64,7 @@ On macOS with Apple Silicon, MinerU leverages MPS (Metal Performance Shaders) fo
 
 ## Three Parsing Engines
 
-MinerU provides three different parsing backends, each optimized for different scenarios:
-
-### 1. Pipeline Backend (Fast & Stable)
+MinerU provides three different parsing backends, each optimized for different scenarios: ### 1. Pipeline Backend (Fast & Stable)
 
 The `pipeline` backend is the default choice for most users. It's fast, stable, and produces no hallucinations. It runs efficiently on CPU and is ideal for batch processing.
 
@@ -100,9 +86,7 @@ mineru ./complex.pdf -o ./output/ --engine vlm-engine
 
 ### 3. Hybrid Engine (Balanced)
 
-The `hybrid` engine combines native text extraction with VLM-based analysis. Starting from version 3.3, it includes an `effort` parameter with `medium` and `high` levels:
-
-- **Medium effort:** 35-220% faster than high, with only 0.13-point accuracy drop on OmniDocBench
+The `hybrid` engine combines native text extraction with VLM-based analysis. Starting from version 3.3, it includes an `effort` parameter with `medium` and `high` levels: - **Medium effort:** 35-220% faster than high, with only 0.13-point accuracy drop on OmniDocBench
 - **High effort:** Maximum accuracy with image analysis support
 
 ```bash
@@ -113,10 +97,14 @@ mineru ./document.pdf -o ./output/ --engine hybrid-engine --effort medium
 
 ## Supported Formats
 
-MinerU supports a comprehensive range of input formats:
-
-| Format | Support Level | Notes |
-|--------|--------------|-------|
+MinerU supports a comprehensive range of input formats: | Format | Support Level | Notes |
+|
+---
+|
+---
+|
+---
+|
 | PDF | Native | Text PDFs, scanned PDFs, garbled PDFs |
 | DOCX | Native | Full structural preservation |
 | PPTX | Native | Slides, layouts, embedded content |
@@ -169,10 +157,12 @@ With support for multi-threaded concurrent inference and streaming writes to dis
 
 ## Integration Ecosystem
 
-MinerU integrates with virtually every major AI framework:
-
-| Framework | Integration |
-|-----------|-------------|
+MinerU integrates with virtually every major AI framework: | Framework | Integration |
+|
+---
+|
+---
+|
 | LangChain | Native document loader |
 | LlamaIndex | Document parser integration |
 | RAGFlow | Built-in parser |
@@ -194,9 +184,7 @@ mineru-mcp-server
 
 MinerU's `pipeline` backend achieves a score of **86.2 on OmniDocBench v1.5**, surpassing the accuracy of the previous-generation VLM model `MinerU2.0-2505-0.9B`.
 
-The Hybrid engine with `effort=medium` delivers:
-
-- **~80% faster** for text PDF scenarios on Linux
+The Hybrid engine with `effort=medium` delivers: - **~80% faster** for text PDF scenarios on Linux
 - **~90% faster** for text PDF scenarios on Windows
 - **~220% faster** for text PDF scenarios on macOS
 - Only **0.13-point accuracy drop** compared to `effort=high`
@@ -254,7 +242,6 @@ With 70,600+ stars, an active development team, and growing framework integratio
 **Disclosure**: This article contains affiliate links. If you sign up through our links, we may earn a small commission at no additional cost to you. This helps support independent tech journalism and keeps resources like dibi8.com free and ad-free.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -280,8 +267,8 @@ With 70,600+ stars, an active development team, and growing framework integratio
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [paddleocr-81k-star-ocr-engine](mineru-document-parsing-engine)
@@ -290,8 +277,8 @@ With 70,600+ stars, an active development team, and growing framework integratio
 - [mineru-document-parsing-engine](mineru-document-parsing-engine)
 - [paddleocr-81k-star-ocr-engine](mineru-document-parsing-engine)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/zenml-mlops-pipeline-framework" />
 title: 'ZenML 2026: The MLOps Framework Connecting 20+ Tools int...
 description: 'A comprehensive guide to ZenML — the open-source MLOps framework that connects 20+ tools into unified, reproducible ML pipelines. Self-hosted setup, real benchmarks, and production deployment.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: []
-aliases:
-- /posts/zenml-mlops-pipeline-framework/
+aliases: - /posts/zenml-mlops-pipeline-framework/-
 ---
-
 {{</* resource-info */>}}
 
 ## Introduction: Your ML Pipelines Are Broken
@@ -60,8 +56,7 @@ A **Step** is the smallest unit of work — a Python function that performs one 
 Every output from a step is an **Artifact** — a typed, versioned object stored in the artifact store. Artifacts can be datasets (pandas DataFrames, NumPy arrays), models (sklearn, PyTorch, TensorFlow), or custom objects. ZenML automatically serializes, versions, and tracks lineage for every artifact.
 
 ### Stacks
-A **Stack** defines where and how your pipeline runs. It combines:
-- **Orchestrator**: Executes the pipeline (local, Airflow, Kubernetes, Vertex AI, etc.)
+A **Stack** defines where and how your pipeline runs. It combines: - **Orchestrator**: Executes the pipeline (local, Airflow, Kubernetes, Vertex AI, etc.)
 - **Artifact Store**: Stores pipeline outputs (local filesystem, S3, GCS, Azure Blob)
 - **Container Registry**: Stores Docker images for containerized execution
 - **Experiment Tracker**: Logs metrics and parameters (MLflow, Weights & Biases, Neptune)
@@ -125,9 +120,7 @@ zenml stack describe
 
 ### Step 4: Run Your First Pipeline
 
-Create a file named `first_pipeline.py`:
-
-```python
+Create a file named `first_pipeline.py`: ```python
 from zenml import pipeline, step
 import pandas as pd
 from sklearn.datasets import load_iris
@@ -136,15 +129,13 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 
 @step
-def load_data() -> pd.DataFrame:
-    """Load the iris dataset."""
+def load_data() -> pd.DataFrame: """Load the iris dataset."""
     iris = load_iris(as_frame=True)
     df = iris.frame
     return df
 
 @step
-def split_data(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame, pd.Series, pd.Series]:
-    """Split data into training and test sets."""
+def split_data(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame, pd.Series, pd.Series]: """Split data into training and test sets."""
     X = df.drop("target", axis=1)
     y = df["target"]
     X_train, X_test, y_train, y_test = train_test_split(
@@ -153,8 +144,7 @@ def split_data(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame, pd.Series,
     return X_train, X_test, y_train, y_test
 
 @step
-def train_model(X_train: pd.DataFrame, y_train: pd.Series) -> RandomForestClassifier:
-    """Train a Random Forest classifier."""
+def train_model(X_train: pd.DataFrame, y_train: pd.Series) -> RandomForestClassifier: """Train a Random Forest classifier."""
     clf = RandomForestClassifier(n_estimators=100, random_state=42)
     clf.fit(X_train, y_train)
     return clf
@@ -164,29 +154,24 @@ def evaluate_model(
     model: RandomForestClassifier,
     X_test: pd.DataFrame,
     y_test: pd.Series
-) -> float:
-    """Evaluate the trained model."""
+) -> float: """Evaluate the trained model."""
     predictions = model.predict(X_test)
     accuracy = accuracy_score(y_test, predictions)
     print(f"Model accuracy: {accuracy:.4f}")
     return accuracy
 
 @pipeline
-def training_pipeline():
-    """End-to-end ML training pipeline."""
+def training_pipeline(): """End-to-end ML training pipeline."""
     df = load_data()
     X_train, X_test, y_train, y_test = split_data(df)
     model = train_model(X_train, y_train)
     accuracy = evaluate_model(model, X_test, y_test)
 
-if __name__ == "__main__":
-    run = training_pipeline()
+if __name__ == "__main__": run = training_pipeline()
     print(f"Pipeline run completed: {run.name}")
 ```
 
-Run it:
-
-```bash
+Run it: ```bash
 python first_pipeline.py
 ```
 
@@ -197,9 +182,7 @@ You should see output showing each step executing in sequence, culminating in a 
 ZenML's power lies in its integration ecosystem. Here are the most commonly connected tools across the ML lifecycle.
 
 ### Orchestrators
-ZenML supports multiple orchestrators for different scale requirements:
-
-```bash
+ZenML supports multiple orchestrators for different scale requirements: ```bash
 # Install Airflow integration
 pip install zenml[airflow]
 
@@ -239,17 +222,14 @@ zenml stack update local_stack \
   -r mlflow_registry
 ```
 
-Now modify your pipeline to log experiments:
-
-```python
+Now modify your pipeline to log experiments: ```python
 from zenml import pipeline, step
 from zenml.client import Client
 import mlflow
 import mlflow.sklearn
 
 @step(experiment_tracker="mlflow_tracker")
-def train_model(X_train: pd.DataFrame, y_train: pd.Series) -> RandomForestClassifier:
-    """Train with MLflow logging."""
+def train_model(X_train: pd.DataFrame, y_train: pd.Series) -> RandomForestClassifier: """Train with MLflow logging."""
     mlflow.autolog()  # Auto-log parameters, metrics, and model
     clf = RandomForestClassifier(n_estimators=100, random_state=42)
     clf.fit(X_train, y_train)
@@ -265,10 +245,8 @@ def train_model(X_train: pd.DataFrame, y_train: pd.Series) -> RandomForestClassi
 def register_model(
     model: RandomForestClassifier,
     accuracy: float
-) -> str:
-    """Register model to MLflow model registry."""
-    if accuracy > 0.90:
-        model_version = mlflow.sklearn.log_model(
+) -> str: """Register model to MLflow model registry."""
+    if accuracy > 0.90: model_version = mlflow.sklearn.log_model(
             model,
             artifact_path="model",
             registered_model_name="iris-classifier"
@@ -321,39 +299,24 @@ zenml experiment-tracker register wandb_tracker \
 ```yaml
 # stack.yaml — Define your entire MLOps stack as code
 stack_name: production_stack
-components:
-  orchestrator:
-    flavor: kubernetes
-    configuration:
-      kubernetes_context: prod-cluster
+components: orchestrator: flavor: kubernetes
+    configuration: kubernetes_context: prod-cluster
       namespace: ml-pipelines
-  artifact_store:
-    flavor: s3
-    configuration:
-      path: s3://prod-ml-artifacts/zenml
+  artifact_store: flavor: s3
+    configuration: path: s3://prod-ml-artifacts/zenml
       authentication_secret: aws-s3-secret
-  container_registry:
-    flavor: default
-    configuration:
-      uri: 123456789.dkr.ecr.us-east-1.amazonaws.com
-  experiment_tracker:
-    flavor: mlflow
-    configuration:
-      tracking_uri: http://mlflow.internal:5000
-  model_registry:
-    flavor: mlflow
-    configuration:
-      uri: http://mlflow.internal:5000
-  step_operator:
-    flavor: sagemaker
-    configuration:
-      role: arn:aws:iam::123456789:role/SageMakerRole
+  container_registry: flavor: default
+    configuration: uri: 123456789.dkr.ecr.us-east-1.amazonaws.com
+  experiment_tracker: flavor: mlflow
+    configuration: tracking_uri: http://mlflow.internal:5000
+  model_registry: flavor: mlflow
+    configuration: uri: http://mlflow.internal:5000
+  step_operator: flavor: sagemaker
+    configuration: role: arn:aws:iam::123456789:role/SageMakerRole
       instance_type: ml.p3.2xlarge
 ```
 
-Register this stack:
-
-```bash
+Register this stack: ```bash
 zenml stack register -f stack.yaml --set
 ```
 
@@ -364,7 +327,17 @@ ZenML is used in production across industries. Here are real deployment patterns
 ### Company Profiles
 
 | Company | Industry | Scale | Stack | Results |
-|---------|----------|-------|-------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | ML6 (consultancy) | Various | **500+ pipelines/month** | Kubernetes + MLflow + S3 | 60% reduction in pipeline setup time |
 | Renteaze | PropTech | 12 models in production | Local → Vertex AI | Deployment time: 2 weeks → 2 days |
 | Atchai | Healthcare | 3TB imaging data | Kubernetes + GCS + W&B | Full audit trail for FDA compliance |
@@ -372,10 +345,16 @@ ZenML is used in production across industries. Here are real deployment patterns
 
 ### Performance Benchmarks
 
-We benchmarked ZenML v0.80.0 against common MLOps patterns on a **DigitalOcean 8 vCPU / 32GB RAM droplet** (see [DigitalOcean](https://m.do.co/c/eca87ac14ee0) for $200 free credit):
-
-| Metric | Local Mode | Airflow | Kubernetes |
-|--------|-----------|---------|------------|
+We benchmarked ZenML v0.80.0 against common MLOps patterns on a **DigitalOcean 8 vCPU / 32GB RAM droplet** (see [DigitalOcean](https://m.do.co/c/eca87ac14ee0) for $200 free credit): | Metric | Local Mode | Airflow | Kubernetes |
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Cold start time | **1.2s** | 8.5s | 45s |
 | Pipeline overhead | **0.3s** | 2.1s | 12s |
 | Artifact caching | Yes | Yes | Yes |
@@ -392,7 +371,11 @@ Key finding: ZenML's local mode adds only **300ms of overhead** per pipeline, ma
 # Measured on DigitalOcean 8 vCPU / 32GB droplet
 
 Steps | Local (s) | Kubernetes (s)
-------|-----------|---------------
+
+---
+|
+---
+|---
   5   |    1.5    |     52
   10  |    2.8    |     68
   20  |    5.2    |     95
@@ -405,14 +388,11 @@ The linear scaling of local mode makes it ideal for development. Kubernetes mode
 
 ### Custom Step Operators for GPU Workloads
 
-When training requires GPUs, offload specific steps to cloud instances without changing pipeline code:
-
-```python
+When training requires GPUs, offload specific steps to cloud instances without changing pipeline code: ```python
 from zenml.step_operators import BaseStepOperator
 
 @step(step_operator="sagemaker_gpu")
-def train_deep_learning_model(X_train: pd.DataFrame, y_train: pd.Series):
-    """Train on GPU via SageMaker while other steps run locally."""
+def train_deep_learning_model(X_train: pd.DataFrame, y_train: pd.Series): """Train on GPU via SageMaker while other steps run locally."""
     import tensorflow as tf
     
     # This step executes on ml.p3.2xlarge via SageMaker
@@ -445,12 +425,9 @@ zenml.pipeline_schedule register daily_schedule
 
 ### Caching and Reproducibility
 
-ZenML's caching system is automatic and artifact-aware. If inputs and step code haven't changed, ZenML reuses cached outputs:
-
-```python
+ZenML's caching system is automatic and artifact-aware. If inputs and step code haven't changed, ZenML reuses cached outputs: ```python
 @step(enable_cache=True)  # Default behavior
-def expensive_preprocessing(df: pd.DataFrame) -> pd.DataFrame:
-    """This only re-runs if input df or this function changes."""
+def expensive_preprocessing(df: pd.DataFrame) -> pd.DataFrame: """This only re-runs if input df or this function changes."""
     # Heavy transformation that takes 30 minutes
     return processed_df
 
@@ -475,14 +452,11 @@ zenml secrets-manager secret register db_credentials \
   --password=$DB_PASSWORD
 ```
 
-Access in steps:
-
-```python
+Access in steps: ```python
 from zenml.client import Client
 
 @step
-def load_from_database() -> pd.DataFrame:
-    """Load data using credentials from ZenML secrets manager."""
+def load_from_database() -> pd.DataFrame: """Load data using credentials from ZenML secrets manager."""
     client = Client()
     credentials = client.get_secret("db_credentials")
     
@@ -501,17 +475,11 @@ def load_from_database() -> pd.DataFrame:
 ```yaml
 # .github/workflows/ml-pipeline.yml
 name: ML Pipeline CI
-on:
-  push:
-    branches: [main]
-  schedule:
-    - cron: "0 2 * * *"
+on: push: branches: [main]
+  schedule: - cron: "0 2 * * *"
 
-jobs:
-  train:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: train: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       
       - name: Setup ZenML
         run: |
@@ -534,7 +502,17 @@ jobs:
 ## Comparison with Alternatives
 
 | Feature | ZenML | Kubeflow Pipelines | Metaflow | MLflow Pipelines |
-|---------|-------|-------------------|----------|-----------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Pipeline Abstraction** | Python decorators | YAML + Python | Python decorators | YAML-based |
 | **Orchestrator Integrations** | **20+** (Airflow, K8s, etc.) | Kubernetes only | AWS Step Functions, local | Limited |
 | **Experiment Tracking** | Pluggable (MLflow, W&B, etc.) | Built-in (basic) | Built-in (Metaflow UI) | MLflow only |
@@ -555,9 +533,7 @@ jobs:
 
 ## Limitations: An Honest Assessment
 
-ZenML is not a silver bullet. Here are the trade-offs to understand before committing:
-
-1. **Kubernetes complexity**: While ZenML abstracts orchestrators, running production Kubernetes still requires cluster expertise. The ZenML team is working on managed Kubernetes integration (targeting v0.85.0).
+ZenML is not a silver bullet. Here are the trade-offs to understand before committing: 1. **Kubernetes complexity**: While ZenML abstracts orchestrators, running production Kubernetes still requires cluster expertise. The ZenML team is working on managed Kubernetes integration (targeting v0.85.0).
 
 2. **Documentation gaps**: Advanced integrations (custom step operators, event-based triggers) lack comprehensive examples. The community Discord is active for support, but official docs lag behind releases.
 
@@ -608,9 +584,7 @@ Start with the 5-minute local setup in this guide. Connect MLflow for experiment
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -620,7 +594,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 This article contains affiliate links. If you sign up for services through links marked in this article, dibi8.com may receive a commission at no additional cost to you. We only recommend tools we have personally evaluated and believe provide genuine value. Opinions expressed are our own.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -645,3 +618,4 @@ This article contains affiliate links. If you sign up for services through links
   }
 }
 </script>
+---

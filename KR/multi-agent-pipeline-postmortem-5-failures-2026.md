@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/multi-agent-pipeline-postmortem-5-failures-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/multi-agent-pipeline-postmortem-5-failures-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/multi-agent-pipeline-postmortem-5-failures-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/multi-agent-pipeline-postmortem-5-failures-2026" />
 title: '멀티 에이전트 파이프라인 포스트모템: 서브에이전트 오케스트레이션이 망가지는 5가지 방식 (2026)'
 description: 'Claude Code 멀티 에이전트 파이프라인의 실제 실패 유형 다섯 가지 — 검증되지 않은 보고를 신뢰하기, 컨텍스트 누출, 폭주하는 팬아웃, 조용한 절단, 방치된 워크트리 — 각각 증상, 근본 원인, 해결책과 함께 정리했다.'
 date: 2026-05-28 00:00:00+08:00
@@ -25,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['claude-code', subagents, 'multi-agent', 'agent-sdk', debugging, 'llm-frameworks', 'developer-tools']
-aliases:
-- /posts/multi-agent-pipeline-postmortem/
-faq:
-  - q: "멀티 에이전트에서 가장 흔한 단일 실패는 무엇인가?"
+aliases: - /posts/multi-agent-pipeline-postmortem/
+faq: - q: "멀티 에이전트에서 가장 흔한 단일 실패는 무엇인가?"
     a: "서브에이전트의 실제 출력을 검증하지 않고 그 보고만 신뢰하는 것이다. 서브에이전트는 자기가 무엇을 하려 했는지에 대한 산문형 요약을 반환할 뿐, 실제로 무엇을 했는지에 대한 보장된 기록을 주지 않는다. 전형적인 실패는 오케스트레이터가 『인증 모듈을 리팩터링했고 모든 테스트가 통과한다』라는 보고를 읽고 그 단계를 완료로 표시한 뒤 다음으로 넘어가는 것이다 — 실제로는 서브에이전트가 타입 체크는 통과하지만 런타임에 깨지는 얕은 수정만 했고 테스트를 한 번도 실행하지 않았는데도 말이다. 항상 실제 근거에 대조해 검증하라: git diff, 테스트 종료 코드, 파일 재확인. 요약은 주장일 뿐 증거가 아니다."
   - q: "두 서브에이전트가 서로의 작업을 망가뜨리는 것을 어떻게 막나?"
     a: "서로 겹치지 않는 범위를 주고, 사소하지 않은 수정을 할 때는 git 워크트리를 사용하라. 손상은 두 에이전트가 같은 파일에 쓰거나, 한쪽이 몰래 바꿔버린 공유 작업 트리 상태를 다른 쪽이 가정할 때 발생한다. 해결책은 격리다: 에이전트 A를 /auth/로, 에이전트 B를 /payments/로 겹침 없이 범위를 정하거나, 각자에게 워크트리를 줘서 독립된 체크아웃에서 작업하게 하라. 두 작성자가 하나의 작업 트리를 공유하게 절대 두지 마라."
@@ -42,7 +35,6 @@ faq:
     a: "있다. 작업이 진짜로 컨텍스트 윈도우 하나를 넘어서거나 독립적 검증이 필요할 때라면 — 하지만 이 다섯 가지 실패야말로 반사적으로 손대지 말아야 할 이유다. 잘 프롬프트된 단일 에이전트는 버그투성이 5-에이전트 파이프라인을 매번 이긴다. 문제가 진짜일 때(포괄적 커버리지, 병렬 독립 작업, 적대적 검토) 오케스트레이션을 쓰고, 쓸 때는 이 실패 유형들을 막아주는 검증과 정지 조건을 내장하라. 검증할 수 없는 복잡성은 검증할 수 있는 단순함보다 나쁘다."
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/multi-agent-pipeline-postmortem-5-failures-2026/ -->
 # 멀티 에이전트 파이프라인 포스트모템: 서브에이전트 오케스트레이션이 망가지는 5가지 방식 (2026)
 
 
@@ -98,9 +90,7 @@ faq:
 
 ## 프로덕션 준비된 Claude Code 세팅
 
-신뢰할 만한 파이프라인은 자기 스스로 실패를 더하지 않을 인프라를 원한다:
-
-1. **긴 파이프라인과 CI 게이트를 위한 안정된 호스트.** 오케스트레이션 도중 끊긴 SSH 세션은 그 자체로 하나의 실패 유형이다. **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 홍콩 VPS, 저지연 중국 본토 접근, 안정적 BGP. dibi8.com을 호스팅하는 바로 그 IDC로, 우리가 이 파이프라인들을 돌리는 곳이다. 월 $5-12.
+신뢰할 만한 파이프라인은 자기 스스로 실패를 더하지 않을 인프라를 원한다: 1. **긴 파이프라인과 CI 게이트를 위한 안정된 호스트.** 오케스트레이션 도중 끊긴 SSH 세션은 그 자체로 하나의 실패 유형이다. **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 홍콩 VPS, 저지연 중국 본토 접근, 안정적 BGP. dibi8.com을 호스팅하는 바로 그 IDC로, 우리가 이 파이프라인들을 돌리는 곳이다. 월 $5-12.
 
 2. **병렬 팬아웃을 위한 클라우드 여유 공간.** (의도적으로, 예산을 두고) 작업자를 팬아웃할 때 여유 CPU가 경합을 막아준다. **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — 60일간 $200 무료 크레딧, 14개 이상 리전.
 
@@ -118,7 +108,6 @@ faq:
 멀티 에이전트 오케스트레이션은 작업이 진짜로 컨텍스트 윈도우 하나를 넘어서거나 독립적 검증이 필요할 때 그만한 가치가 있다 — 하지만 반사적으로가 아니라 의도적으로 손을 뻗어라. 잘 프롬프트된 단일 에이전트는 버그투성이 5-에이전트 파이프라인을 매번 이긴다. 오케스트레이션을 할 때, 강력함과 재앙을 가르는 차이는 하나의 습관이다: **모든 주장을 실제 근거에 대조해 검증하고, 모든 루프에 한계를 둬라.** 검증할 수 없는 복잡성은 검증할 수 있는 단순함보다 나쁘다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -146,25 +135,20 @@ faq:
 
 ## Why This Matters
 
-Understanding 멀티 에이전트 파이프라인 포스트모템: 서브에이전트 오케스트레이션이 망가지는 5가지 방식 (2026) is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding 멀티 에이전트 파이프라인 포스트모템: 서브에이전트 오케스트레이션이 망가지는 5가지 방식 (2026) is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

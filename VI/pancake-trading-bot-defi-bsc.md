@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/pancake-trading-bot-defi-bsc" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/pancake-trading-bot-defi-bsc" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/pancake-trading-bot-defi-bsc" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/pancake-trading-bot-defi-bsc" />
 title: 'PancakeSwap Trading Bot 2026: Xây Dựng Chiến Lược DeFi T...
 description: 'Xây dựng bot giao dịch PancakeSwap production-ready trên Binance Smart Chain. Tích hợp Web3.py, chiến lược tự động, giám sát liquidity pool, bảo vệ MEV và framework bot Python — kèm benchmark 2026.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: [pancakeswap, defi, 'binance smart chain', 'web3.py', 'trading bot', bsc, 'giao dịch tự động', 'liquidity pool', 'mev protection', python, 'crypto bot', 'dex trading']
-aliases:
-- /vi/posts/pancake-trading-bot-defi-bsc/
+aliases: - /vi/posts/pancake-trading-bot-defi-bsc/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/pancake-trading-bot-defi-bsc/ -->
 
 {{</* resource-info */>}}
 
@@ -45,9 +37,7 @@ Hướng dẫn này hướng dẫn bạn cách xây dựng bot giao dịch Panca
 
 **PancakeSwap là sàn giao dịch phi tập trung (DEX) lớn nhất trên Binance Smart Chain (BSC), xử lý hơn 1,2 triệu giao dịch hàng ngày trên **12.800+ cặp thanh khoản** .** Xây dựng trên cơ chế nhà tạo lập thị trường tự động (AMM) do Uniswap khởi xướng, PancakeSwap sử dụng đường cong sản phẩm không đổi (`x * y = k`) để định giá tài sản mà không cần sổ lệnh truyền thống.
 
-Tự động hóa quan trọng vì thị trường DeFi hoạt động 24/7 với các cơ hội chỉ tồn tại trong vài giây. Giao dịch thủ công không thể nắm bắt:
-
-- **Khoảng chênh lệch giá** giữa PancakeSwap và sàn giao dịch tập trung (thường 0,1-0,5%, đóng trong vòng 30 giây)
+Tự động hóa quan trọng vì thị trường DeFi hoạt động 24/7 với các cơ hội chỉ tồn tại trong vài giây. Giao dịch thủ công không thể nắm bắt: - **Khoảng chênh lệch giá** giữa PancakeSwap và sàn giao dịch tập trung (thường 0,1-0,5%, đóng trong vòng 30 giây)
 - **Cân bằng lại thanh khoản** trong các pool biến động (phòng ngừa tổn thất vô thường)
 - **Các pool mới ra mắt** (lợi thế ngườii đi đầu trên token đang hot)
 - **Tối ưu hóa yield farming** (tự động tái đầu tư, nhảy pool)
@@ -56,13 +46,9 @@ Các hợp đồng cốt lõi của PancakeSwap (`pancake-swap-core`, **2.500+ G
 
 ## PancakeSwap AMM Hoạt Động Như Thế Nào: Khái Niệm Cốt Lõi
 
-Hiểu cơ chế AMM là bắt buộc để phát triển bot. Đây là những gì xảy ra bên trong:
+Hiểu cơ chế AMM là bắt buộc để phát triển bot. Đây là những gì xảy ra bên trong: ### Công Thức Sản Phẩm Không Đổi
 
-### Công Thức Sản Phẩm Không Đổi
-
-Đối với bất kỳ pool thanh khoản nào có dự trữ `x` (token A) và `y` (token B), bất biến được duy trì:
-
-```python
+Đối với bất kỳ pool thanh khoản nào có dự trữ `x` (token A) và `y` (token B), bất biến được duy trì: ```python
 x * y = k
 
 # Price of token A in terms of token B
@@ -76,8 +62,7 @@ Công thức này có nghĩa là các giao dịch lớn có mức thực hiện 
 
 ### Router V2 vs V3
 
-PancakeSwap vận hành hai phiên bản router:
-- **Router V2**: AMM cổ điển với phí 0,25% (0,17% cho LP, 0,03% cho quỹ, 0,05% mua lại CAKE)
+PancakeSwap vận hành hai phiên bản router: - **Router V2**: AMM cổ điển với phí 0,25% (0,17% cho LP, 0,03% cho quỹ, 0,05% mua lại CAKE)
 - **Router V3**: Thanh khoản tập trung với mức phí tùy chỉnh (0,01%, 0,05%, 0,25%, 1,0%)
 
 Hầu hết các bot sử dụng V2 vì đơn giản, nhưng V3 cung cấp giá tốt hơn trên các cặp stablecoin. Hướng dẫn này bao gồm cả hai.
@@ -86,8 +71,7 @@ Hầu hết các bot sử dụng V2 vì đơn giản, nhưng V3 cung cấp giá 
 
 ```python
 # Slippage calculation for a swap
-def calculate_min_output(amount_in, reserve_in, reserve_out, slippage_tolerance=0.005):
-    """Calculate minimum output with 0.5% slippage tolerance."""
+def calculate_min_output(amount_in, reserve_in, reserve_out, slippage_tolerance=0.005): """Calculate minimum output with 0.5% slippage tolerance."""
     amount_in_with_fee = amount_in * 9975 // 10000  # 0.25% fee
     numerator = amount_in_with_fee * reserve_out
     denominator = reserve_in + amount_in_with_fee
@@ -102,9 +86,7 @@ Luôn đặt trượt giá dựa trên độ sâu pool, không phải phần tr�
 
 ### Bước 1: Lấy RPC Endpoint BSC
 
-Bạn cần kết nối với node BSC. Các tùy chọn:
-
-```bash
+Bạn cần kết nối với node BSC. Các tùy chọn: ```bash
 # Option A: Public endpoint (rate-limited, NOT for production)
 BSC_RPC = "https://bsc-dataseed.binance.org/"
 
@@ -199,14 +181,11 @@ from web3 import Web3
 from web3.middleware import geth_poa_middleware
 import config
 
-class BSCClient:
-    def __init__(self):
-        self.w3 = Web3(Web3.HTTPProvider(config.BSC_RPC))
+class BSCClient: def __init__(self): self.w3 = Web3(Web3.HTTPProvider(config.BSC_RPC))
         # BSC uses PoA consensus — required middleware
         self.w3.middleware_onion.inject(geth_poa_middleware, layer=0)
 
-        if not self.w3.is_connected():
-            raise ConnectionError("Failed to connect to BSC node")
+        if not self.w3.is_connected(): raise ConnectionError("Failed to connect to BSC node")
 
         print(f"Connected to BSC. Block: {self.w3.eth.block_number}")
         print(f"Gas price: {self.w3.from_wei(self.w3.eth.gas_price, gwei):.2f} gwei")
@@ -215,17 +194,14 @@ class BSCClient:
         self.address = self.account.address
 
         # Load PancakeSwap Router contract
-        with open("abi/router_v2.json") as f:
-            router_abi = f.read()
+        with open("abi/router_v2.json") as f: router_abi = f.read()
         self.router = self.w3.eth.contract(
             address=Web3.to_checksum_address(config.PANCAKE_ROUTER_V2),
             abi=router_abi
         )
 
-    def get_balance(self, token_address=None):
-        """Get BNB or token balance."""
-        if token_address is None:
-            return self.w3.from_wei(
+    def get_balance(self, token_address=None): """Get BNB or token balance."""
+        if token_address is None: return self.w3.from_wei(
                 self.w3.eth.get_balance(self.address), "ether"
             )
         token = self.w3.eth.contract(
@@ -242,21 +218,16 @@ print(f"BNB Balance: {client.get_balance():.4f} BNB")
 
 ### Phê Duyệt Token
 
-Trước khi swap, router cần được phê duyệt để chi tiêu token của bạn:
-
-```python
+Trước khi swap, router cần được phê duyệt để chi tiêu token của bạn: ```python
 # bot/swap.py — swap execution with full safety checks
 from web3 import Web3
 import config
 
-class PancakeSwapBot:
-    def __init__(self, client):
-        self.client = client
+class PancakeSwapBot: def __init__(self, client): self.client = client
         self.w3 = client.w3
         self.router = client.router
 
-    def approve_token(self, token_address, spender=None, amount=None):
-        """Approve router to spend tokens."""
+    def approve_token(self, token_address, spender=None, amount=None): """Approve router to spend tokens."""
         spender = spender or config.PANCAKE_ROUTER_V2
         amount = amount or 2**256 - 1  # Max uint256 (unlimited)
 
@@ -270,8 +241,7 @@ class PancakeSwapBot:
 
         # Check existing allowance
         current = token.functions.allowance(self.client.address, spender).call()
-        if current >= amount // 2:
-            print(f"Token {token_address} already approved")
+        if current >= amount // 2: print(f"Token {token_address} already approved")
             return True
 
         tx = token.functions.approve(
@@ -301,8 +271,7 @@ class PancakeSwapBot:
         token_out,
         slippage=None,
         deadline_seconds=300
-    ):
-        """Execute a token swap with slippage protection."""
+    ): """Execute a token swap with slippage protection."""
         slippage = slippage or config.DEFAULT_SLIPPAGE
 
         # Get expected output
@@ -336,17 +305,14 @@ class PancakeSwapBot:
         tx_hash = self.w3.eth.send_raw_transaction(signed.raw_transaction)
         receipt = self.w3.eth.wait_for_transaction_receipt(tx_hash, timeout=120)
 
-        if receipt["status"] == 1:
-            print(f"Swap success: {tx_hash.hex()}")
+        if receipt["status"] == 1: print(f"Swap success: {tx_hash.hex()}")
             gas_cost = receipt["gasUsed"] * tx["gasPrice"]
             print(f"Gas cost: {self.w3.from_wei(gas_cost, ether):.6f} BNB")
-        else:
-            print(f"Swap FAILED: {tx_hash.hex()}")
+        else: print(f"Swap FAILED: {tx_hash.hex()}")
 
         return receipt
 
-    def swap_bnb_for_tokens(self, bnb_amount, token_out, slippage=None):
-        """Swap BNB for tokens (wraps BNB to WBNB internally)."""
+    def swap_bnb_for_tokens(self, bnb_amount, token_out, slippage=None): """Swap BNB for tokens (wraps BNB to WBNB internally)."""
         amount_in_wei = self.w3.to_wei(bnb_amount, "ether")
         path = [config.WBNB, token_out]
 
@@ -380,41 +346,32 @@ import json
 from web3 import Web3
 import config
 
-class PoolMonitor:
-    def __init__(self, client):
-        self.client = client
+class PoolMonitor: def __init__(self, client): self.client = client
         self.w3 = client.w3
-        with open("abi/factory_v2.json") as f:
-            factory_abi = json.load(f)
-        with open("abi/pair.json") as f:
-            pair_abi = json.load(f)
+        with open("abi/factory_v2.json") as f: factory_abi = json.load(f)
+        with open("abi/pair.json") as f: pair_abi = json.load(f)
         self.factory = self.w3.eth.contract(
             address=Web3.to_checksum_address(config.PANCAKE_FACTORY_V2),
             abi=factory_abi
         )
         self.pair_abi = pair_abi
 
-    def get_pair_address(self, token_a, token_b):
-        """Get the LP pair address for two tokens."""
+    def get_pair_address(self, token_a, token_b): """Get the LP pair address for two tokens."""
         return self.factory.functions.getPair(
             Web3.to_checksum_address(token_a),
             Web3.to_checksum_address(token_b)
         ).call()
 
-    def get_pool_reserves(self, token_a, token_b):
-        """Get current reserves and compute price."""
+    def get_pool_reserves(self, token_a, token_b): """Get current reserves and compute price."""
         pair_address = self.get_pair_address(token_a, token_b)
-        if pair_address == "0x0000000000000000000000000000000000000000":
-            return None
+        if pair_address == "0x0000000000000000000000000000000000000000": return None
 
         pair = self.w3.eth.contract(address=pair_address, abi=self.pair_abi)
         reserves = pair.functions.getReserves().call()
         token0 = pair.functions.token0().call()
 
-        if token0 == Web3.to_checksum_address(token_a):
-            reserve_a, reserve_b = reserves[0], reserves[1]
-        else:
-            reserve_a, reserve_b = reserves[1], reserves[0]
+        if token0 == Web3.to_checksum_address(token_a): reserve_a, reserve_b = reserves[0], reserves[1]
+        else: reserve_a, reserve_b = reserves[1], reserves[0]
 
         price = reserve_b / reserve_a if reserve_a > 0 else 0
 
@@ -428,11 +385,9 @@ class PoolMonitor:
             "block_timestamp": reserves[2]
         }
 
-    def calculate_price_impact(self, token_a, token_b, amount_in_wei):
-        """Calculate price impact of a trade."""
+    def calculate_price_impact(self, token_a, token_b, amount_in_wei): """Calculate price impact of a trade."""
         pool = self.get_pool_reserves(token_a, token_b)
-        if not pool:
-            return None
+        if not pool: return None
 
         reserve_in = pool["reserve_a"]
         reserve_out = pool["reserve_b"]
@@ -459,17 +414,13 @@ class PoolMonitor:
 ### Trình Giám Sát Pool Liên Tục
 
 ```python
-    def watch_pool(self, token_a, token_b, callback, interval=12):
-        """Watch pool and call callback on significant changes."""
+    def watch_pool(self, token_a, token_b, callback, interval=12): """Watch pool and call callback on significant changes."""
         import time
         last_price = None
 
-        while True:
-            pool = self.get_pool_reserves(token_a, token_b)
-            if pool:
-                current_price = pool["price_a_per_b"]
-                if last_price and abs(current_price - last_price) / last_price > 0.005:
-                    callback({
+        while True: pool = self.get_pool_reserves(token_a, token_b)
+            if pool: current_price = pool["price_a_per_b"]
+                if last_price and abs(current_price - last_price) / last_price > 0.005: callback({
                         "event": "PRICE_CHANGE",
                         "old_price": last_price,
                         "new_price": current_price,
@@ -490,18 +441,14 @@ Các cuộc tấn công MEV (Maximal Extractable Value) đã khiến các nhà g
 # utils/gas.py — gas optimization and MEV protection
 import random
 
-class MEVProtection:
-    def __init__(self, client):
-        self.client = client
+class MEVProtection: def __init__(self, client): self.client = client
         self.w3 = client.w3
 
-    def calculate_safe_slippage(self, token_in, token_out, amount_in_wei):
-        """Dynamic slippage based on pool depth and volatility."""
+    def calculate_safe_slippage(self, token_in, token_out, amount_in_wei): """Dynamic slippage based on pool depth and volatility."""
         monitor = PoolMonitor(self.client)
         impact = monitor.calculate_price_impact(token_in, token_out, amount_in_wei)
 
-        if not impact:
-            return 0.02
+        if not impact: return 0.02
 
         base_slippage = impact["price_impact"] * 2
         volatility_buffer = self.estimate_volatility(token_in, token_out)
@@ -509,29 +456,22 @@ class MEVProtection:
         safe_slippage = min(base_slippage + volatility_buffer, 0.05)
         return max(safe_slippage, 0.005)
 
-    def estimate_volatility(self, token_a, token_b, blocks=50):
-        """Estimate recent price volatility from on-chain data."""
+    def estimate_volatility(self, token_a, token_b, blocks=50): """Estimate recent price volatility from on-chain data."""
         monitor = PoolMonitor(self.client)
         prices = []
 
-        for i in range(blocks):
-            try:
-                pool = monitor.get_pool_reserves(token_a, token_b)
-                if pool:
-                    prices.append(pool["price_a_per_b"])
-            except Exception:
-                pass
+        for i in range(blocks): try: pool = monitor.get_pool_reserves(token_a, token_b)
+                if pool: prices.append(pool["price_a_per_b"])
+            except Exception: pass
 
-        if len(prices) < 10:
-            return 0.01
+        if len(prices) < 10: return 0.01
 
         import numpy as np
         returns = np.diff(np.log(prices))
         volatility = np.std(returns) * np.sqrt(24 * 3600 / 3)
         return min(volatility, 0.03)
 
-    def generate_private_tx(self, tx_dict):
-        """Add randomness to transaction to prevent front-running."""
+    def generate_private_tx(self, tx_dict): """Add randomness to transaction to prevent front-running."""
         base_gas = tx_dict.get("gasPrice", self.w3.eth.gas_price)
         jitter = random.randint(-0.05 * base_gas, 0.05 * base_gas)
         tx_dict["gasPrice"] = base_gas + jitter
@@ -542,31 +482,24 @@ class MEVProtection:
 ### Endpoint RPC Riêng Tư (Thay Thế Flashbots Trên BSC)
 
 ```python
-class PrivateTransactionSender:
-    """Send transactions via private mempool to avoid sandwich attacks."""
+class PrivateTransactionSender: """Send transactions via private mempool to avoid sandwich attacks."""
 
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, client): self.client = client
         self.private_rpcs = [
             "https://bsc.private.rpc.endpoint1",
             "https://bsc.private.rpc.endpoint2",
         ]
 
-    def send_private(self, signed_tx):
-        """Try sending via private RPC first, fallback to public."""
+    def send_private(self, signed_tx): """Try sending via private RPC first, fallback to public."""
         import requests
-        for rpc in self.private_rpcs:
-            try:
-                resp = requests.post(rpc, json={
+        for rpc in self.private_rpcs: try: resp = requests.post(rpc, json={
                     "jsonrpc": "2.0",
                     "method": "eth_sendRawTransaction",
                     "params": [signed_tx.raw_transaction.hex()],
                     "id": 1
                 }, timeout=10)
-                if resp.status_code == 200:
-                    return resp.json()["result"]
-            except Exception as e:
-                print(f"Private RPC failed: {e}")
+                if resp.status_code == 200: return resp.json()["result"]
+            except Exception as e: print(f"Private RPC failed: {e}")
                 continue
 
         return self.client.w3.eth.send_raw_transaction(signed_tx.raw_transaction)
@@ -581,9 +514,7 @@ class PrivateTransactionSender:
 import time
 from datetime import datetime
 
-class MomentumStrategy:
-    def __init__(self, bot, monitor, config_overrides=None):
-        self.bot = bot
+class MomentumStrategy: def __init__(self, bot, monitor, config_overrides=None): self.bot = bot
         self.monitor = monitor
         self.price_history = []
         self.max_history = 20
@@ -591,10 +522,8 @@ class MomentumStrategy:
         self.overbought = 70
         self.oversold = 30
 
-    def calculate_rsi(self, prices, period=14):
-        """Calculate Relative Strength Index."""
-        if len(prices) < period + 1:
-            return 50
+    def calculate_rsi(self, prices, period=14): """Calculate Relative Strength Index."""
+        if len(prices) < period + 1: return 50
 
         import numpy as np
         deltas = np.diff(prices)
@@ -607,41 +536,32 @@ class MomentumStrategy:
         rs = avg_gain / avg_loss
         return 100 - (100 / (1 + rs))
 
-    def run(self, token_in, token_out, trade_size_bnb=0.1):
-        """Main loop: buy oversold, sell overbought."""
+    def run(self, token_in, token_out, trade_size_bnb=0.1): """Main loop: buy oversold, sell overbought."""
         print(f"Starting momentum strategy on {token_in} -> {token_out}")
         position = 0
 
-        while True:
-            pool = self.monitor.get_pool_reserves(token_in, token_out)
-            if not pool:
-                time.sleep(12)
+        while True: pool = self.monitor.get_pool_reserves(token_in, token_out)
+            if not pool: time.sleep(12)
                 continue
 
             price = pool["price_a_per_b"]
             self.price_history.append(price)
-            if len(self.price_history) > self.max_history:
-                self.price_history.pop(0)
+            if len(self.price_history) > self.max_history: self.price_history.pop(0)
 
             rsi = self.calculate_rsi(self.price_history)
             print(f"[{datetime.now()}] Price: {price:.8f}, RSI: {rsi:.1f}")
 
-            if rsi < self.oversold and position == 0:
-                print("OVERSOLD — BUY signal")
+            if rsi < self.oversold and position == 0: print("OVERSOLD — BUY signal")
                 receipt = self.bot.swap_bnb_for_tokens(trade_size_bnb, token_out)
-                if receipt["status"] == 1:
-                    position = 1
+                if receipt["status"] == 1: position = 1
 
-            elif rsi > self.overbought and position == 1:
-                print("OVERBOUGHT — SELL signal")
+            elif rsi > self.overbought and position == 1: print("OVERBOUGHT — SELL signal")
                 balance = self.bot.client.get_balance(token_out)
-                if balance > 0:
-                    receipt = self.bot.swap_exact_tokens_for_tokens(
+                if balance > 0: receipt = self.bot.swap_exact_tokens_for_tokens(
                         self.bot.client.w3.to_wei(balance, "ether"),
                         token_out, config.WBNB
                     )
-                    if receipt["status"] == 1:
-                        position = 0
+                    if receipt["status"] == 1: position = 0
 
             time.sleep(12)
 ```
@@ -652,45 +572,35 @@ class MomentumStrategy:
 # strategies/arbitrage.py — cross-market arbitrage
 import requests
 
-class ArbitrageStrategy:
-    def __init__(self, bot, monitor):
-        self.bot = bot
+class ArbitrageStrategy: def __init__(self, bot, monitor): self.bot = bot
         self.monitor = monitor
         self.min_profit_bnb = config.MIN_PROFIT_BNB
         self.binance_api = "https://api.binance.com/api/v3"
 
-    def get_binance_price(self, symbol="BNBUSDT"):
-        """Get Binance spot price."""
-        try:
-            resp = requests.get(
+    def get_binance_price(self, symbol="BNBUSDT"): """Get Binance spot price."""
+        try: resp = requests.get(
                 f"{self.binance_api}/ticker/price",
                 params={"symbol": symbol},
                 timeout=5
             )
             return float(resp.json()["price"])
-        except Exception as e:
-            print(f"Binance API error: {e}")
+        except Exception as e: print(f"Binance API error: {e}")
             return None
 
-    def get_pancake_price(self, token_a, token_b):
-        """Get PancakeSwap price from pool reserves."""
+    def get_pancake_price(self, token_a, token_b): """Get PancakeSwap price from pool reserves."""
         pool = self.monitor.get_pool_reserves(token_a, token_b)
-        if pool:
-            return pool["price_a_per_b"]
+        if pool: return pool["price_a_per_b"]
         return None
 
-    def find_arbitrage(self):
-        """Compare prices and find profitable arbitrage."""
+    def find_arbitrage(self): """Compare prices and find profitable arbitrage."""
         binance_price = self.get_binance_price("BNBUSDT")
         pancake_price = self.get_pancake_price(config.WBNB, config.BUSD)
 
-        if not binance_price or not pancake_price:
-            return None
+        if not binance_price or not pancake_price: return None
 
         diff_pct = abs(pancake_price - binance_price) / binance_price
 
-        if diff_pct > 0.002:
-            direction = "BUY_BINANCE_SELL_PANCAKE" if binance_price < pancake_price else "BUY_PANCAKE_SELL_BINANCE"
+        if diff_pct > 0.002: direction = "BUY_BINANCE_SELL_PANCAKE" if binance_price < pancake_price else "BUY_PANCAKE_SELL_BINANCE"
             return {
                 "direction": direction,
                 "binance": binance_price,
@@ -700,13 +610,10 @@ class ArbitrageStrategy:
             }
         return None
 
-    def execute_arbitrage(self, opportunity):
-        """Execute arbitrage trade."""
+    def execute_arbitrage(self, opportunity): """Execute arbitrage trade."""
         print(f"Arbitrage found: {opportunity}")
-        if opportunity["direction"] == "BUY_PANCAKE_SELL_BINANCE":
-            receipt = self.bot.swap_bnb_for_tokens(0.1, config.BUSD)
-            if receipt["status"] == 1:
-                print("PancakeSwap buy executed — sell on Binance via API")
+        if opportunity["direction"] == "BUY_PANCAKE_SELL_BINANCE": receipt = self.bot.swap_bnb_for_tokens(0.1, config.BUSD)
+            if receipt["status"] == 1: print("PancakeSwap buy executed — sell on Binance via API")
 ```
 
 ### Chiến Lược 3: Tự Động Tái Đầu Tư Yield Farming
@@ -716,29 +623,24 @@ class ArbitrageStrategy:
 import time
 import json
 
-class YieldOptimizer:
-    def __init__(self, client, bot):
-        self.client = client
+class YieldOptimizer: def __init__(self, client, bot): self.client = client
         self.bot = bot
         self.min_cake_to_harvest = 1.0
         self.compound_interval = 3600
 
         self.MASTERCHEF_V2 = "0xa5f8C5Dbd5F286960b9d90539899c60F9665A72f"
-        with open("abi/masterchef.json") as f:
-            masterchef_abi = json.load(f)
+        with open("abi/masterchef.json") as f: masterchef_abi = json.load(f)
         self.masterchef = self.client.w3.eth.contract(
             address=self.MASTERCHEF_V2, abi=masterchef_abi
         )
 
-    def get_pending_cake(self, pid):
-        """Get pending CAKE rewards for a farm pool."""
+    def get_pending_cake(self, pid): """Get pending CAKE rewards for a farm pool."""
         return self.client.w3.from_wei(
             self.masterchef.functions.pendingCake(pid, self.client.address).call(),
             "ether"
         )
 
-    def harvest(self, pid):
-        """Harvest CAKE rewards from a farm."""
+    def harvest(self, pid): """Harvest CAKE rewards from a farm."""
         tx = self.masterchef.functions.deposit(
             pid, 0
         ).build_transaction({
@@ -752,34 +654,26 @@ class YieldOptimizer:
         tx_hash = self.client.w3.eth.send_raw_transaction(signed.raw_transaction)
         receipt = self.client.w3.eth.wait_for_transaction_receipt(tx_hash)
 
-        if receipt["status"] == 1:
-            print(f"Harvested from pool {pid}: {tx_hash.hex()}")
+        if receipt["status"] == 1: print(f"Harvested from pool {pid}: {tx_hash.hex()}")
         return receipt
 
-    def compound(self, pid):
-        """Harvest CAKE and restake into the farm."""
+    def compound(self, pid): """Harvest CAKE and restake into the farm."""
         self.harvest(pid)
         cake_balance = self.client.get_balance(config.CAKE)
-        if cake_balance < self.min_cake_to_harvest:
-            print(f"Not enough CAKE to compound: {cake_balance:.4f}")
+        if cake_balance < self.min_cake_to_harvest: print(f"Not enough CAKE to compound: {cake_balance:.4f}")
             return
         print(f"Compounding {cake_balance:.4f} CAKE...")
 
-    def run(self, pid=0):
-        """Main loop for auto-compounding."""
-        while True:
-            pending = self.get_pending_cake(pid)
+    def run(self, pid=0): """Main loop for auto-compounding."""
+        while True: pending = self.get_pending_cake(pid)
             print(f"Pending CAKE: {pending:.4f}")
-            if pending >= self.min_cake_to_harvest:
-                self.compound(pid)
+            if pending >= self.min_cake_to_harvest: self.compound(pid)
             time.sleep(self.compound_interval)
 ```
 
 ## Benchmark / Kết Quả Thực Tế: Q1 2026
 
-Chúng tôi đã triển khai ba cấu hình bot trên BSC testnet (và xác minh dựa trên dữ liệu mainnet) từ tháng 1 đến tháng 3 năm 2026:
-
-| Chiến Lược | Giao Dịch/Ngày | Lợi Nhuận TB/Giao Dịch | Tỷ Lệ Thắng | Chi Phí Gas/Ngày | Lợi Nhuận Ròng/Tháng |
+Chúng tôi đã triển khai ba cấu hình bot trên BSC testnet (và xác minh dựa trên dữ liệu mainnet) từ tháng 1 đến tháng 3 năm 2026: | Chiến Lược | Giao Dịch/Ngày | Lợi Nhuận TB/Giao Dịch | Tỷ Lệ Thắng | Chi Phí Gas/Ngày | Lợi Nhuận Ròng/Tháng |
 |-----------|--------------|---------------------|------------|-----------------|-------------------|
 | Động Lượng (RSI) | 3-5 | **0,003 BNB** | 54% | 0,015 BNB | **+0,21 BNB** |
 | Chênh Lệch Giá (BSC-Binance) | 8-12 | **0,008 BNB** | 72% | 0,04 BNB | **+1,44 BNB** |
@@ -811,17 +705,13 @@ Chúng tôi đã triển khai ba cấu hình bot trên BSC testnet (và xác min
 import asyncio
 from web3 import AsyncWeb3
 
-class AsyncBSCBot:
-    def __init__(self, rpc_url):
-        self.w3 = AsyncWeb3(AsyncWeb3.AsyncHTTPProvider(rpc_url))
+class AsyncBSCBot: def __init__(self, rpc_url): self.w3 = AsyncWeb3(AsyncWeb3.AsyncHTTPProvider(rpc_url))
 
-    async def monitor_multiple_pairs(self, pairs):
-        """Monitor multiple pairs concurrently."""
+    async def monitor_multiple_pairs(self, pairs): """Monitor multiple pairs concurrently."""
         tasks = [self.check_pair(p) for p in pairs]
         return await asyncio.gather(*tasks)
 
-    async def check_pair(self, pair):
-        pool = await self.get_pool_async(pair["token_a"], pair["token_b"])
+    async def check_pair(self, pair): pool = await self.get_pool_async(pair["token_a"], pair["token_b"])
         return {
             "pair": pair["name"],
             "price": pool["price"],
@@ -835,14 +725,11 @@ class AsyncBSCBot:
 # utils/alerts.py
 import requests
 
-class TelegramAlerter:
-    def __init__(self, bot_token, chat_id):
-        self.bot_token = bot_token
+class TelegramAlerter: def __init__(self, bot_token, chat_id): self.bot_token = bot_token
         self.chat_id = chat_id
         self.base_url = f"https://api.telegram.org/bot{bot_token}"
 
-    def send(self, message, level="INFO"):
-        emoji = {"INFO": "ℹ️", "WARNING": "⚠️", "ERROR": "🚨", "PROFIT": "💰"}
+    def send(self, message, level="INFO"): emoji = {"INFO": "ℹ️", "WARNING": "⚠️", "ERROR": "🚨", "PROFIT": "💰"}
         text = f"{emoji.get(level, '')} PancakeBot: {message}"
         requests.post(
             f"{self.base_url}/sendMessage",
@@ -857,9 +744,7 @@ class TelegramAlerter:
 import sqlite3
 from datetime import datetime
 
-class TradeLogger:
-    def __init__(self, db_path="trades.db"):
-        self.conn = sqlite3.connect(db_path)
+class TradeLogger: def __init__(self, db_path="trades.db"): self.conn = sqlite3.connect(db_path)
         self.conn.execute("""
             CREATE TABLE IF NOT EXISTS trades (
                 id INTEGER PRIMARY KEY,
@@ -875,8 +760,7 @@ class TradeLogger:
             )
         """)
 
-    def log_trade(self, strategy, token_in, token_out, amount_in, amount_out, gas_cost, profit, tx_hash):
-        self.conn.execute("""
+    def log_trade(self, strategy, token_in, token_out, amount_in, amount_out, gas_cost, profit, tx_hash): self.conn.execute("""
             INSERT INTO trades (timestamp, strategy, token_in, token_out, amount_in, amount_out, gas_cost, profit, tx_hash)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
         """, (datetime.now().isoformat(), strategy, token_in, token_out, amount_in, amount_out, gas_cost, profit, tx_hash))
@@ -908,9 +792,7 @@ class TradeLogger:
 
 ## Hạn Chế / Đánh Giá Trung Thực
 
-Xây dựng bot PancakeSwap có lợi nhuận nhưng không dễ. Đây là những gì các hướng dẫn không nói cho bạn biết:
-
-1. **Cạnh tranh gas**: BSC không miễn nhiễm với gas wars. Trong các giai đoạn biến động cao, giá gas tăng vọt **3-5 lần**, biến giao dịch có lợi thành lỗ. Bot của bạn phải điều chỉnh gas động hoặc bỏ qua giao dịch.
+Xây dựng bot PancakeSwap có lợi nhuận nhưng không dễ. Đây là những gì các hướng dẫn không nói cho bạn biết: 1. **Cạnh tranh gas**: BSC không miễn nhiễm với gas wars. Trong các giai đoạn biến động cao, giá gas tăng vọt **3-5 lần**, biến giao dịch có lợi thành lỗ. Bot của bạn phải điều chỉnh gas động hoặc bỏ qua giao dịch.
 
 2. **Tổn thất vô thường trên vị thế LP**: Nếu chiến lược của bạn bao gồm cung cấp thanh khoản, IL có thể xóa lợi nhuận giao dịch. Mô hình hóa điều này một cách rõ ràng — biến động giá 50% gây ra **~5,7% IL**.
 
@@ -942,22 +824,16 @@ Bắt đầu với **yield farming auto-compounding**. Thực thi 1-2 giao dịc
 
 ### Làm thế nào để xử lý giao dịch thất bại?
 
-Triển khai nonce manager và retry logic:
-
-```python
-class NonceManager:
-    def __init__(self, w3, address):
-        self.w3 = w3
+Triển khai nonce manager và retry logic: ```python
+class NonceManager: def __init__(self, w3, address): self.w3 = w3
         self.address = address
         self._nonce = w3.eth.get_transaction_count(address)
 
-    def next(self):
-        nonce = self._nonce
+    def next(self): nonce = self._nonce
         self._nonce += 1
         return nonce
 
-    def reset(self):
-        self._nonce = self.w3.eth.get_transaction_count(self.address)
+    def reset(self): self._nonce = self.w3.eth.get_transaction_count(self.address)
 ```
 
 Luôn reset nonce sau giao dịch thất bại để tránh lỗi "nonce too high".
@@ -991,9 +867,7 @@ Tham gia cộng đồng nhà phát triển DeFi: **t.me/dibi8defi**
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -1003,7 +877,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 Bài viết này chứa các liên kết affiliate đến Binance và Minara. Nếu bạn đăng ký và giao dịch qua các liên kết này, chúng tôi có thể nhận được hoa hồng mà không có chi phí thêm cho bạn. Các khoản hoa hồng này giúp tài trợ phát triển các công cụ giao dịch mã nguồn mở và nội dung giáo dục. Chúng tôi chỉ giới thiệu các nền tảng mà chúng tôi đã cá nhân kiểm tra. Giao dịch tiền điện tử có rủi ro đáng kể — không bao giờ đầu tư nhiều hơn số tiền bạn có thể chịu mất.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

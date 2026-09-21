@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/kubeflow-ml-pipeline-kubernetes" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/kubeflow-ml-pipeline-kubernetes" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/kubeflow-ml-pipeline-kubernetes" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/kubeflow-ml-pipeline-kubernetes" />
 title: 'Kubeflow 2026: Chạy Pipeline ML Hoàn Chỉnh trên Kubernet...
 description: 'Hướng dẫn đầy đủ để triển khai Kubeflow trên Kubernetes cho pipeline ML. Bao gồm cài đặt, thành phần, benchmark, cứng hóa production và mô hình triển khai thực tế.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: [kubeflow, kubernetes, 'machine learning', 'ml pipeline', mlops, 'kubeflow pipelines', kserve, katib, 'khoa học dữ liệu']
-aliases:
-- /vi/posts/kubeflow-ml-pipeline-kubernetes/
+aliases: - /vi/posts/kubeflow-ml-pipeline-kubernetes/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/kubeflow-ml-pipeline-kubernetes/ -->
 
 {{</* resource-info */>}}
 
@@ -51,9 +43,7 @@ Thay vì quản lý các công cụ riêng biệt cho notebooks, training jobs, 
 
 ## Kubeflow Hoạt Động Như Thế Nào: Tổng Quan Kiến Trúc
 
-Kiến trúc của Kubeflow tập trung vào nguyên tắc: **mọi thứ chạy trên Kubernetes**. Nền tảng bao gồm nhiều thành phần cốt lõi, mỗi thành phần đề cập đến một giai đoạn cụ thể của vòng đồi ML:
-
-**Kubeflow Pipelines (KFP)** điều phối các workflow ML dưới dạng DAG dựa trên container. Mỗi bước trong pipeline là một Docker image; đầu vào và đầu ra được truyền qua các artifact store S3/MinIO/GCS. KFP sử dụng Argo Workflows làm engine thực thi bên dưới (mặc dù Tekton cũng được hỗ trợ như một lựa chọn thay thế).
+Kiến trúc của Kubeflow tập trung vào nguyên tắc: **mọi thứ chạy trên Kubernetes**. Nền tảng bao gồm nhiều thành phần cốt lõi, mỗi thành phần đề cập đến một giai đoạn cụ thể của vòng đồi ML: **Kubeflow Pipelines (KFP)** điều phối các workflow ML dưới dạng DAG dựa trên container. Mỗi bước trong pipeline là một Docker image; đầu vào và đầu ra được truyền qua các artifact store S3/MinIO/GCS. KFP sử dụng Argo Workflows làm engine thực thi bên dưới (mặc dù Tekton cũng được hỗ trợ như một lựa chọn thay thế).
 
 **Kubeflow Notebooks** cung cấp các instance Jupyter, VS Code, và RStudio được quản lý chạy dưới dạng StatefulSets. Mỗi notebook server mount các persistent volume cho datasets và models, và có thể được cấu hình với quota tài nguyên CPU/GPU cụ thể.
 
@@ -68,8 +58,7 @@ Control plane bao gồm Istio cho service mesh, Dex hoặc OIDC cho xác thực,
 ```bash
 # Xem các thành phần ở cấp cao
 kubectl get pods -n kubeflow
-# Output dự kiến hiển thị pod cho:
-# - ml-pipeline (KFP API server)
+# Output dự kiến hiển thị pod cho: # - ml-pipeline (KFP API server)
 # - katib-controller, katib-db-manager
 # - kserve-controller-manager
 # - training-operator
@@ -135,9 +124,7 @@ helm install kubeflow kubeflow/kubeflow \
 
 ### Tùy chọn C: DigitalOcean Kubernetes (Sẵn sàng Production)
 
-Để có cluster production-grade mà không cần quản lý control plane:
-
-```bash
+Để có cluster production-grade mà không cần quản lý control plane: ```bash
 # Cài đặt doctl và xác thực
 doctl kubernetes cluster create kubeflow-ml \
   --region nyc3 \
@@ -158,9 +145,7 @@ kubectl get namespaces | grep kubeflow
 
 ## Xây Dựng Pipeline ML Đầu Tiên Củ Bạn
 
-Kubeflow Pipelines (KFP) là nơi Kubeflow mang lại nhiều giá trị nhất. Đây là một pipeline hoàn chỉnh để tải xuống dữ liệu, train mô hình, và đánh giá:
-
-```python
+Kubeflow Pipelines (KFP) là nơi Kubeflow mang lại nhiều giá trị nhất. Đây là một pipeline hoàn chỉnh để tải xuống dữ liệu, train mô hình, và đánh giá: ```python
 # pipeline.py — Pipeline ML hoàn chỉnh sử dụng KFP SDK v2
 import kfp
 from kfp import dsl
@@ -170,8 +155,7 @@ from kfp.dsl import component, Input, Output, Dataset, Model, Metrics
     base_image="python:3.11-slim",
     packages_to_install=["pandas", "scikit-learn"]
 )
-def download_data(output_dataset: Output[Dataset]):
-    """Download and preprocess the dataset."""
+def download_data(output_dataset: Output[Dataset]): """Download and preprocess the dataset."""
     import pandas as pd
     from sklearn.datasets import load_iris
     from sklearn.model_selection import train_test_split
@@ -189,8 +173,7 @@ def train_model(
     input_dataset: Input[Dataset],
     output_model: Output[Model],
     n_estimators: int = 100
-):
-    """Train a Random Forest classifier."""
+): """Train a Random Forest classifier."""
     import pandas as pd
     import joblib
     from sklearn.ensemble import RandomForestClassifier
@@ -214,8 +197,7 @@ def evaluate_model(
     input_model: Input[Model],
     input_dataset: Input[Dataset],
     metrics: Output[Metrics]
-) -> str:
-    """Evaluate the trained model and log metrics."""
+) -> str: """Evaluate the trained model and log metrics."""
     import pandas as pd
     import joblib
     from sklearn.metrics import accuracy_score, f1_score
@@ -239,8 +221,7 @@ def evaluate_model(
     name="iris-training-pipeline",
     description="End-to-end iris classification pipeline"
 )
-def iris_pipeline(n_estimators: int = 100):
-    download = download_data()
+def iris_pipeline(n_estimators: int = 100): download = download_data()
     train = train_model(
         input_dataset=download.outputs["output_dataset"],
         n_estimators=n_estimators
@@ -251,8 +232,7 @@ def iris_pipeline(n_estimators: int = 100):
     )
 
 # Compile pipeline
-if __name__ == "__main__":
-    kfp.compiler.Compiler().compile(
+if __name__ == "__main__": kfp.compiler.Compiler().compile(
         iris_pipeline,
         "iris_pipeline.yaml"
     )
@@ -282,45 +262,28 @@ Pipeline xuất hiện trong UI KFP với khả năng theo dõi dòng dõi đầ
 
 ## Training Phân Tán với Training Operator
 
-Đối với các workload không phù hợp với một GPU, Training Operator của Kubeflow quản lý các training job phân tán:
-
-```yaml
+Đối với các workload không phù hợp với một GPU, Training Operator của Kubeflow quản lý các training job phân tán: ```yaml
 # pytorch-job.yaml — Training PyTorch phân tán
 apiVersion: kubeflow.org/v1
 kind: PyTorchJob
-metadata:
-  name: cifar10-distributed
+metadata: name: cifar10-distributed
   namespace: kubeflow-user-example-com
-spec:
-  pytorchReplicaSpecs:
-    Master:
-      replicas: 1
+spec: pytorchReplicaSpecs: Master: replicas: 1
       restartPolicy: OnFailure
-      template:
-        spec:
-          containers:
-          - name: pytorch
+      template: spec: containers: - name: pytorch
             image: my-registry/cifar10-training:v1.2
             command: ["python", "-m", "torch.distributed.launch",
                       "--nproc_per_node=1", "train.py"]
-            resources:
-              limits:
-                nvidia.com/gpu: 1
+            resources: limits: nvidia.com/gpu: 1
                 memory: "16Gi"
                 cpu: "8"
-    Worker:
-      replicas: 3
+    Worker: replicas: 3
       restartPolicy: OnFailure
-      template:
-        spec:
-          containers:
-          - name: pytorch
+      template: spec: containers: - name: pytorch
             image: my-registry/cifar10-training:v1.2
             command: ["python", "-m", "torch.distributed.launch",
                       "--nproc_per_node=1", "train.py"]
-            resources:
-              limits:
-                nvidia.com/gpu: 1
+            resources: limits: nvidia.com/gpu: 1
                 memory: "16Gi"
                 cpu: "8"
 ```
@@ -343,28 +306,18 @@ nvidia-smi  # Chạy bên trong bất kỳ GPU pod nào
 
 ## Model Serving với KServe
 
-KServe cung cấp model serving cấp production với autoscaling, traffic splitting, và các giao thức inference chuẩn:
-
-```yaml
+KServe cung cấp model serving cấp production với autoscaling, traffic splitting, và các giao thức inference chuẩn: ```yaml
 # inference-service.yaml — Triển khai model đã train
 apiVersion: serving.kserve.io/v1beta1
 kind: InferenceService
-metadata:
-  name: iris-classifier
+metadata: name: iris-classifier
   namespace: kubeflow-user-example-com
-  annotations:
-    serving.kserve.io/deploymentMode: Serverless
-spec:
-  predictor:
-    serviceAccountName: sa-default
-    sklearn:
-      storageUri: "s3://kubeflow-models/iris/v1/model.joblib"
-      resources:
-        limits:
-          cpu: "1"
+  annotations: serving.kserve.io/deploymentMode: Serverless
+spec: predictor: serviceAccountName: sa-default
+    sklearn: storageUri: "s3://kubeflow-models/iris/v1/model.joblib"
+      resources: limits: cpu: "1"
           memory: 2Gi
-        requests:
-          cpu: "100m"
+        requests: cpu: "100m"
           memory: 256Mi
 ```
 
@@ -387,81 +340,56 @@ curl -X POST http://iris-classifier.kubeflow-user-example-com.example.com/v1/mod
 # Response: {"predictions": [0]}
 ```
 
-Đối với canary deployments, KServe hỗ trợ traffic splitting:
-
-```yaml
+Đối với canary deployments, KServe hỗ trợ traffic splitting: ```yaml
 # canary-rollout.yaml — Rollout dần dần của v2
 apiVersion: serving.kserve.io/v1beta1
 kind: InferenceService
-metadata:
-  name: iris-classifier
+metadata: name: iris-classifier
   namespace: kubeflow-user-example-com
-spec:
-  predictor:
-    canaryTrafficPercent: 20
-    sklearn:
-      storageUri: "s3://kubeflow-models/iris/v2/model.joblib"
+spec: predictor: canaryTrafficPercent: 20
+    sklearn: storageUri: "s3://kubeflow-models/iris/v2/model.joblib"
 ```
 
 ## Hyperparameter Tuning với Katib
 
-Katib tự động hóa việc tìm kiếm các hyperparameter tối ưu bằng cách sử dụng các experiment gốc Kubernetes:
-
-```yaml
+Katib tự động hóa việc tìm kiếm các hyperparameter tối ưu bằng cách sử dụng các experiment gốc Kubernetes: ```yaml
 # katib-experiment.yaml — Tối ưu hóa hyperparameters Random Forest
 apiVersion: kubeflow.org/v1beta1
 kind: Experiment
-metadata:
-  namespace: kubeflow-user-example-com
+metadata: namespace: kubeflow-user-example-com
   name: iris-hp-tuning
-spec:
-  objective:
-    type: maximize
+spec: objective: type: maximize
     goal: 0.99
     objectiveMetricName: accuracy
-  algorithm:
-    algorithmName: bayesianoptimization
+  algorithm: algorithmName: bayesianoptimization
   parallelTrialCount: 3
   maxTrialCount: 12
   maxFailedTrialCount: 3
-  parameters:
-    - name: n_estimators
+  parameters: - name: n_estimators
       parameterType: int
-      feasibleSpace:
-        min: "50"
+      feasibleSpace: min: "50"
         max: "500"
     - name: max_depth
       parameterType: int
-      feasibleSpace:
-        min: "3"
+      feasibleSpace: min: "3"
         max: "20"
     - name: min_samples_split
       parameterType: double
-      feasibleSpace:
-        min: "0.01"
+      feasibleSpace: min: "0.01"
         max: "0.3"
-  trialTemplate:
-    primaryContainerName: training-container
-    trialParameters:
-      - name: nEstimators
+  trialTemplate: primaryContainerName: training-container
+    trialParameters: - name: nEstimators
         reference: n_estimators
       - name: maxDepth
         reference: max_depth
       - name: minSamplesSplit
         reference: min_samples_split
-    trialSpec:
-      apiVersion: batch/v1
+    trialSpec: apiVersion: batch/v1
       kind: Job
-      spec:
-        template:
-          spec:
-            containers:
-              - name: training-container
+      spec: template: spec: containers: - name: training-container
                 image: my-registry/iris-train:v1
                 command: ["python", "train.py"]
-                resources:
-                  limits:
-                    memory: "4Gi"
+                resources: limits: memory: "4Gi"
                     cpu: "2"
             restartPolicy: Never
 ```
@@ -517,12 +445,9 @@ Chi phí điều phối KFP luôn luôn **dưới 3%** tổng thờ gian chạy 
 # gpu-quota.yaml — Thực thi giới hạn GPU cho mỗi namespace
 apiVersion: v1
 kind: ResourceQuota
-metadata:
-  name: gpu-quota
+metadata: name: gpu-quota
   namespace: data-science-team
-spec:
-  hard:
-    requests.nvidia.com/gpu: 8
+spec: hard: requests.nvidia.com/gpu: 8
     limits.nvidia.com/gpu: 16
 ```
 
@@ -540,22 +465,16 @@ kubectl describe resourcequota gpu-quota -n data-science-team
 # dataset-pvc.yaml
 apiVersion: v1
 kind: PersistentVolumeClaim
-metadata:
-  name: training-datasets
+metadata: name: training-datasets
   namespace: kubeflow-user-example-com
-spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 500Gi
+spec: accessModes: - ReadWriteMany
+  resources: requests: storage: 500Gi
   storageClassName: nfs-client  # Hoặc efs-sc trên AWS
 ```
 
 ```bash
 # Mount vào notebook server qua UI Kubeflow
-# Hoặc tham chiếu trong các thành phần pipeline:
-# dsl.VolumeOp(name="create-dataset-volume",
+# Hoặc tham chiếu trong các thành phần pipeline: # dsl.VolumeOp(name="create-dataset-volume",
 #              resource_name="training-datasets",
 #              size="500Gi",
 #              modes=dsl.VOLUME_MODE_RWM)
@@ -568,15 +487,10 @@ spec:
 kubectl apply -f - <<EOF
 apiVersion: kubeflow.org/v1
 kind: Profile
-metadata:
-  name: team-ml-platform
-spec:
-  owner:
-    kind: User
+metadata: name: team-ml-platform
+spec: owner: kind: User
     name: ml-engineer@company.com
-  resourceQuotaSpec:
-    hard:
-      cpu: "64"
+  resourceQuotaSpec: hard: cpu: "64"
       memory: 256Gi
       nvidia.com/gpu: "8"
       pods: "50"
@@ -603,8 +517,7 @@ mc mirror myminio/kubeflow-pipelines/ \
 kubectl apply -f \
   https://raw.githubusercontent.com/kubeflow/manifests/v1.10.0/contrib/prometheus/kustomization.yaml
 
-# Các chỉ số chính cần cảnh báo:
-# - kubeflow_pipelines_run_count (tổng pipeline runs)
+# Các chỉ số chính cần cảnh báo: # - kubeflow_pipelines_run_count (tổng pipeline runs)
 # - kubeflow_pipelines_run_latency_seconds (thờ gian thực thi pipeline)
 # - nvidia_gpu_utilization_gpu (GPU utilization mỗi pod)
 # - container_memory_working_set_bytes (phát hiện OOM)
@@ -635,9 +548,7 @@ kubectl apply -f \
 
 ## Hạn Chế / Đánh Giá Trung Thực
 
-Kubeflow mạnh mẽ nhưng không phải không có thách thức:
-
-**Độ phức tạp cài đặt**: Cài đặt Kubeflow đầy đủ yêu cầu **hơn 30 microservices**. Ngay cả các operator Kubernetes có kinh nghiệm cũng cần **2-4 giờ** cho lần deploy production đầu tiên. Các công cụ như Kubeflow on GCP (Vertex AI) hoặc AWS làm đơn giản hóa điều này nhưng tạo ra sự phụ thuộc vào vendor.
+Kubeflow mạnh mẽ nhưng không phải không có thách thức: **Độ phức tạp cài đặt**: Cài đặt Kubeflow đầy đủ yêu cầu **hơn 30 microservices**. Ngay cả các operator Kubernetes có kinh nghiệm cũng cần **2-4 giờ** cho lần deploy production đầu tiên. Các công cụ như Kubeflow on GCP (Vertex AI) hoặc AWS làm đơn giản hóa điều này nhưng tạo ra sự phụ thuộc vào vendor.
 
 **Phân mảnh tài liệu**: Các thành phần khác nhau (KFP, KServe, Katib) duy trì các trang tài liệu riêng biệt. Các ví dụ tích hợp xuyên thành phần đôi khi đã lỗi thờ. Luôn kiểm chứng với **tài liệu v1.10.0** hoặc mới hơn.
 
@@ -679,9 +590,7 @@ Sẵn sàng deploy? [Nhận $200 credit trên DigitalOcean](https://m.do.co/c/ec
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -702,7 +611,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 *Tuyên bố tiếp thị liên kết: Bài viết này chứa các liên kết tiếp thị liên kết đến DigitalOcean. Nếu bạn đăng ký qua các liên kết này, dibi8.com nhận được hoa hồng mà không phát sinh chi phí bổ sung cho bạn. Chúng tôi chỉ giới thiệu các dịch vụ mà chúng tôi sử dụng cho chính hạ tầng của mình.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

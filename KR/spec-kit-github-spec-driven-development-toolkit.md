@@ -1,20 +1,13 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/spec-kit-github-spec-driven-development-toolkit" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/spec-kit-github-spec-driven-development-toolkit" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/spec-kit-github-spec-driven-development-toolkit" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/spec-kit-github-spec-driven-development-toolkit" />
 title: "스펙 키트: GitHub"
 description: "GitHub의 Spec Kit 완전 가이드 - 사양 중심 개발을 통해 개발자가 소프트웨어를 구축하는 방식을 변화시키는 오픈 소스 도구 키트. 설치, 워크플로우 및 실제 예제.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-20
-lastmod:  2026-06-20tags: [ai-tools, coding-agents, desktop-app, tauri, rust]
+lastmod: 2026-06-20tags: [ai-tools, coding-agents, desktop-app, tauri, rust]
 category: "dev-utils"
 lang: kr
 slug: spec-kit-github-spec-driven-development-toolkit
 featureImage: /images/articles/spec-kit-github-spec-driven-development-toolkit-80967985.png
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/spec-kit-github-spec-driven-development-toolkit/ -->
 
 # 사양 키트: GitHub의 혁신적인 사양 기반 개발 도구 키트 
 
@@ -103,8 +96,7 @@ init my-awesome-app --integration copilot 지정
 # 프로젝트로 이동 
 CD 내 멋진 앱 
 
-# 생성된 프로젝트 구조: 
-# ├── .spec-kit/ 
+# 생성된 프로젝트 구조: # ├── .spec-kit/ 
 # │ ├── Constitution.md 
 # │ ├── 사양/ 
 # │ └── 템플릿/ 
@@ -117,8 +109,7 @@ CD 내 멋진 앱
 프로젝트 디렉터리에서 코딩 에이전트를 실행하고 `/speckit.constitution` 명령을 사용합니다. 
 
 ``배쉬 
-# AI 코딩 에이전트에서: 
-/speckit.constitution 다음에 초점을 맞춘 원칙을 만듭니다. 
+# AI 코딩 에이전트에서: /speckit.constitution 다음에 초점을 맞춘 원칙을 만듭니다. 
 - 코드 품질 기준 
 - 테스트 요구 사항 
 - 성능 벤치마크 
@@ -251,8 +242,7 @@ Spec Kit는 여러 AI 코딩 에이전트와 함께 작동합니다.
 
 ``배쉬 
 # 사양을 정의합니다 
-/speckit.specify 다음을 위한 마이크로서비스 아키텍처 설계: 
-- 사용자 서비스(인증, 프로필) 
+/speckit.specify 다음을 위한 마이크로서비스 아키텍처 설계: - 사용자 서비스(인증, 프로필) 
 - 주문 서비스(주문, 결제) 
 - 재고 서비스(재고, 창고) 
 - 알림 서비스(이메일, SMS, 푸시) 
@@ -269,40 +259,31 @@ Spec Kit에는 다양한 팀 역할에 맞게 사전 구성된 번들이 포함�
 
 ### 개발자번들 
 
-개별 개발자를 위해 최적화됨: 
-
-``배쉬 
+개별 개발자를 위해 최적화됨: ``배쉬 
 init --bundle 개발자 지정 
 ```` 
 
-포함: 
-- 단순화된 작업 흐름 
+포함: - 단순화된 작업 흐름 
 - 빠른 피드백 루프 
 - 로컬 우선 개발 
 
 ### 팀 번들 
 
-공동 개발을 위해 설계됨: 
-
-``배쉬 
+공동 개발을 위해 설계됨: ``배쉬 
 init --bundle 팀 지정 
 ```` 
 
-포함: 
-- 코드 리뷰 게이트 
+포함: - 코드 리뷰 게이트 
 - 지점 보호 규칙 
 - 공유 헌법 템플릿 
 
 ### 엔터프라이즈 번들 
 
-대규모 조직의 경우: 
-
-``배쉬 
+대규모 조직의 경우: ``배쉬 
 init --bundle enterprise 지정 
 ```` 
 
-포함: 
-- 규정 준수 템플릿 
+포함: - 규정 준수 템플릿 
 - 감사 추적 
 - 다중 환경 지원 
 - 맞춤형 통합 
@@ -327,17 +308,13 @@ Spec Kit는 맞춤형 워크플로를 위한 확장을 지원합니다.
 
 ``yaml 
 # .spec-kit/presets.yaml 
-사전 설정: 
-웹앱: 
-프레임워크: 반응 
+사전 설정: 웹앱: 프레임워크: 반응 
 상태: 주스탠드 
 테스트: 비테스트 
-API 서비스: 
-프레임워크: fastapi 
+API 서비스: 프레임워크: fastapi 
 데이터베이스: postgresql 
 캐시: 레디스 
-모바일 앱: 
-프레임워크: 플러터 
+모바일 앱: 프레임워크: 플러터 
 상태: 리버포드 
 테스트: 통합_테스트 
 ```` 
@@ -400,11 +377,8 @@ Spec Kit는 구현이 사양에서 벗어나는 경우를 자동으로 감지합
 이름: 사양 검증 
 켜짐: [pull_request] 
 
-직업: 
-검증: 
-실행: 우분투 최신 
-단계: 
-- 용도: actions/checkout@v4 
+직업: 검증: 실행: 우분투 최신 
+단계: - 용도: actions/checkout@v4 
 - 이름: 설치 CLI 지정 
 실행: uv 도구 설치 지정-cli 
 - 이름: 사양 드리프트 검증 
@@ -489,7 +463,6 @@ GitHub의 지원과 개발자 커뮤니티의 신속한 채택을 통해 Spec Ki
 
 💬 텔레그램에 가입하세요토론 그룹: [t.me/DIBI8_Group](https://t.me/DIBI8_Group)
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/worldmonitor-real-time-global-intelligence-dashboard" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/worldmonitor-real-time-global-intelligence-dashboard" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/worldmonitor-real-time-global-intelligence-dashboard" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/worldmonitor-real-time-global-intelligence-dashboard" />
 title: 'WorldMonitor: 지리적 감시를 위한 실시간 글로벌 인텔리전스 대시보드'
 description: 뉴스, 지정학적 사건, 인프라 추적을 집계하는 실시간 AI 기반 글로벌 인텔리전스 대시보드. 59K 스타. 팔란티어 고담의 오픈소스 대안.. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-25
@@ -17,10 +12,6 @@ lang: kr
 github_repo: https://github.com/WorldMonitorHQ/worldmonitor
 license: MIT
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/worldmonitor-real-time-global-intelligence-dashboard/ -->
-
-
 
 # WorldMonitor: 실시간 글로벌 인텔리전스 대시보드
 
@@ -38,9 +29,7 @@ WorldMonitor는 여러 데이터 소스를 하나의 글로벌 사건 통합 뷰
 
 이 플랫폼은 여러 지리적 지역과 데이터 카테고리 전반에서 실시간 상황 인식이 필요한 저널리스트, 연구원, 정책 분석가 및 보안 전문가를 위해 설계되었습니다. 개인 분석가를 위한 단일 인스턴스 배포와 팀 전체 운영을 위한 분산 아키텍처 모두 지원합니다.
 
-주요 기능:
-
-- **다중 소스 뉴스 집계**: 50개 이상의 글로벌 뉴스 소스를 커버하는 RSS 피드, API 및 웹 크롤러에서
+주요 기능: - **다중 소스 뉴스 집계**: 50개 이상의 글로벌 뉴스 소스를 커버하는 RSS 피드, API 및 웹 크롤러에서
 - **지정학적 사건 추적**: 실시간 매핑 및 타임라인 시각화
 - **인프라 모니터링**: 발전소, 통신 타워, 교통 허브 등 주요 시설 모니터링
 - **AI 기반 상관관계 엔진**: 겉보기에 관련 없는 사건 간 관계 식별
@@ -52,9 +41,7 @@ WorldMonitor는 여러 데이터 소스를 하나의 글로벌 사건 통합 뷰
 
 ### 사전 요구사항
 
-WorldMonitor를 설치하기 전에 시스템이 다음 요구사항을 충족하는지 확인하세요:
-
-- **운영체제**: Ubuntu 22.04 LTS, Debian 12 또는 macOS 14+
+WorldMonitor를 설치하기 전에 시스템이 다음 요구사항을 충족하는지 확인하세요: - **운영체제**: Ubuntu 22.04 LTS, Debian 12 또는 macOS 14+
 - **CPU**: 최소 4코어 (생산 환경에는 8코어 권장)
 - **RAM**: 최소 8GB (16GB 권장)
 - **저장소**: 50GB SSD (데이터 유지 기간에 따라 증가)
@@ -63,9 +50,7 @@ WorldMonitor를 설치하기 전에 시스템이 다음 요구사항을 충족�
 
 ### 옵션 1: Docker Compose 배포 (권장)
 
-가장 빠른 시작 방법은 제공된 Docker Compose 구성을 사용하는 것입니다:
-
-```bash
+가장 빠른 시작 방법은 제공된 Docker Compose 구성을 사용하는 것입니다: ```bash
 git clone https://github.com/koala73/worldmonitor.git
 cd worldmonitor
 
@@ -80,9 +65,7 @@ docker compose up -d
 
 ### 옵션 2: 수동 설치
 
-배포에 세밀한 제어가 필요한 사용자를 위한 방법:
-
-```bash
+배포에 세밀한 제어가 필요한 사용자를 위한 방법: ```bash
 # 저장소 복제
 git clone https://github.com/koala73/worldmonitor.git
 cd worldmonitor
@@ -113,37 +96,20 @@ cd frontend && npm run start
 
 ### 옵션 3: Kubernetes 배포
 
-여러 노드에 걸친 생산 규모 배포용:
-
-```yaml
+여러 노드에 걸친 생산 규모 배포용: ```yaml
 apiVersion: apps/v1
 kind: Deployment
-metadata:
-  name: worldmonitor
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: worldmonitor
-  template:
-    metadata:
-      labels:
-        app: worldmonitor
-    spec:
-      containers:
-      - name: worldmonitor
+metadata: name: worldmonitor
+spec: replicas: 3
+  selector: matchLabels: app: worldmonitor
+  template: metadata: labels: app: worldmonitor
+    spec: containers: - name: worldmonitor
         image: ghcr.io/koala73/worldmonitor:latest
-        ports:
-        - containerPort: 8000
-        envFrom:
-        - configMapRef:
-            name: worldmonitor-config
-        resources:
-          requests:
-            memory: "2Gi"
+        ports: - containerPort: 8000
+        envFrom: - configMapRef: name: worldmonitor-config
+        resources: requests: memory: "2Gi"
             cpu: "1000m"
-          limits:
-            memory: "4Gi"
+          limits: memory: "4Gi"
             cpu: "2000m"
 ```
 
@@ -151,14 +117,9 @@ spec:
 
 ### 데이터 소스 구성
 
-WorldMonitor는 여러 데이터 소스 유형을 지원합니다. `config.yaml`에서 구성하세요:
-
-```yaml
-data_sources:
-  rss_feeds:
-    enabled: true
-    sources:
-      - name: "Reuters"
+WorldMonitor는 여러 데이터 소스 유형을 지원합니다. `config.yaml`에서 구성하세요: ```yaml
+data_sources: rss_feeds: enabled: true
+    sources: - name: "Reuters"
         url: "https://feeds.reuters.com/reuters/worldNews"
         categories: ["politics", "business"]
         refresh_interval: 300
@@ -171,10 +132,8 @@ data_sources:
         categories: ["politics", "conflict"]
         refresh_interval: 600
 
-  api_feeds:
-    enabled: true
-    sources:
-      - name: "GDELT"
+  api_feeds: enabled: true
+    sources: - name: "GDELT"
         api_key: "${GDELT_API_KEY}"
         endpoint: "https://api.gdeltproject.org/api/v2/event/doc"
         categories: ["conflict", "political"]
@@ -185,15 +144,11 @@ data_sources:
         categories: ["conflict", "protest"]
         refresh_interval: 3600
 
-  web_scrapers:
-    enabled: true
-    sources:
-      - name: "Government Press Releases"
-        urls:
-          - "https://www.state.gov/latest-releases/"
+  web_scrapers: enabled: true
+    sources: - name: "Government Press Releases"
+        urls: - "https://www.state.gov/latest-releases/"
           - "https://www.un.org/press/en/"
-        selectors:
-          title: "h2.article-title"
+        selectors: title: "h2.article-title"
           content: ".article-body"
           date: ".article-date"
         refresh_interval: 1800
@@ -201,9 +156,7 @@ data_sources:
 
 ### AI 분석 파이프라인
 
-AI 기반 분석 엔진은 여러 단계를 거쳐 들어오는 데이터를 처리합니다:
-
-```python
+AI 기반 분석 엔진은 여러 단계를 거쳐 들어오는 데이터를 처리합니다: ```python
 from worldmonitor.ai.pipeline import AnalysisPipeline
 from worldmonitor.ai.models import EventClassifier, CorrelationEngine
 
@@ -231,51 +184,41 @@ correlated = await pipeline.get_correlated_events(
 
 ### 알림 구성
 
-모니터링 우선순위에 따라 사용자 정의 알림을 설정하세요:
-
-```yaml
-alerts:
-  rules:
-    - name: "주요 충돌 감지"
-      conditions:
-        - field: "event_type"
+모니터링 우선순위에 따라 사용자 정의 알림을 설정하세요: ```yaml
+alerts: rules: - name: "주요 충돌 감지"
+      conditions: - field: "event_type"
           operator: "eq"
           value: "armed_conflict"
         - field: "severity"
           operator: "gte"
           value: 7
-      actions:
-        - type: "notification"
+      actions: - type: "notification"
           channels: ["email", "telegram"]
           template: "high_severity_conflict"
         - type: "dashboard_highlight"
           duration: "3600"
 
     - name: "인프라 중단"
-      conditions:
-        - field: "infrastructure_type"
+      conditions: - field: "infrastructure_type"
           operator: "in"
           value: ["power_grid", "telecom", "transport"]
         - field: "status"
           operator: "eq"
           value: "disrupted"
-      actions:
-        - type: "notification"
+      actions: - type: "notification"
           channels: ["email", "slack", "pagerduty"]
           template: "infrastructure_alert"
         - type: "geopoint_map"
           zoom_level: 12
 
     - name: "키워드 급증 감지"
-      conditions:
-        - field: "keywords"
+      conditions: - field: "keywords"
           operator: "contains_any"
           value: ["sanctions", "embargo", "tariff", "trade_war"]
         - field: "volume_change"
           operator: "gte"
           value: 200
-      actions:
-        - type: "notification"
+      actions: - type: "notification"
           channels: ["email"]
           template: "keyword_surge"
           cooldown: "1800"
@@ -305,9 +248,7 @@ curl -X GET "https://your-worldmonitor/api/v1/news/deduplicated" \
 
 ### 인프라 추적 모듈
 
-인프라 모듈은 전 세계 주요 시설의 데이터베이스를 유지합니다:
-
-- 발전소 및 전력 그리드
+인프라 모듈은 전 세계 주요 시설의 데이터베이스를 유지합니다: - 발전소 및 전력 그리드
 - 통신 타워 및 광케이블 경로
 - 교통 허브 (공항, 항구, 철도역)
 - 상수도 처리 시설
@@ -332,8 +273,7 @@ correlations = engine.find_correlations(
     correlation_types=["temporal", "geographic", "thematic"]
 )
 
-for corr in correlations:
-    print(f"강도: {corr.strength:.2f}")
+for corr in correlations: print(f"강도: {corr.strength:.2f}")
     print(f"유형: {corr.type}")
     print(f"사건: {corr.event_ids}")
     print(f"설명: {corr.explanation}")
@@ -341,9 +281,7 @@ for corr in correlations:
 
 ## API 참조
 
-WorldMonitor는 프로그램matic 접근을 위한 포괄적인 REST API를 제공합니다:
-
-### 인증
+WorldMonitor는 프로그램matic 접근을 위한 포괄적인 REST API를 제공합니다: ### 인증
 
 ```bash
 # API 토큰 발급
@@ -419,9 +357,7 @@ curl -X POST "https://your-worldmonitor/api/v1/alerts/rules" \
 
 ### 단일 인스턴스 (개인 분석가)
 
-개인 저널리스트나 연구원에게는 4코어 VPS에서의 단일 Docker Compose 배포로 충분합니다:
-
-```
+개인 저널리스트나 연구원에게는 4코어 VPS에서의 단일 Docker Compose 배포로 충분합니다: ```
 서버: 4 vCPU, 8GB RAM, 100GB SSD
 비용: 약 $20/월 (DigitalOcean / HTStack)
 용량: 약 1,000 사건/일, 30일 유지
@@ -429,9 +365,7 @@ curl -X POST "https://your-worldmonitor/api/v1/alerts/rules" \
 
 ### 팀 배포
 
-5-20명 분석가 팀을 위해서는 Redis 클러스터와 PostgreSQL 읽기 복제본을 추가하세요:
-
-```
+5-20명 분석가 팀을 위해서는 Redis 클러스터와 PostgreSQL 읽기 복제본을 추가하세요: ```
 애플리케이션 서버: 3x 4 vCPU, 16GB RAM (로드 밸런서 뒤)
 데이터베이스: PostgreSQL 기본 + 2개 읽기 복제본
 캐시: Redis Cluster (3개 노드)
@@ -442,9 +376,7 @@ curl -X POST "https://your-worldmonitor/api/v1/alerts/rules" \
 
 ### 기업/분산
 
-정부 또는 대규모 조직 배포용:
-
-```
+정부 또는 대규모 조직 배포용: ```
 데이터 주권 제어와 함께 다중 지역 배포
 10개 이상 애플리케이션 노드에 대한 수평 확장
 자동 장애 조정을 위한 Patroni 기반 PostgreSQL
@@ -456,9 +388,7 @@ curl -X POST "https://your-worldmonitor/api/v1/alerts/rules" \
 
 ## 기타 도구와의 통합
 
-WorldMonitor는 인기 있는 인텔리전스 및 통신 도구와 원활하게 통합됩니다:
-
-### Slack 통합
+WorldMonitor는 인기 있는 인텔리전스 및 통신 도구와 원활하게 통합됩니다: ### Slack 통합
 
 ```bash
 # Slack 앱 설치
@@ -503,9 +433,7 @@ curl -X POST "https://your-worldmonitor/api/v1/metrics/grafana" \
 
 ```yaml
 # WorldMonitor Elasticsearch 출력 구성
-output:
-  elasticsearch:
-    hosts: ["https://es-cluster.internal:9200"]
+output: elasticsearch: hosts: ["https://es-cluster.internal:9200"]
     index: "worldmonitor-%{+yyyy.MM.dd}"
     username: "${ES_USER}"
     password: "${ES_PASS}"
@@ -525,7 +453,6 @@ output:
 **고지 사항**: 본 기사는 제휴 관계가 있을 수 있는 도구를 언급합니다. 우리는 리뷰에 대한 대가를 받지 않습니다. 모든 의견은 우리 자신의 것입니다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

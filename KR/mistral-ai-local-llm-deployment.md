@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mistral-ai-local-llm-deployment" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mistral-ai-local-llm-deployment" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mistral-ai-local-llm-deployment" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mistral-ai-local-llm-deployment" />
 title: 'Mistral AI 2026: 8x7B MoE 아키텍처로 프로덕션급 로컬 LLM 배포 — 완전한 설정...
 description: ''. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: ['mistral ai']
-aliases:
-- /kr/posts/mistral-ai-local-llm-deployment/
+aliases: - /kr/posts/mistral-ai-local-llm-deployment/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/mistral-ai-local-llm-deployment/ -->
 
 {{</* resource-info */>}}
 
@@ -47,9 +39,7 @@ Mistral AI는 각각 다른 사용 사례에 최적화된 다양한 모델 제�
 
 ### Mistral 8x7B MoE (Mixtral)
 
-플래그십 Mixtral 8x7B는 **희소 전문가 혼합** 아키텍처를 사용합니다. 총 470억 개의 매개변수를 보유하고 있음에도 불구하고 토큰당 80억 개의 매개변수만 활성화하여 놀라울 정도로 효율적입니다:
-
-| 사양 | 값 |
+플래그십 Mixtral 8x7B는 **희소 전문가 혼합** 아키텍처를 사용합니다. 총 470억 개의 매개변수를 보유하고 있음에도 불구하고 토큰당 80억 개의 매개변수만 활성화하여 놀라울 정도로 효율적입니다: | 사양 | 값 |
 |--------------|-------|
 | 아키텍처 | 희소 MoE |
 | 총 매개변수 | 46.7B (8 x 7B 전문가) |
@@ -263,8 +253,7 @@ results = generate(
     batch_size=len(batch_prompts),
 )
 
-for i, result in enumerate(results):
-    print(f"응답 {i+1}: {result.text}\n")
+for i, result in enumerate(results): print(f"응답 {i+1}: {result.text}\n")
 ```
 
 ---
@@ -311,9 +300,7 @@ python -m vllm.entrypoints.openai.api_server \
 
 ### API 서버 구성
 
-재현 가능한 배포를 위해 `vllm-config.yaml` 생성:
-
-```yaml
+재현 가능한 배포를 위해 `vllm-config.yaml` 생성: ```yaml
 model: mistralai/Mistral-7B-Instruct-v0.3
 dtype: bfloat16
 tensor_parallel_size: 1
@@ -377,9 +364,7 @@ response = client.chat.completions.create(
     stream=True
 )
 
-for chunk in response:
-    if chunk.choices[0].delta.content:
-        print(chunk.choices[0].delta.content, end="")
+for chunk in response: if chunk.choices[0].delta.content: print(chunk.choices[0].delta.content, end="")
 ```
 
 ---
@@ -510,8 +495,7 @@ response = client.chat.completions.create(
 )
 
 # 도구 호출 확인
-if response.choices[0].message.tool_calls:
-    tool_call = response.choices[0].message.tool_calls[0]
+if response.choices[0].message.tool_calls: tool_call = response.choices[0].message.tool_calls[0]
     print(f"함수: {tool_call.function.name}")
     print(f"인수: {tool_call.function.arguments}")
 ```
@@ -522,8 +506,7 @@ if response.choices[0].message.tool_calls:
 import json
 
 # 도구 실행 (예시 구현)
-def get_weather(location, unit="celsius"):
-    # 실제 구현은 날씨 API를 호출합니다
+def get_weather(location, unit="celsius"): # 실제 구현은 날씨 API를 호출합니다
     return {"temperature": 22, "condition": "sunny", "location": location}
 
 # 도구 결과를 대화에 추가
@@ -685,8 +668,7 @@ curl http://localhost:8000/health
 # vLLM이 Prometheus 메트릭을 노출합니다
 curl http://localhost:8000/metrics
 
-# 주요 메트릭:
-# - vllm:num_requests_running
+# 주요 메트릭: # - vllm:num_requests_running
 # - vllm:gpu_cache_usage_perc
 # - vllm:time_to_first_token_seconds
 # - vllm:time_per_output_token_seconds
@@ -697,23 +679,13 @@ curl http://localhost:8000/metrics
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
-metadata:
-  name: mistral-vllm
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: mistral-vllm
-  template:
-    metadata:
-      labels:
-        app: mistral-vllm
-    spec:
-      containers:
-      - name: vllm
+metadata: name: mistral-vllm
+spec: replicas: 1
+  selector: matchLabels: app: mistral-vllm
+  template: metadata: labels: app: mistral-vllm
+    spec: containers: - name: vllm
         image: vllm/vllm-openai:latest
-        args:
-          - --model
+        args: - --model
           - mistralai/Mistral-7B-Instruct-v0.3
           - --dtype
           - bfloat16
@@ -721,34 +693,22 @@ spec:
           - "1"
           - --gpu-memory-utilization
           - "0.85"
-        ports:
-        - containerPort: 8000
-        resources:
-          limits:
-            nvidia.com/gpu: "1"
+        ports: - containerPort: 8000
+        resources: limits: nvidia.com/gpu: "1"
             memory: "32Gi"
-          requests:
-            nvidia.com/gpu: "1"
+          requests: nvidia.com/gpu: "1"
             memory: "16Gi"
-        volumeMounts:
-        - name: model-cache
+        volumeMounts: - name: model-cache
           mountPath: /root/.cache/huggingface
-      volumes:
-      - name: model-cache
-        persistentVolumeClaim:
-          claimName: model-cache-pvc
-      nodeSelector:
-        accelerator: nvidia-gpu
+      volumes: - name: model-cache
+        persistentVolumeClaim: claimName: model-cache-pvc
+      nodeSelector: accelerator: nvidia-gpu
 ---
 apiVersion: v1
 kind: Service
-metadata:
-  name: mistral-vllm-service
-spec:
-  selector:
-    app: mistral-vllm
-  ports:
-  - port: 80
+metadata: name: mistral-vllm-service
+spec: selector: app: mistral-vllm
+  ports: - port: 80
     targetPort: 8000
   type: ClusterIP
 ```
@@ -805,7 +765,6 @@ Mistral AI 모델을 로컬로 배포하면 AI 인프라에 대한 완전한 제
 *게시일: 2026-05-19 | Mistral AI | [GitHub: mistralai/mistral-inference](https://github.com/mistralai/mistral-inference)*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

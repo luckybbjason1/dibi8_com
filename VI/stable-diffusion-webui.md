@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/stable-diffusion-webui" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/stable-diffusion-webui" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/stable-diffusion-webui" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/stable-diffusion-webui" />
 title: 'Stable Diffusion WebUI: 159K+ Stars — Hướng Dẫn Cài Đặt ...
 description: 'Stable Diffusion WebUI (AUTOMATIC1111) là giao diện web tạo ảnh AI cục bộ phổ biến nhất. Tương thích với ControlNet, LoRA, ComfyUI. Bao gồm cài đặt Windows, Linux, Docker, cấu hình mở rộng, tối ưu production và benchmark GPU.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: ['stable-diffusion', automatic1111, 'tạo-ảnh', 'ai-webui', controlnet, lora, docker, gpu]
-aliases:
-- /vi/posts/stable-diffusion-webui/
+aliases: - /vi/posts/stable-diffusion-webui/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/stable-diffusion-webui/ -->
 
 {{</* resource-info */>}}
 
@@ -48,9 +40,7 @@ Dự án được duy trì bởi AUTOMATIC1111 theo giấy phép AGPL-3.0. Phiê
 
 ## Stable Diffusion WebUI Hoạt Động Như Thế Nào?
 
-Kiến trúc theo mẫu Python backend module hóa + Gradio frontend:
-
-![WebUI Architecture Flow](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/images/webui_arch.png)
+Kiến trúc theo mẫu Python backend module hóa + Gradio frontend: ![WebUI Architecture Flow](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/images/webui_arch.png)
 *Kiến trúc: Gradio frontend giao tiếp với Python backend module qua HTTP cục bộ*
 
 ```
@@ -70,9 +60,7 @@ Python Backend (modules/)
 PyTorch + CUDA --- GPU (VRAM: 4-24GB)
 ```
 
-Các khái niệm quan trọng cần hiểu trước khi cài đặt:
-
-- **Checkpoint**: File mô hình chính (`.safetensors` hoặc `.ckpt`) chứa trọng số diffusion đã huấn luyện. Mô hình SD 1.5 khoảng 4GB; SDXL khoảng 6-7GB.
+Các khái niệm quan trọng cần hiểu trước khi cài đặt: - **Checkpoint**: File mô hình chính (`.safetensors` hoặc `.ckpt`) chứa trọng số diffusion đã huấn luyện. Mô hình SD 1.5 khoảng 4GB; SDXL khoảng 6-7GB.
 - **VAE**: Xử lý bước encode/decode giữa không gian pixel và latent. VAE không khớp sẽ tạo ra đầu ra mờ hoặc xỉn màu.
 - **Sampler**: Thuật toán khử nhiễu dần dần. DPM++ 2M Karras là lựa chọn được khuyến nghị nhiều nhất.
 - **CFG Scale**: Điều khiển mức độ tuân thủ prompt. Giá trị 7-9 phù hợp với hầu hết trường hợp.
@@ -105,9 +93,7 @@ run.bat
 
 ### Tham số dòng lệnh Windows
 
-Chỉnh sửa `webui-user.bat`:
-
-```batch
+Chỉnh sửa `webui-user.bat`: ```batch
 @echo off
 
 set PYTHON=python
@@ -115,8 +101,7 @@ set GIT=git
 set VENV_DIR=venv
 set COMMANDLINE_ARGS=--xformers --autolaunch --update-check
 
-:: Tùy chọn tối ưu VRAM (chọn MỘT):
-:: set COMMANDLINE_ARGS=--medvram    &:: GPU 8GB
+:: Tùy chọn tối ưu VRAM (chọn MỘT): :: set COMMANDLINE_ARGS=--medvram    &:: GPU 8GB
 :: set COMMANDLINE_ARGS=--lowvram    &:: GPU 4GB  
 :: set COMMANDLINE_ARGS=--normalvram &:: GPU 12GB+
 
@@ -178,9 +163,7 @@ EXPOSE 7860
 ENTRYPOINT ["bash", "-c", \". venv/bin/activate && python3 launch.py --listen --api --xformers"]
 ```
 
-Build và chạy:
-
-```bash
+Build và chạy: ```bash
 # Build image
 docker build -f Dockerfile.stable-diffusion-webui -t sd-webui:latest .
 
@@ -196,41 +179,27 @@ docker run -d \
   sd-webui:latest
 ```
 
-Docker Compose:
-
-```yaml
+Docker Compose: ```yaml
 # docker-compose.yml
 version: '3.8'
 
-services:
-  stable-diffusion-webui:
-    build:
-      context: .
+services: stable-diffusion-webui: build: context: .
       dockerfile: Dockerfile.stable-diffusion-webui
     container_name: sd-webui
     runtime: nvidia
-    ports:
-      - "7860:7860"
-    volumes:
-      - ./models:/home/sduser/stable-diffusion-webui/models/Stable-diffusion
+    ports: - "7860:7860"
+    volumes: - ./models:/home/sduser/stable-diffusion-webui/models/Stable-diffusion
       - ./outputs:/home/sduser/stable-diffusion-webui/outputs
       - ./extensions:/home/sduser/stable-diffusion-webui/extensions
       - ./vae:/home/sduser/stable-diffusion-webui/models/VAE
-    environment:
-      - NVIDIA_VISIBLE_DEVICES=all
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+    environment: - NVIDIA_VISIBLE_DEVICES=all
+    deploy: resources: reservations: devices: - driver: nvidia
               count: all
               capabilities: [gpu]
     restart: unless-stopped
 ```
 
-Triển khai:
-
-```bash
+Triển khai: ```bash
 docker-compose up -d
 ```
 
@@ -262,9 +231,7 @@ python3 launch.py --listen --port 7860 --xformers --gradio-auth admin:matkhau123
 
 ### Cài Đặt ControlNet
 
-ControlNet cho phép tạo ảnh có kiểm soát cấu trúc:
-
-![Giao diện ControlNet](https://github.com/Mikubill/sd-webui-controlnet/wiki/images/controlnet_ui.png)
+ControlNet cho phép tạo ảnh có kiểm soát cấu trúc: ![Giao diện ControlNet](https://github.com/Mikubill/sd-webui-controlnet/wiki/images/controlnet_ui.png)
 *Panel mở rộng ControlNet trong tab txt2img của WebUI*
 
 ```bash
@@ -275,14 +242,11 @@ ControlNet cho phép tạo ảnh có kiểm soát cấu trúc:
 # 4. Click Install
 # 5. Restart UI
 
-# Hoặc cài thủ công:
-cd extensions
+# Hoặc cài thủ công: cd extensions
 git clone https://github.com/Mikubill/sd-webui-controlnet.git
 ```
 
-Tải models ControlNet:
-
-```bash
+Tải models ControlNet: ```bash
 # Models ControlNet cơ bản (SD 1.5)
 wget -P models/ControlNet/ https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_openpose.pth
 wget -P models/ControlNet/ https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11f1p_sd15_depth.pth
@@ -299,9 +263,7 @@ wget -P models/ControlNet/ https://huggingface.co/lllyasviel/sd_control_collecti
 wget -P models/Lora/ "https://civitai.com/api/download/models/12345"
 ```
 
-Sử dụng LoRA trong prompt:
-
-```
+Sử dụng LoRA trong prompt: ```
 <lora:add-detail-xl:1.0>, masterpiece, best quality, portrait of a warrior
 <lora:epiCRealismHelper:0.6>, photorealistic, 8k uhd
 ```
@@ -366,17 +328,13 @@ git clone https://github.com/vladmandic/sd-extension-system-info.git
 ### Tham Số Tối Ưu Bộ Nhớ
 
 ```bash
-# GPU 4GB:
-python3 launch.py --lowvram --precision full --no-half --xformers
+# GPU 4GB: python3 launch.py --lowvram --precision full --no-half --xformers
 
-# GPU 6-8GB:
-python3 launch.py --medvram --xformers --opt-split-attention
+# GPU 6-8GB: python3 launch.py --medvram --xformers --opt-split-attention
 
-# GPU 12GB+:
-python3 launch.py --xformers --opt-sdp-attention
+# GPU 12GB+: python3 launch.py --xformers --opt-sdp-attention
 
-# GPU 24GB:
-python3 launch.py --xformers --opt-sdp-attention --no-half-vae
+# GPU 24GB: python3 launch.py --xformers --opt-sdp-attention --no-half-vae
 ```
 
 ## Sử Dụng Nâng Cao / Tối Ưu Production
@@ -404,9 +362,7 @@ payload = {
 response = requests.post(url, json=payload)
 result = response.json()
 
-for i, img_data in enumerate(result[images]):
-    with open(f"output_{i}.png", "wb") as f:
-        f.write(base64.b64decode(img_data))
+for i, img_data in enumerate(result[images]): with open(f"output_{i}.png", "wb") as f: f.write(base64.b64decode(img_data))
 ```
 
 ### Script Xử Lý Hàng Loạt
@@ -418,8 +374,7 @@ import base64
 
 API_URL = "http://localhost:7860/sdapi/v1/txt2img"
 
-def generate_image(prompt, filename, width=1024, height=1024):
-    payload = {
+def generate_image(prompt, filename, width=1024, height=1024): payload = {
         "prompt": prompt,
         "negative_prompt": "blurry, low quality",
         "steps": 25,
@@ -430,14 +385,11 @@ def generate_image(prompt, filename, width=1024, height=1024):
     }
     response = requests.post(API_URL, json=payload)
     result = response.json()
-    with open(filename, "wb") as f:
-        f.write(base64.b64decode(result[images][0]))
+    with open(filename, "wb") as f: f.write(base64.b64decode(result[images][0]))
     return filename
 
-with open("prompts.csv", "r") as f:
-    reader = csv.DictReader(f)
-    for i, row in enumerate(reader):
-        generate_image(row[prompt], f"output_{i:04d}.png")
+with open("prompts.csv", "r") as f: reader = csv.DictReader(f)
+    for i, row in enumerate(reader): generate_image(row[prompt], f"output_{i:04d}.png")
 ```
 
 ### Bảo Mật Production
@@ -486,9 +438,7 @@ sudo ufw enable
 
 ## Hạn Chế / Đánh Giá Trung Thực
 
-Stable Diffusion WebUI không phải công cụ phù hợp với mọi trường hợp:
-
-1. **VRAM cao hơn đối thủ**: Giao diện Gradio thêm ~500MB-1GB VRAM so với ComfyUI.
+Stable Diffusion WebUI không phải công cụ phù hợp với mọi trường hợp: 1. **VRAM cao hơn đối thủ**: Giao diện Gradio thêm ~500MB-1GB VRAM so với ComfyUI.
 
 2. **Không phải lựa chọn nhanh nhất**: ComfyUI nhanh hơn 10-20% trên cùng phần cứng.
 
@@ -546,9 +496,7 @@ Stable Diffusion WebUI của AUTOMATIC1111 vẫn là điểm khởi đầu thự
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -565,7 +513,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [Hugging Face](https://huggingface.co/models?pipeline_tag=text-to-image)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

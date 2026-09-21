@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mcp-server-registry-comprehensive-guide-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mcp-server-registry-comprehensive-guide-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mcp-server-registry-comprehensive-guide-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mcp-server-registry-comprehensive-guide-2026" />
 title: 'MCP Server 全目录指南 2026：19,700+ 服务器、7 个官方款、以及 60 秒挑对那一个'
 description: '2026 MCP server 发现完全指南。Anthropic 7 个 reference 服务器、87.3k star 的 awesome list、Smithery vs mcp.so 两大注册中心对比、各类别 top 服务器、以及挑选决策树 —— 不讲 MCP 是什么，只讲市面上有什么可以插进你的 MCP host。'
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
-tech_stack:
-  - TypeScript
+tech_stack: - TypeScript
   - Python
   - Docker
 application_domain: Llm Frameworks
@@ -28,11 +22,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [mcp, 'model context protocol', 注册中心, hub文章]
-aliases:
-  - /posts/mcp-server-registry-comprehensive-guide-2026/
+aliases: - /posts/mcp-server-registry-comprehensive-guide-2026/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/mcp-server-registry-comprehensive-guide-2026/ -->
 # MCP Server 全目录指南 2026：19,700+ 服务器、7 个官方款、以及 60 秒挑对那一个
 
 
@@ -53,7 +44,11 @@ aliases:
 ## 2. 30 秒发现决策树
 
 | 你想要… | 第一站 |
-|---|---|
+|
+---
+|
+---
+|
 | 用一个久经考验的基础款（文件系统/抓取/git）| **Anthropic 官方款**（第 3 节）|
 | 按类别浏览（数据库/浏览器/云）| **awesome-mcp-servers**（第 4 节）|
 | 不想手动改 config 就装好 server | **Smithery** 注册中心（第 5 节）|
@@ -68,7 +63,13 @@ aliases:
 官方 [modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers) 仓库（GitHub 86k 星）维护着 7 个 reference 实现。这些是 Anthropic 内部在用 + 盖章"协议正路"的 server：
 
 | Server | 做什么 | 典型用途 |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | **Everything** | demo server，把所有 MCP primitive 都展示一遍（tools / resources / prompts）| 协议作者的 reference 阅读材料 |
 | **Fetch** | HTTP/HTTPS 抓取 + html→markdown 转换 | LLM 按需读任意 URL |
 | **Filesystem** | 沙箱化的本地文件系统读写 | 编程 agent 在项目目录工作 |
@@ -202,12 +203,11 @@ aliases:
 
 困难不再是"找到一个 server"，而是 **挑对那个** —— 用第 8 节的 30 秒清单 + 第 2 节决策树。没合适就下午自己写一个（50 行 TS 或 Python）。
 
----
 
+---
 *想自托管 5+ 个 MCP server（postgres + filesystem + git + memory + tavily-search）不烧云账单？开一个 $6/月的 {{< aff "digitalocean" "footer-cta" "DigitalOcean droplet" >}}，用 supervisor（systemd 或 PM2）跑起来，把 Claude Desktop 的 `claude_desktop_config.json` 指过去。一下午搞定。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -235,25 +235,20 @@ aliases:
 
 ## Why This Matters
 
-Understanding mcp server 全目录指南 2026：19,700+ 服务器、7 个官方款、以及 60 秒挑对那一个 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding mcp server 全目录指南 2026：19,700+ 服务器、7 个官方款、以及 60 秒挑对那一个 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -274,8 +269,8 @@ MCP Server 全目录指南 2026：19,700+ 服务器、7 个官方款、以及 60
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 

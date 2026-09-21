@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mastra" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mastra" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mastra" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mastra" />
 title: 'Mastra: 24K+ Stars — Token 비용을 4-10배 절감하는 TypeScript AI ...
 description: 'Mastra는 Gatsby 팀이 만든 TypeScript 네이티브 AI 프레임워크로 AI 기반 애플리케이션과 에이전트를 구축합니다. Mastra vs LangChain, 설치 튜토리얼, 워크플로우, RAG, 메모리, 관측 가능성, 벤치마크, 프로덕션 하드닝을 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [mastra, typescript, ai프레임워크, 에이전트, llm, mastra튜토리얼, 'mastra-vs-langchain', 오픈소스]
-aliases:
-- /kr/posts/mastra/
+aliases: - /kr/posts/mastra/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/mastra/ -->
 
 {{</* resource-info */>}}
 
@@ -47,9 +39,7 @@ Mastra는 AI 기반 애플리케이션과 에이전트를 구축하기 위한 �
 
 ## Mastra의 작동 방식 — 아키텍처와 핵심 개념
 
-Mastra의 아키텍처는 프로덕션 AI 시스템에 실제로 필요한 6가지 구성 요소를 중심으로 설계되었습니다:
-
-### 에이전트 (Agents)
+Mastra의 아키텍처는 프로덕션 AI 시스템에 실제로 필요한 6가지 구성 요소를 중심으로 설계되었습니다: ### 에이전트 (Agents)
 에이전트는 주요 행위자입니다. 지시사항, 모델, 도구 접근 권한을 제공하면 에이전트가 어떤 것을 호출할지, 언제 멈출지, 어떻게 응답할지 스스로 결정합니다. `.generate()`는 완전한 응답을 위해, `.stream()`은 실시간 Token 스트리밍을 제공합니다 — 이는 응답이 점진적으로 표시되는 채팅 UI에 필수적입니다.
 
 ### 워크플로우 (Workflows)
@@ -96,8 +86,7 @@ Mastra는 Node.js 22.13.0 이상이 필요합니다. 권장 방법은 CLI 마법
 # 인터랙티브 CLI로 새 Mastra 프로젝트 스캐폴드
 npm create mastra@latest
 
-# 마법사가 묻는 항목:
-# - 프로젝트 이름
+# 마법사가 묻는 항목: # - 프로젝트 이름
 # - 구성 요소 (에이전트, 워크플로우, RAG, 메모리)
 # - LLM 제공자 (OpenAI, Anthropic, Google 등)
 # - 예제 코드 포함 여부
@@ -105,9 +94,7 @@ npm create mastra@latest
 
 ### 단계 2: 수동 설치 (대안)
 
-기존 프로젝트에 Mastra를 추가하려는 경우:
-
-```bash
+기존 프로젝트에 Mastra를 추가하려는 경우: ```bash
 # 스키마 검증용 Zod와 함께 핵심 패키지 설치
 npm install @mastra/core@latest zod@^4
 
@@ -331,9 +318,7 @@ npx mastra start
 
 ### Vercel AI SDK 통합
 
-Mastra는 Vercel AI SDK 위에 구축되어 있습니다. 낮은 수준의 제어가 필요할 때 SDK를 직접 사용할 수 있습니다:
-
-```typescript
+Mastra는 Vercel AI SDK 위에 구축되어 있습니다. 낮은 수준의 제어가 필요할 때 SDK를 직접 사용할 수 있습니다: ```typescript
 // Mastra는 낮은 수준에서 AI SDK 제공자를 사용
 import { openai } from '@ai-sdk/openai';
 import { anthropic } from '@ai-sdk/anthropic';
@@ -382,9 +367,7 @@ const agent = new Agent({
 
 ### Token 비용 절감 — 4-10배 주장
 
-Mastra의 Observational Memory는 프로덕션 경제성을 위한 핵심 기능입니다. 데이터는 다음과 같습니다:
-
-**문제점:** 기존 RAG 기반 메모리 시스템은 매 턴 다르게 문맥을 동적으로 검색합니다. 각 검색은 프롬프트 프리픽스를 변경하여 프롬프트 캐시를 무효화합니다. Anthropic과 OpenAI 모두 캐시된 프롬프트 Token에 90% 할인을 제공하므로, 모든 캐시 미스는 캐시된 부분에서 10배의 비용 페널티를 나타냅니다.
+Mastra의 Observational Memory는 프로덕션 경제성을 위한 핵심 기능입니다. 데이터는 다음과 같습니다: **문제점:** 기존 RAG 기반 메모리 시스템은 매 턴 다르게 문맥을 동적으로 검색합니다. 각 검색은 프롬프트 프리픽스를 변경하여 프롬프트 캐시를 무효화합니다. Anthropic과 OpenAI 모두 캐시된 프롬프트 Token에 90% 할인을 제공하므로, 모든 캐시 미스는 캐시된 부분에서 10배의 비용 페널티를 나타냅니다.
 
 **해결책:** Observational Memory는 문맥을 두 개의 블록으로 나눕니다 — 압축된 관찰(반사가 실행될 때까지 추가 전용)과 원본 최근 메시지입니다. 관찰 블록은 턴 간 일관되게 유지되어 매 호출에서 완전한 캐시 히트를 가능하게 합니다.
 
@@ -566,29 +549,19 @@ CMD ["node", ".mastra/output/index.mjs"]
 ```yaml
 # docker-compose.yml
 version: '3.8'
-services:
-  mastra:
-    build: .
-    ports:
-      - "4111:4111"
-    environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
+services: mastra: build: .
+    ports: - "4111:4111"
+    environment: - OPENAI_API_KEY=${OPENAI_API_KEY}
       - DATABASE_URL=postgresql://postgres:postgres@db:5432/mastra
-    depends_on:
-      - db
+    depends_on: - db
 
-  db:
-    image: pgvector/pgvector:pg17
-    environment:
-      POSTGRES_USER: postgres
+  db: image: pgvector/pgvector:pg17
+    environment: POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: mastra
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+    volumes: - pgdata:/var/lib/postgresql/data
 
-volumes:
-  pgdata:
-```
+volumes: pgdata: ```
 
 ## 대안과의 비교
 
@@ -611,9 +584,7 @@ volumes:
 
 ## 한계 — 정직한 평가
 
-Mastra는 모든 상황에 맞는 도구가 아닙니다. 이 프레임워크가 적합하지 않은 경우는 다음과 같습니다:
-
-**Python 생태계 락인:** 데이터 사이언스 스택 전체가 Python — pandas, NumPy, PyTorch, Jupyter — 이라면 Mastra는 두 언어를 연결해야 합니다. 이 프레임워크는 순수 TypeScript입니다. Python에 깊이 투자한 팀에게는 LangChain이나 CrewAI가 더 자연스러운 선택입니다.
+Mastra는 모든 상황에 맞는 도구가 아닙니다. 이 프레임워크가 적합하지 않은 경우는 다음과 같습니다: **Python 생태계 락인:** 데이터 사이언스 스택 전체가 Python — pandas, NumPy, PyTorch, Jupyter — 이라면 Mastra는 두 언어를 연결해야 합니다. 이 프레임워크는 순수 TypeScript입니다. Python에 깊이 투자한 팀에게는 LangChain이나 CrewAI가 더 자연스러운 선택입니다.
 
 **더 작은 통합 생태계:** LangChain은 100개 이상의 LLM 통합과 50개 이상의 벡터 저장소를 보유하고 있습니다. Mastra는 40개 이상의 제공자를 지원하고 주요 벡터 데이터베이스를 커버하지만, 희귀한 모델이나 틈새 벡터 저장소가 필요하면 커스텀 통합 코드를 작성해야 할 수 있습니다.
 
@@ -666,9 +637,7 @@ Next.js 애플리케이션, Node.js 서비스, 또는 TypeScript 프로젝트에
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -692,7 +661,6 @@ Next.js 애플리케이션, Node.js 서비스, 또는 TypeScript 프로젝트에
 - [Vercel AI SDK 문서](https://sdk.vercel.ai/docs)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,17 +1,11 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/gemini-cli-vs-claude-code" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/gemini-cli-vs-claude-code" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/gemini-cli-vs-claude-code" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/gemini-cli-vs-claude-code" />
 title: 'Gemini CLI vs Claude Code 2026：哪款 AI 编码 agent 更值得选？'
 description: 'Google Gemini CLI 和 Anthropic Claude Code 横向对比 — 免费档、上下文窗口、agent 风格、多模态、工具调用、迁移建议。2026 年更新。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-22 00:00:00+08:00
-lastmod:  2026-05-22 00:00:00+08:00draft: false
+lastmod: 2026-05-22 00:00:00+08:00draft: false
 tags: [gemini-cli, claude-code, google, anthropic, ai-coding, comparison, dev-tools]
 categories: [vs]
-faqs:
-  - q: 'Gemini CLI 真的免费吗？'
+faqs: - q: 'Gemini CLI 真的免费吗？'
     a: '是的 — Gemini CLI 自带当今 AI 编码 agent 里最慷慨的免费档：每分钟 60 次模型请求、每天 1,000 次请求，用 gemini-2.0-flash-thinking 模型，免信用卡，一个 Google 账号即可。Claude Code 没有免费档 — 通过 Anthropic API 按 token 付费，或订阅 $20/月 Claude Pro（Claude Code 用量有限）。'
   - q: '哪个上下文窗口更大？'
     a: 'Gemini CLI 用 gemini-2.0-flash-thinking，免费档就有 100 万 token 上下文，Vertex AI 付费可到 200 万。Claude Code 用 claude-opus-4.7，标准 20 万，1M 上下文是 beta 按用量付费。免费档拼上下文 Gemini CLI 赢；长上下文推理质量到 1M 两者接近。'
@@ -20,10 +14,7 @@ faqs:
   - q: '同一个项目能同时用 Gemini CLI 和 Claude Code 吗？'
     a: '可以 — 两者不冲突。很多开发者用 Gemini CLI 做免费的探索性工作（读代码库、生成文档、试 prompt），用 Claude Code 做付费的重活（多文件重构、生产代码、agent 循环）。组合起来近乎免费的侦察 + 高质量的执行，总成本比单用 Claude Code 低。'
   - q: '多模态支持哪个更好？'
-    a: 'Gemini CLI 在终端的多模态赢 — 原生通过 flag 接受图片、PDF、视频帧（如 `--image screenshot.png`）。Claude Code 也支持图片但更偏文字优先。"看这张 UI 截图写出对应的 React 组件"这种工作流，Gemini CLI 开箱即用更快。'
----
-
-<!-- canonical: https://dibi8.com/zh/tools/gemini-cli-vs-claude-code/ -->
+    a: 'Gemini CLI 在终端的多模态赢 — 原生通过 flag 接受图片、PDF、视频帧（如 `--image screenshot.png`）。Claude Code 也支持图片但更偏文字优先。"看这张 UI 截图写出对应的 React 组件"这种工作流，Gemini CLI 开箱即用更快。'---
 # Gemini CLI vs Claude Code 2026：哪款 AI 编码 agent 更值得选？
 
 
@@ -35,12 +26,18 @@ faqs:
 
 选 **Claude Code**：要最精炼的 agent 体验，需要顶级多文件重构质量，在写每个改动都重要的生产代码，愿意每月花 $20-$200 换 Anthropic 级输出。
 
----
 
+---
 ## 横向对比
 
 | 特性 | Gemini CLI | Claude Code |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | **厂商** | Google | Anthropic |
 | **发布时间** | 2025（开源） | 2025（闭源） |
 | **许可证** | Apache 2.0（CLI），模型专有 | 专有 |
@@ -60,8 +57,8 @@ faqs:
 | **最佳代码库规模** | < 50 万 LOC（1M 上下文） | < 50 万 LOC（1M 上下文） |
 | **安装** | `npm i -g @google/gemini-cli` | `npm i -g @anthropic-ai/claude-code` |
 
----
 
+---
 ## 何时选 Gemini CLI
 
 ### 场景 1：零预算 AI 编码
@@ -117,7 +114,13 @@ Claude Code 发布时就内置 MCP（模型上下文协议）支持，到 2026 �
 ## 性能基准（主观，来自我的日常使用）
 
 | 任务 | Gemini CLI | Claude Code |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | 单文件 bug 修复 | 7/10 | 9/10 |
 | 多文件重构 | 7/10 | 9/10 |
 | 从规格写新功能 | 8/10 | 9/10 |
@@ -202,7 +205,6 @@ Claude Code 发布时就内置 MCP（模型上下文协议）支持，到 2026 �
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -230,25 +232,20 @@ Claude Code 发布时就内置 MCP（模型上下文协议）支持，到 2026 �
 
 ## Why This Matters
 
-Understanding gemini cli vs claude code 2026：哪款 ai 编码 agent 更值得选？ is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding gemini cli vs claude code 2026：哪款 ai 编码 agent 更值得选？ is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

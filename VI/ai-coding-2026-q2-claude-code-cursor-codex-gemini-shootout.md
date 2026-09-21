@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout" />
 title: 'AI Coding 2026 Q2 Đối Đầu: Claude Code 1.0 vs Cursor Pro...
 description: 'Đánh giá ngang hàng 4 AI coding agent hàng đầu giữa 2026: Claude Code 1.0, Cursor Pro, OpenAI Codex CLI, Google Gemini CLI. Test thực tế 5 workflow trên cùng codebase 50K LOC TypeScript, hỗ trợ MCP, kinh tế context window, phân tích giá.'
 date: 2026-05-26 00:00:00+08:00
@@ -21,10 +16,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: ['claude-code', cursor, 'codex-cli', 'gemini-cli', 'ai-coding', agent, 2026]
-aliases:
-- /vi/posts/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/
-faq:
-  - q: "AI coding agent nào tốt nhất Q2 2026?"
+aliases: - /vi/posts/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/
+faq: - q: "AI coding agent nào tốt nhất Q2 2026?"
     a: "Không có người chiến thắng duy nhất. Claude Code 1.0 dẫn đầu refactor long-context (200K+ context, tool use mạnh). Cursor Pro thắng về raw IDE ergonomics và độ trễ tab-completion. OpenAI Codex CLI tối ưu cho workflow shell-heavy và tích hợp tốt với GPT-5. Gemini CLI rẻ nhất và có context window 1M+. Hầu hết developer dùng 2 trong 4 — thường là Claude Code + Cursor."
   - q: "Chi phí hàng tháng cho heavy user là bao nhiêu?"
     a: "Heavy use (3+ giờ/ngày): Claude Code khoảng $200/tháng (Anthropic Max plan), Cursor Pro $20/tháng + chi phí API (~$50-150 add-on), Codex CLI khoảng $80-150/tháng (ChatGPT Plus + API), Gemini CLI ~$0-30/tháng (free tier rất hào phóng). Full stack ~$250-350/tháng. Hầu hết hợp nhất xuống 2 tool để tiết kiệm."
@@ -37,8 +30,6 @@ faq:
   - q: "Context window lớn nhất giữa 2026 là?"
     a: "Gemini 2.5 Pro và Gemini CLI có context 1M+ token (lớn nhất rõ ràng). Claude Sonnet 4.6 (hoặc Opus 4.7) và Claude Code 1.0 hỗ trợ 1M token (1M-context tier). Cursor Pro mặc định 200K. GPT-5 và Codex CLI 256K. Với monorepo cực lớn, ưu thế context của Gemini CLI là thật, nhưng độ tin cậy tool-use vẫn tụt sau."
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/ -->
 
 {{</* resource-info */>}}
 
@@ -73,8 +64,7 @@ Bài đối đầu này là so sánh mà mọi developer hỏi nhưng hầu như
 | Codex CLI | OpenAI | 0.42 | CLI | 256K |
 | Gemini CLI | Google | 1.0 | CLI | 1M+ |
 
-Điểm khác biệt:
-1. **Độ trễ**: Tab completion Cursor nhanh nhất. Agent loop Claude Code chậm nhất nhưng có suy nghĩ nhất.
+Điểm khác biệt: 1. **Độ trễ**: Tab completion Cursor nhanh nhất. Agent loop Claude Code chậm nhất nhưng có suy nghĩ nhất.
 2. **Độ tin cậy tool-use**: Claude Code > Codex CLI > Cursor > Gemini CLI (Q2 2026).
 3. **Kinh tế context window**: Gemini 1M token rẻ > Claude 1M tier đắt > Codex 256K > Cursor 200K.
 4. **Tích hợp IDE**: Cursor native > Claude Code via extension > Codex CLI chỉ terminal > Gemini CLI chỉ terminal.
@@ -148,33 +138,28 @@ Bài đối đầu này là so sánh mà mọi developer hỏi nhưng hầu như
 | Gemini CLI | Free tier | **$0** | 60 req/phút, 1500 req/ngày |
 | Gemini CLI (Pro) | API pay-as-you-go | $0–30 | Vượt free tier |
 
-**Stack điển hình cho pro**:
-- **Hobbyist/Indie**: Gemini CLI free + Cursor free = $0–20/tháng
+**Stack điển hình cho pro**: - **Hobbyist/Indie**: Gemini CLI free + Cursor free = $0–20/tháng
 - **Solo professional**: Chỉ Claude Code Max $200/tháng
 - **Pro đa năng**: Claude Code + Cursor = $220/tháng
 - **Phủ tối đa**: Cả 4 = $300–350/tháng (hiếm khi đáng)
 
 ## Lĩnh Vực Mỗi Tool Thắng Thật Sự
 
-### Claude Code 1.0 thắng khi:
-- Refactor long-context (200K+ token)
+### Claude Code 1.0 thắng khi: - Refactor long-context (200K+ token)
 - Cần agentic loop với tool use sâu (debug, orchestrate nhiều tool)
 - Coi trọng độ tin cậy hơn tốc độ
 - Anthropic Max unlimited khớp giờ làm tuần của bạn
 
-### Cursor Pro thắng khi:
-- Sống cả ngày trong IDE và quan tâm độ trễ tab-completion
+### Cursor Pro thắng khi: - Sống cả ngày trong IDE và quan tâm độ trễ tab-completion
 - Muốn refactor symbol-aware built-in (không cần LLM)
 - Cần UX IDE-native (chỉnh sửa inline, hover diff)
 - $20/tháng + thi thoảng API overflow phù hợp ngân sách
 
-### Codex CLI thắng khi:
-- Workflow chủ yếu shell-driven (CI/CD scripting, devops)
+### Codex CLI thắng khi: - Workflow chủ yếu shell-driven (CI/CD scripting, devops)
 - Đã trong hệ sinh thái OpenAI (subscriber ChatGPT Plus)
 - Cần workflow agentic vững chắc trong context chỉ terminal
 
-### Gemini CLI thắng khi:
-- Cần đọc file/monorepo cực lớn (1M+ token)
+### Gemini CLI thắng khi: - Cần đọc file/monorepo cực lớn (1M+ token)
 - Ngân sách chặt (free tier hào phóng)
 - Công việc chủ yếu hiểu và tóm tắt (không phải refactor nặng)
 - Đã trong hệ sinh thái Google Cloud
@@ -188,16 +173,13 @@ Bài đối đầu này là so sánh mà mọi developer hỏi nhưng hầu như
 
 ## Có Nên Đổi Không?
 
-Ba quy tắc kinh nghiệm:
-1. **Đừng đổi nếu tool hiện tại đáp ứng 80% nhu cầu**. Upgrade biên không đáng phá workflow.
+Ba quy tắc kinh nghiệm: 1. **Đừng đổi nếu tool hiện tại đáp ứng 80% nhu cầu**. Upgrade biên không đáng phá workflow.
 2. **Thêm tool thứ hai nếu có gap chuyên môn rõ ràng**. Hầu hết pro dùng tool IDE (Cursor) + agent CLI (Claude Code hoặc Codex CLI).
 3. **Đánh giá lại mỗi 6 tháng**. Cả 4 có 2 release lớn mỗi năm. Người dẫn đầu Q2 2026 có thể không phải Q4.
 
 ## Hạ Tầng Đề Xuất
 
-Chạy VPS riêng cho AI coding agent (team-shared MCP server, sandbox code execution, agent loop dài):
-
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit miễn phí.
+Chạy VPS riêng cho AI coding agent (team-shared MCP server, sandbox code execution, agent loop dài): - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit miễn phí.
 - **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hong Kong, cùng IDC với dibi8.com hosting.
 
 *Affiliate link — không tốn thêm chi phí, giúp dibi8.com hoạt động.*
@@ -215,7 +197,6 @@ Sai lầm lớn nhất: developer chạy theo release mới nhất vì Hacker Ne
 **Liên quan**: [Cursor Alternatives 2026](https://dibi8.com/vi/resources/dev-utils/cursor-alternatives-2026-best-ai-coding-tools/) · [Hướng dẫn Claude Code](https://dibi8.com/vi/resources/llm-frameworks/claude-code/) · [MCP Servers 2026](https://dibi8.com/vi/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

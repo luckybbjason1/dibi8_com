@@ -1,12 +1,7 @@
 title: "LangChain vs CrewAI vs AutoGen vs LlamaIndex vs LangGrap...
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-agent-frameworks-comparison-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-agent-frameworks-comparison-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-agent-frameworks-comparison-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-agent-frameworks-comparison-2026" />
 description: "So sánh song song 5 khung tác nhân AI nguồn mở hàng đầu vào năm 2026. Số lượng sao thực, ví dụ mã, điểm chuẩn hiệu suất và hướng dẫn thực tế để chọn khung phù hợp cho dự án của bạn."
 date: 2026-06-30T00:00:00+09:00
-lastmod:  2026-06-30T00:00:00+09:00lang: vi
+lastmod: 2026-06-30T00:00:00+09:00lang: vi
 draft: false
 tags: ["ai-agents", "frameworks", "comparison", "langchain", "crewai", "autogen", "llamaindex", "langgraph"]
 categories: ["llm-frameworks"]
@@ -17,8 +12,7 @@ showSummary: true
 featureImage: /images/articles/b62165fb-ai-agent-frameworks-comparison.png
 github_repo: langchain-ai/langchain
 license: MIT
-sources:
-  - name: GitHub
+sources: - name: GitHub
     url: https://github.com/langchain-ai/langchain
     type: star_count
   - name: GitHub
@@ -41,7 +35,6 @@ sources:
 > **Tiết lộ của biên tập**: Sự so sánh này sử dụng dữ liệu GitHub theo thời gian thực (số sao, tần suất cam kết, số lượt fork) kể từ ngày 30 tháng 6 năm 2026. Tất cả các ví dụ về mã đều được kiểm tra và xác minh. Chúng tôi không chấp nhận thanh toán từ bất kỳ nhà cung cấp khung nào để đưa vào hoặc xếp hạng. 
 
 ---
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -73,11 +66,7 @@ sources:
 </script>
 
 
-<!-- canonical: https://dibi8.com/vi/tools/ai-agent-frameworks-comparison-2026/ --> 
-
-Năm khung thống trị bối cảnh tác nhân AI nguồn mở vào năm 2026. Đây là câu trả lời nhanh: 
-
-- **LangChain** (141k ★) — Tốt nhất cho các ứng dụng LLM cấp sản xuất có khả năng tích hợp rộng rãi 
+Năm khung thống trị bối cảnh tác nhân AI nguồn mở vào năm 2026. Đây là câu trả lời nhanh: - **LangChain** (141k ★) — Tốt nhất cho các ứng dụng LLM cấp sản xuất có khả năng tích hợp rộng rãi 
 - **CrewAI** (54,6k ★) — Tốt nhất để cộng tác nhiều tác nhân với quy trình làm việc dựa trên vai trò 
 - **Microsoft AutoGen** (59,4k ★) — Tốt nhất cho các tác nhân đàm thoại cấp độ nghiên cứu và kịch bản doanh nghiệp 
 - **LlamaIndex** (50,5k ★) — Tốt nhất cho AI tập trung vào tài liệu với RAG và lập chỉ mục dữ liệu 
@@ -89,9 +78,7 @@ Việc chọn đúng tùy thuộc vào trường hợp sử dụng của bạn: 
 
 Không gian khung tác nhân AI đã trưởng thành đáng kể kể từ năm 2023. Khởi đầu là các thư viện chuỗi nhắc đơn giản, nay đã phát triển thành các nền tảng điều phối đầy đủ hỗ trợ cộng tác nhiều tác nhân, bộ nhớ liên tục, thực thi công cụ và giám sát của con người. 
 
-Đến giữa năm 2026, thị trường đã hợp nhất khoảng năm khung nguồn mở chính. Mỗi người có một triết lý riêng: 
-
-- **LangChain** ưu tiên mở rộng khả năng tích hợp và sẵn sàng sản xuất 
+Đến giữa năm 2026, thị trường đã hợp nhất khoảng năm khung nguồn mở chính. Mỗi người có một triết lý riêng: - **LangChain** ưu tiên mở rộng khả năng tích hợp và sẵn sàng sản xuất 
 - **CrewAI** tập trung vào việc điều phối nhiều tác nhân dựa trên vai trò 
 - **AutoGen** nhấn mạnh đến các mẫu tác nhân đàm thoại và tính linh hoạt trong nghiên cứu 
 - **LlamaIndex** chuyên về nhập tài liệu và tạo tăng cường truy xuất 
@@ -224,21 +211,12 @@ result = qa_chain.run("What are the main findings?")
 - Quá trình di chuyển v0.2 đã đưa ra những thay đổi đáng kể về API — hãy xem lại hướng dẫn di chuyển trước khi nâng cấp 
 - Các mẫu trình thực thi tác nhân (`create_react_agent`, `create_tool_calling_agent`) trừu tượng hóa hầu hết sự phức tạp trong việc điều phối 
 
-Quản lý cấu hình phù hợp là rất quan trọng đối với các ứng dụng LangChain sản xuất: 
-
-Hệ thống công cụ của LangChain hỗ trợ cả công cụ dựa trên chức năng và dựa trên lớp: 
-
-@công cụ 
-def search_wikipedia(query: str) -> str: 
-"""Tìm kiếm trên Wikipedia và trả lại bản tóm tắt.""" 
+Quản lý cấu hình phù hợp là rất quan trọng đối với các ứng dụng LangChain sản xuất: Hệ thống công cụ của LangChain hỗ trợ cả công cụ dựa trên chức năng và dựa trên lớp: @công cụ 
+def search_wikipedia(query: str) -> str: """Tìm kiếm trên Wikipedia và trả lại bản tóm tắt.""" 
 từ langchain_community.tools nhập WikipediaQueryRun 
 trả về WikipediaQueryRun().run(truy vấn) 
 
-LangChain cung cấp một số loại bộ nhớ để duy trì bối cảnh hội thoại: 
-
-Một quy trình thế hệ tăng cường truy xuất hoàn chỉnh: 
-
-- Bạn cần các tùy chọn tích hợp tối đa (DB vector, nhà cung cấp LLM, công cụ) 
+LangChain cung cấp một số loại bộ nhớ để duy trì bối cảnh hội thoại: Một quy trình thế hệ tăng cường truy xuất hoàn chỉnh: - Bạn cần các tùy chọn tích hợp tối đa (DB vector, nhà cung cấp LLM, công cụ) 
 - Nhóm của bạn cảm thấy thoải mái với TypeScript 
 - Bạn đang xây dựng một ứng dụng sản xuất yêu cầu khả năng quan sát (LangSmith) 
 - Bạn muốn có cộng đồng lớn nhất và nhiều tài liệu nhất 
@@ -343,9 +321,7 @@ Nền tảng Python của khung giúp các nhà khoa học dữ liệu và kỹ 
 - Cờ `allow_delegation` cho phép các tổng đài viên yêu cầu trợ giúp lẫn nhau, tạo ra sự hợp tác khẩn cấp 
 - Hiệu suất: ~3-5 đại lý là điểm hấp dẫn; ngoài ra, chi phí điều phối tăng lên 
 
-CrewAI hỗ trợ cấu hình nhóm dựa trên JSON để kiểm soát và tái tạo phiên bản:
-
-```python
+CrewAI hỗ trợ cấu hình nhóm dựa trên JSON để kiểm soát và tái tạo phiên bản: ```python
 from crewai import Crew, Process
 
 # Hierarchical mode: manager agent delegates to team members
@@ -403,20 +379,13 @@ user_proxy.initiate_chat(
 
 ### Why It Matters
 
-CrewAI hỗ trợ thực hiện cả nhiệm vụ tuần tự và phân cấp: 
+CrewAI hỗ trợ thực hiện cả nhiệm vụ tuần tự và phân cấp: Mở rộng các đại lý CrewAI bằng các công cụ tùy chỉnh: lớp WebSearchInput(BaseModel): truy vấn: str = Field(description="Truy vấn tìm kiếm") 
 
-Mở rộng các đại lý CrewAI bằng các công cụ tùy chỉnh: 
-
-lớp WebSearchInput(BaseModel): 
-truy vấn: str = Field(description="Truy vấn tìm kiếm") 
-
-lớp WebSearchTool(BaseTool): 
-tên: str = "Tìm kiếm trên web" 
+lớp WebSearchTool(BaseTool): tên: str = "Tìm kiếm trên web" 
 description: str = "Tìm kiếm thông tin trên web" 
 args_schema: type[BaseModel] = WebSearchInput 
 
-def _run(self, query: str) -> str: 
-# Triển khai logic tìm kiếm của bạn 
+def _run(self, query: str) -> str: # Triển khai logic tìm kiếm của bạn 
 return f"Kết quả cho: {truy vấn}" 
 ``` 
 
@@ -495,18 +464,11 @@ Phả hệ nghiên cứu của khung này cho thấy khả năng mở rộng c�
 - Khung vẫn đang phát triển — Độ ổn định của API khác nhau giữa các bản phát hành 
 - AutoGen Studio (GUI) cung cấp giao diện trực quan để xây dựng và gỡ lỗi các cuộc hội thoại của tổng đài viên 
 
-GroupChat của AutoGen cho phép các cuộc hội thoại có cấu trúc giữa nhiều tác nhân: 
-
-AutoGen hỗ trợ chức năng OpenAI gọi các tương tác tác nhân có cấu trúc: 
-
-def tính_bmi(weight_kg: float, Height_cm: float) -> dict: 
-"""Tính chỉ số BMI từ cân nặng và chiều cao.""" 
+GroupChat của AutoGen cho phép các cuộc hội thoại có cấu trúc giữa nhiều tác nhân: AutoGen hỗ trợ chức năng OpenAI gọi các tương tác tác nhân có cấu trúc: def tính_bmi(weight_kg: float, Height_cm: float) -> dict: """Tính chỉ số BMI từ cân nặng và chiều cao.""" 
 bmi = cân nặng_kg / ((height_cm / 100) ** 2) 
 return {"bmi": round(bmi, 1), "category": "normal" if 18,5 <= bmi < 25 else "other"} 
 
-AutoGen vượt trội trong việc tạo mã với phản hồi thực thi: 
-
-config_list = [{"model": "gpt-4o", "api_key": "sk-..."}] 
+AutoGen vượt trội trong việc tạo mã với phản hồi thực thi: config_list = [{"model": "gpt-4o", "api_key": "sk-..."}] 
 
 bộ mã hóa = autogen.AssistantAgent( 
 tên="người lập trình", 
@@ -638,11 +600,8 @@ tech_index = VectorStoreIndex.from_documents(tech_docs)
 legal_index = VectorStoreIndex.from_documents(legal_docs)
 
 # Route queries based on keywords
-def route_query(query: str):
-    if any(kw in query.lower() for kw in ["patent", "copyright", "trademark"]):
-        return legal_index.as_retriever()
-    else:
-        return tech_index.as_retriever()
+def route_query(query: str): if any(kw in query.lower() for kw in ["patent", "copyright", "trademark"]): return legal_index.as_retriever()
+    else: return tech_index.as_retriever()
 ```
 
 
@@ -667,18 +626,10 @@ import operator
 - `pineconeIndex`, `WeaviateIndex` và các tích hợp cửa hàng vectơ khác hỗ trợ truy xuất ở quy mô sản xuất 
 - Tác nhân dữ liệu (`QueryEngineTool`, `AgentRunner`) cho phép suy luận tài liệu nhiều bước 
 
-LlamaIndex hỗ trợ hình ảnh, tệp PDF và các tài liệu phi văn bản khác: 
-
-Tùy chỉnh phần nhúng cho các trường hợp sử dụng khác nhau: 
-
-Cài đặt.embed_model = cohere_embed 
+LlamaIndex hỗ trợ hình ảnh, tệp PDF và các tài liệu phi văn bản khác: Tùy chỉnh phần nhúng cho các trường hợp sử dụng khác nhau: Cài đặt.embed_model = cohere_embed 
 ``` 
 
-Xử lý trước tài liệu trước khi lập chỉ mục để truy xuất tốt hơn: 
-
-Truy vấn trực tiếp tới các chỉ mục khác nhau dựa trên mục đích: 
-
-- Ứng dụng của bạn nặng về tài liệu (RAG, cơ sở kiến thức, nghiên cứu) 
+Xử lý trước tài liệu trước khi lập chỉ mục để truy xuất tốt hơn: Truy vấn trực tiếp tới các chỉ mục khác nhau dựa trên mục đích: - Ứng dụng của bạn nặng về tài liệu (RAG, cơ sở kiến thức, nghiên cứu) 
 - Bạn cần các chiến lược lập chỉ mục nâng cao (biểu đồ tri thức, tìm kiếm kết hợp) 
 - Bạn muốn các đại lý có thể suy luận về việc thu thập tài liệu 
 - Dữ liệu của bạn yêu cầu xử lý trước và chuyển đổi phức tạp 
@@ -691,8 +642,7 @@ LangGraph, do nhóm LangChain xây dựng, giải quyết hạn chế cơ bản 
 
 LangGraph giới thiệu tính năng trừu tượng hóa dựa trên biểu đồ trong đó các nút biểu thị các bước tính toán và các cạnh xác định luồng. Điều này cho phép biểu đồ tuần hoàn — các tác nhân có thể lặp lại, xem lại các bước, duy trì trạng thái qua các lần lặp và kết hợp phản hồi của con người tại bất kỳ thời điểm nào. 
 
-lớp AgentState(TypedDict): 
-tin nhắn: Đã chú thích [danh sách, operator.add] 
+lớp AgentState(TypedDict): tin nhắn: Đã chú thích [danh sách, operator.add] 
 người kiểm tra: str
 
 # Build the graph
@@ -736,8 +686,7 @@ config = {"configurable": {"thread_id": "thread-1"}}
 result = agent.invoke({"messages": [("human", "Book a flight to Tokyo")]}, config)
 
 # The agent pauses at tool calls for approval
-# Resume with:
-# result = agent.invoke(None, config)
+# Resume with: # result = agent.invoke(None, config)
 ```
 
 ### Streaming Responses
@@ -749,10 +698,8 @@ from langchain_core.messages import AIMessageChunk
 for event in agent.stream(
     {"messages": [("human", "Write a poem about AI")]},
     config={"stream_mode": "values"},
-):
-    last_msg = event["messages"][-1]
-    if isinstance(last_msg, AIMessageChunk):
-        print(last_msg.content, end="", flush=True)
+): last_msg = event["messages"][-1]
+    if isinstance(last_msg, AIMessageChunk): print(last_msg.content, end="", flush=True)
 ```
 
 ### Subgraphs for Modular Design
@@ -783,18 +730,14 @@ workflow = main_graph.compile()
 import asyncio
 from functools import wraps
 
-def chatbot(trạng thái: AgentState): 
-từ langchain_openai nhập ChatOpenAI 
+def chatbot(trạng thái: AgentState): từ langchain_openai nhập ChatOpenAI 
 phản hồi = ChatOpenAI().invoke(state["messages"]) 
 trả lại {"tin nhắn": [phản hồi]} 
 
-trình kiểm tra def (trạng thái: AgentState): 
-nếu len(state["messages"])[-1].content > 100: 
-trả lại "đã được phê duyệt" 
+trình kiểm tra def (trạng thái: AgentState): nếu len(state["messages"])[-1].content > 100: trả lại "đã được phê duyệt" 
 trả về "need_revision" 
 
-def sửa lại (trạng thái: AgentState): 
-từ langchain_openai nhập ChatOpenAI 
+def sửa lại (trạng thái: AgentState): từ langchain_openai nhập ChatOpenAI 
 tin nhắn = trạng thái["tin nhắn"] + [ 
 {"role": "user", "content": "Làm cho nó ngắn hơn. Dưới 100 ký tự."} 
 ] 
@@ -814,16 +757,7 @@ Hỗ trợ con người trong vòng lặp đặc biệt mạnh mẽ: bạn có t
 - Truyền trực tuyến được hỗ trợ nguyên bản - đầu ra mã thông báo theo thời gian thực cho giao diện người dùng 
 - Tích hợp với LangSmith cung cấp khả năng quan sát đầy đủ để thực hiện đồ thị 
 
-LangGraph hỗ trợ tạm dừng để con người phê duyệt tại bất kỳ nút nào: 
-
-Truyền phát mã thông báo theo thời gian thực từ các đại lý LangGraph: 
-
-Chia các quy trình công việc phức tạp thành các sơ đồ con có thể sử dụng lại: 
-
-Triển khai logic thử lại và dự phòng trong các nút biểu đồ:
-
-
-### When to Choose LangGraph
+LangGraph hỗ trợ tạm dừng để con người phê duyệt tại bất kỳ nút nào: Truyền phát mã thông báo theo thời gian thực từ các đại lý LangGraph: Chia các quy trình công việc phức tạp thành các sơ đồ con có thể sử dụng lại: Triển khai logic thử lại và dự phòng trong các nút biểu đồ: ### When to Choose LangGraph
 
 ### When to Choose LangGraph
 
@@ -851,24 +785,16 @@ Triển khai logic thử lại và dự phòng trong các nút biểu đồ:
 
 ### Recommended Combinations
 
-def retry_with_backoff(max_retries=3, base_delay=1.0): 
-trang trí def (func): 
-@wraps(func) 
-trình bao bọc không đồng bộ (*args, **kwargs): 
-cho lần thử trong phạm vi (max_retries): 
-thử: 
-return đang chờ func(*args, **kwargs) 
-ngoại trừ Ngoại lệ là e: 
-nếu thử == max_retries - 1: 
-nâng cao 
+def retry_with_backoff(max_retries=3, base_delay=1.0): trang trí def (func): @wraps(func) 
+trình bao bọc không đồng bộ (*args, **kwargs): cho lần thử trong phạm vi (max_retries): thử: return đang chờ func(*args, **kwargs) 
+ngoại trừ Ngoại lệ là e: nếu thử == max_retries - 1: nâng cao 
 độ trễ = base_delay * (2 ** lần thử) 
 đang chờ asyncio.sleep(delay) 
 giấy gói trả lại 
 trở lại trang trí 
 
 @retry_with_backoff(max_retries=3) 
-async def call_llm_with_retry(nhắc): 
-phản hồi = đang chờ model.ainvoke(nhắc) 
+async def call_llm_with_retry(nhắc): phản hồi = đang chờ model.ainvoke(nhắc) 
 trả lời phản hồi 
 ``` 
 
@@ -897,9 +823,7 @@ trả lời phản hồi
 - **Có** → LlamaIndex 
 - **Không** → Bất kỳ cái nào khác 
 
-Nhiều hệ thống sản xuất kết hợp các framework:
-
-## Chỉ số hiệu năng
+Nhiều hệ thống sản xuất kết hợp các framework: ## Chỉ số hiệu năng
 
 ### Benchmark 1: Code Generation Accuracy
 
@@ -1006,9 +930,7 @@ docker run -p 8888:8888 -v $(pwd):/app ai-frameworks-dev
 
 --- 
 
-Chúng tôi đã thử nghiệm tất cả năm khung trên ba điểm chuẩn tiêu chuẩn bằng cách sử dụng GPT-4o làm mô hình cơ bản: 
-
-Nhiệm vụ: Tạo hàm Python hoạt động từ mô tả ngôn ngữ tự nhiên. 
+Chúng tôi đã thử nghiệm tất cả năm khung trên ba điểm chuẩn tiêu chuẩn bằng cách sử dụng GPT-4o làm mô hình cơ bản: Nhiệm vụ: Tạo hàm Python hoạt động từ mô tả ngôn ngữ tự nhiên. 
 
 Nhiệm vụ: Tóm tắt một tài liệu kỹ thuật dài 50 trang thành những phát hiện chính. 
 
@@ -1016,22 +938,16 @@ Nhiệm vụ: Giải bài toán suy luận nhiều bước yêu cầu sử dụn
 
 --- 
 
-Tất cả năm khung đều hỗ trợ môi trường phát triển dựa trên Docker. Đây là một thiết lập thống nhất: 
-
-WORKDIR/ứng dụng 
+Tất cả năm khung đều hỗ trợ môi trường phát triển dựa trên Docker. Đây là một thiết lập thống nhất: WORKDIR/ứng dụng 
 
 CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root"] 
 ``` 
 
-Xây dựng và chạy: 
+Xây dựng và chạy: --- 
 
 --- 
 
---- 
-
-Bối cảnh khung tác nhân AI sẽ tiếp tục phát triển vào năm 2026-2027: 
-
-1. **Hội tụ**: Các framework mượn điểm mạnh của nhau. LangChain bổ sung khả năng đồ thị, CrewAI bổ sung hỗ trợ tài liệu, LlamaIndex bổ sung các tính năng đa tác nhân. Ranh giới giữa chúng đang mờ dần. 
+Bối cảnh khung tác nhân AI sẽ tiếp tục phát triển vào năm 2026-2027: 1. **Hội tụ**: Các framework mượn điểm mạnh của nhau. LangChain bổ sung khả năng đồ thị, CrewAI bổ sung hỗ trợ tài liệu, LlamaIndex bổ sung các tính năng đa tác nhân. Ranh giới giữa chúng đang mờ dần. 
 
 2. **Tiêu chuẩn hóa**: MCP (Giao thức bối cảnh mô hình) đang nổi lên như một tiêu chuẩn cho giao tiếp giữa tác nhân và công cụ. Tất cả năm khung đều bổ sung hỗ trợ MCP, điều này sẽ giúp khả năng tương tác giữa các khung dễ dàng hơn. 
 
@@ -1071,9 +987,7 @@ Không thể. Các khuôn khổ giải quyết các vấn đề khác nhau với
 
 ## Thêm từ Dibi8
 
-Chúng tôi xây dựng những so sánh này vì AI nguồn mở xứng đáng được phân tích minh bạch, hướng đến cộng đồng. Nếu bạn thấy điều này hữu ích: 
-
-- **Gắn dấu sao bài viết này** trên GitHub của chúng tôi 
+Chúng tôi xây dựng những so sánh này vì AI nguồn mở xứng đáng được phân tích minh bạch, hướng đến cộng đồng. Nếu bạn thấy điều này hữu ích: - **Gắn dấu sao bài viết này** trên GitHub của chúng tôi 
 - **Chia sẻ trải nghiệm của bạn** với bất kỳ khung nào trong số này trong phần bình luận 
 - **Đề xuất khung** bạn muốn chúng tôi so sánh tiếp theo 
 

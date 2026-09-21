@@ -1,20 +1,13 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/cc-switch-all-in-one-ai-coding-agent-manager" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cc-switch-all-in-one-ai-coding-agent-manager" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cc-switch-all-in-one-ai-coding-agent-manager" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cc-switch-all-in-one-ai-coding-agent-manager" />
 title: "CC 스위치: 다중 플랫폼 개발을 위한 궁극의 AI 코딩 에이전트 관리자"
 description: "CC 스위치에 대한 완벽한 가이드 — Claude Code, Codex, Gemini CLI, OpenCode, OpenClaw, Hermes Agent를 하나의 통합된 인터페이스에서 관리하는 크로스플랫폼 데스크톱 앱. 설치, 구성 및 실제 사용법."
 date: 2026-06-20
-lastmod:  2026-06-20tags: [ai-tools, coding-agents, desktop-app, tauri, rust]
+lastmod: 2026-06-20tags: [ai-tools, coding-agents, desktop-app, tauri, rust]
 category: "dev-utils"
 lang: kr
 slug: cc-switch-all-in-one-ai-coding-agent-manager
 featureImage: /images/articles/cc-switch-all-in-one-ai-coding-agent-manager-f252d614.png
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/cc-switch-all-in-one-ai-coding-agent-manager/ -->
 
 # CC 스위치: 다중 플랫폼 개발을 위한 최고의 AI 코딩 에이전트 관리자 
 
@@ -61,9 +54,7 @@ CC Switch는 즉시 **6개 이상의 AI 코딩 에이전트**를 지원합니다
 
 ### 공급자 관리 
 
-AI 제공업체 간에 원활하게 전환: 
-
-- **인류학**(클로드) 
+AI 제공업체 간에 원활하게 전환: - **인류학**(클로드) 
 - **OpenAI** (GPT-4, 코덱스) 
 - **Google**(쌍둥이자리) 
 - **Minimax** (중국어 LLM) 
@@ -332,7 +323,6 @@ CC Switch는 AI 코딩 에이전트 관리의 획기적인 도약을 의미합�
 
 💬 토론을 위해 텔레그램 그룹에 참여하세요: [t.me/DIBI8_Group](https://t.me/DIBI8_Group)
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/daily-stock-analysis-llm-powered-multi-market-stock-intelligence" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/daily-stock-analysis-llm-powered-multi-market-stock-intelligence" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/daily-stock-analysis-llm-powered-multi-market-stock-intelligence" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/daily-stock-analysis-llm-powered-multi-market-stock-intelligence" />
 title: 每日股票分析：LLM驱动的多市场股票情报系统
 description: 一个由LLM驱动的多市场分析系统，具备实时新闻、决策仪表盘和自动化通知。48K stars。支持零成本定时运行。. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-25
@@ -13,12 +8,8 @@ category: ai-trading
 tags: ['股票分析', 'llm', '量化交易', 'ai代理', '多市场', 'a股', '情绪分析', '自动交易']
 slug: daily-stock-analysis-llm-powered-multi-market-stock-intelligence
 featureImage: /images/articles/daily-stock-analysis-llm-powered-multi-market-stock-intelligence-system.png
-lang: zh
 github_repo: https://github.com/dailystockai/daily-stock
-license: MIT
----
-
-<!-- canonical: https://dibi8.com/zh/tools/daily-stock-analysis-llm-powered-multi-market-stock-intelligence/ -->
+license: MIT---
 
 
 
@@ -112,8 +103,7 @@ ollama pull qwen2.5:14b
 
 # 更新config.yaml以使用本地模型
 cat >> config.yaml << EOF
-llm:
-  provider: ollama
+llm: provider: ollama
   model: qwen2.5:14b
   base_url: http://localhost:11434
 EOF
@@ -197,8 +187,7 @@ recommendations = ticker.recommendations
 
 # 获取新闻情绪
 news = ticker.news
-for item in news:
-    print(f"{item['title']}: {item['providerPublishTime']}")
+for item in news: print(f"{item['title']}: {item['providerPublishTime']}")
 ```
 
 ### 加密货币数据
@@ -346,11 +335,9 @@ python dashboard.py --host 0.0.0.0 --port 8080
 
 ```yaml
 # dashboard_config.yaml
-dashboard:
-  refresh_interval: 300  # 5分钟
+dashboard: refresh_interval: 300  # 5分钟
   default_market: "a_shares"
-  charts:
-    - type: "heatmap"
+  charts: - type: "heatmap"
       title: "市场热力图"
       data_source: "sector_performance"
     - type: "line"
@@ -359,8 +346,7 @@ dashboard:
     - type: "sentiment"
       title: "新闻情绪"
       data_source: "llm_sentiment"
-  alerts:
-    - threshold: 0.8
+  alerts: - threshold: 0.8
       action: "notification"
       channels: ["email", "telegram"]
 ```
@@ -497,7 +483,6 @@ notifier.send_webhook(
 **披露声明**: 本文提及的工具可能存在联盟关系。我们不接受付费评测。所有观点均为我们自己独立撰写。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -525,25 +510,20 @@ notifier.send_webhook(
 
 ## Why This Matters
 
-Understanding 每日股票分析：llm驱动的多市场股票情报系统 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding 每日股票分析：llm驱动的多市场股票情报系统 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -564,13 +544,13 @@ To implement this in your workflow:
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
 
+---
 ## Related Articles
 
 - [12-factor-agents-production-llm-software-2026](daily-stock-analysis-llm-powered-multi-market-stock-intelligence)
@@ -609,7 +589,17 @@ For the latest updates and community discussions, join our Telegram channel: htt
 ## Trading Bot Comparison
 
 | Bot | Exchange | Strategy | Cost | Difficulty |
-|-----|----------|----------|------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Freqtrade** | Multi | Custom | Free | Medium |
 | **Hummingbot** | DEX/CEX | Market making | Free | Hard |
 | **Jesse** | Crypto | Backtesting | Free | Medium |

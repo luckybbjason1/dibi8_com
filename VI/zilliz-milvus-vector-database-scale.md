@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/zilliz-milvus-vector-database-scale" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/zilliz-milvus-vector-database-scale" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/zilliz-milvus-vector-database-scale" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/zilliz-milvus-vector-database-scale" />
 title: 'Milvus/Zilliz 2026: Cơ sở dữ liệu Vector xử lý 10 tỷ Vec...
 description: 'Hướng dẫn sản xuất cho Milvus 2.5: tìm kiếm vector quy mô tỷ, xây dựng chỉ mục GPU, triển khai Kubernetes, tìm kiếm lai, và thiết lập Zilliz Cloud.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: [milvus, zilliz, 'vector-database', ann, 'similarity-search', kubernetes, 'gpu-indexing', 'ai-infrastructure']
-aliases:
-- /vi/posts/zilliz-milvus-vector-database-scale/
+aliases: - /vi/posts/zilliz-milvus-vector-database-scale/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/zilliz-milvus-vector-database-scale/ -->
 
 {{</* resource-info */>}}
 
@@ -60,9 +52,7 @@ Phiên bản thương mại, **Zilliz Cloud**, cung cấp một dịch vụ đư
 
 ## Milvus hoạt động như thế nào: Đi sâu kiến trúc
 
-Milvus 2.5 tuân theo **kiến trúc microservices cloud-native** với năm thành phần cốt lõi:
-
-1. **Proxy** — Xử lý yêu cầu client, cân bằng tải và chuyển tiếp đến các nút truy vấn.
+Milvus 2.5 tuân theo **kiến trúc microservices cloud-native** với năm thành phần cốt lõi: 1. **Proxy** — Xử lý yêu cầu client, cân bằng tải và chuyển tiếp đến các nút truy vấn.
 2. **Query Node** — Thực hiện ANN search trên các phân đoạn chỉ mục đã tải.
 3. **Data Node** — Quản lý chèn dữ liệu, flush và compaction.
 4. **Index Node** — Xây dựng chỉ mục vector (HNSW, IVF, DiskANN, GPU).
@@ -81,12 +71,8 @@ Lưu trữ được tách rồi: **etcd** lưu metadata, **MinIO/S3** lưu dữ 
 
 ```yaml
 # Phân bổ tài nguyên GPU cho Milvus index node (Helm values)
-indexNode:
-  resources:
-    limits:
-      nvidia.com/gpu: 1  # Yêu cầu 1 GPU cho xây dựng chỉ mục
-    requests:
-      memory: "16Gi"
+indexNode: resources: limits: nvidia.com/gpu: 1  # Yêu cầu 1 GPU cho xây dựng chỉ mục
+    requests: memory: "16Gi"
       cpu: "8"
 ```
 
@@ -206,8 +192,7 @@ import numpy as np
 batch_size = 10000
 total_vectors = 100000
 
-for i in range(0, total_vectors, batch_size):
-    embeddings = np.random.randn(batch_size, 1536).tolist()
+for i in range(0, total_vectors, batch_size): embeddings = np.random.randn(batch_size, 1536).tolist()
     texts = [f"document_{i+j}" for j in range(batch_size)]
     categories = ["tech" if j % 2 == 0 else "finance" for j in range(batch_size)]
     
@@ -231,8 +216,7 @@ results = collection.search(
     output_fields=["text", "category"]
 )
 
-for hit in results[0]:
-    print(f"ID: {hit.id}, Khoảng cách: {hit.distance:.4f}, Văn bản: {hit.entity.text}")
+for hit in results[0]: print(f"ID: {hit.id}, Khoảng cách: {hit.distance:.4f}, Văn bản: {hit.entity.text}")
 ```
 
 ```python
@@ -255,9 +239,7 @@ print(f"Tìm thấy {len(results[0])} kết quả đã lọc")
 
 ## Benchmark: Số liệu Thực tế
 
-Benchmark độc lập từ tháng 4/2026 trên bộ dữ liệu `dbpedia-openai-1M` (1M vector, 1536 chiều, AWS c6i.8xlarge trừ khi có ghi chú):
-
-| Chỉ số | Milvus (CPU) | Milvus (GPU T4) | Pinecone | Weaviate | Qdrant |
+Benchmark độc lập từ tháng 4/2026 trên bộ dữ liệu `dbpedia-openai-1M` (1M vector, 1536 chiều, AWS c6i.8xlarge trừ khi có ghi chú): | Chỉ số | Milvus (CPU) | Milvus (GPU T4) | Pinecone | Weaviate | Qdrant |
 |--------|-------------|-----------------|----------|----------|--------|
 | **Độ trễ p99 (ms)** | 18 | **8** | 28 | 19 | 12 |
 | **Recall@10** | **0.99** | **0.99** | 0.94 | 0.97 | 0.99 |
@@ -323,8 +305,7 @@ vector_store.add_documents(docs)
 
 # Tìm kiếm tương tự
 results = vector_store.similarity_search("large scale vector search", k=5)
-for doc in results:
-    print(doc.page_content)
+for doc in results: print(doc.page_content)
 ```
 
 ### Tích hợp LlamaIndex
@@ -362,8 +343,7 @@ import numpy as np
 
 client = OpenAI()
 
-def get_embedding(text: str) -> list[float]:
-    resp = client.embeddings.create(
+def get_embedding(text: str) -> list[float]: resp = client.embeddings.create(
         model="text-embedding-3-large",
         input=text,
         dimensions=1536
@@ -379,25 +359,17 @@ collection.insert([[embedding], ["milvus_overview"]])
 
 ### Cấu hình Lưu trữ Phân tầng
 
-Milvus 2.5 hỗ trợ lưu trữ phân tầng để giảm chi phí cho các bộ dữ liệu lớn:
-
-```yaml
+Milvus 2.5 hỗ trợ lưu trữ phân tầng để giảm chi phí cho các bộ dữ liệu lớn: ```yaml
 # Helm values cho lưu trữ phân tầng
-extraConfigFiles:
-  user.yaml: |+
-    common:
-      storageType: remote
-    minio:
-      address: minio.milvus.svc:9000
+extraConfigFiles: user.yaml: |+
+    common: storageType: remote
+    minio: address: minio.milvus.svc:9000
       bucketName: milvus-bucket
       rootPath: files
     # Bật lưu trữ phân tầng
-    queryNode:
-      cache:
-        warmUp: async
+    queryNode: cache: warmUp: async
         memoryLimit: 8GB  # Dữ liệu nóng trong bộ nhớ
-      disk:
-        enabled: true     # Dữ liệu ấm trên đĩa cục bộ
+      disk: enabled: true     # Dữ liệu ấm trên đĩa cục bộ
         capacity: 100GB
 ```
 
@@ -420,10 +392,8 @@ make
 
 ```yaml
 # Helm values cho giám sát Milvus
-metrics:
-  enabled: true
-  serviceMonitor:
-    enabled: true
+metrics: enabled: true
+  serviceMonitor: enabled: true
     interval: 30s
 
 # Dashboard Grafana: https://github.com/zilliztech/milvus-insight
@@ -524,9 +494,7 @@ Milvus 2.5 tích hợp NVIDIA RAFT để xây dựng chỉ mục HNSW và IVF đ
 
 ### Milvus hỗ trợ những chiến lược sao lưu nào?
 
-Milvus Backup (công cụ chính thức) hỗ trợ snapshot cụm đầy đủ đến lưu trữ tương thích S3. Đối với sản xuất, lập lịch sao lưu hàng ngày qua cron:
-
-```bash
+Milvus Backup (công cụ chính thức) hỗ trợ snapshot cụm đầy đủ đến lưu trữ tương thích S3. Đối với sản xuất, lập lịch sao lưu hàng ngày qua cron: ```bash
 0 2 * * * /usr/local/bin/milvus-backup create -n "auto_$(date +\%Y\%m\%d)"
 ```
 
@@ -559,9 +527,7 @@ Tham gia [cộng đồng Telegram](https://t.me/dibi8en) của chúng tôi để
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -571,7 +537,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 Bài viết này chứa các liên kết liên kết đến [DigitalOcean](https://m.do.co/c/eca87ac14ee0) cho lưu trữ đám mây. Nếu bạn đăng ký qua liên kết của chúng tôi, chúng tôi nhận được hoa hồng mà không có chi phí phụ thêm cho bạn. Chúng tôi chỉ giới thiệu các dịch vụ mà chúng tôi sử dụng trong môi trường sản xuất của chính mình. Các liên kết liên kết giúp tài trợ cho sự phát triển nội dung mã nguồn mở của dibi8.com.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/knowledge-base-stack" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/knowledge-base-stack" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/knowledge-base-stack" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/knowledge-base-stack" />
 title: '지식 베이스 스택 2026: AnythingLLM + RAGFlow + mem0로 "두 번째 뇌" 구...
 description: '개인 또는 팀용 5컴포넌트 셀프호스트 지식 베이스 스택. AnythingLLM(UI + RAG) + RAGFlow(심층 문서 파싱) + mem0(에이전트 메모리) + AgentMemory MCP(MCP 노출) + 벡터 DB 픽. $50-200/월 SaaS(Notion AI + Mem + Glean)를 $10-25/월 셀프호스트로 대체.'
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
-tech_stack:
-  - Docker
+tech_stack: - Docker
   - Python
   - PostgreSQL
   - Redis
@@ -29,11 +23,8 @@ featureImage: ''
 draft: false
 categories: [collections]
 tags: ['지식 베이스', rag, '두 번째 뇌', 스택, 컬렉션]
-aliases:
-  - /posts/knowledge-base-stack/
+aliases: - /posts/knowledge-base-stack/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/knowledge-base-stack/ -->
 
 PDF 500개, 노트 2,000개, 이메일 10년치가 있는데 에디터의 AI는 그 어떤 것도 존재함을 모릅니다. Notion AI는 시트당 $10/월이고 로컬 파일을 못 봅니다. Glean은 연 최소 $30k. Mem.ai는 좋지만 SaaS — 당신의 "두 번째 뇌"가 남의 하드웨어에 살아요.
 
@@ -55,9 +46,7 @@ SaaS 등가물과 비교: Notion AI + Mem + Glean Lite = 솔로-작은팀 커버
 
 ## 1. 왜 2026에 지식 베이스를 셀프호스트할 때
 
-세 가지가 수렴:
-
-1. **로컬 임베딩 모델이 프로덕션 품질에 도달** — `nomic-embed-text`와 `bge-large`가 4GB VPS에서 동작, 200 doc/분 임베드, sub-100ms 검색. "임베딩 위해 OpenAI에 데이터 전송"은 더 이상 없음
+세 가지가 수렴: 1. **로컬 임베딩 모델이 프로덕션 품질에 도달** — `nomic-embed-text`와 `bge-large`가 4GB VPS에서 동작, 200 doc/분 임베드, sub-100ms 검색. "임베딩 위해 OpenAI에 데이터 전송"은 더 이상 없음
 2. **MCP가 에이전트-지식 베이스 통합 표준화** — 지식 베이스가 MCP를 말하면 모든 AI 코딩 에이전트(Claude Desktop, OpenCode, Cursor, Continue)가 커스텀 통합 코드 없이 쿼리 가능. 프로토콜 디테일은 [MCP 서버 레지스트리 가이드](/kr/resources/llm-frameworks/mcp-server-registry-comprehensive-guide-2026/) 참조
 3. **RAGFlow가 엔터프라이즈급 문서 파싱을 오픈소스로 출시** — 다단 PDF, 병합 셀 표, 공식 임베드. 모든 "DIY RAG" 스택이 실패한 그것, 이제 해결
 
@@ -107,8 +96,7 @@ SaaS 등가물과 비교: Notion AI + Mem + Glean Lite = 솔로-작은팀 커버
 
 **왜 이거**: 28k+ stars, 단일 Docker 컨테이너로 10분 배포, 오픈소스 RAG 도구 중 가장 다듬어진 웹 UI. chat 백엔드로 40+ LLM 프로바이더 지원(Ollama / DeepSeek / Claude / GPT-5 / OpenRouter)으로 비용 유연성 유지.
 
-**빠른 설치**:
-```bash
+**빠른 설치**: ```bash
 docker run -d --name anythingllm \
   -p 3001:3001 \
   -v anythingllm-storage:/app/server/storage \
@@ -127,8 +115,7 @@ docker run -d --name anythingllm \
 
 **왜 이거**: RAGFlow의 "DeepDoc" 파서가 각 페이지에 비전 모델 사용, 표 구조 보존(병합 셀, 중첩 행), 토큰 카운트 대신 시맨틱 블록으로 문서 청크. 결과는 어려운 문서에서 3-5× 더 정확한 검색.
 
-**빠른 설치**:
-```bash
+**빠른 설치**: ```bash
 docker compose -f https://github.com/infiniflow/ragflow/raw/main/docker/docker-compose.yml up -d
 # 웹 UI :80, API :9380
 ```
@@ -143,11 +130,9 @@ docker compose -f https://github.com/infiniflow/ragflow/raw/main/docker/docker-c
 
 **왜 이거**: 30k+ stars. 특별히 에이전트 메모리용으로 구축(범용 벡터 DB 아님). 대화에서 사실 자동 추출, 중복 제거, 오래된 사실 자연 감쇠.
 
-**빠른 설치**:
-```bash
+**빠른 설치**: ```bash
 pip install mem0ai
-# 또는 서비스로 실행:
-docker run -d --name mem0 -p 8765:8765 \
+# 또는 서비스로 실행: docker run -d --name mem0 -p 8765:8765 \
   -e VECTOR_DB=chroma \
   mem0ai/mem0-server:latest
 ```
@@ -162,11 +147,9 @@ docker run -d --name mem0 -p 8765:8765 \
 
 **중요한 이유**: MCP 없으면 커스텀 지식 베이스를 각 AI 코딩 도구와 통합하려면 도구별 커스텀 코드 필요. AgentMemory MCP로 `claude_desktop_config.json`에 한 번 추가하고 모든 MCP 인식 에이전트가 받음.
 
-**빠른 설치**:
-```bash
+**빠른 설치**: ```bash
 npm install -g @mem0/mem0-mcp
-# OpenCode / Claude Desktop MCP config에 추가:
-# { "agentmemory": { "command": "mem0-mcp", "env": { "MEM0_URL": "http://localhost:8765" } } }
+# OpenCode / Claude Desktop MCP config에 추가: # { "agentmemory": { "command": "mem0-mcp", "env": { "MEM0_URL": "http://localhost:8765" } } }
 ```
 
 **결과**: 코딩 에이전트가 이제 "프로젝트 문서와 과거 대화 기반으로 새 auth 흐름을 어떻게 구조화해야 할까?" 답할 수 있음 — PDF와 과거 결정 모두에서 인용.
@@ -177,17 +160,14 @@ npm install -g @mem0/mem0-mcp
 
 **역할**: AnythingLLM, RAGFlow, mem0 뒤의 공유 임베딩 저장 백엔드.
 
-**3가지 가능한 픽**(전체 비교: [벡터 DB 비교 2026](/kr/resources/llm-frameworks/vector-database-comparison/)):
-
-- **Chroma** — 솔로 / 작은 팀 최적. 단일 파일 SQLite같은 단순함. 임베드 모드 = 추가 서비스 0. AnythingLLM 기본
+**3가지 가능한 픽**(전체 비교: [벡터 DB 비교 2026](/kr/resources/llm-frameworks/vector-database-comparison/)): - **Chroma** — 솔로 / 작은 팀 최적. 단일 파일 SQLite같은 단순함. 임베드 모드 = 추가 서비스 0. AnythingLLM 기본
 - **Qdrant** — 프로덕션 팀 최적. Rust 기반, sub-10ms 레이턴시, 수평 확장. Docker compose가 처리
 - **Weaviate** — 하이브리드 검색(벡터 + 키워드) 필요할 때 최적. 운영 더 무겁지만 더 강력한 검색 모드
 
 **기본 추천**: Chroma 시작(AnythingLLM 안에 이미 있음). 코퍼스 > 100 GB 또는 쿼리 레이턴시 > 200ms 시 Qdrant로 마이그레이션.
 
 ```bash
-# Chroma 벗어날 때 Qdrant:
-docker run -d --name qdrant -p 6333:6333 -p 6334:6334 \
+# Chroma 벗어날 때 Qdrant: docker run -d --name qdrant -p 6333:6333 -p 6334:6334 \
   -v qdrant-storage:/qdrant/storage \
   qdrant/qdrant:latest
 ```
@@ -218,16 +198,13 @@ docker run -d --name qdrant -p 6333:6333 -p 6334:6334 \
 | 백업 스토리지 | $1 | $2 | $20 |
 | **합계** | **~$13-18/월** | **~$26-36/월** | **~$160-170/월** |
 
-SaaS 등가물 비교:
-- 솔로: Notion AI ($10) + Mem.ai ($15) = $25/월, 로컬 파일 못 봄
+SaaS 등가물 비교: - 솔로: Notion AI ($10) + Mem.ai ($15) = $25/월, 로컬 파일 못 봄
 - 작은 팀: 동일 × 5명 = $125/월
 - 조직: Glean Lite ~$30/명/월 × 50 = $1,500/월
 
 ## 10. 업그레이드 경로
 
-이 스택 벗어날 때:
-
-- **코퍼스 > 1 TB 또는 > 1000만 doc** — Qdrant를 전용 32 GB 박스로, 샤딩 추가
+이 스택 벗어날 때: - **코퍼스 > 1 TB 또는 > 1000만 doc** — Qdrant를 전용 32 GB 박스로, 샤딩 추가
 - **다지역 팀** — AnythingLLM 다지역 read 레플리카, 중국 친화 레이턴시 위해 {{< aff "htstack" "upgrade-hk-vps" "HTStack HK" >}}에 단일 write master
 - **풀텍스트 + 벡터 하이브리드 필요** — 벡터 DB Chroma에서 Weaviate로 마이그레이션
 - **감사 / SOC2 컴플라이언스** — LLM 콜 가시성용 Portkey와 페어 ([LLM Gateway 비교 2026](/kr/resources/llm-frameworks/llm-gateway-portkey-litellm-openrouter-comparison-2026/) 참조)
@@ -235,8 +212,7 @@ SaaS 등가물 비교:
 
 ## TL;DR — 레시피
 
-**5 컴포넌트, 솔로-작은팀 $10-25/월**:
-1. **AnythingLLM** — 정문 + chat UI
+**5 컴포넌트, 솔로-작은팀 $10-25/월**: 1. **AnythingLLM** — 정문 + chat UI
 2. **RAGFlow** — 심층 문서 파서 (어려운 PDF)
 3. **mem0** — 에이전트 메모리 레이어
 4. **AgentMemory MCP** — 코딩 에이전트로의 다리
@@ -251,7 +227,6 @@ $50-200/월 SaaS(Notion AI + Mem + Glean Lite)를 본인 소유 셀프호스트�
 *동반 컬렉션: [셀프호스트 AI 코딩 워크플로우](/kr/collections/self-hosted-ai-coding-workflow/)는 이 지식 베이스를 코딩 에이전트 스택에 연결. [저렴한 LLM 스택](/kr/collections/cheap-llm-stack/)은 chat-LLM 비용 측 커버. [국경 간 AI 마케팅 스택](/kr/collections/cross-border-ai-marketing-stack/)은 중국 친화 호스팅 필요한 중국 팀용.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/coqui-tts" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/coqui-tts" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/coqui-tts" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/coqui-tts" />
 title: 'Coqui TTS: 45.3K+ Stars — Bộ Công Cụ TTS Học Sâu, So Sán...
 description: 'Coqui TTS là bộ công cụ tổng hợp giọng nói học sâu mã nguồn mở. Hỗ trợ 1100+ ngôn ngữ, nhân bản giọng nói XTTS v2, tổng hợp VITS. So sánh hiệu suất thực tế RTF với ChatTTS, MeloTTS, Bark và hướng dẫn triển khai Docker.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: ['coqui tts', 'chuyển-văn-bản-thành-giọng-nói', 'nhân-bản-giọng-nói', xtts, vits, 'học-sâu', docker, python]
-aliases:
-- /vi/posts/coqui-tts/
+aliases: - /vi/posts/coqui-tts/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/coqui-tts/ -->
 
 {{</* resource-info */>}}
 
@@ -47,9 +39,7 @@ Coqui TTS tách quy trình tổng hợp thành ba giai đoạn có thể hoán �
 
 ![Coqui TTS Logo](https://raw.githubusercontent.com/coqui-ai/TTS/dev/images/coqui-logo-green.png)
 
-Sơ đồ kiến trúc bên dưới cho thấy luồng dữ liệu từ văn bản thô đến đầu ra âm thanh:
-
-![Coqui TTS Pipeline](https://raw.githubusercontent.com/coqui-ai/TTS/dev/images/tts_pipeline.png)
+Sơ đồ kiến trúc bên dưới cho thấy luồng dữ liệu từ văn bản thô đến đầu ra âm thanh: ![Coqui TTS Pipeline](https://raw.githubusercontent.com/coqui-ai/TTS/dev/images/tts_pipeline.png)
 
 **Các khái niệm cốt lõi:**
 
@@ -71,9 +61,7 @@ Sơ đồ kiến trúc bên dưới cho thấy luồng dữ liệu từ văn b�
 
 **Yêu cầu:** Python 3.9+, CUDA 11.8+ (tùy chọn, cho GPU), tối thiểu 4 GB RAM, khuyến nghị 8 GB VRAM cho XTTS v2.
 
-Cài đặt từ PyPI trong vòng hai phút:
-
-```bash
+Cài đặt từ PyPI trong vòng hai phút: ```bash
 python -m venv coqui-env
 source coqui-env/bin/activate
 
@@ -84,9 +72,7 @@ pip install coqui-tts
 tts --list_models | head -20
 ```
 
-Cài đặt phiên bản phát triển mới nhất từ nhánh cộng đồng:
-
-```bash
+Cài đặt phiên bản phát triển mới nhất từ nhánh cộng đồng: ```bash
 pip install coqui-tts --upgrade
 
 # Hoặc cài đặt từ mã nguồn
@@ -95,9 +81,7 @@ cd coqui-ai-TTS
 pip install -e .
 ```
 
-Cài đặt espeak-ng cho các mô hình dựa trên âm vị (bắt buộc cho nhiều ngôn ngữ không phải tiếng Anh):
-
-```bash
+Cài đặt espeak-ng cho các mô hình dựa trên âm vị (bắt buộc cho nhiều ngôn ngữ không phải tiếng Anh): ```bash
 # Ubuntu / Debian
 sudo apt-get install espeak-ng
 
@@ -226,8 +210,7 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 tts = TTS("tts_models/multilingual/multi-dataset/xtts_v2").to(device)
 
 @app.route("/synthesize", methods=["POST"])
-def synthesize():
-    data = request.get_json()
+def synthesize(): data = request.get_json()
     text = data.get("text", "")
     language = data.get("language", "en")
     speaker_wav = data.get("speaker_wav", None)
@@ -241,8 +224,7 @@ def synthesize():
     
     return send_file(buffer, mimetype="audio/wav")
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+if __name__ == "__main__": app.run(host="0.0.0.0", port=5000)
 ```
 
 ### Docker Compose cho sản xuất
@@ -251,40 +233,27 @@ if __name__ == "__main__":
 # docker-compose.yml
 version: '3.8'
 
-services:
-  coqui-tts:
-    build: .
+services: coqui-tts: build: .
     container_name: coqui-tts-service
     restart: unless-stopped
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+    deploy: resources: reservations: devices: - driver: nvidia
               count: 1
               capabilities: [gpu]
-    ports:
-      - "5002:5002"
-    volumes:
-      - ./tts_models:/home/appuser/.local/share/tts
+    ports: - "5002:5002"
+    volumes: - ./tts_models:/home/appuser/.local/share/tts
       - ./config:/app/config
       - ./audio_output:/app/audio_output
-    environment:
-      - CUDA_VISIBLE_DEVICES=0
+    environment: - CUDA_VISIBLE_DEVICES=0
       - PYTHONUNBUFFERED=1
       - TTS_HOME=/home/appuser/.local/share/tts
     shm_size: 2gb
     command: >
       sh -c "python3 /app/config/server.py"
 
-  nginx:
-    image: nginx:alpine
-    ports:
-      - "80:80"
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
-    depends_on:
-      - coqui-tts
+  nginx: image: nginx:alpine
+    ports: - "80:80"
+    volumes: - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on: - coqui-tts
 ```
 
 ### Dockerfile cho Coqui TTS
@@ -352,12 +321,12 @@ Chúng tôi chạy điểm chuẩn được kiểm soát trên NVIDIA A10 (24 GB
 **Số liệu triển khai thực tế (API sản xuất phục vụ 5000 yêu cầu/ngày):**
 
 ```
-Phần cứng:       2x NVIDIA A10G (AWS g5.2xlarge)
-Cân bằng tải:  nginx round-robin
-Container:      Docker + gunicorn (4 worker mỗi GPU)
-Độ trễ TB:     P50 420ms, P95 890ms
-Thông lượng:    12 req/giây mỗi GPU
-Tỷ lệ lỗi:     0.03% (OOM trên đầu vào >500 ký tự)
+Phần cứng: 2x NVIDIA A10G (AWS g5.2xlarge)
+Cân bằng tải: nginx round-robin
+Container: Docker + gunicorn (4 worker mỗi GPU)
+Độ trễ TB: P50 420ms, P95 890ms
+Thông lượng: 12 req/giây mỗi GPU
+Tỷ lệ lỗi: 0.03% (OOM trên đầu vào >500 ký tự)
 Thờii gian hoạt động: 99.7% trong 30 ngày
 ```
 
@@ -365,17 +334,14 @@ Thờii gian hoạt động: 99.7% trong 30 ngày
 
 ### Script làm nóng mô hình
 
-Lần suy luận đầu tiên sau khi khởi động container sẽ kích hoạt biên dịch CUDA kernel, thêm 5-10 giây độ trễ. Tích hợp điều này vào ENTRYPOINT:
-
-```python
+Lần suy luận đầu tiên sau khi khởi động container sẽ kích hoạt biên dịch CUDA kernel, thêm 5-10 giây độ trễ. Tích hợp điều này vào ENTRYPOINT: ```python
 # warm_up.py
 import os
 from TTS.api import TTS
 
 MODEL = os.getenv("TTS_MODEL", "tts_models/multilingual/multi-dataset/xtts_v2")
 tts = TTS(MODEL)
-if torch.cuda.is_available():
-    tts = tts.to("cuda")
+if torch.cuda.is_available(): tts = tts.to("cuda")
 
 # Kích hoạt JIT compile
 _ = tts.tts(text="warm up", speaker_wav=None, language="en")
@@ -405,38 +371,29 @@ torch.backends.cudnn.benchmark = True
 from concurrent.futures import ThreadPoolExecutor
 import queue
 
-def batch_worker(text_queue, result_queue):
-    """Xử lý văn bản theo batch để tối đa hóa việc sử dụng GPU."""
+def batch_worker(text_queue, result_queue): """Xử lý văn bản theo batch để tối đa hóa việc sử dụng GPU."""
     tts = TTS("tts_models/multilingual/multi-dataset/xtts_v2").to("cuda")
     batch = []
     
-    while True:
-        try:
-            item = text_queue.get(timeout=0.5)
+    while True: try: item = text_queue.get(timeout=0.5)
             batch.append(item)
             
-            if len(batch) >= 8:  # Kích thước batch 8
-                for b in batch:
-                    wav = tts.tts(text=b["text"], language=b["lang"])
+            if len(batch) >= 8: # Kích thước batch 8
+                for b in batch: wav = tts.tts(text=b["text"], language=b["lang"])
                     result_queue.put({"id": b["id"], "wav": wav})
                 batch = []
-        except queue.Empty:
-            if batch:
-                for b in batch:
-                    wav = tts.tts(text=b["text"], language=b["lang"])
+        except queue.Empty: if batch: for b in batch: wav = tts.tts(text=b["text"], language=b["lang"])
                     result_queue.put({"id": b["id"], "wav": wav})
                 batch = []
 
 # Sử dụng
-with ThreadPoolExecutor(max_workers=2) as executor:
-    executor.submit(batch_worker, text_q, result_q)
+with ThreadPoolExecutor(max_workers=2) as executor: executor.submit(batch_worker, text_q, result_q)
 ```
 
 ### Fine-tune XTTS v2 trên dữ liệu tùy chỉnh
 
 ```bash
-# Chuẩn bị tập dữ liệu theo định dạng LJSpeech:
-# metadata.csv: audio_file|text|speaker_name
+# Chuẩn bị tập dữ liệu theo định dạng LJSpeech: # metadata.csv: audio_file|text|speaker_name
 # wavs/*.wav: 22050 Hz, mono, 16-bit
 
 # Chạy công thức fine-tune
@@ -463,17 +420,12 @@ TTS_LATENCY = Histogram(tts_latency_seconds, 'Độ trễ yêu cầu')
 TTS_ERRORS = Counter(tts_errors_total, 'Tổng lỗi', [error_type])
 
 @app.route("/metrics")
-def metrics():
-    return generate_latest()
+def metrics(): return generate_latest()
 
 @app.route("/synthesize", methods=["POST"])
-def synthesize():
-    with TTS_LATENCY.time():
-        try:
-            # ... logic tổng hợp
+def synthesize(): with TTS_LATENCY.time(): try: # ... logic tổng hợp
             TTS_REQUESTS.labels(language=lang).inc()
-        except Exception as e:
-            TTS_ERRORS.labels(error_type=type(e).__name__).inc()
+        except Exception as e: TTS_ERRORS.labels(error_type=type(e).__name__).inc()
             raise
 ```
 
@@ -505,9 +457,7 @@ def synthesize():
 
 ## Hạn chế / Đánh giá trung thực
 
-Coqui TTS không phải công cụ phù hợp cho mọi công việc. Đây là những gì chúng tôi học được qua thực tiễn:
-
-- **Công ty đóng cửa** — Coqui AI đóng cửa tháng 12/2023. Dự án hiện do cộng đồng tại Idiap Research Institute duy trì. Các bản phát hành tính năng chậm lại và phụ thuộc vào PR cộng đồng.
+Coqui TTS không phải công cụ phù hợp cho mọi công việc. Đây là những gì chúng tôi học được qua thực tiễn: - **Công ty đóng cửa** — Coqui AI đóng cửa tháng 12/2023. Dự án hiện do cộng đồng tại Idiap Research Institute duy trì. Các bản phát hành tính năng chậm lại và phụ thuộc vào PR cộng đồng.
 - **Phân mảnh giấy phép** — Framework là MPL-2.0, nhưng XTTS v2 sử dụng Coqui Public Model License (CPML) hạn chế sử dụng thương mại. Kiểm toán với bộ phận pháp lý trước khi phát hành.
 - **Độ trễ khởi động** — Lần suy luận đầu tiên sau khởi động container kích hoạt biên dịch CUDA kernel, thêm 5-10 giây. Bạn phải triển khai script làm nóng cho sản xuất.
 - **Phình bộ nhớ với văn bản dài** — Đầu vào trên 500 ký tự có thể gây OOM trên GPU 16 GB. Triển khai phân đoạn câu mức 300 ký tự mỗi yêu cầu.
@@ -565,9 +515,7 @@ Coqui TTS vẫn là bộ công cụ TTS mã nguồn mở đa năng nhất năm 2
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -587,7 +535,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 *Bài viết này chỉ mang tính chất thông tin. Xác minh số liệu điểm chuẩn trên phần cứng của bạn trước khi đưa ra quyết định triển khai. Điều khoản cấp phép Coqui TTS có thể thay đổi — xem xét giấy phép hiện tại trước khi sử dụng thương mại.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

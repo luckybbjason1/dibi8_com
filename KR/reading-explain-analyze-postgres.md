@@ -1,16 +1,10 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/reading-explain-analyze-postgres" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/reading-explain-analyze-postgres" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/reading-explain-analyze-postgres" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/reading-explain-analyze-postgres" />
 title: PostgreSQL에서 EXPLAIN ANALYZE 출력 읽기 - 길을 잃지 않게
 description: PostgreSQL EXPLAIN ANALYZE tutorial. Learn query plan interpretation,. Comprehensive guide covering features, pricing, and best practices for 2026.
   bottleneck detection, and database performance optimization.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
-tech_stack:
-- AI
+tech_stack: - AI
 application_domain: Ai Tools
 source_version: ''
 licensing_model: Open Source
@@ -25,10 +19,8 @@ maintainer: ''
 last_maintained: '2026-05-15'
 featureImage: ''
 draft: false
-aliases:
-- /ko/posts/reading-explain-analyze-postgres/
-faqs:
-  - q: 'EXPLAIN ANALYZE 출력에서 상단 줄의 actual time은 무엇을 의미하나요?'
+aliases: - /ko/posts/reading-explain-analyze-postgres/
+faqs: - q: 'EXPLAIN ANALYZE 출력에서 상단 줄의 actual time은 무엇을 의미하나요?'
     a: '가장 바깥쪽 노드의 두 번째 actual time 값은 해당 노드가 한 번 실행되는 동안 전체 쿼리에 소요된 실제 벽시계 시간(밀리초 단위)입니다. 그 아래의 모든 노드는 그 총 시간이 어디에 쓰였는지를 세분화해서 보여줍니다.'
   - q: 'EXPLAIN ANALYZE 의 행 수로 잘못된 쿼리 플랜을 어떻게 찾나요?'
     a: 'cost= 섹션의 rows=(플래너 추정값)와 actual time= 섹션의 rows=(실제값)을 비교하세요. 두 값이 10배 이상 차이가 나면 플래너가 오래된 통계를 사용한 것이며, 그 위의 모든 노드가 잘못된 가정을 바탕으로 선택된 것입니다. 이것이 거의 항상 버그의 원인입니다.'
@@ -40,7 +32,6 @@ faqs:
     a: '정렬 또는 해시 작업이 work_mem에 맞지 않아 디스크로 스필된 것을 의미하며, 이로 인해 해당 노드의 시간이 쉽게 10배까지 늘어날 수 있습니다. 해결 방법은 해당 세션의 work_mem을 늘리고 EXPLAIN을 다시 실행하는 것입니다.'
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/reading-explain-analyze-postgres/ -->
 # PostgreSQL에서 EXPLAIN ANALYZE 출력 읽기 - 길을 잃지 않게
 
 
@@ -105,8 +96,7 @@ Sort Method: external merge  Disk: 16384kB
 
 ## 실제 적용
 
-이러한 통찰은 내가 식별하고 수정하는 데 도움이 되었습니다:
-- 누락된 인덱스
+이러한 통찰은 내가 식별하고 수정하는 데 도움이 되었습니다: - 누락된 인덱스
 - 비효율적인 조인 순서
 - 메모리 부족 문제
 - 캐시 미스
@@ -117,16 +107,13 @@ Sort Method: external merge  Disk: 16384kB
 
 ## 추천 도구
 
-오픈소스 AI 도구 개발/배포 시 권장:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
+오픈소스 AI 도구 개발/배포 시 권장: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
 - **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Anthropic Claude / OpenAI / DeepSeek API 프록시. 위의 AI 도구 대부분 (챗봇, 코드 생성, 번역, 검색 등) LLM API 키 필요 — 이 프록시로 안정적인 톱 모델 액세스, 공식 가격의 ~30%.
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -154,25 +141,20 @@ Sort Method: external merge  Disk: 16384kB
 
 ## Why This Matters
 
-Understanding postgresql에서 explain analyze 출력 읽기 - 길을 잃지 않게 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding postgresql에서 explain analyze 출력 읽기 - 길을 잃지 않게 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

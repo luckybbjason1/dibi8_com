@@ -1,15 +1,12 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/apple-container" />
-lang: en
-title: "Apple's Container: Docker-Like Experience on Mac with 37...
+title: "Apple's Container: Docker-Like Experience on Mac with 37..."
 date: 2026-06-15
-lastmod:  2026-06-15slug: apple-container-mac-vm-tool-2026
+lastmod: 2026-06-15
+slug: apple-container-mac-vm-tool-2026
 description: "Apple released container, a Swift-based tool for running Linux containers on Mac using lightweight VMs. 37K stars, OCI-compatible, macOS 26 required."
 tags: ["apple", "container", "macos", "linux", "virtualization", "swift", "devops", "docker", "open-source"]
 categories: ["ai-tools"]
-faqs:
-  - q: "Does container work on Intel Macs?"
+faqs: - q: "Does container work on Intel Macs?"
     a: "No. container requires Apple Silicon (M1/M2/M3/M4). It uses the macOS Virtualization framework which is optimized for Apple Silicon."
   - q: "Can I run Docker Compose files?"
     a: "Not directly. container does not currently support docker-compose files. Since it supports OCI images, you can build and run images individually."
@@ -21,9 +18,7 @@ faqs:
     a: "OrbStack is faster for single-container workflows. container offers true VM-level isolation and deep macOS integration."
   - q: "Can I run Windows containers?"
     a: "No. container runs Linux containers only. It produces OCI-compatible Linux images."
-featureImage: /articles/ai-trading-stack.png/images/articles/ai-trading-stack.png
----
-
+featureImage: /articles/ai-trading-stack.png/images/articles/ai-trading-stack.png---
 # Apple's Container: Docker-Like Experience on Mac with 37K Stars
 
 When Apple released `container` on May 30, 2025, the developer community went quiet. No fanfare, no keynote — just a single GitHub repository that quietly accumulated **37,130 stars** and became the most-watched new open-source project from Apple in years.
@@ -44,9 +39,7 @@ This means each container gets full VM-level isolation without the overhead of a
 
 ### The Core Architecture
 
-`container` doesn't run containers inside a shared Linux VM. Instead, it creates a dedicated lightweight VM for each container using Apple's **Virtualization framework**. Here's what that means in practice:
-
-- **Security**: Each container has the isolation properties of a full VM
+`container` doesn't run containers inside a shared Linux VM. Instead, it creates a dedicated lightweight VM for each container using Apple's **Virtualization framework**. Here's what that means in practice: - **Security**: Each container has the isolation properties of a full VM
 - **Privacy**: You mount only necessary data into each VM, selectively
 - **Performance**: Boot times comparable to Docker containers, but with VM-level isolation
 
@@ -73,9 +66,7 @@ The installation places files under `/usr/local` and registers `container` as a 
 
 ### Installing from Source
 
-For developers who want to build from source:
-
-```bash
+For developers who want to build from source: ```bash
 # Clone the repository
 git clone https://github.com/apple/container.git
 cd container
@@ -91,9 +82,7 @@ The project uses Swift Package Manager and depends on the [Containerization](htt
 
 ### 1. Running Containers
 
-The basic command is similar to Docker:
-
-```bash
+The basic command is similar to Docker: ```bash
 # Pull and run a container
 container run --rm docker.io/python:alpine python --version
 
@@ -108,9 +97,7 @@ Each container runs in its own lightweight VM. The default allocation is 1GB RAM
 
 ### 2. Building Images
 
-Building images uses the same Dockerfile syntax you already know:
-
-```bash
+Building images uses the same Dockerfile syntax you already know: ```bash
 # Build a local image
 container build --tag myapp:latest --file Dockerfile .
 
@@ -124,17 +111,13 @@ container run --arch arm64 --rm \
   registry.example.com/fido/web-test uname -a
 ```
 
-The output shows you the VM's kernel information:
-
-```
+The output shows you the VM's kernel information: ```
 Linux 7932ce5f-ec10-4fbe-a2dc-f29129a86b64 6.1.68 #1 SMP Mon Mar 31 18:27:51 UTC 2025 aarch64 GNU/Linux
 ```
 
 ### 3. Multi-Platform Builds
 
-One of the most powerful features is cross-platform image building. You can create a single image that runs on both Apple Silicon Macs and x86-64 servers:
-
-```bash
+One of the most powerful features is cross-platform image building. You can create a single image that runs on both Apple Silicon Macs and x86-64 servers: ```bash
 # Build a multi-platform image
 container build --arch arm64 --arch amd64 \
   --tag myapp:latest .
@@ -147,9 +130,7 @@ The resulting image works in Docker, Containerd, and any OCI-compatible runtime.
 
 ### 4. Volume Management
 
-Share host files with containers using `--volume` or `--mount`:
-
-```bash
+Share host files with containers using `--volume` or `--mount`: ```bash
 # Mount a folder using --volume
 container run --volume ${HOME}/Desktop/assets:/content/assets \
   docker.io/python:alpine ls -l /content/assets
@@ -163,9 +144,7 @@ The key difference from Docker: you mount only the data you need into each VM, n
 
 ### 5. Builder Management
 
-For resource-intensive builds, you can customize the builder VM:
-
-```bash
+For resource-intensive builds, you can customize the builder VM: ```bash
 # Start builder with custom resources
 container builder start --cpus 8 --memory 32g
 
@@ -181,9 +160,7 @@ The builder VM gets 2GB RAM and 2 CPUs by default — enough for simple projects
 
 ### Container Networking
 
-`container` integrates with macOS's `vmnet` framework for virtual networking:
-
-```bash
+`container` integrates with macOS's `vmnet` framework for virtual networking: ```bash
 # List networks
 container network ls
 
@@ -198,9 +175,7 @@ Container-to-container communication over virtual networks works on macOS 26. On
 
 ### System Services
 
-Run containers as persistent services:
-
-```bash
+Run containers as persistent services: ```bash
 # Start the system service
 container system start
 
@@ -238,10 +213,18 @@ container system start
 
 ## Comparison with Alternatives
 
-Let's compare `container` with the alternatives:
-
-| Feature | Apple Container | Docker Desktop | Colima | OrbStack |
-|---------|----------------|----------------|--------|----------|
+Let's compare `container` with the alternatives: | Feature | Apple Container | Docker Desktop | Colima | OrbStack |
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Base VM model | 1 VM per container | Shared Linux VM | Shared Linux VM | Shared Linux VM |
 | Language | Swift | Go | Go | Rust |
 | OCI Compatible | Yes | Yes | Yes | Yes |
@@ -263,9 +246,7 @@ Let's compare `container` with the alternatives:
 
 ## Technical Architecture
 
-The `container` architecture consists of several components:
-
-```
+The `container` architecture consists of several components: ```
 ┌─────────────────────────────────────────────────────┐
 │                  container CLI                       │
 └────────────────┬────────────────────────────────────┘
@@ -284,9 +265,7 @@ The `container` architecture consists of several components:
 └─────────────────────────────────────────────────────┘
 ```
 
-The `container-apiserver` is the central orchestrator. It launches when you run `container system start` and manages:
-
-- **container-core-images**: Image management and local content store
+The `container-apiserver` is the central orchestrator. It launches when you run `container system start` and manages: - **container-core-images**: Image management and local content store
 - **container-network-vmnet**: Virtual network management via vmnet
 - **container-runtime-linux**: Per-container management API
 
@@ -296,17 +275,13 @@ Each component communicates through XPC, Apple's inter-process communication sys
 
 ### Memory Management
 
-The macOS Virtualization framework only supports **partial memory ballooning**. When you allocate 16GB to a container but it only uses 2GB, those freed pages are not returned to macOS:
-
-> Currently, memory pages freed to the Linux operating system by processes running in the container's VM are not relinquished to the host. If you run many memory-intensive containers, you may need to occasionally restart them to reduce memory utilization.
+The macOS Virtualization framework only supports **partial memory ballooning**. When you allocate 16GB to a container but it only uses 2GB, those freed pages are not returned to macOS: > Currently, memory pages freed to the Linux operating system by processes running in the container's VM are not relinquished to the host. If you run many memory-intensive containers, you may need to occasionally restart them to reduce memory utilization.
 
 This is a fundamental limitation of Apple's Virtualization framework, not something `container` can fix on its own.
 
 ### macOS 15 Limitations
 
-On macOS 15 (Sonoma), several features are limited:
-
-- **No container-to-container communication** — containers are isolated from each other
+On macOS 15 (Sonoma), several features are limited: - **No container-to-container communication** — containers are isolated from each other
 - **No custom networks** — all containers use the default vmnet network
 - **Network issues** — container IP conflicts can cause complete network loss
 
@@ -314,15 +289,11 @@ Apple's position is clear: macOS 15 is supported but issues that can't be reprod
 
 ### Active Development
 
-The project is still in active development with a 1.0.0 release recently announced. Minor version releases may include breaking changes:
-
-> The stability, both for consuming the project as a Swift package and the `container` tool, is only guaranteed within patch versions, such as between 0.1.1 and 0.1.2.
+The project is still in active development with a 1.0.0 release recently announced. Minor version releases may include breaking changes: > The stability, both for consuming the project as a Swift package and the `container` tool, is only guaranteed within patch versions, such as between 0.1.1 and 0.1.2.
 
 ## Why This Matters for the Industry
 
-Apple's entry into containerization is significant for several reasons:
-
-1. **OCI standard compliance**: By producing standard OCI images, Apple is signaling that containers are an open standard, not a Docker ecosystem. This validates the open container movement.
+Apple's entry into containerization is significant for several reasons: 1. **OCI standard compliance**: By producing standard OCI images, Apple is signaling that containers are an open standard, not a Docker ecosystem. This validates the open container movement.
 
 2. **Mac as a first-class development platform**: Apple has long been the leading Mac-in-development-world. `container` accelerates this by giving Mac developers the same container workflow they have on Linux servers.
 
@@ -332,9 +303,7 @@ Apple's entry into containerization is significant for several reasons:
 
 ## Getting Started: A Practical Tutorial
 
-Here's a complete workflow from scratch:
-
-```bash
+Here's a complete workflow from scratch: ```bash
 # 1. Start the system service
 container system start
 
@@ -398,12 +367,11 @@ A: No. `container` runs Linux containers only. It produces OCI-compatible Linux 
 **Q: What happens when memory is freed inside a container?**
 A: The freed memory pages are not returned to the host macOS. You may need to restart containers periodically to reclaim memory if running many memory-intensive containers.
 
----
 
+---
 *Interested in more AI tool and developer infrastructure reviews? Join our [Telegram community](https://t.me/DIBI8_Group) for daily updates and early access to new articles.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -429,8 +397,8 @@ A: The freed memory pages are not returned to the host macOS. You may need to re
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [apple-container](apple-container)

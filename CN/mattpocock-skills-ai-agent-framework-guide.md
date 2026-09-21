@@ -1,10 +1,9 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/mattpocock-skills-ai-agent-framework-guide" />
-title: "Matt Pocock's Skills: The CLI Framework That Gives AI Ag...
+title: "Matt Pocock's Skills: The CLI Framework That Gives AI Ag..."
 description: "Learn how to use Matt Pocock's Skills framework to give AI coding agents like Claude Code, Cursor, and Gemini CLI real capabilities beyond code — databases, filesystem, CI/CD, and more. Step-by-step npx install guide, architecture breakdown, and real benchmarks."
 date: 2026-06-10
-lastmod:  2026-06-10slug: "mattpocock-skills-ai-agent-framework-guide"
+lastmod: 2026-06-10
+slug: "mattpocock-skills-ai-agent-framework-guide"
 category: dev-utils
 tags: [matt-pocock, skills, AI agents, CLI framework, AI coding tools, agent capabilities, developer tools, open-source]
 github_repo: "https://github.com/mattpocock/skills"
@@ -12,9 +11,7 @@ stars: 122865
 maintainer: mattpocock
 license: MIT
 featureImage: "https://res.cloudinary.com/total-typescript/image/upload/v1777382277/skill-repo-light_2x.png"
-lang: en
 ---
-
 ## Introduction
 
 AI coding agents have fundamentally transformed how developers write, debug, and deploy code. Tools like Claude Code, Cursor, Codex CLI, Gemini CLI, and GitHub Copilot can generate entire features from natural language prompts. But even the most advanced AI agent is limited to the data it can read and the tools it can invoke. This is where Matt Pocock's Skills framework changes everything — it bridges the gap between code generation and code execution.
@@ -27,9 +24,7 @@ Skills is a lightweight, open-source framework that extends AI coding agents wit
 
 Skills is **an extensible framework for giving AI coding agents real capabilities** beyond code generation. It works by defining capabilities as plugins — small, self-contained modules that the agent can invoke to perform specific tasks. Think of it as giving your AI agent a Swiss Army knife: instead of writing a new tool for every task, Skills provides a curated set of tools the agent can use immediately.
 
-Key capabilities include:
-
-- **Database access** — Run SQL queries, manage schemas, migrate data
+Key capabilities include: - **Database access** — Run SQL queries, manage schemas, migrate data
 - **Filesystem operations** — Read, write, search, and manipulate files
 - **CI/CD integration** — Trigger builds, run tests, deploy to staging
 - **Cloud operations** — Manage Docker containers, Kubernetes pods, cloud resources
@@ -48,9 +43,7 @@ The framework uses a simple configuration file (`skills.json`) that lists all av
 
 When you ask an agent "Set up a PostgreSQL database for this project," Skills provides a database skill that can create the database, configure the connection, and run initial migrations. When you ask "Deploy this to staging," it provides a deployment skill that triggers your CI/CD pipeline. The agent doesn't need to know how these tasks work — it just needs to know that Skills can handle them.
 
-The skill ecosystem works as follows:
-
-1. **Skill discovery** — The agent reads the skills.json configuration to learn available capabilities
+The skill ecosystem works as follows: 1. **Skill discovery** — The agent reads the skills.json configuration to learn available capabilities
 2. **Skill selection** — Based on the user's request, the agent selects the appropriate skill
 3. **Parameter extraction** — The agent extracts relevant parameters from the request
 4. **Execution** — The skill executes the defined commands or API calls
@@ -128,8 +121,7 @@ curl -s https://www.aihero.dev/s/skills-newsletter
 
 ### Skills Hub
 
-Browse all available skills at the official skills hub:
-- Skills site: https://skills.sh/mattpocock/skills
+Browse all available skills at the official skills hub: - Skills site: https://skills.sh/mattpocock/skills
 - Newsletter: https://www.aihero.dev/s/skills-newsletter
 
 ## Basic Usage Examples
@@ -351,7 +343,7 @@ import { defineSkill } from "@mattpocock/skills";
 
 export const myCustomSkill = defineSkill({
   name: "my-custom-skill",
-  description: "Performs custom operations",
+  description: "Performs custom operations"
   version: "1.0.0",
   execute: async (args) => {
     // Your custom logic here
@@ -372,7 +364,11 @@ npx skills@latest run --parallel database --query "SELECT 1" deploy --action bui
 ### Skill Execution Speed
 
 | Skill Type | Typical Execution Time |
-|-----------|----------------------|
+|
+---
+|
+---
+|
 | Database query (simple) | ~100ms |
 | Database query (complex join) | ~500ms |
 | File system operation | ~50ms |
@@ -383,10 +379,14 @@ npx skills@latest run --parallel database --query "SELECT 1" deploy --action bui
 
 ### Agent Task Completion Rate
 
-Testing AI agent task completion with and without Skills on a 50-task benchmark:
-
-| Task Category | Without Skills | With Skills |
-|---------------|---------------|-------------|
+Testing AI agent task completion with and without Skills on a 50-task benchmark: | Task Category | Without Skills | With Skills |
+|
+---
+|
+---
+|
+---
+|
 | Database setup | 0% (agent writes code but cannot run it) | 100% |
 | File management | 30% | 95% |
 | Deployment | 0% | 85% |
@@ -396,9 +396,7 @@ Testing AI agent task completion with and without Skills on a 50-task benchmark:
 
 ### Real-World Case: Startup Development Team
 
-A 5-person startup uses Skills with Claude Code to automate their entire development workflow:
-
-```bash
+A 5-person startup uses Skills with Claude Code to automate their entire development workflow: ```bash
 #!/bin/bash
 # Automated weekly deployment pipeline
 npx skills@latest init
@@ -412,9 +410,7 @@ The team reports a 70% reduction in deployment time and the ability for their AI
 
 ### Real-World Case: Freelance Developer
 
-A freelance developer uses Skills to manage multiple client projects:
-
-```bash
+A freelance developer uses Skills to manage multiple client projects: ```bash
 # Export client-specific skills
 npx skills@latest export --project client-a > client-a-skills.json
 npx skills@latest export --project client-b > client-b-skills.json
@@ -460,7 +456,17 @@ npx skills@latest env set AWS_KEY "$(aws secretsmanager get-secret-value --secre
 ## Comparison with Alternatives
 
 | Feature | Skills | OpenHands Tools | CrewAI Tools | AutoGen Tools |
-|---------|--------|-----------------|-------------|---------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Install Method | `npx skills@latest add` | pip install | pip install | pip install |
 | Plugin System | Yes (CLI-first) | Yes (Python) | Yes (Python) | Yes (Python) |
 | Agent Support | Claude Code, Cursor, Gemini CLI, Codex | OpenHands | CrewAI agents | AutoGen agents |
@@ -478,9 +484,7 @@ Skills stands out for its simplicity and broad AI agent compatibility. While Ope
 
 ## Limitations / Honest Assessment
 
-While Skills is powerful, it has some limitations to be aware of:
-
-1. **Agent compatibility** — Skills works best with agents that support tool calling. Agents without tool calling capabilities may not fully benefit.
+While Skills is powerful, it has some limitations to be aware of: 1. **Agent compatibility** — Skills works best with agents that support tool calling. Agents without tool calling capabilities may not fully benefit.
 2. **Skill coverage** — While the built-in skills cover common developer tasks, niche or custom workflows may require custom skill development.
 3. **Security considerations** — Skills gives agents real capabilities, so permissions and access controls should be carefully managed.
 4. **Configuration overhead** — Setting up environment variables and connection parameters requires initial configuration.
@@ -541,7 +545,6 @@ Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss S
 Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -567,8 +570,8 @@ Some links above are affiliate links. dibi8.com may earn a commission if you sig
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [mattpocock-skills-ai-agent-framework-guide](mattpocock-skills-ai-agent-framework-guide)
@@ -577,8 +580,8 @@ Some links above are affiliate links. dibi8.com may earn a commission if you sig
 - [pm-skills-68-product-management-skills-ai-agents](mattpocock-skills-ai-agent-framework-guide)
 - [mattpocock-skills-ai-agent-framework-guide](mattpocock-skills-ai-agent-framework-guide)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

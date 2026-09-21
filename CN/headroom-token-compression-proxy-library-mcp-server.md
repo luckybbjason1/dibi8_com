@@ -1,10 +1,9 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/headroom-token-compression-proxy-library-mcp-server" />
 title: 'Headroom: Compress LLM Inputs by 60-95% — A Token-Saving...
 description: 'Headroom (19,745 GitHub stars) compresses tool outputs, logs, files, and RAG chunks before they reach the LLM. 60-95% fewer tokens, same answers. Library, proxy, and MCP server. Includes setup tutorial, architecture breakdown, and real benchmarks.'
 date: 2026-06-08
-lastmod:  2026-06-08slug: 'headroom-token-compression-proxy-library-mcp-server'
+lastmod: 2026-06-08
+slug: 'headroom-token-compression-proxy-library-mcp-server'
 category: 'llm-frameworks'
 tags: ['token compression', 'LLM token optimization', 'MCP server', 'RAG compression', 'Headroom', 'context optimization', 'token cost reduction', 'AI proxy']
 github_repo: 'https://github.com/chopratejas/headroom'
@@ -12,9 +11,7 @@ stars: 19745
 maintainer: 'chopratejas'
 license: MIT
 featureImage: 'https://raw.githubusercontent.com/chopratejas/headroom/main/headroom-savings.png'
-lang: en
 ---
-
 # Headroom: Compress LLM Inputs by 60-95% — A Token-Saving Proxy, Library & MCP Server — A Practical Guide 2026
 
 ```
@@ -50,8 +47,7 @@ If you're paying for LLM API calls in 2026, you're probably burning 40-70% of yo
 
 Headroom is **a token compression layer** for LLM pipelines that reduces input token counts before they reach the model. It is not a summarization tool — it is a structural optimizer. It understands the difference between "important signal" and "noisy context" in tool outputs, logs, files, and retrieval-augmented chunks.
 
-Key capabilities:
-- **Input compression** — Deduplicate, prune, and summarize tool outputs before LLM consumption
+Key capabilities: - **Input compression** — Deduplicate, prune, and summarize tool outputs before LLM consumption
 - **Multi-format support** — Handles JSON, logs, markdown, code files, and RAG embeddings
 - **3 deployment modes** — Python library, CLI proxy, and MCP server
 - **Model-agnostic** — Works with Claude, GPT-4o, Gemini, and any OpenAI-compatible endpoint
@@ -62,9 +58,7 @@ The project is built with Python, uses minimal dependencies (just `tiktoken` for
 
 ## How Headroom Works
 
-Headroom operates through a three-stage pipeline:
-
-### Stage 1: Input Ingestion
+Headroom operates through a three-stage pipeline: ### Stage 1: Input Ingestion
 
 ```bash
 # Install the library
@@ -84,9 +78,7 @@ print(f'Savings: {result.savings_pct}%')
 
 ### Stage 2: Compression Engine
 
-The compression engine applies multiple strategies:
-
-```python
+The compression engine applies multiple strategies: ```python
 # Custom compression rules
 from headroom import Compressor
 
@@ -161,8 +153,7 @@ curl -X POST http://localhost:8787/compress \
   -H "Content-Type: application/json" \
   -d '{"input": "Very long context..."}' | jq
 
-# Expected response:
-# {
+# Expected response: # {
 #   "original_tokens": 4523,
 #   "compressed_tokens": 891,
 #   "savings_pct": 80.3,
@@ -179,8 +170,7 @@ headroom mcp-serve --port 9090
 # Connect from Claude Code
 claude-code --mcp http://localhost:9090
 
-# The MCP server exposes:
-# - headroom/compress — Compress text input
+# The MCP server exposes: # - headroom/compress — Compress text input
 # - headroom/benchmark — Run compression benchmark
 # - headroom/config — Get/update compression settings
 ```
@@ -221,9 +211,7 @@ headroom serve --port 8787 --dashboard --dashboard-port 3000
 
 ## Integration with Claude Code, Codex CLI, Copilot, and Gemini CLI
 
-Headroom works with any agent that sends HTTP requests to an LLM API. Here's how to integrate with popular tools:
-
-### Claude Code
+Headroom works with any agent that sends HTTP requests to an LLM API. Here's how to integrate with popular tools: ### Claude Code
 
 ```bash
 # Method 1: Use as MCP server
@@ -263,10 +251,18 @@ For self-hosted proxy infrastructure, [HTStack](https://my.htstack.com/aff.php?a
 
 ### Compression Benchmarks
 
-Testing on 100 real-world tool outputs (mix of terminal output, git diffs, file contents, and RAG chunks):
-
-| Configuration | Avg Original Tokens | Avg Compressed Tokens | Savings | Answer Quality |
-|--------------|-------------------|---------------------|---------|---------------|
+Testing on 100 real-world tool outputs (mix of terminal output, git diffs, file contents, and RAG chunks): | Configuration | Avg Original Tokens | Avg Compressed Tokens | Savings | Answer Quality |
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | No compression | 4,820 | 4,820 | 0% | 100% |
 | Conservative (90% cap) | 4,820 | 1,450 | 70% | 98% |
 | Balanced (75% cap) | 4,820 | 1,080 | 78% | 96% |
@@ -274,24 +270,18 @@ Testing on 100 real-world tool outputs (mix of terminal output, git diffs, file 
 
 ### Cost Reduction: Real Scenario
 
-A developer using Claude Code for a 50K-line Python project:
-
-```bash
-# Before Headroom:
-# Daily context: ~120,000 tokens/day
+A developer using Claude Code for a 50K-line Python project: ```bash
+# Before Headroom: # Daily context: ~120,000 tokens/day
 # Cost: ~$48/month (Claude Sonnet @ $3/M)
 
-# After Headroom (balanced mode):
-# Daily context: ~28,000 tokens/day
+# After Headroom (balanced mode): # Daily context: ~28,000 tokens/day
 # Cost: ~$11/month
 # Savings: ~$37/month = 77% reduction
 ```
 
 ### RAG Chunk Compression
 
-Compressing retrieved documents before sending to LLM:
-
-```python
+Compressing retrieved documents before sending to LLM: ```python
 from headroom import Compressor, rag_compress
 
 # Compress RAG chunks before LLM
@@ -308,9 +298,7 @@ compressed_chunks = rag_compress(
 
 ### Real-World Use Case: CI/CD Log Analysis
 
-A team processes 500 GitHub Actions logs per week:
-
-```bash
+A team processes 500 GitHub Actions logs per week: ```bash
 # Batch compress logs
 headroom compress-batch \
   --input ./ci-logs/*.log \
@@ -327,12 +315,9 @@ cat ./compressed-logs/build-42.log | \
 
 ### Custom Compression Rules
 
-Define domain-specific compression rules:
-
-```yaml
+Define domain-specific compression rules: ```yaml
 # headroom-config.yaml
-rules:
-  # Skip compressing code files below a threshold
+rules: # Skip compressing code files below a threshold
   - pattern: "\\.py$"
     min_compress_ratio: 0.5
   
@@ -353,9 +338,7 @@ rules:
 
 ### Redis-backed Session State
 
-For multi-session scenarios, persist compression state:
-
-```bash
+For multi-session scenarios, persist compression state: ```bash
 # Start with Redis state backend
 headroom serve \
   --redis-url redis://localhost:6379/0 \
@@ -387,7 +370,17 @@ curl -s http://localhost:8787/config | jq
 ## Comparison with Alternatives
 
 | Feature | Headroom | Tiktoken-only | RAG compression libs | Token-efficient frameworks |
-|---------|----------|---------------|---------------------|---------------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Token savings | 60-95% | 0% (counting only) | 30-60% | 50-80% |
 | Multi-format (JSON, logs, files) | Yes | No | Limited | No |
 | Deployment modes | Library + Proxy + MCP | Library only | Library only | Library only |
@@ -401,9 +394,7 @@ curl -s http://localhost:8787/config | jq
 
 ## Limitations / Honest Assessment
 
-Headroom is not a silver bullet. Here's when it's NOT a good fit:
-
-1. **Latency-sensitive applications** — Compression adds 10-50ms per request. For ultra-low-latency use cases (sub-100ms total), the overhead may not be acceptable.
+Headroom is not a silver bullet. Here's when it's NOT a good fit: 1. **Latency-sensitive applications** — Compression adds 10-50ms per request. For ultra-low-latency use cases (sub-100ms total), the overhead may not be acceptable.
 
 2. **Extremely short inputs** — For inputs under 500 tokens, compression overhead exceeds savings. Headroom is optimized for long-context scenarios (2,000+ tokens).
 
@@ -454,7 +445,6 @@ Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss H
 Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -480,8 +470,8 @@ Some links above are affiliate links. dibi8.com may earn a commission if you sig
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [free-mcp-tools-top10-2026](headroom-token-compression-proxy-library-mcp-server)
@@ -490,6 +480,6 @@ Some links above are affiliate links. dibi8.com may earn a commission if you sig
 - [headroom-token-compression-proxy-library-mcp-server](headroom-token-compression-proxy-library-mcp-server)
 - [codebase-memory-mcp-deep-code-intelligence](headroom-token-compression-proxy-library-mcp-server)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

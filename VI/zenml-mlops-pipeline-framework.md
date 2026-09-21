@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/zenml-mlops-pipeline-framework" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/zenml-mlops-pipeline-framework" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/zenml-mlops-pipeline-framework" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/zenml-mlops-pipeline-framework" />
 title: 'ZenML 2026: Framework MLOps Kết Nối 20+ Công Cụ Thành Pi...
 description: 'Hướng dẫn toàn diện về ZenML — framework MLOps mã nguồn mở kết nối 20+ công cụ thành pipeline ML thống nhất, có thể tái tạo. Tự host, benchmark thực tế, triển khai production.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: []
-aliases:
-- /vi/posts/zenml-mlops-pipeline-framework/
+aliases: - /vi/posts/zenml-mlops-pipeline-framework/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/zenml-mlops-pipeline-framework/ -->
 
 {{</* resource-info */>}}
 
@@ -65,8 +57,7 @@ Một **Step** là đơn vị công việc nhỏ nhất — một hàm Python th
 Mọi output từ một step là một **Artifact** — một object được typed và versioned, lưu trữ trong artifact store. Artifacts có thể là datasets (pandas DataFrames, NumPy arrays), models (sklearn, PyTorch, TensorFlow), hoặc custom objects. ZenML tự động serialize, version, và track lineage cho mọi artifact.
 
 ### Stacks
-Một **Stack** xác định nơi và cách pipeline của bạn chạy. Nó kết hợp:
-- **Orchestrator**: Thực thi pipeline (local, Airflow, Kubernetes, Vertex AI, v.v.)
+Một **Stack** xác định nơi và cách pipeline của bạn chạy. Nó kết hợp: - **Orchestrator**: Thực thi pipeline (local, Airflow, Kubernetes, Vertex AI, v.v.)
 - **Artifact Store**: Lưu trữ pipeline outputs (local filesystem, S3, GCS, Azure Blob)
 - **Container Registry**: Lưu trữ Docker images cho containerized execution
 - **Experiment Tracker**: Log metrics và parameters (MLflow, Weights & Biases, Neptune)
@@ -130,9 +121,7 @@ zenml stack describe
 
 ### Bước 4: Chạy Pipeline Đầu Tiên
 
-Tạo file tên `first_pipeline.py`:
-
-```python
+Tạo file tên `first_pipeline.py`: ```python
 from zenml import pipeline, step
 import pandas as pd
 from sklearn.datasets import load_iris
@@ -141,15 +130,13 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 
 @step
-def load_data() -> pd.DataFrame:
-    """Load the iris dataset."""
+def load_data() -> pd.DataFrame: """Load the iris dataset."""
     iris = load_iris(as_frame=True)
     df = iris.frame
     return df
 
 @step
-def split_data(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame, pd.Series, pd.Series]:
-    """Split data into training and test sets."""
+def split_data(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame, pd.Series, pd.Series]: """Split data into training and test sets."""
     X = df.drop("target", axis=1)
     y = df["target"]
     X_train, X_test, y_train, y_test = train_test_split(
@@ -158,8 +145,7 @@ def split_data(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame, pd.Series,
     return X_train, X_test, y_train, y_test
 
 @step
-def train_model(X_train: pd.DataFrame, y_train: pd.Series) -> RandomForestClassifier:
-    """Train a Random Forest classifier."""
+def train_model(X_train: pd.DataFrame, y_train: pd.Series) -> RandomForestClassifier: """Train a Random Forest classifier."""
     clf = RandomForestClassifier(n_estimators=100, random_state=42)
     clf.fit(X_train, y_train)
     return clf
@@ -169,29 +155,24 @@ def evaluate_model(
     model: RandomForestClassifier,
     X_test: pd.DataFrame,
     y_test: pd.Series
-) -> float:
-    """Evaluate the trained model."""
+) -> float: """Evaluate the trained model."""
     predictions = model.predict(X_test)
     accuracy = accuracy_score(y_test, predictions)
     print(f"Model accuracy: {accuracy:.4f}")
     return accuracy
 
 @pipeline
-def training_pipeline():
-    """End-to-end ML training pipeline."""
+def training_pipeline(): """End-to-end ML training pipeline."""
     df = load_data()
     X_train, X_test, y_train, y_test = split_data(df)
     model = train_model(X_train, y_train)
     accuracy = evaluate_model(model, X_test, y_test)
 
-if __name__ == "__main__":
-    run = training_pipeline()
+if __name__ == "__main__": run = training_pipeline()
     print(f"Pipeline run completed: {run.name}")
 ```
 
-Chạy:
-
-```bash
+Chạy: ```bash
 python first_pipeline.py
 ```
 
@@ -202,9 +183,7 @@ Bạn sẽ thấy output hiển thị mỗi step thực thi tuần tự, kết t
 Sức mạnh của ZenML nằm ở hệ sinh thái tích hợp. Dưới đây là các công cụ thường được kết nối nhất trong vòng đờ ML.
 
 ### Orchestrators
-ZenML hỗ trợ nhiều orchestrators cho các nhu cầu quy mô khác nhau:
-
-```bash
+ZenML hỗ trợ nhiều orchestrators cho các nhu cầu quy mô khác nhau: ```bash
 # Cài đặt Airflow integration
 pip install zenml[airflow]
 
@@ -244,17 +223,14 @@ zenml stack update local_stack \
   -r mlflow_registry
 ```
 
-Giờ đây hãy sửa pipeline để log experiments:
-
-```python
+Giờ đây hãy sửa pipeline để log experiments: ```python
 from zenml import pipeline, step
 from zenml.client import Client
 import mlflow
 import mlflow.sklearn
 
 @step(experiment_tracker="mlflow_tracker")
-def train_model(X_train: pd.DataFrame, y_train: pd.Series) -> RandomForestClassifier:
-    """Train with MLflow logging."""
+def train_model(X_train: pd.DataFrame, y_train: pd.Series) -> RandomForestClassifier: """Train with MLflow logging."""
     mlflow.autolog()  # Auto-log parameters, metrics, and model
     clf = RandomForestClassifier(n_estimators=100, random_state=42)
     clf.fit(X_train, y_train)
@@ -270,10 +246,8 @@ def train_model(X_train: pd.DataFrame, y_train: pd.Series) -> RandomForestClassi
 def register_model(
     model: RandomForestClassifier,
     accuracy: float
-) -> str:
-    """Register model to MLflow model registry."""
-    if accuracy > 0.90:
-        model_version = mlflow.sklearn.log_model(
+) -> str: """Register model to MLflow model registry."""
+    if accuracy > 0.90: model_version = mlflow.sklearn.log_model(
             model,
             artifact_path="model",
             registered_model_name="iris-classifier"
@@ -326,39 +300,24 @@ zenml experiment-tracker register wandb_tracker \
 ```yaml
 # stack.yaml — Định nghĩa toàn bộ MLOps stack dưới dạng code
 stack_name: production_stack
-components:
-  orchestrator:
-    flavor: kubernetes
-    configuration:
-      kubernetes_context: prod-cluster
+components: orchestrator: flavor: kubernetes
+    configuration: kubernetes_context: prod-cluster
       namespace: ml-pipelines
-  artifact_store:
-    flavor: s3
-    configuration:
-      path: s3://prod-ml-artifacts/zenml
+  artifact_store: flavor: s3
+    configuration: path: s3://prod-ml-artifacts/zenml
       authentication_secret: aws-s3-secret
-  container_registry:
-    flavor: default
-    configuration:
-      uri: 123456789.dkr.ecr.us-east-1.amazonaws.com
-  experiment_tracker:
-    flavor: mlflow
-    configuration:
-      tracking_uri: http://mlflow.internal:5000
-  model_registry:
-    flavor: mlflow
-    configuration:
-      uri: http://mlflow.internal:5000
-  step_operator:
-    flavor: sagemaker
-    configuration:
-      role: arn:aws:iam::123456789:role/SageMakerRole
+  container_registry: flavor: default
+    configuration: uri: 123456789.dkr.ecr.us-east-1.amazonaws.com
+  experiment_tracker: flavor: mlflow
+    configuration: tracking_uri: http://mlflow.internal:5000
+  model_registry: flavor: mlflow
+    configuration: uri: http://mlflow.internal:5000
+  step_operator: flavor: sagemaker
+    configuration: role: arn:aws:iam::123456789:role/SageMakerRole
       instance_type: ml.p3.2xlarge
 ```
 
-Đăng ký stack này:
-
-```bash
+Đăng ký stack này: ```bash
 zenml stack register -f stack.yaml --set
 ```
 
@@ -377,9 +336,7 @@ ZenML được sử dụng trong production trên nhiều ngành công nghiệp.
 
 ### Các Benchmark Hiệu Năng
 
-Chúng tôi đã benchmark ZenML v0.80.0 với các patterns MLOps phổ biến trên **DigitalOcean 8 vCPU / 32GB RAM droplet** (xem [DigitalOcean](https://m.do.co/c/eca87ac14ee0) để nhận $200 credit miễn phí):
-
-| Chỉ Số | Local Mode | Airflow | Kubernetes |
+Chúng tôi đã benchmark ZenML v0.80.0 với các patterns MLOps phổ biến trên **DigitalOcean 8 vCPU / 32GB RAM droplet** (xem [DigitalOcean](https://m.do.co/c/eca87ac14ee0) để nhận $200 credit miễn phí): | Chỉ Số | Local Mode | Airflow | Kubernetes |
 |--------|-----------|---------|------------|
 | Thờ gian cold start | **1.2s** | 8.5s | 45s |
 | Overhead pipeline | **0.3s** | 2.1s | 12s |
@@ -410,14 +367,11 @@ Scale tuyến tính của local mode làm nó lý tưởng cho phát triển. Ku
 
 ### Custom Step Operators cho GPU Workloads
 
-Khi training cần GPU, offload các steps cụ thể lên cloud instances mà không thay đổi pipeline code:
-
-```python
+Khi training cần GPU, offload các steps cụ thể lên cloud instances mà không thay đổi pipeline code: ```python
 from zenml.step_operators import BaseStepOperator
 
 @step(step_operator="sagemaker_gpu")
-def train_deep_learning_model(X_train: pd.DataFrame, y_train: pd.Series):
-    """Train trên GPU qua SageMaker trong khi các steps khác chạy local."""
+def train_deep_learning_model(X_train: pd.DataFrame, y_train: pd.Series): """Train trên GPU qua SageMaker trong khi các steps khác chạy local."""
     import tensorflow as tf
     
     # Step này thực thi trên ml.p3.2xlarge qua SageMaker
@@ -450,12 +404,9 @@ zenml.pipeline_schedule register daily_schedule
 
 ### Caching và Reproducibility
 
-Hệ thống caching của ZenML là tự động và artifact-aware. Nếu inputs và step code không thay đổi, ZenML tái sử dụng cached outputs:
-
-```python
+Hệ thống caching của ZenML là tự động và artifact-aware. Nếu inputs và step code không thay đổi, ZenML tái sử dụng cached outputs: ```python
 @step(enable_cache=True)  # Hành vi mặc định
-def expensive_preprocessing(df: pd.DataFrame) -> pd.DataFrame:
-    """Chỉ chạy lại khi input df hoặc hàm này thay đổi."""
+def expensive_preprocessing(df: pd.DataFrame) -> pd.DataFrame: """Chỉ chạy lại khi input df hoặc hàm này thay đổi."""
     # Phép biến đổi nặng mất 30 phút
     return processed_df
 
@@ -480,14 +431,11 @@ zenml secrets-manager secret register db_credentials \
   --password=$DB_PASSWORD
 ```
 
-Truy cập trong steps:
-
-```python
+Truy cập trong steps: ```python
 from zenml.client import Client
 
 @step
-def load_from_database() -> pd.DataFrame:
-    """Load data dùng credentials từ ZenML secrets manager."""
+def load_from_database() -> pd.DataFrame: """Load data dùng credentials từ ZenML secrets manager."""
     client = Client()
     credentials = client.get_secret("db_credentials")
     
@@ -506,17 +454,11 @@ def load_from_database() -> pd.DataFrame:
 ```yaml
 # .github/workflows/ml-pipeline.yml
 name: ML Pipeline CI
-on:
-  push:
-    branches: [main]
-  schedule:
-    - cron: "0 2 * * *"
+on: push: branches: [main]
+  schedule: - cron: "0 2 * * *"
 
-jobs:
-  train:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: train: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       
       - name: Setup ZenML
         run: |
@@ -560,9 +502,7 @@ jobs:
 
 ## Hạn Chế: Đánh Giá Trung Thực
 
-ZenML không phải là giải pháp vạn năng. Dưới đây là các trade-offs cần hiểu trước khi cam kết:
-
-1. **Độ phức tạp của Kubernetes**: Mặc dù ZenML abstract các orchestrators, việc vận hành production Kubernetes vẫn đòi hỏi kiến thức cluster. ZenML team đang phát triển managed Kubernetes integration (nhắm đến v0.85.0).
+ZenML không phải là giải pháp vạn năng. Dưới đây là các trade-offs cần hiểu trước khi cam kết: 1. **Độ phức tạp của Kubernetes**: Mặc dù ZenML abstract các orchestrators, việc vận hành production Kubernetes vẫn đòi hỏi kiến thức cluster. ZenML team đang phát triển managed Kubernetes integration (nhắm đến v0.85.0).
 
 2. **Thiếu sót tài liệu**: Các integrations nâng cao (custom step operators, event-based triggers) thiếu ví dụ toàn diện. Community Discord hoạt động tích cực để hỗ trợ, nhưng docs chính thức thường chậm hơn các bản release.
 
@@ -613,9 +553,7 @@ Bắt đầu với thiết lập local 5 phút trong hướng dẫn này. Kết 
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -625,7 +563,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 Bài viết này chứa các liên kết tiếp thị liên kết. Nếu bạn đăng ký dịch vụ thông qua các liên kết được đánh dấu trong bài viết này, dibi8.com có thể nhận được hoa hồng mà không phát sinh chi phí thêm cho bạn. Chúng tôi chỉ giới thiệu các công cụ mà chúng tôi đã đánh giá cá nhân và tin rằng mang lại giá trị thực sự. Các ý kiến được trình bày là của chúng tôi.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

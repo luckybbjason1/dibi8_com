@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/wifi-forge-safe-wifi-hacking-lab" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/wifi-forge-safe-wifi-hacking-lab" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/wifi-forge-safe-wifi-hacking-lab" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/wifi-forge-safe-wifi-hacking-lab" />
 title: "WiFi-Forge — 一个安全合法的 WiFi 黑客学习沙盒"
-description: "WiFi Forge：安全的WiFi黑客实验室，用于安全研究。在受控环境中学习渗透测试、无线安全和道德黑客技术。". Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "WiFi Forge：安全的WiFi黑客实验室，用于安全研究。在受控环境中学习渗透测试、无线安全和道德黑客技术。"
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Python
+tech_stack: - Python
 application_domain: "Ai Tools"
 source_version: ""
 licensing_model: "Open Source"
@@ -24,10 +18,8 @@ maintainer: "blackhillsinfosec"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases:
-- /zh/posts/wifi-forge-safe-wifi-hacking-lab/
-faqs:
-  - q: 'WiFi-Forge 是什么？'
+aliases: - /zh/posts/wifi-forge-safe-wifi-hacking-lab/
+faqs: - q: 'WiFi-Forge 是什么？'
     a: 'WiFi-Forge 是 Black Hills InfoSec 推出的开源项目，提供一个安全合法的沙盒环境，供你练习无线攻击技术。它在你的笔记本上运行一个虚拟实验室，无需购买任何硬件，也不存在接触他人网络的风险。'
   - q: '使用 WiFi-Forge 学习 WiFi 攻击，我需要专用 WiFi 网卡吗？'
     a: '不需要。WiFi-Forge 通过软件模拟接入点、站点和无线信道，完全省去了对支持 monitor mode 的 USB 网卡的需求。只有当你想学习物理射频层时才需要真实网卡，而该模拟环境并不涵盖这部分内容。'
@@ -36,10 +28,7 @@ faqs:
   - q: '在 WiFi-Forge 中可以练习哪些 WiFi 攻击？'
     a: '内置实验涵盖：WPA/WPA2 握手包捕获、WPS 攻击（Reaver PIN 爆破和 Pixie-Dust）、evil-twin/Karma 流氓 AP、去认证洪泛、Beacon 洪泛、MAC 地址随机化分析，以及 PMKID 攻击。每个实验会启动一个特定的网络拓扑，并提供一个类 CTF 的小目标。'
   - q: '安装和运行 WiFi-Forge 需要什么？'
-    a: '你需要 Linux（Ubuntu 或 Debian 最佳）、Python 3 以及 root 权限，因为 mininet-wifi 依赖内核特性。克隆仓库后，运行 sudo ./install.sh 安装依赖，再运行 sudo python3 wififorge.py 启动。'
----
-
-<!-- canonical: https://dibi8.com/zh/tools/wifi-forge-safe-wifi-hacking-lab/ -->
+    a: '你需要 Linux（Ubuntu 或 Debian 最佳）、Python 3 以及 root 权限，因为 mininet-wifi 依赖内核特性。克隆仓库后，运行 sudo ./install.sh 安装依赖，再运行 sudo python3 wififorge.py 启动。'---
 # WiFi-Forge — 一个安全合法的 WiFi 黑客学习沙盒
 
 {</* resource-info */>}
@@ -52,9 +41,7 @@ faqs:
 
 ## 为什么需要它 —— WiFi 学习的三个坑
 
-传统 WiFi 实战教学有三件事最劝退人:
-
-1. **硬件不可控。** 不是每张 USB 网卡都干净支持 monitor + injection。靠谱的几款(Alfa AWUS036、Panda PAU09 等)要 30~60 美金,而且一次只能用一张。
+传统 WiFi 实战教学有三件事最劝退人: 1. **硬件不可控。** 不是每张 USB 网卡都干净支持 monitor + injection。靠谱的几款(Alfa AWUS036、Panda PAU09 等)要 30~60 美金,而且一次只能用一张。
 2. **法律灰区。** 在大多数国家,接触任何不属于你的网络 —— 哪怕只是被动监听 —— 都是违法行为。"我只是嗅探一下" 不是抗辩理由。
 3. **环境难复位。** 真实硬件不能一键回退。搞砸了的配置没办法 `git checkout` 回去。
 
@@ -70,9 +57,7 @@ WiFi-Forge 在这个基础上加了:预设好的拓扑、开箱即用的攻击�
 
 ![WiFi-Forge 运行截图](https://github.com/her3ticAVI/MiniNet-framework/raw/main/images/wififorge-running.png)
 
-自带的实验室覆盖了常见的 WiFi 攻击类别:
-
-- **WPA/WPA2 握手包抓取** —— deauth 一个客户端,抓 4 路握手,用 hashcat 或 aircrack-ng 离线爆破
+自带的实验室覆盖了常见的 WiFi 攻击类别: - **WPA/WPA2 握手包抓取** —— deauth 一个客户端,抓 4 路握手,用 hashcat 或 aircrack-ng 离线爆破
 - **WPS 攻击** —— Reaver PIN 暴力破解、Pixie-Dust 攻击
 - **Evil-twin / Karma** —— 起一个伪装目标 SSID 的钓鱼 AP,看客户端自动连过来
 - **Deauth 洪泛** —— 把客户端从合法 AP 上踢下来
@@ -108,14 +93,12 @@ sudo python3 wififorge.py
 
 这种项目必须把话讲在前面:**这些技术只能对你自己拥有的网络、或者拿到书面授权许可的网络使用。** WiFi-Forge 之所以存在,**就是因为**有了模拟环境就没必要去"试一下"咖啡馆隔壁的 WiFi。安全地学习,这才是它的全部意义。
 
----
-
-- **仓库:** [github.com/blackhillsinfosec/WifiForge](https://github.com/blackhillsinfosec/WifiForge)
+--- **仓库:** [github.com/blackhillsinfosec/WifiForge](https://github.com/blackhillsinfosec/WifiForge)
 - **底层:** [mininet-wifi](https://github.com/intrig-unicamp/mininet-wifi)
 - **维护者:** [Black Hills InfoSec](https://www.blackhillsinfosec.com/)
 
----
 
+---
 ## 推荐工具
 
 跑或部署开源 AI 工具时，推荐：
@@ -127,7 +110,6 @@ sudo python3 wififorge.py
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -155,25 +137,20 @@ sudo python3 wififorge.py
 
 ## Why This Matters
 
-Understanding wifi-forge — 一个安全合法的 wifi 黑客学习沙盒 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding wifi-forge — 一个安全合法的 wifi 黑客学习沙盒 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -199,9 +176,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
-Understanding these core concepts will help you master the topic:
-
-1. **Abstraction**: Hide complexity behind simple interfaces
+Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces
 2. **Composition**: Build complex systems from simple parts
 3. **Immutability**: Prefer immutable data structures
 4. **Error Handling**: Handle failures gracefully
@@ -222,9 +197,7 @@ Understanding these core concepts will help you master the topic:
                      └─────────────┘
 ```
 
-Understanding these core concepts will help you master the topic:
-
-1. **Abstraction**: Hide complexity behind simple interfaces
+Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces
 2. **Composition**: Build complex systems from simple parts
 3. **Immutability**: Prefer immutable data structures
 4. **Error Handling**: Handle failures gracefully

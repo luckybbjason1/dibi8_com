@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/firecrawl-dev-utils-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/firecrawl-dev-utils-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/firecrawl-dev-utils-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/firecrawl-dev-utils-2026" />
 title: 'Firecrawl：把任意网站变成 LLM 可直接使用的数据（127K Stars）——2026 实战指南'
 description: 'Firecrawl 是开源的网页数据 API，能把网页抓取、爬取、映射、搜索成干净、可直接喂给 LLM 的 Markdown 或结构化 JSON。127,747 GitHub stars，AGPL-3.0。涵盖安装、官方 SDK、真实代码、自托管，以及与 Puppeteer、Scrapy、Axios 的客观对比。'
 date: 2026-06-02 00:00:00+08:00
@@ -25,10 +20,8 @@ featureImage: 'https://raw.githubusercontent.com/firecrawl/firecrawl/main/img/op
 draft: false
 categories: ['dev-utils']
 tags: []
-aliases:
-- /posts/firecrawl-dev-utils-2026/
-faqs:
-  - q: '如何安装 Firecrawl？'
+aliases: - /posts/firecrawl-dev-utils-2026/
+faqs: - q: '如何安装 Firecrawl？'
     a: '安装一个官方 SDK 即可。Node.js： ```bash npm install firecrawl ``` Python： ```bash pip install firecrawl-py ``` 然后用你从 [firecrawl.dev](https://firecrawl.dev) 获取的 API key 创建客户端。'
   - q: '除了 TypeScript，我能用别的语言使用 Firecrawl 吗？'
     a: '可以。Firecrawl 是一个 HTTP API，因此任何语言都能调用它。官方提供了 Node.js 和 Python 的 SDK，其他语言也可以用任意 HTTP 客户端直接请求 REST 端点。'
@@ -37,10 +30,7 @@ faqs:
   - q: 'scrape、crawl 和 map 有什么区别？'
     a: '`scrape` 处理单个 URL。`crawl` 会沿链接异步抓取整个站点。`map` 只返回站点上的 URL 列表，而不抓取其内容——适合用来规划爬取。'
   - q: 'Firecrawl 免费吗？它用什么协议？'
-    a: '源代码在 AGPL-3.0 下免费且开源，官方 SDK 与 UI 组件则采用 MIT。托管云端 API 有免费额度，并提供更高用量的付费套餐。如果自托管，你需自行承担运行的基础设施成本。'
----
-
-<!-- canonical: https://dibi8.com/zh/tools/firecrawl-dev-utils-2026/ -->
+    a: '源代码在 AGPL-3.0 下免费且开源，官方 SDK 与 UI 组件则采用 MIT。托管云端 API 有免费额度，并提供更高用量的付费套餐。如果自托管，你需自行承担运行的基础设施成本。'---
 # Firecrawl：把任意网站变成 LLM 可直接使用的数据（127K Stars）——2026 实战指南
 
 
@@ -233,28 +223,21 @@ export async function scrapeHandler(url: string) {
 ```yaml
 name: Firecrawl Scraper
 
-on:
-  push:
-    branches: [ main ]
+on: push: branches: [ main ]
 
-jobs:
-  scrape:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
+jobs: scrape: runs-on: ubuntu-latest
+    steps: - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
-        with:
-          node-version: 20
+        with: node-version: 20
 
       - name: Install dependencies
         run: npm install firecrawl
 
       - name: Run scraper
-        env:
-          FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
+        env: FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
         run: node scrape.js > output.json
 ```
 
@@ -294,7 +277,17 @@ Firecrawl 被用于各类生产场景。下面的数字旨在说明团队会跑�
 先把 Firecrawl 是什么、不是什么讲清楚会很有帮助。Firecrawl 是一个面向「LLM 可用输出」的托管（或可自托管）网页数据 API。Puppeteer 是浏览器自动化库，Scrapy 是 Python 爬虫框架，Axios 是通用 HTTP 客户端。它们在「从网上取数据」这点上有重叠，但处在不同的层次。
 
 | 特性               | firecrawl/firecrawl      | Puppeteer               | Scrapy                  | Axios                   |
-|--------------------|--------------------------|-------------------------|-------------------------|-------------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Stars**          | 127,747                  | ~90k                    | ~55k                    | ~107k                   |
 | **类型**           | 网页数据 API             | 浏览器自动化库          | 爬虫框架                | HTTP 客户端             |
 | **语言**           | TypeScript               | JavaScript              | Python                  | JavaScript              |
@@ -334,21 +327,18 @@ Firecrawl 是把开放网络变成「LLM 真正能用的数据」的最实用方
 - 加入 [dibi8 英文 Telegram 群](https://t.me/DIBI8_Group/2)，获取开源 AI 工具的第一手分享。
 - 延伸阅读：[dibi8 上的相关指南](dibi8-internal-link)。
 
----
 
+---
 **来源与延伸阅读**：
 - GitHub 仓库：https://github.com/firecrawl/firecrawl
 - 官方文档：https://docs.firecrawl.dev
 
 *以上部分链接为联盟（affiliate）链接。若你通过它们注册，dibi8.com 可能获得一笔佣金，而你无需支付任何额外费用。这有助于维持网站运营、保持内容免费。*
 
-<!-- internal-link-candidates:
   related open-source tools -> ai-tools-directory
   related guides on dibi8 -> ai-coding-agent-landscape-2026-skills-mcp-opensource
--->
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -376,25 +366,20 @@ Firecrawl 是把开放网络变成「LLM 真正能用的数据」的最实用方
 
 ## Why This Matters
 
-Understanding firecrawl：把任意网站变成 llm 可直接使用的数据（127k stars）——2026 实战指南 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding firecrawl：把任意网站变成 llm 可直接使用的数据（127k stars）——2026 实战指南 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -415,7 +400,7 @@ Firecrawl：把任意网站变成 LLM 可直接使用的数据（127K Stars）�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/axolotl-llm-fine-tuning-framework-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/axolotl-llm-fine-tuning-framework-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/axolotl-llm-fine-tuning-framework-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/axolotl-llm-fine-tuning-framework-2026" />
 title: 'Axolotl 2026: Framework Fine-Tuning LLM Dựa YAML 12k Sao...
 description: 'Axolotl là framework fine-tuning LLM mã nguồn mở với config YAML đơn cho full / LoRA / QLoRA / DPO / GRPO. 12k GitHub sao, Apache 2.0. Hỗ trợ Llama / Mistral / Qwen / GLM / 10+ họ. Hướng dẫn cài đặt 2026 đầy đủ + khi nào Axolotl thắng Unsloth và HuggingFace TRL raw.'
 date: 2026-05-21 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [axolotl, 'fine-tuning', lora, qlora, dpo, 'mã nguồn mở']
-aliases:
-  - /posts/axolotl-llm-fine-tuning-framework-2026/
+aliases: - /posts/axolotl-llm-fine-tuning-framework-2026/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/axolotl-llm-fine-tuning-framework-2026/ -->
 
 Nếu bạn từng thử fine-tune mô hình Llama và kết thúc viết 300 dòng PyTorch + DeepSpeed config + wrapper HuggingFace Trainer, bạn cảm thấy khoảng cách mà **Axolotl** lấp đầy. Một file YAML mô tả toàn bộ chạy fine-tuning — mô hình, dataset, config LoRA, hyperparameter, chiến lược phân tán — và Axolotl xử lý phần còn lại.
 
@@ -48,9 +40,7 @@ Nếu bạn từng thử fine-tune mô hình Llama và kết thúc viết 300 d�
 
 ## 1. Vì Sao Axolotl Tồn Tại (vấn đề nó giải quyết)
 
-Ba pattern phổ biến Axolotl thay thế:
-
-1. **Script HF Trainer tùy chỉnh** — 300 dòng boilerplate mỗi experiment, mong manh, không sống sót framework version bump
+Ba pattern phổ biến Axolotl thay thế: 1. **Script HF Trainer tùy chỉnh** — 300 dòng boilerplate mỗi experiment, mong manh, không sống sót framework version bump
 2. **Khảo cổ DeepSpeed config** — tìm ra kết hợp `zero_stage`, `offload_optimizer`, `gradient_checkpointing` nào hoạt động cho kích thước mô hình + GPU
 3. **Nền tảng fine-tuning cloud** (Together, Fireworks, v.v.) — dễ nhưng bạn không sở hữu trọng số kết quả hoặc quy trình
 
@@ -76,13 +66,10 @@ cd axolotl
 pip install -e '.[flash-attn,deepspeed]'
 ```
 
-Chạy training tối thiểu — QLoRA fine-tune Llama 3.2 8B trên dataset mẫu:
-
-```yaml
+Chạy training tối thiểu — QLoRA fine-tune Llama 3.2 8B trên dataset mẫu: ```yaml
 # config.yml
 base_model: meta-llama/Llama-3.2-8B
-datasets:
-  - path: tatsu-lab/alpaca
+datasets: - path: tatsu-lab/alpaca
     type: alpaca
 adapter: qlora
 lora_r: 16
@@ -100,9 +87,7 @@ axolotl train config.yml
 
 ## 4. Config YAML Là Tính Năng Killer
 
-Vì sao YAML thực sự là trừu tượng đúng ở đây:
-
-- **Thân thiện Git**: mỗi fine-tune là file config trong repo. Tái lập bằng checkout
+Vì sao YAML thực sự là trừu tượng đúng ở đây: - **Thân thiện Git**: mỗi fine-tune là file config trong repo. Tái lập bằng checkout
 - **Ma trận experiment**: parameter sweep qua thay thế `yq` hoặc W&B sweep. Không 50 script copy-paste
 - **Bàn giao team**: ML engineer viết YAML, ops engineer chạy. Hợp đồng rõ
 - **Tự nâng cấp**: Axolotl duy trì tương thích ngược config qua các phiên bản, experiment 6 tháng cũ vẫn chạy
@@ -162,9 +147,7 @@ Khuyến nghị mặc định 2026: **Axolotl cho multi-GPU production + Unsloth
 
 ## 8. Mẹo Production
 
-5 điều cắn user Axolotl lần đầu:
-
-1. **Pad token tokenizer** — nhiều config thiếu `tokenizer.pad_token = eos_token`. Mặc định Axolotl xử mô hình đã biết; verify cho mô hình mới
+5 điều cắn user Axolotl lần đầu: 1. **Pad token tokenizer** — nhiều config thiếu `tokenizer.pad_token = eos_token`. Mặc định Axolotl xử mô hình đã biết; verify cho mô hình mới
 2. **`max_seq_length` và OOM** — bắt đầu nhỏ (1024), tăng cho đến khi OOM, sau đó lùi 10%. Đừng đoán
 3. **Thời gian compile Flash Attention** — cài đầu có thể mất 20-30 phút compile FA2. Kiên nhẫn
 4. **Format dataset không khớp** — field `type` phải khớp data. `alpaca` ≠ `sharegpt` ≠ `chat_template`. Đọc docs
@@ -188,7 +171,6 @@ Bật instance H100, viết YAML 20 dòng ở mục 3, và 15 phút sau bạn c�
 *Một phần của Fine-Tuning Stack dibi8 — pair với [Unsloth cho iterate single-GPU nhanh](/vi/resources/llm-frameworks/unsloth-fast-llm-fine-tuning-2026/). Cho bức tranh LLM ops đầy đủ xem bộ sưu tập Fine-Tuning Stack sắp tới.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -216,25 +198,20 @@ Bật instance H100, viết YAML 20 dòng ở mục 3, và 15 phút sau bạn c�
 
 ## Why This Matters
 
-Understanding axolotl 2026: framework fine-tuning llm dựa yaml 12k sao — hướng dẫn production đầy đủ is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding axolotl 2026: framework fine-tuning llm dựa yaml 12k sao — hướng dẫn production đầy đủ is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

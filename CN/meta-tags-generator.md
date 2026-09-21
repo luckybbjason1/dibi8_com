@@ -1,14 +1,11 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/meta-tags-generator" />
-title: "Meta Tags Generator — SEO Title, Description, Open Graph...
+title: "Meta Tags Generator — SEO Title, Description, Open Graph..."
 description: "Generate copy-paste-ready HTML head meta tags — SEO title, description, canonical, Open Graph, and Twitter Card — from one simple form. Optimize how your pages look in Google, Facebook, X, and AI search."
 date: 2026-05-18
 lastmod: 2026-05-19
 layout: "tool-meta-tags-generator"
 tool_id: "meta-tags-generator"
 ---
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -46,9 +43,7 @@ This guide will help you get started with the topic. Whether you're a beginner o
 
 ### Prerequisites
 
-Before diving in, make sure you have:
-
-```bash
+Before diving in, make sure you have: ```bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
@@ -73,9 +68,7 @@ This guide will help you get started with the topic. Whether you're a beginner o
 
 ### Prerequisites
 
-Before diving in, make sure you have:
-
-```bash
+Before diving in, make sure you have: ```bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
@@ -100,9 +93,7 @@ This guide will help you get started with the topic. Whether you're a beginner o
 
 ### Prerequisites
 
-Before diving in, make sure you have:
-
-```bash
+Before diving in, make sure you have: ```bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
@@ -127,9 +118,7 @@ This guide will help you get started with the topic. Whether you're a beginner o
 
 ### Prerequisites
 
-Before diving in, make sure you have:
-
-```bash
+Before diving in, make sure you have: ```bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
@@ -154,9 +143,7 @@ This guide will help you get started with the topic. Whether you're a beginner o
 
 ### Prerequisites
 
-Before diving in, make sure you have:
-
-```bash
+Before diving in, make sure you have: ```bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
@@ -181,9 +168,7 @@ This guide will help you get started with the topic. Whether you're a beginner o
 
 ### Prerequisites
 
-Before diving in, make sure you have:
-
-```bash
+Before diving in, make sure you have: ```bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
@@ -203,3 +188,5 @@ npm install
 # Start development server
 npm run dev
 ```
+
+---

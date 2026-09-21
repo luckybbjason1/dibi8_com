@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/shellcheck" />
 title: 'ShellCheck: 39,456 GitHub Stars — Complete Setup Guide f...
 description: 'ShellCheck (SC) is a static analysis tool for bash/sh shell scripts. Integrates with Docker, GitHub Actions, VS Code, and CI/CD pipelines. Covers installation, configuration, CI integration, and production hardening.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [shellcheck, bash, 'static-analysis', linting, 'shell-script', devops, 'ci-cd', docker]
-aliases:
-- /posts/shellcheck/
+aliases: - /posts/shellcheck/-
 ---
-
 {{</* resource-info */>}}
 
 ShellCheck is the de facto standard for catching bugs in shell scripts before they hit production. With 39,456+ GitHub stars and a maintained open-source community, it is the most widely adopted static analysis tool for bash, sh, dash, and ksh scripts. This guide walks through installing ShellCheck, integrating it with editors and CI/CD pipelines, and hardening it for production use.
@@ -73,10 +69,14 @@ Source Script → Lexer → Parser (AST) → Analyzer → Reporter
 
 ### Severity Levels
 
-Every ShellCheck finding carries one of four severity levels:
-
-| Level | Exit Code Impact | Example |
-|-------|-----------------|---------|
+Every ShellCheck finding carries one of four severity levels: | Level | Exit Code Impact | Example |
+|
+---
+|
+---
+|
+---
+|
 | Error | Non-zero exit | Syntax error, undefined variable |
 | Warning | Non-zero exit | Unquoted variable (SC2086) |
 | Info | Zero exit | Style suggestion |
@@ -175,11 +175,9 @@ cabal install
 
 ```bash
 # Add to your .pre-commit-config.yaml
-repos:
-  - repo: https://github.com/koalaman/shellcheck-precommit
+repos: - repo: https://github.com/koalaman/shellcheck-precommit
     rev: v0.11.0
-    hooks:
-      - id: shellcheck
+    hooks: - id: shellcheck
         args: ["--severity=warning"]
 ```
 
@@ -203,9 +201,7 @@ Install the **ShellCheck** extension by Timon Wong (marketplace ID: `timonwong.s
 
 ### Vim / Neovim
 
-Using ALE (Asynchronous Lint Engine):
-
-```vim
+Using ALE (Asynchronous Lint Engine): ```vim
 " .vimrc or init.vim
 let g:ale_linters = {
 \   sh: [shellcheck],
@@ -216,9 +212,7 @@ let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = always
 ```
 
-Using native LSP in Neovim with bash-language-server:
-
-```lua
+Using native LSP in Neovim with bash-language-server: ```lua
 -- init.lua (nvim-lspconfig)
 require(lspconfig).bashls.setup {
   settings = {
@@ -265,36 +259,26 @@ name: ShellCheck
 
 on: [push, pull_request]
 
-jobs:
-  shellcheck:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
+jobs: shellcheck: runs-on: ubuntu-latest
+    steps: - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Run ShellCheck
         uses: ludeeus/action-shellcheck@master
-        env:
-          SEVERITY: warning
-        with:
-          ignore_paths: >-
+        env: SEVERITY: warning
+        with: ignore_paths: >-
             ./vendor
             ./third_party
 ```
 
-Alternative: manual setup with pinned version:
-
-```yaml
+Alternative: manual setup with pinned version: ```yaml
 # .github/workflows/shellcheck-manual.yml
 name: ShellCheck Manual
 
 on: [push, pull_request]
 
-jobs:
-  shellcheck:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: shellcheck: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
 
       - name: Install ShellCheck
         run: |
@@ -311,16 +295,12 @@ jobs:
 
 ```yaml
 # .gitlab-ci.yml
-stages:
-  - lint
+stages: - lint
 
-shellcheck:
-  stage: lint
+shellcheck: stage: lint
   image: koalaman/shellcheck-alpine:stable
-  script:
-    - find . -name "*.sh" -type f -exec shellcheck --severity=warning {} +
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  script: - find . -name "*.sh" -type f -exec shellcheck --severity=warning {} +
+  rules: - if: $CI_PIPELINE_SOURCE == "merge_request_event"
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 ```
 
@@ -363,14 +343,9 @@ pipeline {
 ```yaml
 # .circleci/config.yml
 version: 2.1
-orbs:
-  shellcheck: circleci/shellcheck@3.2.0
+orbs: shellcheck: circleci/shellcheck@3.2.0
 
-workflows:
-  lint:
-    jobs:
-      - shellcheck/check:
-          severity: "warning"
+workflows: lint: jobs: - shellcheck/check: severity: "warning"
           exclude: "SC1090,SC1091"
 ```
 
@@ -450,10 +425,16 @@ ShellCheck adoption spans individual developers to enterprise CI/CD pipelines. B
 
 ### Performance Benchmarks
 
-Tested on a 2024-standard CI runner (Ubuntu 24.04, 2 vCPU, 4 GB RAM):
-
-| Script Size | Lines | Analysis Time | Memory Used |
-|-------------|-------|---------------|-------------|
+Tested on a 2024-standard CI runner (Ubuntu 24.04, 2 vCPU, 4 GB RAM): | Script Size | Lines | Analysis Time | Memory Used |
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Small | 50 | 0.05s | 12 MB |
 | Medium | 500 | 0.3s | 28 MB |
 | Large | 2,000 | 1.1s | 67 MB |
@@ -470,7 +451,13 @@ Tested on a 2024-standard CI runner (Ubuntu 24.04, 2 vCPU, 4 GB RAM):
 ### Bug Categories Detected (Sample Analysis of 1,000 Open-Source Scripts)
 
 | Check Code | Description | Detection Rate |
-|-----------|-------------|----------------|
+|
+---
+|
+---
+|
+---
+|
 | SC2086 | Unquoted variable | 34.2% |
 | SC2164 | cd without checking return | 18.7% |
 | SC1090 | Can't follow sourced file | 22.1% |
@@ -510,14 +497,10 @@ echo "All scripts passed ShellCheck at severity: $SEVERITY"
 name: Security Scan
 on: [push, pull_request]
 
-jobs:
-  scan:
-    runs-on: ubuntu-latest
-    permissions:
-      security-events: write
+jobs: scan: runs-on: ubuntu-latest
+    permissions: security-events: write
       contents: read
-    steps:
-      - uses: actions/checkout@v4
+    steps: - uses: actions/checkout@v4
 
       - name: Run ShellCheck SARIF
         run: |
@@ -527,8 +510,7 @@ jobs:
       - name: Upload to GitHub Security
         uses: github/codeql-action/upload-sarif@v3
         if: always()
-        with:
-          sarif_file: shellcheck.sarif
+        with: sarif_file: shellcheck.sarif
 ```
 
 ### Dockerfile Linting Stage
@@ -547,9 +529,7 @@ ENTRYPOINT ["/usr/local/bin/deploy.sh"]
 
 ### Monitoring ShellCheck in CI
 
-Track ShellCheck failures as a team metric:
-
-```bash
+Track ShellCheck failures as a team metric: ```bash
 #!/bin/bash
 # ci-metrics.sh — track shellcheck warning count over time
 
@@ -562,7 +542,17 @@ echo "shellcheck_warnings $WARNINGS" >> metrics.txt
 ## Comparison with Alternatives
 
 | Feature | ShellCheck | `bash -n` | shfmt | checkbashisms |
-|---------|-----------|-----------|-------|---------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Static analysis depth | Semantic (AST-based) | Syntax only | Parser/formatter | Pattern matching |
 | Error count | ~280+ checks | ~20 errors | 0 (formatter) | ~40 patterns |
 | Bash/sh/dash/ksh support | All dialects | Bash only | POSIX + Bash | sh only |
@@ -638,9 +628,7 @@ Use the official image: `docker run --rm -v "$PWD:/mnt" koalaman/shellcheck:stab
 
 ShellCheck is the most mature and widely adopted static analysis tool for shell scripts. With 39,456+ GitHub stars, comprehensive CI/CD integrations, and support for every major editor, it belongs in every developer toolchain. Start with the Docker one-liner for immediate feedback, add the `.shellcheckrc` project config for team consistency, and wire it into GitHub Actions to catch bugs before they merge.
 
-Action items for your team:
-
-1. Run `shellcheck` on your top 5 most critical deployment scripts today
+Action items for your team: 1. Run `shellcheck` on your top 5 most critical deployment scripts today
 2. Add the VS Code extension or Vim ALE integration for real-time feedback
 3. Create a `.shellcheckrc` in your repository root with project-specific rules
 4. Set up the GitHub Actions workflow to block merges on warnings
@@ -651,9 +639,7 @@ Join the [dibi8 Telegram group](https://t.me/dibi8) for discussions on developer
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -672,7 +658,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [POSIX.1-2017 Shell Command Language](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -698,8 +683,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [apple-container](shellcheck)
@@ -708,6 +693,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [2026-06-15-trending-ai-agents](shellcheck)
 - [2026-06-22-trending-ai-agents](shellcheck)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

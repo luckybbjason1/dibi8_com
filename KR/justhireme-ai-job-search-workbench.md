@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/justhireme-ai-job-search-workbench" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/justhireme-ai-job-search-workbench" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/justhireme-ai-job-search-workbench" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/justhireme-ai-job-search-workbench" />
 title: "JustHireMe：AI가 당신의 취업을 자동화합니다"
 description: "JustHireMe 오픈소스 AI 취업 워크벤치 리뷰. 로컬 우선 구직 인텔리전스 시스템, 자동 포지션 크롤링, AI 매칭도 평가, 맞춤형 이력서 및 자기소개서 생성.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - JavaScript
+tech_stack: - JavaScript
   - Python
   - TypeScript
 application_domain: "Ai Tools"
@@ -26,10 +20,8 @@ maintainer: "vasu-devs"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases:
-- /kr/posts/justhireme-ai-job-search-workbench/
-faqs:
-  - q: 'JustHireMe는 무료 오픈 소스인가요?'
+aliases: - /kr/posts/justhireme-ai-job-search-workbench/
+faqs: - q: 'JustHireMe는 무료 오픈 소스인가요?'
     a: '네. JustHireMe는 MIT 라이선스 하에 오픈 소스로 공개되어 있으며, 구독료나 숨겨진 비용이 전혀 없습니다. 이력서와 데이터의 소유권은 전적으로 사용자에게 있으며, 점수 산출 알고리즘도 투명하게 공개되어 있습니다.'
   - q: 'JustHireMe를 사용하려면 AI API 키가 필요하거나 데이터가 클라우드로 전송되나요?'
     a: '아닙니다. JustHireMe는 로컬 우선 방식으로 동작합니다. 모든 AI 연산은 로컬에서 실행되므로 API 키가 필요 없으며, 데이터는 클라우드에 업로드되지 않고 사용자 기기의 로컬 SQLite 데이터베이스에 저장됩니다.'
@@ -41,15 +33,13 @@ faqs:
     a: '데스크톱 앱은 React 19와 TypeScript를 결합한 Tauri 2로 구축되었으며, 백엔드는 FastAPI와 WebSockets를 사용하는 Python 3.13으로 실행됩니다. 데이터는 SQLite와 Kuzu 그래프 데이터베이스, LanceDB 벡터 저장소에 보관되며, Playwright가 스크래핑 및 지원서 제출을 위한 브라우저 자동화를 담당합니다.'
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/justhireme-ai-job-search-workbench/ -->
 {</* resource-info */>}
 
 ## 문제: 구직은 풀타임 직업입니다
 
 이력서 100통을 제출하고, 면접 2개를 받고, Offer 0개. 이는 당신의 문제가 아니라 시스템의 문제입니다.
 
-각 채용 사이트는 섬입니다:
-- **LinkedIn**: 고급 검색은 유료
+각 채용 사이트는 섬입니다: - **LinkedIn**: 고급 검색은 유료
 - **Indeed**: 중복 포지션, 만료된 정보
 - **Glassdoor**: 급여 데이터 지연
 - **회사 홈페이지**: 각각 다시 작성해야 함
@@ -67,8 +57,7 @@ faqs:
 
 ### 1. 스마트 포지션 크롤링
 
-여러 플랫폼에서 자동으로 포지션을 크롤링합니다:
-- LinkedIn, Indeed, Glassdoor
+여러 플랫폼에서 자동으로 포지션을 크롤링합니다: - LinkedIn, Indeed, Glassdoor
 - AngelList, Hacker News
 - 회사 채용 페이지
 - 원격 근무 전용 구역
@@ -77,8 +66,7 @@ faqs:
 
 ### 2. AI 매칭도 평가
 
-키워드 매칭이 아닌 진정한 **의미 이해**:
-- 당신의 기술 vs 포지션 요구사항
+키워드 매칭이 아닌 진정한 **의미 이해**: - 당신의 기술 vs 포지션 요구사항
 - 당신의 경험 vs 포지션 레벨
 - 당신의 급여 기대치 vs 예산 범위
 - 당신의 커리어 목표 vs 회사 방향
@@ -87,8 +75,7 @@ faqs:
 
 ### 3. 이력서 자동 맞춤화
 
-각 포지션에 따라 **이력서를 재작성**합니다:
-- 관련 기술 강조
+각 포지션에 따라 **이력서를 재작성**합니다: - 관련 기술 강조
 - 프로젝트 설명 조정
 - 키워드 매칭
 - 레이아웃 포맷 최적화
@@ -97,8 +84,7 @@ faqs:
 
 ### 4. 자기소개서 생성
 
-각 자기소개서는 **유니크**합니다:
-- 회사 배경 연구
+각 자기소개서는 **유니크**합니다: - 회사 배경 연구
 - 구체적인 프로젝트 인용
 - 관련 경험 제시
 - 진정한 관심 표현
@@ -107,8 +93,7 @@ HR은 템플릿과 진심 어린 글을 구분할 수 있습니다.
 
 ### 5. 로컬 CRM 관리
 
-모든 데이터는 로컬에 저장됩니다:
-- SQLite 데이터베이스
+모든 데이터는 로컬에 저장됩니다: - SQLite 데이터베이스
 - 포지션 이력 기록
 - 제출 상태 추적
 - 면접 일정 관리
@@ -155,8 +140,7 @@ npm run tauri dev
 
 ## 왜 오픈소스인가?
 
-구직은 플랫폼에 의해 독점되어서는 안 됩니다:
-- **데이터 소유권**: 당신의 이력서, 당신의 데이터
+구직은 플랫폼에 의해 독점되어서는 안 됩니다: - **데이터 소유권**: 당신의 이력서, 당신의 데이터
 - **알고리즘 투명성**: AI가 어떻게 평가하는지 알 수 있음
 - **무료 사용**: 구독료 없음, 숨겨진 비용 없음
 - **커뮤니티 주도**: 모두가 함께 개선
@@ -185,16 +169,13 @@ npm run tauri dev
 
 ## 추천 도구
 
-오픈소스 AI 도구 개발/배포 시 권장:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
+오픈소스 AI 도구 개발/배포 시 권장: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
 - **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Anthropic Claude / OpenAI / DeepSeek API 프록시. 위의 AI 도구 대부분 (챗봇, 코드 생성, 번역, 검색 등) LLM API 키 필요 — 이 프록시로 안정적인 톱 모델 액세스, 공식 가격의 ~30%.
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -222,25 +203,20 @@ npm run tauri dev
 
 ## Why This Matters
 
-Understanding justhireme：ai가 당신의 취업을 자동화합니다 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding justhireme：ai가 당신의 취업을 자동화합니다 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

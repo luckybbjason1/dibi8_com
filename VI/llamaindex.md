@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/llamaindex" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/llamaindex" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/llamaindex" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llamaindex" />
 title: 'LlamaIndex: 49K+ Stars — Hướng Dẫn Triển Khai RAG Produc...
 description: 'LlamaIndex là framework dữ liệu để xây dựng hệ thống RAG production với LLM. Hỗ trợ OpenAI, Anthropic, Ollama, Qdrant, Weaviate, Chroma. Bao gồm triển khai Docker, query engine, agent, và benchmark so với LangChain/Haystack/RAGFlow.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [llamaindex, rag, llm, 'vector-database', 'retrieval-augmented-generation', openai, ollama, qdrant, python, docker]
-aliases:
-- /vi/posts/llamaindex/
+aliases: - /vi/posts/llamaindex/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/llamaindex/ -->
 
 {{</* resource-info */>}}
 
@@ -51,9 +43,7 @@ Ban đầu tập trung vào indexing (như tên gọi), LlamaIndex đã mở r�
 
 ### Kiến Trúc Cốt Lõi
 
-LlamaIndex phân tách trách nhiệm thành bốn lớp:
-
-1. **Tải Dữ Liệu** — `SimpleDirectoryReader` và 160+ LlamaHub connector phân tích PDF, database, API, và cloud storage thành các đối tượng `Document`.
+LlamaIndex phân tách trách nhiệm thành bốn lớp: 1. **Tải Dữ Liệu** — `SimpleDirectoryReader` và 160+ LlamaHub connector phân tích PDF, database, API, và cloud storage thành các đối tượng `Document`.
 2. **Lập Chỉ Mục** — Documents được chia thành `Node`. Embeddings được đưa vào các index (`VectorStoreIndex`, `SummaryIndex`, `TreeIndex`, `KnowledgeGraphIndex`).
 3. **Truy Vấn** — `QueryEngine`, `ChatEngine`, và `RouterQueryEngine` xử lý retrieval, post-processing, và response synthesis.
 4. **Agent & Workflow** — Các lớp `Workflow` dựa trên sự kiện và agent tools cho phép suy luận đa bước với hỗ trợ human-in-the-loop.
@@ -122,12 +112,10 @@ from llama_index.core import StorageContext, load_index_from_storage
 
 PERSIST_DIR = "./storage"
 
-if not os.path.exists(PERSIST_DIR):
-    documents = SimpleDirectoryReader("./data").load_data()
+if not os.path.exists(PERSIST_DIR): documents = SimpleDirectoryReader("./data").load_data()
     index = VectorStoreIndex.from_documents(documents)
     index.storage_context.persist(persist_dir=PERSIST_DIR)
-else:
-    storage_context = StorageContext.from_defaults(persist_dir=PERSIST_DIR)
+else: storage_context = StorageContext.from_defaults(persist_dir=PERSIST_DIR)
     index = load_index_from_storage(storage_context)
 ```
 
@@ -208,9 +196,7 @@ index = VectorStoreIndex.from_documents(documents, storage_context=storage_conte
 
 ### Benchmark Hiệu Suất RAG
 
-Các benchmark độc lập từ 2025-2026 trên corpus 10,000 documents với GPT-4o-mini:
-
-| Chỉ Số | LlamaIndex | LangChain | Haystack | RAGFlow |
+Các benchmark độc lập từ 2025-2026 trên corpus 10,000 documents với GPT-4o-mini: | Chỉ Số | LlamaIndex | LangChain | Haystack | RAGFlow |
 |---|---|---|---|---|
 | Độ Chính Xác RAG (RAGAS) | 0.81 | 0.72 | 0.79 | 0.77 |
 | Độ Trễ Truy Vấn TB | 0.9s | 1.2s | 1.1s | 1.4s |
@@ -241,9 +227,7 @@ Nguồn: Tổng hợp từ community benchmark và báo cáo kiểm tra độc l
 
 ### Router Query Engine
 
-Định tuyến query đến các index khác nhau dựa trên ý định:
-
-```python
+Định tuyến query đến các index khác nhau dựa trên ý định: ```python
 from llama_index.core.tools import QueryEngineTool, ToolMetadata
 from llama_index.core.query_engine import RouterQueryEngine
 from llama_index.core.selectors import PydanticSingleSelector
@@ -289,15 +273,12 @@ response = router_engine.query("Summarize the main points")
 from llama_index.core.postprocessor import BaseNodePostprocessor
 from llama_index.core.schema import NodeWithScore, QueryBundle
 
-class ScoreThresholdPostprocessor(BaseNodePostprocessor):
-    def __init__(self, threshold: float = 0.7):
-        self.threshold = threshold
+class ScoreThresholdPostprocessor(BaseNodePostprocessor): def __init__(self, threshold: float = 0.7): self.threshold = threshold
         super().__init__()
 
     def _postprocess_nodes(
         self, nodes: list[NodeWithScore], query_bundle: QueryBundle | None = None
-    ) -> list[NodeWithScore]:
-        return [n for n in nodes if n.score >= self.threshold]
+    ) -> list[NodeWithScore]: return [n for n in nodes if n.score >= self.threshold]
 
 # Sử dụng trong query engine
 query_engine = index.as_query_engine(
@@ -310,8 +291,7 @@ query_engine = index.as_query_engine(
 ```python
 import asyncio
 
-async def batch_queries(queries: list[str]) -> list[str]:
-    tasks = [query_engine.aquery(q) for q in queries]
+async def batch_queries(queries: list[str]) -> list[str]: tasks = [query_engine.aquery(q) for q in queries]
     responses = await asyncio.gather(*tasks)
     return [str(r) for r in responses]
 
@@ -322,8 +302,7 @@ queries = [
 ]
 
 results = asyncio.run(batch_queries(queries))
-for q, r in zip(queries, results):
-    print(f"Q: {q}\nA: {r}\n")
+for q, r in zip(queries, results): print(f"Q: {q}\nA: {r}\n")
 ```
 
 ### Triển Khai Docker
@@ -356,12 +335,10 @@ storage_context = StorageContext.from_defaults(persist_dir=PERSIST_DIR)
 index = load_index_from_storage(storage_context)
 query_engine = index.as_query_engine()
 
-class QueryRequest(BaseModel):
-    query: str
+class QueryRequest(BaseModel): query: str
 
 @app.post("/query")
-async def query_docs(request: QueryRequest):
-    response = query_engine.query(request.query)
+async def query_docs(request: QueryRequest): response = query_engine.query(request.query)
     return {
         "answer": str(response),
         "sources": [n.metadata for n in response.source_nodes],
@@ -371,35 +348,23 @@ async def query_docs(request: QueryRequest):
 ```yaml
 # docker-compose.yml
 version: "3.8"
-services:
-  app:
-    build: .
-    ports:
-      - "8000:8000"
-    environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
+services: app: build: .
+    ports: - "8000:8000"
+    environment: - OPENAI_API_KEY=${OPENAI_API_KEY}
       - PERSIST_DIR=/app/storage
-    volumes:
-      - ./storage:/app/storage:ro
+    volumes: - ./storage:/app/storage:ro
 
-  qdrant:
-    image: qdrant/qdrant:latest
-    ports:
-      - "6333:6333"
-    volumes:
-      - qdrant_data:/qdrant/storage
+  qdrant: image: qdrant/qdrant:latest
+    ports: - "6333:6333"
+    volumes: - qdrant_data:/qdrant/storage
 
-volumes:
-  qdrant_data:
-```
+volumes: qdrant_data: ```
 
 ### Triển Khai DigitalOcean
 
 Để triển khai production trên cloud infrastructure, **DigitalOcean** cung cấp con đường đơn giản. App Platform của họ hỗ trợ container Docker với HTTPS tự động, và managed databases có thể host backend vector store.
 
-Triển khai Docker Compose stack lên DigitalOcean Droplet:
-
-```bash
+Triển khai Docker Compose stack lên DigitalOcean Droplet: ```bash
 # Trên Droplet
 docker-compose up -d
 
@@ -458,9 +423,7 @@ print(f"Embedding Tokens: {token_counter.total_embedding_token_count}")
 
 ## Hạn Chế / Đánh Giá Trung Thực
 
-**LlamaIndex không phù hợp cho**:
-
-1. **Orchestration multi-agent phức tạp**: LangGraph cung cấp abstraction tốt hơn cho agent với rẽ nhánh có điều kiện, vòng lặp, và thực thi song song.
+**LlamaIndex không phù hợp cho**: 1. **Orchestration multi-agent phức tạp**: LangGraph cung cấp abstraction tốt hơn cho agent với rẽ nhánh có điều kiện, vòng lặp, và thực thi song song.
 2. **Ngườ dùng no-code**: Builder trực quan của RAGFlow phù hợp hơn với team thích giao diện kéo-thả.
 3. **Parsing tài liệu phức tạp**: Trong khi LlamaParse tồn tại như một dịch vụ trả phí, parser DeepDoc của RAGFlow xử lý PDF phức tạp (bảng, layout) hiệu quả hơn ngay từ đầu.
 4. **Stack không phải Python**: Hỗ trợ TypeScript tồn tại (npm package `llamaindex`) nhưng tụt hậu về Python về tính năng.
@@ -482,20 +445,15 @@ Dùng vector database production (Qdrant, Weaviate, hoặc Pinecone) thay vì in
 
 **Q4: LlamaIndex có hỗ trợ streaming responses không?**
 
-Có. Truyền `streaming=True` cho `as_query_engine()` và lặp qua response:
-
-```python
+Có. Truyền `streaming=True` cho `as_query_engine()` và lặp qua response: ```python
 query_engine = index.as_query_engine(streaming=True)
 response = query_engine.query("Explain the architecture")
-for token in response.response_gen:
-    print(token, end="")
+for token in response.response_gen: print(token, end="")
 ```
 
 **Q5: Làm sao đánh giá chất lượng pipeline RAG?**
 
-LlamaIndex cung cấp các module evaluation tích hợp:
-
-```python
+LlamaIndex cung cấp các module evaluation tích hợp: ```python
 from llama_index.core.evaluation import FaithfulnessEvaluator, RelevancyEvaluator
 
 faith_eval = FaithfulnessEvaluator()
@@ -527,9 +485,7 @@ LlamaIndex chiếm một vị thế cụ thể và có giá trị: nó làm vi�
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -546,7 +502,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [RAGFlow GitHub](https://github.com/infiniflow/ragflow)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

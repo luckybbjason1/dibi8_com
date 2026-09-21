@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/cow-protocol-mev-protection" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cow-protocol-mev-protection" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cow-protocol-mev-protection" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cow-protocol-mev-protection" />
 title: 'CoW Protocol 2026: Bộ Tổng hợp DEX Chống MEV Giúp Tiết k...
 description: 'Hướng dẫn toàn diện về CoW Protocol, bộ tổng hợp DEX chống MEV sử dụng đấu giá theo lô và cạnh tranh solver để giúp tiết kiệm $100M+ phí trượt giá. Bao gồm tích hợp SDK, thiết lập bot giao dịch.'
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: ['cow protocol', 'mev protection', 'dex aggregator', 'batch auction', 'sandwich attack', 'coincidence of wants', solver, 'defi trading', 'gasless orders', 'anti-mev']
-aliases:
-- /vi/posts/cow-protocol-mev-protection/
+aliases: - /vi/posts/cow-protocol-mev-protection/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/cow-protocol-mev-protection/ -->
 
 {{</* resource-info */>}}
 
@@ -54,9 +46,7 @@ CoW Protocol đã giúp tiết kiệm cho trader **hơn 100 triệu USD phí tr�
 
 ### Tấn Công Sandwich Hoạt Động Như Thế Nào
 
-Tấn công sandwich là hình thức MEV phổ biến và gây thiệt hại nhất. Cách hoạt động:
-
-1. Bạn gửi giao dịch swap (ví dụ: mua 10 ETH bằng USDC)
+Tấn công sandwich là hình thức MEV phổ biến và gây thiệt hại nhất. Cách hoạt động: 1. Bạn gửi giao dịch swap (ví dụ: mua 10 ETH bằng USDC)
 2. MEV bot "nhìn thấy" giao dịch đang chờ của bạn trong mempool
 3. Bot gửi **giao dịch tương tự** với **giá gas cao hơn** để thực thi trước bạn (frontrun)
 4. Giao dịch của bạn thực thi, nhưng ở **mức giá tệ hơn** vì giao dịch của bot đã di chuyển giá
@@ -73,9 +63,7 @@ Trên các DEX phổ biến như Uniswap, tấn công sandwich có thể khiến
 
 Đổi mới cốt lõi của CoW Protocol là **batch auction**. Thay vì thực thi giao dịch ngay lập tức qua các pool AMM, CoW thu thập các lệnh thành các lô theo thờ gian (thường mỗi vài khối). Mỗi lô trở thành một cuộc đấu giá cạnh tranh nơi các thực thể chuyên biệt gọi là **solver** cạnh tranh để tìm ra giải pháp thanh toán tối ưu.
 
-Kiến trúc này cung cấp nhiều lớp bảo vệ MEV:
-
-**1. Coincidence of Wants (CoW) Matching**
+Kiến trúc này cung cấp nhiều lớp bảo vệ MEV: **1. Coincidence of Wants (CoW) Matching**
 Khi nhiều trader có nhu cầu bổ sung — một ngườ muốn bán ETH, ngườ khác muốn mua ETH — CoW Protocol có thể khớp họ trực tiếp mà không cần định tuyến qua bất kỳ pool AMM nào. Điều này có nghĩa là tác động giá bằng không, trượt giá bằng không, và không bị lộ MEV.
 
 **2. Giá Thanh Toán Thống Nhất**
@@ -101,9 +89,7 @@ npm install @cowprotocol/cow-sdk
 npm install ethers@5 dotenv winston
 ```
 
-Tạo cấu hình môi trường:
-
-```bash
+Tạo cấu hình môi trường: ```bash
 # .env — KHÔNG BAO GIỜ commit lên version control
 PRIVATE_KEY=your_ethereum_private_key
 RPC_URL=https://mainnet.infura.io/v3/your_project_id
@@ -560,9 +546,7 @@ CoW Protocol hỗ trợ **bất kỳ cặp ERC-20 token** nào có đủ thanh k
 
 ## Công Cụ Được Đề Xuất
 
-Các sản phẩm chúng tôi đề xuất bổ sung cho hướng dẫn này:
-
-- **[Binance](https://www.bsmkweb.cc/register?ref=DIBI8)** — World's leading cryptocurrency exchange
+Các sản phẩm chúng tôi đề xuất bổ sung cho hướng dẫn này: - **[Binance](https://www.bsmkweb.cc/register?ref=DIBI8)** — World's leading cryptocurrency exchange
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
 
@@ -586,7 +570,6 @@ Nếu bạn vẫn đang giao dịch thông qua các bộ tổng hợp DEX truy�
 - [Binance Exchange](https://www.bsmkweb.cc/register?ref=DIBI8)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

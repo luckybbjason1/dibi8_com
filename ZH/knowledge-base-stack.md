@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/knowledge-base-stack" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/knowledge-base-stack" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/knowledge-base-stack" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/knowledge-base-stack" />
 title: '知识库 Stack 2026：用 AnythingLLM + RAGFlow + mem0 搭"第二大脑"（$1...
 description: '5 组件自托管知识库 stack，给个人或团队用。AnythingLLM（UI + RAG）+ RAGFlow（深度文档解析）+ mem0（agent 记忆）+ AgentMemory MCP（暴露给 MCP host）+ 向量库选型。替代 $50-200/月 SaaS（Notion AI + Mem + Glean），$10-25/月自托管。'
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
-tech_stack:
-  - Docker
+tech_stack: - Docker
   - Python
   - PostgreSQL
   - Redis
@@ -29,11 +23,8 @@ featureImage: ''
 draft: false
 categories: [collections]
 tags: [知识库, rag, 第二大脑, stack, 合集]
-aliases:
-  - /posts/knowledge-base-stack/
+aliases: - /posts/knowledge-base-stack/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/knowledge-base-stack/ -->
 
 你有 500 个 PDF、2000 条笔记、10 年邮件，但编辑器里的 AI 一个都不知道存在。Notion AI 每座 $10/月还看不到本地文件。Glean 每年起步 $30k。Mem.ai 不错但是 SaaS —— 你的"第二大脑"住在别人的硬件上。
 
@@ -42,7 +33,17 @@ aliases:
 ## TL;DR —— Stack 全貌
 
 | # | 组件 | 角色 | 为什么 | 深度指南 |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 1 | **AnythingLLM** | 一体化 RAG UI + 文档管理 + chat 界面 | "前门" —— 你和团队实际点进去的地方 | [AnythingLLM 本地 RAG 架构](/zh/resources/llm-frameworks/anythingllm-architecture-local-rag/) |
 | 2 | **RAGFlow** | 深度文档解析（表格、公式、多栏 PDF）| AnythingLLM 解析停在"够用"，RAGFlow 处理硬文档 | [RAGFlow 指南](/zh/resources/llm-frameworks/ragflow/) |
 | 3 | **mem0** | agent 持久化语义记忆层 | 跨 session "记住关于用户的事实"长期记忆 | [mem0 设置](/zh/resources/llm-frameworks/mem0/) |
@@ -146,8 +147,7 @@ docker compose -f https://github.com/infiniflow/ragflow/raw/main/docker/docker-c
 **快装**：
 ```bash
 pip install mem0ai
-# 或作为 service:
-docker run -d --name mem0 -p 8765:8765 \
+# 或作为 service: docker run -d --name mem0 -p 8765:8765 \
   -e VECTOR_DB=chroma \
   mem0ai/mem0-server:latest
 ```
@@ -165,8 +165,7 @@ docker run -d --name mem0 -p 8765:8765 \
 **快装**：
 ```bash
 npm install -g @mem0/mem0-mcp
-# 加到 OpenCode / Claude Desktop MCP config:
-# { "agentmemory": { "command": "mem0-mcp", "env": { "MEM0_URL": "http://localhost:8765" } } }
+# 加到 OpenCode / Claude Desktop MCP config: # { "agentmemory": { "command": "mem0-mcp", "env": { "MEM0_URL": "http://localhost:8765" } } }
 ```
 
 **效果**：你的编程 agent 现在能回答"基于我们的项目文档和过往对话，新 auth 流程应该怎么设计？" —— 带引用，引用同时来自 PDF 和过往决策。
@@ -186,8 +185,7 @@ npm install -g @mem0/mem0-mcp
 **默认推荐**：从 Chroma 起（AnythingLLM 已内置）。语料 > 100 GB 或查询延迟 > 200ms 时迁 Qdrant。
 
 ```bash
-# 超出 Chroma 时上 Qdrant:
-docker run -d --name qdrant -p 6333:6333 -p 6334:6334 \
+# 超出 Chroma 时上 Qdrant: docker run -d --name qdrant -p 6333:6333 -p 6334:6334 \
   -v qdrant-storage:/qdrant/storage \
   qdrant/qdrant:latest
 ```
@@ -207,7 +205,15 @@ docker run -d --name qdrant -p 6333:6333 -p 6334:6334 \
 ## 9. 成本拆解
 
 | 项 | 单干（10 GB 文档）| 小团队（10 GB，5 用户）| 组织（100 GB，50 用户）|
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | VPS | $12（8 GB）| $24（16 GB）| $120（64 GB + 副本）|
 | AnythingLLM | $0（自托管）| $0 | $0 |
 | RAGFlow | $0（自托管）| $0 | $0 |
@@ -246,12 +252,11 @@ docker run -d --name qdrant -p 6333:6333 -p 6334:6334 \
 
 开一个 {{< aff "digitalocean" "footer-cta" "DigitalOcean $12/月 droplet" >}} 起入门档，跟第 8 节做，明天你的知识库就能从 Claude Desktop / Cursor / OpenCode 查询。
 
----
 
+---
 *配套合集：[自托管 AI 编程工作流](/zh/collections/self-hosted-ai-coding-workflow/) 把这个知识库插进编程 agent stack。[便宜 LLM Stack](/zh/collections/cheap-llm-stack/) 覆盖 chat-LLM 成本侧。[跨境出海 AI 营销 Stack](/zh/collections/cross-border-ai-marketing-stack/) 给需要中国友好 hosting 的中国团队。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -279,25 +284,20 @@ docker run -d --name qdrant -p 6333:6333 -p 6334:6334 \
 
 ## Why This Matters
 
-Understanding 知识库 stack 2026：用 anythingllm + ragflow + mem0 搭"第二大脑"（$10-25/月） is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding 知识库 stack 2026：用 anythingllm + ragflow + mem0 搭"第二大脑"（$10-25/月） is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -318,8 +318,8 @@ To implement this in your workflow:
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 

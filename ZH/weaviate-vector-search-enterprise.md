@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/weaviate-vector-search-enterprise" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/weaviate-vector-search-enterprise" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/weaviate-vector-search-enterprise" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/weaviate-vector-search-enterprise" />
 title: 'Weaviate 2026: AI 原生向量搜索引擎处理 100 亿+ 对象 — 企业部署指南'
 description: 'Weaviate 向量搜索企业级扩展部署指南。涵盖 Kubernetes 部署、混合搜索、多模态支持、RBAC、监控以及 100 亿+ 对象集合的基准测试。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: []
-aliases:
-- /zh/posts/weaviate-vector-search-enterprise/
+aliases: - /zh/posts/weaviate-vector-search-enterprise/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/weaviate-vector-search-enterprise/ -->
 
 {{</* resource-info */>}}
 
@@ -41,8 +33,8 @@ aliases:
 
 本指南涵盖 Weaviate 在 Kubernetes 上的企业部署、混合搜索配置、多模态集合、RBAC、备份策略和监控。每个部分都包含经过生产测试的配置和真实性能数据。
 
----
 
+---
 ## 什么是 Weaviate？
 
 Weaviate 是一个用 Go 编写的开源 AI 原生向量搜索引擎。2018 年首次发布，目前版本 **v1.31.0**，它结合了向量相似度搜索与结构化过滤、混合排序和基于 GraphQL 的查询。与在存储层上附加搜索的向量数据库不同，Weaviate 从零开始围绕向量搜索问题设计。
@@ -51,8 +43,8 @@ Weaviate 支持多种向量化模块（OpenAI、Cohere、Hugging Face、Google�
 
 该项目由 Weaviate B.V. 在 **BSD-3-Clause 许可证** 下维护。Weaviate Cloud (WCD) 为不愿自托管的团队提供完全托管的选项。
 
----
 
+---
 ## Weaviate 的工作原理：架构深度解析
 
 ### 核心组件
@@ -70,7 +62,17 @@ Weaviate 的架构将关注点分离为四层：
 ### 向量索引类型
 
 | 索引类型 | 最佳用途 | 查询延迟 | 内存开销 | 召回率 |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | HNSW (默认) | 大型集合, ANN | 1–5ms | ~1.5x 向量大小 | 0.95–0.99 |
 | Flat (暴力) | 小型集合, 最高精度 | 50–500ms | ~1.1x 向量大小 | 1.0 |
 | Dynamic | 混合工作负载 | 自适应 | 自适应 | 可配置 |
@@ -108,14 +110,10 @@ curl http://localhost:8080/v1/meta
 ```yaml
 # docker-compose.yml
 version: '3.8'
-services:
-  weaviate:
-    image: semitechnologies/weaviate:1.31.0
-    ports:
-      - "8080:8080"
+services: weaviate: image: semitechnologies/weaviate:1.31.0
+    ports: - "8080:8080"
       - "50051:50051"
-    environment:
-      QUERY_DEFAULTS_LIMIT: 100
+    environment: QUERY_DEFAULTS_LIMIT: 100
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: false
       AUTHENTICATION_APIKEY_ENABLED: true
       AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'your-api-key-here'
@@ -124,15 +122,9 @@ services:
       DEFAULT_VECTORIZER_MODULE: none
       ENABLE_MODULES: ''
       CLUSTER_HOSTNAME: node1
-    volumes:
-      - weaviate_data:/var/lib/weaviate
-    deploy:
-      resources:
-        limits:
-          memory: 16G
-volumes:
-  weaviate_data:
-```
+    volumes: - weaviate_data:/var/lib/weaviate
+    deploy: resources: limits: memory: 16G
+volumes: weaviate_data: ```
 
 启动：`docker-compose up -d`
 
@@ -167,9 +159,7 @@ client.collections.create(
 
 # 批量导入商品
 products = client.collections.get("Product")
-with products.batch.dynamic() as batch:
-    for item in product_data:
-        batch.add_object(properties=item)
+with products.batch.dynamic() as batch: for item in product_data: batch.add_object(properties=item)
 
 print(f"导入了 {len(products)} 个对象")
 ```
@@ -228,8 +218,7 @@ results = products.query.hybrid(
         & Filter.by_property("price").less_than(300)
 )
 
-for obj in results.objects:
-    print(f"{obj.properties[name]}: ${obj.properties[price]}")
+for obj in results.objects: print(f"{obj.properties[name]}: ${obj.properties[price]}")
 ```
 
 `alpha` 参数权衡向量与关键词分数。`alpha=0.7` 表示 70% 向量，30% BM25。从 0.75 开始并根据数据调整。
@@ -286,8 +275,7 @@ results = collection.query.near_text(
 
 # 通过图像搜索（查找相似商品）
 import base64
-with open("query_image.jpg", "rb") as f:
-    img_b64 = base64.b64encode(f.read()).decode()
+with open("query_image.jpg", "rb") as f: img_b64 = base64.b64encode(f.read()).decode()
 
 results = collection.query.near_image(near_image=img_b64, limit=5)
 ```
@@ -298,8 +286,7 @@ results = collection.query.near_image(near_image=img_b64, limit=5)
 
 ```yaml
 # 监控的额外环境变量
-environment:
-  PROMETHEUS_MONITORING_ENABLED: true
+environment: PROMETHEUS_MONITORING_ENABLED: true
   PROMETHEUS_MONITORING_PORT: 2112
 ```
 
@@ -333,7 +320,17 @@ rate(weaviate_requests_total[5m])
 在 **3 节点 Weaviate 集群**（每节点 32GB RAM, 8 vCPU, NVMe SSD），768 维向量上运行的基准：
 
 | 集合大小 | 纯向量 (HNSW) | 混合 (alpha=0.75) | 过滤向量 | 仅 BM25 |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 100 万对象 | 1.2ms | 3.1ms | 2.8ms | 1.8ms |
 | 1000 万对象 | 2.1ms | 5.4ms | 4.9ms | 3.2ms |
 | 1 亿对象 | 4.8ms | 11.2ms | 9.6ms | 7.1ms |
@@ -346,7 +343,15 @@ rate(weaviate_requests_total[5m])
 单节点 Weaviate，1000 万对象，并发客户端：
 
 | 并发客户端 | QPS (查询/秒) | 平均延迟 | P99 延迟 |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 1 | 380 | 2.6ms | 4.1ms |
 | 10 | 1,420 | 7.0ms | 12.3ms |
 | 50 | 2,890 | 17.3ms | 38.7ms |
@@ -417,19 +422,11 @@ curl -X POST http://localhost:8080/v1/backups/s3 \
 # kubernetes/backup-cronjob.yaml
 apiVersion: batch/v1
 kind: CronJob
-metadata:
-  name: weaviate-backup
-spec:
-  schedule: "0 2 * * *"  # 每天凌晨 2 点
-  jobTemplate:
-    spec:
-      template:
-        spec:
-          containers:
-          - name: backup
+metadata: name: weaviate-backup
+spec: schedule: "0 2 * * *"  # 每天凌晨 2 点
+  jobTemplate: spec: template: spec: containers: - name: backup
             image: curlimages/curl:latest
-            command:
-            - /bin/sh
+            command: - /bin/sh
             - -c
             - |
               curl -X POST http://weaviate:8080/v1/backups/s3 \
@@ -445,24 +442,19 @@ spec:
 ```yaml
 # 大规模集群的 Helm 值
 replicas: 5
-env:
-  CLUSTER_JOIN: "weaviate-0.weaviate-headless:7001"
+env: CLUSTER_JOIN: "weaviate-0.weaviate-headless:7001"
   CLUSTER_GOSSIP_BIND_PORT: "7100"
   CLUSTER_DATA_BIND_PORT: "7101"
   RAFT_JOIN: "weaviate-0,weaviate-1,weaviate-2"
   RAFT_BOOTSTRAP_EXPECT: "3"
 
-persistence:
-  enabled: true
+persistence: enabled: true
   size: 1Ti
   storageClass: premium-rwo
 
-resources:
-  requests:
-    memory: "64Gi"
+resources: requests: memory: "64Gi"
     cpu: "16"
-  limits:
-    memory: "128Gi"
+  limits: memory: "128Gi"
     cpu: "32"
 ```
 
@@ -481,11 +473,9 @@ client = weaviate.connect_to_local(
 products = client.collections.get("Product")
 
 # gRPC 批量插入 —— 明显快于 REST
-with products.batch.fixed_size(batch_size=1000) as batch:
-    for item in large_dataset:  # 1000 万+ 对象
+with products.batch.fixed_size(batch_size=1000) as batch: for item in large_dataset: # 1000 万+ 对象
         batch.add_object(properties=item)
-        if batch.number_errors > 100:
-            print("错误太多，停止")
+        if batch.number_errors > 100: print("错误太多，停止")
             break
 
 failed = products.batch.failed_objects
@@ -521,7 +511,19 @@ collection.data.insert(
 ## 与替代方案对比
 
 | 特性 | Weaviate | Pinecone | Milvus | Qdrant | pgvector |
-|---|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 混合搜索 (向量 + BM25) | 原生 | 仅关键词 | 稀疏向量 | 稀疏向量 | 有限 |
 | GraphQL 接口 | 支持 | 仅 REST | REST/gRPC | REST/gRPC | SQL |
 | 多模态 (文本 + 图像) | 原生 CLIP | 不支持 | 不支持 | 不支持 | 不支持 |
@@ -626,7 +628,6 @@ Schema 变更（添加属性、修改索引）需要通过 Raft 进行集群元�
 *Affiliate 披露：本文包含 DigitalOcean 和 HTStack 的 affiliate 链接。如果您通过这些链接购买基础设施，dibi8.com 将获得佣金，不会额外增加您的费用。我们只推荐已在生产环境中基准测试过的提供商。Affiliate 收入支持独立技术研究和开源工具开发。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

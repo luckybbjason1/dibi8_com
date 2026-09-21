@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/agentmemory-mcp-persistent-memory-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/agentmemory-mcp-persistent-memory-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/agentmemory-mcp-persistent-memory-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/agentmemory-mcp-persistent-memory-2026" />
 title: 'Bộ Nhớ Liên Tục cho AI Coding Agent 2026: Hướng Dẫn Toàn...
 description: 'Dừng việc dạy lại Claude Code quy ước dự án. Tìm hiểu cách agentmemory và Giao thức Ngữ cảnh Mô hình (MCP) cấp bộ nhớ liên tục xuyên phiên cho AI coding agent, kèm hướng dẫn cài đặt và chiến lược chia sẻ nhóm.'
 date: 2026-05-17 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: 'rohitg00'
 last_maintained: '2026-05-17'
 featureImage: ''
 draft: false
-aliases:
-- /posts/agentmemory-mcp-persistent-memory-2026/
+aliases: - /posts/agentmemory-mcp-persistent-memory-2026/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/agentmemory-mcp-persistent-memory-2026/ -->
 
 {</* resource-info */>}
 
@@ -75,9 +67,7 @@ Một chỉ mục vector dựa trên SQLite (qua sqlite-vec) chứa ~100 tương
 
 ### Tầng 3: Bộ Nhớ Dài Hạn (Long-term Memory) — Đồ Thị Tri Thức
 
-Bộ phận chịu tải chính. agentmemory lưu các sự kiện cốt lõi dưới dạng **đồ thị tri thức** bộ ba thực thể-quan hệ-thực thể:
-
-```
+Bộ phận chịu tải chính. agentmemory lưu các sự kiện cốt lõi dưới dạng **đồ thị tri thức** bộ ba thực thể-quan hệ-thực thể: ```
 (DuAnA) --[su_dung_framework]--> (React)
 (DuAnA) --[quy_uoc]--> (Hook đặt tên useXxx)
 (DuAnA) --[giai_phap]--> (Sửa Issue #442)
@@ -87,9 +77,7 @@ Cấu trúc đồ thị đặc biệt phù hợp với **suy luận thời gian*
 
 ### Tầng 4: Meta-Memory (Meta-memory) — Chấm Điểm Độ Tin Cậy
 
-Tầng điều hành cao nhất. Mỗi mục bộ nhớ mang điểm tin cậy 0-1 được điều khiển bởi ba tín hiệu:
-
-1. **Tần suất truy xuất** — kỷ niệm thường dùng có khả năng quan trọng cao
+Tầng điều hành cao nhất. Mỗi mục bộ nhớ mang điểm tin cậy 0-1 được điều khiển bởi ba tín hiệu: 1. **Tần suất truy xuất** — kỷ niệm thường dùng có khả năng quan trọng cao
 2. **Sự kiện hiệu chỉnh** — kỷ niệm bị sửa thủ công sẽ reset điểm
 3. **Suy giảm thời gian** — kỷ niệm cũ mất trọng số tuyến tính trừ khi được củng cố
 
@@ -116,8 +104,7 @@ Lợi thế chiến lược thực sự của agentmemory không phải thuật 
                                     └─────────┘
 ```
 
-MCP dùng kiến trúc client-server đơn giản:
-- **Host**: Ứng dụng AI (Claude Code, Cursor, v.v.)
+MCP dùng kiến trúc client-server đơn giản: - **Host**: Ứng dụng AI (Claude Code, Cursor, v.v.)
 - **Client**: Lớp giao tiếp bên trong host
 - **Server**: agentmemory, chạy như tiến trình độc lập
 
@@ -125,9 +112,7 @@ Server expose **công cụ** (hàm LLM có thể gọi), **tài nguyên** (dữ 
 
 ### 50+ Công Cụ Nguyên Tử
 
-agentmemory expose bề mặt công cụ chi tiết—mỗi công cụ chỉ làm đúng một việc:
-
-| Công cụ | Chức năng | Khi nào kích hoạt |
+agentmemory expose bề mặt công cụ chi tiết—mỗi công cụ chỉ làm đúng một việc: | Công cụ | Chức năng | Khi nào kích hoạt |
 |---------|-----------|-------------------|
 | `memory_add` | Ghi bộ nhớ mới | Sau quyết định kiến trúc |
 | `memory_search` | Truy xuất ngữ nghĩa | Người dùng hỏi "auth xử lý thế nào?" |
@@ -165,9 +150,7 @@ node dist/mcp-server.js --stdio
 
 ### Bước 2: Cấu Hình MCP Client
 
-Sửa file cấu hình MCP (với Claude Code, thường là `~/.claude/mcp.json`):
-
-```json
+Sửa file cấu hình MCP (với Claude Code, thường là `~/.claude/mcp.json`): ```json
 {
   "mcpServers": {
     "agentmemory": {
@@ -187,15 +170,11 @@ Sửa file cấu hình MCP (với Claude Code, thường là `~/.claude/mcp.json
 
 ### Bước 3: Kiểm Tra Tính Bền Vững Bộ Nhớ
 
-Trong Claude Code, nhập:
-
-```
+Trong Claude Code, nhập: ```
 Nhớ nhé: tất cả React Hook trong dự án này phải dùng quy ước đặt tên useXxx. Không dùng gạch dưới.
 ```
 
-Đóng Claude Code. Mở lại. Hỏi:
-
-```
+Đóng Claude Code. Mở lại. Hỏi: ```
 Quy ước đặt tên Hook của dự án chúng ta là gì?
 ```
 
@@ -203,9 +182,7 @@ Nếu cấu hình đúng, Claude sẽ trả lời chính xác quy tắc vừa l�
 
 ### Bước 4: Tự Động Củng Cố (Tùy Chọn)
 
-Thêm vào `~/.claude/settings.json`:
-
-```json
+Thêm vào `~/.claude/settings.json`: ```json
 {
   "hooks": {
     "SessionEnd": {
@@ -233,17 +210,14 @@ git clone git@github.com:yourteam/agentmemory-core.git
 cd agentmemory-core
 
 # Chỉnh config MCP của mỗi thành viên trỏ đến DB chung
-# Trong ~/.claude/mcp.json:
-# "AGENTMEMORY_DB_PATH": "~/workspace/agentmemory-core/memory.db"
+# Trong ~/.claude/mcp.json: # "AGENTMEMORY_DB_PATH": "~/workspace/agentmemory-core/memory.db"
 ```
 
 Khi Kỹ sư A cập nhật "giải pháp module auth," agent của mọi thành viên đều thấy trong lần truy xuất tiếp theo.
 
 ### Lựa Chọn B: MCP Server Tập Trung (Khuyến Nghị Cho Nhóm 10+ Người)
 
-Triển khai một instance chung:
-
-```bash
+Triển khai một instance chung: ```bash
 # Trên server chia sẻ
 npx agentmemory-server --port 3000 --transport sse
 
@@ -257,15 +231,13 @@ npx agentmemory-server --port 3000 --transport sse
 }
 ```
 
-Lợi ích:
-- **Đồng bộ thời gian thực**: viết một lần, đọc mọi nơi tức thì
+Lợi ích: - **Đồng bộ thời gian thực**: viết một lần, đọc mọi nơi tức thì
 - **Audit trail**: ai thay đổi bộ nhớ nào và khi nào
 - **Kiểm soát truy cập**: khả năng hiển thị theo vai trò cho quyết định kiến trúc nhạy cảm
 
 ### Tác Động Nhóm Được Đo Lường
 
-Các nhóm dùng bộ nhớ agent chia sẻ báo cáo:
-- **Onboarding nhanh hơn 2-3 lần** cho kỹ sư mới
+Các nhóm dùng bộ nhớ agent chia sẻ báo cáo: - **Onboarding nhanh hơn 2-3 lần** cho kỹ sư mới
 - **Giảm 80%** lặp lại giải thích cùng quy ước
 - Điểm nhất quán phong cách code (đo theo lint rule nhóm) tăng từ 62% lên **89%**
 
@@ -303,8 +275,7 @@ Bộ nhớ điểm thấp không nhất thiết sai. Bộ nhớ điểm cao vẫ
 
 ### Benchmark Hiệu Năng
 
-Test trên M3 MacBook Pro:
-- Truy xuất từ thư viện 10K mục: **< 50ms**
+Test trên M3 MacBook Pro: - Truy xuất từ thư viện 10K mục: **< 50ms**
 - Củng cố cuối phiên (100 lượt trò chuyện): **~800ms**
 - Tăng trưởng lưu trữ: ~5KB mỗi lượt trò chuyện (bao gồm chỉ mục vector)
 
@@ -333,7 +304,6 @@ Nếu chưa cấu hình bộ nhớ liên tục, hôm nay là ngày đó.
 *Viết ngày 17 tháng 5 năm 2026. Số sao và phiên bản MCP spec nhạy cảm với thời gian; hãy kiểm chứng với nguồn chính thức trước khi trích dẫn.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

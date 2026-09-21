@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/jesse-ai-trading-framework" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/jesse-ai-trading-framework" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/jesse-ai-trading-framework" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/jesse-ai-trading-framework" />
 title: 'Jesse: 内置30+技术指标的高级Python加密货币交易框架 —— 2026年完整部署指南'
 description: 'Jesse AI交易框架的生产级指南 —— 安装、使用30+技术指标进行回测、构建自定义策略，并用Python部署实时加密货币交易机器人。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: [jesse, 加密货币交易, python, 回测, 技术指标, 算法交易, ai交易, 量化交易]
-aliases:
-- /zh/posts/jesse-ai-trading-framework/
+aliases: - /zh/posts/jesse-ai-trading-framework/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/jesse-ai-trading-framework/ -->
 
 {{</* resource-info */>}}
 
@@ -184,31 +176,23 @@ jesse import-candles Binance BTC-USDT 2025-01-01
 from jesse.strategies import Strategy
 import jesse.indicators as ta
 
-class SimpleMA(Strategy):
-    def __init__(self):
-        super().__init__()
+class SimpleMA(Strategy): def __init__(self): super().__init__()
         self.period = 20
 
-    def should_long(self) -> bool:
-        # 当价格上穿20周期SMA时做多
+    def should_long(self) -> bool: # 当价格上穿20周期SMA时做多
         sma = ta.sma(self.candles, self.period)
         return self.close > sma and self.close[-2] <= sma[-2]
 
-    def should_short(self) -> bool:
-        return False  # 本简单示例不做空
+    def should_short(self) -> bool: return False  # 本简单示例不做空
 
-    def go_long(self):
-        qty = self.capital / self.close
+    def go_long(self): qty = self.capital / self.close
         self.buy = qty, self.close
 
-    def go_short(self):
-        pass
+    def go_short(self): pass
 
-    def update_position(self):
-        # 当价格跌破SMA时平仓
+    def update_position(self): # 当价格跌破SMA时平仓
         sma = ta.sma(self.candles, self.period)
-        if self.close < sma:
-            self.liquidate()
+        if self.close < sma: self.liquidate()
 ```
 
 ### 第七步：运行回测
@@ -243,13 +227,10 @@ Jesse能与Python量化交易生态 cleanly 集成。以下是最常见的集成
 import numpy as np
 import jesse.indicators as ta
 
-def custom_zscore(candles, period=20):
-    closes = np.array([c[2] for c in candles[-period:]])
+def custom_zscore(candles, period=20): closes = np.array([c[2] for c in candles[-period:]])
     return (closes[-1] - closes.mean()) / closes.std()
 
-class ZScoreStrategy(Strategy):
-    def should_long(self):
-        z = custom_zscore(self.candles, 20)
+class ZScoreStrategy(Strategy): def should_long(self): z = custom_zscore(self.candles, 20)
         return z < -2.0  # 价格低于均值2个标准差时买入
 ```
 
@@ -260,15 +241,12 @@ class ZScoreStrategy(Strategy):
 from sklearn.ensemble import RandomForestClassifier
 import numpy as np
 
-class MLStrategy(Strategy):
-    def __init__(self):
-        super().__init__()
+class MLStrategy(Strategy): def __init__(self): super().__init__()
         self.model = RandomForestClassifier(n_estimators=100)
         self.features = []
         self.labels = []
 
-    def should_long(self):
-        rsi = ta.rsi(self.candles, 14)
+    def should_long(self): rsi = ta.rsi(self.candles, 14)
         sma20 = ta.sma(self.candles, 20)
         sma50 = ta.sma(self.candles, 50)
         atr = ta.atr(self.candles, 14)
@@ -308,30 +286,20 @@ CMD ["jesse", "run"]
 ```yaml
 # docker-compose.yml
 version: '3.8'
-services:
-  postgres:
-    image: postgres:16
-    environment:
-      POSTGRES_DB: jesse_db
+services: postgres: image: postgres:16
+    environment: POSTGRES_DB: jesse_db
       POSTGRES_USER: jesse_user
       POSTGRES_PASSWORD: your_password
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+    volumes: - pgdata:/var/lib/postgresql/data
 
-  jesse:
-    build: .
-    depends_on:
-      - postgres
-    environment:
-      DATABASE_URL: postgres://jesse_user:your_password@postgres:5432/jesse_db
-    volumes:
-      - ./strategies:/app/strategies
+  jesse: build: .
+    depends_on: - postgres
+    environment: DATABASE_URL: postgres://jesse_user:your_password@postgres:5432/jesse_db
+    volumes: - ./strategies:/app/strategies
       - ./config.py:/app/config.py
       - ./routes.py:/app/routes.py
 
-volumes:
-  pgdata:
-```
+volumes: pgdata: ```
 
 ### 5. Prometheus & Grafana监控
 
@@ -354,7 +322,15 @@ start_http_server(9090)
 ### 回测表现：移动平均线交叉策略（BTC-USDT, 1小时）
 
 | 指标 | SMA(20/50) | EMA(12/26) | SMA + RSI过滤 |
-|------|-----------|-----------|-------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 总交易次数 | 142 | 189 | 98 |
 | 胜率 | 58.5% | 54.0% | 67.3% |
 | 净利润 | 23.7% | 19.4% | 31.2% |
@@ -365,7 +341,13 @@ start_http_server(9090)
 ### 执行速度基准
 
 | 操作 | 1年1小时K线 | 3年1小时K线 |
-|------|-------------|-------------|
+|
+---
+|
+---
+|
+---
+|
 | 数据导入 | 8秒 | 22秒 |
 | 回测（简单MA） | 1.2秒 | 3.8秒 |
 | 回测（ML策略） | 4.5秒 | 14.2秒 |
@@ -404,13 +386,10 @@ RISK_MANAGEMENT = {
 
 ```python
 # 多时间周期策略示例
-class MultiTFStrategy(Strategy):
-    def prepare(self):
-        # 获取4小时K线用于趋势判断
+class MultiTFStrategy(Strategy): def prepare(self): # 获取4小时K线用于趋势判断
         self.h4_candles = self.get_candles(Binance, 'BTC-USDT', 4h)
 
-    def should_long(self):
-        h4_sma50 = ta.sma(self.h4_candles, 50)
+    def should_long(self): h4_sma50 = ta.sma(self.h4_candles, 50)
         h1_sma20 = ta.sma(self.candles, 20)
 
         # 仅在4小时趋势向上且1小时显示动能时做多
@@ -421,9 +400,7 @@ class MultiTFStrategy(Strategy):
 
 ```python
 # 高级出场逻辑
-class RiskManagedStrategy(Strategy):
-    def go_long(self):
-        entry = self.close
+class RiskManagedStrategy(Strategy): def go_long(self): entry = self.close
         stop_loss = entry * 0.97       # 3%止损
         take_profit = entry * 1.06     # 6%目标
         qty = (self.capital * 0.02) / (entry - stop_loss)
@@ -453,7 +430,17 @@ tail -f storage/logs/live-trading.log
 ## 与替代方案对比
 
 | 功能 | Jesse | Freqtrade | Hummingbot | TradingView |
-|------|-------|-----------|------------|-------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **许可证** | MIT | GPLv3 | Apache 2.0 | 商业软件 |
 | **语言** | Python | Python | Python | Pine Script |
 | **内置指标** | **30+** | 15+ | 有限 | 100+ |
@@ -557,12 +544,11 @@ Jesse填补了Python交易生态系统中的关键空白。它不是最容易学
 5. 相关: [2026年最佳Python加密货币交易库](dibi8-internal-link)
 6. Binance API文档: https://binance-docs.github.io/apidocs/
 
----
 
+---
 *联盟营销披露: 本文包含指向Binance、OKX、Minara、DigitalOcean和HTStack的联盟链接。如果你通过这些链接注册，dibi8.com可能会获得佣金，且不会向你收取额外费用。我们只推荐亲自测试或深入研究的工具。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -590,25 +576,20 @@ Jesse填补了Python交易生态系统中的关键空白。它不是最容易学
 
 ## Why This Matters
 
-Understanding jesse: 内置30+技术指标的高级python加密货币交易框架 —— 2026年完整部署指南 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding jesse: 内置30+技术指标的高级python加密货币交易框架 —— 2026年完整部署指南 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -629,8 +610,8 @@ Jesse: 内置30+技术指标的高级Python加密货币交易框架 —— 2026�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 

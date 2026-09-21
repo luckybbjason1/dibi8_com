@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/playwright-browser-automation-testing" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/playwright-browser-automation-testing" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/playwright-browser-automation-testing" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/playwright-browser-automation-testing" />
 title: 'Playwright 2026: Selenium보다 3배 빠른 크로스 브라우저 자동화 도구 — 설치 가이드'
 description: 'Playwright 1.51로 크로스 브라우저 자동화를 마스터하세요. Chrome, Firefox, WebKit 지원. 자동 대기, 추적, 코드 생성, 병렬 테스트. Selenium보다 3배 빠릅니다.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [playwright, '브라우저 자동화', 테스팅, '웹 스크래핑', python, e2e]
-aliases:
-- /kr/posts/playwright-browser-automation-testing/
+aliases: - /kr/posts/playwright-browser-automation-testing/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/playwright-browser-automation-testing/ -->
 
 {{</* resource-info */>}}
 
@@ -84,8 +76,7 @@ playwright install chromium
 ```python
 from playwright.sync_api import sync_playwright
 
-with sync_playwright() as p:
-    browser = p.chromium.launch()
+with sync_playwright() as p: browser = p.chromium.launch()
     page = browser.new_page()
     page.goto("https://httpbin.org/get")
     print(f"Title: {page.title()}")
@@ -99,9 +90,7 @@ print("Playwright is ready!")
 ```python
 from playwright.sync_api import sync_playwright
 
-def test_login_flow():
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
+def test_login_flow(): with sync_playwright() as p: browser = p.chromium.launch(headless=True)
         context = browser.new_context(
             viewport={"width": 1920, "height": 1080}
         )
@@ -124,8 +113,7 @@ def test_login_flow():
         context.close()
         browser.close()
 
-if __name__ == "__main__":
-    test_login_flow()
+if __name__ == "__main__": test_login_flow()
     print("Test passed!")
 ```
 
@@ -141,15 +129,12 @@ import pytest
 from playwright.sync_api import sync_playwright
 
 @pytest.fixture(scope="session")
-def browser():
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
+def browser(): with sync_playwright() as p: browser = p.chromium.launch(headless=True)
         yield browser
         browser.close()
 
 @pytest.fixture
-def page(browser):
-    context = browser.new_context(
+def page(browser): context = browser.new_context(
         viewport={"width": 1920, "height": 1080}
     )
     page = context.new_page()
@@ -159,16 +144,14 @@ def page(browser):
 
 ```python
 # test_ecommerce.py
-def test_add_to_cart(page):
-    page.goto("https://example.com/products")
+def test_add_to_cart(page): page.goto("https://example.com/products")
     page.click("button[data-testid='add-to-cart']")
     
     # 장바구니 배지 업데이트를 자동으로 대기
     cart_count = page.inner_text(".cart-badge")
     assert cart_count == "1"
 
-def test_search_results(page):
-    page.goto("https://example.com")
+def test_search_results(page): page.goto("https://example.com")
     page.fill("[name=q]", "laptop")
     page.press("[name=q]", "Enter")
     
@@ -184,29 +167,22 @@ def test_search_results(page):
 # .github/workflows/playwright.yml
 name: Playwright Tests
 on: [push, pull_request]
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: test: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
+        with: python-version: "3.12"
       - run: pip install playwright==1.51.0 pytest
       - run: playwright install chromium
       - run: pytest --tracing=retain-on-failure
       - uses: actions/upload-artifact@v4
         if: failure()
-        with:
-          name: playwright-traces
+        with: name: playwright-traces
           path: test-results/
 ```
 
 ### 코드 생성과 통합
 
-Playwright는 수동 브라우저 작업을 녹화하여 테스트 코드를 생성할 수 있다:
-
-```bash
+Playwright는 수동 브라우저 작업을 녹화하여 테스트 코드를 생성할 수 있다: ```bash
 # codegen을 시작하고 상호작용을 녹화
 playwright codegen https://example.com
 
@@ -225,14 +201,11 @@ codegen 도구는 브라우저 창과 검사기 패널을 연다. 모든 클릭,
 import asyncio
 from playwright.async_api import async_playwright
 
-async def scrape_multiple_pages():
-    async with async_playwright() as p:
-        browser = await p.chromium.launch()
+async def scrape_multiple_pages(): async with async_playwright() as p: browser = await p.chromium.launch()
         
         # 5개 페이지를 동시에 실행
         tasks = []
-        for i in range(5):
-            context = await browser.new_context()
+        for i in range(5): context = await browser.new_context()
             page = await context.new_page()
             task = page.goto(f"https://httpbin.org/get?page={i}")
             tasks.append(task)
@@ -313,9 +286,7 @@ B2B SaaS 스타트업은 Playwright를 사용하여 매번 커밋마다 Chrome, 
 ```python
 from playwright.sync_api import sync_playwright
 
-def test_with_mocked_api():
-    with sync_playwright() as p:
-        browser = p.chromium.launch()
+def test_with_mocked_api(): with sync_playwright() as p: browser = p.chromium.launch()
         page = browser.new_page()
         
         # API 응답 가로채기 및 모킹
@@ -336,9 +307,7 @@ def test_with_mocked_api():
 from playwright.sync_api import sync_playwright
 import json
 
-def save_auth_state():
-    with sync_playwright() as p:
-        browser = p.chromium.launch()
+def save_auth_state(): with sync_playwright() as p: browser = p.chromium.launch()
         context = browser.new_context()
         page = context.new_page()
         
@@ -353,9 +322,7 @@ def save_auth_state():
         context.storage_state(path="auth.json")
         browser.close()
 
-def test_with_saved_auth():
-    with sync_playwright() as p:
-        browser = p.chromium.launch()
+def test_with_saved_auth(): with sync_playwright() as p: browser = p.chromium.launch()
         # 저장된 인증 재사용
         context = browser.new_context(storage_state="auth.json")
         page = context.new_page()
@@ -373,9 +340,7 @@ def test_with_saved_auth():
 ```python
 from playwright.sync_api import sync_playwright
 
-def test_visual_regression():
-    with sync_playwright() as p:
-        browser = p.chromium.launch()
+def test_visual_regression(): with sync_playwright() as p: browser = p.chromium.launch()
         page = browser.new_page(viewport={"width": 1920, "height": 1080})
         
         page.goto("https://example.com/landing")
@@ -396,9 +361,7 @@ from playwright.sync_api import sync_playwright
 
 iphone = sync_playwright().start().devices["iPhone 14 Pro Max"]
 
-def test_mobile_viewport():
-    with sync_playwright() as p:
-        browser = p.chromium.launch()
+def test_mobile_viewport(): with sync_playwright() as p: browser = p.chromium.launch()
         context = browser.new_context(**p.devices["iPhone 14 Pro Max"])
         page = context.new_page()
         
@@ -419,9 +382,7 @@ Playwright는 iPhone, iPad, Android 디바이스를 포함한 **40개 이상의 
 ```python
 from playwright.sync_api import sync_playwright
 
-def test_api_contract():
-    with sync_playwright() as p:
-        browser = p.chromium.launch()
+def test_api_contract(): with sync_playwright() as p: browser = p.chromium.launch()
         page = browser.new_page()
         
         responses = []
@@ -448,9 +409,7 @@ def test_api_contract():
 ```python
 from playwright.sync_api import sync_playwright
 
-def scrape_with_stealth():
-    with sync_playwright() as p:
-        browser = p.chromium.launch(
+def scrape_with_stealth(): with sync_playwright() as p: browser = p.chromium.launch(
             headless=True,
             args=["--disable-blink-features=AutomationControlled"]
         )
@@ -560,9 +519,7 @@ playwright install
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -572,7 +529,6 @@ playwright install
 이 글에는 DigitalOcean의 제휴 링크가 포함되어 있다. 이 링크를 통해 서비스를 구매하면 추가 비용 없이 커미션을 받을 수 있다. 이 추천은 CI/CD 및 브라우저 자동화 인프라에 대한 진정한 유용성을 기반으로 한다. 모든 벤치마크는 독립적으로 수행되었다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

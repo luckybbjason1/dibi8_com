@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/outline-wiki-knowledge-base" />
 title: 'Outline: The Open-Source Wiki & Knowledge Base Built for...
 description: 'Deploy Outline with Docker in 10 minutes. Build a real-time collaborative wiki for your engineering team with Markdown editor, Slack integration, full-text search, and granular permissions.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [outline, wiki, 'knowledge-base', 'team-docs', 'open-source', 'self-hosted', docker, collaboration, markdown]
-aliases:
-- /posts/outline-wiki-knowledge-base/
+aliases: - /posts/outline-wiki-knowledge-base/-
 ---
-
 {{</* resource-info */>}}
 
 ## Introduction: Where Documentation Goes to Die
@@ -46,9 +42,7 @@ Documents are organized into **collections** — roughly equivalent to folders o
 
 ## How Outline Works: Architecture Overview
 
-Outline's stack is modern and well-architected:
-
-- **Node.js/TypeScript Backend** — Express-based API server handling auth, documents, collections, and real-time collaboration
+Outline's stack is modern and well-architected: - **Node.js/TypeScript Backend** — Express-based API server handling auth, documents, collections, and real-time collaboration
 - **React Frontend** — Client-side rendered SPA with a ProseMirror-based rich text editor
 - **PostgreSQL** — Stores documents, user accounts, permissions, and metadata
 - **Redis** — Caching, session store, and real-time collaboration state via WebSocket
@@ -57,8 +51,7 @@ Outline's stack is modern and well-architected:
 
 **Real-time collaboration** uses Operational Transforms (OT) through a WebSocket connection. When two users edit the same document, changes propagate in milliseconds with conflict resolution that actually works — no last-write-wins headaches.
 
-The permission system is the standout feature. Collections can be:
-- **Public to team** — anyone with an account can read
+The permission system is the standout feature. Collections can be: - **Public to team** — anyone with an account can read
 - **Private** — only invited users can access
 - **Read-only** — team can view but not edit
 - **Editor access** — specific users or groups can modify
@@ -67,19 +60,13 @@ Documents inherit collection permissions but can override them individually. Thi
 
 ## Installation & Setup: Production Docker Deploy
 
-Outline requires three services: the app, PostgreSQL, and Redis. A production-ready Docker Compose setup:
-
-```yaml
+Outline requires three services: the app, PostgreSQL, and Redis. A production-ready Docker Compose setup: ```yaml
 # docker-compose.yml
 version: "3.8"
 
-services:
-  outline:
-    image: outlinewiki/outline:0.83.0
-    ports:
-      - "3000:3000"
-    environment:
-      - DATABASE_URL=postgres://outline:outline_password@postgres:5432/outline
+services: outline: image: outlinewiki/outline:0.83.0
+    ports: - "3000:3000"
+    environment: - DATABASE_URL=postgres://outline:outline_password@postgres:5432/outline
       - DATABASE_URL_TEST=postgres://outline:outline_password@postgres:5432/outline-test
       - REDIS_URL=redis://redis:6379
       - SECRET_KEY=${SECRET_KEY}
@@ -104,43 +91,32 @@ services:
       - SLACK_CLIENT_ID=${SLACK_CLIENT_ID}
       - SLACK_CLIENT_SECRET=${SLACK_CLIENT_SECRET}
       - SLACK_VERIFICATION_TOKEN=${SLACK_VERIFICATION_TOKEN}
-    depends_on:
-      - postgres
+    depends_on: - postgres
       - redis
       - minio
     restart: unless-stopped
 
-  postgres:
-    image: postgres:16-alpine
-    environment:
-      - POSTGRES_USER=outline
+  postgres: image: postgres:16-alpine
+    environment: - POSTGRES_USER=outline
       - POSTGRES_PASSWORD=outline_password
       - POSTGRES_DB=outline
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
+    volumes: - postgres-data:/var/lib/postgresql/data
     restart: unless-stopped
 
-  redis:
-    image: redis:7-alpine
-    volumes:
-      - redis-data:/data
+  redis: image: redis:7-alpine
+    volumes: - redis-data:/data
     restart: unless-stopped
 
-  minio:
-    image: minio/minio:RELEASE.2026-04-01T00-00-00Z
+  minio: image: minio/minio:RELEASE.2026-04-01T00-00-00Z
     command: server /data --console-address ":9001"
-    environment:
-      - MINIO_ROOT_USER=minio
+    environment: - MINIO_ROOT_USER=minio
       - MINIO_ROOT_PASSWORD=minio123
-    volumes:
-      - minio-data:/data
+    volumes: - minio-data:/data
     restart: unless-stopped
 
   # Create buckets on first run
-  minio-createbucket:
-    image: minio/mc:latest
-    depends_on:
-      - minio
+  minio-createbucket: image: minio/mc:latest
+    depends_on: - minio
     entrypoint: >
       /bin/sh -c "
       sleep 10;
@@ -150,17 +126,11 @@ services:
       exit 0;
       "
 
-volumes:
-  postgres-data:
-  redis-data:
-  minio-data:
-```
+volumes: postgres-data: redis-data: minio-data: ```
 
 ### Generating Secrets
 
-Before starting, generate the required secrets:
-
-```bash
+Before starting, generate the required secrets: ```bash
 # Generate a 256-bit secret key
 export SECRET_KEY=$(openssl rand -hex 32)
 
@@ -171,9 +141,7 @@ echo "SECRET_KEY=$SECRET_KEY"
 echo "UTILS_SECRET=$UTILS_SECRET"
 ```
 
-Add these to a `.env` file:
-
-```bash
+Add these to a `.env` file: ```bash
 cat << EOF > .env
 SECRET_KEY=REPLACE_WITH_GENERATED_SECRET
 UTILS_SECRET=REPLACE_WITH_GENERATED_SECRET
@@ -202,14 +170,10 @@ After ~30 seconds, Outline is available at `http://localhost:3000`.
 
 ### Setting Up Authentication
 
-Outline requires an external authentication provider. The easiest production setup is Google Workspace OIDC:
-
-1. Go to [Google Cloud Console](https://console.cloud.google.com/) → APIs & Services → Credentials
+Outline requires an external authentication provider. The easiest production setup is Google Workspace OIDC: 1. Go to [Google Cloud Console](https://console.cloud.google.com/) → APIs & Services → Credentials
 2. Create **OAuth 2.0 Client ID** (Web application)
 3. Add authorized redirect URI: `https://wiki.yourcompany.com/auth/oidc.callback`
-4. Add the client ID and secret to your `.env` file:
-
-```bash
+4. Add the client ID and secret to your `.env` file: ```bash
 OIDC_CLIENT_ID=xxx.apps.googleusercontent.com
 OIDC_CLIENT_SECRET=GOCSPX-xxx
 OIDC_AUTH_URI=https://accounts.google.com/o/oauth2/v2/auth
@@ -218,25 +182,20 @@ OIDC_USERINFO_URI=https://openidconnect.googleapis.com/v1/userinfo
 OIDC_LOGOUT_URI=https://accounts.google.com/logout
 ```
 
-Restart Outline:
-
-```bash
+Restart Outline: ```bash
 docker-compose restart outline
 ```
 
 ### Quick Deploy on DigitalOcean
 
-For teams without an existing Docker setup, [deploy on DigitalOcean](https://m.do.co/c/eca87ac14ee0):
-
-```bash
+For teams without an existing Docker setup, [deploy on DigitalOcean](https://m.do.co/c/eca87ac14ee0): ```bash
 # On a fresh Ubuntu 24.04 Droplet ($6/month)
 sudo apt update && sudo apt install -y docker.io docker-compose-plugin
 
 # Clone and start
 git clone https://github.com/outline/outline.git
 cd outline
-# Copy the docker-compose.yml above, configure .env, then:
-docker compose up -d
+# Copy the docker-compose.yml above, configure .env, then: docker compose up -d
 ```
 
 Alternatively, use [HTStack](https://my.htstack.com/aff.php?aff=27187) for a managed Outline deployment with built-in SSL and backups.
@@ -245,36 +204,22 @@ Alternatively, use [HTStack](https://my.htstack.com/aff.php?aff=27187) for a man
 
 ### Slack Integration (Deep Link)
 
-Outline's Slack integration is one of its strongest features:
-
-1. Go to [Slack API Apps](https://api.slack.com/apps) → Create New App → From Manifest
-2. Paste this manifest:
-
-```yaml
+Outline's Slack integration is one of its strongest features: 1. Go to [Slack API Apps](https://api.slack.com/apps) → Create New App → From Manifest
+2. Paste this manifest: ```yaml
 _display_name: Outline Wiki
-features:
-  bot_user:
-    display_name: Outline
+features: bot_user: display_name: Outline
     always_online: true
-  slash_commands:
-    - command: /outline
+  slash_commands: - command: /outline
       url: https://wiki.yourcompany.com/api/hooks.slack
       description: Search your knowledge base
       usage_hint: "[search query]"
       should_escape: false
-oauth_config:
-  redirect_urls:
-    - https://wiki.yourcompany.com/auth/slack.callback
-  scopes:
-    bot:
-      - commands
+oauth_config: redirect_urls: - https://wiki.yourcompany.com/auth/slack.callback
+  scopes: bot: - commands
       - links:read
       - links:write
-settings:
-  event_subscriptions:
-    request_url: https://wiki.yourcompany.com/api/hooks.slack
-    bot_events:
-      - link_shared
+settings: event_subscriptions: request_url: https://wiki.yourcompany.com/api/hooks.slack
+    bot_events: - link_shared
   org_deploy_enabled: true
   socket_mode_enabled: false
 ```
@@ -287,9 +232,7 @@ Once connected, type `/outline deploy rollback` in Slack to instantly search you
 
 ### API and Webhooks
 
-Programmatic access to your knowledge base:
-
-```bash
+Programmatic access to your knowledge base: ```bash
 # List all collections
 curl -X GET "https://wiki.yourcompany.com/api/collections" \
   -H "Authorization: Bearer YOUR_API_TOKEN"
@@ -316,24 +259,16 @@ Generate an API token from **Settings** → **API** in the Outline UI.
 
 ### CI/CD Documentation Automation
 
-Auto-publish docs from your Git repository:
-
-```bash
+Auto-publish docs from your Git repository: ```bash
 #!/bin/bash
 # .github/workflows/publish-docs.yml
 name: Publish API Docs to Outline
 
-on:
-  push:
-    branches: [main]
-    paths:
-      - 'docs/**'
+on: push: branches: [main]
+    paths: - 'docs/**'
 
-jobs:
-  publish:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: publish: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
 
       - name: Publish to Outline
         run: |
@@ -350,17 +285,12 @@ jobs:
 
 ### Import from Notion or Confluence
 
-Migrating your existing docs:
+Migrating your existing docs: ```bash
+# Export from Notion: # Settings & Members → Settings → Export All Workspace Content → Export as Markdown
 
-```bash
-# Export from Notion:
-# Settings & Members → Settings → Export All Workspace Content → Export as Markdown
+# Export from Confluence: # Space Tools → Content Tools → Export → XML format
 
-# Export from Confluence:
-# Space Tools → Content Tools → Export → XML format
-
-# Import into Outline:
-# Collection → Import → Upload Markdown/ZIP file
+# Import into Outline: # Collection → Import → Upload Markdown/ZIP file
 # Outline preserves heading structure and converts Notion databases to tables
 ```
 
@@ -368,10 +298,12 @@ Migrating your existing docs:
 
 ### Performance Benchmarks
 
-Tested on a $6/month DigitalOcean Droplet (1 vCPU, 1GB RAM):
-
-| Metric | Result |
-|---|---|
+Tested on a $6/month DigitalOcean Droplet (1 vCPU, 1GB RAM): | Metric | Result |
+|
+---
+|
+---
+|
 | Time to first document load | **~180ms** |
 | Real-time sync latency (2 editors) | **~45ms** |
 | Full-text search (10,000 docs) | **~80ms** average |
@@ -479,47 +411,32 @@ echo "Backup completed: outline_full_$TIMESTAMP.zip"
 
 ```yaml
 # docker-compose.monitoring.yml
-services:
-  prometheus:
-    image: prom/prometheus:v2.51.0
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+services: prometheus: image: prom/prometheus:v2.51.0
+    volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus-data:/prometheus
-    ports:
-      - "9090:9090"
+    ports: - "9090:9090"
     restart: unless-stopped
 
-  grafana:
-    image: grafana/grafana:10.4.0
-    volumes:
-      - grafana-data:/var/lib/grafana
+  grafana: image: grafana/grafana:10.4.0
+    volumes: - grafana-data:/var/lib/grafana
       - ./grafana-dashboards:/etc/grafana/provisioning/dashboards
-    ports:
-      - "3001:3000"
+    ports: - "3001:3000"
     restart: unless-stopped
 
-  node-exporter:
-    image: prom/node-exporter:v1.7.0
-    volumes:
-      - /proc:/host/proc:ro
+  node-exporter: image: prom/node-exporter:v1.7.0
+    volumes: - /proc:/host/proc:ro
       - /sys:/host/sys:ro
       - /:/rootfs:ro
-    command:
-      - '--path.procfs=/host/proc'
+    command: - '--path.procfs=/host/proc'
       - '--path.rootfs=/rootfs'
       - '--path.sysfs=/host/sys'
     restart: unless-stopped
 
-volumes:
-  prometheus-data:
-  grafana-data:
-```
+volumes: prometheus-data: grafana-data: ```
 
 ### 4. S3-Compatible Storage with Backblaze B2
 
-For production file storage, replace MinIO with Backblaze B2 (or AWS S3):
-
-```bash
+For production file storage, replace MinIO with Backblaze B2 (or AWS S3): ```bash
 # .env additions for Backblaze B2
 AWS_ACCESS_KEY_ID=YOUR_B2_KEY_ID
 AWS_SECRET_ACCESS_KEY=YOUR_B2_APPLICATION_KEY
@@ -533,24 +450,16 @@ AWS_S3_FORCE_PATH_STYLE=false
 
 ```yaml
 # docker-compose.prod.yml — extends base with production config
-services:
-  outline:
-    image: outlinewiki/outline:0.83.0
-    environment:
-      - NODE_ENV=production
+services: outline: image: outlinewiki/outline:0.83.0
+    environment: - NODE_ENV=production
       - FORCE_HTTPS=true
       - RATE_LIMITER_ENABLED=true
       - DEFAULT_LANGUAGE=en_US
       - WEB_CONCURRENCY=2
-    deploy:
-      replicas: 2
-      resources:
-        limits:
-          memory: 1G
-        reservations:
-          memory: 512M
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000/api/utils.health"]
+    deploy: replicas: 2
+      resources: limits: memory: 1G
+        reservations: memory: 512M
+    healthcheck: test: ["CMD", "curl", "-f", "http://localhost:3000/api/utils.health"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -559,7 +468,19 @@ services:
 ## Comparison with Alternatives
 
 | Feature | Outline | Notion | Confluence | BookStack | Wiki.js |
-|---|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **License** | BSL-1.1 | Proprietary | Proprietary | MIT | AGPL-3.0 |
 | **Self-hosted** | **Yes** | No | Yes (Data Center) | Yes | Yes |
 | **Real-time collab** | Yes | Yes | Yes (paid) | No | No |
@@ -582,9 +503,7 @@ services:
 
 ## Limitations: Honest Assessment
 
-**Outline is not without its downsides.** Before migrating your entire team's documentation:
-
-1. **BSL-1.1 License**: Outline uses the Business Source License, not a traditional open-source license. Internal use is free. Offering Outline as a competing cloud service requires a commercial license. For 99% of engineering teams, this is irrelevant — but verify with legal if you are a hosting provider.
+**Outline is not without its downsides.** Before migrating your entire team's documentation: 1. **BSL-1.1 License**: Outline uses the Business Source License, not a traditional open-source license. Internal use is free. Offering Outline as a competing cloud service requires a commercial license. For 99% of engineering teams, this is irrelevant — but verify with legal if you are a hosting provider.
 
 2. **No guest access**: You cannot invite external collaborators without giving them full team accounts. Public sharing links work for individual documents, but there is no guest/collaborator tier.
 
@@ -640,15 +559,11 @@ If your team currently pays for Notion or Confluence, Outline pays for itself in
 
 **Related tools**: [Keycloak SSO Setup](keycloak-sso-setup-dibi8-internal-link) | [MinIO S3 Setup Guide](minio-s3-setup-dibi8-internal-link)
 
+
 ---
-
-
-
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -669,7 +584,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 *This article may contain affiliate links. If you sign up for DigitalOcean or HTStack through our referral links, we receive a commission at no extra cost to you. We only recommend services we use ourselves.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

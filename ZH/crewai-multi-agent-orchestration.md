@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/crewai-multi-agent-orchestration" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/crewai-multi-agent-orchestration" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/crewai-multi-agent-orchestration" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/crewai-multi-agent-orchestration" />
 title: 'CrewAI: 构建自主协作的多智能体AI团队 — 生产环境配置与模式 2026'
 description: 'CrewAI 实操 2026 指南 — 用于构建基于角色的智能体、任务委托、记忆共享和自主协作模式的多智能体AI系统的 Python 框架。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [crewai, 多智能体, 'ai-agent', 编排, 自主智能体, llm, python, 开源]
-aliases:
-- /zh/posts/crewai-multi-agent-orchestration/
+aliases: - /zh/posts/crewai-multi-agent-orchestration/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/crewai-multi-agent-orchestration/ -->
 
 {{</* resource-info */>}}
 
@@ -58,7 +50,13 @@ CrewAI 的架构围绕四个原语构建：**智能体**、**任务**、**工具
 CrewAI 中的智能体不仅仅是 LLM 实例。它是一个定义好的角色，包含：
 
 | 属性 | 用途 | 示例 |
-|------|------|------|
+|
+---
+|
+---
+|
+---
+|
 | `role` | 职位/身份 | `"高级研究分析师"` |
 | `goal` | 智能体想要实现的目标 | `"找到3个竞争对手的详细定价数据"` |
 | `backstory` | 个性/背景 | `"你是一位拥有10年经验的细致分析师"` |
@@ -73,7 +71,13 @@ CrewAI 中的智能体不仅仅是 LLM 实例。它是一个定义好的角色�
 任务指定需要做什么、谁来做、以及期望什么输出：
 
 | 属性 | 用途 | 示例 |
-|------|------|------|
+|
+---
+|
+---
+|
+---
+|
 | `description` | 要做什么（可包含 `{变量}`） | `"研究 {公司} 的定价方案"` |
 | `expected_output` | 质量规范 | `"包含方案名称、价格和功能的表格"` |
 | `agent` | 谁执行任务 | `researcher` |
@@ -87,7 +91,13 @@ CrewAI 中的智能体不仅仅是 LLM 实例。它是一个定义好的角色�
 CrewAI 支持三种协作模式：
 
 | 流程 | 模式 | 适用场景 |
-|------|------|----------|
+|
+---
+|
+---
+|
+---
+|
 | `Process.sequential` | 线性交接：A → B → C | 有明确依赖关系的工作流 |
 | `Process.hierarchical` | 管理者委派给工作者 | 需要监督的复杂项目 |
 | `Process.parallel` | 多个智能体同时工作 | 独立任务，速度优化 |
@@ -356,8 +366,7 @@ from crewai.tools import tool
 import requests
 
 @tool("股票价格检查器")
-def check_stock_price(ticker: str) -> str:
-    """获取给定股票代码的当前价格。"""
+def check_stock_price(ticker: str) -> str: """获取给定股票代码的当前价格。"""
     url = f"https://api.example.com/stocks/{ticker}"
     response = requests.get(url)
     data = response.json()
@@ -378,12 +387,10 @@ analyst = Agent(
 from crewai import Crew
 
 # 用于监控的步骤回调
-def on_step_callback(step_output):
-    print(f"[步骤] 智能体: {step_output.agent}, 任务: {step_output.task[:50]}")
+def on_step_callback(step_output): print(f"[步骤] 智能体: {step_output.agent}, 任务: {step_output.task[:50]}")
 
 # 用于日志记录的任务回调
-def on_task_callback(task_output):
-    print(f"[任务完成] {task_output.summary}")
+def on_task_callback(task_output): print(f"[任务完成] {task_output.summary}")
 
 monitored_crew = Crew(
     agents=[researcher, writer],
@@ -407,8 +414,7 @@ query_engine = index.as_query_engine()
 
 # 包装为 CrewAI 工具
 @tool("公司知识库")
-def query_knowledge_base(query: str) -> str:
-    """查询公司内部知识库获取政策和流程。"""
+def query_knowledge_base(query: str) -> str: """查询公司内部知识库获取政策和流程。"""
     response = query_engine.query(query)
     return str(response)
 
@@ -428,7 +434,17 @@ policy_expert = Agent(
 我在 **8核 CPU, 32GB RAM** 上使用 GPT-4o API 测试了不同团队规模和任务复杂度的 CrewAI：
 
 | 团队规模 | 任务数 | 流程 | 平均时间 | Token 成本 |
-|----------|--------|------|----------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 2 智能体 | 2 任务 | 顺序 | 18秒 | $0.04 |
 | 3 智能体 | 3 任务 | 顺序 | 45秒 | $0.12 |
 | 3 智能体 | 3 任务 | 层级 | 52秒 | $0.15 |
@@ -441,7 +457,15 @@ policy_expert = Agent(
 ### 对比：单提示 vs 多智能体
 
 | 指标 | 单提示 | 3智能体团队 | 提升 |
-|------|--------|------------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 事实准确性 | 62% | 91% | +46% |
 | 输出完整性 | 55% | 88% | +60% |
 | 来源引用率 | 12% | 89% | +640% |
@@ -496,8 +520,7 @@ crew = Crew(
 from pydantic import BaseModel, Field
 from crewai import Task
 
-class CompetitorAnalysis(BaseModel):
-    company_name: str = Field(description="竞争对手名称")
+class CompetitorAnalysis(BaseModel): company_name: str = Field(description="竞争对手名称")
     pricing_tier: str = Field(description="免费、入门、专业或企业")
     monthly_price: float = Field(description="月价格（USD）")
     key_features: list[str] = Field(description="关键产品功能列表")
@@ -522,11 +545,8 @@ from tenacity import retry, stop_after_attempt, wait_exponential
     wait=wait_exponential(multiplier=1, min=4, max=10),
     reraise=True,
 )
-def run_crew_with_retry(crew: Crew):
-    try:
-        return crew.kickoff()
-    except Exception as e:
-        print(f"团队失败: {e}. 重试中...")
+def run_crew_with_retry(crew: Crew): try: return crew.kickoff()
+    except Exception as e: print(f"团队失败: {e}. 重试中...")
         raise
 
 result = run_crew_with_retry(my_crew)
@@ -567,24 +587,19 @@ app = FastAPI(title="CrewAI 服务")
 # 存储结果
 results_db = {}
 
-class CrewRequest(BaseModel):
-    topic: str
+class CrewRequest(BaseModel): topic: str
     depth: str = "standard"  # standard | deep
 
 @app.post("/crew/run")
-async def run_crew(request: CrewRequest, background: BackgroundTasks):
-    job_id = str(uuid.uuid4())
+async def run_crew(request: CrewRequest, background: BackgroundTasks): job_id = str(uuid.uuid4())
     background.add_task(execute_crew, job_id, request)
     return {"job_id": job_id, "status": "started"}
 
 @app.get("/crew/status/{job_id}")
-async def get_status(job_id: str):
-    if job_id not in results_db:
-        return {"status": "not_found"}
+async def get_status(job_id: str): if job_id not in results_db: return {"status": "not_found"}
     return results_db[job_id]
 
-def execute_crew(job_id: str, request: CrewRequest):
-    researcher = Agent(
+def execute_crew(job_id: str, request: CrewRequest): researcher = Agent(
         role="研究员",
         goal=f"研究 {request.topic}",
         backstory="专家研究员。",
@@ -639,7 +654,17 @@ crew = Crew(
 ## 与替代方案对比
 
 | 特性 | CrewAI | AutoGen | LangGraph | MetaGPT |
-|------|--------|---------|-----------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | GitHub Stars | 28,000+ | 36,000+ | 11,000+ | 48,000+ |
 | 许可证 | MIT | MIT | MIT | MIT |
 | 语言 | Python | Python | Python | Python |
@@ -742,12 +767,11 @@ CrewAI 让多智能体编排变得触手可及。从简单的 2 智能体顺序�
 - [构建多智能体系统指南](https://docs.crewai.com/how-to/Creating-a-Crew-and-kick-it-off/)
 - 相关文章: [LangChain](dibi8-internal-link), [AutoGen 指南](dibi8-internal-link), [LangGraph 模式](dibi8-internal-link)
 
----
 
+---
 *联盟营销披露: 本文包含 DigitalOcean 和 虎网云 的联盟链接。如果你通过这些链接注册，我们赚取佣金，不额外收费。CrewAI 是开源免费使用的；我们与 CrewAI 项目没有商业关系。观点基于实际测试和生产部署。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -773,8 +797,8 @@ CrewAI 让多智能体编排变得触手可及。从简单的 2 智能体顺序�
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [tradingagents-llm-multi-agent-trading-framework-2026](crewai-multi-agent-orchestration)

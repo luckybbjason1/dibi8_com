@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/vectorbt-quantitative-backtesting" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/vectorbt-quantitative-backtesting" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/vectorbt-quantitative-backtesting" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/vectorbt-quantitative-backtesting" />
 title: 'VectorBT: 1초에 100만+ 거래를 처리하는 초고속 Python 백테스팅 라이브러리 — 202...
 description: 'VectorBT로 Python 퀀트 백테스팅을 마스터하세요. 벡터화된 Numba 가속 시뮬레이션으로 트레이딩 전략을 구축, 테스트, 최적화합니다. 코드 예제가 포함된 완전한 2026 가이드.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: []
-aliases:
-- /kr/posts/vectorbt-quantitative-backtesting/
+aliases: - /kr/posts/vectorbt-quantitative-backtesting/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/vectorbt-quantitative-backtesting/ -->
 
 {{</* resource-info */>}}
 
@@ -47,9 +39,7 @@ VectorBT(Vector Backtesting)는 **이벤트 기반 루프 대신 벡터화된 �
 
 ## VectorBT 작동 방식: 아키텍처 및 핵심 개념
 
-VectorBT의 속도는 세 가지 아키텍처적 결정에서 나옵니다:
-
-### NumPy-First 데이터 표현
+VectorBT의 속도는 세 가지 아키텍처적 결정에서 나옵니다: ### NumPy-First 데이터 표현
 
 모든 가격 데이터는 NumPy ndarray로 존재합니다. 100개 자산에 대한 10년 일일 데이터 DataFrame은 형태 `(2,520, 100)`의 2D 배열이 됩니다 —— 연간 약 252 거래일. 핫 패스 어디에서도 행 단위 반복이 일어나지 않습니다.
 
@@ -90,16 +80,12 @@ pip install vectorbt
 pip install "vectorbt[all]"
 ```
 
-설치 확인:
-
-```python
+설치 확인: ```python
 import vectorbt as vbt
 print(vbt.__version__)  # 0.27.2 이상
 ```
 
-재현성을 위해 환경을 고정하세요:
-
-```bash
+재현성을 위해 환경을 고정하세요: ```bash
 # requirements.txt
 vectorbt==0.27.2
 numba==0.60.0
@@ -109,9 +95,7 @@ yfinance==0.2.54
 plotly==5.24.1
 ```
 
-macOS의 일반적인 설치 문제: Numba는 `llvmlite`가 필요하며, 이는 Xcode Command Line Tools가 필요합니다:
-
-```bash
+macOS의 일반적인 설치 문제: Numba는 `llvmlite`가 필요하며, 이는 Xcode Command Line Tools가 필요합니다: ```bash
 xcode-select --install  # Numba 설치가 실패하면 먼저 실행
 ```
 
@@ -157,9 +141,7 @@ print(portfolio.sharpe_ratio())
 
 ## 매개변수 최적화: 워프 속도의 그리드 서치
 
-VectorBT의 진정한 힘이 드러나는 것은 매개변수를 스윕할 때입니다. 5부터 200까지의 MA 윈도우를 테스트해 봅시다:
-
-```python
+VectorBT의 진정한 힘이 드러나는 것은 매개변수를 스윕할 때입니다. 5부터 200까지의 MA 윈도우를 테스트해 봅시다: ```python
 import vectorbt as vbt
 
 price = vbt.YFData.download("BTC-USD", start="2020-01-01", end="2026-01-01").get("Close")
@@ -194,9 +176,7 @@ print(f"Sharpe: {portfolio.sharpe_ratio().loc[best_idx]:.2f}")
 
 ## 워크포워드 분석: 강건한 전략 검증
 
-단일 기간에 대한 백테스팅은 오버피팅을 유발합니다. 워크포워드 분석(WFA)은 데이터를 샘플 내 트레이닝과 샘플 외 테스트 윈도우로 분할합니다. VectorBT는 날짜 슬라이싱을 통한 `Portfolio.from_signals`로 이를 구현합니다:
-
-```python
+단일 기간에 대한 백테스팅은 오버피팅을 유발합니다. 워크포워드 분석(WFA)은 데이터를 샘플 내 트레이닝과 샘플 외 테스트 윈도우로 분할합니다. VectorBT는 날짜 슬라이싱을 통한 `Portfolio.from_signals`로 이를 구현합니다: ```python
 import vectorbt as vbt
 from datetime import datetime
 import pandas as pd
@@ -208,8 +188,7 @@ n_splits = 10
 split_size = len(price) // n_splits
 results = []
 
-for i in range(n_splits):
-    # 트레인/테스트 윈도우 정의
+for i in range(n_splits): # 트레인/테스트 윈도우 정의
     train_start = i * split_size
     train_end = train_start + split_size - 60
     test_end = train_start + split_size
@@ -260,9 +239,7 @@ print(results_df[["test_sharpe", "test_return"]].mean())
 
 ## 머신러닝과의 통합
 
-VectorBT는 ML 기반 신호를 위해 scikit-learn과 자연스럽게 페어링됩니다. 다음 날 방향을 예측하는 분류기를 훈련한 다음, 예측을 VectorBT에 공급하여 현실적인 실행 시뮬레이션을 수행합니다:
-
-```python
+VectorBT는 ML 기반 신호를 위해 scikit-learn과 자연스럽게 페어링됩니다. 다음 날 방향을 예측하는 분류기를 훈련한 다음, 예측을 VectorBT에 공급하여 현실적인 실행 시뮬레이션을 수행합니다: ```python
 import vectorbt as vbt
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
@@ -322,9 +299,7 @@ print(f"Buy & Hold Return: {(test_price.iloc[-1] / test_price.iloc[0] - 1):.2%}"
 
 ## VectorBT를 활용한 포트폴리오 최적화
 
-VectorBT PRO(유료 버전, $299/년)는 마코위츠 평균-분산 및 Black-Litterman 모델을 통한 포트폴리오 수준 최적화를 추가합니다. 오픈소스 버전도 다중 자산 가중치를 지원합니다:
-
-```python
+VectorBT PRO(유료 버전, $299/년)는 마코위츠 평균-분산 및 Black-Litterman 모델을 통한 포트폴리오 수준 최적화를 추가합니다. 오픈소스 버전도 다중 자산 가중치를 지원합니다: ```python
 import vectorbt as vbt
 import numpy as np
 
@@ -343,8 +318,7 @@ weights = 1 / volatility
 weights = weights / weights.sum()
 
 print("포트폴리오 가중치:")
-for symbol, w in weights.items():
-    print(f"  {symbol}: {w:.2%}")
+for symbol, w in weights.items(): print(f"  {symbol}: {w:.2%}")
 
 # 할당 백테스트
 portfolio = vbt.Portfolio.from_holding(
@@ -382,20 +356,16 @@ print(f"Max Drawdown: {portfolio.max_drawdown():.2%}")
 
 ### 사용자 정의 지표
 
-VectorBT의 `IndicatorFactory`는 모든 함수를 벡터화된 지표로 변환합니다:
-
-```python
+VectorBT의 `IndicatorFactory`는 모든 함수를 벡터화된 지표로 변환합니다: ```python
 import vectorbt as vbt
 import numpy as np
 from numba import njit
 
 @njit
-def custom_momentum_nb(price, period):
-    """Numba 가속 모멘텀 지표."""
+def custom_momentum_nb(price, period): """Numba 가속 모멘텀 지표."""
     momentum = np.empty_like(price)
     momentum[:period] = np.nan
-    for i in range(period, len(price)):
-        momentum[i] = (price[i] / price[i - period] - 1) * 100
+    for i in range(period, len(price)): momentum[i] = (price[i] / price[i - period] - 1) * 100
     return momentum
 
 # IndicatorFactory로 랩핑
@@ -440,15 +410,12 @@ print(f"Avg trade: {portfolio.trades.returns.mean():.2%}")
 
 ### 병렬 실행
 
-VectorBT의 텐서 연산은 이미 단일 코어를 포화시킵니다. 멀티코어 확장을 위해 매개변수 그리드를 프로세스 간에 분할합니다:
-
-```python
+VectorBT의 텐서 연산은 이미 단일 코어를 포화시킵니다. 멀티코어 확장을 위해 매개변수 그리드를 프로세스 간에 분할합니다: ```python
 from multiprocessing import Pool
 import vectorbt as vbt
 import numpy as np
 
-def run_chunk(param_chunk):
-    price = vbt.YFData.download("BTC-USD").get("Close")
+def run_chunk(param_chunk): price = vbt.YFData.download("BTC-USD").get("Close")
     fast_ma = vbt.MA.run(price, param_chunk[:, 0])
     slow_ma = vbt.MA.run(price, param_chunk[:, 1])
     entries = fast_ma.ma_crossed_above(slow_ma)
@@ -460,8 +427,7 @@ def run_chunk(param_chunk):
 params = np.array(np.meshgrid(np.arange(5, 41, 5), np.arange(20, 121, 10))).T.reshape(-1, 2)
 chunks = np.array_split(params, 4)
 
-with Pool(4) as p:
-    results = p.map(run_chunk, chunks)
+with Pool(4) as p: results = p.map(run_chunk, chunks)
 ```
 
 ## 대안과의 비교
@@ -488,9 +454,7 @@ with Pool(4) as p:
 
 ## 한계 / 정직한 평가
 
-VectorBT는 만능 솔루션이 아닙니다. 다음은 그것이 하지 못하는 것입니다:
-
-1. **실제 트레이딩 실행이 없습니다.** VectorBT는 순수한 연구 라이브러리입니다. 실제 트레이딩을 위해서는 CCXT, IBKR API, Lean과 같은 별도의 실행 프레임워크가 필요합니다.
+VectorBT는 만능 솔루션이 아닙니다. 다음은 그것이 하지 못하는 것입니다: 1. **실제 트레이딩 실행이 없습니다.** VectorBT는 순수한 연구 라이브러리입니다. 실제 트레이딩을 위해서는 CCXT, IBKR API, Lean과 같은 별도의 실행 프레임워크가 필요합니다.
 
 2. **벡터화된 근사.** 벡터화된 모델은 기본적으로 동일 봉의 종가에 주문을 체결합니다. 실제 슬리피지와 시장 충격은 틱 단위로 시뮬레이션되는 것이 아니라 근사됩니다. 고주파 전략은 왜곡된 결과를 보게 됩니다.
 
@@ -555,9 +519,7 @@ AI 기반 자동 트레이딩 실행을 위해 [Minara](https://minara.ai/r/OSXG
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -567,7 +529,6 @@ AI 기반 자동 트레이딩 실행을 위해 [Minara](https://minara.ai/r/OSXG
 본 문서에는 Binance, OKX, Minara 및 관련 플랫폼에 대한 제휴 링크가 포함되어 있습니다. 이 링크를 통해 가입하면 dibi8.com에 추가 비용 없이 커미션이 지급될 수 있습니다. 우리는 자체 퀀트 연구에 사용하는 도구만을 추천합니다. 제휴 수익은 오픈소스 기술 콘텐츠를 지원합니다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

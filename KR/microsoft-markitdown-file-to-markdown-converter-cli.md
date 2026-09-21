@@ -1,19 +1,13 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/microsoft-markitdown-file-to-markdown-converter-cli" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/microsoft-markitdown-file-to-markdown-converter-cli" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/microsoft-markitdown-file-to-markdown-converter-cli" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/microsoft-markitdown-file-to-markdown-converter-cli" />
 title: "마이크로소프트 MarkItDown: 모든 파일을 Markdown으로 변환하는 완전 가이드 — 무료, ...
 description: "마이크로소프트의 MarkItDown을 사용하여 PDF, Word 문서, 이미지, HTML, PPTX 등을 깨끗한 Markdown으로 변환하는 방법을 배워보세요. 단계별 설치, 사용 예시, Python API, AI 파이프라인 통합, 벤치마크 및 Pandoc, Calibre, LibreOffice와의 비교."
 date: 2026-06-10
-lastmod:  2026-06-10slug: "microsoft-markitdown-file-to-markdown-converter-cli"
+lastmod: 2026-06-10
+slug: "microsoft-markitdown-file-to-markdown-converter-cli"
 category: dev-utils
 tags: [마이크로소프트, markitdown, markdown, python, cli, pdf변환기, 문서처리, AI, 오픈소스]
 lang: ko
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/microsoft-markitdown-file-to-markdown-converter-cli/ -->
 
 ## 소개
 
@@ -27,9 +21,7 @@ MarkItDown은 마이크로소프트에서 개발하고 유지보수하며, 관�
 
 MarkItDown은 마이크로소프트에서 개발한 Python 기반 명령줄 도구 및 라이브러리로, 거의 모든 일반적인 형식의 파일을 Markdown 텍스트로 변환합니다. 이 도구는 복잡한 설정 없이 어떤 문서에서도 깨끗하고 구조화된 Markdown을 얻을 수 있는 가장 간단한 방법으로 설계되었습니다.
 
-주요 기능:
-
-- **다양한 형식 지원** — PDF, DOCX, PPTX, XLSX, HTML, XML, EPUB, JPEG, PNG, BMP, TIFF, WAV, MP3, ZIP 아카이브 등 변환 가능
+주요 기능: - **다양한 형식 지원** — PDF, DOCX, PPTX, XLSX, HTML, XML, EPUB, JPEG, PNG, BMP, TIFF, WAV, MP3, ZIP 아카이브 등 변환 가능
 - **설정 불필요** — 별도 설정 없이 바로 작동
 - **CLI 및 Python API** — 명령줄 도구로 사용하거나 Python 애플리케이션에 통합 가능
 - **배치 처리** — 한 번의 명령어로 전체 디렉토리 또는 ZIP 아카이브 처리
@@ -45,9 +37,7 @@ MarkItDown은 단순한 원리에 기반하여 작동합니다. 파일 유형을
 
 PDF 파일의 경우 MarkItDown은 문서의 시각적 구조를 보존하면서 텍스트를 추출합니다. 제목은 `#` 제목으로, 목록은 `-` 불릿으로, 테이블은 Markdown 테이블 구문으로 변환되며 하이퍼링크도 유지됩니다. Word 문서의 경우 굵게, 기울임, 제목, 임베드 이미지 등 형식을 모두 보존합니다. PowerPoint 프레젠테이션의 경우 각 슬라이드가 구조화된 Markdown 섹션으로 변환됩니다.
 
-이미지 파일의 경우 이 도구는 OCR을 통해 처리합니다. 스캔한 문서 이미지를 제공하면 MarkItDown이 Tesseract OCR을 사용하여 텍스트를 추출할 수 있습니다. ZIP 아카이브의 경우 포함된 각 파일을 개별적으로 자동으로 처리하고 결과를 결합합니다. 변환 파이프라인은 다음과 같습니다:
-
-1. **파일 감지** — 확장자와 MIME 유형으로 파일 유형 식별
+이미지 파일의 경우 이 도구는 OCR을 통해 처리합니다. 스캔한 문서 이미지를 제공하면 MarkItDown이 Tesseract OCR을 사용하여 텍스트를 추출할 수 있습니다. ZIP 아카이브의 경우 포함된 각 파일을 개별적으로 자동으로 처리하고 결과를 결합합니다. 변환 파이프라인은 다음과 같습니다: 1. **파일 감지** — 확장자와 MIME 유형으로 파일 유형 식별
 2. **파서 선택** — 파일 유형에 따라 적절한 변환기 플러그인 선택
 3. **콘텐츠 추출** — 파일에서 원시 텍스트 및 메타데이터 추출
 4. **Markdown 포맷팅** — 추출된 콘텐츠를 깨끗하고 일관된 Markdown으로 포맷팅
@@ -75,9 +65,7 @@ markitdown --version
 
 ### 선택적 의존성 설치
 
-특정 형식 지원만 필요한 환경:
-
-```bash
+특정 형식 지원만 필요한 환경: ```bash
 pip install 'markitdown[pdf, docx, pptx]'
 ```
 
@@ -85,22 +73,16 @@ pip install 'markitdown[pdf, docx, pptx]'
 
 ### 플러그인 설치
 
-MarkItDown은 추가 기능을 위한 플러그인 확장을 지원합니다:
-
-```bash
+MarkItDown은 추가 기능을 위한 플러그인 확장을 지원합니다: ```bash
 markitdown --list-plugins
 markitdown --use-plugins path-to-file.pdf
 ```
 
-스캔 이미지에 대한 OCR 지원:
-
-```bash
+스캔 이미지에 대한 OCR 지원: ```bash
 pip install markitdown-ocr
 ```
 
-Azure 콘텐츠 이해 통합:
-
-```bash
+Azure 콘텐츠 이해 통합: ```bash
 pip install 'markitdown[az-content-under standing]'
 ```
 
@@ -138,9 +120,7 @@ markitdown path-to-file.pdf -o document.md
 cat path-to-file.pdf | markitdown
 ```
 
-MarkItDown은 표준입력에서 읽을 수 있어 창의적인 파이프라인 구성이 가능합니다. 예를 들어 파일을 다운로드하고 한 번의 명령어로 변환할 수 있습니다:
-
-```bash
+MarkItDown은 표준입력에서 읽을 수 있어 창의적인 파이프라인 구성이 가능합니다. 예를 들어 파일을 다운로드하고 한 번의 명령어로 변환할 수 있습니다: ```bash
 curl -sL https://example.com/document.pdf | markitdown
 ```
 
@@ -174,9 +154,7 @@ markitdown data.xlsx > data.md
 markitdown scan.png > scan.md
 ```
 
-OCR을 사용하려면 시스템에 Tesseract와 `markitdown-ocr` 플러그인을 설치해야 합니다:
-
-```bash
+OCR을 사용하려면 시스템에 Tesseract와 `markitdown-ocr` 플러그인을 설치해야 합니다: ```bash
 sudo apt-get install tesseract-ocr
 pip install markitdown-ocr
 ```
@@ -209,8 +187,7 @@ print(result.text_content)
 import markitdown
 
 md = markitdown.MarkItDown()
-with open("report.docx", "rb") as f:
-    result = md.convert(f)
+with open("report.docx", "rb") as f: result = md.convert(f)
     print(result.text_content)
 ```
 
@@ -234,11 +211,9 @@ import os
 
 md = markitdown.MarkItDown()
 files = glob.glob("docs/**/*.pdf", recursive=True)
-for filepath in files:
-    result = md.convert(filepath)
+for filepath in files: result = md.convert(filepath)
     output_path = os.path.splitext(filepath)[0] + ".md"
-    with open(output_path, "w") as f:
-        f.write(result.text_content)
+    with open(output_path, "w") as f: f.write(result.text_content)
     print(f"변환 완료: {filepath} -> {output_path}")
 ```
 
@@ -259,26 +234,19 @@ print(result.text_content)
 
 ### RAG 파이프라인 통합
 
-MarkItDown의 가장 강력한 사용 사례 중 하나는 검색 증강 생성 파이프라인을 위한 문서 준비입니다. 다음 전체 예시를 확인하세요:
-
-```python
+MarkItDown의 가장 강력한 사용 사례 중 하나는 검색 증강 생성 파이프라인을 위한 문서 준비입니다. 다음 전체 예시를 확인하세요: ```python
 import markitdown
 import os
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
-def ingest_documents(directory):
-    md = markitdown.MarkItDown()
+def ingest_documents(directory): md = markitdown.MarkItDown()
     splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
 
     documents = []
-    for filename in os.listdir(directory):
-        filepath = os.path.join(directory, filename)
-        if os.path.isfile(filepath):
-            result = md.convert(filepath)
-            if result:
-                chunks = splitter.split_text(result.text_content)
-                for i, chunk in enumerate(chunks):
-                    documents.append({
+    for filename in os.listdir(directory): filepath = os.path.join(directory, filename)
+        if os.path.isfile(filepath): result = md.convert(filepath)
+            if result: chunks = splitter.split_text(result.text_content)
+                for i, chunk in enumerate(chunks): documents.append({
                         "source": filename,
                         "chunk_index": i,
                         "content": chunk
@@ -313,12 +281,10 @@ done
 ```python
 import markitdown
 
-def prepare_document_for_llm(filepath, max_tokens=4000):
-    md = markitdown.MarkItDown()
+def prepare_document_for_llm(filepath, max_tokens=4000): md = markitdown.MarkItDown()
     result = md.convert(filepath)
 
-    if result:
-        content = result.text_content[:max_tokens * 4]
+    if result: content = result.text_content[:max_tokens * 4]
         return {
             "status": "success",
             "content": content,
@@ -343,9 +309,7 @@ def prepare_document_for_llm(filepath, max_tokens=4000):
 
 ### 배치 처리 벤치마크
 
-표준 노트북에서 100개의 PDF 파일(평균 50페이지) 처리:
-
-```bash
+표준 노트북에서 100개의 PDF 파일(평균 50페이지) 처리: ```bash
 time markitdown ./batch_docs/ -o ./batch_output/
 real 0m14m32s
 user 0m11m18s
@@ -364,9 +328,7 @@ sys 0m2m45s
 
 ### 실제 사례: 법률 문서 처리
 
-중형 로펌은 월 약 500건의 법률 문서(주로 PDF와 Word 파일)를 처리합니다. 자동화 파이프라인에서 MarkItDown 사용:
-
-```bash
+중형 로펌은 월 약 500건의 법률 문서(주로 PDF와 Word 파일)를 처리합니다. 자동화 파이프라인에서 MarkItDown 사용: ```bash
 #!/bin/bash
 # 매일 법률 문서 처리
 for doc in /var/legal/pending/*.pdf; do
@@ -378,17 +340,13 @@ done
 
 ### 실제 사례: AI 지식베이스 주입
 
-데이터 사이언스 팀은 MarkItDown을 사용하여 연구 논문을 AI 지식베이스에 주입합니다:
-
-```python
+데이터 사이언스 팀은 MarkItDown을 사용하여 연구 논문을 AI 지식베이스에 주입합니다: ```python
 import markitdown
 import os
 
 md = markitdown.MarkItDown()
 papers_dir = "./research_papers/"
-for fname in os.listdir(papers_dir):
-    if fname.endswith(".pdf"):
-        result = md.convert(os.path.join(papers_dir, fname))
+for fname in os.listdir(papers_dir): if fname.endswith(".pdf"): result = md.convert(os.path.join(papers_dir, fname))
         # result.text_content을 임베딩 파이프라인에 전달
         print(f"주입 완료: {fname}")
 ```
@@ -428,11 +386,9 @@ deactivate
 ```python
 import markitdown
 
-class CustomParser(markitdown.ConversionPlugin):
-    SUPPORTED_EXTENSIONS = [".myformat"]
+class CustomParser(markitdown.ConversionPlugin): SUPPORTED_EXTENSIONS = [".myformat"]
 
-    def convert(self, filepath, **kwargs):
-        text = my_custom_parser(filepath)
+    def convert(self, filepath, **kwargs): text = my_custom_parser(filepath)
         return markitdown.ConvertResult(text_content=text)
 
 md = markitdown.MarkItDown()
@@ -446,9 +402,7 @@ result = md.convert("file.myformat")
 docker run --rm -v $(pwd):/data python:3.11-slim pip install 'markitdown[all]' && python -m markitdown /data/input.pdf
 ```
 
-프로덕션 Docker 배포를 위해 사용자 정의 Dockerfile 작성:
-
-```dockerfile
+프로덕션 Docker 배포를 위해 사용자 정의 Dockerfile 작성: ```dockerfile
 FROM python:3.11-slim
 
 RUN apt-get update && apt-get install -y tesseract-ocr && rm -rf /var/lib/apt/lists/*
@@ -479,9 +433,7 @@ MarkItDown의 주요 장점은 단순함과 네이티브 Python 통합으로, AI
 
 ## 한계 / 객관적 평가
 
-MarkItDown은 강력하지만 다음 한계를 유의하세요:
-
-1. **복잡한 PDF 레이아웃** — 특별하거나 매우 사용자 정의된 PDF 레이아웃은 완벽하게 변환되지 않을 수 있습니다. 이 도구는 표준 텍스트 기반 PDF에서 가장 잘 작동합니다.
+MarkItDown은 강력하지만 다음 한계를 유의하세요: 1. **복잡한 PDF 레이아웃** — 특별하거나 매우 사용자 정의된 PDF 레이아웃은 완벽하게 변환되지 않을 수 있습니다. 이 도구는 표준 텍스트 기반 PDF에서 가장 잘 작동합니다.
 2. **OCR 품질** — 이미지-텍스트 변환은 Tesseract 정확도에 의존합니다. 저품질 스캔이나 손글씨는 불완전한 결과를 생성할 수 있습니다.
 3. **대용량 파일 메모리** — 매우 큰 파일(100MB+)은 변환 중 상당한 RAM을 소비할 수 있습니다.
 4. **사용자 정의 형식** — 네이티브로 지원되지 않는 형식은 사용자 정의 파서 확장을 작성해야 합니다.
@@ -538,7 +490,6 @@ A: 예, MarkItDown은 ZIP 아카이브 내의 각 파일을 자동으로 추출�
 일부 링크는 제휴 링크입니다. dibi8.com은 등록 시 추가 비용 없이 수수료를 받을 수 있습니다. 사이트 운영과 콘텐츠 무료 제공에 도움이 됩니다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

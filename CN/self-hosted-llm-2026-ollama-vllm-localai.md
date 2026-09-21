@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/self-hosted-llm-2026-ollama-vllm-localai" />
 title: 'Self-Hosted LLM 2026: Ollama vs vLLM vs LocalAI — Tested...
 description: 'Tested Ollama, vLLM, and LocalAI on the same RTX 4090 with Llama 3.3 70B. Real tokens/sec, memory usage, setup time, and which is right for hobby vs production self-hosted deployment.'
 date: 2026-05-25 00:00:00+08:00
@@ -18,10 +16,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['self-hosted', llm, ollama, vllm, localai, inference, 2026]
-aliases:
-- /posts/self-hosted-llm-2026-ollama-vllm-localai/
-faq:
-  - q: "Which self-hosted LLM stack is best in 2026?"
+aliases: - /posts/self-hosted-llm-2026-ollama-vllm-localai/
+faq: - q: "Which self-hosted LLM stack is best in 2026?"
     a: "Depends on workload. Ollama for hobby/dev (easiest setup, single-user). vLLM for production (highest throughput, multi-user). LocalAI for OpenAI API compatibility drop-in replacement (broad model support, swap target for existing OpenAI client code)."
   - q: "What hardware do I actually need?"
     a: "For Llama 3.3 70B quantized (Q4): single RTX 4090 (24GB VRAM) handles it at usable speed (~25 tokens/sec). Production server: dual H100 or A100 80GB. Hobby: RTX 3090 (24GB) works for 70B at slower speed. For 8B models: any GPU with 8GB VRAM suffices."
@@ -34,7 +30,6 @@ faq:
   - q: "Which is best for OpenAI API drop-in replacement?"
     a: "LocalAI by design — it exposes the OpenAI-compatible /v1/chat/completions endpoint. Point any OpenAI SDK at LocalAI's URL and it just works. Ollama and vLLM also expose OpenAI-compatible endpoints in 2026 versions, but LocalAI has the longest track record and broadest model support."
 ---
-
 {{</* resource-info */>}}
 
 # Self-Hosted LLM 2026: Ollama vs vLLM vs LocalAI
@@ -55,8 +50,8 @@ Three serious open-source LLM runtimes dominate self-hosted deployments in 2026:
 >
 > **Cost break-even**: self-hosting beats API at ~10M+ tokens/month. Below 5M, API wins.
 
----
 
+---
 ## What They Are
 
 ### Ollama
@@ -76,15 +71,22 @@ OpenAI-compatible API server. Drop-in replacement: change `OPENAI_API_BASE` env 
 
 ## Benchmark Setup
 
-All three tested on:
-- Hardware: RTX 4090 (24GB VRAM), 64GB RAM, AMD 7950X
+All three tested on: - Hardware: RTX 4090 (24GB VRAM), 64GB RAM, AMD 7950X
 - Model: Llama 3.3 70B Instruct Q4_K_M (40GB → 22GB after quantization)
 - Workload: 100 concurrent requests, mix of short (50-token) and long (500-token) generations
 
 ## Throughput Results
 
 | Runtime | Single-user tok/sec | Concurrent (10 users) | Memory used |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Ollama | 24 tok/s | 24 tok/s (single-user only) | 22GB VRAM |
 | vLLM | 28 tok/s | 180 tok/s aggregate (18 tok/s per user) | 23GB VRAM |
 | LocalAI | 22 tok/s | 35 tok/s aggregate (3.5 tok/s per user) | 22GB VRAM |
@@ -117,37 +119,29 @@ Plus dependency hell debugging (CUDA version, torch version, vllm version compat
 ### LocalAI (45 min)
 ```yaml
 # docker-compose.yml
-services:
-  api:
-    image: localai/localai:latest-aio-gpu-nvidia
-    volumes:
-      - ./models:/build/models
-    environment:
-      - MODELS_PATH=/build/models
+services: api: image: localai/localai:latest-aio-gpu-nvidia
+    volumes: - ./models:/build/models
+    environment: - MODELS_PATH=/build/models
 ```
 Plus model config YAML for each model loaded. Docker handles dependencies cleanly.
 
 ## Cost Analysis: When Self-Hosting Beats API
 
-Assumptions:
-- Single H100 (rented at $2/hr) = $1440/month
+Assumptions: - Single H100 (rented at $2/hr) = $1440/month
 - Or RTX 4090 owned ($1600 upfront) + $50 electricity = ~$80/month amortized over 24 months
 - Multi-user vLLM serving = ~50K tokens/sec/GPU sustained at full load
 
 ```
-H100 production:
-  $1440/month / 1B tokens/month potential
+H100 production: $1440/month / 1B tokens/month potential
   = $0.0000014/1K tokens
   
-vs Anthropic Sonnet API:
-  $0.003/1K input + $0.015/1K output
+vs Anthropic Sonnet API: $0.003/1K input + $0.015/1K output
   ~$0.009 blended
   
 Break-even: ~160M tokens/month
 ```
 
-For a hobby RTX 4090 doing 100M tokens/month:
-- Owned: $80/month for hardware amortization
+For a hobby RTX 4090 doing 100M tokens/month: - Owned: $80/month for hardware amortization
 - API equivalent: $300-900/month
 - Break-even: ~30M tokens/month for RTX 4090
 
@@ -155,10 +149,18 @@ For a hobby RTX 4090 doing 100M tokens/month:
 
 ## Quality Gap vs Commercial API
 
-Llama 3.3 70B is good but **not at parity** with frontier models:
-
-| Benchmark | Llama 3.3 70B | Claude Sonnet 4.6 | GPT-5 | Gemini 2.5 Pro |
-|---|---|---|---|---|
+Llama 3.3 70B is good but **not at parity** with frontier models: | Benchmark | Llama 3.3 70B | Claude Sonnet 4.6 | GPT-5 | Gemini 2.5 Pro |
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | HumanEval (code) | 80% | 92% | 89% | 87% |
 | MMLU (reasoning) | 82% | 89% | 88% | 86% |
 | MATH | 65% | 75% | 78% | 76% |
@@ -180,16 +182,14 @@ Cost-optimized + high traffic → vLLM with H100
 
 ## Recommended Infrastructure
 
-For self-hosted LLM deployment:
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit, H100/L40S GPU droplets available
+For self-hosted LLM deployment: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit, H100/L40S GPU droplets available
 - **{{< aff "htstack" "footer-cta" "HTStack" >}}** — Hong Kong VPS, GPU options for inference
 
 *Affiliate links — same price, supports dibi8.com.*
 
 ## Conclusion
 
-All three runtimes are production-ready in 2026. The right choice depends on workload:
-- **Ollama** if you're alone and want it to just work in 10 minutes.
+All three runtimes are production-ready in 2026. The right choice depends on workload: - **Ollama** if you're alone and want it to just work in 10 minutes.
 - **vLLM** if you're serving many users and need every token of throughput.
 - **LocalAI** if you're swapping in for OpenAI in existing code.
 
@@ -197,12 +197,11 @@ Self-hosting only beats API costs at meaningful scale (10M+ tokens/month). Below
 
 Quality-wise, Llama 3.3 70B is good enough for most everyday work but not frontier-model good. If your workload demands the best model, stay on API. If "very good and private" beats "best and shared", self-host.
 
----
 
+---
 **Related**: [Ollama Setup Guide](https://dibi8.com/resources/llm-frameworks/ollama/) · [RAG vs Fine-Tuning 2026](https://dibi8.com/resources/llm-frameworks/rag-vs-fine-tuning-2026-decision-framework/) · [MCP Servers 2026 Rankings](https://dibi8.com/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -230,25 +229,20 @@ Quality-wise, Llama 3.3 70B is good enough for most everyday work but not fronti
 
 ## Why This Matters
 
-Understanding self-hosted llm 2026: ollama vs vllm vs localai — tested throughput, cost, setup is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding self-hosted llm 2026: ollama vs vllm vs localai — tested throughput, cost, setup is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

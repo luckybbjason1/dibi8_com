@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/httpie" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/httpie" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/httpie" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/httpie" />
 title: 'HTTPie: 38,200 GitHub Stars — 현대 CLI HTTP 클라이언트 curl, wg...
 description: 'HTTPie는 JSON 지원, 구문 강조 및 세션 관리를 갖춘 API 시대의 현대적인 CLI HTTP 클라이언트다. Python, pip, Homebrew, Docker와 호환. 설치, 벤치마크 비교, 프로덕션 강화 및 FAQ 다룸.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [httpie, cli, 'http-클리이언트', 'api-테스팅', 'curl-대안', json, 터미널, 개발도구]
-aliases:
-- /kr/posts/httpie/
+aliases: - /kr/posts/httpie/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/httpie/ -->
 
 {{</* resource-info */>}}
 
@@ -51,9 +43,7 @@ HTTPie는 Python으로 작성된 오픈소스 CLI HTTP 클라이언트로, 웹 �
 
 이 도구는 API 및 HTTP 서버의 테스트, 디버깅 및 상호작용을 위해 특별히 설계되었다. 범용 다운로드 도구와 달리 HTTPie는 API 개발의 read-eval-print 루프를 최적화한다: 요청을 본어고, 포맷된 응답을 읽고, 수정하고, 반복.
 
-핵심 특성 한눈에 보기:
-
-| 속성 | 값 |
+핵심 특성 한눈에 보기: | 속성 | 값 |
 |-----------|-------|
 | **언어** | Python (3.7+) |
 | **라이선스** | BSD-3-Clause |
@@ -67,14 +57,10 @@ HTTPie는 Python으로 작성된 오픈소스 CLI HTTP 클라이언트로, 웹 �
 
 ### 아키텍처 개요
 
-HTTPie는 두 개의 잘 알려진 Python 라이브러리 위에서 동작한다:
-
-1. **Requests** — 실제 HTTP 전송 처리 (커넥션 풀링, Keep-Alive, SSL, 리다이렉트)
+HTTPie는 두 개의 잘 알려진 Python 라이브러리 위에서 동작한다: 1. **Requests** — 실제 HTTP 전송 처리 (커넥션 풀링, Keep-Alive, SSL, 리다이렉트)
 2. **Pygments** — 터미널 출력에 구문 강조 제공
 
-HTTPie 명령을 실행하면 도구는 다음 단계를 수행한다:
-
-1. **요청 항목 파싱** — 헤더(`Name:Value`), 쿼리 파라미터(`name==value`), 데이터 필드(`name=value`), 원시 JSON 필드(`name:=value`), 파일 업로드(`name@file`)
+HTTPie 명령을 실행하면 도구는 다음 단계를 수행한다: 1. **요청 항목 파싱** — 헤더(`Name:Value`), 쿼리 파라미터(`name==value`), 데이터 필드(`name=value`), 원시 JSON 필드(`name:=value`), 파일 업로드(`name@file`)
 2. **요청 구축** — 데이터를 JSON(기본), 폼 데이터(`--form`), 또는 멀티파트(`--multipart`)로 직렬화
 3. **Requests 라이브러리로 전송** — SSL, 인증, 프록시, 쿠키 처리
 4. **응답 포맷팅 및 컬러화** — Content-Type 기반 Pygments 구문 강조
@@ -84,9 +70,7 @@ HTTPie 명령을 실행하면 도구는 다음 단계를 수행한다:
 
 ### 핵심 설계 철학
 
-명령줄 구문은 전송되는 HTTP 요청에 직접 매핑된다. 다음 HTTP 요청을 비교핸들다:
-
-```http
+명령줄 구문은 전송되는 HTTP 요청에 직접 매핑된다. 다음 HTTP 요청을 비교핸들다: ```http
 POST /post HTTP/1.1
 Host: pie.dev
 X-API-Key: 123
@@ -96,9 +80,7 @@ Content-Type: application/x-www-form-urlencoded
 name=value&name2=value2
 ```
 
-해당 HTTPie 명령과:
-
-```bash
+해당 HTTPie 명령과: ```bash
 http -f POST pie.dev/post \
     X-API-Key:123 \
     User-Agent:Bacon/1.0 \
@@ -114,9 +96,7 @@ http -f POST pie.dev/post \
 
 ### 사전 요구 사항
 
-HTTPie는 **Python 3.7 이상**을 필요로 한다. 버전을 확인한다:
-
-```bash
+HTTPie는 **Python 3.7 이상**을 필요로 한다. 버전을 확인한다: ```bash
 python --version
 ```
 
@@ -215,9 +195,7 @@ Content-Type: application/json
 
 ### jq와의 통합 (JSON 처리)
 
-HTTPie의 JSON 출력은 CLI JSON 프로세서인 `jq`와 자연스럽게 잘 맞는다:
-
-```bash
+HTTPie의 JSON 출력은 CLI JSON 프로세서인 `jq`와 자연스럽게 잘 맞는다: ```bash
 # API 응답에서 특정 필드 추출
 http GET https://api.github.com/repos/httpie/cli | jq '.stargazers_count, .forks_count'
 
@@ -230,9 +208,7 @@ http GET https://api.github.com/user | jq -r '.login' | http POST example.com/we
 
 ### 셸 스크립트와의 통합
 
-HTTPie로 스크립팅할 때의 모범 사례:
-
-```bash
+HTTPie로 스크립팅할 때의 모범 사례: ```bash
 #!/bin/bash
 
 # 스크립트에서 항상 --ignore-stdin 사용하여 멈춤 방지
@@ -280,11 +256,8 @@ name: API 상태 확인
 
 on: [push, pull_request]
 
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: test: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - name: HTTPie 설치
         run: pip install httpie
       - name: API 엔드포인트 테스트
@@ -295,9 +268,7 @@ jobs:
 
 ### VS Code와의 통합
 
-`.vscode/tasks.json`에 HTTPie 명령을 VS Code 작업으로 추가:
-
-```json
+`.vscode/tasks.json`에 HTTPie 명령을 VS Code 작업으로 추가: ```json
 {
   "version": "2.0.0",
   "tasks": [
@@ -315,9 +286,7 @@ jobs:
 
 ### 전송 성능
 
-로컬호스트에서 80GB 전송 시 HTTPie의 Python/Requests 기반은 curl의 C/libcurl 구현과의 차이를 보인다:
-
-| 도구 | 버전 | 시간 (80GB) | 처리량 |
+로컬호스트에서 80GB 전송 시 HTTPie의 Python/Requests 기반은 curl의 C/libcurl 구현과의 차이를 보인다: | 도구 | 버전 | 시간 (80GB) | 처리량 |
 |------|---------|-------------|------------|
 | curl | 7.51.0 | 25초 | 3,276 MB/s |
 | HTTPie | 0.9.8 | 153초 | 535 MB/s |
@@ -328,9 +297,7 @@ jobs:
 
 ### 개발자 생산성 비교
 
-50명의 개발자가 10개의 일반적인 API 작업을 수행하는 타이밍 연구:
-
-| 작업 | HTTPie (평균) | curl (평균) | 시간 절약 |
+50명의 개발자가 10개의 일반적인 API 작업을 수행하는 타이밍 연구: | 작업 | HTTPie (평균) | curl (평균) | 시간 절약 |
 |-----------|-------------|------------|------------|
 | GET + JSON 파싱 | 4.2초 | 12.8초 | 67% |
 | 인증이 포함된 POST | 6.1초 | 18.3초 | 67% |
@@ -561,9 +528,7 @@ httpie cli check-updates
 
 ## 한계 / 정직한 평가
 
-HTTPie는 API 상호작용을 위해 특별히 설계되었으며, 이 집중은 명확한 경계를 만든다:
-
-**1. 성능 상한.** Python Requests 기반으로 작성된 HTTPie는 C 기반 curl의 처리량을 따라갈 수 없다. 대용량 데이터 전송(>1GB)의 경우 curl이 현실적인 선택이다.
+HTTPie는 API 상호작용을 위해 특별히 설계되었으며, 이 집중은 명확한 경계를 만든다: **1. 성능 상한.** Python Requests 기반으로 작성된 HTTPie는 C 기반 curl의 처리량을 따라갈 수 없다. 대용량 데이터 전송(>1GB)의 경우 curl이 현실적인 선택이다.
 
 **2. 호출당 하나의 URL만 지원.** curl과 달리 HTTPie는 명령 하나에 하나의 URL만 지원한다. 한 프로세스에서 병렬로 여러 URL을 배치 가져올 수 없다.
 
@@ -589,9 +554,7 @@ curl은 20개 이상의 프로토콜을 지원하는 범용 데이터 전송 도
 
 ### HTTPie로 JSON 데이터를 어떻게 본어는가?
 
-HTTPie는 문자열 필드에 `=`, 원시 JSON 타입(숫자, 불리언, 배열, 객체)에 `:=`을 사용한다:
-
-```bash
+HTTPie는 문자열 필드에 `=`, 원시 JSON 타입(숫자, 불리언, 배열, 객체)에 `:=`을 사용한다: ```bash
 http POST api.example.com/users \
     name="John Doe" \
     age:=29 \
@@ -612,9 +575,7 @@ HTTPie는 기본적으로 Basic, Digest, Bearer 인증을 지원하며, 플러�
 
 ### HTTPie는 프록시와 함께 사용할 수 있는가?
 
-예. HTTPie는 `--proxy` 플래그 또는 표준 환경 변수를 통해 HTTP, HTTPS, SOCKS 프록시를 지원한다:
-
-```bash
+예. HTTPie는 `--proxy` 플래그 또는 표준 환경 변수를 통해 HTTP, HTTPS, SOCKS 프록시를 지원한다: ```bash
 # 요청별 프록시
 http --proxy=http:http://proxy.company.com:8080 api.example.com
 
@@ -626,9 +587,7 @@ export NO_PROXY=localhost,127.0.0.1
 
 ### HTTPie는 파일 업로드를 지원하는가?
 
-예, `@` 구문을 `--form` 또는 `--multipart`와 함께 사용:
-
-```bash
+예, `@` 구문을 `--form` 또는 `--multipart`와 함께 사용: ```bash
 # 폼 파일 업로드
 http -f POST api.example.com/upload name="My File" file@~/documents/report.pdf
 
@@ -638,9 +597,7 @@ http --multipart POST api.example.com/data field1=value1 field2=value2
 
 ### HTTPie에서 컬러 출력을 비활성화하려면?
 
-CI 환경이나 다른 도구로 파이프할 때 컬러는 자동으로 비활성화된다. 터미널에서 강제로 일반 텍스트를 출력하려면:
-
-```bash
+CI 환경이나 다른 도구로 파이프할 때 컬러는 자동으로 비활성화된다. 터미널에서 강제로 일반 텍스트를 출력하려면: ```bash
 http --pretty=none GET api.example.com/data
 # 또는 환경 변수 설정
 export HTTPIE_NO_COLORS=1
@@ -666,9 +623,7 @@ HTTPie는 특정 문제를 잘 해결함으로써 38,200개의 GitHub Stars를 �
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -684,7 +639,6 @@ HTTPie는 특정 문제를 잘 해결함으로써 38,200개의 GitHub Stars를 �
 7. **CurliPie — curl을 HTTPie로 변환** — https://curlipie.com/
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

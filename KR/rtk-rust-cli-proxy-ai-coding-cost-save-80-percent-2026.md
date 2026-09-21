@@ -1,18 +1,11 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026" />
 title: "개발자 월 20만원 AI 비용을 4만원으로 줄인 Rust 도구: rtk 완벽 가이드 | LLM 토큰 ...
 description: "2026년 개발자들의 가장 큰 고민은 AI 코딩 도구 비용. Rust로 작성된 단일 바이너리 CLI 프록시 rtk는 명령어 출력을 압축하여 LLM 토큰 소비를 60-90% 절감한다. Claude Code, Cursor, GitHub Copilot, Gemini CLI 등 13개 도구를 지원하며 설치는 30초, 설정은 0개."
 keywords: ["rtk", "LLM 토큰 최적화", "AI 코딩 비용 절감", "Claude Code 비용", "Rust CLI 도구", "개발자 생산성", "토큰 압축", "AI 에이전트 최적화"]
 author: "Home Hermes"
 date: "2026-05-20"
-lastmod:  "2026-05-20"lang: "ko"
+lastmod: "2026-05-20"lang: "ko"
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/ -->
 
 # 개발자 월 20만원 AI 비용을 4만원으로 줄인 Rust 도구: rtk 완벽 가이드
 
@@ -39,9 +32,7 @@ lastmod:  "2026-05-20"lang: "ko"
 
 2025년부터 2026년까지 AI 보조 코딩은 '시험 삼아 써본다'에서 '업무 필수'로 전환됐다. Claude Code, GitHub Copilot, Cursor, Windsurf, Gemini CLI——이 도구들은 개발 생산성을 2배 이상 끌어올렸지만, 동시에 하나의 심각한 문제를 낳았다: **토큰 비용**.
 
-한국의 중견 개발자가 AI 코딩 도구를 사용할 때 대략적인 월간 비용은 다음과 같다:
-
-| 사용 패턴 | 월간 API 비용 | 구독료 포함 총비용 | 사용 맥락 |
+한국의 중견 개발자가 AI 코딩 도구를 사용할 때 대략적인 월간 비용은 다음과 같다: | 사용 패턴 | 월간 API 비용 | 구독료 포함 총비용 | 사용 맥락 |
 |-----------|--------------|-------------------|-----------|
 | **경도 사용** (하루 1~2시간) | 5~10만원 | 10~15만원 | 사이드 프로젝트, 가끔 에이전트 활용 |
 | **중도 사용** (하루 3~4시간) | 15~40만원 | 30~50만원 | 풀타임 개발, 에이전트와 병행 |
@@ -61,18 +52,12 @@ lastmod:  "2026-05-20"lang: "ko"
 
 ## rtk란 무엇인가: 또 다른 AI 도구가 아니다
 
-rtk(GitHub: rtk-ai/rtk)는 AI 모델도, 챗 인터페이스도, Copilot 대체재도 아니다. 그 목표는 단 하나:
+rtk(GitHub: rtk-ai/rtk)는 AI 모델도, 챗 인터페이스도, Copilot 대체재도 아니다. 그 목표는 단 하나: > "rtk는 명령어 출력이 LLM 컨텍스트에 도달하기 전에 이를 필터링하고 압축한다."
 
-> "rtk는 명령어 출력이 LLM 컨텍스트에 도달하기 전에 이를 필터링하고 압축한다."
+구조적으로는 AI 에이전트와 셸 사이에 위치한 투명 프록시 계층이다: ```
+rtk 없을 때: Claude Code --git status--> 셸 --> git --> 2,000토큰 원본 출력
 
-구조적으로는 AI 에이전트와 셸 사이에 위치한 투명 프록시 계층이다:
-
-```
-rtk 없을 때:
-Claude Code --git status--> 셸 --> git --> 2,000토큰 원본 출력
-
-rtk 있을 때:
-Claude Code --git status--> RTK --> git --> 필터링/압축 --> 200토큰 정제 출력
+rtk 있을 때: Claude Code --git status--> RTK --> git --> 필터링/압축 --> 200토큰 정제 출력
 ```
 
 **핵심 스펙 요약:**
@@ -89,9 +74,7 @@ Claude Code --git status--> RTK --> git --> 필터링/압축 --> 200토큰 정�
 
 ## 실측 데이터: 30분 Claude Code 세션에서 토큰 80% 절약
 
-rtk 공식 문서의 벤치마크를 한국의 중견 TypeScript 풀스택 프로젝트에서 재현한 결과:
-
-| 작업 | 빈도 | 원본 토큰 | rtk 토큰 | 절약률 |
+rtk 공식 문서의 벤치마크를 한국의 중견 TypeScript 풀스택 프로젝트에서 재현한 결과: | 작업 | 빈도 | 원본 토큰 | rtk 토큰 | 절약률 |
 |------|------|-----------|----------|--------|
 | `ls` / `tree` | 10회 | 2,000 | 400 | **-80%** |
 | `cat` / 파일 읽기 | 20회 | 40,000 | 12,000 | **-70%** |
@@ -112,9 +95,7 @@ rtk 공식 문서의 벤치마크를 한국의 중견 TypeScript 풀스택 프�
 
 ## rtk의 4가지 핵심 압축 전략
 
-rtk는 단순한 '자르기'가 아니라 명령어 유형별 최적 전략을 적용한다:
-
-### 1. Smart Filtering (스마트 필터링)
+rtk는 단순한 '자르기'가 아니라 명령어 유형별 최적 전략을 적용한다: ### 1. Smart Filtering (스마트 필터링)
 
 LLM에게 의미 없는 잡음을 제거한다: 주석, 공백, 보일러플레이트, 진행 바, ASCII 장식. `git push` 결과를 15줄에서 `ok main` 한 줄로 압축한다.
 
@@ -134,9 +115,7 @@ Docker 로그나 테스트 출력에서 흔한 반복 줄을 `... (repeated 47x)
 
 ## 13개 AI 도구를 하나의 rtk로 통합 관리
 
-rtk의 가장 큰 장점 중 하나는 생태계 호환성이다. 한 도구에 종속되지 않는다:
-
-| AI 도구 | 설치 명령 | 가로채기 방식 |
+rtk의 가장 큰 장점 중 하나는 생태계 호환성이다. 한 도구에 종속되지 않는다: | AI 도구 | 설치 명령 | 가로채기 방식 |
 |---------|----------|---------------|
 | **Claude Code** | `rtk init -g` | PreToolUse hook (bash) |
 | **GitHub Copilot (VS Code)** | `rtk init -g --copilot` | PreToolUse hook |
@@ -309,7 +288,6 @@ rtk init -g
 *rtk v0.28.2 기준으로 작성. 기능은 빠르게 진화하므로 최신 릴리즈 노트를 참고하라.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

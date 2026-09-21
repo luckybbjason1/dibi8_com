@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/caddy" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/caddy" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/caddy" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/caddy" />
 title: 'Caddy: 72K+ Stars 的生产级 Web 服务器 — 2026 自动 HTTPS 部署指南'
 description: 'Caddy (Caddyserver) 是一个快速、可扩展的多平台 HTTP/1-2-3 Web 服务器，支持自动 HTTPS。兼容 Docker、Let''''s Encrypt、Prometheus 和 Grafana。涵盖 Caddyfile 教程、Docker 安装配置、生产环境加固和监控。'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [caddy, web服务器, 反向代理, 自动https, docker, 运维, ssl, http3]
-aliases:
-- /zh/posts/caddy/
+aliases: - /zh/posts/caddy/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/caddy/ -->
 
 {{</* resource-info */>}}
 
@@ -118,30 +110,19 @@ caddy version
 
 ```yaml
 # 文件: docker-compose.yml
-services:
-  caddy:
-    image: caddy:2-alpine
+services: caddy: image: caddy:2-alpine
     container_name: caddy
     restart: unless-stopped
-    ports:
-      - "80:80"
+    ports: - "80:80"
       - "443:443"
       - "443:443/udp"  # HTTP/3 QUIC
-    volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile
+    volumes: - ./Caddyfile:/etc/caddy/Caddyfile
       - caddy_data:/data
       - caddy_config:/config
       - ./site:/usr/share/caddy
-    networks:
-      - caddy_network
+    networks: - caddy_network
 
-volumes:
-  caddy_data:
-  caddy_config:
-
-networks:
-  caddy_network:
-    name: caddy_network
+volumes: caddy_data: caddy_config: networks: caddy_network: name: caddy_network
     driver: bridge
 ```
 
@@ -222,72 +203,44 @@ sudo systemctl status caddy
 
 ```yaml
 # 文件: docker-compose.yml
-services:
-  caddy:
-    image: caddy:2-alpine
+services: caddy: image: caddy:2-alpine
     container_name: caddy
     restart: unless-stopped
-    ports:
-      - "80:80"
+    ports: - "80:80"
       - "443:443"
       - "443:443/udp"
-    volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile
+    volumes: - ./Caddyfile:/etc/caddy/Caddyfile
       - caddy_data:/data
       - caddy_config:/config
-    networks:
-      - proxy
-    environment:
-      - ACME_AGREE=true
+    networks: - proxy
+    environment: - ACME_AGREE=true
 
-  api:
-    image: my-api:latest
+  api: image: my-api:latest
     restart: unless-stopped
-    networks:
-      - proxy
-    expose:
-      - "8080"
+    networks: - proxy
+    expose: - "8080"
 
-  frontend:
-    image: my-frontend:latest
+  frontend: image: my-frontend:latest
     restart: unless-stopped
-    networks:
-      - proxy
-    expose:
-      - "3000"
+    networks: - proxy
+    expose: - "3000"
 
-  prometheus:
-    image: prom/prometheus:latest
+  prometheus: image: prom/prometheus:latest
     container_name: prometheus
     restart: unless-stopped
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus_data:/prometheus
-    ports:
-      - "9090:9090"
-    networks:
-      - proxy
+    ports: - "9090:9090"
+    networks: - proxy
 
-  grafana:
-    image: grafana/grafana-oss:latest
+  grafana: image: grafana/grafana-oss:latest
     container_name: grafana
     restart: unless-stopped
-    volumes:
-      - grafana_data:/var/lib/grafana
-    ports:
-      - "3000:3000"
-    networks:
-      - proxy
+    volumes: - grafana_data:/var/lib/grafana
+    ports: - "3000:3000"
+    networks: - proxy
 
-volumes:
-  caddy_data:
-  caddy_config:
-  prometheus_data:
-  grafana_data:
-
-networks:
-  proxy:
-    name: proxy
+volumes: caddy_data: caddy_config: prometheus_data: grafana_data: networks: proxy: name: proxy
     driver: bridge
 ```
 
@@ -365,19 +318,15 @@ grafana.example.com {
 
 ```yaml
 # 文件: prometheus.yml
-global:
-  scrape_interval: 15s
+global: scrape_interval: 15s
   evaluation_interval: 15s
 
-scrape_configs:
-  - job_name: caddy
-    static_configs:
-      - targets: ['caddy:2019']
+scrape_configs: - job_name: caddy
+    static_configs: - targets: ['caddy:2019']
     metrics_path: /metrics
 
   - job_name: 'node-exporter'
-    static_configs:
-      - targets: ['node-exporter:9100']
+    static_configs: - targets: ['node-exporter:9100']
 ```
 
 ### 多租户 SaaS 的按需 TLS
@@ -411,15 +360,12 @@ app = Flask(__name__)
 ALLOWED_DOMAINS = {"alice", "bob", "charlie"}  # 生产环境从数据库加载
 
 @app.route("/allow")
-def check_domain():
-    domain = request.args.get("domain", "")
+def check_domain(): domain = request.args.get("domain", "")
     subdomain = domain.replace(".customers.example.com", "")
-    if subdomain in ALLOWED_DOMAINS:
-        return "OK", 200
+    if subdomain in ALLOWED_DOMAINS: return "OK", 200
     return "Not allowed", 403
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8080)
+if __name__ == "__main__": app.run(host="0.0.0.0", port=8080)
 ```
 
 ## 基准测试 / 实际应用案例
@@ -429,7 +375,15 @@ if __name__ == "__main__":
 ### 静态文件服务性能
 
 | 基准测试工作负载 | Caddy 2.8 | Nginx 1.26 | 胜出方 |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 1 KB 静态文件, HTTP/2 (16 核) | 142,000 req/s | 117,000 req/s | Caddy +22% |
 | 1 MB 静态文件, HTTP/2 (16 核) | 9,800 req/s | 11,400 req/s | Nginx +16% |
 | 1 GB 流式传输, HTTP/1.1 | 2.1 GB/s | 2.5 GB/s | Nginx +17% |
@@ -441,7 +395,15 @@ if __name__ == "__main__":
 ### 反向代理吞吐量
 
 | 场景 | Caddy 2.8 | Nginx 1.30 | Traefik 3.1 |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | HTTP 反向代理 (2 KB JSON) | 81,000 req/s | 88,000 req/s | 82,000 req/s |
 | HTTPS 反向代理 | 36,000 req/s | 38,000 req/s | 36,500 req/s |
 | p99 HTTPS 延迟 | 2.4 ms | 2.1 ms | 2.3 ms |
@@ -605,54 +567,47 @@ api.example.com {
 
 ```yaml
 # 文件: docker-compose.prod.yml
-services:
-  caddy:
-    image: caddy:2-alpine
+services: caddy: image: caddy:2-alpine
     restart: unless-stopped
-    cap_add:
-      - NET_BIND_SERVICE
-    ports:
-      - "80:80"
+    cap_add: - NET_BIND_SERVICE
+    ports: - "80:80"
       - "443:443"
       - "443:443/udp"
-    volumes:
-      - ./Caddyfile.prod:/etc/caddy/Caddyfile:ro
+    volumes: - ./Caddyfile.prod:/etc/caddy/Caddyfile:ro
       - caddy_data:/data
       - caddy_config:/config
       - /var/log/caddy:/var/log/caddy
-    environment:
-      - JWT_SECRET=${JWT_SECRET}
+    environment: - JWT_SECRET=${JWT_SECRET}
       - ACME_EMAIL=${ACME_EMAIL}
-    networks:
-      - proxy
-    deploy:
-      resources:
-        limits:
-          memory: 512M
-        reservations:
-          memory: 128M
-    healthcheck:
-      test: ["CMD", "wget", "--spider", "-q", "http://localhost:2019/metrics"]
+    networks: - proxy
+    deploy: resources: limits: memory: 512M
+        reservations: memory: 128M
+    healthcheck: test: ["CMD", "wget", "--spider", "-q", "http://localhost:2019/metrics"]
       interval: 30s
       timeout: 10s
       retries: 3
 
-volumes:
-  caddy_data:
-    driver: local
-  caddy_config:
-    driver: local
+volumes: caddy_data: driver: local
+  caddy_config: driver: local
 
-networks:
-  proxy:
-    driver: bridge
+networks: proxy: driver: bridge
     internal: false
 ```
 
 ## 与替代方案对比
 
 | 功能特性 | Caddy 2.8 | Nginx 1.30 | Apache 2.4 | Traefik 3.1 |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **自动 HTTPS (零配置)** | 是 —— 内置 | 否 —— 需 certbot | 否 —— mod_ssl + certbot | 是 —— 内置 ACME |
 | **HTTP/3 (QUIC) 支持** | 原生, 默认开启 | 原生, 需手动配置 | 实验性模块 | 原生, 实验性 |
 | **配置语法复杂度** | 低 (Caddyfile) | 高 (nginx.conf DSL) | 高 (.htaccess/httpd) | 中 (YAML + labels) |
@@ -745,12 +700,11 @@ Caddy 的自动 HTTPS、默认 HTTP/3 支持和大幅简化的配置使其成为
 - [Caddy Docker Hub](https://hub.docker.com/_/caddy)
 - [Caddy 社区论坛](https://caddy.community/)
 
----
 
+---
 *披露：本文包含 DigitalOcean 和 HTStack 的联盟链接。如果你通过这些链接购买服务，dibi8.com 将获得佣金，不会向你收取额外费用。所有基准数据和推荐均基于独立测试和编辑判断。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -776,8 +730,8 @@ Caddy 的自动 HTTPS、默认 HTTP/3 支持和大幅简化的配置使其成为
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [apple-container](caddy)

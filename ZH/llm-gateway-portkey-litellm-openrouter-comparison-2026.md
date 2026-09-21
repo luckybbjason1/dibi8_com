@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/llm-gateway-portkey-litellm-openrouter-comparison-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/llm-gateway-portkey-litellm-openrouter-comparison-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llm-gateway-portkey-litellm-openrouter-comparison-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/llm-gateway-portkey-litellm-openrouter-comparison-2026" />
 title: 'Portkey vs LiteLLM vs OpenRouter 2026：诚实的 LLM 网关选型指南（延迟、...
 description: '三家最大的 LLM 网关 2026 实测对比。真实数字：Portkey 增加 <1ms 延迟、LiteLLM 8ms P95、OpenRouter 100-150ms。按场景的 30 秒决策树、$1000/月成本拆解、以及为什么 9Router 在编程 agent 场景碾压三家。'
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
-tech_stack:
-  - Python
+tech_stack: - Python
   - TypeScript
   - Docker
   - Kubernetes
@@ -29,11 +23,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['llm gateway', portkey, litellm, openrouter, 对比]
-aliases:
-  - /posts/llm-gateway-portkey-litellm-openrouter-comparison-2026/
+aliases: - /posts/llm-gateway-portkey-litellm-openrouter-comparison-2026/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/llm-gateway-portkey-litellm-openrouter-comparison-2026/ -->
 # Portkey vs LiteLLM vs OpenRouter 2026：诚实的 LLM 网关选型指南（延迟、价格与自托管全对比）
 
 
@@ -54,7 +45,11 @@ LLM 网关坐在你的应用和 N 个 Provider 之间，对外暴露一个统一
 ## 2. 30 秒决策树
 
 | 你的情况 | 推荐 |
-|---|---|
+|
+---
+|
+---
+|
 | 企业级，合规重，需要 SOC2 / HIPAA | **Portkey** |
 | 想自托管、零 vendor 抽成、有运维团队 | **LiteLLM** |
 | 个人开发者 / 初创，想立刻接入 300+ 模型 | **OpenRouter** |
@@ -122,7 +117,15 @@ LLM 网关坐在你的应用和 N 个 Provider 之间，对外暴露一个统一
 ## 6. 硬碰硬：数字对比表
 
 | 指标 | Portkey | LiteLLM | OpenRouter |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | GitHub stars | 11.8k | **47.8k** | N/A（闭源服务）|
 | 许可证 | MIT | 开源核心（企业版独立）| 商业 |
 | 支持模型数 | 1600+ | 100+ Provider | 300+ 具体模型 |
@@ -167,12 +170,11 @@ LLM 网关坐在你的应用和 N 个 Provider 之间，对外暴露一个统一
 
 没有"全场景最佳" LLM 网关。只有"匹配你第 2 节决策树那一行"的网关。挑那个，发版，等月推理账单超 $5,000 再重新评估。
 
----
 
+---
 *想零成本测试上面三家？开一个 $6/月的 [DigitalOcean droplet](https://m.do.co/c/eca87ac14ee0) 跑 LiteLLM，把现有 OpenAI SDK base URL 改过去，0 代码改动就能拥有完整 fallback 选项。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -200,25 +202,20 @@ LLM 网关坐在你的应用和 N 个 Provider 之间，对外暴露一个统一
 
 ## Why This Matters
 
-Understanding portkey vs litellm vs openrouter 2026：诚实的 llm 网关选型指南（延迟、价格与自托管全对比） is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding portkey vs litellm vs openrouter 2026：诚实的 llm 网关选型指南（延迟、价格与自托管全对比） is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -239,8 +236,8 @@ Portkey vs LiteLLM vs OpenRouter 2026：诚实的 LLM 网关选型指南（延�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 

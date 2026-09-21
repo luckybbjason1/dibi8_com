@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/flowise-ai-workflow-builder-lowcode" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/flowise-ai-workflow-builder-lowcode" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/flowise-ai-workflow-builder-lowcode" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/flowise-ai-workflow-builder-lowcode" />
 title: 'Flowise 2026: Công cụ Xây dựng AI Workflow Low-Code Triể...
 description: 'Hướng dẫn đầy đủ Flowise 2026 — công cụ xây dựng AI workflow low-code mã nguồn mở với 100+ tích hợp. Tạo LangChain Agent trực quan, triển khai Docker, API endpoint và benchmark thực tế.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [flowise, langchain, 'low-code', 'ai workflow', docker, 'tự-host', 'agent builder', 'no-code', 'mã nguồn mở', chatbot]
-aliases:
-- /vi/posts/flowise-ai-workflow-builder-lowcode/
+aliases: - /vi/posts/flowise-ai-workflow-builder-lowcode/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/flowise-ai-workflow-builder-lowcode/ -->
 
 {{</* resource-info */>}}
 
@@ -49,9 +41,7 @@ Phiên bản **2.2.0** (phát hành tháng 3/2026) giới thiệu canvas engine 
 
 ## Flowise hoạt động như thế nào: Kiến trúc & Khái niệm cốt lõi
 
-Kiến trúc của Flowise gồm ba lớp:
-
-```yaml
+Kiến trúc của Flowise gồm ba lớp: ```yaml
 ┌─────────────────────────────────────────────┐
 │           Frontend (React + Flow Editor)    │
 │           - Canvas kéo thả                  │
@@ -109,13 +99,9 @@ mkdir -p ~/flowise && cd ~/flowise
 
 # Tạo docker-compose.yml
 cat > docker-compose.yml << EOF
-services:
-  flowise:
-    image: flowiseai/flowise:2.2.0
-    ports:
-      - "3000:3000"
-    environment:
-      - PORT=3000
+services: flowise: image: flowiseai/flowise:2.2.0
+    ports: - "3000:3000"
+    environment: - PORT=3000
       - FLOWISE_USERNAME=admin
       - FLOWISE_PASSWORD=your-secure-password
       - DATABASE_TYPE=sqlite
@@ -124,13 +110,10 @@ services:
       - SECRETKEY_PATH=/root/.flowise
       - LOG_PATH=/root/.flowise/logs
       - BLOB_STORAGE_PATH=/root/.flowise/storage
-    volumes:
-      - flowise_data:/root/.flowise
+    volumes: - flowise_data:/root/.flowise
     restart: unless-stopped
 
-volumes:
-  flowise_data:
-EOF
+volumes: flowise_data: EOF
 
 # Khởi động
 docker compose up -d
@@ -145,22 +128,15 @@ Lần pull đầu của `flowiseai/flowise:2.2.0` là **~1.4 GB**. Sau khi chạ
 
 ```yaml
 # docker-compose.prod.yml
-services:
-  postgres:
-    image: postgres:16-alpine
-    environment:
-      POSTGRES_USER: flowise
+services: postgres: image: postgres:16-alpine
+    environment: POSTGRES_USER: flowise
       POSTGRES_PASSWORD: strong-db-password
       POSTGRES_DB: flowise
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+    volumes: - postgres_data:/var/lib/postgresql/data
 
-  flowise:
-    image: flowiseai/flowise:2.2.0
-    ports:
-      - "3000:3000"
-    environment:
-      - DATABASE_TYPE=postgres
+  flowise: image: flowiseai/flowise:2.2.0
+    ports: - "3000:3000"
+    environment: - DATABASE_TYPE=postgres
       - DATABASE_HOST=postgres
       - DATABASE_PORT=5432
       - DATABASE_USER=flowise
@@ -168,15 +144,10 @@ services:
       - DATABASE_NAME=flowise
       - FLOWISE_USERNAME=admin
       - FLOWISE_PASSWORD=${FLOWISE_PASSWORD}
-    depends_on:
-      - postgres
-    volumes:
-      - flowise_storage:/root/.flowise
+    depends_on: - postgres
+    volumes: - flowise_storage:/root/.flowise
 
-volumes:
-  postgres_data:
-  flowise_storage:
-```
+volumes: postgres_data: flowise_storage: ```
 
 ### Tham chiếu Biến môi trường
 
@@ -212,8 +183,7 @@ Mở Flowise tại `http://localhost:3000` → **Chatflows** → **Create New**.
 ### Bước 2: Thêm Vector Store Retriever
 
 ```bash
-# Từ panel bên trái, kéo các node sau vào canvas:
-# 1. Vector Stores → "In-Memory Vector Store" (để test)
+# Từ panel bên trái, kéo các node sau vào canvas: # 1. Vector Stores → "In-Memory Vector Store" (để test)
 #    hoặc "Chroma" / "Qdrant" / "Pinecone" (cho production)
 # 2. Document Loaders → "PDF File" hoặc "Plain Text"
 # 3. Embeddings → "OpenAI Embeddings" hoặc "Ollama Embeddings"
@@ -223,11 +193,9 @@ Mở Flowise tại `http://localhost:3000` → **Chatflows** → **Create New**.
 ### Bước 3: Kết nối Document Ingestion Chain
 
 ```
-# Kết nối các node theo thứ tự:
-# [PDF File] → [Recursive Character Text Splitter] → [OpenAI Embeddings] → [Vector Store]
+# Kết nối các node theo thứ tự: # [PDF File] → [Recursive Character Text Splitter] → [OpenAI Embeddings] → [Vector Store]
 #
-# Cấu hình cho mỗi node:
-# - PDF File: upload tài liệu
+# Cấu hình cho mỗi node: # - PDF File: upload tài liệu
 # - Text Splitter: chunkSize=1000, chunkOverlap=200
 # - Embeddings: model=text-embedding-3-small
 # - Vector Store: collectionName=my-docs
@@ -236,15 +204,13 @@ Mở Flowise tại `http://localhost:3000` → **Chatflows** → **Create New**.
 ### Bước 4: Thêm Conversational RAG Chain
 
 ```
-# Thêm các node cho phần query:
-# [Chat Prompt Template] → [OpenAI Chat Model] → [Output Parser]
+# Thêm các node cho phần query: # [Chat Prompt Template] → [OpenAI Chat Model] → [Output Parser]
 #         ↑
 # [Vector Store Retriever] ← [Vector Store (như trên)]
 #         ↑
 # [Conversational Retrieval QA Chain]
 #
-# Kết nối:
-# - Vector Store output → Vector Store Retriever input
+# Kết nối: # - Vector Store output → Vector Store Retriever input
 # - Retriever output → QA Chain "source_documents" input
 # - QA Chain output → Chat Model input
 ```
@@ -257,11 +223,9 @@ SYSTEM_PROMPT = """Bạn là một trợ lý hữu ích trả lờ câu hỏi d�
 ngữ cảnh được cung cấp. Nếu câu trả lờ không có trong ngữ cảnh, hãy nói
 "Tôi không có đủ thông tin để trả lờ câu hỏi đó."
 
-Ngữ cảnh:
-{context}
+Ngữ cảnh: {context}
 
-Câu hỏi:
-{question}
+Câu hỏi: {question}
 
 Trả lờ:"""
 
@@ -279,8 +243,7 @@ Trả lờ:"""
 # Xem tab "Used Context" để thấy chunk nào được truy xuất
 
 # Deploy dưới dạng API: click nút "API Endpoint"
-# Sao chép lệnh curl:
-curl -X POST http://localhost:3000/api/v1/prediction/your-chatflow-id \
+# Sao chép lệnh curl: curl -X POST http://localhost:3000/api/v1/prediction/your-chatflow-id \
   -H "Content-Type: application/json" \
   -d '{"question": "Chủ đề chính của tài liệu này là gì?"}'
 ```
@@ -292,8 +255,7 @@ Tính năng **Agentflow** của Flowise v2.2.0 cho phép bạn xây dựng hệ 
 ### Xây dựng Research Agent Team
 
 ```
-# Bố trí canvas cho đội research 3 agent:
-#
+# Bố trí canvas cho đội research 3 agent: #
 #                    ┌─────────────────┐
 #                    │  Supervisor     │
 #                    │  (Điều phối)    │
@@ -313,23 +275,19 @@ Tính năng **Agentflow** của Flowise v2.2.0 cho phép bạn xây dựng hệ 
 ### Cấu hình Node
 
 ```bash
-# Supervisor Agent node:
-# - LLM: gpt-4.1-nano
+# Supervisor Agent node: # - LLM: gpt-4.1-nano
 # - Type: supervisor
 # - System Prompt: "Bạn là điều phối viên nghiên cứu. Điều hướng nhiệm vụ đến agent chuyên gia phù hợp."
 
-# Web Search Agent node:
-# - LLM: gpt-4.1-nano
+# Web Search Agent node: # - LLM: gpt-4.1-nano
 # - Tools: DuckDuckGo Search, Website Scraper
 # - System Prompt: "Tìm kiếm web để lấy thông tin hiện tại."
 
-# Code Execution Agent node:
-# - LLM: gpt-4.1-nano
+# Code Execution Agent node: # - LLM: gpt-4.1-nano
 # - Tools: Python REPL Tool
 # - System Prompt: "Viết và thực thi code Python cho phân tích dữ liệu."
 
-# Document Analyst Agent node:
-# - LLM: gpt-4.1-nano
+# Document Analyst Agent node: # - LLM: gpt-4.1-nano
 # - Tools: Vector Store Retriever
 # - System Prompt: "Phân tích tài liệu được cung cấp để tìm thông tin liên quan."
 ```
@@ -347,8 +305,7 @@ curl -X POST http://localhost:3000/api/v1/prediction/research-agent-team \
     }
   }'
 
-# Phản hồi bao gồm agent nào xử lý mỗi sub-task:
-# {
+# Phản hồi bao gồm agent nào xử lý mỗi sub-task: # {
 #   "text": "Dựa trên phân tích...",
 #   "agentSteps": [
 #     {"agent": "document_analyst", "action": "retrieved sales data"},
@@ -360,9 +317,7 @@ curl -X POST http://localhost:3000/api/v1/prediction/research-agent-team \
 
 ## Tích hợp với 100+ Công cụ và Dịch vụ
 
-Flowise hỗ trợ **100+ tích hợp** trong các danh mục sau:
-
-| Danh mục | Tích hợp phổ biến | Số lượng |
+Flowise hỗ trợ **100+ tích hợp** trong các danh mục sau: | Danh mục | Tích hợp phổ biến | Số lượng |
 |---|---|---|
 | **Nhà cung cấp LLM** | OpenAI, Anthropic, Google, Ollama, Groq, Mistral, Cohere | 15+ |
 | **Vector Stores** | Chroma, Qdrant, Pinecone, Weaviate, LanceDB, Milvus, Redis | 10+ |
@@ -414,9 +369,7 @@ module.exports = { JiraTicketTool };
 
 ### Latency Benchmarks (Flowise v2.2.0)
 
-Được kiểm tra trên **Intel i7-13700K + 32 GB RAM**, local Docker với OpenAI API:
-
-| Loại Workflow | Nodes | Latency TB | Phần vệ thứ 95 | Tokens/giây |
+Được kiểm tra trên **Intel i7-13700K + 32 GB RAM**, local Docker với OpenAI API: | Loại Workflow | Nodes | Latency TB | Phần vệ thứ 95 | Tokens/giây |
 |---|---|---|---|---|
 | LLM call đơn giản | 3 | 0.8 giây | 1.2 giây | 142 |
 | RAG (1 doc, 10 trang) | 7 | 2.1 giây | 3.4 giây | 98 |
@@ -454,9 +407,7 @@ Mức **tiết kiệm 94% thờ gian** cho các workflow tiêu chuẩn là lý d
 ### Nhúng Flowise dưới dạng Chat Widget
 
 ```html
-<!-- Thêm vào bất kỳ trang web nào -->
-<script type="module">
-  import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed@2.2.0/dist/web.js";
+import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed@2.2.0/dist/web.js";
   Chatbot.init({
     chatflowid: "your-chatflow-id",
     apiHost: "https://flowise.yourdomain.com",
@@ -488,8 +439,7 @@ curl -X POST http://localhost:3000/api/v1/prediction/your-chatflow-id \
   -H "Content-Type: application/json" \
   -d '{"question": "Hello"}'
 
-# Cho production, thêm Nginx rate limiting:
-# limit_req_zone $binary_remote_addr zone=flowise:10m rate=10r/s;
+# Cho production, thêm Nginx rate limiting: # limit_req_zone $binary_remote_addr zone=flowise:10m rate=10r/s;
 # limit_req zone=flowise burst=20 nodelay;
 ```
 
@@ -538,28 +488,18 @@ find /backups/flowise -type d -mtime +14 -exec rm -rf {} +
 
 ```yaml
 # docker-compose.monitoring.yml
-services:
-  prometheus:
-    image: prom/prometheus:v3.0
-    ports:
-      - "9090:9090"
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+services: prometheus: image: prom/prometheus:v3.0
+    ports: - "9090:9090"
+    volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
 
-  grafana:
-    image: grafana/grafana:11.0
-    ports:
-      - "3001:3000"
-    volumes:
-      - grafana_data:/var/lib/grafana
+  grafana: image: grafana/grafana:11.0
+    ports: - "3001:3000"
+    volumes: - grafana_data:/var/lib/grafana
 
-  flowise:
-    image: flowiseai/flowise:2.2.0
-    environment:
-      - METRICS_ENABLED=true
+  flowise: image: flowiseai/flowise:2.2.0
+    environment: - METRICS_ENABLED=true
       - METRICS_PORT=9091
-    ports:
-      - "3000:3000"
+    ports: - "3000:3000"
       - "9091:9091"
 ```
 
@@ -616,8 +556,7 @@ Chắc chắn. Kết nối Ollama (qua node Ollama Chat Model), LM Studio, hoặ
 
 ### Làm thế nào để migrate từ Flowise v1.x sang v2.x?
 
-Nâng cấp từ v1.x lên v2.2.0 đòi hỏi:
-1. Backup tất cả chatflows qua JSON export
+Nâng cấp từ v1.x lên v2.2.0 đòi hỏi: 1. Backup tất cả chatflows qua JSON export
 2. Pull Docker image mới: `flowiseai/flowise:2.2.0`
 3. Chạy database migrations tự động khi khởi động đầu tiên
 4. Xác nhận và cấu hình lại bất kỳ node deprecated nào
@@ -660,9 +599,7 @@ Cũng xem hướng dẫn của chúng tôi về [LangChain production patterns](
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -672,7 +609,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 Bà viết này chứa liên kết affiliate đến [DigitalOcean](https://m.do.co/c/eca87ac14ee0) và [AppSumo](https://appsumo.com/s/106nifb/). Nếu bạn đăng ký qua các liên kết này, chúng tôi nhận được hoa hồng mà không phát sinh chi phí thêm cho bạn. Chúng tôi chỉ đề xuất các dịch vụ chúng tôi tích cực sử dụng cho chính các triển khai của mình. Tất cả benchmark và ý kiến đều được sản xuất độc lập và không chịu ảnh hưởng bởi bất kỳ quan hệ đối tác affiliate nào.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

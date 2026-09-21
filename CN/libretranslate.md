@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/libretranslate" />
 title: 'LibreTranslate: Self-Hosted Translation API with 14.4K+ ...
 description: 'LibreTranslate (LT) is a free, open-source machine translation API powered by Argos Translate. Supports Docker, CUDA GPU, 30+ languages, and offline deployment. Covers setup, benchmarks, monitoring, and integration with OpenAI Whisper, Coqui TTS, and Argos Translate.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [libretranslate, 'machine-translation', 'self-hosted', docker, api, 'open-source', 'argos-translate', nlp]
-aliases:
-- /posts/libretranslate/
+aliases: - /posts/libretranslate/-
 ---
-
 {{</* resource-info */>}}
 
 LibreTranslate is a free, open-source machine translation API that you host yourself. No API keys from Google. No per-character billing from DeepL. No data leaving your infrastructure. With 14,400+ GitHub stars and an active release cycle (v1.9.5 as of May 2026), it has become the default choice for developers who need private, offline-capable translation at zero marginal cost. This LibreTranslate tutorial covers everything from libretranslate setup to libretranslate docker production deployment, with benchmarks and integration guides. We also include a detailed libretranslate vs deepl comparison to help you decide if self-hosted translation fits your use case.
@@ -76,16 +72,24 @@ LibreTranslate offers multiple deployment paths. The Docker route is recommended
 ### System Requirements
 
 | Configuration | CPU | RAM | Storage | Boot Time |
-|---------------|-----|-----|---------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Minimum (3 languages) | 1 vCPU | 2 GB | 1 GB | ~60s |
 | Recommended (11 languages) | 2 vCPU | 4 GB | 3 GB | ~90s |
 | Full Load (30+ languages) | 4 vCPU | 8 GB | 10 GB | ~120s |
 
 ### Docker Quick Start
 
-The fastest way to get LibreTranslate running locally:
-
-```bash
+The fastest way to get LibreTranslate running locally: ```bash
 # Run with Docker
 docker run -ti --rm -p 5000:5000 \
   -v lt-models:/home/libretranslate/.local \
@@ -97,49 +101,32 @@ After startup, open http://localhost:5000 in your browser. The first run downloa
 
 ### Production Docker Compose
 
-For a production deployment, use a dedicated `docker-compose.yml` with persistent volumes, health checks, and resource limits:
-
-```yaml
+For a production deployment, use a dedicated `docker-compose.yml` with persistent volumes, health checks, and resource limits: ```yaml
 # docker-compose.yml - Production Setup
 version: '3.8'
 
-services:
-  libretranslate:
-    container_name: libretranslate
+services: libretranslate: container_name: libretranslate
     image: libretranslate/libretranslate:v1.9.5
     restart: unless-stopped
-    ports:
-      - "5000:5000"
-    environment:
-      - LT_LOAD_ONLY=en,es,fr,de,it,zh,ja,ru,pt,pl,nl
+    ports: - "5000:5000"
+    environment: - LT_LOAD_ONLY=en,es,fr,de,it,zh,ja,ru,pt,pl,nl
       - LT_API_KEYS=true
       - LT_REQ_LIMIT=60
       - LT_THREADS=4
       - LT_UPDATE_MODELS=true
-    volumes:
-      - lt-models:/home/libretranslate/.local
+    volumes: - lt-models:/home/libretranslate/.local
       - lt-db:/app/db
-    healthcheck:
-      test: ['CMD-SHELL', './venv/bin/python scripts/healthcheck.py']
+    healthcheck: test: ['CMD-SHELL', './venv/bin/python scripts/healthcheck.py']
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 60s
-    deploy:
-      resources:
-        limits:
-          memory: 4G
-        reservations:
-          memory: 2G
+    deploy: resources: limits: memory: 4G
+        reservations: memory: 2G
 
-volumes:
-  lt-models:
-  lt-db:
-```
+volumes: lt-models: lt-db: ```
 
-Deploy with:
-
-```bash
+Deploy with: ```bash
 docker compose up -d
 ```
 
@@ -156,17 +143,13 @@ cd LibreTranslate
 docker compose -f docker-compose.cuda.yml up -d --build
 ```
 
-Verify GPU utilization:
-
-```bash
+Verify GPU utilization: ```bash
 nvidia-smi
 ```
 
 ### Native Python Installation
 
-For development or environments where Docker is not available:
-
-```bash
+For development or environments where Docker is not available: ```bash
 # Install via pip
 pip install libretranslate==1.9.5
 
@@ -177,9 +160,7 @@ libretranslate --host 0.0.0.0 --port 5000 \
   --threads 4
 ```
 
-Or build from source:
-
-```bash
+Or build from source: ```bash
 git clone https://github.com/LibreTranslate/LibreTranslate.git
 cd LibreTranslate
 pip install -e .
@@ -188,9 +169,7 @@ python main.py --host 0.0.0.0 --port 5000
 
 ### Deploy to DigitalOcean (Production Cloud)
 
-For a cloud-hosted production instance, DigitalOcean provides an easy path with their App Platform or Droplets. Deploy using the 1-Click Docker image:
-
-```bash
+For a cloud-hosted production instance, DigitalOcean provides an easy path with their App Platform or Droplets. Deploy using the 1-Click Docker image: ```bash
 # On a fresh Ubuntu 24.04 Droplet
 curl -fsSL https://get.docker.com | sh
 mkdir -p ~/libretranslate && cd ~/libretranslate
@@ -198,19 +177,14 @@ mkdir -p ~/libretranslate && cd ~/libretranslate
 # Create production compose file
 cat > docker-compose.yml << EOF
 version: '3.8'
-services:
-  libretranslate:
-    image: libretranslate/libretranslate:v1.9.5
+services: libretranslate: image: libretranslate/libretranslate:v1.9.5
     restart: always
-    ports:
-      - "5000:5000"
-    environment:
-      - LT_LOAD_ONLY=en,es,fr,de,it,zh,ja,ru,pt
+    ports: - "5000:5000"
+    environment: - LT_LOAD_ONLY=en,es,fr,de,it,zh,ja,ru,pt
       - LT_API_KEYS=true
       - LT_REQ_LIMIT=120
       - LT_THREADS=4
-    volumes:
-      - ./models:/home/libretranslate/.local
+    volumes: - ./models:/home/libretranslate/.local
       - ./db:/app/db
 EOF
 
@@ -231,8 +205,7 @@ import requests
 
 LIBRETRANSLATE_URL = "http://localhost:5000/translate"
 
-def translate_text(text: str, source: str = "en", target: str = "es") -> str:
-    payload = {
+def translate_text(text: str, source: str = "en", target: str = "es") -> str: payload = {
         "q": text,
         "source": source,
         "target": target,
@@ -246,8 +219,7 @@ def translate_text(text: str, source: str = "en", target: str = "es") -> str:
     return response.json()["translatedText"]
 
 # Example usage
-if __name__ == "__main__":
-    result = translate_text("Hello, production deployment!", "en", "de")
+if __name__ == "__main__": result = translate_text("Hello, production deployment!", "en", "de")
     print(f"Translated: {result}")
 ```
 
@@ -302,9 +274,7 @@ console.log(result); // "Déployer en production"
 
 ### OpenAI Whisper Audio-to-Translated-Text Pipeline
 
-A common pattern is combining speech recognition with translation. Here is a complete pipeline using Whisper for transcription and LibreTranslate for translation:
-
-```python
+A common pattern is combining speech recognition with translation. Here is a complete pipeline using Whisper for transcription and LibreTranslate for translation: ```python
 # whisper_translate_pipeline.py
 import whisper
 import requests
@@ -312,8 +282,7 @@ import requests
 WHISPER_MODEL = whisper.load_model("base")
 LIBRE_URL = "http://localhost:5000/translate"
 
-def transcribe_and_translate(audio_path: str, target_lang: str = "en") -> dict:
-    # Step 1: Transcribe audio with Whisper
+def transcribe_and_translate(audio_path: str, target_lang: str = "en") -> dict: # Step 1: Transcribe audio with Whisper
     result = WHISPER_MODEL.transcribe(audio_path)
     source_text = result["text"]
     detected_lang = result.get("language", "auto")
@@ -342,9 +311,7 @@ print(f"ES: {output[translated]}")
 
 ### Coqui TTS Integration (Translation + Speech Synthesis)
 
-Translate text and synthesize speech in the target language:
-
-```python
+Translate text and synthesize speech in the target language: ```python
 # translate_and_speak.py
 import requests
 from TTS.api import TTS
@@ -352,8 +319,7 @@ from TTS.api import TTS
 # Initialize TTS
 tts = TTS("tts_models/multilingual/multi-dataset/xtts_v2", gpu=False)
 
-def translate_and_speak(text: str, target_lang: str, speaker_wav: str):
-    # Translate
+def translate_and_speak(text: str, target_lang: str, speaker_wav: str): # Translate
     payload = {"q": text, "source": "en", "target": target_lang, "format": "text"}
     response = requests.post("http://localhost:5000/translate", json=payload)
     translated = response.json()["translatedText"]
@@ -369,8 +335,7 @@ def translate_and_speak(text: str, target_lang: str, speaker_wav: str):
     return output_path
 
 # Generate multilingual audio
-for lang in ["es", "fr", "de"]:
-    translate_and_speak("Welcome to our service", lang, "reference.wav")
+for lang in ["es", "fr", "de"]: translate_and_speak("Welcome to our service", lang, "reference.wav")
 ```
 
 ### cURL API Examples
@@ -410,9 +375,7 @@ curl -X POST http://localhost:5000/translate \
 
 ### Nginx Reverse Proxy Configuration
 
-For production deployments behind a domain with HTTPS:
-
-```nginx
+For production deployments behind a domain with HTTPS: ```nginx
 # /etc/nginx/sites-available/libretranslate
 server {
     listen 443 ssl http2;
@@ -441,9 +404,7 @@ server {
 }
 ```
 
-Enable the configuration:
-
-```bash
+Enable the configuration: ```bash
 sudo ln -s /etc/nginx/sites-available/libretranslate /etc/nginx/sites-enabled/
 sudo nginx -t && sudo systemctl reload nginx
 ```
@@ -457,7 +418,17 @@ LibreTranslate performance varies significantly based on hardware configuration,
 ### Translation Speed Benchmarks
 
 | Hardware | Languages Loaded | Avg. Latency (50 words) | Throughput (req/s) | Notes |
-|----------|-----------------|------------------------|-------------------|-------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 2 vCPU, 4GB RAM | 5 | 180ms | 12 | CPU-only, Docker |
 | 4 vCPU, 8GB RAM | 11 | 120ms | 28 | CPU-only, Docker |
 | 4 vCPU, 16GB RAM | 30 | 200ms | 18 | CPU-only, all languages |
@@ -466,10 +437,16 @@ LibreTranslate performance varies significantly based on hardware configuration,
 
 ### Translation Quality Comparison
 
-BLEU score comparison on WMT14 English-to-German test set (higher is better):
-
-| System | BLEU Score | Word Error Rate | Inference Time |
-|--------|-----------|-----------------|----------------|
+BLEU score comparison on WMT14 English-to-German test set (higher is better): | System | BLEU Score | Word Error Rate | Inference Time |
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | LibreTranslate (Argos) | 22.4 | 62% | 120ms |
 | Google Translate API | 26.8 | 51% | 85ms |
 | DeepL API | 28.1 | 48% | 90ms |
@@ -480,7 +457,15 @@ LibreTranslate matches Argos Translate CLI performance exactly, since they share
 ### Cost Analysis at Scale
 
 | Monthly Volume | LibreTranslate (Self-Hosted) | Google Translate | DeepL API |
-|----------------|------------------------------|------------------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 1M characters | $10 (VPS cost) | $20 | $6.99 (free tier) |
 | 10M characters | $10 (VPS cost) | $200 | $20 |
 | 100M characters | $40 (dedicated server) | $2,000 | $125 |
@@ -503,19 +488,13 @@ Running LibreTranslate in production requires attention to security, scaling, an
 
 ### API Key Management
 
-Enable API key authentication to control access and prevent abuse:
-
-```yaml
+Enable API key authentication to control access and prevent abuse: ```yaml
 # docker-compose.yml with API keys
-services:
-  libretranslate:
-    image: libretranslate/libretranslate:v1.9.5
-    environment:
-      - LT_API_KEYS=true
+services: libretranslate: image: libretranslate/libretranslate:v1.9.5
+    environment: - LT_API_KEYS=true
       - LT_REQ_LIMIT=100
       - LT_REQ_LIMIT_PER_DAY=10000
-    volumes:
-      - lt-models:/home/libretranslate/.local
+    volumes: - lt-models:/home/libretranslate/.local
       - lt-db:/app/db
 ```
 
@@ -523,9 +502,7 @@ Generate and manage API keys via the database or the admin interface.
 
 ### Custom Model Loading
 
-Control memory usage by loading only required languages:
-
-```bash
+Control memory usage by loading only required languages: ```bash
 # Load only European languages
 LT_LOAD_ONLY=en,es,fr,de,it,pt,nl,pl,ru docker compose up -d
 
@@ -535,18 +512,14 @@ LT_LOAD_ONLY=en,ja,zh,ko,es,fr,de docker compose up -d
 
 ### Health Monitoring
 
-LibreTranslate includes a built-in health check endpoint:
-
-```bash
+LibreTranslate includes a built-in health check endpoint: ```bash
 # Check service health
 curl http://localhost:5000/health
 
 # Expected response: {"status": "ok"}
 ```
 
-For Prometheus-based monitoring, add a simple exporter:
-
-```python
+For Prometheus-based monitoring, add a simple exporter: ```python
 # prometheus_exporter.py
 from prometheus_client import start_http_server, Counter, Histogram
 import requests
@@ -555,95 +528,65 @@ import time
 TRANSLATION_COUNTER = Counter(libretranslate_requests_total, 'Total translations')
 LATENCY_HISTOGRAM = Histogram(libretranslate_latency_seconds, 'Translation latency')
 
-def monitor():
-    start_http_server(9090)
-    while True:
-        start = time.time()
+def monitor(): start_http_server(9090)
+    while True: start = time.time()
         requests.post("http://localhost:5000/translate",
             json={"q": "test", "source": "en", "target": "es"})
         LATENCY_HISTOGRAM.observe(time.time() - start)
         TRANSLATION_COUNTER.inc()
         time.sleep(30)
 
-if __name__ == "__main__":
-    monitor()
+if __name__ == "__main__": monitor()
 ```
 
 ### Auto-Scaling with Kubernetes
 
-For high-availability deployments, use Kubernetes with Horizontal Pod Autoscaler:
-
-```yaml
+For high-availability deployments, use Kubernetes with Horizontal Pod Autoscaler: ```yaml
 # libretranslate-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
-metadata:
-  name: libretranslate
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: libretranslate
-  template:
-    metadata:
-      labels:
-        app: libretranslate
-    spec:
-      containers:
-      - name: libretranslate
+metadata: name: libretranslate
+spec: replicas: 2
+  selector: matchLabels: app: libretranslate
+  template: metadata: labels: app: libretranslate
+    spec: containers: - name: libretranslate
         image: libretranslate/libretranslate:v1.9.5
-        ports:
-        - containerPort: 5000
-        env:
-        - name: LT_LOAD_ONLY
+        ports: - containerPort: 5000
+        env: - name: LT_LOAD_ONLY
           value: "en,es,fr,de,it"
         - name: LT_THREADS
           value: "4"
-        resources:
-          requests:
-            memory: "2Gi"
+        resources: requests: memory: "2Gi"
             cpu: "1000m"
-          limits:
-            memory: "4Gi"
+          limits: memory: "4Gi"
             cpu: "2000m"
-        livenessProbe:
-          httpGet:
-            path: /health
+        livenessProbe: httpGet: path: /health
             port: 5000
           initialDelaySeconds: 60
           periodSeconds: 30
+
 ---
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
-metadata:
-  name: libretranslate-hpa
-spec:
-  scaleTargetRef:
-    apiVersion: apps/v1
+metadata: name: libretranslate-hpa
+spec: scaleTargetRef: apiVersion: apps/v1
     kind: Deployment
     name: libretranslate
   minReplicas: 2
   maxReplicas: 10
-  metrics:
-  - type: Resource
-    resource:
-      name: cpu
-      target:
-        type: Utilization
+  metrics: - type: Resource
+    resource: name: cpu
+      target: type: Utilization
         averageUtilization: 70
 ```
 
-Deploy:
-
-```bash
+Deploy: ```bash
 kubectl apply -f libretranslate-deployment.yaml
 ```
 
 ### Backup Strategy
 
-Language models can be re-downloaded, but the SQLite database with API keys and logs should be backed up:
-
-```bash
+Language models can be re-downloaded, but the SQLite database with API keys and logs should be backed up: ```bash
 #!/bin/bash
 # backup.sh - Daily backup cron job
 BACKUP_DIR="/backups/libretranslate"
@@ -659,16 +602,24 @@ rsync -av /var/lib/docker/volumes/lt-models/_data/ "$BACKUP_DIR/models/"
 find "$BACKUP_DIR" -name "db_*.sqlite" -mtime +7 -delete
 ```
 
-Add to crontab:
-
-```bash
+Add to crontab: ```bash
 0 2 * * * /path/to/backup.sh
 ```
 
 ## Comparison with Alternatives
 
 | Feature | LibreTranslate | Argos Translate | Google Translate API | DeepL API |
-|---------|---------------|-----------------|---------------------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **License** | AGPL-3.0 | MIT | Proprietary | Proprietary |
 | **Self-Hosted** | Yes | Yes (CLI) | No | No |
 | **Offline Capable** | Yes | Yes | No | No |
@@ -728,9 +679,7 @@ LibreTranslate supports models in the Argos Translate format (OpenNMT CTranslate
 
 ### Can I use LibreTranslate with a frontend framework like React or Vue?
 
-Yes. The `/translate` endpoint accepts JSON and supports CORS when configured. Example React hook:
-
-```typescript
+Yes. The `/translate` endpoint accepts JSON and supports CORS when configured. Example React hook: ```typescript
 // useTranslation.ts
 import { useState, useCallback } from "react";
 
@@ -776,9 +725,7 @@ Join the [LibreTranslate Telegram group](https://t.me/libretranslate) for commun
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -795,12 +742,11 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [NVIDIA CUDA Docker Setup](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html)
 - [LibreTranslate Kubernetes Examples](https://github.com/LibreTranslate/LibreTranslate/tree/main/kubernetes)
 
----
 
+---
 > **Disclosure**: This article contains affiliate links. If you sign up for DigitalOcean using the referral link in this guide, we may receive a commission at no additional cost to you. Affiliate links help support the ongoing maintenance of open-source documentation projects like this one.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -827,7 +773,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 ---
-
 ## Related Articles
 
 - [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](libretranslate)

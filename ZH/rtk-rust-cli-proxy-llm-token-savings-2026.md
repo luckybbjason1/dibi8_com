@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/rtk-rust-cli-proxy-llm-token-savings-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/rtk-rust-cli-proxy-llm-token-savings-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/rtk-rust-cli-proxy-llm-token-savings-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/rtk-rust-cli-proxy-llm-token-savings-2026" />
 title: 'rtk 实测：Rust 写的 CLI 代理，让 Claude Code 账单从 1200 元砍到 240 元 (...
 description: 'rtk 是 Rust 单二进制 CLI 代理，自动过滤压缩命令输出，降低 60-90% LLM token 消耗。支持 Claude Code / Cursor / GitHub Copilot / Codex / Gemini CLI 等 13 款 AI 编程工具，<10ms 开销，MIT 开源，30 秒安装零配置。'
 date: 2026-05-22 00:00:00+08:00
@@ -25,11 +20,9 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [rtk, rust, cli, llm, 'token-optimization', 'ai-coding', 'claude-code', cursor, copilot, 'cost-optimization', 'open-source', 'developer-tools']
-aliases:
-- /zh/posts/rtk/
+aliases: - /zh/posts/rtk/
 - /zh/resources/dev-utils/rtk-rust-cli-proxy-llm-token-savings-2026/
-faqs:
-  - q: 'rtk 是什么？能省多少 AI 编程账单？'
+faqs: - q: 'rtk 是什么？能省多少 AI 编程账单？'
     a: 'rtk 是开源 Rust CLI 代理，自动压缩命令输出，让 Claude Code / Cursor / GitHub Copilot / Codex / Gemini CLI 等 13 款 AI 编程工具的 token 消耗降低 60-90%。实测：每月 1200 元 Claude API 账单砍到 240 元，<10ms 延迟，MIT 开源，30 秒安装。'
   - q: 'rtk 会把我的代码发到第三方吗？'
     a: '不会。rtk 是纯本地二进制，只在你的 shell 和 AI 工具的 context 之间做过滤。不联网。'
@@ -38,10 +31,7 @@ faqs:
   - q: '如果 Claude Code / Cursor 升级 rtk 会失效吗？'
     a: 'hook 机制相对稳定。rtk 自 0.10 起持续跟进 Claude Code 的 hook API。如有 breaking change 通常 24-48 小时内发新版跟上。'
   - q: 'rtk 能用在生产 CI/CD 吗？'
-    a: '在 agent workflow 里安全。不要用在 set -e 严格依赖具体命令输出的 pipeline 里 — 但 AI agent 读输出做决策的 loop 里，rtk 的压缩版正是 agent 真正需要的。'
----
-
-<!-- canonical: https://dibi8.com/zh/tools/rtk-rust-cli-proxy-llm-token-savings-2026/ -->
+    a: '在 agent workflow 里安全。不要用在 set -e 严格依赖具体命令输出的 pipeline 里 — 但 AI agent 读输出做决策的 loop 里，rtk 的压缩版正是 agent 真正需要的。'---
 
 {{< resource-info >}}
 
@@ -53,8 +43,8 @@ faqs:
 
 > **一句话总结**：rtk 是一个用 Rust 编写的单文件 CLI 代理，通过智能过滤和压缩命令输出，帮你在使用 Claude Code、Cursor、Codex 等 AI 编程工具时减少 **60%-90% 的 token 消耗**。支持 100+ 命令，覆盖 git、测试、构建、Docker 等全开发流程，安装只需一条命令，零依赖、零配置。
 
----
 
+---
 ## 引言
 
 **dibi8 的看法** —— 上季度我们专门审计了团队 AI 编程的 token 消耗。3 月那张 1200 元/月的 Claude API 账单是真实的，让我们意外的发现是：**大约 70% 的 token 是噪声**——AI agent 把 `git status` 塞进上下文，然后是 `git diff`，然后是 `npm test` 输出，其中大部分是重复日志、进度条、过时的 ASCII 目录树。rtk 是我们见过最直接的解法 —— 它住在命令边界，不用改任何 workflow 文件。
@@ -77,8 +67,8 @@ faqs:
 
 **rtk 解决的正是这个被忽视的浪费环节。**
 
----
 
+---
 ## rtk 是什么：不是又一个 AI 工具，而是你的"节流阀"
 
 rtk（GitHub: [rtk-ai/rtk](https://github.com/rtk-ai/rtk)）的定位非常精准：**它本身不生成代码、不聊天、不推理——它只做一件事，就是把 CLI 命令的输出"压扁"，再喂给 AI。**
@@ -96,7 +86,11 @@ Claude Code --git status--> RTK --> git --> 过滤压缩 --> 返回 200 token �
 **关键特性一览**：
 
 | 特性 | 说明 |
-|------|------|
+|
+---
+|
+---
+|
 | **单二进制文件** | Rust 编译，零依赖，体积小巧 |
 | **100+ 命令支持** | git、测试、构建、Docker、AWS、Kubernetes 全覆盖 |
 | **<10ms 开销** | 过滤耗时几乎无感知 |
@@ -110,7 +104,17 @@ Claude Code --git status--> RTK --> git --> 过滤压缩 --> 返回 200 token �
 这是 rtk 官方文档中给出的基准测试，我们在自己项目（一个中型 TypeScript 全栈应用）上复现后确认数据准确：
 
 | 操作 | 频次 | 原始 token | rtk 后 token | 节省 |
-|------|------|-----------|-------------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | `ls` / `tree` | 10 次 | 2,000 | 400 | **-80%** |
 | `cat` / 文件读取 | 20 次 | 40,000 | 12,000 | **-70%** |
 | `grep` / `rg` | 8 次 | 16,000 | 3,200 | **-80%** |
@@ -151,7 +155,13 @@ Docker 日志、测试输出里常见的重复行，rtk 会折叠成 `... (repea
 rtk 最让人惊喜的是它的生态兼容性。它不是只给 Claude Code 用的私货，而是覆盖了当下几乎所有主流 AI 编程工具：
 
 | AI 工具 | 安装命令 | 拦截方式 |
-|---------|---------|---------|
+|
+---
+|
+---
+|
+---
+|
 | **Claude Code** | `rtk init -g` | PreToolUse hook |
 | **GitHub Copilot (VS Code)** | `rtk init -g --copilot` | PreToolUse hook |
 | **Cursor** | `rtk init -g --agent cursor` | hooks.json |
@@ -249,7 +259,17 @@ rtk summary <long cmd>
 ## 同类工具对比
 
 | 工具 | 定位 | 节省方式 | 覆盖范围 | 易用性 |
-|------|------|---------|---------|--------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **rtk** | CLI 输出过滤 | 智能压缩 | 100+ 命令，13 款 AI | 一键安装，零配置 |
 | **Morph** | API 代理层 | 模型路由 + 上下文压缩 | 通用 API | 需改代码 |
 | **LiteLLM** | LLM 网关 | 缓存 + 路由 + 监控 | 多模型 API | 需部署 |
@@ -315,7 +335,6 @@ rtk 是命令感知的。`git --no-pager log` 还是产出冗长输出。rtk 的
 在 agent workflow 里安全。不要用在 `set -e` 严格依赖具体命令输出文本的 pipeline 里 — 但 AI agent 读输出做决策的 loop 里，rtk 的压缩版正是 agent 真正需要的。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -343,25 +362,20 @@ rtk 是命令感知的。`git --no-pager log` 还是产出冗长输出。rtk 的
 
 ## Why This Matters
 
-Understanding rtk 实测：rust 写的 cli 代理，让 claude code 账单从 1200 元砍到 240 元 (2026) is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding rtk 实测：rust 写的 cli 代理，让 claude code 账单从 1200 元砍到 240 元 (2026) is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

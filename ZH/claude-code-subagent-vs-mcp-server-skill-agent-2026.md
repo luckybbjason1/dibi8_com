@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-code-subagent-vs-mcp-server-skill-agent-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-subagent-vs-mcp-server-skill-agent-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-subagent-vs-mcp-server-skill-agent-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-subagent-vs-mcp-server-skill-agent-2026" />
 title: 'Subagent、MCP Server 与 Skill 对比：何时该为 Claude Code 构建哪种扩展（2...
 description: 'Claude Code 有三个扩展点——skill、subagent 和 MCP server——它们解决的是不同的问题。本文给出选型决策框架，配有完整的实战场景，以及那些会浪费你时间的反模式。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-28 00:00:00+08:00
@@ -25,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['claude-code', mcp, subagents, skills, 'agent-sdk', 'llm-frameworks', 'developer-tools']
-aliases:
-- /posts/claude-code-subagent-vs-mcp-vs-skill/
-faq:
-  - q: "skill、subagent 和 MCP server 之间一句话的区别是什么？"
+aliases: - /posts/claude-code-subagent-vs-mcp-vs-skill/
+faq: - q: "skill、subagent 和 MCP server 之间一句话的区别是什么？"
     a: "skill 教 Claude 『怎么做』某件事（打包好的指令与知识，按需载入上下文），subagent 决定『谁来做』（一个拥有独立上下文窗口的委派工人），而 MCP server 决定『能触达什么』（连接外部工具与数据的通道）。skill 改变行为，subagent 保护上下文，MCP server 增加能力——这是三条不同的轴，而不是三个互相竞争的选项。"
   - q: "如果我需要 Claude 查询我们的内部数据库，那是 skill、subagent 还是 MCP server？"
     a: "是 MCP server。任何把 Claude 连接到外部系统的东西——数据库、内部 API、SaaS 平台、工单系统——都属于集成，而集成正是 MCP server 存在的意义。skill 可以记录『怎样写出好的查询语句』，subagent 可以作为在隔离环境里跑分析的工人，但真正连上数据库这件事是 MCP server 的职责。你常常会三者一起用。"
@@ -41,8 +34,6 @@ faq:
   - q: "skill、subagent 和 MCP server 都能在 CI／无头（headless）模式下工作吗？"
     a: "都能，三者皆可。skill 和 subagent 是仓库里受版本控制的文件，所以 CI 会自动接管它们。MCP server 需要在 CI 环境中完成配置并可达（凭证放在 CI secrets 中、对服务有网络访问权）。无头的 -p 模式三者都支持；唯一实际的坑是确保你的 MCP server 鉴权在无人值守运行时无需交互式登录也能正常工作。"
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/claude-code-subagent-vs-mcp-server-skill-agent-2026/ -->
 # Subagent、MCP Server 与 Skill 对比：何时该为 Claude Code 构建哪种扩展（2026）
 
 
@@ -148,7 +139,6 @@ MCP server 回答的是*「Claude 根本触达不了这个系统」*。你的 Po
 别再把「skill、subagent 还是 MCP server？」当成三选一来问。换个问法：我短缺的是**知识**、**上下文**还是**能力**？知识 → skill。上下文 → subagent。能力 → MCP server。全栈案例会把三者分层叠用。拿不准的时候，就构建那个能移动你那条轴的、最廉价的产物——只要 markdown 文件能行，它每次都胜过一项已部署的服务。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -176,25 +166,20 @@ MCP server 回答的是*「Claude 根本触达不了这个系统」*。你的 Po
 
 ## Why This Matters
 
-Understanding subagent、mcp server 与 skill 对比：何时该为 claude code 构建哪种扩展（2026） is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding subagent、mcp server 与 skill 对比：何时该为 claude code 构建哪种扩展（2026） is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -215,13 +200,13 @@ Subagent、MCP Server 与 Skill 对比：何时该为 Claude Code 构建哪种�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
 
+---
 ## Related Articles
 
 - [claude-code-vs-cline](claude-code-subagent-vs-mcp-server-skill-agent-2026)
@@ -260,7 +245,17 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

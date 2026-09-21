@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/cheap-llm-stack" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cheap-llm-stack" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cheap-llm-stack" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cheap-llm-stack" />
 title: '저렴한 LLM 스택 2026: 무료 티어 + 토큰 압축으로 프로덕션 AI를 $0-15/월에 돌리는 법'
 description: '실제 AI 워크로드를 $0-15/월로 돌리는 5컴포넌트 스택: Ollama 로컬 + DeepSeek API + Gemini 무료층 + RTK 압축 + 9Router 오케스트레이션. 실제 비용 수학, 작업 유형별 모델 선택, 조립 순서.'
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
-tech_stack:
-  - Python
+tech_stack: - Python
   - Docker
   - Go
   - Rust
@@ -29,11 +23,9 @@ featureImage: ''
 draft: false
 categories: [collections]
 tags: ['저렴한 llm', '무료 티어', '비용 최적화', 스택, 컬렉션]
-aliases:
-  - /posts/cheap-llm-stack/
+aliases: - /posts/cheap-llm-stack/
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/cheap-llm-stack/ -->
 # 저렴한 LLM 스택 2026: 무료 티어 + 토큰 압축으로 프로덕션 AI를 $0-15/월에 돌리는 법
 
 
@@ -57,9 +49,7 @@ aliases:
 
 ## 1. 왜 "저렴"이 2026에 가능해졌나
 
-지난 12개월에 세 가지 변화:
-
-1. **DeepSeek-V4가 Claude Sonnet 품질을 1/10 가격으로 달성** ($0.27/M vs $3/M input). 80% 작업에서 품질 갭은 문제 안 됨
+지난 12개월에 세 가지 변화: 1. **DeepSeek-V4가 Claude Sonnet 품질을 1/10 가격으로 달성** ($0.27/M vs $3/M input). 80% 작업에서 품질 갭은 문제 안 됨
 2. **무료 티어가 진지해짐**: Gemini가 1,000 무료 req/day, GLM-4.6도 무료 티어, OpenRouter가 커뮤니티 후원 무료 모델 로테이션. 합계 예산 ~3,000 무료 콜/day
 3. **RTK(Repetition-Token Compression)가 작동**: 순수 중복 토큰 20-40% 제거 (파일 헤더, 시스템 prompt 세션당 10× 반복)
 
@@ -88,8 +78,7 @@ aliases:
 
 **역할**: 민감한 것, 청구 싫은 것, 드래프트 품질 — 다 여기.
 
-**소비자 하드웨어 현실** (2026 수치):
-- **8 GB RAM** (M1 / 미들 PC): Llama 3.2 3B 20+ tok/s — 자동완성, 분류, 드래프트 작성
+**소비자 하드웨어 현실** (2026 수치): - **8 GB RAM** (M1 / 미들 PC): Llama 3.2 3B 20+ tok/s — 자동완성, 분류, 드래프트 작성
 - **16 GB RAM** (M2/M3 / 괜찮은 PC): Qwen 3 Coder 14B 15 tok/s — 프로덕션 코딩
 - **32 GB RAM** (Mac Studio / 워크스테이션): Llama 3.3 70B Q4 8 tok/s — Claude Sonnet급 품질, 인내심 필요
 
@@ -101,8 +90,7 @@ aliases:
 
 **역할**: 로컬이 부족할 때 기본 유료 프로바이더.
 
-**가격/품질로 모두를 이기는 이유**:
-- DeepSeek-V4 input $0.27/M token vs Claude Sonnet $3/M vs GPT-5 $2.50/M
+**가격/품질로 모두를 이기는 이유**: - DeepSeek-V4 input $0.27/M token vs Claude Sonnet $3/M vs GPT-5 $2.50/M
 - 코드 벤치마크 Claude Sonnet과 갭: 평균 ~5%
 - 오프피크 추가 50% 할인 (UTC 16:30-00:30)
 
@@ -120,8 +108,7 @@ aliases:
 
 **주의**: 무료 티어에서 Google이 "모델 개선" 위해 prompt 로그 — 독점 코드 / PII 보내지 말 것.
 
-**빠른 설치**:
-```bash
+**빠른 설치**: ```bash
 npm install -g @google/gemini-cli
 gemini auth login  # 브라우저 열림, Google 계정 사용
 gemini "이 regex 설명: /^[a-z]+$/i"
@@ -137,8 +124,7 @@ gemini "이 regex 설명: /^[a-z]+$/i"
 
 **메커니즘**: 시맨틱 dedup. 같은 2,000 토큰 시스템 prompt를 오늘 50번 보내면 RTK가 콜 #2부터 인식하고 전체 텍스트 대신 포인터를 보냄.
 
-**빠른 설치**:
-```bash
+**빠른 설치**: ```bash
 docker run -d --name rtk -p 8765:8765 \
   ghcr.io/rtk-ai/rtk:latest
 ```
@@ -155,8 +141,7 @@ RTK 작동 원리 + 벤치마크 전체: [RTK Rust CLI 프록시 + 토큰 세이
 
 **보너스**: 9Router는 premium 프로바이더용 자체 RTK 압축 레이어 포함, 무료 티어 일일 캡 도달 시 자동 페일오버.
 
-**빠른 설치**:
-```bash
+**빠른 설치**: ```bash
 docker run -d --name 9router -p 9999:9999 \
   -e PROVIDERS=ollama,deepseek,gemini,openrouter \
   ghcr.io/rtk-ai/9router:latest
@@ -166,9 +151,7 @@ docker run -d --name 9router -p 9999:9999 \
 
 ## 8. 라우팅 테이블 — 누가 뭘 처리
 
-솔로 dev용 가능한 기본 라우팅 config:
-
-| 작업 유형 | 프로바이더 | 이유 |
+솔로 dev용 가능한 기본 라우팅 config: | 작업 유형 | 프로바이더 | 이유 |
 |---|---|---|
 | 인라인 코드 완성 | **Ollama** (로컬 Qwen 3 Coder 14B) | 레이턴시가 품질보다 중요 |
 | 코드 생성 (함수 스코프) | **DeepSeek-V4 via RTK** | 품질 중요, 압축으로 절약 |
@@ -181,20 +164,17 @@ docker run -d --name 9router -p 9999:9999 \
 
 ## 9. $0-15/월 수학
 
-**가벼운 사용** (솔로 dev, 평균 100 calls/day):
-- Gemini 무료 ~70% 커버 → $0
+**가벼운 사용** (솔로 dev, 평균 100 calls/day): - Gemini 무료 ~70% 커버 → $0
 - DeepSeek 나머지 30% (~900 calls/월, 대부분 소량) → $1-3
 - Ollama 민감용 (API 비용 없음) → $0
 - **합계: $1-3/월** (순수 API $40+ 대비)
 
-**중간 사용** (500 calls/day, 일부 코딩 포함):
-- Gemini 무료: 아직 ~1000 calls/day 남음
+**중간 사용** (500 calls/day, 일부 코딩 포함): - Gemini 무료: 아직 ~1000 calls/day 남음
 - DeepSeek 진지한 코딩: ~3000 calls/월 + RTK 압축 → $3-8
 - Ollama fallback → $0
 - **합계: $3-8/월** (순수 API $200+ 대비)
 
-**무거운 사용** (2000 calls/day, 에이전트 워크플로우):
-- Gemini 오전 10시 소진, fallback 가동
+**무거운 사용** (2000 calls/day, 에이전트 워크플로우): - Gemini 오전 10시 소진, fallback 가동
 - DeepSeek 무거운 로드, RTK 30% 절감 → $5-12
 - 오프피크 배치 작업 → 추가 50% 절감
 - Ollama 벌크 분류, 민감 처리 → $0
@@ -213,9 +193,7 @@ docker run -d --name 9router -p 9999:9999 \
 
 ## 11. 업그레이드 시점 (어디로)
 
-$0-15 스택은 다음 중 하나 부딪힐 때까지:
-
-- **레이턴시 요구 < 500ms** — Claude/GPT-5 핫 패스에 추가 (DeepSeek는 배치용 유지)
+$0-15 스택은 다음 중 하나 부딪힐 때까지: - **레이턴시 요구 < 500ms** — Claude/GPT-5 핫 패스에 추가 (DeepSeek는 배치용 유지)
 - **컴플라이언스가 미국 데이터 프로바이더만 요구** — DeepSeek + Gemini 제거, OpenRouter + 프로바이더 필터링 사용 또는 더 셀프호스트
 - **벌크 워크로드가 SLA 필요** — 매니지드 LiteLLM 게이트웨이 + 여러 유료 프로바이더 + 재시도 로직 ([LiteLLM 게이트웨이 2026](/kr/resources/llm-frameworks/litellm/) 참조)
 - **완전 가시성 원함** — Portkey 추가 ($1k 지출 시 $49 플랫폼 비용, [Portkey vs LiteLLM 2026](/kr/resources/llm-frameworks/llm-gateway-portkey-litellm-openrouter-comparison-2026/) 참조)
@@ -224,8 +202,7 @@ $0-15 스택은 다음 중 하나 부딪힐 때까지:
 
 ## TL;DR — 레시피
 
-**5 도구, $0-15/월, 60분 셋업**:
-1. **Ollama** — 로컬 & 민감
+**5 도구, $0-15/월, 60분 셋업**: 1. **Ollama** — 로컬 & 민감
 2. **DeepSeek-V4** — 어려운 작업 저렴 API
 3. **Gemini CLI 무료 티어** — 1k req/day 무료 일반 LLM
 4. **RTK 프록시** — 청구 API 토큰 20-40% 절감
@@ -238,7 +215,6 @@ $0-15 스택은 다음 중 하나 부딪힐 때까지:
 *이 컬렉션을 [셀프호스트 AI 코딩 워크플로우](/kr/collections/self-hosted-ai-coding-workflow/)와 함께 — Ollama + 9Router + RTK 세 기초 컴포넌트 공유.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -266,25 +242,20 @@ $0-15 스택은 다음 중 하나 부딪힐 때까지:
 
 ## Why This Matters
 
-Understanding 저렴한 llm 스택 2026: 무료 티어 + 토큰 압축으로 프로덕션 ai를 $0-15/월에 돌리는 법 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding 저렴한 llm 스택 2026: 무료 티어 + 토큰 압축으로 프로덕션 ai를 $0-15/월에 돌리는 법 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

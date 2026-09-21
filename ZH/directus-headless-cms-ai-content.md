@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/directus-headless-cms-ai-content" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/directus-headless-cms-ai-content" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/directus-headless-cms-ai-content" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/directus-headless-cms-ai-content" />
 title: 'Directus：驱动 AI 内容工作流的开源 Headless CMS — 2026 设置与 API 指南'
 description: 'Directus 11.x 完整指南 — 具有动态 API 生成、内容版本控制、AI 内容工作流和自托管 Docker 部署的开源 Headless CMS。REST 和 GraphQL API 基准测试。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [directus, 'headless cms', 内容管理, api, docker, 开源, ai, graphql, rest, 自托管]
-aliases:
-- /zh/posts/directus-headless-cms-ai-content/
+aliases: - /zh/posts/directus-headless-cms-ai-content/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/directus-headless-cms-ai-content/ -->
 
 {{</* resource-info */>}}
 
@@ -100,17 +92,12 @@ mkdir ~/directus && cd ~/directus
 # 创建 compose 文件
 cat > docker-compose.yml << EOF
 version: "3"
-services:
-  directus:
-    image: directus/directus:11.3.0
-    ports:
-      - 8055:8055
-    volumes:
-      - ./uploads:/directus/uploads
+services: directus: image: directus/directus:11.3.0
+    ports: - 8055:8055
+    volumes: - ./uploads:/directus/uploads
       - ./extensions:/directus/extensions
       - ./templates:/directus/templates
-    environment:
-      SECRET: "your-random-secret-key-here"
+    environment: SECRET: "your-random-secret-key-here"
       ADMIN_EMAIL: "admin@example.com"
       ADMIN_PASSWORD: "SecureAdminPass123!"
       DB_CLIENT: "pg"
@@ -122,28 +109,19 @@ services:
       WEBSOCKETS_ENABLED: "true"
       CORS_ENABLED: "true"
       CORS_ORIGIN: "true"
-    depends_on:
-      - database
+    depends_on: - database
       - redis
 
-  database:
-    image: postgres:16-alpine
-    environment:
-      POSTGRES_DB: "directus"
+  database: image: postgres:16-alpine
+    environment: POSTGRES_DB: "directus"
       POSTGRES_USER: "directus"
       POSTGRES_PASSWORD: "directus-pass"
-    volumes:
-      - pg-data:/var/lib/postgresql/data
+    volumes: - pg-data:/var/lib/postgresql/data
 
-  redis:
-    image: redis:7-alpine
-    volumes:
-      - redis-data:/data
+  redis: image: redis:7-alpine
+    volumes: - redis-data:/data
 
-volumes:
-  pg-data:
-  redis-data:
-EOF
+volumes: pg-data: redis-data: EOF
 ```
 
 ### 步骤 2：启动技术栈
@@ -435,7 +413,17 @@ await client.request(
 我在 [DigitalOcean 云服务器](https://m.do.co/c/eca87ac14ee0)（2 vCPU / 4GB RAM / $24/月）上测试了 Directus 11.3.0：
 
 | 操作 | Directus 11.3.0 | Strapi 5.x | Sanity (托管) | Contentful (托管) |
-|------|----------------|------------|---------------|-------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 读取单条 (缓存) | **~8ms** | ~15ms | ~25ms | ~40ms |
 | 读取 100 条带关联 | **~35ms** | ~80ms | ~60ms | ~120ms |
 | 创建条目 | **~22ms** | ~30ms | ~45ms | ~55ms |
@@ -455,27 +443,19 @@ await client.request(
 ```bash
 # 使用读副本水平扩展 API
 version: "3"
-services:
-  directus-api-1:
-    image: directus/directus:11.3.0
-    environment:
-      DB_CLIENT: "pg"
+services: directus-api-1: image: directus/directus:11.3.0
+    environment: DB_CLIENT: "pg"
       DB_HOST: "postgres-primary"
       # ... 其他环境变量
 
-  directus-api-2:
-    image: directus/directus:11.3.0
-    environment:
-      DB_CLIENT: "pg"
+  directus-api-2: image: directus/directus:11.3.0
+    environment: DB_CLIENT: "pg"
       DB_HOST: "postgres-replica"
       # ... 其他环境变量
 
-  nginx:
-    image: nginx:alpine
-    ports:
-      - "8055:8055"
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
+  nginx: image: nginx:alpine
+    ports: - "8055:8055"
+    volumes: - ./nginx.conf:/etc/nginx/nginx.conf
 ```
 
 ### 2. 自动备份
@@ -589,7 +569,19 @@ export default defineEndpoint((router, { database }) => {
 ## 与替代方案对比
 
 | 功能 | Directus 11.x | Strapi 5.x | Sanity | Contentful | Ghost |
-|------|--------------|------------|--------|-----------|-------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 开源 | **GPL-3.0** | MIT | MIT (部分) | No | MIT |
 | GitHub Stars | **29,100+** | 65,000+ | 3,500+ | N/A | 49,000+ |
 | 数据库 | **任意 SQL (你的选择)** | SQLite/MySQL/PostgreSQL | 专有 (GROQ) | 仅云 | SQLite/MySQL |
@@ -669,12 +661,12 @@ Directus 11.x 是 2026 年需要数据库优先、API 驱动内容平台的团�
 **联盟披露**
 本文包含指向 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 和 [HTStack](https://my.htstack.com/aff.php?aff=27187) 的联盟链接。如果你通过这些链接购买托管服务，dibi8.com 将获得佣金，不会增加你的额外费用。我们只推荐用于自己基础设施的服务。所有基准测试均在付费实例上独立进行。
 
+
 ---
 *文章发布：2026-05-19 | 分类：dev-utils | 工具：Directus 11.3.0*
 *加入 dibi8 开发者社区：[English](https://t.me/dibi8en) | [Chinese](https://t.me/dibi8zh) | [Korean](https://t.me/dibi8ko) | [Vietnamese](https://t.me/dibi8vn)*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -700,8 +692,8 @@ Directus 11.x 是 2026 年需要数据库优先、API 驱动内容平台的团�
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](directus-headless-cms-ai-content)
@@ -711,5 +703,4 @@ Directus 11.x 是 2026 年需要数据库优先、API 驱动内容平台的团�
 - [12-factor-agents](directus-headless-cms-ai-content)
 
 ---
-
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

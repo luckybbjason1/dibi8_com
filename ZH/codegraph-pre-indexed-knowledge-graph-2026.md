@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/codegraph-pre-indexed-knowledge-graph-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/codegraph-pre-indexed-knowledge-graph-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/codegraph-pre-indexed-knowledge-graph-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/codegraph-pre-indexed-knowledge-graph-2026" />
 title: 'CodeGraph 评测：让 Claude Code / Cursor / Codex 省 35% Token ...
 description: 'CodeGraph（GitHub 20.2K+ stars）是一个为 Claude Code、Cursor、Codex CLI、OpenCode、Hermes Agent 预索引代码知识图谱的开源工具。SQLite 本地存储、19 种语言、14 个 framework 路由识别、零外部 API，相比原生 grep/glob/Read 减少约 35% token 消耗、约 70% 工具调用。完整功能拆解、安装步骤、真实工作流以及与 LSP、MCP 服务的对比。'
 date: 2026-05-23 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [codegraph, 'claude-code', 'ai-coding-agent', 'code-graph', 'token-savings', mcp, 'hermes-agent', cursor, 'codex-cli', opencode, 'developer-productivity']
-aliases:
-- /zh/posts/codegraph-pre-indexed-knowledge-graph-2026/
+aliases: - /zh/posts/codegraph-pre-indexed-knowledge-graph-2026/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/codegraph-pre-indexed-knowledge-graph-2026/ -->
 
 ## 问题：AI 编码代理正在"grep"中烧钱
 
@@ -43,8 +35,8 @@ aliases:
 
 公开数字：**每 session 省约 35% 成本，工具调用减少约 70%，100% 本地运行，零外部 API**。
 
----
 
+---
 ## CodeGraph 到底是什么
 
 本质上它是三件事的合体：
@@ -62,14 +54,20 @@ aliases:
 - **19+ 编程语言**：TypeScript、JavaScript、Python、Go、Rust、Java、C#、C++、Ruby、PHP、Swift、Kotlin 以及若干小众语言。
 - **14 个 framework 路由识别**：Next.js、Nest.js、Express、FastAPI、Django、Flask、Rails、Spring Boot、Laravel 等——意味着你问"`POST /api/login` 是在哪里处理的？"时，CodeGraph 能给出真正的 controller 和方法，而不是仅仅找到字符串 `/api/login` 出现的位置。
 
----
 
+---
 ## 数字背后
 
 CodeGraph 的标语指标来自内部 benchmark：对比 Claude Code 接入与不接入图谱：
 
 | 指标 | 不接 CodeGraph | 接 CodeGraph |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | "理解 X" 平均工具调用数 | ~22 | ~6.5 |
 | 单 session 平均 token（中型仓库） | 11,400 | 7,400 |
 | 符号查询墙钟延迟 | 4–9 秒 | 50–200 毫秒 |
@@ -205,7 +203,6 @@ MIT 协议、本地优先架构、零外部依赖，使它对任何规模化跑�
 **GitHub**：[colbymchenry/codegraph](https://github.com/colbymchenry/codegraph) · **协议**：MIT · **最新**：v0.9.3（2026-05-22）· **Stars**：20.2K+
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -233,25 +230,20 @@ MIT 协议、本地优先架构、零外部依赖，使它对任何规模化跑�
 
 ## Why This Matters
 
-Understanding codegraph 评测：让 claude code / cursor / codex 省 35% token 的本地代码图谱（2026） is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding codegraph 评测：让 claude code / cursor / codex 省 35% token 的本地代码图谱（2026） is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/graphrag-llm-frameworks-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/graphrag-llm-frameworks-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/graphrag-llm-frameworks-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/graphrag-llm-frameworks-2026" />
 title: 'GraphRAG: Hệ RAG dựa trên đồ thị tri thức của Microsoft ...
 description: 'GraphRAG là hệ thống RAG mô-đun, dựa trên đồ thị tri thức của Microsoft (33.403 sao GitHub, giấy phép MIT). Hướng dẫn này trình bày cách cài đặt, quy trình init/index/query, ví dụ CLI thực tế và so sánh thẳng thắn với LangChain và Haystack.'
 date: 2026-06-02 00:00:00+08:00
@@ -25,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: []
-aliases:
-- /posts/graphrag-llm-frameworks-2026/
-faqs:
-  - q: 'Cài graphrag thế nào?'
+aliases: - /posts/graphrag-llm-frameworks-2026/
+faqs: - q: 'Cài graphrag thế nào?'
     a: 'Cài từ PyPI chỉ với một lệnh (Python 3.10–3.12): ```bash pip install graphrag ```'
   - q: 'Yêu cầu hệ thống để chạy graphrag là gì?'
     a: 'GraphRAG cần Python 3.10–3.12 và quyền truy cập một mô hình ngôn ngữ (OpenAI, Azure OpenAI hoặc nhà cung cấp được hỗ trợ khác) qua khóa API. Nó chạy trên mọi hệ điều hành hiện đại hỗ trợ Python.'
@@ -39,8 +32,6 @@ faqs:
   - q: 'GraphRAG khác RAG vector thông thường ở điểm nào?'
     a: 'RAG thông thường lấy về vài đoạn tương đồng rồi trả lời dựa trên đó. GraphRAG còn xây thêm một đồ thị tri thức và các bản tóm tắt cộng đồng từ tài liệu của bạn, nhờ đó nó trả lời được cả câu hỏi rộng bao trùm cả kho (tìm kiếm toàn cục) lẫn câu hỏi tập trung vào thực thể (tìm kiếm cục bộ).'
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/graphrag-llm-frameworks-2026/ -->
 
 {{< resource-info >}}
 
@@ -56,9 +47,7 @@ Dự án do Microsoft Research bảo trì và được viết bằng Python. Nó
 
 ## graphrag hoạt động thế nào
 
-GraphRAG chia bài toán thành giai đoạn lập chỉ mục ngoại tuyến và giai đoạn truy vấn trực tuyến:
-
-1. **Lập chỉ mục**: GraphRAG chia nhỏ tài liệu nguồn, rồi yêu cầu LLM trích xuất thực thể, quan hệ và luận điểm từ mỗi đoạn. Những thứ này được hợp nhất thành một đồ thị tri thức duy nhất. Đồ thị được phân hoạch thành các cộng đồng (bằng thuật toán Leiden), và LLM viết một báo cáo tóm tắt cho mỗi cộng đồng.
+GraphRAG chia bài toán thành giai đoạn lập chỉ mục ngoại tuyến và giai đoạn truy vấn trực tuyến: 1. **Lập chỉ mục**: GraphRAG chia nhỏ tài liệu nguồn, rồi yêu cầu LLM trích xuất thực thể, quan hệ và luận điểm từ mỗi đoạn. Những thứ này được hợp nhất thành một đồ thị tri thức duy nhất. Đồ thị được phân hoạch thành các cộng đồng (bằng thuật toán Leiden), và LLM viết một báo cáo tóm tắt cho mỗi cộng đồng.
 
 2. **Truy vấn — Tìm kiếm toàn cục (Global Search)**: Với câu hỏi rộng về toàn bộ kho tài liệu, GraphRAG dùng các bản tóm tắt cộng đồng theo kiểu map-reduce: nó suy luận trên nhiều báo cáo cộng đồng, rồi gộp các câu trả lời thành phần thành câu trả lời cuối cùng.
 
@@ -70,23 +59,17 @@ Chính thiết kế hai chế độ này tách GraphRAG khỏi một kho vector 
 
 Để chạy graphrag như một tác vụ sản xuất theo lịch, bạn cần một máy luôn bật — dựng một máy trên [DigitalOcean](https://m.do.co/c/eca87ac14ee0) (tài khoản mới có tín dụng dùng thử miễn phí), hoặc [HTStack](https://my.htstack.com/aff.php?aff=27187) để có VPS Hồng Kông độ trễ thấp (cùng IDC đang host dibi8.com).
 
-GraphRAG cần Python 3.10–3.12. Cách cài đặt được khuyến nghị là dùng pip:
-
-```bash
+GraphRAG cần Python 3.10–3.12. Cách cài đặt được khuyến nghị là dùng pip: ```bash
 pip install graphrag
 ```
 
-Sau khi cài, bạn khởi tạo một workspace. Bước này tạo ra các tệp cấu hình và cấu trúc thư mục mà GraphRAG cần:
-
-```bash
+Sau khi cài, bạn khởi tạo một workspace. Bước này tạo ra các tệp cấu hình và cấu trúc thư mục mà GraphRAG cần: ```bash
 mkdir -p ./ragtest/input
 # put your .txt or .csv documents into ./ragtest/input
 python -m graphrag init --root ./ragtest
 ```
 
-Lệnh `init` sinh ra một `settings.yaml` và một tệp `.env` ở thư mục gốc dự án. Mở `.env` và đặt khóa API mô hình của bạn, ví dụ:
-
-```bash
+Lệnh `init` sinh ra một `settings.yaml` và một tệp `.env` ở thư mục gốc dự án. Mở `.env` và đặt khóa API mô hình của bạn, ví dụ: ```bash
 GRAPHRAG_API_KEY=<your-openai-or-azure-key>
 ```
 
@@ -100,9 +83,7 @@ Sau `init`, quy trình điển hình là: bỏ tài liệu vào thư mục input
 
 ### Bước 1: Dựng chỉ mục
 
-Chạy pipeline lập chỉ mục trên workspace của bạn. Đây là bước tốn kém nhất — nó gọi LLM rất nhiều lần để trích xuất đồ thị:
-
-```bash
+Chạy pipeline lập chỉ mục trên workspace của bạn. Đây là bước tốn kém nhất — nó gọi LLM rất nhiều lần để trích xuất đồ thị: ```bash
 python -m graphrag index --root ./ragtest
 ```
 
@@ -110,9 +91,7 @@ Khi hoàn tất, GraphRAG ghi đồ thị thực thể, báo cáo cộng đồng
 
 ### Bước 2: Tìm kiếm toàn cục
 
-Dùng tìm kiếm toàn cục cho các câu hỏi rộng, bao trùm cả kho tài liệu, đòi hỏi tổng hợp từ nhiều tài liệu:
-
-```bash
+Dùng tìm kiếm toàn cục cho các câu hỏi rộng, bao trùm cả kho tài liệu, đòi hỏi tổng hợp từ nhiều tài liệu: ```bash
 python -m graphrag query \
   --root ./ragtest \
   --method global \
@@ -121,9 +100,7 @@ python -m graphrag query \
 
 ### Bước 3: Tìm kiếm cục bộ
 
-Dùng tìm kiếm cục bộ khi câu hỏi xoay quanh một thực thể cụ thể hoặc một phần hẹp của kho tài liệu:
-
-```bash
+Dùng tìm kiếm cục bộ khi câu hỏi xoay quanh một thực thể cụ thể hoặc một phần hẹp của kho tài liệu: ```bash
 python -m graphrag query \
   --root ./ragtest \
   --method local \
@@ -138,9 +115,7 @@ Vì việc lập chỉ mục tạo ra các tệp Parquet thuần (thực thể, 
 
 ### Làm việc với đầu ra
 
-Bạn có thể nạp trực tiếp đồ thị và báo cáo đã sinh bằng pandas để kiểm tra, truy xuất tùy chỉnh hay phân tích phía sau:
-
-```python
+Bạn có thể nạp trực tiếp đồ thị và báo cáo đã sinh bằng pandas để kiểm tra, truy xuất tùy chỉnh hay phân tích phía sau: ```python
 import pandas as pd
 
 entities = pd.read_parquet("./ragtest/output/entities.parquet")
@@ -153,23 +128,16 @@ print(community_reports[["title", "summary"]].head())
 
 ### Tùy chỉnh bằng settings.yaml
 
-Hành vi của GraphRAG được điều khiển qua tệp `settings.yaml` mà `init` tạo ra. Ở đó bạn chọn mô hình chat và mô hình embedding, đặt kích thước đoạn (chunk), tinh chỉnh mức song song và trỏ tới dữ liệu đầu vào. Một đoạn trích đơn giản hóa trông như sau:
-
-```yaml
-models:
-  default_chat_model:
-    type: openai_chat
+Hành vi của GraphRAG được điều khiển qua tệp `settings.yaml` mà `init` tạo ra. Ở đó bạn chọn mô hình chat và mô hình embedding, đặt kích thước đoạn (chunk), tinh chỉnh mức song song và trỏ tới dữ liệu đầu vào. Một đoạn trích đơn giản hóa trông như sau: ```yaml
+models: default_chat_model: type: openai_chat
     model: gpt-4o-mini
-  default_embedding_model:
-    type: openai_embedding
+  default_embedding_model: type: openai_embedding
     model: text-embedding-3-small
 
-chunks:
-  size: 1200
+chunks: size: 1200
   overlap: 100
 
-input:
-  type: file
+input: type: file
   file_type: text
   base_dir: "input"
 ```
@@ -217,9 +185,7 @@ Nếu bạn chỉ cần truy xuất top-k cho các câu trả lời sự kiện 
 
 ## Hạn chế & Đánh giá thẳng thắn
 
-GraphRAG là công cụ mạnh cho đúng việc, nhưng nó có những đánh đổi thực sự:
-
-1. **Lập chỉ mục tốn kém**: Dựng đồ thị gọi LLM rất nhiều, nên cả chi phí lẫn thời gian đều tăng theo quy mô kho tài liệu. Đây là yếu tố lớn nhất cần dự trù ngân sách.
+GraphRAG là công cụ mạnh cho đúng việc, nhưng nó có những đánh đổi thực sự: 1. **Lập chỉ mục tốn kém**: Dựng đồ thị gọi LLM rất nhiều, nên cả chi phí lẫn thời gian đều tăng theo quy mô kho tài liệu. Đây là yếu tố lớn nhất cần dự trù ngân sách.
 2. **Cấu hình tốn công**: Để có kết quả tốt thường phải tinh chỉnh kích thước đoạn, prompt và lựa chọn mô hình trong `settings.yaml`. Đây không phải giải pháp cắm-là-chạy một dòng.
 3. **Quá mức cho tra cứu đơn giản**: Với hỏi-đáp hẹp mà câu trả lời nằm trong một đoạn, RAG vector cổ điển nhanh hơn và rẻ hơn nhiều.
 4. **Gánh nặng vận hành**: Bạn phải quản lý một pipeline lập chỉ mục cùng các đầu ra Parquet của nó, cộng thêm việc lập chỉ mục lại định kỳ khi tài liệu thay đổi.
@@ -236,19 +202,11 @@ GraphRAG là một hệ thống RAG mô-đun, dựa trên đồ thị, được 
 
 ---
 
-**Nguồn & Đọc thêm**:
-- Kho GitHub: https://github.com/microsoft/graphrag
+**Nguồn & Đọc thêm**: - Kho GitHub: https://github.com/microsoft/graphrag
 - Tài liệu chính thức / README: https://github.com/microsoft/graphrag#readme
 
 *Một số liên kết phía trên là liên kết tiếp thị (affiliate). dibi8.com có thể nhận hoa hồng nếu bạn đăng ký, mà bạn không phải trả thêm chi phí. Điều này giúp duy trì website hoạt động và nội dung được miễn phí.*
 
-<!-- internal-link-candidates:
-  related open-source tools -> ai-tools-directory
-  related guides on dibi8 -> ai-coding-agent-landscape-2026-skills-mcp-opensource
--->
-
-
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

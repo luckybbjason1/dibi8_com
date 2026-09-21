@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/voicebox-open-source-ai-voice-studio" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/voicebox-open-source-ai-voice-studio" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/voicebox-open-source-ai-voice-studio" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/voicebox-open-source-ai-voice-studio" />
 title: 'VoiceBox: Studio Giọng Nói AI Mã Nguồn Mở Để Nhân Bản, C...
 description: 'Một studio giọng nói AI mã nguồn mở toàndiện cho phép bạn nhân bản mọi giọng, tạo giọng nói và chép vào bất kỳ ứng dụng nào. 33K sao. Chạy cục bộ trên máy của bạn với hỗ trợ CUDA hoặc Apple Silicon.'
 date: 2026-06-25
@@ -17,10 +12,6 @@ lang: vi
 github_repo: https://github.com/voicebox-ai/voicebox
 license: MIT
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/voicebox-open-source-ai-voice-studio/ -->
-
-
 
 # VoiceBox: Studio Giọng Nói AI Mã Nguồn Mở
 
@@ -36,9 +27,7 @@ VoiceBox cung cấp một stack AI giọng nói hoàn chỉnh chạy hoàn toàn
 
 VoiceBox là một nền tảng AI giọng nói tự lưu trữ, kết hợp nhiều công nghệ tiên tiến vào một giao diện thống nhất. Khác với các dịch vụ giọng nói thương mại yêu cầu tải âm thanh lên đám mây, VoiceBox xử lý mọi thứ cục bộ, cho bạn kiểm soát hoàn toàn dữ liệu giọng nói của mình.
 
-Nền tảng hỗ trợ ba chế độ hoạt động chính:
-
-- **Nhân bản giọng**: Ghi lại hoặc tải lên một mẫu âm thanh ngắn và tạo mô hình giọng nói kỹ thuật số có thể tạo giọng nói bằng giọng đó
+Nền tảng hỗ trợ ba chế độ hoạt động chính: - **Nhân bản giọng**: Ghi lại hoặc tải lên một mẫu âm thanh ngắn và tạo mô hình giọng nói kỹ thuật số có thể tạo giọng nói bằng giọng đó
 - **Chép văn bản**: Sử dụng microphone của bạn để chép văn bản vào bất kỳ ứng dụng nào trên hệ thống, với phiên âm thời gian thực
 - **Chuyển văn bản thành giọng (TTS)**: Tạo giọng nói tự nhiên từ văn bản bằng giọng đã nhân bản hoặc mô hình giọng tích hợp
 
@@ -48,9 +37,7 @@ Nền tảng hỗ trợ ba chế độ hoạt động chính:
 
 ### Yêu Cầu Tiên Quyết
 
-VoiceBox hỗ trợ nhiều cấu hình phần cứng:
-
-**Tăng tốc GPU (Khuyến Nghị):**
+VoiceBox hỗ trợ nhiều cấu hình phần cứng: **Tăng tốc GPU (Khuyến Nghị):**
 - GPU NVIDIA với 8GB+ VRAM (RTX 3060 hoặc tốt hơn)
 - Đã cài đặt bộ công cụ CUDA 12.x
 - 16GB RAM hệ thống
@@ -142,9 +129,7 @@ voicebox init --gpu cuda
 
 ### Ghi Mẫu Âm Thanh
 
-Để nhân bản giọng, bạn cần ít nhất 3 giây âm thanh rõ ràng. Để có kết quả tốt nhất, hãy cung cấp 30-60 giây giọng nói:
-
-```bash
+Để nhân bản giọng, bạn cần ít nhất 3 giây âm thanh rõ ràng. Để có kết quả tốt nhất, hãy cung cấp 30-60 giây giọng nói: ```bash
 # Ghi âm thanh bằng trình ghi âm tích hợp
 voicebox record --output sample.wav --duration 30
 
@@ -156,9 +141,7 @@ voicebox clone --audio my_voice_sample.mp3 --name "my-voice"
 
 ### Pipeline Xử Lý Giọng Nói
 
-Pipeline nhân bản giọng bao gồm nhiều giai đoạn:
-
-```python
+Pipeline nhân bản giọng bao gồm nhiều giai đoạn: ```python
 from voicebox.engine import VoiceCloner
 from voicebox.audio import AudioProcessor
 
@@ -192,9 +175,7 @@ voice_model.save(output, "test_output.wav")
 
 ### Tham Số Giọng Nói Nâng Cao
 
-VoiceBox cung cấp kiểm soát chi tiết عن tổng hợp giọng nói:
-
-```bash
+VoiceBox cung cấp kiểm soát chi tiết عن tổng hợp giọng nói: ```bash
 # Kiểm soát tốc độ nói
 voicebox synthesize --input script.txt --output speech.wav --speed 0.8
 
@@ -216,17 +197,14 @@ voicebox synthesize \
 
 ### Hỗ Trợ Đa Giọng
 
-Bạn có thể tạo và quản lý nhiều bản nhân bản giọng đồng thời:
-
-```python
+Bạn có thể tạo và quản lý nhiều bản nhân bản giọng đồng thời: ```python
 from voicebox.engine import VoiceManager
 
 manager = VoiceManager()
 
 # Liệt kê tất cả giọng đã nhân bản
 voices = manager.list_voices()
-for v in voices:
-    print(f"{v.name}: {v.quality} ({v.duration}s dữ liệu huấn luyện)")
+for v in voices: print(f"{v.name}: {v.quality} ({v.duration}s dữ liệu huấn luyện)")
 
 # Chuyển đổi giữa các giọng
 manager.set_active_voice("my-voice")
@@ -296,9 +274,7 @@ print(f"Số từ: {result.word_count}")
 
 ### Chép Đa Ngôn Ngữ
 
-VoiceBox hỗ trợ chép đa ngôn ngữ đồng thời với phát hiện ngôn ngữ tự động:
-
-```bash
+VoiceBox hỗ trợ chép đa ngôn ngữ đồng thời với phát hiện ngôn ngữ tự động: ```bash
 # Kích hoạt phát hiện tự động
 voicebox dictation --auto-detect
 
@@ -311,9 +287,7 @@ voicebox dictation --primary-language en
 
 ## API Chuyển Văn Bản Thành Giọng
 
-VoiceBox cung cấp REST API đầy đủ cho việc tạo chuyển văn bản thành giọng programmatically:
-
-### TTS Cơ Bản
+VoiceBox cung cấp REST API đầy đủ cho việc tạo chuyển văn bản thành giọng programmatically: ### TTS Cơ Bản
 
 ```bash
 # Chuyển đổi văn bản thành giọng đơn giản
@@ -330,9 +304,7 @@ curl -X POST "https://your-voicebox/api/v1/tts" \
 
 ### TTS Trực Tiếp
 
-Dành cho ứng dụng phát âm thanh thời gian thực:
-
-```bash
+Dành cho ứng dụng phát âm thanh thời gian thực: ```bash
 # Phát âm thanh theo chunk
 curl -N -X POST "https://your-voicebox/api/v1/tts/stream" \
   -H "Content-Type: application/json" \
@@ -342,9 +314,7 @@ curl -N -X POST "https://your-voicebox/api/v1/tts/stream" \
 
 ### Xử Lý Hàng Loạt
 
-Xử lý nhiều văn bản đồng thời:
-
-```python
+Xử lý nhiều văn bản đồng thời: ```python
 from voicebox.api import VoiceBoxClient
 
 client = VoiceBoxClient("https://your-voicebox")
@@ -362,8 +332,7 @@ results = await client.tts.batch(
     parallel_workers=4
 )
 
-for i, result in enumerate(results):
-    print(f"Đã tạo: speech_{i}.mp3 ({result.duration:.1f}s)")
+for i, result in enumerate(results): print(f"Đã tạo: speech_{i}.mp3 ({result.duration:.1f}s)")
 ```
 
 ## Yêu Cầu Phần Cứng Và Hiệu Suất
@@ -379,7 +348,6 @@ Liên kết nội bộ: [nvidia-cosmos-world-models-platform-2026](https://dibi8
 **Tiết lộ**: Bài viết này đề cập đến các công cụ có thể có quan hệ liên kết. Chúng tôi không chấp nhận thanh toán cho đánh giá. Tất cả ý kiến đều là của riêng chúng tôi.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

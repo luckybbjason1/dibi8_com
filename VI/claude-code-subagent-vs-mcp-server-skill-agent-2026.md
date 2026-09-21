@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-code-subagent-vs-mcp-server-skill-agent-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-subagent-vs-mcp-server-skill-agent-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-subagent-vs-mcp-server-skill-agent-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-subagent-vs-mcp-server-skill-agent-2026" />
 title: 'Subagent vs MCP Server vs Skill: Khi nào nên xây từng lo...
 description: 'Claude Code có ba điểm mở rộng — skill, subagent và MCP server — và chúng giải quyết những bài toán khác nhau. Một khung quyết định để chọn đúng loại, kèm các kịch bản thực tế và những anti-pattern khiến bạn mất thời gian vô ích.'
 date: 2026-05-28 00:00:00+08:00
@@ -25,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['claude-code', mcp, subagents, skills, 'agent-sdk', 'llm-frameworks', 'developer-tools']
-aliases:
-- /posts/claude-code-subagent-vs-mcp-vs-skill/
-faq:
-  - q: "Khác biệt một câu giữa skill, subagent và MCP server là gì?"
+aliases: - /posts/claude-code-subagent-vs-mcp-vs-skill/
+faq: - q: "Khác biệt một câu giữa skill, subagent và MCP server là gì?"
     a: "Một skill dạy Claude CÁCH làm một việc (các chỉ dẫn và kiến thức được đóng gói, nạp vào ngữ cảnh), một subagent là AI làm việc đó (một công nhân được ủy thác với cửa sổ ngữ cảnh riêng), còn một MCP server là CÁI mà nó có thể chạm tới (một kết nối tới công cụ và dữ liệu bên ngoài). Skill thay đổi hành vi, subagent bảo vệ ngữ cảnh, MCP server bổ sung năng lực — ba trục khác nhau, không phải ba lựa chọn cạnh tranh nhau."
   - q: "Nếu tôi cần Claude truy vấn cơ sở dữ liệu nội bộ của công ty, thì đó là skill, subagent hay MCP server?"
     a: "Một MCP server. Bất cứ thứ gì nối Claude với một hệ thống bên ngoài — một cơ sở dữ liệu, một API nội bộ, một nền tảng SaaS, một hệ thống ticket — đều là một tích hợp, và tích hợp chính là lý do MCP server tồn tại. Một skill có thể ghi lại CÁCH diễn đạt các truy vấn tốt, và một subagent có thể là công nhân chạy phân tích trong môi trường cô lập, nhưng kết nối thực sự tới cơ sở dữ liệu là việc của MCP server. Bạn thường dùng cả ba cùng lúc."
@@ -42,7 +35,6 @@ faq:
     a: "Có, cả ba. Skill và subagent là các tệp được quản lý phiên bản trong repo của bạn, nên CI tự động nhận chúng. MCP server cần được cấu hình và truy cập được từ môi trường CI (thông tin xác thực trong CI secrets, quyền truy cập mạng tới dịch vụ). Chế độ headless -p tôn trọng cả ba; điểm vướng thực tế duy nhất là đảm bảo phần xác thực của MCP server hoạt động được mà không cần đăng nhập tương tác khi chạy không giám sát."
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/claude-code-subagent-vs-mcp-server-skill-agent-2026/ -->
 # Subagent vs MCP Server vs Skill: Khi nào nên xây từng loại tiện ích mở rộng Claude Code (2026)
 
 
@@ -76,9 +68,7 @@ Một MCP server là câu trả lời cho *«Claude theo nghĩa đen là không 
 
 ## Một khung quyết định
 
-Hãy hỏi những câu sau theo thứ tự:
-
-1. **«Claude có cần chạm tới một hệ thống mà hiện nó không thể không?»** → **MCP server.** (Cơ sở dữ liệu, API, SaaS, dữ liệu bên ngoài.)
+Hãy hỏi những câu sau theo thứ tự: 1. **«Claude có cần chạm tới một hệ thống mà hiện nó không thể không?»** → **MCP server.** (Cơ sở dữ liệu, API, SaaS, dữ liệu bên ngoài.)
 2. **«Claude đã có năng lực rồi, nhưng công việc sẽ làm phình ngữ cảnh của tôi?»** → **Subagent.** (Khám phá quy mô lớn, nghiên cứu song song, thí nghiệm cô lập.)
 3. **«Claude có năng lực và có ngữ cảnh, nhưng không biết cách làm cụ thể của chúng ta?»** → **Skill.** (Playbook, checklist, quy trình.)
 
@@ -128,9 +118,7 @@ Ba điểm mở rộng ánh xạ tới ba tài nguyên: **kiến thức** (skill
 
 ## Thiết lập Claude Code sẵn sàng cho môi trường production
 
-Chạy cả ba lớp — đặc biệt là MCP server — ở quy mô lớn đòi hỏi hạ tầng ổn định:
-
-1. **Một host đáng tin cậy cho MCP server và CI.** MCP server là các tiến trình chạy lâu dài; bạn cần một máy luôn hoạt động. **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hồng Kông với truy cập độ trễ thấp tới Trung Quốc đại lục và BGP ổn định. Cùng IDC đang host dibi8.com, nơi chúng tôi chạy chính các MCP server và pipeline agent của mình. Gói giá trị $5-12/tháng.
+Chạy cả ba lớp — đặc biệt là MCP server — ở quy mô lớn đòi hỏi hạ tầng ổn định: 1. **Một host đáng tin cậy cho MCP server và CI.** MCP server là các tiến trình chạy lâu dài; bạn cần một máy luôn hoạt động. **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hồng Kông với truy cập độ trễ thấp tới Trung Quốc đại lục và BGP ổn định. Cùng IDC đang host dibi8.com, nơi chúng tôi chạy chính các MCP server và pipeline agent của mình. Gói giá trị $5-12/tháng.
 
 2. **Dư địa cloud cho các lớp song song.** Khi subagent tỏa ra và MCP server chạy song hành, bạn cần CPU dự phòng. **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 tín dụng miễn phí trong 60 ngày trên 14+ khu vực.
 
@@ -148,7 +136,6 @@ Chạy cả ba lớp — đặc biệt là MCP server — ở quy mô lớn đò
 Hãy thôi hỏi «skill, subagent, hay MCP server?» như thể chúng cạnh tranh nhau. Thay vào đó hãy hỏi: tôi đang thiếu **kiến thức**, **ngữ cảnh**, hay **năng lực**? Kiến thức → skill. Ngữ cảnh → subagent. Năng lực → MCP server. Các trường hợp full-stack dùng cả ba, xếp chồng lên nhau. Và khi còn phân vân, hãy xây tạo phẩm rẻ nhất tác động được vào trục của bạn — một tệp markdown thắng một dịch vụ đã triển khai mỗi khi nó làm được việc.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

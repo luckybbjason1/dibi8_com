@@ -1,20 +1,13 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/codebase-memory-mcp-high-performance-code-intelligence" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/codebase-memory-mcp-high-performance-code-intelligence" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/codebase-memory-mcp-high-performance-code-intelligence" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/codebase-memory-mcp-high-performance-code-intelligence" />
 title: 'Codebase-Memory-MCP: Trí tuệ mã nguồn hiệu suất cao cho ...
 description: 'Khám phá codebase-memory-mcp — máy chủ MCP thông minh về mã nhanh nhất, có khả năng lập chỉ mục toàn bộ kho lưu trữ chỉ trong vài mili giây.'
 date: 2026-06-19
-lastmod:  2026-06-19tags: []
+lastmod: 2026-06-19tags: []
 category: "dev-utils"
 lang: vi
 slug: codebase-memory-mcp-high-performance-code-intelligence
 featureImage: /images/articles/codebase-memory-mcp-high-performance-code-intelligence-for-a.jpg
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/codebase-memory-mcp-high-performance-code-intelligence/ -->
 
 # Codebase-Memory-MCP: Mã thông minh hiệu suất cao dành cho tác nhân mã hóa AI 
 
@@ -28,9 +21,7 @@ Trong hướng dẫn toàn diện này, chúng ta sẽ khám phá điều gì l�
 
 Codebase-memory-mcp là **công cụ mã thông minh hiệu suất cao** được xây dựng dành riêng cho các tác nhân mã hóa AI. Không giống như các phương pháp truyền thống dựa vào việc đọc từng tệp hoặc tìm kiếm văn bản cơ bản, nó xây dựng **biểu đồ kiến ​​thức liên tục** cho toàn bộ cơ sở mã của bạn bằng cách sử dụng phân tích AST của người chăm sóc cây. 
 
-Kết quả thật đáng kinh ngạc: 
-
-- **Lập chỉ mục nhân Linux** (28 triệu dòng mã, 75.000 tệp) chỉ trong **3 phút** 
+Kết quả thật đáng kinh ngạc: - **Lập chỉ mục nhân Linux** (28 triệu dòng mã, 75.000 tệp) chỉ trong **3 phút** 
 - **Trả lời các truy vấn cấu trúc trong vòng chưa đầy 1 mili giây** 
 - **Giảm mức sử dụng mã thông báo xuống 120 lần** so với tìm kiếm theo từng tệp 
 - **Hỗ trợ 158 ngôn ngữ lập trình** ngay lập tức 
@@ -38,9 +29,7 @@ Kết quả thật đáng kinh ngạc:
 
 ### Các thành phần kiến trúc chính 
 
-Hệ thống kết hợp nhiều công nghệ tiên tiến: 
-
-![Kiến trúc bộ nhớ-Codebase](https://images.pexels.com/photos/5468579/pexels-photo-5468579.jpeg)
+Hệ thống kết hợp nhiều công nghệ tiên tiến: ![Kiến trúc bộ nhớ-Codebase](https://images.pexels.com/photos/5468579/pexels-photo-5468579.jpeg)
 
 1. **Phân tích cú pháp AST của Tree-Sitter**: Sử dụng các ngữ pháp của Tree-Sitter được biên dịch trực tiếp thành tệp nhị phân, loại bỏ các vấn đề phụ thuộc vào thời gian chạy 
 2. **Tích hợp LSP lai**: Thêm độ phân giải kiểu ngữ nghĩa cho Python, TypeScript, JavaScript, PHP, C#, Go, C, C++, Java, Kotlin và Rust 
@@ -49,13 +38,9 @@ Hệ thống kết hợp nhiều công nghệ tiên tiến:
 
 ## Hướng dẫn cài đặt 
 
-Một trong những điểm mạnh lớn nhất của codebase-memory-mcp là tính đơn giản của nó. Không cần Docker, không cần khóa API và không cần cấu hình phức tạp. Đây là cách để bắt đầu: 
+Một trong những điểm mạnh lớn nhất của codebase-memory-mcp là tính đơn giản của nó. Không cần Docker, không cần khóa API và không cần cấu hình phức tạp. Đây là cách để bắt đầu: ### Bước 1: Tải xuống nhị phân 
 
-### Bước 1: Tải xuống nhị phân 
-
-Truy cập [trang phát hành](https://github.com/DeusData/codebase-memory-mcp/releases/latest) và tải xuống tệp nhị phân cho nền tảng của bạn: 
-
-``` bash 
+Truy cập [trang phát hành](https://github.com/DeusData/codebase-memory-mcp/releases/latest) và tải xuống tệp nhị phân cho nền tảng của bạn: ``` bash 
 #Linux AMD64 
 wget https://github.com/DeusData/codebase-memory-mcp/releases/latest/download/codebase-memory-mcp-linux-amd64 
 
@@ -85,9 +70,7 @@ Lệnh `install` là một viên đạn ma thuật — nó tự động phát hi
 
 ### Bước 3: Đại lý được hỗ trợ 
 
-Lệnh cài đặt hỗ trợ **11 tác nhân mã hóa phổ biến**: 
-
-![Đại lý mã hóa AI](https://images.pexels.com/photos/3861959/pexels-photo-3861959.jpeg)
+Lệnh cài đặt hỗ trợ **11 tác nhân mã hóa phổ biến**: ![Đại lý mã hóa AI](https://images.pexels.com/photos/3861959/pexels-photo-3861959.jpeg)
 
 - Mã Claude 
 - Codex CLI 
@@ -113,9 +96,7 @@ Lệnh cài đặt hỗ trợ **11 tác nhân mã hóa phổ biến**:
 
 Về cốt lõi, hệ thống sử dụng [tree-sitter](https://tree-sitter.github.io/tree-sitter/), một công cụ tạo trình phân tích cú pháp và thư viện phân tích cú pháp gia tăng. Người chăm sóc cây xây dựng cây cú pháp cụ thể (CST) cho mã nguồn, sau đó được chuyển đổi thành cây cú pháp trừu tượng (AST) để truy vấn hiệu quả. 
 
-Đây là đường dẫn lập chỉ mục trông như thế nào: 
-
-``` 
+Đây là đường dẫn lập chỉ mục trông như thế nào: ``` 
 Mã nguồn → Trình phân tích cú pháp → CST → AST → Sơ đồ tri thức 
 ``` 
 
@@ -133,9 +114,7 @@ Tree-sitter cung cấp cho chúng ta cấu trúc cú pháp, nhưng đôi khi ch�
 
 ## 14 công cụ MCP 
 
-Codebase-memory-mcp trưng bày **14 công cụ MCP** cung cấp cho các tác nhân mã hóa AI khả năng thông minh mã mạnh mẽ:
-
-### Công cụ truy vấn cốt lõi 
+Codebase-memory-mcp trưng bày **14 công cụ MCP** cung cấp cho các tác nhân mã hóa AI khả năng thông minh mã mạnh mẽ: ### Công cụ truy vấn cốt lõi 
 
 1. **search_symbols**: Tìm kiếm hàm, lớp, biến và các ký hiệu khác trên toàn bộ cơ sở mã 
 2. **get_symbol_info**: Nhận thông tin chi tiết về một ký hiệu cụ thể, bao gồm định nghĩa và cách sử dụng của nó 
@@ -160,9 +139,7 @@ Codebase-memory-mcp trưng bày **14 công cụ MCP** cung cấp cho các tác n
 
 ## Điểm chuẩn hiệu suất 
 
-Những con số nói lên điều đó. Dưới đây là các điểm chuẩn chính từ [bài nghiên cứu](https://arxiv.org/abs/2603.27277): 
-
-| Số liệu | codebase-bộ nhớ-mcp | Tìm kiếm theo từng tệp | RAG ngây thơ | 
+Những con số nói lên điều đó. Dưới đây là các điểm chuẩn chính từ [bài nghiên cứu](https://arxiv.org/abs/2603.27277): | Số liệu | codebase-bộ nhớ-mcp | Tìm kiếm theo từng tệp | RAG ngây thơ | 
 |--------|----------------------|----------------------|----------| 
 | Tốc độ lập chỉ mục | 3 phút (nhân Linux) | Không áp dụng | Không áp dụng | 
 | Độ trễ truy vấn | < 1ms | 100-500ms | 1-5 giây | 
@@ -172,9 +149,7 @@ Những con số nói lên điều đó. Dưới đây là các điểm chuẩn 
 
 ### Thử nghiệm trong thế giới thực 
 
-Trong thử nghiệm của chúng tôi trên dự án Python 500.000 LỘC: 
-
-- **Thời gian lập chỉ mục**: 45 giây (so với hơn 2 giờ ước tính cho từng tệp) 
+Trong thử nghiệm của chúng tôi trên dự án Python 500.000 LỘC: - **Thời gian lập chỉ mục**: 45 giây (so với hơn 2 giờ ước tính cho từng tệp) 
 - **Phản hồi truy vấn**: Dưới 50 mili giây cho hầu hết các truy vấn 
 - **Tiết kiệm mã thông báo**: Giảm mức sử dụng cửa sổ ngữ cảnh khoảng 95%
 
@@ -192,9 +167,7 @@ Sourcegraph là một nền tảng tìm kiếm mã mạnh mẽ nhưng được t
 
 ### so với Hệ thống RAG truyền thống 
 
-Các hệ thống RAG (Thế hệ tăng cường truy xuất) truyền thống chia mã thành các đoạn và dựa vào sự tương đồng về ngữ nghĩa. Cách tiếp cận này: 
-
-- Mất bối cảnh cấu trúc 
+Các hệ thống RAG (Thế hệ tăng cường truy xuất) truyền thống chia mã thành các đoạn và dựa vào sự tương đồng về ngữ nghĩa. Cách tiếp cận này: - Mất bối cảnh cấu trúc 
 - Tạo ra các câu trả lời rời rạc 
 - Lãng phí mã thông báo vào các phần không liên quan 
 - Gặp khó khăn với các mối quan hệ chéo tập tin 
@@ -205,9 +178,7 @@ Cách tiếp cận biểu đồ tri thức của Codebase-memory-mcp giải quy�
 
 ### Ca sử dụng 1: Tái cấu trúc mã kế thừa 
 
-Hãy tưởng tượng bạn được giao nhiệm vụ tái cấu trúc một cơ sở mã cũ. Với codebase-memory-mcp: 
-
-``` con trăn 
+Hãy tưởng tượng bạn được giao nhiệm vụ tái cấu trúc một cơ sở mã cũ. Với codebase-memory-mcp: ``` con trăn 
 # Tìm tất cả người gọi hàm không được dùng nữa 
 kết quả = mcp.call("find_callers", { 
 "biểu tượng": "legacy_authenticate", 
@@ -229,9 +200,7 @@ Tác nhân AI giờ đây có thể hiểu được toàn bộ tác động củ
 
 ### Trường hợp sử dụng 2: Giới thiệu các nhà phát triển mới 
 
-Khi một nhà phát triển mới tham gia nhóm, họ có thể sử dụng codebase-memory-mcp để hiểu nhanh cấu trúc codebase:
-
-``` bash 
+Khi một nhà phát triển mới tham gia nhóm, họ có thể sử dụng codebase-memory-mcp để hiểu nhanh cấu trúc codebase: ``` bash 
 # Lấy cấu trúc tổng thể của dự án 
 mcp.call("get_file_structure", {"project": "."}) 
 
@@ -249,9 +218,7 @@ mcp.call("get_import_graph", {"module": "services"})
 
 ### Ca sử dụng 3: Kiểm tra bảo mật 
 
-Để kiểm tra bảo mật, codebase-memory-mcp có thể xác định các lỗ hổng tiềm ẩn: 
-
-``` con trăn 
+Để kiểm tra bảo mật, codebase-memory-mcp có thể xác định các lỗ hổng tiềm ẩn: ``` con trăn 
 # Tìm tất cả các điểm cuối HTTP 
 điểm cuối = mcp.call("search_symbols", { 
 "truy vấn": "@app.route", 
@@ -259,8 +226,7 @@ mcp.call("get_import_graph", {"module": "services"})
 }) 
 
 # Kiểm tra xác thực trên mỗi điểm cuối 
-cho điểm cuối trong điểm cuối: 
-người gọi = mcp.call("find_callers", {"biểu tượng": điểm cuối}) 
+cho điểm cuối trong điểm cuối: người gọi = mcp.call("find_callers", {"biểu tượng": điểm cuối}) 
 # Kiểm tra xem phần mềm trung gian xác thực có được áp dụng không 
 ``` 
 
@@ -270,9 +236,7 @@ Cách tiếp cận có hệ thống này kỹ lưỡng hơn nhiều so với vi�
 
 ### Cấu hình máy chủ MCP 
 
-Đối với cấu hình thủ công (khi lệnh `install` không phát hiện được tác nhân của bạn), đây là thiết lập cơ bản: 
-
-```json 
+Đối với cấu hình thủ công (khi lệnh `install` không phát hiện được tác nhân của bạn), đây là thiết lập cơ bản: ```json 
 { 
 "McpServers": { 
 "bộ nhớ cơ sở mã": { 
@@ -288,9 +252,7 @@ Cách tiếp cận có hệ thống này kỹ lưỡng hơn nhiều so với vi�
 
 ### Tùy chọn lập chỉ mục 
 
-Bạn có thể tùy chỉnh hành vi lập chỉ mục: 
-
-``` bash 
+Bạn có thể tùy chỉnh hành vi lập chỉ mục: ``` bash 
 # Chỉ lập chỉ mục các thư mục cụ thể 
 ./codebase-memory-mcp chỉ mục --include src/,lib/ 
 
@@ -306,9 +268,7 @@ Bạn có thể tùy chỉnh hành vi lập chỉ mục:
 
 ### Trực quan hóa đồ thị 
 
-Codebase-memory-mcp bao gồm giao diện người dùng trực quan hóa đồ thị 3D tích hợp: 
-
-``` bash 
+Codebase-memory-mcp bao gồm giao diện người dùng trực quan hóa đồ thị 3D tích hợp: ``` bash 
 # Khởi động máy chủ trực quan 
 ./codebase-memory-mcp phục vụ --viz 
 
@@ -319,16 +279,11 @@ Hình ảnh trực quan cho phép bạn khám phá biểu đồ tri thức của
 
 ### Ví dụ về cấu hình 
 
-Dưới đây là một số ví dụ về cấu hình cho các tác nhân khác nhau: 
-
-```yaml 
+Dưới đây là một số ví dụ về cấu hình cho các tác nhân khác nhau: ```yaml 
 # Cấu hình mã Claude 
-máy chủ mcp: 
-bộ nhớ mã cơ sở: 
-lệnh: /path/to/codebase-memory-mcp 
+máy chủ mcp: bộ nhớ mã cơ sở: lệnh: /path/to/codebase-memory-mcp 
 tranh luận: [phục vụ] 
-env: 
-CBM_PROJECT_ROOT: /path/to/your/project 
+env: CBM_PROJECT_ROOT: /path/to/your/project 
 ``` 
 
 ```json 
@@ -345,9 +300,7 @@ CBM_PROJECT_ROOT: /path/to/your/project
 
 ### Cách sử dụng SDK Python 
 
-Để truy cập theo chương trình vào biểu đồ tri thức: 
-
-``` con trăn 
+Để truy cập theo chương trình vào biểu đồ tri thức: ``` con trăn 
 nhập codebase_memory 
 
 # Khởi tạo máy khách 
@@ -368,9 +321,7 @@ call_graph = client.get_call_graph(function="xác thực")
 
 ### Ví dụ về truy vấn nâng cao 
 
-Dưới đây là một số ví dụ sử dụng nâng cao: 
-
-``` con trăn 
+Dưới đây là một số ví dụ sử dụng nâng cao: ``` con trăn 
 # Tìm tất cả người gọi hàm 
 người gọi = client.find_callers(function="đăng nhập") 
 
@@ -386,9 +337,7 @@ thay đổi = client.get_code_changes(file="auth.py")
 
 ### Triển khai Docker 
 
-Đối với môi trường được chứa trong container: 
-
-``` tập tin docker 
+Đối với môi trường được chứa trong container: ``` tập tin docker 
 TỪ núi cao: mới nhất 
 SAO CHÉP codebase-memory-mcp /usr/local/bin/ 
 CHẠY chmod +x /usr/local/bin/codebase-memory-mcp 
@@ -407,9 +356,7 @@ docker run -v /path/to/project:/project codebase-memory phục vụ
 
 ## Bảo mật và tin cậy 
 
-Bảo mật là ưu tiên hàng đầu của codebase-memory-mcp. Mỗi bản phát hành nhị phân là:
-
-- **Đã ký** bằng chữ ký mật mã 
+Bảo mật là ưu tiên hàng đầu của codebase-memory-mcp. Mỗi bản phát hành nhị phân là: - **Đã ký** bằng chữ ký mật mã 
 - **Đã kiểm tra tổng hợp** để xác minh tính toàn vẹn 
 - **Được quét** bởi hơn 70 công cụ chống vi-rút thông qua VirusTotal 
 - **Được xử lý cục bộ 100%** — mã của bạn không bao giờ rời khỏi máy của bạn 
@@ -418,9 +365,7 @@ Ngoài ra, dự án còn duy trì [Thẻ điểm OpenSSF](https://scorecard.dev/
 
 ## Hạn chế và cân nhắc 
 
-Mặc dù codebase-memory-mcp rất ấn tượng nhưng điều quan trọng là phải hiểu những hạn chế của nó: 
-
-### Hạn chế hiện tại 
+Mặc dù codebase-memory-mcp rất ấn tượng nhưng điều quan trọng là phải hiểu những hạn chế của nó: ### Hạn chế hiện tại 
 
 1. **Chỉ phân phối nhị phân**: Không có tùy chọn biên dịch nguồn cho hầu hết các nền tảng 
 2. **Hỗ trợ ngôn ngữ tự nhiên có giới hạn**: Được thiết kế chủ yếu cho các truy vấn có cấu trúc, không phải cho tương tác đàm thoại 
@@ -443,9 +388,7 @@ Mặc dù codebase-memory-mcp rất ấn tượng nhưng điều quan trọng l�
 
 ## Con đường phía trước 
 
-Dự án codebase-memory-mcp đang được phát triển tích cực và có lộ trình thú vị: 
-
-### Các tính năng dự kiến 
+Dự án codebase-memory-mcp đang được phát triển tích cực và có lộ trình thú vị: ### Các tính năng dự kiến 
 
 - **Hỗ trợ ngôn ngữ tự nhiên nâng cao**: Tích hợp tốt hơn với khả năng hiểu mã dựa trên LLM 
 - **Lập chỉ mục nhiều repo**: Hỗ trợ monorepos và các kho liên quan 
@@ -459,9 +402,7 @@ Với hơn 570 fork và 111 vấn đề mở, cộng đồng đang phát triển
 
 ## Bắt đầu ngay hôm nay 
 
-Sẵn sàng trải nghiệm tương lai của mã thông minh? Đây là cách để bắt đầu: 
-
-1. **Tải xuống**: Truy cập [Bản phát hành GitHub](https://github.com/DeusData/codebase-memory-mcp/releases/latest) 
+Sẵn sàng trải nghiệm tương lai của mã thông minh? Đây là cách để bắt đầu: 1. **Tải xuống**: Truy cập [Bản phát hành GitHub](https://github.com/DeusData/codebase-memory-mcp/releases/latest) 
 2. **Cài đặt**: Chạy `./codebase-memory-mcp install` 
 3. **Cấu hình**: Chọn tác nhân mã hóa AI của bạn 
 4. **Khám phá**: Bắt đầu sử dụng 14 công cụ MCP 
@@ -518,7 +459,6 @@ Với điểm chuẩn hiệu suất ấn tượng, hỗ trợ ngôn ngữ rộng
 - [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f) - Giải pháp proxy để quét web
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

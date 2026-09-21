@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/metabase-business-intelligence-open" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/metabase-business-intelligence-open" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/metabase-business-intelligence-open" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/metabase-business-intelligence-open" />
 title: 'Metabase 2026: Công Cụ BI Mã Nguồn Mở Thay Thế Tableau V...
 description: 'Hướng dẫn đầy đủ cho Metabase v60.2: BI mã nguồn mở với trình xây dựng truy vấn trực quan, dashboard, SQL editor, alerts, embedding và Docker self-hosting. 41,000+ sao GitHub.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: [metabase, bi, 'business-intelligence', 'open-source', tableau, dashboards, sql, docker, 'self-hosted', analytics, 'data-visualization', 'apache-superset', 'tri-tue-kinh-doanh', 'phan-tich-du-lieu', 'ma-nguon-mo']
-aliases:
-- /vi/posts/metabase-business-intelligence-open/
+aliases: - /vi/posts/metabase-business-intelligence-open/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/metabase-business-intelligence-open/ -->
 
 {{</* resource-info */>}}
 
@@ -57,17 +49,13 @@ Metabase tổ chức analytics xung quanh **questions** — các truy vấn đư
 
 ### Visual Query Builder (Không Cần SQL)
 
-Core UX là question builder, dịch các hành động GUI thành database queries:
-
-```sql
--- Ngườừ dùng click:
--- Table: orders
+Core UX là question builder, dịch các hành động GUI thành database queries: ```sql
+-- Ngườừ dùng click: -- Table: orders
 -- Filter: created_at là "Last 30 Days"
 -- Group by: country
 -- Aggregation: count, sum(total)
 
--- Metabase generate:
-SELECT 
+-- Metabase generate: SELECT 
     country,
     COUNT(*) AS order_count,
     SUM(total) AS revenue
@@ -153,13 +141,10 @@ docker logs -f metabase
 
 ### Bước 2: Hoàn Thành Setup Wizard
 
-Mở `http://localhost:3000/setup` và hoàn thành first-run wizard:
-
-```markdown
+Mở `http://localhost:3000/setup` và hoàn thành first-run wizard: ```markdown
 1. Chọn ngôn ngữ (English)
 2. Tạo admin account (email + password)
-3. Thêm database đầu tiên:
-   - Database type: PostgreSQL
+3. Thêm database đầu tiên: - Database type: PostgreSQL
    - Host: your-db-host
    - Port: 5432
    - Database name: analytics
@@ -173,14 +158,10 @@ Mở `http://localhost:3000/setup` và hoàn thành first-run wizard:
 ```yaml
 # docker-compose.yml
 version: "3.8"
-services:
-  metabase:
-    image: metabase/metabase:v0.60.2
+services: metabase: image: metabase/metabase:v0.60.2
     restart: always
-    ports:
-      - "3000:3000"
-    environment:
-      # Use PostgreSQL cho application DB (recommended cho production)
+    ports: - "3000:3000"
+    environment: # Use PostgreSQL cho application DB (recommended cho production)
       MB_DB_TYPE: postgres
       MB_DB_DBNAME: metabase
       MB_DB_PORT: 5432
@@ -189,37 +170,26 @@ services:
       MB_DB_HOST: postgres
       # Java heap size cho larger deployments
       JAVA_OPTS: "-Xmx2g -Xms1g"
-    depends_on:
-      postgres:
-        condition: service_healthy
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
+    depends_on: postgres: condition: service_healthy
+    healthcheck: test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
       interval: 30s
       timeout: 10s
       retries: 5
 
-  postgres:
-    image: postgres:15-alpine
+  postgres: image: postgres:15-alpine
     restart: always
-    environment:
-      POSTGRES_USER: metabase
+    environment: POSTGRES_USER: metabase
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: metabase
-    volumes:
-      - metabase_db:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U metabase"]
+    volumes: - metabase_db:/var/lib/postgresql/data
+    healthcheck: test: ["CMD-SHELL", "pg_isready -U metabase"]
       interval: 10s
       timeout: 5s
       retries: 5
 
-volumes:
-  metabase_db:
-```
+volumes: metabase_db: ```
 
-Launch production stack:
-
-```bash
+Launch production stack: ```bash
 # Tạo environment file
 echo "POSTGRES_PASSWORD=$(openssl rand -base64 24)" > .env
 
@@ -232,12 +202,9 @@ docker-compose ps
 
 ### Bước 4: Deploy Trên DigitalOcean (VPS)
 
-Cho production-grade deployment trên **DigitalOcean Droplet** (2 vCPU / 4GB RAM từ $24/tháng):
-
-```bash
+Cho production-grade deployment trên **DigitalOcean Droplet** (2 vCPU / 4GB RAM từ $24/tháng): ```bash
 # 1. Tạo Droplet với Docker pre-installed
-#    Nhận $200 free credit với referral link:
-#    https://m.do.co/c/eca87ac14ee0
+#    Nhận $200 free credit với referral link: #    https://m.do.co/c/eca87ac14ee0
 
 # 2. SSH vào Droplet
 ssh root@your-droplet-ip
@@ -309,8 +276,7 @@ Role: METABASE_ROLE
 # 2. Download JSON key file
 # 3. Upload trong Metabase connection dialog
 
-# Required IAM roles:
-# - roles/bigquery.dataViewer
+# Required IAM roles: # - roles/bigquery.dataViewer
 # - roles/bigquery.jobUser
 ```
 
@@ -348,8 +314,7 @@ Navigation: + New > Question
 Database: analytics
 Table: orders
 
-Filters:
-  - Created At: "Last 30 Days"
+Filters: - Created At: "Last 30 Days"
   - Status: not "refunded"
 
 Group by: Country
@@ -366,14 +331,12 @@ Save as: "Revenue by Country (30d)"
 Navigation: + New > Dashboard
 Name: "Executive Summary"
 
-Add questions:
-  1. "Daily Active Users" → Line chart
+Add questions: 1. "Daily Active Users" → Line chart
   2. "Revenue by Country (30d)" → Bar chart  
   3. "Top Products" → Table
   4. "Conversion Funnel" → Funnel
 
-Add filters:
-  - Date Range (linked tới all questions)
+Add filters: - Date Range (linked tới all questions)
   - Country (linked tới questions 2, 3)
 
 Configure auto-refresh: Every 5 minutes
@@ -400,9 +363,7 @@ ORDER BY 1;
 
 ### So Sánh Hiệu Năng Query
 
-Benchmark chạy 50 concurrent analytical queries trên bảng 100M-row orders:
-
-| Metric | Metabase v60.2 | Tableau Cloud | Apache Superset 6.0 | Power BI |
+Benchmark chạy 50 concurrent analytical queries trên bảng 100M-row orders: | Metric | Metabase v60.2 | Tableau Cloud | Apache Superset 6.0 | Power BI |
 |--------|---------------|---------------|-------------------|----------|
 | Median query time | 1.2s | 0.9s | 1.8s | 1.1s |
 | UI render (50 cards) | 0.8s | 0.5s | 1.5s | 0.6s |
@@ -414,23 +375,14 @@ Hiệu năng query của Metabase trong vòng 30% của Tableau cho hầu hết 
 
 ### Case Study: Giảm Analytics Backlog 80%
 
-Công ty fintech Series B (ẩn danh) deploy Metabase thay thế Tableau Desktop và manual SQL requests:
-
-- **Trước**: 47 ticket Jira cho "one-off reports," turnaround trung bình 2 tuần, 3 data analysts chìm trong ad-hoc requests.
+Công ty fintech Series B (ẩn danh) deploy Metabase thay thế Tableau Desktop và manual SQL requests: - **Trước**: 47 ticket Jira cho "one-off reports," turnaround trung bình 2 tuần, 3 data analysts chìm trong ad-hoc requests.
 - **Sau Metabase (3 tháng)**: Self-service rate tăng từ 15% lên 78%. Non-technical users xây 200+ questions independently. Analyst time được giải phóng cho deep-dive work.
 - **Cost impact**: Hủy $42,000/năm license Tableau. VPS hosting cost: $576/năm. **Net savings: $41,424/năm.**
 
 ### Embedding Analytics Trong Ứng Dụng Customer-Facing
 
 ```html
-<!-- Embedding dashboard trong React app -->
-<iframe
-  src="https://analytics.yourapp.com/embed/dashboard/123"
-  frameborder="0"
-  width="1200"
-  height="800"
-  allowtransparency
-></iframe>
+</iframe>
 ```
 
 ```javascript
@@ -455,29 +407,23 @@ Với signed embedding, mỗi customer chỉ thấy data của họ — row-leve
 ```markdown
 1. Mở bất kỳ saved question
 2. Click biểu tượng chuông → "Set up an alert"
-3. Chọn condition:
-   - "When the result reaches a goal"
+3. Chọn condition: - "When the result reaches a goal"
    - Goal: 1000
    - Direction: "Goes above"
-4. Chọn delivery:
-   - Email: team@company.com
+4. Chọn delivery: - Email: team@company.com
    - Slack: #data-alerts channel
 5. Set frequency: Check every hour
 ```
 
-Cho Slack integration:
-
-```bash
-# Trong Metabase Admin > Settings > Slack:
-Slack API Token: xoxb-your-bot-token
+Cho Slack integration: ```bash
+# Trong Metabase Admin > Settings > Slack: Slack API Token: xoxb-your-bot-token
 Slack channels: #data-alerts, #executive-summary
 ```
 
 ### Caching Cho Performance
 
 ```markdown
-Admin > Settings > Caching:
-  - Enable query caching: ON
+Admin > Settings > Caching: - Enable query caching: ON
   - Minimum query duration to cache: 1 second
   - Cache TTL multiplier: 10
   - Max cache entry size: 1,000 KB
@@ -602,9 +548,7 @@ Nếu team bạn đang trả hóa đơn Tableau khiến bạn nhăn mặt, hoặ
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -624,7 +568,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 *Affiliate Disclosure: Bài viết này chứa liên kết affiliate tới DigitalOcean. Nếu bạn đăng ký qua link giới thiệu, chúng tôi nhận được hoa hồng không phát sinh chi phí thêm cho bạn. Mọi ý kiến và benchmarks đều độc lập và dựa trên thử nghiệm thực tế.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

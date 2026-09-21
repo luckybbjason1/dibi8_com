@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/repomix-pack-repo-for-llm-context-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/repomix-pack-repo-for-llm-context-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/repomix-pack-repo-for-llm-context-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/repomix-pack-repo-for-llm-context-2026" />
 title: 'repomix 2026: Đóng Gói Toàn Bộ Codebase Thành File Duy N...
 description: 'repomix (tên cũ repopack) chuyển đổi repository Git thành một file text có cấu trúc duy nhất, tối ưu cho cửa sổ ngữ cảnh của Claude, ChatGPT, Gemini. 14k+ sao, không cần cấu hình, chạy ngay với npx.'
 date: 2026-06-09 00:00:00+08:00
@@ -25,10 +20,8 @@ featureImage: '/images/articles/repomix-pack-repo-for-llm-context-2026/cover.jpg
 draft: false
 categories: ['dev-utils']
 tags: [repomix, repopack, 'ai-coding', 'llm-context', 'đóng-gói-codebase', claude, chatgpt, 'công-cụ-dev', 'mã-nguồn-mở']
-aliases:
-- /vi/posts/repomix-pack-repo-for-llm-context-2026/
-faqs:
-  - q: 'repomix là gì và tên cũ của nó là gì?'
+aliases: - /vi/posts/repomix-pack-repo-for-llm-context-2026/
+faqs: - q: 'repomix là gì và tên cũ của nó là gì?'
     a: 'repomix (tên cũ repopack) là công cụ CLI mã nguồn mở đóng gói toàn bộ repository Git thành một file text có cấu trúc duy nhất, tối ưu cho cửa sổ ngữ cảnh LLM. Đổi tên từ "repopack" sang "repomix" vào năm 2025 để tránh nhầm lẫn với lệnh "repack" của npm. Phát triển bởi yamadashy, giấy phép MIT.'
   - q: 'repomix hỗ trợ những định dạng đầu ra nào?'
     a: 'repomix hỗ trợ ba định dạng đầu ra: văn bản thuần túy (mặc định, phù hợp ChatGPT và LLM thông thường), XML (tốt nhất cho Claude — Claude dùng XML bản địa), và Markdown (phù hợp Copilot và quy trình tài liệu). Chọn bằng --style plain|xml|markdown.'
@@ -36,17 +29,13 @@ faqs:
     a: 'repomix hoạt động tốt với khoảng 100,000–200,000 token (khoảng 5,000–10,000 file). Với repo lớn hơn, dùng --include để chỉ gửi subsystem liên quan. Flag --output-show-line-numbers giúp LLM đưa ra gợi ý chỉnh sửa chính xác theo số dòng.'
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/repomix-pack-repo-for-llm-context-2026/ -->
-
 ![repomix 2026: Đóng gói codebase cho ngữ cảnh LLM — dibi8.com](/images/articles/repomix-pack-repo-for-llm-context-2026/cover.jpg)
 
 Khi nhờ Claude hoặc ChatGPT debug lỗi liên quan nhiều file, việc dán từng đoạn code một nhanh chóng mất ngữ cảnh. [repomix](https://github.com/yamadashy/repomix) giải quyết bằng cách biến toàn bộ repository thành một file có cấu trúc — sẵn sàng đưa vào cửa sổ ngữ cảnh của bất kỳ LLM nào trong vài giây.
 
 ## repomix Làm Gì
 
-repomix quét repository, loại trừ file trong `.gitignore`, và xuất file text duy nhất chứa:
-
-1. **Tóm tắt repository** — tổng số file, ước tính token, phân bố ngôn ngữ
+repomix quét repository, loại trừ file trong `.gitignore`, và xuất file text duy nhất chứa: 1. **Tóm tắt repository** — tổng số file, ước tính token, phân bố ngôn ngữ
 2. **Cây thư mục** — cấu trúc thư mục đầy đủ
 3. **Tất cả file nguồn** — mỗi file có tiêu đề đường dẫn và số dòng tùy chọn
 
@@ -89,9 +78,7 @@ repomix --output-show-line-numbers
 
 ## Bảo Mật: `.repomixignore`
 
-repomix tôn trọng `.gitignore` theo mặc định, nhưng file nhạy cảm chưa được gitignore (như `.env` local) có thể lọt vào output. Tạo file `.repomixignore` để loại trừ rõ ràng:
-
-```
+repomix tôn trọng `.gitignore` theo mặc định, nhưng file nhạy cảm chưa được gitignore (như `.env` local) có thể lọt vào output. Tạo file `.repomixignore` để loại trừ rõ ràng: ```
 .env
 .env.local
 config/credentials.json
@@ -102,7 +89,6 @@ config/credentials.json
 **GitHub:** [yamadashy/repomix](https://github.com/yamadashy/repomix) · 14.2k ⭐ · MIT
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -130,25 +116,20 @@ config/credentials.json
 
 ## Why This Matters
 
-Understanding repomix 2026: đóng gói toàn bộ codebase thành file duy nhất cho llm — không cần cấu hình is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding repomix 2026: đóng gói toàn bộ codebase thành file duy nhất cho llm — không cần cấu hình is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

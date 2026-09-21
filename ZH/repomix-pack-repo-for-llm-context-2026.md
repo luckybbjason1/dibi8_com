@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/repomix-pack-repo-for-llm-context-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/repomix-pack-repo-for-llm-context-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/repomix-pack-repo-for-llm-context-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/repomix-pack-repo-for-llm-context-2026" />
 title: 'repomix 2026：一条命令把整个代码库打包成 LLM 可用的单文件'
 description: 'repomix（前身 repopack）将 Git 仓库整体打包为结构化纯文本，适配 Claude、ChatGPT、Gemini 的上下文窗口。14k+ Star，零配置，npx 秒跑。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-09 00:00:00+08:00
@@ -25,18 +20,13 @@ featureImage: '/images/articles/repomix-pack-repo-for-llm-context-2026/cover.jpg
 draft: false
 categories: ['dev-utils']
 tags: [repomix, repopack, ai编程, llm上下文, 代码库打包, claude, chatgpt, 开发者工具, 开源]
-aliases:
-- /zh/posts/repomix-pack-repo-for-llm-context-2026/
-faqs:
-  - q: 'repomix 是什么，前身叫什么？'
+aliases: - /zh/posts/repomix-pack-repo-for-llm-context-2026/
+faqs: - q: 'repomix 是什么，前身叫什么？'
     a: 'repomix（前身 repopack）是开源 CLI 工具，把整个 Git 仓库打包为单一结构化文本，适配 LLM 上下文窗口。2025 年因与 npm repack 命令重名而更名为 repomix。由 yamadashy 开发，MIT 协议。'
   - q: 'repomix 支持哪些输出格式？'
     a: 'repomix 支持三种输出格式：纯文本（默认，适合 ChatGPT 等通用 LLM）、XML（适合 Claude，Claude 原生使用 XML）、Markdown（适合文档工作流和 GitHub Copilot）。用 --style plain|xml|markdown 切换。'
   - q: 'repomix 能处理多大的代码库？'
-    a: 'repomix 对约 10 万–20 万 token（大约 5000–10000 个文件）以内的项目效果最佳。更大的仓库建议用 --include 模式只打包相关子系统，减少 token 消耗。'
----
-
-<!-- canonical: https://dibi8.com/zh/tools/repomix-pack-repo-for-llm-context-2026/ -->
+    a: 'repomix 对约 10 万–20 万 token（大约 5000–10000 个文件）以内的项目效果最佳。更大的仓库建议用 --include 模式只打包相关子系统，减少 token 消耗。'---
 
 ![repomix 2026: 代码库打包为 LLM 上下文 — dibi8.com](/images/articles/repomix-pack-repo-for-llm-context-2026/cover.jpg)
 
@@ -71,7 +61,13 @@ npx repomix --remote https://github.com/user/repo
 ## 输出格式
 
 | 格式 | 参数 | 最适合 |
-|------|------|--------|
+|
+---
+|
+---
+|
+---
+|
 | 纯文本 | `--style plain`（默认）| ChatGPT、通用 LLM |
 | XML | `--style xml` | Claude（原生 XML）、结构化解析 |
 | Markdown | `--style markdown` | Copilot、文档工作流 |
@@ -117,7 +113,6 @@ config/credentials.json
 **GitHub：** [yamadashy/repomix](https://github.com/yamadashy/repomix) · 14.2k ⭐ · MIT
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -145,25 +140,20 @@ config/credentials.json
 
 ## Why This Matters
 
-Understanding repomix 2026：一条命令把整个代码库打包成 llm 可用的单文件 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding repomix 2026：一条命令把整个代码库打包成 llm 可用的单文件 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -184,13 +174,13 @@ repomix 2026：一条命令把整个代码库打包成 LLM 可用的单文件 re
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
 
+---
 ## Related Articles
 
 - [mattpocock-skills-ai-agent-framework-guide](repomix-pack-repo-for-llm-context-2026)
@@ -203,9 +193,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
-When deploying AI agents in production, follow these best practices:
-
-1. **Start Small**: Begin with a single tool and simple prompt, then gradually add complexity
+When deploying AI agents in production, follow these best practices: 1. **Start Small**: Begin with a single tool and simple prompt, then gradually add complexity
 2. **Implement Guardrails**: Use permission prompts and approval workflows for dangerous operations
 3. **Monitor Everything**: Log all agent actions for debugging and compliance
 4. **Handle Failures Gracefully**: Implement retry logic and fallback mechanisms
@@ -213,16 +201,12 @@ When deploying AI agents in production, follow these best practices:
 
 ### Security Considerations
 
-AI agents have access to sensitive systems. Always:
-
-- Use least-privilege principles
+AI agents have access to sensitive systems. Always: - Use least-privilege principles
 - Implement audit logging
 - Encrypt sensitive data at rest and in transit
 - Regular security assessments
 
-When deploying AI agents in production, follow these best practices:
-
-1. **Start Small**: Begin with a single tool and simple prompt, then gradually add complexity
+When deploying AI agents in production, follow these best practices: 1. **Start Small**: Begin with a single tool and simple prompt, then gradually add complexity
 2. **Implement Guardrails**: Use permission prompts and approval workflows for dangerous operations
 3. **Monitor Everything**: Log all agent actions for debugging and compliance
 4. **Handle Failures Gracefully**: Implement retry logic and fallback mechanisms
@@ -230,16 +214,12 @@ When deploying AI agents in production, follow these best practices:
 
 ### Security Considerations
 
-AI agents have access to sensitive systems. Always:
-
-- Use least-privilege principles
+AI agents have access to sensitive systems. Always: - Use least-privilege principles
 - Implement audit logging
 - Encrypt sensitive data at rest and in transit
 - Regular security assessments
 
-When deploying AI agents in production, follow these best practices:
-
-1. **Start Small**: Begin with a single tool and simple prompt, then gradually add complexity
+When deploying AI agents in production, follow these best practices: 1. **Start Small**: Begin with a single tool and simple prompt, then gradually add complexity
 2. **Implement Guardrails**: Use permission prompts and approval workflows for dangerous operations
 3. **Monitor Everything**: Log all agent actions for debugging and compliance
 4. **Handle Failures Gracefully**: Implement retry logic and fallback mechanisms
@@ -247,9 +227,7 @@ When deploying AI agents in production, follow these best practices:
 
 ### Security Considerations
 
-AI agents have access to sensitive systems. Always:
-
-- Use least-privilege principles
+AI agents have access to sensitive systems. Always: - Use least-privilege principles
 - Implement audit logging
 - Encrypt sensitive data at rest and in transit
 - Regular security assessments

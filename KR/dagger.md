@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/dagger" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/dagger" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/dagger" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/dagger" />
 title: 'Dagger: 15K+ Stars 프로그래머블 CI/CD — GitHub Actions, GitLab...
 description: 'Dagger는 컨테이너에서 파이프라인을 실행하는 프로그래머블 CI/CD 엔진입니다. Docker, Go, Python, TypeScript와 호환됩니다. Dagger 설치, 튜토리얼, GitHub Actions와의 비교, 프로덕션 하드닝을 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [cicd, devops, 컨테이너, '파이프라인-코드', docker, 'github-actions', 'gitlab-ci', '빌드-자동화']
-aliases:
-- /kr/posts/dagger/
+aliases: - /kr/posts/dagger/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/dagger/ -->
 
 {{</* resource-info */>}}
 
@@ -59,9 +51,7 @@ OCI 컨테이너 내에서 자동화 파이프라인을 실행하여 개발자�
 
 ### 아키텍처 개요
 
-Dagger의 아키텍처는 네 개의 레이어로 구성된다:
-
-1. **파이프라인 코드** (Go / Python / TypeScript) —— SDK를 사용하여 로직을 정의한다.
+Dagger의 아키텍처는 네 개의 레이어로 구성된다: 1. **파이프라인 코드** (Go / Python / TypeScript) —— SDK를 사용하여 로직을 정의한다.
 2. **Dagger SDK** —— 네이티브 함수 호출을 GraphQL 쿼리로 변환한다.
 3. **Dagger 엔진** —— 파이프라인 그래프를 실행하는 BuildKit 기반 컨테이너 런타임.
 4. **컨테이너 런타임** —— Docker, Podman 또는 엔진을 호스팅하는 모든 OCI 호환 런타임.
@@ -172,8 +162,7 @@ dagger init --sdk=go --source=./dagger my-pipeline
 # 또는 TypeScript 사용
 dagger init --sdk=typescript --source=./dagger my-pipeline
 
-# 이 명령은 다음을 생성합니다:
-# ├── dagger/
+# 이 명령은 다음을 생성합니다: # ├── dagger/
 # │   └── src/main.py (또는 main.go, 또는 index.ts)
 # ├── dagger.json
 # └── .gitignore
@@ -187,10 +176,8 @@ import dagger
 from dagger import dag, function, object_type
 
 @object_type
-class MyPipeline:
-    @function
-    async def hello(self, name: str = "World") -> str:
-        return await dag.container()
+class MyPipeline: @function
+    async def hello(self, name: str = "World") -> str: return await dag.container()
             .from_("alpine:latest")
             .with_exec(["echo", f"Hello, {name}!"])
             .stdout()
@@ -200,24 +187,20 @@ class MyPipeline:
 # 함수를 로컬에서 실행
 dagger call hello --name="Dagger"
 
-# 출력:
-# Hello, Dagger!
+# 출력: # Hello, Dagger!
 ```
 
 ## Docker, Go, Python 및 TypeScript와의 통합
 
 ### Docker 통합 — 이미지 빌드 및 푸시
 
-Dagger는 기본적으로 Docker 생태계의 컨테이너를 조작한다. Docker 이미지를 빌드, 태그 및 푸시하는 완전한 파이프라인은 다음과 같다:
-
-```python
+Dagger는 기본적으로 Docker 생태계의 컨테이너를 조작한다. Docker 이미지를 빌드, 태그 및 푸시하는 완전한 파이프라인은 다음과 같다: ```python
 # dagger/src/main.py — Docker 이미지 빌드 및 푸시
 import dagger
 from dagger import dag, function, object_type, Directory
 
 @object_type
-class CiPipeline:
-    @function
+class CiPipeline: @function
     async def build_and_push(
         self,
         source: Directory,
@@ -226,8 +209,7 @@ class CiPipeline:
         password: dagger.Secret,
         repository: str,
         tag: str = "latest"
-    ) -> str:
-        # 소스 디렉터리의 Dockerfile에서 컨테이너 빌드
+    ) -> str: # 소스 디렉터리의 Dockerfile에서 컨테이너 빌드
         image = await dag.container()
             .build(source, dockerfile="Dockerfile")
 
@@ -302,10 +284,8 @@ import dagger
 from dagger import dag, function, object_type, Directory, Service
 
 @object_type
-class TestPipeline:
-    @function
-    async def integration_test(self, source: Directory) -> str:
-        # PostgreSQL 서비스 컨테이너 시작
+class TestPipeline: @function
+    async def integration_test(self, source: Directory) -> str: # PostgreSQL 서비스 컨테이너 시작
         postgres = dag.service(
             dag.container()
             .from_("postgres:16-alpine")
@@ -361,9 +341,7 @@ class BuildPipeline {
 
 ### 캐싱 성능
 
-Dagger의 콘텐츠 주소 지정 캐시는 기존 CI 시스템 대비 측정 가능한 속도 향상을 제공한다. Go 마이크로서비스(약 50개 의존성)를 빌드하는 10회 연속 실행 제어 벤치마크에서:
-
-| 시나리오 | GitHub Actions | GitLab CI | Dagger (로컬 캐시) | Dagger (공유 캐시) |
+Dagger의 콘텐츠 주소 지정 캐시는 기존 CI 시스템 대비 측정 가능한 속도 향상을 제공한다. Go 마이크로서비스(약 50개 의존성)를 빌드하는 10회 연속 실행 제어 벤치마크에서: | 시나리오 | GitHub Actions | GitLab CI | Dagger (로컬 캐시) | Dagger (공유 캐시) |
 |----------|---------------|-----------|---------------------|----------------------|
 | 콜드 빌드 | 4분 12초 | 3분 48초 | 4분 05초 | 4분 05초 |
 | 2회차 (코드 변경 없음) | 3분 55초 | 3분 30초 | 8초 | 8초 |
@@ -374,18 +352,14 @@ Dagger의 콘텐츠 주소 지정 캐시는 기존 CI 시스템 대비 측정 �
 
 ### 사례 연구: 700줄 GitHub Actions YAML 대체
 
-한 엔지니어링 팀이 700줄의 GitHub Actions 워크플로(3개 마이크로서비스 빌드, 테스트, 푸시, 배포)를 180줄의 Python Dagger 파이프라인으로 대체했다. 30일 후 결과:
-
-- 로컬 파이프라인 실행 활성화: 개발자가 푸시 전에 CI 변경을 테스트(이전에는 불가능)
+한 엔지니어링 팀이 700줄의 GitHub Actions 워크플로(3개 마이크로서비스 빌드, 테스트, 푸시, 배포)를 180줄의 Python Dagger 파이프라인으로 대체했다. 30일 후 결과: - 로컬 파이프라인 실행 활성화: 개발자가 푸시 전에 CI 변경을 테스트(이전에는 불가능)
 - 평균 CI 디버깅 시간: 개발자당 주당 45분에서 5분으로 감소
 - CI 분 소비: 지능형 캐싱으로 34% 감소
 - 파이프라인 코드 중복: 공유 Dagger 모듈을 통해 제거
 
 ### Daggerverse: 모듈 생태계
 
-Daggerverse ([daggerverse.dev](https://daggerverse.dev))는 재사용 가능한 모듈의 커뮤니티 레지스트리다. 2026년 5월 기준 800개 이상의 모듈을 호스팅하고 있다:
-
-- 언어 툴체인: Go, Python, Node.js, Rust 빌드
+Daggerverse ([daggerverse.dev](https://daggerverse.dev))는 재사용 가능한 모듈의 커뮤니티 레지스트리다. 2026년 5월 기준 800개 이상의 모듈을 호스팅하고 있다: - 언어 툴체인: Go, Python, Node.js, Rust 빌드
 - 클라우드 배포: AWS, GCP, Azure, Fly.io
 - 보안 스캔: Trivy, Snyk, SLSA 검증
 - 테스트: k6 부하 테스트, Playwright 브라우저 테스트
@@ -403,21 +377,17 @@ dagger module use github.com/Dudesons/daggerverse/node
 
 ### 비밀 관리
 
-비밀을 일반 문자열로 전달하지 마라. Dagger의 `Secret` 타입은 로그와 추적에서 민감한 값을 마스킹한다:
-
-```python
+비밀을 일반 문자열로 전달하지 마라. Dagger의 `Secret` 타입은 로그와 추적에서 민감한 값을 마스킹한다: ```python
 import dagger
 from dagger import dag, function, object_type, Secret
 
 @object_type
-class SecurePipeline:
-    @function
+class SecurePipeline: @function
     async def deploy(
         self,
         kubeconfig: Secret,
         image_digest: str
-    ) -> str:
-        return await (
+    ) -> str: return await (
             dag.container()
             .from_("bitnami/kubectl:latest")
             .with_mounted_secret("/root/.kube/config", kubeconfig)
@@ -440,17 +410,13 @@ dagger call deploy \
 
 ### 병렬 실행 패턴
 
-Dagger는 독립적인 작업을 자동으로 병렬화한다. 병렬성을 최대화하도록 파이프라인을 구성하라:
-
-```python
+Dagger는 독립적인 작업을 자동으로 병렬화한다. 병렬성을 최대화하도록 파이프라인을 구성하라: ```python
 import asyncio
 from dagger import dag, function, object_type, Directory
 
 @object_type
-class ParallelPipeline:
-    @function
-    async def run_parallel(self, source: Directory) -> list[str]:
-        # 이 세 작업은 자동으로 병렬 실행된다
+class ParallelPipeline: @function
+    async def run_parallel(self, source: Directory) -> list[str]: # 이 세 작업은 자동으로 병렬 실행된다
         results = await asyncio.gather(
             self.lint(source),
             self.unit_tests(source),
@@ -458,24 +424,21 @@ class ParallelPipeline:
         )
         return list(results)
 
-    async def lint(self, source: Directory) -> str:
-        return await dag.container()
+    async def lint(self, source: Directory) -> str: return await dag.container()
             .from_("golangci/golangci-lint:latest")
             .with_mounted_directory("/src", source)
             .with_workdir("/src")
             .with_exec(["golangci-lint", "run", "--timeout=5m"])
             .stdout()
 
-    async def unit_tests(self, source: Directory) -> str:
-        return await dag.container()
+    async def unit_tests(self, source: Directory) -> str: return await dag.container()
             .from_("golang:1.24")
             .with_mounted_directory("/src", source)
             .with_workdir("/src")
             .with_exec(["go", "test", "-short", "./..."])
             .stdout()
 
-    async def security_scan(self, source: Directory) -> str:
-        return await dag.container()
+    async def security_scan(self, source: Directory) -> str: return await dag.container()
             .from_("aquasec/trivy:latest")
             .with_mounted_directory("/src", source)
             .with_workdir("/src")
@@ -485,9 +448,7 @@ class ParallelPipeline:
 
 ### OpenTelemetry으로 모니터링
 
-Dagger는 모든 작업에 대해 OpenTelemetry 추적을 낳출한다. 백엔드로 낳출하여 파이프라인 가시성을 확보하라:
-
-```bash
+Dagger는 모든 작업에 대해 OpenTelemetry 추적을 낳출한다. 백엔드로 낳출하여 파이프라인 가시성을 확보하라: ```bash
 # OTel을 Jaeger로 낳출
 export OTEL_EXPORTER_OTLP_ENDPOINT=http://jaeger:4317
 export OTEL_EXPORTER_OTLP_PROTOCOL=grpc
@@ -505,21 +466,16 @@ name: Dagger CI
 
 on: [push, pull_request]
 
-jobs:
-  ci:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: ci: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
 
       - name: Dagger 파이프라인 실행
         uses: dagger/dagger-for-github@v7
-        with:
-          version: "0.19.7"
+        with: version: "0.19.7"
           verb: call
           module: .
           args: run --source=.
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        env: GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 ### CI 통합 — GitLab CI
@@ -528,22 +484,15 @@ jobs:
 # .gitlab-ci.yml
 stages: [build]
 
-dagger:build:
-  stage: build
+dagger:build: stage: build
   image: docker:24-dind
-  services:
-    - docker:24-dind
-  variables:
-    DAGGER_VERSION: "0.19.7"
-  before_script:
-    - apk add --no-cache curl
+  services: - docker:24-dind
+  variables: DAGGER_VERSION: "0.19.7"
+  before_script: - apk add --no-cache curl
     - curl -fsSL https://dl.dagger.io/dagger/install.sh | BIN_DIR=/usr/local/bin sh
-  script:
-    - dagger call run --source=.
-  cache:
-    key: dagger-cache
-    paths:
-      - .dagger-cache/
+  script: - dagger call run --source=.
+  cache: key: dagger-cache
+    paths: - .dagger-cache/
 ```
 
 ### CI 통합 — Jenkins
@@ -609,9 +558,7 @@ pipeline {
 
 ## 한계 / 정직한 평가
 
-Dagger는 모든 상황에 적합한 도구가 아니다. 다음은 잘 수행하지 못하는 영역이다:
-
-**학습 곡선은 실재한다.** Go나 Python으로 파이프라인을 작성하는 것은 GitHub Actions YAML 템플릿을 복사하는 것보다 더 많은 초기 투자가 필요하다. Go/TypeScript/Python에 익숙하지 않은 팀은 더 가파른 도입 경로에 직면한다.
+Dagger는 모든 상황에 적합한 도구가 아니다. 다음은 잘 수행하지 못하는 영역이다: **학습 곡선은 실재한다.** Go나 Python으로 파이프라인을 작성하는 것은 GitHub Actions YAML 템플릿을 복사하는 것보다 더 많은 초기 투자가 필요하다. Go/TypeScript/Python에 익숙하지 않은 팀은 더 가파른 도입 경로에 직면한다.
 
 **생태계가 더 작다.** 20,000개 이상의 GitHub Actions에 비해 약 800개의 Daggerverse 모듈 —— 때로는 GitHub Actions에서 한 줄이면 되는 기능을 직접 작성해야 할 수 있다.
 
@@ -664,9 +611,7 @@ Go, Python 또는 TypeScript로 작업하는 팀에게 Dagger는 애플리케이
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -686,7 +631,6 @@ Go, Python 또는 TypeScript로 작업하는 팀에게 Dagger는 애플리케이
 - [Dagger for GitHub Action](https://github.com/dagger/dagger-for-github)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/docker-compose" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/docker-compose" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/docker-compose" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/docker-compose" />
 title: 'Docker Compose: 37,393 GitHub Stars — 多容器应用完整配置指南 2026'
 description: 'Define and run multi-container applications with Docker using declarative YAML configuration.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: ['docker-compose', 容器编排, devops, docker, 微服务, 部署, yaml, 多容器]
-aliases:
-- /zh/posts/docker-compose/
+aliases: - /zh/posts/docker-compose/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/docker-compose/ -->
 
 {{</* resource-info */>}}
 
@@ -149,24 +141,17 @@ Traefik 自动发现 Docker 容器并根据标签路由流量。这消除了手�
 # compose.yaml — Traefik + Whoami 示例
 name: proxy-demo
 
-services:
-  traefik:
-    image: traefik:v3.3
-    command:
-      - "--api.insecure=true"
+services: traefik: image: traefik:v3.3
+    command: - "--api.insecure=true"
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
       - "--entrypoints.web.address=:80"
-    ports:
-      - "80:80"
+    ports: - "80:80"
       - "8080:8080"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+    volumes: - /var/run/docker.sock:/var/run/docker.sock:ro
 
-  whoami:
-    image: traefik/whoami
-    labels:
-      - "traefik.enable=true"
+  whoami: image: traefik/whoami
+    labels: - "traefik.enable=true"
       - "traefik.http.routers.whoami.rule=Host(`whoami.localhost`)"
       - "traefik.http.routers.whoami.entrypoints=web"
 ```
@@ -179,33 +164,20 @@ services:
 # compose.yaml — 监控技术栈
 name: monitoring
 
-services:
-  prometheus:
-    image: prom/prometheus:v3.2.0
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+services: prometheus: image: prom/prometheus:v3.2.0
+    volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
       - prometheus_data:/prometheus
-    ports:
-      - "9090:9090"
-    command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports: - "9090:9090"
+    command: - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
 
-  grafana:
-    image: grafana/grafana:11.5.0
-    ports:
-      - "3000:3000"
-    volumes:
-      - grafana_data:/var/lib/grafana
-    environment:
-      - GF_SECURITY_ADMIN_PASSWORD=admin
-    depends_on:
-      - prometheus
+  grafana: image: grafana/grafana:11.5.0
+    ports: - "3000:3000"
+    volumes: - grafana_data:/var/lib/grafana
+    environment: - GF_SECURITY_ADMIN_PASSWORD=admin
+    depends_on: - prometheus
 
-volumes:
-  prometheus_data:
-  grafana_data:
-```
+volumes: prometheus_data: grafana_data: ```
 
 Prometheus 抓取容器指标；Grafana 将其可视化。登录后在 `http://prometheus:9090` 添加 Prometheus 数据源。
 
@@ -215,69 +187,46 @@ Prometheus 抓取容器指标；Grafana 将其可视化。登录后在 `http://p
 # compose.yaml — 生产级三层应用
 name: myapp
 
-services:
-  db:
-    image: postgres:16-alpine
-    environment:
-      POSTGRES_USER: appuser
+services: db: image: postgres:16-alpine
+    environment: POSTGRES_USER: appuser
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: appdb
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    health检查:
-      test: ["CMD-SHELL", "pg_isready -U appuser -d appdb"]
+    volumes: - postgres_data:/var/lib/postgresql/data
+    health检查: test: ["CMD-SHELL", "pg_isready -U appuser -d appdb"]
       interval: 10s
       timeout: 5s
       retries: 5
       start_period: 30s
     restart: unless-stopped
 
-  redis:
-    image: redis:7-alpine
-    volumes:
-      - redis_data:/data
-    health检查:
-      test: ["CMD", "redis-cli", "ping"]
+  redis: image: redis:7-alpine
+    volumes: - redis_data:/data
+    health检查: test: ["CMD", "redis-cli", "ping"]
       interval: 10s
       timeout: 3s
       retries: 3
     restart: unless-stopped
 
-  api:
-    build:
-      context: ./api
+  api: build: context: ./api
       dockerfile: Dockerfile
-    environment:
-      DATABASE_URL: postgresql://appuser:${DB_PASSWORD}@db:5432/appdb
+    environment: DATABASE_URL: postgresql://appuser:${DB_PASSWORD}@db:5432/appdb
       REDIS_URL: redis://redis:6379/0
-    depends_on:
-      db:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
-    health检查:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+    depends_on: db: condition: service_healthy
+      redis: condition: service_healthy
+    health检查: test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 20s
     restart: unless-stopped
 
-  nginx:
-    image: nginx:1.27-alpine
-    ports:
-      - "80:80"
-    volumes:
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
-    depends_on:
-      api:
-        condition: service_healthy
+  nginx: image: nginx:1.27-alpine
+    ports: - "80:80"
+    volumes: - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on: api: condition: service_healthy
     restart: unless-stopped
 
-volumes:
-  postgres_data:
-  redis_data:
-```
+volumes: postgres_data: redis_data: ```
 
 这里展示的关键模式：健康检查依赖、用于持久化的命名卷、用于自定义镜像的构建上下文，以及用于弹性的 `restart: unless-stopped`。
 
@@ -286,7 +235,17 @@ volumes:
 Docker Compose 在特定场景中表现出色。以下是生产部署和对比的数据：
 
 | 指标 | Docker Compose | Kubernetes | Podman Compose | Nomad |
-|------|---------------|------------|----------------|-------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **控制平面内存** | ~50 MB | ~2 GB | 0 MB（无守护进程） | ~100 MB |
 | **支持的节点** | 单节点 | 无限 | 单节点 | 无限 |
 | **每项目服务数** | 1-50 典型 | 1-10,000+ | 1-50 典型 | 1-1,000+ |
@@ -308,18 +267,13 @@ Docker Compose 在特定场景中表现出色。以下是生产部署和对比�
 切勿在没有健康检查的情况下部署到生产环境。容器显示 `Up` 状态仅表示进程已启动——不代表应用正常工作：
 
 ```yaml
-services:
-  api:
-    image: myapp:v1.2.3
-    health检查:
-      test: ["CMD", "curl", "-fsS", "http://localhost:8080/ready"]
+services: api: image: myapp:v1.2.3
+    health检查: test: ["CMD", "curl", "-fsS", "http://localhost:8080/ready"]
       interval: 15s
       timeout: 5s
       retries: 3
       start_period: 30s
-    depends_on:
-      db:
-        condition: service_healthy
+    depends_on: db: condition: service_healthy
     restart: unless-stopped
 ```
 
@@ -328,13 +282,9 @@ services:
 无限制的 JSON 日志会填满磁盘。使用本地日志驱动配置轮转：
 
 ```yaml
-services:
-  api:
-    image: myapp:v1.2.3
-    logging:
-      driver: "local"
-      options:
-        max-size: "10m"
+services: api: image: myapp:v1.2.3
+    logging: driver: "local"
+      options: max-size: "10m"
         max-file: "3"
         compress: "true"
 ```
@@ -344,16 +294,10 @@ services:
 防止一个失控的容器耗尽其他容器的资源：
 
 ```yaml
-services:
-  worker:
-    image: myapp-worker:v1.2.3
-    deploy:
-      resources:
-        limits:
-          cpus: '1.0'
+services: worker: image: myapp-worker:v1.2.3
+    deploy: resources: limits: cpus: '1.0'
           memory: 512M
-        reservations:
-          cpus: '0.25'
+        reservations: cpus: '0.25'
           memory: 128M
 ```
 
@@ -362,24 +306,16 @@ services:
 使用 profiles 定义仅开发使用的服务，无需维护多个文件：
 
 ```yaml
-services:
-  api:
-    image: myapp:latest
-    ports:
-      - "8080:8080"
+services: api: image: myapp:latest
+    ports: - "8080:8080"
 
-  db:
-    image: postgres:16
-    environment:
-      POSTGRES_PASSWORD: devpass
+  db: image: postgres:16
+    environment: POSTGRES_PASSWORD: devpass
 
-  pgadmin:
-    image: dpage/pgadmin4:latest
+  pgadmin: image: dpage/pgadmin4:latest
     profiles: ["debug"]
-    ports:
-      - "5050:80"
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin@local.dev
+    ports: - "5050:80"
+    environment: PGADMIN_DEFAULT_EMAIL: admin@local.dev
       PGADMIN_DEFAULT_PASSWORD: admin
 ```
 
@@ -390,17 +326,11 @@ services:
 切勿将密码提交到 compose 文件。使用 Docker secrets 或环境文件：
 
 ```yaml
-services:
-  api:
-    image: myapp:latest
-    secrets:
-      - db_password
-    environment:
-      DB_PASSWORD_FILE: /run/secrets/db_password
+services: api: image: myapp:latest
+    secrets: - db_password
+    environment: DB_PASSWORD_FILE: /run/secrets/db_password
 
-secrets:
-  db_password:
-    file: ./secrets/db_password.txt
+secrets: db_password: file: ./secrets/db_password.txt
 ```
 
 ### `include` 指令（Compose v2.20+）
@@ -411,8 +341,7 @@ secrets:
 # compose.yaml — 根文件
 name: platform
 
-include:
-  - path: ./infra/postgres.yaml
+include: - path: ./infra/postgres.yaml
   - path: ./infra/redis.yaml
   - path: ./apps/api.yaml
   - path: ./apps/worker.yaml
@@ -448,7 +377,17 @@ echo "$NEW" > /tmp/current_slot
 ## 与替代品对比
 
 | 特性 | Docker Compose | Kubernetes | Podman + Compose | Nomad |
-|------|---------------|------------|------------------|-------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **学习曲线** | 低（单一 YAML） | 高（多种资源） | 低（兼容 Docker CLI） | 中等（HCL 配置） |
 | **多节点** | 否（单主机） | 是 | 否（单主机） | 是 |
 | **需要守护进程** | 是（dockerd） | 是（kubelet + 控制平面） | 否（无守护进程） | 是（Nomad agent） |
@@ -542,7 +481,6 @@ Docker Compose 在 2026 年仍然是最实用的多容器部署工具。它将�
 - [Docker Desktop 定价和许可](https://www.docker.com/pricing/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -570,25 +508,20 @@ Docker Compose 在 2026 年仍然是最实用的多容器部署工具。它将�
 
 ## Why This Matters
 
-Understanding docker compose: 37,393 github stars — 多容器应用完整配置指南 2026 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding docker compose: 37,393 github stars — 多容器应用完整配置指南 2026 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -609,13 +542,13 @@ Docker Compose: 37,393 GitHub Stars — 多容器应用完整配置指南 2026 r
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*
 
----
 
+---
 ## Related Articles
 
 - [apple-container](docker-compose)

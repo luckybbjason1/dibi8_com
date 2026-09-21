@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/vector-db-2026-qdrant-weaviate-milvus" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/vector-db-2026-qdrant-weaviate-milvus" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/vector-db-2026-qdrant-weaviate-milvus" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/vector-db-2026-qdrant-weaviate-milvus" />
 title: '2026 벡터 DB 선택 가이드: Qdrant vs Weaviate vs Milvus (실전 워크로드...
 description: '동일한 500만 벡터 워크로드로 Qdrant, Weaviate, Milvus를 실측했습니다. 레이턴시, 처리량, 메모리, 설치 난이도. 프로토타입과 프로덕션 각각 어디에 적합한지, 그리고 언제 벡터 DB 대신 SQLite FTS5를 써야 하는지 정리합니다.'
 date: 2026-05-25 00:00:00+08:00
@@ -21,10 +16,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['vector-database', qdrant, weaviate, milvus, rag, 2026]
-aliases:
-- /kr/posts/vector-db-2026-qdrant-weaviate-milvus/
-faq:
-  - q: "2026년에 가장 좋은 벡터 DB는?"
+aliases: - /kr/posts/vector-db-2026-qdrant-weaviate-milvus/
+faq: - q: "2026년에 가장 좋은 벡터 DB는?"
     a: "개인 또는 소규모 팀 RAG에는 Qdrant(가장 단순하고 단일 노드에서 가장 빠름). 하이브리드 검색(벡터 + 키워드 + 필터)이 필요한 프로덕션에는 Weaviate. 십억 단위 워크로드에는 Milvus(수평 확장 최강). 2026년 기준 세 가지 모두 안정적입니다."
   - q: "언제 벡터 DB 대신 SQLite FTS5를 써야 하나요?"
     a: "문서 1만 개 이하에서는 SQLite 전체 텍스트 검색(FTS5)이 관련성 면에서 벡터 DB를 능가하는 경우가 많고 운영 복잡도가 10배 단순합니다. 문서가 5만 개를 넘거나 키워드가 아닌 의미적 유사성이 중요할 때만 벡터 DB의 복잡도가 정당화됩니다."
@@ -33,8 +26,6 @@ faq:
   - q: "하드웨어는 얼마나 필요한가요?"
     a: "100만 벡터 @ 768 차원: 약 3GB 메모리. 1000만 벡터: 약 30GB. 대부분의 프로덕션 워크로드는 32GB VM 한 대에서 충분히 돌아갑니다. 1억 벡터를 넘으면 샤딩 배포를 계획해야 합니다."
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/vector-db-2026-qdrant-weaviate-milvus/ -->
 
 {{</* resource-info */>}}
 
@@ -100,16 +91,12 @@ faq:
 
 ## 벡터 DB를 아예 건너뛰어야 할 때
 
-문서 1만 개 미만에서는 **SQLite FTS5**가 다음 이유로 벡터 DB보다 나은 경우가 많습니다:
-
-- BM25 + 키워드 매칭이 대부분의 실용적 검색을 잘 처리함
+문서 1만 개 미만에서는 **SQLite FTS5**가 다음 이유로 벡터 DB보다 나은 경우가 많습니다: - BM25 + 키워드 매칭이 대부분의 실용적 검색을 잘 처리함
 - 운영 복잡도 100배 단순 (파일 하나, 서버 불필요)
 - 쿼리 레이턴시 < 1ms
 - 파일 외 메모리 오버헤드 없음
 
-먼저 이것부터 해보세요:
-
-```python
+먼저 이것부터 해보세요: ```python
 import sqlite3
 conn = sqlite3.connect("docs.db")
 conn.execute("CREATE VIRTUAL TABLE docs USING fts5(title, content)")
@@ -130,9 +117,7 @@ conn.execute("CREATE VIRTUAL TABLE docs USING fts5(title, content)")
 
 ## 추천 인프라
 
-벡터 DB 호스팅 추천:
-
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 크레딧, NVMe 드롭릿
+벡터 DB 호스팅 추천: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 크레딧, NVMe 드롭릿
 - **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 아시아 저지연 쿼리를 위한 홍콩 VPS
 
 *Affiliate 링크 — 동일한 가격, dibi8.com을 후원합니다.*
@@ -148,7 +133,6 @@ conn.execute("CREATE VIRTUAL TABLE docs USING fts5(title, content)")
 **관련 글**: [2026 RAG vs Fine-Tuning 의사결정 프레임워크](https://dibi8.com/kr/resources/llm-frameworks/rag-vs-fine-tuning-2026-decision-framework/) · [벡터 데이터베이스 비교](https://dibi8.com/kr/resources/llm-frameworks/vector-database-comparison/) · [2026 MCP 서버 랭킹](https://dibi8.com/kr/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -176,25 +160,20 @@ conn.execute("CREATE VIRTUAL TABLE docs USING fts5(title, content)")
 
 ## Why This Matters
 
-Understanding 2026 벡터 db 선택 가이드: qdrant vs weaviate vs milvus (실전 워크로드 테스트) is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding 2026 벡터 db 선택 가이드: qdrant vs weaviate vs milvus (실전 워크로드 테스트) is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

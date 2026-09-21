@@ -1,14 +1,11 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/polymarket-trading-bot-stack" />
 title: '28 Tools Behind a $1M Polymarket Trading Bot: Full Stack...
 description: Deep dive into 28 tools and 6 layers powering a Polymarket bot that made. Comprehensive guide covering features, pricing, and best practices for 2026.
   $1M. Learn latency arbitrage, AI reasoning, and the complete tech stack for prediction
   market trading.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
-tech_stack:
-- Go
+tech_stack: - Go
 - JavaScript
 - Python
 - Rust
@@ -27,13 +24,11 @@ maintainer: "QwenLM"
 last_maintained: "2026-03-24"
 featureImage: ''
 draft: false
-aliases:
-- /en/posts/polymarket-trading-bot-stack/
+aliases: - /en/posts/polymarket-trading-bot-stack/
 - /posts/polymarket-trading-bot-automated/
 - /posts/polymarket-trading-bot-framework/
 - /posts/polymarket-trading-bot-stack/
-faqs:
-  - q: 'Why can a bot profit from arbitrage between Binance and Polymarket?'
+faqs: - q: 'Why can a bot profit from arbitrage between Binance and Polymarket?'
     a: 'Polymarket updates its prices slower than the underlying asset moves on Binance. In 2024 that lag averaged 12 seconds, and by Q1 2026 competition had compressed it to about 2.7 seconds. A bot can read the real price move on Binance and trade the stale Polymarket price before the market corrects.'
   - q: 'What types of Polymarket contracts are best suited for automated trading?'
     a: 'Short-duration crypto contracts, specifically 5-minute and 15-minute BTC and ETH up/down questions. They resolve fast, give immediate feedback, and exhibit the largest price lag relative to Binance, which is where the arbitrage edge lives.'
@@ -68,9 +63,7 @@ The platform's weekly volume exceeded **$2 billion** in early 2026.
 
 ### The Structural Vulnerability
 
-The key category for automated trading is **short-duration crypto contracts** - 5-minute and 15-minute BTC and ETH up/down questions. They resolve fast, provide immediate feedback, and have a critical vulnerability:
-
-> **Polymarket updates prices slower than the underlying asset moves on Binance.**
+The key category for automated trading is **short-duration crypto contracts** - 5-minute and 15-minute BTC and ETH up/down questions. They resolve fast, provide immediate feedback, and have a critical vulnerability: > **Polymarket updates prices slower than the underlying asset moves on Binance.**
 
 In 2024, that lag averaged 12 seconds. By Q1 2026, competition compressed it to **2.7 seconds**.
 
@@ -78,8 +71,7 @@ In 2024, that lag averaged 12 seconds. By Q1 2026, competition compressed it to 
 
 That gap - between what Binance knows and what Polymarket still shows - is where every strategy lives.
 
-<video controls width="100%" preload="none" poster="https://picsum.photos/seed/crypto-trading/800/450">
-  <source src="https://www.youtube.com/embed/dQw4w9WgXcQ" type="video/mp4">
+<source src="https://www.youtube.com/embed/dQw4w9WgXcQ" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
@@ -89,8 +81,7 @@ A 15-minute BTC contract opens at 50/50. Ten minutes in, Bitcoin drops 0.6% on B
 
 **That's a 24-point edge on a binary contract.**
 
-A bot monitoring Binance's WebSocket feed with under 50ms latency:
-1. Detects the price discrepancy
+A bot monitoring Binance's WebSocket feed with under 50ms latency: 1. Detects the price discrepancy
 2. Calculates edge size using Kelly Criterion
 3. Executes via Polymarket's CLOB API
 4. Two seconds later, the market corrects
@@ -104,28 +95,38 @@ A bot monitoring Binance's WebSocket feed with under 50ms latency:
 
 ### Layer 1 - Brain: AI Reasoning
 
-The coinman2 bot ran on **Anthropic's Claude**. In March 2026, a controlled experiment ran Claude against OpenClaw framework - same starting capital ($1,000), same market conditions, 48 hours:
-
-- **Claude**: +1,322% return
+The coinman2 bot ran on **Anthropic's Claude**. In March 2026, a controlled experiment ran Claude against OpenClaw framework - same starting capital ($1,000), same market conditions, 48 hours: - **Claude**: +1,322% return
 - **OpenClaw**: Fully liquidated
 
 The gap? Risk management quality. Claude's generated code included more conservative defaults, better edge cases, and cleaner error handling.
 
 | Tool | Purpose | Link |
-|------|---------|------|
+|
+---
+|
+---
+|
+---
+|
 | **Claude (Anthropic)** | Primary strategist. Reasons about market questions, estimates probability vs current price | [anthropic.com](https://anthropic.com) |
 | **Qwen3-Coder** | Open source coding LLM. Watches live performance, rewrites modules autonomously | [GitHub](https://github.com/QwenLM/Qwen3-Coder) |
 | **G0DM0D3** | Uncensored AI interface for uncomfortable market theses | [GitHub](https://github.com/elder-plinius/G0DM0D3) |
 | **Claude Squad** | Runs multiple Claude instances in parallel across market sectors | [GitHub](https://github.com/smtg-ai/claude-squad) |
 
-<iframe width="100%" height="400" src="https://www.youtube.com/embed/VIDEO_ID" title="AI Trading Bot Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</iframe>
 
 ### Layer 2 - Orchestration: Making Agents Execute
 
 A reasoning engine with no execution layer is just an opinion generator.
 
 | Tool | Purpose | Link |
-|------|---------|------|
+|
+---
+|
+---
+|
+---
+|
 | **Agency Agents** | Bull vs Bear debate with Risk Manager veto | [GitHub](https://github.com/msitarzewski/agency-agents) |
 | **ClaudeAgent OneClick** | One-click deploy. 24/7 market watcher in minutes | [GitHub](https://github.com/cvxv666/ClaudeAgentOneClick) |
 | **MiroThinker** | Mandatory chain-of-thought layer. Bot must justify every position | [GitHub](https://github.com/MiroMindAI/MiroThinker) |
@@ -139,7 +140,13 @@ A reasoning engine with no execution layer is just an opinion generator.
 The bot is only as good as what it can see.
 
 | Tool | Purpose | Link |
-|------|---------|------|
+|
+---
+|
+---
+|
+---
+|
 | **OpenBB** | Open source Bloomberg. 100+ data sources unified | [GitHub](https://github.com/OpenBB-finance/OpenBB) |
 | **Dexter** | Autonomous deep research. SEC filings, earnings transcripts | [GitHub](https://github.com/virattt/dexter) |
 | **MCP Server** | Financial datasets via MCP protocol into Claude's context | [GitHub](https://github.com/financial-datasets/mcp-server) |
@@ -156,7 +163,13 @@ The bot is only as good as what it can see.
 You don't have to build everything from scratch.
 
 | Tool | Purpose | Link |
-|------|---------|------|
+|
+---
+|
+---
+|
+---
+|
 | **Polyscope** | Scans 2,000+ markets. Whale alerts to Telegram | [thepolyscope.com](https://thepolyscope.com) |
 | **Polywhaler** | $10k+ whale trade tracker with AI signals | [polywhaler.com](https://polywhaler.com) |
 | **WHALES tracker** | Smart Money Consensus, Health Score, Conviction Score | [Apify](https://apify.com) |
@@ -172,7 +185,13 @@ You don't have to build everything from scratch.
 This is the layer most retail bots skip - and the reason most blow up.
 
 | Tool | Purpose | Link |
-|------|---------|------|
+|
+---
+|
+---
+|
+---
+|
 | **prediction-market-backtesting** | Backtests against real historical Polymarket/Kalshi data | [GitHub](https://github.com/evan-kolberg/prediction-market-backtesting) |
 | **polybot** | Full execution infrastructure with paper trading. Kafka, ClickHouse, Grafana | [GitHub](https://github.com/ent0n29/polybot) |
 
@@ -180,9 +199,7 @@ This is the layer most retail bots skip - and the reason most blow up.
 
 ### Layer 6 - Execution Infrastructure
 
-Polymarket exposes four API surfaces:
-
-1. **Gamma API** - Market data, prices, metadata
+Polymarket exposes four API surfaces: 1. **Gamma API** - Market data, prices, metadata
 2. **CLOB API** - Order book, trade execution
 3. **On-chain settlement** - Polygon (chain ID 137), USDC
 4. **WebSocket feeds** - Real-time price updates
@@ -208,9 +225,7 @@ Bots generated approximately **$206,000** during a tracked period. Humans using 
 
 **2× gap. Same market. Same strategy. Same time window.**
 
-Four systematic errors humans make:
-
-1. **Late entries** - By the time a human confirms the move, the window closed
+Four systematic errors humans make: 1. **Late entries** - By the time a human confirms the move, the window closed
 2. **Inconsistent sizing** - Emotional sizing destroys expected value
 3. **Fatigue** - A human degrades after 8 hours. A bot is identical at hour 72
 4. **Drawdown psychology** - Humans abandon working strategies or double down
@@ -225,9 +240,7 @@ The bots already running have a compounding advantage. The edge exists today. Th
 
 ## Getting Started: Your First $1,000
 
-If building the full stack feels overwhelming, start simpler:
-
-1. **Open a Polymarket account**: [polymarket.com](https://polymarket.com)
+If building the full stack feels overwhelming, start simpler: 1. **Open a Polymarket account**: [polymarket.com](https://polymarket.com)
 2. **Study the coinman2 wallet**: [polymarket.com/@coinman2](https://polymarket.com/@coinman2)
 3. **Copy trades via Telegram bot**: [kreo.app/@cvxv666](https://kreo.app/@cvxv666)
 4. **Bookmark this article** - you'll need the tool references when building
@@ -240,8 +253,8 @@ The stack is open. The tools are free. The edge is real. The only question is wh
 
 **Remember**: Competition is weaker than it looks. Most people will scream "too hard" and call it cap. Only the builders eat.
 
----
 
+---
 ## Resources & Links
 
 - [Polymarket Official](https://polymarket.com)
@@ -252,18 +265,15 @@ The stack is open. The tools are free. The edge is real. The only question is wh
 
 *Disclaimer: This article is for educational purposes only. Prediction market trading carries significant risk. Past performance does not guarantee future results. Always conduct your own research before trading.*
 
----
 
+---
 ## Recommended Tools
 
-For developers building or deploying open-source AI tools, we recommend:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
+For developers building or deploying open-source AI tools, we recommend: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
 - **{{< aff "binance" "category-footer" "Binance" >}}** — World's largest crypto exchange. Deep liquidity for spot, futures, and stablecoin conversions — pairs naturally with on-chain DeFi tools, payments, or token operations covered above.
 
 *Affiliate link — supports dibi8.com at no cost to you.*
 
-<!--auto-references-->
 ## References & Sources
 
 - [py-clob-client](https://github.com/Polymarket/py-clob-client)
@@ -275,7 +285,6 @@ For developers building or deploying open-source AI tools, we recommend:
 - [TradingAgents](https://github.com/TauricResearch/TradingAgents)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

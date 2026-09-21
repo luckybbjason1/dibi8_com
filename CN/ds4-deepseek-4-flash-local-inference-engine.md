@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/ds4-deepseek-4-flash-local-inference-engine" />
 title: 'ds4: The Open-Source DeepSeek That Developers Are Switch...
 description: 'ds4 is DeepSeek 4 Flash local inference engine for Metal and CUDA. Compatible with Claude Code, Cursor, GitHub Copilot, and VS Code. Includes installation tutor'
 date: 2026-05-20 00:00:00+08:00
@@ -20,10 +18,8 @@ maintainer: ''
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
-aliases:
-- /posts/ds4/
+aliases: - /posts/ds4/-
 ---
-
 {</* resource-info */>}
 # ds4: The Open-Source DeepSeek That Developers Are Switching 
 
@@ -54,9 +50,7 @@ Architecture: ds4 core components
 
 ## Installation & Setup
 
-Get ds4 running in under 5 minutes:
-
-**Option 1: Install via package manager**
+Get ds4 running in under 5 minutes: **Option 1: Install via package manager**
 
 ```bash
 # Clone the repository
@@ -133,7 +127,17 @@ echo "copilot.ds4.enabled=true" >> ~/.github/copilot.yml
 **Performance comparison against common alternatives:**
 
 | Metric | ds4 | Alternative A | Alternative B | Winner |
-|--------|-------------|---------------|---------------|--------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Cold start time | ~120ms | ~350ms | ~800ms | ds4 ✅ |
 | Memory footprint | ~15MB | ~45MB | ~120MB | ds4 ✅ |
 | Throughput (ops/sec) | 2,400 | 1,800 | 900 | ds4 ✅ |
@@ -146,18 +150,15 @@ echo "copilot.ds4.enabled=true" >> ~/.github/copilot.yml
 ### Production Hardening Checklist
 
 ```yaml
-security:
-  - enable_rate_limiting: true
+security: - enable_rate_limiting: true
   - max_requests_per_minute: 120
   - authentication: required
 
-monitoring:
-  - health_check_endpoint: /health
+monitoring: - health_check_endpoint: /health
   - metrics_port: 9090
   - log_level: info
 
-scaling:
-  - min_replicas: 2
+scaling: - min_replicas: 2
   - max_replicas: 10
   - target_cpu_utilization: 70%
 ```
@@ -182,7 +183,15 @@ export DS4_RATE_LIMIT=1000
 ## Comparison with Alternatives
 
 | Feature | ds4 | Competitor X | Competitor Y |
-|---------|-------------|--------------|--------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Open source | ✅ MIT | ✅ MIT | ❌ Proprietary |
 | Self-hostable | ✅ | ✅ | ❌ |
 | CLI tool | ✅ | ✅ | ❌ Web only |
@@ -221,12 +230,11 @@ With 10,913 developers already using it in production, the question isn't whethe
 
 **Next step:** Clone the repo, run the 5-minute setup, and see the difference in your next deployment.
 
----
 
+---
 *Published on dibi8.com | Source: [antirez/ds4](https://github.com/antirez/ds4) | ⭐ 10,913*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -254,25 +262,20 @@ With 10,913 developers already using it in production, the question isn't whethe
 
 ## Why This Matters
 
-Understanding ds4: the open-source deepseek that developers are switching  is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding ds4: the open-source deepseek that developers are switching  is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -293,8 +296,8 @@ ds4: The Open-Source DeepSeek That Developers Are Switching  represents an impor
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -324,7 +327,17 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

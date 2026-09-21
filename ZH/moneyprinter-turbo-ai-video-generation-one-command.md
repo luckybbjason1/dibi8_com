@@ -1,19 +1,12 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/moneyprinter-turbo-ai-video-generation-one-command" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/moneyprinter-turbo-ai-video-generation-one-command" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/moneyprinter-turbo-ai-video-generation-one-command" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/moneyprinter-turbo-ai-video-generation-one-command" />
 title: "MoneyPrinterTurbo：使用 AI 自动生成视频"
 slug: "moneyprinter-turbo-ai-video-generation-one-command"
 category: "ai-tools"
 publish_date: "2026-06-10"
-lastmod:  "2026-06-10"author: "DIBI8"
+lastmod: "2026-06-10"author: "DIBI8"
 tags: ["ai", "video-generation", "automation", "content-creation", "llm"]
 featureImage: "https://avatars.githubusercontent.com/u/13691804"
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/moneyprinter-turbo-ai-video-generation-one-command/ -->
 
 # MoneyPrinterTurbo：使用 AI 自动生成视频
 
@@ -201,9 +194,7 @@ curl -O http://localhost:8080/api/v1/download/{job-id}
 
 ```yaml
 # config.yaml
-voices:
-  custom:
-    - name: "my-voice"
+voices: custom: - name: "my-voice"
       language: "zh-CN"
       gender: "female"
       backend: "custom-tts"
@@ -223,9 +214,7 @@ python main.py --music ./music/calm/
 
 ```yaml
 # config.yaml
-styles:
-  cinematic:
-    transition: "fade"
+styles: cinematic: transition: "fade"
     font_family: "Georgia"
     font_size: 32
     subtitle_color: "#FFFFFF"
@@ -259,7 +248,19 @@ MoneyPrinterTurbo 服务于广泛的内容创作场景：
 ## 对比：MoneyPrinterTurbo 与替代方案
 
 | 功能 | MoneyPrinterTurbo | Pictory | InVideo AI | Lumen5 | Synthesia |
-|------|-------------------|---------|------------|--------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 开源 | 是 | 否 | 否 | 否 | 否 |
 | 自托管 | 是 | 否 | 否 | 否 | 否 |
 | 免费版本 | 完全免费 | 有限 | 有限 | 有限 | 仅试用 |
@@ -278,7 +279,13 @@ MoneyPrinterTurbo 服务于广泛的内容创作场景：
 ## 对比：手动视频制作与 MoneyPrinterTurbo
 
 | 方面 | 手动制作 | MoneyPrinterTurbo |
-|------|---------|-------------------|
+|
+---
+|
+---
+|
+---
+|
 | 脚本撰写 | 每个视频 1-2 小时 | 10 秒 |
 | 录音 | 30 分钟设置 | 即时 |
 | 视频编辑 | 2-4 小时 | 1 分钟 |
@@ -298,15 +305,13 @@ import schedule
 import time
 from moneyprinter import VideoGenerator
 
-def generate_daily_video():
-    generator = VideoGenerator(llm_model="gpt-4", tts_backend="azure")
+def generate_daily_video(): generator = VideoGenerator(llm_model="gpt-4", tts_backend="azure")
     generator.generate(topic="今日科学", language="zh", output="./scheduled-videos/")
 
 # 每天上午 8 点生成新视频
 schedule.every().day.at("08:00").do(generate_daily_video)
 
-while True:
-    schedule.run_pending()
+while True: schedule.run_pending()
     time.sleep(60)
 ```
 
@@ -375,11 +380,10 @@ while True:
 - DigitalOcean：在 DigitalOcean 上部署项目。注册：https://m.do.co/c/eca87ac14ee0
 - HTStack：管理您的云基础设施。加入：https://my.htstack.com/aff.php?aff=27187
 
----
 
+---
 DIBI8 是您发现最佳开源工具、AI 创新和开发者资源的门户。订阅我们的 Telegram 频道获取每日更新。
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -407,25 +411,20 @@ DIBI8 是您发现最佳开源工具、AI 创新和开发者资源的门户。�
 
 ## Why This Matters
 
-Understanding moneyprinterturbo：使用 ai 自动生成视频 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding moneyprinterturbo：使用 ai 自动生成视频 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -446,8 +445,8 @@ MoneyPrinterTurbo：使用 AI 自动生成视频 represents an important step fo
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 

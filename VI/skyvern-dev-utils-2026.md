@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/skyvern-dev-utils-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/skyvern-dev-utils-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/skyvern-dev-utils-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/skyvern-dev-utils-2026" />
 title: 'Skyvern: Tự động hóa quy trình duyệt web bằng AI Agent (...
 description: 'Skyvern tự động hóa các quy trình trên trình duyệt bằng mô hình ngôn ngữ lớn và thị giác máy tính (21.803 sao GitHub, AGPL-3.0). Bao gồm cài đặt, API Python thực tế, ví dụ mã chạy được và so sánh thẳng thắn với Selenium và Playwright.'
 date: 2026-06-02 00:00:00+08:00
@@ -25,10 +20,8 @@ featureImage: 'https://raw.githubusercontent.com/Skyvern-AI/skyvern/main/fern/im
 draft: false
 categories: ['dev-utils']
 tags: []
-aliases:
-- /posts/skyvern-dev-utils-2026/
-faqs:
-  - q: 'Tôi cài Skyvern-AI/skyvern như thế nào?'
+aliases: - /posts/skyvern-dev-utils-2026/
+faqs: - q: 'Tôi cài Skyvern-AI/skyvern như thế nào?'
     a: 'Cài bằng pip và chạy quickstart: ```bash pip install "skyvern[all]" skyvern quickstart ``` quickstart giúp bạn cấu hình một nhà cung cấp LLM và khởi chạy máy chủ cùng UI cục bộ.'
   - q: 'Yêu cầu hệ thống để chạy Skyvern-AI/skyvern là gì?'
     a: 'Skyvern cần Python 3.11 trở lên và ít nhất một LLM API key (OpenAI, Anthropic, Gemini, Bedrock, hoặc một mô hình cục bộ qua Ollama). Một máy hiện đại với vài GB RAM là đủ để dùng cục bộ; còn các tác vụ sản xuất theo lịch tốt nhất nên chạy trên một máy chủ luôn bật.'
@@ -39,8 +32,6 @@ faqs:
   - q: 'Tôi có thể tìm thêm thông tin về cách dùng Skyvern-AI/skyvern ở đâu?'
     a: 'Xem trang chính thức tại <https://www.skyvern.com> và README trên GitHub, cả hai đều trình bày chi tiết về cài đặt, API và các quy trình mẫu.'
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/skyvern-dev-utils-2026/ -->
 
 {{< resource-info >}}
 
@@ -62,9 +53,7 @@ Với sự hậu thuẫn mạnh mẽ của cộng đồng — hơn 21.803 sao tr
 
 ## Skyvern hoạt động như thế nào
 
-Skyvern kết hợp nhiều thành phần để biến một chỉ dẫn bằng ngôn ngữ tự nhiên thành các thao tác trình duyệt đáng tin cậy:
-
-1. **Lập kế hoạch dựa trên LLM**: Bạn cung cấp một prompt mô tả mục tiêu. Một mô hình ngôn ngữ lớn chia nhỏ nó thành các bước cụ thể cần thiết để đạt được. Skyvern không phụ thuộc vào một mô hình cụ thể và hỗ trợ OpenAI, Anthropic Claude, Google Gemini, AWS Bedrock, cùng các mô hình cục bộ thông qua Ollama, và nhiều hơn nữa.
+Skyvern kết hợp nhiều thành phần để biến một chỉ dẫn bằng ngôn ngữ tự nhiên thành các thao tác trình duyệt đáng tin cậy: 1. **Lập kế hoạch dựa trên LLM**: Bạn cung cấp một prompt mô tả mục tiêu. Một mô hình ngôn ngữ lớn chia nhỏ nó thành các bước cụ thể cần thiết để đạt được. Skyvern không phụ thuộc vào một mô hình cụ thể và hỗ trợ OpenAI, Anthropic Claude, Google Gemini, AWS Bedrock, cùng các mô hình cục bộ thông qua Ollama, và nhiều hơn nữa.
 2. **Thị giác máy tính để nhận diện phần tử**: Thay vì dựa vào selector cố định, Skyvern đưa trang đã render (DOM cộng ảnh chụp màn hình) cho một LLM có khả năng thị giác để xác định đúng phần tử cần nhấp, gõ vào hoặc đọc từ đó. Đây chính là điều khiến nó vững vàng trước thay đổi bố cục.
 3. **Playwright để điều khiển trình duyệt**: Việc nhấp, gõ và điều hướng thực sự chạy trên Playwright, một framework tự động hóa trình duyệt trưởng thành, nên Skyvern kế thừa khả năng hỗ trợ vững chắc cho các ứng dụng web hiện đại.
 
@@ -82,44 +71,32 @@ Cài đặt Skyvern khá đơn giản nếu bạn quen với Python. Bạn cần
 
 ### Dùng `pip`
 
-Cài gói đầy đủ, bao gồm cả UI và máy chủ cục bộ:
-
-```bash
+Cài gói đầy đủ, bao gồm cả UI và máy chủ cục bộ: ```bash
 pip install "skyvern[all]"
 ```
 
-Nếu bạn chỉ cần SDK để gọi Skyvern từ mã của mình, bản cài nhẹ hơn là đủ:
-
-```bash
+Nếu bạn chỉ cần SDK để gọi Skyvern từ mã của mình, bản cài nhẹ hơn là đủ: ```bash
 pip install skyvern
 ```
 
 ### Bắt đầu nhanh
 
-Sau khi cài, cách nhanh nhất để có một môi trường hoạt động là lệnh quickstart đi kèm. Nó hướng dẫn bạn cấu hình nhà cung cấp LLM, rồi khởi chạy máy chủ cục bộ và giao diện web với SQLite làm backend:
-
-```bash
+Sau khi cài, cách nhanh nhất để có một môi trường hoạt động là lệnh quickstart đi kèm. Nó hướng dẫn bạn cấu hình nhà cung cấp LLM, rồi khởi chạy máy chủ cục bộ và giao diện web với SQLite làm backend: ```bash
 skyvern quickstart
 ```
 
-Nếu bạn thích thiết lập dùng Postgres làm backend, hãy truyền cờ:
-
-```bash
+Nếu bạn thích thiết lập dùng Postgres làm backend, hãy truyền cờ: ```bash
 skyvern quickstart --postgres
 ```
 
-Bạn cũng có thể khởi động từng thành phần riêng lẻ:
-
-```bash
+Bạn cũng có thể khởi động từng thành phần riêng lẻ: ```bash
 skyvern run server   # chỉ máy chủ API
 skyvern run ui       # chỉ giao diện web
 ```
 
 ### Cấu hình
 
-Skyvern cần ít nhất một LLM API key, và nó đọc key này từ tệp `.env` trong dự án. Một ví dụ tối thiểu dùng OpenAI trông như sau:
-
-```bash
+Skyvern cần ít nhất một LLM API key, và nó đọc key này từ tệp `.env` trong dự án. Một ví dụ tối thiểu dùng OpenAI trông như sau: ```bash
 # .env
 ENABLE_OPENAI=true
 OPENAI_API_KEY=sk-your-key-here
@@ -129,9 +106,7 @@ Lệnh quickstart có thể tạo tệp này cho bạn theo kiểu tương tác.
 
 ### Lỗi thường gặp và cách khắc phục
 
-Một vấn đề hay gặp khi chạy lần đầu là máy chủ khởi động được nhưng mọi tác vụ đều thất bại vì chưa bật nhà cung cấp LLM nào. Nếu bạn thấy lỗi về mô hình bị thiếu hoặc bị tắt, hãy xác nhận rằng cờ `ENABLE_*` tương ứng và API key đều có mặt trong `.env`, ví dụ:
-
-```bash
+Một vấn đề hay gặp khi chạy lần đầu là máy chủ khởi động được nhưng mọi tác vụ đều thất bại vì chưa bật nhà cung cấp LLM nào. Nếu bạn thấy lỗi về mô hình bị thiếu hoặc bị tắt, hãy xác nhận rằng cờ `ENABLE_*` tương ứng và API key đều có mặt trong `.env`, ví dụ: ```bash
 ENABLE_ANTHROPIC=true
 ANTHROPIC_API_KEY=sk-ant-your-key-here
 ```
@@ -144,14 +119,11 @@ Skyvern được xây dựng quanh việc chạy các tác vụ agent từ một
 
 ### Ví dụ 1: Chạy một tác vụ
 
-Quy trình đơn giản nhất là khởi tạo một client Skyvern cục bộ và gọi `run_task` với một prompt. Agent mở trình duyệt, hoàn thành mục tiêu và trả về kết quả:
-
-```python
+Quy trình đơn giản nhất là khởi tạo một client Skyvern cục bộ và gọi `run_task` với một prompt. Agent mở trình duyệt, hoàn thành mục tiêu và trả về kết quả: ```python
 import asyncio
 from skyvern import Skyvern
 
-async def main():
-    skyvern = Skyvern.local()
+async def main(): skyvern = Skyvern.local()
     task = await skyvern.run_task(
         prompt="Go to news.ycombinator.com and find the title of the top post today",
     )
@@ -162,14 +134,11 @@ asyncio.run(main())
 
 ### Ví dụ 2: Trích xuất dữ liệu có cấu trúc
 
-Khi bạn muốn đầu ra có cấu trúc gọn gàng thay vì văn bản tự do, hãy truyền `data_extraction_schema`. Skyvern trả về các trường được trích xuất khớp với schema của bạn:
-
-```python
+Khi bạn muốn đầu ra có cấu trúc gọn gàng thay vì văn bản tự do, hãy truyền `data_extraction_schema`. Skyvern trả về các trường được trích xuất khớp với schema của bạn: ```python
 import asyncio
 from skyvern import Skyvern
 
-async def main():
-    skyvern = Skyvern.local()
+async def main(): skyvern = Skyvern.local()
     task = await skyvern.run_task(
         prompt="Extract the top 3 posts on Hacker News",
         data_extraction_schema={
@@ -195,14 +164,11 @@ asyncio.run(main())
 
 ### Ví dụ 3: Lệnh cấp trang
 
-Để kiểm soát tinh tế hơn, bạn có thể điều khiển trình duyệt trực tiếp và ra từng lệnh AI riêng lẻ — `act` để làm gì đó, `extract` để đọc dữ liệu, và `validate` để kiểm tra một điều kiện:
-
-```python
+Để kiểm soát tinh tế hơn, bạn có thể điều khiển trình duyệt trực tiếp và ra từng lệnh AI riêng lẻ — `act` để làm gì đó, `extract` để đọc dữ liệu, và `validate` để kiểm tra một điều kiện: ```python
 import asyncio
 from skyvern import Skyvern
 
-async def main():
-    skyvern = Skyvern.local()
+async def main(): skyvern = Skyvern.local()
     browser = await skyvern.launch_cloud_browser()
     page = await browser.get_working_page()
 
@@ -229,9 +195,7 @@ Skyvern hòa vào một codebase Python sẵn có mà không cần nhiều thủ
 
 ### Gọi Skyvern từ một dịch vụ web
 
-Vì `run_task` là bất đồng bộ, nó ăn khớp tự nhiên với một framework web bất đồng bộ. Dưới đây là cách gắn nó vào một endpoint FastAPI khởi động một tác vụ theo yêu cầu:
-
-```python
+Vì `run_task` là bất đồng bộ, nó ăn khớp tự nhiên với một framework web bất đồng bộ. Dưới đây là cách gắn nó vào một endpoint FastAPI khởi động một tác vụ theo yêu cầu: ```python
 from fastapi import FastAPI
 from skyvern import Skyvern
 
@@ -239,8 +203,7 @@ app = FastAPI()
 skyvern = Skyvern.local()
 
 @app.get("/automate")
-async def automate():
-    task = await skyvern.run_task(
+async def automate(): task = await skyvern.run_task(
         prompt="Go to example.com and click the Submit button",
     )
     return {"result": task}
@@ -248,9 +211,7 @@ async def automate():
 
 ### Cấu hình qua biến môi trường
 
-Với môi trường sản xuất, để thông tin xác thực và lựa chọn nhà cung cấp trong biến môi trường thay vì viết cứng trong mã sẽ gọn gàng hơn. Skyvern đọc chúng khi khởi động, nên tệp `.env` là nơi tự nhiên để quản lý:
-
-```bash
+Với môi trường sản xuất, để thông tin xác thực và lựa chọn nhà cung cấp trong biến môi trường thay vì viết cứng trong mã sẽ gọn gàng hơn. Skyvern đọc chúng khi khởi động, nên tệp `.env` là nơi tự nhiên để quản lý: ```bash
 # .env
 ENABLE_OPENAI=true
 OPENAI_API_KEY=your_api_key_here
@@ -270,9 +231,7 @@ Bằng cách giữ cấu hình trong môi trường, bạn có thể di chuyển
 
 ## Đánh giá hiệu năng & Ứng dụng thực tế
 
-Skyvern nhắm tới những tác vụ mà độ tin cậy trên nhiều trang web khác nhau quan trọng hơn tốc độ thuần túy. Một vài lĩnh vực nó đã chứng tỏ hữu ích:
-
-### Các trường hợp sử dụng thực tế
+Skyvern nhắm tới những tác vụ mà độ tin cậy trên nhiều trang web khác nhau quan trọng hơn tốc độ thuần túy. Một vài lĩnh vực nó đã chứng tỏ hữu ích: ### Các trường hợp sử dụng thực tế
 
 1. **Điền biểu mẫu ở quy mô lớn**: Hoàn thành đơn đăng ký, luồng onboarding và biểu mẫu nhập liệu trên các trang không chia sẻ một bố cục chung — cách tiếp cận trực quan nghĩa là một prompt có thể xử lý nhiều biến thể.
 2. **Thu thập nội dung động**: Trích xuất dữ liệu có cấu trúc từ những trang nặng JavaScript, nơi mà selector vốn rất dễ vỡ.
@@ -282,9 +241,7 @@ Vì Skyvern suy luận về mỗi trang ngay lúc chạy, nó đánh đổi mộ
 
 ### Sơ đồ hệ thống
 
-Sơ đồ hệ thống của dự án cho thấy một prompt đi qua khâu lập kế hoạch bằng LLM và nhận diện phần tử dựa trên thị giác như thế nào để biến thành các thao tác trình duyệt của Playwright:
-
-![Skyvern 2.0 System Diagram](https://raw.githubusercontent.com/Skyvern-AI/skyvern/main/fern/images/skyvern_2_0_system_diagram.png)
+Sơ đồ hệ thống của dự án cho thấy một prompt đi qua khâu lập kế hoạch bằng LLM và nhận diện phần tử dựa trên thị giác như thế nào để biến thành các thao tác trình duyệt của Playwright: ![Skyvern 2.0 System Diagram](https://raw.githubusercontent.com/Skyvern-AI/skyvern/main/fern/images/skyvern_2_0_system_diagram.png)
 
 ### Tóm tắt
 
@@ -317,9 +274,7 @@ Khi chọn một công cụ tự động hóa trình duyệt, việc so sánh c�
 
 ## Hạn chế & Đánh giá thẳng thắn
 
-Dù Skyvern là một công cụ mạnh cho tự động hóa trình duyệt bền bỉ, nó có những đánh đổi thực sự đáng để hiểu rõ:
-
-1. **Chi phí và độ trễ của LLM**: Mỗi thao tác liên quan đến ít nhất một lời gọi LLM, nên Skyvern chậm hơn và đắt hơn cho mỗi bước so với một kịch bản viết tay. Với các tác vụ khối lượng lớn, được định nghĩa rõ ràng trên một trang ổn định, một kịch bản Playwright truyền thống có thể là lựa chọn kinh tế hơn.
+Dù Skyvern là một công cụ mạnh cho tự động hóa trình duyệt bền bỉ, nó có những đánh đổi thực sự đáng để hiểu rõ: 1. **Chi phí và độ trễ của LLM**: Mỗi thao tác liên quan đến ít nhất một lời gọi LLM, nên Skyvern chậm hơn và đắt hơn cho mỗi bước so với một kịch bản viết tay. Với các tác vụ khối lượng lớn, được định nghĩa rõ ràng trên một trang ổn định, một kịch bản Playwright truyền thống có thể là lựa chọn kinh tế hơn.
 
 2. **Giấy phép AGPL-3.0**: Giấy phép AGPL-3.0 yêu cầu các sửa đổi phải được phát hành theo cùng giấy phép nếu bạn phân phối phần mềm hoặc cung cấp nó như một dịch vụ mạng. Đây có thể là một ràng buộc đáng kể với các tổ chức ưa giấy phép thoáng hơn hoặc độc quyền. (Skyvern cũng cung cấp một phiên bản đám mây được host cho các nhóm không muốn tự vận hành.)
 
@@ -340,19 +295,11 @@ Skyvern-AI/skyvern là một công cụ có năng lực để tự động hóa 
 
 ---
 
-**Nguồn & Đọc thêm**:
-- Kho GitHub: https://github.com/Skyvern-AI/skyvern
+**Nguồn & Đọc thêm**: - Kho GitHub: https://github.com/Skyvern-AI/skyvern
 - Tài liệu chính thức / README: https://github.com/Skyvern-AI/skyvern#readme
 
 *Một số liên kết ở trên là liên kết tiếp thị. dibi8.com có thể nhận hoa hồng nếu bạn đăng ký, mà bạn không tốn thêm chi phí nào. Điều này giúp duy trì hoạt động của trang và giữ cho nội dung miễn phí.*
 
-<!-- internal-link-candidates:
-  related open-source tools -> ai-tools-directory
-  related guides on dibi8 -> ai-coding-agent-landscape-2026-skills-mcp-opensource
--->
-
-
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

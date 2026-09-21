@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/signoz-apm-observability-open-source" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/signoz-apm-observability-open-source" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/signoz-apm-observability-open-source" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/signoz-apm-observability-open-source" />
 title: 'SigNoz: APM mã nguồn mở thay thế Datadog với 10% chi phí...
 description: 'Triển khai SigNoz trong 5 phút. APM mã nguồn mở dựa trên OpenTelemetry với distributed tracing, metrics và log management — chi phí chỉ bằng 10% của Datadog.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [signoz, apm, observability, 'distributed tracing', opentelemetry, 'giải pháp thay thế datadog', 'self-hosted', docker, kubernetes, metrics, logs, monitoring]
-aliases:
-- /vi/posts/signoz-apm-observability-open-source/
+aliases: - /vi/posts/signoz-apm-observability-open-source/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/signoz-apm-observability-open-source/ -->
 
 {{</* resource-info */>}}
 
@@ -49,8 +41,7 @@ Hướng dẫn này bao gồm cài đặt SigNoz trong vòng 5 phút, instrument
 
 Được ra mắt năm 2021 bởi SigNoz Inc., nó được viết bằng Go (backend) và React (frontend). Nó sử dụng ClickHouse làm công cụ lưu trữ cột cho traces và logs, và Kafka + Druid cho tổng hợp metrics dài hạn. Vì nó là OpenTelemetry-native, nó hoạt động với bất kỳ ngôn ngữ hoặc framework nào phát ra dữ liệu OTel — không có vendor lock-in, không có agent độc quyền.
 
-Các số liệu chính tính đến tháng 5/2026:
-- **Sao GitHub**: 22,000+
+Các số liệu chính tính đến tháng 5/2026: - **Sao GitHub**: 22,000+
 - **Giấy phép**: MIT
 - **Phiên bản ổn định mới nhất**: v0.76.0 (phát hành 2026-04-22)
 - **Công cụ lưu trữ**: ClickHouse (traces/logs), Kafka + Druid (metrics)
@@ -62,9 +53,7 @@ Các số liệu chính tính đến tháng 5/2026:
 
 ### Tổng quan kiến trúc
 
-SigNoz tuân theo kiến trúc pipeline observability hiện đại:
-
-1. **OpenTelemetry Collector**: Nhận dữ liệu telemetry (traces, metrics, logs) từ các ứng dụng đã được instrument qua OTLP/gRPC hoặc OTLP/HTTP
+SigNoz tuân theo kiến trúc pipeline observability hiện đại: 1. **OpenTelemetry Collector**: Nhận dữ liệu telemetry (traces, metrics, logs) từ các ứng dụng đã được instrument qua OTLP/gRPC hoặc OTLP/HTTP
 2. **Kafka**: Đệm dữ liệu đến cho độ bền và xử lý backpressure
 3. **ClickHouse**: Cơ sở dữ liệu cột lưu trữ traces và logs với nén hiệu quả (~10x so với Elasticsearch)
 4. **Druid**: Time-series database cho tổng hợp metrics và lưu giữ dài hạn
@@ -89,18 +78,14 @@ SigNoz tuân theo kiến trúc pipeline observability hiện đại:
 
 ### Tại sao dùng ClickHouse cho Traces và Logs?
 
-ClickHouse là cơ sở dữ liệu OLAP dạng cột được tối ưu cho các truy vấn phân tích trên tập dữ liệu lớn. Đối với khối lượng công việc observability, nó cung cấp:
-
-- **Nén tốt hơn 10 lần** so với Elasticsearch cho dữ liệu trace
+ClickHouse là cơ sở dữ liệu OLAP dạng cột được tối ưu cho các truy vấn phân tích trên tập dữ liệu lớn. Đối với khối lượng công việc observability, nó cung cấp: - **Nén tốt hơn 10 lần** so với Elasticsearch cho dữ liệu trace
 - **Độ trễ truy vấn dưới 1 giây** trên hàng tỷ spans
 - **Lọc hiệu quả** trên các tag có cardinality cao (user_id, request_path, status_code)
 - **Sử dụng tài nguyên thấp hơn**: Một node ClickHouse đơn lẻ xử lý được những gì cần một cluster Elasticsearch 3 node
 
 ### Thiết kế OpenTelemetry-Native
 
-Không giống như Datadog hoặc New Relic yêu cầu các agent độc quyền, SigNoz tiêu thụ dữ liệu OpenTelemetry tiêu chuẩn:
-
-```python
+Không giống như Datadog hoặc New Relic yêu cầu các agent độc quyền, SigNoz tiêu thụ dữ liệu OpenTelemetry tiêu chuẩn: ```python
 # Không cần SDK dành riêng cho vendor — chỉ cần OTel chuẩn
 from opentelemetry import trace
 from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
@@ -140,8 +125,7 @@ cd signoz/deploy/docker
 # 2. Chạy script cài đặt
 ./install.sh
 
-# Script sẽ:
-# - Kiểm tra Docker và Docker Compose versions
+# Script sẽ: # - Kiểm tra Docker và Docker Compose versions
 # - Pull tất cả các images cần thiết (ClickHouse, Kafka, Query Service, Frontend)
 # - Khởi động tất cả services
 # - In URL truy cập
@@ -172,80 +156,52 @@ kubectl port-forward svc/signoz-frontend 3301:3301 -n signoz
 
 ### Tùy chọn C: Triển khai VPS Production
 
-Để triển khai production trên [DigitalOcean](https://m.do.co/c/eca87ac14ee0) hoặc [HTStack](https://my.htstack.com/aff.php?aff=27187):
-
-```bash
+Để triển khai production trên [DigitalOcean](https://m.do.co/c/eca87ac14ee0) hoặc [HTStack](https://my.htstack.com/aff.php?aff=27187): ```bash
 # docker-compose.production.yml
 version: "3.8"
-services:
-  signoz-frontend:
-    image: signoz/frontend:0.76.0
+services: signoz-frontend: image: signoz/frontend:0.76.0
     restart: unless-stopped
-    ports:
-      - "3301:3301"
-    depends_on:
-      - signoz-query-service
+    ports: - "3301:3301"
+    depends_on: - signoz-query-service
 
-  signoz-query-service:
-    image: signoz/query-service:0.76.0
+  signoz-query-service: image: signoz/query-service:0.76.0
     restart: unless-stopped
-    environment:
-      - ClickHouseUrl=tcp://clickhouse:9000
+    environment: - ClickHouseUrl=tcp://clickhouse:9000
       - DruidUrl=http://druid-router:8888
       - STORAGE=clickhouse
-    depends_on:
-      - clickhouse
+    depends_on: - clickhouse
       - druid
 
-  signoz-otel-collector:
-    image: signoz/signoz-otel-collector:0.76.0
+  signoz-otel-collector: image: signoz/signoz-otel-collector:0.76.0
     restart: unless-stopped
-    ports:
-      - "4317:4317"    # OTLP gRPC
+    ports: - "4317:4317"    # OTLP gRPC
       - "4318:4318"    # OTLP HTTP
       - "8889:8889"    # Prometheus metrics
-    volumes:
-      - ./otel-collector-config.yaml:/etc/otel-collector-config.yaml
+    volumes: - ./otel-collector-config.yaml:/etc/otel-collector-config.yaml
     command: ["--config", "/etc/otel-collector-config.yaml"]
 
-  clickhouse:
-    image: clickhouse/clickhouse-server:24.3-alpine
+  clickhouse: image: clickhouse/clickhouse-server:24.3-alpine
     restart: unless-stopped
-    ulimits:
-      nofile:
-        soft: 262144
+    ulimits: nofile: soft: 262144
         hard: 262144
-    volumes:
-      - clickhouse-data:/var/lib/clickhouse
-    environment:
-      - CLICKHOUSE_DB=signoz_metrics
+    volumes: - clickhouse-data:/var/lib/clickhouse
+    environment: - CLICKHOUSE_DB=signoz_metrics
       - CLICKHOUSE_USER=admin
       - CLICKHOUSE_PASSWORD=${CLICKHOUSE_PASSWORD}
 
-  zookeeper:
-    image: zookeeper:3.9
+  zookeeper: image: zookeeper:3.9
     restart: unless-stopped
-    volumes:
-      - zookeeper-data:/data
+    volumes: - zookeeper-data:/data
       - zookeeper-logs:/datalog
 
-  kafka:
-    image: bitnami/kafka:3.7
+  kafka: image: bitnami/kafka:3.7
     restart: unless-stopped
-    environment:
-      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+    environment: - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
       - ALLOW_PLAINTEXT_LISTENER=yes
-    volumes:
-      - kafka-data:/bitnami/kafka
-    depends_on:
-      - zookeeper
+    volumes: - kafka-data:/bitnami/kafka
+    depends_on: - zookeeper
 
-volumes:
-  clickhouse-data:
-  kafka-data:
-  zookeeper-data:
-  zookeeper-logs:
-```
+volumes: clickhouse-data: kafka-data: zookeeper-data: zookeeper-logs: ```
 
 Triển khai với `docker compose -f docker-compose.production.yml up -d`.
 
@@ -255,8 +211,7 @@ Triển khai với `docker compose -f docker-compose.production.yml up -d`.
 # Kiểm tra tất cả containers đang chạy
 docker ps --format "table {{.Names}}\t{{.Status}}"
 
-# Output mong đợi:
-# NAMES                        STATUS
+# Output mong đợi: # NAMES                        STATUS
 # docker-clickhouse-1          Up 2 minutes (healthy)
 # docker-kafka-1               Up 2 minutes
 # docker-signoz-frontend-1     Up 2 minutes
@@ -273,9 +228,7 @@ curl http://localhost:3301/api/v1/health
 
 ### Auto-Instrumentation (Khuyến nghị cho Quick Start)
 
-SigNoz hỗ trợ auto-instrumentation cho hầu hết các ngôn ngữ không cần thay đổi code:
-
-```bash
+SigNoz hỗ trợ auto-instrumentation cho hầu hết các ngôn ngữ không cần thay đổi code: ```bash
 # Node.js —— zero code changes
 OTEL_EXPORTER_OTLP_ENDPOINT="http://localhost:4317" \
 OTEL_RESOURCE_ATTRIBUTES="service.name=payment-service" \
@@ -300,9 +253,7 @@ go run main.go
 
 ### Manual Instrumentation (Production-Grade)
 
-Cho production services, manual instrumentation cung cấp kiểm soát tốt hơn:
-
-```python
+Cho production services, manual instrumentation cung cấp kiểm soát tốt hơn: ```python
 # Python Flask với manual instrumentation
 from opentelemetry import trace
 from opentelemetry.sdk.trace import TracerProvider
@@ -323,17 +274,13 @@ app = Flask(__name__)
 tracer = trace.get_tracer(__name__)
 
 @app.route("/process-payment", methods=["POST"])
-def process_payment():
-    with tracer.start_as_current_span("process_payment") as span:
-        span.set_attribute("payment.amount", 149.00)
+def process_payment(): with tracer.start_as_current_span("process_payment") as span: span.set_attribute("payment.amount", 149.00)
         span.set_attribute("payment.currency", "USD")
 
-        with tracer.start_as_current_span("validate_card"):
-            # Card validation logic
+        with tracer.start_as_current_span("validate_card"): # Card validation logic
             pass
 
-        with tracer.start_as_current_span("charge_stripe"):
-            # Stripe API call
+        with tracer.start_as_current_span("charge_stripe"): # Stripe API call
             pass
 
         return {"status": "success"}
@@ -341,9 +288,7 @@ def process_payment():
 
 ### Dashboards và Metrics tùy chỉnh
 
-Khi dữ liệu bắt đầu chảy, tạo dashboards trong SigNoz UI hoặc qua API:
-
-```bash
+Khi dữ liệu bắt đầu chảy, tạo dashboards trong SigNoz UI hoặc qua API: ```bash
 # Tạo dashboard tùy chỉnh qua API
 curl -X POST http://localhost:3301/api/v1/dashboards \
   -H "Content-Type: application/json" \
@@ -391,9 +336,7 @@ curl -X POST http://localhost:3301/api/v1/dashboards \
 
 ### Benchmark hiệu năng
 
-Kiểm thử với 1 triệu spans/ngày ingestion trên VPS 4 vCPU / 8 GB RAM:
-
-| Chỉ số | Kết quả |
+Kiểm thử với 1 triệu spans/ngày ingestion trên VPS 4 vCPU / 8 GB RAM: | Chỉ số | Kết quả |
 |--------|---------|
 | Tốc độ ingestion span | 12,000 spans/giây liên tục |
 | Độ trễ truy vấn (1 giờ qua) | p95 45 ms |
@@ -415,41 +358,28 @@ Kiểm thử với 1 triệu spans/ngày ingestion trên VPS 4 vCPU / 8 GB RAM:
 
 ```yaml
 # docker-compose.ha.yml — multi-node ClickHouse với ZooKeeper
-services:
-  clickhouse-1:
-    image: clickhouse/clickhouse-server:24.3-alpine
-    volumes:
-      - clickhouse1-data:/var/lib/clickhouse
+services: clickhouse-1: image: clickhouse/clickhouse-server:24.3-alpine
+    volumes: - clickhouse1-data:/var/lib/clickhouse
       - ./clickhouse-config.xml:/etc/clickhouse-server/config.d/cluster.xml
-    environment:
-      - CLICKHOUSE_USER=admin
+    environment: - CLICKHOUSE_USER=admin
       - CLICKHOUSE_PASSWORD=${CLICKHOUSE_PASSWORD}
 
-  clickhouse-2:
-    image: clickhouse/clickhouse-server:24.3-alpine
-    volumes:
-      - clickhouse2-data:/var/lib/clickhouse
+  clickhouse-2: image: clickhouse/clickhouse-server:24.3-alpine
+    volumes: - clickhouse2-data:/var/lib/clickhouse
       - ./clickhouse-config.xml:/etc/clickhouse-server/config.d/cluster.xml
-    environment:
-      - CLICKHOUSE_USER=admin
+    environment: - CLICKHOUSE_USER=admin
       - CLICKHOUSE_PASSWORD=${CLICKHOUSE_PASSWORD}
 
-  clickhouse-3:
-    image: clickhouse/clickhouse-server:24.3-alpine
-    volumes:
-      - clickhouse3-data:/var/lib/clickhouse
+  clickhouse-3: image: clickhouse/clickhouse-server:24.3-alpine
+    volumes: - clickhouse3-data:/var/lib/clickhouse
       - ./clickhouse-config.xml:/etc/clickhouse-server/config.d/cluster.xml
-    environment:
-      - CLICKHOUSE_USER=admin
+    environment: - CLICKHOUSE_USER=admin
       - CLICKHOUSE_PASSWORD=${CLICKHOUSE_PASSWORD}
 
   # Nginx load balancer cho ClickHouse
-  clickhouse-lb:
-    image: nginx:alpine
-    volumes:
-      - ./nginx-clickhouse.conf:/etc/nginx/nginx.conf
-    ports:
-      - "8123:8123"
+  clickhouse-lb: image: nginx:alpine
+    volumes: - ./nginx-clickhouse.conf:/etc/nginx/nginx.conf
+    ports: - "8123:8123"
       - "9000:9000"
 ```
 
@@ -488,10 +418,8 @@ services:
 
 ```yaml
 # alert-rules.yml — SigNoz alert manager rules
-groups:
-  - name: payment_service_alerts
-    rules:
-      - alert: HighErrorRate
+groups: - name: payment_service_alerts
+    rules: - alert: HighErrorRate
         expr: |
           (
             sum(rate(signoz_calls_total{service_name="payment-service",status_code="STATUS_CODE_ERROR"}[5m]))
@@ -499,28 +427,22 @@ groups:
             sum(rate(signoz_calls_total{service_name="payment-service"}[5m]))
           ) > 0.05
         for: 2m
-        labels:
-          severity: critical
-        annotations:
-          summary: "Payment service error rate > 5%"
+        labels: severity: critical
+        annotations: summary: "Payment service error rate > 5%"
           description: "Error rate is {{ $value }}"
 
       - alert: HighP95Latency
         expr: histogramQuantile(0.95)(rate(signoz_latency_bucket{service_name="payment-service"}[5m])) > 500000000
         for: 5m
-        labels:
-          severity: warning
-        annotations:
-          summary: "Payment service P95 latency > 500ms"
+        labels: severity: warning
+        annotations: summary: "Payment service P95 latency > 500ms"
           description: "P95 latency is {{ $value }}ns"
 
       - alert: LogErrorSpike
         expr: rate(signoz_logs_total{severity="ERROR"}[5m]) > 100
         for: 2m
-        labels:
-          severity: warning
-        annotations:
-          summary: "Log error spike detected"
+        labels: severity: warning
+        annotations: summary: "Log error spike detected"
           description: "{{ $value }} errors/minute"
 ```
 
@@ -532,34 +454,24 @@ Cấu hình kênh alert (Slack, PagerDuty, email) trong SigNoz UI dưới Settin
 # signoz-otel-collector-service.yaml
 apiVersion: v1
 kind: Service
-metadata:
-  name: signoz-otel-collector
+metadata: name: signoz-otel-collector
   namespace: signoz
-spec:
-  ports:
-    - name: otlp-grpc
+spec: ports: - name: otlp-grpc
       port: 4317
       protocol: TCP
     - name: otlp-http
       port: 4318
       protocol: TCP
-  selector:
-    app.kubernetes.io/name: otel-collector
+  selector: app.kubernetes.io/name: otel-collector
 
 ---
 # Instrument deployment bằng cách thêm OTel env vars
 apiVersion: apps/v1
 kind: Deployment
-metadata:
-  name: payment-service
-spec:
-  template:
-    spec:
-      containers:
-        - name: payment-service
+metadata: name: payment-service
+spec: template: spec: containers: - name: payment-service
           image: payment-service:1.2.3
-          env:
-            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+          env: - name: OTEL_EXPORTER_OTLP_ENDPOINT
               value: "http://signoz-otel-collector.signoz.svc.cluster.local:4317"
             - name: OTEL_RESOURCE_ATTRIBUTES
               value: "service.name=payment-service,service.namespace=production"
@@ -571,25 +483,15 @@ spec:
 
 ### Chiến lược Sampling cho Services có traffic cao
 
-Cho services xử lý >10,000 requests/giây, triển khai head-based sampling:
-
-```yaml
+Cho services xử lý >10,000 requests/giây, triển khai head-based sampling: ```yaml
 # otel-collector-config.yaml
-receivers:
-  otlp:
-    protocols:
-      grpc:
-        endpoint: 0.0.0.0:4317
-      http:
-        endpoint: 0.0.0.0:4318
+receivers: otlp: protocols: grpc: endpoint: 0.0.0.0:4317
+      http: endpoint: 0.0.0.0:4318
 
-processors:
-  tail_sampling:
-    decision_wait: 10s
+processors: tail_sampling: decision_wait: 10s
     num_traces: 100000
     expected_new_traces_per_sec: 1000
-    policies:
-      - name: errors
+    policies: - name: errors
         type: status_code
         status_code: {status_codes: [ERROR]}
       - name: slow_requests
@@ -599,15 +501,10 @@ processors:
         type: probabilistic
         probabilistic: {sampling_percentage: 10}
 
-exporters:
-  clickhousetraces:
-    datasource: tcp://clickhouse:9000
+exporters: clickhousetraces: datasource: tcp://clickhouse:9000
     database: signoz_traces
 
-service:
-  pipelines:
-    traces:
-      receivers: [otlp]
+service: pipelines: traces: receivers: [otlp]
       processors: [tail_sampling]
       exporters: [clickhousetraces]
 ```
@@ -661,16 +558,9 @@ Cho việc ingestion 1 triệu spans/ngày với 7 ngày hot retention: 4 vCPU, 
 
 **Q: Tôi có thể sử dụng metrics Prometheus hiện có với SigNoz không?**
 
-Có. OTel Collector của SigNoz bao gồm một Prometheus receiver. Cấu hình trong `otel-collector-config.yaml`:
-
-```yaml
-receivers:
-  prometheus:
-    config:
-      scrape_configs:
-        - job_name: 'my-app'
-          static_configs:
-            - targets: ['my-app:9090']
+Có. OTel Collector của SigNoz bao gồm một Prometheus receiver. Cấu hình trong `otel-collector-config.yaml`: ```yaml
+receivers: prometheus: config: scrape_configs: - job_name: 'my-app'
+          static_configs: - targets: ['my-app:9090']
 ```
 
 Các scrape configs Prometheus hiện có có thể được import trực tiếp. SigNoz sẽ lưu metrics trong Druid cho truy vấn dài hạn.
@@ -701,9 +591,7 @@ Với thiết lập Docker 5 phút, truy vấn sub-second trên hàng tỷ spans
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -723,7 +611,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 *Công bố liên kết liên kết: Bài viết này chứa các liên kết liên kết đến DigitalOcean và HTStack. Nếu bạn mua dịch vụ thông qua các liên kết này, dibi8.com sẽ nhận được hoa hồng mà không phát sinh thêm chi phí cho bạn. Tất cả các khuyến nghị đều dựa trên kiểm thử thực tế, không phải khả năng có liên kết liên kết.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

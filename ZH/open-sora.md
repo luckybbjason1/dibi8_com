@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/open-sora" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/open-sora" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/open-sora" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/open-sora" />
 title: 'Open-Sora: 29K+ Stars — 开源视频生成完整安装指南 2026'
 description: 'Open-Sora 是拥有 29K+ GitHub stars 的开源视频生成框架。涵盖 Docker 安装、ComfyUI 集成、Stable Diffusion 兼容、生产部署、与 HunyuanVideo、CogVideo、Wan 的性能对比基准测试。'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: ['open-sora', 视频生成, 扩散transformer, ai视频, 开源, docker, cuda, comfyui]
-aliases:
-- /zh/posts/open-sora/
+aliases: - /zh/posts/open-sora/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/open-sora/ -->
 
 {{</* resource-info */>}}
 
@@ -92,8 +84,7 @@ latent = torch.randn(1, 16, 16, 128, 128).cuda()  # [B, C, T, H, W]
 
 # 使用整流流去噪
 scheduler = RectifiedFlowScheduler(num_steps=50)
-for t in scheduler.timesteps:
-    noise_pred = stdit(latent, t, prompt_embed)
+for t in scheduler.timesteps: noise_pred = stdit(latent, t, prompt_embed)
     latent = scheduler.step(noise_pred, t, latent)
 
 # 解码为视频
@@ -105,7 +96,13 @@ video = vae.decode(latent)  # [1, 3, 65, 768, 768]
 ### 硬件要求
 
 | 配置 | 最低要求 | 推荐配置 |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | GPU 显存 | 16 GB | 24+ GB (RTX 4090 / A100) |
 | GPU 型号 | RTX 3090 | RTX 4090 / A100 80GB |
 | 系统内存 | 32 GB | 64 GB |
@@ -230,12 +227,10 @@ import subprocess
 import torch
 import os
 
-class OpenSoraTextToVideo:
-    """ComfyUI 节点，用于 Open-Sora 文生视频生成"""
+class OpenSoraTextToVideo: """ComfyUI 节点，用于 Open-Sora 文生视频生成"""
     
     @classmethod
-    def INPUT_TYPES(cls):
-        return {
+    def INPUT_TYPES(cls): return {
             "required": {
                 "prompt": ("STRING", {"multiline": True}),
                 "resolution": (["256px", "768px"], {"default": "768px"}),
@@ -248,10 +243,8 @@ class OpenSoraTextToVideo:
     FUNCTION = "generate_video"
     CATEGORY = "video_generation"
     
-    def generate_video(self, prompt, resolution, num_frames, steps):
-        # 将提示词写入 CSV 用于批量处理
-        with open("/tmp/opensora_input.csv", "w") as f:
-            f.write(f"id,text\n0,\"{prompt}\"\n")
+    def generate_video(self, prompt, resolution, num_frames, steps): # 将提示词写入 CSV 用于批量处理
+        with open("/tmp/opensora_input.csv", "w") as f: f.write(f"id,text\n0,\"{prompt}\"\n")
         
         # 启动推理
         cmd = [
@@ -366,7 +359,19 @@ VBench 是视频生成的标准评估套件，在视觉质量、时间一致性�
 *Open-Sora 2.0 VBench 分数与开源及专有视频生成模型的对比。来源：Open-Sora 2.0 技术报告。*
 
 | 模型 | 参数量 | VBench 总分 | 质量分数 | 时间分数 | 训练成本 |
-|---|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | OpenAI Sora | ~? | 82.5% | 85.2% | 79.8% | 专有 |
 | **Open-Sora 2.0** | **11B** | **81.8%** | **84.1%** | **79.5%** | **$200K** |
 | HunyuanVideo | 13B | 81.2% | 83.5% | 78.9% | ~$1M+ |
@@ -379,7 +384,19 @@ VBench 是视频生成的标准评估套件，在视觉质量、时间一致性�
 ### 推理速度基准测试（A100 80GB）
 
 | 分辨率 | 时长 | 步数 | 1x GPU | 2x GPU (TP) | 8x GPU (SP) |
-|---|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 256x256 | 5秒 (65帧) | 50 | ~45秒 | ~28秒 | ~12秒 |
 | 768x768 | 5秒 (65帧) | 50 | ~240秒 | ~150秒 | ~55秒 |
 | 768x768 | 5秒 (65帧) | 30 | ~145秒 | ~90秒 | ~33秒 |
@@ -466,55 +483,36 @@ High production value, anamorphic lens, shallow depth of field."""
 # docker-compose.prod.yml
 version: '3.8'
 
-services:
-  opensora:
-    build: .
+services: opensora: build: .
     runtime: nvidia
-    environment:
-      - NVIDIA_VISIBLE_DEVICES=all
+    environment: - NVIDIA_VISIBLE_DEVICES=all
       - CUDA_VISIBLE_DEVICES=0,1,2,3
       - HF_HOME=/workspace/cache
-    volumes:
-      - ./ckpts:/workspace/Open-Sora/ckpts:ro
+    volumes: - ./ckpts:/workspace/Open-Sora/ckpts:ro
       - ./samples:/workspace/Open-Sora/samples
       - huggingface_cache:/workspace/cache
-    ports:
-      - "7860:7860"
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+    ports: - "7860:7860"
+    deploy: resources: reservations: devices: - driver: nvidia
               count: all
               capabilities: [gpu]
-    healthcheck:
-      test: ["CMD", "python", "-c", "import torch; torch.cuda.is_available()"]
+    healthcheck: test: ["CMD", "python", "-c", "import torch; torch.cuda.is_available()"]
       interval: 30s
       timeout: 10s
       retries: 3
     restart: unless-stopped
     
   # 可选：批量任务队列工作器
-  worker:
-    build: .
+  worker: build: .
     runtime: nvidia
     command: python scripts/diffusion/batch_worker.py --queue redis:6379
-    environment:
-      - NVIDIA_VISIBLE_DEVICES=4,5,6,7
-    volumes:
-      - ./ckpts:/workspace/Open-Sora/ckpts:ro
+    environment: - NVIDIA_VISIBLE_DEVICES=4,5,6,7
+    volumes: - ./ckpts:/workspace/Open-Sora/ckpts:ro
       - ./samples:/workspace/Open-Sora/samples
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+    deploy: resources: reservations: devices: - driver: nvidia
               count: 4
               capabilities: [gpu]
 
-volumes:
-  huggingface_cache:
-```
+volumes: huggingface_cache: ```
 
 ### 监控和日志
 
@@ -530,15 +528,13 @@ GENERATION_COUNTER = Counter(opensora_generations_total, 视频生成总数)
 GENERATION_DURATION = Histogram(opensora_generation_seconds, 生成时间)
 VRAM_USAGE = Histogram(opensora_vram_usage_bytes, 峰值显存使用)
 
-def generate_with_monitoring(prompt, config):
-    process = psutil.Process()
+def generate_with_monitoring(prompt, config): process = psutil.Process()
     start_mem = process.memory_info().rss
     
     torch.cuda.reset_peak_memory_stats()
     start_time = time.time()
     
-    try:
-        video = run_inference(prompt, config)
+    try: video = run_inference(prompt, config)
         
         duration = time.time() - start_time
         peak_vram = torch.cuda.max_memory_allocated()
@@ -553,8 +549,7 @@ def generate_with_monitoring(prompt, config):
             peak_vram_gb: peak_vram / 1e9,
             peak_ram_gb: (process.memory_info().rss - start_mem) / 1e9,
         }
-    except Exception as e:
-        raise
+    except Exception as e: raise
 
 # 在端口 9090 启动指标服务器
 start_http_server(9090)
@@ -570,7 +565,17 @@ start_http_server(9090)
 ## 与替代品对比
 
 | 特性 | Open-Sora 2.0 | CogVideoX-5B | HunyuanVideo | Wan 2.1 |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **参数量** | 11B | 5B / 10B | 13B | 1.3B / 14B |
 | **最大分辨率** | 768x768 | 1440x960 | 1080p | 1080p |
 | **最大时长** | 5.3秒 (128帧) | 6秒 | 5秒 | 10秒 |
@@ -676,7 +681,6 @@ Open-Sora 2.0 代表了开源视频生成的一个里程碑：110 亿参数，81
 - ComfyUI 官方仓库：https://github.com/comfyanonymous/ComfyUI
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -702,8 +706,8 @@ Open-Sora 2.0 代表了开源视频生成的一个里程碑：110 亿参数，81
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [2026-06-22-trending-ai-agents](open-sora)
@@ -712,6 +716,6 @@ Open-Sora 2.0 代表了开源视频生成的一个里程碑：110 亿参数，81
 - [mattpocock-skills-ai-agent-framework-guide](open-sora)
 - [nanochat-karpathy-100-chatgpt-single-gpu](open-sora)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

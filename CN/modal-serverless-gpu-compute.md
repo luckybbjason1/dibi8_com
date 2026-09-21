@@ -1,21 +1,18 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/modal-serverless-gpu-compute" />
 title: Modal Serverless GPU Compute — Run ML Pipelines Without I...
 description: Complete guide to Modal serverless GPU infrastructure. Deploy LLM inference, fine-tuning pipelines, and batch ML workloads with zero cluster management. Compare pricing, benchmarks, and real-world patterns.
 tags: ['serverless', 'gpu', 'machine-learning', 'inference', 'llm', 'cloud-compute']
 category: llm-frameworks
 featureImage: /images/articles/modal-serverless-gpu-compute.jpg
 date: 2026-07-15T00:00:00+00:00
-lastmod:  2026-07-15T00:00:00+00:00slug: modal-serverless-gpu-compute
----
-
+lastmod: 2026-07-15T00:00:00+00:00
+slug: modal-serverless-gpu-compute---
 ## TL;DR
 
 Modal is a Python-native serverless compute platform that lets you run GPU-accelerated workloads without managing any infrastructure. You write standard Python functions, decorate them with `@modal.enter()` and `@modal.function()`, and Modal handles container provisioning, GPU allocation, networking, and scaling. Perfect for LLM inference endpoints, fine-tuning jobs, and batch ML pipelines.
 
----
 
+---
 ## What Is Modal?
 
 Modal is a serverless compute platform designed specifically for machine learning and data-intensive workloads. Unlike traditional cloud providers where you provision VMs, manage Kubernetes clusters, or configure auto-scaling groups, Modal abstracts all infrastructure away into simple Python decorators.
@@ -24,9 +21,7 @@ The core philosophy is simple: **your code is your infrastructure definition**. 
 
 ### Why Serverless GPU Matters for AI
 
-GPU infrastructure has historically been the biggest bottleneck in AI development. Traditional approaches require:
-
-- Pre-provisioning GPU instances (expensive idle time)
+GPU infrastructure has historically been the biggest bottleneck in AI development. Traditional approaches require: - Pre-provisioning GPU instances (expensive idle time)
 - Managing Kubernetes clusters for orchestration (complex ops overhead)
 - Handling cold starts for inference endpoints (latency issues)
 - Scaling from zero to thousands of concurrent requests (manual tuning)
@@ -49,7 +44,17 @@ image = modal.Image.debian_slim().pip_install(
 ### Key Differentiators vs Alternatives
 
 | Feature | Modal | AWS SageMaker | Google Vertex AI | Lambda GPU |
-|---------|-------|---------------|------------------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Python-native API | ✅ | ❌ (console/CLI) | ❌ (console/CLI) | ❌ (YAML) |
 | Zero cold start* | ✅ (warm pools) | ❌ | ❌ | ❌ |
 | Per-second billing | ✅ | ❌ (hourly min) | ❌ (hourly min) | ✅ |
@@ -58,8 +63,8 @@ image = modal.Image.debian_slim().pip_install(
 
 _*Warm pools reduce cold start to <2 seconds for most models._
 
----
 
+---
 ## Getting Started: Your First Modal App
 
 ### Step 1: Install and Authenticate
@@ -88,10 +93,8 @@ stub = modal.Stub("llm-inference")
     gpu="A10G",
     memory=8192
 )
-class LLMEndpoint:
-    @modal.enter()
-    def load_model(self):
-        self.model = AutoModelForCausalLM.from_pretrained(
+class LLMEndpoint: @modal.enter()
+    def load_model(self): self.model = AutoModelForCausalLM.from_pretrained(
             "meta-llama/Llama-3.2-3B-Instruct",
             torch_dtype="auto",
             device_map="auto"
@@ -99,8 +102,7 @@ class LLMEndpoint:
         self.tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-3.2-3B-Instruct")
 
     @modal.method()
-    def generate(self, prompt: str, max_tokens: int = 512) -> str:
-        inputs = self.tokenizer(prompt, return_tensors="pt").to(self.model.device)
+    def generate(self, prompt: str, max_tokens: int = 512) -> str: inputs = self.tokenizer(prompt, return_tensors="pt").to(self.model.device)
         outputs = self.model.generate(**inputs, max_new_tokens=max_tokens)
         return self.tokenizer.decode(outputs[0], skip_special_tokens=True)
 ```
@@ -125,46 +127,37 @@ After deployment, Modal assigns your endpoint a public URL. Any client can call 
 
 ### Pattern 1: High-Throughput Inference Endpoint
 
-For production LLM serving, use Modal's built-in concurrency and request queuing:
-
-```python
+For production LLM serving, use Modal's built-in concurrency and request queuing: ```python
 @stub.cls(
     gpu="L4",
     concurrency_limit=20,
     allow_concurrent_inputs=10,
     keep_warm=2  # Keep at least 2 containers warm
 )
-class ProductionLLM:
-    @modal.enter()
-    def load_model(self):
-        self.model = load_optimized_model()  # Your optimization here
+class ProductionLLM: @modal.enter()
+    def load_model(self): self.model = load_optimized_model()  # Your optimization here
         self.tokenizer = AutoTokenizer.from_pretrained("your-model")
 
     @modal.web_endpoint(method="POST")
-    def infer(self, req: dict):
-        prompt = req.get("prompt", "")
+    def infer(self, req: dict): prompt = req.get("prompt", "")
         result = self.model.generate(prompt, max_tokens=req.get("max_tokens", 256))
         return {"response": result}
 ```
 
-Key settings:
-- `keep_warm=2`: Ensures 2 containers stay hot to handle burst traffic
+Key settings: - `keep_warm=2`: Ensures 2 containers stay hot to handle burst traffic
 - `allow_concurrent_inputs=10`: Each container handles 10 simultaneous requests
 - `concurrency_limit=20`: Maximum 20 containers total (cost control)
 
 ### Pattern 2: Batch Processing Pipeline
 
-For processing thousands of documents through an LLM:
-
-```python
+For processing thousands of documents through an LLM: ```python
 @stub.function(
     image=image,
     gpu="A100-80GB",
     timeout=3600,  # 1 hour max
     retries=2
 )
-def batch_embed(docs: list[str]) -> list[list[float]]:
-    """Process a batch of documents and return embeddings."""
+def batch_embed(docs: list[str]) -> list[list[float]]: """Process a batch of documents and return embeddings."""
     model = get_embedding_model()
     return model.encode(docs, batch_size=64).tolist()
 
@@ -182,8 +175,7 @@ Modal handles chunking, retrying failed batches, and parallelizing across multip
     memory=16384,
     timeout=14400  # 4 hours
 )
-def run_finetune(dataset_path: str, output_dir: str):
-    """Run LoRA fine-tuning on a dataset."""
+def run_finetune(dataset_path: str, output_dir: str): """Run LoRA fine-tuning on a dataset."""
     from trl import SFTTrainer
     from peft import LoraConfig
 
@@ -213,10 +205,12 @@ Deploy with `modal run finetune.py --dataset_path s3://my-bucket/data --output_d
 
 ### Understanding Modal's Pricing Model
 
-Modal charges based on the resources your containers actually use:
-
-| Resource | Price (approximate) |
-|----------|---------------------|
+Modal charges based on the resources your containers actually use: | Resource | Price (approximate) |
+|
+---
+|
+---
+|
 | A10G GPU | $0.60/hour |
 | L4 GPU | $0.80/hour |
 | A100-80GB | $2.50/hour |
@@ -234,14 +228,12 @@ _These are approximate; check [modal.com/pricing](https://modal.com/pricing) for
 # Don't use H100 for a 3B parameter model
 # Use A10G instead — saves 75% cost
 @stub.function(gpu="A10G", memory=4096)
-def light_inference(prompt: str):
-    model = load_small_model()  # 3B params fits easily
+def light_inference(prompt: str): model = load_small_model()  # 3B params fits easily
     return model.generate(prompt)
 
 # Reserve H100 only for large-scale fine-tuning
 @stub.function(gpu="H100-80GB", memory=32768)
-def heavy_finetune(config: dict):
-    return run_large_scale_training(config)
+def heavy_finetune(config: dict): return run_large_scale_training(config)
 ```
 
 **Strategy 2: Use `keep_warm` strategically**
@@ -249,13 +241,11 @@ def heavy_finetune(config: dict):
 ```python
 # For predictable traffic: keep warm during business hours only
 @stub.function(gpu="L4", keep_warm=1)
-def production_endpoint():
-    ...
+def production_endpoint(): ...
 
 # For bursty traffic: use higher concurrency_limit
 @stub.function(gpu="L4", concurrency_limit=50, keep_warm=3)
-def bursty_endpoint():
-    ...
+def bursty_endpoint(): ...
 ```
 
 **Strategy 3: Container reuse with `@stub.cls`**
@@ -265,26 +255,30 @@ Class-based functions keep state in memory, avoiding repeated model loading. Thi
 ```python
 # ❌ Bad: loads model on every invocation
 @stub.function(gpu="A10G")
-def bad_approach(prompt: str):
-    model = load_model()  # Reloads every call!
+def bad_approach(prompt: str): model = load_model()  # Reloads every call!
     return model.generate(prompt)
 
 # ✅ Good: loads model once, reuses across requests
 @stub.cls(gpu="A10G")
-class GoodApproach:
-    @modal.enter()
-    def setup(self):
-        self.model = load_model()  # Loads once at startup
+class GoodApproach: @modal.enter()
+    def setup(self): self.model = load_model()  # Loads once at startup
     
     @modal.method()
-    def generate(self, prompt: str):
-        return self.model.generate(prompt)  # Reuses loaded model
+    def generate(self, prompt: str): return self.model.generate(prompt)  # Reuses loaded model
 ```
 
 ### Real-World Cost Comparison
 
 | Workload | AWS EC2 (p4d) | Modal | Savings |
-|----------|---------------|-------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Llama 3.2 3B inference (100 req/min) | $2,200/mo (always-on) | $180/mo (on-demand) | 92% |
 | Fine-tuning 8hr job | $200 (reserved) | $20 (actual usage) | 90% |
 | Batch embed 1M docs | $500 (cluster mgmt) | $85 (pure compute) | 83% |
@@ -295,9 +289,7 @@ class GoodApproach:
 
 ### Secret Management
 
-Never hardcode API keys. Modal's secret manager injects credentials at runtime:
-
-```python
+Never hardcode API keys. Modal's secret manager injects credentials at runtime: ```python
 import modal
 
 stub = modal.Stub("secret-demo")
@@ -308,24 +300,20 @@ stub = modal.Stub("secret-demo")
         modal.Secret.from_name("openai-key"),
     ]
 )
-def secure_inference(prompt: str):
-    import os
+def secure_inference(prompt: str): import os
     hf_token = os.environ["HF_TOKEN"]  # Injected from secret
     openai_key = os.environ["OPENAI_API_KEY"]
     return call_api(prompt, hf_token, openai_key)
 ```
 
-Create secrets once:
-```bash
+Create secrets once: ```bash
 modal secret create huggingface-token HF_TOKEN=your_token_here
 modal secret create openai-key OPENAI_API_KEY=sk-...
 ```
 
 ### Volume Mounts for Persistent Storage
 
-Modal volumes provide shared, persistent filesystems across function invocations:
-
-```python
+Modal volumes provide shared, persistent filesystems across function invocations: ```python
 # Create a volume for model checkpoints
 checkpoint_volume = modal.Volume.from_name("model-checkpoints", create_if_missing=True)
 
@@ -334,8 +322,7 @@ checkpoint_volume = modal.Volume.from_name("model-checkpoints", create_if_missin
     volumes={"/checkpoints": checkpoint_volume},
     timeout=7200
 )
-def fine_tune_and_save(dataset_url: str):
-    # Load dataset
+def fine_tune_and_save(dataset_url: str): # Load dataset
     dataset = load_dataset(dataset_url)
     
     # Train and save to mounted volume
@@ -346,8 +333,7 @@ def fine_tune_and_save(dataset_url: str):
 
 # Access saved model from another function
 @stub.function(volumes={"/checkpoints": checkpoint_volume})
-def load_and_infer(prompt: str):
-    model = AutoModelForCausalLM.from_pretrained("/checkpoints/final-model")
+def load_and_infer(prompt: str): model = AutoModelForCausalLM.from_pretrained("/checkpoints/final-model")
     return model.generate(prompt)
 ```
 
@@ -355,24 +341,19 @@ Volumes persist data across function calls, making them ideal for model checkpoi
 
 ### Egress Control
 
-Control outbound network access for security and cost management:
-
-```python
+Control outbound network access for security and cost management: ```python
 @stub.function(
     gpu="L4",
     network_mounts={"/etc/resolv.conf": modal.NetworkMount()},
     blocked_subnets=["169.254.0.0/16"],  # Block metadata service
     allowed_domains=["api.openai.com"]   # Only allow specific domains
 )
-def restricted_inference(prompt: str):
-    return call_openai(prompt)
+def restricted_inference(prompt: str): return call_openai(prompt)
 ```
 
 ### Custom Docker Images
 
-For complex dependencies not covered by `pip_install`:
-
-```python
+For complex dependencies not covered by `pip_install`: ```python
 custom_image = (
     modal.Image.from_dockerhub("nvidia/cuda:12.2.0-devel-ubuntu22.04")
     .apt_install("git", "cmake", "build-essential")
@@ -381,8 +362,7 @@ custom_image = (
 )
 
 @stub.function(image=custom_image, gpu="A100-80GB")
-def custom_model_inference(request: dict):
-    model = torch.load("/app/model/best.pt")
+def custom_model_inference(request: dict): model = torch.load("/app/model/best.pt")
     return model.predict(request["input"])
 ```
 
@@ -396,18 +376,14 @@ def custom_model_inference(request: dict):
 Error: Container killed due to memory limit exceeded
 ```
 
-**Fix**: Increase memory allocation and enable swap:
-
-```python
+**Fix**: Increase memory allocation and enable swap: ```python
 @stub.cls(
     gpu="A100-80GB",
     memory=32768,  # 32GB RAM for large models
     ephemeral_disk=100_000  # 100GB disk for model weights
 )
-class LargeModel:
-    @modal.enter()
-    def load(self):
-        self.model = AutoModel.from_pretrained(
+class LargeModel: @modal.enter()
+    def load(self): self.model = AutoModel.from_pretrained(
             "big-model",
             torch_dtype=torch.float16,  # Use half precision
             device_map="auto"
@@ -420,18 +396,14 @@ class LargeModel:
 Warning: First request took 180 seconds (model loading)
 ```
 
-**Fix**: Use `keep_warm` and pre-warm containers:
-
-```python
+**Fix**: Use `keep_warm` and pre-warm containers: ```python
 @stub.cls(
     gpu="A10G",
     keep_warm=3,  # Always have 3 warm containers
     timeout=600
 )
-class WarmEndpoint:
-    @modal.enter()
-    def load(self):
-        self.model = load_model()
+class WarmEndpoint: @modal.enter()
+    def load(self): self.model = load_model()
         print("Model loaded successfully")
 ```
 
@@ -441,19 +413,14 @@ class WarmEndpoint:
 Error: Function timed out after 3600 seconds
 ```
 
-**Fix**: Increase timeout and use volumes for checkpoint saving:
-
-```python
+**Fix**: Increase timeout and use volumes for checkpoint saving: ```python
 @stub.function(
     gpu="H100-80GB",
     timeout=28800,  # 8 hours
     volumes={"/data": modal.Volume.from_name("training-data")}
 )
-def long_training_job(config_path: str):
-    for epoch in range(10):
-        train_epoch(config_path)
-        if epoch % 2 == 0:
-            save_checkpoint(f"/data/checkpoint-{epoch}")
+def long_training_job(config_path: str): for epoch in range(10): train_epoch(config_path)
+        if epoch % 2 == 0: save_checkpoint(f"/data/checkpoint-{epoch}")
 ```
 
 ### Issue 4: Concurrency Throttling
@@ -462,19 +429,15 @@ def long_training_job(config_path: str):
 Error: Too many concurrent inputs (limit: 10)
 ```
 
-**Fix**: Adjust concurrency settings:
-
-```python
+**Fix**: Adjust concurrency settings: ```python
 @stub.cls(
     gpu="L4",
     concurrency_limit=100,       # Max containers
     allow_concurrent_inputs=20,  # Requests per container
     keep_warm=5                  # Warm pool size
 )
-class ScalableEndpoint:
-    @modal.method()
-    def handle(self, request: dict):
-        return process(request)
+class ScalableEndpoint: @modal.method()
+    def handle(self, request: dict): return process(request)
 ```
 
 ---
@@ -483,9 +446,7 @@ class ScalableEndpoint:
 
 ### Modal's Roadmap for 2026
 
-Modal continues to invest heavily in ML infrastructure. Key upcoming features include:
-
-1. **Multi-node distributed training**: Native support for training across 8+ GPUs with automatic data parallelism
+Modal continues to invest heavily in ML infrastructure. Key upcoming features include: 1. **Multi-node distributed training**: Native support for training across 8+ GPUs with automatic data parallelism
 2. **GPU sharing**: Time-slicing GPUs for better utilization during low-traffic periods
 3. **Custom GPU types**: Support for next-gen GPUs (Blackwell B200) as they become available
 4. **Edge deployment**: Deploy Modal functions to edge locations for sub-50ms inference latency
@@ -509,9 +470,7 @@ Modal continues to invest heavily in ML infrastructure. Key upcoming features in
 
 ## Community Updates
 
-The serverless GPU space is heating up rapidly. In mid-2026, several new entrants joined the market:
-
-- **RunPod Serverless** launched competitive GPU pricing starting at $0.30/hr for A10G
+The serverless GPU space is heating up rapidly. In mid-2026, several new entrants joined the market: - **RunPod Serverless** launched competitive GPU pricing starting at $0.30/hr for A10G
 - **Replicate** expanded their model library to 500+ pre-packaged ML models
 - **AWS Lambda GPU** announced general availability for Graviton4 + Inferentia2 combinations
 
@@ -562,7 +521,6 @@ Currently, Modal operates exclusively on their managed cloud infrastructure. The
 *Join our Telegram Group for real-time AI tool discussions and deployment tips: [t.me/dibi8](https://t.me/dibi8)*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

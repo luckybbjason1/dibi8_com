@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/unsloth-fast-llm-fine-tuning-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/unsloth-fast-llm-fine-tuning-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/unsloth-fast-llm-fine-tuning-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/unsloth-fast-llm-fine-tuning-2026" />
 title: 'Unsloth 2026: Fine-Tuning LLM Nhanh 64.9k Sao — Tốc Độ 2...
 description: 'Unsloth fine-tune LLM nhanh hơn 2× với ít hơn 70% VRAM so với baseline HuggingFace TRL. 64.9k GitHub sao, dual Apache 2.0 + AGPL-3.0 license. Hỗ trợ Llama 3, Mistral, Qwen 3, Gemma, DeepSeek cho LoRA / QLoRA / DPO / GRPO. Hướng dẫn fine-tuning single-GPU đầy đủ 2026.'
 date: 2026-05-21 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [unsloth, 'fine-tuning', lora, qlora, grpo, 'training nhanh']
-aliases:
-  - /posts/unsloth-fast-llm-fine-tuning-2026/
+aliases: - /posts/unsloth-fast-llm-fine-tuning-2026/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/unsloth-fast-llm-fine-tuning-2026/ -->
 
 Nếu [Axolotl](/vi/resources/llm-frameworks/axolotl-llm-fine-tuning-framework-2026/) là framework fine-tuning multi-GPU production, **Unsloth** là vua tốc độ single-GPU. Bằng cách viết lại kernel training LLM trong Triton + Python tùy chỉnh thay vì dựa vào autograd chung của PyTorch, Unsloth fine-tune mô hình **nhanh hơn 2×** với **ít hơn 70% VRAM** so với baseline HuggingFace TRL.
 
@@ -47,9 +39,7 @@ Nếu [Axolotl](/vi/resources/llm-frameworks/axolotl-llm-fine-tuning-framework-2
 
 ## 1. Tốc Độ 2× Của Unsloth Là Thật (không phải marketing)
 
-Hầu hết tuyên bố "tăng tốc" trong ML là chiêu (benchmark cherry-pick, v.v.). Cái của Unsloth là thật và hiện trong log training:
-
-1. **Kernel Triton tùy chỉnh** cho các operation fused matmul + softmax thống trị thời gian training
+Hầu hết tuyên bố "tăng tốc" trong ML là chiêu (benchmark cherry-pick, v.v.). Cái của Unsloth là thật và hiện trong log training: 1. **Kernel Triton tùy chỉnh** cho các operation fused matmul + softmax thống trị thời gian training
 2. **Tính gradient thủ công** (không overhead autograd PyTorch mỗi bước)
 3. **Attention tiết kiệm memory** với activation checkpointing thông minh hơn
 4. **Fast path 4-bit / 8-bit** duy trì độ chính xác nhưng skip dequantization
@@ -75,9 +65,7 @@ Cho thuê cloud: H100 trên Vast.ai (~$1.50/giờ) xử mọi thứ; cho experim
 pip install unsloth
 ```
 
-Hello world — fine-tune Llama 3.2 8B QLoRA trong ~20 dòng:
-
-```python
+Hello world — fine-tune Llama 3.2 8B QLoRA trong ~20 dòng: ```python
 from unsloth import FastLanguageModel
 from trl import SFTTrainer
 from datasets import load_dataset
@@ -110,9 +98,7 @@ model.save_pretrained("./outputs/llama-alpaca-lora")
 
 ## 4. Catalog Mô Hình Đã Pre-Quantized
 
-Unsloth duy trì các phiên bản pre-quantized 4-bit / 8-bit của mô hình phổ biến tại `huggingface.co/unsloth`. Dùng các này tiết kiệm 5-15 phút tải xuống ban đầu + lượng tử hóa mỗi lần chạy mới:
-
-- `unsloth/llama-3.2-8b-bnb-4bit`
+Unsloth duy trì các phiên bản pre-quantized 4-bit / 8-bit của mô hình phổ biến tại `huggingface.co/unsloth`. Dùng các này tiết kiệm 5-15 phút tải xuống ban đầu + lượng tử hóa mỗi lần chạy mới: - `unsloth/llama-3.2-8b-bnb-4bit`
 - `unsloth/mistral-7b-v0.3-bnb-4bit`
 - `unsloth/qwen3-coder-14b-bnb-4bit`
 - `unsloth/gemma-3-9b-bnb-4bit`
@@ -132,8 +118,7 @@ PatchFastRL("GRPO", FastLanguageModel)
 
 # ... load mô hình với FastLanguageModel như mục 3 ...
 
-def reward_fn(completions, **kwargs):
-    return [1.0 if "correct" in c else 0.0 for c in completions]  # logic reward của bạn
+def reward_fn(completions, **kwargs): return [1.0 if "correct" in c else 0.0 for c in completions]  # logic reward của bạn
 
 trainer = GRPOTrainer(
     model=model,
@@ -159,12 +144,10 @@ Mặc định thành thật 2026: **Unsloth cho giai đoạn experiment, Axolotl
 
 ## 7. Lưu Ý License (Phần AGPL)
 
-Unsloth dual-licensed:
-- **Apache 2.0**: cover sử dụng thư viện core. An toàn dùng trong app nào
+Unsloth dual-licensed: - **Apache 2.0**: cover sử dụng thư viện core. An toàn dùng trong app nào
 - **AGPL-3.0**: kích hoạt nếu bạn distribute Unsloth đã modified hoặc chạy nó như service expose Unsloth's API bên ngoài
 
-Hàm ý thực tế:
-- ✅ Dùng Unsloth để fine-tune mô hình của bạn, deploy mô hình đó trong product nào. Ổn
+Hàm ý thực tế: - ✅ Dùng Unsloth để fine-tune mô hình của bạn, deploy mô hình đó trong product nào. Ổn
 - ✅ Fine-tune trên GPU SaaS bạn thuê, mang trọng số tới deploy riêng. Ổn
 - ⚠️ Xây "fine-tuning-as-a-service" expose Unsloth trực tiếp. AGPL kích hoạt — service phải là AGPL
 
@@ -172,16 +155,12 @@ Cho 99% user (bạn đang fine-tune mô hình cho product riêng), Apache là c�
 
 ## 8. Pattern Production
 
-Hai pattern hầu hết team định cư:
-
-**Pattern A — Pure Unsloth (shop single-GPU)**:
-```
+Hai pattern hầu hết team định cư: **Pattern A — Pure Unsloth (shop single-GPU)**: ```
 Thuê RTX 4090 trên Vast.ai → Experiment Unsloth QLoRA → 
 Merge LoRA + base → Push tới HF Hub → Serve qua vLLM
 ```
 
-**Pattern B — Hybrid Unsloth + Axolotl (team production)**:
-```
+**Pattern B — Hybrid Unsloth + Axolotl (team production)**: ```
 Unsloth trên laptop dev cho 50 experiment nhanh
 ↓ tìm thấy winner
 Axolotl trên cluster 8× H100 cho full fine-tune cuối cùng dài context, multi-epoch
@@ -209,7 +188,6 @@ Pair với [Axolotl](/vi/resources/llm-frameworks/axolotl-llm-fine-tuning-framew
 *Một phần của Fine-Tuning Stack dibi8 — xem bộ sưu tập Fine-Tuning Stack sắp tới cho pipeline đầy đủ từ chuẩn bị dataset đến triển khai production.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -237,25 +215,20 @@ Pair với [Axolotl](/vi/resources/llm-frameworks/axolotl-llm-fine-tuning-framew
 
 ## Why This Matters
 
-Understanding unsloth 2026: fine-tuning llm nhanh 64.9k sao — tốc độ 2×, vram ít hơn 70%, thân thiện single-gpu is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding unsloth 2026: fine-tuning llm nhanh 64.9k sao — tốc độ 2×, vram ít hơn 70%, thân thiện single-gpu is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

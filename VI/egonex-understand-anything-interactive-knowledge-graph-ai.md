@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/egonex-understand-anything-interactive-knowledge-graph-ai" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/egonex-understand-anything-interactive-knowledge-graph-ai" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/egonex-understand-anything-interactive-knowledge-graph-ai" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/egonex-understand-anything-interactive-knowledge-graph-ai" />
 title: "Egonex Understand-Anything: Biểu Đồ Tri Thức Tương Tác T...
 description: "Tìm hiểu cách sử dụng Understand-Anything của Egonex để tạo biểu đồ tri thức tương tác từ bất kỳ chủ đề nào bằng AI. Cài đặt từng bước, tổng hợp đa nguồn, tìm kiếm thời gian thực và so sánh với các giải pháp thay thế."
 date: 2026-06-10
-lastmod:  2026-06-10slug: "egonex-understand-anything-interactive-knowledge-graph-ai"
+lastmod: 2026-06-10
+slug: "egonex-understand-anything-interactive-knowledge-graph-ai"
 category: llm-frameworks
 tags: [egonex, understand-anything, knowledge-graph, AI, interactive, open-source, research, visualization, llm]
 github_repo: "https://github.com/Egonex-AI/Understand-Anything"
@@ -17,8 +13,6 @@ license: MIT
 featureImage: "https://raw.githubusercontent.com/Egonex-AI/Understand-Anything/main/assets/hero.png"
 lang: vi
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/egonex-understand-anything-interactive-knowledge-graph-ai/ -->
 
 ## Giới Thiệu
 
@@ -32,9 +26,7 @@ Understand-Anything, được phát triển bởi Egonex, là một nền tảng
 
 Understand-Anything là **một trình tạo biểu đồ tri thức tương tác được hỗ trợ bởi AI** tạo ra các bản đồ tri thức toàn diện, có thể điều hướng từ bất kỳ chủ đề nào. Nó sử dụng các mô hình ngôn ngữ lớn để nghiên cứu, tổng hợp và cấu trúc thông tin từ nhiều nguồn, sau đó trình bày kết quả dưới dạng biểu đồ tương tác nơi bạn có thể khám phá các khái niệm, mối quan hệ và cấu trúc phân cấp.
 
-Các khả năng chính bao gồm:
-
-- **Nghiên cứu được hỗ trợ bởi AI** — Sử dụng LLMs với tìm kiếm web thời gian thực để thu thập thông tin toàn diện từ nhiều nguồn
+Các khả năng chính bao gồm: - **Nghiên cứu được hỗ trợ bởi AI** — Sử dụng LLMs với tìm kiếm web thời gian thực để thu thập thông tin toàn diện từ nhiều nguồn
 - **Tổng hợp đa nguồn** — Kết hợp thông tin từ Wikipedia, arXiv, PubMed và các trang web vào một biểu đồ tri thức mạch lạc
 - **Trực quan hóa tương tác** — Điều hướng các khái niệm qua các nút có thể nhấp và cạnh mối quan hệ với giao diện web tích hợp sẵn
 - **Cấu trúc phân cấp** — Tổ chức tri thức trong các cấu trúc cha-con đa cấp (tới 4 cấp)
@@ -45,9 +37,7 @@ Các khả năng chính bao gồm:
 
 ## Understand-Anything Hoạt Động Như Thế Nào
 
-Understand-Anything hoạt động thông qua một pipeline đa giai đoạn:
-
-**Giai đoạn 1: Nghiên cứu** — Hệ thống sử dụng một đại diện AI để nghiên cứu chủ đề đã cho. Nó chia nhỏ chủ đề thành các chủ đề phụ và tìm kiếm thông tin liên quan từ nhiều nguồn. AI có thể tìm kiếm Wikipedia, các bài báo học thuật và các trang web để thu thập thông tin toàn diện. Đối với các chủ đề khoa học, nó ưu tiên arXiv và PubMed; đối với các chủ đề chung, nó dựa vào Wikipedia và tìm kiếm web.
+Understand-Anything hoạt động thông qua một pipeline đa giai đoạn: **Giai đoạn 1: Nghiên cứu** — Hệ thống sử dụng một đại diện AI để nghiên cứu chủ đề đã cho. Nó chia nhỏ chủ đề thành các chủ đề phụ và tìm kiếm thông tin liên quan từ nhiều nguồn. AI có thể tìm kiếm Wikipedia, các bài báo học thuật và các trang web để thu thập thông tin toàn diện. Đối với các chủ đề khoa học, nó ưu tiên arXiv và PubMed; đối với các chủ đề chung, nó dựa vào Wikipedia và tìm kiếm web.
 
 **Giai đoạn 2: Tổng hợp** — Thông tin thu thập được được xử lý bởi AI để trích xuất các khái niệm, thực thể và mối quan hệ chính. Hệ thống xác định cách các khái niệm liên quan với nhau — khái niệm nào là nút cha, khái niệm nào là nút con và chúng được liên kết như thế nào. Mỗi mối quan hệ được gắn điểm tin cậy dựa trên độ mạnh của bằng chứng từ các nguồn.
 
@@ -208,13 +198,11 @@ graph.export("dl_graph.png", format="png")
 # Truy vấn biểu đồ
 nodes = graph.get_nodes()
 edges = graph.get_edges()
-for node in nodes:
-    print(f"Concept: {node['label']}, Confidence: {node['confidence']:.2f}")
+for node in nodes: print(f"Concept: {node['label']}, Confidence: {node['confidence']:.2f}")
 
 # Tìm các khái niệm liên quan
 related = graph.get_related("Neural Networks", depth=2)
-for concept in related:
-    print(f"  Related: {concept['label']} ({concept['relation']})")
+for concept in related: print(f"  Related: {concept['label']} ({concept['relation']})")
 ```
 
 ### Máy Chủ REST API
@@ -273,9 +261,7 @@ Tích hợp tạo biểu đồ tri thức vào IDE VS Code. Tạo và khám phá
 from understand_anything import KnowledgeGraph
 
 # Tạo một đại diện nghiên cứu tùy chỉnh với các nguồn cụ thể
-class CustomResearchAgent:
-    def research_topic(self, topic):
-        # Logic nghiên cứu tùy chỉnh sử dụng các cơ sở dữ liệu học thuật cụ thể
+class CustomResearchAgent: def research_topic(self, topic): # Logic nghiên cứu tùy chỉnh sử dụng các cơ sở dữ liệu học thuật cụ thể
         results = self.custom_search(topic)
         return results
 
@@ -317,9 +303,7 @@ graph.generate("Custom Research Topic")
 
 ### Trường Hợp Thực Tế: Nghiên Cứu Học Thuật
 
-Một nghiên cứu sinh sử dụng Understand-Anything để khám phá các lĩnh vực nghiên cứu mới nổi:
-
-```bash
+Một nghiên cứu sinh sử dụng Understand-Anything để khám phá các lĩnh vực nghiên cứu mới nổi: ```bash
 # Tạo biểu đồ tri thức cho tổng quan tài liệu
 understand-anything generate "Transformer Models in NLP" \
   --depth 3 --max-nodes 300 \
@@ -334,9 +318,7 @@ Sinh viên tạo một biểu đồ tri thức toàn diện bao gồm 300 khái 
 
 ### Trường Hợp Thực Tế: Giáo Dục
 
-Một giáo sư đại học sử dụng Understand-Anything để tạo tài liệu học tập:
-
-```bash
+Một giáo sư đại học sử dụng Understand-Anything để tạo tài liệu học tập: ```bash
 # Tạo hướng dẫn học tập cho hóa hữu cơ
 understand-anything guide "Organic Chemistry" \
   --depth 3 --max-nodes 400 \
@@ -362,9 +344,7 @@ Cấu hình mô hình AI, nhiệt độ và giới hạn token để kiểm soá
 
 ```yaml
 # understand-anything-config.yaml
-search:
-  sources:
-    - name: wikipedia
+search: sources: - name: wikipedia
       enabled: true
       weight: 1.0
     - name: arxiv
@@ -377,18 +357,15 @@ search:
       enabled: true
       weight: 0.9
 
-visualization:
-  layout: force-directed
+visualization: layout: force-directed
   max_nodes: 500
   node_size: medium
   edge_width: thin
-  colors:
-    parent: "#4A90D9"
+  colors: parent: "#4A90D9"
     child: "#7BC67E"
     related: "#F5A623"
 
-research:
-  max_searches_per_topic: 20
+research: max_searches_per_topic: 20
   min_sources_per_concept: 2
   confidence_threshold: 0.7
 ```
@@ -487,9 +464,7 @@ Understand-Anything nổi bật nhờ sự kết hợp của nghiên cứu đư�
 
 ## Hạn Chế / Đánh Giá Trung Thực
 
-Mặc dù Understand-Anything rất mạnh mẽ, hãy nhận thức về những hạn chế sau:
-
-1. **Chi phí API** — Sử dụng các mô hình ngôn ngữ lớn để nghiên cứu tạo ra chi phí API tỷ lệ với độ sâu và kích thước của biểu đồ tri thức. Một biểu đồ độ sâu 3 với 300 nút có thể tốn $0.50-$2.00 cho mỗi lần tạo tùy thuộc vào mô hình được sử dụng.
+Mặc dù Understand-Anything rất mạnh mẽ, hãy nhận thức về những hạn chế sau: 1. **Chi phí API** — Sử dụng các mô hình ngôn ngữ lớn để nghiên cứu tạo ra chi phí API tỷ lệ với độ sâu và kích thước của biểu đồ tri thức. Một biểu đồ độ sâu 3 với 300 nút có thể tốn $0.50-$2.00 cho mỗi lần tạo tùy thuộc vào mô hình được sử dụng.
 2. **Độ tươi của thông tin** — Trong khi tìm kiếm web bổ sung kiến thức, một số thông tin có thể không được phản ánh ngay lập tức tùy thuộc vào khả năng nguồn và rate limits của nhà cung cấp tìm kiếm.
 3. **Nguy cơ Hallucination** — Nội dung tạo bởi AI đôi khi có thể chứa không chính xác. Luôn xác minh thông tin quan trọng chống lại các nguồn gốc, đặc biệt là cho các chủ đề học thuật hoặc y tế.
 4. **Độ phức tạp biểu đồ** — Các chủ đề rất sâu hoặc rộng có thể tạo ra các biểu đồ với hàng trăm nút khó điều hướng. Sử dụng tham số `--max-nodes` và `--depth` để kiểm soát độ phức tạp.
@@ -550,7 +525,6 @@ Tham gia [nhóm Telegram tiếng Anh dibi8](https://t.me/DIBI8_Group/2) để th
 Một số liên kết trên là liên kết tiếp thị liên kết. dibi8.com có thể kiếm hoa hồng nếu bạn đăng ký, không tốn thêm chi phí cho bạn. Điều này giúp giữ trang web hoạt động và nội dung miễn phí.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/chattts-dialogue-tts-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/chattts-dialogue-tts-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/chattts-dialogue-tts-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/chattts-dialogue-tts-2026" />
 title: 'ChatTTS 2026: TTS Hội Thoại Mã Nguồn Mở 39.3k Sao Với Cư...
 description: 'ChatTTS là TTS mã nguồn mở được xây riêng cho hội thoại (không phải thuyết minh). GitHub 39.3k sao, tối thiểu 4 GB VRAM, RTF 0.3 trên RTX 4090, điều khiển prosody tinh tế bao gồm cười và tạm dừng. Hướng dẫn cài đặt + thiết lập production 2026 đầy đủ.'
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
-tech_stack:
-  - Python
+tech_stack: - Python
   - PyTorch
   - CUDA
 application_domain: Ai Tools
@@ -28,11 +22,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [chattts, tts, 'giọng nói', 'hội thoại', 'mã nguồn mở']
-aliases:
-  - /posts/chattts-dialogue-tts-2026/
+aliases: - /posts/chattts-dialogue-tts-2026/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/chattts-dialogue-tts-2026/ -->
 
 Hầu hết TTS mã nguồn mở năm 2026 vẫn nghe như "người dẫn GPS thập niên 1990 với reverb thêm." **ChatTTS** là ngoại lệ đầu tiên được áp dụng rộng rãi — mô hình tiếng nói tạo sinh 39.3k sao GitHub, được huấn luyện đặc biệt cho **hội thoại** (không phải thuyết minh), với điều khiển token cấp về cười, tạm dừng, từ chêm, và prosody cuối cùng vượt ngưỡng "không làm bạn nhăn mặt".
 
@@ -49,8 +40,7 @@ Nếu bạn đang xây agent giọng nói, podcast AI, TTS đa nhân vật cho g
 
 ## 1. Vì Sao ChatTTS Thắng TTS Truyền Thống Cho Hội Thoại
 
-Phân chia cũ:
-- **TTS ghép nối** (festival, v.v.) — máy móc, không prosody, đang chết
+Phân chia cũ: - **TTS ghép nối** (festival, v.v.) — máy móc, không prosody, đang chết
 - **TTS thần kinh** (Tacotron / FastSpeech / VITS) — trôi chảy nhưng đơn điệu, tối ưu cho thuyết minh
 - **API thương mại** (ElevenLabs / OpenAI TTS) — tự nhiên nhưng $0.18-0.50/1000 ký tự và đóng nguồn
 
@@ -76,12 +66,10 @@ Cho các trường hợp sử dụng hội thoại (agent giọng nói, podcast 
 git clone https://github.com/2noise/ChatTTS
 cd ChatTTS
 pip install -r requirements.txt
-# Hoặc qua pip:
-pip install ChatTTS
+# Hoặc qua pip: pip install ChatTTS
 ```
 
-Hello world:
-```python
+Hello world: ```python
 import ChatTTS
 import torchaudio
 import torch
@@ -99,9 +87,7 @@ Lần chạy đầu tải xuống ~2 GB trọng số mô hình. Lần chạy sau
 
 ## 4. Token Điều Khiển Prosody (Tính Năng Killer)
 
-Lý do ChatTTS cảm thấy sống động — các tag này hoạt động giữa văn bản:
-
-| Tag | Hiệu ứng |
+Lý do ChatTTS cảm thấy sống động — các tag này hoạt động giữa văn bản: | Tag | Hiệu ứng |
 |---|---|
 | `[laugh]` | Chèn tiếng cười |
 | `[laugh_0]` đến `[laugh_2]` | Mức độ tiếng cười |
@@ -111,8 +97,7 @@ Lý do ChatTTS cảm thấy sống động — các tag này hoạt động gi�
 | `[speed_0]` đến `[speed_9]` | Tốc độ nói (5 = bình thường) |
 | `[break_0]` đến `[break_7]` | Thời gian tạm dừng rời rạc |
 
-Ví dụ:
-```python
+Ví dụ: ```python
 text = "Tôi đã nói với anh ấy [uv_break] không thể nào là sự thật [laugh] [lbreak] nhưng anh ấy cứ khăng khăng."
 wavs = chat.infer([text])
 ```
@@ -121,9 +106,7 @@ wavs = chat.infer([text])
 
 ## 5. Multi-Speaker — Giọng Ổn Định Qua Phiên
 
-ChatTTS tạo "speaker" khác nhau mỗi lần gọi mặc định. Cho nhân vật nhất quán (giọng NPC, nhân cách agent bền vững), seed speaker một lần và tái sử dụng:
-
-```python
+ChatTTS tạo "speaker" khác nhau mỗi lần gọi mặc định. Cho nhân vật nhất quán (giọng NPC, nhân cách agent bền vững), seed speaker một lần và tái sử dụng: ```python
 # Tạo và lưu speaker ổn định
 rand_spk = chat.sample_random_speaker()
 torch.save(rand_spk, "speaker_alice.pt")
@@ -138,8 +121,7 @@ Pattern: pre-tạo 5-10 embedding speaker khác biệt trong quá trình setup. 
 
 ## 6. Lưu Ý Licensing (Đọc Trước Production)
 
-**Hai license, hai nghĩa vụ khác nhau**:
-- **Code**: AGPL-3.0 — copyleft, tác phẩm phái sinh phải mã nguồn mở dưới AGPL
+**Hai license, hai nghĩa vụ khác nhau**: - **Code**: AGPL-3.0 — copyleft, tác phẩm phái sinh phải mã nguồn mở dưới AGPL
 - **Trọng số mô hình**: CC BY-NC 4.0 — **chỉ sử dụng phi thương mại**
 
 Cho production thương mại: liên hệ 2noise cho cấp phép mô hình thương mại, HOẶC fine-tune mô hình của bạn từ đầu trên kiến trúc ChatTTS mở (nỗ lực đáng kể nhưng pháp lý sạch).
@@ -150,9 +132,7 @@ Cho sở thích, nghiên cứu, công cụ nội bộ, và hầu hết prototype
 
 ## 7. Pattern Production
 
-Cho pipeline agent giọng nói / podcast:
-
-```
+Cho pipeline agent giọng nói / podcast: ```
    Đầu vào văn bản (từ agent LLM / bộ tạo script)
             │
             ▼
@@ -199,7 +179,6 @@ Bật instance GPU, chạy cài đặt 10 dòng ở mục 3, và bạn sẽ nghe
 *Một phần của stack nội dung đa phương thức dibi8 — xem bộ sưu tập Multi-Modal Content Pipeline sắp tới cho ChatTTS + Whisper + Stable Diffusion + ComfyUI như pipeline sáng tạo audio/visual đầy đủ.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -227,25 +206,20 @@ Bật instance GPU, chạy cài đặt 10 dòng ở mục 3, và bạn sẽ nghe
 
 ## Why This Matters
 
-Understanding chattts 2026: tts hội thoại mã nguồn mở 39.3k sao với cười, tạm dừng, điều khiển prosody cấp token is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding chattts 2026: tts hội thoại mã nguồn mở 39.3k sao với cười, tạm dừng, điều khiển prosody cấp token is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

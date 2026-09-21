@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/autogen-multi-agent-framework" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/autogen-multi-agent-framework" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/autogen-multi-agent-framework" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/autogen-multi-agent-framework" />
 title: 'AutoGen 멀티 에이전트 프레임워크 튜토리얼 2025: 다중 AI 에이전트 시스템 구축'
 description: 'Microsoft AutoGen으로 대화형 멀티 에이전트 시스템을 구축하는 방법. 설치, 에이전트 설정, GroupChat, 코드 실행, 로컬 LLM 통합까지 상세히 설명한다.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/autogen-multi-agent-framework/
+aliases: - /posts/autogen-multi-agent-framework/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/autogen-multi-agent-framework/ -->
 
 {</* resource-info */>}
 
@@ -323,16 +315,13 @@ Docker 컨테이너 샌드박스에서 코드를 실행하여 호스트 시스�
 
 ## 추천 인프라
 
-위 도구들을 24/7 안정 운영하려면 인프라가 중요하다:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전.
+위 도구들을 24/7 안정 운영하려면 인프라가 중요하다: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연. dibi8.com 자체 호스팅 IDC.
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -360,25 +349,20 @@ Docker 컨테이너 샌드박스에서 코드를 실행하여 호스트 시스�
 
 ## Why This Matters
 
-Understanding autogen 멀티 에이전트 프레임워크 튜토리얼 2025: 다중 ai 에이전트 시스템 구축 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding autogen 멀티 에이전트 프레임워크 튜토리얼 2025: 다중 ai 에이전트 시스템 구축 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

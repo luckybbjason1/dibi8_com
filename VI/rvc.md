@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/rvc" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/rvc" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/rvc" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/rvc" />
 title: 'RVC: Triển khai AI Chuyển đổi Giọng nói với 35K+ Stars —...
 description: 'RVC (Retrieval-based Voice Conversion) là khung chuyển đổi giọng nói dựa trên VITS, tương thích với GPT-SoVITS, Coqui TTS và demucs. Hướng dẫn này bao gồm triển khai Docker, pipeline huấn luyện, tích hợp API và củng cố production.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [rvc, 'chuyen-doi-giong-noi', 'ai-voice-clone', vits, ' tong-hop-giong-noi', docker, 'huong-dan', 'retrieval-vc']
-aliases:
-- /vi/posts/rvc/
+aliases: - /vi/posts/rvc/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/rvc/ -->
 
 {{</* resource-info */>}}
 
@@ -45,9 +37,7 @@ RVC là một khung chuyển đổi giọng nói mã nguồn mở chuyển đổ
 
 ## RVC hoạt động như thế nào
 
-Kiến trúc của RVC kết hợp bốn mô đun cốt lõi:
-
-**Trích xuất Đặc trưng Nội dung** — Sử dụng ContentVec (một biến thể tách rồi của HuBERT) để trích xuất các đặc trưng ngôn ngữ và ngôn ngữ học không phụ thuộc vào ngườ nói từ âm thanh nguồn. ContentVec loại bỏ danh tính ngườ nói trong khi vẫn giữ thông tin nội dung, làm cho nó lý tưởng cho các tác vụ chuyển đổi giọng nói.
+Kiến trúc của RVC kết hợp bốn mô đun cốt lõi: **Trích xuất Đặc trưng Nội dung** — Sử dụng ContentVec (một biến thể tách rồi của HuBERT) để trích xuất các đặc trưng ngôn ngữ và ngôn ngữ học không phụ thuộc vào ngườ nói từ âm thanh nguồn. ContentVec loại bỏ danh tính ngườ nói trong khi vẫn giữ thông tin nội dung, làm cho nó lý tưởng cho các tác vụ chuyển đổi giọng nói.
 
 **Trích xuất Cao độ** — Sử dụng RMVPE (Robust Model for Vocal Pitch Estimation), được trình bày tại Interspeech 2023, để trích xuất tần số cơ bản (F0). RMVPE xử lý âm thanh đa âm và thực hiện chính xác ngay cả khi tách nguồn không hoàn hảo.
 
@@ -71,9 +61,7 @@ RVC chạy trên Linux, macOS và Windows. Để huấn luyện, cần có GPU N
 
 ### Phương pháp 1: Triển khai Docker (Khuyến nghị cho Production)
 
-Dockerfile chính thức sử dụng CUDA 11.6.2 trên Ubuntu 20.04 với Python 3.9:
-
-```bash
+Dockerfile chính thức sử dụng CUDA 11.6.2 trên Ubuntu 20.04 với Python 3.9: ```bash
 # Clone repository
 git clone https://github.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI.git
 cd Retrieval-based-Voice-Conversion-WebUI
@@ -90,29 +78,18 @@ docker run -d --name rvc \
   rvc-webui:latest
 ```
 
-Ngườ dùng docker-compose:
-
-```yaml
+Ngườ dùng docker-compose: ```yaml
 version: '3.8'
 
-services:
-  rvc:
-    build: .
+services: rvc: build: .
     container_name: rvc-webui
     runtime: nvidia
-    environment:
-      - NVIDIA_VISIBLE_DEVICES=all
-    ports:
-      - "7865:7865"
-    volumes:
-      - ./weights:/app/weights
+    environment: - NVIDIA_VISIBLE_DEVICES=all
+    ports: - "7865:7865"
+    volumes: - ./weights:/app/weights
       - ./opt:/app/opt
       - ./assets:/app/assets
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+    deploy: resources: reservations: devices: - driver: nvidia
               count: 1
               capabilities: [gpu]
     restart: unless-stopped
@@ -183,16 +160,12 @@ python infer-web.py
 
 ### Bước 1: Chuẩn bị Bộ Dữ liệu
 
-RVC yêu cầu âm thanh sạch, đơn âm. Để có kết quả tốt nhất:
-
-- **Thờ lượng:** 10–30 phút lờ nói sạch (tối thiểu 1 phút vẫn hoạt động)
+RVC yêu cầu âm thanh sạch, đơn âm. Để có kết quả tốt nhất: - **Thờ lượng:** 10–30 phút lờ nói sạch (tối thiểu 1 phút vẫn hoạt động)
 - **Định dạng:** WAV, 16-bit hoặc 24-bit, tần số lấy mẫu 22050Hz hoặc 40000Hz
 - **Nội dung:** Một ngườ nói duy nhất, tiếng ồn nền tối thiểu, không có nhạc hoặc vang
 - **Im lặng:** Loại bỏ các đoạn im lặng dài (> 3 giây)
 
-Sử dụng UVR5 (đã tích hợp) để tách nguồn:
-
-```bash
+Sử dụng UVR5 (đã tích hợp) để tách nguồn: ```bash
 # Tách giọng khỏi nhạc nền
 python tools/uvr5/uvr5_cli.py \
   --input_path ./raw_audio/song_with_music.wav \
@@ -202,18 +175,14 @@ python tools/uvr5/uvr5_cli.py \
 
 ### Bước 2: Tiền xử lý và Trích xuất Đặc trưng
 
-Trong tab **Train** của WebUI:
-
-1. Đặt **Experiment Name** (ví dụ: `my_voice_v2`)
+Trong tab **Train** của WebUI: 1. Đặt **Experiment Name** (ví dụ: `my_voice_v2`)
 2. Đặt **Target Sampling Rate** thành 40kHz (khuyến nghị)
 3. Đặt **RVC Version** thành v2
 4. Đặt **Model Architecture** thành `rmvpe_gpu`
 5. Đặt **Dataset Path** đến thư mục âm thanh của bạn
 6. Nhấp **One-Click Training**
 
-Hoặc qua dòng lệnh:
-
-```bash
+Hoặc qua dòng lệnh: ```bash
 # Bước 1: Tiền xử lý (resample, slice, xóa im lặng)
 python trainset_preprocess_pipeline_print.py \
   ./dataset/my_voice \
@@ -248,9 +217,7 @@ python tools/infer/train_index.py \
   --sample_rate 40000
 ```
 
-Vị trí đầu ra huấn luyện:
-
-```
+Vị trí đầu ra huấn luyện: ```
 logs/
 └── my_voice_v2/
     ├── added_IVF512_Flat_nprobe_1.index   # Chỉ mục truy xuất Faiss
@@ -275,14 +242,11 @@ logs/
 
 ### Tích hợp 1: GPT-SoVITS (Pipeline TTS + RVC)
 
-GPT-SoVITS tạo lờ nói từ văn bản; RVC chuyển đổi thành giọng mục tiêu. Kết hợp lại tạo thành pipeline nhân bản văn bản-thành-giọng nói hoàn chỉnh:
-
-```python
+GPT-SoVITS tạo lờ nói từ văn bản; RVC chuyển đổi thành giọng mục tiêu. Kết hợp lại tạo thành pipeline nhân bản văn bản-thành-giọng nói hoàn chỉnh: ```python
 # gpt_sovits_rvc_pipeline.py
 import requests
 
-def tts_then_convert(text: str, speaker_wav: str, rvc_model: str):
-    """GPT-SoVITS TTS → Pipeline chuyển đổi giọng RVC"""
+def tts_then_convert(text: str, speaker_wav: str, rvc_model: str): """GPT-SoVITS TTS → Pipeline chuyển đổi giọng RVC"""
     
     # Bước 1: Tạo giọng với GPT-SoVITS
     tts_response = requests.post("http://localhost:9880/tts", json={
@@ -293,8 +257,7 @@ def tts_then_convert(text: str, speaker_wav: str, rvc_model: str):
         "text_language": "vi"
     })
     
-    with open("/tmp/tts_output.wav", "wb") as f:
-        f.write(tts_response.content)
+    with open("/tmp/tts_output.wav", "wb") as f: f.write(tts_response.content)
     
     # Bước 2: Chuyển đổi giọng với API RVC
     rvc_response = requests.post("http://localhost:7865/voice_conversion", json={
@@ -316,8 +279,7 @@ def tts_then_convert(text: str, speaker_wav: str, rvc_model: str):
 from TTS.api import TTS
 import requests
 
-def coqui_to_rvc(text: str, rvc_model: str, output_path: str):
-    # Tạo với Coqui XTTS v2
+def coqui_to_rvc(text: str, rvc_model: str, output_path: str): # Tạo với Coqui XTTS v2
     tts = TTS("tts_models/multilingual/multi-dataset/xtts_v2", gpu=True)
     tts.tts_to_file(
         text=text,
@@ -327,24 +289,20 @@ def coqui_to_rvc(text: str, rvc_model: str, output_path: str):
     )
     
     # Chuyển đổi qua RVC
-    with open("/tmp/coqui_out.wav", "rb") as f:
-        files = {"file": f}
+    with open("/tmp/coqui_out.wav", "rb") as f: files = {"file": f}
         data = {"model_name": rvc_model, "pitch": 0, "index_rate": 0.5}
         response = requests.post(
             "http://localhost:7865/api/voice_conversion",
             files=files, data=data
         )
     
-    with open(output_path, "wb") as f:
-        f.write(response.content)
+    with open(output_path, "wb") as f: f.write(response.content)
     return output_path
 ```
 
 ### Tích hợp 3: demucs (Tách Nguồn Nâng cao)
 
-Để tách giọng production-grade trước khi huấn luyện:
-
-```bash
+Để tách giọng production-grade trước khi huấn luyện: ```bash
 # Cài đặt demucs
 pip install demucs
 
@@ -357,9 +315,7 @@ mv separated/htdemucs/input_song/vocals.wav ./dataset/clean_voice.wav
 
 ### Tích hợp 4: GUI Chuyển đổi Giọng Thờ gian Thực
 
-RVC bao gồm GUI chuyển đổi giọng thờ gian thực cho ứng dụng trực tiếp:
-
-![RVC Real-time GUI](https://raw.githubusercontent.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI/main/assets/gui_preview.png)
+RVC bao gồm GUI chuyển đổi giọng thờ gian thực cho ứng dụng trực tiếp: ![RVC Real-time GUI](https://raw.githubusercontent.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI/main/assets/gui_preview.png)
 
 ```bash
 # Khởi động GUI thờ gian thực
@@ -368,16 +324,13 @@ python gui_v1.py
 # Hoặc với DirectML cho GPU AMD/Intel
 python gui_v1.py --dml
 
-# Các tham số chính cho độ trễ thấp:
-# - Thờ gian khối: 0.25s (thấp hơn = độ trễ thấp hơn, CPU cao hơn)
+# Các tham số chính cho độ trễ thấp: # - Thờ gian khối: 0.25s (thấp hơn = độ trễ thấp hơn, CPU cao hơn)
 # - Crossfade: 0.05s
 # - Thờ gian thêm: 2.5s
 # - Trình trích xuất cao độ: fcpe (nhanh nhất) hoặc rmvpe (chất lượng tốt nhất)
 ```
 
-Cấu hình streaming (90ms độ trễ end-to-end với ASIO):
-
-```python
+Cấu hình streaming (90ms độ trễ end-to-end với ASIO): ```python
 # gui_config.py ví dụ
 config = {
     "block_time": 0.1,        # Khối 100ms để giảm độ trễ
@@ -394,9 +347,7 @@ config = {
 
 ### Tích hợp 5: API Server (FastAPI)
 
-RVC cung cấp REST API dựa trên FastAPI cho các triển khai production:
-
-```bash
+RVC cung cấp REST API dựa trên FastAPI cho các triển khai production: ```bash
 # Khởi động API server
 python api_240604.py
 
@@ -414,8 +365,7 @@ requests.post("http://localhost:7865/load_model", json={
 })
 
 # Thực hiện chuyển đổi giọng
-with open("input_audio.wav", "rb") as f:
-    response = requests.post(
+with open("input_audio.wav", "rb") as f: response = requests.post(
         "http://localhost:7865/voice_conversion",
         files={"file": f},
         data={
@@ -427,8 +377,7 @@ with open("input_audio.wav", "rb") as f:
         }
     )
 
-with open("converted_output.wav", "wb") as f:
-    f.write(response.content)
+with open("converted_output.wav", "wb") as f: f.write(response.content)
 ```
 
 ## Benchmark / Trường hợp Sử dụng Thực tế
@@ -468,19 +417,16 @@ import hashlib
 
 security = HTTPBearer()
 
-def verify_token(credentials: HTTPAuthorizationCredentials):
-    """Xác minh token API cho triển khai production"""
+def verify_token(credentials: HTTPAuthorizationCredentials): """Xác minh token API cho triển khai production"""
     expected = hashlib.sha256(TOKEN.encode()).hexdigest()
-    if credentials.credentials != expected:
-        raise HTTPException(status_code=401, detail="Token không hợp lệ")
+    if credentials.credentials != expected: raise HTTPException(status_code=401, detail="Token không hợp lệ")
     return True
 
 @app.post("/voice_conversion")
 async def secure_convert(
     file: UploadFile,
     credentials: HTTPAuthorizationCredentials = Depends(security)
-):
-    verify_token(credentials)
+): verify_token(credentials)
     # ... logic chuyển đổi
     return {"output_url": signed_url}
 ```
@@ -509,16 +455,13 @@ models/
 import os
 import glob
 
-def list_available_models(models_dir="./models"):
-    """Liệt kê tất cả các mô hình giọng nói khả dụng"""
+def list_available_models(models_dir="./models"): """Liệt kê tất cả các mô hình giọng nói khả dụng"""
     models = []
-    for model_dir in glob.glob(os.path.join(models_dir, "*/")):
-        name = os.path.basename(os.path.dirname(model_dir))
+    for model_dir in glob.glob(os.path.join(models_dir, "*/")): name = os.path.basename(os.path.dirname(model_dir))
         pth_files = glob.glob(os.path.join(model_dir, "*.pth"))
         index_files = glob.glob(os.path.join(model_dir, "*.faiss")) + \
                       glob.glob(os.path.join(model_dir, "*.index"))
-        if pth_files and index_files:
-            models.append({"name": name, "pth": pth_files[0], "index": index_files[0]})
+        if pth_files and index_files: models.append({"name": name, "pth": pth_files[0], "index": index_files[0]})
     return models
 ```
 
@@ -533,17 +476,13 @@ conversion_count = Counter(rvc_conversions_total, 'Tổng số lần chuyển đ
 conversion_duration = Histogram(rvc_conversion_seconds, 'Độ trễ chuyển đổi')
 error_count = Counter(rvc_errors_total, 'Tổng số lỗi', [error_type])
 
-def monitored_convert(audio_path, model_name):
-    start = time.time()
-    try:
-        result = perform_conversion(audio_path, model_name)
+def monitored_convert(audio_path, model_name): start = time.time()
+    try: result = perform_conversion(audio_path, model_name)
         conversion_count.inc()
         return result
-    except Exception as e:
-        error_count.labels(error_type=type(e).__name__).inc()
+    except Exception as e: error_count.labels(error_type=type(e).__name__).inc()
         raise
-    finally:
-        conversion_duration.observe(time.time() - start)
+    finally: conversion_duration.observe(time.time() - start)
 
 # Khởi động endpoint metrics
 start_http_server(9090)
@@ -588,9 +527,7 @@ python tools/export_onnx.py \
 
 ## Hạn chế / Đánh giá Trung thực
 
-RVC là một công cụ có khả năng, nhưng không phải lựa chọn phù hợp cho mọi ứng dụng giọng nói:
-
-**Không có Text-to-Speech.** RVC chuyển đổi âm thanh sang âm thanh. Nó không thể tạo lờ nói từ văn bản. Kết hợp với GPT-SoVITS, Coqui TTS, hoặc Edge-TTS để tạo pipeline TTS hoàn chỉnh.
+RVC là một công cụ có khả năng, nhưng không phải lựa chọn phù hợp cho mọi ứng dụng giọng nói: **Không có Text-to-Speech.** RVC chuyển đổi âm thanh sang âm thanh. Nó không thể tạo lờ nói từ văn bản. Kết hợp với GPT-SoVITS, Coqui TTS, hoặc Edge-TTS để tạo pipeline TTS hoàn chỉnh.
 
 **Giới hạn Độ Tương đồng Ngườ nói.** Mặc dù RVC tạo ra các chuyển đổi thuyết phục, nó không đạt được độ trung thực của các giải pháp thương mại như ElevenLabs Voice Cloning hoặc Microsoft Azure Speech Studio. Đối với nhân bản giọng cấp doanh nghiệp, API trả phí vẫn dẫn đầu.
 
@@ -638,9 +575,7 @@ RVC cung cấp chuyển đổi giọng nói cấp production với thờ gian hu
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -664,7 +599,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [PetVocalia: Zero-Shot SVC Benchmark (IJCAI 2025)](https://www.ijcai.org/proceedings/2025/1135.pdf)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

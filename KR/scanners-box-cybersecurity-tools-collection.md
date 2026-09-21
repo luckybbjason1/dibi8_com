@@ -1,16 +1,10 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/scanners-box-cybersecurity-tools-collection" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/scanners-box-cybersecurity-tools-collection" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/scanners-box-cybersecurity-tools-collection" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/scanners-box-cybersecurity-tools-collection" />
 title: 'Scanners-Box: 200+ 사이버보안 도구 모음 — 보안 전문가 필수'
 description: Scanners-Box를 탐색하세요 — 침투 테스트, 취약점 스캐닝, 보안 연구를 포함한 200개 이상의 오픈소스 사이버보안. Comprehensive guide covering features, pricing, and best practices for 2026.
   도구 모음.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
-tech_stack:
-- Docker
+tech_stack: - Docker
 - Go
 - JavaScript
 - Python
@@ -29,10 +23,8 @@ maintainer: "luckybbjason1"
 last_maintained: "2023-09-21"
 featureImage: ''
 draft: false
-aliases:
-- /ko/posts/scanners-box-cybersecurity-tools-collection/
-faqs:
-  - q: 'Scanners-Box란 무엇인가요?'
+aliases: - /ko/posts/scanners-box-cybersecurity-tools-collection/
+faqs: - q: 'Scanners-Box란 무엇인가요?'
     a: 'Scanners-Box는 15개 이상의 카테고리에 걸쳐 200개 이상의 오픈소스 사이버보안 도구를 엄선한 모음으로, 서브도메인 열거, SQL 인젝션, 퍼징, 포트 스캐닝, 사회공학 등을 아우릅니다. 원래 중국 보안 커뮤니티(t00ls)를 위해 만들어졌으며, 침투 테스터와 보안 연구자를 대상으로 합니다.'
   - q: 'Scanners-Box는 SQL 인젝션 테스트에 어떤 도구를 추천하나요?'
     a: '주요 추천 도구는 sqlmap으로, SQL 인젝션을 자동으로 탐지하고 익스플로잇하며, 6가지 데이터베이스 유형을 지원하고 WAF 우회를 위한 tamper 스크립트를 포함합니다. 이 모음에는 jsql-injection, SQLiScanner, NoSQLAttack도 함께 나열되어 있습니다.'
@@ -44,7 +36,6 @@ faqs:
     a: '이러한 도구는 승인된 보안 테스트에 한해서만 합법이며, 명시적인 서면 허가 없이 시스템을 대상으로 사용하는 것은 불법이며 비윤리적입니다. 관련 법률로는 미국 컴퓨터 사기 및 남용 방지법(CFAA), 영국 컴퓨터 오용법, 중국 사이버보안법, EU GDPR 등이 있으므로, 테스트 전에 반드시 서면 승인을 받고 범위를 정의하십시오.'
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/scanners-box-cybersecurity-tools-collection/ -->
 {</* resource-info */>}
 
 ## Scanners-Box란?
@@ -254,16 +245,13 @@ nmap -A target.com
 
 ## 추천 도구
 
-오픈소스 AI 도구 개발/배포 시 권장:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
+오픈소스 AI 도구 개발/배포 시 권장: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
 - **{{< aff "htstack" "category-footer" "HTStack" >}}** — 홍콩 VPS, dibi8.com 호스팅하는 동일 IDC. 보안 스캐너 자체 호스팅 전용 VPS, 아시아 저지연 커버리지, 공유 테넌트 노이즈 없음.
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -291,25 +279,20 @@ nmap -A target.com
 
 ## Why This Matters
 
-Understanding scanners-box: 200+ 사이버보안 도구 모음 — 보안 전문가 필수 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding scanners-box: 200+ 사이버보안 도구 모음 — 보안 전문가 필수 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

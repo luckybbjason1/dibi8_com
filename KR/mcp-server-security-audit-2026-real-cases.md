@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mcp-server-security-audit-2026-real-cases" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mcp-server-security-audit-2026-real-cases" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mcp-server-security-audit-2026-real-cases" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mcp-server-security-audit-2026-real-cases" />
 title: 'MCP 서버 보안 감사 2026: 실제 커뮤니티 서버 5종 리뷰 + 함정 패턴'
 description: '프로덕션에서 인기 커뮤니티 MCP 서버 5종을 감사했다: GitHub, Slack, Postgres, Brave Search, Fetch. 구체적 취약점, 익스플로잇 시연, 서버당 5분이면 끝나는 8가지 설치 전 감사 체크리스트.'
 date: 2026-05-25 00:00:00+08:00
@@ -21,10 +16,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [mcp, security, audit, 'claude-code', 'supply-chain', 'agent-security', 2026]
-aliases:
-- /kr/posts/mcp-server-security-audit-2026-real-cases/
-faq:
-  - q: "Anthropic이 유지보수하는 MCP 서버가 커뮤니티 서버보다 안전한가?"
+aliases: - /kr/posts/mcp-server-security-audit-2026-real-cases/
+faq: - q: "Anthropic이 유지보수하는 MCP 서버가 커뮤니티 서버보다 안전한가?"
     a: "그렇다, 실질적으로 안전하다. Anthropic 참조 서버(filesystem, git, github, fetch, sequentialthinking)는 내부 리뷰, 서명된 릴리스, 정의된 보안 모델을 갖고 있다. 커뮤니티 서버는 편차가 크다 — 일부는 감사를 받았지만 대부분은 그렇지 않다. Anthropic 버전이 있다면 기본값으로 선택하고, 커뮤니티 대안은 검증 전까지는 전체 로컬 권한을 가진 신뢰할 수 없는 코드로 취급하라."
   - q: "2026년 실제로 가장 큰 MCP 공격 패턴은 무엇인가?"
     a: "세 가지가 공동 1위: (1) 타이포스쿼팅 — `github-mcp-server-v2` 같은 가짜 패키지가 토큰을 빼낸다. (2) 유지보수자 이전 + 텔레메트리 — 인기 커뮤니티 서버가 손을 바꿔 파일 경로나 환경 변수를 유출하는 분석 기능을 추가한다. (3) 가져온 콘텐츠를 통한 프롬프트 인젝션 — `fetch` 서버가 적대적 마크다운을 가져오고, 에이전트는 프롬프트에 속아 `~/.ssh/id_rsa`를 유출한다."
@@ -37,8 +30,6 @@ faq:
   - q: "MCP 서버가 악성임을 알리는 '탄광의 카나리아'는 무엇인가?"
     a: "의존성 분석에서 설명되지 않는 네트워크 호출이다. filesystem이나 git MCP 서버는 HTTP 호출이 0이어야 한다. fetch나 github 서버는 명확하게 정의된 엔드포인트를 갖는다. 알 수 없는 도메인(특히 임의의 서브도메인이나 IP 리터럴을 통한)으로 호출하는 모든 것은 적신호이며 — 커뮤니티 서버가 데이터를 유출하는 가장 흔한 방식이다."
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/mcp-server-security-audit-2026-real-cases/ -->
 
 {{</* resource-info */>}}
 
@@ -96,9 +87,7 @@ MCP 생태계는 2026년 중반에 공개 서버 1000개를 돌파했다. 대부
 
 ## 8단계 설치 전 감사 체크리스트
 
-모든 커뮤니티 MCP 서버에 대해, 설치 전에:
-
-### 1. **유지보수자 활성도** — 마지막 commit이 90일 이내인가? 정체 = 신호.
+모든 커뮤니티 MCP 서버에 대해, 설치 전에: ### 1. **유지보수자 활성도** — 마지막 commit이 90일 이내인가? 정체 = 신호.
 ### 2. **유지보수자 신원** — 원래 유지보수자인가, 아니면 이전되었나? GitHub `Owner` 이력을 확인하라.
 ### 3. **의존성 네트워크 호출** — `npm ls` + 각 의존성 감사. Filesystem/git/sqlite 서버는 **외부 HTTP 0건**이어야 한다.
 ### 4. **파일 시스템 범위** — README가 범위에 대해 명시적인가? `filesystem`이 `cwd-only`라고 주장하지만 코드가 상위로 `path.resolve(..)`한다면 — 적신호.
@@ -140,9 +129,7 @@ MCP 생태계는 2026년 중반에 공개 서버 1000개를 돌파했다. 대부
 
 ## 권장 인프라
 
-팀 공유 MCP 서버(HTTP/SSE)를 운영한다면, 견고하게 설정된 VPS가 샌드박싱을 다루기 쉽게 만든다:
-
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 무료 크레딧, droplet마다 쉬운 방화벽 규칙
+팀 공유 MCP 서버(HTTP/SSE)를 운영한다면, 견고하게 설정된 VPS가 샌드박싱을 다루기 쉽게 만든다: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 무료 크레딧, droplet마다 쉬운 방화벽 규칙
 - **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 홍콩 VPS, dibi8.com과 동일 IDC
 
 *Affiliate 링크 — 가격 동일, dibi8.com을 지원합니다.*
@@ -158,7 +145,6 @@ MCP 서버는 당신의 전체 로컬 권한으로 실행된다. 커뮤니티 �
 **관련 글**: [MCP 서버 2026 랭킹](https://dibi8.com/kr/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/) · [Claude Code 설정 가이드](https://dibi8.com/kr/resources/llm-frameworks/claude-code/) · [AI 에이전트 보안 패턴](https://dibi8.com/kr/resources/llm-frameworks/ai-agent-skills-framework-spec-driven-development-2026/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -186,25 +172,20 @@ MCP 서버는 당신의 전체 로컬 권한으로 실행된다. 커뮤니티 �
 
 ## Why This Matters
 
-Understanding mcp 서버 보안 감사 2026: 실제 커뮤니티 서버 5종 리뷰 + 함정 패턴 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding mcp 서버 보안 감사 2026: 실제 커뮤니티 서버 5종 리뷰 + 함정 패턴 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mempalace" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mempalace" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mempalace" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mempalace" />
 title: "MemPalace vs Mem0: Benchmark Recall 96.6% & Framework Bộ...
 description: "Khám phá MemPalace — hệ thống trí nhớ AI mã nguồn mở được đánh giá cao nhất với 51,745 sao GitHub. Giúp AI assistant ghi nhớ lịch sử hội thoại dài hạn, sở thích người dùng và ngữ cảnh một cách thông minh."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Docker
+tech_stack: - Docker
   - Python
 application_domain: "Ai Tools"
 source_version: ""
@@ -25,10 +19,8 @@ maintainer: ""
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases:
-- /vi/posts/mempalace/
-faqs:
-  - q: 'MemPalace là gì và nó cung cấp bộ nhớ cho AI như thế nào?'
+aliases: - /vi/posts/mempalace/
+faqs: - q: 'MemPalace là gì và nó cung cấp bộ nhớ cho AI như thế nào?'
     a: 'MemPalace là một hệ thống bộ nhớ AI mã nguồn mở, miễn phí, ưu tiên chạy cục bộ. Nó lưu trữ lịch sử hội thoại và dự án của bạn dưới dạng văn bản nguyên gốc, sau đó truy xuất bằng tìm kiếm ngữ nghĩa. Hệ thống tạo ra một lớp bộ nhớ có cấu trúc bên ngoài mô hình, giúp AI của bạn nhớ được bối cảnh chính xác từ quá khứ thay vì phải bắt đầu lại từ đầu mỗi cuộc trò chuyện.'
   - q: 'Cách cài đặt MemPalace như thế nào?'
     a: 'MemPalace là công cụ Python, có thể cài qua uv（uv tool install mempalace）hoặc pip（pip install mempalace）. Sau khi cài xong, chạy mempalace init ~/projects/myapp để khởi tạo cho dự án của bạn.'
@@ -40,14 +32,10 @@ faqs:
     a: 'Có. MemPalace đi kèm các plugin gốc bao gồm thư mục .claude-plugin cho Claude Code, thư mục .codex-plugin cho OpenAI Codex, thư mục .agents/plugins cho các công cụ tương thích MCP, cùng hỗ trợ Gemini CLI và các mô hình cục bộ. Nó mặc định cung cấp endpoint tương thích MCP để phục vụ bộ nhớ liên tục cho coding agent.'
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/mempalace/ -->
-
 {</* resource-info */>}
 
 ## Bảng So Sánh Benchmark: MemPalace vs Mem0 vs Mastra
-Khi đánh giá hệ thống bộ nhớ AI, hiệu năng và ngốn tài nguyên là chí mạng. Đây là cách MemPalace nghiền nát các đối thủ trong bài test **LongMemEval**:
-
-| Chỉ Số/Tính Năng | MemPalace | Mem0 | Mastra | Hindsight |
+Khi đánh giá hệ thống bộ nhớ AI, hiệu năng và ngốn tài nguyên là chí mạng. Đây là cách MemPalace nghiền nát các đối thủ trong bài test **LongMemEval**: | Chỉ Số/Tính Năng | MemPalace | Mem0 | Mastra | Hindsight |
 | :--- | :--- | :--- | :--- | :--- |
 | **Tỷ Lệ Recall** | **96.6%** | 89.2% | 85.5% | 91.0% |
 | **Số Lần Gọi API**| **Bằng Không (Local)** | OpenAI API (Tốn tiền) | Anthropic API | Bằng Không |
@@ -65,9 +53,7 @@ MemPalace — với **51,745 sao trên GitHub** — chính là câu trả lời.
 
 ## Vấn Đề Mà MemPalace Giải Quyết
 
-Hầu hết AI assistant hiện nay đều mắc phải "bệnh quên":
-
-- **Ngữ cảnh ngắn**: Chỉ nhớ được vài nghìn token gần nhất.
+Hầu hết AI assistant hiện nay đều mắc phải "bệnh quên": - **Ngữ cảnh ngắn**: Chỉ nhớ được vài nghìn token gần nhất.
 - **Không nhớ người dùng**: Mỗi phiên làm việc mới như gặp lại từ đầu.
 - **Thiếu cá nhân hóa**: Không thể điều chỉnh phản hồi dựa trên sở thích đã học.
 
@@ -77,9 +63,7 @@ MemPalace giải quyết triệt để bằng cách lưu trữ, truy xuất và 
 
 ## Kiến Trúc Kỹ Thuật Của MemPalace
 
-MemPalace hoạt động dựa trên ba trụ cột chính:
-
-### 1. Vector Memory Store
+MemPalace hoạt động dựa trên ba trụ cột chính: ### 1. Vector Memory Store
 
 Mọi thông tin quan trọng đều được chuyển thành **embedding vector** và lưu trong vector database. Điều này cho phép truy xuất ngữ nghĩa thay vì chỉ tìm kiếm từ khóa.
 
@@ -97,15 +81,11 @@ Tự động tóm tắt, nén và ưu tiên thông tin — chỉ truy xuất đi
 
 ## Cài Đặt Và Sử Dụng MemPalace
 
-Cài đặt cực kỳ đơn giản:
-
-```bash
+Cài đặt cực kỳ đơn giản: ```bash
 pip install mempalace
 ```
 
-Hoặc với Docker:
-
-```bash
+Hoặc với Docker: ```bash
 docker pull mempalace/mempalace:latest
 docker run -p 8080:8080 mempalace/mempalace:latest
 ```
@@ -221,9 +201,7 @@ A: MemPalace xài ChromaDB local để đảm bảo độ trễ bằng không v�
 
 ## Công Cụ Đề Xuất
 
-Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
+Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
 - **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Proxy Anthropic Claude / OpenAI / DeepSeek API. Hầu hết AI tool ở trên (chatbot, code gen, translation, search, v.v.) cần LLM API key — proxy này cho access ổn định top model với ~30% giá chính thức.
 - **{{< aff "hostinger" "footer-cta-legacy" "Hostinger" >}}** — Lựa chọn VPS giá tốt cho thị trường Việt Nam.
 
@@ -231,7 +209,6 @@ Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -259,25 +236,20 @@ Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
 
 ## Why This Matters
 
-Understanding mempalace vs mem0: benchmark recall 96.6% & framework bộ nhớ ai tốt nhất 2026 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding mempalace vs mem0: benchmark recall 96.6% & framework bộ nhớ ai tốt nhất 2026 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

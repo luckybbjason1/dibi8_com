@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/video-retalking" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/video-retalking" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/video-retalking" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/video-retalking" />
 title: 'VideoReTalking: 7.2K+ Stars — Hướng Dẫn Cài Đặt Chỉnh Sử...
 description: 'VideoReTalking (VRT) là hệ thống đồng bộ môi dựa trên âm thanh để chỉnh sửa video talking head. Tương thích với RVC, GPT-SoVITS và Coqui TTS. Bao gồm cài đặt, inference, Gradio WebUI, triển khai production và so sánh benchmark với Wav2Lip và SadTalker.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: ['lip-sync', 'chinh-sua-video', 'talking-head', deepfake, ffmpeg, pytorch, gradio, 'ai-video']
-aliases:
-- /vi/posts/video-retalking/
+aliases: - /vi/posts/video-retalking/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/video-retalking/ -->
 
 {{</* resource-info */>}}
 
@@ -43,9 +35,7 @@ VideoReTalking là pipeline inference dựa trên PyTorch nhận đầu vào là
 
 ## VideoReTalking hoạt động như thế nào
 
-VideoReTalking sử dụng kiến trúc ba giai đoạn tách biệt biểu cảm, lip-sync và tăng cường thành các module riêng:
-
-### Giai đoạn 1: D-Net — Chuẩn hóa biểu cảm
+VideoReTalking sử dụng kiến trúc ba giai đoạn tách biệt biểu cảm, lip-sync và tăng cường thành các module riêng: ### Giai đoạn 1: D-Net — Chuẩn hóa biểu cảm
 
 **D-Net** (Expression Editing Network) nhận video đầu vào và chuẩn hóa biểu cảm khuôn mặt trên tất cả các khung hình về mẫu trung tính. Nó trích xuất hệ số 3DMM từ mỗi khung hình bằng phục hồi khuôn mặt DECA, thay thế tham số biểu cảm bằng mẫu trung tính được định nghĩa trước, và tổng hợp video ổn định. Bước này ngăn mạng lip-sync bị ảnh hưởng bởi chuyển động môi ban đầu.
 
@@ -107,9 +97,7 @@ pip install torch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 --index-url https
 pip install -r requirements.txt
 ```
 
-File `requirements.txt` cài đặt các gói chính sau:
-
-```
+File `requirements.txt` cài đặt các gói chính sau: ```
 basicsr==1.4.2
 kornia==0.5.1
 face-alignment==1.3.4
@@ -124,11 +112,8 @@ numpy==1.23.4
 
 ### Bước 5: Tải models pre-trained
 
-Tải checkpoints pre-trained từ [Google Drive](https://drive.google.com/drive/folders/18rhjMpxK8LVVxf7PI6XwOidt8Vouv_H0) và giải nén vào `./checkpoints/`:
-
-```bash
-# Cấu trúc thư mục nên như sau:
-# ./checkpoints/
+Tải checkpoints pre-trained từ [Google Drive](https://drive.google.com/drive/folders/18rhjMpxK8LVVxf7PI6XwOidt8Vouv_H0) và giải nén vào `./checkpoints/`: ```bash
+# Cấu trúc thư mục nên như sau: # ./checkpoints/
 #   ├── 244000.pth          (D-Net expression editing)
 #   ├── wav2lip.pth         (L-Net lip sync)
 #   ├── GFPGANv1.3.pth      (GFPGAN enhancer)
@@ -142,9 +127,7 @@ Tải checkpoints pre-trained từ [Google Drive](https://drive.google.com/drive
 python -c "import torch; print('CUDA available:', torch.cuda.is_available()); print('Device:', torch.cuda.get_device_name(0) if torch.cuda.is_available() else CPU)"
 ```
 
-Đầu ra dự kiến trên hệ thống GPU:
-
-```
+Đầu ra dự kiến trên hệ thống GPU: ```
 CUDA available: True
 Device: NVIDIA GeForce RTX 4090
 ```
@@ -153,9 +136,7 @@ Device: NVIDIA GeForce RTX 4090
 
 ### Tích hợp với RVC (Retrieval-based Voice Conversion)
 
-RVC chuyển đổi giọng nói này sang giọng khác trong khi bảo toàn ngữ điệu. Chuỗi với VideoReTalking để tạo đầu ra lip-sync đã đổi giọng:
-
-```bash
+RVC chuyển đổi giọng nói này sang giọng khác trong khi bảo toàn ngữ điệu. Chuỗi với VideoReTalking để tạo đầu ra lip-sync đã đổi giọng: ```bash
 # Bước 1: Tạo hoặc chuyển đổi âm thanh với RVC
 python rvc/infer.py --input input.wav --model weights/model.pth --output rvc_output.wav
 
@@ -168,9 +149,7 @@ python inference.py \
 
 ### Tích hợp với GPT-SoVITS
 
-GPT-SoVITS tạo TTS chất lượng cao với voice cloning few-shot. Workflow:
-
-```python
+GPT-SoVITS tạo TTS chất lượng cao với voice cloning few-shot. Workflow: ```python
 # gpt_sovits_videoretalking.py
 import subprocess
 import os
@@ -218,9 +197,7 @@ python inference.py \
 
 ### Benchmark tốc độ inference
 
-Được kiểm tra trên NVIDIA RTX 4090 với video đầu vào 10 giây 512x512:
-
-| Giai đoạn | Thờ gian | VRAM đỉnh |
+Được kiểm tra trên NVIDIA RTX 4090 với video đầu vào 10 giây 512x512: | Giai đoạn | Thờ gian | VRAM đỉnh |
 |---|---|---|
 | D-Net (chuẩn hóa biểu cảm) | 2,1s | 4,2 GB |
 | L-Net (lip-sync) | 3,8s | 3,8 GB |
@@ -256,23 +233,17 @@ VideoReTalking xử lý khoảng **1 giây video trên 1 giây thờ gian GPU** 
 
 ### Thiết lập Gradio WebUI
 
-VideoReTalking bao gồm giao diện Gradio để sử dụng qua trình duyệt:
-
-```bash
+VideoReTalking bao gồm giao diện Gradio để sử dụng qua trình duyệt: ```bash
 # Khởi chạy WebUI
 python webUI.py
 ```
 
-WebUI khởi động mặc định tại `http://localhost:7860`. Nó hỗ trợ:
-
-- Kéo-thả upload video và âm thanh
+WebUI khởi động mặc định tại `http://localhost:7860`. Nó hỗ trợ: - Kéo-thả upload video và âm thanh
 - Chọn mẫu biểu cảm (neutral, smile)
 - Điều khiển cảm xúc nửa mặt trên (surprise, angry)
 - Xử lý theo đoạn hàng loạt cho video dài
 
-Để truy cập từ xa qua reverse proxy:
-
-```bash
+Để truy cập từ xa qua reverse proxy: ```bash
 python webUI.py --server-name 0.0.0.0 --server-port 7860 --share
 ```
 
@@ -298,9 +269,7 @@ EXPOSE 7860
 CMD ["python3", "webUI.py", "--server-name", "0.0.0.0"]
 ```
 
-Build và chạy:
-
-```bash
+Build và chạy: ```bash
 docker build -t video-retalking .
 docker run --gpus all -p 7860:7860 -v $(pwd)/checkpoints:/app/checkpoints video-retalking
 ```
@@ -322,8 +291,7 @@ os.makedirs(OUTPUT_DIR, exist_ok=True)
 video_files = sorted(Path(INPUT_DIR).glob("*.mp4"))
 audio_files = sorted(Path(AUDIO_DIR).glob("*.wav"))
 
-for vid, aud in zip(video_files, audio_files):
-    outname = f"{OUTPUT_DIR}/{vid.stem}_synced.mp4"
+for vid, aud in zip(video_files, audio_files): outname = f"{OUTPUT_DIR}/{vid.stem}_synced.mp4"
     print(f"Processing: {vid.name} + {aud.name}")
     subprocess.run([
         "python", "inference.py",
@@ -351,8 +319,7 @@ logging.basicConfig(
     ]
 )
 
-def inference_with_monitoring(face_path, audio_path, output_path):
-    start = time.time()
+def inference_with_monitoring(face_path, audio_path, output_path): start = time.time()
     vram_before = torch.cuda.memory_allocated() / 1e9
     
     # Chạy inference
@@ -392,9 +359,7 @@ VideoReTalking nằm ở điểm tối ưu giữa tốc độ và chất lượn
 
 ## Hạn chế / Đánh giá trung thực
 
-VideoReTalking không phải công cụ phù hợp cho mọi kịch bản:
-
-1. **Tư thế đầu cực đoan thất bại**: D-Net không xử lý được góc nghiêng quá mức hoặc khuôn mặt bị che khuất nhiều. Video góc cạnh bên vượt quá ±45° yaw sẽ tạo artifact.
+VideoReTalking không phải công cụ phù hợp cho mọi kịch bản: 1. **Tư thế đầu cực đoan thất bại**: D-Net không xử lý được góc nghiêng quá mức hoặc khuôn mặt bị che khuất nhiều. Video góc cạnh bên vượt quá ±45° yaw sẽ tạo artifact.
 2. **Không có khả năng real-time**: Pipeline ba giai đoạn yêu cầu xử lý toàn bộ video tuần tự. Tốt nhất khoảng ~1x real-time —— không phù hợp cho live streaming nếu không có pre-buffering.
 3. **Giới hạn độ phân giải**: Các mạng tăng cường được huấn luyện trên crop khuôn mặt 512x512. Upscaling vượt quá mức này cho lợi nhuận giảm dần.
 4. **Tính nhất quán biểu cảm**: Mặc dù template biểu cảm hoạt động tốt, các micro-expression tinh tế từ video gốc bị mất trong quá trình chuẩn hóa D-Net.
@@ -445,9 +410,7 @@ Tham gia [cộng đồng lập trình viên dibi8 trên Telegram](https://t.me/d
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -465,7 +428,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [Pre-trained Models (Google Drive)](https://drive.google.com/drive/folders/18rhjMpxK8LVVxf7PI6XwOidt8Vouv_H0)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

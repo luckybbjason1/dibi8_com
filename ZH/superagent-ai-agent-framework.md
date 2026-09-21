@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/superagent-ai-agent-framework" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/superagent-ai-agent-framework" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/superagent-ai-agent-framework" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/superagent-ai-agent-framework" />
 title: 'Superagent: 一条 CLI 命令将 AI Agent 部署到生产环境 — 2026 最小化部署指南'
 description: '使用 Superagent 部署 AI Agent 的实战指南。一条 CLI 命令，多 LLM 支持，RAG 工作流，向量数据库集成，REST API 部署。附真实基准数据。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [superagent, 'ai agent', llm, rag, 向量数据库, openai, langchain, python, typescript]
-aliases:
-- /zh/posts/superagent-ai-agent-framework/
+aliases: - /zh/posts/superagent-ai-agent-framework/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/superagent-ai-agent-framework/ -->
 
 {{</* resource-info */>}}
 
@@ -43,16 +35,16 @@ aliases:
 
 > **前置要求：** Python 3.10+、Node.js 18+（用于 Web UI）、OpenAI API Key 或等效凭证。
 
----
 
+---
 ## What Is Superagent?
 
 Superagent 是一个**用于构建、管理和规模化部署 AI Agent 的开源框架**。它提供了大多数团队最终都会自行搭建的基础设施层：内存管理、向量数据库连接、工具编排、流式响应和 REST API——全部封装在简洁的 Python/TypeScript SDK 和 CLI 之后。
 
 与庞大的一体化无代码平台不同，Superagent 坚持开发者优先。你编写 Python 代码定义 Agent 行为，选择 LLM 提供商，连接 Pinecone 或 Weaviate 等向量存储，并通过自动生成的 API 端点暴露一切。框架处理样板代码，让你专注于 Agent 逻辑。
 
----
 
+---
 ## How Superagent Works
 
 Superagent 的架构遵循**五层管道模型**：
@@ -281,8 +273,7 @@ app = FastAPI()
 client = Superagent(api_key=os.getenv("SUPERAGENT_API_KEY"))
 
 @app.post("/api/ask")
-async def ask_question(question: str):
-    response = await client.agent.invoke(
+async def ask_question(question: str): response = await client.agent.invoke(
         agent_id="ag_01hwxyz123",
         input=question,
         enable_streaming=True
@@ -316,36 +307,23 @@ docker ps | grep superagent
 ```yaml
 # docker-compose.yml 生产配置
 version: "3.8"
-services:
-  superagent:
-    image: superagentai/superagent:latest
-    ports:
-      - "3000:3000"
-    environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
+services: superagent: image: superagentai/superagent:latest
+    ports: - "3000:3000"
+    environment: - OPENAI_API_KEY=${OPENAI_API_KEY}
       - DATABASE_URL=postgresql://postgres:postgres@db:5432/superagent
       - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
-    depends_on:
-      - db
+    depends_on: - db
       - redis
 
-  db:
-    image: postgres:16-alpine
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_PASSWORD=postgres
+  db: image: postgres:16-alpine
+    volumes: - pgdata:/var/lib/postgresql/data
+    environment: - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=superagent
 
-  redis:
-    image: redis:7-alpine
-    volumes:
-      - redisdata:/data
+  redis: image: redis:7-alpine
+    volumes: - redisdata:/data
 
-volumes:
-  pgdata:
-  redisdata:
-```
+volumes: pgdata: redisdata: ```
 
 ---
 
@@ -356,7 +334,13 @@ volumes:
 Superagent 采用按量计费模式。截至 2026 年初，Guard、Verify 和 Redact 模型的 Token 费率为：
 
 | 服务 | 输入 Token | 输出 Token |
-|------|-----------|-----------|
+|
+---
+|
+---
+|
+---
+|
 | Guard | $0.90 / 百万 | $1.90 / 百万 |
 | Verify | $0.90 / 百万 | $1.90 / 百万 |
 | Redact | $0.90 / 百万 | $1.90 / 百万 |
@@ -364,7 +348,13 @@ Superagent 采用按量计费模式。截至 2026 年初，Guard、Verify 和 Re
 ### 性能指标
 
 | 指标 | 数值 | 说明 |
-|------|------|------|
+|
+---
+|
+---
+|
+---
+|
 | API P95 延迟 | ~350ms | GPT-4o 简单问答 |
 | 流式 TTFT | ~120ms | 启用流式传输的首 Token 时间 |
 | RAG 检索准确率 | ~87% | Pinecone top-5 块，内部测试集 |
@@ -393,8 +383,7 @@ import requests
 
 client = Superagent()
 
-def get_stock_price(symbol: str) -> str:
-    """从金融 API 获取实时股价。"""
+def get_stock_price(symbol: str) -> str: """从金融 API 获取实时股价。"""
     resp = requests.get(
         f"https://api.example.com/stocks/{symbol}",
         headers={"Authorization": f"Bearer {API_KEY}"}
@@ -509,7 +498,17 @@ curl https://your-superagent-instance.com/metrics
 ## Comparison with Alternatives
 
 | 特性 | Superagent | LangChain | AutoGen | CrewAI |
-|------|-----------|-----------|---------|--------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **部署模式** | CLI + Cloud | 仅库 | 仅库 | 库 + CLI |
 | **REST API 生成** | 自动生成 | 手动配置 | 手动配置 | 部分支持 |
 | **内置向量数据库支持** | Pinecone, Weaviate, Qdrant | 通过集成 | 通过集成 | 通过集成 |
@@ -620,7 +619,6 @@ Superagent 消除了"Agent 原型"和"生产 API"之间的摩擦。一条 CLI �
 本文包含联盟链接。如果你通过我们的链接注册 [DigitalOcean](https://m.do.co/c/eca87ac14ee0)，我们会获得佣金，不会额外增加你的费用。我们只推荐用于自身部署的服务。Superagent 本身开源，在 MIT 许可证下免费使用。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,7 +1,5 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/worldmonitor-real-time-global-intelligence-dashboard" />
-  title: 'WorldMonitor: Real-Time Global Intelligence Dashboard fo...
+title: 'WorldMonitor: Real-Time Global Intelligence Dashboard fo...
   description: 'A real-time AI-powered global intelligence dashboard aggregating news, geopolitical events, and infrastructure tracking. 59K stars. Open-source alternative to Palantir Gotham.'
   date: 2026-06-25
   lastmod: 2026-06-25
@@ -12,9 +10,7 @@
   tags: ['ai', 'dashboard', 'geopolitics', 'monitoring', 'news', 'opensource', 'osint', 'palantir', 'situation-awareness']
   slug: worldmonitor-real-time-global-intelligence-dashboard
   featureImage: /images/articles/worldmonitor-real-time-global-intelligence-dashboard-for-geopolitical-monitoring.png
-  license: MIT
----
-
+  license: MIT---
 
 
 # WorldMonitor: Real-Time Global Intelligence Dashboard
@@ -33,9 +29,7 @@ WorldMonitor is a self-hosted intelligence dashboard that combines multiple data
 
 The platform was designed for journalists, researchers, policy analysts, and security professionals who need real-time situational awareness across multiple geographic regions and data categories. It supports both single-instance deployments for individual analysts and distributed architectures for team-wide operations.
 
-Key capabilities include:
-
-- **Multi-source news aggregation** from RSS feeds, APIs, and web scrapers covering 50+ global news sources
+Key capabilities include: - **Multi-source news aggregation** from RSS feeds, APIs, and web scrapers covering 50+ global news sources
 - **Geopolitical event tracking** with real-time mapping and timeline visualization
 - **Infrastructure monitoring** for critical facilities including power grids, telecom towers, and transportation hubs
 - **AI-powered correlation engine** that identifies relationships between seemingly unrelated events
@@ -47,9 +41,7 @@ Key capabilities include:
 
 ### Prerequisites
 
-Before installing WorldMonitor, ensure your system meets the following requirements:
-
-- **Operating System**: Ubuntu 22.04 LTS, Debian 12, or macOS 14+
+Before installing WorldMonitor, ensure your system meets the following requirements: - **Operating System**: Ubuntu 22.04 LTS, Debian 12, or macOS 14+
 - **CPU**: 4 cores minimum (8 cores recommended for production)
 - **RAM**: 8GB minimum (16GB recommended)
 - **Storage**: 50GB SSD (grows with data retention period)
@@ -58,9 +50,7 @@ Before installing WorldMonitor, ensure your system meets the following requireme
 
 ### Option 1: Docker Compose Deployment (Recommended)
 
-The fastest way to get started is with the provided Docker Compose configuration:
-
-```bash
+The fastest way to get started is with the provided Docker Compose configuration: ```bash
 git clone https://github.com/koala73/worldmonitor.git
 cd worldmonitor
 
@@ -75,9 +65,7 @@ This spins up the application server, PostgreSQL database, Redis cache, and the 
 
 ### Option 2: Manual Installation
 
-For users who need fine-grained control over their deployment:
-
-```bash
+For users who need fine-grained control over their deployment: ```bash
 # Clone the repository
 git clone https://github.com/koala73/worldmonitor.git
 cd worldmonitor
@@ -108,37 +96,20 @@ cd frontend && npm run start
 
 ### Option 3: Kubernetes Deployment
 
-For production-scale deployments across multiple nodes:
-
-```yaml
+For production-scale deployments across multiple nodes: ```yaml
 apiVersion: apps/v1
 kind: Deployment
-metadata:
-  name: worldmonitor
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: worldmonitor
-  template:
-    metadata:
-      labels:
-        app: worldmonitor
-    spec:
-      containers:
-      - name: worldmonitor
+metadata: name: worldmonitor
+spec: replicas: 3
+  selector: matchLabels: app: worldmonitor
+  template: metadata: labels: app: worldmonitor
+    spec: containers: - name: worldmonitor
         image: ghcr.io/koala73/worldmonitor:latest
-        ports:
-        - containerPort: 8000
-        envFrom:
-        - configMapRef:
-            name: worldmonitor-config
-        resources:
-          requests:
-            memory: "2Gi"
+        ports: - containerPort: 8000
+        envFrom: - configMapRef: name: worldmonitor-config
+        resources: requests: memory: "2Gi"
             cpu: "1000m"
-          limits:
-            memory: "4Gi"
+          limits: memory: "4Gi"
             cpu: "2000m"
 ```
 
@@ -146,18 +117,12 @@ spec:
 
 ### Data Sources Configuration
 
-WorldMonitor supports multiple data source types. Configure them in `config.yaml`:
-
-```yaml
-data_sources:
-  rss_feeds:
-    enabled: true
+WorldMonitor supports multiple data source types. Configure them in `config.yaml`: ```yaml
+data_sources: rss_feeds: enabled: true
 
 ### AI Analysis Pipeline
 
-The AI-powered analysis engine processes incoming data through multiple stages:
-
-```python
+The AI-powered analysis engine processes incoming data through multiple stages: ```python
 from worldmonitor.ai.pipeline import AnalysisPipeline
 from worldmonitor.ai.models import EventClassifier, CorrelationEngine
 
@@ -185,51 +150,41 @@ correlated = await pipeline.get_correlated_events(
 
 ### Alert Configuration
 
-Set up custom alerts based on your monitoring priorities:
-
-```yaml
-alerts:
-  rules:
-    - name: "Major Conflict Detection"
-      conditions:
-        - field: "event_type"
+Set up custom alerts based on your monitoring priorities: ```yaml
+alerts: rules: - name: "Major Conflict Detection"
+      conditions: - field: "event_type"
           operator: "eq"
           value: "armed_conflict"
         - field: "severity"
           operator: "gte"
           value: 7
-      actions:
-        - type: "notification"
+      actions: - type: "notification"
           channels: ["email", "telegram"]
           template: "high_severity_conflict"
         - type: "dashboard_highlight"
           duration: "3600"
 
     - name: "Infrastructure Disruption"
-      conditions:
-        - field: "infrastructure_type"
+      conditions: - field: "infrastructure_type"
           operator: "in"
           value: ["power_grid", "telecom", "transport"]
         - field: "status"
           operator: "eq"
           value: "disrupted"
-      actions:
-        - type: "notification"
+      actions: - type: "notification"
           channels: ["email", "slack", "pagerduty"]
           template: "infrastructure_alert"
         - type: "geopoint_map"
           zoom_level: 12
 
     - name: "Keyword Surge Detection"
-      conditions:
-        - field: "keywords"
+      conditions: - field: "keywords"
           operator: "contains_any"
           value: ["sanctions", "embargo", "tariff", "trade_war"]
         - field: "volume_change"
           operator: "gte"
           value: 200
-      actions:
-        - type: "notification"
+      actions: - type: "notification"
           channels: ["email"]
           template: "keyword_surge"
           cooldown: "1800"
@@ -259,9 +214,7 @@ Events are plotted on an interactive world map with color-coded severity levels.
 
 ### Infrastructure Tracking Module
 
-The infrastructure module maintains a database of critical facilities worldwide, including:
-
-- Power plants and electrical grids
+The infrastructure module maintains a database of critical facilities worldwide, including: - Power plants and electrical grids
 - Telecommunications towers and fiber routes
 - Transportation hubs (airports, seaports, rail stations)
 - Water treatment facilities
@@ -286,8 +239,7 @@ correlations = engine.find_correlations(
     correlation_types=["temporal", "geographic", "thematic"]
 )
 
-for corr in correlations:
-    print(f"Strength: {corr.strength:.2f}")
+for corr in correlations: print(f"Strength: {corr.strength:.2f}")
     print(f"Type: {corr.type}")
     print(f"Events: {corr.event_ids}")
     print(f"Explanation: {corr.explanation}")
@@ -295,9 +247,7 @@ for corr in correlations:
 
 ## API Reference
 
-WorldMonitor exposes a comprehensive REST API for programmatic access:
-
-### Authentication
+WorldMonitor exposes a comprehensive REST API for programmatic access: ### Authentication
 
 ```bash
 # Obtain an API token
@@ -373,9 +323,7 @@ curl -X POST "https://your-worldmonitor/api/v1/alerts/rules" \
 
 ### Single-Instance (Personal Analyst)
 
-For individual journalists or researchers, a single Docker Compose deployment on a 4-core VPS is sufficient:
-
-```
+For individual journalists or researchers, a single Docker Compose deployment on a 4-core VPS is sufficient: ```
 Server: 4 vCPU, 8GB RAM, 100GB SSD
 Cost: ~$20/month (DigitalOcean / HTStack)
 Capacity: ~1,000 events/day, 30-day retention
@@ -383,9 +331,7 @@ Capacity: ~1,000 events/day, 30-day retention
 
 ### Team Deployment
 
-For analyst teams of 5-20 people, add Redis clustering and PostgreSQL read replicas:
-
-```
+For analyst teams of 5-20 people, add Redis clustering and PostgreSQL read replicas: ```
 App Servers: 3x 4 vCPU, 16GB RAM (behind load balancer)
 Database: PostgreSQL primary + 2 read replicas
 Cache: Redis Cluster (3 nodes)
@@ -396,9 +342,7 @@ Capacity: ~10,000 events/day, 90-day retention
 
 ### Enterprise/Distributed
 
-For government or large organizational deployments:
-
-```
+For government or large organizational deployments: ```
 Multi-region deployment with data sovereignty controls
 Horizontal scaling across 10+ application nodes
 PostgreSQL with Patroni for automatic failover
@@ -410,9 +354,7 @@ Capacity: Unlimited, with geo-distributed data collection
 
 ## Integration with Other Tools
 
-WorldMonitor integrates seamlessly with popular intelligence and communication tools:
-
-### Slack Integration
+WorldMonitor integrates seamlessly with popular intelligence and communication tools: ### Slack Integration
 
 ```bash
 # Install the Slack app
@@ -457,9 +399,7 @@ curl -X POST "https://your-worldmonitor/api/v1/metrics/grafana" \
 
 ```yaml
 # WorldMonitor Elasticsearch output configuration
-output:
-  elasticsearch:
-    hosts: ["https://es-cluster.internal:9200"]
+output: elasticsearch: hosts: ["https://es-cluster.internal:9200"]
     index: "worldmonitor-%{+yyyy.MM.dd}"
     username: "${ES_USER}"
     password: "${ES_PASS}"
@@ -479,7 +419,6 @@ Internal links: [nvidia-cosmos-world-models-platform-2026](https://dibi8.com/en/
 **Disclosure**: This article mentions tools that may have affiliate relationships. We do not accept payment for reviews. All opinions are our own.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -505,8 +444,8 @@ Internal links: [nvidia-cosmos-world-models-platform-2026](https://dibi8.com/en/
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [12-factor-agents](worldmonitor-real-time-global-intelligence-dashboard)
@@ -515,8 +454,8 @@ Internal links: [nvidia-cosmos-world-models-platform-2026](https://dibi8.com/en/
 - [2026-06-08-trending-ai-agents](worldmonitor-real-time-global-intelligence-dashboard)
 - [2026-06-15-trending-ai-agents](worldmonitor-real-time-global-intelligence-dashboard)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

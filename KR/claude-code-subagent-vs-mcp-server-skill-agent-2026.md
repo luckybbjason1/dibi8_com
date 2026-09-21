@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-code-subagent-vs-mcp-server-skill-agent-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-subagent-vs-mcp-server-skill-agent-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-subagent-vs-mcp-server-skill-agent-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-subagent-vs-mcp-server-skill-agent-2026" />
 title: '서브에이전트 vs MCP 서버 vs 스킬: 각 Claude Code 확장을 언제 만들어야 하는가 (2...
 description: 'Claude Code에는 세 가지 확장 지점 — 스킬, 서브에이전트, MCP 서버 — 이 있으며, 각각 서로 다른 문제를 해결한다. 실제 시나리오와 시간을 낭비하게 만드는 안티패턴을 곁들여, 올바른 확장을 선택하기 위한 의사결정 프레임워크를 제시한다.'
 date: 2026-05-28 00:00:00+08:00
@@ -25,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['claude-code', mcp, subagents, skills, 'agent-sdk', 'llm-frameworks', 'developer-tools']
-aliases:
-- /posts/claude-code-subagent-vs-mcp-vs-skill/
-faq:
-  - q: "스킬, 서브에이전트, MCP 서버의 차이를 한 문장으로 말하면?"
+aliases: - /posts/claude-code-subagent-vs-mcp-vs-skill/
+faq: - q: "스킬, 서브에이전트, MCP 서버의 차이를 한 문장으로 말하면?"
     a: "스킬은 Claude에게 어떤 일을 『어떻게』 하는지 가르치고(컨텍스트에 로드되는 패키지화된 지침과 지식), 서브에이전트는 그 일을 『누가』 하느냐이며(자체 컨텍스트 윈도우를 가진 위임된 작업자), MCP 서버는 Claude가 『무엇에』 닿을 수 있느냐다(외부 도구 및 데이터로의 연결). 스킬은 행동을 바꾸고, 서브에이전트는 컨텍스트를 보호하며, MCP 서버는 역량을 더한다 — 서로 경쟁하는 세 가지 선택지가 아니라, 세 가지 서로 다른 축이다."
   - q: "Claude가 우리 내부 데이터베이스를 조회해야 한다면, 이건 스킬인가 서브에이전트인가 MCP 서버인가?"
     a: "MCP 서버다. Claude를 외부 시스템 — 데이터베이스, 내부 API, SaaS 플랫폼, 티켓팅 시스템 — 에 연결하는 모든 것은 통합(integration)이며, 통합이야말로 MCP 서버가 존재하는 이유다. 스킬은 좋은 쿼리를 『어떻게』 작성하는지 문서화할 수 있고, 서브에이전트는 분석을 격리된 채로 실행하는 작업자가 될 수 있지만, 데이터베이스로의 실제 연결은 MCP 서버의 몫이다. 실제로는 세 가지를 함께 쓰게 되는 경우가 많다."
@@ -42,7 +35,6 @@ faq:
     a: "그렇다, 셋 다. 스킬과 서브에이전트는 저장소 안에 버전 관리되는 파일이라 CI가 자동으로 가져간다. MCP 서버는 CI 환경에서 구성되고 닿을 수 있어야 한다(CI 시크릿에 자격 증명, 서비스로의 네트워크 접근). 헤드리스 -p 모드는 셋 다 존중한다; 유일한 실무적 함정은 무인 실행 시 대화형 로그인 없이도 MCP 서버 인증이 동작하도록 확실히 해 두는 것이다."
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/claude-code-subagent-vs-mcp-server-skill-agent-2026/ -->
 # 서브에이전트 vs MCP 서버 vs 스킬: 각 Claude Code 확장을 언제 만들어야 하는가 (2026)
 
 
@@ -76,9 +68,7 @@ MCP 서버는 *"Claude가 이 시스템에 말 그대로 닿을 수 없다"*에 
 
 ## 의사결정 프레임워크
 
-다음을 순서대로 물어보라:
-
-1. **"Claude가 지금은 닿을 수 없는 시스템에 닿아야 하는가?"** → **MCP 서버.** (데이터베이스, API, SaaS, 외부 데이터.)
+다음을 순서대로 물어보라: 1. **"Claude가 지금은 닿을 수 없는 시스템에 닿아야 하는가?"** → **MCP 서버.** (데이터베이스, API, SaaS, 외부 데이터.)
 2. **"Claude가 이미 그 역량은 있지만, 그 작업이 내 컨텍스트를 부풀릴까?"** → **서브에이전트.** (대규모 탐색, 병렬 리서치, 격리된 실험.)
 3. **"Claude가 역량과 컨텍스트는 있지만, 우리만의 특정 방식을 모르는가?"** → **스킬.** (플레이북, 체크리스트, 절차.)
 
@@ -128,9 +118,7 @@ MCP 서버는 *"Claude가 이 시스템에 말 그대로 닿을 수 없다"*에 
 
 ## 프로덕션 준비된 Claude Code 구축하기
 
-세 계층 모두를 — 특히 MCP 서버를 — 규모 있게 돌리려면 안정적인 인프라가 필요하다:
-
-1. **MCP 서버와 CI를 위한 신뢰할 수 있는 호스트.** MCP 서버는 장시간 실행되는 프로세스다; 계속 떠 있는 머신이 필요하다. **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 저지연 중국 본토 접속과 안정적인 BGP를 갖춘 홍콩 VPS. dibi8.com을 호스팅하는 바로 그 IDC로, 우리가 직접 MCP 서버와 에이전트 파이프라인을 돌리는 곳이다. 월 $5-12 가성비 티어.
+세 계층 모두를 — 특히 MCP 서버를 — 규모 있게 돌리려면 안정적인 인프라가 필요하다: 1. **MCP 서버와 CI를 위한 신뢰할 수 있는 호스트.** MCP 서버는 장시간 실행되는 프로세스다; 계속 떠 있는 머신이 필요하다. **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 저지연 중국 본토 접속과 안정적인 BGP를 갖춘 홍콩 VPS. dibi8.com을 호스팅하는 바로 그 IDC로, 우리가 직접 MCP 서버와 에이전트 파이프라인을 돌리는 곳이다. 월 $5-12 가성비 티어.
 
 2. **병렬 계층을 위한 클라우드 여유 공간.** 서브에이전트가 펼쳐지고 MCP 서버가 나란히 돌아갈 때, 여유 CPU가 필요하다. **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — 14개 이상의 리전에서 60일간 $200 무료 크레딧.
 
@@ -148,7 +136,6 @@ MCP 서버는 *"Claude가 이 시스템에 말 그대로 닿을 수 없다"*에 
 "스킬이냐, 서브에이전트냐, MCP 서버냐?"를 마치 경쟁하는 것처럼 묻는 걸 멈춰라. 대신 이렇게 물어라: 나는 **지식**이 부족한가, **컨텍스트**가 부족한가, **역량**이 부족한가? 지식 → 스킬. 컨텍스트 → 서브에이전트. 역량 → MCP 서버. 풀스택 사례는 셋 모두를 계층으로 쌓아 쓴다. 그리고 의심스러울 때는, 당신의 축을 움직이는 가장 저렴한 아티팩트를 만들어라 — 마크다운 파일은 가능한 한 언제나 배포된 서비스를 이긴다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -176,25 +163,20 @@ MCP 서버는 *"Claude가 이 시스템에 말 그대로 닿을 수 없다"*에 
 
 ## Why This Matters
 
-Understanding 서브에이전트 vs mcp 서버 vs 스킬: 각 claude code 확장을 언제 만들어야 하는가 (2026) is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding 서브에이전트 vs mcp 서버 vs 스킬: 각 claude code 확장을 언제 만들어야 하는가 (2026) is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

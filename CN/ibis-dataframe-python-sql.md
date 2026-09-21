@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/ibis-dataframe-python-sql" />
 title: 'ibis-dataframe-python-sql'
 description: '{'en': ''Discover Ibis, the Python DataFrame library that compiles expressions to SQL for 20+ backends including DuckDB, PostgreSQL, BigQuery, and Snowflake. Learn how lazy evaluation and type-safe expressions deliver 10x performance over pandas.'', 'zh': ''发现 Ibis，这款将表达式编译为 SQL 的 Python DataFrame 库，支持 DuckDB、PostgreSQL、BigQuery、Snowflake 等 20+ 后端。了解惰性求值和类型安全表达式如何带来比 pandas 快 10 倍的性能。'', 'ko': ''DuckDB, PostgreSQL, BigQuery, Snowflake를 포함한 20개 이상의 백엔드를 위해 표현식을 SQL로 컴파일하는 Python DataFrame 라이브러리 Ibis를 알아보세요. 지연 평가와 타입 안전 표현식이 pandas보다 10배 빠른 성능을 제공하는 방법을 배워보세요.'', 'vi': ''Khám phá Ibis, thư viện DataFrame Python biên dịch biểu thức thành SQL cho 20+ backend bao gồm DuckDB, PostgreSQL, BigQuery và Snowflake. Tìm hiểu cách đánh giá lưới và biểu thức kiểu an toàn mang lại hiệu suất gấp 10 lần so với pandas.''}'
 date: 2026-05-20 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: [ibis]
-aliases:
-- /posts/ibis-dataframe-python-sql/
+aliases: - /posts/ibis-dataframe-python-sql/-
 ---
-
 {{</* resource-info */>}}
 
 In the ever-evolving landscape of data analytics, Python developers have long faced a frustrating dilemma: should you use **pandas** for its intuitive DataFrame API, or write raw **SQL** for its superior performance on large datasets? In 2026, this trade-off is no longer necessary. Enter **Ibis** — a portable, open-source Python library that offers a familiar DataFrame API while compiling your expressions to high-performance SQL for execution across 20+ backends. With over 12,000 GitHub stars and an Apache-2.0 license, Ibis is transforming how data engineers and scientists interact with databases.
@@ -34,8 +30,8 @@ Whether you are querying a local DuckDB instance, a production PostgreSQL cluste
 
 In this comprehensive guide, we will explore everything Ibis has to offer: from installation and basic queries to advanced patterns and real-world benchmarks. By the end, you will understand why Ibis is becoming the default choice for data practitioners who refuse to compromise between productivity and performance.
 
----
 
+---
 ## What Is Ibis? A New Paradigm for Data Analytics
 
 Ibis is a Python DataFrame library created by **Wes McKinney**, the original author of pandas. Unlike pandas, which operates entirely in-memory, Ibis takes a fundamentally different approach: it provides a **DataFrame API that compiles to SQL**. This means you write Python code that looks and feels like pandas, but Ibis translates those expressions into optimized SQL queries that run directly inside your database engine.
@@ -62,8 +58,8 @@ print(result.execute())
 
 Behind the scenes, Ibis compiles the expression above into an optimized SQL query, pushes all computation to the backend, and returns only the final aggregated results. This architecture is what makes Ibis capable of handling datasets that would crash a pandas process.
 
----
 
+---
 ## Why Ibis Matters in 2026
 
 The data landscape in 2026 is more fragmented than ever. Organizations run analytics across a patchwork of systems: local DuckDB for development, PostgreSQL for transactional data, BigQuery for data warehouses, Snowflake for enterprise analytics, and ClickHouse for real-time workloads. Historically, each of these systems required learning a different SDK, a different SQL dialect, and a different mental model.
@@ -118,16 +114,12 @@ pip install "ibis-framework[clickhouse]"
 pip install "ibis-framework[duckdb,postgres,bigquery]"
 ```
 
-For conda users:
-
-```bash
+For conda users: ```bash
 conda install -c conda-forge ibis-framework
 conda install -c conda-forge ibis-duckdb ibis-postgres
 ```
 
-After installation, verify everything is working:
-
-```python
+After installation, verify everything is working: ```python
 import ibis
 print(ibis.__version__)
 
@@ -360,9 +352,7 @@ expr = (
 print(expr.sql())
 ```
 
-The output shows the exact SQL that Ibis will execute:
-
-```sql
+The output shows the exact SQL that Ibis will execute: ```sql
 SELECT "category", SUM("amount") AS "total"
 FROM "transactions"
 WHERE "amount" > 100
@@ -455,8 +445,7 @@ top3 = ranked.filter(ranked.rn <= 3)
 ```python
 # Define a Python UDF that runs in DuckDB
 @ibis.udf.scalar.python
- def format_currency(value: float) -> str:
-     return f"${value:,.2f}"
+ def format_currency(value: float) -> str: return f"${value:,.2f}"
 
 applied = t.mutate(
     formatted=format_currency(t.amount)
@@ -547,7 +536,15 @@ For even larger datasets — hundreds of millions or billions of rows — the ga
 Understanding how Ibis compares to existing tools helps clarify its unique value proposition.
 
 | Feature | pandas | SQLAlchemy | Ibis |
-|---------|--------|------------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | API Style | DataFrame | SQL/ORM | DataFrame |
 | Execution | In-memory Python | SQL via Python | SQL via Python |
 | Backend Support | None (local only) | Many databases | 20+ backends |
@@ -564,8 +561,7 @@ Understanding how Ibis compares to existing tools helps clarify its unique value
 
 ```python
 # Ibis code is more concise than equivalent SQLAlchemy for analytics
-# Ibis:
-result = (
+# Ibis: result = (
     t.group_by("category")
      .aggregate(total=t.amount.sum())
      .order_by(ibis.desc("total"))
@@ -626,9 +622,7 @@ The learning curve for pandas users is remarkably gentle. Most core operations �
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -642,7 +636,6 @@ In 2026, as data volumes continue to explode and organizations distribute their 
 If you have not yet added Ibis to your data toolkit, now is the time. Start with DuckDB for local development, and watch your analytics workflows become faster, more portable, and more maintainable overnight.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,8 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/nanochat-karpathy-train-your-own-llm-100-dollars-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/nanochat-karpathy-train-your-own-llm-100-dollars-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/nanochat-karpathy-train-your-own-llm-100-dollars-2026" />
 title: 'nanochat 2026: Andrej Karpathy의 오픈소스 ChatGPT $100 — 8,00...
 description: 'Andrej Karpathy의 nanochat는 토크나이저, 사전학습, 파인튜닝, 평가, 추론, 채팅 UI를 포함한 전체 LLM 훈련 파이프라인으로, 단일 8×H100 노드에서 $100 미만으로 GPT-2 수준의 챗봇을 처음부터 훈련하도록 설계되었습니다.'
 date: 2026-06-09 00:00:00+08:00
@@ -24,18 +20,14 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [nanochat, karpathy, 'llm-훈련', pytorch, gpt, 자체호스팅, 오픈소스, transformer]
-aliases:
-- /kr/posts/nanochat-karpathy-train-your-own-llm-100-dollars-2026/
-faqs:
-  - q: 'nanochat란 무엇이며 누가 만들었습니까?'
+aliases: - /kr/posts/nanochat-karpathy-train-your-own-llm-100-dollars-2026/
+faqs: - q: 'nanochat란 무엇이며 누가 만들었습니까?'
     a: 'nanochat는 Andrej Karpathy(OpenAI 공동창립자, 전 테슬라 AI 총감독)가 만든 최소한의 전체 스택 LLM 훈련·추론 파이프라인입니다. 기존 nanoGPT가 사전학습만 다뤘던 것과 달리, nanochat는 Rust BPE 토크나이저, 사전학습, 지도 파인튜닝, 평가, 추론 서버, 채팅 UI를 포함한 완전한 파이프라인을 약 8,000줄의 읽기 쉬운 코드로 제공합니다.'
   - q: 'nanochat로 모델 훈련 비용은 얼마입니까?'
     a: 'Karpathy는 GPT-2 수준의 챗봇을 처음부터 훈련하는 데 약 $48–$100이면 된다고 추정합니다. 단일 8×H100 노드(클라우드 임대 시 약 $24/시간)에서 2시간이면 대화 가능한 모델을, 4시간이면 훨씬 나은 추론 품질을 얻을 수 있습니다. 2019년 GPT-2 훈련 비용 $43,000에 비해 수천 배 감소했습니다.'
   - q: 'nanochat와 Ollama의 차이점은 무엇입니까?'
     a: 'Ollama는 추론 런타임입니다 — 기존 사전학습 모델을 로드하고 서빙합니다. nanochat는 훈련 프레임워크입니다 — 원시 텍스트 데이터에서 모델을 훈련합니다. Ollama는 자동차고, nanochat는 엔진을 만드는 공장입니다. nanochat도 추론 서버와 채팅 UI를 포함하지만, 핵심 목적은 훈련입니다.'
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/nanochat-karpathy-train-your-own-llm-100-dollars-2026/ -->
 
 ![nanochat 2026: Andrej Karpathy LLM 훈련 파이프라인 — dibi8.com](/images/articles/nanochat-karpathy-train-your-own-llm-100-dollars-2026/cover.jpg)
 
@@ -95,7 +87,6 @@ python serve.py --checkpoint checkpoints/sft_final.pt --port 8000
 **GitHub:** [karpathy/nanochat](https://github.com/karpathy/nanochat) · 54.7k ⭐ · MIT
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -123,25 +114,20 @@ python serve.py --checkpoint checkpoints/sft_final.pt --port 8000
 
 ## Why This Matters
 
-Understanding nanochat 2026: andrej karpathy의 오픈소스 chatgpt $100 — 8,000줄 전체 llm 파이프라인 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding nanochat 2026: andrej karpathy의 오픈소스 chatgpt $100 — 8,000줄 전체 llm 파이프라인 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

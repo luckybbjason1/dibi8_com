@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/worldmonitor-real-time-global-intelligence-dashboard" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/worldmonitor-real-time-global-intelligence-dashboard" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/worldmonitor-real-time-global-intelligence-dashboard" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/worldmonitor-real-time-global-intelligence-dashboard" />
 title: WorldMonitor：面向地缘政治监控的实时全球情报仪表盘
 description: 一个实时的AI驱动全球情报仪表盘，聚合新闻、地缘政治事件和基础设施追踪。59K stars。Palantir Gotham的开源替代方案。. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-25
@@ -13,12 +8,8 @@ category: ai-tools
 tags: [ai, 仪表盘, 地缘政治, 监控, 新闻, 开源, osint, palantir, 态势感知]
 slug: worldmonitor-real-time-global-intelligence-dashboard
 featureImage: /images/articles/worldmonitor-real-time-global-intelligence-dashboard-for-geopolitical-monitoring.png
-lang: zh
 github_repo: https://github.com/WorldMonitorHQ/worldmonitor
-license: MIT
----
-
-<!-- canonical: https://dibi8.com/zh/tools/worldmonitor-real-time-global-intelligence-dashboard/ -->
+license: MIT---
 
 
 
@@ -118,32 +109,17 @@ cd frontend && npm run start
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
-metadata:
-  name: worldmonitor
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: worldmonitor
-  template:
-    metadata:
-      labels:
-        app: worldmonitor
-    spec:
-      containers:
-      - name: worldmonitor
+metadata: name: worldmonitor
+spec: replicas: 3
+  selector: matchLabels: app: worldmonitor
+  template: metadata: labels: app: worldmonitor
+    spec: containers: - name: worldmonitor
         image: ghcr.io/koala73/worldmonitor:latest
-        ports:
-        - containerPort: 8000
-        envFrom:
-        - configMapRef:
-            name: worldmonitor-config
-        resources:
-          requests:
-            memory: "2Gi"
+        ports: - containerPort: 8000
+        envFrom: - configMapRef: name: worldmonitor-config
+        resources: requests: memory: "2Gi"
             cpu: "1000m"
-          limits:
-            memory: "4Gi"
+          limits: memory: "4Gi"
             cpu: "2000m"
 ```
 
@@ -154,11 +130,8 @@ spec:
 WorldMonitor 支持多种数据源类型。在 `config.yaml` 中配置它们：
 
 ```yaml
-data_sources:
-  rss_feeds:
-    enabled: true
-    sources:
-      - name: "Reuters"
+data_sources: rss_feeds: enabled: true
+    sources: - name: "Reuters"
         url: "https://feeds.reuters.com/reuters/worldNews"
         categories: ["politics", "business"]
         refresh_interval: 300
@@ -171,10 +144,8 @@ data_sources:
         categories: ["politics", "conflict"]
         refresh_interval: 600
 
-  api_feeds:
-    enabled: true
-    sources:
-      - name: "GDELT"
+  api_feeds: enabled: true
+    sources: - name: "GDELT"
         api_key: "${GDELT_API_KEY}"
         endpoint: "https://api.gdeltproject.org/api/v2/event/doc"
         categories: ["conflict", "political"]
@@ -185,15 +156,11 @@ data_sources:
         categories: ["conflict", "protest"]
         refresh_interval: 3600
 
-  web_scrapers:
-    enabled: true
-    sources:
-      - name: "Government Press Releases"
-        urls:
-          - "https://www.state.gov/latest-releases/"
+  web_scrapers: enabled: true
+    sources: - name: "Government Press Releases"
+        urls: - "https://www.state.gov/latest-releases/"
           - "https://www.un.org/press/en/"
-        selectors:
-          title: "h2.article-title"
+        selectors: title: "h2.article-title"
           content: ".article-body"
           date: ".article-date"
         refresh_interval: 1800
@@ -234,48 +201,40 @@ correlated = await pipeline.get_correlated_events(
 根据你的监控优先级设置自定义警报：
 
 ```yaml
-alerts:
-  rules:
-    - name: "重大冲突检测"
-      conditions:
-        - field: "event_type"
+alerts: rules: - name: "重大冲突检测"
+      conditions: - field: "event_type"
           operator: "eq"
           value: "armed_conflict"
         - field: "severity"
           operator: "gte"
           value: 7
-      actions:
-        - type: "notification"
+      actions: - type: "notification"
           channels: ["email", "telegram"]
           template: "high_severity_conflict"
         - type: "dashboard_highlight"
           duration: "3600"
 
     - name: "基础设施中断"
-      conditions:
-        - field: "infrastructure_type"
+      conditions: - field: "infrastructure_type"
           operator: "in"
           value: ["power_grid", "telecom", "transport"]
         - field: "status"
           operator: "eq"
           value: "disrupted"
-      actions:
-        - type: "notification"
+      actions: - type: "notification"
           channels: ["email", "slack", "pagerduty"]
           template: "infrastructure_alert"
         - type: "geopoint_map"
           zoom_level: 12
 
     - name: "关键词激增检测"
-      conditions:
-        - field: "keywords"
+      conditions: - field: "keywords"
           operator: "contains_any"
           value: ["sanctions", "embargo", "tariff", "trade_war"]
         - field: "volume_change"
           operator: "gte"
           value: 200
-      actions:
-        - type: "notification"
+      actions: - type: "notification"
           channels: ["email"]
           template: "keyword_surge"
           cooldown: "1800"
@@ -332,8 +291,7 @@ correlations = engine.find_correlations(
     correlation_types=["temporal", "geographic", "thematic"]
 )
 
-for corr in correlations:
-    print(f"强度: {corr.strength:.2f}")
+for corr in correlations: print(f"强度: {corr.strength:.2f}")
     print(f"类型: {corr.type}")
     print(f"事件: {corr.event_ids}")
     print(f"解释: {corr.explanation}")
@@ -503,9 +461,7 @@ curl -X POST "https://your-worldmonitor/api/v1/metrics/grafana" \
 
 ```yaml
 # WorldMonitor Elasticsearch 输出配置
-output:
-  elasticsearch:
-    hosts: ["https://es-cluster.internal:9200"]
+output: elasticsearch: hosts: ["https://es-cluster.internal:9200"]
     index: "worldmonitor-%{+yyyy.MM.dd}"
     username: "${ES_USER}"
     password: "${ES_PASS}"
@@ -525,7 +481,6 @@ output:
 **披露声明**: 本文提及的工具可能存在联盟关系。我们不接受付费评测。所有观点均为我们自己独立撰写。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -553,25 +508,20 @@ output:
 
 ## Why This Matters
 
-Understanding worldmonitor：面向地缘政治监控的实时全球情报仪表盘 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding worldmonitor：面向地缘政治监控的实时全球情报仪表盘 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -592,13 +542,13 @@ WorldMonitor：面向地缘政治监控的实时全球情报仪表盘 represents
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
 
+---
 ## Related Articles
 
 - [12-factor-agents](worldmonitor-real-time-global-intelligence-dashboard)

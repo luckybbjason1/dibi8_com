@@ -1,21 +1,14 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/vercel-ai-sdk-edge-compute" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/vercel-ai-sdk-edge-compute" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/vercel-ai-sdk-edge-compute" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/vercel-ai-sdk-edge-compute" />
 title: Vercel AI SDK — Xây Dựng Ứng Dụng AI Streaming Với Kiến T...
 description: Hướng dẫn toàn diện về Vercel AI SDK để xây dựng ứng dụng AI production. Stream response LLM, tích hợp nhiều provider và deploy đến edge với zero config. Hỗ trợ React, Next.js và mọi framework.
 tags: ['ai-sdk', 'streaming', 'vercel', 'edge-compute', 'react', 'llm']
 category: llm-frameworks
 featureImage: /images/articles/vercel-ai-sdk-edge-compute.jpg
 date: 2026-07-15T00:00:00+00:00
-lastmod:  2026-07-15T00:00:00+00:00draft: false
+lastmod: 2026-07-15T00:00:00+00:00draft: false
 slug: vercel-ai-sdk-edge-compute
 lang: vi
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/vercel-ai-sdk-edge-compute/ -->
 
 ## TL;DR
 
@@ -25,23 +18,17 @@ Vercel AI SDK là thư viện mã nguồn mở để xây dựng giao diện ng�
 
 ## Vercel AI SDK Là Gì?
 
-Vercel AI SDK là thư viện mã nguồn mở abstract hóa complexity của việc xây dựng ứng dụng AI. Về cốt lõi, nó cung cấp ba capability chính:
-
-1. **Provider-agnostic API**: Viết code một lần, deploy đến bất kỳ LLM provider nào
+Vercel AI SDK là thư viện mã nguồn mở abstract hóa complexity của việc xây dựng ứng dụng AI. Về cốt lõi, nó cung cấp ba capability chính: 1. **Provider-agnostic API**: Viết code một lần, deploy đến bất kỳ LLM provider nào
 2. **Streaming-first architecture**: Response stream token-by-token đến frontend
 3. **Framework integration**: Native support cho React, Next.js, Vue, Svelte và SolidJS
 
 ### Tại Sao Edge-First Quan Trọng Cho Ứng Dụng AI
 
-Ứng dụng AI truyền thống theo pattern này:
-
-```
+Ứng dụng AI truyền thống theo pattern này: ```
 User → Web Server → API Route → LLM Provider → Response
 ```
 
-Mỗi hop thêm latency. Edge-first approach của Vercel loại bỏ middleman:
-
-```
+Mỗi hop thêm latency. Edge-first approach của Vercel loại bỏ middleman: ```
 User → Edge Function → LLM Provider → Streaming Response
 ```
 
@@ -88,9 +75,7 @@ npm install zod
 
 ### Bước 2: Cấu Hình Chat API Đầu Tiên
 
-Tạo `app/api/chat/route.ts`:
-
-```typescript
+Tạo `app/api/chat/route.ts`: ```typescript
 import { streamText } from "ai";
 import { createOpenAI } from "@ai-sdk/openai";
 
@@ -119,9 +104,7 @@ Chỉ vậy đó. Một file, 20 dòng code và bạn có fully streaming chat A
 
 ### Bước 3: Xây Dựng Frontend
 
-Tạo `app/page.tsx`:
-
-```typescript
+Tạo `app/page.tsx`: ```typescript
 "use client";
 
 import { useChat } from "ai/react";
@@ -176,9 +159,7 @@ Hook `useChat` xử lý everything: state management, streaming update, error ha
 
 ### Mẫu 1: Multi-Provider Routing
 
-Route request đến model khác nhau dựa trên task type:
-
-```typescript
+Route request đến model khác nhau dựa trên task type: ```typescript
 import { createOpenAI } from "@ai-sdk/openai";
 import { createAnthropic } from "@ai-sdk/anthropic";
 import { createGoogleGenerativeAI } from "@ai-sdk/google";
@@ -216,9 +197,7 @@ export async function POST(req: Request) {
 
 ### Mẫu 2: Structured Output Với Zod
 
-Validate và parse LLM response thành typed object:
-
-```typescript
+Validate và parse LLM response thành typed object: ```typescript
 import { z } from "zod";
 import { generateObject } from "ai";
 import { createOpenAI } from "@ai-sdk/openai";
@@ -251,9 +230,7 @@ Response được guarantee match schema — TypeScript type flow end-to-end t�
 
 ### Mẫu 3: RAG Pipeline Với Embedding
 
-Xây dựng retrieval-augmented generation trong single route:
-
-```typescript
+Xây dựng retrieval-augmented generation trong single route: ```typescript
 import { embed, embedMany, streamText } from "ai";
 import { createOpenAI } from "@ai-sdk/openai";
 import { cosineSimilarity } from "ai/embeddings";
@@ -307,8 +284,7 @@ export async function POST(req: Request) {
     system: `Chỉ trả lời dùng context sau. 
     Nếu context không chứa thông tin relevant, nói vậy.
     
-    Context:
-    ${context.join("\n\n")}
+    Context: ${context.join("\n\n")}
     `,
   });
 
@@ -318,9 +294,7 @@ export async function POST(req: Request) {
 
 ### Mẫu 4: Agent Tool Calling
 
-Cho LLM access đến external tool:
-
-```typescript
+Cho LLM access đến external tool: ```typescript
 import { streamText, tool } from "ai";
 import { createOpenAI } from "@ai-sdk/openai";
 import { z } from "zod";
@@ -370,9 +344,7 @@ Mỗi tool execute server-side, giữ API key secure trong khi cho LLM khả nă
 
 ### Dùng Built-In UI Component
 
-SDK đi kèm React component cho common AI pattern:
-
-```bash
+SDK đi kèm React component cho common AI pattern: ```bash
 npm install @ai-sdk/react
 ```
 
@@ -513,9 +485,7 @@ Dùng multi-provider routing pattern để tự động chọn model cheapest đ
 Access to fetch at 'http://localhost:30000/api/chat' from origin 'http://localhost:5173' blocked by CORS policy
 ```
 
-**Fix**: Đảm bảo API route trả về proper CORS header:
-
-```typescript
+**Fix**: Đảm bảo API route trả về proper CORS header: ```typescript
 export async function POST(req: Request) {
   const corsHeaders = {
     "Access-Control-Allow-Origin": "*",
@@ -531,16 +501,12 @@ export async function POST(req: Request) {
 
 ### Vấn Đề 2: Streaming Không Hoạt Động Trong Production
 
-Nếu frontend hiển thị full response cùng lúc thay vì streaming:
-
-**Check 1**: Verify API route trả về `ReadableStream`
+Nếu frontend hiển thị full response cùng lúc thay vì streaming: **Check 1**: Verify API route trả về `ReadableStream`
 **Check 2**: Đảm bảo bạn dùng `toDataStreamResponse()` không phải `toTextStreamResponse()` cho full fidelity.
 
 ### Vấn Đề 3: Model Timeout Trên Edge Function
 
-Edge function có 60-second timeout. Cho long-running model:
-
-```typescript
+Edge function có 60-second timeout. Cho long-running model: ```typescript
 const result = streamText({
   model: openai("o3-mini"),
   messages,
@@ -557,9 +523,7 @@ Cho operation dài hơn, offload đến queue-based pattern: submit request, pol
 Argument of type '"gpt-4-turbo"' is not assignable to parameter of type...
 ```
 
-**Fix**: Đảm bảo bạn dùng đúng model identifier cho provider version:
-
-```bash
+**Fix**: Đảm bảo bạn dùng đúng model identifier cho provider version: ```bash
 # Update lên latest AI SDK
 npm update ai @ai-sdk/openai
 ```
@@ -594,9 +558,7 @@ npm update ai @ai-sdk/openai
 
 ## Cập Nhật Cộng Đồng
 
-Ecosystem AI SDK đã mature significantly:
-
-- **Provider coverage**: 15+ official provider integration bao gồm OpenAI, Anthropic, Google, AWS Bedrock, Cohere, Mistral, Groq và Ollama
+Ecosystem AI SDK đã mature significantly: - **Provider coverage**: 15+ official provider integration bao gồm OpenAI, Anthropic, Google, AWS Bedrock, Cohere, Mistral, Groq và Ollama
 - **Community package**: 200+ community-contributed tool, utility và integration
 - **Framework support**: Official adapter cho Next.js, Remix, SvelteKit, Nuxt, Astro và Qwik
 - **Enterprise adoption**: Dùng bởi company như Stripe, Shopify và Notion cho production AI feature
@@ -617,9 +579,7 @@ SDK dùng Server-Sent Event(SSE) qua `ReadableStream`. Khi bạn gọi `streamTe
 
 ### Q: Tôi có thể cache LLM response để giảm chi phí không?
 
-Có. Implement caching ở API route level:
-
-```typescript
+Có. Implement caching ở API route level: ```typescript
 const cachedChat = cache(async (messages: any[]) => {
   const hash = JSON.stringify(messages);
   const cached = await redis.get(hash);
@@ -639,9 +599,7 @@ Có. AI SDK là MIT-licensed và hoàn toàn free. Bạn chỉ pay cho underlyin
 
 ### Q: Làm sao tôi xử lý authentication cho ứng dụng AI?
 
-Dùng middleware để protect API route:
-
-```typescript
+Dùng middleware để protect API route: ```typescript
 export function middleware(request: NextRequest) {
   const token = request.cookies.get("auth-token");
   
@@ -670,7 +628,6 @@ Cho production app, combine JWT authentication với rate limiting để prevent
 *Tham gia Telegram Group của chúng tôi để thảo luận AI tool real-time và tips deploy: [t.me/dibi8](https://t.me/dibi8)*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

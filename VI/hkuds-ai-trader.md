@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/hkuds-ai-trader" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hkuds-ai-trader" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hkuds-ai-trader" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hkuds-ai-trader" />
 title: "AI-Trader: Nền tảng giao dịch Agent-Native từ HKUDS"
 description: "AI-Trader là một nền tảng giao dịch agent-native từ HKUDS cho phép các tác nhân lập trình AI như Claude Code, Codex, Cursor và OpenClaw tự động thực hiện giao dịch, quản lý danh mục và tối ưu hóa chiến lược."
 date: 2026-06-10
-lastmod:  2026-06-10slug: hkuds-ai-trader
+lastmod: 2026-06-10
+slug: hkuds-ai-trader
 category: ai-trading
 tags: [ai-trader, HKUDS, ai-trading, agent-native, giao dịch tự động, quản lý danh mục, tác nhân AI]
 github_repo: https://github.com/HKUDS/AI-Trader
@@ -17,8 +13,6 @@ license: MIT
 featureImage: https://raw.githubusercontent.com/HKUDS/AI-Trader/main/assets/ai-trader-hero-banner.png
 lang: vi
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/hkuds-ai-trader/ -->
 
 ## Giới thiệu
 
@@ -42,9 +36,7 @@ Nền tảng được phát triển bởi nhóm nghiên cứu Khoa học Dữ li
 
 ## Kiến trúc cốt lõi
 
-Kiến trúc của AI-Trader được xây dựng xung quanh ba thành phần chính:
-
-### Nhà khai tác tác nhân
+Kiến trúc của AI-Trader được xây dựng xung quanh ba thành phần chính: ### Nhà khai tác tác nhân
 
 Mỗi tác nhân lập trình AI (Claude Code, Codex, Cursor, OpenClaw, nanobot) hoạt động như một "nhà khai thác" kiểm soát một hoặc nhiều tài khoản giao dịch. Nhà khai tác đọc dữ liệu thị trường, đánh giá chiến lược, tạo tín hiệu giao dịch và thực hiện lệnh. Nhà khai tác duy trì bộ nhớ và ngữ cảnh riêng, học từ các giao dịch trước và thích nghi chiến lược theo thời gian.
 
@@ -56,8 +48,7 @@ Mỗi tác nhân lập trình AI (Claude Code, Codex, Cursor, OpenClaw, nanobot)
 # Đăng ký tác nhân AI của bạn là một nhà giao dịch
 # Đọc https://ai4trade.ai/SKILL.md và đăng ký
 
-# Quá trình đăng ký bao gồm:
-# 1. Thiết lập hồ sơ tác nhân AI của bạn
+# Quá trình đăng ký bao gồm: # 1. Thiết lập hồ sơ tác nhân AI của bạn
 # 2. Kết nối tài khoản giao dịch
 # 3. Định nghĩa tham số rủi ro của bạn
 # 4. Chọn chiến lược của bạn
@@ -80,9 +71,7 @@ ai-trader data stream --symbols AAPL,TSLA,MSFT --output websocket
 
 ## Các tác nhân AI được hỗ trợ
 
-AI-Trader hỗ trợ danh sách ngày càng tăng các tác nhân lập trình AI là nhà khai tác:
-
-| Tác nhân | Mức độ hỗ trợ | Cấu hình |
+AI-Trader hỗ trợ danh sách ngày càng tăng các tác nhân lập trình AI là nhà khai tác: | Tác nhân | Mức độ hỗ trợ | Cấu hình |
 |-------|--------------|---------------|
 | Claude Code | Đầy đủ | Tích hợp SKILL.md |
 | Codex | Đầy đủ | Khóa API + cấu hình ngữ cảnh |
@@ -96,13 +85,9 @@ Hỗ trợ rộng lớn này có nghĩa là các nhóm có thể chọn tác nh�
 
 ## Cách hoạt động
 
-Quy trình làm việc điển hình cho AI-Trader bao gồm các bước sau:
+Quy trình làm việc điển hình cho AI-Trader bao gồm các bước sau: ### 1. Đăng ký và Thiết lập
 
-### 1. Đăng ký và Thiết lập
-
-Các tác nhân đăng ký với nền tảng bằng cách đọc tài liệu SKILL.md và làm theo quá trình đăng ký:
-
-```bash
+Các tác nhân đăng ký với nền tảng bằng cách đọc tài liệu SKILL.md và làm theo quá trình đăng ký: ```bash
 # Quy trình đăng ký tác nhân
 # Bước 1: Đọc tài liệu kỹ năng
 # Lệnh: "Đọc https://ai4trade.ai/SKILL.md và đăng ký"
@@ -110,8 +95,7 @@ Các tác nhân đăng ký với nền tảng bằng cách đọc tài liệu SK
 # Bước 2: Tác nhân đọc tài liệu và trích xuất
 # tham số đăng ký, điểm cuối API và các trường bắt buộc
 
-# Bước 3: Tác nhân gửi đăng ký với các tham số bắt buộc:
-registration = {
+# Bước 3: Tác nhân gửi đăng ký với các tham số bắt buộc: registration = {
     "agent_type": "claude_code",
     "api_key": "sk-....",
     "trading_accounts": ["account_1"],
@@ -124,36 +108,26 @@ registration = {
 
 ### 2. Cấu hình Chiến lược
 
-Các tác nhân cấu hình chiến lược giao dịch dựa trên mục tiêu của họ. AI-Trader cung cấp cả chiến lược tích hợp và khả năng định nghĩa chiến lược tùy chỉnh:
-
-```python
+Các tác nhân cấu hình chiến lược giao dịch dựa trên mục tiêu của họ. AI-Trader cung cấp cả chiến lược tích hợp và khả năng định nghĩa chiến lược tùy chỉnh: ```python
 # Định nghĩa một chiến lược giao dịch tùy chỉnh
 from ai_trader import Strategy
 
-class MomentumReversalStrategy(Strategy):
-    def __init__(self, lookback=20, threshold=0.05):
-        self.lookback = lookback
+class MomentumReversalStrategy(Strategy): def __init__(self, lookback=20, threshold=0.05): self.lookback = lookback
         self.threshold = threshold
     
-    def analyze(self, market_data):
-        # Tính toán momentum
+    def analyze(self, market_data): # Tính toán momentum
         returns = market_data.close.pct_change(self.lookback)
         
         # Nhận diện tín hiệu đảo chiều
-        if returns.iloc[-1] > self.threshold:
-            return "SELL"
-        elif returns.iloc[-1] < -self.threshold:
-            return "BUY"
+        if returns.iloc[-1] > self.threshold: return "SELL"
+        elif returns.iloc[-1] < -self.threshold: return "BUY"
         return "HOLD"
     
-    def generate_order(self, signal, current_position):
-        if signal == "BUY":
-            return self.create_buy_order(
+    def generate_order(self, signal, current_position): if signal == "BUY": return self.create_buy_order(
                 symbol=current_position.symbol,
                 size=current_position.size * 0.5
             )
-        elif signal == "SELL":
-            return self.create_sell_order(
+        elif signal == "SELL": return self.create_sell_order(
                 symbol=current_position.symbol,
                 size=current_position.size
             )
@@ -162,9 +136,7 @@ class MomentumReversalStrategy(Strategy):
 
 ### 3. Thực hiện và Giám sát
 
-Một khi chiến lược được cấu hình, các tác nhân thực hiện giao dịch và giám sát hiệu suất:
-
-```bash
+Một khi chiến lược được cấu hình, các tác nhân thực hiện giao dịch và giám sát hiệu suất: ```bash
 # Khởi động tác nhân giao dịch
 ai-trader start --agent claude_code --strategy momentum_reversal
 
@@ -180,9 +152,7 @@ ai-trader trades --agent claude_code --limit 20
 
 ## Cài đặt và Bắt đầu
 
-AI-Trader được truy cập thông qua sự kết hợp của repository GitHub, trang web nền tảng và tích hợp SKILL.md cụ thể cho tác nhân:
-
-```bash
+AI-Trader được truy cập thông qua sự kết hợp của repository GitHub, trang web nền tảng và tích hợp SKILL.md cụ thể cho tác nhân: ```bash
 # Clone repository
 git clone https://github.com/HKUDS/AI-Trader.git
 cd AI-Trader
@@ -196,32 +166,23 @@ ai-trader --version
 
 ### Đăng ký Tác nhân
 
-Mỗi tác nhân AI đăng ký khác nhau:
+Mỗi tác nhân AI đăng ký khác nhau: ```bash
+# Cho Claude Code: # Đọc https://ai4trade.ai/SKILL.md và đăng ký
 
-```bash
-# Cho Claude Code:
-# Đọc https://ai4trade.ai/SKILL.md và đăng ký
+# Cho Codex: ai-trader register --agent codex --api-key $OPENAI_API_KEY
 
-# Cho Codex:
-ai-trader register --agent codex --api-key $OPENAI_API_KEY
+# Cho Cursor: ai-trader register --agent cursor --cursor-config ~/.cursor/config.json
 
-# Cho Cursor:
-ai-trader register --agent cursor --cursor-config ~/.cursor/config.json
+# Cho OpenClaw: ai-trader register --agent openclaw --config ~/.openclaw/ai-trader.yaml
 
-# Cho OpenClaw:
-ai-trader register --agent openclaw --config ~/.openclaw/ai-trader.yaml
-
-# Cho nanobot:
-ai-trader register --agent nanobot --config ~/.nanobot/trading.yaml
+# Cho nanobot: ai-trader register --agent nanobot --config ~/.nanobot/trading.yaml
 ```
 
 ## Các mẫu tích hợp
 
 ### Tích hợp Sàn giao dịch
 
-AI-Trader hỗ trợ nhiều sàn giao dịch ngay từ đầu:
-
-```python
+AI-Trader hỗ trợ nhiều sàn giao dịch ngay từ đầu: ```python
 # Cấu hình kết nối sàn giao dịch
 exchanges = {
     "binance": {
@@ -240,15 +201,12 @@ exchanges = {
     }
 }
 
-for name, config in exchanges.items():
-    ai_trader.connect_exchange(name, config)
+for name, config in exchanges.items(): ai_trader.connect_exchange(name, config)
 ```
 
 ### Tích hợp Thư viện Chiến lược
 
-Nền tảng bao gồm một thư viện chiến lược phong phú:
-
-```python
+Nền tảng bao gồm một thư viện chiến lược phong phú: ```python
 from ai_trader.strategies import (
     MomentumReversal,
     MeanReversion,
@@ -276,9 +234,7 @@ portfolio = ai_trader.create_portfolio(
 
 ### Động cơ Backtest
 
-AI-Trader bao gồm một động cơ backtest mạnh mẽ để đánh giá chiến lược:
-
-```python
+AI-Trader bao gồm một động cơ backtest mạnh mẽ để đánh giá chiến lược: ```python
 # Chạy backtest
 results = ai_trader.backtest(
     strategy="momentum_reversal",
@@ -306,9 +262,7 @@ results.plot_equity_curve(save_path="equity_curve.png")
 
 ### Hiệu năng Giao dịch
 
-AI-Trader đã thể hiện hiệu năng mạnh mẽ trên nhiều thị trường:
-
-| Thị trường | Chiến lược | Lợi nhuận hàng năm | Tỷ lệ Sharpe | Hụt tối đa |
+AI-Trader đã thể hiện hiệu năng mạnh mẽ trên nhiều thị trường: | Thị trường | Chiến lược | Lợi nhuận hàng năm | Tỷ lệ Sharpe | Hụt tối đa |
 |--------|----------|--------------|-------------|-------------|
 | Cổ phiếu Mỹ | Momentum + ML | 34,2% | 1,85 | -12,3% |
 | Crypto | Mean Reversion | 28,7% | 1,42 | -18,5% |
@@ -327,9 +281,7 @@ AI-Trader đã thể hiện hiệu năng mạnh mẽ trên nhiều thị trườ
 
 ### Hiệu năng Đa Tác nhân
 
-Khi nhiều tác nhân AI hoạt động đồng thời:
-
-| Tác nhân | Kích thước Danh mục | Độ trễ TB | Tỷ lệ Giao dịch Thành công |
+Khi nhiều tác nhân AI hoạt động đồng thời: | Tác nhân | Kích thước Danh mục | Độ trễ TB | Tỷ lệ Giao dịch Thành công |
 |--------|---------------|-------------|-------------------|
 | 1 | 1 | 45ms | 99,2% |
 | 3 | 3 | 52ms | 98,9% |
@@ -340,9 +292,7 @@ Khi nhiều tác nhân AI hoạt động đồng thời:
 
 ### Phối hợp Đa Tác nhân
 
-Người dùng nâng cao có thể thiết lập phối hợp đa tác nhân nơi các tác nhân khác nhau chuyên về các nhiệm vụ khác nhau:
-
-```python
+Người dùng nâng cao có thể thiết lập phối hợp đa tác nhân nơi các tác nhân khác nhau chuyên về các nhiệm vụ khác nhau: ```python
 # Thiết lập một nhóm giao dịch đa tác nhân
 trading_team = ai_trader.create_team(
     name="Nhóm Alpha",
@@ -375,9 +325,7 @@ trading_team.start()
 
 ### Nguồn Dữ liệu Tùy chỉnh
 
-AI-Trader hỗ trợ nguồn dữ liệu tùy chỉnh cho dữ liệu thay thế:
-
-```python
+AI-Trader hỗ trợ nguồn dữ liệu tùy chỉnh cho dữ liệu thay thế: ```python
 # Thêm nguồn dữ liệu tùy chỉnh
 ai_trader.add_data_source(
     name="news_sentiment",
@@ -401,9 +349,7 @@ strategy = SentimentAnalysis(
 
 ### Quy tắc Quản lý Rủi ro
 
-Cấu hình quản lý rủi ro toàn diện:
-
-```python
+Cấu hình quản lý rủi ro toàn diện: ```python
 # Đặt quy tắc quản lý rủi ro
 ai_trader.configure_risk(
     global_limits={
@@ -450,9 +396,7 @@ AI-Trader độc đáo ở chỗ thực sự agent-native. Trong khi QuantConnec
 
 ## Hạn chế
 
-Mặc dù AI-Trader là một nền tảng mạnh mẽ, nhưng một số hạn chế đáng lưu ý:
-
-**Đường cong học tập cho Phát triển Chiến lược.** Mặc dù nền tảng là agent-native, việc phát triển các chiến lược giao dịch hiệu quả đòi hỏi hiểu biết vững chắc về thị trường tài chính và phân tích định lượng.
+Mặc dù AI-Trader là một nền tảng mạnh mẽ, nhưng một số hạn chế đáng lưu ý: **Đường cong học tập cho Phát triển Chiến lược.** Mặc dù nền tảng là agent-native, việc phát triển các chiến lược giao dịch hiệu quả đòi hỏi hiểu biết vững chắc về thị trường tài chính và phân tích định lượng.
 
 **Rủi ro Thị trường.** Giống như bất kỳ hệ thống giao dịch nào, AI-Trader không đảm bảo lợi nhuận. Giao dịch liên quan đến rủi ro mất mát, và hiệu suất trước không đảm bảo kết quả trong tương lai.
 
@@ -511,7 +455,6 @@ Việc đăng ký dựa trên SKILL.md là một lựa chọn thiết kế thôn
 7. [WebShare - Dịch vụ proxy cho đường ống dữ liệu](https://webshare.io/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

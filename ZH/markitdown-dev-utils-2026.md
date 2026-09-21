@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/markitdown-dev-utils-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/markitdown-dev-utils-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/markitdown-dev-utils-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/markitdown-dev-utils-2026" />
 title: 'markitdown：把文件和 Office 文档转成 Markdown（141K Stars）——2026 实...
 description: 'markitdown 是微软出品的 Python 工具，用于把各类文件和 Office 文档转换成 Markdown。141,153 个 GitHub star，MIT 协议。涵盖安装、核心命令行与 Python 用法、真实代码示例，以及与 pandoc、docx2txt 的客观对比。'
 date: 2026-06-02 00:00:00+08:00
@@ -25,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: []
-aliases:
-- /posts/markitdown-dev-utils-2026/
-faqs:
-  - q: '怎么安装 markitdown？'
+aliases: - /posts/markitdown-dev-utils-2026/
+faqs: - q: '怎么安装 markitdown？'
     a: '用 pip 安装即可。常见做法是把所有格式的 extras 一起装上： ```bash pip install ''markitdown[all]'' ```'
   - q: 'markitdown 能转换所有类型的 Office 文档吗？'
     a: '它支持很多种格式——Word（.docx）、Excel（.xlsx）、PowerPoint（.pptx）、PDF、HTML、图片和音频——但并非每种格式的每个特性都会被保留。具体支持哪些类型、需要哪些 extras，请查阅文档。'
@@ -37,10 +30,7 @@ faqs:
   - q: '怎么为这个项目做贡献？'
     a: '你可以提交 issue 或发起 pull request。贡献指南请查看 [GitHub 仓库](https://github.com/microsoft/markitdown)。'
   - q: 'markitdown 有哪些已知的局限？'
-    a: '有的——一些高级特性和复杂的文档结构可能无法完整保留。项目维护活跃，但它优先保证的是文本准确性，而非视觉还原。'
----
-
-<!-- canonical: https://dibi8.com/zh/tools/markitdown-dev-utils-2026/ -->
+    a: '有的——一些高级特性和复杂的文档结构可能无法完整保留。项目维护活跃，但它优先保证的是文本准确性，而非视觉还原。'---
 # markitdown：把文件和 Office 文档转成 Markdown（141K Stars）——2026 实战指南
 
 
@@ -158,8 +148,7 @@ from markitdown import MarkItDown
 md = MarkItDown()
 result = md.convert('example.docx')
 
-with open('output.md', w) as file:
-    file.write(result.text_content)
+with open('output.md', w) as file: file.write(result.text_content)
 ```
 
 这段 Python 脚本和前面的命令行示例做的事情一样，只是更便于集成。
@@ -197,8 +186,7 @@ pandoc temp.md -s -t gfm > final_output.md
 !pip install 'markitdown[all]'
 from markitdown import MarkItDown
 
-def convert_to_markdown(path):
-    md = MarkItDown()
+def convert_to_markdown(path): md = MarkItDown()
     return md.convert(path).text_content
 
 content = convert_to_markdown('example.docx')
@@ -234,17 +222,11 @@ markitdown input.docx -o output.md
 ```yaml
 name: Convert Docs to Markdown
 
-on:
-  push:
-    branches:
-      - main
+on: push: branches: - main
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+jobs: build: runs-on: ubuntu-latest
 
-    steps:
-    - uses: actions/checkout@v4
+    steps: - uses: actions/checkout@v4
     - name: Install MarkItDown
       run: pip install 'markitdown[all]'
     - name: Convert Docs to Markdown
@@ -267,7 +249,15 @@ jobs:
 在挑选一款把文件和 Office 文档转成 Markdown 的工具时，微软的 `markitdown` 是个很不错的选项。下面把 `markitdown` 和另外两个热门替代品 `pandoc` 与 `docx2txt` 做个对比，表格突出了在 star 数、语言、易用性和功能上的关键差异。
 
 | 特性                 | markitdown            | pandoc                  | docx2txt                |
-|----------------------|-----------------------|-------------------------|------------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Stars                | 141,153               | 709,865                 | N/A                    |
 | 语言                 | Python                | Haskell                 | Python                 |
 | 默认分支             | main                  | master                  | master                 |
@@ -307,21 +297,18 @@ jobs:
 - 加入 [dibi8 英文 Telegram 群](https://t.me/DIBI8_Group/2)，获取开源 AI 工具的第一手分享。
 - 继续阅读：[dibi8 上的相关指南](dibi8-internal-link)。
 
----
 
+---
 **来源与延伸阅读**：
 - GitHub 仓库：https://github.com/microsoft/markitdown
 - 官方文档 / README：https://github.com/microsoft/markitdown#readme
 
 *以上部分链接为联盟（affiliate）链接。如果你通过它们注册，dibi8.com 可能会获得一笔佣金，但不会让你多花一分钱。这有助于维持网站运转、让内容保持免费。*
 
-<!-- internal-link-candidates:
   related open-source tools -> ai-tools-directory
   related guides on dibi8 -> ai-coding-agent-landscape-2026-skills-mcp-opensource
--->
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -349,25 +336,20 @@ jobs:
 
 ## Why This Matters
 
-Understanding markitdown：把文件和 office 文档转成 markdown（141k stars）——2026 实战指南 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding markitdown：把文件和 office 文档转成 markdown（141k stars）——2026 实战指南 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -388,7 +370,7 @@ markitdown：把文件和 Office 文档转成 Markdown（141K Stars）——2026
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

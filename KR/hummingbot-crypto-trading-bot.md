@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/hummingbot-crypto-trading-bot" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hummingbot-crypto-trading-bot" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hummingbot-crypto-trading-bot" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hummingbot-crypto-trading-bot" />
 title: 'Hummingbot 2026: 50개 이상 거래소 커넥터를 지원하는 오픈소스 암호화폐 트레이딩 봇 —...
 description: 'Hummingbot v2 실전 배포 가이드. 50개 이상 거래소 커넥터를 지원하는 오픈소스 암호화폐 트레이딩 봇. Docker 설치, 커스텀 전략, 백테스팅, DEX 게이트웨이, 프로덕션 하드닝을 다룹니다.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: []
-aliases:
-- /kr/posts/hummingbot-crypto-trading-bot/
+aliases: - /kr/posts/hummingbot-crypto-trading-bot/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/hummingbot-crypto-trading-bot/ -->
 
 {{</* resource-info */>}}
 
@@ -45,9 +37,7 @@ aliases:
 
 ## Hummingbot이란 무엇인가?
 
-Hummingbot은 자동화된 암호화폐 트레이딩 전략을 구축하고 실행하기 위한 오픈소스 프레임워크입니다. 2019년 CoinAlpha에서 처음 출시된 이후 커뮤니티가 유지보수하는 강력한 도구로 발전했으며, 다음을 지원합니다:
-
-- **중앙화 거래소(CEX):** Binance, Coinbase, Kraken, KuCoin, Gate.io, Bybit 등 40개 이상
+Hummingbot은 자동화된 암호화폐 트레이딩 전략을 구축하고 실행하기 위한 오픈소스 프레임워크입니다. 2019년 CoinAlpha에서 처음 출시된 이후 커뮤니티가 유지보수하는 강력한 도구로 발전했으며, 다음을 지원합니다: - **중앙화 거래소(CEX):** Binance, Coinbase, Kraken, KuCoin, Gate.io, Bybit 등 40개 이상
 - **탈중앙화 거래소(DEX):** Uniswap, PancakeSwap, TraderJoe 등 (Hummingbot Gateway 통해)
 - **전략 유형:** 마켓 메이킹, 차익거래, 크로스 익스체인지 마켓 메이킹, 무기한 선물, 커스텀 스크립트
 - **배포 모드:** Docker 컨테이너, 소스 설치, 클라우드 VPS
@@ -56,9 +46,7 @@ Hummingbot은 자동화된 암호화폐 트레이딩 전략을 구축하고 실�
 
 ## Hummingbot 작동 원리: 아키텍처 개요
 
-Hummingbot의 아키텍처는 명확한 관심사 분리를 따릅니다:
-
-```
+Hummingbot의 아키텍처는 명확한 관심사 분리를 따릅니다: ```
 ┌─────────────────────────────────────────────────────┐
 │                   전략 레이어 (Strategy Layer)       │
 │  (순수 마켓 메이킹 / 차익거래 / 커스텀 스크립트)   │
@@ -74,8 +62,7 @@ Hummingbot의 아키텍처는 명확한 관심사 분리를 따릅니다:
 └─────────────────────────────────────────────────────┘
 ```
 
-**핵심 루프** 작동 방식:
-1. **전략(Strategy)**이 주문 매개변수(스프레드, 인벤토리 스큐, 갱신 시간)를 정의
+**핵심 루프** 작동 방식: 1. **전략(Strategy)**이 주문 매개변수(스프레드, 인벤토리 스큐, 갱신 시간)를 정의
 2. **커넥터(Connector)**가 특정 거래소 API를 통합 인터페이스로 정규화
 3. **엔진(Engine)**이 주문 라이프사이클을 관리하고 체결을 추적하고 오류를 처리
 4. **데이터베이스(Database)**가 거래, 잔고, 전략 상태를 영속화
@@ -109,9 +96,7 @@ docker run -it --name hummingbot \
   hummingbot/hummingbot:latest
 ```
 
-컨테이너가 시작되면 Hummingbot CLI가 표시됩니다:
-
-```
+컨테이너가 시작되면 Hummingbot CLI가 표시됩니다: ```
     ╔═╗┬ ┬┌┬┐┌┬┐┌┬┐┌─┐┌─┐┌┐┌
     ╠╣ │ │ │  │ │ │ │ │├┤ │││
     ╚  └─┘ ┴  ┴ ┴ ┴ └─┘└─┘┘└┘
@@ -142,8 +127,7 @@ Enter your Binance API secret >>> YOUR_API_SECRET
 ```
 Updating balances, please wait...
 
- binance:
-     asset    amount
+ binance: asset    amount
      USDT     1,234.56
      BTC      0.0234
      ETH      1.5678
@@ -184,12 +168,10 @@ What is the amount of BTC per order? >>> 0.001
 
 ```
 The pure_market_making strategy is starting.
-Markets:
-  Exchange    Market    Best Bid    Best Ask    Mid Price
+Markets: Exchange    Market    Best Bid    Best Ask    Mid Price
   binance     BTC-USDT  67,234.50   67,245.00   67,239.75
 
-Orders:
-  Level  Type   Price       Amount    Spread    Order ID
+Orders: Level  Type   Price       Amount    Spread    Order ID
   1      buy    66,898.30   0.001     0.50%     ...
   1      sell   67,581.20   0.001     0.50%     ...
 ```
@@ -230,9 +212,7 @@ use_futures: false
 
 ### Coinbase Advanced Trade
 
-Coinbase는 2024년 이후 다른 인증 방식(JWT 기반)을 사용합니다. Hummingbot의 Coinbase 커넥터는 낶적으로 JWT 서명을 처리합니다:
-
-```bash
+Coinbase는 2024년 이후 다른 인증 방식(JWT 기반)을 사용합니다. Hummingbot의 Coinbase 커넥터는 낶적으로 JWT 서명을 처리합니다: ```bash
 >>> connect coinbase_advanced_trade
 Enter your Coinbase API key (UUID format) >>> xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 Enter your Coinbase API secret >>> YOUR_PRIVATE_KEY
@@ -240,9 +220,7 @@ Enter your Coinbase API secret >>> YOUR_PRIVATE_KEY
 
 ### Hummingbot Gateway를 이용한 DEX 트레이딩
 
-Uniswap, PancakeSwap 및 기타 DEX를 위해서는 Gateway 서비스가 필요합니다:
-
-```bash
+Uniswap, PancakeSwap 및 기타 DEX를 위해서는 Gateway 서비스가 필요합니다: ```bash
 # Gateway 가져오기 및 실행
 docker pull hummingbot/gateway:latest
 
@@ -257,17 +235,12 @@ docker run -d --name gateway \
 
 ```yaml
 # 이더리움 메인넷의 Uniswap용 Gateway 설정
-networks:
-  ethereum:
-    rpc_url: https://mainnet.infura.io/v3/YOUR_INFURA_KEY
+networks: ethereum: rpc_url: https://mainnet.infura.io/v3/YOUR_INFURA_KEY
     chain_id: 1
     token_list_type: FILE
     token_list_source: /home/gateway/conf/lists/ethereum_token_list.json
 
-connectors:
-  uniswap:
-    contract_addresses:
-      v3: 0xE592427A0AEce92De3Edee1F18E0157C05861564
+connectors: uniswap: contract_addresses: v3: 0xE592427A0AEce92De3Edee1F18E0157C05861564
 ```
 
 ### Telegram 알림
@@ -277,17 +250,14 @@ connectors:
 telegram_enabled: true
 telegram_token: "YOUR_BOT_TOKEN"
 telegram_chat_id: "YOUR_CHAT_ID"
-notify_events:
-  - order_filled
+notify_events: - order_filled
   - trade_completed
   - strategy_error
 ```
 
 ### Grafana로 데이터 낶기
 
-Hummingbot은 모든 거래를 SQLite에 기록합니다. Prometheus/Grafana로 낶기하여 시각화할 수 있습니다:
-
-```bash
+Hummingbot은 모든 거래를 SQLite에 기록합니다. Prometheus/Grafana로 낶기하여 시각화할 수 있습니다: ```bash
 # SQLite 쿼리 예제
 sqlite3 hummingbot_files/hummingbot_data/hummingbot_trades.db \
   "SELECT timestamp, trading_pair, order_type, amount, price FROM trades ORDER BY timestamp DESC LIMIT 10;"
@@ -306,24 +276,20 @@ sqlite3 hummingbot_files/hummingbot_data/hummingbot_trades.db \
 
 ### 사례 연구: Binance에서 BTC-USDT 마켓 메이킹
 
-커뮤니티 회원이 BTC-USDT에서 **30일간** 순수 마켓 메이킹을 실행한 데이터를 공유했습니다 — **$5,000** 자본으로:
-
-```
-총 거래 실행 횟수:       8,247
-메이커 수수료 (0.02%):    0.412 BTC
-스프레드 캡처 (평균):     0.42%
-인벤토리 회전률:          1.8x/일
-PnL (수수료 전):          +2.14%/월
-PnL (수수료 후):          +1.72%/월
-샤프 비율:                1.34
-최대 낙폭:                1.2%
+커뮤니티 회원이 BTC-USDT에서 **30일간** 순수 마켓 메이킹을 실행한 데이터를 공유했습니다 — **$5,000** 자본으로: ```
+총 거래 실행 횟수: 8,247
+메이커 수수료 (0.02%): 0.412 BTC
+스프레드 캡처 (평균): 0.42%
+인벤토리 회전률: 1.8x/일
+PnL (수수료 전): +2.14%/월
+PnL (수수료 후): +1.72%/월
+샤프 비율: 1.34
+최대 낙폭: 1.2%
 ```
 
 ### 리소스 사용량
 
-Hummingbot은 기본적으로 경량입니다:
-
-| 리소스 | 유휴 | 활성 (1 전략) | 활성 (5 전략) |
+Hummingbot은 기본적으로 경량입니다: | 리소스 | 유휴 | 활성 (1 전략) | 활성 (5 전략) |
 |------|------|-------------|-------------|
 | CPU | <1% | 5-15% | 20-40% |
 | RAM | 80MB | 200-400MB | 800MB-1.5GB |
@@ -336,16 +302,13 @@ Hummingbot은 기본적으로 경량입니다:
 
 ### Python으로 커스텀 전략 작성
 
-Hummingbot v2.0의 스크립트 전략 인터페이스를 사용하면 순수 Python으로 로직을 작성할 수 있습니다:
-
-```python
+Hummingbot v2.0의 스크립트 전략 인터페이스를 사용하면 순수 Python으로 로직을 작성할 수 있습니다: ```python
 # strategies/my_custom_mm.py
 from decimal import Decimal
 from hummingbot.strategy.script_strategy_base import ScriptStrategyBase
 from hummingbot.core.data_type.common import OrderType, TradeType
 
-class CustomMarketMaker(ScriptStrategyBase):
-    """
+class CustomMarketMaker(ScriptStrategyBase): """
     Dynamic spread market maker that adjusts based on volatility.
     """
     spread_base = Decimal("0.005")      # 0.5% 기본 스프레드
@@ -354,25 +317,21 @@ class CustomMarketMaker(ScriptStrategyBase):
     order_refresh_time = 30.0           # 초
     volatility_threshold = Decimal("0.02")  # 2% 가격 변동 = 변동성
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self): super().__init__()
         self.last_mid_price = None
         self.is_volatile = False
 
-    def on_tick(self):
-        mid_price = self.connectors["binance"].get_mid_price("BTC-USDT")
+    def on_tick(self): mid_price = self.connectors["binance"].get_mid_price("BTC-USDT")
         
         # 변동성 감지
-        if self.last_mid_price:
-            change = abs(mid_price - self.last_mid_price) / self.last_mid_price
+        if self.last_mid_price: change = abs(mid_price - self.last_mid_price) / self.last_mid_price
             self.is_volatile = change > self.volatility_threshold
         
         self.last_mid_price = mid_price
         
         # 스프레드 조정
         spread = self.spread_base
-        if self.is_volatile:
-            spread *= self.spread_multiplier
+        if self.is_volatile: spread *= self.spread_multiplier
         
         buy_price = mid_price * (Decimal("1") - spread)
         sell_price = mid_price * (Decimal("1") + spread)
@@ -384,17 +343,14 @@ class CustomMarketMaker(ScriptStrategyBase):
         self.buy("binance", "BTC-USDT", self.order_amount, OrderType.LIMIT, buy_price)
         self.sell("binance", "BTC-USDT", self.order_amount, OrderType.LIMIT, sell_price)
 
-    def cancel_all_orders(self):
-        for order in self.get_active_orders("binance"):
-            self.cancel(order)
+    def cancel_all_orders(self): for order in self.get_active_orders("binance"): self.cancel(order)
 ```
 
 ### RSI 기반 인벤토리 관리
 
 ```python
 # 인벤토리 스큐용 전략에 추가
-    def calculate_inventory_skew(self):
-        """인벤토리 비율 기반 주문 크기 조정."""
+    def calculate_inventory_skew(self): """인벤토리 비율 기반 주문 크기 조정."""
         base_balance = self.connectors["binance"].get_balance("BTC")
         quote_balance = self.connectors["binance"].get_balance("USDT")
         
@@ -406,12 +362,10 @@ class CustomMarketMaker(ScriptStrategyBase):
         target_ratio = Decimal("0.5")  # 50/50 목표
         
         # 인벤토리 기반 주문 스큐
-        if inventory_ratio > target_ratio:
-            # BTC 과보유, 매수 크기 감소
+        if inventory_ratio > target_ratio: # BTC 과보유, 매수 크기 감소
             self.buy_multiplier = Decimal("0.5")
             self.sell_multiplier = Decimal("1.5")
-        else:
-            self.buy_multiplier = Decimal("1.5")
+        else: self.buy_multiplier = Decimal("1.5")
             self.sell_multiplier = Decimal("0.5")
 ```
 
@@ -437,30 +391,26 @@ python scripts/backtest.py \
 ```
 백테스트 결과 (2026-01-01 ~ 2026-03-31)
 ========================================
-총 거래 횟수:          12,450
-총 수익률:             +5.23%
-샤프 비율:             2.14
-최대 낙폭:             -2.1%
-평균 거래 지속 시간:    18.4분
-승률:                  62.3%
-수익 요인:             1.48
+총 거래 횟수: 12,450
+총 수익률: +5.23%
+샤프 비율: 2.14
+최대 낙폭: -2.1%
+평균 거래 지속 시간: 18.4분
+승률: 62.3%
+수익 요인: 1.48
 ```
 
 ### 페이퍼 트레이딩 모드
 
-실전 투입 전 항상 페이퍼 트레이딩으로 테스트하세요:
-
-```bash
+실전 투입 전 항상 페이퍼 트레이딩으로 테스트하세요: ```bash
 # 설정에서 페이퍼 트레이딩 활성화
 paper_trade_enabled: true
-paper_trade_account_balance:
-  BTC: 1.0
+paper_trade_account_balance: BTC: 1.0
   USDT: 50000.0
 
 # 페이퍼 트레이드는 [PAPER] 접두사로 표시
 >>> status
-  Markets:
-    [PAPER] binance  BTC-USDT  67,234.50  67,245.00  67,239.75
+  Markets: [PAPER] binance  BTC-USDT  67,234.50  67,245.00  67,239.75
 ```
 
 ### 프로덕션용 Docker Compose
@@ -469,31 +419,21 @@ paper_trade_account_balance:
 # docker-compose.yml
 version: '3.8'
 
-services:
-  hummingbot:
-    image: hummingbot/hummingbot:2.0.0
+services: hummingbot: image: hummingbot/hummingbot:2.0.0
     container_name: hummingbot_prod
     restart: unless-stopped
-    volumes:
-      - ./conf:/conf
+    volumes: - ./conf:/conf
       - ./logs:/logs
       - ./data:/data
-    environment:
-      - CONFIG_PASSWORD=${HBOT_PASSWORD}
+    environment: - CONFIG_PASSWORD=${HBOT_PASSWORD}
       - STRATEGY=pure_market_making
       - CONFIG_FILE=pmm_btc_usdt.yml
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "50m"
+    logging: driver: "json-file"
+      options: max-size: "50m"
         max-file: "5"
-    deploy:
-      resources:
-        limits:
-          memory: 2G
+    deploy: resources: limits: memory: 2G
           cpus: '1.0'
-    healthcheck:
-      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:15888/')"]
+    healthcheck: test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:15888/')"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -536,9 +476,7 @@ openssl enc -aes-256-cbc -salt -in secrets.yml -out secrets.yml.enc
 
 ## 제한 사항 및 솔직한 평가
 
-**Hummingbot은 돈 찍어내는 기계가 아닙니다.** 자본을 배치하기 전에 다음 제약을 이해하세요:
-
-1. **마켓 메이킹에는 인벤토리가 필요합니다.** 기본 자산과 호가 자산 모두의 잔고가 필요합니다. **$1,000** 미만으로 시작하면 수수료가 대부분의 이익을 잡아먹는 경우가 많습니다.
+**Hummingbot은 돈 찍어내는 기계가 아닙니다.** 자본을 배치하기 전에 다음 제약을 이해하세요: 1. **마켓 메이킹에는 인벤토리가 필요합니다.** 기본 자산과 호가 자산 모두의 잔고가 필요합니다. **$1,000** 미만으로 시작하면 수수료가 대부분의 이익을 잡아먹는 경우가 많습니다.
 
 2. **지연이 중요합니다.** VPS가 싱가포르에 있고 Binance의 매칭 엔진이 도쿄에 있다면, 동일 장소 마켓 메이커와 비교해 불리합니다. 저지연 VPS 옵션을 고려하세요.
 
@@ -596,8 +534,7 @@ docker run -it --name hummingbot \
 
 Hummingbot은 2026년 현재 가장 성숙한 오픈소스 마켓 메이킹 프레임워크입니다. 50개 이상의 거래소 커넥터, Docker로 5분 이내 배포, 완전한 Python 확장성으로 접근성과 성능 사이의 균형을 맞춥니다.
 
-다음 단계:
-1. **[Binance](https://www.bsmkweb.cc/register?ref=DIBI8) 또는 [OKX](https://www.promoohubly.com/join/12190433)에 가입**하여 API 키 생성
+다음 단계: 1. **[Binance](https://www.bsmkweb.cc/register?ref=DIBI8) 또는 [OKX](https://www.promoohubly.com/join/12190433)에 가입**하여 API 키 생성
 2. **위의 Docker 퀵스타트로 Hummingbot 배포**
 3. **실제 자본 투입 전 1주일간 페이퍼 트레이딩**
 4. **커뮤니티 참여** — [Hummingbot Discord](https://discord.gg/hummingbot)에는 15,000명 이상의 활성 트레이더가 전략을 공유합니다
@@ -619,9 +556,7 @@ Hummingbot은 2026년 현재 가장 성숙한 오픈소스 마켓 메이킹 프�
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -631,7 +566,6 @@ Hummingbot은 2026년 현재 가장 성숙한 오픈소스 마켓 메이킹 프�
 이 가이드에는 [Binance](https://www.bsmkweb.cc/register?ref=DIBI8), [OKX](https://www.promoohubly.com/join/12190433), [Minara](https://minara.ai/r/OSXG4X)의 제휴 링크가 포함되어 있습니다. 이 링크를 통해 가입하면 추가 비용 없이 커미션을 받습니다. 이는 오픈소스 문서 작업을 지원합니다. 우리는 활발히 사용하고 테스트하는 도구만을 추천합니다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

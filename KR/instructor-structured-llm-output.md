@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/instructor-structured-llm-output" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/instructor-structured-llm-output" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/instructor-structured-llm-output" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/instructor-structured-llm-output" />
 title: 'Instructor: LLM이 100% 유효한 JSON을 출력하도록 강제하는 Python 라이브러리 ...
 description: '일관성 없는 LLM 출력과의 투쟁을 멈추세요. Instructor가 Pydantic 모델을 사용하여 유효하고 타입 안전한 JSON 응답을 보장하기 위해 OpenAI 클라이언트를 패치하는 방법을 알아보세요. 재시도 로직, 다중 공급자 지원 및 스트리밍 기능을 갖추고 있습니다.'
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [instructor]
-aliases:
-- /kr/posts/instructor-structured-llm-output/
+aliases: - /kr/posts/instructor-structured-llm-output/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/instructor-structured-llm-output/ -->
 
 {{</* resource-info */>}}
 
@@ -70,15 +62,13 @@ from pydantic import BaseModel
 client = instructor.from_openai(OpenAI())
 
 # 출력 스키마를 Pydantic 모델로 정의
-class UserProfile(BaseModel):
-    name: str
+class UserProfile(BaseModel): name: str
     age: int
     email: str
     interests: list[str]
 
 # 자연어에서 구조화된 데이터 추출
-def extract_profile(user_description: str) -> UserProfile:
-    return client.chat.completions.create(
+def extract_profile(user_description: str) -> UserProfile: return client.chat.completions.create(
         model="gpt-4o",
         response_model=UserProfile,
         messages=[
@@ -116,29 +106,23 @@ LLM이 잘못된 출력을 생성하면 어떻게 될까요? Instructor의 기�
 ```python
 from pydantic import BaseModel, Field, field_validator
 
-class ValidatedProduct(BaseModel):
-    name: str = Field(description="제품 이름, 최대 50자")
+class ValidatedProduct(BaseModel): name: str = Field(description="제품 이름, 최대 50자")
     price: float = Field(description="USD 가격, 양수여야 함")
     category: str = Field(description="다음 중 하나: electronics, clothing, food, books")
     
     @field_validator(category)
     @classmethod
-    def validate_category(cls, v):
-        allowed = {electronics, clothing, food, books}
-        if v.lower() not in allowed:
-            raise ValueError(f"카테고리는 다음 중 하나여야 함: {allowed}")
+    def validate_category(cls, v): allowed = {electronics, clothing, food, books}
+        if v.lower() not in allowed: raise ValueError(f"카테고리는 다음 중 하나여야 함: {allowed}")
         return v.lower()
     
     @field_validator(price)
     @classmethod
-    def validate_price(cls, v):
-        if v <= 0:
-            raise ValueError("가격은 양수여야 함")
+    def validate_price(cls, v): if v <= 0: raise ValueError("가격은 양수여야 함")
         return round(v, 2)
 
 # 검증 실패 시 Instructor가 자동 재시도
-def parse_product(description: str) -> ValidatedProduct:
-    return client.chat.completions.create(
+def parse_product(description: str) -> ValidatedProduct: return client.chat.completions.create(
         model="gpt-4o",
         response_model=ValidatedProduct,
         max_retries=3,  # 피드백과 함께 최대 3회 재시도
@@ -167,24 +151,20 @@ print(product)
 from typing import Optional, List
 from pydantic import BaseModel, Field
 
-class Address(BaseModel):
-    street: str
+class Address(BaseModel): street: str
     city: str
     state: str = Field(description="2글자 주 코드")
     zip_code: str
     country: str = "US"
 
-class OrderItem(BaseModel):
-    product_name: str
+class OrderItem(BaseModel): product_name: str
     quantity: int = Field(ge=1, description="1 이상이어야 함")
     unit_price: float = Field(gt=0)
     
     @property
-    def total(self) -> float:
-        return self.quantity * self.unit_price
+    def total(self) -> float: return self.quantity * self.unit_price
 
-class CustomerOrder(BaseModel):
-    customer_name: str
+class CustomerOrder(BaseModel): customer_name: str
     customer_email: str
     shipping_address: Address
     billing_address: Optional[Address] = None
@@ -192,11 +172,9 @@ class CustomerOrder(BaseModel):
     order_notes: Optional[str] = None
     
     @property
-    def grand_total(self) -> float:
-        return sum(item.total for item in self.items)
+    def grand_total(self) -> float: return sum(item.total for item in self.items)
 
-def extract_order(email_text: str) -> CustomerOrder:
-    return client.chat.completions.create(
+def extract_order(email_text: str) -> CustomerOrder: return client.chat.completions.create(
         model="gpt-4o",
         response_model=CustomerOrder,
         messages=[
@@ -210,8 +188,7 @@ order = extract_order("""
 고객: John Smith (john.smith@email.com)
 배송지: 123 Oak Street, San Francisco, CA 94102
 
-상품:
-- MacBook Pro M3, 수량 1, $1999
+상품: - MacBook Pro M3, 수량 1, $1999
 - USB-C 허브, 수량 2, 각 $49
 
 노트북은 선물 포장해 주세요.
@@ -285,14 +262,12 @@ from pydantic import BaseModel
 # 배치 처리를 위한 비동기 클라이언트 사용
 async_client = instructor.from_openai(AsyncOpenAI())
 
-class SentimentResult(BaseModel):
-    text: str
+class SentimentResult(BaseModel): text: str
     sentiment: str  # "positive", "negative", "neutral"
     confidence: float
     key_phrases: list[str]
 
-async def analyze_single(text: str) -> SentimentResult:
-    return await async_client.chat.completions.create(
+async def analyze_single(text: str) -> SentimentResult: return await async_client.chat.completions.create(
         model="gpt-4o-mini",
         response_model=SentimentResult,
         messages=[
@@ -300,8 +275,7 @@ async def analyze_single(text: str) -> SentimentResult:
         ]
     )
 
-async def analyze_batch(texts: list[str]) -> list[SentimentResult]:
-    """여러 텍스트를 동시에 처리."""
+async def analyze_batch(texts: list[str]) -> list[SentimentResult]: """여러 텍스트를 동시에 처리."""
     tasks = [analyze_single(text) for text in texts]
     results = await asyncio.gather(*tasks)
     return results
@@ -329,14 +303,12 @@ print(f"긍정: {positive}/{len(results)}")
 from typing import Iterable
 from pydantic import BaseModel
 
-class PartialArticle(BaseModel):
-    title: str
+class PartialArticle(BaseModel): title: str
     sections: list[str]
     key_points: list[str]
 
 # 생성되는 대로 구조화된 데이터 스트리밍
-def stream_article(topic: str) -> Iterable[PartialArticle]:
-    return client.chat.completions.create_partial(
+def stream_article(topic: str) -> Iterable[PartialArticle]: return client.chat.completions.create_partial(
         model="gpt-4o",
         response_model=PartialArticle,
         stream=True,
@@ -346,8 +318,7 @@ def stream_article(topic: str) -> Iterable[PartialArticle]:
     )
 
 # 부분 결과가 도착하는 대로 소비
-for partial in stream_article("2026년 재생 에너지 트렌드"):
-    print(f"제목: {partial.title}")
+for partial in stream_article("2026년 재생 에너지 트렌드"): print(f"제목: {partial.title}")
     print(f"현재까지의 섹션 수: {len(partial.sections)}")
     print("---")
 ```
@@ -361,28 +332,23 @@ Instructor의 재시도 시스템은 단순히 요청을 반복하는 것이 아
 ```python
 from pydantic import BaseModel, field_validator
 
-class StrictDateRange(BaseModel):
-    start_date: str = Field(description="YYYY-MM-DD 형식")
+class StrictDateRange(BaseModel): start_date: str = Field(description="YYYY-MM-DD 형식")
     end_date: str = Field(description="YYYY-MM-DD 형식, 시작일 이후여야 함")
     
     @field_validator(start_date, end_date)
     @classmethod
-    def validate_date_format(cls, v):
-        from datetime import datetime
+    def validate_date_format(cls, v): from datetime import datetime
         datetime.strptime(v, "%Y-%m-%d")
         return v
     
     @field_validator(end_date)
     @classmethod
-    def validate_order(cls, end, info):
-        start = info.data.get(start_date)
-        if start and end <= start:
-            raise ValueError("end_date는 start_date 이후여야 함")
+    def validate_order(cls, end, info): start = info.data.get(start_date)
+        if start and end <= start: raise ValueError("end_date는 start_date 이후여야 함")
         return end
 
 # Instructor가 특정 검증 오류 피드백으로 재시도
-def extract_date_range(text: str) -> StrictDateRange:
-    return client.chat.completions.create(
+def extract_date_range(text: str) -> StrictDateRange: return client.chat.completions.create(
         model="gpt-4o",
         response_model=StrictDateRange,
         max_retries=3,
@@ -393,13 +359,11 @@ def extract_date_range(text: str) -> StrictDateRange:
 
 # 모델이 처음에 날짜를 바꾸거나 잘못된 형식을 사용하더라도,
 # Instructor가 구체적인 오류 메시지로 재질문
-try:
-    result = extract_date_range(
+try: result = extract_date_range(
         "프로젝트는 2026년 3월 15일부터 2026년 1월 10일까지 진행되었습니다"
     )
     print(result)
-except Exception as e:
-    print(f"최대 재시도 횟수 후 실패: {e}")
+except Exception as e: print(f"최대 재시도 횟수 후 실패: {e}")
 ```
 
 ---
@@ -411,8 +375,7 @@ except Exception as e:
 ```python
 from typing import Literal
 
-class SupportTicket(BaseModel):
-    customer_query: str
+class SupportTicket(BaseModel): customer_query: str
     category: Literal[
         "billing", 
         "technical_support", 
@@ -424,8 +387,7 @@ class SupportTicket(BaseModel):
     priority: Literal["low", "medium", "high", "urgent"]
     suggested_response: str
 
-def classify_ticket(ticket_text: str) -> SupportTicket:
-    return client.chat.completions.create(
+def classify_ticket(ticket_text: str) -> SupportTicket: return client.chat.completions.create(
         model="gpt-4o-mini",
         response_model=SupportTicket,
         messages=[
@@ -450,9 +412,7 @@ print(f"우선순위: {ticket.priority}")  # 항상 4개 값 중 하나
 
 ## FastAPI와의 통합으로 프로덕션 API 구축
 
-Instructor는 API 개발에서 빛을 발합니다. 다음은 구조화된 LLM 출력을 갖춘 완전한 FastAPI 엔드포인트입니다:
-
-```python
+Instructor는 API 개발에서 빛을 발합니다. 다음은 구조화된 LLM 출력을 갖춘 완전한 FastAPI 엔드포인트입니다: ```python
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import instructor
@@ -462,21 +422,17 @@ app = FastAPI(title="구조화된 LLM API")
 client = instructor.from_openai(OpenAI())
 
 # 요청 스키마
-class ExtractionRequest(BaseModel):
-    text: str
+class ExtractionRequest(BaseModel): text: str
     extract_fields: list[str]
 
 # 응답 스키마
-class ExtractedData(BaseModel):
-    entities: list[dict]
+class ExtractedData(BaseModel): entities: list[dict]
     relationships: list[dict]
     summary: str
 
 @app.post("/extract", response_model=ExtractedData)
-async def extract_entities(request: ExtractionRequest):
-    """비구조화된 텍스트에서 구조화된 엔티티를 추출."""
-    try:
-        result = client.chat.completions.create(
+async def extract_entities(request: ExtractionRequest): """비구조화된 텍스트에서 구조화된 엔티티를 추출."""
+    try: result = client.chat.completions.create(
             model="gpt-4o",
             response_model=ExtractedData,
             messages=[
@@ -491,8 +447,7 @@ async def extract_entities(request: ExtractionRequest):
             ]
         )
         return result
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+    except Exception as e: raise HTTPException(status_code=500, detail=str(e))
 
 # 실행: uvicorn main:app --reload
 ```
@@ -506,14 +461,12 @@ Instructor는 더 강력한 Pydantic 기반 스키마로 OpenAI의 함수 호출
 ```python
 from typing import Type
 
-class SearchQuery(BaseModel):
-    """매개변수가 있는 생성된 검색 쿼리"""
+class SearchQuery(BaseModel): """매개변수가 있는 생성된 검색 쿼리"""
     keywords: list[str]
     filters: dict[str, str]
     sort_by: Literal["relevance", "date", "price_asc", "price_desc"]
     
-def generate_search(user_request: str) -> SearchQuery:
-    return client.chat.completions.create(
+def generate_search(user_request: str) -> SearchQuery: return client.chat.completions.create(
         model="gpt-4o",
         response_model=SearchQuery,
         messages=[
@@ -618,7 +571,6 @@ Instructor는 LLM을 예측 불가능한 텍스트 생성기에서 신뢰할 수
 여전히 원시 LLM 출력을 `json.loads()`로 파싱하고 제대로 작동하기를 기도하고 있다면, 업그레이드할 때입니다. 오늘 Instructor를 설치하고 **100% 유효한 JSON, 100%의 시간**을 경험해 보세요.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/cloakbrowser-stealth-browser-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cloakbrowser-stealth-browser-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cloakbrowser-stealth-browser-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cloakbrowser-stealth-browser-2026" />
 title: 'CloakBrowser 2026: Trình Duyệt Ẩn Danh Miễn Phí Vượt Qua...
 description: 'CloakBrowser là dự án GitHub hot nhất tháng 5/2026: 49 bản vá C++ cấp nguồn, điểm reCAPTCHA v3 là 0.9, vượt qua 30+ dịch vụ bot detection. Miễn phí 100%, thay thế hoàn hảo cho công cụ thương mại $299/tháng.'
 date: 2026-05-14 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: ''
 last_maintained: '2026-05-14'
 featureImage: ''
 draft: false
-aliases:
-- /posts/cloakbrowser-stealth-browser-2026/
+aliases: - /posts/cloakbrowser-stealth-browser-2026/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/cloakbrowser-stealth-browser-2026/ -->
 
 {</* resource-info */>}
 
@@ -37,9 +29,7 @@ aliases:
 
 ## Vấn Đề Mà Mọi Lập Trình Viên Tự Động Hóa Đều Gặp Phải
 
-Nếu bạn từng xây dựng bot thu thập dữ liệu web, tự động hóa trình duyệt, hoặc AI agent tương tác với website, bạn chắc chắn hiểu cảm giác này:
-
-- Bạn viết code Playwright sạch sẽ. Chạy ổn định local. Triển khai lên server — **Cloudflare Turnstile** chặn ngay.
+Nếu bạn từng xây dựng bot thu thập dữ liệu web, tự động hóa trình duyệt, hoặc AI agent tương tác với website, bạn chắc chắn hiểu cảm giác này: - Bạn viết code Playwright sạch sẽ. Chạy ổn định local. Triển khai lên server — **Cloudflare Turnstile** chặn ngay.
 - reCAPTCHA v3 cho script của bạn điểm 0.1. Website từ chối âm thầm mọi request.
 - Thêm `playwright-stealth`. Hiệu quả được một tuần. Chrome cập nhật. Lại hỏng.
 - Thử `undetected-chromedriver`. Cloudflare đã nghiên cứu từng dòng code của nó và xây dựng biện pháp đối phó cho từng bản vá.
@@ -53,9 +43,7 @@ Ngày 8 tháng 5 năm 2026, **CloakBrowser** xuất hiện trên GitHub Trending
 
 ### Tại Sao JavaScript Injection Đã Chết
 
-Hệ thống phát hiện bot hiện đại không chỉ kiểm tra chuỗi User-Agent. Nó phân tích hàng chục tín hiệu tinh vi trên bề mặt vân tay trình duyệt:
-
-| Vector Phát Hiện | Kiểm Tra Gì | Công Cụ Cũ "Sửa" Bằng Cách Nào | Tại Sao Thất Bại |
+Hệ thống phát hiện bot hiện đại không chỉ kiểm tra chuỗi User-Agent. Nó phân tích hàng chục tín hiệu tinh vi trên bề mặt vân tay trình duyệt: | Vector Phát Hiện | Kiểm Tra Gì | Công Cụ Cũ "Sửa" Bằng Cách Nào | Tại Sao Thất Bại |
 |---|---|---|---|
 | **Canvas fingerprint** | Sự khác biệt tinh vi trong `toDataURL` | Ghi đè phương thức Canvas bằng JS | Chính việc ghi đè có thể bị phát hiện qua timing và phân tích prototype |
 | **WebGL vendor/renderer** | Thông tin GPU lộ ra qua WebGL context | Thay thế chuỗi JS | WebGL context bị khóa; thay thế để lại dấu vết |
@@ -72,9 +60,7 @@ Các công cụ như `playwright-stealth` và `undetected-chromedriver` hoạt �
 
 CloakBrowser đi theo con đường khác biệt hoàn toàn. Nó duy trì một **nhánh Chromium** với 49 bản vá C++ được áp dụng trực tiếp vào mã nguồn engine. Các bản vá này được biên dịch vào file nhị phân trình duyệt. Khi hệ thống phát hiện truy vấn `navigator.webdriver`, engine trả về `false` — không phải vì script JS ghi đè, mà vì mã C++ triển khai `navigator.webdriver` đã bị sửa đổi tại thời điểm biên dịch.
 
-49 bản vá bao phủ:
-
-- **Pipeline render Canvas 2D & WebGL** — đầu ra pixel hoàn hảo giống Chrome thật
+49 bản vá bao phủ: - **Pipeline render Canvas 2D & WebGL** — đầu ra pixel hoàn hảo giống Chrome thật
 - **DSP AudioContext** — chuỗi xử lý tín hiệu được sửa để khớp phần cứng thật
 - **Hệ thống font** — liệt kê trả về danh sách font thực tế theo từng nền tảng
 - **Báo cáo GPU** — chuỗi vendor/renderer WebGL khớp phần cứng NVIDIA/Intel/AMD thật
@@ -90,9 +76,7 @@ CloakBrowser đi theo con đường khác biệt hoàn toàn. Nó duy trì một
 
 ## Kết Quả Thực Nghiệm: Vượt Qua 30+ Dịch Vụ Phát Hiện
 
-Kiểm thử độc lập bởi bên thứ ba vào tháng 4/2026:
-
-| Dịch Vụ Phát Hiện | Playwright Gốc | playwright-stealth | undetected-chromedriver | **CloakBrowser** |
+Kiểm thử độc lập bởi bên thứ ba vào tháng 4/2026: | Dịch Vụ Phát Hiện | Playwright Gốc | playwright-stealth | undetected-chromedriver | **CloakBrowser** |
 |---|---|---|---|---|
 | reCAPTCHA v3 (xác minh server) | 0.1 (bot) | 0.3–0.5 | 0.3–0.7 | **0.9 (người)** |
 | Cloudflare Turnstile (không tương tác) | Thất bại | Thỉnh thoảng | Thỉnh thoảng | **Vượt qua** |
@@ -145,17 +129,13 @@ await browser.close();
 
 ### Docker (Không Cần Cài Đặt)
 
-Kiểm tra khả năng ẩn danh ngay lập tức:
-
-```bash
+Kiểm tra khả năng ẩn danh ngay lập tức: ```bash
 docker run --rm cloakhq/cloakbrowser cloaktest
 ```
 
 ### Chuyển Đổi Từ Playwright
 
-Chỉ cần thay đổi **một dòng code**:
-
-```python
+Chỉ cần thay đổi **một dòng code**: ```python
 # Trước
 from playwright.sync_api import sync_playwright
 pw = sync_playwright().start()
@@ -174,9 +154,7 @@ page.goto("https://example.com")
 
 ## Tích Hợp Với Các Framework
 
-CloakBrowser hoạt động với mọi framework tự động hóa sử dụng Playwright hoặc Chromium:
-
-| Framework | Ngôn Ngữ | Stars | Phương Thức Tích Hợp |
+CloakBrowser hoạt động với mọi framework tự động hóa sử dụng Playwright hoặc Chromium: | Framework | Ngôn Ngữ | Stars | Phương Thức Tích Hợp |
 |---|---|---|---|
 | browser-use | Python | 70K | Khởi chạy binary trực tiếp |
 | Crawl4AI | Python | 58K | Kết nối CDP |
@@ -265,7 +243,6 @@ Nếu bạn vẫn đang vật lộn với `playwright-stealth` hoặc trả phí
 *Xuất bản ngày 14 tháng 5 năm 2026. Các benchmark dựa trên CloakBrowser v0.3.26 (Chromium 146) và dữ liệu kiểm thử độc lập từ bên thứ ba.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

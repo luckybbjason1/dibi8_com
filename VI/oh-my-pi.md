@@ -1,19 +1,14 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/oh-my-pi" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/oh-my-pi" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/oh-my-pi" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/oh-my-pi" />
 title: "Oh My Pi: Biến Bất kỳ Raspberry Pi Nào Thành Thiết bị Th...
 description: "Oh My Pi (12.554 sao) biến thiết bị Raspberry Pi thành hub nhà thông minh, trung tâm media và workstation phát triển với cài đặt một-click và cấu hình tự động."
 date: 2026-06-15
-lastmod:  2026-06-15slug: oh-my-pi
+lastmod: 2026-06-15
+slug: oh-my-pi
 category: dev-utils
 tags: ['raspberry pi', 'nhà thông minh', 'iot', 'edge computing', 'home automation', 'linux', 'automation']
 github_repo: "https://github.com/can1357/oh-my-pi"
 license: MIT
-images:
-  - url: "https://opengraph.github.com/github/can1357/oh-my-pi"
+images: - url: "https://opengraph.github.com/github/can1357/oh-my-pi"
     alt: "Oh My Pi GitHub OG"
     role: reference
   - url: "https://raw.githubusercontent.com/can1357/oh-my-pi/main/assets/pi-setup.png"
@@ -26,8 +21,6 @@ lang: vi
 featureImage: /images/articles/oh-my-pi-turn-any-raspberry-pi-into-a-smart-device-12k-star-.jpg
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/oh-my-pi/ -->
-
 ## TL;DR
 
 Oh My Pi biến bất kỳ Raspberry Pi nào thành thiết bị thông minh được cấu hình đầy đủ với cài đặt tự động, dashboard được cấu hình sẵn và triển khai dịch vụ một-click. Với 12.554 sao, đây là framework tự động hóa Raspberry Pi phổ biến nhất trên GitHub.
@@ -38,9 +31,7 @@ Oh My Pi biến bất kỳ Raspberry Pi nào thành thiết bị thông minh đ�
 
 Oh My Pi là một framework cài đặt tự động cho thiết bị Raspberry Pi. Thay vì phải tự động cấu hình networking, cài đặt dịch vụ và kết nối chúng với nhau, Oh My Pi xử lý toàn bộ quy trình từ thẻ SD trống đến thiết bị thông minh hoạt động đầy đủ trong chưa đầy 30 phút.
 
-Dự án cung cấp một danh mục dịch vụ mô-đun bao gồm:
-
-- **Home Assistant** — Hub home automation toàn diện với 2.000+ tích hợp
+Dự án cung cấp một danh mục dịch vụ mô-đun bao gồm: - **Home Assistant** — Hub home automation toàn diện với 2.000+ tích hợp
 - **AdGuard Home** — Chặn quảng cáo và lọc DNS toàn mạng
 - **Pi-hole** — Trình chặn quảng cáo DNS nhẹ
 - **Grafana + Prometheus** — Dashboard giám sát cơ sở hạ tầng
@@ -63,9 +54,7 @@ sudo ./install.sh
 
 ## Oh My Pi Hoạt động Như thế nào
 
-Oh My Pi tuân theo mô hình triển khai ba giai đoạn:
-
-1. **Cung cấp Hệ thống** — Cấu hình OS, networking, người dùng và tăng cường bảo mật
+Oh My Pi tuân theo mô hình triển khai ba giai đoạn: 1. **Cung cấp Hệ thống** — Cấu hình OS, networking, người dùng và tăng cường bảo mật
 2. **Cài đặt Dịch vụ** — Triển khai dịch vụ đã chọn qua Docker Compose với các giá trị mặc định hợp lý
 3. **Lắp ráp Dashboard** — Tạo một dashboard web thống nhất để quản lý tất cả dịch vụ
 
@@ -103,53 +92,34 @@ curl -sSL https://ohmypi.sh/install | sudo bash
 
 ### Cấu hình Docker
 
-Oh My Pi sử dụng Docker Compose cho tất cả triển khai dịch vụ:
-
-```yaml
+Oh My Pi sử dụng Docker Compose cho tất cả triển khai dịch vụ: ```yaml
 # docker-compose.yaml được tạo sau khi cài đặt dịch vụ
 version: "3.9"
-services:
-  homeassistant:
-    image: ghcr.io/home-assistant/home-assistant:stable
-    volumes:
-      - ha-data:/config
+services: homeassistant: image: ghcr.io/home-assistant/home-assistant:stable
+    volumes: - ha-data:/config
       - /etc/localtime:/etc/localtime:ro
-    ports:
-      - "8123:8123"
+    ports: - "8123:8123"
     restart: unless-stopped
 
-  adguard:
-    image: adguard/adguardhome:latest
-    volumes:
-      - adguard-conf:/opt/adguardhome/conf
+  adguard: image: adguard/adguardhome:latest
+    volumes: - adguard-conf:/opt/adguardhome/conf
       - adguard-work:/opt/adguardhome/work
-    ports:
-      - "53:53/tcp"
+    ports: - "53:53/tcp"
       - "53:53/udp"
       - "3000:3000"
       - "80:80/tcp"
     restart: unless-stopped
 
-  vaultwarden:
-    image: vaultwarden/server:latest
-    volumes:
-      - vw-data:/data
-    environment:
-      SIGNUPS_ALLOWED: "false"
+  vaultwarden: image: vaultwarden/server:latest
+    volumes: - vw-data:/data
+    environment: SIGNUPS_ALLOWED: "false"
     restart: unless-stopped
 
-volumes:
-  ha-data:
-  adguard-conf:
-  adguard-work:
-  vw-data:
-```
+volumes: ha-data: adguard-conf: adguard-work: vw-data: ```
 
 ### Cấu hình Mạng
 
-Thiết lập mạng tự động xử lý DHCP reservation, DNS forwarding và quy tắc firewall:
-
-```bash
+Thiết lập mạng tự động xử lý DHCP reservation, DNS forwarding và quy tắc firewall: ```bash
 # Cấu hình IP tĩnh
 sudo omp network static --ip 192.168.1.100 --gateway 192.168.1.1 --dns 8.8.8.8
 
@@ -162,9 +132,7 @@ sudo omp firewall enable --allow 22 --allow 80 --allow 443 --allow 8123
 
 ## Danh mục Dịch vụ: Phân tích Chi tiết
 
-Oh My Pi hỗ trợ 20+ dịch vụ qua 6 danh mục:
-
-| Danh mục | Dịch vụ | Thời gian Cài đặt | Sử dụng Tài nguyên |
+Oh My Pi hỗ trợ 20+ dịch vụ qua 6 danh mục: | Danh mục | Dịch vụ | Thời gian Cài đặt | Sử dụng Tài nguyên |
 |----------|---------|-----------------|-------------------|
 | **Home Automation** | Home Assistant, Zigbee2MQTT | 5 phút | 512MB RAM |
 | **Networking** | AdGuard, Pi-hole, PiVPN | 3 phút | 128MB RAM |
@@ -184,9 +152,7 @@ sudo omp install homeassistant zigbee2mqtt adguard grafana vaultwarden
 
 ## So sánh với Các Giải pháp Thay thế
 
-Nhiều dự án tự động hóa Raspberry Pi tồn tại, nhưng Oh My Pi nổi bật:
-
-| Tính năng | Oh My Pi | CasaOS | Raspberry Pi Imager | OSMC |
+Nhiều dự án tự động hóa Raspberry Pi tồn tại, nhưng Oh My Pi nổi bật: | Tính năng | Oh My Pi | CasaOS | Raspberry Pi Imager | OSMC |
 |---------|----------|--------|-------------------|------|
 | Sao | 12.554 | 18K+ | N/A | 3.2K |
 | Số lượng Dịch vụ | 20+ | 15+ | N/A | 1 (chỉ media) |
@@ -201,48 +167,35 @@ Nhiều dự án tự động hóa Raspberry Pi tồn tại, nhưng Oh My Pi n�
 
 ## Sử dụng Nâng cao: Triển khai Dịch vụ Tùy chỉnh
 
-Triển khai dịch vụ tùy chỉnh với hệ thống mở rộng của Oh My Pi:
-
-### Viết Định nghĩa Dịch vụ Tùy chỉnh
+Triển khai dịch vụ tùy chỉnh với hệ thống mở rộng của Oh My Pi: ### Viết Định nghĩa Dịch vụ Tùy chỉnh
 
 ```yaml
 # my-service.yaml — định nghĩa dịch vụ tùy chỉnh
-service:
-  name: my-custom-app
+service: name: my-custom-app
   version: "1.0"
   description: "Triển khai ứng dụng tùy chỉnh"
   
-  docker:
-    image: "myapp:latest"
-    ports:
-      - "8080:8080"
-    volumes:
-      - myapp-data:/data
-    environment:
-      APP_ENV: production
+  docker: image: "myapp:latest"
+    ports: - "8080:8080"
+    volumes: - myapp-data:/data
+    environment: APP_ENV: production
       LOG_LEVEL: info
   
-  health_check:
-    url: "http://localhost:8080/health"
+  health_check: url: "http://localhost:8080/health"
     interval: "30s"
     retries: 3
   
-  resources:
-    cpu_limit: "0.5"
+  resources: cpu_limit: "0.5"
     memory_limit: "256M"
   
-  backup:
-    enabled: true
+  backup: enabled: true
     schedule: "0 2 * * *"  # hàng ngày lúc 2 AM
-    volumes:
-      - myapp-data
+    volumes: - myapp-data
 ```
 
 ### Backup Tự động
 
-Oh My Pi bao gồm một hệ thống backup tích hợp với lưu trữ mã hóa:
-
-```bash
+Oh My Pi bao gồm một hệ thống backup tích hợp với lưu trữ mã hóa: ```bash
 # Cấu hình đích backup
 sudo omp backup configure --remote s3 --bucket ohmypi-backups --region us-east-1
 
@@ -258,9 +211,7 @@ sudo omp backup schedule --frequency daily --retention 30
 
 ### Truy cập Từ xa và Tunneling
 
-Truy cập dịch vụ Pi của bạn từ bất cứ đâu với tunneling HTTPS tự động:
-
-```bash
+Truy cập dịch vụ Pi của bạn từ bất cứ đâu với tunneling HTTPS tự động: ```bash
 # Thiết lập Cloudflare Tunnel (miễn phí, không cần port forwarding)
 sudo omp tunnel cloudflare --token <cloudflare-token>
 
@@ -273,9 +224,7 @@ sudo omp proxy caddy --domain mypi.local --ssl auto
 
 ### Quản lý Cụm Đa Pi
 
-Quản lý nhiều Pi từ một dashboard duy nhất:
-
-```bash
+Quản lý nhiều Pi từ một dashboard duy nhất: ```bash
 # Thêm Pi thứ hai vào cluster
 sudo omp cluster add --host pi2.local --user pi --key ~/.ssh/id_ed25519
 
@@ -288,9 +237,7 @@ sudo omp cluster health
 
 ### Giám sát Sức khỏe Thẻ SD
 
-Thẻ SD Raspberry Pi có thể hỏng mà không có cảnh báo. Oh My Pi bao gồm giám sát kiểu SMART tích hợp:
-
-```bash
+Thẻ SD Raspberry Pi có thể hỏng mà không có cảnh báo. Oh My Pi bao gồm giám sát kiểu SMART tích hợp: ```bash
 # Kiểm tra sức khỏe thẻ SD
 sudo omp storage health
 
@@ -303,9 +250,7 @@ sudo omp storage schedule --interval hourly
 
 ### Giám sát Nguồn và Tích hợp UPS
 
-Để hoạt động không gián đoạn, Oh My Pi hỗ trợ giám sát phần cứng UPS và shutdownGraceful:
-
-```bash
+Để hoạt động không gián đoạn, Oh My Pi hỗ trợ giám sát phần cứng UPS và shutdownGraceful: ```bash
 # Cấu hình giám sát UPS
 sudo omp ups configure --driver usb --shutdown-delay 300
 
@@ -402,14 +347,12 @@ curl -sSL https://ohmypi.sh/install | sudo bash
 
 ---
 
-**Nguồn & Đọc thêm**:
-- Kho lưu trữ GitHub: https://github.com/can1357/oh-my-pi
+**Nguồn & Đọc thêm**: - Kho lưu trữ GitHub: https://github.com/can1357/oh-my-pi
 - Tài liệu Raspberry Pi: https://www.raspberrypi.com/documentation/
 - Tài liệu Docker: https://docs.docker.com/
 
 
-**Sources & Further Reading**:
-- GitHub repository: https://github.com/can1357/oh-my-pi
+**Sources & Further Reading**: - GitHub repository: https://github.com/can1357/oh-my-pi
 - Raspberry Pi docs: https://www.raspberrypi.com/documentation/
 - Docker docs: https://docs.docker.com/
 **CTA**: Tham gia cộng đồng IoT DIBI8 trên Telegram — [t.me/DIBI8_Group](https://t.me/DIBI8_Group)
@@ -417,7 +360,6 @@ curl -sSL https://ohmypi.sh/install | sudo bash
 **Disclosure**: Bài viết này chứa các liên kết tiếp thị liên kết. Nếu bạn đăng ký qua các liên kết của chúng tôi, chúng tôi có thể kiếm được hoa hồng mà không phát sinh chi phí bổ sung cho bạn.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

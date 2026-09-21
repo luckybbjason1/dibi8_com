@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/feast-feature-store-ml" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/feast-feature-store-ml" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/feast-feature-store-ml" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/feast-feature-store-ml" />
 title: 'Feast: Feature Store Mã Nguồn Mở Phục Vụ ML Feature Với ...
 description: 'Hướng dẫn đầy đủ về Feast — feature store mã nguồn mở hàng đầu. Bao gồm feature registry, online/offline stores, sub-second serving, backend Redis/BigQuery, batch & real-time features và triển khai production.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: [feast, 'feature store', mlops, 'ml pipeline', redis, bigquery, 'online store', 'offline store', 'real-time ml', 'feature engineering']
-aliases:
-- /vi/posts/feast-feature-store-ml/
+aliases: - /vi/posts/feast-feature-store-ml/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/feast-feature-store-ml/ -->
 
 {{</* resource-info */>}}
 
@@ -47,9 +39,7 @@ Trong hướng dẫn này, bạn sẽ cài đặt Feast, cấu hình online (Red
 
 **Feast là một feature store mã nguồn mở cung cấp giao diện thống nhất để định nghĩa, đăng ký, lưu trữ, và serve ML features.** Nó phân tách feature storage thành hai tầng: **offline store** cho training data generation (batch, historical queries) và **online store** cho real-time feature serving (sub-second lookups). Một **feature registry** trung tâm track tất cả feature definitions, metadata, và lineage.
 
-Các khả năng chính:
-
-- **Feature registry**: Catalog tập trung của feature definitions, versioned in code, có thể search và reuse across teams
+Các khả năng chính: - **Feature registry**: Catalog tập trung của feature definitions, versioned in code, có thể search và reuse across teams
 - **Offline store**: Batch retrieval của historical features cho model training — hỗ trợ BigQuery, Snowflake, Redshift, DuckDB, Spark
 - **Online store**: Sub-second (p99 < 10ms) feature lookups cho real-time inference — hỗ trợ Redis, DynamoDB, Bigtable, SQLite, Dragonfly
 - **Point-in-time joins**: Correct retrieval của historical feature values để prevent data leakage trong training
@@ -61,23 +51,16 @@ Feast **không** compute features — nó store và serve pre-computed features 
 
 ## Feast hoạt động như thế nào: Deep Dive Kiến trúc
 
-Kiến trúc Feast bao gồm bốn core components:
+Kiến trúc Feast bao gồm bốn core components: ### 1. Feature Registry
 
-### 1. Feature Registry
-
-Registry là bộ não của Feast. Nó lưu trữ tất cả feature definitions dưới dạng code (trong `feature_store.yaml` và Python files) và persist metadata đến một backend — file (local, S3, GCS) hoặc SQL database (PostgreSQL, MySQL):
-
-```yaml
+Registry là bộ não của Feast. Nó lưu trữ tất cả feature definitions dưới dạng code (trong `feature_store.yaml` và Python files) và persist metadata đến một backend — file (local, S3, GCS) hoặc SQL database (PostgreSQL, MySQL): ```yaml
 # feature_store.yaml — Feast project configuration
 project: fraud_detection
 provider: local
-registry: 
-  path: s3://my-bucket/registry.db  # SQL registry cho production
-online_store:
-  type: redis
+registry: path: s3://my-bucket/registry.db  # SQL registry cho production
+online_store: type: redis
   connection_string: "redis://localhost:6379"
-offline_store:
-  type: bigquery
+offline_store: type: bigquery
   project: my-gcp-project
   dataset: feast_offline
 entity_key_serialization_version: 2
@@ -87,9 +70,7 @@ Cho production, sử dụng **SQL registry** (PostgreSQL) để prevent conflict
 
 ### 2. Offline Store
 
-Offline store giữ khối lượng lớn historical feature data. Nó phục vụ hai mục đích:
-
-- **Training data generation**: Point-in-time joins để lấy feature values tại specific historical timestamps
+Offline store giữ khối lượng lớn historical feature data. Nó phục vụ hai mục đích: - **Training data generation**: Point-in-time joins để lấy feature values tại specific historical timestamps
 - **Batch scoring**: Large-scale feature retrieval cho batch predictions
 
 Supported backends: **BigQuery, Snowflake, Redshift, Spark, DuckDB, PostgreSQL, Trino**
@@ -133,9 +114,7 @@ features = store.get_online_features(
 
 ### 4. Feature Server
 
-Feast feature server là Go-based high-performance service expose feature retrieval qua REST và gRPC. Deploy như sidecar bên cạnh model serving infrastructure:
-
-```bash
+Feast feature server là Go-based high-performance service expose feature retrieval qua REST và gRPC. Deploy như sidecar bên cạnh model serving infrastructure: ```bash
 # Start feature server
 feast serve --port 6566
 
@@ -150,9 +129,7 @@ curl -X POST "http://localhost:6566/get-online-features" \
 
 ## Cài đặt & Setup: Dưới 5 phút
 
-Feast yêu cầu Python 3.9+ và pip. Cài đặt với backends mong muốn:
-
-```bash
+Feast yêu cầu Python 3.9+ và pip. Cài đặt với backends mong muốn: ```bash
 # Core Feast (minimal)
 pip install feast
 
@@ -166,16 +143,12 @@ pip install "feast[redis]"
 pip install "feast[gcp,redis,postgres,snowflake]"
 ```
 
-Verify:
-
-```bash
+Verify: ```bash
 feast version
 # Feast SDK Version: 0.63.0
 ```
 
-Khởi tạo Feast project mới:
-
-```bash
+Khởi tạo Feast project mới: ```bash
 mkdir fraud_detection_feature_store
 cd fraud_detection_feature_store
 feast init
@@ -279,18 +252,15 @@ feast materialize 2026-01-01T00:00:00 2026-05-19T00:00:00
 ```yaml
 project: fraud_detection
 provider: gcp
-registry:
-  registry_store_type: sql
+registry: registry_store_type: sql
   path: "postgresql://user:pass@pg-host:5432/feast_registry"
   cache_ttl_seconds: 60
 
-online_store:
-  type: redis
+online_store: type: redis
   connection_string: "redis://:password@redis-cluster.internal:6379"
   key_ttl_seconds: 604800
   
-offline_store:
-  type: bigquery
+offline_store: type: bigquery
   project: my-gcp-project
   dataset: feast_offline
   location: US
@@ -359,8 +329,7 @@ store = FeatureStore(repo_path=".")
 model = joblib.load("models/fraud_xgboost.pkl")
 
 @app.post("/predict")
-async def predict(user_id: str, transaction_amount: float):
-    features = store.get_online_features(
+async def predict(user_id: str, transaction_amount: float): features = store.get_online_features(
         features=[
             "user_transaction_features:avg_order_amount_30d",
             "user_transaction_features:total_transactions_90d",
@@ -406,9 +375,7 @@ default_args = {
 
 with DAG("feast_materialize", default_args=default_args,
          schedule_interval="@hourly", start_date=datetime(2026, 1, 1),
-         catchup=False) as dag:
-    
-    materialize = BashOperator(
+         catchup=False) as dag: materialize = BashOperator(
         task_id="materialize_features",
         bash_command="cd /opt/feast/fraud_detection_feature_store && feast materialize-incremental {{ ds }}T{{ ts_nodash_with_tz }}",
     )
@@ -470,8 +437,7 @@ from feast.types import Float64
     schema=[Field(name="transaction_amount_ratio", dtype=Float64)],
     mode="python",
 )
-def transaction_transforms(inputs):
-    import pandas as pd
+def transaction_transforms(inputs): import pandas as pd
     df = pd.DataFrame()
     df["transaction_amount_ratio"] = (inputs["transaction_amount"] / inputs["avg_order_amount_30d"]).fillna(0)
     return df
@@ -482,13 +448,10 @@ def transaction_transforms(inputs):
 ```yaml
 # feature_store_team_a.yaml
 project: team_a_fraud
-registry:
-  path: s3://shared-bucket/registry_team_a.db
-online_store:
-  type: redis
+registry: path: s3://shared-bucket/registry_team_a.db
+online_store: type: redis
   connection_string: "redis://shared-redis:6379/0"
-offline_store:
-  type: bigquery
+offline_store: type: bigquery
   project: my-gcp-project
   dataset: team_a_features
 ```
@@ -496,16 +459,13 @@ offline_store:
 ### Bảo mật Feature Store
 
 ```yaml
-auth:
-  type: oidc
+auth: type: oidc
   oidc_server_url: "https://auth.company.com"
   client_id: "feast-app"
   client_secret: "${OIDC_CLIENT_SECRET}"
 
-authorization:
-  enabled: true
-  policies:
-    - resource: "feature_view:user_transaction_features"
+authorization: enabled: true
+  policies: - resource: "feature_view:user_transaction_features"
       actions: ["read", "materialize"]
       roles: ["ml-engineer", "data-scientist"]
 ```
@@ -523,8 +483,7 @@ consumer = Consumer({"bootstrap.servers": "kafka:9092",
                      "auto.offset.reset": "latest"})
 consumer.subscribe(["transaction-events"])
 
-while True:
-    msg = consumer.poll(timeout=1.0)
+while True: msg = consumer.poll(timeout=1.0)
     if msg is None: continue
     event = json.loads(msg.value().decode("utf-8"))
     store.push(feature_view_name="user_transaction_features",
@@ -603,9 +562,7 @@ Nếu ML models của bạn chịu đựng training-serving skew, inference pipe
 
 Feast, với **7,000+ stars**, một cộng đồng vibrant gồm **361 contributors**, và support cho **20+ storage backends**, là open-source feature store của choice cho teams coi trọng flexibility và multi-cloud portability. Redis + BigQuery combination deliver **p50 online serving latency dưới 2ms**, trong khi point-in-time joins ensure training data của bạn free from leakage.
 
-Bắt đầu hôm nay:
-
-```bash
+Bắt đầu hôm nay: ```bash
 pip install feast[redis,bigquery]
 feast init
 feast apply
@@ -632,9 +589,7 @@ Thảo luận hướng dẫn này và chia sẻ Feast deployments trong Telegram
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -644,7 +599,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 Bài viết này chứa liên kết affiliate cho [DigitalOcean](https://m.do.co/c/eca87ac14ee0). Nếu bạn đăng ký qua các liên kết này, dibi8.com nhận được hoa hồng không phát sinh thêm chi phí cho bạn. Chúng tôi chỉ đề xuất các dịch vụ đã đánh giá và tin rằng mang lại giá trị thực sự cho việc triển khai ML infrastructure.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

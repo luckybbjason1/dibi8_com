@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ollama" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ollama" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ollama" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ollama" />
 title: 'Ollama: 137K+ Stars — 한 줄 명령으로 로컬에서 LLM 실행, 2026 완벽 설정 가이드'
 description: 'Ollama는 Llama, DeepSeek, Mistral 등의 LLM을 로컬에서 실행하는 가장 간단한 방법입니다. LangChain, OpenWebUI, Continue.dev, Dify와 호환됩니다. Docker 설정, Modelfile 커스터마이징, REST API, 프로덕션 하드닝, 성능 벤치마크를 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,12 +20,9 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [ollama, '로컬-llm', 'llama.cpp', deepseek, mistral, docker, modelfile, 오픈소스]
-aliases:
-- /kr/posts/ollama/
+aliases: - /kr/posts/ollama/
 - /kr/resources/llm-frameworks/ollama-local-llm-guide/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/ollama/ -->
 
 {{</* resource-info */>}}
 
@@ -175,9 +167,7 @@ vector = embeddings.embed_query("Hello world")
 
 ### Continue.dev (VS Code/Cursor AI 코딩 어시스턴트)
 
-`~/.continue/config.json`에 추가:
-
-```json
+`~/.continue/config.json`에 추가: ```json
 {
   "models": [
     {
@@ -197,9 +187,7 @@ vector = embeddings.embed_query("Hello world")
 
 ### Dify (자체 호스팅 AI 워크플로우 플랫폼)
 
-Dify의 **설정 > 모델 제공자 > Ollama**에서 구성:
-
-```
+Dify의 **설정 > 모델 제공자 > Ollama**에서 구성: ```
 모델 이름: llama3.2:8b
 기본 URL: http://host.docker.internal:11434
 컨텍스트 윈도우: 8192
@@ -239,45 +227,28 @@ curl http://localhost:11434/api/embed -d '{
 # docker-compose.yml
 version: "3.8"
 
-services:
-  ollama:
-    image: ollama/ollama:0.6.7
+services: ollama: image: ollama/ollama:0.6.7
     container_name: ollama
-    ports:
-      - "11434:11434"
-    volumes:
-      - ollama_data:/root/.ollama
-    environment:
-      - OLLAMA_KEEP_ALIVE=24h
+    ports: - "11434:11434"
+    volumes: - ollama_data:/root/.ollama
+    environment: - OLLAMA_KEEP_ALIVE=24h
       - OLLAMA_NUM_PARALLEL=4
       - OLLAMA_MAX_LOADED_MODELS=2
     restart: unless-stopped
     # NVIDIA GPU 지원
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+    deploy: resources: reservations: devices: - driver: nvidia
               count: all
               capabilities: [gpu]
 
-  open-webui:
-    image: ghcr.io/open-webui/open-webui:main
+  open-webui: image: ghcr.io/open-webui/open-webui:main
     container_name: open-webui
-    ports:
-      - "3000:8080"
-    environment:
-      - OLLAMA_BASE_URL=http://ollama:11434
-    volumes:
-      - openwebui_data:/app/backend/data
-    depends_on:
-      - ollama
+    ports: - "3000:8080"
+    environment: - OLLAMA_BASE_URL=http://ollama:11434
+    volumes: - openwebui_data:/app/backend/data
+    depends_on: - ollama
     restart: unless-stopped
 
-volumes:
-  ollama_data:
-  openwebui_data:
-```
+volumes: ollama_data: openwebui_data: ```
 
 `docker compose up -d`로 시작합니다.
 
@@ -300,36 +271,22 @@ sudo systemctl restart docker
 
 ### AMD ROCm GPU 설정
 
-ROCm 전용 이미지 태그 사용:
-
-```yaml
-services:
-  ollama:
-    image: ollama/ollama:rocm
-    devices:
-      - /dev/kfd
+ROCm 전용 이미지 태그 사용: ```yaml
+services: ollama: image: ollama/ollama:rocm
+    devices: - /dev/kfd
       - /dev/dri
-    group_add:
-      - video
-    environment:
-      - HSA_OVERRIDE_GFX_VERSION=11.0.0
+    group_add: - video
+    environment: - HSA_OVERRIDE_GFX_VERSION=11.0.0
 ```
 
 ### 다중 모델 동시 서빙
 
 ```yaml
-services:
-  ollama:
-    image: ollama/ollama:0.6.7
-    environment:
-      - OLLAMA_NUM_PARALLEL=4      # 4개 동시 요청
+services: ollama: image: ollama/ollama:0.6.7
+    environment: - OLLAMA_NUM_PARALLEL=4      # 4개 동시 요청
       - OLLAMA_MAX_LOADED_MODELS=2  # VRAM에 2개 모델 유지
       - OLLAMA_KEEP_ALIVE=30m      # 유휴 30분 후 언로드
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+    deploy: resources: reservations: devices: - driver: nvidia
               count: all
               capabilities: [gpu]
 ```
@@ -365,9 +322,7 @@ TEMPLATE """{{ if .System }}<|start_header_id|>system<|end_header_id|>
 {{ .Response }}<|eot_id|>"""
 ```
 
-빌드 및 실행:
-
-```bash
+빌드 및 실행: ```bash
 # 커스텀 모델 생성
 ollama create senior-dev -f Modelfile
 
@@ -384,14 +339,12 @@ ollama show senior-dev --modelfile
 # Modelfile.code-review
 FROM codellama:7b-code
 
-SYSTEM """당신은 코드 리뷰 어시스턴트입니다. 제공된 코드를 분석하여 다음을 검사하세요:
-1. 버그와 논리 오류
+SYSTEM """당신은 코드 리뷰 어시스턴트입니다. 제공된 코드를 분석하여 다음을 검사하세요: 1. 버그와 논리 오류
 2. 보안 취약점 (SQL 인젝션, XSS, 버퍼 오버플로우)
 3. 성능 문제 (N+1 쿼리, 불필요한 할당)
 4. 스타일과 가독성
 
-다음 형식으로 응답하세요:
-- [CRITICAL] 버그/보안용
+다음 형식으로 응답하세요: - [CRITICAL] 버그/보안용
 - [WARN] 성능용
 - [INFO] 스타일 제안용
 
@@ -529,9 +482,7 @@ server {
 
 ### API 키 인증 (네이티브 미지원)
 
-Ollama에는 내장 API 키 인증이 포함되어 있지 않습니다. 리버스 프록시를 통해 추가:
-
-```python
+Ollama에는 내장 API 키 인증이 포함되어 있지 않습니다. 리버스 프록시를 통해 추가: ```python
 # ollama-auth-proxy.py (Flask 예제)
 from flask import Flask, request, Response
 import requests
@@ -542,10 +493,8 @@ VALID_KEYS = {"sk-your-api-key-here"}
 
 @app.route('/', defaults={path: ''}, methods=[GET, POST, PUT, DELETE])
 @app.route('/<path:path>', methods=[GET, POST, PUT, DELETE])
-def proxy(path):
-    api_key = request.headers.get(Authorization, '').replace('Bearer ', '')
-    if api_key not in VALID_KEYS:
-        return {"error": "잘못된 API 키"}, 401
+def proxy(path): api_key = request.headers.get(Authorization, '').replace('Bearer ', '')
+    if api_key not in VALID_KEYS: return {"error": "잘못된 API 키"}, 401
     
     resp = requests.request(
         method=request.method,
@@ -557,15 +506,12 @@ def proxy(path):
     return Response(resp.iter_content(chunk_size=1024), status=resp.status_code,
                    content_type=resp.headers.get('Content-Type'))
 
-if __name__ == __main__:
-    app.run(host='0.0.0.0', port=11435)
+if __name__ == __main__: app.run(host='0.0.0.0', port=11435)
 ```
 
 ### Prometheus로 모니터링
 
-Ollama는 API를 통해 기본 메트릭을 노출합니다:
-
-```bash
+Ollama는 API를 통해 기본 메트릭을 노출합니다: ```bash
 # 메모리 사용량과 함께 실행 중인 모델 나열
 curl http://localhost:11434/api/ps
 ```
@@ -682,9 +628,7 @@ Ollama는 로컬 LLM 배포의 마찰을 제거합니다. 하나의 명령으로
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -704,7 +648,6 @@ Ollama는 로컬 LLM 배포의 마찰을 제거합니다. 하나의 명령으로
 - Continue.dev 문서: https://docs.continue.dev
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/huggingface-transformers-guide" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/huggingface-transformers-guide" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/huggingface-transformers-guide" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/huggingface-transformers-guide" />
 title: 'Hướng Dẫn Sử Dụng Hugging Face Transformers 2025: Dành C...
 description: 'Hướng dẫn chi tiết thư viện Hugging Face Transformers 2025: Pipeline API, fine-tuning BERT/GPT, tokenization, tối ưu model và triển khai production.'
 date: 2026-05-18 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/huggingface-transformers-guide/
+aliases: - /posts/huggingface-transformers-guide/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/huggingface-transformers-guide/ -->
 
 {</* resource-info */>}
 
@@ -43,9 +35,7 @@ Hugging Face Transformers là một thư viện Python mã nguồn mở cung c�
 
 ### Hệ Sinh Thái Hugging Face
 
-Transformers là một phần trong hệ sinh thái rộng lớn hơn của Hugging Face:
-
-| Thành phần | Chức năng |
+Transformers là một phần trong hệ sinh thái rộng lớn hơn của Hugging Face: | Thành phần | Chức năng |
 |---|---|
 | **Transformers** | Thư viện core cho các kiến trúc mô hình |
 | **Hub** | Nền tảng lưu trữ và chia sẻ 50.000+ models, datasets, spaces |
@@ -59,9 +49,7 @@ Transformers là một phần trong hệ sinh thái rộng lớn hơn của Hugg
 
 ### 50.000+ Pretrained Models
 
-Hugging Face Hub lưu trữ hơn 50.000 mô hình từ cộng đồng và các tổ chức lớn như Meta, Google, Microsoft, OpenAI. Các mô hình này bao gồm:
-
-- **Encoder models**: BERT, RoBERTa, DeBERTa, XLM-RoBERTa
+Hugging Face Hub lưu trữ hơn 50.000 mô hình từ cộng đồng và các tổ chức lớn như Meta, Google, Microsoft, OpenAI. Các mô hình này bao gồm: - **Encoder models**: BERT, RoBERTa, DeBERTa, XLM-RoBERTa
 - **Decoder models**: GPT-2, GPT-Neo, GPT-J, LLaMA, Mistral
 - **Encoder-Decoder models**: T5, BART, UL2
 - **Vision models**: ViT, DeiT, DETR, SAM
@@ -69,9 +57,7 @@ Hugging Face Hub lưu trữ hơn 50.000 mô hình từ cộng đồng và các t
 
 ### Hỗ Trợ Đa Framework
 
-Transformers tương thích với cả ba framework deep learning phổ biến nhất:
-
-- **PyTorch**: framework được hỗ trợ tốt nhất, đa số ví dụ sử dụng PyTorch
+Transformers tương thích với cả ba framework deep learning phổ biến nhất: - **PyTorch**: framework được hỗ trợ tốt nhất, đa số ví dụ sử dụng PyTorch
 - **TensorFlow/Keras**: hỗ trợ đầy đủ cho TF users
 - **JAX/Flax**: hỗ trợ cho XLA-accelerated training
 
@@ -98,9 +84,7 @@ pip install datasets accelerate
 
 ### Thiết Lập GPU (CUDA)
 
-Để sử dụng GPU NVIDIA, cài đặt PyTorch với CUDA support:
-
-```bash
+Để sử dụng GPU NVIDIA, cài đặt PyTorch với CUDA support: ```bash
 # PyTorch 2.3+ với CUDA 12.1
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
 
@@ -274,8 +258,7 @@ print(dataset)
 # DatasetDict({train: 25000, test: 25000})
 
 # Tokenize dataset
-def tokenize(batch):
-    return tokenizer(batch["text"], padding=True, truncation=True)
+def tokenize(batch): return tokenizer(batch["text"], padding=True, truncation=True)
 
 tokenized_dataset = dataset.map(tokenize, batched=True)
 ```
@@ -327,9 +310,7 @@ model = AutoModelForCausalLM.from_pretrained("gpt2")
 
 ### Sử Dụng LoRA Cho Fine-Tuning Hiệu Quả
 
-**LoRA (Low-Rank Adaptation)** cho phép fine-tune chỉ 1-2% parameters của model, giảm đáng kể yêu cầu bộ nhớ GPU và thờigian training:
-
-```python
+**LoRA (Low-Rank Adaptation)** cho phép fine-tune chỉ 1-2% parameters của model, giảm đáng kể yêu cầu bộ nhớ GPU và thờigian training: ```python
 from peft import LoraConfig, get_peft_model
 
 lora_config = LoraConfig(
@@ -350,9 +331,7 @@ model.print_trainable_parameters()
 
 ### Quantization (INT8, INT4)
 
-Quantization giảm kích thước model bằng cách sử dụng precision thấp hơn:
-
-```python
+Quantization giảm kích thước model bằng cách sử dụng precision thấp hơn: ```python
 from transformers import BitsAndBytesConfig
 import torch
 
@@ -387,16 +366,13 @@ model.save_pretrained("./onnx_model")
 
 ### Triển Khai Với Hugging Face Inference API
 
-Hugging Face cung cấp Inference API miễn phí cho hàng nghìn models — bạn có thể gọi qua HTTP mà không cần tự host:
-
-```python
+Hugging Face cung cấp Inference API miễn phí cho hàng nghìn models — bạn có thể gọi qua HTTP mà không cần tự host: ```python
 import requests
 
 API_URL = "https://api-inference.huggingface.co/models/bert-base-uncased"
 headers = {"Authorization": f"Bearer {YOUR_TOKEN}"}
 
-def query(payload):
-    response = requests.post(API_URL, headers=headers, json=payload)
+def query(payload): response = requests.post(API_URL, headers=headers, json=payload)
     return response.json()
 
 result = query({"inputs": "Hugging Face is a great company!"})
@@ -465,9 +441,7 @@ print(config.model_type)     # 'bert'
 
 ### Giới Hạn Độ Dài Token
 
-Hầu hết models có giới hạn 512 tokens (BERT) hoặc 1024-4096 tokens (GPT-2). Với văn bản dài, sử dụng:
-
-- **Truncation**: cắt bớt phần đuôi
+Hầu hết models có giới hạn 512 tokens (BERT) hoặc 1024-4096 tokens (GPT-2). Với văn bản dài, sử dụng: - **Truncation**: cắt bớt phần đuôi
 - **Sliding window**: chia thành nhiều đoạn có overlap
 - **Longformer/BigBird**: models chuyên xử lý sequences dài (4096+)
 
@@ -487,9 +461,7 @@ Hầu hết models có giới hạn 512 tokens (BERT) hoặc 1024-4096 tokens (G
 
 ### Làm thế nào để chọn pretrained model phù hợp?
 
-Các tiêu chí quan trọng:
-
-1. **Task**: chọn model được pre-train hoặc fine-tune cho task của bạn (classification, generation, v.v.)
+Các tiêu chí quan trọng: 1. **Task**: chọn model được pre-train hoặc fine-tune cho task của bạn (classification, generation, v.v.)
 2. **Language**: đảm bảo model hỗ trợ ngôn ngữ bạn cần
 3. **Size**: cân bằng giữa accuracy và inference speed — model nhỏ hơn chạy nhanh hơn
 4. **Community**: ưu tiên models có nhiều downloads và positive reviews
@@ -523,9 +495,7 @@ Hugging Face Transformers đã trở thành tiêu chuẩn de facto cho việc ph
 
 ## Hạ Tầng Đề Xuất
 
-Để chạy các công cụ trên 24/7 ổn định, lựa chọn hạ tầng rất quan trọng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu.
+Để chạy các công cụ trên 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp. dibi8.com cũng host ở đây.
 - **[Hostinger](https://www.hostinger.com/vn?REFERRALCODE=22RPIAOJIYJN)** — VPS giá tốt cho thị trường Việt Nam.
 
@@ -533,7 +503,6 @@ Hugging Face Transformers đã trở thành tiêu chuẩn de facto cho việc ph
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

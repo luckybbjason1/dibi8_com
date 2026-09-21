@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/litellm-unified-api-tutorial" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/litellm-unified-api-tutorial" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/litellm-unified-api-tutorial" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/litellm-unified-api-tutorial" />
 title: 'LiteLLM统一调用多模型教程2025：一个API接入100+大模型'
 description: 'LiteLLM完整教程：用统一API调用OpenAI、Anthropic、Gemini等100+模型。涵盖代理部署、负载均衡、成本优化等企业级实践。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/litellm-unified-api-tutorial/
+aliases: - /posts/litellm-unified-api-tutorial/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/litellm-unified-api-tutorial/ -->
 
 {</* resource-info */>}
 
@@ -46,7 +38,13 @@ LiteLLM 本质上是一个**LLM 网关（Gateway）**和**统一 API 抽象层**
 ### LiteLLM 的核心能力一览
 
 | 功能 | 说明 | 适用场景 |
-|------|------|----------|
+|
+---
+|
+---
+|
+---
+|
 | 统一 API 接口 | 将 100+ 提供商转换为 OpenAI 兼容格式 | 多模型集成项目 |
 | 代理服务器 | 提供 HTTP API + 虚拟密钥管理 | 企业级 LLM 网关 |
 | 智能路由 | 按成本/延迟/可用性自动选择模型 | 高可用生产环境 |
@@ -125,8 +123,7 @@ response = litellm.completion(
 ```python
 import litellm
 
-async def async_call():
-    response = await litellm.acompletion(
+async def async_call(): response = await litellm.acompletion(
         model="gpt-4o",
         messages=[{"role": "user", "content": "异步调用示例"}]
     )
@@ -146,29 +143,23 @@ litellm --config config.yaml
 ### config.yaml 配置详解
 
 ```yaml
-model_list:
-  - model_name: gpt-4o          # 自定义别名
-    litellm_params:
-      model: gpt-4o
+model_list: - model_name: gpt-4o          # 自定义别名
+    litellm_params: model: gpt-4o
       api_key: os.environ/OPENAI_API_KEY
 
   - model_name: claude-sonnet
-    litellm_params:
-      model: claude-3-5-sonnet-20241022
+    litellm_params: model: claude-3-5-sonnet-20241022
       api_key: os.environ/ANTHROPIC_API_KEY
 
   - model_name: llama-3-groq
-    litellm_params:
-      model: groq/llama3-70b-8192
+    litellm_params: model: groq/llama3-70b-8192
       api_key: os.environ/GROQ_API_KEY
 
-router_settings:
-  routing_strategy: simple-shuffle  # 负载均衡策略
+router_settings: routing_strategy: simple-shuffle  # 负载均衡策略
   num_retries: 3                    # 失败重试次数
   timeout: 30                       # 超时秒数
 
-general_settings:
-  master_key: os.environ/LITELLM_MASTER_KEY  # 管理密钥
+general_settings: master_key: os.environ/LITELLM_MASTER_KEY  # 管理密钥
   database_url: os.environ/DATABASE_URL       # PostgreSQL 用于持久化
 ```
 
@@ -196,15 +187,12 @@ curl -X POST http://localhost:4000/key/generate \
 ### 负载均衡与故障转移
 
 ```yaml
-model_list:
-  - model_name: llama-3         # 同一个别名对应多个后端
-    litellm_params:
-      model: groq/llama3-70b-8192
+model_list: - model_name: llama-3         # 同一个别名对应多个后端
+    litellm_params: model: groq/llama3-70b-8192
       rpm: 100
   
   - model_name: llama-3         # 同别名 —— 自动负载均衡
-    litellm_params:
-      model: together_ai/meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo
+    litellm_params: model: together_ai/meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo
       rpm: 60
 ```
 
@@ -230,8 +218,7 @@ router = Router(
 ### 响应缓存
 
 ```yaml
-caching:
-  - type: redis
+caching: - type: redis
     host: localhost
     port: 6379
     password: xxx
@@ -285,14 +272,11 @@ response = router.completion(model="cheap", messages=messages)
 当某个供应商出现延迟或故障时，自动切换到备用供应商：
 
 ```yaml
-model_list:
-  - model_name: llama-3-70b
-    litellm_params:
-      model: together_ai/meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo
+model_list: - model_name: llama-3-70b
+    litellm_params: model: together_ai/meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo
       api_key: os.environ/TOGETHER_API_KEY
   - model_name: llama-3-70b
-    litellm_params:
-      model: groq/llama3-70b-8192
+    litellm_params: model: groq/llama3-70b-8192
       api_key: os.environ/GROQ_API_KEY
 ```
 
@@ -350,7 +334,17 @@ llm = OpenAI(
 ## LiteLLM vs 替代方案：选哪个？
 
 | 特性 | LiteLLM | Portkey | 直接集成 | LangChain 模型抽象 |
-|------|---------|---------|----------|-------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 统一 API | ✅ 100+ 提供商 | ✅ 20+ 提供商 | ❌ 每套独立代码 | ⚠️ 仅支持部分 |
 | 代理服务器 | ✅ 完整企业级 | ✅ 有 | ❌ 自建 | ❌ 无 |
 | 虚拟密钥 | ✅ 原生支持 | ✅ 支持 | ❌ 自建 | ❌ 无 |
@@ -424,12 +418,12 @@ LiteLLM Proxy 提供虚拟 Key 系统：管理员持有 Master Key，为各团�
 
 SDK 是一个 Python 库，在你的应用中直接调用，适合开发阶段快速切换模型。Proxy 是一个独立 HTTP 服务，提供虚拟 Key、负载均衡、用量追踪等企业级功能，适合生产环境部署。两者可以独立使用，也可以组合使用。
 
----
 
+---
 更多技术细节可参考 [LiteLLM GitHub 仓库](https://github.com/BerriAI/litellm) 和 [官方文档](https://docs.litellm.ai/docs/proxy)。
 
----
 
+---
 ## 推荐基础设施
 
 要 7×24 稳跑上述工具，服务器选择关键：
@@ -441,7 +435,6 @@ SDK 是一个 Python 库，在你的应用中直接调用，适合开发阶段�
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -469,25 +462,20 @@ SDK 是一个 Python 库，在你的应用中直接调用，适合开发阶段�
 
 ## Why This Matters
 
-Understanding litellm统一调用多模型教程2025：一个api接入100+大模型 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding litellm统一调用多模型教程2025：一个api接入100+大模型 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -539,7 +527,17 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 ## Framework Comparison
 
 | Framework | Primary Use | Learning Curve | Community | Production Ready |
-|-----------|-------------|----------------|-----------|------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **LangChain** | General-purpose | Medium | Large | ✅ Yes |
 | **LlamaIndex** | RAG/Retrieval | Low | Growing | ✅ Yes |
 | **Haystack** | Document processing | Medium | Medium | ✅ Yes |

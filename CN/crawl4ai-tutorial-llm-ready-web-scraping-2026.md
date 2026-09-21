@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/crawl4ai-tutorial-llm-ready-web-scraping-2026" />
 title: 'Crawl4AI Tutorial 2026: Build LLM-Ready Web Scrapers and...
 description: 'Crawl4AI is the #1 trending GitHub repository in 2026 with 63k+ stars. Learn how to build LLM-friendly web scrapers, RAG data pipelines, and AI Agent tools with this open-source Python crawler. Includes installation guide, LLM extraction strategies, deep crawl configs, and comparison with Firecrawl and ScrapeGraphAI.'
 date: 2026-05-20 00:00:00+08:00
@@ -22,8 +20,7 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [crawl4ai, 'web-scraping', 'llm-rag', 'open-source']
-aliases:
-- /posts/crawl4ai-tutorial-llm-ready-web-scraping-2026/
+aliases: - /posts/crawl4ai-tutorial-llm-ready-web-scraping-2026/
 ---
 # Crawl4AI Tutorial 2026: Build LLM-Ready Web Scrapers and RAG Pipelines with the Fastest-Growing Open-Source Crawler
 
@@ -36,9 +33,7 @@ When `unclecode/crawl4ai` hit 63,000 GitHub stars and claimed the #1 trending sp
 
 Crawl4AI fills that gap with a dead-simple promise: **turn any website into clean, LLM-ready Markdown. Self-hosted. Zero API fees. Fully open source.**
 
-This is not a surface-level overview. It's a production-oriented tutorial that covers:
-
-- Installing and running your first crawl in under 5 minutes
+This is not a surface-level overview. It's a production-oriented tutorial that covers: - Installing and running your first crawl in under 5 minutes
 - Zero-rule structured data extraction using LLMs (GPT-4o, Claude, DeepSeek, Ollama)
 - Deep crawling, adaptive crawling, and BM25 content filtering
 - How Crawl4AI stacks against Firecrawl, ScrapeGraphAI, and Scrapy
@@ -46,8 +41,8 @@ This is not a surface-level overview. It's a production-oriented tutorial that c
 
 If you are building RAG systems, AI agents, or training datasets in 2026, this guide is written for you.
 
----
 
+---
 ## What Is Crawl4AI? The Data Infrastructure for the LLM Era
 
 ### Core Design Philosophy
@@ -59,7 +54,11 @@ That means navbars, cookie banners, ads, and script tags are stripped out before
 ### Key Features at a Glance
 
 | Feature | What It Does |
-|---------|-------------|
+|
+---
+|
+---
+|
 | **LLM-Ready Markdown** | Auto-cleans HTML noise; outputs structured Markdown perfect for LLM ingestion |
 | **Async Concurrency** | `AsyncWebCrawler` handles multiple URLs in parallel for high-throughput jobs |
 | **JavaScript Rendering** | Playwright engine handles React, Vue, and infinite-scroll SPAs natively |
@@ -76,8 +75,8 @@ That means navbars, cookie banners, ads, and script tags are stripped out before
 - **Data Teams**: Replace brittle XPath/CSS selectors with natural language extraction commands
 - **Privacy-Conscious Organizations**: Keep all data on-premise; no third-party SaaS dependency
 
----
 
+---
 ## Quick Start: Install, Crawl, and Output Markdown in 5 Minutes
 
 ### Installation
@@ -89,9 +88,7 @@ pip install crawl4ai
 playwright install chromium
 ```
 
-For the synchronous variant (Selenium-based):
-
-```bash
+For the synchronous variant (Selenium-based): ```bash
 pip install crawl4ai[sync]
 ```
 
@@ -107,13 +104,10 @@ docker pull unclecode/crawl4ai:latest
 import asyncio
 from crawl4ai import AsyncWebCrawler
 
-async def main():
-    async with AsyncWebCrawler() as crawler:
-        result = await crawler.arun(url="https://crawl4ai.com")
+async def main(): async with AsyncWebCrawler() as crawler: result = await crawler.arun(url="https://crawl4ai.com")
         print(result.markdown[:1000])
 
-if __name__ == "__main__":
-    asyncio.run(main())
+if __name__ == "__main__": asyncio.run(main())
 ```
 
 That's it. Ten lines of code, and you have clean Markdown ready to feed into an embedding model.
@@ -134,27 +128,21 @@ This is where Crawl4AI shifts from "convenient" to "game-changing." Instead of m
 
 ### Example: Extract Pricing Data from OpenAI's API Page
 
-Step 1 — Define your data schema with Pydantic:
-
-```python
+Step 1 — Define your data schema with Pydantic: ```python
 from pydantic import BaseModel, Field
 
-class ModelPricing(BaseModel):
-    model_name: str = Field(..., description="The name of the model")
+class ModelPricing(BaseModel): model_name: str = Field(..., description="The name of the model")
     input_cost: str = Field(..., description="Cost per 1M input tokens")
     output_cost: str = Field(..., description="Cost per 1M output tokens")
 ```
 
-Step 2 — Configure the LLM extraction strategy:
-
-```python
+Step 2 — Configure the LLM extraction strategy: ```python
 import os
 import asyncio
 from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
 from crawl4ai.extraction_strategy import LLMExtractionStrategy
 
-async def main():
-    browser_config = BrowserConfig(verbose=True)
+async def main(): browser_config = BrowserConfig(verbose=True)
     
     run_config = CrawlerRunConfig(
         word_count_threshold=1,
@@ -173,21 +161,25 @@ async def main():
         cache_mode=CacheMode.BYPASS,
     )
 
-    async with AsyncWebCrawler(config=browser_config) as crawler:
-        result = await crawler.arun(
+    async with AsyncWebCrawler(config=browser_config) as crawler: result = await crawler.arun(
             url='https://openai.com/api/pricing/',
             config=run_config
         )
         print(result.extracted_content)
 
-if __name__ == "__main__":
-    asyncio.run(main())
+if __name__ == "__main__": asyncio.run(main())
 ```
 
 ### Supported LLM Providers
 
 | Provider | Example `provider` string | Notes |
-|----------|---------------------------|-------|
+|
+---
+|
+---
+|
+---
+|
 | OpenAI | `openai/gpt-4o` | Best accuracy; moderate cost |
 | Anthropic | `anthropic/claude-sonnet-4-20250514` | Excellent for long-context pages |
 | Groq / DeepSeek | `groq/deepseek-r1-distill-llama-70b` | Fast, cost-efficient |
@@ -207,8 +199,7 @@ from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
 from crawl4ai.deep_crawling import BFSDeepCrawlStrategy
 from crawl4ai.content_scraping_strategy import LXMLWebScrapingStrategy
 
-async def main():
-    config = CrawlerRunConfig(
+async def main(): config = CrawlerRunConfig(
         deep_crawl_strategy=BFSDeepCrawlStrategy(
             max_depth=2,
             include_external=False
@@ -217,22 +208,17 @@ async def main():
         verbose=True
     )
 
-    async with AsyncWebCrawler() as crawler:
-        results = await crawler.arun("https://docs.crawl4ai.com/", config=config)
+    async with AsyncWebCrawler() as crawler: results = await crawler.arun("https://docs.crawl4ai.com/", config=config)
         print(f"Total pages crawled: {len(results)}")
         
-        for r in results[:5]:
-            print(f"URL: {r.url} | Depth: {r.metadata.get(depth, 0)}")
+        for r in results[:5]: print(f"URL: {r.url} | Depth: {r.metadata.get(depth, 0)}")
 
-if __name__ == "__main__":
-    asyncio.run(main())
+if __name__ == "__main__": asyncio.run(main())
 ```
 
 ### BM25 Content Filtering for RAG Pipelines
 
-When building a knowledge base, you often don't need the entire page — only the passages relevant to a query. Crawl4AI's BM25 filter solves this:
-
-```python
+When building a knowledge base, you often don't need the entire page — only the passages relevant to a query. Crawl4AI's BM25 filter solves this: ```python
 from crawl4ai.content_filter import BM25ContentFilter
 
 filter = BM25ContentFilter(
@@ -248,7 +234,17 @@ This filter ranks every text chunk on the page against your query and drops low-
 ## Head-to-Head: Crawl4AI vs Firecrawl vs ScrapeGraphAI vs Scrapy (2026)
 
 | Dimension | Crawl4AI | Firecrawl | ScrapeGraphAI | Scrapy |
-|-----------|----------|-----------|---------------|--------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **GitHub Stars** | 63k+ | 78k+ | 23k+ | 50k+ |
 | **Deployment** | Self-hosted / Docker | SaaS API + open-source | Open-source Python | Open-source framework |
 | **LLM Extraction** | Native | Supported | Core feature (graph traversal) | Manual integration |
@@ -273,17 +269,13 @@ This filter ranks every text chunk on the page against your query and drops low-
 
 ### Docker with FastAPI and JWT Authentication
 
-Deploy Crawl4AI as an internal microservice:
-
-```bash
+Deploy Crawl4AI as an internal microservice: ```bash
 docker run -p 8000:8000 \
   -e CRAWL4AI_API_TOKEN=your_jwt_secret \
   unclecode/crawl4ai:latest
 ```
 
-Call it from your application:
-
-```bash
+Call it from your application: ```bash
 curl -X POST http://localhost:8000/crawl \
   -H "Authorization: Bearer your_jwt_secret" \
   -d '{"url": "https://example.com", "output_format": "markdown"}'
@@ -291,9 +283,7 @@ curl -X POST http://localhost:8000/crawl \
 
 ### Proxy and Concurrency Configuration
 
-For production-scale crawling, configure proxy rotation and headless browser pools:
-
-```python
+For production-scale crawling, configure proxy rotation and headless browser pools: ```python
 browser_config = BrowserConfig(
     headless=True,
     proxy_config={
@@ -308,7 +298,13 @@ browser_config = BrowserConfig(
 ### Troubleshooting Common Issues
 
 | Symptom | Root Cause | Fix |
-|---------|-----------|-----|
+|
+---
+|
+---
+|
+---
+|
 | Empty output | SPA hasn't finished rendering | Use `wait_until="networkidle"` or inject a delay |
 | Blocked by anti-bot | Fingerprinting detection | Enable stealth mode; rotate residential proxies |
 | LLM extraction times out | Page too large for context window | Pre-filter with CSS selectors before LLM extraction |
@@ -320,9 +316,7 @@ browser_config = BrowserConfig(
 
 ## Recommended Hosting & Infrastructure
 
-Before deploying these tools into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before deploying these tools into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -359,7 +353,6 @@ Crawl4AI is not a universal replacement for every scraping need. But in the spec
 *Published 2026-05-19. Data sourced from GitHub, official docs, and publicly available benchmarks. Crawl4AI iterates rapidly; always cross-check with the latest documentation.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

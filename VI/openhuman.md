@@ -1,21 +1,13 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/openhuman" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/openhuman" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/openhuman" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/openhuman" />
 title: 'OpenHuman là gì?'
 lang: vi
 description: 'content/vi/resources/openhuman.md'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-18
-lastmod:  2026-06-18layout: article
+lastmod: 2026-06-18layout: article
 category: resources
 slug: openhuman
 featureImage: /articles/what-is-openhuman.jpg/images/articles/what-is-openhuman.jpg
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/openhuman/ -->
-
 
 # OpenHuman: Agent AI Chạy Cục bộ Phát triển Nhanh nhất (31K Stars) — Nền tảng AI Mã nguồn mở 2026
 
@@ -29,9 +21,7 @@ Memory Tree — một kho lưu trữ Markdown theo phong cách Obsidian được
 
 ## OpenHuman là gì?
 
-OpenHuman là một **trợ lý agentic mã nguồn mở** được thiết kế để hòa nhập vào quy trình làm việc hàng ngày của bạn trong khi mọi thứ vẫn chạy cục bộ. Khác với các trợ lý dạng trò chuyện tồn tại trong trình duyệt, OpenHuman là một **ứng dụng desktop** với:
-
-- **Memory Tree**: Một kho lưu trữ Markdown liên tục, tương thích Obsidian, lưu giữ lịch sử quy trình làm việc, sở thích và ngữ cảnh dự án — đồng bộ cục bộ, chưa bao giờ gửi lên đám mây
+OpenHuman là một **trợ lý agentic mã nguồn mở** được thiết kế để hòa nhập vào quy trình làm việc hàng ngày của bạn trong khi mọi thứ vẫn chạy cục bộ. Khác với các trợ lý dạng trò chuyện tồn tại trong trình duyệt, OpenHuman là một **ứng dụng desktop** với: - **Memory Tree**: Một kho lưu trữ Markdown liên tục, tương thích Obsidian, lưu giữ lịch sử quy trình làm việc, sở thích và ngữ cảnh dự án — đồng bộ cục bộ, chưa bao giờ gửi lên đám mây
 - **Định tuyến mô hình**: Hỗ trợ tích hợp hơn 50 mô hình AI thông qua một tài khoản duy nhất, kèm theo cân bằng tải tự động và cơ chế dự phòng
 - **118+ tích hợp**: Các kết nối dựa trên OAuth cho GitHub, Slack, Notion, Figma và nhiều dịch vụ khác — không cần quản lý thủ công từng khóa API
 - **TokenJuice**: Lớp nén thông minh token, giảm 60–95% lượng token tiêu thụ trong cửa sổ ngữ cảnh mà không làm giảm độ chính xác
@@ -41,8 +31,7 @@ Dự án bắt đầu từ tháng 2 năm 2026 và đã nhanh chóng tích lũy �
 ```yaml
 # Cấu hình OpenHuman — Vị trí Memory Tree
 # Mọi dữ liệu mặc định chỉ tồn tại trên máy của bạn
-memory:
-  vault_path: ~/.openhuman/vault
+memory: vault_path: ~/.openhuman/vault
   sync_mode: local  # hoặc "managed" nếu muốn đồng bộ đám mây tùy chọn
   model_default: gpt-4o
   model_fallback: claude-sonnet-4
@@ -51,9 +40,7 @@ memory:
 
 ## OpenHuman hoạt động như thế nào?
 
-OpenHuman tuân theo kiến trúc **ưu tiên cục bộ** với các dịch vụ quản lý tùy chọn:
-
-```
+OpenHuman tuân theo kiến trúc **ưu tiên cục bộ** với các dịch vụ quản lý tùy chọn: ```
 ┌─────────────────────────────────────────────┐
 │              OpenHuman Desktop App            │
 ├─────────────┬──────────────┬────────────────┤
@@ -123,8 +110,7 @@ openhuman --version
 
 ```bash
 # Recipe openhuman-bin AUR nằm ngay trong repo
-# Sau khi đã publish lên AUR:
-yay -S openhuman-bin
+# Sau khi đã publish lên AUR: yay -S openhuman-bin
 ```
 
 ### Windows
@@ -157,17 +143,14 @@ openhuman configure github --repo tinyhumansai/openhuman
 
 ### Tương thích với Obsidian
 
-Vì Memory Tree là một kho lưu trữ Markdown tiêu chuẩn, nó hoạt động liền mạch với Obsidian:
-
-```bash
+Vì Memory Tree là một kho lưu trữ Markdown tiêu chuẩn, nó hoạt động liền mạch với Obsidian: ```bash
 # Mở Memory Tree của bạn trong Obsidian
 # Toàn bộ lịch sử trò chuyện AI đã có sẵn dưới dạng ghi chú
 # Bạn có thể tìm kiếm, liên kết và tổ chức giống như các ghi chú thông thường
 
 # Xác nhận cấu trúc kho lưu trữ
 tree ~/.openhuman/vault --dirsfirst
-# Output:
-# .openhuman/vault/
+# Output: # .openhuman/vault/
 # ├── _index.md
 # ├── projects/
 # │   ├── project-alpha/
@@ -181,9 +164,7 @@ tree ~/.openhuman/vault --dirsfirst
 
 ### Lớp Connector Composio
 
-Composio cung cấp khung tích hợp dựa trên OAuth:
-
-```bash
+Composio cung cấp khung tích hợp dựa trên OAuth: ```bash
 # Liệt kê các connector Composio có sẵn
 openhuman integrations list
 
@@ -216,13 +197,10 @@ openhuman config models \
 
 ### Hiệu quả của Memory Tree
 
-Trong các bài kiểm tra, Memory Tree của OpenHuman cho thấy sự cải thiện đo lường được về độ chính xác ngữ cảnh theo thời gian:
-
-|| Chỉ số | Tuần 1 | Tuần 4 | Tuần 8 |
+Trong các bài kiểm tra, Memory Tree của OpenHuman cho thấy sự cải thiện đo lường được về độ chính xác ngữ cảnh theo thời gian: || Chỉ số | Tuần 1 | Tuần 4 | Tuần 8 |
 ||
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

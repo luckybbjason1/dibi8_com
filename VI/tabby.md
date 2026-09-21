@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/tabby" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/tabby" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/tabby" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/tabby" />
 title: 'Tabby: Trợ lý Lập trình AI Tự lưu trữ 33K+ Stars — Hướng...
 description: 'Tabby là trợ lý lập trình AI tự lưu trữ. Hỗ trợ VS Code, JetBrains, Vim, Neovim, Ollama, DeepSeek. Cài đặt Docker, tích hợp IDE, benchmark, và hardening production.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [tabby, 'tro-ly-lap-trinh-ai', 'tu-luu-tru', 'thay-the-github-copilot', 'hoan-thanh-code', docker, 'ma-nguon-mo']
-aliases:
-- /vi/posts/tabby/
+aliases: - /vi/posts/tabby/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/tabby/ -->
 
 {{</* resource-info */>}}
 
@@ -41,9 +33,7 @@ Tabby là trợ lý lập trình AI tự lưu trữ và giải pháp thay thế 
 
 ## Tabby hoạt động như thế nào?
 
-Tabby gồm ba thành phần cốt lõi:
-
-1. **Inference Server**: HTTP server dựa trên Rust tải các LLM chuyên code và phục vụ completion qua endpoint tương thích OpenAPI. Xử lý inference model, prompt templating, và streaming responses.
+Tabby gồm ba thành phần cốt lõi: 1. **Inference Server**: HTTP server dựa trên Rust tải các LLM chuyên code và phục vụ completion qua endpoint tương thích OpenAPI. Xử lý inference model, prompt templating, và streaming responses.
 
 2. **IDE Extensions**: Extensions native cho VS Code, JetBrains IDE, Vim/Neovim, và Emacs bắt context trình soạn thảo và chuyển yêu cầu completion đến inference server.
 
@@ -84,9 +74,7 @@ docker run -d \
   --device cuda
 ```
 
-Với hệ thống bật SELinux, thêm cờ `:Z` vào volume mount:
-
-```bash
+Với hệ thống bật SELinux, thêm cờ `:Z` vào volume mount: ```bash
 docker run -d \
   --name tabby \
   --gpus all \
@@ -158,26 +146,15 @@ Lần khởi động đầu, Tabby tải model weights đã chỉ định về `
 
 ### Docker Compose (Production-Ready)
 
-Cho triển khai lâu dài, dùng Docker Compose:
-
-```yaml
+Cho triển khai lâu dài, dùng Docker Compose: ```yaml
 version: '3.8'
-services:
-  tabby:
-    image: registry.tabbyml.com/tabbyml/tabby
+services: tabby: image: registry.tabbyml.com/tabbyml/tabby
     container_name: tabby
     restart: unless-stopped
-    ports:
-      - "8080:8080"
-    volumes:
-      - $HOME/.tabby:/data
-    environment:
-      - TABBY_WEBSERVER_JWT_TOKEN_SECRET=CHANGE_ME_TO_RANDOM_STRING
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+    ports: - "8080:8080"
+    volumes: - $HOME/.tabby:/data
+    environment: - TABBY_WEBSERVER_JWT_TOKEN_SECRET=CHANGE_ME_TO_RANDOM_STRING
+    deploy: resources: reservations: devices: - driver: nvidia
               count: all
               capabilities: [gpu]
     command: >
@@ -188,23 +165,17 @@ services:
       --parallelism 4
 ```
 
-Tạo JWT secret an toàn:
-
-```bash
+Tạo JWT secret an toàn: ```bash
 openssl rand -hex 32
 ```
 
-Triển khai:
-
-```bash
+Triển khai: ```bash
 docker compose up -d
 ```
 
 ### Homebrew (macOS Native)
 
-Nếu không muốn dùng Docker trên macOS:
-
-```bash
+Nếu không muốn dùng Docker trên macOS: ```bash
 # Cài qua Homebrew
 brew install tabbyml/tabby/tabby
 
@@ -237,9 +208,7 @@ curl http://localhost:8080/v1/health
 
 ### Vim / Neovim
 
-Cho Neovim với `nvim-cmp` và `cmp-tabby`:
-
-```lua
+Cho Neovim với `nvim-cmp` và `cmp-tabby`: ```lua
 -- Trong config Neovim (ví dụ: init.lua)
 require(cmp).setup({
   sources = {
@@ -253,9 +222,7 @@ vim.g.tabby_server_url = 'http://localhost:8080'
 
 ### Dùng Ollama làm Backend
 
-Tabby có thể ủy thác inference cho Ollama, cho phép chuyển đổi model động và quản lý nhiều model:
-
-```toml
+Tabby có thể ủy thác inference cho Ollama, cho phép chuyển đổi model động và quản lý nhiều model: ```toml
 # ~/.tabby/config.toml
 [model.completion.http]
 kind = "ollama/completion"
@@ -269,17 +236,13 @@ model_name = "qwen2.5-coder:7b"
 api_endpoint = "http://localhost:11434/v1"
 ```
 
-Khởi động Ollama với các model cần thiết:
-
-```bash
+Khởi động Ollama với các model cần thiết: ```bash
 ollama pull deepseek-coder:6.7b
 ollama pull qwen2.5-coder:7b
 ollama serve
 ```
 
-Sau đó khởi động Tabby không chỉ định `--model` (đọc từ config.toml):
-
-```bash
+Sau đó khởi động Tabby không chỉ định `--model` (đọc từ config.toml): ```bash
 tabby serve --device cuda
 ```
 
@@ -287,9 +250,7 @@ Thiết lập này lý tưởng khi muốn chạy nhiều model trên một GPU 
 
 ## Benchmark / Use Case Thực tế
 
-Hiệu suất Tabby phụ thuộc nhiều vào kích thước model và phần cứng. Các số liệu dưới đây từ benchmark cộng đồng và thử nghiệm nội bộ:
-
-| Model | Kích thước | GPU VRAM | Độ trễ TB | Tỷ lệ chấp nhận | Phù hợp cho |
+Hiệu suất Tabby phụ thuộc nhiều vào kích thước model và phần cứng. Các số liệu dưới đây từ benchmark cộng đồng và thử nghiệm nội bộ: | Model | Kích thước | GPU VRAM | Độ trễ TB | Tỷ lệ chấp nhận | Phù hợp cho |
 |---|---|---|---|---|---|
 | Qwen2.5-Coder-0.5B | 0.5B | 2 GB | ~200ms | 18% | Chỉ CPU, test nhanh |
 | StarCoder-1B | 1B | 3 GB | ~180ms | 22% | Triển khai tài nguyên thấp |
@@ -316,16 +277,12 @@ Cho hosting cơ sở hạ tầng server, cân nhắc [Hostinger](https://www.hos
 
 Tính năng killer của Tabby cho team là indexing context cấp repository. Nó clone và index Git repository của bạn, sau đó dùng RAG (Retrieval-Augmented Generation) để trích xuất code snippets nội bộ liên quan trong quá trình completion.
 
-Thêm repository qua admin dashboard:
-
-```bash
+Thêm repository qua admin dashboard: ```bash
 # Điều hướng đến Repositories → Thêm Git URL
 # Hỗ trợ GitHub, GitLab, và self-hosted Git
 ```
 
-Hoặc cấu hình qua scheduler CLI:
-
-```bash
+Hoặc cấu hình qua scheduler CLI: ```bash
 docker exec tabby /opt/tabby/bin/tabby-cpu scheduler --now
 ```
 
@@ -333,9 +290,7 @@ docker exec tabby /opt/tabby/bin/tabby-cpu scheduler --now
 
 1. **Thay đổi JWT secret mặc định**: Đặt `TABBY_WEBSERVER_JWT_TOKEN_SECRET` thành chuỗi hex 32-byte ngẫu nhiên mật mã học.
 
-2. **Chạy sau reverse proxy** với TLS termination:
-
-```nginx
+2. **Chạy sau reverse proxy** với TLS termination: ```nginx
 # Ví dụ Nginx
 server {
     listen 443 ssl;
@@ -354,9 +309,7 @@ server {
 
 3. **Bật LDAP/SSO authentication** (Enterprise feature) cho kiểm soát truy cập team.
 
-4. **Đặt giới hạn tài nguyên** trên container Docker:
-
-```bash
+4. **Đặt giới hạn tài nguyên** trên container Docker: ```bash
 docker run -d \
   --memory=24g \
   --cpus=8 \
@@ -412,9 +365,7 @@ Tabby là lựa chọn duy nhất trong nhóm này giữ 100% code on-premises. 
 
 ## Hạn chế / Đánh giá Trung thực
 
-Tabby không phải giải pháp thay thế cho mọi trường hợp Copilot. Lưu ý các trade-off sau:
-
-- **Model nhỏ kém hơn trong lý luận phức tạp**: Model 3B params không thể sánh với GPT-4 trong refactor đa file hoặc đề xuất kiến trúc. Cho những task đó, bạn vẫn cần tool chat dựa trên cloud.
+Tabby không phải giải pháp thay thế cho mọi trường hợp Copilot. Lưu ý các trade-off sau: - **Model nhỏ kém hơn trong lý luận phức tạp**: Model 3B params không thể sánh với GPT-4 trong refactor đa file hoặc đề xuất kiến trúc. Cho những task đó, bạn vẫn cần tool chat dựa trên cloud.
 - **Gánh nặng hạ tầng**: Bạn chịu trách nhiệm bảo trì GPU, cập nhật model, và uptime server. Không có fallback SaaS khi server down.
 - **Không có chat trong cài đặt cơ bản**: Chat/answer engine cần model chat riêng và VRAM bổ sung. Hãy plan sizing GPU phù hợp.
 - **Chi phí SSO doanh nghiệp**: LDAP và SSO nâng cao thuộc tier trả phí của Tabby, không có trong core mã nguồn mở.
@@ -473,9 +424,7 @@ Tabby lấp đầy khoảng trống quan trọng trong thị trường trợ lý
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -495,7 +444,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [HTStack GPU Cloud](https://www.htstack.com/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

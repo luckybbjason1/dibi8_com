@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/litellm" />
 title: 'LiteLLM: 22,500 Stars — Deploy One API for 100+ LLMs wit...
 description: 'LiteLLM (litellm) is an open-source AI gateway providing a single API for 100+ LLMs. Compatible with OpenAI, Anthropic, Ollama, Cohere, Gemini, Bedrock. Covers Docker deployment, virtual keys, load balancing, caching, and production hardening.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,11 +20,9 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [litellm, 'llm-gateway', 'open-source', docker, production, 'ai-infrastructure', 'proxy-server', 'multi-model']
-aliases:
-- /posts/litellm/
-- /resources/llm-frameworks/litellm-unified-api-tutorial/
+aliases: - /posts/litellm/
+- /resources/llm-frameworks/litellm-unified-api-tutorial/-
 ---
-
 {{</* resource-info */>}}
 
 ![LiteLLM Logo](https://raw.githubusercontent.com/BerriAI/litellm/main/docs/my-assets/logo.png)
@@ -39,21 +35,19 @@ This is the multi-LLM operational tax — and it compounds with every new model 
 
 With **22,500+ GitHub stars** and **1,500+ contributors**, LiteLLM has become the default choice for teams that want gateway-level control without vendor lock-in. This LiteLLM tutorial walks through a complete llm gateway setup — from LiteLLM Docker deployment to virtual key management to litellm production monitoring — in under 30 minutes.
 
----
 
+---
 ## What Is LiteLLM?
 
 LiteLLM is an open-source LLM proxy gateway and Python SDK that provides a unified interface to call 100+ LLM APIs — OpenAI, Anthropic, Azure, Google Vertex AI, AWS Bedrock, Cohere, Ollama, and more — using a single OpenAI-compatible API format.
 
-Two modes exist:
-
-- **Python SDK** — `import litellm; completion(...)` in your code, provider-agnostic
+Two modes exist: - **Python SDK** — `import litellm; completion(...)` in your code, provider-agnostic
 - **Proxy Server** — a self-hosted HTTP gateway at `:4000` that any OpenAI SDK client can point to
 
 The proxy mode is what most production teams use. It adds virtual keys, team management, budget controls, rate limiting, caching, and observability — all configured through a single `config.yaml` file.
 
----
 
+---
 ## How LiteLLM Works
 
 ![LiteLLM Architecture Diagram](images/litellm-architecture.png)
@@ -70,7 +64,13 @@ The proxy mode is what most production teams use. It adds virtual keys, team man
 **Core components:**
 
 | Component | Purpose | External Dependency |
-|-----------|---------|-------------------|
+|
+---
+|
+---
+|
+---
+|
 | Proxy Server | HTTP API, routing, auth | None (Python/FastAPI) |
 | PostgreSQL | Virtual keys, spend logs, team data | Required for production |
 | Redis | Rate-limit coordination, caching | Recommended |
@@ -109,68 +109,54 @@ EOF
 
 ```yaml
 # litellm_config.yaml
-model_list:
-  - model_name: gpt-4o
-    litellm_params:
-      model: openai/gpt-4o
+model_list: - model_name: gpt-4o
+    litellm_params: model: openai/gpt-4o
       api_key: os.environ/OPENAI_API_KEY
       rpm: 500
       tpm: 150000
 
   - model_name: claude-sonnet
-    litellm_params:
-      model: anthropic/claude-sonnet-4-20250514
+    litellm_params: model: anthropic/claude-sonnet-4-20250514
       api_key: os.environ/ANTHROPIC_API_KEY
       rpm: 200
       tpm: 40000
 
   - model_name: gemini-flash
-    litellm_params:
-      model: gemini/gemini-2.0-flash
+    litellm_params: model: gemini/gemini-2.0-flash
       api_key: os.environ/GEMINI_API_KEY
       rpm: 1000
 
   - model_name: ollama-llama
-    litellm_params:
-      model: ollama/llama3.3
+    litellm_params: model: ollama/llama3.3
       api_base: http://ollama:11434
-    model_info:
-      mode: chat
+    model_info: mode: chat
 
   # Embedding model
   - model_name: text-embedding
-    litellm_params:
-      model: openai/text-embedding-3-small
+    litellm_params: model: openai/text-embedding-3-small
       api_key: os.environ/OPENAI_API_KEY
 
-general_settings:
-  master_key: os.environ/LITELLM_MASTER_KEY
+general_settings: master_key: os.environ/LITELLM_MASTER_KEY
   database_url: os.environ/DATABASE_URL
   max_budget: 10000.00
   budget_duration: 30d
-  alerting:
-    - slack
+  alerting: - slack
   alerting_threshold: 300
   global_max_parallel_requests: 200
 
-litellm_settings:
-  drop_params: true
+litellm_settings: drop_params: true
   num_retries: 3
   request_timeout: 120
 
   # Automatic fallbacks
-  fallbacks:
-    - gpt-4o:
-      - claude-sonnet
+  fallbacks: - gpt-4o: - claude-sonnet
       - gemini-flash
-    - claude-sonnet:
-      - gpt-4o
+    - claude-sonnet: - gpt-4o
       - gemini-flash
 
   # Redis caching
   cache: true
-  cache_params:
-    type: redis
+  cache_params: type: redis
     host: redis
     port: 6379
     ttl: 3600
@@ -275,13 +261,10 @@ print(response.content[0].text)
 
 ```yaml
 # Add to litellm_config.yaml
-model_list:
-  - model_name: local-llama
-    litellm_params:
-      model: ollama/llama3.3
+model_list: - model_name: local-llama
+    litellm_params: model: ollama/llama3.3
       api_base: http://localhost:11434
-    model_info:
-      mode: chat
+    model_info: mode: chat
 ```
 
 ```bash
@@ -298,10 +281,8 @@ curl http://localhost:4000/v1/chat/completions \
 ### Cohere
 
 ```yaml
-model_list:
-  - model_name: cohere-command
-    litellm_params:
-      model: cohere/command-r-plus
+model_list: - model_name: cohere-command
+    litellm_params: model: cohere/command-r-plus
       api_key: os.environ/COHERE_API_KEY
 ```
 
@@ -320,10 +301,14 @@ response = client.chat.completions.create(
 
 ### Scenario: Multi-Team AI Platform (SaaS Startup)
 
-A 50-person AI startup serving 5 internal teams and external API customers:
-
-| Metric | Before LiteLLM | After LiteLLM |
-|--------|---------------|---------------|
+A 50-person AI startup serving 5 internal teams and external API customers: | Metric | Before LiteLLM | After LiteLLM |
+|
+---
+|
+---
+|
+---
+|
 | Provider SDKs maintained | 4 (OpenAI, Anthropic, Gemini, Ollama) | 1 (OpenAI-compatible) |
 | API key management | Shared keys in env vars | Virtual keys per team/customer |
 | Cost attribution | Manual CSV export | Per-key spend in real-time UI |
@@ -333,7 +318,15 @@ A 50-person AI startup serving 5 internal teams and external API customers:
 ### Performance Benchmarks (Self-Hosted, 4 vCPU / 8 GB RAM)
 
 | Workload | Throughput | P50 Latency | P99 Latency |
-|----------|-----------|-------------|-------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 50 RPS chat (GPT-4o) | Stable | 45ms overhead | 120ms overhead |
 | 200 RPS embedding | Stable | 12ms overhead | 35ms overhead |
 | Fallback trigger | — | 180ms failover | 280ms failover |
@@ -370,8 +363,7 @@ curl -X POST http://localhost:4000/key/generate \
     }
   }'
 
-# Response:
-# {
+# Response: # {
 #   "key": "sk-litellm-abc123...",
 #   "expires": null,
 #   "max_budget": 500.00,
@@ -382,23 +374,16 @@ curl -X POST http://localhost:4000/key/generate \
 ### Provider-Level Budget Caps
 
 ```yaml
-general_settings:
-  provider_budget_config:
-    openai:
-      monthly_budget: 5000.00
-    anthropic:
-      monthly_budget: 3000.00
-    gemini:
-      monthly_budget: 1000.00
+general_settings: provider_budget_config: openai: monthly_budget: 5000.00
+    anthropic: monthly_budget: 3000.00
+    gemini: monthly_budget: 1000.00
 ```
 
 ### Latency-Based Routing
 
 ```yaml
-router_settings:
-  routing_strategy: latency-based-routing
-  routing_strategy_args:
-    ttl: 60
+router_settings: routing_strategy: latency-based-routing
+  routing_strategy_args: ttl: 60
   allowed_fails: 3
   cooldown_time: 60
   num_retries: 2
@@ -410,20 +395,17 @@ router_settings:
 
 ```yaml
 # Security-hardened config.yaml
-general_settings:
-  master_key: os.environ/LITELLM_MASTER_KEY
+general_settings: master_key: os.environ/LITELLM_MASTER_KEY
   database_url: os.environ/DATABASE_URL
 
   # Force HTTPS in production
   # Run behind Nginx or AWS ALB with TLS termination
 
   # Disable verbose logging
-  litellm_settings:
-    set_verbose: false
+  litellm_settings: set_verbose: false
 
   # Encrypt keys at rest
-  litellm_settings:
-    key_generation_algorithm: "rsa"
+  litellm_settings: key_generation_algorithm: "rsa"
     allow_user_auth: false
 ```
 
@@ -448,14 +430,11 @@ helm install litellm-gateway ./litellm-helm \
 
 ```yaml
 # Add to config.yaml
-litellm_settings:
-  success_callback: ["prometheus"]
+litellm_settings: success_callback: ["prometheus"]
   failure_callback: ["prometheus"]
 ```
 
-Key Prometheus metrics exposed at `/metrics`:
-
-```promql
+Key Prometheus metrics exposed at `/metrics`: ```promql
 # Request rate by model
 rate(litellm_request_total_requests[5m])
 
@@ -476,7 +455,17 @@ Import the [official Grafana dashboard](https://github.com/BerriAI/litellm/blob/
 ## Comparison with Alternatives
 
 | Feature | LiteLLM | Portkey | OpenRouter | Helicone |
-|---------|---------|---------|------------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **License** | MIT (Open Source) | Closed core + Open SDK | Closed (Hosted) | Closed (Hosted + Self-host) |
 | **Deployment** | Self-hosted / Docker / K8s | Cloud + Hybrid | Hosted only | Cloud + Self-host |
 | **Models supported** | 100+ providers | 200+ | 300+ | Provider-dependent |
@@ -499,9 +488,7 @@ Import the [official Grafana dashboard](https://github.com/BerriAI/litellm/blob/
 
 ## Limitations / Honest Assessment
 
-LiteLLM is not the right tool for every situation. Here is where it falls short:
-
-1. **Operational overhead** — Unlike managed gateways, you own uptime, scaling, security patches, and database backups. Budget 0.5–1 FTE for production maintenance.
+LiteLLM is not the right tool for every situation. Here is where it falls short: 1. **Operational overhead** — Unlike managed gateways, you own uptime, scaling, security patches, and database backups. Budget 0.5–1 FTE for production maintenance.
 
 2. **No built-in prompt management** — Portkey's prompt versioning UI with A/B testing does not exist in LiteLLM. You manage prompt templates in your application or external tools.
 
@@ -564,9 +551,7 @@ For teams spending $5,000+/month on LLM APIs and with basic DevOps capacity, sel
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -585,7 +570,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [Helicone Documentation](https://docs.helicone.ai) — Observability-focused alternative
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

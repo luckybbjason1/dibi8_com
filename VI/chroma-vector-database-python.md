@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/chroma-vector-database-python" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/chroma-vector-database-python" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/chroma-vector-database-python" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/chroma-vector-database-python" />
 title: 'Chroma DB 2026: Cơ sở dữ liệu Vector thân thiện với lập ...
 description: 'Hướng dẫn thực tế về cơ sở dữ liệu vector Chroma với Python. Học cách cài đặt, tích hợp RAG, tìm kiếm embedding và triển khai production. Bao gồm benchmark, so sánh và trường hợp sử dụng thực tế.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: []
-aliases:
-- /vi/posts/chroma-vector-database-python/
+aliases: - /vi/posts/chroma-vector-database-python/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/chroma-vector-database-python/ -->
 
 {{</* resource-info */>}}
 
@@ -51,9 +43,7 @@ Không giống như các cơ sở dữ liệu truyền thống được gắn th
 
 ## Chroma hoạt động như thế nào: Kiến trúc & Khái niệm cốt lõi
 
-Kiến trúc của Chroma được cố ý thiết kế đơn giản. Hiểu ba khái niệm cốt lõi sẽ giúp bạn nắm được 80%:
-
-### Collections (Bộ sưu tập)
+Kiến trúc của Chroma được cố ý thiết kế đơn giản. Hiểu ba khái niệm cốt lõi sẽ giúp bạn nắm được 80%: ### Collections (Bộ sưu tập)
 Một **collection** là một container cho các tài liệu liên quan và embedding của chúng. Hãy nghĩ về nó như một bảng trong SQL, nhưng không có schema và native vector. Bạn tạo một collection cho mỗi loại tài liệu (ví dụ: `legal_docs`, `product_manuals`, `support_tickets`).
 
 ### Embeddings
@@ -202,9 +192,7 @@ print(f"Collection count after delete: {collection.count()}")
 
 ### Tích hợp LangChain
 
-Chroma là kho vector mặc định trong quickstart của LangChain. Tích hợp chỉ cần 3 dòng:
-
-```bash
+Chroma là kho vector mặc định trong quickstart của LangChain. Tích hợp chỉ cần 3 dòng: ```bash
 pip install langchain-chroma langchain-openai
 ```
 
@@ -232,8 +220,7 @@ vector_store.add_documents(docs)
 
 # Tìm kiếm
 results = vector_store.similarity_search("How do I use LangChain with Chroma?", k=2)
-for doc in results:
-    print(doc.page_content)
+for doc in results: print(doc.page_content)
 ```
 
 ### Tích hợp LlamaIndex
@@ -330,14 +317,11 @@ app = FastAPI()
 client = chromadb.PersistentClient(path="./chroma_api")
 collection = client.get_or_create_collection("api_docs")
 
-class QueryRequest(BaseModel):
-    query: str
+class QueryRequest(BaseModel): query: str
     n_results: int = 5
 
 @app.post("/search")
-def search_docs(request: QueryRequest):
-    try:
-        results = collection.query(
+def search_docs(request: QueryRequest): try: results = collection.query(
             query_texts=[request.query],
             n_results=request.n_results
         )
@@ -346,12 +330,10 @@ def search_docs(request: QueryRequest):
             "distances": results["distances"][0],
             "metadatas": results["metadatas"][0]
         }
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+    except Exception as e: raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/health")
-def health():
-    return {"status": "ok", "count": collection.count()}
+def health(): return {"status": "ok", "count": collection.count()}
 
 # Run: uvicorn main:app --reload
 ```
@@ -360,9 +342,7 @@ def health():
 
 ### Benchmark tổng hợp: Chroma so với Cosine Similarity đơn thuần
 
-Chúng tôi đã benchmark Chroma v0.6.0 so với phương pháp numpy brute-force trên một instance AWS c6i.2xlarge:
-
-| Kích thước tập dữ liệu | Naive (numpy) | Chroma (HNSW) | Tốc độ | Bộ nhớ (Chroma) |
+Chúng tôi đã benchmark Chroma v0.6.0 so với phương pháp numpy brute-force trên một instance AWS c6i.2xlarge: | Kích thước tập dữ liệu | Naive (numpy) | Chroma (HNSW) | Tốc độ | Bộ nhớ (Chroma) |
 |----------------------|---------------|---------------|--------|-----------------|
 | 1.000 vector | 12ms | 0,8ms | **15x** | 45MB |
 | 10.000 vector | 180ms | 1,2ms | **150x** | 120MB |
@@ -448,8 +428,7 @@ results = collection.query(
 
 ```python
 # Một collection cho mỗi user/tenant — cô lập theo thiết kế
-def get_user_collection(user_id: str):
-    return client.get_or_create_collection(f"user_{user_id}_docs")
+def get_user_collection(user_id: str): return client.get_or_create_collection(f"user_{user_id}_docs")
 
 # Dữ liệu của mỗi user được cô lập hoàn toàn
 user_a = get_user_collection("alice")
@@ -465,32 +444,19 @@ user_b.add(documents=["Bob's private document"], ids=["bob_1"])
 # docker-compose.yml
 version: "3.8"
 
-services:
-  chroma:
-    image: chromadb/chroma:0.6.0
-    ports:
-      - "8000:8000"
-    volumes:
-      - chroma_data:/chroma/chroma
-    environment:
-      - IS_PERSISTENT=TRUE
+services: chroma: image: chromadb/chroma:0.6.0
+    ports: - "8000:8000"
+    volumes: - chroma_data:/chroma/chroma
+    environment: - IS_PERSISTENT=TRUE
       - PERSIST_DIRECTORY=/chroma/chroma
       - ANONYMIZED_TELEMETRY=FALSE
     restart: unless-stopped
-    deploy:
-      resources:
-        limits:
-          memory: 8G
-        reservations:
-          memory: 2G
+    deploy: resources: limits: memory: 8G
+        reservations: memory: 2G
 
-volumes:
-  chroma_data:
-```
+volumes: chroma_data: ```
 
-Triển khai:
-
-```bash
+Triển khai: ```bash
 docker-compose up -d
 # Chroma API có sẵn tại http://localhost:8000
 ```
@@ -536,9 +502,7 @@ tar -xzf chroma_backup_20260519.tar.gz
 
 ## Hạn chế: Đánh giá trung thực
 
-Chroma không phải công cụ phù hợp cho mọi bài toán tìm kiếm vector. Đây là những gì bạn nên biết:
-
-**Không có phân cụm phân tán tích hợp.** Chroma chạy trên một node duy nhất. Với tập dữ liệu vượt quá ~10 triệu vector trên một máy, bạn sẽ cần sharding ở lớp ứng dụng hoặc một cơ sở dữ liệu khác như Milvus.
+Chroma không phải công cụ phù hợp cho mọi bài toán tìm kiếm vector. Đây là những gì bạn nên biết: **Không có phân cụm phân tán tích hợp.** Chroma chạy trên một node duy nhất. Với tập dữ liệu vượt quá ~10 triệu vector trên một máy, bạn sẽ cần sharding ở lớp ứng dụng hoặc một cơ sở dữ liệu khác như Milvus.
 
 **Tìm kiếm hybrid hạn chế.** Chroma hỗ trợ metadata filtering + vector search, nhưng tìm kiếm full-text ranking kết hợp với vector similarity (true hybrid search) chưa mạnh bằng Weaviate hay Elasticsearch với vector extensions.
 
@@ -597,9 +561,7 @@ Tham gia [nhóm Telegram tiếng Việt của dibi8.com](https://t.me/dibi8vn) �
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -613,7 +575,6 @@ Bài viết này chứa các liên kết affiliate. Nếu bạn đăng ký dịc
 *Được đăng trên dibi8.com — AI Source Code Hub. Cập nhật lần cuối: 2026-05-19*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

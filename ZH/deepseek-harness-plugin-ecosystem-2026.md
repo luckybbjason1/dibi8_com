@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/deepseek-harness-plugin-ecosystem-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/deepseek-harness-plugin-ecosystem-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/deepseek-harness-plugin-ecosystem-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/deepseek-harness-plugin-ecosystem-2026" />
 title: 'DeepSeek Harness：229K星插件生态，让一切皆可扩展 — 2026完整部署指南'
 description: 'DeepSeek Harness (DSH)是2026年增长最快的AI Agent框架，GitHub星数突破229K。学习如何构建自定义插件、集成Claude Code/Cursor/Codex，分钟级交付生产级Agent。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-09-19
-lastmod:  2026-09-19slug: 'deepseek-harness-plugin-ecosystem-2026-zh'
+lastmod: 2026-09-19
+slug: 'deepseek-harness-plugin-ecosystem-2026-zh'
 category: 'llm-frameworks'
 tags: ['deepseek', 'harness', 'plugin', 'ai-agent', 'dsh', 'automation', 'claude-code', 'cursor']
 github_repo: 'https://github.com/deepseek-ai/deepseek-harness'
@@ -15,10 +11,7 @@ stars: 229103
 maintainer: 'deepseek-ai'
 license: MIT
 featureImage: 'https://opengraph.github.com/github/deepseek-ai/deepseek-harness'
-lang: zh
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/deepseek-harness-plugin-ecosystem-2026/ -->
 
 # DeepSeek Harness：正在席卷2026的插件框架
 
@@ -411,7 +404,15 @@ this.on('before:commit', async (ctx) => {
 用 DSH 对比原生 Claude Code 的表现：
 
 | 指标 | 原生 Claude Code | DSH | 提升幅度 |
-|------|-----------------|-----|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 插件加载时间 | N/A | 45ms | — |
 | Token 消耗（启用插件） | 100% | 62% | -38% |
 | 响应延迟 | 2.1s | 1.8s | -14% |
@@ -432,7 +433,17 @@ this.on('before:commit', async (ctx) => {
 ## 与同类工具对比
 
 | 功能特性 | DeepSeek Harness | Agent Skills | Superpowers | Skills Framework |
-|----------|-----------------|--------------|-------------|------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 多 Agent 支持 | ✅ | ✅ | ✅ | ❌ |
 | 插件市场 | ✅ | ❌ | ❌ | ❌ |
 | 零配置启动 | ✅ | ❌ | ✅ | ❌ |
@@ -783,8 +794,8 @@ DeepSeek Harness 代表了我们对 AI 编程工具认知的一次根本转变�
 
 你现在会想做什么样的插件？在评论区分享你的想法，或者去 GitHub 提一个 Issue。
 
----
 
+---
 **来源与延伸阅读：**
 - 官方文档：https://deepseek-harness.github.io/deepseek-harness/
 - 插件市场：https://marketplace.deepseek.ai
@@ -796,7 +807,6 @@ DeepSeek Harness 代表了我们对 AI 编程工具认知的一次根本转变�
 **CTA：** 加入 DSH 中文社区 Telegram：https://t.me/DIBI8_Group
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -822,8 +832,8 @@ DeepSeek Harness 代表了我们对 AI 编程工具认知的一次根本转变�
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [claude-code-vs-cline](deepseek-harness-plugin-ecosystem-2026)

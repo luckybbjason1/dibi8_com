@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/schema-bug-faked-overfit-diagnosis-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/schema-bug-faked-overfit-diagnosis-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/schema-bug-faked-overfit-diagnosis-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/schema-bug-faked-overfit-diagnosis-2026" />
 title: 'Lỗi schema đã ngụy tạo chẩn đoán overfit của tôi: Báo cá...
 description: 'Chạy 7 thí nghiệm quant, phát hiện «overfit kinh điển» (Train PF 2.08 → OOS 0.94, tỷ lệ 2.21). Sau đó phát hiện chính chẩn đoán đó là sai — lỗi không khớp tên trường schema âm thầm khiến optimizer chạy với leverage mặc định 10x thay vì 2x đã được tiến hóa. Phiên bản đã sửa thì lành mạnh (tỷ lệ 1.01). Bài học meta còn xấu xí hơn bản gốc.'
 date: 2026-05-26 00:00:00+08:00
@@ -21,10 +16,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: [backtest, overfit, quant, 'schema-drift', 'walk-forward', postmortem, 2026]
-aliases:
-- /vi/posts/schema-bug-faked-overfit-diagnosis-2026/
-faq:
-  - q: "Schema drift là gì và tại sao nó lại ngụy tạo kết quả backtest?"
+aliases: - /vi/posts/schema-bug-faked-overfit-diagnosis-2026/
+faq: - q: "Schema drift là gì và tại sao nó lại ngụy tạo kết quả backtest?"
     a: "Schema drift nghĩa là tên trường tham số trong config của bạn không còn khớp với schema runtime nữa. Bộ deserialize sẽ âm thầm loại bỏ các trường lạ và dùng giá trị mặc định. Nếu các mặc định đó hung hãn (như leverage 10x trong khi bạn dự định 2x), kết quả backtest sẽ dao động kinh khủng. Các con số trông thật nhưng chúng đến từ một chiến lược khác hẳn với chiến lược bạn đã viết."
   - q: "Tại sao chẩn đoán overfit ban đầu trông thuyết phục đến vậy?"
     a: "Dấu hiệu kinh điển: Train PF 2.08, OOS PF 0.94, tỷ lệ 2.21. Bất kỳ quant trader nào cũng đã thấy mô hình này trong tài liệu — optimizer khớp với nhiễu không lặp lại. Kết luận «overfit» khớp hoàn hảo với hình dạng dữ liệu. Leverage 10x ẩn chỉ đơn giản là khuếch đại mọi thứ, khiến cả hai con số trở nên cực đoan. Với leverage 2x đúng, cùng tham số đó cho Train 1.494 / OOS 1.478 tỷ lệ 1.01 — ổn định một cách buồn tẻ."
@@ -37,8 +30,6 @@ faq:
   - q: "Danh sách «Bảy điều không nên» mới sau sự kiện này là gì?"
     a: "Mở rộng từ 7 lên 13. Các mục mới: không tin thí nghiệm khi không kiểm chứng schema, không kết luận trên dataset dưới 200 ngày giao dịch, không chấp nhận PF > 3 với dưới 30 giao dịch, không phát hành chiến lược nếu chưa kiểm chứng liên tài sản, không phớt lờ tỷ lệ stdev/mean (trên 1 = nhiễu), không báo cáo PF mà không phân rã theo từng đoạn, không chấp nhận báo cáo thiếu tỷ lệ IS/OOS."
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/schema-bug-faked-overfit-diagnosis-2026/ -->
 
 {{< resource-info >}}
 
@@ -70,8 +61,7 @@ Chúng tôi đã chạy moss-trade-bot-skills v1.0.26 ở chế độ paper trê
 
 Chiến lược là một biến thể mean-revert được tiến hóa bởi optimizer tham số của framework. Cấu hình đã tiến hóa trông hợp lý: trọng số trend thấp, trọng số mean-revert cao, leverage 2x thận trọng, sl/tp đối xứng.
 
-Kết quả backtest trở về sạch sẽ:
-- Train (212 ngày): PF 2.08
+Kết quả backtest trở về sạch sẽ: - Train (212 ngày): PF 2.08
 - OOS (92 ngày): PF 0.94
 - Tỷ lệ: 2.21
 
@@ -95,9 +85,7 @@ Cùng tham số, cùng tài sản, các cửa sổ thời gian khác nhau cho ra
 
 Trong mẫu Python điển hình `dataclass.from_dict()`, các trường lạ bị âm thầm loại bỏ. Pydantic cũng làm vậy trừ khi bạn bật strict mode.
 
-File cấu hình đã tiến hóa chứa:
-
-```json
+File cấu hình đã tiến hóa chứa: ```json
 {
   "leverage": 2,
   "sl_atr_mult": 2.5,
@@ -106,9 +94,7 @@ File cấu hình đã tiến hóa chứa:
 }
 ```
 
-Schema `DecisionParams` runtime mong đợi:
-
-```python
+Schema `DecisionParams` runtime mong đợi: ```python
 base_leverage: float = 10.0
 max_leverage: float = 40.0
 sl_atr_mult: float = ...
@@ -124,9 +110,7 @@ Năm giây `print(vars(params))` sau `from_dict()` đáng lẽ đã chỉ ra đi
 
 ## Các con số đã sửa
 
-Cùng BTC 304 ngày, cùng chia 70/30, cùng tham số đã tiến hóa — nhưng được ánh xạ đúng vào các trường schema hiện tại:
-
-- Train PF: 1.494
+Cùng BTC 304 ngày, cùng chia 70/30, cùng tham số đã tiến hóa — nhưng được ánh xạ đúng vào các trường schema hiện tại: - Train PF: 1.494
 - OOS PF: 1.478
 - Tỷ lệ: **1.01**
 
@@ -138,9 +122,7 @@ Chiến lược không bị hỏng. Chẩn đoán đã bị hỏng.
 
 Kết quả đã sửa là ổn định trên BTC 304 ngày, nhưng kiểm tra liên tài sản kể một câu chuyện ít đẹp đẽ hơn.
 
-Tám cặp crypto, cùng cửa sổ 148 ngày, cùng tham số đã sửa:
-
-| Tài sản | Train PF | OOS PF | Tỷ lệ |
+Tám cặp crypto, cùng cửa sổ 148 ngày, cùng tham số đã sửa: | Tài sản | Train PF | OOS PF | Tỷ lệ |
 |---|---|---|---|
 | ETH | 1.154 | 0.697 | 1.66 |
 | BNB | 1.512 | 0.213 | 7.10 |
@@ -158,30 +140,21 @@ Một kiểm tra walk-forward đã xác nhận: đoạn 1 là in-sample, đoạn
 
 ## Các lớp phòng vệ
 
-Ba lớp, theo thứ tự nỗ lực/giá trị:
-
-**1. Deserialization nghiêm ngặt.** Hãy làm cho bộ nạp tham số của bạn từ chối các trường lạ. Trong Python:
-
-```python
+Ba lớp, theo thứ tự nỗ lực/giá trị: **1. Deserialization nghiêm ngặt.** Hãy làm cho bộ nạp tham số của bạn từ chối các trường lạ. Trong Python: ```python
 @dataclass(frozen=True, kw_only=True)
-class DecisionParams:
-    base_leverage: float = 10.0
+class DecisionParams: base_leverage: float = 10.0
     # ...
     
     @classmethod
-    def from_dict(cls, d: dict) -> "DecisionParams":
-        valid = {f.name for f in cls.__dataclass_fields__.values()}
+    def from_dict(cls, d: dict) -> "DecisionParams": valid = {f.name for f in cls.__dataclass_fields__.values()}
         unknown = set(d.keys()) - valid
-        if unknown:
-            raise ValueError(f"Unknown fields: {unknown}")
+        if unknown: raise ValueError(f"Unknown fields: {unknown}")
         return cls(**{k: v for k, v in d.items() if k in valid})
 ```
 
 Hàm `from_dict()` gốc đã lọc xuống các trường hợp lệ *mà không raise* trên các trường lạ. Một `raise` bị thiếu đã tốn bảy thí nghiệm.
 
-**2. In tham số hiệu lực trước khi backtest.** Ba dòng:
-
-```python
+**2. In tham số hiệu lực trước khi backtest.** Ba dòng: ```python
 params = DecisionParams.from_dict(raw)
 print(f"Effective: leverage={params.base_leverage}, sl={params.sl_atr_mult}, tp={params.tp_rr_ratio}")
 assert params.base_leverage == raw.get("base_leverage", raw.get("leverage")), "leverage mismatch"
@@ -191,9 +164,7 @@ assert params.base_leverage == raw.get("base_leverage", raw.get("leverage")), "l
 
 ## «Bảy điều không nên» mới — Giờ là Mười ba
 
-Bảy quy tắc kỷ luật backtest ban đầu đã tăng lên mười ba sau sự cố này. Sáu mục mới đến trực tiếp từ những thí nghiệm này:
-
-- **Không tin thí nghiệm khi không kiểm chứng schema.** Hãy in tham số trước khi backtest.
+Bảy quy tắc kỷ luật backtest ban đầu đã tăng lên mười ba sau sự cố này. Sáu mục mới đến trực tiếp từ những thí nghiệm này: - **Không tin thí nghiệm khi không kiểm chứng schema.** Hãy in tham số trước khi backtest.
 - **Không kết luận trên dataset dưới 200 ngày giao dịch.** Các cửa sổ con 148 ngày của cùng một tài sản đã cho chẩn đoán ngược nhau.
 - **Không chấp nhận PF > 3 với dưới 30 giao dịch.** Cờ đỏ mặc định.
 - **Không phát hành chiến lược mà chưa kiểm chứng liên tài sản.** Ổn định trên một tài sản là cần thiết, không đủ.
@@ -210,9 +181,7 @@ Nếu bạn chỉ lấy một thói quen từ bài postmortem này: hãy in tham
 
 ## Hạ tầng được đề xuất
 
-Cho khung thí nghiệm walk-forward + đa tài sản:
-
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — Tín dụng $200, droplet GPU/CPU dễ dùng
+Cho khung thí nghiệm walk-forward + đa tài sản: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — Tín dụng $200, droplet GPU/CPU dễ dùng
 - **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hong Kong, độ trễ thấp đến các API sàn châu Á
 
 *Liên kết tiếp thị liên kết — cùng giá, ủng hộ dibi8.com.*
@@ -222,7 +191,6 @@ Cho khung thí nghiệm walk-forward + đa tài sản:
 **Liên quan**: [Đánh giá Moss Trade Bot Factory 2026](https://dibi8.com/vi/resources/ai-trading/moss-trade-bot-factory-2026-review/) · [5 mô hình OVERFIT trong Backtest 2026](https://dibi8.com/vi/resources/ai-trading/backtest-overfit-5-patterns-2026/) · [Backtesting Python với Backtrader](https://dibi8.com/vi/resources/ai-trading/backtrader-python-backtesting/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

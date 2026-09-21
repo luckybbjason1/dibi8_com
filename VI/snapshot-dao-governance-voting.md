@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/snapshot-dao-governance-voting" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/snapshot-dao-governance-voting" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/snapshot-dao-governance-voting" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/snapshot-dao-governance-voting" />
 title: 'snapshot-dao-governance-voting'
 description: '{'en': ''Comprehensive guide to Snapshot, the open-source off-chain DAO voting platform with 10M+ votes processed. Learn gas-free governance, voting strategies, delegation, SDK integration, and IPFS storage.'', 'zh': ''Snapshot综合指南，这个开源链下DAO投票平台已处理超过1000万张选票。了解无Gas治理、投票策略、委托、SDK集成和IPFS存储。'', 'ko': ''1,000만 개 이상의 투표를 처리한 오픈소스 오프체인 DAO 투표 플랫폼 Snapshot에 대한 종합 가이드. 가스 없는 거버넌스, 투표 전략, 위임, SDK 통합, IPFS 저장소를 알아보세요.'', 'vi': ''Hướng dẫn toàn diện về Snapshot, nền tảng bỏ phiếu DAO off-chain mã nguồn mở đã xử lý 10M+ phiếu bầu. Tìm hiểu quản trị không tốn gas, chiến lược bỏ phiếu, ủy quyền, tích hợp SDK, và lưu trữ IPFS.''}'
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: [snapshot, dao, governance, voting, 'off-chain', 'eip-712', ipfs, delegation, defi, web3]
-aliases:
-- /vi/posts/snapshot-dao-governance-voting/
+aliases: - /vi/posts/snapshot-dao-governance-voting/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/snapshot-dao-governance-voting/ -->
 
 {{</* resource-info */>}}
 
@@ -61,9 +53,7 @@ Hướng dẫn toàn diện này khám phá kiến trúc, chiến lược bỏ p
 
 ### 2.1 Mô hình Bỏ phiếu Off-Chain
 
-Phương pháp tiếp cận cách mạng của Snapshot dựa trên việc tách biệt **tín hiệu bỏ phiếu** khỏi **thực thi bỏ phiếu**. Quản trị on-chain truyền thống yêu cầu mọi ngườitham gia gửi một giao dịch, trả phí gas tỷ lệ thuận với mức độ tắc nghẽn mạng. Snapshot đảo ngược mô hình này:
-
-```typescript
+Phương pháp tiếp cận cách mạng của Snapshot dựa trên việc tách biệt **tín hiệu bỏ phiếu** khỏi **thực thi bỏ phiếu**. Quản trị on-chain truyền thống yêu cầu mọi ngườitham gia gửi một giao dịch, trả phí gas tỷ lệ thuận với mức độ tắc nghẽn mạng. Snapshot đảo ngược mô hình này: ```typescript
 // Bỏ phiếu on-chain truyền thống (đắt)
 // Mỗi cử tri trả gas cho giao dịch này
 await governorContract.castVote(
@@ -98,9 +88,7 @@ Thông điệp đã ký được phát sóng đến trung tâm của Snapshot v�
 
 ### 2.2 Lưu trữ Dữ liệu trên IPFS
 
-Tất cả dữ liệu Snapshot — đề xuất, phiếu bầu, và không gian — được lưu trữ trên **Hệ thống Tệp Liên Hành tinh (IPFS)**, đảm bảo khả năng chống kiểm duyệt và tính vĩnh viễn:
-
-```json
+Tất cả dữ liệu Snapshot — đề xuất, phiếu bầu, và không gian — được lưu trữ trên **Hệ thống Tệp Liên Hành tinh (IPFS)**, đảm bảo khả năng chống kiểm duyệt và tính vĩnh viễn: ```json
 {
   "proposal": {
     "id": "QmYwAPJzv5CZsnAzt8auVK914vhC2pW9e4iPApvb1xUcGz",
@@ -134,9 +122,7 @@ Trường `snapshot` chỉ định số khối Ethereum mà tại đó số dư 
 
 ### 3.1 Tạo Không gian của bạn
 
-Bất kỳ dự án nào cũng có thể tạo một không gian quản trị trên Snapshot. Quá trình này bao gồm cấu hình miền ENS và chọn lựa chiến lược:
-
-```bash
+Bất kỳ dự án nào cũng có thể tạo một không gian quản trị trên Snapshot. Quá trình này bao gồm cấu hình miền ENS và chọn lựa chiến lược: ```bash
 # Bước 1: Đảm bảo bạn sở hữu một miền ENS
 # ID không gian của bạn sẽ là tên ENS (ví dụ: mydao.eth)
 
@@ -200,9 +186,7 @@ await snapshot.utils.subgraphRequest(
 
 ### 3.2 Xác minh Không gian
 
-Sau khi cấu hình, xác minh không gian của bạn có thể truy cập được:
-
-```bash
+Sau khi cấu hình, xác minh không gian của bạn có thể truy cập được: ```bash
 # Truy vấn không gian qua GraphQL
 curl -X POST https://hub.snapshot.org/graphql \
   -H "Content-Type: application/json" \
@@ -215,8 +199,7 @@ curl -X POST https://hub.snapshot.org/graphql \
 # Script xác minh Python
 import requests
 
-def verify_snapshot_space(space_id: str) -> dict:
-    """Xác minh cấu hình không gian Snapshot."""
+def verify_snapshot_space(space_id: str) -> dict: """Xác minh cấu hình không gian Snapshot."""
     query = """
     query GetSpace($id: String!) {
       space(id: $id) {
@@ -254,15 +237,13 @@ def verify_snapshot_space(space_id: str) -> dict:
 
     data = response.json()
 
-    if data.get("data", {}).get("space"):
-        space = data["data"]["space"]
+    if data.get("data", {}).get("space"): space = data["data"]["space"]
         print(f"Không gian '{space[name]}' xác minh thành công!")
         print(f"Mạng: {space[network]}")
         print(f"Chiến lược: {[s[name] for s in space[strategies]]}")
         print(f"Điểm tối thiểu: {space[filters][minScore]}")
         return space
-    else:
-        raise ValueError(f"Không tìm thấy không gian '{space_id}'")
+    else: raise ValueError(f"Không tìm thấy không gian '{space_id}'")
 
 # Xác minh
 space = verify_snapshot_space("mydao.eth")
@@ -274,9 +255,7 @@ space = verify_snapshot_space("mydao.eth")
 
 ### 4.1 Thư viện Chiến lược Tích hợp
 
-Snapshot hỗ trợ 50+ chiến lược bỏ phiếu quyết định cách tính quyền bỏ phiếu. Các chiến lược phổ biến nhất bao gồm:
-
-| Chiến lược | Trường hợp sử dụng | Ví dụ DAO |
+Snapshot hỗ trợ 50+ chiến lược bỏ phiếu quyết định cách tính quyền bỏ phiếu. Các chiến lược phổ biến nhất bao gồm: | Chiến lược | Trường hợp sử dụng | Ví dụ DAO |
 |------------|-------------------|-----------|
 | `erc20-balance-of` | Số dư token đơn giản | Uniswap, Aave |
 | `erc721` | Quyền sở hữu NFT | Bored Ape Yacht Club |
@@ -362,9 +341,7 @@ console.log(`Quyền bỏ phiếu: ${votingPower} token`);
 
 ### 4.3 Chiến lược Bỏ phiếu Bậc hai
 
-Đối với các DAO tìm kiếm kết quả dân chủ hơn, Snapshot hỗ trợ bỏ phiếu bậc hai:
-
-```json
+Đối với các DAO tìm kiếm kết quả dân chủ hơn, Snapshot hỗ trợ bỏ phiếu bậc hai: ```json
 {
   "strategy": {
     "name": "quadratic-balance-of",
@@ -386,9 +363,7 @@ Với bỏ phiếu bậc hai, ngườidùng có 10.000 token có 100 quyền b�
 
 ### 5.1 Ủy quyền Hoạt động như thế nào
 
-Ủy quyền cho phép chủ sở hữu token giao quyền bỏ phiếu của họ cho các đại diện đáng tin cậy, tăng tỷ lệ tham gia và cho phép chuyên môn hóa quản trị:
-
-```solidity
+Ủy quyền cho phép chủ sở hữu token giao quyền bỏ phiếu của họ cho các đại diện đáng tin cậy, tăng tỷ lệ tham gia và cho phép chuyên môn hóa quản trị: ```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
@@ -690,9 +665,7 @@ console.log("Kết quả:", stats.results);
 
 ### 7.1 Chiến lược Bỏ phiếu Đa chuỗi
 
-Snapshot hỗ trợ bỏ phiếu trên nhiều blockchain đồng thờigian:
-
-```typescript
+Snapshot hỗ trợ bỏ phiếu trên nhiều blockchain đồng thờigian: ```typescript
 // Chiến lược đa chuỗi: tổng hợp token trên các mạng
 const multichainStrategies = [
   {
@@ -750,16 +723,13 @@ app.post('/webhooks/snapshot', (req, res) => {
   const event = req.body;
 
   switch (event.event) {
-    case 'proposal/created':
-      console.log(`Đề xuất mới: ${event.id}`);
+    case 'proposal/created': console.log(`Đề xuất mới: ${event.id}`);
       notifyDiscord(event);
       break;
-    case 'proposal/end':
-      console.log(`Bỏ phiếu kết thúc: ${event.id}`);
+    case 'proposal/end': console.log(`Bỏ phiếu kết thúc: ${event.id}`);
       tallyResults(event);
       break;
-    case vote:
-      console.log(`Phiếu bầu mới trên ${event.proposal.id}`);
+    case vote: console.log(`Phiếu bầu mới trên ${event.proposal.id}`);
       updateLeaderboard(event);
       break;
   }
@@ -799,9 +769,7 @@ app.listen(3000, () => console.log('Máy chủ Webhook đang lắng nghe trên c
 
 ### 8.1 Thay đổi Thông số Giao thức
 
-Các giao thức DeFi sử dụng Snapshot để bỏ phiếu về các thông số quan trọng:
-
-```typescript
+Các giao thức DeFi sử dụng Snapshot để bỏ phiếu về các thông số quan trọng: ```typescript
 // Đề xuất thông số rủi ro kiểu Aave
 interface RiskParameterProposal {
   asset: string;              // Địa chỉ token
@@ -860,25 +828,20 @@ const treasuryVote: TreasuryProposal = {
 
 ```yaml
 # snapshot-security-checklist.yml
-space_security:
-  admin_keys:
-    - use_multisig: true
+space_security: admin_keys: - use_multisig: true
     - minimum_signers: 3
     - hardware_wallets_required: true
 
-  proposal_validation:
-    - min_score_threshold: 10000
+  proposal_validation: - min_score_threshold: 10000
     - require_forum_discussion: true
     - discussion_min_duration: "7 ngày"
 
-  voting_security:
-    - snapshot_block: "sử dụng khối tạo đề xuất"
+  voting_security: - snapshot_block: "sử dụng khối tạo đề xuất"
     - voting_delay: "tối thiểu 24 giờ"
     - voting_period: "tối thiểu 3 ngày"
     - quorum_required: true
 
-  monitoring:
-    - enable_webhooks: true
+  monitoring: - enable_webhooks: true
     - discord_notifications: true
     - unusual_activity_alerts: true
     - delegate_change_alerts: true
@@ -898,8 +861,7 @@ Bỏ phiếu Snapshot an toàn về mặt mật mã. Mỗi phiếu bầu đượ
 
 ### 9.3 Quyền bỏ phiếu và số dư token được tính như thế nào?
 
-Quyền bỏ phiếu được xác định bởi các **chiến lược** được cấu hình cho mỗi không gian. Chiến lược phổ biến nhất là `erc20-balance-of`, kiểm tra số dư token của cử tri tại một số khối cụ thể (khối `snapshot`). Điều này ngăn chặn:
-- **Tấn công flash loan**: Token vay trong cùng một giao dịch không thể dùng để bỏ phiếu
+Quyền bỏ phiếu được xác định bởi các **chiến lược** được cấu hình cho mỗi không gian. Chiến lược phổ biến nhất là `erc20-balance-of`, kiểm tra số dư token của cử tri tại một số khối cụ thể (khối `snapshot`). Điều này ngăn chặn: - **Tấn công flash loan**: Token vay trong cùng một giao dịch không thể dùng để bỏ phiếu
 - **Bỏ phiếu kép**: Cùng một token không thể di chuyển và bỏ phiếu lại
 - **Tích lũy phút cuối**: Ngườidùng không thể mua token sau khi đề xuất được tạo để ảnh hưởng đến phiếu bầu
 
@@ -907,8 +869,7 @@ Nhiều chiến lược có thể được kết hợp, và các chiến lược
 
 ### 9.4 Tôi có thể ủy quyền quyền bỏ phiếu của mình cho ngườikhác không?
 
-Có, **Ủy quyền** là một tính năng cốt lõi của quản trị Snapshot. Chủ sở hữu token có thể ủy quyền quyền bỏ phiếu của họ cho các đại diện đáng tin cậy — thường là chuyên gia quản trị, ngườicóng hiến lõi, hoặc thành viên cộng đồng tích cực. Điều này đặc biệt có giá trị cho:
-- **Chủ sở hữu nhỏ** thiếu thờigian nghiên cứu đề xuất
+Có, **Ủy quyền** là một tính năng cốt lõi của quản trị Snapshot. Chủ sở hữu token có thể ủy quyền quyền bỏ phiếu của họ cho các đại diện đáng tin cậy — thường là chuyên gia quản trị, ngườicóng hiến lõi, hoặc thành viên cộng đồng tích cực. Điều này đặc biệt có giá trị cho: - **Chủ sở hữu nhỏ** thiếu thờigian nghiên cứu đề xuất
 - **Chủ sở hữu tổ chức** thích sự tham gia quản trị chuyên nghiệp
 - **Tăng quórum** bằng cách tổng hợp các phiếu bầu không hoạt động
 
@@ -916,8 +877,7 @@ Có, **Ủy quyền** là một tính năng cốt lõi của quản trị Snapsh
 
 ### 9.5 Làm thế nào để tích hợp Snapshot vào ứng dụng của riêng tôi?
 
-Snapshot cung cấp nhiều tùy chọn tích hợp:
-- **Snapshot.js SDK**: SDK JavaScript đầy đủ tính năng cho tạo đề xuất, bỏ phiếu, và ủy quyền
+Snapshot cung cấp nhiều tùy chọn tích hợp: - **Snapshot.js SDK**: SDK JavaScript đầy đủ tính năng cho tạo đề xuất, bỏ phiếu, và ủy quyền
 - **GraphQL API**: Truy vấn đề xuất, phiếu bầu, không gian, và quyền bỏ phiếu qua điểm cuối GraphQL công khai
 - **Webhook**: Thông báo thờigian thực cho các sự kiện đề xuất
 - **Embed**: Tích hợp iframe để nhúng giao diện bỏ phiếu vào dApp của bạn
@@ -955,7 +915,6 @@ Khi các DAO phát triển hướng tới tự động hóa lớn hơn, chúng t
 **Trang web:** [snapshot.org](https://snapshot.org)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

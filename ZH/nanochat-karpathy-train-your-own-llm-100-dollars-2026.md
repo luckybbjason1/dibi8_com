@@ -1,8 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/nanochat-karpathy-train-your-own-llm-100-dollars-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/nanochat-karpathy-train-your-own-llm-100-dollars-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/nanochat-karpathy-train-your-own-llm-100-dollars-2026" />
 title: 'nanochat 2026：Andrej Karpathy 开源「百元 ChatGPT」——8000 行全栈 L...
 description: '由 Andrej Karpathy 开发的 nanochat 是完整的 LLM 训练管道——分词器、预训练、微调、评估、推理和聊天 UI，设计目标：在单节点 8×H100 上用不到 100 美元从零训练一个 GPT-2 级聊天机器人。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-09 00:00:00+08:00
@@ -24,20 +20,15 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [nanochat, karpathy, llm训练, pytorch, gpt, 自托管llm, 开源, transformer, 微调]
-aliases:
-- /zh/posts/nanochat-karpathy-train-your-own-llm-100-dollars-2026/
-faqs:
-  - q: 'nanochat 是什么？谁开发的？'
+aliases: - /zh/posts/nanochat-karpathy-train-your-own-llm-100-dollars-2026/
+faqs: - q: 'nanochat 是什么？谁开发的？'
     a: 'nanochat 是 Andrej Karpathy（OpenAI 联合创始人、前特斯拉 AI 总监）开发的极简全栈 LLM 训练与推理管道。与他之前只覆盖预训练的 nanoGPT 不同，nanochat 包含完整流程：Rust BPE 分词器、预训练、有监督微调、评估、推理服务器和 ChatGPT 风格的聊天 UI，全部约 8000 行可读代码。'
   - q: '用 nanochat 训练模型需要多少钱？'
     a: 'Karpathy 估计从零训练一个 GPT-2 级聊天机器人约需 48–100 美元。训练运行在单节点 8×H100（云端约 24 美元/小时）。两小时可得到可对话的模型；四小时推理质量明显更好。与 2019 年训练 GPT-2 的 43000 美元相比，成本下降了三个数量级。'
   - q: 'nanochat 和 Ollama 有什么区别？'
     a: 'Ollama 是推理运行时——加载已有模型并提供服务。nanochat 是训练框架——从原始文本数据训练模型。Ollama 是汽车，nanochat 是制造汽车发动机的工厂。nanochat 也包含推理服务器和聊天 UI，但核心功能是训练。'
   - q: 'nanochat 使用什么训练数据？'
-    a: 'nanochat 在 FineWeb（高质量网页文本数据集）上预训练，然后在 SmolTalk（用户-助手对话）、多选题和工具使用数据上进行监督微调。分词器也从同一数据集从零训练。不需要任何专有数据集。'
----
-
-<!-- canonical: https://dibi8.com/zh/tools/nanochat-karpathy-train-your-own-llm-100-dollars-2026/ -->
+    a: 'nanochat 在 FineWeb（高质量网页文本数据集）上预训练，然后在 SmolTalk（用户-助手对话）、多选题和工具使用数据上进行监督微调。分词器也从同一数据集从零训练。不需要任何专有数据集。'---
 
 ![nanochat 2026: Andrej Karpathy LLM 训练管道 — dibi8.com](/images/articles/nanochat-karpathy-train-your-own-llm-100-dollars-2026/cover.jpg)
 
@@ -59,7 +50,15 @@ nanochat 不是对现有模型的封装，不是部署工具。它是完整的�
 ## 百元训练成本
 
 | 配置 | 时费 | 训练时间 | 总费用 |
-|------|-----|---------|-------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 8× H100 (SXM5) | ~$24 | 2 小时 | ~$48 |
 | 8× A100 (80GB) | ~$16 | 4 小时 | ~$64 |
 | 8× H100 (PCIe) | ~$18 | 3 小时 | ~$54 |
@@ -99,7 +98,6 @@ python serve.py --checkpoint checkpoints/sft_final.pt --port 8000
 **GitHub：** [karpathy/nanochat](https://github.com/karpathy/nanochat) · 54.7k ⭐ · MIT
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -127,25 +125,20 @@ python serve.py --checkpoint checkpoints/sft_final.pt --port 8000
 
 ## Why This Matters
 
-Understanding nanochat 2026：andrej karpathy 开源「百元 chatgpt」——8000 行全栈 llm 训练管道 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding nanochat 2026：andrej karpathy 开源「百元 chatgpt」——8000 行全栈 llm 训练管道 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -166,13 +159,13 @@ nanochat 2026：Andrej Karpathy 开源「百元 ChatGPT」——8000 行全栈 L
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
 
+---
 ## Related Articles
 
 - [nanochat-karpathy-100-chatgpt-single-gpu](nanochat-karpathy-train-your-own-llm-100-dollars-2026)
@@ -208,10 +201,16 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。
 
 
-When choosing an LLM framework, consider these factors:
-
-| Factor | LangChain | LlamaIndex | Haystack |
-|--------|-----------|------------|----------|
+When choosing an LLM framework, consider these factors: | Factor | LangChain | LlamaIndex | Haystack |
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Primary Use** | General-purpose | RAG/Retrieval | Document Processing |
 | **Learning Curve** | Medium | Low | Medium |
 | **Community** | Large | Growing | Medium |
@@ -220,28 +219,31 @@ When choosing an LLM framework, consider these factors:
 
 ### When to Use Each
 
-**LangChain** is ideal for:
-- Complex agent workflows
+**LangChain** is ideal for: - Complex agent workflows
 - Multi-step reasoning tasks
 - Integration with external tools
 - Production-grade applications
 
-**LlamaIndex** excels at:
-- Retrieval-Augmented Generation (RAG)
+**LlamaIndex** excels at: - Retrieval-Augmented Generation (RAG)
 - Data indexing and querying
 - Enterprise knowledge bases
 - Semantic search implementations
 
-**Haystack** shines in:
-- Document understanding pipelines
+**Haystack** shines in: - Document understanding pipelines
 - Question answering systems
 - Search engine integration
 - NLP task orchestration
 
-When choosing an LLM framework, consider these factors:
-
-| Factor | LangChain | LlamaIndex | Haystack |
-|--------|-----------|------------|----------|
+When choosing an LLM framework, consider these factors: | Factor | LangChain | LlamaIndex | Haystack |
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Primary Use** | General-purpose | RAG/Retrieval | Document Processing |
 | **Learning Curve** | Medium | Low | Medium |
 | **Community** | Large | Growing | Medium |
@@ -250,20 +252,17 @@ When choosing an LLM framework, consider these factors:
 
 ### When to Use Each
 
-**LangChain** is ideal for:
-- Complex agent workflows
+**LangChain** is ideal for: - Complex agent workflows
 - Multi-step reasoning tasks
 - Integration with external tools
 - Production-grade applications
 
-**LlamaIndex** excels at:
-- Retrieval-Augmented Generation (RAG)
+**LlamaIndex** excels at: - Retrieval-Augmented Generation (RAG)
 - Data indexing and querying
 - Enterprise knowledge bases
 - Semantic search implementations
 
-**Haystack** shines in:
-- Document understanding pipelines
+**Haystack** shines in: - Document understanding pipelines
 - Question answering systems
 - Search engine integration
 - NLP task orchestration
@@ -271,7 +270,17 @@ When choosing an LLM framework, consider these factors:
 ## Framework Comparison
 
 | Framework | Primary Use | Learning Curve | Community | Production Ready |
-|-----------|-------------|----------------|-----------|------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **LangChain** | General-purpose | Medium | Large | ✅ Yes |
 | **LlamaIndex** | RAG/Retrieval | Low | Growing | ✅ Yes |
 | **Haystack** | Document processing | Medium | Medium | ✅ Yes |

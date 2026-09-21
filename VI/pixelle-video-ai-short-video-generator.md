@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/pixelle-video-ai-short-video-generator" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/pixelle-video-ai-short-video-generator" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/pixelle-video-ai-short-video-generator" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/pixelle-video-ai-short-video-generator" />
 title: 'Pixelle-Video Đánh Giá: Công Cụ Tạo Video Ngắn Tự Động B...
   Nhận Video Hoàn Chỉnh'
 description: Pixelle-Video là công cụ tạo video ngắn tự động hoàn toàn bằng AI mã. Comprehensive guide covering features, pricing, and best practices for 2026.
@@ -11,8 +6,7 @@ description: Pixelle-Video là công cụ tạo video ngắn tự động hoàn 
   nền.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
-tech_stack:
-- Python
+tech_stack: - Python
 application_domain: Ai Tools
 source_version: ''
 licensing_model: Open Source
@@ -27,10 +21,8 @@ maintainer: "AIDC-AI"
 last_maintained: "2026-05-06"
 featureImage: ''
 draft: false
-aliases:
-- /vi/posts/pixelle-video-ai-short-video-generator/
-faqs:
-  - q: 'Pixelle-Video là gì?'
+aliases: - /vi/posts/pixelle-video-ai-short-video-generator/
+faqs: - q: 'Pixelle-Video là gì?'
     a: 'Pixelle-Video là một AI engine mã nguồn mở, cấp phép MIT, có khả năng biến một chủ đề duy nhất thành một video ngắn hoàn chỉnh. Chỉ cần một đầu vào, nó tự động viết kịch bản, tạo hình ảnh hoặc video AI phù hợp, tổng hợp giọng đọc bằng TTS, và thêm nhạc nền trước khi render video cuối cùng.'
   - q: 'Pixelle-Video có miễn phí và mã nguồn mở không?'
     a: 'Có. Pixelle-Video được AIDC-AI phát hành dưới giấy phép MIT và hoàn toàn miễn phí để tự triển khai. Triển khai cục bộ không tốn chi phí ngoài việc cần GPU; tuy nhiên nếu thiếu phần cứng cục bộ, bạn có thể tùy chọn sử dụng các dịch vụ đám mây trả theo lượt dùng như RunningHub để tạo ảnh.'
@@ -41,7 +33,6 @@ faqs:
   - q: 'Pixelle-Video có thể làm gì ngoài tạo video cơ bản?'
     a: 'Công cụ này bao gồm ba mô-đun mở rộng: Digital Human Avatar — biến một bức ảnh thành video đầu người nói có đồng bộ môi bằng tiếng Hàn, tiếng Trung hoặc tiếng Anh; Image-to-Video — chuyển ảnh tĩnh thành video động; và Motion Transfer — ánh xạ chuyển động từ video tham chiếu lên ảnh tĩnh.'
 ---
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -73,7 +64,6 @@ faqs:
 </script>
 
 
-<!-- canonical: https://dibi8.com/vi/tools/pixelle-video-ai-short-video-generator/ -->
 # Pixelle-Video Đánh Giá: Công Cụ Tạo Video Ngắn Tự Động Bằng AI, Nhập Chủ Đề
 
 {</* resource-info */>}
@@ -83,9 +73,7 @@ faqs:
 
 ## Pixelle-Video là gì?
 
-**Pixelle-Video** là công cụ tạo video ngắn tự động hoàn toàn bằng AI mã nguồn mở. Chỉ cần nhập một **chủ đề**, công cụ sẽ tự động hoàn thành toàn bộ quy trình sản xuất video:
-
-- ✍️ **AI viết kịch bản** — Tự động tạo lời thuyết minh dựa trên chủ đề
+**Pixelle-Video** là công cụ tạo video ngắn tự động hoàn toàn bằng AI mã nguồn mở. Chỉ cần nhập một **chủ đề**, công cụ sẽ tự động hoàn thành toàn bộ quy trình sản xuất video: - ✍️ **AI viết kịch bản** — Tự động tạo lời thuyết minh dựa trên chủ đề
 - 🎨 **AI tạo hình ảnh/video** — Tạo hình minh họa AI hoặc video động cho mỗi cảnh
 - 🗣️ **AI tổng hợp giọng nói** — Chuyển đổi kịch bản thành giọng nói tự nhiên
 - 🎵 **Nhạc nền** — Tự động thêm BGM để tăng không khí
@@ -116,9 +104,7 @@ faqs:
 
 ## Quy trình tạo video
 
-Pixelle-Video sử dụng thiết kế mô-đun với quy trình rõ ràng:
-
-**Tạo kịch bản → Lập kế hoạch hình ảnh → Xử lý từng khung hình → Tổng hợp video**
+Pixelle-Video sử dụng thiết kế mô-đun với quy trình rõ ràng: **Tạo kịch bản → Lập kế hoạch hình ảnh → Xử lý từng khung hình → Tổng hợp video**
 
 Mỗi giai đoạn đều hỗ trợ tùy chỉnh linh hoạt — có thể chọn mô hình AI khác nhau, công cụ âm thanh, phong cách thị giác, v.v. để đáp ứng nhu cầu sáng tạo cá nhân.
 
@@ -126,9 +112,7 @@ Mỗi giai đoạn đều hỗ trợ tùy chỉnh linh hoạt — có thể ch�
 
 ## Mô-đun mở rộng
 
-Ngoài tạo video cơ bản, Pixelle-Video còn cung cấp các chức năng mở rộng mạnh mẽ:
-
-### 👤 Avatar kỹ thuật số
+Ngoài tạo video cơ bản, Pixelle-Video còn cung cấp các chức năng mở rộng mạnh mẽ: ### 👤 Avatar kỹ thuật số
 Tải lên ảnh để tạo video nói chuyện với đồng bộ môi. Hỗ trợ đa ngôn ngữ bao gồm tiếng Hàn, tiếng Trung, tiếng Anh.
 
 ### 🖼️ Ảnh thành video
@@ -180,9 +164,7 @@ pip install -r requirements.txt
 
 ### 3. Cấu hình khóa API
 
-Chỉnh sửa `config.json` với khóa API của bạn:
-
-```json
+Chỉnh sửa `config.json` với khóa API của bạn: ```json
 {
   "llm": {
     "api_key": "khóa-api-của-bạn",
@@ -228,9 +210,7 @@ Mở `http://localhost:7860` trong trình duyệt.
 
 ## Ví dụ phong cách video
 
-Pixelle-Video hỗ trợ nhiều phong cách video:
-
-- 🌄 **Phong cách tài liệu** — Du lịch, thiên nhiên, câu chuyện nhân văn
+Pixelle-Video hỗ trợ nhiều phong cách video: - 🌄 **Phong cách tài liệu** — Du lịch, thiên nhiên, câu chuyện nhân văn
 - 🔍 **Phân tích văn hóa** — Phân tích sâu về xu hướng và hiện tượng
 - 🔭 **Khoa học triết học** — Giải thích khái niệm phức tạp một cách đơn giản
 - 🌱 **Phát triển cá nhân** — Tự cải thiện, nâng cao hiệu suất
@@ -244,9 +224,7 @@ Pixelle-Video hỗ trợ nhiều phong cách video:
 
 ## Kiến trúc kỹ thuật
 
-Pixelle-Video được xây dựng trên kiến trúc **ComfyUI**:
-
-- **Quy trình làm việc mô-đun** — Mỗi thành phần (LLM, TTS, tạo hình ảnh) là một nút độc lập
+Pixelle-Video được xây dựng trên kiến trúc **ComfyUI**: - **Quy trình làm việc mô-đun** — Mỗi thành phần (LLM, TTS, tạo hình ảnh) là một nút độc lập
 - **Đường ống tùy chỉnh** — Dễ dàng thay thế bất kỳ mô hình hoặc dịch vụ nào
 - **Thiết kế ưu tiên API** — Tất cả khả năng được hiển thị qua REST API
 - **Giao diện Web** — Giao diện dễ sử dụng dựa trên Gradio
@@ -262,8 +240,7 @@ Pixelle-Video được xây dựng trên kiến trúc **ComfyUI**:
 | **Đám mây RunningHub** | Trả theo lượng sử dụng | Tức thì | Cao |
 | **Chế độ hỗn hợp** | Linh hoạt | Cân bằng | Cao |
 
-Cấu hình khuyến nghị cho người mới:
-- LLM: DeepSeek API (rẻ, chất lượng tốt)
+Cấu hình khuyến nghị cho người mới: - LLM: DeepSeek API (rẻ, chất lượng tốt)
 - Hình ảnh: RunningHub (không cần GPU cục bộ)
 - TTS: Edge-TTS (miễn phí, đa ngôn ngữ)
 
@@ -318,9 +295,7 @@ Kiến trúc dựa trên ComfyUI có nghĩa là nó không chỉ là công cụ 
 
 ## Công Cụ Đề Xuất
 
-Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
+Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
 - **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Proxy Anthropic Claude / OpenAI / DeepSeek API. Hầu hết AI tool ở trên (chatbot, code gen, translation, search, v.v.) cần LLM API key — proxy này cho access ổn định top model với ~30% giá chính thức.
 - **{{< aff "hostinger" "footer-cta-legacy" "Hostinger" >}}** — Lựa chọn VPS giá tốt cho thị trường Việt Nam.
 

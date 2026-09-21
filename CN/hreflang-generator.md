@@ -1,14 +1,11 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/hreflang-generator" />
-title: "Hreflang Tags Generator — Multi-Language & International...
+title: "Hreflang Tags Generator — Multi-Language & International..."
 description: "Generate copy-paste-ready hreflang link tags for multi-language and international SEO. Map each language to its URL, add x-default, and get clean alternate tags for your HTML head."
 date: 2026-05-18
 lastmod: 2026-05-19
 layout: "tool-hreflang-generator"
 tool_id: "hreflang-generator"
 ---
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -46,9 +43,7 @@ This guide will help you get started with the topic. Whether you're a beginner o
 
 ### Prerequisites
 
-Before diving in, make sure you have:
-
-```bash
+Before diving in, make sure you have: ```bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
@@ -73,9 +68,7 @@ This guide will help you get started with the topic. Whether you're a beginner o
 
 ### Prerequisites
 
-Before diving in, make sure you have:
-
-```bash
+Before diving in, make sure you have: ```bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
@@ -100,9 +93,7 @@ This guide will help you get started with the topic. Whether you're a beginner o
 
 ### Prerequisites
 
-Before diving in, make sure you have:
-
-```bash
+Before diving in, make sure you have: ```bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
@@ -127,9 +118,7 @@ This guide will help you get started with the topic. Whether you're a beginner o
 
 ### Prerequisites
 
-Before diving in, make sure you have:
-
-```bash
+Before diving in, make sure you have: ```bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
@@ -154,9 +143,7 @@ This guide will help you get started with the topic. Whether you're a beginner o
 
 ### Prerequisites
 
-Before diving in, make sure you have:
-
-```bash
+Before diving in, make sure you have: ```bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
@@ -181,9 +168,7 @@ This guide will help you get started with the topic. Whether you're a beginner o
 
 ### Prerequisites
 
-Before diving in, make sure you have:
-
-```bash
+Before diving in, make sure you have: ```bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
@@ -203,3 +188,5 @@ npm install
 # Start development server
 npm run dev
 ```
+
+---

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/terminal-command-line-tools-tmux-zsh-fzf-ripgrep" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/terminal-command-line-tools-tmux-zsh-fzf-ripgrep" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/terminal-command-line-tools-tmux-zsh-fzf-ripgrep" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/terminal-command-line-tools-tmux-zsh-fzf-ripgrep" />
 title: 'Công Cụ Năng Suất Terminal & CLI: tmux, zsh, fzf, ripgre...
 description: 'Hướng dẫn thiết lập terminal tối ưu với zsh, tmux, fzf, ripgrep và các công cụ CLI hiện đại. Tăng gấp đôi năng suất lập trình với terminal workflow chuyên nghiệp.'
 date: 2026-05-18 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/terminal-command-line-tools-tmux-zsh-fzf-ripgrep/
+aliases: - /posts/terminal-command-line-tools-tmux-zsh-fzf-ripgrep/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/terminal-command-line-tools-tmux-zsh-fzf-ripgrep/ -->
 
 {</* resource-info */>}
 
@@ -51,9 +43,7 @@ Từ macOS Catalina (10.15) phát hành tháng 10 năm 2019, Apple đã chuyển
 
 ### Cài Đặt Oh My Zsh
 
-[Oh My Zsh](https://ohmyz.sh) là framework quản lý cấu hình zsh phổ biến nhất với hơn 300 plugin và 150 theme. Cài đặt chỉ cần một dòng lệnh:
-
-```bash
+[Oh My Zsh](https://ohmyz.sh) là framework quản lý cấu hình zsh phổ biến nhất với hơn 300 plugin và 150 theme. Cài đặt chỉ cần một dòng lệnh: ```bash
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
@@ -100,9 +90,7 @@ tmux (Terminal Multiplexer) cho phép chia một terminal window thành nhiều 
 
 ### Tùy Chỉnh .tmux.conf
 
-File `~/.tmux.conf` là nơi bạn định nghĩa mọi tùy chỉnh tmux. Một số cấu hình phổ biến:
-
-```bash
+File `~/.tmux.conf` là nơi bạn định nghĩa mọi tùy chỉnh tmux. Một số cấu hình phổ biến: ```bash
 # Đổi prefix key sang Ctrl+a (giống screen)
 unbind C-b
 set -g prefix C-a
@@ -137,9 +125,7 @@ Một trong những tính năng mạnh nhất của fzf là thay thế chức n�
 
 ### fzf + ripgrep: Combo Tìm Kiếm Code
 
-Kết hợp fzf với ripgrep tạo ra workflow tìm kiếm code tuyệt vờii:
-
-```bash
+Kết hợp fzf với ripgrep tạo ra workflow tìm kiếm code tuyệt vờii: ```bash
 # Tìm file và preview nội dung
 rg --files | fzf --preview 'bat --style=numbers --color=always {}'
 
@@ -159,9 +145,7 @@ rg --line-number --no-heading --smart-case "pattern" | fzf --delimiter ':' --pre
 
 ### Tại Sao ripgrep Thay Thế grep, ack, và ag?
 
-[ripgrep](https://github.com/BurntSushi/ripgrep) (viết tắt `rg`) là công cụ tìm kiếm dòng lệnh được viết bằng Rust, nhanh hơn grep truyền thống từ 3-10 lần trong hầu hết các tình huống thực tế. Điều làm nên sự khác biệt:
-
-- **Tự động tôn trọng .gitignore**: rg bỏ qua các file và thư mục được liệt kê trong `.gitignore` mặc định, loại bỏ kết quả nhiễu từ `node_modules/`, `vendor/`, `.git/`
+[ripgrep](https://github.com/BurntSushi/ripgrep) (viết tắt `rg`) là công cụ tìm kiếm dòng lệnh được viết bằng Rust, nhanh hơn grep truyền thống từ 3-10 lần trong hầu hết các tình huống thực tế. Điều làm nên sự khác biệt: - **Tự động tôn trọng .gitignore**: rg bỏ qua các file và thư mục được liệt kê trong `.gitignore` mặc định, loại bỏ kết quả nhiễu từ `node_modules/`, `vendor/`, `.git/`
 - **Song song hóa mặc định**: rg tự động sử dụng nhiều CPU core
 - **Hỗ trợ Unicode**: Xử lý file UTF-8 tốt hơn grep
 - **Cú pháp đơn giản hơn**: Không cần flag `-r` hay `-n` — đệ quy và hiển thị số dòng là mặc định
@@ -225,9 +209,7 @@ ripgrep là backend tìm kiếm mặc định cho nhiều plugin editor phổ bi
 
 ## Starship: Cross-Shell Prompt Tối Giản
 
-[Starship](https://starship.rs) là prompt shell đa nền tảng — hoạt động với bash, zsh, fish, PowerShell — hiển thị thông tin context quan trọng: branch Git, trạng thái working tree, phiên bản Node.js/Python/Rust được phát hiện tự động, và thờii gian thực thi lệnh nếu quá ngưỡng. Cấu hình trong file `~/.config/starship.toml`:
-
-```toml
+[Starship](https://starship.rs) là prompt shell đa nền tảng — hoạt động với bash, zsh, fish, PowerShell — hiển thị thông tin context quan trọng: branch Git, trạng thái working tree, phiên bản Node.js/Python/Rust được phát hiện tự động, và thờii gian thực thi lệnh nếu quá ngưỡng. Cấu hình trong file `~/.config/starship.toml`: ```toml
 [git_branch]
 symbol = "🌿 "
 
@@ -284,8 +266,7 @@ Chạy `stow zsh tmux git starship` để tự động tạo symlink vào thư m
 
 ### Thiết Lập Terminal Trên Linux
 
-1. Cài đặt qua package manager:
-   - Ubuntu/Debian: `apt install zsh tmux fzf ripgrep bat eza fd-find`
+1. Cài đặt qua package manager: - Ubuntu/Debian: `apt install zsh tmux fzf ripgrep bat eza fd-find`
    - Arch Linux: `pacman -S zsh tmux fzf ripgrep bat eza fd starship`
    - Fedora: `dnf install zsh tmux fzf ripgrep bat eza fd-find`
 2. Lựa chọn terminal emulator: [Alacritty](https://github.com/alacritty/alacritty) (GPU-accelerated, tối giản) hoặc [Kitty](https://sw.kovidgoyal.net/kitty/) (feature-rich, hỗ trợ tabs và splits)
@@ -293,9 +274,7 @@ Chạy `stow zsh tmux git starship` để tự động tạo symlink vào thư m
 
 ### Các Alias và Functions Thiết Yếu
 
-Thêm vào `~/.zshrc`:
-
-```bash
+Thêm vào `~/.zshrc`: ```bash
 # thay thế ls bằng eza
 alias ls='eza --icons'
 alias ll='eza -la --icons --git'
@@ -324,9 +303,7 @@ alias gs='git status'
 
 ## Kết Luận
 
-Xây dựng một môi trường terminal tối ưu là quá trình dần dần. Bạn không cần cài đặt mọi thứ ngay lập tức. Hãy bắt đầu với ba bước:
-
-1. **Chuyển sang zsh + Oh My Zsh** — đây là nền tảng cho mọi tùy chỉnh sau này
+Xây dựng một môi trường terminal tối ưu là quá trình dần dần. Bạn không cần cài đặt mọi thứ ngay lập tức. Hãy bắt đầu với ba bước: 1. **Chuyển sang zsh + Oh My Zsh** — đây là nền tảng cho mọi tùy chỉnh sau này
 2. **Thêm tmux** — quản lý session hiệu quả, đặc biệt khi làm việc remote
 3. **Cài fzf và ripgrep** — tìm kiếm thông minh và siêu tốc
 
@@ -370,9 +347,7 @@ Có, thông qua **Windows Subsystem for Linux (WSL2)** — đây là cách đư�
 
 ## Hạ Tầng Đề Xuất
 
-Để chạy các công cụ trên 24/7 ổn định, lựa chọn hạ tầng rất quan trọng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu.
+Để chạy các công cụ trên 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp. dibi8.com cũng host ở đây.
 - **[Hostinger](https://www.hostinger.com/vn?REFERRALCODE=22RPIAOJIYJN)** — VPS giá tốt cho thị trường Việt Nam.
 
@@ -380,7 +355,6 @@ Có, thông qua **Windows Subsystem for Linux (WSL2)** — đây là cách đư�
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

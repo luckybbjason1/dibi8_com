@@ -1,19 +1,14 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/academic-research-skills" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/academic-research-skills" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/academic-research-skills" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/academic-research-skills" />
 title: "학술 연구 스킬: AI로 문헌 검토 자동화 — 3만1천 스타 프레임워크 2026"
 description: "학술 연구 스킬(31,628 스타)은 논문 검색, 통찰 추출, 결과 종합, 문헌 검토 작성을 자동화합니다. Claude Code용으로 모듈형 스킬 아키텍처로 구축되었습니다.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-15
-lastmod:  2026-06-15slug: academic-research-skills
+lastmod: 2026-06-15
+slug: academic-research-skills
 category: dev-utils
 tags: ['학술 연구', '문헌 검토', 'AI 연구', '논문 분석', '종합', 'claude code', '연구 자동화']
 github_repo: "https://github.com/Imbad0202/academic-research-skills"
 license: Other
-images:
-  - url: "https://opengraph.github.com/github/Imbad0202/academic-research-skills"
+images: - url: "https://opengraph.github.com/github/Imbad0202/academic-research-skills"
     alt: "학술 연구 스킬 GitHub OG"
     role: reference
   - url: "https://raw.githubusercontent.com/Imbad0202/academic-research-skills/main/assets/research-pipeline.png"
@@ -26,8 +21,6 @@ lang: kr
 featureImage: /images/articles/academic-research-skills-automate-literature-reviews-with-ai.jpg
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/academic-research-skills/ -->
-
 ## TL;DR
 
 학술 연구 스킬은 Claude Code를 논문 검색, 핵심 결과 추출, 문헌 종합, 포괄적 검토 생성이 가능한 연구 어시스턴트로 변환합니다. 31,628 스타를 달성하며 학술 연구에서 가장 시간이 많이 소요되는 부분을 자동화합니다.
@@ -38,9 +31,7 @@ featureImage: /images/articles/academic-research-skills-automate-literature-revi
 
 학술 연구 스킬은 Claude Code용으로 특별히 설계된 모듈형 스킬 시스템으로, 연구 파이프라인의 끝에서 끝까지 자동화를 제공합니다. PubMed, arXiv, Google Scholar를 수동으로 검색한 후 각 논문을 읽고 결과를 종합하여 일관된 검토를 작성하는 대신, 이 프레임워크는 각 단계를 처리하는 전문 스킬을 연결합니다.
 
-스킬 스위트는 다음을 포함합니다:
-
-- **논문 검색** — 지능형 필터링으로 학술 데이터베이스(PubMed, arXiv, Semantic Scholar) 질의
+스킬 스위트는 다음을 포함합니다: - **논문 검색** — 지능형 필터링으로 학술 데이터베이스(PubMed, arXiv, Semantic Scholar) 질의
 - **PDF 추출** — PDF 분석 및 스캔 문서용 OCR 조합으로 PDF 논문의 그림, 표, 주요 구문 구문 분석
 - **인용 분석** — 인용 네트워크 추적, 영향력 있는 논문 식별
 - **종합 엔진** — 여러 논문에서 발견된 결과를 구조화된 요약으로 통합
@@ -56,9 +47,7 @@ npx skills list | grep research
 
 ## 연구 파이프라인 작동 방식
 
-연구 파이프라인은 각 스킬의 출력이 다음으로 이어지는 방향성 비순환 그래프(DAG)로 동작합니다:
-
-```
+연구 파이프라인은 각 스킬의 출력이 다음으로 이어지는 방향성 비순환 그래프(DAG)로 동작합니다: ```
 질문 → 검색 → 필터링 → 추출 → 분석 → 종합 → 작성
 ```
 
@@ -87,9 +76,7 @@ python3 scripts/synthesize.py --extractions extractions.json --output synthesis.
 
 ## 설치 및 설정
 
-학술 연구 스킬 설정에는 Python 3.10+와 학술 데이터베이스 API 접근 권한이 필요합니다:
-
-```bash
+학술 연구 스킬 설정에는 Python 3.10+와 학술 데이터베이스 API 접근 권한이 필요합니다: ```bash
 # 레포지토리 클론
 curl -sL "https://github.com/Imbad0202/academic-research-skills/archive/refs/heads/main.zip" -o /tmp/research-skills.zip
 unzip -q /tmp/research-skills.zip -d /tmp
@@ -151,9 +138,7 @@ Docker 이미지에는 스캔 문서 처리용 tesseract-ocr와 PDF 텍스트 �
 
 ## 연구 도구와의 통합
 
-학술 연구 스킬은 인기 있는 연구 및 작성 도구와 통합됩니다:
-
-|| 도구 | 통합 방법 | 사용 사례 |
+학술 연구 스킬은 인기 있는 연구 및 작성 도구와 통합됩니다: || 도구 | 통합 방법 | 사용 사례 |
 ||------|-------------------|----------|
 || **Zotero** | CSV 내보내기/가져오기 | 참고 자료 관리 |
 || **Notion** | Markdown 가져오기 | 연구 노트 |
@@ -171,9 +156,7 @@ python3 scripts/export.py --format latex --input synthesis.json --output bibliog
 
 ## 벤치마크: 수동 vs 자동화 연구
 
-문헌 검토 자동화의 시간 절약 효과는 상당합니다:
-
-```
+문헌 검토 자동화의 시간 절약 효과는 상당합니다: ```
 연구 작업                        | 수동 | 자동화 | 속도 향상
 -------------------------------|------|--------|----------
 관련 논문 50편 검색              | 8시간 | 15분  | 32배
@@ -199,9 +182,7 @@ metrics = {
 
 ## 고급 사용: 사용자 지정 연구 워크플로우
 
-숙련된 연구자는 기본 스킬을 사용자 지정 워크플로우로 확장합니다:
-
-### 멀티데이터베이스 검색 전략
+숙련된 연구자는 기본 스킬을 사용자 지정 워크플로우로 확장합니다: ### 멀티데이터베이스 검색 전략
 
 ```python
 # 여러 데이터베이스에서 통합 결과로 검색
@@ -229,8 +210,7 @@ graph.compute_centrality()  # PageRank, H-index, 인용 횟수
 
 # 핵심 논문 식별
 seminal = graph.get_top_cited(k=10)
-for paper in seminal:
-    print(f"{paper.title} — {paper.citation_count} citations")
+for paper in seminal: print(f"{paper.title} — {paper.citation_count} citations")
 ```
 
 ### 사용자 지정 종합 템플릿
@@ -258,9 +238,7 @@ templates = {
 
 ### 자동 인용 형식 지정
 
-학술 작업에서 적절한 인용 형식은 필수적입니다. 스킬 스위트에는 APA, IEEE, Chicago, Vancouver 스타일을 지원하는 인용 포맷터가 포함되어 있습니다:
-
-```python
+학술 작업에서 적절한 인용 형식은 필수적입니다. 스킬 스위트에는 APA, IEEE, Chicago, Vancouver 스타일을 지원하는 인용 포맷터가 포함되어 있습니다: ```python
 from citation_formatter import CitationFormatter
 
 formatter = CitationFormatter(style="APA", version="7th")
@@ -274,9 +252,7 @@ formatted.export("references_ris.ris")
 
 ## 대체재와의 비교
 
-여러 도구가 연구 과정의 일부를 자동화하지만, 학술 연구 스킬은 끝에서 끝까지 접근하는 방식으로 독특합니다:
-
-|| 기능 | 학술 연구 스킬 | ResearchRabbit | Elicit | Consensus | Litmaps |
+여러 도구가 연구 과정의 일부를 자동화하지만, 학술 연구 스킬은 끝에서 끝까지 접근하는 방식으로 독특합니다: || 기능 | 학술 연구 스킬 | ResearchRabbit | Elicit | Consensus | Litmaps |
 ||---------|-------------------------|----------------|--------|-----------|---------|
 || 스타 | 31,628 | 5,200 | 12,000 | 3,800 | 2,100 |
 || 멀티데이터베이스 검색 | 4개 데이터베이스 | Semantic Scholar 전용 | Semantic Scholar | Semantic Scholar | Crossref 전용 |
@@ -291,9 +267,7 @@ formatted.export("references_ris.ris")
 
 ## 한계: 수동 연구가 여전히 더 좋은 경우
 
-기능에도 불구하고 자동화 파이프라인에는 한계가 있습니다:
-
-1. **도메인 전문성 필요** — 시스템은 논문을 찾고 종합할 수 있지만, 특정 연구 질문의 문맥에서 결과를 해석하려면 도메인 지식이 필요합니다.
+기능에도 불구하고 자동화 파이프라인에는 한계가 있습니다: 1. **도메인 전문성 필요** — 시스템은 논문을 찾고 종합할 수 있지만, 특정 연구 질문의 문맥에서 결과를 해석하려면 도메인 지식이 필요합니다.
 
 2. **페이월 콘텐츠** — 페이월 뒤에 있는 논문은 완전히 추출할 수 없습니다. 오픈 액세스 또는 미간행 논문에서 가장 잘 작동합니다.
 
@@ -356,15 +330,13 @@ npx skills add https://github.com/Imbad0202/academic-research-skills
 
 ---
 
-**소스 및 추가 읽을거리**:
-- GitHub 레포지토리: https://github.com/Imbad0202/academic-research-skills
+**소스 및 추가 읽을거리**: - GitHub 레포지토리: https://github.com/Imbad0202/academic-research-skills
 - Semantic Scholar API: https://api.semanticscholar.org/
 - arXiv API: https://info.arxiv.org/help/api/index.html
 - PubMed API: https://www.ncbi.nlm.nih.gov/books/NBK25500/
 
 
-**Sources & Further Reading**:
-- GitHub 저장소: https://github.com/Imbad0202/academic-research-skills
+**Sources & Further Reading**: - GitHub 저장소: https://github.com/Imbad0202/academic-research-skills
 - Semantic Scholar API: https://api.semanticscholar.org/
 - arXiv API: https://info.arxiv.org/help/api/index.html
 - PubMed API: https://www.ncbi.nlm.nih.gov/books/NBK25500/
@@ -373,7 +345,6 @@ npx skills add https://github.com/Imbad0202/academic-research-skills
 **고지사항**: 이 기사에는 제휴 링크가 포함되어 있습니다. 링크를 통해 가입하시면 추가 비용 없이 저희가 커미션을 받을 수 있습니다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

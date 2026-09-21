@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/openai-codex-cli-terminal-ai-coding-agent-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/openai-codex-cli-terminal-ai-coding-agent-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/openai-codex-cli-terminal-ai-coding-agent-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/openai-codex-cli-terminal-ai-coding-agent-2026" />
 title: 'OpenAI Codex CLI 완벽 가이드 2026: 터미널 네이티브 AI 코딩 에이전트 (설치, 멀...
 description: '2026년 가장 빠르게 성장하는 오픈소스 AI 코딩 에이전트, OpenAI Codex CLI를 완벽 마스터하세요. 제로부터 시작하는 설치, AGENTS.md 설정, 멀티 에이전트 병렬 개발, MCP 통합, 샌드박스 보안, 그리고 Claude Code와의 정면 비교까지 한 번에 다룹니다.'
 date: 2026-05-17 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: 'openai'
 last_maintained: '2026-05-17'
 featureImage: ''
 draft: false
-aliases:
-- /posts/openai-codex-cli-terminal-ai-coding-agent-2026/
+aliases: - /posts/openai-codex-cli-terminal-ai-coding-agent-2026/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/openai-codex-cli-terminal-ai-coding-agent-2026/ -->
 
 {</* resource-info */>}
 
@@ -37,9 +29,7 @@ aliases:
 
 OpenAI Codex CLI는 이 변화의 중심에 있다. **GitHub Star 83,000개 이상**과 AI 개발자 도구 카테고리에서 가장 빠른 성장세 중 하나를 보이는 이 도구는 단순한 챗봇 래퍼가 아니다. Rust로 구축된 오픈소스 코딩 에이전트로, 파일을 읽고, 코드를 편집하고, 셸 명령을 실행하고, 테스트를 돌리고, 코드 리뷰를 수행하며, 장시간 실행되는 작업을 클라우드 샌드박스에 위임할 수 있다.
 
-이전 세대 도구와의 차별점:
-
-- **ChatGPT 구독자에게는 추가 비용 없음** — Plus($20/월) 또는 Pro($200/월)를 이미 결제 중이라면 Codex CLI 사용은 포함된다. 별도 API 과금 없음
+이전 세대 도구와의 차별점: - **ChatGPT 구독자에게는 추가 비용 없음** — Plus($20/월) 또는 Pro($200/월)를 이미 결제 중이라면 Codex CLI 사용은 포함된다. 별도 API 과금 없음
 - **완전 오픈소스(Apache-2.0)** — 포크, 감사, 확장 모두 자유. 원래 TypeScript 베이스에서 Rust로 재작성되어 1초 미만의 콜드 스타트 제공
 - **4가지 진입점, 하나의 상태 공유** — VS Code에서 작업을 시작하고 잠자는 동안 클라우드 에이전트에 넘겨준 뒤 다음 날 아침 GitHub에서 PR 머지
 - **멀티 에이전트 동시성** — 최대 6개의 병렬 서브 에이전트를 별도 역할로 실행: 탐색자, 작업자, 리뷰어, 테스터
@@ -89,31 +79,23 @@ codex login
 
 기본 브라우저가 OpenAI 인증 흐름을 연다. ChatGPT 계정으로 로그인하고 OAuth 요청을 승인한 뒤 터미널로 돌아오면 된다. API 키 관리 불필요. 별도 과금 대시보드 불필요. 사용량은 ChatGPT 플랜 할당량에 카운트된다.
 
-API 키 모드가 필요한 팀(공유 구독이 부족한 엔터프라이즈 환경에서 흔함):
-
-```bash
+API 키 모드가 필요한 팀(공유 구독이 부족한 엔터프라이즈 환경에서 흔함): ```bash
 export OPENAI_API_KEY="sk-..."
 codex
 ```
 
-또는 `~/.codex/config.toml`에 영구 저장:
-
-```toml
+또는 `~/.codex/config.toml`에 영구 저장: ```toml
 preferred_auth_method = "apikey"
 ```
 
 ### 첫 작업: 표준 스모크 테스트
 
-아무 리포지토리로 이동해서 범위가 정해진 작업을 발급한다:
-
-```bash
+아무 리포지토리로 이동해서 범위가 정해진 작업을 발급한다: ```bash
 cd ~/projects/your-repo
 codex "src/utils/date.ts의 parseDate 함수에 대한 단위 테스트를 추가하라. 유효한 입력, 경계 케이스, 잘못된 형식을 모두 다뤄라. 테스트 스위트를 실행하고 모든 테스트가 통과하는지 확인하라."
 ```
 
-Codex가 다음을 수행한다:
-
-1. 리포지토리를 스캔해 테스트 프레임워크(Jest, Vitest, Mocha, pytest 등)를 식별
+Codex가 다음을 수행한다: 1. 리포지토리를 스캔해 테스트 프레임워크(Jest, Vitest, Mocha, pytest 등)를 식별
 2. `parseDate` 구현 읽기
 3. 의미 있는 케이스로 테스트 파일 생성
 4. 테스트 실행
@@ -138,8 +120,7 @@ Codex CLI를 사용할 때 가장 중요한 적응은 자기 인식의 변화다
 
 **강한 프롬프트:**
 
-> "이 Go/Gin 프로젝트에 사용자 인증 시스템 구축:
-> 1. JWT 토큰을 사용하는 등록/로그인 REST 엔드포인트
+> "이 Go/Gin 프로젝트에 사용자 인증 시스템 구축: > 1. JWT 토큰을 사용하는 등록/로그인 REST 엔드포인트
 > 2. db/schema.sql의 기존 컨벤션과 일치하는 MySQL 사용자 테이블 스키마
 > 3. 서버를 실행하고 등록과 로그인을 엔드-투-엔드로 검증할 curl 명령 제공."
 
@@ -153,9 +134,7 @@ Codex는 패키지 구조를 스캐폴딩하고, 핸들러를 작성하고, 데�
 | **Read Only** | 자동 허용 | 금지 | 금지 | 코드베이스 탐색, 온보딩, 감사 |
 | **Full Access** | 자동 허용 | 자동 허용 | 자동 허용 | CI/CD 컨테이너, 격리 VM, 신뢰 가능한 자동화 |
 
-실행 플래그:
-
-```bash
+실행 플래그: ```bash
 codex --sandbox read-only              # 순수 분석; 변경 위험 제로
 codex --sandbox workspace-write        # 파일 편집 가능; 신뢰할 수 없는 명령은 여전히 승인 필요
 codex --full-auto                      # 승인 자동화; 샌드박스는 여전히 활성
@@ -218,9 +197,7 @@ Codex CLI는 모든 작업 전에 `AGENTS.md` 파일을 자동으로 탐지하�
 
 ### 실전 병렬 워크플로우
 
-이커머스 백엔드에 "로열티 할인" 기능을 추가한다고 상상해보라. 작업을 순차로 진행하는 대신 세 표면으로 병렬화한다:
-
-**터미널 1 — 구현(CLI):**
+이커머스 백엔드에 "로열티 할인" 기능을 추가한다고 상상해보라. 작업을 순차로 진행하는 대신 세 표면으로 병렬화한다: **터미널 1 — 구현(CLI):**
 
 ```bash
 codex "pricing.py에 `loyalty_discount(price, customer_tier)`를 추가하라. 등급: bronze(0%), silver(5%), gold(10%). 알 수 없는 등급은 ValueError로 거부하라. 다른 함수는 수정하지 마라."
@@ -242,16 +219,12 @@ codex "pricing.py에 `loyalty_discount(price, customer_tier)`를 추가하라. �
 
 ### Model Context Protocol(MCP) 통합
 
-MCP는 2026년 AI 도구의 보편 어댑터가 되었다. Codex CLI는 일급 MCP 지원을 탑재해 다음과의 직접 연결을 가능하게 한다:
-
-- **PostgreSQL / MySQL / Redis** — 스키마와 샘플 데이터를 코드 생성용 컨텍스트로 조회
+MCP는 2026년 AI 도구의 보편 어댑터가 되었다. Codex CLI는 일급 MCP 지원을 탑재해 다음과의 직접 연결을 가능하게 한다: - **PostgreSQL / MySQL / Redis** — 스키마와 샘플 데이터를 코드 생성용 컨텍스트로 조회
 - **Stripe / Twilio / SendGrid API** — OpenAPI 스펙을 읽어 타입 지정된 SDK 호출 생성
 - **Notion / Confluence / 내부 위키** — 비즈니스 규칙과 기능 사양을 코딩 세션에 끌어옴
 - **Datadog / Sentry / CloudWatch** — 에러 트레이스를 수집해 프로덕션 인시던트 자동 진단/패치
 
-명령 레퍼런스:
-
-```bash
+명령 레퍼런스: ```bash
 codex /mcp          # 구성된 MCP 서버와 도구 나열
 codex /apps         # 사용 가능한 앱 커넥터 탐색/활성화
 ```
@@ -264,9 +237,7 @@ codex /apps         # 사용 가능한 앱 커넥터 탐색/활성화
 $skill-creator      # 새 스킬 작성용 대화형 마법사
 ```
 
-Skills는 개방형 Agent Skills 표준을 따르므로 Codex CLI, Claude Code, GitHub Copilot 간 이식 가능하다. 전형적인 스킬 응용:
-
-- 로컬라이제이션 PR 생성(문자열 추출 → 번역 → PR 오픈)
+Skills는 개방형 Agent Skills 표준을 따르므로 Codex CLI, Claude Code, GitHub Copilot 간 이식 가능하다. 전형적인 스킬 응용: - 로컬라이제이션 PR 생성(문자열 추출 → 번역 → PR 오픈)
 - 보안 감사 체크리스트(SQL 인젝션, XSS, 시크릿 누출 스캔)
 - 커밋 이력에서 릴리스 노트 초안 작성
 - 마이그레이션 스크립트(Python 2→3, Flask→FastAPI, JavaScript→TypeScript)
@@ -275,9 +246,7 @@ Skills는 개방형 Agent Skills 표준을 따르므로 Codex CLI, Claude Code, 
 
 ## 7. 보안 아키텍처: 엔터프라이즈가 Codex CLI를 승인하는 이유
 
-개발자 채택은 전투의 절반일 뿐이다; 엔터프라이즈 보안 팀이 게이트키퍼다. Codex CLI는 다층 방어 모델로 그들의 우려를 해결한다:
-
-| 계층 | 기술 | 보호 대상 |
+개발자 채택은 전투의 절반일 뿐이다; 엔터프라이즈 보안 팀이 게이트키퍼다. Codex CLI는 다층 방어 모델로 그들의 우려를 해결한다: | 계층 | 기술 | 보호 대상 |
 |---|---|---|
 | **파일시스템 샌드박스** | Linux Landlock / macOS Seatbelt | 지정된 워크스페이스 트리로 파일 접근 제한 |
 | **네트워크 송신 제어** | 기본 거부; 명령당 옵트인 | 무단 엔드포인트로의 우발적 데이터 유출 방지 |
@@ -285,9 +254,7 @@ Skills는 개방형 Agent Skills 표준을 따르므로 Codex CLI, Claude Code, 
 | **감사 트레일** | 로컬 SQLite DB | 모든 파일 읽기, 편집, 명령 실행에 타임스탬프와 diff 가능 |
 | **환경 변수 필터링** | 설정 가능한 허용/거부 리스트 | 시크릿(API 키, 비밀번호)이 로깅되거나 전송되는 것 차단 |
 
-규제 산업을 위한 추가 엔터프라이즈 제어:
-
-- **Hook Engine**: 컴플라이언스 스캔을 위한 제출 전 프롬프트 인터셉트; 실행 후 테스트 자동 트리거
+규제 산업을 위한 추가 엔터프라이즈 제어: - **Hook Engine**: 컴플라이언스 스캔을 위한 제출 전 프롬프트 인터셉트; 실행 후 테스트 자동 트리거
 - **RBAC 워크스페이스**: 다른 승인 임계값을 가진 관리자/사용자 스코프 분리
 - **Context Compaction**: 장시간 세션 이력 자동 압축으로 컨텍스트 윈도우에 민감 데이터가 남는 것 방지
 
@@ -304,17 +271,13 @@ Codex CLI는 기본적으로 OpenAI의 코딩 최적화 플래그십 모델 `gpt
 
 Spark는 Cerebras WSE-3 웨이퍼 스케일 칩과 공동 엔지니어링되었다—NVIDIA 실리콘이 아닌 곳에서 운영되는 첫 OpenAI 프로덕션 모델이다. 기본적으로 타깃 편집을 최소화하고 테스트 자동 실행하지 않으므로 자율 장기 작업보다는 빠듯한 피드백 루프에 적합하다.
 
-런타임 모델 전환:
-
-```bash
+런타임 모델 전환: ```bash
 codex -m gpt-5.3-codex
 codex -m gpt-5.3-codex-spark
 /model                    # 세션 중 대화형 모델 메뉴
 ```
 
-작업 유형별 추론 노력 조정:
-
-```toml
+작업 유형별 추론 노력 조정: ```toml
 # ~/.codex/config.toml
 model_reasoning_effort = "high"      # 아키텍처, 디버깅, 감사
 model_reasoning_effort = "medium"    # 일상 코딩, 테스트, 리팩토링(기본)
@@ -475,7 +438,6 @@ A: CLI는 WSL2를 통해 Windows에서 동작. 네이티브 Windows 데스크톱
 *마지막 업데이트: 2026년 5월 17일. Codex CLI는 빠른 반복 중; 현재 기능은 공식 문서와 대조 확인 권장.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

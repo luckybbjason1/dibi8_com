@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/chattts-dialogue-tts-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/chattts-dialogue-tts-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/chattts-dialogue-tts-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/chattts-dialogue-tts-2026" />
 title: 'ChatTTS 2026: 39.3k 별 오픈소스 대화 TTS, 웃음 / 일시정지 / 토큰 레벨 pro...
 description: 'ChatTTS는 대화(내레이션 아님) 전용 오픈소스 TTS. GitHub 39.3k 별, 4 GB VRAM 최소, RTX 4090에서 RTF 0.3, 웃음과 일시정지 포함 정밀 prosody 제어. 2026 완전 설치 + 프로덕션 셋업 가이드.'
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
-tech_stack:
-  - Python
+tech_stack: - Python
   - PyTorch
   - CUDA
 application_domain: Ai Tools
@@ -28,11 +22,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [chattts, tts, 음성, 대화, 오픈소스]
-aliases:
-  - /posts/chattts-dialogue-tts-2026/
+aliases: - /posts/chattts-dialogue-tts-2026/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/chattts-dialogue-tts-2026/ -->
 
 2026년 대부분 오픈소스 TTS는 여전히 "90년대 GPS 내레이터에 리버브 추가" 같습니다. **ChatTTS**는 첫 번째 널리 채택된 예외 — 39.3k 별의 생성형 음성 모델, **대화** 전용 훈련 (내레이션 아님), 웃음 / 일시정지 / 삽입어 / prosody의 토큰 레벨 제어로 마침내 "찡그리지 않게 하는" 임계점 통과.
 
@@ -49,8 +40,7 @@ aliases:
 
 ## 1. 왜 ChatTTS가 대화에서 전통 TTS를 이기는가
 
-레거시 분류:
-- **연결형 TTS** (festival 등) — 기계적, prosody 없음, 죽어감
+레거시 분류: - **연결형 TTS** (festival 등) — 기계적, prosody 없음, 죽어감
 - **신경 TTS** (Tacotron / FastSpeech / VITS) — 유창하지만 단조, 내레이션 최적화
 - **상업 API** (ElevenLabs / OpenAI TTS) — 자연스럽지만 $0.18-0.50/1000자, 폐쇄
 
@@ -76,12 +66,10 @@ ChatTTS는 새로운 4번째 카테고리: **명시적 prosody 제어 토큰을 
 git clone https://github.com/2noise/ChatTTS
 cd ChatTTS
 pip install -r requirements.txt
-# 또는 pip:
-pip install ChatTTS
+# 또는 pip: pip install ChatTTS
 ```
 
-Hello world:
-```python
+Hello world: ```python
 import ChatTTS
 import torchaudio
 import torch
@@ -99,9 +87,7 @@ torchaudio.save("out.wav", torch.from_numpy(wavs[0]), 24000)
 
 ## 4. Prosody 제어 토큰 (킬러 기능)
 
-ChatTTS가 살아있게 느껴지는 이유 — 이 태그들이 텍스트 중간에 작동:
-
-| 태그 | 효과 |
+ChatTTS가 살아있게 느껴지는 이유 — 이 태그들이 텍스트 중간에 작동: | 태그 | 효과 |
 |---|---|
 | `[laugh]` | 웃음 삽입 |
 | `[laugh_0]` ~ `[laugh_2]` | 웃음 강도 레벨 |
@@ -111,8 +97,7 @@ ChatTTS가 살아있게 느껴지는 이유 — 이 태그들이 텍스트 중�
 | `[speed_0]` ~ `[speed_9]` | 말 속도 (5 = 보통) |
 | `[break_0]` ~ `[break_7]` | 이산 일시정지 지속시간 |
 
-예시:
-```python
+예시: ```python
 text = "그래서 그에게 말했어 [uv_break] 그건 진짜일 리 없다고 [laugh] [lbreak] 하지만 그는 우겼지."
 wavs = chat.infer([text])
 ```
@@ -121,9 +106,7 @@ wavs = chat.infer([text])
 
 ## 5. 멀티 스피커 — 세션 간 안정 음성
 
-ChatTTS는 기본적으로 호출마다 다른 "스피커" 생성. 일관된 캐릭터 (NPC 음성, 영구 에이전트 인격)를 위해 한 번 시드하고 재사용:
-
-```python
+ChatTTS는 기본적으로 호출마다 다른 "스피커" 생성. 일관된 캐릭터 (NPC 음성, 영구 에이전트 인격)를 위해 한 번 시드하고 재사용: ```python
 # 안정 스피커 생성 및 저장
 rand_spk = chat.sample_random_speaker()
 torch.save(rand_spk, "speaker_alice.pt")
@@ -138,8 +121,7 @@ wavs = chat.infer(texts, params_infer_code=params_infer_code)
 
 ## 6. 라이선스 주의 (프로덕션 전 필독)
 
-**두 라이선스, 두 다른 의무**:
-- **코드**: AGPL-3.0 — copyleft, 파생 작품 AGPL로 오픈소스 필수
+**두 라이선스, 두 다른 의무**: - **코드**: AGPL-3.0 — copyleft, 파생 작품 AGPL로 오픈소스 필수
 - **모델 가중치**: CC BY-NC 4.0 — **비상업 사용만**
 
 상업 프로덕션: 상업 모델 라이선스 위해 2noise 연락, 또는 오픈 ChatTTS 아키텍처에서 모델 처음부터 파인튜닝 (상당한 노력이지만 법적으로 깨끗).
@@ -150,9 +132,7 @@ wavs = chat.infer(texts, params_infer_code=params_infer_code)
 
 ## 7. 프로덕션 패턴
 
-에이전트 음성 / 팟캐스트 파이프라인:
-
-```
+에이전트 음성 / 팟캐스트 파이프라인: ```
    텍스트 입력 (LLM 에이전트 / 스크립트 생성기에서)
             │
             ▼
@@ -199,7 +179,6 @@ GPU 인스턴스 띄우고, 3절의 10줄 설치 실행, 5분 안에 왜 이게 
 *dibi8의 멀티모달 콘텐츠 스택 일부 — ChatTTS + Whisper + Stable Diffusion + ComfyUI를 전체 오디오/비주얼 크리에이터 파이프라인으로 다루는 다가오는 멀티모달 콘텐츠 파이프라인 컬렉션 참조.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -227,25 +206,20 @@ GPU 인스턴스 띄우고, 3절의 10줄 설치 실행, 5분 안에 왜 이게 
 
 ## Why This Matters
 
-Understanding chattts 2026: 39.3k 별 오픈소스 대화 tts, 웃음 / 일시정지 / 토큰 레벨 prosody 제어 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding chattts 2026: 39.3k 별 오픈소스 대화 tts, 웃음 / 일시정지 / 토큰 레벨 prosody 제어 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

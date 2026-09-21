@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/noco-db-airtable-alternative" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/noco-db-airtable-alternative" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/noco-db-airtable-alternative" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/noco-db-airtable-alternative" />
 title: 'NocoDB 2026 完整指南：将任何数据库变成智能电子表格的开源 Airtable 替代品'
 description: '使用 Docker 在 5 分钟内部署 NocoDB。将 MySQL、PostgreSQL 或 SQLite 转换为协作式电子表格，支持自动生成 REST API、看板和基于角色的访问控制。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [nocodb, airtable替代品, 开源, 数据库, 电子表格, 自托管, docker, mysql, postgresql]
-aliases:
-- /zh/posts/noco-db-airtable-alternative/
+aliases: - /zh/posts/noco-db-airtable-alternative/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/noco-db-airtable-alternative/ -->
 
 {{</* resource-info */>}}
 
@@ -92,18 +84,13 @@ docker run -d \
 # docker-compose.yml
 version: "3.8"
 
-services:
-  nocodb:
-    image: nocodb/nocodb:0.260.7
-    ports:
-      - "8080:8080"
-    environment:
-      - NC_DB="pg://host.docker.internal:5432?u=postgres&p=yourpassword&d=nocodb_meta"
+services: nocodb: image: nocodb/nocodb:0.260.7
+    ports: - "8080:8080"
+    environment: - NC_DB="pg://host.docker.internal:5432?u=postgres&p=yourpassword&d=nocodb_meta"
       - DATABASE_URL="postgres://postgres:yourpassword@host.docker.internal:5432/myapp_production"
       - NC_AUTH_JWT_SECRET="change-this-to-a-64-char-random-string"
       - NC_PUBLIC_URL=https://nocodb.yourcompany.com
-    volumes:
-      - ./nocodb-data:/usr/app/data
+    volumes: - ./nocodb-data:/usr/app/data
     restart: unless-stopped
 ```
 
@@ -250,7 +237,13 @@ Base ID: your-base-id
 ### 性能：NocoDB 与 Airtable 对比
 
 | 指标 | NocoDB（自托管） | Airtable Pro |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | 每个 Base 的记录数 | **无限制** | 50,000 |
 | 文件附件 | **受磁盘限制** | 20 GB |
 | API 速率限制 | **无（你的服务器）** | 10 req/sec |
@@ -368,29 +361,30 @@ find /backups -name "*.sql" -mtime +7 -delete
 
 ```yaml
 # docker-compose.monitoring.yml
-services:
-  prometheus:
-    image: prom/prometheus:v2.51.0
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
-    ports:
-      - "9090:9090"
+services: prometheus: image: prom/prometheus:v2.51.0
+    volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports: - "9090:9090"
 
-  grafana:
-    image: grafana/grafana:10.4.0
-    ports:
-      - "3000:3000"
-    volumes:
-      - grafana-data:/var/lib/grafana
+  grafana: image: grafana/grafana:10.4.0
+    ports: - "3000:3000"
+    volumes: - grafana-data:/var/lib/grafana
 
-volumes:
-  grafana-data:
-```
+volumes: grafana-data: ```
 
 ## 与替代品对比
 
 | 功能 | NocoDB | Airtable | Baserow | Teable |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **许可证** | AGPL-3.0 | 专有 | MIT | AGPL-3.0 |
 | **自托管** | 是 | 否 | 是 | 是 |
 | **连接现有数据库** | **是**（PG, MySQL, SQLite） | 否 | 否 | 是 |
@@ -468,10 +462,8 @@ NocoDB 填补了一个特定的空白：为非技术团队提供 Airtable 的易
 
 **相关工具**：[n8n 工作流自动化](n8n-workflow-automation-dibi8-internal-link) | [Metabase BI 设置指南](metabase-bi-setup-dibi8-internal-link)
 
+
 ---
-
-
-
 ## 推荐部署与基础设施
 
 上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：
@@ -496,7 +488,6 @@ NocoDB 填补了一个特定的空白：为非技术团队提供 Airtable 的易
 *本文可能包含联盟链接。如果你通过我们的推荐链接注册 DigitalOcean，我们会获得佣金，不会增加你的额外费用。我们只推荐自己使用的服务。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -524,25 +515,20 @@ NocoDB 填补了一个特定的空白：为非技术团队提供 Airtable 的易
 
 ## Why This Matters
 
-Understanding nocodb 2026 完整指南：将任何数据库变成智能电子表格的开源 airtable 替代品 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding nocodb 2026 完整指南：将任何数据库变成智能电子表格的开源 airtable 替代品 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

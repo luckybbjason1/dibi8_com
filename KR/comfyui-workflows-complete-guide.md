@@ -1,21 +1,14 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/comfyui-workflows-complete-guide" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/comfyui-workflows-complete-guide" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/comfyui-workflows-complete-guide" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/comfyui-workflows-complete-guide" />
 title: ComfyUI 워크플로우 — AI 이미지 생성을 위한 시각적 프로그래밍 언어
 description: 'ComfyUI 완전 가이드: 노드를 연결해 복잡한 파이프라인 구축, 의존성 관리, 공유 가능한 워크플로우 템플릿 생성으로 전문 AI 이미지 생성 구현.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 tags: ['comfyui', 'ai-image-generation', 'workflow', 'nodes', 'stable-diffusion', 'visual-programming']
 category: ai-tools
 featureImage: /images/articles/comfyui-workflows.jpg
 date: 2026-07-16T00:00:00+00:00
-lastmod:  2026-07-16T00:00:00+00:00draft: false
+lastmod: 2026-07-16T00:00:00+00:00draft: false
 slug: comfyui-workflows-complete-guide
 lang: ko
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/comfyui-workflows-complete-guide/ -->
 
 ## TL;DR
 
@@ -27,9 +20,7 @@ ComfyUI는 AI 이미지 생성 모델을 실행하기 위한 강력한 노드 �
 
 ComfyUI는 AI 이미지 생성 모델을 실행하기 위한 노드 기반 그래픽 인터페이스입니다. 슬라이더를 조정하고 "생성"을 클릭하는 전통적인 UI와 달리 ComfyUI는 처리 노드를 연결하여 **커스텀 파이프라인을 구축**할 수 있게 해줍니다 — Blender의 노드 시스템이나 TouchDesigner와 유사합니다.
 
-핵심 철학: **생성 과정의 모든 단계에 대한 완전한 제어권 제공**. 이는 다음을 의미합니다:
-
-- 여러 모델 체이닝 (예: 텍스트 → 이미지 → 업스케일 → 리파인)
+핵심 철학: **생성 과정의 모든 단계에 대한 완전한 제어권 제공**. 이는 다음을 의미합니다: - 여러 모델 체이닝 (예: 텍스트 → 이미지 → 업스케일 → 리파인)
 - 조건부 로직 사용 (A면 B, 아니면 C)
 - 여러 이미지를 동시에 처리
 - 재사용 가능한 워크플로우 템플릿 생성
@@ -37,9 +28,7 @@ ComfyUI는 AI 이미지 생성 모델을 실행하기 위한 노드 기반 그�
 
 ### 왜 노드 기반 AI 워크플로우가 중요한가?
 
-전통적인 AI 이미지 생성기는 고정된 파이프라인을 제시합니다: 프롬프트를 입력하고, 설정을 조정하고, 이미지를 얻습니다. 하지만 실제 창의적 작업은 종종 다음을 필요로 합니다:
-
-1. **다단계 처리** — 기본 이미지 생성, 얼굴 감지, 특정 영역 업스케일, 스타일 트랜스퍼 적용
+전통적인 AI 이미지 생성기는 고정된 파이프라인을 제시합니다: 프롬프트를 입력하고, 설정을 조정하고, 이미지를 얻습니다. 하지만 실제 창의적 작업은 종종 다음을 필요로 합니다: 1. **다단계 처리** — 기본 이미지 생성, 얼굴 감지, 특정 영역 업스케일, 스타일 트랜스퍼 적용
 2. **조건부 생성** — 감지된 내용에 따라 다른 프롬프트
 3. **배치 처리** — 효율적으로 변형 생성
 4. **커스텀 포스트프로세싱** — 특정 필터, 합성 또는 보정 적용
@@ -52,16 +41,13 @@ ComfyUI는 AI 이미지 생성 모델을 실행하기 위한 노드 기반 그�
 
 ### 노드와 연결
 
-ComfyUI의 모든 작업은 입력과 출력을 가진 자체 컨테이너 처리 단위인 **노드**입니다:
-
-```
+ComfyUI의 모든 작업은 입력과 출력을 가진 자체 컨테이너 처리 단위인 **노드**입니다: ```
 [체크포인트 로드] → [CLIP 텍스트 인코딩] → [KSampler] → [VAE 디코드] → [이미지 저장]
      │                    │                      │                │
   모델              양수/음수 프롬프트      시드/샘플수      출력
 ```
 
-각 노드 유형은 특정 작업을 처리합니다:
-- **모델 로드**: Stable Diffusion 체크포인트, LoRA, 임베딩 로드
+각 노드 유형은 특정 작업을 처리합니다: - **모델 로드**: Stable Diffusion 체크포인트, LoRA, 임베딩 로드
 - **텍스트 인코딩**: 프롬프트를 잠재 공간 표현으로 변환
 - **샘플링**: 다양한 알고리즘으로 이미지 생성 (Euler, DPM++, DDIM)
 - **포스트프로세싱**: 업스케일, 색상 보정, 얼굴 향상
@@ -69,9 +55,7 @@ ComfyUI의 모든 작업은 입력과 출력을 가진 자체 컨테이너 처�
 
 ### 워크플로우 아키텍처
 
-완전한 ComfyUI 워크플로우는 다음 패턴을 따릅니다:
-
-```python
+완전한 ComfyUI 워크플로우는 다음 패턴을 따릅니다: ```python
 # 개념적 흐름 (실제 ComfyUI는 시각적 연결 사용)
 workflow = {
     "input": {
@@ -125,9 +109,7 @@ workflow = {
 
 ### 고급: 다단계 파이프라인
 
-전문 결과를 위해 여러 단계를 체이닝:
-
-```
+전문 결과를 위해 여러 단계를 체이닝: ```
 단계 1: 기본 생성
 ├── 체크포인트 로드 (SDXL)
 ├── 프롬프트 인코딩
@@ -155,9 +137,7 @@ workflow = {
 
 ### 패턴 1: 반복 정제
 
-기본 이미지를 생성하고 평가한 후 특정 측면을 정제:
-
-```json
+기본 이미지를 생성하고 평가한 후 특정 측면을 정제: ```json
 {
   "workflow_id": "iterative-refinement",
   "stages": [
@@ -170,9 +150,7 @@ workflow = {
 
 ### 패턴 2: 배치 변형 생성
 
-비교를 위해 여러 변형 생성:
-
-```json
+비교를 위해 여러 변형 생성: ```json
 {
   "workflow_id": "batch-variations",
   "config": {
@@ -190,9 +168,7 @@ workflow = {
 
 ### 패턴 3: ControlNet 유도 생성
 
-참조 이미지를 사용하여 구도 유도:
-
-```
+참조 이미지를 사용하여 구도 유도: ```
 입력: 참조 이미지
    ↓
 Canny 엣지 검출 → ControlNet (엣지 유도)
@@ -206,9 +182,7 @@ Canny 엣지 검출 → ControlNet (엣지 유도)
 
 ### 패턴 4: Img2Img 파이프라인
 
-구조를 보존하면서 기존 이미지 변환:
-
-```
+구조를 보존하면서 기존 이미지 변환: ```
 원본 이미지 → 인코딩 (VAE) → 노이즈 추가 → KSampler (디노이즈) → 디코딩 (VAE) → 결과
 ```
 
@@ -220,9 +194,7 @@ Canny 엣지 검출 → ControlNet (엣지 유도)
 
 ### 지원 모델
 
-ComfyUI는 광범위한 모델을 지원합니다:
-
-| 모델 유형 | 예시 | 최적 용도 |
+ComfyUI는 광범위한 모델을 지원합니다: | 모델 유형 | 예시 | 최적 용도 |
 |---------|------|----------|
 | Stable Diffusion 1.5 | sd-v1-5, dreamshaper | 신속한 프로토타이핑 |
 | SDXL | sdxl_v1.0, juggernaut | 고품질 기반 |
@@ -317,9 +289,7 @@ optimization_config = {
 
 ### 기술 1: 계층적 생성
 
-먼저 저해상도로 생성한 후 단계적으로 업스케일:
-
-```
+먼저 저해상도로 생성한 후 단계적으로 업스케일: ```
 저해상도 (512x512) → 중해상도 (1024x1024) → 고해상도 (2048x2048)
        ↓                   ↓                    ↓
     거친 세부            미세 세부          초고도 세부
@@ -327,25 +297,19 @@ optimization_config = {
 
 ### 기술 2: 영역 기반 편집
 
-다른 부분에 영향을 주지 않고 이미지의 특정 부분 편집:
-
-```
+다른 부분에 영향을 주지 않고 이미지의 특정 부분 편집: ```
 마스킹 선택 → 인페인팅 노드 → 로컬 프롬프트 → KSampler (마스킹만)
 ```
 
 ### 기술 3: 스타일 트랜스퍼 파이프라인
 
-콘텐츠를 보존하면서 예술적 스타일 적용:
-
-```
+콘텐츠를 보존하면서 예술적 스타일 적용: ```
 컨텐츠 이미지 → CLIP Vision → 스타일 참조 → 크로스 어텐션 → KSampler
 ```
 
 ### 기술 4: 자동 품질 스코어링
 
-생성 이미지를 자동으로 스코어링하고 필터링:
-
-```
+생성 이미지를 자동으로 스코어링하고 필터링: ```
 생성 이미지 → CLIP 스코어 노드 → 필터링 (> 임계값) → 최고 점수 저장
 ```
 
@@ -430,16 +394,14 @@ python main.py --listen 0.0.0.0 --port 8188
 
 ### 브라우저 인터페이스
 
-브라우저에서 `http://localhost:8188` 열기:
-- 워크플로우 구축을 위한 빈 캔버스
+브라우저에서 `http://localhost:8188` 열기: - 워크플로우 구축을 위한 빈 캔버스
 - 오른쪽의 노드 라이브러리
 - 설정 패널 (톱니바퀴 아이콘)
 - 대기열 및 히스토리 탭
 
 ### 프리셋 로드
 
-ComfyUI에는 많은 프리셋 워크플로우가 포함되어 있습니다:
-- **기본**: 간단한 텍스트→이미지
+ComfyUI에는 많은 프리셋 워크플로우가 포함되어 있습니다: - **기본**: 간단한 텍스트→이미지
 - **Img2Img**: 이미지→이미지 변환
 - **ControlNet**: 참조 유도 생성
 - **업스케일**: 해상도 향상
@@ -508,7 +470,6 @@ ComfyUI는 핵심 애플리케이션입니다. ComfyUI Manager는 모델, 노드
 *실시간 AI 도구 논의 및 배포 팁을 위해 Telegram 그룹에 가입하세요: [t.me/dibi8](https://t.me/dibi8)*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

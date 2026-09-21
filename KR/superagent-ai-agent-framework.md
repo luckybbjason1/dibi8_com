@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/superagent-ai-agent-framework" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/superagent-ai-agent-framework" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/superagent-ai-agent-framework" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/superagent-ai-agent-framework" />
 title: 'Superagent: 1개의 CLI 명령으로 AI 에이전트를 프로덕션에 배포하기 — 2026 최소 설...
 description: 'Superagent로 AI 에이전트를 배포하는 실전 가이드. 하나의 CLI 명령, 다중 LLM 지원, RAG 워크플로우, 벡터 DB 통합, REST API 배포. 실제 벤치마크 데이터 포함.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [superagent, 'ai 에이전트', llm, rag, '벡터 데이터베이스', openai, langchain, python, typescript]
-aliases:
-- /kr/posts/superagent-ai-agent-framework/
+aliases: - /kr/posts/superagent-ai-agent-framework/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/superagent-ai-agent-framework/ -->
 
 {{</* resource-info */>}}
 
@@ -55,9 +47,7 @@ Superagent는 **대규모로 AI 에이전트를 구축, 관리, 배포하기 위
 
 ## How Superagent Works
 
-Superagent의 아키텍처는 **5계층 파이프라인 모델**을 따른다:
-
-```
+Superagent의 아키텍처는 **5계층 파이프라인 모델**을 따른다: ```
 ┌─────────────────────────────────────────────────────────────┐
 │                    클라이언트 애플리케이션                      │
 │         (SDK / REST API / WebSocket / CLI)                    │
@@ -84,9 +74,7 @@ Superagent의 아키텍처는 **5계층 파이프라인 모델**을 따른다:
 └─────────────────────────────────────────────────────────────┘
 ```
 
-핵심 컴포넌트:
-
-1. **Agents** — 추론 유닛. 각 에이전트는 LLM, 도구 집합, 메모리 백엔드에 바인딩된다.
+핵심 컴포넌트: 1. **Agents** — 추론 유닛. 각 에이전트는 LLM, 도구 집합, 메모리 백엔드에 바인딩된다.
 2. **Tools** — 에이전트가 호출할 수 있는 함수 (웹 검색, API 호출, 코드 실행, DB 쿼리).
 3. **Datasources** — RAG 파이프라인에 데이터를 공급하는 문서 또는 API, 자동으로 청킹 및 벡터화된다.
 4. **Workflows** — 에이전트, 도구, 조걸 로직을 연결하는 다단계 자동화.
@@ -106,9 +94,7 @@ superagent --version
 # 출력: superagent/0.4.2 linux-x64 node-v20.12.0
 ```
 
-CLI는 가장 빠른 배포 경로다. 프로그래밍 방식 제어를 선호한다면 Python SDK를 설치하라:
-
-```bash
+CLI는 가장 빠른 배포 경로다. 프로그래밍 방식 제어를 선호한다면 Python SDK를 설치하라: ```bash
 # Python SDK 설치
 pip install superagent-py
 
@@ -152,9 +138,7 @@ superagent init --template qa-agent
 superagent deploy
 ```
 
-`superagent deploy` 실행 후 라이브 API 엔드포인트를 받는다:
-
-```
+`superagent deploy` 실행 후 라이브 API 엔드포인트를 받는다: ```
 ✅ 에이전트 배포 성공!
 🔗 API 엔드포인트: https://api.superagent.sh/v1/agents/ag_01hwxyz123
 📖 문서: https://api.superagent.sh/v1/agents/ag_01hwxyz123/docs
@@ -173,9 +157,7 @@ curl -X POST https://api.superagent.sh/v1/agents/ag_01hwxyz123/invoke \
   }'
 ```
 
-응답에는 생성된 답변, RAG가 활성화된 경우 출처 인용, 실행 메타데이터가 포함된다:
-
-```json
+응답에는 생성된 답변, RAG가 활성화된 경우 출처 인용, 실행 메타데이터가 포함된다: ```json
 {
   "output": "Superagent provides: (1) One-command deployment, (2) Multi-LLM support including OpenAI and local models, (3) Built-in RAG with vector database integration, (4) REST API with streaming support, (5) Python and TypeScript SDKs, and (6) Workflow automation for chaining agents.",
   "intermediate_steps": [],
@@ -190,9 +172,7 @@ curl -X POST https://api.superagent.sh/v1/agents/ag_01hwxyz123/invoke \
 
 ### OpenAI / Anthropic / Cohere
 
-Superagent는 모든 OpenAI 호환 API를 기본 지원한다. 프로바이더 간 전환은 구성 변경만으로 가능하다:
-
-```python
+Superagent는 모든 OpenAI 호환 API를 기본 지원한다. 프로바이더 간 전환은 구성 변경만으로 가능하다: ```python
 from superagent.client import Superagent
 
 client = Superagent()
@@ -215,9 +195,7 @@ agent_claude = client.agent.create(
 
 ### LangChain 통합
 
-Superagent는 모든 LangChain 도구나 체인을 수용할 수 있어 마이그레이션이 간편하다:
-
-```python
+Superagent는 모든 LangChain 도구나 체인을 수용할 수 있어 마이그레이션이 간편하다: ```python
 from langchain.tools import DuckDuckGoSearchRun
 from superagent.client import Superagent
 
@@ -236,9 +214,7 @@ agent = client.agent.create(
 
 ### Pinecone / Weaviate 벡터 데이터베이스
 
-기존 벡터 스토어를 RAG 워크플로우에 연결:
-
-```python
+기존 벡터 스토어를 RAG 워크플로우에 연결: ```python
 import os
 from superagent.client import Superagent
 
@@ -269,9 +245,7 @@ datasource_weaviate = client.datasource.create(
 
 ### FastAPI / Express.js 백엔드 통합
 
-기존 백엔드에 Superagent를 임베드:
-
-```python
+기존 백엔드에 Superagent를 임베드: ```python
 # FastAPI 통합 예제
 from fastapi import FastAPI
 from superagent.client import Superagent
@@ -281,8 +255,7 @@ app = FastAPI()
 client = Superagent(api_key=os.getenv("SUPERAGENT_API_KEY"))
 
 @app.post("/api/ask")
-async def ask_question(question: str):
-    response = await client.agent.invoke(
+async def ask_question(question: str): response = await client.agent.invoke(
         agent_id="ag_01hwxyz123",
         input=question,
         enable_streaming=True
@@ -292,9 +265,7 @@ async def ask_question(question: str):
 
 ### Docker 배포
 
-자체 호스팅 배포를 위해 공식 Docker 이미지를 사용:
-
-```bash
+자체 호스팅 배포를 위해 공식 Docker 이미지를 사용: ```bash
 # 공식 이미지 Pull
 docker pull superagentai/superagent:latest
 
@@ -311,41 +282,26 @@ docker run -d \
 docker ps | grep superagent
 ```
 
-프로덕션을 위해 [DigitalOcean Droplet](https://m.do.co/c/eca87ac14ee0)에서 Docker Compose로 배포:
-
-```yaml
+프로덕션을 위해 [DigitalOcean Droplet](https://m.do.co/c/eca87ac14ee0)에서 Docker Compose로 배포: ```yaml
 # 프로덕션용 docker-compose.yml
 version: "3.8"
-services:
-  superagent:
-    image: superagentai/superagent:latest
-    ports:
-      - "3000:3000"
-    environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
+services: superagent: image: superagentai/superagent:latest
+    ports: - "3000:3000"
+    environment: - OPENAI_API_KEY=${OPENAI_API_KEY}
       - DATABASE_URL=postgresql://postgres:postgres@db:5432/superagent
       - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
-    depends_on:
-      - db
+    depends_on: - db
       - redis
 
-  db:
-    image: postgres:16-alpine
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_PASSWORD=postgres
+  db: image: postgres:16-alpine
+    volumes: - pgdata:/var/lib/postgresql/data
+    environment: - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=superagent
 
-  redis:
-    image: redis:7-alpine
-    volumes:
-      - redisdata:/data
+  redis: image: redis:7-alpine
+    volumes: - redisdata:/data
 
-volumes:
-  pgdata:
-  redisdata:
-```
+volumes: pgdata: redisdata: ```
 
 ---
 
@@ -353,9 +309,7 @@ volumes:
 
 ### 토큰 경제성
 
-Superagent의 가격 모델은 사용량 기반이다. 2026년 초 기준 Guard, Verify, Redact 모델의 토큰 요율:
-
-| 서비스 | 입력 토큰 | 출력 토큰 |
+Superagent의 가격 모델은 사용량 기반이다. 2026년 초 기준 Guard, Verify, Redact 모델의 토큰 요율: | 서비스 | 입력 토큰 | 출력 토큰 |
 |--------|-----------|-----------|
 | Guard | $0.90 / 백만 | $1.90 / 백만 |
 | Verify | $0.90 / 백만 | $1.90 / 백만 |
@@ -385,16 +339,13 @@ Superagent의 가격 모델은 사용량 기반이다. 2026년 초 기준 Guard,
 
 ### 커스텀 도구 개발
 
-에이전트가 호출할 수 있는 도메인 전용 도구를 구축:
-
-```python
+에이전트가 호출할 수 있는 도메인 전용 도구를 구축: ```python
 from superagent.client import Superagent
 import requests
 
 client = Superagent()
 
-def get_stock_price(symbol: str) -> str:
-    """금융 API에서 실시간 주가를 가져옵니다."""
+def get_stock_price(symbol: str) -> str: """금융 API에서 실시간 주가를 가져옵니다."""
     resp = requests.get(
         f"https://api.example.com/stocks/{symbol}",
         headers={"Authorization": f"Bearer {API_KEY}"}
@@ -412,9 +363,7 @@ client.tool.create(
 
 ### 메모리 관리 전략
 
-Superagent는 여러 메모리 백엔드를 지원한다. 사용 사례에 따라 선택:
-
-```python
+Superagent는 여러 메모리 백엔드를 지원한다. 사용 사례에 따라 선택: ```python
 from superagent.client import Superagent
 
 client = Superagent()
@@ -440,9 +389,7 @@ agent = client.agent.create(
 
 ### 워크플로우 자동화
 
-다중 에이전트를 다단계 워크플로우로 연결:
-
-```python
+다중 에이전트를 다단계 워크플로우로 연결: ```python
 from superagent.client import Superagent
 
 client = Superagent()
@@ -479,9 +426,7 @@ print(result.steps[-1].output)  # 최종 편집된 게시물
 
 ### 인증 및 속도 제한
 
-프로덕션 API에서 접근 제어를 강제:
-
-```python
+프로덕션 API에서 접근 제어를 강제: ```python
 # API 키 인증 구성
 superagent config set auth.type=api_key
 superagent config set auth.rate_limit=100/minute
@@ -497,8 +442,7 @@ superagent config set logging.retention=30d
 # 내장 상태 엔드포인트
 curl https://your-superagent-instance.com/health
 
-# 예상 응답:
-# {"status": "ok", "version": "0.4.2", "uptime": 86400}
+# 예상 응답: # {"status": "ok", "version": "0.4.2", "uptime": 86400}
 
 # Prometheus 메트릭 엔드포인트 (활성화 시)
 curl https://your-superagent-instance.com/metrics
@@ -608,9 +552,7 @@ Superagent는 "에이전트 프로토타입"과 "프로덕션 API" 사이의 마
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -620,7 +562,6 @@ Superagent는 "에이전트 프로토타입"과 "프로덕션 API" 사이의 마
 이 글에는 제휴 링크가 포함되어 있다. [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 링크를 통해 가입하면 추가 비용 없이 우리가 수수료를 받는다. 우리는 자체 배포에 사용하는 서비스만을 추천한다. Superagent 자체는 MIT 라이선스 하에 오픈소스이자 묣으로 사용할 수 있다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

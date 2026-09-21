@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/gpt-sovits" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/gpt-sovits" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/gpt-sovits" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/gpt-sovits" />
 title: 'GPT-SoVITS: 57.5K+ Stars — Hướng Dẫn Triển Khai AI Voice...
 description: 'GPT-SoVITS (GSV) là công cụ few-shot voice cloning và TTS với khả năng zero-shot. Tích hợp với ComfyUI, RVC và MeloTTS. Bao gồm triển khai Docker, huấn luyện giọng nói, thiết lập API và hardening production.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: ['voice-cloning', 'text-to-speech', 'gpt-sovits', tts, 'ai-giong-noi', docker, rvc, python]
-aliases:
-- /vi/posts/gpt-sovits/
+aliases: - /vi/posts/gpt-sovits/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/gpt-sovits/ -->
 
 {{</* resource-info */>}}
 
@@ -47,9 +39,7 @@ Xây dựng pipeline nhân bản giọng nói từng đòi hỏi phòng thu, nhi
 
 ### Tổng quan kiến trúc
 
-GPT-SoVITS sử dụng pipeline 2 giai đoạn tách biệt hiểu ngôn ngữ và tạo sóng âm thanh:
-
-```
+GPT-SoVITS sử dụng pipeline 2 giai đoạn tách biệt hiểu ngôn ngữ và tạo sóng âm thanh: ```
 Input văn bản → BERT Text Encoder → Mô hình GPT (330M tham số) → Semantic Token
                                                               ↓
 Audio tham chiếu → HuBERT Encoder → Mô hình SoVITS (77M tham số) → Vocoder → 48kHz Audio
@@ -84,9 +74,7 @@ Audio tham chiếu → HuBERT Encoder → Mô hình SoVITS (77M tham số) → V
 
 ### Luồng dữ liệu Pipeline
 
-Pipeline huấn luyện và inference đầy đủ tuân theo luồng sau:
-
-```
+Pipeline huấn luyện và inference đầy đủ tuân theo luồng sau: ```
 Audio thô → UVR5 Tách → Audio Slicer → ASR Transcription → Text Labeling
                                                                                 ↓
 Pretrained GPT + SoVITS ← Fine-tuning (1 phút dữ liệu) ← Formatted Dataset
@@ -130,8 +118,7 @@ pip install -r requirements.txt
 
 ```powershell
 # Tải gói tích hợp từ HuggingFace
-# Giải nén và chạy:
-conda create -n GPTSoVits python=3.10
+# Giải nén và chạy: conda create -n GPTSoVits python=3.10
 conda activate GPTSoVits
 pwsh -F install.ps1 -Device CU126 -Source HF
 ```
@@ -157,22 +144,13 @@ docker compose run --service-ports GPT-SoVITS-CU128
 
 ```yaml
 # docker-compose.override.yaml cho production
-services:
-  GPT-SoVITS-CU128:
-    shm_size: 16g
-    environment:
-      - is_half=true
-    ports:
-      - "9874:9874"
+services: GPT-SoVITS-CU128: shm_size: 16g
+    environment: - is_half=true
+    ports: - "9874:9874"
       - "9880:9880"
-    volumes:
-      - ./models:/workspace/models
+    volumes: - ./models:/workspace/models
       - ./outputs:/workspace/outputs
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+    deploy: resources: reservations: devices: - driver: nvidia
               count: 1
               capabilities: [gpu]
 ```
@@ -184,8 +162,7 @@ services:
 mkdir -p GPT_SoVITS/pretrained_models
 
 # Tải tự động qua install.sh từ HuggingFace
-# Hoặc thủ công cho V4:
-# s2v4.pth, vocoder.pth → GPT_SoVITS/pretrained_models/gsv-v4-pretrained/
+# Hoặc thủ công cho V4: # s2v4.pth, vocoder.pth → GPT_SoVITS/pretrained_models/gsv-v4-pretrained/
 
 # Tải mô hình G2PW cho TTS tiếng Trung
 # Giải nén G2PWModel.zip vào: GPT_SoVITS/text/G2PWModel/
@@ -211,9 +188,7 @@ python api_v2.py
 
 ### Tích hợp với ComfyUI
 
-Nodes ComfyUI cho GPT-SoVITS cho phép tạo giọng nói trong workflow hình ảnh:
-
-```bash
+Nodes ComfyUI cho GPT-SoVITS cho phép tạo giọng nói trong workflow hình ảnh: ```bash
 # Cài đặt nodes ComfyUI-GPT-SoVITS
 cd ComfyUI/custom_nodes
 git clone https://github.com/yaolidi/ComfyUI-GPT-SoVITS.git
@@ -221,15 +196,12 @@ git clone https://github.com/yaolidi/ComfyUI-GPT-SoVITS.git
 # Cài đặt dependency
 pip install -r ComfyUI-GPT-SoVITS/requirements.txt
 
-# Đặt mô hình .pth và .ckpt đã train vào:
-# ComfyUI/models/GPT-SoVITS/
+# Đặt mô hình .pth và .ckpt đã train vào: # ComfyUI/models/GPT-SoVITS/
 ```
 
 ### Tích hợp với RVC (Retrieval-based Voice Conversion)
 
-RVC và GPT-SoVITS chia sẻ cùng hệ sinh thái. Dùng RVC cho chuyển đổi giọng thờigian thực, GPT-SoVITS cho TTS chất lượng cao:
-
-```python
+RVC và GPT-SoVITS chia sẻ cùng hệ sinh thái. Dùng RVC cho chuyển đổi giọng thờigian thực, GPT-SoVITS cho TTS chất lượng cao: ```python
 # Pipeline: GPT-SoVITS TTS → RVC Voice Conversion
 import requests
 import subprocess
@@ -245,8 +217,7 @@ tts_payload = {
 }
 
 response = requests.post("http://localhost:9880/tts", json=tts_payload)
-with open("tts_output.wav", "wb") as f:
-    f.write(response.content)
+with open("tts_output.wav", "wb") as f: f.write(response.content)
 
 # Bước 2: Chuyển đổi qua RVC (tùy chọn real-time VC)
 rvc_cmd = [
@@ -260,9 +231,7 @@ subprocess.run(rvc_cmd)
 
 ### Tích hợp với MeloTTS
 
-MeloTTS xử lý tiền xử lý văn bản đa ngôn ngữ trước khi tổng hợp GPT-SoVITS:
-
-```python
+MeloTTS xử lý tiền xử lý văn bản đa ngôn ngữ trước khi tổng hợp GPT-SoVITS: ```python
 from melo.api import TTS
 import requests
 
@@ -282,9 +251,7 @@ response = requests.post("http://localhost:9880/tts", json={
 
 ### Tích hợp REST API
 
-`api_v2.py` tích hợp cung cấp đầy đủ REST API cho production:
-
-```bash
+`api_v2.py` tích hợp cung cấp đầy đủ REST API cho production: ```bash
 # Khởi động API server
 python api_v2.py -a 0.0.0.0 -p 9880
 
@@ -295,8 +262,7 @@ python api_v2.py -a 0.0.0.0 -p 9880
 # Ví dụ client Python
 import requests
 
-def synthesize(text, ref_audio, prompt_text, output_path):
-    payload = {
+def synthesize(text, ref_audio, prompt_text, output_path): payload = {
         "text": text,
         "text_lang": "vi",
         "ref_audio_path": ref_audio,
@@ -315,9 +281,7 @@ def synthesize(text, ref_audio, prompt_text, output_path):
         timeout=60
     )
     
-    if response.status_code == 200:
-        with open(output_path, "wb") as f:
-            f.write(response.content)
+    if response.status_code == 200: with open(output_path, "wb") as f: f.write(response.content)
         return True
     return False
 
@@ -439,12 +403,11 @@ app = FastAPI()
 rate_limits = defaultdict(list)
 
 @app.middleware("http")
-async def rate_limit(request, call_next):
-    client = request.client.host
+async def rate_limit(request, call_next): client = request.client.host
     now = time.time()
     rate_limits[client] = [t for t in rate_limits[client] if now - t < 60]
     
-    if len(rate_limits[client]) >= 10:  # 10 req/phút
+    if len(rate_limits[client]) >= 10: # 10 req/phút
         raise HTTPException(429, "Vượt quá giới hạn tốc độ")
     
     rate_limits[client].append(now)
@@ -599,9 +562,7 @@ GPT-SoVITS mang lại voice cloning production-chất lượng với yêu cầu 
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -620,7 +581,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [GPT-SoVITS v3 Technical Paper Reference](https://arxiv.org/pdf/2504.19146)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/aitoearn-ai-monetization" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/aitoearn-ai-monetization" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/aitoearn-ai-monetization" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/aitoearn-ai-monetization" />
 title: "AiToEarn: Công Cụ Kiếm Tiền Từ Nội Dung AI Mã Nguồn Mở —...
 description: "AiToEarn là nền tảng kiếm tiền từ nội dung AI mã nguồn mở giúp người sáng tạo biến nội dung do AI tạo ra thành sản phẩm có lợi nhuận. Hỗ trợ phân phối đa nền tảng, thanh toán đăng ký và kiếm tiền từ quảng cáo."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Go
+tech_stack: - Go
   - JavaScript
   - TypeScript
 application_domain: "Llm Frameworks"
@@ -26,10 +20,8 @@ maintainer: "yikart"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases:
-- /vi/posts/aitoearn-ai-monetization/
-faqs:
-  - q: 'AiToEarn là gì?'
+aliases: - /vi/posts/aitoearn-ai-monetization/
+faqs: - q: 'AiToEarn là gì?'
     a: 'AiToEarn là một nền tảng kiếm tiền từ nội dung AI mã nguồn mở, giúp người sáng tạo biến nội dung do AI tạo ra như bài viết, hình ảnh, kịch bản video và mã nguồn thành các nguồn thu nhập thụ động. Nó kết hợp việc tạo nội dung AI, phân phối đa nền tảng chỉ với một cú nhấp và tính năng kiếm tiền tích hợp trong một công cụ tự lưu trữ duy nhất.'
   - q: 'AiToEarn giúp người sáng tạo kiếm tiền như thế nào?'
     a: 'AiToEarn hỗ trợ năm phương thức kiếm tiền: đăng ký trả phí ($5-50/month mỗi người dùng), doanh thu quảng cáo qua Google AdSense và Media.net, tiếp thị liên kết với các liên kết Amazon và Taobao được chèn tự động (hoa hồng 5-50%), tải xuống có trả phí các mẫu và gói prompt ($1-20 mỗi gói), và tính phí API cho các quy trình AI đã được đóng gói ($0.01-0.1 mỗi lần gọi).'
@@ -41,7 +33,6 @@ faqs:
     a: 'Có, AiToEarn có thể tự lưu trữ. Bạn clone kho lưu trữ GitHub, chạy npm install, sao chép .env.example thành .env và thêm các API key của bạn, sau đó chạy npm run dev. Ứng dụng khi đó sẽ chạy cục bộ tại http://localhost:3000.'
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/aitoearn-ai-monetization/ -->
 {</* resource-info */>}
 
 ![AiToEarn — phân phối nội dung 12+ nền tảng](/images/articles/aitoearn-ai-monetization/app.png)
@@ -67,8 +58,7 @@ faqs:
 - Tạo và chỉnh sửa hình ảnh AI (DALL-E, Midjourney, Stable Diffusion)
 
 ### 📡 Phân Phối Một Cú Nhấp Chuột
-Hỗ trợ tự động đăng lên:
-- **Nền tảng blog**: WordPress, Ghost, Notion
+Hỗ trợ tự động đăng lên: - **Nền tảng blog**: WordPress, Ghost, Notion
 - **Mạng xã hội**: Twitter/X, LinkedIn, Facebook, Instagram
 - **Nền tảng Trung Quốc**: WeChat Official, Zhihu, Xiaohongshu, Bilibili
 - **Nền tảng video**: YouTube, TikTok, Douyin (tạo kịch bản)
@@ -193,9 +183,7 @@ AiToEarn đại diện cho **paradigm mới cho nền kinh tế người sáng t
 
 ## Công Cụ Đề Xuất
 
-Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
+Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
 - **{{< aff "hostinger" "footer-cta-legacy" "Hostinger" >}}** — Lựa chọn VPS giá tốt cho thị trường Việt Nam.
 
 *Affiliate link — không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.*
@@ -210,7 +198,6 @@ Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -238,25 +225,20 @@ Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
 
 ## Why This Matters
 
-Understanding aitoearn: công cụ kiếm tiền từ nội dung ai mã nguồn mở — biến cuộc trò chuyện gpt thành thu nhập thụ động is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding aitoearn: công cụ kiếm tiền từ nội dung ai mã nguồn mở — biến cuộc trò chuyện gpt thành thu nhập thụ động is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/llm-fine-tuning-frameworks-comparison" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/llm-fine-tuning-frameworks-comparison" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/llm-fine-tuning-frameworks-comparison" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llm-fine-tuning-frameworks-comparison" />
 title: 'So Sánh Framework Fine-Tuning LLM 2025: LoRA, QLoRA, PEF...
 description: 'So sánh chi tiết các framework fine-tuning LLM 2025: LoRA, QLoRA, PEFT Hugging Face và Unsloth. Hướng dẫn chọn phương pháp tối ưu VRAM và tốc độ.'
 date: 2026-05-18 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/llm-fine-tuning-frameworks-comparison/
+aliases: - /posts/llm-fine-tuning-frameworks-comparison/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/llm-fine-tuning-frameworks-comparison/ -->
 
 {</* resource-info */>}
 
@@ -49,9 +41,7 @@ Fine-tuning phù hợp khi bạn cần thay đổi hành vi của mô hình (wri
 
 ### LoRA Hoạt Động Như Thế Nào?
 
-LoRA, được giới thiệu trong bài báo năm 2021 của Microsoft Research [^2^](https://arxiv.org/abs/2106.09685), dựa trên một insight quan trọng: ma trận cập nhật trong quá trình fine-tuning có rank thấp. Thay vì cập nhật toàn bộ ma trận trọng số W, LoRA thêm hai ma trận nhỏ A và B sao cho:
-
-```
+LoRA, được giới thiệu trong bài báo năm 2021 của Microsoft Research [^2^](https://arxiv.org/abs/2106.09685), dựa trên một insight quan trọng: ma trận cập nhật trong quá trình fine-tuning có rank thấp. Thay vì cập nhật toàn bộ ma trận trọng số W, LoRA thêm hai ma trận nhỏ A và B sao cho: ```
 W' = W + BA
 ```
 
@@ -68,9 +58,7 @@ Trong đó A có kích thước (r × d) và B có kích thước (d × r), vớ
 
 ### Các Module Mục Tiêu
 
-Với kiến trúc transformer, LoRA thường áp dụng cho các projection layers trong attention mechanism:
-
-- `q_proj`: Query projection
+Với kiến trúc transformer, LoRA thường áp dụng cho các projection layers trong attention mechanism: - `q_proj`: Query projection
 - `k_proj`: Key projection
 - `v_proj`: Value projection
 - `o_proj`: Output projection
@@ -86,9 +74,7 @@ QLoRA, giới thiệu năm 2023 bởi Tim Dettmers [^3^](https://github.com/TimD
 
 ### Double Quantization Và NF4
 
-QLoRA sử dụng hai kỹ thuật tối ưu:
-
-- **NF4 (Normal Float 4-bit)**: Định dạng 4-bit tối ưu cho trọng số neural network có phân phối chuẩn
+QLoRA sử dụng hai kỹ thuật tối ưu: - **NF4 (Normal Float 4-bit)**: Định dạng 4-bit tối ưu cho trọng số neural network có phân phối chuẩn
 - **Double Quantization**: Quantize cả các hằng số tĩnh trong quá trình quantization, giảm thêm bộ nhớ khoảng 0.5GB cho model 65B
 
 ### Paged Optimizers
@@ -113,9 +99,7 @@ PEFT (Parameter-Efficient Fine-Tuning) là thư viện của Hugging Face cung c
 
 ### Các Phương Pháp Được Hỗ Trợ
 
-PEFT hỗ trợ nhiều phương pháp fine-tuning:
-
-- **LoRA**: Phổ biến nhất, cân bằng tốt giữa hiệu suất và tài nguyên
+PEFT hỗ trợ nhiều phương pháp fine-tuning: - **LoRA**: Phổ biến nhất, cân bằng tốt giữa hiệu suất và tài nguyên
 - **IA3**: Tương tự LoRA nhưng chỉ huấn luyện vector tỷ lệ, ít tham số hơn
 - **AdaLoRA**: Tự động điều chỉnh rank cho từng layer
 - **Prefix Tuning**: Thêm prefix vectors vào đầu mỗi layer
@@ -145,9 +129,7 @@ model.print_trainable_parameters()  # Chỉ ~0.5% tham số
 
 ### Lưu Và Tải Adapters
 
-PEFT cho phép lưu chỉ các adapter weights (chỉ vài MB) thay vì toàn bộ model (hàng chục GB). Điều này giúp chia sẻ và deployment nhanh chóng:
-
-```python
+PEFT cho phép lưu chỉ các adapter weights (chỉ vài MB) thay vì toàn bộ model (hàng chục GB). Điều này giúp chia sẻ và deployment nhanh chóng: ```python
 # Lưu adapter
 model.save_pretrained("./lora-adapter")
 
@@ -160,18 +142,14 @@ model = PeftModel.from_pretrained(base_model, "./lora-adapter")
 
 ### Điều Gì Làm Unsloth Nhanh Hơn 2-5 Lần?
 
-Unsloth, ra mắt năm 2024 [^4^](https://github.com/unslothai/unsloth), là framework fine-tuning tối ưu hóa hiệu suất nhất hiện nay. Unsloth tự nhận nhanh hơn 2-5 lần so với PEFT + Flash Attention 2 tiêu chuẩn nhờ nhiều kỹ thuật tối ưu:
-
-- **Handwritten GPU kernels**: CUDA kernels được viết tay tối ưu cho từng thao tác
+Unsloth, ra mắt năm 2024 [^4^](https://github.com/unslothai/unsloth), là framework fine-tuning tối ưu hóa hiệu suất nhất hiện nay. Unsloth tự nhận nhanh hơn 2-5 lần so với PEFT + Flash Attention 2 tiêu chuẩn nhờ nhiều kỹ thuật tối ưu: - **Handwritten GPU kernels**: CUDA kernels được viết tay tối ưu cho từng thao tác
 - **Tối ưu bộ nhớ**: Giảm VRAM sử dụng đến 80%
 - **Fused operations**: Gộp nhiều thao tác thành một kernel duy nhất
 - **Tự động patching**: Tự động thay thế các hàm của Transformers bằng phiên bản tối ưu
 
 ### Giảm VRAM Sử Dụng
 
-Unsloth cho phép fine-tune Llama 3 8B trên GPU chỉ 4GB VRAM — điều không thể với các framework khác:
-
-| Model | VRAM Tiêu Chuẩn | VRAM Unsloth | Tiết Kiệm |
+Unsloth cho phép fine-tune Llama 3 8B trên GPU chỉ 4GB VRAM — điều không thể với các framework khác: | Model | VRAM Tiêu Chuẩn | VRAM Unsloth | Tiết Kiệm |
 |-------|-----------------|--------------|-----------|
 | Llama 3 8B (LoRA) | 16GB | 5.3GB | 67% |
 | Llama 3 8B (QLoRA) | 6GB | 4.2GB | 30% |
@@ -184,9 +162,7 @@ Unsloth hỗ trợ hầu hết các model phổ biến: Llama 3.x, Mistral, Gemm
 
 ### Unsloth Pro So Với Phiên Bản Miễn Phí
 
-Unsloth có phiên bản Pro với các tính năng bổ sung:
-
-- **Flash Attention 3**: Tối ưu mới nhất cho GPU Hopper
+Unsloth có phiên bản Pro với các tính năng bổ sung: - **Flash Attention 3**: Tối ưu mới nhất cho GPU Hopper
 - **Đào tạo 2x nhanh hơn**: So với phiên bản free
 - **Support ưu tiên**: Hỗ trợ kỹ thuật 1-1
 - **Giá**: Từ $30/tháng
@@ -228,17 +204,13 @@ Phiên bản miễn phí đã đầy đủ tính năng cho hầu hết các use 
 
 ### Chuẩn Bị Môi Trường
 
-Bạn có thể fine-tuning trên nhiều nền tảng:
-
-- **Google Colab**: Miễn phí GPU T4 (16GB), phù hợp model nhỏ với QLoRA
+Bạn có thể fine-tuning trên nhiều nền tảng: - **Google Colab**: Miễn phí GPU T4 (16GB), phù hợp model nhỏ với QLoRA
 - **RunPod**: GPU thuê theo giờ (RTX 4090, A100), linh hoạt
 - **Local**: RTX 4090 24GB hoặc RTX 3090 cho model đến 8B
 
 ### Chuẩn Bị Dataset
 
-Dataset cần được định dạng theo dạng hội thoại:
-
-```json
+Dataset cần được định dạng theo dạng hội thoại: ```json
 [
   {
     "messages": [
@@ -300,9 +272,7 @@ trainer.train()
 
 ### Đánh Giá Model
 
-Sau fine-tuning, đánh giá model trên tập validation:
-
-- **Perplexity**: Đo lường khả năng dự đoán của model
+Sau fine-tuning, đánh giá model trên tập validation: - **Perplexity**: Đo lường khả năng dự đoán của model
 - **BLEU/ROUGE**: So sánh với reference answers
 - **LLM-as-a-judge**: Dùng GPT-4 đánh giá chất lượng câu trả lờii
 - **Human evaluation**: Đánh giá thủ công trên mẫu nhỏ
@@ -431,9 +401,7 @@ PEFT chỉ huấn luyện <1% tham số của model (thường là adapter layer
 
 ## Hạ Tầng Đề Xuất
 
-Để chạy các công cụ trên 24/7 ổn định, lựa chọn hạ tầng rất quan trọng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu.
+Để chạy các công cụ trên 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp. dibi8.com cũng host ở đây.
 - **[Hostinger](https://www.hostinger.com/vn?REFERRALCODE=22RPIAOJIYJN)** — VPS giá tốt cho thị trường Việt Nam.
 
@@ -441,7 +409,6 @@ PEFT chỉ huấn luyện <1% tham số của model (thường là adapter layer
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

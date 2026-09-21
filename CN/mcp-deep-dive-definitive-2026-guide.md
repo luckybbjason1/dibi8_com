@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/mcp-deep-dive-definitive-2026-guide" />
 title: 'Model Context Protocol (MCP) Deep Dive: The Definitive 2...
 description: 'Build your first MCP server from scratch. Learn Anthropic''s Model Context Protocol with hands-on Python & TypeScript examples. Connect AI agents to real APIs, databases, and tools using the open standard adopted by OpenAI, Google, and Microsoft.'
 date: 2026-05-15 00:00:00+08:00
@@ -20,16 +18,15 @@ maintainer: ''
 last_maintained: '2026-05-15'
 featureImage: ''
 draft: false
-aliases:
-- /posts/mcp-deep-dive-definitive-2026-guide/
+aliases: - /posts/mcp-deep-dive-definitive-2026-guide/
 ---
 # Model Context Protocol (MCP) Deep Dive: The Definitive 2026 Guide to Building Production-Ready MCP Servers
 
 
 {</* resource-info */>}
 
----
 
+---
 ## Introduction: Why MCP Is the Smartest Bet for Developers in 2026
 
 If you're still writing custom integration code for every LLM and every tool, you're doing 2025's work in 2026.
@@ -40,8 +37,8 @@ Then in December 2025, the Linux Foundation spun up the **Agentic AI Foundation*
 
 This guide is not a high-level overview. You will write a **real, production-grade MCP server** that monitors website health and SSL certificates, then wire it into Claude Desktop, Cursor, and VS Code Copilot Agent Mode. By the end, you'll have a working tool you can extend for your own APIs and deploy today.
 
----
 
+---
 ## Table of Contents
 
 1. [What MCP Actually Is (And What It Is Not)](#1-what-mcp-actually-is-and-what-it-is-not)
@@ -60,15 +57,11 @@ This guide is not a high-level overview. You will write a **real, production-gra
 
 ### The M×N Problem
 
-Before MCP, integrating LLMs with external tools was a combinatorial nightmare:
-
-- **M** LLM providers (OpenAI, Anthropic, Google, Meta, Mistral…)
+Before MCP, integrating LLMs with external tools was a combinatorial nightmare: - **M** LLM providers (OpenAI, Anthropic, Google, Meta, Mistral…)
 - **N** external tools (GitHub, Postgres, Slack, Stripe, Salesforce…)
 - Custom glue code for every pair
 
-MCP collapses this to **M + N**:
-
-- Tool authors expose once via MCP (Server)
+MCP collapses this to **M + N**: - Tool authors expose once via MCP (Server)
 - LLM vendors implement one MCP client
 - Everything just works together
 
@@ -77,7 +70,11 @@ Think of it as **USB-C for AI**: a single, standardized port that any model can 
 ### What MCP Is Not
 
 | Misconception | Reality |
-|---------------|---------|
+|
+---
+|
+---
+|
 | A new AI model | No—it's a **protocol**, not a model |
 | A replacement for Function Calling | No—MCP standardizes *how* tools are exposed; Function Calling is *how* models invoke them. They stack together. |
 | Only for Claude | No—OpenAI, Google, Microsoft, Cursor, Zed, Sourcegraph all support it |
@@ -86,7 +83,13 @@ Think of it as **USB-C for AI**: a single, standardized port that any model can 
 ### Who Supports MCP (May 2026)
 
 | Platform | Support Level | Notes |
-|----------|---------------|-------|
+|
+---
+|
+---
+|
+---
+|
 | **Claude Desktop / Claude Code** | Native | Reference implementation |
 | **ChatGPT** | Full (Dev Mode) | Read/write, Plus/Pro tiers since Sept 2025 |
 | **Google Gemini** | Confirmed | DeepMind CEO announced roadmap |
@@ -132,7 +135,13 @@ MCP runs on **JSON-RPC 2.0** over two transport options. Four concepts cover 90%
 ### Transport Options
 
 | Transport | Best For | Trade-off |
-|-----------|----------|-----------|
+|
+---
+|
+---
+|
+---
+|
 | **stdio** | Local dev, desktop apps | Fastest, zero network exposure, limited to single machine |
 | **HTTP + SSE** | Remote servers, microservices | Slightly higher latency, cross-machine, supports streaming |
 | **Streamable HTTP** | Production, serverless | Stateful fallback, long-running ops |
@@ -159,9 +168,7 @@ uv init
 uv add "mcp[cli]" httpx
 ```
 
-Directory layout:
-
-```
+Directory layout: ```
 mcp-site-monitor/
 ├── .env              # Secrets (gitignored)
 ├── .gitignore
@@ -173,9 +180,7 @@ mcp-site-monitor/
 
 ## 4. Hands-On: Build a SiteMonitor MCP Server
 
-We'll expose two tools:
-
-- `check_site_status` — HTTP health check with timing
+We'll expose two tools: - `check_site_status` — HTTP health check with timing
 - `check_ssl_expiry` — Days remaining on an SSL certificate
 
 ### Complete Python Server (`server.py`)
@@ -193,16 +198,12 @@ mcp = FastMCP("SiteMonitor")
 
 
 @mcp.tool()
-async def check_site_status(url: str, timeout: int = 10) -> str:
-    """Check whether a website is online and measure response time.
+async def check_site_status(url: str, timeout: int = 10) -> str: """Check whether a website is online and measure response time.
 
-    Args:
-        url: Full URL to check, e.g. https://example.com
+    Args: url: Full URL to check, e.g. https://example.com
         timeout: Seconds to wait before failing, default 10.
     """
-    try:
-        async with httpx.AsyncClient(follow_redirects=True, timeout=timeout) as client:
-            t0 = asyncio.get_event_loop().time()
+    try: async with httpx.AsyncClient(follow_redirects=True, timeout=timeout) as client: t0 = asyncio.get_event_loop().time()
             r = await client.get(url)
             elapsed = asyncio.get_event_loop().time() - t0
 
@@ -214,25 +215,18 @@ async def check_site_status(url: str, timeout: int = 10) -> str:
                 f"• Response time: {elapsed:.2f}s\n"
                 f"• Server: {r.headers.get('server', 'unknown')}\n"
             )
-    except httpx.TimeoutException:
-        return f"❌ Timeout: {url} did not respond within {timeout}s"
-    except Exception as e:
-        return f"❌ Error: {type(e).__name__}: {e}"
+    except httpx.TimeoutException: return f"❌ Timeout: {url} did not respond within {timeout}s"
+    except Exception as e: return f"❌ Error: {type(e).__name__}: {e}"
 
 
 @mcp.tool()
-async def check_ssl_expiry(hostname: str, port: int = 443) -> str:
-    """Check how many days remain on a domain's SSL certificate.
+async def check_ssl_expiry(hostname: str, port: int = 443) -> str: """Check how many days remain on a domain's SSL certificate.
 
-    Args:
-        hostname: Domain name, e.g. example.com
+    Args: hostname: Domain name, e.g. example.com
         port: HTTPS port, default 443.
     """
-    try:
-        ctx = ssl.create_default_context()
-        with socket.create_connection((hostname, port), timeout=10) as sock:
-            with ctx.wrap_socket(sock, server_hostname=hostname) as ssock:
-                cert = ssock.getpeercert()
+    try: ctx = ssl.create_default_context()
+        with socket.create_connection((hostname, port), timeout=10) as sock: with ctx.wrap_socket(sock, server_hostname=hostname) as ssock: cert = ssock.getpeercert()
                 expiry = datetime.strptime(cert["notAfter"], "%b %d %H:%M:%S %Y %Z")
                 days = (expiry - datetime.utcnow()).days
 
@@ -244,12 +238,10 @@ async def check_ssl_expiry(hostname: str, port: int = 443) -> str:
                     f"• Expires: {expiry.strftime('%Y-%m-%d %H:%M UTC')}\n"
                     f"• Days left: {days}\n"
                 )
-    except Exception as e:
-        return f"❌ SSL check failed: {type(e).__name__}: {e}"
+    except Exception as e: return f"❌ SSL check failed: {type(e).__name__}: {e}"
 
 
-if __name__ == "__main__":
-    mcp.run(transport="stdio")
+if __name__ == "__main__": mcp.run(transport="stdio")
 ```
 
 ### Key Implementation Details
@@ -261,9 +253,7 @@ if __name__ == "__main__":
 
 ### Equivalent TypeScript Skeleton
 
-For Node/TypeScript teams, the structure is nearly identical:
-
-```typescript
+For Node/TypeScript teams, the structure is nearly identical: ```typescript
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
@@ -292,15 +282,11 @@ await server.connect(transport);
 
 ### Claude Desktop (macOS)
 
-Edit:
-
-```bash
+Edit: ```bash
 ~/Library/Application\ Support/Claude/claude_desktop_config.json
 ```
 
-Add:
-
-```json
+Add: ```json
 {
   "mcpServers": {
     "site-monitor": {
@@ -316,17 +302,13 @@ Add:
 }
 ```
 
-Restart Claude Desktop. Ask:
-
-> "Check if https://github.com is up and tell me how many days are left on its SSL cert."
+Restart Claude Desktop. Ask: > "Check if https://github.com is up and tell me how many days are left on its SSL cert."
 
 Claude invokes both tools automatically and formats the results.
 
 ### Cursor
 
-Create `.cursor/mcp.json` in your project root:
-
-```json
+Create `.cursor/mcp.json` in your project root: ```json
 {
   "mcpServers": {
     "site-monitor": {
@@ -346,9 +328,7 @@ Cursor's AI Chat discovers and uses the tools inline.
 
 ### VS Code Copilot Agent Mode
 
-In `settings.json`:
-
-```json
+In `settings.json`: ```json
 {
   "github.copilot.chat.mcpServers": {
     "site-monitor": {
@@ -368,14 +348,12 @@ In `settings.json`:
 
 ```python
 @mcp.resource("config://app")
-def get_app_config() -> str:
-    """Return current application configuration."""
+def get_app_config() -> str: """Return current application configuration."""
     import json
     return json.dumps({"check_interval_sec": 300, "alert_threshold_ms": 2000})
 
 @mcp.resource("log://latest")
-def get_latest_log() -> str:
-    """Return the most recent monitoring log entry."""
+def get_latest_log() -> str: """Return the most recent monitoring log entry."""
     return "[2026-05-15T08:00:00Z] github.com: 200 OK in 23ms"
 ```
 
@@ -383,10 +361,8 @@ def get_latest_log() -> str:
 
 ```python
 @mcp.prompt()
-def debug_incident(url: str, status_code: int) -> str:
-    """Generate a structured incident-debugging prompt."""
-    return f"""Website {url} is returning HTTP {status_code}. Investigate:
-1. DNS resolution health
+def debug_incident(url: str, status_code: int) -> str: """Generate a structured incident-debugging prompt."""
+    return f"""Website {url} is returning HTTP {status_code}. Investigate: 1. DNS resolution health
 2. Server process status
 3. Recent application logs (last 10 min)
 4. Traffic spike patterns from the CDN dashboard
@@ -402,9 +378,7 @@ from starlette.routing import Route
 
 sse = SseServerTransport("/messages/")
 
-async def handle_sse(request):
-    async with sse.connect_sse(request.scope, request.receive, request._send) as streams:
-        await mcp.run(streams[0], streams[1], mcp.create_initialization_options())
+async def handle_sse(request): async with sse.connect_sse(request.scope, request.receive, request._send) as streams: await mcp.run(streams[0], streams[1], mcp.create_initialization_options())
 
 app = Starlette(routes=[Route("/sse", endpoint=handle_sse)])
 ```
@@ -434,7 +408,13 @@ Connecting AI to external systems is powerful and dangerous. Follow these rules.
 ## 8. MCP Ecosystem Cheat Sheet: 15 Servers to Try Now
 
 | Server | What It Does | Best Use Case |
-|--------|--------------|---------------|
+|
+---
+|
+---
+|
+---
+|
 | **filesystem** | Read/write local files | Codebase analysis, doc processing |
 | **github** | PRs, issues, code search | Automated code review |
 | **postgres** / **sqlite** | SQL queries | Data analysis, internal BI |
@@ -483,9 +463,7 @@ No. MCP is fully open source under the Apache 2.0 license. You can build, distri
 
 MCP is not a speculative technology. It is the **live standard** for AI tool integration in 2026. If you don't know how to build an MCP server today, you're missing the foundational skill that every AI-native dev team will expect tomorrow.
 
-Your next steps:
-
-1. Copy the SiteMonitor code above and run it with `uv`
+Your next steps: 1. Copy the SiteMonitor code above and run it with `uv`
 2. Wire it into Claude Desktop and ask a natural-language monitoring question
 3. Wrap your team's most-used internal API as an MCP server
 4. Publish it to GitHub and add it to Smithery or MCP.so
@@ -507,13 +485,12 @@ Writing JSON Schema by hand for every tool is the most tedious part of MCP devel
 ---
 
 
+-
 ---
 
 ## Recommended Infrastructure for Self-Hosting
 
-If you want to run this stack reliably 24/7, infrastructure choice matters:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+If you want to run this stack reliably 24/7, infrastructure choice matters: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -521,7 +498,6 @@ If you want to run this stack reliably 24/7, infrastructure choice matters:
 *Published May 15, 2026. Based on MCP Protocol Specification 2025-11-25 (One-Year Anniversary Release).*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

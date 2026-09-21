@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/codegraph-pre-indexed-knowledge-graph-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/codegraph-pre-indexed-knowledge-graph-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/codegraph-pre-indexed-knowledge-graph-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/codegraph-pre-indexed-knowledge-graph-2026" />
 title: 'CodeGraph 리뷰: Claude Code · Cursor · Codex의 토큰 비용을 35% 줄...
 description: 'CodeGraph (GitHub 20.2K+ stars)는 Claude Code, Cursor, Codex CLI, OpenCode, Hermes Agent를 위해 코드 지식 그래프를 사전 인덱싱하는 오픈소스 도구입니다. SQLite 로컬 저장, 19개 언어, 14개 framework 라우팅 인식, 외부 API 제로. 원시 grep/glob/Read 대비 약 35% 토큰 절감, 약 70% 도구 호출 감소. 기능 분석·설치·실전 워크플로·LSP/MCP 서비스 비교까지 정리.'
 date: 2026-05-23 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [codegraph, 'claude-code', 'ai-coding-agent', 'code-graph', 'token-savings', mcp, 'hermes-agent', cursor, 'codex-cli', opencode, 'developer-productivity']
-aliases:
-- /kr/posts/codegraph-pre-indexed-knowledge-graph-2026/
+aliases: - /kr/posts/codegraph-pre-indexed-knowledge-graph-2026/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/codegraph-pre-indexed-knowledge-graph-2026/ -->
 
 ## 문제: AI 코딩 에이전트가 `grep`에서 토큰을 태우고 있다
 
@@ -47,9 +39,7 @@ Claude Code, Cursor Pro 또는 OpenAI 경유 Codex CLI를 쓴다면 누구나 �
 
 ## CodeGraph는 정확히 무엇인가
 
-본질은 세 가지를 묶은 것이다:
-
-1. **인덱서** — 레포를 워크하면서 지원 파일을 모두 파싱, 심볼(함수, 클래스, 타입, 익스포트)·호출 관계("함수 A가 함수 B를 호출")·framework 라우트("`/api/users`는 `UserController.list`에서 처리")를 추출. 전체를 로컬 SQLite DB에 저장.
+본질은 세 가지를 묶은 것이다: 1. **인덱서** — 레포를 워크하면서 지원 파일을 모두 파싱, 심볼(함수, 클래스, 타입, 익스포트)·호출 관계("함수 A가 함수 B를 호출")·framework 라우트("`/api/users`는 `UserController.list`에서 처리")를 추출. 전체를 로컬 SQLite DB에 저장.
 
 2. **쿼리 CLI** — `codegraph query`, `codegraph callers`, `codegraph impact`. 밀리초 단위로 구조화 JSON 반환 — 토큰 비용·LLM 왕복 없음.
 
@@ -66,9 +56,7 @@ Claude Code, Cursor Pro 또는 OpenAI 경유 Codex CLI를 쓴다면 누구나 �
 
 ## 수치 뒤의 이야기
 
-CodeGraph의 헤드라인 지표는 그래프 부착 유무에 따른 Claude Code 내부 benchmark에서 나온 것:
-
-| 지표 | CodeGraph 없을 때 | 있을 때 |
+CodeGraph의 헤드라인 지표는 그래프 부착 유무에 따른 Claude Code 내부 benchmark에서 나온 것: | 지표 | CodeGraph 없을 때 | 있을 때 |
 |---|---|---|
 | "X 이해" 평균 도구 호출 수 | ~22 | ~6.5 |
 | 세션당 평균 토큰(중형 레포) | 11,400 | 7,400 |
@@ -80,9 +68,7 @@ wall-clock 개선이 더 흥미롭다. 비용을 신경 쓰지 않더라도 Expl
 
 ## 지원되는 AI 코딩 도구
 
-CodeGraph는 MCP(Model Context Protocol)를 지원하는 도구는 MCP 서버로, 아직 미지원인 도구는 직접 CLI로 통합한다:
-
-- **[Claude Code](https://dibi8.com/kr/vs/claude-code-vs-aider/)** — MCP 서버 등록. 한 번 설정하면 Claude Code의 Explore 에이전트가 원시 `grep`/`glob`보다 CodeGraph를 자동으로 선호한다.
+CodeGraph는 MCP(Model Context Protocol)를 지원하는 도구는 MCP 서버로, 아직 미지원인 도구는 직접 CLI로 통합한다: - **[Claude Code](https://dibi8.com/kr/vs/claude-code-vs-aider/)** — MCP 서버 등록. 한 번 설정하면 Claude Code의 Explore 에이전트가 원시 `grep`/`glob`보다 CodeGraph를 자동으로 선호한다.
 - **[Cursor](https://dibi8.com/kr/vs/claude-code-vs-aider/)** — 동일하게 MCP 서버 패턴.
 - **[Codex CLI](https://dibi8.com/kr/resources/llm-frameworks/openai-codex-cli-terminal-ai-coding-agent-2026/)** — 셸 alias 또는 wrapper 스크립트로 CLI 통합.
 - **[OpenCode](https://dibi8.com/kr/resources/llm-frameworks/opencode-open-source-claude-code-alternative-2026/)** — MCP 호환.
@@ -94,9 +80,7 @@ CodeGraph는 MCP(Model Context Protocol)를 지원하는 도구는 MCP 서버로
 
 ## 빠른 설치
 
-CodeGraph는 세 가지 설치 경로를 제공한다. 스택에 맞는 것을 골라라:
-
-```bash
+CodeGraph는 세 가지 설치 경로를 제공한다. 스택에 맞는 것을 골라라: ```bash
 # macOS / Linux 공식 설치 스크립트
 curl -fsSL https://raw.githubusercontent.com/colbymchenry/codegraph/main/install.sh | sh
 
@@ -107,9 +91,7 @@ irm https://raw.githubusercontent.com/colbymchenry/codegraph/main/install.ps1 | 
 npx @colbymchenry/codegraph
 ```
 
-설치 후 레포 루트에서:
-
-```bash
+설치 후 레포 루트에서: ```bash
 # 최초 인덱싱 — 일회성, 5만 라인 레포 약 10초
 codegraph init -i
 
@@ -129,9 +111,7 @@ codegraph impact src/auth/session.ts
 
 ## Claude Code에 연결
 
-가장 흔한 워크플로. `~/.claude/mcp_servers.json`에:
-
-```json
+가장 흔한 워크플로. `~/.claude/mcp_servers.json`에: ```json
 {
   "mcpServers": {
     "codegraph": {
@@ -149,14 +129,11 @@ codegraph impact src/auth/session.ts
 
 ## 비교
 
-CodeGraph가 경쟁하는 기존 접근법 3가지:
-
-### 원시 `grep`/`glob`/`Read`와 비교
+CodeGraph가 경쟁하는 기존 접근법 3가지: ### 원시 `grep`/`glob`/`Read`와 비교
 Claude Code / Cursor 기본 동작이다. 설치 비용 제로지만 세션마다 다시 스캔. 한 번 인덱싱하면 비용·지연 모두 CodeGraph가 압도적이다.
 
 ### Language Server (LSP)와 비교
-LSP(TypeScript Server, gopls, rust-analyzer)도 유사한 심볼 지능을 제공한다. 차이점:
-- LSP는 언어별; CodeGraph는 단일 바이너리 polyglot.
+LSP(TypeScript Server, gopls, rust-analyzer)도 유사한 심볼 지능을 제공한다. 차이점: - LSP는 언어별; CodeGraph는 단일 바이너리 polyglot.
 - LSP는 에디터 통합용 설계, headless 에이전트 쿼리용 아님 — CLI 에이전트에서 호출하기 어색.
 - CodeGraph는 그래프 저장; LSP는 매번 재계산.
 
@@ -169,9 +146,7 @@ Sourcegraph와 Continue도 코드 지능 MCP 서버를 제공하지만 클라우
 
 ## CodeGraph가 못하는 것
 
-기대치를 맞추기 위해:
-
-- **의미 검색 없음** — 임베딩 기반이 아니라 구조 기반. "개념적으로 X를 하는 코드 찾기"는 그의 일이 아니다. 필요하면 벡터 스토어(`agentmemory` 또는 로컬 Qdrant)와 함께 써라.
+기대치를 맞추기 위해: - **의미 검색 없음** — 임베딩 기반이 아니라 구조 기반. "개념적으로 X를 하는 코드 찾기"는 그의 일이 아니다. 필요하면 벡터 스토어(`agentmemory` 또는 로컬 Qdrant)와 함께 써라.
 - **멀티 레포 join 없음** — 한 번에 한 레포 인덱싱. polyrepo monorepo는 별도 인덱싱 필요.
 - **매크로/제네릭 해석 제한적** — Rust trait dispatch, C++ template, TS conditional types는 부분 해석. 가끔 "확정 답" 대신 "참고용"이 나온다.
 - **git 히스토리 없음** — `codegraph`는 현재 트리에 관한 것, "이 함수 언제 바뀌었나"는 아니다. 그건 `git log`나 [Sourcegraph](https://about.sourcegraph.com)에서.
@@ -205,7 +180,6 @@ MIT 라이선스, 로컬 우선 아키텍처, 제로 외부 의존성 — 코딩
 **GitHub**: [colbymchenry/codegraph](https://github.com/colbymchenry/codegraph) · **라이선스**: MIT · **최신**: v0.9.3 (2026-05-22) · **Stars**: 20.2K+
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -233,25 +207,20 @@ MIT 라이선스, 로컬 우선 아키텍처, 제로 외부 의존성 — 코딩
 
 ## Why This Matters
 
-Understanding codegraph 리뷰: claude code · cursor · codex의 토큰 비용을 35% 줄인 로컬 코드 그래프 (2026) is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding codegraph 리뷰: claude code · cursor · codex의 토큰 비용을 35% 줄인 로컬 코드 그래프 (2026) is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

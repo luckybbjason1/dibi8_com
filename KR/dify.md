@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/dify" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/dify" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/dify" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/dify" />
 title: 'Dify: 5분 만에 시각적으로 프로덕션급 AI 에이전트 구축 — 141K+ Stars 설치 가이드 ...
 description: 'Dify는 시각적 워크플로 빌더, RAG 파이프라인, 에이전트 오케스트레이션을 제공하는 오픈소스 LLM 애플리케이션 개발 플랫폼입니다. OpenAI, Anthropic, Ollama, Qdrant, Weaviate와 호환됩니다. Docker 배포, API 통합, 프로덕션 하드닝, Flowise 및 n8n, LangChain과의 비교를 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,12 +20,9 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [dify, 'ai 에이전트 빌더', 'llm 워크플로', rag, 'docker 배포', '오픈소스 ai', '시각적 워크플로 빌더', '프로덕션 ai']
-aliases:
-- /kr/posts/dify/
+aliases: - /kr/posts/dify/
 - /kr/resources/llm-frameworks/dify-architecture-b2b-agent-orchestration/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/dify/ -->
 
 {{</* resource-info */>}}
 
@@ -44,9 +36,7 @@ aliases:
 
 플랫폼은 **Beehive(육각형) 아키텍처**를 기반으로 모듈화된 컴포넌트로 구축되었습니다: Python Flask API 서비스, Celery 워커 큐, Next.js 프론트엔드, 모덿 공급자용 플러그인 데몬, 코드 실행을 위한 보안 샌드박스입니다. **30개 이상의 벡터 데이터베이스**(Weaviate, Qdrant, pgvector, Milvus), **20개 이상의 LLM 공급자**(OpenAI, Anthropic, Azure OpenAI, AWS Bedrock, Ollama, Groq)를 지원하며, 하이브리드 검색, 재순위, 내장 관측 가능성, RESTful API 생성이 즉시 제공됩니다.
 
-구축할 수 있는 주요 애플리케이션 유형:
-
-- **챗봇** — 메모리, 지식베이스, 툴 호출이 있는 대화형 AI
+구축할 수 있는 주요 애플리케이션 유형: - **챗봇** — 메모리, 지식베이스, 툴 호출이 있는 대화형 AI
 - **텍스트 생성기** — 요약, 번역, 코딩을 위한 단일 샷 완성 앱
 - **에이전트** — ReAct, Function Calling, Chain-of-Thought 추론을 갖춘 자율 AI
 - **워크플로** — 조걶 로직과 병렬 실행을 포함한 다단계 시각적 파이프라인
@@ -86,9 +76,7 @@ Dify의 워크플로 엔진은 병렬 처리를 지원하는 DAG(방향성 비�
 
 ### 사전 요구사항
 
-시작하기 전에 머신이 다음 요구사항을 충족하는지 확인하세요:
-
-| 리소스 | 최소 | 권장 |
+시작하기 전에 머신이 다음 요구사항을 충족하는지 확인하세요: | 리소스 | 최소 | 권장 |
 |--------|------|------|
 | CPU | 2코어 | 4코어 이상 |
 | RAM | 4 GiB | 8 GiB |
@@ -98,9 +86,7 @@ Dify의 워크플로 엔진은 병렬 처리를 지원하는 DAG(방향성 비�
 
 ### 1단계 — Dify 클론
 
-GitHub에서 최신 릴리스를 클론합니다:
-
-```bash
+GitHub에서 최신 릴리스를 클론합니다: ```bash
 git clone --branch "$(curl -s https://api.github.com/repos/langgenius/dify/releases/latest | jq -r .tag_name)" https://github.com/langgenius/dify.git
 ```
 
@@ -113,17 +99,13 @@ cd dify/docker
 cp .env.example .env
 ```
 
-`.env`를 편집하여 보안 비밀 키를 설정합니다:
-
-```bash
+`.env`를 편집하여 보안 비밀 키를 설정합니다: ```bash
 # 암호학적으로 보안된 비밀 생성
 SECRET=$(openssl rand -hex 32)
 sed -i "s/SECRET_KEY=.*/SECRET_KEY=${SECRET}/" .env
 ```
 
-`.env`에서 검토해야 할 주요 변수:
-
-```bash
+`.env`에서 검토해야 할 주요 변수: ```bash
 # 핵심 설정
 CONSOLE_API_URL=http://localhost:5001
 CONSOLE_WEB_URL=http://localhost:3000
@@ -155,9 +137,7 @@ WEAVIATE_API_KEY=WVF5YThaHlkYwhGUSmCRgsX3tD5ngdN8pkih
 docker compose up -d
 ```
 
-이 명령은 11개의 컨테이너를 시작합니다: 5개의 핵심 서비스와 6개의 의존성. 모든 것이 정상 실행 중인지 확인합니다:
-
-```bash
+이 명령은 11개의 컨테이너를 시작합니다: 5개의 핵심 서비스와 6개의 의존성. 모든 것이 정상 실행 중인지 확인합니다: ```bash
 docker compose ps
 ```
 
@@ -165,29 +145,21 @@ docker compose ps
 
 ### 4단계 — 관리자 계정 초기화
 
-브라우저를 열고 다음 주소로 이동합니다:
-
-```
+브라우저를 열고 다음 주소로 이동합니다: ```
 http://localhost/install
 ```
 
-이메일과 비밀번호로 설정 마법사를 완료합니다. 설정 후 다음 주소에서 로그인합니다:
-
-```
+이메일과 비밀번호로 설정 마법사를 완료합니다. 설정 후 다음 주소에서 로그인합니다: ```
 http://localhost
 ```
 
 ### 5단계 — 첫 번째 모덿 공급자 추가
 
-**설정 → 모덿 공급자**로 이동하여 최소한 하나의 공급자에 대한 API 키를 추가합니다. OpenAI의 경우:
-
-1. 공급자 목록에서 "OpenAI"를 선택합니다
+**설정 → 모덿 공급자**로 이동하여 최소한 하나의 공급자에 대한 API 키를 추가합니다. OpenAI의 경우: 1. 공급자 목록에서 "OpenAI"를 선택합니다
 2. API 키(`sk-...`)를 붙여넣습니다
 3. "저장"을 클릭합니다
 
-Ollama를 사용한 로컬 개발:
-
-1. Ollama가 로컬에서 실행 중인지 확인합니다(`ollama serve`)
+Ollama를 사용한 로컬 개발: 1. Ollama가 로컬에서 실행 중인지 확인합니다(`ollama serve`)
 2. 공급자 목록에서 "Ollama"를 선택합니다
 3. 기본 URL을 `http://host.docker.internal:11434`로 설정합니다
 4. 다운로드된 모덿(예: `llama3.1:8b`)을 선택합니다
@@ -203,17 +175,13 @@ ollama pull llama3.1:8b
 
 ### OpenAI / Anthropic Claude
 
-주요 LLM 공급자를 추가하는 것은 설정 변경이지 배포는 아닙니다. **설정 → 모덿 공급자**에서 API 키를 추가한 후 첫 채팅 앱을 생성합니다:
-
-1. **스튜디오 → 앱 만들기 → 챗봇**으로 이동합니다
+주요 LLM 공급자를 추가하는 것은 설정 변경이지 배포는 아닙니다. **설정 → 모덿 공급자**에서 API 키를 추가한 후 첫 채팅 앱을 생성합니다: 1. **스튜디오 → 앱 만들기 → 챗봇**으로 이동합니다
 2. "지원 어시스턴트"로 이름을 지정합니다
 3. 프롬프트 편집기에서 시스템 프롬프트를 작성합니다
 4. 드롭다운에서 모덿(GPT-4o, Claude Sonnet 등)을 선택합니다
 5. **게시**를 클릭합니다
 
-API를 통해 앱에 접근합니다:
-
-```bash
+API를 통해 앱에 접근합니다: ```bash
 curl -X POST 'http://localhost/v1/chat-messages' \
   -H 'Authorization: Bearer YOUR_APP_API_KEY' \
   -H 'Content-Type: application/json' \
@@ -228,9 +196,7 @@ curl -X POST 'http://localhost/v1/chat-messages' \
 
 ### Ollama (로컬 LLM)
 
-격리된 네트워크나 비용에 민감한 환경을 위해 Ollama 통합을 통해 로컬 모덿을 실행할 수 있습니다:
-
-```bash
+격리된 네트워크나 비용에 민감한 환경을 위해 Ollama 통합을 통해 로컬 모덿을 실행할 수 있습니다: ```bash
 # Ollama 시작
 ollama serve
 
@@ -239,9 +205,7 @@ ollama pull llama3.1:8b
 ollama pull qwen2.5:14b
 ```
 
-Dify에서 **설정 → 모덿 공급자 → Ollama**로 이동하여 구성합니다:
-
-| 필드 | 값 |
+Dify에서 **설정 → 모덿 공급자 → Ollama**로 이동하여 구성합니다: | 필드 | 값 |
 |------|-----|
 | 모덿 이름 | `llama3.1:8b` |
 | 기본 URL | `http://host.docker.internal:11434` |
@@ -250,51 +214,34 @@ Dify에서 **설정 → 모덿 공급자 → Ollama**로 이동하여 구성합�
 
 ### Qdrant 벡터 저장소
 
-대규모에서 더 나은 성능을 위해 Weaviate를 Qdrant로 교체합니다:
-
-```bash
+대규모에서 더 나은 성능을 위해 Weaviate를 Qdrant로 교체합니다: ```bash
 cd dify/docker
 cp envs/vectorstores/qdrant.env.example envs/vectorstores/qdrant.env
 ```
 
-`envs/vectorstores/qdrant.env` 편집:
-
-```bash
+`envs/vectorstores/qdrant.env` 편집: ```bash
 VECTOR_STORE=qdrant
 QDRANT_URL=http://qdrant:6333
 QDRANT_API_KEY=your-api-key
 QDRANT_CLIENT_TIMEOUT=20
 ```
 
-`docker-compose.override.yaml`에 Qdrant 추가:
+`docker-compose.override.yaml`에 Qdrant 추가: ```yaml
+services: qdrant: image: qdrant/qdrant:latest
+    ports: - "6333:6333"
+    volumes: - qdrant_data:/qdrant/storage
+    environment: - QDRANT__SERVICE__API_KEY=your-api-key
 
-```yaml
-services:
-  qdrant:
-    image: qdrant/qdrant:latest
-    ports:
-      - "6333:6333"
-    volumes:
-      - qdrant_data:/qdrant/storage
-    environment:
-      - QDRANT__SERVICE__API_KEY=your-api-key
+volumes: qdrant_data: ```
 
-volumes:
-  qdrant_data:
-```
-
-Dify 재시작:
-
-```bash
+Dify 재시작: ```bash
 docker compose down
 docker compose up -d
 ```
 
 ### Weaviate
 
-Weaviate는 기본 벡터 저장소로 즉시 작동합니다. 프로덕션용으로는 외부 Weaviate 클러스터를 사용합니다:
-
-```bash
+Weaviate는 기본 벡터 저장소로 즉시 작동합니다. 프로덕션용으로는 외부 Weaviate 클러스터를 사용합니다: ```bash
 # .env에서
 VECTOR_STORE=weaviate
 WEAVIATE_ENDPOINT=https://your-cluster.weaviate.network
@@ -303,14 +250,10 @@ WEAVIATE_API_KEY=your-api-key
 
 ### Claude Code 통합
 
-Dify 앱을 MCP(Model Context Protocol) 서버로 납출하고 Claude Code에 연결합니다:
-
-1. Dify 앱에서 **API 접근 → MCP 서버**로 이동합니다
+Dify 앱을 MCP(Model Context Protocol) 서버로 납출하고 Claude Code에 연결합니다: 1. Dify 앱에서 **API 접근 → MCP 서버**로 이동합니다
 2. MCP 게시를 활성화합니다
 3. MCP 서버 URL을 복사합니다
-4. Claude Code에서 실행:
-
-```bash
+4. Claude Code에서 실행: ```bash
 claude config add mcp.dify http://localhost:5001/your-mcp-endpoint
 ```
 
@@ -320,9 +263,7 @@ claude config add mcp.dify http://localhost:5001/your-mcp-endpoint
 
 ### 성능 특성
 
-커뮤니티 벤치마크 및 부하 테스트 데이터 기준:
-
-| 메트릭 | 1 CPU / 2 GB RAM | 4 CPU / 8 GB RAM | 8 CPU / 16 GB RAM |
+커뮤니티 벤치마크 및 부하 테스트 데이터 기준: | 메트릭 | 1 CPU / 2 GB RAM | 4 CPU / 8 GB RAM | 8 CPU / 16 GB RAM |
 |--------|------------------|------------------|-------------------|
 | QPS (모덿 호출 없음) | 3 req/s | 8 req/s | 11 req/s |
 | QPS (GPT-4o 사용) | 2 req/s | 5 req/s | 6 req/s |
@@ -359,16 +300,12 @@ claude config add mcp.dify http://localhost:5001/your-mcp-endpoint
 
 ### 환경 격리
 
-프로덕션에는 절대 기본 `.env` 값을 사용하지 마세요. 환경별 구성을 생성합니다:
-
-```bash
+프로덕션에는 절대 기본 `.env` 값을 사용하지 마세요. 환경별 구성을 생성합니다: ```bash
 # 프로덕션 환경
 cp .env .env.production
 ```
 
-프로덕션을 위한 중요한 변경 사항:
-
-```bash
+프로덕션을 위한 중요한 변경 사항: ```bash
 # 보안
 SECRET_KEY=$(openssl rand -hex 48)
 CONSOLE_API_URL=https://dify.yourcompany.com
@@ -397,9 +334,7 @@ S3_REGION=us-east-1
 
 ### SSL이 있는 리버스 프록시
 
-Nginx 또는 Traefik을 사용하여 TLS 종료:
-
-```nginx
+Nginx 또는 Traefik을 사용하여 TLS 종료: ```nginx
 server {
     listen 443 ssl http2;
     server_name dify.yourcompany.com;
@@ -425,37 +360,22 @@ server {
 
 ### 모니터링 및 관측 가능성
 
-Dify는 API 서비스를 통해 메트릭을 노출합니다. 프로덕션 모니터링을 위해 설정합니다:
-
-```yaml
+Dify는 API 서비스를 통해 메트릭을 노출합니다. 프로덕션 모니터링을 위해 설정합니다: ```yaml
 # docker-compose.monitoring.yaml
-services:
-  prometheus:
-    image: prom/prometheus:latest
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
-    ports:
-      - "9090:9090"
+services: prometheus: image: prom/prometheus:latest
+    volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports: - "9090:9090"
 
-  grafana:
-    image: grafana/grafana:latest
-    ports:
-      - "3001:3000"
-    volumes:
-      - grafana_data:/var/lib/grafana
+  grafana: image: grafana/grafana:latest
+    ports: - "3001:3000"
+    volumes: - grafana_data:/var/lib/grafana
 
-  node-exporter:
-    image: prom/node-exporter:latest
-    ports:
-      - "9100:9100"
+  node-exporter: image: prom/node-exporter:latest
+    ports: - "9100:9100"
 
-volumes:
-  grafana_data:
-```
+volumes: grafana_data: ```
 
-추적해야 할 주요 메트릭:
-
-| 메트릭 | 경고 임계값 | 위험 임계값 |
+추적해야 할 주요 메트릭: | 메트릭 | 경고 임계값 | 위험 임계값 |
 |--------|------------|------------|
 | API 응답 시간 (P95) | > 2초 | > 5초 |
 | 워커 큐 깊이 | > 100 | > 500 |
@@ -487,20 +407,12 @@ aws s3 sync $BACKUP_DIR/ s3://your-backup-bucket/dify/ --delete
 
 ### 워커 확장
 
-대용량 문서 처리를 위해 Celery 워커를 수평 확장합니다:
-
-```bash
+대용량 문서 처리를 위해 Celery 워커를 수평 확장합니다: ```bash
 # docker-compose.override.yaml
-services:
-  worker:
-    deploy:
-      replicas: 3
-    environment:
-      - CELERY_WORKER_CONCURRENCY=8
+services: worker: deploy: replicas: 3
+    environment: - CELERY_WORKER_CONCURRENCY=8
 
-  worker-beat:
-    deploy:
-      replicas: 1  # 정확히 1개의 비트 인스턴스 유지
+  worker-beat: deploy: replicas: 1  # 정확히 1개의 비트 인스턴스 유지
 ```
 
 ## 대안과의 비교
@@ -533,9 +445,7 @@ services:
 
 ## 한계 / 객관적 평가
 
-Dify는 모든 AI 프로젝트에 적합한 도구가 아닙니다. 다음은 그것이 **적합하지 않은** 영역입니다:
-
-**1. 서브초 지연 시간 워크로드**
+Dify는 모든 AI 프로젝트에 적합한 도구가 아닙니다. 다음은 그것이 **적합하지 않은** 영역입니다: **1. 서브초 지연 시간 워크로드**
 Dify의 간단한 워크플로에 대한 P95 지연 시간은 약 1.2초로, 주로 노드 간 데이터베이스 쿼리 때문입니다. 서브 500ms 응답이 필요한 경우(예: 실시간 제안 엔진) LangGraph와 같은 코드 우선 프레임워크를 사용하거나 전용 FastAPI 서비스를 배포하세요.
 
 **2. 복잡한 데이터 구조**
@@ -602,9 +512,7 @@ Dify는 순수 프레임워크와 단순 챗봇 빌더가 놓치는 격차를 �
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -625,7 +533,6 @@ Dify는 순수 프레임워크와 단순 챗봇 빌더가 놓치는 격차를 �
 12. Ollama 로컬 LLM 설정 — https://ollama.com/download
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

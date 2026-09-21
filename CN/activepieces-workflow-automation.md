@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/activepieces-workflow-automation" />
 title: 'Activepieces: The Open-Source Zapier Alternative with 20...
 description: 'Deploy Activepieces in 5 minutes. The open-source workflow automation platform with 200+ app integrations, AI actions, and a visual builder — at a fraction of Zapier''s cost.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [activepieces, 'workflow automation', 'zapier alternative', 'self-hosted', docker, 'no-code', 'open-source', typescript, 'ai actions', webhooks]
-aliases:
-- /posts/activepieces-workflow-automation/
+aliases: - /posts/activepieces-workflow-automation/-
 ---
-
 ![Hero Image](https://picsum.photos/seed/ai/1200x800)
 
 
@@ -46,8 +42,7 @@ This guide walks you through installing Activepieces in under 5 minutes, connect
 
 Launched in 2022 and written in TypeScript (Node.js backend + Angular frontend), Activepieces positions itself as the developer-friendly alternative to Zapier, Make (Integromat), and n8n. It supports webhook triggers, scheduled flows, branch logic, loops, and now — AI-powered actions that can generate content, summarize data, and make decisions within workflows.
 
-Key facts as of May 2026:
-- **GitHub stars**: 13,000+
+Key facts as of May 2026: - **GitHub stars**: 13,000+
 - **License**: MIT
 - **Latest stable version**: v0.46.0 (released 2026-04-28)
 - **App integrations**: 200+ official "pieces"
@@ -58,17 +53,13 @@ Key facts as of May 2026:
 
 ### Architecture Overview
 
-Activepieces follows a modular three-tier architecture:
-
-1. **Frontend (Angular)**: Visual flow builder with drag-and-drop canvas, piece configuration panels, and execution logs
+Activepieces follows a modular three-tier architecture: 1. **Frontend (Angular)**: Visual flow builder with drag-and-drop canvas, piece configuration panels, and execution logs
 2. **Backend (Node.js/TypeScript)**: REST API, flow engine, authentication, webhook handling, and scheduling
 3. **Pieces System**: Each app integration ("piece") is a standalone TypeScript module exposing actions, triggers, and authentication configs
 
 ### The Flow Engine
 
-When a flow executes, the engine processes steps sequentially:
-
-```typescript
+When a flow executes, the engine processes steps sequentially: ```typescript
 // Conceptual flow execution model
 interface FlowRun {
   id: string;
@@ -85,9 +76,7 @@ Steps can reference outputs from previous steps via `{{step_name.property}}` tem
 
 ### Pieces: The Plugin System
 
-Every integration in Activepieces is a "piece" — a TypeScript package that defines:
-
-- **Actions**: Operations the piece can perform (e.g., "Send Email", "Create Row")
+Every integration in Activepieces is a "piece" — a TypeScript package that defines: - **Actions**: Operations the piece can perform (e.g., "Send Email", "Create Row")
 - **Triggers**: Events that start a flow (e.g., "New Row Added", "Webhook Received")
 - **Auth**: Connection configuration (OAuth 2.0, API key, Basic Auth)
 
@@ -118,14 +107,11 @@ After the containers start, navigate to `http://localhost:8080` and complete the
 
 ### Option B: One-Line Install on a Fresh VPS
 
-For a production deployment on [DigitalOcean](https://m.do.co/c/eca87ac14ee0) or [HTStack](https://my.htstack.com/aff.php?aff=27187), use the automated installer:
-
-```bash
+For a production deployment on [DigitalOcean](https://m.do.co/c/eca87ac14ee0) or [HTStack](https://my.htstack.com/aff.php?aff=27187), use the automated installer: ```bash
 # Download and run the setup script
 curl -sSL https://cdn.activepieces.com/install.sh | bash
 
-# The script will prompt for:
-# - Domain name (optional, for HTTPS)
+# The script will prompt for: # - Domain name (optional, for HTTPS)
 # - Email (for SSL certificate via Let's Encrypt)
 # - Admin email and password
 ```
@@ -137,15 +123,11 @@ This installs Docker, pulls Activepieces, configures Nginx as a reverse proxy, a
 ```bash
 # docker-compose.yml for production
 version: "3.8"
-services:
-  activepieces:
-    image: activepieces/activepieces:0.46.0
+services: activepieces: image: activepieces/activepieces:0.46.0
     container_name: activepieces
     restart: unless-stopped
-    ports:
-      - "8080:80"
-    environment:
-      - AP_API_KEY=${AP_API_KEY}
+    ports: - "8080:80"
+    environment: - AP_API_KEY=${AP_API_KEY}
       - AP_ENCRYPTION_KEY=${AP_ENCRYPTION_KEY}
       - AP_JWT_SECRET=${AP_JWT_SECRET}
       - AP_FRONTEND_URL=https://automation.yourdomain.com
@@ -156,37 +138,34 @@ services:
       - AP_POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - AP_REDIS_URL=redis://redis:6379
       - AP_TELEMETRY=false
-    depends_on:
-      - postgres
+    depends_on: - postgres
       - redis
 
-  postgres:
-    image: postgres:15-alpine
+  postgres: image: postgres:15-alpine
     restart: unless-stopped
-    environment:
-      POSTGRES_USER: postgres
+    environment: POSTGRES_USER: postgres
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: activepieces
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+    volumes: - pgdata:/var/lib/postgresql/data
 
-  redis:
-    image: redis:7-alpine
+  redis: image: redis:7-alpine
     restart: unless-stopped
-    volumes:
-      - redisdata:/data
+    volumes: - redisdata:/data
 
-volumes:
-  pgdata:
-  redisdata:
-```
+volumes: pgdata: redisdata: ```
 
 Deploy with `docker compose up -d`. The platform is ready in approximately 60 seconds.
 
 ### Environment Variable Reference
 
 | Variable | Required | Description |
-|----------|----------|-------------|
+|
+---
+|
+---
+|
+---
+|
 | `AP_ENCRYPTION_KEY` | Yes | AES-256 key for encrypting credentials |
 | `AP_JWT_SECRET` | Yes | Secret for signing auth tokens |
 | `AP_POSTGRES_*` | Yes | PostgreSQL connection details |
@@ -209,9 +188,7 @@ Navigate to the URL, create your admin account, and you are in the builder.
 
 ### Official Pieces (200+)
 
-Activepieces maintains official integrations for the most popular services:
-
-- **Communication**: Slack, Discord, Microsoft Teams, Telegram, Email (SMTP/SendGrid)
+Activepieces maintains official integrations for the most popular services: - **Communication**: Slack, Discord, Microsoft Teams, Telegram, Email (SMTP/SendGrid)
 - **CRM**: HubSpot, Salesforce, Pipedrive, Zoho CRM
 - **Database**: PostgreSQL, MySQL, MongoDB, Airtable, Google Sheets
 - **Productivity**: Notion, Trello, Asana, Google Drive, Dropbox
@@ -236,9 +213,7 @@ Once connected, you can send messages, read channel lists, and react to Slack ev
 
 ### AI Actions with OpenAI
 
-Activepieces v0.46.0 includes a native OpenAI piece supporting GPT-4o, GPT-4.1, and GPT-4.1-mini:
-
-```yaml
+Activepieces v0.46.0 includes a native OpenAI piece supporting GPT-4o, GPT-4.1, and GPT-4.1-mini: ```yaml
 # Example: AI-powered lead qualification flow
 Trigger: Webhook ("New lead form submission")
   → Step 1: Extract form data (name, email, company, message)
@@ -287,7 +262,15 @@ Activepieces uses a BullMQ-based job scheduler backed by Redis, ensuring reliabl
 ### Cost Comparison: Activepieces Self-Hosted vs. Zapier
 
 | Metric | Activepieces (Self-Hosted) | Zapier (Professional) | Make (Core) |
-|--------|---------------------------|----------------------|-------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Monthly cost | $5–$12 (VPS) | $49–$195 | $9–$16 |
 | Tasks/month | Unlimited | 2,000–50,000 | 10,000–40,000 |
 | AI actions | Included (bring your own key) | $20–$100 extra | Not native |
@@ -300,10 +283,16 @@ Activepieces uses a BullMQ-based job scheduler backed by Redis, ensuring reliabl
 
 ### Performance Benchmarks
 
-Tested on a 4 vCPU / 8 GB RAM VPS (Ubuntu 24.04):
-
-| Workload | Flows | Execution Time | Throughput |
-|----------|-------|---------------|------------|
+Tested on a 4 vCPU / 8 GB RAM VPS (Ubuntu 24.04): | Workload | Flows | Execution Time | Throughput |
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Simple HTTP → Slack | 1,000 | 245 ms avg | ~240 flows/min |
 | GPT-4.1-mini text gen | 500 | 1,800 ms avg | ~33 flows/min |
 | DB query → Email → Log | 1,000 | 520 ms avg | ~115 flows/min |
@@ -366,9 +355,7 @@ find "$BACKUP_DIR" -name "*.rdb" -mtime +14 -delete
 
 ```bash
 # Add to your docker-compose.yml
-  activepieces:
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:80/api/v1/health"]
+  activepieces: healthcheck: test: ["CMD", "curl", "-f", "http://localhost:80/api/v1/health"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -388,7 +375,6 @@ export const myApiPiece = createPiece({
     displayName: "API Key",
     required: true,
     description: "Your internal API authentication key"
-  }),
   minimumSupportedRelease: '0.46.0',
   actions: [sendNotification],
   triggers: [],
@@ -399,11 +385,8 @@ Build and publish your piece to a private npm registry, then install it via the 
 
 ### Sandbox Mode Security
 
-By default, flow execution runs inside isolated sandboxed containers. For maximum security in production:
-
-```yaml
-environment:
-  - AP_EXECUTION_MODE=SANDBOXED
+By default, flow execution runs inside isolated sandboxed containers. For maximum security in production: ```yaml
+environment: - AP_EXECUTION_MODE=SANDBOXED
   - AP_SANDBOX_MEMORY_LIMIT=256  # MB per execution
   - AP_SANDBOX_TIMEOUT_SECONDS=120
 ```
@@ -413,7 +396,17 @@ This ensures a runaway flow cannot exhaust server resources.
 ## Comparison with Alternatives
 
 | Feature | Activepieces | Zapier | Make (Integromat) | n8n |
-|---------|-------------|--------|-------------------|-----|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Open source | MIT License | Proprietary | Proprietary | Fair-code |
 | Self-hosted | Full Docker | No | No | Yes |
 | GitHub stars | 13,000+ | N/A | N/A | 66,000+ |
@@ -492,9 +485,7 @@ For managed hosting with priority support, check [AppSumo deals](https://appsumo
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -509,12 +500,11 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [n8n](dibi8-internal-link) — Another open-source workflow automation tool
 - [Self-hosting guide](dibi8-internal-link) — General self-hosting best practices on dibi8.com
 
----
 
+---
 *Affiliate Disclosure: This article contains affiliate links to DigitalOcean, HTStack, and AppSumo. If you purchase services through these links, dibi8.com receives a commission at no additional cost to you. All recommendations are based on hands-on testing, not affiliate availability.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -540,8 +530,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [12-factor-agents](activepieces-workflow-automation)

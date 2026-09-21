@@ -1,14 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-seo-geo-dibi8-methodology-google-sge-perplexity" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-seo-geo-dibi8-methodology-google-sge-perplexity" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-seo-geo-dibi8-methodology-google-sge-perplexity" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-seo-geo-dibi8-methodology-google-sge-perplexity" />
-
 title: 'AI SEO & GEO: Cách dibi8 Ngừng Theo Đuổi Clicks — Phương...
 description: 'Chúng tôi ngừng viết để lấy clicks. Bắt đầu viết để lấy citations. Sau 72 bài viết trên 4 ngôn ngữ, đây là phương pháp 5 lớp giúp chúng tôi được Google SGE, Perplexity và ChatGPT trích dẫn.'
 date: 2026-06-15
-lastmod:  2026-06-15slug: ai-seo-geo-dibi8-methodology-google-sge-perplexity
+lastmod: 2026-06-15
+slug: ai-seo-geo-dibi8-methodology-google-sge-perplexity
 category: dev-utils
 tags: ['AI SEO', 'GEO', 'AI search', 'Google SGE', 'structured data', 'schema.org', 'multi-language', 'E-E-A-T', 'Perplexity', 'ChatGPT', 'VUI.AI', 'Zalo']
 github_repo: 'https://github.com/dibi8-com/dibi8'
@@ -17,13 +12,11 @@ lang: vi
 featureImage: /images/articles/ai-seo---geo-------2026-----seo------------------------6-.png
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/ai-seo-geo-dibi8-methodology-google-sge-perplexity/ -->
 # AI SEO & GEO: Cách dibi8 Ngừng Theo Đuổi Clicks — Phương Pháp 5 Lớp
 
 **TL;DR** — Three years ago we optimized for clicks. Last year we started optimizing for citations. This article is what we learned in between.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -51,25 +44,20 @@ featureImage: /images/articles/ai-seo---geo-------2026-----seo------------------
 
 ## Why This Matters
 
-Understanding ai seo & geo: cách dibi8 ngừng theo đuổi clicks — phương pháp 5 lớp is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding ai seo & geo: cách dibi8 ngừng theo đuổi clicks — phương pháp 5 lớp is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -109,9 +97,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
-Understanding these core concepts will help you master the topic:
-
-1. **Abstraction**: Hide complexity behind simple interfaces
+Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces
 2. **Composition**: Build complex systems from simple parts
 3. **Immutability**: Prefer immutable data structures
 4. **Error Handling**: Handle failures gracefully
@@ -132,9 +118,7 @@ Understanding these core concepts will help you master the topic:
                      └─────────────┘
 ```
 
-Understanding these core concepts will help you master the topic:
-
-1. **Abstraction**: Hide complexity behind simple interfaces
+Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces
 2. **Composition**: Build complex systems from simple parts
 3. **Immutability**: Prefer immutable data structures
 4. **Error Handling**: Handle failures gracefully
@@ -155,9 +139,7 @@ Understanding these core concepts will help you master the topic:
                      └─────────────┘
 ```
 
-Understanding these core concepts will help you master the topic:
-
-1. **Abstraction**: Hide complexity behind simple interfaces
+Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces
 2. **Composition**: Build complex systems from simple parts
 3. **Immutability**: Prefer immutable data structures
 4. **Error Handling**: Handle failures gracefully
@@ -178,9 +160,7 @@ Understanding these core concepts will help you master the topic:
                      └─────────────┘
 ```
 
-Understanding these core concepts will help you master the topic:
-
-1. **Abstraction**: Hide complexity behind simple interfaces
+Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces
 2. **Composition**: Build complex systems from simple parts
 3. **Immutability**: Prefer immutable data structures
 4. **Error Handling**: Handle failures gracefully
@@ -201,9 +181,7 @@ Understanding these core concepts will help you master the topic:
                      └─────────────┘
 ```
 
-Understanding these core concepts will help you master the topic:
-
-1. **Abstraction**: Hide complexity behind simple interfaces
+Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces
 2. **Composition**: Build complex systems from simple parts
 3. **Immutability**: Prefer immutable data structures
 4. **Error Handling**: Handle failures gracefully

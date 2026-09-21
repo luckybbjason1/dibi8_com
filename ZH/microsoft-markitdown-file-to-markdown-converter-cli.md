@@ -1,19 +1,12 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/microsoft-markitdown-file-to-markdown-converter-cli" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/microsoft-markitdown-file-to-markdown-converter-cli" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/microsoft-markitdown-file-to-markdown-converter-cli" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/microsoft-markitdown-file-to-markdown-converter-cli" />
 title: "微软 MarkItDown：将任何文件转换为 Markdown 的完整指南——免费、开源、CLI 工具"
 description: "学习如何使用微软的 MarkItDown 将 PDF、Word 文档、图片、HTML、PPTX 等转换为干净的 Markdown。包含逐步安装、使用示例、Python API、AI 管道集成、基准测试以及与 Pandoc、Calibre 和 LibreOffice 的比较。"
 date: 2026-06-10
-lastmod:  2026-06-10slug: "microsoft-markitdown-file-to-markdown-converter-cli"
+lastmod: 2026-06-10
+slug: "microsoft-markitdown-file-to-markdown-converter-cli"
 category: dev-utils
 tags: [微软, markitdown, markdown, python, cli, pdf转换器, 文档处理, AI, 开源]
-lang: zh
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/microsoft-markitdown-file-to-markdown-converter-cli/ -->
 
 ## 简介
 
@@ -209,8 +202,7 @@ print(result.text_content)
 import markitdown
 
 md = markitdown.MarkItDown()
-with open("report.docx", "rb") as f:
-    result = md.convert(f)
+with open("report.docx", "rb") as f: result = md.convert(f)
     print(result.text_content)
 ```
 
@@ -234,11 +226,9 @@ import os
 
 md = markitdown.MarkItDown()
 files = glob.glob("docs/**/*.pdf", recursive=True)
-for filepath in files:
-    result = md.convert(filepath)
+for filepath in files: result = md.convert(filepath)
     output_path = os.path.splitext(filepath)[0] + ".md"
-    with open(output_path, "w") as f:
-        f.write(result.text_content)
+    with open(output_path, "w") as f: f.write(result.text_content)
     print(f"已转换: {filepath} -> {output_path}")
 ```
 
@@ -266,19 +256,14 @@ import markitdown
 import os
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
-def ingest_documents(directory):
-    md = markitdown.MarkItDown()
+def ingest_documents(directory): md = markitdown.MarkItDown()
     splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
 
     documents = []
-    for filename in os.listdir(directory):
-        filepath = os.path.join(directory, filename)
-        if os.path.isfile(filepath):
-            result = md.convert(filepath)
-            if result:
-                chunks = splitter.split_text(result.text_content)
-                for i, chunk in enumerate(chunks):
-                    documents.append({
+    for filename in os.listdir(directory): filepath = os.path.join(directory, filename)
+        if os.path.isfile(filepath): result = md.convert(filepath)
+            if result: chunks = splitter.split_text(result.text_content)
+                for i, chunk in enumerate(chunks): documents.append({
                         "source": filename,
                         "chunk_index": i,
                         "content": chunk
@@ -313,12 +298,10 @@ done
 ```python
 import markitdown
 
-def prepare_document_for_llm(filepath, max_tokens=4000):
-    md = markitdown.MarkItDown()
+def prepare_document_for_llm(filepath, max_tokens=4000): md = markitdown.MarkItDown()
     result = md.convert(filepath)
 
-    if result:
-        content = result.text_content[:max_tokens * 4]
+    if result: content = result.text_content[:max_tokens * 4]
         return {
             "status": "success",
             "content": content,
@@ -333,7 +316,15 @@ def prepare_document_for_llm(filepath, max_tokens=4000):
 ### 按格式的转换速度
 
 | 格式 | 文件大小 | 转换时间 | 输出大小 |
-|------|---------|---------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | PDF（100 页） | 5 MB | 约 8 秒 | 150 KB |
 | DOCX（50 页） | 2 MB | 约 3 秒 | 80 KB |
 | PPTX（30 张幻灯片） | 5 MB | 约 5 秒 | 40 KB |
@@ -357,7 +348,13 @@ sys 0m2m45s
 ### OCR 性能
 
 | 图像质量 | OCR 准确率 | 处理时间 |
-|---------|-----------|---------|
+|
+---
+|
+---
+|
+---
+|
 | 高（300 DPI，干净） | 97% | 5 秒 |
 | 中（200 DPI，轻微噪点） | 92% | 8 秒 |
 | 低（150 DPI，手写） | 78% | 12 秒 |
@@ -386,9 +383,7 @@ import os
 
 md = markitdown.MarkItDown()
 papers_dir = "./research_papers/"
-for fname in os.listdir(papers_dir):
-    if fname.endswith(".pdf"):
-        result = md.convert(os.path.join(papers_dir, fname))
+for fname in os.listdir(papers_dir): if fname.endswith(".pdf"): result = md.convert(os.path.join(papers_dir, fname))
         # 将 result.text_content 输入嵌入管道
         print(f"已摄入: {fname}")
 ```
@@ -428,11 +423,9 @@ deactivate
 ```python
 import markitdown
 
-class CustomParser(markitdown.ConversionPlugin):
-    SUPPORTED_EXTENSIONS = [".myformat"]
+class CustomParser(markitdown.ConversionPlugin): SUPPORTED_EXTENSIONS = [".myformat"]
 
-    def convert(self, filepath, **kwargs):
-        text = my_custom_parser(filepath)
+    def convert(self, filepath, **kwargs): text = my_custom_parser(filepath)
         return markitdown.ConvertResult(text_content=text)
 
 md = markitdown.MarkItDown()
@@ -461,7 +454,17 @@ ENTRYPOINT ["python", "/convert.py"]
 ## 与替代方案比较
 
 | 功能 | MarkItDown | Pandoc | Calibre | LibreOffice |
-|------|-----------|--------|---------|-------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 安装方式 | `pip install markitdown` | apt/cargo/npm | .deb/.exe 安装包 | 内置套件 |
 | 语言 | Python | 多语言 | 多语言 | 多语言 |
 | CLI 接口 | 简单 CLI | 复杂 CLI | 图形优先 | 图形优先 |
@@ -538,7 +541,6 @@ MarkItDown 的主要优势在于其简单性和原生 Python 集成，使其成�
 以上链接中包含联盟链接。dibi8.com 可能会在你注册时赚取佣金，而无需你支付额外费用。这有助于保持网站运行和内容免费。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -566,25 +568,20 @@ MarkItDown 的主要优势在于其简单性和原生 Python 集成，使其成�
 
 ## Why This Matters
 
-Understanding 微软 markitdown：将任何文件转换为 markdown 的完整指南——免费、开源、cli 工具 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding 微软 markitdown：将任何文件转换为 markdown 的完整指南——免费、开源、cli 工具 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -605,13 +602,13 @@ To implement this in your workflow:
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*
 
----
 
+---
 ## Related Articles
 
 - [markitdown-universal-file-to-markdown-converter](microsoft-markitdown-file-to-markdown-converter-cli)

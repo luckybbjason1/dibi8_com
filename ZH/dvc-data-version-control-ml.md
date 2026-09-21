@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/dvc-data-version-control-ml" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/dvc-data-version-control-ml" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/dvc-data-version-control-ml" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/dvc-data-version-control-ml" />
 title: 'DVC: 面向数据的 Git — ML 流水线数据版本控制与可复现实验 2026 完整指南'
 description: 'DVC (Data Version Control) 完整指南 — 使用类 Git 工作流对数据集、模型和 ML 流水线进行版本管理。涵盖安装、S3/GCS/Azure 后端、CI/CD 集成、基准测试和生产加固。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: [dvc, 'data version control', mlops, git, 机器学习, 可复现性, s3, gcs, azure, 流水线, 数据版本控制, 数据科学]
-aliases:
-- /zh/posts/dvc-data-version-control-ml/
+aliases: - /zh/posts/dvc-data-version-control-ml/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/dvc-data-version-control-ml/ -->
 
 {{</* resource-info */>}}
 
@@ -67,8 +59,7 @@ DVC 作为 Git 和数据存储之间的薄层运作。理解三个核心概念�
 
 ```
 # data/dataset.csv.dvc — 由 Git 追踪 (约 100 字节)
-outs:
-- md5: a1b2c3d4e5f6...
+outs: - md5: a1b2c3d4e5f6...
   size: 104857600
   hash: md5
   path: dataset.csv
@@ -97,24 +88,16 @@ DVC 流水线将有向无环图 (DAG) 中的可复现 ML 工作流定义为各�
 
 ```yaml
 # dvc.yaml — 流水线定义
-stages:
-  prepare:
-    cmd: python src/preprocess.py --input data/raw.csv --output data/processed.csv
-    deps:
-      - src/preprocess.py
+stages: prepare: cmd: python src/preprocess.py --input data/raw.csv --output data/processed.csv
+    deps: - src/preprocess.py
       - data/raw.csv
-    outs:
-      - data/processed.csv
+    outs: - data/processed.csv
 
-  train:
-    cmd: python src/train.py --data data/processed.csv --model models/model.pkl
-    deps:
-      - src/train.py
+  train: cmd: python src/train.py --data data/processed.csv --model models/model.pkl
+    deps: - src/train.py
       - data/processed.csv
-    outs:
-      - models/model.pkl
-    params:
-      - train.epochs
+    outs: - models/model.pkl
+    params: - train.epochs
       - train.lr
 ```
 
@@ -255,49 +238,31 @@ DVC 流水线将临时训练脚本转变为可复现的工作流。以下是一�
 
 ```yaml
 # dvc.yaml
-stages:
-  prepare:
-    cmd: python src/prepare.py --config params.yaml
-    deps:
-      - src/prepare.py
+stages: prepare: cmd: python src/prepare.py --config params.yaml
+    deps: - src/prepare.py
       - data/raw.csv
-    outs:
-      - data/prepared/
+    outs: - data/prepared/
 
-  featurize:
-    cmd: python src/featurize.py --config params.yaml
-    deps:
-      - src/featurize.py
+  featurize: cmd: python src/featurize.py --config params.yaml
+    deps: - src/featurize.py
       - data/prepared/
-    outs:
-      - data/features/
+    outs: - data/features/
 
-  train:
-    cmd: python src/train.py --config params.yaml
-    deps:
-      - src/train.py
+  train: cmd: python src/train.py --config params.yaml
+    deps: - src/train.py
       - data/features/
-    outs:
-      - models/model.pkl
-    params:
-      - train.lr
+    outs: - models/model.pkl
+    params: - train.lr
       - train.epochs
       - train.batch_size
-    metrics:
-      - metrics.json:
-          cache: false
+    metrics: - metrics.json: cache: false
 
-  evaluate:
-    cmd: python src/evaluate.py --config params.yaml
-    deps:
-      - src/evaluate.py
+  evaluate: cmd: python src/evaluate.py --config params.yaml
+    deps: - src/evaluate.py
       - models/model.pkl
       - data/features/
-    metrics:
-      - metrics.json:
-          cache: false
-    plots:
-      - plots/roc_curve.csv
+    metrics: - metrics.json: cache: false
+    plots: - plots/roc_curve.csv
 ```
 
 运行流水线：
@@ -317,12 +282,10 @@ dvc dag
 
 ```yaml
 # params.yaml
-prepare:
-  split: 0.2
+prepare: split: 0.2
   seed: 42
 
-train:
-  lr: 0.001
+train: lr: 0.001
   epochs: 50
   batch_size: 32
   model_type: resnet50
@@ -360,13 +323,10 @@ dvc exp push origin exp-abc123
 
 ```yaml
 # dvc.yaml (图表部分)
-plots:
-  - plots/loss.csv:
-      x: step
+plots: - plots/loss.csv: x: step
       y: loss
       title: Training Loss
-  - plots/accuracy.csv:
-      x: step
+  - plots/accuracy.csv: x: step
       y: accuracy
       title: Validation Accuracy
 ```
@@ -386,16 +346,12 @@ DVC 原生集成 CI/CD 平台，实现自动化流水线运行和模型验证。
 # .github/workflows/ml-pipeline.yml
 name: ML Pipeline
 on: [push]
-jobs:
-  train:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: train: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
+        with: python-version: '3.11'
 
       - name: Install dependencies
         run: |
@@ -403,8 +359,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: Configure DVC remote
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        env: AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
           dvc remote add -d myremote s3://my-bucket/dvc-storage
@@ -417,8 +372,7 @@ jobs:
 
       - name: Upload metrics
         uses: actions/upload-artifact@v4
-        with:
-          name: metrics
+        with: name: metrics
           path: metrics.json
 ```
 
@@ -426,47 +380,33 @@ jobs:
 
 ```yaml
 # .gitlab-ci.yml
-stages:
-  - data
+stages: - data
   - train
   - evaluate
 
-variables:
-  AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+variables: AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
   AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
 
-pull_data:
-  stage: data
+pull_data: stage: data
   image: python:3.11
-  script:
-    - pip install dvc[s3]
+  script: - pip install dvc[s3]
     - dvc remote add -d myremote s3://my-bucket/dvc-storage
     - dvc pull
-  artifacts:
-    paths:
-      - .dvc/
+  artifacts: paths: - .dvc/
       - data/
 
-train_model:
-  stage: train
+train_model: stage: train
   image: python:3.11
-  dependencies:
-    - pull_data
-  script:
-    - pip install -r requirements.txt
+  dependencies: - pull_data
+  script: - pip install -r requirements.txt
     - dvc repro train
-  artifacts:
-    paths:
-      - models/
+  artifacts: paths: - models/
       - metrics.json
 
-evaluate_model:
-  stage: evaluate
+evaluate_model: stage: evaluate
   image: python:3.11
-  dependencies:
-    - train_model
-  script:
-    - dvc repro evaluate
+  dependencies: - train_model
+  script: - dvc repro evaluate
     - cat metrics.json
 ```
 
@@ -475,7 +415,13 @@ evaluate_model:
 DVC 已在从初创公司到财富 500 强企业的组织中得到实战验证。以下是性能基准和真实采用指标：
 
 | 指标 | 数值 | 来源 |
-|------|------|------|
+|
+---
+|
+---
+|
+---
+|
 | GitHub Stars | **15,600+** | GitHub (2026年5月) |
 | PyPI 月下载量 | **500,000+** | PyPI 统计 |
 | 贡献者 | **298** | GitHub |
@@ -486,7 +432,15 @@ DVC 已在从初创公司到财富 500 强企业的组织中得到实战验证�
 ### 性能基准
 
 | 操作 | 1 GB 数据集 | 50 GB 数据集 | 1 TB 数据集 |
-|------|-------------|--------------|-------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | `dvc add` (本地 SSD) | 2.1s | 45s | 18 分钟 |
 | `dvc push` (到 S3) | 8s | 3.2 分钟 | 52 分钟 |
 | `dvc pull` (从 S3) | 5s | 2.1 分钟 | 38 分钟 |
@@ -574,7 +528,19 @@ dvc remote modify myremote sse AES256
 ## 与替代方案对比
 
 | 功能 | DVC | Git LFS | Pachyderm | LakeFS | MLflow |
-|------|-----|---------|-----------|--------|--------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **开源** | 是 (Apache-2.0) | 是 (MIT) | 是 (Apache-2.0) | 是 (Apache-2.0) | 是 (Apache-2.0) |
 | **最大文件大小** | 无限制 | 2 GB (GitHub) | 无限制 | 无限制 | 不适用 (无数据存储) |
 | **流水线可复现性** | 原生 DAG | 否 | 原生 DAG | 基于分支 | 仅实验追踪 |
@@ -622,8 +588,7 @@ Git LFS 在单独的服务器上存储大文件，但仍通过 Git 提交追踪�
 ```python
 import dvc.api
 
-with dvc.api.open('data/dataset.csv', remote=myremote) as f:
-    df = pd.read_csv(f)
+with dvc.api.open('data/dataset.csv', remote=myremote) as f: df = pd.read_csv(f)
 ```
 
 **Q: DVC 可以与私有 Git 仓库一起使用吗？**
@@ -689,7 +654,6 @@ dvc add your-dataset.csv
 本文包含 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 的联盟链接。如果你通过这些链接注册，dibi8.com 将获得佣金，不会增加你的额外费用。我们只推荐经过评估、认为能为 ML 基础设施部署提供真正价值的服务。所表达的观点独立于任何联盟关系。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -715,8 +679,8 @@ dvc add your-dataset.csv
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [ai-engineering-from-scratch](dvc-data-version-control-ml)
@@ -724,6 +688,6 @@ dvc add your-dataset.csv
 - [wandb-ml-experiment-tracking-platform-2026](dvc-data-version-control-ml)
 - [juicefs-distributed-posix-file-system-redis-s3-cloud-storage](dvc-data-version-control-ml)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

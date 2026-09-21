@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/terminal-command-line-tools-tmux-zsh-fzf-ripgrep" />
 title: 'Terminal & CLI Productivity Tools: tmux, zsh, fzf, ripgr...
 description: 'Transform your terminal with zsh, tmux, fzf, ripgrep, and modern CLI alternatives. Step-by-step setup guide for macOS and Linux in 2025.'
 date: 2026-05-18 00:00:00+08:00
@@ -20,10 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/terminal-command-line-tools-tmux-zsh-fzf-ripgrep/
+aliases: - /posts/terminal-command-line-tools-tmux-zsh-fzf-ripgrep/-
 ---
-
 {</* resource-info */>}
 
 Developers spend hours each day in the terminal. A well-configured shell environment saves minutes on every task — compounding into hours of reclaimed productivity each week. In 2025, the terminal ecosystem has never been richer. Tools like zsh, tmux, fzf, and ripgrep transform the command line from a bare prompt into a powerful, customized workspace.
@@ -40,9 +36,7 @@ The tools in this guide share a common philosophy: do one thing well, compose wi
 
 zsh (Z Shell) has been the default shell on macOS since Catalina (2019) and is the preferred shell for most power users on Linux. It is fully compatible with bash syntax while adding features that dramatically improve daily use: shared command history across sessions, spelling correction, globbing enhancements, and a massive plugin ecosystem through Oh My Zsh.
 
-Oh My Zsh is a community-driven framework with over 300 plugins and 140 themes. Installation takes one command:
-
-```bash
+Oh My Zsh is a community-driven framework with over 300 plugins and 140 themes. Installation takes one command: ```bash
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
@@ -50,9 +44,7 @@ Four plugins deliver the biggest productivity gains. The `git` plugin adds alias
 
 For themes, Powerlevel10k is the most popular choice in 2025. It renders a fast, informative prompt with git status, command execution time, and directory context — all without lag. Installation instructions are at [the Oh My Zsh website](https://ohmyz.sh).
 
-Custom aliases are where the real speed gains live. Add these to your `~/.zshrc`:
-
-```bash
+Custom aliases are where the real speed gains live. Add these to your `~/.zshrc`: ```bash
 alias ..='cd ..'
 alias ...='cd ../..'
 alias gs='git status'
@@ -69,9 +61,7 @@ tmux organizes work into three hierarchical concepts. Sessions are the top level
 
 The essential key bindings follow a prefix-key pattern. The default prefix is `Ctrl+B`. Press `Ctrl+B`, then `%` to split vertically, `"` to split horizontally, `arrow keys` to navigate between panes, `c` to create a new window, `n` to go to the next window, and `d` to detach from the session. Reattach with `tmux attach`.
 
-A productive `.tmux.conf` starts with these settings:
-
-```bash
+A productive `.tmux.conf` starts with these settings: ```bash
 # Change prefix to Ctrl+A (easier to reach)
 set -g prefix C-a
 unbind C-b
@@ -102,9 +92,7 @@ The most transformative integration is with shell history. Press `Ctrl+R` and fz
 
 The `Ctrl+T` binding inserts a fuzzy-found file path at the cursor. `Alt+C` cd's into a fuzzy-found directory. These three key bindings alone justify installing fzf.
 
-Combined with ripgrep, fzf becomes a code search powerhouse:
-
-```bash
+Combined with ripgrep, fzf becomes a code search powerhouse: ```bash
 rg --files | fzf --preview 'bat --style=numbers --color=always {}'
 ```
 
@@ -118,9 +106,7 @@ ripgrep is fast. On a warm cache, it searches the Linux kernel source (over 25 m
 
 The smart defaults are what make ripgrep feel effortless. It respects `.gitignore` files automatically, skips hidden files and binary files, and detects the encoding of each file. You do not need flags for the common case — just `rg "pattern"` searches your project intelligently.
 
-Common search patterns every developer should know:
-
-```bash
+Common search patterns every developer should know: ```bash
 # Search for a pattern in specific file types
 rg "function" --type js
 
@@ -141,10 +127,14 @@ ripgrep integrates with every major editor. VS Code uses ripgrep for its search 
 
 ## Modern Replacements for Classic Unix Tools
 
-A wave of Rust and Go-based tools has reimagined standard Unix utilities with better defaults, color output, and modern UX. These are the replacements worth adopting in 2025:
-
-| Classic Tool | Modern Replacement | Key Improvement |
-|-------------|-------------------|-----------------|
+A wave of Rust and Go-based tools has reimagined standard Unix utilities with better defaults, color output, and modern UX. These are the replacements worth adopting in 2025: | Classic Tool | Modern Replacement | Key Improvement |
+|
+---
+|
+---
+|
+---
+|
 | `ls` | `eza` | Colors, git status, tree view, icons |
 | `cat` | `bat` | Syntax highlighting, git integration, pager |
 | `find` | `fd` | Simpler syntax, respects .gitignore, faster |
@@ -164,9 +154,7 @@ sd replaces sed for interactive find-and-replace tasks. Where sed requires `sed 
 
 Starship is a shell prompt written in Rust that works with bash, zsh, fish, and PowerShell. It shows git branch and status, programming language versions (Node, Python, Rust), command execution time, and directory context — all asynchronously so your prompt never lags.
 
-Configuration lives in `~/.config/starship.toml`. A minimal config for developers:
-
-```toml
+Configuration lives in `~/.config/starship.toml`. A minimal config for developers: ```toml
 [git_branch]
 symbol = " "
 
@@ -199,9 +187,7 @@ Both approaches beat copying files manually. Choose Stow for simplicity, chezmoi
 
 For macOS users, iTerm2 is the best terminal emulator. It supports split panes, search, autocomplete, and a GPU-accelerated renderer. Key features include: paste history, instant replay (scroll back through session output even after clearing), and trigger-based alerts.
 
-Install all tools through Homebrew:
-
-```bash
+Install all tools through Homebrew: ```bash
 brew install tmux fzf ripgrep bat eza fd duf procs sd delta starship
 ```
 
@@ -211,9 +197,7 @@ Add `eval "$(starship init zsh)"` to your `~/.zshrc` after Oh My Zsh loads. Enab
 
 On Linux, Alacritty is the fastest terminal emulator. It uses the GPU for rendering, making it noticeably faster than GNOME Terminal or Konsole for large output streams. Kitty is an alternative with more features (tabs, splits, image previews) at a slight performance cost.
 
-Install the tool suite through your distribution's package manager:
-
-```bash
+Install the tool suite through your distribution's package manager: ```bash
 # Ubuntu/Debian
 sudo apt install tmux fzf ripgrep bat eza fd-find duf procs
 
@@ -228,9 +212,7 @@ Note that some packages have different names across distributions. `fd` is `fd-f
 
 ## Essential Aliases and Functions
 
-Add these aliases to your `~/.zshrc` for daily workflow speed:
-
-```bash
+Add these aliases to your `~/.zshrc` for daily workflow speed: ```bash
 # Git workflow
 ga() { git add "$@" }
 gc() { git commit -m "$1" }
@@ -252,8 +234,8 @@ A modern terminal setup stacks multiple specialized tools, each doing one job ex
 
 The investment in terminal tooling pays continuous dividends. Unlike framework-specific skills that deprecate, terminal proficiency improves your effectiveness across every project and technology stack you touch.
 
----
 
+---
 ## FAQ
 
 **What is the best terminal setup for developers in 2025?**
@@ -276,20 +258,17 @@ fzf is an interactive fuzzy finder — it filters lists interactively but does n
 
 Yes, through Windows Subsystem for Linux (WSL2). WSL2 provides a full Linux environment where all tools in this guide work natively. Install a WSL2 distribution (Ubuntu is recommended), then follow the Linux setup instructions. For native Windows, some tools have Windows builds (fzf, ripgrep, starship), but the experience is smoother under WSL2. Windows Terminal is the recommended terminal emulator for WSL2 users.
 
----
 
+---
 ## Recommended Infrastructure
 
-To run any of the tools above reliably 24/7, infrastructure matters:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.
+To run any of the tools above reliably 24/7, infrastructure matters: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low latency for mainland China access. This is the same IDC hosting dibi8.com — production-proven.
 
 *Affiliate links — no extra cost to you, helps keep dibi8.com running.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

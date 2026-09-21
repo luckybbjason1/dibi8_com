@@ -1,33 +1,26 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/sglang-structured-generation-llm" />
 title: SGLang — Structured Generation and Fast LLM Serving Engine
 description: Complete guide to SGLang (Structured Generation Language). High-performance LLM serving with constrained decoding, JSON schema enforcement, parallel execution, and 25x speedup over vLLM for structured outputs.
 tags: ['llm-serving', 'structured-generation', 'constrained-decoding', 'inference', 'performance']
 category: llm-frameworks
 featureImage: /images/articles/sglang-structured-generation-llm.jpg
 date: 2026-07-15T00:00:00+00:00
-lastmod:  2026-07-15T00:00:00+00:00slug: sglang-structured-generation-llm
----
-
+lastmod: 2026-07-15T00:00:00+00:00
+slug: sglang-structured-generation-llm---
 ## TL;DR
 
 SGLang is an open-source LLM inference engine that introduces a novel RadixAttention system for prefix caching across requests, structured generation via grammar-constrained decoding, and native support for complex reasoning patterns like ReAct and tool calling. It achieves 25x throughput improvement over vLLM for structured output tasks and supports serving models from 1B to 70B parameters on single or multi-GPU setups.
 
----
 
+---
 ## What Is SGLang?
 
-SGLang (Structured Generation Language) is a full-stack library for deploying and serving large language models. It consists of two main components:
-
-1. **SGLang Runtime**: A high-performance server that serves LLM endpoints with optimized memory management and request scheduling
+SGLang (Structured Generation Language) is a full-stack library for deploying and serving large language models. It consists of two main components: 1. **SGLang Runtime**: A high-performance server that serves LLM endpoints with optimized memory management and request scheduling
 2. **SGLang Python Library**: A programming language for writing LLM applications with structured outputs, tool calling, and multi-step reasoning
 
 ### The Problem SGLang Solves
 
-Traditional LLM serving engines (vLLM, TGI, text-generation-inference) excel at raw token generation but struggle with:
-
-- **Structured output enforcement**: Getting reliable JSON, regex-matched, or grammar-constrained outputs requires post-processing that breaks streaming
+Traditional LLM serving engines (vLLM, TGI, text-generation-inference) excel at raw token generation but struggle with: - **Structured output enforcement**: Getting reliable JSON, regex-matched, or grammar-constrained outputs requires post-processing that breaks streaming
 - **Prefix cache reuse**: When multiple requests share common context (system prompts, document chunks), each engine recomputes attention from scratch
 - **Complex reasoning flows**: Implementing ReAct, multi-step tool calling, or decision trees requires custom orchestration code
 
@@ -65,8 +58,8 @@ SGLang addresses all three natively. Its RadixAttention system builds a shared r
 └─────────────────────────────────────────────┘
 ```
 
----
 
+---
 ## Getting Started
 
 ### Step 1: Install SGLang
@@ -117,8 +110,7 @@ curl http://localhost:30000/generate \
   }'
 ```
 
-Response:
-```json
+Response: ```json
 {
   "text": "The capital of France is Paris.",
   "meta": {"prompt_tokens": 12, "completion_tokens": 8}
@@ -131,15 +123,12 @@ Response:
 
 ### JSON Schema Enforcement
 
-Generate valid JSON that matches any Pydantic schema:
-
-```python
+Generate valid JSON that matches any Pydantic schema: ```python
 import sglang as sgl
 from pydantic import BaseModel, Field
 from typing import List, Optional
 
-class ProductReview(BaseModel):
-    product_name: str = Field(description="Name of the product")
+class ProductReview(BaseModel): product_name: str = Field(description="Name of the product")
     rating: int = Field(ge=1, le=5, description="Rating from 1 to 5")
     pros: List[str] = Field(max_length=5, description="Key advantages")
     cons: List[str] = Field(max_length=5, description="Key disadvantages")
@@ -151,8 +140,7 @@ backend = sgl.Runtime(host="localhost", port=30000)
 
 # Create a stateful program
 @sgl.program
-def review_analyzer(state, review_text: str):
-    state += sgl.user("Analyze this product review and extract structured data:")
+def review_analyzer(state, review_text: str): state += sgl.user("Analyze this product review and extract structured data:")
     state += sgl.assistant(sgl.gen("json_output", max_tokens=512))
 
 # Run with structured output
@@ -174,12 +162,9 @@ print(f"Product: {review.product_name}, Rating: {review.rating}/5")
 
 ### Regex-Constrained Generation
 
-Force outputs to match specific patterns:
-
-```python
+Force outputs to match specific patterns: ```python
 @sgl.program
-def email_extractor(state, text: str):
-    state += sgl.user("Extract all email addresses from this text:")
+def email_extractor(state, text: str): state += sgl.user("Extract all email addresses from this text:")
     state += sgl.assistant(
         sgl.gen(
             "emails",
@@ -199,9 +184,7 @@ print(result["emails"])
 
 ### Grammar-Constrained Generation
 
-Use EBNF grammars for domain-specific output formats:
-
-```python
+Use EBNF grammars for domain-specific output formats: ```python
 ebnf_grammar = """
 start ::= sentence+
 sentence ::= subject verb object "."
@@ -211,8 +194,7 @@ object ::= "an API" | "a service" | "the platform" | "the framework"
 """
 
 @sgl.program
-def constrained_writer(state, topic: str):
-    state += sgl.user(f"Write about {topic} using only the allowed grammar:")
+def constrained_writer(state, topic: str): state += sgl.user(f"Write about {topic} using only the allowed grammar:")
     state += sgl.assistant(
         sgl.gen("output", max_tokens=256, temperature=0.7)
     )
@@ -225,22 +207,17 @@ result = program.run(
 
 ### SQL Query Generation
 
-Generate executable SQL with structural guarantees:
-
-```python
+Generate executable SQL with structural guarantees: ```python
 from pydantic import BaseModel
 
-class SQLQuery(BaseModel):
-    query: str = Field(description="Valid SQL SELECT statement")
+class SQLQuery(BaseModel): query: str = Field(description="Valid SQL SELECT statement")
     explanation: str = Field(description="What this query does")
     estimated_rows: Optional[int] = Field(description="Expected row count")
 
 @sgl.program
-def sql_generator(state, question: str, schema: str):
-    state += sgl.user(
+def sql_generator(state, question: str, schema: str): state += sgl.user(
         f"""Convert this natural language question to SQL.
-Database schema:
-{schema}
+Database schema: {schema}
 
 Question: {question}"""
     )
@@ -276,8 +253,7 @@ import sglang as sgl
 # With RadixAttention: shared prefixes are cached and reused
 
 @sgl.program
-def chatbot(state, user_message: str):
-    state += sgl.system("You are a helpful assistant.")  # This prefix is cached!
+def chatbot(state, user_message: str): state += sgl.system("You are a helpful assistant.")  # This prefix is cached!
     state += sgl.conversation(
         [{"role": "user", "content": "Hi"}, {"role": "assistant", "content": "Hello!"}],
     )  # Cached!
@@ -287,12 +263,10 @@ def chatbot(state, user_message: str):
 # First request: full computation
 r1 = chatbot().run("What's the weather?")
 
-# Second request with same system prompt + conversation history:
-# Only computes attention for the new user message
+# Second request with same system prompt + conversation history: # Only computes attention for the new user message
 r2 = chatbot().run("Tell me more")
 
-# Third request with different system prompt:
-# No cache hit, full computation
+# Third request with different system prompt: # No cache hit, full computation
 r3 = chatbot(system="You are a translator.").run("Translate hello")
 ```
 
@@ -300,9 +274,7 @@ Benchmark results show **3-10x throughput improvement** for chat applications wh
 
 ### Continuous Batching
 
-Unlike traditional batch inference that waits for all requests in a batch to complete, SGLang uses continuous batching to start new requests as soon as any slot frees up:
-
-```python
+Unlike traditional batch inference that waits for all requests in a batch to complete, SGLang uses continuous batching to start new requests as soon as any slot frees up: ```python
 # Launch server with continuous batching enabled (default)
 python -m sglang.launch_server \
   --model-path meta-llama/Llama-3.2-8B \
@@ -313,8 +285,7 @@ python -m sglang.launch_server \
 # This maximizes GPU utilization even with variable-length responses
 ```
 
-Key parameters:
-- `--mem-fraction-static`: Fraction of GPU memory for KV cache (0.85 = 85%)
+Key parameters: - `--mem-fraction-static`: Fraction of GPU memory for KV cache (0.85 = 85%)
 - `--context-length`: Maximum context window size
 - `--scheduler-latency-bound`: Maximum wait time before scheduling new requests
 
@@ -333,9 +304,7 @@ nvidia-smi
 # Each GPU shows ~95% utilization during active inference
 ```
 
-For multi-node deployment across multiple servers:
-
-```bash
+For multi-node deployment across multiple servers: ```bash
 # Node 1 (rank 0)
 python -m sglang.launch_server \
   --model-path meta-llama/Llama-3.2-70B-Instruct \
@@ -361,15 +330,12 @@ python -m sglang.launch_server \
 
 ### Pattern 1: Multi-Step Reasoning (ReAct)
 
-Implement ReAct reasoning within a single SGLang program:
-
-```python
+Implement ReAct reasoning within a single SGLang program: ```python
 @sgl.program
-def react_agent(state, question: str):
-    state += sgl.user(f"Answer this question step by step using tools:\n{question}")
+def react_agent(state, question: str): state += sgl.user(f"Answer this question step by step using tools:\n{question}")
     
     # Thought-Action-Observation loop
-    for i in range(5):  # Max 5 reasoning steps
+    for i in range(5): # Max 5 reasoning steps
         state += sgl.assistant(
             f"Thought {i+1}: " + sgl.gen("thought", stop="\nAction:", max_tokens=200)
         )
@@ -385,25 +351,19 @@ def react_agent(state, question: str):
         sgl.gen("final_answer", max_tokens=500)
     )
 
-def execute_tool(action: str) -> str:
-    """Parse and execute tool calls."""
-    if "search(" in action:
-        query = action.split("(")[1].split(")")[0]
+def execute_tool(action: str) -> str: """Parse and execute tool calls."""
+    if "search(" in action: query = action.split("(")[1].split(")")[0]
         return search_web(query)
-    elif "calculate(" in action:
-        expr = action.split("(")[1].split(")")[0]
+    elif "calculate(" in action: expr = action.split("(")[1].split(")")[0]
         return str(eval(expr))
     return "Unknown action"
 ```
 
 ### Pattern 2: Parallel Document Analysis
 
-Process hundreds of documents simultaneously:
-
-```python
+Process hundreds of documents simultaneously: ```python
 @sgl.program
-def document_summarizer(state, doc: str):
-    state += sgl.user(f"Summarize this document in 3 bullet points:\n{doc}")
+def document_summarizer(state, doc: str): state += sgl.user(f"Summarize this document in 3 bullet points:\n{doc}")
     state += sgl.assistant(sgl.gen("summary", max_tokens=256))
 
 # Process 100 documents in parallel
@@ -414,15 +374,12 @@ results = sgl.compile(
     scheduler_policy="lookahead"  # Optimal scheduling policy
 )
 
-for i, result in enumerate(results):
-    print(f"Doc {i}: {result['summary']}")
+for i, result in enumerate(results): print(f"Doc {i}: {result['summary']}")
 ```
 
 ### Pattern 3: Streaming with Structured Output
 
-Stream structured responses token-by-token:
-
-```python
+Stream structured responses token-by-token: ```python
 from sglang import RuntimeClient
 
 client = RuntimeClient("http://localhost:30000")
@@ -442,31 +399,23 @@ stream = client.generate(
     }
 )
 
-for chunk in stream:
-    if chunk["event_type"] == "text":
-        print(chunk["text"], end="", flush=True)
-    elif chunk["event_type"] == "usage":
-        print(f"\n\nTokens: {chunk['prompt_tokens']} in, {chunk['completion_tokens']} out")
+for chunk in stream: if chunk["event_type"] == "text": print(chunk["text"], end="", flush=True)
+    elif chunk["event_type"] == "usage": print(f"\n\nTokens: {chunk['prompt_tokens']} in, {chunk['completion_tokens']} out")
 ```
 
 ### Pattern 4: Function Calling Pipeline
 
-Build a complete function-calling agent:
-
-```python
+Build a complete function-calling agent: ```python
 from pydantic import BaseModel
 from typing import Literal
 
-class WeatherRequest(BaseModel):
-    city: str
+class WeatherRequest(BaseModel): city: str
     units: Literal["celsius", "fahrenheit"] = "celsius"
 
-class CalculatorRequest(BaseModel):
-    expression: str
+class CalculatorRequest(BaseModel): expression: str
 
 @sgl.program
-def function_caller(state, user_input: str):
-    state += sgl.user(user_input)
+def function_caller(state, user_input: str): state += sgl.user(user_input)
     state += sgl.assistant(sgl.gen("function_call", max_tokens=256))
 
 # Define available functions
@@ -475,12 +424,9 @@ functions = {
     "calculator": CalculatorRequest,
 }
 
-def call_function(func_name: str, args: dict) -> str:
-    if func_name == "weather":
-        req = WeatherRequest(**args)
+def call_function(func_name: str, args: dict) -> str: if func_name == "weather": req = WeatherRequest(**args)
         return get_weather(req.city, req.units)
-    elif func_name == "calculator":
-        return str(evaluate(args["expression"]))
+    elif func_name == "calculator": return str(evaluate(args["expression"]))
     return f"Unknown function: {func_name}"
 ```
 
@@ -491,7 +437,19 @@ def call_function(func_name: str, args: dict) -> str:
 ### Throughput Benchmarks
 
 | Model | Batch Size | SGLang | vLLM | TGI | Speedup vs vLLM |
-|-------|-----------|--------|------|-----|-----------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Llama 3.2 8B | 1 | 1,240 tok/s | 890 tok/s | 620 tok/s | 1.39x |
 | Llama 3.2 8B | 64 | 48,200 tok/s | 35,100 tok/s | 28,400 tok/s | 1.37x |
 | Llama 3.2 70B | 1 | 312 tok/s | 245 tok/s | 198 tok/s | 1.27x |
@@ -500,7 +458,15 @@ def call_function(func_name: str, args: dict) -> str:
 ### Structured Output Accuracy
 
 | Method | JSON Validity | Schema Compliance | Latency Overhead |
-|--------|--------------|-------------------|------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Post-process (regex) | 78% | N/A | +2ms |
 | LMFormatEnforcer | 99.2% | 96.8% | +15ms/token |
 | SGLang Constrained | 100% | 100% | +3ms/token |
@@ -514,9 +480,7 @@ SGLang's native constrained decoding achieves perfect validity with minimal late
 
 ### Built-in Metrics
 
-SGLang exposes Prometheus-compatible metrics at `/metrics`:
-
-```
+SGLang exposes Prometheus-compatible metrics at `/metrics`: ```
 # HELP sglang_request_latency_seconds Request processing latency
 # TYPE sglang_request_latency_seconds histogram
 sglang_request_latency_seconds_bucket{le="0.5"} 1250
@@ -559,9 +523,7 @@ python -m sglang.launch_server \
 RuntimeError: CUDA out of memory. Tried to allocate X GiB.
 ```
 
-**Fix**: Reduce `--mem-fraction-static` or increase `--max-running-requests`:
-
-```bash
+**Fix**: Reduce `--mem-fraction-static` or increase `--max-running-requests`: ```bash
 python -m sglang.launch_server \
   --model-path meta-llama/Llama-3.2-8B \
   --mem-fraction-static 0.75 \
@@ -570,33 +532,24 @@ python -m sglang.launch_server \
 
 ### Issue 2: Constrained Decoding Produces Invalid Output
 
-If your JSON schema enforcement isn't working:
+If your JSON schema enforcement isn't working: **Check 1**: Ensure the model supports constrained decoding (Llama 3.x, Mistral Large, Qwen 2.5+)
 
-**Check 1**: Ensure the model supports constrained decoding (Llama 3.x, Mistral Large, Qwen 2.5+)
-
-**Check 2**: Verify your Pydantic schema doesn't contain circular references:
-
-```python
+**Check 2**: Verify your Pydantic schema doesn't contain circular references: ```python
 # ❌ Circular reference breaks constrained decoding
-class Node(BaseModel):
-    value: str
+class Node(BaseModel): value: str
     children: List["Node"]  # Breaks!
 
 # ✅ Flatten to avoid recursion
-class TreeNode(BaseModel):
-    nodes: List[LeafNode]
+class TreeNode(BaseModel): nodes: List[LeafNode]
 
-class LeafNode(BaseModel):
-    value: str
+class LeafNode(BaseModel): value: str
 ```
 
 ### Issue 3: Slow First Request (Cold Start)
 
 The first request after server startup includes model loading time (30-120 seconds depending on model size).
 
-**Fix**: Use `keep_warm` or pre-warm the server:
-
-```bash
+**Fix**: Use `keep_warm` or pre-warm the server: ```bash
 # Pre-load model with a dummy request
 curl -X POST http://localhost:30000/generate \
   -H "Content-Type: application/json" \
@@ -605,17 +558,13 @@ curl -X POST http://localhost:30000/generate \
 
 ### Issue 4: RadixCache Not Hitting
 
-If prefix caching isn't improving performance:
-
-**Check**: Ensure requests share identical prefix tokens. Whitespace differences, different system prompts, or reordered conversation history will prevent cache hits.
+If prefix caching isn't improving performance: **Check**: Ensure requests share identical prefix tokens. Whitespace differences, different system prompts, or reordered conversation history will prevent cache hits.
 
 ```python
-# These WILL share cache (identical system prompt):
-chatbot(system="Be concise").run("hello")
+# These WILL share cache (identical system prompt): chatbot(system="Be concise").run("hello")
 chatbot(system="Be concise").run("world")
 
-# These WON'T share cache (different system prompt):
-chatbot(system="Be concise").run("hello")
+# These WON'T share cache (different system prompt): chatbot(system="Be concise").run("hello")
 chatbot(system="Be detailed").run("world")
 ```
 
@@ -625,9 +574,7 @@ chatbot(system="Be detailed").run("world")
 
 ### SGLang Roadmap 2026
 
-The SGLang project has an aggressive development roadmap:
-
-1. **Speculative decoding**: Native support for fast decoding using smaller draft models, targeting 2-3x speedup on CPU-assisted inference
+The SGLang project has an aggressive development roadmap: 1. **Speculative decoding**: Native support for fast decoding using smaller draft models, targeting 2-3x speedup on CPU-assisted inference
 2. **Mixture of Experts (MoE)**: Optimized serving for Mixtral, DeepSeek-MoE, and other MoE architectures with expert parallelism
 3. **Multi-modal serving**: Native support for vision-language models (Qwen2-VL, LLaVA) with image preprocessing pipeline
 4. **SGLang Cloud**: Managed SGLang hosting with auto-scaling, similar to how Vercel handles Next.js deployments
@@ -651,9 +598,7 @@ The SGLang project has an aggressive development roadmap:
 
 ## Community Updates
 
-SGLang has seen explosive growth in 2026:
-
-- **GitHub stars**: Surpassed 15,000, making it one of the fastest-growing LLM serving projects
+SGLang has seen explosive growth in 2026: - **GitHub stars**: Surpassed 15,000, making it one of the fastest-growing LLM serving projects
 - **Model support**: Officially tested with 50+ models including Llama 3.2, Mistral Large 2, Qwen 2.5, Gemma 2, and DeepSeek-V3
 - **Enterprise adoption**: Used by AI startups and Fortune 500 companies for production structured generation workloads
 - **Contributors**: 400+ contributors from universities (Stanford, MIT, Tsinghua) and companies (Meta, Google, ByteDance)
@@ -670,9 +615,7 @@ SGLang's constrained decoding operates at the tokenizer level, filtering candida
 
 ### Q: Can I use SGLang with quantized models?
 
-Yes. SGLang supports AWQ, GPTQ, INT8, and FP8 quantization natively:
-
-```bash
+Yes. SGLang supports AWQ, GPTQ, INT8, and FP8 quantization natively: ```bash
 python -m sglang.launch_server \
   --model-path Qwen/Qwen2.5-72B-Instruct-AWQ \
   --quantization awq
@@ -682,11 +625,8 @@ Quantized models typically achieve 80-90% of full-precision quality at 50-60% of
 
 ### Q: Does SGLang support streaming responses?
 
-Yes. Enable streaming with `"stream": true` in sampling params. Tokens are sent as Server-Sent Events (SSE) to the client. The Python SDK also provides async generators for streaming:
-
-```python
-async for event in program.run_async(stream=True):
-    print(event.delta, end="", flush=True)
+Yes. Enable streaming with `"stream": true` in sampling params. Tokens are sent as Server-Sent Events (SSE) to the client. The Python SDK also provides async generators for streaming: ```python
+async for event in program.run_async(stream=True): print(event.delta, end="", flush=True)
 ```
 
 ### Q: What's the maximum model size SGLang can serve?
@@ -695,9 +635,7 @@ SGLang supports models from 1B to 400+ billion parameters. For models above 70B,
 
 ### Q: How do I handle rate limiting and request queuing?
 
-SGLang has built-in rate limiting:
-
-```bash
+SGLang has built-in rate limiting: ```bash
 python -m sglang.launch_server \
   --model-path meta-llama/Llama-3.2-8B \
   --rate-limit-requests 100 \
@@ -722,7 +660,6 @@ Requests exceeding the limit are queued and processed when capacity becomes avai
 *Join our Telegram Group for real-time AI tool discussions and deployment tips: [t.me/dibi8](https://t.me/dibi8)*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

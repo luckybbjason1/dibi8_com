@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/backtest-overfit-5-patterns-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/backtest-overfit-5-patterns-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/backtest-overfit-5-patterns-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/backtest-overfit-5-patterns-2026" />
 title: '백테스트 과적합: 실제 PF/Sharpe 수치로 보는 5가지 전형 패턴 (2026)'
 description: '옵티마이저 산출 전략 50+ 건의 실거래 결과를 바탕으로 5가지 뚜렷한 과적합 패턴을 정리했다: walk-forward 괴리, 레짐 플립, 파라미터 절벽, 인디케이터 스태킹, 생존 편향. 각 패턴마다 재현 가능한 합성 예시 + 탐지 신호를 함께 정리했다.'
 date: 2026-05-25 00:00:00+08:00
@@ -21,10 +16,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: [backtest, overfit, quant, 'walk-forward', 'machine-learning', 2026]
-aliases:
-- /kr/posts/backtest-overfit-5-patterns-2026/
-faq:
-  - q: "백테스트에서 과적합 탐지가 왜 그렇게 어려운가요?"
+aliases: - /kr/posts/backtest-overfit-5-patterns-2026/
+faq: - q: "백테스트에서 과적합 탐지가 왜 그렇게 어려운가요?"
     a: "두 가지 이유가 있다. 첫째, 모든 백테스트는 단일 표본이다 — '우주를 다시 돌릴' 수 없다. 둘째, 옵티마이저는 단일 표본에서 신호처럼 보이는 노이즈에 매우 잘 적합된다. Walk-forward 분석이 표본을 분할해 주지만, 대부분의 리테일 백테스터는 이 단계를 통째로 건너뛴다."
   - q: "가장 교활한 과적합 패턴은 무엇인가요?"
     a: "파라미터 절벽: 파라미터 A=14에서는 견고해 보이지만 A=15에서는 경제적 근거 없이 결과가 뒤집힌다. 이는 옵티마이저가 신호가 아닌 노이즈에서 국소 최대값을 찾았다는 신호다. 파라미터 민감도 스윕으로 탐지한다 — PF가 매끄럽게 감쇠하면 신호, 절벽처럼 끊기면 노이즈다."
@@ -37,8 +30,6 @@ faq:
   - q: "건강한 Train vs OOS PF 비율은 얼마인가요?"
     a: "Train PF / OOS PF > 1.5면 과적합을 의심한다. > 2.0이면 거의 확실한 과적합이다. 최근 moss-trade-bot 실행에서 Train PF 2.08 / OOS PF 0.94 — 비율 2.21 — 교과서적인 과적합이 나왔다. 건강한 전략은 1.3 미만이다."
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/backtest-overfit-5-patterns-2026/ -->
 
 {{</* resource-info */>}}
 
@@ -94,8 +85,7 @@ faq:
 
 **정의**: 파라미터가 1 단위 바뀔 때 결과가 불연속적으로 악화되는 전략.
 
-**예시 스윕** (lookback 파라미터):
-```
+**예시 스윕** (lookback 파라미터): ```
 lookback=12: PF 1.42
 lookback=13: PF 1.55
 lookback=14: PF 2.08  ← 옵티마이저 선택
@@ -145,8 +135,7 @@ lookback=16: PF 0.87
 
 ## 우리가 쓰는 탐지 파이프라인
 
-라이브 배포 전 모든 전략에 적용:
-1. 시간 순으로 70/30 데이터 분할.
+라이브 배포 전 모든 전략에 적용: 1. 시간 순으로 70/30 데이터 분할.
 2. 70%에서만 파라미터 최적화.
 3. 동결된 파라미터로 30%에서 풀 백테스트.
 4. Train PF / OOS PF 비율 계산.
@@ -161,8 +150,7 @@ lookback=16: PF 0.87
 
 ## 추천 인프라
 
-긴 백테스트 + walk-forward 스윕을 돌리려면:
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 크레딧, GPU droplet 사용 가능
+긴 백테스트 + walk-forward 스윕을 돌리려면: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 크레딧, GPU droplet 사용 가능
 - **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 홍콩 VPS, 아시아 거래소까지 저지연
 
 *제휴 링크 — 가격은 동일, dibi8.com을 후원합니다.*
@@ -178,7 +166,6 @@ lookback=16: PF 0.87
 **관련**: [Moss Trade Bot Factory 2026 리뷰](https://dibi8.com/kr/resources/ai-trading/moss-trade-bot-factory-2026-review/) · [Backtrader Python 백테스팅](https://dibi8.com/kr/resources/ai-trading/backtrader-python-backtesting/) · [Jesse AI 트레이딩 프레임워크](https://dibi8.com/kr/resources/ai-trading/jesse-ai-trading-framework/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -206,25 +193,20 @@ lookback=16: PF 0.87
 
 ## Why This Matters
 
-Understanding 백테스트 과적합: 실제 pf/sharpe 수치로 보는 5가지 전형 패턴 (2026) is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding 백테스트 과적합: 실제 pf/sharpe 수치로 보는 5가지 전형 패턴 (2026) is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

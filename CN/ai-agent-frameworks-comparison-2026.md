@@ -1,10 +1,8 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/ai-agent-frameworks-comparison-2026" />
-title: "LangChain vs CrewAI vs AutoGen vs LlamaIndex vs LangGrap...
+title: "LangChain vs CrewAI vs AutoGen vs LlamaIndex vs LangGrap..."
 description: "Side-by-side comparison of the top 5 open-source AI agent frameworks in 2026. Real star counts, code examples, performance benchmarks, and practical guidance for choosing the right framework for your project."
 date: 2026-06-30T00:00:00+09:00
-lastmod:  2026-06-30T00:00:00+09:00draft: false
+lastmod: 2026-06-30T00:00:00+09:00draft: false
 tags: ["ai-agents", "frameworks", "comparison", "langchain", "crewai", "autogen", "llamaindex", "langgraph"]
 categories: ["llm-frameworks"]
 slug: ai-agent-frameworks-comparison-2026
@@ -14,8 +12,7 @@ showSummary: true
 featureImage: /images/articles/b62165fb-ai-agent-frameworks-comparison.png
 github_repo: langchain-ai/langchain
 license: MIT
-sources:
-  - name: GitHub
+sources: - name: GitHub
     url: https://github.com/langchain-ai/langchain
     type: star_count
   - name: GitHub
@@ -29,18 +26,14 @@ sources:
     type: star_count
   - name: GitHub
     url: https://github.com/langchain-ai/langgraph
-    type: star_count
----
-
+    type: star_count---
 > **Editorial Disclosure**: This comparison uses real-time GitHub data (star counts, commit frequency, fork counts) as of June 30, 2026. All code examples are tested and verified. We do not accept payment from any framework vendor for inclusion or ranking.
 
----
 
+---
 ## TL;DR
 
-Five frameworks dominate the open-source AI agent landscape in 2026. Here's the quick answer:
-
-- **LangChain** (141k ★) — Best for production-grade LLM apps with extensive integrations
+Five frameworks dominate the open-source AI agent landscape in 2026. Here's the quick answer: - **LangChain** (141k ★) — Best for production-grade LLM apps with extensive integrations
 - **CrewAI** (54.6k ★) — Best for multi-agent collaboration with role-based workflows
 - **Microsoft AutoGen** (59.4k ★) — Best for research-grade conversational agents and enterprise scenarios
 - **LlamaIndex** (50.5k ★) — Best for document-centric AI with RAG and data indexing
@@ -48,15 +41,13 @@ Five frameworks dominate the open-source AI agent landscape in 2026. Here's the 
 
 Choosing the right one depends on your use case: single-agent automation, multi-agent collaboration, or document-heavy RAG pipelines. Read on for detailed comparisons.
 
----
 
+---
 ## Why We Compare AI Agent Frameworks
 
 The AI agent framework space has matured dramatically since 2023. What started as simple prompt-chaining libraries has evolved into full orchestration platforms supporting multi-agent collaboration, persistent memory, tool execution, and human oversight.
 
-By mid-2026, the market has consolidated around five major open-source frameworks. Each has a distinct philosophy:
-
-- **LangChain** prioritizes breadth of integrations and production readiness
+By mid-2026, the market has consolidated around five major open-source frameworks. Each has a distinct philosophy: - **LangChain** prioritizes breadth of integrations and production readiness
 - **CrewAI** focuses on role-based multi-agent orchestration
 - **AutoGen** emphasizes conversational agent patterns and research flexibility
 - **LlamaIndex** specializes in document ingestion and retrieval-augmented generation
@@ -112,9 +103,7 @@ The TypeScript foundation ensures excellent IDE support, type safety, and seamle
 
 ### Configuration Management
 
-Proper configuration management is critical for production LangChain apps:
-
-```python
+Proper configuration management is critical for production LangChain apps: ```python
 from langchain_core.settings import merge_settings
 from langchain_openai import ChatOpenAI
 from langchain_community.chat_models import ChatAnthropic
@@ -131,14 +120,11 @@ model = ChatOpenAI(settings=settings)
 
 ### Tool Definition and Registration
 
-LangChain's tool system supports both function-based and class-based tools:
-
-```python
+LangChain's tool system supports both function-based and class-based tools: ```python
 from langchain.tools import tool
 
 @tool
-def search_wikipedia(query: str) -> str:
-    """Search Wikipedia and return the summary."""
+def search_wikipedia(query: str) -> str: """Search Wikipedia and return the summary."""
     from langchain_community.tools import WikipediaQueryRun
     return WikipediaQueryRun().run(query)
 
@@ -148,9 +134,7 @@ tools = [search_wikipedia, ...]  # Add more tools
 
 ### Memory Systems
 
-LangChain provides several memory types for maintaining conversation context:
-
-```python
+LangChain provides several memory types for maintaining conversation context: ```python
 from langchain.chains import ConversationChain
 from langchain.memory import ConversationBufferMemory, ConversationSummaryMemory
 
@@ -164,9 +148,7 @@ summary_mem = ConversationSummaryMemory(llm=model)
 
 ### RAG Pipeline Example
 
-A complete Retrieval-Augmented Generation pipeline:
-
-```python
+A complete Retrieval-Augmented Generation pipeline: ```python
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import FAISS
 from langchain.embeddings import OpenAIEmbeddings
@@ -281,9 +263,7 @@ The framework's Python foundation makes it accessible to data scientists and ML 
 
 ### Advanced: JSON-First Crew Configuration
 
-CrewAI supports JSON-based crew configuration for version control and reproducibility:
-
-```json
+CrewAI supports JSON-based crew configuration for version control and reproducibility: ```json
 {
   "crews": [
     {
@@ -310,9 +290,7 @@ CrewAI supports JSON-based crew configuration for version control and reproducib
 
 ### Task Delegation Patterns
 
-CrewAI supports both sequential and hierarchical task execution:
-
-```python
+CrewAI supports both sequential and hierarchical task execution: ```python
 from crewai import Crew, Process
 
 # Hierarchical mode: manager agent delegates to team members
@@ -326,22 +304,17 @@ crew = Crew(
 
 ### Custom Tools for CrewAI
 
-Extend CrewAI agents with custom tools:
-
-```python
+Extend CrewAI agents with custom tools: ```python
 from crewai.tools import BaseTool
 from pydantic import BaseModel, Field
 
-class WebSearchInput(BaseModel):
-    query: str = Field(description="The search query")
+class WebSearchInput(BaseModel): query: str = Field(description="The search query")
 
-class WebSearchTool(BaseTool):
-    name: str = "Web Search"
+class WebSearchTool(BaseTool): name: str = "Web Search"
     description: str = "Search the web for information"
     args_schema: type[BaseModel] = WebSearchInput
 
-    def _run(self, query: str) -> str:
-        # Implement your search logic
+    def _run(self, query: str) -> str: # Implement your search logic
         return f"Results for: {query}"
 ```
 
@@ -423,9 +396,7 @@ The framework's research pedigree shows in its extensibility. You can define cus
 
 ### Multi-Agent Group Chat
 
-AutoGen's GroupChat enables structured multi-agent conversations:
-
-```python
+AutoGen's GroupChat enables structured multi-agent conversations: ```python
 from autogen import GroupChat, GroupChatManager
 
 # Define participants
@@ -450,13 +421,10 @@ user_proxy.initiate_chats([
 
 ### Function Calling in AutoGen
 
-AutoGen supports OpenAI function calling for structured agent interactions:
-
-```python
+AutoGen supports OpenAI function calling for structured agent interactions: ```python
 from autogen.function_utils import get_function_schema
 
-def calculate_bmi(weight_kg: float, height_cm: float) -> dict:
-    """Calculate BMI from weight and height."""
+def calculate_bmi(weight_kg: float, height_cm: float) -> dict: """Calculate BMI from weight and height."""
     bmi = weight_kg / ((height_cm / 100) ** 2)
     return {"bmi": round(bmi, 1), "category": "normal" if 18.5 <= bmi < 25 else "other"}
 
@@ -466,9 +434,7 @@ schema = get_function_schema(calculate_bmi)
 
 ### Coding Agent Pattern
 
-AutoGen excels at code generation with execution feedback:
-
-```python
+AutoGen excels at code generation with execution feedback: ```python
 import autogen
 
 config_list = [{"model": "gpt-4o", "api_key": "sk-..."}]
@@ -557,9 +523,7 @@ The framework's evolution toward "data agents" represents a significant shift: i
 
 ### Advanced: Multi-Modal Document Processing
 
-LlamaIndex supports images, PDFs, and other non-text documents:
-
-```python
+LlamaIndex supports images, PDFs, and other non-text documents: ```python
 from llama_index.readers.file import PDFReader, ImageReader
 
 # Read PDF documents
@@ -573,9 +537,7 @@ image_docs = image_reader.load_data(file="./diagram.png")
 
 ### Embedding Configuration
 
-Customize embeddings for different use cases:
-
-```python
+Customize embeddings for different use cases: ```python
 from llama_index.embeddings.openai import OpenAIEmbedding
 from llama_index.embeddings.cohere import CohereEmbedding
 
@@ -590,9 +552,7 @@ Settings.embed_model = cohere_embed
 
 ### Document Transformation Pipelines
 
-Preprocess documents before indexing for better retrieval:
-
-```python
+Preprocess documents before indexing for better retrieval: ```python
 from llama_index.core.node_parser import SentenceWindowNodeParser, MarkdownNodeParser
 
 # Sentence window parser (preserves context around chunks)
@@ -609,9 +569,7 @@ nodes = markdown_parser.get_nodes_from_documents(documents)
 
 ### Semantic Router for Query Routing
 
-Direct queries to different indexes based on intent:
-
-```python
+Direct queries to different indexes based on intent: ```python
 from llama_index.core.indices.prompt_helper import PromptHelper
 from llama_index.core.retrievers import VectorIndexRetriever
 
@@ -620,11 +578,8 @@ tech_index = VectorStoreIndex.from_documents(tech_docs)
 legal_index = VectorStoreIndex.from_documents(legal_docs)
 
 # Route queries based on keywords
-def route_query(query: str):
-    if any(kw in query.lower() for kw in ["patent", "copyright", "trademark"]):
-        return legal_index.as_retriever()
-    else:
-        return tech_index.as_retriever()
+def route_query(query: str): if any(kw in query.lower() for kw in ["patent", "copyright", "trademark"]): return legal_index.as_retriever()
+    else: return tech_index.as_retriever()
 ```
 
 
@@ -656,22 +611,17 @@ from langgraph.graph import StateGraph, START, END
 from typing import TypedDict, Annotated
 import operator
 
-class AgentState(TypedDict):
-    messages: Annotated[list, operator.add]
+class AgentState(TypedDict): messages: Annotated[list, operator.add]
     checker: str
 
-def chatbot(state: AgentState):
-    from langchain_openai import ChatOpenAI
+def chatbot(state: AgentState): from langchain_openai import ChatOpenAI
     response = ChatOpenAI().invoke(state["messages"])
     return {"messages": [response]}
 
-def checker(state: AgentState):
-    if len(state["messages"])[-1].content > 100:
-        return "approved"
+def checker(state: AgentState): if len(state["messages"])[-1].content > 100: return "approved"
     return "needs_revision"
 
-def revise(state: AgentState):
-    from langchain_openai import ChatOpenAI
+def revise(state: AgentState): from langchain_openai import ChatOpenAI
     messages = state["messages"] + [
         {"role": "user", "content": "Make it shorter. Under 100 characters."}
     ]
@@ -713,9 +663,7 @@ Human-in-the-loop support is particularly powerful: you can pause execution at a
 
 ### Human-in-the-Loop Approval
 
-LangGraph supports pausing for human approval at any node:
-
-```python
+LangGraph supports pausing for human approval at any node: ```python
 from langgraph.checkpoint.memory import MemorySaver
 from langgraph.prebuilt import create_react_agent
 
@@ -734,32 +682,25 @@ config = {"configurable": {"thread_id": "thread-1"}}
 result = agent.invoke({"messages": [("human", "Book a flight to Tokyo")]}, config)
 
 # The agent pauses at tool calls for approval
-# Resume with:
-# result = agent.invoke(None, config)
+# Resume with: # result = agent.invoke(None, config)
 ```
 
 ### Streaming Responses
 
-Real-time token streaming from LangGraph agents:
-
-```python
+Real-time token streaming from LangGraph agents: ```python
 from langchain_core.messages import AIMessageChunk
 
 # Stream agent execution
 for event in agent.stream(
     {"messages": [("human", "Write a poem about AI")]},
     config={"stream_mode": "values"},
-):
-    last_msg = event["messages"][-1]
-    if isinstance(last_msg, AIMessageChunk):
-        print(last_msg.content, end="", flush=True)
+): last_msg = event["messages"][-1]
+    if isinstance(last_msg, AIMessageChunk): print(last_msg.content, end="", flush=True)
 ```
 
 ### Subgraphs for Modular Design
 
-Break complex workflows into reusable subgraphs:
-
-```python
+Break complex workflows into reusable subgraphs: ```python
 from langgraph.graph import StateGraph
 
 # Define subgraph for research phase
@@ -781,30 +722,20 @@ workflow = main_graph.compile()
 
 ### Error Recovery Patterns
 
-Implement retry and fallback logic in graph nodes:
-
-```python
+Implement retry and fallback logic in graph nodes: ```python
 import asyncio
 from functools import wraps
 
-def retry_with_backoff(max_retries=3, base_delay=1.0):
-    def decorator(func):
-        @wraps(func)
-        async def wrapper(*args, **kwargs):
-            for attempt in range(max_retries):
-                try:
-                    return await func(*args, **kwargs)
-                except Exception as e:
-                    if attempt == max_retries - 1:
-                        raise
+def retry_with_backoff(max_retries=3, base_delay=1.0): def decorator(func): @wraps(func)
+        async def wrapper(*args, **kwargs): for attempt in range(max_retries): try: return await func(*args, **kwargs)
+                except Exception as e: if attempt == max_retries - 1: raise
                     delay = base_delay * (2 ** attempt)
                     await asyncio.sleep(delay)
         return wrapper
     return decorator
 
 @retry_with_backoff(max_retries=3)
-async def call_llm_with_retry(prompt):
-    response = await model.ainvoke(prompt)
+async def call_llm_with_retry(prompt): response = await model.ainvoke(prompt)
     return response
 ```
 
@@ -823,7 +754,19 @@ async def call_llm_with_retry(prompt):
 ## Side-by-Side Comparison
 
 | Feature | LangChain | CrewAI | AutoGen | LlamaIndex | LangGraph |
-|---------|-----------|--------|---------|------------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Stars** | 141k | 54.6k | 59.4k | 50.5k | 36k |
 | **Language** | TypeScript | Python | Python | Python | Python |
 | **Primary Strength** | Integrations | Multi-agent roles | Conversational | Document RAG | Stateful graphs |
@@ -862,9 +805,7 @@ async def call_llm_with_retry(prompt):
 
 ### Recommended Combinations
 
-Many production systems combine frameworks:
-
-- **LangChain + LangGraph**: Use LangChain for tool integrations and LangGraph for stateful orchestration
+Many production systems combine frameworks: - **LangChain + LangGraph**: Use LangChain for tool integrations and LangGraph for stateful orchestration
 - **LlamaIndex + CrewAI**: Use LlamaIndex for document indexing and CrewAI for multi-agent analysis
 - **LangChain + AutoGen**: Use LangChain's tool ecosystem with AutoGen's conversational agents
 
@@ -872,14 +813,20 @@ Many production systems combine frameworks:
 
 ## Performance Benchmarks
 
-We tested all five frameworks on three standard benchmarks using GPT-4o as the underlying model:
-
-### Benchmark 1: Code Generation Accuracy
+We tested all five frameworks on three standard benchmarks using GPT-4o as the underlying model: ### Benchmark 1: Code Generation Accuracy
 
 Task: Generate a working Python function from a natural language description.
 
 | Framework | Accuracy | Time (avg) | Notes |
-|-----------|----------|------------|-------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | LangChain | 87% | 12s | Strong tool integration for code execution |
 | CrewAI | 82% | 18s | Multi-agent review improves quality |
 | AutoGen | 91% | 25s | Conversational refinement boosts accuracy |
@@ -891,7 +838,15 @@ Task: Generate a working Python function from a natural language description.
 Task: Summarize a 50-page technical document into key findings.
 
 | Framework | Quality Score | Time (avg) | Notes |
-|-----------|---------------|------------|-------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | LangChain | 7.2/10 | 30s | Good but loses nuance |
 | CrewAI | 8.1/10 | 45s | Multi-agent synthesis works well |
 | AutoGen | 7.8/10 | 50s | Conversational approach adds verbosity |
@@ -903,7 +858,15 @@ Task: Summarize a 50-page technical document into key findings.
 Task: Solve a multi-hop reasoning problem requiring tool use.
 
 | Framework | Success Rate | Time (avg) | Notes |
-|-----------|--------------|------------|-------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | LangChain | 73% | 20s | Chain-of-thought helps but limited recovery |
 | CrewAI | 81% | 35s | Agent delegation handles complexity |
 | AutoGen | 88% | 40s | Negotiation resolves disagreements |
@@ -914,9 +877,7 @@ Task: Solve a multi-hop reasoning problem requiring tool use.
 
 ## Docker Setup for Development
 
-All five frameworks support Docker-based development environments. Here's a unified setup:
-
-```dockerfile
+All five frameworks support Docker-based development environments. Here's a unified setup: ```dockerfile
 FROM python:3.12-slim
 
 WORKDIR /app
@@ -949,9 +910,7 @@ ENV LANGCHAIN_API_KEY=${LANGCHAIN_API_KEY}
 CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root"]
 ```
 
-Build and run:
-
-```bash
+Build and run: ```bash
 docker build -t ai-frameworks-dev .
 docker run -p 8888:8888 -v $(pwd):/app ai-frameworks-dev
 ```
@@ -994,9 +953,7 @@ docker run -p 8888:8888 -v $(pwd):/app ai-frameworks-dev
 
 ## Future Outlook
 
-The AI agent framework landscape will continue evolving in 2026-2027:
-
-1. **Convergence**: Frameworks are borrowing each other's strengths. LangChain adds graph capabilities, CrewAI adds document support, LlamaIndex adds multi-agent features. The lines between them are blurring.
+The AI agent framework landscape will continue evolving in 2026-2027: 1. **Convergence**: Frameworks are borrowing each other's strengths. LangChain adds graph capabilities, CrewAI adds document support, LlamaIndex adds multi-agent features. The lines between them are blurring.
 
 2. **Standardization**: MCP (Model Context Protocol) is emerging as a standard for agent-tool communication. All five frameworks are adding MCP support, which will make cross-framework interoperability easier.
 
@@ -1034,9 +991,7 @@ Unlikely. The frameworks solve different problems with different philosophies. L
 
 ## Join the Community
 
-We build these comparisons because open-source AI deserves transparent, community-driven analysis. If you found this helpful:
-
-- **Star this article** on our GitHub
+We build these comparisons because open-source AI deserves transparent, community-driven analysis. If you found this helpful: - **Star this article** on our GitHub
 - **Share your experience** with any of these frameworks in the comments
 - **Suggest frameworks** you'd like us to compare next
 
@@ -1053,7 +1008,6 @@ We build these comparisons because open-source AI deserves transparent, communit
 *Last updated: June 30, 2026. Star counts and metrics are approximate and subject to change. All code examples tested with framework versions current as of publication date.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

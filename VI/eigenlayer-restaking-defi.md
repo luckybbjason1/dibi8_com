@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/eigenlayer-restaking-defi" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/eigenlayer-restaking-defi" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/eigenlayer-restaking-defi" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/eigenlayer-restaking-defi" />
 title: 'eigenlayer-restaking-defi'
 description: ''. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: [eigenlayer]
-aliases:
-- /vi/posts/eigenlayer-restaking-defi/
+aliases: - /vi/posts/eigenlayer-restaking-defi/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/eigenlayer-restaking-defi/ -->
 
 {{</* resource-info */>}}
 
@@ -47,9 +39,7 @@ EigenLayer là đổi mới quan trọng nhất trong nền kinh tế staking c�
 
 Restaking trên EigenLayer hoạt động bằng cách cho phép các trình xác thực Ethereum chọn tham gia bảo mật các giao thức bổ sung. Khi trình xác thực restake ETH của họ, họ chấp nhận các điều kiện slashing bổ sung được xác định bởi mỗi AVS họ chọn xác thực.
 
-Vòng đờii của một vị thế restake tuân theo các bước sau:
-
-```bash
+Vòng đờii của một vị thế restake tuân theo các bước sau: ```bash
 # Bước 1: Stake ETH trên beacon chain Ethereum
 # Tối thiểu 32 ETH cho trình xác thực độc lập, hoặc sử dụng token staking thanh khoản (LST)
 
@@ -161,9 +151,9 @@ func disperseBlob(data []byte) (*disperser.BlobStatus, error) {
         Data: data,
         SecurityParams: []*disperser.SecurityParam{
             {
-                QuorumId:           0,
+                QuorumId: 0,
                 AdversaryThreshold: 25,
-                QuorumThreshold:    50,
+                QuorumThreshold: 50,
             },
         },
     })
@@ -181,9 +171,7 @@ import asyncio
 import grpc
 from eigenda.api import retriever_pb2, retriever_pb2_grpc
 
-async def retrieve_blob(batch_header_hash bytes, blob_index int):
-    async with grpc.aio.insecure_channel('retriever.eigenda.io:443') as channel:
-        stub = retriever_pb2_grpc.RetrieverStub(channel)
+async def retrieve_blob(batch_header_hash bytes, blob_index int): async with grpc.aio.insecure_channel('retriever.eigenda.io:443') as channel: stub = retriever_pb2_grpc.RetrieverStub(channel)
         
         request = retriever_pb2.RetrieveBlobRequest(
             batch_header_hash=batch_header_hash,
@@ -344,13 +332,13 @@ func (g *PriceTaskGenerator) ProcessNewTask(
     signature := g.blsKeypair.Sign(responseDigest)
     
     signedResponse := &SignedPriceResponse{
-        TaskId:        task.TaskId,
-        AssetId:       task.AssetId,
-        Price:         price,
-        BlockNumber:   task.CreationBlockNumber,
-        Signature:     signature,
-        PubkeyG1:      g.blsKeypair.GetPubKeyG1(),
-        PubkeyG2:      g.blsKeypair.GetPubKeyG2(),
+        TaskId: task.TaskId,
+        AssetId: task.AssetId,
+        Price: price,
+        BlockNumber: task.CreationBlockNumber,
+        Signature: signature,
+        PubkeyG1: g.blsKeypair.GetPubKeyG1(),
+        PubkeyG2: g.blsKeypair.GetPubKeyG2(),
     }
     
     g.logger.Info("Đã ký phản hồi giá",
@@ -539,8 +527,7 @@ contract PriceOracleSlashing {
     
     mapping(address => SlashingRecord[]) public slashingHistory;
     
-    // Điều kiện slashing:
-    // 1. Ký giá khác biệt cho cùng một nhiệm vụ
+    // Điều kiện slashing: // 1. Ký giá khác biệt cho cùng một nhiệm vụ
     // 2. Không phản hồi trong cửa sổ phản hồi
     // 3. Ký giá vượt quá ngưỡng độ lệch
     
@@ -593,10 +580,8 @@ func (m *SlashMonitor) StartMonitoring(ctx context.Context) {
     
     for {
         select {
-        case <-ctx.Done():
-            return
-        case <-ticker.C:
-            m.checkForSlashableEvents(ctx)
+        case <-ctx.Done(): return
+        case <-ticker.C: m.checkForSlashableEvents(ctx)
         }
     }
 }
@@ -793,7 +778,6 @@ make telemetry
 *© 2026 dibi8.com | Được xây dựng cho nhà phát triển DeFi, trader, và nhà nghiên cứu.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

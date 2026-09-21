@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/vanna-ai-sql-generation" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/vanna-ai-sql-generation" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/vanna-ai-sql-generation" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/vanna-ai-sql-generation" />
 title: 'vanna-ai-sql-generation'
 description: '{'en': ''Explore Vanna AI, the open-source Python library that trains on your database schema to generate SQL from natural language with 90%+ accuracy. Features self-hosting, Jupyter integration, SQL validation, multiple LLM backends, and privacy-first design.'', 'zh': ''探索 Vanna AI，这款基于你的数据库 Schema 训练以 90%+ 准确率从自然语言生成 SQL 的开源 Python 库。支持自托管、Jupyter 集成、SQL 验证、多 LLM 后端和隐私优先设计。'', 'ko': ''데이터베이스 스키마에서 학습하여 90%+ 정확도로 자연어에서 SQL을 생성하는 오픈소스 Python 라이브러리 Vanna AI를 살펴 보세요. 자체 호스팅, Jupyter 통합, SQL 검증, 다중 LLM 백엔드, 개인정보 보호 중심 설계를 제공합니다.'', 'vi': ''Khám phá Vanna AI, thư viện Python mã nguồn mở được huấn luyện trên schema cơ sở dữ liệu của bạn để tạo SQL từ ngôn ngữ tự nhiên với độ chính xác 90%+. Có tính năng tự lưu trữ, tích hợp Jupyter, xác thực SQL, nhiều backend LLM, và thiết kế ưu tiên quyền riêng tư.''}'
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['vanna ai']
-aliases:
-- /zh/posts/vanna-ai-sql-generation/
+aliases: - /zh/posts/vanna-ai-sql-generation/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/vanna-ai-sql-generation/ -->
 
 {{</* resource-info */>}}
 
@@ -39,8 +31,8 @@ aliases:
 
 在本综合指南中，我们将详细介绍关于 Vanna AI 的一切：从安装和 Schema 训练到高级 SQL 生成、验证和集成到分析工作流。无论你是想用英文提问的数据分析师，还是为数据平台构建自然语言界面的工程师，Vanna AI 都能提供你所需的工具，让 Text-to-SQL 成为现实。
 
----
 
+---
 ## 什么是 Vanna AI？自然语言遇见 SQL
 
 Vanna AI 是一款弥合人类语言和结构化查询语言之间差距的开源 Python 库。其核心是一个专为 SQL 生成而构建的 **检索增强生成（RAG）** 框架。与偶尔会产生表名幻觉或虚构列引用的通用 LLM 聊天机器人不同，Vanna 在你实际的数据库 Schema 上进行训练 — 学习你的表、列、关系，甚至你组织的命名约定。
@@ -81,8 +73,8 @@ print(sql)
 
 生成的 SQL 不仅在语法上正确，而且在语义上准确，引用了你实际 Schema 中的正确表、列和关系。
 
----
 
+---
 ## 为什么 Vanna AI 在 2026 年至关重要
 
 近年来，大型语言模型的爆发为自然语言界面创造了巨大的机会。然而，通用 LLM 在 SQL 生成方面面临几个关键挑战：它们会产生 Schema 元素幻觉、忽略数据库特定的语法，并且对实际数据模型一无所知。将原始数据发送到第三方 API 端点还会引发严重的隐私和合规性问题。
@@ -100,9 +92,7 @@ Vanna AI 直面所有这些挑战：
 from vanna.ollama import Ollama
 from vanna.chromadb import ChromaDB_VectorStore
 
-class MyVanna(ChromaDB_VectorStore, Ollama):
-    def __init__(self, config=None):
-        ChromaDB_VectorStore.__init__(self, config=config)
+class MyVanna(ChromaDB_VectorStore, Ollama): def __init__(self, config=None): ChromaDB_VectorStore.__init__(self, config=config)
         Ollama.__init__(self, config={"model": "llama3"})
 
 # 完全本地、自托管的设置
@@ -166,9 +156,7 @@ vn.connect_to_postgres(
 from vanna.ollama import Ollama
 from vanna.chromadb import ChromaDB_VectorStore
 
-class LocalVanna(ChromaDB_VectorStore, Ollama):
-    def __init__(self, config=None):
-        ChromaDB_VectorStore.__init__(self, config=config)
+class LocalVanna(ChromaDB_VectorStore, Ollama): def __init__(self, config=None): ChromaDB_VectorStore.__init__(self, config=config)
         Ollama.__init__(self, config={"model": "codellama:13b"})
 
 vn = LocalVanna()
@@ -241,8 +229,7 @@ cursor.execute("""
 """)
 tables = cursor.fetchall()
 
-for (table_name,) in tables:
-    cursor.execute(f"""
+for (table_name,) in tables: cursor.execute(f"""
         SELECT column_name, data_type, is_nullable
         FROM information_schema.columns
         WHERE table_name = '{table_name}';
@@ -268,8 +255,7 @@ conn.close()
 vn.train(documentation="""
 The sales table records all completed transactions.
 The amount column is in USD and includes tax.
-The region column uses standard US Census regions:
-Northeast, Midwest, South, and West.
+The region column uses standard US Census regions: Northeast, Midwest, South, and West.
 A high_value_customer is anyone with lifetime purchases > $10,000.
 """)
 
@@ -387,11 +373,9 @@ vn = VannaDefault(model="my-model", api_key="vn-...",
                   config={"validate_sql": True})
 
 # 无效查询被捕获并纠正
-try:
-    sql = vn.generate_sql("Show me the top 10 products by revenue")
+try: sql = vn.generate_sql("Show me the top 10 products by revenue")
     print(f"Validated SQL: {sql}")
-except Exception as e:
-    print(f"Validation failed: {e}")
+except Exception as e: print(f"Validation failed: {e}")
     # Vanna 将尝试修复并重新生成
     sql = vn.generate_sql_with_retry(
         "Show me the top 10 products by revenue",
@@ -431,8 +415,7 @@ vn.set_prompt_template("""
 You are an expert SQL analyst. Given the following database schema,
 generate a PostgreSQL-compatible query to answer the user's question.
 
-Schema:
-{schema}
+Schema: {schema}
 
 User Question: {question}
 
@@ -463,9 +446,7 @@ hr_sql = vn_hr.generate_sql("Employee count by department")
 from vanna.pinecone import Pinecone_VectorStore
 from vanna.openai import OpenAI_Chat
 
-class PineconeVanna(Pinecone_VectorStore, OpenAI_Chat):
-    def __init__(self, config=None):
-        Pinecone_VectorStore.__init__(self, config=config)
+class PineconeVanna(Pinecone_VectorStore, OpenAI_Chat): def __init__(self, config=None): Pinecone_VectorStore.__init__(self, config=config)
         OpenAI_Chat.__init__(self, config=config)
 
 vn = PineconeVanna(config={
@@ -557,10 +538,8 @@ vn.ask("Plot monthly sales trends for 2026")
 from vanna.ollama import Ollama
 from vanna.chromadb import ChromaDB_VectorStore
 
-class PrivateVanna(ChromaDB_VectorStore, Ollama):
-    """完全自托管。零数据离开你的网络。"""
-    def __init__(self, config=None):
-        ChromaDB_VectorStore.__init__(self, config=config)
+class PrivateVanna(ChromaDB_VectorStore, Ollama): """完全自托管。零数据离开你的网络。"""
+    def __init__(self, config=None): ChromaDB_VectorStore.__init__(self, config=config)
         Ollama.__init__(self, config={"model": "llama3:70b"})
 
 vn = PrivateVanna()
@@ -605,11 +584,9 @@ test_cases = [
 ]
 
 correct = 0
-for test in test_cases:
-    generated = vn.generate_sql(test["question"])
+for test in test_cases: generated = vn.generate_sql(test["question"])
     # 语义比较（标准化）
-    if normalize_sql(generated) == normalize_sql(test["expected_sql"]):
-        correct += 1
+    if normalize_sql(generated) == normalize_sql(test["expected_sql"]): correct += 1
 
 accuracy = correct / len(test_cases) * 100
 print(f"准确性: {accuracy:.1f}%")
@@ -637,9 +614,7 @@ print(f"准确性: {accuracy:.1f}%")
 from vanna.ollama import Ollama
 from vanna.chromadb import ChromaDB_VectorStore
 
-class FreeVanna(ChromaDB_VectorStore, Ollama):
-    def __init__(self, config=None):
-        ChromaDB_VectorStore.__init__(self, config=config)
+class FreeVanna(ChromaDB_VectorStore, Ollama): def __init__(self, config=None): ChromaDB_VectorStore.__init__(self, config=config)
         Ollama.__init__(self, config={"model": "llama3"})
 ```
 
@@ -712,10 +687,8 @@ vn.connect_to_duckdb("mydb.duckdb")
 # 最大准确性训练方案
 vn.train(ddl=all_schema_ddl)
 vn.train(documentation=business_context)
-for example in curated_sql_examples:
-    vn.train(sql=example)
-for qa in historical_question_sql_pairs:
-    vn.train(question=qa["question"], sql=qa["sql"])
+for example in curated_sql_examples: vn.train(sql=example)
+for qa in historical_question_sql_pairs: vn.train(question=qa["question"], sql=qa["sql"])
 ```
 
 ---
@@ -738,7 +711,6 @@ Vanna AI 代表了在普及数据库访问方面的重大飞跃。通过将现�
 2026年，随着数据分析师和数据库专家之间的差距继续缩小，Vanna AI 站在最前沿 — 将"我们各区域第二季度的销售额是多少？"在几秒钟内转化为可执行的 SQL，而不是几分钟。对于任何希望减少 SQL 瓶颈并让人们在思考所用的语言中提问的团队来说，Vanna AI 是一项立即就能带来回报的投资。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

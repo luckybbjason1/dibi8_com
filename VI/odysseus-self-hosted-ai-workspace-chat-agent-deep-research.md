@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/odysseus-self-hosted-ai-workspace-chat-agent-deep-research" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/odysseus-self-hosted-ai-workspace-chat-agent-deep-research" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/odysseus-self-hosted-ai-workspace-chat-agent-deep-research" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/odysseus-self-hosted-ai-workspace-chat-agent-deep-research" />
 title: 'Odysseus: Không gian AI tự lưu trữ với 10+ Công cụ Tích ...
 description: 'Odysseus (65.243 sao GitHub) là một không gian AI tự lưu trữ kết hợp trò chuyện, tự động hóa tác nhân, nghiên cứu chuyên sâu, chỉnh sửa tài liệu, phân loại email, lịch và hơn nữa. Hỗ trợ vLLM, llama.cpp, Ollama, OpenRouter, OpenAI và GitHub Copilot. Có sẵn cài đặt Docker và native Linux/macOS.'
 date: 2026-06-09
-lastmod:  2026-06-09slug: odysseus-self-hosted-ai-workspace-chat-agent-deep-research
+lastmod: 2026-06-09
+slug: odysseus-self-hosted-ai-workspace-chat-agent-deep-research
 category: ai-tools
 tags: ['odysseus', 'AI tự lưu trữ', 'Không gian AI', 'AI cục bộ', 'nghiên cứu chuyên sâu', 'tác nhân AI', 'giao diện trò chuyện', 'AI mã nguồn mở', 'AI lab tại gia']
 github_repo: https://github.com/pewdiepie-archdaemon/odysseus
@@ -17,9 +13,6 @@ license: MIT
 featureImage: https://raw.githubusercontent.com/pewdiepie-archdaemon/odysseus/dev/docs/odysseus.jpg
 lang: vi
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/odysseus-self-hosted-ai-workspace-chat-agent-deep-research/ -->
-
 
 # Odysseus: Self-Hosted AI Workspace with 10+ Built-in Tools — 65,000 Stars — Full Setup Guide 2026
 
@@ -61,9 +54,7 @@ Hướng dẫn này bao gồm mọi thứ: phân tích kiến trúc, cài đặt
 
 Odysseus là một không gian AI full-stack được xây dựng trên Python (backend FastAPI, frontend web phản hồi).
 
-Dự án tích hợp các khả năng sau trong một ứng dụng web duy nhất:
-
-| Feature | Description | Built On |
+Dự án tích hợp các khả năng sau trong một ứng dụng web duy nhất: | Feature | Description | Built On |
 |---------|-------------|----------|
 | Chat | Multi-model conversations | vLLM, llama.cpp, Ollama, OpenRouter, OpenAI, GitHub Copilot |
 | Agent | Tool-using autonomous agent | OpenCode, MCP, web, files, shell, skills, memory |
@@ -141,16 +132,12 @@ docker compose up -d --build
 
 Sau khi khởi động, mở `http://localhost:7000`.
 
-Để bao gồm các tính năng bổ sung tùy chọn (trình xem PDF, trích xuất Office với AGPL PyMuPDF):
-
-```bash
+Để bao gồm các tính năng bổ sung tùy chọn (trình xem PDF, trích xuất Office với AGPL PyMuPDF): ```bash
 docker compose build --build-arg INSTALL_OPTIONAL=true
 docker compose up -d --build
 ```
 
-Để bật GPU passthrough cho GPU NVIDIA:
-
-```bash
+Để bật GPU passthrough cho GPU NVIDIA: ```bash
 # Diagnose GPU passthrough
 scripts/check-docker-gpu.sh
 
@@ -161,9 +148,7 @@ scripts/check-docker-gpu.sh --install-nvidia-toolkit
 scripts.check-docker-gpu.sh --enable-nvidia-overlay
 ```
 
-Đối với AMD/ROCm:
-
-```bash
+Đối với AMD/ROCm: ```bash
 scripts/check-docker-amd-gpu.sh
 ```
 
@@ -171,9 +156,7 @@ Sau đó chỉnh sửa `.env` để thêm overlay và ID nhóm render của host
 
 ### Cài đặt Native Linux/macOS
 
-Nếu bạn không muốn sử dụng Docker:
-
-```bash
+Nếu bạn không muốn sử dụng Docker: ```bash
 git clone https://github.com/pewdiepie-archdaemon/odysseus.git
 cd odysseus
 
@@ -213,9 +196,7 @@ ODYSSEUS_HOST=0.0.0.0 ./start-macos.sh
 
 ### Xây dựng Ứng dụng Desktop
 
-Bạn có thể gói Odysseus dưới dạng wrapper ứng dụng desktop native:
-
-```bash
+Bạn có thể gói Odysseus dưới dạng wrapper ứng dụng desktop native: ```bash
 ./build-macos-app.sh
 ```
 
@@ -269,8 +250,7 @@ Tác nhân Odysseus được xây dựng trên [OpenCode](https://github.com/ano
 # Configure MCP in .env
 MCP_SERVERS=http://localhost:3000,mcp://your-server
 
-# Your agent can then use:
-# - File tools (read/write/search)
+# Your agent can then use: # - File tools (read/write/search)
 # - Shell execution
 # - Web search
 # - Custom skills
@@ -285,8 +265,7 @@ Odysseus bao gồm ChromaDB cho bộ nhớ dựa trên vector bền vững.
 odysseus memory export --output memory.json
 odysseus memory import --input memory.json
 
-# The memory system uses:
-# - ChromaDB for vector storage
+# The memory system uses: # - ChromaDB for vector storage
 # - fastembed (ONNX) for embeddings
 # - Combined vector + keyword retrieval
 ```
@@ -303,9 +282,7 @@ odysseus memory import --input memory.json
 
 ### Tích hợp Email
 
-Odysseus bao gồm hòm thư IMAP/SMTP đầy đủ với phân loại được hỗ trợ AI:
-
-```yaml
+Odysseus bao gồm hòm thư IMAP/SMTP đầy đủ với phân loại được hỗ trợ AI: ```yaml
 # Email config in .env
 EMAIL_IMAP_SERVER=imap.gmail.com
 EMAIL_IMAP_PORT=993
@@ -330,9 +307,7 @@ AI có thể tự động: tóm tắt email, đánh dấu mức độ khẩn c�
 
 ### Hiệu suất Nghiên cứu Chuyên sâu
 
-Tính năng nghiên cứu chuyên sâu của Odysseus (được điều chỉnh từ DeepResearch của Alibaba) thực hiện các quy trình nghiên cứu nhiều bước:
-
-```
+Tính năng nghiên cứu chuyên sâu của Odysseus (được điều chỉnh từ DeepResearch của Alibaba) thực hiện các quy trình nghiên cứu nhiều bước: ```
 Research Task: "Compare RAG vs. fine-tuning for enterprise QA"
 
 Step 1: Web search (SearXNG) → 15 sources
@@ -345,9 +320,7 @@ Step 4: Visualize with charts → auto-generated
 
 ### Chế độ So sánh Mô hình
 
-Tính năng Compare cho phép kiểm tra A/B mù các mô hình khác nhau bên cạnh nhau:
-
-```
+Tính năng Compare cho phép kiểm tra A/B mù các mô hình khác nhau bên cạnh nhau: ```
 Prompt: "Write a Python binary search implementation"
 
 Model A: [hidden] → Response
@@ -378,9 +351,7 @@ ODYSSEUS_ADMIN_PASSWORD=secure-password
 
 ### Cấu hình Proxy ngược
 
-For production deployment behind a reverse proxy:
-
-```nginx
+For production deployment behind a reverse proxy: ```nginx
 server {
     listen 443 ssl;
     server_name ai.yourdomain.com;
@@ -405,21 +376,13 @@ server {
 
 ```yaml
 # docker-compose.prod.yml
-services:
-  odysseus:
-    image: pewdiepie-archdaemon/odysseus:latest
+services: odysseus: image: pewdiepie-archdaemon/odysseus:latest
     restart: unless-stopped
-    ports:
-      - "127.0.0.1:7000:7000"
-    volumes:
-      - ./data:/app/data
+    ports: - "127.0.0.1:7000:7000"
+    volumes: - ./data:/app/data
       - ./config:/app/config
     env_file: .env
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+    deploy: resources: reservations: devices: - driver: nvidia
               count: 1
               capabilities: [gpu]
 ```
@@ -453,9 +416,7 @@ tar czf odysseus-backup-$(date +%Y%m%d).tar.gz \
 
 ## Hạn chế / Đánh giá Trung thực
 
-Mặc dù Odysseus đáng ấn tượng, nhưng nó có một số hạn chế cần lưu ý:
-
-1. **Dự án mới (tạo ngày 31 tháng 5 năm 2026)** — Dù có hơn 65.000 sao, Odysseus vẫn rất non trẻ. Hãy mong đợi lỗi, thay đổi phá vỡ và tài liệu không đầy đủ. Nhánh `dev` là mặc định nhưng "có thể không ổn định."
+Mặc dù Odysseus đáng ấn tượng, nhưng nó có một số hạn chế cần lưu ý: 1. **Dự án mới (tạo ngày 31 tháng 5 năm 2026)** — Dù có hơn 65.000 sao, Odysseus vẫn rất non trẻ. Hãy mong đợi lỗi, thay đổi phá vỡ và tài liệu không đầy đủ. Nhánh `dev` là mặc định nhưng "có thể không ổn định."
 
 2. **Hỗ trợ GPU tập trung vào Docker/NVIDIA** — Hỗ trợ AMD ROCm tồn tại nhưng yêu cầu cấu hình `.env` thủ công. Apple Silicon yêu cầu cài đặt native (không có Docker GPU).
 
@@ -519,7 +480,6 @@ Tham gia cộng đồng của chúng tôi để tìm hiểu sâu hơn về các 
 **Tuyên bố miễn trừ trách nhiệm:** Bài viết này chỉ nhằm mục đích thông tin.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

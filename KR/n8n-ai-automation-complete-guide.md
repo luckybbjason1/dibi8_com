@@ -1,21 +1,14 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/n8n-ai-automation-complete-guide" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/n8n-ai-automation-complete-guide" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/n8n-ai-automation-complete-guide" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/n8n-ai-automation-complete-guide" />
 title: n8n AI 자동화 — 코드 없이 지능형 워크플로우 구축
 description: n8n의 AI 기반 워크플로우 자동화 완전 가이드. AI 노드로 400개 이상 앱 연결, 자율 에이전트 구축, 복잡한 비즈니스 프로세스 자동화. 가격, 템플릿 및 실제 예제 포함.. Comprehensive guide covering features, pricing, and best practices for 2026.
 tags: ['n8n', 'workflow-automation', 'ai-automation', 'no-code', 'agent-automation', 'business-process']
 category: dev-utils
 featureImage: /images/articles/n8n-ai-automation.jpg
 date: 2026-07-16T00:00:00+00:00
-lastmod:  2026-07-16T00:00:00+00:00draft: false
+lastmod: 2026-07-16T00:00:00+00:00draft: false
 slug: n8n-ai-automation-complete-guide
 lang: ko
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/n8n-ai-automation-complete-guide/ -->
 
 ## TL;DR
 
@@ -31,9 +24,7 @@ n8n("n-eight-n"으로 발음)은 앱을 시각적으로 연결하여 앱, 데이
 
 ### 2026년 n8n 선택 이유
 
-자동화 환경이 크게 변화했습니다:
-
-| 시대 | 접근 방식 | 제한사항 |
+자동화 환경이 크게 변화했습니다: | 시대 | 접근 방식 | 제한사항 |
 |------|----------|----------|
 | 2020-2022 | 단순 트리거→액션 | 지능 없음, 선형만 |
 | 2023-2024 | API 연결 + 기본 로직 | 커스터마이징 제한 |
@@ -47,16 +38,13 @@ n8n은 코딩 없이 AI 워크플로우에 접근할 수 있게 함으로써 202
 
 ### 노드: 빌딩 블록
 
-각 n8n 워크플로우는 **노드**로 구성됩니다 — 모듈식 처리 단위:
-
-```
+각 n8n 워크플로우는 **노드**로 구성됩니다 — 모듈식 처리 단위: ```
 [트리거] → [HTTP 요청] → [AI 처리] → [데이터베이스] → [알림]
     │            │                 │              │              │
   언제...     데이터 가져오기   LLM 분석     결과 저장     팀 알림
 ```
 
-노드 카테고리:
-- **트리거**: Webhook, 스케줄, 이메일 폴링, 데이터베이스 변경
+노드 카테고리: - **트리거**: Webhook, 스케줄, 이메일 폴링, 데이터베이스 변경
 - **작업**: HTTP 요청, CRUD 작업, 파일 처리
 - **AI/ML**: LLM 호출, 임베딩, 벡터 검색, 이미지 생성
 - **로직**: IF/ELSE, switch, merge, 배치 분할
@@ -64,25 +52,20 @@ n8n은 코딩 없이 AI 워크플로우에 접근할 수 있게 함으로써 202
 
 ### 워크플로우 vs AI 에이전트
 
-n8n은 두 가지 패러다임을 모두 지원합니다:
-
-```python
+n8n은 두 가지 패러다임을 모두 지원합니다: ```python
 # 전통적 워크플로우 (결정론적)
 trigger: new_email_received
   → parse_subject
-  → if "invoice" 포함:
-      → save_to_drive
+  → if "invoice" 포함: → save_to_drive
       → notify_accounting
 
 # AI 에이전트 (확률적, 추론 기반)
 trigger: new_support_ticket
   → AI_classify_priority(ticket)
-  → if priority == "high":
-      → AI_summarize(ticket)
+  → if priority == "high": → AI_summarize(ticket)
       → AI_draft_response()
       → human_review_queue
-  → else:
-      → auto_reply_with_knowledge_base
+  → else: → auto_reply_with_knowledge_base
 ```
 
 ---
@@ -146,9 +129,7 @@ n8n start
 
 ### LLM 노드
 
-텍스트 생성, 분류 및 추출을 위한 핵심 AI 노드:
-
-```python
+텍스트 생성, 분류 및 추출을 위한 핵심 AI 노드: ```python
 # LLM 노드 구성
 {
   "nodeType": "aiLLM",
@@ -160,17 +141,14 @@ n8n start
 }
 ```
 
-사용 사례:
-- **텍스트 분류**: 이메일, 티켓, 메시지 라우팅
+사용 사례: - **텍스트 분류**: 이메일, 티켓, 메시지 라우팅
 - **정보 추출**: 비정형 텍스트에서 구조화된 데이터 추출
 - **요약**: 긴 문서, 회의 기록, 스레드 축약
 - **감성 분석**: 기분, 긴급도, 만족도 감지
 
 ### 임베딩 노드
 
-시맨틱 검색을 위해 텍스트를 벡터 표현으로 변환:
-
-```python
+시맨틱 검색을 위해 텍스트를 벡터 표현으로 변환: ```python
 # 임베딩 노드 구성
 {
   "nodeType": "aiEmbedding",
@@ -183,9 +161,7 @@ n8n start
 
 ### 벡터 저장소 노드
 
-임베딩 저장 및 쿼리:
-
-| 노드 | 용도 | 최적 용도 |
+임베딩 저장 및 쿼리: | 노드 | 용도 | 최적 용도 |
 |------|------|----------|
 | Pinecone | 클라우드 벡터 DB | 확장 가능한 시맨틱 검색 |
 | Qdrant | 자체 호스팅 | 프라이버시 중심 RAG |
@@ -194,9 +170,7 @@ n8n start
 
 ### 이미지 생성 노드
 
-텍스트 프롬프트에서 이미지 생성:
-
-```python
+텍스트 프롬프트에서 이미지 생성: ```python
 {
   "nodeType": "aiImageGen",
   "parameters": {
@@ -284,9 +258,7 @@ Slack으로 팀 알림
 
 ### 패턴 1: Human-in-the-Loop
 
-중요한 결정에는 항상 인간을 포함:
-
-```python
+중요한 결정에는 항상 인간을 포함: ```python
 workflow = {
     "auto_steps": [
         "classify_ticket",
@@ -306,9 +278,7 @@ workflow = {
 
 ### 패턴 2: 병렬 처리
 
-여러 항목을 동시에 처리:
-
-```python
+여러 항목을 동시에 처리: ```python
 # 배치를 청크로 분할
 items = split_in_batches(data, batch_size=10)
 
@@ -341,12 +311,9 @@ workflow_config = {
 ### 패턴 4: 조건부 분기
 
 ```python
-if condition_a:
-    execute_workflow_a()
-elif condition_b:
-    execute_workflow_b()
-else:
-    execute_default()
+if condition_a: execute_workflow_a()
+elif condition_b: execute_workflow_b()
+else: execute_default()
 ```
 
 n8n의 Switch 노드는 복잡한 분기를 시각적으로 처리합니다.
@@ -582,7 +549,6 @@ n8n의 암호화된 자격 증명 저장소, 환경 변수의 비밀, 그리고 
 *실시간 AI 도구 논의 및 배포 팁을 위해 Telegram 그룹에 가입하세요: [t.me/dibi8](https://t.me/dibi8)*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

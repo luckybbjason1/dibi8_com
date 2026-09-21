@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mem0" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mem0" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mem0" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mem0" />
 title: 'Mem0: 56K+ Stars — AI 에이전트 메모리 성능 튜닝 가이드 2026'
 description: 'Mem0 (mem0ai)은 AI 에이전트를 위한 범용 메모리 레이어입니다. Claude Code, OpenAI, LangChain, CrewAI, Cursor와 호환됩니다. mem0 튜토리얼, 지속 메모리 설정, 벡터 스토어 튜닝, 프로덕션 배포 벤치마크를 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [mem0, 'ai-agent-memory', '지속-메모리', langchain, '벡터-스토어', '메모리-튜닝', 'mem0-튜토리얼', 'mem0-vs-langchain', crewai, 오픈소스]
-aliases:
-- /kr/posts/mem0/
+aliases: - /kr/posts/mem0/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/mem0/ -->
 
 {{</* resource-info */>}}
 
@@ -43,9 +35,7 @@ Mem0은 LLM 애플리케이션과 AI 에이전트를 위한 오픈소스 범용 
 
 ## Mem0의 작동 방식
 
-Mem0의 아키텍처는 메모리를 네 가지 운영 계층으로 분리합니다:
-
-**1. 추출 계층**: LLM(구성 가능, 기본값 GPT-4o-mini)이 들어오는 메시지를 처리하고 구조화된 사실을 추출합니다. 2026년 4월 토큰 효율 알고리즘은 전체 컨텍스트 기선 대비 토큰 사용량을 3-4배 줄이는 단일 패스 계층적 추출을 사용합니다.
+Mem0의 아키텍처는 메모리를 네 가지 운영 계층으로 분리합니다: **1. 추출 계층**: LLM(구성 가능, 기본값 GPT-4o-mini)이 들어오는 메시지를 처리하고 구조화된 사실을 추출합니다. 2026년 4월 토큰 효율 알고리즘은 전체 컨텍스트 기선 대비 토큰 사용량을 3-4배 줄이는 단일 패스 계층적 추출을 사용합니다.
 
 **2. 임베딩 계층**: 추출된 사실은 임베딩 모델(기본값: text-embedding-3-small)을 사용하여 벡터화되어 벡터 데이터베이스에 저장됩니다. Mem0은 Qdrant, Chroma, PGVector, Pinecone, Weaviate, Milvus, Azure AI Search를 포함한 19개 벡터 스토어 백엔드를 지원합니다.
 
@@ -115,9 +105,7 @@ print(results)
 
 ### 셀프 호스팅 설정 (Docker)
 
-데이터 레지던시 또는 에어갭 배포가 필요한 팀을 위한 설정:
-
-```bash
+데이터 레지던시 또는 에어갭 배포가 필요한 팀을 위한 설정: ```bash
 # 리포지토리 클론
 git clone https://github.com/mem0ai/mem0.git
 cd mem0
@@ -167,35 +155,25 @@ results = m.search("movie recommendations", filters={"user_id": "alice"})
 
 ### YAML을 사용한 사용자 정의 구성
 
-`mem0config.yaml` 파일은 메모리 파이프라인의 모든 구성 요소를 제어합니다:
-
-```yaml
+`mem0config.yaml` 파일은 메모리 파이프라인의 모든 구성 요소를 제어합니다: ```yaml
 # mem0config.yaml — 프로덕션 튜닝 구성
-llm:
-  provider: openai
-  config:
-    model: "gpt-4o-mini"
+llm: provider: openai
+  config: model: "gpt-4o-mini"
     temperature: 0.1
     max_tokens: 2000
 
-embedder:
-  provider: openai
-  config:
-    model: "text-embedding-3-small"
+embedder: provider: openai
+  config: model: "text-embedding-3-small"
     embedding_dims: 1536
 
-vector_store:
-  provider: qdrant
-  config:
-    host: "localhost"
+vector_store: provider: qdrant
+  config: host: "localhost"
     port: 6333
     collection_name: "mem0"
     on_disk: true  # 영구 저장소 활성화
 
-reranker:
-  provider: cohere
-  config:
-    model: "rerank-multilingual-v3.0"
+reranker: provider: cohere
+  config: model: "rerank-multilingual-v3.0"
 
 custom_instructions: |
   사용자 선호도, 개인 사실, 컨텍스트를 추출합니다.
@@ -230,8 +208,7 @@ import asyncio
 
 client = MemoryClient()
 
-async def batch_store(messages_list):
-    tasks = [client.add_async(msgs, user_id=f"user_{i}")
+async def batch_store(messages_list): tasks = [client.add_async(msgs, user_id=f"user_{i}")
              for i, msgs in enumerate(messages_list)]
     return await asyncio.gather(*tasks)
 
@@ -260,14 +237,12 @@ results = client.search(
 # 어떤 사실을 추출하고 저장할지 안내
 m = Memory.from_config({
     "custom_instructions": """
-    추출하고 저장할 항목:
-    - 사용자의 이름, 직업, 위치
+    추출하고 저장할 항목: - 사용자의 이름, 직업, 위치
     - 기술적 선호도(언어, 프레임워크, 도구)
     - 식이 제한과 알레르기
     - 커뮤니케이션 선호도
 
-    저장하지 않을 항목:
-    - 임시 기분이나 감정 상태
+    저장하지 않을 항목: - 임시 기분이나 감정 상태
     - 일회성 요청
     - 동의 없는 타인 정보
     """
@@ -298,23 +273,19 @@ mem0 = MemoryClient(api_key=os.getenv("MEM0_API_KEY"))
 # 메모리 주입이 있는 프롬프트 템플릿
 prompt = ChatPromptTemplate.from_messages([
     ("system", """장기 기억을 가진 유용한 어시스턴트입니다.
-    사용자에 대한 관련 과거 컨텍스트:
-    {memories}
+    사용자에 대한 관련 과거 컨텍스트: {memories}
 
     이 컨텍스트를 사용하여 응답을 개인화하세요."""),
     MessagesPlaceholder(variable_name="history"),
     ("human", "{input}")
 ])
 
-def get_memories(user_id: str, query: str) -> str:
-    """관련 메모리를 포맷된 문자열로 검색합니다."""
+def get_memories(user_id: str, query: str) -> str: """관련 메모리를 포맷된 문자열로 검색합니다."""
     results = mem0.search(query, user_id=user_id, limit=5)
     return "\n".join([r["memory"] for r in results])
 
-def chat(user_id: str, message: str, history: List = None):
-    """메모리 강화 컨텍스트로 채팅합니다."""
-    if history is None:
-        history = []
+def chat(user_id: str, message: str, history: List = None): """메모리 강화 컨텍스트로 채팅합니다."""
+    if history is None: history = []
 
     memories = get_memories(user_id, message)
     formatted_prompt = prompt.format_messages(
@@ -360,14 +331,12 @@ from mem0 import MemoryClient
 mem0 = MemoryClient(api_key=os.getenv("MEM0_API_KEY"))
 
 @tool
-def retrieve_user_context(user_id: str, query: str) -> str:
-    """개인화를 위한 사용자에 대한 메모리를 검색합니다."""
+def retrieve_user_context(user_id: str, query: str) -> str: """개인화를 위한 사용자에 대한 메모리를 검색합니다."""
     results = mem0.search(query, user_id=user_id, limit=5)
     return "\n".join([f"- {r[memory]}" for r in results])
 
 @tool
-def store_interaction(user_id: str, content: str) -> str:
-    """에이전트 상호작용에서 배운 사실을 저장합니다."""
+def store_interaction(user_id: str, content: str) -> str: """에이전트 상호작용에서 배운 사실을 저장합니다."""
     messages = [{"role": "assistant", "content": content}]
     mem0.add(messages, user_id=user_id)
     return "Stored."
@@ -412,19 +381,16 @@ from mem0 import MemoryClient
 mem0 = MemoryClient(api_key=os.getenv("MEM0_API_KEY"))
 
 @dataclass
-class UserContext:
-    user_id: str
+class UserContext: user_id: str
 
 @function_tool
-def add_to_memory(ctx, messages: str) -> str:
-    """사용자에 대한 사실을 저장합니다."""
+def add_to_memory(ctx, messages: str) -> str: """사용자에 대한 사실을 저장합니다."""
     parsed = [{"role": "user", "content": m} for m in messages.split("\n")]
     mem0.add(parsed, user_id=ctx.context.user_id)
     return "Memory stored."
 
 @function_tool
-def search_memory(ctx, query: str) -> str:
-    """관련 메모리를 검색합니다."""
+def search_memory(ctx, query: str) -> str: """관련 메모리를 검색합니다."""
     results = mem0.search(query, user_id=ctx.context.user_id, limit=5)
     return "\n".join([r["memory"] for r in results])
 
@@ -435,8 +401,7 @@ memory_agent = Agent(
     model="gpt-4o-mini"
 )
 
-async def run_agent():
-    context = UserContext(user_id="user_42")
+async def run_agent(): context = UserContext(user_id="user_42")
     result = await Runner.run(
         memory_agent,
         "I'm a vegetarian who loves Italian food.",
@@ -453,51 +418,35 @@ async def run_agent():
 # mem0-production-stack.yml
 version: "3.8"
 
-services:
-  qdrant:
-    image: qdrant/qdrant:latest
-    ports:
-      - "6333:6333"
+services: qdrant: image: qdrant/qdrant:latest
+    ports: - "6333:6333"
       - "6334:6334"
-    volumes:
-      - qdrant_storage:/qdrant/storage
-    environment:
-      - QDRANT__SERVICE__GRPC_PORT=6334
+    volumes: - qdrant_storage:/qdrant/storage
+    environment: - QDRANT__SERVICE__GRPC_PORT=6334
 
-  mem0-server:
-    image: mem0/mem0-server:latest
-    ports:
-      - "8000:8000"
-    environment:
-      - MEM0_API_KEY=${MEM0_API_KEY}
+  mem0-server: image: mem0/mem0-server:latest
+    ports: - "8000:8000"
+    environment: - MEM0_API_KEY=${MEM0_API_KEY}
       - VECTOR_STORE_PROVIDER=qdrant
       - VECTOR_STORE_URL=http://qdrant:6333
       - LLM_PROVIDER=openai
       - OPENAI_API_KEY=${OPENAI_API_KEY}
       - EMBEDDER_PROVIDER=openai
       - OPENAI_EMBEDDING_MODEL=text-embedding-3-small
-    depends_on:
-      - qdrant
+    depends_on: - qdrant
 
-  mem0-dashboard:
-    image: mem0/mem0-dashboard:latest
-    ports:
-      - "3000:3000"
-    environment:
-      - MEM0_API_URL=http://mem0-server:8000
+  mem0-dashboard: image: mem0/mem0-dashboard:latest
+    ports: - "3000:3000"
+    environment: - MEM0_API_URL=http://mem0-server:8000
       - MEM0_API_KEY=${MEM0_API_KEY}
 
-volumes:
-  qdrant_storage:
-```
+volumes: qdrant_storage: ```
 
 ## 벤치마크 / 실제 사용 사례
 
 ### LoCoMo 및 LongMemEval 결과
 
-Mem0의 새로운 토큰 효율 알고리즘(2026년 4월 릴리스)은 더 낮은 토큰 비용으로 상당한 정확도 향상을 제공합니다:
-
-| 벤치마크 | 지표 | 이전 알고리즘 | 새 알고리즘 (2026년 4월) | 개선 |
+Mem0의 새로운 토큰 효율 알고리즘(2026년 4월 릴리스)은 더 낮은 토큰 비용으로 상당한 정확도 향상을 제공합니다: | 벤치마크 | 지표 | 이전 알고리즘 | 새 알고리즘 (2026년 4월) | 개선 |
 |----------|------|--------------|------------------------|------|
 | LoCoMo | 전체 정확도 | 66.9% | **92.5%** | +25.6 포인트 |
 | LoCoMo | 평균 토큰/쿼리 | ~26,000 | **6,956** | 3.7배 감소 |
@@ -539,8 +488,7 @@ Mem0의 새로운 토큰 효율 알고리즘(2026년 4월 릴리스)은 더 낮�
 
 ```python
 # 메타데이터를 사용한 메모리 액세스 제어
-def store_sensitive_memory(user_id: str, fact: str, classification: str):
-    """보안 분류가 있는 메모리를 저장합니다."""
+def store_sensitive_memory(user_id: str, fact: str, classification: str): """보안 분류가 있는 메모리를 저장합니다."""
     messages = [{"role": "user", "content": fact}]
     mem0.add(
         messages,
@@ -566,8 +514,7 @@ results = client.search(
 
 ```python
 # SaaS 애플리케이션을 위한 조직 범위 메모리
-def add_org_scoped_memory(org_id: str, user_id: str, messages: list):
-    """조직과 사용자 모두에 범위가 지정된 메모리를 저장합니다."""
+def add_org_scoped_memory(org_id: str, user_id: str, messages: list): """조직과 사용자 모두에 범위가 지정된 메모리를 저장합니다."""
     client.add(
         messages,
         user_id=f"{org_id}:{user_id}",
@@ -587,8 +534,7 @@ results = client.get_all(
 # 메모리 메트릭 추적
 import time
 
-def timed_search(user_id: str, query: str):
-    """지연 시간 로깅이 있는 검색."""
+def timed_search(user_id: str, query: str): """지연 시간 로깅이 있는 검색."""
     start = time.time()
     results = client.search(query, user_id=user_id)
     latency = (time.time() - start) * 1000
@@ -600,8 +546,7 @@ def timed_search(user_id: str, query: str):
     return results
 
 # 주기적인 메모리 상태 확인
-def memory_health_check(user_id: str):
-    """사용자에 대한 메모리 무결성을 확인합니다."""
+def memory_health_check(user_id: str): """사용자에 대한 메모리 무결성을 확인합니다."""
     all_memories = client.get_all(filters={"user_id": user_id})
 
     return {
@@ -619,25 +564,19 @@ def memory_health_check(user_id: str):
 from functools import wraps
 import time
 
-class Mem0RateLimiter:
-    """Mem0 API 호출을 위한 간단한 속도 제한기."""
-    def __init__(self, max_calls_per_minute=100):
-        self.max_calls = max_calls_per_minute
+class Mem0RateLimiter: """Mem0 API 호출을 위한 간단한 속도 제한기."""
+    def __init__(self, max_calls_per_minute=100): self.max_calls = max_calls_per_minute
         self.calls = []
 
-    def can_call(self) -> bool:
-        now = time.time()
+    def can_call(self) -> bool: now = time.time()
         self.calls = [c for c in self.calls if now - c < 60]
         return len(self.calls) < self.max_calls
 
-    def record_call(self):
-        self.calls.append(time.time())
+    def record_call(self): self.calls.append(time.time())
 
 limiter = Mem0RateLimiter(max_calls_per_minute=60)
 
-def rate_limited_add(messages, user_id):
-    if not limiter.can_call():
-        # 나중을 위해 대기열에 넣거나 중요하지 않은 메모리 건跳过
+def rate_limited_add(messages, user_id): if not limiter.can_call(): # 나중을 위해 대기열에 넣거나 중요하지 않은 메모리 건跳过
         print("속도 제한 도달, 메모리 대기열에 추가")
         return {"status": "queued"}
     limiter.record_call()
@@ -672,9 +611,7 @@ def rate_limited_add(messages, user_id):
 
 ## 한계 / 정직한 평가
 
-Mem0은 모든 사용 사례에 적합한 도구는 아닙니다. 잘 수행되지 않는 영역은 다음과 같습니다:
-
-**1. 시간 추론 격차**: LongMemEval 시간 하위 작업에서 Mem0은 49-82%를 기록합니다. Zep과 Graphiti는 명시적 시간 앵커 그래프 저장으로 63.8-71.2%를 달성합니다. 에이전트가 이벤트 시퀀스("X 전에 무슨 일이 있었습니까?")에 대해 추론해야 하는 경우 Mem0이 부족할 수 있습니다.
+Mem0은 모든 사용 사례에 적합한 도구는 아닙니다. 잘 수행되지 않는 영역은 다음과 같습니다: **1. 시간 추론 격차**: LongMemEval 시간 하위 작업에서 Mem0은 49-82%를 기록합니다. Zep과 Graphiti는 명시적 시간 앵커 그래프 저장으로 63.8-71.2%를 달성합니다. 에이전트가 이벤트 시퀀스("X 전에 무슨 일이 있었습니까?")에 대해 추론해야 하는 경우 Mem0이 부족할 수 있습니다.
 
 **2. 그래프 메모리 가격**: 그래프 기능은 월 $249의 Pro 티어로 잠겨 있습니다. $19/월의 Starter 티어는 벡터 유사성 검색만 제공합니다. 예산 내에서 관계 인식 메모리가 필요한 팀을 위해 Zep($25/월) 또는 Cognee(묾 호스팅)와 같은 대안이 더 낮은 가격에 그래프를 제공합니다.
 
@@ -733,9 +670,7 @@ Mem0은 AI 에이전트 개발에서 가장 지속적인 문제 중 하나를 �
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -757,7 +692,6 @@ Mem0은 AI 에이전트 개발에서 가장 지속적인 문제 중 하나를 �
 - Evermind — Mem0 대안 2026: https://evermind.ai/blogs/mem0-alternative
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

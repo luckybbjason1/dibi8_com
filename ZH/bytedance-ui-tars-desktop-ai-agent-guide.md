@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/bytedance-ui-tars-desktop-ai-agent-guide" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/bytedance-ui-tars-desktop-ai-agent-guide" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/bytedance-ui-tars-desktop-ai-agent-guide" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/bytedance-ui-tars-desktop-ai-agent-guide" />
 title: "字节跳动 UI-TARS Desktop：看得见并控制你电脑的视觉语言 AI Agent——完整设置指南"
-description: "学习如何部署字节跳动的 UI-TARS Desktop，这是一款视觉语言 AI Agent，可以观看你的屏幕并通过自然语言控制应用程序。包含逐步安装、实际基准测试和与替代方案的比较。". Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "学习如何部署字节跳动的 UI-TARS Desktop，这是一款视觉语言 AI Agent，可以观看你的屏幕并通过自然语言控制应用程序。包含逐步安装、实际基准测试和与替代方案的比较。"
 date: 2026-06-10
-lastmod:  2026-06-10slug: "bytedance-ui-tars-desktop-ai-agent-guide"
+lastmod: 2026-06-10
+slug: "bytedance-ui-tars-desktop-ai-agent-guide"
 category: ai-tools
 tags: [字节跳动, ui-tars, 视觉语言模型, AI Agent, 桌面自动化, GUI Agent, 开源, 多模态 AI]
 github_repo: "https://github.com/bytedance/UI-TARS-desktop"
@@ -15,10 +11,7 @@ stars: 36263
 maintainer: bytedance
 license: Apache-2.0
 featureImage: "https://raw.githubusercontent.com/bytedance/UI-TARS-desktop/main/images/tars.png"
-lang: zh
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/bytedance-ui-tars-desktop-ai-agent-guide/ -->
 
 ## 简介
 
@@ -154,8 +147,7 @@ agent-tars run --task-file tasks.yaml --model ui-tars-7b
 其中 `tasks.yaml` 包含：
 
 ```yaml
-tasks:
-  - "打开文件浏览器"
+tasks: - "打开文件浏览器"
   - "导航到桌面"
   - "右键并创建新文件夹"
   - "将文件夹命名为'我的项目'"
@@ -227,24 +219,18 @@ agent-tars --model ui-tars-72b
 
 ```yaml
 # uitars-config.yaml
-agent:
-  model: ui-tars-7b
+agent: model: ui-tars-7b
   max_steps: 30
   confidence_threshold: 0.85
   screenshot_interval: 1.0
   action_delay: 0.5
 
-actions:
-  click:
-    method: mouse
+actions: click: method: mouse
     move_to_center: true
-  type:
-    delay_between_keys: 0.02
-  scroll:
-    pixels_per_step: 120
+  type: delay_between_keys: 0.02
+  scroll: pixels_per_step: 120
 
-environment:
-  resolution: 1920x1080
+environment: resolution: 1920x1080
   scale_factor: 1.0
   language: en
 ```
@@ -331,8 +317,7 @@ result = agent.run(task)
 
 # 获取结果
 print(f"执行的行动: {len(result.actions)}")
-for action in result.actions:
-    print(f"  {action.type}: {action.target}")
+for action in result.actions: print(f"  {action.type}: {action.target}")
 
 print(f"成功: {result.success}")
 print(f"原因: {result.explanation}")
@@ -343,7 +328,15 @@ print(f"原因: {result.explanation}")
 ### 任务完成率
 
 | 任务类型 | UI-TARS Desktop | 传统自动化 | ScreenOCR + 脚本 |
-|---------|----------------|-----------|----------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 简单按钮点击 | 98% | 95% | 85% |
 | 表单填写 | 92% | 70% | 60% |
 | 多步工作流 | 85% | 60% | 45% |
@@ -354,7 +347,13 @@ print(f"原因: {result.explanation}")
 ### 按模型的推理速度
 
 | 模型 | 延迟（毫秒） | GPU 内存 |
-|------|-------------|---------|
+|
+---
+|
+---
+|
+---
+|
 | UI-TARS 1B | 150ms | 4GB |
 | UI-TARS 7B | 800ms | 8GB |
 | UI-TARS 72B | 3500ms | 40GB |
@@ -362,7 +361,17 @@ print(f"原因: {result.explanation}")
 ### 与屏幕阅读器和自动化工具的比较
 
 | 功能 | UI-TARS | 辅助功能 API | Selenium | Playwright |
-|------|---------|------------|----------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 适用于任何 GUI 应用 | 是 | 否 | 仅 Web | 仅 Web |
 | 视觉理解 | 是（VLM） | 否 | 有限 | 有限 |
 | 学习要求 | 无 | 高 | 中 | 中 |
@@ -444,7 +453,17 @@ agent-tars export-logs --output uitars-logs.json
 ## 与替代方案比较
 
 | 功能 | UI-TARS Desktop | AutoGen + UI | PyAutoGUI | OpenHands |
-|------|----------------|-------------|-----------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 安装方式 | `npm install -g @agent-tars/desktop` | pip install | pip install | pip install |
 | 视觉理解 | 基于 VLM（截图分析） | 有限 | 无 | 部分 |
 | 任何 GUI 应用 | 是 | 有限 | 是 | 有限 |
@@ -522,7 +541,6 @@ UI-TARS Desktop 以其视觉理解能力脱颖而出。与需要硬编码坐标�
 以上链接中包含联盟链接。dibi8.com 可能会在你注册时赚取佣金，而无需你支付额外费用。这有助于保持网站运行和内容免费。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -550,25 +568,20 @@ UI-TARS Desktop 以其视觉理解能力脱颖而出。与需要硬编码坐标�
 
 ## Why This Matters
 
-Understanding 字节跳动 ui-tars desktop：看得见并控制你电脑的视觉语言 ai agent——完整设置指南 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding 字节跳动 ui-tars desktop：看得见并控制你电脑的视觉语言 ai agent——完整设置指南 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -589,13 +602,13 @@ To implement this in your workflow:
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
 
+---
 ## Related Articles
 
 - [open-notebook-open-source-notebooklm-alternative-15-ai-providers](bytedance-ui-tars-desktop-ai-agent-guide)

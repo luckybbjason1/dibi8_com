@@ -1,17 +1,11 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-code-vs-aider" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-vs-aider" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-vs-aider" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-vs-aider" />
 title: 'Claude Code vs Aider 2026: Cuộc đối đầu CLI thương mại v...
 description: 'So sánh chi tiết Claude Code (CLI thương mại của Anthropic) và Aider (mã nguồn mở, tự mang API key) — giá cả, context, phong cách agent, hiệu quả chi phí. Cập nhật 2026.'
 date: 2026-05-22 00:00:00+08:00
-lastmod:  2026-05-22 00:00:00+08:00draft: false
+lastmod: 2026-05-22 00:00:00+08:00draft: false
 tags: [claude-code, aider, cli, ai-coding, comparison, dev-tools, open-source]
 categories: [vs]
-faqs:
-  - q: 'Claude Code hay Aider rẻ hơn cho sử dụng hàng ngày?'
+faqs: - q: 'Claude Code hay Aider rẻ hơn cho sử dụng hàng ngày?'
     a: 'Tùy theo mức sử dụng. Claude Code là $20/tháng (Pro) hoặc $200/tháng (Max) cố định, chi phí dự đoán được. Aider miễn phí công cụ nhưng route qua API key của bạn — mức trung bình ($5-$15/tháng tiêu Anthropic API) thì Aider rẻ hơn; mức cao (>$30/tháng API) thì Claude Code Pro rẻ hơn vì subscription hấp thụ chi phí leo thang. Dưới 20 phiên/tuần: Aider thắng; trên 20: Claude Code Pro thắng.'
   - q: 'Cái nào có quyền tự chủ agent tốt hơn?'
     a: 'Claude Code thắng về chất lượng vòng lặp agent thuần — nó lập kế hoạch, chỉnh sửa, chạy test, lặp lại khi thất bại, tự sửa qua hàng chục file mà không cần giám sát. Aider chạy vòng lặp chỉnh sửa-commit chặt chẽ và tất định hơn: nó hiển thị diff, chờ phê duyệt, rồi commit. Claude Code tự chủ hơn; Aider dễ kiểm tra hơn.'
@@ -23,7 +17,6 @@ faqs:
     a: 'Có — Aider giấy phép Apache 2.0 và chạy hoàn toàn trên máy của bạn. Cuộc gọi bên ngoài duy nhất là tới model API bạn cấu hình (OpenAI, Anthropic, Ollama local, v.v.). Cho môi trường air-gapped hoặc nhạy cảm compliance, ghép Aider với model local và bạn có setup AI coding hoàn toàn tự host. Claude Code yêu cầu cloud của Anthropic.'
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/claude-code-vs-aider/ -->
 # Claude Code vs Aider 2026: Cuộc đối đầu CLI thương mại vs mã nguồn mở
 
 
@@ -98,8 +91,7 @@ Vòng lặp Aider là: đề xuất chỉnh sửa → hiển thị unified diff 
 
 ### Aider
 - **Công cụ**: Miễn phí (Apache 2.0)
-- **Chi phí API** (BYO key, chi tiêu hàng tháng điển hình):
-  - Sonnet 4.6 với prompt caching: $10-$40/tháng
+- **Chi phí API** (BYO key, chi tiêu hàng tháng điển hình): - Sonnet 4.6 với prompt caching: $10-$40/tháng
   - GPT-4o: $15-$50/tháng
   - Gemini 2.5 Pro: $5-$30/tháng
   - Ollama local (Llama 3.3 70B / DeepSeek): $0 + điện
@@ -180,9 +172,7 @@ Tính năng greenfield: Claude Code nhanh hơn. Code legacy có giám sát quy �
 
 ## Lựa chọn thay thế đáng thử
 
-Nếu Claude Code và Aider đều không phù hợp:
-
-- **[Cursor](https://dibi8.com/vi/vs/cursor-vs-windsurf/)** — Dựa trên IDE, tốt nhất cho autocomplete inline
+Nếu Claude Code và Aider đều không phù hợp: - **[Cursor](https://dibi8.com/vi/vs/cursor-vs-windsurf/)** — Dựa trên IDE, tốt nhất cho autocomplete inline
 - **[Continue.dev](https://dibi8.com/vi/resources/llm-frameworks/continue/)** — Extension VS Code miễn phí, BYO model
 - **[cc-switch](https://dibi8.com/vi/resources/dev-utils/cc-switch-claude-code-api-router/)** — Route Claude Code qua provider rẻ hơn, cắt 60-80% chi phí
 - **[Cline](https://dibi8.com/vi/resources/llm-frameworks/cline-autonomous-coding-agent/)** — Agent VS Code, tương tự Aider nhưng nhiều UI hơn
@@ -227,7 +217,6 @@ Team nhỏ ship nhanh không có thời gian review diff? **Claude Code Max 5x �
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

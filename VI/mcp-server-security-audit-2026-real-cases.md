@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mcp-server-security-audit-2026-real-cases" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mcp-server-security-audit-2026-real-cases" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mcp-server-security-audit-2026-real-cases" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mcp-server-security-audit-2026-real-cases" />
 title: 'Kiểm Toán Bảo Mật MCP Server 2026: Đánh Giá 5 Server Cộn...
 description: 'Đã kiểm toán 5 MCP server cộng đồng phổ biến trong môi trường production: GitHub, Slack, Postgres, Brave Search, Fetch. Lỗ hổng cụ thể, hướng dẫn khai thác, và checklist 8 điểm kiểm tra trước khi cài đặt, mỗi server chỉ mất 5 phút.'
 date: 2026-05-25 00:00:00+08:00
@@ -21,10 +16,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [mcp, security, audit, 'claude-code', 'supply-chain', 'agent-security', 2026]
-aliases:
-- /vi/posts/mcp-server-security-audit-2026-real-cases/
-faq:
-  - q: "MCP server do Anthropic bảo trì có an toàn hơn server cộng đồng không?"
+aliases: - /vi/posts/mcp-server-security-audit-2026-real-cases/
+faq: - q: "MCP server do Anthropic bảo trì có an toàn hơn server cộng đồng không?"
     a: "Có, đáng kể. Các server tham chiếu của Anthropic (filesystem, git, github, fetch, sequentialthinking) đều được review nội bộ, có release đã ký, và có security model rõ ràng. Server cộng đồng thì khác nhau rất nhiều — một số được kiểm toán, đa số thì không. Ưu tiên Anthropic khi có phiên bản tương ứng; coi các lựa chọn cộng đồng là mã nguồn không tin cậy với quyền local đầy đủ cho đến khi bạn chứng minh được điều ngược lại."
   - q: "Mẫu tấn công MCP thực tế lớn nhất năm 2026 là gì?"
     a: "Ba mẫu đồng hạng nhất: (1) Typosquatting — package giả như `github-mcp-server-v2` đánh cắp token. (2) Chuyển giao maintainer + telemetry — một server cộng đồng phổ biến đổi chủ, thêm analytics rò rỉ đường dẫn file hoặc biến môi trường. (3) Prompt injection qua nội dung được fetch — server `fetch` kéo về markdown thù địch, agent sau đó rò rỉ `~/.ssh/id_rsa` vì prompt đã đánh lừa nó."
@@ -37,8 +30,6 @@ faq:
   - q: "Tín hiệu 'chim hoàng yến trong mỏ than' báo một MCP server độc hại là gì?"
     a: "Các cuộc gọi mạng không giải thích được trong phân tích dependency. Server MCP filesystem hoặc git nên có 0 cuộc gọi HTTP. Server fetch hoặc github có endpoint xác định rõ. Bất kỳ thứ gì gọi ra domain bạn không nhận ra (đặc biệt qua subdomain ngẫu nhiên hoặc địa chỉ IP literal) là cờ đỏ — và là cách phổ biến nhất server cộng đồng đánh cắp dữ liệu."
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/mcp-server-security-audit-2026-real-cases/ -->
 
 {{</* resource-info */>}}
 
@@ -96,9 +87,7 @@ Code sạch. Vấn đề là điều nó cho phép: kéo về HTML/markdown tu�
 
 ## Checklist Kiểm Toán Trước Cài Đặt 8 Điểm
 
-Với mỗi MCP server cộng đồng, trước khi cài:
-
-### 1. **Độ tươi maintainer** — Commit cuối cùng trong 90 ngày qua? Trì trệ = tín hiệu.
+Với mỗi MCP server cộng đồng, trước khi cài: ### 1. **Độ tươi maintainer** — Commit cuối cùng trong 90 ngày qua? Trì trệ = tín hiệu.
 ### 2. **Danh tính maintainer** — Maintainer gốc, hay đã chuyển giao? Check lịch sử `Owner` trên GitHub.
 ### 3. **Cuộc gọi mạng dependency** — `npm ls` + kiểm toán từng dep. Server filesystem/git/sqlite phải có **0 HTTP đi ra**.
 ### 4. **Phạm vi file system** — README rõ ràng về phạm vi? Nếu `filesystem` tuyên bố `cwd-only` nhưng code có `path.resolve(..)` đi lên trên — cờ đỏ.
@@ -140,9 +129,7 @@ Với mỗi MCP server cộng đồng, trước khi cài:
 
 ## Hạ Tầng Khuyến Nghị
 
-Nếu bạn đang chạy MCP server chia sẻ team (HTTP/SSE), một VPS đã được làm cứng giúp sandbox hoá khả thi:
-
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit miễn phí, quy tắc tường lửa dễ trên mỗi droplet
+Nếu bạn đang chạy MCP server chia sẻ team (HTTP/SSE), một VPS đã được làm cứng giúp sandbox hoá khả thi: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit miễn phí, quy tắc tường lửa dễ trên mỗi droplet
 - **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hồng Kông, cùng IDC với dibi8.com
 
 *Link affiliate — cùng giá, hỗ trợ dibi8.com.*
@@ -158,7 +145,6 @@ Mặc định chọn Anthropic khi có. Với server cộng đồng, chạy chec
 **Bài liên quan**: [Bảng xếp hạng MCP Server 2026](https://dibi8.com/vi/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/) · [Hướng dẫn cài Claude Code](https://dibi8.com/vi/resources/llm-frameworks/claude-code/) · [Mẫu bảo mật AI Agent](https://dibi8.com/vi/resources/llm-frameworks/ai-agent-skills-framework-spec-driven-development-2026/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -186,25 +172,20 @@ Mặc định chọn Anthropic khi có. Với server cộng đồng, chạy chec
 
 ## Why This Matters
 
-Understanding kiểm toán bảo mật mcp server 2026: đánh giá 5 server cộng đồng thực tế + mẫu bẫy is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding kiểm toán bảo mật mcp server 2026: đánh giá 5 server cộng đồng thực tế + mẫu bẫy is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

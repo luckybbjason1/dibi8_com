@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/superagent-ai-agent-framework" />
 title: 'Superagent: Deploy AI Agents to Production with 1 CLI Co...
 description: 'A hands-on guide to deploying AI agents with Superagent. One CLI command, multiple LLM support, RAG workflows, vector DB integration, and REST API deployment. Backed by real benchmarks.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [superagent, 'ai agent', llm, rag, 'vector db', openai, langchain, python, typescript]
-aliases:
-- /posts/superagent-ai-agent-framework/
+aliases: - /posts/superagent-ai-agent-framework/-
 ---
-
 {{</* resource-info */>}}
 
 ## Introduction: The Deployment Gap Nobody Talks About
@@ -38,21 +34,19 @@ This is the silent killer of AI agent projects. A 2025 survey by Gradient Flow f
 
 > **Prerequisites:** Python 3.10+, Node.js 18+ (for the web UI), and an OpenAI API key or equivalent.
 
----
 
+---
 ## What Is Superagent?
 
 Superagent is an **open-source framework for building, managing, and deploying AI agents at scale**. It provides the infrastructure layer most teams end up building themselves: memory management, vector database connections, tool orchestration, streaming responses, and a REST API — all behind a clean Python/TypeScript SDK and a CLI.
 
 Unlike monolithic no-code platforms, Superagent stays developer-first. You write Python code to define agent behavior, choose your LLM provider, connect vector stores like Pinecone or Weaviate, and expose everything via auto-generated API endpoints. The framework handles the boilerplate so you can focus on agent logic.
 
----
 
+---
 ## How Superagent Works
 
-Superagent's architecture follows a **pipeline model** with five distinct layers:
-
-```
+Superagent's architecture follows a **pipeline model** with five distinct layers: ```
 ┌─────────────────────────────────────────────────────────────┐
 │                    Client Applications                        │
 │         (SDK / REST API / WebSocket / CLI)                    │
@@ -79,9 +73,7 @@ Superagent's architecture follows a **pipeline model** with five distinct layers
 └─────────────────────────────────────────────────────────────┘
 ```
 
-The core components are:
-
-1. **Agents** — The reasoning unit. Each agent is bound to an LLM, a set of tools, and a memory backend.
+The core components are: 1. **Agents** — The reasoning unit. Each agent is bound to an LLM, a set of tools, and a memory backend.
 2. **Tools** — Functions the agent can invoke (web search, API calls, code execution, database queries).
 3. **Datasources** — Documents or APIs that feed the RAG pipeline, automatically chunked and vectorized.
 4. **Workflows** — Multi-step automations that chain agents, tools, and conditional logic.
@@ -101,9 +93,7 @@ superagent --version
 # Output: superagent/0.4.2 linux-x64 node-v20.12.0
 ```
 
-The CLI is the fastest path to deployment. Alternatively, install the Python SDK if you prefer programmatic control:
-
-```bash
+The CLI is the fastest path to deployment. Alternatively, install the Python SDK if you prefer programmatic control: ```bash
 # Install Python SDK
 pip install superagent-py
 
@@ -147,9 +137,7 @@ superagent init --template qa-agent
 superagent deploy
 ```
 
-After `superagent deploy`, you receive a live API endpoint:
-
-```
+After `superagent deploy`, you receive a live API endpoint: ```
 ✅ Agent deployed successfully!
 🔗 API Endpoint: https://api.superagent.sh/v1/agents/ag_01hwxyz123
 📖 Docs: https://api.superagent.sh/v1/agents/ag_01hwxyz123/docs
@@ -168,9 +156,7 @@ curl -X POST https://api.superagent.sh/v1/agents/ag_01hwxyz123/invoke \
   }'
 ```
 
-The response includes the generated answer, source citations if RAG is enabled, and execution metadata:
-
-```json
+The response includes the generated answer, source citations if RAG is enabled, and execution metadata: ```json
 {
   "output": "Superagent provides: (1) One-command deployment, (2) Multi-LLM support including OpenAI and local models, (3) Built-in RAG with vector database integration, (4) REST API with streaming support, (5) Python and TypeScript SDKs, and (6) Workflow automation for chaining agents.",
   "intermediate_steps": [],
@@ -185,9 +171,7 @@ The response includes the generated answer, source citations if RAG is enabled, 
 
 ### OpenAI / Anthropic / Cohere
 
-Superagent supports any OpenAI-compatible API out of the box. Switching between providers is a configuration change:
-
-```python
+Superagent supports any OpenAI-compatible API out of the box. Switching between providers is a configuration change: ```python
 from superagent.client import Superagent
 
 client = Superagent()
@@ -210,9 +194,7 @@ agent_claude = client.agent.create(
 
 ### LangChain Integration
 
-Superagent can ingest any LangChain tool or chain, making migration straightforward:
-
-```python
+Superagent can ingest any LangChain tool or chain, making migration straightforward: ```python
 from langchain.tools import DuckDuckGoSearchRun
 from superagent.client import Superagent
 
@@ -231,9 +213,7 @@ agent = client.agent.create(
 
 ### Pinecone / Weaviate Vector Databases
 
-Connect your existing vector store for RAG workflows:
-
-```python
+Connect your existing vector store for RAG workflows: ```python
 import os
 from superagent.client import Superagent
 
@@ -264,9 +244,7 @@ datasource_weaviate = client.datasource.create(
 
 ### FastAPI / Express.js Backend Integration
 
-Embed Superagent into your existing backend:
-
-```python
+Embed Superagent into your existing backend: ```python
 # FastAPI integration example
 from fastapi import FastAPI
 from superagent.client import Superagent
@@ -276,8 +254,7 @@ app = FastAPI()
 client = Superagent(api_key=os.getenv("SUPERAGENT_API_KEY"))
 
 @app.post("/api/ask")
-async def ask_question(question: str):
-    response = await client.agent.invoke(
+async def ask_question(question: str): response = await client.agent.invoke(
         agent_id="ag_01hwxyz123",
         input=question,
         enable_streaming=True
@@ -287,9 +264,7 @@ async def ask_question(question: str):
 
 ### Docker Deployment
 
-For self-hosted deployments, use the official Docker image:
-
-```bash
+For self-hosted deployments, use the official Docker image: ```bash
 # Pull the official image
 docker pull superagentai/superagent:latest
 
@@ -306,41 +281,26 @@ docker run -d \
 docker ps | grep superagent
 ```
 
-For production, deploy on a [DigitalOcean Droplet](https://m.do.co/c/eca87ac14ee0) with Docker Compose:
-
-```yaml
+For production, deploy on a [DigitalOcean Droplet](https://m.do.co/c/eca87ac14ee0) with Docker Compose: ```yaml
 # docker-compose.yml for production
 version: "3.8"
-services:
-  superagent:
-    image: superagentai/superagent:latest
-    ports:
-      - "3000:3000"
-    environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
+services: superagent: image: superagentai/superagent:latest
+    ports: - "3000:3000"
+    environment: - OPENAI_API_KEY=${OPENAI_API_KEY}
       - DATABASE_URL=postgresql://postgres:postgres@db:5432/superagent
       - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
-    depends_on:
-      - db
+    depends_on: - db
       - redis
 
-  db:
-    image: postgres:16-alpine
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_PASSWORD=postgres
+  db: image: postgres:16-alpine
+    volumes: - pgdata:/var/lib/postgresql/data
+    environment: - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=superagent
 
-  redis:
-    image: redis:7-alpine
-    volumes:
-      - redisdata:/data
+  redis: image: redis:7-alpine
+    volumes: - redisdata:/data
 
-volumes:
-  pgdata:
-  redisdata:
-```
+volumes: pgdata: redisdata: ```
 
 ---
 
@@ -348,10 +308,14 @@ volumes:
 
 ### Token Economics
 
-Superagent's pricing model is usage-based. As of early 2026, the token rates for Guard, Verify, and Redact models are:
-
-| Service | Input Tokens | Output Tokens |
-|---------|-------------|---------------|
+Superagent's pricing model is usage-based. As of early 2026, the token rates for Guard, Verify, and Redact models are: | Service | Input Tokens | Output Tokens |
+|
+---
+|
+---
+|
+---
+|
 | Guard | $0.90 / million | $1.90 / million |
 | Verify | $0.90 / million | $1.90 / million |
 | Redact | $0.90 / million | $1.90 / million |
@@ -359,7 +323,13 @@ Superagent's pricing model is usage-based. As of early 2026, the token rates for
 ### Performance Characteristics
 
 | Metric | Value | Notes |
-|--------|-------|-------|
+|
+---
+|
+---
+|
+---
+|
 | API P95 latency | ~350ms | For simple Q&A with GPT-4o |
 | Streaming TTFT | ~120ms | Time to first token with streaming enabled |
 | RAG retrieval accuracy | ~87% | With Pinecone, top-5 chunks on internal test set |
@@ -380,16 +350,13 @@ Superagent's pricing model is usage-based. As of early 2026, the token rates for
 
 ### Custom Tool Development
 
-Build domain-specific tools that your agents can invoke:
-
-```python
+Build domain-specific tools that your agents can invoke: ```python
 from superagent.client import Superagent
 import requests
 
 client = Superagent()
 
-def get_stock_price(symbol: str) -> str:
-    """Fetch real-time stock price from a financial API."""
+def get_stock_price(symbol: str) -> str: """Fetch real-time stock price from a financial API."""
     resp = requests.get(
         f"https://api.example.com/stocks/{symbol}",
         headers={"Authorization": f"Bearer {API_KEY}"}
@@ -407,9 +374,7 @@ client.tool.create(
 
 ### Memory Management Strategies
 
-Superagent supports multiple memory backends. Choose based on your use case:
-
-```python
+Superagent supports multiple memory backends. Choose based on your use case: ```python
 from superagent.client import Superagent
 
 client = Superagent()
@@ -435,9 +400,7 @@ agent = client.agent.create(
 
 ### Workflow Automation
 
-Chain multiple agents into multi-step workflows:
-
-```python
+Chain multiple agents into multi-step workflows: ```python
 from superagent.client import Superagent
 
 client = Superagent()
@@ -474,9 +437,7 @@ print(result.steps[-1].output)  # The final edited post
 
 ### Authentication and Rate Limiting
 
-For production APIs, enforce access controls:
-
-```python
+For production APIs, enforce access controls: ```python
 # Configure API key authentication
 superagent config set auth.type=api_key
 superagent config set auth.rate_limit=100/minute
@@ -492,8 +453,7 @@ superagent config set logging.retention=30d
 # Built-in health endpoint
 curl https://your-superagent-instance.com/health
 
-# Expected response:
-# {"status": "ok", "version": "0.4.2", "uptime": 86400}
+# Expected response: # {"status": "ok", "version": "0.4.2", "uptime": 86400}
 
 # Prometheus metrics endpoint (when enabled)
 curl https://your-superagent-instance.com/metrics
@@ -504,7 +464,17 @@ curl https://your-superagent-instance.com/metrics
 ## Comparison with Alternatives
 
 | Feature | Superagent | LangChain | AutoGen | CrewAI |
-|---------|-----------|-----------|---------|--------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Deployment model** | CLI + Cloud | Library only | Library only | Library + CLI |
 | **REST API generation** | Auto-generated | Manual setup | Manual setup | Partial |
 | **Built-in vector DB support** | Pinecone, Weaviate, Qdrant | Via integrations | Via integrations | Via integrations |
@@ -603,9 +573,7 @@ Start with the 5-minute setup in this guide, connect your first vector database,
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -615,7 +583,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 This article contains affiliate links. If you sign up for [DigitalOcean](https://m.do.co/c/eca87ac14ee0) through our link, we receive a commission at no extra cost to you. We only recommend services we use for our own deployments. Superagent itself is open-source and free to use under the MIT license.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

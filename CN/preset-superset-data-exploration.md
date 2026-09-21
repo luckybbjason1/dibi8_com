@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/preset-superset-data-exploration" />
 title: 'Apache Superset 2026: The Open-Source Data Exploration P...
 description: 'Complete guide to Apache Superset 2026 — install via Docker in 5 minutes, connect 30+ data sources, build 50+ chart types, and deploy production-ready dashboards with role-based access control.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: ['apache superset', 'data visualization', bi, dashboard, 'open source', docker, sql, analytics]
-aliases:
-- /posts/preset-superset-data-exploration/
+aliases: - /posts/preset-superset-data-exploration/-
 ---
-
 {{</* resource-info */>}}
 
 ## Introduction: Why Your BI Stack Costs Too Much
@@ -44,10 +40,14 @@ Unlike proprietary BI tools, Superset does not store your data. It translates us
 
 ## How Apache Superset Works
 
-Superset's architecture follows a clean separation between presentation, metadata, and query execution:
-
-| Component | Purpose | Technology |
-|---|---|---|
+Superset's architecture follows a clean separation between presentation, metadata, and query execution: | Component | Purpose | Technology |
+|
+---
+|
+---
+|
+---
+|
 | Superset App Server | UI, API, query orchestration | Flask + React |
 | Metadata Database | Stores dashboards, charts, users | PostgreSQL / MySQL |
 | Cache Layer | Query result caching | Redis / Memcached |
@@ -111,15 +111,10 @@ Navigate to `http://localhost:8088` and log in with the credentials you set abov
 
 ### Production Deployment with Docker
 
-For production, use a managed database and external Redis:
-
-```yaml
+For production, use a managed database and external Redis: ```yaml
 # docker-compose.prod.yml
-services:
-  superset:
-    image: apache/superset:5.0.0
-    environment:
-      - DATABASE_DB=superset
+services: superset: image: apache/superset:5.0.0
+    environment: - DATABASE_DB=superset
       - DATABASE_HOST=your-postgres-host.internal
       - DATABASE_PASSWORD=${DB_PASSWORD}
       - DATABASE_USER=superset
@@ -127,13 +122,9 @@ services:
       - REDIS_PORT=6379
       - SUPERSET_SECRET_KEY=${SUPERSET_SECRET_KEY}
       - SQLALCHEMY_DATABASE_URI=postgresql://superset:${DB_PASSWORD}@your-postgres-host.internal:5432/superset
-    ports:
-      - "8088:8088"
-    deploy:
-      replicas: 2
-      resources:
-        limits:
-          memory: 2G
+    ports: - "8088:8088"
+    deploy: replicas: 2
+      resources: limits: memory: 2G
 ```
 
 **Self-hosting tip**: For a reliable VPS to run Superset, [DigitalOcean](https://m.do.co/c/eca87ac14ee0) offers 2 GB RAM droplets starting at $12/month with one-click Docker deployment. Use our referral link to get $200 in credits over 60 days.
@@ -142,9 +133,7 @@ services:
 
 ### PostgreSQL / MySQL
 
-The most common setup connects Superset to an existing application database or data warehouse:
-
-```python
+The most common setup connects Superset to an existing application database or data warehouse: ```python
 # Connection string format for PostgreSQL
 postgresql://username:password@host:port/database?sslmode=require
 
@@ -173,9 +162,7 @@ Upload the service account JSON in the **Secure Extra** field under Advanced set
 snowflake://user:password@account/warehouse/database?role=SUPERSET_ROLE
 ```
 
-Enable the Snowflake SQL dialect in `superset_config.py` for better autocomplete:
-
-```python
+Enable the Snowflake SQL dialect in `superset_config.py` for better autocomplete: ```python
 # superset_config.py
 EXTRA_ALLOWED_DOMAIN_SHARDES = []
 DEFAULT_SQLLAB_LIMIT = 10000
@@ -183,9 +170,7 @@ DEFAULT_SQLLAB_LIMIT = 10000
 
 ### Apache Druid
 
-Superset was originally built at Airbnb to query Druid. The integration remains first-class:
-
-```python
+Superset was originally built at Airbnb to query Druid. The integration remains first-class: ```python
 # Druid connection via the native JSON API
 druid://broker-host:8082/datasource/v2
 
@@ -195,9 +180,7 @@ druid://broker-host:8082/druid/v2/sql
 
 ### DuckDB (New in v5.0)
 
-DuckDB support arrived in Superset 5.0.0, enabling local analytical workloads without a separate server:
-
-```python
+DuckDB support arrived in Superset 5.0.0, enabling local analytical workloads without a separate server: ```python
 # DuckDB in-memory or file-based
 duckdb:///path/to/local/database.db
 ```
@@ -209,7 +192,15 @@ This is ideal for prototyping and small datasets up to ~50 GB.
 ### Performance Numbers
 
 | Metric | Superset + PostgreSQL | Superset + BigQuery | Superset + Druid |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Dashboard load (cached) | 120 ms | 180 ms | 95 ms |
 | Dashboard load (cache miss) | 3.2 s | 4.1 s | 1.8 s |
 | Concurrent users (2 CPU) | 45 | 38 | 60 |
@@ -219,9 +210,7 @@ This is ideal for prototyping and small datasets up to ~50 GB.
 
 ### Case Study: Shopify
 
-Shopify runs Superset for internal analytics across **500+ dashboards** serving **2,000+ employees**. They reported a **60% reduction** in BI tooling costs after migrating from a commercial vendor. Their setup uses:
-
-- 6 Superset app servers behind a load balancer
+Shopify runs Superset for internal analytics across **500+ dashboards** serving **2,000+ employees**. They reported a **60% reduction** in BI tooling costs after migrating from a commercial vendor. Their setup uses: - 6 Superset app servers behind a load balancer
 - Dedicated PostgreSQL metadata cluster
 - Redis for caching with a 1-hour TTL
 - Trino as the query engine over S3 data lake
@@ -234,14 +223,11 @@ A YC-backed fintech company we spoke to runs Superset on a single [DigitalOcean]
 
 ### Row-Level Security (RLS)
 
-Superset supports row-level security policies that filter data based on user attributes:
-
-```python
+Superset supports row-level security policies that filter data based on user attributes: ```python
 # superset_config.py
 ROW_LEVEL_SECURITY_FILTERING = True
 
-# Define a filter in the UI:
-# Table: orders
+# Define a filter in the UI: # Table: orders
 # Filter clause: region = '{{ current_username() }}'
 # Group: Sales Team
 ```
@@ -250,9 +236,7 @@ This ensures users only see data for their assigned region without maintaining s
 
 ### Embedding Dashboards
 
-Superset 5.0.0 includes a stable embedding SDK for React applications:
-
-```bash
+Superset 5.0.0 includes a stable embedding SDK for React applications: ```bash
 # Install the embedding SDK
 npm install @superset-ui/embedded-sdk
 ```
@@ -276,9 +260,7 @@ embedDashboard({
 
 ### Alerting and Reporting
 
-Configure email or Slack alerts for dashboard conditions:
-
-```python
+Configure email or Slack alerts for dashboard conditions: ```python
 # superset_config.py
 ALERT_REPORTS_NOTIFICATION_METHODS = ["email", "slack"]
 SLACK_API_TOKEN = "xoxb-your-slack-bot-token"
@@ -290,9 +272,7 @@ SMTP_PASSWORD = os.environ.get("SMTP_PASSWORD")
 
 ### Custom Chart Plugins
 
-Build proprietary chart types for internal use:
-
-```bash
+Build proprietary chart types for internal use: ```bash
 # Scaffold a new chart plugin
 npx @superset-ui/cli create-chart-plugin my-company-charts
 
@@ -304,17 +284,13 @@ npm run build
 cp -r dist/* /app/superset/static/assets/my-company-charts/
 ```
 
-Register in `superset_config.py`:
-
-```python
+Register in `superset_config.py`: ```python
 EXTRA_PLUGINS = ["my_company_charts"]
 ```
 
 ### Backup Strategy
 
-Your metadata database contains all dashboards, charts, and user definitions. Back it up daily:
-
-```bash
+Your metadata database contains all dashboards, charts, and user definitions. Back it up daily: ```bash
 # Automated daily backup via cron
 0 2 * * * pg_dump -h postgres-host -U superset superset > /backups/superset-$(date +\%Y\%m\%d).sql
 
@@ -325,7 +301,17 @@ find /backups -name "superset-*.sql" -mtime +7 -delete
 ## Comparison with Alternatives
 
 | Feature | Apache Superset | Tableau | Metabase | Grafana |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | License | Apache-2.0 | Proprietary | AGPL / Commercial | AGPL |
 | Self-hosted | Yes | No (Server only) | Yes | Yes |
 | GitHub Stars | 66,000 | N/A | 41,000 | 66,500 |
@@ -345,9 +331,7 @@ find /backups -name "superset-*.sql" -mtime +7 -delete
 
 ## Limitations / Honest Assessment
 
-Apache Superset is not the right tool for every situation. Here is what you should know before committing:
-
-1. **No native data transformation**: Superset is not an ETL tool. You need dbt, Airflow, or another pipeline tool to prepare data. The SQL Lab editor can run ad-hoc queries, but production datasets should be pre-modeled.
+Apache Superset is not the right tool for every situation. Here is what you should know before committing: 1. **No native data transformation**: Superset is not an ETL tool. You need dbt, Airflow, or another pipeline tool to prepare data. The SQL Lab editor can run ad-hoc queries, but production datasets should be pre-modeled.
 
 2. **Steep learning curve for non-SQL users**: Business users accustomed to Tableau's drag-and-drop may find Superset less intuitive. The semantic layer helps, but someone on your team needs to know SQL to set it up.
 
@@ -387,24 +371,18 @@ Partially. The Explore view lets non-technical users build charts by selecting m
 
 Apache Superset is the most capable open-source BI platform available in 2026. With 50+ chart types, native support for 30+ databases, and a production-grade permission system, it replaces proprietary tools for most teams — at a fraction of the cost.
 
-Your next steps:
-
-1. Deploy Superset locally with Docker Compose (5 minutes)
+Your next steps: 1. Deploy Superset locally with Docker Compose (5 minutes)
 2. Connect your PostgreSQL or data warehouse
 3. Build your first dashboard using the Explore view
 4. Deploy to production on a [DigitalOcean](https://m.do.co/c/eca87ac14ee0) droplet or Kubernetes cluster
 
 Join our Telegram group for data engineers: **t.me/dibi8** — share your Superset dashboards, ask questions, and get help from 5,000+ data professionals.
 
+
 ---
-
-
-
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -424,7 +402,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 *Affiliate Disclosure: This article contains affiliate links to DigitalOcean. If you sign up using our link, we receive a commission at no extra cost to you. We only recommend services we use ourselves.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

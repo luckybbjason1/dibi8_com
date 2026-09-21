@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/mcp-servers-2026-rankings-selection-guide" />
 title: 'MCP Servers 2026: The 100+ Server Ecosystem Map and a De...
 description: 'The Model Context Protocol ecosystem crossed 1000+ public servers in mid-2026. This guide ranks the top 30 by category, explains the architectural trade-offs between local stdio, HTTP/SSE, and OAuth-bridged servers, and gives you a decision tree for selecting MCP servers without drowning in registries.'
 date: 2026-05-26 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [mcp, 'model-context-protocol', 'claude-code', 'ai-agents', 'developer-tools', integration, 2026]
-aliases:
-- /posts/mcp-servers-2026-rankings-selection-guide/
-faq:
-  - q: "What is MCP and why does it matter in 2026?"
+aliases: - /posts/mcp-servers-2026-rankings-selection-guide/
+faq: - q: "What is MCP and why does it matter in 2026?"
     a: "Model Context Protocol (MCP) is Anthropic's open spec for connecting AI agents to external tools, data sources, and services. In 2026 it became the de facto plug-in standard supported by Claude Code, Cursor, Codex CLI, Gemini CLI, and most major AI coding agents. The ecosystem grew from ~30 servers in late 2024 to 1000+ public servers by mid-2026."
   - q: "Should I use stdio, HTTP, or SSE-based MCP servers?"
     a: "stdio for local-only servers running on your machine (filesystem, git, databases on localhost) — lowest latency, zero network. HTTP/SSE for remote SaaS integrations (GitHub, Linear, Notion) where the server is hosted by a third party. New MCP 2025-06 spec adds OAuth bridge for credential-managed servers. Most production setups use a mix: 80% stdio local, 20% HTTP for SaaS."
@@ -38,7 +34,6 @@ faq:
   - q: "Is MCP going to be replaced by something else soon?"
     a: "Unlikely in 2026-2027. MCP has cross-vendor adoption (Anthropic, OpenAI's reference implementations, Google's Gemini), an open spec, and >1000 public servers. The next layer above MCP — agent-to-agent protocols, capability discovery — is still emerging. MCP is the integration layer; expect it to remain stable for at least 18-24 months."
 ---
-
 {{</* resource-info */>}}
 
 # MCP Servers 2026: The 100+ Server Ecosystem Map and a Decision Tree for Picking the Right Ones
@@ -61,15 +56,13 @@ This guide is the answer to that second question. It's not a comprehensive regis
 >
 > **Don't blindly install**: every community MCP server is code running with your local permissions. Audit the source, prefer servers with active maintainers, and never grant credentials you wouldn't paste in plain text.
 
----
 
+---
 ## What MCP Actually Is in 2026
 
 The Model Context Protocol is a JSON-RPC-based spec for connecting AI agents to external tools. It's deliberately simple: an MCP server exposes `tools`, `resources`, and `prompts`. An MCP client (Claude Code, Cursor, your agent of choice) calls those tools when the model decides it needs external action.
 
-What changed in 2026:
-
-- The `2025-06` spec added OAuth flows, capability discovery improvements, and explicit streaming support
+What changed in 2026: - The `2025-06` spec added OAuth flows, capability discovery improvements, and explicit streaming support
 - Adoption crossed vendor boundaries: OpenAI's reference clients, Google's Gemini CLI, and most independent agents now speak MCP
 - Registry consolidation: three major registries (`smithery.ai`, `mcp.so`, `glama.ai/mcp/servers`) emerged as the primary discovery surfaces
 - Cloud platforms (Vercel, Cloudflare, Render) added "deploy MCP server" as a first-class primitive
@@ -82,9 +75,7 @@ MCP servers run in one of three modes. Picking the right transport matters more 
 
 ### 1. stdio (Standard Input/Output)
 
-The server is a local process that the MCP client spawns. Communication is line-delimited JSON over stdin/stdout. Used by:
-
-- Local filesystem servers
+The server is a local process that the MCP client spawns. Communication is line-delimited JSON over stdin/stdout. Used by: - Local filesystem servers
 - Git, sqlite, postgres on localhost
 - Browser automation (playwright, puppeteer)
 - Image processing, code execution sandboxes
@@ -99,9 +90,7 @@ The server is a local process that the MCP client spawns. Communication is line-
 
 The server is a long-running HTTP service that the MCP client connects to. SSE is used for streaming responses.
 
-Used by:
-
-- SaaS integrations (GitHub, Linear, Notion, Slack)
+Used by: - SaaS integrations (GitHub, Linear, Notion, Slack)
 - Team-shared MCP servers (deployed on internal infra)
 - Stateful services where multiple agents share session
 
@@ -115,9 +104,7 @@ Used by:
 
 The MCP server orchestrates an OAuth flow to issue scoped credentials per session. Newest mode, growing fastest.
 
-Used by:
-
-- Multi-tenant SaaS where each user needs their own credentials
+Used by: - Multi-tenant SaaS where each user needs their own credentials
 - Enterprise integrations with SSO requirements
 - Servers that aggregate multiple downstream services
 
@@ -134,7 +121,17 @@ Ranked by usage volume in the major registries cross-referenced with our own aud
 ### Tier 1: The Universal Defaults (Install Globally)
 
 | Server | Transport | Maintainer | Use Case | Risk Profile |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **filesystem** | stdio | Anthropic | Read/write/list files in scoped directories | Low (scope-restricted) |
 | **git** | stdio | Anthropic | Inspect repos, diff, blame, log | Low (read-mostly) |
 | **github** | HTTP | Anthropic | PRs, issues, search, comments | Medium (token scope matters) |
@@ -146,7 +143,17 @@ These five are the bedrock. If you install nothing else, install these. They're 
 ### Tier 2: Workflow-Specific (Install Per Project)
 
 | Server | Transport | Maintainer | Use Case | Risk Profile |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **postgres** | stdio | Community | Query Postgres databases | High (DB access) |
 | **sqlite** | stdio | Community | Query SQLite files | Low |
 | **playwright** | stdio | Microsoft | Browser automation, scraping | Medium |
@@ -164,7 +171,13 @@ Install based on what the project needs. A backend project might need postgres +
 ### Tier 3: Specialized but Excellent
 
 | Server | Transport | Use Case |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | **kubernetes** | stdio | Kubectl wrapper for cluster inspection |
 | **terraform** | stdio | Infrastructure state queries |
 | **aws** | HTTP | AWS resource enumeration (read-only safe) |
@@ -184,17 +197,14 @@ If your workflow involves these tools daily, the corresponding MCP server is alm
 
 ## The Decision Tree for Picking MCP Servers
 
-Use this when evaluating a new server (whether from registry, GitHub trending, or a teammate's recommendation):
-
-```
+Use this when evaluating a new server (whether from registry, GitHub trending, or a teammate's recommendation): ```
 Can the data/action live on my local machine?
 │
 ├── YES → Prefer stdio MCP server
 │         │
 │         ├── Is there an official/Anthropic-maintained version?
 │         │   └── YES → Use it.
-│         │   └── NO  → Audit the community version's source. Check:
-│         │       - Last commit < 90 days?
+│         │   └── NO  → Audit the community version's source. Check: │         │       - Last commit < 90 days?
 │         │       - Active maintainer (not single-archived author)?
 │         │       - Stars > 50 OR clearly-scoped use case?
 │         │       - No suspicious network calls in source?
@@ -206,8 +216,7 @@ Can the data/action live on my local machine?
           │   ├── YES + you need per-session credentials → Use OAuth bridge
           │   └── NO  → Use HTTP/SSE with personal access token (PAT)
           │
-          ├── Audit:
-          │   - Token scope minimal (read-only by default)?
+          ├── Audit: │   - Token scope minimal (read-only by default)?
           │   - Server runs in trustworthy infra (vendor's own, not random fork)?
           │   - Rate-limits documented?
           │   If yes: install. If no: skip or self-host.
@@ -238,9 +247,7 @@ The MCP spec doesn't enforce security. Your discipline does.
 
 ## How to Find the Server You Need
 
-Three primary discovery surfaces in 2026:
-
-- **`mcp.so`** — The most comprehensive community registry. Good filtering. Includes both stdio and HTTP servers.
+Three primary discovery surfaces in 2026: - **`mcp.so`** — The most comprehensive community registry. Good filtering. Includes both stdio and HTTP servers.
 - **`smithery.ai`** — Higher-curation registry with one-click install flows. Slightly biased toward HTTP/cloud-hosted.
 - **`glama.ai/mcp/servers`** — Strong on enterprise-friendly servers and HTTP/OAuth-bridged options.
 
@@ -250,9 +257,7 @@ Use registries for discovery but always verify against the original GitHub repo 
 
 ## Recommended Infrastructure for Self-Hosted MCP Servers
 
-If you run team-shared MCP servers (HTTP/SSE), a stable VPS matters more than local stdio servers ever needed:
-
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 free credit. Good for prototyping HTTP MCP servers before committing to fixed infra.
+If you run team-shared MCP servers (HTTP/SSE), a stable VPS matters more than local stdio servers ever needed: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 free credit. Good for prototyping HTTP MCP servers before committing to fixed infra.
 - **{{< aff "htstack" "footer-cta" "HTStack" >}}** — Hong Kong VPS, same IDC that hosts dibi8.com.
 
 *Affiliate links — they don't cost you extra and help keep dibi8.com running.*
@@ -265,12 +270,11 @@ The mistake we see most: developers install 30+ MCP servers because they're free
 
 The cure is selection, not abundance. Pick your five core stdio servers, add 2-3 project-specific ones per repo, audit before installing anything new, and treat MCP servers as security-relevant code that happens to be ergonomic. That's the workflow that scales for the next 18 months until the next protocol arrives.
 
----
 
+---
 **Reference**: [github.com/modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers) · **Spec**: MCP 2025-06 · **Stars (ecosystem total)**: 60K+ across reference repos
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

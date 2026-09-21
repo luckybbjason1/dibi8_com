@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/puppeteer" />
 title: 'Puppeteer: 94,300 GitHub Stars — Production Browser Auto...
 description: 'Puppeteer is a Node.js library for headless Chrome and Firefox automation. Supports Docker, GitHub Actions, Jest, Mocha, TypeScript. Covers puppeteer docker setup, production deployment, browser automation tutorial, and CI/CD integration.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [puppeteer, 'browser-automation', 'headless-chrome', 'web-scraping', docker, testing, typescript]
-aliases:
-- /posts/puppeteer/
+aliases: - /posts/puppeteer/-
 ---
-
 {{</* resource-info */>}}
 
 ## Introduction
@@ -69,9 +65,7 @@ npm install puppeteer
 npm install puppeteer-core
 ```
 
-**Verify the installation** with a minimal script:
-
-```javascript
+**Verify the installation** with a minimal script: ```javascript
 // quickstart.mjs — verify Puppeteer launches correctly
 import puppeteer from puppeteer;
 
@@ -83,16 +77,12 @@ console.log(`Page title: ${title}`);
 await browser.close();
 ```
 
-Run it:
-
-```bash
+Run it: ```bash
 node quickstart.mjs
 # Expected output: Page title: Example Domain
 ```
 
-For environments where you manage Chrome independently — Docker, AWS Lambda, or systems with pre-installed Chromium — use `puppeteer-core` and set the `executablePath`:
-
-```javascript
+For environments where you manage Chrome independently — Docker, AWS Lambda, or systems with pre-installed Chromium — use `puppeteer-core` and set the `executablePath`: ```javascript
 import puppeteer from 'puppeteer-core';
 
 const browser = await puppeteer.launch({
@@ -168,22 +158,14 @@ docker run --rm -v $(pwd)/output:/home/pptruser/app/output puppeteer-app
 
 ```yaml
 version: '3.8'
-services:
-  puppeteer:
-    build: .
-    volumes:
-      - ./src:/home/pptruser/app/src
+services: puppeteer: build: .
+    volumes: - ./src:/home/pptruser/app/src
       - ./output:/home/pptruser/app/output
-    environment:
-      - NODE_ENV=production
+    environment: - NODE_ENV=production
       - PUPPETEER_ARGS=--no-sandbox --disable-setuid-sandbox --disable-dev-shm-usage
     shm_size: 2gb
-    deploy:
-      resources:
-        limits:
-          memory: 4G
-        reservations:
-          memory: 1G
+    deploy: resources: limits: memory: 4G
+        reservations: memory: 1G
 ```
 
 The `shm_size` setting is critical. Chrome uses `/dev/shm` for shared memory, and the default 64MB in Docker containers causes crashes on large pages. Setting it to 2GB prevents "Aw, snap" errors in headless mode.
@@ -196,9 +178,7 @@ The `shm_size` setting is critical. Chrome uses `/dev/shm` for shared memory, an
 
 ### Web Scraping with Dynamic Content
 
-Modern SPAs load content after the initial HTML response. Puppeteer waits for selectors before extracting data:
-
-```javascript
+Modern SPAs load content after the initial HTML response. Puppeteer waits for selectors before extracting data: ```javascript
 // scraper.mjs — extract data from a JavaScript-rendered page
 import puppeteer from puppeteer;
 
@@ -232,9 +212,7 @@ await browser.close();
 
 ### Screenshot and PDF Generation
 
-Puppeteer excels at rendering visual artifacts from HTML — a common requirement for invoicing, reporting, and Open Graph image generation:
-
-```javascript
+Puppeteer excels at rendering visual artifacts from HTML — a common requirement for invoicing, reporting, and Open Graph image generation: ```javascript
 // screenshot.mjs — full-page capture and PDF export
 import puppeteer from puppeteer;
 import fs from fs;
@@ -269,9 +247,7 @@ await browser.close();
 
 ### Network Interception and Request Blocking
 
-Blocking unnecessary resources cuts page load time by 40–60% in scraping scenarios:
-
-```javascript
+Blocking unnecessary resources cuts page load time by 40–60% in scraping scenarios: ```javascript
 // blocker.mjs — block images and CSS for faster scraping
 import puppeteer from puppeteer;
 
@@ -300,27 +276,18 @@ await browser.close();
 
 ### GitHub Actions
 
-Automate screenshot capture or regression tests on every push:
-
-```yaml
+Automate screenshot capture or regression tests on every push: ```yaml
 # .github/workflows/puppeteer.yml
 name: Puppeteer CI
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+on: push: branches: [main]
+  pull_request: branches: [main]
 
-jobs:
-  puppeteer:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: puppeteer: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
-        with:
-          node-version: 22
+        with: node-version: 22
           cache: npm
 
       - name: Install dependencies
@@ -328,14 +295,12 @@ jobs:
 
       - name: Run Puppeteer tests
         run: npm test
-        env:
-          CI: true
+        env: CI: true
           PUPPETEER_ARGS: '--no-sandbox --disable-setuid-sandbox'
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
-        with:
-          name: screenshots
+        with: name: screenshots
           path: output/*.png
 ```
 
@@ -479,10 +444,18 @@ describe('Scraper Suite', function() {
 
 ## Benchmarks / Real-World Use Cases
 
-Independent benchmarks show Puppeteer holding a strong position for Chrome-centric workloads:
-
-| Metric | Puppeteer | Selenium | Playwright | Cypress |
-|--------|-----------|----------|------------|---------|
+Independent benchmarks show Puppeteer holding a strong position for Chrome-centric workloads: | Metric | Puppeteer | Selenium | Playwright | Cypress |
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Avg. action latency | < 1s | 3–5s | 1–2s | 1–2s |
 | Setup time | 10–15 min | 2–4 hours | 15–30 min | 15–30 min |
 | Pass rate (100 runs) | 93% | 84% | 94% | 96% |
@@ -501,9 +474,7 @@ Independent benchmarks show Puppeteer holding a strong position for Chrome-centr
 
 ### Browser Pool Management
 
-Launching one browser per request is wasteful. A connection pool reuses browser instances:
-
-```javascript
+Launching one browser per request is wasteful. A connection pool reuses browser instances: ```javascript
 // pool.mjs — reusable browser pool with max concurrency
 import puppeteer from puppeteer;
 
@@ -563,9 +534,7 @@ pool.release(browser);
 
 ### Graceful Error Handling and Retries
 
-Production scraping encounters network timeouts, bot detection, and transient failures. Wrap page navigation with exponential backoff:
-
-```javascript
+Production scraping encounters network timeouts, bot detection, and transient failures. Wrap page navigation with exponential backoff: ```javascript
 // retry.mjs — resilient navigation with exponential backoff
 async function gotoWithRetry(page, url, maxRetries = 3) {
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
@@ -587,9 +556,7 @@ async function gotoWithRetry(page, url, maxRetries = 3) {
 
 ### Health Monitoring
 
-In long-running services, monitor browser process health and restart crashed instances:
-
-```javascript
+In long-running services, monitor browser process health and restart crashed instances: ```javascript
 // health.mjs — basic health check for browser processes
 async function isBrowserHealthy(browser) {
   try {
@@ -617,7 +584,17 @@ setInterval(async () => {
 ## Comparison with Alternatives
 
 | Feature | Puppeteer | Selenium | Playwright | Cypress |
-|---------|-----------|----------|------------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Primary Languages** | JavaScript, TypeScript | Java, Python, C#, JS, Ruby | JS/TS, Python, Java, .NET | JavaScript, TypeScript |
 | **Browser Support** | Chrome, Chromium, Firefox | All major + mobile (Appium) | Chromium, Firefox, WebKit | Chromium, Edge, Firefox |
 | **Protocol** | CDP, WebDriver BiDi | W3C WebDriver | CDP, WebDriver BiDi | In-browser execution |
@@ -634,9 +611,7 @@ setInterval(async () => {
 
 ## Limitations / Honest Assessment
 
-Puppeteer is not the right tool for every browser automation task. Consider these constraints before committing:
-
-- **JavaScript-only**: Puppeteer is a Node.js library. Teams using Python, Java, or Go must use `pyppeteer` (unofficial, lagging) or switch to Selenium/Playwright.
+Puppeteer is not the right tool for every browser automation task. Consider these constraints before committing: - **JavaScript-only**: Puppeteer is a Node.js library. Teams using Python, Java, or Go must use `pyppeteer` (unofficial, lagging) or switch to Selenium/Playwright.
 - **Limited cross-browser support**: While Firefox support exists via WebDriver BiDi, it is less mature than Chrome automation. Safari and WebKit are not supported. If cross-browser testing is a hard requirement, Playwright covers all three rendering engines natively.
 - **No built-in test runner**: Unlike Cypress or Playwright, Puppeteer does not ship with assertions, test organization, or reporters. You bring your own Jest, Mocha, or Vitest setup.
 - **Manual parallelization**: Parallel test execution requires manual browser pool management or external orchestration. Playwright's built-in worker model is simpler for large test suites.
@@ -688,9 +663,7 @@ Puppeteer remains a solid choice for teams that need programmatic Chrome control
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -707,7 +680,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [Browserless.io Puppeteer Hosting](https://www.browserless.io/) — Managed Puppeteer infrastructure
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -733,8 +705,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [obscura-rust-headless-browser-ai-agents-web-scraping](puppeteer)
@@ -743,6 +715,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [apple-container](puppeteer)
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](puppeteer)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

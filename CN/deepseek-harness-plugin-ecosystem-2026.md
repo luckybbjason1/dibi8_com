@@ -1,10 +1,9 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/deepseek-harness-plugin-ecosystem-2026" />
 title: 'DeepSeek Harness: 229K-Star Plugin Ecosystem That Makes ...
 description: 'DeepSeek Harness (DSH) is the fastest-growing AI agent framework in 2026 with 229K+ GitHub stars. Learn how to build custom plugins, integrate with Claude Code/Cursor/Codex, and ship production agents in minutes.'
 date: 2026-09-19
-lastmod:  2026-09-19slug: 'deepseek-harness-plugin-ecosystem-2026'
+lastmod: 2026-09-19
+slug: 'deepseek-harness-plugin-ecosystem-2026'
 category: 'llm-frameworks'
 tags: ['deepseek', 'harness', 'plugin', 'ai-agent', 'dsh', 'automation']
 github_repo: 'https://github.com/deepseek-ai/deepseek-harness'
@@ -12,9 +11,7 @@ stars: 229103
 maintainer: 'deepseek-ai'
 license: MIT
 featureImage: 'https://opengraph.github.com/github/deepseek-ai/deepseek-harness'
-lang: en
 ---
-
 # DeepSeek Harness: The Plugin Framework Taking Over 2026
 
 You've spent hours configuring Claude Code, tweaking Cursor settings, and wrestling with Codex CLI — only to realize your workflow still breaks when something unusual happens. This isn't your fault. The problem is that most AI coding tools are closed systems, and you're at the mercy of their roadmap.
@@ -31,9 +28,7 @@ The core philosophy is simple: **"Everything is a plugin."** Your code editor, y
 
 ## How It Works: The Plugin Architecture
 
-DeepSeek Harness uses a three-layer architecture:
-
-1. **Core Layer** — Manages agent lifecycle, session handling, and plugin loading
+DeepSeek Harness uses a three-layer architecture: 1. **Core Layer** — Manages agent lifecycle, session handling, and plugin loading
 2. **Plugin Layer** — Your custom code, loaded at runtime
 3. **Integration Layer** — Connects to Claude Code, Codex, Cursor, etc.
 
@@ -52,8 +47,7 @@ export class MyPlugin extends Plugin {
 }
 ```
 
-Plugins can:
-- Hook into agent lifecycle events
+Plugins can: - Hook into agent lifecycle events
 - Add new commands to the CLI
 - Modify system prompts dynamically
 - Integrate with external APIs
@@ -94,8 +88,7 @@ npx @deepseek-ai/dsh web
 ```
 This starts a local web interface at `http://127.0.0.1:3080`. No configuration needed — just open your browser and start building plugins.
 
-For SSH servers or headless environments:
-```bash
+For SSH servers or headless environments: ```bash
 npx @deepseek-ai/dsh web --no-open
 # Then access via forwarded port
 ssh -L 3080:localhost:3080 user@server
@@ -125,11 +118,9 @@ export class SummarizeCommitsPlugin extends Plugin {
     const commit = execSync('git log -1 --pretty=%B').toString();
     
     const prompt = `
-Summarize this git commit in one sentence:
-${commit}
+Summarize this git commit in one sentence: ${commit}
 
-Files changed:
-${diff}
+Files changed: ${diff}
 `;
     
     return { prompt };
@@ -213,31 +204,34 @@ this.on('before:commit', async (ctx) => {
 ## Real-World Use Cases
 
 ### 1. Automated Code Review
-Create a plugin that runs security checks before commits:
-- Scan for hardcoded secrets
+Create a plugin that runs security checks before commits: - Scan for hardcoded secrets
 - Check for SQL injection patterns
 - Verify license compatibility
 - Run linter and fix auto-fixable issues
 
 ### 2. Multi-Agent Coordination
-Use DSH to orchestrate multiple agents:
-- One agent writes tests
+Use DSH to orchestrate multiple agents: - One agent writes tests
 - Another refactors code
 - A third updates documentation
 - All coordinated through shared state
 
 ### 3. CI/CD Integration
-Build plugins that:
-- Trigger deployments on specific patterns
+Build plugins that: - Trigger deployments on specific patterns
 - Generate release notes automatically
 - Update version numbers based on semantic versioning
 
 ## Benchmarks & Performance
 
-Testing DSH against vanilla Claude Code:
-
-| Metric | Vanilla | DSH | Improvement |
-|--------|---------|-----|-------------|
+Testing DSH against vanilla Claude Code: | Metric | Vanilla | DSH | Improvement |
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Plugin load time | N/A | 45ms | — |
 | Token usage (with plugin) | 100% | 62% | -38% |
 | Response latency | 2.1s | 1.8s | -14% |
@@ -248,7 +242,17 @@ Testing DSH against vanilla Claude Code:
 ## Comparison with Alternatives
 
 | Feature | DeepSeek Harness | Agent Skills | Superpowers | Skills Framework |
-|---------|-----------------|--------------|-------------|------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Multi-agent support | ✅ | ✅ | ✅ | ❌ |
 | Plugin marketplace | ✅ | ❌ | ❌ | ❌ |
 | Zero-config setup | ✅ | ❌ | ✅ | ❌ |
@@ -262,9 +266,7 @@ Testing DSH against vanilla Claude Code:
 
 ## Limitations & Honest Assessment
 
-DSH isn't perfect. Here's what you should know:
-
-1. **Plugin quality varies** — The marketplace is growing but not all plugins are production-ready
+DSH isn't perfect. Here's what you should know: 1. **Plugin quality varies** — The marketplace is growing but not all plugins are production-ready
 2. **Learning curve** — Writing good plugins requires understanding the agent architecture
 3. **Version lock-in** — Plugins may break between major releases
 4. **Limited debugging** — When plugins fail, error messages can be opaque
@@ -291,8 +293,7 @@ dsh logs --plugin my-plugin --tail 50
 ```
 
 ### Issue 2: Port Already in Use
-If port 3080 is occupied:
-```bash
+If port 3080 is occupied: ```bash
 npx @deepseek-ai/dsh web --port 3081
 ```
 
@@ -305,8 +306,7 @@ pnpm run build
 ```
 
 ### Issue 4: Memory Leak in Long Sessions
-Enable memory limits in your plugin config:
-```typescript
+Enable memory limits in your plugin config: ```typescript
 // dsh.config.ts
 export default {
   memory: {
@@ -318,9 +318,7 @@ export default {
 
 ## Security Considerations
 
-When running DSH plugins in production:
-
-1. **Sandbox Execution** — Always run plugins in isolated environments
+When running DSH plugins in production: 1. **Sandbox Execution** — Always run plugins in isolated environments
 2. **Network Restrictions** — Use firewall rules to limit plugin outbound connections
 3. **Secret Scanning** — Integrate a secrets scanner as a pre-commit plugin
 4. **Plugin Auditing** — Review third-party plugins before installation
@@ -332,12 +330,9 @@ dsh security scan --deep ./plugins
 
 ## The Cordis Framework: Under the Hood
 
-DeepSeek Harness is powered by [Cordis](https://github.com/cordiverse/cordis), a programming paradigm for spatiotemporal composability. This research paper describes the theoretical foundation:
+DeepSeek Harness is powered by [Cordis](https://github.com/cordiverse/cordis), a programming paradigm for spatiotemporal composability. This research paper describes the theoretical foundation: > **"A Programming Paradigm for Spatiotemporal Composability"** (arXiv:2608.25512)
 
-> **"A Programming Paradigm for Spatiotemporal Composability"** (arXiv:2608.25512)
-
-The Cordis framework enables:
-- **Time-travel debugging** — Replay plugin execution at any point
+The Cordis framework enables: - **Time-travel debugging** — Replay plugin execution at any point
 - **Spatial partitioning** — Isolate plugin state by dimension
 - **Temporal composition** — Chain plugins across time periods
 
@@ -345,9 +340,7 @@ This is why DSH plugins can be paused, resumed, and replayed without state loss.
 
 ## Performance Tuning
 
-For high-volume environments, optimize plugin performance:
-
-### Caching Strategy
+For high-volume environments, optimize plugin performance: ### Caching Strategy
 ```typescript
 const cache = new LRUMap({
   max: 1000,
@@ -382,8 +375,7 @@ async execute(context) {
 ## Community & Ecosystem
 
 ### Plugin Marketplace
-Explore community plugins at https://marketplace.deepseek.ai:
-- **GitHub integrations** — PR reviews, issue tracking
+Explore community plugins at https://marketplace.deepseek.ai: - **GitHub integrations** — PR reviews, issue tracking
 - **Cloud providers** — AWS, GCP, Azure automation
 - **Development tools** — Docker, Kubernetes, Terraform helpers
 
@@ -434,8 +426,8 @@ The real power isn't in the framework itself — it's in the community building 
 
 Your turn: What plugin would you build first? Share your ideas in the comments or open an issue on GitHub.
 
----
 
+---
 **Sources & Further Reading:**
 - Official docs: https://deepseek-harness.github.io/deepseek-harness/
 - Plugin marketplace: https://marketplace.deepseek.ai
@@ -449,7 +441,6 @@ Your turn: What plugin would you build first? Share your ideas in the comments o
 [LangChain vs DSH](dibi8-internal-link) | [Agent Memory Systems 2026](dibi8-internal-link)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -475,8 +466,8 @@ Your turn: What plugin would you build first? Share your ideas in the comments o
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [deepseek-harness-plugin-ecosystem-2026](deepseek-harness-plugin-ecosystem-2026)

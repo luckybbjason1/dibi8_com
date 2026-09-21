@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/appwrite-backend-as-service" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/appwrite-backend-as-service" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/appwrite-backend-as-service" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/appwrite-backend-as-service" />
 title: 'Appwrite 2026: Giải Pháp Thay Thế Firebase Mã Nguồn Mở v...
 description: 'Hướng dẫn đầy đủ về Appwrite 1.6 — backend mã nguồn mở tự host với xác thực, database, storage, cloud functions và real-time subscriptions. Cài đặt Docker, tích hợp SDK, benchmark và bảo mật production.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [appwrite, 'backend-as-a-service', 'thay thế firebase', docker, 'mã nguồn mở', 'xác thực', database, 'cloud functions', 'tự host']
-aliases:
-- /vi/posts/appwrite-backend-as-service/
+aliases: - /vi/posts/appwrite-backend-as-service/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/appwrite-backend-as-service/ -->
 
 {{</* resource-info */>}}
 
@@ -43,9 +35,7 @@ Hướng dẫn này sẽ đưa bạn qua quá trình thiết lập Appwrite sẵ
 
 ## Appwrite là gì?
 
-Appwrite là một máy chủ backend tự host được đóng gói dưới dạng Docker stack với các tính năng:
-
-- **Xác thực (Authentication)** — Email/password, OAuth2, magic links, phone OTP, đăng nhập ẩn danh
+Appwrite là một máy chủ backend tự host được đóng gói dưới dạng Docker stack với các tính năng: - **Xác thực (Authentication)** — Email/password, OAuth2, magic links, phone OTP, đăng nhập ẩn danh
 - **Database** — NoSQL hướng document với MongoDB/MariaDB bên dưới
 - **Storage** — Upload file với nén, mã hóa và phân phối qua CDN
 - **Cloud Functions** — Serverless functions với 15+ runtime
@@ -56,9 +46,7 @@ Một lệnh `docker compose up` cung cấp cho bạn API backend đầy đủ v
 
 ## Appwrite hoạt động như thế nào: Tổng quan kiến trúc
 
-Appwrite tuân theo kiến trúc microservices module hóa, container hóa bằng Docker:
-
-```
+Appwrite tuân theo kiến trúc microservices module hóa, container hóa bằng Docker: ```
 ┌─────────────────────────────────────────────────────┐
 │                    Appwrite Stack                    │
 ├─────────────┬─────────────┬─────────────┬───────────┤
@@ -73,9 +61,7 @@ Appwrite tuân theo kiến trúc microservices module hóa, container hóa bằn
 └─────────────────────────────────────────────────────┘
 ```
 
-Các quyết định kiến trúc chính:
-
-- **Traefik** xử lý reverse proxy và SSL tự động qua Let's Encrypt
+Các quyết định kiến trúc chính: - **Traefik** xử lý reverse proxy và SSL tự động qua Let's Encrypt
 - **MariaDB** là database mặc định (tùy chọn MongoDB); Redis cache sessions
 - **MinIO** cung cấp object storage tương thích S3 tại chỗ
 - **Functions executor** cách ly mỗi lần gọi serverless trong Firecracker microVM (v1.6+)
@@ -111,9 +97,7 @@ sed -i 's|_APP_DOMAIN=localhost|_APP_DOMAIN=api.yourdomain.com|' .env
 sed -i 's|_APP_OPTIONS_ABUSE=enabled|_APP_OPTIONS_ABUSE=enabled|' .env
 ```
 
-Cho production với SSL trên [DigitalOcean droplet](https://m.do.co/c/eca87ac14ee0):
-
-```bash
+Cho production với SSL trên [DigitalOcean droplet](https://m.do.co/c/eca87ac14ee0): ```bash
 # Trỏ domain về IP droplet trước
 export _APP_DOMAIN=api.yourdomain.com
 export _APP_ENV=production
@@ -146,15 +130,11 @@ curl -X POST http://localhost/v1/account \
 
 ### Web / Node.js SDK
 
-Cài đặt SDK:
-
-```bash
+Cài đặt SDK: ```bash
 npm install appwrite@16.1.0
 ```
 
-Khởi tạo client và tạo document:
-
-```javascript
+Khởi tạo client và tạo document: ```javascript
 import { Client, Account, Databases, ID } from appwrite;
 
 const client = new Client()
@@ -218,8 +198,7 @@ print(f"Found {results[total]} matching documents")
 
 ```yaml
 # pubspec.yaml
-dependencies:
-  appwrite: ^15.0.0
+dependencies: appwrite: ^15.0.0
 ```
 
 ```dart
@@ -259,15 +238,12 @@ class AppwriteService {
 
 ### n8n Workflow Automation
 
-Appwrite có node cộng đồng n8n chính thức. Cài đặt:
-
-```bash
+Appwrite có node cộng đồng n8n chính thức. Cài đặt: ```bash
 cd ~/.n8n/custom && npm install n8n-nodes-appwrite
 # Khởi động lại n8n
 ```
 
-Trong workflow, sử dụng node Appwrite để:
-1. **Trigger**: Theo dõi collection cho document mới (dùng polling hoặc webhooks)
+Trong workflow, sử dụng node Appwrite để: 1. **Trigger**: Theo dõi collection cho document mới (dùng polling hoặc webhooks)
 2. **Action**: Tạo user sau khi thanh toán Stripe
 3. **Query**: Lấy document theo tiêu chí cho báo cáo
 
@@ -292,9 +268,7 @@ Trong workflow, sử dụng node Appwrite để:
 
 ## Cloud Functions: Serverless Không Bị Khóa
 
-Appwrite Functions hỗ trợ 15+ runtime. Đây là function Node.js được trigger bởi database events:
-
-```javascript
+Appwrite Functions hỗ trợ 15+ runtime. Đây là function Node.js được trigger bởi database events: ```javascript
 // src/main.js
 import { Client, Databases, Messaging } from 'node-appwrite';
 
@@ -333,9 +307,7 @@ export default async ({ req, res, log, error }) => {
 };
 ```
 
-Triển khai qua CLI:
-
-```bash
+Triển khai qua CLI: ```bash
 # Cài đặt Appwrite CLI
 npm install -g appwrite-cli@6.2.0
 
@@ -348,9 +320,7 @@ appwrite push function --id order-processor --source ./order-processor
 
 ## Benchmark / Use Case Thực tế
 
-Tôi đã test Appwrite 1.6.1 trên [DigitalOcean droplet](https://m.do.co/c/eca87ac14ee0) (4 vCPU / 8GB RAM / $48/tháng):
-
-| Thao tác | Appwrite 1.6.1 | Firebase (US-Central) | Supabase (Small) |
+Tôi đã test Appwrite 1.6.1 trên [DigitalOcean droplet](https://m.do.co/c/eca87ac14ee0) (4 vCPU / 8GB RAM / $48/tháng): | Thao tác | Appwrite 1.6.1 | Firebase (US-Central) | Supabase (Small) |
 |----------|---------------|----------------------|------------------|
 | Đăng ký auth (email) | **~45ms** | ~120ms | ~80ms |
 | Tạo document DB | **~18ms** | ~35ms | ~25ms |
@@ -370,11 +340,9 @@ Tôi đã test Appwrite 1.6.1 trên [DigitalOcean droplet](https://m.do.co/c/eca
 
 ```bash
 # Thêm vào docker-compose.yml trong phần services
-redis:
-  image: redis:7-alpine
+redis: image: redis:7-alpine
   restart: unless-stopped
-  volumes:
-    - redis-data:/data
+  volumes: - redis-data:/data
 
 # Thêm vào .env
 _APP_REDIS_HOST=redis
@@ -424,14 +392,10 @@ await databases.createDocument(
 
 ### 4. Giám sát với Prometheus
 
-Appwrite expose metrics tại `/_metrics` để Prometheus scrape:
-
-```yaml
+Appwrite expose metrics tại `/_metrics` để Prometheus scrape: ```yaml
 # prometheus.yml
-scrape_configs:
-  - job_name: appwrite
-    static_configs:
-      - targets: ['appwrite:80']
+scrape_configs: - job_name: appwrite
+    static_configs: - targets: ['appwrite:80']
     metrics_path: '/_metrics'
 ```
 
@@ -498,9 +462,7 @@ Luôn backup trước khi upgrade. Đọc migration guide cho phiên bản đíc
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -530,7 +492,6 @@ Bài viết này chứa liên kết liên kết đến [DigitalOcean](https://m.
 *Tham gia cộng đồng dibi8: [English](https://t.me/dibi8en) | [Chinese](https://t.me/dibi8zh) | [Korean](https://t.me/dibi8ko) | [Vietnamese](https://t.me/dibi8vn)*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/open-codesign-claude-design-alternative" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/open-codesign-claude-design-alternative" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/open-codesign-claude-design-alternative" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/open-codesign-claude-design-alternative" />
 title: "Open Codesign: GitHub 5,790+ Star 오픈소스 Claude Design 대안"
 description: "MIT 라이선스 오픈소스 Claude Design 대안 Open Codesign을 소개합니다. 다중 모델, BYOK 자체 키, 로컬 우선 아키텍처로 자연어 프롬프트에서 프로토타입과 슬라이드를 즉시 생성합니다.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - JavaScript
+tech_stack: - JavaScript
 application_domain: "Dev Utils"
 source_version: ""
 licensing_model: "Open Source"
@@ -24,8 +18,7 @@ maintainer: ""
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-faqs:
-  - q: 'Open Codesign은 무료인가요? 사용 비용은 얼마인가요?'
+faqs: - q: 'Open Codesign은 무료인가요? 사용 비용은 얼마인가요?'
     a: 'Open Codesign은 MIT 라이선스로 제공되는 무료 애플리케이션입니다. BYOK(Bring Your Own Key) 모델을 채택하고 있어, 월정액 구독료 없이 기존 공급자 계정을 통해 소비한 LLM 토큰 비용만 부담하면 됩니다.'
   - q: 'Open Codesign은 어떤 AI 모델을 지원하나요?'
     a: 'Anthropic(Claude), OpenAI(GPT-4o, Codex), Google Gemini, DeepSeek, OpenRouter, SiliconFlow, 그리고 Ollama를 통한 로컬 모델 등 다양한 공급자의 20개 이상 모델을 지원합니다. 동적 모델 선택기가 각 공급자의 실시간 모델 카탈로그를 쿼리하므로, 앱 업데이트 없이도 신규 모델이 자동으로 목록에 나타납니다.'
@@ -36,8 +29,6 @@ faqs:
   - q: 'Open Codesign의 DESIGN.md 파일은 무엇인가요?'
     a: 'DESIGN.md는 브랜드 컬러, 타이포그래피, 간격 토큰 등 디자인 시스템을 정의하는 마크다운 파일입니다. 워크스페이스에 이 파일을 두면 모든 생성 결과가 자동으로 해당 토큰을 상속받아, 모델이 대화가 진행되어도 브랜드 일관성을 유지할 수 있습니다.'
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/open-codesign-claude-design-alternative/ -->
 
 {</* resource-info */>}
 
@@ -59,9 +50,7 @@ Open Codesign은 **Electron + React 19 + Vite 6 + Tailwind CSS v4** 기반의 MI
 
 ### 오픈소스 접근 방식이 중요한 이유
 
-AI 디자인 도구 시장은 클라우드 전용 아키텍처를 운영하는 폐쇄 소스 플랫폼이 지배하고 있습니다. 편리하지만 이러한 도구는 몇 가지 통증 지점을 유발합니다:
-
-- **구독 잠금**: 사용량과 관계없이 월별 요금이 계속 쌓입니다.
+AI 디자인 도구 시장은 클라우드 전용 아키텍처를 운영하는 폐쇄 소스 플랫폼이 지배하고 있습니다. 편리하지만 이러한 도구는 몇 가지 통증 지점을 유발합니다: - **구독 잠금**: 사용량과 관계없이 월별 요금이 계속 쌓입니다.
 - **벤더 의존**: 단일 공급자의 모델(Claude 전용, GPT-4o 전용 등)로 강제됩니다.
 - **데이터 프라이버시 우려**: 프롬프트, 디자인, 지식 재산이 원격 서버에서 처리됩니다.
 - **낮은 내보내기 유연성**: 생성된 결과물은 종종 제한된 형식이나 워터마크를 포함합니다.
@@ -75,9 +64,7 @@ Open Codesign은 이러한 모든 우려를 해결합니다. 로컬 우선이고
 
 ### 다중 모델 아키텍처: 선택의 자유
 
-Open Codesign의 가장 매력적인 차별화 요소 중 하나는 **통합 공급자 모델**입니다. Claude Design(Anthropic 전용)이나 v0 by Vercel(주로 GPT-4o)과 달리, Open Codesign은 다양한 생태계에 걸친 **20개 이상의 모델**을 지원합니다:
-
-| 공급자 | 지원 모델 |
+Open Codesign의 가장 매력적인 차별화 요소 중 하나는 **통합 공급자 모델**입니다. Claude Design(Anthropic 전용)이나 v0 by Vercel(주로 GPT-4o)과 달리, Open Codesign은 다양한 생태계에 걸친 **20개 이상의 모델**을 지원합니다: | 공급자 | 지원 모델 |
 |--------|----------|
 | **Anthropic** | Claude 3.5 Sonnet, Claude 3 Opus, Claude Code 구성 |
 | **OpenAI** | GPT-4o, GPT-4 Turbo, API 또는 ChatGPT Plus 구독을 통한 Codex 모델 |
@@ -94,16 +81,12 @@ Open Codesign의 가장 매력적인 차별화 요소 중 하나는 **통합 공
 
 ### 로컬 우선 아키텍처: 당신의 데이터는 당신의 것
 
-Open Codesign의 모든 디자인 세션은 로컬 디스크에 저장됩니다. v0.2.0 워크스페이스 모델은 각 프로젝트에 대해 다음을 포함하는 전용 폴더를 생성합니다:
-
-- `session.jsonl` —— 완전한 대화 및 도구 호출 기록
+Open Codesign의 모든 디자인 세션은 로컬 디스크에 저장됩니다. v0.2.0 워크스페이스 모델은 각 프로젝트에 대해 다음을 포함하는 전용 폴더를 생성합니다: - `session.jsonl` —— 완전한 대화 및 도구 호출 기록
 - `DESIGN.md` —— 공유 디자인 시스템 메모리(브랜드 토큰, 색상 결정, 타이포그래피 규칙)
 - 기본 형식의 생성된 결과물 파일(HTML, CSS, JS)
 - 즉시 롤백을 위한 버전 스냅샷
 
-이 아키텍처는 실질적인 이점을 제공합니다:
-
-1. **진정한 오프라인 기능**: 비행기에서 디자인을 시작하여 와이파이가 없는 오두막에서 완료하세요.
+이 아키텍처는 실질적인 이점을 제공합니다: 1. **진정한 오프라인 기능**: 비행기에서 디자인을 시작하여 와이파이가 없는 오두막에서 완료하세요.
 2. **무제한 버전 기록**: SQLite 기반 세션 저장소는 모든 반복이 임의의 제한 없이 보존됨을 의미합니다.
 3. **제로 서버 의존성**: 애플리케이션은 당신의 머신에서 완전히 실행됩니다. 다운되거나, 약관을 변경하거나, 인수될 백엔드 서비스가 없습니다.
 4. **Git 친화적**: 디자인은 폴더의 일반 파일이므로, 모든 프로젝트에서 `git init`을 실행하고 디자인 기록을 소스 코드처럼 관리할 수 있습니다.
@@ -122,9 +105,7 @@ API 키는 `0600` 파일 권한으로 `~/.config/open-codesign/config.toml`에 �
 
 ### 설치
 
-Open Codesign은 여러 채널을 통해 바이너리를 배포합니다:
-
-- **macOS**: `.dmg` 설치 프로그램 또는 Homebrew(`brew install open-codesign`)
+Open Codesign은 여러 채널을 통해 바이너리를 배포합니다: - **macOS**: `.dmg` 설치 프로그램 또는 Homebrew(`brew install open-codesign`)
 - **Windows**: `.exe` 설치 프로그램 또는 winget(`winget install OpenCoworkAI.open-codesign`)
 - **Linux**: `.AppImage` 또는 Scoop 패키지
 - **소스**: 클론 후 `pnpm install && pnpm build`로 빌드
@@ -164,9 +145,7 @@ Open Codesign은 여러 채널을 통해 바이너리를 배포합니다:
 
 ### 워크스페이스 설정
 
-공급자가 구성되면 메인 인터페이스는 **허브(Hub)**를 표시합니다 —— 15개의 내장 데모와 최근 디자인을 보여주는 갤러리입니다. **"새 디자인"**을 클릭하면 워크스페이스 기반 세션이 생성됩니다. 생성 전에 선택적으로:
-
-- 하나 이상의 **디자인 스킬** 선택(슬라이드, 대시보드, 랜딩 페이지, SVG 차트, 글래스모피즘, 에디토리얼 타이포그래피, 히어로, 가격, 푸터, 채팅 UI, 데이터 테이블, 캘린더)
+공급자가 구성되면 메인 인터페이스는 **허브(Hub)**를 표시합니다 —— 15개의 내장 데모와 최근 디자인을 보여주는 갤러리입니다. **"새 디자인"**을 클릭하면 워크스페이스 기반 세션이 생성됩니다. 생성 전에 선택적으로: - 하나 이상의 **디자인 스킬** 선택(슬라이드, 대시보드, 랜딩 페이지, SVG 차트, 글래스모피즘, 에디토리얼 타이포그래피, 히어로, 가격, 푸터, 채팅 UI, 데이터 테이블, 캘린더)
 - 브랜드 토큰을 설정하기 위해 `DESIGN.md` 파일 첨부
 - 출력 형식 기본 설정 선택(HTML, React 컴포넌트 또는 PPTX)
 
@@ -207,9 +186,7 @@ Figma AI는 기존 디자인 플랫폼에 AI 기능을 통합합니다. 기존 U
 
 ### 12가지 내장 디자인 스킬
 
-범용 AI 도구는 종종 범용적인 결과를 생성하는 경향이 있습니다. Open Codesign은 **12가지 내장 디자인 스킬 모듈**과 함께 제공되며, 각 모듈은 특정 도메인에서 더 높은 품질의 결과를 생성하도록(시스템 프롬프트와 컨텍스트 주입을 통해) 특화된 에이전트 역할을 합니다:
-
-1. **슬라이드 데크** —— 마스터 레이아웃이 포함된 프레젠테이션 준비 PPTX 생성
+범용 AI 도구는 종종 범용적인 결과를 생성하는 경향이 있습니다. Open Codesign은 **12가지 내장 디자인 스킬 모듈**과 함께 제공되며, 각 모듈은 특정 도메인에서 더 높은 품질의 결과를 생성하도록(시스템 프롬프트와 컨텍스트 주입을 통해) 특화된 에이전트 역할을 합니다: 1. **슬라이드 데크** —— 마스터 레이아웃이 포함된 프레젠테이션 준비 PPTX 생성
 2. **대시보드** —— 테이블, 차트 및 KPI 카드가 있는 데이터 집약적 관리자 패널
 3. **랜딩 페이지** —— 히어로 섹션, 소셜 프루프 및 CTA가 포함된 마케팅 중심 페이지
 4. **SVG 차트** —— 접근 가능하고 반응형인 데이터 시각화
@@ -226,9 +203,7 @@ CSS 코드 한 줄을 작성하기 전에 모델은 어떤 스킬이 요구사�
 
 ### DESIGN.md: 디자인 시스템을 위한 공유 메모리
 
-`DESIGN.md` 파일은 Open Codesign의 가장 혁신적인 기능 중 하나입니다. 모델에게 턴 간에 브랜드 결정을 기억하도록 강요하는 대신(이는 드리프트를 유발합니다), 디자인 시스템을 마크다운 파일에 작성합니다:
-
-```markdown
+`DESIGN.md` 파일은 Open Codesign의 가장 혁신적인 기능 중 하나입니다. 모델에게 턴 간에 브랜드 결정을 기억하도록 강요하는 대신(이는 드리프트를 유발합니다), 디자인 시스템을 마크다운 파일에 작성합니다: ```markdown
 # Acme Corp 디자인 시스템
 
 ## 색상
@@ -291,9 +266,7 @@ PPTX로 내보내줘.
 
 ### 예제 3: 댓글 기반 세분화
 
-대시보드를 생성한 후 미리보기에서 요소를 클릭하고 핀을 배치합니다:
-
-**댓글:**
+대시보드를 생성한 후 미리보기에서 요소를 클릭하고 핀을 배치합니다: **댓글:**
 ```
 이 KPI 카드를 회색 대신 강조색으로 만들고, 메트릭 글꼴 크기를 32px로 늘리고,
 +12% 레이블이 있는 작은 상승 트렌드 화살표를 추가해줘.
@@ -303,9 +276,7 @@ PPTX로 내보내줘.
 
 ### 예제 4: AI 튜닝 슬라이더
 
-생성 후 Open Codesign은 전용 패널에 **AI가 내보내는 미세 조정 매개변수**를 표시합니다:
-
-```javascript
+생성 후 Open Codesign은 전용 패널에 **AI가 내보내는 미세 조정 매개변수**를 표시합니다: ```javascript
 // 생성된 미세 조정 스키마
 {
   "heroBackground": { "type": "color", "value": "#0F172A" },
@@ -367,16 +338,13 @@ Open Codesign은 AI 디자인 도구 환경에서 의미 있는 전환점을 나
 
 ## 자체 호스팅 추천 인프라
 
-24/7 안정 운영을 위해 인프라 선택이 중요하다:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 60일 $200 크레딧, 글로벌 14+ 리전. 오픈소스 AI 도구 자체 호스팅에 적합.
+24/7 안정 운영을 위해 인프라 선택이 중요하다: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 60일 $200 크레딧, 글로벌 14+ 리전. 오픈소스 AI 도구 자체 호스팅에 적합.
 - **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — 홍콩 VPS, 중국 본토 접근 시 저지연. dibi8.com 자체가 호스팅된 검증된 IDC.
 
 *추천 링크입니다. 추가 비용 없이 dibi8.com 운영에 도움이 됩니다.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

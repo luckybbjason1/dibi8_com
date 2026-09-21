@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/pandas-performance-optimization-alternatives" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/pandas-performance-optimization-alternatives" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/pandas-performance-optimization-alternatives" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/pandas-performance-optimization-alternatives" />
 title: 'Pandas性能优化完全指南：何时应该切换到Polars或DuckDB（2026版）'
 description: '从Pandas代码级优化到Polars、DuckDB替代方案，附基准测试数据和迁移策略，帮你突破大数据处理性能瓶颈。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/pandas-performance-optimization-alternatives/
+aliases: - /posts/pandas-performance-optimization-alternatives/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/pandas-performance-optimization-alternatives/ -->
 
 {</* resource-info */>}
 
@@ -62,7 +54,13 @@ Pandas的性能瓶颈根植于其架构设计，这不是靠写"更好的代码"
 ### 代码模式优化
 
 | 低效写法 | 高效写法 | 预期加速 |
-|----------|----------|----------|
+|
+---
+|
+---
+|
+---
+|
 | `df.apply(func, axis=1)` | 向量化操作或`df.eval()` | 10-100x |
 | `df['col'][idx]` 链式索引 | `df.loc[idx, 'col']` | 2-5x |
 | `pd.read_csv('large.csv')` | `pd.read_csv(..., chunksize=...)` | 内存可控 |
@@ -133,7 +131,13 @@ print(result.collect())  # collect()触发执行
 ### Polars vs Pandas语法迁移
 
 | 操作 | Pandas | Polars |
-|------|--------|--------|
+|
+---
+|
+---
+|
+---
+|
 | 读取CSV | `pd.read_csv()` | `pl.read_csv()` / `pl.scan_csv()` |
 | 过滤 | `df[df.A > 0]` | `df.filter(pl.col('A') > 0)` |
 | 新增列 | `df['C'] = df.A + df.B` | `df.with_columns((pl.col('A')+pl.col('B')).alias('C'))` |
@@ -193,7 +197,17 @@ con.execute("""
 以下数据来自2025年H2O.ai对5GB NYC Taxi数据集的标准化基准测试（8 vCPU, 32GB RAM）：
 
 | 操作 | Pandas 2.2 | Polars 1.0 | DuckDB 1.0 | Polars加速比 |
-|------|------------|------------|------------|--------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 读取5GB CSV | 48.2s | 5.1s | 6.8s | **9.5x** |
 | 筛选+聚合 | 12.5s | 1.2s | 1.5s | **10.4x** |
 | GroupBy（10组） | 18.7s | 2.3s | 2.8s | **8.1x** |
@@ -211,7 +225,13 @@ con.execute("""
 ## 场景决策矩阵：什么场景用什么工具？
 
 | 场景 | 推荐工具 | 理由 |
-|------|----------|------|
+|
+---
+|
+---
+|
+---
+|
 | 探索性数据分析（EDA） | Polars | 交互速度快，API丰富 |
 | ETL数据管道 | Polars | Lazy模式优化整条pipeline |
 | SQL重度用户 | DuckDB | 零学习成本，SQL即战力 |
@@ -273,8 +293,8 @@ df_pd = df_pl.collect().to_pandas()
 
 2026年的建议：如果**从零开始**学习数据分析，直接学Polars。它的API设计更一致、错误提示更友好、性能优势巨大，且Polars正在获得越来越多的教程和社区支持。如果**求职导向**强，Pandas仍是大多数公司的实际标准，建议两者都掌握，以Pandas读懂 legacy code，以Polars写新代码。
 
----
 
+---
 ## 推荐基础设施
 
 要 7×24 稳跑上述工具，服务器选择关键：
@@ -286,7 +306,6 @@ df_pd = df_pl.collect().to_pandas()
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -314,25 +333,20 @@ df_pd = df_pl.collect().to_pandas()
 
 ## Why This Matters
 
-Understanding pandas性能优化完全指南：何时应该切换到polars或duckdb（2026版） is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding pandas性能优化完全指南：何时应该切换到polars或duckdb（2026版） is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -353,7 +367,7 @@ Pandas性能优化完全指南：何时应该切换到Polars或DuckDB（2026版�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

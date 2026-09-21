@@ -1,30 +1,22 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/2026-06-22-trending-ai-agents" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/2026-06-22-trending-ai-agents" />
 title: "本周开源人工智能代理--GitHub 最热门仓库（2026 年 6 月 22 日当周）"
-description: "人工编辑的每周精选，汇总 GitHub 上最热门的开源 AI 代理、LLM 和 MCP 项目--数据由 Dibi8 Tribe Intel 自动收集，分析由 Dibi8 编辑团队完成。". Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "人工编辑的每周精选，汇总 GitHub 上最热门的开源 AI 代理、LLM 和 MCP 项目--数据由 Dibi8 Tribe Intel 自动收集，分析由 Dibi8 编辑团队完成。"
 date: 2026-06-22T00:00:00+09:00
-lastmod:  2026-06-22T00:00:00+09:00draft: true
+lastmod: 2026-06-22T00:00:00+09:00draft: true
 tags: [人工智能代理, 开源, 每周回顾, 'github 趋势', 大型语言模型框架]
 categories: ["llm-frameworks"]
 slug: this-week-ai-agents-2026-w25
 author: "Dibi8 Tribe Intel (data collection) + Dibi8 editorial team (analysis & edit)"
 showAuthor: true
 showSummary: true
-sources:
-  - "GitHub Search API"
+sources: - "GitHub Search API"
 methodology: "Open-source script at home-hermes/服务器hermes/scripts/tribe-os-intel.sh"
 review_status: "AWAITING_EDITOR_REVIEW"
-review_checklist:
-  - "Editor's Take 段已填实际分析"
+review_checklist: - "Editor's Take 段已填实际分析"
   - "至少 1 个 repo 编辑加了 hands-on 评注"
   - "无 placeholder URL"
   - "无 aff 链接 (Tribe 文章纪律)"
-featureImage: /articles/tribe-draft-ai-agents-weekly.png/images/articles/tribe-draft-ai-agents-weekly.png
----
-
-<!-- canonical: https://dibi8.com/zh/tools/2026-06-22-trending-ai-agents/ -->
+featureImage: /articles/tribe-draft-ai-agents-weekly.png/images/articles/tribe-draft-ai-agents-weekly.png---
 # 本周开源人工智能代理--GitHub 最热门仓库（2026 年 6 月 22 日当周）
 
 
@@ -96,13 +88,11 @@ featureImage: /articles/tribe-draft-ai-agents-weekly.png/images/articles/tribe-d
 
 ## Editor's Take
 
-<!-- ⚠️ EDITOR: 必须填写这一段才能改 draft: false 发布 -->
-<!-- 一两段, 回答: 本周 8 个 repo 里, 反映了 AI agent 生态的什么趋势? 哪一个最值得动手试? 为什么? -->
 
 (本周编辑视角待填写)
 
----
 
+---
 ## Methodology
 
 - **Source**: GitHub Search API, query window `pushed:>2026-06-15`
@@ -113,8 +103,8 @@ featureImage: /articles/tribe-draft-ai-agents-weekly.png/images/articles/tribe-d
 
 We open-source our scout because trust is built on transparency. Reproduce our query, double-check our list — that's how AI-era content credibility works.
 
----
 
+---
 ## Top 8 Trending Repos This Week
 
 ### 1. [affaan-m/ECC](https://github.com/affaan-m/ECC) — ★219294
@@ -123,7 +113,6 @@ We open-source our scout because trust is built on transparency. Reproduce our q
 - **GitHub topic**: `mcp`
 - **What it claims**: The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor 
 
-<!-- ⚠️ EDITOR: 如果你 hands-on 试过这个 repo, 在这里加 1-2 句你的评注 (可选但鼓励) -->
 
 → [Project on GitHub](https://github.com/affaan-m/ECC)
 
@@ -134,7 +123,6 @@ We open-source our scout because trust is built on transparency. Reproduce our q
 - **GitHub topic**: `llm`
 - **What it claims**: The agent that grows with you
 
-<!-- ⚠️ EDITOR: 如果你 hands-on 试过这个 repo, 在这里加 1-2 句你的评注 (可选但鼓励) -->
 
 → [Project on GitHub](https://github.com/NousResearch/hermes-agent)
 
@@ -145,7 +133,6 @@ We open-source our scout because trust is built on transparency. Reproduce our q
 - **GitHub topic**: `mcp`
 - **What it claims**: Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.
 
-<!-- ⚠️ EDITOR: 如果你 hands-on 试过这个 repo, 在这里加 1-2 句你的评注 (可选但鼓励) -->
 
 → [Project on GitHub](https://github.com/n8n-io/n8n)
 
@@ -156,7 +143,6 @@ We open-source our scout because trust is built on transparency. Reproduce our q
 - **GitHub topic**: `llm`
 - **What it claims**: AutoGPT is the vision of accessible AI for everyone, to use and to build on. Our mission is to provide the tools, so that you can focus on what matters.
 
-<!-- ⚠️ EDITOR: 如果你 hands-on 试过这个 repo, 在这里加 1-2 句你的评注 (可选但鼓励) -->
 
 → [Project on GitHub](https://github.com/Significant-Gravitas/AutoGPT)
 
@@ -167,7 +153,6 @@ We open-source our scout because trust is built on transparency. Reproduce our q
 - **GitHub topic**: `llm`
 - **What it claims**: Get up and running with Kimi-K2.6, GLM-5.1, MiniMax, DeepSeek, gpt-oss, Qwen, Gemma and other models.
 
-<!-- ⚠️ EDITOR: 如果你 hands-on 试过这个 repo, 在这里加 1-2 句你的评注 (可选但鼓励) -->
 
 → [Project on GitHub](https://github.com/ollama/ollama)
 
@@ -178,7 +163,6 @@ We open-source our scout because trust is built on transparency. Reproduce our q
 - **GitHub topic**: `llm`
 - **What it claims**: f.k.a. Awesome ChatGPT Prompts. Share, discover, and collect prompts from the community. Free and open source — self-host for your organization with complete pr
 
-<!-- ⚠️ EDITOR: 如果你 hands-on 试过这个 repo, 在这里加 1-2 句你的评注 (可选但鼓励) -->
 
 → [Project on GitHub](https://github.com/f/prompts.chat)
 
@@ -189,7 +173,6 @@ We open-source our scout because trust is built on transparency. Reproduce our q
 - **GitHub topic**: `mcp`
 - **What it claims**: Java 面试 & 后端通用面试指南，覆盖计算机基础、数据库、分布式、高并发、系统设计与 AI 应用开发
 
-<!-- ⚠️ EDITOR: 如果你 hands-on 试过这个 repo, 在这里加 1-2 句你的评注 (可选但鼓励) -->
 
 → [Project on GitHub](https://github.com/Snailclimb/JavaGuide)
 
@@ -200,7 +183,6 @@ We open-source our scout because trust is built on transparency. Reproduce our q
 - **GitHub topic**: `mcp`
 - **What it claims**: Production-ready platform for agentic workflow development.
 
-<!-- ⚠️ EDITOR: 如果你 hands-on 试过这个 repo, 在这里加 1-2 句你的评注 (可选但鼓励) -->
 
 → [Project on GitHub](https://github.com/langgenius/dify)
 
@@ -223,7 +205,6 @@ Dibi8 Tribe Intel does this work so you don't have to. We surface; you decide.
 *This roundup is part of an editorial experiment. If you find it useful, [tell us on GitHub](https://github.com/luckybbjason1/home-hermes/issues). If it's not useful, also tell us — we'll kill it. The Tribe serves the reader, not the other way around.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -251,25 +232,20 @@ Dibi8 Tribe Intel does this work so you don't have to. We surface; you decide.
 
 ## Why This Matters
 
-Understanding 本周开源人工智能代理--github 最热门仓库（2026 年 6 月 22 日当周） is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding 本周开源人工智能代理--github 最热门仓库（2026 年 6 月 22 日当周） is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -335,7 +311,17 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

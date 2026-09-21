@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/arize-ai-observability-llm" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/arize-ai-observability-llm" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/arize-ai-observability-llm" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/arize-ai-observability-llm" />
 title: 'Arize AI Phoenix：开源 LLM 可观测性工具，100% 追踪你的 RAG 流水线 —— 2026...
 description: '2026 年 Arize Phoenix 完整指南：开源 LLM 可观测性、RAG 追踪、Prompt 版本管理、Token 用量追踪，以及与 LangChain 和 LlamaIndex 的生产级部署。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: [llm, 可观测性, 'arize phoenix', rag, langchain, llamaindex, opentelemetry, python, docker, 'ai 基础设施']
-aliases:
-- /zh/posts/arize-ai-observability-llm/
+aliases: - /zh/posts/arize-ai-observability-llm/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/arize-ai-observability-llm/ -->
 
 {{</* resource-info */>}}
 
@@ -70,7 +62,11 @@ Phoenix UI 将追踪渲染为交互式火焰图。你可以深入查看任何 Sp
 ### 核心数据模型
 
 | 概念 | 描述 |
-|---|---|
+|
+---
+|
+---
+|
 | **Trace（追踪）** | 从用户查询到最终响应的完整请求生命周期 |
 | **Span** | 追踪中的单个操作（例如检索器调用、LLM 补全） |
 | **Attribute（属性）** | 附加到 Span 的键值元数据（例如 `model=gpt-4o`） |
@@ -128,28 +124,18 @@ curl http://localhost:6006/health
 ```yaml
 # docker-compose.yml
 version: "3.8"
-services:
-  phoenix:
-    image: arizephoenix/phoenix:latest
-    ports:
-      - "6006:6006"
-    environment:
-      - PHOENIX_SQL_DATABASE_URL=postgresql://phoenix:phoenix@db:5432/phoenix
-    depends_on:
-      - db
+services: phoenix: image: arizephoenix/phoenix:latest
+    ports: - "6006:6006"
+    environment: - PHOENIX_SQL_DATABASE_URL=postgresql://phoenix:phoenix@db:5432/phoenix
+    depends_on: - db
 
-  db:
-    image: postgres:16-alpine
-    environment:
-      POSTGRES_USER: phoenix
+  db: image: postgres:16-alpine
+    environment: POSTGRES_USER: phoenix
       POSTGRES_PASSWORD: phoenix
       POSTGRES_DB: phoenix
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+    volumes: - pgdata:/var/lib/postgresql/data
 
-volumes:
-  pgdata:
-```
+volumes: pgdata: ```
 
 ```bash
 docker-compose up -d
@@ -245,16 +231,13 @@ trace.set_tracer_provider(trace_provider)
 tracer = trace.get_tracer("my-llm-app")
 
 # 手动创建 Span
-with tracer.start_as_current_span("rag_pipeline") as span:
-    span.set_attribute("query", "What is Phoenix?")
+with tracer.start_as_current_span("rag_pipeline") as span: span.set_attribute("query", "What is Phoenix?")
 
-    with tracer.start_as_current_span("retrieval") as ret_span:
-        chunks = retrieve_chunks("What is Phoenix?")
+    with tracer.start_as_current_span("retrieval") as ret_span: chunks = retrieve_chunks("What is Phoenix?")
         ret_span.set_attribute("chunk_count", len(chunks))
         ret_span.set_attribute("chunks", [c[:200] for c in chunks])
 
-    with tracer.start_as_current_span("llm_call") as llm_span:
-        response = call_llm(chunks)
+    with tracer.start_as_current_span("llm_call") as llm_span: response = call_llm(chunks)
         llm_span.set_attribute("model", "gpt-4o-mini")
         llm_span.set_attribute("tokens_used", response.usage.total_tokens)
         llm_span.set_attribute("latency_ms", 340)
@@ -299,7 +282,15 @@ Phoenix 在 Span 级别捕获 Token 用量，与提供商账单对比的准确�
 插桩增加的额外开销极小。在 4 核 DigitalOcean Droplet 上的测试数据：
 
 | 场景 | 基线延迟 | 使用 Phoenix 追踪 | 额外开销 |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 简单 LLM 调用（1 个 chunk） | **245 ms** | **251 ms** | **+2.4%** |
 | RAG 流水线（5 个 chunks） | **890 ms** | **912 ms** | **+2.5%** |
 | 多步 Agent（10 步） | **3,200 ms** | **3,278 ms** | **+2.4%** |
@@ -321,7 +312,13 @@ Phoenix 在 Span 级别捕获 Token 用量，与提供商账单对比的准确�
 Phoenix 包含内置评估器，用于相关性、幻觉和毒性检测：
 
 | 评估器 | 与人类标注的准确率 | 每条追踪平均运行时间 |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | QA 相关性 | **0.91** F1 分数 | **120 ms** |
 | 幻觉检测 | **0.87** F1 分数 | **95 ms** |
 | 毒性检测 | **0.94** 精确率 | **80 ms** |
@@ -338,8 +335,7 @@ from opentelemetry import trace
 
 tracer = trace.get_tracer("my-app")
 
-with tracer.start_as_current_span("customer_query") as span:
-    span.set_attribute("customer_tier", "enterprise")
+with tracer.start_as_current_span("customer_query") as span: span.set_attribute("customer_tier", "enterprise")
     span.set_attribute("query_category", "billing")
     span.set_attribute("expected_revenue", 15000.00)
 
@@ -388,8 +384,7 @@ px.launch_app(additional_exporters=[prometheus_exporter])
 - alert: HighTokenBurn
   expr: phoenix_tokens_total > 100000
   for: 5m
-  annotations:
-    summary: "5 分钟内 Token 消耗超过 10 万"
+  annotations: summary: "5 分钟内 Token 消耗超过 10 万"
 ```
 
 ### 通过追踪标签进行 Prompt 版本管理
@@ -398,8 +393,7 @@ px.launch_app(additional_exporters=[prometheus_exporter])
 
 ```python
 # 用使用的 Prompt 版本标记追踪
-with tracer.start_as_current_span("llm_call") as span:
-    span.set_attribute("prompt.version", "v2.3.1")
+with tracer.start_as_current_span("llm_call") as span: span.set_attribute("prompt.version", "v2.3.1")
     span.set_attribute("prompt.git_sha", "abc1234")
     span.set_attribute("deployment.env", "production")
 ```
@@ -409,7 +403,17 @@ with tracer.start_as_current_span("llm_call") as span:
 ## 与替代方案对比
 
 | 功能 | Arize Phoenix | LangSmith | Langfuse | Weights & Biases |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **许可证** | **Apache-2.0** | 专有 | MIT | 专有 |
 | **自托管** | **是（Docker）** | 否（仅云端） | **是** | 是（企业版） |
 | **LangChain 支持** | **自动插桩** | 原生 | 自动插桩 | 手动 |
@@ -490,12 +494,11 @@ LLM 可观测性不是奢侈品——它是**基础设施**。能够交付可靠
 - "LLM Observability in Production" —— Arize 博客，2026
 - "RAG Pipeline Optimization Patterns" —— dibi8.com 内部研究
 
----
 
+---
 **联盟披露：** 本文中的部分链接是联盟链接。如果你使用我们的 [DigitalOcean 推荐链接](https://m.do.co/c/eca87ac14ee0) 注册，你将获得 $200 信用额度，我们也会获得推荐奖励——不会增加你的额外成本。这支持我们的独立研究并保持内容免费。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -523,25 +526,20 @@ LLM 可观测性不是奢侈品——它是**基础设施**。能够交付可靠
 
 ## Why This Matters
 
-Understanding arize ai phoenix：开源 llm 可观测性工具，100% 追踪你的 rag 流水线 —— 2026 指南 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding arize ai phoenix：开源 llm 可观测性工具，100% 追踪你的 rag 流水线 —— 2026 指南 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -562,8 +560,8 @@ Arize AI Phoenix：开源 LLM 可观测性工具，100% 追踪你的 RAG 流水�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*
 

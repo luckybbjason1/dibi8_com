@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/puppeteer" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/puppeteer" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/puppeteer" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/puppeteer" />
 title: 'Puppeteer: 94,300 GitHub Stars — 生产级浏览器自动化 Docker 部署指南 2...
 description: 'Puppeteer 是一个用于 Chrome 和 Firefox 的无头浏览器自动化 Node.js 库。支持 Docker、GitHub Actions、Jest、Mocha、TypeScript。涵盖 puppeteer docker 配置、生产环境部署、浏览器自动化教程、CI/CD 集成。'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [puppeteer, 浏览器自动化, 无头chrome, 网络爬虫, docker, 测试, typescript]
-aliases:
-- /zh/posts/puppeteer/
+aliases: - /zh/posts/puppeteer/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/puppeteer/ -->
 
 {{</* resource-info */>}}
 
@@ -173,22 +165,14 @@ docker run --rm -v $(pwd)/output:/home/pptruser/app/output puppeteer-app
 
 ```yaml
 version: '3.8'
-services:
-  puppeteer:
-    build: .
-    volumes:
-      - ./src:/home/pptruser/app/src
+services: puppeteer: build: .
+    volumes: - ./src:/home/pptruser/app/src
       - ./output:/home/pptruser/app/output
-    environment:
-      - NODE_ENV=production
+    environment: - NODE_ENV=production
       - PUPPETEER_ARGS=--no-sandbox --disable-setuid-sandbox --disable-dev-shm-usage
     shm_size: 2gb
-    deploy:
-      resources:
-        limits:
-          memory: 4G
-        reservations:
-          memory: 1G
+    deploy: resources: limits: memory: 4G
+        reservations: memory: 1G
 ```
 
 `shm_size` 设置至关重要。Chrome 使用 `/dev/shm` 作为共享内存，而 Docker 容器中的默认值 64MB 会在大页面上导致崩溃。将其设置为 2GB 可以防止无头模式下的 "Aw, snap" 错误。
@@ -310,22 +294,15 @@ await browser.close();
 ```yaml
 # .github/workflows/puppeteer.yml
 name: Puppeteer CI
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+on: push: branches: [main]
+  pull_request: branches: [main]
 
-jobs:
-  puppeteer:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: puppeteer: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
-        with:
-          node-version: 22
+        with: node-version: 22
           cache: npm
 
       - name: Install dependencies
@@ -333,14 +310,12 @@ jobs:
 
       - name: Run Puppeteer tests
         run: npm test
-        env:
-          CI: true
+        env: CI: true
           PUPPETEER_ARGS: '--no-sandbox --disable-setuid-sandbox'
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
-        with:
-          name: screenshots
+        with: name: screenshots
           path: output/*.png
 ```
 
@@ -487,7 +462,17 @@ describe('Scraper Suite', function() {
 独立基准测试显示 Puppeteer 在 Chrome 为中心的工作负载中保持着强劲地位：
 
 | 指标 | Puppeteer | Selenium | Playwright | Cypress |
-|------|-----------|----------|------------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 平均操作延迟 | < 1秒 | 3–5秒 | 1–2秒 | 1–2秒 |
 | 配置时间 | 10–15 分钟 | 2–4 小时 | 15–30 分钟 | 15–30 分钟 |
 | 通过率 (100 次运行) | 93% | 84% | 94% | 96% |
@@ -622,7 +607,17 @@ setInterval(async () => {
 ## 与替代品对比
 
 | 特性 | Puppeteer | Selenium | Playwright | Cypress |
-|------|-----------|----------|------------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **主要语言** | JavaScript, TypeScript | Java, Python, C#, JS, Ruby | JS/TS, Python, Java, .NET | JavaScript, TypeScript |
 | **浏览器支持** | Chrome, Chromium, Firefox | 所有主流 + 移动端 (Appium) | Chromium, Firefox, WebKit | Chromium, Edge, Firefox |
 | **协议** | CDP, WebDriver BiDi | W3C WebDriver | CDP, WebDriver BiDi | 浏览器内执行 |
@@ -712,7 +707,6 @@ Puppeteer 仍然是需要编程控制 Chrome 的团队的可靠选择。其 94,3
 - [Browserless.io Puppeteer 托管](https://www.browserless.io/) — 托管 Puppeteer 基础设施
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -738,8 +732,8 @@ Puppeteer 仍然是需要编程控制 Chrome 的团队的可靠选择。其 94,3
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [obscura-rust-headless-browser-ai-agents-web-scraping](puppeteer)
@@ -748,6 +742,6 @@ Puppeteer 仍然是需要编程控制 Chrome 的团队的可靠选择。其 94,3
 - [apple-container](puppeteer)
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](puppeteer)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

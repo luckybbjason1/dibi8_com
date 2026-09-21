@@ -1,10 +1,9 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/obscura-rust-headless-browser-ai-agents-web-scraping" />
 title: 'Obscura: Rust Headless Browser for AI Agents — 14,000 St...
 description: 'Obscura (14,788 GitHub stars) is a Rust headless browser engine for AI agents and web scraping. 30MB memory, 85ms page load, built-in anti-detection. Drop-in replacement for headless Chrome with Puppeteer and Playwright support. Docker and binary installs.'
 date: 2026-06-09
-lastmod:  2026-06-09slug: 'obscura-rust-headless-browser-ai-agents-web-scraping'
+lastmod: 2026-06-09
+slug: 'obscura-rust-headless-browser-ai-agents-web-scraping'
 category: 'dev-utils'
 tags: ['obscura', 'headless browser', 'Rust browser', 'web scraping', 'AI agent tools', 'Puppeteer alternative', 'Playwright alternative', 'anti-detection', 'stealth browsing']
 github_repo: 'https://github.com/h4ckf0r0day/obscura'
@@ -12,9 +11,7 @@ stars: 14788
 maintainer: 'h4ckf0r0day'
 license: Apache-2.0
 featureImage: 'https://raw.githubusercontent.com/h4ckf0r0day/obscura/main/assets/icon.png'
-lang: en
 ---
-
 # Obscura: Rust Headless Browser for AI Agents — 14,000 Stars — 30MB Memory, 85ms Load — Setup Guide 2026
 
 ```
@@ -59,10 +56,14 @@ This guide covers installation, CLI usage, CDP server setup, puppeteer/playwrigh
 
 Obscura is a headless browser engine that implements the Chrome DevTools Protocol (CDP) in Rust. Unlike headless Chrome, which is essentially a stripped-down Chrome browser, Obscura is built from the ground up for automation — not desktop browsing.
 
-The key metrics that set Obscura apart:
-
-| Metric | Obscura | Headless Chrome |
-|--------|---------|----------------|
+The key metrics that set Obscura apart: | Metric | Obscura | Headless Chrome |
+|
+---
+|
+---
+|
+---
+|
 | Memory | **30 MB** | 200+ MB |
 | Binary size | **70 MB** | 300+ MB |
 | Anti-detect | **Built-in** | None |
@@ -118,9 +119,7 @@ The `serve` command starts a CDP-compatible server that accepts connections from
 
 ### Binary Install (Recommended)
 
-Download the latest binary from the [Releases page](https://github.com/h4ckf0r0day/obscura/releases):
-
-```bash
+Download the latest binary from the [Releases page](https://github.com/h4ckf0r0day/obscura/releases): ```bash
 # Linux x86_64
 curl -LO https://github.com/h4ckf0r0day/obscura/releases/latest/download/obscura-x86_64-linux.tar.gz
 tar xzf obscura-x86_64-linux.tar.gz
@@ -210,9 +209,7 @@ obscura fetch https://example.com --timeout 10
 
 ### Start the CDP Server
 
-For Puppeteer/Playwright compatibility:
-
-```bash
+For Puppeteer/Playwright compatibility: ```bash
 # Standard CDP server
 obscura serve --port 9222
 
@@ -220,9 +217,7 @@ obscura serve --port 9222
 obscura serve --port 9222 --stealth
 ```
 
-Once running, connect with Puppeteer or Playwright:
-
-```javascript
+Once running, connect with Puppeteer or Playwright: ```javascript
 // Puppeteer connection
 const puppeteer = require('puppeteer-core');
 
@@ -293,8 +288,7 @@ const data = await page.$$eval('.item', items =>
 # Python Playwright connection
 from playwright.sync_api import sync_playwright
 
-with sync_playwright() as p:
-    browser = p.chromium.connect_over_cdp(
+with sync_playwright() as p: browser = p.chromium.connect_over_cdp(
         "http://localhost:9222"
     )
     page = browser.new_page()
@@ -309,8 +303,7 @@ with sync_playwright() as p:
 # Use Obscura in an AI agent workflow
 import subprocess
 
-def fetch_page_text(url):
-    """Fetch a page and extract text using Obscura"""
+def fetch_page_text(url): """Fetch a page and extract text using Obscura"""
     result = subprocess.run(
         ["./obscura", "fetch", url, "--dump", "text"],
         capture_output=True, text=True, timeout=30
@@ -318,8 +311,7 @@ def fetch_page_text(url):
     return result.stdout
 
 # AI agent can use this to fetch and analyze web content
-def analyze_page(agent, url):
-    content = fetch_page_text(url)
+def analyze_page(agent, url): content = fetch_page_text(url)
     agent.prompt(f"Analyze this page content:\n{content}")
 ```
 
@@ -355,7 +347,13 @@ done
 ### Resource Usage
 
 | Scenario | Obscura | Headless Chrome |
-|----------|---------|----------------|
+|
+---
+|
+---
+|
+---
+|
 | Idle browser | 30 MB RAM | 200+ MB RAM |
 | Single page load | ~5 MB additional | ~50 MB additional |
 | 100 concurrent pages | ~300 MB total | ~20+ GB total |
@@ -365,7 +363,13 @@ done
 ### Page Load Performance
 
 | Page Type | Obscura | Headless Chrome |
-|-----------|---------|----------------|
+|
+---
+|
+---
+|
+---
+|
 | Static HTML | ~15 ms | ~80 ms |
 | JS-rendered SPA | ~85 ms | ~500 ms |
 | Heavy dashboard | ~200 ms | ~1500 ms |
@@ -389,17 +393,14 @@ obscura scrape $(seq -w 1 100 | sed 's/^/https://example.com\/page_/') \
 
 ### Stealth Mode
 
-The stealth feature provides built-in anti-detection capabilities:
-
-```bash
+The stealth feature provides built-in anti-detection capabilities: ```bash
 # Build with stealth support
 cargo build --release --features stealth
 
 # Or use the binary with stealth flag
 ./obscura serve --port 9222 --stealth
 
-# Stealth mode includes:
-# - Navigator plugin spoofing
+# Stealth mode includes: # - Navigator plugin spoofing
 # - WebGL renderer obfuscation
 # - Permissions API handling
 # - Chrome runtime property masking
@@ -461,7 +462,17 @@ obscura fetch https://example.com \
 ## Comparison with Alternatives
 
 | Feature | Obscura | Headless Chrome | Playwright Browser | Selenium |
-|---------|---------|----------------|-------------------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Memory usage | 30 MB | 200+ MB | 150+ MB | 300+ MB |
 | Language | Rust | C++ | TypeScript/JS | Multi |
 | CDP support | Native | Native | Via Chrome | Via Chrome |
@@ -475,9 +486,7 @@ obscura fetch https://example.com \
 
 ## Limitations / Honest Assessment
 
-Obscura is powerful but not a perfect replacement for every use case:
-
-1. **Young project** — Despite 14,788 stars, Obscura is still in active development. Edge cases in complex JavaScript frameworks may not be fully covered.
+Obscura is powerful but not a perfect replacement for every use case: 1. **Young project** — Despite 14,788 stars, Obscura is still in active development. Edge cases in complex JavaScript frameworks may not be fully covered.
 
 2. **Desktop browsing not optimized** — It's built for automation, not desktop use. UI rendering, accessibility features, and print output may differ from Chrome.
 
@@ -542,14 +551,13 @@ The upcoming Obscura Cloud hosted service (managed infrastructure + residential 
 - CDP documentation: https://chromedevtools.github.io/devtools-protocol/
 - V8 engine: https://v8.dev
 
----
 
+---
 Join our community for more AI tool deep-dives: [t.me/DIBI8_Group](https://t.me/DIBI8_Group)
 
 **Disclaimer:** This article is for informational purposes only. Always review source code before running third-party software in production. Affiliate disclosure: Some links above may contain affiliate codes. We may earn a commission at no extra cost to you.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -575,8 +583,8 @@ Join our community for more AI tool deep-dives: [t.me/DIBI8_Group](https://t.me/
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [cloakbrowser-stealth-chromium-bot-detection-scraping](obscura-rust-headless-browser-ai-agents-web-scraping)

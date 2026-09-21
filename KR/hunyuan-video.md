@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/hunyuan-video" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hunyuan-video" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hunyuan-video" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hunyuan-video" />
 title: 'HunyuanVideo: 12.1K+ Stars — 2026 프로덕션 배포 가이드'
 description: 'HunyuanVideo (HYV)은 텐센트가 개발한 130억 파라미터 오픈소스 비디오 생성 프레임워크. ComfyUI, Diffusers, Gradio API 지원. Docker 설치, FP8 양자화, 다중 GPU 추론, 프로덕션 하드닝 포함.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [비디오생성, 디퓨전트랜스포머, 텐센트, hunyuanvideo, comfyui, docker, fp8, 멀티모달]
-aliases:
-- /kr/posts/hunyuan-video/
+aliases: - /kr/posts/hunyuan-video/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/hunyuan-video/ -->
 
 {{</* resource-info */>}}
 
@@ -41,9 +33,7 @@ HunyuanVideo는 텐센트가 개발한 대규모 비디오 생성 모델을 위�
 
 ## HunyuanVideo의 작동 원리
 
-아키텍처는 세 가지 주요 컴포넌트를 가진 잠재 디퓨전 파이프라인을 따른다:
-
-![HunyuanVideo 전체 아키텍처](https://raw.githubusercontent.com/Tencent-Hunyuan/HunyuanVideo/main/assets/backbone.png)
+아키텍처는 세 가지 주요 컴포넌트를 가진 잠재 디퓨전 파이프라인을 따른다: ![HunyuanVideo 전체 아키텍처](https://raw.githubusercontent.com/Tencent-Hunyuan/HunyuanVideo/main/assets/backbone.png)
 
 **Causal 3D VAE**는 입력 비디오를 잠재 공간으로 압축하며, 시간 압축비는 4x, 공간 압축비는 8x이다. 이는 트랜스포머로 들어가는 토큰 수를 줄여 동일한 컴퓨팅 성장 없이 더 높은 해상도의 생성을 가능하게 한다.
 
@@ -147,9 +137,7 @@ python sample_video.py \
 
 ### ComfyUI (네이티브 노드)
 
-ComfyUI는 2025년 초에 네이티브 HunyuanVideo 지원을 추가했다. Comfy-Org에서 재패키징된 모델 파일을 다운로드하라:
-
-```bash
+ComfyUI는 2025년 초에 네이티브 HunyuanVideo 지원을 추가했다. Comfy-Org에서 재패키징된 모델 파일을 다운로드하라: ```bash
 # 모델 파일을 ComfyUI/models/ 경로에 배치
 # - text_encoders/clip_l.safetensors
 # - text_encoders/llava_llama3_vision.safetensors
@@ -161,9 +149,7 @@ ComfyUI는 2025년 초에 네이티브 HunyuanVideo 지원을 추가했다. Comf
 
 ### Kijai의 HunyuanVideoWrapper (고급)
 
-FP8 추론, 비디오 투 비디오, 이미지 투 비디오를 위해서는 커뮤니티 래퍼를 사용하라:
-
-```bash
+FP8 추론, 비디오 투 비디오, 이미지 투 비디오를 위해서는 커뮤니티 래퍼를 사용하라: ```bash
 # ComfyUI 관리자 또는 git으로 설치
 cd ComfyUI/custom_nodes
 git clone https://github.com/kijai/ComfyUI-HunyuanVideoWrapper.git
@@ -226,16 +212,12 @@ Gradio UI는 프롬프트, 해상도, 프레임 수, CFG 스케일, 시드 등�
 
 ### DigitalOcean GPU Droplets
 
-로컬 GPU 하드웨어가 없는 팀을 위해 DigitalOcean GPU Droplets는 온디맨드로 NVIDIA H100 및 A100 인스턴스를 제공한다:
-
-```yaml
+로컬 GPU 하드웨어가 없는 팀을 위해 DigitalOcean GPU Droplets는 온디맨드로 NVIDIA H100 및 A100 인스턴스를 제공한다: ```yaml
 #cloud-config
 package_update: true
-packages:
-  - docker.io
+packages: - docker.io
   - nvidia-container-toolkit
-runcmd:
-  - systemctl restart docker
+runcmd: - systemctl restart docker
   - docker pull hunyuanvideo/hunyuanvideo:cuda_12
   - docker run -d --gpus all --name hunyuan \
       -p 8081:8081 -v /mnt/models:/models \
@@ -245,9 +227,7 @@ runcmd:
 
 ## 벤치마크 / 실제 사용 사례
 
-RTX 4090 및 데이터센터 GPU 테스트의 커뮤니티 벤치마크 (2026년 3월):
-
-| 모델 | 파라미터 | VRAM (720p) | 생성 시간 (5초, RTX 4090) | 미적 품질 |
+RTX 4090 및 데이터센터 GPU 테스트의 커뮤니티 벤치마크 (2026년 3월): | 모델 | 파라미터 | VRAM (720p) | 생성 시간 (5초, RTX 4090) | 미적 품질 |
 |---|---|---|---|---|
 | HunyuanVideo (오리지널) | 13B | ~60GB | ~5:50 | 8.8/10 |
 | HunyuanVideo-1.5 | 8.3B | ~24GB (INT8) | ~3:20 | 8.5/10 |
@@ -293,9 +273,7 @@ python sample_video.py \
 
 ### xDiT를 활용한 다중 GPU 병렬 추론
 
-프로덕션 워크로드의 경우 xDiT는 여러 GPU에서 확장되는 Unified Sequence Parallelism을 제공한다:
-
-```bash
+프로덕션 워크로드의 경우 xDiT는 여러 GPU에서 확장되는 Unified Sequence Parallelism을 제공한다: ```bash
 # 8 GPU 병렬 추론
 torchrun --nproc_per_node=8 sample_video.py \
     --video-size 1280 720 \
@@ -309,9 +287,7 @@ torchrun --nproc_per_node=8 sample_video.py \
     --save-path ./results
 ```
 
-1280x720, 129 프레임, 50 스텝의 지연 시간 확장:
-
-| GPU 수 | 지연 시간 (초) | 스피드업 |
+1280x720, 129 프레임, 50 스텝의 지연 시간 확장: | GPU 수 | 지연 시간 (초) | 스피드업 |
 |---|---|---|
 | 1 | 1904 | 1.00x |
 | 2 | 934 | 2.04x |
@@ -334,9 +310,7 @@ python gradio_server.py \
   --queue-timeout 300
 ```
 
-속도 제한이 있는 Nginx 리버스 프록시 뒤에서:
-
-```nginx
+속도 제한이 있는 Nginx 리버스 프록시 뒤에서: ```nginx
 upstream hunyuan {
     server 127.0.0.1:8081;
     keepalive 32;
@@ -373,8 +347,7 @@ inference_duration = Histogram(hunyuan_inference_seconds, '추론 지연 시간'
 queue_depth = Gauge(hunyuan_queue_depth, '현재 큐 깊이')
 
 @inference_duration.time()
-def generate_video(prompt, height, width, frames, steps):
-    inference_count.inc()
+def generate_video(prompt, height, width, frames, steps): inference_count.inc()
     # ... 기존 추론 로직
     return video
 
@@ -453,9 +426,7 @@ A: 텐센트 팀은 GitHub README에 Discord 서버와 WeChat 그룹 링크를 �
 
 HunyuanVideo는 폐쇄형 상업용 API와 오픈소스 접근성 사이의 격차를 메우는 프로덕션급 비디오 생성 프레임워크이다. 1.5 릴리스로 83억 파라미터, SSTA 어텐션, 소비자 GPU 호환성을 갖추면서 스튜디오와 독립 크리에이터 모두에게 실용적인 선택이 되었다.
 
-오늘 시작하기 위한 액션 아이템:
-
-1. 저장소를 클론하고 GPU 인스턴스에서 Docker 이미지를 실행하라 — 공식 CUDA 12 이미지가 가장 빠른 경로이다.
+오늘 시작하기 위한 액션 아이템: 1. 저장소를 클론하고 GPU 인스턴스에서 Docker 이미지를 실행하라 — 공식 CUDA 12 이미지가 가장 빠른 경로이다.
 2. FP8 가중치를 다운로드하고 `sample_video.py`로 첫 720p 생성을 실행하라.
 3. Kijai의 래퍼로 ComfyUI와 통합하여 시각적 워크플로우 편집을 하라.
 4. [dibi8 Telegram 그룹](https://t.me/dibi8Channel)에 가입하여 배포 전략을 논의하고 커뮤니티와 생성된 비디오를 공유하라.
@@ -466,9 +437,7 @@ HunyuanVideo는 폐쇄형 상업용 API와 오픈소스 접근성 사이의 격�
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -487,7 +456,6 @@ HunyuanVideo는 폐쇄형 상업용 API와 오픈소스 접근성 사이의 격�
 - DigitalOcean GPU Droplets: https://www.digitalocean.com/products/gpu-droplets
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

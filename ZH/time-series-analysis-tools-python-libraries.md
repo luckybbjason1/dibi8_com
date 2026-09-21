@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/time-series-analysis-tools-python-libraries" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/time-series-analysis-tools-python-libraries" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/time-series-analysis-tools-python-libraries" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/time-series-analysis-tools-python-libraries" />
 title: 'Python时序数据分析工具大全：Prophet、sktime、ARIMA与Darts完整教程'
 description: '全面盘点Python时序分析工具库，深度对比Prophet、sktime、statsmodels与Darts的适用场景，含特征工程技巧与完整预测流水线搭建指南。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/time-series-analysis-tools-python-libraries/
+aliases: - /posts/time-series-analysis-tools-python-libraries/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/time-series-analysis-tools-python-libraries/ -->
 
 {</* resource-info */>}
 
@@ -35,8 +27,8 @@ aliases:
 
 本文系统梳理 **2024-2025 年 Python 时序分析的核心工具库**——Prophet、sktime、statsmodels 和 Darts——覆盖从经典统计方法到深度学习的前沿方案，帮助你根据数据特性快速组建最优工具链。
 
----
 
+---
 ## 2024年时序分析的技术版图
 
 当前时序分析方法大致分为三大流派：
@@ -51,8 +43,8 @@ aliases:
 - 数据量 1 万-100 万行、多变量关联 → 机器学习方法
 - 数据量 > 100 万行、复杂多尺度模式 → 深度学习方法
 
----
 
+---
 ## Prophet：Facebook的业务预测利器
 
 [Prophet](https://facebook.github.io/prophet) 由 Facebook（Meta）于 2017 年开源，设计目标是让业务人员无需时间序列专业知识也能做出高质量的预测。它基于**加法回归模型**，将时间序列分解为趋势、季节性和节假日三个可解释组件。
@@ -205,7 +197,13 @@ forecast = fitted.forecast(steps=12)
 Darts 集成了从统计到深度学习的完整模型谱系：
 
 | 模型类别 | 代表模型 | 适用场景 |
-|----------|----------|----------|
+|
+---
+|
+---
+|
+---
+|
 | 统计基线 | ARIMA, ExponentialSmoothing | 快速基线、可解释需求 |
 | 机器学习 | LightGBM, RandomForest | 特征丰富、非线性模式 |
 | 深度学习 | N-BEATS, N-HiTS, TFT, DeepAR | 复杂模式、大规模数据 |
@@ -279,7 +277,17 @@ backtest_score = model.backtest(series, start=0.8, forecast_horizon=12)
 ## 四款工具横向对比
 
 | 维度 | Prophet | sktime | statsmodels | Darts |
-|------|---------|--------|-------------|-------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **核心方法** | 加法回归 | 统一 ML 接口 | 经典统计 | 深度学习 |
 | **学习曲线** | 极低 | 中等 | 较高 | 中等 |
 | **模型类型** | 单一模型 | 丰富模型库 | 统计模型为主 | 统计+ML+深度学习 |
@@ -350,7 +358,6 @@ Python 时序分析工具生态在 2024 年已经相当成熟：Prophet 是业�
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -378,25 +385,20 @@ Python 时序分析工具生态在 2024 年已经相当成熟：Prophet 是业�
 
 ## Why This Matters
 
-Understanding python时序数据分析工具大全：prophet、sktime、arima与darts完整教程 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding python时序数据分析工具大全：prophet、sktime、arima与darts完整教程 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

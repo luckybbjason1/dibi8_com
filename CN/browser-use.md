@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/browser-use" />
 title: 'Browser Use: 94K+ Stars — Benchmarking AI Browser Automa...
 description: 'Browser Use is an open-source Python framework that connects LLMs to real browsers via Playwright. Supports OpenAI, Anthropic, Gemini, and local models. Covers setup, WebVoyager benchmarks, Selenium comparison, production hardening, and Docker deployment.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,24 +20,22 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['browser-use', 'ai-agents', playwright, 'browser-automation', 'web-scraping', llm, python, 'open-source']
-aliases:
-- /posts/browser-use/
+aliases: - /posts/browser-use/-
 ---
-
 {{</* resource-info */>}}
 
 ![Browser Use Logo](https://raw.githubusercontent.com/browser-use/browser-use/main/docs/static/img/browser-use-logo.png)
 
 > **GitHub**: [browser-use/browser-use](https://github.com/browser-use/browser-use) | **Stars**: 94,731 | **License**: MIT | **Version**: 0.12.7
 
----
 
+---
 ## Introduction
 
 Writing and maintaining Selenium scripts for modern web automation is a slow death by a thousand selectors. A class name changes, a button moves, and your entire pipeline collapses at 3 AM. Browser Use, an open-source Python framework launched in late 2024 by Magnus Müller and Gregor Žunič, takes a different approach: it hands the browser controls to a large language model and lets the AI figure out what to click, type, and read. With 94,731 GitHub stars, 319 contributors, and an 89.1% success rate on the WebVoyager benchmark, it has become the de facto open-source standard for AI-driven browser automation. This tutorial covers the setup, real benchmark data, integration with popular LLMs, and a head-to-head comparison against Selenium, Puppeteer, and Scrapy.
 
----
 
+---
 ## What Is Browser Use?
 
 Browser Use is a Python library (≥3.11) that connects any LangChain-compatible LLM to a real web browser via Playwright. Instead of hardcoding CSS selectors or XPath expressions, you describe the task in natural language — "find the cheapest flight from NYC to SFO next Friday" — and the agent handles navigation, form filling, clicking, and data extraction autonomously.
@@ -56,9 +52,7 @@ Browser Use is a Python library (≥3.11) that connects any LangChain-compatible
 
 ## How Browser Use Works
 
-Browser Use operates on a continuous **observe → plan → act → verify** loop:
-
-### Architecture Overview
+Browser Use operates on a continuous **observe → plan → act → verify** loop: ### Architecture Overview
 
 ```
 ┌─────────────┐    DOM + Screenshot     ┌─────────────┐
@@ -85,8 +79,7 @@ from browser_use import Agent, Browser
 from langchain_openai import ChatOpenAI
 import asyncio
 
-async def main():
-    browser = Browser()
+async def main(): browser = Browser()
     agent = Agent(
         task="Find the number of stars of the browser-use repo",
         llm=ChatOpenAI(model="gpt-4.1"),
@@ -95,8 +88,7 @@ async def main():
     result = await agent.run()
     print(result)
 
-if __name__ == "__main__":
-    asyncio.run(main())
+if __name__ == "__main__": asyncio.run(main())
 ```
 
 ---
@@ -142,8 +134,7 @@ BROWSER_USE_API_KEY=your-cloud-key
 import asyncio
 from browser_use import Agent, Browser, ChatBrowserUse
 
-async def main():
-    browser = Browser()
+async def main(): browser = Browser()
     agent = Agent(
         task="List the top 20 posts on Hacker News today with their points",
         llm=ChatBrowserUse(),
@@ -152,8 +143,7 @@ async def main():
     result = await agent.run()
     print(result.output)
 
-if __name__ == "__main__":
-    asyncio.run(main())
+if __name__ == "__main__": asyncio.run(main())
 ```
 
 ![Browser Use Quick Start Interface](https://docs.browser-use.com/assets/images/quickstart-browser-use-cloud.png)
@@ -176,14 +166,10 @@ CMD ["python", "agent.py"]
 ```yaml
 # docker-compose.yml
 version: '3.8'
-services:
-  browser-use:
-    build: .
-    environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
+services: browser-use: build: .
+    environment: - OPENAI_API_KEY=${OPENAI_API_KEY}
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
-    volumes:
-      - ./scripts:/app
+    volumes: - ./scripts:/app
     command: python agent.py
 ```
 
@@ -198,8 +184,7 @@ from browser_use import Agent, Browser
 from langchain_openai import ChatOpenAI
 import asyncio
 
-async def search_flights():
-    agent = Agent(
+async def search_flights(): agent = Agent(
         task="Find the cheapest flight from NYC to London next week",
         llm=ChatOpenAI(model="gpt-4o", temperature=0),
         browser=Browser(),
@@ -216,8 +201,7 @@ from browser_use import Agent, Browser
 from langchain_anthropic import ChatAnthropic
 import asyncio
 
-async def extract_data():
-    agent = Agent(
+async def extract_data(): agent = Agent(
         task="Extract all pricing plans from example.com/pricing",
         llm=ChatAnthropic(model="claude-sonnet-4-6"),
         browser=Browser(),
@@ -235,8 +219,7 @@ from browser_use import Agent, Browser
 from langchain_google_genai import ChatGoogleGenerativeAI
 import asyncio
 
-async def research_topic():
-    agent = Agent(
+async def research_topic(): agent = Agent(
         task="Research the latest AI news and summarize top 5 stories",
         llm=ChatGoogleGenerativeAI(model="gemini-3-flash-preview"),
         browser=Browser(),
@@ -253,8 +236,7 @@ from browser_use import Agent, Browser
 from langchain_ollama import ChatOllama
 import asyncio
 
-async def local_automation():
-    agent = Agent(
+async def local_automation(): agent = Agent(
         task="Fill out the contact form on example.com/contact",
         llm=ChatOllama(model="qwen2.5:72b"),
         browser=Browser(),
@@ -271,9 +253,7 @@ from playwright.async_api import async_playwright
 from browser_use import Agent
 from langchain_openai import ChatOpenAI
 
-async def hybrid_automation():
-    async with async_playwright() as p:
-        browser = await p.chromium.launch(headless=True)
+async def hybrid_automation(): async with async_playwright() as p: browser = await p.chromium.launch(headless=True)
         page = await browser.new_page()
         
         # Deterministic Playwright step
@@ -301,7 +281,15 @@ The WebVoyager benchmark evaluates browser agents on 586 diverse real-world web 
 ![WebVoyager Leaderboard showing Browser Use at 89.1%](https://docs.browser-use.com/assets/images/webvoyager-benchmark-2026.png)
 
 | Rank | System | Score | Organization |
-|------|--------|-------|-------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 1 | Alumnium | 98.6% | Alumnium |
 | 2 | Surfer 2 | 97.1% | H Company |
 | 3 | Magnitude | 93.9% | Magnitude |
@@ -317,7 +305,17 @@ The WebVoyager benchmark evaluates browser agents on 586 diverse real-world web 
 ### Performance Metrics (vs Traditional Tools)
 
 | Metric | Browser Use (AI) | Playwright | Puppeteer | Selenium |
-|--------|-----------------|-----------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Cold start to first navigation | ~0.5–0.8s | ~0.4–0.7s | ~0.3–0.5s | ~1.2–2.5s |
 | Idle RAM (per instance) | ~100–150MB | ~90–130MB | ~60–100MB | ~180–280MB |
 | Static pages / minute | ~8–15 (AI loop) | ~35–55 | ~40–60 | ~18–35 |
@@ -328,7 +326,13 @@ The WebVoyager benchmark evaluates browser agents on 586 diverse real-world web 
 ### Real-World Cost Analysis
 
 | LLM Provider | Cost per Task (avg 10 steps) | Best For |
-|-------------|---------------------------|----------|
+|
+---
+|
+---
+|
+---
+|
 | GPT-4o | ~$0.15–$0.30 | Complex reasoning tasks |
 | Claude Sonnet 4 | ~$0.10–$0.20 | Production reliability |
 | Gemini 3 Flash | ~$0.02–$0.05 | Cost-sensitive batch jobs |
@@ -341,16 +345,14 @@ import asyncio
 from browser_use import Agent, Browser
 from langchain_openai import ChatOpenAI
 
-async def monitor_prices():
-    urls = [
+async def monitor_prices(): urls = [
         "https://amazon.com/dp/B0DHTYW7P5",
         "https://bestbuy.com/site/xyz",
         "https://newegg.com/product/abc",
     ]
     
     results = []
-    for url in urls:
-        agent = Agent(
+    for url in urls: agent = Agent(
             task=f"Go to {url} and extract the current price, availability, and seller name",
             llm=ChatOpenAI(model="gpt-4o-mini"),
             browser=Browser(),
@@ -375,8 +377,7 @@ import asyncio
 from browser_use import Agent, Browser
 from langchain_openai import ChatOpenAI
 
-async def run_parallel_agents(tasks):
-    browser = Browser()
+async def run_parallel_agents(tasks): browser = Browser()
     agents = [
         Agent(task=task, llm=ChatOpenAI(model="gpt-4o-mini"), browser=browser)
         for task in tasks
@@ -429,8 +430,7 @@ config = BrowserConfig(
     headless=False,  # Use headed mode for initial login
 )
 
-async def authenticated_task():
-    browser = Browser(config=config)
+async def authenticated_task(): browser = Browser(config=config)
     agent = Agent(
         task="Download my monthly invoice from the billing page",
         llm=ChatOpenAI(model="gpt-4o"),
@@ -446,20 +446,15 @@ import asyncio
 from browser_use import Agent, Browser
 from langchain_openai import ChatOpenAI
 
-async def robust_agent(task, max_retries=3):
-    for attempt in range(max_retries):
-        try:
-            agent = Agent(
+async def robust_agent(task, max_retries=3): for attempt in range(max_retries): try: agent = Agent(
                 task=task,
                 llm=ChatOpenAI(model="gpt-4o"),
                 browser=Browser(),
                 max_steps=25,  # Limit steps to prevent runaway loops
             )
             result = await agent.run()
-            if result.success:
-                return result
-        except Exception as e:
-            print(f"Attempt {attempt + 1} failed: {e}")
+            if result.success: return result
+        except Exception as e: print(f"Attempt {attempt + 1} failed: {e}")
             await asyncio.sleep(2 ** attempt)  # Exponential backoff
     raise Exception(f"Task failed after {max_retries} attempts")
 ```
@@ -476,15 +471,11 @@ agent_duration = Histogram("browseruse_agent_duration_seconds", "Agent run durat
 
 start_http_server(8000)
 
-async def monitored_agent(task):
-    agent_runs.inc()
-    with agent_duration.time():
-        try:
-            agent = Agent(task=task, llm=llm, browser=Browser())
+async def monitored_agent(task): agent_runs.inc()
+    with agent_duration.time(): try: agent = Agent(task=task, llm=llm, browser=Browser())
             result = await agent.run()
             return result
-        except Exception:
-            agent_failures.inc()
+        except Exception: agent_failures.inc()
             raise
 ```
 
@@ -493,7 +484,17 @@ async def monitored_agent(task):
 ## Comparison with Alternatives
 
 | Feature | Browser Use | Scrapy | Puppeteer | Selenium |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Language** | Python | Python | JavaScript/TypeScript | Python, Java, C#, JS |
 | **AI-Native** | Yes (LLM-driven) | No | No | No |
 | **JavaScript Rendering** | Yes (via Playwright) | No (needs Splash/Playwright) | Yes (Chromium) | Yes (all browsers) |
@@ -517,9 +518,7 @@ async def monitored_agent(task):
 
 ## Limitations / Honest Assessment
 
-Browser Use is not a universal replacement for traditional browser automation. Here is what it is not good for:
-
-1. **High-volume, low-cost scraping**: At $0.02–$0.30 per task in LLM costs, scraping 100,000 pages costs $2,000–$30,000. Scrapy + HTTP requests costs pennies for the same volume on static sites.
+Browser Use is not a universal replacement for traditional browser automation. Here is what it is not good for: 1. **High-volume, low-cost scraping**: At $0.02–$0.30 per task in LLM costs, scraping 100,000 pages costs $2,000–$30,000. Scrapy + HTTP requests costs pennies for the same volume on static sites.
 
 2. **Deterministic testing**: AI agents are non-deterministic. The same task may take different paths on each run. Use Playwright or Selenium for CI/CD test suites that require 100% reproducibility.
 
@@ -565,8 +564,7 @@ Browser Use has earned its 94,731 GitHub stars by solving a genuine pain point: 
 
 The framework is not without tradeoffs — LLM costs add up at scale, and deterministic testing remains the domain of Selenium and Playwright. But for teams building AI agents that need to navigate arbitrary websites, fill forms, extract data, and adapt to UI changes without human intervention, Browser Use is the most mature open-source option available.
 
-**Action items**:
-1. Clone the [browser-use/browser-use](https://github.com/browser-use/browser-use) repository
+**Action items**: 1. Clone the [browser-use/browser-use](https://github.com/browser-use/browser-use) repository
 2. Run `pip install browser-use` and set up your first agent with the code examples above
 3. Evaluate the WebVoyager benchmark against your use case
 4. Join the [Browser Use Discord](https://link.browser-use.com/discord) for community support and production tips
@@ -579,9 +577,7 @@ The framework is not without tradeoffs — LLM costs add up at scale, and determ
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -602,7 +598,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 *This article was written for developers who need production-grade browser automation. All benchmark data is sourced from publicly available leaderboards and independent testing as of May 2026.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

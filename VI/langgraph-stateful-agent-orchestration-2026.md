@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/langgraph-stateful-agent-orchestration-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/langgraph-stateful-agent-orchestration-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/langgraph-stateful-agent-orchestration-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/langgraph-stateful-agent-orchestration-2026" />
 title: 'LangGraph 1.2 Trong Production: Orchestration Agent Có T...
 description: 'LangGraph là framework orchestration cấp thấp cho agent AI có trạng thái dài hạn. 32.6k GitHub stars, v1.2.1. Hướng dẫn deploy thực tế bao gồm thiết kế graph, thực thi bền vững, checkpoint human-in-loop, debug LangSmith, và khi nào LangGraph thắng CrewAI / AutoGen / LangChain thuần.'
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
-tech_stack:
-  - Python
+tech_stack: - Python
   - TypeScript
   - PostgreSQL
   - Redis
@@ -29,11 +23,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [langgraph, agent, 'có trạng thái', orchestration, langchain, production]
-aliases:
-  - /posts/langgraph-stateful-agent-orchestration-2026/
+aliases: - /posts/langgraph-stateful-agent-orchestration-2026/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/langgraph-stateful-agent-orchestration-2026/ -->
 
 Nếu bạn xây agent LLM đơn giản và thấy nó quên mọi thứ khi process restart, mất nửa tiến độ khi một tool call timeout, hoặc lặng lẽ làm hỏng trạng thái khi hai event xảy ra đồng thời — bạn đụng tường mà **LangGraph** thiết kế để phá vỡ.
 
@@ -45,8 +36,7 @@ LangGraph là **framework orchestration cấp thấp của team LangChain cho ag
 
 **Là**: Runtime agent dựa graph nơi bạn định nghĩa `node` (hàm Python/TS, thường chứa LLM call), `edge` (chuyển tiếp xác định hoặc LLM quyết định), và `state` object tồn tại qua toàn workflow.
 
-**Không là**:
-- Drop-in thay thế cho LangChain (bổ sung; nhiều LangGraph node wrap component LangChain)
+**Không là**: - Drop-in thay thế cho LangChain (bổ sung; nhiều LangGraph node wrap component LangChain)
 - Tool no-code (developer-first, Python hoặc TypeScript)
 - Tool cấp cao "mô tả agent bằng ngôn ngữ tự nhiên" — đó là lãnh thổ CrewAI
 
@@ -54,9 +44,7 @@ Mô hình tinh thần: **"workflow agent = state machine rõ ràng, không phả
 
 ## 2. Vì Sao "Có Trạng Thái" Quan Trọng (Bug LangGraph Sửa)
 
-Ba mode thất bại giết agent production khi không quản lý trạng thái đúng:
-
-1. **Crash giữa workflow** → agent restart từ 0, làm lại 30 phút công việc, mất mọi tiến độ user thấy
+Ba mode thất bại giết agent production khi không quản lý trạng thái đúng: 1. **Crash giữa workflow** → agent restart từ 0, làm lại 30 phút công việc, mất mọi tiến độ user thấy
 2. **Tool call đồng thời** → đột biến state interleave không thể dự đoán, agent kết thúc ở state không hợp lệ
 3. **Workflow nhiều giờ** → process bị kill bởi idle timeout của cloud provider, không có điểm resume
 
@@ -68,25 +56,19 @@ Ba mode thất bại giết agent production khi không quản lý trạng thái
 
 ```bash
 pip install -U langgraph langchain langchain-openai
-# Hoặc với Postgres checkpointer:
-pip install -U langgraph langgraph-checkpoint-postgres
+# Hoặc với Postgres checkpointer: pip install -U langgraph langgraph-checkpoint-postgres
 ```
 
-Agent có trạng thái tối thiểu — đếm tới 5 với state đã checkpoint sống sót qua restart process:
-
-```python
+Agent có trạng thái tối thiểu — đếm tới 5 với state đã checkpoint sống sót qua restart process: ```python
 from typing import TypedDict
 from langgraph.graph import StateGraph, START, END
 from langgraph.checkpoint.memory import MemorySaver
 
-class State(TypedDict):
-    counter: int
+class State(TypedDict): counter: int
 
-def increment(state: State) -> State:
-    return {"counter": state["counter"] + 1}
+def increment(state: State) -> State: return {"counter": state["counter"] + 1}
 
-def should_continue(state: State) -> str:
-    return "increment" if state["counter"] < 5 else END
+def should_continue(state: State) -> str: return "increment" if state["counter"] < 5 else END
 
 graph = StateGraph(State)
 graph.add_node("increment", increment)
@@ -114,8 +96,7 @@ Mọi giá trị return của node được snapshot. Process chết? Resume t�
 ```python
 from langgraph.types import interrupt
 
-def approval_gate(state):
-    user_decision = interrupt({"proposed_action": state["plan"]})
+def approval_gate(state): user_decision = interrupt({"proposed_action": state["plan"]})
     return {"approved": user_decision}
 ```
 
@@ -127,9 +108,7 @@ Mọi node execution, mọi state transition, mọi LLM call xuất hiện trong
 
 ## 5. Pattern Triển Khai Production
 
-Pattern 4 thành phần mà hầu hết team định cư:
-
-```
+Pattern 4 thành phần mà hầu hết team định cư: ```
 ┌──────────────────────────┐
 │  App / FastAPI của bạn    │
 │  (LangGraph SDK or REST)  │
@@ -188,9 +167,7 @@ Tóm tắt thành thật từ team production 2026: **LangGraph thắng về dur
 
 ## 9. Migration: LangChain Agent → LangGraph
 
-Nếu có pipeline `AgentExecutor` hoặc `create_react_agent` LangChain hoạt động, migration sang LangGraph là cơ học:
-
-1. Định nghĩa state TypedDict (mirror cái bạn hiện chuyền giữa step)
+Nếu có pipeline `AgentExecutor` hoặc `create_react_agent` LangChain hoạt động, migration sang LangGraph là cơ học: 1. Định nghĩa state TypedDict (mirror cái bạn hiện chuyền giữa step)
 2. Wrap mỗi tool/step LangChain làm node LangGraph
 3. Thêm `Checkpointer` (bắt đầu `MemorySaver`, đổi Postgres sau)
 4. Thêm edge mô hình hóa flow control trước đây ngầm trong code LangChain
@@ -215,7 +192,6 @@ Bật {{< aff "digitalocean" "footer-cta" "DigitalOcean droplet" >}} với Postg
 *Muốn thấy LangGraph trong context lớn hơn? Xem [bộ sưu tập AI Agent Tool Chain](/vi/collections/) (sắp ra mắt) để xem nó vừa với MCP server, AgentMemory, sandbox thực thi code thế nào.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

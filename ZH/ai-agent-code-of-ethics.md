@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-agent-code-of-ethics" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-agent-code-of-ethics" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-agent-code-of-ethics" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-agent-code-of-ethics" />
 title: 'AI 智能体道德规范（2026）：构建自主智能体的实用治理框架'
 description: '一套面向工程师的自主 AI 智能体道德规范——不是抽象口号，而是七条可落地的强制规则，每条都对应具体的工程控制：最小权限授权、全程可审计、人在回路的可逆性、有界自主、不可断裂的问责链、失效保护默认值、隐私优先设计。附 2026 年智能体上线前的开发者检查清单。'
 date: 2026-06-04 00:00:00+08:00
 lastmod: 2026-06-04 00:00:00+08:00
-tech_stack:
-  - AI Agents
+tech_stack: - AI Agents
   - LLM
   - Governance
   - Security
@@ -29,10 +23,8 @@ featureImage: ''
 draft: false
 categories: [collections]
 tags: [ai智能体, ai伦理, 负责任ai, ai治理, 智能体安全, 对齐, 道德规范]
-aliases:
-  - /zh/posts/ai-agent-code-of-ethics/
-faqs:
-  - q: 'AI 智能体的道德规范和聊天机器人的道德规范有什么不同？'
+aliases: - /zh/posts/ai-agent-code-of-ethics/
+faqs: - q: 'AI 智能体的道德规范和聊天机器人的道德规范有什么不同？'
     a: '聊天机器人产出的是文字，智能体执行的是动作——它调用工具、转移资金、发送邮件、修改文件、触发真实世界的后果。聊天机器人伦理主要关注"说了什么"（偏见、毒性、虚假信息），而智能体伦理关注"做了什么"：授权、可逆性，以及对不可逆动作的问责。危害面是操作层面的而非信息层面的，所以控制手段必须是工程控制，而不是内容过滤。'
   - q: '什么是 AI 智能体的最小权限授权？'
     a: '最小权限意味着智能体只被授予当前任务所需的最窄权限，并在时间和影响范围上加以限定，而不是宽泛的长期访问权。具体做法：用按任务签发的临时凭证代替长期 API 密钥、默认只读且写操作需显式提权、对花费设硬上限、对工具和域名做白名单、任务结束自动失效。一旦智能体被攻破或失控，最小权限能把损失锁死在可控范围。'
@@ -43,10 +35,7 @@ faqs:
   - q: '什么是 AI 智能体的失效保护默认值？'
     a: '失效保护默认值意味着当智能体面对不确定、丢失上下文、遇到错误或低于置信度阈值时，它会停下并上报，而不是猜测后继续。在不可逆操作上，失败应默认为"不动作"。一个能中途叫停智能体的急停开关，以及可安全重试的幂等操作，是这条原则在工程上的最低表达。'
   - q: '这些伦理原则能用代码强制执行吗，还是只是指导方针？'
-    a: '其中大部分都能用代码强制执行。最小权限是受限凭证加白名单；可审计是对每次工具调用做结构化日志；可逆性是按风险分级的审批闸加撤销/幂等；有界自主是速率和花费上限；失效保护是置信度阈值加急停开关。只有它们背后的意图——判断哪些动作算高风险——需要人来决定。无法强制执行的伦理只是装饰。'
----
-
-<!-- canonical: https://dibi8.com/zh/tools/ai-agent-code-of-ethics/ -->
+    a: '其中大部分都能用代码强制执行。最小权限是受限凭证加白名单；可审计是对每次工具调用做结构化日志；可逆性是按风险分级的审批闸加撤销/幂等；有界自主是速率和花费上限；失效保护是置信度阈值加急停开关。只有它们背后的意图——判断哪些动作算高风险——需要人来决定。无法强制执行的伦理只是装饰。'---
 # AI 智能体道德规范（2026）：构建自主智能体的实用治理框架
 
 
@@ -59,7 +48,15 @@ faqs:
 ## 速览 —— 七条规则
 
 | # | 原则 | 一句话规则 | 由什么强制执行 |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 1 | **授权** | 智能体只在显式授予的最小权限范围内行动 | 按任务签发的凭证、白名单、花费上限 |
 | 2 | **透明** | 每个动作都被记录、可归因、事后可解释 | 对所有工具调用做结构化审计日志 |
 | 3 | **可逆性** | 高风险和不可逆动作需要人类确认 | 按风险分级的审批闸 + 撤销 |
@@ -171,12 +168,11 @@ faqs:
 
 自主智能体的伦理不是一份你发布的声明，而是一套你交付的控制。遵循这七条规则的智能体并没有变得更弱——它是唯一一种组织能负责任地为之署名的强大智能体。
 
----
 
+---
 *本道德规范以 CC-BY-4.0 发布——欢迎自由地把它改编进你自己的智能体治理文档。如果你的团队正在 2026 年交付自主智能体，接入这些控制的正确时机，是在第一次生产运行之前，而不是第一次事故之后。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -204,25 +200,20 @@ faqs:
 
 ## Why This Matters
 
-Understanding ai 智能体道德规范（2026）：构建自主智能体的实用治理框架 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding ai 智能体道德规范（2026）：构建自主智能体的实用治理框架 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -243,17 +234,15 @@ AI 智能体道德规范（2026）：构建自主智能体的实用治理框架 
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
 
 ## Related Articles
 
-Explore more articles in this category:
-
-1. [Ai Agent Tool Chain](/zh/ai-agent-tool-chain)
+Explore more articles in this category: 1. [Ai Agent Tool Chain](/zh/ai-agent-tool-chain)
 2. [Ai Seo Geo Toolkit Stack](/zh/ai-seo-geo-toolkit-stack)
 
 ---
@@ -281,9 +270,7 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
 
 
-When deploying AI agents in production, follow these best practices:
-
-1. **Start Small**: Begin with a single tool and simple prompt, then gradually add complexity
+When deploying AI agents in production, follow these best practices: 1. **Start Small**: Begin with a single tool and simple prompt, then gradually add complexity
 2. **Implement Guardrails**: Use permission prompts and approval workflows for dangerous operations
 3. **Monitor Everything**: Log all agent actions for debugging and compliance
 4. **Handle Failures Gracefully**: Implement retry logic and fallback mechanisms
@@ -291,16 +278,12 @@ When deploying AI agents in production, follow these best practices:
 
 ### Security Considerations
 
-AI agents have access to sensitive systems. Always:
-
-- Use least-privilege principles
+AI agents have access to sensitive systems. Always: - Use least-privilege principles
 - Implement audit logging
 - Encrypt sensitive data at rest and in transit
 - Regular security assessments
 
-When deploying AI agents in production, follow these best practices:
-
-1. **Start Small**: Begin with a single tool and simple prompt, then gradually add complexity
+When deploying AI agents in production, follow these best practices: 1. **Start Small**: Begin with a single tool and simple prompt, then gradually add complexity
 2. **Implement Guardrails**: Use permission prompts and approval workflows for dangerous operations
 3. **Monitor Everything**: Log all agent actions for debugging and compliance
 4. **Handle Failures Gracefully**: Implement retry logic and fallback mechanisms
@@ -308,9 +291,7 @@ When deploying AI agents in production, follow these best practices:
 
 ### Security Considerations
 
-AI agents have access to sensitive systems. Always:
-
-- Use least-privilege principles
+AI agents have access to sensitive systems. Always: - Use least-privilege principles
 - Implement audit logging
 - Encrypt sensitive data at rest and in transit
 - Regular security assessments

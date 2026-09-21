@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/claude-code" />
 title: 'Claude Code: 125K+ Stars — The Terminal AI Coding Agent ...
 description: 'Claude Code is Anthropic agentic coding tool that lives in your terminal. Supports VS Code, Cursor, GitHub, GitLab. Covers installation, benchmarks, and comparison with Aider, OpenHands, and Codex CLI.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['claude-code', 'ai-coding-agent', 'terminal-coding', anthropic, 'claude-tutorial', 'claude-code-vs-aider', 'claude-code-setup']
-aliases:
-- /posts/claude-code/
+aliases: - /posts/claude-code/-
 ---
-
 {{</* resource-info */>}}
 
 ## Introduction
@@ -46,9 +42,7 @@ Claude Code runs as a Node.js CLI process that wraps the Claude API. It maintain
 
 ![Claude Code Desktop Interface](https://cdn.prod.website-files.com/67ed58c92cfedc451ebbbca1/699cc378d1f485eb812d5db2_Screenshot%202026-02-23%20at%202.15.32%E2%80%AFPM.png)
 
-Key architectural components:
-
-- **Context Engine**: Ingests up to 1 million tokens of project context, allowing Claude Code to reason across entire repositories without truncation
+Key architectural components: - **Context Engine**: Ingests up to 1 million tokens of project context, allowing Claude Code to reason across entire repositories without truncation
 - **Tool Use Loop**: A built-in execution cycle where the agent reads files, runs commands, observes output, and decides the next action autonomously
 - **Sub-Agent Orchestration**: Parallel agent execution for independent tasks, such as refactoring one module while writing tests for another
 - **Lifecycle Hooks**: PreToolUse and PostToolUse events that let you intercept and control tool execution for deterministic behavior
@@ -56,7 +50,11 @@ Key architectural components:
 ### Core Concepts
 
 | Concept | Description |
-|---------|-------------|
+|
+---
+|
+---
+|
 | `CLAUDE.md` | Project-level configuration file that defines coding standards, conventions, and custom instructions |
 | Plan Mode (`/plan`) | Claude outlines all intended changes before touching disk, giving you approval control |
 | Slash Commands | Reusable workflow shortcuts like `/init`, `/desktop`, `/mcp`, and `/bug` |
@@ -114,8 +112,7 @@ brew upgrade claude-code
 # Log in with your Anthropic account
 claude auth login
 
-# This opens a browser window. Claude Code requires a paid subscription:
-# - Claude Pro: $20/month
+# This opens a browser window. Claude Code requires a paid subscription: # - Claude Pro: $20/month
 # - Claude Max: $100/month (5x usage)
 # - Claude Max 20x: $200/month (20x usage)
 ```
@@ -153,8 +150,7 @@ The Claude Code extension embeds the CLI session inside your editor sidebar. Ins
 Since Cursor is a VS Code fork, Claude Code runs in Cursor's integrated terminal. The two tools complement each other: Cursor handles inline autocomplete and visual diffs, while Claude Code manages multi-file refactors and autonomous task execution.
 
 ```bash
-# In Cursor's integrated terminal, simply run:
-cd your-project
+# In Cursor's integrated terminal, simply run: cd your-project
 claude
 
 # Both tools operate on the same filesystem without conflict
@@ -168,29 +164,22 @@ Tag `@claude` on GitHub pull requests or issues to trigger Claude Code analysis.
 # Enable the GitHub integration
 claude auth login --github
 
-# In a PR comment, tag:
-@claude please review this change for security issues
+# In a PR comment, tag: @claude please review this change for security issues
 ```
 
 ### GitLab CI/CD Pipeline
 
 ```yaml
 # .gitlab-ci.yml — Run Claude Code for automated code review
-stages:
-  - review
+stages: - review
 
-claude_review:
-  stage: review
+claude_review: stage: review
   image: node:22
-  before_script:
-    - curl -fsSL https://claude.ai/install.sh | bash
+  before_script: - curl -fsSL https://claude.ai/install.sh | bash
     - export PATH="$HOME/.local/bin:$PATH"
     - claude auth login --token $CLAUDE_API_TOKEN
-  script:
-    - claude review --diff HEAD~1 --output review.json
-  artifacts:
-    reports:
-      codequality: review.json
+  script: - claude review --diff HEAD~1 --output review.json
+  artifacts: reports: codequality: review.json
 ```
 
 ### JetBrains IDEs
@@ -198,20 +187,25 @@ claude_review:
 Install the Claude Code plugin from the JetBrains Marketplace. It works with WebStorm, IntelliJ, PyCharm, GoLand, and all other JetBrains products.
 
 ```bash
-# Inside any JetBrains IDE:
-# Settings → Plugins → Marketplace → Search "Claude Code" → Install → Restart
+# Inside any JetBrains IDE: # Settings → Plugins → Marketplace → Search "Claude Code" → Install → Restart
 ```
 
 ## Benchmarks / Real-World Use Cases
 
 ### SWE-bench Verified
 
-SWE-bench Verified is the gold-standard benchmark for AI coding agents, measuring the ability to resolve real GitHub issues. As of March 2026:
-
-![Claude Code in Action - Webinar Demo](https://img.youtube.com/vi/iI_zWNunkc4/maxresdefault.jpg)
+SWE-bench Verified is the gold-standard benchmark for AI coding agents, measuring the ability to resolve real GitHub issues. As of March 2026: ![Claude Code in Action - Webinar Demo](https://img.youtube.com/vi/iI_zWNunkc4/maxresdefault.jpg)
 
 | Agent / Model | SWE-bench Verified | Date | Source |
-|---------------|-------------------|------|--------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Claude Code + Opus 4.6 | **80.8%** | Mar 2026 | Anthropic |
 | Claude Code + Opus 4.5 | 64.3% | Dec 2025 | SWE-bench leaderboard |
 | Codex CLI + GPT-5.5 | 58.6% | Apr 2026 | OpenAI |
@@ -220,10 +214,16 @@ SWE-bench Verified is the gold-standard benchmark for AI coding agents, measurin
 
 ### Terminal-Bench 2.0
 
-Terminal-Bench measures real-world terminal task completion accuracy:
-
-| Agent | Model | Accuracy | Rank |
-|-------|-------|----------|------|
+Terminal-Bench measures real-world terminal task completion accuracy: | Agent | Model | Accuracy | Rank |
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Codex CLI | GPT-5.5 | **82.0%** | #7 |
 | Claude Code | Opus 4.6 | **58.0%** | #51 |
 | Claude Code | Opus 4.5 | 52.1% | #62 |
@@ -231,10 +231,16 @@ Terminal-Bench measures real-world terminal task completion accuracy:
 
 ### Real-World Productivity Metrics
 
-Based on aggregated developer reports from Q1 2026:
-
-| Metric | Claude Code | Aider | Codex CLI |
-|--------|-------------|-------|-----------|
+Based on aggregated developer reports from Q1 2026: | Metric | Claude Code | Aider | Codex CLI |
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Avg. Time to First Commit | 4.2 min | 6.1 min | 3.8 min |
 | Multi-File Refactor Success | 78% | 62% | 71% |
 | Test Pass Rate (Autonomous) | 84% | 71% | 79% |
@@ -274,9 +280,7 @@ The `CLAUDE.md` file is your project's instruction manual for Claude Code. Place
 
 ### Security Sandboxing
 
-Claude Code executes shell commands with your user permissions. For production environments, use sandboxing:
-
-```bash
+Claude Code executes shell commands with your user permissions. For production environments, use sandboxing: ```bash
 # Run Claude Code in a Docker sandbox
 docker run -it --rm \
   -v $(pwd):/workspace \
@@ -337,8 +341,7 @@ docker run -it --rm \
 # Check current session token consumption
 claude status
 
-# Output:
-# Session: 42m 12s
+# Output: # Session: 42m 12s
 # Input tokens: 145,230 (cache hit: 67%)
 # Output tokens: 28,441
 # Estimated cost: $0.42
@@ -350,7 +353,17 @@ claude status
 ### Head-to-Head Feature Comparison
 
 | Feature | Claude Code | Aider | OpenHands | Codex CLI |
-|---------|-------------|-------|-----------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **GitHub Stars** | 125,050 | 32,800 | 73,913 | 83,000 |
 | **License** | Anthropic Terms | Apache-2.0 | MIT | Apache-2.0 |
 | **Model Support** | Claude only | Any LLM | Any LLM | OpenAI only |
@@ -399,9 +412,7 @@ claude status
 
 ## Limitations / Honest Assessment
 
-Claude Code is a powerful tool, but it is not the right choice for every developer or team. Here is what the marketing materials do not tell you:
-
-1. **Subscription Lock-in**: Claude Code requires a paid Anthropic subscription. The $20/month Pro tier is the entry point, and heavy users need the $100 or $200 Max tiers. Unlike Aider or OpenHands, you cannot bring your own API key and pay only for what you use.
+Claude Code is a powerful tool, but it is not the right choice for every developer or team. Here is what the marketing materials do not tell you: 1. **Subscription Lock-in**: Claude Code requires a paid Anthropic subscription. The $20/month Pro tier is the entry point, and heavy users need the $100 or $200 Max tiers. Unlike Aider or OpenHands, you cannot bring your own API key and pay only for what you use.
 
 2. **Claude-Only Models**: You cannot switch to GPT-5, Gemini, or a local model. If Claude Opus 4.6 struggles with a specific task, you have no fallback option within the same tool.
 
@@ -455,9 +466,7 @@ For teams already standardized on Anthropic models, Claude Code is the natural c
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -476,12 +485,11 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [Anthropic Pricing Page](https://www.anthropic.com/pricing)
 - [Claude Code Desktop App Download](https://claude.com/download)
 
----
 
+---
 *Disclaimer: This article contains no affiliate links. All pricing and benchmark data reflect publicly available information as of May 2026. Verify current pricing on official vendor websites before making purchase decisions.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -507,8 +515,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [claude-code-vs-cline](claude-code)

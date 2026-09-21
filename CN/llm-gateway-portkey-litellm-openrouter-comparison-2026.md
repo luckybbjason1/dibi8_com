@@ -1,12 +1,9 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/llm-gateway-portkey-litellm-openrouter-comparison-2026" />
 title: 'Portkey vs LiteLLM vs OpenRouter 2026: The Honest LLM Ga...
 description: 'Direct comparison of the three biggest LLM gateways in 2026. Real numbers: Portkey adds <1ms latency, LiteLLM 8ms P95, OpenRouter 100-150ms. Decision tree by use case, cost breakdown at $1K/mo spend, and when 9Router beats all three.'
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
-tech_stack:
-  - Python
+tech_stack: - Python
   - TypeScript
   - Docker
   - Kubernetes
@@ -26,8 +23,7 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['llm gateway', portkey, litellm, openrouter, comparison]
-aliases:
-  - /posts/llm-gateway-portkey-litellm-openrouter-comparison-2026/
+aliases: - /posts/llm-gateway-portkey-litellm-openrouter-comparison-2026/
 ---
 # Portkey vs LiteLLM vs OpenRouter 2026: The Honest LLM Gateway Decision Guide (Latency, Cost & Self-Hosting)
 
@@ -38,9 +34,7 @@ If you only have 60 seconds, read the table in section 2 and pick the one matchi
 
 ## 1. Why You Need an LLM Gateway at All
 
-Three reasons applications outgrow direct provider SDKs around month 3:
-
-1. **Vendor lock-in pain** — your code is OpenAI-shaped and Claude 4.7 just released. Now what?
+Three reasons applications outgrow direct provider SDKs around month 3: 1. **Vendor lock-in pain** — your code is OpenAI-shaped and Claude 4.7 just released. Now what?
 2. **Reliability** — every provider has a 99.5% SLA. Run three in parallel without failover and you compound failure, not redundancy.
 3. **Cost & observability** — your finance team wants per-team spend tracking. Your SDK doesn't do that.
 
@@ -49,7 +43,11 @@ An LLM gateway sits between your app and N providers, exposing one unified API (
 ## 2. The 30-Second Decision Tree
 
 | Your situation | Pick |
-|---|---|
+|
+---
+|
+---
+|
 | Enterprise, compliance-heavy, SOC2/HIPAA needed | **Portkey** |
 | Self-host preferred, zero vendor markup, infra team available | **LiteLLM** |
 | Solo dev / startup, want instant access to 300+ models | **OpenRouter** |
@@ -62,9 +60,7 @@ The rest of this article justifies every cell in that table.
 
 **The pitch**: One control plane for 1,600+ LLMs with <1ms gateway latency and 50+ built-in guardrails. SOC2, HIPAA, GDPR, CCPA compliant out of the box.
 
-**Real numbers** (from their public docs and our testing):
-
-- **GitHub stars**: 11.8k (MIT license, open-source core)
+**Real numbers** (from their public docs and our testing): - **GitHub stars**: 11.8k (MIT license, open-source core)
 - **Gateway latency**: <1ms added (122kb footprint runtime)
 - **Pricing**: Free open-source. Cloud platform fee ≈ $49/month at $1K/month API spend
 - **Compliance**: SOC2 Type II, HIPAA, GDPR, CCPA
@@ -80,9 +76,7 @@ For the full Portkey deep-dive — production deployment, guardrails configurati
 
 **The pitch**: An open-source proxy server that exposes 100+ LLM providers behind one OpenAI-compatible API. Self-host it, zero vendor markup.
 
-**Real numbers**:
-
-- **GitHub stars**: 47.8k (the most-starred of the three by a wide margin)
+**Real numbers**: - **GitHub stars**: 47.8k (the most-starred of the three by a wide margin)
 - **Gateway latency**: 8ms P95 at 1,000 RPS (their public benchmark) — in our testing, the proxy adds 10–20ms in practice
 - **Pricing**: Free if self-hosted. Enterprise tier (SSO, professional support) is custom-priced
 - **Self-host stack**: Python proxy + PostgreSQL for spend tracking + Redis for caching
@@ -100,9 +94,7 @@ For the full LiteLLM deep-dive — including Docker compose, virtual keys, and s
 
 **The pitch**: One API key. 300+ models. No infrastructure. You pay per-token through OpenRouter at provider list price + 5.5% credit-purchase fee.
 
-**Real numbers**:
-
-- **Models**: 300+ including open-weights frontier models (DeepSeek-V4, Llama 4, Qwen 3) and proprietary (GPT-5, Claude 4.7, Gemini 2 Pro)
+**Real numbers**: - **Models**: 300+ including open-weights frontier models (DeepSeek-V4, Llama 4, Qwen 3) and proprietary (GPT-5, Claude 4.7, Gemini 2 Pro)
 - **Gateway latency**: 100–150ms added in our testing (this is the real cost — they're a hosted service in front of provider APIs)
 - **Pricing**: Provider list price + **5.5% fee on credit purchases via card** (crypto top-ups bypass this fee)
 - **No public SLA** — community reports occasional 5xx clustering during provider outages
@@ -117,7 +109,15 @@ For the full OpenRouter walkthrough including free-model routing tricks, see our
 ## 6. Head-to-Head: The Numbers Table
 
 | Metric | Portkey | LiteLLM | OpenRouter |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | GitHub stars | 11.8k | **47.8k** | N/A (closed-source service) |
 | License | MIT | OSS core (custom enterprise) | Proprietary |
 | Models supported | 1,600+ | 100+ providers | 300+ specific models |
@@ -153,21 +153,18 @@ If 60%+ of your monthly LLM spend is coding agents, 9Router will probably save y
 
 ## TL;DR
 
-Three gateways. Three honest defaults:
-
-- **You're an enterprise** → Portkey
+Three gateways. Three honest defaults: - **You're an enterprise** → Portkey
 - **You're cost-sensitive at scale** → LiteLLM
 - **You're moving fast and want everything** → OpenRouter
 - **You're burning tokens on coding agents** → 9Router
 
 There's no universally best LLM gateway. There's the one that matches your row in section 2's decision tree. Pick that one, ship, and re-evaluate when your monthly inference bill crosses $5,000.
 
----
 
+---
 *Want to test these in production without commitment? Spin up a $6/month [DigitalOcean droplet](https://m.do.co/c/eca87ac14ee0) with LiteLLM, point your existing OpenAI SDK at it, and watch your fallback options expand without touching application code.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -193,8 +190,8 @@ There's no universally best LLM gateway. There's the one that matches your row i
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [12-factor-agents-production-llm-software-2026](llm-gateway-portkey-litellm-openrouter-comparison-2026)

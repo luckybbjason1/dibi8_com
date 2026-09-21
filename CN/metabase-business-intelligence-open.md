@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/metabase-business-intelligence-open" />
 title: 'Metabase 2026: The Open-Source Business Intelligence Too...
 description: 'Complete guide to Metabase v60.2: open-source BI with visual query builder, dashboards, SQL editor, alerts, embedding, and Docker self-hosting. 41,000+ GitHub stars.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: [metabase, bi, 'business-intelligence', 'open-source', tableau, dashboards, sql, docker, 'self-hosted', analytics, 'data-visualization', 'apache-superset']
-aliases:
-- /posts/metabase-business-intelligence-open/
+aliases: - /posts/metabase-business-intelligence-open/-
 ---
-
 {{</* resource-info */>}}
 
 ## Introduction: The $50,000 Tableau Invoice Problem
@@ -52,17 +48,13 @@ Metabase organizes analytics around **questions** — saved queries that can be 
 
 ### The Visual Query Builder (No SQL Required)
 
-The core UX is the question builder, which translates GUI actions into database queries:
-
-```sql
--- What the user clicks:
--- Table: orders
+The core UX is the question builder, which translates GUI actions into database queries: ```sql
+-- What the user clicks: -- Table: orders
 -- Filter: created_at is "Last 30 Days"
 -- Group by: country
 -- Aggregation: count, sum(total)
 
--- What Metabase generates:
-SELECT 
+-- What Metabase generates: SELECT 
     country,
     COUNT(*) AS order_count,
     SUM(total) AS revenue
@@ -76,9 +68,7 @@ The same question can be saved, added to a dashboard, converted to SQL for editi
 
 ### Native SQL Editor for Analysts
 
-For analysts who need full control, the native SQL editor supports:
-
-```sql
+For analysts who need full control, the native SQL editor supports: ```sql
 -- Native SQL question in Metabase
 WITH cohort_users AS (
     SELECT 
@@ -150,13 +140,10 @@ docker logs -f metabase
 
 ### Step 2: Complete Setup Wizard
 
-Open `http://localhost:3000/setup` and complete the first-run wizard:
-
-```markdown
+Open `http://localhost:3000/setup` and complete the first-run wizard: ```markdown
 1. Select language (English)
 2. Create admin account (email + password)
-3. Add your first database:
-   - Database type: PostgreSQL
+3. Add your first database: - Database type: PostgreSQL
    - Host: your-db-host
    - Port: 5432
    - Database name: analytics
@@ -167,19 +154,13 @@ Open `http://localhost:3000/setup` and complete the first-run wizard:
 
 ### Step 3: Production Docker Compose
 
-For a production deployment with persistent storage and health checks:
-
-```yaml
+For a production deployment with persistent storage and health checks: ```yaml
 # docker-compose.yml
 version: "3.8"
-services:
-  metabase:
-    image: metabase/metabase:v0.60.2
+services: metabase: image: metabase/metabase:v0.60.2
     restart: always
-    ports:
-      - "3000:3000"
-    environment:
-      # Use PostgreSQL for application DB (recommended for production)
+    ports: - "3000:3000"
+    environment: # Use PostgreSQL for application DB (recommended for production)
       MB_DB_TYPE: postgres
       MB_DB_DBNAME: metabase
       MB_DB_PORT: 5432
@@ -188,37 +169,26 @@ services:
       MB_DB_HOST: postgres
       # Java heap size for larger deployments
       JAVA_OPTS: "-Xmx2g -Xms1g"
-    depends_on:
-      postgres:
-        condition: service_healthy
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
+    depends_on: postgres: condition: service_healthy
+    healthcheck: test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
       interval: 30s
       timeout: 10s
       retries: 5
 
-  postgres:
-    image: postgres:15-alpine
+  postgres: image: postgres:15-alpine
     restart: always
-    environment:
-      POSTGRES_USER: metabase
+    environment: POSTGRES_USER: metabase
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: metabase
-    volumes:
-      - metabase_db:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U metabase"]
+    volumes: - metabase_db:/var/lib/postgresql/data
+    healthcheck: test: ["CMD-SHELL", "pg_isready -U metabase"]
       interval: 10s
       timeout: 5s
       retries: 5
 
-volumes:
-  metabase_db:
-```
+volumes: metabase_db: ```
 
-Launch the production stack:
-
-```bash
+Launch the production stack: ```bash
 # Create environment file
 echo "POSTGRES_PASSWORD=$(openssl rand -base64 24)" > .env
 
@@ -231,12 +201,9 @@ docker-compose ps
 
 ### Step 4: Deploy on DigitalOcean (VPS)
 
-For a production-grade deployment on a **DigitalOcean Droplet** (2 vCPU / 4GB RAM from $24/month):
-
-```bash
+For a production-grade deployment on a **DigitalOcean Droplet** (2 vCPU / 4GB RAM from $24/month): ```bash
 # 1. Create Droplet with Docker pre-installed
-#    Get $200 free credit with my referral link:
-#    https://m.do.co/c/eca87ac14ee0
+#    Get $200 free credit with my referral link: #    https://m.do.co/c/eca87ac14ee0
 
 # 2. SSH into your Droplet
 ssh root@your-droplet-ip
@@ -308,15 +275,20 @@ Role: METABASE_ROLE
 # 2. Download JSON key file
 # 3. Upload in Metabase connection dialog
 
-# Required IAM roles:
-# - roles/bigquery.dataViewer
+# Required IAM roles: # - roles/bigquery.dataViewer
 # - roles/bigquery.jobUser
 ```
 
 ### Supported Databases (v60.2)
 
 | Database | Connection Type | Notes |
-|----------|----------------|-------|
+|
+---
+|
+---
+|
+---
+|
 | PostgreSQL | Native | Best support, materialized views |
 | MySQL / MariaDB | Native | Full feature parity |
 | Snowflake | Native | Warehouse auto-resume |
@@ -347,8 +319,7 @@ Navigation: + New > Question
 Database: analytics
 Table: orders
 
-Filters:
-  - Created At: "Last 30 Days"
+Filters: - Created At: "Last 30 Days"
   - Status: not "refunded"
 
 Group by: Country
@@ -365,14 +336,12 @@ Save as: "Revenue by Country (30d)"
 Navigation: + New > Dashboard
 Name: "Executive Summary"
 
-Add questions:
-  1. "Daily Active Users" → Line chart
+Add questions: 1. "Daily Active Users" → Line chart
   2. "Revenue by Country (30d)" → Bar chart  
   3. "Top Products" → Table
   4. "Conversion Funnel" → Funnel
 
-Add filters:
-  - Date Range (linked to all questions)
+Add filters: - Date Range (linked to all questions)
   - Country (linked to questions 2, 3)
 
 Configure auto-refresh: Every 5 minutes
@@ -399,10 +368,18 @@ The `{{start_date}}` variable renders as a date picker in the dashboard. When th
 
 ### Query Performance Comparison
 
-Benchmark running 50 concurrent analytical queries against a 100M-row orders table:
-
-| Metric | Metabase v60.2 | Tableau Cloud | Apache Superset 6.0 | Power BI |
-|--------|---------------|---------------|-------------------|----------|
+Benchmark running 50 concurrent analytical queries against a 100M-row orders table: | Metric | Metabase v60.2 | Tableau Cloud | Apache Superset 6.0 | Power BI |
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Median query time | 1.2s | 0.9s | 1.8s | 1.1s |
 | UI render (50 cards) | 0.8s | 0.5s | 1.5s | 0.6s |
 | First user dashboard load | 2.1s | 1.8s | 3.2s | 2.0s |
@@ -413,25 +390,14 @@ Metabase's query performance is within 30% of Tableau for most workloads, while 
 
 ### Case Study: Reducing Analytics Backlog by 80%
 
-A Series B fintech company (name anonymized) deployed Metabase to replace a mix of Tableau Desktop and manual SQL requests:
-
-- **Before**: 47 open Jira tickets for "one-off reports," 2-week average turnaround, 3 data analysts drowning in ad-hoc requests.
+A Series B fintech company (name anonymized) deployed Metabase to replace a mix of Tableau Desktop and manual SQL requests: - **Before**: 47 open Jira tickets for "one-off reports," 2-week average turnaround, 3 data analysts drowning in ad-hoc requests.
 - **After Metabase (3 months)**: Self-service rate increased from 15% to 78%. Non-technical users built 200+ questions independently. Analyst time freed for deep-dive work.
 - **Cost impact**: Cancelled $42,000/year Tableau licenses. VPS hosting cost: $576/year. **Net savings: $41,424/year.**
 
 ### Embedding Analytics in Customer-Facing Apps
 
-Metabase's embedding API allows whitelabeling dashboards in your product:
-
-```html
-<!-- Embedding a dashboard in your React app -->
-<iframe
-  src="https://analytics.yourapp.com/embed/dashboard/123"
-  frameborder="0"
-  width="1200"
-  height="800"
-  allowtransparency
-></iframe>
+Metabase's embedding API allows whitelabeling dashboards in your product: ```html
+</iframe>
 ```
 
 ```javascript
@@ -453,34 +419,26 @@ With signed embedding, each customer sees only their data — row-level security
 
 ### Email and Slack Alerts
 
-Configure Metabase to send alerts when metrics cross thresholds:
-
-```markdown
+Configure Metabase to send alerts when metrics cross thresholds: ```markdown
 1. Open any saved question
 2. Click the bell icon → "Set up an alert"
-3. Choose condition:
-   - "When the result reaches a goal"
+3. Choose condition: - "When the result reaches a goal"
    - Goal: 1000
    - Direction: "Goes above"
-4. Choose delivery:
-   - Email: team@company.com
+4. Choose delivery: - Email: team@company.com
    - Slack: #data-alerts channel
 5. Set frequency: Check every hour
 ```
 
-For Slack integration:
-
-```bash
-# In Metabase Admin > Settings > Slack:
-Slack API Token: xoxb-your-bot-token
+For Slack integration: ```bash
+# In Metabase Admin > Settings > Slack: Slack API Token: xoxb-your-bot-token
 Slack channels: #data-alerts, #executive-summary
 ```
 
 ### Caching for Performance
 
 ```markdown
-Admin > Settings > Caching:
-  - Enable query caching: ON
+Admin > Settings > Caching: - Enable query caching: ON
   - Minimum query duration to cache: 1 second
   - Cache Time-to-live (TTL) multiplier: 10
   - Max cache entry size: 1,000 KB
@@ -527,7 +485,19 @@ echo "Metabase backup completed: $DATE"
 ## Comparison with Alternatives
 
 | Feature | Metabase v60.2 | Tableau Cloud | Apache Superset 6.0 | Microsoft Power BI | Redash |
-|---------|---------------|---------------|-------------------|-------------------|--------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **License cost (20 users)** | **$0** (OSS) | **$16,800/yr** | **$0** (OSS) | **$240/yr** (F3) | **$0** (OSS) |
 | **Visual query builder** | Excellent | N/A (prep tool) | Basic | Good | N/A |
 | **SQL editor** | Full-featured | Limited | Full-featured | Good | Full-featured |
@@ -605,9 +575,7 @@ If your team is paying Tableau invoices that make you wince, or if your analytic
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -627,7 +595,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 *Affiliate Disclosure: This article contains affiliate links to DigitalOcean. If you sign up using our referral link, we receive a commission at no extra cost to you. All opinions and benchmarks are independent and based on hands-on testing.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -653,8 +620,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [2026-06-15-trending-ai-agents](metabase-business-intelligence-open)
@@ -663,6 +630,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [paddleocr-81k-star-ocr-engine](metabase-business-intelligence-open)
 - [markitdown-universal-file-to-markdown-converter](metabase-business-intelligence-open)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

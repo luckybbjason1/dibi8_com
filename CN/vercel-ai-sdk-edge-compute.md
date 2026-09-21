@@ -1,40 +1,31 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/vercel-ai-sdk-edge-compute" />
 title: Vercel AI SDK — Build Streaming AI Apps with Edge-First A...
 description: Complete guide to Vercel AI SDK for building production AI applications. Stream LLM responses, integrate multiple providers, and deploy to edge with zero config. Supports React, Next.js, and any framework.
 tags: ['ai-sdk', 'streaming', 'vercel', 'edge-compute', 'react', 'llm']
 category: llm-frameworks
 featureImage: /images/articles/vercel-ai-sdk-edge-compute.jpg
 date: 2026-07-15T00:00:00+00:00
-lastmod:  2026-07-15T00:00:00+00:00slug: vercel-ai-sdk-edge-compute
----
-
+lastmod: 2026-07-15T00:00:00+00:00
+slug: vercel-ai-sdk-edge-compute---
 ## TL;DR
 
 Vercel AI SDK is a unified library for building AI-powered user interfaces with streaming support across all major frameworks. It provides type-safe APIs for integrating LLM providers (OpenAI, Anthropic, Google, AWS), automatic response streaming, built-in UI components for React, and seamless deployment to edge runtimes. The key advantage: one SDK works everywhere — Next.js App Router, Remix, SvelteKit, Nuxt, or any framework that supports fetch.
 
----
 
+---
 ## What Is Vercel AI SDK?
 
-Vercel AI SDK is an open-source library that abstracts the complexity of building AI applications. At its core, it provides three main capabilities:
-
-1. **Provider-agnostic API**: Write code once, deploy to any LLM provider
+Vercel AI SDK is an open-source library that abstracts the complexity of building AI applications. At its core, it provides three main capabilities: 1. **Provider-agnostic API**: Write code once, deploy to any LLM provider
 2. **Streaming-first architecture**: Responses stream token-by-token to the frontend
 3. **Framework integration**: Native support for React, Next.js, Vue, Svelte, and SolidJS
 
 ### Why Edge-First Matters for AI Apps
 
-Traditional AI apps follow this pattern:
-
-```
+Traditional AI apps follow this pattern: ```
 User → Web Server → API Route → LLM Provider → Response
 ```
 
-Each hop adds latency. Vercel's edge-first approach eliminates the middleman:
-
-```
+Each hop adds latency. Vercel's edge-first approach eliminates the middleman: ```
 User → Edge Function → LLM Provider → Streaming Response
 ```
 
@@ -61,8 +52,8 @@ const result = await streamText({
 
 The same `streamText` function works identically whether you're calling GPT-4o, Claude 3.5 Sonnet, or Gemini 1.5 Pro. Swap providers by changing one line.
 
----
 
+---
 ## Getting Started
 
 ### Step 1: Install Dependencies
@@ -81,9 +72,7 @@ npm install zod
 
 ### Step 2: Configure Your First Chat API
 
-Create `app/api/chat/route.ts`:
-
-```typescript
+Create `app/api/chat/route.ts`: ```typescript
 import { streamText } from "ai";
 import { createOpenAI } from "@ai-sdk/openai";
 
@@ -112,9 +101,7 @@ That's it. One file, 20 lines of code, and you have a fully streaming chat API.
 
 ### Step 3: Build the Frontend
 
-Create `app/page.tsx`:
-
-```typescript
+Create `app/page.tsx`: ```typescript
 "use client";
 
 import { useChat } from "ai/react";
@@ -169,9 +156,7 @@ The `useChat` hook handles everything: state management, streaming updates, erro
 
 ### Pattern 1: Multi-Provider Routing
 
-Route requests to different models based on task type:
-
-```typescript
+Route requests to different models based on task type: ```typescript
 import { createOpenAI } from "@ai-sdk/openai";
 import { createAnthropic } from "@ai-sdk/anthropic";
 import { createGoogleGenerativeAI } from "@ai-sdk/google";
@@ -209,9 +194,7 @@ export async function POST(req: Request) {
 
 ### Pattern 2: Structured Output with Zod
 
-Validate and parse LLM responses into typed objects:
-
-```typescript
+Validate and parse LLM responses into typed objects: ```typescript
 import { z } from "zod";
 import { generateObject } from "ai";
 import { createOpenAI } from "@ai-sdk/openai";
@@ -244,9 +227,7 @@ The response is guaranteed to match the schema — TypeScript types flow end-to-
 
 ### Pattern 3: RAG Pipeline with Embeddings
 
-Build retrieval-augmented generation in a single route:
-
-```typescript
+Build retrieval-augmented generation in a single route: ```typescript
 import { embed, embedMany, streamText } from "ai";
 import { createOpenAI } from "@ai-sdk/openai";
 import { cosineSimilarity } from "ai/embeddings";
@@ -305,8 +286,7 @@ export async function POST(req: Request) {
     system: `Answer using only the following context. 
     If the context doesn't contain relevant information, say so.
     
-    Context:
-    ${context.join("\n\n")}
+    Context: ${context.join("\n\n")}
     `,
   });
 
@@ -316,9 +296,7 @@ export async function POST(req: Request) {
 
 ### Pattern 4: Agent Tool Calling
 
-Give your LLM access to external tools:
-
-```typescript
+Give your LLM access to external tools: ```typescript
 import { streamText, tool } from "ai";
 import { createOpenAI } from "@ai-sdk/openai";
 import { z } from "zod";
@@ -330,7 +308,7 @@ const result = streamText({
   messages,
   tools: {
     searchWeb: tool({
-      description: "Search the web for current information",
+      description: "Search the web for current information"
       parameters: z.object({
         query: z.string().describe("Search query"),
         maxResults: z.number().default(5),
@@ -343,7 +321,7 @@ const result = streamText({
       },
     }),
     calculate: tool({
-      description: "Perform mathematical calculations",
+      description: "Perform mathematical calculations"
       parameters: z.object({
         expression: z.string().describe("Mathematical expression"),
       }),
@@ -356,7 +334,7 @@ const result = streamText({
       },
     }),
     getWeather: tool({
-      description: "Get current weather for a location",
+      description: "Get current weather for a location"
       parameters: z.object({
         city: z.string().describe("City name"),
         country: z.string().describe("Country code"),
@@ -381,9 +359,7 @@ Each tool executes server-side, keeping API keys secure while giving the LLM rea
 
 ### Using Built-in UI Components
 
-The SDK ships with React components for common AI patterns:
-
-```bash
+The SDK ships with React components for common AI patterns: ```bash
 npm install @ai-sdk/react
 ```
 
@@ -431,9 +407,7 @@ export function AIChat() {
 
 ### Custom Streaming Component
 
-For full control over rendering:
-
-```typescript
+For full control over rendering: ```typescript
 import { readDataStream } from "ai";
 
 export async function StreamingComponent() {
@@ -528,7 +502,13 @@ CMD ["npm", "start"]
 ### Latency Comparison
 
 | Configuration | First Token (p50) | Full Response (p95) |
-|---------------|-------------------|--------------------|
+|
+---
+|
+---
+|
+---
+|
 | Vercel Edge + GPT-4o | 320ms | 4.2s |
 | AWS Lambda + GPT-4o | 580ms | 5.8s |
 | EC2 t3.large + GPT-4o | 450ms | 4.5s |
@@ -539,7 +519,11 @@ Edge deployment consistently wins for interactive applications where first-token
 ### Cost per 1K Requests
 
 | Provider | Cost per 1K requests (100 tokens avg) |
-|----------|---------------------------------------|
+|
+---
+|
+---
+|
 | GPT-4o | $1.20 |
 | Claude Sonnet 4 | $0.80 |
 | Gemini 2.0 Flash | $0.15 |
@@ -557,9 +541,7 @@ Use the multi-provider routing pattern to automatically select the cheapest mode
 Access to fetch at 'http://localhost:3000/api/chat' from origin 'http://localhost:5173' has been blocked by CORS policy
 ```
 
-**Fix**: Ensure your API route returns proper CORS headers:
-
-```typescript
+**Fix**: Ensure your API route returns proper CORS headers: ```typescript
 export async function POST(req: Request) {
   const corsHeaders = {
     "Access-Control-Allow-Origin": "*",
@@ -577,10 +559,7 @@ export async function POST(req: Request) {
 
 ### Issue 2: Streaming Not Working in Production
 
-If the frontend shows the full response at once instead of streaming:
-
-**Check 1**: Verify the API route returns a `ReadableStream`:
-```bash
+If the frontend shows the full response at once instead of streaming: **Check 1**: Verify the API route returns a `ReadableStream`: ```bash
 curl -X POST http://your-domain/api/chat \
   -H "Content-Type: application/json" \
   -d '{"messages":[{"role":"user","content":"test"}]}' \
@@ -591,9 +570,7 @@ curl -X POST http://your-domain/api/chat \
 
 ### Issue 3: Model Timeout on Edge Functions
 
-Edge functions have a 60-second timeout. For long-running models:
-
-```typescript
+Edge functions have a 60-second timeout. For long-running models: ```typescript
 const result = streamText({
   model: openai("o3-mini"),
   messages,
@@ -610,9 +587,7 @@ For longer operations, offload to a queue-based pattern: submit the request, pol
 Argument of type '"gpt-4-turbo"' is not assignable to parameter of type...
 ```
 
-**Fix**: Ensure you're using the correct model identifiers for your provider version:
-
-```bash
+**Fix**: Ensure you're using the correct model identifiers for your provider version: ```bash
 # Update to latest AI SDK
 npm update ai @ai-sdk/openai
 ```
@@ -649,9 +624,7 @@ Check the provider's documentation for supported model names — they change fre
 
 ## Community Updates
 
-The AI SDK ecosystem has matured significantly:
-
-- **Provider coverage**: 15+ official provider integrations including OpenAI, Anthropic, Google, AWS Bedrock, Cohere, Mistral, Groq, and Ollama
+The AI SDK ecosystem has matured significantly: - **Provider coverage**: 15+ official provider integrations including OpenAI, Anthropic, Google, AWS Bedrock, Cohere, Mistral, Groq, and Ollama
 - **Community packages**: 200+ community-contributed tools, utilities, and integrations
 - **Framework support**: Official adapters for Next.js, Remix, SvelteKit, Nuxt, Astro, and Qwik
 - **Enterprise adoption**: Used by companies like Stripe, Shopify, and Notion for production AI features
@@ -672,9 +645,7 @@ The SDK uses Server-Sent Events (SSE) via `ReadableStream`. When you call `strea
 
 ### Q: Can I cache LLM responses to reduce costs?
 
-Yes. Implement caching at the API route level:
-
-```typescript
+Yes. Implement caching at the API route level: ```typescript
 import { cache } from "react-cache"; // Or any caching solution
 
 const cachedChat = cache(async (messages: any[]) => {
@@ -696,9 +667,7 @@ Yes. The AI SDK is MIT-licensed and completely free. You only pay for the underl
 
 ### Q: How do I handle authentication for my AI app?
 
-Use middleware to protect your API routes:
-
-```typescript
+Use middleware to protect your API routes: ```typescript
 // middleware.ts
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
@@ -731,7 +700,6 @@ For production apps, combine JWT authentication with rate limiting to prevent ab
 *Join our Telegram Group for real-time AI tool discussions and deployment tips: [t.me/dibi8](https://t.me/dibi8)*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,12 +1,9 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/terax-ai-lightweight-ai-terminal" />
-title: "Terax AI: The Lightweight AI Terminal Emulator That Unde...
+title: "Terax AI: The Lightweight AI Terminal Emulator That Unde..."
 description: "Discover Terax AI, a 7 MB AI-native terminal emulator built on Tauri 2 + Rust. Features natural language commands, inline AI assistance, smart autocomplete, and cross-shell support for bash, zsh, fish, and PowerShell."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Docker
+tech_stack: - Docker
   - Go
   - Java
   - JavaScript
@@ -27,10 +24,8 @@ maintainer: "crynta"
 last_maintained: "2026-05-16"
 featureImage: ""
 draft: false
-aliases:
-- /posts/terax-ai-lightweight-ai-terminal/
-faqs:
-  - q: 'What is Terax AI?'
+aliases: - /posts/terax-ai-lightweight-ai-terminal/
+faqs: - q: 'What is Terax AI?'
     a: 'Terax AI is an open-source, AI-native terminal emulator built on Tauri 2 with a Rust backend and a React 19 frontend. It combines a native PTY terminal with multi-tab support, an integrated code editor, a file explorer, and a first-class AI side-panel.'
   - q: 'Does Terax AI send my data or API keys to the cloud?'
     a: 'No. Terax follows a Bring Your Own Key (BYOK) model with zero telemetry, and your API keys are stored securely in the OS keychain via the keyring system rather than on disk or in localStorage. You can also run fully offline by pointing Terax to a local LM Studio inference endpoint.'
@@ -75,9 +70,7 @@ Beyond traditional path and command completion, Terax offers AI-enhanced autocom
 
 ### Cross-Shell Support
 
-Terax is truly shell-agnostic. It works seamlessly with:
-
-- **bash** and **zsh** (with shell integration via injected init scripts)
+Terax is truly shell-agnostic. It works seamlessly with: - **bash** and **zsh** (with shell integration via injected init scripts)
 - **fish** (native compatibility)
 - **PowerShell 7+** and **Windows PowerShell 5.1**
 - **cmd.exe** (Windows fallback)
@@ -96,9 +89,7 @@ Terax ships with a built-in code editor (CodeMirror 6) supporting TS/JS, Rust, P
 
 ### Prerequisites
 
-Before building from source, ensure you have the following installed:
-
-- **Rust** (stable) — install via [rustup.rs](https://rustup.rs)
+Before building from source, ensure you have the following installed: - **Rust** (stable) — install via [rustup.rs](https://rustup.rs)
 - **Node.js 20+** and **pnpm**
 - Platform-specific Tauri prerequisites — see [tauri.app/start/prerequisites](https://tauri.app/start/prerequisites/)
 
@@ -139,7 +130,19 @@ cd src-tauri && cargo clippy
 ## Comparison: Terax AI vs Alternatives
 
 | Feature | Terax AI | iTerm2 | Warp | Fig | GitHub Copilot CLI |
-|---|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Bundle Size** | ~7 MB | ~50 MB | ~150 MB | ~80 MB | ~20 MB |
 | **AI Integration** | Native side-panel | None | Cloud AI | Limited | CLI-only |
 | **Cross-Platform** | macOS, Win, Linux | macOS only | macOS, Linux | macOS, Linux | All platforms |
@@ -177,9 +180,7 @@ Organizations with strict data privacy requirements can deploy Terax with **loca
 
 ## Technical Architecture Deep Dive
 
-Understanding what makes Terax special requires looking under the hood. The architecture is deliberately layered for performance and extensibility:
-
-**Rust Backend Layer** — The core PTY (Pseudo Terminal) management runs on Rust via `portable-pty`, providing native-speed shell integration without the memory bloat of Electron or Java-based terminals. Rust's ownership model eliminates an entire class of memory safety bugs that plague traditional terminal emulators.
+Understanding what makes Terax special requires looking under the hood. The architecture is deliberately layered for performance and extensibility: **Rust Backend Layer** — The core PTY (Pseudo Terminal) management runs on Rust via `portable-pty`, providing native-speed shell integration without the memory bloat of Electron or Java-based terminals. Rust's ownership model eliminates an entire class of memory safety bugs that plague traditional terminal emulators.
 
 **Tauri 2 Framework** — Unlike Electron which bundles an entire Chromium instance (100+ MB), Tauri 2 uses the operating system's native WebView. On macOS that's WKWebView, on Windows it's WebView2, and on Linux it's WebKitGTK. This architectural choice alone explains the ~7 MB bundle size.
 
@@ -225,9 +226,7 @@ Understanding what makes Terax special requires looking under the hood. The arch
 
 ## Getting Started Tips
 
-To get the most out of Terax AI from day one:
-
-1. **Create a `TERAX.md` file** in your project root with context about your tech stack, conventions, and frequently used commands. The AI will reference this for more relevant suggestions.
+To get the most out of Terax AI from day one: 1. **Create a `TERAX.md` file** in your project root with context about your tech stack, conventions, and frequently used commands. The AI will reference this for more relevant suggestions.
 2. **Configure multiple AI providers** — Set up both a cloud provider (for complex reasoning) and LM Studio (for quick, offline queries) so you can switch based on the task.
 3. **Enable shell integration scripts** — Allow Terax to inject its init scripts into your shell configuration for the richest context awareness.
 4. **Explore keyboard shortcuts** — Terax supports extensive shortcuts for tab switching, AI panel toggling, and file explorer navigation that dramatically speed up workflows.
@@ -253,8 +252,8 @@ Ready to upgrade your terminal experience?
 
 🌐 **Explore more developer tools and insights:** [dibi8.com](https://dibi8.com)
 
----
 
+---
 *Related articles from dibi8 Tech Team:*
 - [Top 10 Open Source AI Tools for Developers in 2026](https://dibi8.com/blog/top-10-open-source-ai-tools-2026)
 - [Building Lightweight Desktop Apps with Tauri 2 and Rust](https://dibi8.com/blog/building-lightweight-desktop-apps-tauri-rust)
@@ -262,18 +261,15 @@ Ready to upgrade your terminal experience?
 
 > **About dibi8** — dibi8 is a technology blog focused on developer productivity, open source tools, and tech innovation. We are dedicated to discovering and sharing quality tools and best practices that genuinely improve development efficiency.
 
----
 
+---
 ## Recommended Tools
 
-For developers building or deploying open-source AI tools, we recommend:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
+For developers building or deploying open-source AI tools, we recommend: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
 - **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Anthropic Claude / OpenAI / DeepSeek API proxy. Most AI tools above (chatbots, code gen, translation, search, etc) need an LLM API key — this proxy delivers stable access to top models at ~30% of official pricing.
 
 *Affiliate link — supports dibi8.com at no cost to you.*
 
-<!--auto-references-->
 ## References & Sources
 
 - [Tauri](https://github.com/tauri-apps/tauri)
@@ -286,7 +282,6 @@ For developers building or deploying open-source AI tools, we recommend:
 - [Tauri prerequisites](https://tauri.app/start/prerequisites/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

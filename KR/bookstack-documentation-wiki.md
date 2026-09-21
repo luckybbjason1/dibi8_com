@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/bookstack-documentation-wiki" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/bookstack-documentation-wiki" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/bookstack-documentation-wiki" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/bookstack-documentation-wiki" />
 title: 'BookStack: Markdown 지원 개발자 친화 문서 Wiki — 2026 설치 및 리뷰'
 description: 'BookStack 설치 및 실행 완벽 가이드. WYSIWYG + Markdown 편집, 책/챕터/페이지 구조, LDAP/SSO 지원을 갖춘 오픈소스 문서 Wiki. 5분 안에 셀프 호스팅.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [bookstack, 문서화, wiki, '셀프 호스팅', php, laravel, '지식 베이스', markdown, docker, 오픈소스]
-aliases:
-- /kr/posts/bookstack-documentation-wiki/
+aliases: - /kr/posts/bookstack-documentation-wiki/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/bookstack-documentation-wiki/ -->
 
 {{</* resource-info */>}}
 
@@ -49,9 +41,7 @@ BookStack은 PHP/Laravel로 빌드된 물가, 오픈소스, MIT 라이선스 문
 
 ## BookStack의 작동 원리: 아키텍처 및 핵심 개념
 
-BookStack은 고전적인 PHP/LAMP 스택에서 실행되며, 이는 PHP 애플리케이션을 배포해 본 사람이라면 누구나 쉽게 접근할 수 있게 한다. 아키텍처는 간단명료하다:
-
-| 계층 | 기술 |
+BookStack은 고전적인 PHP/LAMP 스택에서 실행되며, 이는 PHP 애플리케이션을 배포해 본 사람이라면 누구나 쉽게 접근할 수 있게 한다. 아키텍처는 간단명료하다: | 계층 | 기술 |
 |---|---|
 | **백엔드** | PHP 8.2+ / Laravel 11.x |
 | **데이터베이스** | MySQL 8.0+ 또는 MariaDB 10.6+ |
@@ -78,12 +68,9 @@ BookStack을 실행하는 가장 빠른 방법은 Docker Compose이다. **최소
 ```yaml
 version: '3.8'
 
-services:
-  bookstack:
-    image: lscr.io/linuxserver/bookstack:v26.03.4
+services: bookstack: image: lscr.io/linuxserver/bookstack:v26.03.4
     container_name: bookstack
-    environment:
-      - PUID=1000
+    environment: - PUID=1000
       - PGID=1000
       - APP_URL=https://docs.yourdomain.com
       - DB_HOST=bookstack_db
@@ -91,27 +78,21 @@ services:
       - DB_USER=bookstack
       - DB_PASS=your_secure_db_password
       - DB_DATABASE=bookstackdb
-    volumes:
-      - ./bookstack_app_data:/config
-    ports:
-      - 6875:80
+    volumes: - ./bookstack_app_data:/config
+    ports: - 6875:80
     restart: unless-stopped
-    depends_on:
-      - bookstack_db
+    depends_on: - bookstack_db
 
-  bookstack_db:
-    image: lscr.io/linuxserver/mariadb:10.11
+  bookstack_db: image: lscr.io/linuxserver/mariadb:10.11
     container_name: bookstack_db
-    environment:
-      - PUID=1000
+    environment: - PUID=1000
       - PGID=1000
       - MYSQL_ROOT_PASSWORD=your_secure_root_password
       - TZ=UTC
       - MYSQL_DATABASE=bookstackdb
       - MYSQL_USER=bookstack
       - MYSQL_PASSWORD=your_secure_db_password
-    volumes:
-      - ./bookstack_db_data:/config
+    volumes: - ./bookstack_db_data:/config
     restart: unless-stopped
 ```
 
@@ -176,9 +157,7 @@ Certbot으로 사이트를 활성화하고 인증서를 얻은 후, docker-compo
 
 ### 수동 설치 (Ubuntu 24.04 LTS)
 
-베어메탈 배포를 선호한다면:
-
-```bash
+베어메탈 배포를 선호한다면: ```bash
 # 의존성 설치
 sudo apt update
 sudo apt install -y apache2 php8.3 php8.3-curl php8.3-mbstring php8.3-ldap \
@@ -251,9 +230,7 @@ SAML2_IDP_x509="MIIDXTCCAkWgAwIBAgIJAJC1HiIA..."
 
 BookStack에는 두 가지 편집기가 포함되어 있다. **WYSIWYG 편집기**(TinyMCE 기반)가 기본값이다 —— 드래그앤드롭 업로드로 이미지를 처리하고, 테이블, 구문 강조가 있는 코드 블록, 팁과 경고를 위한 콜아웃 블록을 지원한다. **Markdown 편집기**는 실시간 미리보기가 있는 분할 화면 경험을 제공하여 Markdown으로 작성하기를 선호하는 개발자에게 이상적이다.
 
-이미지 업로드는 간단하다:
-
-```markdown
+이미지 업로드는 간단하다: ```markdown
 # Markdown 모드에서 —— 이미지는 BookStack의 갤러리에 업로드됨
 ![대체 텍스트](uploaded-image-name.png)
 
@@ -265,9 +242,7 @@ BookStack은 또한 Draw.io 통합을 통해 임베디드 다이어그램을 지
 
 ## 벤치마크 및 실제 성능
 
-2 vCPU / 4GB RAM VPS에서 BookStack을 실행하고 50명의 동시 시뮬레이션된 사용자가 페이지를 읽고 편집하도록 테스트했다. 결과:
-
-| 메트릭 | 값 |
+2 vCPU / 4GB RAM VPS에서 BookStack을 실행하고 50명의 동시 시뮬레이션된 사용자가 페이지를 읽고 편집하도록 테스트했다. 결과: | 메트릭 | 값 |
 |---|---|
 | 콜드 시작 시간 | 3.2초 |
 | 페이지 로드 (평균) | 180ms |
@@ -291,16 +266,11 @@ BookStack은 또한 Draw.io 통합을 통해 임베디드 다이어그램을 지
 # .github/workflows/publish-docs.yml
 name: Publish API Docs to BookStack
 
-on:
-  push:
-    branches: [main]
+on: push: branches: [main]
     paths: ['docs/**']
 
-jobs:
-  publish:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: publish: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       
       - name: Upload to BookStack via API
         run: |
@@ -339,13 +309,10 @@ cron에 추가하여 매일 백업: `0 3 * * * /opt/scripts/backup-bookstack.sh`
 
 ```yaml
 # docker-compose.yml에 모니터링 추가
-  node-exporter:
-    image: prom/node-exporter:v1.7.0
-    volumes:
-      - /proc:/host/proc:ro
+  node-exporter: image: prom/node-exporter:v1.7.0
+    volumes: - /proc:/host/proc:ro
       - /sys:/host/sys:ro
-    command:
-      - '--path.procfs=/host/proc'
+    command: - '--path.procfs=/host/proc'
       - '--path.sysfs=/host/sys'
 ```
 
@@ -404,8 +371,7 @@ Theme::listen(ThemeEvents::THEME_REGISTER_VIEWS, function (ThemeViews $themeView
 });
 
 # views/welcome.blade.php
-<div class="welcome-banner">
-    Welcome, {{ user()->name }}! Check out the onboarding docs.
+Welcome, {{ user()->name }}! Check out the onboarding docs.
 </div>
 ```
 
@@ -419,8 +385,7 @@ Theme::listen(ThemeEvents::THEME_REGISTER_VIEWS, function (ThemeViews $themeView
 APP_CONTENT_FILTERING=default
 
 # 사용 가능한 필터: script, form, iframe, object, embed, style, css_expression
-# style 필터링 비활성화 (인라인 스타일이 필요한 경우):
-APP_CONTENT_FILTERING=script,form,iframe,object,embed,css_expression
+# style 필터링 비활성화 (인라인 스타일이 필요한 경우): APP_CONTENT_FILTERING=script,form,iframe,object,embed,css_expression
 ```
 
 ## 비교: BookStack과 대안들
@@ -452,9 +417,7 @@ APP_CONTENT_FILTERING=script,form,iframe,object,embed,css_expression
 
 ## 한계: 정직한 평가
 
-BookStack은 모든 문서화 사용 사례에 적합한 도구는 아니다. 다음은 잘 수행하지 못하는 것들이다:
-
-**실시간 협업이 없다.** 두 사용자가 동시에 동일한 페이지를 편집하면 서로 덮어쓰게 된다. BookStack은 오래된 편집에 대해 경고하지만 Google Docs 스타일의 실시간 협업을 제공하지 않는다. 워크플로우가 동시 편집에 의존하는 경우 Outline이나 Wiki.js를 대신 사용하라.
+BookStack은 모든 문서화 사용 사례에 적합한 도구는 아니다. 다음은 잘 수행하지 못하는 것들이다: **실시간 협업이 없다.** 두 사용자가 동시에 동일한 페이지를 편집하면 서로 덮어쓰게 된다. BookStack은 오래된 편집에 대해 경고하지만 Google Docs 스타일의 실시간 협업을 제공하지 않는다. 워크플로우가 동시 편집에 의존하는 경우 Outline이나 Wiki.js를 대신 사용하라.
 
 **독선적인 계층 구조가 제한적으로 느껴질 수 있다.** 선반/책/챕터/페이지 모델은 구조화된 문서에 탁월하지만, 유동적이고 끊임없이 재구조화되는 지식 베이스에는 어색하다. 문서가 참조 도서관보다 살아있는 지식 그래프에 더 가깝다면 Notion이나 Obsidian이 더 적합할 수 있다.
 
@@ -515,9 +478,7 @@ dibi8.com 커뮤니티에 참여하세요: 5,000명 이상의 개발자와 매�
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -527,7 +488,6 @@ dibi8.com 커뮤니티에 참여하세요: 5,000명 이상의 개발자와 매�
 본 문서에는 [DigitalOcean](https://m.do.co/c/eca87ac14ee0)의 제휴 링크가 포함되어 있다. 당사 링크를 통해 가입하면 추가 비용 없이 당사에 추천 크레딧이 지급된다. 당사는 자체적으로 사용하는 인프라만을 추천한다. BookStack 프로젝트는 물론 오픈소스이며 —— BookStack 유지관리자와는 제휴 관계가 없다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

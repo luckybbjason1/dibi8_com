@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/howtocook-programmer-open-source-cookbook" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/howtocook-programmer-open-source-cookbook" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/howtocook-programmer-open-source-cookbook" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/howtocook-programmer-open-source-cookbook" />
 title: "HowToCook 程序员做饭指南：297 个开源菜谱让 coding 更香"
-description: "探索 HowToCook 程序员做饭指南 — 297 个开源菜谱，像写代码一样精确做饭。从番茄炒蛋到北京烤鸭，难度分级，步骤清晰。". Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "探索 HowToCook 程序员做饭指南 — 297 个开源菜谱，像写代码一样精确做饭。从番茄炒蛋到北京烤鸭，难度分级，步骤清晰。"
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Docker
+tech_stack: - Docker
   - JavaScript
 application_domain: "Ai Tools"
 source_version: ""
@@ -25,10 +19,8 @@ maintainer: "Anduin2017"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases:
-- /zh/posts/howtocook-programmer-open-source-cookbook/
-faqs:
-  - q: '什么是 HowToCook？'
+aliases: - /zh/posts/howtocook-programmer-open-source-cookbook/
+faqs: - q: '什么是 HowToCook？'
     a: 'HowToCook（程序员做饭指南）是由程序员 Anduin2017 创建的开源菜谱项目，收录了 297 道菜谱，以开发者习惯的精确和清晰方式编写，就像阅读技术文档一样。'
   - q: 'HowToCook 与传统菜谱有何不同？'
     a: '传统菜谱常用「少许盐」或「炒至金黄」这类模糊表述，而 HowToCook 每道菜都采用精确用量（如「盐 3g」）、精确时间（如「每面煎 90 秒」）、完整的前置食材清单、必备厨具列表，以及 1-5 星难度评级。'
@@ -37,10 +29,7 @@ faqs:
   - q: '如何用 Docker 在本地运行 HowToCook？'
     a: '拉取并运行镜像：docker pull ghcr.io/anduin2017/how-to-cook:latest，再执行 docker run -d -p 5000:5000 ghcr.io/anduin2017/how-to-cook:latest，然后访问 http://localhost:5000 即可。'
   - q: '如何向 HowToCook 贡献菜谱？'
-    a: 'Fork 仓库，复制模板菜谱，按项目规定的结构化格式编写你的菜谱，然后提交 Pull Request。该项目已有 200 多位贡献者，支持中文、英文和日文。'
----
-
-<!-- canonical: https://dibi8.com/zh/tools/howtocook-programmer-open-source-cookbook/ -->
+    a: 'Fork 仓库，复制模板菜谱，按项目规定的结构化格式编写你的菜谱，然后提交 Pull Request。该项目已有 200 多位贡献者，支持中文、英文和日文。'---
 {</* resource-info */>}
 
 ## HowToCook 是什么？
@@ -54,14 +43,20 @@ faqs:
 **贡献者**: 200+  
 **协议**: Unlicense
 
----
 
+---
 ## 为什么程序员需要这个？
 
 ### 传统菜谱的问题
 
 | 问题 | 例子 | HowToCook 解决方案 |
-|------|------|-------------------|
+|
+---
+|
+---
+|
+---
+|
 | 模糊用量 | "少许盐" | "3克盐（1/2茶匙）" |
 | 含糊时间 | "炒至金黄" | "每面煎90秒" |
 | 步骤缺失 | 中间冒出新材料 | 完整食材清单前置 |
@@ -77,14 +72,20 @@ faqs:
 - **时间追踪**：准备时间、烹饪时间、总时间
 - **错误处理**：常见错误及避免方法
 
----
 
+---
 ## 菜谱分类
 
 ### 按难度
 
 | 星级 | 数量 | 例子 |
-|------|------|------|
+|
+---
+|
+---
+|
+---
+|
 | ⭐ | 45 | 番茄炒蛋、泡面升级 |
 | ⭐⭐ | 78 | 宫保鸡丁、红烧肉 |
 | ⭐⭐⭐ | 89 | 糖醋排骨、麻婆豆腐 |
@@ -255,7 +256,6 @@ const dinner = recipes.random();
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -283,25 +283,20 @@ const dinner = recipes.random();
 
 ## Why This Matters
 
-Understanding howtocook 程序员做饭指南：297 个开源菜谱让 coding 更香 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding howtocook 程序员做饭指南：297 个开源菜谱让 coding 更香 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

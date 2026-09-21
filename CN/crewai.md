@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/crewai" />
 title: 'CrewAI: Build Multi-Agent AI Teams with 51K+ Stars — Com...
 description: 'CrewAI (crewAIInc/crewAI) is a Python framework for orchestrating role-playing, autonomous AI agents. Compatible with OpenAI, Anthropic, Ollama, LangChain, and LlamaIndex. Covers installation, agent roles, task workflows, production deployment, and benchmarks.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,11 +20,9 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [crewai, 'multi-agent', 'ai-agents', python, 'llm-orchestration', automation, 'open-source', 'machine-learning']
-aliases:
-- /posts/crewai/
-- /resources/llm-frameworks/crewai-multi-agent-orchestration/
+aliases: - /posts/crewai/
+- /resources/llm-frameworks/crewai-multi-agent-orchestration/-
 ---
-
 {{</* resource-info */>}}
 
 > How to install CrewAI, configure agent roles, wire tasks, and ship production-ready multi-agent systems in under 30 minutes.
@@ -41,14 +37,18 @@ CrewAI is an open-source Python framework for orchestrating role-playing, autono
 
 ## How CrewAI Works
 
-CrewAI's architecture separates agent definition from orchestration logic:
-
-![CrewAI Logo](https://raw.githubusercontent.com/crewAIInc/crewAI/main/docs/images/crewai_logo.png)
+CrewAI's architecture separates agent definition from orchestration logic: ![CrewAI Logo](https://raw.githubusercontent.com/crewAIInc/crewAI/main/docs/images/crewai_logo.png)
 
 **Core Components:**
 
 | Component | Purpose | Config File |
-|-----------|---------|-------------|
+|
+---
+|
+---
+|
+---
+|
 | **Agent** | A role-based AI worker with goals, backstory, and tools | `agents.yaml` |
 | **Task** | A unit of work assigned to an agent with expected output | `tasks.yaml` |
 | **Crew** | A team of agents executing tasks via a defined process | `crew.py` |
@@ -108,9 +108,7 @@ cd research_crew
 crewai install
 ```
 
-The generated project structure:
-
-```
+The generated project structure: ```
 research_crew/
 ├── .gitignore
 ├── pyproject.toml
@@ -137,9 +135,7 @@ OPENAI_API_KEY=sk-your-openai-key-here
 SERPER_API_KEY=your-serper-api-key
 ```
 
-For local LLMs via Ollama (no API key needed):
-
-```bash
+For local LLMs via Ollama (no API key needed): ```bash
 # Pull a local model
 ollama pull llama3.1
 
@@ -148,13 +144,10 @@ ollama pull llama3.1
 
 ## Define Your First Agents
 
-Edit `src/research_crew/config/agents.yaml` to define role-based agents:
-
-```yaml
+Edit `src/research_crew/config/agents.yaml` to define role-based agents: ```yaml
 # src/research_crew/config/agents.yaml
 
-researcher:
-  role: >
+researcher: role: >
     Senior Research Analyst
   goal: >
     Conduct thorough research on {topic} and gather
@@ -167,8 +160,7 @@ researcher:
   max_iter: 15
   verbose: true
 
-writer:
-  role: >
+writer: role: >
     Technical Content Writer
   goal: >
     Transform research findings on {topic} into a
@@ -180,8 +172,7 @@ writer:
   max_iter: 10
   verbose: true
 
-editor:
-  role: >
+editor: role: >
     Senior Content Editor
   goal: >
     Review and polish the article about {topic} to ensure
@@ -194,10 +185,14 @@ editor:
   verbose: true
 ```
 
-Key configuration options per agent:
-
-| Parameter | Description | Example |
-|-----------|-------------|---------|
+Key configuration options per agent: | Parameter | Description | Example |
+|
+---
+|
+---
+|
+---
+|
 | `role` | Agent's job title and function | `Senior Research Analyst` |
 | `goal` | What the agent aims to achieve | Research on `{topic}` |
 | `backstory` | Context shaping agent's behavior | Experience and personality |
@@ -210,13 +205,10 @@ Key configuration options per agent:
 
 ### Task Configuration
 
-Edit `src/research_crew/config/tasks.yaml`:
-
-```yaml
+Edit `src/research_crew/config/tasks.yaml`: ```yaml
 # src/research_crew/config/tasks.yaml
 
-research_task:
-  description: >
+research_task: description: >
     Research the topic: {topic}. Gather at least 10 key data points
     from multiple authoritative sources. Include statistics,
     expert opinions, and recent developments.
@@ -225,8 +217,7 @@ research_task:
     citations, and a summary of key findings.
   agent: researcher
 
-writing_task:
-  description: >
+writing_task: description: >
     Using the research brief provided, write a comprehensive
     technical article about {topic}. Target 1500 words.
     Use clear headings, examples, and engaging prose.
@@ -236,8 +227,7 @@ writing_task:
   agent: writer
   context: [research_task]
 
-editing_task:
-  description: >
+editing_task: description: >
     Edit the article for clarity, grammar, factual accuracy,
     and readability. Ensure all claims are supported by the
     research brief.
@@ -251,62 +241,52 @@ editing_task:
 
 ### Crew Definition
 
-Wire agents and tasks in `src/research_crew/crew.py`:
-
-```python
+Wire agents and tasks in `src/research_crew/crew.py`: ```python
 # src/research_crew/crew.py
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 
 @CrewBase
-class ResearchCrew:
-    """Research crew for producing high-quality articles."""
+class ResearchCrew: """Research crew for producing high-quality articles."""
 
     agents_config = "config/agents.yaml"
     tasks_config = "config/tasks.yaml"
 
     @agent
-    def researcher(self) -> Agent:
-        return Agent(
+    def researcher(self) -> Agent: return Agent(
             config=self.agents_config["researcher"],
             tools=[],
             allow_delegation=False,
         )
 
     @agent
-    def writer(self) -> Agent:
-        return Agent(
+    def writer(self) -> Agent: return Agent(
             config=self.agents_config["writer"],
             tools=[],
             allow_delegation=False,
         )
 
     @agent
-    def editor(self) -> Agent:
-        return Agent(
+    def editor(self) -> Agent: return Agent(
             config=self.agents_config["editor"],
             tools=[],
             allow_delegation=False,
         )
 
     @task
-    def research_task(self) -> Task:
-        return Task(config=self.tasks_config["research_task"])
+    def research_task(self) -> Task: return Task(config=self.tasks_config["research_task"])
 
     @task
-    def writing_task(self) -> Task:
-        return Task(config=self.tasks_config["writing_task"])
+    def writing_task(self) -> Task: return Task(config=self.tasks_config["writing_task"])
 
     @task
-    def editing_task(self) -> Task:
-        return Task(
+    def editing_task(self) -> Task: return Task(
             config=self.tasks_config["editing_task"],
             output_file="output/final_article.md",
         )
 
     @crew
-    def crew(self) -> Crew:
-        return Crew(
+    def crew(self) -> Crew: return Crew(
             agents=self.agents,
             tasks=self.tasks,
             process=Process.sequential,
@@ -321,8 +301,7 @@ class ResearchCrew:
 #!/usr/bin/env python
 from research_crew.crew import ResearchCrew
 
-def run():
-    """Run the research crew."""
+def run(): """Run the research crew."""
     inputs = {
         "topic": "AI coding assistants in 2026"
     }
@@ -331,13 +310,10 @@ def run():
     print(result.raw)
     print(f"\nToken usage: {result.token_usage}")
 
-if __name__ == "__main__":
-    run()
+if __name__ == "__main__": run()
 ```
 
-Run the crew:
-
-```bash
+Run the crew: ```bash
 # Execute via CLI
 crewai run
 
@@ -345,9 +321,7 @@ crewai run
 python -m research_crew.main
 ```
 
-Expected output:
-
-```
+Expected output: ```
 [2026-05-20 10:23:15] Working Agent: Senior Research Analyst
 [2026-05-20 10:23:15] Starting Task: Research the topic: AI coding assistants in 2026...
 ...
@@ -365,45 +339,33 @@ Token usage: UsageMetrics(total_tokens=18432, prompt_tokens=14201, ...)
 
 ### Using CrewAI Flows for Complex Orchestration
 
-Flows provide event-driven orchestration with state management:
-
-```python
+Flows provide event-driven orchestration with state management: ```python
 # src/research_crew/flow.py
 from crewai.flow.flow import Flow, listen, start
 from pydantic import BaseModel
 from research_crew.crew import ResearchCrew
 
-class ArticleState(BaseModel):
-    topic: str = ""
+class ArticleState(BaseModel): topic: str = ""
     word_count: int = 0
     final_article: str = ""
 
-class ArticleFlow(Flow[ArticleState]):
-
-    @start()
-    def get_topic(self):
-        self.state.topic = "Multi-agent AI frameworks in 2026"
+class ArticleFlow(Flow[ArticleState]): @start()
+    def get_topic(self): self.state.topic = "Multi-agent AI frameworks in 2026"
         print(f"Starting flow for topic: {self.state.topic}")
 
     @listen(get_topic)
-    def run_research_crew(self):
-        result = ResearchCrew().crew().kickoff(
+    def run_research_crew(self): result = ResearchCrew().crew().kickoff(
             inputs={"topic": self.state.topic}
         )
         self.state.final_article = result.raw
         self.state.word_count = len(result.raw.split())
 
     @listen(run_research_crew)
-    def validate_output(self):
-        if self.state.word_count < 1000:
-            print("WARNING: Article too short, triggering revision")
-        else:
-            print(f"Article validated: {self.state.word_count} words")
-            with open("output/article.md", "w") as f:
-                f.write(self.state.final_article)
+    def validate_output(self): if self.state.word_count < 1000: print("WARNING: Article too short, triggering revision")
+        else: print(f"Article validated: {self.state.word_count} words")
+            with open("output/article.md", "w") as f: f.write(self.state.final_article)
 
-if __name__ == "__main__":
-    ArticleFlow().kickoff()
+if __name__ == "__main__": ArticleFlow().kickoff()
 ```
 
 ### Creating Custom Tools
@@ -414,8 +376,7 @@ from crewai.tools import tool
 import requests
 
 @tool("Web Search")
-def web_search(query: str) -> str:
-    """Search the web for information on a given query."""
+def web_search(query: str) -> str: """Search the web for information on a given query."""
     # Integration with search API
     response = requests.get(
         "https://serpapi.com/search",
@@ -424,15 +385,12 @@ def web_search(query: str) -> str:
     return response.json()["organic_results"][0]["snippet"]
 ```
 
-Register the tool in your crew:
-
-```python
+Register the tool in your crew: ```python
 # In crew.py, import and attach
 from research_crew.tools.custom_tool import web_search
 
 @agent
-def researcher(self) -> Agent:
-    return Agent(
+def researcher(self) -> Agent: return Agent(
         config=self.agents_config["researcher"],
         tools=[web_search],  # Attach custom tool
         allow_delegation=False,
@@ -443,8 +401,7 @@ def researcher(self) -> Agent:
 
 ```python
 @crew
-def crew(self) -> Crew:
-    return Crew(
+def crew(self) -> Crew: return Crew(
         agents=self.agents,
         tasks=self.tasks,
         process=Process.hierarchical,
@@ -465,12 +422,10 @@ import uuid
 app = FastAPI(title="CrewAI Research API")
 jobs: dict = {}
 
-class CrewRequest(BaseModel):
-    topic: str
+class CrewRequest(BaseModel): topic: str
 
 @app.post("/research")
-async def start_research(request: CrewRequest, background: BackgroundTasks):
-    job_id = str(uuid.uuid4())
+async def start_research(request: CrewRequest, background: BackgroundTasks): job_id = str(uuid.uuid4())
     jobs[job_id] = {"status": "queued", "topic": request.topic}
     background.add_task(
         lambda: run_crew(job_id, request.topic)
@@ -478,11 +433,9 @@ async def start_research(request: CrewRequest, background: BackgroundTasks):
     return {"job_id": job_id, "status": "queued"}
 
 @app.get("/status/{job_id}")
-async def get_status(job_id: str):
-    return jobs.get(job_id, {"error": "Job not found"})
+async def get_status(job_id: str): return jobs.get(job_id, {"error": "Job not found"})
 
-def run_crew(job_id: str, topic: str):
-    jobs[job_id]["status"] = "running"
+def run_crew(job_id: str, topic: str): jobs[job_id]["status"] = "running"
     result = ResearchCrew().crew().kickoff(inputs={"topic": topic})
     jobs[job_id]["status"] = "completed"
     jobs[job_id]["result"] = result.raw
@@ -496,10 +449,18 @@ def run_crew(job_id: str, topic: str):
 
 ![CrewAI Benchmarks showing token efficiency comparison across multi-agent frameworks — data from community benchmarks as of May 2026](https://docs.crewai.com/images/crewai-performance-chart.png)
 
-CrewAI's performance compared to other frameworks on a standard multi-agent research task:
-
-| Metric | CrewAI | AutoGen | LangGraph | Agno |
-|--------|--------|---------|-----------|------|
+CrewAI's performance compared to other frameworks on a standard multi-agent research task: | Metric | CrewAI | AutoGen | LangGraph | Agno |
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Time to first working run | ~15 min | ~30 min | ~60 min | ~20 min |
 | Token cost (normalized) | 1.5–2x | 5–6x | 1x baseline | 1.2x |
 | GitHub stars (May 2026) | 51,759 | ~38,000 | ~28,000 | ~15,000 |
@@ -520,12 +481,9 @@ CrewAI's performance compared to other frameworks on a standard multi-agent rese
 
 ### OpenAI / Anthropic / Google Gemini
 
-CrewAI uses LiteLLM for provider-agnostic model routing:
-
-```yaml
+CrewAI uses LiteLLM for provider-agnostic model routing: ```yaml
 # agents.yaml — model selection per agent
-researcher:
-  role: Research Analyst
+researcher: role: Research Analyst
   llm: anthropic/claude-sonnet-4-20250514
   # or: openai/gpt-4o
   # or: gemini/gemini-2.0-flash
@@ -534,8 +492,7 @@ researcher:
 ### Ollama (Local LLMs)
 
 ```yaml
-researcher:
-  role: Research Analyst
+researcher: role: Research Analyst
   llm: ollama/llama3.1
   # Requires: ollama pull llama3.1
 ```
@@ -566,8 +523,7 @@ from crewai.tools import tool
 
 # Build a RAG index
 @tool("Document Search")
-def document_search(query: str) -> str:
-    """Search internal documents for relevant information."""
+def document_search(query: str) -> str: """Search internal documents for relevant information."""
     documents = SimpleDirectoryReader("./docs").load_data()
     index = VectorStoreIndex.from_documents(documents)
     query_engine = index.as_query_engine()
@@ -595,20 +551,26 @@ CMD ["crewai", "run"]
 ```yaml
 # docker-compose.yml
 version: "3.8"
-services:
-  crewai:
-    build: .
+services: crewai: build: .
     env_file: .env
-    volumes:
-      - ./output:/app/output
-    ports:
-      - "8000:8000"
+    volumes: - ./output:/app/output
+    ports: - "8000:8000"
 ```
 
 ## Comparison with Alternatives
 
 | Feature | CrewAI | AutoGen | LangGraph | Agno |
-|---------|--------|---------|-----------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Orchestration model | Role-based crew | Conversational agents | Stateful graph | Lightweight agent |
 | Time to prototype | 15 min (fastest) | 30 min | 60 min (steepest) | 20 min |
 | Token efficiency | Moderate (1.5–2x) | Highest overhead (5–6x) | Best (1x) | Good (1.2x) |
@@ -673,9 +635,7 @@ Join the discussion on Telegram: [Join dibi8.com community](https://t.me/dibi8te
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -694,7 +654,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 *Disclosure: This article contains affiliate links. If you click on a link and make a purchase, we may receive a commission at no additional cost to you. This helps support our independent technical research, testing, and the creation of free educational content. All recommendations are based on our own evaluation of the tools.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -720,8 +679,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [google-jax-complete-guide](crewai)
@@ -730,8 +689,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [temporal-ai-workflow-orchestration](crewai)
 - [cleanlab-11k-star-ai-data-cleaning](crewai)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

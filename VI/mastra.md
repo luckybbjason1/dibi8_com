@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mastra" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mastra" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mastra" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mastra" />
 title: 'Mastra: 24K+ Stars — Framework TypeScript AI Giảm Chi Ph...
 description: 'Mastra la framework TypeScript native tu Gatsby team de xay dung ung dung AI va agent. Bao gom Mastra vs LangChain, huong dan cai dat, workflow, RAG, bo nho, observability, benchmark va hardening san xuat.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [mastra, typescript, 'ai-framework', agent, llm, 'mastra-huong-dan', 'mastra-vs-langchain', 'ma-nguon-mo']
-aliases:
-- /vi/posts/mastra/
+aliases: - /vi/posts/mastra/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/mastra/ -->
 
 {{</* resource-info */>}}
 
@@ -47,9 +39,7 @@ Y tuong cot loi rat don gian: agent xu ly cac tac vu doi thoai mo co quyen truy 
 
 ## Mastra Hoat Dong Nhu The Nao — Kien Truc va Khai Niem Cot Loi
 
-Kien truc cua Mastra xoay quanh sau khoi xay dung phan anh nhung gi cac he thong AI production thuc su can:
-
-### Agent
+Kien truc cua Mastra xoay quanh sau khoi xay dung phan anh nhung gi cac he thong AI production thuc su can: ### Agent
 Agent la cac tac nhan chinh. Ban cung cap cho chung huong dan, mo hinh, va quyen truy cap cong cu. Chung tu quyet dinh goi gi, khi nao dung, va cach tra loi. Agent co `.generate()` de nhan phan hoi day du va `.stream()` de phat truc tiep token — dieu nay rat quan trong cho giao dien tro chuyen noi nguoi dung mong doi thay cau tra loi hinh thanh dan.
 
 ### Workflow
@@ -96,8 +86,7 @@ Mastra yeu cau Node.js 22.13.0 tro len. Duong dan khuyen nghi la su dung tro ly 
 # Tao du an Mastra moi voi CLI tuong tac
 npm create mastra@latest
 
-# Tro ly se hoi:
-# - Ten du an
+# Tro ly se hoi: # - Ten du an
 # - Thanh phan (agent, workflow, RAG, bo nho)
 # - Nha cung cap LLM (OpenAI, Anthropic, Google, v.v.)
 # - Co bao gom ma vi du khong
@@ -105,9 +94,7 @@ npm create mastra@latest
 
 ### Buoc 2: Cai Dat Thu Cong (Thay The)
 
-Neu ban muon them Mastra vao du an hien co:
-
-```bash
+Neu ban muon them Mastra vao du an hien co: ```bash
 # Cai dat goi cot loi voi Zod de xac thuc schema
 npm install @mastra/core@latest zod@^4
 
@@ -331,9 +318,7 @@ npx mastra start
 
 ### Tich Hop Vercel AI SDK
 
-Mastra duoc xay dung tren Vercel AI SDK. Ban co the su dung SDK truc tiep cho kiem soat cap thap:
-
-```typescript
+Mastra duoc xay dung tren Vercel AI SDK. Ban co the su dung SDK truc tiep cho kiem soat cap thap: ```typescript
 // Mastra su dung nha cung cap AI SDK o cap thap
 import { openai } from '@ai-sdk/openai';
 import { anthropic } from '@ai-sdk/anthropic';
@@ -382,9 +367,7 @@ const agent = new Agent({
 
 ### Giam Chi Phi Token — Tuyen Bo 4-10 Lan
 
-Observational Memory cua Mastra la tinh nang noi bat cho kinh te san xuat. Day la cac con so:
-
-**Van De:** Cac he thong bo nho dura tren RAG truyen thong truy xuat ng canh khac nhau mot cach dong tren moi luot. Moi lan truy xuat thay doi prefix prompt, vo hieu hoa bo dem prompt. Voi ca Anthropic va OpenAI deu cung cap chiet khau 90% cho cac token prompt duoc luu vao bo dem, moi lan truy cap bo dem khong trung khop deu bi phat chi phi 10 lan tren phan duoc luu vao bo dem.
+Observational Memory cua Mastra la tinh nang noi bat cho kinh te san xuat. Day la cac con so: **Van De:** Cac he thong bo nho dura tren RAG truyen thong truy xuat ng canh khac nhau mot cach dong tren moi luot. Moi lan truy xuat thay doi prefix prompt, vo hieu hoa bo dem prompt. Voi ca Anthropic va OpenAI deu cung cap chiet khau 90% cho cac token prompt duoc luu vao bo dem, moi lan truy cap bo dem khong trung khop deu bi phat chi phi 10 lan tren phan duoc luu vao bo dem.
 
 **Giai Phap:** Observational Memory chia ng canh thanh hai khoi — cac quan sat duoc nen (chi them cho den khi reflection chay) va cac tin nhan gan day tho. Khoi quan sat giu nhat quan giua cac luot, khien no co the luu vao bo dem toan bo.
 
@@ -566,29 +549,19 @@ CMD ["node", ".mastra/output/index.mjs"]
 ```yaml
 // docker-compose.yml
 version: '3.8'
-services:
-  mastra:
-    build: .
-    ports:
-      - "4111:4111"
-    environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
+services: mastra: build: .
+    ports: - "4111:4111"
+    environment: - OPENAI_API_KEY=${OPENAI_API_KEY}
       - DATABASE_URL=postgresql://postgres:postgres@db:5432/mastra
-    depends_on:
-      - db
+    depends_on: - db
 
-  db:
-    image: pgvector/pgvector:pg17
-    environment:
-      POSTGRES_USER: postgres
+  db: image: pgvector/pgvector:pg17
+    environment: POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: mastra
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+    volumes: - pgdata:/var/lib/postgresql/data
 
-volumes:
-  pgdata:
-```
+volumes: pgdata: ```
 
 ## So Sanh Voi Cac Lua Chon Thay The
 
@@ -611,9 +584,7 @@ volumes:
 
 ## Han Che — Danh Gia Trung Thuc
 
-Mastra khong phai cong cu phu hop cho moi tinh huong. Day la nhung gi framework nay KHONG gioi:
-
-**Khoa Sinh Thai Python:** Neu toan bo stack data science cua ban la Python — pandas, NumPy, PyTorch, Jupyter — Mastra buoc ban phai ket noi hai ngon ngu. Framework nay chi dung TypeScript. Voi cac doi da dau tu sau vao Python, LangChain hoac CrewAI van la lua chon tu nhien hon.
+Mastra khong phai cong cu phu hop cho moi tinh huong. Day la nhung gi framework nay KHONG gioi: **Khoa Sinh Thai Python:** Neu toan bo stack data science cua ban la Python — pandas, NumPy, PyTorch, Jupyter — Mastra buoc ban phai ket noi hai ngon ngu. Framework nay chi dung TypeScript. Voi cac doi da dau tu sau vao Python, LangChain hoac CrewAI van la lua chon tu nhien hon.
 
 **Sinh Thai Tich Hop Nho Hon:** LangChain co 100+ tich hop LLM va 50+ vector store. Mastra ho tro 40+ nha cung cap va bao phu cac vector DB chinh, nhung neu ban can mot mo hinh hiem hoac vector store ngach, co the ban se can viet ma tich hop tuy chinh.
 
@@ -666,9 +637,7 @@ Neu ban dang xay dung cac tinh nang AI cho ung dung Next.js, dich vu Node.js, ho
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -692,7 +661,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [Tai Lieu Vercel AI SDK](https://sdk.vercel.ai/docs)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

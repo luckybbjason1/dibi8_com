@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/unstructured-data-preprocessing-llm" />
 title: 'Unstructured.io: The Data Preprocessing Pipeline Convert...
 description: 'A practical 2026 guide to Unstructured.io — the open-source document preprocessing library that converts PDFs, DOCX, PPTX, and images into clean, structured text chunks ready for LLM and RAG pipelines.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: [unstructured, 'document-parsing', llm, rag, 'data-preprocessing', pdf, chunking, 'open-source']
-aliases:
-- /posts/unstructured-data-preprocessing-llm/
+aliases: - /posts/unstructured-data-preprocessing-llm/-
 ---
-
 {{</* resource-info */>}}
 
 ## Introduction: The Dirty Secret Behind Every RAG Pipeline
@@ -48,10 +44,16 @@ Unstructured's pipeline consists of three distinct stages: **Partitioning → Cl
 
 ### Partitioning: Breaking Documents into Elements
 
-The `partition` function is Unstructured's core. It detects file types automatically and routes them to specialized parsers:
-
-| Partition Strategy | Speed | Accuracy | Best For |
-|-------------------|-------|----------|----------|
+The `partition` function is Unstructured's core. It detects file types automatically and routes them to specialized parsers: | Partition Strategy | Speed | Accuracy | Best For |
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | `auto` | Medium | High | General use, mixed document types |
 | `fast` | Fast | Medium | Simple text-heavy PDFs, bulk processing |
 | `hi_res` | Slow | Highest | Complex layouts, tables, scanned docs |
@@ -61,9 +63,7 @@ The `hi_res` strategy uses a **document understanding transformer model** (defau
 
 ### Element Types: Structure Preservation
 
-Unstructured outputs 20+ element types. The most important for LLM work:
-
-- `NarrativeText` — body paragraphs
+Unstructured outputs 20+ element types. The most important for LLM work: - `NarrativeText` — body paragraphs
 - `Title` — document and section headings
 - `ListItem` — bullet and numbered lists
 - `Table` — tabular data (can export to HTML)
@@ -75,10 +75,14 @@ Each element carries metadata: page number, coordinates, file type, languages de
 
 ### Chunking: From Elements to LLM-Ready Pieces
 
-Raw elements are too small (single words) or too large (entire pages). Unstructured's chunking strategies combine and split elements intelligently:
-
-| Chunking Strategy | Behavior | Best For |
-|-------------------|----------|----------|
+Raw elements are too small (single words) or too large (entire pages). Unstructured's chunking strategies combine and split elements intelligently: | Chunking Strategy | Behavior | Best For |
+|
+---
+|
+---
+|
+---
+|
 | `basic` | Fixed-size with overlap | Simple pipelines, predictable token counts |
 | `by_title` | Respects section boundaries | Preserving semantic coherence |
 | `by_similarity` | Semantic clustering | Long documents with topic shifts |
@@ -102,15 +106,12 @@ pip install "unstructured[all-docs]==0.17.0"
 
 The `[pdf]` extra installs `pdf2image`, `pdfplumber`, and `pikepdf`. The `[all-docs]` extra adds DOCX, PPTX, XLSX, MSG, EML, EPUB, and OCR dependencies including `tesseract` bindings.
 
-Verify the install:
-
-```python
+Verify the install: ```python
 from unstructured.partition.auto import partition
 
 elements = partition(filename="test.pdf")
 print(f"Extracted {len(elements)} elements")
-for el in elements[:5]:
-    print(f"  {el.category}: {str(el)[:60]}...")
+for el in elements[:5]: print(f"  {el.category}: {str(el)[:60]}...")
 ```
 
 ### Option B: Self-Hosted API via Docker (Production)
@@ -130,9 +131,7 @@ docker run -d \
 curl http://localhost:8000/healthcheck
 ```
 
-For CPU-only environments (cheaper, slower on complex PDFs):
-
-```bash
+For CPU-only environments (cheaper, slower on complex PDFs): ```bash
 docker run -d \
   --name unstructured-api-cpu \
   -p 8000:8000 \
@@ -146,8 +145,7 @@ If you need a reliable cloud server to host this, [DigitalOcean's GPU droplets](
 ```python
 import requests
 
-with open("annual_report.pdf", "rb") as f:
-    response = requests.post(
+with open("annual_report.pdf", "rb") as f: response = requests.post(
         "http://localhost:8000/general/v0/general",
         files={"files": ("annual_report.pdf", f)},
         data={
@@ -245,8 +243,7 @@ client = chromadb.PersistentClient(path="./chroma_db")
 collection = client.get_or_create_collection("contracts")
 
 model = SentenceTransformer("all-MiniLM-L6-v2")
-for i, chunk in enumerate(chunks):
-    embedding = model.encode(str(chunk)).tolist()
+for i, chunk in enumerate(chunks): embedding = model.encode(str(chunk)).tolist()
     collection.add(
         ids=[f"chunk_{i}"],
         embeddings=[embedding],
@@ -263,10 +260,18 @@ for i, chunk in enumerate(chunks):
 
 ### Document Type Coverage
 
-Unstructured supports **25+ file formats** as of v0.17.0. Here's what works in production:
-
-| Format | Read | Tables | OCR | Notes |
-|--------|------|--------|-----|-------|
+Unstructured supports **25+ file formats** as of v0.17.0. Here's what works in production: | Format | Read | Tables | OCR | Notes |
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | PDF (text-based) | Yes | Yes | N/A | Best-supported format |
 | PDF (scanned/image) | Yes | Partial | Yes | Requires tesseract |
 | DOCX | Yes | Yes | N/A | Full structure preservation |
@@ -280,10 +285,18 @@ Unstructured supports **25+ file formats** as of v0.17.0. Here's what works in p
 
 ### Processing Performance
 
-Benchmarks on an **8-core Intel i7, 32GB RAM, no GPU**:
-
-| Document | Size | Strategy | Time | Elements |
-|----------|------|----------|------|----------|
+Benchmarks on an **8-core Intel i7, 32GB RAM, no GPU**: | Document | Size | Strategy | Time | Elements |
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 10-page text PDF | 2.1 MB | fast | 1.2s | 47 |
 | 10-page text PDF | 2.1 MB | hi_res | 8.4s | 52 |
 | 47-page scanned PDF | 18 MB | hi_res + OCR | 94s | 203 |
@@ -294,10 +307,14 @@ With **GPU acceleration** (NVIDIA T4 via the Docker API), `hi_res` partitioning 
 
 ### Chunking Quality Impact on RAG
 
-I ran a controlled test on 50 legal contracts (avg 15 pages each), measuring retrieval accuracy at top-3:
-
-| Preprocessing Method | Avg Chunk Quality | RAG Top-3 Accuracy |
-|---------------------|-------------------|-------------------|
+I ran a controlled test on 50 legal contracts (avg 15 pages each), measuring retrieval accuracy at top-3: | Preprocessing Method | Avg Chunk Quality | RAG Top-3 Accuracy |
+|
+---
+|
+---
+|
+---
+|
 | Raw `pdftotext` + split | 0.31 | 34% |
 | PyPDF2 + character split | 0.38 | 41% |
 | Unstructured `fast` + basic chunk | 0.67 | 72% |
@@ -336,8 +353,7 @@ filtered = [
 ]
 
 # Step 3: Clean text content
-for el in filtered:
-    el.text = clean(
+for el in filtered: el.text = clean(
         el.text,
         extra_whitespace=True,
         dashes=True,           # normalize em-dashes
@@ -363,9 +379,7 @@ import concurrent.futures
 from pathlib import Path
 from unstructured.partition.auto import partition
 
-def process_file(path: Path) -> dict:
-    try:
-        elements = partition(
+def process_file(path: Path) -> dict: try: elements = partition(
             filename=str(path),
             strategy="fast",
         )
@@ -374,8 +388,7 @@ def process_file(path: Path) -> dict:
             "elements": len(elements),
             "status": "success",
         }
-    except Exception as e:
-        return {
+    except Exception as e: return {
             "file": path.name,
             "elements": 0,
             "status": "error",
@@ -386,8 +399,7 @@ def process_file(path: Path) -> dict:
 pdf_dir = Path("./documents")
 pdf_files = list(pdf_dir.glob("*.pdf"))
 
-with concurrent.futures.ThreadPoolExecutor(max_workers=8) as executor:
-    results = list(executor.map(process_file, pdf_files))
+with concurrent.futures.ThreadPoolExecutor(max_workers=8) as executor: results = list(executor.map(process_file, pdf_files))
 
 success = sum(1 for r in results if r["status"] == "success")
 print(f"Processed: {success}/{len(results)} files successfully")
@@ -395,21 +407,17 @@ print(f"Processed: {success}/{len(results)} files successfully")
 
 ### Caching Strategy for Re-processing
 
-For iterative RAG development, partition once and cache:
-
-```python
+For iterative RAG development, partition once and cache: ```python
 import json
 import hashlib
 from pathlib import Path
 from unstructured.staging.base import elements_to_dicts, dicts_to_elements
 
-def partition_with_cache(file_path: str, strategy: str = "hi_res"):
-    file_hash = hashlib.md5(open(file_path, "rb").read()).hexdigest()
+def partition_with_cache(file_path: str, strategy: str = "hi_res"): file_hash = hashlib.md5(open(file_path, "rb").read()).hexdigest()
     cache_path = Path(f"./cache/{file_hash}_{strategy}.json")
     cache_path.parent.mkdir(exist_ok=True)
 
-    if cache_path.exists():
-        return dicts_to_elements(json.load(open(cache_path)))
+    if cache_path.exists(): return dicts_to_elements(json.load(open(cache_path)))
 
     elements = partition_pdf(file_path, strategy=strategy)
     cache_path.write_text(json.dumps(elements_to_dicts(elements), indent=2))
@@ -422,39 +430,23 @@ def partition_with_cache(file_path: str, strategy: str = "hi_res"):
 # unstructured-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
-metadata:
-  name: unstructured-api
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: unstructured-api
-  template:
-    metadata:
-      labels:
-        app: unstructured-api
-    spec:
-      containers:
-      - name: api
+metadata: name: unstructured-api
+spec: replicas: 3
+  selector: matchLabels: app: unstructured-api
+  template: metadata: labels: app: unstructured-api
+    spec: containers: - name: api
         image: downloads.unstructured.io/unstructured-io/unstructured-api:latest
-        ports:
-        - containerPort: 8000
-        resources:
-          limits:
-            nvidia.com/gpu: 1
+        ports: - containerPort: 8000
+        resources: limits: nvidia.com/gpu: 1
             memory: "8Gi"
-          requests:
-            memory: "4Gi"
+          requests: memory: "4Gi"
+
 ---
 apiVersion: v1
 kind: Service
-metadata:
-  name: unstructured-api
-spec:
-  selector:
-    app: unstructured-api
-  ports:
-  - port: 80
+metadata: name: unstructured-api
+spec: selector: app: unstructured-api
+  ports: - port: 80
     targetPort: 8000
 ```
 
@@ -463,7 +455,17 @@ If you're self-hosting, [DigitalOcean's Kubernetes cluster](https://m.do.co/c/ec
 ## Comparison with Alternatives
 
 | Feature | Unstructured.io | LlamaParse | Docling | PyMuPDF + Custom |
-|---------|----------------|------------|---------|-----------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Open source | Yes (Apache-2.0) | No (proprietary) | Yes (MIT) | Yes (mixed) |
 | GitHub stars | 10,500+ | N/A (closed) | 5,200+ | N/A |
 | Free tier | Unlimited self-host | 1K pages/day | Unlimited | N/A |
@@ -489,9 +491,7 @@ If you're self-hosting, [DigitalOcean's Kubernetes cluster](https://m.do.co/c/ec
 
 ## Limitations: Honest Assessment
 
-Unstructured is not magic. Here is what will trip you up in production:
-
-**1. OCR quality depends on input quality.** Low-resolution scanned documents (sub-150 DPI) produce garbled text regardless of the pipeline. Pre-process with image enhancement if your source material is poor.
+Unstructured is not magic. Here is what will trip you up in production: **1. OCR quality depends on input quality.** Low-resolution scanned documents (sub-150 DPI) produce garbled text regardless of the pipeline. Pre-process with image enhancement if your source material is poor.
 
 **2. `hi_res` is slow without GPU.** The default `detectron2` model runs on CPU at 3-5 pages per minute for complex layouts. Budget for GPU acceleration or use `fast` strategy for bulk text PDFs.
 
@@ -547,9 +547,7 @@ Join our developer community on Telegram: **t.me/dibi8en** — share your prepro
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -566,12 +564,11 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [Unstructured Platform (Enterprise)](https://unstructured.io/platform)
 - Related: [LangChain](dibi8-internal-link), [LlamaIndex](dibi8-internal-link), [RAG Pipeline Optimization](dibi8-internal-link)
 
----
 
+---
 *Affiliate Disclosure: This article contains affiliate links to DigitalOcean. If you sign up through these links, we earn a commission at no extra cost to you. Unstructured.io is open-source and free to use; we have no commercial relationship with Unstructured-IO. Opinions are based on hands-on testing.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -598,7 +595,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 ---
-
 ## Related Articles
 
 - [12-factor-agents-production-llm-software-2026](unstructured-data-preprocessing-llm)

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-token-monitor-conky-linux" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-token-monitor-conky-linux" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-token-monitor-conky-linux" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-token-monitor-conky-linux" />
 title: 'AI Token Monitor: Theo dõi hạn ngạch Claude, Gemini, Gro...
 description: 'Widget desktop Linux mã nguồn mở hiển thị hạn ngạch AI token theo thời gian thực bằng thanh tiến trình kiểu HP bar trong Conky. Hỗ trợ Claude, Gemini, Grok, Kimi với polling API thực và đếm ngược reset.'
 date: 2026-06-06 00:00:00+08:00
@@ -25,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: ['ai token monitor', 'claude hạn ngạch', 'gemini quota tracker', 'grok token', 'kimi api', 'conky widget', 'linux desktop', 'mã nguồn mở', python, 'công cụ developer']
-aliases:
-- /vi/posts/ai-token-monitor-conky-linux/
-faqs:
-  - q: 'AI Token Monitor có hoạt động trên macOS hoặc Windows không?'
+aliases: - /vi/posts/ai-token-monitor-conky-linux/
+faqs: - q: 'AI Token Monitor có hoạt động trên macOS hoặc Windows không?'
     a: 'Hiện tại lớp hiển thị widget phụ thuộc vào Conky chỉ dành cho Linux. Các script Python cốt lõi (api_fetcher.py) chạy trên mọi hệ điều hành, nhưng kết xuất hình ảnh cần Conky. Repository có phiên bản đa nền tảng dựa trên tkinter (monitor.py) nhưng cửa sổ không viền có thể không hiển thị trên GNOME — đây là tính năng thử nghiệm.'
   - q: 'Công cụ đọc số dư token Claude API như thế nào?'
     a: 'Gửi POST request tối thiểu tới /v1/messages với max_tokens=1 và đọc các header phản hồi anthropic-ratelimit-tokens-remaining cùng anthropic-ratelimit-tokens-limit. Mỗi lần kiểm tra tiêu thụ khoảng 10 input token, cron 5 phút một lần tốn khoảng 2.880 token/ngày — không đáng kể với hầu hết gói.'
@@ -39,8 +32,6 @@ faqs:
   - q: 'Tại sao Grok hiển thị "耗尽" (hết) dù tài khoản còn số dư?'
     a: 'Kiểm tra Grok gọi GET /v1/models — trả về 200 khi xác thực hợp lệ và còn số dư, 403 khi hết số dư. Mã 403 từ xAI đặc biệt có nghĩa là số dư tài khoản bằng 0. Nếu còn số dư mà vẫn thấy 403, hãy kiểm tra lại API key trong ~/.config/.ai_monitor_keys.'
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/ai-token-monitor-conky-linux/ -->
 
 {{< resource-info >}}
 
@@ -63,9 +54,7 @@ Kết quả: bạn vào rate limit giữa chừng công việc, mất 5 phút ch
 
 ## Cách hoạt động
 
-Monitor gồm hai thành phần:
-
-**`api_fetcher.py`** — script nền (cron mỗi 5 phút) poll API từng dịch vụ và ghi kết quả vào `~/token-monitor/api_cache.json`.
+Monitor gồm hai thành phần: **`api_fetcher.py`** — script nền (cron mỗi 5 phút) poll API từng dịch vụ và ghi kết quả vào `~/token-monitor/api_cache.json`.
 
 **`conky_ai.py`** — đọc cache mỗi 30 giây và xuất text định dạng Conky với inline `${color}` tag. Conky render thành widget desktop.
 
@@ -78,9 +67,7 @@ Kiến trúc này đảm bảo lỗi API không đóng băng desktop. Cache luô
 
 ## Thanh tiến trình kiểu HP bar
 
-Tính năng chính là **hiển thị hạn ngạch kiểu thanh HP** — hàng ký tự Unicode block trực quan thể hiện hạn ngạch còn lại:
-
-| Màu sắc | Trạng thái |
+Tính năng chính là **hiển thị hạn ngạch kiểu thanh HP** — hàng ký tự Unicode block trực quan thể hiện hạn ngạch còn lại: | Màu sắc | Trạng thái |
 |---------|-----------|
 | `█████████` xanh lá | Hơn 50% hạn ngạch |
 | `████░░░░░` cam | Còn 20–50% |
@@ -107,8 +94,7 @@ nano ~/.config/.ai_monitor_keys
 pkill conky && conky --daemonize --pause=1
 ```
 
-Script cài đặt tự động:
-- Sao chép script vào `~/token-monitor/`
+Script cài đặt tự động: - Sao chép script vào `~/token-monitor/`
 - Thêm `${execpi 30 python3 ~/token-monitor/conky_ai.py}` vào cấu hình Conky
 - Thiết lập cron job cho `api_fetcher.py`
 
@@ -128,17 +114,12 @@ API key lưu trong `~/.config/.ai_monitor_keys` với quyền `chmod 600`. Bị 
 
 ## Thêm dịch vụ tùy chỉnh
 
-Thêm block vào `api_fetcher.py`:
-
-```python
+Thêm block vào `api_fetcher.py`: ```python
 # ── Dịch vụ tùy chỉnh ────────────────────────────
 key = keys.get(yourservice)
-if key:
-    try:
-        r = requests.get('https://api.yourservice.com/v1/usage',
+if key: try: r = requests.get('https://api.yourservice.com/v1/usage',
                          headers={Authorization: f'Bearer {key}'}, timeout=8)
-        if r.status_code == 200:
-            data = r.json()
+        if r.status_code == 200: data = r.json()
             remain = data[quota_remaining]
             total  = data[quota_total]
             cache[YourService] = {
@@ -146,19 +127,15 @@ if key:
                 label: f'{remain//1000}K còn lại',
                 pct: remain / total
             }
-        else:
-            cache[YourService] = {ok: False, label: 'Lỗi API'}
-    except Exception:
-        pass
+        else: cache[YourService] = {ok: False, label: 'Lỗi API'}
+    except Exception: pass
 ```
 
 Sau đó thêm `{name: YourService, reset_h: 24}` vào danh sách `SERVICES` trong `conky_ai.py`.
 
 ## Công cụ liên quan trên dibi8
 
-Nếu bạn đang quản lý chi phí nhiều AI API, hãy tham khảo thêm:
-
-- [So sánh AI coding Q2 2026 — Claude Code vs Cursor vs Codex](/vi/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) — so sánh chi phí workflow phát triển thực tế
+Nếu bạn đang quản lý chi phí nhiều AI API, hãy tham khảo thêm: - [So sánh AI coding Q2 2026 — Claude Code vs Cursor vs Codex](/vi/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) — so sánh chi phí workflow phát triển thực tế
 - [RTK Rust CLI Proxy — Tiết kiệm 80% chi phí AI](/vi/resources/dev-utils/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/) — tự động định tuyến prompt đến model rẻ nhất có sẵn
 - [Hóa đơn coding AI hàng tháng 2026](/vi/resources/dev-utils/ai-coding-agent-monthly-bill-2026-real-receipts/) — biên lai thực tế 6 tháng sử dụng AI production
 
@@ -171,7 +148,6 @@ Hoàn toàn mã nguồn mở theo giấy phép MIT.
 Nếu công cụ này giúp bạn tránh được bất ngờ rate limit giữa chừng công việc, hãy Star repository. Issues và PR luôn được chào đón — đặc biệt cho hỗ trợ macOS hoặc tích hợp dịch vụ mới.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -199,25 +175,20 @@ Nếu công cụ này giúp bạn tránh được bất ngờ rate limit giữa 
 
 ## Why This Matters
 
-Understanding ai token monitor: theo dõi hạn ngạch claude, gemini, grok, kimi trực tiếp trên linux is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding ai token monitor: theo dõi hạn ngạch claude, gemini, grok, kimi trực tiếp trên linux is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

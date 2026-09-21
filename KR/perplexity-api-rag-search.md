@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/perplexity-api-rag-search" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/perplexity-api-rag-search" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/perplexity-api-rag-search" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/perplexity-api-rag-search" />
 title: 'perplexity-api-rag-search'
 description: '{'en': ''Learn how to build RAG-enhanced search applications using the Perplexity API. Covers Sonar models, real-time web citations, streaming, and production integration patterns.'', 'zh': ''学习如何使用Perplexity API构建RAG增强搜索应用。涵盖Sonar模型、实时网络引用、流式传输和生产集成模式。'', 'ko': ''Perplexity API를 사용하여 RAG 강화 검색 애플리케이션을构建하는 방법을 알아보세요. Sonar 모델, 실시간 웹 인용, 스트리밍 및 프로덕션 통합 패턴을 다룹니다.'', 'vi': ''Tìm hiểu cách xây dựng ứng dụng tìm kiếm tăng cường RAG bằng Perplexity API. Bao gồm mô hình Sonar, trích dẫn web thờigian thực, streaming và các mẫu tích hợp sản xuất.''}'
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['perplexity api']
-aliases:
-- /kr/posts/perplexity-api-rag-search/
+aliases: - /kr/posts/perplexity-api-rag-search/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/perplexity-api-rag-search/ -->
 
 {{</* resource-info */>}}
 
@@ -117,8 +109,7 @@ Perplexity API는 OpenAI 호환 챗 완성 인터페이스를 구현하여 이�
 import requests
 import json
 
-def perplexity_query(query: str, model: str = "sonar-pro") -> dict:
-    """Perplexity API에 단일 RAG 강화 쿼리를 본 볼니다."""
+def perplexity_query(query: str, model: str = "sonar-pro") -> dict: """Perplexity API에 단일 RAG 강화 쿼리를 본 볼니다."""
     url = f"{BASE_URL}/chat/completions"
     
     payload = {
@@ -150,9 +141,7 @@ print(result["choices"][0]["message"]["content"])
 
 검색 매개변수, 문서 ID 또는 검색 구성이 필요하지 않습니다. Perplexity는 웹 검색이 필요한지 자동으로 결정하고, 검색을 실행하고, 출처가 있는 자료에 응답을 기반을 둡니다.
 
-응답에는 생성된 텍스트뿐만 아니라 인용 메타데이터도 포함됩니다:
-
-```python
+응답에는 생성된 텍스트뿐만 아니라 인용 메타데이터도 포함됩니다: ```python
 # 응답에서 인용 추출
 message = result["choices"][0]["message"]
 answer_text = message["content"]
@@ -160,8 +149,7 @@ citations = message.get("citations", [])
 
 print(f"답변: {answer_text[:200]}...")
 print(f"\n인용된 출처: {len(citations)}")
-for i, citation in enumerate(citations[:5], 1):
-    print(f"  [{i}] {citation}")
+for i, citation in enumerate(citations[:5], 1): print(f"  [{i}] {citation}")
 ```
 
 ---
@@ -175,15 +163,13 @@ for i, citation in enumerate(citations[:5], 1):
 Perplexity는 어시스턴트 메시지의 `citations` 필드에서 URL 목록 형태로 인용을 반환합니다. 콘텐츠 텍스트에서 인용은 괄호 안의 색인 `[1]`, `[2]` 등으로 참조되며, 이는 인용 배열의 순서와 일치합니다.
 
 ```python
-def format_response_with_citations(result: dict) -> str:
-    """클릭 가능한 인용 링크가 있는 Perplexity 응답을 형식화합니다."""
+def format_response_with_citations(result: dict) -> str: """클릭 가능한 인용 링크가 있는 Perplexity 응답을 형식화합니다."""
     message = result["choices"][0]["message"]
     content = message["content"]
     citations = message.get("citations", [])
     
     formatted = f"{content}\n\n---\n**출처:**\n"
-    for i, url in enumerate(citations, 1):
-        formatted += f"\n[{i}] [{url}]({url})"
+    for i, url in enumerate(citations, 1): formatted += f"\n[{i}] [{url}]({url})"
     
     return formatted
 
@@ -192,10 +178,7 @@ print(format_response_with_citations(result))
 
 ### 웹 애플리케이션에서 인용 렌더링
 
-웹 인터페이스를 구축할 때 인용을 대화형 각주 또는 사이드바 참조로 렌더링하세요:
-
-```html
-<!-- 인용이 있는 응답을 위한 React 컴포넌트 -->
+웹 인터페이스를 구축할 때 인용을 대화형 각주 또는 사이드바 참조로 렌더링하세요: ```html
 function CitedResponse({ content, citations }) {
   // 콘텐츠에서 [1], [2] 마커 파싱
   const parts = content.split(/(\[\d+\])/g);
@@ -234,8 +217,7 @@ function CitedResponse({ content, citations }) {
 import sseclient
 import io
 
-def perplexity_stream(query: str, model: str = "sonar-pro"):
-    """토큰별로 RAG 쿼리 응답을 스트리밍합니다."""
+def perplexity_stream(query: str, model: str = "sonar-pro"): """토큰별로 RAG 쿼리 응답을 스트리밍합니다."""
     url = f"{BASE_URL}/chat/completions"
     
     payload = {
@@ -255,22 +237,18 @@ def perplexity_stream(query: str, model: str = "sonar-pro"):
     full_content = []
     citations = []
     
-    for event in client.events():
-        if event.data == "[DONE]":
-            break
+    for event in client.events(): if event.data == "[DONE]": break
         
         chunk = json.loads(event.data)
         delta = chunk["choices"][0].get("delta", {})
         
         # 콘텐츠 토큰 누적
-        if "content" in delta:
-            token = delta["content"]
+        if "content" in delta: token = delta["content"]
             full_content.append(token)
             print(token, end="", flush=True)
         
         # 마지막 청크에서 인용 캡처
-        if "citations" in delta:
-            citations.extend(delta["citations"])
+        if "citations" in delta: citations.extend(delta["citations"])
     
     print(f"\n\n출처: {citations}")
     return "".join(full_content), citations
@@ -326,18 +304,14 @@ async function streamPerplexity(query) {
 Perplexity는 여러 턴에 걸쳐 대화 컨텍스트를 유지하여 이전 교환을 참조하는 후속 질문을 가능하게 합니다. 검색 시스템은 대화 흐름에 적응하여 누적된 컨텍스트를 기반으로 검색을 개선합니다.
 
 ```python
-class PerplexityConversation:
-    """RAG 검색 메모리가 있는 상태 저장 대화 처리기."""
+class PerplexityConversation: """RAG 검색 메모리가 있는 상태 저장 대화 처리기."""
     
-    def __init__(self, model: str = "sonar-pro", system_prompt: str = None):
-        self.model = model
+    def __init__(self, model: str = "sonar-pro", system_prompt: str = None): self.model = model
         self.messages = []
-        if system_prompt:
-            self.messages.append({"role": "system", "content": system_prompt})
+        if system_prompt: self.messages.append({"role": "system", "content": system_prompt})
         self.citation_history = []
     
-    def ask(self, query: str) -> dict:
-        """메시지를 본 볼하고 대화 기록을 유지합니다."""
+    def ask(self, query: str) -> dict: """메시지를 본 볼하고 대화 기록을 유지합니다."""
         self.messages.append({"role": "user", "content": query})
         
         payload = {
@@ -365,8 +339,7 @@ class PerplexityConversation:
         
         return result
     
-    def get_conversation_summary(self) -> str:
-        """대화 및 사용된 출처의 요약을 생성합니다."""
+    def get_conversation_summary(self) -> str: """대화 및 사용된 출처의 요약을 생성합니다."""
         unique_sources = list(set(self.citation_history))
         return f"턴: {len(self.messages)//2}, 고유 출처: {len(unique_sources)}"
 
@@ -396,11 +369,8 @@ print(conv.get_conversation_summary())
 
 ### 검색 도메인 타겟팅
 
-전문 분야에서 권위 있는 소싱을 위해 특정 도메인으로 검색을 제한하세요:
-
-```python
-def targeted_search(query: str, domains: list[str]) -> dict:
-    """지정된 도메인 내에서 권위 있는 결과를 검색합니다."""
+전문 분야에서 권위 있는 소싱을 위해 특정 도메인으로 검색을 제한하세요: ```python
+def targeted_search(query: str, domains: list[str]) -> dict: """지정된 도메인 내에서 권위 있는 결과를 검색합니다."""
     payload = {
         "model": "sonar-pro",
         "messages": [
@@ -430,11 +400,8 @@ medical_result = targeted_search(
 
 ### 최신성 필터링
 
-웹 검색의 시간적 범위를 제어하여 최신성을 보장하세요:
-
-```python
-def recent_search(query: str, recency_days: int = 7) -> dict:
-    """최근 정볼만 검색합니다."""
+웹 검색의 시간적 범위를 제어하여 최신성을 보장하세요: ```python
+def recent_search(query: str, recency_days: int = 7) -> dict: """최근 정볼만 검색합니다."""
     payload = {
         "model": "sonar-pro",
         "messages": [{"role": "user", "content": query}],
@@ -455,13 +422,10 @@ breaking = recent_search("오늘의 주요 기술 인수", recency_days=1)
 
 ### 자동 파싱을 위한 JSON 모드
 
-데이터 파이프라인을 구축할 때 구조화된 출력을 요청하세요:
-
-```python
+데이터 파이프라인을 구축할 때 구조화된 출력을 요청하세요: ```python
 import json
 
-def structured_search(query: str, schema: dict) -> dict:
-    """검색하고 스키마와 일치하는 구조화된 JSON을 반환합니다."""
+def structured_search(query: str, schema: dict) -> dict: """검색하고 스키마와 일치하는 구조화된 JSON을 반환합니다."""
     payload = {
         "model": "sonar-pro",
         "messages": [
@@ -513,11 +477,9 @@ print(json.dumps(structured["structured"], indent=2))
 import time
 from functools import wraps
 
-class PerplexityClient:
-    """재시도 및 속도 제한이 있는 프로덕션 준비 Perplexity API 클라이언트."""
+class PerplexityClient: """재시도 및 속도 제한이 있는 프로덕션 준비 Perplexity API 클라이언트."""
     
-    def __init__(self, api_key: str, model: str = "sonar-pro", max_retries: int = 3):
-        self.api_key = api_key
+    def __init__(self, api_key: str, model: str = "sonar-pro", max_retries: int = 3): self.api_key = api_key
         self.model = model
         self.max_retries = max_retries
         self.headers = {
@@ -527,23 +489,18 @@ class PerplexityClient:
         self.request_count = 0
         self.last_reset = time.time()
     
-    def _rate_limit_check(self, rpm_limit: int = 50):
-        """티어 제한 내에서 유지하기 위한 기본 속도 제한."""
+    def _rate_limit_check(self, rpm_limit: int = 50): """티어 제한 내에서 유지하기 위한 기본 속도 제한."""
         now = time.time()
-        if now - self.last_reset >= 60:
-            self.request_count = 0
+        if now - self.last_reset >= 60: self.request_count = 0
             self.last_reset = now
         
-        if self.request_count >= rpm_limit:
-            sleep_time = 60 - (now - self.last_reset)
-            if sleep_time > 0:
-                print(f"속도 제한에 도달했습니다. {sleep_time:.1f}초 대기")
+        if self.request_count >= rpm_limit: sleep_time = 60 - (now - self.last_reset)
+            if sleep_time > 0: print(f"속도 제한에 도달했습니다. {sleep_time:.1f}초 대기")
                 time.sleep(sleep_time)
             self.request_count = 0
             self.last_reset = time.time()
     
-    def query(self, user_query: str, temperature: float = 0.2, **kwargs) -> dict:
-        """오류 발생 시 자동 재시도로 쿼리를 실행합니다."""
+    def query(self, user_query: str, temperature: float = 0.2, **kwargs) -> dict: """오류 발생 시 자동 재시도로 쿼리를 실행합니다."""
         self._rate_limit_check()
         
         payload = {
@@ -554,17 +511,14 @@ class PerplexityClient:
             **kwargs
         }
         
-        for attempt in range(self.max_retries):
-            try:
-                response = requests.post(
+        for attempt in range(self.max_retries): try: response = requests.post(
                     f"{BASE_URL}/chat/completions",
                     headers=self.headers,
                     json=payload,
                     timeout=30
                 )
                 
-                if response.status_code == 429:
-                    retry_after = int(response.headers.get("Retry-After", 2 ** attempt))
+                if response.status_code == 429: retry_after = int(response.headers.get("Retry-After", 2 ** attempt))
                     print(f"속도 제한됨. {retry_after}초 후 재시도")
                     time.sleep(retry_after)
                     continue
@@ -573,13 +527,10 @@ class PerplexityClient:
                 self.request_count += 1
                 return response.json()
                 
-            except requests.exceptions.Timeout:
-                print(f"시도 {attempt + 1}에서 시간 초과")
+            except requests.exceptions.Timeout: print(f"시도 {attempt + 1}에서 시간 초과")
                 time.sleep(2 ** attempt)
-            except requests.exceptions.HTTPError as e:
-                print(f"HTTP 오류: {e}")
-                if attempt < self.max_retries - 1:
-                    time.sleep(2 ** attempt)
+            except requests.exceptions.HTTPError as e: print(f"HTTP 오류: {e}")
+                if attempt < self.max_retries - 1: time.sleep(2 ** attempt)
         
         raise Exception("최대 재시도 횟수 초과")
 
@@ -594,13 +545,10 @@ queries = [
 ]
 
 results = []
-for q in queries:
-    try:
-        result = client.query(q)
+for q in queries: try: result = client.query(q)
         results.append(result)
         print(f"✓ 쿼리 완료: {q[:50]}...")
-    except Exception as e:
-        print(f"✗ 쿼리 실패: {q[:50]}... - {e}")
+    except Exception as e: print(f"✗ 쿼리 실패: {q[:50]}... - {e}")
 ```
 
 ---
@@ -623,15 +571,12 @@ CORS(app)
 PERPLEXITY_KEY = os.environ["PERPLEXITY_API_KEY"]
 BASE_URL = "https://api.perplexity.ai"
 
-class RAGSearchService:
-    def __init__(self):
-        self.headers = {
+class RAGSearchService: def __init__(self): self.headers = {
             "Authorization": f"Bearer {PERPLEXITY_KEY}",
             "Content-Type": "application/json"
         }
     
-    def search(self, query: str, model: str = "sonar-pro", stream: bool = False):
-        """선택적 스트리밍이 있는 RAG 검색을 실행합니다."""
+    def search(self, query: str, model: str = "sonar-pro", stream: bool = False): """선택적 스트리밍이 있는 RAG 검색을 실행합니다."""
         payload = {
             "model": model,
             "messages": [
@@ -658,17 +603,14 @@ class RAGSearchService:
 service = RAGSearchService()
 
 @app.route("/search", methods=["POST"])
-def search():
-    """동기 RAG 검색 엔드포인트."""
+def search(): """동기 RAG 검색 엔드포인트."""
     data = request.get_json()
     query = data.get("query", "")
     model = data.get("model", "sonar-pro")
     
-    if not query:
-        return jsonify({"error": "쿼리가 필요합니다"}), 400
+    if not query: return jsonify({"error": "쿼리가 필요합니다"}), 400
     
-    try:
-        result = service.search(query, model=model)
+    try: result = service.search(query, model=model)
         data = result.json()
         
         message = data["choices"][0]["message"]
@@ -678,26 +620,19 @@ def search():
             "model": model,
             "usage": data.get("usage", {})
         })
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
+    except Exception as e: return jsonify({"error": str(e)}), 500
 
 @app.route("/search/stream", methods=["POST"])
-def search_stream():
-    """서버 전송 이벤트를 사용한 스트리밍 RAG 검색 엔드포인트."""
+def search_stream(): """서버 전송 이벤트를 사용한 스트리밍 RAG 검색 엔드포인트."""
     data = request.get_json()
     query = data.get("query", "")
     model = data.get("model", "sonar-pro")
     
-    if not query:
-        return jsonify({"error": "쿼리가 필요합니다"}), 400
+    if not query: return jsonify({"error": "쿼리가 필요합니다"}), 400
     
-    def generate():
-        response = service.search(query, model=model, stream=True)
-        for line in response.iter_lines():
-            if line:
-                decoded = line.decode("utf-8")
-                if decoded.startswith("data: "):
-                    yield f"{decoded}\n\n"
+    def generate(): response = service.search(query, model=model, stream=True)
+        for line in response.iter_lines(): if line: decoded = line.decode("utf-8")
+                if decoded.startswith("data: "): yield f"{decoded}\n\n"
     
     return Response(
         generate(),
@@ -706,12 +641,10 @@ def search_stream():
     )
 
 @app.route("/health", methods=["GET"])
-def health():
-    """상태 확인 엔드포인트."""
+def health(): """상태 확인 엔드포인트."""
     return jsonify({"status": "healthy", "service": "rag-search"})
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+if __name__ == "__main__": app.run(host="0.0.0.0", port=5000, debug=True)
 ```
 
 ```bash
@@ -733,16 +666,11 @@ CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5000", "app:app"]
 ```yaml
 # docker-compose.yml
 version: "3.8"
-services:
-  rag-search:
-    build: .
-    ports:
-      - "5000:5000"
-    environment:
-      - PERPLEXITY_API_KEY=${PERPLEXITY_API_KEY}
+services: rag-search: build: .
+    ports: - "5000:5000"
+    environment: - PERPLEXITY_API_KEY=${PERPLEXITY_API_KEY}
     restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+    healthcheck: test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -798,7 +726,6 @@ Perplexity API는 개발자가 접근할 수 있는 RAG 기술의 중요한 발�
 연구 어시스턴트, 팩트 체크 도구, 동적 지식 베이스, 콘텐츠 검증 시스템을 포함한 차세대 지능형 애플리케이션을 구축하는 개발자에게 Perplexity는 이 기대를 충족할 수 있는 애플리케이션을 배치하여 사용자가 신뢰할 수 있는 경험을 제공합니다. 모든 답변은 실제이며 인용 가능한 출처의 기반 위에 서 있기 때문입니다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

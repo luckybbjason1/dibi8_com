@@ -1,19 +1,13 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mattpocock-skills-ai-agent-framework-guide" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mattpocock-skills-ai-agent-framework-guide" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mattpocock-skills-ai-agent-framework-guide" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mattpocock-skills-ai-agent-framework-guide" />
 title: "Matt Pocock의 Skills: AI 에이전트에 진정한 슈퍼파워를 부여하는 CLI 프레임워크 —...
 description: "Claude Code, Cursor, Gemini CLI와 같은 AI 코딩 에이전트에 코드 이상의 진짜 기능을 부여하는 Matt Pocock의 Skills 프레임워크 사용법을 배워보세요. 데이터베이스, 파일시스템, CI/CD 등. 단계별 npx 설치 가이드, 아키텍처 분석 및 실제 벤치마크."
 date: 2026-06-10
-lastmod:  2026-06-10slug: "mattpocock-skills-ai-agent-framework-guide"
+lastmod: 2026-06-10
+slug: "mattpocock-skills-ai-agent-framework-guide"
 category: dev-utils
 tags: [matt-pocock, skills, AI 에이전트, CLI 프레임워크, AI 코딩 도구, 에이전트 기능, 개발자 도구, 오픈소스]
 lang: ko
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/mattpocock-skills-ai-agent-framework-guide/ -->
 
 ## 소개
 
@@ -27,9 +21,7 @@ Skills는 경량의 오픈소스 프레임워크로 AI 코딩 에이전트에 �
 
 Skills는 **AI 코딩 에이전트에 코드 생성 이상의 실제 기능을 부여하는 확장 가능한 프레임워크**입니다. 기능을 플러그인 — 특정 작업을 수행하기 위해 에이전트가 호출할 수 있는 소형 독립 모듈 — 로 정의하여 작동합니다. AI 에이전트에 쉰스 아미 칼을 제공하는 것으로 생각하세요. 각 작업을 위해 새 도구를 작성하는 대신, Skills는 에이전트가 즉시 사용할 수 있는 선별된 도구 세트를 제공합니다.
 
-주요 기능:
-
-- **데이터베이스 접근** — SQL 쿼리 실행, 스키마 관리, 데이터 마이그레이션
+주요 기능: - **데이터베이스 접근** — SQL 쿼리 실행, 스키마 관리, 데이터 마이그레이션
 - **파일시스템 작업** — 파일 읽기, 쓰기, 검색, 조작
 - **CI/CD 통합** — 빌드 트리거, 테스트 실행, 스테이징 배포
 - **클라우드 작업** — Docker 컨테이너, Kubernetes pod, 클라우드 리소스 관리
@@ -48,9 +40,7 @@ Skills는 플러그인 아키텍처에 기반하여 작동합니다. 각 '스킬
 
 에이전트에게 "이 프로젝트에 PostgreSQL 데이터베이스를 설정해 줘"라고 요청하면, Skills는 데이터베이스를 생성하고 연결을 구성하며 초기 마이그레이션을 실행할 수 있는 데이터베이스 스킬을 제공합니다. "스테이징에 배포해 줘"라고 요청하면 CI/CD 파이프라인을 트리거하는 배포 스킬을 제공합니다. 에이전트는 이러한 작업이 어떻게 작동하는지 알 필요가 없습니다. Skills가 처리할 수 있다는 것만 알면 됩니다.
 
-스킬 생태계의 작동 방식:
-
-1. **스킬 발견** — 에이전트가 skills.json 구성을 읽어서 사용 가능한 기능 학습
+스킬 생태계의 작동 방식: 1. **스킬 발견** — 에이전트가 skills.json 구성을 읽어서 사용 가능한 기능 학습
 2. **스킬 선택** — 사용자 요청에 따라 에이전트가 적절한 스킬 선택
 3. **매개변수 추출** — 에이전트가 요청에서 관련 매개변수 추출
 4. **실행** — 스킬이 정의된 명령어나 API 호출 실행
@@ -126,8 +116,7 @@ curl -s https://www.aihero.dev/s/skills-newsletter
 
 ### Skills 허브
 
-공식 스킬 허브에서 모든 사용 가능한 스킬 검색:
-- Skills 사이트: https://skills.sh/mattpocock/skills
+공식 스킬 허브에서 모든 사용 가능한 스킬 검색: - Skills 사이트: https://skills.sh/mattpocock/skills
 - 뉴스레터: https://www.aihero.dev/s/skills-newsletter
 
 ## 기본 사용 예시
@@ -280,9 +269,7 @@ npx skills@latest run custom-http --url https://api.example.com/users --method G
 
 ### 에이전트 작업 완료율
 
-50개 작업 벤치마크에서 Skills 사용 여부에 따른 AI 에이전트 작업 완료율 테스트:
-
-| 작업 카테고리 | Skills 없음 | Skills 있음 |
+50개 작업 벤치마크에서 Skills 사용 여부에 따른 AI 에이전트 작업 완료율 테스트: | 작업 카테고리 | Skills 없음 | Skills 있음 |
 |-------------|-----------|-----------|
 | 데이터베이스 설정 | 0% (에이전트가 코드를 작성하지만 실행 불가) | 100% |
 | 파일 관리 | 30% | 95% |
@@ -293,9 +280,7 @@ npx skills@latest run custom-http --url https://api.example.com/users --method G
 
 ### 실제 사례: 스타트업 개발 팀
 
-5인 스타트업은 Claude Code와 Skills를 사용하여 전체 개발 워크플로우를 자동화합니다:
-
-```bash
+5인 스타트업은 Claude Code와 Skills를 사용하여 전체 개발 워크플로우를 자동화합니다: ```bash
 #!/bin/bash
 # 자동화 주간 배포 파이프라인
 npx skills@latest init
@@ -309,9 +294,7 @@ npx skills@latest run ci-cd --action test --action build --action deploy --env p
 
 ### 실제 사례: 프리랜서 개발자
 
-프리랜서 개발자는 Skills를 사용하여 여러 클라이언트 프로젝트를 관리합니다:
-
-```bash
+프리랜서 개발자는 Skills를 사용하여 여러 클라이언트 프로젝트를 관리합니다: ```bash
 # 클라이언트 전용 스킬 내보내기
 npx skills@latest export --project client-a > client-a-skills.json
 npx skills@latest export --project client-b > client-b-skills.json
@@ -375,9 +358,7 @@ Skills는 단순함과 광범위한 AI 에이전트 호환성으로 돋보입니
 
 ## 한계 / 객관적 평가
 
-Skills는 강력하지만 다음 한계를 유의하세요:
-
-1. **에이전트 호환성** — Skills는 도구 호출을 지원하는 에이전트와 가장 잘 작동합니다. 도구 호출 기능이 없는 에이전트는 혜택을 충분히 누릴 수 없습니다.
+Skills는 강력하지만 다음 한계를 유의하세요: 1. **에이전트 호환성** — Skills는 도구 호출을 지원하는 에이전트와 가장 잘 작동합니다. 도구 호출 기능이 없는 에이전트는 혜택을 충분히 누릴 수 없습니다.
 2. **스킬 커버리지** — 내장 스킬은 일반적인 개발자 작업을 커버하지만, 니즈 또는 사용자 정의 워크플로에는 사용자 정의 스킬 개발이 필요할 수 있습니다.
 3. **보안 고려사항** — Skills는 에이전트에게 실제 기능을 제공하므로 권한과 접근 제어를 주의 깊게 관리해야 합니다.
 4. **구성 오버헤드** — 환경 변수와 연결 매개변수 설정에는 초기 구성이 필요합니다.
@@ -438,7 +419,6 @@ Matt Pocock의 Skills 프레임워크는 AI 보조 개발에서 근본적인 문
 일부 링크는 제휴 링크입니다. dibi8.com은 등록 시 추가 비용 없이 수수료를 받을 수 있습니다. 사이트 운영과 콘텐츠 무료 제공에 도움이 됩니다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

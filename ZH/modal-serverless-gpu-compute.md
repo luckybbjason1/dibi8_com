@@ -1,28 +1,20 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/modal-serverless-gpu-compute" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/modal-serverless-gpu-compute" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/modal-serverless-gpu-compute" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/modal-serverless-gpu-compute" />
 title: Modal 无服务器 GPU 计算 — 零基础设施运行 ML 流水线
 description: Modal 无服务器 GPU 基础设施完全指南。零集群管理部署 LLM 推理、微调流水线和批量 ML 工作负载。对比定价、基准测试和真实场景模式。. Comprehensive guide covering features, pricing, and best practices for 2026.
 tags: ['serverless', 'gpu', 'machine-learning', 'inference', 'llm', 'cloud-compute']
 category: llm-frameworks
 featureImage: /images/articles/modal-serverless-gpu-compute.jpg
 date: 2026-07-15T00:00:00+00:00
-lastmod:  2026-07-15T00:00:00+00:00draft: false
+lastmod: 2026-07-15T00:00:00+00:00draft: false
 slug: modal-serverless-gpu-compute
-lang: zh-CN
----
-
-<!-- canonical: https://dibi8.com/zh/tools/modal-serverless-gpu-compute/ -->
+-CN---
 
 ## TL;DR
 
 Modal 是一个 Python 原生的无服务器计算平台，无需管理任何基础设施即可运行 GPU 加速工作负载。你编写标准 Python 函数，用 `@modal.enter()` 和 `@modal.function()` 装饰它们，Modal 自动处理容器配置、GPU 分配、网络管理和弹性伸缩。非常适合 LLM 推理端点、微调任务和批量 ML 流水线。
 
----
 
+---
 ## Modal 是什么？
 
 Modal 是专为机器学习和数据密集型工作负载设计的无服务器计算平台。与传统云服务商不同——你需要预配虚拟机、管理 Kubernetes 集群或配置自动伸缩组——Modal 将所有基础设施抽象为简单的 Python 装饰器。
@@ -56,7 +48,17 @@ image = modal.Image.debian_slim().pip_install(
 ### 与替代方案的关键差异
 
 | 特性 | Modal | AWS SageMaker | Google Vertex AI | Lambda GPU |
-|---------|-------|---------------|------------------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Python 原生 API | ✅ | ❌(控制台/CLI) | ❌(控制台/CLI) | ❌(YAML) |
 | 零冷启动* | ✅(预热池) | ❌ | ❌ | ❌ |
 | 按秒计费 | ✅ | ❌(最小小时) | ❌(最小小时) | ✅ |
@@ -84,8 +86,8 @@ Modal 的设计哲学源于一个简单观察：ML 工程师不应该成为 DevO
 **场景三：模型微调流水线**
 一家金融科技公司需要微调 Llama 3.2 以理解金融术语。通过 Modal 的 H100 支持，他们在 4 小时内完成训练，成本约 $16。如果使用 Spot 实例，还需要处理中断风险和自定义脚本。
 
----
 
+---
 ## 快速开始：第一个 Modal 应用
 
 ### 第一步：安装和认证
@@ -114,10 +116,8 @@ stub = modal.Stub("llm-inference")
     gpu="A10G",
     memory=8192
 )
-class LLMEndpoint:
-    @modal.enter()
-    def load_model(self):
-        self.model = AutoModelForCausalLM.from_pretrained(
+class LLMEndpoint: @modal.enter()
+    def load_model(self): self.model = AutoModelForCausalLM.from_pretrained(
             "meta-llama/Llama-3.2-3B-Instruct",
             torch_dtype="auto",
             device_map="auto"
@@ -125,8 +125,7 @@ class LLMEndpoint:
         self.tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-3.2-3B-Instruct")
 
     @modal.method()
-    def generate(self, prompt: str, max_tokens: int = 512) -> str:
-        inputs = self.tokenizer(prompt, return_tensors="pt").to(self.model.device)
+    def generate(self, prompt: str, max_tokens: int = 512) -> str: inputs = self.tokenizer(prompt, return_tensors="pt").to(self.model.device)
         outputs = self.model.generate(**inputs, max_new_tokens=max_tokens)
         return self.tokenizer.decode(outputs[0], skip_special_tokens=True)
 ```
@@ -160,15 +159,12 @@ modal run my_app::LLMEndpoint.generate --prompt "解释量子计算" --max_token
     allow_concurrent_inputs=10,
     keep_warm=2  # 至少保持 2 个容器预热
 )
-class ProductionLLM:
-    @modal.enter()
-    def load_model(self):
-        self.model = load_optimized_model()  # 你的优化逻辑
+class ProductionLLM: @modal.enter()
+    def load_model(self): self.model = load_optimized_model()  # 你的优化逻辑
         self.tokenizer = AutoTokenizer.from_pretrained("your-model")
 
     @modal.web_endpoint(method="POST")
-    def infer(self, req: dict):
-        prompt = req.get("prompt", "")
+    def infer(self, req: dict): prompt = req.get("prompt", "")
         result = self.model.generate(prompt, max_tokens=req.get("max_tokens", 256))
         return {"response": result}
 ```
@@ -189,8 +185,7 @@ class ProductionLLM:
     timeout=3600,  # 最长 1 小时
     retries=2
 )
-def batch_embed(docs: list[str]) -> list[list[float]]:
-    """处理一批文档并返回嵌入向量。"""
+def batch_embed(docs: list[str]) -> list[list[float]]: """处理一批文档并返回嵌入向量。"""
     model = get_embedding_model()
     return model.encode(docs, batch_size=64).tolist()
 
@@ -208,8 +203,7 @@ Modal 自动处理分块、重试失败批次，并在多个 GPU 容器间并行
     memory=16384,
     timeout=14400  # 4 小时
 )
-def run_finetune(dataset_path: str, output_dir: str):
-    """在数据集上运行 LoRA 微调。"""
+def run_finetune(dataset_path: str, output_dir: str): """在数据集上运行 LoRA 微调。"""
     from trl import SFTTrainer
     from peft import LoraConfig
 
@@ -242,7 +236,11 @@ def run_finetune(dataset_path: str, output_dir: str):
 Modal 根据容器实际使用的资源收费：
 
 | 资源 | 价格（约） |
-|----------|---------------------|
+|
+---
+|
+---
+|
 | A10G GPU | $0.60/小时 |
 | L4 GPU | $0.80/小时 |
 | A100-80GB | $2.50/小时 |
@@ -260,14 +258,12 @@ _以上为约值；查看 [modal.com/pricing](https://modal.com/pricing) 获取�
 # 不要用 H100 跑 3B 参数模型
 # 改用 A10G——节省 75% 成本
 @stub.function(gpu="A10G", memory=4096)
-def light_inference(prompt: str):
-    model = load_small_model()  # 3B 参数轻松容纳
+def light_inference(prompt: str): model = load_small_model()  # 3B 参数轻松容纳
     return model.generate(prompt)
 
 # 仅大规模微调时使用 H100
 @stub.function(gpu="H100-80GB", memory=32768)
-def heavy_finetune(config: dict):
-    return run_large_scale_training(config)
+def heavy_finetune(config: dict): return run_large_scale_training(config)
 ```
 
 **策略二：战略性使用 `keep_warm`**
@@ -275,13 +271,11 @@ def heavy_finetune(config: dict):
 ```python
 # 可预测流量：仅在业务时段保持预热
 @stub.function(gpu="L4", keep_warm=1)
-def production_endpoint():
-    ...
+def production_endpoint(): ...
 
 # 突发流量：提高 concurrency_limit
 @stub.function(gpu="L4", concurrency_limit=50, keep_warm=3)
-def bursty_endpoint():
-    ...
+def bursty_endpoint(): ...
 ```
 
 **策略三：使用 `@stub.cls` 复用容器**
@@ -291,26 +285,30 @@ def bursty_endpoint():
 ```python
 # ❌ 不好：每次调用都加载模型
 @stub.function(gpu="A10G")
-def bad_approach(prompt: str):
-    model = load_model()  # 每次调用重新加载！
+def bad_approach(prompt: str): model = load_model()  # 每次调用重新加载！
     return model.generate(prompt)
 
 # ✅ 好：加载一次，跨请求复用
 @stub.cls(gpu="A10G")
-class GoodApproach:
-    @modal.enter()
-    def setup(self):
-        self.model = load_model()  # 启动时加载一次
+class GoodApproach: @modal.enter()
+    def setup(self): self.model = load_model()  # 启动时加载一次
     
     @modal.method()
-    def generate(self, prompt: str):
-        return self.model.generate(prompt)  # 复用已加载的模型
+    def generate(self, prompt: str): return self.model.generate(prompt)  # 复用已加载的模型
 ```
 
 ### 真实世界成本对比
 
 | 工作负载 | AWS EC2 (p4d) | Modal | 节省 |
-|----------|---------------|-------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Llama 3.2 3B 推理（100 请求/分钟） | $2,200/月（常驻） | $180/月（按需） | 92% |
 | 微调 8 小时任务 | $200（预留） | $20（实际使用） | 90% |
 | 批量嵌入 100 万文档 | $500（集群管理） | $85（纯计算） | 83% |
@@ -334,8 +332,7 @@ stub = modal.Stub("secret-demo")
         modal.Secret.from_name("openai-key"),
     ]
 )
-def secure_inference(prompt: str):
-    import os
+def secure_inference(prompt: str): import os
     hf_token = os.environ["HF_TOKEN"]  # 从密钥注入
     openai_key = os.environ["OPENAI_API_KEY"]
     return call_api(prompt, hf_token, openai_key)
@@ -360,8 +357,7 @@ checkpoint_volume = modal.Volume.from_name("model-checkpoints", create_if_missin
     volumes={"/checkpoints": checkpoint_volume},
     timeout=7200
 )
-def fine_tune_and_save(dataset_url: str):
-    # 加载数据集
+def fine_tune_and_save(dataset_url: str): # 加载数据集
     dataset = load_dataset(dataset_url)
     
     # 训练并保存到挂载卷
@@ -372,8 +368,7 @@ def fine_tune_and_save(dataset_url: str):
 
 # 从另一个函数访问保存的模型
 @stub.function(volumes={"/checkpoints": checkpoint_volume})
-def load_and_infer(prompt: str):
-    model = AutoModelForCausalLM.from_pretrained("/checkpoints/final-model")
+def load_and_infer(prompt: str): model = AutoModelForCausalLM.from_pretrained("/checkpoints/final-model")
     return model.generate(prompt)
 ```
 
@@ -390,8 +385,7 @@ def load_and_infer(prompt: str):
     blocked_subnets=["169.254.0.0/16"],  # 阻止元数据服务
     allowed_domains=["api.openai.com"]   # 仅允许特定域名
 )
-def restricted_inference(prompt: str):
-    return call_openai(prompt)
+def restricted_inference(prompt: str): return call_openai(prompt)
 ```
 
 ### 自定义 Docker 镜像
@@ -407,8 +401,7 @@ custom_image = (
 )
 
 @stub.function(image=custom_image, gpu="A100-80GB")
-def custom_model_inference(request: dict):
-    model = torch.load("/app/model/best.pt")
+def custom_model_inference(request: dict): model = torch.load("/app/model/best.pt")
     return model.predict(request["input"])
 ```
 
@@ -430,10 +423,8 @@ def custom_model_inference(request: dict):
     memory=32768,  # 大模型需要 32GB RAM
     ephemeral_disk=100_000  # 模型权重需要 100GB 磁盘
 )
-class LargeModel:
-    @modal.enter()
-    def load(self):
-        self.model = AutoModel.from_pretrained(
+class LargeModel: @modal.enter()
+    def load(self): self.model = AutoModel.from_pretrained(
             "big-model",
             torch_dtype=torch.float16,  # 使用半精度
             device_map="auto"
@@ -454,10 +445,8 @@ class LargeModel:
     keep_warm=3,  # 始终保持 3 个预热容器
     timeout=600
 )
-class WarmEndpoint:
-    @modal.enter()
-    def load(self):
-        self.model = load_model()
+class WarmEndpoint: @modal.enter()
+    def load(self): self.model = load_model()
         print("模型加载成功")
 ```
 
@@ -475,11 +464,8 @@ class WarmEndpoint:
     timeout=28800,  # 8 小时
     volumes={"/data": modal.Volume.from_name("training-data")}
 )
-def long_training_job(config_path: str):
-    for epoch in range(10):
-        train_epoch(config_path)
-        if epoch % 2 == 0:
-            save_checkpoint(f"/data/checkpoint-{epoch}")
+def long_training_job(config_path: str): for epoch in range(10): train_epoch(config_path)
+        if epoch % 2 == 0: save_checkpoint(f"/data/checkpoint-{epoch}")
 ```
 
 ### 问题四：并发限流
@@ -497,10 +483,8 @@ def long_training_job(config_path: str):
     allow_concurrent_inputs=20,  # 每个容器的请求数
     keep_warm=5                  # 预热池大小
 )
-class ScalableEndpoint:
-    @modal.method()
-    def handle(self, request: dict):
-        return process(request)
+class ScalableEndpoint: @modal.method()
+    def handle(self, request: dict): return process(request)
 ```
 
 ---
@@ -588,7 +572,6 @@ Modal 在 `modal.com/apps` 提供 Web 仪表板，显示实时指标：调用次
 *加入我们的 Telegram 群组获取实时 AI 工具讨论和部署技巧：[t.me/dibi8](https://t.me/dibi8)*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -616,25 +599,20 @@ Modal 在 `modal.com/apps` 提供 Web 仪表板，显示实时指标：调用次
 
 ## Why This Matters
 
-Understanding modal 无服务器 gpu 计算 — 零基础设施运行 ml 流水线 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding modal 无服务器 gpu 计算 — 零基础设施运行 ml 流水线 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

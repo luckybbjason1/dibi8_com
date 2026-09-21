@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/llamaindex" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/llamaindex" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llamaindex" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/llamaindex" />
 title: 'LlamaIndex: 49K+ Stars — 生产级 RAG 部署指南 2026'
 description: 'LlamaIndex 是构建生产级 RAG 系统的数据框架，支持 OpenAI、Anthropic、Ollama、Qdrant、Weaviate、Chroma。涵盖 Docker 部署、查询引擎、Agent、与 LangChain/Haystack/RAGFlow 的基准对比。'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [llamaindex, rag, llm, 向量数据库, 检索增强生成, openai, ollama, qdrant, python, docker]
-aliases:
-- /zh/posts/llamaindex/
+aliases: - /zh/posts/llamaindex/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/llamaindex/ -->
 
 {{</* resource-info */>}}
 
@@ -122,12 +114,10 @@ from llama_index.core import StorageContext, load_index_from_storage
 
 PERSIST_DIR = "./storage"
 
-if not os.path.exists(PERSIST_DIR):
-    documents = SimpleDirectoryReader("./data").load_data()
+if not os.path.exists(PERSIST_DIR): documents = SimpleDirectoryReader("./data").load_data()
     index = VectorStoreIndex.from_documents(documents)
     index.storage_context.persist(persist_dir=PERSIST_DIR)
-else:
-    storage_context = StorageContext.from_defaults(persist_dir=PERSIST_DIR)
+else: storage_context = StorageContext.from_defaults(persist_dir=PERSIST_DIR)
     index = load_index_from_storage(storage_context)
 ```
 
@@ -211,7 +201,17 @@ index = VectorStoreIndex.from_documents(documents, storage_context=storage_conte
 2025-2026 年在 10,000 份文档语料库上使用 GPT-4o-mini 的独立基准测试：
 
 | 指标 | LlamaIndex | LangChain | Haystack | RAGFlow |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | RAG 准确率（RAGAS） | 0.81 | 0.72 | 0.79 | 0.77 |
 | 平均查询延迟 | 0.9s | 1.2s | 1.1s | 1.4s |
 | 索引构建时间（1万文档） | 6 分钟 | 8 分钟 | 7 分钟 | 9 分钟 |
@@ -230,7 +230,11 @@ index = VectorStoreIndex.from_documents(documents, storage_context=storage_conte
 ### 何时选择 LlamaIndex
 
 | 场景 | 推荐方案 |
-|---|---|
+|
+---
+|
+---
+|
 | 文档密集型问答 | `VectorStoreIndex` + 查询引擎 |
 | 多个数据源 | `RouterQueryEngine` + 多索引 |
 | 多轮对话 | `ChatEngine` + 记忆 |
@@ -289,15 +293,12 @@ response = router_engine.query("Summarize the main points")
 from llama_index.core.postprocessor import BaseNodePostprocessor
 from llama_index.core.schema import NodeWithScore, QueryBundle
 
-class ScoreThresholdPostprocessor(BaseNodePostprocessor):
-    def __init__(self, threshold: float = 0.7):
-        self.threshold = threshold
+class ScoreThresholdPostprocessor(BaseNodePostprocessor): def __init__(self, threshold: float = 0.7): self.threshold = threshold
         super().__init__()
 
     def _postprocess_nodes(
         self, nodes: list[NodeWithScore], query_bundle: QueryBundle | None = None
-    ) -> list[NodeWithScore]:
-        return [n for n in nodes if n.score >= self.threshold]
+    ) -> list[NodeWithScore]: return [n for n in nodes if n.score >= self.threshold]
 
 # 在查询引擎中使用
 query_engine = index.as_query_engine(
@@ -310,8 +311,7 @@ query_engine = index.as_query_engine(
 ```python
 import asyncio
 
-async def batch_queries(queries: list[str]) -> list[str]:
-    tasks = [query_engine.aquery(q) for q in queries]
+async def batch_queries(queries: list[str]) -> list[str]: tasks = [query_engine.aquery(q) for q in queries]
     responses = await asyncio.gather(*tasks)
     return [str(r) for r in responses]
 
@@ -322,8 +322,7 @@ queries = [
 ]
 
 results = asyncio.run(batch_queries(queries))
-for q, r in zip(queries, results):
-    print(f"Q: {q}\nA: {r}\n")
+for q, r in zip(queries, results): print(f"Q: {q}\nA: {r}\n")
 ```
 
 ### Docker 部署
@@ -356,12 +355,10 @@ storage_context = StorageContext.from_defaults(persist_dir=PERSIST_DIR)
 index = load_index_from_storage(storage_context)
 query_engine = index.as_query_engine()
 
-class QueryRequest(BaseModel):
-    query: str
+class QueryRequest(BaseModel): query: str
 
 @app.post("/query")
-async def query_docs(request: QueryRequest):
-    response = query_engine.query(request.query)
+async def query_docs(request: QueryRequest): response = query_engine.query(request.query)
     return {
         "answer": str(response),
         "sources": [n.metadata for n in response.source_nodes],
@@ -371,27 +368,17 @@ async def query_docs(request: QueryRequest):
 ```yaml
 # docker-compose.yml
 version: "3.8"
-services:
-  app:
-    build: .
-    ports:
-      - "8000:8000"
-    environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
+services: app: build: .
+    ports: - "8000:8000"
+    environment: - OPENAI_API_KEY=${OPENAI_API_KEY}
       - PERSIST_DIR=/app/storage
-    volumes:
-      - ./storage:/app/storage:ro
+    volumes: - ./storage:/app/storage:ro
 
-  qdrant:
-    image: qdrant/qdrant:latest
-    ports:
-      - "6333:6333"
-    volumes:
-      - qdrant_data:/qdrant/storage
+  qdrant: image: qdrant/qdrant:latest
+    ports: - "6333:6333"
+    volumes: - qdrant_data:/qdrant/storage
 
-volumes:
-  qdrant_data:
-```
+volumes: qdrant_data: ```
 
 ### DigitalOcean 部署
 
@@ -429,7 +416,11 @@ print(f"Embedding Tokens: {token_counter.total_embedding_token_count}")
 ### 生产检查清单
 
 | 关注点 | 实现方式 |
-|---|---|
+|
+---
+|
+---
+|
 | 索引持久化 | 构建时调用 `storage_context.persist()` |
 | 热重载 | 启动时从存储加载 |
 | API 速率限制 | 添加 FastAPI 中间件 |
@@ -442,7 +433,17 @@ print(f"Embedding Tokens: {token_counter.total_embedding_token_count}")
 ## 与替代方案对比
 
 | 特性 | LlamaIndex | LangChain | Haystack | RAGFlow |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **核心定位** | 数据索引与检索 | Agent 编排与链式调用 | 生产级 RAG 流水线 | 可视化 RAG 构建器 |
 | **GitHub Stars** | 49.5k | 95k | 25.3k | 80.9k |
 | **许可证** | MIT | MIT | Apache-2.0 | Apache-2.0 |
@@ -487,8 +488,7 @@ LlamaIndex 专注于数据摄取、索引和检索优化。LangChain 是用于�
 ```python
 query_engine = index.as_query_engine(streaming=True)
 response = query_engine.query("Explain the architecture")
-for token in response.response_gen:
-    print(token, end="")
+for token in response.response_gen: print(token, end="")
 ```
 
 **Q5: 如何评估 RAG 流水线质量？**
@@ -546,7 +546,6 @@ LlamaIndex 占据了一个特定且有价值的领域：它让构建生产级 RA
 - [RAGFlow GitHub](https://github.com/infiniflow/ragflow)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -574,25 +573,20 @@ LlamaIndex 占据了一个特定且有价值的领域：它让构建生产级 RA
 
 ## Why This Matters
 
-Understanding llamaindex: 49k+ stars — 生产级 rag 部署指南 2026 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding llamaindex: 49k+ stars — 生产级 rag 部署指南 2026 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -613,13 +607,13 @@ LlamaIndex: 49K+ Stars — 生产级 RAG 部署指南 2026 represents an importa
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*
 
----
 
+---
 ## Related Articles
 
 - [12-factor-agents-production-llm-software-2026](llamaindex)

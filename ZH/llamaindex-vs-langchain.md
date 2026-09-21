@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/llamaindex-vs-langchain" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/llamaindex-vs-langchain" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llamaindex-vs-langchain" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/llamaindex-vs-langchain" />
 title: 'LlamaIndex vs LangChain对比2025：哪个LLM框架更适合你？'
 description: '2025年最详细的LlamaIndex与LangChain对比分析，涵盖架构、RAG能力、性能基准和选型建议，帮你做出正确选择。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/llamaindex-vs-langchain/
+aliases: - /posts/llamaindex-vs-langchain/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/llamaindex-vs-langchain/ -->
 
 {</* resource-info */>}
 
@@ -86,7 +78,13 @@ LlamaIndex（前称GPT Index）从诞生之初就围绕一个核心命题：**�
 ### 1. 架构抽象层级
 
 | 维度 | LangChain | LlamaIndex |
-|------|-----------|------------|
+|
+---
+|
+---
+|
+---
+|
 | 核心抽象 | Chain（链式调用） | Index（索引）+ Query Engine（查询引擎） |
 | 控制粒度 | 细粒度，需手动组装 | 粗粒度，高层API开箱即用 |
 | 灵活性 | 极高，可自定义每一步 | 高，但检索管道有预设模式 |
@@ -108,7 +106,13 @@ LangChain的文档处理更基础，主要通过`Document Loader`和`Text Splitt
 LlamaIndex在检索层面提供了企业级的策略库：
 
 | 检索策略 | LlamaIndex | LangChain |
-|----------|------------|-----------|
+|
+---
+|
+---
+|
+---
+|
 | 向量相似度检索 | ✅ 原生支持 | ✅ 通过Vector Store |
 | 关键词/稀疏检索 | ✅ BM25混合检索 | ✅ 需集成 |
 | 查询重写 | ✅ 自动+手动 | ⚠️ 需自定义 |
@@ -127,7 +131,13 @@ LlamaIndex的Agent系统（`OpenAIAgent`、`ReActAgent`）起步较晚，但通�
 在RAG基准测试上，LlamaIndex通常在检索精度上表现更优。根据社区测试数据（使用相同的嵌入模型和LLM）：
 
 | 指标 | LlamaIndex | LangChain |
-|------|------------|-----------|
+|
+---
+|
+---
+|
+---
+|
 | 检索召回率@5 | 0.82-0.88 | 0.74-0.81 |
 | 端到端延迟 | 中等 | 较低（更轻量） |
 | 索引构建速度 | 较慢（更多处理） | 较快 |
@@ -152,7 +162,13 @@ LlamaIndex的RAG场景上手更直观：`加载文档 → 创建索引 → 发�
 ### 8. 企业级特性
 
 | 企业特性 | LlamaIndex | LangChain |
-|----------|------------|-----------|
+|
+---
+|
+---
+|
+---
+|
 | 云端托管 | LlamaCloud | LangSmith Cloud |
 | 数据连接器 | 500+（含SaaS） | 100+（以文件为主） |
 | 可观测性 | 基础 | LangSmith业界领先 |
@@ -251,8 +267,8 @@ LangChain通过LangSmith提供了业界领先的观测平台，在调试和性�
 
 更多参考资源：[LangChain官方文档](https://python.langchain.com)、[LlamaIndex官方文档](https://docs.llamaindex.ai)、[LangChain GitHub](https://github.com/langchain-ai/langchain)、[LlamaIndex GitHub](https://github.com/run-llama/llama_index)。
 
----
 
+---
 ## 推荐基础设施
 
 要 7×24 稳跑上述工具，服务器选择关键：
@@ -264,7 +280,6 @@ LangChain通过LangSmith提供了业界领先的观测平台，在调试和性�
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -292,25 +307,20 @@ LangChain通过LangSmith提供了业界领先的观测平台，在调试和性�
 
 ## Why This Matters
 
-Understanding llamaindex vs langchain对比2025：哪个llm框架更适合你？ is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding llamaindex vs langchain对比2025：哪个llm框架更适合你？ is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -331,8 +341,8 @@ LlamaIndex vs LangChain对比2025：哪个LLM框架更适合你？ represents an
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -359,9 +369,7 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
 
 
-When deploying AI agents in production, follow these best practices:
-
-1. **Start Small**: Begin with a single tool and simple prompt, then gradually add complexity
+When deploying AI agents in production, follow these best practices: 1. **Start Small**: Begin with a single tool and simple prompt, then gradually add complexity
 2. **Implement Guardrails**: Use permission prompts and approval workflows for dangerous operations
 3. **Monitor Everything**: Log all agent actions for debugging and compliance
 4. **Handle Failures Gracefully**: Implement retry logic and fallback mechanisms
@@ -369,9 +377,7 @@ When deploying AI agents in production, follow these best practices:
 
 ### Security Considerations
 
-AI agents have access to sensitive systems. Always:
-
-- Use least-privilege principles
+AI agents have access to sensitive systems. Always: - Use least-privilege principles
 - Implement audit logging
 - Encrypt sensitive data at rest and in transit
 - Regular security assessments
@@ -379,7 +385,17 @@ AI agents have access to sensitive systems. Always:
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

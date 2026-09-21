@@ -1,20 +1,13 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/codebase-memory-mcp-high-performance-code-intelligence" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/codebase-memory-mcp-high-performance-code-intelligence" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/codebase-memory-mcp-high-performance-code-intelligence" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/codebase-memory-mcp-high-performance-code-intelligence" />
 title: '코드베이스-메모리-MCP: AI 코딩 에이전트를 위한 고성능 코드 인텔리전스'
 description: '코드베이스-메모리-MCP에 대한 깊은 탐구 — 전체 저장소를 밀리초 단위로 인덱싱하는 가장 빠른 코드 인텔리전스 MCP 서버입니다.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-19
-lastmod:  2026-06-19tags: []
+lastmod: 2026-06-19tags: []
 category: "dev-utils"
 lang: kr
 slug: codebase-memory-mcp-high-performance-code-intelligence
 featureImage: /images/articles/codebase-memory-mcp-high-performance-code-intelligence-for-a.jpg
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/codebase-memory-mcp-high-performance-code-intelligence/ -->
 
 # Codebase-Memory-MCP: AI 코딩 에이전트를 위한 고성능 코드 인텔리전스 
 
@@ -172,9 +165,7 @@ Codebase-memory-mcp는 AI 코딩 에이전트에 강력한 코드 인텔리전�
 
 ### 실제 테스트 
 
-500,000 LOC Python 프로젝트에 대한 자체 테스트에서: 
-
-- **인덱싱 시간**: 45초(파일별 추정 시간은 2시간 이상) 
+500,000 LOC Python 프로젝트에 대한 자체 테스트에서: - **인덱싱 시간**: 45초(파일별 추정 시간은 2시간 이상) 
 - **쿼리 응답**: 대부분의 쿼리에서 50ms 미만 
 - **토큰 절약**: 컨텍스트 창 사용량이 약 95% 감소했습니다.
 
@@ -205,9 +196,7 @@ Codebase-memory-mcp의 지식 그래프 접근 방식은 **코드 요소 간의 
 
 ### 사용 사례 1: 레거시 코드 리팩토링 
 
-레거시 코드베이스를 리팩토링하는 임무를 맡고 있다고 상상해 보세요. 코드베이스-메모리-mcp 사용: 
-
-``파이썬 
+레거시 코드베이스를 리팩토링하는 임무를 맡고 있다고 상상해 보세요. 코드베이스-메모리-mcp 사용: ``파이썬 
 # 더 이상 사용되지 않는 함수의 호출자를 모두 찾습니다. 
 결과 = mcp.call("find_callers", { 
 "symbol": "legacy_authenticate", 
@@ -259,8 +248,7 @@ mcp.call("get_import_graph", {"module": "services"})
 }) 
 
 # 각 엔드포인트에서 인증을 확인합니다. 
-끝점의 끝점: 
-호출자 = mcp.call("find_callers", {"symbol": 끝점}) 
+끝점의 끝점: 호출자 = mcp.call("find_callers", {"symbol": 끝점}) 
 # 인증 미들웨어 적용 여부 확인 
 ```` 
 
@@ -323,12 +311,9 @@ Codebase-memory-mcp에는 내장된 3D 그래프 시각화 UI가 포함되어 �
 
 ``yaml 
 # 클로드 코드 구성 
-mcp서버: 
-코드베이스 메모리: 
-명령: /path/to/codebase-memory-mcp 
+mcp서버: 코드베이스 메모리: 명령: /path/to/codebase-memory-mcp 
 인수: [서빙] 
-환경: 
-CBM_PROJECT_ROOT: /path/to/your/project 
+환경: CBM_PROJECT_ROOT: /path/to/your/project 
 ```` 
 
 ``json 
@@ -386,9 +371,7 @@ deps = client.analyze_dependent(module="auth_service")
 
 ### 도커 배포 
 
-컨테이너화된 환경의 경우: 
-
-``도커파일 
+컨테이너화된 환경의 경우: ``도커파일 
 알파인에서:최신 
 복사 코드베이스-메모리-mcp /usr/local/bin/ 
 RUN chmod +x /usr/local/bin/codebase-memory-mcp 
@@ -518,7 +501,6 @@ Codebase-memory-mcp는 AI 코딩 에이전트가 코드와 상호 작용하는 �
 - [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f) - 웹 스크래핑을 위한 프록시 솔루션
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

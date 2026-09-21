@@ -9,7 +9,6 @@ license_type: Open Source
 source: "LangChain, LlamaIndex"
 github: "langchain-ai/langchain, run-llama/llamaindex, langchain-ai/langgraph"
 ---
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -40,8 +39,6 @@ github: "langchain-ai/langchain, run-llama/llamaindex, langchain-ai/langgraph"
 }
 </script>
 
-
-<!-- canonical: https://dibi8.com/vi/tools/2026-09-20-langchain-vs-llamaindex-vs-langgraph/ -->
 
 # LangChain vs LlamaIndex vs LangGraph 2026: Guia de Comparação Completo
 
@@ -114,8 +111,7 @@ LangGraph é o mais forte em workflows complexos e recuperação de erros, mas t
 
 ### Eficiência de Tokens
 
-De acordo com testes independentes de junho de 2026:
-- **LlamaIndex**: Menor uso de tokens (otimização de recuperação)
+De acordo com testes independentes de junho de 2026: - **LlamaIndex**: Menor uso de tokens (otimização de recuperação)
 - **LangChain**: Uso médio de tokens (design genérico)
 - **LangGraph**: Uso mais alto de tokens (rastreamento completo de estado)
 
@@ -161,8 +157,7 @@ print(response)
 ```python
 from langchain.agents import create_agent
 
-def get_weather(city: str) -> str:
-    """Obter clima de uma cidade."""
+def get_weather(city: str) -> str: """Obter clima de uma cidade."""
     return f"{city} está ensolarado hoje, 25°C"
 
 agent = create_agent(
@@ -182,17 +177,14 @@ print(result)
 from langgraph.graph import StateGraph, START, END
 from typing import TypedDict
 
-class AgentState(TypedDict):
-    messages: list
+class AgentState(TypedDict): messages: list
     tool_calls: list
     final_answer: str
 
-def weather_tool(state: AgentState) -> AgentState:
-    state["final_answer"] = "25°C em San Francisco"
+def weather_tool(state: AgentState) -> AgentState: state["final_answer"] = "25°C em San Francisco"
     return state
 
-def should_continue(state: AgentState) -> str:
-    return "end" if "final_answer" in state else "tool"
+def should_continue(state: AgentState) -> str: return "end" if "final_answer" in state else "tool"
 
 graph = StateGraph(AgentState)
 graph.add_node("tool", weather_tool)
@@ -207,9 +199,7 @@ result = app.invoke({"messages": [("user", "Clima em SF?")]})
 
 ### Opção 1: LlamaIndex + LangGraph Híbrido
 
-Esta é a solução de produção mais popular em 2026:
-
-```
+Esta é a solução de produção mais popular em 2026: ```
 Requisição do Usuário → Recuperação LlamaIndex → Orquestração LangGraph → Geração do Modelo → Resposta
            ↑                                                              ↓
         Indexação de Documentos ←────────────────────── Revisão Humana
@@ -266,9 +256,7 @@ Qual é sua necessidade principal?
 
 ## Conclusão
 
-O cenário de frameworks LLM em 2026 está claro:
-
-1. **LlamaIndex**: Escolha para documentos e recuperação, melhor desempenho em RAG
+O cenário de frameworks LLM em 2026 está claro: 1. **LlamaIndex**: Escolha para documentos e recuperação, melhor desempenho em RAG
 2. **LangChain 1.0**: Opção equilibrada para desenvolvimento rápido, API de agente simplificada
 3. **LangGraph**: Ferramenta profissional para workflows complexos, curva de aprendizado íngreme
 

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/voicebox-open-source-ai-voice-studio" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/voicebox-open-source-ai-voice-studio" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/voicebox-open-source-ai-voice-studio" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/voicebox-open-source-ai-voice-studio" />
 title: VoiceBox：开源AI语音工作室，用于克隆、听写和生成
 description: 一个全栈开源AI语音工作室，让您克隆任意语音、生成语音并听写到任何应用。33K stars。在您的机器上本地运行，支持CUDA或Apple Silicon。. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-25
@@ -13,12 +8,8 @@ category: ai-tools
 tags: ['ai', '语音ai', '语音克隆', '语音转文字', '文字转语音', 'whisper', 'qwen3-tts', 'cuda', 'mlx']
 slug: voicebox-open-source-ai-voice-studio
 featureImage: /images/articles/voicebox-open-source-ai-voice-studio-for-cloning-dictation-and-generation.png
-lang: zh
 github_repo: https://github.com/voicebox-ai/voicebox
-license: MIT
----
-
-<!-- canonical: https://dibi8.com/zh/tools/voicebox-open-source-ai-voice-studio/ -->
+license: MIT---
 
 
 
@@ -225,8 +216,7 @@ manager = VoiceManager()
 
 # 列出所有克隆语音
 voices = manager.list_voices()
-for v in voices:
-    print(f"{v.name}: {v.quality}（{v.duration}s训练数据）")
+for v in voices: print(f"{v.name}: {v.quality}（{v.duration}s训练数据）")
 
 # 切换语音
 manager.set_active_voice("my-voice")
@@ -362,8 +352,7 @@ results = await client.tts.batch(
     parallel_workers=4
 )
 
-for i, result in enumerate(results):
-    print(f"已生成: speech_{i}.mp3（{result.duration:.1f}秒）")
+for i, result in enumerate(results): print(f"已生成: speech_{i}.mp3（{result.duration:.1f}秒）")
 ```
 
 ## 硬件需求与性能
@@ -379,7 +368,6 @@ for i, result in enumerate(results):
 **披露声明**: 本文提及的工具可能存在联盟关系。我们不接受付费评测。所有观点均为我们自己独立撰写。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -407,25 +395,20 @@ for i, result in enumerate(results):
 
 ## Why This Matters
 
-Understanding voicebox：开源ai语音工作室，用于克隆、听写和生成 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding voicebox：开源ai语音工作室，用于克隆、听写和生成 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -446,13 +429,13 @@ VoiceBox：开源AI语音工作室，用于克隆、听写和生成 represents a
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
 
+---
 ## Related Articles
 
 - [12-factor-agents](voicebox-open-source-ai-voice-studio)

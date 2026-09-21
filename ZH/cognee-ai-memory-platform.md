@@ -1,8 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/cognee-ai-memory-platform" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cognee-ai-memory-platform" />
-lang: zh
 description: 'Cognee is the open-source AI memory platform that gives agents persistent knowledge. Build intelligent agents that remember, reason, and evolve over time.'
 date: 2026-07-03T09:00:00+09:00
 lastmod: 2026-07-03T09:00:00+09:00
@@ -12,14 +8,10 @@ category: llm-frameworks
 tags: ['ai-memory', 'rag', 'knowledge-graph', 'ai-agents', 'open-source']
 github_repo: 'https://github.com/topoteretes/cognee'
 license: 'MIT'
-tech_stack:
-  - Python
+tech_stack: - Python
   - TypeScript
   - Docker
-featureImage: /images/articles/mem0-56k-stars-ai-agent-memory-performan.jpg
----
-
-<!-- canonical: https://dibi8.com/zh/tools/cognee-ai-memory-platform/ -->
+featureImage: /images/articles/mem0-56k-stars-ai-agent-memory-performan.jpg---
 
 
 <<<<<<< HEAD
@@ -136,8 +128,7 @@ import cognee
 # Initialize the chatbot with memory
 prompt_template = ChatPromptTemplate.from_messages([
     ("system", """You are a helpful assistant with persistent memory.
-    Here's what you know about the user:
-    {memory_context}
+    Here's what you know about the user: {memory_context}
     
     Answer based on both the conversation and your memory."""),
     ("human", "{input}"),
@@ -156,8 +147,7 @@ prompt_template = ChatPromptTemplate.from_messages([
 链=提示模板| ChatAnthropic（模型="claude-sonnet-4-20250514"）
 
 # 获取内存上下文的函数
-异步 def get_memory_context(user_id):
-记忆=等待cognee.search（
+异步 def get_memory_context(user_id): 记忆=等待cognee.search（
 查询=f"用户：{user_id}"，
 限制=10
 )
@@ -165,8 +155,7 @@ return "\n".join([m["text"] 表示内存中的 m])
 
 <<<<<<< HEAD
 # Chat function with memory
-async def chat_with_memory(user_id, message):
-    memory = await get_memory_context(user_id)
+async def chat_with_memory(user_id, message): memory = await get_memory_context(user_id)
     response = chain.invoke({
         "memory_context": memory,
         "input": message
@@ -181,8 +170,7 @@ async def chat_with_memory(user_id, message):
     return response.content
 =======
 # 带记忆的聊天功能
-异步 def chat_with_memory(user_id, message):
-内存 = 等待 get_memory_context(user_id)
+异步 def chat_with_memory(user_id, message): 内存 = 等待 get_memory_context(user_id)
 响应 = chain.invoke({
 "内存上下文"：内存，
 "输入"：消息
@@ -281,9 +269,7 @@ Cognee 实现了受认知科学启发的三层内存架构：
 ### 知识提取管道
 
 ```python
-class KnowledgeExtractor:
-    def extract(self, text: str) -> KnowledgeGraph:
-        # Step 1: Entity recognition
+class KnowledgeExtractor: def extract(self, text: str) -> KnowledgeGraph: # Step 1: Entity recognition
         entities = self._recognize_entities(text)
 <<<<<<< HEAD
         
@@ -291,11 +277,9 @@ class KnowledgeExtractor:
         relationships = self._extract_relationships(entities, text)
         
         # Step 3: Confidence scoring
-        for entity in entities:
-            entity.confidence = self._score_confidence(entity, text)
+        for entity in entities: entity.confidence = self._score_confidence(entity, text)
         
-        for rel in relationships:
-            rel.confidence = self._score_relationship_confidence(rel)
+        for rel in relationships: rel.confidence = self._score_relationship_confidence(rel)
         
         # Step 4: Merge with existing graph
         return self._merge_with_graph(entities, relationships)
@@ -319,19 +303,13 @@ rel.confidence = self._score_relationship_confidence(rel)
 ### 临时内存管理
 
 ```python
-class TemporalMemoryManager:
-    def __init__(self, ttl_days=365):
-        self.ttl = ttl_days
+class TemporalMemoryManager: def __init__(self, ttl_days=365): self.ttl = ttl_days
 <<<<<<< HEAD
     
-    def manage(self, memories):
-        # Mark memories for expiration
-        for memory in memories:
-            age = datetime.now() - memory.created_at
-            if age.days > self.ttl:
-                memory.status = "expired"
-            elif age.days > self.ttl * 0.8:
-                memory.status = "aging"
+    def manage(self, memories): # Mark memories for expiration
+        for memory in memories: age = datetime.now() - memory.created_at
+            if age.days > self.ttl: memory.status = "expired"
+            elif age.days > self.ttl * 0.8: memory.status = "aging"
         
         # Consolidate related memories
         consolidated = self._consolidate(memories)
@@ -350,8 +328,7 @@ def 管理（自我，记忆）：
 年龄 = datetime.now() - memory.created_at
 如果年龄.天数 > self.ttl：
 内存状态="已过期"
-elif 年龄.天数 > self.ttl * 0.8:
-内存状态="老化"
+elif 年龄.天数 > self.ttl * 0.8: 内存状态="老化"
 
 # 巩固相关记忆
 合并= self._consolidate（记忆）
@@ -510,15 +487,17 @@ app.add_middleware(CogneeMiddleware, user_id_header="X-User-ID")
 ## 与替代方案的比较
 
 |特色 |科涅 |浪链内存|内存0 |泽普 |
-|--------
+|---
 
-|--------
+|-
+---
 
-|------------------
+|---
 
-|------
+|-
+---
 
-|-----
+|---
 
 |
 |知识图谱|是的 |没有 |部分|没有 |
@@ -595,8 +574,8 @@ Cognee 的增长反映了向持久、具有推理能力的人工智能系统的�
 - [GitHub API — 星数验证](https://api.github.com/repos/topotetes/cognee)
 - [Cognee 自述文件](https://github.com/topotetes/cognee/blob/main/README.md)
 
----
 
+---
 <<<<<<< HEAD
 *本文由Dibi8编辑团队独立研究撰写。我们可能会从附属链接中赚取佣金，但这并不影响我们的编辑独立性。*
 =======
@@ -604,7 +583,6 @@ Cognee 的增长反映了向持久、具有推理能力的人工智能系统的�
 >>>>>>> 0f428019e6f21508f05fc402fc21585e618ed533
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -632,25 +610,20 @@ Cognee 的增长反映了向持久、具有推理能力的人工智能系统的�
 
 ## Why This Matters
 
-Understanding cognee：26k+ star 开源人工智能内存平台 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding cognee：26k+ star 开源人工智能内存平台 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -671,8 +644,8 @@ Cognee：26K+ Star 开源人工智能内存平台 represents an important step f
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -693,7 +666,17 @@ For the latest updates and community discussions, join our Telegram channel: htt
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

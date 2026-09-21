@@ -1,10 +1,9 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/trivy-production-security-scanner-2026" />
 title: 'Trivy: Stop Shipping Vulnerable Containers to Production...
 description: 'Trivy (aquasecurity/trivy) is an open-source security scanner for containers, IaC, and code. Works with Kubernetes, Docker, GitHub Actions, and CI pipelines. Scans 600K+ CVEs, secrets, and misconfigurations. Covers installation, policy-as-code, and production hardening.'
 date: 2026-06-09
-lastmod:  2026-06-09slug: 'trivy-production-security-scanner-2026'
+lastmod: 2026-06-09
+slug: 'trivy-production-security-scanner-2026'
 category: 'dev-utils'
 tags: ['security', 'containers', 'vulnerability-scanning', 'devops', 'kubernetes', 'sast', 'iac', 'supply-chain']
 github_repo: 'https://github.com/aquasecurity/trivy'
@@ -12,9 +11,7 @@ stars: 36261
 maintainer: 'aquasecurity'
 license: Apache-2.0
 featureImage: 'https://raw.githubusercontent.com/aquasecurity/trivy/main/docs/getting-started/install.png'
-lang: en
 ---
-
 ![Trivy Security Scanner](https://opengraph.github.com/github/aquasecurity/trivy)
 
 ![Trivy Kubernetes Scanning](https://raw.githubusercontent.com/aquasecurity/trivy/main/docs/imgs/trivy-k8s.png)
@@ -33,7 +30,7 @@ Trivy (Japanese for "clear eyes," from the phrase "clear eyes, full hearts, can'
 ┌─────────────────────────────────────────────┐
 │              Trivy Scanner                   │
 ├─────────────────────────────────────────────┤
-│  Scanners Available:                         │
+│  Scanners Available: │
 │  • Vulnerabilities (CVE, GHSA, OSV)         │
 │  • Secrets (API keys, tokens, passwords)     │
 │  • Misconfigurations (Terraform, K8s, etc)  │
@@ -41,7 +38,7 @@ Trivy (Japanese for "clear eyes," from the phrase "clear eyes, full hearts, can'
 │  • SAST (Sarif, CodeQL)                     │
 │  • IaC (Terraform, CloudFormation)          │
 ├─────────────────────────────────────────────┤
-│  Targets Supported:                          │
+│  Targets Supported: │
 │  • Container images, tar archives           │
 │  • Filesystem directories                   │
 │  • Kubernetes clusters                       │
@@ -71,9 +68,7 @@ For filesystem and Git repository scans, Trivy walks the directory tree, detects
 
 ## Installation & Setup
 
-Trivy supports multiple installation methods. Choose the one that fits your workflow:
-
-**Option 1: Homebrew (macOS / Linux)**
+Trivy supports multiple installation methods. Choose the one that fits your workflow: **Option 1: Homebrew (macOS / Linux)**
 
 ```bash
 brew install trivy
@@ -98,15 +93,12 @@ curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/inst
 ```yaml
 - name: Run Trivy vulnerability scanner
   uses: aquasecurity/trivy-action@master
-  with:
-    image-ref: my-app:latest
+  with: image-ref: my-app:latest
     format: 'sarif'
     output: 'trivy-results.sarif'
 ```
 
-Trivy's vulnerability database auto-updates on first use and every 6 hours after that. You can also update manually:
-
-```bash
+Trivy's vulnerability database auto-updates on first use and every 6 hours after that. You can also update manually: ```bash
 trivy image --download-db-only
 ```
 
@@ -128,15 +120,11 @@ docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
 ```yaml
 name: Security Scan
 on: [push, pull_request]
-jobs:
-  trivy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: trivy: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - name: Run Trivy on filesystem
         uses: aquasecurity/trivy-action@master
-        with:
-          scan-type: 'fs'
+        with: scan-type: 'fs'
           scan-ref: '.'
           format: 'table'
           severity: 'HIGH,CRITICAL'
@@ -164,19 +152,23 @@ trivy conf --format sarif --output terraform-results.sarif ./infrastructure/
 
 ## Benchmarks / Real-World Use Cases
 
-Trivy's performance depends on scan target and database size. In benchmarked tests against comparable tools:
-
-| Scenario | Scan Time | Database Size | Accuracy |
-|----------|-----------|---------------|----------|
+Trivy's performance depends on scan target and database size. In benchmarked tests against comparable tools: | Scenario | Scan Time | Database Size | Accuracy |
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Alpine 3.18 image (200 packages) | 4-6 seconds | 70 MB | 98% CVE match |
 | Ubuntu 22.04 image (800 packages) | 12-18 seconds | 70 MB | 97% CVE match |
 | Full filesystem (10K files) | 8-12 seconds | 70 MB | 96% match |
 | Kubernetes cluster (50 resources) | 15-25 seconds | N/A | 95% config match |
 | Terraform (200 .tf files) | 3-5 seconds | N/A | 94% config match |
 
-Real-world deployment examples:
-
-```bash
+Real-world deployment examples: ```bash
 # Production: nightly scan of all images in Harbor registry
 trivy registry --security vulns,secret,misconfig harbor.example.com/myproject/api:latest
 
@@ -208,16 +200,12 @@ trivy image --ignore-unfixed --severity CRITICAL my-app:latest
 
 ```yaml
 # .trivy.yaml
-severity:
-  - HIGH
+severity: - HIGH
   - CRITICAL
-scan:
-  security-checks: vuln,secret,misconfig
-  skip-files:
-    - "**/vendor/**"
+scan: security-checks: vuln,secret,misconfig
+  skip-files: - "**/vendor/**"
     - "**/node_modules/**"
-  skip-dirs:
-    - tmp
+  skip-dirs: - tmp
     - .git
 exit-code: 1
 ```
@@ -226,11 +214,8 @@ exit-code: 1
 
 ```yaml
 version: '3.8'
-services:
-  trivy:
-    image: aquasec/trivy:latest
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+services: trivy: image: aquasec/trivy:latest
+    volumes: - /var/run/docker.sock:/var/run/docker.sock
       - ./trivy-results:/results
     command: >
       image
@@ -256,8 +241,7 @@ trivy image --exit-code 1 --ignore-unfixed --severity CRITICAL my-app:latest
 # .github/codeql-config.yml — integrate Trivy SARIF with GitHub
 name: "Trivy SARIF Config"
 
-queries:
-  - uses: security-and-quality
+queries: - uses: security-and-quality
   - uses: security-extended
 
 # This file tells GitHub how to display Trivy results
@@ -285,7 +269,17 @@ curl -X POST \
 ## Comparison with Alternatives
 
 | Feature | Trivy | Grype | Clair | Snyk Container |
-|---------|-------|-------|-------|----------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Vulnerability scan | ✓ (600K+) | ✓ (200K+) | ✓ (100K+) | ✓ (1M+) |
 | Secret detection | ✓ | ✗ | ✗ | ✓ |
 | Misconfiguration scan | ✓ | ✗ | ✗ | ✓ |
@@ -304,9 +298,7 @@ curl -X POST \
 
 ## Limitations / Honest Assessment
 
-Trivy is the most comprehensive open-source scanner available, but it is not perfect:
-
-1. **False positives exist**: Trivy's vulnerability matching can flag CVEs that don't affect your specific build configuration. Use `--ignore-unfixed` to reduce noise.
+Trivy is the most comprehensive open-source scanner available, but it is not perfect: 1. **False positives exist**: Trivy's vulnerability matching can flag CVEs that don't affect your specific build configuration. Use `--ignore-unfixed` to reduce noise.
 2. **Database latency**: The vulnerability database updates every 6 hours, so zero-day vulnerabilities discovered today won't appear in scans until the next update cycle.
 3. **Resource usage**: Large container images with thousands of packages can take 30+ seconds to scan. This is acceptable for CI but may be too slow for on-demand ad-hoc scans.
 4. **No runtime detection**: Trivy scans static images and files. It does not detect runtime exploits, zero-day vulnerabilities in running containers, or behavioral anomalies. Pair it with runtime security tools for complete coverage.
@@ -354,10 +346,9 @@ Check out internal guides on [Kubernetes Security Best Practices](dibi8-internal
 
 Join the DIBI8 community on [Telegram](https://t.me/DIBI8_Group) for daily discussions on security, DevOps, and open-source tools.
 
----
 
-**Sources & Further Reading**:
-- Official documentation: https://trivy.dev/docs/
+---
+**Sources & Further Reading**: - Official documentation: https://trivy.dev/docs/
 - GitHub repository: https://github.com/aquasecurity/trivy
 - Vulnerability database: https://github.com/aquasecurity/trivy-db
 - GitHub Actions integration: https://github.com/aquasecurity/trivy-action
@@ -366,7 +357,6 @@ Join the DIBI8 community on [Telegram](https://t.me/DIBI8_Group) for daily discu
 
 **Disclosure**: This article contains affiliate links. If you sign up through our links, we may earn a small commission at no additional cost to you. This helps support independent tech journalism and keeps resources like dibi8.com free and ad-free.
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -392,8 +382,8 @@ Join the DIBI8 community on [Telegram](https://t.me/DIBI8_Group) for daily discu
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [semgrep-15k-star-sast-security-scanner](trivy-production-security-scanner-2026)

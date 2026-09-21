@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/browser-use" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/browser-use" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/browser-use" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/browser-use" />
 title: 'Browser Use: 94K+ Stars — Đánh Giá Hiệu Suất AI Browser ...
 description: 'Browser Use là framework Python mã nguồn mở kết nối LLM với trình duyệt thực qua Playwright. Hỗ trợ OpenAI, Anthropic, Gemini và mô hình local. Bao gồm cài đặt, benchmark WebVoyager, so sánh Selenium, hardening production và triển khai Docker.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['browser-use', 'ai-agent', playwright, 'tu-dong-hoa-trinh-duyet', 'web-scraping', 'mo-hinh-ngon-ngu-lon', python, 'ma-nguon-mo']
-aliases:
-- /vi/posts/browser-use/
+aliases: - /vi/posts/browser-use/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/browser-use/ -->
 
 {{</* resource-info */>}}
 
@@ -61,9 +53,7 @@ Browser Use là thư viện Python (yêu cầu ≥3.11) kết nối LLM tương 
 
 ## Browser Use hoạt động như thế nào?
 
-Browser Use vận hành trên vòng lặp **quan sát → lập kế hoạch → hành động → xác minh** liên tục:
-
-### Tổng quan kiến trúc
+Browser Use vận hành trên vòng lặp **quan sát → lập kế hoạch → hành động → xác minh** liên tục: ### Tổng quan kiến trúc
 
 ```
 ┌─────────────┐    DOM + Ảnh chụp màn hình   ┌─────────────┐
@@ -90,8 +80,7 @@ from browser_use import Agent, Browser
 from langchain_openai import ChatOpenAI
 import asyncio
 
-async def main():
-    browser = Browser()
+async def main(): browser = Browser()
     agent = Agent(
         task="Find the number of stars of the browser-use repo",
         llm=ChatOpenAI(model="gpt-4.1"),
@@ -100,8 +89,7 @@ async def main():
     result = await agent.run()
     print(result)
 
-if __name__ == "__main__":
-    asyncio.run(main())
+if __name__ == "__main__": asyncio.run(main())
 ```
 
 ---
@@ -147,8 +135,7 @@ BROWSER_USE_API_KEY=your-cloud-key
 import asyncio
 from browser_use import Agent, Browser, ChatBrowserUse
 
-async def main():
-    browser = Browser()
+async def main(): browser = Browser()
     agent = Agent(
         task="List the top 20 posts on Hacker News today with their points",
         llm=ChatBrowserUse(),
@@ -157,8 +144,7 @@ async def main():
     result = await agent.run()
     print(result.output)
 
-if __name__ == "__main__":
-    asyncio.run(main())
+if __name__ == "__main__": asyncio.run(main())
 ```
 
 ![Browser Use Quick Start Interface](https://docs.browser-use.com/assets/images/quickstart-browser-use-cloud.png)
@@ -181,14 +167,10 @@ CMD ["python", "agent.py"]
 ```yaml
 # docker-compose.yml
 version: '3.8'
-services:
-  browser-use:
-    build: .
-    environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
+services: browser-use: build: .
+    environment: - OPENAI_API_KEY=${OPENAI_API_KEY}
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
-    volumes:
-      - ./scripts:/app
+    volumes: - ./scripts:/app
     command: python agent.py
 ```
 
@@ -203,8 +185,7 @@ from browser_use import Agent, Browser
 from langchain_openai import ChatOpenAI
 import asyncio
 
-async def search_flights():
-    agent = Agent(
+async def search_flights(): agent = Agent(
         task="Find the cheapest flight from NYC to London next week",
         llm=ChatOpenAI(model="gpt-4o", temperature=0),
         browser=Browser(),
@@ -221,8 +202,7 @@ from browser_use import Agent, Browser
 from langchain_anthropic import ChatAnthropic
 import asyncio
 
-async def extract_data():
-    agent = Agent(
+async def extract_data(): agent = Agent(
         task="Extract all pricing plans from example.com/pricing",
         llm=ChatAnthropic(model="claude-sonnet-4-6"),
         browser=Browser(),
@@ -240,8 +220,7 @@ from browser_use import Agent, Browser
 from langchain_google_genai import ChatGoogleGenerativeAI
 import asyncio
 
-async def research_topic():
-    agent = Agent(
+async def research_topic(): agent = Agent(
         task="Research the latest AI news and summarize top 5 stories",
         llm=ChatGoogleGenerativeAI(model="gemini-3-flash-preview"),
         browser=Browser(),
@@ -258,8 +237,7 @@ from browser_use import Agent, Browser
 from langchain_ollama import ChatOllama
 import asyncio
 
-async def local_automation():
-    agent = Agent(
+async def local_automation(): agent = Agent(
         task="Fill out the contact form on example.com/contact",
         llm=ChatOllama(model="qwen2.5:72b"),
         browser=Browser(),
@@ -276,9 +254,7 @@ from playwright.async_api import async_playwright
 from browser_use import Agent
 from langchain_openai import ChatOpenAI
 
-async def hybrid_automation():
-    async with async_playwright() as p:
-        browser = await p.chromium.launch(headless=True)
+async def hybrid_automation(): async with async_playwright() as p: browser = await p.chromium.launch(headless=True)
         page = await browser.new_page()
         
         # Bước Playwright xác định
@@ -346,16 +322,14 @@ import asyncio
 from browser_use import Agent, Browser
 from langchain_openai import ChatOpenAI
 
-async def monitor_prices():
-    urls = [
+async def monitor_prices(): urls = [
         "https://amazon.com/dp/B0DHTYW7P5",
         "https://bestbuy.com/site/xyz",
         "https://newegg.com/product/abc",
     ]
     
     results = []
-    for url in urls:
-        agent = Agent(
+    for url in urls: agent = Agent(
             task=f"Go to {url} and extract the current price, availability, and seller name",
             llm=ChatOpenAI(model="gpt-4o-mini"),
             browser=Browser(),
@@ -380,8 +354,7 @@ import asyncio
 from browser_use import Agent, Browser
 from langchain_openai import ChatOpenAI
 
-async def run_parallel_agents(tasks):
-    browser = Browser()
+async def run_parallel_agents(tasks): browser = Browser()
     agents = [
         Agent(task=task, llm=ChatOpenAI(model="gpt-4o-mini"), browser=browser)
         for task in tasks
@@ -434,8 +407,7 @@ config = BrowserConfig(
     headless=False,  # Dùng headed mode cho lần đăng nhập đầu
 )
 
-async def authenticated_task():
-    browser = Browser(config=config)
+async def authenticated_task(): browser = Browser(config=config)
     agent = Agent(
         task="Download my monthly invoice from the billing page",
         llm=ChatOpenAI(model="gpt-4o"),
@@ -451,20 +423,15 @@ import asyncio
 from browser_use import Agent, Browser
 from langchain_openai import ChatOpenAI
 
-async def robust_agent(task, max_retries=3):
-    for attempt in range(max_retries):
-        try:
-            agent = Agent(
+async def robust_agent(task, max_retries=3): for attempt in range(max_retries): try: agent = Agent(
                 task=task,
                 llm=ChatOpenAI(model="gpt-4o"),
                 browser=Browser(),
                 max_steps=25,  # Giới hạn bước để ngăn vòng lặp vô hạn
             )
             result = await agent.run()
-            if result.success:
-                return result
-        except Exception as e:
-            print(f"Attempt {attempt + 1} failed: {e}")
+            if result.success: return result
+        except Exception as e: print(f"Attempt {attempt + 1} failed: {e}")
             await asyncio.sleep(2 ** attempt)  # Backoff theo cấp số nhân
     raise Exception(f"Task failed after {max_retries} attempts")
 ```
@@ -481,15 +448,11 @@ agent_duration = Histogram("browseruse_agent_duration_seconds", "Agent run durat
 
 start_http_server(8000)
 
-async def monitored_agent(task):
-    agent_runs.inc()
-    with agent_duration.time():
-        try:
-            agent = Agent(task=task, llm=llm, browser=Browser())
+async def monitored_agent(task): agent_runs.inc()
+    with agent_duration.time(): try: agent = Agent(task=task, llm=llm, browser=Browser())
             result = await agent.run()
             return result
-        except Exception:
-            agent_failures.inc()
+        except Exception: agent_failures.inc()
             raise
 ```
 
@@ -522,9 +485,7 @@ async def monitored_agent(task):
 
 ## Hạn chế / Đánh giá trung thực
 
-Browser Use không phải giải pháp thay thế phổ quát cho tự động hóa trình duyệt truyền thống. Đây là những gì nó không phù hợp:
-
-1. **Scraping khối lượng cao, chi phí thấp**: Với chi phí LLM $0.02–$0.30 mỗi tác vụ, crawl 100,000 trang tốn $2,000–$30,000. Scrapy + HTTP request chỉ tốn vài xu cho cùng khối lượng trên trang tĩnh.
+Browser Use không phải giải pháp thay thế phổ quát cho tự động hóa trình duyệt truyền thống. Đây là những gì nó không phù hợp: 1. **Scraping khối lượng cao, chi phí thấp**: Với chi phí LLM $0.02–$0.30 mỗi tác vụ, crawl 100,000 trang tốn $2,000–$30,000. Scrapy + HTTP request chỉ tốn vài xu cho cùng khối lượng trên trang tĩnh.
 
 2. **Kiểm thử xác định**: AI agent có tính không xác định. Cùng một tác vụ có thể đi theo các đường khác nhau mỗi lần chạy. Dùng Playwright hoặc Selenium cho CI/CD test suite cần 100% tái tạo.
 
@@ -572,8 +533,7 @@ Framework không thiếu tradeoff — chi phí LLM tích lũy ở quy mô lớn,
 
 > **Cần thêm hướng dẫn AI automation?** Tham gia [nhóm Telegram](https://t.me/dibi8opensource) của chúng tôi để nhận phân tích sâu hàng tuần về công cụ AI mã nguồn mở, mẹo triển khai production và dữ liệu benchmark.
 
-**Danh sách hành động**:
-1. Clone repository [browser-use/browser-use](https://github.com/browser-use/browser-use)
+**Danh sách hành động**: 1. Clone repository [browser-use/browser-use](https://github.com/browser-use/browser-use)
 2. Chạy `pip install browser-use` và thiết lập agent đầu tiên với ví dụ code phía trên
 3. Đánh giá benchmark WebVoyager cho use case của bạn
 4. Tham gia [Browser Use Discord](https://link.browser-use.com/discord) để nhận hỗ trợ cộng đồng và mẹo production
@@ -584,9 +544,7 @@ Framework không thiếu tradeoff — chi phí LLM tích lũy ở quy mô lớn,
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -607,7 +565,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 *Bài viết này dành cho developer cần tự động hóa trình duyệt cấp production. Mọi dữ liệu benchmark đều từ leaderboard công khai và testing độc lập tháng 5/2026.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/vectorbt-quantitative-backtesting" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/vectorbt-quantitative-backtesting" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/vectorbt-quantitative-backtesting" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/vectorbt-quantitative-backtesting" />
 title: 'VectorBT: 每秒处理 100 万+笔交易的极速 Python 量化回测库 — 2026 量化交易指南'
 description: '掌握 VectorBT Python 量化回测。使用向量化 Numba 加速模拟构建、测试和优化交易策略。2026 完整指南含代码示例。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: []
-aliases:
-- /zh/posts/vectorbt-quantitative-backtesting/
+aliases: - /zh/posts/vectorbt-quantitative-backtesting/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/vectorbt-quantitative-backtesting/ -->
 
 {{</* resource-info */>}}
 
@@ -208,8 +200,7 @@ n_splits = 10
 split_size = len(price) // n_splits
 results = []
 
-for i in range(n_splits):
-    # 定义训练/测试窗口
+for i in range(n_splits): # 定义训练/测试窗口
     train_start = i * split_size
     train_end = train_start + split_size - 60
     test_end = train_start + split_size
@@ -343,8 +334,7 @@ weights = 1 / volatility
 weights = weights / weights.sum()
 
 print("投资组合权重:")
-for symbol, w in weights.items():
-    print(f"  {symbol}: {w:.2%}")
+for symbol, w in weights.items(): print(f"  {symbol}: {w:.2%}")
 
 # 回测该配置
 portfolio = vbt.Portfolio.from_holding(
@@ -364,7 +354,17 @@ print(f"Max Drawdown: {portfolio.max_drawdown():.2%}")
 ## 基准测试 / 真实用例
 
 | 场景 | VectorBT | Backtrader | Zipline | pandas 循环 |
-|------|----------|------------|---------|-------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 均线交叉（3 资产，6 年） | **1.8s** | 92s | 45s | 340s |
 | 网格搜索（180 参数） | **3.5s** | N/A | 810s | 6,200s |
 | 50 资产组合（1 年日频） | **0.9s** | 180s | 95s | N/A |
@@ -390,12 +390,10 @@ import numpy as np
 from numba import njit
 
 @njit
-def custom_momentum_nb(price, period):
-    """Numba 加速的动量指标."""
+def custom_momentum_nb(price, period): """Numba 加速的动量指标."""
     momentum = np.empty_like(price)
     momentum[:period] = np.nan
-    for i in range(period, len(price)):
-        momentum[i] = (price[i] / price[i - period] - 1) * 100
+    for i in range(period, len(price)): momentum[i] = (price[i] / price[i - period] - 1) * 100
     return momentum
 
 # 使用 IndicatorFactory 包装
@@ -447,8 +445,7 @@ from multiprocessing import Pool
 import vectorbt as vbt
 import numpy as np
 
-def run_chunk(param_chunk):
-    price = vbt.YFData.download("BTC-USD").get("Close")
+def run_chunk(param_chunk): price = vbt.YFData.download("BTC-USD").get("Close")
     fast_ma = vbt.MA.run(price, param_chunk[:, 0])
     slow_ma = vbt.MA.run(price, param_chunk[:, 1])
     entries = fast_ma.ma_crossed_above(slow_ma)
@@ -460,14 +457,23 @@ def run_chunk(param_chunk):
 params = np.array(np.meshgrid(np.arange(5, 41, 5), np.arange(20, 121, 10))).T.reshape(-1, 2)
 chunks = np.array_split(params, 4)
 
-with Pool(4) as p:
-    results = p.map(run_chunk, chunks)
+with Pool(4) as p: results = p.map(run_chunk, chunks)
 ```
 
 ## 与替代方案对比
 
 | 特性 | VectorBT | Backtrader | Zipline | QuantConnect (Lean) |
-|------|----------|------------|---------|---------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 执行模型 | 向量化 | 事件驱动 | 事件驱动 | 事件驱动 |
 | 速度（交易/秒） | **100 万+** | ~500 | ~1,000 | ~5,000（云端） |
 | 参数优化 | 原生网格搜索 | Cerebro optreturn | 有限 | 完整支持 |
@@ -567,7 +573,6 @@ VectorBT 消除了从想法到验证之间的摩擦。当 180 种组合的参数
 本文包含指向 Binance、OKX、Minara 及相关平台的 affiliate 链接。如果你通过这些链接注册，dibi8.com 可能会获得佣金，不会向你收取额外费用。我们只推荐自己用于量化研究的工具。Affiliate 收入支持我们的开源技术内容。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -614,3 +619,5 @@ VectorBT 消除了从想法到验证之间的摩擦。当 180 种组合的参数
 
 包括服务器费用、数据订阅、算法更新、以及监控维护时间。
 
+
+---

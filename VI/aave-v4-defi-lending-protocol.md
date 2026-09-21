@@ -1,10 +1,4 @@
 # AAVE v4 2026: Giao Thức Cho Vay DeFi Quản Lý 15 Tỷ USD — Hướng Dẫn Tích Hợp Smart Contract
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/aave-v4-defi-lending-protocol" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/aave-v4-defi-lending-protocol" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/aave-v4-defi-lending-protocol" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/aave-v4-defi-lending-protocol" />
-
 Cho vay phi tập trung đã trở thành cột mốc của DeFi hiện đại, và AAVE đang đứng đầu trong cuộc cách mạng này. Với tổng giá trị bị khóa vượt quá 15 tỷ đô la trên nhiều chuỗi, AAVE là giao thức cho vay lớn nhất và được thử nghiệm kỹ lưỡng nhất trong hệ sinh thái tiền điện tử. Việc ra mắt AAVE v4 vào cuối năm 2025 đã mang lại những cải tiến kiến trúc quan trọng, làm cho nó trở nên hiệu quả hơn, an toàn hơn và thuận tiện cho nhà phát triển hơn bao giờ hết.
 
 Đối với các nhà phát triển xây dựng ứng dụng DeFi, bot giao dịch, thu thập lợi nhuận hoặc công cụ quản lý danh mục đầu tư, việc hiểu cách tích hợp với AAVE là rất quan trọng. Hướng dẫn này cung cấp một hướng dẫn toàn diện về AAVE v4, bao gồm mọi thứ từ các hoạt động cơ bản như cho vay và cung cấp vốn đến các tính năng nâng cao như cho vay nhanh, chế độ cách ly và đồng ổn định GHO. Dù bạn đang viết hợp đồng thông minh Solidity hay xây dựng giao diện người dùng phía trước, bạn sẽ tìm thấy các ví dụ mã thực tế và góc nhìn kiến trúc để tăng tốc quá trình tích hợp của mình.
@@ -18,9 +12,7 @@ AAVE là một giao thức thanh khoản nguồn mở, không giữ tài sản g
 
 Giao thức này hoạt động thông qua một loạt hợp đồng thông minh được triển khai trên Ethereum, Polygon, Arbitrum, Optimism, Avalanche, Base và nhiều mạng lưới khác. Người dùng cung cấp tài sản nhận lại aTokens làm trả, mà lãi suất tăng theo thời gian. Người vay có thể lấy khoản vay quá bảo đảm trong chế độ lãi suất biến đổi hoặc ổn định, với sự linh hoạt để chuyển đổi giữa chúng.
 
-AAVE v4 giới thiệu một số sáng tạo kiến trúc:
-
-- **Kiến trúc bể linh hoạt** tách quản lý rủi ro khỏi logic cho vay chính
+AAVE v4 giới thiệu một số sáng tạo kiến trúc: - **Kiến trúc bể linh hoạt** tách quản lý rủi ro khỏi logic cho vay chính
 - **Giản lược hóa flash loan nội tại** với điểm nhập thống nhất
 - **Chế độ cách ly nâng cao** để liệt kê tài sản dài đuôi với nguy cơ giới hạn
 - **Tầng thanh khoản chuỗi liên kết** được xây dựng trên Chainlink CCIP

@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/supertonic-on-device-multilingual-tts-2026" />
 title: 'Supertonic 评测：99M 参数本地 TTS，31 语言、ONNX 跑 CPU（2026）'
 description: 'Supertonic（GitHub 9.9K+ stars）由韩国语音 AI 公司 Supertone Inc. 推出，是 2026 年最具说服力的本地多语种 TTS 模型。9900 万参数、31 种语言（含韩语/日语/越南语/中文）、44.1kHz 录音棚级音质、10 个表情标签，通过 ONNX Runtime 跑在 CPU 上——无云端、无 API、无 GPU。Python、Node.js、浏览器（WebGPU/WASM）、iOS、Android、Rust、Flutter 全平台 SDK。完整功能拆解、安装、代码示例与 2026 本地 TTS 横向对比。'
 date: 2026-05-23 00:00:00+08:00
@@ -22,8 +20,7 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [supertonic, 'text-to-speech', tts, 'on-device-ai', onnx, multilingual, 'open-source-tts', 'edge-ai', 'korean-tts', 'japanese-tts']
-aliases:
-- /zh/posts/supertonic-on-device-multilingual-tts-2026/
+aliases: - /zh/posts/supertonic-on-device-multilingual-tts-2026/
 ---
 # Supertonic 评测：99M 参数本地 TTS，31 语言、ONNX 跑 CPU（2026）
 
@@ -38,8 +35,8 @@ aliases:
 
 [**Supertonic**](https://github.com/supertone-inc/supertonic)（GitHub：`supertone-inc/supertonic`，**9,900+ stars**）由韩国语音 AI 公司 Supertone Inc. 推出，是 2026 年最有希望补上这块缺口的项目。9900 万参数、31 种语言、ONNX runtime、CPU 上跑得很舒服——README 里甚至给出在飞行模式下的电纸书上跑出 0.3× 实时因子的数据。
 
----
 
+---
 ## Supertonic 到底是什么
 
 一个 flow-matching 文本到 latent 模块，配上一个语音 autoencoder，整体导出为 ONNX。具体看：
@@ -52,14 +49,20 @@ aliases:
 
 协议：**代码 MIT，模型权重 OpenRAIL-M**。两边分开很关键：OpenRAIL-M 是"负责任 AI"协议，限制部分有害用途，但允许商业部署。发产品前请先读 model card。
 
----
 
+---
 ## 性能数字
 
 Supertone Inc. 在 benchmark 和 README 里给出的数字：
 
 | 指标 | Supertonic | 常见基准 |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | 参数量 | 99M | 0.7B–2B |
 | 朗读准确率（Minimax-MLS-test WER/CER） | 与大很多的模型相当 | — |
 | 运行时内存 | 显著低于 GPU 基准 | — |
@@ -191,7 +194,6 @@ Supertonic 是 2026 年最有说服力的"一个模型走天下"开源 TTS。990
 **GitHub**：[supertone-inc/supertonic](https://github.com/supertone-inc/supertonic) · **协议**：MIT（代码）/ OpenRAIL-M（权重）· **最新**：v2.0.0（2026-01-06）· **Stars**：9.9K+ · **维护方**：Supertone Inc.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -219,25 +221,20 @@ Supertonic 是 2026 年最有说服力的"一个模型走天下"开源 TTS。990
 
 ## Why This Matters
 
-Understanding supertonic 评测：99m 参数本地 tts，31 语言、onnx 跑 cpu（2026） is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding supertonic 评测：99m 参数本地 tts，31 语言、onnx 跑 cpu（2026） is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -263,9 +260,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
-Understanding these core concepts will help you master the topic:
-
-1. **Abstraction**: Hide complexity behind simple interfaces
+Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces
 2. **Composition**: Build complex systems from simple parts
 3. **Immutability**: Prefer immutable data structures
 4. **Error Handling**: Handle failures gracefully

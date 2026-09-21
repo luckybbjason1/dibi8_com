@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/openrouter-unified-llm-api-gateway" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/openrouter-unified-llm-api-gateway" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/openrouter-unified-llm-api-gateway" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/openrouter-unified-llm-api-gateway" />
 title: 'OpenRouter: Cổng API LLM Thống Nhất Kết Nối 300+ Mô Hình...
 description: 'Hướng dẫn đầy đủ về OpenRouter: truy cập 300+ mô hình AI từ 60+ nhà cung cấp qua một endpoint tương thích OpenAI. Học cách thiết lập, tích hợp, benchmark và triển khai production trong 5 phút.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [openrouter, llm, 'api gateway', ai, openai, claude, 'machine learning', 'tối ưu chi phí']
-aliases:
-- /vi/posts/openrouter-unified-llm-api-gateway/
+aliases: - /vi/posts/openrouter-unified-llm-api-gateway/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/openrouter-unified-llm-api-gateway/ -->
 
 {{</* resource-info */>}}
 
@@ -53,9 +45,7 @@ Hãy nghĩ về nó như một "bộ chuyển đổi vạn năng" cho các API L
 
 ### Tổng Quan Kiến Trúc
 
-OpenRouter hoạt động như một **lớp proxy** giữa ứng dụng của bạn và các nhà cung cấp LLM phía trên:
-
-```
+OpenRouter hoạt động như một **lớp proxy** giữa ứng dụng của bạn và các nhà cung cấp LLM phía trên: ```
 Ứng dụng → OpenRouter Gateway → Nhà cung cấp (OpenAI / Anthropic / Google / ...)
                 ↓
          [Nhà cung cấp dự phòng]
@@ -63,9 +53,7 @@ OpenRouter hoạt động như một **lớp proxy** giữa ứng dụng của b
          [Nhà cung cấp miễn phí]
 ```
 
-Gateway xử lý bốn chức năng quan trọng:
-
-1. **Định tuyến yêu cầu** — Chuyển tiếp lệnh gọi API đến nhà cung cấp đã chọn bằng giao thức gốc
+Gateway xử lý bốn chức năng quan trọng: 1. **Định tuyến yêu cầu** — Chuyển tiếp lệnh gọi API đến nhà cung cấp đã chọn bằng giao thức gốc
 2. **Chuẩn hóa phản hồi** — Trả về kết quả ở định dạng tương thích OpenAI bất kể nhà cung cấp phía trên
 3. **Chuyển đổi dự phòng tự động** — Thử lại các yêu cầu thất bại với mô hình hoặc nhà cung cấp dự phòng
 4. **Thanh toán thống nhất** — Tổng hợp mức sử dụng từ tất cả nhà cung cấp vào một số dư tín dụng duy nhất
@@ -153,9 +141,7 @@ print(f"Model used: {response.model}")
 print(f"Tokens: {response.usage.total_tokens}")
 ```
 
-Chạy:
-
-```bash
+Chạy: ```bash
 python openrouter_demo.py
 ```
 
@@ -356,9 +342,7 @@ print(response.model)
 
 ### Nghiên Cứu Trường Hợp Tiết Kiệm Chi Phí Thực Tế
 
-Công ty SaaS vừa xử lý **50 triệu token/tháng** chuyển sang OpenRouter:
-
-| Chỉ số | Trước OpenRouter | Sau OpenRouter |
+Công ty SaaS vừa xử lý **50 triệu token/tháng** chuyển sang OpenRouter: | Chỉ số | Trước OpenRouter | Sau OpenRouter |
 |---|---|---|
 | Chi phí API hàng tháng | $4,200 | $3,180 |
 | Bảo trì kỹ thuật | 12 giờ/tuần | 1 giờ/tuần |
@@ -429,15 +413,10 @@ CMD ["node", "proxy.js"]
 ```yaml
 # docker-compose.yml
 version: "3.8"
-services:
-  openrouter-proxy:
-    build:
-      context: .
+services: openrouter-proxy: build: context: .
       dockerfile: Dockerfile.openrouter-proxy
-    ports:
-      - "3000:3000"
-    environment:
-      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+    ports: - "3000:3000"
+    environment: - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
       - FALLBACK_MODELS=openai/gpt-5,google/gemini-3-pro
       - CACHE_ENABLED=true
     restart: unless-stopped
@@ -550,9 +529,7 @@ Với **tiết kiệm tổng chi phí 40%**, đây là lựa chọn dễ dàng c
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -562,7 +539,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 Bài viết này chứa liên kết liên kết đến [DigitalOcean](https://m.do.co/c/eca87ac14ee0). Nếu bạn đăng ký qua các liên kết này, chúng tôi có thể nhận được hoa hồng mà không phát sinh thêm chi phí cho bạn. Tất cả ý kiến và benchmark đều được xác minh độc lập.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

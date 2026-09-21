@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/invokeai" />
 title: 'InvokeAI: 27.2K+ Stars — Complete Setup Guide for 2026'
 description: 'InvokeAI (Invoke) is the leading creative engine for Stable Diffusion models with an industry-leading WebUI. Compatible with SD 1.5, SDXL, FLUX, and ControlNet. Covers Docker install, workflow setup, benchmarks vs AUTOMATIC1111 and ComfyUI, and production hardening.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [invokeai, 'stable diffusion', 'ai image generation', docker, flux, sdxl, webui, 'open-source']
-aliases:
-- /posts/invokeai/
+aliases: - /posts/invokeai/-
 ---
-
 {{</* resource-info */>}}
 
 ![InvokeAI Logo](https://raw.githubusercontent.com/invoke-ai/InvokeAI/main/invokeai/assets/invokeai-logo.png)
@@ -76,9 +72,7 @@ cd InvokeAI/docker
 cp .env.sample .env
 ```
 
-Edit `.env` with your settings:
-
-```bash
+Edit `.env` with your settings: ```bash
 # Core configuration
 INVOKEAI_ROOT=/opt/invokeai-data
 INVOKEAI_PORT=9090
@@ -93,9 +87,7 @@ HUGGINGFACE_TOKEN=hf_your_token_here
 ./run.sh
 ```
 
-Or use `docker compose` directly:
-
-```bash
+Or use `docker compose` directly: ```bash
 docker compose up -d
 ```
 
@@ -103,9 +95,7 @@ Access the UI at `http://localhost:9090`.
 
 ### Quick Docker Run (No Compose)
 
-For a quick test without persistence:
-
-```bash
+For a quick test without persistence: ```bash
 # NVIDIA GPU
 docker run --runtime=nvidia --gpus=all \
   --publish 9090:9090 \
@@ -180,59 +170,40 @@ sudo docker compose up -d
 
 x-invokeai: &invokeai
     image: "ghcr.io/invoke-ai/invokeai:latest"
-    build:
-      context: ..
+    build: context: ..
       dockerfile: docker/Dockerfile
-    env_file:
-      - .env
-    environment:
-      - INVOKEAI_ROOT=${CONTAINER_INVOKEAI_ROOT:-/invokeai}
+    env_file: - .env
+    environment: - INVOKEAI_ROOT=${CONTAINER_INVOKEAI_ROOT:-/invokeai}
       - HF_HOME
-    ports:
-      - "${INVOKEAI_PORT:-9090}:${INVOKEAI_PORT:-9090}"
-    volumes:
-      - type: bind
+    ports: - "${INVOKEAI_PORT:-9090}:${INVOKEAI_PORT:-9090}"
+    volumes: - type: bind
         source: ${HOST_INVOKEAI_ROOT:-${INVOKEAI_ROOT:-~/invokeai}}
         target: ${CONTAINER_INVOKEAI_ROOT:-/invokeai}
-        bind:
-          create_host_path: true
+        bind: create_host_path: true
       - ${HF_HOME:-~/.cache/huggingface}:${HF_HOME:-/invokeai/.cache/huggingface}
     tty: true
     stdin_open: true
 
-services:
-  invokeai-cuda:
-    <<: *invokeai
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+services: invokeai-cuda: <<: *invokeai
+    deploy: resources: reservations: devices: - driver: nvidia
               count: 1
               capabilities: [gpu]
 
-  invokeai-cpu:
-    <<: *invokeai
-    profiles:
-      - cpu
+  invokeai-cpu: <<: *invokeai
+    profiles: - cpu
 
-  invokeai-rocm:
-    <<: *invokeai
-    environment:
-      - AMD_VISIBLE_DEVICES=all
+  invokeai-rocm: <<: *invokeai
+    environment: - AMD_VISIBLE_DEVICES=all
       - RENDER_GROUP_ID=${RENDER_GROUP_ID}
     runtime: amd
-    profiles:
-      - rocm
+    profiles: - rocm
 ```
 
 ## Integration with Stable Diffusion, ComfyUI, and ControlNet
 
 ### Using Stable Diffusion Models
 
-InvokeAI supports multiple model families out of the box:
-
-- **SD 1.5** — Classic models, extensive LoRA ecosystem
+InvokeAI supports multiple model families out of the box: - **SD 1.5** — Classic models, extensive LoRA ecosystem
 - **SDXL** — Higher resolution, better prompt adherence
 - **FLUX / FLUX.2** — State-of-the-art quality (2025-2026)
 - **Z-Image** — Fine-tuning-friendly undistilled models
@@ -268,9 +239,7 @@ InvokeAI has native ControlNet support through its node workspace. Available pro
 
 ### ComfyUI Workflow Import
 
-While InvokeAI and ComfyUI use different workflow formats, you can recreate ComfyUI pipelines in InvokeAI's node editor. The node library covers:
-
-- KSampler / Sampler nodes
+While InvokeAI and ComfyUI use different workflow formats, you can recreate ComfyUI pipelines in InvokeAI's node editor. The node library covers: - KSampler / Sampler nodes
 - CLIP Text Encode
 - VAELoader / VAEDecode
 - Image Scale nodes
@@ -302,7 +271,15 @@ print(response.json()["session_id"])
 ### SDXL Generation Speed (RTX 3060 Ti, 8GB VRAM)
 
 | Platform | 768×1024 (avg) | 1024×1024 (avg) | Notes |
-|----------|---------------|-----------------|-------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **InvokeAI** | 18.83s | 24.44s | Professional UI, queue system |
 | **ComfyUI** | 16.16s | 21.47s | Fastest raw generation |
 | **AUTOMATIC1111** | 27.33s | 36.00s | Highest VRAM overhead |
@@ -313,7 +290,13 @@ print(response.json()["session_id"])
 ### VRAM Usage Comparison (FLUX Dev, 1024×1024)
 
 | Platform | VRAM Usage | Notes |
-|----------|-----------|-------|
+|
+---
+|
+---
+|
+---
+|
 | InvokeAI | 14.2 GB | Efficient model caching |
 | ComfyUI | 13.8 GB | Lowest overhead |
 | AUTOMATIC1111 | 16.1 GB | Monolithic architecture |
@@ -343,15 +326,12 @@ print(response.json()["session_id"])
 
 ### Multi-User Mode (v6.12.0+)
 
-InvokeAI now supports multiple isolated accounts on a single backend:
-
-```bash
+InvokeAI now supports multiple isolated accounts on a single backend: ```bash
 # Enable multi-user mode in your .env
 INVOKEAI_ENABLE_MULTIUSER=true
 ```
 
-Each user gets:
-- Separate image boards and galleries
+Each user gets: - Separate image boards and galleries
 - Independent canvas state
 - Isolated UI preferences
 - Role-based access (admin vs. regular user)
@@ -404,32 +384,22 @@ TimeoutStartSec=0
 WantedBy=multi-user.target
 ```
 
-Enable and start:
-
-```bash
+Enable and start: ```bash
 sudo systemctl daemon-reload
 sudo systemctl enable --now invokeai
 ```
 
 ### Monitoring with Prometheus
 
-Export container metrics and monitor GPU utilization:
-
-```yaml
+Export container metrics and monitor GPU utilization: ```yaml
 # docker-compose.monitoring.yml
-services:
-  prometheus:
-    image: prom/prometheus:latest
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
-    ports:
-      - "9091:9090"
+services: prometheus: image: prom/prometheus:latest
+    volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports: - "9091:9090"
 
-  dcgm-exporter:
-    image: nvcr.io/nvidia/k8s/dcgm-exporter:latest
+  dcgm-exporter: image: nvcr.io/nvidia/k8s/dcgm-exporter:latest
     runtime: nvidia
-    ports:
-      - "9400:9400"
+    ports: - "9400:9400"
 ```
 
 ### Automated Backups
@@ -448,16 +418,24 @@ tar czf "$BACKUP_DIR/models-$DATE.tar.gz" /opt/invokeai-data/models
 find "$BACKUP_DIR" -name "*.tar.gz" -mtime +7 -delete
 ```
 
-Add to crontab:
-
-```bash
+Add to crontab: ```bash
 0 2 * * * /opt/invokeai-backup/backup.sh
 ```
 
 ## Comparison with Alternatives
 
 | Feature | InvokeAI | AUTOMATIC1111 | ComfyUI | Fooocus |
-|---------|----------|---------------|---------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **WebUI Polish** | Professional, designed for creatives | Functional but dated | Minimal, node-focused | Minimal, prompt-focused |
 | **Node-based Workflows** | Yes, visual editor | No (extension-based) | Yes, native | No |
 | **Canvas (In/Outpainting)** | Full layer-based canvas | Basic inpainting | Via custom nodes | Limited |
@@ -504,17 +482,13 @@ Yes. InvokeAI can use existing `.safetensors` and `.ckpt` models from your A1111
 
 ### How do I update InvokeAI to a new version?
 
-For Docker installations, pull the latest image and restart:
-
-```bash
+For Docker installations, pull the latest image and restart: ```bash
 cd InvokeAI/docker
 docker compose pull
 docker compose up -d
 ```
 
-For bare metal installations, use the launcher:
-
-```bash
+For bare metal installations, use the launcher: ```bash
 invokeai-update
 ```
 
@@ -544,9 +518,7 @@ Follow our Telegram channel for weekly open-source AI tool updates: [dibi8 annou
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -563,12 +535,11 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [ComfyUI vs InvokeAI vs Fooocus Comparison](https://toolhalla.ai/blog/comfyui-vs-invokeai-vs-fooocus-2026)
 - [InvokeAI PyPI Package](https://pypi.org/project/InvokeAI/)
 
----
 
+---
 *Disclosure: This article contains affiliate links to DigitalOcean. If you sign up through these links, we earn a commission at no additional cost to you. This helps support the site and our open-source content. All opinions and benchmarks are independently produced.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -594,8 +565,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [impeccable-ai-design-language-harness-quality-ui](invokeai)

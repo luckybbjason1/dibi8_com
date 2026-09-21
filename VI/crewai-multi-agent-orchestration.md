@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/crewai-multi-agent-orchestration" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/crewai-multi-agent-orchestration" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/crewai-multi-agent-orchestration" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/crewai-multi-agent-orchestration" />
 title: 'CrewAI: Xây Dựng Đội Ngũ AI Đa Tác Tự Collaboration Tự C...
 description: 'Hướng dẫn thực hành 2026 về CrewAI — framework Python để xây dựng hệ thống AI đa tác tự với các tác tự dựa trên vai trò, phân công nhiệm vụ, chia sẻ bộ nhớ và các mẫu hợp tác tự chủ.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [crewai, 'multi-agent', 'ai-agents', orchestration, 'autonomous-agents', llm, python, 'mã-nguồn-mở']
-aliases:
-- /vi/posts/crewai-multi-agent-orchestration/
+aliases: - /vi/posts/crewai-multi-agent-orchestration/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/crewai-multi-agent-orchestration/ -->
 
 {{</* resource-info */>}}
 
@@ -55,9 +47,7 @@ Kiến trúc của CrewAI xoay quanh bốn thành phần cơ bản: **Tác tự*
 
 ### Tác tự: Công Nhân AI Dựa Trên Vai Trò
 
-Một Tác tự trong CrewAI hơn cả một instance LLM. Đó là một vai trò xác định với:
-
-| Thuộc tính | Mục đích | Ví dụ |
+Một Tác tự trong CrewAI hơn cả một instance LLM. Đó là một vai trò xác định với: | Thuộc tính | Mục đích | Ví dụ |
 |-----------|---------|--------|
 | `role` | Chức danh / danh tính | `"Senior Research Analyst"` |
 | `goal` | Điều tác tự muốn đạt được | `"Tìm dữ liệu giá chi tiết cho 3 đối thủ"` |
@@ -70,9 +60,7 @@ Một Tác tự trong CrewAI hơn cả một instance LLM. Đó là một vai tr
 
 ### Nhiệm vụ: Các Đơn Vị Công Việc Xác Định
 
-Nhiệm vụ chỉ định cần làm gì, ai làm, và đầu ra mong đợi:
-
-| Thuộc tính | Mục đích | Ví dụ |
+Nhiệm vụ chỉ định cần làm gì, ai làm, và đầu ra mong đợi: | Thuộc tính | Mục đích | Ví dụ |
 |-----------|---------|--------|
 | `description` | Việc cần làm (có thể chứa `{biến}`) | `"Nghiên cứu gói giá của {công ty}"` |
 | `expected_output` | Thông số chất lượng | `"Bảng với tên gói, giá, và tính năng"` |
@@ -84,9 +72,7 @@ Trường `expected_output` rất quan trọng — nó đóng vai trò như tiê
 
 ### Quy trình: Các Tác tự Cộng Tác Như Thế Nào
 
-CrewAI hỗ trợ ba mẫu cộng tác:
-
-| Quy trình | Mẫu | Phù hợp cho |
+CrewAI hỗ trợ ba mẫu cộng tác: | Quy trình | Mẫu | Phù hợp cho |
 |-----------|------|-------------|
 | `Process.sequential` | Bàn giao tuyến tính: A → B → C | Workflow có phụ thuộc rõ ràng |
 | `Process.hierarchical` | Quản lý phân công cho nhân viên | Dự án phức tạp cần giám sát |
@@ -96,9 +82,7 @@ CrewAI hỗ trợ ba mẫu cộng tác:
 
 ### Công cụ: Mở Rộng Khả Năng Tác tự
 
-Các tác tự CrewAI có thể sử dụng bất kỳ công cụ tương thích LangChain nào. Các công cụ phổ biến:
-
-- **Tìm kiếm web** — SerpAPI, DuckDuckGo, Tavily
+Các tác tự CrewAI có thể sử dụng bất kỳ công cụ tương thích LangChain nào. Các công cụ phổ biến: - **Tìm kiếm web** — SerpAPI, DuckDuckGo, Tavily
 - **Web scraping** — BeautifulSoup, ScrapingBee
 - **Thực thi code** — Python REPL, Jupyter kernel
 - **Truy vấn cơ sở dữ liệu** — SQL connectors
@@ -358,8 +342,7 @@ from crewai.tools import tool
 import requests
 
 @tool("Stock Price Checker")
-def check_stock_price(ticker: str) -> str:
-    """Lấy giá cổ phiếu hiện tại cho một mã ticker."""
+def check_stock_price(ticker: str) -> str: """Lấy giá cổ phiếu hiện tại cho một mã ticker."""
     url = f"https://api.example.com/stocks/{ticker}"
     response = requests.get(url)
     data = response.json()
@@ -380,12 +363,10 @@ analyst = Agent(
 from crewai import Crew
 
 # Step callback để giám sát
-def on_step_callback(step_output):
-    print(f"[STEP] Tác tự: {step_output.agent}, Nhiệm vụ: {step_output.task[:50]}")
+def on_step_callback(step_output): print(f"[STEP] Tác tự: {step_output.agent}, Nhiệm vụ: {step_output.task[:50]}")
 
 # Task callback để ghi log
-def on_task_callback(task_output):
-    print(f"[TASK XONG] {task_output.summary}")
+def on_task_callback(task_output): print(f"[TASK XONG] {task_output.summary}")
 
 monitored_crew = Crew(
     agents=[researcher, writer],
@@ -409,8 +390,7 @@ query_engine = index.as_query_engine()
 
 # Đóng gói thành công cụ CrewAI
 @tool("Company Knowledge Base")
-def query_knowledge_base(query: str) -> str:
-    """Truy vấn cơ sở kiến thức nội bộ của công ty."""
+def query_knowledge_base(query: str) -> str: """Truy vấn cơ sở kiến thức nội bộ của công ty."""
     response = query_engine.query(query)
     return str(response)
 
@@ -427,9 +407,7 @@ policy_expert = Agent(
 
 ### Benchmark Hiệu Suất
 
-Tôi đã thử nghiệm CrewAI với các quy mô đội và độ phức tạp nhiệm vụ khác nhau trên **CPU 8-core, 32GB RAM**, sử dụng GPT-4o qua API:
-
-| Quy mô đội | Nhiệm vụ | Quy trình | Thờigian TB | Chi phí Token |
+Tôi đã thử nghiệm CrewAI với các quy mô đội và độ phức tạp nhiệm vụ khác nhau trên **CPU 8-core, 32GB RAM**, sử dụng GPT-4o qua API: | Quy mô đội | Nhiệm vụ | Quy trình | Thờigian TB | Chi phí Token |
 |-----------|---------|-----------|------------|--------------|
 | 2 tác tự | 2 nhiệm vụ | tuần tự | 18s | $0.04 |
 | 3 tác tự | 3 nhiệm vụ | tuần tự | 45s | $0.12 |
@@ -498,8 +476,7 @@ crew = Crew(
 from pydantic import BaseModel, Field
 from crewai import Task
 
-class CompetitorAnalysis(BaseModel):
-    company_name: str = Field(description="Tên đối thủ cạnh tranh")
+class CompetitorAnalysis(BaseModel): company_name: str = Field(description="Tên đối thủ cạnh tranh")
     pricing_tier: str = Field(description="Free, Starter, Pro, hoặc Enterprise")
     monthly_price: float = Field(description="Giá hàng tháng USD")
     key_features: list[str] = Field(description="Danh sách tính năng chính")
@@ -524,11 +501,8 @@ from tenacity import retry, stop_after_attempt, wait_exponential
     wait=wait_exponential(multiplier=1, min=4, max=10),
     reraise=True,
 )
-def run_crew_with_retry(crew: Crew):
-    try:
-        return crew.kickoff()
-    except Exception as e:
-        print(f"Crew thất bại: {e}. Đang thử lại...")
+def run_crew_with_retry(crew: Crew): try: return crew.kickoff()
+    except Exception as e: print(f"Crew thất bại: {e}. Đang thử lại...")
         raise
 
 result = run_crew_with_retry(my_crew)
@@ -569,24 +543,19 @@ app = FastAPI(title="CrewAI Service")
 # Lưu trữ kết quả
 results_db = {}
 
-class CrewRequest(BaseModel):
-    topic: str
+class CrewRequest(BaseModel): topic: str
     depth: str = "standard"  # standard | deep
 
 @app.post("/crew/run")
-async def run_crew(request: CrewRequest, background: BackgroundTasks):
-    job_id = str(uuid.uuid4())
+async def run_crew(request: CrewRequest, background: BackgroundTasks): job_id = str(uuid.uuid4())
     background.add_task(execute_crew, job_id, request)
     return {"job_id": job_id, "status": "started"}
 
 @app.get("/crew/status/{job_id}")
-async def get_status(job_id: str):
-    if job_id not in results_db:
-        return {"status": "not_found"}
+async def get_status(job_id: str): if job_id not in results_db: return {"status": "not_found"}
     return results_db[job_id]
 
-def execute_crew(job_id: str, request: CrewRequest):
-    researcher = Agent(
+def execute_crew(job_id: str, request: CrewRequest): researcher = Agent(
         role="Nhà nghiên cứu",
         goal=f"Nghiên cứu {request.topic}",
         backstory="Chuyên gia nghiên cứu.",
@@ -666,9 +635,7 @@ crew = Crew(
 
 ## Hạn Chế: Đánh Giá Trung Thực
 
-CrewAI mạnh mẽ nhưng không phải bùa chú. Thực tế production bạn nên biết:
-
-**1. Chi phí LLM tỷ lệ với số tác tự.** Một đội 5 tác tự chạy 8 nhiệm vụ với GPT-4o có thể tốn $0.50-2.00 mỗi lần chạy. Với 1,000 lần chạy mỗi ngày, đó là $500-2,000/ngày. Lập ngân sách phù hợp hoặc sử dụng mô hình rẻ hơn cho các tác tự ít quan trọng hơn.
+CrewAI mạnh mẽ nhưng không phải bùa chú. Thực tế production bạn nên biết: **1. Chi phí LLM tỷ lệ với số tác tự.** Một đội 5 tác tự chạy 8 nhiệm vụ với GPT-4o có thể tốn $0.50-2.00 mỗi lần chạy. Với 1,000 lần chạy mỗi ngày, đó là $500-2,000/ngày. Lập ngân sách phù hợp hoặc sử dụng mô hình rẻ hơn cho các tác tự ít quan trọng hơn.
 
 **2. Giới hạn token hạn chế chia sẻ ngữ cảnh.** Khi Tác tự A truyền output cho Tác tự B, output đó tiêu thụ token trong cửa sổ ngữ cảnh của Tác tự B. Với 5 tác tự mỗi tác tự sản xuất 2K token, tác tự cuối cùng có thể chạm giới hạn 128K của GPT-4o. Sử dụng `max_iter` và tóm tắt các output trung gian.
 
@@ -724,9 +691,7 @@ Tham gia cộng đồng developer trên Telegram: **t.me/dibi8en** — chia sẻ
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -749,7 +714,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 *Tuyên bố tiếp thị liên kết: Bài viết này chứa liên kết tiếp thị của DigitalOcean. Nếu bạn đăng ký qua các liên kết này, chúng tôi nhận được hoa hồng không phát sinh chi phí thêm cho bạn. CrewAI là mã nguồn mở và miễn phí sử dụng; chúng tôi không có quan hệ thương mại với dự án CrewAI. Các ý kiến dựa trên thử nghiệm thực tế và triển khai production.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

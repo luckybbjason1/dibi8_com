@@ -1,10 +1,4 @@
 # AI 에이전트 스킬 프레임워크 완벽 가이드: 2026년 개발자 생산성 혁명과 스펙 기반 개발 실전
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-agent-skills-framework-spec-driven-development-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-agent-skills-framework-spec-driven-development-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-agent-skills-framework-spec-driven-development-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-agent-skills-framework-spec-driven-development-2026" />
-
 **발행일:** 2026년 5월 20일  
 **독서 시간:** 15분  
 **대상 독자:** 풀스택 개발자, 기술 리드, AI 도구 애호가
@@ -43,7 +37,7 @@
 │   │  Codex)     │     │             │     │             │      │
 │   └─────────────┘     └─────────────┘     └─────────────┘      │
 │                                                                │
-│   스킬 예시:                                                    │
+│   스킬 예시: │
 │   ├─ 가드레일: git push --force / rm -rf 차단                │
 │   ├─ TDD 패턴: 구현 전 테스트 요구                             │
 │   ├─ 디버그 워크플로우: 구조화된 오류 조사                      │
@@ -63,9 +57,7 @@
 | 유지보수성 | 채팅 기록에 흩어짐 | 구조화된 SKILL.md + 스크립트 |
 | 트리거 | 수동 붙여넣기 | 컨텍스트 자동 감지, 조건부 활성화 |
 
-Matt Pocock의 [mattpocock/skills](https://github.com/mattpocock/skills) 저장소는 이 운동의 도화선이 되었다. 그는 개인 `.claude` 디렉토리를 오픈소스로 공개했는데, 여기에는 다음이 포함된다:
-
-- **TDD 스킬**: RED-GREEN-REFACTOR 사이클 강제
+Matt Pocock의 [mattpocock/skills](https://github.com/mattpocock/skills) 저장소는 이 운동의 도화선이 되었다. 그는 개인 `.claude` 디렉토리를 오픈소스로 공개했는데, 여기에는 다음이 포함된다: - **TDD 스킬**: RED-GREEN-REFACTOR 사이클 강제
 - **가드레일 스킬**: `git push --force` 가로채기, 확인 요구
 - **디버그 스킬**: 구조화된 조사 — 재현 → 로그 → 근본 원인 → 수정 → 회귀 테스트
 - **TypeScript 심화 패턴**: 타입 시스템 깊이에 최적화된 AI 출력
@@ -117,18 +109,14 @@ Matt Pocock의 [mattpocock/skills](https://github.com/mattpocock/skills) 저장�
 
 ### 왜 바이브 코딩이 코드 품질을 죽이는가
 
-"바이브 코딩"은 2025~2026년의 유행어였다: 직관과 즉흥적 프롬프트로 AI를 구동하는 개발 방식이다. 문제는 구조적이다:
-
-1. **추적 불가**: 코드가 왜 이렇게 작성되었는가? "그때 느낌이 좋아서."
+"바이브 코딩"은 2025~2026년의 유행어였다: 직관과 즉흥적 프롬프트로 AI를 구동하는 개발 방식이다. 문제는 구조적이다: 1. **추적 불가**: 코드가 왜 이렇게 작성되었는가? "그때 느낌이 좋아서."
 2. **리뷰 불가**: 설계 문서가 없으면 코드 리뷰는 표면만 긁는다.
 3. **유지보수 불가**: 3개월 후, AI조차 원래 로직을 잊었다.
 4. **협업 불가**: 팀원마다 "바이브"가 다르다.
 
 ### 스펙킷 4단계 워크플로우
 
-GitHub의 [spec-kit](https://github.com/github/spec-kit)은 간단한 4단계로 혼란을 규율로 바꾼다:
-
-```
+GitHub의 [spec-kit](https://github.com/github/spec-kit)은 간단한 4단계로 혼란을 규율로 바꾼다: ```
 ┌──────────────────────────────────────────────────────────────┐
 │           스펙 기반 개발 워크플로우                             │
 ├──────────────────────────────────────────────────────────────┤
@@ -151,9 +139,7 @@ GitHub의 [spec-kit](https://github.com/github/spec-kit)은 간단한 4단계로
 └──────────────────────────────────────────────────────────────┘
 ```
 
-**실전 예시**:
-
-```markdown
+**실전 예시**: ```markdown
 ## 스펙 정의 (SPECIFICATION)
 전자상거래 앱에 장바구니 지속성 기능 추가.
 이유: 사용자가 페이지를 새로고침해도 장바구니가 유실되지 않아야 함.
@@ -183,9 +169,7 @@ AI가 위 계획에 따라 각 작업을 구현하며, 완료 시 체크.
 
 ### Step 1: 스킬 디렉토리 구조 생성
 
-프로젝트나 글로벌 설정에서:
-
-```
+프로젝트나 글로벌 설정에서: ```
 .claude/
 └── skills/
     └── safe-git/
@@ -214,15 +198,13 @@ priority: high
 
 ## 워크플로우
 ### Force Push 보호
-force push 의도가 감지되면:
-1. 작업 일시 중지
+force push 의도가 감지되면: 1. 작업 일시 중지
 2. 영향받는 브랜치와 커밋 표시
 3. 사용자가 "I understand the risks" 입력하여 확인 요구
 4. .claude/safe-git.log에 기록
 
 ### Pre-commit Lint
-커밋 전 자동 실행:
-```bash
+커밋 전 자동 실행: ```bash
 npm run lint && npm run typecheck
 ```
 실패 시 커밋 차단 및 오류 표시.
@@ -292,9 +274,7 @@ Claude Code는 `.claude/skills/` 디렉토리를 자동 감지하고 매칭되�
 
 ## 전망: 2026년 하반기 스킬 생태계
 
-현재 궤적을 기반으로 세 가지 방향은 불가피하다:
-
-1. **스킬 마켓플레이스**: AI 에이전트 행동을 위한 전용 배포 플랫폼이 등장할 것이다 (ClawHub가 이미 개척 중). VS Code 확장 마켓플레이스를 상상하되, AI 에이전트 행동용으로.
+현재 궤적을 기반으로 세 가지 방향은 불가피하다: 1. **스킬 마켓플레이스**: AI 에이전트 행동을 위한 전용 배포 플랫폼이 등장할 것이다 (ClawHub가 이미 개척 중). VS Code 확장 마켓플레이스를 상상하되, AI 에이전트 행동용으로.
 
 2. **도메인 특화 스킬 폭발**: 금융 규제, 헬스케어 프라이버시, 법률 검토 등 수직적 스킬이 필수가 될 것이다 (`anthropics/financial-services`의 +1,075 stars를 참고).
 

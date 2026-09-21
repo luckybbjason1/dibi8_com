@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/zerion-wallet-portfolio-tracker" />
 title: 'zerion-wallet-portfolio-tracker'
 description: ''. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: [zerion]
-aliases:
-- /posts/zerion-wallet-portfolio-tracker/
+aliases: - /posts/zerion-wallet-portfolio-tracker/-
 ---
-
 {{</* resource-info */>}}
 
 **Date:** 2026-05-19  
@@ -34,8 +30,8 @@ aliases:
 **GitHub:** [zeriontech](https://github.com/zeriontech) (★ 200 · MIT License)  
 **Affiliate Disclosure:** *This article contains affiliate links. We may earn a commission if you register through our partner links — at no extra cost to you. Our editorial opinions remain independent.*
 
----
 
+---
 ## Introduction: Why DeFi Portfolio Tracking Matters in 2026
 
 Decentralized Finance (DeFi) has evolved from a niche experiment into a multi-trillion-dollar ecosystem. With thousands of protocols spread across 10+ blockchains, managing your crypto assets has become increasingly complex. Enter **Zerion** — the open-source DeFi portfolio tracker that has emerged as the go-to solution for over 1 million users managing more than **$5 billion in tracked assets**.
@@ -44,15 +40,13 @@ Built by [zeriontech](https://github.com/zeriontech) and released under the perm
 
 **👉 Ready to start trading? [Register on Binance](https://www.bsmkweb.cc/register?ref=DIBI8) today and get the lowest fees on the market.**
 
----
 
+---
 ## What Is Zerion? Understanding the Core Architecture
 
 Zerion is a **DeFi portfolio aggregator** designed to give users a complete view of their on-chain assets. Unlike traditional portfolio trackers that only support one or two chains, Zerion integrates with **Ethereum, Polygon, Arbitrum, Optimism, Base, BNB Chain, Avalanche, Fantom, Gnosis, and more** — making it one of the most comprehensive tracking solutions available.
 
-The platform operates by indexing on-chain data through a combination of subgraph queries, direct RPC calls, and proprietary indexing infrastructure. This data is then normalized and presented through an intuitive interface that shows:
-
-- Token balances and price movements
+The platform operates by indexing on-chain data through a combination of subgraph queries, direct RPC calls, and proprietary indexing infrastructure. This data is then normalized and presented through an intuitive interface that shows: - Token balances and price movements
 - Liquidity pool positions
 - Yield farming and staking rewards
 - NFT holdings with floor price data
@@ -68,9 +62,7 @@ Getting started with Zerion takes less than five minutes. Follow these steps to 
 
 ### Step 1 — Visit the Zerion Web App
 
-Open your browser and navigate to the official Zerion application:
-
-```bash
+Open your browser and navigate to the official Zerion application: ```bash
 # No installation required — Zerion is a web-based dApp
 # Official URL: https://app.zerion.io
 # Always verify the SSL certificate before connecting your wallet
@@ -78,9 +70,7 @@ Open your browser and navigate to the official Zerion application:
 
 ### Step 2 — Connect Your Wallet
 
-Click the "Connect Wallet" button and choose from supported options:
-
-```javascript
+Click the "Connect Wallet" button and choose from supported options: ```javascript
 // Supported wallet connectors in Zerion
 const supportedWallets = [
   "MetaMask",
@@ -94,9 +84,7 @@ const supportedWallets = [
 
 ### Step 3 — Sign the Authentication Message
 
-Zerion uses a signature-based authentication system. No funds are ever moved during this step:
-
-```javascript
+Zerion uses a signature-based authentication system. No funds are ever moved during this step: ```javascript
 // Example: Sign authentication message (read-only)
 const message = "Sign this message to authenticate with Zerion\nNonce: 123456";
 const signature = await signer.signMessage(message);
@@ -105,11 +93,8 @@ const signature = await signer.signMessage(message);
 
 ### Step 4 — View Your Portfolio Dashboard
 
-Once connected, your dashboard will populate automatically with all assets across supported chains:
-
-```bash
-# Your portfolio dashboard shows:
-# - Total Portfolio Value (USD equivalent)
+Once connected, your dashboard will populate automatically with all assets across supported chains: ```bash
+# Your portfolio dashboard shows: # - Total Portfolio Value (USD equivalent)
 # - 24h Change (%) and Absolute ($)
 # - Asset Allocation by Chain
 # - Asset Allocation by Protocol
@@ -127,38 +112,31 @@ One of Zerion's standout features is its ability to aggregate data across **10+ 
 
 ```yaml
 # Complete list of Zerion-supported networks
-ethereum:
-  chain_id: 1
+ethereum: chain_id: 1
   type: "Layer 1"
   features: ["Full support", "NFT tracking", "DeFi positions"]
 
-polygon:
-  chain_id: 137
+polygon: chain_id: 137
   type: "Layer 2 / Sidechain"
   features: ["Full support", "Low gas tracking"]
 
-arbitrum:
-  chain_id: 42161
+arbitrum: chain_id: 42161
   type: "Optimistic Rollup"
   features: ["Full support", "Nitro upgrade compatible"]
 
-optimism:
-  chain_id: 10
+optimism: chain_id: 10
   type: "Optimistic Rollup"
   features: ["Full support", "Bedrock upgrade compatible"]
 
-base:
-  chain_id: 8453
+base: chain_id: 8453
   type: "Optimistic Rollup"
   features: ["Full support", "Coinbase integration"]
 
-bnb_chain:
-  chain_id: 56
+bnb_chain: chain_id: 56
   type: "Layer 1"
   features: ["Full support", "BSC DeFi protocols"]
 
-avalanche:
-  chain_id: 43114
+avalanche: chain_id: 43114
   type: "Layer 1 (Subnet)"
   features: ["C-Chain support", "DeFi positions"]
 ```
@@ -231,8 +209,7 @@ const calculateNetYield = (position) => {
 # Warning alert when health_factor < 1.5
 # Safe zone: health_factor > 2.0
 
-# Example output from Zerion UI:
-# ┌─────────────┬─────────────┬─────────────┬─────────────┐
+# Example output from Zerion UI: # ┌─────────────┬─────────────┬─────────────┬─────────────┐
 # │ Protocol    │ Supplied    │ Borrowed    │ Health Fact │
 # ├─────────────┼─────────────┼─────────────┼─────────────┤
 # │ Aave v3     │ $45,230     │ $22,100     │ 1.89 ⚡     │
@@ -278,8 +255,7 @@ const fetchNFTs = async (address) => {
 ### NFT Portfolio Summary
 
 ```bash
-# Zerion NFT Dashboard shows:
-# - Total NFT Value (USD)
+# Zerion NFT Dashboard shows: # - Total NFT Value (USD)
 # - Best Performing Collections (7d %)
 # - Recently Acquired Items
 # - Floor Price Alerts
@@ -321,8 +297,7 @@ const fetchTransactions = async (address, filters) => {
 # Python script: Analyze gas costs using Zerion data
 import pandas as pd
 
-def analyze_gas_costs(transactions):
-    df = pd.DataFrame(transactions)
+def analyze_gas_costs(transactions): df = pd.DataFrame(transactions)
     
     # Filter for transaction types
     swaps = df[df[type] == trade]
@@ -419,9 +394,7 @@ ws.onmessage = (event) => {
 
 ## Mobile App: DeFi on the Go
 
-Zerion's mobile app (available on iOS and Android) brings the full power of the web dashboard to your pocket. Key features include:
-
-```bash
+Zerion's mobile app (available on iOS and Android) brings the full power of the web dashboard to your pocket. Key features include: ```bash
 # Mobile App Features
 # - Push notifications for large transactions
 # - WalletConnect v2 integration
@@ -480,9 +453,7 @@ const isSafeSignature = (message) => {
 
 ## Advanced Tips & Tricks
 
-Maximize your Zerion experience with these pro tips:
-
-### Custom Watchlists
+Maximize your Zerion experience with these pro tips: ### Custom Watchlists
 
 ```javascript
 // Track multiple wallets (great for fund managers)
@@ -501,8 +472,7 @@ const watchlist = [
 # Export transaction history for tax software
 # Supports: CoinTracker, Koinly, TokenTax, TurboTax
 
-# Download format:
-curl -X GET "https://api.zerion.io/v1/wallets/0x.../transactions/export?format=csv" \
+# Download format: curl -X GET "https://api.zerion.io/v1/wallets/0x.../transactions/export?format=csv" \
   -H "Authorization: Basic ${API_KEY}" \
   --output "zerion_transactions_2026.csv"
 ```
@@ -519,8 +489,7 @@ const alertConfig = {
   notification_method: ["push", "email"]
 };
 
-// Also supports:
-// - Transaction alerts (any outgoing tx > $10,000)
+// Also supports: // - Transaction alerts (any outgoing tx > $10,000)
 // - Health factor alerts (lending positions)
 // - Gas price alerts (execute when gas < 20 gwei)
 ```
@@ -559,9 +528,7 @@ A: Both are leading DeFi portfolio trackers. Zerion offers a more polished UI, b
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -579,7 +546,6 @@ The MIT-licensed open-source components provide transparency and extensibility t
 *Disclaimer: This article is for informational purposes only and does not constitute financial advice. Cryptocurrency investments carry significant risk. Always do your own research before making investment decisions. This post contains affiliate links — we may receive compensation at no cost to you when you use our partner links.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/vectorbt-quantitative-backtesting" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/vectorbt-quantitative-backtesting" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/vectorbt-quantitative-backtesting" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/vectorbt-quantitative-backtesting" />
 title: 'VectorBT: Thư viện Python Backtesting Tốc độ Cực nhanh X...
 description: 'Làm chủ VectorBT để backtest quantitative bằng Python. Xây dựng, kiểm thử và tối ưu chiến lược giao dịch với mô phỏng tốc độ Numba vectorized. Hướng dẫn đầy đủ 2026 với ví dụ code.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: []
-aliases:
-- /vi/posts/vectorbt-quantitative-backtesting/
+aliases: - /vi/posts/vectorbt-quantitative-backtesting/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/vectorbt-quantitative-backtesting/ -->
 
 {{</* resource-info */>}}
 
@@ -47,9 +39,7 @@ VectorBT (Vector Backtesting) là một thư viện Python để backtest chiế
 
 ## VectorBT hoạt động như thế nào: Kiến trúc & Khái niệm cốt lõi
 
-Tốc độ của VectorBT đến từ ba quyết định kiến trúc:
-
-### Biểu diễn dữ liệu ưu tiên NumPy
+Tốc độ của VectorBT đến từ ba quyết định kiến trúc: ### Biểu diễn dữ liệu ưu tiên NumPy
 
 Mọi dữ liệu giá tồn tại dưới dạng NumPy ndarray. Một DataFrame 10 năm dữ liệu ngày của 100 tài sản trở thành mảng 2D có hình dạng `(2.520, 100)` —— xấp xỉ 252 ngày giao dịch mỗi năm. Không có vòng lặp theo hàng nào xảy ra trên đường dẫn nóng.
 
@@ -90,16 +80,12 @@ pip install vectorbt
 pip install "vectorbt[all]"
 ```
 
-Xác minh cài đặt:
-
-```python
+Xác minh cài đặt: ```python
 import vectorbt as vbt
 print(vbt.__version__)  # 0.27.2 hoặc mới hơn
 ```
 
-Để đảm bảo khả năng tái tạo, cố định môi trường của bạn:
-
-```bash
+Để đảm bảo khả năng tái tạo, cố định môi trường của bạn: ```bash
 # requirements.txt
 vectorbt==0.27.2
 numba==0.60.0
@@ -109,9 +95,7 @@ yfinance==0.2.54
 plotly==5.24.1
 ```
 
-Vấn đề cài đặt phổ biến trên macOS: Numba yêu cầu `llvmlite`, cần Xcode Command Line Tools:
-
-```bash
+Vấn đề cài đặt phổ biến trên macOS: Numba yêu cầu `llvmlite`, cần Xcode Command Line Tools: ```bash
 xcode-select --install  # Chạy lệnh này trước nếu cài Numba thất bại
 ```
 
@@ -157,9 +141,7 @@ Chạy dưới **2 giây** cho 3 tài sản trong 6 năm. Cùng backtest đó tr
 
 ## Tối ưu tham số: Tìm kiếm lưới với tốc độ cao
 
-Sức mạnh thực sự của VectorBT xuất hiện khi bạn quét tham số. Hãy thử các cửa sổ MA từ 5 đến 200:
-
-```python
+Sức mạnh thực sự của VectorBT xuất hiện khi bạn quét tham số. Hãy thử các cửa sổ MA từ 5 đến 200: ```python
 import vectorbt as vbt
 
 price = vbt.YFData.download("BTC-USD", start="2020-01-01", end="2026-01-01").get("Close")
@@ -194,9 +176,7 @@ Lưới **180 tổ hợp tham số** này được đánh giá trong khoảng **
 
 ## Phân tích Walk-Forward: Xác thực chiến lược mạnh mẽ
 
-Backtest trên một giai đoạn đơn lẻ dễ dẫn đến overfitting. Phân tích walk-forward (WFA) chia dữ liệu thành cửa sổ training in-sample và testing out-of-sample. VectorBT triển khai điều này qua `Portfolio.from_signals` với cắt theo ngày:
-
-```python
+Backtest trên một giai đoạn đơn lẻ dễ dẫn đến overfitting. Phân tích walk-forward (WFA) chia dữ liệu thành cửa sổ training in-sample và testing out-of-sample. VectorBT triển khai điều này qua `Portfolio.from_signals` với cắt theo ngày: ```python
 import vectorbt as vbt
 from datetime import datetime
 import pandas as pd
@@ -208,8 +188,7 @@ n_splits = 10
 split_size = len(price) // n_splits
 results = []
 
-for i in range(n_splits):
-    # Định nghĩa cửa sổ train/test
+for i in range(n_splits): # Định nghĩa cửa sổ train/test
     train_start = i * split_size
     train_end = train_start + split_size - 60
     test_end = train_start + split_size
@@ -260,9 +239,7 @@ Sharpe ratio trung bình out-of-sample dưới 0,5 cho thấy chiến lược kh
 
 ## Tích hợp Machine Learning
 
-VectorBT kết hợp tự nhiên với scikit-learn cho tín hiệu dựa trên ML. Huấn luyện bộ phân loại dự đoán hướng ngày tiếp theo, sau đó đưa dự đoán vào VectorBT để mô phỏng thực thi thực tế:
-
-```python
+VectorBT kết hợp tự nhiên với scikit-learn cho tín hiệu dựa trên ML. Huấn luyện bộ phân loại dự đoán hướng ngày tiếp theo, sau đó đưa dự đoán vào VectorBT để mô phỏng thực thi thực tế: ```python
 import vectorbt as vbt
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
@@ -322,9 +299,7 @@ print(f"Buy & Hold Return: {(test_price.iloc[-1] / test_price.iloc[0] - 1):.2%}"
 
 ## Tối ưu Danh mục với VectorBT
 
-VectorBT PRO (phiên bản trả phí, $299/năm) bổ sung tối ưu cấp danh mục qua mô hình Markowitz mean-variance và Black-Litterman. Phiên bản open-source vẫn hỗ trợ đánh trọng số đa tài sản:
-
-```python
+VectorBT PRO (phiên bản trả phí, $299/năm) bổ sung tối ưu cấp danh mục qua mô hình Markowitz mean-variance và Black-Litterman. Phiên bản open-source vẫn hỗ trợ đánh trọng số đa tài sản: ```python
 import vectorbt as vbt
 import numpy as np
 
@@ -343,8 +318,7 @@ weights = 1 / volatility
 weights = weights / weights.sum()
 
 print("Tỷ trọng danh mục:")
-for symbol, w in weights.items():
-    print(f"  {symbol}: {w:.2%}")
+for symbol, w in weights.items(): print(f"  {symbol}: {w:.2%}")
 
 # Backtest phân bổ
 portfolio = vbt.Portfolio.from_holding(
@@ -382,20 +356,16 @@ Một quỹ crypto có hệ thống sử dụng VectorBT làm giai đoạn đầ
 
 ### Chỉ báo Tùy chỉnh
 
-`IndicatorFactory` của VectorBT chuyển đổi bất kỳ hàm nào thành chỉ báo vectorized:
-
-```python
+`IndicatorFactory` của VectorBT chuyển đổi bất kỳ hàm nào thành chỉ báo vectorized: ```python
 import vectorbt as vbt
 import numpy as np
 from numba import njit
 
 @njit
-def custom_momentum_nb(price, period):
-    """Chỉ báo động lượng tăng tốc Numba."""
+def custom_momentum_nb(price, period): """Chỉ báo động lượng tăng tốc Numba."""
     momentum = np.empty_like(price)
     momentum[:period] = np.nan
-    for i in range(period, len(price)):
-        momentum[i] = (price[i] / price[i - period] - 1) * 100
+    for i in range(period, len(price)): momentum[i] = (price[i] / price[i - period] - 1) * 100
     return momentum
 
 # Bọc bằng IndicatorFactory
@@ -440,15 +410,12 @@ print(f"Avg trade: {portfolio.trades.returns.mean():.2%}")
 
 ### Thực thi Song song
 
-Các phép toán tensor của VectorBT đã bão hòa lõi đơn. Để mở rộng đa lõi, chia lưới tham số qua nhiều tiến trình:
-
-```python
+Các phép toán tensor của VectorBT đã bão hòa lõi đơn. Để mở rộng đa lõi, chia lưới tham số qua nhiều tiến trình: ```python
 from multiprocessing import Pool
 import vectorbt as vbt
 import numpy as np
 
-def run_chunk(param_chunk):
-    price = vbt.YFData.download("BTC-USD").get("Close")
+def run_chunk(param_chunk): price = vbt.YFData.download("BTC-USD").get("Close")
     fast_ma = vbt.MA.run(price, param_chunk[:, 0])
     slow_ma = vbt.MA.run(price, param_chunk[:, 1])
     entries = fast_ma.ma_crossed_above(slow_ma)
@@ -460,8 +427,7 @@ def run_chunk(param_chunk):
 params = np.array(np.meshgrid(np.arange(5, 41, 5), np.arange(20, 121, 10))).T.reshape(-1, 2)
 chunks = np.array_split(params, 4)
 
-with Pool(4) as p:
-    results = p.map(run_chunk, chunks)
+with Pool(4) as p: results = p.map(run_chunk, chunks)
 ```
 
 ## So sánh với các Lựa chọn Thay thế
@@ -488,9 +454,7 @@ with Pool(4) as p:
 
 ## Hạn chế / Đánh giá Trung thực
 
-VectorBT không phải giải pháp đa năng. Đây là những gì nó không làm:
-
-1. **Không có thực thi live trading.** VectorBT chỉ là thư viện nghiên cứu. Để live trading, bạn cần framework thực thi riêng như CCXT, IBKR API, hoặc Lean.
+VectorBT không phải giải pháp đa năng. Đây là những gì nó không làm: 1. **Không có thực thi live trading.** VectorBT chỉ là thư viện nghiên cứu. Để live trading, bạn cần framework thực thi riêng như CCXT, IBKR API, hoặc Lean.
 
 2. **Xấp xỉ vectorized.** Mô hình vectorized khớp lệnh ở giá đóng cửa của cùng cây nến theo mặc định. Trượt giá thực và tác động thị trường được xấp xỉ, không phải mô phỏng từng tick. Chiến lược tần suất cao sẽ thấy kết quả bị méo.
 
@@ -555,9 +519,7 @@ Tham gia cộng đồng quantitative trading Telegram để thảo luận chiế
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -567,7 +529,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 Bài viết này chứa liên kết affiliate đến Binance, OKX, Minara và các nền tảng liên quan. Nếu bạn đăng ký qua các liên kết này, dibi8.com có thể nhận được hoa hồng không phát sinh chi phí thêm cho bạn. Chúng tôi chỉ giới thiệu các công cụ chúng tôi dùng cho nghiên cứu quantitative của riêng mình. Thu nhập affiliate hỗ trợ nội dung kỹ thuật mã nguồn mở của chúng tôi.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

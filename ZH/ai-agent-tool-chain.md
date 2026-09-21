@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-agent-tool-chain" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-agent-tool-chain" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-agent-tool-chain" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-agent-tool-chain" />
 title: 'AI Agent 工具链 2026：6 组件 stack 搭生产级自主 agent'
 description: '完整生产级 AI agent stack：LangGraph 状态机编排 + MCP servers 工具 + mem0 记忆 + OpenClaw 多 agent 协调 + Hermes Agent 自改进 + e2b 沙箱代码执行。$20-60/月自托管。真实组装含全部内链深度文。'
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
-tech_stack:
-  - Python
+tech_stack: - Python
   - TypeScript
   - Docker
   - PostgreSQL
@@ -29,11 +23,8 @@ featureImage: ''
 draft: false
 categories: [collections]
 tags: ['ai agent', 工具链, langgraph, mcp, stack, 合集]
-aliases:
-  - /posts/ai-agent-tool-chain/
+aliases: - /posts/ai-agent-tool-chain/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/ai-agent-tool-chain/ -->
 
 "AI agent" 在 2025 年停止做研究话题，在 2026 年成为生产工程类别。在交付真正自主 agent 的团队 —— 熬过重启的客服 bot、跨百文件重构的编程 agent、跑数小时的研究 agent —— 都汇聚到一个惊人一致的 stack。这个合集组装它。
 
@@ -42,7 +33,17 @@ aliases:
 ## TL;DR —— Stack 全貌
 
 | # | 组件 | 角色 | 为什么 | 深度指南 |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 1 | **LangGraph** | 有状态 agent 编排（大脑）| 持久化执行、human-in-loop、熬过崩溃 | [LangGraph 生产 2026](/zh/resources/llm-frameworks/langgraph-stateful-agent-orchestration-2026/) |
 | 2 | **MCP servers**（filesystem / git / search / 领域特定）| 工具 & 上下文层（手和眼）| 标准化 agent-世界协议，19,700+ 可用 | [MCP Server 注册中心 2026](/zh/resources/llm-frameworks/mcp-server-registry-comprehensive-guide-2026/) |
 | 3 | **mem0 + AgentMemory MCP** | 持久化语义记忆（长期记忆）| 跨 session 回忆、事实提取、衰减 | [AgentMemory MCP](/zh/resources/llm-frameworks/agentmemory-mcp-persistent-memory-2026/) |
@@ -216,7 +217,15 @@ pip install hermes-agent
 ## 10. 成本拆解
 
 | 项 | 单干 agent dev | 团队原型 | 生产（3 agent 并发）|
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | VPS | $24（8 GB）| $48（16 GB）| $120（32 GB + 副本）|
 | 托管 Postgres | $15 | $30 | $60 |
 | LangGraph | $0（OSS）| $0 | $0 |
@@ -253,12 +262,11 @@ pip install hermes-agent
 
 开一个 {{< aff "digitalocean" "footer-cta" "DigitalOcean $24/月 droplet" >}}，跟第 9 节做，你有熬过重启 / 记住上下文 / 安全跑代码 / 随时间自改进的 agent —— 跑在你自己拥有的基础设施上，比单座 Cursor 还便宜。
 
----
 
+---
 *配套合集：[自托管 AI 编程工作流](/zh/collections/self-hosted-ai-coding-workflow/) 给编程 agent 专属 stack。[知识库 Stack](/zh/collections/knowledge-base-stack/) 给你的 agent 一个 Glean 等价 RAG 后端。[便宜 LLM Stack](/zh/collections/cheap-llm-stack/) 覆盖成本侧。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -286,25 +294,20 @@ pip install hermes-agent
 
 ## Why This Matters
 
-Understanding ai agent 工具链 2026：6 组件 stack 搭生产级自主 agent is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding ai agent 工具链 2026：6 组件 stack 搭生产级自主 agent is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -325,8 +328,8 @@ AI Agent 工具链 2026：6 组件 stack 搭生产级自主 agent represents an 
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 

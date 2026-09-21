@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/stable-diffusion-webui-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/stable-diffusion-webui-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/stable-diffusion-webui-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/stable-diffusion-webui-2026" />
 title: 'Stable Diffusion WebUI 2026 (AUTOMATIC1111): 163k 별 셀프호스...
 description: 'AUTOMATIC1111 stable-diffusion-webui는 163k 별의 SD/SDXL 이미지 생성용 사실상 표준 셀프호스트 UI. 2026 완전 설치 + 프로덕션 가이드: txt2img / img2img / 인페인팅 / 아웃페인팅 / LoRA / ControlNet, 하드웨어 요구, 대안(Forge, SD.Next).'
 date: 2026-05-21 00:00:00+08:00
@@ -25,11 +20,9 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: ['stable diffusion', sdxl, '이미지 생성', automatic1111, 오픈소스]
-aliases:
-  - /posts/stable-diffusion-webui-2026/
+aliases: - /posts/stable-diffusion-webui-2026/
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/stable-diffusion-webui-2026/ -->
 # Stable Diffusion WebUI 2026 (AUTOMATIC1111): 163k 별 셀프호스트 이미지 생성 완전 가이드
 
 
@@ -48,9 +41,7 @@ aliases:
 
 ## 1. 왜 A1111이 2026에도 여전히 기본인가
 
-Flux(2024년 9월) 출시 후 이미지 생성 생태계가 강하게 분열, SD 3.5가 뒤따름. ComfyUI가 "복잡 파이프라인" 니치 차지. 그러나 A1111이 기본 유지 이유:
-
-1. **가장 낮은 학습 곡선** — 텍스트 박스, 생성 버튼, 끝
+Flux(2024년 9월) 출시 후 이미지 생성 생태계가 강하게 분열, SD 3.5가 뒤따름. ComfyUI가 "복잡 파이프라인" 니치 차지. 그러나 A1111이 기본 유지 이유: 1. **가장 낮은 학습 곡선** — 텍스트 박스, 생성 버튼, 끝
 2. **가장 많은 확장** — 500+ 확장이 ControlNet, ADetailer, Regional Prompter, 훈련 등 처리
 3. **가장 많은 튜토리얼** — 4년치 Reddit/YouTube 콘텐츠가 A1111 모양
 4. **80% 사용 사례에 충분** — "텍스트에서 좋은 이미지"만 원할 때 ComfyUI 그래프 뷰는 과잉
@@ -70,8 +61,7 @@ Flux(2024년 9월) 출시 후 이미지 생성 생태계가 강하게 분열, SD
 
 ## 3. 빠른 설치 (15분)
 
-**Linux/macOS**:
-```bash
+**Linux/macOS**: ```bash
 git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui
 cd stable-diffusion-webui
 ./webui.sh  # Python 의존성 자동 설치, 기본 모델 다운로드
@@ -83,9 +73,7 @@ cd stable-diffusion-webui
 
 ## 4. 80/20 설정
 
-"좋은 이미지만 만들어줘" 워크플로우:
-
-- **Sampler**: DPM++ 2M Karras 또는 Euler a
+"좋은 이미지만 만들어줘" 워크플로우: - **Sampler**: DPM++ 2M Karras 또는 Euler a
 - **Steps**: 20-30 (30 이상 = 수익 감소)
 - **CFG Scale**: 7 (낮을수록 창의적, 높을수록 문자 그대로)
 - **해상도**: SD 1.5는 512×768, SDXL은 1024×1024
@@ -95,9 +83,7 @@ cd stable-diffusion-webui
 
 ## 5. 필수 확장
 
-500+ 확장 탭에서 top pick:
-
-- **ControlNet** — pose / depth / canny / scribble 조건화. 가장 유용한 단일 확장
+500+ 확장 탭에서 top pick: - **ControlNet** — pose / depth / canny / scribble 조건화. 가장 유용한 단일 확장
 - **ADetailer** — 얼굴과 손 자동 수정 (SD의 두 실패 모드)
 - **Regional Prompter** — 이미지의 다른 부분에 다른 프롬프트
 - **Dynamic Prompts** — wildcard 구문 `{red|blue|green} car`
@@ -108,9 +94,7 @@ cd stable-diffusion-webui
 
 ## 6. LoRA / Embedding / ControlNet 워크플로우
 
-3가지 커스터마이징 메커니즘:
-
-- **LoRA** (Low-Rank Adaptation) — 작은 파일 (~150 MB)로 기본 모델을 특정 스타일이나 주제로 적응. `models/Lora/`에 넣고 프롬프트에서 참조: `<lora:style_name:0.8>`
+3가지 커스터마이징 메커니즘: - **LoRA** (Low-Rank Adaptation) — 작은 파일 (~150 MB)로 기본 모델을 특정 스타일이나 주제로 적응. `models/Lora/`에 넣고 프롬프트에서 참조: `<lora:style_name:0.8>`
 - **Textual Inversion / Embeddings** — 더 작음 (~30 KB), 단일 개념 추가. `embeddings/`에 넣고 프롬프트에 트리거 단어 입력
 - **ControlNet** — pose / depth / line art / 등으로 생성 조건화. 모델은 `models/ControlNet/`로
 
@@ -118,9 +102,7 @@ Civitai가 커뮤니티 LoRA와 체크포인트의 사실상 허브. Civitai Hel
 
 ## 7. SDXL / SD3 / Flux 지원 (2026 현실)
 
-기본으로 A1111 메인라인은 SD 1.x/2.x 함. 새 모델:
-
-- **SDXL** — v1.6부터 메인라인 작동
+기본으로 A1111 메인라인은 SD 1.x/2.x 함. 새 모델: - **SDXL** — v1.6부터 메인라인 작동
 - **SDXL Turbo / Lightning** — 작동, 가속된 SDXL로 구성
 - **SD 3.5** — Forge 포크 또는 확장 필요, 메인라인 뒤처짐
 - **Flux** — Forge 포크 필요; A1111 메인라인이 v1.10 기준 Flux 지원 안 함
@@ -130,9 +112,7 @@ SDXL 일상 사용 2026 셋업: A1111 메인라인 작동. Flux 우선 창의 �
 
 ## 8. 프로덕션 셀프호스트 패턴
 
-"개인 이미지 API" 배포:
-
-```
+"개인 이미지 API" 배포: ```
    {{< aff "digitalocean" "sd-droplet" "GPU droplet" >}} (RTX 6000 Ada $0.50/시간 또는 Vast.ai)
             │
             ▼
@@ -169,7 +149,6 @@ GPU 인스턴스 띄우고, 3절 설치 실행, 15분 후 의미 있는 볼륨�
 *dibi8의 멀티모달 콘텐츠 스택 일부 — [노드 기반 워크플로우용 ComfyUI](/kr/resources/ai-tools/comfyui-node-based-ai-image-2026/)와 다가오는 멀티모달 콘텐츠 파이프라인 컬렉션 참조.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -197,25 +176,20 @@ GPU 인스턴스 띄우고, 3절 설치 실행, 15분 후 의미 있는 볼륨�
 
 ## Why This Matters
 
-Understanding stable diffusion webui 2026 (automatic1111): 163k 별 셀프호스트 이미지 생성 완전 가이드 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding stable diffusion webui 2026 (automatic1111): 163k 별 셀프호스트 이미지 생성 완전 가이드 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

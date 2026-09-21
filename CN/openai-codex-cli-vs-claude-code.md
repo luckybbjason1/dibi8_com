@@ -1,14 +1,11 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/openai-codex-cli-vs-claude-code" />
 title: 'OpenAI Codex CLI vs Claude Code in 2026: Which Agent Wins?'
 description: 'Side-by-side breakdown of OpenAI Codex CLI (gpt-5-codex) and Anthropic Claude Code (Sonnet 4.6, 1M context) — pricing, sandbox, enterprise, tool integration. Updated 2026.'
 date: 2026-05-22 00:00:00+08:00
-lastmod:  2026-05-22 00:00:00+08:00draft: false
+lastmod: 2026-05-22 00:00:00+08:00draft: false
 tags: [openai-codex-cli, claude-code, gpt-5-codex, sonnet-4-6, ai-coding, comparison, agent-cli]
 categories: [vs]
-faqs:
-  - q: 'Is OpenAI Codex CLI free?'
+faqs: - q: 'Is OpenAI Codex CLI free?'
     a: 'The CLI itself is open-source (Apache 2.0, released November 2025) and free to install. You pay only for model API calls — gpt-5-codex usage is billed via your OpenAI API key (around $1.50/1M input, $10/1M output as of 2026). Claude Code is also free to install but requires either a Pro/Max subscription ($20-$200/mo) or pay-as-you-go API credits through Sonnet 4.6.'
   - q: 'Which has the bigger context window?'
     a: 'Claude Code (Sonnet 4.6) wins decisively — 1M token context window vs gpt-5-codex''s 400K. For 200K+ LOC monorepos, full-codebase reasoning, or long migration tasks, Claude Code holds the whole repo in head. Codex CLI''s 400K is still strong for medium projects (under 80K LOC) but forces more selective file loading on large repos.'
@@ -30,12 +27,18 @@ Use **OpenAI Codex CLI** if: You already pay for OpenAI API, want open-source co
 
 Use **Claude Code** if: You work in 200K+ LOC monorepos that benefit from 1M context, want the most refined CLI agent UX in 2026, need enterprise-grade compliance (SOC 2, HIPAA), or already pay for Claude Pro/Max.
 
----
 
+---
 ## Side-by-Side Comparison
 
 | Feature | OpenAI Codex CLI | Claude Code |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | **Vendor** | OpenAI | Anthropic |
 | **Released** | November 2025 (open-sourced) | February 2025 |
 | **License** | Apache 2.0 (open source) | Closed-source CLI, proprietary model |
@@ -53,8 +56,8 @@ Use **Claude Code** if: You work in 200K+ LOC monorepos that benefit from 1M con
 | **Hooks / custom commands** | Configurable via `~/.codex/config.toml` | First-class (`hooks`, slash commands, agents) |
 | **Multi-file edits** | Yes (sandbox-confirmed) | Yes (diff preview + approval) |
 
----
 
+---
 ## When to Choose OpenAI Codex CLI
 
 ### Use case 1: Fully open-source and auditable
@@ -94,12 +97,10 @@ Claude Enterprise offers SOC 2 Type II, HIPAA-eligible deployments, private VPC 
 
 ### Claude Code
 - **CLI binary**: Free
-- **Subscription tiers**:
-  - Claude Pro: $20/month — bundled Claude Code usage (limits apply)
+- **Subscription tiers**: - Claude Pro: $20/month — bundled Claude Code usage (limits apply)
   - Claude Max 5x: $100/month — 5x Pro limits
   - Claude Max 20x: $200/month — 20x Pro limits
-- **Pay-as-you-go** (via Anthropic API key):
-  - Sonnet 4.6: ~$3/1M input, ~$15/1M output
+- **Pay-as-you-go** (via Anthropic API key): - Sonnet 4.6: ~$3/1M input, ~$15/1M output
   - Prompt caching: ~$0.30/1M cached read (90% off)
 
 → **Total monthly cost for a power user**: **$20-$200** flat (Pro/Max) or roughly $50-$150 PAYG depending on token volume.
@@ -114,7 +115,13 @@ For unlimited heavy use: **Claude Max 20x at $200/mo** outpaces equivalent PAYG 
 ## Performance Benchmarks (Subjective, From My Daily Use)
 
 | Task | OpenAI Codex CLI | Claude Code |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | Single-file bug fix | 8/10 | 9/10 |
 | Multi-file refactor (small repo) | 8/10 | 9/10 |
 | Multi-file refactor (200K+ LOC) | 6/10 | 9/10 |
@@ -155,9 +162,7 @@ Running both CLIs against a real codebase to decide? Spin up a {{< aff "digitalo
 
 ## Alternatives Worth Trying
 
-If neither Codex CLI nor Claude Code fits, consider:
-
-- **[Cursor vs Claude Code](https://dibi8.com/vs/cursor-vs-claude-code/)** — IDE vs CLI agent breakdown
+If neither Codex CLI nor Claude Code fits, consider: - **[Cursor vs Claude Code](https://dibi8.com/vs/cursor-vs-claude-code/)** — IDE vs CLI agent breakdown
 - **[Gemini CLI vs Claude Code](https://dibi8.com/vs/gemini-cli-vs-claude-code/)** — Google's free 1M context alternative
 - **[Claude Code vs Aider](https://dibi8.com/vs/claude-code-vs-aider/)** — Open-source CLI agent comparison
 - **[cc-switch](https://dibi8.com/resources/dev-utils/cc-switch-claude-code-api-router/)** — Route Claude Code through cheaper providers, cut costs 60-80%
@@ -202,7 +207,6 @@ The honest answer for most devs in 2026: try both for a week, keep the one whose
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

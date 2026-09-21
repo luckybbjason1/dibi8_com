@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/openai-whisper" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/openai-whisper" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/openai-whisper" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/openai-whisper" />
 title: 'OpenAI Whisper: 99.8K+ Stars — 완전한 ASR 설정 튜토리얼 vs Whispe...
 description: 'OpenAI Whisper (ASR) 대규모 약한 감독 기반의 강건한 음성 인식. WhisperX, faster-whisper, LibreTranslate와 호환. whisper 튜토리얼, whisper vs whisperx, 음성 인식 설정, whisper python, whisper docker 다룸.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [whisper, '음성-인식', asr, openai, 'faster-whisper', whisperx, python, docker, 머신러닝]
-aliases:
-- /kr/posts/openai-whisper/
+aliases: - /kr/posts/openai-whisper/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/openai-whisper/ -->
 
 {{</* resource-info */>}}
 
@@ -81,9 +73,7 @@ whisper --version
 
 ### 시스템 의존성
 
-FFmpeg는 오디오 전처리에 필수적이다:
-
-```bash
+FFmpeg는 오디오 전처리에 필수적이다: ```bash
 # Ubuntu/Debian
 sudo apt update && sudo apt install ffmpeg
 
@@ -145,8 +135,7 @@ result = model.transcribe("audio.mp3")
 print(result["text"])
 
 # 타임스탬프가 있는 세그먼트 가져오기
-for segment in result["segments"]:
-    print(f"[{segment[start]:.2f}s -> {segment[end]:.2f}s] {segment[text]}")
+for segment in result["segments"]: print(f"[{segment[start]:.2f}s -> {segment[end]:.2f}s] {segment[text]}")
 ```
 
 ### CLI 사용 예시
@@ -211,8 +200,7 @@ diarize_segments = diarize_model(audio)
 result = whisperx.assign_word_speakers(diarize_segments, result)
 
 # 화자 레이블이 있는 전사 결과 출력
-for segment in result["segments"]:
-    speaker = segment.get("speaker", "UNKNOWN")
+for segment in result["segments"]: speaker = segment.get("speaker", "UNKNOWN")
     start = segment["start"]
     end = segment["end"]
     text = segment["text"]
@@ -255,8 +243,7 @@ segments, info = model.transcribe(
 
 print(f"감지된 언어: {info.language} (확률: {info.language_probability:.2f})")
 
-for segment in segments:
-    print(f"[{segment.start:.2f}s -> {segment.end:.2f}s] {segment.text}")
+for segment in segments: print(f"[{segment.start:.2f}s -> {segment.end:.2f}s] {segment.text}")
 ```
 
 ### LibreTranslate 통합 (번역 파이프라인)
@@ -272,8 +259,7 @@ result = model.transcribe(audio_path, language="ja")
 japanese_text = result["text"]
 
 # LibreTranslate API를 통한 번역
-def translate(text, source="ja", target="en"):
-    response = requests.post(
+def translate(text, source="ja", target="en"): response = requests.post(
         "http://localhost:5000/translate",
         headers={"Content-Type": "application/json"},
         json={"q": text, "source": source, "target": target}
@@ -297,9 +283,7 @@ app = FastAPI()
 model = WhisperModel("medium", device="cuda", compute_type="float16")
 
 @app.post("/transcribe")
-async def transcribe(file: UploadFile = File(...)):
-    with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as tmp:
-        tmp.write(await file.read())
+async def transcribe(file: UploadFile = File(...)): with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as tmp: tmp.write(await file.read())
         tmp_path = tmp.name
 
     segments, info = model.transcribe(
@@ -346,8 +330,7 @@ TRANSCRIPTION_DURATION = Histogram(
     ["model"]
 )
 
-def transcribe_with_metrics(audio_path, model_name="medium"):
-    start = time.time()
+def transcribe_with_metrics(audio_path, model_name="medium"): start = time.time()
     segments, info = model.transcribe(audio_path)
     duration = time.time() - start
 
@@ -425,24 +408,21 @@ from faster_whisper import WhisperModel
 
 model = WhisperModel("medium", device="cuda", compute_type="float16")
 
-def process_file(audio_path):
-    segments, info = model.transcribe(
+def process_file(audio_path): segments, info = model.transcribe(
         audio_path,
         vad_filter=True,
         beam_size=5
     )
     text = " ".join([s.text for s in segments])
     output_path = audio_path.replace(".mp3", ".txt")
-    with open(output_path, "w") as f:
-        f.write(text)
+    with open(output_path, "w") as f: f.write(text)
     return output_path
 
 # 오디오 파일 디렉토리 처리
 audio_dir = "/data/audio/"
 files = [os.path.join(audio_dir, f) for f in os.listdir(audio_dir) if f.endswith(".mp3")]
 
-with ThreadPoolExecutor(max_workers=4) as executor:
-    results = list(executor.map(process_file, files))
+with ThreadPoolExecutor(max_workers=4) as executor: results = list(executor.map(process_file, files))
 
 print(f"{len(results)}개 파일 처리 완료")
 ```
@@ -479,8 +459,7 @@ app = FastAPI()
 model = WhisperModel("medium", device="cuda", compute_type="float16")
 
 @app.get("/health")
-async def health():
-    gpu_available = torch.cuda.is_available()
+async def health(): gpu_available = torch.cuda.is_available()
     gpu_memory = torch.cuda.get_device_properties(0).total_memory if gpu_available else 0
     return {
         "status": "healthy",
@@ -501,11 +480,8 @@ import time
 r = redis.Redis(host=localhost, port=6379, db=0)
 model = WhisperModel("medium", device="cuda", compute_type="float16")
 
-def worker():
-    while True:
-        job = r.blpop("transcription_queue", timeout=5)
-        if job:
-            _, data = job
+def worker(): while True: job = r.blpop("transcription_queue", timeout=5)
+        if job: _, data = job
             task = json.loads(data)
             segments, info = model.transcribe(task["file_path"])
             result = {
@@ -516,8 +492,7 @@ def worker():
             r.setex(f"result:{task[job_id]}", 3600, json.dumps(result))
         time.sleep(0.1)
 
-if __name__ == "__main__":
-    worker()
+if __name__ == "__main__": worker()
 ```
 
 ## 대안과의 비교
@@ -540,9 +515,7 @@ if __name__ == "__main__":
 
 ## 한계 / 솔직한 평가
 
-Whisper는 모든 음성 작업에 맞는 도구는 아니다. README에 나오지 않는 내용:
-
-1. **스트리밍 미지원**: Whisper는 30초 청크를 처리하며, 진정한 실시간(<200ms 지연) 전사용으로 설계되지 않았다. 스트리밍 ASR에는 NVIDIA Parakeet이나 Moonshine v2를 고려하라.
+Whisper는 모든 음성 작업에 맞는 도구는 아니다. README에 나오지 않는 내용: 1. **스트리밍 미지원**: Whisper는 30초 청크를 처리하며, 진정한 실시간(<200ms 지연) 전사용으로 설계되지 않았다. 스트리밍 ASR에는 NVIDIA Parakeet이나 Moonshine v2를 고려하라.
 
 2. **무음에서 환각**: large-v3은 가끔 무음 구간에 존재하지 않는 텍스트를 생성한다. faster-whisper의 VAD 필터링을 사용하여 완화하라.
 
@@ -597,9 +570,7 @@ OpenAI Whisper는 2026년에도 프로덕션 음성 인식의 실용적인 선�
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -616,7 +587,6 @@ OpenAI Whisper는 2026년에도 프로덕션 음성 인식의 실용적인 선�
 - [Whisper API Blog — 모델 비교](https://whisperapi.com/accuracy-benchmarks-top-free-open-source-speech-to-text-offerings)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-token-monitor-conky-linux" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-token-monitor-conky-linux" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-token-monitor-conky-linux" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-token-monitor-conky-linux" />
 title: 'AI Token Monitor: Linux 데스크탑에서 Claude, Gemini, Grok, Kim...
 description: '오픈소스 Linux 데스크탑 위젯으로 Conky 안에서 AI 토큰 쿼터를 HP 바 스타일 진행 막대로 실시간 표시. Claude, Gemini, Grok, Kimi 실제 API 폴링 및 리셋 카운트다운 지원.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-06 00:00:00+08:00
@@ -25,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: ['ai 토큰 모니터', 'claude 쿼터', 'gemini 쿼터 추적', 'grok 토큰', 'kimi api', 'conky 위젯', 'linux 데스크탑', 오픈소스, python, '개발자 도구']
-aliases:
-- /kr/posts/ai-token-monitor-conky-linux/
-faqs:
-  - q: 'AI Token Monitor가 macOS나 Windows에서도 작동하나요?'
+aliases: - /kr/posts/ai-token-monitor-conky-linux/
+faqs: - q: 'AI Token Monitor가 macOS나 Windows에서도 작동하나요?'
     a: '현재 위젯 표시 레이어는 Linux 전용 Conky에 의존합니다. 핵심 Python 스크립트(api_fetcher.py)는 어느 OS에서나 실행되지만, 시각적 렌더링은 Conky가 필요합니다. 저장소에 tkinter 기반 크로스 플랫폼 버전(monitor.py)이 있지만 GNOME에서 프레임 없는 창이 보이지 않을 수 있어 실험적입니다.'
   - q: 'Claude API 토큰 잔액을 어떻게 읽나요?'
     a: '/v1/messages에 max_tokens=1로 최소 POST 요청을 보내고 응답 헤더의 anthropic-ratelimit-tokens-remaining 및 anthropic-ratelimit-tokens-limit 값을 읽습니다. 체크당 약 10개 입력 토큰을 소비하며, 5분 cron 기준 하루 약 2,880 토큰으로 대부분 요금제에서 무시 가능한 수준입니다.'
@@ -39,8 +32,6 @@ faqs:
   - q: 'Grok이 잔액이 있는데도 "耗尽"(소진)으로 표시되는 이유는?'
     a: 'Grok 체크는 GET /v1/models를 호출합니다. 인증 유효 및 잔액 있을 때 200, 잔액 소진 시 403을 반환합니다. xAI의 403은 계정 잔액 0을 의미합니다. 잔액이 있는데 403이 표시된다면 ~/.config/.ai_monitor_keys의 API 키가 올바른지 확인하세요.'
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/ai-token-monitor-conky-linux/ -->
 
 {{< resource-info >}}
 
@@ -63,9 +54,7 @@ faqs:
 
 ## 작동 방식
 
-모니터는 두 가지 컴포넌트로 구성됩니다:
-
-**`api_fetcher.py`** — 백그라운드 스크립트(5분마다 cron 실행)로 각 서비스 API를 폴링하고 결과를 `~/token-monitor/api_cache.json`에 씁니다.
+모니터는 두 가지 컴포넌트로 구성됩니다: **`api_fetcher.py`** — 백그라운드 스크립트(5분마다 cron 실행)로 각 서비스 API를 폴링하고 결과를 `~/token-monitor/api_cache.json`에 씁니다.
 
 **`conky_ai.py`** — 30초마다 캐시를 읽고 Conky 인라인 `${color}` 태그가 포함된 텍스트를 출력합니다. Conky가 이를 데스크탑 위젯으로 렌더링합니다.
 
@@ -78,9 +67,7 @@ api_fetcher.py  →  api_cache.json  →  conky_ai.py  →  Conky 표시
 
 ## HP 바 스타일 진행 막대
 
-핵심 기능은 **HP 바 스타일 쿼터 시각화** — 유니코드 블록 문자 행이 남은 쿼터를 직관적으로 표현합니다:
-
-| 색상 | 상태 |
+핵심 기능은 **HP 바 스타일 쿼터 시각화** — 유니코드 블록 문자 행이 남은 쿼터를 직관적으로 표현합니다: | 색상 | 상태 |
 |------|------|
 | `█████████` 초록 | 쿼터 50% 이상 |
 | `████░░░░░` 주황 | 20~50% 잔여 |
@@ -107,8 +94,7 @@ nano ~/.config/.ai_monitor_keys
 pkill conky && conky --daemonize --pause=1
 ```
 
-설치 스크립트가 자동으로:
-- 스크립트를 `~/token-monitor/`에 복사
+설치 스크립트가 자동으로: - 스크립트를 `~/token-monitor/`에 복사
 - Conky 설정에 `${execpi 30 python3 ~/token-monitor/conky_ai.py}` 추가
 - `api_fetcher.py`의 cron 작업 설정
 
@@ -128,17 +114,12 @@ API 키는 `~/.config/.ai_monitor_keys`에 `chmod 600` 권한으로 저장됩니
 
 ## 커스텀 서비스 추가
 
-`api_fetcher.py`에 블록을 추가하세요:
-
-```python
+`api_fetcher.py`에 블록을 추가하세요: ```python
 # ── 커스텀 서비스 ─────────────────────────────────
 key = keys.get(yourservice)
-if key:
-    try:
-        r = requests.get('https://api.yourservice.com/v1/usage',
+if key: try: r = requests.get('https://api.yourservice.com/v1/usage',
                          headers={Authorization: f'Bearer {key}'}, timeout=8)
-        if r.status_code == 200:
-            data = r.json()
+        if r.status_code == 200: data = r.json()
             remain = data[quota_remaining]
             total  = data[quota_total]
             cache[YourService] = {
@@ -146,19 +127,15 @@ if key:
                 label: f'{remain//1000}K 잔여',
                 pct: remain / total
             }
-        else:
-            cache[YourService] = {ok: False, label: 'API 오류'}
-    except Exception:
-        pass
+        else: cache[YourService] = {ok: False, label: 'API 오류'}
+    except Exception: pass
 ```
 
 그런 다음 `conky_ai.py`의 `SERVICES` 목록에 `{name: YourService, reset_h: 24}`를 추가하세요.
 
 ## dibi8 관련 도구
 
-여러 AI API 비용을 관리하고 있다면 다음도 참고하세요:
-
-- [2026 Q2 AI 코딩 비교 — Claude Code vs Cursor vs Codex](/kr/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) — 실제 개발 워크플로우 비용 비교
+여러 AI API 비용을 관리하고 있다면 다음도 참고하세요: - [2026 Q2 AI 코딩 비교 — Claude Code vs Cursor vs Codex](/kr/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) — 실제 개발 워크플로우 비용 비교
 - [RTK Rust CLI 프록시 — AI 비용 80% 절감](/kr/resources/dev-utils/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/) — 가장 저렴한 가용 모델로 프롬프트 자동 라우팅
 - [2026 AI 코딩 월간 청구서](/kr/resources/dev-utils/ai-coding-agent-monthly-bill-2026-real-receipts/) — 6개월 프로덕션 AI 사용 실제 영수증
 
@@ -171,7 +148,6 @@ MIT 라이선스 완전 오픈소스입니다.
 작업 도중 레이트 리밋 기습을 피하는 데 도움이 됐다면 Star 부탁드립니다. Issue와 PR 환영합니다 — 특히 macOS 지원이나 새 서비스 통합에 기여해주시면 감사합니다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -199,25 +175,20 @@ MIT 라이선스 완전 오픈소스입니다.
 
 ## Why This Matters
 
-Understanding ai token monitor: linux 데스크탑에서 claude, gemini, grok, kimi 쿼터 실시간 추적 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding ai token monitor: linux 데스크탑에서 claude, gemini, grok, kimi 쿼터 실시간 추적 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ollama" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ollama" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ollama" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ollama" />
 title: 'Ollama: 137K+ Stars — 一条命令本地运行大模型，2026 完整配置指南'
 description: 'Ollama 是在本地运行 Llama、DeepSeek、Mistral 等 LLM 的最简单方式。兼容 LangChain、OpenWebUI、Continue.dev 和 Dify。涵盖 Docker 部署、Modelfile 自定义、REST API、生产加固和性能基准测试。'
 date: 2026-05-19 00:00:00+08:00
@@ -25,12 +20,9 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [ollama, 本地大模型, 'llama.cpp', deepseek, mistral, docker, modelfile, 开源]
-aliases:
-- /zh/posts/ollama/
-- /zh/resources/llm-frameworks/ollama-local-llm-guide/
+aliases: - /zh/posts/ollama/
+- /zh/resources/llm-frameworks/ollama-local-llm-guide/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/ollama/ -->
 
 {{</* resource-info */>}}
 
@@ -122,7 +114,13 @@ ollama run llama3.2:8b
 ### 按硬件快速选择模型
 
 | 硬件配置 | 推荐模型 | 命令 |
-|----------|----------|------|
+|
+---
+|
+---
+|
+---
+|
 | 6–8 GB VRAM | Qwen3 8B | `ollama run qwen3:8b` |
 | 10–12 GB VRAM | Llama 3.1 8B Q4 | `ollama run llama3.1:8b` |
 | 16+ GB VRAM | DeepSeek-R1 14B | `ollama run deepseek-r1:14b` |
@@ -239,45 +237,28 @@ curl http://localhost:11434/api/embed -d '{
 # docker-compose.yml
 version: "3.8"
 
-services:
-  ollama:
-    image: ollama/ollama:0.6.7
+services: ollama: image: ollama/ollama:0.6.7
     container_name: ollama
-    ports:
-      - "11434:11434"
-    volumes:
-      - ollama_data:/root/.ollama
-    environment:
-      - OLLAMA_KEEP_ALIVE=24h
+    ports: - "11434:11434"
+    volumes: - ollama_data:/root/.ollama
+    environment: - OLLAMA_KEEP_ALIVE=24h
       - OLLAMA_NUM_PARALLEL=4
       - OLLAMA_MAX_LOADED_MODELS=2
     restart: unless-stopped
     # NVIDIA GPU 支持
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+    deploy: resources: reservations: devices: - driver: nvidia
               count: all
               capabilities: [gpu]
 
-  open-webui:
-    image: ghcr.io/open-webui/open-webui:main
+  open-webui: image: ghcr.io/open-webui/open-webui:main
     container_name: open-webui
-    ports:
-      - "3000:8080"
-    environment:
-      - OLLAMA_BASE_URL=http://ollama:11434
-    volumes:
-      - openwebui_data:/app/backend/data
-    depends_on:
-      - ollama
+    ports: - "3000:8080"
+    environment: - OLLAMA_BASE_URL=http://ollama:11434
+    volumes: - openwebui_data:/app/backend/data
+    depends_on: - ollama
     restart: unless-stopped
 
-volumes:
-  ollama_data:
-  openwebui_data:
-```
+volumes: ollama_data: openwebui_data: ```
 
 使用 `docker compose up -d` 启动。
 
@@ -303,33 +284,21 @@ sudo systemctl restart docker
 使用 ROCm 专用镜像标签：
 
 ```yaml
-services:
-  ollama:
-    image: ollama/ollama:rocm
-    devices:
-      - /dev/kfd
+services: ollama: image: ollama/ollama:rocm
+    devices: - /dev/kfd
       - /dev/dri
-    group_add:
-      - video
-    environment:
-      - HSA_OVERRIDE_GFX_VERSION=11.0.0
+    group_add: - video
+    environment: - HSA_OVERRIDE_GFX_VERSION=11.0.0
 ```
 
 ### 多模型并发服务
 
 ```yaml
-services:
-  ollama:
-    image: ollama/ollama:0.6.7
-    environment:
-      - OLLAMA_NUM_PARALLEL=4      # 4 个并发请求
+services: ollama: image: ollama/ollama:0.6.7
+    environment: - OLLAMA_NUM_PARALLEL=4      # 4 个并发请求
       - OLLAMA_MAX_LOADED_MODELS=2  # VRAM 中保持 2 个模型
       - OLLAMA_KEEP_ALIVE=30m      # 空闲 30 分钟后卸载
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+    deploy: resources: reservations: devices: - driver: nvidia
               count: all
               capabilities: [gpu]
 ```
@@ -446,7 +415,15 @@ ollama ps
 ### 单用户吞吐量（RTX 4090, Llama 3.1 8B）
 
 | 工具 | 格式 | tok/s | 配置时间 |
-|------|------|-------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Ollama | Q4_K_M | ~62 tok/s | < 2 分钟 |
 | vLLM | FP16 | ~71 tok/s | ~10 分钟 |
 | llama.cpp (CLI) | Q4_K_M | ~65 tok/s | ~5 分钟 |
@@ -457,7 +434,15 @@ ollama ps
 ### 并发负载（50 用户，RTX 4090）
 
 | 工具 | 总 tok/s | p99 延迟 | 架构 |
-|------|----------|----------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Ollama | ~155 tok/s | ~24.7秒 | FIFO 队列 |
 | vLLM | ~920 tok/s | ~2.8秒 | 连续批处理 |
 | llama.cpp server | ~140 tok/s | ~26秒 | FIFO 队列 |
@@ -468,7 +453,15 @@ ollama ps
 ### 内存占用（7B 参数模型）
 
 | 工具 | 空闲 RAM | 加载后 RAM | 冷启动 |
-|------|----------|-----------|--------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Ollama | 150 MB | 5.2 GB | 2秒 |
 | vLLM | 400 MB | 5.5 GB | 5秒 |
 | LocalAI | 400 MB | 5.5 GB | 8秒 |
@@ -542,10 +535,8 @@ VALID_KEYS = {"sk-your-api-key-here"}
 
 @app.route('/', defaults={path: ''}, methods=[GET, POST, PUT, DELETE])
 @app.route('/<path:path>', methods=[GET, POST, PUT, DELETE])
-def proxy(path):
-    api_key = request.headers.get(Authorization, '').replace('Bearer ', '')
-    if api_key not in VALID_KEYS:
-        return {"error": "无效的 API 密钥"}, 401
+def proxy(path): api_key = request.headers.get(Authorization, '').replace('Bearer ', '')
+    if api_key not in VALID_KEYS: return {"error": "无效的 API 密钥"}, 401
     
     resp = requests.request(
         method=request.method,
@@ -557,8 +548,7 @@ def proxy(path):
     return Response(resp.iter_content(chunk_size=1024), status=resp.status_code,
                    content_type=resp.headers.get('Content-Type'))
 
-if __name__ == __main__:
-    app.run(host='0.0.0.0', port=11435)
+if __name__ == __main__: app.run(host='0.0.0.0', port=11435)
 ```
 
 ### 使用 Prometheus 监控
@@ -603,7 +593,17 @@ sudo systemctl start ollama
 ## 与替代方案对比
 
 | 功能 | Ollama | llama.cpp | vLLM | LocalAI |
-|------|--------|-----------|------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **GitHub Stars** | 137K+ | 75K+ | 45K+ | 35K+ |
 | **配置时间** | < 2 分钟 | ~5 分钟 | ~10 分钟 | ~15 分钟 |
 | **单用户 tok/s** | ~62 (Q4) | ~65 (Q4) | ~71 (FP16) | ~38 (Q4) |
@@ -704,7 +704,6 @@ Ollama 消除了本地 LLM 部署的摩擦。一条命令安装，一条命令�
 - Continue.dev 文档：https://docs.continue.dev
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -730,8 +729,8 @@ Ollama 消除了本地 LLM 部署的摩擦。一条命令安装，一条命令�
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [llm-inference-cost-optimization-guide-2026](ollama)
@@ -740,8 +739,8 @@ Ollama 消除了本地 LLM 部署的摩擦。一条命令安装，一条命令�
 - [bytedance-ui-tars-desktop-ai-agent-guide](ollama)
 - [egonex-understand-anything-interactive-knowledge-graph-ai](ollama)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

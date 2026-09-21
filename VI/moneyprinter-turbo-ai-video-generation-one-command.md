@@ -1,19 +1,12 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/moneyprinter-turbo-ai-video-generation-one-command" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/moneyprinter-turbo-ai-video-generation-one-command" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/moneyprinter-turbo-ai-video-generation-one-command" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/moneyprinter-turbo-ai-video-generation-one-command" />
 title: "MoneyPrinterTurbo: Tự động tạo video bằng AI"
 slug: "moneyprinter-turbo-ai-video-generation-one-command"
 category: "ai-tools"
 publish_date: "2026-06-10"
-lastmod:  "2026-06-10"author: "DIBI8"
+lastmod: "2026-06-10"author: "DIBI8"
 tags: ["ai", "video-generation", "automation", "content-creation", "llm"]
 featureImage: "https://avatars.githubusercontent.com/u/13691804"
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/moneyprinter-turbo-ai-video-generation-one-command/ -->
 
 # MoneyPrinterTurbo: Tự động tạo video bằng AI
 
@@ -138,9 +131,7 @@ curl -O http://localhost:8080/api/v1/download/{job-id}
 ### Giọng nói tùy chỉnh
 
 ```yaml
-voices:
-  custom:
-    - name: "custom-voice"
+voices: custom: - name: "custom-voice"
       language: "vi-VN"
       gender: "female"
       backend: "custom-tts"
@@ -157,9 +148,7 @@ python main.py --music ./music/calm/
 ### Phong cách hình ảnh
 
 ```yaml
-styles:
-  cinematic:
-    transition: "fade"
+styles: cinematic: transition: "fade"
     font_family: "Georgia"
     font_size: 32
     subtitle_color: "#FFFFFF"
@@ -227,14 +216,12 @@ import schedule
 import time
 from moneyprinter import VideoGenerator
 
-def generate_daily_video():
-    generator = VideoGenerator(llm_model="gpt-4", tts_backend="azure")
+def generate_daily_video(): generator = VideoGenerator(llm_model="gpt-4", tts_backend="azure")
     generator.generate(topic="Khoa học hôm nay", language="vi", output="./videos/")
 
 schedule.every().day.at("08:00").do(generate_daily_video)
 
-while True:
-    schedule.run_pending()
+while True: schedule.run_pending()
     time.sleep(60)
 ```
 
@@ -305,7 +292,6 @@ Telegram: https://t.me/DIBI8_Group/18
 
 DIBI8 - Cánh cửa khám phá công cụ mã nguồn mở, AI và tài nguyên phát triển hàng đầu.
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

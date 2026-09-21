@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/open-source-llm-ranking-guide" />
 title: 'Best Open-Source LLMs 2025: Llama, Mistral, Qwen, DeepSe...
 description: 'Discover the best open-source LLMs of 2025. Compare Llama 3, Mistral, Qwen, DeepSeek, Gemma, and Phi with benchmarks, hardware requirements, and use cases.'
 date: 2026-05-18 00:00:00+08:00
@@ -20,8 +18,7 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/open-source-llm-ranking-guide/
+aliases: - /posts/open-source-llm-ranking-guide/
 ---
 # Best Open-Source LLMs 2025: Llama, Mistral, Qwen, DeepSeek & More
 
@@ -36,26 +33,20 @@ This guide ranks and compares the most important open-source LLMs available in 2
 
 ### Why Open-Source Models Are Winning
 
-Open-source LLMs have closed the gap with proprietary models faster than most predicted. Several factors drive this acceleration:
-
-- **Compute democratization**: Cloud GPU rentals, training frameworks like Megatron and DeepSpeed, and parameter-efficient techniques like LoRA lower the barrier to training and fine-tuning
+Open-source LLMs have closed the gap with proprietary models faster than most predicted. Several factors drive this acceleration: - **Compute democratization**: Cloud GPU rentals, training frameworks like Megatron and DeepSpeed, and parameter-efficient techniques like LoRA lower the barrier to training and fine-tuning
 - **Knowledge distillation**: Open-weight models benefit from research published by closed-model labs, and some (like DeepSeek) explicitly train on synthetic data from frontier models
 - **Community contributions**: Thousands of practitioners fine-tune, evaluate, and improve open models, creating a feedback loop that proprietary labs cannot replicate
 - **Enterprise demand**: Companies prefer open models for data privacy, cost control, customization, and vendor independence
 
 ### Key Benchmarks: MMLU, HumanEval, MT-Bench
 
-Understanding benchmark scores is essential for comparing models:
-
-- **MMLU (Massive Multitask Language Understanding)**: Tests knowledge across 57 subjects including mathematics, history, law, and medicine. Scores range from 0 to 100, with higher scores indicating broader knowledge.
+Understanding benchmark scores is essential for comparing models: - **MMLU (Massive Multitask Language Understanding)**: Tests knowledge across 57 subjects including mathematics, history, law, and medicine. Scores range from 0 to 100, with higher scores indicating broader knowledge.
 - **HumanEval**: Measures code generation ability through 164 programming problems. Pass@1 scores indicate the percentage solved on the first attempt.
 - **MT-Bench (Multi-Turn Bench)**: Evaluates conversational quality through multi-turn dialogues judged by GPT-4. Scores range from 0 to 10.
 
 ### How to Read LLM Leaderboards
 
-Two leaderboards dominate open-source model evaluation:
-
-- **[LMSYS Chatbot Arena](https://chat.lmsys.org)**: Uses ELO ratings from human preference comparisons. Models are ranked by how often humans prefer their responses in blind side-by-side evaluations. This captures real-world helpfulness better than automated benchmarks.
+Two leaderboards dominate open-source model evaluation: - **[LMSYS Chatbot Arena](https://chat.lmsys.org)**: Uses ELO ratings from human preference comparisons. Models are ranked by how often humans prefer their responses in blind side-by-side evaluations. This captures real-world helpfulness better than automated benchmarks.
 - **[Open LLM Leaderboard](https://huggingface.co/spaces/open-llm-leaderboard)**: Hugging Face's automated leaderboard runs standardized benchmarks (MMLU, TruthfulQA, GSM8K, etc.) on submitted models. It provides reproducible, objective scores but may not reflect conversational quality.
 
 Treat benchmarks as directional indicators, not absolute truth. A model scoring 85 on MMLU is broadly more knowledgeable than one scoring 75, but the specific tasks you care about matter more than aggregate scores.
@@ -64,18 +55,14 @@ Treat benchmarks as directional indicators, not absolute truth. A model scoring 
 
 ### Model Variants (8B, 70B, 405B)
 
-Meta's [Llama 3](https://ai.meta.com/llama) family, released in 2024-2025, has become the default choice for open-source LLM deployment. The family includes:
-
-- **Llama 3.2 1B/3B**: Lightweight models for edge and mobile devices
+Meta's [Llama 3](https://ai.meta.com/llama) family, released in 2024-2025, has become the default choice for open-source LLM deployment. The family includes: - **Llama 3.2 1B/3B**: Lightweight models for edge and mobile devices
 - **Llama 3.1 8B**: Fast, efficient model ideal for most applications
 - **Llama 3 70B**: High-capability model competitive with GPT-3.5 and Claude 3 Sonnet
 - **Llama 3.1 405B**: Meta's largest model, competitive with GPT-4 on many benchmarks
 
 ### Key Capabilities and Improvements
 
-Llama 3 introduced significant improvements over Llama 2:
-
-- **Training data**: 15 trillion tokens (vs 2 trillion for Llama 2), with heavy filtering for quality
+Llama 3 introduced significant improvements over Llama 2: - **Training data**: 15 trillion tokens (vs 2 trillion for Llama 2), with heavy filtering for quality
 - **Context window**: 128K tokens in Llama 3.1 (up from 4K in Llama 3)
 - **Multilingual support**: Strong performance in 8 languages, with expanded support in 3.1
 - **Tool use**: Native function calling and tool use capabilities
@@ -97,18 +84,14 @@ Mistral 7B, released in September 2023, shocked the AI community by outperformin
 
 ### Mixtral 8x7B and 8x22B (MoE)
 
-Mixtral models use Mixture of Experts (MoE) architecture, where only a subset of parameters activates per token. This enables massive model capacity with efficient inference:
-
-- **Mixtral 8x7B**: 47B total parameters, 13B active per token. Outperforms Llama 2 70B at faster inference speeds.
+Mixtral models use Mixture of Experts (MoE) architecture, where only a subset of parameters activates per token. This enables massive model capacity with efficient inference: - **Mixtral 8x7B**: 47B total parameters, 13B active per token. Outperforms Llama 2 70B at faster inference speeds.
 - **Mixtral 8x22B**: 141B total parameters, 39B active per token. Competitive with GPT-3.5 on most benchmarks.
 
 MoE models excel in throughput-sensitive applications where you need high quality but cannot wait for a 70B model's inference latency.
 
 ### Mistral Large and Codestral
 
-Mistral AI also offers frontier-class models through API:
-
-- **Mistral Large**: Mistral's most capable model, competitive with Claude 3 Opus and GPT-4
+Mistral AI also offers frontier-class models through API: - **Mistral Large**: Mistral's most capable model, competitive with Claude 3 Opus and GPT-4
 - **Codestral**: Specialized for code with a 32K context window, strong across 80+ programming languages
 
 ### Enterprise and API Offerings
@@ -119,9 +102,7 @@ Mistral AI also offers frontier-class models through API:
 
 ### Qwen2 and Qwen2.5 Series
 
-Alibaba's Qwen series has emerged as one of the strongest open model families globally. Qwen2.5 (released late 2024) includes:
-
-- **Qwen2.5 0.5B to 72B**: A full range of sizes with consistent architecture
+Alibaba's Qwen series has emerged as one of the strongest open model families globally. Qwen2.5 (released late 2024) includes: - **Qwen2.5 0.5B to 72B**: A full range of sizes with consistent architecture
 - **Qwen2.5 Coder**: Specialized for programming tasks
 - **Qwen2.5 Math**: Fine-tuned for mathematical reasoning
 - **Qwen2.5 VL**: Vision-language model for image understanding
@@ -142,9 +123,7 @@ Qwen2.5 uses the Qwen License, which permits commercial use with some restrictio
 
 ### DeepSeek V2.5 and V3
 
-DeepSeek, developed by Chinese hedge fund High-Flyer, has produced some of the most efficient open models. DeepSeek V3 (released December 2024) features:
-
-- **671B total parameters, 37B activated per token** (MoE architecture)
+DeepSeek, developed by Chinese hedge fund High-Flyer, has produced some of the most efficient open models. DeepSeek V3 (released December 2024) features: - **671B total parameters, 37B activated per token** (MoE architecture)
 - **Training cost**: Reportedly $5.6 million, a fraction of what western labs spend
 - **MMLU score**: 88.5, competitive with GPT-4o
 - **128K context window** with efficient attention mechanisms
@@ -165,9 +144,7 @@ DeepSeek proves that efficient training methods can match the quality of models 
 
 ### Gemma 2 (2B, 9B, 27B)
 
-Google's [Gemma 2](https://ai.google.dev/gemma), released in June 2024, represents a significant leap over the original Gemma models:
-
-- **Gemma 2 2B**: Impressive performance for its size, suitable for edge devices
+Google's [Gemma 2](https://ai.google.dev/gemma), released in June 2024, represents a significant leap over the original Gemma models: - **Gemma 2 2B**: Impressive performance for its size, suitable for edge devices
 - **Gemma 2 9B**: Outperforms Llama 3 8B on many benchmarks
 - **Gemma 2 27B**: Competitive with Llama 3 70B despite being less than half the size
 
@@ -185,9 +162,7 @@ Gemma 2 2B is ideal for mobile and edge deployment. Gemma 2 9B is excellent for 
 
 ### Phi-3 and Phi-4 Series
 
-Microsoft's Phi series demonstrates that training on high-quality, carefully curated data can produce small models with outsized capabilities:
-
-- **Phi-3 Mini (3.8B)**: Outperforms models 5x its size on reasoning benchmarks
+Microsoft's Phi series demonstrates that training on high-quality, carefully curated data can produce small models with outsized capabilities: - **Phi-3 Mini (3.8B)**: Outperforms models 5x its size on reasoning benchmarks
 - **Phi-3 Small (7B)**: Strong general-purpose model with excellent reasoning
 - **Phi-3 Medium (14B)**: Approaches Llama 3 70B quality on some benchmarks
 - **Phi-4 (14B)**: Latest release with improved reasoning and long-context handling
@@ -205,7 +180,19 @@ Phi-3 Mini is Microsoft's answer to on-device AI. At 3.8B parameters, it runs co
 ### Benchmark Scores Comparison
 
 | Model | Size | MMLU | HumanEval | MT-Bench | Context |
-|-------|------|------|-----------|----------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Llama 3.1 405B | 405B | 88.6 | 89.0 | 9.2 | 128K |
 | Llama 3 70B | 70B | 82.0 | 81.7 | 8.9 | 8K |
 | Llama 3.1 8B | 8B | 73.0 | 72.8 | 7.8 | 128K |
@@ -225,10 +212,14 @@ Phi-3 Mini is Microsoft's answer to on-device AI. At 3.8B parameters, it runs co
 
 ### Inference Speed Comparison
 
-Inference throughput (tokens/second) on a single A100 GPU with vLLM:
-
-| Model | Throughput (t/s) | Time to First Token |
-|-------|-----------------|---------------------|
+Inference throughput (tokens/second) on a single A100 GPU with vLLM: | Model | Throughput (t/s) | Time to First Token |
+|
+---
+|
+---
+|
+---
+|
 | Llama 3.1 8B | ~120 | ~20ms |
 | Mistral 7B | ~140 | ~18ms |
 | Qwen2.5 7B | ~115 | ~22ms |
@@ -239,7 +230,15 @@ Inference throughput (tokens/second) on a single A100 GPU with vLLM:
 ### VRAM Requirements by Model
 
 | Model | FP16 VRAM | 4-bit Quantized | 8-bit Quantized |
-|-------|-----------|----------------|----------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 2B models | 4 GB | 1.5 GB | 2.5 GB |
 | 7B/8B models | 16 GB | 5 GB | 8 GB |
 | 14B models | 28 GB | 9 GB | 15 GB |
@@ -255,10 +254,12 @@ All major models released in 2024-2025 support at least 32K token contexts. Llam
 
 ### Decision Framework by Use Case
 
-Select your model based on the primary task:
-
-| Use Case | Recommended Models |
-|----------|-------------------|
+Select your model based on the primary task: | Use Case | Recommended Models |
+|
+---
+|
+---
+|
 | General chat | Llama 3.1 8B, Qwen2.5 7B, Gemma 2 9B |
 | Coding | DeepSeek Coder V2, CodeQwen, Codestral |
 | Enterprise deployment | Llama 3 70B, Mistral Large, Qwen2.5 72B |
@@ -288,9 +289,7 @@ Llama 3 70B has the most mature ecosystem, tooling, and deployment options. Mist
 
 ### Hugging Face Hub
 
-The [Hugging Face Hub](https://huggingface.co/models) is the primary repository for open-source models. Search for model names (e.g., "meta-llama/Meta-Llama-3-8B-Instruct") to find official uploads. Download with:
-
-```python
+The [Hugging Face Hub](https://huggingface.co/models) is the primary repository for open-source models. Search for model names (e.g., "meta-llama/Meta-Llama-3-8B-Instruct") to find official uploads. Download with: ```python
 from transformers import AutoModelForCausalLM
 model = AutoModelForCausalLM.from_pretrained("meta-llama/Meta-Llama-3-8B-Instruct")
 ```
@@ -299,9 +298,7 @@ Some models (Llama, Gemma) require accepting a license agreement on Hugging Face
 
 ### Ollama Model Library
 
-[Ollama](https://ollama.com/library) provides the easiest way to run models locally. Install Ollama, then:
-
-```bash
+[Ollama](https://ollama.com/library) provides the easiest way to run models locally. Install Ollama, then: ```bash
 ollama run llama3.1        # Llama 3.1 8B
 ollama run mistral         # Mistral 7B
 ollama run qwen2.5         # Qwen2.5 7B
@@ -324,9 +321,7 @@ For GPU cloud rental, [RunPod](https://runpod.io) and [Vast.ai](https://vast.ai)
 
 ### Trends to Watch in 2025
 
-Several trends will shape the open-source LLM landscape:
-
-- **Small but powerful**: The Phi-3 and Gemma 2 approach (high-quality data + efficient architecture) will produce more small models that rival larger predecessors
+Several trends will shape the open-source LLM landscape: - **Small but powerful**: The Phi-3 and Gemma 2 approach (high-quality data + efficient architecture) will produce more small models that rival larger predecessors
 - **Multimodal expansion**: Vision-language models (Qwen-VL, Llava, BakLlava) are becoming standard
 - **Long context**: 128K is now table stakes; 1M+ context models are emerging
 - **Mixture of Experts**: MoE architectures (Mixtral, DeepSeek) will become more common as a scaling strategy
@@ -370,20 +365,17 @@ Top open-source models like Llama 3.1 405B and DeepSeek V3 approach GPT-4o on ma
 
 Llama 3 70B requires 140 GB of VRAM in FP16 precision (two A100 80GB GPUs). With 4-bit quantization, it runs on a single A100 40GB or two RTX 4090s (24GB each). For CPU-only inference with llama.cpp, you need at least 40 GB of system RAM for the quantized model. Cloud options like RunPod and Together AI provide access without hardware ownership.
 
----
 
+---
 ## Recommended Infrastructure
 
-To run any of the tools above reliably 24/7, infrastructure matters:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.
+To run any of the tools above reliably 24/7, infrastructure matters: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low latency for mainland China access. This is the same IDC hosting dibi8.com — production-proven.
 
 *Affiliate links — no extra cost to you, helps keep dibi8.com running.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -430,3 +422,5 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 
 使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。
 
+
+---

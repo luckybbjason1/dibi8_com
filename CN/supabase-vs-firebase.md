@@ -1,14 +1,11 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/supabase-vs-firebase" />
 title: 'Supabase vs Firebase in 2026: Which BaaS Wins?'
 description: 'Postgres open-source Supabase vs Google NoSQL Firebase — database, auth, storage, realtime, edge functions, pricing, lock-in, self-hosting. Updated 2026.'
 date: 2026-05-22 00:00:00+08:00
-lastmod:  2026-05-22 00:00:00+08:00draft: false
+lastmod: 2026-05-22 00:00:00+08:00draft: false
 tags: [supabase, firebase, baas, postgres, firestore, comparison, backend]
 categories: [vs]
-faqs:
-  - q: 'Is Supabase or Firebase cheaper?'
+faqs: - q: 'Is Supabase or Firebase cheaper?'
     a: 'For small projects both have generous free tiers, but Supabase is structurally cheaper at scale because Postgres reads are not metered per-row. Firebase Firestore bills per document read — a single dashboard query that pulls 10K docs costs real money on Firebase but is free on Supabase if it stays inside the included compute. For analytics-heavy workloads, Supabase wins by 5-10x on monthly bills.'
   - q: 'Which is better for relational data?'
     a: 'Supabase wins by a wide margin — it is literally Postgres under the hood, so you get joins, foreign keys, transactions, views, and CTEs out of the box. Firebase Firestore is NoSQL/document-based and forces you to denormalize or do client-side joins. If your data has any relationships (users, orders, products), pick Supabase.'
@@ -30,12 +27,18 @@ Use **Supabase** if: You want Postgres + SQL + joins, value open-source and self
 
 Use **Firebase** if: You need rock-solid realtime sync at massive scale, you're already in Google Cloud, you prefer NoSQL document modeling, or you're shipping a mobile-first app that benefits from Firebase Auth + Crashlytics + Analytics in one bundle.
 
----
 
+---
 ## Side-by-Side Comparison
 
 | Feature | Supabase | Firebase |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | **Vendor** | Supabase Inc. | Google |
 | **Launched** | 2020 | 2011 (acquired by Google 2014) |
 | **Database** | PostgreSQL 15+ (relational) | Firestore + Realtime DB (NoSQL) |
@@ -53,8 +56,8 @@ Use **Firebase** if: You need rock-solid realtime sync at massive scale, you're 
 | **Vendor lock-in** | Low (standard Postgres + S3) | High (Firestore data model is proprietary) |
 | **SDK languages** | JS, Dart, Swift, Kotlin, Python, Go | JS, Dart, Swift, Kotlin, Unity, C++ |
 
----
 
+---
 ## When to Choose Supabase
 
 ### Use case 1: Relational data with joins
@@ -114,7 +117,13 @@ For analytics-heavy or AI/RAG apps: **Supabase wins 5-10x** on monthly bills.
 ## Performance Benchmarks (Subjective, From My Daily Use)
 
 | Task | Supabase | Firebase |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | Simple CRUD app | 9/10 | 9/10 |
 | Complex relational queries | 10/10 | 4/10 |
 | Realtime chat (1K users) | 9/10 | 10/10 |
@@ -155,9 +164,7 @@ Want to run Supabase on your own server to escape cloud bills entirely or to kee
 
 ## Alternatives Worth Trying
 
-If neither Supabase nor Firebase fits, consider:
-
-- **[Appwrite](https://dibi8.com/resources/llm-frameworks/)** — Open-source BaaS, self-hostable, more opinionated than Supabase
+If neither Supabase nor Firebase fits, consider: - **[Appwrite](https://dibi8.com/resources/llm-frameworks/)** — Open-source BaaS, self-hostable, more opinionated than Supabase
 - **PocketBase** — Single-binary Go BaaS, perfect for tiny projects
 - **Convex** — TypeScript-first reactive backend, great DX for full-stack TS teams
 - **Nhost** — Postgres + Hasura GraphQL + Auth, similar to Supabase but GraphQL-native
@@ -200,7 +207,6 @@ For an indie dev shipping a SaaS in 2026? **Supabase Pro $25/mo** is the best ra
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

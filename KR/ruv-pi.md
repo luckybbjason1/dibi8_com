@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ruv-pi" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ruv-pi" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ruv-pi" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ruv-pi" />
 title: 'Ruv Pi: 확장 가능한 개발 에이전트 CLI 를 위한 다중 제공자 대형 언어 모델 API'
 description: 'Ruv Pi 는 Earendil Works 에서 개발한 확장 가능한 코드 에이전트 CLI 로, Claude, OpenAI, Gemini 등 다양한 공급자의 지능형 LLM API 를 통합하여 제공합니다. 이를 통해 개발자들은 AI 기반의 코드 에이전트를 구축, 실행 및 확장할 수 있습니다.'
 date: 2026-06-10
-lastmod:  2026-06-10slug: ruv-pi
+lastmod: 2026-06-10
+slug: ruv-pi
 category: llm-frameworks
 tags: [ruv-pi, pi-agent, coding agent, LLM, multi-provider, AI coding, self-extensible]
 github_repo: https://github.com/earendil-works/pi
@@ -16,8 +12,6 @@ maintainer: earendil-works
 license: MIT
 featureImage: https://raw.githubusercontent.com/earendil-works/pi/main/docs/assets/pi-hero-banner.png
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/ruv-pi/ -->
 
 ## 소개
 
@@ -37,9 +31,7 @@ AI 코드 도구들의 시장은 놀라울 정도로 분절되었다. 개발자�
 
 Ruv Pi 는 에이전트 런타임 제공 도구 호출 기능과 일관된 다중 공급원 LLM API 를 제공하는 자기 확장 가능한 코드 에이전트 CLI 입니다. 코드 필요성과 LLM 제공업체의 끊임없이 성장하는 세계 사이의 교량으로 이해할 수 있습니다.
 
-핵심은 Pi 는 ... 두 기둥에 의해 구축된 것입니다:
-
-1. **자가 확장 가능한 에이전트 런타임** — 에이전트는 런타임에서 새로운 도구를 추가하고, 스스로를 수정하며, 능력을 확장할 수 있습니다. 필요하면 Pi 는 없어도 새 도구를 만들어 줍니다.
+핵심은 Pi 는 ... 두 기둥에 의해 구축된 것입니다: 1. **자가 확장 가능한 에이전트 런타임** — 에이전트는 런타임에서 새로운 도구를 추가하고, 스스로를 수정하며, 능력을 확장할 수 있습니다. 필요하면 Pi 는 없어도 새 도구를 만들어 줍니다.
 2. **일관된 다중 공급원 LLM API** — OpenAI, Anthropic, Google 와 같은 공급원들과 함께 작동하는 단일 API 호출입니다. 원하는 모델을 지정하면 Pi 가 나머지를 처리합니다.
 
 ** 특징 이미지:**
@@ -53,9 +45,7 @@ Ruv Pi 는 에이전트 런타임 제공 도구 호출 기능과 일관된 다�
 
 Ruv Pi 는 에이전트 런타임 제공 도구 호출 기능과 일관된 다중 공급원 LLM API 를 제공하는 자기 확장 가능한 코드 에이전트 CLI 입니다. 코드 필요성과 LLM 제공업체의 끊임없이 성장하는 세계 사이의 교량으로 이해할 수 있습니다.
 
-핵심은 Pi 는 ... 두 기둥에 의해 구축된 것입니다:
-
-1. **자가 확장 가능한 에이전트 런타임** — 에이전트는 런타임에서 새로운 도구를 추가하고, 스스로를 수정하며, 능력을 확장할 수 있습니다. 필요하면 Pi 는 없어도 새 도구를 만들어 줍니다.
+핵심은 Pi 는 ... 두 기둥에 의해 구축된 것입니다: 1. **자가 확장 가능한 에이전트 런타임** — 에이전트는 런타임에서 새로운 도구를 추가하고, 스스로를 수정하며, 능력을 확장할 수 있습니다. 필요하면 Pi 는 없어도 새 도구를 만들어 줍니다.
 2. **일관된 다중 공급원 LLM API** — OpenAI, Anthropic, Google 와 같은 공급원들과 함께 작동하는 단일 API 호출입니다. 원하는 모델을 지정하면 Pi 가 나머지를 처리합니다.
 
 ** 특징 이미지:**
@@ -67,13 +57,9 @@ Ruv Pi 는 무엇인가요?
 
 ## 통합 패턴
 
-Pi 는 기존 개발 워크플로우와 자연스럽게 통합되도록 설계되었습니다. 주요 통합 패턴은 다음과 같습니다:
+Pi 는 기존 개발 워크플로우와 자연스럽게 통합되도록 설계되었습니다. 주요 통합 패턴은 다음과 같습니다: ### Git 통합
 
-### Git 통합
-
-Pi 는 Git 저장소와 상호작용하여 커밋, 브랜치 생성 및 풀 리퀘스트 관리 등을 지원합니다:
-
-```bash
+Pi 는 Git 저장소와 상호작용하여 커밋, 브랜치 생성 및 풀 리퀘스트 관리 등을 지원합니다: ```bash
 # Git 통합 설정
 export PI_GIT_ENABLED="true"
 export PI_GIT_AUTO_COMMIT="true"
@@ -85,9 +71,7 @@ pi start --task "데이터베이스 모듈 리팩토링 및 변경 사항 커밋
 
 ### CI/CD Pipeline 통합
 
-Pi 는 CI/CD pipeline 와 자동화 테스트, 코드 검토, 배포를 연결할 수 있습니다:
-
-```bash
+Pi 는 CI/CD pipeline 와 자동화 테스트, 코드 검토, 배포를 연결할 수 있습니다: ```bash
 # Pi 를 CI/CD 로 설정
 export PI_CI_ENABLED="true"
 export PI_CI_MODE="review"  # review, test, 또는 deploy
@@ -98,9 +82,7 @@ pi ci-review --base main --head feature-branch
 
 ### IDE 통합
 
-Pi 는 선호하는 IDE 와 함께 작동하여 지능적 제언과 실행 작업을 제공합니다:
-
-```bash
+Pi 는 선호하는 IDE 와 함께 작동하여 지능적 제언과 실행 작업을 제공합니다: ```bash
 # watch 모드로 Pi 실행, 파일 변경 감시
 pi watch --directory ./src --interval 5
 
@@ -110,25 +92,17 @@ pi watch --directory ./src --interval 5
 
 ### 다중 공급자 라우팅
 
-Pi 의 가장 강력한 기능 중 하나는 지능적 모델 라우팅입니다. 작업 유형에 따라 Pi 는 자동으로 최적의 모델을 선택할 수 있습니다:
-
-```yaml
+Pi 의 가장 강력한 기능 중 하나는 지능적 모델 라우팅입니다. 작업 유형에 따라 Pi 는 자동으로 최적의 모델을 선택할 수 있습니다: ```yaml
 # pi-config.yaml
-routing:
-  code_generation:
-    model: claude-sonnet-4-20250514
+routing: code_generation: model: claude-sonnet-4-20250514
     temperature: 0.3
-  code_review:
-    model: gpt-4o
+  code_review: model: gpt-4o
     temperature: 0.1
-  debugging:
-    model: claude-sonnet-4-20250514
+  debugging: model: claude-sonnet-4-20250514
     temperature: 0.5
-  documentation:
-    model: gemini-pro
+  documentation: model: gemini-pro
     temperature: 0.3
-  default:
-    model: auto
+  default: model: auto
     temperature: 0.7
 ```
 
@@ -143,17 +117,13 @@ routing:
 ```python
 import subprocess
 
-def custom_tool():
-    # 고급 커스텀 도구 오류 처리
+def custom_tool(): # 고급 커스텀 도구 오류 처리
     print("Custom Tool Initialized.")
     return "Initialized"
 
-if __name__ == "__main__":
-    result = custom_tool()
-    if result:
-        print(f"Success: {result}")
-    else:
-        print("Error: Custom tool failed.")
+if __name__ == "__main__": result = custom_tool()
+    if result: print(f"Success: {result}")
+    else: print("Error: Custom tool failed.")
 ```
 
 ## 에이전트 메모리 및 컨텍스트 관리
@@ -217,7 +187,6 @@ Ruv Pi 는 코드 생성 에이전트 도구들 중 가장 최신 세대입니�
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -245,25 +214,20 @@ Ruv Pi 는 코드 생성 에이전트 도구들 중 가장 최신 세대입니�
 
 ## Why This Matters
 
-Understanding ruv pi: 확장 가능한 개발 에이전트 cli 를 위한 다중 제공자 대형 언어 모델 api is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding ruv pi: 확장 가능한 개발 에이전트 cli 를 위한 다중 제공자 대형 언어 모델 api is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

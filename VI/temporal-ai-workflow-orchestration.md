@@ -1,21 +1,14 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/temporal-ai-workflow-orchestration" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/temporal-ai-workflow-orchestration" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/temporal-ai-workflow-orchestration" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/temporal-ai-workflow-orchestration" />
 title: Temporal AI Workflow Orchestration — Quy Trình AI Đa Bước...
 description: Hướng dẫn toàn diện về Temporal để orchestrate AI/ML workflow. Xây dựng pipeline LLM đáng tin cậy, hệ thống multi-agent và job training ML với durability, retry và observability tích hợp sẵn.
 tags: ['workflow', 'orchestration', 'temporal', 'machine-learning', 'llm', 'reliability']
 category: dev-utils
 featureImage: /images/articles/temporal-ai-workflow-orchestration.jpg
 date: 2026-07-15T00:00:00+00:00
-lastmod:  2026-07-15T00:00:00+00:00draft: false
+lastmod: 2026-07-15T00:00:00+00:00draft: false
 slug: temporal-ai-workflow-orchestration
 lang: vi
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/temporal-ai-workflow-orchestration/ -->
 
 ## TL;DR
 
@@ -27,22 +20,18 @@ Temporal là nền tảng durable execution giúp xây dựng AI workflow đáng
 
 Temporal là hệ thống phân tán mã nguồn mở để chạy fault-tolerant workflow ở quy mô lớn. Về cốt lõi, nó cung cấp **durable execution** — mã của bạn chạy bên trong cơ sở hạ tầng được quản lý bởi Temporal, tự động xử lý failure, retry, checkpoint và persistence state.
 
-Cho tác vụ AI, điều này có nghĩa là:
-- Gọi suy luận LLM thất bại do rate limit sẽ tự động retry với backoff
+Cho tác vụ AI, điều này có nghĩa là: - Gọi suy luận LLM thất bại do rate limit sẽ tự động retry với backoff
 - Pipeline fine-tuning đa bước sống sót qua container crash mà không mất tiến độ
 - Orchestration agent nơi output mỗi bước được persist và có thể inspect
 - Job training resume từ checkpoint cuối cùng sau GPU failure
 
 ### Vấn Đề Với Orchestration AI Truyền Thống
 
-Xét pipeline AI điển hình:
-
-```
+Xét pipeline AI điển hình: ```
 [Load Data] → [Preprocess] → [Embed Documents] → [Index in Vector DB] → [Test Retrieval] → [Notify Team]
 ```
 
-Với công cụ truyền thống (Airflow, Celery, cron script), mỗi bước yêu cầu:
-- Custom error handling cho network timeout
+Với công cụ truyền thống (Airflow, Celery, cron script), mỗi bước yêu cầu: - Custom error handling cho network timeout
 - Manual checkpointing để resume khi failure
 - State management across distributed worker
 - Dashboard observability cho debugging
@@ -79,8 +68,7 @@ docker compose up -d
 temporal cluster health
 ```
 
-Docker Compose default setup bao gồm:
-- Temporal Server(gRPC API + history)
+Docker Compose default setup bao gồm: - Temporal Server(gRPC API + history)
 - Temporal UI(localhost:8233)
 - Elasticsearch(search/indexing)
 - Temporal Frontend(port 7233)
@@ -101,16 +89,14 @@ from temporalio.common import RetryPolicy
 
 # Định nghĩa activity(các bước riêng lẻ)
 @activity.defn
-async def load_dataset(dataset_name: str):
-    """Load và validate dataset."""
+async def load_dataset(dataset_name: str): """Load và validate dataset."""
     print(f"Đang tải dataset: {dataset_name}")
     data = {"samples": 10000, "features": 128}
     activity.info(f"Đã tải {data['samples']} samples")
     return data
 
 @activity.defn
-async def preprocess(data: dict):
-    """Làm sạch và normalize dữ liệu."""
+async def preprocess(data: dict): """Làm sạch và normalize dữ liệu."""
     print("Đang preprocessing dữ liệu...")
     processed = {
         "cleaned_samples": data["samples"],
@@ -120,8 +106,7 @@ async def preprocess(data: dict):
     return processed
 
 @activity.defn
-async def train_model(preprocessed_data: dict, epochs: int = 10):
-    """Train model trên preprocessed data."""
+async def train_model(preprocessed_data: dict, epochs: int = 10): """Train model trên preprocessed data."""
     print(f"Đang train model cho {epochs} epochs...")
     metrics = {
         "final_loss": 0.0234,
@@ -132,8 +117,7 @@ async def train_model(preprocessed_data: dict, epochs: int = 10):
     return metrics
 
 @activity.defn
-async def deploy_model(metrics: dict):
-    """Deploy model đã train vào production."""
+async def deploy_model(metrics: dict): """Deploy model đã train vào production."""
     print("Đang deploy model vào production...")
     deployment = {
         "model_id": f"model-{metrics['final_accuracy']:.4f}",
@@ -145,10 +129,8 @@ async def deploy_model(metrics: dict):
 
 # Định nghĩa workflow
 @workflow.defn
-class MLTrainingPipeline:
-    @workflow.run
-    async def run(self, dataset_name: str, epochs: int = 10) -> dict:
-        # Mỗi step là một activity call
+class MLTrainingPipeline: @workflow.run
+    async def run(self, dataset_name: str, epochs: int = 10) -> dict: # Mỗi step là một activity call
         data = await workflow.execute_activity(
             load_dataset,
             dataset_name,
@@ -185,8 +167,7 @@ import asyncio
 from temporalio.worker import Worker
 from my_workflow import MLTrainingPipeline, load_dataset, preprocess, train_model, deploy_model
 
-async def main():
-    worker = Worker(
+async def main(): worker = Worker(
         client,  # Temporal Client instance
         task_queue="ml-pipeline",
         workflows=[MLTrainingPipeline],
@@ -195,8 +176,7 @@ async def main():
     print("Worker started. Nhấn Ctrl+C để exit.")
     await worker.run()
 
-if __name__ == "__main__":
-    asyncio.run(main())
+if __name__ == "__main__": asyncio.run(main())
 ```
 
 ```python
@@ -205,8 +185,7 @@ import asyncio
 from temporalio.client import Client
 from my_workflow import MLTrainingPipeline
 
-async def main():
-    client = await Client.connect("localhost:7233")
+async def main(): client = await Client.connect("localhost:7233")
     
     handle = await client.start_workflow(
         MLTrainingPipeline.run,
@@ -219,8 +198,7 @@ async def main():
     result = await handle.result()
     print(f"Pipeline result: {result}")
 
-if __name__ == "__main__":
-    asyncio.run(main())
+if __name__ == "__main__": asyncio.run(main())
 ```
 
 ---
@@ -229,36 +207,28 @@ if __name__ == "__main__":
 
 ### Mẫu 1: LLM Chain Với Fallback
 
-Chain nhiều LLM call với automatic fallback xuống model rẻ hơn:
-
-```python
+Chain nhiều LLM call với automatic fallback xuống model rẻ hơn: ```python
 from temporalio import workflow, activity
 import asyncio
 
 @activity.defn
-async def generate_with_gpt4(prompt: str) -> str:
-    """Thử GPT-4 trước."""
+async def generate_with_gpt4(prompt: str) -> str: """Thử GPT-4 trước."""
     response = await call_openai(prompt, model="gpt-4o")
     return response
 
 @activity.defn
-async def generate_with_claude(prompt: str) -> str:
-    """Fallback sang Claude."""
+async def generate_with_claude(prompt: str) -> str: """Fallback sang Claude."""
     response = await call_anthropic(prompt, model="claude-sonnet-4")
     return response
 
 @activity.defn
-async def generate_with_local(prompt: str) -> str:
-    """Phương án cuối: local model."""
+async def generate_with_local(prompt: str) -> str: """Phương án cuối: local model."""
     response = await call_ollama(prompt, model="llama3.2")
     return response
 
 @workflow.defn
-class ResilientLLMChain:
-    @workflow.run
-    async def run(self, prompt: str) -> dict:
-        try:
-            # Thử model expensive nhất trước
+class ResilientLLMChain: @workflow.run
+    async def run(self, prompt: str) -> dict: try: # Thử model expensive nhất trước
             result = await workflow.execute_activity(
                 generate_with_gpt4,
                 prompt,
@@ -266,17 +236,14 @@ class ResilientLLMChain:
                 retry=RetryPolicy(max_attempts=2)
             )
             model_used = "gpt-4o"
-        except Exception:
-            try:
-                result = await workflow.execute_activity(
+        except Exception: try: result = await workflow.execute_activity(
                     generate_with_claude,
                     prompt,
                     timeout=timedelta(minutes=5),
                     retry=RetryPolicy(max_attempts=2)
                 )
                 model_used = "claude-sonnet-4"
-            except Exception:
-                result = await workflow.execute_activity(
+            except Exception: result = await workflow.execute_activity(
                     generate_with_local,
                     prompt,
                     timeout=timedelta(minutes=10),
@@ -289,35 +256,28 @@ class ResilientLLMChain:
 
 ### Mẫu 2: Async Multi-Agent Orchestration
 
-Chạy nhiều AI agent song song, rồi aggregate kết quả:
-
-```python
+Chạy nhiều AI agent song song, rồi aggregate kết quả: ```python
 from temporalio import workflow, activity
 from temporalio.exceptions import TimeoutError
 
 @activity.defn
-async def agent_research(query: str) -> dict:
-    """Research agent: thu thập thông tin từ web."""
+async def agent_research(query: str) -> dict: """Research agent: thu thập thông tin từ web."""
     results = await search_web(query)
     return {"type": "research", "sources": len(results), "summary": summarize(results)}
 
 @activity.defn
-async def agent_analysis(research_data: dict) -> dict:
-    """Analysis agent: đánh giá findings."""
+async def agent_analysis(research_data: dict) -> dict: """Analysis agent: đánh giá findings."""
     analysis = await analyze_findings(research_data["summary"])
     return {"type": "analysis", "confidence": analysis["confidence_score"]}
 
 @activity.defn
-async def agent_synthesis(research: dict, analysis: dict) -> dict:
-    """Synthesis agent: combine research và analysis vào report."""
+async def agent_synthesis(research: dict, analysis: dict) -> dict: """Synthesis agent: combine research và analysis vào report."""
     report = await synthesize_report(research, analysis)
     return {"type": "synthesis", "report_length": len(report)}
 
 @workflow.defn
-class MultiAgentResearch:
-    @workflow.run
-    async def run(self, query: str) -> dict:
-        # Chạy research và analysis song song
+class MultiAgentResearch: @workflow.run
+    async def run(self, query: str) -> dict: # Chạy research và analysis song song
         research_handle = workflow.execute_activity(
             agent_research, query, start_to_close_timeout=timedelta(minutes=5)
         )
@@ -341,52 +301,42 @@ class MultiAgentResearch:
 
 ### Mẫu 3: ML Training Với Checkpoint Recovery
 
-Tự động resume training từ checkpoint cuối cùng sau bất kỳ failure nào:
-
-```python
+Tự động resume training từ checkpoint cuối cùng sau bất kỳ failure nào: ```python
 @activity.defn
-async def save_checkpoint(epoch: int, model_state: dict) -> str:
-    """Save training checkpoint vào persistent storage."""
+async def save_checkpoint(epoch: int, model_state: dict) -> str: """Save training checkpoint vào persistent storage."""
     checkpoint_path = f"s3://my-bucket/checkpoints/epoch_{epoch}.pt"
     await upload_to_s3(model_state, checkpoint_path)
     activity.info(f"Checkpoint saved: {checkpoint_path}")
     return checkpoint_path
 
 @activity.defn
-async def load_checkpoint(checkpoint_path: str) -> dict:
-    """Load model state từ checkpoint."""
+async def load_checkpoint(checkpoint_path: str) -> dict: """Load model state từ checkpoint."""
     model_state = await download_from_s3(checkpoint_path)
     activity.info(f"Checkpoint loaded: {checkpoint_path}")
     return model_state
 
 @activity.defn
-async def train_epoch(model_state: dict, epoch: int, learning_rate: float) -> dict:
-    """Train một epoch."""
+async def train_epoch(model_state: dict, epoch: int, learning_rate: float) -> dict: """Train một epoch."""
     new_state = perform_training_step(model_state, learning_rate)
     metrics = compute_metrics(new_state)
     return {"state": new_state, "metrics": metrics}
 
 @workflow.defn
-class ResumableTraining:
-    @workflow.run
-    async def run(self, dataset_url: str, total_epochs: int, lr: float = 0.001) -> dict:
-        # Kiểm tra xem có checkpoint trước không
+class ResumableTraining: @workflow.run
+    async def run(self, dataset_url: str, total_epochs: int, lr: float = 0.001) -> dict: # Kiểm tra xem có checkpoint trước không
         checkpoint_path = workflow.info().get_memo_field("last_checkpoint")
         
-        if checkpoint_path:
-            model_state = await workflow.execute_activity(
+        if checkpoint_path: model_state = await workflow.execute_activity(
                 load_checkpoint, checkpoint_path,
                 start_to_close_timeout=timedelta(minutes=2)
             )
             start_epoch = int(checkpoint_path.split("_")[-1].split(".")[0])
             activity.info(f"Resuming from epoch {start_epoch}")
-        else:
-            model_state = initialize_model(dataset_url)
+        else: model_state = initialize_model(dataset_url)
             start_epoch = 0
         
         # Train epochs với periodic checkpointing
-        for epoch in range(start_epoch, total_epochs):
-            result = await workflow.execute_activity(
+        for epoch in range(start_epoch, total_epochs): result = await workflow.execute_activity(
                 train_epoch, model_state, epoch, lr,
                 start_to_close_timeout=timedelta(minutes=30),
                 retry=RetryPolicy(max_attempts=3, backoff_coefficient=2.0)
@@ -395,8 +345,7 @@ class ResumableTraining:
             model_state = result["state"]
             
             # Save checkpoint mỗi 5 epochs
-            if (epoch + 1) % 5 == 0:
-                cp_path = await workflow.execute_activity(
+            if (epoch + 1) % 5 == 0: cp_path = await workflow.execute_activity(
                     save_checkpoint, epoch + 1, model_state,
                     start_to_close_timeout=timedelta(minutes=5)
                 )
@@ -407,23 +356,17 @@ class ResumableTraining:
 
 ### Mẫu 4: Streaming LLM Output
 
-Xử lý streaming response từ LLM trong workflow:
-
-```python
+Xử lý streaming response từ LLM trong workflow: ```python
 @activity.defn
-async def stream_llm_response(prompt: str, max_tokens: int = 1024) -> list[str]:
-    """Stream token từ LLM và trả về dưới dạng list."""
+async def stream_llm_response(prompt: str, max_tokens: int = 1024) -> list[str]: """Stream token từ LLM và trả về dưới dạng list."""
     tokens = []
-    async for token in call_streaming_api(prompt, max_tokens):
-        tokens.append(token)
+    async for token in call_streaming_api(prompt, max_tokens): tokens.append(token)
         await asyncio.sleep(0.01)
     return tokens
 
 @workflow.defn
-class StreamingChat:
-    @workflow.run
-    async def run(self, conversation_history: list[dict], user_message: str) -> str:
-        prompt = format_conversation(conversation_history, user_message)
+class StreamingChat: @workflow.run
+    async def run(self, conversation_history: list[dict], user_message: str) -> str: prompt = format_conversation(conversation_history, user_message)
         
         tokens = await workflow.execute_activity(
             stream_llm_response,
@@ -448,31 +391,23 @@ class StreamingChat:
 
 ### Signal-Based Workflow Control
 
-Signal workflow từ bên ngoài để cancel, update priority hoặc inject data mới:
-
-```python
+Signal workflow từ bên ngoài để cancel, update priority hoặc inject data mới: ```python
 @workflow.defn
-class PriorityWorkflow:
-    def __init__(self):
-        self.priority = "normal"
+class PriorityWorkflow: def __init__(self): self.priority = "normal"
         self.cancel_requested = False
     
     @workflow.signal
-    def set_priority(self, new_priority: str):
-        """Thay đổi priority thực thi workflow."""
+    def set_priority(self, new_priority: str): """Thay đổi priority thực thi workflow."""
         self.priority = new_priority
         workflow.logger.info(f"Priority changed to {new_priority}")
     
     @workflow.signal
-    def cancel_workflow(self):
-        """Yêu cầu cancel workflow."""
+    def cancel_workflow(self): """Yêu cầu cancel workflow."""
         self.cancel_requested = True
         workflow.logger.info("Cancellation requested")
     
     @workflow.run
-    async def run(self, task_data: dict) -> dict:
-        while not self.cancel_requested:
-            result = await process_task(task_data, self.priority)
+    async def run(self, task_data: dict) -> dict: while not self.cancel_requested: result = await process_task(task_data, self.priority)
             await asyncio.sleep(0.1)
         
         return {"status": "cancelled", "partial_result": result}
@@ -480,22 +415,16 @@ class PriorityWorkflow:
 
 ### Child Workflow Cho Modular Design
 
-Break complex pipeline thành nested child workflow:
-
-```python
+Break complex pipeline thành nested child workflow: ```python
 @workflow.defn
-class DataPreparation:
-    @workflow.run
-    async def run(self, raw_data: dict) -> dict:
-        cleaned = await workflow.execute_activity(clean_data, raw_data)
+class DataPreparation: @workflow.run
+    async def run(self, raw_data: dict) -> dict: cleaned = await workflow.execute_activity(clean_data, raw_data)
         validated = await workflow.execute_activity(validate_data, cleaned)
         return validated
 
 @workflow.defn
-class FullMLPipeline:
-    @workflow.run
-    async def run(self, raw_data: dict, model_config: dict) -> dict:
-        prepared_data = await workflow.child_execute(
+class FullMLPipeline: @workflow.run
+    async def run(self, raw_data: dict, model_config: dict) -> dict: prepared_data = await workflow.child_execute(
             DataPreparation.run, raw_data
         )
         
@@ -512,9 +441,7 @@ class FullMLPipeline:
 
 ### Querying Workflow State
 
-Inspect running workflow mà không stop chúng:
-
-```python
+Inspect running workflow mà không stop chúng: ```python
 from temporalio.client import Client
 
 client = await Client.connect("localhost:7233")
@@ -559,8 +486,7 @@ schedule = await client.schedule.create(
 
 ### Temporal Web UI
 
-Truy cập built-in web UI tại `http://localhost:8233` để:
-- Xem tất cả workflow đang chạy và đã hoàn thành
+Truy cập built-in web UI tại `http://localhost:8233` để: - Xem tất cả workflow đang chạy và đã hoàn thành
 - Inspect input/output data cho mỗi activity
 - Replay workflow history step-by-step
 - Search workflow theo ID, status hoặc custom attribute
@@ -593,11 +519,9 @@ from temporalio import activity
 logger = structlog.get_logger()
 
 @activity.defn
-async def train_with_logging(model_config: dict) -> dict:
-    logger.info("training_start", config=model_config)
+async def train_with_logging(model_config: dict) -> dict: logger.info("training_start", config=model_config)
     
-    for epoch in range(10):
-        loss = perform_training_epoch(model_config)
+    for epoch in range(10): loss = perform_training_epoch(model_config)
         logger.info(
             "epoch_complete",
             epoch=epoch,
@@ -617,13 +541,9 @@ Log xuất hiện trong Temporal UI và có thể export đến Elasticsearch, D
 
 ### Activity Heartbeat Cho Long-Running Job
 
-Ngăn waste compute bằng cách báo progress:
-
-```python
+Ngăn waste compute bằng cách báo progress: ```python
 @activity.defn
-async def long_training_job(config: dict):
-    for epoch in range(100):
-        activity.heartbeat(f"Epoch {epoch}/100 complete")
+async def long_training_job(config: dict): for epoch in range(100): activity.heartbeat(f"Epoch {epoch}/100 complete")
         loss = train_one_epoch(config)
     
     return {"final_loss": loss}
@@ -657,9 +577,7 @@ worker = Worker(
 
 ### Lộ Trình AI Của Temporal
 
-Temporal đang tích cực xây dựng tính năng AI-specific:
-
-1. **Native LLM activity template**: Activity pre-built cho LLM operation phổ biến(retry và rate-limit built-in)
+Temporal đang tích cực xây dựng tính năng AI-specific: 1. **Native LLM activity template**: Activity pre-built cho LLM operation phổ biến(retry và rate-limit built-in)
 2. **Vector memory**: Vector storage tích hợp sẵn để persist workflow context giữa execution
 3. **Agent SDK**: First-class support cho multi-agent orchestration với shared memory và communication protocol
 4. **GPU-aware scheduling**: Tích hợp native với GPU cluster cho ML workload
@@ -684,9 +602,7 @@ Temporal đang tích cực xây dựng tính năng AI-specific:
 
 ## Cập Nhật Cộng Đồng
 
-Landscape workflow orchestration tiếp tục evolving. Trong 2026, development đáng chú ý bao gồm:
-
-- **Temporal Cloud** mở rộng đến 5 region với GPU-optimized worker node
+Landscape workflow orchestration tiếp tục evolving. Trong 2026, development đáng chú ý bao gồm: - **Temporal Cloud** mở rộng đến 5 region với GPU-optimized worker node
 - **Open-source Temporal** thêm native support cho Python 3.12 và PyPy
 - **Community integration**: LangChain, LlamaIndex và CrewAI đều phát hành official Temporal connector
 - **Enterprise adoption**: Major AI company như Scale AI và Hugging Face dùng Temporal cho production ML pipeline
@@ -699,9 +615,7 @@ Cộng đồng Temporal đã phát triển lên hơn 50,000 GitHub star, với c
 
 ### Q: Temporal xử lý LLM rate limiting thế nào?
 
-Dùng Temporal's retry policy với exponential backoff. Cấu hình `initial_interval`, `maximum_interval` và `backoff_coefficient` để implement polite retry strategy:
-
-```python
+Dùng Temporal's retry policy với exponential backoff. Cấu hình `initial_interval`, `maximum_interval` và `backoff_coefficient` để implement polite retry strategy: ```python
 retry=RetryPolicy(
     initial_interval=timedelta(seconds=1),
     maximum_interval=timedelta(minutes=5),
@@ -743,7 +657,6 @@ Có. Temporal worker có thể chạy ở mọi nơi — EC2, GKE, EKS hoặc th
 *Tham gia Telegram Group của chúng tôi để thảo luận AI tool real-time và tips deploy: [t.me/dibi8](https://t.me/dibi8)*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

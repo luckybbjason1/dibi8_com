@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/comfyui" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/comfyui" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/comfyui" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/comfyui" />
 title: 'ComfyUI: 87K+ Stars — 节点式 Stable Diffusion 部署指南 2026'
 description: 'ComfyUI (COMFY) 是最强大的节点式 Stable Diffusion 图形界面。支持 SD 1.5、SDXL、Flux、Wan、LTXV。Docker 生产级部署、自定义节点、API 集成、与 AUTOMATIC1111 和 InvokeAI 的性能对比。'
 date: 2026-05-19 00:00:00+08:00
@@ -25,12 +20,9 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [comfyui, 'stable diffusion', 'ai 图像生成', 节点式界面, docker, flux, sdxl, 机器学习]
-aliases:
-- /zh/posts/comfyui/
-- /zh/resources/ai-tools/comfyui-architecture-node-based-ai-image/
+aliases: - /zh/posts/comfyui/
+- /zh/resources/ai-tools/comfyui-architecture-node-based-ai-image/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/comfyui/ -->
 
 {{</* resource-info */>}}
 
@@ -72,7 +64,11 @@ ComfyUI 的架构分为三个层次：
 ### 核心概念
 
 | 概念 | 说明 |
-|------|------|
+|
+---
+|
+---
+|
 | **节点 (Node)** | 单个操作（如 `KSampler`、`Load Checkpoint`、`Save Image`） |
 | **连接 (Link)** | 传输特定类型数据的有向连接（MODEL、LATENT、IMAGE、CONDITIONING） |
 | **工作流 (Workflow)** | 定义完整生成管线的 JSON 图结构 |
@@ -114,7 +110,13 @@ ComfyUI 的安装方式多样，可以满足不同用户的需求。无论你是
 ### 硬件要求
 
 | 硬件 | 最低配置 | 推荐配置 |
-|------|----------|----------|
+|
+---
+|
+---
+|
+---
+|
 | GPU | 6 GB 显存的 NVIDIA 显卡 | RTX 4090（24 GB）运行 Flux |
 | 内存 | 16 GB | 32 GB |
 | 硬盘 | 30 GB 可用空间 | 100 GB+ 用于多模型存储 |
@@ -172,24 +174,15 @@ cd comfyui-deploy
 # docker-compose.yml
 version: "3.8"
 
-services:
-  comfyui:
-    image: ghcr.io/ai-dock/comfyui:latest-cuda
+services: comfyui: image: ghcr.io/ai-dock/comfyui:latest-cuda
     container_name: comfyui
-    ports:
-      - "8188:8188"
-    volumes:
-      - ./models:/workspace/ComfyUI/models
+    ports: - "8188:8188"
+    volumes: - ./models:/workspace/ComfyUI/models
       - ./output:/workspace/ComfyUI/output
       - ./custom_nodes:/workspace/ComfyUI/custom_nodes
       - ./workflows:/workspace/ComfyUI/user
-    environment:
-      - CLI_ARGS=--listen 0.0.0.0 --preview-method auto
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+    environment: - CLI_ARGS=--listen 0.0.0.0 --preview-method auto
+    deploy: resources: reservations: devices: - driver: nvidia
               count: 1
               capabilities: [gpu]
     restart: unless-stopped
@@ -236,11 +229,9 @@ ComfyUI 原生支持所有主流的 Stable Diffusion 变体。内置的 `Checkpo
 
 ```python
 # 使用 refiner 管线的 SDXL 加载配置
-CheckpointLoaderSimple:
-  ckpt_name: "sd_xl_base_1.0.safetensors"
+CheckpointLoaderSimple: ckpt_name: "sd_xl_base_1.0.safetensors"
 
-KSampler:
-  seed: 42
+KSampler: seed: 42
   steps: 30
   cfg: 7.0
   sampler_name: "dpmpp_2m"
@@ -254,17 +245,14 @@ Flux 模型通过专用节点集成，采用优化的注意力机制实现：
 
 ```python
 # Flux 工作流节点
-UNETLoader:
-  unet_name: "flux1-dev.safetensors"
+UNETLoader: unet_name: "flux1-dev.safetensors"
   weight_dtype: "fp8_e4m3fn"  # 显存从 24GB 降至 12GB
 
-DualCLIPLoader:
-  clip_name1: "t5xxl_fp8_e4m3fn.safetensors"
+DualCLIPLoader: clip_name1: "t5xxl_fp8_e4m3fn.safetensors"
   clip_name2: "clip_l.safetensors"
   type: "flux"
 
-EmptySD3LatentImage:
-  width: 1024
+EmptySD3LatentImage: width: 1024
   height: 1024
   batch_size: 1
 ```
@@ -284,8 +272,7 @@ pip install -r ComfyUI-WanVideoWrapper/requirements.txt
 
 ```python
 # Wan 文生视频工作流
-WanVideoSampler:
-  model: "wan_2.1_14b_fp8.safetensors"
+WanVideoSampler: model: "wan_2.1_14b_fp8.safetensors"
   positive: "slow motion aerial shot of ocean waves"
   width: 1280
   height: 720
@@ -299,13 +286,11 @@ ControlNet 和 LoRA 节点在模型层面集成，支持可组合的条件控制
 
 ```python
 # 应用多个 LoRA 并控制强度
-LoraLoaderModelOnly:
-  model: ["CheckpointLoader", 0]
+LoraLoaderModelOnly: model: ["CheckpointLoader", 0]
   lora_name: "add_detail.safetensors"
   strength_model: 0.8
 
-ControlNetApplyAdvanced:
-  positive: ["CLIPTextEncode", 0]
+ControlNetApplyAdvanced: positive: ["CLIPTextEncode", 0]
   control_net: ["ControlNetLoader", 0]
   image: ["LoadImage", 0]
   strength: 1.0
@@ -344,7 +329,17 @@ curl http://localhost:8188/view?filename=ComfyUI_00001_.png&subfolder=output&typ
 在相同硬件上测试（RTX 4090、CUDA 12.4、64 GB 内存）：
 
 | 测试项目 | ComfyUI | AUTOMATIC1111 | InvokeAI | Fooocus |
-|----------|---------|---------------|----------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | SD 1.5 512x512 | 2.1秒 | 2.4秒 | 2.3秒 | 2.3秒 |
 | SDXL 1024x1024 | 7.8秒 | 9.2秒 | 8.5秒 | 8.5秒 |
 | SDXL 1024x1024 (批次4) | 28秒 | 35秒 | 33秒 | 32秒 |
@@ -429,12 +424,10 @@ python main.py --listen 0.0.0.0 --port 8188 \
 
 ```python
 # custom_nodes/my_custom_node/nodes.py
-class MyUpscaleNode:
-    """使用 Real-ESRGAN 的简单 4x 上采样节点。"""
+class MyUpscaleNode: """使用 Real-ESRGAN 的简单 4x 上采样节点。"""
 
     @classmethod
-    def INPUT_TYPES(cls):
-        return {
+    def INPUT_TYPES(cls): return {
             "required": {
                 "image": ("IMAGE",),
                 "model": (["RealESRGAN_x4plus", "RealESRGAN_x2plus"],),
@@ -445,8 +438,7 @@ class MyUpscaleNode:
     FUNCTION = "upscale"
     CATEGORY = "image/upscaling"
 
-    def upscale(self, image, model):
-        # 实现代码
+    def upscale(self, image, model): # 实现代码
         return (upscaled_image,)
 
 NODE_CLASS_MAPPINGS = {"MyUpscaleNode": MyUpscaleNode}
@@ -499,7 +491,17 @@ echo "备份完成: $BACKUP_DIR"
 ## Comparison with Alternatives
 
 | 特性 | ComfyUI | AUTOMATIC1111 | InvokeAI | Fooocus |
-|------|---------|---------------|----------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **界面类型** | 节点式图编辑器 | 传统 Web 界面 | 画布 + Web 界面 | 一键简化界面 |
 | **学习曲线** | 陡峭（10-20 小时） | 中等（3-5 小时） | 低（1-2 小时） | 极简（30 分钟） |
 | **工作流可复现性** | JSON 序列化、可版本控制 | 手动保存设置 | 项目制 | 预设制 |
@@ -605,7 +607,6 @@ ComfyUI 是扩散模型工作流中最强大的开源界面。它的节点式架
 - 量化指南：https://github.com/comfyanonymous/ComfyUI/blob/master/QUANTIZATION.md
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -631,8 +632,8 @@ ComfyUI 是扩散模型工作流中最强大的开源界面。它的节点式架
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [ai-engineering-from-scratch](comfyui)
@@ -641,6 +642,6 @@ ComfyUI 是扩散模型工作流中最强大的开源界面。它的节点式架
 - [2026-06-01-trending-ai-agents](comfyui)
 - [2026-06-08-trending-ai-agents](comfyui)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

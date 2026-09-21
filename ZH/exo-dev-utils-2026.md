@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/exo-dev-utils-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/exo-dev-utils-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/exo-dev-utils-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/exo-dev-utils-2026" />
 title: 'exo：把自己的多台设备组成集群跑前沿大模型（45K Stars）——2026 实战指南'
 description: 'exo 把你的 Mac、PC 乃至手机组成一个集群，在本地运行前沿 AI 大模型。45,088 个 GitHub star，Apache-2.0 协议。涵盖安装、控制台、兼容 OpenAI/Claude/Ollama 的 API、真实命令以及一份诚实的横向对比。'
 date: 2026-06-02 00:00:00+08:00
@@ -25,10 +20,8 @@ featureImage: 'https://raw.githubusercontent.com/exo-explore/exo/main/docs/imgs/
 draft: false
 categories: ['dev-utils']
 tags: []
-aliases:
-- /posts/exo-dev-utils-2026/
-faqs:
-  - q: '怎么安装 exo？'
+aliases: - /posts/exo-dev-utils-2026/
+faqs: - q: '怎么安装 exo？'
     a: '在 Mac 上，最省事的方式是用预编译应用： ```bash brew install --cask exo ``` 要在 macOS 或 Linux 上运行最新源码，克隆仓库并用 `uv` 启动： ```bash git clone https://github.com/exo-explore/exo cd exo/dashboard && npm install && npm run build && cd .. uv run exo ```'
   - q: 'exo 能在什么硬件上运行？'
     a: 'exo 可在 macOS 和 Linux 上运行。GPU 加速目前面向 Apple Silicon（例如 M3 Ultra 和 M4 系列 Mac）；Linux 暂时只能用 CPU，GPU 支持仍在开发中。你可以把多台设备组成一个集群，汇集它们的内存和算力。'
@@ -37,10 +30,7 @@ faqs:
   - q: '怎么向 exo 发请求？'
     a: 'exo 在 52415 端口提供一个兼容 OpenAI/Claude/Ollama 的 API。例如： ```bash curl -X POST http://localhost:52415/v1/chat/completions \ -H ''Content-Type: application/json'' \ -d ''{"model": "model-id", "messages": [{"role": "user", "content": "Hello"}]}'' ```'
   - q: '在哪里看集群状态？'
-    a: '在浏览器里打开 `http://localhost:52415` 的控制台。它会显示每一台被发现的设备、模型在它们之间的切分方式，以及实时的吞吐量和内存占用。'
----
-
-<!-- canonical: https://dibi8.com/zh/tools/exo-dev-utils-2026/ -->
+    a: '在浏览器里打开 `http://localhost:52415` 的控制台。它会显示每一台被发现的设备、模型在它们之间的切分方式，以及实时的吞吐量和内存占用。'---
 
 {{< resource-info >}}
 
@@ -234,7 +224,15 @@ exo 已经被演示用于在一批 Apple Silicon Mac 组成的集群上运行超
 exo 不是本地跑模型的唯一选择，而且它解决的是一个很具体的问题——把一个大模型摊到多台设备上——这是单机工具做不到的。下表大致勾勒出它与两种常见替代方案的差异：`ollama/ollama`（单机本地服务）和 `ggml-org/llama.cpp`（许多本地工具底层依赖的推理引擎）。
 
 | 特性                  | exo-explore/exo                  | ollama/ollama                  | ggml-org/llama.cpp             |
-|----------------------|----------------------------------|--------------------------------|--------------------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **协议**              | Apache-2.0                       | MIT                            | MIT                            |
 | **主要语言**          | Python / Rust                    | Go                             | C/C++                          |
 | **多设备集群**        | 支持（自动发现）                  | 不支持（单机）                  | 不支持（单机）                  |
@@ -269,21 +267,17 @@ exo-explore 出品的 exo 是一个很有吸引力的工具，让你在自己的
 - 加入 [dibi8 英文 Telegram 群](https://t.me/DIBI8_Group/2)，第一时间获取开源 AI 工具推送。
 - 继续阅读：[dibi8 上的相关指南](dibi8-internal-link)。
 
----
 
-**Sources & Further Reading**:
-- GitHub repository: https://github.com/exo-explore/exo
+---
+**Sources & Further Reading**: - GitHub repository: https://github.com/exo-explore/exo
 - Official docs / README: https://github.com/exo-explore/exo#readme
 
 *以上部分链接为联盟（affiliate）链接。如果你通过它们注册，dibi8.com 可能获得一笔佣金，而你无需为此多付任何费用。这有助于维持本站运转、让内容保持免费。*
 
-<!-- internal-link-candidates:
   related open-source tools -> ai-tools-directory
   related guides on dibi8 -> ai-coding-agent-landscape-2026-skills-mcp-opensource
--->
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -311,25 +305,20 @@ exo-explore 出品的 exo 是一个很有吸引力的工具，让你在自己的
 
 ## Why This Matters
 
-Understanding exo：把自己的多台设备组成集群跑前沿大模型（45k stars）——2026 实战指南 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding exo：把自己的多台设备组成集群跑前沿大模型（45k stars）——2026 实战指南 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -350,7 +339,7 @@ exo：把自己的多台设备组成集群跑前沿大模型（45K Stars）—�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

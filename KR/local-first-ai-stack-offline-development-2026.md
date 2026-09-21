@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/local-first-ai-stack-offline-development-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/local-first-ai-stack-offline-development-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/local-first-ai-stack-offline-development-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/local-first-ai-stack-offline-development-2026" />
 title: '로컬 우선 AI 스택 2026: 완전 오프라인 AI 개발 환경'
 description: '2026년 완전 오프라인 AI 코딩 환경 구축하기: LLM은 Ollama, 코딩 에이전트는 Aider, RAG는 ChromaDB — 전부 로컬. 설치 가이드, 하드웨어 실상, 오프라인이 진짜 의미 있는 상황(프라이버시, 컴플라이언스, 에어갭, 출장).'
 date: 2026-05-25 00:00:00+08:00
@@ -21,10 +16,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['local-first', offline, ollama, 'ai-coding', privacy, 2026]
-aliases:
-- /kr/posts/local-first-ai-stack-offline-development-2026/
-faq:
-  - q: "2026년에 왜 완전 오프라인으로 가야 하나?"
+aliases: - /kr/posts/local-first-ai-stack-offline-development-2026/
+faq: - q: "2026년에 왜 완전 오프라인으로 가야 하나?"
     a: "세 가지 실제 이유: (1) 프라이버시/컴플라이언스 — 규제 산업(금융, 의료, 정부)은 코드를 OpenAI/Anthropic에 보낼 수 없다. (2) 에어갭 환경 — 보안 인가가 필요한 작업. (3) 신뢰성 — 연결성이 나쁜 국제 출장, 또는 API가 다운됐을 때도 일할 수 있어야 한다."
   - q: "실제로 어떤 하드웨어가 필요한가?"
     a: "현실적 구성: M3 Max MacBook(또는 RTX 4090 데스크톱) + 32GB 이상 통합 메모리. 동작 가능한 모델: Llama 3.3 70B Q4 양자화, Mistral Large, DeepSeek Coder. 16GB RAM 미만에서는 작은 모델만 동작 가능(8B-13B 급) — 쓸 만하지만 상용 모델 대비 품질 격차가 커진다."
@@ -33,8 +26,6 @@ faq:
   - q: "로컬과 클라우드 워크플로우를 같이 쓸 수 있나?"
     a: "가능. 패턴: 로컬 Ollama를 주력으로, 어려운 작업은 상용 API로 폴백. Aider는 세션 중간에 모델 전환을 지원한다. 대부분의 개발자는 하이브리드로 — 기본은 로컬, 필요한 10-20%는 클라우드 — 운용한다."
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/local-first-ai-stack-offline-development-2026/ -->
 
 {{</* resource-info */>}}
 
@@ -56,8 +47,7 @@ faq:
 
 ## 2026년에 로컬 우선을 선택하는 이유
 
-클라우드 vs 로컬 구도가 2026년에 바뀌었다:
-- 클라우드 품질 향상 (Claude Sonnet 4.6, GPT-5) — 로컬과의 격차 확대
+클라우드 vs 로컬 구도가 2026년에 바뀌었다: - 클라우드 품질 향상 (Claude Sonnet 4.6, GPT-5) — 로컬과의 격차 확대
 - 로컬 품질 향상 (Llama 3.3, Mistral Large) — 2024년 대비 격차 축소
 - 클라우드 비용 상승 (Anthropic Max 월 200달러, OpenAI 사용량 기반)
 - 하드웨어 가격 하락 (RTX 4090 중고 1000-1500달러, M3 Max 보편화)
@@ -129,8 +119,7 @@ model = SentenceTransformer("BAAI/bge-m3")
 
 ## 하이브리드 패턴 (가장 실용적)
 
-대부분의 "로컬 우선" 개발자는 실제로는 하이브리드로 운영한다:
-- 로컬을 기본값으로 (약 80% 작업)
+대부분의 "로컬 우선" 개발자는 실제로는 하이브리드로 운영한다: - 로컬을 기본값으로 (약 80% 작업)
 - 어려운 작업은 상용 API로 폴백 (약 20%)
 - Aider가 세션 중간에 모델 전환을 지원한다
 
@@ -138,8 +127,7 @@ model = SentenceTransformer("BAAI/bge-m3")
 
 ## 실제 사례: 에어갭 환경
 
-지인 방산 계약자의 구성:
-- RTX A6000 48GB 장착 에어갭 워크스테이션
+지인 방산 계약자의 구성: - RTX A6000 48GB 장착 에어갭 워크스테이션
 - Llama 3.3 70B + 사내 코드베이스 대상 커스텀 파인튜닝
 - 일상 코딩은 Aider
 - 사내 문서로 ChromaDB 인덱싱
@@ -149,8 +137,7 @@ model = SentenceTransformer("BAAI/bge-m3")
 
 ## 추천 인프라
 
-로컬 모델 파인튜닝용 GPU 드롭릿이 필요하다면:
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — 200달러 크레딧, GPU 드롭릿
+로컬 모델 파인튜닝용 GPU 드롭릿이 필요하다면: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — 200달러 크레딧, GPU 드롭릿
 - **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 홍콩 VPS
 
 *제휴 링크 — 가격은 동일, dibi8.com을 후원합니다.*
@@ -166,7 +153,6 @@ model = SentenceTransformer("BAAI/bge-m3")
 **관련 글**: [셀프 호스팅 LLM 2026: Ollama vs vLLM vs LocalAI](https://dibi8.com/kr/resources/llm-frameworks/self-hosted-llm-2026-ollama-vllm-localai/) · [Ollama 설치 가이드](https://dibi8.com/kr/resources/llm-frameworks/ollama/) · [2026 로컬 우선 AI 스택 프로덕션 아키텍처](https://dibi8.com/kr/resources/llm-frameworks/2026-local-first-ai-stack-production-architecture/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -194,25 +180,20 @@ model = SentenceTransformer("BAAI/bge-m3")
 
 ## Why This Matters
 
-Understanding 로컬 우선 ai 스택 2026: 완전 오프라인 ai 개발 환경 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding 로컬 우선 ai 스택 2026: 완전 오프라인 ai 개발 환경 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

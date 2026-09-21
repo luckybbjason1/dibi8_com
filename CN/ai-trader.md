@@ -1,12 +1,9 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/ai-trader" />
-title: "AI-Trader: 14K⭐ Fully Automated AI Trading Agent — Let A...
+title: "AI-Trader: 14K⭐ Fully Automated AI Trading Agent — Let A..."
 description: "AI-Trader is an open-source fully automated AI trading agent system by HKUDS with 14K+ Stars. Supports stocks, crypto, and forex with reinforcement learning and multi-agent collaboration."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Go
+tech_stack: - Go
   - Python
 application_domain: "Llm Frameworks"
 source_version: ""
@@ -22,10 +19,8 @@ maintainer: "HKUDS"
 last_maintained: "2026-05-13"
 featureImage: ""
 draft: false
-aliases:
-- /posts/ai-trader/
-faqs:
-  - q: 'What is AI-Trader by HKUDS?'
+aliases: - /posts/ai-trader/
+faqs: - q: 'What is AI-Trader by HKUDS?'
     a: 'AI-Trader is an open-source fully automated AI trading agent system developed by the Hong Kong University Data Science Lab (HKUDS). It uses reinforcement learning and multi-agent collaboration to trade stocks, crypto, forex, and futures, and is released under the MIT license.'
   - q: 'Which markets and assets does AI-Trader support?'
     a: 'AI-Trader supports four markets: stocks (US, HK, and A-shares), crypto (BTC, ETH, and altcoins), forex (major pairs), and futures (commodities and indices). Each market uses tailored strategy types such as momentum, trend following, carry trade, and spread trading.'
@@ -45,7 +40,11 @@ faqs:
 Unlike traditional rule-based trading bots, AI-Trader uses **reinforcement learning** and **multi-agent collaboration** to adapt to market conditions in real-time.
 
 | Metric | Value |
-|--------|-------|
+|
+---
+|
+---
+|
 | Stars | 14,311+ |
 | Forks | 2,418+ |
 | Language | Python |
@@ -58,9 +57,7 @@ Unlike traditional rule-based trading bots, AI-Trader uses **reinforcement learn
 
 ### 1. 100% Agent-Native Architecture
 
-Traditional trading bots are "script-native" — they execute pre-programmed rules. AI-Trader is "agent-native":
-
-- **Decision Agent** — AI decides when to buy, sell, or hold
+Traditional trading bots are "script-native" — they execute pre-programmed rules. AI-Trader is "agent-native": - **Decision Agent** — AI decides when to buy, sell, or hold
 - **Analysis Agent** — Multiple specialized agents analyze different aspects (technical, fundamental, sentiment)
 - **Risk Agent** — Dedicated agent monitors portfolio risk and executes stop-loss
 - **Execution Agent** — Handles order placement, slippage control, and exchange interaction
@@ -68,7 +65,13 @@ Traditional trading bots are "script-native" — they execute pre-programmed rul
 ### 2. Multi-Market Support
 
 | Market | Assets | Strategy Type |
-|--------|--------|---------------|
+|
+---
+|
+---
+|
+---
+|
 | Stocks | US, HK, A-shares | Momentum + Mean Reversion |
 | Crypto | BTC, ETH, Altcoins | Trend Following + Arbitrage |
 | Forex | Major pairs | Carry Trade + Technical |
@@ -76,9 +79,7 @@ Traditional trading bots are "script-native" — they execute pre-programmed rul
 
 ### 3. Reinforcement Learning Core
 
-AI-Trader uses **Deep Reinforcement Learning (DRL)** for strategy optimization:
-
-```python
+AI-Trader uses **Deep Reinforcement Learning (DRL)** for strategy optimization: ```python
 # Simplified training loop
 from ai_trader import TradingAgent, MarketEnv
 
@@ -162,7 +163,15 @@ print(f"Max Drawdown: {results.max_drawdown:.2%}")
 ## Performance Benchmarks
 
 | Metric | AI-Trader | Buy & Hold | Traditional Bot |
-|--------|-----------|------------|-----------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Annual Return | 45.2% | 18.5% | 12.3% |
 | Sharpe Ratio | 2.1 | 0.8 | 0.6 |
 | Max Drawdown | -8.5% | -35.2% | -22.1% |
@@ -190,23 +199,19 @@ python scripts/download_data.py --market crypto --assets BTC,ETH
 
 ```yaml
 # config/trading.yaml
-market:
-  type: crypto
+market: type: crypto
   exchange: binance
   assets: [BTC, ETH, SOL]
 
-trading:
-  mode: paper  # paper | live
+trading: mode: paper  # paper | live
   timeframe: 1h
   max_position: 0.3  # 30% per asset
 
-risk:
-  max_daily_loss: 0.02
+risk: max_daily_loss: 0.02
   stop_loss: 0.05
   take_profit: 0.15
 
-agent:
-  algorithm: PPO
+agent: algorithm: PPO
   network: LSTM
   episodes: 10000
 ```
@@ -228,9 +233,7 @@ python dashboard.py --port 8080
 
 ### Personal Investment
 
-Automate your personal trading strategy:
-
-```python
+Automate your personal trading strategy: ```python
 # Custom strategy with AI enhancement
 from ai_trader import HybridAgent
 
@@ -246,9 +249,7 @@ agent.run(schedule='0 9 * * 1-5')  # Every weekday at 9 AM
 
 ### Institutional Trading
 
-For hedge funds and prop trading firms:
-
-- **Multi-Account Management** — Trade across hundreds of accounts
+For hedge funds and prop trading firms: - **Multi-Account Management** — Trade across hundreds of accounts
 - **Regulatory Compliance** — Built-in audit trails and reporting
 - **Custom Strategy Integration** — Plug in proprietary algorithms
 - **Real-Time Monitoring** — Slack/Discord alerts for anomalies
@@ -308,17 +309,15 @@ For hedge funds and prop trading firms:
 - [Polymarket Trading Bot: Automated Prediction Market Trading](/resources/dev-utils/polymarket-trading-bot-stack/)
 - [Agent Reach: Give Your AI Agent Internet Superpowers](/resources/llm-frameworks/agent-reach-ai-agent-internet-access/)
 
----
 
+---
 *Disclaimer: AI-Trader is for educational and research purposes. Always use paper trading before live trading. Past performance does not guarantee future results. Cryptocurrency trading carries significant risk.*
 
----
 
+---
 ## Recommended Tools
 
-For developers building or deploying open-source AI tools, we recommend:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
+For developers building or deploying open-source AI tools, we recommend: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
 
 *Affiliate link — supports dibi8.com at no cost to you.*
 
@@ -330,13 +329,11 @@ For developers building or deploying open-source AI tools, we recommend:
 
 *Affiliate link — supports dibi8.com at no extra cost to you.*
 
-<!--auto-references-->
 ## References & Sources
 
 - [AI-Trader (HKUDS)](https://github.com/HKUDS/AI-Trader)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -364,25 +361,20 @@ For developers building or deploying open-source AI tools, we recommend:
 
 ## Why This Matters
 
-Understanding ai-trader: 14k⭐ fully automated ai trading agent — let ai trade for you 24/7 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding ai-trader: 14k⭐ fully automated ai trading agent — let ai trade for you 24/7 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

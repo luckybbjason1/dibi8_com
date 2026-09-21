@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-code-skill-authoring-guide-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-skill-authoring-guide-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-skill-authoring-guide-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-skill-authoring-guide-2026" />
 title: 'Claude Code Skill 작성법: 필요할 때만 Claude가 불러오는 절차를 패키징하는 방법 ...
 description: 'Claude Code 스킬 작성 완전 가이드 — SKILL.md 구조, 로딩을 제어하는 트리거 description, 점진적 공개(progressive disclosure), 그리고 스킬이 CLAUDE.md나 서브에이전트보다 나은 경우. 실전 예제와 피해야 할 실수까지.'
 date: 2026-05-28 00:00:00+08:00
@@ -25,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['claude-code', skills, 'agent-sdk', 'ai-coding-agents', 'llm-frameworks', 'developer-tools', 'prompt-engineering']
-aliases:
-- /posts/claude-code-skill-authoring/
-faq:
-  - q: "스킬은 어디에 두며, SKILL.md에 최소한 필요한 것은 무엇인가요?"
+aliases: - /posts/claude-code-skill-authoring/
+faq: - q: "스킬은 어디에 두며, SKILL.md에 최소한 필요한 것은 무엇인가요?"
     a: "스킬은 SKILL.md 파일을 담은 디렉터리로, .claude/skills/<name>/ (프로젝트 범위) 또는 ~/.claude/skills/<name>/ (사용자 범위) 아래에 위치합니다. 최소 구성은 name과 description을 담은 YAML 프런트매터, 그리고 그 뒤에 본문으로 들어가는 지시문입니다. 디렉터리에는 스킬이 가리키는 보조 파일 — 참조 문서, 스크립트, 템플릿 — 도 함께 둘 수 있지만, 이 두 프런트매터 필드를 갖춘 SKILL.md가 더 이상 줄일 수 없는 핵심입니다."
   - q: "스킬과 단순히 CLAUDE.md에 지시문을 넣는 것의 차이는 무엇인가요?"
     a: "CLAUDE.md는 모든 상호작용마다 빠짐없이 로딩됩니다 — 항상 켜져 있는 프로젝트 전역 규칙용입니다. 반면 스킬은 그 description이 현재 작업과 맞을 때만 로딩됩니다. CLAUDE.md는 『항상 탭을 사용한다』, 『main에 직접 커밋하지 않는다』 같은 규칙에 쓰세요. 스킬은 『릴리스를 자르는 방법』이나 『불안정한(flaky) 테스트를 디버깅하는 방법』처럼 상황에 따른 절차 — 모든 프롬프트를 비대하게 만들고 싶지 않고, 실제로 그 작업을 할 때만 존재하길 바라는 지식 — 에 쓰세요. 스킬은 기본 컨텍스트를 가볍게 유지해 줍니다."
@@ -42,7 +35,6 @@ faq:
     a: "현재 대화 안에서 실행되는 절차를 가르쳐야 할 때는 스킬을 작성하세요. 작업에 자체 컨텍스트 윈도우가 필요할 때 — 무거운 탐색, 병렬 리서치, 또는 그러지 않으면 부모 컨텍스트를 비대하게 만들 독립적 리뷰 — 는 서브에이전트를 작성하세요. 둘은 조합됩니다: 서브에이전트가 격리된 채 실행되면서 당신의 방법론을 따르기 위해 스킬을 로딩할 수 있습니다. 확장 결정 프레임워크의 경험칙은 이렇습니다 — 스킬은 행동을 바꾸고, 서브에이전트는 컨텍스트를 보호하며, MCP 서버는 역량을 추가한다."
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/claude-code-skill-authoring-guide-2026/ -->
 # Claude Code Skill 작성법: 필요할 때만 Claude가 불러오는 절차를 패키징하는 방법 (2026)
 
 
@@ -54,9 +46,7 @@ faq:
 
 ## 스킬이란 실제로 무엇인가
 
-스킬은 단순한 파일이 아니라 **디렉터리**입니다:
-
-```
+스킬은 단순한 파일이 아니라 **디렉터리**입니다: ```
 .claude/skills/cut-release/
   SKILL.md            # frontmatter + instructions
   references/
@@ -93,18 +83,14 @@ You are helping cut a release. Follow these steps in order...
 
 ### `description` — 모든 것을 결정하는 트리거 신호
 
-Claude는 라우팅을 위해 스킬 description들을 읽습니다: 그것들을 훑어보고, 어떤 스킬이 현재 작업에 맞는지 판단한 뒤, 그 스킬의 본문을 로딩합니다. 따라서 description은 라벨이 아니라 **언제 발동할지에 대한 조건**입니다. 구체적인 트리거로 꽉 채우세요:
-
-> ❌ `description: Release helper.`
+Claude는 라우팅을 위해 스킬 description들을 읽습니다: 그것들을 훑어보고, 어떤 스킬이 현재 작업에 맞는지 판단한 뒤, 그 스킬의 본문을 로딩합니다. 따라서 description은 라벨이 아니라 **언제 발동할지에 대한 조건**입니다. 구체적인 트리거로 꽉 채우세요: > ❌ `description: Release helper.`
 > ✅ `description: Use when cutting a release, publishing a version, tagging a build, or writing release notes. Covers version bump, changelog generation, git tag, and publish.`
 
 첫 번째는 절대 발동하지 않습니다 — 실제 작업에서 "release helper"에 매칭되는 것이 아무것도 없으니까요. 두 번째는 사용자가 "2.4.0 배포하자"라고 말하는 순간 발동합니다. 스킬이 존재하는데도 결코 활성화되지 않는다면, 범인은 — 매번 — description입니다.
 
 ## 본문 작성하기: 에세이가 아니라 절차
 
-본문은 스킬이 로딩된 뒤 Claude가 따르는 지시문입니다. 세 가지 규칙:
-
-1. **에세이가 아니라 절차로.** 모델이 순서대로 실행하는 번호 매긴 단계가 맥락을 늘어놓은 문단보다 낫습니다. "1. package.json의 버전을 올린다. 2. 마지막 태그 이후 커밋들로부터 체인지로그를 재생성한다. 3. ..."
+본문은 스킬이 로딩된 뒤 Claude가 따르는 지시문입니다. 세 가지 규칙: 1. **에세이가 아니라 절차로.** 모델이 순서대로 실행하는 번호 매긴 단계가 맥락을 늘어놓은 문단보다 낫습니다. "1. package.json의 버전을 올린다. 2. 마지막 태그 이후 커밋들로부터 체인지로그를 재생성한다. 3. ..."
 2. **전제조건과 함정을 인라인으로 명시하라.** "태그를 달기 전에 main에서 CI가 통과(green) 상태인지 확인하라" — 사람이라면 당연히 점검할 그런 것 말입니다.
 3. **무거운 세부 내용은 인라인하지 말고 가리켜라.** 버전 정책이 800단어라면 `references/versioning.md`에 넣고 "버전 올리기 규칙은 references/versioning.md를 읽어라"라고 쓰세요. 그게 다음에 다룰 점진적 공개입니다.
 
@@ -135,8 +121,7 @@ You are cutting a release. Do NOT skip the precondition check.
 
 PRECONDITION: confirm CI is green on main. If not, stop and report.
 
-Steps:
-1. Determine the new version (semver; see references/versioning.md).
+Steps: 1. Determine the new version (semver; see references/versioning.md).
 2. Bump it in package.json and any version constants.
 3. Generate the changelog from commits since the last tag.
 4. Open a release PR; wait for review.
@@ -155,8 +140,7 @@ name: debug-flaky-test
 description: Use when a test passes sometimes and fails other times, or when investigating CI flakiness, intermittent failures, or race conditions in the suite.
 ---
 
-You are diagnosing a flaky test. Flakiness is almost always one of:
-shared state, timing/async, test-order dependence, or external resources.
+You are diagnosing a flaky test. Flakiness is almost always one of: shared state, timing/async, test-order dependence, or external resources.
 
 1. Reproduce: run the test 20x in isolation and 20x with the full suite.
    Different results = test-order or shared-state dependence.
@@ -181,9 +165,7 @@ shared state, timing/async, test-order dependence, or external resources.
 
 ## 프로덕션급 Claude Code 세팅하기
 
-스킬은 안정적이고 공유되는 환경에서 가장 빛납니다:
-
-1. **팀 공유, CI 호출형 워크플로를 위한 신뢰할 수 있는 호스트.** 스킬은 버전 관리되며 CI에서도 실행됩니다. **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 홍콩 VPS, 저지연 중국 본토 접속, 안정적인 BGP. dibi8.com을 호스팅하는 바로 그 IDC입니다. 월 $5-12.
+스킬은 안정적이고 공유되는 환경에서 가장 빛납니다: 1. **팀 공유, CI 호출형 워크플로를 위한 신뢰할 수 있는 호스트.** 스킬은 버전 관리되며 CI에서도 실행됩니다. **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 홍콩 VPS, 저지연 중국 본토 접속, 안정적인 BGP. dibi8.com을 호스팅하는 바로 그 IDC입니다. 월 $5-12.
 
 2. **병렬 실행을 위한 클라우드 여유 공간.** **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — 60일간 $200 무료 크레딧, 14개 이상의 리전.
 
@@ -201,7 +183,6 @@ shared state, timing/async, test-order dependence, or external resources.
 스킬은 가장 저렴하고 가장 저평가된 확장 지점입니다 — 마크다운 파일 하나가 든 디렉터리로, 상황에 따른 전문성을 적시 컨텍스트로 바꿔 줍니다. 이 기예 전체는 결국 두 가지로 환원됩니다: 적절한 순간에 발동하도록 실제 트리거 문구로 꽉 채운 **description**, 그리고 작업이 그 깊이를 필요로 할 때까지 가볍게 유지되도록 하는 **점진적 공개**. 이 둘을 잘 쓰면, 당신은 팀 전체가 — 그리고 모든 CI 실행이 — 관련된 바로 그 순간에 공짜로 얻는 절차를 패키징한 것입니다. 그것으로 삼부작이 완성됩니다: 지식엔 스킬, 컨텍스트엔 서브에이전트, 역량엔 MCP 서버.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -229,25 +210,20 @@ shared state, timing/async, test-order dependence, or external resources.
 
 ## Why This Matters
 
-Understanding claude code skill 작성법: 필요할 때만 claude가 불러오는 절차를 패키징하는 방법 (2026) is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding claude code skill 작성법: 필요할 때만 claude가 불러오는 절차를 패키징하는 방법 (2026) is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

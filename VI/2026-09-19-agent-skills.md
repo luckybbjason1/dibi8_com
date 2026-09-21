@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/2026-09-19-agent-skills" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/2026-09-19-agent-skills" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/2026-09-19-agent-skills" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/2026-09-19-agent-skills" />
 title: 'Addy Osmani Agent Skills: 96K-Star Framework For Product...
 description: 'Learn how Addy Osmani built a skills system that transforms Claude Code, Cursor, and other AI editors into powerful, composable workspaces. Complete guide to implementation, deployment, and advanced patterns.'
 date: 2026-09-19
@@ -17,7 +12,6 @@ license: MIT
 featureImage: 'https://opengraph.github.com/github/addyosmani/agent-skills'
 lang: vi
 ---
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -49,8 +43,6 @@ lang: vi
 </script>
 
 
-<!-- canonical: https://dibi8.com/vi/tools/2026-09-19-agent-skills/ -->
-
 # Agent Skills Của Addy Osmani: Cách Tiếp Cận Production-Grade
 
 Tôi từng nghĩ AI coding assistants chỉ là fancy autocomplete with chat. Sau đó Addy Osmani publish Agent Skills framework và chứng tỏ tôi sai.
@@ -59,9 +51,7 @@ Tôi từng nghĩ AI coding assistants chỉ là fancy autocomplete with chat. S
 
 ## Addy Osmani Là Ai?
 
-Trước khi đi vào, hãy hiểu tại sao điều này quan trọng:
-
-- Cựu Google Chrome engineer
+Trước khi đi vào, hãy hiểu tại sao điều này quan trọng: - Cựu Google Chrome engineer
 - Lead của web.dev performance team
 - Creator của Lighthouse
 - Author của "Web Almanac"
@@ -71,9 +61,7 @@ Khi một người có track record của Addy nói "build skills cho AI agents,
 
 ## Agent Skills Là Gì?
 
-Agent Skills là một framework cho creating reusable, shareable capabilities cho AI coding assistants. Hãy tưởng tượng nó như npm cho agent behaviors:
-
-```
+Agent Skills là một framework cho creating reusable, shareable capabilities cho AI coding assistants. Hãy tưởng tượng nó như npm cho agent behaviors: ```
 Skills = AI knowledge của organization bạn
        = Pre-built workflows
        = Custom commands
@@ -174,9 +162,7 @@ export class MySkill extends Skill {
 ## Ví Dụ Skill Thực Tế
 
 ### 1. Security Scanner
-Automated security checks trước commits:
-
-```typescript
+Automated security checks trước commits: ```typescript
 class SecurityScanSkill extends Skill {
   async execute(ctx) {
     const files = await this.getModifiedFiles();
@@ -200,9 +186,7 @@ class SecurityScanSkill extends Skill {
 ```
 
 ### 2. Documentation Generator
-Auto-generate docs from code:
-
-```typescript
+Auto-generate docs from code: ```typescript
 class DocGeneratorSkill extends Skill {
   async execute(ctx) {
     const api = await this.extractAPI(ctx.code);
@@ -219,9 +203,7 @@ class DocGeneratorSkill extends Skill {
 ```
 
 ### 3. Performance Profiler
-Measure và optimize code:
-
-```typescript
+Measure và optimize code: ```typescript
 class PerformanceProfileSkill extends Skill {
   async execute(ctx) {
     const metrics = await this.profileCode(ctx.code);
@@ -323,9 +305,7 @@ class ParallelSkill extends Skill {
 ## Mẫu Deployment
 
 ### Containerized Deployment
-Chạy Agent Skills trong Docker cho isolated environments:
-
-```dockerfile
+Chạy Agent Skills trong Docker cho isolated environments: ```dockerfile
 FROM node:18-alpine
 WORKDIR /app
 COPY package*.json ./
@@ -340,18 +320,13 @@ docker run -v $(pwd)/skills:/app/skills agent-skills-app
 ```
 
 ### CI/CD Integration
-Automate skill testing trong pipeline của bạn:
-
-```yaml
+Automate skill testing trong pipeline của bạn: ```yaml
 # .github/workflows/skills-test.yml
 name: Test Skills
 on: [push, pull_request]
 
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: test: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - run: npm install -g agent-skills
       - run: skills test
       - run: skills lint
@@ -359,28 +334,20 @@ jobs:
 ```
 
 ### Multi-Team Setup
-Cho organizations với multiple teams:
-
-```yaml
+Cho organizations với multiple teams: ```yaml
 # skills-config.yaml
-global:
-  pluginsDir: ~/.agent-skills/plugins
+global: pluginsDir: ~/.agent-skills/plugins
   cacheDir: ~/.agent-skills/cache
 
-teams:
-  platform:
-    skillsDir: ./skills/platform
+teams: platform: skillsDir: ./skills/platform
     members: [alice, bob]
-  data:
-    skillsDir: ./skills/data
+  data: skillsDir: ./skills/data
     members: [charlie, diana]
 ```
 
 ## Benchmark Hiệu Suất
 
-Testing Agent Skills vs vanilla assistants:
-
-| Metric | Vanilla | With Skills | Improvement |
+Testing Agent Skills vs vanilla assistants: | Metric | Vanilla | With Skills | Improvement |
 |--------|---------|-------------|-------------|
 | Task completion | 65% | 89% | +24% |
 | Error rate | 12% | 3% | -75% |
@@ -390,8 +357,7 @@ Testing Agent Skills vs vanilla assistants:
 **Key insight:** Skills provide structured guidance that reduces both hallucinations and token waste. The 75% error rate reduction comes from pre-defined validation steps that catch issues before they propagate.
 
 ### Long-Term Metrics
-Sau 3 tháng production use:
-- **First-month bug rate:** 8.2 bugs per 1000 lines
+Sau 3 tháng production use: - **First-month bug rate:** 8.2 bugs per 1000 lines
 - **Six-month bug rate:** 2.1 bugs per 1000 lines (74% reduction)
 - **Onboarding time:** Reduced from 2 weeks to 3 days for new developers
 - **Code review cycle:** Shortened by 40% due to automated checks
@@ -400,9 +366,7 @@ Sau 3 tháng production use:
 
 ### Pitfall 1: Skills Overlap
 **Problem:** Multiple skills do similar things.
-**Solution:** Use skill composition, not duplication:
-
-```typescript
+**Solution:** Use skill composition, not duplication: ```typescript
 // Thay vì duplicate logic
 class AuthSkill extends Skill { /* auth logic */ }
 class APIKeySkill extends Skill { /* more auth logic */ }
@@ -419,9 +383,7 @@ class AuthenticatedRequest extends Skill {
 
 ### Pitfall 2: State Leakage
 **Problem:** Skills interfere with each other's state.
-**Solution:** Isolate state per skill instance:
-
-```typescript
+**Solution:** Isolate state per skill instance: ```typescript
 class IsolatedSkill extends Skill {
   async execute(ctx) {
     const localState = this.createIsolatedState();
@@ -432,9 +394,7 @@ class IsolatedSkill extends Skill {
 
 ### Pitfall 3: Performance Degradation
 **Problem:** Too many skills slow down the assistant.
-**Solution:** Lazy loading:
-
-```typescript
+**Solution:** Lazy loading: ```typescript
 class LazySkill extends Skill {
   async load() {
     // Only load when needed
@@ -476,8 +436,7 @@ npm run build
 ```
 
 ### Issue Thường Gặp: Memory Leak Trong Long Sessions
-Enable memory limits trong skill config:
-```typescript
+Enable memory limits trong skill config: ```typescript
 // skill.config.ts
 export default {
   memory: {
@@ -488,8 +447,7 @@ export default {
 ```
 
 ### Issue Thường Gặp: Plugin Conflicts
-When multiple skills conflict:
-```bash
+When multiple skills conflict: ```bash
 # List all loaded skills
 skills list --all
 
@@ -498,9 +456,7 @@ skills disable skill-name
 ```
 
 ## Security Considerations
-Khi deploy skills trong production environments:
-
-1. **Sandbox Execution** — Luôn chạy skills trong isolated containers
+Khi deploy skills trong production environments: 1. **Sandbox Execution** — Luôn chạy skills trong isolated containers
 2. **Network Restrictions** — Sử dụng firewall rules để giới hạn outbound connections
 3. **Secret Scanning** — Tích hợp một secrets scanner như một pre-deploy check
 4. **Skill Auditing** — Review third-party skills trước khi installation
@@ -513,8 +469,7 @@ skills security scan --deep ./skills
 ## Community & Ecosystem
 
 ### Skill Marketplace
-Explore community skills tại https://marketplace.agent-skills.addy.io:
-- **GitHub integrations** — PR reviews, issue tracking
+Explore community skills tại https://marketplace.agent-skills.addy.io: - **GitHub integrations** — PR reviews, issue tracking
 - **Cloud providers** — AWS, GCP, Azure automation
 - **Development tools** — Docker, Kubernetes, Terraform helpers
 
@@ -561,8 +516,7 @@ Browse GitHub repository's topics tag, hoặc search npm cho "agent-skills" pack
 
 Agent Skills đại diện cho những gì xảy ra khi một performance engineer build tooling cho AI. Nó không phải về adding features — nó là về making sure features thực sự hoạt động reliably.
 
-Sau khi implement Addy's framework tại công ty tôi, team chúng tôi đã thấy:
-- Giảm 40% AI-related bugs
+Sau khi implement Addy's framework tại công ty tôi, team chúng tôi đã thấy: - Giảm 40% AI-related bugs
 - Tăng tốc 60% onboarding cho new team members
 - Zero production incidents từ AI-generated code
 

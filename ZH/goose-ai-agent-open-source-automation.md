@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/goose-ai-agent-open-source-automation" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/goose-ai-agent-open-source-automation" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/goose-ai-agent-open-source-automation" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/goose-ai-agent-open-source-automation" />
 title: "Goose AI Agent：44K⭐Open Source神器，让 AI 替你写代码、做研究、自动化一切"
-description: "Goose 是 Linux 基金会支持的Open Source AI Agent，44K+ Stars，支持 15+ LLM 提供商和 70+ MCP 扩展。桌面应用 + CLI + API 三位一体，用 Rust 构建，性能卓越。". Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "Goose 是 Linux 基金会支持的Open Source AI Agent，44K+ Stars，支持 15+ LLM 提供商和 70+ MCP 扩展。桌面应用 + CLI + API 三位一体，用 Rust 构建，性能卓越。"
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Go
+tech_stack: - Go
   - Python
   - Rust
 application_domain: "Llm Frameworks"
@@ -26,8 +20,7 @@ maintainer: "aaif-goose"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-faqs:
-  - q: 'Goose AI agent 是什么？'
+faqs: - q: 'Goose AI agent 是什么？'
     a: 'Goose 是一款通用型开源 AI agent，最初由 Block 开发，后捐赠给 Linux Foundation 旗下的 Agentic AI Foundation (AAIF)。与专门的编程助手不同，它可以处理任何任务，包括编写代码、分析数据、管理文件、运行终端命令以及自动化工作流。'
   - q: 'Goose 支持哪些 LLM 提供商？'
     a: 'Goose 不依赖特定模型，支持 OpenAI GPT-4 和 GPT-3.5、Anthropic Claude、Google Gemini、通过 Ollama 运行的本地模型，以及任何兼容 OpenAI 的 API。'
@@ -36,10 +29,7 @@ faqs:
   - q: 'Goose 是开源的吗？它使用什么许可证？'
     a: '是的，Goose 是开源的，托管在 GitHub 上 github.com/block/goose，拥有 44K+ stars。它基于 Apache 2.0 license 发布。'
   - q: 'Goose 包含哪些安全特性？'
-    a: 'Goose 包含一个在执行危险命令前会先询问的审批模式（approval mode），一个在隔离环境中运行命令的沙箱模式（sandbox mode），一个用于追踪所有操作的审计日志（audit log），以及防止 API 滥用的速率限制（rate limiting）。'
----
-
-<!-- canonical: https://dibi8.com/zh/tools/goose-ai-agent-open-source-automation/ -->
+    a: 'Goose 包含一个在执行危险命令前会先询问的审批模式（approval mode），一个在隔离环境中运行命令的沙箱模式（sandbox mode），一个用于追踪所有操作的审计日志（audit log），以及防止 API 滥用的速率限制（rate limiting）。'---
 {</* resource-info */>}
 
 ## Goose 是什么？
@@ -54,8 +44,8 @@ faqs:
 GitHub: https://github.com/aaif-goose/goose  
 Stars: **44,261+** | 语言: Rust | 协议: Apache-2.0
 
----
 
+---
 ## 为什么 Goose 与众不同？
 
 ### 1. 不只是代码，是一切
@@ -63,7 +53,11 @@ Stars: **44,261+** | 语言: Rust | 协议: Apache-2.0
 Goose 的定位是**通用 AI Agent**，不限于编程：
 
 | 场景 | 能力 |
-|------|------|
+|
+---
+|
+---
+|
 | 编程开发 | 写代码、调试、测试、重构 |
 | 数据分析 | 处理 CSV、生成图表、写报告 |
 | 内容创作 | 写文章、翻译、润色 |
@@ -96,8 +90,8 @@ Goose 不绑定任何一家 AI 公司：
 - 📊 数据分析工具
 - 以及更多...
 
----
 
+---
 ## 安装与使用
 
 ### 桌面应用（推荐）
@@ -189,7 +183,17 @@ Goose 会：
 ## 与竞品对比
 
 | 特性 | Goose | Claude Code | Cursor | GitHub Copilot |
-|------|-------|-------------|--------|----------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Open Source | ✅ | ❌ | ❌ | ❌ |
 | 免费 | ✅ | 需 API | 付费 | 付费 |
 | 多 LLM | ✅ 15+ | Claude only | 有限 | 有限 |
@@ -268,6 +272,7 @@ Goose 是 2026 年最值得关注的Open Source AI Agent：
 ---
 
 
+-
 ---
 
 ## 推荐自托管基础设施
@@ -282,7 +287,6 @@ Goose 是 2026 年最值得关注的Open Source AI Agent：
 *Last updated: 2026-05-07*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -310,25 +314,20 @@ Goose 是 2026 年最值得关注的Open Source AI Agent：
 
 ## Why This Matters
 
-Understanding goose ai agent：44k⭐open source神器，让 ai 替你写代码、做研究、自动化一切 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding goose ai agent：44k⭐open source神器，让 ai 替你写代码、做研究、自动化一切 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -380,7 +379,17 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

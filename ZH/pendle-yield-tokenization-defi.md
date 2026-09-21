@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/pendle-yield-tokenization-defi" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/pendle-yield-tokenization-defi" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/pendle-yield-tokenization-defi" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/pendle-yield-tokenization-defi" />
 title: 'pendle-yield-tokenization-defi'
 description: ''. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
@@ -25,18 +20,15 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: [pendle]
-aliases:
-- /zh/posts/pendle-yield-tokenization-defi/
+aliases: - /zh/posts/pendle-yield-tokenization-defi/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/pendle-yield-tokenization-defi/ -->
 
 {{</* resource-info */>}}
 
 > **联盟营销披露**：本文包含 [Binance](https://www.bsmkweb.cc/register?ref=DIBI8) 和 [OKX](https://www.promoohubly.com/join/12190433) 的联盟链接。您通过这些链接注册时，我们可能会赚取佣金 —— 对您不产生额外费用。
 
----
 
+---
 ## 什么是Pendle？为什么它改变了DeFi？
 
 Pendle是去中心化金融中首屈一指的收益代币化协议，使用户能够将收益性资产分离为两个不同的组成部分：**本金代币（PT）** 和 **收益代币（YT）**。这一突破性创新在以太坊上推出，现已跨多个链上线，重新定义了DeFi参与者与收益互动的方式。截至2026年5月，Pendle的**总锁仓价值（TVL）已超过50亿美元**，并支持**超过30种收益性资产**，使其成为加密生态系统中最为复杂的固定收益协议之一。
@@ -1042,26 +1034,20 @@ from decimal import Decimal
 from pendle_sdk import PendleSDK, MarketSnapshot
 
 @dataclass
-class YieldStrategy:
-    name: str
+class YieldStrategy: name: str
     market_address: str
     allocation_pct: Decimal
     expected_apy: Decimal
     risk_score: int  # 1-10
 
-class InstitutionalYieldManager:
-    
-    def __init__(self, rpc_url: str, wallet_key: str):
-        self.sdk = PendleSDK(rpc_url=rpc_url, private_key=wallet_key)
+class InstitutionalYieldManager: def __init__(self, rpc_url: str, wallet_key: str): self.sdk = PendleSDK(rpc_url=rpc_url, private_key=wallet_key)
         self.strategies: list[YieldStrategy] = []
     
-    async def analyze_yield_opportunities(self) -> list[dict]:
-        """扫描所有Pendle市场寻找最佳风险调整后收益"""
+    async def analyze_yield_opportunities(self) -> list[dict]: """扫描所有Pendle市场寻找最佳风险调整后收益"""
         markets = await self.sdk.get_all_markets()
         opportunities = []
         
-        for market in markets:
-            snapshot = await market.get_snapshot()
+        for market in markets: snapshot = await market.get_snapshot()
             
             # 计算风险调整后收益
             sharpe_ratio = self._calculate_sharpe(snapshot)
@@ -1079,8 +1065,7 @@ class InstitutionalYieldManager:
         
         return sorted(opportunities, key=lambda x: x[sharpe_ratio], reverse=True)
     
-    async def execute_yield_portfolio(self, total_capital: Decimal):
-        """在多个PT策略中部署资本"""
+    async def execute_yield_portfolio(self, total_capital: Decimal): """在多个PT策略中部署资本"""
         opportunities = await self.analyze_yield_opportunities()
         
         # 筛选具有正carry的流动市场
@@ -1089,8 +1074,7 @@ class InstitutionalYieldManager:
                   and o[pt_apy] > 0.03]
         
         # 向排名前5的机会部署资本
-        for opp in viable[:5]:
-            allocation = total_capital * Decimal('0.2')
+        for opp in viable[:5]: allocation = total_capital * Decimal('0.2')
             
             print(f"将 ${allocation} 部署到 {opp[asset]} PT "
                   f"({opp[maturity]}) @ {opp[pt_apy]:.2%} APY")
@@ -1099,8 +1083,7 @@ class InstitutionalYieldManager:
         
         return await self.get_portfolio_summary()
     
-    async def get_portfolio_summary(self) -> dict:
-        """获取当前投资组合仓位和损益"""
+    async def get_portfolio_summary(self) -> dict: """获取当前投资组合仓位和损益"""
         positions = await self.sdk.get_positions()
         
         total_value = sum(p.current_value for p in positions)
@@ -1123,18 +1106,14 @@ class InstitutionalYieldManager:
             maturities: list(set(p.maturity for p in positions))
         }
     
-    def _calculate_sharpe(self, snapshot: MarketSnapshot) -> Decimal:
-        """计算收益机会的简化夏普比率"""
+    def _calculate_sharpe(self, snapshot: MarketSnapshot) -> Decimal: """计算收益机会的简化夏普比率"""
         excess_yield = snapshot.pt_implied_apy - Decimal('0.02')  # 对比无风险利率
         volatility = Decimal('0.05')  # 假设5%收益波动率
         return excess_yield / volatility if volatility > 0 else Decimal(0)
     
-    def _generate_recommendation(self, snapshot: MarketSnapshot) -> str:
-        spread = snapshot.underlying_apy - snapshot.pt_implied_apy
-        if spread > Decimal('0.02'):
-            return "LONG_PT"
-        elif spread < Decimal('-0.02'):
-            return "LONG_YT"
+    def _generate_recommendation(self, snapshot: MarketSnapshot) -> str: spread = snapshot.underlying_apy - snapshot.pt_implied_apy
+        if spread > Decimal('0.02'): return "LONG_PT"
+        elif spread < Decimal('-0.02'): return "LONG_YT"
         return "HOLD"
 ```
 
@@ -1169,8 +1148,6 @@ A：截至2026年5月，Pendle在以太坊、Arbitrum、Optimism和BNB Chain上�
 A：PT回报计算如下：`固定收益率% = (1 - PT_Price) / PT_Price`。年化APY：`APY = (1 / PT_Price)^(365 / days_to_maturity) - 1`。例如，PT定价0.95，180天到期：收益率 = (1 - 0.95) / 0.95 = 5.26%；APY = (1/0.95)^(365/180) - 1 ≈ 10.8%。如果您持有到期，这些回报是有保证的，使PT在传统金融中功能上等同于零息债券。
 
 ---
-
-
 
 ## 推荐部署与基础设施
 
@@ -1259,7 +1236,6 @@ quickstart().catch(console.error);
 *© 2026 dibi8.com | 为DeFi开发者、交易者和研究人员而建。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

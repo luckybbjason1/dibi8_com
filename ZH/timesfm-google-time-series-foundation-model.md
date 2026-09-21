@@ -1,20 +1,11 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/timesfm-google-time-series-foundation-model" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/timesfm-google-time-series-foundation-model" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/timesfm-google-time-series-foundation-model" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/timesfm-google-time-series-foundation-model" />
 title: 'TimesFM 2.5：用于预测的谷歌革命性时间序列基础模型'
 description: 'TimesFM 2.5 完整指南——用于时间序列预测的 Google Research 仅解码器基础模型。涵盖安装、微调、基准测试和实际应用。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-19
-lastmod:  2026-06-19tags: []
+lastmod: 2026-06-19tags: []
 category: "data-science"
-lang: zh
 slug: timesfm-google-time-series-foundation-model
-featureImage: /images/articles/timesfm-google-time-series-foundation-model-4cb99070.png
----
-
-<!-- canonical: https://dibi8.com/zh/tools/timesfm-google-time-series-foundation-model/ -->
+featureImage: /images/articles/timesfm-google-time-series-foundation-model-4cb99070.png---
 
 # TimesFM 2.5：Google 革命性的预测时间序列基础模型
 
@@ -51,7 +42,13 @@ TimesFM（时间序列基础模型）是 Google Research 专门针对时间序�
  ![模型架构](https://images.pexels.com/photos/8386449/pexels-photo-8386449.jpeg)
 
  | 特色 | 时代FM 2.0 | 时代FM 2.5 |
- |---------|-------------|----------|
+ |
+---
+|
+---
+|
+---
+|
  | 参数| 500M | 200M |
  | 上下文长度 | 2,048 | 2,048 16,000 |
  | 分位数预测 | 离散| 连续（最多 1,000 个水平线）|
@@ -325,7 +322,17 @@ TimesFM（时间序列基础模型）是 Google Research 专门针对时间序�
  ### 基准测试结果
 
  | 数据集 | 时代FM 2.5 | 自动ARIMA | 先知| N-节拍 |
- |--------|-------------|------------|---------|---------|
+ |
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
  | ETTh1 | 0.312 | 0.312 0.487 | 0.487 0.523 | 0.523 0.398 | 0.398
  | 电力 | 0.234 | 0.234 0.312 | 0.312 0.298 | 0.298 0.267 | 0.267
  | 交通 | 0.198 | 0.198 0.287 | 0.287 0.276 | 0.276 0.245 | 0.245
@@ -468,7 +475,13 @@ TimesFM（时间序列基础模型）是 Google Research 专门针对时间序�
  ### TimesFM 与 ARIMA
 
  | 方面| 时代FM 2.5 | 华睿玛 |
- |--------|-------------|--------|
+ |
+---
+|
+---
+|
+---
+|
  | 设置时间| 分钟 | 小时-天 |
  | 参数调优 | 最小 | 广泛 |
  | 多系列 | 是的 | 没有 |
@@ -479,7 +492,13 @@ TimesFM（时间序列基础模型）是 Google Research 专门针对时间序�
  ### TimesFM vs. Prophet
 
  | 方面| 时代FM 2.5 | 先知|
- |--------|-------------|---------|
+ |
+---
+|
+---
+|
+---
+|
  | 基础模型| 是的 | 没有 |
  | 迁移学习 | 是的 | 没有 |
  | 不确定性估计| 连续 | 离散|
@@ -505,7 +524,13 @@ TimesFM（时间序列基础模型）是 Google Research 专门针对时间序�
  ### TimesFM 与 ARIMA
 
  | 方面| 时代FM 2.5 | 华睿玛 |
- |--------|-------------|--------|
+ |
+---
+|
+---
+|
+---
+|
  | 设置时间| 分钟 | 小时-天 |
  | 参数调优 | 最小 | 广泛 |
  | 多系列 | 是的 | 没有 |
@@ -516,7 +541,13 @@ TimesFM（时间序列基础模型）是 Google Research 专门针对时间序�
  ### TimesFM vs. Prophet
 
 | 方面| 时代FM 2.5 | 先知|
- |--------|-------------|---------|
+ |
+---
+|
+---
+|
+---
+|
  | 基础模型| 是的 | 没有 |
  | 迁移学习 | 是的 | 没有 |
  | 不确定性估计| 连续 | 离散|
@@ -606,9 +637,9 @@ TimesFM 2.5 通过其连续分位数头支持高达 1,000 个时间步的范围�
 
 对于任何使用时态数据的人来说，投入时间学习和部署 TimesFM 不仅是有益的，而且变得至关重要。 
 
----
 
- **来源：**
+---
+**来源：**
  - [GitHub 存储库](https://github.com/google-research/timesfm)
  - [ICML 2024 论文](https://arxiv.org/abs/2310.10688)
  - [谷歌研究博客](https://research.google/blog/a-decoder-only-foundation-model-for-time-series-forecasting/)
@@ -622,7 +653,6 @@ TimesFM 2.5 通过其连续分位数头支持高达 1,000 个时间步的范围�
  - [虎网云](https://www.huwangyun.cn/gpu-server/?aff_id=f872dfc7e2864e62822c83c023354367) - 用于训练的GPU服务器（中文）
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -650,25 +680,20 @@ TimesFM 2.5 通过其连续分位数头支持高达 1,000 个时间步的范围�
 
 ## Why This Matters
 
-Understanding timesfm 2.5：用于预测的谷歌革命性时间序列基础模型 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding timesfm 2.5：用于预测的谷歌革命性时间序列基础模型 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -689,7 +714,7 @@ TimesFM 2.5：用于预测的谷歌革命性时间序列基础模型 represents 
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*

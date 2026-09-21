@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/docuseal-open-source-docusign-alternative" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/docuseal-open-source-docusign-alternative" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/docuseal-open-source-docusign-alternative" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/docuseal-open-source-docusign-alternative" />
 title: DocuSeal评测：用这款开源DocuSign替代品将文档签署成本降低90%
 description: DocuSeal是一个拥有15.7k星的开源平台，可用自托管数字文档签署、PDF表单构建和白标电子签名工作流替代DocuSign。. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
-tech_stack:
-- Docker
+tech_stack: - Docker
 - Go
 - JavaScript
 - Python
@@ -27,10 +21,8 @@ maintainer: ''
 last_maintained: '2026-05-15'
 featureImage: ''
 draft: false
-aliases:
-- /zh/posts/docuseal-open-source-docusign-alternative/
-faqs:
-  - q: 'DocuSeal 是 DocuSign 的免费替代品吗？'
+aliases: - /zh/posts/docuseal-open-source-docusign-alternative/
+faqs: - q: 'DocuSeal 是 DocuSign 的免费替代品吗？'
     a: '是的。DocuSeal 是一款开源、可自托管的文档签署平台，无需支付任何许可费用，而 DocuSign 每位用户每月收费 $10-$60。一家 100 人的公司通过自托管部署，三年内可节省约 94% 的费用。'
   - q: 'DocuSeal 使用什么许可证？可以用于商业用途吗？'
     a: 'DocuSeal 采用 AGPLv3 许可证发布，并附有 Section 7(b) 附加条款。商业使用是被允许的，但需要遵守相应的许可证条款。白标、SSO/SAML、批量发送等高级 Pro 功能则通过单独的付费商业许可证提供。'
@@ -39,10 +31,7 @@ faqs:
   - q: 'DocuSeal 的签名具有法律效力吗？'
     a: '是的。DocuSeal 使用符合 ISO 32000-1 标准的数字签名，采用 PKCS#7 分离式签名，包含 SHA-256 文档摘要、可信时间戳令牌以及签署者身份元数据。这些签名在欧盟法院依据 eIDAS 法规以及美国法院依据 ESIGN 和 UETA 法规均具有法律效力。'
   - q: 'DocuSeal 可以将签署后的文档存储在哪里？'
-    a: 'DocuSeal 默认支持本地磁盘配合 SQLite 存储，生产环境可使用 PostgreSQL 或 MySQL，同时支持云对象存储，包括 AWS S3、Google Cloud Storage 和 Azure Blob。生产多用户部署建议使用 PostgreSQL（启用 SSL）和 S3（启用服务端加密）。'
----
-
-<!-- canonical: https://dibi8.com/zh/tools/docuseal-open-source-docusign-alternative/ -->
+    a: 'DocuSeal 默认支持本地磁盘配合 SQLite 存储，生产环境可使用 PostgreSQL 或 MySQL，同时支持云对象存储，包括 AWS S3、Google Cloud Storage 和 Azure Blob。生产多用户部署建议使用 PostgreSQL（启用 SSL）和 S3（启用服务端加密）。'---
 
 {</* resource-info */>}
 
@@ -189,7 +178,15 @@ function ContractPage() {
 ## DocuSeal vs DocuSign vs PandaDoc
 
 | 功能 | DocuSeal | DocuSign | PandaDoc |
-|------|----------|----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **价格** | 免费（自托管） | $10-60/用户/月 | $19-59/用户/月 |
 | **开源** | ✅ 是 | ❌ 否 | ❌ 否 |
 | **自托管** | ✅ 是 | ❌ 否 | ❌ 否 |
@@ -265,8 +262,7 @@ DocuSeal 的 REST API 和 webhook 系统支持强大的自动化场景：
 ```python
 import requests
 
-def generate_contract(opportunity_id):
-    opp = salesforce.get_opportunity(opportunity_id)
+def generate_contract(opportunity_id): opp = salesforce.get_opportunity(opportunity_id)
     template_id = "msa-template-v3"
     
     response = requests.post(
@@ -323,7 +319,15 @@ curl -X POST https://docuseal.yourcompany.com/api/bulk_submissions   -H "Authori
 DocuSeal 通过水平扩展处理高容量签署场景：
 
 | 指标 | 单实例 | Docker Compose 集群 | Kubernetes |
-|------|--------|---------------------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 并发签署者 | 50 | 500 | 5,000+ |
 | 文档/小时 | 200 | 2,000 | 20,000+ |
 | API 请求/分钟 | 1,000 | 10,000 | 100,000+ |
@@ -340,7 +344,15 @@ DocuSeal 通过水平扩展处理高容量签署场景：
 让我们分解一家 100 人公司 3 年的真实拥有成本：
 
 | 成本类别 | DocuSeal（自托管） | DocuSign Business Pro | PandaDoc Business |
-|----------|---------------------|----------------------|-------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 许可费 | $0 | $64,800（3年） | $70,200（3年） |
 | 基础设施 | $1,440（VPS） | $0 | $0 |
 | 设置/管理 | $2,000（一次性） | $0 | $0 |
@@ -382,12 +394,12 @@ DocuSeal 是少数能直接替代价值数十亿美元 SaaS 巨头的开源项�
 
 > **许可证说明**：根据 AGPLv3 及第 7(b) 条附加条款分发。商业使用需遵守许可证条款。
 
----
 
+---
 *您从 DocuSign 迁移到 DocuSeal 了吗？在评论中分享您的经验。*
 
----
 
+---
 ## 推荐工具
 
 跑或部署开源 AI 工具时，推荐：
@@ -399,7 +411,6 @@ DocuSeal 是少数能直接替代价值数十亿美元 SaaS 巨头的开源项�
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -427,25 +438,20 @@ DocuSeal 是少数能直接替代价值数十亿美元 SaaS 巨头的开源项�
 
 ## Why This Matters
 
-Understanding docuseal评测：用这款开源docusign替代品将文档签署成本降低90% is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding docuseal评测：用这款开源docusign替代品将文档签署成本降低90% is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

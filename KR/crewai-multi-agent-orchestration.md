@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/crewai-multi-agent-orchestration" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/crewai-multi-agent-orchestration" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/crewai-multi-agent-orchestration" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/crewai-multi-agent-orchestration" />
 title: 'CrewAI: 자율적으로 협업하는 다중 에이전트 AI 팀 구축하기 — 프로덕션 설정 및 패턴 2026'
 description: '역할 기반 에이전트, 작업 위임, 메모리 공유 및 자율 협업 패턴으로 다중 에이전트 AI 시스템을 구축하는 Python 프레임워크인 CrewAI에 대한 실전 2026 가이드.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [crewai, '다중-에이전트', 'ai-에이전트', 오케스트레이션, '자율-에이전트', llm, python, 오픈소스]
-aliases:
-- /kr/posts/crewai-multi-agent-orchestration/
+aliases: - /kr/posts/crewai-multi-agent-orchestration/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/crewai-multi-agent-orchestration/ -->
 
 {{</* resource-info */>}}
 
@@ -55,9 +47,7 @@ CrewAI의 아키텍처는 네 가지 기본 요소: **에이전트**, **작업**
 
 ### 에이전트: 역할 기반 AI 작업자
 
-CrewAI의 에이전트는 LLM 인스턴스 이상입니다. 다음을 갖춘 정의된 역할입니다:
-
-| 속성 | 목적 | 예시 |
+CrewAI의 에이전트는 LLM 인스턴스 이상입니다. 다음을 갖춘 정의된 역할입니다: | 속성 | 목적 | 예시 |
 |------|------|------|
 | `role` | 직함 / 정체성 | `"Senior Research Analyst"` |
 | `goal` | 에이전트가 달성하려는 것 | `"3개 경쟁사의 상세 가격 데이터 찾기"` |
@@ -70,9 +60,7 @@ CrewAI의 에이전트는 LLM 인스턴스 이상입니다. 다음을 갖춘 정
 
 ### 작업: 정의된 작업 단위
 
-작업은 무엇을 해야 하는지, 누가 하는지, 어떤 출력이 예상되는지를 지정합니다:
-
-| 속성 | 목적 | 예시 |
+작업은 무엇을 해야 하는지, 누가 하는지, 어떤 출력이 예상되는지를 지정합니다: | 속성 | 목적 | 예시 |
 |------|------|------|
 | `description` | 무엇을 할지 (`{변수}` 포함 가능) | `"{회사} 가격 플랜 조사"` |
 | `expected_output` | 품질 사양 | `"플랜명, 가격, 기능이 있는 표"` |
@@ -84,9 +72,7 @@ CrewAI의 에이전트는 LLM 인스턴스 이상입니다. 다음을 갖춘 정
 
 ### 프로세스: 에이전트가 협업하는 방식
 
-CrewAI는 세 가지 협업 패턴을 지원합니다:
-
-| 프로세스 | 패턴 | 최적 사용처 |
+CrewAI는 세 가지 협업 패턴을 지원합니다: | 프로세스 | 패턴 | 최적 사용처 |
 |----------|------|------------|
 | `Process.sequential` | 선형 핸드오프: A → B → C | 명확한 의존성이 있는 워크플로 |
 | `Process.hierarchical` | 관리자가 작업자에게 위임 | 감독이 필요한 복잡한 프로젝트 |
@@ -96,9 +82,7 @@ CrewAI는 세 가지 협업 패턴을 지원합니다:
 
 ### 도구: 에이전트 기능 확장
 
-CrewAI 에이전트는 LangChain 호환 도구를 사용할 수 있습니다. 일반적인 도구:
-
-- **웹 검색** — SerpAPI, DuckDuckGo, Tavily
+CrewAI 에이전트는 LangChain 호환 도구를 사용할 수 있습니다. 일반적인 도구: - **웹 검색** — SerpAPI, DuckDuckGo, Tavily
 - **웹 스크래핑** — BeautifulSoup, ScrapingBee
 - **코드 실행** — Python REPL, Jupyter 커널
 - **데이터베이스 쿼리** — SQL 커넥터
@@ -356,8 +340,7 @@ from crewai.tools import tool
 import requests
 
 @tool("Stock Price Checker")
-def check_stock_price(ticker: str) -> str:
-    """주어진 티커 심볼의 현재 주식 가격 가져오기."""
+def check_stock_price(ticker: str) -> str: """주어진 티커 심볼의 현재 주식 가격 가져오기."""
     url = f"https://api.example.com/stocks/{ticker}"
     response = requests.get(url)
     data = response.json()
@@ -378,12 +361,10 @@ analyst = Agent(
 from crewai import Crew
 
 # 모니터링을 위한 단계 콜백
-def on_step_callback(step_output):
-    print(f"[STEP] 에이전트: {step_output.agent}, 작업: {step_output.task[:50]}")
+def on_step_callback(step_output): print(f"[STEP] 에이전트: {step_output.agent}, 작업: {step_output.task[:50]}")
 
 # 로깅을 위한 작업 콜백
-def on_task_callback(task_output):
-    print(f"[TASK 완료] {task_output.summary}")
+def on_task_callback(task_output): print(f"[TASK 완료] {task_output.summary}")
 
 monitored_crew = Crew(
     agents=[researcher, writer],
@@ -407,8 +388,7 @@ query_engine = index.as_query_engine()
 
 # CrewAI 도구로 래핑
 @tool("Company Knowledge Base")
-def query_knowledge_base(query: str) -> str:
-    """회사 낶부 지식 기반을 쿼리하여 정책 및 절차 확인."""
+def query_knowledge_base(query: str) -> str: """회사 낶부 지식 기반을 쿼리하여 정책 및 절차 확인."""
     response = query_engine.query(query)
     return str(response)
 
@@ -425,9 +405,7 @@ policy_expert = Agent(
 
 ### 성능 벤치마크
 
-**8코어 CPU, 32GB RAM**, GPT-4o API를 사용하여 다양한 팀 규모와 작업 복잡성에 대해 CrewAI를 테스트했습니다:
-
-| 팀 규모 | 작업 수 | 프로세스 | 평균 시간 | 토큰 비용 |
+**8코어 CPU, 32GB RAM**, GPT-4o API를 사용하여 다양한 팀 규모와 작업 복잡성에 대해 CrewAI를 테스트했습니다: | 팀 규모 | 작업 수 | 프로세스 | 평균 시간 | 토큰 비용 |
 |----------|--------|----------|----------|----------|
 | 2 에이전트 | 2 작업 | 순차 | 18초 | $0.04 |
 | 3 에이전트 | 3 작업 | 순차 | 45초 | $0.12 |
@@ -496,8 +474,7 @@ crew = Crew(
 from pydantic import BaseModel, Field
 from crewai import Task
 
-class CompetitorAnalysis(BaseModel):
-    company_name: str = Field(description="경쟁사 이름")
+class CompetitorAnalysis(BaseModel): company_name: str = Field(description="경쟁사 이름")
     pricing_tier: str = Field(description="묶인, Starter, Pro, 또는 Enterprise")
     monthly_price: float = Field(description="월 가격 USD")
     key_features: list[str] = Field(description="핵심 제품 기능 목록")
@@ -522,11 +499,8 @@ from tenacity import retry, stop_after_attempt, wait_exponential
     wait=wait_exponential(multiplier=1, min=4, max=10),
     reraise=True,
 )
-def run_crew_with_retry(crew: Crew):
-    try:
-        return crew.kickoff()
-    except Exception as e:
-        print(f"크루 실패: {e}. 재시도 중...")
+def run_crew_with_retry(crew: Crew): try: return crew.kickoff()
+    except Exception as e: print(f"크루 실패: {e}. 재시도 중...")
         raise
 
 result = run_crew_with_retry(my_crew)
@@ -567,24 +541,19 @@ app = FastAPI(title="CrewAI 서비스")
 # 결과 저장
 results_db = {}
 
-class CrewRequest(BaseModel):
-    topic: str
+class CrewRequest(BaseModel): topic: str
     depth: str = "standard"  # standard | deep
 
 @app.post("/crew/run")
-async def run_crew(request: CrewRequest, background: BackgroundTasks):
-    job_id = str(uuid.uuid4())
+async def run_crew(request: CrewRequest, background: BackgroundTasks): job_id = str(uuid.uuid4())
     background.add_task(execute_crew, job_id, request)
     return {"job_id": job_id, "status": "started"}
 
 @app.get("/crew/status/{job_id}")
-async def get_status(job_id: str):
-    if job_id not in results_db:
-        return {"status": "not_found"}
+async def get_status(job_id: str): if job_id not in results_db: return {"status": "not_found"}
     return results_db[job_id]
 
-def execute_crew(job_id: str, request: CrewRequest):
-    researcher = Agent(
+def execute_crew(job_id: str, request: CrewRequest): researcher = Agent(
         role="연구원",
         goal=f"{request.topic} 연구",
         backstory="전문 연구원입니다.",
@@ -664,9 +633,7 @@ crew = Crew(
 
 ## 한계: 정직한 평가
 
-CrewAI는 강력하지만 은탄환은 아닙니다. 알아야 할 프로덕션 현실:
-
-**1. LLM 비용은 에이전트 수에 따라 증가합니다.** GPT-4o로 8개 작업을 실행하는 5-에이전트 팀은 실행당 $0.50-2.00이 될 수 있습니다. 하루 1,000회 실행하면 $500-2,000/일입니다. 예산에 맞게 계획하거나 덜 중요한 에이전트에는 더 저렴한 모델을 사용하세요.
+CrewAI는 강력하지만 은탄환은 아닙니다. 알아야 할 프로덕션 현실: **1. LLM 비용은 에이전트 수에 따라 증가합니다.** GPT-4o로 8개 작업을 실행하는 5-에이전트 팀은 실행당 $0.50-2.00이 될 수 있습니다. 하루 1,000회 실행하면 $500-2,000/일입니다. 예산에 맞게 계획하거나 덜 중요한 에이전트에는 더 저렴한 모델을 사용하세요.
 
 **2. 토큰 제한이 컨텍스트 공유를 제한합니다.** 에이전트 A가 에이전트 B에 출력을 전달할 때, 해당 출력은 에이전트 B의 컨텍스트 창에서 토큰을 소비합니다. 각각 2K 토큰을 생산하는 5개 에이전트의 경우, 최종 에이전트가 GPT-4o의 128K 제한에 도달할 수 있습니다. `max_iter`를 사용하고 중간 출력을 요약하세요.
 
@@ -722,9 +689,7 @@ Telegram 개발자 커뮤니티에 참여하세요: **t.me/dibi8en** — 에이�
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -747,7 +712,6 @@ Telegram 개발자 커뮤니티에 참여하세요: **t.me/dibi8en** — 에이�
 *제휴 마케팅 공개: 본문에는 DigitalOcean의 제휴 링크가 포함되어 있습니다. 이 링크를 통해 가입하면 추가 비용 없이 커미션을 받습니다. CrewAI는 오픈소스이자 묶인 사용 가능합니다; CrewAI 프로젝트와 상업적 관계는 없습니다. 의견은 실제 테스트와 프로덕션 배포를 기반으로 합니다.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

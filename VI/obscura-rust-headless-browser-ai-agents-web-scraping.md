@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/obscura-rust-headless-browser-ai-agents-web-scraping" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/obscura-rust-headless-browser-ai-agents-web-scraping" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/obscura-rust-headless-browser-ai-agents-web-scraping" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/obscura-rust-headless-browser-ai-agents-web-scraping" />
 title: 'Obscura：給 AI 代理的 Rust 無頭瀏覽器 — 14,000 顆星 — 30MB 記憶體、85ms ...
 description: 'Obscura（14,788 顆 GitHub 星）是一款為 AI 代理和網頁爬蟲設計的 Rust 無頭瀏覽器引擎。30MB 記憶體、85ms 頁面載入，內建反偵測功能。為 Puppeteer 和 Playwright 提供即插即用取代方案，支援 Docker 和二進位安裝。'
 date: 2026-06-09
-lastmod:  2026-06-09slug: 'obscura-rust-headless-browser-ai-agents-web-scraping'
+lastmod: 2026-06-09
+slug: 'obscura-rust-headless-browser-ai-agents-web-scraping'
 category: 'dev-utils'
 tags: ['obscura', '無頭瀏覽器', 'Rust 瀏覽器', '網頁爬蟲', 'AI 代理工具', 'Puppeteer 替代方案', 'Playwright 替代方案', '反偵測', '隱密瀏覽']
 github_repo: 'https://github.com/h4ckf0r0day/obscura'
@@ -17,8 +13,6 @@ license: Apache-2.0
 featureImage: 'https://raw.githubusercontent.com/h4ckf0r0day/obscura/main/assets/icon.png'
 lang: zh
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/obscura-rust-headless-browser-ai-agents-web-scraping/ -->
 
 # Obscura：給 AI 代理的 Rust 無頭瀏覽器 — 14,000 顆星 — 30MB 記憶體、85ms 載入 — 2026 安裝指南
 
@@ -298,8 +292,7 @@ const data = await page.$$eval('.item', items =>
 # Python Playwright 連線
 from playwright.sync_api import sync_playwright
 
-with sync_playwright() as p:
-    browser = p.chromium.connect_over_cdp(
+with sync_playwright() as p: browser = p.chromium.connect_over_cdp(
         "http://localhost:9222"
     )
     page = browser.new_page()
@@ -314,8 +307,7 @@ with sync_playwright() as p:
 # 在 AI 代理工作流程中使用 Obscura
 import subprocess
 
-def fetch_page_text(url):
-    """使用 Obscura 擷取頁面並提取文字"""
+def fetch_page_text(url): """使用 Obscura 擷取頁面並提取文字"""
     result = subprocess.run(
         ["./obscura", "fetch", url, "--dump", "text"],
         capture_output=True, text=True, timeout=30
@@ -323,8 +315,7 @@ def fetch_page_text(url):
     return result.stdout
 
 # AI 代理可使用此函數來擷取並分析網頁內容
-def analyze_page(agent, url):
-    content = fetch_page_text(url)
+def analyze_page(agent, url): content = fetch_page_text(url)
     agent.prompt(f"Analyze this page content:\n{content}")
 ```
 
@@ -554,7 +545,6 @@ Obscura 代表了無頭瀏覽器技術的重大進步。在 30MB 記憶體、85m
 **免責聲明：** 本文僅供資訊用途。在生產環境中運行第三方軟體前，請務必檢閱原始碼。附屬披露：以上部分連結可能包含附屬代碼。我們可能會賺取佣金，而對您不會產生額外費用。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

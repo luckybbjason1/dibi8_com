@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-trading-stack" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-trading-stack" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-trading-stack" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-trading-stack" />
 title: 'AI 트레이딩 스택 2026: 암호화폐 + 예측 시장용 7컴포넌트 오픈소스 퀀트 워크플로우'
 description: '셀프호스트 AI 트레이딩 스택: ta-lib (신호) + vectorbt (백테스트) + freqtrade (실행) + AI Trader (AI 전략 레이어) + Hyperliquid (perp DEX) + Polymarket Agents (예측 시장) + Minara (AI+crypto 허브). $30-150/월 인프라, 진짜 프로덕션급 퀀트 파이프라인, 장난감 아님.'
 date: 2026-05-21 00:00:00+08:00
@@ -25,11 +20,9 @@ featureImage: ''
 draft: false
 categories: [collections]
 tags: ['ai 트레이딩', 퀀트, 암호화폐, hyperliquid, polymarket, 스택, 컬렉션]
-aliases:
-  - /posts/ai-trading-stack/
+aliases: - /posts/ai-trading-stack/
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/ai-trading-stack/ -->
 # AI 트레이딩 스택 2026: 암호화폐 + 예측 시장용 7컴포넌트 오픈소스 퀀트 워크플로우
 
 
@@ -57,9 +50,7 @@ SaaS 퀀트 플랫폼 비교: 3Commas Pro ($74) + TradingView Premium ($59) + Co
 
 ## 1. 2026에 자체 AI 트레이딩 스택 구축 이유
 
-3 수렴 변화:
-
-1. **온체인 perp DEX 메인스트림 깊이 도달** — Hyperliquid의 톱 페어 order book이 CEX급 유동성, 서브초 온체인 결제
+3 수렴 변화: 1. **온체인 perp DEX 메인스트림 깊이 도달** — Hyperliquid의 톱 페어 order book이 CEX급 유동성, 서브초 온체인 결제
 2. **AI 전략 생성 작동** — LLM (Claude 4 / GPT-5)이 백테스트 읽고 out-of-sample에서 유지되는 전략 파라미터 조정 제안 (커브 피팅 아님)
 3. **무 API 키 venue + 암호화폐 레일** — 지갑 기반 트레이딩 = SaaS 제공자가 제한, 키 잠금, "컴플라이언스 리뷰" 빌미로 전략 수확 못 함
 
@@ -113,8 +104,7 @@ SaaS 퀀트 플랫폼 비교: 3Commas Pro ($74) + TradingView Premium ($59) + Co
 
 **왜 이거**: 30+ 년 전투 검증. 모든 퀀트 프레임워크가 ta-lib를 쓰거나 그 함수 재구현. 원본 사용.
 
-**빠른 설치**:
-```bash
+**빠른 설치**: ```bash
 apt install libta-lib-dev
 pip install TA-Lib
 ```
@@ -127,8 +117,7 @@ pip install TA-Lib
 
 **왜 이거**: Walk-forward 최적화, 파라미터 스윕, 몬테카를로 시뮬레이션, Sharpe/Sortino/Calmar 메트릭, 포지션 사이징 — 모두 내장. 진지한 리테일 퀀트 사실상 선택.
 
-**빠른 설치**:
-```bash
+**빠른 설치**: ```bash
 pip install vectorbt
 ```
 
@@ -140,8 +129,7 @@ pip install vectorbt
 
 **왜 이거**: ~31k GitHub stars, 5+ 년 전투 검증. 전략 핫 리로드, dry-run 모드 (실시간 데이터에 페이퍼 트레이딩), Telegram 봇 통합, 웹 UI, Docker 배포. 기본 오픈소스 CEX 트레이딩 봇.
 
-**빠른 설치**:
-```bash
+**빠른 설치**: ```bash
 docker compose -f https://github.com/freqtrade/freqtrade/raw/stable/docker-compose.yml up -d
 ```
 
@@ -155,8 +143,7 @@ docker compose -f https://github.com/freqtrade/freqtrade/raw/stable/docker-compo
 
 **왜 중요**: 정적 전략은 감쇠. 2026년 5월 암호화폐 시장은 2024년 1월 시장 아님. 조정 루프 없이는 전략 edge가 6-12개월 안에 침식. AI Trader는 이 루프에 특화된 유일한 널리 채택된 오픈소스 프레임워크.
 
-**빠른 설치**:
-```bash
+**빠른 설치**: ```bash
 pip install ai-trader
 ```
 
@@ -168,8 +155,7 @@ pip install ai-trader
 
 **AI 트레이딩에 중요한 이유**: 지갑 서명으로 직접 Python SDK 액세스 = API 키 관리 없음, 가스 동등 온체인 제한 외 rate limit 없음. CEX 대시보드 안 만지고 코드에서 전략 실행.
 
-**빠른 설치**:
-```bash
+**빠른 설치**: ```bash
 pip install hyperliquid-python-sdk
 ```
 
@@ -222,9 +208,7 @@ pip install hyperliquid-python-sdk
 
 ## 12. 업그레이드 경로
 
-이 스택 벗어날 때:
-
-- **>10 동시 전략** — freqtrade를 전략별 격리 있는 Kubernetes 클러스터로 이동
+이 스택 벗어날 때: - **>10 동시 전략** — freqtrade를 전략별 격리 있는 Kubernetes 클러스터로 이동
 - **<50ms 레이턴시 중요** — 거래소 데이터 센터에 코로케이션
 - **다자산 (암호화폐 + 주식 + 선물)** — Interactive Brokers 통합 추가
 - **감사 등급 trade 기록** — immudb 또는 Apache Kafka 추가
@@ -232,9 +216,7 @@ pip install hyperliquid-python-sdk
 
 ## 13. 정직한 리스크 토론
 
-이 스택은 퀀트 트레이딩 시스템 구축을 2018보다 10× 쉽게 만듦. **실제 전략 찾기를 더 쉽게 만들지 않음.** 백테스트에서 수익 보이는 대부분 퀀트 전략이 실시간 실행에서 실패하는 이유:
-
-- 역사 데이터의 **생존자 편향** (실패 거래소, 상장 폐지 페어)
+이 스택은 퀀트 트레이딩 시스템 구축을 2018보다 10× 쉽게 만듦. **실제 전략 찾기를 더 쉽게 만들지 않음.** 백테스트에서 수익 보이는 대부분 퀀트 전략이 실시간 실행에서 실패하는 이유: - 역사 데이터의 **생존자 편향** (실패 거래소, 상장 폐지 페어)
 - **슬리피지** — 백테스트는 중간가 체결 가정; 실시간 실행이 spread 먹음
 - **체제 변화** — 2022 약세장에서 작동한 게 2026 강세장에서 안 될 수 있음
 - **집중 위험** — 단일 venue 100%는 단일 해킹/규제 조치가 청산
@@ -244,8 +226,7 @@ pip install hyperliquid-python-sdk
 
 ## TL;DR — 레시피
 
-**셀프호스트 AI 퀀트 트레이딩용 7 컴포넌트, $30-150/월 인프라 (트레이딩 자본 제외)**:
-1. **ta-lib** — 신호 생성 (200+ 지표)
+**셀프호스트 AI 퀀트 트레이딩용 7 컴포넌트, $30-150/월 인프라 (트레이딩 자본 제외)**: 1. **ta-lib** — 신호 생성 (200+ 지표)
 2. **vectorbt** — 벡터화 백테스팅
 3. **freqtrade** — 프로덕션 CEX 실행
 4. **AI Trader** — AI 전략 조정 루프
@@ -262,7 +243,6 @@ pip install hyperliquid-python-sdk
 *⚠️ 재진술: 투자 조언 아님. 본인 책임 트레이드.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

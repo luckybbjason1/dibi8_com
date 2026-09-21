@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/arize-ai-observability-llm" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/arize-ai-observability-llm" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/arize-ai-observability-llm" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/arize-ai-observability-llm" />
 title: 'Arize AI Phoenix: RAG 파이프라인 100% 추적하는 오픈소스 LLM 옵저버빌리티 도구...
 description: '2026년 Arize Phoenix 완벽 가이드: 오픈소스 LLM 옵저버빌리티, RAG 추적, 프롬프트 버전 관리, 토큰 사용량 추적, LangChain 및 LlamaIndex 프로덕션 배포.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: [llm, 옵저버빌리티, 'arize phoenix', rag, langchain, llamaindex, opentelemetry, python, docker, 'ai 인프라']
-aliases:
-- /kr/posts/arize-ai-observability-llm/
+aliases: - /kr/posts/arize-ai-observability-llm/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/arize-ai-observability-llm/ -->
 
 {{</* resource-info */>}}
 
@@ -53,9 +45,7 @@ Phoenix는 단순한 로그 뷰어가 아니다. 어떤 청크가 검색되었�
 
 ## Phoenix의 작동 원리: 아키텍처와 핵심 개념
 
-Phoenix는 OpenTelemetry와 정렬된 **스팬 기반 추적 모델**을 사용한다. LLM 파이프라인의 모든 작업은 속성, 이벤트, 부모-자식 관계를 가진 스팬이 된다. 아키텍처는 세 계층으로 구성된다:
-
-### 계층(Instrumentation) 계층
+Phoenix는 OpenTelemetry와 정렬된 **스팬 기반 추적 모델**을 사용한다. LLM 파이프라인의 모든 작업은 속성, 이벤트, 부모-자식 관계를 가진 스팬이 된다. 아키텍처는 세 계층으로 구성된다: ### 계층(Instrumentation) 계층
 
 Phoenix는 Python 프레임워크를 위한 자동 계측 패키지를 제공한다. LangChain 에이전트나 LlamaIndex 쿼리 엔진을 호출할 때 Phoenix가 호출을 가로채어 각 하위 작업에 대한 스팬을 생성한다: 벡터 검색, 문서 로딩, 프롬프트 포맷팅, LLM 호출, 후처리. 표준 통합의 경우 수동 로깅 코드를 작성할 필요가 없다.
 
@@ -81,9 +71,7 @@ Phoenix UI는 트레이스를 인터랙티브한 플레임 그래프로 렌더�
 
 ### 방법 A: pip로 빠르게 시작
 
-로컬에서 Phoenix를 가장 빠르게 실행하는 방법:
-
-```bash
+로컬에서 Phoenix를 가장 빠르게 실행하는 방법: ```bash
 python -m venv phoenix-env
 source phoenix-env/bin/activate
 
@@ -98,9 +86,7 @@ python -c "import phoenix as px; px.launch_app()"
 
 ### 방법 B: Docker 배포 (프로덕션)
 
-프로덕션이나 팀 환경을 위해 컨테이너로 Phoenix를 실행한다:
-
-```bash
+프로덕션이나 팀 환경을 위해 컨테이너로 Phoenix를 실행한다: ```bash
 # 공식 이미지 다운로드
 docker pull arizephoenix/phoenix:latest
 
@@ -112,9 +98,7 @@ docker run -d \
   arizephoenix/phoenix:latest
 ```
 
-배포 확인:
-
-```bash
+배포 확인: ```bash
 curl http://localhost:6006/health
 # 예상 응답: {"status":"healthy"}
 ```
@@ -123,33 +107,21 @@ curl http://localhost:6006/health
 
 ### 방법 C: PostgreSQL을 사용하는 Docker Compose
 
-영구 스토리지와 다중 사용자 접근을 위해:
-
-```yaml
+영구 스토리지와 다중 사용자 접근을 위해: ```yaml
 # docker-compose.yml
 version: "3.8"
-services:
-  phoenix:
-    image: arizephoenix/phoenix:latest
-    ports:
-      - "6006:6006"
-    environment:
-      - PHOENIX_SQL_DATABASE_URL=postgresql://phoenix:phoenix@db:5432/phoenix
-    depends_on:
-      - db
+services: phoenix: image: arizephoenix/phoenix:latest
+    ports: - "6006:6006"
+    environment: - PHOENIX_SQL_DATABASE_URL=postgresql://phoenix:phoenix@db:5432/phoenix
+    depends_on: - db
 
-  db:
-    image: postgres:16-alpine
-    environment:
-      POSTGRES_USER: phoenix
+  db: image: postgres:16-alpine
+    environment: POSTGRES_USER: phoenix
       POSTGRES_PASSWORD: phoenix
       POSTGRES_DB: phoenix
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+    volumes: - pgdata:/var/lib/postgresql/data
 
-volumes:
-  pgdata:
-```
+volumes: pgdata: ```
 
 ```bash
 docker-compose up -d
@@ -159,9 +131,7 @@ docker-compose up -d
 
 ### LangChain 자동 계측
 
-Phoenix는 OpenTelemetry를 통해 LangChain과 통합된다. 기존 LangChain 애플리케이션에 두 줄을 추가하면 된다:
-
-```python
+Phoenix는 OpenTelemetry를 통해 LangChain과 통합된다. 기존 LangChain 애플리케이션에 두 줄을 추가하면 된다: ```python
 # phoenix_langchain_demo.py
 import phoenix as px
 from phoenix.trace.langchain import LangChainInstrumentor
@@ -198,9 +168,7 @@ print(result)
 
 ### LlamaIndex 통합
 
-Phoenix는 LlamaIndex 쿼리 엔진에 일류 지원을 제공한다:
-
-```python
+Phoenix는 LlamaIndex 쿼리 엔진에 일류 지원을 제공한다: ```python
 # phoenix_llamaindex_demo.py
 import phoenix as px
 from phoenix.trace.llamaindex import LlamaIndexInstrumentor
@@ -227,9 +195,7 @@ print(response)
 
 ### OpenTelemetry SDK (프레임워크 독립적)
 
-커스텀 파이프라인이나 전용 계측이 없는 프레임워크의 경우:
-
-```python
+커스텀 파이프라인이나 전용 계측이 없는 프레임워크의 경우: ```python
 # phoenix_otel_manual.py
 from opentelemetry import trace
 from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExporter
@@ -245,16 +211,13 @@ trace.set_tracer_provider(trace_provider)
 tracer = trace.get_tracer("my-llm-app")
 
 # 수동 스팬 생성
-with tracer.start_as_current_span("rag_pipeline") as span:
-    span.set_attribute("query", "What is Phoenix?")
+with tracer.start_as_current_span("rag_pipeline") as span: span.set_attribute("query", "What is Phoenix?")
 
-    with tracer.start_as_current_span("retrieval") as ret_span:
-        chunks = retrieve_chunks("What is Phoenix?")
+    with tracer.start_as_current_span("retrieval") as ret_span: chunks = retrieve_chunks("What is Phoenix?")
         ret_span.set_attribute("chunk_count", len(chunks))
         ret_span.set_attribute("chunks", [c[:200] for c in chunks])
 
-    with tracer.start_as_current_span("llm_call") as llm_span:
-        response = call_llm(chunks)
+    with tracer.start_as_current_span("llm_call") as llm_span: response = call_llm(chunks)
         llm_span.set_attribute("model", "gpt-4o-mini")
         llm_span.set_attribute("tokens_used", response.usage.total_tokens)
         llm_span.set_attribute("latency_ms", 340)
@@ -262,9 +225,7 @@ with tracer.start_as_current_span("rag_pipeline") as span:
 
 ### OpenAI SDK 추적
 
-Phoenix는 직접적인 OpenAI SDK 호출도 자동 추적한다:
-
-```python
+Phoenix는 직접적인 OpenAI SDK 호출도 자동 추적한다: ```python
 # phoenix_openai_demo.py
 import phoenix as px
 from phoenix.trace.openai import OpenAIInstrumentor
@@ -296,9 +257,7 @@ Phoenix는 스팬 레벨에서 토큰 사용량을 캡처하며, 제공자 청�
 
 ### 지연 시간 오버헤드
 
-계측은 최소한의 오버헤드를 추가한다. 4코어 DigitalOcean Droplet에서 측정:
-
-| 시나리오 | 기본 지연 시간 | Phoenix 추적 사용 | 오버헤드 |
+계측은 최소한의 오버헤드를 추가한다. 4코어 DigitalOcean Droplet에서 측정: | 시나리오 | 기본 지연 시간 | Phoenix 추적 사용 | 오버헤드 |
 |---|---|---|---|
 | 간단한 LLM 호출 (1 청크) | **245 ms** | **251 ms** | **+2.4%** |
 | RAG 파이프라인 (5 청크) | **890 ms** | **912 ms** | **+2.5%** |
@@ -308,9 +267,7 @@ Phoenix는 스팬 레벨에서 토큰 사용량을 캡처하며, 제공자 청�
 
 ### 프로덕션 RAG 디버깅 규모화
 
-한 ML 컨설팅 회사가 법률 문서 검색에서 **약 50,000건의 RAG 쿼리/일**을 처리하는 클라이언트를 위해 Phoenix를 배포했다. 30일 후의 주요 발견:
-
-- **18%의 쿼리**가 오래된 임베딩 모델로 인해 관련 없는 청크를 검색했다
+한 ML 컨설팅 회사가 법률 문서 검색에서 **약 50,000건의 RAG 쿼리/일**을 처리하는 클라이언트를 위해 Phoenix를 배포했다. 30일 후의 주요 발견: - **18%의 쿼리**가 오래된 임베딩 모델로 인해 관련 없는 청크를 검색했다
 - 쿼리당 평균 토큰 소모량은 **4,200 토큰** — 예상보다 **2.1배 높았다**
 - 하나의 잘못 설정된 검색기(`top_k=20` 대신 `top_k=5`)가 매달 **$1,200**의 불필요한 API 비용을 발생시켰다
 
@@ -318,9 +275,7 @@ Phoenix 추적 데이터를 기반으로 이러한 문제를 해결한 후, 클�
 
 ### 평가 프레임워크 벤치마크
 
-Phoenix는 관련성, 환각, 독성 탐지를 위한 내장 평가기를 포함한다:
-
-| 평가기 | 인간 레이블 대비 정확도 | 트레이스당 평균 실행 시간 |
+Phoenix는 관련성, 환각, 독성 탐지를 위한 내장 평가기를 포함한다: | 평가기 | 인간 레이블 대비 정확도 | 트레이스당 평균 실행 시간 |
 |---|---|---|
 | QA 관련성 | **0.91** F1 점수 | **120 ms** |
 | 환각 탐지 | **0.87** F1 점수 | **95 ms** |
@@ -331,15 +286,12 @@ Phoenix는 관련성, 환각, 독성 탐지를 위한 내장 평가기를 포함
 
 ### 비즈니스 메트릭을 위한 커스텀 스팬 속성
 
-필터링과 분석을 위해 비즈니스 관련 속성을 트레이스에 추가한다:
-
-```python
+필터링과 분석을 위해 비즈니스 관련 속성을 트레이스에 추가한다: ```python
 from opentelemetry import trace
 
 tracer = trace.get_tracer("my-app")
 
-with tracer.start_as_current_span("customer_query") as span:
-    span.set_attribute("customer_tier", "enterprise")
+with tracer.start_as_current_span("customer_query") as span: span.set_attribute("customer_tier", "enterprise")
     span.set_attribute("query_category", "billing")
     span.set_attribute("expected_revenue", 15000.00)
 
@@ -350,9 +302,7 @@ Phoenix UI에서 `customer_tier=enterprise`로 트레이스를 필터링하여 �
 
 ### 프로그래매틱 평가
 
-수집된 트레이스에 대해 배치 평가를 실행한다:
-
-```python
+수집된 트레이스에 대해 배치 평가를 실행한다: ```python
 # phoenix_evaluations.py
 import phoenix as px
 from phoenix.evals import HallucinationEvaluator, QAEvaluator
@@ -371,9 +321,7 @@ print(f"잠재적 환각 응답 {len(risky)}개 발견")
 
 ### 트레이스 메트릭 알림
 
-Phoenix 메트릭을 Prometheus로 낼포트하여 알림을 설정한다:
-
-```python
+Phoenix 메트릭을 Prometheus로 낼포트하여 알림을 설정한다: ```python
 # phoenix_prometheus.py
 from phoenix.trace import PrometheusExporter
 
@@ -381,25 +329,19 @@ prometheus_exporter = PrometheusExporter(port=8000)
 px.launch_app(additional_exporters=[prometheus_exporter])
 ```
 
-Prometheus 알림 규칙 생성:
-
-```yaml
+Prometheus 알림 규칙 생성: ```yaml
 # alerts.yml
 - alert: HighTokenBurn
   expr: phoenix_tokens_total > 100000
   for: 5m
-  annotations:
-    summary: "5분 내 토큰 소모가 10만을 초과함"
+  annotations: summary: "5분 내 토큰 소모가 10만을 초과함"
 ```
 
 ### 트레이스 태그를 통한 프롬프트 버전 관리
 
-배포 간 프롬프트 변경을 추적한다:
-
-```python
+배포 간 프롬프트 변경을 추적한다: ```python
 # 사용된 프롬프트 버전으로 트레이스 태깅
-with tracer.start_as_current_span("llm_call") as span:
-    span.set_attribute("prompt.version", "v2.3.1")
+with tracer.start_as_current_span("llm_call") as span: span.set_attribute("prompt.version", "v2.3.1")
     span.set_attribute("prompt.git_sha", "abc1234")
     span.set_attribute("deployment.env", "production")
 ```
@@ -473,9 +415,7 @@ LLM 옵저버빌리티는 사치가 아니라 **인프라**다. 신뢰할 수 �
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -495,7 +435,6 @@ LLM 옵저버빌리티는 사치가 아니라 **인프라**다. 신뢰할 수 �
 **제휴 공개:** 이 글의 일부 링크는 제휴 링크이다. 우리의 [DigitalOcean 추천 링크](https://m.do.co/c/eca87ac14ee0)를 통해 가입하면 $200 크레딧을 받고 우리는 추천 본너스를 받는다 — 추가 비용 없이. 이는 우리의 독립적인 연구를 지원하고 콘텐츠를 묶로 유지한다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

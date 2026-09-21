@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/ragflow" />
 title: 'RAGFlow: Deploy a Production-Ready RAG Engine with 80K+ ...
 description: 'RAGFlow is an open-source retrieval-augmented generation (RAG) engine with deep document understanding and built-in agent capabilities. Compatible with Ollama, OpenAI, Qdrant, Elasticsearch, and Redis. Covers Docker deployment, document ingestion, retrieval tuning, and production hardening.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [ragflow, 'rag-engine', 'document-understanding', 'docker-deployment', 'llm-agent', 'production-rag', 'open-source-ai']
-aliases:
-- /posts/ragflow/
+aliases: - /posts/ragflow/-
 ---
-
 {{</* resource-info */>}}
 
 ![RAGFlow Logo](https://raw.githubusercontent.com/infiniflow/ragflow/main/web/public/logo.svg)
@@ -42,9 +38,7 @@ RAGFlow is an open-source retrieval-augmented generation engine that combines de
 
 ![RAGFlow System Architecture](https://raw.githubusercontent.com/infiniflow/ragflow/main/docs/img/ragflow-architecture.png)
 
-RAGFlow's architecture follows a modular pipeline design with six core stages:
-
-### 1. Document Ingestion (DeepDoc)
+RAGFlow's architecture follows a modular pipeline design with six core stages: ### 1. Document Ingestion (DeepDoc)
 
 Documents enter RAGFlow through the **DeepDoc** parsing engine. DeepDoc performs layout analysis on PDFs, Word files, Excel sheets, PowerPoint slides, images, and scanned copies. It identifies tables, figures, headers, paragraphs, and text blocks using a vision-based document layout model. This stage also supports external parsers like MinerU and Docling for specialized formats.
 
@@ -71,7 +65,13 @@ Beyond simple question answering, RAGFlow's agent framework supports multi-step 
 ### Infrastructure Stack
 
 | Service | Purpose | Default Backend |
-|---------|---------|----------------|
+|
+---
+|
+---
+|
+---
+|
 | Vector + Full-Text Store | Document indexing and search | Elasticsearch or Infinity |
 | Object Storage | File storage for uploaded documents | MinIO |
 | Metadata Database | User data, dataset configs, chat history | MySQL |
@@ -85,7 +85,13 @@ Beyond simple question answering, RAGFlow's agent framework supports multi-step 
 ### Hardware Requirements
 
 | Resource | Minimum | Recommended for Production |
-|----------|---------|---------------------------|
+|
+---
+|
+---
+|
+---
+|
 | CPU | 4 cores (x86_64) | 8+ cores |
 | RAM | 16 GB | 32+ GB |
 | Disk | 50 GB SSD | 200+ GB NVMe |
@@ -96,9 +102,7 @@ Beyond simple question answering, RAGFlow's agent framework supports multi-step 
 
 ### Pre-Deployment: System Tuning
 
-Before starting RAGFlow, ensure your kernel parameters are tuned for Elasticsearch:
-
-```bash
+Before starting RAGFlow, ensure your kernel parameters are tuned for Elasticsearch: ```bash
 # Check current vm.max_map_count
 sysctl vm.max_map_count
 
@@ -125,9 +129,7 @@ cp .env .env.backup
 nano .env
 ```
 
-Key variables to set:
-
-```bash
+Key variables to set: ```bash
 # docker/.env
 RAGFLOW_IMAGE=infiniflow/ragflow:v0.25.4
 SVR_HTTP_PORT=80
@@ -150,14 +152,11 @@ docker compose -f docker-compose.yml up -d
 # docker compose -f docker-compose.yml up -d
 ```
 
-Verify the deployment:
-
-```bash
+Verify the deployment: ```bash
 # Watch the logs until you see the success message
 docker logs -f ragflow-server
 
-# Expected output:
-#     ____   ___    ______ ______ __
+# Expected output: #     ____   ___    ______ ______ __
 #    / __ \ /   |  / ____// ____// /____  _      __
 #   / /_/ // /| | / / __ / /_   / // __ \| | /| / /
 #  / _, _// ___ |/ /_/ // __/  / // /_/ /| |/ |/ /
@@ -167,29 +166,22 @@ docker logs -f ragflow-server
 
 ### Step 4: Configure Your LLM Provider
 
-Edit `service_conf.yaml.template` to add your LLM API keys:
-
-```yaml
+Edit `service_conf.yaml.template` to add your LLM API keys: ```yaml
 # docker/service_conf.yaml.template
-user_default_llm:
-  factory: OpenAI
+user_default_llm: factory: OpenAI
   api_key: sk-your-openai-api-key
   base_url: https://api.openai.com/v1
   default_model: gpt-4.1-mini
 ```
 
-Supported LLM providers include OpenAI, Anthropic, DeepSeek, Gemini, Azure OpenAI, Bedrock, and local models via Ollama or vLLM. Restart the containers after configuration changes:
-
-```bash
+Supported LLM providers include OpenAI, Anthropic, DeepSeek, Gemini, Azure OpenAI, Bedrock, and local models via Ollama or vLLM. Restart the containers after configuration changes: ```bash
 docker compose -f docker-compose.yml down
 docker compose -f docker-compose.yml up -d
 ```
 
 ### Step 5: Access the Web UI
 
-Open your browser and navigate to `http://YOUR_SERVER_IP`. The default login is:
-
-```
+Open your browser and navigate to `http://YOUR_SERVER_IP`. The default login is: ```
 Email: admin@ragflow.io
 Password: (set during first login)
 ```
@@ -200,20 +192,15 @@ Password: (set during first login)
 
 ### Ollama (Local LLMs)
 
-For air-gapped or privacy-sensitive deployments, connect RAGFlow to Ollama:
-
-```yaml
+For air-gapped or privacy-sensitive deployments, connect RAGFlow to Ollama: ```yaml
 # docker/service_conf.yaml.template
-user_default_llm:
-  factory: Ollama
+user_default_llm: factory: Ollama
   api_key: ""
   base_url: http://host.docker.internal:11434
   default_model: llama3.2
 ```
 
-Pull models in Ollama before using them:
-
-```bash
+Pull models in Ollama before using them: ```bash
 ollama pull llama3.2
 ollama pull nomic-embed-text
 ```
@@ -223,25 +210,20 @@ Configure the embedding model in the RAGFlow web UI under **Settings > Model Pro
 ### OpenAI (Cloud API)
 
 ```yaml
-user_default_llm:
-  factory: OpenAI
+user_default_llm: factory: OpenAI
   api_key: ${OPENAI_API_KEY}
   base_url: https://api.openai.com/v1
   default_model: gpt-4.1-mini
 ```
 
-Use environment variable substitution to avoid hardcoding secrets:
-
-```bash
+Use environment variable substitution to avoid hardcoding secrets: ```bash
 # In .env
 OPENAI_API_KEY=sk-your-key
 ```
 
 ### Elasticsearch to Infinity Migration
 
-Infinity is RAGFlow's converged context engine optimized for large-scale deployments. To switch:
-
-```bash
+Infinity is RAGFlow's converged context engine optimized for large-scale deployments. To switch: ```bash
 # 1. Stop all containers and clear volumes
 docker compose -f docker-compose.yml down -v
 
@@ -256,27 +238,17 @@ docker compose -f docker-compose.yml up -d
 
 ### Redis as External Cache
 
-For production deployments, use an external Redis cluster:
-
-```yaml
+For production deployments, use an external Redis cluster: ```yaml
 # docker-compose.yml (excerpt)
-services:
-  redis:
-    image: redis:7-alpine
+services: redis: image: redis:7-alpine
     command: redis-server --requirepass ${REDIS_PASSWORD}
-    volumes:
-      - redis_data:/data
-    deploy:
-      resources:
-        limits:
-          memory: 2G
+    volumes: - redis_data:/data
+    deploy: resources: limits: memory: 2G
 ```
 
 ### Qdrant as Alternative Vector Store
 
-While RAGFlow uses Elasticsearch or Infinity natively, you can integrate Qdrant via the Python SDK for custom retrieval pipelines:
-
-```python
+While RAGFlow uses Elasticsearch or Infinity natively, you can integrate Qdrant via the Python SDK for custom retrieval pipelines: ```python
 from qdrant_client import QdrantClient
 from ragflow_sdk import RAGFlow
 
@@ -293,10 +265,18 @@ vectors = qdrant.search(collection="financial_reports", vector=query_embedding, 
 
 ### Retrieval Quality Benchmarks
 
-A 2026 benchmark by AI Multiple compared RAGFlow against other frameworks using 100 standardized queries with GPT-4.1-mini as the generation model:
-
-| Metric | RAGFlow | LlamaIndex | Haystack | LangChain RAG |
-|--------|---------|------------|----------|---------------|
+A 2026 benchmark by AI Multiple compared RAGFlow against other frameworks using 100 standardized queries with GPT-4.1-mini as the generation model: | Metric | RAGFlow | LlamaIndex | Haystack | LangChain RAG |
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Answer Accuracy | 97% | 94% | 95% | 91% |
 | Avg. Retrieval Latency | 420ms | 380ms | 450ms | 510ms |
 | Token Efficiency (per query) | 1,450 | 1,600 | 1,570 | 2,400 |
@@ -308,7 +288,15 @@ RAGFlow leads in accuracy and citation grounding due to DeepDoc's layout-aware p
 ### Document Parsing Performance
 
 | Document Type | RAGFlow (DeepDoc) | LlamaIndex | Haystack |
-|--------------|-------------------|------------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | PDF with tables | Full structure preserved | Flat text | Flat text |
 | Scanned PDF (OCR) | Native support | Requires extension | Requires extension |
 | PowerPoint slides | Slide-aware chunking | Per-slide | Per-slide |
@@ -318,7 +306,17 @@ RAGFlow leads in accuracy and citation grounding due to DeepDoc's layout-aware p
 ### Production Deployment Profiles
 
 | Profile | Users | Documents | Hardware | Monthly Cloud Cost |
-|---------|-------|-----------|----------|-------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Team (10 users) | 10 | 10,000 | 4 vCPU, 16 GB RAM | ~$80 (DigitalOcean) |
 | Department (100 users) | 100 | 100,000 | 8 vCPU, 32 GB RAM | ~$200 (DigitalOcean) |
 | Enterprise (1000+ users) | 1000+ | 1M+ | 16 vCPU, 64 GB RAM + GPU | ~$800+ (cloud) |
@@ -351,9 +349,7 @@ server {
 
 ### Enable GraphRAG for Multi-Hop Reasoning
 
-GraphRAG extracts knowledge graphs from documents, enabling cross-document reasoning:
-
-```python
+GraphRAG extracts knowledge graphs from documents, enabling cross-document reasoning: ```python
 # Via the RAGFlow web UI or API
 POST /api/datasets/{dataset_id}/chunks/graph
 {
@@ -367,50 +363,33 @@ GraphRAG is especially effective for legal documents, research papers, and finan
 
 ### Configure the Sandbox (Code Execution)
 
-RAGFlow's agent can execute Python and JavaScript code in a sandboxed environment. This requires gVisor:
-
-```bash
+RAGFlow's agent can execute Python and JavaScript code in a sandboxed environment. This requires gVisor: ```bash
 # Install gVisor (required for sandbox)
 sudo apt-get install -y runsc
 
 # Enable in docker-compose.yml
-services:
-  ragflow:
-    environment:
-      - ENABLE_SANDBOX=true
-    devices:
-      - /dev/kvm
+services: ragflow: environment: - ENABLE_SANDBOX=true
+    devices: - /dev/kvm
 ```
 
 ### Monitoring with Prometheus
 
 ```yaml
 # Add to docker-compose.yml
-services:
-  prometheus:
-    image: prom/prometheus:latest
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+services: prometheus: image: prom/prometheus:latest
+    volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus_data:/prometheus
-    ports:
-      - "9090:9090"
+    ports: - "9090:9090"
 
-  grafana:
-    image: grafana/grafana:latest
-    ports:
-      - "3000:3000"
-    volumes:
-      - grafana_data:/var/lib/grafana
+  grafana: image: grafana/grafana:latest
+    ports: - "3000:3000"
+    volumes: - grafana_data:/var/lib/grafana
 ```
 
-Key metrics to monitor:
-
-```yaml
+Key metrics to monitor: ```yaml
 # prometheus.yml
-scrape_configs:
-  - job_name: ragflow
-    static_configs:
-      - targets: ['ragflow-server:9380']
+scrape_configs: - job_name: ragflow
+    static_configs: - targets: ['ragflow-server:9380']
     metrics_path: /metrics
 ```
 
@@ -441,7 +420,17 @@ rclone sync $BACKUP_DIR s3:my-backup-bucket/ragflow/
 ## Comparison with Alternatives
 
 | Feature | RAGFlow | LlamaIndex | Haystack | LangChain RAG |
-|---------|---------|------------|----------|---------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **GitHub Stars** | 80,853 | 49,500 | 25,300 | 105,000 |
 | **License** | Apache-2.0 | MIT | Apache-2.0 | MIT |
 | **Deep Document Parsing** | DeepDoc (built-in) | LlamaParse (paid) | Basic | Basic |
@@ -540,9 +529,7 @@ Join our [Telegram developer community](https://t.me/dibi8opensource) for deploy
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -563,7 +550,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [RAGFlow Production Deployment on VPS](https://zhujibaike.com/2497.html)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -610,3 +596,5 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
 
+
+---

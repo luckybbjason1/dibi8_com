@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/hoppscotch" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hoppscotch" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hoppscotch" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hoppscotch" />
 title: 'Hoppscotch: 79,200 GitHub Stars — Nền tảng phát triển AP...
 description: 'Hoppscotch (HOPP) là hệ sinh thái phát triển API mã nguồn mở. Tương thích Docker, GitHub Actions, Node.js, Vue.js. Hướng dẫn hoppscotch, tự lưu trữ, CLI tự động hóa và so sánh với các giải pháp thay thế.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [hoppscotch, 'kiem-tra-api', 'thay-the-postman', 'ma-nguon-mo', docker, cli, 'rest-api', graphql]
-aliases:
-- /vi/posts/hoppscotch/
+aliases: - /vi/posts/hoppscotch/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/hoppscotch/ -->
 
 {{</* resource-info */>}}
 
@@ -136,51 +128,34 @@ docker run -d \
 # docker-compose.yml
 version: "3.8"
 
-services:
-  hoppscotch:
-    image: hoppscotch/hoppscotch:2026.4.1
+services: hoppscotch: image: hoppscotch/hoppscotch:2026.4.1
     container_name: hoppscotch-app
-    ports:
-      - "3000:3000"   # ứng dụng chính
+    ports: - "3000:3000"   # ứng dụng chính
       - "3100:3100"   # bảng điều khiển admin
       - "3170:3170"   # API backend
     env_file: .env
     restart: unless-stopped
-    depends_on:
-      postgres:
-        condition: service_healthy
-    networks:
-      - hoppscotch-net
+    depends_on: postgres: condition: service_healthy
+    networks: - hoppscotch-net
 
-  postgres:
-    image: postgres:16-alpine
+  postgres: image: postgres:16-alpine
     container_name: hoppscotch-db
-    environment:
-      POSTGRES_DB: hoppscotch
+    environment: POSTGRES_DB: hoppscotch
       POSTGRES_USER: hoppscotch
       POSTGRES_PASSWORD: ${DB_PASSWORD:-changeme}
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U hoppscotch"]
+    volumes: - postgres_data:/var/lib/postgresql/data
+    healthcheck: test: ["CMD-SHELL", "pg_isready -U hoppscotch"]
       interval: 10s
       timeout: 5s
       retries: 5
-    networks:
-      - hoppscotch-net
+    networks: - hoppscotch-net
 
-volumes:
-  postgres_data:
-    driver: local
+volumes: postgres_data: driver: local
 
-networks:
-  hoppscotch-net:
-    driver: bridge
+networks: hoppscotch-net: driver: bridge
 ```
 
-Triển khai để khởi động stack:
-
-```bash
+Triển khai để khởi động stack: ```bash
 docker compose up -d
 
 # Xác minh tất cả dịch vụ đều khỏe mạnh
@@ -200,23 +175,16 @@ Với các nhóm sẵn sàng triển khai trên VPS, [DigitalOcean](https://m.do
 # .github/workflows/api-tests.yml
 name: Kiểm thử API với Hoppscotch CLI
 
-on:
-  push:
-    branches: [main, develop]
-  pull_request:
-    branches: [main]
+on: push: branches: [main, develop]
+  pull_request: branches: [main]
 
-jobs:
-  api-test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
+jobs: api-test: runs-on: ubuntu-latest
+    steps: - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Thiết lập Node.js
         uses: actions/setup-node@v4
-        with:
-          node-version: "20"
+        with: node-version: "20"
           cache: "npm"
 
       - name: Cài đặt Hoppscotch CLI
@@ -236,14 +204,12 @@ jobs:
             -e environments/test.json \
             --reporter-junit test-results.xml \
             --delay 500
-        env:
-          API_BASE_URL: http://localhost:8080
+        env: API_BASE_URL: http://localhost:8080
 
       - name: Tải kết quả kiểm thử lên
         uses: actions/upload-artifact@v4
         if: always()
-        with:
-          name: api-test-results
+        with: name: api-test-results
           path: test-results.xml
 ```
 
@@ -456,33 +422,18 @@ server {
 # docker-compose.monitoring.yml
 version: "3.8"
 
-services:
-  prometheus:
-    image: prom/prometheus:latest
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+services: prometheus: image: prom/prometheus:latest
+    volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus_data:/prometheus
-    ports:
-      - "9090:9090"
-    networks:
-      - hoppscotch-net
+    ports: - "9090:9090"
+    networks: - hoppscotch-net
 
-  grafana:
-    image: grafana/grafana:latest
-    ports:
-      - "3001:3000"
-    volumes:
-      - grafana_data:/var/lib/grafana
-    networks:
-      - hoppscotch-net
+  grafana: image: grafana/grafana:latest
+    ports: - "3001:3000"
+    volumes: - grafana_data:/var/lib/grafana
+    networks: - hoppscotch-net
 
-volumes:
-  prometheus_data:
-  grafana_data:
-
-networks:
-  hoppscotch-net:
-    external: true
+volumes: prometheus_data: grafana_data: networks: hoppscotch-net: external: true
 ```
 
 ### Chiến lược sao lưu cơ sở dữ liệu
@@ -598,9 +549,7 @@ Tham gia [nhóm Telegram](https://t.me/dibi8channel) của chúng tôi để nh�
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -620,7 +569,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [Trang web Insomnia](https://insomnia.rest)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

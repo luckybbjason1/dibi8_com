@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/openrouter-unified-llm-api-gateway" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/openrouter-unified-llm-api-gateway" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/openrouter-unified-llm-api-gateway" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/openrouter-unified-llm-api-gateway" />
 title: 'OpenRouter: 300개 이상 모델을 연결하는 통합 LLM API 게이트웨이, 40% 비용 절감...
 description: 'OpenRouter 완벽 가이드: 60개 이상 제공업체의 300개 이상 AI 모델에 단일 OpenAI 호환 엔드포인트로 액세스합니다. 5분 안에 설정, 통합, 벤치마크, 프로덕션 배포를 학습하세요.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [openrouter, llm, 'api 게이트웨이', 인공지능, openai, claude, 머신러닝, '비용 최적화']
-aliases:
-- /kr/posts/openrouter-unified-llm-api-gateway/
+aliases: - /kr/posts/openrouter-unified-llm-api-gateway/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/openrouter-unified-llm-api-gateway/ -->
 
 {{</* resource-info */>}}
 
@@ -53,9 +45,7 @@ OpenRouter는 단일 OpenAI 호환 엔드포인트를 통해 60개 이상 제공
 
 ### 아키텍처 개요
 
-OpenRouter는 애플리케이션과 상위 LLM 제공업체 사이에서 **프록시 레이어**로 작동한다:
-
-```
+OpenRouter는 애플리케이션과 상위 LLM 제공업체 사이에서 **프록시 레이어**로 작동한다: ```
 앱 → OpenRouter 게이트웨이 → 제공업체 (OpenAI / Anthropic / Google / ...)
                 ↓
          [대체 제공업체]
@@ -63,9 +53,7 @@ OpenRouter는 애플리케이션과 상위 LLM 제공업체 사이에서 **프�
          [묶음 제공업체]
 ```
 
-게이트웨이는 네 가지 중요한 기능을 처리한다:
-
-1. **요청 라우팅** — 원시 프로토콜을 사용하여 선택한 제공업체로 API 호출을 전달한다
+게이트웨이는 네 가지 중요한 기능을 처리한다: 1. **요청 라우팅** — 원시 프로토콜을 사용하여 선택한 제공업체로 API 호출을 전달한다
 2. **응답 정규화** — 상위 제공업체에 관계없이 OpenAI 호환 형식으로 결과를 반환한다
 3. **자동 장애 조치** — 백업 모델 또는 제공업체로 실패한 요청을 재시도한다
 4. **통합 결제** — 모든 제공업체의 사용량을 단일 크레딧 잔액으로 집계한다
@@ -155,9 +143,7 @@ print(f"사용된 모델: {response.model}")
 print(f"토큰 수: {response.usage.total_tokens}")
 ```
 
-실행:
-
-```bash
+실행: ```bash
 python openrouter_demo.py
 ```
 
@@ -312,9 +298,7 @@ func main() {
 
 ### OpenRouter "Auto" 라우터 사용
 
-Auto 라우터는 가격, 속도, 품질 지표를 기반으로 실시간으로 최적의 사용 가능한 모델을 선택한다:
-
-```python
+Auto 라우터는 가격, 속도, 품질 지표를 기반으로 실시간으로 최적의 사용 가능한 모델을 선택한다: ```python
 # OpenRouter가 자동으로 최적의 모델 선택
 response = client.chat.completions.create(
     model="openrouter/auto",  # 58개 이상의 후보 모델에서 자동 선택
@@ -360,9 +344,7 @@ print(response.model)
 
 ### 실제 비용 절감 사례 연구
 
-중형 SaaS 회사가 월 **5천만 토큰**을 처리하며 5개의 별도 제공업체 통합에서 OpenRouter로 전환:
-
-| 지표 | OpenRouter 전 | OpenRouter 후 |
+중형 SaaS 회사가 월 **5천만 토큰**을 처리하며 5개의 별도 제공업체 통합에서 OpenRouter로 전환: | 지표 | OpenRouter 전 | OpenRouter 후 |
 |---|---|---|
 | 월간 API 비용 | $4,200 | $3,180 |
 | 엔지니어링 유지 관리 | 12시간/주 | 1시간/주 |
@@ -433,15 +415,10 @@ CMD ["node", "proxy.js"]
 ```yaml
 # docker-compose.yml
 version: "3.8"
-services:
-  openrouter-proxy:
-    build:
-      context: .
+services: openrouter-proxy: build: context: .
       dockerfile: Dockerfile.openrouter-proxy
-    ports:
-      - "3000:3000"
-    environment:
-      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+    ports: - "3000:3000"
+    environment: - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
       - FALLBACK_MODELS=openai/gpt-5,google/gemini-3-pro
       - CACHE_ENABLED=true
     restart: unless-stopped
@@ -554,9 +531,7 @@ OpenRouter는 **하나의 API 키**, **하나의 SDK**, **5분의 설정**으로
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -566,7 +541,6 @@ OpenRouter는 **하나의 API 키**, **하나의 SDK**, **5분의 설정**으로
 본 문서에는 [DigitalOcean](https://m.do.co/c/eca87ac14ee0)의 제휴 링크가 포함되어 있다. 이 링크를 통해 가입하면 추가 비용 없이 커미션을 받을 수 있다. 모든 의견과 벤치마크는 독립적으로 검증되었다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

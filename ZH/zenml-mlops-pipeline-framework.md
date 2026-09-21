@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/zenml-mlops-pipeline-framework" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/zenml-mlops-pipeline-framework" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/zenml-mlops-pipeline-framework" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/zenml-mlops-pipeline-framework" />
 title: 'ZenML 2026: 将 20+ 工具连接成生产级流水线的 MLOps 框架 —— 完整配置指南'
 description: '关于 ZenML 的全面指南——这款开源 MLOps 框架将 20+ 工具连接成统一、可复现的 ML 流水线。包含自托管部署、真实基准测试和生产环境部署。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: []
-aliases:
-- /zh/posts/zenml-mlops-pipeline-framework/
+aliases: - /zh/posts/zenml-mlops-pipeline-framework/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/zenml-mlops-pipeline-framework/ -->
 
 {{</* resource-info */>}}
 
@@ -141,15 +133,13 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 
 @step
-def load_data() -> pd.DataFrame:
-    """Load the iris dataset."""
+def load_data() -> pd.DataFrame: """Load the iris dataset."""
     iris = load_iris(as_frame=True)
     df = iris.frame
     return df
 
 @step
-def split_data(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame, pd.Series, pd.Series]:
-    """Split data into training and test sets."""
+def split_data(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame, pd.Series, pd.Series]: """Split data into training and test sets."""
     X = df.drop("target", axis=1)
     y = df["target"]
     X_train, X_test, y_train, y_test = train_test_split(
@@ -158,8 +148,7 @@ def split_data(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame, pd.Series,
     return X_train, X_test, y_train, y_test
 
 @step
-def train_model(X_train: pd.DataFrame, y_train: pd.Series) -> RandomForestClassifier:
-    """Train a Random Forest classifier."""
+def train_model(X_train: pd.DataFrame, y_train: pd.Series) -> RandomForestClassifier: """Train a Random Forest classifier."""
     clf = RandomForestClassifier(n_estimators=100, random_state=42)
     clf.fit(X_train, y_train)
     return clf
@@ -169,23 +158,20 @@ def evaluate_model(
     model: RandomForestClassifier,
     X_test: pd.DataFrame,
     y_test: pd.Series
-) -> float:
-    """Evaluate the trained model."""
+) -> float: """Evaluate the trained model."""
     predictions = model.predict(X_test)
     accuracy = accuracy_score(y_test, predictions)
     print(f"Model accuracy: {accuracy:.4f}")
     return accuracy
 
 @pipeline
-def training_pipeline():
-    """End-to-end ML training pipeline."""
+def training_pipeline(): """End-to-end ML training pipeline."""
     df = load_data()
     X_train, X_test, y_train, y_test = split_data(df)
     model = train_model(X_train, y_train)
     accuracy = evaluate_model(model, X_test, y_test)
 
-if __name__ == "__main__":
-    run = training_pipeline()
+if __name__ == "__main__": run = training_pipeline()
     print(f"Pipeline run completed: {run.name}")
 ```
 
@@ -253,8 +239,7 @@ import mlflow
 import mlflow.sklearn
 
 @step(experiment_tracker="mlflow_tracker")
-def train_model(X_train: pd.DataFrame, y_train: pd.Series) -> RandomForestClassifier:
-    """Train with MLflow logging."""
+def train_model(X_train: pd.DataFrame, y_train: pd.Series) -> RandomForestClassifier: """Train with MLflow logging."""
     mlflow.autolog()  # Auto-log parameters, metrics, and model
     clf = RandomForestClassifier(n_estimators=100, random_state=42)
     clf.fit(X_train, y_train)
@@ -270,10 +255,8 @@ def train_model(X_train: pd.DataFrame, y_train: pd.Series) -> RandomForestClassi
 def register_model(
     model: RandomForestClassifier,
     accuracy: float
-) -> str:
-    """Register model to MLflow model registry."""
-    if accuracy > 0.90:
-        model_version = mlflow.sklearn.log_model(
+) -> str: """Register model to MLflow model registry."""
+    if accuracy > 0.90: model_version = mlflow.sklearn.log_model(
             model,
             artifact_path="model",
             registered_model_name="iris-classifier"
@@ -326,33 +309,20 @@ zenml experiment-tracker register wandb_tracker \
 ```yaml
 # stack.yaml —— 将完整的 MLOps 技术栈定义为代码
 stack_name: production_stack
-components:
-  orchestrator:
-    flavor: kubernetes
-    configuration:
-      kubernetes_context: prod-cluster
+components: orchestrator: flavor: kubernetes
+    configuration: kubernetes_context: prod-cluster
       namespace: ml-pipelines
-  artifact_store:
-    flavor: s3
-    configuration:
-      path: s3://prod-ml-artifacts/zenml
+  artifact_store: flavor: s3
+    configuration: path: s3://prod-ml-artifacts/zenml
       authentication_secret: aws-s3-secret
-  container_registry:
-    flavor: default
-    configuration:
-      uri: 123456789.dkr.ecr.us-east-1.amazonaws.com
-  experiment_tracker:
-    flavor: mlflow
-    configuration:
-      tracking_uri: http://mlflow.internal:5000
-  model_registry:
-    flavor: mlflow
-    configuration:
-      uri: http://mlflow.internal:5000
-  step_operator:
-    flavor: sagemaker
-    configuration:
-      role: arn:aws:iam::123456789:role/SageMakerRole
+  container_registry: flavor: default
+    configuration: uri: 123456789.dkr.ecr.us-east-1.amazonaws.com
+  experiment_tracker: flavor: mlflow
+    configuration: tracking_uri: http://mlflow.internal:5000
+  model_registry: flavor: mlflow
+    configuration: uri: http://mlflow.internal:5000
+  step_operator: flavor: sagemaker
+    configuration: role: arn:aws:iam::123456789:role/SageMakerRole
       instance_type: ml.p3.2xlarge
 ```
 
@@ -369,7 +339,17 @@ ZenML 已在各行业的生产环境中使用。以下是真实的部署模式�
 ### 企业案例
 
 | 公司 | 行业 | 规模 | 技术栈 | 成果 |
-|---------|----------|-------|-------|-------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | ML6（咨询公司） | 各行业 | **每月 500+ 流水线** | Kubernetes + MLflow + S3 | 流水线设置时间减少 60% |
 | Renteaze | 房地产科技 | 12 个生产模型 | 本地 → Vertex AI | 部署时间：2 周 → 2 天 |
 | Atchai | 医疗健康 | 3TB 影像数据 | Kubernetes + GCS + W&B | FDA 合规的完整审计追踪 |
@@ -380,7 +360,15 @@ ZenML 已在各行业的生产环境中使用。以下是真实的部署模式�
 我们在 **DigitalOcean 8 vCPU / 32GB RAM 云服务器** 上对 ZenML v0.80.0 进行了常见 MLOps 模式的基准测试（通过 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 获取 $200 免费额度）：
 
 | 指标 | 本地模式 | Airflow | Kubernetes |
-|--------|-----------|---------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 冷启动时间 | **1.2s** | 8.5s | 45s |
 | 流水线开销 | **0.3s** | 2.1s | 12s |
 | 制品缓存 | 支持 | 支持 | 支持 |
@@ -397,7 +385,11 @@ ZenML 已在各行业的生产环境中使用。以下是真实的部署模式�
 # 在 DigitalOcean 8 vCPU / 32GB 云服务器上测试
 
 步骤数 | 本地 (s) | Kubernetes (s)
-------|-----------|---------------
+
+---
+|
+---
+|---
   5   |    1.5    |     52
   10  |    2.8    |     68
   20  |    5.2    |     95
@@ -416,8 +408,7 @@ ZenML 已在各行业的生产环境中使用。以下是真实的部署模式�
 from zenml.step_operators import BaseStepOperator
 
 @step(step_operator="sagemaker_gpu")
-def train_deep_learning_model(X_train: pd.DataFrame, y_train: pd.Series):
-    """通过 SageMaker 在 GPU 上训练，其他步骤在本地运行。"""
+def train_deep_learning_model(X_train: pd.DataFrame, y_train: pd.Series): """通过 SageMaker 在 GPU 上训练，其他步骤在本地运行。"""
     import tensorflow as tf
     
     # 此步骤通过 SageMaker 在 ml.p3.2xlarge 上执行
@@ -454,8 +445,7 @@ ZenML 的缓存系统是自动的且制品感知的。如果输入和步骤代�
 
 ```python
 @step(enable_cache=True)  # 默认行为
-def expensive_preprocessing(df: pd.DataFrame) -> pd.DataFrame:
-    """仅在输入 df 或此函数更改时重新运行。"""
+def expensive_preprocessing(df: pd.DataFrame) -> pd.DataFrame: """仅在输入 df 或此函数更改时重新运行。"""
     # 耗时 30 分钟的繁重转换
     return processed_df
 
@@ -486,8 +476,7 @@ zenml secrets-manager secret register db_credentials \
 from zenml.client import Client
 
 @step
-def load_from_database() -> pd.DataFrame:
-    """使用 ZenML 密钥管理器的凭据加载数据。"""
+def load_from_database() -> pd.DataFrame: """使用 ZenML 密钥管理器的凭据加载数据。"""
     client = Client()
     credentials = client.get_secret("db_credentials")
     
@@ -506,17 +495,11 @@ def load_from_database() -> pd.DataFrame:
 ```yaml
 # .github/workflows/ml-pipeline.yml
 name: ML Pipeline CI
-on:
-  push:
-    branches: [main]
-  schedule:
-    - cron: "0 2 * * *"
+on: push: branches: [main]
+  schedule: - cron: "0 2 * * *"
 
-jobs:
-  train:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: train: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       
       - name: Setup ZenML
         run: |
@@ -539,7 +522,17 @@ jobs:
 ## 与替代方案对比
 
 | 特性 | ZenML | Kubeflow Pipelines | Metaflow | MLflow Pipelines |
-|---------|-------|-------------------|----------|-----------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **流水线抽象** | Python 装饰器 | YAML + Python | Python 装饰器 | 基于 YAML |
 | **编排器集成** | **20+** (Airflow, K8s 等) | 仅 Kubernetes | AWS Step Functions, 本地 | 有限 |
 | **实验追踪** | 可插拔 (MLflow, W&B 等) | 内置（基础） | 内置（Metaflow UI） | 仅 MLflow |
@@ -625,7 +618,6 @@ ZenML 解决了机器学习中最常见的失败模式：从"在我的笔记本�
 本文包含联盟链接。如果你通过本文中的链接注册服务，dibi8.com 可能会获得佣金，而不会向你收取额外费用。我们只推荐我们亲自评估并认为具有真正价值的工具。所表达的观点是我们自己的。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -650,3 +642,4 @@ ZenML 解决了机器学习中最常见的失败模式：从"在我的笔记本�
   }
 }
 </script>
+---

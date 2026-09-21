@@ -1,28 +1,20 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/n8n-ai-automation-complete-guide" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/n8n-ai-automation-complete-guide" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/n8n-ai-automation-complete-guide" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/n8n-ai-automation-complete-guide" />
 title: n8n AI 自动化 — 无需代码构建智能工作流
 description: n8n AI 驱动的工作流自动化完全指南。通过 AI 节点连接 400+ 应用、构建自主代理并自动化复杂业务流程。定价、模板和实际示例。. Comprehensive guide covering features, pricing, and best practices for 2026.
 tags: ['n8n', 'workflow-automation', 'ai-automation', 'no-code', 'agent-automation', 'business-process']
 category: dev-utils
 featureImage: /images/articles/n8n-ai-automation.jpg
 date: 2026-07-16T00:00:00+00:00
-lastmod:  2026-07-16T00:00:00+00:00draft: false
+lastmod: 2026-07-16T00:00:00+00:00draft: false
 slug: n8n-ai-automation-complete-guide
-lang: zh-CN
----
-
-<!-- canonical: https://dibi8.com/zh/tools/n8n-ai-automation-complete-guide/ -->
+-CN---
 
 ## TL;DR
 
 n8n 是一个强大的工作流自动化工具，让你通过直观的可视化界面连接 400+ 应用和服务。在 2026 年，n8n 已演变为 AI 自动化 powerhouse，具有原生 LLM 集成、自主代理支持和企业级可靠性。本指南涵盖设置、AI 节点配置、实际工作流、定价以及构建智能自动化的高级模式。
 
----
 
+---
 ## n8n 是什么？
 
 n8n（发音为"n-eight-n"）是一种 fair-code 工作流自动化工具，使你能够可视化地连接应用、数据库、API 和 AI 模型。与 Zapier 或 Make 不同，n8n 可以自托管，让你完全控制你的数据和工作流。
@@ -34,15 +26,21 @@ n8n（发音为"n-eight-n"）是一种 fair-code 工作流自动化工具，使�
 自动化格局发生了巨大变化：
 
 | 时代 | 方法 | 限制 |
-|------|------|------|
+|
+---
+|
+---
+|
+---
+|
 | 2020-2022 | 简单触发→动作 | 无智能、仅限线性 |
 | 2023-2024 | API 连接器 + 基本逻辑 | 自定义有限 |
 | 2025-2026 | AI 原生工作流 | 完全自主、推理、记忆 |
 
 n8n 通过让 AI 工作流无需编码即可访问而引领 2026 年的浪潮。
 
----
 
+---
 ## 核心架构
 
 ### 节点：构建块
@@ -70,19 +68,16 @@ n8n 支持两种范式：
 # 传统工作流（确定性）
 trigger: new_email_received
   → parse_subject
-  → if contains "invoice":
-      → save_to_drive
+  → if contains "invoice": → save_to_drive
       → notify_accounting
 
 # AI 代理（概率性、基于推理）
 trigger: new_support_ticket
   → AI_classify_priority(ticket)
-  → if priority == "high":
-      → AI_summarize(ticket)
+  → if priority == "high": → AI_summarize(ticket)
       → AI_draft_response()
       → human_review_queue
-  → else:
-      → auto_reply_with_knowledge_base
+  → else: → auto_reply_with_knowledge_base
 ```
 
 ---
@@ -186,7 +181,13 @@ n8n start
 存储和查询嵌入：
 
 | 节点 | 用途 | 最佳用途 |
-|------|------|----------|
+|
+---
+|
+---
+|
+---
+|
 | Pinecone | 云向量数据库 | 可扩展的语义搜索 |
 | Qdrant | 自托管 | 注重隐私的 RAG |
 | Weaviate | 混合搜索 | 文本+向量组合查询 |
@@ -341,12 +342,9 @@ workflow_config = {
 ### 模式四：条件分支
 
 ```python
-if condition_a:
-    execute_workflow_a()
-elif condition_b:
-    execute_workflow_b()
-else:
-    execute_default()
+if condition_a: execute_workflow_a()
+elif condition_b: execute_workflow_b()
+else: execute_default()
 ```
 
 n8n 的 Switch 节点以可视化方式处理复杂的分支。
@@ -358,7 +356,11 @@ n8n 的 Switch 节点以可视化方式处理复杂的分支。
 ### 流行连接
 
 | 类别 | 示例 |
-|------|------|
+|
+---
+|
+---
+|
 | 通信 | Slack、Discord、Telegram、Microsoft Teams |
 | 邮件 | Gmail、Outlook、SendGrid、Mailchimp |
 | CRM | Salesforce、HubSpot、Pipedrive、Notion |
@@ -390,7 +392,13 @@ n8n 的 Switch 节点以可视化方式处理复杂的分支。
 ## 定价
 
 | 计划 | 价格 | 功能 |
-|------|------|------|
+|
+---
+|
+---
+|
+---
+|
 | 免费 | $0 | 自托管、无限工作流、社区支持 |
 | Pro（云） | $20/月 | 托管主机、每月 5K 工作流执行 |
 | 商业 | $50/用户/月 | SSO、审计日志、优先支持、5 万执行 |
@@ -401,7 +409,15 @@ n8n 的 Switch 节点以可视化方式处理复杂的分支。
 ### 成本对比
 
 | 平台 | 入门价 | 1 万次执行 | 无限 |
-|------|--------|-----------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | n8n（自托管） | $0 | $0 | $0 |
 | n8n Cloud Pro | $20/月 | $20/月 | $20/月 |
 | Zapier | $29/月 | $29/月 | $59/月 |
@@ -414,7 +430,13 @@ n8n 的 Switch 节点以可视化方式处理复杂的分支。
 ### 执行限制
 
 | 计划 | 最大并发工作流 | 执行超时 |
-|------|---------------|----------|
+|
+---
+|
+---
+|
+---
+|
 | 自托管 | 无限 | 可配置 |
 | Pro 云 | 10 | 30 秒 |
 | 商业 | 50 | 60 秒 |
@@ -582,7 +604,6 @@ n8n 提供更大的灵活性、AI 集成和自托管能力。Zapier 对非技术
 *加入我们的 Telegram 群组获取实时 AI 工具讨论和部署技巧：[t.me/dibi8](https://t.me/dibi8)*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -610,25 +631,20 @@ n8n 提供更大的灵活性、AI 集成和自托管能力。Zapier 对非技术
 
 ## Why This Matters
 
-Understanding n8n ai 自动化 — 无需代码构建智能工作流 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding n8n ai 自动化 — 无需代码构建智能工作流 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -671,7 +687,17 @@ For the latest updates and community discussions, join our Telegram channel: htt
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

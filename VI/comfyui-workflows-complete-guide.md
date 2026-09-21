@@ -1,21 +1,14 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/comfyui-workflows-complete-guide" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/comfyui-workflows-complete-guide" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/comfyui-workflows-complete-guide" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/comfyui-workflows-complete-guide" />
 title: ComfyUI Workflows — Ngôn ngữ lập trình trực quan cho AI i...
 description: Hướng dẫn toàn diện về ComfyUI workflows để tạo AI images chuyên nghiệp. Xây dựng pipeline phức tạp với nodes, quản lý dependencies và tạo template workflows có thể chia sẻ.
 tags: ['comfyui', 'ai-image-generation', 'workflow', 'nodes', 'stable-diffusion', 'visual-programming']
 category: ai-tools
 featureImage: /images/articles/comfyui-workflows.jpg
 date: 2026-07-16T00:00:00+00:00
-lastmod:  2026-07-16T00:00:00+00:00draft: false
+lastmod: 2026-07-16T00:00:00+00:00draft: false
 slug: comfyui-workflows-complete-guide
 lang: vi
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/comfyui-workflows-complete-guide/ -->
 
 ## TL;DR
 
@@ -27,9 +20,7 @@ ComfyUI là một giao diện đồ thị dựa trên nodes mạnh mẽ để ch
 
 ComfyUI là một giao diện đồ thị dựa trên nodes để chạy các model AI image generation. Khác với các UI truyền thống nơi bạn chỉ điều chỉnh thanh trượt và nhấn "generate", ComfyUI cho phép bạn **xây dựng pipeline tùy chỉnh** bằng cách kết nối các processing nodes với nhau — tương tự như hệ thống nodes của Blender hoặc TouchDesigner.
 
-Triết lý cốt lõi: **mang đến cho người dùng quyền kiểm soát hoàn toàn mọi bước trong quá trình tạo ảnh**. Điều này có nghĩa là bạn có thể:
-
-- Chaining nhiều model với nhau (ví dụ: text → image → upscale → refine)
+Triết lý cốt lõi: **mang đến cho người dùng quyền kiểm soát hoàn toàn mọi bước trong quá trình tạo ảnh**. Điều này có nghĩa là bạn có thể: - Chaining nhiều model với nhau (ví dụ: text → image → upscale → refine)
 - Sử dụng conditional logic (if A then B else C)
 - Xử lý nhiều ảnh đồng thời
 - Tạo các template workflow có thể tái sử dụng
@@ -37,9 +28,7 @@ Triết lý cốt lõi: **mang đến cho người dùng quyền kiểm soát ho
 
 ### Tại sao AI workflows dạng nodes lại quan trọng
 
-Các công cụ AI image generation truyền thống cung cấp pipeline cố định: bạn nhập prompt, điều chỉnh cài đặt và nhận ảnh. Nhưng công việc sáng tạo thực tế thường yêu cầu:
-
-1. **Xử lý đa giai đoạn** — Tạo ảnh base, detect faces, upscale vùng cụ thể, apply style transfer
+Các công cụ AI image generation truyền thống cung cấp pipeline cố định: bạn nhập prompt, điều chỉnh cài đặt và nhận ảnh. Nhưng công việc sáng tạo thực tế thường yêu cầu: 1. **Xử lý đa giai đoạn** — Tạo ảnh base, detect faces, upscale vùng cụ thể, apply style transfer
 2. **Conditional generation** — Prompt khác nhau dựa trên nội dung được detect
 3. **Batch processing** — Tạo biến thể một cách hiệu quả
 4. **Custom post-processing** — Áp dụng filter, composite hoặc correction cụ thể
@@ -52,16 +41,13 @@ Workflows dạng nodes xử lý tất cả những điều này một cách nati
 
 ### Nodes và Connections
 
-Mỗi thao tác trong ComfyUI là một **node** — một đơn vị xử lý tự chứa với inputs và outputs:
-
-```
+Mỗi thao tác trong ComfyUI là một **node** — một đơn vị xử lý tự chứa với inputs và outputs: ```
 [Load Checkpoint] → [CLIP Text Encode] → [KSampler] → [VAE Decode] → [Save Image]
      │                    │                      │                │
   model              positive/negative        seed/samples      output
 ```
 
-Mỗi loại node xử lý một nhiệm vụ cụ thể:
-- **Model Loading**: Load Stable Diffusion checkpoints, LoRAs, embeddings
+Mỗi loại node xử lý một nhiệm vụ cụ thể: - **Model Loading**: Load Stable Diffusion checkpoints, LoRAs, embeddings
 - **Text Encoding**: Chuyển đổi prompt thành biểu diễn latent space
 - **Sampling**: Tạo ảnh bằng các thuật toán khác nhau (Euler, DPM++, DDIM)
 - **Post-processing**: Upscale, color correction, face enhancement
@@ -69,9 +55,7 @@ Mỗi loại node xử lý một nhiệm vụ cụ thể:
 
 ### Kiến trúc Workflow
 
-Một ComfyUI workflow hoàn chỉnh tuân theo pattern sau:
-
-```python
+Một ComfyUI workflow hoàn chỉnh tuân theo pattern sau: ```python
 # Flow khái niệm (ComfyUI thực tế sử dụng connections trực quan)
 workflow = {
     "input": {
@@ -125,9 +109,7 @@ Bước 5: Save Image → Chọn định dạng và vị trí
 
 ### Nâng cao: Multi-stage Pipeline
 
-Để có kết quả chuyên nghiệp, chain nhiều stages:
-
-```
+Để có kết quả chuyên nghiệp, chain nhiều stages: ```
 Stage 1: Base Generation
 ├── Load Checkpoint (SDXL)
 ├── Encode Prompts
@@ -155,9 +137,7 @@ Stage 4: Final Polish
 
 ### Pattern 1: Iterative Refinement
 
-Tạo ảnh base, đánh giá, sau đó refine các khía cạnh cụ thể:
-
-```json
+Tạo ảnh base, đánh giá, sau đó refine các khía cạnh cụ thể: ```json
 {
   "workflow_id": "iterative-refinement",
   "stages": [
@@ -170,9 +150,7 @@ Tạo ảnh base, đánh giá, sau đó refine các khía cạnh cụ thể:
 
 ### Pattern 2: Batch Variation Generation
 
-Tạo nhiều biến thể để so sánh:
-
-```json
+Tạo nhiều biến thể để so sánh: ```json
 {
   "workflow_id": "batch-variations",
   "config": {
@@ -190,9 +168,7 @@ Tạo nhiều biến thể để so sánh:
 
 ### Pattern 3: ControlNet-Guided Generation
 
-Sử dụng reference images để guide composition:
-
-```
+Sử dụng reference images để guide composition: ```
 Input: Reference Image
    ↓
 Canny Edge Detection → ControlNet (edge guidance)
@@ -206,9 +182,7 @@ Final Image với precise composition control
 
 ### Pattern 4: Img2Img Pipeline
 
-Biến đổi existing images trong khi vẫn giữ nguyên structure:
-
-```
+Biến đổi existing images trong khi vẫn giữ nguyên structure: ```
 Original Image → Encode (VAE) → Add Noise → KSampler (denoise) → Decode (VAE) → Result
 ```
 
@@ -220,9 +194,7 @@ Original Image → Encode (VAE) → Add Noise → KSampler (denoise) → Decode 
 
 ### Các Model Được Hỗ trợ
 
-ComfyUI hỗ trợ rộng rãi các model:
-
-| Model Type | Ví dụ | Tốt nhất cho |
+ComfyUI hỗ trợ rộng rãi các model: | Model Type | Ví dụ | Tốt nhất cho |
 |-----------|-------|-------------|
 | Stable Diffusion 1.5 | sd-v1-5, dreamshaper | Prototyping nhanh |
 | SDXL | sdxl_v1.0, juggernaut | Quality cao base |
@@ -317,9 +289,7 @@ optimization_config = {
 
 ### Technique 1: Hierarchical Generation
 
-Tạo ở low resolution trước, sau đó progressively upscale:
-
-```
+Tạo ở low resolution trước, sau đó progressively upscale: ```
 Low Res (512x512) → Mid Res (1024x1024) → High Res (2048x2048)
        ↓                   ↓                    ↓
     Coarse details     Fine details          Ultra details
@@ -327,25 +297,19 @@ Low Res (512x512) → Mid Res (1024x1024) → High Res (2048x2048)
 
 ### Technique 2: Region-based Editing
 
-Chỉnh sửa các phần cụ thể của ảnh mà không ảnh hưởng đến phần khác:
-
-```
+Chỉnh sửa các phần cụ thể của ảnh mà không ảnh hưởng đến phần khác: ```
 Mask Selection → Inpaint Node → Local Prompt → KSampler (masked only)
 ```
 
 ### Technique 3: Style Transfer Pipeline
 
-Áp dụng artistic styles trong khi vẫn giữ nguyên content:
-
-```
+Áp dụng artistic styles trong khi vẫn giữ nguyên content: ```
 Content Image → CLIP Vision → Style Reference → Cross-Attention → KSampler
 ```
 
 ### Technique 4: Automated Quality Scoring
 
-Scoring và lọc tự động các ảnh được tạo:
-
-```
+Scoring và lọc tự động các ảnh được tạo: ```
 Generated Images → CLIP Score Node → Filter (> threshold) → Save Best
 ```
 
@@ -430,16 +394,14 @@ python main.py --listen 0.0.0.0 --port 8188
 
 ### Browser Interface
 
-Mở `http://localhost:8188` trong browser. Bạn sẽ thấy:
-- Canvas trống để build workflows
+Mở `http://localhost:8188` trong browser. Bạn sẽ thấy: - Canvas trống để build workflows
 - Node library bên phải
 - Settings panel (icon bánh răng)
 - Queue và history tabs
 
 ### Loading Presets
 
-ComfyUI bao gồm nhiều preset workflows:
-- **Basic**: Simple text-to-image
+ComfyUI bao gồm nhiều preset workflows: - **Basic**: Simple text-to-image
 - **Img2Img**: Image-to-image transformation
 - **ControlNet**: Reference-guided generation
 - **Upscale**: Resolution enhancement
@@ -508,7 +470,6 @@ ComfyUI là core application. ComfyUI Manager là một extension giúp cài đ�
 *Tham gia nhóm Telegram để thảo luận công cụ AI thời gian thực và mẹo deployment: [t.me/dibi8](https://t.me/dibi8)*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

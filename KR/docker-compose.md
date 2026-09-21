@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/docker-compose" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/docker-compose" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/docker-compose" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/docker-compose" />
 title: 'Docker Compose: 37,393 GitHub Stars — 멀티 컨테이너 앱 완벽 설정 가이...
 description: 'Define and run multi-container applications with Docker using declarative YAML configuration.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: ['docker-compose', '컨테이너-오케스트레이션', devops, docker, 마이크로서비스, 배포, yaml, '멀티-컨테이너']
-aliases:
-- /kr/posts/docker-compose/
+aliases: - /kr/posts/docker-compose/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/docker-compose/ -->
 
 {{</* resource-info */>}}
 
@@ -47,9 +39,7 @@ Docker Compose는 선언형 YAML 구성 파일(일반적으로 `compose.yaml`)�
 
 ![Docker Compose 아키텍처](https://docs.docker.com/get-started/docker-concepts/running-containers/images/multi-container-apps-compose.png)
 
-아키텍처는 간단합니다. `compose.yaml` 파일을 작성하여 서비스, 네트워크, 볼륨을 설명합니다. `docker compose` CLI 플러그인이 이 파일을 읽고 Docker Engine API 호출로 변환합니다. 낮은 수준에서 일어나는 작업은 다음과 같습니다:
-
-1. **프로젝트 격리**: Compose는 `<project>_<network>`라는 전용 Docker 네트워크를 생성합니다(기본값: 디렉터리 이름 + `_default`). 프로젝트의 모든 서비스는 이 격리된 브리지 네트워크를 통해 통신합니다.
+아키텍처는 간단합니다. `compose.yaml` 파일을 작성하여 서비스, 네트워크, 볼륨을 설명합니다. `docker compose` CLI 플러그인이 이 파일을 읽고 Docker Engine API 호출로 변환합니다. 낮은 수준에서 일어나는 작업은 다음과 같습니다: 1. **프로젝트 격리**: Compose는 `<project>_<network>`라는 전용 Docker 네트워크를 생성합니다(기본값: 디렉터리 이름 + `_default`). 프로젝트의 모든 서비스는 이 격리된 브리지 네트워크를 통해 통신합니다.
 2. **서비스 검색**: 컨테이너는 서비스 이름으로 서로에 도달합니다. `db` 서비스가 있다면 `api` 컨테이너는 `db:5432`로 연결하며 DNS 구성이 필요 없습니다.
 3. **볼륨 관리**: 명명된 볼륨은 컨테이너 재시작 후에도 데이터를 유지합니다. Compose는 충돌을 피하기 위해 볼륨 이름 앞에 프로젝트 이름을 붙입니다.
 4. **의존성 순서**: `depends_on` 지시문이 시작 순서를 제어합니다. `condition: service_healthy`와 결합하면 애플리케이션이 시작되기 전에 데이터베이스가 준비되었는지 확인합니다.
@@ -128,9 +118,7 @@ docker compose version
 
 ### 수동 바이너리 설치
 
-패키지 관리자가 없는 환경의 경우:
-
-```bash
+패키지 관리자가 없는 환경의 경우: ```bash
 DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
 mkdir -p $DOCKER_CONFIG/cli-plugins
 curl -SL https://github.com/docker/compose/releases/download/v2.36.0/docker-compose-linux-x86_64 \
@@ -143,30 +131,21 @@ docker compose version
 
 ### Traefik (리버스 프록시 및 로드 밸런서)
 
-Traefik은 Docker 컨테이너를 자동으로 발견하고 라벨을 기반으로 트래픽을 라우팅합니다. 이를 통해 수동 nginx 구성이 불필요해집니다:
-
-```yaml
+Traefik은 Docker 컨테이너를 자동으로 발견하고 라벨을 기반으로 트래픽을 라우팅합니다. 이를 통해 수동 nginx 구성이 불필요해집니다: ```yaml
 # compose.yaml — Traefik + Whoami 예제
 name: proxy-demo
 
-services:
-  traefik:
-    image: traefik:v3.3
-    command:
-      - "--api.insecure=true"
+services: traefik: image: traefik:v3.3
+    command: - "--api.insecure=true"
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
       - "--entrypoints.web.address=:80"
-    ports:
-      - "80:80"
+    ports: - "80:80"
       - "8080:8080"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+    volumes: - /var/run/docker.sock:/var/run/docker.sock:ro
 
-  whoami:
-    image: traefik/whoami
-    labels:
-      - "traefik.enable=true"
+  whoami: image: traefik/whoami
+    labels: - "traefik.enable=true"
       - "traefik.http.routers.whoami.rule=Host(`whoami.localhost`)"
       - "traefik.http.routers.whoami.entrypoints=web"
 ```
@@ -179,33 +158,20 @@ services:
 # compose.yaml — 모니터링 스택
 name: monitoring
 
-services:
-  prometheus:
-    image: prom/prometheus:v3.2.0
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+services: prometheus: image: prom/prometheus:v3.2.0
+    volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
       - prometheus_data:/prometheus
-    ports:
-      - "9090:9090"
-    command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports: - "9090:9090"
+    command: - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
 
-  grafana:
-    image: grafana/grafana:11.5.0
-    ports:
-      - "3000:3000"
-    volumes:
-      - grafana_data:/var/lib/grafana
-    environment:
-      - GF_SECURITY_ADMIN_PASSWORD=admin
-    depends_on:
-      - prometheus
+  grafana: image: grafana/grafana:11.5.0
+    ports: - "3000:3000"
+    volumes: - grafana_data:/var/lib/grafana
+    environment: - GF_SECURITY_ADMIN_PASSWORD=admin
+    depends_on: - prometheus
 
-volumes:
-  prometheus_data:
-  grafana_data:
-```
+volumes: prometheus_data: grafana_data: ```
 
 Prometheus가 컨테이너 메트릭을 수집하고, Grafana가 이를 시각화합니다. 로그 후 `http://prometheus:9090`에 Prometheus 데이터 소스를 추가하세요.
 
@@ -215,77 +181,52 @@ Prometheus가 컨테이너 메트릭을 수집하고, Grafana가 이를 시각�
 # compose.yaml — 프로덕션 준비 3계층 앱
 name: myapp
 
-services:
-  db:
-    image: postgres:16-alpine
-    environment:
-      POSTGRES_USER: appuser
+services: db: image: postgres:16-alpine
+    environment: POSTGRES_USER: appuser
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: appdb
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U appuser -d appdb"]
+    volumes: - postgres_data:/var/lib/postgresql/data
+    healthcheck: test: ["CMD-SHELL", "pg_isready -U appuser -d appdb"]
       interval: 10s
       timeout: 5s
       retries: 5
       start_period: 30s
     restart: unless-stopped
 
-  redis:
-    image: redis:7-alpine
-    volumes:
-      - redis_data:/data
-    healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
+  redis: image: redis:7-alpine
+    volumes: - redis_data:/data
+    healthcheck: test: ["CMD", "redis-cli", "ping"]
       interval: 10s
       timeout: 3s
       retries: 3
     restart: unless-stopped
 
-  api:
-    build:
-      context: ./api
+  api: build: context: ./api
       dockerfile: Dockerfile
-    environment:
-      DATABASE_URL: postgresql://appuser:${DB_PASSWORD}@db:5432/appdb
+    environment: DATABASE_URL: postgresql://appuser:${DB_PASSWORD}@db:5432/appdb
       REDIS_URL: redis://redis:6379/0
-    depends_on:
-      db:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+    depends_on: db: condition: service_healthy
+      redis: condition: service_healthy
+    healthcheck: test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 20s
     restart: unless-stopped
 
-  nginx:
-    image: nginx:1.27-alpine
-    ports:
-      - "80:80"
-    volumes:
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
-    depends_on:
-      api:
-        condition: service_healthy
+  nginx: image: nginx:1.27-alpine
+    ports: - "80:80"
+    volumes: - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on: api: condition: service_healthy
     restart: unless-stopped
 
-volumes:
-  postgres_data:
-  redis_data:
-```
+volumes: postgres_data: redis_data: ```
 
 여기서 보여주는 핵심 패턴: 헬스 체크된 의존성, 데이터 지속을 위한 명명 볼륨, 커스텀 이미지용 빌드 컨텍스트, 복원력을 위한 `restart: unless-stopped`입니다.
 
 ## 벤치마크 / 실제 사용 사례
 
-Docker Compose는 특정 시나리오에서 뛰어납니다. 프로덕션 배포 및 비교의 데이터는 다음과 같습니다:
-
-| 지표 | Docker Compose | Kubernetes | Podman Compose | Nomad |
+Docker Compose는 특정 시나리오에서 뛰어납니다. 프로덕션 배포 및 비교의 데이터는 다음과 같습니다: | 지표 | Docker Compose | Kubernetes | Podman Compose | Nomad |
 |------|---------------|------------|----------------|-------|
 | **컨트롤 플레인 RAM** | ~50 MB | ~2 GB | 0 MB (데몬 없음) | ~100 MB |
 | **지원 노드** | 단일 노드 | 무제한 | 단일 노드 | 무제한 |
@@ -305,81 +246,50 @@ Docker Compose는 특정 시나리오에서 뛰어납니다. 프로덕션 배포
 
 ### 헬스 체크 및 시작 순서
 
-헬스 체크 없이는 프로덕션에 배포하지 마세요. 컨테이너가 `Up` 상태를 표시한다는 것은 프로세스가 시작되었다는 의미일 뿐——애플리케이션이 작동한다는 뜻은 아닙니다:
-
-```yaml
-services:
-  api:
-    image: myapp:v1.2.3
-    healthcheck:
-      test: ["CMD", "curl", "-fsS", "http://localhost:8080/ready"]
+헬스 체크 없이는 프로덕션에 배포하지 마세요. 컨테이너가 `Up` 상태를 표시한다는 것은 프로세스가 시작되었다는 의미일 뿐——애플리케이션이 작동한다는 뜻은 아닙니다: ```yaml
+services: api: image: myapp:v1.2.3
+    healthcheck: test: ["CMD", "curl", "-fsS", "http://localhost:8080/ready"]
       interval: 15s
       timeout: 5s
       retries: 3
       start_period: 30s
-    depends_on:
-      db:
-        condition: service_healthy
+    depends_on: db: condition: service_healthy
     restart: unless-stopped
 ```
 
 ### 로그 순환
 
-무제한 JSON 로그는 디스크를 채웁니다. 로컬 로깅 드라이버로 순환을 구성하세요:
-
-```yaml
-services:
-  api:
-    image: myapp:v1.2.3
-    logging:
-      driver: "local"
-      options:
-        max-size: "10m"
+무제한 JSON 로그는 디스크를 채웁니다. 로컬 로깅 드라이버로 순환을 구성하세요: ```yaml
+services: api: image: myapp:v1.2.3
+    logging: driver: "local"
+      options: max-size: "10m"
         max-file: "3"
         compress: "true"
 ```
 
 ### 리소스 제한
 
-하나의 비정상적 컨테이너가 다른 컨테이너의 리소스를 고갈시키지 않도록 방지하세요:
-
-```yaml
-services:
-  worker:
-    image: myapp-worker:v1.2.3
-    deploy:
-      resources:
-        limits:
-          cpus: '1.0'
+하나의 비정상적 컨테이너가 다른 컨테이너의 리소스를 고갈시키지 않도록 방지하세요: ```yaml
+services: worker: image: myapp-worker:v1.2.3
+    deploy: resources: limits: cpus: '1.0'
           memory: 512M
-        reservations:
-          cpus: '0.25'
+        reservations: cpus: '0.25'
           memory: 128M
 ```
 
 ### 환경 분리용 Profiles
 
-여러 파일을 유지 관리하지 않고도 개발 전용 서비스를 정의하려면 프로파일을 사용하세요:
+여러 파일을 유지 관리하지 않고도 개발 전용 서비스를 정의하려면 프로파일을 사용하세요: ```yaml
+services: api: image: myapp:latest
+    ports: - "8080:8080"
 
-```yaml
-services:
-  api:
-    image: myapp:latest
-    ports:
-      - "8080:8080"
+  db: image: postgres:16
+    environment: POSTGRES_PASSWORD: devpass
 
-  db:
-    image: postgres:16
-    environment:
-      POSTGRES_PASSWORD: devpass
-
-  pgadmin:
-    image: dpage/pgadmin4:latest
+  pgadmin: image: dpage/pgadmin4:latest
     profiles: ["debug"]
-    ports:
-      - "5050:80"
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin@local.dev
+    ports: - "5050:80"
+    environment: PGADMIN_DEFAULT_EMAIL: admin@local.dev
       PGADMIN_DEFAULT_PASSWORD: admin
 ```
 
@@ -387,32 +297,21 @@ services:
 
 ### 시크릿 관리
 
-비밀번호를 컴포즈 파일에 커밋하지 마세요. Docker secrets나 환경 파일을 사용하세요:
+비밀번호를 컴포즈 파일에 커밋하지 마세요. Docker secrets나 환경 파일을 사용하세요: ```yaml
+services: api: image: myapp:latest
+    secrets: - db_password
+    environment: DB_PASSWORD_FILE: /run/secrets/db_password
 
-```yaml
-services:
-  api:
-    image: myapp:latest
-    secrets:
-      - db_password
-    environment:
-      DB_PASSWORD_FILE: /run/secrets/db_password
-
-secrets:
-  db_password:
-    file: ./secrets/db_password.txt
+secrets: db_password: file: ./secrets/db_password.txt
 ```
 
 ### `include` 지시문 (Compose v2.20+)
 
-대형 프로젝트를 모듈식 컴포즈 파일로 분할하세요:
-
-```yaml
+대형 프로젝트를 모듈식 컴포즈 파일로 분할하세요: ```yaml
 # compose.yaml — 루트 파일
 name: platform
 
-include:
-  - path: ./infra/postgres.yaml
+include: - path: ./infra/postgres.yaml
   - path: ./infra/redis.yaml
   - path: ./apps/api.yaml
   - path: ./apps/worker.yaml
@@ -423,9 +322,7 @@ include:
 
 ### 블루/그린 배포
 
-Kubernetes 없이 무중단 업데이트를 하려면 두 개의 컴포즈 프로젝트와 리버스 프록시를 사용하세요:
-
-```bash
+Kubernetes 없이 무중단 업데이트를 하려면 두 개의 컴포즈 프로젝트와 리버스 프록시를 사용하세요: ```bash
 #!/bin/bash
 # deploy.sh
 CURRENT=$(cat /tmp/current_slot 2>/dev/null || echo "blue")
@@ -462,9 +359,7 @@ echo "$NEW" > /tmp/current_slot
 
 ## 한계 / 정직한 평가
 
-Docker Compose는 만능 솔루션이 아닙니다. 다음은 부족한 부분입니다:
-
-**단일 노드 제약**: Compose는 한 호스트에서 실행됩니다. 해당 호스트에 장애가 발생하면 전체 스택이 다울됩니다. 고가용성 요구사항에는 Kubernetes, Nomad 또는 Docker Swarm이 필요합니다.
+Docker Compose는 만능 솔루션이 아닙니다. 다음은 부족한 부분입니다: **단일 노드 제약**: Compose는 한 호스트에서 실행됩니다. 해당 호스트에 장애가 발생하면 전체 스택이 다울됩니다. 고가용성 요구사항에는 Kubernetes, Nomad 또는 Docker Swarm이 필요합니다.
 
 **네이티브 자동 확장 없음**: `docker compose up --scale api=3`은 작동하지만 수동입니다. Kubernetes HPA와 같은 CPU 기반 또는 메모리 기반 수평 Pod 자동 확장 기능이 없습니다.
 
@@ -521,9 +416,7 @@ Docker Compose는 2026년에도 멀티 컨테이너 배포를 위한 가장 실�
 
 ## 추천 도구
 
-이 가이드와 함께 사용하기를 추천하는 제품:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — DigitalOcean
+이 가이드와 함께 사용하기를 추천하는 제품: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — DigitalOcean
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — HTStack
 
 *제휴 링크 — 추가 비용 없이 dibi8.com 운영을 지원합니다.*
@@ -542,7 +435,6 @@ Docker Compose는 2026년에도 멀티 컨테이너 배포를 위한 가장 실�
 - [Docker Desktop 가격 및 라이선스](https://www.docker.com/pricing/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

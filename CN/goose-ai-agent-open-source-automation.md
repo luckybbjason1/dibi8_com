@@ -1,13 +1,10 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/goose-ai-agent-open-source-automation" />
 title: 'Goose AI Agent: Open-Source Automation by Linux Foundati...
 description: Goose is a general-purpose open-source AI Agent developed by the Linux. Comprehensive guide covering features, pricing, and best practices for 2026.
   Foundation Agentic AI Foundation (AAIF). Automate coding, research, and daily tasks.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
-tech_stack:
-- Docker
+tech_stack: - Docker
 - Go
 - JavaScript
 - Python
@@ -25,11 +22,9 @@ maintainer: "aaif-goose"
 last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases:
-- /posts/aitoearn-ai-content-monetization-open-source/
+aliases: - /posts/aitoearn-ai-content-monetization-open-source/
 - /posts/goose-ai-agent-open-source-automation/
-faqs:
-  - q: 'What is Goose AI agent?'
+faqs: - q: 'What is Goose AI agent?'
     a: 'Goose is a general-purpose open-source AI agent originally developed by Block and donated to the Linux Foundation''s Agentic AI Foundation (AAIF). Unlike specialized coding assistants, it can handle any task, including writing code, analyzing data, managing files, running terminal commands, and automating workflows.'
   - q: 'Which LLM providers does Goose support?'
     a: 'Goose is model-agnostic and supports OpenAI GPT-4 and GPT-3.5, Anthropic Claude, Google Gemini, local models via Ollama, and any OpenAI-compatible API.'
@@ -52,8 +47,7 @@ Unlike specialized coding assistants, Goose is designed to handle **any task** �
 
 ### 1. General-Purpose Automation
 
-Goose is not limited to coding. It can:
-- Write and edit code in any language
+Goose is not limited to coding. It can: - Write and edit code in any language
 - Analyze spreadsheets and databases
 - Manage files and directories
 - Run terminal commands
@@ -62,23 +56,20 @@ Goose is not limited to coding. It can:
 
 ### 2. Multi-Platform Support
 
-Goose works across multiple environments:
-- **Local machine** — Direct access to your file system
+Goose works across multiple environments: - **Local machine** — Direct access to your file system
 - **Remote servers** — SSH into any machine
 - **Docker containers** — Isolated execution environments
 - **Cloud platforms** — AWS, GCP, Azure integration
 
 ### 3. Extensible Architecture
 
-Goose supports extensions via:
-- **MCP (Model Context Protocol)** — Standardized tool interface
+Goose supports extensions via: - **MCP (Model Context Protocol)** — Standardized tool interface
 - **Built-in tools** — File system, shell, web browser
 - **Custom extensions** — Write your own tools in any language
 
 ### 4. Multiple LLM Providers
 
-Goose is model-agnostic and supports:
-- OpenAI GPT-4 / GPT-3.5
+Goose is model-agnostic and supports: - OpenAI GPT-4 / GPT-3.5
 - Anthropic Claude
 - Google Gemini
 - Local models via Ollama
@@ -86,9 +77,7 @@ Goose is model-agnostic and supports:
 
 ## How Goose Works
 
-Goose follows a **plan-execute-verify** loop:
-
-1. **Understand** — Parse your natural language request
+Goose follows a **plan-execute-verify** loop: 1. **Understand** — Parse your natural language request
 2. **Plan** — Break down the task into actionable steps
 3. **Execute** — Run commands, edit files, or call APIs
 4. **Verify** — Check results and fix errors automatically
@@ -168,7 +157,17 @@ goose run "Extract all product prices from this URL"
 ## Comparison with Other Agents
 
 | Feature | Goose | AutoGPT | BabyAGI | MetaGPT |
-|---------|-------|---------|---------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Open Source** | Yes | Yes | Yes | Yes |
 | **Linux Foundation** | Yes | No | No | No |
 | **General Purpose** | Yes | Yes | Yes | No |
@@ -180,22 +179,18 @@ goose run "Extract all product prices from this URL"
 
 ## Architecture
 
-Goose consists of three core components:
-
-1. **Agent Core** — Decision-making engine that plans and executes tasks
+Goose consists of three core components: 1. **Agent Core** — Decision-making engine that plans and executes tasks
 2. **Tool Registry** — Collection of available tools and capabilities
 3. **Session Manager** — Handles context, memory, and state across interactions
 
-The agent uses a **ReAct (Reasoning + Acting)** pattern:
-- **Thought** — Analyze the current state
+The agent uses a **ReAct (Reasoning + Acting)** pattern: - **Thought** — Analyze the current state
 - **Action** — Execute a tool or command
 - **Observation** — Process the result
 - **Repeat** — Until the task is complete
 
 ## Security and Safety
 
-Goose includes several safety features:
-- **Approval mode** — Ask before executing dangerous commands
+Goose includes several safety features: - **Approval mode** — Ask before executing dangerous commands
 - **Sandbox mode** — Run commands in isolated environments
 - **Audit log** — Track all actions for review
 - **Rate limiting** — Prevent API abuse
@@ -229,18 +224,15 @@ If you want an AI assistant that can actually **do things** — not just chat �
 - [Agent Reach: Give Your AI Agent Internet Superpowers](/resources/llm-frameworks/agent-reach-ai-agent-internet-access/)
 - [Free Claude Code: Open Source Proxy](/resources/ai-tools/free-claude-code-open-source-proxy/)
 
----
 
+---
 ## Recommended Infrastructure for Self-Hosting
 
-If you want to run this stack reliably 24/7, infrastructure choice matters:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+If you want to run this stack reliably 24/7, infrastructure choice matters: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
 
-<!--auto-references-->
 ## References & Sources
 
 - [Goose](https://github.com/block/goose)
@@ -250,7 +242,6 @@ If you want to run this stack reliably 24/7, infrastructure choice matters:
 - [MetaGPT](https://github.com/FoundationAgents/MetaGPT)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -278,25 +269,20 @@ If you want to run this stack reliably 24/7, infrastructure choice matters:
 
 ## Why This Matters
 
-Understanding goose ai agent: open-source automation by linux foundation aaif is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding goose ai agent: open-source automation by linux foundation aaif is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -317,8 +303,8 @@ Goose AI Agent: Open-Source Automation by Linux Foundation AAIF represents an im
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -348,7 +334,17 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

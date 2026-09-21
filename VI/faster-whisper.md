@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/faster-whisper" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/faster-whisper" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/faster-whisper" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/faster-whisper" />
 title: 'faster-whisper: Chuyển Giọng Nói Thành Văn Bản Nhanh Gấp...
 description: 'faster-whisper (SYSTRAN) tái triển khai OpenAI Whisper qua CTranslate2 để đạt tốc độ nhanh gấp 4x. Hướng dẫn cài đặt faster whisper, benchmark, thiết lập Docker, API Python, bộ lọc VAD, xử lý hàng loạt, và tích hợp production với WhisperX và whisper.cpp.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: ['faster-whisper', 'chuyen-giong-noi-thanh-van-ban', ctranslate2, 'openai-whisper', 'nhan-dang-giong-noi', python, docker, asr]
-aliases:
-- /vi/posts/faster-whisper/
+aliases: - /vi/posts/faster-whisper/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/faster-whisper/ -->
 
 {{</* resource-info */>}}
 
@@ -49,15 +41,11 @@ Dự án được Guillaume Klein khởi xướng và hiện do SYSTRAN duy trì
 
 ## faster-whisper hoạt động như thế nào?
 
-Kiến trúc thay thế inference PyTorch bằng runtime tối ưu hóa của CTranslate2:
-
-![Kiến trúc CTranslate2](https://opennmt.net/CTranslate2/_static/favicon.png)
+Kiến trúc thay thế inference PyTorch bằng runtime tối ưu hóa của CTranslate2: ![Kiến trúc CTranslate2](https://opennmt.net/CTranslate2/_static/favicon.png)
 
 *Hình 2: Engine inference CTranslate2 — backend C++ cung cấp tốc độ faster-whisper thông qua CUDA kernel tùy chỉnh và lượng tử hóa.*
 
-Các quyết định kỹ thuật chính tạo nên tốc độ:
-
-- **Lượng tử hóa trọng số**: INT8 giảm bộ nhớ mô hình ~50% với tổn thất độ chính xác không đáng kể (< 0.1% WER).
+Các quyết định kỹ thuật chính tạo nên tốc độ: - **Lượng tử hóa trọng số**: INT8 giảm bộ nhớ mô hình ~50% với tổn thất độ chính xác không đáng kể (< 0.1% WER).
 - **Fused kernels**: CTranslate2 hợp nhất nhiều phép toán GPU thành lần gọi kernel duy nhất, giảm overhead dispatch.
 - **Hỗ trợ Flash Attention**: Có trên GPU Ampere (RTX 30xx+) để tiết kiệm băng thông bộ nhớ.
 - **Inference theo batch**: Xử lý song song nhiềi chunk audio trên GPU để mở rộng thông lượng gần như tuyến tính.
@@ -139,8 +127,7 @@ segments, info = model.transcribe("audio.mp3", beam_size=5)
 print(f"Ngôn ngữ phát hiện: {info.language} "
       f"(xác suất: {info.language_probability:.2f})")
 
-for segment in segments:
-    print(f"[{segment.start:.2f}s -> {segment.end:.2f}s] {segment.text}")
+for segment in segments: print(f"[{segment.start:.2f}s -> {segment.end:.2f}s] {segment.text}")
 ```
 
 ## Tích hợp với các công cụ phổ biến
@@ -178,8 +165,7 @@ diarize_model = whisperx.DiarizationPipeline(
 diarize_segments = diarize_model(audio)
 result = whisperx.assign_word_speakers(diarize_segments, result)
 
-for segment in result["segments"]:
-    speaker = segment.get("speaker", "UNKNOWN")
+for segment in result["segments"]: speaker = segment.get("speaker", "UNKNOWN")
     print(f"[{segment[start]:.2f}s -> {segment[end]:.2f}s] "
           f"{speaker}: {segment[text]}")
 ```
@@ -198,8 +184,7 @@ docker run -d --gpus all \
 ```python
 import requests
 
-with open("audio.mp3", "rb") as f:
-    response = requests.post(
+with open("audio.mp3", "rb") as f: response = requests.post(
         "http://localhost:9000/asr",
         files={"audio_file": f},
         data={"language": "en", "output": "json"}
@@ -222,8 +207,7 @@ from openai import OpenAI
 
 client = OpenAI(base_url="http://localhost:8000/v1", api_key="dummy")
 
-with open("audio.mp3", "rb") as f:
-    transcript = client.audio.transcriptions.create(model="large-v3", file=f)
+with open("audio.mp3", "rb") as f: transcript = client.audio.transcriptions.create(model="large-v3", file=f)
 print(transcript.text)
 ```
 
@@ -315,8 +299,7 @@ model = WhisperModel("large-v3", device="cuda", compute_type="int8")
 audio_files = glob.glob("podcasts/*.mp3")
 
 start = time.time()
-for file_path in audio_files:
-    segments, _ = model.transcribe(file_path, batch_size=8, beam_size=5)
+for file_path in audio_files: segments, _ = model.transcribe(file_path, batch_size=8, beam_size=5)
     text = " ".join([s.text for s in segments])
     print(f"{file_path}: {len(text)} ký tự")
 print(f"Tổng thờ gian: {time.time() - start:.1f}s cho {len(audio_files)} file")
@@ -326,9 +309,7 @@ print(f"Tổng thờ gian: {time.time() - start:.1f}s cho {len(audio_files)} fil
 
 ```python
 segments, _ = model.transcribe("audio.mp3", word_timestamps=True)
-for segment in segments:
-    for word in segment.words:
-        print(f"[{word.start:.2f}s -> {word.end:.2f}s] {word.word}")
+for segment in segments: for word in segment.words: print(f"[{word.start:.2f}s -> {word.end:.2f}s] {word.word}")
 ```
 
 ### Chuyển đổi mô hình tùy chỉnh
@@ -355,8 +336,7 @@ REQUEST_DURATION = Histogram("transcription_duration_seconds", "Thờ gian yêu 
 model = WhisperModel("large-v3", device="cuda", compute_type="int8")
 
 @REQUEST_DURATION.time()
-def transcribe(audio_path):
-    REQUEST_COUNT.inc()
+def transcribe(audio_path): REQUEST_COUNT.inc()
     return model.transcribe(audio_path, beam_size=5)
 
 start_http_server(8000)
@@ -367,15 +347,11 @@ start_http_server(8000)
 ```python
 from faster_whisper import WhisperModel
 
-def safe_transcribe(audio_path, device="cuda"):
-    compute_types = ["int8", "int8_float16", "float16", "float32"]
-    for ct in compute_types:
-        try:
-            model = WhisperModel("large-v3", device=device, compute_type=ct)
+def safe_transcribe(audio_path, device="cuda"): compute_types = ["int8", "int8_float16", "float16", "float32"]
+    for ct in compute_types: try: model = WhisperModel("large-v3", device=device, compute_type=ct)
             segments, info = model.transcribe(audio_path, beam_size=5)
             return segments, info, ct
-        except RuntimeError as e:
-            print(f"{ct} thất bại: {e}, thử lại...")
+        except RuntimeError as e: print(f"{ct} thất bại: {e}, thử lại...")
             continue
     raise RuntimeError("Tất cả compute type đều thất bại")
 ```
@@ -408,9 +384,7 @@ def safe_transcribe(audio_path, device="cuda"):
 
 ## Hạn chế / Đánh giá trung thực
 
-faster-whisper không phải công cụ phù hợp mọi tình huống. Đây là những gì nó KHÔNG giỏi:
-
-1. **Tăng tốc GPU Apple Silicon**: faster-whisper không có backend Metal. Trên Mac M-series, nó chỉ chạy CPU với tốc độ ~3x real-time cho large-v3. whisper.cpp với Metal đạt ~10x real-time — nhanh gấp 3 lần.
+faster-whisper không phải công cụ phù hợp mọi tình huống. Đây là những gì nó KHÔNG giỏi: 1. **Tăng tốc GPU Apple Silicon**: faster-whisper không có backend Metal. Trên Mac M-series, nó chỉ chạy CPU với tốc độ ~3x real-time cho large-v3. whisper.cpp với Metal đạt ~10x real-time — nhanh gấp 3 lần.
 
 2. **Hỗ trợ AMD GPU**: CTranslate2 chỉ hỗ trợ CUDA trên GPU. AMD GPU không được hỗ trợ. Dùng whisper.cpp với Vulkan hoặc ROCm thay thế.
 
@@ -473,9 +447,7 @@ Dữ liệu rõ ràng: nếu bạn dùng GPU NVIDIA và Python, faster-whisper l
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -493,7 +465,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - Silero VAD: https://github.com/snakers4/silero-vad
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

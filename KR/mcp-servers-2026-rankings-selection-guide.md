@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mcp-servers-2026-rankings-selection-guide" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mcp-servers-2026-rankings-selection-guide" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mcp-servers-2026-rankings-selection-guide" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mcp-servers-2026-rankings-selection-guide" />
 title: 'MCP 서버 2026: 100+ 생태계 지도 + 선정 결정 트리'
 description: 'Model Context Protocol 생태계가 2026년 중반 1000+ 공개 서버를 돌파했습니다. 카테고리별 상위 30개 랭킹, stdio / HTTP-SSE / OAuth-bridged 서버의 아키텍처 트레이드오프, 그리고 registry에 빠지지 않고 서버를 선택하는 결정 트리.'
 date: 2026-05-26 00:00:00+08:00
@@ -21,10 +16,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [mcp, 'model-context-protocol', 'claude-code', 'ai-agents', 개발자도구, 통합, 2026]
-aliases:
-- /kr/posts/mcp-servers-2026-rankings-selection-guide/
-faq:
-  - q: "MCP는 무엇이고 2026년에 왜 중요한가요?"
+aliases: - /kr/posts/mcp-servers-2026-rankings-selection-guide/
+faq: - q: "MCP는 무엇이고 2026년에 왜 중요한가요?"
     a: "Model Context Protocol(MCP)은 Anthropic이 2024년 말 오픈한 프로토콜로, AI 에이전트를 외부 도구/데이터 소스/서비스에 연결합니다. 2026년에는 사실상 AI 에이전트 플러그인 표준이 되어 Claude Code, Cursor, Codex CLI, Gemini CLI 등 주요 AI 코딩 에이전트가 모두 지원합니다. 2024년 말 약 30개에서 2026년 중반 1000+ 공개 서버로 성장."
   - q: "stdio, HTTP, SSE-based 중 어떤 MCP 서버를 사용해야 하나요?"
     a: "stdio는 로컬 서버(filesystem, git, localhost DB) — 최저 지연, 네트워크 제로. HTTP/SSE는 원격 SaaS 통합(GitHub, Linear, Notion). MCP 2025-06 스펙은 OAuth bridge를 추가. 대부분 프로덕션은 혼합: 80% stdio 로컬 + 20% HTTP SaaS."
@@ -35,8 +28,6 @@ faq:
   - q: "MCP 서버 hell(너무 많음, 시작 느림)을 어떻게 피하나요?"
     a: "세 가지 규칙: (1) 매주 사용하는 것만 설치. (2) per-project MCP config(.cursor/mcp.json, .claude/mcp.json) 사용해 전역 30개 로드 방지. (3) 시작 시간 감사 — 500ms 이상 초기화 서버는 모든 agent 세션을 늦춤. MCP spec이 강제하지 않음; 당신의 규율이 강제."
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/mcp-servers-2026-rankings-selection-guide/ -->
 
 {{</* resource-info */>}}
 
@@ -146,9 +137,7 @@ Anthropic 참조 서버: [github.com/modelcontextprotocol/servers](https://githu
 
 ## 자체 호스팅 추천 인프라
 
-팀 공유 MCP 서버(HTTP/SSE) 운영 시 안정 VPS 중요:
-
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — 신규 60일 $200 크레딧.
+팀 공유 MCP 서버(HTTP/SSE) 운영 시 안정 VPS 중요: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — 신규 60일 $200 크레딧.
 - **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 홍콩 VPS, dibi8.com 동일 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8.com 운영에 도움.*
@@ -166,7 +155,6 @@ Anthropic 참조 서버: [github.com/modelcontextprotocol/servers](https://githu
 **참조**: [github.com/modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers) · **Spec**: MCP 2025-06 · **참조 repo 합계 stars**: 60K+
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -194,25 +182,20 @@ Anthropic 참조 서버: [github.com/modelcontextprotocol/servers](https://githu
 
 ## Why This Matters
 
-Understanding mcp 서버 2026: 100+ 생태계 지도 + 선정 결정 트리 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding mcp 서버 2026: 100+ 생태계 지도 + 선정 결정 트리 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

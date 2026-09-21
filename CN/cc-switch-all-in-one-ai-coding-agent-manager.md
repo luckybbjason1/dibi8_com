@@ -1,16 +1,11 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/cc-switch-all-in-one-ai-coding-agent-manager" />
 title: 'CC Switch: The Ultimate AI Coding Agent Manager for Mult...
 description: 'Complete guide to CC Switch — the cross-platform desktop app that manages Claude Code, Codex, Gemini CLI, OpenCode, OpenClaw, and Hermes Agent in one unified interface. Installation, configuration, and real-world usage.'
 date: 2026-06-20
-lastmod:  2026-06-20tags: [ai-tools, claude-code, codex, desktop-app, rust, tauri, mcp]
+lastmod: 2026-06-20tags: [ai-tools, claude-code, codex, desktop-app, rust, tauri, mcp]
 category: "dev-utils"
-lang: en
 slug: cc-switch-all-in-one-ai-coding-agent-manager
-featureImage: /images/articles/cc-switch-all-in-one-ai-coding-agent-manager-f252d614.png
----
-
+featureImage: /images/articles/cc-switch-all-in-one-ai-coding-agent-manager-f252d614.png---
 # CC Switch: The Ultimate AI Coding Agent Manager for Multi-Platform Development
 
 In the rapidly evolving landscape of AI-assisted software development, developers are increasingly adopting multiple AI coding agents — **Claude Code**, **Codex CLI**, **Gemini CLI**, **OpenCode**, **OpenClaw**, and **Hermes Agent** — each with its own strengths. But managing these tools across different projects, providers, and configurations quickly becomes overwhelming.
@@ -21,9 +16,7 @@ In this comprehensive guide, we'll explore what makes CC Switch special, how to 
 
 ## What is CC Switch?
 
-CC Switch is a **Tauri-based desktop application** built with Rust and TypeScript that serves as an all-in-one manager for AI coding agents. It provides a unified interface to:
-
-- Switch between different AI coding agents (Claude Code, Codex, Gemini CLI, OpenCode, OpenClaw, Hermes Agent)
+CC Switch is a **Tauri-based desktop application** built with Rust and TypeScript that serves as an all-in-one manager for AI coding agents. It provides a unified interface to: - Switch between different AI coding agents (Claude Code, Codex, Gemini CLI, OpenCode, OpenClaw, Hermes Agent)
 - Manage multiple AI providers and API keys
 - Configure MCP (Model Context Protocol) servers
 - Handle skills and tool configurations
@@ -35,9 +28,7 @@ The beauty of CC Switch lies in its simplicity: one application replaces the nee
 
 ### Multi-Agent Support
 
-CC Switch supports **6+ AI coding agents** out of the box:
-
-![CC Switch Interface](https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg)
+CC Switch supports **6+ AI coding agents** out of the box: ![CC Switch Interface](https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg)
 
 1. **Claude Code** — Anthropic's coding agent
 2. **Codex CLI** — OpenAI's coding assistant
@@ -48,17 +39,13 @@ CC Switch supports **6+ AI coding agents** out of the box:
 
 ### Cross-Platform Compatibility
 
-Built with **Tauri 2**, CC Switch runs natively on:
-
-- **Windows** — Full support with WSL integration
+Built with **Tauri 2**, CC Switch runs natively on: - **Windows** — Full support with WSL integration
 - **macOS** — Native Apple Silicon and Intel support
 - **Linux** — All major distributions
 
 ### Provider Management
 
-Switch between AI providers seamlessly:
-
-- **Anthropic** (Claude)
+Switch between AI providers seamlessly: - **Anthropic** (Claude)
 - **OpenAI** (GPT-4, Codex)
 - **Google** (Gemini)
 - **Minimax** (Chinese LLMs)
@@ -66,9 +53,7 @@ Switch between AI providers seamlessly:
 
 ### MCP Server Integration
 
-CC Switch includes built-in support for **Model Context Protocol (MCP)** servers, allowing you to:
-
-- Configure multiple MCP servers
+CC Switch includes built-in support for **Model Context Protocol (MCP)** servers, allowing you to: - Configure multiple MCP servers
 - Share context between agents
 - Extend agent capabilities with custom tools
 - Manage server connections visually
@@ -77,9 +62,7 @@ CC Switch includes built-in support for **Model Context Protocol (MCP)** servers
 
 ### Step 1: Download CC Switch
 
-Visit the [official website](https://ccswitch.io) or the [GitHub releases page](https://github.com/farion1231/cc-switch/releases/latest) and download the binary for your platform:
-
-```bash
+Visit the [official website](https://ccswitch.io) or the [GitHub releases page](https://github.com/farion1231/cc-switch/releases/latest) and download the binary for your platform: ```bash
 # macOS (Homebrew)
 brew install farion1231/tap/cc-switch
 
@@ -94,9 +77,7 @@ chmod +x cc-switch-x86_64.AppImage
 
 ### Step 2: Initial Configuration
 
-Upon first launch, CC Switch guides you through the setup process:
-
-1. **Select your preferred agents** — Choose which AI coding agents to enable
+Upon first launch, CC Switch guides you through the setup process: 1. **Select your preferred agents** — Choose which AI coding agents to enable
 2. **Configure API keys** — Add your provider credentials securely
 3. **Set default agent** — Choose which agent to use by default
 4. **Configure MCP servers** — Add any MCP server endpoints
@@ -123,9 +104,7 @@ Upon first launch, CC Switch guides you through the setup process:
 
 ### Step 3: Using Multiple Agents
 
-Once configured, switching between agents is as simple as clicking a button:
-
-```bash
+Once configured, switching between agents is as simple as clicking a button: ```bash
 # CLI integration — CC Switch can also be used from command line
 cc-switch use claude-code
 cc-switch use codex
@@ -141,9 +120,7 @@ cc-switch list
 
 ## How CC Switch Works Under the Hood
 
-CC Switch leverages **Tauri 2** for its lightweight, secure architecture. Unlike Electron-based alternatives, Tauri uses the system's native webview, resulting in:
-
-- **Smaller bundle size** — ~15MB vs 100MB+ for Electron apps
+CC Switch leverages **Tauri 2** for its lightweight, secure architecture. Unlike Electron-based alternatives, Tauri uses the system's native webview, resulting in: - **Smaller bundle size** — ~15MB vs 100MB+ for Electron apps
 - **Lower memory usage** — Typically under 100MB RAM
 - **Faster startup** — Near-instant launch times
 - **Better security** — Rust backend with strict permission model
@@ -171,9 +148,7 @@ CC Switch leverages **Tauri 2** for its lightweight, secure architecture. Unlike
 
 ### Case Study 1: Multi-Agent Development Workflow
 
-Developer Alice uses CC Switch to leverage the strengths of different agents:
-
-```bash
+Developer Alice uses CC Switch to leverage the strengths of different agents: ```bash
 # Morning: Use Claude Code for architecture design
 cc-switch use claude-code
 # "Design a microservices architecture for..."
@@ -189,10 +164,14 @@ cc-switch use gemini
 
 ### Case Study 2: Cost Optimization
 
-By comparing prices across providers in real-time, CC Switch helps developers choose the most cost-effective agent for each task:
-
-| Agent | Best For | Approx. Cost/1K tokens |
-|-------|----------|----------------------|
+By comparing prices across providers in real-time, CC Switch helps developers choose the most cost-effective agent for each task: | Agent | Best For | Approx. Cost/1K tokens |
+|
+---
+|
+---
+|
+---
+|
 | Claude Opus | Complex reasoning | $15.00 |
 | Claude Sonnet | Balanced performance | $3.00 |
 | GPT-4o | Code generation | $10.00 |
@@ -201,9 +180,7 @@ By comparing prices across providers in real-time, CC Switch helps developers ch
 
 ### Case Study 3: Team Collaboration
 
-Teams can share CC Switch configurations via git, ensuring consistent agent setups across all members:
-
-```bash
+Teams can share CC Switch configurations via git, ensuring consistent agent setups across all members: ```bash
 # Export current configuration
 cc-switch config export team-config.json
 
@@ -216,7 +193,13 @@ cc-switch config import team-config.json
 ### CC Switch vs. Manual CLI Setup
 
 | Feature | CC Switch | Manual Setup |
-|---------|-----------|--------------|
+|
+---
+|
+---
+|
+---
+|
 | Agent switching | One click | Multiple commands |
 | Provider management | Visual UI | Config files |
 | MCP server setup | Integrated | Manual |
@@ -227,7 +210,15 @@ cc-switch config import team-config.json
 ### CC Switch vs. Other Agent Managers
 
 | Feature | CC Switch | Continue | Aider |
-|---------|-----------|----------|-------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Multi-agent | ✅ 6+ agents | ❌ Claude only | ❌ Claude only |
 | Cross-platform | ✅ Tauri | ✅ Electron | ❌ CLI only |
 | MCP support | ✅ Built-in | ⚠️ Limited | ❌ No |
@@ -267,8 +258,7 @@ Yes! CC Switch is **open-source under the MIT license**. The application itself 
 
 ### Q: Which AI providers are supported?
 
-CC Switch supports all major AI providers including:
-- **Anthropic** (Claude Opus, Sonnet, Haiku)
+CC Switch supports all major AI providers including: - **Anthropic** (Claude Opus, Sonnet, Haiku)
 - **OpenAI** (GPT-4, GPT-4o, Codex)
 - **Google** (Gemini Pro, Ultra, Nano)
 - **Minimax** (Chinese LLMs)
@@ -276,8 +266,7 @@ CC Switch supports all major AI providers including:
 
 ### Q: Can I use CC Switch with custom MCP servers?
 
-Absolutely! CC Switch includes a visual MCP server manager where you can:
-- Add custom MCP server endpoints
+Absolutely! CC Switch includes a visual MCP server manager where you can: - Add custom MCP server endpoints
 - Configure authentication
 - Test connections
 - Share configurations with your team
@@ -288,16 +277,14 @@ Yes, CC Switch has full **WSL (Windows Subsystem for Linux)** support. You can r
 
 ### Q: How does CC Switch handle API rate limits?
 
-CC Switch includes intelligent rate limit management:
-- Automatic retry with exponential backoff
+CC Switch includes intelligent rate limit management: - Automatic retry with exponential backoff
 - Per-provider rate limit tracking
 - Queue management for concurrent requests
 - Smart fallback to alternative providers
 
 ### Q: Can I customize the agent selection logic?
 
-Yes! CC Switch supports customizable agent routing:
-- Route specific tasks to specific agents
+Yes! CC Switch supports customizable agent routing: - Route specific tasks to specific agents
 - Set priority order for agent selection
 - Define cost/performance trade-offs
 - Create custom agent profiles
@@ -324,12 +311,11 @@ With over **105,000 GitHub stars** and an active, growing community, CC Switch i
 - [Tauri Documentation](https://tauri.app/)
 - [Model Context Protocol Specification](https://modelcontextprotocol.io/)
 
----
 
+---
 💬 Join our Telegram group for discussions: [t.me/DIBI8_Group](https://t.me/DIBI8_Group)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -355,8 +341,8 @@ With over **105,000 GitHub stars** and an active, growing community, CC Switch i
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [claude-code-vs-cline](cc-switch-all-in-one-ai-coding-agent-manager)

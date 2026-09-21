@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/lazydocker" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/lazydocker" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/lazydocker" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/lazydocker" />
 title: 'LazyDocker: 51,092 GitHub Stars — 완전한 터미널 Docker UI 설정 가...
 description: 'LazyDocker (LD)는 Docker 컨테이너, 이미지, 볼륨 및 로그를 관리하기 위한 터미널 UI입니다. Docker, Docker Compose, Go 및 Terminal과 호환됩니다. 설치, 키바인딩, 구성 및 프로덕션 강화를 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [lazydocker, docker, '터미널-ui', devops, 컨테이너, 'cli-도구', 'docker-compose', tui]
-aliases:
-- /kr/posts/lazydocker/
+aliases: - /kr/posts/lazydocker/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/lazydocker/ -->
 
 {{</* resource-info */>}}
 
@@ -73,9 +65,7 @@ LazyDocker는 간단한 아키텍처를 따릅니다: 바이너리는 로컬 Uni
 └─────────────────────────────────────────┘
 ```
 
-이해해야 할 핵심 개념:
-
-- **패널(Panels)**: 왼쪽에는 분류된 목록(컨테이너, 서비스, 이미지, 볼륨, 네트워크)이 표시됩니다. 오른쪽에는 선택한 항목에 대한 세부 정보, 로그 또는 통계가 표시됩니다.
+이해해야 할 핵심 개념: - **패널(Panels)**: 왼쪽에는 분류된 목록(컨테이너, 서비스, 이미지, 볼륨, 네트워크)이 표시됩니다. 오른쪽에는 선택한 항목에 대한 세부 정보, 로그 또는 통계가 표시됩니다.
 - **상황 인식 작업**: 동일한 키가 포커스된 패널에 따라 다른 작업을 수행합니다. 컨테이너에서 `d`를 누륾면 컨테이너가 제거되고, 이미지에서 `d`를 누륾면 이미지가 제거됩니다.
 - **Docker Compose 통합**: `docker-compose.yml` 파일이 있는 디렉터리에서 시작하면 LazyDocker가 프로젝트별로 서비스를 그룹화하고 `up` 및 `down`과 같은 Compose 전용 작업을 추가합니다.
 
@@ -252,21 +242,14 @@ LazyDocker는 플랫폼별 경로에 구성을 저장합니다. 프로젝트 패
 
 ```yaml
 # ~/.config/lazydocker/config.yml
-gui:
-  language: "en"  # auto | en | fr | de | es | pl | nl | tr | zh
+gui: language: "en"  # auto | en | fr | de | es | pl | nl | tr | zh
   border: "rounded"  # rounded | single | double | hidden
-  theme:
-    activeBorderColor:
-      - cyan
+  theme: activeBorderColor: - cyan
       - bold
-    inactiveBorderColor:
-      - white
-    selectedLineBgColor:
-      - black
-    selectedLineFgColor:
-      - yellow
-    optionsTextColor:
-      - blue
+    inactiveBorderColor: - white
+    selectedLineBgColor: - black
+    selectedLineFgColor: - yellow
+    optionsTextColor: - blue
   scrollHeight: 2
   sidePanelWidth: 0.333
   screenMode: "normal"  # normal | half | fullscreen
@@ -275,20 +258,15 @@ gui:
 ### 로그 표시 설정
 
 ```yaml
-logs:
-  timestamps: true
+logs: timestamps: true
   since: "60m"    # 최근 60분의 로그 표시; '' = 전체 시간
   tail: "200"     # 표시할 줄 수
 ```
 
 ### 사용자 지정 명령
 
-`c` 키로 액세스할 수 있는 사용자 지정 명령 추가:
-
-```yaml
-customCommands:
-  containers:
-    - name: bash
+`c` 키로 액세스할 수 있는 사용자 지정 명령 추가: ```yaml
+customCommands: containers: - name: bash
       attach: true
       command: "docker exec -it {{ .Container.ID }} bash"
       serviceNames: []
@@ -301,11 +279,8 @@ customCommands:
 
 ### Podman 지원
 
-명령 템플릿을 교체하여 LazyDocker는 Podman과 함께 작동합니다:
-
-```yaml
-commandTemplates:
-  docker: "podman"
+명령 템플릿을 교체하여 LazyDocker는 Podman과 함께 작동합니다: ```yaml
+commandTemplates: docker: "podman"
   dockerCompose: "podman-compose"
   containerInspect: "podman inspect {{ .Container.ID }}"
 ```
@@ -324,17 +299,14 @@ cd ~/projects/my-app
 lazydocker
 ```
 
-서비스 패널 내에서:
-- 단일 서비스를 시작하려면 `u`를 누릅니다
+서비스 패널 내에서: - 단일 서비스를 시작하려면 `u`를 누릅니다
 - 전체 프로젝트를 시작하려면 `U`를 누릅니다
 - 전체 스택을 종료하려면 `D`를 누릅니다
 - 서비스 컨테이너로 진입하려면 `E`를 누릅니다
 
 ### Tmux 통합
 
-tmux 사용자의 경우 팝업 또는 분할에서 LazyDocker를 시작하는 키 바인딩을 추가합니다:
-
-```bash
+tmux 사용자의 경우 팝업 또는 분할에서 LazyDocker를 시작하는 키 바인딩을 추가합니다: ```bash
 # ~/.tmux.conf
 # 팝업 창에서 LazyDocker 열기
 bind D display-popup -E -w 90% -h 90% "lazydocker"
@@ -343,9 +315,7 @@ bind D display-popup -E -w 90% -h 90% "lazydocker"
 bind d split-window -h "lazydocker"
 ```
 
-다시 로드하고 `Ctrl+b D`를 사용하여 엽니다:
-
-```bash
+다시 로드하고 `Ctrl+b D`를 사용하여 엽니다: ```bash
 tmux source-file ~/.tmux.conf
 ```
 
@@ -365,9 +335,7 @@ source ~/.bashrc
 
 ### VS Code 통합
 
-통합 터미널에서 LazyDocker를 시작하는 VS Code 작업을 추가합니다:
-
-```json
+통합 터미널에서 LazyDocker를 시작하는 VS Code 작업을 추가합니다: ```json
 // .vscode/tasks.json
 {
   "version": "2.0.0",
@@ -390,17 +358,12 @@ source ~/.bashrc
 
 ### CI/CD 파이프라인 통합
 
-LazyDocker는 빌드 중 컨테이너 상태를 디버깅하기 위해 GitHub Actions에서 잘 작동합니다:
-
-```yaml
+LazyDocker는 빌드 중 컨테이너 상태를 디버깅하기 위해 GitHub Actions에서 잘 작동합니다: ```yaml
 # .github/workflows/debug.yml
 name: Debug Containers
 on: workflow_dispatch
-jobs:
-  debug:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: debug: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
 
       - name: Install LazyDocker
         run: |
@@ -445,9 +408,7 @@ DevOps 엔지니어가 실패한 테스트 실행이 종료될 때 컨테이너 
 
 ### SSH를 통한 원격 호스트에서 실행
 
-LazyDocker는 원격 Docker 호스트를 기본적으로 지원하지 않지만 SSH를 통해 Docker 소켓을 전달할 수 있습니다:
-
-```bash
+LazyDocker는 원격 Docker 호스트를 기본적으로 지원하지 않지만 SSH를 통해 Docker 소켓을 전달할 수 있습니다: ```bash
 # 원격 Docker 소켓을 로컬 머신으로 전달
 ssh -nNT -L /tmp/docker_remote.sock:/var/run/docker.sock user@remote-server &
 
@@ -460,9 +421,7 @@ kill %1
 rm /tmp/docker_remote.sock
 ```
 
-또는 SSH 컨텍스트를 직접 사용:
-
-```bash
+또는 SSH 컨텍스트를 직접 사용: ```bash
 # 원격 호스트용 Docker 컨텍스트 생성
 docker context create remote --docker "host=ssh://user@remote-server"
 docker context use remote
@@ -514,9 +473,7 @@ LazyDocker의 사용자 지정 명령을 통해 이를 바인딩하여 원키 �
 
 ### 모니터링 통합
 
-`docker stats`를 Prometheus Node Exporter textfile 수집기로 파이프하여 LazyDocker 통계를 외부 모니터링으로 낸부합니다:
-
-```bash
+`docker stats`를 Prometheus Node Exporter textfile 수집기로 파이프하여 LazyDocker 통계를 외부 모니터링으로 낸부합니다: ```bash
 #!/bin/bash
 # 60초마다 실행되는 cron 작업
 while true; do
@@ -546,9 +503,7 @@ done
 
 ## 한계 / 솔직한 평가
 
-LazyDocker는 모든 상황에 적합한 도구가 아닙니다. 다음은 제약 사항입니다:
-
-- **다중 호스트 관리 불가**: 단일 LazyDocker 인스턴스에서 여러 Docker 호스트를 관리할 수 없습니다. 이를 위해서는 agents가 있는 Portainer 또는 Rancher를 사용하세요.
+LazyDocker는 모든 상황에 적합한 도구가 아닙니다. 다음은 제약 사항입니다: - **다중 호스트 관리 불가**: 단일 LazyDocker 인스턴스에서 여러 Docker 호스트를 관리할 수 없습니다. 이를 위해서는 agents가 있는 Portainer 또는 Rancher를 사용하세요.
 - **웹 인터페이스 없음**: LazyDocker는 터미널 액세스가 필요합니다. 휴태폰이나 태블릿에서 컨테이너를 관리해야 하는 경우 Portainer의 반응형 웹 UI가 더 나은 선택입니다.
 - **RBAC 또는 사용자 관리 없음**: LazyDocker는 OS 사용자의 Docker 권한을 상속합니다. 팀, 역할 또는 감사 추적 개념이 없습니다.
 - **Kubernetes 지원 없음**: LazyDocker는 Docker와 Docker Compose만 처리합니다. Kubernetes 워크로드의 경우 `k9s`, Rancher 또는 `kubectl`을 직접 사용하세요.
@@ -604,9 +559,7 @@ LazyDocker는 특정 틈새를 채웁니다: 빠르고, 가볍고, 터미널 네
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -623,7 +576,6 @@ LazyDocker는 특정 틈새를 채웁니다: 빠르고, 가볍고, 터미널 네
 - [LazyDocker Podman 확장](https://github.com/szchan/lazydocker-podman)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/crawl4ai-tutorial-llm-ready-web-scraping-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/crawl4ai-tutorial-llm-ready-web-scraping-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/crawl4ai-tutorial-llm-ready-web-scraping-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/crawl4ai-tutorial-llm-ready-web-scraping-2026" />
 title: 'Crawl4AI Hướng Dẫn Toàn Diện 2026: Công Cụ Crawl Web Mã ...
 description: 'Crawl4AI là công cụ crawl web mã nguồn mở đứng đầu GitHub Trending 2026 với 63k+ stars. Hướng dẫn tiếng Việt chi tiết về cài đặt, trích xuất dữ liệu bằng LLM (GPT-4o, Claude, DeepSeek), crawl sâu toàn site, so sánh với Firecrawl và ScrapeGraphAI, triển khai Docker production.'
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,9 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [crawl4ai, 'web-scraping', 'llm-rag', 'open-source']
-aliases:
-- /vi/posts/crawl4ai-tutorial-llm-ready-web-scraping-2026/
+aliases: - /vi/posts/crawl4ai-tutorial-llm-ready-web-scraping-2026/
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/crawl4ai-tutorial-llm-ready-web-scraping-2026/ -->
 # Crawl4AI Hướng Dẫn Toàn Diện 2026: Công Cụ Crawl Web Mã Nguồn Mở Số 1 GitHub, Xây Dựng Pipeline Dữ Liệu LLM và RAG
 
 
@@ -86,9 +79,7 @@ pip install crawl4ai
 playwright install chromium
 ```
 
-Nếu cần phiên bản đồng bộ (dựa trên Selenium):
-
-```bash
+Nếu cần phiên bản đồng bộ (dựa trên Selenium): ```bash
 pip install crawl4ai[sync]
 ```
 
@@ -104,13 +95,10 @@ docker pull unclecode/crawl4ai:latest
 import asyncio
 from crawl4ai import AsyncWebCrawler
 
-async def main():
-    async with AsyncWebCrawler() as crawler:
-        result = await crawler.arun(url="https://crawl4ai.com")
+async def main(): async with AsyncWebCrawler() as crawler: result = await crawler.arun(url="https://crawl4ai.com")
         print(result.markdown[:1000])
 
-if __name__ == "__main__":
-    asyncio.run(main())
+if __name__ == "__main__": asyncio.run(main())
 ```
 
 Chỉ vậy thôi. Mười dòng code, và bạn đã có Markdown sạch sẵn sàng đưa vào mô hình embedding.
@@ -131,27 +119,21 @@ Các định dạng đầu ra được hỗ trợ: `markdown`, `html`, `json`, `
 
 ### Ví Dụ: Trích Xuất Dữ Liệu Giá Từ Trang API Của OpenAI
 
-Bước 1 — Định nghĩa schema bằng Pydantic:
-
-```python
+Bước 1 — Định nghĩa schema bằng Pydantic: ```python
 from pydantic import BaseModel, Field
 
-class ModelPricing(BaseModel):
-    model_name: str = Field(..., description="Tên mô hình")
+class ModelPricing(BaseModel): model_name: str = Field(..., description="Tên mô hình")
     input_cost: str = Field(..., description="Chi phí cho 1M token đầu vào")
     output_cost: str = Field(..., description="Chi phí cho 1M token đầu ra")
 ```
 
-Bước 2 — Cấu hình chiến lược trích xuất LLM:
-
-```python
+Bước 2 — Cấu hình chiến lược trích xuất LLM: ```python
 import os
 import asyncio
 from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
 from crawl4ai.extraction_strategy import LLMExtractionStrategy
 
-async def main():
-    browser_config = BrowserConfig(verbose=True)
+async def main(): browser_config = BrowserConfig(verbose=True)
     
     run_config = CrawlerRunConfig(
         word_count_threshold=1,
@@ -170,15 +152,13 @@ async def main():
         cache_mode=CacheMode.BYPASS,
     )
 
-    async with AsyncWebCrawler(config=browser_config) as crawler:
-        result = await crawler.arun(
+    async with AsyncWebCrawler(config=browser_config) as crawler: result = await crawler.arun(
             url='https://openai.com/api/pricing/',
             config=run_config
         )
         print(result.extracted_content)
 
-if __name__ == "__main__":
-    asyncio.run(main())
+if __name__ == "__main__": asyncio.run(main())
 ```
 
 ### Các Nhà Cung Cấp LLM Được Hỗ Trợ
@@ -204,8 +184,7 @@ from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
 from crawl4ai.deep_crawling import BFSDeepCrawlStrategy
 from crawl4ai.content_scraping_strategy import LXMLWebScrapingStrategy
 
-async def main():
-    config = CrawlerRunConfig(
+async def main(): config = CrawlerRunConfig(
         deep_crawl_strategy=BFSDeepCrawlStrategy(
             max_depth=2,
             include_external=False
@@ -214,22 +193,17 @@ async def main():
         verbose=True
     )
 
-    async with AsyncWebCrawler() as crawler:
-        results = await crawler.arun("https://docs.crawl4ai.com/", config=config)
+    async with AsyncWebCrawler() as crawler: results = await crawler.arun("https://docs.crawl4ai.com/", config=config)
         print(f"Tổng số trang đã crawl: {len(results)}")
         
-        for r in results[:5]:
-            print(f"URL: {r.url} | Độ sâu: {r.metadata.get(depth, 0)}")
+        for r in results[:5]: print(f"URL: {r.url} | Độ sâu: {r.metadata.get(depth, 0)}")
 
-if __name__ == "__main__":
-    asyncio.run(main())
+if __name__ == "__main__": asyncio.run(main())
 ```
 
 ### Lọc Nội Dung BM25 Cho Pipeline RAG
 
-Khi xây dựng cơ sở kiến thức, bạn thường không cần toàn bộ trang — chỉ cần các đoạn liên quan đến truy vấn. Bộ lọc BM25 của Crawl4AI giải quyết vấn đề này:
-
-```python
+Khi xây dựng cơ sở kiến thức, bạn thường không cần toàn bộ trang — chỉ cần các đoạn liên quan đến truy vấn. Bộ lọc BM25 của Crawl4AI giải quyết vấn đề này: ```python
 from crawl4ai.content_filter import BM25ContentFilter
 
 filter = BM25ContentFilter(
@@ -270,17 +244,13 @@ Bộ lọc này xếp hạng mỗi đoạn văn bản trên trang theo độ li�
 
 ### Docker với FastAPI và Xác Thực JWT
 
-Triển khai Crawl4AI như một microservice nội bộ:
-
-```bash
+Triển khai Crawl4AI như một microservice nội bộ: ```bash
 docker run -p 8000:8000 \
   -e CRAWL4AI_API_TOKEN=your_jwt_secret \
   unclecode/crawl4ai:latest
 ```
 
-Gọi từ ứng dụng của bạn:
-
-```bash
+Gọi từ ứng dụng của bạn: ```bash
 curl -X POST http://localhost:8000/crawl \
   -H "Authorization: Bearer your_jwt_secret" \
   -d '{"url": "https://example.com", "output_format": "markdown"}'
@@ -288,9 +258,7 @@ curl -X POST http://localhost:8000/crawl \
 
 ### Cấu Hình Proxy và Đồng Thời
 
-Cho việc crawl quy mô production, cấu hình luân phiên proxy và pool trình duyệt headless:
-
-```python
+Cho việc crawl quy mô production, cấu hình luân phiên proxy và pool trình duyệt headless: ```python
 browser_config = BrowserConfig(
     headless=True,
     proxy_config={
@@ -317,9 +285,7 @@ browser_config = BrowserConfig(
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -356,7 +322,6 @@ Crawl4AI không phải là giải pháp vạn năng cho mọi nhu cầu crawl. N
 *Xuất bản ngày 2026-05-19. Dữ liệu dựa trên GitHub, tài liệu chính thức, và các benchmark công khai. Crawl4AI phát triển rất nhanh, vui lòng đối chiếu với tài liệu mới nhất.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

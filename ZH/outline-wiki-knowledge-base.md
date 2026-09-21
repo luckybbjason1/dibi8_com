@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/outline-wiki-knowledge-base" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/outline-wiki-knowledge-base" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/outline-wiki-knowledge-base" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/outline-wiki-knowledge-base" />
 title: 'Outline 完整指南：专为工程团队打造的开源 Wiki 与知识库 —— 2026 自托管部署'
 description: '使用 Docker 在 10 分钟内部署 Outline。为工程团队构建实时协作 Wiki，支持 Markdown 编辑器、Slack 集成、全文搜索和细粒度权限控制。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [outline, wiki, 知识库, 团队文档, 开源, 自托管, docker, 协作, markdown]
-aliases:
-- /zh/posts/outline-wiki-knowledge-base/
+aliases: - /zh/posts/outline-wiki-knowledge-base/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/outline-wiki-knowledge-base/ -->
 
 {{</* resource-info */>}}
 
@@ -78,13 +70,9 @@ Outline 需要三个服务：应用、PostgreSQL 和 Redis。一个可用于生�
 # docker-compose.yml
 version: "3.8"
 
-services:
-  outline:
-    image: outlinewiki/outline:0.83.0
-    ports:
-      - "3000:3000"
-    environment:
-      - DATABASE_URL=postgres://outline:outline_password@postgres:5432/outline
+services: outline: image: outlinewiki/outline:0.83.0
+    ports: - "3000:3000"
+    environment: - DATABASE_URL=postgres://outline:outline_password@postgres:5432/outline
       - DATABASE_URL_TEST=postgres://outline:outline_password@postgres:5432/outline-test
       - REDIS_URL=redis://redis:6379
       - SECRET_KEY=${SECRET_KEY}
@@ -109,42 +97,31 @@ services:
       - SLACK_CLIENT_ID=${SLACK_CLIENT_ID}
       - SLACK_CLIENT_SECRET=${SLACK_CLIENT_SECRET}
       - SLACK_VERIFICATION_TOKEN=${SLACK_VERIFICATION_TOKEN}
-    depends_on:
-      - postgres
+    depends_on: - postgres
       - redis
       - minio
     restart: unless-stopped
 
-  postgres:
-    image: postgres:16-alpine
-    environment:
-      - POSTGRES_USER=outline
+  postgres: image: postgres:16-alpine
+    environment: - POSTGRES_USER=outline
       - POSTGRES_PASSWORD=outline_password
       - POSTGRES_DB=outline
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
+    volumes: - postgres-data:/var/lib/postgresql/data
     restart: unless-stopped
 
-  redis:
-    image: redis:7-alpine
-    volumes:
-      - redis-data:/data
+  redis: image: redis:7-alpine
+    volumes: - redis-data:/data
     restart: unless-stopped
 
-  minio:
-    image: minio/minio:RELEASE.2026-04-01T00-00-00Z
+  minio: image: minio/minio:RELEASE.2026-04-01T00-00-00Z
     command: server /data --console-address ":9001"
-    environment:
-      - MINIO_ROOT_USER=minio
+    environment: - MINIO_ROOT_USER=minio
       - MINIO_ROOT_PASSWORD=minio123
-    volumes:
-      - minio-data:/data
+    volumes: - minio-data:/data
     restart: unless-stopped
 
-  minio-createbucket:
-    image: minio/mc:latest
-    depends_on:
-      - minio
+  minio-createbucket: image: minio/mc:latest
+    depends_on: - minio
     entrypoint: >
       /bin/sh -c "
       sleep 10;
@@ -154,11 +131,7 @@ services:
       exit 0;
       "
 
-volumes:
-  postgres-data:
-  redis-data:
-  minio-data:
-```
+volumes: postgres-data: redis-data: minio-data: ```
 
 ### 生成密钥
 
@@ -256,29 +229,19 @@ Outline 的 Slack 集成是其最强大的功能之一：
 
 ```yaml
 _display_name: Outline Wiki
-features:
-  bot_user:
-    display_name: Outline
+features: bot_user: display_name: Outline
     always_online: true
-  slash_commands:
-    - command: /outline
+  slash_commands: - command: /outline
       url: https://wiki.yourcompany.com/api/hooks.slack
       description: 搜索你的知识库
       usage_hint: "[search query]"
       should_escape: false
-oauth_config:
-  redirect_urls:
-    - https://wiki.yourcompany.com/auth/slack.callback
-  scopes:
-    bot:
-      - commands
+oauth_config: redirect_urls: - https://wiki.yourcompany.com/auth/slack.callback
+  scopes: bot: - commands
       - links:read
       - links:write
-settings:
-  event_subscriptions:
-    request_url: https://wiki.yourcompany.com/api/hooks.slack
-    bot_events:
-      - link_shared
+settings: event_subscriptions: request_url: https://wiki.yourcompany.com/api/hooks.slack
+    bot_events: - link_shared
   org_deploy_enabled: true
   socket_mode_enabled: false
 ```
@@ -327,17 +290,11 @@ curl -X POST "https://wiki.yourcompany.com/api/documents.search" \
 # .github/workflows/publish-docs.yml
 name: Publish API Docs to Outline
 
-on:
-  push:
-    branches: [main]
-    paths:
-      - 'docs/**'
+on: push: branches: [main]
+    paths: - 'docs/**'
 
-jobs:
-  publish:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: publish: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
 
       - name: Publish to Outline
         run: |
@@ -375,7 +332,11 @@ jobs:
 在每月 $6 的 DigitalOcean Droplet（1 vCPU，1GB RAM）上测试：
 
 | 指标 | 结果 |
-|---|---|
+|
+---
+|
+---
+|
 | 首次文档加载时间 | **~180ms** |
 | 实时同步延迟（2 位编辑者） | **~45ms** |
 | 全文搜索（10,000 篇文档） | 平均 **~80ms** |
@@ -482,41 +443,28 @@ echo "Backup completed: outline_full_$TIMESTAMP.zip"
 
 ```yaml
 # docker-compose.monitoring.yml
-services:
-  prometheus:
-    image: prom/prometheus:v2.51.0
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+services: prometheus: image: prom/prometheus:v2.51.0
+    volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus-data:/prometheus
-    ports:
-      - "9090:9090"
+    ports: - "9090:9090"
     restart: unless-stopped
 
-  grafana:
-    image: grafana/grafana:10.4.0
-    volumes:
-      - grafana-data:/var/lib/grafana
+  grafana: image: grafana/grafana:10.4.0
+    volumes: - grafana-data:/var/lib/grafana
       - ./grafana-dashboards:/etc/grafana/provisioning/dashboards
-    ports:
-      - "3001:3000"
+    ports: - "3001:3000"
     restart: unless-stopped
 
-  node-exporter:
-    image: prom/node-exporter:v1.7.0
-    volumes:
-      - /proc:/host/proc:ro
+  node-exporter: image: prom/node-exporter:v1.7.0
+    volumes: - /proc:/host/proc:ro
       - /sys:/host/sys:ro
       - /:/rootfs:ro
-    command:
-      - '--path.procfs=/host/proc'
+    command: - '--path.procfs=/host/proc'
       - '--path.rootfs=/rootfs'
       - '--path.sysfs=/host/sys'
     restart: unless-stopped
 
-volumes:
-  prometheus-data:
-  grafana-data:
-```
+volumes: prometheus-data: grafana-data: ```
 
 ### 4. 使用 Backblaze B2 的 S3 兼容存储
 
@@ -536,24 +484,16 @@ AWS_S3_FORCE_PATH_STYLE=false
 
 ```yaml
 # docker-compose.prod.yml — 使用生产配置扩展基础配置
-services:
-  outline:
-    image: outlinewiki/outline:0.83.0
-    environment:
-      - NODE_ENV=production
+services: outline: image: outlinewiki/outline:0.83.0
+    environment: - NODE_ENV=production
       - FORCE_HTTPS=true
       - RATE_LIMITER_ENABLED=true
       - DEFAULT_LANGUAGE=en_US
       - WEB_CONCURRENCY=2
-    deploy:
-      replicas: 2
-      resources:
-        limits:
-          memory: 1G
-        reservations:
-          memory: 512M
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000/api/utils.health"]
+    deploy: replicas: 2
+      resources: limits: memory: 1G
+        reservations: memory: 512M
+    healthcheck: test: ["CMD", "curl", "-f", "http://localhost:3000/api/utils.health"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -562,7 +502,19 @@ services:
 ## 与替代品对比
 
 | 功能 | Outline | Notion | Confluence | BookStack | Wiki.js |
-|---|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **许可证** | BSL-1.1 | 专有 | 专有 | MIT | AGPL-3.0 |
 | **自托管** | **是** | 否 | 是（Data Center） | 是 | 是 |
 | **实时协作** | 是 | 是 | 是（付费） | 否 | 否 |
@@ -643,10 +595,8 @@ Outline 为工程团队提供**自托管、实时协作 Wiki**，在规模扩大
 
 **相关工具**：[Keycloak SSO 设置](keycloak-sso-setup-dibi8-internal-link) | [MinIO S3 设置指南](minio-s3-setup-dibi8-internal-link)
 
+
 ---
-
-
-
 ## 推荐部署与基础设施
 
 上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：
@@ -672,7 +622,6 @@ Outline 为工程团队提供**自托管、实时协作 Wiki**，在规模扩大
 *本文可能包含联盟链接。如果你通过我们的推荐链接注册 DigitalOcean 或 HTStack，我们会获得佣金，不会增加你的额外费用。我们只推荐自己使用的服务。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

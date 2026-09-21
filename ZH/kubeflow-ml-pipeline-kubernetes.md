@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/kubeflow-ml-pipeline-kubernetes" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/kubeflow-ml-pipeline-kubernetes" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/kubeflow-ml-pipeline-kubernetes" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/kubeflow-ml-pipeline-kubernetes" />
 title: 'Kubeflow 2026: 在 Kubernetes 上运行完整 ML 流水线 — 从训练到生产部署指南'
 description: '在 Kubernetes 上部署 Kubeflow 构建 ML 流水线的完整指南。涵盖安装、组件、基准测试、生产加固和真实部署模式。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: [kubeflow, kubernetes, 机器学习, ml流水线, mlops, 'kubeflow pipelines', kserve, katib, 数据科学]
-aliases:
-- /zh/posts/kubeflow-ml-pipeline-kubernetes/
+aliases: - /zh/posts/kubeflow-ml-pipeline-kubernetes/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/kubeflow-ml-pipeline-kubernetes/ -->
 
 {{</* resource-info */>}}
 
@@ -170,8 +162,7 @@ from kfp.dsl import component, Input, Output, Dataset, Model, Metrics
     base_image="python:3.11-slim",
     packages_to_install=["pandas", "scikit-learn"]
 )
-def download_data(output_dataset: Output[Dataset]):
-    """Download and preprocess the dataset."""
+def download_data(output_dataset: Output[Dataset]): """Download and preprocess the dataset."""
     import pandas as pd
     from sklearn.datasets import load_iris
     from sklearn.model_selection import train_test_split
@@ -189,8 +180,7 @@ def train_model(
     input_dataset: Input[Dataset],
     output_model: Output[Model],
     n_estimators: int = 100
-):
-    """Train a Random Forest classifier."""
+): """Train a Random Forest classifier."""
     import pandas as pd
     import joblib
     from sklearn.ensemble import RandomForestClassifier
@@ -214,8 +204,7 @@ def evaluate_model(
     input_model: Input[Model],
     input_dataset: Input[Dataset],
     metrics: Output[Metrics]
-) -> str:
-    """Evaluate the trained model and log metrics."""
+) -> str: """Evaluate the trained model and log metrics."""
     import pandas as pd
     import joblib
     from sklearn.metrics import accuracy_score, f1_score
@@ -239,8 +228,7 @@ def evaluate_model(
     name="iris-training-pipeline",
     description="End-to-end iris classification pipeline"
 )
-def iris_pipeline(n_estimators: int = 100):
-    download = download_data()
+def iris_pipeline(n_estimators: int = 100): download = download_data()
     train = train_model(
         input_dataset=download.outputs["output_dataset"],
         n_estimators=n_estimators
@@ -251,8 +239,7 @@ def iris_pipeline(n_estimators: int = 100):
     )
 
 # 编译流水线
-if __name__ == "__main__":
-    kfp.compiler.Compiler().compile(
+if __name__ == "__main__": kfp.compiler.Compiler().compile(
         iris_pipeline,
         "iris_pipeline.yaml"
     )
@@ -288,39 +275,24 @@ kfp run create \
 # pytorch-job.yaml — 分布式 PyTorch 训练
 apiVersion: kubeflow.org/v1
 kind: PyTorchJob
-metadata:
-  name: cifar10-distributed
+metadata: name: cifar10-distributed
   namespace: kubeflow-user-example-com
-spec:
-  pytorchReplicaSpecs:
-    Master:
-      replicas: 1
+spec: pytorchReplicaSpecs: Master: replicas: 1
       restartPolicy: OnFailure
-      template:
-        spec:
-          containers:
-          - name: pytorch
+      template: spec: containers: - name: pytorch
             image: my-registry/cifar10-training:v1.2
             command: ["python", "-m", "torch.distributed.launch",
                       "--nproc_per_node=1", "train.py"]
-            resources:
-              limits:
-                nvidia.com/gpu: 1
+            resources: limits: nvidia.com/gpu: 1
                 memory: "16Gi"
                 cpu: "8"
-    Worker:
-      replicas: 3
+    Worker: replicas: 3
       restartPolicy: OnFailure
-      template:
-        spec:
-          containers:
-          - name: pytorch
+      template: spec: containers: - name: pytorch
             image: my-registry/cifar10-training:v1.2
             command: ["python", "-m", "torch.distributed.launch",
                       "--nproc_per_node=1", "train.py"]
-            resources:
-              limits:
-                nvidia.com/gpu: 1
+            resources: limits: nvidia.com/gpu: 1
                 memory: "16Gi"
                 cpu: "8"
 ```
@@ -349,22 +321,14 @@ KServe 提供生产级模型服务，支持自动扩缩容、流量分割和标�
 # inference-service.yaml — 部署训练好的模型
 apiVersion: serving.kserve.io/v1beta1
 kind: InferenceService
-metadata:
-  name: iris-classifier
+metadata: name: iris-classifier
   namespace: kubeflow-user-example-com
-  annotations:
-    serving.kserve.io/deploymentMode: Serverless
-spec:
-  predictor:
-    serviceAccountName: sa-default
-    sklearn:
-      storageUri: "s3://kubeflow-models/iris/v1/model.joblib"
-      resources:
-        limits:
-          cpu: "1"
+  annotations: serving.kserve.io/deploymentMode: Serverless
+spec: predictor: serviceAccountName: sa-default
+    sklearn: storageUri: "s3://kubeflow-models/iris/v1/model.joblib"
+      resources: limits: cpu: "1"
           memory: 2Gi
-        requests:
-          cpu: "100m"
+        requests: cpu: "100m"
           memory: 256Mi
 ```
 
@@ -393,14 +357,10 @@ curl -X POST http://iris-classifier.kubeflow-user-example-com.example.com/v1/mod
 # canary-rollout.yaml — v2 的渐进式发布
 apiVersion: serving.kserve.io/v1beta1
 kind: InferenceService
-metadata:
-  name: iris-classifier
+metadata: name: iris-classifier
   namespace: kubeflow-user-example-com
-spec:
-  predictor:
-    canaryTrafficPercent: 20
-    sklearn:
-      storageUri: "s3://kubeflow-models/iris/v2/model.joblib"
+spec: predictor: canaryTrafficPercent: 20
+    sklearn: storageUri: "s3://kubeflow-models/iris/v2/model.joblib"
 ```
 
 ## 使用 Katib 进行超参数调优
@@ -411,57 +371,40 @@ Katib 使用 Kubernetes 原生实验自动化搜索最优超参数：
 # katib-experiment.yaml — 优化 Random Forest 超参数
 apiVersion: kubeflow.org/v1beta1
 kind: Experiment
-metadata:
-  namespace: kubeflow-user-example-com
+metadata: namespace: kubeflow-user-example-com
   name: iris-hp-tuning
-spec:
-  objective:
-    type: maximize
+spec: objective: type: maximize
     goal: 0.99
     objectiveMetricName: accuracy
-  algorithm:
-    algorithmName: bayesianoptimization
+  algorithm: algorithmName: bayesianoptimization
   parallelTrialCount: 3
   maxTrialCount: 12
   maxFailedTrialCount: 3
-  parameters:
-    - name: n_estimators
+  parameters: - name: n_estimators
       parameterType: int
-      feasibleSpace:
-        min: "50"
+      feasibleSpace: min: "50"
         max: "500"
     - name: max_depth
       parameterType: int
-      feasibleSpace:
-        min: "3"
+      feasibleSpace: min: "3"
         max: "20"
     - name: min_samples_split
       parameterType: double
-      feasibleSpace:
-        min: "0.01"
+      feasibleSpace: min: "0.01"
         max: "0.3"
-  trialTemplate:
-    primaryContainerName: training-container
-    trialParameters:
-      - name: nEstimators
+  trialTemplate: primaryContainerName: training-container
+    trialParameters: - name: nEstimators
         reference: n_estimators
       - name: maxDepth
         reference: max_depth
       - name: minSamplesSplit
         reference: min_samples_split
-    trialSpec:
-      apiVersion: batch/v1
+    trialSpec: apiVersion: batch/v1
       kind: Job
-      spec:
-        template:
-          spec:
-            containers:
-              - name: training-container
+      spec: template: spec: containers: - name: training-container
                 image: my-registry/iris-train:v1
                 command: ["python", "train.py"]
-                resources:
-                  limits:
-                    memory: "4Gi"
+                resources: limits: memory: "4Gi"
                     cpu: "2"
             restartPolicy: Never
 ```
@@ -485,7 +428,15 @@ kubectl get experiment iris-hp-tuning \
 ### 训练吞吐量对比
 
 | 配置 | 每轮时间 (CIFAR-10 ResNet-50) | GPU 数量 | 成本/小时* |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 单 GPU (NVIDIA A100) | 4 分 12 秒 | 1 | $2.50 |
 | Kubeflow PyTorchJob (4x A100) | 1 分 05 秒 | 4 | $10.00 |
 | Kubeflow PyTorchJob (8x A100) | 35 秒 | 8 | $20.00 |
@@ -496,7 +447,13 @@ kubectl get experiment iris-hp-tuning \
 ### 流水线执行开销
 
 | 场景 | 总运行时间 | KFP 开销 |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | 5 步流水线, 小数据 (< 1 GB) | 3 分 45 秒 | ~18 秒 |
 | 12 步流水线, 中数据 (10 GB) | 22 分 10 秒 | ~45 秒 |
 | 20 步流水线, 大数据 (100 GB) | 2 小时 15 分 | ~2 分 |
@@ -517,12 +474,9 @@ KFP 编排开销始终**低于总流水线运行时间的 3%**，即使对于复
 # gpu-quota.yaml — 为每个命名空间强制 GPU 限制
 apiVersion: v1
 kind: ResourceQuota
-metadata:
-  name: gpu-quota
+metadata: name: gpu-quota
   namespace: data-science-team
-spec:
-  hard:
-    requests.nvidia.com/gpu: 8
+spec: hard: requests.nvidia.com/gpu: 8
     limits.nvidia.com/gpu: 16
 ```
 
@@ -540,15 +494,10 @@ kubectl describe resourcequota gpu-quota -n data-science-team
 # dataset-pvc.yaml
 apiVersion: v1
 kind: PersistentVolumeClaim
-metadata:
-  name: training-datasets
+metadata: name: training-datasets
   namespace: kubeflow-user-example-com
-spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 500Gi
+spec: accessModes: - ReadWriteMany
+  resources: requests: storage: 500Gi
   storageClassName: nfs-client  # 或 AWS 上使用 efs-sc
 ```
 
@@ -568,15 +517,10 @@ spec:
 kubectl apply -f - <<EOF
 apiVersion: kubeflow.org/v1
 kind: Profile
-metadata:
-  name: team-ml-platform
-spec:
-  owner:
-    kind: User
+metadata: name: team-ml-platform
+spec: owner: kind: User
     name: ml-engineer@company.com
-  resourceQuotaSpec:
-    hard:
-      cpu: "64"
+  resourceQuotaSpec: hard: cpu: "64"
       memory: 256Gi
       nvidia.com/gpu: "8"
       pods: "50"
@@ -613,7 +557,17 @@ kubectl apply -f \
 ## 与替代方案对比
 
 | 特性 | Kubeflow | MLflow | Airflow | SageMaker |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Kubernetes 原生 | **是 (核心设计)** | 否 (可部署在 K8s 上) | 可选 (通过 Helm) | N/A (托管 AWS) |
 | 流水线编排 | **是 (KFP DAG)** | 有限 (MLflow Pipelines) | 是 (通用) | 是 (Step Functions) |
 | 分布式训练 | **是 (Training Operator)** | 否 | 否 | 是 |
@@ -702,7 +656,6 @@ Kubeflow 仍然是 Kubernetes 上运行 ML 工作负载最完整的开源平台�
 *联盟营销披露: 本文包含 DigitalOcean 和 虎网云 的联盟链接。如果你通过这些链接注册，dibi8.com 会获得佣金，而你无需支付额外费用。我们只推荐用于自己基础设施的服务。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -728,8 +681,8 @@ Kubeflow 仍然是 Kubernetes 上运行 ML 工作负载最完整的开源平台�
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [trivy-production-security-scanner-2026](kubeflow-ml-pipeline-kubernetes)
@@ -738,6 +691,6 @@ Kubeflow 仍然是 Kubernetes 上运行 ML 工作负载最完整的开源平台�
 - [wandb-ml-experiment-tracking-platform-2026](kubeflow-ml-pipeline-kubernetes)
 - [wandb-ml-experiment-tracking-platform-2026](kubeflow-ml-pipeline-kubernetes)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

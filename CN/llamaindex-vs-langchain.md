@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/llamaindex-vs-langchain" />
 title: 'LlamaIndex vs LangChain (2025): Which LLM Framework Shou...
 description: 'Compare LlamaIndex and LangChain in 2025. Architecture, RAG capabilities, performance benchmarks, and decision guide to pick the right LLM framework.'
 date: 2026-05-18 00:00:00+08:00
@@ -20,10 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/llamaindex-vs-langchain/
+aliases: - /posts/llamaindex-vs-langchain/-
 ---
-
 {</* resource-info */>}
 
 Picking the right LLM framework in 2025 feels overwhelming. The ecosystem matured rapidly, and two names dominate every architecture discussion: LangChain and LlamaIndex. Both have crossed 40,000 GitHub stars. Both support Python and TypeScript. Both integrate with every major model provider. Yet they approach the problem of building LLM applications from fundamentally different angles.
@@ -41,7 +37,13 @@ Understanding this philosophical difference — breadth versus depth — explain
 ### Key Differences at a Glance
 
 | Aspect | LangChain | LlamaIndex |
-|--------|-----------|------------|
+|
+---
+|
+---
+|
+---
+|
 | **Primary focus** | General LLM orchestration | Data retrieval and RAG |
 | **Architecture** | Chain-based composition | Query engine pipeline |
 | **Document ingestion** | Good (100+ loaders) | Excellent (advanced parsing) |
@@ -73,9 +75,7 @@ The ecosystem extends beyond the core library. LangGraph adds stateful multi-age
 
 ### Best Use Cases for LangChain
 
-LangChain excels in scenarios requiring complex orchestration:
-
-- **Multi-step agent workflows**: Agents that decide which tools to call and in what order
+LangChain excels in scenarios requiring complex orchestration: - **Multi-step agent workflows**: Agents that decide which tools to call and in what order
 - **Chatbots with memory**: Conversational applications that maintain context across turns
 - **Tool-using applications**: LLMs that interact with calculators, search engines, databases
 - **Unified model access**: Applications that need to switch between multiple LLM providers
@@ -92,9 +92,7 @@ The framework's central abstraction is the **query engine**. You load data, buil
 
 ### Strengths: Advanced RAG and Data Ingestion
 
-LlamaIndex leads in retrieval quality. Its indexing strategies go beyond simple vector search:
-
-- **Summary indices**: Store document summaries for fast overview retrieval
+LlamaIndex leads in retrieval quality. Its indexing strategies go beyond simple vector search: - **Summary indices**: Store document summaries for fast overview retrieval
 - **Tree indices**: Build hierarchical summaries for efficient multi-document navigation
 - **Keyword table indices**: Combine vector search with keyword matching
 - **Knowledge graph indices**: Extract entity relationships and support graph-based reasoning
@@ -103,9 +101,7 @@ LlamaIndex also pioneered **agentic RAG**, where the retrieval system itself use
 
 ### Best Use Cases for LlamaIndex
 
-LlamaIndex dominates data-heavy scenarios:
-
-- **Document Q&A applications**: Chat with PDFs, manuals, research papers
+LlamaIndex dominates data-heavy scenarios: - **Document Q&A applications**: Chat with PDFs, manuals, research papers
 - **Advanced RAG pipelines**: Multi-hop reasoning over document collections
 - **Knowledge graph construction**: Extract and query structured relationships from text
 - **Multi-modal retrieval**: Combining text, image, and table data in a single query
@@ -120,9 +116,7 @@ LlamaIndex provides higher-level abstractions. A `VectorStoreIndex` and `query_e
 
 ### Document Processing and Indexing
 
-This is where LlamaIndex pulls ahead. Its ingestion pipeline includes:
-
-- **Advanced PDF parsing**: Handles tables, headers, and complex layouts
+This is where LlamaIndex pulls ahead. Its ingestion pipeline includes: - **Advanced PDF parsing**: Handles tables, headers, and complex layouts
 - **Multi-modal extraction**: Processes images and charts within documents
 - **Auto-merging retrieval**: Retrieves parent documents when child chunks match
 - **Hierarchical indexing**: Builds tree structures for efficient large-scale retrieval
@@ -131,10 +125,14 @@ LangChain's document processing is functional but less sophisticated. You typica
 
 ### Query Engines and Retrieval Strategies
 
-LlamaIndex offers more retrieval strategies out of the box:
-
-| Strategy | LlamaIndex | LangChain |
-|----------|------------|-----------|
+LlamaIndex offers more retrieval strategies out of the box: | Strategy | LlamaIndex | LangChain |
+|
+---
+|
+---
+|
+---
+|
 | Vector similarity | Yes | Yes |
 | Keyword/BM25 hybrid | Yes | Via extensions |
 | Hierarchical traversal | Yes | No |
@@ -172,7 +170,13 @@ LlamaIndex is easier to get started with. The `load-index-query` pattern is intu
 ### Core Components Matrix
 
 | Feature | LangChain | LlamaIndex |
-|---------|-----------|------------|
+|
+---
+|
+---
+|
+---
+|
 | Prompt management | Advanced templates | Basic |
 | Model abstraction | 100+ providers | Good but fewer |
 | Document loaders | 100+ | 50+ but deeper |
@@ -186,7 +190,13 @@ LlamaIndex is easier to get started with. The `load-index-query` pattern is intu
 ### Integration Support Matrix
 
 | Integration | LangChain | LlamaIndex |
-|-------------|-----------|------------|
+|
+---
+|
+---
+|
+---
+|
 | OpenAI | Native | Native |
 | Anthropic Claude | Native | Native |
 | Local models (Ollama) | Yes | Yes |
@@ -201,7 +211,13 @@ LlamaIndex is easier to get started with. The `load-index-query` pattern is intu
 ### Enterprise Features Comparison
 
 | Feature | LangChain | LlamaIndex |
-|---------|-----------|------------|
+|
+---
+|
+---
+|
+---
+|
 | Production monitoring | LangSmith (excellent) | Basic callbacks |
 | Evaluation framework | LangSmith evals | Response evaluator |
 | Multi-tenancy | Manual | Manual |
@@ -247,9 +263,7 @@ Yes, and increasingly, experienced teams do exactly this. The hybrid pattern use
 
 ### Integration Patterns
 
-The most common integration pattern uses LlamaIndex as the retrieval backend and LangChain as the orchestration frontend:
-
-```python
+The most common integration pattern uses LlamaIndex as the retrieval backend and LangChain as the orchestration frontend: ```python
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
 from langchain.chains import create_retrieval_chain
 from langchain_openai import ChatOpenAI
@@ -286,8 +300,7 @@ query_engine = index.as_query_engine()
 
 # Create a LangChain tool wrapping LlamaIndex retrieval
 @tool
-def search_docs(query: str) -> str:
-    """Search the company documentation."""
+def search_docs(query: str) -> str: """Search the company documentation."""
     return str(query_engine.query(query))
 
 # Use LangChain agent with LlamaIndex retrieval
@@ -300,18 +313,14 @@ executor = AgentExecutor(agent=agent, tools=[search_docs])
 
 ### LangChain 0.3+ and LangGraph Updates
 
-LangChain 0.3, released in late 2024, introduced significant improvements:
-
-- **Simplified initialization**: The `init_chat_model` function provides a unified interface for all major providers
+LangChain 0.3, released in late 2024, introduced significant improvements: - **Simplified initialization**: The `init_chat_model` function provides a unified interface for all major providers
 - **LangGraph 0.2**: Added subgraph support, checkpointing improvements, and human-in-the-loop patterns
 - **LangSmith GA**: General availability with expanded evaluation capabilities
 - **Better streaming**: Improved streaming support across all component types
 
 ### LlamaIndex v0.12+ New Features
 
-LlamaIndex v0.12 brought major enhancements:
-
-- **Workflows API**: A new event-driven system for building complex agent interactions
+LlamaIndex v0.12 brought major enhancements: - **Workflows API**: A new event-driven system for building complex agent interactions
 - **LlamaCloud**: Managed service for enterprise document processing and retrieval
 - **Improved multi-modal support**: Better handling of PDFs with images and tables
 - **Agentic RAG v2**: Smarter query planning and retrieval strategies
@@ -322,25 +331,19 @@ Both frameworks are converging on similar capabilities. LangChain is improving i
 
 ## Final Verdict: Which One Should You Pick?
 
-Choose **LangChain** if:
-
-- You need general-purpose LLM orchestration
+Choose **LangChain** if: - You need general-purpose LLM orchestration
 - Agents and tool use are central to your application
 - You want the largest ecosystem and community
 - You need the integrated LangGraph + LangSmith toolchain
 - Your application involves complex multi-step workflows beyond retrieval
 
-Choose **LlamaIndex** if:
-
-- Your primary use case is document Q&A or RAG
+Choose **LlamaIndex** if: - Your primary use case is document Q&A or RAG
 - You need advanced document parsing and indexing
 - Knowledge graph construction is important
 - You want simpler APIs for data-heavy applications
 - You prioritize retrieval quality over orchestration flexibility
 
-Use **both** if:
-
-- You are building a serious production RAG application
+Use **both** if: - You are building a serious production RAG application
 - You want the best retrieval quality with the most flexible orchestration
 - Your team has the capacity to manage two frameworks
 
@@ -366,20 +369,17 @@ Generally yes. LlamaIndex's higher-level abstractions mean you can build a worki
 
 Both offer enterprise support plans. LangChain has LangSmith for production observability and LangGraph Cloud for managed hosting, giving it an edge in enterprise tooling. LlamaIndex offers LlamaCloud for managed document processing. For large deployments, evaluate both platforms against your specific observability and security requirements.
 
----
 
+---
 ## Recommended Infrastructure
 
-To run any of the tools above reliably 24/7, infrastructure matters:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.
+To run any of the tools above reliably 24/7, infrastructure matters: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low latency for mainland China access. This is the same IDC hosting dibi8.com — production-proven.
 
 *Affiliate links — no extra cost to you, helps keep dibi8.com running.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -426,3 +426,5 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
 
+
+---

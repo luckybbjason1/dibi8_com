@@ -1,16 +1,10 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/reading-explain-analyze-postgres" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/reading-explain-analyze-postgres" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/reading-explain-analyze-postgres" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/reading-explain-analyze-postgres" />
 title: Đọc đầu ra EXPLAIN ANALYZE trong Postgres mà không bị lạc
 description: PostgreSQL EXPLAIN ANALYZE tutorial. Learn query plan interpretation,. Comprehensive guide covering features, pricing, and best practices for 2026.
   bottleneck detection, and database performance optimization.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
-tech_stack:
-- AI
+tech_stack: - AI
 application_domain: Ai Tools
 source_version: ''
 licensing_model: Open Source
@@ -25,10 +19,8 @@ maintainer: ''
 last_maintained: '2026-05-15'
 featureImage: ''
 draft: false
-aliases:
-- /vi/posts/reading-explain-analyze-postgres/
-faqs:
-  - q: 'Dòng đầu tiên trong output EXPLAIN ANALYZE, actual time có nghĩa là gì?'
+aliases: - /vi/posts/reading-explain-analyze-postgres/
+faqs: - q: 'Dòng đầu tiên trong output EXPLAIN ANALYZE, actual time có nghĩa là gì?'
     a: 'Giá trị actual time thứ hai của node ngoài cùng là thời gian thực tế (tính bằng mili giây) mà toàn bộ truy vấn tiêu tốn cho một lần thực thi node đó. Tất cả các node bên dưới phân tích chi tiết thời gian tổng đó đã được sử dụng ở đâu.'
   - q: 'Làm thế nào để phát hiện query plan có vấn đề qua số lượng hàng trong EXPLAIN ANALYZE?'
     a: 'So sánh rows= ước tính của planner (trong phần cost=) với rows= thực tế (trong phần actual time=). Khi hai giá trị này chênh lệch 10 lần trở lên, planner đã dùng thống kê lỗi thời, và mọi node phía trên đều được chọn dựa trên giả định sai — đây gần như chắc chắn là lỗi cần tìm.'
@@ -40,7 +32,6 @@ faqs:
     a: 'Điều đó có nghĩa là thao tác sắp xếp hoặc băm không vừa trong work_mem và đã tràn ra đĩa, khiến thời gian của node đó có thể tăng gấp 10 lần. Cách khắc phục là tăng work_mem cho phiên đó và chạy lại EXPLAIN.'
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/reading-explain-analyze-postgres/ -->
 # Đọc đầu ra EXPLAIN ANALYZE trong Postgres mà không bị lạc
 
 
@@ -105,8 +96,7 @@ Sort Method: external merge  Disk: 16384kB
 
 ## Ứng dụng thực tế
 
-Những hiểu biết này giúp tôi xác định và sửa chữa:
-- Chỉ mục bị thiếu
+Những hiểu biết này giúp tôi xác định và sửa chữa: - Chỉ mục bị thiếu
 - Thứ tự kết nối không hiệu quả
 - Vấn đề thiếu bộ nhớ
 - Bộ đệm không trúng
@@ -117,9 +107,7 @@ Hãy nhớ: EXPLAIN ANALYZE là trình gỡ lỗi hiệu suất truy vấn của
 
 ## Công Cụ Đề Xuất
 
-Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
+Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
 - **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Proxy Anthropic Claude / OpenAI / DeepSeek API. Hầu hết AI tool ở trên (chatbot, code gen, translation, search, v.v.) cần LLM API key — proxy này cho access ổn định top model với ~30% giá chính thức.
 - **{{< aff "hostinger" "footer-cta-legacy" "Hostinger" >}}** — Lựa chọn VPS giá tốt cho thị trường Việt Nam.
 
@@ -127,7 +115,6 @@ Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -155,25 +142,20 @@ Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
 
 ## Why This Matters
 
-Understanding đọc đầu ra explain analyze trong postgres mà không bị lạc is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding đọc đầu ra explain analyze trong postgres mà không bị lạc is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

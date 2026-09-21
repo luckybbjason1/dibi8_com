@@ -1,16 +1,10 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/aiwind-ai-prompt-library-generator" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/aiwind-ai-prompt-library-generator" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/aiwind-ai-prompt-library-generator" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/aiwind-ai-prompt-library-generator" />
 title: AiWind：1000+ AI 绘画提示词宝库，让 GPT-Image 2 和 Nanobanana 产出惊艳作品
 description: AiWind는 GPT-Image 2, Nanobanana, Stable Diffusion, Midjourney 등 주요 모델을. Comprehensive guide covering features, pricing, and best practices for 2026.
   위한 1000+ 전문 AI 그림 프롬프트를 무료로 제공하는 AI 프롬프트 라이브러리입니다.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
-tech_stack:
-- Go
+tech_stack: - Go
 application_domain: Ai Tools
 source_version: ''
 licensing_model: Open Source
@@ -25,10 +19,8 @@ maintainer: ''
 last_maintained: '2026-05-15'
 featureImage: ''
 draft: false
-aliases:
-- /ko/posts/aiwind-ai-prompt-library/
-faqs:
-  - q: 'AiWind은 무료로 사용할 수 있나요?'
+aliases: - /ko/posts/aiwind-ai-prompt-library/
+faqs: - q: 'AiWind은 무료로 사용할 수 있나요?'
     a: '네, AiWind는 aiwind.org에서 제공하는 완전 무료 AI 프롬프트 라이브러리로, 유료 플랜이 없습니다. 1000개 이상의 전문 프롬프트를 제공하며 지속적으로 업데이트됩니다.'
   - q: 'AiWind는 어떤 AI 이미지 모델의 프롬프트를 지원하나요?'
     a: 'AiWind는 GPT-Image 2, Nanobanana, Stable Diffusion, Midjourney, Flux-Kontext, Tencent Hunyuan, Google Imagen, ByteDance Seedream을 포함한 10개 이상의 모델을 지원합니다. 각 프롬프트 항목에는 가장 잘 작동하는 모델 추천 정보가 포함되어 있습니다.'
@@ -39,7 +31,6 @@ faqs:
   - q: 'AiWind는 PromptHero, Lexica, Civitai와 어떻게 비교되나요?'
     a: 'AiWind는 완전 무료 이용, 강력한 중국어 지원, 10개 이상의 모델 커버리지로 차별화됩니다. 반면 Lexica는 약 3개 모델을 지원하고, Civitai는 주로 Stable Diffusion에 집중합니다. AiWind, PromptHero, Civitai는 모두 커뮤니티 프롬프트 제출을 지원하지만, Lexica는 지원하지 않습니다.'
 ---
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -71,15 +62,11 @@ faqs:
 </script>
 
 
-<!-- canonical: https://dibi8.com/kr/tools/aiwind-ai-prompt-library-generator/ -->
-
 {</* resource-info */>}
 
 ## 문제: 왜 당신의 AI 그림은 항상 "뭔가 부족"한가?
 
-GPT-Image 2, Midjourney 또는 Stable Diffusion에 큰돈을 들여 구독했지만 생성된 이미지는 항상:
-
-- 인물 표정이 경직되어 플라스틱 마네킹 같다
+GPT-Image 2, Midjourney 또는 Stable Diffusion에 큰돈을 들여 구독했지만 생성된 이미지는 항상: - 인물 표정이 경직되어 플라스틱 마네킹 같다
 - 풍경에 입체감이 없어 스티커를 붙인 것 같다
 - 스타일이 일관되지 않고 전후가 모순된다
 - 디테일이 부족해 확대하면 끔찍하다
@@ -194,17 +181,14 @@ GPT-Image 2, Midjourney 또는 Stable Diffusion에 큰돈을 들여 구독했지
 
 ### 단계 2: 상세 정보 확인
 
-임의의 프롬프트를 클릭하여 다음을 확인합니다:
-- 완전한 영문 프롬프트
+임의의 프롬프트를 클릭하여 다음을 확인합니다: - 완전한 영문 프롬프트
 - 추천 모델과 파라미터
 - 예시 이미지
 - 태그 분류
 
 ### 단계 3: 복사하여 사용
 
-프롬프트를 AI 이미지 생성 도구에 복사합니다:
-
-```
+프롬프트를 AI 이미지 생성 도구에 복사합니다: ```
 # Midjourney 예시
 /imagine prompt: 두바이 야금 금발 슈퍼모델, dubai night blonde, 
 fashion photography, golden hour lighting, 
@@ -228,8 +212,7 @@ best quality, masterpiece
 ```
 [주체] + [스타일] + [조명] + [구도] + [품질 단어]
 
-예시:
-주체: 금발 슈퍼모델이 두바이 야경 앞에 서 있다
+예시: 주체: 금발 슈퍼모델이 두바이 야경 앞에 서 있다
 스타일: 패션 사진, Vogue 에디토리얼 스타일
 조명: 골든 아워, 도시 조명 배경광
 구도: 미디엄 샷, 삼분법
@@ -297,9 +280,7 @@ AI로 이미지를 생성할 때 항상 "뭔가 부족"하다면 AiWind에서 �
 
 ## 추천 도구
 
-오픈소스 AI 도구 개발/배포 시 권장:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
+오픈소스 AI 도구 개발/배포 시 권장: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
 - **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Anthropic Claude / OpenAI / DeepSeek API 프록시. 위의 AI 도구 대부분 (챗봇, 코드 생성, 번역, 검색 등) LLM API 키 필요 — 이 프록시로 안정적인 톱 모델 액세스, 공식 가격의 ~30%.
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*

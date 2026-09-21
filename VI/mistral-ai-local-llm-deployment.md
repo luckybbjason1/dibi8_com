@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mistral-ai-local-llm-deployment" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mistral-ai-local-llm-deployment" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mistral-ai-local-llm-deployment" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mistral-ai-local-llm-deployment" />
 title: 'Mistral AI 2026: Triển khai LLM Local Cấp Production với...
 description: ''. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: ['mistral ai']
-aliases:
-- /vi/posts/mistral-ai-local-llm-deployment/
+aliases: - /vi/posts/mistral-ai-local-llm-deployment/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/mistral-ai-local-llm-deployment/ -->
 
 {{</* resource-info */>}}
 
@@ -47,9 +39,7 @@ Mistral AI đã xây dựng một dòng các mô hình đa dạng, mỗi model �
 
 ### Mistral 8x7B MoE (Mixtral)
 
-Flagship Mixtral 8x7B sử dụng kiến trúc **Sparse Mixture of Experts**. Mặc dù có tổng cộng 47B tham số, nó chỉ kích hoạt 8 tỷ tham số cho mỗi token, làm cho nó hiệu quả một cách đáng kinh ngạc:
-
-| Thông số | Giá trị |
+Flagship Mixtral 8x7B sử dụng kiến trúc **Sparse Mixture of Experts**. Mặc dù có tổng cộng 47B tham số, nó chỉ kích hoạt 8 tỷ tham số cho mỗi token, làm cho nó hiệu quả một cách đáng kinh ngạc: | Thông số | Giá trị |
 |--------------|-------|
 | Kiến trúc | Sparse MoE |
 | Tổng tham số | 46.7B (8 x 7B experts) |
@@ -263,8 +253,7 @@ results = generate(
     batch_size=len(batch_prompts),
 )
 
-for i, result in enumerate(results):
-    print(f"Phản hồi {i+1}: {result.text}\n")
+for i, result in enumerate(results): print(f"Phản hồi {i+1}: {result.text}\n")
 ```
 
 ---
@@ -311,9 +300,7 @@ python -m vllm.entrypoints.openai.api_server \
 
 ### Cấu hình Máy chủ API
 
-Tạo `vllm-config.yaml` cho các triển khai có thể tái tạo:
-
-```yaml
+Tạo `vllm-config.yaml` cho các triển khai có thể tái tạo: ```yaml
 model: mistralai/Mistral-7B-Instruct-v0.3
 dtype: bfloat16
 tensor_parallel_size: 1
@@ -377,9 +364,7 @@ response = client.chat.completions.create(
     stream=True
 )
 
-for chunk in response:
-    if chunk.choices[0].delta.content:
-        print(chunk.choices[0].delta.content, end="")
+for chunk in response: if chunk.choices[0].delta.content: print(chunk.choices[0].delta.content, end="")
 ```
 
 ---
@@ -510,8 +495,7 @@ response = client.chat.completions.create(
 )
 
 # Kiểm tra tool calls
-if response.choices[0].message.tool_calls:
-    tool_call = response.choices[0].message.tool_calls[0]
+if response.choices[0].message.tool_calls: tool_call = response.choices[0].message.tool_calls[0]
     print(f"Hàm: {tool_call.function.name}")
     print(f"Tham số: {tool_call.function.arguments}")
 ```
@@ -522,8 +506,7 @@ if response.choices[0].message.tool_calls:
 import json
 
 # Thực thi công cụ (ví dụ triển khai)
-def get_weather(location, unit="celsius"):
-    # Triển khai thực tế sẽ gọi weather API
+def get_weather(location, unit="celsius"): # Triển khai thực tế sẽ gọi weather API
     return {"temperature": 22, "condition": "sunny", "location": location}
 
 # Thêm kết quả công cụ vào cuộc trò chuyện
@@ -685,8 +668,7 @@ curl http://localhost:8000/health
 # vLLM expose số liệu Prometheus
 curl http://localhost:8000/metrics
 
-# Các số liệu chính:
-# - vllm:num_requests_running
+# Các số liệu chính: # - vllm:num_requests_running
 # - vllm:gpu_cache_usage_perc
 # - vllm:time_to_first_token_seconds
 # - vllm:time_per_output_token_seconds
@@ -697,23 +679,13 @@ curl http://localhost:8000/metrics
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
-metadata:
-  name: mistral-vllm
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: mistral-vllm
-  template:
-    metadata:
-      labels:
-        app: mistral-vllm
-    spec:
-      containers:
-      - name: vllm
+metadata: name: mistral-vllm
+spec: replicas: 1
+  selector: matchLabels: app: mistral-vllm
+  template: metadata: labels: app: mistral-vllm
+    spec: containers: - name: vllm
         image: vllm/vllm-openai:latest
-        args:
-          - --model
+        args: - --model
           - mistralai/Mistral-7B-Instruct-v0.3
           - --dtype
           - bfloat16
@@ -721,34 +693,22 @@ spec:
           - "1"
           - --gpu-memory-utilization
           - "0.85"
-        ports:
-        - containerPort: 8000
-        resources:
-          limits:
-            nvidia.com/gpu: "1"
+        ports: - containerPort: 8000
+        resources: limits: nvidia.com/gpu: "1"
             memory: "32Gi"
-          requests:
-            nvidia.com/gpu: "1"
+          requests: nvidia.com/gpu: "1"
             memory: "16Gi"
-        volumeMounts:
-        - name: model-cache
+        volumeMounts: - name: model-cache
           mountPath: /root/.cache/huggingface
-      volumes:
-      - name: model-cache
-        persistentVolumeClaim:
-          claimName: model-cache-pvc
-      nodeSelector:
-        accelerator: nvidia-gpu
+      volumes: - name: model-cache
+        persistentVolumeClaim: claimName: model-cache-pvc
+      nodeSelector: accelerator: nvidia-gpu
 ---
 apiVersion: v1
 kind: Service
-metadata:
-  name: mistral-vllm-service
-spec:
-  selector:
-    app: mistral-vllm
-  ports:
-  - port: 80
+metadata: name: mistral-vllm-service
+spec: selector: app: mistral-vllm
+  ports: - port: 80
     targetPort: 8000
   type: ClusterIP
 ```
@@ -805,7 +765,6 @@ Bắt đầu với `mistral-inference` để thử nghiệm, mở rộng sang vL
 *Xuất bản: 2026-05-19 | Mistral AI | [GitHub: mistralai/mistral-inference](https://github.com/mistralai/mistral-inference)*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

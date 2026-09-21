@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/bumblebee-supply-chain-scanner-perplexity-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/bumblebee-supply-chain-scanner-perplexity-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/bumblebee-supply-chain-scanner-perplexity-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/bumblebee-supply-chain-scanner-perplexity-2026" />
 title: 'Bumblebee 2026: Perplexity AI Mở Nguồn Bộ Quét Chuỗi Cun...
 description: 'Bumblebee là bộ quét chuỗi cung ứng chỉ đọc, mã nguồn mở của Perplexity AI, kiểm tra npm, PyPI, Go module, cấu hình MCP, extension editor và extension trình duyệt tìm các gói đã bị xâm phạm — không thực thi bất kỳ dòng code nào.'
 date: 2026-06-09 00:00:00+08:00
@@ -25,10 +20,8 @@ featureImage: '/images/articles/bumblebee-supply-chain-scanner-perplexity-2026/c
 draft: false
 categories: ['dev-utils']
 tags: [bumblebee, 'supply-chain', security, mcp, go, npm, pypi, 'perplexity-ai']
-aliases:
-- /vi/posts/bumblebee-supply-chain-scanner-perplexity-2026/
-faqs:
-  - q: 'Bumblebee là gì và quét những gì?'
+aliases: - /vi/posts/bumblebee-supply-chain-scanner-perplexity-2026/
+faqs: - q: 'Bumblebee là gì và quét những gì?'
     a: 'Bumblebee là bộ quét endpoint nhà phát triển chỉ đọc, mã nguồn mở của Perplexity AI. Nó quét metadata trên đĩa của npm, pnpm, Yarn, PyPI, Go module, RubyGems, cấu hình MCP, extension editor (VS Code, Cursor, Windsurf, Zed) và extension trình duyệt. Không bao giờ thực thi install script hay gọi package manager.'
   - q: 'Tại sao nhà phát triển AI cần quét cấu hình MCP?'
     a: 'MCP (Model Context Protocol) server chạy với quyền cao trên máy nhà phát triển. Package MCP bị xâm phạm có thể rò rỉ dữ liệu hoặc chạy code tùy ý. Bumblebee là công cụ công khai đầu tiên quét các file cấu hình MCP (claude_desktop_config.json, mcp_settings.json, v.v.) với catalog thông tin mối đe dọa.'
@@ -37,8 +30,6 @@ faqs:
   - q: 'Cách cài đặt Bumblebee?'
     a: 'Chạy go install github.com/perplexityai/bumblebee/cmd/bumblebee@v0.1.1. Kiểm tra hàng ngày: bumblebee scan --profile baseline > inventory.ndjson. Quét sự cố: bumblebee scan --profile deep --root "$HOME" --exposure-catalog ./catalog.json --findings-only --max-duration 10m.'
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/bumblebee-supply-chain-scanner-perplexity-2026/ -->
 
 ![Bumblebee 2026: Perplexity AI Supply-Chain Scanner — dibi8.com](/images/articles/bumblebee-supply-chain-scanner-perplexity-2026/cover.jpg)
 
@@ -73,9 +64,7 @@ bumblebee scan --profile deep \
 
 ## Hỗ Trợ Cấu Hình MCP
 
-Đây là tính năng quan trọng nhất với nhà phát triển AI năm 2026. Bumblebee quét các đường dẫn:
-
-| File | Công cụ |
+Đây là tính năng quan trọng nhất với nhà phát triển AI năm 2026. Bumblebee quét các đường dẫn: | File | Công cụ |
 |------|---------|
 | `~/.claude.json` | Claude CLI |
 | `claude_desktop_config.json` | Claude Desktop |
@@ -96,7 +85,6 @@ go install github.com/perplexityai/bumblebee/cmd/bumblebee@v0.1.1
 **GitHub:** [perplexityai/bumblebee](https://github.com/perplexityai/bumblebee) · v0.1.1 · Apache-2.0
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -124,25 +112,20 @@ go install github.com/perplexityai/bumblebee/cmd/bumblebee@v0.1.1
 
 ## Why This Matters
 
-Understanding bumblebee 2026: perplexity ai mở nguồn bộ quét chuỗi cung ứng nội bộ — hỗ trợ mcp và extension editor is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding bumblebee 2026: perplexity ai mở nguồn bộ quét chuỗi cung ứng nội bộ — hỗ trợ mcp và extension editor is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

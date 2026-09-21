@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/vectara-rag-as-service-platform" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/vectara-rag-as-service-platform" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/vectara-rag-as-service-platform" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/vectara-rag-as-service-platform" />
 title: 'Vectara 2026: Nền Tảng RAG-as-a-Service với Độ Chính Xác...
 description: 'Hướng dẫn thực hành về Vectara, nền tảng RAG được quản lý với độ chính xác 90%+. Bao gồm Boomerang retrieval, tích hợp API, hỗ trợ đa ngôn ngữ, tìm kiếm hybrid và benchmark production.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: [vectara, rag, 'tìm kiếm vector', llm, embedding, boomerang, hhem, 'phát hiện hallucination', 'ai doanh nghiệp']
-aliases:
-- /vi/posts/vectara-rag-as-service-platform/
+aliases: - /vi/posts/vectara-rag-as-service-platform/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/vectara-rag-as-service-platform/ -->
 
 {{</* resource-info */>}}
 
@@ -57,9 +49,7 @@ Vectara là một **nền tảng RAG-as-a-Service** cung cấp toàn bộ pipeli
 
 ## How Vectara Works
 
-Kiến trúc của Vectara là một **pipeline RAG 6 giai đoạn** được trình bày thông qua API thống nhất:
-
-```
+Kiến trúc của Vectara là một **pipeline RAG 6 giai đoạn** được trình bày thông qua API thống nhất: ```
 ┌─────────────────────────────────────────────────────────────┐
 │  1. INGESTION (TIẾP NHẬN)                                   │
 │     Tài liệu → Trích xuất văn bản → Phân tích bảng/hình    │
@@ -110,8 +100,7 @@ Kiến trúc của Vectara là một **pipeline RAG 6 giai đoạn** được tr
 ### Bước 1: Tạo Tài khoản và Lấy Thông tin API
 
 ```bash
-# Sau đăng ký, truy cập Console để lấy thông tin:
-# - Customer ID
+# Sau đăng ký, truy cập Console để lấy thông tin: # - Customer ID
 # - Corpus ID  
 # - API Key
 
@@ -187,16 +176,13 @@ response = client.query(
 
 print("Answer:", response.summary)
 print("\nSources:")
-for idx, result in enumerate(response.search_results, 1):
-    print(f"[{idx}] {result.text[:100]}... (score: {result.score:.3f})")
+for idx, result in enumerate(response.search_results, 1): print(f"[{idx}] {result.text[:100]}... (score: {result.score:.3f})")
 ```
 
-Output:
-```
+Output: ```
 Answer: The Vectara Query API uses OAuth 2.0 client credentials flow for authentication [1]. You need to obtain your client ID and secret from the Vectara Console [1]. The API accepts JSON payloads with three required fields: query, corpusKey, and numResults [2].
 
-Sources:
-[1] Authentication uses OAuth 2.0 client credentials flow... (score: 0.941)
+Sources: [1] Authentication uses OAuth 2.0 client credentials flow... (score: 0.941)
 [2] The Vectara Query API accepts JSON payloads... (score: 0.893)
 ```
 
@@ -208,9 +194,7 @@ from pathlib import Path
 
 # Upload hàng loạt tất cả PDF trong thư mục
 pdf_dir = Path("./documentation")
-for pdf_file in pdf_dir.glob("*.pdf"):
-    with open(pdf_file, "rb") as f:
-        client.upload_file(
+for pdf_file in pdf_dir.glob("*.pdf"): with open(pdf_file, "rb") as f: client.upload_file(
             corpus_id="your-corpus-id",
             file_content=f.read(),
             file_name=pdf_file.name,
@@ -227,9 +211,7 @@ print("Batch upload complete!")
 
 ### Tích hợp Trực tiếp REST API
 
-Cho các ngôn ngữ không có SDK chính thức, sử dụng REST API trực tiếp:
-
-```bash
+Cho các ngôn ngữ không có SDK chính thức, sử dụng REST API trực tiếp: ```bash
 # Endpoint truy vấn
 curl -X POST "https://api.vectara.io/v1/query" \
   -H "x-api-key: ${VECTARA_API_KEY}" \
@@ -284,9 +266,7 @@ app.post("/api/rag", async (req, res) => {
 
 ### Lọc Metadata
 
-Tinh chỉnh kết quả tìm kiếm bằng metadata có cấu trúc:
-
-```python
+Tinh chỉnh kết quả tìm kiếm bằng metadata có cấu trúc: ```python
 # Lọc theo trường metadata
 response = client.query(
     corpus_id="your-corpus-id",
@@ -307,9 +287,7 @@ response = client.query(
 
 ### RAG Đa ngôn ngữ
 
-Mô hình Boomerang của Vectara xử lý truy xuất đa ngôn ngữ một cách tự nhiên:
-
-```python
+Mô hình Boomerang của Vectara xử lý truy xuất đa ngôn ngữ một cách tự nhiên: ```python
 # Truy vấn bằng tiếng Anh trên tài liệu tiếng Tây Ban Nha
 response = client.query(
     corpus_id="your-corpus-id",
@@ -329,9 +307,7 @@ response = client.query(
 
 ### Phản hồi Streaming
 
-Cho giao diện chat real-time, sử dụng streaming:
-
-```python
+Cho giao diện chat real-time, sử dụng streaming: ```python
 import json
 
 # SSE streaming cho ứng dụng chat
@@ -343,18 +319,13 @@ response = client.query(
 )
 
 # Xử lý các chunk streaming
-for chunk in response:
-    if chunk.type == "search_result":
-        print(f"Source: {chunk.document_id}")
-    elif chunk.type == "generation":
-        print(chunk.text, end="", flush=True)  # Stream token
+for chunk in response: if chunk.type == "search_result": print(f"Source: {chunk.document_id}")
+    elif chunk.type == "generation": print(chunk.text, end="", flush=True)  # Stream token
 ```
 
 ### Cấu hình Tìm kiếm Hybrid
 
-Điều chỉnh cân bằng giữa tìm kiếm từ khóa và tìm kiếm ngữ nghĩa:
-
-```python
+Điều chỉnh cân bằng giữa tìm kiếm từ khóa và tìm kiếm ngữ nghĩa: ```python
 # Cấu hình trọng số tìm kiếm hybrid
 response = client.query(
     corpus_id="your-corpus-id",
@@ -409,9 +380,7 @@ response = client.query(
 
 ### Re-ranking Tùy chỉnh
 
-Tinh chỉnh thứ tự kết quả cho ứng dụng theo miền cụ thể:
-
-```python
+Tinh chỉnh thứ tự kết quả cho ứng dụng theo miền cụ thể: ```python
 # Re-ranking MMR cho kết quả đa dạng
 response = client.query(
     corpus_id="your-corpus-id",
@@ -439,9 +408,7 @@ response = client.query(
 
 ### Cập nhật Tài liệu và Quản lý Phiên bản
 
-Xử lý thay đổi tài liệu mà không cần re-index toàn bộ:
-
-```python
+Xử lý thay đổi tài liệu mà không cần re-index toàn bộ: ```python
 # Cập nhật tài liệu cụ thể
 document_update = {
     "documentId": "api-guide-v2",
@@ -464,9 +431,7 @@ client.index_document(
 
 ### Truy vấn Đa-Corpus
 
-Tìm kiếm đồng thờ xuyên suốt nhiều bộ sưu tập tài liệu:
-
-```python
+Tìm kiếm đồng thờ xuyên suốt nhiều bộ sưu tập tài liệu: ```python
 response = client.query(
     query="authentication timeout",
     corpus_keys=[
@@ -480,14 +445,11 @@ response = client.query(
 
 ### Triển khai Lịch sử Trò chuyện
 
-Duy trì ngữ cảnh hội thoại xuyên suốt nhiều lượt:
-
-```python
+Duy trì ngữ cảnh hội thoại xuyên suốt nhiều lượt: ```python
 # Lưu lịch sử hội thoại
 conversation = []
 
-def chat_turn(user_query: str) -> str:
-    global conversation
+def chat_turn(user_query: str) -> str: global conversation
     
     response = client.query(
         corpus_id="your-corpus-id",
@@ -631,9 +593,7 @@ Cho các team cần phản hồi AI chính xác, được quản lý, có trích
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -643,7 +603,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 Bài viết này chứa các liên kết affiliate. Nếu bạn đăng ký [DigitalOcean](https://m.do.co/c/eca87ac14ee0) qua liên kết của chúng tôi, chúng tôi nhận được hoa hồng mà không phát sinh thêm chi phí cho bạn. Chúng tôi chỉ giới thiệu các dịch vụ mà chính chúng tôi sử dụng cho các triển khai của mình. Vectara cung cấp tier miễn phí không yêu cầu thẻ tín dụng, và tất cả công cụ ingestion đều là mã nguồn mở theo giấy phép Apache-2.0.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

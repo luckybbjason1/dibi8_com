@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/langchain-complete-guide" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/langchain-complete-guide" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/langchain-complete-guide" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/langchain-complete-guide" />
 title: 'LangChain完整入门指南2025：从零构建生产级AI应用'
 description: 'LangChain 2025完整指南：深入解析核心组件、LangGraph与LangSmith生态，含代码示例与生产部署最佳实践。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/langchain-complete-guide/
+aliases: - /posts/langchain-complete-guide/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/langchain-complete-guide/ -->
 
 {</* resource-info */>}
 
@@ -48,7 +40,13 @@ LangChain的核心价值体现在三个维度：
 2024年LangChain团队对项目进行了重大重构，形成了清晰的三层架构：
 
 | 项目 | 定位 | 核心功能 |
-|------|------|----------|
+|
+---
+|
+---
+|
+---
+|
 | LangChain | 基础编排框架 | 组件抽象、链式调用、数据加载 |
 | LangGraph | 状态图引擎 | 循环工作流、多智能体协作、持久化状态 |
 | LangSmith | 观测平台 | 调用追踪、性能评估、提示词管理 |
@@ -192,9 +190,7 @@ result = rag_chain.invoke({"input": "LangChain的核心组件有哪些？"})
 生产环境的用户体验要求实时响应。LangChain原生支持流式输出：
 
 ```python
-for chunk in rag_chain.stream({"input": "解释RAG原理"}):
-    if answer_chunk := chunk.get("answer"):
-        print(answer_chunk, end="")
+for chunk in rag_chain.stream({"input": "解释RAG原理"}): if answer_chunk := chunk.get("answer"): print(answer_chunk, end="")
 ```
 
 异步支持通过`ainvoke`、`astream`方法提供，与FastAPI、Sanic等异步框架无缝集成。
@@ -214,8 +210,7 @@ from langchain_core.tools import tool
 from langchain.agents import create_react_agent, AgentExecutor
 
 @tool
-def calculate(expression: str) -> float:
-    """执行数学计算。"""
+def calculate(expression: str) -> float: """执行数学计算。"""
     return eval(expression)
 
 tools = [calculate]
@@ -258,7 +253,15 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
 ## 2025年LangChain替代方案对比
 
 | 框架 | 核心优势 | 适用场景 | GitHub星标（2025.05） |
-|------|----------|----------|----------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | LangChain | 生态最全、集成最多 | 通用LLM应用 | 95,000+ |
 | LlamaIndex | RAG管道最成熟 | 文档问答、知识库 | 39,000+ |
 | Haystack | 企业级搜索 | 电商搜索、企业搜索 | 16,000+ |
@@ -300,8 +303,8 @@ LlamaIndex在纯RAG场景下更专业，提供更细粒度的索引策略和查�
 
 LangChain的[官方文档](https://python.langchain.com)和[GitHub仓库](https://github.com/langchain-ai/langchain)是持续学习的最佳资源。框架迭代速度快，建议关注官方博客获取最新动态。
 
----
 
+---
 ## 推荐基础设施
 
 要 7×24 稳跑上述工具，服务器选择关键：
@@ -313,7 +316,6 @@ LangChain的[官方文档](https://python.langchain.com)和[GitHub仓库](https:
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -341,25 +343,20 @@ LangChain的[官方文档](https://python.langchain.com)和[GitHub仓库](https:
 
 ## Why This Matters
 
-Understanding langchain完整入门指南2025：从零构建生产级ai应用 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding langchain完整入门指南2025：从零构建生产级ai应用 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -380,8 +377,8 @@ LangChain完整入门指南2025：从零构建生产级AI应用 represents an im
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -408,9 +405,7 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。
 
 
-When deploying AI agents in production, follow these best practices:
-
-1. **Start Small**: Begin with a single tool and simple prompt, then gradually add complexity
+When deploying AI agents in production, follow these best practices: 1. **Start Small**: Begin with a single tool and simple prompt, then gradually add complexity
 2. **Implement Guardrails**: Use permission prompts and approval workflows for dangerous operations
 3. **Monitor Everything**: Log all agent actions for debugging and compliance
 4. **Handle Failures Gracefully**: Implement retry logic and fallback mechanisms
@@ -418,9 +413,7 @@ When deploying AI agents in production, follow these best practices:
 
 ### Security Considerations
 
-AI agents have access to sensitive systems. Always:
-
-- Use least-privilege principles
+AI agents have access to sensitive systems. Always: - Use least-privilege principles
 - Implement audit logging
 - Encrypt sensitive data at rest and in transit
 - Regular security assessments
@@ -428,7 +421,17 @@ AI agents have access to sensitive systems. Always:
 ## Framework Comparison
 
 | Framework | Primary Use | Learning Curve | Community | Production Ready |
-|-----------|-------------|----------------|-----------|------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **LangChain** | General-purpose | Medium | Large | ✅ Yes |
 | **LlamaIndex** | RAG/Retrieval | Low | Growing | ✅ Yes |
 | **Haystack** | Document processing | Medium | Medium | ✅ Yes |

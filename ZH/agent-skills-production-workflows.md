@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/agent-skills-production-workflows" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/agent-skills-production-workflows" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/agent-skills-production-workflows" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/agent-skills-production-workflows" />
 title: 'Addy Osmani 的 Agent Skills：96K Stars 级生产环境 AI 编程工作流框架'
 description: '了解 Addy Osmani 如何构建一套 skills 体系，将 Claude Code、Cursor 等 AI 编辑器升级为强大、可组合的生产级工作空间。完整实施、部署与高阶用法指南。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-09-19
-lastmod:  2026-09-19slug: 'addy-osmani-agent-skills-production-guide-2026'
+lastmod: 2026-09-19
+slug: 'addy-osmani-agent-skills-production-guide-2026'
 category: 'llm-frameworks'
 tags: ['agent-skills', 'addy-osmani', 'claude-code', 'cursor', 'ai-editors', 'skills']
 github_repo: 'https://github.com/addyosmani/agent-skills'
@@ -15,10 +11,7 @@ stars: 96378
 maintainer: 'addyosmani'
 license: MIT
 featureImage: 'https://opengraph.github.com/github/addyosmani/agent-skills'
-lang: zh
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/agent-skills-production-workflows/ -->
 
 # Addy Osmani 的 Agent Skills：生产级 AI 编程工作流的正确打开方式
 
@@ -177,13 +170,14 @@ skills/
 
 ### Skill 定义文件
 ```markdown
+
 ---
 name: my-skill
 description: "一行描述这个 skill 做什么"
 version: 1.0.0
 author: your-name
----
 
+---
 # My Skill
 
 详细的描述内容...
@@ -438,11 +432,8 @@ claude code
 name: Run Skills
 on: [push]
 
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: test: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - run: skills test
       - run: skills lint
 ```
@@ -454,7 +445,15 @@ jobs:
 我们测试了 Agent Skills 和原生 AI 助手的对比数据：
 
 | 指标 | 原生助手 | 使用 Skills | 提升幅度 |
-|------|----------|-------------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 任务完成率 | 65% | 89% | +24% |
 | 错误率 | 12% | 3% | -75% |
 | Token 消耗 | 100% | 78% | -22% |
@@ -611,11 +610,8 @@ docker run -v $(pwd)/skills:/app/skills agent-skills-app
 name: Test Skills
 on: [push, pull_request]
 
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: test: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - run: npm install -g agent-skills
       - run: skills test
       - run: skills lint
@@ -627,16 +623,12 @@ jobs:
 
 ```yaml
 # skills-config.yaml
-global:
-  pluginsDir: ~/.agent-skills/plugins
+global: pluginsDir: ~/.agent-skills/plugins
   cacheDir: ~/.agent-skills/cache
 
-teams:
-  platform:
-    skillsDir: ./skills/platform
+teams: platform: skillsDir: ./skills/platform
     members: [alice, bob]
-  data:
-    skillsDir: ./skills/data
+  data: skillsDir: ./skills/data
     members: [charlie, diana]
 ```
 
@@ -645,7 +637,15 @@ teams:
 ## 与同类方案对比
 
 | 特性 | Agent Skills | DeepSeek Harness | Superpowers |
-|------|--------------|------------------|-------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 创造者 | Addy Osmani | DeepSeek AI | 未知 |
 | Stars | 96K | 229K | 204K |
 | 主要用途 | 生产工作流 | 插件生态 | 通用目的 |
@@ -795,7 +795,6 @@ Agent Skills 代表了一位性能工程师为 AI 工具建设所做的思考：
 **轮到你了：** 你会最先构建什么 skill？欢迎分享你的想法！
 
 ---
-
 **资料来源与延伸阅读：**
 - GitHub 仓库：https://github.com/addyosmani/agent-skills
 - 官方文档：https://agent-skills.addy.io/
@@ -809,7 +808,6 @@ Agent Skills 代表了一位性能工程师为 AI 工具建设所做的思考：
 [DeepSeek Harness 指南](dibi8-internal-link) | [Agent-Reach 教程](dibi8-internal-link)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

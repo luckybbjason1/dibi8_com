@@ -1,3 +1,4 @@
+---
 # Humanizer: Remove AI Writing Patterns in 2026
 
 Humanizer is a powerful agent skill that eliminates AI-generated writing patterns from text while preserving the original meaning. Created by blader, it has garnered **49,212 GitHub stars** and **3,993 forks** since its release in January 2026.
@@ -18,18 +19,14 @@ Humanizer is an AI writing detection and remediation tool that rewrites AI-sound
 
 ### How It Works
 
-Humanizer follows a three-step process:
-
-1. **Pattern Detection**: Scans text against 35 known AI writing patterns
+Humanizer follows a three-step process: 1. **Pattern Detection**: Scans text against 35 known AI writing patterns
 2. **Draft Rewrite**: Creates initial humanized version without fixed structure
 3. **Quality Check**: Verifies draft against patterns and original claims
 4. **Final Output**: Produces polished text that sounds natural
 
 ## The 35 AI Writing Patterns
 
-Humanizer addresses patterns identified in Wikipedia's comprehensive "Signs of AI writing" article. Here are the most common ones:
-
-### 1. Repeated Sentence Openings
+Humanizer addresses patterns identified in Wikipedia's comprehensive "Signs of AI writing" article. Here are the most common ones: ### 1. Repeated Sentence Openings
 
 **Problem**: Multiple sentences start with the same subject (often "It" or "The").
 
@@ -115,11 +112,9 @@ After: Users prefer simplicity.
 
 **Example:**
 ```
-Before:
-- **Feature 1:** Description here
+Before: - **Feature 1:** Description here
 - **Feature 2:** Description here
-After:
-- Description of feature one
+After: - Description of feature one
 - Description of feature two
 ```
 
@@ -149,9 +144,7 @@ cd humanizer
 
 ### For Other AI Agents
 
-Humanizer works with any agent that supports Markdown skills:
-
-```markdown
+Humanizer works with any agent that supports Markdown skills: ```markdown
 # Using Humanizer with your text
 
 1. Paste your AI-generated text
@@ -162,15 +155,11 @@ Humanizer works with any agent that supports Markdown skills:
 
 ### Voice Matching Setup
 
-To match your personal writing style:
-
-```
+To match your personal writing style: ```
 /humanizer
-Here's a sample of my writing:
-[Paste 2-3 paragraphs of your own writing]
+Here's a sample of my writing: [Paste 2-3 paragraphs of your own writing]
 
-Now humanize this text:
-[Paste AI text to rewrite]
+Now humanize this text: [Paste AI text to rewrite]
 ```
 
 ## Practical Use Cases
@@ -273,71 +262,22 @@ didn't expect.
 
 ### Pattern Customization
 
-You can customize which patterns to apply:
-
-```
+You can customize which patterns to apply: ```
 /humanizer --skip=triads --skip=dashes [text]
 ```
 
 ### Output Formatting
 
-Control the output format:
-
-```
+Control the output format: ```
 /humanizer --format=markdown [text]
 /humanizer --format=plain [text]
 ```
 
 ### Confidence Levels
 
-Humanizer shows confidence scores:
-
-- **High (90%+)**: Text clearly had AI patterns
+Humanizer shows confidence scores: - **High (90%+)**: Text clearly had AI patterns
 - **Medium (60-89%)**: Some patterns detected
-- **Low (<60%)**: Text already sounds natural
-
-## Limitations and Considerations
-
-### What Humanizer Won't Fix
-
-1. **Factual Errors**: If the AI made up information, Humanizer won't correct it
-2. **Structural Problems**: Poor organization needs manual editing
-3. **Technical Accuracy**: May oversimplify complex concepts
-4. **Legal Compliance**: Doesn't ensure copyright or compliance
-
-### When Not to Use Humanizer
-
-- Final legal documents (needs professional review)
-- Highly technical specifications (may lose precision)
-- Creative writing where AI patterns are intentional
-- Content requiring specific tone (formal, academic, etc.)
-
-## Integration with Other Tools
-
-### With AI Writing Assistants
-
-```
-ChatGPT → Humanizer → Human Review → Final Output
-```
-
-### With Content Management Systems
-
-1. Generate draft with AI
-2. Run through Humanizer API
-3. Publish directly to CMS
-4. Human editor reviews in dashboard
-
-### With Version Control
-
-Track changes with Humanizer in Git:
-
-```bash
-# Store original
-git add ai-draft.md
-git commit -m "AI generated draft"
-
-# Humanize
-humanizer ai-draft.md > humanized.md
+- **Low ( humanized.md
 
 # Review changes
 git diff ai-draft.md humanized.md
@@ -347,22 +287,28 @@ git diff ai-draft.md humanized.md
 
 ### Processing Speed
 
-- **Short text (<500 words)**: <1 second
-- **Medium text (500-2000 words)**: 2-5 seconds
-- **Long text (>2000 words)**: 5-15 seconds
+- **Short text (2000 words)**: 5-15 seconds
 
 ### Pattern Detection Accuracy
 
-Based on internal testing with 10,000 AI-generated samples:
-
-- **Pattern Detection**: 94% accuracy
+Based on internal testing with 10,000 AI-generated samples: - **Pattern Detection**: 94% accuracy
 - **Rewrite Quality**: 89% user satisfaction
 - **Meaning Preservation**: 99.2% fidelity
 
 ### Comparison with Other Tools
 
 | Tool | Price | Accuracy | Speed | Features |
-|------|-------|----------|-------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Humanizer | Free | 94% | Fast | 35 patterns, voice matching |
 | Grammarly | $12/mo | 85% | Fast | Basic patterns only |
 | QuillBot | $8/mo | 80% | Medium | Paraphrasing focus |
@@ -380,9 +326,7 @@ Based on internal testing with 10,000 AI-generated samples:
 
 ### Contributing
 
-Humanizer welcomes contributions:
-
-1. Report false positives/negatives
+Humanizer welcomes contributions: 1. Report false positives/negatives
 2. Suggest new patterns
 3. Improve voice matching algorithms
 4. Add translations for multilingual support
@@ -408,17 +352,13 @@ A: Currently optimized for English, but patterns may work for other languages.
 
 ### 1. Always Review Output
 
-Humanizer improves text but doesn't replace human judgment:
-
-```
+Humanizer improves text but doesn't replace human judgment: ```
 AI Draft → Humanizer → Human Review → Final
 ```
 
 ### 2. Provide Voice Samples
 
-For best results, give Humanizer examples of your writing:
-
-```
+For best results, give Humanizer examples of your writing: ```
 /humanizer
 Sample: [your writing]
 Text: [AI content to humanize]
@@ -426,18 +366,14 @@ Text: [AI content to humanize]
 
 ### 3. Process in Chunks
 
-For long documents, process section by section:
-
-- Introduction
+For long documents, process section by section: - Introduction
 - Body paragraphs
 - Conclusion
 - Appendices
 
 ### 4. Track Changes
 
-Use version control to compare versions:
-
-```bash
+Use version control to compare versions: ```bash
 diff original.md humanized.md
 ```
 
@@ -483,14 +419,14 @@ As AI writing tools become more prevalent, the need for humanization tools will 
 
 The future of AI writing isn't about choosing between machine and human output—it's about combining the efficiency of AI with the authenticity of human voice. Humanizer makes that combination possible.
 
----
 
+---
 **GitHub Repository**: https://github.com/blader/humanizer  
 **Stars**: 49,212 ⭐ | **Forks**: 3,993 🍴 | **License**: MIT  
 **Last Updated**: September 2026
 
----
 
+---
 *Found this helpful? Join our Telegram community for daily AI tool updates: https://t.me/DIBI8_Group*
 
 ## Frequently Asked Questions (FAQ)
@@ -515,3 +451,5 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
 
+
+---

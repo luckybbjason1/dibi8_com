@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/open-sora" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/open-sora" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/open-sora" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/open-sora" />
 title: 'Open-Sora: 29K+ Stars — Hướng Dẫn Cài Đặt Video Generati...
 description: 'Open-Sora là framework tạo video mã nguồn mở với 29K+ stars GitHub. Bao gồm cài đặt Docker, tích hợp ComfyUI, triển khai production, so sánh hiệu suất với HunyuanVideo, CogVideo, và Wan.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: ['open-sora', 'tạo-video', 'diffusion-transformer', 'ai-video', 'mã-nguồn-mở', docker, cuda, comfyui]
-aliases:
-- /vi/posts/open-sora/
+aliases: - /vi/posts/open-sora/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/open-sora/ -->
 
 {{</* resource-info */>}}
 
@@ -49,9 +41,7 @@ Framework hiện hỗ trợ hai họ mô hình chính: **series 1.3** (1B tham s
 
 ### Tổng quan kiến trúc
 
-Pipeline tạo video của Open-Sora gồm ba thành phần chính hoạt động tuần tự:
-
-1. **Text Encoder (T5-XXL)**: Chuyển đổi prompt ngôn ngữ tự nhiên thành vector embedding 4096 chiều để điều kiện hóa quá trình tạo.
+Pipeline tạo video của Open-Sora gồm ba thành phần chính hoạt động tuần tự: 1. **Text Encoder (T5-XXL)**: Chuyển đổi prompt ngôn ngữ tự nhiên thành vector embedding 4096 chiều để điều kiện hóa quá trình tạo.
 
 2. **Backbone STDiT**: Một Diffusion Transformer áp dụng spatial attention trên các patch ảnh, sau đó temporal attention trên các frame video, tiếp theo là cross-attention để căn chỉnh ngữ nghĩa văn bản với đặc trưng thị giác. Thiết kế attention phân tách này giảm 40-60% overhead bộ nhớ so với full 3D attention trong khi duy trì chất lượng tạo.
 
@@ -92,8 +82,7 @@ latent = torch.randn(1, 16, 16, 128, 128).cuda()  # [B, C, T, H, W]
 
 # Denoise với rectified flow
 scheduler = RectifiedFlowScheduler(num_steps=50)
-for t in scheduler.timesteps:
-    noise_pred = stdit(latent, t, prompt_embed)
+for t in scheduler.timesteps: noise_pred = stdit(latent, t, prompt_embed)
     latent = scheduler.step(noise_pred, t, latent)
 
 # Giải mã thành video
@@ -158,9 +147,7 @@ huggingface-cli download hpcai-tech/Open-Sora-v2 --local-dir ./ckpts
 
 ### Giải thích Dockerfile
 
-Dockerfile chính thức sử dụng `nvidia/cuda:12.1.0-cudnn8-devel-ubuntu22.04` làm base image. Các giai đoạn chính bao gồm:
-
-```dockerfile
+Dockerfile chính thức sử dụng `nvidia/cuda:12.1.0-cudnn8-devel-ubuntu22.04` làm base image. Các giai đoạn chính bao gồm: ```dockerfile
 FROM nvidia/cuda:12.1.0-cudnn8-devel-ubuntu22.04
 
 WORKDIR /workspace/Open-Sora
@@ -189,9 +176,7 @@ CMD ["/bin/bash"]
 
 ### Tải trọng số mô hình
 
-Trọng số Open-Sora 2.0 có sẵn trên cả HuggingFace và ModelScope:
-
-```bash
+Trọng số Open-Sora 2.0 có sẵn trên cả HuggingFace và ModelScope: ```bash
 # Lựa chọn 1: HuggingFace
 pip install "huggingface_hub[cli]"
 huggingface-cli download hpcai-tech/Open-Sora-v2 --local-dir ./ckpts
@@ -211,9 +196,7 @@ Checkpoint 11B yêu cầu khoảng 22 GB dung lượng đĩa. Trọng số VAE v
 
 ### Tích hợp ComfyUI
 
-Open-Sora tích hợp với ComfyUI thông qua node API chính thức hoặc node custom cộng đồng. Mặc dù Open-Sora chưa có node ComfyUI native, bạn có thể sử dụng qua phương pháp bridge:
-
-```bash
+Open-Sora tích hợp với ComfyUI thông qua node API chính thức hoặc node custom cộng đồng. Mặc dù Open-Sora chưa có node ComfyUI native, bạn có thể sử dụng qua phương pháp bridge: ```bash
 # Cài đặt ComfyUI trong môi trường riêng
 git clone https://github.com/comfyanonymous/ComfyUI.git
 cd ComfyUI
@@ -230,12 +213,10 @@ import subprocess
 import torch
 import os
 
-class OpenSoraTextToVideo:
-    """Node ComfyUI cho tạo video từ văn bản Open-Sora"""
+class OpenSoraTextToVideo: """Node ComfyUI cho tạo video từ văn bản Open-Sora"""
     
     @classmethod
-    def INPUT_TYPES(cls):
-        return {
+    def INPUT_TYPES(cls): return {
             "required": {
                 "prompt": ("STRING", {"multiline": True}),
                 "resolution": (["256px", "768px"], {"default": "768px"}),
@@ -248,10 +229,8 @@ class OpenSoraTextToVideo:
     FUNCTION = "generate_video"
     CATEGORY = "video_generation"
     
-    def generate_video(self, prompt, resolution, num_frames, steps):
-        # Ghi prompt vào CSV để xử lý batch
-        with open("/tmp/opensora_input.csv", "w") as f:
-            f.write(f"id,text\n0,\"{prompt}\"\n")
+    def generate_video(self, prompt, resolution, num_frames, steps): # Ghi prompt vào CSV để xử lý batch
+        with open("/tmp/opensora_input.csv", "w") as f: f.write(f"id,text\n0,\"{prompt}\"\n")
         
         # Khởi chạy inference
         cmd = [
@@ -278,9 +257,7 @@ NODE_DISPLAY_NAME_MAPPINGS = {
 
 ### Tích hợp Stable Diffusion / FLUX
 
-Open-Sora 2.0 sử dụng FLUX làm backbone T2I cho pipeline T2I2V. Bạn có thể cấu hình mô hình T2I sử dụng:
-
-```python
+Open-Sora 2.0 sử dụng FLUX làm backbone T2I cho pipeline T2I2V. Bạn có thể cấu hình mô hình T2I sử dụng: ```python
 # configs/diffusion/inference/t2i2v_768px.py
 # Cấu hình Text-to-Image-to-Video
 model = dict(
@@ -314,9 +291,7 @@ cfg_channel = 3  # Image conditioning scale
 
 ### Gradio Web UI
 
-Open-Sora bao gồm giao diện Gradio để tạo tương tác:
-
-```bash
+Open-Sora bao gồm giao diện Gradio để tạo tương tác: ```bash
 # Cài đặt dependencies Gradio
 pip install gradio spaces
 
@@ -324,9 +299,7 @@ pip install gradio spaces
 python gradio/app.py --model-type v2 --checkpoint ./ckpts
 ```
 
-Truy cập UI tại `http://localhost:7860`. Giao diện hỗ trợ:
-
-- Tạo video từ văn bản với preview trực tiếp
+Truy cập UI tại `http://localhost:7860`. Giao diện hỗ trợ: - Tạo video từ văn bản với preview trực tiếp
 - Tải ảnh lên và điều kiện hóa cho I2V
 - Điều chỉnh motion score (thang 1-7)
 - Chọn độ phân giải và số frame
@@ -334,9 +307,7 @@ Truy cập UI tại `http://localhost:7860`. Giao diện hỗ trợ:
 
 ### Tích hợp ColossalAI cho huấn luyện phân tán
 
-Nếu bạn muốn fine-tune Open-Sora trên dữ liệu custom, ColossalAI cung cấp backbone huấn luyện phân tán:
-
-```bash
+Nếu bạn muốn fine-tune Open-Sora trên dữ liệu custom, ColossalAI cung cấp backbone huấn luyện phân tán: ```bash
 # Cài đặt ColossalAI
 pip install colossalai
 
@@ -401,9 +372,7 @@ Một phòng lab đại học fine-tune Open-Sora 2.0 trên bộ dữ liệu vid
 
 ### Kỹ thuật tối ưu bộ nhớ
 
-Cho GPU VRAM hạn chế, Open-Sora cung cấp nhiều chiến lược tối ưu:
-
-```bash
+Cho GPU VRAM hạn chế, Open-Sora cung cấp nhiều chiến lược tối ưu: ```bash
 # 1. CPU Offloading (tiết kiệm ~40% VRAM, chậm 25%)
 torchrun --nproc_per_node 1 --standalone \
     scripts/diffusion/inference.py \
@@ -412,8 +381,7 @@ torchrun --nproc_per_node 1 --standalone \
     --offload True
 
 # 2. Flash Attention 3 (nhanh hơn 15-20%, không mất chất lượng)
-# Cài đặt trước:
-git clone https://github.com/Dao-AILab/flash-attention
+# Cài đặt trước: git clone https://github.com/Dao-AILab/flash-attention
 cd flash-attention/hopper
 python setup.py install
 
@@ -446,9 +414,7 @@ torchrun --nproc_per_node 8 --standalone \
 
 ### Prompt engineering cho Open-Sora
 
-Mô hình phản hồi tốt nhất với prompt cấu trúc có mô tả cảnh rõ ràng:
-
-```python
+Mô hình phản hồi tốt nhất với prompt cấu trúc có mô tả cảnh rõ ràng: ```python
 # Cấu trúc prompt hiệu quả
 prompt = """A cinematic wide shot of a golden retriever running along a sandy beach at sunset. 
 Ocean waves break in the background with warm golden hour lighting. 
@@ -466,55 +432,36 @@ High production value, anamorphic lens, shallow depth of field."""
 # docker-compose.prod.yml
 version: '3.8'
 
-services:
-  opensora:
-    build: .
+services: opensora: build: .
     runtime: nvidia
-    environment:
-      - NVIDIA_VISIBLE_DEVICES=all
+    environment: - NVIDIA_VISIBLE_DEVICES=all
       - CUDA_VISIBLE_DEVICES=0,1,2,3
       - HF_HOME=/workspace/cache
-    volumes:
-      - ./ckpts:/workspace/Open-Sora/ckpts:ro
+    volumes: - ./ckpts:/workspace/Open-Sora/ckpts:ro
       - ./samples:/workspace/Open-Sora/samples
       - huggingface_cache:/workspace/cache
-    ports:
-      - "7860:7860"
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+    ports: - "7860:7860"
+    deploy: resources: reservations: devices: - driver: nvidia
               count: all
               capabilities: [gpu]
-    healthcheck:
-      test: ["CMD", "python", "-c", "import torch; torch.cuda.is_available()"]
+    healthcheck: test: ["CMD", "python", "-c", "import torch; torch.cuda.is_available()"]
       interval: 30s
       timeout: 10s
       retries: 3
     restart: unless-stopped
     
   # Tùy chọn: worker hàng đợi cho batch job
-  worker:
-    build: .
+  worker: build: .
     runtime: nvidia
     command: python scripts/diffusion/batch_worker.py --queue redis:6379
-    environment:
-      - NVIDIA_VISIBLE_DEVICES=4,5,6,7
-    volumes:
-      - ./ckpts:/workspace/Open-Sora/ckpts:ro
+    environment: - NVIDIA_VISIBLE_DEVICES=4,5,6,7
+    volumes: - ./ckpts:/workspace/Open-Sora/ckpts:ro
       - ./samples:/workspace/Open-Sora/samples
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+    deploy: resources: reservations: devices: - driver: nvidia
               count: 4
               capabilities: [gpu]
 
-volumes:
-  huggingface_cache:
-```
+volumes: huggingface_cache: ```
 
 ### Giám sát và logging
 
@@ -530,15 +477,13 @@ GENERATION_COUNTER = Counter(opensora_generations_total, 'Tổng số video tạ
 GENERATION_DURATION = Histogram(opensora_generation_seconds, 'Thờ gian tạo')
 VRAM_USAGE = Histogram(opensora_vram_usage_bytes, 'VRAM sử dụng đỉnh')
 
-def generate_with_monitoring(prompt, config):
-    process = psutil.Process()
+def generate_with_monitoring(prompt, config): process = psutil.Process()
     start_mem = process.memory_info().rss
     
     torch.cuda.reset_peak_memory_stats()
     start_time = time.time()
     
-    try:
-        video = run_inference(prompt, config)
+    try: video = run_inference(prompt, config)
         
         duration = time.time() - start_time
         peak_vram = torch.cuda.max_memory_allocated()
@@ -553,8 +498,7 @@ def generate_with_monitoring(prompt, config):
             peak_vram_gb: peak_vram / 1e9,
             peak_ram_gb: (process.memory_info().rss - start_mem) / 1e9,
         }
-    except Exception as e:
-        raise
+    except Exception as e: raise
 
 # Khởi động server metrics tại cổng 9090
 start_http_server(9090)
@@ -593,9 +537,7 @@ start_http_server(9090)
 
 ## Hạn chế / Đánh giá trung thực
 
-Open-Sora là framework có năng lực, nhưng không phải công cụ phù hợp cho mọi trường hợp sử dụng. Trước khi cam kết triển khai, hãy cân nhắc các ràng buộc sau:
-
-1. **Trần độ phân giải**: 768x768 là độ phân giải tối đa cho Open-Sora 2.0. Các mô hình thương mại như Sora và Kling xuất ra 1080p và 4K native. Để có đầu ra chất lượng broadcast, bạn cần pipeline upscaling.
+Open-Sora là framework có năng lực, nhưng không phải công cụ phù hợp cho mọi trường hợp sử dụng. Trước khi cam kết triển khai, hãy cân nhắc các ràng buộc sau: 1. **Trần độ phân giải**: 768x768 là độ phân giải tối đa cho Open-Sora 2.0. Các mô hình thương mại như Sora và Kling xuất ra 1080p và 4K native. Để có đầu ra chất lượng broadcast, bạn cần pipeline upscaling.
 
 2. **Giới hạn độ dài video**: 128 frame ở 24 FPS tương đương khoảng 5.3 giây. Mở rộng vượt quá điều này đòi hỏi các kỹ thuật sliding-window hoặc keyframe-interpolation làm tăng độ phức tạp và có thể tạo ra gián đoạn.
 
@@ -654,9 +596,7 @@ Open-Sora 2.0 đại diện cho cột mốc trong tạo video mã nguồn mở: 
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -676,7 +616,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - Repository chính thức ComfyUI: https://github.com/comfyanonymous/ComfyUI
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,12 +1,9 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/pageindex-vectorless-reasoning-rag" />
-title: "PageIndex：29K⭐Vectorless RAG System — Document Retrieval...
+title: "PageIndex：29K⭐Vectorless RAG System — Document Retrieval..."
 description: "PageIndex is a vectorless, reasoning-driven RAG system open-sourced by VectifyAI. 29K+ Stars, achieves human-like retrieval through document tree structures, reaching 98.7% accuracy on FinanceBench."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Python
+tech_stack: - Python
 application_domain: "Llm Frameworks"
 source_version: ""
 licensing_model: "Open Source"
@@ -21,10 +18,8 @@ maintainer: "VectifyAI"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases:
-- /posts/pageindex-vectorless-reasoning-rag/
-faqs:
-  - q: 'What is PageIndex and how is it different from traditional RAG?'
+aliases: - /posts/pageindex-vectorless-reasoning-rag/
+faqs: - q: 'What is PageIndex and how is it different from traditional RAG?'
     a: 'PageIndex is an open-source RAG system from VectifyAI that retrieves information without a vector database. Instead of embedding and chunking documents, it builds a hierarchical tree structure of each document and uses LLM reasoning to traverse it, mimicking how a human expert reads a table of contents to find the relevant section.'
   - q: 'Does PageIndex require a vector database or document chunking?'
     a: 'No. PageIndex eliminates both. It does not store vector embeddings, avoiding expensive vector storage costs, and it does not chunk documents, which preserves their natural logical structure instead of cutting through it.'
@@ -53,14 +48,18 @@ faqs:
 GitHub: https://github.com/VectifyAI/PageIndex  
 Stars: **29,202+** | Language: Python | License: Apache-2.0
 
----
 
+---
 ## Why Traditional RAG Isn't Good Enough
 
 ### Problems with Traditional Vector RAG
 
 | Problem | Explanation |
-|---------|-------------|
+|
+---
+|
+---
+|
 | **Similarity ≠ Relevance** | Vector search finds semantically similar content, but not necessarily truly relevant results |
 | **Chunking Destroys Structure** | Forced chunking cuts through document logical structure |
 | **Black Box Retrieval** | Vector search is unexplainable, can't trace why this result was returned |
@@ -69,20 +68,17 @@ Stars: **29,202+** | Language: Python | License: Apache-2.0
 
 ### PageIndex's Solution
 
-PageIndex mimics how **human experts** read documents:
-1. First look at the table of contents structure (tree index)
+PageIndex mimics how **human experts** read documents: 1. First look at the table of contents structure (tree index)
 2. Reason which chapters should contain the answer based on the question
 3. Deep dive into relevant chapters
 
----
 
+---
 ## Core Technical Principles
 
 ### 1. Document Tree Structure Generation
 
-PageIndex converts PDFs into hierarchical tree structures:
-
-```json
+PageIndex converts PDFs into hierarchical tree structures: ```json
 {
   "title": "Financial Stability",
   "node_id": "0006",
@@ -108,16 +104,14 @@ PageIndex converts PDFs into hierarchical tree structures:
 
 ### 2. Reasoning-Driven Tree Search
 
-When a user asks a question, the LLM will:
-1. **Understand the Question** — Analyze query intent
+When a user asks a question, the LLM will: 1. **Understand the Question** — Analyze query intent
 2. **Traverse Tree Structure** — Reason which nodes likely contain the answer
 3. **Deep Dive into Relevant Nodes** — Search for specific information in candidate nodes
 4. **Return Results** — With citation sources (page numbers, chapters)
 
 ### 3. Monte Carlo Tree Search Inspired by AlphaGo
 
-PageIndex draws inspiration from AlphaGo, using **tree search algorithms**:
-- **Selection** — Choose the most promising nodes
+PageIndex draws inspiration from AlphaGo, using **tree search algorithms**: - **Selection** — Choose the most promising nodes
 - **Expansion** — Expand child nodes
 - **Evaluation** — LLM evaluates node relevance
 - **Backpropagation** — Update node weights
@@ -175,7 +169,13 @@ results = pi.batch_query([
 ### FinanceBench Test Results
 
 | Model | Accuracy | Notes |
-|-------|----------|-------|
+|
+---
+|
+---
+|
+---
+|
 | **PageIndex + GPT-4** | **98.7%** | SOTA |
 | PageIndex + Claude-3 | 97.2% | Excellent |
 | Traditional RAG + GPT-4 | 82.1% | Baseline |
@@ -184,7 +184,13 @@ results = pi.batch_query([
 ### Comparison with Vector RAG
 
 | Metric | PageIndex | Traditional Vector RAG |
-|--------|-----------|------------------------|
+|
+---
+|
+---
+|
+---
+|
 | Indexing Speed | 3x faster | Requires embedding computation |
 | Storage Cost | 90% reduction | Vector storage is expensive |
 | Retrieval Accuracy | 98.7% | ~80% |
@@ -279,8 +285,7 @@ results = pi.batch_query([
 
 ## Summary
 
-PageIndex represents a paradigm shift in document retrieval:
-- **No vector database** required, dramatically reducing costs
+PageIndex represents a paradigm shift in document retrieval: - **No vector database** required, dramatically reducing costs
 - **Reasoning-driven** retrieval, more aligned with human thinking
 - **Explainable** results, every answer has traceable sources
 - **High accuracy**, reaching 98.7% on professional benchmarks
@@ -299,21 +304,17 @@ For scenarios requiring processing large volumes of professional documents (fina
 
 ## Recommended Infrastructure for Self-Hosting
 
-If you want to run this stack reliably 24/7, infrastructure choice matters:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+If you want to run this stack reliably 24/7, infrastructure choice matters: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
 
-<!--auto-references-->
 ## References & Sources
 
 - [PageIndex](https://github.com/VectifyAI/PageIndex)
 - [FinanceBench](https://github.com/patronus-ai/financebench)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -341,25 +342,20 @@ If you want to run this stack reliably 24/7, infrastructure choice matters:
 
 ## Why This Matters
 
-Understanding pageindex：29k⭐vectorless rag system — document retrieval without vector database is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding pageindex：29k⭐vectorless rag system — document retrieval without vector database is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

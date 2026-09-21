@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/cc-switch-unified-ai-cli-control-center" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cc-switch-unified-ai-cli-control-center" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cc-switch-unified-ai-cli-control-center" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cc-switch-unified-ai-cli-control-center" />
 title: 'cc-switch: 6개 이상의 AI 코딩 에이전트를 통합하는 크로스 플랫폼 데스크톱 CLI 제어 센...
 description: 'cc-switch는 (95,900 GitHub star) Claude Code, Codex, OpenCode, Gemini CLI, OpenClaw, Hermes Agent를 하나의 제어 센터로 통합하는 크로스 플랫폼 데스크톱 도구입니다. 단일 바이너리, 의존성 없음. 설정 튜토리얼, 아키텍처 분석, 실제 벤치마크 포함.'
 date: 2026-06-08
-lastmod:  2026-06-08slug: 'cc-switch-unified-ai-cli-control-center'
+lastmod: 2026-06-08
+slug: 'cc-switch-unified-ai-cli-control-center'
 category: 'dev-utils'
 tags: ['AI CLI 관리', 'Claude Code 대안', 'AI 코딩 도구', '개발자 생산성', '멀티 에이전트 CLI', 'cc-switch', 'AI 코딩 에이전트', 'CLI 프록시']
 github_repo: 'https://github.com/farion1231/cc-switch'
@@ -17,8 +13,6 @@ license: MIT
 featureImage: 'https://raw.githubusercontent.com/farion1231/cc-switch/main/assets/screenshots/main-en.png'
 lang: ko
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/cc-switch-unified-ai-cli-control-center/ -->
 
 # cc-switch: 6개 이상의 AI 코딩 에이전트를 통합하는 크로스 플랫폼 데스크톱 CLI 제어 센터 — 2026 실전 가이드
 
@@ -38,9 +32,7 @@ cc-switch는 **오픈소스 크로스 플랫폼 데스크톱 애플리케이션*
 
 ## How cc-switch Works
 
-cc-switch는 세 가지 아키텍처 레이어로 동작한다:
-
-1. **에이전트 레지스트리 레이어** — 설치된 AI 코딩 에이전트의 레지스트리를 유지한다. CLI 명령어, 환경 변수, 작업 디렉토리를 관리한다. 에이전트를 선택하면 cc-switch가 에이전트의 실행 파일 경로를 읽어서 해당 환경으로 구성한다.
+cc-switch는 세 가지 아키텍처 레이어로 동작한다: 1. **에이전트 레지스트리 레이어** — 설치된 AI 코딩 에이전트의 레지스트리를 유지한다. CLI 명령어, 환경 변수, 작업 디렉토리를 관리한다. 에이전트를 선택하면 cc-switch가 에이전트의 실행 파일 경로를 읽어서 해당 환경으로 구성한다.
 
 2. **세션 관리자** — 모든 에이전트에서 활성 세션을 추적한다. Claude Code에서 Codex CLI로 전환하면, cc-switch가 Claude Code의 현재 작업 디렉토리, git 브랜치, 프롬프트 기록을 저장한 다음 Codex CLI의 마지막 상태를 복원한다.
 
@@ -106,29 +98,23 @@ cargo tauri build
 
 ### 첫 실행 설정
 
-시작 후 cc-switch는 시스템에서 설치된 AI 코딩 에이전트를 스캔한다:
-
-```bash
+시작 후 cc-switch는 시스템에서 설치된 AI 코딩 에이전트를 스캔한다: ```bash
 $ cc-switch --scan-agents
-Found agents:
-  [✓] Claude Code    v1.4.2    /usr/local/bin/claude
+Found agents: [✓] Claude Code    v1.4.2    /usr/local/bin/claude
   [✓] OpenCode       v0.8.1    ~/.local/bin/opencode
   [✓] Codex CLI      v0.3.7    ~/.codex/bin/codex
   [ ] Gemini CLI     Not found
   [✓] Hermes Agent   v0.5.0    ~/.hermes/bin/hermes
 ```
 
-"에이전트 추가"를 눌러 수동으로 경로를 지정할 수 있다. "에이전트 추가" 대화상자는 다음을 허용한다:
-- 에이전트 이름 (자유 텍스트)
+"에이전트 추가"를 눌러 수동으로 경로를 지정할 수 있다. "에이전트 추가" 대화상자는 다음을 허용한다: - 에이전트 이름 (자유 텍스트)
 - 실행 파일 경로
 - 기본 작업 디렉토리
 - 환경 변수 템플릿
 
 ## Integration with Claude Code, Codex, OpenCode, Gemini CLI, OpenClaw, Hermes Agent
 
-cc-switch는 CLI 명령어 인터셉트와 환경 변수 주입을 통해 각 에이전트와 통합된다. "Claude Code로 전환"을 클릭하면 cc-switch는 다음을 수행한다:
-
-1. `CLAUDE_CODE_SESSION=cc-switch-active` 환경 변수 설정
+cc-switch는 CLI 명령어 인터셉트와 환경 변수 주입을 통해 각 에이전트와 통합된다. "Claude Code로 전환"을 클릭하면 cc-switch는 다음을 수행한다: 1. `CLAUDE_CODE_SESSION=cc-switch-active` 환경 변수 설정
 2. 선택된 프리셋의 모델 구성 적용 (예: `claude-sonnet-4-20250514`, 토큰 제한 128K)
 3. 에이전트 CLI가 사전 시작된 새 터미널 창 또는 탭 열기
 4. 크로스 에이전트 비교를 위해 세션 메타데이터 로깅
@@ -144,8 +130,7 @@ max_tokens: 128000
 temperature: 0.2
 system_prompt: "You are an expert Python developer focused on clean, tested code."
 proxy: "http://localhost:8080"  # WebShare로 안정적인 프록시 사용
-env:
-  ANTHROPIC_API_KEY: "${env.ANTHROPIC_API_KEY}"
+env: ANTHROPIC_API_KEY: "${env.ANTHROPIC_API_KEY}"
   CLAUDE_CODE_TELEMETRY: "disabled"
 ```
 
@@ -160,8 +145,7 @@ env:
 # ⌘+5 → OpenClaw
 # ⌘+6 → Hermes Agent
 
-# CLI에서 에이전트 직접 전환:
-cc-switch switch claude-code
+# CLI에서 에이전트 직접 전환: cc-switch switch claude-code
 cc-switch switch opencode --preset claude-pro
 ```
 
@@ -182,9 +166,7 @@ cc-switch switch opencode --preset claude-pro
 
 ### 실제 사용 사례 1: 멀티 에이전트 A/B 테스트
 
-중형 스타트업의 개발자는 cc-switch를 사용하여 동일한 코드베이스에서 Claude Code와 Codex CLI 간 일일 A/B 테스트를 수행한다:
-
-```bash
+중형 스타트업의 개발자는 cc-switch를 사용하여 동일한 코드베이스에서 Claude Code와 Codex CLI 간 일일 A/B 테스트를 수행한다: ```bash
 # A/B 테스트 워크플로우 설정
 mkdir ab-test-repo && cd ab-test-repo
 git init
@@ -219,9 +201,7 @@ cc-switch switch gemini-cli --preset ts-review
 
 ### 커스텀 제공자 프리셋
 
-cc-switch v3.16+에서 커스텀 제공자 지원이 추가되었다. Claude, OpenAI, Google을 넘어선 커스텀 AI 제공자를 프리셋 파일에 정의할 수 있다:
-
-```yaml
+cc-switch v3.16+에서 커스텀 제공자 지원이 추가되었다. Claude, OpenAI, Google을 넘어선 커스텀 AI 제공자를 프리셋 파일에 정의할 수 있다: ```yaml
 # presets/custom-llm.yaml
 agent: open-code
 provider: "custom-llm"
@@ -246,9 +226,7 @@ cc-switch preset sync --remote github --repo my-org/cc-switch-presets
 
 ### Docker 기반 에이전트 환경
 
-생산 환경 일관성을 위해 cc-switch는 Docker 컨테이너 내에서 에이전트를 시작하는 것을 지원한다:
-
-```bash
+생산 환경 일관성을 위해 cc-switch는 Docker 컨테이너 내에서 에이전트를 시작하는 것을 지원한다: ```bash
 # Docker 에이전트 환경 생성
 cc-switch docker create --name claude-pro --image python:3.12-slim
 # 컨테이너 내에서 Claude Code 설치
@@ -277,9 +255,7 @@ cc-switch switch claude-code --docker claude-pro
 
 ## Limitations / Honest Assessment
 
-cc-switch는 모든 사람에게 적합한 것은 아니다. 이것이 **적합하지 않은** 시나리오:
-
-1. **단일 에이전트 워크플로우** — Claude Code만 사용하거나 하나의 AI 코딩 에이전트만 쓴다면 cc-switch는 불필요한 복잡성을 추가한다. 에이전트 네이티브 CLI를 그대로 사용하자.
+cc-switch는 모든 사람에게 적합한 것은 아니다. 이것이 **적합하지 않은** 시나리오: 1. **단일 에이전트 워크플로우** — Claude Code만 사용하거나 하나의 AI 코딩 에이전트만 쓴다면 cc-switch는 불필요한 복잡성을 추가한다. 에이전트 네이티브 CLI를 그대로 사용하자.
 
 2. **CI/CD 환경** — cc-switch는 데스크톱 애플리케이션이다. headless CI 파이프라인을 위해 설계되지 않았다. headless 환경에서는 원시 CLI 명령어나 shell 스크립트를 사용하자.
 
@@ -330,7 +306,6 @@ cc-switch는 다른 어느 도구도 해결하지 않는 구멍을 메운다: **
 위 링크 중 일부는 제휴 링크입니다. 가입 시 dibi8.com이 수수료를 받을 수 있으며, 귀하의 비용에는 영향이 없습니다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

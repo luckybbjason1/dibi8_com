@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ollama-local-llm-guide" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ollama-local-llm-guide" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ollama-local-llm-guide" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ollama-local-llm-guide" />
 title: 'Ollama本地运行LLM完整指南2025：在任何硬件上本地部署大模型'
 description: 'Ollama 2025完整指南：涵盖macOS/Windows/Linux/Docker安装、热门模型推荐、硬件要求与优化、LangChain集成和常见问题排查。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/ollama-local-llm-guide/
+aliases: - /posts/ollama-local-llm-guide/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/ollama-local-llm-guide/ -->
 
 {</* resource-info */>}
 
@@ -48,7 +40,13 @@ Ollama是一个开源的本地大语言模型管理工具。它的核心价值�
 ### Ollama vs 云端API：如何抉择？
 
 | 维度 | Ollama本地 | 云端API（GPT-4/Claude） |
-|------|------------|------------------------|
+|
+---
+|
+---
+|
+---
+|
 | 运行成本 | 硬件电费 | 按token计费 |
 | 数据隐私 | 完全本地 | 数据离开本地 |
 | 模型质量 | 开源模型，差距在缩小 | 目前仍领先 |
@@ -90,11 +88,9 @@ Windows版目前已支持NVIDIA GPU加速（通过CUDA），AMD GPU支持正在�
 curl -fsSL https://ollama.com/install.sh | sh
 
 # 或使用包管理器
-# Ubuntu/Debian:
-sudo apt install ollama
+# Ubuntu/Debian: sudo apt install ollama
 
-# Fedora:
-sudo dnf install ollama
+# Fedora: sudo dnf install ollama
 ```
 
 Linux是功能最完整的平台，支持NVIDIA GPU（CUDA）、AMD GPU（ROCm）和CPU推理。
@@ -145,7 +141,11 @@ ollama run codellama
 ### 常用命令速查
 
 | 命令 | 作用 |
-|------|------|
+|
+---
+|
+---
+|
 | `ollama run <模型>` | 下载（如未下载）并运行模型，进入交互模式 |
 | `ollama pull <模型>` | 仅下载模型，不运行 |
 | `ollama list` | 列出已下载的模型 |
@@ -177,7 +177,15 @@ curl http://localhost:11434/api/chat -d '{
 ### 通用对话模型
 
 | 模型 | 参数 | 特点 | 推荐量化 |
-|------|------|------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Llama 3.2 | 1B/3B | Meta最新轻量模型，端侧友好 | Q4_K_M |
 | Llama 3.1 | 8B/70B | 综合能力最强开源模型 | Q4_K_M |
 | Qwen 2.5 | 0.5B-72B | 中文能力最佳 | Q4_K_M |
@@ -190,7 +198,11 @@ curl http://localhost:11434/api/chat -d '{
 ### 代码专用模型
 
 | 模型 | 用途 |
-|------|------|
+|
+---
+|
+---
+|
 | CodeLlama | Meta代码模型，支持多种编程语言 |
 | DeepSeek Coder | 中文代码能力最强 |
 | StarCoder 2 | 15B参数，Hugging Face开源 |
@@ -208,7 +220,15 @@ curl http://localhost:11434/api/chat -d '{
 ### RAM/显存需求对照表
 
 | 模型规模 | Q4_K_M量化大小 | 推荐显存 | 最低内存 |
-|----------|---------------|----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 3B | 2.0 GB | 4 GB | 8 GB |
 | 7B-8B | 4.7 GB | 8 GB | 16 GB |
 | 13B-14B | 8.5 GB | 12 GB | 24 GB |
@@ -253,7 +273,15 @@ export OLLAMA_NUM_PARALLEL=4
 Ollama支持多种量化格式，影响模型大小和质量的平衡：
 
 | 量化 | 大小比例 | 质量损失 | 适用场景 |
-|------|----------|----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Q4_K_M | ~70% | 轻微 | 推荐默认选择 |
 | Q5_K_M | ~80% | 极少 | 质量优先 |
 | Q6_K | ~88% | 几乎无 | 高质量需求 |
@@ -279,8 +307,7 @@ response = ollama.chat(model="llama3.1", messages=[
 print(response["message"]["content"])
 
 # 流式输出
-for chunk in ollama.chat(model="llama3.1", messages=[...], stream=True):
-    print(chunk["message"]["content"], end="")
+for chunk in ollama.chat(model="llama3.1", messages=[...], stream=True): print(chunk["message"]["content"], end="")
 
 # 生成文本
 response = ollama.generate(model="llama3.1", prompt="写一首关于春天的诗")
@@ -386,8 +413,7 @@ import ollama
 # 维护对话历史
 messages = []
 
-while True:
-    user_input = input("你: ")
+while True: user_input = input("你: ")
     messages.append({"role": "user", "content": user_input})
 
     response = ollama.chat(model="llama3.1", messages=messages)
@@ -403,26 +429,16 @@ while True:
 
 ```yaml
 version: '3.8'
-services:
-  ollama:
-    image: ollama/ollama:latest
+services: ollama: image: ollama/ollama:latest
     container_name: ollama
-    volumes:
-      - ollama_data:/root/.ollama
-    ports:
-      - "11434:11434"
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+    volumes: - ollama_data:/root/.ollama
+    ports: - "11434:11434"
+    deploy: resources: reservations: devices: - driver: nvidia
               count: 1
               capabilities: [gpu]
     restart: unless-stopped
 
-volumes:
-  ollama_data:
-```
+volumes: ollama_data: ```
 
 ### 负载均衡
 
@@ -453,7 +469,13 @@ server {
 ## Ollama替代方案对比
 
 | 工具 | 特点 | 适用场景 |
-|------|------|----------|
+|
+---
+|
+---
+|
+---
+|
 | Ollama | 最简单易用，生态最好 | 个人开发、中小企业 |
 | LM Studio | GUI界面，适合非技术用户 | 桌面端用户 |
 | llama.cpp | 性能最高，最底层 | 性能敏感场景 |
@@ -515,8 +537,8 @@ Ollama让本地部署大模型变得前所未有的简单。无论你是出于�
 
 更多资源：[Ollama官网](https://ollama.com)、[Ollama GitHub](https://github.com/ollama/ollama)、[Ollama Python库](https://github.com/ollama/ollama-python)、[LangChain Ollama集成](https://python.langchain.com/docs/integrations/chat/ollama/)。
 
----
 
+---
 ## 推荐基础设施
 
 要 7×24 稳跑上述工具，服务器选择关键：
@@ -528,7 +550,6 @@ Ollama让本地部署大模型变得前所未有的简单。无论你是出于�
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -556,25 +577,20 @@ Ollama让本地部署大模型变得前所未有的简单。无论你是出于�
 
 ## Why This Matters
 
-Understanding ollama本地运行llm完整指南2025：在任何硬件上本地部署大模型 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding ollama本地运行llm完整指南2025：在任何硬件上本地部署大模型 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -595,8 +611,8 @@ Ollama本地运行LLM完整指南2025：在任何硬件上本地部署大模型 
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -626,7 +642,17 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 ## Framework Comparison
 
 | Framework | Primary Use | Learning Curve | Community | Production Ready |
-|-----------|-------------|----------------|-----------|------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **LangChain** | General-purpose | Medium | Large | ✅ Yes |
 | **LlamaIndex** | RAG/Retrieval | Low | Growing | ✅ Yes |
 | **Haystack** | Document processing | Medium | Medium | ✅ Yes |

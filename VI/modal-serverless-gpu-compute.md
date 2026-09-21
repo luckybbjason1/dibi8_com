@@ -1,21 +1,14 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/modal-serverless-gpu-compute" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/modal-serverless-gpu-compute" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/modal-serverless-gpu-compute" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/modal-serverless-gpu-compute" />
 title: Modal Tính Toán GPU Không Máy Chủ — Chạy Luồng ML Không C...
 description: Hướng dẫn toàn diện về cơ sở hạ tầng GPU không máy chủ của Modal. Triển khai suy luận LLM, quy trình tinh chỉnh và khối lượng công việc ML hàng loạt mà không cần quản lý cụm. So sánh giá, benchmark và mẫu thực tế.
 tags: ['serverless', 'gpu', 'machine-learning', 'inference', 'llm', 'cloud-compute']
 category: llm-frameworks
 featureImage: /images/articles/modal-serverless-gpu-compute.jpg
 date: 2026-07-15T00:00:00+00:00
-lastmod:  2026-07-15T00:00:00+00:00draft: false
+lastmod: 2026-07-15T00:00:00+00:00draft: false
 slug: modal-serverless-gpu-compute
 lang: vi
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/modal-serverless-gpu-compute/ -->
 
 ## TL;DR
 
@@ -31,9 +24,7 @@ Triết lý cốt lõi rất đơn giản: **mã nguồn của bạn chính là 
 
 ### Tại Sao GPU Không Máy Chủ Quan Trọng Với AI
 
-Cơ sở hạ tầng GPU historically là nút cổ chai lớn nhất trong phát triển AI. Cách tiếp cận truyền thống yêu cầu:
-
-- Provision trước instance GPU (thời gian nhàn phí expensive)
+Cơ sở hạ tầng GPU historically là nút cổ chai lớn nhất trong phát triển AI. Cách tiếp cận truyền thống yêu cầu: - Provision trước instance GPU (thời gian nhàn phí expensive)
 - Quản lý cụm Kubernetes cho orchestration (overhead ops phức tạp)
 - Xử lý cold start cho điểm cuối suy luận (vấn đề độ trễ)
 - Mở rộng từ 0 lên hàng nghìn request đồng thời (tuning thủ công)
@@ -95,10 +86,8 @@ stub = modal.Stub("llm-inference")
     gpu="A10G",
     memory=8192
 )
-class LLMEndpoint:
-    @modal.enter()
-    def load_model(self):
-        self.model = AutoModelForCausalLM.from_pretrained(
+class LLMEndpoint: @modal.enter()
+    def load_model(self): self.model = AutoModelForCausalLM.from_pretrained(
             "meta-llama/Llama-3.2-3B-Instruct",
             torch_dtype="auto",
             device_map="auto"
@@ -106,8 +95,7 @@ class LLMEndpoint:
         self.tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-3.2-3B-Instruct")
 
     @modal.method()
-    def generate(self, prompt: str, max_tokens: int = 512) -> str:
-        inputs = self.tokenizer(prompt, return_tensors="pt").to(self.model.device)
+    def generate(self, prompt: str, max_tokens: int = 512) -> str: inputs = self.tokenizer(prompt, return_tensors="pt").to(self.model.device)
         outputs = self.model.generate(**inputs, max_new_tokens=max_tokens)
         return self.tokenizer.decode(outputs[0], skip_special_tokens=True)
 ```
@@ -132,46 +120,37 @@ Sau khi deploy, Modal gán cho endpoint của bạn một URL public. Mọi clie
 
 ### Mẫu 1: Điểm Cuối Suy Luận Thông Lượng Cao
 
-Cho production LLM serving, dùng concurrency và request queuing tích hợp sẵn của Modal:
-
-```python
+Cho production LLM serving, dùng concurrency và request queuing tích hợp sẵn của Modal: ```python
 @stub.cls(
     gpu="L4",
     concurrency_limit=20,
     allow_concurrent_inputs=10,
     keep_warm=2  # Giữ ít nhất 2 container warm
 )
-class ProductionLLM:
-    @modal.enter()
-    def load_model(self):
-        self.model = load_optimized_model()
+class ProductionLLM: @modal.enter()
+    def load_model(self): self.model = load_optimized_model()
         self.tokenizer = AutoTokenizer.from_pretrained("your-model")
 
     @modal.web_endpoint(method="POST")
-    def infer(self, req: dict):
-        prompt = req.get("prompt", "")
+    def infer(self, req: dict): prompt = req.get("prompt", "")
         result = self.model.generate(prompt, max_tokens=req.get("max_tokens", 256))
         return {"response": result}
 ```
 
-Cài đặt quan trọng:
-- `keep_warm=2`: Đảm bảo 2 container luôn hot để xử lý burst traffic
+Cài đặt quan trọng: - `keep_warm=2`: Đảm bảo 2 container luôn hot để xử lý burst traffic
 - `allow_concurrent_inputs=10`: Mỗi container xử lý 10 request đồng thời
 - `concurrency_limit=20`: Tối đa 20 container tổng cộng (kiểm soát chi phí)
 
 ### Mẫu 2: Quy Trình Xử Lý Hàng Loạt
 
-Xử lý hàng nghìn tài liệu qua LLM:
-
-```python
+Xử lý hàng nghìn tài liệu qua LLM: ```python
 @stub.function(
     image=image,
     gpu="A100-80GB",
     timeout=3600,  # Tối đa 1 giờ
     retries=2
 )
-def batch_embed(docs: list[str]) -> list[list[float]]:
-    """Xử lý batch tài liệu và trả về embeddings."""
+def batch_embed(docs: list[str]) -> list[list[float]]: """Xử lý batch tài liệu và trả về embeddings."""
     model = get_embedding_model()
     return model.encode(docs, batch_size=64).tolist()
 
@@ -189,8 +168,7 @@ Modal tự động xử lý chunking, retry batch thất bại và parallelize a
     memory=16384,
     timeout=14400  # 4 giờ
 )
-def run_finetune(dataset_path: str, output_dir: str):
-    """Chạy LoRA fine-tuning trên dataset."""
+def run_finetune(dataset_path: str, output_dir: str): """Chạy LoRA fine-tuning trên dataset."""
     from trl import SFTTrainer
     from peft import LoraConfig
 
@@ -220,9 +198,7 @@ Deploy với `modal run finetune.py --dataset_path s3://my-bucket/data --output_
 
 ### Hiểu Mô Hình Giá Của Modal
 
-Modal tính phí dựa trên tài nguyên thực tế container sử dụng:
-
-| Tài nguyên | Giá (xấp xỉ) |
+Modal tính phí dựa trên tài nguyên thực tế container sử dụng: | Tài nguyên | Giá (xấp xỉ) |
 |----------|---------------------|
 | A10G GPU | $0.60/giờ |
 | L4 GPU | $0.80/giờ |
@@ -241,14 +217,12 @@ _Giá xấp xỉ; xem [modal.com/pricing](https://modal.com/pricing) để biế
 # Đừng dùng H100 cho model 3B tham số
 # Dùng A10G thay — tiết kiệm 75% chi phí
 @stub.function(gpu="A10G", memory=4096)
-def light_inference(prompt: str):
-    model = load_small_model()  # 3B params vừa dễ dàng
+def light_inference(prompt: str): model = load_small_model()  # 3B params vừa dễ dàng
     return model.generate(prompt)
 
 # Chỉ dành H100 cho fine-tuning quy mô lớn
 @stub.function(gpu="H100-80GB", memory=32768)
-def heavy_finetune(config: dict):
-    return run_large_scale_training(config)
+def heavy_finetune(config: dict): return run_large_scale_training(config)
 ```
 
 **Chiến lược 2: Dùng `keep_warm` chiến lược**
@@ -256,13 +230,11 @@ def heavy_finetune(config: dict):
 ```python
 # Traffic dự đoán được: giữ warm chỉ trong giờ làm việc
 @stub.function(gpu="L4", keep_warm=1)
-def production_endpoint():
-    ...
+def production_endpoint(): ...
 
 # Traffic burst: dùng concurrency_limit cao hơn
 @stub.function(gpu="L4", concurrency_limit=50, keep_warm=3)
-def bursty_endpoint():
-    ...
+def bursty_endpoint(): ...
 ```
 
 **Chiến lược 3: Tái sử dụng container với `@stub.cls`**
@@ -272,20 +244,16 @@ Hàm class-based giữ state trong memory, tránh loading model lặp lại. Đi
 ```python
 # ❌ Tệ: load model mỗi invocation
 @stub.function(gpu="A10G")
-def bad_approach(prompt: str):
-    model = load_model()  # Reload mỗi call!
+def bad_approach(prompt: str): model = load_model()  # Reload mỗi call!
     return model.generate(prompt)
 
 # ✅ Tốt: load một lần, reuse giữa các request
 @stub.cls(gpu="A10G")
-class GoodApproach:
-    @modal.enter()
-    def setup(self):
-        self.model = load_model()  # Load một lần khi startup
+class GoodApproach: @modal.enter()
+    def setup(self): self.model = load_model()  # Load một lần khi startup
     
     @modal.method()
-    def generate(self, prompt: str):
-        return self.model.generate(prompt)  # Reuse model đã load
+    def generate(self, prompt: str): return self.model.generate(prompt)  # Reuse model đã load
 ```
 
 ### So Sách Chi Phí Thực Tế
@@ -302,9 +270,7 @@ class GoodApproach:
 
 ### Quản Lý Secret
 
-Không bao giờ hardcode API key. Modal's secret manager inject credentials lúc runtime:
-
-```python
+Không bao giờ hardcode API key. Modal's secret manager inject credentials lúc runtime: ```python
 import modal
 
 stub = modal.Stub("secret-demo")
@@ -315,24 +281,20 @@ stub = modal.Stub("secret-demo")
         modal.Secret.from_name("openai-key"),
     ]
 )
-def secure_inference(prompt: str):
-    import os
+def secure_inference(prompt: str): import os
     hf_token = os.environ["HF_TOKEN"]  # Injected từ secret
     openai_key = os.environ["OPENAI_API_KEY"]
     return call_api(prompt, hf_token, openai_key)
 ```
 
-Tạo secret một lần:
-```bash
+Tạo secret một lần: ```bash
 modal secret create huggingface-token HF_TOKEN=your_token_here
 modal secret create openai-key OPENAI_API_KEY=sk-...
 ```
 
 ### Volume Mount Cho Persistent Storage
 
-Modal volumes cung cấp shared, persistent filesystem giữa các function invocation:
-
-```python
+Modal volumes cung cấp shared, persistent filesystem giữa các function invocation: ```python
 # Tạo volume cho model checkpoint
 checkpoint_volume = modal.Volume.from_name("model-checkpoints", create_if_missing=True)
 
@@ -341,8 +303,7 @@ checkpoint_volume = modal.Volume.from_name("model-checkpoints", create_if_missin
     volumes={"/checkpoints": checkpoint_volume},
     timeout=7200
 )
-def fine_tune_and_save(dataset_url: str):
-    dataset = load_dataset(dataset_url)
+def fine_tune_and_save(dataset_url: str): dataset = load_dataset(dataset_url)
     
     trainer.train()
     trainer.save_model("/checkpoints/final-model")
@@ -350,8 +311,7 @@ def fine_tune_and_save(dataset_url: str):
     print(f"Checkpoint saved to volume. Size: {os.path.getsize('/checkpoints/final-model')}")
 
 @stub.function(volumes={"/checkpoints": checkpoint_volume})
-def load_and_infer(prompt: str):
-    model = AutoModelForCausalLM.from_pretrained("/checkpoints/final-model")
+def load_and_infer(prompt: str): model = AutoModelForCausalLM.from_pretrained("/checkpoints/final-model")
     return model.generate(prompt)
 ```
 
@@ -359,24 +319,19 @@ Volumes persist data giữa function calls, ideal cho model checkpoint, dataset 
 
 ### Egress Control
 
-Kiểm soát outbound network access cho security và cost management:
-
-```python
+Kiểm soát outbound network access cho security và cost management: ```python
 @stub.function(
     gpu="L4",
     network_mounts={"/etc/resolv.conf": modal.NetworkMount()},
     blocked_subnets=["169.254.0.0/16"],  # Block metadata service
     allowed_domains=["api.openai.com"]   # Chỉ allow specific domains
 )
-def restricted_inference(prompt: str):
-    return call_openai(prompt)
+def restricted_inference(prompt: str): return call_openai(prompt)
 ```
 
 ### Custom Docker Image
 
-Cho dependency phức tạp không cover bởi `pip_install`:
-
-```python
+Cho dependency phức tạp không cover bởi `pip_install`: ```python
 custom_image = (
     modal.Image.from_dockerhub("nvidia/cuda:12.2.0-devel-ubuntu22.04")
     .apt_install("git", "cmake", "build-essential")
@@ -385,8 +340,7 @@ custom_image = (
 )
 
 @stub.function(image=custom_image, gpu="A100-80GB")
-def custom_model_inference(request: dict):
-    model = torch.load("/app/model/best.pt")
+def custom_model_inference(request: dict): model = torch.load("/app/model/best.pt")
     return model.predict(request["input"])
 ```
 
@@ -400,18 +354,14 @@ def custom_model_inference(request: dict):
 Error: Container killed due to memory limit exceeded
 ```
 
-**Fix**: Tăng memory allocation và enable swap:
-
-```python
+**Fix**: Tăng memory allocation và enable swap: ```python
 @stub.cls(
     gpu="A100-80GB",
     memory=32768,  # 32GB RAM cho large model
     ephemeral_disk=100_000  # 100GB disk cho model weights
 )
-class LargeModel:
-    @modal.enter()
-    def load(self):
-        self.model = AutoModel.from_pretrained(
+class LargeModel: @modal.enter()
+    def load(self): self.model = AutoModel.from_pretrained(
             "big-model",
             torch_dtype=torch.float16,  # Dùng half precision
             device_map="auto"
@@ -424,18 +374,14 @@ class LargeModel:
 Warning: First request took 180 seconds(model loading)
 ```
 
-**Fix**: Dùng `keep_warm` và pre-warm container:
-
-```python
+**Fix**: Dùng `keep_warm` và pre-warm container: ```python
 @stub.cls(
     gpu="A10G",
     keep_warm=3,  # Luôn có 3 warm container
     timeout=600
 )
-class WarmEndpoint:
-    @modal.enter()
-    def load(self):
-        self.model = load_model()
+class WarmEndpoint: @modal.enter()
+    def load(self): self.model = load_model()
         print("Model loaded successfully")
 ```
 
@@ -445,19 +391,14 @@ class WarmEndpoint:
 Error: Function timed out after 3600 seconds
 ```
 
-**Fix**: Tăng timeout và dùng volume cho checkpoint saving:
-
-```python
+**Fix**: Tăng timeout và dùng volume cho checkpoint saving: ```python
 @stub.function(
     gpu="H100-80GB",
     timeout=28800,  # 8 giờ
     volumes={"/data": modal.Volume.from_name("training-data")}
 )
-def long_training_job(config_path: str):
-    for epoch in range(10):
-        train_epoch(config_path)
-        if epoch % 2 == 0:
-            save_checkpoint(f"/data/checkpoint-{epoch}")
+def long_training_job(config_path: str): for epoch in range(10): train_epoch(config_path)
+        if epoch % 2 == 0: save_checkpoint(f"/data/checkpoint-{epoch}")
 ```
 
 ### Vấn Đề 4: Concurrency Throttling
@@ -466,19 +407,15 @@ def long_training_job(config_path: str):
 Error: Too many concurrent inputs(limit: 10)
 ```
 
-**Fix**: Điều chỉnh concurrency setting:
-
-```python
+**Fix**: Điều chỉnh concurrency setting: ```python
 @stub.cls(
     gpu="L4",
     concurrency_limit=100,       # Max container
     allow_concurrent_inputs=20,  # Request per container
     keep_warm=5                  # Warm pool size
 )
-class ScalableEndpoint:
-    @modal.method()
-    def handle(self, request: dict):
-        return process(request)
+class ScalableEndpoint: @modal.method()
+    def handle(self, request: dict): return process(request)
 ```
 
 ---
@@ -487,9 +424,7 @@ class ScalableEndpoint:
 
 ### Lộ Trình Modal 2026
 
-Modal tiếp tục đầu tư mạnh vào ML infrastructure. Tính năng sắp tới bao gồm:
-
-1. **Multi-node distributed training**: Native support cho training trên 8+ GPU với automatic data parallelism
+Modal tiếp tục đầu tư mạnh vào ML infrastructure. Tính năng sắp tới bao gồm: 1. **Multi-node distributed training**: Native support cho training trên 8+ GPU với automatic data parallelism
 2. **GPU sharing**: Time-slicing GPU cho utilization tốt hơn trong low-traffic period
 3. **Custom GPU type**: Support cho next-gen GPU(Blackwell B200) khi available
 4. **Edge deployment**: Deploy Modal function đến edge location cho sub-50ms inference latency
@@ -513,9 +448,7 @@ Modal tiếp tục đầu tư mạnh vào ML infrastructure. Tính năng sắp t
 
 ## Cập Nhật Cộng Đồng
 
-Không gian serverless GPU đang nóng lên nhanh chóng. Giữa 2026, nhiều new entrant gia nhập thị trường:
-
-- **RunPod Serverless** ra mắt GPU pricing cạnh tranh bắt đầu từ $0.30/hr cho A10G
+Không gian serverless GPU đang nóng lên nhanh chóng. Giữa 2026, nhiều new entrant gia nhập thị trường: - **RunPod Serverless** ra mắt GPU pricing cạnh tranh bắt đầu từ $0.30/hr cho A10G
 - **Replicate** mở rộng model library lên 500+ pre-packaged ML model
 - **AWS Lambda GPU** thông báo general availability cho Graviton4 + Inferentia2 combination
 
@@ -566,7 +499,6 @@ Hiện tại, Modal chỉ hoạt động trên managed cloud infrastructure củ
 *Tham gia Telegram Group của chúng tôi để thảo luận AI tool real-time và tips deploy: [t.me/dibi8](https://t.me/dibi8)*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/trivy-production-security-scanner-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/trivy-production-security-scanner-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/trivy-production-security-scanner-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/trivy-production-security-scanner-2026" />
 title: 'Trivy：停止向生产环境投放存在漏洞的容器镜像——2026 安全扫描指南'
 description: 'Trivy（aquasecurity/trivy）是一款用于容器、基础设施即代码（IaC）和代码的开源安全扫描工具。可与 Kubernetes、Docker、GitHub Actions 和 CI 流水线无缝集成。扫描 60 万+ CVE 漏洞、密钥泄露和配置错误。涵盖安装、策略即代码和生产环境加固。'
 date: 2026-06-09
-lastmod:  2026-06-09slug: 'trivy-production-security-scanner-2026'
+lastmod: 2026-06-09
+slug: 'trivy-production-security-scanner-2026'
 category: 'dev-utils'
 tags: ['security', 'containers', 'vulnerability-scanning', 'devops', 'kubernetes', 'sast', 'iac', 'supply-chain']
 github_repo: 'https://github.com/aquasecurity/trivy'
@@ -15,10 +11,7 @@ stars: 36261
 maintainer: 'aquasecurity'
 license: Apache-2.0
 featureImage: 'https://raw.githubusercontent.com/aquasecurity/trivy/main/docs/getting-started/install.png'
-lang: zh
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/trivy-production-security-scanner-2026/ -->
 
 ![Trivy 安全扫描器](https://opengraph.github.com/github/aquasecurity/trivy)
 
@@ -103,8 +96,7 @@ curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/inst
 ```yaml
 - name: Run Trivy vulnerability scanner
   uses: aquasecurity/trivy-action@master
-  with:
-    image-ref: my-app:latest
+  with: image-ref: my-app:latest
     format: 'sarif'
     output: 'trivy-results.sarif'
 ```
@@ -133,15 +125,11 @@ docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
 ```yaml
 name: Security Scan
 on: [push, pull_request]
-jobs:
-  trivy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: trivy: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - name: Run Trivy on filesystem
         uses: aquasecurity/trivy-action@master
-        with:
-          scan-type: 'fs'
+        with: scan-type: 'fs'
           scan-ref: '.'
           format: 'table'
           severity: 'HIGH,CRITICAL'
@@ -172,7 +160,15 @@ trivy conf --format sarif --output terraform-results.sarif ./infrastructure/
 Trivy 的性能取决于扫描目标和数据库大小。在与同类工具的对标测试中：
 
 | 场景 | 扫描时间 | 数据库大小 | 准确率 |
-|----------|-----------|---------------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Alpine 3.18 镜像（200 个软件包） | 4-6 秒 | 70 MB | 98% CVE 匹配 |
 | Ubuntu 22.04 镜像（800 个软件包） | 12-18 秒 | 70 MB | 97% CVE 匹配 |
 | 完整文件系统（10K 文件） | 8-12 秒 | 70 MB | 96% 匹配 |
@@ -213,16 +209,12 @@ trivy image --ignore-unfixed --severity CRITICAL my-app:latest
 
 ```yaml
 # .trivy.yaml
-severity:
-  - HIGH
+severity: - HIGH
   - CRITICAL
-scan:
-  security-checks: vuln,secret,misconfig
-  skip-files:
-    - "**/vendor/**"
+scan: security-checks: vuln,secret,misconfig
+  skip-files: - "**/vendor/**"
     - "**/node_modules/**"
-  skip-dirs:
-    - tmp
+  skip-dirs: - tmp
     - .git
 exit-code: 1
 ```
@@ -231,11 +223,8 @@ exit-code: 1
 
 ```yaml
 version: '3.8'
-services:
-  trivy:
-    image: aquasec/trivy:latest
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+services: trivy: image: aquasec/trivy:latest
+    volumes: - /var/run/docker.sock:/var/run/docker.sock
       - ./trivy-results:/results
     command: >
       image
@@ -261,8 +250,7 @@ trivy image --exit-code 1 --ignore-unfixed --severity CRITICAL my-app:latest
 # .github/codeql-config.yml — 将 Trivy SARIF 与 GitHub 集成
 name: "Trivy SARIF Config"
 
-queries:
-  - uses: security-and-quality
+queries: - uses: security-and-quality
   - uses: security-extended
 
 # 该文件告诉 GitHub 如何在
@@ -290,7 +278,17 @@ curl -X POST \
 ## 与替代方案的对比
 
 | 功能 | Trivy | Grype | Clair | Snyk Container |
-|---------|-------|-------|-------|----------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 漏洞扫描 | ✓（60 万+） | ✓（20 万+） | ✓（10 万+） | ✓（100 万+） |
 | 密钥检测 | ✓ | ✗ | ✗ | ✓ |
 | 配置错误扫描 | ✓ | ✗ | ✗ | ✓ |
@@ -359,8 +357,8 @@ Trivy 已成为云原生团队的首选安全扫描工具，因为它不仅仅�
 
 加入 [Telegram](https://t.me/DIBI8_Group) 上的 DIBI8 社区，参与关于安全、DevOps 和开源工具的日常讨论。
 
----
 
+---
 **来源与延伸阅读**：
 - 官方文档：https://trivy.dev/docs/
 - GitHub 仓库：https://github.com/aquasecurity/trivy
@@ -372,7 +370,6 @@ Trivy 已成为云原生团队的首选安全扫描工具，因为它不仅仅�
 **披露**：本文包含 Affiliate 链接。如果您通过我们的链接注册，我们可能会获得少量佣金，且不会给您增加任何额外费用。这有助于支持独立的科技新闻报道，并使 dibi8.com 等资源保持免费和无广告。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -400,25 +397,20 @@ Trivy 已成为云原生团队的首选安全扫描工具，因为它不仅仅�
 
 ## Why This Matters
 
-Understanding trivy：停止向生产环境投放存在漏洞的容器镜像——2026 安全扫描指南 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding trivy：停止向生产环境投放存在漏洞的容器镜像——2026 安全扫描指南 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -439,8 +431,8 @@ Trivy：停止向生产环境投放存在漏洞的容器镜像——2026 安全�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -484,7 +476,17 @@ For the latest updates and community discussions, join our Telegram channel: htt
 ## Security Tools Comparison
 
 | Tool | Type | Stars | License | Best For |
-|------|------|-------|---------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Semgrep** | SAST | 15K+ | LGPL | Code scanning |
 | **Trivy** | Container | 10K+ | Apache 2.0 | Container security |
 | **Skipper** | Kubernetes | 5K+ | Apache 2.0 | K8s policies |

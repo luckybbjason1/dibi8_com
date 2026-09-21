@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/nuwa-skill-distill-thinking-model-ai-agent-skills" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/nuwa-skill-distill-thinking-model-ai-agent-skills" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/nuwa-skill-distill-thinking-model-ai-agent-skills" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/nuwa-skill-distill-thinking-model-ai-agent-skills" />
 title: 'Nuwa-Skill：將任何人的思維模型提煉為 AI Agent 技能 — 23,000 顆星 — 2026 指南'
 description: 'Nuwa-Skill（23,508 顆 GitHub 星）將歷史人物、專家和影響者的思維模型提煉為可複用的 AI Agent 技能。相容 Claude Code、Codex、Cursor、Hermes 等 50+ 執行環境。透過 npx skills add 安裝。'
 date: 2026-06-09
-lastmod:  2026-06-09slug: 'nuwa-skill-distill-thinking-model-ai-agent-skills'
+lastmod: 2026-06-09
+slug: 'nuwa-skill-distill-thinking-model-ai-agent-skills'
 category: 'llm-frameworks'
 tags: ['nuwa-skill', 'Agent 技能', '思維模型', 'COT 提煉', 'AI Agent 框架', 'Claude Code 技能', 'Codex 技能', 'MCP 替代方案', 'Agent 記憶體']
 github_repo: 'https://github.com/alchaincyf/nuwa-skill'
@@ -17,8 +13,6 @@ license: MIT
 featureImage: 'https://raw.githubusercontent.com/alchaincyf/nuwa-skill/main/assets/hero.gif'
 lang: zh
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/nuwa-skill-distill-thinking-model-ai-agent-skills/ -->
 
 # Nuwa-Skill：將任何人的思維模型提煉為 AI Agent 技能 — 23,000 顆星 — 2026 指南
 
@@ -132,29 +126,22 @@ Musk      ❯ 別急著想如何降低。先算出物理極限。
 # Nuwa 生成的範例 SKILL.md 結構
 name: "Steve Jobs"
 description: "Steve Jobs 思維模型——專注、簡潔、現實扭曲"
-cognitive_layers:
-  expression:
-    tone: "直接、自信、有時尖銳"
+cognitive_layers: expression: tone: "直接、自信、有時尖銳"
     patterns: ["隱喻", "二元框架", "重複"]
-    signature_phrases:
-      - "insanely great"
+    signature_phrases: - "insanely great"
       - "the only way to do great work"
       - "stay hungry, stay foolish"
-  mental_models:
-    - "connect the dots looking backward"
+  mental_models: - "connect the dots looking backward"
     - "focus and simplify"
     - "reality distortion field (convince others of possibility)"
     - "端到端控制 (end-to-end control)"
-  decision_heuristics:
-    - "say no to 1000 things to focus on 3"
+  decision_heuristics: - "say no to 1000 things to focus on 3"
     - "people think focus means saying yes to the thing you've got to focus on"
     - "simplicity is the ultimate sophistication"
-  anti_patterns:
-    - "never compromise on quality for speed"
+  anti_patterns: - "never compromise on quality for speed"
     - "avoid feature creep"
     - "don't design for committees"
-  limitations:
-    - "not suited for collaborative team-building contexts"
+  limitations: - "not suited for collaborative team-building contexts"
     - "decisions made with incomplete data"
     - "highly personality-dependent, hard to scale"
 ```
@@ -461,7 +448,6 @@ Nuwa-Skill 的美在於它的簡潔：一個指令、50+ 執行環境、無限�
 **免責聲明：** 本文僅供資訊用途。提煉基於公開可用的資訊，不代表所描述人物的真實想法。請獨立驗證所有聲明。附屬披露：上述部分連結可能包含附屬代碼。我們可能會獲得佣金，不會為你帶來額外成本。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -489,25 +475,20 @@ Nuwa-Skill 的美在於它的簡潔：一個指令、50+ 執行環境、無限�
 
 ## Why This Matters
 
-Understanding nuwa-skill：將任何人的思維模型提煉為 ai agent 技能 — 23,000 顆星 — 2026 指南 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding nuwa-skill：將任何人的思維模型提煉為 ai agent 技能 — 23,000 顆星 — 2026 指南 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

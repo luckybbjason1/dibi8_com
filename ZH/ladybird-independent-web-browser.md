@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ladybird-independent-web-browser" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ladybird-independent-web-browser" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ladybird-independent-web-browser" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ladybird-independent-web-browser" />
 title: 'Ladybird: 真正独立的浏览器 — 浏览器独立的新时代'
 description: 探索 Ladybird，一个从头开始构建的真正独立的 Web 浏览器。不依赖 Chrome，不受企业影响，纯开源。. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
-tech_stack:
-- C++
+tech_stack: - C++
 - Docker
 - Java
 - JavaScript
@@ -27,10 +21,8 @@ maintainer: "LadybirdBrowser"
 last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases:
-- /zh/posts/ladybird-independent-web-browser/
-faqs:
-  - q: 'Ladybird 浏览器是什么？'
+aliases: - /zh/posts/ladybird-independent-web-browser/
+faqs: - q: 'Ladybird 浏览器是什么？'
     a: 'Ladybird 是一款真正独立的网页浏览器，完全从零开始构建，不依赖 Chromium、Firefox 或任何现有的浏览器引擎。它使用自研的渲染引擎（LibWeb）和 JavaScript 引擎（LibJS），均以 C++ 编写。'
   - q: 'Ladybird 浏览器是谁开发的？'
     a: 'Ladybird 由 Andreas Kling 创建，他同时也是 SerenityOS 的创始人，曾任职于 Apple Safari 团队。该项目目前由来自全球超过 100 名开源贡献者共同维护开发。'
@@ -39,10 +31,7 @@ faqs:
   - q: '像 Ladybird 这样的独立浏览器引擎为什么重要？'
     a: '目前约 73% 的浏览器使用 Google 的 Chromium 引擎，使 Google 对网络标准拥有强大的影响力。独立引擎能够增加多样性、降低单点故障风险，并实现真正的隐私保护——无遥测、无企业追踪。'
   - q: '如何安装或体验 Ladybird？'
-    a: '你需要通过克隆 GitHub 仓库来从源码构建 Ladybird，安装必要依赖（Ubuntu/Debian 上为 build-essential、cmake、ninja-build），然后使用 CMake 和 Ninja 完成编译，最后运行 ./bin/Ladybird。此外也提供了一个实验性的 Docker 镜像供选择。'
----
-
-<!-- canonical: https://dibi8.com/zh/tools/ladybird-independent-web-browser/ -->
+    a: '你需要通过克隆 GitHub 仓库来从源码构建 Ladybird，安装必要依赖（Ubuntu/Debian 上为 build-essential、cmake、ninja-build），然后使用 CMake 和 Ninja 完成编译，最后运行 ./bin/Ladybird。此外也提供了一个实验性的 Docker 镜像供选择。'---
 {</* resource-info */>}
 
 ## Ladybird 是什么？
@@ -54,14 +43,22 @@ faqs:
 **语言**: C++
 **协议**: BSD-2-Clause
 
----
 
+---
 ## 浏览器垄断问题
 
 ### 当前格局 (2026)
 
 | 浏览器 | 引擎 | 市场份额 | 企业控制 |
-|---------|--------|-------------|-------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Chrome | Blink (Chromium) | 65% | Google |
 | Edge | Blink (Chromium) | 5% | Microsoft |
 | Opera | Blink (Chromium) | 2% | 中国财团 |
@@ -79,8 +76,8 @@ faqs:
 4. **安全**: 单一引擎 = 单点故障
 5. **自由**: 企业利益 vs 用户利益
 
----
 
+---
 ## Ladybird 的方法
 
 ### 从头构建
@@ -141,7 +138,13 @@ DOM 树 → CSS 解析器 → 样式计算
 ### 正在运行 (2026)
 
 | 特性 | 状态 | 说明 |
-|---------|--------|-------|
+|
+---
+|
+---
+|
+---
+|
 | 基础 HTML/CSS | ✅ | 大多数网站可渲染 |
 | JavaScript | ✅ | ES2026 支持 |
 | 表单 | ✅ | 输入、按钮等 |
@@ -219,7 +222,13 @@ docker run -it ladybird/browser
 ### Ladybird vs Chrome
 
 | 方面 | Ladybird | Chrome |
-|--------|----------|--------|
+|
+---
+|
+---
+|
+---
+|
 | 引擎 | LibWeb (新) | Blink (Chromium) |
 | 大小 | ~50MB | ~200MB |
 | 跟踪 | 无 | 广泛 |
@@ -229,7 +238,13 @@ docker run -it ladybird/browser
 ### Ladybird vs Firefox
 
 | 方面 | Ladybird | Firefox |
-|--------|----------|---------|
+|
+---
+|
+---
+|
+---
+|
 | 引擎 | LibWeb (新) | Gecko (遗留) |
 | 年龄 | 2 年 | 20+ 年 |
 | 现代性 | 全新开始 | 技术债务 |
@@ -276,7 +291,6 @@ docker run -it ladybird/browser
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -304,25 +318,20 @@ docker run -it ladybird/browser
 
 ## Why This Matters
 
-Understanding ladybird: 真正独立的浏览器 — 浏览器独立的新时代 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding ladybird: 真正独立的浏览器 — 浏览器独立的新时代 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

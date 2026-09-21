@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/opensea-nft-marketplace-api" />
 title: 'opensea-nft-marketplace-api'
 description: '{'en': ''Complete guide to the OpenSea NFT marketplace API covering API key setup, Python SDK integration, programmatic listing/buying/selling of NFTs, real-time WebSocket event streaming, rate limiting strategies, and building a production trading bot.'', 'zh': ''OpenSea NFT市场API完整指南，涵盖API密钥设置、Python SDK集成、NFT程序化上架/购买/出售、实时WebSocket事件流、速率限制策略以及构建生产级交易机器人。'', 'ko': ''OpenSea NFT 마켓플레이스 API의 완전한 가이드로 API 키 설정, Python SDK 통합, NFT 프로그래밍 방식 상장/구매/판매, 실시간 WebSocket 이벤트 스트리밍, 속도 제한 전략 및 프로덕션 트레이딩 봇 구축을 다룹니다.'', 'vi': ''Hướng dẫn đầy đủ về API thị trường NFT OpenSea bao gồm thiết lập khóa API, tích hợp Python SDK, niêm yết/mua/bán NFT lập trình, phát trực tuyến sự kiện WebSocket thở gian thực, chiến lược giới hạn tốc độ và xây dựng bot giao dịch sản xuất.''}'
 date: 2026-05-20 00:00:00+08:00
@@ -22,18 +20,16 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: [en, zh, ko, vi]
-aliases:
-- /posts/opensea-nft-marketplace-api/
+aliases: - /posts/opensea-nft-marketplace-api/-
 ---
-
 {{</* resource-info */>}}
 
 The non-fungible token (NFT) ecosystem has matured significantly since its explosive growth in 2021. What began as a niche market for digital art has evolved into a multi-billion dollar infrastructure layer spanning gaming, real estate, identity, and decentralized finance. At the center of this transformation stands [OpenSea](https://opensea.io/), the world's largest NFT marketplace, and its powerful [OpenSea API](https://docs.opensea.io/reference/api-overview) that enables developers to build programmatic trading systems, analytics dashboards, and automated collection management tools.
 
 In this comprehensive 2026 guide, we will explore everything you need to know about the OpenSea API: from obtaining your API key and setting up the Python SDK to listing NFTs, executing trades, streaming real-time events via WebSocket, and handling rate limits in production environments. Whether you are building a trading bot, a portfolio tracker, or a marketplace aggregator, this guide provides the complete technical foundation.
 
----
 
+---
 ## What Is the OpenSea API?
 
 The OpenSea API is a RESTful and WebSocket-based programming interface that provides full access to the OpenSea NFT marketplace. It allows developers to query NFT collections, retrieve asset metadata, list items for sale, fulfill orders, track account activity, and subscribe to real-time event streams — all without manually interacting with the OpenSea website.
@@ -42,8 +38,8 @@ As of 2026, the OpenSea API supports multiple blockchain networks including Ethe
 
 The API follows modern REST conventions with JSON request/response formats, uses API key-based authentication, and implements standard HTTP status codes for error handling. For real-time applications, the WebSocket API provides event streaming for trades, listings, transfers, and collection updates with sub-second latency.
 
----
 
+---
 ## Getting Started: API Key Setup and Authentication
 
 Before making any API calls, you need to register for an API key through the OpenSea Developer Portal. The API key is required for all authenticated endpoints and determines your rate limit tier.
@@ -54,14 +50,10 @@ Visit the [OpenSea Developer Dashboard](https://docs.opensea.io/reference/api-ke
 
 ### Step 2: Generate Your API Key
 
-Once approved, create a new API key from the dashboard. You will receive two credentials:
-
-- **API Key**: Used for identifying your application
+Once approved, create a new API key from the dashboard. You will receive two credentials: - **API Key**: Used for identifying your application
 - **API Secret**: Used for signing certain authenticated requests
 
-Store these credentials securely in environment variables:
-
-```bash
+Store these credentials securely in environment variables: ```bash
 # .env file
 OPENSEA_API_KEY=your_api_key_here
 OPENSEA_API_SECRET=your_api_secret_here
@@ -69,9 +61,7 @@ OPENSEA_API_SECRET=your_api_secret_here
 
 ### Step 3: Test Your Authentication
 
-Verify your API key is working with a simple health check:
-
-```python
+Verify your API key is working with a simple health check: ```python
 import os
 import requests
 from dotenv import load_dotenv
@@ -99,9 +89,7 @@ print(f"Collections: {len(response.json()[collections])}")
 
 ### Step 4: SDK Installation
 
-Install the official JavaScript SDK or a community Python wrapper:
-
-```bash
+Install the official JavaScript SDK or a community Python wrapper: ```bash
 # Official JavaScript SDK
 npm install opensea-js
 
@@ -123,8 +111,7 @@ The OpenSea API is organized into logical endpoint groups covering every aspect 
 Collection endpoints provide comprehensive metadata about NFT collections, including floor prices, volume statistics, trait distributions, and social links.
 
 ```python
-def get_collection_details(collection_slug: str):
-    """Fetch detailed information about an NFT collection."""
+def get_collection_details(collection_slug: str): """Fetch detailed information about an NFT collection."""
     endpoint = f"{BASE_URL}/collections/{collection_slug}"
     response = requests.get(endpoint, headers=headers)
     
@@ -149,8 +136,7 @@ print(f"CryptoPunks floor: {crypto_punks[floor_price]} ETH")
 Asset endpoints allow you to retrieve individual NFT metadata, ownership information, and listing status.
 
 ```python
-def get_asset_details(chain: str, address: str, token_id: str):
-    """Retrieve metadata for a specific NFT asset."""
+def get_asset_details(chain: str, address: str, token_id: str): """Retrieve metadata for a specific NFT asset."""
     endpoint = f"{BASE_URL}/chain/{chain}/contract/{address}/nfts/{token_id}"
     response = requests.get(endpoint, headers=headers)
     
@@ -181,8 +167,7 @@ print(f"Traits count: {len(bored_ape[traits])}")
 Listing endpoints manage the creation, retrieval, and cancellation of NFT sell orders. These are the core endpoints for programmatic trading.
 
 ```python
-def get_listings_by_collection(collection_slug: str, limit: int = 20):
-    """Get active listings for a specific collection."""
+def get_listings_by_collection(collection_slug: str, limit: int = 20): """Get active listings for a specific collection."""
     endpoint = f"{BASE_URL}/listings/collection/{collection_slug}/all"
     params = {"limit": limit}
     
@@ -203,8 +188,7 @@ def get_listings_by_collection(collection_slug: str, limit: int = 20):
 
 # Get cheapest listings
 listings = get_listings_by_collection("boredapeyachtclub", limit=10)
-for listing in sorted(listings, key=lambda x: float(x["price"])):
-    print(f"Price: {listing[price]} | Token: {listing[token][identifier]}")
+for listing in sorted(listings, key=lambda x: float(x["price"])): print(f"Price: {listing[price]} | Token: {listing[token][identifier]}")
 ```
 
 ### Account and Activity Endpoints
@@ -212,8 +196,7 @@ for listing in sorted(listings, key=lambda x: float(x["price"])):
 Track wallet activity, owned assets, and historical events for any Ethereum address.
 
 ```python
-def get_account_events(account_address: str, event_type: str = "order", limit: int = 50):
-    """Retrieve activity events for a specific account."""
+def get_account_events(account_address: str, event_type: str = "order", limit: int = 50): """Retrieve activity events for a specific account."""
     endpoint = f"{BASE_URL}/events/accounts/{account_address}"
     params = {
         "event_type": event_type,
@@ -235,8 +218,7 @@ def get_account_events(account_address: str, event_type: str = "order", limit: i
 # Monitor whale wallet activity
 whale_address = "0x3b417faee9d1458e"
 events = get_account_events(whale_address, event_type="sale", limit=20)
-for event in events:
-    print(f"{event[timestamp]}: {event[asset]} sold for {event[payment]}")
+for event in events: print(f"{event[timestamp]}: {event[asset]} sold for {event[payment]}")
 ```
 
 ---
@@ -262,15 +244,12 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-class OpenSeaAPI:
-    """Production-ready Python SDK for the OpenSea API."""
+class OpenSeaAPI: """Production-ready Python SDK for the OpenSea API."""
     
     BASE_URL = "https://api.opensea.io/api/v2"
     
-    def __init__(self, api_key: Optional[str] = None, max_retries: int = 3):
-        self.api_key = api_key or os.getenv("OPENSEA_API_KEY")
-        if not self.api_key:
-            raise ValueError("API key required. Set OPENSEA_API_KEY environment variable.")
+    def __init__(self, api_key: Optional[str] = None, max_retries: int = 3): self.api_key = api_key or os.getenv("OPENSEA_API_KEY")
+        if not self.api_key: raise ValueError("API key required. Set OPENSEA_API_KEY environment variable.")
         
         self.session = requests.Session()
         self.session.headers.update({
@@ -288,16 +267,13 @@ class OpenSeaAPI:
         adapter = HTTPAdapter(max_retries=retry_strategy)
         self.session.mount("https://", adapter)
     
-    def _request(self, method: str, endpoint: str, **kwargs) -> Dict[str, Any]:
-        """Make an authenticated request with rate limit handling."""
+    def _request(self, method: str, endpoint: str, **kwargs) -> Dict[str, Any]: """Make an authenticated request with rate limit handling."""
         url = urljoin(self.BASE_URL, endpoint)
         
-        try:
-            response = self.session.request(method, url, **kwargs)
+        try: response = self.session.request(method, url, **kwargs)
             
             # Handle rate limiting
-            if response.status_code == 429:
-                reset_time = int(response.headers.get("X-RateLimit-Reset", 60))
+            if response.status_code == 429: reset_time = int(response.headers.get("X-RateLimit-Reset", 60))
                 logger.warning(f"Rate limited. Waiting {reset_time} seconds...")
                 time.sleep(reset_time)
                 response = self.session.request(method, url, **kwargs)
@@ -305,8 +281,7 @@ class OpenSeaAPI:
             response.raise_for_status()
             return response.json()
             
-        except requests.exceptions.RequestException as e:
-            logger.error(f"Request failed: {e}")
+        except requests.exceptions.RequestException as e: logger.error(f"Request failed: {e}")
             raise
     
     def get_collections(
@@ -314,16 +289,13 @@ class OpenSeaAPI:
         chain: str = "ethereum", 
         limit: int = 100,
         next_cursor: Optional[str] = None
-    ) -> Dict[str, Any]:
-        """Retrieve NFT collections with pagination."""
+    ) -> Dict[str, Any]: """Retrieve NFT collections with pagination."""
         params = {"chain": chain, "limit": min(limit, 100)}
-        if next_cursor:
-            params["next"] = next_cursor
+        if next_cursor: params["next"] = next_cursor
         
         return self._request("GET", "/collections", params=params)
     
-    def get_collection_stats(self, collection_slug: str) -> Dict[str, Any]:
-        """Get floor price, volume, and supply statistics."""
+    def get_collection_stats(self, collection_slug: str) -> Dict[str, Any]: """Get floor price, volume, and supply statistics."""
         return self._request("GET", f"/collections/{collection_slug}/stats")
     
     def get_nft(
@@ -331,8 +303,7 @@ class OpenSeaAPI:
         chain: str, 
         contract_address: str, 
         token_id: str
-    ) -> Dict[str, Any]:
-        """Fetch a specific NFT's details."""
+    ) -> Dict[str, Any]: """Fetch a specific NFT's details."""
         endpoint = f"/chain/{chain}/contract/{contract_address}/nfts/{token_id}"
         return self._request("GET", endpoint)
     
@@ -342,8 +313,7 @@ class OpenSeaAPI:
         contract_address: str, 
         token_id: str,
         limit: int = 50
-    ) -> List[Dict[str, Any]]:
-        """Get active listings for a specific NFT."""
+    ) -> List[Dict[str, Any]]: """Get active listings for a specific NFT."""
         endpoint = f"/orders/{chain}/seaport/listings"
         params = {
             "asset_contract_address": contract_address,
@@ -357,8 +327,7 @@ class OpenSeaAPI:
         chain: str, 
         contract_address: str, 
         token_id: str
-    ) -> Optional[Dict[str, Any]]:
-        """Get the lowest-priced active listing."""
+    ) -> Optional[Dict[str, Any]]: """Get the lowest-priced active listing."""
         listings = self.get_listings(chain, contract_address, token_id, limit=1)
         return listings[0] if listings else None
 
@@ -380,9 +349,7 @@ Programmatic trading is the most powerful feature of the OpenSea API. You can li
 
 ### Creating a Listing
 
-To list an NFT, you need to create a Seaport order. This requires signing the order with the owner's private key:
-
-```python
+To list an NFT, you need to create a Seaport order. This requires signing the order with the owner's private key: ```python
 from web3 import Web3
 
 # Connect to Ethereum node
@@ -440,11 +407,8 @@ print(f"Listing created: {response.status_code}")
 
 ### Fulfilling an Order (Buying an NFT)
 
-To purchase a listed NFT, retrieve the order and submit a fulfillment transaction:
-
-```python
-def fulfill_order(order_hash: str, buyer_address: str):
-    """Fulfill an existing order to purchase an NFT."""
+To purchase a listed NFT, retrieve the order and submit a fulfillment transaction: ```python
+def fulfill_order(order_hash: str, buyer_address: str): """Fulfill an existing order to purchase an NFT."""
     # Get order details
     order_response = requests.get(
         f"{BASE_URL}/orders/ethereum/seaport/{order_hash}",
@@ -485,11 +449,8 @@ tx = fulfill_order(cheapest["order_hash"], "0xBuyerWalletAddress")
 
 ### Batch Operations
 
-For high-frequency trading, use batch endpoints to process multiple operations:
-
-```python
-def batch_get_listings(requests_list: List[Dict]) -> List[Dict]:
-    """Fetch multiple listings in a single request."""
+For high-frequency trading, use batch endpoints to process multiple operations: ```python
+def batch_get_listings(requests_list: List[Dict]) -> List[Dict]: """Fetch multiple listings in a single request."""
     response = requests.post(
         f"{BASE_URL}/listings/batch",
         headers=headers,
@@ -516,26 +477,22 @@ import json
 import asyncio
 import websockets
 
-class OpenSeaStreamClient:
-    """WebSocket client for real-time OpenSea event streaming."""
+class OpenSeaStreamClient: """WebSocket client for real-time OpenSea event streaming."""
     
     WS_URL = "wss://stream.opensea.io/socket"
     
-    def __init__(self, api_key: str):
-        self.api_key = api_key
+    def __init__(self, api_key: str): self.api_key = api_key
         self.subscriptions = []
         self.running = False
     
-    async def connect(self):
-        """Establish WebSocket connection with authentication."""
+    async def connect(self): """Establish WebSocket connection with authentication."""
         self.ws = await websockets.connect(
             self.WS_URL,
             extra_headers={"X-API-KEY": self.api_key}
         )
         logger.info("WebSocket connected")
     
-    async def subscribe(self, event_type: str, filters: dict = None):
-        """Subscribe to a specific event stream."""
+    async def subscribe(self, event_type: str, filters: dict = None): """Subscribe to a specific event stream."""
         payload = {
             "topic": event_type,
             "filters": filters or {}
@@ -546,45 +503,33 @@ class OpenSeaStreamClient:
         }))
         logger.info(f"Subscribed to: {event_type}")
     
-    async def listen(self, callback):
-        """Listen for incoming events."""
+    async def listen(self, callback): """Listen for incoming events."""
         self.running = True
-        while self.running:
-            try:
-                message = await self.ws.recv()
+        while self.running: try: message = await self.ws.recv()
                 data = json.loads(message)
                 await callback(data)
-            except websockets.exceptions.ConnectionClosed:
-                logger.warning("Connection closed, reconnecting...")
+            except websockets.exceptions.ConnectionClosed: logger.warning("Connection closed, reconnecting...")
                 await self.connect()
-                for sub in self.subscriptions:
-                    await self.subscribe(sub["type"], sub.get("filters"))
+                for sub in self.subscriptions: await self.subscribe(sub["type"], sub.get("filters"))
     
-    async def disconnect(self):
-        """Close WebSocket connection."""
+    async def disconnect(self): """Close WebSocket connection."""
         self.running = False
         await self.ws.close()
 
 
 # Event handler
-async def handle_event(event: dict):
-    """Process incoming marketplace events."""
+async def handle_event(event: dict): """Process incoming marketplace events."""
     event_type = event.get("event_type")
     payload = event.get("payload", {})
     
-    if event_type == "item_listed":
-        print(f"[LISTED] {payload[name]} at {payload[base_price]} ETH")
-    elif event_type == "item_sold":
-        print(f"[SOLD] {payload[name]} for {payload[sale_price]} ETH")
-    elif event_type == "item_cancelled":
-        print(f"[CANCELLED] {payload[name]}")
-    elif event_type == "collection_offer":
-        print(f"[OFFER] Collection offer on {payload[collection_slug]}")
+    if event_type == "item_listed": print(f"[LISTED] {payload[name]} at {payload[base_price]} ETH")
+    elif event_type == "item_sold": print(f"[SOLD] {payload[name]} for {payload[sale_price]} ETH")
+    elif event_type == "item_cancelled": print(f"[CANCELLED] {payload[name]}")
+    elif event_type == "collection_offer": print(f"[OFFER] Collection offer on {payload[collection_slug]}")
 
 
 # Run event stream
-async def main():
-    client = OpenSeaStreamClient(api_key=API_KEY)
+async def main(): client = OpenSeaStreamClient(api_key=API_KEY)
     await client.connect()
     
     # Subscribe to events
@@ -599,9 +544,7 @@ async def main():
 
 ### Event Types Reference
 
-The WebSocket API supports multiple event types for different use cases:
-
-```python
+The WebSocket API supports multiple event types for different use cases: ```python
 # Available event types
 EVENT_TYPES = {
     "item_listed": "New listing created",
@@ -625,7 +568,15 @@ Understanding rate limits is critical for production applications. Exceeding lim
 ### Rate Limit Tiers
 
 | Tier | Requests/Second | Burst Limit | Use Case |
-|------|----------------|-------------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Free | 1 | 5 | Development, testing |
 | Developer | 10 | 50 | Small applications |
 | Professional | 40 | 200 | Trading bots, analytics |
@@ -633,11 +584,8 @@ Understanding rate limits is critical for production applications. Exceeding lim
 
 ### Rate Limit Headers
 
-Every API response includes rate limit headers:
-
-```python
-def check_rate_limits(response: requests.Response):
-    """Extract and monitor rate limit status."""
+Every API response includes rate limit headers: ```python
+def check_rate_limits(response: requests.Response): """Extract and monitor rate limit status."""
     limit = response.headers.get("X-RateLimit-Limit")
     remaining = response.headers.get("X-RateLimit-Remaining")
     reset = response.headers.get("X-RateLimit-Reset")
@@ -646,8 +594,7 @@ def check_rate_limits(response: requests.Response):
     print(f"Resets in: {reset} seconds")
     
     # Warning if approaching limit
-    if int(remaining) < 10:
-        logger.warning(f"Approaching rate limit! {remaining} requests remaining")
+    if int(remaining) < 10: logger.warning(f"Approaching rate limit! {remaining} requests remaining")
     
     return {
         "limit": int(limit) if limit else None,
@@ -665,30 +612,24 @@ limits = check_rate_limits(response)
 ```python
 import random
 
-class AdaptiveRateLimiter:
-    """Adaptive rate limiter with exponential backoff."""
+class AdaptiveRateLimiter: """Adaptive rate limiter with exponential backoff."""
     
-    def __init__(self, base_delay: float = 1.0, max_delay: float = 60.0):
-        self.base_delay = base_delay
+    def __init__(self, base_delay: float = 1.0, max_delay: float = 60.0): self.base_delay = base_delay
         self.max_delay = max_delay
         self.current_delay = base_delay
         self.consecutive_errors = 0
     
-    def wait(self):
-        """Wait with adaptive delay."""
+    def wait(self): """Wait with adaptive delay."""
         jitter = random.uniform(0, 0.5)
         time.sleep(self.current_delay + jitter)
     
-    def on_success(self):
-        """Reduce delay after successful request."""
+    def on_success(self): """Reduce delay after successful request."""
         self.consecutive_errors = 0
         self.current_delay = max(self.base_delay, self.current_delay * 0.8)
     
-    def on_error(self, status_code: int):
-        """Increase delay after error."""
+    def on_error(self, status_code: int): """Increase delay after error."""
         self.consecutive_errors += 1
-        if status_code == 429:
-            self.current_delay = min(
+        if status_code == 429: self.current_delay = min(
                 self.max_delay,
                 self.current_delay * 2 ** self.consecutive_errors
             )
@@ -698,15 +639,12 @@ class AdaptiveRateLimiter:
 # Usage in request loop
 limiter = AdaptiveRateLimiter(base_delay=0.5)
 
-for page in range(100):
-    limiter.wait()
-    try:
-        response = requests.get(f"{BASE_URL}/assets", headers=headers, params={"offset": page * 50})
+for page in range(100): limiter.wait()
+    try: response = requests.get(f"{BASE_URL}/assets", headers=headers, params={"offset": page * 50})
         response.raise_for_status()
         limiter.on_success()
         process_assets(response.json())
-    except requests.exceptions.HTTPError as e:
-        limiter.on_error(e.response.status_code)
+    except requests.exceptions.HTTPError as e: limiter.on_error(e.response.status_code)
 ```
 
 ### Caching Strategies
@@ -715,32 +653,24 @@ for page in range(100):
 from functools import lru_cache
 from datetime import datetime, timedelta
 
-class OpenSeaCache:
-    """Simple TTL cache for API responses."""
+class OpenSeaCache: """Simple TTL cache for API responses."""
     
-    def __init__(self, ttl_seconds: int = 60):
-        self.cache = {}
+    def __init__(self, ttl_seconds: int = 60): self.cache = {}
         self.ttl = ttl_seconds
     
-    def get(self, key: str):
-        if key in self.cache:
-            value, expiry = self.cache[key]
-            if datetime.now() < expiry:
-                return value
+    def get(self, key: str): if key in self.cache: value, expiry = self.cache[key]
+            if datetime.now() < expiry: return value
             del self.cache[key]
         return None
     
-    def set(self, key: str, value):
-        expiry = datetime.now() + timedelta(seconds=self.ttl)
+    def set(self, key: str, value): expiry = datetime.now() + timedelta(seconds=self.ttl)
         self.cache[key] = (value, expiry)
 
 # Cache collection metadata (rarely changes)
 collection_cache = OpenSeaCache(ttl_seconds=300)
 
-def get_cached_collection(slug: str):
-    cached = collection_cache.get(slug)
-    if cached:
-        return cached
+def get_cached_collection(slug: str): cached = collection_cache.get(slug)
+    if cached: return cached
     
     data = sdk.get_collection_stats(slug)
     collection_cache.set(slug, data)
@@ -751,16 +681,13 @@ def get_cached_collection(slug: str):
 
 ## Building a Trading Bot: Complete Example
 
-Here is a complete example of an arbitrage-sniffing trading bot that monitors floor prices across collections:
-
-```python
+Here is a complete example of an arbitrage-sniffing trading bot that monitors floor prices across collections: ```python
 import time
 from dataclasses import dataclass
 from typing import Callable
 
 @dataclass
-class ArbitrageOpportunity:
-    collection: str
+class ArbitrageOpportunity: collection: str
     token_id: str
     listed_price: float
     estimated_value: float
@@ -768,28 +695,23 @@ class ArbitrageOpportunity:
     listing_url: str
 
 
-class NFTArbitrageBot:
-    """Simple arbitrage detection bot using OpenSea API."""
+class NFTArbitrageBot: """Simple arbitrage detection bot using OpenSea API."""
     
-    def __init__(self, api: OpenSeaAPI, min_profit_pct: float = 15.0):
-        self.api = api
+    def __init__(self, api: OpenSeaAPI, min_profit_pct: float = 15.0): self.api = api
         self.min_profit_pct = min_profit_pct
         self.watchlist = []
         self.callbacks: List[Callable] = []
     
-    def add_collection(self, collection_slug: str, floor_threshold: float):
-        """Add a collection to the watchlist."""
+    def add_collection(self, collection_slug: str, floor_threshold: float): """Add a collection to the watchlist."""
         self.watchlist.append({
             "slug": collection_slug,
             "threshold": floor_threshold
         })
     
-    def on_opportunity(self, callback: Callable):
-        """Register callback for arbitrage opportunities."""
+    def on_opportunity(self, callback: Callable): """Register callback for arbitrage opportunities."""
         self.callbacks.append(callback)
     
-    def analyze_collection(self, collection: dict) -> List[ArbitrageOpportunity]:
-        """Scan collection for underpriced listings."""
+    def analyze_collection(self, collection: dict) -> List[ArbitrageOpportunity]: """Scan collection for underpriced listings."""
         slug = collection["slug"]
         threshold = collection["threshold"]
         
@@ -804,12 +726,10 @@ class NFTArbitrageBot:
         )
         
         opportunities = []
-        for listing in listings:
-            price = float(listing["price"])
+        for listing in listings: price = float(listing["price"])
             
             # Check if significantly below floor
-            if price < floor_price * (1 - self.min_profit_pct / 100):
-                opp = ArbitrageOpportunity(
+            if price < floor_price * (1 - self.min_profit_pct / 100): opp = ArbitrageOpportunity(
                     collection=slug,
                     token_id=listing["token_id"],
                     listed_price=price,
@@ -820,33 +740,23 @@ class NFTArbitrageBot:
                 opportunities.append(opp)
                 
                 # Notify callbacks
-                for cb in self.callbacks:
-                    cb(opp)
+                for cb in self.callbacks: cb(opp)
         
         return opportunities
     
-    def run(self, interval: int = 30):
-        """Run the bot with specified check interval."""
+    def run(self, interval: int = 30): """Run the bot with specified check interval."""
         logger.info(f"Starting bot with {len(self.watchlist)} collections")
         
-        try:
-            while True:
-                for collection in self.watchlist:
-                    try:
-                        opps = self.analyze_collection(collection)
-                        if opps:
-                            logger.info(f"Found {len(opps)} opportunities in {collection[slug]}")
-                    except Exception as e:
-                        logger.error(f"Error analyzing {collection[slug]}: {e}")
+        try: while True: for collection in self.watchlist: try: opps = self.analyze_collection(collection)
+                        if opps: logger.info(f"Found {len(opps)} opportunities in {collection[slug]}")
+                    except Exception as e: logger.error(f"Error analyzing {collection[slug]}: {e}")
                 
                 time.sleep(interval)
-        except KeyboardInterrupt:
-            logger.info("Bot stopped by user")
+        except KeyboardInterrupt: logger.info("Bot stopped by user")
 
 
 # Usage example
-def notify_discord(opp: ArbitrageOpportunity):
-    """Send Discord notification for opportunity."""
+def notify_discord(opp: ArbitrageOpportunity): """Send Discord notification for opportunity."""
     message = f"""
     **Arbitrage Alert!**
     Collection: {opp.collection}
@@ -869,23 +779,16 @@ bot.on_opportunity(notify_discord)
 
 ## Error Handling and Debugging
 
-Production applications require robust error handling. The OpenSea API returns structured error responses:
-
-```python
-class OpenSeaAPIError(Exception):
-    """Custom exception for OpenSea API errors."""
+Production applications require robust error handling. The OpenSea API returns structured error responses: ```python
+class OpenSeaAPIError(Exception): """Custom exception for OpenSea API errors."""
     
-    def __init__(self, message: str, status_code: int = None, response_data: dict = None):
-        super().__init__(message)
+    def __init__(self, message: str, status_code: int = None, response_data: dict = None): super().__init__(message)
         self.status_code = status_code
         self.response_data = response_data or {}
 
-def handle_api_error(response: requests.Response):
-    """Parse and raise appropriate exceptions."""
-    try:
-        error_data = response.json()
-    except ValueError:
-        error_data = {"message": response.text}
+def handle_api_error(response: requests.Response): """Parse and raise appropriate exceptions."""
+    try: error_data = response.json()
+    except ValueError: error_data = {"message": response.text}
     
     error_map = {
         400: ("Bad Request", ValueError),
@@ -906,11 +809,8 @@ def handle_api_error(response: requests.Response):
     raise error_class(f"{error_msg}: {detail}")
 
 # Apply in SDK
-class RobustOpenSeaAPI(OpenSeaAPI):
-    def _request(self, method: str, endpoint: str, **kwargs):
-        response = self.session.request(method, self.BASE_URL + endpoint, **kwargs)
-        if not response.ok:
-            handle_api_error(response)
+class RobustOpenSeaAPI(OpenSeaAPI): def _request(self, method: str, endpoint: str, **kwargs): response = self.session.request(method, self.BASE_URL + endpoint, **kwargs)
+        if not response.ok: handle_api_error(response)
         return response.json()
 ```
 
@@ -952,9 +852,7 @@ Seaport is OpenSea's decentralized NFT trading protocol. It is an open-source sm
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -963,9 +861,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 
 The OpenSea API is the most comprehensive and battle-tested NFT marketplace API available in 2026. With support for multiple blockchains, real-time WebSocket streaming, and full programmatic trading capabilities, it provides everything developers need to build sophisticated NFT applications.
 
-Key takeaways from this guide:
-
-- **Authentication**: Obtain your API key from the Developer Dashboard and always use environment variables
+Key takeaways from this guide: - **Authentication**: Obtain your API key from the Developer Dashboard and always use environment variables
 - **SDK Strategy**: Use the official JavaScript SDK or build a custom Python wrapper with retry logic
 - **Trading**: Understand Seaport order creation and fulfillment for programmatic buys/sells
 - **Real-time**: Leverage WebSocket streams for instant event notifications
@@ -979,7 +875,6 @@ Whether you are building a simple portfolio tracker or a high-frequency trading 
 *This article was written on 2026-05-19. API specifications and rate limits are subject to change. Refer to the [official OpenSea documentation](https://docs.opensea.io/) for the latest updates.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

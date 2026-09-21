@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/llamaindex-vs-langchain" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/llamaindex-vs-langchain" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llamaindex-vs-langchain" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/llamaindex-vs-langchain" />
 title: 'LlamaIndex vs LangChain 2025: 당신에게 맞는 LLM 프레임워크는?'
 description: '2025년 기준 LangChain과 LlamaIndex의 상세 비교. 아키텍처, RAG 성능, 에이전트 지원, 학습 곡선, 통합성을 표와 코드 예제로 분석한다.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/llamaindex-vs-langchain/
+aliases: - /posts/llamaindex-vs-langchain/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/llamaindex-vs-langchain/ -->
 
 {</* resource-info */>}
 
@@ -108,17 +100,13 @@ LangChain도 `PyPDFLoader`, `UnstructuredLoader` 등 다양한 로더를 제공�
 
 ## 언제 LangChain을 선택해야 할까?
 
-다음 상황에서는 LangChain이 더 적합한 선택이다:
-
-1. **복잡한 멀티스텝 에이전트가 필요할 때** - LangGraph의 상태 머신 기반 워크플로우는 복잡한 에이전트 협업에 최적화되어 있다
+다음 상황에서는 LangChain이 더 적합한 선택이다: 1. **복잡한 멀티스텝 에이전트가 필요할 때** - LangGraph의 상태 머신 기반 워크플로우는 복잡한 에이전트 협업에 최적화되어 있다
 2. **다양한 도구 통합이 필요할 때** - 50개 이상의 사전 제작 도구와 커스텀 도구 등록이 간편하다
 3. **범용 LLM 애플리케이션을 개발할 때** - 체인, 에이전트, 메모리, 콜백 등 전 범위를 커버한다
 
 ## 언제 LlamaIndex를 선택해야 할까?
 
-다음 상황에서는 LlamaIndex가 더 적합한 선택이다:
-
-1. **문서 기반 Q&A 시스템을 구축할 때** - PDF, 워드, 엑셀 등 다양한 문서를 자동으로 처리하고 정확한 답변을 생성한다
+다음 상황에서는 LlamaIndex가 더 적합한 선택이다: 1. **문서 기반 Q&A 시스템을 구축할 때** - PDF, 워드, 엑셀 등 다양한 문서를 자동으로 처리하고 정확한 답변을 생성한다
 2. **고급 RAG 파이프라인이 필요할 때** - 하이브리드 검색, 재순위화, 지식 그래프 등 최신 RAG 기법을 내장하고 있다
 3. **지식 그래프를 구축할 때** - `KnowledgeGraphIndex`로 자동으로 지식 그래프를 생성하고 쿼리할 수 있다
 4. **멀티 모달 데이터를 검색할 때** - 이미지, 비디오, 오디오와 텍스트를 함께 인덱싱하고 검색한다
@@ -168,21 +156,15 @@ agent = create_react_agent(llm, [llama_tool], prompt)
 
 ## 최종 판결: 어떤 것을 선택해야 할까?
 
-**LangChain을 선택하라**는 신호:
-
-- 복잡한 에이전트 워크플로우가 핵심 요구사항이다
+**LangChain을 선택하라**는 신호: - 복잡한 에이전트 워크플로우가 핵심 요구사항이다
 - 다양한 외부 도구와 API를 통합해야 한다
 - LangSmith 기반의 관측성과 디버깅이 중요하다
 
-**LlamaIndex를 선택하라**는 신호:
-
-- 문서 기반 Q&A가 핵심 기능이다
+**LlamaIndex를 선택하라**는 신호: - 문서 기반 Q&A가 핵심 기능이다
 - 고급 RAG 성능이 비즈니스에 결정적이다
 - 멀티 모달 데이터 검색이 필요하다
 
-**둘 다를 고려하라**는 신호:
-
-- 대규모 엔터프라이즈 프로젝트이다
+**둘 다를 고려하라**는 신호: - 대규모 엔터프라이즈 프로젝트이다
 - RAG와 에이전트가 모두 필요하다
 - 팀에 두 프레임워크 모두를 다룰 수 있는 인력이 있다
 
@@ -217,16 +199,13 @@ LangChain은 LangSmith라는 관리형 SaaS와 LangGraph Cloud를 통해 상용 
 
 ## 추천 인프라
 
-위 도구들을 24/7 안정 운영하려면 인프라가 중요하다:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전.
+위 도구들을 24/7 안정 운영하려면 인프라가 중요하다: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연. dibi8.com 자체 호스팅 IDC.
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -254,25 +233,20 @@ LangChain은 LangSmith라는 관리형 SaaS와 LangGraph Cloud를 통해 상용 
 
 ## Why This Matters
 
-Understanding llamaindex vs langchain 2025: 당신에게 맞는 llm 프레임워크는? is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding llamaindex vs langchain 2025: 당신에게 맞는 llm 프레임워크는? is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

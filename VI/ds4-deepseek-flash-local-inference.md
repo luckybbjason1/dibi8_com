@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ds4-deepseek-flash-local-inference" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ds4-deepseek-flash-local-inference" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ds4-deepseek-flash-local-inference" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ds4-deepseek-flash-local-inference" />
 title: "DS4 vs Ollama vs llama.cpp: Benchmark Chạy DeepSeek V4 F...
 description: "Khám phá DS4 của antirez (người tạo Redis) — một engine suy luận bản địa cho DeepSeek V4 Flash. Tìm hiểu cách cài đặt, so sánh benchmark với Ollama/llama.cpp, ví dụ mã và cách chạy LLM 1M context local trên macOS và Linux."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - C++
+tech_stack: - C++
   - Go
   - Python
 application_domain: "Ai Tools"
@@ -26,8 +20,7 @@ maintainer: ""
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-faqs:
-  - q: 'DS4 (DwarfStar 4) là gì và ai đã tạo ra nó?'
+faqs: - q: 'DS4 (DwarfStar 4) là gì và ai đã tạo ra nó?'
     a: 'DS4 (DwarfStar 4) là một engine suy luận nhỏ gọn, chạy native, được xây dựng chuyên biệt để chạy mô hình DeepSeek V4 Flash cục bộ trên phần cứng Apple Metal và NVIDIA CUDA. Nó được tạo ra bởi Salvatore Sanfilippo (antirez), lập trình viên người Ý nổi tiếng với việc phát minh ra Redis.'
   - q: 'Cần bao nhiêu RAM để chạy DeepSeek V4 Flash với DS4?'
     a: 'Với trọng số 2-bit (q2), bạn cần tối thiểu 96GB RAM, khuyến nghị 128GB. Trọng số 4-bit (q4) yêu cầu 256GB trở lên, điều này vượt ngoài tầm với của hầu hết laptop dành cho người dùng phổ thông.'
@@ -38,8 +31,6 @@ faqs:
   - q: 'DS4 có cung cấp máy chủ API tương thích OpenAI không?'
     a: 'Có. Sau khi build DS4, bạn sẽ có file nhị phân ds4-server, cung cấp HTTP API tương thích OpenAI và Anthropic tại http://127.0.0.1:8000, bao gồm các endpoint /v1/chat/completions, /v1/completions và /v1/messages. Nó hỗ trợ function calling theo chuẩn OpenAI và hoạt động được với các framework agent như OpenCode, Pi và Claude Code.'
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/ds4-deepseek-flash-local-inference/ -->
 
 {</* resource-info */>}
 
@@ -54,9 +45,7 @@ Trong hướng dẫn toàn diện này, chúng tôi khám phá điều gì làm 
 ---
 
 ## Benchmark Chạy Local: DS4 vs Ollama vs llama.cpp
-Để kéo một con quái vật như DeepSeek V4 Flash, bạn phải ép xung tận răng. Đây là cách DS4 bón hành cho các đối thủ trên máy Mac chip M:
-
-| Tên Framework | Tốc Độ Lượng Tử Hóa 2-bit | Lưu Trạng Thái KV Cache | Tối Ưu Phần Cứng Lõi | Độ Khó Cài Đặt |
+Để kéo một con quái vật như DeepSeek V4 Flash, bạn phải ép xung tận răng. Đây là cách DS4 bón hành cho các đối thủ trên máy Mac chip M: | Tên Framework | Tốc Độ Lượng Tử Hóa 2-bit | Lưu Trạng Thái KV Cache | Tối Ưu Phần Cứng Lõi | Độ Khó Cài Đặt |
 | :--- | :--- | :--- | :--- | :--- |
 | **DwarfStar 4 (DS4)** | **Nhanh kinh hoàng (35+ t/s)** | **Có (Ghi thẳng xuống ổ cứng)** | Ép xung Metal / CUDA | Trung bình |
 | **Ollama** | Rùa bò | Không (Tắt app là mất sạch RAM)| Dễ dãi cho mọi nền tảng | Siêu Dễ Trẻ Trâu Cũng Cài Được |
@@ -73,9 +62,7 @@ Cách tiếp cận của Sanfilippo với DS4 mang tính quan điểm đặc tr�
 
 ### Tại Sao Chọn DeepSeek V4 Flash?
 
-Sanfilippo tin rằng DeepSeek V4 Flash là một mô hình đặc biệt hấp dẫn cho việc triển khai local. Đây là lý do:
-
-1. **Tốc độ thông qua hiệu quả**: Với ít tham số hoạt động hơn trong quá trình suy luận, nó vượt trội hơn nhiều mô hình dense nhỏ hơn về thông lượng thô.
+Sanfilippo tin rằng DeepSeek V4 Flash là một mô hình đặc biệt hấp dẫn cho việc triển khai local. Đây là lý do: 1. **Tốc độ thông qua hiệu quả**: Với ít tham số hoạt động hơn trong quá trình suy luận, nó vượt trội hơn nhiều mô hình dense nhỏ hơn về thông lượng thô.
 2. **Suy nghĩ tỷ lệ**: Ở chế độ thinking, độ dài phần suy luận của nó thích ứng với độ phức tạp của vấn đề — thường chỉ sử dụng 1/5 token suy nghĩ của các mô hình tương đương. Điều này làm cho nó thực tế cho các quy trình tác nhân thực tế nơi các mô hình khác sẽ bị đình trệ.
 3. **Cửa sổ ngữ cảnh 1 triệu token**: Một trong những cửa sổ ngữ cảnh lớn nhất có sẵn trong bất kỳ mô hình open-weights nào, cho phép toàn bộ codebase, sách hoặc lịch sử hội thoại dài vừa trong một prompt duy nhất.
 4. **Độ sâu kiến thức**: Với 284B tham số, nó biết đáng kể nhiều hơn các mô hình 27B hoặc 35B ở các rìa của kiến thức.
@@ -87,9 +74,7 @@ Sanfilippo tin rằng DeepSeek V4 Flash là một mô hình đặc biệt hấp 
 
 ## Kiến Trúc Kỹ Thuật: Tối Ưu Hóa Metal so với CUDA
 
-Kiến trúc của DS4 phản ánh một triết lý thiết kế rõ ràng: **tối đa hóa hiệu năng cho phần cứng mục tiêu**, ngay cả khi điều đó có nghĩa là hy sinh tính tổng quát. Dự án duy trì ba mục tiêu build:
-
-| Mục Tiêu Build | Nền Tảng | Trường Hợp Sử Dụng |
+Kiến trúc của DS4 phản ánh một triết lý thiết kế rõ ràng: **tối đa hóa hiệu năng cho phần cứng mục tiêu**, ngay cả khi điều đó có nghĩa là hy sinh tính tổng quát. Dự án duy trì ba mục tiêu build: | Mục Tiêu Build | Nền Tảng | Trường Hợp Sử Dụng |
 |-------------|----------|----------|
 | `make` | macOS | Build production tối ưu Metal |
 | `make cuda-spark` | Linux (DGX Spark / GB10) | CUDA cho hệ thống NVIDIA GB10 |
@@ -98,9 +83,7 @@ Kiến trúc của DS4 phản ánh một triết lý thiết kế rõ ràng: **t
 
 ### Metal trên macOS
 
-Backend Metal là **mục tiêu tối ưu hóa chính** của DS4 cho macOS. Nó tận dụng kiến trúc bộ nhớ unified của Apple để loại bỏ nút thắt cổ chai truyền PCIe làm khổ các thiết lập GPU rời. Trên một Mac Studio M3 Ultra với 512GB RAM, DS4 đạt được:
-
-- **468 tokens/giây prefill** trên prompt dài (11.709 tokens)
+Backend Metal là **mục tiêu tối ưu hóa chính** của DS4 cho macOS. Nó tận dụng kiến trúc bộ nhớ unified của Apple để loại bỏ nút thắt cổ chai truyền PCIe làm khổ các thiết lập GPU rời. Trên một Mac Studio M3 Ultra với 512GB RAM, DS4 đạt được: - **468 tokens/giây prefill** trên prompt dài (11.709 tokens)
 - **36,86 tokens/giây generation** với lượng tử hóa q2
 - **448 tokens/giây prefill** và **35,5 tokens/giây generation** với q4
 
@@ -155,9 +138,7 @@ cd ds4
 
 ### Bước 2: Tải Trọng Số Mô Hình
 
-DS4 chỉ hoạt động với các tệp GGUF được chế tạo đặc biệt của riêng nó. Sử dụng script tải xuống được cung cấp:
-
-```bash
+DS4 chỉ hoạt động với các tệp GGUF được chế tạo đặc biệt của riêng nó. Sử dụng script tải xuống được cung cấp: ```bash
 # Cho máy RAM 96-128GB (khuyến nghị)
 ./download_model.sh q2-imatrix
 
@@ -192,8 +173,7 @@ make cuda-generic
 make cpu
 ```
 
-Điều này tạo ra hai binary:
-- `./ds4` — CLI tương tác
+Điều này tạo ra hai binary: - `./ds4` — CLI tương tác
 - `./ds4-server` — Server HTTP API tương thích OpenAI/Anthropic
 
 ### Bước 4: Xác Minh Cài Đặt
@@ -250,8 +230,7 @@ llama.cpp là dự án nền tảng đã làm cho suy luận LLM local trở nê
 ./ds4
 ```
 
-Điều này khởi động một cuộc trò chuyện đa lượt với trạng thái KV liên tục. Các lệnh hữu ích:
-- `/help` — Hiển thị các lệnh có sẵn
+Điều này khởi động một cuộc trò chuyện đa lượt với trạng thái KV liên tục. Các lệnh hữu ích: - `/help` — Hiển thị các lệnh có sẵn
 - `/think` — Bật chế độ suy nghĩ (mặc định)
 - `/think-max` — Nỗ lực suy luận tối đa
 - `/nothink` — Tắt suy nghĩ cho phản hồi nhanh hơn
@@ -268,8 +247,7 @@ llama.cpp là dự án nền tảng đã làm cho suy luận LLM local trở nê
   --kv-disk-space-mb 8192
 ```
 
-Server khởi động tại `http://127.0.0.1:8000` với các endpoint sau:
-- `GET /v1/models`
+Server khởi động tại `http://127.0.0.1:8000` với các endpoint sau: - `GET /v1/models`
 - `POST /v1/chat/completions`
 - `POST /v1/completions`
 - `POST /v1/messages` (tương thích Anthropic)
@@ -308,16 +286,12 @@ response = client.chat.completions.create(
     temperature=0.7
 )
 
-for chunk in response:
-    if chunk.choices[0].delta.content:
-        print(chunk.choices[0].delta.content, end="")
+for chunk in response: if chunk.choices[0].delta.content: print(chunk.choices[0].delta.content, end="")
 ```
 
 ### Ví Dụ Sử Dụng Công Cụ
 
-DS4 hỗ trợ function calling theo kiểu OpenAI. Server chuyển đổi các schema công cụ sang định dạng DSML của DeepSeek và ánh xạ kết quả tự động:
-
-```bash
+DS4 hỗ trợ function calling theo kiểu OpenAI. Server chuyển đổi các schema công cụ sang định dạng DSML của DeepSeek và ánh xạ kết quả tự động: ```bash
 curl http://127.0.0.1:8000/v1/chat/completions \
   -H 'Content-Type: application/json' \
   -d '{
@@ -358,8 +332,7 @@ Với lượng tử hóa 2-bit cho phép hoạt động trên hệ thống 96GB 
 
 ### 4. Nghiên Cứu & Phân Tích Ngữ Cảnh Dài
 
-Cửa sổ ngữ cảnh 1 triệu token mở ra những khả năng trước đây không thực tế:
-- Phân tích toàn bộ hồ sơ vụ án pháp lý trong một lượt
+Cửa sổ ngữ cảnh 1 triệu token mở ra những khả năng trước đây không thực tế: - Phân tích toàn bộ hồ sơ vụ án pháp lý trong một lượt
 - Xem xét lịch sử repository git đầy đủ với context diff đầy đủ
 - Xử lý sách, bài nghiên cứu và các tập tài liệu
 - Duy trì lịch sử hội thoại kéo dài hàng tháng mà không bị cắt ngắn
@@ -372,9 +345,7 @@ Với chi phí bằng không cho mỗi token, suy luận local với DS4 loại 
 
 ## Các Hạn Chế Bạn Cần Biết
 
-DS4 rất mạnh, nhưng điều quan trọng là phải hiểu các ràng buộc của nó:
-
-1. **Chất lượng alpha**: Sanfilippo rõ ràng rằng mã là chất lượng alpha. Nó chỉ tồn tại trong thời gian ngắn và sẽ mất vài tháng để trưởng thành. Hãy mong đợi lỗi và các điểm thô ráp.
+DS4 rất mạnh, nhưng điều quan trọng là phải hiểu các ràng buộc của nó: 1. **Chất lượng alpha**: Sanfilippo rõ ràng rằng mã là chất lượng alpha. Nó chỉ tồn tại trong thời gian ngắn và sẽ mất vài tháng để trưởng thành. Hãy mong đợi lỗi và các điểm thô ráp.
 
 2. **Hỗ trợ một mô hình**: DS4 chỉ chạy các GGUF DeepSeek V4 Flash được tạo riêng cho dự án này. Bạn không thể tải các tệp GGUF tùy ý hoặc các mô hình khác.
 
@@ -423,9 +394,7 @@ A: Thằng Ollama tắt tab là bay hết trí nhớ, lúc chat lại phải ng�
 
 ## Hạ Tầng Đề Xuất Cho Tự Lưu Trữ
 
-Để chạy stack này 24/7 ổn định, lựa chọn hạ tầng rất quan trọng:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu. Lựa chọn mặc định cho developer độc lập.
+Để chạy stack này 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu. Lựa chọn mặc định cho developer độc lập.
 - **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — VPS Hong Kong, độ trễ thấp với người dùng Việt Nam. dibi8.com cũng được host ở đây.
 - **{{< aff "hostinger" "footer-cta-legacy" "Hostinger" >}}** — Lựa chọn VPS giá tốt cho thị trường Việt Nam, giảm 60% gói đầu tiên.
 
@@ -433,7 +402,6 @@ A: Thằng Ollama tắt tab là bay hết trí nhớ, lúc chat lại phải ng�
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

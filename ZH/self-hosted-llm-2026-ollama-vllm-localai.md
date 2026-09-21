@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/self-hosted-llm-2026-ollama-vllm-localai" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/self-hosted-llm-2026-ollama-vllm-localai" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/self-hosted-llm-2026-ollama-vllm-localai" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/self-hosted-llm-2026-ollama-vllm-localai" />
 title: '2026 自托管 LLM 实测：Ollama vs vLLM vs LocalAI — 吞吐量、成本与部署全对比'
 description: '在同一台 RTX 4090 上用 Llama 3.3 70B 实测 Ollama、vLLM 和 LocalAI。真实的 tokens/秒、显存占用、部署耗时，以及业余玩家与生产环境分别该选哪个。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-25 00:00:00+08:00
@@ -21,10 +16,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['self-hosted', llm, ollama, vllm, localai, inference, 2026]
-aliases:
-- /zh/posts/self-hosted-llm-2026-ollama-vllm-localai/
-faq:
-  - q: "2026 年最好的自托管 LLM 技术栈是哪个？"
+aliases: - /zh/posts/self-hosted-llm-2026-ollama-vllm-localai/
+faq: - q: "2026 年最好的自托管 LLM 技术栈是哪个？"
     a: "取决于工作负载。业余/开发用 Ollama（部署最简单、单用户）。生产环境用 vLLM（吞吐量最高、支持多用户）。需要 OpenAI API 兼容替代品用 LocalAI（支持的模型最广，可作为现有 OpenAI 客户端代码的替换目标）。"
   - q: "实际需要什么样的硬件？"
     a: "Llama 3.3 70B 量化版（Q4）：单张 RTX 4090（24GB 显存）可以以可用速度运行（约 25 tokens/秒）。生产服务器：双 H100 或 A100 80GB。业余玩家：RTX 3090（24GB）也能跑 70B 但速度较慢。8B 模型：任何 8GB 显存的 GPU 都够用。"
@@ -37,8 +30,6 @@ faq:
   - q: "哪个最适合作为 OpenAI API 的替代品？"
     a: "LocalAI 是为此设计的 —— 它直接提供 OpenAI 兼容的 /v1/chat/completions 端点。把任何 OpenAI SDK 指向 LocalAI 的 URL 就能直接工作。Ollama 和 vLLM 在 2026 版本中也提供了 OpenAI 兼容端点，但 LocalAI 历史最久、支持的模型最广。"
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/self-hosted-llm-2026-ollama-vllm-localai/ -->
 
 {{</* resource-info */>}}
 
@@ -60,8 +51,8 @@ faq:
 >
 > **成本平衡点**：每月约 1000 万+ tokens 时自托管胜过 API。低于 500 万则 API 更划算。
 
----
 
+---
 ## 它们各是什么
 
 ### Ollama
@@ -89,7 +80,15 @@ OpenAI 兼容的 API 服务器。直接替换：改一下 `OPENAI_API_BASE` 环�
 ## 吞吐量结果
 
 | 运行时 | 单用户 tok/秒 | 并发（10 用户） | 显存占用 |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Ollama | 24 tok/s | 24 tok/s（仅单用户） | 22GB 显存 |
 | vLLM | 28 tok/s | 总计 180 tok/s（每用户 18 tok/s） | 23GB 显存 |
 | LocalAI | 22 tok/s | 总计 35 tok/s（每用户 3.5 tok/s） | 22GB 显存 |
@@ -122,13 +121,9 @@ vllm serve meta-llama/Llama-3.3-70B-Instruct \
 ### LocalAI（45 分钟）
 ```yaml
 # docker-compose.yml
-services:
-  api:
-    image: localai/localai:latest-aio-gpu-nvidia
-    volumes:
-      - ./models:/build/models
-    environment:
-      - MODELS_PATH=/build/models
+services: api: image: localai/localai:latest-aio-gpu-nvidia
+    volumes: - ./models:/build/models
+    environment: - MODELS_PATH=/build/models
 ```
 加上为每个加载的模型写模型配置 YAML。Docker 把依赖处理得很干净。
 
@@ -163,7 +158,17 @@ H100 生产：
 Llama 3.3 70B 表现不错但**未达前沿水平**：
 
 | 基准测试 | Llama 3.3 70B | Claude Sonnet 4.6 | GPT-5 | Gemini 2.5 Pro |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | HumanEval（代码） | 80% | 92% | 89% | 87% |
 | MMLU（推理） | 82% | 89% | 88% | 86% |
 | MATH | 65% | 75% | 78% | 76% |
@@ -202,12 +207,11 @@ OpenAI API 直接替换 → LocalAI
 
 质量方面，Llama 3.3 70B 在大多数日常工作中够用，但远非前沿模型水平。如果你的工作负载要求最佳模型，留在 API 上。如果"很好且私密"胜过"最佳但共享"，那就自托管。
 
----
 
+---
 **相关阅读**：[Ollama 部署指南](https://dibi8.com/zh/resources/llm-frameworks/ollama/) · [2026 RAG 与微调对比](https://dibi8.com/zh/resources/llm-frameworks/rag-vs-fine-tuning-2026-decision-framework/) · [2026 MCP 服务器排名](https://dibi8.com/zh/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -235,25 +239,20 @@ OpenAI API 直接替换 → LocalAI
 
 ## Why This Matters
 
-Understanding 2026 自托管 llm 实测：ollama vs vllm vs localai — 吞吐量、成本与部署全对比 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding 2026 自托管 llm 实测：ollama vs vllm vs localai — 吞吐量、成本与部署全对比 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

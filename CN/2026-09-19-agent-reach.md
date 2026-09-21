@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/2026-09-19-agent-reach" />
 title: 'Agent-Reach: 83K-Star Open Source Tool That Gives AI Age...
 description: 'Agent-Reach is a Python CLI tool that lets any AI agent read and search Twitter, Reddit, YouTube, GitHub, Bilibili, and XiaoHongShu without paying for APIs. Learn how to integrate it into your workflow in 2026.'
 date: 2026-09-19
@@ -12,9 +10,8 @@ stars: 83111
 maintainer: 'Panniantong'
 license: MIT
 featureImage: 'https://opengraph.github.com/github/Panniantong/Agent-Reach'
-lang: en
+
 ---
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -56,9 +53,7 @@ This Python tool changed everything. Suddenly my AI agents could search Twitter 
 
 ## What Is Agent-Reach?
 
-Agent-Reach is an open-source CLI tool built by Panniantong that gives AI agents the ability to browse the internet without relying on expensive API services. It supports major platforms including:
-
-- **Twitter/X** — Search tweets, user profiles, and trends
+Agent-Reach is an open-source CLI tool built by Panniantong that gives AI agents the ability to browse the internet without relying on expensive API services. It supports major platforms including: - **Twitter/X** — Search tweets, user profiles, and trends
 - **Reddit** — Browse subreddits, read threads, scrape comments
 - **YouTube** — Get transcripts and video metadata
 - **GitHub** — Search repositories, read READMEs, check issues
@@ -158,8 +153,7 @@ agent-reach rss fetch "https://blog.openai.com/rss.xml" --limit 10
 
 ### Use Case 1: Market Research Pipeline
 
-I built a weekly market research bot that:
-1. Searches Twitter for trending AI tools
+I built a weekly market research bot that: 1. Searches Twitter for trending AI tools
 2. Cross-references with Reddit discussions
 3. Checks GitHub for related repositories
 4. Compiles a summary report
@@ -189,9 +183,7 @@ echo "Report generated: weekly-report.md"
 
 ### Use Case 2: Content Aggregation
 
-Monitor multiple sources for breaking news in your niche:
-
-```bash
+Monitor multiple sources for breaking news in your niche: ```bash
 # Monitor r/MachineLearning for new posts
 agent-reach reddit monitor r/MachineLearning --interval 300 --last-only
 
@@ -201,9 +193,7 @@ agent-reach twitter monitor --query "myproduct" --interval 600
 
 ### Use Case 3: Competitive Analysis
 
-Compare features across competitors:
-
-```bash
+Compare features across competitors: ```bash
 # GitHub comparison
 for repo in deepseek-ai/deepseek-harness addyosmani/agent-skills diegosouzapw/OmniRoute; do
   agent-reach github repo "$repo" --json
@@ -212,9 +202,7 @@ done | jq '. | {name: .full_name, stars: .stargazers_count, lang: .language}'
 
 ### Use Case 4: Academic Research Tracking
 
-Monitor arXiv and academic discussions:
-
-```bash
+Monitor arXiv and academic discussions: ```bash
 # Track new ML papers
 agent-reach web extract "https://arxiv.org/list/cs.AI/recent" --limit 20
 
@@ -224,9 +212,7 @@ agent-reach reddit search "new LLM paper" --subreddit MachineLearning --sort new
 
 ### Use Case 5: Social Media Sentiment Analysis
 
-Track public sentiment about products or events:
-
-```bash
+Track public sentiment about products or events: ```bash
 # Twitter sentiment scan
 agent-reach twitter search "product launch" --sentiment --limit 100 > sentiment.json
 
@@ -247,8 +233,7 @@ claude code
 ```
 
 ### With Cursor
-Configure Cursor to use Agent-Reach as a terminal command:
-```json
+Configure Cursor to use Agent-Reach as a terminal command: ```json
 // .cursorrc
 {
   "terminal": {
@@ -259,20 +244,16 @@ Configure Cursor to use Agent-Reach as a terminal command:
 }
 ```
 
-Then in Cursor:
-```
+Then in Cursor: ```
 > ar reddit search "Claude Code vs Cursor"
 ```
 
 ### With Custom Scripts
-Python integration is straightforward:
-
-```python
+Python integration is straightforward: ```python
 import subprocess
 import json
 
-def search_twitter(query: str, limit: int = 20) -> list:
-    result = subprocess.run(
+def search_twitter(query: str, limit: int = 20) -> list: result = subprocess.run(
         ['agent-reach', 'twitter', 'search', query, '--limit', str(limit), '--json'],
         capture_output=True,
         text=True
@@ -281,19 +262,15 @@ def search_twitter(query: str, limit: int = 20) -> list:
 
 # Usage
 tweets = search_twitter("AI agents", 10)
-for tweet in tweets:
-    print(f"@{tweet['user']}: {tweet['text'][:100]}...")
+for tweet in tweets: print(f"@{tweet['user']}: {tweet['text'][:100]}...")
 ```
 
 ### With LangChain
-Integrate Agent-Reach into LangChain pipelines:
-
-```python
+Integrate Agent-Reach into LangChain pipelines: ```python
 from langchain.tools import Tool
 from langchain.agents import initialize_agent, AgentType
 
-def agent_reach_search(query: str) -> str:
-    result = subprocess.run(
+def agent_reach_search(query: str) -> str: result = subprocess.run(
         ['agent-reach', 'twitter', 'search', query, '--limit', '5'],
         capture_output=True,
         text=True
@@ -312,9 +289,7 @@ agent = initialize_agent(tools, llm, agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION
 ```
 
 ### With AutoGPT
-Use Agent-Reach as a built-in tool:
-
-```json
+Use Agent-Reach as a built-in tool: ```json
 {
   "tools": ["agent-reach"],
   "config": {
@@ -326,10 +301,16 @@ Use Agent-Reach as a built-in tool:
 
 ## Performance Benchmarks
 
-I tested Agent-Reach against paid APIs across multiple platforms:
-
-| Platform | Agent-Reach (free) | Paid API | Relative Speed |
-|----------|-------------------|----------|----------------|
+I tested Agent-Reach against paid APIs across multiple platforms: | Platform | Agent-Reach (free) | Paid API | Relative Speed |
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Twitter | 1.2s per 20 tweets | 0.3s per 20 tweets | 240% slower |
 | Reddit | 0.8s per 20 posts | 0.2s per 20 posts | 300% slower |
 | YouTube | 1.5s per transcript | N/A | — |
@@ -349,9 +330,7 @@ agent-reach cache clear
 
 ## Rate Limiting & Best Practices
 
-Agent-Reach respects basic rate limits, but you should be responsible:
-
-### Do's
+Agent-Reach respects basic rate limits, but you should be responsible: ### Do's
 - Add delays between requests (`--delay 1`)
 - Cache results locally (`--cache`)
 - Use `--quiet` for non-interactive modes
@@ -372,9 +351,7 @@ agent-reach reddit browse r/LocalLLaMA --cache --ttl 3600
 
 ## Limitations & Honest Assessment
 
-Agent-Reach is powerful but has real trade-offs you should know about:
-
-### Strengths
+Agent-Reach is powerful but has real trade-offs you should know about: ### Strengths
 1. **Completely free** — No API keys, no billing surprises
 2. **Multi-platform** — 10+ major sites supported out of the box
 3. **Easy to use** — Simple CLI, no complex configuration required
@@ -415,10 +392,16 @@ If you need guaranteed uptime, legal clarity, or sub-second latency, skip to off
 
 ## Alternative Approaches
 
-If Agent-Reach doesn't meet your needs, consider:
-
-| Approach | Cost | Reliability | Complexity |
-|----------|------|-------------|------------|
+If Agent-Reach doesn't meet your needs, consider: | Approach | Cost | Reliability | Complexity |
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Agent-Reach** | Free | Medium | Low |
 | **Official APIs** | $50-500/month | High | Medium |
 | **Commercial scrapers** | $100-1000/month | High | Low |
@@ -461,8 +444,7 @@ agent-reach batch run research-script.sh --throttle 2
 ```
 
 ### Common Error: Blocked by Cloudflare
-Some sites use Cloudflare protection. Workarounds:
-```bash
+Some sites use Cloudflare protection. Workarounds: ```bash
 # Use residential proxy if available
 agent-reach web extract "https://example.com" --proxy http://your-proxy:8080
 
@@ -489,8 +471,8 @@ The speed trade-off is real, but for most use cases — weekly reports, research
 
 Have you tried Agent-Reach? What's your favorite use case? Share in the comments or open an issue on GitHub.
 
----
 
+---
 **Sources & Further Reading:**
 - GitHub repo: https://github.com/Panniantong/Agent-Reach
 - Documentation: https://agent-reach.readthedocs.io/
@@ -499,3 +481,5 @@ Have you tried Agent-Reach? What's your favorite use case? Share in the comments
 **CTA:** Join the DIBI8 community on Telegram: https://t.me/DIBI8_Group
 
 [DeepSeek Harness Guide](dibi8-internal-link) | [AI Agent Security 2026](dibi8-internal-link)
+
+---

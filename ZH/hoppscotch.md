@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/hoppscotch" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hoppscotch" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hoppscotch" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hoppscotch" />
 title: 'Hoppscotch: 79,200 GitHub Stars — 开源API开发平台对比 Postman、In...
 description: 'Hoppscotch (HOPP) 是一个开源API开发生态系统。兼容 Docker、GitHub Actions、Node.js、Vue.js。涵盖 hoppscotch 教程、自托管、CLI 自动化以及与替代方案对比。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [hoppscotch, api测试, postman替代品, 开源, docker, 命令行, 'rest-api', graphql]
-aliases:
-- /zh/posts/hoppscotch/
+aliases: - /zh/posts/hoppscotch/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/hoppscotch/ -->
 
 {{</* resource-info */>}}
 
@@ -136,46 +128,31 @@ docker run -d \
 # docker-compose.yml
 version: "3.8"
 
-services:
-  hoppscotch:
-    image: hoppscotch/hoppscotch:2026.4.1
+services: hoppscotch: image: hoppscotch/hoppscotch:2026.4.1
     container_name: hoppscotch-app
-    ports:
-      - "3000:3000"   # 主应用
+    ports: - "3000:3000"   # 主应用
       - "3100:3100"   # 管理面板
       - "3170:3170"   # 后端 API
     env_file: .env
     restart: unless-stopped
-    depends_on:
-      postgres:
-        condition: service_healthy
-    networks:
-      - hoppscotch-net
+    depends_on: postgres: condition: service_healthy
+    networks: - hoppscotch-net
 
-  postgres:
-    image: postgres:16-alpine
+  postgres: image: postgres:16-alpine
     container_name: hoppscotch-db
-    environment:
-      POSTGRES_DB: hoppscotch
+    environment: POSTGRES_DB: hoppscotch
       POSTGRES_USER: hoppscotch
       POSTGRES_PASSWORD: ${DB_PASSWORD:-changeme}
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U hoppscotch"]
+    volumes: - postgres_data:/var/lib/postgresql/data
+    healthcheck: test: ["CMD-SHELL", "pg_isready -U hoppscotch"]
       interval: 10s
       timeout: 5s
       retries: 5
-    networks:
-      - hoppscotch-net
+    networks: - hoppscotch-net
 
-volumes:
-  postgres_data:
-    driver: local
+volumes: postgres_data: driver: local
 
-networks:
-  hoppscotch-net:
-    driver: bridge
+networks: hoppscotch-net: driver: bridge
 ```
 
 启动堆栈：
@@ -209,23 +186,16 @@ Hoppscotch 的生态系统围绕开放标准构建，支持与主流开发工具
 # .github/workflows/api-tests.yml
 name: 使用 Hoppscotch CLI 进行 API 测试
 
-on:
-  push:
-    branches: [main, develop]
-  pull_request:
-    branches: [main]
+on: push: branches: [main, develop]
+  pull_request: branches: [main]
 
-jobs:
-  api-test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: 检出代码
+jobs: api-test: runs-on: ubuntu-latest
+    steps: - name: 检出代码
         uses: actions/checkout@v4
 
       - name: 设置 Node.js
         uses: actions/setup-node@v4
-        with:
-          node-version: "20"
+        with: node-version: "20"
           cache: "npm"
 
       - name: 安装 Hoppscotch CLI
@@ -245,14 +215,12 @@ jobs:
             -e environments/test.json \
             --reporter-junit test-results.xml \
             --delay 500
-        env:
-          API_BASE_URL: http://localhost:8080
+        env: API_BASE_URL: http://localhost:8080
 
       - name: 上传测试结果
         uses: actions/upload-artifact@v4
         if: always()
-        with:
-          name: api-test-results
+        with: name: api-test-results
           path: test-results.xml
 ```
 
@@ -364,7 +332,17 @@ pw.test("响应时间可接受", () => {
 以下数据基于 2026 年 5 月在相同硬件环境（Intel i5-12400, 16GB RAM, SSD）下的实测结果。所有工具均为最新稳定版本。
 
 | 指标 | Hoppscotch | Postman | Insomnia | Bruno |
-|------|-----------|---------|----------|-------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 冷启动 (Web) | < 1秒 | 8–12秒 | 4–6秒 | 2–3秒 |
 | 桌面应用大小 | ~8 MB | ~180 MB | ~120 MB | ~45 MB |
 | 内存占用 | ~40 MB | ~350 MB | ~200 MB | ~90 MB |
@@ -469,33 +447,18 @@ server {
 # docker-compose.monitoring.yml
 version: "3.8"
 
-services:
-  prometheus:
-    image: prom/prometheus:latest
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+services: prometheus: image: prom/prometheus:latest
+    volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus_data:/prometheus
-    ports:
-      - "9090:9090"
-    networks:
-      - hoppscotch-net
+    ports: - "9090:9090"
+    networks: - hoppscotch-net
 
-  grafana:
-    image: grafana/grafana:latest
-    ports:
-      - "3001:3000"
-    volumes:
-      - grafana_data:/var/lib/grafana
-    networks:
-      - hoppscotch-net
+  grafana: image: grafana/grafana:latest
+    ports: - "3001:3000"
+    volumes: - grafana_data:/var/lib/grafana
+    networks: - hoppscotch-net
 
-volumes:
-  prometheus_data:
-  grafana_data:
-
-networks:
-  hoppscotch-net:
-    external: true
+volumes: prometheus_data: grafana_data: networks: hoppscotch-net: external: true
 ```
 
 ### 数据库备份策略
@@ -535,7 +498,17 @@ echo "备份完成: hoppscotch_${TIMESTAMP}.dump.gz"
 ## 与替代品对比
 
 | 功能 | Hoppscotch | Postman | Insomnia | Bruno |
-|------|-----------|---------|----------|-------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 开源 | 是 (MIT) | 否 (专有) | 是 (Apache-2.0) | 是 (MIT) |
 | 自托管 | 免费 (CE) | 仅企业版 | 仅云端 | N/A (本地) |
 | Web 支持 | 是 (PWA) | 是 + 桌面 | 仅桌面 | 仅桌面 |
@@ -644,7 +617,6 @@ Hoppscotch 通过构建开发者真正想要的东西赢得了 79,200 个 GitHub
 - [Insomnia 网站](https://insomnia.rest)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -670,8 +642,8 @@ Hoppscotch 通过构建开发者真正想要的东西赢得了 79,200 个 GitHub
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [2026-06-22-trending-ai-agents](hoppscotch)
@@ -680,6 +652,6 @@ Hoppscotch 通过构建开发者真正想要的东西赢得了 79,200 个 GitHub
 - [mattpocock-skills-ai-agent-framework-guide](hoppscotch)
 - [nanochat-karpathy-100-chatgpt-single-gpu](hoppscotch)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

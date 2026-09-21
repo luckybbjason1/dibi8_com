@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/autogen-multi-agent-framework" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/autogen-multi-agent-framework" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/autogen-multi-agent-framework" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/autogen-multi-agent-framework" />
 title: 'AutoGen多智能体框架教程2025：轻松构建多Agent AI系统'
 description: 'Microsoft AutoGen 2025完整教程：从安装配置到多Agent系统构建，涵盖代码执行、本地LLM集成与生产最佳实践。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/autogen-multi-agent-framework/
+aliases: - /posts/autogen-multi-agent-framework/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/autogen-multi-agent-framework/ -->
 
 {</* resource-info */>}
 
@@ -47,7 +39,15 @@ AutoGen的核心理念是**"对话即编程"**。在AutoGen中，每个Agent是�
 ### AutoGen与其他Agent框架的对比
 
 | 特性 | AutoGen | CrewAI | LangGraph |
-|------|---------|--------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 核心交互模式 | 对话驱动 | 角色+任务分配 | 状态图编排 |
 | 代码执行 | 原生支持（隔离环境） | 需自定义 | 需自定义 |
 | 人机协作 | 内置支持 | 有限 | 需自定义 |
@@ -68,7 +68,13 @@ AutoGen的核心理念是**"对话即编程"**。在AutoGen中，每个Agent是�
 ### 三种内置Agent类型
 
 | Agent类型 | 职责 | 典型用途 |
-|-----------|------|----------|
+|
+---
+|
+---
+|
+---
+|
 | AssistantAgent | 编写代码和提出建议 | 程序员角色，生成解决方案 |
 | UserProxyAgent | 代表人类用户执行代码 | 执行Assistant写的代码，返回结果 |
 | GroupChatManager | 管理多Agent群聊 | 协调多个Agent的发言顺序和话题流转 |
@@ -334,7 +340,13 @@ config_list = [
 AutoGen和LangGraph代表了两条不同的多Agent设计路线：
 
 | 维度 | AutoGen | LangGraph |
-|------|---------|-----------|
+|
+---
+|
+---
+|
+---
+|
 | 交互模型 | 自由对话 | 有向状态图 |
 | 控制粒度 | 粗粒度（LLM决定流程） | 细粒度（开发者定义流程） |
 | 适用场景 | 探索性任务、代码生成 | 确定性工作流、审批流程 |
@@ -402,8 +414,8 @@ AutoGen代表了AI应用开发的一种新范式——从"调用模型"到"编�
 
 更多学习资源：[AutoGen官方文档](https://microsoft.github.io/autogen/)、[AutoGen GitHub](https://github.com/microsoft/autogen)、[CrewAI对比参考](https://github.com/crewAIInc/crewAI)。
 
----
 
+---
 ## 推荐基础设施
 
 要 7×24 稳跑上述工具，服务器选择关键：
@@ -415,7 +427,6 @@ AutoGen代表了AI应用开发的一种新范式——从"调用模型"到"编�
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -443,25 +454,20 @@ AutoGen代表了AI应用开发的一种新范式——从"调用模型"到"编�
 
 ## Why This Matters
 
-Understanding autogen多智能体框架教程2025：轻松构建多agent ai系统 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding autogen多智能体框架教程2025：轻松构建多agent ai系统 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -482,8 +488,8 @@ AutoGen多智能体框架教程2025：轻松构建多Agent AI系统 represents a
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -513,7 +519,17 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

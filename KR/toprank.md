@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/toprank" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/toprank" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/toprank" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/toprank" />
 title: "Toprank: Claude Code로 SEO·GEO·광고 자동화 — 검색 순위 3배 상승하는 AI ...
 description: "Toprank는 Claude Code 기반 AI 마케팅 도구로 SEO, GEO, 광고 자동화를 한 번에 해결합니다. 검색 순위 상승, 트래픽 증가, 전환율 개선을 원한다면 지금 확인하세요.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Go
+tech_stack: - Go
   - Rust
 application_domain: "Ai Tools"
 source_version: ""
@@ -25,10 +19,8 @@ maintainer: "nowork-studio"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases:
-- /kr/posts/toprank/
-faqs:
-  - q: 'Toprank란 무엇이며, SEO SaaS 툴과 어떻게 다른가요?'
+aliases: - /kr/posts/toprank/
+faqs: - q: 'Toprank란 무엇이며, SEO SaaS 툴과 어떻게 다른가요?'
     a: 'Toprank는 Anthropic의 Claude Code CLI를 마케팅 자동화 엔진으로 전환하는 오픈소스 Claude Code 스킬 모음입니다. 웹 대시보드 기반의 SaaS 툴과 달리, 기존 개발 환경 안에서 직접 실행되므로 브라우저 탭 전환, 월정액 이용료, 컨텍스트 스위칭이 전혀 없습니다.'
   - q: 'Toprank로 어떤 SEO 작업을 자동화할 수 있나요?'
     a: 'Toprank의 SEO 모듈에는 Google Search Console 데이터를 활용한 기술 감사(seo-analysis), EEAT 기반 콘텐츠 초안 작성(content-writer), 토픽 클러스터링을 포함한 키워드 리서치, meta 태그 및 Open Graph 최적화, JSON-LD 스키마 생성, 단일 페이지 Core Web Vitals 분석(seo-page), 깨진 링크 및 고아 페이지 검사 스킬이 포함됩니다. 또한 AI 검색 엔진 최적화를 위한 전용 스킬인 geo-optimizer도 제공됩니다.'
@@ -40,7 +32,6 @@ faqs:
     a: 'Toprank는 기존 CLI 워크플로우에서 감사를 자동화하려는 테크니컬 SEO 담당자, 애플리케이션 코드와 함께 마케팅 인프라를 운영하는 그로스 엔지니어, 버전 관리된 플레이북으로 다수의 고객 계정을 관리하는 대행사, 그리고 월 $500+ SaaS 스택 없이도 전문적인 SEO와 광고 관리가 필요한 스타트업 창업자를 위한 도구입니다.'
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/toprank/ -->
 {</* resource-info */>}
 
 # Toprank: Claude Code로 SEO·GEO·광고 자동화 — 검색 순위 3배 상승하는 AI 마케팅 도구
@@ -123,16 +114,13 @@ Toprank는 웹사이트 연동 후 5분이면 바로 사용할 수 있습니다.
 
 ## 추천 도구
 
-오픈소스 AI 도구 개발/배포 시 권장:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
+오픈소스 AI 도구 개발/배포 시 권장: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
 - **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Anthropic Claude / OpenAI / DeepSeek API 프록시. 위의 AI 도구 대부분 (챗봇, 코드 생성, 번역, 검색 등) LLM API 키 필요 — 이 프록시로 안정적인 톱 모델 액세스, 공식 가격의 ~30%.
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -160,25 +148,20 @@ Toprank는 웹사이트 연동 후 5분이면 바로 사용할 수 있습니다.
 
 ## Why This Matters
 
-Understanding toprank: claude code로 seo·geo·광고 자동화 — 검색 순위 3배 상승하는 ai 마케팅 도구 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding toprank: claude code로 seo·geo·광고 자동화 — 검색 순위 3배 상승하는 ai 마케팅 도구 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/markitdown-universal-file-to-markdown-converter" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/markitdown-universal-file-to-markdown-converter" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/markitdown-universal-file-to-markdown-converter" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/markitdown-universal-file-to-markdown-converter" />
 title: "MarkItDown: Bộ Chuyển Đổi Tệp Sang Markdown Toàn Diện — ...
 description: "MarkItDown của nhóm Microsoft AutoGen chuyển đổi hơn 20 loại tệp sang Markdown để LLM sử dụng. pip install markitdown[all], API Python, tích hợp LangChain, các pipeline RAG và xử lý theo lô."
 date: 2026-06-17
-lastmod:  2026-06-17slug: markitdown-universal-file-to-markdown-converter
+lastmod: 2026-06-17
+slug: markitdown-universal-file-to-markdown-converter
 category: ai-tools
 tags: ['markitdown', 'file-to-markdown', 'microsoft', 'llm-pipelines', 'rag', 'langchain', 'document-processing', 'pdf-to-markdown', 'office-conversion']
 github_repo: "https://github.com/microsoft/markitdown"
@@ -15,8 +11,6 @@ license: MIT
 lang: vi
 featureImage: /images/articles/ai-trading-stack-2026--7-th-nh-ph-n-workflow-quant-m--ngu-n-m--cho-crypto---th--.png
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/markitdown-universal-file-to-markdown-converter/ -->
 
 ## Giới thiệu
 
@@ -40,9 +34,7 @@ Nhận định chính: LLM không cần hiển thị chính xác từng điểm 
 pip install 'markitdown[all]'
 ```
 
-Đó là toàn bộ quá trình cài đặt. Gói phụ kiện `[all]` bao gồm tất cả các định dạng tệp được hỗ trợ. Các phụ kiện cho từng định dạng riêng lẻ cũng có sẵn:
-
-```bash
+Đó là toàn bộ quá trình cài đặt. Gói phụ kiện `[all]` bao gồm tất cả các định dạng tệp được hỗ trợ. Các phụ kiện cho từng định dạng riêng lẻ cũng có sẵn: ```bash
 pip install 'markitdown[pdf,docx,pptx]'
 ```
 
@@ -50,9 +42,7 @@ Chỉ cài đặt những gì bạn cần để giữ cho các phụ thuộc g�
 
 ## Cách MarkItDown Hoạt Động
 
-MarkItDown sử dụng kiến trúc dựa trên plugin. Mỗi định dạng tệp có một bộ trích xuất riêng xử lý việc phân tích cú pháp theo định dạng:
-
-```
+MarkItDown sử dụng kiến trúc dựa trên plugin. Mỗi định dạng tệp có một bộ trích xuất riêng xử lý việc phân tích cú pháp theo định dạng: ```
 Input File ──► Format Detector ──► Format-Specific Parser ──► Markdown Output
                 │                      │
                 │                  PDF → PyMuPDF
@@ -101,9 +91,7 @@ pip install -e 'packages/markitdown[all]'
 
 ### Các phụ thuộc tùy chọn
 
-Cài đặt hỗ trợ định dạng cụ thể để giảm các phụ thuộc:
-
-```bash
+Cài đặt hỗ trợ định dạng cụ thể để giảm các phụ thuộc: ```bash
 # PDF support only
 pip install 'markitdown[pdf]'
 
@@ -131,8 +119,7 @@ from langchain_community.document_loaders import MarkItDownLoader
 loader = MarkItDownLoader("report.pdf")
 documents = loader.load()
 
-for doc in documents:
-    print(doc.page_content[:500])
+for doc in documents: print(doc.page_content[:500])
 ```
 
 ### Tích hợp LlamaIndex
@@ -226,17 +213,14 @@ Thời gian xử lý tăng gần như tuyến tính với kích thước tệp �
 
 ### Trường hợp sử dụng thực tế: Phân tích tài liệu pháp lý
 
-Một công ty luật xử lý hơn 200 hợp đồng mỗi tháng. Trước khi dùng MarkItDown, họ sử dụng kết hợp các API thương mại với chi phí 0,05 USD mỗi tài liệu. Sau khi chuyển sang:
-
-```python
+Một công ty luật xử lý hơn 200 hợp đồng mỗi tháng. Trước khi dùng MarkItDown, họ sử dụng kết hợp các API thương mại với chi phí 0,05 USD mỗi tài liệu. Sau khi chuyển sang: ```python
 import glob
 from markitdown import MarkItDown
 
 md = MarkItDown()
 contract_dir = "/contracts/2026/"
 
-for filepath in glob.glob(f"{contract_dir}*.pdf"):
-    result = md.convert(filepath)
+for filepath in glob.glob(f"{contract_dir}*.pdf"): result = md.convert(filepath)
     # Store in vector DB for contract clause retrieval
     store_contracts_in_vector_db(result.text_content, filepath)
 ```
@@ -245,18 +229,14 @@ Chi phí giảm từ ~10$/tháng xuống 0$. Thời gian xử lý mỗi tài li�
 
 ### Trường hợp sử dụng thực tế: Bộ sưu tập bài báo nghiên cứu
 
-Các nhà nghiên cứu học thuật thu thập bài báo từ arXiv, kỷ yếu hội nghị và kho lưu trữ của các tổ chức — tất cả đều ở các định dạng khác nhau. MarkItDown chuẩn hoá mọi thứ:
-
-```python
+Các nhà nghiên cứu học thuật thu thập bài báo từ arXiv, kỷ yếu hội nghị và kho lưu trữ của các tổ chức — tất cả đều ở các định dạng khác nhau. MarkItDown chuẩn hoá mọi thứ: ```python
 from markitdown import MarkItDown
 from pathlib import Path
 
 papers_dir = Path("/research/papers/")
 md = MarkItDown()
 
-for paper in papers_dir.rglob("*"):
-    if paper.suffix in ['.pdf', '.docx', '.pptx']:
-        converted = md.convert(str(paper))
+for paper in papers_dir.rglob("*"): if paper.suffix in ['.pdf', '.docx', '.pptx']: converted = md.convert(str(paper))
         # Index for semantic search across all papers
         index_for_semantic_search(converted.text_content, paper.stem)
 ```
@@ -265,20 +245,15 @@ for paper in papers_dir.rglob("*"):
 
 ### Trình xử lý định dạng tùy chỉnh
 
-Mở rộng MarkItDown với các bộ phân tích cú pháp tùy chỉnh cho các định dạng độc quyền:
-
-```python
+Mở rộng MarkItDown với các bộ phân tích cú pháp tùy chỉnh cho các định dạng độc quyền: ```python
 from markitdown import MarkItDown
 from markitdown.perceptual import PerceptualMarkdownConverter
 
-class CustomFormatConverter(PerceptualMarkdownConverter):
-    """Custom handler for .xyz proprietary format."""
+class CustomFormatConverter(PerceptualMarkdownConverter): """Custom handler for .xyz proprietary format."""
     
-    def accepts_file(self, filepath: str) -> bool:
-        return filepath.endswith(".xyz")
+    def accepts_file(self, filepath: str) -> bool: return filepath.endswith(".xyz")
     
-    def convert(self, filepath: str) -> str:
-        # Your custom parsing logic
+    def convert(self, filepath: str) -> str: # Your custom parsing logic
         content = parse_xyz_file(filepath)
         return format_as_markdown(content)
 
@@ -289,9 +264,7 @@ md.register_converter(CustomFormatConverter())
 
 ### Tích hợp hiểu nội dung Azure
 
-MarkItDown tích hợp với Azure Content Understanding để trích xuất được hỗ trợ bởi AI:
-
-```python
+MarkItDown tích hợp với Azure Content Understanding để trích xuất được hỗ trợ bởi AI: ```python
 from azure.ai.contentsynthesis import ContentUnderstandingClient
 from azure.identity import DefaultAzureCredential
 
@@ -311,8 +284,7 @@ import concurrent.futures
 from markitdown import MarkItDown
 from pathlib import Path
 
-def convert_single_file(filepath):
-    md = MarkItDown()
+def convert_single_file(filepath): md = MarkItDown()
     result = md.convert(str(filepath))
     output_path = Path("output") / f"{filepath.stem}.md"
     output_path.parent.mkdir(exist_ok=True)
@@ -321,15 +293,12 @@ def convert_single_file(filepath):
 
 # Process 1000 files in parallel
 files = list(Path("/documents").rglob("*"))
-with concurrent.futures.ThreadPoolExecutor(max_workers=8) as executor:
-    results = list(executor.map(convert_single_file, files))
+with concurrent.futures.ThreadPoolExecutor(max_workers=8) as executor: results = list(executor.map(convert_single_file, files))
 ```
 
 ### Trích xuất siêu dữ liệu
 
-MarkItDown giữ nguyên siêu dữ liệu của tài liệu:
-
-```python
+MarkItDown giữ nguyên siêu dữ liệu của tài liệu: ```python
 from markitdown import MarkItDown
 
 md = MarkItDown()
@@ -344,16 +313,12 @@ print("Page Count:", result.metadata.get("page_count"))
 
 ### Truyền Phát Tệp Lớn
 
-Đối với các tệp lớn hơn bộ nhớ có sẵn, hãy sử dụng chế độ phát trực tuyến:
-
-```python
+Đối với các tệp lớn hơn bộ nhớ có sẵn, hãy sử dụng chế độ phát trực tuyến: ```python
 from markitdown import MarkItDown
 
 md = MarkItDown()
 # Stream output to avoid loading entire file in memory
-with open("output.md", "w") as f:
-    for chunk in md.convert_stream("large_document.pdf"):
-        f.write(chunk)
+with open("output.md", "w") as f: for chunk in md.convert_stream("large_document.pdf"): f.write(chunk)
 ```
 
 ## So sánh với các lựa chọn thay thế
@@ -377,9 +342,7 @@ MarkItDown chiếm ưu thế về sự đơn giản, chi phí (miễn phí/khôn
 
 ## Giới hạn / Đánh giá trung thực
 
-MarkItDown xuất sắc trong những gì nó làm — nhưng nó có những giới hạn rõ ràng:
-
-1. **Các tệp PDF quét phụ thuộc vào chất lượng của Tesseract.** Văn bản viết tay, bản quét kém và các chữ viết không phải Latin có thể tạo ra OCR không chính xác. Đối với các tài liệu quan trọng, hãy xác minh kết quả OCR.
+MarkItDown xuất sắc trong những gì nó làm — nhưng nó có những giới hạn rõ ràng: 1. **Các tệp PDF quét phụ thuộc vào chất lượng của Tesseract.** Văn bản viết tay, bản quét kém và các chữ viết không phải Latin có thể tạo ra OCR không chính xác. Đối với các tài liệu quan trọng, hãy xác minh kết quả OCR.
 
 2. **Bố cục phức tạp mất cấu trúc.** Bảng trải dài nhiều cột, hình ảnh nổi và bố cục lồng nhau trong PDF có thể không chuyển đổi hoàn hảo. Kết quả đầu ra là "đủ tốt cho các LLM" chứ không phải "hoàn hảo theo từng điểm ảnh."
 
@@ -443,8 +406,7 @@ Vẻ đẹp nằm ở sự đơn giản của nó: `pip install 'markitdown[all]
 
 ---
 
-**Nguồn & Tài liệu Tham khảo Thêm**:
-- Tài liệu chính thức: https://github.com/microsoft/markitdown
+**Nguồn & Tài liệu Tham khảo Thêm**: - Tài liệu chính thức: https://github.com/microsoft/markitdown
 - Kho lưu trữ GitHub: https://github.com/microsoft/markitdown
 - Nhóm AutoGen: https://github.com/microsoft/autogen
 - Trình tải LangChain MarkItDown: https://python.langchain.com/docs/integrations/document_loaders/markitdown
@@ -457,7 +419,6 @@ Vẻ đẹp nằm ở sự đơn giản của nó: `pip install 'markitdown[all]
 - Proxy để thu thập dữ liệu web: [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

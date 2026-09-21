@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/fine-tuning-stack" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/fine-tuning-stack" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/fine-tuning-stack" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/fine-tuning-stack" />
 title: 'Fine-Tuning Stack 2026: 데이터셋에서 프로덕션 배포 LLM까지 5컴포넌트 파이프라인'
 description: '완전한 LLM 파인튜닝 스택: Unsloth (빠른 단일 GPU 실험) + Axolotl (프로덕션 멀티 GPU) + HuggingFace datasets/Hub + Weights & Biases (eval 추적) + vLLM (서빙). $50-300/월 훈련 인프라. 전체 파이프라인: 데이터셋 준비 → 실험 → 프로덕션 파인튜닝 → eval → 배포.'
 date: 2026-05-21 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: [collections]
 tags: ['fine-tuning', llm, 스택, 컬렉션]
-aliases:
-  - /posts/fine-tuning-stack/
+aliases: - /posts/fine-tuning-stack/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/fine-tuning-stack/ -->
 
 2026년 LLM 파인튜닝이 마침내 일관된 스택을 가짐 — HuggingFace Trainer + DeepSpeed config + 커스텀 eval 스크립트를 덕테이프로 붙이는 날들은 끝. 이 컬렉션은 원시 데이터셋에서 프로덕션 배포 파인튜닝 모델까지 **5컴포넌트 파이프라인** 조립, 빠른 반복 (Unsloth)과 프로덕션 배포 (Axolotl) 사이 깔끔한 분할. 스케일에 따라 $50-300/월 훈련 인프라.
 
@@ -45,8 +37,7 @@ aliases:
 | 4 | **Weights & Biases** (또는 대안) | Eval | 손실 곡선, eval 점수, 하이퍼파라미터 sweep 추적 | [W&B docs] |
 | 5 | **vLLM** | 서빙 | 파인튜닝 모델 프로덕션 멀티테넌트 서빙 | [로컬 LLM 러너 비교](/kr/resources/llm-frameworks/local-llm-runner-comparison-2026/) |
 
-**월 총 비용** (훈련 자본 제외):
-- **취미** (주당 GPU 10시간 임대): **$30-60/월**
+**월 총 비용** (훈련 자본 제외): - **취미** (주당 GPU 10시간 임대): **$30-60/월**
 - **프로덕션 팀** (전용 GPU 1-2 + 모니터링): **$200-400/월**
 - **작은 AI 랩** (8× H100 클러스터): **$2000-5000/월**
 
@@ -54,9 +45,7 @@ aliases:
 
 ## 1. 왜 2026에 "파인튜닝 스택" 정의 필요했나
 
-스택 결정화한 3 변화:
-
-1. **Unsloth + Axolotl이 프로덕션 성숙 도달** — "빠른 실험 + 스케일 프로덕션" 분할이 이제 깔끔
+스택 결정화한 3 변화: 1. **Unsloth + Axolotl이 프로덕션 성숙 도달** — "빠른 실험 + 스케일 프로덕션" 분할이 이제 깔끔
 2. **GRPO가 기본 RL 파인튜닝됨** (DeepSeek-R1 이후) — 둘 다 네이티브 지원
 3. **오픈 웨이트 베이스 모델이 GPT-4 클래스 도달** — Llama 3.3 70B, Qwen 3 32B, DeepSeek V3. 이들을 도메인용으로 파인튜닝이 이제 클로즈드 대안과 진짜 경쟁력
 
@@ -104,8 +93,7 @@ aliases:
 
 **Unsloth가 여기서 이기는 이유**: HF TRL보다 2× 빠름 = 달러당 2× 실험. 70% 적은 VRAM = A100 필요 대신 $1500 RTX 4090에서 실험. [Unsloth 심층 가이드](/kr/resources/llm-frameworks/unsloth-fast-llm-fine-tuning-2026/) 참조.
 
-**빠른 설치**:
-```bash
+**빠른 설치**: ```bash
 pip install unsloth
 ```
 
@@ -117,8 +105,7 @@ pip install unsloth
 
 **Axolotl이 여기서 이기는 이유**: 박스 밖에서 작동하는 멀티 노드 분산 훈련, 가장 넓은 방법 지원 (DPO/GRPO/KTO/ORPO/GDPO), 재현성용 config-as-code. [Axolotl 심층 가이드](/kr/resources/llm-frameworks/axolotl-llm-fine-tuning-framework-2026/) 참조.
 
-**빠른 설치**:
-```bash
+**빠른 설치**: ```bash
 pip install axolotl
 ```
 
@@ -130,14 +117,12 @@ pip install axolotl
 
 **왜 명백한 픽인가**: HF가 AI 데이터셋 배포 레이어 이김 (코드의 GitHub처럼, 모델 + 데이터셋의 HF Hub). 모든 파인튜닝 도구가 네이티브 통합.
 
-**빠른 설치**:
-```bash
+**빠른 설치**: ```bash
 pip install datasets
 huggingface-cli login
 ```
 
-**패턴**:
-```python
+**패턴**: ```python
 from datasets import load_dataset, Dataset
 
 # 로컬 준비 + push
@@ -154,8 +139,7 @@ data = load_dataset("yourname/my-finetune-dataset")
 
 **역할**: 위닝 레시피 찾기 위해 50 실험 실행할 때 비교 방법 필요. W&B가 사실상 선택 — 손실 곡선, eval 점수, 하이퍼파라미터, 하드웨어 활용 자동 로그.
 
-**빠른 설치** (env var 통해 Unsloth와 Axolotl 모두 작동):
-```bash
+**빠른 설치** (env var 통해 Unsloth와 Axolotl 모두 작동): ```bash
 pip install wandb
 wandb login
 export WANDB_PROJECT="my-finetune-project"
@@ -171,8 +155,7 @@ export WANDB_PROJECT="my-finetune-project"
 
 vLLM이 프로덕션 멀티 사용자 서빙에서 Ollama / LM Studio / llama.cpp 이기는 이유 전체는 [로컬 LLM 러너 비교](/kr/resources/llm-frameworks/local-llm-runner-comparison-2026/) 참조.
 
-**빠른 설치 + 파인튜닝 모델 서브**:
-```bash
+**빠른 설치 + 파인튜닝 모델 서브**: ```bash
 pip install vllm
 vllm serve yourname/my-finetuned-llama \
   --enable-lora \
@@ -213,9 +196,7 @@ vllm serve yourname/my-finetuned-llama \
 
 ## 10. 업그레이드 경로
 
-이 스택 벗어날 때:
-
-- **70B 모델 일상 파인튜닝 필요** — 임대 대신 H100 클러스터 구매 또는 장기 임대
+이 스택 벗어날 때: - **70B 모델 일상 파인튜닝 필요** — 임대 대신 H100 클러스터 구매 또는 장기 임대
 - **컴플라이언스 / 데이터 거주성** — Vast.ai에서 관할의 전용 베어 메탈로 이동
 - **멀티테넌트 파인튜닝 SaaS** — 사용자 격리 레이어 추가; LangSmith 또는 유사 매니지드 eval 고려
 - **연속 파인튜닝 루프** — 프로덕션 모델 저하 시 자동 재훈련 트리거용 [AI 에이전트 도구 체인](/kr/collections/ai-agent-tool-chain/)과 페어
@@ -223,8 +204,7 @@ vllm serve yourname/my-finetuned-llama \
 
 ## TL;DR — 레시피
 
-**프로덕션 LLM 파인튜닝용 5 컴포넌트, 취미부터 프로덕션 팀까지 $50-300/월**:
-1. **Unsloth** — 빠른 단일 GPU 실험 단계
+**프로덕션 LLM 파인튜닝용 5 컴포넌트, 취미부터 프로덕션 팀까지 $50-300/월**: 1. **Unsloth** — 빠른 단일 GPU 실험 단계
 2. **Axolotl** — 프로덕션 멀티 GPU 단계
 3. **HuggingFace datasets + Hub** — 데이터 버전 관리 + 모델 배포
 4. **Weights & Biases** — eval 추적
@@ -237,7 +217,6 @@ vllm serve yourname/my-finetuned-llama \
 *동반 컬렉션: [저렴한 LLM 스택](/kr/collections/cheap-llm-stack/) 배포 후 추론 비용 측 커버. [AI 에이전트 도구 체인](/kr/collections/ai-agent-tool-chain/) 자동 파인튜닝 루프. [지식 베이스 스택](/kr/collections/knowledge-base-stack/) 일부 케이스에서 RAG가 파인튜닝 대안.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -265,25 +244,20 @@ vllm serve yourname/my-finetuned-llama \
 
 ## Why This Matters
 
-Understanding fine-tuning stack 2026: 데이터셋에서 프로덕션 배포 llm까지 5컴포넌트 파이프라인 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding fine-tuning stack 2026: 데이터셋에서 프로덕션 배포 llm까지 5컴포넌트 파이프라인 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

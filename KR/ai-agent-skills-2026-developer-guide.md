@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-agent-skills-2026-developer-guide" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-agent-skills-2026-developer-guide" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-agent-skills-2026-developer-guide" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-agent-skills-2026-developer-guide" />
 title: '2026년 AI 에이전트 스킬 완벽 가이드: 클로드 코드 실전 튜토리얼과 핫한 저장소 소개'
 description: '2026년 AI 에이전트 스킬 완벽 가이드: 클로드 코드 실전 튜토리얼과 핫한 저장소 소개'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-16 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: ''
 last_maintained: '2026-05-16'
 featureImage: ''
 draft: false
-aliases:
-- /posts/ai-agent-skills-2026-developer-guide/
+aliases: - /posts/ai-agent-skills-2026-developer-guide/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/ai-agent-skills-2026-developer-guide/ -->
 
 {</* resource-info */>}
 
@@ -147,8 +139,7 @@ docker pull rohitg00/agentmemory
 
 ### 3.1 환경 준비
 
-클로드 코드(또는 커서/코덱스 CLI)가 설치되어 있는지 확인:
-```bash
+클로드 코드(또는 커서/코덱스 CLI)가 설치되어 있는지 확인: ```bash
 # 클로드 코드 설치
 curl -fsSL https://claude.ai/install.sh | bash
 
@@ -175,15 +166,12 @@ ls .claude/skills/
 
 ### 3.3 스킬 호출
 
-특별한 문법을 기억할 필요 없이, 평소처럼 대화하듯 요청하세요:
-
-**시나리오 1: 새 기능 개발 시작 (tdd 스킬 트리거)**
+특별한 문법을 기억할 필요 없이, 평소처럼 대화하듯 요청하세요: **시나리오 1: 새 기능 개발 시작 (tdd 스킬 트리거)**
 ```
 프로젝트에 사용자 인증 모듈을 추가해야 해. TDD 방식으로 구현해줘.
 ```
 
-클로드 코드가 자동으로 `tdd` 스킬을 매칭하여 실행:
-1. 기존 코드베이스 구조 분석
+클로드 코드가 자동으로 `tdd` 스킬을 매칭하여 실행: 1. 기존 코드베이스 구조 분석
 2. 첫 번째 실패 테스트 작성
 3. 테스트 실행하여 실패 이유 확인
 4. 최소 구현 작성
@@ -195,8 +183,7 @@ ls .claude/skills/
 사용자가 "가끔 저장 버튼이 안 먹힌다"고 하는데, 조사해줘.
 ```
 
-`triage` 스킬이 구조화된 조사를 시작:
-1. 관련 코드 경로 검색
+`triage` 스킬이 구조화된 조사를 시작: 1. 관련 코드 경로 검색
 2. 문제 재현 시도
 3. 근본 원인 식별
 4. 발견 사항 문서화
@@ -213,9 +200,7 @@ ls .claude/skills/
 
 ### 4.1 스킬 파일의 기본 해부학
 
-각 스킬은 표준 마크다운 파일로, `.claude/skills/{skill-name}/SKILL.md`에 배치됩니다:
-
-```markdown
+각 스킬은 표준 마크다운 파일로, `.claude/skills/{skill-name}/SKILL.md`에 배치됩니다: ```markdown
 # 코드 리뷰 스킬
 
 ## 설명
@@ -277,21 +262,17 @@ ls .claude/skills/
 
 ### 4.3 write-a-skill 스킬로 스킬 만들기
 
-메타 스킬 — 스킬을 만드는 스킬:
-
-```bash
+메타 스킬 — 스킬을 만드는 스킬: ```bash
 npx skills@latest add mattpocock/skills/write-a-skill
 ```
 
-클로드 코드에서:
-```
+클로드 코드에서: ```
 데이터베이스 모델 수정 시 자동으로 마이그레이션 스크립트를 생성하는 
 스킬이 필요해. 스키마 변경 감지, 롤백 가능한 마이그레이션, 
 테스트 데이터 시딩을 포함해야 해.
 ```
 
-`write-a-skill`이 다음을 안내:
-1. 목적과 트리거 정의
+`write-a-skill`이 다음을 안내: 1. 목적과 트리거 정의
 2. 워크플로우 단계 구조화
 3. 동반 스크립트 결정
 4. 단일/다중 파일 구조 선택
@@ -311,8 +292,7 @@ npx skills@latest add mattpocock/skills/write-a-skill
 
 **실제 협력 시나리오:**
 
-웹 애플리케이션 개발 중:
-1. **MCP**가 깃허브, PostgreSQL, 센트리를 연결하여 에이전트가 이슈 읽기, DB 쿼리, 오류 로그 확인 가능
+웹 애플리케이션 개발 중: 1. **MCP**가 깃허브, PostgreSQL, 센트리를 연결하여 에이전트가 이슈 읽기, DB 쿼리, 오류 로그 확인 가능
 2. **스킬**이 팀의 TDD 프로세스, 코드 리뷰 기준, 릴리즈 체크리스트를 정의
 3. **프롬프트**가 "이 함수 이름을 userAuthentication으로 바꿔줘" 같은 세션 내 구체적 지시 처리
 
@@ -324,15 +304,13 @@ npx skills@latest add mattpocock/skills/write-a-skill
 
 ### 6.1 상용화 가속
 
-explainx.ai 등의 플랫폼이 스킬 배포 및 수익화 기능을 출시했습니다:
-- 유료 스킬 출판 (크롬 확장 프로그램 스토어와 유사)
+explainx.ai 등의 플랫폼이 스킬 배포 및 수익화 기능을 출시했습니다: - 유료 스킬 출판 (크롬 확장 프로그램 스토어와 유사)
 - 설치량 또는 호출량 기반 과금
 - 특정 기술 스택(Next.js, Django, Rust) 전문 스킬팩
 
 ### 6.2 개인에서 기업으로
 
-초기 스킬은 개인 `.claude` 디렉토리의 공유였으나, 2026년 Q2부터:
-- 팀 레벨 스킬 레지스트리
+초기 스킬은 개인 `.claude` 디렉토리의 공유였으나, 2026년 Q2부터: - 팀 레벨 스킬 레지스트리
 - CI/CD 통합 (PR마다 자동 코드 리뷰 스킬 실행)
 - 규정 준수 및 감사 (금융, 의료 분야 커스텀 제약 스킬)
 
@@ -388,7 +366,6 @@ mattpocock/skills은 프로덕션 검증된 규율을, obra/superpowers는 커�
 *스타 수와 저장소 통계는 2026년 5월 13일 기준 깃허브 API 데이터입니다. 모든 저장소는 최근 커밋으로 활발히 유지보수되고 있습니다.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

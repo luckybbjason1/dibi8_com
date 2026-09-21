@@ -1,17 +1,11 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/agent-skills-production-grade-ai-coding" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/agent-skills-production-grade-ai-coding" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/agent-skills-production-grade-ai-coding" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/agent-skills-production-grade-ai-coding" />
 title: Agent Skills：Các đội phát triển giao mã cấp sản xuất nhan...
   nào
 description: Agent Skills của Addy Osmani cung cấp 20 kỹ năng kỹ thuật cấp sản xuất. Comprehensive guide covering features, pricing, and best practices for 2026.
   và 7 lệnh gạch chéo biến tác nhân mã hóa AI thành kỹ sư phần mềm cấp cao.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
-tech_stack:
-- Go
+tech_stack: - Go
 - JavaScript
 - TypeScript
 application_domain: Llm Frameworks
@@ -28,11 +22,9 @@ maintainer: ''
 last_maintained: '2026-05-15'
 featureImage: ''
 draft: false
-aliases:
-- /vi/posts/addy-osmani-agent-skills-production-grade-ai-coding-agents.vi/
+aliases: - /vi/posts/addy-osmani-agent-skills-production-grade-ai-coding-agents.vi/
 - /vi/posts/agent-skills-production-grade-ai-coding/
-faqs:
-  - q: 'Agent Skills của Addy Osmani là gì?'
+faqs: - q: 'Agent Skills của Addy Osmani là gì?'
     a: 'Agent Skills là một bộ sưu tập mã nguồn mở gồm 20 kỹ năng kỹ thuật cấp sản xuất và 7 lệnh slash, mã hóa các quy trình làm việc, cổng chất lượng và thực tiễn tốt nhất của kỹ sư cấp cao dành cho các agent lập trình AI. Nó được Addy Osmani xây dựng và ánh xạ tới toàn bộ vòng đời phát triển phần mềm: DEFINE, PLAN, BUILD, VERIFY, REVIEW, SHIP.'
   - q: 'Agent Skills hoạt động với những agent lập trình AI nào?'
     a: 'Agent Skills hoạt động với Claude Code, Cursor, Gemini CLI, Windsurf, OpenCode, GitHub Copilot, Kiro và Codex. Mỗi agent có một thư mục riêng chứa các manifest kỹ năng, và các kỹ năng tự động kích hoạt dựa trên loại tệp và ngữ cảnh.'
@@ -44,8 +36,6 @@ faqs:
     a: 'Bảng chống biện minh là một tính năng được nhúng trong mỗi kỹ năng, chủ động chỉ ra những lý do bao biện phổ biến mà lập trình viên và agent AI dùng để làm tắt, làm ẩu (chẳng hạn "Để sau tôi sẽ thêm test") và đưa ra lập luận phản bác. Các bảng này được rút ra từ những phân tích hậu sự cố (post-mortem) thực tế và phản hồi rà soát mã tại các tổ chức quy mô Google.'
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/agent-skills-production-grade-ai-coding/ -->
-
 {</* resource-info */>}
 
 # Agent Skills：Các đội phát triển giao mã cấp sản xuất nhanh gấp 5 lần như thế nào
@@ -56,9 +46,7 @@ Tác nhân mã hóa AI có ở khắp nơi — nhưng hầu hết tạo ra mã �
 
 Agent Skills là một bộ sưu tập **20 kỹ năng kỹ thuật cấp sản xuất** và **7 lệnh gạch chéo** mã hóa các quy trình làm việc, cổng chất lượng và thực tiễn tốt nhất được sử dụng bởi các kỹ sư cấp cao tại các công ty quy mô Google. Nó hoạt động với Claude Code, Cursor, Gemini CLI, Windsurf, OpenCode, GitHub Copilot, Kiro và Codex.
 
-Hệ thống này ánh xạ đến toàn bộ vòng đời phát triển phần mềm:
-
-```
+Hệ thống này ánh xạ đến toàn bộ vòng đời phát triển phần mềm: ```
 ĐỊNH NGHĨA → LẬP KẾ HOẠCH → XÂY DỰNG → XÁC MINH → ĐÁNH GIÁ → GIAO HÀNG
   /spec      /plan       /build     /test     /review     /ship
 ```
@@ -203,8 +191,7 @@ Một người bảo trì gói npm phổ biến sử dụng `/review` trên mọ
 
 ## SEO và việc áp dụng nhà phát triển
 
-Agent Skills xếp hạng cho các từ khóa nhà phát triển có ý định cao:
-- "AI coding agent best practices"
+Agent Skills xếp hạng cho các từ khóa nhà phát triển có ý định cao: - "AI coding agent best practices"
 - "production-grade AI software development"
 - "Claude Code skills system"
 - "spec-driven development with AI"
@@ -221,9 +208,7 @@ Dự án đang nhận được sự chú ý trong **các vòng lãnh đạo kỹ
 
 ## Đi sâu: Công cụ kích hoạt kỹ năng
 
-Agent Skills sử dụng công cụ kích hoạt nhận biết ngữ cảnh để xác định kỹ năng nào cần tải dựa trên nhiều tín hiệu:
-
-### Nguồn tín hiệu
+Agent Skills sử dụng công cụ kích hoạt nhận biết ngữ cảnh để xác định kỹ năng nào cần tải dựa trên nhiều tín hiệu: ### Nguồn tín hiệu
 
 1. **Lệnh rõ ràng**: `/build`, `/test`, `/review` tải trực tiếp các gói kỹ năng được ánh xạ của chúng.
 2. **Phát hiện loại tệp**: Chỉnh sửa tệp `.tsx` tự động tải `frontend-ui-engineering`; tệp `.proto` kích hoạt `api-and-interface-design`.
@@ -232,8 +217,7 @@ Agent Skills sử dụng công cụ kích hoạt nhận biết ngữ cảnh đ�
 
 ### Thành phần kỹ năng
 
-Các kỹ năng có thể kết hợp. Khi bạn chạy `/build` trên một thành phần React tìm nạp dữ liệu từ một điểm cuối API mới, công cụ tải:
-- `incremental-implementation` (chính)
+Các kỹ năng có thể kết hợp. Khi bạn chạy `/build` trên một thành phần React tìm nạp dữ liệu từ một điểm cuối API mới, công cụ tải: - `incremental-implementation` (chính)
 - `frontend-ui-engineering` (lớp UI)
 - `api-and-interface-design` (hợp đồng dữ liệu)
 - `test-driven-development` (xác minh)
@@ -242,9 +226,7 @@ Thành phần này ngăn chặn chế độ lỗi phổ biến khi tác nhân AI
 
 ## Bảng chống hợp lý hóa
 
-Một trong những tính năng sáng tạo nhất của Agent Skills là **bảng chống hợp lý hóa** được nhúng trong mỗi kỹ năng. Các kỹ sư cấp cao biết rằng nhà phát triển junior (và tác nhân AI) thường biện minh cho việc cắt góc. Các bảng này chủ động gắn cờ các lập luận phổ biến và cung cấp phản biện:
-
-| Lập luận phổ biến | Phản biện | Kỹ năng |
+Một trong những tính năng sáng tạo nhất của Agent Skills là **bảng chống hợp lý hóa** được nhúng trong mỗi kỹ năng. Các kỹ sư cấp cao biết rằng nhà phát triển junior (và tác nhân AI) thường biện minh cho việc cắt góc. Các bảng này chủ động gắn cờ các lập luận phổ biến và cung cấp phản biện: | Lập luận phổ biến | Phản biện | Kỹ năng |
 |-------------------|-----------|---------|
 | "Tôi sẽ thêm kiểm thử sau" | "Sau này không bao giờ đến. Mã không được kiểm thử sẽ được đưa vào sản xuất." | test-driven-development |
 | "API chỉ dành cho nội bộ" | "API nội bộ sẽ trở nên công khai. Thiết kế cho người tiêu dùng bên ngoài ngay từ ngày đầu tiên." | api-and-interface-design |
@@ -255,36 +237,29 @@ Các bảng này được lấy từ các phân tích sau sự cố và phản h
 
 ## Kỹ thuật ngữ cảnh: Bí quyết thành công
 
-Kỹ năng `context-engineering` có lẽ là kỹ năng biến đổi nhất. Nó dạy các tác nhân AI cách quản lý cửa sổ ngữ cảnh của chính chúng một cách hiệu quả:
+Kỹ năng `context-engineering` có lẽ là kỹ năng biến đổi nhất. Nó dạy các tác nhân AI cách quản lý cửa sổ ngữ cảnh của chính chúng một cách hiệu quả: ### Tệp quy tắc
 
-### Tệp quy tắc
-
-Đặt các tệp `.cursorrules`, `.claude.md` hoặc `.kiro.md` trong thư mục gốc dự án để xác định:
-- Các quyết định kiến trúc và cơ sở lý luận của chúng
+Đặt các tệp `.cursorrules`, `.claude.md` hoặc `.kiro.md` trong thư mục gốc dự án để xác định: - Các quyết định kiến trúc và cơ sở lý luận của chúng
 - Các mẫu bị cấm (ví dụ: "không bao giờ sử dụng `any` trong TypeScript")
 - Các thư viện ưa thích và ràng buộc phiên bản
 - Các quy ước kiểm thử (jest so với vitest, ngưỡng độ phủ)
 
 ### Đóng gói ngữ cảnh
 
-Đối với các cơ sở mã lớn, kỹ năng này dạy các tác nhân:
-1. **Tóm tắt** các tệp trên 500 dòng thành mô tả giao diện trước khi tải toàn bộ nội dung
+Đối với các cơ sở mã lớn, kỹ năng này dạy các tác nhân: 1. **Tóm tắt** các tệp trên 500 dòng thành mô tả giao diện trước khi tải toàn bộ nội dung
 2. **Ưu tiên** các tệp có hoạt động git gần đây hơn mã cũ
 3. **Loại trừ** các tệp đã tạo (tệp khóa, đầu ra bản dựng) khỏi ngữ cảnh
 4. **Chuỗi** các tham chiếu: khi tệp A nhập B, tải giao diện của A và triển khai của B
 
 ### Tích hợp MCP
 
-Kỹ năng này bao gồm các cấu hình Giao thức ngữ cảnh mô hình (MCP) cho:
-- **Công cụ phát triển của trình duyệt**: Kiểm tra DOM trực tiếp, phân tích dấu vết mạng
+Kỹ năng này bao gồm các cấu hình Giao thức ngữ cảnh mô hình (MCP) cho: - **Công cụ phát triển của trình duyệt**: Kiểm tra DOM trực tiếp, phân tích dấu vết mạng
 - **Lược đồ cơ sở dữ liệu**: Nội tâm SQL để xác thực thiết kế API
 - **Máy chủ tài liệu**: Tra cứu tài liệu khung thời gian thực
 
 ## Đo lường tác động của kỹ năng tác nhân
 
-Các đội sử dụng Agent Skills nên theo dõi các chỉ số này:
-
-| Chỉ số | Đường cơ sở (Không có kỹ năng) | Với Agent Skills | Chênh lệch |
+Các đội sử dụng Agent Skills nên theo dõi các chỉ số này: | Chỉ số | Đường cơ sở (Không có kỹ năng) | Với Agent Skills | Chênh lệch |
 |--------|-------------------------------|------------------|-----------|
 | Thời gian từ spec đến cam kết đầu tiên | 4 giờ | 45 phút | -81% |
 | Vòng đánh giá PR | Trung bình 3,2 | Trung bình 1,4 | -56% |
@@ -306,16 +281,13 @@ Chọn một nhóm tính năng 3-4 người làm thí điểm. Yêu cầu họ s
 
 ### Chiến lược 3: Tích hợp kiểm soát
 
-Tích hợp Agent Skills vào CI/CD:
-- Chặn PR không bao gồm tệp spec cho các tính năng > 100 dòng
+Tích hợp Agent Skills vào CI/CD: - Chặn PR không bao gồm tệp spec cho các tính năng > 100 dòng
 - Chạy `/review` tự động trên PR và đăng kết quả dưới dạng nhận xét
 - Yêu cầu đầu ra `/test` (kế hoạch kiểm thử) cho bất kỳ PR sửa lỗi nào
 
 ## So sánh: Agent Skills so với thang bậc kỹ thuật
 
-Agent Skills hiệu quả nén đường cong học tập của các thực tiễn kỹ thuật cấp cao:
-
-| Thực tiễn kỹ sư cấp cao | Năm để thành thạo | Tương đương Agent Skills |
+Agent Skills hiệu quả nén đường cong học tập của các thực tiễn kỹ thuật cấp cao: | Thực tiễn kỹ sư cấp cao | Năm để thành thạo | Tương đương Agent Skills |
 |------------------------|-------------------|-------------------------|
 | Viết spec toàn diện | 2-3 năm | Lệnh `/spec` |
 | Phân rã dự án phức tạp | 1-2 năm | Lệnh `/plan` |
@@ -344,9 +316,7 @@ Agent Skills là mắt xích còn thiếu giữa "AI có thể viết mã" và "
 
 ## Hạ Tầng Đề Xuất Cho Tự Lưu Trữ
 
-Để chạy stack này 24/7 ổn định, lựa chọn hạ tầng rất quan trọng:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu. Lựa chọn mặc định cho developer độc lập.
+Để chạy stack này 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu. Lựa chọn mặc định cho developer độc lập.
 - **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — VPS Hong Kong, độ trễ thấp với người dùng Việt Nam. dibi8.com cũng được host ở đây.
 - **{{< aff "hostinger" "footer-cta-legacy" "Hostinger" >}}** — Lựa chọn VPS giá tốt cho thị trường Việt Nam, giảm 60% gói đầu tiên.
 
@@ -354,7 +324,6 @@ Agent Skills là mắt xích còn thiếu giữa "AI có thể viết mã" và "
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

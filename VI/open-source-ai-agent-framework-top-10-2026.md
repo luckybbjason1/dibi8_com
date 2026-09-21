@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/open-source-ai-agent-framework-top-10-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/open-source-ai-agent-framework-top-10-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/open-source-ai-agent-framework-top-10-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/open-source-ai-agent-framework-top-10-2026" />
 title: 'Top 10 Framework AI Agent Mã Nguồn Mở (2026): Xếp Hạng T...
 description: 'Mười framework AI agent OSS được xếp hạng theo mức độ áp dụng trong sản xuất năm 2026: LangGraph, CrewAI, AutoGen, Mastra, Agno, Superagent, OpenHands, Smol Agents, Phidata, OpenAI Swarm. Điểm mạnh, lưu ý, và lựa chọn theo từng trường hợp sử dụng.'
 date: 2026-05-25 00:00:00+08:00
@@ -21,10 +16,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['ai-agent', framework, langgraph, crewai, autogen, 2026]
-aliases:
-- /vi/posts/open-source-ai-agent-framework-top-10-2026/
-faq:
-  - q: "Nên chọn framework AI agent nào vào năm 2026?"
+aliases: - /vi/posts/open-source-ai-agent-framework-top-10-2026/
+faq: - q: "Nên chọn framework AI agent nào vào năm 2026?"
     a: "LangGraph cho workflow dạng đồ thị có trạng thái trong sản xuất. CrewAI cho cộng tác đa agent dựa trên vai trò. AutoGen cho nghiên cứu và hệ sinh thái Microsoft. Mastra cho các team ưu tiên TypeScript. Chọn theo sở thích ngôn ngữ và phong cách kiến trúc — chúng giống nhau hơn marketing thể hiện."
   - q: "Có đáng để bị khóa vào một framework agent không?"
     a: "Có, đối với workflow đa bước trong sản xuất. Việc quản lý trạng thái, retry, khả năng quan sát, và glue code gọi tool mà framework cung cấp là công việc engineering thực sự mà bạn sẽ phải tự viết. Với tác vụ một-lần đơn giản, gọi API trực tiếp là đủ."
@@ -33,8 +26,6 @@ faq:
   - q: "Tôi có thể đổi framework giữa chừng dự án không?"
     a: "Có thể nhưng đau đớn. Mỗi framework có API gọi tool riêng, mô hình trạng thái, và hook quan sát riêng. Hãy lên kế hoạch cam kết tối thiểu 6 tháng khi đã chọn. Chi phí chuyển đổi gần bằng chi phí xây 1-2 workflow agent mới."
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/open-source-ai-agent-framework-top-10-2026/ -->
 
 {{</* resource-info */>}}
 
@@ -125,8 +116,7 @@ Bối cảnh framework AI agent đã được củng cố vào năm 2026. Từ h
 
 ## Hạ Tầng Đề Xuất
 
-Để triển khai framework agent:
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit, droplet cho nền tảng tự host
+Để triển khai framework agent: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit, droplet cho nền tảng tự host
 - **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hong Kong, host workload agent
 
 *Link tiếp thị liên kết — cùng giá, ủng hộ dibi8.com.*
@@ -140,7 +130,6 @@ Chọn theo stack ngôn ngữ và phong cách workflow. Năng lực đã hội t
 **Liên quan**: [Hướng Dẫn Sản Xuất 12-Factor Agents](https://dibi8.com/vi/resources/llm-frameworks/12-factor-agents-production-llm-software-2026/) · [Hệ Thống Bộ Nhớ AI Agent](https://dibi8.com/vi/resources/llm-frameworks/ai-agent-memory-systems-open-source-infrastructure-2026/) · [MCP Server 2026](https://dibi8.com/vi/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -168,25 +157,20 @@ Chọn theo stack ngôn ngữ và phong cách workflow. Năng lực đã hội t
 
 ## Why This Matters
 
-Understanding top 10 framework ai agent mã nguồn mở (2026): xếp hạng theo mức độ áp dụng trong sản xuất is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding top 10 framework ai agent mã nguồn mở (2026): xếp hạng theo mức độ áp dụng trong sản xuất is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

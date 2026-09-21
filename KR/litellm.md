@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/litellm" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/litellm" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/litellm" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/litellm" />
 title: 'LiteLLM: 22,500 Stars — 100개 이상의 LLM을 하나의 API로 배포, 내장 폴오...
 description: 'LiteLLM (litellm)은 100개 이상의 LLM을 단일 API로 호출하는 오픈소스 AI 게이트웨이입니다. OpenAI, Anthropic, Ollama, Cohere, Gemini, Bedrock과 호환. Docker 배포, 가상 키, 로드 밸런싱, 캐싱, 프로덕션 하드닝을 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,12 +20,9 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [litellm, 'llm-게이트웨이', 오픈소스, docker, 프로덕션, 'ai-인프라', '프록시-서버', '멀티-모델']
-aliases:
-- /kr/posts/litellm/
+aliases: - /kr/posts/litellm/
 - /kr/resources/llm-frameworks/litellm-unified-api-tutorial/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/litellm/ -->
 
 {{</* resource-info */>}}
 
@@ -50,9 +42,7 @@ Claude로 추론하고, GPT-4o로 코딩하고, Gemini Flash로 저비용 분류
 
 LiteLLM은 100개 이상의 LLM API — OpenAI, Anthropic, Azure, Google Vertex AI, AWS Bedrock, Cohere, Ollama 등 — 을 단일 OpenAI 호환 API 형식으로 호출하는 통합 인터페이스를 제공하는 오픈소스 LLM 프록시 게이트웨이이자 Python SDK이다.
 
-두 가지 모드가 있다:
-
-- **Python SDK** — 코드에서 `import litellm; completion(...)`으로 공급자와 무관하게 사용
+두 가지 모드가 있다: - **Python SDK** — 코드에서 `import litellm; completion(...)`으로 공급자와 무관하게 사용
 - **프록시 서버** — `:4000`에서 실행되는 자체 호스팅 HTTP 게이트웨이, 모든 OpenAI SDK 클라이언트가 가리킬 수 있음
 
 대부분의 프로덕션 팀이 사용하는 프록시 모드는 가상 키, 팀 관리, 예산 제어, 속도 제한, 캐싱, 관찰 가능성을 추가한다 — 모두 단일 `config.yaml` 파일로 구성된다.
@@ -114,68 +104,54 @@ EOF
 
 ```yaml
 # litellm_config.yaml
-model_list:
-  - model_name: gpt-4o
-    litellm_params:
-      model: openai/gpt-4o
+model_list: - model_name: gpt-4o
+    litellm_params: model: openai/gpt-4o
       api_key: os.environ/OPENAI_API_KEY
       rpm: 500
       tpm: 150000
 
   - model_name: claude-sonnet
-    litellm_params:
-      model: anthropic/claude-sonnet-4-20250514
+    litellm_params: model: anthropic/claude-sonnet-4-20250514
       api_key: os.environ/ANTHROPIC_API_KEY
       rpm: 200
       tpm: 40000
 
   - model_name: gemini-flash
-    litellm_params:
-      model: gemini/gemini-2.0-flash
+    litellm_params: model: gemini/gemini-2.0-flash
       api_key: os.environ/GEMINI_API_KEY
       rpm: 1000
 
   - model_name: ollama-llama
-    litellm_params:
-      model: ollama/llama3.3
+    litellm_params: model: ollama/llama3.3
       api_base: http://ollama:11434
-    model_info:
-      mode: chat
+    model_info: mode: chat
 
   # 임베딩 모델
   - model_name: text-embedding
-    litellm_params:
-      model: openai/text-embedding-3-small
+    litellm_params: model: openai/text-embedding-3-small
       api_key: os.environ/OPENAI_API_KEY
 
-general_settings:
-  master_key: os.environ/LITELLM_MASTER_KEY
+general_settings: master_key: os.environ/LITELLM_MASTER_KEY
   database_url: os.environ/DATABASE_URL
   max_budget: 10000.00
   budget_duration: 30d
-  alerting:
-    - slack
+  alerting: - slack
   alerting_threshold: 300
   global_max_parallel_requests: 200
 
-litellm_settings:
-  drop_params: true
+litellm_settings: drop_params: true
   num_retries: 3
   request_timeout: 120
 
   # 자동 폴오버
-  fallbacks:
-    - gpt-4o:
-      - claude-sonnet
+  fallbacks: - gpt-4o: - claude-sonnet
       - gemini-flash
-    - claude-sonnet:
-      - gpt-4o
+    - claude-sonnet: - gpt-4o
       - gemini-flash
 
   # Redis 캐싱
   cache: true
-  cache_params:
-    type: redis
+  cache_params: type: redis
     host: redis
     port: 6379
     ttl: 3600
@@ -280,13 +256,10 @@ print(response.content[0].text)
 
 ```yaml
 # litellm_config.yaml에 추가
-model_list:
-  - model_name: local-llama
-    litellm_params:
-      model: ollama/llama3.3
+model_list: - model_name: local-llama
+    litellm_params: model: ollama/llama3.3
       api_base: http://localhost:11434
-    model_info:
-      mode: chat
+    model_info: mode: chat
 ```
 
 ```bash
@@ -303,10 +276,8 @@ curl http://localhost:4000/v1/chat/completions \
 ### Cohere
 
 ```yaml
-model_list:
-  - model_name: cohere-command
-    litellm_params:
-      model: cohere/command-r-plus
+model_list: - model_name: cohere-command
+    litellm_params: model: cohere/command-r-plus
       api_key: os.environ/COHERE_API_KEY
 ```
 
@@ -325,9 +296,7 @@ response = client.chat.completions.create(
 
 ### 시나리오: 멀티 팀 AI 플랫폼 (SaaS 스타트업)
 
-5개의 난부 팀과 외부 API 고객을 서비스하는 50인 AI 스타트업:
-
-| 지표 | LiteLLM 사용 전 | LiteLLM 사용 후 |
+5개의 난부 팀과 외부 API 고객을 서비스하는 50인 AI 스타트업: | 지표 | LiteLLM 사용 전 | LiteLLM 사용 후 |
 |------|----------------|----------------|
 | 유지 중인 공급자 SDK | 4 (OpenAI, Anthropic, Gemini, Ollama) | 1 (OpenAI 호환) |
 | API 키 관리 | 환경 변수의 공유 키 | 팀/고객별 가상 키 |
@@ -375,8 +344,7 @@ curl -X POST http://localhost:4000/key/generate \
     }
   }'
 
-# 응답:
-# {
+# 응답: # {
 #   "key": "sk-litellm-abc123...",
 #   "expires": null,
 #   "max_budget": 500.00,
@@ -387,23 +355,16 @@ curl -X POST http://localhost:4000/key/generate \
 ### 공급자 수준 예산 상한
 
 ```yaml
-general_settings:
-  provider_budget_config:
-    openai:
-      monthly_budget: 5000.00
-    anthropic:
-      monthly_budget: 3000.00
-    gemini:
-      monthly_budget: 1000.00
+general_settings: provider_budget_config: openai: monthly_budget: 5000.00
+    anthropic: monthly_budget: 3000.00
+    gemini: monthly_budget: 1000.00
 ```
 
 ### 지연 시간 기반 라우팅
 
 ```yaml
-router_settings:
-  routing_strategy: latency-based-routing
-  routing_strategy_args:
-    ttl: 60
+router_settings: routing_strategy: latency-based-routing
+  routing_strategy_args: ttl: 60
   allowed_fails: 3
   cooldown_time: 60
   num_retries: 2
@@ -415,20 +376,17 @@ router_settings:
 
 ```yaml
 # 보안 강화된 config.yaml
-general_settings:
-  master_key: os.environ/LITELLM_MASTER_KEY
+general_settings: master_key: os.environ/LITELLM_MASTER_KEY
   database_url: os.environ/DATABASE_URL
 
   # 프로덕션에서 HTTPS 강제
   # Nginx 또는 AWS ALB 뒤에서 TLS 종료로 실행
 
   # 상세 로깅 비활성화
-  litellm_settings:
-    set_verbose: false
+  litellm_settings: set_verbose: false
 
   # 저장 시 키 암호화
-  litellm_settings:
-    key_generation_algorithm: "rsa"
+  litellm_settings: key_generation_algorithm: "rsa"
     allow_user_auth: false
 ```
 
@@ -453,14 +411,11 @@ helm install litellm-gateway ./litellm-helm \
 
 ```yaml
 # config.yaml에 추가
-litellm_settings:
-  success_callback: ["prometheus"]
+litellm_settings: success_callback: ["prometheus"]
   failure_callback: ["prometheus"]
 ```
 
-`/metrics`에서 노출되는 주요 Prometheus 메트릭:
-
-```promql
+`/metrics`에서 노출되는 주요 Prometheus 메트릭: ```promql
 # 모델별 요청 속도
 rate(litellm_request_total_requests[5m])
 
@@ -504,9 +459,7 @@ histogram_quantile(0.95, litellm_overhead_latency_ms_bucket)
 
 ## 한계 / 솔직한 평가
 
-LiteLLM은 모든 상황에 적합한 도구가 아니다. 다음은 부족한 점이다:
-
-1. **운영 오버헤드** — 관리형 게이트웨이와 달리, 가동 시간, 스케일링, 보안 패치, 데이터베이스 백업을 직접 관리한다. 프로덕션 유지보수를 위해 0.5–1 FTE를 예산에 잡는다.
+LiteLLM은 모든 상황에 적합한 도구가 아니다. 다음은 부족한 점이다: 1. **운영 오버헤드** — 관리형 게이트웨이와 달리, 가동 시간, 스케일링, 보안 패치, 데이터베이스 백업을 직접 관리한다. 프로덕션 유지보수를 위해 0.5–1 FTE를 예산에 잡는다.
 
 2. **내장 프롬프트 관리 없음** — Portkey의 A/B 테스트가 포함된 프롬프트 버전 UI는 LiteLLM에 존재하지 않는다. 프롬프트 템플릿은 애플리케이션이나 외부 도구에서 관리한다.
 
@@ -567,9 +520,7 @@ LiteLLM은 프로덕션 멀티 LLM 배포의 지저분한 현실을 해결한다
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -588,7 +539,6 @@ LiteLLM은 프로덕션 멀티 LLM 배포의 지저분한 현실을 해결한다
 - [Helicone 문서](https://docs.helicone.ai) — 관찰 가능성 중심 대안
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

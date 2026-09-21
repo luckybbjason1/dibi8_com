@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/n8n" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/n8n" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/n8n" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/n8n" />
 title: 'n8n AI 工作流自动化: 18.8万星自托管部署 — 比 Zapier 省 70%'
 description: 'n8n（fair-code）是具有原生 AI 能力的可视化工作流自动化平台，支持 400+ 集成。兼容 Claude Code、OpenAI、Anthropic、Slack、Discord、Telegram。涵盖 Docker 部署、AI 节点配置、Webhook 部署和生产环境加固。'
 date: 2026-05-19 00:00:00+08:00
@@ -25,12 +20,9 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [n8n, 工作流自动化, 自托管, 'ai 智能体', docker, langchain, 开源, 低代码]
-aliases:
-- /zh/posts/n8n/
-- /zh/resources/dev-utils/n8n-ai-workflow-automation-self-hosted-2026/
+aliases: - /zh/posts/n8n/
+- /zh/resources/dev-utils/n8n-ai-workflow-automation-self-hosted-2026/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/n8n/ -->
 
 {{</* resource-info */>}}
 
@@ -66,7 +58,13 @@ n8n 采用基于节点的执行引擎，工作流以有向图的形式组织。�
 ### 执行模式
 
 | 模式 | 适用场景 | 吞吐量 |
-|------|----------|--------|
+|
+---
+|
+---
+|
+---
+|
 | 普通模式 | 开发环境，<1000 次执行/天 | ~23 请求/秒 |
 | 队列模式 (Redis) | 生产环境，>1000 次执行/天 | ~162 请求/秒 |
 | 队列 + 多工作进程 | 企业级，>10000 次执行/天 | 水平扩展 |
@@ -97,26 +95,19 @@ sudo chmod +x /usr/local/bin/docker-compose
 # docker-compose.dev.yml
 version: '3.8'
 
-services:
-  n8n:
-    image: n8nio/n8n:latest
+services: n8n: image: n8nio/n8n:latest
     container_name: n8n
     restart: unless-stopped
-    ports:
-      - "5678:5678"
-    environment:
-      - N8N_BASIC_AUTH_ACTIVE=true
+    ports: - "5678:5678"
+    environment: - N8N_BASIC_AUTH_ACTIVE=true
       - N8N_BASIC_AUTH_USER=admin
       - N8N_BASIC_AUTH_PASSWORD=changeme
       - N8N_ENCRYPTION_KEY=your-32-char-encryption-key-here
       - GENERIC_TIMEZONE=UTC
       - TZ=UTC
-    volumes:
-      - n8n_data:/home/node/.n8n
+    volumes: - n8n_data:/home/node/.n8n
 
-volumes:
-  n8n_data:
-```
+volumes: n8n_data: ```
 
 启动命令：
 
@@ -131,31 +122,22 @@ docker-compose -f docker-compose.dev.yml up -d
 # docker-compose.prod.yml
 version: '3.8'
 
-services:
-  postgres:
-    image: postgres:16-alpine
+services: postgres: image: postgres:16-alpine
     restart: unless-stopped
-    environment:
-      POSTGRES_USER: n8n
+    environment: POSTGRES_USER: n8n
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: n8n
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U n8n"]
+    volumes: - postgres_data:/var/lib/postgresql/data
+    healthcheck: test: ["CMD-SHELL", "pg_isready -U n8n"]
       interval: 10s
       timeout: 5s
       retries: 5
-    networks:
-      - n8n_network
+    networks: - n8n_network
 
-  n8n:
-    image: n8nio/n8n:latest
+  n8n: image: n8nio/n8n:latest
     restart: unless-stopped
-    ports:
-      - "127.0.0.1:5678:5678"
-    environment:
-      - DB_TYPE=postgresdb
+    ports: - "127.0.0.1:5678:5678"
+    environment: - DB_TYPE=postgresdb
       - DB_POSTGRESDB_HOST=postgres
       - DB_POSTGRESDB_PORT=5432
       - DB_POSTGRESDB_DATABASE=n8n
@@ -168,21 +150,11 @@ services:
       - N8N_METRICS=true
       - EXECUTIONS_MODE=regular
       - GENERIC_TIMEZONE=UTC
-    volumes:
-      - n8n_data:/home/node/.n8n
-    depends_on:
-      postgres:
-        condition: service_healthy
-    networks:
-      - n8n_network
+    volumes: - n8n_data:/home/node/.n8n
+    depends_on: postgres: condition: service_healthy
+    networks: - n8n_network
 
-volumes:
-  postgres_data:
-  n8n_data:
-
-networks:
-  n8n_network:
-    driver: bridge
+volumes: postgres_data: n8n_data: networks: n8n_network: driver: bridge
 ```
 
 环境变量文件 `.env`：
@@ -200,45 +172,32 @@ N8N_HOST=automation.yourdomain.com
 # docker-compose.queue.yml
 version: '3.8'
 
-services:
-  postgres:
-    image: postgres:16-alpine
+services: postgres: image: postgres:16-alpine
     restart: unless-stopped
-    environment:
-      POSTGRES_USER: n8n
+    environment: POSTGRES_USER: n8n
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: n8n
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U n8n"]
+    volumes: - postgres_data:/var/lib/postgresql/data
+    healthcheck: test: ["CMD-SHELL", "pg_isready -U n8n"]
       interval: 10s
       timeout: 5s
       retries: 5
-    networks:
-      - n8n_network
+    networks: - n8n_network
 
-  redis:
-    image: redis:7-alpine
+  redis: image: redis:7-alpine
     restart: unless-stopped
     command: redis-server --requirepass ${REDIS_PASSWORD} --appendonly yes
-    volumes:
-      - redis_data:/data
-    healthcheck:
-      test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD}", "ping"]
+    volumes: - redis_data:/data
+    healthcheck: test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD}", "ping"]
       interval: 10s
       timeout: 3s
       retries: 5
-    networks:
-      - n8n_network
+    networks: - n8n_network
 
-  n8n-main:
-    image: n8nio/n8n:latest
+  n8n-main: image: n8nio/n8n:latest
     restart: unless-stopped
-    ports:
-      - "127.0.0.1:5678:5678"
-    environment:
-      - EXECUTIONS_MODE=queue
+    ports: - "127.0.0.1:5678:5678"
+    environment: - EXECUTIONS_MODE=queue
       - QUEUE_BULL_REDIS_HOST=redis
       - QUEUE_BULL_REDIS_PORT=6379
       - QUEUE_BULL_REDIS_PASSWORD=${REDIS_PASSWORD}
@@ -252,22 +211,15 @@ services:
       - N8N_PROTOCOL=https
       - WEBHOOK_URL=https://${N8N_HOST}/
       - N8N_METRICS=true
-    volumes:
-      - n8n_data:/home/node/.n8n
-    depends_on:
-      postgres:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
-    networks:
-      - n8n_network
+    volumes: - n8n_data:/home/node/.n8n
+    depends_on: postgres: condition: service_healthy
+      redis: condition: service_healthy
+    networks: - n8n_network
 
-  n8n-worker:
-    image: n8nio/n8n:latest
+  n8n-worker: image: n8nio/n8n:latest
     restart: unless-stopped
     command: worker --concurrency=10
-    environment:
-      - EXECUTIONS_MODE=queue
+    environment: - EXECUTIONS_MODE=queue
       - QUEUE_BULL_REDIS_HOST=redis
       - QUEUE_BULL_REDIS_PORT=6379
       - QUEUE_BULL_REDIS_PASSWORD=${REDIS_PASSWORD}
@@ -277,26 +229,14 @@ services:
       - DB_POSTGRESDB_USER=n8n
       - DB_POSTGRESDB_PASSWORD=${POSTGRES_PASSWORD}
       - N8N_ENCRYPTION_KEY=${N8N_ENCRYPTION_KEY}
-    deploy:
-      replicas: 2
-      resources:
-        limits:
-          cpus: 2
+    deploy: replicas: 2
+      resources: limits: cpus: 2
           memory: 2G
-    depends_on:
-      - postgres
+    depends_on: - postgres
       - redis
-    networks:
-      - n8n_network
+    networks: - n8n_network
 
-volumes:
-  postgres_data:
-  redis_data:
-  n8n_data:
-
-networks:
-  n8n_network:
-    driver: bridge
+volumes: postgres_data: redis_data: n8n_data: networks: n8n_network: driver: bridge
 ```
 
 部署命令：
@@ -573,7 +513,15 @@ sudo certbot --nginx -d automation.yourdomain.com
 ### 性能基准
 
 | 指标 | 普通模式 | 队列模式 | 队列 + 4 工作进程 |
-|------|-------------|------------|-------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 吞吐量 | ~23 请求/秒 | ~162 请求/秒 | ~400+ 请求/秒 |
 | 失败率 | 高负载下 2-5% | 0% | 0% |
 | 平均延迟 (p50) | 450ms | 120ms | 85ms |
@@ -585,7 +533,15 @@ sudo certbot --nginx -d automation.yourdomain.com
 ### 成本对比: n8n 自托管 vs Zapier 云版
 
 | 每月工作负载 | Zapier 费用 | n8n 自托管 | 节省比例 |
-|-------------------|-------------|-----------------|-------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 1,000 个任务 | $19.99 | ~$12 (VPS) | 40% |
 | 10,000 次执行 | $49 | ~$12 (VPS) | 75% |
 | 50,000 次执行 | $199 | ~$24 (VPS + AI) | 88% |
@@ -618,8 +574,7 @@ N8N_PROTOCOL=https
 WEBHOOK_URL=https://automation.yourdomain.com/
 
 # 4. 仅绑定到本地主机，通过 Nginx 代理
-ports:
-  - "127.0.0.1:5678:5678"
+ports: - "127.0.0.1:5678:5678"
 
 # 5. 启用执行数据清理
 EXECUTIONS_DATA_PRUNE=true
@@ -658,42 +613,29 @@ SELECT pg_reload_conf();
 
 ```yaml
 # 添加到 docker-compose.queue.yml
-  prometheus:
-    image: prom/prometheus:latest
+  prometheus: image: prom/prometheus:latest
     restart: unless-stopped
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
       - prometheus_data:/prometheus
-    command:
-      - --config.file=/etc/prometheus/prometheus.yml
+    command: - --config.file=/etc/prometheus/prometheus.yml
       - --storage.tsdb.path=/prometheus
-    networks:
-      - n8n_network
-    ports:
-      - "127.0.0.1:9090:9090"
+    networks: - n8n_network
+    ports: - "127.0.0.1:9090:9090"
 
-  grafana:
-    image: grafana/grafana:latest
+  grafana: image: grafana/grafana:latest
     restart: unless-stopped
-    environment:
-      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-admin}
-    volumes:
-      - grafana_data:/var/lib/grafana
-    networks:
-      - n8n_network
-    ports:
-      - "127.0.0.1:3000:3000"
+    environment: - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-admin}
+    volumes: - grafana_data:/var/lib/grafana
+    networks: - n8n_network
+    ports: - "127.0.0.1:3000:3000"
 ```
 
 ```yaml
 # prometheus.yml
-global:
-  scrape_interval: 15s
+global: scrape_interval: 15s
 
-scrape_configs:
-  - job_name: n8n
-    static_configs:
-      - targets: ['n8n-main:5678']
+scrape_configs: - job_name: n8n
+    static_configs: - targets: ['n8n-main:5678']
     metrics_path: /metrics
 ```
 
@@ -749,7 +691,17 @@ find $BACKUP_DIR -name "*.tar.gz" -mtime +7 -delete
 ## 与替代品对比
 
 | 特性 | n8n | Dify | Flowise | Make |
-|---------|-----|------|---------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **许可证** | Sustainable Use License | Dify OSL | Apache-2.0 | 专有软件 |
 | **GitHub 星标** | 188,782 | 85,000+ | 35,000+ | N/A (闭源) |
 | **自托管** | 全功能 | 全功能 | 全功能 | 仅云版 |
@@ -862,7 +814,6 @@ n8n 以远低于商业平台的成本提供 AI 能力加持的工作流自动化
 - n8n 安全最佳实践: https://docs.n8n.io/hosting/security/
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -888,8 +839,8 @@ n8n 以远低于商业平台的成本提供 AI 能力加持的工作流自动化
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [tradingagents-llm-multi-agent-trading-framework-2026](n8n)
@@ -898,8 +849,8 @@ n8n 以远低于商业平台的成本提供 AI 能力加持的工作流自动化
 - [n8n-ai-automation-complete-guide](n8n)
 - [n8n-vs-make-com-2026](n8n)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

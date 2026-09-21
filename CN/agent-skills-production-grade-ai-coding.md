@@ -1,13 +1,10 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/agent-skills-production-grade-ai-coding" />
 title: 'Agent Skills: How Development Teams Can Ship Production-...
 description: Agent Skills by Addy Osmani delivers 20 production-grade engineering. Comprehensive guide covering features, pricing, and best practices for 2026.
   skills and 7 slash commands that turn AI coding agents into senior software engineers.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
-tech_stack:
-- Go
+tech_stack: - Go
 - JavaScript
 - TypeScript
 application_domain: Llm Frameworks
@@ -24,13 +21,11 @@ maintainer: ''
 last_maintained: '2026-05-15'
 featureImage: ''
 draft: false
-aliases:
-- /en/posts/agent-skills-production-grade-ai-coding/
+aliases: - /en/posts/agent-skills-production-grade-ai-coding/
 - /posts/addy-osmani-agent-skills-production-grade-ai-coding-agents/
 - /posts/agent-skills-production-grade-ai-coding/
 - /posts/ai-coding-assistants-2026/
-faqs:
-  - q: 'What is Agent Skills by Addy Osmani?'
+faqs: - q: 'What is Agent Skills by Addy Osmani?'
     a: 'Agent Skills is an open-source collection of 20 production-grade engineering skills and 7 slash commands that encode senior-engineer workflows, quality gates, and best practices for AI coding agents. It is built by Addy Osmani and maps to the full software development lifecycle: DEFINE, PLAN, BUILD, VERIFY, REVIEW, SHIP.'
   - q: 'Which AI coding agents does Agent Skills work with?'
     a: 'Agent Skills works with Claude Code, Cursor, Gemini CLI, Windsurf, OpenCode, GitHub Copilot, Kiro, and Codex. Each agent has a dedicated directory with skill manifests, and skills auto-activate based on file type and context.'
@@ -39,9 +34,7 @@ faqs:
   - q: 'How do I install Agent Skills for Claude Code?'
     a: 'For Claude Code you can clone the repo into your project with `gh repo clone addyosmani/agent-skills .claude/skills`, or install it as a plugin with `claude plugin install addyosmani/agent-skills`.'
   - q: 'What is an anti-rationalization table in Agent Skills?'
-    a: 'An anti-rationalization table is a feature embedded in each skill that pre-emptively flags common excuses developers and AI agents use to cut corners (such as "I''ll add tests later") and provides a counter-argument. The tables are derived from real post-mortems and code-review feedback at Google-scale organizations.'
----
-
+    a: 'An anti-rationalization table is a feature embedded in each skill that pre-emptively flags common excuses developers and AI agents use to cut corners (such as "I''ll add tests later") and provides a counter-argument. The tables are derived from real post-mortems and code-review feedback at Google-scale organizations.'---
 ![Hero Image](https://picsum.photos/seed/ai/1200x800)
 
 
@@ -56,9 +49,7 @@ AI coding agents are everywhere — but most produce toy code that breaks in pro
 
 Agent Skills is a collection of **20 production-grade engineering skills** and **7 slash commands** that encode the workflows, quality gates, and best practices used by senior engineers at Google-scale companies. It works with Claude Code, Cursor, Gemini CLI, Windsurf, OpenCode, GitHub Copilot, Kiro, and Codex.
 
-The system maps to the full software development lifecycle:
-
-```
+The system maps to the full software development lifecycle: ```
 DEFINE → PLAN → BUILD → VERIFY → REVIEW → SHIP
   /spec   /plan  /build  /test   /review  /ship
 ```
@@ -66,7 +57,13 @@ DEFINE → PLAN → BUILD → VERIFY → REVIEW → SHIP
 ## The 7 Slash Commands
 
 | What You Are Doing | Command | Key Principle |
-|--------------------|---------|---------------|
+|
+---
+|
+---
+|
+---
+|
 | Define what to build | `/spec` | Spec before code |
 | Plan how to build it | `/plan` | Small, atomic tasks |
 | Build incrementally | `/build` | One slice at a time |
@@ -192,7 +189,17 @@ A popular npm package maintainer uses `/review` on every PR. The skill catches e
 ## Comparison with Alternatives
 
 | Feature | Agent Skills | GitHub Copilot | Cursor Rules | Generic Prompts |
-|---------|--------------|----------------|--------------|-----------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Open Source** | ✅ Yes | ❌ No | ❌ No | N/A |
 | **20 Structured Skills** | ✅ Yes | ❌ Generic | ❌ Basic | ❌ Ad-hoc |
 | **Multi-Agent Support** | ✅ 7+ agents | ❌ Copilot only | ❌ Cursor only | ❌ N/A |
@@ -203,8 +210,7 @@ A popular npm package maintainer uses `/review` on every PR. The skill catches e
 
 ## SEO and Developer Adoption
 
-Agent Skills ranks for high-intent developer keywords:
-- "AI coding agent best practices"
+Agent Skills ranks for high-intent developer keywords: - "AI coding agent best practices"
 - "production-grade AI software development"
 - "Claude Code skills system"
 - "spec-driven development with AI"
@@ -221,9 +227,7 @@ The project is gaining traction in **engineering leadership circles** because it
 
 ## Deep Dive: The Skill Activation Engine
 
-Agent Skills uses a context-aware activation engine that determines which skills to load based on multiple signals:
-
-### Signal Sources
+Agent Skills uses a context-aware activation engine that determines which skills to load based on multiple signals: ### Signal Sources
 
 1. **Explicit Commands**: `/build`, `/test`, `/review` directly load their mapped skill bundles.
 2. **File Type Detection**: Editing `.tsx` files auto-loads `frontend-ui-engineering`; `.proto` files trigger `api-and-interface-design`.
@@ -232,8 +236,7 @@ Agent Skills uses a context-aware activation engine that determines which skills
 
 ### Skill Composition
 
-Skills are composable. When you run `/build` on a React component that fetches data from a new API endpoint, the engine loads:
-- `incremental-implementation` (primary)
+Skills are composable. When you run `/build` on a React component that fetches data from a new API endpoint, the engine loads: - `incremental-implementation` (primary)
 - `frontend-ui-engineering` (UI layer)
 - `api-and-interface-design` (data contract)
 - `test-driven-development` (verification)
@@ -242,10 +245,14 @@ This composition prevents the common failure mode where AI agents optimize for o
 
 ## Anti-Rationalization Tables
 
-One of the most innovative features of Agent Skills is the **anti-rationalization table** embedded in each skill. Senior engineers know that junior developers (and AI agents) often justify cutting corners. These tables pre-emptively flag common rationalizations and provide counter-arguments:
-
-| Common Rationalization | Counter-Argument | Skill |
-|------------------------|------------------|-------|
+One of the most innovative features of Agent Skills is the **anti-rationalization table** embedded in each skill. Senior engineers know that junior developers (and AI agents) often justify cutting corners. These tables pre-emptively flag common rationalizations and provide counter-arguments: | Common Rationalization | Counter-Argument | Skill |
+|
+---
+|
+---
+|
+---
+|
 | "I'll add tests later" | "Later never comes. Untested code ships to production." | test-driven-development |
 | "The API is internal only" | "Internal APIs become public. Design for external consumers from day one." | api-and-interface-design |
 | "This is just a quick fix" | "Quick fixes accumulate technical debt. Follow the full triage process." | debugging-and-error-recovery |
@@ -255,37 +262,38 @@ These tables are derived from real post-mortems and code review feedback at Goog
 
 ## Context Engineering: The Secret Sauce
 
-The `context-engineering` skill is arguably the most transformative. It teaches AI agents how to manage their own context window effectively:
+The `context-engineering` skill is arguably the most transformative. It teaches AI agents how to manage their own context window effectively: ### Rules Files
 
-### Rules Files
-
-Place `.cursorrules`, `.claude.md`, or `.kiro.md` files in project roots to define:
-- Architecture decisions and their rationale
+Place `.cursorrules`, `.claude.md`, or `.kiro.md` files in project roots to define: - Architecture decisions and their rationale
 - Forbidden patterns (e.g., "never use `any` in TypeScript")
 - Preferred libraries and version constraints
 - Testing conventions (jest vs vitest, coverage thresholds)
 
 ### Context Packing
 
-For large codebases, the skill teaches agents to:
-1. **Summarize** files over 500 lines into interface descriptions before loading full content
+For large codebases, the skill teaches agents to: 1. **Summarize** files over 500 lines into interface descriptions before loading full content
 2. **Prioritize** files with recent git activity over stale code
 3. **Exclude** generated files (lockfiles, build output) from context
 4. **Chain** references: when file A imports B, load A's interface and B's implementation
 
 ### MCP Integration
 
-The skill includes Model Context Protocol (MCP) configurations for:
-- **Browser DevTools**: Live DOM inspection, network trace analysis
+The skill includes Model Context Protocol (MCP) configurations for: - **Browser DevTools**: Live DOM inspection, network trace analysis
 - **Database Schema**: SQL introspection for API design validation
 - **Documentation Servers**: Real-time framework doc lookups
 
 ## Measuring Agent Skill Impact
 
-Teams using Agent Skills should track these metrics:
-
-| Metric | Baseline (No Skills) | With Agent Skills | Delta |
-|--------|---------------------|-------------------|-------|
+Teams using Agent Skills should track these metrics: | Metric | Baseline (No Skills) | With Agent Skills | Delta |
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Time from spec to first commit | 4 hours | 45 minutes | -81% |
 | PR review rounds | 3.2 average | 1.4 average | -56% |
 | Production incidents per month | 2.1 | 0.3 | -86% |
@@ -306,17 +314,20 @@ Select a 3-4 person feature squad as the pilot. Have them use all 7 commands for
 
 ### Strategy 3: Gatekeeping Integration
 
-Integrate Agent Skills into CI/CD:
-- Block PRs that don't include a spec file for features > 100 lines
+Integrate Agent Skills into CI/CD: - Block PRs that don't include a spec file for features > 100 lines
 - Run `/review` automatically on PRs and post results as comments
 - Require `/test` output (test plan) for any bug fix PR
 
 ## Comparison: Agent Skills vs Engineering Ladders
 
-Agent Skills effectively compresses the learning curve of senior engineering practices:
-
-| Senior Engineer Practice | Years to Master | Agent Skills Equivalent |
-|--------------------------|-----------------|------------------------|
+Agent Skills effectively compresses the learning curve of senior engineering practices: | Senior Engineer Practice | Years to Master | Agent Skills Equivalent |
+|
+---
+|
+---
+|
+---
+|
 | Writing comprehensive specs | 2-3 years | `/spec` command |
 | Breaking down complex projects | 1-2 years | `/plan` command |
 | Test-driven development discipline | 2-4 years | `/test` + skill |
@@ -336,24 +347,21 @@ This compression means junior developers using Agent Skills can produce output q
 
 Agent Skills is the missing link between "AI can code" and "AI can ship production software." By encoding senior engineering judgment into structured, verifiable workflows, Addy Osmani has created a force multiplier for any development team. Whether you are a solo founder, a startup engineer, or an enterprise lead, these skills will make your AI agents write code you actually want to deploy.
 
----
 
+---
 *Which Agent Skill has improved your workflow the most? Let us know in the comments.*
 
----
 
+---
 ## Recommended Infrastructure for Self-Hosting
 
-If you want to run this stack reliably 24/7, infrastructure choice matters:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+If you want to run this stack reliably 24/7, infrastructure choice matters: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,15 +1,11 @@
+---
 好的，这是为您翻译的英文技术文章，遵循了您提供的所有规则：
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/superpowers" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/superpowers" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/superpowers" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/superpowers" />
-
 ---
 title: 'Superpowers: 200000+ Stars -- Agentic Skills Framework &...
 description: '探索 Superpowers，这个拥有 200k+ star 的 agentic skills 框架。可在几分钟内设置，提供基准测试，并已为生产环境做好准备。与 LangChain, LlamaIndex 和 AutoGen 进行比较。'
 date: 2026-05-23
-lastmod:  2026-05-23slug: 'superpowers'
+lastmod: 2026-05-23
+slug: 'superpowers'
 category: 'llm-frameworks'
 tags: ['agentic-ai', 'llm-frameworks', 'shell-scripting', 'software-development', 'ai-agents', 'developer-tools']
 github_repo: 'https://github.com/obra/superpowers'
@@ -17,9 +13,8 @@ stars: 204767
 maintainer: 'obra'
 license: MIT
 featureImage: ''
-lang: zh
+
 ---
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -51,7 +46,6 @@ lang: zh
 </script>
 
 
-<!-- canonical: https://dibi8.com/zh/tools/superpowers/ -->
 
 ## 引言
 
@@ -89,15 +83,33 @@ Superpowers 的工作原理是将“技能”组合成能够执行任务的“�
 让我们以一个简单的交互为例。想象一个代理的任务是查找给定城市的天气。
 
 ```ascii
-+-------------------+      +-------------------+      +-------------------+
++
+---
++      +
+---
++      +
+---
++
 |                   |      |                   |      |                   |
-|      Agent        |----->|    Skill: Get     |----->|   External API    |
+|      Agent        |
+---
+>|    Skill: Get     |
+---
+>|   External API    |
 | (Orchestrates)    |      |      Weather      |      | (Weather Service) |
 |                   |      |                   |      |                   |
-+-------------------+      +-------------------+      +-------------------+
++
+---
++      +
+---
++      +
+---
++
           ^                                                    |
           |                                                    |
-          +----------------------------------------------------+
+          +
+---
++
                      (API Response)
 
 ```
@@ -536,8 +548,7 @@ echo "result=$RESULT"
 
 ```bash
 # 更新代理进度状态的技能
-update_agent_state.sh:
-#!/bin/bash
+update_agent_state.sh: #!/bin/bash
 set -e
 STATE_FILE="$HOME/.superpowers/agent_state/my_agent.json"
 KEY="$1"
@@ -555,15 +566,13 @@ fi
 
 # 简单的字符串替换以简化；使用 jq 进行真正的 JSON 操作
 NEW_STATE=$(echo "$CURRENT_STATE" | sed "s/\"$KEY\": \".*?\"/\"$KEY\": \"$VALUE\"/") # 非常基础，假设是字符串值
-# 对于正确的 JSON:
-# NEW_STATE=$(echo "$CURRENT_STATE" | jq --arg k "$KEY" --arg v "$VALUE" '."\($k)" = $v')
+# 对于正确的 JSON: # NEW_STATE=$(echo "$CURRENT_STATE" | jq --arg k "$KEY" --arg v "$VALUE" '."\($k)" = $v')
 
 echo "$NEW_STATE" > "$STATE_FILE"
 echo "state_updated=true"
 
 # 读取代理进度状态的技能
-read_agent_state.sh:
-#!/bin/bash
+read_agent_state.sh: #!/bin/bash
 set -e
 STATE_FILE="$HOME/.superpowers/agent_state/my_agent.json"
 
@@ -625,7 +634,7 @@ log_with_timestamp "Skill my_skill.sh finished with exit code $EXIT_CODE"
 Superpowers 在一个拥挤的 LLM 框架领域运作。以下是截至 2026 年 5 月，它与一些知名替代方案的比较：
 
 | 特性              | Superpowers                               | LangChain                                  | LlamaIndex                                | AutoGen                                    |
-| :---------------- | :---------------------------------------- | :----------------------------------------- | :---------------------------------------- | :----------------------------------------- |
+| :--- | :--- | :--- | :--- | :--- |
 | **主要语言**      | Shell                                     | Python                                     | Python                                    | Python                                     |
 | **核心抽象**      | Skills, Agents, Methodology               | Chains, Agents, Tools, Memory, Retrievers  | Data Indexing, Querying, Agents           | Multi-Agent Conversation Framework         |
 | **易于设置**      | 非常高（5 分钟潜力）                      | 中等（Python 环境，依赖项）                | 中等（Python 环境，依赖项）                | 中等（Python 环境，依赖项）                |
@@ -760,3 +769,5 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
 
+
+---

@@ -1,19 +1,12 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/codegraph-pre-indexed-code-knowledge-graph-ai-agents" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/codegraph-pre-indexed-code-knowledge-graph-ai-agents" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/codegraph-pre-indexed-code-knowledge-graph-ai-agents" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/codegraph-pre-indexed-code-knowledge-graph-ai-agents" />
 title: "CodeGraph: 从代码库构建知识图谱"
 slug: "codegraph-pre-indexed-code-knowledge-graph-ai-agents"
 category: "dev-utils"
 publish_date: "2026-06-10"
-lastmod:  "2026-06-10"author: "DIBI8"
+lastmod: "2026-06-10"author: "DIBI8"
 tags: ["kotlin", "graph", "code-analysis", "devtools", "knowledge-graph"]
 featureImage: "https://avatars.githubusercontent.com/u/11434"
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/codegraph-pre-indexed-code-knowledge-graph-ai-agents/ -->
 
 # CodeGraph：从代码库构建知识图谱
 
@@ -238,7 +231,19 @@ codegraph query \
 ## 对比：CodeGraph vs. 其他工具
 
 | 功能 | CodeGraph | Sourcetrail | IDE 索引 | jOOQ Codegen | ArchUnit |
-|---------|-----------|-------------|-----------|-------------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 图可视化 | 是 | 是 | 否 | 否 | 否 |
 | 查询语言 | 内置 DSL | 手动过滤 | 搜索栏 | 不适用 | Java DSL |
 | 增量更新 | 是 | 否 | 是 | 不适用 | 不适用 |
@@ -293,7 +298,15 @@ fun analyzeGraphQLServer() {
 ## 对比：CodeGraph vs. 传统代码审查
 
 | 方面 | CodeGraph | 手动代码审查 | 代码搜索（grep/ripgrep） |
-|--------|-----------|-------------------|---------------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 关系理解 | 完整图、传递依赖 | 部分，依赖经验 | 基于文本，无语义上下文 |
 | 查找连接所需时间 | 秒 | 分钟到小时 | 秒但不完整 |
 | 准确性 | 100%（语义级） | 可能出现人为错误 | 仅语法，遗漏语义 |
@@ -310,19 +323,13 @@ CodeGraph 无缝集成到 CI/CD 流水线中，自动执行架构规则：
 ```yaml
 # .github/workflows/codegraph.yml
 name: CodeGraph 分析
-on:
-  pull_request:
-    branches: [main]
+on: pull_request: branches: [main]
 
-jobs:
-  analyze:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: analyze: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - name: 配置 JDK
         uses: actions/setup-java@v4
-        with:
-          java-version: '17'
+        with: java-version: '17'
           distribution: 'temurin'
       - name: 生成 Code 图
         run: |
@@ -333,8 +340,7 @@ jobs:
       - name: 导出图报告
         if: always()
         uses: actions/upload-artifact@v4
-        with:
-          name: codegraph-report
+        with: name: codegraph-report
           path: build/codegraph/
 ```
 
@@ -420,12 +426,11 @@ IDE 工具提供针对当前打开文件的即时分析。CodeGraph 分析整个
 - DigitalOcean：在 DigitalOcean 上部署你的项目。注册链接：https://m.do.co/c/eca87ac14ee0
 - HTStack：管理你的云基础设施。加入链接：https://my.htstack.com/aff.php?aff=27187
 
----
 
+---
 DIBI8 是你探索最佳开源工具、AI 创新和开发者资源的门户。订阅我们的 Telegram 频道，获取科技领域最具影响力项目的每日更新。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -453,25 +458,20 @@ DIBI8 是你探索最佳开源工具、AI 创新和开发者资源的门户。�
 
 ## Why This Matters
 
-Understanding codegraph: 从代码库构建知识图谱 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding codegraph: 从代码库构建知识图谱 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -492,8 +492,8 @@ CodeGraph: 从代码库构建知识图谱 represents an important step forward i
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -537,7 +537,17 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

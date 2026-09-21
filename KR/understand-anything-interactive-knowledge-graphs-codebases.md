@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/understand-anything-interactive-knowledge-graphs-codebases" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/understand-anything-interactive-knowledge-graphs-codebases" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/understand-anything-interactive-knowledge-graphs-codebases" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/understand-anything-interactive-knowledge-graphs-codebases" />
 title: "언더스탠드-에니씽: 코드베이스를 위한 상호작용 지식 그래프 — 60K+ 스타 2026"
 description: "Understand-Anything은 모든 코드베이스를 탐색하고 검색하며 쿼리할 수 있는 인터랙티브 지식 그래프로 바꿉니다. Claude Code, Codex, Cursor, Copilot, Gemini CLI와 함께 작동합니다. GitHub 스타 60,339개."
 date: 2026-06-15
-lastmod:  2026-06-15slug: understand-anything-interactive-knowledge-graphs-codebases
+lastmod: 2026-06-15
+slug: understand-anything-interactive-knowledge-graphs-codebases
 category: ai-tools
 tags: ['understand-anything', 'knowledge-graph', 'codebase-analysis', 'claude-code', 'codex', 'cursor', 'AI-agents', 'code-visualization', 'semantic-search']
 github_repo: "https://github.com/Egonex-AI/Understand-Anything"
@@ -15,9 +11,6 @@ license: MIT
 lang: kr
 featureImage: /images/articles/egonex-understand-anything-interactive-knowledge-graphs-from.jpg
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/understand-anything-interactive-knowledge-graphs-codebases/ -->
-
 
 ## Introduction
 
@@ -51,9 +44,7 @@ docker run -v $(pwd):/code ghcr.io/egonex-ai/understand-anything:latest /code
 
 ## How Understand-Anything Works
 
-파이프라인에는 세 단계가 있습니다: 구문 분석, 그래프 구성, 그리고 인덱싱:
-
-```
+파이프라인에는 세 단계가 있습니다: 구문 분석, 그래프 구성, 그리고 인덱싱: ```
 Source Code (all languages)
         │
         ▼
@@ -64,8 +55,7 @@ Source Code (all languages)
          │
          ▼
 ┌─────────────────┐
-│  Graph Builder   │  Creates nodes + edges:
-│                  │  Nodes: files, classes, funcs
+│  Graph Builder   │  Creates nodes + edges: │                  │  Nodes: files, classes, funcs
 │                  │  Edges: calls, imports, extends
 └────────┬────────┘
          │
@@ -212,14 +202,11 @@ npx @egonex/vscode-extension install
 
 ### Use Case: Onboarding New Developers
 
-15명의 개발자로 구성된 팀이 50,000줄의 TypeScript 프로젝트에 합류했습니다. Understand-Anything 사용 전에는 코드 읽기에 2주가 걸렸습니다. 사용 후:
-
-```bash
+15명의 개발자로 구성된 팀이 50,000줄의 TypeScript 프로젝트에 합류했습니다. Understand-Anything 사용 전에는 코드 읽기에 2주가 걸렸습니다. 사용 후: ```bash
 # Generate onboarding graph
 understand-anything analyze ./src --onboarding
 
-# Outputs:
-# - Architecture overview (HLD + LLD)
+# Outputs: # - Architecture overview (HLD + LLD)
 # - Key entry points
 # - Module dependency map
 # - Common patterns and anti-patterns
@@ -284,11 +271,8 @@ understand-anything gql "cycle where type == 'import'"
 name: Knowledge Graph CI
 on: [pull_request]
 
-작업:
-  분석:
-    실행환경: ubuntu-latest
-    단계:
-      - 사용: actions/checkout@v4
+작업: 분석: 실행환경: ubuntu-latest
+    단계: - 사용: actions/checkout@v4
       - 이름: 지식 그래프 빌드
         실행: |
           npx understand-anything analyze ./src --format ci
@@ -299,8 +283,7 @@ on: [pull_request]
       - 이름: 위반 사항 업로드
         조건: 실패 시
         사용: actions/upload-artifact@v4
-        입력:
-          이름: graph-violations
+        입력: 이름: graph-violations
           경로: graph-violations.json
 
 ### Performance Tuning
@@ -356,9 +339,7 @@ Understand-Anything은 인터랙티브 시각화, 자연어 질의, 광범위한
 
 ## Limitations / Honest Assessment
 
-Understand-Anything는 강력하지만 솔직한 한계가 있습니다:
-
-1. **생성된 코드는 분석되지 않습니다.** 동적 코드(eval, exec, 런타임 생성 클래스)는 그래프에 나타나지 않습니다. 이것은 정적 분석의 근본적인 한계이며, 아무 도구도 이를 완벽하게 해결하지 못합니다.
+Understand-Anything는 강력하지만 솔직한 한계가 있습니다: 1. **생성된 코드는 분석되지 않습니다.** 동적 코드(eval, exec, 런타임 생성 클래스)는 그래프에 나타나지 않습니다. 이것은 정적 분석의 근본적인 한계이며, 아무 도구도 이를 완벽하게 해결하지 못합니다.
 
 2. **서드파티 라이브러리는 별도의 분석이 필요합니다.** 그래프는 코드베이스에 초점을 맞춥니다. 의존성을 포함하려면 `node_modules`, `vendor/` 또는 그에 상응하는 것을 별도로 분석해야 합니다.
 
@@ -418,8 +399,7 @@ AI 코딩 도구에 대해 더 알고 싶다면, [Claude Code 숙련](dibi8-clau
 
 ---
 
-**출처 및 추가 자료**:
-- 공식 문서: https://github.com/Egonex-AI/Understand-Anything
+**출처 및 추가 자료**: - 공식 문서: https://github.com/Egonex-AI/Understand-Anything
 - GitHub 저장소: https://github.com/Egonex-AI/Understand-Anything
 - 실시간 데모: https://egonex.ai/understand-anything/demo
 - 커뮤니티 토론: https://github.com/Egonex-AI/Understand-Anything/discussions
@@ -432,7 +412,6 @@ AI 코딩 도구에 대해 더 알고 싶다면, [Claude Code 숙련](dibi8-clau
 - Proxy for web scraping: [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

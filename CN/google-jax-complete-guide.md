@@ -5,10 +5,7 @@ category: data-science
 tags: ['jax', 'google', 'machine-learning', 'automatic-differentiation', 'jit-compilation', 'neural-networks']
 slug: google-jax-complete-guide
 date: 2026-07-17 00:00:00+00:00
-lastmod:  2026-07-17 00:00:00+00:00featureImage: /images/articles/google-jax-ml-framework.jpg
----
-
-<!-- canonical: https://dibi8.com/cn/tools/google-jax-complete-guide/ -->
+lastmod: 2026-07-17 00:00:00+00:00featureImage: /images/articles/google-jax-ml-framework.jpg---
 
 ## TL;DR
 
@@ -31,7 +28,15 @@ JAX is a Python library that combines NumPy-like array operations with automatic
 ### How JAX Differs from PyTorch and TensorFlow
 
 | Feature | JAX | PyTorch | TensorFlow |
-|---------|-----|---------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Autodiff | ✅ | ✅ | ✅ |
 | JIT Compile | ✅ | Limited | ✅ |
 | Vectorization | ✅ (vmap) | ❌ | Partial |
@@ -83,9 +88,7 @@ CMD ["python", "train.py"]
 
 ### JAX Arrays vs NumPy Arrays
 
-JAX arrays are immutable and require explicit state management:
-
-```python
+JAX arrays are immutable and require explicit state management: ```python
 import jax.numpy as jnp
 
 # Create JAX array
@@ -101,9 +104,7 @@ regular_array = np.asarray(x)
 
 ### Random Number Generation
 
-JAX uses explicit random state instead of global RNG:
-
-```python
+JAX uses explicit random state instead of global RNG: ```python
 import jax.random as random
 
 key = random.PRNGKey(42)
@@ -121,14 +122,11 @@ b = random.normal(subkey2, (5,))
 
 ### Computing Gradients
 
-JAX provides exact gradient computation through `grad()`:
-
-```python
+JAX provides exact gradient computation through `grad()`: ```python
 import jax
 import jax.numpy as jnp
 
-def loss_function(params, x, y):
-    predictions = jnp.dot(params, x)
+def loss_function(params, x, y): predictions = jnp.dot(params, x)
     return jnp.mean((predictions - y) ** 2)
 
 # Compute gradient
@@ -138,15 +136,11 @@ grads = gradient_fn(params, x_data, y_data)
 
 ### Higher-Order Derivatives
 
-Compute second derivatives and beyond:
-
-```python
-def hessian_matrix(fn, x):
-    """Compute Hessian matrix using jax.hessian"""
+Compute second derivatives and beyond: ```python
+def hessian_matrix(fn, x): """Compute Hessian matrix using jax.hessian"""
     return jax.hessian(fn)(x)
 
-def laplacian(fn, x):
-    """Compute Laplacian (sum of second derivatives)"""
+def laplacian(fn, x): """Compute Laplacian (sum of second derivatives)"""
     hess = jax.hessian(fn)(x)
     return jnp.trace(hess)
 ```
@@ -154,12 +148,10 @@ def laplacian(fn, x):
 ### Jacobians and Vector-Jacobian Products
 
 ```python
-def compute_jacobian(fn, x):
-    """Compute full Jacobian matrix"""
+def compute_jacobian(fn, x): """Compute full Jacobian matrix"""
     return jax.jacfwd(fn)(x)
 
-def vjp_example(fn, x):
-    """Vector-Jacobian Product for memory efficiency"""
+def vjp_example(fn, x): """Vector-Jacobian Product for memory efficiency"""
     v = jnp.ones_like(x)
     primals, vjps = jax.vjp(fn, x)
     return primals, vjps @ v
@@ -169,14 +161,10 @@ def vjp_example(fn, x):
 
 ### Basic Compilation
 
-Accelerate functions with `jit()`:
-
-```python
+Accelerate functions with `jit()`: ```python
 @jax.jit
-def forward_pass(params, x):
-    """Optimized forward pass"""
-    for layer in params:
-        x = jnp.dot(layer['W'], x) + layer['b']
+def forward_pass(params, x): """Optimized forward pass"""
+    for layer in params: x = jnp.dot(layer['W'], x) + layer['b']
         x = jax.nn.relu(x)
     return x
 
@@ -188,24 +176,19 @@ result = forward_pass(params, input_data)
 
 ```python
 @jax.jit(device='gpu:0')
-def gpu_computation(x):
-    return x ** 2
+def gpu_computation(x): return x ** 2
 
 # Compile for TPU
 @jax.jit(platform='tpu')
-def tpu_training_step(params, batch):
-    loss, grads = compute_loss_and_grads(params, batch)
+def tpu_training_step(params, batch): loss, grads = compute_loss_and_grads(params, batch)
     return params - 0.01 * grads
 ```
 
 ### Dynamic Shapes
 
-Handle variable-sized inputs:
-
-```python
+Handle variable-sized inputs: ```python
 @jax.jit
-def flexible_model(x, y):
-    # x can be any shape
+def flexible_model(x, y): # x can be any shape
     return jnp.sum(x * y)
 
 # Works with different shapes
@@ -217,11 +200,8 @@ result2 = flexible_model(jnp.ones((100,)), jnp.ones((100,)))
 
 ### Batch Processing
 
-Automatically vectorize functions over batch dimensions:
-
-```python
-def single_sample_forward(params, x):
-    """Forward pass for one sample"""
+Automatically vectorize functions over batch dimensions: ```python
+def single_sample_forward(params, x): """Forward pass for one sample"""
     return jnp.dot(params['W'], x) + params['b']
 
 # Vectorize over batch dimension
@@ -234,8 +214,7 @@ batch_results = batched_forward(params, batch_inputs)
 ### Parallel Gradient Computation
 
 ```python
-def compute_single_gradient(params, x, y):
-    """Gradient for single example"""
+def compute_single_gradient(params, x, y): """Gradient for single example"""
     return jax.grad(lambda p: loss_fn(p, x, y))(params)
 
 # Vectorize over batch
@@ -245,13 +224,10 @@ gradients = batch_gradients(params, batch_x, batch_y)
 
 ### Nested Vectorization
 
-Combine multiple transformations:
-
-```python
+Combine multiple transformations: ```python
 @jax.jit
 @jax.vmap(in_axes=(None, 0, 0))
-def train_step(params, batch_x, batch_y):
-    """Single training step, vectorized over batch"""
+def train_step(params, batch_x, batch_y): """Single training step, vectorized over batch"""
     grads = jax.grad(loss_fn)(params, batch_x, batch_y)
     return params - 0.01 * grads
 ```
@@ -260,18 +236,14 @@ def train_step(params, batch_x, batch_y):
 
 ### Flax: JAX's Neural Network Library
 
-Flax provides high-level abstractions for building neural networks:
-
-```python
+Flax provides high-level abstractions for building neural networks: ```python
 import flax.linen as nn
 import jax
 
-class SimpleMLP(nn.Module):
-    hidden_dim: int
+class SimpleMLP(nn.Module): hidden_dim: int
     
     @nn.compact
-    def __call__(self, x):
-        x = nn.Dense(self.hidden_dim)(x)
+    def __call__(self, x): x = nn.Dense(self.hidden_dim)(x)
         x = nn.relu(x)
         x = nn.Dense(10)(x)
         return x
@@ -287,16 +259,12 @@ output = model.apply(params, test_input)
 
 ### Custom Layers
 
-Create custom neural network layers:
-
-```python
-class AttentionLayer(nn.Module):
-    head_dim: int
+Create custom neural network layers: ```python
+class AttentionLayer(nn.Module): head_dim: int
     num_heads: int
     
     @nn.compact
-    def __call__(self, x):
-        batch_size, seq_len, _ = x.shape
+    def __call__(self, x): batch_size, seq_len, _ = x.shape
         
         # Project to Q, K, V
         q = nn.Dense(self.num_heads * self.head_dim)(x)
@@ -318,15 +286,10 @@ class AttentionLayer(nn.Module):
 
 ### Training Loop
 
-Implement a complete training loop:
-
-```python
-def train_epoch(model, optimizer, train_dataset, key):
-    """Train for one epoch"""
+Implement a complete training loop: ```python
+def train_epoch(model, optimizer, train_dataset, key): """Train for one epoch"""
     
-    def step(params, batch):
-        def loss_fn(p):
-            logits = model.apply(p, batch['inputs'])
+    def step(params, batch): def loss_fn(p): logits = model.apply(p, batch['inputs'])
             return jnp.mean(jax.nn.softmax_cross_entropy_with_logits(
                 logits, batch['targets']
             ))
@@ -337,8 +300,7 @@ def train_epoch(model, optimizer, train_dataset, key):
         return new_params, loss_fn(params)
     
     # Vectorized training
-    for batch in train_dataset:
-        key, subkey = random.split(key)
+    for batch in train_dataset: key, subkey = random.split(key)
         model.params, loss = step(model.params, batch)
     
     return model.params, loss
@@ -348,11 +310,8 @@ def train_epoch(model, optimizer, train_dataset, key):
 
 ### Pmap for Multi-GPU Training
 
-Distribute computations across multiple devices:
-
-```python
-def pmap_train_step(params, batch):
-    """Multi-GPU training step"""
+Distribute computations across multiple devices: ```python
+def pmap_train_step(params, batch): """Multi-GPU training step"""
     grads = jax.grad(loss_fn)(params)
     
     # Average gradients across GPUs
@@ -372,11 +331,8 @@ pmapped_step = jax.pmap(
 
 ### Scan for Sequential Operations
 
-Efficiently handle sequences:
-
-```python
-def lstm_cell(carry, x_t):
-    """Single LSTM cell"""
+Efficiently handle sequences: ```python
+def lstm_cell(carry, x_t): """Single LSTM cell"""
     c, h = carry
     gates = jnp.sigmoid(jnp.dot(x_t, W) + jnp.dot(h, U) + b)
     c_new = c * gates[0] + jnp.tanh(gates[1]) * gates[2]
@@ -389,11 +345,8 @@ def lstm_cell(carry, x_t):
 
 ### Custom Transforms
 
-Create your own transformations:
-
-```python
-def my_transform(fn, x):
-    """Custom transformation combining multiple JAX features"""
+Create your own transformations: ```python
+def my_transform(fn, x): """Custom transformation combining multiple JAX features"""
     # JIT compile
     compiled_fn = jax.jit(fn)
     
@@ -408,25 +361,19 @@ def my_transform(fn, x):
 
 ### Exporting Models
 
-Save and load trained models:
-
-```python
+Save and load trained models: ```python
 import pickle
 
 # Save parameters
-with open('model_params.pkl', 'wb') as f:
-    pickle.dump(params, f)
+with open('model_params.pkl', 'wb') as f: pickle.dump(params, f)
 
 # Load parameters
-with open('model_params.pkl', 'rb') as f:
-    loaded_params = pickle.load(f)
+with open('model_params.pkl', 'rb') as f: loaded_params = pickle.load(f)
 ```
 
 ### Serving with Flask
 
-Deploy as REST API:
-
-```python
+Deploy as REST API: ```python
 from flask import Flask, request, jsonify
 import jax
 import jax.numpy as jnp
@@ -435,12 +382,10 @@ import pickle
 app = Flask(__name__)
 
 # Load model
-with open('trained_model.pkl', 'rb') as f:
-    model_params = pickle.load(f)
+with open('trained_model.pkl', 'rb') as f: model_params = pickle.load(f)
 
 @app.route('/predict', methods=['POST'])
-def predict():
-    data = request.json
+def predict(): data = request.json
     input_array = jnp.array(data['features'])
     
     prediction = model.apply(model_params, input_array)
@@ -450,40 +395,37 @@ def predict():
         'confidence': float(jnp.max(prediction))
     })
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8000)
+if __name__ == '__main__': app.run(host='0.0.0.0', port=8000)
 ```
 
 ### Kubernetes Deployment
 
-Scale inference across multiple pods:
-
-```yaml
+Scale inference across multiple pods: ```yaml
 apiVersion: apps/v1
 kind: Deployment
-metadata:
-  name: jax-service
-spec:
-  replicas: 4
-  selector:
-    matchLabels:
-      app: jax
-  template:
-    spec:
-      containers:
-      - name: jax-api
+metadata: name: jax-service
+spec: replicas: 4
+  selector: matchLabels: app: jax
+  template: spec: containers: - name: jax-api
         image: jax-model:v1
-        resources:
-          limits:
-            nvidia.com/gpu: 1
-        ports:
-        - containerPort: 8000
+        resources: limits: nvidia.com/gpu: 1
+        ports: - containerPort: 8000
 ```
 
 ## Performance Comparison
 
 | Operation | NumPy | PyTorch | JAX (CPU) | JAX (GPU) |
-|-----------|-------|---------|-----------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Matrix Multiply | Baseline | 1.2x | 1.5x | 8x |
 | Gradient Computation | Manual | 1.0x | 1.8x | 10x |
 | JIT Compilation | N/A | Limited | 5x | 15x |
@@ -493,21 +435,17 @@ spec:
 
 #### Memory Management
 
-JAX's functional nature means memory is managed differently than PyTorch:
-
-```python
+JAX's functional nature means memory is managed differently than PyTorch: ```python
 import jax
 import jax.numpy as jnp
 
 # Use jnp.remat for memory-efficient training
 from jax import remat
 
-def train_step_with_remat(params, batch):
-    """Memory-efficient training step using checkpointing"""
+def train_step_with_remat(params, batch): """Memory-efficient training step using checkpointing"""
     
     @remat  # Checkpoint intermediate activations
-    def forward_fn(x):
-        hidden = jnp.dot(params['W1'], x)
+    def forward_fn(x): hidden = jnp.dot(params['W1'], x)
         hidden = jnp.relu(hidden)
         hidden = jnp.dot(params['W2'], hidden)
         return jnp.dot(params['W3'], hidden)
@@ -517,33 +455,26 @@ def train_step_with_remat(params, batch):
     return params, loss
 
 # Avoid creating unnecessary arrays
-def process_batch(batch):
-    """Process without intermediate copies"""
+def process_batch(batch): """Process without intermediate copies"""
     # Use in-place operations where possible
     result = jnp.empty_like(batch)
-    for i, data in enumerate(batch):
-        result = result.at[i].set(process_single(data))
+    for i, data in enumerate(batch): result = result.at[i].set(process_single(data))
     return result
 ```
 
 #### Performance Profiling
 
-Profile JAX code to identify bottlenecks:
-
-```python
+Profile JAX code to identify bottlenecks: ```python
 import jax.profiler
 import time
 
 # Profile a function
 @jax.jit
-def train_epoch(model, data):
-    for batch in data:
-        loss, grads = compute_loss_and_grads(model, batch)
+def train_epoch(model, data): for batch in data: loss, grads = compute_loss_and_grads(model, batch)
         model = apply_gradients(model, grads)
     return model
 
-with jax.profiler.profiling_context("profile_output"):
-    model = train_epoch(model, train_data)
+with jax.profiler.profiling_context("profile_output"): model = train_epoch(model, train_data)
 
 # Export profile for Chrome tracing
 jax.profiler.save_device_memory_profile("memory_profile.json")
@@ -552,7 +483,13 @@ jax.profiler.save_device_memory_profile("memory_profile.json")
 #### Common Pitfalls and Solutions
 
 | Issue | Cause | Solution |
-|-------|-------|----------|
+|
+---
+|
+---
+|
+---
+|
 | Slow first call | JIT compilation | Warm up with dummy input |
 | OOM errors | Large batch sizes | Reduce batch or use gradient accumulation |
 | NaN gradients | Numerical instability | Use stable operations (logsumexp) |
@@ -563,26 +500,19 @@ jax.profiler.save_device_memory_profile("memory_profile.json")
 
 #### Gradient Accumulation
 
-Train with larger effective batch sizes than GPU memory allows:
-
-```python
-def accumulate_gradients(model, batches, accumulation_steps=4):
-    """Accumulate gradients over multiple steps"""
+Train with larger effective batch sizes than GPU memory allows: ```python
+def accumulate_gradients(model, batches, accumulation_steps=4): """Accumulate gradients over multiple steps"""
     total_grads = None
     
-    for i, batch in enumerate(batches):
-        grads = jax.grad(loss_fn)(model.params, batch)
+    for i, batch in enumerate(batches): grads = jax.grad(loss_fn)(model.params, batch)
         
-        if total_grads is None:
-            total_grads = grads
-        else:
-            total_grads = jax.tree.map(
+        if total_grads is None: total_grads = grads
+        else: total_grads = jax.tree.map(
                 lambda a, b: a + b / accumulation_steps,
                 total_grads, grads
             )
         
-        if (i + 1) % accumulation_steps == 0:
-            model = apply_gradients(model, total_grads)
+        if (i + 1) % accumulation_steps == 0: model = apply_gradients(model, total_grads)
             total_grads = None
     
     return model
@@ -590,9 +520,7 @@ def accumulate_gradients(model, batches, accumulation_steps=4):
 
 #### Sharded Data Parallelism
 
-Distribute models across multiple devices:
-
-```python
+Distribute models across multiple devices: ```python
 from jax.sharding import Mesh, PartitionSpec
 from jax.experimental import shard_map
 
@@ -624,15 +552,11 @@ result = shard_map(
 
 ### Computer Vision with JAX
 
-Build and train vision models:
-
-```python
-class ResNetBlock(nn.Module):
-    features: int
+Build and train vision models: ```python
+class ResNetBlock(nn.Module): features: int
     
     @nn.compact
-    def __call__(self, x):
-        residual = x
+    def __call__(self, x): residual = x
         
         # First convolution
         x = nn.Conv(self.features, kernel_size=(3, 3))(x)
@@ -644,23 +568,18 @@ class ResNetBlock(nn.Module):
         x = nn.BatchNorm()(x)
         
         # Skip connection
-        if residual.shape != x.shape:
-            residual = nn.Conv(self.features, kernel_size=(1, 1))(residual)
+        if residual.shape != x.shape: residual = nn.Conv(self.features, kernel_size=(1, 1))(residual)
         
         return jax.nn.relu(residual + x)
 
-class ResNet(nn.Module):
-    stages: tuple = (2, 2, 2, 2)
+class ResNet(nn.Module): stages: tuple = (2, 2, 2, 2)
     features: tuple = (64, 128, 256, 512)
     
     @nn.compact
-    def __call__(self, x):
-        x = nn.Conv(64, kernel_size=(7, 7), strides=2)(x)
+    def __call__(self, x): x = nn.Conv(64, kernel_size=(7, 7), strides=2)(x)
         x = nn.MaxPool((3, 3), strides=2, padding='SAME')(x)
         
-        for stage, features in zip(self.stages, self.features):
-            for _ in range(stage):
-                x = ResNetBlock(features)(x)
+        for stage, features in zip(self.stages, self.features): for _ in range(stage): x = ResNetBlock(features)(x)
         
         x = x.mean(axis=(1, 2))
         return nn.Dense(1000)(x)
@@ -668,14 +587,10 @@ class ResNet(nn.Module):
 
 ### Reinforcement Learning with JAX
 
-Implement policy gradient methods:
-
-```python
-def policy_gradient_step(policy_params, env_state, action, reward, next_state):
-    """Single PG training step"""
+Implement policy gradient methods: ```python
+def policy_gradient_step(policy_params, env_state, action, reward, next_state): """Single PG training step"""
     
-    def loss_fn(params):
-        logits = policy.apply(params, env_state)
+    def loss_fn(params): logits = policy.apply(params, env_state)
         probs = jax.nn.softmax(logits)
         log_prob = jnp.log(probs[action] + 1e-8)
         return -log_prob * reward
@@ -689,16 +604,12 @@ def policy_gradient_step(policy_params, env_state, action, reward, next_state):
 
 ### Time Series Forecasting
 
-Build forecasting models with JAX:
-
-```python
-class LSTMForecaster(nn.Module):
-    hidden_dim: int
+Build forecasting models with JAX: ```python
+class LSTMForecaster(nn.Module): hidden_dim: int
     forecast_horizon: int
     
     @nn.compact
-    def __call__(self, x):
-        """x shape: (batch, seq_len, features)"""
+    def __call__(self, x): """x shape: (batch, seq_len, features)"""
         lstm = nn.LSTM(self.hidden_dim)
         
         # Process sequence
@@ -706,8 +617,7 @@ class LSTMForecaster(nn.Module):
         
         # Forecast horizon steps
         forecasts = []
-        for _ in range(self.forecast_horizon):
-            last_output = outputs[:, -1:, :]
+        for _ in range(self.forecast_horizon): last_output = outputs[:, -1:, :]
             forecast, (h, c) = lstm(last_output, (h, c))
             forecasts.append(forecast)
         
@@ -717,7 +627,19 @@ class LSTMForecaster(nn.Module):
 ## Comparison with Alternatives
 
 | Framework | Autodiff | JIT | Vectorization | TPU | Ecosystem |
-|-----------|----------|-----|---------------|-----|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | JAX | ✅ | ✅ | ✅ (vmap) | Native | Growing |
 | PyTorch | ✅ | Limited | ❌ | Third-party | Large |
 | TensorFlow | ✅ | ✅ | Partial | Third-party | Large |
@@ -807,7 +729,6 @@ Yes, JAX is excellent for RL due to its vectorization capabilities. Libraries li
 Build high-performance ML systems with JAX. [Get started](https://dibi8.com/auth/) with our tutorials and production deployment guides.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -833,8 +754,8 @@ Build high-performance ML systems with JAX. [Get started](https://dibi8.com/auth
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [ray-distributed-ai-framework-complete-guide](google-jax-complete-guide)
@@ -843,6 +764,6 @@ Build high-performance ML systems with JAX. [Get started](https://dibi8.com/auth
 - [cleanlab-11k-star-ai-data-cleaning](google-jax-complete-guide)
 - [temporal-ai-workflow-orchestration](google-jax-complete-guide)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

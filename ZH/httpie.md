@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/httpie" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/httpie" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/httpie" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/httpie" />
 title: 'HTTPie: 38,200 GitHub Stars — 现代 CLI HTTP 客户端对比 curl、wge...
 description: 'HTTPie 是 API 时代的现代命令行 HTTP 客户端，支持 JSON、语法高亮和会话管理。兼容 Python、pip、Homebrew、Docker。涵盖安装、基准测试对比、生产加固和常见问题解答。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [httpie, 命令行, http客户端, api测试, curl替代, json, 终端, 开发工具]
-aliases:
-- /zh/posts/httpie/
+aliases: - /zh/posts/httpie/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/httpie/ -->
 
 {{</* resource-info */>}}
 
@@ -54,7 +46,11 @@ HTTPie 是一款用 Python 编写的开源命令行 HTTP 客户端，目标是�
 核心参数一览：
 
 | 属性 | 值 |
-|-----------|-------|
+|
+---
+|
+---
+|
 | **语言** | Python (3.7+) |
 | **许可证** | BSD-3-Clause |
 | **GitHub Stars** | 38,200+ |
@@ -280,11 +276,8 @@ name: API 健康检查
 
 on: [push, pull_request]
 
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: test: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - name: 安装 HTTPie
         run: pip install httpie
       - name: 测试 API 端点
@@ -318,7 +311,15 @@ jobs:
 在从本机传输 80GB 数据的吞吐测试中，HTTPie 的 Python/Requests 基础显示出与 curl 的 C/libcurl 实现之间的差距：
 
 | 工具 | 版本 | 时间 (80GB) | 吞吐率 |
-|------|---------|-------------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | curl | 7.51.0 | 25 秒 | 3,276 MB/s |
 | HTTPie | 0.9.8 | 153 秒 | 535 MB/s |
 
@@ -331,7 +332,15 @@ jobs:
 50 名开发者执行 10 项常见 API 操作的计时任务研究：
 
 | 操作 | HTTPie (平均) | curl (平均) | 节省时间 |
-|-----------|-------------|------------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | GET + 解析 JSON | 4.2s | 12.8s | 67% |
 | POST 带认证 | 6.1s | 18.3s | 67% |
 | 文件 + 表单上传 | 8.4s | 22.1s | 62% |
@@ -531,7 +540,17 @@ httpie cli check-updates
 ## 与替代方案对比
 
 | 功能 | HTTPie | curl | wget | Postman CLI (Newman) |
-|---------|--------|------|------|---------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **主要用途** | API 测试与调试 | 通用 HTTP/文件传输 | 文件下载 | 集合式 API 测试 |
 | **语言** | Python | C | C | JavaScript (Node.js) |
 | **JSON 支持** | 原生 — 自动序列化/格式化 | 手动 — 管道到 jq | 无 | 原生 |
@@ -684,7 +703,6 @@ HTTPie 凭借 38,200 个 GitHub Stars，通过解决一个特定问题赢得了�
 7. **CurliPie — curl 转 HTTPie 转换工具** — https://curlipie.com/
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -709,3 +727,4 @@ HTTPie 凭借 38,200 个 GitHub Stars，通过解决一个特定问题赢得了�
   }
 }
 </script>
+---

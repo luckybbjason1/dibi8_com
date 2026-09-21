@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/qdrant-vector-database-rust" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/qdrant-vector-database-rust" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/qdrant-vector-database-rust" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/qdrant-vector-database-rust" />
 title: 'Qdrant：基于Rust的向量数据库，以10ms延迟处理100万+向量 — 2026年自托管部署指南'
 description: '部署Qdrant向量数据库用于生产级相似度搜索。涵盖HNSW索引、负载过滤、多租户、Docker部署以及Python/Go/JS客户端的完整指南，附带真实基准测试。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: [qdrant, 向量数据库, rust, hnsw, 相似度搜索, docker, 自托管, ai]
-aliases:
-- /zh/posts/qdrant-vector-database-rust/
+aliases: - /zh/posts/qdrant-vector-database-rust/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/qdrant-vector-database-rust/ -->
 
 {{</* resource-info */>}}
 
@@ -122,26 +114,17 @@ curl http://localhost:6333
 ```yaml
 # docker-compose.yml
 version: "3.8"
-services:
-  qdrant:
-    image: qdrant/qdrant:v1.13.0
-    ports:
-      - "6333:6333"   # REST API
+services: qdrant: image: qdrant/qdrant:v1.13.0
+    ports: - "6333:6333"   # REST API
       - "6334:6334"   # gRPC API
-    volumes:
-      - qdrant_data:/qdrant/storage
-    environment:
-      - QDRANT__SERVICE__GRPC_PORT=6334
+    volumes: - qdrant_data:/qdrant/storage
+    environment: - QDRANT__SERVICE__GRPC_PORT=6334
       - QDRANT__STORAGE__SNAPSHOT_PATH=/qdrant/snapshots
-    ulimits:
-      nofile:
-        soft: 65536
+    ulimits: nofile: soft: 65536
         hard: 65536
     restart: unless-stopped
 
-volumes:
-  qdrant_data:
-```
+volumes: qdrant_data: ```
 
 部署：
 
@@ -168,22 +151,17 @@ brew install qdrant/tap/qdrant
 
 ```yaml
 # production.yaml
-storage:
-  storage_path: /qdrant/storage
+storage: storage_path: /qdrant/storage
   snapshots_path: /qdrant/snapshots
-  performance:
-    max_search_threads: 8
+  performance: max_search_threads: 8
     max_optimization_threads: 4
 
-service:
-  http_port: 6333
+service: http_port: 6333
   grpc_port: 6334
   max_request_size_mb: 32
 
-cluster:
-  enabled: false  # 分布式模式设为 true
-  p2p:
-    port: 6335
+cluster: enabled: false  # 分布式模式设为 true
+  p2p: port: 6335
 ```
 
 ## 核心操作：向量的CRUD
@@ -269,8 +247,7 @@ results = client.search(
     with_payload=True,
 )
 
-for point in results:
-    print(f"ID: {point.id}, 分数: {point.score:.4f}, 负载: {point.payload}")
+for point in results: print(f"ID: {point.id}, 分数: {point.score:.4f}, 负载: {point.payload}")
 ```
 
 ### 更新和删除
@@ -435,7 +412,17 @@ index = VectorStoreIndex.from_documents(documents, storage_context=storage_conte
 所有测试在 **4 vCPU / 8GB RAM DigitalOcean 云服务器**（$48/月）上运行 Qdrant v1.13.0：
 
 | 指标 | 10万向量 | 50万向量 | 100万向量 | 500万向量 |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **构建时间** (OpenAI 1536维) | 12秒 | 58秒 | 2分15秒 | 11分30秒 |
 | **P50 查询延迟** | 3毫秒 | 6毫秒 | 10毫秒 | 28毫秒 |
 | **P99 查询延迟** | 7毫秒 | 14毫秒 | 22毫秒 | 68毫秒 |
@@ -451,7 +438,13 @@ index = VectorStoreIndex.from_documents(documents, storage_context=storage_conte
 当过滤字段已建立索引时，添加负载过滤的开销可以忽略不计：
 
 | 查询类型 | 延迟 (100万向量) | 额外开销 |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | 纯向量搜索 | 10毫秒 | 基线 |
 | + 精确匹配过滤 | 11毫秒 | +10% |
 | + 范围过滤 | 12毫秒 | +20% |
@@ -499,28 +492,20 @@ curl -X PUT http://localhost:6333/collections/documents/index \
 ```yaml
 # docker-compose.cluster.yml
 version: "3.8"
-services:
-  qdrant-node1:
-    image: qdrant/qdrant:v1.13.0
-    ports:
-      - "6333:6333"
-    environment:
-      - QDRANT__CLUSTER__ENABLED=true
+services: qdrant-node1: image: qdrant/qdrant:v1.13.0
+    ports: - "6333:6333"
+    environment: - QDRANT__CLUSTER__ENABLED=true
       - QDRANT__CLUSTER__P2P__PORT=6335
       - QDRANT__CLUSTER__CONSENSUS__MAX_MESSAGE_QUEUE_SIZE=1000
     command: ./qdrant --uri http://qdrant-node1:6335
 
-  qdrant-node2:
-    image: qdrant/qdrant:v1.13.0
-    environment:
-      - QDRANT__CLUSTER__ENABLED=true
+  qdrant-node2: image: qdrant/qdrant:v1.13.0
+    environment: - QDRANT__CLUSTER__ENABLED=true
       - QDRANT__CLUSTER__P2P__PORT=6335
     command: ./qdrant --bootstrap http://qdrant-node1:6335 --uri http://qdrant-node2:6335
 
-  qdrant-node3:
-    image: qdrant/qdrant:v1.13.0
-    environment:
-      - QDRANT__CLUSTER__ENABLED=true
+  qdrant-node3: image: qdrant/qdrant:v1.13.0
+    environment: - QDRANT__CLUSTER__ENABLED=true
       - QDRANT__CLUSTER__P2P__PORT=6335
     command: ./qdrant --bootstrap http://qdrant-node1:6335 --uri http://qdrant-node3:6335
 ```
@@ -566,8 +551,7 @@ curl -X PUT http://localhost:6333/collections/documents_from_backup/snapshots/re
 from datetime import datetime
 import requests
 
-def create_snapshot(collection: str) -> str:
-    url = f"http://localhost:6333/collections/{collection}/snapshots"
+def create_snapshot(collection: str) -> str: url = f"http://localhost:6333/collections/{collection}/snapshots"
     resp = requests.post(url)
     result = resp.json()["result"]
     print(f"快照已创建: {result[name]}")
@@ -583,8 +567,7 @@ snapshot_name = create_snapshot("documents")
 
 ```yaml
 # config/production.yaml
-service:
-  api_key: "your-secret-api-key-32-chars-long!!"
+service: api_key: "your-secret-api-key-32-chars-long!!"
   enable_cors: false
   verify_https: true
 ```
@@ -610,8 +593,7 @@ client = QdrantClient(
 from qdrant_client.models import Filter, FieldCondition, MatchValue
 
 # 单集合，通过负载过滤实现租户隔离
-def search_for_tenant(query_vector, tenant_id: str, limit: int = 10):
-    return client.search(
+def search_for_tenant(query_vector, tenant_id: str, limit: int = 10): return client.search(
         collection_name="documents",
         query_vector=query_vector,
         query_filter=Filter(
@@ -637,8 +619,7 @@ Qdrant在 `:6333/metrics` 上暴露Prometheus兼容指标：
 # 抓取指标
 curl http://localhost:6333/metrics
 
-# 关键监控指标:
-# qdrant_collection_vectors — 每集合总向量数
+# 关键监控指标: # qdrant_collection_vectors — 每集合总向量数
 # qdrant_search_latency_ms — 搜索延迟直方图
 # qdrant_optimizers_segment_count — 段数量
 # qdrant_storage_size_bytes — 存储大小
@@ -646,10 +627,8 @@ curl http://localhost:6333/metrics
 
 ```yaml
 # prometheus.yml 抓取配置
-scrape_configs:
-  - job_name: "qdrant"
-    static_configs:
-      - targets: ["qdrant:6333"]
+scrape_configs: - job_name: "qdrant"
+    static_configs: - targets: ["qdrant:6333"]
     metrics_path: "/metrics"
     scrape_interval: 15s
 ```
@@ -672,7 +651,19 @@ docker run -p 6333:6333 \
 ## 与替代方案对比
 
 | 特性 | Qdrant | Pinecone | Weaviate | Chroma | Milvus |
-|---|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **许可证** | Apache-2.0 | 专有 | BSD-3 | Apache-2.0 | Apache-2.0 |
 | **自托管** | 免费 | 否（仅云端） | 免费 | 免费 | 免费 |
 | **编写语言** | Rust | 专有 (Go/Python) | Go | Python | Go/C++ |
@@ -801,14 +792,13 @@ Qdrant为你提供生产级向量搜索，无需供应商锁定或云账单。�
 7. Qdrant Cloud 定价 — https://qdrant.to/cloud
 8. "Rust for Data Infrastructure" — Qdrant Engineering Blog, 2024
 
----
 
+---
 *Affiliate 披露：本文包含 DigitalOcean、HTStack 和 虎网云 的 affiliate 链接。如果你通过这些链接购买服务，dibi8.com 可能会获得佣金，而你无需支付额外费用。所有推荐均基于真实的技术评估，而非 affiliate 可用性。查看我们的 [完整披露政策](https://dibi8.com/affiliate-disclosure) 了解详情。*
 
 *最后更新：2026-05-19。使用 Qdrant v1.13.0、qdrant-client 1.13.0、Python 3.12 测试。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -834,8 +824,8 @@ Qdrant为你提供生产级向量搜索，无需供应商锁定或云账单。�
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [12-factor-agents](qdrant-vector-database-rust)

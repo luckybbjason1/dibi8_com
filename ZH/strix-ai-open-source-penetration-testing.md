@@ -1,8 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/strix-ai-open-source-penetration-testing" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/strix-ai-open-source-penetration-testing" />
-lang: zh
 description: 'Strix AI is an open-source penetration testing framework powered by AI agents. Automate vulnerability discovery, exploit development, and security reporting with state-of-the-art AI.'
 date: 2026-07-03T09:00:00+09:00
 lastmod: 2026-07-03T09:00:00+09:00
@@ -12,14 +8,10 @@ category: dev-utils
 tags: ['security', 'penetration-testing', 'ai-agents', 'vulnerability-scanning', 'open-source']
 github_repo: 'https://github.com/usestrix/strix'
 license: 'GPL-3.0'
-tech_stack:
-  - Python
+tech_stack: - Python
   - TypeScript
   - Bash
-featureImage: /images/articles/vectorbt-thư-viện-python-backtesting-tốc.jpg
----
-
-<!-- canonical: https://dibi8.com/zh/tools/strix-ai-open-source-penetration-testing/ -->
+featureImage: /images/articles/vectorbt-thư-viện-python-backtesting-tốc.jpg---
 
 
 
@@ -106,29 +98,23 @@ strix scan --target https://api.example.com --profile api
 
 ```yaml
 # strix_config.yaml
-scanner:
-  max_depth: 5
+scanner: max_depth: 5
   concurrent_requests: 10
   timeout: 30
 <<<<<<< HEAD
   
-agents:
-  recon:
-    enabled: true
+agents: recon: enabled: true
     subdomain_bruteforce: true
     tech_detection: true
     
-  vuln_scan:
-    enabled: true
+  vuln_scan: enabled: true
     owasp_top10: true
     custom_rules: true
     
-  exploit:
-    enabled: true
+  exploit: enabled: true
     proof_of_concept: true
     
-  report:
-    executive_summary: true
+  report: executive_summary: true
     technical_details: true
     remediation_guide: true
 =======
@@ -215,22 +201,15 @@ print(f"低: {results.low_count}")
 Strix AI 使用分层代理架构，其中专用代理通过共享消息总线进行通信：
 
 ```python
-class AgentBus:
-    """Shared message bus for agent communication"""
-    def __init__(self):
-        self.topics = {}
+class AgentBus: """Shared message bus for agent communication"""
+    def __init__(self): self.topics = {}
         self.handlers = {}
 <<<<<<< HEAD
     
-    def subscribe(self, topic, handler):
-        if topic not in self.topics:
-            self.topics[topic] = []
+    def subscribe(self, topic, handler): if topic not in self.topics: self.topics[topic] = []
         self.topics[topic].append(handler)
     
-    def publish(self, topic, message):
-        if topic in self.topics:
-            for handler in self.topics[topic]:
-                handler(message)
+    def publish(self, topic, message): if topic in self.topics: for handler in self.topics[topic]: handler(message)
 =======
 
 def 订阅（自身，主题，处理程序）：
@@ -254,9 +233,7 @@ def 发布（自身、主题、消息）：
 ### 漏洞分析管道
 
 ```python
-class VulnAnalyzer:
-    def analyze(self, finding, context):
-        # Step 1: Classify vulnerability type
+class VulnAnalyzer: def analyze(self, finding, context): # Step 1: Classify vulnerability type
         vtype = self._classify(finding)
 <<<<<<< HEAD
         
@@ -314,27 +291,19 @@ class VulnAnalyzer:
 ### AI 驱动的误报过滤器
 
 ```python
-class FalsePositiveFilter:
-    def __init__(self, llm_client):
-        self.llm = llm_client
+class FalsePositiveFilter: def __init__(self, llm_client): self.llm = llm_client
 <<<<<<< HEAD
     
-    def filter(self, findings):
-        filtered = []
-        for finding in findings:
-            prompt = f"""
-            Analyze this security finding for false positive likelihood:
-            
-            Type: {finding.type}
+    def filter(self, findings): filtered = []
+        for finding in findings: prompt = f"""
+            Analyze this security finding for false positive likelihood: Type: {finding.type}
             Evidence: {finding.evidence}
             Context: {finding.context}
             
-            Rate false positive probability (0-100):
-            """
+            Rate false positive probability (0-100): """
             response = self.llm.generate(prompt)
             
-            if response.probability < 30:
-                filtered.append(finding)
+            if response.probability < 30: filtered.append(finding)
         
         return filtered
 ```
@@ -372,8 +341,7 @@ def过滤器（自我，发现）：
 
 ```yaml
 # custom-rules.yaml
-rules:
-description: "Detects exposed environment variables in responses" pattern: "(?i)(password|api_key|secret)\s*[:=]\s*[\w-]+" severity: high endpoints: - "/api/v1/config" - "/debug" ======='
+rules: description: "Detects exposed environment variables in responses" pattern: "(?i)(password|api_key|secret)\s*[:=]\s*[\w-]+" severity: high endpoints: - "/api/v1/config" - "/debug" ======='
 
 - 名称：《信息披露》
 description: "检测响应中暴露的环境变量"
@@ -422,27 +390,19 @@ strix scan --target wss: //ws.example.com --profile websocket --websocket-messag
 ```yaml
 # .github/workflows/strix-security.yml
 name: Security Scan
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-jobs:
-  security:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+on: push: branches: [main]
+  pull_request: branches: [main]
+jobs: security: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - name: Run Strix Security Scan
         uses: usestrix/strix-action@v2
-        with:
-          target: https://staging.example.com
+        with: target: https://staging.example.com
           profile: full
           fail-on: critical
           report-format: sarif
       - name: Upload SARIF to GitHub
         uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: strix-report.sarif
+        with: sarif_file: strix-report.sarif
 ```
 
 ## 报告和合规性
@@ -478,15 +438,17 @@ strix remediate --track --dashboard http://localhost: 9090
 ## 与替代方案的比较
 
 |特色 |人工智能 |打嗝套件 |内瑟斯 | OWASP ZAP |
-|--------
+|---
 
-|----------
+|-
+---
 
-|------------
+|---
 
-|--------
+|-
+---
 
-|------------
+|---
 
 |
 |人工智能分析|是的 |没有 |没有 |没有 |
@@ -563,8 +525,8 @@ Strix AI 的增长反映了对人工智能驱动的安全工具日益增长的�
 - [GitHub API — 星数验证](https://api.github.com/repos/usestrix/strix)
 - [Strix AI 自述文件](https://github.com/usestrix/strix/blob/main/README.md)
 
----
 
+---
 <<<<<<< HEAD
 *本文由Dibi8编辑团队独立研究撰写。我们可能会从附属链接中赚取佣金，但这并不影响我们的编辑独立性。*
 =======
@@ -572,7 +534,6 @@ Strix AI 的增长反映了对人工智能驱动的安全工具日益增长的�
 >>>>>>> 0f428019e6f21508f05fc402fc21585e618ed533
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -600,25 +561,20 @@ Strix AI 的增长反映了对人工智能驱动的安全工具日益增长的�
 
 ## Why This Matters
 
-Understanding strix ai：31k+明星开源渗透测试框架 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding strix ai：31k+明星开源渗透测试框架 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -639,8 +595,8 @@ Strix AI：31K+明星开源渗透测试框架 represents an important step forwa
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -661,7 +617,17 @@ For the latest updates and community discussions, join our Telegram channel: htt
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/plausible-analytics-privacy-google" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/plausible-analytics-privacy-google" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/plausible-analytics-privacy-google" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/plausible-analytics-privacy-google" />
 title: 'Plausible Analytics: Giải Pháp Phân Tích Ưu Tiên Quyền R...
 description: 'Hướng dẫn triển khai tự host đầy đủ cho Plausible Analytics. Ưu tiên quyền riêng tư, tuân thủ GDPR, script tracking <1KB. Nhanh hơn Google Analytics 45 lần. Benchmark thực tế và Docker deployment.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [plausible, analytics, 'quyền-riêng-tư', gdpr, 'thay-thế-google-analytics', 'tự-host', docker, elixir, nhẹ]
-aliases:
-- /vi/posts/plausible-analytics-privacy-google/
+aliases: - /vi/posts/plausible-analytics-privacy-google/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/plausible-analytics-privacy-google/ -->
 
 {{</* resource-info */>}}
 
@@ -76,9 +68,7 @@ Plausible tiếp cận theo cách hoàn toàn khác với phân tích truyền t
 
 ### Tại sao sử dụng ClickHouse cho lưu trữ sự kiện
 
-Plausible sử dụng **ClickHouse** làm cơ sở dữ liệu phân tích — cùng cơ sở dữ liệu cột mà Yandex và Cloudflare sử dụng. Lựa chọn này là có chủ đích:
-
-| Đặc điểm | PostgreSQL | ClickHouse | Tác động |
+Plausible sử dụng **ClickHouse** làm cơ sở dữ liệu phân tích — cùng cơ sở dữ liệu cột mà Yandex và Cloudflare sử dụng. Lựa chọn này là có chủ đích: | Đặc điểm | PostgreSQL | ClickHouse | Tác động |
 |----------|-----------|------------|---------|
 | Tốc độ ghi | ~20K dòng/giây | **1 triệu+ dòng/giây** | Xử lý đỉnh lưu lượng |
 | Tốc độ truy vấn tổng hợp | Vài giây | **Mili-giây** | Dashboard tải tức thờ |
@@ -97,9 +87,7 @@ Plausible sử dụng **ClickHouse** làm cơ sở dữ liệu phân tích — c
 ### Script 1KB: Nó thực sự làm gì
 
 ```html
-<!-- Script tracking Plausible chuẩn -->
-<script defer data-domain="yourdomain.com"
-  src="https://plausible.yourdomain.com/js/script.js"></script>
+</script>
 ```
 
 Script này chỉ làm đúng ba việc: (1) gửi URL trang hiện tại và referrer, (2) gửi kích thước viewport để phân loại desktop/mobile, và (3) lắng nghe sự kiện navigation SPA. Nó **không**: đặt cookie, sử dụng localStorage, tạo hash vân tay, hoặc thực thi request bên thứ ba. Kết quả là payload dưới 1KB khi gzip và thờ gian thực thi dưới 10ms trên mạng 4G.
@@ -165,8 +153,7 @@ docker compose up -d
 # Kiểm tra dịch vụ
 docker compose ps
 
-# Kết quả mong đợi:
-# NAME                    STATUS          PORTS
+# Kết quả mong đợi: # NAME                    STATUS          PORTS
 # plausible               Up 10 seconds   0.0.0.0:8000->8000/tcp
 # plausible_db            Up 10 seconds   5432/tcp
 # plausible_events_db     Up 10 seconds   8123/tcp
@@ -220,13 +207,9 @@ Truy cập `https://analytics.yourdomain.com`, đăng nhập, và thêm site đ�
 ### Thêm Tracking vào Website
 
 ```html
-<!-- Thêm vào <head> của website -->
-<script defer data-domain="yourdomain.com"
-  src="https://analytics.yourdomain.com/js/script.js"></script>
+</script>
 
-<!-- Cho SPA (React, Vue, Angular) — thêm trigger pageview -->
-<script defer data-domain="yourdomain.com"
-  src="https://analytics.yourdomain.com/js/script.pageview-props.js"></script>
+</script>
 ```
 
 ## Tích hợp với Frameworks, CMS và Build Tools
@@ -301,7 +284,7 @@ export default defineNuxtPlugin(() => {
 
 # Tùy chọn 2: Thủ công — thêm vào header.php của theme
 <?php if (!is_user_logged_in()): ?>
-<script defer data-domain="<?php echo $_SERVER[HTTP_HOST]; ?>"
+"
   src="https://analytics.yourdomain.com/js/script.js"></script>
 <?php endif; ?>
 ```
@@ -309,10 +292,8 @@ export default defineNuxtPlugin(() => {
 ### Static Site Generators (Hugo, Jekyll, Astro)
 
 ```html
-<!-- layouts/partials/analytics.html (Hugo) -->
 {{ if not hugo.IsServer }}
-<script defer data-domain="{{ .Site.Params.plausibleDomain }}"
-  src="{{ .Site.Params.plausibleHost }}/js/script.js"></script>
+</script>
 {{ end }}
 ```
 
@@ -411,9 +392,7 @@ plausible(Purchase, {
 
 ### Nghiên cứu Trường hợp: Tăng 50% Tốc độ Tải Trang Sau Khi Thay GA4
 
-Một công ty SaaS châu Âu với 200K khách truy cập/tháng đã thay Google Analytics bằng Plausible tự host vào tháng 11/2025. Kết quả sau 6 tháng:
-
-- **Điểm Lighthouse Performance**: 72 → **91** (+19 điểm)
+Một công ty SaaS châu Âu với 200K khách truy cập/tháng đã thay Google Analytics bằng Plausible tự host vào tháng 11/2025. Kết quả sau 6 tháng: - **Điểm Lighthouse Performance**: 72 → **91** (+19 điểm)
 - **Largest Contentful Paint**: 2.8s → **1.9s** (đã xóa script GA chặn render)
 - **Banner cookie consent**: Hoàn toàn loại bỏ (không còn cần thiết)
 - **Chi phí hosting phân tích**: $0 (GA) → **$12/tháng** (Plausible tự host)
@@ -439,9 +418,7 @@ SCRIPT_NAME=script.outbound-links.file-downloads.hash.js
 ```
 
 ```html
-<!-- Sử dụng script nâng cao -->
-<script defer data-domain="yourdomain.com"
-  src="https://analytics.yourdomain.com/js/script.outbound-links.file-downloads.js"></script>
+</script>
 ```
 
 ### Tích hợp API cho Dashboard Tùy chỉnh
@@ -451,8 +428,7 @@ SCRIPT_NAME=script.outbound-links.file-downloads.hash.js
 curl -X GET "https://analytics.yourdomain.com/api/v1/stats/aggregate?site_id=yourdomain.com&period=30d&metrics=visitors,pageviews,bounce_rate" \
   -H "Authorization: Bearer YOUR_API_KEY"
 
-# Response:
-# {
+# Response: # {
 #   "results": {
 #     "visitors": {"value": 45230},
 #     "pageviews": {"value": 128900},
@@ -486,8 +462,7 @@ response = requests.get(
 )
 
 data = response.json()
-for entry in data["results"]:
-    print(f"{entry[date]}: {entry[visitors]} visitors, {entry[pageviews]} pageviews")
+for entry in data["results"]: print(f"{entry[date]}: {entry[visitors]} visitors, {entry[pageviews]} pageviews")
 ```
 
 ### Chiến lược Sao lưu
@@ -524,34 +499,24 @@ find /backup/plausible -maxdepth 1 -type d -mtime +30 -exec rm -rf {} \;
 ```yaml
 # docker-compose.ha.yaml — ClickHouse đa node với replication
 version: '3.8'
-services:
-  plausible:
-    image: plausible/analytics:v3.0
-    deploy:
-      replicas: 2
-    environment:
-      - DATABASE_URL=postgres://postgres:postgres@plausible_db:5432/plausible_db
+services: plausible: image: plausible/analytics:v3.0
+    deploy: replicas: 2
+    environment: - DATABASE_URL=postgres://postgres:postgres@plausible_db:5432/plausible_db
       - CLICKHOUSE_DATABASE_URL=http://clickhouse-1:8123/plausible_events_db;http://clickhouse-2:8123/plausible_events_db
 
-  clickhouse-1:
-    image: clickhouse/clickhouse-server:24.3
-    volumes:
-      - clickhouse_data_1:/var/lib/clickhouse
+  clickhouse-1: image: clickhouse/clickhouse-server:24.3
+    volumes: - clickhouse_data_1:/var/lib/clickhouse
 
-  clickhouse-2:
-    image: clickhouse/clickhouse-server:24.3
-    volumes:
-      - clickhouse_data_2:/var/lib/clickhouse
+  clickhouse-2: image: clickhouse/clickhouse-server:24.3
+    volumes: - clickhouse_data_2:/var/lib/clickhouse
 ```
 
 ### Giám sát với Prometheus
 
 ```yaml
 # Thêm vào prometheus.yml
-scrape_configs:
-  - job_name: plausible
-    static_configs:
-      - targets: ['analytics.yourdomain.com:8000']
+scrape_configs: - job_name: plausible
+    static_configs: - targets: ['analytics.yourdomain.com:8000']
     metrics_path: '/metrics'
     scrape_interval: 30s
 ```
@@ -577,11 +542,9 @@ wget "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&l
 tar -xzf GeoLite2-City.tar.gz --strip-components=1
 
 # Mount trong docker-compose.yml
-# volumes:
-#   - ./geoip/GeoLite2-City.mmdb:/geoip/GeoLite2-City.mmdb:ro
+# volumes: #   - ./geoip/GeoLite2-City.mmdb:/geoip/GeoLite2-City.mmdb:ro
 
-# Thêm vào plausible-conf.env:
-# GEOLITE2_COUNTRY_DB=/geoip/GeoLite2-Country.mmdb
+# Thêm vào plausible-conf.env: # GEOLITE2_COUNTRY_DB=/geoip/GeoLite2-Country.mmdb
 # GEOLITE2_CITY_DB=/geoip/GeoLite2-City.mmdb
 ```
 
@@ -606,9 +569,7 @@ tar -xzf GeoLite2-City.tar.gz --strip-components=1
 
 ## Hạn chế: Đánh giá Trung thực
 
-Plausible cố ý đánh đổi độ sâu lấy sự đơn giản và quyền riêng tư. Đây là những gì bạn sẽ không có:
-
-**Không tracking cấp ngườ dùng** — Theo thiết kế, Plausible không theo dõi hành trình cá nhân của ngườ dùng xuyên suốt các phiên. Bạn không thể thấy "Ngườ dùng X đã truy cập trang A, sau đó B, rồi C." Nếu phân bổ đa chạm hoặc phân tích phễu cấp ngườ dùng là quan trọng, bạn cần một công cụ khác (hoặc bổ sung Plausible bằng tracking sự kiện phía server).
+Plausible cố ý đánh đổi độ sâu lấy sự đơn giản và quyền riêng tư. Đây là những gì bạn sẽ không có: **Không tracking cấp ngườ dùng** — Theo thiết kế, Plausible không theo dõi hành trình cá nhân của ngườ dùng xuyên suốt các phiên. Bạn không thể thấy "Ngườ dùng X đã truy cập trang A, sau đó B, rồi C." Nếu phân bổ đa chạm hoặc phân tích phễu cấp ngườ dùng là quan trọng, bạn cần một công cụ khác (hoặc bổ sung Plausible bằng tracking sự kiện phía server).
 
 **Phân khúc hạn chế** — Bộ lọc tích hợp hỗ trợ quốc gia, trang, referrer, loại thiết bị, và trình duyệt. Phân tích cohort nâng cao, phân tích chiều tùy chỉnh, hoặc phân khúc dựa trên thuộc tính ngườ dùng yêu cầu xuất API sang công cụ BI bên ngoài.
 
@@ -649,10 +610,7 @@ Plausible mở rộng theo cách có thể dự đoán. **VPS 2GB xử lý ~500K
 Mỗi domain là một "site" riêng trong Plausible, nhưng bạn có thể tổ chức chúng bằng đăng nhập chung. Để theo dõi subdomain (ví dụ: `blog.yourdomain.com` và `app.yourdomain.com`), bạn có hai tùy chọn: theo dõi riêng cho báo cáo chi tiết, hoặc tổng hợp bằng thuộc tính `data-api-host` để báo cáo vào cùng một site ID. Theo dõi xuyên subdomain hoạt động mà không cần cấu hình đặc biệt vì Plausible không sử dụng cookie hoặc session storage.
 
 ```html
-<!-- Tổng hợp subdomain vào một báo cáo -->
-<script defer data-domain="yourdomain.com"
-  data-api="https://analytics.yourdomain.com/api/event"
-  src="https://analytics.yourdomain.com/js/script.js"></script>
+</script>
 ```
 
 **Plausible tự host thực sự miễn phí mãi mãi không?**
@@ -675,9 +633,7 @@ Triển khai instance của bạn trong tuần này. Thiết lập Docker Compos
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -699,7 +655,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 *Bài viết này chứa liên kết tiếp thị đến DigitalOcean. Nếu bạn mua dịch vụ thông qua các liên kết này, dibi8.com có thể nhận được hoa hồng mà không phát sinh thêm chi phí cho bạn. Tất cả khuyến nghị đều dựa trên thử nghiệm thực tế và kinh nghiệm triển khai thực tế.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/agno" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/agno" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/agno" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/agno" />
 title: 'Agno: 40K+ Stars — 경량 AI 에이전트 프레임워크 심층 분석 vs CrewAI, Aut...
 description: 'Agno는 AI 에이전트 플랫폼을 구축하기 위한 오픈소스 Python SDK로, GitHub에서 40K+ Star를 보유하고 있습니다. OpenAI, Anthropic, Ollama, Docker, AWS를 지원합니다. 설치, 멀티 에이전트 시스템, 벤치마크, 프로덕션 강화, CrewAI 및 AutoGen, LangChain과의 비교를 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [agno, 'ai-agent', 'python-sdk', 'multi-agent', 오픈소스, '경량 프레임워크', 'agent-platform', ollama, openai]
-aliases:
-- /kr/posts/agno/
+aliases: - /kr/posts/agno/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/agno/ -->
 
 {{</* resource-info */>}}
 
@@ -47,9 +39,7 @@ Agno의 가치 제안은 간단합니다: 일반 Python 클래스로 에이전�
 
 ### 아키텍처 개요
 
-Agno의 아키텍처는 관심사를 세 가지 독립적인 계층으로 분리합니다:
-
-```
+Agno의 아키텍처는 관심사를 세 가지 독립적인 계층으로 분리합니다: ```
 ┌─────────────────────────────────────────────────────────────┐
 │                 컨트롤 플레인 (AgentOS UI)                   │
 │         채팅 · 트레이스 검사 · 세션 관리                      │
@@ -118,9 +108,7 @@ python -c "import agno; print(agno.__version__)"
 
 ### 4단계: 첫 번째 에이전트 실행
 
-`basic_agent.py`를 생성합니다:
-
-```python
+`basic_agent.py`를 생성합니다: ```python
 from agno.agent import Agent
 
 agent = Agent(
@@ -217,16 +205,11 @@ CMD ["python", "workbench.py"]
 ```yaml
 # docker-compose.yml
 version: '3.8'
-services:
-  agentos:
-    build: .
-    ports:
-      - "8000:8000"
-    environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
+services: agentos: build: .
+    ports: - "8000:8000"
+    environment: - OPENAI_API_KEY=${OPENAI_API_KEY}
       - AGNO_ENV=production
-    volumes:
-      - ./data:/app/data
+    volumes: - ./data:/app/data
     restart: unless-stopped
 ```
 
@@ -253,9 +236,7 @@ aws ecs create-service \
 
 ### 성능 벤치마크
 
-Agno의 경량 설계는 직접 비교 테스트에서 측정 가능한 이점을 보여줍니다:
-
-![Agno 공식 문서](https://docs.agno.com/introduction)
+Agno의 경량 설계는 직접 비교 테스트에서 측정 가능한 이점을 보여줍니다: ![Agno 공식 문서](https://docs.agno.com/introduction)
 
 | 지표 | Agno | CrewAI | AutoGen | LangGraph |
 |------|------|--------|---------|-----------|
@@ -282,9 +263,7 @@ Agno의 경량 설계는 직접 비교 테스트에서 측정 가능한 이점�
 
 ### 멀티 에이전트 시스템
 
-Agno 팀을 사용하면 그래프 정의 없이 에이전트 그룹을 구성할 수 있습니다:
-
-```python
+Agno 팀을 사용하면 그래프 정의 없이 에이전트 그룹을 구성할 수 있습니다: ```python
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
 from agno.tools.duckduckgo import DuckDuckGoTools
@@ -429,9 +408,7 @@ AgentOS.serve(host="0.0.0.0", port=8000)
 
 ## 한계 / 정직한 평가
 
-Agno는 모든 에이전트 사용 사례에 적합한 도구는 아닙니다. 도입 전 고려해야 할 사항은 다음과 같습니다:
-
-**그래프 의미론 부재**: 워크플로우에 명시적 상태 전환, 체크포인팅, 재생 가능한 실행 경로가 필요한 경우 LangGraph의 그래프 모델이 더 적합합니다. Agno의 팀 기반 오케스트레이션은 더 간단하지만 복잡한 분기 논리에서는 덜 정확합니다.
+Agno는 모든 에이전트 사용 사례에 적합한 도구는 아닙니다. 도입 전 고려해야 할 사항은 다음과 같습니다: **그래프 의미론 부재**: 워크플로우에 명시적 상태 전환, 체크포인팅, 재생 가능한 실행 경로가 필요한 경우 LangGraph의 그래프 모델이 더 적합합니다. Agno의 팀 기반 오케스트레이션은 더 간단하지만 복잡한 분기 논리에서는 덜 정확합니다.
 
 **LangChain보다 작은 커뮤니티**: 452명의 기여자 대 LangChain의 3,000+명, 서드파티 튜토리얼과 StackOverflow 답변은 적습니다. 문서가 빠르게 개선되고 있지만 아직 엣지 케이스 시나리오에는 공백이 있습니다.
 
@@ -481,9 +458,7 @@ Agno는 에이전트 프레임워크 환경에서 특정 격차를 메웁니다:
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -504,7 +479,6 @@ Agno는 에이전트 프레임워크 환경에서 특정 격차를 메웁니다:
 *이 기사에는 제휴 링크가 포함되어 있습니다. 이러한 링크를 통해 서비스에 가입하면 추가 비용 없이 dibi8.com에 커미션이 지급될 수 있습니다.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

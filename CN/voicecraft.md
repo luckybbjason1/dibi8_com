@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/voicecraft" />
 title: 'VoiceCraft: 8.5K+ Stars — Zero-Shot Speech Editing vs GP...
 description: 'VoiceCraft is a token infilling neural codec language model for zero-shot speech editing and TTS. Compatible with GPT-SoVITS, Coqui TTS, and RVC. Covers setup, benchmarks, Docker deployment, and comparison tables.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [voicecraft, 'zero-shot-tts', 'speech-editing', 'neural-codec', 'voice-cloning', 'ai-audio', docker, python]
-aliases:
-- /posts/voicecraft/
+aliases: - /posts/voicecraft/-
 ---
-
 {{</* resource-info */>}}
 
 ## Introduction
@@ -43,12 +39,9 @@ VoiceCraft is a **token infilling neural codec language model** that performs tw
 
 ### Architecture Overview
 
-The model pipeline follows three stages:
+The model pipeline follows three stages: 1. **Encodec Quantization**: Raw audio waveforms are quantized into discrete tokens using Meta's EnCodec neural codec. Each audio frame is represented as a vector of K codebook indices (residual vector quantization, RVQ).
 
-1. **Encodec Quantization**: Raw audio waveforms are quantized into discrete tokens using Meta's EnCodec neural codec. Each audio frame is represented as a vector of K codebook indices (residual vector quantization, RVQ).
-
-2. **Token Rearrangement**: This is VoiceCraft's core innovation. A two-step procedure transforms the editing/infilling problem into a standard left-to-right language modeling task:
-   - **Causal Masking**: Random spans of tokens are masked and moved to the end of the sequence, allowing the model to attend to bidirectional context during autoregressive generation.
+2. **Token Rearrangement**: This is VoiceCraft's core innovation. A two-step procedure transforms the editing/infilling problem into a standard left-to-right language modeling task: - **Causal Masking**: Random spans of tokens are masked and moved to the end of the sequence, allowing the model to attend to bidirectional context during autoregressive generation.
    - **Delayed Stacking**: Vectors are shifted diagonally so that predicting codebook k at time t conditions on codebook k-1, enabling efficient multi-codebook modeling.
 
 3. **Transformer Decoder**: The rearranged token sequence is modeled autoregressively by a Transformer decoder. Text phonemes and speech tokens are concatenated as conditioning input.
@@ -56,7 +49,15 @@ The model pipeline follows three stages:
 ### Model Variants
 
 | Model | Parameters | Best For | Max Duration |
-|-------|-----------|----------|-------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | giga330M | 330M | Balanced quality/speed | 16 seconds |
 | giga830M | 830M | Highest quality | 30+ seconds |
 | giga330M-TTS-Enhanced | 330M | TTS-specific fine-tune | 16 seconds |
@@ -84,8 +85,7 @@ docker build --tag "voicecraft" .
 
 # 3. Start the container (Linux)
 ./start-jupyter.sh
-# Or on Windows:
-# start-jupyter.bat
+# Or on Windows: # start-jupyter.bat
 
 # 4. Access Jupyter — copy the URL from logs
 docker logs jupyter | grep "127.0.0.1:8888"
@@ -137,9 +137,7 @@ conda install -n voicecraft ipykernel --no-deps --force-reinstall
 
 ### Option 3: Gradio Local UI
 
-For a browser-based interface without notebooks:
-
-```bash
+For a browser-based interface without notebooks: ```bash
 # Additional system dependencies for Gradio
 apt-get install -y espeak espeak-data libespeak1 libespeak-dev
 apt-get install -y festival build-essential flac libasound2-dev libsndfile1-dev
@@ -156,7 +154,15 @@ Navigate to `http://127.0.0.1:7860` to access the web UI.
 ### Hardware Requirements
 
 | Configuration | Minimum GPU | Recommended GPU | RAM |
-|-------------|------------|----------------|-----|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Full inference (830M) | 8 GB with kvcache | 32 GB VRAM | 32 GB |
 | Fast inference (330M) | 8 GB | 16 GB VRAM | 16 GB |
 | Gradio UI | 8 GB | 16 GB VRAM | 16 GB |
@@ -167,9 +173,7 @@ The `kvcache` optimization trades a small amount of quality for significant memo
 
 ### VoiceCraft + Gradio Web UI
 
-The built-in Gradio interface provides the easiest way to experiment:
-
-```bash
+The built-in Gradio interface provides the easiest way to experiment: ```bash
 # Launch the Gradio app with default settings
 python gradio_app.py --model-name "giga330M" --device "cuda"
 
@@ -181,9 +185,7 @@ The Gradio UI supports three modes: **TTS Mode** (zero-shot voice cloning), **Ed
 
 ### VoiceCraft + Jupyter Notebooks
 
-For programmatic access, the Jupyter notebooks provide step-by-step inference:
-
-```python
+For programmatic access, the Jupyter notebooks provide step-by-step inference: ```python
 # inference_tts.ipynb — Zero-shot TTS example
 from voicecraft import VoiceCraft
 
@@ -210,9 +212,7 @@ output.save("output_tts.wav")
 
 ### VoiceCraft + Command Line
 
-For batch processing and scripting:
-
-```bash
+For batch processing and scripting: ```bash
 # TTS inference via CLI
 python tts_demo.py   --audio_path "demo/pam.wav"   --target_transcript "This is the text to speak"   --model_name "giga330M"   --top_k 40   --temperature 1.0   --output_path "output.wav"
 
@@ -222,9 +222,7 @@ python speech_editing_demo.py   --audio_path "demo/pam.wav"   --original_transcr
 
 ### VoiceCraft + Docker API
 
-For production deployment, wrap VoiceCraft in a REST API:
-
-```dockerfile
+For production deployment, wrap VoiceCraft in a REST API: ```dockerfile
 # Dockerfile.api — Production API wrapper
 FROM voicecraft:latest
 
@@ -253,8 +251,7 @@ async def tts(
     audio: UploadFile = File(...),
     reference_text: str = "",
     target_text: str = ""
-):
-    """Zero-shot TTS endpoint."""
+): """Zero-shot TTS endpoint."""
     ref_audio, sr = torchaudio.load(audio.file)
     output = model.tts(
         target_text=target_text,
@@ -267,9 +264,7 @@ async def tts(
 
 ### VoiceCraft + HuggingFace Hub
 
-Download pre-trained models directly from HuggingFace:
-
-```python
+Download pre-trained models directly from HuggingFace: ```python
 from huggingface_hub import hf_hub_download
 
 # Download model weights
@@ -289,10 +284,20 @@ model_dir = snapshot_download('AI-ModelScope/VoiceCraft')
 
 ### Zero-Shot TTS Benchmarks
 
-Human evaluation results from the ACL 2024 paper compare VoiceCraft against VALL-E, XTTS v2, FluentSpeech, and YourTTS on 250 test utterances (LibriTTS + YouTube):
-
-| Model | WER | SIM | Intelligibility MOS | Naturalness MOS | Speaker Similarity MOS |
-|-------|-----|-----|---------------------|-----------------|----------------------|
+Human evaluation results from the ACL 2024 paper compare VoiceCraft against VALL-E, XTTS v2, FluentSpeech, and YourTTS on 250 test utterances (LibriTTS + YouTube): | Model | WER | SIM | Intelligibility MOS | Naturalness MOS | Speaker Similarity MOS |
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **VoiceCraft** | **4.5** | **0.55** | **4.23** | **4.17** | **4.34** |
 | XTTS v2 | 3.6 | 0.47 | 4.13 | 3.96 | 3.44 |
 | VALL-E | 7.1 | 0.50 | 4.00 | 3.86 | 4.07 |
@@ -304,10 +309,16 @@ VoiceCraft achieves the highest speaker similarity (SIM 0.55) and the best human
 
 ### Speech Editing Benchmarks
 
-On the RealEdit dataset (310 real-world editing examples), VoiceCraft outperforms FluentSpeech:
-
-| Model | WER | Intelligibility MOS | Naturalness MOS |
-|-------|-----|---------------------|-----------------|
+On the RealEdit dataset (310 real-world editing examples), VoiceCraft outperforms FluentSpeech: | Model | WER | Intelligibility MOS | Naturalness MOS |
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **VoiceCraft** | 6.1 | **4.11** | **4.03** |
 | FluentSpeech | 4.5 | 3.97 | 3.81 |
 | Original (unedited) | 5.4 | 4.22 | 4.17 |
@@ -317,7 +328,15 @@ Notably, in side-by-side listening tests, human listeners preferred VoiceCraft-e
 ### Real-World Applications
 
 | Use Case | Reference Audio | Output Quality | Setup Time |
-|----------|----------------|---------------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Podcast editing | 5 seconds host voice | MOS 4.03 naturalness | < 2 min |
 | Audiobook voice cloning | 5 seconds narrator | SIM 0.55 | < 2 min |
 | YouTube video dubbing | 5 seconds speaker | MOS 4.17 naturalness | < 2 min |
@@ -330,9 +349,7 @@ Notably, in side-by-side listening tests, human listeners preferred VoiceCraft-e
 
 ### Memory Optimization with KV Cache
 
-For GPUs with limited VRAM, enable the key-value cache:
-
-```python
+For GPUs with limited VRAM, enable the key-value cache: ```python
 # Enable kvcache for 8GB GPU inference
 output = model.tts(
     target_text=target_text,
@@ -346,9 +363,7 @@ output = model.tts(
 
 ### Top-k Sampling (March 2025 Update)
 
-The default sampling strategy was updated from top-p=1.0 to top-k=40, which dramatically improves output quality:
-
-```python
+The default sampling strategy was updated from top-p=1.0 to top-k=40, which dramatically improves output quality: ```python
 # Recommended: top-k=40 for best quality
 output = model.tts(
     target_text=target_text,
@@ -361,9 +376,7 @@ output = model.tts(
 
 ### Fine-tuning on Custom Data
 
-For domain-specific voices, fine-tune the pre-trained model:
-
-```bash
+For domain-specific voices, fine-tune the pre-trained model: ```bash
 # Prepare your dataset
 conda activate voicecraft
 cd ./data
@@ -392,9 +405,7 @@ writer.add_scalar("mos/validation", val_mos, global_step)
 
 ### Security and Safety Considerations
 
-VoiceCraft's license (CC BY-NC-SA 4.0 for code, Coqui Public Model License for weights) includes an ethical disclaimer prohibiting use to generate or edit speech without consent. For production deployments:
-
-- Implement speaker verification before cloning
+VoiceCraft's license (CC BY-NC-SA 4.0 for code, Coqui Public Model License for weights) includes an ethical disclaimer prohibiting use to generate or edit speech without consent. For production deployments: - Implement speaker verification before cloning
 - Log all synthesis requests for audit trails
 - Add synthesized speech watermarking
 - Rate-limit API endpoints to prevent abuse
@@ -402,7 +413,17 @@ VoiceCraft's license (CC BY-NC-SA 4.0 for code, Coqui Public Model License for w
 ## Comparison with Alternatives
 
 | Feature | VoiceCraft | GPT-SoVITS | Coqui TTS (XTTS v2) | VALL-E |
-|---------|-----------|------------|-------------------|--------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **GitHub Stars** | 8,500 | 57,000 | 35,000* | N/A (paper only) |
 | **Parameters** | 330M / 830M | ~1B combined | 467M | 1B |
 | **Speech Editing** | Native, SotA | No | No | Limited |
@@ -437,9 +458,7 @@ VoiceCraft's license (CC BY-NC-SA 4.0 for code, Coqui Public Model License for w
 
 ## Limitations / Honest Assessment
 
-VoiceCraft is not the right tool for every audio task. Here is what the maintainers and paper acknowledge:
-
-1. **English-only**: The released model supports only English phonemes. The follow-up VoiceCraft-X (November 2024) extends to 11 languages but is a separate model.
+VoiceCraft is not the right tool for every audio task. Here is what the maintainers and paper acknowledge: 1. **English-only**: The released model supports only English phonemes. The follow-up VoiceCraft-X (November 2024) extends to 11 languages but is a separate model.
 
 2. **Non-commercial license**: Both code (CC BY-NC-SA 4.0) and model weights (Coqui Public Model License) restrict commercial use without additional agreements.
 
@@ -493,9 +512,7 @@ Join our [Telegram group](https://t.me/dibi8opensource) to discuss VoiceCraft de
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -518,7 +535,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 *This guide is independently written by the dibi8 technical team. VoiceCraft is developed by Puyuan Peng, Po-Yao Huang, Shang-Wen Li, Abdelrahman Mohamed, and David Harwath. No commercial affiliation exists between dibi8 and the VoiceCraft project.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -544,8 +560,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [apple-container](voicecraft)
@@ -554,6 +570,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](voicecraft)
 - [moneyprinterturbo-one-click-ai-video-generator](voicecraft)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

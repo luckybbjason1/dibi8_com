@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-token-monitor-conky-linux" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-token-monitor-conky-linux" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-token-monitor-conky-linux" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-token-monitor-conky-linux" />
 title: 'AI Token Monitor：在Linux桌面实时监控Claude、Gemini、Grok、Kimi配额'
 description: '开源Linux桌面小工具，在Conky中以血条进度条实时显示AI Token使用量。支持Claude、Gemini、Grok、Kimi真实API轮询，显示剩余配额和重置倒计时。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-06 00:00:00+08:00
@@ -25,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: ['ai token监控', claude配额, gemini配额追踪, 'grok token', 'kimi api', conky小工具, linux桌面, 开源, python, 开发者工具]
-aliases:
-- /zh/posts/ai-token-monitor-conky-linux/
-faqs:
-  - q: 'AI Token Monitor 支持 macOS 或 Windows 吗？'
+aliases: - /zh/posts/ai-token-monitor-conky-linux/
+faqs: - q: 'AI Token Monitor 支持 macOS 或 Windows 吗？'
     a: '目前桌面显示层依赖 Conky，仅支持 Linux。核心 Python 脚本（api_fetcher.py）可在任意操作系统运行，但视觉渲染需要 Conky。仓库中有基于 tkinter 的跨平台版本（monitor.py），但在 GNOME 环境下无边框窗口可能不可见，属实验性功能。'
   - q: '工具如何读取 Claude API 的 Token 余额？'
     a: '通过向 /v1/messages 发送 max_tokens=1 的最小请求，读取响应头中的 anthropic-ratelimit-tokens-remaining 和 anthropic-ratelimit-tokens-limit 字段。每次检查消耗约 10 个输入 token，每 5 分钟一次 cron 全天约消耗 2880 token，对大多数套餐可忽略不计。'
@@ -37,10 +30,7 @@ faqs:
   - q: '如何添加未列出的 AI 服务（如 Mistral、Together AI）？'
     a: '在 api_fetcher.py 中添加调用对应服务 API 的代码块，向缓存 dict 写入 ok（布尔值）、label（显示字符串）和可选的 pct（0-1 的浮点数）。然后在 conky_ai.py 的 SERVICES 列表中添加该服务名和 reset_h 值即可。'
   - q: '为什么 Grok 显示"耗尽"但我的账户有余额？'
-    a: 'Grok 检测调用 GET /v1/models，认证有效且有余额时返回 200，余额耗尽时返回 403。xAI 的 403 特指账户余额为零。如果有余额却显示 403，请确认 ~/.config/.ai_monitor_keys 中的 API key 是否正确。'
----
-
-<!-- canonical: https://dibi8.com/zh/tools/ai-token-monitor-conky-linux/ -->
+    a: 'Grok 检测调用 GET /v1/models，认证有效且有余额时返回 200，余额耗尽时返回 403。xAI 的 403 特指账户余额为零。如果有余额却显示 403，请确认 ~/.config/.ai_monitor_keys 中的 API key 是否正确。'---
 
 {{< resource-info >}}
 
@@ -81,7 +71,11 @@ api_fetcher.py  →  api_cache.json  →  conky_ai.py  →  Conky 显示
 核心特色是**血条风格的配额显示**——一排 Unicode 方块字符直观展示剩余配额：
 
 | 颜色 | 状态 |
-|------|------|
+|
+---
+|
+---
+|
 | `█████████` 绿色 | 配额超过 50% |
 | `████░░░░░` 橙色 | 剩余 20-50% |
 | `█░░░░░░░░` 红色 | 低于 20% |
@@ -115,7 +109,13 @@ pkill conky && conky --daemonize --pause=1
 ## 各服务支持情况
 
 | 服务 | API 端点 | 检测内容 |
-|------|---------|----------|
+|
+---
+|
+---
+|
+---
+|
 | **Kimi**（Moonshot） | `GET /v1/users/me` | 精确剩余 Token 配额 |
 | **Claude**（Anthropic） | `POST /v1/messages` | 响应头中的速率限制窗口 |
 | **Gemini**（Google） | `POST .../generateContent` | 429 = 配额已用完 |
@@ -133,12 +133,9 @@ API key 存储在 `~/.config/.ai_monitor_keys`，文件权限为 `chmod 600`，�
 ```python
 # ── 自定义服务 ────────────────────────────────────
 key = keys.get(yourservice)
-if key:
-    try:
-        r = requests.get('https://api.yourservice.com/v1/usage',
+if key: try: r = requests.get('https://api.yourservice.com/v1/usage',
                          headers={Authorization: f'Bearer {key}'}, timeout=8)
-        if r.status_code == 200:
-            data = r.json()
+        if r.status_code == 200: data = r.json()
             remain = data[quota_remaining]
             total  = data[quota_total]
             cache[YourService] = {
@@ -146,10 +143,8 @@ if key:
                 label: f'{remain//1000}K剩',
                 pct: remain / total
             }
-        else:
-            cache[YourService] = {ok: False, label: 'API 错误'}
-    except Exception:
-        pass
+        else: cache[YourService] = {ok: False, label: 'API 错误'}
+    except Exception: pass
 ```
 
 然后在 `conky_ai.py` 的 `SERVICES` 列表中添加 `{name: YourService, reset_h: 24}`。
@@ -171,7 +166,6 @@ if key:
 如果这个工具帮你避免了任务中途被限流的困扰，欢迎 Star 支持。也欢迎提 Issue 和 PR——特别期待 macOS 支持和新服务集成的贡献。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -199,25 +193,20 @@ if key:
 
 ## Why This Matters
 
-Understanding ai token monitor：在linux桌面实时监控claude、gemini、grok、kimi配额 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding ai token monitor：在linux桌面实时监控claude、gemini、grok、kimi配额 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -238,13 +227,13 @@ AI Token Monitor：在Linux桌面实时监控Claude、Gemini、Grok、Kimi配额
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
 
+---
 ## Related Articles
 
 - [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](ai-token-monitor-conky-linux)
@@ -283,7 +272,17 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

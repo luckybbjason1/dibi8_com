@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/caddy" />
 title: 'Caddy: Production Web Server with 72K+ Stars — Auto HTTP...
 description: 'Caddy (Caddyserver) is a fast, extensible multi-platform HTTP/1-2-3 web server with automatic HTTPS. Compatible with Docker, Let''''s Encrypt, Prometheus, and Grafana. Covers Caddyfile tutorial, Docker setup, production hardening, and monitoring.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [caddy, 'web-server', 'reverse-proxy', 'auto-https', docker, devops, ssl, http3]
-aliases:
-- /posts/caddy/
+aliases: - /posts/caddy/-
 ---
-
 {{</* resource-info */>}}
 
 Caddy stands out as the only mainstream web server that treats HTTPS as the default, not an afterthought. While Nginx requires manual certificate configuration and Apache needs mod_ssl wrangling, Caddy provisions and renews TLS certificates from Let's Encrypt and ZeroSSL automatically — no cron jobs, no certbot, no configuration. With **72,595 GitHub stars** and a codebase written in Go, Caddy has served trillions of requests and manages millions of TLS certificates in production environments ranging from single VPS deployments to clusters handling hundreds of thousands of sites.
@@ -50,17 +46,13 @@ Caddy's architecture differs fundamentally from traditional C-based servers. Und
 
 Caddy is built on a **modular middleware chain** architecture. Every incoming request flows through a sequence of HTTP handlers defined in configuration — logging, authentication, reverse proxying, static file serving, error handling, and more. Each handler can modify the request, generate a response, or pass the request to the next handler in the chain.
 
-The server uses **Go's goroutine scheduler** instead of a traditional event-loop or process-per-connection model. Each HTTP request gets its own goroutine, which means:
-
-- No worker process tuning needed (no `worker_processes` directive)
+The server uses **Go's goroutine scheduler** instead of a traditional event-loop or process-per-connection model. Each HTTP request gets its own goroutine, which means: - No worker process tuning needed (no `worker_processes` directive)
 - Concurrent request handling scales with GOMAXPROCS automatically
 - Memory per connection is higher than Nginx's event loop but simpler to reason about
 
 ### Automatic HTTPS Internals
 
-When Caddy starts with a domain name in its configuration, it performs the following steps automatically:
-
-1. **ACME client activation**: Caddy's built-in ACME client contacts Let's Encrypt (primary) and ZeroSSL (fallback)
+When Caddy starts with a domain name in its configuration, it performs the following steps automatically: 1. **ACME client activation**: Caddy's built-in ACME client contacts Let's Encrypt (primary) and ZeroSSL (fallback)
 2. **Domain validation**: HTTP-01 or TLS-ALPN-01 challenge proves domain ownership
 3. **Certificate issuance**: TLS certificate is obtained and stored in `$HOME/.local/share/caddy` or `/data`
 4. **OCSP stapling**: Certificate status is fetched and stapled to TLS handshakes automatically
@@ -113,30 +105,19 @@ caddy version
 
 ```yaml
 # File: docker-compose.yml
-services:
-  caddy:
-    image: caddy:2-alpine
+services: caddy: image: caddy:2-alpine
     container_name: caddy
     restart: unless-stopped
-    ports:
-      - "80:80"
+    ports: - "80:80"
       - "443:443"
       - "443:443/udp"  # HTTP/3 QUIC
-    volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile
+    volumes: - ./Caddyfile:/etc/caddy/Caddyfile
       - caddy_data:/data
       - caddy_config:/config
       - ./site:/usr/share/caddy
-    networks:
-      - caddy_network
+    networks: - caddy_network
 
-volumes:
-  caddy_data:
-  caddy_config:
-
-networks:
-  caddy_network:
-    name: caddy_network
+volumes: caddy_data: caddy_config: networks: caddy_network: name: caddy_network
     driver: bridge
 ```
 
@@ -217,72 +198,44 @@ The most common production setup uses Caddy as a reverse proxy for multiple cont
 
 ```yaml
 # File: docker-compose.yml
-services:
-  caddy:
-    image: caddy:2-alpine
+services: caddy: image: caddy:2-alpine
     container_name: caddy
     restart: unless-stopped
-    ports:
-      - "80:80"
+    ports: - "80:80"
       - "443:443"
       - "443:443/udp"
-    volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile
+    volumes: - ./Caddyfile:/etc/caddy/Caddyfile
       - caddy_data:/data
       - caddy_config:/config
-    networks:
-      - proxy
-    environment:
-      - ACME_AGREE=true
+    networks: - proxy
+    environment: - ACME_AGREE=true
 
-  api:
-    image: my-api:latest
+  api: image: my-api:latest
     restart: unless-stopped
-    networks:
-      - proxy
-    expose:
-      - "8080"
+    networks: - proxy
+    expose: - "8080"
 
-  frontend:
-    image: my-frontend:latest
+  frontend: image: my-frontend:latest
     restart: unless-stopped
-    networks:
-      - proxy
-    expose:
-      - "3000"
+    networks: - proxy
+    expose: - "3000"
 
-  prometheus:
-    image: prom/prometheus:latest
+  prometheus: image: prom/prometheus:latest
     container_name: prometheus
     restart: unless-stopped
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus_data:/prometheus
-    ports:
-      - "9090:9090"
-    networks:
-      - proxy
+    ports: - "9090:9090"
+    networks: - proxy
 
-  grafana:
-    image: grafana/grafana-oss:latest
+  grafana: image: grafana/grafana-oss:latest
     container_name: grafana
     restart: unless-stopped
-    volumes:
-      - grafana_data:/var/lib/grafana
-    ports:
-      - "3000:3000"
-    networks:
-      - proxy
+    volumes: - grafana_data:/var/lib/grafana
+    ports: - "3000:3000"
+    networks: - proxy
 
-volumes:
-  caddy_data:
-  caddy_config:
-  prometheus_data:
-  grafana_data:
-
-networks:
-  proxy:
-    name: proxy
+volumes: caddy_data: caddy_config: prometheus_data: grafana_data: networks: proxy: name: proxy
     driver: bridge
 ```
 
@@ -360,19 +313,15 @@ grafana.example.com {
 
 ```yaml
 # File: prometheus.yml
-global:
-  scrape_interval: 15s
+global: scrape_interval: 15s
   evaluation_interval: 15s
 
-scrape_configs:
-  - job_name: caddy
-    static_configs:
-      - targets: ['caddy:2019']
+scrape_configs: - job_name: caddy
+    static_configs: - targets: ['caddy:2019']
     metrics_path: /metrics
 
   - job_name: 'node-exporter'
-    static_configs:
-      - targets: ['node-exporter:9100']
+    static_configs: - targets: ['node-exporter:9100']
 ```
 
 ### On-Demand TLS for Multi-Tenant SaaS
@@ -406,15 +355,12 @@ app = Flask(__name__)
 ALLOWED_DOMAINS = {"alice", "bob", "charlie"}  # Loaded from DB in production
 
 @app.route("/allow")
-def check_domain():
-    domain = request.args.get("domain", "")
+def check_domain(): domain = request.args.get("domain", "")
     subdomain = domain.replace(".customers.example.com", "")
-    if subdomain in ALLOWED_DOMAINS:
-        return "OK", 200
+    if subdomain in ALLOWED_DOMAINS: return "OK", 200
     return "Not allowed", 403
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8080)
+if __name__ == "__main__": app.run(host="0.0.0.0", port=8080)
 ```
 
 ## Benchmarks / Real-World Use Cases
@@ -424,7 +370,15 @@ Independent benchmark campaigns published between November 2025 and April 2026 r
 ### Static File Serving Performance
 
 | Benchmark Workload | Caddy 2.8 | Nginx 1.26 | Winner |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 1 KB static, HTTP/2 (16 cores) | 142,000 req/s | 117,000 req/s | Caddy +22% |
 | 1 MB static, HTTP/2 (16 cores) | 9,800 req/s | 11,400 req/s | Nginx +16% |
 | 1 GB streaming, HTTP/1.1 | 2.1 GB/s | 2.5 GB/s | Nginx +17% |
@@ -436,7 +390,15 @@ Independent benchmark campaigns published between November 2025 and April 2026 r
 ### Reverse Proxy Throughput
 
 | Scenario | Caddy 2.8 | Nginx 1.30 | Traefik 3.1 |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | HTTP reverse proxy (2 KB JSON) | 81,000 req/s | 88,000 req/s | 82,000 req/s |
 | HTTPS reverse proxy | 36,000 req/s | 38,000 req/s | 36,500 req/s |
 | p99 HTTPS latency | 2.4 ms | 2.1 ms | 2.3 ms |
@@ -445,9 +407,7 @@ Independent benchmark campaigns published between November 2025 and April 2026 r
 
 ### Real-World Deployment: E-Commerce Platform
 
-A 6-engineer e-commerce team migrated from Nginx 1.25 to Caddy 2.8 during Q1 2026:
-
-- **Problem**: Black Friday 2025 peak caused p99 static-file latency of 2.4s, 12% cart abandonment. Certbot failures caused 47 minutes of TLS-related downtime in Q4 2025.
+A 6-engineer e-commerce team migrated from Nginx 1.25 to Caddy 2.8 during Q1 2026: - **Problem**: Black Friday 2025 peak caused p99 static-file latency of 2.4s, 12% cart abandonment. Certbot failures caused 47 minutes of TLS-related downtime in Q4 2025.
 - **Solution**: Migrated to an 18-line Caddyfile with automatic TLS, native HTTP/3, and precompressed brotli/gzip assets.
 - **Results**: p99 latency dropped to 110ms (95% improvement). TLS incidents eliminated. Throughput up 19%, allowing downsize from 8 to 6 AWS Graviton2 instances — saving $14k/year in infrastructure costs.
 
@@ -600,54 +560,47 @@ api.example.com {
 
 ```yaml
 # File: docker-compose.prod.yml
-services:
-  caddy:
-    image: caddy:2-alpine
+services: caddy: image: caddy:2-alpine
     restart: unless-stopped
-    cap_add:
-      - NET_BIND_SERVICE
-    ports:
-      - "80:80"
+    cap_add: - NET_BIND_SERVICE
+    ports: - "80:80"
       - "443:443"
       - "443:443/udp"
-    volumes:
-      - ./Caddyfile.prod:/etc/caddy/Caddyfile:ro
+    volumes: - ./Caddyfile.prod:/etc/caddy/Caddyfile:ro
       - caddy_data:/data
       - caddy_config:/config
       - /var/log/caddy:/var/log/caddy
-    environment:
-      - JWT_SECRET=${JWT_SECRET}
+    environment: - JWT_SECRET=${JWT_SECRET}
       - ACME_EMAIL=${ACME_EMAIL}
-    networks:
-      - proxy
-    deploy:
-      resources:
-        limits:
-          memory: 512M
-        reservations:
-          memory: 128M
-    healthcheck:
-      test: ["CMD", "wget", "--spider", "-q", "http://localhost:2019/metrics"]
+    networks: - proxy
+    deploy: resources: limits: memory: 512M
+        reservations: memory: 128M
+    healthcheck: test: ["CMD", "wget", "--spider", "-q", "http://localhost:2019/metrics"]
       interval: 30s
       timeout: 10s
       retries: 3
 
-volumes:
-  caddy_data:
-    driver: local
-  caddy_config:
-    driver: local
+volumes: caddy_data: driver: local
+  caddy_config: driver: local
 
-networks:
-  proxy:
-    driver: bridge
+networks: proxy: driver: bridge
     internal: false
 ```
 
 ## Comparison with Alternatives
 
 | Feature | Caddy 2.8 | Nginx 1.30 | Apache 2.4 | Traefik 3.1 |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Auto HTTPS (zero config)** | Yes — built-in | No — certbot required | No — mod_ssl + certbot | Yes — built-in ACME |
 | **HTTP/3 (QUIC) support** | Native, default | Native, manual config | Experimental module | Native, experimental |
 | **Config syntax complexity** | Low (Caddyfile) | High (nginx.conf DSL) | High (.htaccess/httpd) | Medium (YAML + labels) |
@@ -663,9 +616,7 @@ networks:
 
 ## Limitations / Honest Assessment
 
-Caddy is not the right tool for every deployment. These are the trade-offs to understand before committing:
-
-**Higher memory footprint at idle.** Caddy uses 3-4x more RAM than Nginx for the same number of idle keep-alive connections. On a 1 GB Raspberry Pi, this matters. On a 64 GB Kubernetes node, it does not.
+Caddy is not the right tool for every deployment. These are the trade-offs to understand before committing: **Higher memory footprint at idle.** Caddy uses 3-4x more RAM than Nginx for the same number of idle keep-alive connections. On a 1 GB Raspberry Pi, this matters. On a 64 GB Kubernetes node, it does not.
 
 **Lower large-file streaming performance.** Nginx's `sendfile` zero-copy path gives it a 17% throughput advantage for files over 1 GB. If you operate a video streaming platform, Nginx remains the better choice.
 
@@ -721,9 +672,7 @@ Join the **dibi8.com Telegram channel** for weekly deployment guides, infrastruc
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -740,12 +689,11 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [Caddy Docker Hub](https://hub.docker.com/_/caddy)
 - [Caddy Community Forum](https://caddy.community/)
 
----
 
+---
 *Disclosure: This article contains affiliate links to DigitalOcean and HTStack. If you purchase services through these links, dibi8.com receives a commission at no additional cost to you. All benchmark data and recommendations are based on independent testing and editorial judgment.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -771,8 +719,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [apple-container](caddy)

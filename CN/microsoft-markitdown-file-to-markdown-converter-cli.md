@@ -1,10 +1,9 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/microsoft-markitdown-file-to-markdown-converter-cli" />
-title: "Microsoft MarkItDown: The Complete Guide to Converting A...
+title: "Microsoft MarkItDown: The Complete Guide to Converting A..."
 description: "Learn how to use Microsoft's MarkItDown to convert PDFs, Word docs, images, HTML, PPTX, and more into clean Markdown. Step-by-step installation, usage examples, Python API, AI pipeline integration, benchmarks, and comparisons with Pandoc, Calibre, and LibreOffice."
 date: 2026-06-10
-lastmod:  2026-06-10slug: "microsoft-markitdown-file-to-markdown-converter-cli"
+lastmod: 2026-06-10
+slug: "microsoft-markitdown-file-to-markdown-converter-cli"
 category: dev-utils
 tags: [microsoft, markitdown, markdown, python, cli, pdf-converter, document-processing, AI, open-source]
 github_repo: "https://github.com/microsoft/markitdown"
@@ -12,9 +11,7 @@ stars: 149148
 maintainer: microsoft
 license: MIT
 featureImage: "https://raw.githubusercontent.com/microsoft/markitdown/main/docs/assets/logo.png"
-lang: en
 ---
-
 ## Introduction
 
 In today's data-driven world, the ability to convert documents into structured, readable, and portable formats is more critical than ever. Whether you are building a Retrieval-Augmented Generation (RAG) pipeline, ingesting documents into an AI knowledge base, or simply trying to extract clean text from complex PDFs, having a reliable tool that converts any file format to Markdown is invaluable. Microsoft MarkItDown is an open-source Python tool built exactly for this purpose — it turns PDFs, Word documents, PowerPoint presentations, images, HTML pages, spreadsheets, and ZIP archives into clean, consistent Markdown output.
@@ -27,9 +24,7 @@ MarkItDown is developed and maintained by Microsoft and distributed under the pe
 
 MarkItDown is a Python-based command-line tool and library developed by Microsoft that converts files of virtually any common format into Markdown text. It is designed to be the simplest possible way to get clean, structured Markdown from any document — no complex configuration, no setup of multiple parsers, no dependencies on proprietary software.
 
-Key capabilities include:
-
-- **Multi-format support** — Converts PDF, DOCX, PPTX, XLSX, HTML, XML, EPUB, JPEG, PNG, BMP, TIFF, WAV, MP3, ZIP archives, and more
+Key capabilities include: - **Multi-format support** — Converts PDF, DOCX, PPTX, XLSX, HTML, XML, EPUB, JPEG, PNG, BMP, TIFF, WAV, MP3, ZIP archives, and more
 - **Zero-configuration** — No setup required; works out of the box
 - **CLI and Python API** — Use as a command-line tool or integrate into Python applications
 - **Batch processing** — Process entire directories or ZIP archives in one command
@@ -45,9 +40,7 @@ MarkItDown operates on a straightforward principle: detect the file type, apply 
 
 For PDF files, MarkItDown extracts text while preserving the document's visual structure — headings become `#` headings, lists become `-` bullets, tables are converted to Markdown table syntax, and hyperlinks are preserved. For Word documents, it preserves formatting including bold, italic, headings, and embedded images. For PowerPoint presentations, each slide is converted into a structured Markdown section.
 
-The tool also handles image files through OCR. When you provide a scanned document image, MarkItDown can use Tesseract OCR to extract text. For ZIP archives, it automatically processes each contained file individually and combines the results. The conversion pipeline works as follows:
-
-1. **File detection** — The tool identifies the file type by extension and MIME type
+The tool also handles image files through OCR. When you provide a scanned document image, MarkItDown can use Tesseract OCR to extract text. For ZIP archives, it automatically processes each contained file individually and combines the results. The conversion pipeline works as follows: 1. **File detection** — The tool identifies the file type by extension and MIME type
 2. **Parser selection** — The appropriate converter plugin is selected based on file type
 3. **Content extraction** — Raw text and metadata are extracted from the file
 4. **Markdown formatting** — Extracted content is formatted into clean, consistent Markdown
@@ -75,9 +68,7 @@ A successful installation will print the current version number, such as `markit
 
 ### Install Selective Dependencies
 
-For environments where you only need specific format support:
-
-```bash
+For environments where you only need specific format support: ```bash
 pip install 'markitdown[pdf, docx, pptx]'
 ```
 
@@ -85,22 +76,16 @@ This installs only the dependencies needed for PDF, DOCX, and PPTX conversion, k
 
 ### Install Plugins
 
-MarkItDown supports plugin extensions for additional functionality:
-
-```bash
+MarkItDown supports plugin extensions for additional functionality: ```bash
 markitdown --list-plugins
 markitdown --use-plugins path-to-file.pdf
 ```
 
-For OCR support on scanned images:
-
-```bash
+For OCR support on scanned images: ```bash
 pip install markitdown-ocr
 ```
 
-For Azure Content Understanding integration:
-
-```bash
+For Azure Content Understanding integration: ```bash
 pip install 'markitdown[az-content-under understanding]'
 ```
 
@@ -140,9 +125,7 @@ Using the `-o` flag, you specify the output file directly without shell redirect
 cat path-to-file.pdf | markitdown
 ```
 
-MarkItDown can read from stdin, enabling creative pipeline compositions. For example, you can download a file and convert it in a single command:
-
-```bash
+MarkItDown can read from stdin, enabling creative pipeline compositions. For example, you can download a file and convert it in a single command: ```bash
 curl -sL https://example.com/document.pdf | markitdown
 ```
 
@@ -176,9 +159,7 @@ Tables in spreadsheets are converted to Markdown table format, with each sheet g
 markitdown scan.png > scan.md
 ```
 
-For OCR to work, you need Tesseract installed on your system and the `markitdown-ocr` plugin:
-
-```bash
+For OCR to work, you need Tesseract installed on your system and the `markitdown-ocr` plugin: ```bash
 sudo apt-get install tesseract-ocr
 pip install markitdown-ocr
 ```
@@ -211,8 +192,7 @@ print(result.text_content)
 import markitdown
 
 md = markitdown.MarkItDown()
-with open("report.docx", "rb") as f:
-    result = md.convert(f)
+with open("report.docx", "rb") as f: result = md.convert(f)
     print(result.text_content)
 ```
 
@@ -236,11 +216,9 @@ import os
 
 md = markitdown.MarkItDown()
 files = glob.glob("docs/**/*.pdf", recursive=True)
-for filepath in files:
-    result = md.convert(filepath)
+for filepath in files: result = md.convert(filepath)
     output_path = os.path.splitext(filepath)[0] + ".md"
-    with open(output_path, "w") as f:
-        f.write(result.text_content)
+    with open(output_path, "w") as f: f.write(result.text_content)
     print(f"Converted: {filepath} -> {output_path}")
 ```
 
@@ -261,26 +239,19 @@ print(result.text_content)
 
 ### RAG Pipeline Integration
 
-One of the most powerful use cases for MarkItDown is preparing documents for Retrieval-Augmented Generation pipelines. Here is a complete example:
-
-```python
+One of the most powerful use cases for MarkItDown is preparing documents for Retrieval-Augmented Generation pipelines. Here is a complete example: ```python
 import markitdown
 import os
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
-def ingest_documents(directory):
-    md = markitdown.MarkItDown()
+def ingest_documents(directory): md = markitdown.MarkItDown()
     splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
 
     documents = []
-    for filename in os.listdir(directory):
-        filepath = os.path.join(directory, filename)
-        if os.path.isfile(filepath):
-            result = md.convert(filepath)
-            if result:
-                chunks = splitter.split_text(result.text_content)
-                for i, chunk in enumerate(chunks):
-                    documents.append({
+    for filename in os.listdir(directory): filepath = os.path.join(directory, filename)
+        if os.path.isfile(filepath): result = md.convert(filepath)
+            if result: chunks = splitter.split_text(result.text_content)
+                for i, chunk in enumerate(chunks): documents.append({
                         "source": filename,
                         "chunk_index": i,
                         "content": chunk
@@ -315,12 +286,10 @@ done
 ```python
 import markitdown
 
-def prepare_document_for_llm(filepath, max_tokens=4000):
-    md = markitdown.MarkItDown()
+def prepare_document_for_llm(filepath, max_tokens=4000): md = markitdown.MarkItDown()
     result = md.convert(filepath)
 
-    if result:
-        content = result.text_content[:max_tokens * 4]
+    if result: content = result.text_content[:max_tokens * 4]
         return {
             "status": "success",
             "content": content,
@@ -335,7 +304,15 @@ def prepare_document_for_llm(filepath, max_tokens=4000):
 ### Conversion Speed by Format
 
 | Format | File Size | Conversion Time | Output Size |
-|--------|-----------|-----------------|-------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | PDF (100 pages) | 5 MB | ~8 seconds | 150 KB |
 | DOCX (50 pages) | 2 MB | ~3 seconds | 80 KB |
 | PPTX (30 slides) | 5 MB | ~5 seconds | 40 KB |
@@ -345,9 +322,7 @@ def prepare_document_for_llm(filepath, max_tokens=4000):
 
 ### Batch Processing Benchmark
 
-Processing 100 PDF files (average 50 pages each) on a standard laptop:
-
-```bash
+Processing 100 PDF files (average 50 pages each) on a standard laptop: ```bash
 time markitdown ./batch_docs/ -o ./batch_output/
 real 0m14m32s
 user 0m11m18s
@@ -359,16 +334,20 @@ Total batch processing time: approximately 15 minutes for 100 PDFs. Average per-
 ### OCR Performance
 
 | Image Quality | OCR Accuracy | Processing Time |
-|---------------|--------------|-----------------|
+|
+---
+|
+---
+|
+---
+|
 | High (300 DPI, clean) | 97% | 5 seconds |
 | Medium (200 DPI, minor noise) | 92% | 8 seconds |
 | Low (150 DPI, handwritten) | 78% | 12 seconds |
 
 ### Real-World Case: Legal Document Processing
 
-A mid-size law firm processes approximately 500 legal documents per month, mostly PDFs and Word files. Using MarkItDown in an automated pipeline:
-
-```bash
+A mid-size law firm processes approximately 500 legal documents per month, mostly PDFs and Word files. Using MarkItDown in an automated pipeline: ```bash
 #!/bin/bash
 # Daily legal doc processing
 for doc in /var/legal/pending/*.pdf; do
@@ -380,17 +359,13 @@ The firm converts an average of 17 documents per working day in under 2 hours, r
 
 ### Real-World Case: AI Knowledge Base Ingestion
 
-A data science team uses MarkItDown to populate their AI knowledge base with research papers:
-
-```python
+A data science team uses MarkItDown to populate their AI knowledge base with research papers: ```python
 import markitdown
 import os
 
 md = markitdown.MarkItDown()
 papers_dir = "./research_papers/"
-for fname in os.listdir(papers_dir):
-    if fname.endswith(".pdf"):
-        result = md.convert(os.path.join(papers_dir, fname))
+for fname in os.listdir(papers_dir): if fname.endswith(".pdf"): result = md.convert(os.path.join(papers_dir, fname))
         # Feed result.text_content into embedding pipeline
         print(f"Ingested: {fname}")
 ```
@@ -430,11 +405,9 @@ deactivate
 ```python
 import markitdown
 
-class CustomParser(markitdown.ConversionPlugin):
-    SUPPORTED_EXTENSIONS = [".myformat"]
+class CustomParser(markitdown.ConversionPlugin): SUPPORTED_EXTENSIONS = [".myformat"]
 
-    def convert(self, filepath, **kwargs):
-        text = my_custom_parser(filepath)
+    def convert(self, filepath, **kwargs): text = my_custom_parser(filepath)
         return markitdown.ConvertResult(text_content=text)
 
 md = markitdown.MarkItDown()
@@ -448,9 +421,7 @@ result = md.convert("file.myformat")
 docker run --rm -v $(pwd):/data python:3.11-slim pip install 'markitdown[all]' && python -m markitdown /data/input.pdf
 ```
 
-For production Docker deployments, create a custom Dockerfile:
-
-```dockerfile
+For production Docker deployments, create a custom Dockerfile: ```dockerfile
 FROM python:3.11-slim
 
 RUN apt-get update && apt-get install -y tesseract-ocr && rm -rf /var/lib/apt/lists/*
@@ -463,7 +434,17 @@ ENTRYPOINT ["python", "/convert.py"]
 ## Comparison with Alternatives
 
 | Feature | MarkItDown | Pandoc | Calibre | LibreOffice |
-|---------|-----------|--------|---------|-------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Install Method | `pip install markitdown` | apt/cargo/npm | .deb/.exe installer | Built-in suite |
 | Languages | Python | Multi-language | Multi-language | Multi-language |
 | CLI Interface | Simple CLI | Complex CLI | GUI-first | GUI-first |
@@ -481,9 +462,7 @@ MarkItDown's key advantage is its simplicity and native Python integration, maki
 
 ## Limitations / Honest Assessment
 
-While MarkItDown is powerful, be aware of these limitations:
-
-1. **Complex PDF layouts** — Unusual or highly customized PDF layouts may not convert perfectly. The tool works best with standard, text-based PDFs.
+While MarkItDown is powerful, be aware of these limitations: 1. **Complex PDF layouts** — Unusual or highly customized PDF layouts may not convert perfectly. The tool works best with standard, text-based PDFs.
 2. **OCR quality** — Image-to-Text conversion depends on Tesseract accuracy. Low-quality scans or handwritten text may produce imperfect results.
 3. **Large file memory** — Very large files (100+ MB) may consume significant RAM during conversion.
 4. **Custom formats** — Formats not natively supported require writing a custom parser extension.
@@ -540,7 +519,6 @@ Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss M
 Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -566,8 +544,8 @@ Some links above are affiliate links. dibi8.com may earn a commission if you sig
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [markitdown-universal-file-to-markdown-converter](microsoft-markitdown-file-to-markdown-converter-cli)
@@ -576,6 +554,6 @@ Some links above are affiliate links. dibi8.com may earn a commission if you sig
 - [markitdown-universal-file-to-markdown-converter](microsoft-markitdown-file-to-markdown-converter-cli)
 - [deepset-haystack-rag-framework-complete-guide](microsoft-markitdown-file-to-markdown-converter-cli)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

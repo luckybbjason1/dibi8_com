@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/hkuds-ai-trader" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hkuds-ai-trader" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hkuds-ai-trader" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hkuds-ai-trader" />
 title: "AI-Trader：HKUDS のエージェントネイティブ取引プラットフォーム"
 description: "AI-Trader は HKUDS 由来のエージェントネイティブ取引プラットフォームで、Claude Code、Codex、Cursor、OpenClaw などの AI コーディングエージェントが自律的に取引を実行し、ポートフォリオを管理し、戦略を最適化できるようにします。"
 date: 2026-06-10
-lastmod:  2026-06-10slug: hkuds-ai-trader
+lastmod: 2026-06-10
+slug: hkuds-ai-trader
 category: ai-trading
 tags: [ai-trader, HKUDS, ai-trading, エージェントネイティブ, 自律取引, ポートフォリオ管理, AI エージェント]
 github_repo: https://github.com/HKUDS/AI-Trader
@@ -17,8 +13,6 @@ license: MIT
 featureImage: https://raw.githubusercontent.com/HKUDS/AI-Trader/main/assets/ai-trader-hero-banner.png
 lang: ko
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/hkuds-ai-trader/ -->
 
 ## はじめに
 
@@ -130,30 +124,22 @@ registration = {
 # カスタム取引戦略を定義
 from ai_trader import Strategy
 
-class MomentumReversalStrategy(Strategy):
-    def __init__(self, lookback=20, threshold=0.05):
-        self.lookback = lookback
+class MomentumReversalStrategy(Strategy): def __init__(self, lookback=20, threshold=0.05): self.lookback = lookback
         self.threshold = threshold
     
-    def analyze(self, market_data):
-        # モメンタムを計算
+    def analyze(self, market_data): # モメンタムを計算
         returns = market_data.close.pct_change(self.lookback)
         
         # リバースルーションシグナルを識別
-        if returns.iloc[-1] > self.threshold:
-            return "SELL"
-        elif returns.iloc[-1] < -self.threshold:
-            return "BUY"
+        if returns.iloc[-1] > self.threshold: return "SELL"
+        elif returns.iloc[-1] < -self.threshold: return "BUY"
         return "HOLD"
     
-    def generate_order(self, signal, current_position):
-        if signal == "BUY":
-            return self.create_buy_order(
+    def generate_order(self, signal, current_position): if signal == "BUY": return self.create_buy_order(
                 symbol=current_position.symbol,
                 size=current_position.size * 0.5
             )
-        elif signal == "SELL":
-            return self.create_sell_order(
+        elif signal == "SELL": return self.create_sell_order(
                 symbol=current_position.symbol,
                 size=current_position.size
             )
@@ -240,8 +226,7 @@ exchanges = {
     }
 }
 
-for name, config in exchanges.items():
-    ai_trader.connect_exchange(name, config)
+for name, config in exchanges.items(): ai_trader.connect_exchange(name, config)
 ```
 
 ### 戦略ライブラリ統合
@@ -511,7 +496,6 @@ SKILL.md ベースの登録は、オンボーディングプロセスの中心�
 7. [WebShare - データパイプライン用プロキシサービス](https://webshare.io/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -539,25 +523,20 @@ SKILL.md ベースの登録は、オンボーディングプロセスの中心�
 
 ## Why This Matters
 
-Understanding ai-trader：hkuds のエージェントネイティブ取引プラットフォーム is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding ai-trader：hkuds のエージェントネイティブ取引プラットフォーム is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

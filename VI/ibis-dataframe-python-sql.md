@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ibis-dataframe-python-sql" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ibis-dataframe-python-sql" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ibis-dataframe-python-sql" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ibis-dataframe-python-sql" />
 title: 'ibis-dataframe-python-sql'
 description: '{'en': ''Discover Ibis, the Python DataFrame library that compiles expressions to SQL for 20+ backends including DuckDB, PostgreSQL, BigQuery, and Snowflake. Learn how lazy evaluation and type-safe expressions deliver 10x performance over pandas.'', 'zh': ''发现 Ibis，这款将表达式编译为 SQL 的 Python DataFrame 库，支持 DuckDB、PostgreSQL、BigQuery、Snowflake 等 20+ 后端。了解惰性求值和类型安全表达式如何带来比 pandas 快 10 倍的性能。'', 'ko': ''DuckDB, PostgreSQL, BigQuery, Snowflake를 포함한 20개 이상의 백엔드를 위해 표현식을 SQL로 컴파일하는 Python DataFrame 라이브러리 Ibis를 알아보세요. 지연 평가와 타입 안전 표현식이 pandas보다 10배 빠른 성능을 제공하는 방법을 배워보세요.'', 'vi': ''Khám phá Ibis, thư viện DataFrame Python biên dịch biểu thức thành SQL cho 20+ backend bao gồm DuckDB, PostgreSQL, BigQuery và Snowflake. Tìm hiểu cách đánh giá lưới và biểu thức kiểu an toàn mang lại hiệu suất gấp 10 lần so với pandas.''}'
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: [ibis]
-aliases:
-- /vi/posts/ibis-dataframe-python-sql/
+aliases: - /vi/posts/ibis-dataframe-python-sql/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/ibis-dataframe-python-sql/ -->
 
 {{</* resource-info */>}}
 
@@ -123,16 +115,12 @@ pip install "ibis-framework[clickhouse]"
 pip install "ibis-framework[duckdb,postgres,bigquery]"
 ```
 
-Với ngườ dùng conda:
-
-```bash
+Với ngườ dùng conda: ```bash
 conda install -c conda-forge ibis-framework
 conda install -c conda-forge ibis-duckdb ibis-postgres
 ```
 
-Sau khi cài đặt, xác minh mọi thứ đang hoạt động:
-
-```python
+Sau khi cài đặt, xác minh mọi thứ đang hoạt động: ```python
 import ibis
 print(ibis.__version__)
 
@@ -365,9 +353,7 @@ expr = (
 print(expr.sql())
 ```
 
-Đầu ra hiển thị chính xác SQL mà Ibis sẽ thực thi:
-
-```sql
+Đầu ra hiển thị chính xác SQL mà Ibis sẽ thực thi: ```sql
 SELECT "category", SUM("amount") AS "total"
 FROM "transactions"
 WHERE "amount" > 100
@@ -460,8 +446,7 @@ top3 = ranked.filter(ranked.rn <= 3)
 ```python
 # Định nghĩa Python UDF chạy trong DuckDB
 @ibis.udf.scalar.python
-def format_currency(value: float) -> str:
-    return f"${value:,.2f}"
+def format_currency(value: float) -> str: return f"${value:,.2f}"
 
 applied = t.mutate(
     formatted=format_currency(t.amount)
@@ -569,8 +554,7 @@ Hiểu cách Ibis so sánh với các công cụ hiện có giúp làm rõ đề
 
 ```python
 # Mã Ibis súc tích hơn SQLAlchemy tương đương cho phân tích
-# Ibis:
-result = (
+# Ibis: result = (
     t.group_by("category")
      .aggregate(total=t.amount.sum())
      .order_by(ibis.desc("total"))
@@ -645,7 +629,6 @@ Năm 2026, khi khối lượng dữ liệu tiếp tục bùng nổ và các tổ
 Nếu bạn chưa thêm Ibis vào bộ công cụ dữ liệu của mình, bây giờ là lúc. Bắt đầu với DuckDB cho phát triển cục bộ, và chứng kiến các quy trình phân tích của bạn trở nên nhanh hơn, có khả năng mang đi hơn, và dễ bảo trì hơn chỉ sau một đêm.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

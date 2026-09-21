@@ -1,17 +1,11 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/deepseek-v3-vs-claude-sonnet" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/deepseek-v3-vs-claude-sonnet" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/deepseek-v3-vs-claude-sonnet" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/deepseek-v3-vs-claude-sonnet" />
 title: 'DeepSeek V3.5 vs Claude Sonnet 4.6 năm 2026: Open Weight...
 description: 'So sánh chi tiết DeepSeek V3.5 (685B MoE, open weights) và Claude Sonnet 4.6 — giá mỗi MTok, cửa sổ context, SWE-bench, đa ngôn ngữ, khả dụng API. Cập nhật 2026.'
 date: 2026-05-22 00:00:00+08:00
-lastmod:  2026-05-22 00:00:00+08:00draft: false
+lastmod: 2026-05-22 00:00:00+08:00draft: false
 tags: [deepseek, claude-sonnet, anthropic, llm, comparison, open-source, ai-coding]
 categories: [vs]
-faqs:
-  - q: 'DeepSeek V3.5 có thực sự rẻ hơn Claude Sonnet 4.6 gấp 10 lần không?'
+faqs: - q: 'DeepSeek V3.5 có thực sự rẻ hơn Claude Sonnet 4.6 gấp 10 lần không?'
     a: 'Theo giá token thô thì đúng. DeepSeek V3.5 tính khoảng $0.27/triệu token input và $1.10/triệu token output, trong khi Claude Sonnet 4.6 là $3 input / $15 output. Tức rẻ hơn ~11x input và ~13x output. Tuy nhiên Sonnet dùng ít token hơn cho mỗi tác vụ (nén lập luận tốt hơn) và hỗ trợ 1M context (DeepSeek 128K) — nên khoảng cách chi phí thực tế gần 5-7x hơn.'
   - q: 'Cái nào tốt hơn cho coding, DeepSeek V3.5 hay Claude Sonnet 4.6?'
     a: 'Trên SWE-bench Verified, Claude Sonnet 4.6 đạt khoảng 77% còn DeepSeek V3.5 khoảng 55-60%. Sonnet thắng ở refactor đa file, spec mơ hồ, debug long-context. DeepSeek thắng ở "chi phí cho mỗi lần fix đúng" với các tác vụ coding đơn file rõ phạm vi — là lựa chọn ngân sách cho agentic loop lưu lượng cao.'
@@ -23,7 +17,6 @@ faqs:
     a: 'Claude Sonnet 4.6 hỗ trợ tới 1M token (1.000.000) context ở biến thể [1M] — đủ chứa cả codebase trung bình hoặc 750K từ tài liệu. DeepSeek V3.5 giới hạn 128K token (khoảng 100K từ). Cho monorepo lớn, tài liệu pháp lý dài, Q&A trọn cuốn sách, Sonnet 1M ở đẳng cấp khác hẳn.'
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/deepseek-v3-vs-claude-sonnet/ -->
 # DeepSeek V3.5 vs Claude Sonnet 4.6 năm 2026: Open Weights so với 1M Context
 
 
@@ -154,9 +147,7 @@ Muốn dựng server inference DeepSeek riêng để test với Sonnet API trên
 
 ## Lựa chọn thay thế đáng thử
 
-Nếu cả DeepSeek lẫn Sonnet đều không phù hợp:
-
-- **[Claude Code](https://dibi8.com/vi/vs/cursor-vs-claude-code/)** — Agent native terminal trên Sonnet, tốt nhất cho codebase lớn
+Nếu cả DeepSeek lẫn Sonnet đều không phù hợp: - **[Claude Code](https://dibi8.com/vi/vs/cursor-vs-claude-code/)** — Agent native terminal trên Sonnet, tốt nhất cho codebase lớn
 - **[Aider](https://dibi8.com/vi/resources/llm-frameworks/aider/)** — Coding agent open-source, dùng được cả DeepSeek và Sonnet
 - **[Continue.dev](https://dibi8.com/vi/resources/llm-frameworks/continue/)** — Extension VS Code miễn phí, BYO model (DeepSeek hoặc Sonnet)
 - **[cc-switch](https://dibi8.com/vi/resources/dev-utils/cc-switch-claude-code-api-router/)** — Route Claude Code qua backend DeepSeek, giảm chi phí 60-80%
@@ -200,7 +191,6 @@ Cho hầu hết indie dev năm 2026, nước đi khôn là **pattern router**: m
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/flowise-ai-workflow-builder-lowcode" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/flowise-ai-workflow-builder-lowcode" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/flowise-ai-workflow-builder-lowcode" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/flowise-ai-workflow-builder-lowcode" />
 title: 'Flowise 2026 完整指南：低代码 AI 工作流构建器 — 可视化部署 LangChain Agent'
 description: 'Flowise 2026 完整指南 — 开源低代码 AI 工作流构建器，支持 100+ 集成。可视化 LangChain Agent 创建、Docker 部署、API 端点和实际基准测试。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [flowise, langchain, 低代码, ai工作流, docker, 自托管, agent构建器, 无代码, 开源, 聊天机器人]
-aliases:
-- /zh/posts/flowise-ai-workflow-builder-lowcode/
+aliases: - /zh/posts/flowise-ai-workflow-builder-lowcode/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/flowise-ai-workflow-builder-lowcode/ -->
 
 {{</* resource-info */>}}
 
@@ -109,13 +101,9 @@ mkdir -p ~/flowise && cd ~/flowise
 
 # 创建 docker-compose.yml
 cat > docker-compose.yml << EOF
-services:
-  flowise:
-    image: flowiseai/flowise:2.2.0
-    ports:
-      - "3000:3000"
-    environment:
-      - PORT=3000
+services: flowise: image: flowiseai/flowise:2.2.0
+    ports: - "3000:3000"
+    environment: - PORT=3000
       - FLOWISE_USERNAME=admin
       - FLOWISE_PASSWORD=your-secure-password
       - DATABASE_TYPE=sqlite
@@ -124,13 +112,10 @@ services:
       - SECRETKEY_PATH=/root/.flowise
       - LOG_PATH=/root/.flowise/logs
       - BLOB_STORAGE_PATH=/root/.flowise/storage
-    volumes:
-      - flowise_data:/root/.flowise
+    volumes: - flowise_data:/root/.flowise
     restart: unless-stopped
 
-volumes:
-  flowise_data:
-EOF
+volumes: flowise_data: EOF
 
 # 启动
 docker compose up -d
@@ -145,22 +130,15 @@ curl -s http://localhost:3000/api/v1/health | jq .
 
 ```yaml
 # docker-compose.prod.yml
-services:
-  postgres:
-    image: postgres:16-alpine
-    environment:
-      POSTGRES_USER: flowise
+services: postgres: image: postgres:16-alpine
+    environment: POSTGRES_USER: flowise
       POSTGRES_PASSWORD: strong-db-password
       POSTGRES_DB: flowise
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+    volumes: - postgres_data:/var/lib/postgresql/data
 
-  flowise:
-    image: flowiseai/flowise:2.2.0
-    ports:
-      - "3000:3000"
-    environment:
-      - DATABASE_TYPE=postgres
+  flowise: image: flowiseai/flowise:2.2.0
+    ports: - "3000:3000"
+    environment: - DATABASE_TYPE=postgres
       - DATABASE_HOST=postgres
       - DATABASE_PORT=5432
       - DATABASE_USER=flowise
@@ -168,15 +146,10 @@ services:
       - DATABASE_NAME=flowise
       - FLOWISE_USERNAME=admin
       - FLOWISE_PASSWORD=${FLOWISE_PASSWORD}
-    depends_on:
-      - postgres
-    volumes:
-      - flowise_storage:/root/.flowise
+    depends_on: - postgres
+    volumes: - flowise_storage:/root/.flowise
 
-volumes:
-  postgres_data:
-  flowise_storage:
-```
+volumes: postgres_data: flowise_storage: ```
 
 ### 环境变量参考
 
@@ -363,7 +336,13 @@ curl -X POST http://localhost:3000/api/v1/prediction/research-agent-team \
 Flowise 支持以下类别的 **100+ 集成**：
 
 | 类别 | 热门集成 | 数量 |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | **LLM 提供商** | OpenAI, Anthropic, Google, Ollama, Groq, Mistral, Cohere | 15+ |
 | **向量存储** | Chroma, Qdrant, Pinecone, Weaviate, LanceDB, Milvus, Redis | 10+ |
 | **文档加载器** | PDF, CSV, JSON, 网页抓取, YouTube, Notion, Confluence | 20+ |
@@ -417,7 +396,17 @@ module.exports = { JiraTicketTool };
 在 **Intel i7-13700K + 32 GB RAM**、本地 Docker + OpenAI API 上测试：
 
 | 工作流类型 | 节点数 | 平均延迟 | 95 百分位 | Token/秒 |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 简单 LLM 调用 | 3 | 0.8秒 | 1.2秒 | 142 |
 | RAG (1 文档, 10 页) | 7 | 2.1秒 | 3.4秒 | 98 |
 | RAG (50 文档, 500 页) | 7 | 3.8秒 | 6.2秒 | 89 |
@@ -427,7 +416,13 @@ module.exports = { JiraTicketTool };
 ### 负载下的吞吐量
 
 | 并发用户 | 平均响应时间 | 错误率 |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | 1 | 2.1秒 | 0% |
 | 5 | 2.8秒 | 0% |
 | 10 | 4.6秒 | 0.3% |
@@ -439,7 +434,15 @@ module.exports = { JiraTicketTool };
 ### 对比：Flowise vs. 手写 LangChain 代码
 
 | 指标 | Flowise | 手写 Python | 节省时间 |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 简单 RAG 设置 | 15 分钟 | 4 小时 | **94%** |
 | 多 Agent 流程 | 45 分钟 | 12 小时 | **94%** |
 | 添加新 LLM | 2 分钟 | 30 分钟 | **93%** |
@@ -454,9 +457,7 @@ module.exports = { JiraTicketTool };
 ### 嵌入 Flowise 作为聊天小部件
 
 ```html
-<!-- 添加到任何网页 -->
-<script type="module">
-  import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed@2.2.0/dist/web.js";
+import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed@2.2.0/dist/web.js";
   Chatbot.init({
     chatflowid: "your-chatflow-id",
     apiHost: "https://flowise.yourdomain.com",
@@ -538,35 +539,35 @@ find /backups/flowise -type d -mtime +14 -exec rm -rf {} +
 
 ```yaml
 # docker-compose.monitoring.yml
-services:
-  prometheus:
-    image: prom/prometheus:v3.0
-    ports:
-      - "9090:9090"
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+services: prometheus: image: prom/prometheus:v3.0
+    ports: - "9090:9090"
+    volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
 
-  grafana:
-    image: grafana/grafana:11.0
-    ports:
-      - "3001:3000"
-    volumes:
-      - grafana_data:/var/lib/grafana
+  grafana: image: grafana/grafana:11.0
+    ports: - "3001:3000"
+    volumes: - grafana_data:/var/lib/grafana
 
-  flowise:
-    image: flowiseai/flowise:2.2.0
-    environment:
-      - METRICS_ENABLED=true
+  flowise: image: flowiseai/flowise:2.2.0
+    environment: - METRICS_ENABLED=true
       - METRICS_PORT=9091
-    ports:
-      - "3000:3000"
+    ports: - "3000:3000"
       - "9091:9091"
 ```
 
 ## 与替代方案对比
 
 | 功能 | Flowise | LangGraph Studio | Dify | n8n AI |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **许可证** | Apache-2.0 | MIT | Apache-2.0 | Fair-code |
 | **GitHub Stars** | 45,000 | 8,500 | 92,000 | 75,000 |
 | **方式** | 可视化拖拽 | 可视化 + 代码 | 可视化 + 配置 | 工作流自动化 |
@@ -672,7 +673,6 @@ Flowise 消除了将 LangChain 想法与部署的 AI 功能分隔开的 **800 �
 本文包含 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 和 [AppSumo](https://appsumo.com/s/106nifb/) 的推广链接。如果你通过这些链接注册，我们会获得佣金，但不会增加你的额外费用。我们只推荐用于自己部署的服务。所有基准测试和观点均为独立制作，不受任何推广合作影响。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -698,8 +698,8 @@ Flowise 消除了将 LangChain 想法与部署的 AI 功能分隔开的 **800 �
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [langflow-visual-llm-workflow-builder-2026](flowise-ai-workflow-builder-lowcode)
@@ -708,8 +708,8 @@ Flowise 消除了将 LangChain 想法与部署的 AI 功能分隔开的 **800 �
 - [egonex-understand-anything-interactive-knowledge-graph-ai](flowise-ai-workflow-builder-lowcode)
 - [mattpocock-skills-ai-agent-framework-guide](flowise-ai-workflow-builder-lowcode)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

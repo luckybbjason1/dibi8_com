@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/self-hosted-llm-2026-ollama-vllm-localai" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/self-hosted-llm-2026-ollama-vllm-localai" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/self-hosted-llm-2026-ollama-vllm-localai" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/self-hosted-llm-2026-ollama-vllm-localai" />
 title: 'LLM Tự Lưu Trữ 2026: Ollama vs vLLM vs LocalAI — Đo Thực...
 description: 'Đã kiểm thử Ollama, vLLM và LocalAI trên cùng RTX 4090 với Llama 3.3 70B. Tokens/giây thực tế, mức sử dụng bộ nhớ, thời gian thiết lập, và đâu là lựa chọn phù hợp cho nghiệp dư so với triển khai sản xuất tự lưu trữ.'
 date: 2026-05-25 00:00:00+08:00
@@ -21,10 +16,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['self-hosted', llm, ollama, vllm, localai, inference, 2026]
-aliases:
-- /vi/posts/self-hosted-llm-2026-ollama-vllm-localai/
-faq:
-  - q: "Stack LLM tự lưu trữ nào tốt nhất vào năm 2026?"
+aliases: - /vi/posts/self-hosted-llm-2026-ollama-vllm-localai/
+faq: - q: "Stack LLM tự lưu trữ nào tốt nhất vào năm 2026?"
     a: "Tùy vào workload. Ollama cho nghiệp dư/dev (thiết lập dễ nhất, đơn người dùng). vLLM cho sản xuất (throughput cao nhất, đa người dùng). LocalAI làm bản thay thế tương thích OpenAI API (hỗ trợ rộng nhất về mô hình, đích thay thế cho code OpenAI client hiện có)."
   - q: "Tôi thực sự cần phần cứng gì?"
     a: "Llama 3.3 70B đã lượng tử hóa (Q4): một RTX 4090 (24GB VRAM) xử lý ở tốc độ khả dụng (~25 tokens/giây). Server sản xuất: dual H100 hoặc A100 80GB. Nghiệp dư: RTX 3090 (24GB) chạy được 70B nhưng chậm hơn. Với mô hình 8B: bất kỳ GPU nào có 8GB VRAM đều đủ."
@@ -37,8 +30,6 @@ faq:
   - q: "Cái nào tốt nhất để thay thế OpenAI API?"
     a: "LocalAI theo thiết kế — nó cung cấp endpoint /v1/chat/completions tương thích OpenAI. Trỏ bất kỳ OpenAI SDK nào vào URL của LocalAI và nó chạy ngay. Ollama và vLLM cũng cung cấp endpoint tương thích OpenAI trong các phiên bản 2026, nhưng LocalAI có lịch sử dài nhất và hỗ trợ mô hình rộng nhất."
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/self-hosted-llm-2026-ollama-vllm-localai/ -->
 
 {{</* resource-info */>}}
 
@@ -81,8 +72,7 @@ Server API tương thích OpenAI. Thay thế trực tiếp: đổi biến môi t
 
 ## Cấu Hình Benchmark
 
-Cả ba được kiểm thử trên:
-- Phần cứng: RTX 4090 (24GB VRAM), 64GB RAM, AMD 7950X
+Cả ba được kiểm thử trên: - Phần cứng: RTX 4090 (24GB VRAM), 64GB RAM, AMD 7950X
 - Mô hình: Llama 3.3 70B Instruct Q4_K_M (40GB → 22GB sau lượng tử hóa)
 - Workload: 100 yêu cầu đồng thời, hỗn hợp sinh ngắn (50 tokens) và dài (500 tokens)
 
@@ -122,37 +112,29 @@ Cộng với debug địa ngục dependency (tương thích phiên bản CUDA, p
 ### LocalAI (45 phút)
 ```yaml
 # docker-compose.yml
-services:
-  api:
-    image: localai/localai:latest-aio-gpu-nvidia
-    volumes:
-      - ./models:/build/models
-    environment:
-      - MODELS_PATH=/build/models
+services: api: image: localai/localai:latest-aio-gpu-nvidia
+    volumes: - ./models:/build/models
+    environment: - MODELS_PATH=/build/models
 ```
 Cộng với YAML cấu hình mô hình cho mỗi mô hình được tải. Docker xử lý dependency gọn gàng.
 
 ## Phân Tích Chi Phí: Khi Nào Tự Lưu Trữ Thắng API
 
-Giả định:
-- Một H100 (thuê $2/giờ) = $1440/tháng
+Giả định: - Một H100 (thuê $2/giờ) = $1440/tháng
 - Hoặc RTX 4090 sở hữu ($1600 ban đầu) + $50 điện = ~$80/tháng phân bổ trong 24 tháng
 - Serving vLLM đa người dùng = ~50K tokens/giây/GPU duy trì ở tải đầy
 
 ```
-H100 sản xuất:
-  $1440/tháng / tiềm năng 1 tỷ tokens/tháng
+H100 sản xuất: $1440/tháng / tiềm năng 1 tỷ tokens/tháng
   = $0.0000014/1K tokens
   
-so với Anthropic Sonnet API:
-  $0.003/1K input + $0.015/1K output
+so với Anthropic Sonnet API: $0.003/1K input + $0.015/1K output
   ~$0.009 pha trộn
   
 Điểm hòa vốn: ~160 triệu tokens/tháng
 ```
 
-Với RTX 4090 nghiệp dư xử lý 100 triệu tokens/tháng:
-- Sở hữu: $80/tháng cho phân bổ phần cứng
+Với RTX 4090 nghiệp dư xử lý 100 triệu tokens/tháng: - Sở hữu: $80/tháng cho phân bổ phần cứng
 - API tương đương: $300-900/tháng
 - Điểm hòa vốn: ~30 triệu tokens/tháng cho RTX 4090
 
@@ -160,9 +142,7 @@ Với RTX 4090 nghiệp dư xử lý 100 triệu tokens/tháng:
 
 ## Khoảng Cách Chất Lượng So Với API Thương Mại
 
-Llama 3.3 70B tốt nhưng **không ngang hàng** với các mô hình tiên tiến:
-
-| Benchmark | Llama 3.3 70B | Claude Sonnet 4.6 | GPT-5 | Gemini 2.5 Pro |
+Llama 3.3 70B tốt nhưng **không ngang hàng** với các mô hình tiên tiến: | Benchmark | Llama 3.3 70B | Claude Sonnet 4.6 | GPT-5 | Gemini 2.5 Pro |
 |---|---|---|---|---|
 | HumanEval (code) | 80% | 92% | 89% | 87% |
 | MMLU (lý luận) | 82% | 89% | 88% | 86% |
@@ -185,16 +165,14 @@ Tối ưu chi phí + lưu lượng cao → vLLM với H100
 
 ## Hạ Tầng Khuyến Nghị
 
-Cho triển khai LLM tự lưu trữ:
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit, có droplet GPU H100/L40S
+Cho triển khai LLM tự lưu trữ: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit, có droplet GPU H100/L40S
 - **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hồng Kông, có tùy chọn GPU cho inference
 
 *Link tiếp thị liên kết — cùng giá, hỗ trợ dibi8.com.*
 
 ## Kết Luận
 
-Cả ba runtime đều sẵn sàng cho sản xuất vào năm 2026. Lựa chọn đúng phụ thuộc vào workload:
-- **Ollama** nếu bạn một mình và muốn nó chạy ngay trong 10 phút.
+Cả ba runtime đều sẵn sàng cho sản xuất vào năm 2026. Lựa chọn đúng phụ thuộc vào workload: - **Ollama** nếu bạn một mình và muốn nó chạy ngay trong 10 phút.
 - **vLLM** nếu bạn phục vụ nhiều người dùng và cần từng token throughput.
 - **LocalAI** nếu bạn thay thế OpenAI trong code hiện có.
 
@@ -207,7 +185,6 @@ Về chất lượng, Llama 3.3 70B đủ tốt cho hầu hết công việc hà
 **Liên quan**: [Hướng Dẫn Thiết Lập Ollama](https://dibi8.com/vi/resources/llm-frameworks/ollama/) · [RAG vs Fine-Tuning 2026](https://dibi8.com/vi/resources/llm-frameworks/rag-vs-fine-tuning-2026-decision-framework/) · [Xếp Hạng MCP Server 2026](https://dibi8.com/vi/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -235,25 +212,20 @@ Về chất lượng, Llama 3.3 70B đủ tốt cho hầu hết công việc hà
 
 ## Why This Matters
 
-Understanding llm tự lưu trữ 2026: ollama vs vllm vs localai — đo thực throughput, chi phí, triển khai is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding llm tự lưu trữ 2026: ollama vs vllm vs localai — đo thực throughput, chi phí, triển khai is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

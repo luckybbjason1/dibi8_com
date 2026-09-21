@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/docker-development-environment-best-practices" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/docker-development-environment-best-practices" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/docker-development-environment-best-practices" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/docker-development-environment-best-practices" />
 title: 'Docker开发环境最佳实践：2025年完整指南'
 description: '2025年Docker开发环境完整配置指南，涵盖Dev Containers、热重载、多阶段构建、数据库管理等10大最佳实践，附带完整docker-compose配置示例。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/docker-development-environment-best-practices/
+aliases: - /posts/docker-development-environment-best-practices/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/docker-development-environment-best-practices/ -->
 
 {</* resource-info */>}
 
@@ -67,58 +59,38 @@ my-project/
 
 ```yaml
 version: "3.9"
-services:
-  frontend:
-    build:
-      context: .
+services: frontend: build: context: .
       dockerfile: docker/Dockerfile.dev
       target: dev
-    volumes:
-      - ./frontend:/app
+    volumes: - ./frontend:/app
       - /app/node_modules
-    ports:
-      - "5173:5173"
-    environment:
-      - VITE_API_URL=http://localhost:3000
+    ports: - "5173:5173"
+    environment: - VITE_API_URL=http://localhost:3000
 
-  api:
-    build:
-      context: .
+  api: build: context: .
       dockerfile: docker/Dockerfile.dev
       target: dev
-    volumes:
-      - ./api:/app
+    volumes: - ./api:/app
       - /app/node_modules
-    ports:
-      - "3000:3000"
+    ports: - "3000:3000"
       - "9229:9229"  # Node.js调试端口
-    environment:
-      - DATABASE_URL=postgresql://dev:dev@db:5432/myapp
+    environment: - DATABASE_URL=postgresql://dev:dev@db:5432/myapp
       - REDIS_URL=redis://cache:6379
-    depends_on:
-      - db
+    depends_on: - db
       - cache
 
-  db:
-    image: postgres:16-alpine
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+  db: image: postgres:16-alpine
+    volumes: - postgres_data:/var/lib/postgresql/data
       - ./docker/init.sql:/docker-entrypoint-initdb.d/init.sql
-    ports:
-      - "5432:5432"
-    environment:
-      - POSTGRES_USER=dev
+    ports: - "5432:5432"
+    environment: - POSTGRES_USER=dev
       - POSTGRES_PASSWORD=dev
       - POSTGRES_DB=myapp
 
-  cache:
-    image: redis:7-alpine
-    ports:
-      - "6379:6379"
+  cache: image: redis:7-alpine
+    ports: - "6379:6379"
 
-volumes:
-  postgres_data:
-```
+volumes: postgres_data: ```
 
 这个配置体现了几个重要实践：**使用命名卷持久化数据库数据**、**通过Bind Mount实现代码热重载**、**将初始化SQL脚本挂载到 `/docker-entrypoint-initdb.d/` 实现自动建表**。
 
@@ -155,7 +127,13 @@ Dev Containers的核心价值在于**环境即代码（Environment as Code）**�
 开发体验的关键是代码修改后立即看到效果。不同技术栈的热重载方案如下：
 
 | 技术栈 | 热重载工具 | 典型配置 |
-|--------|-----------|---------|
+|
+---
+|
+---
+|
+---
+|
 | Node.js | nodemon / tsx | `nodemon --legacy-watch src/index.js` |
 | React/Vite | Vite内置 | `vite --host 0.0.0.0` |
 | Python | watchdog / air | `watchmedo auto-restart --directory=./ --pattern=*.py --recursive -- python app.py` |
@@ -216,20 +194,16 @@ COPY --from=build /app/dist /usr/share/nginx/html
 
 ```makefile
 # Makefile 快捷命令示例
-up:
-    docker-compose up -d
+up: docker-compose up -d
 
-down:
-    docker-compose down
+down: docker-compose down
 
-reset-db:
-    docker-compose down -v
+reset-db: docker-compose down -v
     docker-compose up -d db
     sleep 3
     docker-compose run --rm api npx prisma migrate dev
 
-logs:
-    docker-compose logs -f api
+logs: docker-compose logs -f api
 ```
 
 ## 网络配置与服务发现
@@ -250,7 +224,13 @@ Docker开发环境的速度直接影响开发体验。以下优化措施可显�
 ## 开发中常见的Docker错误有哪些？
 
 | 错误做法 | 正确做法 | 原因 |
-|---------|---------|------|
+|
+---
+|
+---
+|
+---
+|
 | 容器内以root运行 | 创建非root用户：`USER node` | 减少安全风险 |
 | 镜像中安装所有工具 | 生产镜像只包含运行依赖 | 减少攻击面 |
 | 忽略 `.dockerignore` | 精细配置忽略规则 | 加速构建、减少镜像体积 |
@@ -286,8 +266,8 @@ A: 以Node.js为例，启动时添加 `--inspect=0.0.0.0:9229` 参数，在 `doc
 **Q: VS Code的Dev Containers值得用吗？**
 A: 强烈建议尝试。它消除了"安装正确版本的Node/Python/Go"的繁琐步骤，特别适合开源项目（贡献者环境各异）和大型团队（统一开发工具链）。配合GitHub Codespaces甚至可以在iPad上开发全栈应用。
 
----
 
+---
 ## 推荐基础设施
 
 要 7×24 稳跑上述工具，服务器选择关键：
@@ -299,7 +279,6 @@ A: 强烈建议尝试。它消除了"安装正确版本的Node/Python/Go"的繁�
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -327,25 +306,20 @@ A: 强烈建议尝试。它消除了"安装正确版本的Node/Python/Go"的繁�
 
 ## Why This Matters
 
-Understanding docker开发环境最佳实践：2025年完整指南 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding docker开发环境最佳实践：2025年完整指南 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -366,7 +340,7 @@ Docker开发环境最佳实践：2025年完整指南 represents an important ste
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

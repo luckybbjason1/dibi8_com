@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/llm-evaluation-benchmarking-frameworks" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/llm-evaluation-benchmarking-frameworks" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llm-evaluation-benchmarking-frameworks" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/llm-evaluation-benchmarking-frameworks" />
 title: '2025년 LLM 평가 및 벤치마킹 프레임워크 비교: EleutherAI LM Eval, OpenCo...
 description: '2025년 최신 LLM 평가 및 벤치마킹 프레임워크를 벤치마크 범위, 사용 편의성, 커뮤니티 지원 중심으로 비교합니다. EleutherAI LM Eval, OpenCompass, BIG-bench, HELM 등 주요 프레임워크를 확인하세요.'
 date: 2026-05-18 00:00:00+08:00
@@ -25,11 +20,9 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['llm 평가', 'llm 벤치마크', eleutherai, opencompass, 'big-bench', helm, mmlu, humaneval]
-aliases:
-- /kr/posts/llm-evaluation-benchmarking-frameworks/
+aliases: - /kr/posts/llm-evaluation-benchmarking-frameworks/
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/llm-evaluation-benchmarking-frameworks/ -->
 # 2025년 LLM 평가 및 벤치마킹 프레임워크 비교: EleutherAI LM Eval, OpenCompass, BIG-bench
 
 
@@ -162,9 +155,7 @@ EleutherAI LM Eval이 가장 방대한 사용자 기반과 문서를 보유하�
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -179,7 +170,6 @@ EleutherAI LM Eval이 가장 방대한 사용자 기반과 문서를 보유하�
 - [DeepEval 공식 문서](https://github.com/confident-ai)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -207,25 +197,20 @@ EleutherAI LM Eval이 가장 방대한 사용자 기반과 문서를 보유하�
 
 ## Why This Matters
 
-Understanding 2025년 llm 평가 및 벤치마킹 프레임워크 비교: eleutherai lm eval, opencompass, big-bench is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding 2025년 llm 평가 및 벤치마킹 프레임워크 비교: eleutherai lm eval, opencompass, big-bench is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

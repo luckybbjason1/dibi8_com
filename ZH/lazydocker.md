@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/lazydocker" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/lazydocker" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/lazydocker" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/lazydocker" />
 title: 'LazyDocker: 51,092 GitHub Stars — 完整终端 Docker UI 设置指南 2026'
 description: 'LazyDocker (LD) 是一个用于管理 Docker 容器、镜像、卷和日志的终端 UI。兼容 Docker、Docker Compose、Go 和 Terminal。涵盖安装、快捷键、配置和生产环境加固。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [lazydocker, docker, 终端界面, devops, 容器, 命令行工具, 'docker-compose', tui]
-aliases:
-- /zh/posts/lazydocker/
+aliases: - /zh/posts/lazydocker/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/lazydocker/ -->
 
 {{</* resource-info */>}}
 
@@ -177,7 +169,11 @@ LazyDocker 的效率来自其类似 vim 的快捷键。导航使用方向键或 
 ### 全局导航
 
 | 按键 | 操作 |
-|------|------|
+|
+---
+|
+---
+|
 | `Tab` / `Shift+Tab` | 在左侧面板之间循环 |
 | `↑` `↓` / `k` `j` | 在面板中导航项目 |
 | `Enter` | 聚焦主面板 / 选择 |
@@ -189,7 +185,11 @@ LazyDocker 的效率来自其类似 vim 的快捷键。导航使用方向键或 
 ### 容器操作
 
 | 按键 | 操作 |
-|------|------|
+|
+---
+|
+---
+|
 | `r` | 重启容器 |
 | `s` | 停止容器 |
 | `d` | 移除容器（带确认） |
@@ -206,7 +206,11 @@ LazyDocker 的效率来自其类似 vim 的快捷键。导航使用方向键或 
 ### Docker Compose 服务操作
 
 | 按键 | 操作 |
-|------|------|
+|
+---
+|
+---
+|
 | `u` | 启动服务 |
 | `U` | 启动整个项目 |
 | `d` | 移除服务容器 |
@@ -220,7 +224,13 @@ LazyDocker 的效率来自其类似 vim 的快捷键。导航使用方向键或 
 ### 镜像和卷操作
 
 | 按键 | 操作（镜像） | 操作（卷） |
-|------|-------------|-----------|
+|
+---
+|
+---
+|
+---
+|
 | `d` | 移除镜像 | 移除卷 |
 | `p` | 拉取最新镜像 | — |
 | `Enter` | 检查镜像详情 | 检查卷 |
@@ -228,7 +238,11 @@ LazyDocker 的效率来自其类似 vim 的快捷键。导航使用方向键或 
 ### 日志导航
 
 | 按键 | 操作 |
-|------|------|
+|
+---
+|
+---
+|
 | `PageUp` / `PageDown` | 滚动日志 |
 | `g` | 跳到日志开头 |
 | `G` | 跳到日志末尾 |
@@ -243,7 +257,11 @@ LazyDocker 将配置存储在平台特定的路径中。在项目面板中按 `o
 ### 配置文件位置
 
 | 操作系统 | 路径 |
-|---------|------|
+|
+---
+|
+---
+|
 | Linux | `~/.config/lazydocker/config.yml` |
 | macOS | `~/Library/Application Support/jesseduffield/lazydocker/config.yml` |
 | Windows | `C:\Users\<User>\AppData\Roaming\lazydocker\config.yml` |
@@ -252,21 +270,14 @@ LazyDocker 将配置存储在平台特定的路径中。在项目面板中按 `o
 
 ```yaml
 # ~/.config/lazydocker/config.yml
-gui:
-  language: "zh"  # auto | en | fr | de | es | pl | nl | tr | zh
+gui: language: "zh"  # auto | en | fr | de | es | pl | nl | tr | zh
   border: "rounded"  # rounded | single | double | hidden
-  theme:
-    activeBorderColor:
-      - cyan
+  theme: activeBorderColor: - cyan
       - bold
-    inactiveBorderColor:
-      - white
-    selectedLineBgColor:
-      - black
-    selectedLineFgColor:
-      - yellow
-    optionsTextColor:
-      - blue
+    inactiveBorderColor: - white
+    selectedLineBgColor: - black
+    selectedLineFgColor: - yellow
+    optionsTextColor: - blue
   scrollHeight: 2
   sidePanelWidth: 0.333
   screenMode: "normal"  # normal | half | fullscreen
@@ -275,8 +286,7 @@ gui:
 ### 日志显示设置
 
 ```yaml
-logs:
-  timestamps: true
+logs: timestamps: true
   since: "60m"    # 显示最近 60 分钟的日志；'' = 全部时间
   tail: "200"     # 显示的行数
 ```
@@ -286,9 +296,7 @@ logs:
 添加通过 `c` 键访问的自定义命令：
 
 ```yaml
-customCommands:
-  containers:
-    - name: bash
+customCommands: containers: - name: bash
       attach: true
       command: "docker exec -it {{ .Container.ID }} bash"
       serviceNames: []
@@ -304,8 +312,7 @@ customCommands:
 通过交换命令模板，LazyDocker 可与 Podman 配合使用：
 
 ```yaml
-commandTemplates:
-  docker: "podman"
+commandTemplates: docker: "podman"
   dockerCompose: "podman-compose"
   containerInspect: "podman inspect {{ .Container.ID }}"
 ```
@@ -406,11 +413,8 @@ LazyDocker 在 GitHub Actions 中表现良好，用于调试构建期间的容�
 # .github/workflows/debug.yml
 name: Debug Containers
 on: workflow_dispatch
-jobs:
-  debug:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: debug: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
 
       - name: Install LazyDocker
         run: |
@@ -455,7 +459,17 @@ LazyDocker 的设计理念是零开销：它是一个客户端工具，运行时
 LazyDocker 几乎没有资源开销，因为它作为临时客户端进程运行 —— 而不是持久守护进程。
 
 | 场景 | 二进制大小 | 运行时内存 | 启动时间 | 后台进程 |
-|------|----------|-----------|---------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | LazyDocker | ~15 MB | ~20 MB | <200 ms | 无 |
 | Docker Desktop | ~1.5 GB | ~400-800 MB | 10-30 s | 是（虚拟机） |
 | Portainer CE | ~80 MB 镜像 | ~100-200 MB | 5-10 s | 是（容器） |
@@ -574,7 +588,17 @@ done
 ## 与替代品对比
 
 | 功能 | LazyDocker | Docker Desktop | Portainer CE | Rancher |
-|------|-----------|----------------|--------------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 界面 | 终端 TUI | 原生桌面 GUI | Web GUI | Web GUI |
 | 安装大小 | ~15 MB | ~1.5 GB | ~80 MB 镜像 | ~300 MB 镜像 |
 | 内存开销 | ~20 MB（临时） | ~400-800 MB | ~100-200 MB | ~500 MB+ |
@@ -667,7 +691,6 @@ LazyDocker 填补了一个特定的细分市场：快速、轻量、终端原生
 - [LazyDocker Podman 扩展](https://github.com/szchan/lazydocker-podman)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -693,8 +716,8 @@ LazyDocker 填补了一个特定的细分市场：快速、轻量、终端原生
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [apple-container](lazydocker)
@@ -703,6 +726,6 @@ LazyDocker 填补了一个特定的细分市场：快速、轻量、终端原生
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](lazydocker)
 - [moneyprinterturbo-one-click-ai-video-generator](lazydocker)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

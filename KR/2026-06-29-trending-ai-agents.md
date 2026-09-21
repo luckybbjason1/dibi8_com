@@ -1,20 +1,14 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/2026-06-29-trending-ai-agents" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/2026-06-29-trending-ai-agents" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/2026-06-29-trending-ai-agents" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/2026-06-29-trending-ai-agents" />
 title: "이번 주 오픈소스 AI 에이전트 소식 — 인기 GitHub 저장소 순위 (2026년 6월 29일 주)"
 description: "GitHub에서 인기 있는 오픈소스 AI 에이전트, LLM, MCP 프로젝트의 주간 편집 요약 — 데이터는 Dibi8 Tribe Intel이 자동 수집하고, 분석은 Dibi8 편집팀이 수행.". Comprehensive guide covering features, pricing, and best practices for 2026.
 tags: ["ai-agent", "automation", "ci-cd", "github", "open-source", "self-hosted", "trending", "weekly"]
 date: 2026-06-29 00:00:00+09:00
-lastmod:  2026-06-29 00:00:00+09:00categories: ["llm-frameworks"]
+lastmod: 2026-06-29 00:00:00+09:00categories: ["llm-frameworks"]
 slug: this-week-ai-agents-2026-w26
 author: "Dibi8 Tribe Intel (data collection) + Dibi8 editorial team (analysis & edit)"
 showAuthor: true
 showSummary: true
-sources:
-  - name: "GitHub Trending"
+sources: - name: "GitHub Trending"
     url: "https://github.com/trending"
     type: "data"
 methodology: "Open-source script at home-hermes/服务器hermes/scripts/tribe-os-intel.sh"
@@ -22,11 +16,8 @@ review_status: "AWAITING_EDITOR_REVIEW"
 featureImage: /images/articles/b62165fb-this-week-open-source-agents.png
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/2026-06-29-trending-ai-agents/ -->
 # 이번 주 오픈소스 AI 에이전트 소식 — 인기 GitHub 저장소 순위 (2026년 6월 29일 주)
 ---
-
-<!-- Dibi8 Tribe Intel — Weekly Trending Report | Week 26 (June 29, 2026) -->
 
 > **TL;DR**: This week's trending repos span AI video editing, cybersecurity skills for agents, open-source design tools, AI website cloning, and privacy-first messaging. Palmier Pro leads with 6,126 stars/week as the first AI-native macOS video editor.
 
@@ -82,9 +73,7 @@ MITRE ATT&CK, NIST CSF 및 다양한 레드 팀 방법론을 포함한 주요 �
 
 ### Why It Matters
 
-이는 보안 전문가가 AI와 협력하는 방식에 있어 패러다임의 변화를 나타냅니다. 보안 도구를 수동으로 실행하는 대신, 이러한 기술을 갖춘 에이전트는 다음과 같은 작업을 수행할 수 있습니다:
-
-- **인프라를 자율적으로 스캔**하여 취약점 확인
+이는 보안 전문가가 AI와 협력하는 방식에 있어 패러다임의 변화를 나타냅니다. 보안 도구를 수동으로 실행하는 대신, 이러한 기술을 갖춘 에이전트는 다음과 같은 작업을 수행할 수 있습니다: - **인프라를 자율적으로 스캔**하여 취약점 확인
 - **MITRE 매핑 기술을 사용한 구조화된 침투 테스트 수행**
 - **사전 정의된 플레이북으로 사건 대응 수행**
 - **원시 데이터로부터 위협 인텔리전스 보고서 생성**
@@ -117,9 +106,7 @@ Penpot은 실시간 디자인-코드 협업을 지원하여 디자이너와 개�
 
 디자인 도구 시장은 Figma(Adobe)가 지배하고 있으며, Penpot이 유일한 진지한 오픈 소스 경쟁자입니다. 총 54,379개의 스타를 보유하고 있어 그 실현 가능성과 커뮤니티 지원을 입증했습니다.
 
-클라우드에 의존하지 않고 디자인 도구가 필요한 조직을 위해, Penpot은 다음을 제공합니다:
-
-- **셀프 호스팅 배포** — 디자인 데이터에 대한 완전한 제어
+클라우드에 의존하지 않고 디자인 도구가 필요한 조직을 위해, Penpot은 다음을 제공합니다: - **셀프 호스팅 배포** — 디자인 데이터에 대한 완전한 제어
 - **디자인-투-코드 워크플로우** — 개발자가 깔끔한 CSS/SVG 출력 획득
 - **실시간 협업** — 여러 디자이너가 동시에 작업
 - **오픈 파일 형식** — 디자인 자산에 대한 벤더 종속 없음
@@ -133,24 +120,15 @@ Penpot의 Clojure/ClojureScript 스택은 디자인 도구로서는 특이하지
 
 ### Quick Start: Self-Hosting Penpot
 
-Penpot은 자체 호스를 위해 Docker Compose 설정을 제공합니다:
-
-```yaml
+Penpot은 자체 호스를 위해 Docker Compose 설정을 제공합니다: ```yaml
 version: "3.6"
-services:
-  penpot-backend:
-    image: penpotapp/backend:latest
-    ports:
-      - 9001:9001
-    environment:
-      - PENPET_PUBLIC_URI=http://localhost:9000
+services: penpot-backend: image: penpotapp/backend:latest
+    ports: - 9001:9001
+    environment: - PENPET_PUBLIC_URI=http://localhost:9000
       - PENPET_SECRET_KEY=penpot-secrets-change-me
-  penpot-frontend:
-    image: penpotapp/frontend:latest
-    ports:
-      - 9000:80
-    environment:
-      - PENPET_PUBLIC_URI=http://localhost:9000
+  penpot-frontend: image: penpotapp/frontend:latest
+    ports: - 9000:80
+    environment: - PENPET_PUBLIC_URI=http://localhost:9000
       - PENPET_BACKEND_URI=http://localhost:9001
 ```
 
@@ -174,9 +152,7 @@ AI 코딩 에이전트를 사용하여 모든 웹사이트를 구조화된 프�
 
 ### Why It Matters
 
-웹사이트 복제는 피싱과 저작권 침해에 사용된다는 평판이 있습니다. 그러나 합법적인 사용 사례도 상당합니다:
-
-- **디자인 영감 분석** — 경쟁사들이 웹사이트를 어떻게 구성하는지 연구
+웹사이트 복제는 피싱과 저작권 침해에 사용된다는 평판이 있습니다. 그러나 합법적인 사용 사례도 상당합니다: - **디자인 영감 분석** — 경쟁사들이 웹사이트를 어떻게 구성하는지 연구
 - **레거시 마이그레이션** — AI가 생성한 깔끔한 코드로 오래된 웹사이트 현대화
 - **교육 목적** — 실제 사례를 분석하여 웹 개발 학습
 - **포트폴리오 재구성** — 자신의 보관된 웹사이트 다시 구축
@@ -206,9 +182,7 @@ SimpleX는 사용자 식별자 없이 완전히 작동하는 최초의 메시징
 
 ### Why It Matters
 
-개인 정보 보호는 대규모 감시와 데이터 유출의 시대에 점점 더 중요해지고 있습니다. SimpleX의 접근 방식은 '암호화되었지만 식별 가능한' 메신저와 근본적으로 다릅니다:
-
-- **지속적인 정체성 없음** — 각 대화는 고유하고 일회용 연결을 사용합니다
+개인 정보 보호는 대규모 감시와 데이터 유출의 시대에 점점 더 중요해지고 있습니다. SimpleX의 접근 방식은 '암호화되었지만 식별 가능한' 메신저와 근본적으로 다릅니다: - **지속적인 정체성 없음** — 각 대화는 고유하고 일회용 연결을 사용합니다
 - **메타데이터 수집 없음** — 네트워크는 누가 누구와 대화하는지 알 수 없습니다
 - **분산형 아키텍처** — 중앙 서버가 대화를 통제하지 않습니다
 - **오픈 소스 구현** — 완전한 투명성과 감사 가능성을 제공합니다
@@ -225,9 +199,7 @@ Haskell로 구축된 SimpleX는 보안 중심 애플리케이션에 필수적인
 
 ## This Week's Trends
 
-W26의 트렌드 저장소를 살펴보면 세 가지 패턴이 나타납니다:
-
-1. **도메인 특화 AI 에이전트** — 비디오 편집(Palmier Pro)에서 사이버 보안(Anthropic Skills)에 이르기까지, AI 에이전트는 범용 조수보다는 전문화된 도구가 되어가고 있습니다.
+W26의 트렌드 저장소를 살펴보면 세 가지 패턴이 나타납니다: 1. **도메인 특화 AI 에이전트** — 비디오 편집(Palmier Pro)에서 사이버 보안(Anthropic Skills)에 이르기까지, AI 에이전트는 범용 조수보다는 전문화된 도구가 되어가고 있습니다.
 
 2. **오픈소스 인프라 성숙도** — Penpot의 54K+ 별점과 꾸준한 주간 성장률은 상업용 도구에 대한 오픈소스 대안이 동등 수준에 도달하고 채택이 증가하고 있음을 보여줍니다.
 
@@ -235,9 +207,7 @@ W26의 트렌드 저장소를 살펴보면 세 가지 패턴이 나타납니다:
 
 ## Looking Ahead
 
-다음 주에는 다음 사항들을 주시할 것입니다:
-
-- **AI 영상 도구** — Palmier Pro의 성장은 AI 기반 영상 편집 분야에서 더 많은 경쟁자가 나타날 수 있음을 시사합니다
+다음 주에는 다음 사항들을 주시할 것입니다: - **AI 영상 도구** — Palmier Pro의 성장은 AI 기반 영상 편집 분야에서 더 많은 경쟁자가 나타날 수 있음을 시사합니다
 - **보안 기술 라이브러리** — 817 사이버보안 기술의 성공은 도메인별 에이전트 역량에 대한 수요를 나타냅니다
 - **개인정보 보호 인프라** — SimpleX의 접근 방식은 메시징에서 사용자 신원에 대한 기존 통념에 도전합니다
 
@@ -281,10 +251,6 @@ A: 아니요. Dibi8은 엄격한 편집 독립성을 유지합니다. 모든 링
 
 *이번 주 오픈소스 AI 에이전트 소식은 Dibi8 Tribe Intel에서 매주 발행합니다. 수집된 데이터: 2026년 6월 29일. 다음 호: 2026년 7월 6일.*
 
-<!-- Disclosure: This article contains no affiliate links. Dibi8 maintains editorial independence. -->
-
-
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,22 +1,14 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/understand-anything-interactive-knowledge-graphs-codebases" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/understand-anything-interactive-knowledge-graphs-codebases" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/understand-anything-interactive-knowledge-graphs-codebases" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/understand-anything-interactive-knowledge-graphs-codebases" />
 title: "Understand-Anything：代码库的交互式知识图谱 — 60K+ 星 2026"
 description: "Understand-Anything 将任何代码库转变为一个可交互的知识图谱，您可以在其中探索、搜索和查询。支持 Claude Code、Codex、Cursor、Copilot、Gemini CLI。在 GitHub 上拥有 60,339 个星标。"
 date: 2026-06-17
-lastmod:  2026-06-17slug: understand-anything-interactive-knowledge-graphs-codebases
+lastmod: 2026-06-17
+slug: understand-anything-interactive-knowledge-graphs-codebases
 category: ai-tools
 tags: ['understand-anything', 'knowledge-graph', 'codebase-analysis', 'claude-code', 'codex', 'cursor', 'AI-agents', 'code-visualization', 'semantic-search']
 github_repo: "https://github.com/Egonex-AI/Understand-Anything"
 license: MIT
-lang: zh
-featureImage: /images/articles/egonex-understand-anything-interactive-knowledge-graphs-from.jpg
----
-
-<!-- canonical: https://dibi8.com/zh/tools/understand-anything-interactive-knowledge-graphs-codebases/ -->
+featureImage: /images/articles/egonex-understand-anything-interactive-knowledge-graphs-from.jpg---
 
 ## 引言
 
@@ -63,8 +55,7 @@ Source Code (all languages)
          │
          ▼
 ┌─────────────────┐
-│  Graph Builder   │  Creates nodes + edges:
-│                  │  Nodes: files, classes, funcs
+│  Graph Builder   │  Creates nodes + edges: │                  │  Nodes: files, classes, funcs
 │                  │  Edges: calls, imports, extends
 └────────┬────────┘
          │
@@ -192,7 +183,7 @@ npx @egonex/vscode-extension install
 ### 按代码库大小分析速度
 
 | 代码库规模 | 文件 | 分析时间 | 图节点 |
-| --------------- | ------- | --------------- | ------------- |
+| --- | --- | --- | --- |
 | Small（命令行工具） | 五十 | 2秒 | 一百二十 |
 | Medium（图书馆） | 五百 | 15秒 | 一千二百 |
 | 大（完整应用） | 五千 | 2分钟 | 12,000 |
@@ -203,7 +194,7 @@ npx @egonex/vscode-extension install
 
 | 企业 | 50,000 | 15分钟 | 120,000 |
 | 查询类型 | 响应时间 | 笔记 |
-| ----------- | --------------- | ------- |
+| --- | --- | --- |
 | 结构（查找导入） | <10毫秒 | 图遍历 |
 | 语义（自然语言） | 50-200毫秒 | 向量搜索 + 图 |
 | 跨语言参考 | 100-500毫秒 | 多AST连接 |
@@ -216,8 +207,7 @@ npx @egonex/vscode-extension install
 # Generate onboarding graph
 understand-anything analyze ./src --onboarding
 
-# Outputs:
-# - Architecture overview (HLD + LLD)
+# Outputs: # - Architecture overview (HLD + LLD)
 # - Key entry points
 # - Module dependency map
 # - Common patterns and anti-patterns
@@ -282,11 +272,8 @@ understand-anything gql "cycle where type == 'import'"
 name: Knowledge Graph CI
 on: [pull_request]
 
-jobs:
-  analyze:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: analyze: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - name: Build knowledge graph
         run: |
           npx understand-anything analyze ./src --format ci
@@ -297,8 +284,7 @@ jobs:
       - name: Upload violations
         if: failure()
         uses: actions/upload-artifact@v4
-        with:
-          name: graph-violations
+        with: name: graph-violations
           path: graph-violations.json
 ```
 
@@ -340,7 +326,7 @@ understand-anything analyze ./src --format html -o graph.html
 
 | 完整代码库摘要 | 1-3秒 | 汇总图表统计 |
 | 特征 | 理解一切 | 代码到提示 | 魔法源 | SonarQube |
-| --------- | ------------------- | ------------- | ---------- | ----------- |
+| --- | --- | --- | --- | --- |
 | 知识图谱 | ✅ 互动 | ❌ 扁平 AST | ❌ | ❌ |
 | 自然语言查询 | ✅ | ❌ | ❌ | ❌ |
 | 人工智能代理整合 | ✅ 10+ 个工具 | ❌ | ❌ | ❌ |
@@ -415,8 +401,8 @@ Understand-Anything 很强大，但也有明显的局限性：
 
 想了解更多关于人工智能编码工具的信息，请查看我们关于[Claude Code 精通](dibi8-claude-code-mastery)和[Cursor IDE 优化](dibi8-cursor-optimization)的指南。
 
----
 
+---
 **来源及进一步阅读**：
 - 官方文档：https://github.com/Egonex-AI/Understand-Anything
 - GitHub 仓库: https://github.com/Egonex-AI/Understand-Anything
@@ -431,7 +417,6 @@ Understand-Anything 很强大，但也有明显的局限性：
 - 网络爬虫代理：[WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -459,25 +444,20 @@ Understand-Anything 很强大，但也有明显的局限性：
 
 ## Why This Matters
 
-Understanding understand-anything：代码库的交互式知识图谱 — 60k+ 星 2026 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding understand-anything：代码库的交互式知识图谱 — 60k+ 星 2026 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -498,8 +478,8 @@ Understand-Anything：代码库的交互式知识图谱 — 60K+ 星 2026 repres
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -543,7 +523,17 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

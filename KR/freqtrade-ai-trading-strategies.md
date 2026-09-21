@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/freqtrade-ai-trading-strategies" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/freqtrade-ai-trading-strategies" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/freqtrade-ai-trading-strategies" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/freqtrade-ai-trading-strategies" />
 title: 'Freqtrade 2026: 머신러닝으로 AI 기반 암호화폐 트레이딩 전략 구축하기 \u2014 완전...
 description: 'FreqAI를 활용한 Freqtrade 배포 실전 가이드. ML 통합 기능을 갖춘 오픈소스 Python 암호화폐 트레이딩 봇. Docker 설정, 하이퍼파라미터 최적화, 백테스팅, Telegram 통합 및 프로덕션 배포를 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: []
-aliases:
-- /kr/posts/freqtrade-ai-trading-strategies/
+aliases: - /kr/posts/freqtrade-ai-trading-strategies/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/freqtrade-ai-trading-strategies/ -->
 
 {{</* resource-info */>}}
 
@@ -45,9 +37,7 @@ aliases:
 
 ## Freqtrade란 무엇인가?
 
-Freqtrade는 Python으로 작성된 물비 오픈소스 암호화폐 트레이딩 봇입니다. 2017년에 처음 생성된 이후 종합적인 알고리즘 트레이딩 플랫폼으로 발전했습니다:
-
-- pandas/TA-Lib 지표를 사용한 순수 Python **전략 개발**
+Freqtrade는 Python으로 작성된 물비 오픈소스 암호화폐 트레이딩 봇입니다. 2017년에 처음 생성된 이후 종합적인 알고리즘 트레이딩 플랫폼으로 발전했습니다: - pandas/TA-Lib 지표를 사용한 순수 Python **전략 개발**
 - scikit-learn, CatBoost, PyTorch, LightGBM을 사용하는 **FreqAI ML 모듈**
 - 최적의 전략 파라미터를 찾기 위한 Optuna **하이퍼파라미터 최적화**
 - 현실적인 슬리피지, 스프레드 모델링 및 엣지 검증을 포함한 **백테스팅**
@@ -59,9 +49,7 @@ Freqtrade는 Python으로 작성된 물비 오픈소스 암호화폐 트레이�
 
 ## Freqtrade 작동 원리: 아키텍처 심층 분석
 
-Freqtrade의 아키텍처는 전략을 통해 시장 데이터를 처리하는 상태 기계 중심으로 구축됩니다:
-
-```
+Freqtrade의 아키텍처는 전략을 통해 시장 데이터를 처리하는 상태 기계 중심으로 구축됩니다: ```
 ┌──────────────────────────────────────────────────────────────┐
 │                    전략 파일 (.py)                            │
 │  (populate_indicators / populate_buy_trend /                  │
@@ -81,15 +69,13 @@ Freqtrade의 아키텍처는 전략을 통해 시장 데이터를 처리하는 �
 └──────────────────────────────────────────────────────────────┘
 ```
 
-**트레이딩 루프** 작동 방식:
-1. Freqtrade가 CCXT를 통해 거래소에서 OHLCV 캔들스틱 데이터를 가져옵니다
+**트레이딩 루프** 작동 방식: 1. Freqtrade가 CCXT를 통해 거래소에서 OHLCV 캔들스틱 데이터를 가져옵니다
 2. **전략**이 기술적 지표를 계산하고 매수/매도 신호를 생성합니다
 3. **FreqAI** (활성화된 경우) 신호에 ML 예측을 추가합니다
 4. **엔진**이 리스크 관리 규칙(스톱로스, 포지션 사이징)을 평가합니다
 5. 주문이 거래소로 전송되고 체결은 SQLite에서 추적됩니다
 
-**FreqAI**는 더 자세히 살펴 볼 가치가 있습니다. 마법의 블랙박스가 아닙니다 — 시스템적인 ML 파이프라인입니다:
-- 가격 데이터에서 **특징을 엔지니어링** (변동성, 모멘텀, 추세)
+**FreqAI**는 더 자세히 살펴 볼 가치가 있습니다. 마법의 블랙박스가 아닙니다 — 시스템적인 ML 파이프라인입니다: - 가격 데이터에서 **특징을 엔지니어링** (변동성, 모멘텀, 추세)
 - 과거 윈도우에서 **모델을 학습** (기본값: 30일 학습, 1일 재학습)
 - 미래 가격 방향이나 수익률을 **예측**
 - 예측을 전략에서 추가 지표로 **통합**
@@ -130,8 +116,7 @@ import talib.abstract as ta
 from pandas import DataFrame
 from freqtrade.strategy import IStrategy
 
-class SampleStrategy(IStrategy):
-    """
+class SampleStrategy(IStrategy): """
     Freqtrade용 간단한 RSI 기반 전략.
     """
     minimal_roi = {
@@ -147,8 +132,7 @@ class SampleStrategy(IStrategy):
     timeframe = 5m     # 5분 캔들
     can_short = False    # 현물 거래만
 
-    def populate_indicators(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
-        # RSI 지표
+    def populate_indicators(self, dataframe: DataFrame, metadata: dict) -> DataFrame: # RSI 지표
         dataframe[rsi] = ta.RSI(dataframe, timeperiod=14)
         
         # MACD 지표
@@ -168,8 +152,7 @@ class SampleStrategy(IStrategy):
         
         return dataframe
 
-    def populate_entry_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
-        dataframe.loc[
+    def populate_entry_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame: dataframe.loc[
             (
                 (dataframe[rsi] < 30) &                    # 과매도 조건
                 (dataframe[macd] > dataframe[macdsignal]) &  # MACD 골든크로스
@@ -179,8 +162,7 @@ class SampleStrategy(IStrategy):
         ] = 1
         return dataframe
 
-    def populate_exit_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
-        dataframe.loc[
+    def populate_exit_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame: dataframe.loc[
             (
                 (dataframe[rsi] > 70) &                    # 과매수 조건
                 (dataframe[macd] < dataframe[macdsignal])  # MACD 데드크로스
@@ -202,8 +184,7 @@ docker compose logs -f freqtrade
 
 ### 5단계: Telegram으로 모니터링
 
-봇에 명령 전송:
-```
+봇에 명령 전송: ```
 /status - 현재 거래 및 성과 표시
 /profit - 이익 요약 표시
 /balance - 지갑 잔액 표시
@@ -215,9 +196,7 @@ docker compose logs -f freqtrade
 
 ### FreqAI 활성화
 
-FreqAI는 머신러닝 예측을 전략에 가져옵니다. 먼저 FreqAI 설정을 추가합니다:
-
-```json
+FreqAI는 머신러닝 예측을 전략에 가져옵니다. 먼저 FreqAI 설정을 추가합니다: ```json
 // config.json에 추가
 "freqai": {
   "enabled": true,
@@ -257,8 +236,7 @@ FreqAI는 머신러닝 예측을 전략에 가져옵니다. 먼저 FreqAI 설정
 import pandas as pd
 from freqtrade.strategy import IStrategy
 
-class FreqAISrategy(IStrategy):
-    """
+class FreqAISrategy(IStrategy): """
     FreqAI ML 예측을 진입 신호로 사용하는 전략.
     """
     minimal_roi = {"0": 0.15, "60": 0.05, "120": 0}
@@ -266,8 +244,7 @@ class FreqAISrategy(IStrategy):
     timeframe = 5m
     can_short = False
     
-    def feature_engineering_expand_all(self, dataframe, metadata, **kwargs):
-        """FreqAI가 사용할 커스텀 특징 추가."""
+    def feature_engineering_expand_all(self, dataframe, metadata, **kwargs): """FreqAI가 사용할 커스텀 특징 추가."""
         dataframe["rsi"] = ta.RSI(dataframe, timeperiod=14)
         dataframe["macdhist"] = ta.MACD(dataframe)[macdhist]
         dataframe["atr"] = ta.ATR(dataframe, timeperiod=14)
@@ -277,12 +254,10 @@ class FreqAISrategy(IStrategy):
         
         return dataframe
 
-    def populate_indicators(self, dataframe: pd.DataFrame, metadata: dict) -> pd.DataFrame:
-        dataframe = self.freqai.start(dataframe, metadata, self)
+    def populate_indicators(self, dataframe: pd.DataFrame, metadata: dict) -> pd.DataFrame: dataframe = self.freqai.start(dataframe, metadata, self)
         return dataframe
 
-    def populate_entry_trend(self, dataframe: pd.DataFrame, metadata: dict) -> pd.DataFrame:
-        dataframe.loc[
+    def populate_entry_trend(self, dataframe: pd.DataFrame, metadata: dict) -> pd.DataFrame: dataframe.loc[
             (
                 (dataframe["&-target"] == 1) &
                 (dataframe["do_predict"] == 1) &
@@ -292,8 +267,7 @@ class FreqAISrategy(IStrategy):
         ] = 1
         return dataframe
 
-    def populate_exit_trend(self, dataframe: pd.DataFrame, metadata: dict) -> pd.DataFrame:
-        dataframe.loc[
+    def populate_exit_trend(self, dataframe: pd.DataFrame, metadata: dict) -> pd.DataFrame: dataframe.loc[
             (
                 (dataframe["&-target"] == 0) |
                 (dataframe["do_predict"] != 1)
@@ -305,9 +279,7 @@ class FreqAISrategy(IStrategy):
 
 ### 모델 옵션
 
-FreqAI는 여러 ML 백엔드를 지원합니다:
-
-| 모델 | 백엔드 | 최적 사용처 | 학습 속도 |
+FreqAI는 여러 ML 백엔드를 지원합니다: | 모델 | 백엔드 | 최적 사용처 | 학습 속도 |
 |------|--------|----------|---------|
 | LightGBM | LightGBM | 테이블 데이터, 속도 | 매우 빠름 |
 | XGBoost | XGBoost | 테이블 데이터, 정확도 | 빠름 |
@@ -419,9 +391,7 @@ curl -X POST -u admin:your-secure-password \
 
 ### 엣지 케이스: 낙폭 회복
 
-핵심 벤치마크는 전략이 낙폭에서 회복하는 속도입니다:
-
-```
+핵심 벤치마크는 전략이 낙폭에서 회복하는 속도입니다: ```
 전략: FreqAI LightGBM
 타임라인: 2026-01-01 ~ 2026-03-31
 
@@ -481,11 +451,9 @@ Q1 총 수익률: +12.1%
 ```python
 # 동적 스톱로스를 위한 전략에 추가
 def custom_stoploss(self, pair: str, trade: Trade, current_time: datetime,
-                    current_rate: float, current_profit: float, **kwargs) -> float:
-    """ATR 기반 동적 스톱로스."""
+                    current_rate: float, current_profit: float, **kwargs) -> float: """ATR 기반 동적 스톱로스."""
     dataframe, _ = self.dp.get_analyzed_dataframe(pair, self.timeframe)
-    if dataframe.empty:
-        return self.stoploss
+    if dataframe.empty: return self.stoploss
     
     last_candle = dataframe.iloc[-1]
     atr = last_candle[atr]
@@ -499,15 +467,13 @@ def custom_stoploss(self, pair: str, trade: Trade, current_time: datetime,
 ### 멀티 타임프레임 분석
 
 ```python
-def informative_pairs(self):
-    """분석을 위한 높은 타임프레임 페어 정의."""
+def informative_pairs(self): """분석을 위한 높은 타임프레임 페어 정의."""
     return [
         ("BTC/USDT", "1h"),
         ("ETH/USDT", "1h"),
     ]
 
-def populate_indicators(self, dataframe: pd.DataFrame, metadata: dict) -> pd.DataFrame:
-    inf_pair, inf_timeframe = self.informative_pairs()[0]
+def populate_indicators(self, dataframe: pd.DataFrame, metadata: dict) -> pd.DataFrame: inf_pair, inf_timeframe = self.informative_pairs()[0]
     informative = self.dp.get_pair_dataframe(inf_pair, inf_timeframe)
     
     # 1시간 추세 계산
@@ -529,22 +495,14 @@ def populate_indicators(self, dataframe: pd.DataFrame, metadata: dict) -> pd.Dat
 # FreqAI GPU 지원 docker-compose.yml
 version: '3.8'
 
-services:
-  freqtrade:
-    image: freqtradeorg/freqtrade:stable
+services: freqtrade: image: freqtradeorg/freqtrade:stable
     container_name: freqtrade_gpu
     restart: unless-stopped
-    volumes:
-      - ./user_data:/freqtrade/user_data
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+    volumes: - ./user_data:/freqtrade/user_data
+    deploy: resources: reservations: devices: - driver: nvidia
               count: 1
               capabilities: [gpu]
-    environment:
-      - FREQTRADE__FREQAI__MODEL_TRAINING__DEVICE=cuda
+    environment: - FREQTRADE__FREQAI__MODEL_TRAINING__DEVICE=cuda
     command: >
       trade --strategy FreqAIStrategy --config user_data/config.json
 ```
@@ -555,27 +513,17 @@ services:
 # docker-compose.yml
 version: '3.8'
 
-services:
-  freqtrade:
-    image: freqtradeorg/freqtrade:stable
+services: freqtrade: image: freqtradeorg/freqtrade:stable
     container_name: freqtrade_prod
     restart: unless-stopped
-    volumes:
-      - ./user_data:/freqtrade/user_data
-    ports:
-      - "127.0.0.1:8080:8080"
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "100m"
+    volumes: - ./user_data:/freqtrade/user_data
+    ports: - "127.0.0.1:8080:8080"
+    logging: driver: "json-file"
+      options: max-size: "100m"
         max-file: "3"
-    deploy:
-      resources:
-        limits:
-          memory: 4G
+    deploy: resources: limits: memory: 4G
           cpus: '2.0'
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/api/v1/ping"]
+    healthcheck: test: ["CMD", "curl", "-f", "http://localhost:8080/api/v1/ping"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -610,9 +558,7 @@ services:
 
 ## 제한 사항 및 솔직한 평가
 
-**Freqtrade는 만능이 아닙니다.** 자본을 투입하기 전에 다음 제약을 이해하세요:
-
-1. **백테스트 ≠ 라이브 결과.** 슬리피지, 스프레드 확대, 거래소 지연은 +20% 백테스트를 -5% 라이브 전략으로 만들 수 있습니다. 라이브 전 항상 2-4주간 드라이런을 실행하세요.
+**Freqtrade는 만능이 아닙니다.** 자본을 투입하기 전에 다음 제약을 이해하세요: 1. **백테스트 ≠ 라이브 결과.** 슬리피지, 스프레드 확대, 거래소 지연은 +20% 백테스트를 -5% 라이브 전략으로 만들 수 있습니다. 라이브 전 항상 2-4주간 드라이런을 실행하세요.
 
 2. **FreqAI 모델은 정기적인 재학습이 필요합니다.** 시장 체제가 전환되면(예: 불장에서 곰장으로) 모델의 예측이 재학습될 때까지 저하될 수 있습니다. 기본 1시간 재학습 윈도우가 대부분의 경우에 작동합니다.
 
@@ -653,9 +599,7 @@ FreqAI는 ML 엔지니어링 복잡성을 추상화합니다 — 특징 엔지�
 from freqtrade.freqai.base_models import BaseRegressionModel
 from sklearn.ensemble import RandomForestRegressor
 
-class MyCustomModel(BaseRegressionModel):
-    def fit(self, data_dictionary: dict, **kwargs):
-        model = RandomForestRegressor(n_estimators=200, max_depth=10)
+class MyCustomModel(BaseRegressionModel): def fit(self, data_dictionary: dict, **kwargs): model = RandomForestRegressor(n_estimators=200, max_depth=10)
         model.fit(data_dictionary["train_features"], data_dictionary["train_labels"])
         return model
 ```
@@ -668,8 +612,7 @@ Freqtrade는 거래소 다운타임을 우아하게 처리합니다. 미체결 �
 
 Freqtrade with FreqAI는 2026년 현재 ML 강화 암호화폐 트레이딩을 위한 가장 강력한 오픈소스 프레임워크입니다. 37,000개 이상의 GitHub 스타, 포괄적인 문서, 활발한 커뮤니티를 통해 제로 비용으로 기관급 도구를 제공합니다.
 
-다음 단계:
-1. **[Binance](https://www.bsmkweb.cc/register?ref=DIBI8) 또는 [OKX](https://www.promoohubly.com/join/12190433)에 가입**하여 API 키 생성
+다음 단계: 1. **[Binance](https://www.bsmkweb.cc/register?ref=DIBI8) 또는 [OKX](https://www.promoohubly.com/join/12190433)에 가입**하여 API 키 생성
 2. **위의 Docker 퀵스타트로 Freqtrade 배포**
 3. **전략으로 2-4주간 페이퍼 트레이딩**
 4. **하이퍼파라미터 최적화** 실행하여 파라미터 튜닝
@@ -693,9 +636,7 @@ Freqtrade with FreqAI는 2026년 현재 ML 강화 암호화폐 트레이딩을 �
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -705,7 +646,6 @@ Freqtrade with FreqAI는 2026년 현재 ML 강화 암호화폐 트레이딩을 �
 이 가이드에는 [Binance](https://www.bsmkweb.cc/register?ref=DIBI8), [OKX](https://www.promoohubly.com/join/12190433), [Minara](https://minara.ai/r/OSXG4X)의 제휴 링크가 포함되어 있습니다. 이 링크를 통해 가입하면 추가 비용 없이 커미션을 받습니다. 이는 오픈소스 문서 작업을 지원합니다. 우리는 활발히 사용하고 테스트하는 도구만을 추천합니다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

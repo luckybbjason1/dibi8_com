@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/nanochat-karpathy-100-chatgpt-single-gpu" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/nanochat-karpathy-100-chatgpt-single-gpu" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/nanochat-karpathy-100-chatgpt-single-gpu" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/nanochat-karpathy-100-chatgpt-single-gpu" />
 title: 'nanochat: Karpathy의 $100 ChatGPT — 단일 GPU에서 자체 AI 채팅 앱 구...
 description: 'nanochat (54,800 GitHub star)은 Andrej Karpathy의 오픈소스 ChatGPT 클론으로, 단일 $100 GPU에서 실행됩니다. SGLang으로 처음부터 훈련하거나 vLLM으로 사전 훈련된 모델을 서빙합니다. 설정 가이드, 훈련 벤치마크, 배포 예시 포함.'
 date: 2026-06-08
-lastmod:  2026-06-08slug: 'nanochat-karpathy-100-chatgpt-single-gpu'
+lastmod: 2026-06-08
+slug: 'nanochat-karpathy-100-chatgpt-single-gpu'
 category: 'ai-tools'
 tags: ['karpathy nanochat', 'LLM 처음부터 훈련', '단일 GPU 채팅', '오픈소스 ChatGPT', 'SGLang', 'vLLM', '로컬 LLM', 'AI 채팅 앱']
 github_repo: 'https://github.com/karpathy/nanochat'
@@ -17,8 +13,6 @@ license: MIT
 featureImage: 'https://raw.githubusercontent.com/karpathy/nanochat/master/dev/nanochat.png'
 lang: ko
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/nanochat-karpathy-100-chatgpt-single-gpu/ -->
 
 # nanochat: Karpathy의 $100 ChatGPT — 단일 GPU에서 자체 AI 채팅 앱 구축 — 2026 실전 가이드
 
@@ -32,9 +26,7 @@ Crawl4AI는 90일 만에 12,000에서 63,000 GitHub star로 성장했습니다. 
 
 ## What Is nanochat?
 
-nanochat은 **오픈소스 미니멀 채팅 애플리케이션**으로, Andrej Karpathy가 작성했으며 단일 GPU에서 직접 훈련한 모델로 ChatGPT 같은 경험을 구축하는 방법을 보여줍니다. 프레임워크도 라이브러리도 아닙니다. 약 400줄의 `app.py` 파일 하나이며 다음을 구현합니다:
-
-- 스트리밍 기반 token 기반 텍스트 생성
+nanochat은 **오픈소스 미니멀 채팅 애플리케이션**으로, Andrej Karpathy가 작성했으며 단일 GPU에서 직접 훈련한 모델로 ChatGPT 같은 경험을 구축하는 방법을 보여줍니다. 프레임워크도 라이브러리도 아닙니다. 약 400줄의 `app.py` 파일 하나이며 다음을 구현합니다: - 스트리밍 기반 token 기반 텍스트 생성
 - 대화 기록 관리 (멀티턴)
 - Streamlit로 렌더링된 웹 UI
 - 두 가지 모드: **SGLang** (실제 데이터로 처음부터 훈련) 및 **vLLM** (로컬에서 사전 훈련된 모델 서빙)
@@ -43,9 +35,7 @@ nanochat은 **오픈소스 미니멀 채팅 애플리케이션**으로, Andrej K
 
 ## How nanochat Works
 
-nanochat은 서로 다른 두 가지 distinctly 다른 모드로 동작하며, 각기 다른 훈련/추론 파이프라인을 가집니다:
-
-### SGLang 모드: 처음부터 훈련
+nanochat은 서로 다른 두 가지 distinctly 다른 모드로 동작하며, 각기 다른 훈련/추론 파이프라인을 가집니다: ### SGLang 모드: 처음부터 훈련
 
 ```
 원시 텍스트 코퍼스 → Tokenizer 훈련 → 모델 훈련 → 채팅 UI
@@ -134,9 +124,7 @@ python app.py --mode vllm --api_url http://localhost:8000/v1/chat/completions
 
 ### 퀵 스타트 — Docker
 
-가장 빠른 설정을 위해 제공된 Dockerfile 사용:
-
-```bash
+가장 빠른 설정을 위해 제공된 Dockerfile 사용: ```bash
 # Docker 이미지 빌드
 docker build -t nanochat .
 
@@ -149,13 +137,9 @@ docker run --gpus all -p 8501:8501 nanochat \
 
 ## Integration with SGLang, vLLM, HuggingFace Models
 
-nanochat은 더 넓은 AI 추론 에코시스템과 원활하게 작동하도록 설계되었습니다:
+nanochat은 더 넓은 AI 추론 에코시스템과 원활하게 작동하도록 설계되었습니다: ### SGLang 통합
 
-### SGLang 통합
-
-SGLang(Structured Generation Language)은 훈련 백엔드입니다. 트랜스포머 모델에 최적화된 분산 훈련 기능을 제공합니다:
-
-```python
+SGLang(Structured Generation Language)은 훈련 백엔드입니다. 트랜스포머 모델에 최적화된 분산 훈련 기능을 제공합니다: ```python
 # sglang_config.py — SGLang 전용 설정
 config = {
     "model_type": "gpt",
@@ -174,9 +158,7 @@ config = {
 
 ### vLLM 통합
 
-vLLM은 PagedAttention으로 고투입량 추론을 제공하며 KV 캐시 메모리를 동적으로 관리합니다:
-
-```python
+vLLM은 PagedAttention으로 고투입량 추론을 제공하며 KV 캐시 메모리를 동적으로 관리합니다: ```python
 # vllm_config.py — vLLM 서빙 설정
 from vllm import LLM, SamplingParams
 
@@ -197,9 +179,7 @@ sampling_params = SamplingParams(
 
 ### HuggingFace 모델 호환성
 
-nanochat은 표준 transformer 아키텍처를 따르는 모든 HuggingFace 모델을 지원합니다:
-
-| 모델 | 파라미터 | VRAM 필요 | 품질 |
+nanochat은 표준 transformer 아키텍처를 따르는 모든 HuggingFace 모델을 지원합니다: | 모델 | 파라미터 | VRAM 필요 | 품질 |
 |------|---------|----------|------|
 | Qwen2.5-1.5B-Instruct | 15억 | ~4 GB | 간단한 채팅에 좋음 |
 | Qwen2.5-3B-Instruct | 30억 | ~6 GB | 완벽한 균형 |
@@ -213,9 +193,7 @@ nanochat은 표준 transformer 아키텍처를 따르는 모든 HuggingFace 모�
 
 ### SGLang 훈련 벤치마크
 
-단일 RTX 4090 (24 GB VRAM)에서 10GB 텍스트 코퍼스로 10억 파라미터 GPT 모델 훈련:
-
-| 에폭 | 훈련 시간 | 최종 손실 | VRAM 피크 |
+단일 RTX 4090 (24 GB VRAM)에서 10GB 텍스트 코퍼스로 10억 파라미터 GPT 모델 훈련: | 에폭 | 훈련 시간 | 최종 손실 | VRAM 피크 |
 |------|---------|---------|----------|
 | 1 | ~4시간 | 2.87 | 18 GB |
 | 2 | ~8시간 | 2.34 | 18 GB |
@@ -224,9 +202,7 @@ nanochat은 표준 transformer 아키텍처를 따르는 모든 HuggingFace 모�
 
 ### vLLM 추론 벤치마크
 
-단일 A10G (24 GB VRAM)에서 Qwen2.5-7B-Instruct 서빙:
-
-| 배치 크기 | 처리량 (tok/s) | 지연 (ms/token) |
+단일 A10G (24 GB VRAM)에서 Qwen2.5-7B-Instruct 서빙: | 배치 크기 | 처리량 (tok/s) | 지연 (ms/token) |
 |----------|---------------|----------------|
 | 1 | 45 tok/s | 22 ms |
 | 8 | 280 tok/s | 28 ms |
@@ -235,9 +211,7 @@ nanochat은 표준 transformer 아키텍처를 따르는 모든 HuggingFace 모�
 
 ### 실제 사용 사례 1: 교육 — LLM 기초 가르치기
 
-CS 교수는 nanochat을 사용하여 학생에게 LLM이 어떻게 작동하는지 가르칩니다:
-
-```bash
+CS 교수는 nanochat을 사용하여 학생에게 LLM이 어떻게 작동하는지 가르칩니다: ```bash
 # 학생은 tokenizer 훈련으로 시작
 python train_tokenizer.py --input data/shakespeare.txt --output tokenizer.json
 # 셰익스피어 코퍼스 위에서 2억 모델 훈련
@@ -250,9 +224,7 @@ python app.py --mode sglang --model_path checkpoints/epoch2.pth
 
 ### 실제 사용 사례 2: 커스텀 챗봇 프로토타이핑
 
-스타트업 프로토타입 엔지니어는 프로덕션 인프라에 커밋하기 전에 커스텀 훈련된 챗봇을 테스트하기 위해 nanochat을 사용합니다:
-
-```bash
+스타트업 프로토타입 엔지니어는 프로덕션 인프라에 커밋하기 전에 커스텀 훈련된 챗봇을 테스트하기 위해 nanochat을 사용합니다: ```bash
 # 회사 특정 문서에서 훈련
 python train_tokenizer.py --input data/docs/ --output company_tokenizer.json
 python train_model.py --tokenizer company_tokenizer.json --epochs 5
@@ -268,9 +240,7 @@ python train_model.py --tokenizer company_tokenizer.json --epochs 5
 
 ### 멀티 GPU SGLang 훈련
 
-더 큰 모델이나 빠른 훈련을 위해 SGLang은 멀티 GPU 분산 훈련을 지원합니다:
-
-```bash
+더 큰 모델이나 빠른 훈련을 위해 SGLang은 멀티 GPU 분산 훈련을 지원합니다: ```bash
 # 4개의 GPU에서 훈련
 python -m torch.distributed.run \
   --nproc_per_node=4 \
@@ -282,9 +252,7 @@ python -m torch.distributed.run \
 
 ### 커스텀 채팅 시스템 프롬프트
 
-`app.py`를 편집하여 시스템 프롬프트 커스터마이징:
-
-```python
+`app.py`를 편집하여 시스템 프롬프트 커스터마이징: ```python
 # app.py의 커스텀 시스템 프롬프트
 SYSTEM_PROMPT = """Python에 특화된 유용한 코딩 어시스턴트입니다.
 주석과 함께 코드 예시를 항상 제공하세요.
@@ -293,9 +261,7 @@ SYSTEM_PROMPT = """Python에 특화된 유용한 코딩 어시스턴트입니다
 
 ### Docker 프로덕션 배포
 
-클라우드 제공자에 프로덕션 배포:
-
-```dockerfile
+클라우드 제공자에 프로덕션 배포: ```dockerfile
 FROM nvidia/cuda:12.2-runtime-ubuntu22.04
 RUN apt-get update && apt-get install -y python3 python3-pip git
 COPY requirements.txt .
@@ -331,9 +297,7 @@ docker run -d --gpus all -p 8501:8501 \
 
 ## Limitations / Honest Assessment
 
-nanochat은 모든 사람에게 적합한 것은 아닙니다. **적합하지 않은** 시나리오:
-
-1. **프로덕션 챗봇** — nanochat은 학습 도구이자 프로토타입 플랫폼이지 프로덕션 등급 챗봇 서비스가 아닙니다. 인증,レート 리미팅, 로드 밸런싱, 모니터링 같은 프로덕션 시스템에 필요한 기능이 없습니다.
+nanochat은 모든 사람에게 적합한 것은 아닙니다. **적합하지 않은** 시나리오: 1. **프로덕션 챗봇** — nanochat은 학습 도구이자 프로토타입 플랫폼이지 프로덕션 등급 챗봇 서비스가 아닙니다. 인증,レート 리미팅, 로드 밸런싱, 모니터링 같은 프로덕션 시스템에 필요한 기능이 없습니다.
 
 2. **GPU 없는 머신** — GPU 없이는 훈련이 비현실적입니다 (수주~수개월). vLLM 추론도 GPU 필요: CPU-only 추론은 매우 느립니다 (30억 모델 1-2 토큰/초).
 
@@ -384,7 +348,6 @@ LLM 기초를 배우는 학생이든, 커스텀 챗봇을 프로토타이핑하�
 위 링크 중 일부는 제휴 링크입니다. 가입 시 dibi8.com이 수수료를 받을 수 있으며, 귀하의 비용에는 영향이 없습니다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

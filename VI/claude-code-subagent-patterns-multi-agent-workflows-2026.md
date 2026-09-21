@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-code-subagent-patterns-multi-agent-workflows-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-subagent-patterns-multi-agent-workflows-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-subagent-patterns-multi-agent-workflows-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-subagent-patterns-multi-agent-workflows-2026" />
 title: 'Mẫu Subagent Claude Code: 5 Quy Trình Multi-Agent Tiết K...
 description: '5 mẫu Claude Code subagent đã kiểm chứng trong production — nghiên cứu song song, cô lập worktree, ủy thác chuyên gia, bảo vệ context, điều phối pipeline. Kèm prompt thực và đánh đổi.'
 date: 2026-05-28 00:00:00+08:00
@@ -25,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['claude-code', subagents, 'multi-agent', 'ai-coding-agents', 'llm-frameworks', 'developer-tools', 'agent-sdk']
-aliases:
-- /posts/claude-code-subagent-patterns/
-faq:
-  - q: "Subagent trong Claude Code chính xác là gì, và khác gì với việc chạy thêm một phiên CLI khác?"
+aliases: - /posts/claude-code-subagent-patterns/
+faq: - q: "Subagent trong Claude Code chính xác là gì, và khác gì với việc chạy thêm một phiên CLI khác?"
     a: "Subagent là một cuộc trò chuyện Claude được sandbox-hóa, được khởi tạo từ bên trong một phiên Claude đang hoạt động thông qua công cụ Agent (Task). Phiên cha chỉ thấy báo cáo cuối cùng của subagent — không thấy các lời gọi công cụ trung gian, file reads hay quá trình suy nghĩ. Đây là khác biệt then chốt so với việc khởi chạy CLI thứ hai: cửa sổ context của phiên cha được bảo vệ khỏi tiếng ồn khám phá của subagent. Subagent được tạo ra cho nghiên cứu song song, khám phá sâu mã nguồn và thử nghiệm cô lập — những nơi bạn không muốn bộ nhớ làm việc của cha bị nhiễm bẩn."
   - q: "Khi nào KHÔNG nên dùng subagent và cứ làm việc trong phiên cha?"
     a: "Bỏ qua subagent cho các tra cứu vặt mà phiên cha đã có file mở hoặc context đã nạp, cho các chỉnh sửa tuần tự cần thấy từng trạng thái trung gian, và cho các thay đổi gắn kết chặt mà subagent cần giao tiếp qua lại (subagent là một-lần — chúng trả về một báo cáo duy nhất). Quy tắc kinh nghiệm: nếu bạn có thể trả lời nó trong ba lời gọi công cụ trở xuống từ trạng thái hiện tại, làm inline đi."
@@ -42,7 +35,6 @@ faq:
     a: "Mỗi lần gọi subagent tiêu thụ token như bất kỳ cuộc trò chuyện Claude nào khác. Chi phí xấp xỉ context đầy đủ của subagent (system prompt + schema công cụ + task prompt + suy nghĩ + báo cáo cuối). Trên gói Pro và Max, sử dụng subagent tính vào cùng quota sử dụng với phiên cha. Với người dùng API, chi phí là tính phí trực tiếp theo token. Tiết kiệm đến từ việc chuyển bớt khám phá đáng lẽ làm phình context cha — bạn trả cho subagent, nhưng phiên chính giữ được nhanh và tập trung."
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/claude-code-subagent-patterns-multi-agent-workflows-2026/ -->
 # Mẫu Subagent Claude Code: 5 Quy Trình Multi-Agent Tiết Kiệm Hàng Giờ Mỗi Ngày (2026)
 
 
@@ -61,8 +53,7 @@ Nếu bạn đã dùng Claude Code qua [CLI chính thức](https://docs.anthropi
 **Mẫu.** Khởi tạo ba subagent Explore song song, mỗi câu hỏi một cái. Mỗi cái chạy trong context sandbox riêng. Mỗi cái trả về báo cáo ngắn. Cha thấy ba đoạn ngắn gọn thay vì ba đống grep.
 
 ```
-Một thông điệp → 3 lời gọi Agent:
-  - Agent("Tìm handler auth", subagent_type="Explore", prompt="...")
+Một thông điệp → 3 lời gọi Agent: - Agent("Tìm handler auth", subagent_type="Explore", prompt="...")
   - Agent("Map state management", subagent_type="Explore", prompt="...")
   - Agent("Tìm sử dụng fn Z deprecated", subagent_type="Explore", prompt="...")
 ```
@@ -147,9 +138,7 @@ Cả năm mẫu chia sẻ một trực giác thiết kế: **cuộc trò chuyệ
 
 ## Thiết Lập Claude Code Sẵn Sàng Production
 
-Để chạy quy trình multi-agent ở quy mô, bạn cần ba phần hạ tầng:
-
-1. **Host đáng tin cậy cho phiên dài.** Nếu chạy Claude Code trong CI hoặc với codebase phía server, bạn cần VPS không drop SSH session hoặc bị throttle. **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hồng Kông với truy cập độ trễ thấp từ Trung Quốc đại lục và định tuyến BGP ổn định. Cùng IDC host dibi8.com, vậy chúng tôi chạy pipeline multi-agent riêng trên nó. Mức giá vững $5-12/tháng.
+Để chạy quy trình multi-agent ở quy mô, bạn cần ba phần hạ tầng: 1. **Host đáng tin cậy cho phiên dài.** Nếu chạy Claude Code trong CI hoặc với codebase phía server, bạn cần VPS không drop SSH session hoặc bị throttle. **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hồng Kông với truy cập độ trễ thấp từ Trung Quốc đại lục và định tuyến BGP ổn định. Cùng IDC host dibi8.com, vậy chúng tôi chạy pipeline multi-agent riêng trên nó. Mức giá vững $5-12/tháng.
 
 2. **Sân chơi cloud cho thử nghiệm song song.** Khi fan out 6+ subagent mỗi cái cần worktree riêng, bạn cần CPU dự phòng. **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 tín dụng miễn phí 60 ngày qua 14+ region toàn cầu. Developer indie dùng cái này để host Claude Code orchestrator cùng app chính mà không tranh chấp tài nguyên.
 
@@ -172,7 +161,6 @@ Bắt đầu với Mẫu 1 (fan-out nghiên cứu song song) — đây là đi�
 Trực giác "cứ gõ tiếp vào phiên chính" chết khó. Đè nén nó. Khởi tạo subagent.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/devtoys" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/devtoys" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/devtoys" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/devtoys" />
 title: 'DevToys: 31,533 GitHub 星标 — 开发者工具套件 2026 完整安装指南'
 description: 'DevToys 是一款免费、开源、离线的开发者瑞士军刀。跨平台实用工具，支持 JSON、Base64、JWT、正则表达式等 30 余种工具，适用于 Windows、macOS 和 Linux，具备智能检测和 CLI 支持。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [devtoys, 开发者工具, 离线工具, json格式化, base64编码, jwt解码, 正则测试, 跨平台, 开源]
-aliases:
-- /zh/posts/devtoys/
+aliases: - /zh/posts/devtoys/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/devtoys/ -->
 
 {{</* resource-info */>}}
 
@@ -243,11 +235,8 @@ DevToys CLI 可以干净地集成到 CI 工作流中。以下是一个验证仓�
 ```yaml
 name: Validate JSON
 on: [push, pull_request]
-jobs:
-  validate:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: validate: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       
       - name: Install DevToys CLI
         run: |
@@ -290,7 +279,17 @@ echo '{"key":"value"}' | docker run -i devtoys-cli json format
 DevToys 完全在本地机器的内存中处理数据，不依赖网络连接，因此在处理大型文件时具有明显的性能优势。以下是在标准开发笔记本（AMD Ryzen 7, 16 GB 内存，SSD 存储）上测得的性能数据。测试方法为每种操作运行 10 次取平均值，数据文件使用随机生成的结构化内容：
 
 | 操作 | 数据大小 | DevToys (桌面版) | DevToys CLI | 在线替代方案 |
-|------|----------|-------------------|-------------|-------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | JSON 格式化 | 1 MB | ~45 ms | ~38 ms | ~200-500 ms* |
 | JSON 格式化 | 10 MB | ~320 ms | ~280 ms | ~2-5 s* |
 | Base64 编码 | 5 MB 图片 | ~85 ms | ~72 ms | ~1-3 s* |
@@ -336,7 +335,7 @@ DevToys 完全离线工作——核心工具永远不需要网络连接。对于
 # 设置 > 智能检测
 Behavior: "Always ask"        # 选项：Auto-open, Always ask, Disabled
 Minimum confidence: 85%       # 调整检测阈值
-Excluded tools:               # 禁用特定工具的检测
+Excluded tools: # 禁用特定工具的检测
   - "Lorem Ipsum Generator"
   - "Password Generator"
 ```
@@ -404,7 +403,17 @@ echo "$(date '+%Y-%m-%d %H:%M:%S') | User: $(whoami) | Tool: $1 $2" >> "$LOGFILE
 在评估 **devtoys vs cyberchef** 和其他替代方案时，查看每个工具提供的具体功能会很有帮助。下表细分了平台支持、许可、可扩展性和工作流集成方面的关键差异。
 
 | 功能 | DevToys | CyberChef | DevUtils | Boop |
-|------|---------|-----------|----------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **平台** | Windows, macOS, Linux | Web (任何浏览器) | 仅 macOS | 仅 macOS |
 | **价格** | 免费 | 免费 | $25-40 (一次性) | 免费 |
 | **许可证** | MIT | Apache-2.0 | 专有 | MIT |
@@ -514,7 +523,6 @@ DevToys 填补了开发者工具包中的一个真正空白：一个免费、离
 - DevToys SDK NuGet: https://www.nuget.org/packages/DevToys.Sdk
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -540,8 +548,8 @@ DevToys 填补了开发者工具包中的一个真正空白：一个免费、离
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [mattpocock-skills-ai-agent-framework-guide](devtoys)
@@ -550,6 +558,6 @@ DevToys 填补了开发者工具包中的一个真正空白：一个免费、离
 - [egonex-understand-anything-interactive-knowledge-graph-ai](devtoys)
 - [nanochat-karpathy-100-chatgpt-single-gpu](devtoys)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/9router-smart-llm-proxy-token-saver-free-coding" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/9router-smart-llm-proxy-token-saver-free-coding" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/9router-smart-llm-proxy-token-saver-free-coding" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/9router-smart-llm-proxy-token-saver-free-coding" />
 title: "9Router：智能AI代理网关——节省60%令牌开销，告别API限流"
-description: "发现9Router——开源智能AI代理网关，利用RTK无损压缩引擎节省20-40%输入令牌，通过三层智能回退系统无缝连接40+语言模型提供商，让每位开发者都能以零成本获取世界一流的AI编程体验与效率提升。". Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "发现9Router——开源智能AI代理网关，利用RTK无损压缩引擎节省20-40%输入令牌，通过三层智能回退系统无缝连接40+语言模型提供商，让每位开发者都能以零成本获取世界一流的AI编程体验与效率提升。"
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Docker
+tech_stack: - Docker
   - Go
   - JavaScript
   - TypeScript
@@ -27,10 +21,8 @@ maintainer: "rtk-ai"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases:
-- /zh/posts/9router-smart-llm-proxy-token-saver-free-coding/
-faqs:
-  - q: '什么是 9Router，它是如何工作的？'
+aliases: - /zh/posts/9router-smart-llm-proxy-token-saver-free-coding/
+faqs: - q: '什么是 9Router，它是如何工作的？'
     a: '9Router 是一款开源、自托管的智能代理，位于你的 AI 编程工具与模型提供商之间，默认运行在 localhost:20128 上。你的工具不再直接调用 Claude 或 OpenAI，而是把请求发送给 9Router，由它通过智能回退逻辑和 token 压缩，将请求路由到 40+ 个提供商之间。'
   - q: '使用 9Router 需要花钱吗？'
     a: '不需要。9Router 软件基于开源 MIT 许可证永久免费，并在你自己的硬件上自托管。它没有任何计费基础设施，永远不会向你收费；你只需直接为自己配置的订阅或 API key 向各提供商付费，免费提供商则始终免费。仪表盘上的费用数字是一个节省追踪器，显示如果使用等量的付费 API 会花费多少。'
@@ -39,10 +31,7 @@ faqs:
   - q: '哪些 AI 编程工具和 IDE 可以配合 9Router 使用？'
     a: '任何支持自定义 OpenAI 兼容 API 端点的工具都可以通过 http://localhost:20128/v1 连接到 9Router。受支持的工具包括 Claude Code、OpenAI Codex CLI、Cursor IDE、GitHub Copilot、Cline、Continue、Roo Code、Antigravity、Droid、Kilo Code 和 OpenCode。'
   - q: '我能否以零月费使用 9Router 进行 AI 编程？'
-    a: '可以。你可以仅使用免费提供商搭建一个组合，例如 Kiro AI（通过 AWS Builder ID、Google 或 GitHub OAuth 免费无限使用，无需 API key）、OpenCode Free（零认证直通）以及 Vertex AI（$300 免费 Google Cloud 额度）。再结合 RTK 压缩，这套方案能以真正每月 $0 的成本提供生产级质量的响应。'
----
-
-<!-- canonical: https://dibi8.com/zh/tools/9router-smart-llm-proxy-token-saver-free-coding/ -->
+    a: '可以。你可以仅使用免费提供商搭建一个组合，例如 Kiro AI（通过 AWS Builder ID、Google 或 GitHub OAuth 免费无限使用，无需 API key）、OpenCode Free（零认证直通）以及 Vertex AI（$300 免费 Google Cloud 额度）。再结合 RTK 压缩，这套方案能以真正每月 $0 的成本提供生产级质量的响应。'---
 {</* resource-info */>}
 
 AI编程助手革命为开发者带来了前所未有的困境：我们通过Claude Code、OpenAI Codex、Cursor和GitHub Copilot等工具获得了世界级的语言模型访问权限——但同时管理多个平台上的订阅、配额和速率限制正变得日益昂贵和令人沮丧。许多开发者发现自己两周内就耗尽了Claude Pro的月度配额，然后在冲刺截止日期面前只能面对速率限制的墙壁。
@@ -105,7 +94,15 @@ AI编程助手革命为开发者带来了前所未有的困境：我们通过Cla
 系统支持五种不同的定价层级：
 
 | 层级 | 提供商 | 典型成本 | 重置模式 |
-|------|--------|---------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 订阅版 | Claude Code、Codex、Copilot、Cursor | $10-$200/月 | 5小时滚动 + 每周/每月 |
 | 廉价版 | GLM-5.1、MiniMax M2.7、Kimi K2.5 | $0.2-$0.6/百万令牌 | 每日/滚动/固定月度 |
 | 免费版 | Kiro AI、OpenCode Free、Vertex AI | $0 | 无限 |
@@ -271,7 +268,15 @@ OpenAI API密钥：[从9Router仪表板复制]
 9Router如何与现有方案相比？
 
 | 功能 | 9Router | 直接提供商访问 | 其他代理工具 |
-|------|---------|-------------|-------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 智能回退路由 | ✅ 自动3+层级 | ❌ 单提供商 | 部分支持 |
 | 令牌压缩（RTK） | ✅ 内置 | ❌ 无 | 罕见 |
 | 多格式翻译 | ✅ 8+协议 | N/A | 有限 |
@@ -322,8 +327,8 @@ RTK令牌压缩（节省约20-40%）、洞穴人模式输出减少（节省约65
 **仓库**：[github.com/decolua/9router](https://github.com/decolua/9router)
 **网站**：[9router.com](https://9router.com)
 
----
 
+---
 ## 相关文章
 
 
@@ -332,8 +337,8 @@ RTK令牌压缩（节省约20-40%）、洞穴人模式输出减少（节省约65
 
 - [Addy Osmani的Agent技能：生产级AI编程代理](/resources/llm-frameworks/agent-skills-production-grade-ai-coding.zh/)
 
----
 
+---
 ## 推荐工具
 
 跑或部署开源 AI 工具时，推荐：
@@ -345,7 +350,6 @@ RTK令牌压缩（节省约20-40%）、洞穴人模式输出减少（节省约65
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -373,25 +377,20 @@ RTK令牌压缩（节省约20-40%）、洞穴人模式输出减少（节省约65
 
 ## Why This Matters
 
-Understanding 9router：智能ai代理网关——节省60%令牌开销，告别api限流 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding 9router：智能ai代理网关——节省60%令牌开销，告别api限流 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -443,7 +442,17 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 ## Framework Comparison
 
 | Framework | Primary Use | Learning Curve | Community | Production Ready |
-|-----------|-------------|----------------|-----------|------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **LangChain** | General-purpose | Medium | Large | ✅ Yes |
 | **LlamaIndex** | RAG/Retrieval | Low | Growing | ✅ Yes |
 | **Haystack** | Document processing | Medium | Medium | ✅ Yes |

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/deepseek-reasonix-terminal-ai-coding-agent-prefix-cache" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/deepseek-reasonix-terminal-ai-coding-agent-prefix-cache" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/deepseek-reasonix-terminal-ai-coding-agent-prefix-cache" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/deepseek-reasonix-terminal-ai-coding-agent-prefix-cache" />
 title: 'DeepSeek-Reasonix：为 DeepSeek 前缀缓存稳定性设计的终端 AI 编码代理'
 description: '一个 DeepSeek 原生的 AI 编程代理，具有工程化的前缀缓存稳定性 —— 缓存命中率 99.82%，重度使用约 $12/天，而无缓存约 $61/天。MIT 许可。使用 DeepSeek 模型的 Claude Code 替代方案。'
 date: 2026-06-22
@@ -14,17 +9,13 @@ categories: ['ai-tools']
 slug: deepseek-reasonix-terminal-ai-coding-agent-prefix-cache
 featureImage: /images/articles/deepseek-tui-anthropic-financial-agents--117cfa-1.png
 aliases: ['/deepseek-reasonix']
-sources:
-  - name: GitHub
+sources: - name: GitHub
     url: 'https://github.com/esengine/DeepSeek-Reasonix'
   - name: Website
     url: 'https://esengine.github.io/DeepSeek-Reasonix/'
   - name: Discord
     url: 'https://discord.gg/XF78rEME2D'
-lang: zh
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/deepseek-reasonix-terminal-ai-coding-agent-prefix-cache/ -->
 title: 'DeepSeek-Reasonix: Terminal AI Coding Agent Engineered for DeepSeek Prefix-Cache Stability'
 description: 'A DeepSeek-native AI coding agent with engineered prefix-cache stability — 99.82% cache hit rate, ~$12/day for heavy usage vs ~$61 without cache. MIT licensed. Claude Code alternative using DeepSeek models.'
 date: 2026-06-22
@@ -35,15 +26,14 @@ categories: ['ai-tools']
 slug: deepseek-reasonix-terminal-ai-coding-agent-prefix-cache
 
 aliases: ['/deepseek-reasonix']
-sources:
-  - name: GitHub
+sources: - name: GitHub
     url: 'https://github.com/esengine/DeepSeek-Reasonix'
   - name: Website
     url: 'https://esengine.github.io/DeepSeek-Reasonix/'
   - name: Discord
     url: 'https://discord.gg/XF78rEME2D'
----
 
+---
 # DeepSeek-Reasonix: Terminal AI Coding Agent Engineered for DeepSeek Prefix-Cache Stability
 
 TL;DR — **DeepSeek-Reasonix** (aka Reasonix) is a terminal-first AI coding agent built exclusively around DeepSeek models, engineered for **prefix-cache stability** that keeps token costs dramatically lower than competing agents across long sessions. Real-world users report **99.82% cache hit rates** — paying ~$12/day for 435M input tokens instead of ~$61 without cache. MIT licensed, with an embedded web dashboard, configurable search engines, persistent sessions, and full MCP/skills/hooks support.
@@ -74,10 +64,14 @@ Built-in cost tracking and optimization at every level. The agent maintains a we
 
 ## Real-World Cost Case Study
 
-A single user on 2026-05-01 processed **435 million input tokens** in one day:
-
-| Metric | With Reasonix Cache | Without Cache |
-|--------|--------------------|---------------|
+A single user on 2026-05-01 processed **435 million input tokens** in one day: | Metric | With Reasonix Cache | Without Cache |
+|
+---
+|
+---
+|
+---
+|
 | Input tokens | 435M | 435M |
 | Cache hit rate | **99.82%** | 0% |
 | Estimated cost | **~$12** | **~$61** |
@@ -139,7 +133,11 @@ Grab one at [platform.deepseek.com/api_keys](https://platform.deepseek.com/api_k
 ## CLI Commands
 
 | Command | Description |
-|---------|-------------|
+|
+---
+|
+---
+|
 | `reasonix` / `reasonix code [dir]` | The coding agent. **Start here.** |
 | `reasonix chat` | Plain chat — no filesystem or shell tools. |
 | `reasonix run "task"` | One-shot, streams to stdout. Good for pipes. |
@@ -177,9 +175,7 @@ One JSON file at `~/.reasonix/config.json` plus per-project overrides under `<pr
 
 ### MCP Server Configuration
 
-Reasonix supports MCP servers via stdio, SSE, and Streamable HTTP transport. One spec format works for both `config.json` and the `--mcp` flag:
-
-```bash
+Reasonix supports MCP servers via stdio, SSE, and Streamable HTTP transport. One spec format works for both `config.json` and the `--mcp` flag: ```bash
 # Start an MCP server and connect Reasonix
 reasonix code --mcp http://localhost:3000/sse
 ```
@@ -197,36 +193,29 @@ reasonix code --mcp http://localhost:3000/sse
 
 ### Skills System
 
-Skills are Markdown playbooks the model can invoke in `inline` or `subagent` mode. They encode domain knowledge directly into the agent's workflow:
+Skills are Markdown playbooks the model can invoke in `inline` or `subagent` mode. They encode domain knowledge directly into the agent's workflow: ```markdown
 
-```markdown
 ---
 name: my-custom-skill
 mode: inline
 ---
-
 # My Custom Skill
 
-When the user mentions database migrations, follow these steps:
-1. Run `reasonix doctor` to check health
+When the user mentions database migrations, follow these steps: 1. Run `reasonix doctor` to check health
 2. Review the migration plan
 3. Execute the migration
 ```
 
 ### Memory System
 
-Reasonix supports four types of memory pinned into the conversation prefix:
-
-- **`user`** — Personal knowledge about the developer (preferred patterns, coding style)
+Reasonix supports four types of memory pinned into the conversation prefix: - **`user`** — Personal knowledge about the developer (preferred patterns, coding style)
 - **`feedback`** — Corrections and preferences learned from past sessions
 - **`project`** — Architecture decisions, tech stack details, team conventions
 - **`reference`** — Documentation excerpts, API references, code patterns
 
 ### Hooks and Lifecycle Events
 
-Hooks are shell commands triggered on lifecycle events. Use `PreToolUse` for gating expensive operations:
-
-```bash
+Hooks are shell commands triggered on lifecycle events. Use `PreToolUse` for gating expensive operations: ```bash
 # Only allow git operations in approved repos
 # .reasonix/hooks/pre-tool-use.sh
 if [[ ! "$REPO_PATH" =~ ^(~/projects/app|~/projects/lib)$ ]]; then
@@ -237,10 +226,14 @@ fi
 
 ### Web Search Engines
 
-Switch the default search engine with `/search-engine`:
-
-| Engine | Command | Use Case |
-|--------|---------|----------|
+Switch the default search engine with `/search-engine`: | Engine | Command | Use Case |
+|
+---
+|
+---
+|
+---
+|
 | Bing | `/search-engine bing` | Default, broad coverage |
 | Baidu AI Search | `/search-engine baidu` | Chinese-language results |
 | SearXNG | `/search-engine searxng` | Self-hosted, privacy-focused |
@@ -253,9 +246,7 @@ Switch the default search engine with `/search-engine`:
 
 ### Semantic Index
 
-Build a local semantic index for codebase-aware search:
-
-```bash
+Build a local semantic index for codebase-aware search: ```bash
 # Index current project with local Ollama
 reasonix index --provider ollama --model nomic-embed-text
 
@@ -265,9 +256,7 @@ reasonix index --provider openai --endpoint https://your-api.com/embeddings
 
 ### Permissions System
 
-Per-workspace shell allowlist with exact-prefix matching keeps the agent safe:
-
-```json
+Per-workspace shell allowlist with exact-prefix matching keeps the agent safe: ```json
 {
   "permissions": {
     "allowList": [
@@ -295,25 +284,20 @@ reasonix code .
 
 ### Using Plan Mode
 
-Plan mode structures reasoning before execution, reducing wasted tokens:
-
-```bash
+Plan mode structures reasoning before execution, reducing wasted tokens: ```bash
 # Ask Reasonix to plan before implementing
 "I need to add OAuth2 authentication to this Express.js app.
 Please plan the implementation first, then execute."
 ```
 
-Reasonix will:
-1. Analyze the existing codebase
+Reasonix will: 1. Analyze the existing codebase
 2. Propose an architecture
 3. List the files that need changes
 4. Execute the changes with cell-diff rendering
 
 ### Persistent Sessions with Auto-Checkpoints
 
-Reasonix saves session state automatically:
-
-```bash
+Reasonix saves session state automatically: ```bash
 # Resume a previous session
 reasonix replay --last
 
@@ -326,9 +310,7 @@ reasonix prune-sessions --older-than 30d
 
 ### Using the Embedded Web Dashboard
 
-Launch the dashboard to monitor costs and manage sessions:
-
-```bash
+Launch the dashboard to monitor costs and manage sessions: ```bash
 # Start the dashboard (runs alongside your coding session)
 reasonix dashboard
 
@@ -336,8 +318,7 @@ reasonix dashboard
 # Navigate to http://localhost:3001 in your browser
 ```
 
-The dashboard shows:
-- **Cost Overview** — Real-time spending with cache savings breakdown
+The dashboard shows: - **Cost Overview** — Real-time spending with cache savings breakdown
 - **Session Manager** — Browse, resume, and compare sessions
 - **Configuration Editor** — Visual config file editor
 - **Event Log** — Timestamped audit trail of all agent actions
@@ -345,9 +326,7 @@ The dashboard shows:
 
 ### One-Shot Tasks
 
-For quick tasks without starting an interactive session:
-
-```bash
+For quick tasks without starting an interactive session: ```bash
 # Run a one-shot task and stream output to stdout
 reasonix run "Refactor this Python file to use type hints"
 
@@ -360,12 +339,9 @@ reasonix run "Review all changes in git diff HEAD~1" >> /tmp/review.log
 
 ### Doctor Health Check
 
-Before starting a session, verify everything is configured correctly:
-
-```bash
+Before starting a session, verify everything is configured correctly: ```bash
 reasonix doctor
-# Output:
-# ✅ Node.js v22.4.0
+# Output: # ✅ Node.js v22.4.0
 # ✅ API key configured
 # ✅ MCP servers: 2 connected
 # ✅ Search engine: Bing
@@ -376,7 +352,17 @@ reasonix doctor
 ## How Reasonix Compares
 
 | Feature | Reasonix | Claude Code | Cursor | Aider |
-|---------|----------|-------------|--------|-------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Backend | **DeepSeek** | Anthropic | OpenAI/Anthropic | Any (OpenRouter) |
 | License | **MIT** | Closed | Closed | Apache 2 |
 | Cost profile | **Low per task** | Premium | Subscription + usage | Varies |
@@ -389,9 +375,7 @@ reasonix doctor
 
 ## What Reasonix Is NOT
 
-Reasonix is opinionated. Some things it deliberately doesn't do:
-
-- **Multi-provider flexibility.** DeepSeek-only by design. Coupling to one backend is the feature, not a limitation.
+Reasonix is opinionated. Some things it deliberately doesn't do: - **Multi-provider flexibility.** DeepSeek-only by design. Coupling to one backend is the feature, not a limitation.
 - **IDE integration.** Terminal-first. The diff lives in `git diff`, the file tree in `ls`. The dashboard is a companion, not a Cursor replacement.
 - **Hardest-leaderboard reasoning.** Claude Opus still wins some benchmarks. DeepSeek is competitive on coding; for "solve this PhD proof" rather than "fix this auth bug," consider Claude.
 - **Air-gapped / fully-free.** Reasonix needs a paid DeepSeek API key. For air-gapped or zero-cost runs, see Aider + Ollama or [Continue](https://continue.dev).
@@ -449,8 +433,7 @@ Yes. Reasonix works with any Git repository regardless of hosting provider. The 
 
 ### Q: What's the difference between Plan Mode and regular coding?
 
-Plan Mode structures the agent's thinking before making changes. Instead of immediately modifying files, Reasonix will:
-1. Analyze the codebase
+Plan Mode structures the agent's thinking before making changes. Instead of immediately modifying files, Reasonix will: 1. Analyze the codebase
 2. Propose an architecture or approach
 3. List all files that need changes
 4. Execute the changes with cell-diff rendering
@@ -463,9 +446,7 @@ Yes. Reasonix works on Windows via PowerShell, Git Bash, or Windows Terminal. Th
 
 ### Q: How do I add custom skills to Reasonix?
 
-Create a Markdown file following the skill format and place it in your project's `.reasonix/skills/` directory. Each skill can be in `inline` mode (executed as part of the main loop) or `subagent` mode (run as a separate reasoning step):
-
-```markdown
+Create a Markdown file following the skill format and place it in your project's `.reasonix/skills/` directory. Each skill can be in `inline` mode (executed as part of the main loop) or `subagent` mode (run as a separate reasoning step): ```markdown
 ---
 name: django-best-practices
 mode: inline
@@ -473,8 +454,7 @@ mode: inline
 
 # Django Best Practices
 
-When working with Django projects:
-1. Always use class-based views for complex logic
+When working with Django projects: 1. Always use class-based views for complex logic
 2. Use Django ORM methods instead of raw SQL
 3. Apply middleware for authentication checks
 4. Use Django signals sparingly
@@ -488,8 +468,7 @@ Absolutely. Use the `reasonix diff` command to show pending changes, or `reasoni
 
 ### Q: How do I migrate from Claude Code to Reasonix?
 
-Both tools use the same skill and MCP server formats. The main differences are:
-- Reasonix uses DeepSeek instead of Anthropic models
+Both tools use the same skill and MCP server formats. The main differences are: - Reasonix uses DeepSeek instead of Anthropic models
 - Reasonix is MIT licensed; Claude Code is closed source
 - Reasonix has an embedded web dashboard; Claude Code is terminal-only
 - Reasonix is terminal-first; Claude Code has IDE integration
@@ -498,8 +477,7 @@ Most skills and MCP configurations transfer directly. The main adjustment is the
 
 ### Q: What are the non-goals of Reasonix?
 
-Reasonix deliberately does NOT:
-- Support multiple AI providers (DeepSeek-only)
+Reasonix deliberately does NOT: - Support multiple AI providers (DeepSeek-only)
 - Integrate with IDEs like VS Code (terminal-first)
 - Compete on hardest-leaderboard reasoning benchmarks
 - Work in air-gapped or zero-cost environments (requires paid API key)
@@ -528,7 +506,6 @@ Reasonix has an active bilingual Discord community with channels for setup help 
 **Join the Dibi8 community:** [Telegram Group](https://t.me/DIBI8_Group/2)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

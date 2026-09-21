@@ -1,13 +1,9 @@
+---
 # AI Agent Skills Framework Explained: From Matt Pocock's Skills to GitHub Spec-Kit and Spec-Driven Development in 2026
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/ai-agent-skills-framework-spec-driven-development-2026" />
 
 **Published:** May 20, 2026  
 **Reading Time:** 15 minutes  
-**Audience:** Full-stack developers, tech leads, AI tooling enthusiasts
-
----
-
+**Audience:** Full-stack developers, tech leads, AI tooling enthusiasts---
 ## The Problem: Your Claude Code Is Still Too Naive
 
 GitHub's weekly trending data for May 9–15, 2026, revealed something unprecedented: **5 of the top 20 fastest-growing repositories contained "skills" in their names**. Matt Pocock's personal `.claude` directory went open-source and gained +1,618 stars in a single week. NousResearch's Hermes Agent followed with +1,332 stars. Even Andrej Karpathy's engineering philosophy got packaged into reusable agent skills.
@@ -18,8 +14,8 @@ Simultaneously, GitHub's official **Spec-Kit** signals the rise of **Spec-Driven
 
 If you're still prompting your AI with "build me a login page," you're already behind.
 
----
 
+---
 ## What Are AI Agent Skills? From Black Boxes to Composable Behavioral Lego
 
 ### Core Concept: Encoding Expert Intuition into Agent Constraints
@@ -40,7 +36,7 @@ The **Skills pattern** solves this by encoding domain-specific workflows, guardr
 │   │  Codex)      │     │              │     │              │    │
 │   └──────────────┘     └──────────────┘     └──────────────┘    │
 │                                                                 │
-│   Skills Examples:                                              │
+│   Skills Examples: │
 │   ├─ Guardrails: Block dangerous git push --force / rm -rf     │
 │   ├─ TDD Patterns: Require tests before implementation         │
 │   ├─ Debug Workflows: Structured error investigation           │
@@ -53,24 +49,28 @@ The **Skills pattern** solves this by encoding domain-specific workflows, guardr
 ### Why Skills Dominate Raw Prompting
 
 | Dimension | Traditional Prompting | AI Agent Skills |
-|-----------|----------------------|-----------------|
+|
+---
+|
+---
+|
+---
+|
 | Reusability | Rewrite every time | Write once, reuse across projects |
 | Consistency | Memory-dependent | File-based, version-controlled |
 | Team Onboarding | Word of mouth | Ship with repo, new devs get it instantly |
 | Maintainability | Scattered in chat history | Structured SKILL.md + scripts |
 | Triggering | Manual paste | Auto-detect context, conditional activation |
 
-Matt Pocock's [mattpocock/skills](https://github.com/mattpocock/skills) repository was the spark that ignited this movement. He open-sourced his personal `.claude` directory containing:
-
-- **TDD Skill**: Enforces RED-GREEN-REFACTOR cycles
+Matt Pocock's [mattpocock/skills](https://github.com/mattpocock/skills) repository was the spark that ignited this movement. He open-sourced his personal `.claude` directory containing: - **TDD Skill**: Enforces RED-GREEN-REFACTOR cycles
 - **Guardrail Skill**: Intercepts `git push --force`, requires confirmation
 - **Debug Skill**: Structured investigation — reproduce → logs → root cause → fix → regression test
 - **TypeScript Deep Patterns**: AI output optimized for type system depth
 
 These aren't "prompt engineering tricks." They are **executable engineering discipline**.
 
----
 
+---
 ## Top 5 Skills Repositories of 2026: A Deep Dive
 
 ### 1. mattpocock/skills — Skills for Real Engineers
@@ -114,18 +114,14 @@ These aren't "prompt engineering tricks." They are **executable engineering disc
 
 ### Why Vibe Coding Is Killing Code Quality
 
-"Vibe coding" was the buzzword of 2025–2026: a development approach driven by intuition and improvised prompts. The problems are structural:
-
-1. **Not traceable**: Why was the code written this way? "It felt right at the time."
+"Vibe coding" was the buzzword of 2025–2026: a development approach driven by intuition and improvised prompts. The problems are structural: 1. **Not traceable**: Why was the code written this way? "It felt right at the time."
 2. **Not reviewable**: No design document means code review only scratches the surface.
 3. **Not maintainable**: Three months later, even the AI forgot the original logic.
 4. **Not collaborative**: Every team member's "vibe" is different.
 
 ### The Spec-Kit Four-Step Workflow
 
-GitHub's [spec-kit](https://github.com/github/spec-kit) transforms chaos into discipline with a simple four-step process:
-
-```
+GitHub's [spec-kit](https://github.com/github/spec-kit) transforms chaos into discipline with a simple four-step process: ```
 ┌──────────────────────────────────────────────────────────────┐
 │          Spec-Driven Development Workflow                   │
 ├──────────────────────────────────────────────────────────────┤
@@ -148,9 +144,7 @@ GitHub's [spec-kit](https://github.com/github/spec-kit) transforms chaos into di
 └──────────────────────────────────────────────────────────────┘
 ```
 
-**Practical Example**:
-
-```markdown
+**Practical Example**: ```markdown
 ## SPECIFICATION
 Add shopping cart persistence to the e-commerce app.
 Why: Users should not lose their cart on page refresh.
@@ -180,9 +174,7 @@ AI implements each task based on the plan above, checking items off as completed
 
 ### Step 1: Create the Skill Directory Structure
 
-In your project or global config:
-
-```
+In your project or global config: ```
 .claude/
 └── skills/
     └── safe-git/
@@ -211,15 +203,13 @@ priority: high
 
 ## Workflows
 ### Force Push Protection
-When force push intent is detected:
-1. Pause operation
+When force push intent is detected: 1. Pause operation
 2. Display affected branches and commits
 3. Require user to type "I understand the risks" to confirm
 4. Log to .claude/safe-git.log
 
 ### Pre-commit Lint
-Auto-run before commit:
-```bash
+Auto-run before commit: ```bash
 npm run lint && npm run typecheck
 ```
 Block commit and display errors on failure.
@@ -289,9 +279,7 @@ Claude Code auto-detects `.claude/skills/` and loads matching skills.
 
 ## What's Next: Skills in H2 2026
 
-Based on current trajectories, three directions are inevitable:
-
-1. **Skills Marketplaces**: Dedicated skill distribution platforms will emerge (ClawHub is already pioneering this). Think VS Code Extensions marketplace, but for AI agent behavior.
+Based on current trajectories, three directions are inevitable: 1. **Skills Marketplaces**: Dedicated skill distribution platforms will emerge (ClawHub is already pioneering this). Think VS Code Extensions marketplace, but for AI agent behavior.
 
 2. **Domain-Specific Skills Explosion**: Financial compliance, healthcare privacy, legal review — vertical skills will become mandatory (see `anthropics/financial-services` at +1,075 stars).
 

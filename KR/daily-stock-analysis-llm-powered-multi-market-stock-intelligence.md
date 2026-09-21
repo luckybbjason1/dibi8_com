@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/daily-stock-analysis-llm-powered-multi-market-stock-intelligence" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/daily-stock-analysis-llm-powered-multi-market-stock-intelligence" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/daily-stock-analysis-llm-powered-multi-market-stock-intelligence" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/daily-stock-analysis-llm-powered-multi-market-stock-intelligence" />
 title: '일일 주식 분석: LLM 기반 다시장 주식 인텔리전스 시스템'
 description: 실시간 뉴스, 의사결정 대시보드 및 자동화된 알림을 갖춘 LLM 기반 다시장 주식 분석 시스템. 48K 스타. 무료 예약 실행 지원.. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-25
@@ -17,10 +12,6 @@ lang: kr
 github_repo: https://github.com/dailystockai/daily-stock
 license: MIT
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/daily-stock-analysis-llm-powered-multi-market-stock-intelligence/ -->
-
-
 
 # 일일 주식 분석: LLM 기반 다시장 주식 인텔리전스
 
@@ -36,9 +27,7 @@ license: MIT
 
 일일 주식 분석은 대형 언어 모델을 활용하여 시장 데이터, 뉴스 감정 및 기술적 지표를 분석하는 포괄적인 주식 인텔리전스 플랫폼입니다. 단순히 가격 움직임을 보여주는 전통적인 차트 도구와 달리, 이 시스템은 시장이 왜 움직이고 있는지에 대한 문맥 분석과 다음 무엇을 일어날 수 있는지에 대한 통찰력을 제공합니다.
 
-플랫폼은 여러 시장과 데이터 소스를 지원합니다:
-
-- **미국 시장**: NYSE, NASDAQ, 실시간 및 지연 데이터 지원
+플랫폼은 여러 시장과 데이터 소스를 지원합니다: - **미국 시장**: NYSE, NASDAQ, 실시간 및 지연 데이터 지원
 - **A주식**: 상하이 및 선전 거래소 포괄적 커버리지
 - **암호화폐**: 바이낸스, Coinbase, Kraken 등 주요 거래소
 - **선물 및 상품**: 유류, 금, 농산물 및 지수
@@ -101,9 +90,7 @@ python main.py --market us --date $(date +%Y-%m-%d)
 
 ### 옵션 3: 로컬 LLM 설정 (무료)
 
-API 비용을 완전히 피하고 싶은 사용자를 위한 방법:
-
-```bash
+API 비용을 완전히 피하고 싶은 사용자를 위한 방법: ```bash
 # 로컬 LLM 추론을 위해 Ollama 설치
 curl -fsSL https://ollama.ai/install.sh | sh
 
@@ -112,8 +99,7 @@ ollama pull qwen2.5:14b
 
 # config.yaml을 로컬 모델 사용으로 업데이트
 cat >> config.yaml << EOF
-llm:
-  provider: ollama
+llm: provider: ollama
   model: qwen2.5:14b
   base_url: http://localhost:11434
 EOF
@@ -126,9 +112,7 @@ python main.py --market a_shares --date $(date +%Y-%m-%d)
 
 ### AKShare 통합 (무료 A주식 데이터)
 
-AKShare는 API 키 없이 중국 시장 데이터에 대한 무료 접근을 제공합니다:
-
-```python
+AKShare는 API 키 없이 중국 시장 데이터에 대한 무료 접근을 제공합니다: ```python
 import akshare as ak
 
 # 일일 A주식 시장 데이터 가져오기
@@ -151,9 +135,7 @@ print(sector_df)
 
 ### Tushare 통합 (프리미엄 A주식 데이터)
 
-기본 정보를 포함한 더 포괄적인 A주식 데이터를 위한:
-
-```python
+기본 정보를 포함한 더 포괄적인 A주식 데이터를 위한: ```python
 import tushare as ts
 
 # API 토큰으로 초기화
@@ -197,8 +179,7 @@ recommendations = ticker.recommendations
 
 # 뉴스 감정 가져오기
 news = ticker.news
-for item in news:
-    print(f"{item['title']}: {item['providerPublishTime']}")
+for item in news: print(f"{item['title']}: {item['providerPublishTime']}")
 ```
 
 ### 암호화폐 데이터
@@ -227,9 +208,7 @@ print(f"매도: {order_book['asks'][0][0]}")
 
 ### 감정 분석 파이프라인
 
-일일 주식 분석의 핵심은 LLM 기반 감정 분석 파이프라인입니다:
-
-```python
+일일 주식 분석의 핵심은 LLM 기반 감정 분석 파이프라인입니다: ```python
 from daily_stock_analysis.llm import LLMAnalyzer
 from daily_stock_analysis.data import MarketDataProvider
 
@@ -265,13 +244,10 @@ print(f"위험 수준: {analysis.risk_level}")
 
 ### 사용자 정의 분석 프롬프트
 
-다양한 사용 사례에 대해 LLM 분석 프롬프트를 사용자 정의할 수 있습니다:
-
-```python
+다양한 사용 사례에 대해 LLM 분석 프롬프트를 사용자 정의할 수 있습니다: ```python
 # 기술 분석 프롬프트
 tech_prompt = """
-다음 주식 기술적 지표를 분석하고 다음을 제공하세요:
-1. 추세 방향 (강세/약세/중립)
+다음 주식 기술적 지표를 분석하고 다음을 제공하세요: 1. 추세 방향 (강세/약세/중립)
 2. 주요 지지 및 저항 수준
 3. 모멘텀 평가
 4. 거래량 분석 해석
@@ -282,8 +258,7 @@ tech_prompt = """
 
 # 기본 분석 프롬프트
 fund_prompt = """
-다음 기본 데이터를 분석하고 다음을 제공하세요:
-1. 매출 성장 평가
+다음 기본 데이터를 분석하고 다음을 제공하세요: 1. 매출 성장 평가
 2. 수익성 평가
 3. 부채 지속 가능성
 4. 가치 평가 비교
@@ -303,9 +278,7 @@ combined = llm.analyze(
 
 ### 다시장 비교 분석
 
-서로 다른 시장의 주식을 동시에 비교:
-
-```python
+서로 다른 시장의 주식을 동시에 비교: ```python
 # 미국 기술주 비교
 us_techs = llm.compare_stocks(
     symbols=["AAPL", "MSFT", "GOOGL", "AMZN", "META"],
@@ -325,18 +298,14 @@ a_share_sectors = llm.compare_sectors(
 
 ### 웹 대시보드 설정
 
-일일 주식 분석은 내장 웹 대시보드를 포함합니다:
-
-```bash
+일일 주식 분석은 내장 웹 대시보드를 포함합니다: ```bash
 # 대시보드 서버 시작
 python dashboard.py --host 0.0.0.0 --port 8080
 
 # http://localhost:8080에서 접근
 ```
 
-대시보드는 다음을 제공합니다:
-
-- 히트맵과 함께하는 실시간 시장 개요
+대시보드는 다음을 제공합니다: - 히트맵과 함께하는 실시간 시장 개요
 - 대화형 차트와 함께하는 개별 주식 분석
 - 섹터 성과 비교
 - 뉴스 감정 타임라인
@@ -346,11 +315,9 @@ python dashboard.py --host 0.0.0.0 --port 8080
 
 ```yaml
 # dashboard_config.yaml
-dashboard:
-  refresh_interval: 300  # 5분
+dashboard: refresh_interval: 300  # 5분
   default_market: "a_shares"
-  charts:
-    - type: "heatmap"
+  charts: - type: "heatmap"
       title: "시장 히트맵"
       data_source: "sector_performance"
     - type: "line"
@@ -359,8 +326,7 @@ dashboard:
     - type: "sentiment"
       title: "뉴스 감정"
       data_source: "llm_sentiment"
-  alerts:
-    - threshold: 0.8
+  alerts: - threshold: 0.8
       action: "notification"
       channels: ["email", "telegram"]
 ```
@@ -382,9 +348,7 @@ python report_generator.py --format csv --output analysis_data.csv
 
 ### 크론 작업 설정
 
-자동 분석 실행 예약:
-
-```bash
+자동 분석 실행 예약: ```bash
 # crontab 편집
 crontab -e
 
@@ -400,9 +364,7 @@ crontab -e
 
 ### systemd 서비스
 
-지속적인 백그라운드 작동을 위한:
-
-```ini
+지속적인 백그라운드 작동을 위한: ```ini
 # /etc/systemd/system/daily-stock-analysis.service
 [Unit]
 Description=일일 주식 분석 서비스
@@ -497,7 +459,6 @@ notifier.send_webhook(
 **고지 사항**: 본 기사는 제휴 관계가 있을 수 있는 도구를 언급합니다. 우리는 리뷰에 대한 대가를 받지 않습니다. 모든 의견은 우리 자신의 것입니다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -525,25 +486,20 @@ notifier.send_webhook(
 
 ## Why This Matters
 
-Understanding 일일 주식 분석: llm 기반 다시장 주식 인텔리전스 시스템 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding 일일 주식 분석: llm 기반 다시장 주식 인텔리전스 시스템 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

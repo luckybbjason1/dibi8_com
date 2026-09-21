@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/aider" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/aider" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/aider" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/aider" />
 title: 'Aider: 45K+ Stars — Lập Trình Cặp AI trong Terminal vs C...
 description: 'Aider là công cụ lập trình cặp AI trong terminal, chỉnh sửa code trong git repository cục bộ. Hỗ trợ OpenAI, Claude, DeepSeek, Gemini. Hướng dẫn cài đặt Aider, tutorial, tích hợp Git, benchmark và so sánh với Claude Code, Cursor, Codex CLI.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [aider, 'ai-pair-programming', 'terminal-ai', 'cli-coding', 'git-ai', 'llm-tools', 'mã-nguồn-mở']
-aliases:
-- /vi/posts/aider/
+aliases: - /vi/posts/aider/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/aider/ -->
 
 {{</* resource-info */>}}
 
@@ -131,9 +123,7 @@ docker run -it --rm \
 
 ### VS Code
 
-Aider không yêu cầu extension VS Code. Khởi động Aider trong terminal dự án của bạn, sau đó chỉnh sửa file trong VS Code như bình thường. Aider giám sát git repository và tự động commit các thay đổi. Để có luồng làm việc chặt chẽ hơn, sử dụng cờ `--watch-files`:
-
-```bash
+Aider không yêu cầu extension VS Code. Khởi động Aider trong terminal dự án của bạn, sau đó chỉnh sửa file trong VS Code như bình thường. Aider giám sát git repository và tự động commit các thay đổi. Để có luồng làm việc chặt chẽ hơn, sử dụng cờ `--watch-files`: ```bash
 # Terminal 1: khởi động aider
 aider --model sonnet --watch-files
 
@@ -143,9 +133,7 @@ aider --model sonnet --watch-files
 
 ### Vim / Neovim
 
-Aider phù hợp tự nhiên với luồng làm việc Vim. Chạy nó trong một cửa sổ tmux chia đôi bên cạnh trình soạn thảo của bạn:
-
-```bash
+Aider phù hợp tự nhiên với luồng làm việc Vim. Chạy nó trong một cửa sổ tmux chia đôi bên cạnh trình soạn thảo của bạn: ```bash
 # Cấu hình tmux cho aider + vim
 tmux new-session -d -s aider-vim
 tmux split-window -h -t aider-vim
@@ -156,15 +144,12 @@ tmux attach -t aider-vim
 
 ### Git và GitHub
 
-Tích hợp git của Aider là tính năng nổi bật. Mỗi chỉnh sửa được hỗ trợ bởi AI đều trở thành một commit riêng biệt:
-
-```bash
+Tích hợp git của Aider là tính năng nổi bật. Mỗi chỉnh sửa được hỗ trợ bởi AI đều trở thành một commit riêng biệt: ```bash
 # Trong phiên aider
 > /add src/auth.js src/middleware.js
 > Thêm xác thực JWT token vào auth middleware
 
-# Aider thực hiện thay đổi và commit:
-# [main a1b2c3d] feat: Thêm xác thực JWT token vào auth middleware
+# Aider thực hiện thay đổi và commit: # [main a1b2c3d] feat: Thêm xác thực JWT token vào auth middleware
 #  2 files changed, 45 insertions(+), 12 deletions(-)
 
 # Xem xét các commit trước khi push
@@ -179,24 +164,18 @@ git push origin main
 
 ```yaml
 # .gitlab-ci.yml - pipeline đánh giá code AI
-ai-review:
-  image: python:3.12
-  before_script:
-    - pip install aider-chat
-  script:
-    - aider --model sonnet --message "Đánh giá MR này về vấn đề bảo mật" --no-auto-commits
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+ai-review: image: python:3.12
+  before_script: - pip install aider-chat
+  script: - aider --model sonnet --message "Đánh giá MR này về vấn đề bảo mật" --no-auto-commits
+  rules: - if: $CI_PIPELINE_SOURCE == "merge_request_event"
 ```
 
 ### Pre-commit hooks
 
 ```yaml
 # .pre-commit-config.yaml
-repos:
-  - repo: local
-    hooks:
-      - id: aider-lint
+repos: - repo: local
+    hooks: - id: aider-lint
         name: Chạy sửa lỗi lint aider
         entry: aider --lint-cmd "npm run lint" --lint
         language: system
@@ -223,9 +202,7 @@ Khoảng cách về chi phí đáng kinh ngạc: DeepSeek V3.2 Reasoner đạt 7
 
 ### Benchmark riêng của Aider
 
-Aider cũng tự benchmark trên các tác vụ lập trình thực tế:
-
-| Mô hình | Tỷ lệ đạt | Token trung bình | Độ trễ |
+Aider cũng tự benchmark trên các tác vụ lập trình thực tế: | Mô hình | Tỷ lệ đạt | Token trung bình | Độ trễ |
 |---------|-----------|------------------|--------|
 | Claude Sonnet 4 | 72% | 18,400 | 45 giây |
 | GPT-4.1 | 68% | 22,100 | 38 giây |
@@ -234,9 +211,7 @@ Aider cũng tự benchmark trên các tác vụ lập trình thực tế:
 
 ### Dữ liệu năng suất thực tế
 
-Dựa trên báo cáo cộng đồng và khảo sát nhà phát triển năm 2026:
-
-- **Nhà phát triển độc lập:** Giảm trung bình 35-45% thờ gian viết boilerplate khi sử dụng Aider với Sonnet hoặc GPT-5
+Dựa trên báo cáo cộng đồng và khảo sát nhà phát triển năm 2026: - **Nhà phát triển độc lập:** Giảm trung bình 35-45% thờ gian viết boilerplate khi sử dụng Aider với Sonnet hoặc GPT-5
 - **Tác vụ tái cấu trúc:** Các tác vụ tái cấu trúc đa file từng mất 4-6 giờ thủ công nay hoàn thành trong 45-90 phút với Aider
 - **Tạo test:** Độ phủ dòng tăng từ trung bình 60% lên 85% khi sử dụng Aider để viết test cho code hiện có
 - **Lịch sử git:** Ngườ dùng Aider báo cáo số lượng commit hàng ngày tăng 3-5 lần nhờ độ chi tiết của auto-commit, giúp code review dễ dàng hơn
@@ -256,9 +231,7 @@ echo "config/prod.yml" >> .aiderignore
 
 ### Prompt caching để giảm chi phí
 
-Aider hỗ trợ prompt caching cho các mô hình Anthropic Claude và OpenAI, giảm chi phí API 40-60% trong các cuộc trò chuyện nhiều lượt:
-
-```bash
+Aider hỗ trợ prompt caching cho các mô hình Anthropic Claude và OpenAI, giảm chi phí API 40-60% trong các cuộc trò chuyện nhiều lượt: ```bash
 # Prompt caching tự động cho các mô hình được hỗ trợ
 aider --model sonnet --cache-prompts
 
@@ -270,16 +243,13 @@ aider --model sonnet --cache-prompts
 
 ```bash
 # ~/.aider.conf.yml
-model-alias:
-  - fast: gpt-4.1
+model-alias: - fast: gpt-4.1
   - smart: claude-sonnet-4
   - cheap: deepseek/deepseek-chat
   - local: ollama/qwen2.5-coder:32b
 ```
 
-Sử dụng:
-
-```bash
+Sử dụng: ```bash
 aider --model fast    # sử dụng gpt-4.1
 aider --model smart   # sử dụng claude-sonnet-4
 aider --model cheap   # sử dụng DeepSeek
@@ -366,9 +336,7 @@ aider --model sonnet --analytics-log ./logs/aider.jsonl
 
 ## Hạn chế / Đánh giá trung thực
 
-Aider không phải là công cụ phù hợp cho mọi nhà phát triển hay mọi tình huống. Đây là những gì nó KHÔNG giỏi:
-
-**Luồng làm việc phụ thuộc GUI:** Nếu bạn cần xem UI được render, quản lý file kéo-thả, hoặc xem xét diff trực quan, giao diện terminal của Aider sẽ gây khó chịu. Cursor hoặc Windsurf phù hợp hơn.
+Aider không phải là công cụ phù hợp cho mọi nhà phát triển hay mọi tình huống. Đây là những gì nó KHÔNG giỏi: **Luồng làm việc phụ thuộc GUI:** Nếu bạn cần xem UI được render, quản lý file kéo-thả, hoặc xem xét diff trực quan, giao diện terminal của Aider sẽ gây khó chịu. Cursor hoặc Windsurf phù hợp hơn.
 
 **Ngườ không phải nhà phát triển:** Aider giả định bạn thành thạo git, thoải mái với terminal, và quản lý được API key. Một nhà phát triển không biết cách đặt biến môi trường sẽ gặp khó khăn. Trình cài đặt một lần nhấp của Cursor là lựa chọn khởi đầu tốt hơn.
 
@@ -421,9 +389,7 @@ Tham gia cộng đồng [Discord](https://discord.gg/Y7X7bhMQFV) hoặc [Telegra
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -445,7 +411,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 *Bài viết này chỉ mang tính chất thông tin. Aider là phần mềm mã nguồn mở theo giấy phép Apache-2.0. Luôn xem xét code do AI tạo trước khi triển khai production.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

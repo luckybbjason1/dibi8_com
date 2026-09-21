@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/atuin" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/atuin" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/atuin" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/atuin" />
 title: 'Atuin: 29,794 GitHub Stars — Shell History Sync 完整设置指南 2...
 description: 'Atuin 将 shell 历史记录替换为 SQLite 数据库，记录命令上下文（退出码、工作目录、执行时长），并通过端到端加密在多台机器间同步历史记录。支持 Bash、Zsh、Fish、Nushell。涵盖安装、自托管、配置，以及 Atuin vs mcfly vs fzf vs Hstr 对比。'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [atuin, shell历史, 命令行工具, sqlite, rust, 同步, bash, zsh, fish]
-aliases:
-- /zh/posts/atuin/
+aliases: - /zh/posts/atuin/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/atuin/ -->
 
 {{</* resource-info */>}}
 
@@ -58,25 +50,59 @@ Atuin 作为客户端历史拦截器和可选的同步客户端运行。理解�
 ### 架构概览
 
 ```
-+-------------+     preexec/precmd 钩子     +------------------+
-|   Shell     |  -------------------------->  |   Atuin Client   |
++
+---
++     preexec/precmd 钩子     +
+---
++
+|   Shell     |  
+---
+>  |   Atuin Client   |
 | (bash/zsh)  |                             |   (Rust binary)  |
-+-------------+                             +--------+---------+
++
+---
++                             +
+---
++
+---
++
                                                      |
-                                            +--------v---------+
+                                            +
+---
+v
+---
++
                                             |   SQLite (本地)   |
                                             |   ~/.local/share |
-                                            +--------+---------+
+                                            +
+---
++
+---
++
                                                      |
-                              +----------------------v----------------------+
+                              +
+---
+v
+---
++
                               |              同步协议 V2                      |
                               |   PASETO V4 (XChaCha20-Poly1305 + Blake2b) |
-                              +----------------------+----------------------+
+                              +
+---
++
+---
++
                                                      |
-                              +----------------------v----------------------+
+                              +
+---
+v
+---
++
                               |         Atuin 服务器（自托管或云端）          |
                               |         PostgreSQL 或 SQLite 后端            |
-                              +---------------------------------------------+
+                              +
+---
++
 ```
 
 ### 核心组件
@@ -89,7 +115,13 @@ Atuin 作为客户端历史拦截器和可选的同步客户端运行。理解�
 ### 加密细节
 
 | 协议 | 算法 | 状态 |
-|------|------|------|
+|
+---
+|
+---
+|
+---
+|
 | V1（旧版） | XSalsa20Poly1305（NaCl secretbox） | 逐步淘汰 |
 | V2（当前） | PASETO V4 Local（XChaCha20-Poly1305 + Blake2b） | 活跃 |
 
@@ -343,47 +375,34 @@ RUN echo 'eval "$(atuin init bash)"' >> /root/.bashrc
 ```yaml
 # docker-compose.yml
 version: "3"
-services:
-  atuin:
-    restart: always
+services: atuin: restart: always
     image: ghcr.io/atuinsh/atuin:latest
     command: server start
-    volumes:
-      - ./config:/config
+    volumes: - ./config:/config
       - ./atuin-data:/atuin-data
-    links:
-      - postgresql
-    ports:
-      - "8888:8888"
-    environment:
-      ATUIN_HOST: "0.0.0.0"
+    links: - postgresql
+    ports: - "8888:8888"
+    environment: ATUIN_HOST: "0.0.0.0"
       ATUIN_PORT: "8888"
       ATUIN_OPEN_REGISTRATION: "true"
       ATUIN_DB_URI: "postgres://atuin:change-me@postgresql/atuin"
       RUST_LOG: "info,atuin_server=debug"
     user: "1000:1000"
 
-  postgresql:
-    image: postgres:14
+  postgresql: image: postgres:14
     restart: always
-    volumes:
-      - ./postgres-data:/var/lib/postgresql/data
-    environment:
-      POSTGRES_USER: atuin
+    volumes: - ./postgres-data:/var/lib/postgresql/data
+    environment: POSTGRES_USER: atuin
       POSTGRES_PASSWORD: change-me
       POSTGRES_DB: atuin
     user: "1000:1000"
 
   # 可选：自动备份
-  backup:
-    image: prodrigestivill/postgres-backup-local
+  backup: image: prodrigestivill/postgres-backup-local
     restart: always
-    volumes:
-      - ./backups:/backups
-    links:
-      - postgresql
-    environment:
-      POSTGRES_HOST: postgresql
+    volumes: - ./backups:/backups
+    links: - postgresql
+    environment: POSTGRES_HOST: postgresql
       POSTGRES_DB: atuin
       POSTGRES_USER: atuin
       POSTGRES_PASSWORD: change-me
@@ -437,42 +456,26 @@ atuin sync
 # atuin-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
-metadata:
-  name: atuin-server
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: atuin
-  template:
-    metadata:
-      labels:
-        app: atuin
-    spec:
-      containers:
-        - name: atuin
+metadata: name: atuin-server
+spec: replicas: 2
+  selector: matchLabels: app: atuin
+  template: metadata: labels: app: atuin
+    spec: containers: - name: atuin
           image: ghcr.io/atuinsh/atuin:18.16.1
           command: ["atuin", "server", "start"]
-          ports:
-            - containerPort: 8888
-          env:
-            - name: ATUIN_HOST
+          ports: - containerPort: 8888
+          env: - name: ATUIN_HOST
               value: "0.0.0.0"
             - name: ATUIN_DB_URI
-              valueFrom:
-                secretKeyRef:
-                  name: atuin-db-secret
+              valueFrom: secretKeyRef: name: atuin-db-secret
                   key: uri
+
 ---
 apiVersion: v1
 kind: Service
-metadata:
-  name: atuin-service
-spec:
-  selector:
-    app: atuin
-  ports:
-    - port: 8888
+metadata: name: atuin-service
+spec: selector: app: atuin
+  ports: - port: 8888
       targetPort: 8888
 ```
 
@@ -483,7 +486,13 @@ spec:
 Atuin 的 Rust 实现和 SQLite 后端在大型历史数据集上提供稳定的性能：
 
 | 指标 | 数值 | 说明 |
-|------|------|------|
+|
+---
+|
+---
+|
+---
+|
 | 历史查询（10万条） | ~15ms | 模糊搜索，冷缓存 |
 | 历史查询（50万条） | ~45ms | 模糊搜索，热缓存 |
 | 同步初始上传（5万条命令） | ~30秒 | 取决于带宽 |
@@ -512,8 +521,8 @@ $ atuin stats
 [▮         ]  1,357 rg
 [▮         ]  1,348 cd
 [▮         ]  1,322 git log
-Total commands:   62,849
-Unique commands:  26,908
+Total commands: 62,849
+Unique commands: 26,908
 ```
 
 ## 高级用法 / 生产环境加固
@@ -610,7 +619,17 @@ atuin stats
 ## 与替代品对比
 
 | 功能 | Atuin | mcfly | fzf + history | Hstr |
-|------|-------|-------|---------------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **数据库** | SQLite | SQLite | 纯文本文件 | 纯文本文件 |
 | **跨机同步** | 是（端到端加密） | 否 | 否 | 否 |
 | **搜索 UI** | 内置 TUI | 内置 TUI | fzf 集成 | 内置 TUI |
@@ -723,7 +742,6 @@ Atuin 将 shell 历史从纯文本文件转变为结构化、可搜索、可移�
 - [Hstr GitHub 仓库](https://github.com/dvorka/hstr)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -749,8 +767,8 @@ Atuin 将 shell 历史从纯文本文件转变为结构化、可搜索、可移�
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [ohmyzsh](atuin)
@@ -760,5 +778,4 @@ Atuin 将 shell 历史从纯文本文件转变为结构化、可搜索、可移�
 - [zed-vs-cursor](atuin)
 
 ---
-
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

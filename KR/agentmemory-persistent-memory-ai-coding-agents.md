@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/agentmemory-persistent-memory-ai-coding-agents" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/agentmemory-persistent-memory-ai-coding-agents" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/agentmemory-persistent-memory-ai-coding-agents" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/agentmemory-persistent-memory-ai-coding-agents" />
 title: 'AgentMemory: AI 코딩 에이전트를 위한 persistente 메모리 시스템 1위 — 22,...
 description: 'AgentMemory (22,038 GitHub stars)는 실제 벤치마크를 기반으로 AI 코딩 에이전트에 persistent 메모리를 제공합니다. 과거 세션 기억, 며칠 간 컨텍스트 유지, 이전 상호작용에서 학습. Claude Code, Codex CLI, OpenCode 등 지원. 설정 튜토리얼, 아키텍처 분석, 벤치마크 포함.'
 date: 2026-06-08
-lastmod:  2026-06-08slug: 'agentmemory-persistent-memory-ai-coding-agents'
+lastmod: 2026-06-08
+slug: 'agentmemory-persistent-memory-ai-coding-agents'
 category: 'data-science'
 tags: ['agent memory', 'persistent memory', 'AI coding agents', 'context continuity', 'AgentMemory', 'session memory', 'agent framework', 'AI benchmark']
 github_repo: 'https://github.com/rohitg00/agentmemory'
@@ -17,8 +13,6 @@ license: MIT
 featureImage: 'https://avatars.githubusercontent.com/u/33592279'
 lang: ko
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/agentmemory-persistent-memory-ai-coding-agents/ -->
 
 # AgentMemory: AI 코딩 에이전트를 위한 persistente 메모리 시스템 1위 — 22,000 스타의 실제 벤치마크 — 2026 실전 가이드
 
@@ -56,8 +50,7 @@ AI 코딩 에이전트는 세션 간에 모든 것을 잊어버립니다. 화요
 
 AgentMemory는 **AI 코딩 에이전트를 위한 persistente 메모리 시스템**으로, 에이전트가 세션 간에 정보를 기억하고 검색할 수 있게 합니다. 벡터 임베딩, 지식 그래프, 구조화된 사실 저장을 조합하여 에이전트가 각 세션 시작 시 쿼리할 수 있는 검색 가능한 메모리를 생성합니다.
 
-핵심 기능:
-- **크로스 세션 메모리** — 과거 세션, 며칠 또는 몇 주 전에 일어난 일 기억
+핵심 기능: - **크로스 세션 메모리** — 과거 세션, 며칠 또는 몇 주 전에 일어난 일 기억
 - **멀티 에이전트 지원** — Claude Code, Codex, OpenCode 간 메모리 공유
 - **구조화된 사실** — 결정, 버그 수정, 아키텍처 패턴을 구조화된 데이터로 저장
 - **시맨틱 검색** — 임베딩 기반 검색으로 관련 과거 컨텍스트 찾기
@@ -105,8 +98,7 @@ extractor.extract_from_session(
     extract_types=["decisions", "fixes", "patterns", "config"]
 )
 
-# 결과:
-# - 47개 사실 추출 (버그 수정, 결정, 패턴)
+# 결과: # - 47개 사실 추출 (버그 수정, 결정, 패턴)
 # - 12개 벡터 임베딩 저장
 # - 지식 그래프에 89개 엣지
 ```
@@ -129,8 +121,7 @@ context = retriever.retrieve(
     session_type="coding"
 )
 
-# 구조화된 메모리 컨텍스트 반환:
-# [
+# 구조화된 메모리 컨텍스트 반환: # [
 #   {"type": "fix", "date": "2026-06-05", "summary": "JWT token refresh 문제 수정"},
 #   {"type": "decision", "date": "2026-06-01", "summary": "비밀번호 해싱에 bcrypt 선택"},
 #   ...
@@ -192,16 +183,13 @@ agentmemory init --graph-store neo4j --neo4j-url bolt://neo4j:7687
 
 ## Claude Code, Codex CLI, OpenCode, Gemini CLI와의 통합
 
-AgentMemory는 도구 호출을 지원하는 모든 에이전트에 훅/미들웨어로 통합됩니다:
-
-### Claude Code
+AgentMemory는 도구 호출을 지원하는 모든 에이전트에 훅/미들웨어로 통합됩니다: ### Claude Code
 
 ```bash
 # AgentMemory Claude Code 플러그인
 agentmemory install claude-code
 
-# 이제 모든 Claude Code 세션이 자동으로:
-# 1. 시작 시 관련 메모리 검색
+# 이제 모든 Claude Code 세션이 자동으로: # 1. 시작 시 관련 메모리 검색
 # 2. 세션 중 새 사실 저장
 # 3. 세션 종료 시 메모리 업데이트
 ```
@@ -221,8 +209,7 @@ export AGENTMEMORY_PROJECT=./my-project
 # OpenCode 플러그인
 agentmemory install opencode
 
-# 메모리 컨텍스트가 도구 호출로 주입됨:
-# agentmemory.query("auth-related changes")
+# 메모리 컨텍스트가 도구 호출로 주입됨: # agentmemory.query("auth-related changes")
 # 관련 과거 컨텍스트를 구조화된 데이터로 반환
 ```
 
@@ -232,9 +219,7 @@ agentmemory install opencode
 
 ### 메모리가 에이전트 성능에 미치는 영향
 
-500개의 실제 개발 세션(버그 수정, 기능 구현, 리팩토링)에서 테스트:
-
-| 지표 | 메모리 없음 | AgentMemory 사용 | 개선률 |
+500개의 실제 개발 세션(버그 수정, 기능 구현, 리팩토링)에서 테스트: | 지표 | 메모리 없음 | AgentMemory 사용 | 개선률 |
 |------|-----------|-----------------|--------|
 | 컨텍스트 정확도 | 58% | 89% | +53% |
 | 버그 수정 완료 시간 | 42분 | 28분 | -33% |
@@ -243,9 +228,7 @@ agentmemory install opencode
 
 ### 시간 경과에 따른 기억 보존
 
-다른 시간 간격 동안 메모리 지속성:
-
-| 마지막 세션 이후 시간 | 정확도 |
+다른 시간 간격 동안 메모리 지속성: | 마지막 세션 이후 시간 | 정확도 |
 |---------------------|--------|
 | 같은 날 | 96% |
 | 1주 | 91% |
@@ -255,9 +238,7 @@ agentmemory install opencode
 
 ### 실제 사용 사례: 팀 개발
 
-5인 개발팀이 AgentMemory 사용:
-
-```bash
+5인 개발팀이 AgentMemory 사용: ```bash
 # 개발자 A가 월요일에 인증 버그 수정
 # 개발자 B가 화요일에 동일한 작업 처리
 # AgentMemory가 A의 수정 및 컨텍스트 검색
@@ -267,8 +248,7 @@ agentmemory query \
   --query "authentication bug fixes" \
   --since "2026-06-02"
 
-# 반환:
-# - 2026-06-02에 dev-A가 적용한 수정
+# 반환: # - 2026-06-02에 dev-A가 적용한 수정
 # - 근본 원인: 만료된 JWT token
 # - 해결책: token refresh middleware 추가
 # - 관련 파일: middleware/auth.py, services/jwt.js
@@ -319,8 +299,7 @@ agentmemory pull --project ./my-app
 # 메모리 통계 확인
 agentmemory stats --project ./my-app
 
-# 출력:
-# 총 사실 수: 1,247
+# 출력: # 총 사실 수: 1,247
 # 총 세션 수: 89
 # 가장 흔한 사실 유형: "bug_fix" (34%)
 # 메모리 성장: 이번 주 +127 사실
@@ -357,9 +336,7 @@ agentmemory export --format json --output ./memory-report.json
 
 ## 제한 / 솔직한 평가
 
-AgentMemory는 모든 사람에게 적합하지 않습니다:
-
-1. **소규모 개인 프로젝트** — 유일한 개발자이고 단일 세션에서 작업한다면 메모리가 제공하는 가치가 제한적입니다. 에이전트는 메모리 없이도 작은 코드베이스를 충분히 빠르게 처리할 수 있습니다.
+AgentMemory는 모든 사람에게 적합하지 않습니다: 1. **소규모 개인 프로젝트** — 유일한 개발자이고 단일 세션에서 작업한다면 메모리가 제공하는 가치가 제한적입니다. 에이전트는 메모리 없이도 작은 코드베이스를 충분히 빠르게 처리할 수 있습니다.
 2. **프라이버시 민감한 코드** — 메모리는 코드 패턴과 결정을 로컬에 저장합니다. 기업 코드베이스의 경우 추출 및 저장된 사실을 검토해야 합니다. 프로젝트에 프라이버시 컨트롤이 있지만 스키마를 신중히 검토하세요.
 3. **콜드 스타트 기간** — 메모리는 구축에 시간이 필요합니다. 새 프로젝트는 빈 메모리로 시작하며, 시스템이 유용해지려면 10-20개의 세션이 필요합니다. 이 준비 기간을 계획하세요.
 4. **메모리 드리프트** — 시간이 지남에 따라 오래된 사실이 에이전트를 혼란스럽게 할 수 있습니다. 정기적인 메모리 정리(월간 권장, `agentmemory prune --older-than 90d` 사용)를 구현하세요.
@@ -414,7 +391,6 @@ dibi8 한국어 텔레그램 그룹 [dibi8 한국어 Telegram 그룹](https://t.
 위 링크 중 일부는 제휴 링크입니다. 링크를 통해 등록하면 dibi8.com이 수수료를 받을 수 있으며, 이용자에게는 추가 비용이 없습니다. 이는 사이트 운영과 콘텐츠 무료 제공에 도움이 됩니다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

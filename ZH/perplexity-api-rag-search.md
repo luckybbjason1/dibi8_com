@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/perplexity-api-rag-search" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/perplexity-api-rag-search" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/perplexity-api-rag-search" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/perplexity-api-rag-search" />
 title: 'perplexity-api-rag-search'
 description: '{'en': ''Learn how to build RAG-enhanced search applications using the Perplexity API. Covers Sonar models, real-time web citations, streaming, and production integration patterns.'', 'zh': ''学习如何使用Perplexity API构建RAG增强搜索应用。涵盖Sonar模型、实时网络引用、流式传输和生产集成模式。'', 'ko': ''Perplexity API를 사용하여 RAG 강화 검색 애플리케이션을构建하는 방법을 알아보세요. Sonar 모델, 실시간 웹 인용, 스트리밍 및 프로덕션 통합 패턴을 다룹니다.'', 'vi': ''Tìm hiểu cách xây dựng ứng dụng tìm kiếm tăng cường RAG bằng Perplexity API. Bao gồm mô hình Sonar, trích dẫn web thờigian thực, streaming và các mẫu tích hợp sản xuất.''}'
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['perplexity api']
-aliases:
-- /zh/posts/perplexity-api-rag-search/
+aliases: - /zh/posts/perplexity-api-rag-search/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/perplexity-api-rag-search/ -->
 
 {{</* resource-info */>}}
 
@@ -37,8 +29,8 @@ aliases:
 
 本指南提供了2026年Perplexity API的全面集成路线图。您将了解RAG搜索架构的工作原理、哪种Sonar模型适合您的用例、如何实现流式聊天补全、以编程方式处理引用、管理速率限制，以及部署生产级搜索应用，为用户提供准确、有来源的答案。
 
----
 
+---
 ## 什么是Perplexity API，为什么RAG很重要？
 
 Perplexity AI推出其API是为了解决传统语言模型的一个根本局限性：幻觉和知识截止。标准LLM被冻结在时间中，基于在特定日期停止的数据进行训练。询问它们昨天的市场走势、突发新闻故事或最近发布的软件版本，它们要么编造，要么承认无知。
@@ -49,8 +41,8 @@ Perplexity API通过内置RAG消除了这一约束。当您发送查询时，Per
 
 对于开发人员来说，实际影响是深远的：您不再需要构建自己的检索管道、管理向量数据库或调整分块策略。Perplexity自动处理文档检索、相关性评分和上下文注入，暴露出一个干净的聊天补全接口，任何使用过OpenAI API的人都会感到熟悉。
 
----
 
+---
 ## 了解Sonar模型系列：如何选择
 
 Perplexity在Sonar品牌下提供分层模型阵容，每种都针对不同的延迟、准确性和成本要求进行了优化。选择正确的模型是您要做的第一个架构决策。
@@ -117,8 +109,7 @@ Perplexity API实现了与OpenAI兼容的聊天补全接口，使迁移变得轻
 import requests
 import json
 
-def perplexity_query(query: str, model: str = "sonar-pro") -> dict:
-    """向Perplexity API发送单个RAG增强查询。"""
+def perplexity_query(query: str, model: str = "sonar-pro") -> dict: """向Perplexity API发送单个RAG增强查询。"""
     url = f"{BASE_URL}/chat/completions"
     
     payload = {
@@ -160,8 +151,7 @@ citations = message.get("citations", [])
 
 print(f"答案: {answer_text[:200]}...")
 print(f"\n引用来源数: {len(citations)}")
-for i, citation in enumerate(citations[:5], 1):
-    print(f"  [{i}] {citation}")
+for i, citation in enumerate(citations[:5], 1): print(f"  [{i}] {citation}")
 ```
 
 ---
@@ -175,15 +165,15 @@ for i, citation in enumerate(citations[:5], 1):
 Perplexity在助手消息的`citations`字段中以URL列表形式返回引用。在内容文本中，引用使用方括号索引`[1]`、`[2]`等引用，与引用数组的顺序匹配。
 
 ```python
-def format_response_with_citations(result: dict) -> str:
-    """格式化带有可点击引用链接的Perplexity响应。"""
+def format_response_with_citations(result: dict) -> str: """格式化带有可点击引用链接的Perplexity响应。"""
     message = result["choices"][0]["message"]
     content = message["content"]
     citations = message.get("citations", [])
     
-    formatted = f"{content}\n\n---\n**来源：**\n"
-    for i, url in enumerate(citations, 1):
-        formatted += f"\n[{i}] [{url}]({url})"
+    formatted = f"{content}\n\n
+---
+\n**来源：**\n"
+    for i, url in enumerate(citations, 1): formatted += f"\n[{i}] [{url}]({url})"
     
     return formatted
 
@@ -195,7 +185,6 @@ print(format_response_with_citations(result))
 构建Web界面时，将引用渲染为交互式脚注或侧边栏引用：
 
 ```html
-<!-- React组件，用于带引用的响应 -->
 function CitedResponse({ content, citations }) {
   // 解析内容中的[1], [2]标记
   const parts = content.split(/(\[\d+\])/g);
@@ -234,8 +223,7 @@ function CitedResponse({ content, citations }) {
 import sseclient
 import io
 
-def perplexity_stream(query: str, model: str = "sonar-pro"):
-    """逐令牌流式传输RAG查询响应。"""
+def perplexity_stream(query: str, model: str = "sonar-pro"): """逐令牌流式传输RAG查询响应。"""
     url = f"{BASE_URL}/chat/completions"
     
     payload = {
@@ -255,22 +243,18 @@ def perplexity_stream(query: str, model: str = "sonar-pro"):
     full_content = []
     citations = []
     
-    for event in client.events():
-        if event.data == "[DONE]":
-            break
+    for event in client.events(): if event.data == "[DONE]": break
         
         chunk = json.loads(event.data)
         delta = chunk["choices"][0].get("delta", {})
         
         # 累积内容令牌
-        if "content" in delta:
-            token = delta["content"]
+        if "content" in delta: token = delta["content"]
             full_content.append(token)
             print(token, end="", flush=True)
         
         # 从最终块捕获引用
-        if "citations" in delta:
-            citations.extend(delta["citations"])
+        if "citations" in delta: citations.extend(delta["citations"])
     
     print(f"\n\n来源: {citations}")
     return "".join(full_content), citations
@@ -326,18 +310,14 @@ async function streamPerplexity(query) {
 Perplexity在多轮对话中保持上下文，支持引用先前交流的后续问题。搜索系统适应对话流程，根据累积的上下文优化检索。
 
 ```python
-class PerplexityConversation:
-    """带RAG搜索记忆的有状态对话处理器。"""
+class PerplexityConversation: """带RAG搜索记忆的有状态对话处理器。"""
     
-    def __init__(self, model: str = "sonar-pro", system_prompt: str = None):
-        self.model = model
+    def __init__(self, model: str = "sonar-pro", system_prompt: str = None): self.model = model
         self.messages = []
-        if system_prompt:
-            self.messages.append({"role": "system", "content": system_prompt})
+        if system_prompt: self.messages.append({"role": "system", "content": system_prompt})
         self.citation_history = []
     
-    def ask(self, query: str) -> dict:
-        """发送消息并维护对话历史。"""
+    def ask(self, query: str) -> dict: """发送消息并维护对话历史。"""
         self.messages.append({"role": "user", "content": query})
         
         payload = {
@@ -365,8 +345,7 @@ class PerplexityConversation:
         
         return result
     
-    def get_conversation_summary(self) -> str:
-        """生成对话和所使用来源的摘要。"""
+    def get_conversation_summary(self) -> str: """生成对话和所使用来源的摘要。"""
         unique_sources = list(set(self.citation_history))
         return f"轮数: {len(self.messages)//2}, 独特来源: {len(unique_sources)}"
 
@@ -399,8 +378,7 @@ print(conv.get_conversation_summary())
 将搜索限制在特定域，以在专门领域获得权威来源：
 
 ```python
-def targeted_search(query: str, domains: list[str]) -> dict:
-    """在指定域内搜索权威结果。"""
+def targeted_search(query: str, domains: list[str]) -> dict: """在指定域内搜索权威结果。"""
     payload = {
         "model": "sonar-pro",
         "messages": [
@@ -433,8 +411,7 @@ medical_result = targeted_search(
 控制网络搜索的时间范围以确保新鲜度：
 
 ```python
-def recent_search(query: str, recency_days: int = 7) -> dict:
-    """仅搜索最近信息。"""
+def recent_search(query: str, recency_days: int = 7) -> dict: """仅搜索最近信息。"""
     payload = {
         "model": "sonar-pro",
         "messages": [{"role": "user", "content": query}],
@@ -460,8 +437,7 @@ breaking = recent_search("今天的主要科技收购", recency_days=1)
 ```python
 import json
 
-def structured_search(query: str, schema: dict) -> dict:
-    """搜索并返回匹配模式的结构化JSON。"""
+def structured_search(query: str, schema: dict) -> dict: """搜索并返回匹配模式的结构化JSON。"""
     payload = {
         "model": "sonar-pro",
         "messages": [
@@ -513,11 +489,9 @@ print(json.dumps(structured["structured"], indent=2))
 import time
 from functools import wraps
 
-class PerplexityClient:
-    """生产级Perplexity API客户端，带重试和速率限制。"""
+class PerplexityClient: """生产级Perplexity API客户端，带重试和速率限制。"""
     
-    def __init__(self, api_key: str, model: str = "sonar-pro", max_retries: int = 3):
-        self.api_key = api_key
+    def __init__(self, api_key: str, model: str = "sonar-pro", max_retries: int = 3): self.api_key = api_key
         self.model = model
         self.max_retries = max_retries
         self.headers = {
@@ -527,23 +501,18 @@ class PerplexityClient:
         self.request_count = 0
         self.last_reset = time.time()
     
-    def _rate_limit_check(self, rpm_limit: int = 50):
-        """基本速率限制以保持在层级限制内。"""
+    def _rate_limit_check(self, rpm_limit: int = 50): """基本速率限制以保持在层级限制内。"""
         now = time.time()
-        if now - self.last_reset >= 60:
-            self.request_count = 0
+        if now - self.last_reset >= 60: self.request_count = 0
             self.last_reset = now
         
-        if self.request_count >= rpm_limit:
-            sleep_time = 60 - (now - self.last_reset)
-            if sleep_time > 0:
-                print(f"达到速率限制。休眠{sleep_time:.1f}秒")
+        if self.request_count >= rpm_limit: sleep_time = 60 - (now - self.last_reset)
+            if sleep_time > 0: print(f"达到速率限制。休眠{sleep_time:.1f}秒")
                 time.sleep(sleep_time)
             self.request_count = 0
             self.last_reset = time.time()
     
-    def query(self, user_query: str, temperature: float = 0.2, **kwargs) -> dict:
-        """执行查询，失败时自动重试。"""
+    def query(self, user_query: str, temperature: float = 0.2, **kwargs) -> dict: """执行查询，失败时自动重试。"""
         self._rate_limit_check()
         
         payload = {
@@ -554,17 +523,14 @@ class PerplexityClient:
             **kwargs
         }
         
-        for attempt in range(self.max_retries):
-            try:
-                response = requests.post(
+        for attempt in range(self.max_retries): try: response = requests.post(
                     f"{BASE_URL}/chat/completions",
                     headers=self.headers,
                     json=payload,
                     timeout=30
                 )
                 
-                if response.status_code == 429:
-                    retry_after = int(response.headers.get("Retry-After", 2 ** attempt))
+                if response.status_code == 429: retry_after = int(response.headers.get("Retry-After", 2 ** attempt))
                     print(f"速率受限。{retry_after}秒后重试")
                     time.sleep(retry_after)
                     continue
@@ -573,13 +539,10 @@ class PerplexityClient:
                 self.request_count += 1
                 return response.json()
                 
-            except requests.exceptions.Timeout:
-                print(f"第{attempt + 1}次尝试超时")
+            except requests.exceptions.Timeout: print(f"第{attempt + 1}次尝试超时")
                 time.sleep(2 ** attempt)
-            except requests.exceptions.HTTPError as e:
-                print(f"HTTP错误: {e}")
-                if attempt < self.max_retries - 1:
-                    time.sleep(2 ** attempt)
+            except requests.exceptions.HTTPError as e: print(f"HTTP错误: {e}")
+                if attempt < self.max_retries - 1: time.sleep(2 ** attempt)
         
         raise Exception("超过最大重试次数")
 
@@ -594,13 +557,10 @@ queries = [
 ]
 
 results = []
-for q in queries:
-    try:
-        result = client.query(q)
+for q in queries: try: result = client.query(q)
         results.append(result)
         print(f"✓ 查询完成: {q[:50]}...")
-    except Exception as e:
-        print(f"✗ 查询失败: {q[:50]}... - {e}")
+    except Exception as e: print(f"✗ 查询失败: {q[:50]}... - {e}")
 ```
 
 ---
@@ -623,15 +583,12 @@ CORS(app)
 PERPLEXITY_KEY = os.environ["PERPLEXITY_API_KEY"]
 BASE_URL = "https://api.perplexity.ai"
 
-class RAGSearchService:
-    def __init__(self):
-        self.headers = {
+class RAGSearchService: def __init__(self): self.headers = {
             "Authorization": f"Bearer {PERPLEXITY_KEY}",
             "Content-Type": "application/json"
         }
     
-    def search(self, query: str, model: str = "sonar-pro", stream: bool = False):
-        """执行可选流式传输的RAG搜索。"""
+    def search(self, query: str, model: str = "sonar-pro", stream: bool = False): """执行可选流式传输的RAG搜索。"""
         payload = {
             "model": model,
             "messages": [
@@ -658,17 +615,14 @@ class RAGSearchService:
 service = RAGSearchService()
 
 @app.route("/search", methods=["POST"])
-def search():
-    """同步RAG搜索端点。"""
+def search(): """同步RAG搜索端点。"""
     data = request.get_json()
     query = data.get("query", "")
     model = data.get("model", "sonar-pro")
     
-    if not query:
-        return jsonify({"error": "需要查询"}), 400
+    if not query: return jsonify({"error": "需要查询"}), 400
     
-    try:
-        result = service.search(query, model=model)
+    try: result = service.search(query, model=model)
         data = result.json()
         
         message = data["choices"][0]["message"]
@@ -678,26 +632,19 @@ def search():
             "model": model,
             "usage": data.get("usage", {})
         })
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
+    except Exception as e: return jsonify({"error": str(e)}), 500
 
 @app.route("/search/stream", methods=["POST"])
-def search_stream():
-    """使用服务器发送事件的流式RAG搜索端点。"""
+def search_stream(): """使用服务器发送事件的流式RAG搜索端点。"""
     data = request.get_json()
     query = data.get("query", "")
     model = data.get("model", "sonar-pro")
     
-    if not query:
-        return jsonify({"error": "需要查询"}), 400
+    if not query: return jsonify({"error": "需要查询"}), 400
     
-    def generate():
-        response = service.search(query, model=model, stream=True)
-        for line in response.iter_lines():
-            if line:
-                decoded = line.decode("utf-8")
-                if decoded.startswith("data: "):
-                    yield f"{decoded}\n\n"
+    def generate(): response = service.search(query, model=model, stream=True)
+        for line in response.iter_lines(): if line: decoded = line.decode("utf-8")
+                if decoded.startswith("data: "): yield f"{decoded}\n\n"
     
     return Response(
         generate(),
@@ -706,12 +653,10 @@ def search_stream():
     )
 
 @app.route("/health", methods=["GET"])
-def health():
-    """健康检查端点。"""
+def health(): """健康检查端点。"""
     return jsonify({"status": "healthy", "service": "rag-search"})
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+if __name__ == "__main__": app.run(host="0.0.0.0", port=5000, debug=True)
 ```
 
 ```bash
@@ -733,16 +678,11 @@ CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5000", "app:app"]
 ```yaml
 # docker-compose.yml
 version: "3.8"
-services:
-  rag-search:
-    build: .
-    ports:
-      - "5000:5000"
-    environment:
-      - PERPLEXITY_API_KEY=${PERPLEXITY_API_KEY}
+services: rag-search: build: .
+    ports: - "5000:5000"
+    environment: - PERPLEXITY_API_KEY=${PERPLEXITY_API_KEY}
     restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+    healthcheck: test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -802,7 +742,6 @@ Perplexity API代表了开发者可访问的RAG技术的重大进步。通过结
 随着我们在2026年继续前行，AI应用提供有来源、可验证答案的期望正在成为标准，而非例外。集成Perplexity的RAG搜索API使您的应用能够满足这一期望，提供用户可以信任的体验，因为每个答案都建立在真实、可引用来源的基础之上。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -830,25 +769,20 @@ Perplexity API代表了开发者可访问的RAG技术的重大进步。通过结
 
 ## Why This Matters
 
-Understanding perplexity-api-rag-search is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding perplexity-api-rag-search is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/voicebox-open-source-ai-voice-studio" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/voicebox-open-source-ai-voice-studio" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/voicebox-open-source-ai-voice-studio" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/voicebox-open-source-ai-voice-studio" />
 title: 'VoiceBox: 음성 복제, 녹취 및 생성을 위한 오픈소스 AI 음성 스튜디오'
 description: 어떤 음성이라도 복제하고, 음성을 생성하며, 어떤 앱에도 녹취할 수 있는 풀스택 오픈소스 AI 음성 스튜디오. 33K 스타. CUDA 또는 Apple Silicon 지원을 lokale에서 실행됩니다.. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-25
@@ -17,10 +12,6 @@ lang: kr
 github_repo: https://github.com/voicebox-ai/voicebox
 license: MIT
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/voicebox-open-source-ai-voice-studio/ -->
-
-
 
 # VoiceBox: 오픈소스 AI 음성 스튜디오
 
@@ -36,9 +27,7 @@ VoiceBox는 하드웨어 전체에서 완전히 실행되는 완성된 음성 AI
 
 VoiceBox는 몇 가지 최첨단 기술을 단일 통합 인터페이스로 결합하는 자체 호스팅 음성 AI 플랫폼입니다. 오디오를 클라우드에 업로드해야 하는 상업용 음성 서비스와 달리, VoiceBox는 모든 것을 로컬에서 처리하여 음성 데이터에 대한 완전한 제어를 제공합니다.
 
-플랫폼은 세 가지 주요 작동 모드를 지원합니다:
-
-- **음성 복제**: 짧은 오디오 샘플을 녹음하거나 업로드하여 해당 음성으로 음성을 생성할 수 있는 디지털 음성 모델 생성
+플랫폼은 세 가지 주요 작동 모드를 지원합니다: - **음성 복제**: 짧은 오디오 샘플을 녹음하거나 업로드하여 해당 음성으로 음성을 생성할 수 있는 디지털 음성 모델 생성
 - **녹취**: 마이크를 사용하여 시스템의 모든 앱에 텍스트를 실시간으로 변환하여 입력
 - **텍스트-음성 변환**: 복제된 음성 또는 내장 음성 모델을 사용하여 자연스러운 음성을 텍스트에서 생성
 
@@ -48,9 +37,7 @@ Qwen3-TTS, Whisper 및 다양한 음성 복제 아키텍처를 기반으로 하�
 
 ### 사전 요구사항
 
-VoiceBox는 여러 하드웨어 구성을 지원합니다:
-
-**GPU 가속 (권장):**
+VoiceBox는 여러 하드웨어 구성을 지원합니다: **GPU 가속 (권장):**
 - 8GB+ VRAM이 있는 NVIDIA GPU (RTX 3060 이상)
 - CUDA 12.x 툴킷 설치됨
 - 16GB 시스템 RAM
@@ -142,9 +129,7 @@ voicebox init --gpu cuda
 
 ### 오디오 샘플 녹음
 
-음성을 복제하려면 최소 3초의 명확한 오디오가 필요합니다. 최상의 결과를 위해 30-60초의 음성을 제공하세요:
-
-```bash
+음성을 복제하려면 최소 3초의 명확한 오디오가 필요합니다. 최상의 결과를 위해 30-60초의 음성을 제공하세요: ```bash
 # 내장 레코더로 오디오 녹음
 voicebox record --output sample.wav --duration 30
 
@@ -156,9 +141,7 @@ voicebox clone --audio my_voice_sample.mp3 --name "my-voice"
 
 ### 음성 처리 파이프라인
 
-음성 복제 파이프라인은 여러 단계로 구성됩니다:
-
-```python
+음성 복제 파이프라인은 여러 단계로 구성됩니다: ```python
 from voicebox.engine import VoiceCloner
 from voicebox.audio import AudioProcessor
 
@@ -192,9 +175,7 @@ voice_model.save(output, "test_output.wav")
 
 ### 고급 음성 매개변수
 
-VoiceBox는 음성 합성에 세밀한 제어를 제공합니다:
-
-```bash
+VoiceBox는 음성 합성에 세밀한 제어를 제공합니다: ```bash
 # 발화 속도 조절
 voicebox synthesize --input script.txt --output speech.wav --speed 0.8
 
@@ -216,17 +197,14 @@ voicebox synthesize \
 
 ### 다중 음성 지원
 
-여러 음성 복제를 동시에 생성하고 관리할 수 있습니다:
-
-```python
+여러 음성 복제를 동시에 생성하고 관리할 수 있습니다: ```python
 from voicebox.engine import VoiceManager
 
 manager = VoiceManager()
 
 # 모든 복제된 음성 나열
 voices = manager.list_voices()
-for v in voices:
-    print(f"{v.name}: {v.quality} (학습 데이터 {v.duration}s)")
+for v in voices: print(f"{v.name}: {v.quality} (학습 데이터 {v.duration}s)")
 
 # 음성 간 전환
 manager.set_active_voice("my-voice")
@@ -296,9 +274,7 @@ print(f"단어 수: {result.word_count}")
 
 ### 다국어 녹취
 
-VoiceBox는 자동 언어 감지와 함께 동시 다국어 녹취를 지원합니다:
-
-```bash
+VoiceBox는 자동 언어 감지와 함께 동시 다국어 녹취를 지원합니다: ```bash
 # 자동 감지 활성화
 voicebox dictation --auto-detect
 
@@ -311,9 +287,7 @@ voicebox dictation --primary-language en
 
 ## 텍스트-음성 변환 API
 
-VoiceBox는 프로그램matic 텍스트-음성 변환을 위한 완전한 REST API를 제공합니다:
-
-### 기본 TTS
+VoiceBox는 프로그램matic 텍스트-음성 변환을 위한 완전한 REST API를 제공합니다: ### 기본 TTS
 
 ```bash
 # 간단한 텍스트-음성 변환
@@ -330,9 +304,7 @@ curl -X POST "https://your-voicebox/api/v1/tts" \
 
 ### 스트리밍 TTS
 
-실시간 오디오 스트리밍 애플리케이션용:
-
-```bash
+실시간 오디오 스트리밍 애플리케이션용: ```bash
 # 청크로 오디오 스트리밍
 curl -N -X POST "https://your-voicebox/api/v1/tts/stream" \
   -H "Content-Type: application/json" \
@@ -342,9 +314,7 @@ curl -N -X POST "https://your-voicebox/api/v1/tts/stream" \
 
 ### 배치 처리
 
-여러 텍스트를 동시에 처리:
-
-```python
+여러 텍스트를 동시에 처리: ```python
 from voicebox.api import VoiceBoxClient
 
 client = VoiceBoxClient("https://your-voicebox")
@@ -362,8 +332,7 @@ results = await client.tts.batch(
     parallel_workers=4
 )
 
-for i, result in enumerate(results):
-    print(f"생성됨: speech_{i}.mp3 ({result.duration:.1f}s)")
+for i, result in enumerate(results): print(f"생성됨: speech_{i}.mp3 ({result.duration:.1f}s)")
 ```
 
 ## 하드웨어 요구사항 및 성능
@@ -377,7 +346,6 @@ for i, result in enumerate(results):
 **고지 사항**: 본 기사는 제휴 관계가 있을 수 있는 도구를 언급합니다. 우리는 리뷰에 대한 대가를 받지 않습니다. 모든 의견은 우리 자신의 것입니다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -405,25 +373,20 @@ for i, result in enumerate(results):
 
 ## Why This Matters
 
-Understanding voicebox: 음성 복제, 녹취 및 생성을 위한 오픈소스 ai 음성 스튜디오 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding voicebox: 음성 복제, 녹취 및 생성을 위한 오픈소스 ai 음성 스튜디오 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

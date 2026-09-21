@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/moss-trade-bot-factory-2026-review" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/moss-trade-bot-factory-2026-review" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/moss-trade-bot-factory-2026-review" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/moss-trade-bot-factory-2026-review" />
 title: 'Moss Trade Bot Factory 2026 评测：AI 智能体量化工作台 — 为什么漂亮回测会骗人'
 description: 'moss-trade-bot-skills v1.0.26 完整实测：基于 Hyperliquid 永续合约的自然语言量化 agent 工厂。工业级 Decimal 精度回测引擎 + 20 档深度成交建模 — 但 Sharpe 年化常数有 bug，进化模式开启后会陷入教科书级 OVERFIT 陷阱。安装实测、Sharpe bug 修复、5 策略对比、OOS 70/30 验证全过程。'
 date: 2026-05-26 00:00:00+08:00
@@ -25,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: ['ai-agent', 量化, 回测, hyperliquid, 永续合约, 开源, 过拟合, 'oos 验证']
-aliases:
-- /zh/posts/moss-trade-bot-factory-2026-review/
-faq:
-  - q: "moss-trade-bot-factory 装起来安全吗？"
+aliases: - /zh/posts/moss-trade-bot-factory-2026-review/
+faq: - q: "moss-trade-bot-factory 装起来安全吗？"
     a: "纸面回测完全安全。代码审计确认：无 eval/exec、HMAC 签名 API 调用永不上传你的 secret、MIT-0 协议、不访问 wallet 私钥。skill 是量化策略构建器，不是托管服务。实盘交易需要显式 bind 到 moss.site 平台，资金始终在你自己的 Hyperliquid wallet 里。"
   - q: "Sharpe 年化常数 bug 是什么？"
     a: "backtest.py 第 828 行用了 sqrt(8760) — 这是小时 bar 的年化常数 — 但 equity 是按 15 分钟 bar 步进。15m bar 正确的常数应该是 sqrt(35040) = sqrt(365 × 24 × 4)。结果：所有默认 Sharpe 值系统性偏低约 2 倍。简单修复：把本地代码里的 8760 替换成 35040。"
@@ -41,8 +34,6 @@ faq:
   - q: "基于实测数据 Hyperliquid 永续上什么策略真的能赚？"
     a: "仅限 v1.0.26 BTC 304 天数据：以均值回归为主的网格 + 2-3x 杠杆是唯一正收益（+4.36%）。趋势跟随 + 5-10x 杠杆同窗口亏 -8% 到 -20%。这是 regime 决定的 — BTC 2025-07 ~ 2026-04 是震荡市。同样的网格逻辑在强单边市大概率亏。"
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/moss-trade-bot-factory-2026-review/ -->
 
 {{</* resource-info */>}}
 
@@ -68,8 +59,8 @@ Moss Trade Bot Factory（`moss-trade-bot-skills` v1.0.26，MIT-0 协议）是一
 >
 > **开源姿态**：MIT-0 协议、无 eval/exec、HMAC 签名平台调用永不上传 secret、不访问 wallet 私钥。商业漏斗是 moss.site（商业 AI 交易平台），但本地回测流水线完全离线运行。
 
----
 
+---
 ## Moss Trade Bot Factory 是什么（不是什么）
 
 项目地址 [github.com/moss-site/moss-trade-bot-skills](https://github.com/moss-site/moss-trade-bot-skills)，归属 `moss-site` GitHub 组织（Moss AI，[moss.site](https://moss.site)，2025-07 成立）。截至 v1.0.26（2026-05-25 发布）共 98 stars、14 forks、101 commits，3 个贡献者（slowfirary 79 commits、fei-moss 14、lokix006 1）。
@@ -148,7 +139,23 @@ python3 dataset_catalog.py --list --timeframe 15m
 我们在 BTC 完整 304 天窗口（2025-07-01 到 2026-04-30）跑了 5 个手工设计策略，$10,000 起始资金，同样数据同样引擎不同参数哲学。
 
 | 策略 | 杠杆 | 结束资金 | 收益 | 胜率 | 最大回撤 | PF | 交易数 |
-|---|---|---|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 保守网格（均值回归） | 2x | $10,436 | **+4.36%** ✅ | 51.9% | -22.8% | 1.27 | 214 |
 | 高频突破 | 10x | $9,207 | -7.93% | 42.0% | -17.4% | 1.04 | 100 |
 | 波动率自适应 | 3x | $9,175 | -8.25% | 42.9% | -14.9% | 0.85 | 49 |
@@ -180,7 +187,17 @@ python3 dataset_catalog.py --list --timeframe 15m
 ### 结果
 
 | 指标 | Train Base | Train 进化后 | OOS Base | OOS 进化后 |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 收益 | +3.02% | **+5.60%** ✅ | +7.22% | **-2.43%** ❌ |
 | 年化 | +5.20% | +9.64% | +28.63% | -9.64% |
 | 胜率 | 57.6% | 49.3% | 53.1% | 39.1% |
@@ -263,12 +280,11 @@ Moss Trade Bot Factory 是我们 2026 评测过的开源量化 skill 里最真�
 
 机器人不会教你诚实面对自己的 edge。这件事得你自己做。
 
----
 
+---
 **GitHub**: [moss-site/moss-trade-bot-skills](https://github.com/moss-site/moss-trade-bot-skills) · **协议**: MIT-0 · **最新**: v1.0.26（2026-05-25）· **Stars**: 98 · **维护者**: moss-site / Moss AI（[moss.site](https://moss.site)）
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -296,25 +312,20 @@ Moss Trade Bot Factory 是我们 2026 评测过的开源量化 skill 里最真�
 
 ## Why This Matters
 
-Understanding moss trade bot factory 2026 评测：ai 智能体量化工作台 — 为什么漂亮回测会骗人 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding moss trade bot factory 2026 评测：ai 智能体量化工作台 — 为什么漂亮回测会骗人 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

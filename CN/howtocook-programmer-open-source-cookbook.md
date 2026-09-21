@@ -1,12 +1,9 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/howtocook-programmer-open-source-cookbook" />
-title: "HowToCook: 297 Recipes for Programmers - The Open Source...
+title: "HowToCook: 297 Recipes for Programmers - The Open Source..."
 description: "Discover HowToCook - an open-source cookbook with 297 recipes designed for programmers. Clear, precise cooking instructions like code."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Docker
+tech_stack: - Docker
   - Go
   - JavaScript
 application_domain: "Ai Tools"
@@ -23,10 +20,8 @@ maintainer: "Anduin2017"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases:
-- /posts/howtocook-programmer-open-source-cookbook/
-faqs:
-  - q: 'What is HowToCook?'
+aliases: - /posts/howtocook-programmer-open-source-cookbook/
+faqs: - q: 'What is HowToCook?'
     a: 'HowToCook (程序员做饭指南) is an open-source cookbook project created by programmer Anduin2017. It contains 297 recipes written with the precision and clarity that developers expect from documentation.'
   - q: 'How does HowToCook differ from traditional recipes?'
     a: 'Instead of vague instructions like "a little salt" or "cook until golden," every recipe uses exact measurements (e.g., "3g salt"), precise timings (e.g., "fry for 90 seconds per side"), a complete upfront ingredient list, a required equipment list, and a 1-5 star difficulty rating.'
@@ -50,14 +45,20 @@ The project's philosophy is simple: **cooking recipes should be as clear as code
 **Contributors**: 200+  
 **License**: Unlicense
 
----
 
+---
 ## Why Programmers Need This
 
 ### The Problem with Traditional Recipes
 
 | Issue | Example | HowToCook Solution |
-|-------|---------|-------------------|
+|
+---
+|
+---
+|
+---
+|
 | Ambiguous quantities | "a little salt" | "3g salt (1/2 teaspoon)" |
 | Vague timing | "cook until golden" | "fry for 90 seconds per side" |
 | Missing steps | Ingredients appear mid-recipe | Complete ingredient list upfront |
@@ -73,14 +74,20 @@ The project's philosophy is simple: **cooking recipes should be as clear as code
 - **Time tracking**: Prep time, cook time, total time
 - **Error handling**: Common mistakes and how to avoid them
 
----
 
+---
 ## Recipe Categories
 
 ### By Difficulty
 
 | Stars | Count | Examples |
-|-------|-------|----------|
+|
+---
+|
+---
+|
+---
+|
 | ⭐ | 45 | Tomato scrambled eggs, instant noodles upgrade |
 | ⭐⭐ | 78 | Kung Pao chicken, braised pork |
 | ⭐⭐⭐ | 89 | Sweet and sour pork ribs, mapo tofu |
@@ -171,15 +178,11 @@ docker run -d -p 5000:5000 ghcr.io/anduin2017/how-to-cook:latest
 
 ## NPM Package
 
-Install as a Node.js package:
-
-```bash
+Install as a Node.js package: ```bash
 npm install how-to-cook
 ```
 
-Use programmatically:
-
-```javascript
+Use programmatically: ```javascript
 const recipes = require('how-to-cook');
 
 // Search recipes
@@ -218,9 +221,7 @@ const dinner = recipes.random();
 
 ## Why This Matters for SEO
 
-**HowToCook** is a perfect example of:
-
-1. **Community-driven content**: 200+ contributors create authentic content
+**HowToCook** is a perfect example of: 1. **Community-driven content**: 200+ contributors create authentic content
 2. **Structured data**: Recipes follow schema.org format
 3. **Long-tail keywords**: "程序员做饭指南", "how to cook for developers"
 4. **Evergreen content**: Cooking never goes out of style
@@ -242,16 +243,13 @@ const dinner = recipes.random();
 
 ## Recommended Tools
 
-For developers building or deploying open-source AI tools, we recommend:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
+For developers building or deploying open-source AI tools, we recommend: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
 - **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Anthropic Claude / OpenAI / DeepSeek API proxy. Most AI tools above (chatbots, code gen, translation, search, etc) need an LLM API key — this proxy delivers stable access to top models at ~30% of official pricing.
 
 *Affiliate link — supports dibi8.com at no cost to you.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -279,25 +277,20 @@ For developers building or deploying open-source AI tools, we recommend:
 
 ## Why This Matters
 
-Understanding howtocook: 297 recipes for programmers - the open source cookbook is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding howtocook: 297 recipes for programmers - the open source cookbook is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

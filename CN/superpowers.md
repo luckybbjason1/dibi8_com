@@ -1,14 +1,13 @@
+---
 Superpowers: 200000+ Stars -- Agentic Skills Framework & Methodology 2026
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/superpowers" />
 
 Meta description: Explore Superpowers, the 200k+ star agentic skills framework. Setup in minutes, benchmarked, and production-ready. Compare with LangChain, LlamaIndex, and AutoGen.
-
 ---
 title: 'Superpowers: 200000+ Stars -- Agentic Skills Framework &...
 description: 'Explore Superpowers, the 200k+ star agentic skills framework. Setup in minutes, benchmarked, and production-ready. Compare with LangChain, LlamaIndex, and AutoGen.'
 date: 2026-05-23
-lastmod:  2026-05-23slug: 'superpowers'
+lastmod: 2026-05-23
+slug: 'superpowers'
 category: 'llm-frameworks'
 tags: ['agentic-ai', 'llm-frameworks', 'shell-scripting', 'software-development', 'ai-agents', 'developer-tools']
 github_repo: 'https://github.com/obra/superpowers'
@@ -16,9 +15,8 @@ stars: 204767
 maintainer: 'obra'
 license: MIT
 featureImage: ''
-lang: en
+
 ---
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -64,9 +62,7 @@ The project is primarily written in Shell scripting, which might raise an eyebro
 
 The "skills" in Superpowers refer to modular, reusable components that agents can utilize to perform specific actions. These can range from simple text manipulation to interacting with external APIs, databases, or even other AI models. The methodology aspect encourages a systematic approach to defining agent capabilities, workflows, and their interactions.
 
-Key characteristics of Superpowers include:
-
-*   **Agentic Skills:** Encapsulated units of functionality that agents can call upon.
+Key characteristics of Superpowers include: *   **Agentic Skills:** Encapsulated units of functionality that agents can call upon.
 *   **Methodology:** A structured approach to designing, building, and deploying AI agents.
 *   **Shell-Based:** Primarily implemented in Shell for maximum portability and ease of use.
 *   **Focus on Practicality:** Designed for real-world application and production readiness.
@@ -76,9 +72,7 @@ Key characteristics of Superpowers include:
 
 Superpowers operates on a principle of composing "skills" into "agents" that can execute tasks. The framework provides a core set of utilities and conventions for defining and managing these skills, along with mechanisms for agents to discover and utilize them.
 
-At a high level, the workflow typically looks like this:
-
-1.  **Skill Definition:** Developers define individual skills. A skill is essentially a script (often a Shell script, but can be others) that performs a specific, atomic task. It takes inputs, performs an action, and produces outputs. Superpowers defines a clear contract for how these skills should behave (e.g., input/output formats, error handling).
+At a high level, the workflow typically looks like this: 1.  **Skill Definition:** Developers define individual skills. A skill is essentially a script (often a Shell script, but can be others) that performs a specific, atomic task. It takes inputs, performs an action, and produces outputs. Superpowers defines a clear contract for how these skills should behave (e.g., input/output formats, error handling).
 2.  **Agent Creation:** Agents are then constructed by orchestrating a collection of these skills. An agent might be designed to perform a complex task like "summarize a document and then draft an email based on the summary." This agent would internally call a "summarization" skill and then a "draft email" skill.
 3.  **Execution Environment:** Superpowers provides a runtime environment that manages the execution of agents and their associated skills. This environment handles task scheduling, input/output management, and error propagation.
 4.  **LLM Integration (Optional but Common):** While Superpowers itself is a Shell-based framework, it's designed to integrate seamlessly with LLMs. LLMs can be used by agents to decide *which* skills to use, how to parameterize them, or to interpret the results of skill executions. A common pattern is to use an LLM to generate the "plan" for an agent, which then translates into a sequence of skill calls.
@@ -86,21 +80,38 @@ At a high level, the workflow typically looks like this:
 Let's visualize a simple interaction. Imagine an agent tasked with finding the weather for a given city.
 
 ```ascii
-+-------------------+      +-------------------+      +-------------------+
++
+---
++      +
+---
++      +
+---
++
 |                   |      |                   |      |                   |
-|      Agent        |----->|    Skill: Get     |----->|   External API    |
+|      Agent        |
+---
+>|    Skill: Get     |
+---
+>|   External API    |
 | (Orchestrates)    |      |      Weather      |      | (Weather Service) |
 |                   |      |                   |      |                   |
-+-------------------+      +-------------------+      +-------------------+
++
+---
++      +
+---
++      +
+---
++
           ^                                                    |
           |                                                    |
-          +----------------------------------------------------+
+          +
+---
++
                      (API Response)
 
 ```
 
-In this diagram:
-*   The **Agent** receives a request (e.g., "What's the weather in London?").
+In this diagram: *   The **Agent** receives a request (e.g., "What's the weather in London?").
 *   It identifies the need for weather information and invokes the `get_weather` skill.
 *   The `get_weather` skill might then interact with an external weather API, potentially using tools like `curl` or `wget`.
 *   The response from the API is processed by the skill and returned to the agent.
@@ -205,9 +216,7 @@ The "5-min setup" promise is a significant draw for Superpowers, and its Shell-b
     superpowers agent --prompt "Greet my friend John" --skills ~/.superpowers/skills
     ```
 
-    If the agent logic correctly parses the prompt and invokes the `hello.sh` skill with "John" as input, the output might be:
-
-    ```
+    If the agent logic correctly parses the prompt and invokes the `hello.sh` skill with "John" as input, the output might be: ```
     greeting=Hello, John!
     ```
 
@@ -232,9 +241,7 @@ LLM_MODEL="llama3:latest"
 LLM_API_BASE="http://localhost:11434"
 ```
 
-Or for OpenAI:
-
-```ini
+Or for OpenAI: ```ini
 LLM_PROVIDER="openai"
 LLM_MODEL="gpt-4o-mini"
 LLM_API_KEY="sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
@@ -433,8 +440,7 @@ As of May 2026, Superpowers is still evolving, but its practical design has led 
 
 ### Use Case 1: Automated Code Refactoring and Documentation
 
-**Scenario:** A team uses Superpowers to automate the process of refactoring legacy Python code. An agent is tasked with:
-1.  Identifying areas for refactoring (e.g., long functions, duplicated code).
+**Scenario:** A team uses Superpowers to automate the process of refactoring legacy Python code. An agent is tasked with: 1.  Identifying areas for refactoring (e.g., long functions, duplicated code).
 2.  Applying automated refactoring tools (e.g., `autopep8`, `black`, custom AST manipulation scripts).
 3.  Generating or updating docstrings for the refactored code.
 4.  Committing the changes to a Git repository with a descriptive message.
@@ -448,8 +454,7 @@ As of May 2026, Superpowers is still evolving, but its practical design has led 
 
 ### Use Case 2: Content Generation and Distribution Pipeline
 
-**Scenario:** A marketing team uses Superpowers to automate content creation and distribution. An agent's workflow:
-1.  Fetch trending topics from an RSS feed or news API.
+**Scenario:** A marketing team uses Superpowers to automate content creation and distribution. An agent's workflow: 1.  Fetch trending topics from an RSS feed or news API.
 2.  Use an LLM to draft a blog post or social media update based on a topic.
 3.  Format the content for different platforms (e.g., Twitter, LinkedIn).
 4.  (Optionally) Schedule posts via a platform's API (using a custom `post_to_platform.sh` skill).
@@ -475,9 +480,7 @@ As of May 2026, Superpowers is still evolving, but its practical design has led 
 
 **Skills involved:** `read_file.sh`, `grep_logs.sh`, `run_script.sh` (for applying fixes), `send_notification.sh`.
 
-### Performance Considerations:
-
-*   **Shell Script Speed:** Basic Shell operations are extremely fast. A `grep` or `sed` command executes in milliseconds.
+### Performance Considerations: *   **Shell Script Speed:** Basic Shell operations are extremely fast. A `grep` or `sed` command executes in milliseconds.
 *   **LLM Latency:** The primary bottleneck for many agentic tasks is the LLM inference time. This is inherent to LLMs and not a limitation of Superpowers itself.
 *   **External API Calls:** Network latency for external API calls will affect task completion time.
 *   **Skill Complexity:** The efficiency of custom skills is up to the developer. Well-written, optimized scripts are crucial.
@@ -533,8 +536,7 @@ For agents that need to maintain context across multiple interactions or tasks, 
 
 ```bash
 # Skill to update agent's progress state
-update_agent_state.sh:
-#!/bin/bash
+update_agent_state.sh: #!/bin/bash
 set -e
 STATE_FILE="$HOME/.superpowers/agent_state/my_agent.json"
 KEY="$1"
@@ -552,15 +554,13 @@ fi
 
 # Basic string replacement for simplicity; use jq for real JSON
 NEW_STATE=$(echo "$CURRENT_STATE" | sed "s/\"$KEY\": \".*?\"/\"$KEY\": \"$VALUE\"/") # Very basic, assumes string values
-# For proper JSON:
-# NEW_STATE=$(echo "$CURRENT_STATE" | jq --arg k "$KEY" --arg v "$VALUE" '."\($k)" = $v')
+# For proper JSON: # NEW_STATE=$(echo "$CURRENT_STATE" | jq --arg k "$KEY" --arg v "$VALUE" '."\($k)" = $v')
 
 echo "$NEW_STATE" > "$STATE_FILE"
 echo "state_updated=true"
 
 # Skill to read agent's progress state
-read_agent_state.sh:
-#!/bin/bash
+read_agent_state.sh: #!/bin/bash
 set -e
 STATE_FILE="$HOME/.superpowers/agent_state/my_agent.json"
 
@@ -582,13 +582,11 @@ Effective logging is essential for debugging and understanding agent behavior in
 **Example: Adding timestamps to logs:**
 
 ```bash
-# In your agent execution script or a wrapper skill:
-log_with_timestamp() {
+# In your agent execution script or a wrapper skill: log_with_timestamp() {
     echo "$(date '+%Y-%m-%d %H:%M:%S') - $*"
 }
 
-# When calling a skill:
-log_with_timestamp "Starting skill: my_skill.sh"
+# When calling a skill: log_with_timestamp "Starting skill: my_skill.sh"
 ./my_skill.sh arg1 arg2 >> agent.log 2>&1
 EXIT_CODE=$?
 log_with_timestamp "Skill my_skill.sh finished with exit code $EXIT_CODE"
@@ -619,10 +617,8 @@ By implementing these advanced practices, you can build robust, reliable, and se
 
 ## Comparison with Alternatives
 
-Superpowers operates in a crowded LLM framework space. Here's how it compares to some prominent alternatives as of May 2026:
-
-| Feature              | Superpowers                               | LangChain                                  | LlamaIndex                                | AutoGen                                    |
-| :------------------- | :---------------------------------------- | :----------------------------------------- | :---------------------------------------- | :----------------------------------------- |
+Superpowers operates in a crowded LLM framework space. Here's how it compares to some prominent alternatives as of May 2026: | Feature              | Superpowers                               | LangChain                                  | LlamaIndex                                | AutoGen                                    |
+| :--- | :--- | :--- | :--- | :--- |
 | **Primary Language** | Shell                                     | Python                                     | Python                                    | Python                                     |
 | **Core Abstraction** | Skills, Agents, Methodology               | Chains, Agents, Tools, Memory, Retrievers  | Data Indexing, Querying, Agents           | Multi-Agent Conversation Framework         |
 | **Ease of Setup**    | Very High (5-min potential)               | Moderate (Python env, dependencies)        | Moderate (Python env, dependencies)       | Moderate (Python env, dependencies)        |
@@ -701,8 +697,7 @@ A1: Superpowers is primarily a Shell-based framework, meaning its core execution
 A2: Superpowers itself does not directly manage LLM costs. It acts as an orchestrator. The costs are incurred by the LLM provider you configure in your `~/.config/superpowers/config` file (e.g., OpenAI, Anthropic). You are responsible for managing your API keys and monitoring your usage with those providers. Some local LLM providers (like Ollama) have no per-token cost, only hardware/electricity costs.
 
 **Q3: How can I share skills or agents within a team?**
-A3: Skills are typically individual scripts (e.g., `.sh` files). You can share these by:
-    *   Storing them in a shared Git repository.
+A3: Skills are typically individual scripts (e.g., `.sh` files). You can share these by: *   Storing them in a shared Git repository.
     *   Using a common directory structure and pointing agents to that directory.
     *   Packaging them as part of a larger application or Docker image.
     Agent configurations and workflows can also be version-controlled and shared.
@@ -757,3 +752,5 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
 
+
+---

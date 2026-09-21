@@ -1,28 +1,20 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/vercel-ai-sdk-edge-compute" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/vercel-ai-sdk-edge-compute" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/vercel-ai-sdk-edge-compute" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/vercel-ai-sdk-edge-compute" />
 title: Vercel AI SDK — 用 Edge-First 架构构建流式 AI 应用
 description: Vercel AI SDK 完全指南，用于构建生产级 AI 应用。流式传输 LLM 响应、集成多个提供商、部署到边缘且零配置。支持 React、Next.js 和任何框架。. Comprehensive guide covering features, pricing, and best practices for 2026.
 tags: ['ai-sdk', 'streaming', 'vercel', 'edge-compute', 'react', 'llm']
 category: llm-frameworks
 featureImage: /images/articles/vercel-ai-sdk-edge-compute.jpg
 date: 2026-07-15T00:00:00+00:00
-lastmod:  2026-07-15T00:00:00+00:00draft: false
+lastmod: 2026-07-15T00:00:00+00:00draft: false
 slug: vercel-ai-sdk-edge-compute
-lang: zh-CN
----
-
-<!-- canonical: https://dibi8.com/zh/tools/vercel-ai-sdk-edge-compute/ -->
+-CN---
 
 ## TL;DR
 
 Vercel AI SDK 是一个为构建带流式支持的 AI 用户界面而设计的开源库，适用于所有主流框架。它为集成 LLM 提供商（OpenAI、Anthropic、Google）提供类型安全的 API、自动响应流式传输、React 内置 UI 组件，以及无缝部署到边缘运行时。核心优势：一个 SDK 处处可用——Next.js App Router、Remix、SvelteKit、Nuxt 或任何支持 fetch 的框架。
 
----
 
+---
 ## 什么是 Vercel AI SDK？
 
 Vercel AI SDK 是抽象构建 AI 应用复杂性的开源库。其核心提供三项主要能力：
@@ -68,8 +60,8 @@ const result = await streamText({
 
 无论调用 GPT-4o、Claude 3.5 Sonnet 还是 Gemini 1.5 Pro，`streamText` 函数行为完全一致。只需更改一行即可切换提供商。
 
----
 
+---
 ## 快速开始
 
 ### 第一步：安装依赖
@@ -291,8 +283,7 @@ export async function POST(req: Request) {
     messages,
     system: `仅使用以下上下文回答。如果上下文不包含相关信息，请说明。
     
-    上下文:
-    ${context.join("\n\n")}
+    上下文: ${context.join("\n\n")}
     `,
   });
 
@@ -316,7 +307,7 @@ const result = streamText({
   messages,
   tools: {
     searchWeb: tool({
-      description: "搜索网络获取当前信息",
+      description: "搜索网络获取当前信息"
       parameters: z.object({
         query: z.string().describe("搜索查询"),
         maxResults: z.number().default(5),
@@ -329,7 +320,7 @@ const result = streamText({
       },
     }),
     calculate: tool({
-      description: "执行数学计算",
+      description: "执行数学计算"
       parameters: z.object({ expression: z.string().describe("数学表达式") }),
       execute: async ({ expression }) => {
         try { return { result: Function(`return ${expression}`)() }; }
@@ -449,7 +440,13 @@ CMD ["npm", "start"]
 ### 延迟对比
 
 | 配置 | 首 Token(p50) | 完整响应(p95) |
-|------|--------------|---------------|
+|
+---
+|
+---
+|
+---
+|
 | Vercel Edge + GPT-4o | 320ms | 4.2s |
 | AWS Lambda + GPT-4o | 580ms | 5.8s |
 | EC2 t3.large + GPT-4o | 450ms | 4.5s |
@@ -460,7 +457,11 @@ CMD ["npm", "start"]
 ### 每千次请求成本
 
 | 提供商 | 每 1K 请求成本（平均 100 token） |
-|--------|---------------------------------|
+|
+---
+|
+---
+|
 | GPT-4o | $1.20 |
 | Claude Sonnet 4 | $0.80 |
 | Gemini 2.0 Flash | $0.15 |
@@ -628,7 +629,6 @@ export function middleware(request: NextRequest) {
 *加入我们的 Telegram 群组获取实时 AI 工具讨论和部署技巧：[t.me/dibi8](https://t.me/dibi8)*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

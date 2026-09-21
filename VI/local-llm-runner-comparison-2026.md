@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/local-llm-runner-comparison-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/local-llm-runner-comparison-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/local-llm-runner-comparison-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/local-llm-runner-comparison-2026" />
 title: 'Ollama vs LM Studio vs llama.cpp vs vLLM 2026: Hướng Dẫn...
 description: 'So sánh trực tiếp 4 local LLM runner quan trọng năm 2026. Số liệu thực: Ollama (137k sao) dễ nhất, LM Studio UI đẹp nhất, llama.cpp (112k) engine bên dưới, vLLM (80.7k) vua throughput production. Cây quyết định 30 giây theo use case.'
 date: 2026-05-21 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['local llm', ollama, vllm, 'llama.cpp', 'lm studio', 'so sánh', 'hub article']
-aliases:
-  - /posts/local-llm-runner-comparison-2026/
+aliases: - /posts/local-llm-runner-comparison-2026/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/local-llm-runner-comparison-2026/ -->
 
 Câu trả lời "chạy LLM cục bộ" năm 2026 đã phân mảnh thành 4 lựa chọn nghiêm túc, mỗi cái có sweet spot rõ. Đây là bài hub chúng tôi ước có sớm — đối đầu giữa **Ollama** (137k sao, mặc định), **LM Studio** (UI đẹp nhất, dễ nhất cho non-coder), **llama.cpp** (112k sao, engine C/C++ bên dưới hầu hết tool khác), và **vLLM** (80.7k sao, vua throughput production).
 
@@ -37,9 +29,7 @@ Chỉ 60 giây: đọc mục 2 và chọn theo dòng của bạn. Phần còn l�
 
 ## 1. Vì Sao 4 Tool Tồn Tại Cho "Cùng Việc"
 
-Trông như làm cùng việc — load model, sinh token — nhưng mục tiêu cơ bản khác:
-
-- **Ollama** tối ưu "5 phút từ cài đến token đầu"
+Trông như làm cùng việc — load model, sinh token — nhưng mục tiêu cơ bản khác: - **Ollama** tối ưu "5 phút từ cài đến token đầu"
 - **LM Studio** tối ưu "non-developer có thể dùng cái này"
 - **llama.cpp** tối ưu "chạy trên bất kỳ thiết bị có CPU"
 - **vLLM** tối ưu "100 user đồng thời, max throughput trên GPU lớn"
@@ -63,8 +53,7 @@ Có thể dùng sai cái và vẫn hoạt động — nhưng sẽ cảm thấy m
 
 **Tóm tắt**: Một lệnh cài. `ollama run llama3.2`. Bạn đang chat trong 5 phút. Nội bộ xây trên llama.cpp — Ollama là "llama.cpp với UX tốt và catalog mô hình".
 
-**Số liệu thực**:
-- **GitHub sao**: 137k (nhiều nhất trong 4)
+**Số liệu thực**: - **GitHub sao**: 137k (nhiều nhất trong 4)
 - **License**: MIT
 - **Throughput**: ~20-25 tok/s cho mô hình 7B trên M2 / RTX 3060 (chat single-user tốt, không cho serving)
 - **Phần cứng**: NVIDIA, AMD (ROCm), Apple Silicon (Metal). CPU fallback ok
@@ -84,8 +73,7 @@ ollama run qwen3-coder:14b
 
 **Tóm tắt**: App desktop kéo-thả (Windows / macOS / Linux). Duyệt catalog mô hình built-in, click "Tải", click "Chat". 0 phơi nhiễm CLI.
 
-**Thực tế thực**:
-- **License**: Freeware closed-source (cá nhân miễn phí; thương mại cần license)
+**Thực tế thực**: - **License**: Freeware closed-source (cá nhân miễn phí; thương mại cần license)
 - **Engine**: Dùng llama.cpp bên dưới (cùng định dạng mô hình GGUF)
 - **Tính năng killer**: Trình duyệt mô hình trực quan, UI chat với lịch sử hội thoại, RAG trên file local qua drag-drop, server API tương thích OpenAI (một-click "start server" → expose `http://localhost:1234/v1`)
 - **Phần cứng**: Cùng coverage llama.cpp — NVIDIA, AMD, Apple Silicon (Metal-tối ưu), CPU fallback
@@ -100,15 +88,13 @@ ollama run qwen3-coder:14b
 
 **Tóm tắt**: Engine suy luận C/C++ mà Ollama, LM Studio, và hàng chục project khác sử dụng nội bộ. Bằng chạy trực tiếp bạn có max control + bộ tính năng tiên tiến trước 1-2 phiên bản so với expose trong wrapper.
 
-**Số liệu thực**:
-- **GitHub sao**: 112k
+**Số liệu thực**: - **GitHub sao**: 112k
 - **License**: MIT
 - **Phần cứng**: Theo đúng nghĩa mọi thứ — Apple Metal (hỗ trợ M-series tốt nhất, tối ưu qua NEON/Accelerate), NVIDIA CUDA, AMD HIP, Intel/AMD CPU (AVX/AVX2/AVX512), Vulkan, SYCL, thậm chí WebGPU trong trình duyệt, RISC-V, ARM
 - **Lượng tử hóa**: Định dạng GGUF, 1.5-bit đến 8-bit, lựa chọn lượng tử rộng nhất có sẵn
 - **Tính năng killer**: Suy luận CPU+GPU hybrid (chia mô hình lớn hơn VRAM giữa GPU và system RAM), output ràng buộc ngữ pháp, API tương thích OpenAI `llama-server`
 
-**Khi nào llama.cpp thắng**:
-- Phần cứng lạ (Raspberry Pi 5, RISC-V SBC, browser qua WebGPU)
+**Khi nào llama.cpp thắng**: - Phần cứng lạ (Raspberry Pi 5, RISC-V SBC, browser qua WebGPU)
 - Mô hình lớn hơn VRAM của bạn (chia CPU+GPU)
 - Cần lượng tử hóa tiên tiến (1.5-bit, 2-bit định dạng thực nghiệm)
 - Muốn 0 dependency (single C++ binary, ~10 MB)
@@ -126,8 +112,7 @@ cd llama.cpp && make -j
 
 **Tóm tắt**: Khi cần serve 10-1000 user đồng thời trên GPU thực, **PagedAttention** + **continuous batching** + **prefix caching** của vLLM nghiền nát mọi lựa chọn thay thế về throughput. Lựa chọn de-facto cho "Tôi chạy API LLM multi-tenant trong production".
 
-**Số liệu thực**:
-- **GitHub sao**: 80.7k
+**Số liệu thực**: - **GitHub sao**: 80.7k
 - **License**: Apache-2.0
 - **Phần cứng**: NVIDIA (tốt nhất), AMD ROCm, Apple Silicon, Intel Gaudi, Google TPU, Huawei Ascend, IBM Spyre, thậm chí ARM/RISC-V CPU
 - **Tính năng killer**: PagedAttention (cải thiện throughput 2-24× so với serving ngây thơ), continuous batching, prefix caching, speculative decoding, multi-LoRA hot-swap, API tương thích OpenAI
@@ -181,16 +166,13 @@ Ollama xây trên llama.cpp. LM Studio xây trên llama.cpp. Vậy câu hỏi ch
 - **Thích GUI desktop + 0 phơi nhiễm CLI**: LM Studio
 - **Cả hai bên dưới như nhau. Cả hai tạo output giống nhau.**
 
-Người duy nhất thực sự cần lựa chọn thực:
-- Người thích nghịch phần cứng (llama.cpp trực tiếp)
+Người duy nhất thực sự cần lựa chọn thực: - Người thích nghịch phần cứng (llama.cpp trực tiếp)
 - Production serving (vLLM)
 - Mọi người khác: dùng Ollama hoặc LM Studio dựa trên sở thích UI
 
 ## 10. Đường Migration Nhanh
 
-Có thể mix và chuyển. Tiến hóa thông thường:
-
-1. **Ngày 1**: Cài Ollama. Chạy được một mô hình
+Có thể mix và chuyển. Tiến hóa thông thường: 1. **Ngày 1**: Cài Ollama. Chạy được một mô hình
 2. **Tuần 1-4**: Dùng Ollama với editor / agent. Nhận ra muốn UI chat desktop cho task không-coding. Thêm LM Studio
 3. **Tháng 3+**: Xây sản phẩm thực. Nhận ra Ollama queue request tuần tự. Thêm vLLM sau LiteLLM cho tier production; giữ Ollama cho phát triển
 4. **Năm 1+**: Đụng phần cứng lạ (RISC-V SBC, triển khai trình duyệt) hoặc muốn lượng tử tiên tiến. Tụt xuống llama.cpp trực tiếp cho workload cụ thể đó
@@ -199,9 +181,7 @@ Không bao giờ phải "chọn một và stick với nó". Các lớp khác nha
 
 ## TL;DR
 
-Bốn local LLM runner, bốn sweet spot:
-
-- **Ollama** (137k sao) — mặc định dev solo CLI
+Bốn local LLM runner, bốn sweet spot: - **Ollama** (137k sao) — mặc định dev solo CLI
 - **LM Studio** — GUI desktop non-coder
 - **llama.cpp** (112k sao) — phần cứng lạ + max control + engine bên dưới các cái khác
 - **vLLM** (80.7k sao) — serving multi-tenant production
@@ -213,7 +193,6 @@ Không có local LLM runner "tốt nhất phổ quát". Có cái match dòng b�
 *Nội dung đồng hành: [Bộ sưu tập Stack LLM Rẻ](/vi/collections/cheap-llm-stack/) dùng Ollama làm runner local mặc định. [Workflow AI Coding Self-Host](/vi/collections/self-hosted-ai-coding-workflow/) và [Stack Knowledge Base](/vi/collections/knowledge-base-stack/) đều cưỡi Ollama cho suy luận local. [Portkey vs LiteLLM vs OpenRouter](/vi/resources/llm-frameworks/llm-gateway-portkey-litellm-openrouter-comparison-2026/) cho layer gateway phía trước nhiều runner.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

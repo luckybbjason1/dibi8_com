@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/self-hosted-ai-coding-workflow" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/self-hosted-ai-coding-workflow" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/self-hosted-ai-coding-workflow" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/self-hosted-ai-coding-workflow" />
 title: 'Workflow AI Coding Self-Host: Stack Hoàn Chỉnh $6/Tháng ...
 description: 'Stack AI coding self-host 7 thành phần thay thế $290/tháng đăng ký SaaS (Cursor + Claude Code Pro + Copilot + Replit) bằng $6/tháng hạ tầng. Số liệu thực, config thực, hướng dẫn lắp ráp từng bước đầy đủ.'
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
-tech_stack:
-  - Docker
+tech_stack: - Docker
   - Python
   - TypeScript
   - PostgreSQL
@@ -29,11 +23,8 @@ featureImage: ''
 draft: false
 categories: [collections]
 tags: ['self-host', 'ai coding', stack, workflow, collection]
-aliases:
-  - /posts/self-hosted-ai-coding-workflow/
+aliases: - /posts/self-hosted-ai-coding-workflow/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/self-hosted-ai-coding-workflow/ -->
 
 Nếu bạn đang trả $20/tháng cho Cursor + $80/tháng cho Claude Code Pro + $19/tháng cho Copilot + $50/tháng cho Replit credits + $120/tháng cho OpenAI API top-up, chi tiêu AI coding hàng tháng của bạn là **$289/tháng**. 12 tháng là **$3,468** — cho công cụ bạn không sở hữu, không audit được, có thể bị rate-limit hoặc tắt mà không báo trước.
 
@@ -55,9 +46,7 @@ Bộ sưu tập này lắp ráp **giải pháp self-host 7 thành phần** chạ
 
 ## 1. Vì Sao Stack Này Khả Thi Năm 2026
 
-Ba điều thay đổi giữa 2024 và 2026 làm AI coding self-host cuối cùng khả thi:
-
-1. **Model open-weight đuổi kịp**: DeepSeek-V4, Qwen 3 Coder, GLM-4.6 Coder trong 5% so với Claude/GPT-5 ở benchmark coding, miễn phí hoặc gần miễn phí
+Ba điều thay đổi giữa 2024 và 2026 làm AI coding self-host cuối cùng khả thi: 1. **Model open-weight đuổi kịp**: DeepSeek-V4, Qwen 3 Coder, GLM-4.6 Coder trong 5% so với Claude/GPT-5 ở benchmark coding, miễn phí hoặc gần miễn phí
 2. **MCP chuẩn hóa tích hợp công cụ**: thay vì mỗi editor tự phát minh cách gọi file/git/search tool, protocol giờ là cổng USB-C — xem [hướng dẫn MCP Server Registry](/vi/resources/llm-frameworks/mcp-server-registry-comprehensive-guide-2026/) cho 19,700+ server hiện có
 3. **Local LLM runner sẵn sàng production**: Ollama, vLLM, llama.cpp chạy ở tốc độ chấp nhận được trên phần cứng tiêu dùng
 
@@ -102,8 +91,7 @@ Pattern: **OpenCode là não editor, LiteLLM là cảnh sát giao thông, 9Route
 
 **Vì sao chọn**: Agent mã nguồn mở nói MCP native. Trên cùng task refactor (component React 400 dòng), OpenCode + DeepSeek-V4 = 18 giây, $0.007. Claude Code (Sonnet) = 12 giây, $0.14. Rẻ 20×, chậm 5%.
 
-**Cài nhanh**:
-```bash
+**Cài nhanh**: ```bash
 npm install -g @opencode-ai/opencode
 opencode --version  # 1.x
 ```
@@ -118,8 +106,7 @@ Trỏ nó vào LiteLLM gateway (thành phần tiếp) qua config là xong.
 
 **Vì sao chọn**: 137k star. Cài single-binary. Llama 3.2 3B chạy 22 tok/sec trên M1 MacBook 5 tuổi 8GB RAM. Qwen 3 Coder 14B chạy thoải mái trên Mac M-series 16GB hoặc bất kỳ Linux 32GB nào.
 
-**Cài nhanh**:
-```bash
+**Cài nhanh**: ```bash
 curl -fsSL https://ollama.com/install.sh | sh
 ollama pull qwen3-coder:14b
 ollama serve  # expose :11434 API tương thích OpenAI
@@ -135,9 +122,7 @@ LiteLLM tự pick Ollama làm provider.
 
 **Vì sao chọn**: 47.8k star, gateway LLM nhiều star nhất. Latency P95 8ms ở 1k RPS. Miễn phí nếu self-host. So sánh chi tiết trong [hướng dẫn Portkey vs LiteLLM vs OpenRouter 2026](/vi/resources/llm-frameworks/llm-gateway-portkey-litellm-openrouter-comparison-2026/).
 
-**Triển khai nhanh trên VPS 4GB** (đề xuất {{< aff "htstack" "stack-vps" "VPS Hong Kong của HTStack" >}} cho sub-30ms latency tới user Trung Quốc đại lục, hoặc {{< aff "digitalocean" "stack-droplet" "droplet DigitalOcean $6" >}} cho nơi khác):
-
-```bash
+**Triển khai nhanh trên VPS 4GB** (đề xuất {{< aff "htstack" "stack-vps" "VPS Hong Kong của HTStack" >}} cho sub-30ms latency tới user Trung Quốc đại lục, hoặc {{< aff "digitalocean" "stack-droplet" "droplet DigitalOcean $6" >}} cho nơi khác): ```bash
 docker run -d --name litellm -p 4000:4000 \
   -e LITELLM_MASTER_KEY=sk-your-secret \
   -e OLLAMA_API_BASE=http://host.docker.internal:11434 \
@@ -154,8 +139,7 @@ docker run -d --name litellm -p 4000:4000 \
 
 **Vì sao điều này quan trọng**: Coding agent là kẻ tiêu thụ token bệnh hoạn — gửi toàn bộ codebase context mỗi turn. Ở $3/M input token trên Claude Sonnet, cộng dồn nhanh. RTK (Repetition-Token Compression) của 9Router là proxy duy nhất thiết kế đặc biệt cho workload này.
 
-**Cài nhanh**:
-```bash
+**Cài nhanh**: ```bash
 docker run -d --name 9router -p 9999:9999 \
   -e PROVIDERS=anthropic,openai,gemini,deepseek \
   ghcr.io/rtk-ai/9router:latest
@@ -171,11 +155,9 @@ Trỏ endpoint premium provider của LiteLLM tới `localhost:9999` thay vì di
 
 **Vì sao chọn**: mem0 là layer memory ngữ nghĩa mã nguồn mở 30k+ star. AgentMemory là MCP server expose nó tới bất kỳ MCP host nào (OpenCode / Claude Desktop / Cursor).
 
-**Cài nhanh**:
-```bash
+**Cài nhanh**: ```bash
 npm install -g @mem0/mem0-mcp
-# Thêm vào MCP config của OpenCode:
-# { "agentmemory": { "command": "mem0-mcp", "args": [] } }
+# Thêm vào MCP config của OpenCode: # { "agentmemory": { "command": "mem0-mcp", "args": [] } }
 ```
 
 **Setup đầy đủ** với chọn model embedding và lựa chọn vector DB — xem [hướng dẫn AgentMemory MCP](/vi/resources/llm-frameworks/agentmemory-mcp-persistent-memory-2026/).
@@ -184,13 +166,11 @@ npm install -g @mem0/mem0-mcp
 
 **Vai trò**: Cho agent mắt và tay. Đọc file project, kiểm tra lịch sử git, tìm web — tất cả qua protocol MCP.
 
-**Bộ tối thiểu**:
-- `modelcontextprotocol/server-filesystem` (Anthropic reference)
+**Bộ tối thiểu**: - `modelcontextprotocol/server-filesystem` (Anthropic reference)
 - `modelcontextprotocol/server-git` (Anthropic reference)
 - `tavily-mcp` (kết quả tìm kiếm web đã format cho LLM)
 
-**Cài nhanh** (cả 3 thêm vào `claude_desktop_config.json` của OpenCode):
-```json
+**Cài nhanh** (cả 3 thêm vào `claude_desktop_config.json` của OpenCode): ```json
 {
   "mcpServers": {
     "filesystem": {
@@ -226,9 +206,7 @@ Tavily có tier miễn phí hào phóng (1,000 lượt tìm/tháng) đủ trong 
 
 ## 10. Thứ Tự Lắp Ráp — Setup Day 1 (90 phút)
 
-Nếu bắt đầu từ đầu, làm theo thứ tự này:
-
-1. **Khởi động hạ tầng** (15 phút) — Đặt {{< aff "digitalocean" "assembly-vps" "droplet DigitalOcean $6" >}}, cài Docker, mở port 4000 (LiteLLM) + 9999 (9Router) + 11434 (Ollama)
+Nếu bắt đầu từ đầu, làm theo thứ tự này: 1. **Khởi động hạ tầng** (15 phút) — Đặt {{< aff "digitalocean" "assembly-vps" "droplet DigitalOcean $6" >}}, cài Docker, mở port 4000 (LiteLLM) + 9999 (9Router) + 11434 (Ollama)
 2. **Ollama trước** (10 phút) — Cài + pull `qwen3-coder:14b` (~9 GB). Xác nhận `curl localhost:11434/api/tags` hoạt động
 3. **LiteLLM thứ hai** (15 phút) — Docker run với env vars từ sec. 5. Xác nhận `curl localhost:4000/v1/models -H "Authorization: Bearer sk-your-secret"` liệt kê model Ollama
 4. **9Router thứ ba** (10 phút) — Tùy chọn nhưng khuyến nghị. Thêm vào config premium provider của LiteLLM
@@ -257,9 +235,7 @@ So với $289/tháng cho Cursor + Claude Code Pro + Copilot + Replit + OpenAI to
 
 ## 12. Đường Nâng Cấp
 
-Khi stack vượt tier $6 (hơn 1 dev, hơn 1 project, state bền vững quan trọng):
-
-- **Thêm Postgres** cho LiteLLM theo dõi chi tiêu + virtual key per project ({{< aff "digitalocean" "upgrade-postgres" "DigitalOcean Managed Postgres" >}} $15/tháng)
+Khi stack vượt tier $6 (hơn 1 dev, hơn 1 project, state bền vững quan trọng): - **Thêm Postgres** cho LiteLLM theo dõi chi tiêu + virtual key per project ({{< aff "digitalocean" "upgrade-postgres" "DigitalOcean Managed Postgres" >}} $15/tháng)
 - **Thêm Redis** cho LiteLLM caching (1 GB managed Redis $10/tháng)
 - **Di chuyển LiteLLM sau load balancer** với 3 replica — xem [hướng dẫn Portkey vs LiteLLM 2026](/vi/resources/llm-frameworks/llm-gateway-portkey-litellm-openrouter-comparison-2026/) sec. 4 cho pattern Kubernetes
 - **Thêm Grafana + Loki** cho observability đầy đủ — log mọi prompt, mọi fallback, mọi cost spike
@@ -286,7 +262,6 @@ Nếu bạn tiêu $200+/tháng cho AI coding SaaS, stack này lấy lại vốn 
 *Đánh dấu trang này — chúng tôi cập nhật lựa chọn thành phần hàng quý khi có bản release mã nguồn mở mới. Cập nhật cuối: 2026-05-21.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

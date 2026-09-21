@@ -1,13 +1,10 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/reading-explain-analyze-postgres" />
 title: Reading EXPLAIN ANALYZE in Postgres Without Getting Lost
 description: Reading EXPLAIN ANALYZE in PostgreSQL without getting lost. Learn to. Comprehensive guide covering features, pricing, and best practices for 2026.
   interpret query plans, identify bottlenecks and optimize database performance.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
-tech_stack:
-- Python
+tech_stack: - Python
 application_domain: Ai Tools
 source_version: ''
 licensing_model: Open Source
@@ -22,11 +19,9 @@ maintainer: ''
 last_maintained: '2026-05-15'
 featureImage: ''
 draft: false
-aliases:
-- /en/posts/reading-explain-analyze-postgres/
+aliases: - /en/posts/reading-explain-analyze-postgres/
 - /posts/reading-explain-analyze-postgres/
-faqs:
-  - q: 'What does the top line''s actual time mean in EXPLAIN ANALYZE output?'
+faqs: - q: 'What does the top line''s actual time mean in EXPLAIN ANALYZE output?'
     a: 'The outermost node''s second actual time value is the wall-clock cost of the whole query in milliseconds for one execution of that node. Every node below it breaks down where that total time was spent.'
   - q: 'How do I find a bad query plan from EXPLAIN ANALYZE row counts?'
     a: 'Compare the planner''s estimated rows= (in the cost= section) against the actual rows= (in the actual time= section). When they disagree by 10x or more, the planner used bad statistics, and every node above it was chosen on a wrong assumption—that is almost always the bug.'
@@ -59,9 +54,7 @@ WHERE u.signup_at > now() - interval '30 days'
 GROUP BY u.id;
 ```
 
-A typical output snippet:
-
-```
+A typical output snippet: ```
 HashAggregate  (cost=12345.67..23456.78 rows=10000 width=48)
                (actual time=412.331..480.219 rows=8742 loops=1)
   ->  Hash Right Join  (cost=2345.67..11234.56 rows=120000 width=44)
@@ -85,9 +78,7 @@ runs. Different parameter values produce different plans.
 
 ## Step 2: Compare `rows=` estimate vs actual
 
-Each line has two row counts:
-
-- `rows=N` in the `cost=…` part — the **planner's estimate**
+Each line has two row counts: - `rows=N` in the `cost=…` part — the **planner's estimate**
 - `rows=N` in the `actual time=…` part — what **really happened**
 
 When these disagree by 10× or more, the planner is operating on bad
@@ -97,9 +88,7 @@ assumption. That's almost always your bug.
 In the example above the planner expected the join to produce 120,000
 rows and it produced 98,213. That's fine, ~20% off. But if I saw
 something like estimate 100, actual 1,000,000 — full stop, that's the
-problem. Common causes:
-
-- Stale statistics → run `ANALYZE the_table` and re-explain.
+problem. Common causes: - Stale statistics → run `ANALYZE the_table` and re-explain.
 - Correlated columns → set `CREATE STATISTICS` on the column pair, or
   rewrite the predicate.
 - Skewed data the planner can't model → sometimes you need a hint via
@@ -112,9 +101,7 @@ at A ms after start, last row produced at B ms; this node ran L times."*
 
 To get the time spent in *just this node* (excluding children), you
 have to subtract the children's `actual time` ranges. For the common
-case of `loops=1`, the simple version is:
-
-> **Self time ≈ this node's `B` − sum of children's `B` values**
+case of `loops=1`, the simple version is: > **Self time ≈ this node's `B` − sum of children's `B` values**
 
 I scan the plan top-down looking for the node with the biggest self
 time. That's where the optimization budget should go.
@@ -124,9 +111,7 @@ example) reports per-loop times. Multiply by `loops` to get total.
 
 ## Step 4: Use `BUFFERS` to tell I/O from CPU
 
-`EXPLAIN (ANALYZE, BUFFERS)` adds lines like:
-
-```
+`EXPLAIN (ANALYZE, BUFFERS)` adds lines like: ```
 Buffers: shared hit=18234 read=4521
 ```
 
@@ -147,9 +132,7 @@ multiply a node's time by 10×.
 
 ## The three patterns I see most often
 
-After all that, the actual bugs cluster into a few shapes:
-
-**1. Sequential scan on a "should-be-indexed" column.** Plan node says
+After all that, the actual bugs cluster into a few shapes: **1. Sequential scan on a "should-be-indexed" column.** Plan node says
 `Seq Scan on big_table  Filter: (...)` and rows-removed-by-filter is
 huge. Add an index on the filter column. Don't add it if the table is
 small or the filter is non-selective; the planner's choice was correct.
@@ -166,9 +149,7 @@ to handle.
 
 ## A quick reading checklist
 
-When someone hands me an `EXPLAIN ANALYZE`, I do this in order:
-
-1. Total time at the top — is it actually slow?
+When someone hands me an `EXPLAIN ANALYZE`, I do this in order: 1. Total time at the top — is it actually slow?
 2. Any node with `rows` estimate vs actual off by ≥10×? — that's the bug.
 3. Which node has the biggest self-time? — that's the budget.
 4. Any `temp written` or unusually high `shared read`? — I/O issue.
@@ -185,20 +166,17 @@ self-time before checking the row estimates leads you to optimize the
 - [Scrapling Reviewed: A Faster, Stealthier Take on Python Scraping](/resources/dev-utils/scrapling-python-stealthy-web-scraping-review/) — Data extraction techniques
 - [Agent Reach: Give Your AI Agent Internet Superpowers](/resources/llm-frameworks/agent-reach-ai-agent-internet-access/) — AI-powered development tools
 
----
 
+---
 ## Recommended Tools
 
-For developers building or deploying open-source AI tools, we recommend:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
+For developers building or deploying open-source AI tools, we recommend: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
 - **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Anthropic Claude / OpenAI / DeepSeek API proxy. Most AI tools above (chatbots, code gen, translation, search, etc) need an LLM API key — this proxy delivers stable access to top models at ~30% of official pricing.
 
 *Affiliate link — supports dibi8.com at no cost to you.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -226,25 +204,20 @@ For developers building or deploying open-source AI tools, we recommend:
 
 ## Why This Matters
 
-Understanding reading explain analyze in postgres without getting lost is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding reading explain analyze in postgres without getting lost is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -265,7 +238,7 @@ Reading EXPLAIN ANALYZE in Postgres Without Getting Lost represents an important
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

@@ -1,10 +1,9 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/bytedance-ui-tars-desktop-ai-agent-guide" />
-title: "ByteDance UI-TARS Desktop: The Vision-Language AI Agent ...
+title: "ByteDance UI-TARS Desktop: The Vision-Language AI Agent ..."
 description: "Learn how to deploy ByteDance's UI-TARS Desktop, a vision-language AI agent that sees your screen and controls applications through natural language. Step-by-step installation, real-world benchmarks, and comparisons with alternatives."
 date: 2026-06-10
-lastmod:  2026-06-10slug: "bytedance-ui-tars-desktop-ai-agent-guide"
+lastmod: 2026-06-10
+slug: "bytedance-ui-tars-desktop-ai-agent-guide"
 category: ai-tools
 tags: [bytedance, ui-tars, vision-language-model, AI-agent, desktop-automation, GUI-agent, open-source, multimodal-ai]
 github_repo: "https://github.com/bytedance/UI-TARS-desktop"
@@ -12,9 +11,7 @@ stars: 36263
 maintainer: bytedance
 license: Apache-2.0
 featureImage: "https://raw.githubusercontent.com/bytedance/UI-TARS-desktop/main/images/tars.png"
-lang: en
 ---
-
 ## Introduction
 
 The dream of a truly autonomous AI assistant — one that can look at your computer screen, understand what it sees, and take actions to complete tasks — has been the holy grail of AI development for years. ByteDance's UI-TARS Desktop brings this dream much closer to reality by combining state-of-the-art vision-language models with desktop automation capabilities.
@@ -27,9 +24,7 @@ UI-TARS (User Interface TARS) is a desktop AI agent developed by ByteDance that 
 
 UI-TARS Desktop is **a vision-language AI agent that controls your computer by watching the screen**. It uses a specialized visual language model trained to understand desktop interfaces — recognizing buttons, menus, forms, and text fields — and then generates actionable commands to interact with them.
 
-Key capabilities include:
-
-- **Visual understanding** — Analyzes screenshots to identify UI elements, text, and layout with VLM-powered recognition
+Key capabilities include: - **Visual understanding** — Analyzes screenshots to identify UI elements, text, and layout with VLM-powered recognition
 - **Action generation** — Generates mouse clicks, keyboard input, scroll commands, and drag operations
 - **Natural language interface** — Control any desktop application through plain English instructions
 - **Multi-application support** — Works with any GUI application without requiring integrations or API keys
@@ -40,9 +35,7 @@ Key capabilities include:
 
 ## How UI-TARS Works
 
-UI-TARS operates through a perception-action cycle:
-
-1. **Perceive** — The agent captures a screenshot of the current desktop state using the platform's native screen capture API
+UI-TARS operates through a perception-action cycle: 1. **Perceive** — The agent captures a screenshot of the current desktop state using the platform's native screen capture API
 2. **Understand** — The vision-language model analyzes the screenshot to identify UI elements, their labels, and their pixel positions on screen
 3. **Plan** — The agent determines what action to take based on the user's instruction and the current screen state
 4. **Act** — The agent executes the action (click, type, scroll, etc.) through the platform's input automation API
@@ -148,11 +141,8 @@ The agent will automatically open your default browser, navigate to a search eng
 agent-tars run --task-file tasks.yaml --model ui-tars-7b
 ```
 
-Where `tasks.yaml` contains:
-
-```yaml
-tasks:
-  - "Open the file explorer"
+Where `tasks.yaml` contains: ```yaml
+tasks: - "Open the file explorer"
   - "Navigate to Desktop"
   - "Right-click and create a new folder"
   - "Name the folder 'My Project'"
@@ -207,9 +197,7 @@ agent-tars export-logs --output uitars-logs.json
 
 ### Model Selection
 
-UI-TARS supports multiple model sizes for different performance trade-offs:
-
-```bash
+UI-TARS supports multiple model sizes for different performance trade-offs: ```bash
 # 7B parameter model (recommended for most use cases)
 agent-tars --model ui-tars-7b
 
@@ -224,24 +212,18 @@ agent-tars --model ui-tars-72b
 
 ```yaml
 # uitars-config.yaml
-agent:
-  model: ui-tars-7b
+agent: model: ui-tars-7b
   max_steps: 30
   confidence_threshold: 0.85
   screenshot_interval: 1.0
   action_delay: 0.5
 
-actions:
-  click:
-    method: mouse
+actions: click: method: mouse
     move_to_center: true
-  type:
-    delay_between_keys: 0.02
-  scroll:
-    pixels_per_step: 120
+  type: delay_between_keys: 0.02
+  scroll: pixels_per_step: 120
 
-environment:
-  resolution: 1920x1080
+environment: resolution: 1920x1080
   scale_factor: 1.0
   language: en
 ```
@@ -328,8 +310,7 @@ result = agent.run(task)
 
 # Get the results
 print(f"Actions executed: {len(result.actions)}")
-for action in result.actions:
-    print(f"  {action.type}: {action.target}")
+for action in result.actions: print(f"  {action.type}: {action.target}")
 
 print(f"Success: {result.success}")
 print(f"Reason: {result.explanation}")
@@ -340,7 +321,15 @@ print(f"Reason: {result.explanation}")
 ### Task Completion Rate
 
 | Task Type | UI-TARS Desktop | Traditional Automation | ScreenOCR + Script |
-|-----------|----------------|----------------------|-------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Simple button clicks | 98% | 95% | 85% |
 | Form filling | 92% | 70% | 60% |
 | Multi-step workflows | 85% | 60% | 45% |
@@ -351,7 +340,13 @@ print(f"Reason: {result.explanation}")
 ### Inference Speed by Model
 
 | Model | Latency (ms) | GPU Memory |
-|-------|-------------|------------|
+|
+---
+|
+---
+|
+---
+|
 | UI-TARS 1B | 150ms | 4GB |
 | UI-TARS 7B | 800ms | 8GB |
 | UI-TARS 72B | 3500ms | 40GB |
@@ -359,7 +354,17 @@ print(f"Reason: {result.explanation}")
 ### Comparison with Screen Readers and Automation Tools
 
 | Feature | UI-TARS | Accessibility APIs | Selenium | Playwright |
-|---------|---------|-------------------|----------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Works on any GUI app | Yes | No | Web only | Web only |
 | Visual understanding | Yes (VLM) | No | Limited | Limited |
 | Learning required | None | High | Medium | Medium |
@@ -369,9 +374,7 @@ print(f"Reason: {result.explanation}")
 
 ### Real-World Case: QA Testing Team
 
-A QA team of 8 engineers uses UI-TARS to automate GUI testing across their web and desktop applications:
-
-```bash
+A QA team of 8 engineers uses UI-TARS to automate GUI testing across their web and desktop applications: ```bash
 #!/bin/bash
 # Automated regression test suite
 agent-tars batch --task-file regression-tests.yaml \
@@ -382,9 +385,7 @@ The team reports a 60% reduction in regression testing time and the ability to t
 
 ### Real-World Case: Accessibility Automation
 
-A company uses UI-TARS to automate accessibility testing across their applications:
-
-```bash
+A company uses UI-TARS to automate accessibility testing across their applications: ```bash
 # Test multiple UI states
 agent-tars run --task "Navigate to all menus and verify keyboard shortcuts work" \
   --model ui-tars-7b --max-steps 50
@@ -441,7 +442,17 @@ agent-tars export-logs --output uitars-logs.json
 ## Comparison with Alternatives
 
 | Feature | UI-TARS Desktop | AutoGen + UI | PyAutoGUI | OpenHands |
-|---------|----------------|-------------|-----------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Install Method | `npm install -g @agent-tars/desktop` | pip install | pip install | pip install |
 | Visual Understanding | VLM-based (screenshot analysis) | Limited | No | Partial |
 | Any GUI App | Yes | Limited | Yes | Limited |
@@ -457,9 +468,7 @@ UI-TARS Desktop stands out for its visual understanding capabilities. Unlike scr
 
 ## Limitations / Honest Assessment
 
-While UI-TARS Desktop is powerful, be aware of these limitations:
-
-1. **GPU requirements** — Running the 7B model requires at least 8GB of GPU VRAM. The 72B model requires 40GB+. The 1B model can run on CPU but with reduced accuracy.
+While UI-TARS Desktop is powerful, be aware of these limitations: 1. **GPU requirements** — Running the 7B model requires at least 8GB of GPU VRAM. The 72B model requires 40GB+. The 1B model can run on CPU but with reduced accuracy.
 2. **Latency** — Each action requires a screenshot and model inference, adding latency to each step. Multi-step tasks may take several minutes.
 3. **Security considerations** — The agent has full control of your desktop. Use in trusted environments only, and restrict access with proper authentication.
 4. **Complex text input** — Typing long or complex text may occasionally produce errors in character recognition or input simulation.
@@ -519,7 +528,6 @@ Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss U
 Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -545,8 +553,8 @@ Some links above are affiliate links. dibi8.com may earn a commission if you sig
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [bytedance-ui-tars-desktop-ai-agent-guide](bytedance-ui-tars-desktop-ai-agent-guide)
@@ -555,8 +563,8 @@ Some links above are affiliate links. dibi8.com may earn a commission if you sig
 - [2026-06-01-trending-ai-agents](bytedance-ui-tars-desktop-ai-agent-guide)
 - [2026-06-08-trending-ai-agents](bytedance-ui-tars-desktop-ai-agent-guide)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

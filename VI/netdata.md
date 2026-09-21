@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/netdata" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/netdata" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/netdata" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/netdata" />
 title: 'Netdata: Giám Sát Thở Gian Thự 78K+ Star — Hướng Dẫn Tin...
 description: 'Netdata (ND) là agent giám sát thở gian thực hiệu suất cao với metrics từng giây và khả năng trực quan hóa. Tương thích với Docker, Kubernetes, Prometheus và Grafana. Bao gồm hướng dẫn netdata, cài đặt netdata, giám sát thở gian thực, netdata vs prometheus, và tinh chỉnh hiệu suất netdata.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [netdata, 'giám-sát', 'khả-năng-quan-sát', 'tinh-chỉnh-hiệu-suất', docker, kubernetes, 'metrics-thở-gian-thự']
-aliases:
-- /vi/posts/netdata/
+aliases: - /vi/posts/netdata/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/netdata/ -->
 
 {{</* resource-info */>}}
 
@@ -61,16 +53,12 @@ Kiến trúc của Netdata tuân theo mô hình phân tán ưu tiên edge. Mỗi
 
 ### Cài đặt Một Dòng Lệnh (Linux)
 
-Cách nhanh nhất để chạy Netdata:
-
-```bash
+Cách nhanh nhất để chạy Netdata: ```bash
 # Cài đặt Netdata với tất cả giá trị mặc định
 curl -Ss https://get.netdata.cloud/kickstart.sh | sudo bash
 ```
 
-Xác minh cài đặt:
-
-```bash
+Xác minh cài đặt: ```bash
 sudo systemctl status netdata
 # Active: active (running) since ...
 ```
@@ -79,9 +67,7 @@ Truy cập dashboard cục bộ tại `http://localhost:19999`.
 
 ### Triển khai Docker
 
-Cho môi trường container:
-
-```bash
+Cho môi trường container: ```bash
 docker run -d --name=netdata \
   -p 19999:19999 \
   -v /proc:/host/proc:ro \
@@ -96,36 +82,25 @@ docker run -d --name=netdata \
 
 ```yaml
 version: '3.8'
-services:
-  netdata:
-    image: netdata/netdata:v2.5.0
+services: netdata: image: netdata/netdata:v2.5.0
     container_name: netdata
     hostname: "netdata-${HOSTNAME}"
-    ports:
-      - "19999:19999"
+    ports: - "19999:19999"
     restart: unless-stopped
-    cap_add:
-      - SYS_PTRACE
+    cap_add: - SYS_PTRACE
       - SYS_ADMIN
-    security_opt:
-      - apparmor:unconfined
-    volumes:
-      - /proc:/host/proc:ro
+    security_opt: - apparmor:unconfined
+    volumes: - /proc:/host/proc:ro
       - /sys:/host/sys:ro
       - /etc/os-release:/host/etc/os-release:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - netdata-config:/etc/netdata
       - netdata-lib:/var/lib/netdata
       - netdata-cache:/var/cache/netdata
-    environment:
-      - NETDATA_CLAIM_TOKEN=${NETDATA_CLAIM_TOKEN}
+    environment: - NETDATA_CLAIM_TOKEN=${NETDATA_CLAIM_TOKEN}
       - NETDATA_CLAIM_URL=https://app.netdata.cloud
       - NETDATA_CLAIM_ROOMS=${NETDATA_CLAIM_ROOMS}
-volumes:
-  netdata-config:
-  netdata-lib:
-  netdata-cache:
-```
+volumes: netdata-config: netdata-lib: netdata-cache: ```
 
 ![Giao diện Giám sát Hệ thống Netdata](https://hackmag.com/wp-content/uploads/2025/07/10244_02-16-39.png)
 
@@ -142,9 +117,7 @@ helm install netdata netdata/netdata \
   --create-namespace
 ```
 
-Xác minh các pod:
-
-```bash
+Xác minh các pod: ```bash
 kubectl get pods -n monitoring
 # NAME                    READY   STATUS
 # netdata-parent-0        1/1     Running
@@ -153,9 +126,7 @@ kubectl get pods -n monitoring
 
 ### Tạo Cấu hình Hiện tại
 
-Tải xuống cấu hình đang chạy để tùy chỉnh:
-
-```bash
+Tải xuống cấu hình đang chạy để tùy chỉnh: ```bash
 # Tải xuống cấu hình hiện tại đang áp dụng
 curl -o /etc/netdata/netdata.conf http://localhost:19999/netdata.conf
 # Hoặc sử dụng script edit-config
@@ -166,9 +137,7 @@ sudo /etc/netdata/edit-config netdata.conf
 
 ### Prometheus Remote Write
 
-Xuất metrics Netdata sang Prometheus để lưu trữ dài hạn và truy vấn PromQL:
-
-```bash
+Xuất metrics Netdata sang Prometheus để lưu trữ dài hạn và truy vấn PromQL: ```bash
 sudo /etc/netdata/edit-config exporting.conf
 ```
 
@@ -183,61 +152,40 @@ sudo /etc/netdata/edit-config exporting.conf
     send hosts matching = *
 ```
 
-Khởi động lại Netdata:
-
-```bash
+Khởi động lại Netdata: ```bash
 sudo systemctl restart netdata
 ```
 
 ### Grafana Dashboard
 
-Mặc dù Netdata có dashboard tích hợp, nhiều team thích Grafana để trực quan hóa tập trung. Thêm Netdata làm nguồn dữ liệu Prometheus trong Grafana:
-
-```yaml
+Mặc dù Netdata có dashboard tích hợp, nhiều team thích Grafana để trực quan hóa tập trung. Thêm Netdata làm nguồn dữ liệu Prometheus trong Grafana: ```yaml
 # datasource.yaml trong Grafana
 apiVersion: 1
-datasources:
-  - name: Netdata-Prometheus
+datasources: - name: Netdata-Prometheus
     type: prometheus
     url: http://netdata:19999/api/v1/allmetrics?format=prometheus
     access: proxy
     isDefault: false
-    jsonData:
-      timeInterval: "1s"
+    jsonData: timeInterval: "1s"
 ```
 
 ### Kubernetes DaemonSet (Nâng cao)
 
-Để có khả năng hiển thị ở cấp host trên mọi node K8s:
-
-```yaml
+Để có khả năng hiển thị ở cấp host trên mọi node K8s: ```yaml
 apiVersion: apps/v1
 kind: DaemonSet
-metadata:
-  name: netdata
+metadata: name: netdata
   namespace: monitoring
-spec:
-  selector:
-    matchLabels:
-      app: netdata
-  template:
-    metadata:
-      labels:
-        app: netdata
-    spec:
-      hostNetwork: true
+spec: selector: matchLabels: app: netdata
+  template: metadata: labels: app: netdata
+    spec: hostNetwork: true
       hostPID: true
-      containers:
-        - name: netdata
+      containers: - name: netdata
           image: netdata/netdata:v2.5.0
-          ports:
-            - containerPort: 19999
+          ports: - containerPort: 19999
               hostPort: 19999
-          securityContext:
-            capabilities:
-              add: [SYS_PTRACE, SYS_ADMIN]
-          volumeMounts:
-            - name: proc
+          securityContext: capabilities: add: [SYS_PTRACE, SYS_ADMIN]
+          volumeMounts: - name: proc
               mountPath: /host/proc
               readOnly: true
             - name: sys
@@ -246,37 +194,27 @@ spec:
             - name: docker-sock
               mountPath: /var/run/docker.sock
               readOnly: true
-      volumes:
-        - name: proc
-          hostPath:
-            path: /proc
+      volumes: - name: proc
+          hostPath: path: /proc
         - name: sys
-          hostPath:
-            path: /sys
+          hostPath: path: /sys
         - name: docker-sock
-          hostPath:
-            path: /var/run/docker.sock
+          hostPath: path: /var/run/docker.sock
 ```
 
 ### Giám sát PostgreSQL
 
-Bật bộ thu thập PostgreSQL trong `go.d/postgres.conf`:
-
-```yaml
-jobs:
-  - name: local
+Bật bộ thu thập PostgreSQL trong `go.d/postgres.conf`: ```yaml
+jobs: - name: local
     dsn: 'postgres://netdata_monitor:password@localhost:5432/postgres'
-    collect:
-      - database_statistics
+    collect: - database_statistics
       - table_statistics
       - index_statistics
       - replication_statistics
     timeout: 2
 ```
 
-Kiểm tra bộ thu thập:
-
-```bash
+Kiểm tra bộ thu thập: ```bash
 sudo /etc/netdata/edit-config go.d/postgres.conf
 # Khởi động lại để áp dụng
 sudo systemctl restart netdata
@@ -284,27 +222,21 @@ sudo systemctl restart netdata
 
 ### Giám sát Nginx
 
-Giám sát stub_status và access log của Nginx:
-
-```yaml
+Giám sát stub_status và access log của Nginx: ```yaml
 # /etc/netdata/go.d/nginx.conf
-jobs:
-  - name: local
+jobs: - name: local
     url: http://localhost/stub_status
 
   - name: access_log
     path: /var/log/nginx/access.log
-    parser:
-      type: ltsv
+    parser: type: ltsv
 ```
 
 ## Benchmarks / Các trường hợp sử dụng thực tế
 
 ### So sánh mức tiêu thụ tài nguyên
 
-Đại học Amsterdam đã công bố một nghiên cứu có bình duyệt (ICSOC 2023), xếp Netdata là công cụ giám sát tiết kiệm năng lượng nhất cho hệ thống dựa trên Docker. Các benchmark độc lập xác nhận:
-
-| Kịch bản | Netdata | Prometheus + Node Exporter | Zabbix Agent |
+Đại học Amsterdam đã công bố một nghiên cứu có bình duyệt (ICSOC 2023), xếp Netdata là công cụ giám sát tiết kiệm năng lượng nhất cho hệ thống dựa trên Docker. Các benchmark độc lập xác nhận: | Kịch bản | Netdata | Prometheus + Node Exporter | Zabbix Agent |
 |----------|---------|---------------------------|--------------|
 | Chi phí CPU (%) | 1–5% | 5–15% | 10–20% |
 | RAM mỗi Node | 100–150 MB | 200–500 MB | 150–300 MB |
@@ -315,18 +247,14 @@ jobs:
 
 ### Benchmarks mở rộng streaming
 
-Kiến trúc streaming parent-child của Netdata mở rộng theo chiều ngang:
-
-- **Một Parent**: Tiêu thụ 1 triệu+ mẫu/giây, RAM khoảng 3,5 GB
+Kiến trúc streaming parent-child của Netdata mở rộng theo chiều ngang: - **Một Parent**: Tiêu thụ 1 triệu+ mẫu/giây, RAM khoảng 3,5 GB
 - **10 Node con**: 20k metrics mỗi node, giữ liệu 1 giây trong 7 ngày, đĩa 12 GB
 - **Cluster Active-Active**: Mở rộng ngang không giới hạn với sao lưu dữ liệu đầy đủ
 - **Node tạm thở**: Stream metrics đến parent, giữ liệu sau khi node bị hủy
 
 ### Triển khai thực tế: Cluster K8s 500 Node
 
-Một công ty SaaS cỡ trung chạy 500 node Kubernetes sử dụng:
-
-- 5 Netdata parent (active-active) trên 3 vùng availability
+Một công ty SaaS cỡ trung chạy 500 node Kubernetes sử dụng: - 5 Netdata parent (active-active) trên 3 vùng availability
 - 500 agent con qua DaemonSet, mỗi node chạy ở chế độ RAM (~50 MB)
 - Lưu trữ phân tầng: 1 giây trong 7 ngày, 1 phút trong 1 tháng, 1 giờ trong 1 năm
 - Tổng dung lượng parent: 25 GB mỗi parent (125 GB toàn cluster)
@@ -424,9 +352,7 @@ Cấu hình mặc định được tối ưu cho sử dụng độc lập. Đố
 
 ### Cấu hình Streaming: stream.conf
 
-Trên node con (`/etc/netdata/stream.conf`):
-
-```conf
+Trên node con (`/etc/netdata/stream.conf`): ```conf
 [stream]
     enabled = yes
     destination = tcp:netdata-parent.monitoring.svc.cluster.local:19999
@@ -439,9 +365,7 @@ Trên node con (`/etc/netdata/stream.conf`):
     initial clock resync iterations = 60
 ```
 
-Trên parent (`/etc/netdata/stream.conf`):
-
-```conf
+Trên parent (`/etc/netdata/stream.conf`): ```conf
 [API_KEY]
     enabled = yes
     default memory mode = dbengine
@@ -450,9 +374,7 @@ Trên parent (`/etc/netdata/stream.conf`):
 
 ### Củng cố bảo mật
 
-Bật TLS cho giao diện web:
-
-```conf
+Bật TLS cho giao diện web: ```conf
 [web]
     tls version = 1.3
     ssl key = /etc/netdata/ssl/key.pem
@@ -463,9 +385,7 @@ Bật TLS cho giao diện web:
 
 ### Giám sát chính Netdata
 
-Theo dõi mức sử dụng tài nguyên của chính agent:
-
-```bash
+Theo dõi mức sử dụng tài nguyên của chính agent: ```bash
 # Xem metrics nội bộ
 curl -s http://localhost:19999/api/v1/info | jq '.version, .hog'
 
@@ -498,9 +418,7 @@ curl -s http://localhost:19999/api/v1/data?chart=netdata.dbengine_main_page_stat
 
 ## Hạn chế / Đánh giá khách quan
 
-Netdata không phải công cụ phù hợp cho mọi kịch bản giám sát:
-
-1. **Không có chế độ xem multi-host tập trung nếu không có Netdata Cloud**: Dashboard agent mã nguồn mở là theo từng node. Để xem thống nhất trên 100+ node, bạn cần Netdata Cloud (SaaS) hoặc thiết lập parent streaming với công cụ trực quan hóa bên ngoài.
+Netdata không phải công cụ phù hợp cho mọi kịch bản giám sát: 1. **Không có chế độ xem multi-host tập trung nếu không có Netdata Cloud**: Dashboard agent mã nguồn mở là theo từng node. Để xem thống nhất trên 100+ node, bạn cần Netdata Cloud (SaaS) hoặc thiết lập parent streaming với công cụ trực quan hóa bên ngoài.
 2. **Lưu trữ dài hạn hạn chế trong cấu hình mặc định**: dbengine mặc định ~256 MB đĩa mỗi tầng. Để giữ liệu nhiều năm ở quy mô lớn, cần cấu hình lưu trữ phân tầng rõ ràng hoặc TSDB bên ngoài như VictoriaMetrics.
 3. **Pipeline cảnh báo ít linh hoạt hơn Alertmanager**: Mặc dù Netdata có kiểm tra sức khỏe và thông báo tích hợp, nhưng cây định tuyến phức tạp, tắt tiếng và luân phiên on-call cần Netdata Cloud hoặc tích hợp với PagerDuty/OpsGenie.
 4. **Không phải nền tảng quan sát toàn diện**: Netdata tập trung vào metrics. Để tracing phân tán, logging có cấu trúc và APM, hãy kết hợp với Jaeger, Loki hoặc OpenTelemetry.
@@ -551,9 +469,7 @@ Tham gia [cộng đồng Netdata trên Telegram](https://t.me/netdata) để đ�
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -572,7 +488,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [Ghi chú Phát hành & Nhật ký Thay đổi](https://github.com/netdata/netdata/releases)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/schema-bug-faked-overfit-diagnosis-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/schema-bug-faked-overfit-diagnosis-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/schema-bug-faked-overfit-diagnosis-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/schema-bug-faked-overfit-diagnosis-2026" />
 title: 'schema bug 伪造了我的 overfit 诊断：没人愿意谈的回测复盘'
 description: '跑了 7 个量化实验，发现「教科书级 overfit」（Train PF 2.08 → OOS 0.94，比值 2.21）。然后才发现诊断本身就是错的 —— schema 字段静默错配导致 optimizer 用默认 10x leverage 跑，而不是进化出来的 2x。修正版本健康（比值 1.01）。这个 meta 教训比原诊断本身更难看。'
 date: 2026-05-26 00:00:00+08:00
@@ -21,10 +16,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: [backtest, overfit, quant, 'schema-drift', 'walk-forward', postmortem, 2026]
-aliases:
-- /zh/posts/schema-bug-faked-overfit-diagnosis-2026/
-faq:
-  - q: "什么是 schema drift？为什么它能伪造回测结果？"
+aliases: - /zh/posts/schema-bug-faked-overfit-diagnosis-2026/
+faq: - q: "什么是 schema drift？为什么它能伪造回测结果？"
     a: "schema drift 指的是你 config 里的参数字段名跟运行时的 schema 已经对不上了。deserialization 会静默丢掉未知字段并使用默认值。如果这些默认值很激进（比如你本来想要 2x leverage，默认却是 10x），回测结果就会剧烈摇摆。数字看着像真的，但它来自一个跟你写的策略完全不同的策略。"
   - q: "原始的 overfit 诊断为什么看起来那么有说服力？"
     a: "教科书级特征：Train PF 2.08、OOS PF 0.94、比值 2.21。每个量化交易员都在文献里见过这个模式 —— optimizer 拟合了不会重复的噪音。「overfit」这个结论跟数据形状契合得天衣无缝。隐藏的 10x leverage 只是把所有东西都放大，让两个数字都变得极端。换成正确的 2x leverage，同样参数得到 Train 1.494 / OOS 1.478，比值 1.01 —— 无聊地稳定。"
@@ -37,8 +30,6 @@ faq:
   - q: "经此事件后，新的「七不要」清单是什么？"
     a: "从 7 条扩展到 13 条。新增条目：不要信任没有 schema 验证的实验、不要在不足 200 个交易日的数据集上下结论、不要接受成交不足 30 次的 PF > 3、不要在没有跨资产验证的情况下上线策略、不要忽略 stdev/mean 比值（大于 1 = 噪音）、不要在没有分段分解的情况下汇报 PF、不要接受没有 IS/OOS 比值的报告。"
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/schema-bug-faked-overfit-diagnosis-2026/ -->
 
 {{</* resource-info */>}}
 
@@ -141,7 +132,15 @@ tp_rr_ratio: float = ...
 8 个加密交易对，同样 148 天窗口，同样修正后的参数：
 
 | 资产 | Train PF | OOS PF | 比值 |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | ETH | 1.154 | 0.697 | 1.66 |
 | BNB | 1.512 | 0.213 | 7.10 |
 | AVAX | 0.581 | 1.302 | 0.45 |
@@ -164,16 +163,13 @@ DOT 看起来像那个出挑的 —— Train 1.65、OOS 1.91，两边都强。�
 
 ```python
 @dataclass(frozen=True, kw_only=True)
-class DecisionParams:
-    base_leverage: float = 10.0
+class DecisionParams: base_leverage: float = 10.0
     # ...
     
     @classmethod
-    def from_dict(cls, d: dict) -> "DecisionParams":
-        valid = {f.name for f in cls.__dataclass_fields__.values()}
+    def from_dict(cls, d: dict) -> "DecisionParams": valid = {f.name for f in cls.__dataclass_fields__.values()}
         unknown = set(d.keys()) - valid
-        if unknown:
-            raise ValueError(f"Unknown fields: {unknown}")
+        if unknown: raise ValueError(f"Unknown fields: {unknown}")
         return cls(**{k: v for k, v in d.items() if k in valid})
 ```
 
@@ -217,12 +213,11 @@ assert params.base_leverage == raw.get("base_leverage", raw.get("leverage")), "l
 
 *Affiliate 链接 —— 价格相同，支持 dibi8.com。*
 
----
 
+---
 **相关阅读**：[Moss Trade Bot Factory 2026 评测](https://dibi8.com/zh/resources/ai-trading/moss-trade-bot-factory-2026-review/) · [回测 OVERFIT 5 种模式 2026](https://dibi8.com/zh/resources/ai-trading/backtest-overfit-5-patterns-2026/) · [Backtrader Python 回测](https://dibi8.com/zh/resources/ai-trading/backtrader-python-backtesting/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -250,25 +245,20 @@ assert params.base_leverage == raw.get("base_leverage", raw.get("leverage")), "l
 
 ## Why This Matters
 
-Understanding schema bug 伪造了我的 overfit 诊断：没人愿意谈的回测复盘 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding schema bug 伪造了我的 overfit 诊断：没人愿意谈的回测复盘 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -289,8 +279,8 @@ schema bug 伪造了我的 overfit 诊断：没人愿意谈的回测复盘 repre
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 

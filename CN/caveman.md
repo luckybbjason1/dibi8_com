@@ -1,12 +1,9 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/caveman" />
-title: "Cut Claude Code Token Usage by 65% With Caveman — Same Q...
+title: "Cut Claude Code Token Usage by 65% With Caveman — Same Q..."
 description: "Learn how Caveman, a Claude Code skill with 57K GitHub stars, reduces token usage by 65% without losing quality. Includes installation, usage, real benchmarks, and code examples."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Docker
+tech_stack: - Docker
   - Go
   - JavaScript
   - Python
@@ -24,10 +21,8 @@ maintainer: "JuliusBrussee"
 last_maintained: "2026-05-12"
 featureImage: ""
 draft: false
-aliases:
-- /posts/caveman/
-faqs:
-  - q: 'What is Caveman for Claude Code?'
+aliases: - /posts/caveman/
+faqs: - q: 'What is Caveman for Claude Code?'
     a: 'Caveman is a Claude Code skill that makes Claude respond in compressed, terse, caveman-style language by dropping filler, articles, and polite preamble. It reduces output tokens by 65% on average without losing technical accuracy.'
   - q: 'How much does Caveman reduce token usage?'
     a: 'Across the repository''s reproducible benchmarks, Caveman cut output tokens by 65% on average, ranging from 22% to 87% depending on how verbose the original task was. For example, explaining a React re-render bug dropped from 1,180 to 159 tokens (87% saved).'
@@ -48,33 +43,35 @@ If you use Claude Code daily, you have probably noticed the token counter climbi
 
 In this post, I will explain why token consumption matters, how Caveman works under the hood, how to install and use it, and what real benchmarks look like.
 
----
 
+---
 ## Why Token Consumption Matters for Claude Code Users
 
 Claude Code is an agentic coding assistant. Unlike a simple chatbot, it reads your codebase, runs commands, and produces multi-step plans. Every word it outputs costs tokens. Every token costs money.
 
-Here is why controlling token usage is critical:
-
-1. **Cost scales linearly with output length.** If Claude generates 2,000 tokens instead of 500, you pay four times as much for that single interaction.
+Here is why controlling token usage is critical: 1. **Cost scales linearly with output length.** If Claude generates 2,000 tokens instead of 500, you pay four times as much for that single interaction.
 2. **Long outputs slow you down.** Reading a wall of text to find the one code block you need wastes time.
 3. **Context windows are finite.** When Claude chatters, it leaves less room for your actual code and instructions in the conversation history.
 4. **Verbose does not mean better.** A March 2026 paper, *"Brevity Constraints Reverse Performance Hierarchies in Language Models"* ([arXiv:2604.00025](https://arxiv.org/abs/2604.00025)), found that forcing models to be brief **improved accuracy by 26 percentage points** on some benchmarks. Less fluff can actually mean more correctness.
 
 The takeaway: fewer tokens is not just cheaper — it is often better.
 
----
 
+---
 ## How Caveman Works
 
 Caveman is a **Claude Code skill** (also available for Cline, Cursor, Windsurf, and Codex). It injects a lightweight prompt constraint that tells Claude to drop filler, remove articles, use sentence fragments, and get straight to the point.
 
 The key insight is that **thinking/reasoning tokens are untouched**. Caveman does not make Claude "dumber." It only compresses the **output** — the final text that reaches your terminal. The model still reasons at full capability; it just speaks more efficiently afterward.
 
-Caveman offers three intensity levels:
-
-| Level | Trigger | Behavior |
-|-------|---------|----------|
+Caveman offers three intensity levels: | Level | Trigger | Behavior |
+|
+---
+|
+---
+|
+---
+|
 | **Lite** | `/caveman lite` | Removes filler, keeps grammar. Professional but concise. |
 | **Full** | `/caveman full` | Default mode. Drops articles, uses fragments, full caveman style. |
 | **Ultra** | `/caveman ultra` | Maximum compression. Telegraphic. Abbreviates everything. |
@@ -85,13 +82,9 @@ There is also a **Wenyan mode** that uses classical Chinese literary compression
 
 ## Installation and Setup
 
-Caveman supports multiple AI coding tools. Choose the one you use:
+Caveman supports multiple AI coding tools. Choose the one you use: ### Claude Code
 
-### Claude Code
-
-Clone the skill into your global skills directory:
-
-```bash
+Clone the skill into your global skills directory: ```bash
 git clone https://github.com/JuliusBrussee/caveman.git \
   ~/.claude/skills/caveman
 ```
@@ -100,9 +93,7 @@ Restart Claude Code. The skill auto-loads.
 
 ### Cursor
 
-Copy the rules file into your Cursor project:
-
-```bash
+Copy the rules file into your Cursor project: ```bash
 cp caveman/.cursor/.cursorrules /path/to/your/project/
 ```
 
@@ -122,16 +113,12 @@ Use the `$caveman` trigger after loading the skill.
 
 ## How to Use Caveman
 
-Once installed, trigger it with any of these phrases:
-
-- `/caveman`
+Once installed, trigger it with any of these phrases: - `/caveman`
 - `talk like caveman`
 - `caveman mode`
 - `less tokens please`
 
-To return to normal:
-
-- `stop caveman`
+To return to normal: - `stop caveman`
 - `normal mode`
 
 ### Example: Asking for a Code Review
@@ -158,10 +145,12 @@ Same technical content. No throat-clearing. **41% fewer tokens** in this real be
 
 ### Built-in Skills
 
-Caveman ships with several sub-commands:
-
-| Command | Purpose |
-|---------|---------|
+Caveman ships with several sub-commands: | Command | Purpose |
+|
+---
+|
+---
+|
 | `/caveman-commit` | Terse commit messages (Conventional Commits, ≤50 chars) |
 | `/caveman-review` | One-line PR comments. No fluff. |
 | `/caveman-help` | Quick-reference card for all modes. |
@@ -172,10 +161,16 @@ Caveman ships with several sub-commands:
 
 ## Real Benchmarks and Results
 
-The Caveman repository includes reproducible benchmarks using the real Claude API. Here are the numbers:
-
-| Task | Normal (tokens) | Caveman (tokens) | Saved |
-|------|----------------:|-----------------:|------:|
+The Caveman repository includes reproducible benchmarks using the real Claude API. Here are the numbers: | Task | Normal (tokens) | Caveman (tokens) | Saved |
+|
+---
+|
+---
+:|
+---
+:|
+---
+:|
 | Explain React re-render bug | 1,180 | 159 | **87%** |
 | Fix auth middleware token expiry | 704 | 121 | **83%** |
 | Set up PostgreSQL connection pool | 2,347 | 380 | **84%** |
@@ -242,9 +237,7 @@ Same technical depth. Same code. **72% fewer tokens.**
 
 ## Summary
 
-Caveman is not a gimmick. It is a **practical, scientifically grounded** optimization for anyone who uses Claude Code heavily. By compressing Claude's output into terse, caveman-style language, it delivers:
-
-- **65% average token reduction**
+Caveman is not a gimmick. It is a **practical, scientifically grounded** optimization for anyone who uses Claude Code heavily. By compressing Claude's output into terse, caveman-style language, it delivers: - **65% average token reduction**
 - **Faster responses**
 - **Easier-to-read output**
 - **Lower API costs**
@@ -264,14 +257,11 @@ If your monthly Claude Code bill is climbing or you are tired of scrolling throu
 
 ## Recommended Tools
 
-For developers building or deploying open-source AI tools, we recommend:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
+For developers building or deploying open-source AI tools, we recommend: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
 - **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Anthropic Claude / OpenAI / DeepSeek API proxy. Most AI tools above (chatbots, code gen, translation, search, etc) need an LLM API key — this proxy delivers stable access to top models at ~30% of official pricing.
 
 *Affiliate link — supports dibi8.com at no cost to you.*
 
-<!--auto-references-->
 ## References & Sources
 
 - [Caveman](https://github.com/JuliusBrussee/caveman)
@@ -280,7 +270,6 @@ For developers building or deploying open-source AI tools, we recommend:
 - [Docker](https://docs.docker.com/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -308,25 +297,20 @@ For developers building or deploying open-source AI tools, we recommend:
 
 ## Why This Matters
 
-Understanding cut claude code token usage by 65% with caveman — same quality, fewer tokens is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding cut claude code token usage by 65% with caveman — same quality, fewer tokens is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

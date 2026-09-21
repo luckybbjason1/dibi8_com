@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/cogvideo" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cogvideo" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cogvideo" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cogvideo" />
 title: 'CogVideo: 12.7K Stars — 2026 完整文本生成视频安装教程'
 description: 'CogVideo (CogVideoX) 是智谱 AI 开发的文本及图像生成视频模型。支持 ComfyUI、Diffusers、SAT，以及 Wan/HunyuanVideo/Open-Sora 集成。涵盖安装、Docker、推理、微调和基准测试。'
 date: 2026-05-19 00:00:00+08:00
@@ -25,18 +20,15 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [cogvideo, cogvideox, 文本生成视频, 扩散transformer, 智谱ai, 视频生成, 开源ai, comfyui]
-aliases:
-- /zh/posts/cogvideo/
+aliases: - /zh/posts/cogvideo/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/cogvideo/ -->
 
 {{</* resource-info */>}}
 
 > 使用智谱 AI 的开源扩散 Transformer 将文本和图像转换为电影级视频。30 分钟内从零搭建到生产环境。
 
----
 
+---
 ## 简介
 
 2024-2025 年，文本生成视频从研究课题转变为生产工具。开源模型在质量上已与商业 API 竞争，同时可在消费级 GPU 上运行。问题在于：大多数仓库仅以裸模型权重发布，文档分散。你需要花费数小时拼凑推理脚本、显存优化参数和微调流水线，而不是直接生成视频。
@@ -45,8 +37,8 @@ aliases:
 
 ![CogVideo web demo](https://raw.githubusercontent.com/zai-org/CogVideo/main/resources/web_demo.png)
 
----
 
+---
 ## 什么是 CogVideo？
 
 ![CogVideo logo](https://raw.githubusercontent.com/zai-org/CogVideo/main/resources/logo.svg)
@@ -74,7 +66,19 @@ CogVideoX 使用三组件流水线：
 ### 模型变体
 
 | 模型 | 参数量 | 分辨率 | 最大帧数 | 显存 (BF16) | 显存 (INT8) |
-|---|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | CogVideoX-2B | 2B | 720 x 480 | 49 | 5 GB 最低 | 4.4 GB |
 | CogVideoX-5B | 5B | 720 x 480 | 49 | 10 GB 最低 | 7 GB |
 | CogVideoX-5B-I2V | 5B | 720 x 480 | 49 | 4 GB 最低 | 3.6 GB |
@@ -311,11 +315,8 @@ save_interval: 100
 save: ckpts
 train_data: ["your_train_data_path"]
 valid_data: ["your_val_data_path"]
-deepseed:
-  bf16:
-    enabled: False  # 5B 设为 True
-  fp16:
-    enabled: True   # 5B 设为 False
+deepseed: bf16: enabled: False  # 5B 设为 True
+  fp16: enabled: True   # 5B 设为 False
 ```
 
 单 GPU 运行微调：
@@ -413,7 +414,17 @@ video = pipe(
 ### 推理速度（单卡 A100 80GB）
 
 | 模型 | 精度 | 步数 | 时间 (5秒视频) | 时间 (10秒视频) |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | CogVideoX-2B | BF16 | 50 | ~180秒 | 不支持 |
 | CogVideoX-5B | BF16 | 50 | ~1000秒 | 不支持 |
 | CogVideoX1.5-5B | BF16 | 50 | ~550秒 (H100) | ~1000秒 |
@@ -423,7 +434,15 @@ video = pipe(
 ### VBench-2.0 质量评分
 
 | 维度 | CogVideoX-5B (BLADE 8步) | CogVideoX-5B (50步) | Wan2.1-1.3B |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 综合 | 0.569 | 0.534 | 0.570 |
 | 人物保真 | 0.896 | 0.871 | 0.918 |
 | 可控性 | 0.612 | 0.581 | 0.593 |
@@ -480,8 +499,7 @@ app = FastAPI()
 pipe = None
 
 @app.on_event("startup")
-async def load_model():
-    global pipe
+async def load_model(): global pipe
     pipe = CogVideoXPipeline.from_pretrained(
         "THUDM/CogVideoX-5B",
         torch_dtype=torch.bfloat16
@@ -489,15 +507,13 @@ async def load_model():
     pipe.enable_model_cpu_offload()
     pipe.vae.enable_slicing()
 
-class GenerateRequest(BaseModel):
-    prompt: str
+class GenerateRequest(BaseModel): prompt: str
     num_frames: int = 49
     guidance_scale: float = 6.0
     num_inference_steps: int = 50
 
 @app.post("/generate")
-async def generate_video(req: GenerateRequest):
-    video = pipe(
+async def generate_video(req: GenerateRequest): video = pipe(
         prompt=req.prompt,
         num_frames=req.num_frames,
         guidance_scale=req.guidance_scale,
@@ -545,8 +561,7 @@ VRAM_USAGE = Histogram(cogvideo_vram_bytes, 峰值显存占用)
 start_http_server(9090)
 
 @INFERENCE_TIME.time()
-def generate_tracked(pipe, prompt):
-    INFERENCE_COUNT.inc()
+def generate_tracked(pipe, prompt): INFERENCE_COUNT.inc()
     torch.cuda.reset_peak_memory_stats()
     result = pipe(prompt=prompt, num_frames=49).frames[0]
     vram = torch.cuda.max_memory_allocated()
@@ -559,7 +574,17 @@ def generate_tracked(pipe, prompt):
 ## 与替代品对比
 
 | 特性 | CogVideoX-5B | Wan 2.1-14B | HunyuanVideo-13B | Open-Sora 1.2 |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **参数量** | 5B | 14B | 13B | ~7B (STDiT3) |
 | **许可证** | Apache-2.0 | Apache-2.0 | Apache-2.0 | Apache-2.0 |
 | **最大分辨率** | 1360 x 768 | 1280 x 720 | 1280 x 720 | 1280 x 720 |
@@ -684,7 +709,6 @@ CogVideoX 提供生产级文本生成视频能力，同时具备开源部署的�
 - Open-Sora 仓库：https://github.com/hpcaitech/Open-Sora
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

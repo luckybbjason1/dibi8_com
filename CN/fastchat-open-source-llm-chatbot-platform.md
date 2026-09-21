@@ -5,10 +5,7 @@ category: llm-frameworks
 tags: ['fastchat', 'llm-chatbot', 'openai-alternative', 'vicuna', 'alpaca', 'llm-evaluation']
 slug: fastchat-open-source-llm-chatbot-platform
 date: 2026-07-17 00:00:00+00:00
-lastmod:  2026-07-17 00:00:00+00:00featureImage: /images/articles/fastchat-llm-chatbot-platform.jpg
----
-
-<!-- canonical: https://dibi8.com/cn/tools/fastchat-open-source-llm-chatbot-platform/ -->
+lastmod: 2026-07-17 00:00:00+00:00featureImage: /images/articles/fastchat-llm-chatbot-platform.jpg---
 
 ## TL;DR
 
@@ -30,9 +27,7 @@ FastChat is an open platform developed by the Large Model System Organization (L
 
 ### Architecture Overview
 
-FastChat follows a modular architecture:
-
-1. **FastChat Models**: Core model implementations supporting various architectures
+FastChat follows a modular architecture: 1. **FastChat Models**: Core model implementations supporting various architectures
 2. **FastChat Serve**: High-performance serving engine with OpenAI API compatibility
 3. **FastChat Train**: Training pipeline for instruction tuning and RLHF
 4. **FastChat Eval**: Evaluation framework for benchmarking model performance
@@ -40,9 +35,7 @@ FastChat follows a modular architecture:
 
 #### The Model Worker Architecture
 
-FastChat uses a distributed worker architecture where each model runs as an independent worker process:
-
-```
+FastChat uses a distributed worker architecture where each model runs as an independent worker process: ```
 ┌─────────────┐     ┌──────────────┐     ┌─────────────────┐
 │  Controller  │────▶│  Model Worker│────▶│  Web UI / API   │
 │  (port 21001)│     │  (port 21002)│     │  (port 7860)    │
@@ -78,9 +71,7 @@ cd FastChat
 pip install -e ".[model_worker,webui]"
 ```
 
-Install specific model dependencies:
-
-```bash
+Install specific model dependencies: ```bash
 # For LLaMA-based models
 pip install transformers accelerate
 
@@ -109,7 +100,15 @@ print("Model loaded successfully!")
 ## Available Models
 
 | Model | Parameters | Base Model | Best For |
-|-------|-----------|------------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Vicuna-7B-v1.5 | 7B | LLaMA 2 | General conversation |
 | Vicuna-13B-v1.5 | 13B | LLaMA 2 | Complex reasoning |
 | Vicuna-33B-v1.5 | 33B | LLaMA 2 | Maximum capability |
@@ -149,9 +148,7 @@ print(state.messages[-1][2])
 
 ### Step 1: Prepare Training Data
 
-Create instruction-response pairs:
-
-```json
+Create instruction-response pairs: ```json
 [
     {
         "instruction": "Explain quantum computing in simple terms.",
@@ -206,15 +203,13 @@ from fastchat.serve.api_provider import OpenAIAPIClient
 
 app = FastAPI()
 
-class ChatRequest(BaseModel):
-    model: str
+class ChatRequest(BaseModel): model: str
     messages: list
     temperature: float = 0.7
     max_tokens: int = 2048
 
 @app.post("/v1/chat/completions")
-async def create_chat_completion(request: ChatRequest):
-    client = OpenAIAPIClient(
+async def create_chat_completion(request: ChatRequest): client = OpenAIAPIClient(
         model_name=request.model,
         temperature=request.temperature
     )
@@ -227,18 +222,14 @@ async def create_chat_completion(request: ChatRequest):
     return response
 ```
 
-Start the server:
-
-```bash
+Start the server: ```bash
 python -m fastchat.serve.openai_api_server \
     --model-path lmsys/vicuna-7b-v1.5 \
     --host 0.0.0.0 \
     --port 8000
 ```
 
-Test with curl:
-
-```bash
+Test with curl: ```bash
 curl http://localhost:8000/v1/chat/completions \
   -H "Content-Type: application/json" \
   -d '{
@@ -249,18 +240,14 @@ curl http://localhost:8000/v1/chat/completions \
 
 ### Multi-GPU Deployment
 
-For models larger than a single GPU can hold:
-
-```bash
+For models larger than a single GPU can hold: ```bash
 python -m fastchat.serve.multi_model_worker \
     --model-path lmsys/vicuna-33b-v1.5 \
     --num-gpus 4 \
     --worker-address http://worker1:21001
 ```
 
-Configure model parallelism:
-
-```python
+Configure model parallelism: ```python
 from fastchat.serve.model_worker import ModelWorker
 
 worker = ModelWorker(
@@ -277,38 +264,25 @@ worker = ModelWorker(
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
-metadata:
-  name: fastchat-service
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: fastchat
-  template:
-    spec:
-      containers:
-      - name: fastchat
+metadata: name: fastchat-service
+spec: replicas: 2
+  selector: matchLabels: app: fastchat
+  template: spec: containers: - name: fastchat
         image: lmsysorg/fastchat:v1.0
         command: ["python", "-m", "fastchat.serve.openai_api_server"]
-        args:
-          - "--model-path"
+        args: - "--model-path"
           - "lmsys/vicuna-13b-v1.5"
           - "--host"
           - "0.0.0.0"
           - "--port"
           - "8000"
-        resources:
-          limits:
-            nvidia.com/gpu: 1
-        ports:
-        - containerPort: 8000
+        resources: limits: nvidia.com/gpu: 1
+        ports: - containerPort: 8000
 ```
 
 ### Load Balancing with Multiple Workers
 
-Deploy multiple worker instances behind a load balancer:
-
-```bash
+Deploy multiple worker instances behind a load balancer: ```bash
 # Worker 1
 python -m fastchat.serve.model_worker \
     --controller-address http://controller:21001 \
@@ -336,9 +310,7 @@ Access at `http://localhost:7860` to interact with your deployed model through a
 
 ### Customizing the UI
 
-Modify `fastchat/serve/gradio_web_server.py` to customize:
-
-- Brand colors and logos
+Modify `fastchat/serve/gradio_web_server.py` to customize: - Brand colors and logos
 - Available models list
 - Temperature and parameter controls
 - Conversation history management
@@ -346,14 +318,7 @@ Modify `fastchat/serve/gradio_web_server.py` to customize:
 
 ### Embedding in External Applications
 
-Embed the chat interface in your existing application:
-
-```html
-<iframe 
-    src="http://your-fastchat-server:7860/embed" 
-    width="100%" 
-    height="600px"
-    frameborder="0">
+Embed the chat interface in your existing application: ```html
 </iframe>
 ```
 
@@ -361,9 +326,7 @@ Embed the chat interface in your existing application:
 
 ### Reinforcement Learning from Human Feedback (RLHF)
 
-Train models using human preferences:
-
-```bash
+Train models using human preferences: ```bash
 python -m fastchat.train.rlhf.train \
     --model_name_or_path lmsys/vicuna-7b-v1.5 \
     --ref_model_path lmsys/vicuna-7b-v1.5 \
@@ -375,9 +338,7 @@ python -m fastchat.train.rlhf.train \
 
 ### Direct Preference Optimization (DPO)
 
-Alternative to RLHF that directly optimizes policy from preference data:
-
-```bash
+Alternative to RLHF that directly optimizes policy from preference data: ```bash
 python -m fastchat.train.dpo.train \
     --model_name_or_path lmsys/vicuna-7b-v1.5 \
     --data_path ./preference_data.json \
@@ -390,9 +351,7 @@ python -m fastchat.train.dpo.train \
 
 ### Model Quantization for Edge Deployment
 
-Reduce model size for mobile or edge devices:
-
-```bash
+Reduce model size for mobile or edge devices: ```bash
 # Quantize to 4-bit
 python -m fastchat.model.quantize quantize \
     --model-path lmsys/vicuna-7b-v1.5 \
@@ -406,9 +365,7 @@ model, tokenizer = load_model("./vicuna-7b-q4", device="cpu")
 
 ### Evaluating with MT-Bench
 
-Run the official MT-Bench evaluation:
-
-```bash
+Run the official MT-Bench evaluation: ```bash
 python -m fastchat.eval.evaluate_mtbench \
     --model-path ./my-finetuned-model \
     --judge-model lmsys/vicuna-13b-v1.5 \
@@ -417,9 +374,7 @@ python -m fastchat.eval.evaluate_mtbench \
 
 ### Streaming Responses
 
-Enable streaming for real-time token generation:
-
-```python
+Enable streaming for real-time token generation: ```python
 from fastchat.serve.stream_manager import StreamManager
 
 stream_manager = StreamManager(
@@ -429,14 +384,21 @@ stream_manager = StreamManager(
     temperature=0.7
 )
 
-for token in stream_manager.stream(conv):
-    print(token, end="", flush=True)
+for token in stream_manager.stream(conv): print(token, end="", flush=True)
 ```
 
 ## Performance Comparison
 
 | Configuration | Tokens/sec | VRAM | Latency (p99) |
-|--------------|-----------|------|---------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Vicuna-7B + CPU | 15 tok/s | N/A | 2.5s |
 | Vicuna-7B + RTX 3090 | 45 tok/s | 12 GB | 0.8s |
 | Vicuna-13B + 2x A100 | 30 tok/s | 48 GB | 1.2s |
@@ -491,9 +453,7 @@ response = conversation.predict(input="Tell me about AI.")
 
 ### RAG (Retrieval-Augmented Generation) Pipeline
 
-Combine FastChat with vector databases for knowledge-grounded responses:
-
-```python
+Combine FastChat with vector databases for knowledge-grounded responses: ```python
 from langchain.vectorstores import FAISS
 from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.chains import RetrievalQA
@@ -531,25 +491,18 @@ result = qa_chain.run("What are the key features of this product?")
 
 ### Streamlit Web Application
 
-Build a custom chat interface with Streamlit:
-
-```python
+Build a custom chat interface with Streamlit: ```python
 import streamlit as st
 from fastchat.serve.api_provider import OpenAIAPIClient
 
 st.title("My AI Assistant")
 
-if "messages" not in st.session_state:
-    st.session_state.messages = []
+if "messages" not in st.session_state: st.session_state.messages = []
 
-for message in st.session_state.messages:
-    with st.chat_message(message["role"]):
-        st.markdown(message["content"])
+for message in st.session_state.messages: with st.chat_message(message["role"]): st.markdown(message["content"])
 
-if prompt := st.chat_input("Ask me anything..."):
-    st.session_state.messages.append({"role": "user", "content": prompt})
-    with st.chat_message("user"):
-        st.markdown(prompt)
+if prompt := st.chat_input("Ask me anything..."): st.session_state.messages.append({"role": "user", "content": prompt})
+    with st.chat_message("user"): st.markdown(prompt)
     
     client = OpenAIAPIClient(model_name="vicuna-7b")
     response = client.chat_completion(messages=st.session_state.messages)
@@ -558,34 +511,28 @@ if prompt := st.chat_input("Ask me anything..."):
         "role": "assistant",
         "content": response["choices"][0]["message"]["content"]
     })
-    with st.chat_message("assistant"):
-        st.markdown(response["choices"][0]["message"]["content"])
+    with st.chat_message("assistant"): st.markdown(response["choices"][0]["message"]["content"])
 ```
 
 ### WebSocket Real-Time Chat
 
-For real-time streaming responses via WebSocket:
-
-```python
+For real-time streaming responses via WebSocket: ```python
 from fastapi import FastAPI, WebSocket
 import json
 
 app = FastAPI()
 
 @app.websocket("/ws/chat")
-async def chat_websocket(websocket: WebSocket):
-    await websocket.accept()
+async def chat_websocket(websocket: WebSocket): await websocket.accept()
     
     model, tokenizer = load_model("lmsys/vicuna-7b-v1.5")
     
-    while True:
-        data = await websocket.receive_text()
+    while True: data = await websocket.receive_text()
         message = json.loads(data)
         
         # Stream tokens one by one
         response = ""
-        for token in model.stream_chat(message["prompt"]):
-            response += token
+        for token in model.stream_chat(message["prompt"]): response += token
             await websocket.send_text(json.dumps({"token": token}))
         
         await websocket.send_text(json.dumps({"done": True, "response": response}))
@@ -595,16 +542,12 @@ async def chat_websocket(websocket: WebSocket):
 
 ### Prompt Injection Prevention
 
-Protect your model against malicious inputs:
-
-```python
-def sanitize_prompt(prompt: str) -> str:
-    # Remove system-level instructions
+Protect your model against malicious inputs: ```python
+def sanitize_prompt(prompt: str) -> str: # Remove system-level instructions
     prompt = re.sub(r'^(system|ignore previous).*$', '', prompt, flags=re.IGNORECASE)
     
     # Limit prompt length
-    if len(prompt) > 2000:
-        prompt = prompt[:2000]
+    if len(prompt) > 2000: prompt = prompt[:2000]
     
     return prompt.strip()
 
@@ -615,9 +558,7 @@ response = model.chat(safe_prompt)
 
 ### Rate Limiting and Abuse Prevention
 
-Implement rate limiting for public-facing APIs:
-
-```python
+Implement rate limiting for public-facing APIs: ```python
 from slowapi import Limiter
 from slowapi.util import get_remote_address
 
@@ -625,15 +566,12 @@ limiter = Limiter(key_func=get_remote_address)
 
 @limiter.limit("10/minute")
 @app.post("/chat")
-async def chat(request: Request, data: ChatRequest):
-    return process_chat(data)
+async def chat(request: Request, data: ChatRequest): return process_chat(data)
 ```
 
 ### Content Moderation
 
-Add a moderation layer before responses reach users:
-
-```python
+Add a moderation layer before responses reach users: ```python
 from transformers import pipeline
 
 moderator = pipeline(
@@ -641,23 +579,30 @@ moderator = pipeline(
     model="facebook/roberta-hate-speech-dynabench-r4-target"
 )
 
-def moderate_response(text: str) -> bool:
-    result = moderator(text)[0]
+def moderate_response(text: str) -> bool: result = moderator(text)[0]
     return result["label"] == "hate"
 
 # Check both input and output
-if moderate_response(user_input):
-    return {"error": "Input contains inappropriate content"}
+if moderate_response(user_input): return {"error": "Input contains inappropriate content"}
 
 response = model.generate(user_input)
-if moderate_response(response):
-    return {"error": "Response filtered for safety"}
+if moderate_response(response): return {"error": "Response filtered for safety"}
 ```
 
 ## Model Comparison Matrix
 
 | Model | Params | Training Data | MT-Bench Score | Best For |
-|-------|--------|---------------|----------------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Vicuna-7B-v1.5 | 7B | 650K conversations | 6.45 | General chat |
 | Vicuna-13B-v1.5 | 13B | 650K conversations | 6.72 | Complex tasks |
 | Vicuna-33B-v1.5 | 33B | 650K conversations | 7.12 | Maximum quality |
@@ -670,48 +615,74 @@ if moderate_response(response):
 
 ### Single-GPU Deployment
 
-Ideal for development and light production use:
-
-```
-+----------------------------------+
+Ideal for development and light production use: ```
++
+---
++
 |     FastChat Server              |
-|  +---------------------------+   |
+|  +
+---
++   |
 |  |   Model Worker             |   |
 |  |   (7B model)               |   |
 |  |   RTX 3090 24GB            |   |
-|  +---------------------------+   |
+|  +
+---
++   |
 |     OpenAI API Compatible        |
-+----------------------------------+
++
+---
++
 ```
 
 ### Multi-GPU Tensor Parallel
 
-For models exceeding single GPU memory:
-
-```
-+--------------------------------------------+
+For models exceeding single GPU memory: ```
++
+---
++
 |          Controller                         |
 |         (port 21001)                        |
-+----------------------+----------------------+
++
+---
++
+---
++
 |   Worker 1           |      Worker 2        |
 |   A100 40GB          |      A100 40GB       |
 |   Part of            |      Part of         |
 |   model              |      model           |
-+----------------------+----------------------+
++
+---
++
+---
++
 ```
 
 ### Multi-Node Cluster
 
-Enterprise-scale deployment across multiple machines:
-
-```
-+------------------------------------------------------+
+Enterprise-scale deployment across multiple machines: ```
++
+---
++
 |                    Load Balancer                      |
-+-------------------+-------------------+----------------+
++
+---
++
+---
++
+---
++
 |  Node 1           |  Node 2           |  Node 3        |
 |  4xA100 80GB      |  4xA100 80GB      |  4xA100 80GB   |
 |  Vicuna-33B       |  Vicuna-33B       |  Vicuna-7B     |
-+-------------------+-------------------+----------------+
++
+---
++
+---
++
+---
++
 ```
 
 ## FAQ
@@ -788,7 +759,6 @@ Yes, FastChat supports function calling through custom conversation templates. Y
 Build your own AI assistant with FastChat's open-source platform. [Get started](https://dibi8.com/auth/) with our deployment guides and model training tutorials.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -813,3 +783,4 @@ Build your own AI assistant with FastChat's open-source platform. [Get started](
   }
 }
 </script>
+---

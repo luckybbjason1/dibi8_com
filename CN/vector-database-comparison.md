@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/vector-database-comparison" />
 title: 'Vector Database Comparison 2025: Pinecone vs Weaviate vs...
 description: 'Compare the top vector databases of 2025: Pinecone, Weaviate, Chroma, and Milvus. Find the best vector DB for your RAG application with benchmarks, pricing, and use cases.'
 date: 2026-05-18 00:00:00+08:00
@@ -20,10 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/vector-database-comparison/
+aliases: - /posts/vector-database-comparison/-
 ---
-
 {</* resource-info */>}
 
 Choosing the right vector database is one of the most consequential decisions when building RAG applications, recommendation engines, or semantic search systems. The wrong choice leads to scaling bottlenecks, runaway costs, or integration headaches that surface months into a project.
@@ -56,9 +52,7 @@ Retrieval-Augmented Generation (RAG) applications depend on vector databases to 
 
 [Pinecone](https://pinecone.io) launched in 2019 and pioneered the managed vector database category. It is a fully managed, cloud-native vector database designed for developers who want to avoid infrastructure operations entirely.
 
-Key features include:
-
-- **Serverless architecture**: No index tuning, node sizing, or scaling operations
+Key features include: - **Serverless architecture**: No index tuning, node sizing, or scaling operations
 - **Hybrid search**: Combine vector similarity with metadata filtering in a single query
 - **Metadata filtering**: Apply exact-match filters on string, numeric, and boolean fields
 - **Namespaces**: Logical partitioning of vectors within a single index
@@ -79,7 +73,11 @@ Pinecone offers a free tier with one serverless index and up to 100,000 vectors.
 ### Pros and Cons
 
 | Pros | Cons |
-|------|------|
+|
+---
+|
+---
+|
 | Zero infrastructure management | Vendor lock-in, no self-hosting |
 | Serverless cost efficiency | Limited customization of index parameters |
 | Fast time-to-value | Higher cost at extreme scale |
@@ -96,9 +94,7 @@ Pinecone excels for teams that want managed infrastructure without DevOps overhe
 
 [Weaviate](https://weaviate.io) is an open-source, AI-native vector search engine written in Go. It differentiates itself through a modular architecture that integrates vectorization, semantic search, and generative AI in a single system.
 
-Key features include:
-
-- **GraphQL and REST APIs**: Flexible query interfaces
+Key features include: - **GraphQL and REST APIs**: Flexible query interfaces
 - **Modular AI integrations**: Built-in vectorization modules for OpenAI, Cohere, Hugging Face
 - **Hybrid search**: Combine BM25 keyword search with vector similarity
 - **Multi-tenancy**: Built-in tenant isolation for SaaS applications
@@ -108,9 +104,7 @@ Key features include:
 
 Weaviate's GraphQL interface is unique among vector databases. Developers can construct complex queries that combine vector similarity, keyword matching, metadata filtering, and generative AI in a single request. This reduces network round-trips and simplifies client code.
 
-Example GraphQL query:
-
-```graphql
+Example GraphQL query: ```graphql
 {
   Get {
     Article(
@@ -136,7 +130,11 @@ Weaviate offers three deployment modes: open-source self-hosted (Docker, Kuberne
 ### Pros and Cons
 
 | Pros | Cons |
-|------|------|
+|
+---
+|
+---
+|
 | Open-source with permissive license | Steeper learning curve |
 | GraphQL is powerful for complex queries | GraphQL adds complexity for simple use cases |
 | Built-in vectorization modules | Modules can add latency |
@@ -153,9 +151,7 @@ Weaviate fits teams that need customization, hybrid search capabilities, or plan
 
 [Chroma](https://trychroma.com) is an open-source embedding database designed for developer productivity. Its philosophy prioritizes simplicity, fast setup, and clean APIs over enterprise features.
 
-Key features include:
-
-- **Simple Python/JS API**: Minimal boilerplate, works like a Python dict
+Key features include: - **Simple Python/JS API**: Minimal boilerplate, works like a Python dict
 - **Local-first design**: Runs in-memory or persistently on local disk
 - **Persistent and in-memory modes**: Switch between ephemeral and durable storage
 - **Automatic embedding**: Optional built-in embedding via Sentence Transformers
@@ -163,9 +159,7 @@ Key features include:
 
 ### Simple Python/JS API
 
-Chroma's API is intentionally minimal. Creating a collection, adding documents, and querying takes fewer than 10 lines of code:
-
-```python
+Chroma's API is intentionally minimal. Creating a collection, adding documents, and querying takes fewer than 10 lines of code: ```python
 import chromadb
 client = chromadb.Client()
 collection = client.create_collection("my_docs")
@@ -184,7 +178,11 @@ Chroma supports both in-memory storage (data lost on restart) and persistent sto
 ### Pros and Cons
 
 | Pros | Cons |
-|------|------|
+|
+---
+|
+---
+|
 | Fastest setup of any vector DB | Limited scalability beyond single node |
 | Minimal API surface | No distributed mode |
 | No external dependencies for basic use | Weaker performance at scale |
@@ -201,9 +199,7 @@ Chroma is the best choice for proof-of-concept RAG applications, development env
 
 [Milvus](https://milvus.io) is an open-source vector database built for enterprise-scale deployments. Created by Zilliz and donated to the LF AI & Data Foundation, Milvus handles billion-scale vector collections with sub-second latency.
 
-Key features include:
-
-- **GPU index acceleration**: CUDA-accelerated index building for 10x speedups
+Key features include: - **GPU index acceleration**: CUDA-accelerated index building for 10x speedups
 - **Distributed architecture**: Horizontally scalable across clusters
 - **Multiple index types**: HNSW, IVF_FLAT, IVF_PQ, DISKANN, GPU_IVF_PQ
 - **Rich query capabilities**: Hybrid search, range search, grouping, multi-vector
@@ -224,7 +220,11 @@ Milvus separates storage, indexing, and query into independent microservices. Th
 ### Pros and Cons
 
 | Pros | Cons |
-|------|------|
+|
+---
+|
+---
+|
 | Best-in-class scalability | Complex deployment and operations |
 | GPU acceleration | Steeper learning curve |
 | Open-source with vendor-neutral foundation | Resource-intensive at scale |
@@ -238,7 +238,17 @@ Milvus is the clear choice for large-scale applications: billion-vector search, 
 ## Feature Comparison Matrix
 
 | Feature | Pinecone | Weaviate | Chroma | Milvus |
-|---------|----------|----------|--------|--------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Deployment** | Cloud only | Cloud + Self-hosted | Local + Server | Cloud + Self-hosted |
 | **Open Source** | No | Yes (BSD-3) | Yes (Apache 2.0) | Yes (Apache 2.0) |
 | **Max Scale** | 10B+ vectors | 100M+ vectors | ~10M vectors | 100B+ vectors |
@@ -268,7 +278,17 @@ Pinecone, Weaviate, and Milvus offer Python, JavaScript, and Go SDKs. Chroma foc
 ### Pricing Comparison
 
 | Pricing Model | Pinecone | Weaviate Cloud | Chroma | Zilliz Cloud |
-|--------------|----------|----------------|--------|--------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Free Tier** | 100K vectors | 14-day trial | Unlimited (local) | 1M vectors |
 | **Entry Paid** | ~$70/month | ~$25/month | Free (self-hosted) | ~$30/month |
 | **Mid-Scale** | ~$500/month | ~$200/month | Infrastructure only | ~$300/month |
@@ -284,10 +304,14 @@ Industry benchmarks from the [ANN Benchmarks](https://github.com/erikbern/ann-be
 
 ### QPS Comparison
 
-At 99% recall on the GIST-960 dataset:
-
-| Database | QPS (1M vectors) | QPS (10M vectors) |
-|----------|-----------------|-------------------|
+At 99% recall on the GIST-960 dataset: | Database | QPS (1M vectors) | QPS (10M vectors) |
+|
+---
+|
+---
+|
+---
+|
 | Milvus (HNSW) | ~2,500 | ~1,800 |
 | Pinecone | ~2,200 | ~1,500 |
 | Weaviate | ~1,800 | ~1,200 |
@@ -295,10 +319,12 @@ At 99% recall on the GIST-960 dataset:
 
 ### Latency Comparison
 
-p99 latency at 95% recall (1M vectors, 768 dimensions):
-
-| Database | p99 Latency |
-|----------|-------------|
+p99 latency at 95% recall (1M vectors, 768 dimensions): | Database | p99 Latency |
+|
+---
+|
+---
+|
 | Pinecone | ~15ms |
 | Milvus | ~18ms |
 | Weaviate | ~25ms |
@@ -306,10 +332,12 @@ p99 latency at 95% recall (1M vectors, 768 dimensions):
 
 ### Recall Rate Benchmarks
 
-Recall@10 performance at equivalent throughput:
-
-| Database | Recall@10 |
-|----------|-----------|
+Recall@10 performance at equivalent throughput: | Database | Recall@10 |
+|
+---
+|
+---
+|
 | Milvus (HNSW) | 0.98 |
 | Pinecone | 0.97 |
 | Weaviate | 0.95 |
@@ -321,9 +349,7 @@ Note that benchmark results depend heavily on index parameters, hardware, and da
 
 ### Decision Framework
 
-Selecting a vector database requires evaluating five dimensions:
-
-1. **Scale**: How many vectors will you store? Millions favor any option. Billions require Milvus or Pinecone.
+Selecting a vector database requires evaluating five dimensions: 1. **Scale**: How many vectors will you store? Millions favor any option. Billions require Milvus or Pinecone.
 2. **Deployment preference**: Cloud-only, self-hosted, or hybrid?
 3. **Team expertise**: Do you have Kubernetes and DevOps resources?
 4. **Query complexity**: Do you need hybrid search, multi-vector queries, or complex filtering?
@@ -349,9 +375,7 @@ Teams committed to fully managed infrastructure should evaluate Pinecone for sim
 
 ### LangChain Vector Store Integrations
 
-All four databases integrate with [LangChain](https://python.langchain.com) through vector store classes:
-
-```python
+All four databases integrate with [LangChain](https://python.langchain.com) through vector store classes: ```python
 # Pinecone
 from langchain_pinecone import PineconeVectorStore
 
@@ -369,20 +393,15 @@ Each integration supports `add_documents()`, `similarity_search()`, and `as_retr
 
 ### LlamaIndex Vector Store Support
 
-[LlamaIndex](https://docs.llamaindex.ai) offers native storage integrations:
-
-- **Pinecone**: `PineconeVectorStore` for managed vector storage
+[LlamaIndex](https://docs.llamaindex.ai) offers native storage integrations: - **Pinecone**: `PineconeVectorStore` for managed vector storage
 - **Weaviate**: `WeaviateVectorStore` with hybrid search support
 - **Chroma**: `ChromaVectorStore` for local development
 - **Milvus**: `MilvusVectorStore` for production-scale deployments
 
 ### Direct SDK Usage Examples
 
-For applications not using LangChain or LlamaIndex, each database provides direct SDKs with similar patterns:
-
-```python
-# Common pattern across all vector databases:
-# 1. Initialize client
+For applications not using LangChain or LlamaIndex, each database provides direct SDKs with similar patterns: ```python
+# Common pattern across all vector databases: # 1. Initialize client
 # 2. Create collection/index
 # 3. Add vectors with metadata
 # 4. Query with embedding
@@ -440,20 +459,17 @@ Chroma is an open-source, local-first vector database optimized for developer pr
 
 Milvus generally leads in raw performance benchmarks, particularly at billion-vector scale and with GPU acceleration. Pinecone offers the best performance-to-operational-simplicity ratio. Weaviate excels at hybrid search queries. Chroma prioritizes ease of use over peak performance. The "best" performance depends on your specific workload characteristics.
 
----
 
+---
 ## Recommended Infrastructure
 
-To run any of the tools above reliably 24/7, infrastructure matters:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.
+To run any of the tools above reliably 24/7, infrastructure matters: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low latency for mainland China access. This is the same IDC hosting dibi8.com — production-proven.
 
 *Affiliate links — no extra cost to you, helps keep dibi8.com running.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -500,3 +516,5 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 
 使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。
 
+
+---

@@ -1,12 +1,9 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/self-hosted-ai-coding-workflow" />
 title: 'Self-Hosted AI Coding Workflow: The Complete $6/Month St...
 description: 'A 7-component self-hosted AI coding stack that replaces $290/month of SaaS subscriptions (Cursor + Claude Code Pro + Copilot + Replit) with $6/month of infrastructure. Real numbers, real config, full step-by-step assembly.'
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
-tech_stack:
-  - Docker
+tech_stack: - Docker
   - Python
   - TypeScript
   - PostgreSQL
@@ -26,10 +23,8 @@ featureImage: ''
 draft: false
 categories: [collections]
 tags: ['self-hosted', 'ai coding', stack, workflow, collection]
-aliases:
-  - /posts/self-hosted-ai-coding-workflow/
+aliases: - /posts/self-hosted-ai-coding-workflow/-
 ---
-
 If you've been paying $20/mo for Cursor + $80/mo for Claude Code Pro + $19/mo for Copilot + $50/mo for Replit credits + $120/mo for OpenAI API top-ups, you're at **$289/month** of AI coding spend. After 12 months that's **$3,468** — for tools you don't own, can't audit, and can have rate-limited or shut off without notice.
 
 This collection assembles the **7-component self-hosted alternative** that runs on a **$6/month VPS** and matches 90%+ of the SaaS feature set. We've published a deep dive on each component over the past 90 days. This page is the **complete stack assembly** — what to install, in what order, with which configs, plus the upgrade path when you outgrow the $6 tier.
@@ -37,7 +32,17 @@ This collection assembles the **7-component self-hosted alternative** that runs 
 ## TL;DR — The Stack at a Glance
 
 | # | Component | Tool | Why | Deep dive |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 1 | Editor / Agent | **OpenCode** | Open-source Claude Code alternative, runs DeepSeek-V4 at $0.007/task vs $0.14 | [OpenCode setup](/resources/llm-frameworks/opencode-open-source-claude-code-alternative-2026/) |
 | 2 | Local LLM Runner | **Ollama** | 137k stars, one-line install, 22 tok/sec on a 5-year-old M1 | [Ollama guide](/resources/llm-frameworks/ollama/) |
 | 3 | LLM Gateway | **LiteLLM** | 47.8k stars, unified API for 100+ models, self-hosted | [LiteLLM gateway](/resources/llm-frameworks/litellm/) |
@@ -50,9 +55,7 @@ This collection assembles the **7-component self-hosted alternative** that runs 
 
 ## 1. Why This Stack Exists in 2026
 
-Three things changed between 2024 and 2026 that made self-hosted AI coding finally viable:
-
-1. **Open-weight models caught up**: DeepSeek-V4, Qwen 3 Coder, GLM-4.6 Coder are within 5% of Claude/GPT-5 on coding benchmarks while being free or near-free
+Three things changed between 2024 and 2026 that made self-hosted AI coding finally viable: 1. **Open-weight models caught up**: DeepSeek-V4, Qwen 3 Coder, GLM-4.6 Coder are within 5% of Claude/GPT-5 on coding benchmarks while being free or near-free
 2. **MCP standardized tool integration**: instead of every editor reinventing how to call file/git/search tools, the protocol is now a USB-C port — see [MCP Server Registry guide](/resources/llm-frameworks/mcp-server-registry-comprehensive-guide-2026/) for the 19,700+ servers now available
 3. **Local LLM runners are production-grade**: Ollama, vLLM, and llama.cpp run at acceptable speed on consumer hardware
 
@@ -97,8 +100,7 @@ The pattern: **OpenCode is the editor brain, LiteLLM is the traffic cop, 9Router
 
 **Why this pick**: Open-source agent that speaks MCP natively. On the same refactor task (400-line React component), OpenCode + DeepSeek-V4 = 18 sec, $0.007. Claude Code (Sonnet) = 12 sec, $0.14. Twenty-times cheaper, 5% slower.
 
-**Quick install**:
-```bash
+**Quick install**: ```bash
 npm install -g @opencode-ai/opencode
 opencode --version  # 1.x
 ```
@@ -113,8 +115,7 @@ Point it at your LiteLLM gateway (next component) via config and you're done.
 
 **Why this pick**: 137k stars. Single-binary install. Llama 3.2 3B runs at 22 tok/sec on a 5-year-old M1 MacBook with 8GB RAM. Qwen 3 Coder 14B runs comfortably on a 16GB M-series Mac or any 32GB Linux box.
 
-**Quick install**:
-```bash
+**Quick install**: ```bash
 curl -fsSL https://ollama.com/install.sh | sh
 ollama pull qwen3-coder:14b
 ollama serve  # exposes :11434 OpenAI-compatible API
@@ -130,9 +131,7 @@ LiteLLM picks up Ollama as a provider automatically.
 
 **Why this pick**: 47.8k stars, the most-starred LLM gateway. 8ms P95 latency at 1k RPS. Free if self-hosted. Compared in detail in our [Portkey vs LiteLLM vs OpenRouter 2026 guide](/resources/llm-frameworks/llm-gateway-portkey-litellm-openrouter-comparison-2026/).
 
-**Quick deploy on a 4GB VPS** (we recommend {{< aff "htstack" "stack-vps" "HTStack's Hong Kong VPS" >}} for sub-30ms latency to mainland China users, or {{< aff "digitalocean" "stack-droplet" "DigitalOcean's $6 droplet" >}} for everywhere else):
-
-```bash
+**Quick deploy on a 4GB VPS** (we recommend {{< aff "htstack" "stack-vps" "HTStack's Hong Kong VPS" >}} for sub-30ms latency to mainland China users, or {{< aff "digitalocean" "stack-droplet" "DigitalOcean's $6 droplet" >}} for everywhere else): ```bash
 docker run -d --name litellm -p 4000:4000 \
   -e LITELLM_MASTER_KEY=sk-your-secret \
   -e OLLAMA_API_BASE=http://host.docker.internal:11434 \
@@ -149,8 +148,7 @@ docker run -d --name litellm -p 4000:4000 \
 
 **Why this matters**: Coding agents are pathological token consumers — they send the entire codebase context every turn. At $3/M input tokens on Claude Sonnet, this adds up fast. 9Router's RTK (Repetition-Token Compression) is the only proxy designed specifically for this workload.
 
-**Quick install**:
-```bash
+**Quick install**: ```bash
 docker run -d --name 9router -p 9999:9999 \
   -e PROVIDERS=anthropic,openai,gemini,deepseek \
   ghcr.io/rtk-ai/9router:latest
@@ -166,11 +164,9 @@ Point LiteLLM's premium provider endpoints at `localhost:9999` instead of direct
 
 **Why this pick**: mem0 is the open-source semantic memory layer with 30k+ stars. AgentMemory is the MCP server that exposes it to any MCP host (OpenCode / Claude Desktop / Cursor).
 
-**Quick install**:
-```bash
+**Quick install**: ```bash
 npm install -g @mem0/mem0-mcp
-# Add to OpenCode's MCP config:
-# { "agentmemory": { "command": "mem0-mcp", "args": [] } }
+# Add to OpenCode's MCP config: # { "agentmemory": { "command": "mem0-mcp", "args": [] } }
 ```
 
 **Full setup** with the embedding model picks and vector DB choices: see our [AgentMemory MCP guide](/resources/llm-frameworks/agentmemory-mcp-persistent-memory-2026/).
@@ -179,13 +175,11 @@ npm install -g @mem0/mem0-mcp
 
 **The role**: Give the agent eyes and hands. Read your project files, inspect your git history, search the web — all via the MCP protocol.
 
-**The minimum set**:
-- `modelcontextprotocol/server-filesystem` (Anthropic reference)
+**The minimum set**: - `modelcontextprotocol/server-filesystem` (Anthropic reference)
 - `modelcontextprotocol/server-git` (Anthropic reference)
 - `tavily-mcp` (LLM-formatted web search results)
 
-**Quick install** (all 3 added to OpenCode's `claude_desktop_config.json`):
-```json
+**Quick install** (all 3 added to OpenCode's `claude_desktop_config.json`): ```json
 {
   "mcpServers": {
     "filesystem": {
@@ -221,9 +215,7 @@ Tavily has a generous free tier (1,000 searches/mo) so this stays within the $6 
 
 ## 10. Assembly Order — Day 1 Setup (90 minutes)
 
-If you're starting from scratch, do it in this order:
-
-1. **Spin up infrastructure** (15 min) — Order a {{< aff "digitalocean" "assembly-vps" "DigitalOcean $6 droplet" >}}, install Docker, open ports 4000 (LiteLLM) + 9999 (9Router) + 11434 (Ollama)
+If you're starting from scratch, do it in this order: 1. **Spin up infrastructure** (15 min) — Order a {{< aff "digitalocean" "assembly-vps" "DigitalOcean $6 droplet" >}}, install Docker, open ports 4000 (LiteLLM) + 9999 (9Router) + 11434 (Ollama)
 2. **Ollama first** (10 min) — Install + pull `qwen3-coder:14b` (~9 GB). Confirm `curl localhost:11434/api/tags` works
 3. **LiteLLM second** (15 min) — Docker run with the env vars from sec. 5. Confirm `curl localhost:4000/v1/models -H "Authorization: Bearer sk-your-secret"` lists Ollama models
 4. **9Router third** (10 min) — Optional but recommended. Add to LiteLLM's premium provider config
@@ -237,7 +229,13 @@ You now have a $6/month AI coding stack matching 90% of the $289/month SaaS bund
 ## 11. Monthly Cost Breakdown
 
 | Item | Entry tier | Team of 5 tier |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | VPS (4 GB → 16 GB) | $6 | $24 |
 | Ollama models | $0 (you own the disk) | $0 |
 | LiteLLM | $0 (self-hosted) | $0 |
@@ -252,9 +250,7 @@ Compare against $289/month for Cursor + Claude Code Pro + Copilot + Replit + Ope
 
 ## 12. Upgrade Path
 
-When your stack outgrows the $6 tier (more than 1 dev, more than 1 project, persistent state matters):
-
-- **Add Postgres** for LiteLLM spend tracking + virtual keys per project ({{< aff "digitalocean" "upgrade-postgres" "DigitalOcean Managed Postgres" >}} $15/mo)
+When your stack outgrows the $6 tier (more than 1 dev, more than 1 project, persistent state matters): - **Add Postgres** for LiteLLM spend tracking + virtual keys per project ({{< aff "digitalocean" "upgrade-postgres" "DigitalOcean Managed Postgres" >}} $15/mo)
 - **Add Redis** for LiteLLM caching (1 GB managed Redis $10/mo)
 - **Move LiteLLM behind a load balancer** with 3 replicas — see [Portkey vs LiteLLM 2026 guide](/resources/llm-frameworks/llm-gateway-portkey-litellm-openrouter-comparison-2026/) sec. 4 for the Kubernetes pattern
 - **Add Grafana + Loki** for full observability — log every prompt, every fallback, every cost spike
@@ -276,12 +272,11 @@ Total: $6/month. Total: 90 minutes to assemble. Total: zero vendor lock-in.
 
 If you're spending $200+/mo on AI coding SaaS, this stack pays for itself in week 1. Spin up a {{< aff "digitalocean" "footer-cta" "DigitalOcean $6 droplet" >}}, follow sec. 10, and report back next week.
 
----
 
+---
 *Bookmark this page — we update component picks quarterly as new open-source releases land. Last updated: 2026-05-21.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -307,8 +302,8 @@ If you're spending $200+/mo on AI coding SaaS, this stack pays for itself in wee
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [12-factor-agents](self-hosted-ai-coding-workflow)

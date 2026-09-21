@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/cross-border-ai-marketing-stack" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cross-border-ai-marketing-stack" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cross-border-ai-marketing-stack" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cross-border-ai-marketing-stack" />
 title: 'Stack Marketing AI Xuyên Biên Giới 2026: Setup 7 Công Cụ...
 description: 'Stack AI 7 thành phần thiết kế riêng cho hoạt động xuyên biên giới — tự động hóa nội dung đa ngôn ngữ, scrape thông tin thị trường toàn cầu, analytics tuân thủ GDPR, vượt qua ma sát thanh toán, chạy toàn bộ trên VPS Hong Kong. Tổng $35-80/tháng, OSS hoặc aff thân thiện.'
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
-tech_stack:
-  - Docker
+tech_stack: - Docker
   - Python
   - TypeScript
   - PostgreSQL
@@ -29,11 +23,9 @@ featureImage: ''
 draft: false
 categories: [collections]
 tags: ['xuyên biên giới', 'marketing ai', 'ra toàn cầu', stack, collection]
-aliases:
-  - /posts/cross-border-ai-marketing-stack/
+aliases: - /posts/cross-border-ai-marketing-stack/
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/cross-border-ai-marketing-stack/ -->
 # Stack Marketing AI Xuyên Biên Giới 2026: Setup 7 Công Cụ Cho Team Trung Quốc Ra Toàn Cầu
 
 
@@ -57,9 +49,7 @@ Tổng chi phí tháng: **$35-80/tháng** cho team 1-3 founder. So với cách t
 
 ## 1. Vì Sao "Xuyên Biên Giới" Cần Stack Riêng
 
-Các điểm đau không trực giác đến khi bạn đã ship:
-
-1. **Ma sát thanh toán**: Stripe không nhận card Trung Quốc đại lục. PayPal hạn chế một số category sản phẩm. Hầu hết SaaS Mỹ không nhận Alipay
+Các điểm đau không trực giác đến khi bạn đã ship: 1. **Ma sát thanh toán**: Stripe không nhận card Trung Quốc đại lục. PayPal hạn chế một số category sản phẩm. Hầu hết SaaS Mỹ không nhận Alipay
 2. **Data residency**: Phạt GDPR nếu dữ liệu user EU chạm server Trung Quốc. Luật dữ liệu Trung Quốc nếu server EU chạm dữ liệu user Trung Quốc
 3. **Bandwidth bất đối xứng**: Site load 200ms từ Mỹ thì load 4 giây từ Trung Quốc (không CDN), ngược lại cũng vậy
 4. **Vòng đời nội dung**: Workflow "đăng một lần, phân phối mọi nơi" phải hit Reddit (thiên Mỹ), HN (thiên Mỹ), Twitter/X (toàn cầu), 微信 (Trung Quốc), 小红书 (Hoa kiều) — mỗi cái với norm đăng khác nhau
@@ -110,8 +100,7 @@ VPS HK là cầu nối: latency thấp tới cả Trung Quốc và toàn cầu, 
 
 **Vì sao self-host quan trọng ở đây**: Giá "per task" của Zapier trừng phạt workflow xuyên biên giới — mọi dịch, mọi biến thể platform, mọi check analytics là một "task". n8n trên VPS self-host = task không giới hạn với $6 hạ tầng.
 
-**Cài nhanh**:
-```bash
+**Cài nhanh**: ```bash
 docker run -d --name n8n -p 5678:5678 \
   -v ~/.n8n:/home/node/.n8n \
   -e WEBHOOK_URL=https://n8n.yourdomain.com \
@@ -128,8 +117,7 @@ Setup đầy đủ bao gồm backend PostgreSQL (quan trọng cho độ tin cậ
 
 **Vì sao chọn cái này hơn LlamaIndex / AutoGen**: Primitive i18n trưởng thành (PromptTemplate xử lý format date/currency theo locale), nhiều tích hợp provider nhất (100+), và framework agent với hệ sinh thái tool dựng sẵn lớn nhất cho task xuyên biên giới (API dịch, scraping, lịch).
 
-**Cài nhanh**:
-```bash
+**Cài nhanh**: ```bash
 pip install langchain langchain-community langchain-openai
 ```
 
@@ -141,8 +129,7 @@ Setup LangChain đầy đủ + recipe agent: [Hướng dẫn LangChain productio
 
 **Vai trò**: Khi bạn cần biết "developer Mỹ/EU đang nói gì về MCP tuần này" — không monitor thủ công 12 subreddit, 8 newsletter, và HN.
 
-**3-tier pick**:
-- **Gemini CLI free tier** (1000 req/day) — monitor hàng ngày bulk
+**3-tier pick**: - **Gemini CLI free tier** (1000 req/day) — monitor hàng ngày bulk
 - **Perplexity Pro** ($20/tháng) — khi cần research có căn cứ với trích dẫn
 - **ChatGPT search** (free với account) — fallback cho query đụng giới hạn tier khác
 
@@ -154,13 +141,11 @@ So sánh chi tiết + khi nào mỗi cái thắng: [Công cụ AI Search 2026 (P
 
 **Vai trò**: Biết ai đang thăm sản phẩm toàn cầu của bạn mà không (a) Google chặn bạn trên traffic EU, (b) ad-blocker chặn ~40% data GA của bạn, hoặc (c) user Trung Quốc đụng script Google bị chặn làm chậm page.
 
-**Vì sao Plausible thắng xuyên biên giới**:
-- Script 1KB đơn lẻ, không cookie, không cần banner consent GDPR
+**Vì sao Plausible thắng xuyên biên giới**: - Script 1KB đơn lẻ, không cookie, không cần banner consent GDPR
 - Self-host được ở Hong Kong = không bị chặn từ đại lục VÀ EU
 - ~80% rate capture data vs ~60% GA (không filter ad-blocker)
 
-**Cài nhanh**:
-```bash
+**Cài nhanh**: ```bash
 docker compose -f https://github.com/plausible/community-edition/raw/v3.0.0/compose.yml up -d
 ```
 
@@ -170,13 +155,11 @@ Setup đầy đủ bao gồm event tracking cho conversion attribution: [Plausib
 
 **Vai trò**: Thay Cursor ($20 USD/seat) + Claude Code Pro ($80 USD/seat) cho team dev. OpenCode là editor; DeepSeek là model.
 
-**Ưu thế đặc thù xuyên biên giới**:
-- **DeepSeek API hoạt động từ đại lục không VPN** — team dev Trung Quốc thực sự dùng được
+**Ưu thế đặc thù xuyên biên giới**: - **DeepSeek API hoạt động từ đại lục không VPN** — team dev Trung Quốc thực sự dùng được
 - **Rẻ hơn Claude 20× ở cùng task** — toán học nghiêm túc ở 3+ dev
 - **DeepSeek chấp nhận thanh toán RMB** — không cần thuyết phục tài chính nạp card USD
 
-**Cài nhanh**:
-```bash
+**Cài nhanh**: ```bash
 npm install -g @opencode-ai/opencode
 opencode --provider deepseek --api-key $DEEPSEEK_KEY
 ```
@@ -187,8 +170,7 @@ Setup đầy đủ bao gồm cách chia sẻ MCP server qua team: [Hướng dẫ
 
 **Vai trò**: Host tất cả ở trên ở một nơi cầu nối Trung Quốc và toàn cầu.
 
-**Vì sao đặc biệt HK**:
-- **Latency sub-30ms tới user Trung Quốc đại lục** (không phức tạp Great Firewall cho dịch vụ hợp pháp)
+**Vì sao đặc biệt HK**: - **Latency sub-30ms tới user Trung Quốc đại lục** (không phức tạp Great Firewall cho dịch vụ hợp pháp)
 - **Sub-100ms tới Tokyo / Singapore** (cổng vào APAC toàn cầu)
 - **Sub-200ms tới Bờ Tây Mỹ / Frankfurt** (chấp nhận được cho workload không thời gian thực)
 - **Quản lý HK** = trung lập cho cả dữ liệu Trung Quốc và toàn cầu
@@ -204,8 +186,7 @@ Chúng tôi chạy dibi8.com chính nó trên {{< aff "htstack" "stack-vps" "VPS
 
 **Trade-off**: OpenRouter thêm 100-150ms latency vs kết nối provider trực tiếp — ổn cho sinh content offline, không tốt cho chat thời gian thực.
 
-**Cài nhanh**: Đăng ký openrouter.ai, nạp crypto, dùng qua client tương thích OpenAI:
-```python
+**Cài nhanh**: Đăng ký openrouter.ai, nạp crypto, dùng qua client tương thích OpenAI: ```python
 from openai import OpenAI
 client = OpenAI(base_url="https://openrouter.ai/api/v1", api_key="sk-or-...")
 ```
@@ -245,17 +226,14 @@ So với SaaS tương đương: Cursor + Notion + Slack + Mailchimp + GA 360 + D
 
 ## 12. Đường Nâng Cấp — Khi Vượt Stack Này
 
-Bạn sẽ vượt tier $35-80/tháng khi:
-
-- **Team > 10 người** — Thêm LiteLLM với virtual key per dev ([Hướng dẫn LiteLLM](/vi/resources/llm-frameworks/litellm/))
+Bạn sẽ vượt tier $35-80/tháng khi: - **Team > 10 người** — Thêm LiteLLM với virtual key per dev ([Hướng dẫn LiteLLM](/vi/resources/llm-frameworks/litellm/))
 - **Cần tuân thủ cấp audit** — Đổi OpenRouter+DeepSeek cho Portkey enterprise ([Portkey vs LiteLLM 2026](/vi/resources/llm-frameworks/llm-gateway-portkey-litellm-openrouter-comparison-2026/))
 - **>1M lượt thăm site hàng tháng** — Di chuyển Plausible sang VPS riêng, thêm Cloudflare phía trước
 - **Xây sản phẩm thực (không phải hạ tầng marketing)** — Ghép stack này với [Workflow AI Coding Self-Host](/vi/collections/self-hosted-ai-coding-workflow/) + [Stack LLM Rẻ](/vi/collections/cheap-llm-stack/) cho phía dev
 
 ## TL;DR — Recipe
 
-**7 thành phần cho team Trung Quốc ra toàn cầu, $35-80/tháng cho 1-3 founder**:
-1. **n8n** — phân phối nội dung đa ngôn ngữ
+**7 thành phần cho team Trung Quốc ra toàn cầu, $35-80/tháng cho 1-3 founder**: 1. **n8n** — phân phối nội dung đa ngôn ngữ
 2. **LangChain** — workflow agent
 3. **Công cụ AI Search** — thông tin thị trường toàn cầu
 4. **Plausible** — analytics miễn dịch GDPR + ad-blocker
@@ -270,7 +248,6 @@ Thắng đặc thù xuyên biên giới: không ma sát thanh toán, không vi p
 *Bộ sưu tập đồng hành: [Workflow AI Coding Self-Host](/vi/collections/self-hosted-ai-coding-workflow/) cho phía dev, [Stack LLM Rẻ](/vi/collections/cheap-llm-stack/) cho suy luận tối ưu chi phí.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

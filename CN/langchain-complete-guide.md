@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/langchain-complete-guide" />
 title: 'LangChain Complete Guide 2025: From Zero to Production-R...
 description: 'Master LangChain in 2025 with this complete guide. Learn core components, build RAG apps, create agents, and deploy production-ready AI applications.'
 date: 2026-05-18 00:00:00+08:00
@@ -20,10 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/langchain-complete-guide/
+aliases: - /posts/langchain-complete-guide/-
 ---
-
 {</* resource-info */>}
 
 Building applications with large language models used to mean writing hundreds of lines of boilerplate code for every project. You would manually handle API calls, craft prompts, parse outputs, and manage conversation state — repeating the same patterns again and again. LangChain changed that. First released by Harrison Chase in October 2022, LangChain has grown into the most widely adopted orchestration framework for LLM-powered applications, with over 91,000 GitHub stars and 10 million monthly PyPI downloads as of early 2025.
@@ -44,10 +40,14 @@ Beyond model abstraction, LangChain excels at orchestration. Modern AI apps rare
 
 ### The LangChain Ecosystem: Three Pillars
 
-LangChain today is not just one library — it is an ecosystem of three integrated tools:
-
-| Tool | Purpose | When to Use |
-|------|---------|-------------|
+LangChain today is not just one library — it is an ecosystem of three integrated tools: | Tool | Purpose | When to Use |
+|
+---
+|
+---
+|
+---
+|
 | **LangChain** | Core orchestration framework | Building chains, agents, and RAG pipelines |
 | **LangGraph** | Stateful multi-agent applications | Complex workflows with cycles, branching, and persistence |
 | **LangSmith** | Observability and debugging platform | Monitoring, tracing, and evaluating production LLM apps |
@@ -62,9 +62,7 @@ LangChain's power comes from its component architecture. Each piece handles a sp
 
 LangChain distinguishes between two types of models. LLMs take a string input and return a string output — this is the traditional text-in, text-out interface. Chat models accept a list of messages and return a message object, which is the format used by modern conversational APIs like GPT-4 and Claude 3.
 
-In 2025, you should almost always use chat models. LangChain's `init_chat_model` function provides a provider-agnostic way to instantiate any major chat model:
-
-```python
+In 2025, you should almost always use chat models. LangChain's `init_chat_model` function provides a provider-agnostic way to instantiate any major chat model: ```python
 from langchain.chat_models import init_chat_model
 
 # Works with OpenAI, Anthropic, Google, and 20+ providers
@@ -74,9 +72,7 @@ model = init_chat_model("gpt-4o", model_provider="openai")
 
 ### Prompts and Prompt Templates
 
-Prompt engineering directly impacts application quality. LangChain provides `PromptTemplate` and `ChatPromptTemplate` classes for structuring prompts with dynamic inputs. The `ChatPromptTemplate` is particularly powerful — it lets you define system messages, human messages, and AI messages as reusable templates:
-
-```python
+Prompt engineering directly impacts application quality. LangChain provides `PromptTemplate` and `ChatPromptTemplate` classes for structuring prompts with dynamic inputs. The `ChatPromptTemplate` is particularly powerful — it lets you define system messages, human messages, and AI messages as reusable templates: ```python
 from langchain.prompts import ChatPromptTemplate
 
 template = ChatPromptTemplate([
@@ -91,9 +87,7 @@ LangChain also supports few-shot prompting, example selectors, and output parser
 
 ### Chains: Simple and Complex Workflows
 
-A chain is the most fundamental LangChain abstraction. It is a sequence of calls — whether to an LLM, a tool, or a data source. The simplest chain connects a prompt template to a model:
-
-```python
+A chain is the most fundamental LangChain abstraction. It is a sequence of calls — whether to an LLM, a tool, or a data source. The simplest chain connects a prompt template to a model: ```python
 from langchain.chains import LLMChain
 
 chain = template | model
@@ -106,9 +100,7 @@ The pipe operator (`|`) creates a Runnable sequence, LangChain's unified executi
 
 RAG applications need data. LangChain includes over 100 document loaders for sources ranging from PDFs and Word documents to web pages, databases, and cloud storage. The most commonly used loaders include `PyPDFLoader`, `UnstructuredFileLoader`, and `WebBaseLoader`.
 
-Loading is only half the battle. LLMs have context limits, so long documents must be split into chunks. LangChain's text splitters handle this intelligently:
-
-```python
+Loading is only half the battle. LLMs have context limits, so long documents must be split into chunks. LangChain's text splitters handle this intelligently: ```python
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 splitter = RecursiveCharacterTextSplitter(
@@ -125,9 +117,7 @@ The `RecursiveCharacterTextSplitter` preserves semantic boundaries by trying lar
 
 Once documents are split, they are converted to embeddings and stored in a vector database. LangChain supports [30+ vector store integrations](https://python.langchain.com/docs/integrations/vectorstores/) including Chroma, Pinecone, Weaviate, Milvus, and pgvector.
 
-The retriever interface abstracts the similarity search process:
-
-```python
+The retriever interface abstracts the similarity search process: ```python
 from langchain.vectorstores import Chroma
 from langchain.embeddings import OpenAIEmbeddings
 
@@ -141,15 +131,12 @@ In 2025, most developers use the `create_retrieval_chain` helper, which combines
 
 Agents represent LangChain's most powerful abstraction. An agent uses an LLM to decide which actions to take, rather than following a predetermined sequence. You provide the agent with tools — functions it can call — and the agent reasons about which tool to use and when.
 
-LangChain supports several agent types, with ReAct (Reasoning + Acting) being the most popular:
-
-```python
+LangChain supports several agent types, with ReAct (Reasoning + Acting) being the most popular: ```python
 from langchain.agents import create_react_agent, AgentExecutor
 from langchain.tools import tool
 
 @tool
-def search_api(query: str) -> str:
-    """Search the company knowledge base."""
+def search_api(query: str) -> str: """Search the company knowledge base."""
     return "Search results here"
 
 agent = create_react_agent(model, [search_api])
@@ -233,8 +220,7 @@ from langchain import hub
 from langchain.tools import tool
 
 @tool
-def calculator(expression: str) -> str:
-    """Evaluate a mathematical expression."""
+def calculator(expression: str) -> str: """Evaluate a mathematical expression."""
     return str(eval(expression))
 
 prompt = hub.pull("hwchase17/react")
@@ -250,9 +236,7 @@ Once you have mastered the basics, these patterns will help you build more robus
 
 ### Building Multi-Step Reasoning Chains
 
-Complex tasks often require breaking problems into sub-tasks. LangChain's expression language (LCEL) makes this compositional:
-
-```python
+Complex tasks often require breaking problems into sub-tasks. LangChain's expression language (LCEL) makes this compositional: ```python
 from operator import itemgetter
 from langchain_core.runnables import RunnablePassthrough
 
@@ -265,20 +249,15 @@ chain = (
 
 ### Streaming and Async Execution
 
-Production applications should stream responses to reduce perceived latency:
-
-```python
-for chunk in chain.stream({"topic": "machine learning"}):
-    print(chunk.content, end="", flush=True)
+Production applications should stream responses to reduce perceived latency: ```python
+for chunk in chain.stream({"topic": "machine learning"}): print(chunk.content, end="", flush=True)
 ```
 
 Async support is built in — simply use `ainvoke`, `astream`, or `abatch` instead of their synchronous counterparts.
 
 ### Error Handling and Fallbacks
 
-Models fail. Rate limits hit. Networks timeout. LangChain's fallback mechanism lets you specify backup models:
-
-```python
+Models fail. Rate limits hit. Networks timeout. LangChain's fallback mechanism lets you specify backup models: ```python
 from langchain_openai import ChatAnthropic
 
 primary = ChatOpenAI(model="gpt-4o")
@@ -300,18 +279,14 @@ Deploying LangChain applications requires attention to several operational conce
 
 ### Security Considerations and Prompt Injection Defense
 
-Prompt injection remains the top security concern for LLM applications. Mitigation strategies include:
-
-- **Input validation**: Sanitize user inputs before including them in prompts
+Prompt injection remains the top security concern for LLM applications. Mitigation strategies include: - **Input validation**: Sanitize user inputs before including them in prompts
 - **Permission boundaries**: Run tool executions in sandboxed environments with minimal privileges
 - **Output encoding**: Treat all LLM outputs as untrusted until validated
 - **Human-in-the-loop**: Require approval for high-impact actions like data deletion or financial transactions
 
 ### Monitoring with LangSmith
 
-LangSmith traces every step of your application execution. In production, you should:
-
-1. Set up automated evaluation runs on representative datasets
+LangSmith traces every step of your application execution. In production, you should: 1. Set up automated evaluation runs on representative datasets
 2. Monitor token usage and latency dashboards
 3. Configure alerts for error rate spikes
 4. Use feedback collection to track user satisfaction
@@ -320,19 +295,21 @@ Sign up for LangSmith at [docs.smith.langchain.com](https://docs.smith.langchain
 
 ### Deployment Strategies
 
-LangChain applications deploy like any Python service. Common patterns include:
-
-- **Docker containers**: Package your chain with a FastAPI or Streamlit frontend
+LangChain applications deploy like any Python service. Common patterns include: - **Docker containers**: Package your chain with a FastAPI or Streamlit frontend
 - **Serverless**: Deploy to AWS Lambda or Google Cloud Run for variable workloads
 - **LangServe**: LangChain's built-in tool for exposing chains as REST APIs
 - **LangGraph Cloud**: Managed hosting for LangGraph applications with built-in persistence
 
 ## Top LangChain Alternatives 2025
 
-While LangChain leads in adoption, several alternatives excel in specific scenarios:
-
-| Framework | Strength | Best For |
-|-----------|----------|----------|
+While LangChain leads in adoption, several alternatives excel in specific scenarios: | Framework | Strength | Best For |
+|
+---
+|
+---
+|
+---
+|
 | **LlamaIndex** | Advanced RAG and data ingestion | Document Q&A over large knowledge bases |
 | **Haystack** | Enterprise search pipelines | Semantic search and information retrieval |
 | **CrewAI** | Role-based multi-agent systems | Collaborative agent workflows |
@@ -373,20 +350,17 @@ The best way to learn LangChain is to build something. Pick a problem you have �
 
 For the latest updates, follow the [LangChain blog](https://blog.langchain.dev) and explore the ever-growing collection of integrations and templates in the official documentation.
 
----
 
+---
 ## Recommended Infrastructure
 
-To run any of the tools above reliably 24/7, infrastructure matters:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.
+To run any of the tools above reliably 24/7, infrastructure matters: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low latency for mainland China access. This is the same IDC hosting dibi8.com — production-proven.
 
 *Affiliate links — no extra cost to you, helps keep dibi8.com running.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -433,3 +407,5 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
 
+
+---

@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/instructor-structured-llm-output" />
 title: 'Instructor: The Python Library That Forces LLMs to Outpu...
 description: 'Stop wrestling with inconsistent LLM outputs. Learn how Instructor patches the OpenAI client to guarantee valid, type-safe JSON responses using Pydantic models. Features retry logic, multi-provider support, and streaming.'
 date: 2026-05-20 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [instructor]
-aliases:
-- /posts/instructor-structured-llm-output/
+aliases: - /posts/instructor-structured-llm-output/-
 ---
-
 {{</* resource-info */>}}
 
 *Last updated: May 19, 2026*
@@ -34,8 +30,8 @@ If you've ever tried to get a Large Language Model to consistently output valid 
 
 Instructor is a Python library that patches the OpenAI client (and 10+ other LLM providers) to guarantee structured, type-safe, validated outputs using **Pydantic models**. It transforms the wild west of LLM text generation into a predictable, software-engineered process. With 11,000+ GitHub stars, MIT license, and a thriving community, Instructor has become the de facto standard for structured LLM output in Python. This guide covers everything from basic setup to advanced multi-provider patterns in 2026.
 
----
 
+---
 ## What Is Instructor and Why Does It Matter?
 
 Instructor, created by **Jason Liu** (`jxnl`), is a lightweight Python library that sits on top of your existing LLM client and enforces structured output through Pydantic model validation. Instead of receiving raw text from an LLM and praying it parses correctly, you define a Pydantic schema and Instructor ensures every response conforms to that schema — or automatically retries with a corrected prompt.
@@ -50,8 +46,8 @@ pip install instructor
 pip install openai
 ```
 
----
 
+---
 ## Core Concept: Patching the OpenAI Client
 
 Instructor's magic happens through **client patching**. Instead of calling OpenAI's API directly, you create a patched client that intercepts responses, validates them against your Pydantic model, and handles failures automatically.
@@ -65,15 +61,13 @@ from pydantic import BaseModel
 client = instructor.from_openai(OpenAI())
 
 # Define your output schema as a Pydantic model
-class UserProfile(BaseModel):
-    name: str
+class UserProfile(BaseModel): name: str
     age: int
     email: str
     interests: list[str]
 
 # Extract structured data from natural language
-def extract_profile(user_description: str) -> UserProfile:
-    return client.chat.completions.create(
+def extract_profile(user_description: str) -> UserProfile: return client.chat.completions.create(
         model="gpt-4o",
         response_model=UserProfile,
         messages=[
@@ -111,29 +105,23 @@ What happens when the LLM produces invalid output? Instructor's default behavior
 ```python
 from pydantic import BaseModel, Field, field_validator
 
-class ValidatedProduct(BaseModel):
-    name: str = Field(description="Product name, max 50 characters")
+class ValidatedProduct(BaseModel): name: str = Field(description="Product name, max 50 characters")
     price: float = Field(description="Price in USD, must be positive")
     category: str = Field(description="One of: electronics, clothing, food, books")
     
     @field_validator(category)
     @classmethod
-    def validate_category(cls, v):
-        allowed = {electronics, clothing, food, books}
-        if v.lower() not in allowed:
-            raise ValueError(f"Category must be one of: {allowed}")
+    def validate_category(cls, v): allowed = {electronics, clothing, food, books}
+        if v.lower() not in allowed: raise ValueError(f"Category must be one of: {allowed}")
         return v.lower()
     
     @field_validator(price)
     @classmethod
-    def validate_price(cls, v):
-        if v <= 0:
-            raise ValueError("Price must be positive")
+    def validate_price(cls, v): if v <= 0: raise ValueError("Price must be positive")
         return round(v, 2)
 
 # Instructor automatically retries on validation failure
-def parse_product(description: str) -> ValidatedProduct:
-    return client.chat.completions.create(
+def parse_product(description: str) -> ValidatedProduct: return client.chat.completions.create(
         model="gpt-4o",
         response_model=ValidatedProduct,
         max_retries=3,  # Retry up to 3 times with feedback
@@ -162,24 +150,20 @@ Real-world applications need more than flat structures. Instructor handles arbit
 from typing import Optional, List
 from pydantic import BaseModel, Field
 
-class Address(BaseModel):
-    street: str
+class Address(BaseModel): street: str
     city: str
     state: str = Field(description="2-letter state code")
     zip_code: str
     country: str = "US"
 
-class OrderItem(BaseModel):
-    product_name: str
+class OrderItem(BaseModel): product_name: str
     quantity: int = Field(ge=1, description="Must be at least 1")
     unit_price: float = Field(gt=0)
     
     @property
-    def total(self) -> float:
-        return self.quantity * self.unit_price
+    def total(self) -> float: return self.quantity * self.unit_price
 
-class CustomerOrder(BaseModel):
-    customer_name: str
+class CustomerOrder(BaseModel): customer_name: str
     customer_email: str
     shipping_address: Address
     billing_address: Optional[Address] = None
@@ -187,11 +171,9 @@ class CustomerOrder(BaseModel):
     order_notes: Optional[str] = None
     
     @property
-    def grand_total(self) -> float:
-        return sum(item.total for item in self.items)
+    def grand_total(self) -> float: return sum(item.total for item in self.items)
 
-def extract_order(email_text: str) -> CustomerOrder:
-    return client.chat.completions.create(
+def extract_order(email_text: str) -> CustomerOrder: return client.chat.completions.create(
         model="gpt-4o",
         response_model=CustomerOrder,
         messages=[
@@ -205,8 +187,7 @@ Hi, I'd like to place an order.
 Customer: John Smith (john.smith@email.com)
 Ship to: 123 Oak Street, San Francisco, CA 94102
 
-Items:
-- MacBook Pro M3, qty 1, $1999
+Items: - MacBook Pro M3, qty 1, $1999
 - USB-C Hub, qty 2, $49 each
 
 Please gift wrap the laptop.
@@ -223,13 +204,11 @@ from pydantic import BaseModel
 from typing import Optional
 from datetime import datetime
 
-class Event(BaseModel):
-    name: str
+class Event(BaseModel): name: str
     start_time: datetime
     end_time: Optional[datetime] = None
     location: Optional[str] = None
     description: Optional[str] = ""
-
 event = client.chat.completions.create(
     model="gpt-4o-mini",
     response_model=Event,
@@ -294,8 +273,7 @@ print(result)
 
 ```python
 # Model configuration with system prompts and temperature
-class CodeReview(BaseModel):
-    quality_score: int  # 1-10
+class CodeReview(BaseModel): quality_score: int  # 1-10
     issues_found: list[str]
     suggestions: list[str]
     is_safe_to_merge: bool
@@ -334,14 +312,12 @@ from pydantic import BaseModel
 # Use async client for batch processing
 async_client = instructor.from_openai(AsyncOpenAI())
 
-class SentimentResult(BaseModel):
-    text: str
+class SentimentResult(BaseModel): text: str
     sentiment: str  # "positive", "negative", "neutral"
     confidence: float
     key_phrases: list[str]
 
-async def analyze_single(text: str) -> SentimentResult:
-    return await async_client.chat.completions.create(
+async def analyze_single(text: str) -> SentimentResult: return await async_client.chat.completions.create(
         model="gpt-4o-mini",
         response_model=SentimentResult,
         messages=[
@@ -349,8 +325,7 @@ async def analyze_single(text: str) -> SentimentResult:
         ]
     )
 
-async def analyze_batch(texts: list[str]) -> list[SentimentResult]:
-    """Process multiple texts concurrently."""
+async def analyze_batch(texts: list[str]) -> list[SentimentResult]: """Process multiple texts concurrently."""
     tasks = [analyze_single(text) for text in texts]
     results = await asyncio.gather(*tasks)
     return results
@@ -378,14 +353,12 @@ For real-time applications, Instructor supports streaming partial results as the
 from typing import Iterable
 from pydantic import BaseModel
 
-class PartialArticle(BaseModel):
-    title: str
+class PartialArticle(BaseModel): title: str
     sections: list[str]
     key_points: list[str]
 
 # Stream structured data as it's generated
-def stream_article(topic: str) -> Iterable[PartialArticle]:
-    return client.chat.completions.create_partial(
+def stream_article(topic: str) -> Iterable[PartialArticle]: return client.chat.completions.create_partial(
         model="gpt-4o",
         response_model=PartialArticle,
         stream=True,
@@ -395,10 +368,11 @@ def stream_article(topic: str) -> Iterable[PartialArticle]:
     )
 
 # Consume partial results as they arrive
-for partial in stream_article("renewable energy trends 2026"):
-    print(f"Title: {partial.title}")
+for partial in stream_article("renewable energy trends 2026"): print(f"Title: {partial.title}")
     print(f"Sections so far: {len(partial.sections)}")
-    print("---")
+    print("
+---
+")
 ```
 
 ---
@@ -410,28 +384,23 @@ Instructor's retry system doesn't just repeat the request — it provides the LL
 ```python
 from pydantic import BaseModel, field_validator
 
-class StrictDateRange(BaseModel):
-    start_date: str = Field(description="YYYY-MM-DD format")
+class StrictDateRange(BaseModel): start_date: str = Field(description="YYYY-MM-DD format")
     end_date: str = Field(description="YYYY-MM-DD format, must be after start")
     
     @field_validator(start_date, end_date)
     @classmethod
-    def validate_date_format(cls, v):
-        from datetime import datetime
+    def validate_date_format(cls, v): from datetime import datetime
         datetime.strptime(v, "%Y-%m-%d")
         return v
     
     @field_validator(end_date)
     @classmethod
-    def validate_order(cls, end, info):
-        start = info.data.get(start_date)
-        if start and end <= start:
-            raise ValueError("end_date must be after start_date")
+    def validate_order(cls, end, info): start = info.data.get(start_date)
+        if start and end <= start: raise ValueError("end_date must be after start_date")
         return end
 
 # Instructor will retry with specific validation error feedback
-def extract_date_range(text: str) -> StrictDateRange:
-    return client.chat.completions.create(
+def extract_date_range(text: str) -> StrictDateRange: return client.chat.completions.create(
         model="gpt-4o",
         response_model=StrictDateRange,
         max_retries=3,
@@ -442,13 +411,11 @@ def extract_date_range(text: str) -> StrictDateRange:
 
 # Even if the model initially swaps dates or uses wrong format,
 # Instructor will re-ask with the specific error message
-try:
-    result = extract_date_range(
+try: result = extract_date_range(
         "The project ran from March 15, 2026 to January 10, 2026"
     )
     print(result)
-except Exception as e:
-    print(f"Failed after max retries: {e}")
+except Exception as e: print(f"Failed after max retries: {e}")
 ```
 
 ---
@@ -460,8 +427,7 @@ For classification tasks, use Python's `Literal` type to constrain outputs to sp
 ```python
 from typing import Literal
 
-class SupportTicket(BaseModel):
-    customer_query: str
+class SupportTicket(BaseModel): customer_query: str
     category: Literal[
         "billing", 
         "technical_support", 
@@ -473,8 +439,7 @@ class SupportTicket(BaseModel):
     priority: Literal["low", "medium", "high", "urgent"]
     suggested_response: str
 
-def classify_ticket(ticket_text: str) -> SupportTicket:
-    return client.chat.completions.create(
+def classify_ticket(ticket_text: str) -> SupportTicket: return client.chat.completions.create(
         model="gpt-4o-mini",
         response_model=SupportTicket,
         messages=[
@@ -499,14 +464,12 @@ print(f"Priority: {ticket.priority}")  # Always one of the 4 values
 # Extracting structured data from long documents
 from pydantic import BaseModel
 
-class ExtractedFact(BaseModel):
-    subject: str
+class ExtractedFact(BaseModel): subject: str
     predicate: str
     object_: str
     confidence: float
 
-class DocumentExtraction(BaseModel):
-    title: str
+class DocumentExtraction(BaseModel): title: str
     facts: list[ExtractedFact]
     entities: list[str]
     summary: str
@@ -533,9 +496,7 @@ print(f"Total facts: {len(extraction.facts)}")
 
 ## Integration with FastAPI for Production APIs
 
-Instructor shines in API development. Here's a complete FastAPI endpoint with structured LLM output:
-
-```python
+Instructor shines in API development. Here's a complete FastAPI endpoint with structured LLM output: ```python
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import instructor
@@ -545,21 +506,17 @@ app = FastAPI(title="Structured LLM API")
 client = instructor.from_openai(OpenAI())
 
 # Request schema
-class ExtractionRequest(BaseModel):
-    text: str
+class ExtractionRequest(BaseModel): text: str
     extract_fields: list[str]
 
 # Response schema
-class ExtractedData(BaseModel):
-    entities: list[dict]
+class ExtractedData(BaseModel): entities: list[dict]
     relationships: list[dict]
     summary: str
 
 @app.post("/extract", response_model=ExtractedData)
-async def extract_entities(request: ExtractionRequest):
-    """Extract structured entities from unstructured text."""
-    try:
-        result = client.chat.completions.create(
+async def extract_entities(request: ExtractionRequest): """Extract structured entities from unstructured text."""
+    try: result = client.chat.completions.create(
             model="gpt-4o",
             response_model=ExtractedData,
             messages=[
@@ -574,8 +531,7 @@ async def extract_entities(request: ExtractionRequest):
             ]
         )
         return result
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+    except Exception as e: raise HTTPException(status_code=500, detail=str(e))
 
 # Run with: uvicorn main:app --reload
 ```
@@ -589,14 +545,12 @@ Instructor can replace OpenAI's function calling with more powerful Pydantic-bas
 ```python
 from typing import Type
 
-class SearchQuery(BaseModel):
-    """Generated search query with parameters"""
+class SearchQuery(BaseModel): """Generated search query with parameters"""
     keywords: list[str]
     filters: dict[str, str]
     sort_by: Literal["relevance", "date", "price_asc", "price_desc"]
     
-def generate_search(user_request: str) -> SearchQuery:
-    return client.chat.completions.create(
+def generate_search(user_request: str) -> SearchQuery: return client.chat.completions.create(
         model="gpt-4o",
         response_model=SearchQuery,
         messages=[
@@ -687,9 +641,7 @@ Absolutely. Instructor's 11,000+ GitHub stars, MIT license, active maintenance, 
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -703,7 +655,6 @@ The library's multi-provider support means you're never locked into a single LLM
 If you're still parsing raw LLM outputs with `json.loads()` and crossing your fingers, it's time to upgrade. Install Instructor today and experience what it means to have **100% valid JSON, 100% of the time**.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

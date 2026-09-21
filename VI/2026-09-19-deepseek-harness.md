@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/2026-09-19-deepseek-harness" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/2026-09-19-deepseek-harness" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/2026-09-19-deepseek-harness" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/2026-09-19-deepseek-harness" />
 title: 'DeepSeek Harness: 229K-Star Plugin Ecosystem That Makes ...
 description: 'DeepSeek Harness (DSH) is the fastest-growing AI agent framework in 2026 with 229K+ GitHub stars. Learn how to build custom plugins, integrate with Claude Code/Cursor/Codex, and ship production agents in minutes.'
 date: 2026-09-19
@@ -17,7 +12,6 @@ license: MIT
 featureImage: 'https://opengraph.github.com/github/deepseek-ai/deepseek-harness'
 lang: vi
 ---
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -49,8 +43,6 @@ lang: vi
 </script>
 
 
-<!-- canonical: https://dibi8.com/vi/tools/2026-09-19-deepseek-harness/ -->
-
 # DeepSeek Harness: Plugin Framework Đang Chiếm Domination 2026
 
 Bạn đã dành hàng giờ configuring Claude Code, tweaking Cursor settings, và wrestling với Codex CLI — chỉ để nhận ra workflow của bạn vẫn break khi có chuyện bất thường. Đó không phải lỗi của bạn. Vấn đề là hầu hết AI coding tools là closed systems, và bạn là nô lệ cho roadmap của chúng.
@@ -67,9 +59,7 @@ Triết lý cốt lõi đơn giản: **"Mọi thứ đều là plugin."** Code e
 
 ## Cách Hoạt Động: Plugin Architecture
 
-DeepSeek Harness sử dụng ba-layer architecture:
-
-1. **Core Layer** — Quản lý agent lifecycle, session handling, và plugin loading
+DeepSeek Harness sử dụng ba-layer architecture: 1. **Core Layer** — Quản lý agent lifecycle, session handling, và plugin loading
 2. **Plugin Layer** — Custom code của bạn, được load tại runtime
 3. **Integration Layer** — Kết nối với Claude Code, Codex, Cursor, v.v.
 
@@ -88,8 +78,7 @@ export class MyPlugin extends Plugin {
 }
 ```
 
-Plugins có thể:
-- Hook vào agent lifecycle events
+Plugins có thể: - Hook vào agent lifecycle events
 - Thêm new commands vào CLI
 - Modify system prompts động
 - Integrate với external APIs
@@ -130,8 +119,7 @@ npx @deepseek-ai/dsh web
 ```
 Câu lệnh này khởi động một local web interface tại `http://127.0.0.1:3080` và mở nó trong default browser. Không cần configuration — chỉ cần mở browser và bắt đầu build plugins.
 
-Đối với SSH servers hoặc headless environments:
-```bash
+Đối với SSH servers hoặc headless environments: ```bash
 npx @deepseek-ai/dsh web --no-open
 # Sau đó truy cập qua forwarded port
 ssh -L 3080:localhost:3080 user@server
@@ -161,11 +149,9 @@ export class SummarizeCommitsPlugin extends Plugin {
     const commit = execSync('git log -1 --pretty=%B').toString();
     
     const prompt = `
-      Tóm tắt commit git này trong một câu:
-      ${commit}
+      Tóm tắt commit git này trong một câu: ${commit}
       
-      Files changed:
-      ${diff}
+      Files changed: ${diff}
     `;
     
     return { prompt };
@@ -246,9 +232,7 @@ this.on('before:commit', async (ctx) => {
 
 ## Cân Nhắc Bảo Mật
 
-Khi chạy DSH plugins trong production:
-
-1. **Sandbox Execution** — Luôn chạy plugins trong isolated environments
+Khi chạy DSH plugins trong production: 1. **Sandbox Execution** — Luôn chạy plugins trong isolated environments
 2. **Network Restrictions** — Sử dụng firewall rules để giới hạn outbound connections
 3. **Secret Scanning** — Tích hợp một secrets scanner như một pre-commit plugin
 4. **Plugin Auditing** — Review third-party plugins trước khi installation
@@ -260,12 +244,9 @@ dsh security scan --deep ./plugins
 
 ## Framework Cordis: Bên Trong
 
-DeepSeek Harness được powered bởi [Cordis](https://github.com/cordiverse/cordis), một programming paradigm cho spatiotemporal composability. Research paper này mô tả theoretical foundation:
+DeepSeek Harness được powered bởi [Cordis](https://github.com/cordiverse/cordis), một programming paradigm cho spatiotemporal composability. Research paper này mô tả theoretical foundation: > **"A Programming Paradigm for Spatiotemporal Composability"** (arXiv:2608.25512)
 
-> **"A Programming Paradigm for Spatiotemporal Composability"** (arXiv:2608.25512)
-
-Cordis framework enables:
-- **Time-travel debugging** — Replay plugin execution tại bất kỳ point nào
+Cordis framework enables: - **Time-travel debugging** — Replay plugin execution tại bất kỳ point nào
 - **Spatial partitioning** — Isolate plugin state by dimension
 - **Temporal composition** — Chain plugins across time periods
 
@@ -273,9 +254,7 @@ Cordis framework enables:
 
 ## Tối Ưu Hiệu Suất
 
-Cho high-volume environments, optimize plugin performance:
-
-### Caching Strategy
+Cho high-volume environments, optimize plugin performance: ### Caching Strategy
 ```typescript
 const cache = new LRUMap({
   max: 1000,
@@ -319,8 +298,7 @@ dsh logs --plugin my-plugin --tail 50
 ```
 
 ### Vấn Đề Thường Gặp 2: Port Đã Được Sử Dụng
-Nếu port 3080 bị occupied:
-```bash
+Nếu port 3080 bị occupied: ```bash
 npx @deepseek-ai/dsh web --port 3081
 ```
 
@@ -333,8 +311,7 @@ pnpm run build
 ```
 
 ### Vấn Đề Thường Gặp 4: Memory Leak Trong Long Sessions
-Enable memory limits trong plugin config:
-```typescript
+Enable memory limits trong plugin config: ```typescript
 // dsh.config.ts
 export default {
   memory: {
@@ -347,8 +324,7 @@ export default {
 ## Cộng Đồng & Hệ Sinh Thái
 
 ### Plugin Marketplace
-Khám phá community plugins tại https://marketplace.deepseek.ai:
-- **GitHub integrations** — PR reviews, issue tracking
+Khám phá community plugins tại https://marketplace.deepseek.ai: - **GitHub integrations** — PR reviews, issue tracking
 - **Cloud providers** — AWS, GCP, Azure automation
 - **Development tools** — Docker, Kubernetes, Terraform helpers
 

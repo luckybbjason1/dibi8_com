@@ -1,14 +1,11 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/hermes-agent-self-improving-ai-agent" />
 title: Hermes Agent：Self-Improving AI Agent That Evolves With You
 description: Hermes Agent is an open-source AI agent from Nous Research with a self-learning. Comprehensive guide covering features, pricing, and best practices for 2026.
   loop — creates skills from experience, continuously improves, remembers your preferences,
   and gets better the more you use it.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
-tech_stack:
-- Docker
+tech_stack: - Docker
 - Go
 - Python
 - Rust
@@ -27,12 +24,10 @@ maintainer: "NousResearch"
 last_maintained: "2026-05-16"
 featureImage: ''
 draft: false
-aliases:
-- /en/posts/hermes-agent-self-improving-ai-agent/
+aliases: - /en/posts/hermes-agent-self-improving-ai-agent/
 - /posts/genericagent-self-evolving-ai-agent/
 - /posts/hermes-agent-self-improving-ai-agent/
-faqs:
-  - q: 'What makes Hermes Agent different from tools like Claude Code, Cursor, or GitHub Copilot?'
+faqs: - q: 'What makes Hermes Agent different from tools like Claude Code, Cursor, or GitHub Copilot?'
     a: 'Hermes Agent has a built-in self-learning loop, persistent memory across sessions, and a skills system that none of those tools offer. It also runs on 6 messaging platforms, supports cron scheduling and MCP, and is open source and self-hostable, while the others are CLI-, desktop-, or IDE-only and charge subscription or API fees.'
   - q: 'How does Hermes Agent''s self-improvement loop work?'
     a: 'After completing a task, Hermes analyzes what worked and what didn''t, extracts reusable patterns, creates a skill file documenting the approach, tests that skill on similar tasks, and refines it based on results. Over time this builds a personal skill library unique to the user.'
@@ -59,8 +54,7 @@ This is the fundamental limitation of most AI agents today: **no memory, no lear
 
 The project's tagline says it all: **"The agent that grows with you."**
 
-Unlike other agents that are static tools, Hermes Agent:
-- **Creates skills from experience** — learns your workflows and saves them as reusable skills
+Unlike other agents that are static tools, Hermes Agent: - **Creates skills from experience** — learns your workflows and saves them as reusable skills
 - **Improves skills during use** — refines its abilities based on feedback
 - **Persists knowledge across sessions** — remembers who you are and what you like
 - **Builds a deepening model of you** — the more you use it, the better it understands you
@@ -69,14 +63,11 @@ Unlike other agents that are static tools, Hermes Agent:
 
 ### 1. Built-in Learning Loop
 
-Hermes Agent's core innovation is its **self-improvement cycle**:
-
-```
+Hermes Agent's core innovation is its **self-improvement cycle**: ```
 Experience → Reflection → Skill Creation → Practice → Improvement
 ```
 
-When you complete a task with Hermes, it:
-1. **Analyzes** what worked and what didn't
+When you complete a task with Hermes, it: 1. **Analyzes** what worked and what didn't
 2. **Extracts** reusable patterns
 3. **Creates** a skill file documenting the approach
 4. **Tests** the skill on similar tasks
@@ -86,10 +77,12 @@ Over time, this creates a **personal skill library** that's unique to you.
 
 ### 2. 40+ Built-in Tools
 
-Hermes Agent comes with a comprehensive toolset:
-
-| Tool Category | Examples |
-|-------------|---------|
+Hermes Agent comes with a comprehensive toolset: | Tool Category | Examples |
+|
+---
+|
+---
+|
 | **File Operations** | Read, write, search, diff, patch |
 | **Terminal** | Execute commands, shell sessions, background jobs |
 | **Web** | Browse, scrape, download, API calls |
@@ -101,49 +94,39 @@ The **toolset system** lets you enable only the tools you need, reducing token u
 
 ### 3. Skills System (Procedural Memory)
 
-Skills are Hermes Agent's secret weapon. They're **reusable procedure files** that capture:
-
-- **Trigger conditions** — when to use this skill
+Skills are Hermes Agent's secret weapon. They're **reusable procedure files** that capture: - **Trigger conditions** — when to use this skill
 - **Step-by-step instructions** — what to do
 - **Pitfalls** — common mistakes to avoid
 - **Verification steps** — how to confirm success
 
-Example skill structure:
-```yaml
+Example skill structure: ```yaml
+
 ---
 name: "hugo-blog-deploy"
 trigger: "deploy hugo blog"
-steps:
-  1. "Run hugo --minify --cleanDestinationDir"
+steps: 1. "Run hugo --minify --cleanDestinationDir"
   2. "Verify build succeeded"
   3. "Run deploy.sh"
   4. "Check live site with curl"
-pitfalls:
-  - "Future dates prevent building"
+pitfalls: - "Future dates prevent building"
   - "Cloudflare cache may show stale content"
-verification:
-  - "curl -s https://site.com | grep title"
+verification: - "curl -s https://site.com | grep title"
 ```
 
-Skills can be:
-- **Created automatically** from successful task completions
+Skills can be: - **Created automatically** from successful task completions
 - **Downloaded from Skills Hub** — community-contributed skills
 - **Written manually** for your specific workflows
 - **Shared** with other users
 
 ### 4. Persistent Memory
 
-Hermes Agent maintains **two types of memory**:
-
-**User Profile Memory**:
-- Your preferred coding style
+Hermes Agent maintains **two types of memory**: **User Profile Memory**: - Your preferred coding style
 - Projects you work on
 - Tools you like
 - Communication preferences
 - Common mistakes you make (so it can catch them)
 
-**Session Memory**:
-- Current project context
+**Session Memory**: - Current project context
 - Recent commands and outputs
 - Files you've been editing
 - Conversations from this session
@@ -152,10 +135,14 @@ This memory persists across sessions, so Hermes **remembers you** even after you
 
 ### 5. Messaging Gateway
 
-Hermes Agent isn't just a CLI tool — it's a **multi-platform messaging bot**:
-
-| Platform | Setup | Use Case |
-|---------|-------|---------|
+Hermes Agent isn't just a CLI tool — it's a **multi-platform messaging bot**: | Platform | Setup | Use Case |
+|
+---
+|
+---
+|
+---
+|
 | **Telegram** | `hermes gateway setup` | Mobile AI assistant |
 | **Discord** | `hermes gateway setup` | Team collaboration |
 | **Slack** | `hermes gateway setup` | Workplace integration |
@@ -167,9 +154,7 @@ Once configured, you can chat with Hermes from any of these platforms using the 
 
 ### 6. MCP Integration
 
-Hermes Agent supports the **Model Context Protocol (MCP)**, allowing it to connect to any MCP server for extended capabilities:
-
-- **Database servers** — query SQL databases
+Hermes Agent supports the **Model Context Protocol (MCP)**, allowing it to connect to any MCP server for extended capabilities: - **Database servers** — query SQL databases
 - **File servers** — access remote file systems
 - **API servers** — interact with any REST API
 - **Custom servers** — build your own integrations
@@ -178,9 +163,7 @@ This makes Hermes infinitely extensible — if you can build an MCP server, Herm
 
 ### 7. Cron Scheduling
 
-Hermes Agent can run **scheduled tasks** via its built-in cron system:
-
-```bash
+Hermes Agent can run **scheduled tasks** via its built-in cron system: ```bash
 # Run a skill every day at 9 AM
 hermes cron add --skill "daily-report" --schedule "0 9 * * *"
 
@@ -195,9 +178,7 @@ Perfect for automation workflows that need to run on a schedule.
 
 ### 8. Security Features
 
-Hermes Agent takes security seriously:
-
-- **Command approval** — risky commands require explicit confirmation
+Hermes Agent takes security seriously: - **Command approval** — risky commands require explicit confirmation
 - **DM pairing** — verify your identity before sensitive operations
 - **Container isolation** — run untrusted code in isolated environments
 - **Audit logging** — all actions are logged for review
@@ -262,9 +243,7 @@ hermes config set model llama3.1
 
 ## Architecture
 
-Hermes Agent is built with a modular architecture:
-
-```
+Hermes Agent is built with a modular architecture: ```
 Hermes Agent
 ├── CLI Interface (terminal UI)
 ├── Messaging Gateway (Telegram, Discord, etc.)
@@ -302,7 +281,17 @@ The entire system is written in **Python** (28M+ lines) with TypeScript componen
 ## Performance Comparison
 
 | Feature | Hermes Agent | Claude Code | Cursor | GitHub Copilot |
-|---------|-------------|-----------|--------|----------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Self-learning** | ✅ Yes | ❌ No | ❌ No | ❌ No |
 | **Persistent memory** | ✅ Yes | ❌ No | ❌ No | ❌ No |
 | **Skills system** | ✅ Yes | ❌ No | ❌ No | ❌ No |
@@ -320,8 +309,8 @@ The entire system is written in **Python** (28M+ lines) with TypeScript componen
 - **Provider costs** — LLM API calls still cost money (unless using local models)
 
 
----
 
+---
 ## Related Articles
 
 - [AI Tools Directory 2024](/resources/dev-utils/ai-tools-directory/) - 200+ tools
@@ -351,17 +340,13 @@ Have you tried Hermes Agent? What's your experience with self-improving AI agent
 - [42 Real-World OpenClaw Use Cases: How People Use AI Agents in Daily Life](/resources/llm-frameworks/awesome-openclaw-usecases-ai-agent-daily-life/)
 
 ---
-
 ## Recommended Infrastructure for Self-Hosting
 
-If you want to run this stack reliably 24/7, infrastructure choice matters:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+If you want to run this stack reliably 24/7, infrastructure choice matters: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
 
-<!--auto-references-->
 ## References & Sources
 
 - [Model Context Protocol (MCP)](https://modelcontextprotocol.io)
@@ -370,7 +355,6 @@ If you want to run this stack reliably 24/7, infrastructure choice matters:
 - [Nous Research](https://nousresearch.com)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

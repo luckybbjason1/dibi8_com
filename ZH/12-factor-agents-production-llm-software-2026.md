@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/12-factor-agents-production-llm-software-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/12-factor-agents-production-llm-software-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/12-factor-agents-production-llm-software-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/12-factor-agents-production-llm-software-2026" />
 title: '12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）'
 description: 'HumanLayer 出品的 12-Factor Agents（22K+ GitHub stars）定义了 demo 级 LLM 原型与真实用户依赖的生产级 agent 之间的设计模式分水岭。完整拆解 12 条原则——拥有自己的 prompt、拥有自己的上下文窗口、stateless reducer 模型、控制流自主、人在环 via tool call、紧凑错误、聚焦小 agent 等。附 Claude Code / Codex / OpenCode / MCP 栈实战应用指引。'
 date: 2026-05-23 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['12-factor-agents', 'production-ai', 'llm-engineering', 'agent-architecture', humanlayer, 'agent-design-patterns', 'context-window', 'prompt-engineering', 'tool-calls', 'developer-productivity']
-aliases:
-- /zh/posts/12-factor-agents-production-llm-software-2026/
+aliases: - /zh/posts/12-factor-agents-production-llm-software-2026/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/12-factor-agents-production-llm-software-2026/ -->
 # 12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）
 
 
@@ -43,8 +35,8 @@ aliases:
 
 代码 Apache 2.0，文档 CC BY-SA 4.0。273 次 commit 还在涨，主要 TypeScript 配 Python 和 Jupyter 示例方便上手。
 
----
 
+---
 ## 核心洞察
 
 框架抽象掉了 agent 出错时最重要的四件事：
@@ -58,8 +50,8 @@ aliases:
 
 下面是全部 12 条因子，以及每一条在实战中的含义。
 
----
 
+---
 ## 12 条因子
 
 ### 1. 自然语言到工具调用
@@ -178,7 +170,6 @@ MCP 把因子 4 做到极致（工具就是标准化协议上的结构化输出�
 **GitHub**：[humanlayer/12-factor-agents](https://github.com/humanlayer/12-factor-agents) · **协议**：Apache 2.0（代码）/ CC BY-SA 4.0（内容）· **Stars**：22K+ · **作者**：Dex Horthy / HumanLayer
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -206,25 +197,20 @@ MCP 把因子 4 做到极致（工具就是标准化协议上的结构化输出�
 
 ## Why This Matters
 
-Understanding 12-factor agents 解读：构建生产级 llm 软件的 12 条原则（2026 完整指南） is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding 12-factor agents 解读：构建生产级 llm 软件的 12 条原则（2026 完整指南） is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -290,7 +276,17 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

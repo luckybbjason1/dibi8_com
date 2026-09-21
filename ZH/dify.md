@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/dify" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/dify" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/dify" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/dify" />
 title: 'Dify: 5 分钟可视化构建生产级 AI Agent — 141K+ Stars 安装配置指南 2026'
 description: 'Dify 是开源 LLM 应用开发平台，提供可视化工作流构建器、RAG 管道和 Agent 编排功能。兼容 OpenAI、Anthropic、Ollama、Qdrant 和 Weaviate。涵盖 Docker 部署、API 集成、生产环境加固，以及与 Flowise、n8n 和 LangChain 的对比分析。'
 date: 2026-05-19 00:00:00+08:00
@@ -25,12 +20,9 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [dify, 'ai 智能体构建器', 'llm 工作流', rag, 'docker 部署', '开源 ai', 可视化工作流, '生产级 ai']
-aliases:
-- /zh/posts/dify/
-- /zh/resources/llm-frameworks/dify-architecture-b2b-agent-orchestration/
+aliases: - /zh/posts/dify/
+- /zh/resources/llm-frameworks/dify-architecture-b2b-agent-orchestration/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/dify/ -->
 
 {{</* resource-info */>}}
 
@@ -60,7 +52,15 @@ Dify 的架构将关注点分离到通过明确定义的 API 通信的离散服�
 ![Dify 架构图](https://res.cloudinary.com/asset-cloudinary/image/upload/v1776523341/Dify_-_railway_arch_xp1wuv.png)
 
 | 服务 | 端口 | 技术 | 用途 |
-|------|------|------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Web 前端 | 3000 | Next.js | 可视化构建器、仪表盘、管理界面 |
 | API 服务 | 5001 | Python Flask | REST API 端点、业务逻辑 |
 | Worker | — | Celery | 异步任务处理、文档索引 |
@@ -72,7 +72,13 @@ Dify 的架构将关注点分离到通过明确定义的 API 通信的离散服�
 ### 数据层
 
 | 组件 | 默认 | 替代方案 |
-|------|------|----------|
+|
+---
+|
+---
+|
+---
+|
 | 元数据数据库 | PostgreSQL 15 | AWS RDS、Cloud SQL |
 | 缓存/队列 | Redis 7 | AWS ElastiCache、Redis Cloud |
 | 向量存储 | Weaviate 1.27 | Qdrant、Milvus、pgvector |
@@ -89,7 +95,13 @@ Dify 的工作流引擎使用 DAG（有向无环图）执行模型，支持并�
 在开始之前，确保你的机器满足以下要求：
 
 | 资源 | 最低配置 | 推荐配置 |
-|------|---------|---------|
+|
+---
+|
+---
+|
+---
+|
 | CPU | 2 核 | 4+ 核 |
 | 内存 | 4 GiB | 8 GiB |
 | 磁盘 | 20 GB | 50 GB SSD |
@@ -242,7 +254,11 @@ ollama pull qwen2.5:14b
 在 Dify 中，前往 **设置 → 模型提供商 → Ollama** 并配置：
 
 | 字段 | 值 |
-|------|-----|
+|
+---
+|
+---
+|
 | 模型名称 | `llama3.1:8b` |
 | 基础 URL | `http://host.docker.internal:11434` |
 
@@ -269,19 +285,12 @@ QDRANT_CLIENT_TIMEOUT=20
 将 Qdrant 添加到你的 `docker-compose.override.yaml`：
 
 ```yaml
-services:
-  qdrant:
-    image: qdrant/qdrant:latest
-    ports:
-      - "6333:6333"
-    volumes:
-      - qdrant_data:/qdrant/storage
-    environment:
-      - QDRANT__SERVICE__API_KEY=your-api-key
+services: qdrant: image: qdrant/qdrant:latest
+    ports: - "6333:6333"
+    volumes: - qdrant_data:/qdrant/storage
+    environment: - QDRANT__SERVICE__API_KEY=your-api-key
 
-volumes:
-  qdrant_data:
-```
+volumes: qdrant_data: ```
 
 重启 Dify：
 
@@ -323,7 +332,15 @@ claude config add mcp.dify http://localhost:5001/your-mcp-endpoint
 基于社区基准测试和负载测试数据：
 
 | 指标 | 1 CPU / 2 GB 内存 | 4 CPU / 8 GB 内存 | 8 CPU / 16 GB 内存 |
-|------|------------------|------------------|-------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | QPS（无模型调用） | 3 req/s | 8 req/s | 11 req/s |
 | QPS（使用 GPT-4o） | 2 req/s | 5 req/s | 6 req/s |
 | P95 延迟（工作流） | 2.1s | 1.2s | 0.8s |
@@ -334,7 +351,15 @@ claude config add mcp.dify http://localhost:5001/your-mcp-endpoint
 ### 文档索引性能
 
 | 操作 | 100 份文档 | 1,000 份文档 | 10,000 份文档 |
-|------|-----------|-------------|--------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 上传 + 分块 | 30s | 4 分钟 | 35 分钟 |
 | 嵌入（OpenAI） | 45s | 6 分钟 | 50 分钟 |
 | 总索引时间 | 75s | 10 分钟 | 85 分钟 |
@@ -342,7 +367,15 @@ claude config add mcp.dify http://localhost:5001/your-mcp-endpoint
 ### 成本对比（自托管月度）
 
 | 规模 | VPS 成本 | LLM 成本 | 总计 |
-|------|---------|---------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 开发 / 1 用户 | $20 | $5-10 | $25-30 |
 | 小团队 / 50 用户 | $40 | $50-100 | $90-140 |
 | 企业 / 500 用户 | $200 | $500-1,000 | $700-1,200 |
@@ -429,34 +462,29 @@ Dify 通过 API 服务暴露指标。对于生产监控，设置：
 
 ```yaml
 # docker-compose.monitoring.yaml
-services:
-  prometheus:
-    image: prom/prometheus:latest
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
-    ports:
-      - "9090:9090"
+services: prometheus: image: prom/prometheus:latest
+    volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports: - "9090:9090"
 
-  grafana:
-    image: grafana/grafana:latest
-    ports:
-      - "3001:3000"
-    volumes:
-      - grafana_data:/var/lib/grafana
+  grafana: image: grafana/grafana:latest
+    ports: - "3001:3000"
+    volumes: - grafana_data:/var/lib/grafana
 
-  node-exporter:
-    image: prom/node-exporter:latest
-    ports:
-      - "9100:9100"
+  node-exporter: image: prom/node-exporter:latest
+    ports: - "9100:9100"
 
-volumes:
-  grafana_data:
-```
+volumes: grafana_data: ```
 
 需要跟踪的关键指标：
 
 | 指标 | 警告阈值 | 严重阈值 |
-|------|---------|---------|
+|
+---
+|
+---
+|
+---
+|
 | API 响应时间 (P95) | > 2s | > 5s |
 | Worker 队列深度 | > 100 | > 500 |
 | 错误率 | > 1% | > 5% |
@@ -491,22 +519,26 @@ aws s3 sync $BACKUP_DIR/ s3://your-backup-bucket/dify/ --delete
 
 ```bash
 # docker-compose.override.yaml
-services:
-  worker:
-    deploy:
-      replicas: 3
-    environment:
-      - CELERY_WORKER_CONCURRENCY=8
+services: worker: deploy: replicas: 3
+    environment: - CELERY_WORKER_CONCURRENCY=8
 
-  worker-beat:
-    deploy:
-      replicas: 1  # 保持恰好 1 个 beat 实例
+  worker-beat: deploy: replicas: 1  # 保持恰好 1 个 beat 实例
 ```
 
 ## 与替代品对比
 
 | 功能 | Dify | Flowise | n8n | LangChain |
-|------|------|---------|-----|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **GitHub Stars** | 141,955 | 51,000 | 182,000 | 110,000 |
 | **许可证** | Apache-2.0 | MIT | Fair-code | MIT |
 | **主要用例** | AI 应用平台 | LLM 原型设计 | 工作流自动化 | 代码优先框架 |
@@ -627,7 +659,6 @@ Dify 填补了纯框架和简单聊天机器人构建器之间的空白。它为
 12. Ollama 本地 LLM 设置 — https://ollama.com/download
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -653,8 +684,8 @@ Dify 填补了纯框架和简单聊天机器人构建器之间的空白。它为
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [dify-vs-flowise-2026](dify)
@@ -663,8 +694,8 @@ Dify 填补了纯框架和简单聊天机器人构建器之间的空白。它为
 - [12-factor-agents-production-llm-software-2026](dify)
 - [12-factor-agents](dify)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/llm-gateway-portkey-litellm-openrouter-comparison-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/llm-gateway-portkey-litellm-openrouter-comparison-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/llm-gateway-portkey-litellm-openrouter-comparison-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llm-gateway-portkey-litellm-openrouter-comparison-2026" />
 title: 'Portkey vs LiteLLM vs OpenRouter 2026: Hướng Dẫn Chọn LL...
 description: 'So sánh trực tiếp 3 LLM gateway lớn nhất năm 2026. Số liệu thực: Portkey thêm <1ms độ trễ, LiteLLM 8ms P95, OpenRouter 100-150ms. Cây quyết định 30 giây theo use case, phân tích chi phí $1000/tháng, và khi nào 9Router đè bẹp cả ba.'
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
-tech_stack:
-  - Python
+tech_stack: - Python
   - TypeScript
   - Docker
   - Kubernetes
@@ -29,11 +23,9 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['llm gateway', portkey, litellm, openrouter, 'so sánh']
-aliases:
-  - /posts/llm-gateway-portkey-litellm-openrouter-comparison-2026/
+aliases: - /posts/llm-gateway-portkey-litellm-openrouter-comparison-2026/
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/llm-gateway-portkey-litellm-openrouter-comparison-2026/ -->
 # Portkey vs LiteLLM vs OpenRouter 2026: Hướng Dẫn Chọn LLM Gateway Thành Thật (Độ Trễ, Chi Phí, Tự Host)
 
 
@@ -43,9 +35,7 @@ Nếu chỉ có 60 giây, đọc bảng ở mục 2 và chọn theo dòng phù h
 
 ## 1. Vì Sao Bạn Cần LLM Gateway
 
-Ba lý do ứng dụng "vượt qua" SDK trực tiếp của provider sau khoảng 3 tháng:
-
-1. **Đau khổ vendor lock-in** — code của bạn có hình dạng OpenAI và Claude 4.7 vừa ra mắt. Giờ sao?
+Ba lý do ứng dụng "vượt qua" SDK trực tiếp của provider sau khoảng 3 tháng: 1. **Đau khổ vendor lock-in** — code của bạn có hình dạng OpenAI và Claude 4.7 vừa ra mắt. Giờ sao?
 2. **Độ tin cậy** — mỗi provider có SLA 99.5%. Chạy ba song song không failover thì bạn cộng dồn lỗi, không phải cộng dồn dự phòng.
 3. **Chi phí & quan sát** — team tài chính muốn theo dõi chi tiêu theo team. SDK không làm được.
 
@@ -67,9 +57,7 @@ Phần còn lại của bài biện minh cho từng ô trong bảng trên.
 
 **Lời chào**: Một control plane cho 1,600+ LLM với độ trễ gateway <1ms và 50+ guardrail tích hợp. SOC2, HIPAA, GDPR, CCPA tuân thủ ngay từ đầu.
 
-**Số liệu thực**:
-
-- **GitHub stars**: 11.8k (license MIT, lõi mã nguồn mở)
+**Số liệu thực**: - **GitHub stars**: 11.8k (license MIT, lõi mã nguồn mở)
 - **Độ trễ gateway**: Thêm <1ms (footprint runtime 122kb)
 - **Giá**: Mã nguồn mở miễn phí. Phí cloud platform ≈ $49/tháng ở mức $1K/tháng chi tiêu API
 - **Tuân thủ**: SOC2 Type II, HIPAA, GDPR, CCPA
@@ -85,9 +73,7 @@ Hướng dẫn sâu Portkey đầy đủ — triển khai production, cấu hìn
 
 **Lời chào**: Một proxy server mã nguồn mở expose 100+ LLM provider sau một API tương thích OpenAI. Tự host, không markup từ vendor.
 
-**Số liệu thực**:
-
-- **GitHub stars**: 47.8k (nhiều nhất trong 3, bỏ xa các đối thủ)
+**Số liệu thực**: - **GitHub stars**: 47.8k (nhiều nhất trong 3, bỏ xa các đối thủ)
 - **Độ trễ gateway**: 8ms P95 ở 1,000 RPS (benchmark công khai) — thực tế proxy thêm 10–20ms
 - **Giá**: Miễn phí nếu tự host. Tier doanh nghiệp (SSO, hỗ trợ chuyên nghiệp) báo giá riêng
 - **Stack tự host**: Python proxy + PostgreSQL theo dõi chi tiêu + Redis cache
@@ -105,9 +91,7 @@ Hướng dẫn LiteLLM đầy đủ (kèm Docker compose, virtual key, dashboard
 
 **Lời chào**: Một API key. 300+ model. Không hạ tầng. Bạn trả per-token qua OpenRouter ở giá list provider + 5.5% phí mua credit.
 
-**Số liệu thực**:
-
-- **Model**: 300+ bao gồm model frontier open-weight (DeepSeek-V4, Llama 4, Qwen 3) và proprietary (GPT-5, Claude 4.7, Gemini 2 Pro)
+**Số liệu thực**: - **Model**: 300+ bao gồm model frontier open-weight (DeepSeek-V4, Llama 4, Qwen 3) và proprietary (GPT-5, Claude 4.7, Gemini 2 Pro)
 - **Độ trễ gateway**: Thêm 100–150ms trong test của chúng tôi (đây là chi phí thực — họ là dịch vụ host trước API provider)
 - **Giá**: Giá list provider + **phí 5.5% trên mua credit bằng thẻ** (top-up crypto bỏ qua phí này)
 - **Không có SLA công khai** — cộng đồng báo cáo 5xx tập trung khi provider gặp sự cố
@@ -158,9 +142,7 @@ Nếu 60%+ chi tiêu LLM hàng tháng là coding agent, 9Router có khả năng 
 
 ## TL;DR
 
-Ba gateway. Ba mặc định thành thật:
-
-- **Bạn là enterprise** → Portkey
+Ba gateway. Ba mặc định thành thật: - **Bạn là enterprise** → Portkey
 - **Bạn nhạy cảm chi phí ở quy mô** → LiteLLM
 - **Bạn đi nhanh và muốn tất cả** → OpenRouter
 - **Bạn đốt token cho coding agent** → 9Router
@@ -172,7 +154,6 @@ Không có LLM gateway "tốt nhất phổ quát". Chỉ có cái khớp với d
 *Muốn test 3 cái này ở production mà không cam kết? Bật một [DigitalOcean droplet](https://m.do.co/c/eca87ac14ee0) $6/tháng với LiteLLM, trỏ OpenAI SDK hiện có vào đó, và xem các tùy chọn fallback mở rộng mà không động vào code ứng dụng.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

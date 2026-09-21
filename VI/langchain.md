@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/langchain" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/langchain" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/langchain" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/langchain" />
 title: 'LangChain: 3 Cach Trien Khai AI Agent San Sang Productio...
 description: 'LangChain (LC) la framework Python/JS de xay dung ung dung LLM voi 700+ tich hop. Hoc cach cai dat LangChain, trien khai voi Docker, tich hop voi OpenAI, Anthropic, Ollama, va mo rong production voi LangSmith, LangGraph agents, va Kubernetes.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,12 +20,9 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [langchain, llm, 'ai-agent', rag, 'production-deployment', docker, python, openai, langsmith, langgraph]
-aliases:
-- /vi/posts/langchain/
+aliases: - /vi/posts/langchain/
 - /vi/resources/llm-frameworks/langchain-complete-guide/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/langchain/ -->
 
 {{</* resource-info */>}}
 
@@ -50,9 +42,7 @@ LangChain la framework Python va TypeScript ma nguon mo de xay dung ung dung duo
 
 ### Tong quan kien truc
 
-Kien truc cua LangChain tach biet moi quan tam thanh nam lop:
-
-1. **Model I/O** — Cac giao dien chuan hoa cho chat models, LLMs, va embeddings. Chuyen tu OpenAI GPT-4o sang Anthropic Claude 3.5 Sonnet chi bang cach thay doi mot dong import.
+Kien truc cua LangChain tach biet moi quan tam thanh nam lop: 1. **Model I/O** — Cac giao dien chuan hoa cho chat models, LLMs, va embeddings. Chuyen tu OpenAI GPT-4o sang Anthropic Claude 3.5 Sonnet chi bang cach thay doi mot dong import.
 2. **Retrieval** — Document loaders, text splitters, embedding models, va vector stores tao thanh pipeline RAG. Tai PDF, HTML, hoac trang Notion, chia nho, embedding, va truy van theo ng nghia.
 3. **Agents** — API `create_agent` (LangChain 1.0+) dieu phoi viec chon cong cu, vong lap suy luan, va phe duyet con nguoi trong vong lap. Agents quyet dinh goi cong cu nao, theo thu tu nao, va khi nao dung lai.
 4. **Chains** — Cac workflow co the ket hop ma lien ket cac component theo trinh tu. Mot chuoi RetrievalQA ket noi retriever voi LLM de tra loi cau hoi tren tai lieu.
@@ -181,38 +171,26 @@ httpx==0.28.0
 # docker-compose.yml
 version: '3.8'
 
-services:
-  app:
-    build: .
-    ports:
-      - "8000:8000"
-    environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
+services: app: build: .
+    ports: - "8000:8000"
+    environment: - OPENAI_API_KEY=${OPENAI_API_KEY}
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
       - LANGSMITH_API_KEY=${LANGSMITH_API_KEY}
       - LANGSMITH_TRACING=true
       - REDIS_URL=redis://redis:6379
-    depends_on:
-      - redis
+    depends_on: - redis
       - chroma
     restart: unless-stopped
 
-  redis:
-    image: redis:7-alpine
-    volumes:
-      - redis_data:/data
+  redis: image: redis:7-alpine
+    volumes: - redis_data:/data
     restart: unless-stopped
 
-  chroma:
-    image: chromadb/chroma:latest
-    volumes:
-      - chroma_data:/chroma/chroma
+  chroma: image: chromadb/chroma:latest
+    volumes: - chroma_data:/chroma/chroma
     restart: unless-stopped
 
-volumes:
-  redis_data:
-  chroma_data:
-```
+volumes: redis_data: chroma_data: ```
 
 ### Build va chay
 
@@ -347,18 +325,14 @@ from langchain_openai import ChatOpenAI
 
 # Dinh nghia cac cong cu tuy chinh
 @tool
-def search_knowledge_base(query: str) -> str:
-    """Search internal knowledge base for technical documentation."""
+def search_knowledge_base(query: str) -> str: """Search internal knowledge base for technical documentation."""
     return f"Results for '{query}': Found 3 relevant documents."
 
 @tool
-def calculate(expression: str) -> str:
-    """Evaluate a mathematical expression."""
-    try:
-        result = eval(expression)
+def calculate(expression: str) -> str: """Evaluate a mathematical expression."""
+    try: result = eval(expression)
         return str(result)
-    except Exception as e:
-        return f"Error: {str(e)}"
+    except Exception as e: return f"Error: {str(e)}"
 
 # Tao agent
 tools = [search_knowledge_base, calculate]
@@ -378,9 +352,7 @@ print(result["output"])
 
 ### Benchmark hieu nang
 
-Du lieu benchmark duoc thu thap tren AWS c5.4xlarge (16 vCPU, 32GB RAM) voi gpt-3.5-turbo va sentence-transformers/all-mpnet-base-v2:
-
-| Chi so | LangChain | LlamaIndex | Haystack | Semantic Kernel |
+Du lieu benchmark duoc thu thap tren AWS c5.4xlarge (16 vCPU, 32GB RAM) voi gpt-3.5-turbo va sentence-transformers/all-mpnet-base-v2: | Chi so | LangChain | LlamaIndex | Haystack | Semantic Kernel |
 |--------|-----------|------------|----------|-----------------|
 | QPS (truy van/giay) | 78.2 | 85.4 | 102.5 | 65.4 |
 | Dinh bo nho (MB) | 1,203 | 980 | 856 | 987 |
@@ -414,28 +386,22 @@ from langchain_openai import ChatOpenAI
 import operator
 
 # Dinh nghia trang thai
-class AgentState(TypedDict):
-    messages: Annotated[Sequence[BaseMessage], operator.add]
+class AgentState(TypedDict): messages: Annotated[Sequence[BaseMessage], operator.add]
     next_step: str
 
 # Dinh nghia cac nut
-def agent_node(state: AgentState):
-    model = ChatOpenAI(model="gpt-4o")
+def agent_node(state: AgentState): model = ChatOpenAI(model="gpt-4o")
     response = model.invoke(state["messages"])
     return {"messages": [response], "next_step": "human_review"}
 
-def human_review(state: AgentState):
-    # Trong production, noi nay tam dung cho phe duyet con nguoi
+def human_review(state: AgentState): # Trong production, noi nay tam dung cho phe duyet con nguoi
     last_msg = state["messages"][-1].content
-    if "DELETE" in last_msg.upper() or "DROP" in last_msg.upper():
-        return {"next_step": "reject"}
+    if "DELETE" in last_msg.upper() or "DROP" in last_msg.upper(): return {"next_step": "reject"}
     return {"next_step": "execute"}
 
-def execute_tool(state: AgentState):
-    return {"messages": [AIMessage(content="Action executed successfully.")], "next_step": END}
+def execute_tool(state: AgentState): return {"messages": [AIMessage(content="Action executed successfully.")], "next_step": END}
 
-def reject_action(state: AgentState):
-    return {"messages": [AIMessage(content="Action rejected by policy.")], "next_step": END}
+def reject_action(state: AgentState): return {"messages": [AIMessage(content="Action rejected by policy.")], "next_step": END}
 
 # Xay dung do thi
 workflow = StateGraph(AgentState)
@@ -473,11 +439,8 @@ from tenacity import retry, stop_after_attempt, wait_exponential
     wait=wait_exponential(multiplier=1, min=2, max=10),
     reraise=True
 )
-def invoke_with_retry(chain, inputs, config: RunnableConfig = None):
-    try:
-        return chain.invoke(inputs, config=config)
-    except Exception as e:
-        # Ghi vao LangSmith de phan tich
+def invoke_with_retry(chain, inputs, config: RunnableConfig = None): try: return chain.invoke(inputs, config=config)
+    except Exception as e: # Ghi vao LangSmith de phan tich
         print(f"Invocation failed: {e}. Retrying...")
         raise
 
@@ -508,8 +471,7 @@ model = ChatOpenAI(
 # Theo doi chi phi moi yeu cau
 from langchain.callbacks import get_openai_callback
 
-with get_openai_callback() as cb:
-    response = model.invoke("Summarize this 50-page report.")
+with get_openai_callback() as cb: response = model.invoke("Summarize this 50-page report.")
     print(f"Tokens: {cb.total_tokens}, Cost: ${cb.total_cost:.4f}")
 ```
 
@@ -529,8 +491,7 @@ client = Client()
 # Danh gia lap trinh
 from langsmith.evaluation import evaluate
 
-def accuracy_evaluator(run, example):
-    prediction = run.outputs["output"]
+def accuracy_evaluator(run, example): prediction = run.outputs["output"]
     expected = example.outputs["expected_answer"]
     score = 1.0 if expected.lower() in prediction.lower() else 0.0
     return {"key": "accuracy", "score": score}
@@ -548,65 +509,38 @@ results = evaluate(
 # k8s-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
-metadata:
-  name: langchain-app
-  labels:
-    app: langchain-app
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: langchain-app
-  template:
-    metadata:
-      labels:
-        app: langchain-app
-    spec:
-      containers:
-      - name: app
+metadata: name: langchain-app
+  labels: app: langchain-app
+spec: replicas: 3
+  selector: matchLabels: app: langchain-app
+  template: metadata: labels: app: langchain-app
+    spec: containers: - name: app
         image: langchain-production-app:latest
-        ports:
-        - containerPort: 8000
-        env:
-        - name: OPENAI_API_KEY
-          valueFrom:
-            secretKeyRef:
-              name: api-secrets
+        ports: - containerPort: 8000
+        env: - name: OPENAI_API_KEY
+          valueFrom: secretKeyRef: name: api-secrets
               key: openai-key
         - name: LANGSMITH_API_KEY
-          valueFrom:
-            secretKeyRef:
-              name: api-secrets
+          valueFrom: secretKeyRef: name: api-secrets
               key: langsmith-key
-        resources:
-          requests:
-            memory: "512Mi"
+        resources: requests: memory: "512Mi"
             cpu: "500m"
-          limits:
-            memory: "2Gi"
+          limits: memory: "2Gi"
             cpu: "2000m"
-        livenessProbe:
-          httpGet:
-            path: /health
+        livenessProbe: httpGet: path: /health
             port: 8000
           initialDelaySeconds: 10
           periodSeconds: 30
-        readinessProbe:
-          httpGet:
-            path: /ready
+        readinessProbe: httpGet: path: /ready
             port: 8000
           initialDelaySeconds: 5
           periodSeconds: 10
 ---
 apiVersion: v1
 kind: Service
-metadata:
-  name: langchain-service
-spec:
-  selector:
-    app: langchain-app
-  ports:
-    - protocol: TCP
+metadata: name: langchain-service
+spec: selector: app: langchain-app
+  ports: - protocol: TCP
       port: 80
       targetPort: 8000
   type: ClusterIP
@@ -633,16 +567,13 @@ redis_client = redis.Redis.from_url("redis://localhost:6379")
 set_llm_cache(RedisCache(redis_client=redis_client))
 
 # Khoa cache dua tren hash dau vao
-def get_cache_key(prefix: str, text: str) -> str:
-    hash_val = hashlib.md5(text.encode()).hexdigest()
+def get_cache_key(prefix: str, text: str) -> str: hash_val = hashlib.md5(text.encode()).hexdigest()
     return f"{prefix}:{hash_val}"
 
 # Kiem tra cache truoc khi goi LLM dat do
-def cached_invoke(chain, inputs: dict, ttl: int = 3600):
-    cache_key = get_cache_key("llm", json.dumps(inputs, sort_keys=True))
+def cached_invoke(chain, inputs: dict, ttl: int = 3600): cache_key = get_cache_key("llm", json.dumps(inputs, sort_keys=True))
     cached = redis_client.get(cache_key)
-    if cached:
-        return json.loads(cached)
+    if cached: return json.loads(cached)
 
     result = chain.invoke(inputs)
     redis_client.setex(cache_key, ttl, json.dumps({"output": result.content}))
@@ -729,9 +660,7 @@ Mo rong theo chieu ngang bang cach chay nhieu instance container phia sau mot bo
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -751,7 +680,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [Gia LangChain — CheckThat.ai](https://checkthat.ai/brands/langchain/pricing)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

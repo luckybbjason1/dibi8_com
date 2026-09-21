@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/cloakbrowser-stealth-chromium-bot-detection-scraping" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cloakbrowser-stealth-chromium-bot-detection-scraping" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cloakbrowser-stealth-chromium-bot-detection-scraping" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cloakbrowser-stealth-chromium-bot-detection-scraping" />
 title: 'CloakBrowser: 모든 봇 검사를 통과하는 스텔스 Chromium — 25,000 스타의 스크...
 description: 'CloakBrowser (25,077 GitHub stars)는 모든 봇 검사를 통과하는 스텔스 Chromium입니다. 소스 레벨 지문 패치가 있는 드롭인 Playwright 교체품. 30/30 테스트 통과. 설정 튜토리얼, 안티-디텍션 분석, 벤치마크 포함.'
 date: 2026-06-08
-lastmod:  2026-06-08slug: 'cloakbrowser-stealth-chromium-bot-detection-scraping'
+lastmod: 2026-06-08
+slug: 'cloakbrowser-stealth-chromium-bot-detection-scraping'
 category: 'ai-trading'
 tags: ['stealth browser', 'CloakBrowser', 'bot detection', 'web scraping', 'fingerprint spoofing', 'Playwright replacement', 'anti-detection', 'scraping tool']
 github_repo: 'https://github.com/CloakHQ/CloakBrowser'
@@ -17,8 +13,6 @@ license: MIT
 featureImage: 'https://avatars.githubusercontent.com/u/17126204'
 lang: ko
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/cloakbrowser-stealth-chromium-bot-detection-scraping/ -->
 
 # CloakBrowser: 모든 봇 검사를 통과하는 스텔스 Chromium — 25,000 스타의 스크래핑 도구 — 2026 실전 가이드
 
@@ -57,8 +51,7 @@ lang: ko
 
 CloakBrowser는 **모든 알려진 봇 감지 테스트를 통과하도록 소스 레벨에서 패치된 스텔스 Chromium 브라우저 엔진**입니다. 탐지 가능한 흔적을 남기는 익스텐션이나 런타임 하킹과 달리, CloakBrowser는 Chromium의 소스 코드를 수정하여 지문 불일치를 제거합니다——실제 Chrome 브라우저가 가지는 방식 그대로.
 
-핵심 기능:
-- **소스 레벨 패치** — 런타임 하킹이 아닌 빌드 타임에 Chromium 수정
+핵심 기능: - **소스 레벨 패치** — 런타임 하킹이 아닌 빌드 타임에 Chromium 수정
 - **30/30 감지 테스트 통과** — 주요 봇 감지 시스템 통과 (Cloudflare, Datadome, PerimeterX 등)
 - **드롭인 Playwright 교체품** — `playwright.chromium.launch()`를 한 줄로 교체
 - **TLS 지문 랜덤화** — 실제 브라우저처럼 TLS 지문 회전
@@ -72,9 +65,7 @@ CloakBrowser는 **모든 알려진 봇 감지 테스트를 통과하도록 소�
 
 ### 단계 1: 소스 레벨 패치
 
-CloakBrowser는 Chromium 빌드 타임에 패치를 적용합니다:
-
-```bash
+CloakBrowser는 Chromium 빌드 타임에 패치를 적용합니다: ```bash
 # 소스에서 CloakBrowser 빌드
 git clone https://github.com/CloakHQ/CloakBrowser.git
 cd CloakBrowser
@@ -83,8 +74,7 @@ cd CloakBrowser
 ./build.sh --target chromium-125
 
 # 출력: cloak-browser 바이너리 (~200 소스 패치 적용됨)
-# 패치 카테고리:
-# - navigator.webdriver = false (C++ 레벨)
+# 패치 카테고리: # - navigator.webdriver = false (C++ 레벨)
 # - chrome.runtime 스푸핑
 # - WebGL 렌더러 지문
 # - TLS 지문 랜덤화
@@ -102,8 +92,7 @@ cd CloakBrowser
 # Playwright의 Chromium을 CloakBrowser로 교체
 from playwright.sync_api import sync_playwright
 
-with sync_playwright() as p:
-    browser = p.chromium.launch(
+with sync_playwright() as p: browser = p.chromium.launch(
         executable_path="./cloak-browser/chrome",  # 드롭인 교체!
         headless=False,  # 또는 headless=True — 여전히 작동
     )
@@ -162,8 +151,7 @@ cd CloakBrowser && ./build.sh
 npm install playwright
 npx playwright install chromium
 
-# 스크립트에서:
-const { chromium } = require('playwright');
+# 스크립트에서: const { chromium } = require('playwright');
 const browser = await chromium.launch({
   executablePath: './cloak-browser/chrome',
 });
@@ -200,12 +188,10 @@ browser = p.chromium.launch(
 # 또는 리지던시 풀 사용
 import requests
 
-def get_proxy():
-    return requests.get("http://proxy-pool:8080/next").json()
+def get_proxy(): return requests.get("http://proxy-pool:8080/next").json()
 
 # 요청마다 프록시 회전
-for url in urls:
-    proxy = get_proxy()
+for url in urls: proxy = get_proxy()
     page = browser.new_page(proxy=proxy)
     page.goto(url)
     # 스크래핑...
@@ -251,21 +237,17 @@ for url in urls:
 from playwright.sync_api import sync_playwright
 import time
 
-with sync_playwright() as p:
-    browser = p.chromium.launch(
+with sync_playwright() as p: browser = p.chromium.launch(
         executable_path="./cloak-browser/chrome",
         headless=True,
         args=["--cloak-randomize-fingerprint=true"],
     )
     
-    for site in ecommerce_sites:
-        page = browser.new_page()
-        try:
-            page.goto(site.url)
+    for site in ecommerce_sites: page = browser.new_page()
+        try: page.goto(site.url)
             price = page.locator(".price").text_content()
             print(f"{site.name}: ${price}")
-        except:
-            print(f"{site.name}: BLOCKED")
+        except: print(f"{site.name}: BLOCKED")
         page.close()
         time.sleep(2)  # 요청 간 딜레이
     
@@ -286,8 +268,7 @@ user_agents = [
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) Safari/605.1",
 ]
 
-for query in seo_queries:
-    ua = random.choice(user_agents)
+for query in seo_queries: ua = random.choice(user_agents)
     page.set_user_agent(ua)
     page.goto(f"https://google.com/search?q={query}")
     results = page.locator(".g").all()
@@ -384,9 +365,7 @@ browser = p.chromium.launch(
 
 ## 제한 / 솔직한 평가
 
-CloakBrowser는 만병통치약이 아닙니다:
-
-1. **감지가 진화함** — 봇 감지 시스템은 지속적으로 업데이트됩니다. 오늘 통과한 것이 내일 실패할 수 있습니다. 감지 테스트 결과를 모니터링하고 CloakBrowser를 정기적으로 업데이트하세요.
+CloakBrowser는 만병통치약이 아닙니다: 1. **감지가 진화함** — 봇 감지 시스템은 지속적으로 업데이트됩니다. 오늘 통과한 것이 내일 실패할 수 있습니다. 감지 테스트 결과를 모니터링하고 CloakBrowser를 정기적으로 업데이트하세요.
 2. **IP 평판이 중요함** — 완벽한 브라우저 지문으로도 알려진 데이터센터 IP는 의심스러운 반응을 유발합니다. 리지던시 프록시를 사용하거나 IP를 회전하세요.
 3. **행동 분석** — 봇 감지는 지문뿐만 아닙니다. 마우스 움직임, 클릭 패턴, 탐색 속도도 분석됩니다. CloakBrowser는 지문을 처리하지만, 행동 패턴은 별도로 고려해야 합니다.
 4. **빌드 복잡성** — 소스에서 빌드하려면 약 30분이 소요되며 Linux 빌드 환경이 필요합니다. 사전 빌드된 바이너리가 있지만 최신 Chromium 버전을 뒤따를 수 있습니다.
@@ -441,7 +420,6 @@ dibi8 한국어 텔레그램 그룹 [dibi8 한국어 Telegram 그룹](https://t.
 위 링크 중 일부는 제휴 링크입니다. 링크를 통해 등록하면 dibi8.com이 수수료를 받을 수 있으며, 이용자에게는 추가 비용이 없습니다. 이는 사이트 운영과 콘텐츠 무료 제공에 도움이 됩니다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

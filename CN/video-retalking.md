@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/video-retalking" />
 title: 'VideoReTalking: 7.2K+ Stars — AI Lip-Sync Video Editing ...
 description: 'VideoReTalking (VRT) is an audio-based lip synchronization system for talking head video editing. Compatible with RVC, GPT-SoVITS, and Coqui TTS. Covers installation, inference, Gradio WebUI, production deployment, and benchmarks vs Wav2Lip and SadTalker.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: ['lip-sync', 'video-editing', 'talking-head', deepfake, ffmpeg, pytorch, gradio, 'ai-video']
-aliases:
-- /posts/video-retalking/
+aliases: - /posts/video-retalking/-
 ---
-
 {{</* resource-info */>}}
 
 ## Introduction
@@ -38,9 +34,7 @@ VideoReTalking is a PyTorch-based inference pipeline that takes a talking-head v
 
 ## How VideoReTalking Works
 
-VideoReTalking uses a three-stage architecture that disentangles expression, lip-sync, and enhancement into separate modules:
-
-### Stage 1: D-Net — Expression Normalization
+VideoReTalking uses a three-stage architecture that disentangles expression, lip-sync, and enhancement into separate modules: ### Stage 1: D-Net — Expression Normalization
 
 The **D-Net** (Expression Editing Network) takes the input video and standardizes the facial expression across all frames to a neutral template. It extracts 3DMM coefficients from each frame using DECA-based face reconstruction, replaces the expression parameters with a predefined neutral template, and synthesizes a stabilized video. This step prevents the lip-sync network from being influenced by the original mouth movements.
 
@@ -63,7 +57,13 @@ The **E-Net** (Enhancement Network) uses GFPGAN and GPEN face restoration models
 ### Hardware Requirements
 
 | Component | Minimum | Recommended |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | GPU | NVIDIA 8GB VRAM | NVIDIA RTX 3090 / 4090 (24GB) |
 | RAM | 16 GB | 32 GB |
 | Storage | 10 GB free | 20 GB free (models + temp) |
@@ -102,9 +102,7 @@ pip install torch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 --index-url https
 pip install -r requirements.txt
 ```
 
-The `requirements.txt` installs the following key packages:
-
-```
+The `requirements.txt` installs the following key packages: ```
 basicsr==1.4.2
 kornia==0.5.1
 face-alignment==1.3.4
@@ -119,11 +117,8 @@ numpy==1.23.4
 
 ### Step 5: Download Pre-trained Models
 
-Download the pre-trained checkpoints from [Google Drive](https://drive.google.com/drive/folders/18rhjMpxK8LVVxf7PI6XwOidt8Vouv_H0) and extract them into `./checkpoints/`:
-
-```bash
-# Directory structure should look like:
-# ./checkpoints/
+Download the pre-trained checkpoints from [Google Drive](https://drive.google.com/drive/folders/18rhjMpxK8LVVxf7PI6XwOidt8Vouv_H0) and extract them into `./checkpoints/`: ```bash
+# Directory structure should look like: # ./checkpoints/
 #   ├── 244000.pth          (D-Net expression editing)
 #   ├── wav2lip.pth         (L-Net lip sync)
 #   ├── GFPGANv1.3.pth      (GFPGAN enhancer)
@@ -137,9 +132,7 @@ Download the pre-trained checkpoints from [Google Drive](https://drive.google.co
 python -c "import torch; print('CUDA available:', torch.cuda.is_available()); print('Device:', torch.cuda.get_device_name(0) if torch.cuda.is_available() else CPU)"
 ```
 
-Expected output on a GPU system:
-
-```
+Expected output on a GPU system: ```
 CUDA available: True
 Device: NVIDIA GeForce RTX 4090
 ```
@@ -148,9 +141,7 @@ Device: NVIDIA GeForce RTX 4090
 
 ### Integration with RVC (Retrieval-based Voice Conversion)
 
-RVC converts one voice to another while preserving prosody. Chain it with VideoReTalking for voice-swapped lip-synced output:
-
-```bash
+RVC converts one voice to another while preserving prosody. Chain it with VideoReTalking for voice-swapped lip-synced output: ```bash
 # Step 1: Generate or convert audio with RVC
 python rvc/infer.py --input input.wav --model weights/model.pth --output rvc_output.wav
 
@@ -163,9 +154,7 @@ python inference.py \
 
 ### Integration with GPT-SoVITS
 
-GPT-SoVITS generates high-quality TTS with few-shot voice cloning. The workflow:
-
-```python
+GPT-SoVITS generates high-quality TTS with few-shot voice cloning. The workflow: ```python
 # gpt_sovits_videoretalking.py
 import subprocess
 import os
@@ -213,10 +202,14 @@ python inference.py \
 
 ### Inference Speed Benchmarks
 
-Tested on an NVIDIA RTX 4090 with a 10-second 512x512 input video:
-
-| Stage | Time | VRAM Peak |
-|---|---|---|
+Tested on an NVIDIA RTX 4090 with a 10-second 512x512 input video: | Stage | Time | VRAM Peak |
+|
+---
+|
+---
+|
+---
+|
 | D-Net (expression normalization) | 2.1s | 4.2 GB |
 | L-Net (lip sync) | 3.8s | 3.8 GB |
 | E-Net (GFPGAN enhancement) | 4.5s | 5.1 GB |
@@ -228,7 +221,17 @@ VideoReTalking processes roughly **1 second of video per 1 second of GPU time** 
 ### Video Quality Benchmarks
 
 | Metric | VideoReTalking | Wav2Lip | SadTalker | GeneFace |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | LSE-C (lip-sync confidence) | 8.7 | 8.3 | 7.9 | 8.1 |
 | PSNR (dB) | 32.4 | 28.1 | 29.8 | 30.2 |
 | LPIPS (lower is better) | 0.11 | 0.19 | 0.14 | 0.13 |
@@ -251,23 +254,17 @@ VideoReTalking processes roughly **1 second of video per 1 second of GPU time** 
 
 ### Gradio WebUI Setup
 
-VideoReTalking includes a built-in Gradio interface for browser-based usage:
-
-```bash
+VideoReTalking includes a built-in Gradio interface for browser-based usage: ```bash
 # Launch the WebUI
 python webUI.py
 ```
 
-The WebUI will start on `http://localhost:7860` by default. It supports:
-
-- Drag-and-drop video and audio upload
+The WebUI will start on `http://localhost:7860` by default. It supports: - Drag-and-drop video and audio upload
 - Expression template selection (neutral, smile)
 - Upper-face emotion control (surprise, angry)
 - Batch segment processing for long videos
 
-For remote access behind a reverse proxy:
-
-```bash
+For remote access behind a reverse proxy: ```bash
 python webUI.py --server-name 0.0.0.0 --server-port 7860 --share
 ```
 
@@ -293,9 +290,7 @@ EXPOSE 7860
 CMD ["python3", "webUI.py", "--server-name", "0.0.0.0"]
 ```
 
-Build and run:
-
-```bash
+Build and run: ```bash
 docker build -t video-retalking .
 docker run --gpus all -p 7860:7860 -v $(pwd)/checkpoints:/app/checkpoints video-retalking
 ```
@@ -317,8 +312,7 @@ os.makedirs(OUTPUT_DIR, exist_ok=True)
 video_files = sorted(Path(INPUT_DIR).glob("*.mp4"))
 audio_files = sorted(Path(AUDIO_DIR).glob("*.wav"))
 
-for vid, aud in zip(video_files, audio_files):
-    outname = f"{OUTPUT_DIR}/{vid.stem}_synced.mp4"
+for vid, aud in zip(video_files, audio_files): outname = f"{OUTPUT_DIR}/{vid.stem}_synced.mp4"
     print(f"Processing: {vid.name} + {aud.name}")
     subprocess.run([
         "python", "inference.py",
@@ -346,8 +340,7 @@ logging.basicConfig(
     ]
 )
 
-def inference_with_monitoring(face_path, audio_path, output_path):
-    start = time.time()
+def inference_with_monitoring(face_path, audio_path, output_path): start = time.time()
     vram_before = torch.cuda.memory_allocated() / 1e9
     
     # Run inference
@@ -370,7 +363,17 @@ def inference_with_monitoring(face_path, audio_path, output_path):
 ## Comparison with Alternatives
 
 | Feature | VideoReTalking | Wav2Lip | SadTalker | GeneFace |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Input type | Video + Audio | Video + Audio | Image + Audio | Video + Audio |
 | Output quality | High (with enhancement) | Medium | Medium-High | High |
 | Inference speed | ~1x real-time (GPU) | ~2x real-time | ~0.5x real-time | ~0.8x real-time |
@@ -387,9 +390,7 @@ VideoReTalking sits in the sweet spot between speed and quality. Wav2Lip is fast
 
 ## Limitations / Honest Assessment
 
-VideoReTalking is not the right tool for every scenario:
-
-1. **Extreme head poses fail**: The D-Net cannot handle extreme profile views or heavily occluded faces. Side-view videos beyond ±45° yaw will produce artifacts.
+VideoReTalking is not the right tool for every scenario: 1. **Extreme head poses fail**: The D-Net cannot handle extreme profile views or heavily occluded faces. Side-view videos beyond ±45° yaw will produce artifacts.
 2. **No real-time capability**: The three-stage pipeline requires processing the entire video sequentially. Expect ~1x real-time inference at best — not suitable for live streaming without pre-buffering.
 3. **Resolution ceiling**: The enhancement networks are trained on 512x512 face crops. Upscaling beyond this produces diminishing returns.
 4. **Expression consistency**: While the expression templates work well, subtle micro-expressions from the original video are lost during D-Net normalization.
@@ -440,9 +441,7 @@ Join the [dibi8 developer community on Telegram](https://t.me/dibi8tech) to shar
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -460,7 +459,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [Pre-trained Models (Google Drive)](https://drive.google.com/drive/folders/18rhjMpxK8LVVxf7PI6XwOidt8Vouv_H0)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -486,13 +484,13 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [wandb-ml-experiment-tracking-platform-2026](video-retalking)
 - [wandb-ml-experiment-tracking-platform-2026](video-retalking)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

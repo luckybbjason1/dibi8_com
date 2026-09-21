@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/zoxide" />
 title: 'Zoxide: 36,752 GitHub Stars — Complete Setup Guide 2026'
 description: 'Zoxide is a smarter cd command that learns your directory habits. Supports Bash, Zsh, Fish, Nushell, and PowerShell. Covers installation, shell integration, fzf setup, algorithm internals, and migration from autojump/fasd.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [zoxide, cli, shell, 'cd-alternative', rust, terminal, productivity, fzf]
-aliases:
-- /posts/zoxide/
+aliases: - /posts/zoxide/-
 ---
-
 {{</* resource-info */>}}
 
 ![Zoxide Logo](https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/logo.svg)
@@ -46,10 +42,12 @@ If you have visited `~/projects/mycompany/frontend/src/components` three times t
 
 ### The Frecency Algorithm
 
-Zoxide ranks directories using **frecency** — a blend of **freq**uency and re**cency**. Each directory starts with a score of 1 on first access. Every subsequent visit increments the score by 1. When you query, the score is weighted by how recently the directory was accessed:
-
-| Last Access Time | Frecency Multiplier |
-|------------------|---------------------|
+Zoxide ranks directories using **frecency** — a blend of **freq**uency and re**cency**. Each directory starts with a score of 1 on first access. Every subsequent visit increments the score by 1. When you query, the score is weighted by how recently the directory was accessed: | Last Access Time | Frecency Multiplier |
+|
+---
+|
+---
+|
 | Within 1 hour    | score × 4           |
 | Within 1 day     | score × 2           |
 | Within 1 week    | score ÷ 2           |
@@ -59,9 +57,7 @@ This means a directory you visited 20 times but not in the last month may rank l
 
 ### Matching Rules
 
-Zoxide uses predictable, case-insensitive matching:
-
-- All query terms must appear in the path **in order**.
+Zoxide uses predictable, case-insensitive matching: - All query terms must appear in the path **in order**.
 - `z fo ba` matches `/foo/bar` but not `/bar/foo`.
 - The last term must match the final path component.
 - `z bar` matches `/foo/bar` but not `/bar/foo`.
@@ -69,10 +65,12 @@ Zoxide uses predictable, case-insensitive matching:
 
 ### Database Management
 
-Zoxide stores its database at platform-specific paths:
-
-| OS      | Default Database Path                              |
-|---------|---------------------------------------------------|
+Zoxide stores its database at platform-specific paths: | OS      | Default Database Path                              |
+|
+---
+|
+---
+|
 | Linux   | `$XDG_DATA_HOME/zoxide/db.sqlite` or `~/.local/share/zoxide/db.sqlite` |
 | macOS   | `~/Library/Application Support/zoxide/db.sqlite`  |
 | Windows | `%LOCALAPPDATA%\\zoxide\\db.sqlite`               |
@@ -131,9 +129,7 @@ scoop install zoxide
 cargo install zoxide --locked
 ```
 
-Verify the installation:
-
-```bash
+Verify the installation: ```bash
 zoxide --version
 # zoxide 0.9.7
 ```
@@ -142,53 +138,37 @@ zoxide --version
 
 Zoxide requires a one-time initialization in your shell config. This enables the `z` and `zi` commands and hooks into directory changes to update the database.
 
-**Bash** — add to `~/.bashrc`:
-
-```bash
+**Bash** — add to `~/.bashrc`: ```bash
 eval "$(zoxide init bash)"
 ```
 
-**Zsh** — add to `~/.zshrc` (after `compinit`):
-
-```zsh
+**Zsh** — add to `~/.zshrc` (after `compinit`): ```zsh
 eval "$(zoxide init zsh)"
 ```
 
-**Fish** — add to `~/.config/fish/config.fish`:
-
-```fish
+**Fish** — add to `~/.config/fish/config.fish`: ```fish
 zoxide init fish | source
 ```
 
-**Nushell** — add to your env file (`$nu.env-path`):
-
-```nu
+**Nushell** — add to your env file (`$nu.env-path`): ```nu
 zoxide init nushell | save -f ~/.zoxide.nu
 ```
 
-Then source it in your config file (`$nu.config-path`):
-
-```nu
+Then source it in your config file (`$nu.config-path`): ```nu
 source ~/.zoxide.nu
 ```
 
-**PowerShell** — add to your profile (find it with `echo $profile`):
-
-```powershell
+**PowerShell** — add to your profile (find it with `echo $profile`): ```powershell
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
 ```
 
-Reload your shell or source the config:
-
-```bash
+Reload your shell or source the config: ```bash
 source ~/.bashrc   # or ~/.zshrc, etc.
 ```
 
 ### Step 3: Install fzf (Optional but Recommended)
 
-The `zi` command provides interactive fuzzy selection powered by fzf:
-
-```bash
+The `zi` command provides interactive fuzzy selection powered by fzf: ```bash
 # macOS
 brew install fzf
 
@@ -205,9 +185,7 @@ sudo pacman -S fzf
 
 ### Step 4: Import Existing Data (Optional)
 
-If you are migrating from another directory jumper, import your history:
-
-```bash
+If you are migrating from another directory jumper, import your history: ```bash
 # From autojump
 zoxide import autojump
 
@@ -225,24 +203,18 @@ zoxide import atuin
 
 ### fzf Interactive Selection
 
-With fzf installed, `zi` opens an interactive fuzzy finder over your directory history:
-
-```bash
+With fzf installed, `zi` opens an interactive fuzzy finder over your directory history: ```bash
 zi frontend        # fuzzy-find any directory matching "frontend"
 zi                 # browse entire directory history
 ```
 
-Customize fzf behavior for zoxide:
-
-```bash
+Customize fzf behavior for zoxide: ```bash
 export _ZO_FZF_OPTS="--height 40% --reverse --preview 'ls -la {}'"
 ```
 
 ### nnn File Manager
 
-Zoxide integrates natively with nnn via the `nnn-autojump` plugin. Add to your nnn configuration:
-
-```bash
+Zoxide integrates natively with nnn via the `nnn-autojump` plugin. Add to your nnn configuration: ```bash
 export NNN_PLUG="z:zoxide"
 ```
 
@@ -250,9 +222,7 @@ Then press `;z` in nnn to jump with zoxide.
 
 ### tmux Session Managers
 
-Tools like `sesh`, `tmux-session-wizard`, and `tmux-sessionx` support zoxide natively for launching tmux sessions from your most-used directories:
-
-```bash
+Tools like `sesh`, `tmux-session-wizard`, and `tmux-sessionx` support zoxide natively for launching tmux sessions from your most-used directories: ```bash
 # With sesh installed
 sesh list          # shows zoxide-ranked directories
 sesh connect       # interactive tmux session from zoxide list
@@ -260,9 +230,7 @@ sesh connect       # interactive tmux session from zoxide list
 
 ### Neovim / Vim
 
-Use `telescope-zoxide` for fuzzy directory navigation inside Neovim:
-
-```lua
+Use `telescope-zoxide` for fuzzy directory navigation inside Neovim: ```lua
 -- In your Neovim config (Lazy.nvim)
 {
   "jvgrootvelte/telescope-zoxide",
@@ -281,9 +249,7 @@ Yazi supports zoxide natively. Press `Z` in Yazi to trigger zoxide directory jum
 
 ### Emacs
 
-Install `zoxide.el` from MELPA:
-
-```elisp
+Install `zoxide.el` from MELPA: ```elisp
 (use-package zoxide
   :ensure t
   :bind (("C-c z" . zoxide-find-file)))
@@ -294,7 +260,17 @@ Install `zoxide.el` from MELPA:
 ### Startup and Query Performance
 
 | Tool        | Language   | Startup Time | Query Time (10k dirs) | Fuzzy Search |
-|-------------|-----------|-------------|----------------------|--------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Zoxide**  | Rust      | ~5 ms       | < 10 ms              | Yes          |
 | autojump    | Python    | ~50 ms      | 20-50 ms             | No           |
 | fasd        | POSIX sh  | ~20 ms      | 15-30 ms             | Partial      |
@@ -305,7 +281,15 @@ Measured on a Ryzen 9 5900X with SSD and 10,000 tracked directories.
 ### Daily Time Savings
 
 | Scenario                          | Native cd | Zoxide | Time Saved |
-|-----------------------------------|----------:|-------:|-----------:|
+|
+---
+|
+---
+:|
+---
+:|
+---
+:|
 | Jump to project root (deep path)  | 5 s       | 0.5 s  | 4.5 s      |
 | Switch between 2 frequent dirs    | 3 s       | 0.5 s  | 2.5 s      |
 | Find a rarely used directory      | 10 s      | 2 s    | 8 s        |
@@ -319,9 +303,7 @@ A 50-engineer team adopting Zoxide saves an estimated 10+ hours of navigation ti
 
 ### Replace cd Entirely
 
-To make `cd` itself use zoxide, initialize with `--cmd cd`:
-
-```bash
+To make `cd` itself use zoxide, initialize with `--cmd cd`: ```bash
 eval "$(zoxide init bash --cmd cd)"
 ```
 
@@ -335,15 +317,11 @@ eval "$(zoxide init bash --cmd j)"    # use j/ji instead of z/zi
 
 ### Exclude Directories
 
-Prevent zoxide from tracking sensitive or temporary directories:
-
-```bash
+Prevent zoxide from tracking sensitive or temporary directories: ```bash
 export _ZO_EXCLUDE_DIRS="$HOME:$HOME/private/*:/tmp:/var/tmp"
 ```
 
-On Windows, use semicolons as separators:
-
-```powershell
+On Windows, use semicolons as separators: ```powershell
 $env:_ZO_EXCLUDE_DIRS = "$HOME;$HOME\private\*;C:\Temp"
 ```
 
@@ -355,25 +333,19 @@ export _ZO_DATA_DIR="/mnt/fast-ssd/zoxide-data"
 
 ### Enable Echo Mode
 
-Print the matched directory before navigating (useful for scripting):
-
-```bash
+Print the matched directory before navigating (useful for scripting): ```bash
 export _ZO_ECHO=1
 ```
 
 ### Resolve Symlinks
 
-If you work in symlinked environments, force symlink resolution before database writes:
-
-```bash
+If you work in symlinked environments, force symlink resolution before database writes: ```bash
 export _ZO_RESOLVE_SYMLINKS=1
 ```
 
 ### Hook Configuration
 
-Control when zoxide updates directory scores:
-
-```bash
+Control when zoxide updates directory scores: ```bash
 eval "$(zoxide init bash --hook prompt)"   # update at every prompt
 eval "$(zoxide init bash --hook pwd)"      # update only on cd (default)
 eval "$(zoxide init bash --hook none)"     # never auto-update; use zoxide add manually
@@ -394,9 +366,7 @@ zoxide edit                    # opens database in $EDITOR
 
 ### Shell Completion Setup
 
-**Zsh** — ensure the init line is placed after `compinit`:
-
-```zsh
+**Zsh** — ensure the init line is placed after `compinit`: ```zsh
 autoload -Uz compinit; compinit
 eval "$(zoxide init zsh)"      # must come AFTER compinit
 rm ~/.zcompdump*; compinit     # rebuild completion cache if needed
@@ -407,7 +377,17 @@ rm ~/.zcompdump*; compinit     # rebuild completion cache if needed
 ## Comparison with Alternatives
 
 | Feature                       | Zoxide    | autojump  | fasd      | Native cd |
-|------------------------------|-----------|-----------|-----------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Language**                 | Rust      | Python    | POSIX sh  | Shell builtin |
 | **Startup Time**             | ~5 ms     | ~50 ms    | ~20 ms    | 0 ms      |
 | **Fuzzy Search**             | Full      | Prefix only | Partial | None      |
@@ -425,9 +405,7 @@ Zoxide wins on every metric except raw startup time against native `cd` — and 
 
 ## Limitations and Honest Assessment
 
-**Zoxide is not a universal `cd` replacement.** There are specific scenarios where it adds no value:
-
-- **CI/CD pipelines:** Scripts should use absolute paths or `cd` for determinism. Zoxide's database-dependent behavior introduces non-reproducibility.
+**Zoxide is not a universal `cd` replacement.** There are specific scenarios where it adds no value: - **CI/CD pipelines:** Scripts should use absolute paths or `cd` for determinism. Zoxide's database-dependent behavior introduces non-reproducibility.
 - **Shared systems / multi-user servers:** The database is per-user by design. It does not help with discovering directories you have never visited.
 - **Very short paths:** Typing `z d` to reach `/home/user/Downloads` saves no keystrokes over `cd ~/D` + Tab.
 - **First-time navigation:** Zoxide only knows directories you have already visited at least once. The first visit requires a normal `cd` or absolute path.
@@ -488,9 +466,7 @@ Zoxide is the most mature, performant, and well-maintained directory jumper avai
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -506,7 +482,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [navi Cheat Sheets with Zoxide](https://github.com/denisidoro/navi)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -532,8 +507,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [claude-code-vs-aider](zoxide)
@@ -542,6 +517,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [claude-code-vs-aider](zoxide)
 - [microsoft-markitdown-file-to-markdown-converter-cli](zoxide)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

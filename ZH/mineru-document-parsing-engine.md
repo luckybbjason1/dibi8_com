@@ -1,25 +1,13 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mineru-document-parsing-engine" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mineru-document-parsing-engine" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mineru-document-parsing-engine" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mineru-document-parsing-engine" />
-
-lang: zh
 title: 'MinerU：70.6K 星 — 将任何文档转换为 LLM 就绪的 Markdown'
 description: 'MinerU（70,600+ GitHub star）将 PDF、DOCX、PPTX、XLSX、图像和网页转换为结构化 Markdown 和 JSON，用于 LLM、RAG 和 Agent 工作流程。 支持 109 种语言的 OCR、公式到 LaTeX、表格到 HTML，并在 CPU 或 GPU 上运行。'
 tags: ["guide", "open-source", "ai-agents", "rag", "pdf", "ocr", "reference", "tutorial"]
 date: 2026-06-27 00:00:00+08:00
-lastmod:  2026-06-27 00:00:00+08:00slug: 'mineru-document-parsing-engine'
+lastmod: 2026-06-27 00:00:00+08:00slug: 'mineru-document-parsing-engine'
 category: ai-tools
 github_repo: 'https://github.com/opendatalab/MinerU'
 license: MinerU Open Source License (Apache 2.0-based)
-lang: zh
-featureImage: /images/articles/mineru-docs.png
-
----
-
-<!-- canonical: https://dibi8.com/zh/tools/mineru-document-parsing-engine/ -->
+featureImage: /images/articles/mineru-docs.png---
 
 
 ![MinerU logo](https://gcore.jsdelivr.net/gh/opendatalab/MinerU@master/docs/images/MinerU-logo.png)
@@ -124,7 +112,13 @@ mineru ./document.pdf -o ./output/ --engine hybrid-engine --effort medium
 MinerU 支持多种输入格式：
 
 | Format | Support Level | Notes |
-|--------|--------------|-------|
+|
+---
+|
+---
+|
+---
+|
 | PDF | Native | Text PDFs, scanned PDFs, garbled PDFs |
 | DOCX | Native | Full structural preservation |
 | PPTX | Native | Slides, layouts, embedded content |
@@ -180,7 +174,11 @@ MinerU 最初是为了支持 InternLM 的预训练管道而构建的。 它能�
 MinerU 与几乎所有主要的人工智能框架集成：
 
 | Framework | Integration |
-|-----------|-------------|
+|
+---
+|
+---
+|
 | LangChain | Native document loader |
 | LlamaIndex | Document parser integration |
 | RAGFlow | Built-in parser |
@@ -261,7 +259,6 @@ MinerU 拥有超过 70,600 颗星、活跃的开发团队和不断增长的框�
 
 **披露**：本文包含附属链接。 如果您通过我们的链接注册，我们可能会赚取少量佣金，而无需您支付额外费用。 这有助于支持独立的科技新闻业，并使 dibi8.com 等资源保持免费且无广告。
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -289,25 +286,20 @@ MinerU 拥有超过 70,600 颗星、活跃的开发团队和不断增长的框�
 
 ## Why This Matters
 
-Understanding mineru：70.6k 星 — 将任何文档转换为 llm 就绪的 markdown is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding mineru：70.6k 星 — 将任何文档转换为 llm 就绪的 markdown is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -328,13 +320,13 @@ MinerU：70.6K 星 — 将任何文档转换为 LLM 就绪的 Markdown represent
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
 
+---
 ## Related Articles
 
 - [paddleocr-81k-star-ocr-engine](mineru-document-parsing-engine)
@@ -373,7 +365,17 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

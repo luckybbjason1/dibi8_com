@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/prometheus" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/prometheus" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/prometheus" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/prometheus" />
 title: 'Prometheus: 64,094 GitHub Stars — Docker 部署指南 2026'
 description: 'Prometheus（Prom）是一个开源监控系统和时间序列数据库。兼容 Docker、Kubernetes、Grafana 和 Alertmanager。涵盖安装教程、PromQL 查询、生产加固和性能基准测试。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [prometheus, 监控, docker, kubernetes, grafana, devops, 可观测性, 时间序列]
-aliases:
-- /zh/posts/prometheus/
+aliases: - /zh/posts/prometheus/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/prometheus/ -->
 # Prometheus: 64,094 GitHub Stars — Docker 部署指南 2026
 
 
@@ -52,7 +44,11 @@ Prometheus 采用**拉取（pull）架构**。不是应用向中央收集器推�
 核心组件：
 
 | 组件 | 角色 |
-|---|---|
+|
+---
+|
+---
+|
 | **Prometheus Server** | 抓取指标、存入 TSDB、评估规则 |
 | **TSDB** | 自定义时间序列数据库，包含 Head（内存）和 Block（磁盘）层 |
 | **Service Discovery** | 通过 Kubernetes API、AWS EC2、Consul、DNS 自动发现目标 |
@@ -77,39 +73,29 @@ Prometheus 采用**拉取（pull）架构**。不是应用向中央收集器推�
 
 **prometheus.yml：**
 ```yaml
-global:
-  scrape_interval: 15s
+global: scrape_interval: 15s
   evaluation_interval: 15s
 
-scrape_configs:
-  - job_name: prometheus
-    static_configs:
-      - targets: ['localhost:9090']
+scrape_configs: - job_name: prometheus
+    static_configs: - targets: ['localhost:9090']
 ```
 
 **docker-compose.yml：**
 ```yaml
 version: '3.8'
 
-services:
-  prometheus:
-    image: prom/prometheus:v3.11.0
+services: prometheus: image: prom/prometheus:v3.11.0
     container_name: prometheus
-    ports:
-      - "9090:9090"
-    volumes:
-      - prometheus-data:/prometheus
+    ports: - "9090:9090"
+    volumes: - prometheus-data:/prometheus
       - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
-    command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
+    command: - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
       - '--storage.tsdb.retention.time=30d'
       - '--web.enable-lifecycle'
     restart: unless-stopped
 
-volumes:
-  prometheus-data:
-```
+volumes: prometheus-data: ```
 
 启动：
 ```bash
@@ -125,81 +111,57 @@ docker compose up -d
 ```yaml
 version: '3.8'
 
-services:
-  prometheus:
-    image: prom/prometheus:v3.11.0
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+services: prometheus: image: prom/prometheus:v3.11.0
+    volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
       - prometheus-data:/prometheus
-    ports:
-      - "9090:9090"
-    command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports: - "9090:9090"
+    command: - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
       - '--storage.tsdb.retention.time=30d'
       - '--web.enable-lifecycle'
     restart: unless-stopped
 
-  grafana:
-    image: grafana/grafana:11.0.0
-    ports:
-      - "3000:3000"
-    volumes:
-      - grafana-data:/var/lib/grafana
-    environment:
-      - GF_SECURITY_ADMIN_PASSWORD=admin
-    depends_on:
-      - prometheus
+  grafana: image: grafana/grafana:11.0.0
+    ports: - "3000:3000"
+    volumes: - grafana-data:/var/lib/grafana
+    environment: - GF_SECURITY_ADMIN_PASSWORD=admin
+    depends_on: - prometheus
     restart: unless-stopped
 
-  node-exporter:
-    image: prom/node-exporter:v1.9.0
-    volumes:
-      - /proc:/host/proc:ro
+  node-exporter: image: prom/node-exporter:v1.9.0
+    volumes: - /proc:/host/proc:ro
       - /sys:/host/sys:ro
       - /:/rootfs:ro
-    command:
-      - '--path.procfs=/host/proc'
+    command: - '--path.procfs=/host/proc'
       - '--path.rootfs=/rootfs'
       - '--path.sysfs=/host/sys'
       - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
     restart: unless-stopped
 
-  cadvisor:
-    image: gcr.io/cadvisor/cadvisor:v0.49.1
-    volumes:
-      - /:/rootfs:ro
+  cadvisor: image: gcr.io/cadvisor/cadvisor:v0.49.1
+    volumes: - /:/rootfs:ro
       - /var/run:/var/run:ro
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
       - /dev/disk/:/dev/disk:ro
-    ports:
-      - "8080:8080"
+    ports: - "8080:8080"
     restart: unless-stopped
 
-volumes:
-  prometheus-data:
-  grafana-data:
-```
+volumes: prometheus-data: grafana-data: ```
 
 **更新后的 prometheus.yml：**
 ```yaml
-global:
-  scrape_interval: 15s
+global: scrape_interval: 15s
   evaluation_interval: 15s
 
-scrape_configs:
-  - job_name: prometheus
-    static_configs:
-      - targets: ['prometheus:9090']
+scrape_configs: - job_name: prometheus
+    static_configs: - targets: ['prometheus:9090']
 
   - job_name: 'node-exporter'
-    static_configs:
-      - targets: ['node-exporter:9100']
+    static_configs: - targets: ['node-exporter:9100']
 
   - job_name: cadvisor
-    static_configs:
-      - targets: ['cadvisor:8080']
+    static_configs: - targets: ['cadvisor:8080']
 ```
 
 ### Kubernetes Helm 部署
@@ -235,42 +197,25 @@ kubectl port-forward svc/prometheus-kube-prometheus-alertmanager 9093:9093 -n mo
 ### Kubernetes 生产配置
 
 ```yaml
-prometheus:
-  prometheusSpec:
-    resources:
-      requests:
-        memory: 2Gi
+prometheus: prometheusSpec: resources: requests: memory: 2Gi
         cpu: 500m
-      limits:
-        memory: 4Gi
+      limits: memory: 4Gi
         cpu: 2000m
-    storageSpec:
-      volumeClaimTemplate:
-        spec:
-          storageClassName: gp3
+    storageSpec: volumeClaimTemplate: spec: storageClassName: gp3
           accessModes: ["ReadWriteOnce"]
-          resources:
-            requests:
-              storage: 100Gi
+          resources: requests: storage: 100Gi
     retention: "30d"
     retentionSize: "90GB"
     scrapeInterval: "30s"
     enableAdminAPI: false
 
-alertmanager:
-  alertmanagerSpec:
-    resources:
-      requests:
-        memory: 256Mi
+alertmanager: alertmanagerSpec: resources: requests: memory: 256Mi
         cpu: 100m
-      limits:
-        memory: 512Mi
+      limits: memory: 512Mi
         cpu: 500m
 
-grafana:
-  enabled: true
-  persistence:
-    enabled: true
+grafana: enabled: true
+  persistence: enabled: true
     size: 10Gi
 ```
 
@@ -299,73 +244,52 @@ Grafana 将 Prometheus 作为数据源连接：
 
 创建 `alert-rules.yml`：
 ```yaml
-groups:
-  - name: node-alerts
-    rules:
-      - alert: HighMemoryUsage
+groups: - name: node-alerts
+    rules: - alert: HighMemoryUsage
         expr: (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes * 100 > 85
         for: 5m
-        labels:
-          severity: warning
-        annotations:
-          summary: "{{ $labels.instance }} 内存使用率过高"
+        labels: severity: warning
+        annotations: summary: "{{ $labels.instance }} 内存使用率过高"
           description: "内存使用率超过 85%（当前值：{{ $value }}%）"
-
       - alert: HighCPUUsage
         expr: 100 - (avg by(instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 80
         for: 5m
-        labels:
-          severity: critical
-        annotations:
-          summary: "{{ $labels.instance }} CPU 使用率过高"
+        labels: severity: critical
+        annotations: summary: "{{ $labels.instance }} CPU 使用率过高"
           description: "CPU 使用率超过 80%（当前值：{{ $value }}%）"
-
       - alert: DiskSpaceLow
         expr: (node_filesystem_avail_bytes / node_filesystem_size_bytes) * 100 < 10
         for: 5m
-        labels:
-          severity: warning
-        annotations:
-          summary: "{{ $labels.instance }} 磁盘空间不足"
+        labels: severity: warning
+        annotations: summary: "{{ $labels.instance }} 磁盘空间不足"
           description: "磁盘空间低于 10%（挂载点：{{ $labels.mountpoint }}）"
-
       - alert: InstanceDown
         expr: up == 0
         for: 3m
-        labels:
-          severity: critical
-        annotations:
-          summary: "实例 {{ $labels.instance }} 宕机"
+        labels: severity: critical
+        annotations: summary: "实例 {{ $labels.instance }} 宕机"
           description: "目标已无法访问超过 3 分钟"
-
       - alert: HighRequestLatency
         expr: histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m])) > 0.5
         for: 5m
-        labels:
-          severity: warning
-        annotations:
-          summary: "{{ $labels.instance }} 请求延迟过高"
+        labels: severity: warning
+        annotations: summary: "{{ $labels.instance }} 请求延迟过高"
           description: "95 分位延迟为 {{ $value }} 秒"
-```
 
 ### Alertmanager Slack 通知配置
 
 创建 `alertmanager.yml`：
 ```yaml
-global:
-  slack_api_url: 你的_SLACK_WEBHOOK_URL
+global: slack_api_url: 你的_SLACK_WEBHOOK_URL
 
-route:
-  receiver: 'slack-notifications'
+route: receiver: 'slack-notifications'
   group_by: [alertname, severity]
   group_wait: 30s
   group_interval: 5m
   repeat_interval: 4h
 
-receivers:
-  - name: 'slack-notifications'
-    slack_configs:
-      - channel: '#alerts'
+receivers: - name: 'slack-notifications'
+    slack_configs: - channel: '#alerts'
         send_resolved: true
         title: '{{ range .Alerts }}{{ .Annotations.summary }}{{ end }}'
         text: '{{ range .Alerts }}{{ .Annotations.description }}{{ end }}'
@@ -374,16 +298,11 @@ receivers:
 ### Kubernetes 服务发现
 
 ```yaml
-scrape_configs:
-  - job_name: 'kubernetes-pods'
-    kubernetes_sd_configs:
-      - role: pod
-        namespaces:
-          names:
-            - default
+scrape_configs: - job_name: 'kubernetes-pods'
+    kubernetes_sd_configs: - role: pod
+        namespaces: names: - default
             - production
-    relabel_configs:
-      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
+    relabel_configs: - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
         action: keep
         regex: true
       - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_port]
@@ -439,7 +358,15 @@ predict_linear(
 ### 摄入性能
 
 | 部署方式 | 每秒样本数 | CPU 核心 | 内存 |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Prometheus 单节点 | ~100,000–300,000 | 4 | 2–4 GB |
 | Prometheus + Cortex | 1M+ | 集群 | 水平扩展 |
 | VictoriaMetrics（单节点） | 最高 1,000,000 | 8 | ~2 GB |
@@ -451,7 +378,15 @@ predict_linear(
 ### 不同规模资源需求
 
 | 集群规模 | Prometheus CPU | Prometheus 内存 | 存储（30 天） |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 小型（< 50 个 pod） | 500m | 1–2 Gi | 20–50 Gi |
 | 中型（50–200 个 pod） | 1000m | 2–4 Gi | 50–100 Gi |
 | 大型（200–500 个 pod） | 2000m | 4–8 Gi | 100–200 Gi |
@@ -469,8 +404,7 @@ predict_linear(
 
 1. **启用基本认证**（Prometheus v2.24+）：
 ```yaml
-basic_auth_users:
-  admin: $2y$10$... # bcrypt 哈希
+basic_auth_users: admin: $2y$10$... # bcrypt 哈希
 ```
 
 ```bash
@@ -479,11 +413,9 @@ htpasswd -nBC 10 "" | tr -d ':\n'
 
 2. **为抓取目标使用 TLS**：
 ```yaml
-scrape_configs:
-  - job_name: 'secure-target'
+scrape_configs: - job_name: 'secure-target'
     scheme: https
-    tls_config:
-      ca_file: /etc/prometheus/certs/ca.crt
+    tls_config: ca_file: /etc/prometheus/certs/ca.crt
       cert_file: /etc/prometheus/certs/client.crt
       key_file: /etc/prometheus/certs/client.key
       insecure_skip_verify: false
@@ -516,19 +448,27 @@ Thanos 通过对象存储（S3、GCS、Azure Blob）扩展 Prometheus 实现长�
 ```yaml
 - name: thanos-sidecar
   image: quay.io/thanos/thanos:v0.37.0
-  args:
-    - sidecar
+  args: - sidecar
     - --tsdb.path=/prometheus
     - --objstore.config-file=/etc/thanos/objstore.yml
-  volumeMounts:
-    - name: prometheus-data
+  volumeMounts: - name: prometheus-data
       mountPath: /prometheus
 ```
 
 ## 与替代方案对比
 
 | 特性 | Prometheus | InfluxDB | Datadog | New Relic |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **许可证** | Apache-2.0 | MIT | 专有 | 专有 |
 | **成本** | 免费（自托管） | 免费 OSS / 企业版 $ | $15–$23/主机/月 | $0.25/GB + 用户费 |
 | **部署方式** | 自托管、Docker、K8s | 自托管 / 云服务 | 仅 SaaS | 仅 SaaS |
@@ -622,7 +562,6 @@ Prometheus 在 2026 年仍是云原生监控的黄金标准。凭借 64,094 个 
 - [CNCF Prometheus 项目页面](https://www.cncf.io/projects/prometheus/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -648,8 +587,8 @@ Prometheus 在 2026 年仍是云原生监控的黄金标准。凭借 64,094 个 
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [trivy-production-security-scanner-2026](prometheus)
@@ -658,6 +597,6 @@ Prometheus 在 2026 年仍是云原生监控的黄金标准。凭借 64,094 个 
 - [worldmonitor-real-time-global-intelligence-dashboard](prometheus)
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](prometheus)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

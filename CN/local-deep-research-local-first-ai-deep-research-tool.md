@@ -1,12 +1,9 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/local-deep-research-local-first-ai-deep-research-tool" />
-title: "Local Deep Research: The Ultimate Local-First AI Deep Re...
+title: "Local Deep Research: The Ultimate Local-First AI Deep Re..."
 description: "Master Local Deep Research (LDR) — the local-first AI research assistant. Learn how to perform deep, iterative research with Ollama and SearXNG while maintaining 100% privacy."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Docker
+tech_stack: - Docker
   - Go
   - Python
   - Rust
@@ -24,10 +21,8 @@ maintainer: "searxng"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases:
-- /posts/local-deep-research-local-first-ai-deep-research-tool/
-faqs:
-  - q: 'What is Local Deep Research (LDR)?'
+aliases: - /posts/local-deep-research-local-first-ai-deep-research-tool/
+faqs: - q: 'What is Local Deep Research (LDR)?'
     a: 'Local Deep Research (LDR) is an open-source AI research assistant that performs systematic, iterative research instead of giving quick chat-style answers. It decomposes a query into sub-queries, searches the web, academic databases, and local files in parallel, then synthesizes a cited report.'
   - q: 'Can Local Deep Research run entirely offline for privacy?'
     a: 'Yes. By integrating with Ollama, LDR can run completely on local hardware, so research queries, proprietary documents, and final reports never leave your machine. This local-first design makes it suitable for enterprise or sensitive technical research.'
@@ -46,23 +41,18 @@ Enter **Local Deep Research (LDR)**.
 
 ## 🚀 What is Local Deep Research?
 
-LDR is a powerful, open-source AI research assistant designed to perform systematic, iterative research. Unlike standard LLMs that might hallucinate or provide surface-level info, LDR follows a rigorous process:
-
-1.  **Query Decomposition**: Breaks your complex question into focused sub-queries.
+LDR is a powerful, open-source AI research assistant designed to perform systematic, iterative research. Unlike standard LLMs that might hallucinate or provide surface-level info, LDR follows a rigorous process: 1.  **Query Decomposition**: Breaks your complex question into focused sub-queries.
 2.  **Parallel Search**: Simultaneously queries the web (via SearXNG), academic databases (arXiv, PubMed), and local files.
 3.  **Iterative Synthesis**: Analyzes findings, identifies gaps, and performs follow-up searches to "deepen" the knowledge.
 4.  **Structured Reporting**: Generates a comprehensive report with proper citations.
 
 ## 🎯 Why It's a Game Changer for Developers
 
-For those of us building the next generation of AI tools, LDR offers three critical advantages:
-
-### 1. Privacy by Design
+For those of us building the next generation of AI tools, LDR offers three critical advantages: ### 1. Privacy by Design
 By integrating with **Ollama**, LDR can run entirely on your local hardware. Your research queries, proprietary documents, and final reports never leave your machine. This is non-negotiable for enterprise or sensitive technical research.
 
 ### 2. Multi-Source Intelligence
-LDR doesn't just "google" things. It can be configured to route queries intelligently:
-- **Scientific questions** go to academic engines.
+LDR doesn't just "google" things. It can be configured to route queries intelligently: - **Scientific questions** go to academic engines.
 - **Code questions** go to GitHub and technical sources.
 - **General info** goes to Wikipedia and web search.
 
@@ -71,9 +61,7 @@ One of the biggest pain points with AI is trust. LDR provides a bibliography for
 
 ## 🛠️ Getting Started with the "Mentor" Setup
 
-To get the most out of LDR, I recommend the **Local-First Stack**:
-
-- **LLM Engine**: [Ollama](https://ollama.com/) (running Llama 3 or Mistral).
+To get the most out of LDR, I recommend the **Local-First Stack**: - **LLM Engine**: [Ollama](https://ollama.com/) (running Llama 3 or Mistral).
 - **Search Engine**: [SearXNG](https://github.com/searxng/searxng) (a privacy-respecting metasearch engine).
 - **Environment**: Docker (for easy deployment).
 
@@ -95,23 +83,20 @@ When using LDR, don't just ask one question. Use the **Detailed Research Mode**.
 
 Local Deep Research is more than just a tool; it's a paradigm shift for how we interact with information in the AI era. If you're tired of shallow AI answers and concerned about your data privacy, it's time to move your research local.
 
----
 
+---
 ### Related Resources
 - [Mastering Python Context Managers](/zh/resources/ai-tools/python-context-managers-the-three-cases-you-actually-need/) — Clean up your local AI scripts.
 
----
 
+---
 ## Recommended Infrastructure for Self-Hosting
 
-If you want to run this stack reliably 24/7, infrastructure choice matters:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+If you want to run this stack reliably 24/7, infrastructure choice matters: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
 
-<!--auto-references-->
 ## References & Sources
 
 - [SearXNG](https://github.com/searxng/searxng)
@@ -124,7 +109,6 @@ If you want to run this stack reliably 24/7, infrastructure choice matters:
 - [PubMed](https://pubmed.ncbi.nlm.nih.gov/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -152,25 +136,20 @@ If you want to run this stack reliably 24/7, infrastructure choice matters:
 
 ## Why This Matters
 
-Understanding local deep research: the ultimate local-first ai deep research tool is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding local deep research: the ultimate local-first ai deep research tool is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -222,7 +201,17 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 ## Framework Comparison
 
 | Framework | Primary Use | Learning Curve | Community | Production Ready |
-|-----------|-------------|----------------|-----------|------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **LangChain** | General-purpose | Medium | Large | ✅ Yes |
 | **LlamaIndex** | RAG/Retrieval | Low | Growing | ✅ Yes |
 | **Haystack** | Document processing | Medium | Medium | ✅ Yes |

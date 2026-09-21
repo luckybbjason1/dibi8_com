@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/affine-knowledge-base-whiteboard" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/affine-knowledge-base-whiteboard" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/affine-knowledge-base-whiteboard" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/affine-knowledge-base-whiteboard" />
 title: 'AFFiNE 2026: Bộ hỗn hợp Notion+Miro mã nguồn mở cho quản...
 description: 'Triển khai AFFiNE v0.26.3 làm lựa chọn thay thế Notion+Miro tự lưu trữ. Hợp tác CRDT ưu tiên cục bộ, bảng vẽ edgeless, trợ lý viết AI, triển khai Docker trong 5 phút.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [affine, 'knowledge-base', whiteboard, 'tự-lưu-trữ', docker, 'thay-thế-notion', 'thay-thế-miro', crdt, 'ưu-tiên-cục-bộ', 'ai-viết']
-aliases:
-- /vi/posts/affine-knowledge-base-whiteboard/
+aliases: - /vi/posts/affine-knowledge-base-whiteboard/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/affine-knowledge-base-whiteboard/ -->
 
 {{</* resource-info */>}}
 
@@ -51,9 +43,7 @@ AFFiNE là hệ điều hành tri thức tất cả trong một mã nguồn mở
 
 ## AFFiNE hoạt động như thế nào: Kiến trúc bên trong
 
-Kiến trúc AFFiNE là một chồng ba lớp:
-
-**Lớp 1: OctoBase (Công cụ CRDT Rust)** — Xử lý giải quyết xung đột, đồng bộ thờ gian thực và lưu trữ liên tục. Dữ liệu được lưu trữ dưới dạng nhật ký hoạt động phẳng có thể hợp nhất các thay đổi từ bất kỳ máy khách nào mà không cần phối hợp máy chủ. Điều này cho phép chỉnh sửa ưu tiên ngoại tuyến: bạn có thể làm việc trên máy bay, và tất cả thay đổi sẽ đồng bộ khi bạn kết nối lại.
+Kiến trúc AFFiNE là một chồng ba lớp: **Lớp 1: OctoBase (Công cụ CRDT Rust)** — Xử lý giải quyết xung đột, đồng bộ thờ gian thực và lưu trữ liên tục. Dữ liệu được lưu trữ dưới dạng nhật ký hoạt động phẳng có thể hợp nhất các thay đổi từ bất kỳ máy khách nào mà không cần phối hợp máy chủ. Điều này cho phép chỉnh sửa ưu tiên ngoại tuyến: bạn có thể làm việc trên máy bay, và tất cả thay đổi sẽ đồng bộ khi bạn kết nối lại.
 
 **Lớp 2: BlockSuite (Khung trình chỉnh sửa TypeScript)** — Một khung trình chỉnh sửa dựa trên khối hiển thị cả chế độ xem tài liệu và bảng vẽ từ cùng một mô hình dữ liệu. Mỗi đoạn văn, hình ảnh, hình dạng hoặc bảng cơ sở dữ liệu là một "khối" với ID duy nhất và lược đồ kiểu.
 
@@ -74,17 +64,13 @@ Cổng mặc định là **3010**. Ngườ dùng đầu tiên đăng ký sẽ t�
 
 Thiết lập Docker Compose chính thức của AFFiNE là phương pháp triển khai được khuyến nghị. Nó xử lý tự động di chuyển cơ sở dữ liệu, lưu trữ liên tục và các phụ thuộc dịch vụ.
 
-**Bước 1:** Tạo thư mục và tải xuống tệp compose chính thức:
-
-```bash
+**Bước 1:** Tạo thư mục và tải xuống tệp compose chính thức: ```bash
 mkdir -p ~/affine-selfhost && cd ~/affine-selfhost
 wget -O docker-compose.yml https://github.com/toeverything/affine/releases/latest/download/docker-compose.yml
 wget -O .env https://github.com/toeverything/affine/releases/latest/download/.env.example
 ```
 
-**Bước 2:** Chỉnh sửa tệp môi trường với thông tin xác thực của bạn:
-
-```bash
+**Bước 2:** Chỉnh sửa tệp môi trường với thông tin xác thực của bạn: ```bash
 # Chỉnh sửa tệp .env
 cat > .env << EOF
 AFFINE_ADMIN_EMAIL=admin@yourdomain.com
@@ -99,18 +85,14 @@ CONFIG_LOCATION=./config
 EOF
 ```
 
-**Bước 3:** Khởi động chồng dịch vụ:
-
-```bash
+**Bước 3:** Khởi động chồng dịch vụ: ```bash
 docker compose up -d
 # Tải: affineteams/affine-graphql, postgres:16, redis:7.2
 # Chạy tự động di chuyển DB
 # Tạo tài khoản quản trị từ .env khi khởi động đầu tiên
 ```
 
-**Bước 4:** Xác minh tất cả container đều khỏe mạnh:
-
-```bash
+**Bước 4:** Xác minh tất cả container đều khỏe mạnh: ```bash
 $ docker compose ps
 NAME            STATUS          PORTS
 affine-server   Up 10 seconds   0.0.0.0:3010->3010/tcp
@@ -156,13 +138,9 @@ Các header `Upgrade` và `Connection` rất quan trọng — chúng cho phép h
 
 ## Tích hợp với 4 công cụ phổ biến
 
-AFFiNE kết nối với chuỗi công cụ hiện có của bạn thông qua hệ thống plugin và API:
+AFFiNE kết nối với chuỗi công cụ hiện có của bạn thông qua hệ thống plugin và API: **1. Tích hợp lịch CalDAV**
 
-**1. Tích hợp lịch CalDAV**
-
-AFFiNE v0.26+ hỗ trợ CalDAV, cho phép bạn đồng bộ tác vụ và hạn chót với lịch bên ngoài. Cấu hình từ **Cài đặt > Tích hợp > CalDAV**:
-
-```bash
+AFFiNE v0.26+ hỗ trợ CalDAV, cho phép bạn đồng bộ tác vụ và hạn chót với lịch bên ngoài. Cấu hình từ **Cài đặt > Tích hợp > CalDAV**: ```bash
 # Kiểm tra kết nối CalDAV
 curl -X PROPFIND https://your-nextcloud.com/remote.php/dav/calendars/admin/personal/ \
   -u admin:password \
@@ -172,9 +150,7 @@ curl -X PROPFIND https://your-nextcloud.com/remote.php/dav/calendars/admin/perso
 
 **2. Cấu hình trợ lý AI (OpenAI API)**
 
-Trợ lý AI có thể được trỏ đến bất kỳ điểm cuối tương thích OpenAI nào, bao gồm các mô hình cục bộ qua Ollama hoặc LiteLLM:
-
-```bash
+Trợ lý AI có thể được trỏ đến bất kỳ điểm cuối tương thích OpenAI nào, bao gồm các mô hình cục bộ qua Ollama hoặc LiteLLM: ```bash
 # Trong bảng điều khiển quản trị AFFiNE > Cài đặt > AI
 # URL nhà cung cấp: http://your-ollama:11434/v1
 # Khóa API: sk-ollama (hoặc khóa của bạn)
@@ -201,9 +177,7 @@ curl -X POST http://localhost:3010/api/docs \
 
 **4. Đồng bộ Git cho quy trình phát triển**
 
-Sử dụng tính năng xuất của AFFiNE kết hợp với `git` để quản lý tài liệu có kiểm soát phiên bản:
-
-```bash
+Sử dụng tính năng xuất của AFFiNE kết hợp với `git` để quản lý tài liệu có kiểm soát phiên bản: ```bash
 #!/bin/bash
 # daily-backup.sh - lập lịch cron mỗi đêm
 docker exec affine-postgres pg_dump -U affine affine > backup-$(date +%Y%m%d).sql
@@ -212,9 +186,7 @@ git add backup-*.sql && git commit -m "docs: daily AFFiNE backup $(date +%Y-%m-%
 
 ## Đánh giá hiệu suất / Trường hợp sử dụng thực tế
 
-Các đặc tính hiệu suất của AFFiNE quan trọng cho triển khai sản xuất:
-
-| Chỉ số | AFFiNE tự lưu trữ | Notion đám mây | Miro đám mây |
+Các đặc tính hiệu suất của AFFiNE quan trọng cho triển khai sản xuất: | Chỉ số | AFFiNE tự lưu trữ | Notion đám mây | Miro đám mây |
 |--------|-------------------|--------------|------------|
 | Thờ gian hiển thị nội dung đầu tiên | **1.2s** (cục bộ) | 2.8s | 3.1s |
 | Độ trễ đồng bộ (cùng LAN) | **<50ms** | 180-400ms | 200-500ms |
@@ -303,8 +275,7 @@ echo "0 2 * * * /root/backup-affine.sh" | crontab -
 
 ```yaml
 # Thêm vào docker-compose.yml cho kịch bản tải cao
-environment:
-  - DATABASE_URL=postgresql://affine:${DB_PASSWORD}@postgres:5432/affine
+environment: - DATABASE_URL=postgresql://affine:${DB_PASSWORD}@postgres:5432/affine
   - DATABASE_POOL_SIZE=20
   - DATABASE_POOL_MAX=50
   - DATABASE_TIMEOUT=30000
@@ -333,9 +304,7 @@ environment:
 
 ## Hạn chế: Đánh giá trung thực
 
-AFFiNE không hoàn hảo. Đây là những điều cần biết trước khi cam kết:
-
-1. **Công thức cơ sở dữ liệu còn hạn chế** so với Notion. Các truy vấn tổng hợp phức tạp và truy vấn liên cơ sở dữ liệu đã được lên kế hoạch nhưng chưa triển khai (dự kiến: Q3 2026).
+AFFiNE không hoàn hảo. Đây là những điều cần biết trước khi cam kết: 1. **Công thức cơ sở dữ liệu còn hạn chế** so với Notion. Các truy vấn tổng hợp phức tạp và truy vấn liên cơ sở dữ liệu đã được lên kế hoạch nhưng chưa triển khai (dự kiến: Q3 2026).
 
 2. **Chưa có ứng dụng di động nguyên bản** tính đến v0.26. PWA hoạt động trên trình duyệt di động, nhưng không mượt mà bằng ứng dụng Notion hay Obsidian nguyên bản.
 
@@ -388,9 +357,7 @@ Triển khai ngày hôm nay chỉ trong 5 phút với Docker, kết nối mô h�
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -400,7 +367,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 Bài viết này chứa liên kết liên kết cho DigitalOcean. Nếu bạn đăng ký qua liên kết của chúng tôi, chúng tôi nhận được hoa hồng mà không tốn thêm chi phí cho bạn. Tất cả đề xuất đều dựa trên thử nghiệm thực tế và không bị ảnh hưởng bởi chương trình liên kết. AFFiNE hoàn toàn mã nguồn mở và tự lưu trữ miễn phí không yêu cầu thanh toán.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

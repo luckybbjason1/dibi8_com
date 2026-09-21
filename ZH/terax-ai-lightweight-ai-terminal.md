@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/terax-ai-lightweight-ai-terminal" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/terax-ai-lightweight-ai-terminal" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/terax-ai-lightweight-ai-terminal" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/terax-ai-lightweight-ai-terminal" />
 title: "Terax AI：懂你的轻量级 AI 终端模拟器"
-description: "发现 Terax AI，一款基于 Tauri 2 + Rust 构建的 7 MB AI 原生终端模拟器。支持自然语言转 Shell 命令、内联 AI 辅助、智能自动补全，兼容 bash、zsh、fish 和 PowerShell。". Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "发现 Terax AI，一款基于 Tauri 2 + Rust 构建的 7 MB AI 原生终端模拟器。支持自然语言转 Shell 命令、内联 AI 辅助、智能自动补全，兼容 bash、zsh、fish 和 PowerShell。"
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Docker
+tech_stack: - Docker
   - Go
   - Java
   - JavaScript
@@ -30,10 +24,8 @@ maintainer: "crynta"
 last_maintained: "2026-05-16"
 featureImage: ""
 draft: false
-aliases:
-- /zh/posts/terax-ai-lightweight-ai-terminal/
-faqs:
-  - q: 'Terax AI 是什么？'
+aliases: - /zh/posts/terax-ai-lightweight-ai-terminal/
+faqs: - q: 'Terax AI 是什么？'
     a: 'Terax AI 是一款开源的 AI 原生终端模拟器，基于 Tauri 2 构建，采用 Rust 后端和 React 19 前端。它将原生 PTY 终端与多标签支持、集成代码编辑器、文件资源管理器以及一流的 AI 侧边栏融为一体。'
   - q: 'Terax AI 会将我的数据或 API 密钥发送到云端吗？'
     a: '不会。Terax 采用自带密钥（BYOK）模式，零遥测，您的 API 密钥通过 keyring 系统安全存储在操作系统钥匙串中，而非磁盘或 localStorage。您还可以将 Terax 指向本地 LM Studio 推理端点，实现完全离线运行。'
@@ -42,10 +34,7 @@ faqs:
   - q: '与其他终端相比，Terax AI 的体积有多大？'
     a: 'Terax 的安装包约为 7 MB（磁盘占用不足 10 MB），远小于基于 Electron 的同类产品。这是因为 Tauri 2 使用操作系统的原生 WebView（macOS 上的 WKWebView、Windows 上的 WebView2、Linux 上的 WebKitGTK），而非捆绑完整的 Chromium 实例。'
   - q: '如何安装 Terax AI？'
-    a: 'Terax 需从源码构建：先安装 Rust（stable）以及带有 pnpm 的 Node.js 20+，用 git 克隆仓库，执行 pnpm install，然后运行 pnpm tauri dev 进行开发，或运行 pnpm tauri build 生成正式发布包。官方暂未提供预编译安装程序。'
----
-
-<!-- canonical: https://dibi8.com/zh/tools/terax-ai-lightweight-ai-terminal/ -->
+    a: 'Terax 需从源码构建：先安装 Rust（stable）以及带有 pnpm 的 Node.js 20+，用 git 克隆仓库，执行 pnpm install，然后运行 pnpm tauri dev 进行开发，或运行 pnpm tauri build 生成正式发布包。官方暂未提供预编译安装程序。'---
 {</* resource-info */>}
 
 # Terax AI：懂你的轻量级 AI 终端模拟器
@@ -144,7 +133,19 @@ cd src-tauri && cargo clippy
 ## 对比：Terax AI 与替代品
 
 | 功能 | Terax AI | iTerm2 | Warp | Fig | GitHub Copilot CLI |
-|---|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **安装包大小** | ~7 MB | ~50 MB | ~150 MB | ~80 MB | ~20 MB |
 | **AI 集成** | 原生侧边栏 | 无 | 云端 AI | 有限 | 仅 CLI |
 | **跨平台** | macOS、Win、Linux | 仅 macOS | macOS、Linux | macOS、Linux | 全平台 |
@@ -258,8 +259,8 @@ Terax 项目正在积极开发中，透明的路线图可在 GitHub 上查看。
 
 🌐 **探索更多开发者工具和洞察：** [dibi8.com](https://dibi8.com)
 
----
 
+---
 *dibi8 Tech Team 相关文章：*
 - [2026 年开发者十大开源 AI 工具](https://dibi8.com/zh/blog/top-10-open-source-ai-tools-2026)
 - [使用 Tauri 2 和 Rust 构建轻量级桌面应用](https://dibi8.com/zh/blog/building-lightweight-desktop-apps-tauri-rust)
@@ -267,8 +268,8 @@ Terax 项目正在积极开发中，透明的路线图可在 GitHub 上查看。
 
 > **关于 dibi8** — dibi8 是一个专注于开发者生产力、开源工具和技术创新的技术博客。我们致力于发掘和分享能够真正提升开发效率的优质工具与最佳实践。
 
----
 
+---
 ## 推荐工具
 
 跑或部署开源 AI 工具时，推荐：
@@ -280,7 +281,6 @@ Terax 项目正在积极开发中，透明的路线图可在 GitHub 上查看。
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -308,25 +308,20 @@ Terax 项目正在积极开发中，透明的路线图可在 GitHub 上查看。
 
 ## Why This Matters
 
-Understanding terax ai：懂你的轻量级 ai 终端模拟器 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding terax ai：懂你的轻量级 ai 终端模拟器 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

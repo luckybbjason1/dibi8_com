@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/lobe-chat-openai-alternative-ui" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/lobe-chat-openai-alternative-ui" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/lobe-chat-openai-alternative-ui" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/lobe-chat-openai-alternative-ui" />
 title: 'Lobe Chat: 20+ LLM 제공업체와 플러그인 시스템을 갖춘 오픈소스 ChatGPT UI 대안...
 description: 'Lobe Chat을 자체 호스팅 ChatGPT 대안으로 배포하세요. 20+ LLM 제공업체, 플러그인 시스템, PWA, 다국어 UI 지원. 벤치마크와 비교가 포함된 완전한 Docker 설치 가이드.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: ['lobe chat', chatgpt, 'openai 대안', llm, '셀프 호스팅', docker, pwa, '플러그인 시스템', ai, '챗 ui']
-aliases:
-- /kr/posts/lobe-chat-openai-alternative-ui/
+aliases: - /kr/posts/lobe-chat-openai-alternative-ui/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/lobe-chat-openai-alternative-ui/ -->
 
 {{</* resource-info */>}}
 
@@ -49,9 +41,7 @@ Lobe Chat은 LobeHub 팀이 만든 오픈소스 채팅 인터페이스로, **20+
 
 ## Lobe Chat의 작동 방식
 
-Lobe Chat의 아키텍처는 프레젠테이션 레이어와 모델 추론을 분리합니다. Next.js 프론트엔드는 UI 렌더링, 대화 상태, 플러그인 오케스트레이션을 처리하고, LLM 호출은 구성 가능한 API 엔드포인트를 통해 프록시됩니다:
-
-```
+Lobe Chat의 아키텍처는 프레젠테이션 레이어와 모델 추론을 분리합니다. Next.js 프론트엔드는 UI 렌더링, 대화 상태, 플러그인 오케스트레이션을 처리하고, LLM 호출은 구성 가능한 API 엔드포인트를 통해 프록시됩니다: ```
 ┌─────────────────────────────────────────────┐
 │           사용자 브라우저 / PWA              │
 │  ┌─────────┐  ┌─────────┐  ┌────────────┐  │
@@ -122,35 +112,23 @@ docker run -d -p 3210:3210 \
 
 ```yaml
 # docker-compose.yml
-services:
-  lobe-chat:
-    image: lobehub/lobe-chat:latest
-    ports:
-      - "3210:3210"
-    environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
+services: lobe-chat: image: lobehub/lobe-chat:latest
+    ports: - "3210:3210"
+    environment: - OPENAI_API_KEY=${OPENAI_API_KEY}
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
       - ACCESS_CODE=${ACCESS_CODE}
       - DATABASE_URL=postgresql://postgres:password@db:5432/lobe
-    volumes:
-      - lobe-data:/app/.config/lobe-chat
-    depends_on:
-      - db
+    volumes: - lobe-data:/app/.config/lobe-chat
+    depends_on: - db
     restart: unless-stopped
 
-  db:
-    image: postgres:16-alpine
-    environment:
-      - POSTGRES_PASSWORD=password
+  db: image: postgres:16-alpine
+    environment: - POSTGRES_PASSWORD=password
       - POSTGRES_DB=lobe
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+    volumes: - pgdata:/var/lib/postgresql/data
     restart: unless-stopped
 
-volumes:
-  lobe-data:
-  pgdata:
-```
+volumes: lobe-data: pgdata: ```
 
 ```bash
 # 영속성과 함께 시작
@@ -184,9 +162,7 @@ DNS A 레코드를 Droplet IP로 가리키면 15분 이내에 라이브됩니다
 
 ## 20개 이상의 LLM 제공업체와의 통합
 
-Lobe Chat은 통합 어댑터를 통해 제공업체 간 API 호출을 정규화합니다. 가장 인기 있는 제공업체의 구성 방법은 다음과 같습니다:
-
-### OpenAI (GPT-4, GPT-4o)
+Lobe Chat은 통합 어댑터를 통해 제공업체 간 API 호출을 정규화합니다. 가장 인기 있는 제공업체의 구성 방법은 다음과 같습니다: ### OpenAI (GPT-4, GPT-4o)
 
 ```bash
 # 환경 변수를 통해
@@ -246,9 +222,7 @@ echo "AWS_REGION=us-east-1" >> .env
 
 ### 런타임에 제공업체 전환
 
-사용자는 UI에서 대화별로 제공업체를 전환할 수 있습니다. 이를 통해 GPT-4와 Claude를 나란히 비교할 수 있습니다:
-
-```
+사용자는 UI에서 대화별로 제공업체를 전환할 수 있습니다. 이를 통해 GPT-4와 Claude를 나란히 비교할 수 있습니다: ```
 # 재시작 불필요 —— 제공업체 전환은 클라이언트 측
 # 대화 헤더의 제공업체 아이콘 클릭 → 다른 모델 선택
 # 각 대화는 제공업체 선택을 기억합니다
@@ -267,9 +241,7 @@ Lobe Chat의 플러그인 아키텍처는 매니페스트 기반 시스템을 �
 
 ### 커스텀 플러그인 빌드하기
 
-낶부 API를 쿼리하는 간단한 플러그인을 만듭니다:
-
-```json
+낶부 API를 쿼리하는 간단한 플러그인을 만듭니다: ```json
 {
   "api": [
     {
@@ -302,9 +274,7 @@ Lobe Chat의 플러그인 아키텍처는 매니페스트 기반 시스템을 �
 
 ### 플러그인 런타임 보안
 
-플러그인은 제한된 권한으로 샌드박스화된 iframe에서 실행됩니다:
-
-```
+플러그인은 제한된 권한으로 샌드박스화된 iframe에서 실행됩니다: ```
 ┌─────────────────────────────┐
 │  Lobe Chat 메인 창          │
 │  ┌───────────────────────┐  │
@@ -340,9 +310,7 @@ Lobe Chat은 프로그레시브 웹 앱으로 작동하여 모든 플랫폼에�
 
 ### 오프라인 지원
 
-서비스 워커가 앱 셸과 최근 대화를 캐시합니다. 인터넷 없이:
-
-```
+서비스 워커가 앱 셸과 최근 대화를 캐시합니다. 인터넷 없이: ```
 ✅ 대화 기록 탐색
 ✅ 이전 응답 보기
 ✅ 메시지 작성 (전송 대기열)
@@ -395,18 +363,14 @@ Lobe Chat은 프로그레시브 웹 앱으로 작동하여 모든 플랫폼에�
 
 ### 인증 활성화
 
-팀 배포를 위해 액세스 코드를 설정합니다:
-
-```bash
+팀 배포를 위해 액세스 코드를 설정합니다: ```bash
 docker run -d -p 3210:3210 \
   -e ACCESS_CODE=your-secure-password-2026 \
   -e OPENAI_API_KEY=sk-xxx \
   lobehub/lobe-chat:latest
 ```
 
-SSO 통합을 위해 OAuth를 구성합니다:
-
-```bash
+SSO 통합을 위해 OAuth를 구성합니다: ```bash
   -e AUTH_PROVIDER=auth0 \
   -e AUTH_AUTH0_ID=your-client-id \
   -e AUTH_AUTH0_SECRET=your-secret \
@@ -415,9 +379,7 @@ SSO 통합을 위해 OAuth를 구성합니다:
 
 ### 커스텀 테마
 
-테마 JSON 파일을 만듭니다:
-
-```json
+테마 JSON 파일을 만듭니다: ```json
 {
   "primaryColor": "#1890ff",
   "neutralColor": "#8c8c8c",
@@ -430,31 +392,20 @@ SSO 통합을 위해 OAuth를 구성합니다:
 
 ### 데이터베이스 기반 대화
 
-다중 사용자 지속성을 위해 PostgreSQL을 구성합니다:
-
-```yaml
+다중 사용자 지속성을 위해 PostgreSQL을 구성합니다: ```yaml
 # docker-compose.prod.yml
-services:
-  lobe-chat:
-    image: lobehub/lobe-chat:latest
-    environment:
-      - DATABASE_URL=postgresql://user:pass@db:5432/lobechat
+services: lobe-chat: image: lobehub/lobe-chat:latest
+    environment: - DATABASE_URL=postgresql://user:pass@db:5432/lobechat
       - APP_URL=https://chat.yourdomain.com
-    ports:
-      - "3210:3210"
+    ports: - "3210:3210"
 
-  db:
-    image: postgres:16-alpine
-    environment:
-      POSTGRES_USER: user
+  db: image: postgres:16-alpine
+    environment: POSTGRES_USER: user
       POSTGRES_PASSWORD: pass
       POSTGRES_DB: lobechat
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+    volumes: - pgdata:/var/lib/postgresql/data
 
-volumes:
-  pgdata:
-```
+volumes: pgdata: ```
 
 ### Caddy를 사용한 역방향 프록시
 
@@ -476,22 +427,14 @@ caddy run --config Caddyfile
 
 ### Prometheus를 사용한 모니터링
 
-Lobe Chat은 `/api/metrics`에서 메트릭을 노출합니다:
-
-```yaml
+Lobe Chat은 `/api/metrics`에서 메트릭을 노출합니다: ```yaml
 # docker-compose.monitoring.yml
-services:
-  prometheus:
-    image: prom/prometheus
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
-    ports:
-      - "9090:9090"
+services: prometheus: image: prom/prometheus
+    volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports: - "9090:9090"
 
-  grafana:
-    image: grafana/grafana
-    ports:
-      - "3000:3000"
+  grafana: image: grafana/grafana
+    ports: - "3000:3000"
 ```
 
 ## 대안과의 비교
@@ -604,9 +547,7 @@ AI 개발자를 위한 Telegram 커뮤니티에 참여하세요: **@dibi8dev** �
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -616,7 +557,6 @@ AI 개발자를 위한 Telegram 커뮤니티에 참여하세요: **@dibi8dev** �
 이 문서에는 제휴 마케팅 링크가 포함되어 있습니다. 당사의 추천 링크를 통해 DigitalOcean에 가입하면, 추가 비용 없이 당사에 커미션이 지급됩니다. 우리는 자체 인프라에도 사용하는 서비스만을 추천합니다. Lobe Chat은 오픈소스(MIT 라이선스)이며 묣으로 사용할 수 있습니다 —— 구매가 필요하지 않습니다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

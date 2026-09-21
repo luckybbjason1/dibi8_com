@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/claude-code-skill-authoring-guide-2026" />
 title: 'Claude Code Skill Authoring: How to Package Procedures C...
 description: 'A complete guide to authoring Claude Code skills — SKILL.md structure, the trigger description that controls loading, progressive disclosure, and when a skill beats CLAUDE.md or a subagent. With worked examples and the mistakes to avoid.'
 date: 2026-05-28 00:00:00+08:00
@@ -22,11 +20,9 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['claude-code', skills, 'agent-sdk', 'ai-coding-agents', 'llm-frameworks', 'developer-tools', 'prompt-engineering']
-aliases:
-- /posts/claude-code-skill-authoring/
-faq:
-  - q: "Where do skills live and what's the minimum a SKILL.md needs?"
-    a: "A skill is a directory under .claude/skills/<name>/ (project-scoped) or ~/.claude/skills/<name>/ (user-scoped), containing a SKILL.md file. The minimum is YAML frontmatter with a name and a description, followed by the instructions in the body. The directory can also hold supporting files — reference docs, scripts, templates — that the skill points to, but SKILL.md with those two frontmatter fields is the irreducible core."
+aliases: - /posts/claude-code-skill-authoring/
+faq: - q: "Where do skills live and what's the minimum a SKILL.md needs?"
+    a: "A skill is a directory under .claude/skills// (project-scoped) or ~/.claude/skills// (user-scoped), containing a SKILL.md file. The minimum is YAML frontmatter with a name and a description, followed by the instructions in the body. The directory can also hold supporting files — reference docs, scripts, templates — that the skill points to, but SKILL.md with those two frontmatter fields is the irreducible core."
   - q: "What's the difference between a skill and just putting instructions in CLAUDE.md?"
     a: "CLAUDE.md loads on every single interaction — it's for always-on, project-wide rules. A skill loads only when its description matches the task at hand. Use CLAUDE.md for 'always use tabs, never commit to main directly.' Use a skill for situational procedures like 'how to cut a release' or 'how to debug a flaky test' — knowledge you don't want bloating every prompt, only present when you're actually doing that thing. The skill keeps your base context lean."
   - q: "How does the description field control when a skill loads?"
@@ -49,9 +45,7 @@ Skills are the most underrated of the three because they look trivial — "it's 
 
 ## What a Skill Actually Is
 
-A skill is a **directory**, not just a file:
-
-```
+A skill is a **directory**, not just a file: ```
 .claude/skills/cut-release/
   SKILL.md            # frontmatter + instructions
   references/
@@ -74,11 +68,12 @@ The test: *would this instruction apply to a random prompt about anything?* If y
 ## The Frontmatter: Name and Description
 
 ```markdown
+
 ---
 name: cut-release
 description: Use when cutting a release, publishing a new version, tagging a build, or preparing release notes. Walks through version bump, changelog, tag, and publish steps.
----
 
+---
 You are helping cut a release. Follow these steps in order...
 ```
 
@@ -88,18 +83,14 @@ Kebab-case, descriptive. This is the skill's identity.
 
 ### `description` — the trigger signal that decides everything
 
-Claude reads skill descriptions to route: it scans them, decides which skill fits the current task, and loads that skill's body. So the description is not a label — it's a **when-to-fire condition**. Pack it with concrete triggers:
-
-> ❌ `description: Release helper.`
+Claude reads skill descriptions to route: it scans them, decides which skill fits the current task, and loads that skill's body. So the description is not a label — it's a **when-to-fire condition**. Pack it with concrete triggers: > ❌ `description: Release helper.`
 > ✅ `description: Use when cutting a release, publishing a version, tagging a build, or writing release notes. Covers version bump, changelog generation, git tag, and publish.`
 
 The first never fires because nothing in a real task matches "release helper." The second fires the moment the user says "let's ship 2.4.0." If your skill exists but never activates, the description is the culprit — every time.
 
 ## Writing the Body: A Procedure, Not an Essay
 
-The body is the instructions Claude follows once the skill loads. Three rules:
-
-1. **Be a procedure, not prose.** Numbered steps the model executes in order beat paragraphs of context. "1. Bump the version in package.json. 2. Regenerate the changelog from commits since the last tag. 3. ..." 
+The body is the instructions Claude follows once the skill loads. Three rules: 1. **Be a procedure, not prose.** Numbered steps the model executes in order beat paragraphs of context. "1. Bump the version in package.json. 2. Regenerate the changelog from commits since the last tag. 3. ..." 
 2. **State preconditions and gotchas inline.** "Before tagging, confirm CI is green on main" — the kind of thing a human would know to check.
 3. **Point to heavy detail, don't inline it.** If the versioning policy is 800 words, put it in `references/versioning.md` and write "for the version-bump rules, read references/versioning.md." That's progressive disclosure, next.
 
@@ -121,6 +112,7 @@ Claude reads `references/versioning.md` only when it actually needs the rules, n
 ## Worked Example: A Release Checklist Skill
 
 ```markdown
+
 ---
 name: cut-release
 description: Use when cutting a release, publishing a version, or tagging a build. Covers version bump, changelog, tag, publish, and the green-CI precondition.
@@ -130,8 +122,7 @@ You are cutting a release. Do NOT skip the precondition check.
 
 PRECONDITION: confirm CI is green on main. If not, stop and report.
 
-Steps:
-1. Determine the new version (semver; see references/versioning.md).
+Steps: 1. Determine the new version (semver; see references/versioning.md).
 2. Bump it in package.json and any version constants.
 3. Generate the changelog from commits since the last tag.
 4. Open a release PR; wait for review.
@@ -150,8 +141,7 @@ name: debug-flaky-test
 description: Use when a test passes sometimes and fails other times, or when investigating CI flakiness, intermittent failures, or race conditions in the suite.
 ---
 
-You are diagnosing a flaky test. Flakiness is almost always one of:
-shared state, timing/async, test-order dependence, or external resources.
+You are diagnosing a flaky test. Flakiness is almost always one of: shared state, timing/async, test-order dependence, or external resources.
 
 1. Reproduce: run the test 20x in isolation and 20x with the full suite.
    Different results = test-order or shared-state dependence.
@@ -176,9 +166,7 @@ A skill is **just-in-time expertise**. CLAUDE.md is what's true always; a skill 
 
 ## Setting Up Production-Ready Claude Code
 
-Skills shine most in a stable, shared environment:
-
-1. **A reliable host for team-shared, CI-invoked workflows.** Skills are version-controlled and run in CI too. **{{< aff "htstack" "footer-cta" "HTStack" >}}** — Hong Kong VPS, low-latency mainland-China access, stable BGP. Same IDC that hosts dibi8.com. $5-12/month.
+Skills shine most in a stable, shared environment: 1. **A reliable host for team-shared, CI-invoked workflows.** Skills are version-controlled and run in CI too. **{{< aff "htstack" "footer-cta" "HTStack" >}}** — Hong Kong VPS, low-latency mainland-China access, stable BGP. Same IDC that hosts dibi8.com. $5-12/month.
 
 2. **Cloud headroom for parallel runs.** **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 free credit for 60 days, 14+ regions.
 
@@ -196,7 +184,6 @@ Skills shine most in a stable, shared environment:
 Skills are the cheapest, most underrated extension point — a directory with a markdown file that turns situational expertise into just-in-time context. The whole craft reduces to two things: a **description** packed with the real trigger phrases so it fires at the right moment, and **progressive disclosure** so it stays light until the task needs its depth. Write those two well and you've packaged a procedure your whole team — and every CI run — gets for free, exactly when it's relevant. That completes the trio: skill for knowledge, subagent for context, MCP server for capability.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

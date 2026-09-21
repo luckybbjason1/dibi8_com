@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/caddy" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/caddy" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/caddy" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/caddy" />
 title: 'Caddy: 72K+ Stars 생산용 Web 서버 — 2026 자동 HTTPS 배포 가이드'
 description: 'Caddy(Caddyserver)는 자동 HTTPS를 갖춘 빠르고 확장 가능한 다중 플랫폼 HTTP/1-2-3 웹 서버다. Docker, Let''''s Encrypt, Prometheus, Grafana와 호환된다. Caddyfile 튜토리얼, Docker 설치, 프로덕션 하드닝 및 모니터링을 다룬다.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [caddy, 'web-server', 'reverse-proxy', 'auto-https', docker, devops, ssl, http3]
-aliases:
-- /kr/posts/caddy/
+aliases: - /kr/posts/caddy/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/caddy/ -->
 
 {{</* resource-info */>}}
 
@@ -55,17 +47,13 @@ Caddy의 아키텍처는 기존 C 기반 서버와 근본적으로 다르다. �
 
 Caddy는 **모듈식 미들웨어 체인** 아키텍처를 기반으로 구축되었다. 들어오는 모든 요청은 구성에서 정의된 HTTP 핸들러 시퀀스를 통과한다 — 로깅, 인증, 리버스 프록시, 정적 파일 서비스, 오류 처리 등. 각 핸들러는 요청을 수정하거나, 응답을 생성하거나, 체인의 다음 핸들러로 요청을 전달할 수 있다.
 
-서버는 전통적인 이벤트 루프나 연결당 프로세스 모델 대신 **Go의 goroutine 스케줄러**를 사용한다. 각 HTTP 요청은 자신만의 goroutine을 얻는다. 이는 다음을 의미한다:
-
-- worker 프로세스 튜닝이 필요 없음 (`worker_processes` 디렉티브 없음)
+서버는 전통적인 이벤트 루프나 연결당 프로세스 모델 대신 **Go의 goroutine 스케줄러**를 사용한다. 각 HTTP 요청은 자신만의 goroutine을 얻는다. 이는 다음을 의미한다: - worker 프로세스 튜닝이 필요 없음 (`worker_processes` 디렉티브 없음)
 - 동시 요청 처리는 GOMAXPROCS에 따라 자동 확장
 - 연결당 메모리는 Nginx 이벤트 루프보다 높지만 이해하기 더 간단
 
 ### 자동 HTTPS 낮은 수준 메커니즘
 
-Caddy가 도메인 이름을 포함한 구성으로 시작하면 다음 단계를 자동으로 수행한다:
-
-1. **ACME 클라이언트 활성화**: Caddy의 내장 ACME 클라이언트가 Let's Encrypt(기본)와 ZeroSSL(폰백)에 연결
+Caddy가 도메인 이름을 포함한 구성으로 시작하면 다음 단계를 자동으로 수행한다: 1. **ACME 클라이언트 활성화**: Caddy의 내장 ACME 클라이언트가 Let's Encrypt(기본)와 ZeroSSL(폰백)에 연결
 2. **도메인 검증**: HTTP-01 또는 TLS-ALPN-01 챌린지로 도메인 소유권 증명
 3. **인증서 발급**: TLS 인증서를 획득하여 `$HOME/.local/share/caddy` 또는 `/data`에 저장
 4. **OCSP 스테이플링**: 인증서 상태를 가져와서 TLS 핸드셰이크에 자동으로 스테이플
@@ -118,30 +106,19 @@ caddy version
 
 ```yaml
 # 파일: docker-compose.yml
-services:
-  caddy:
-    image: caddy:2-alpine
+services: caddy: image: caddy:2-alpine
     container_name: caddy
     restart: unless-stopped
-    ports:
-      - "80:80"
+    ports: - "80:80"
       - "443:443"
       - "443:443/udp"  # HTTP/3 QUIC
-    volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile
+    volumes: - ./Caddyfile:/etc/caddy/Caddyfile
       - caddy_data:/data
       - caddy_config:/config
       - ./site:/usr/share/caddy
-    networks:
-      - caddy_network
+    networks: - caddy_network
 
-volumes:
-  caddy_data:
-  caddy_config:
-
-networks:
-  caddy_network:
-    name: caddy_network
+volumes: caddy_data: caddy_config: networks: caddy_network: name: caddy_network
     driver: bridge
 ```
 
@@ -222,72 +199,44 @@ sudo systemctl status caddy
 
 ```yaml
 # 파일: docker-compose.yml
-services:
-  caddy:
-    image: caddy:2-alpine
+services: caddy: image: caddy:2-alpine
     container_name: caddy
     restart: unless-stopped
-    ports:
-      - "80:80"
+    ports: - "80:80"
       - "443:443"
       - "443:443/udp"
-    volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile
+    volumes: - ./Caddyfile:/etc/caddy/Caddyfile
       - caddy_data:/data
       - caddy_config:/config
-    networks:
-      - proxy
-    environment:
-      - ACME_AGREE=true
+    networks: - proxy
+    environment: - ACME_AGREE=true
 
-  api:
-    image: my-api:latest
+  api: image: my-api:latest
     restart: unless-stopped
-    networks:
-      - proxy
-    expose:
-      - "8080"
+    networks: - proxy
+    expose: - "8080"
 
-  frontend:
-    image: my-frontend:latest
+  frontend: image: my-frontend:latest
     restart: unless-stopped
-    networks:
-      - proxy
-    expose:
-      - "3000"
+    networks: - proxy
+    expose: - "3000"
 
-  prometheus:
-    image: prom/prometheus:latest
+  prometheus: image: prom/prometheus:latest
     container_name: prometheus
     restart: unless-stopped
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus_data:/prometheus
-    ports:
-      - "9090:9090"
-    networks:
-      - proxy
+    ports: - "9090:9090"
+    networks: - proxy
 
-  grafana:
-    image: grafana/grafana-oss:latest
+  grafana: image: grafana/grafana-oss:latest
     container_name: grafana
     restart: unless-stopped
-    volumes:
-      - grafana_data:/var/lib/grafana
-    ports:
-      - "3000:3000"
-    networks:
-      - proxy
+    volumes: - grafana_data:/var/lib/grafana
+    ports: - "3000:3000"
+    networks: - proxy
 
-volumes:
-  caddy_data:
-  caddy_config:
-  prometheus_data:
-  grafana_data:
-
-networks:
-  proxy:
-    name: proxy
+volumes: caddy_data: caddy_config: prometheus_data: grafana_data: networks: proxy: name: proxy
     driver: bridge
 ```
 
@@ -365,19 +314,15 @@ grafana.example.com {
 
 ```yaml
 # 파일: prometheus.yml
-global:
-  scrape_interval: 15s
+global: scrape_interval: 15s
   evaluation_interval: 15s
 
-scrape_configs:
-  - job_name: caddy
-    static_configs:
-      - targets: ['caddy:2019']
+scrape_configs: - job_name: caddy
+    static_configs: - targets: ['caddy:2019']
     metrics_path: /metrics
 
   - job_name: 'node-exporter'
-    static_configs:
-      - targets: ['node-exporter:9100']
+    static_configs: - targets: ['node-exporter:9100']
 ```
 
 ### 멀티 테넌트 SaaS를 위한 온디맨드 TLS
@@ -411,15 +356,12 @@ app = Flask(__name__)
 ALLOWED_DOMAINS = {"alice", "bob", "charlie"}  # 프로덕션에서는 DB에서 로드
 
 @app.route("/allow")
-def check_domain():
-    domain = request.args.get("domain", "")
+def check_domain(): domain = request.args.get("domain", "")
     subdomain = domain.replace(".customers.example.com", "")
-    if subdomain in ALLOWED_DOMAINS:
-        return "OK", 200
+    if subdomain in ALLOWED_DOMAINS: return "OK", 200
     return "Not allowed", 403
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8080)
+if __name__ == "__main__": app.run(host="0.0.0.0", port=8080)
 ```
 
 ## 벤치마크 / 실제 사용 사례
@@ -450,9 +392,7 @@ if __name__ == "__main__":
 
 ### 실제 사례: 이커머스 플랫폼 마이그레이션
 
-6명의 이커머스 팀이 2026년 Q1에 Nginx 1.25에서 Caddy 2.8로 마이그레이션했다:
-
-- **문제**: 2025년 블랙 프라이데이 피크 시 정적 파일 p99 지연 시간이 2.4초에 달해 장바구니 이탈률이 12%에 달했다. Certbot 장애로 2025년 Q4에 47분간 TLS 관련 다운타임이 발생했다.
+6명의 이커머스 팀이 2026년 Q1에 Nginx 1.25에서 Caddy 2.8로 마이그레이션했다: - **문제**: 2025년 블랙 프라이데이 피크 시 정적 파일 p99 지연 시간이 2.4초에 달해 장바구니 이탈률이 12%에 달했다. Certbot 장애로 2025년 Q4에 47분간 TLS 관련 다운타임이 발생했다.
 - **해결책**: 18라인 Caddyfile로 마이그레이션, 자동 TLS, 기본 HTTP/3, 사전 압축된 brotli/gzip 자산을 활성화했다.
 - **결과**: p99 지연 시간이 110ms로 감소(95% 개선). TLS 사고 완전 제거. 처리량 19% 증가, 인스턴스를 8대에서 6대 AWS Graviton2로 축소 — 연간 $14,000 인프라 비용 절감.
 
@@ -605,47 +545,30 @@ api.example.com {
 
 ```yaml
 # 파일: docker-compose.prod.yml
-services:
-  caddy:
-    image: caddy:2-alpine
+services: caddy: image: caddy:2-alpine
     restart: unless-stopped
-    cap_add:
-      - NET_BIND_SERVICE
-    ports:
-      - "80:80"
+    cap_add: - NET_BIND_SERVICE
+    ports: - "80:80"
       - "443:443"
       - "443:443/udp"
-    volumes:
-      - ./Caddyfile.prod:/etc/caddy/Caddyfile:ro
+    volumes: - ./Caddyfile.prod:/etc/caddy/Caddyfile:ro
       - caddy_data:/data
       - caddy_config:/config
       - /var/log/caddy:/var/log/caddy
-    environment:
-      - JWT_SECRET=${JWT_SECRET}
+    environment: - JWT_SECRET=${JWT_SECRET}
       - ACME_EMAIL=${ACME_EMAIL}
-    networks:
-      - proxy
-    deploy:
-      resources:
-        limits:
-          memory: 512M
-        reservations:
-          memory: 128M
-    healthcheck:
-      test: ["CMD", "wget", "--spider", "-q", "http://localhost:2019/metrics"]
+    networks: - proxy
+    deploy: resources: limits: memory: 512M
+        reservations: memory: 128M
+    healthcheck: test: ["CMD", "wget", "--spider", "-q", "http://localhost:2019/metrics"]
       interval: 30s
       timeout: 10s
       retries: 3
 
-volumes:
-  caddy_data:
-    driver: local
-  caddy_config:
-    driver: local
+volumes: caddy_data: driver: local
+  caddy_config: driver: local
 
-networks:
-  proxy:
-    driver: bridge
+networks: proxy: driver: bridge
     internal: false
 ```
 
@@ -668,9 +591,7 @@ networks:
 
 ## 한계 / 정직한 평가
 
-Caddy는 모든 배포 시나리오에 적합한 도구가 아니다. 커밋하기 전에 이해해야 할 트레이드오프는 다음과 같다:
-
-**대기 시 더 높은 메모리 사용량.** 동일한 수의 유휴 keep-alive 연결에 대해 Caddy는 Nginx보다 3-4배 더 많은 RAM을 사용한다. 1GB 라즈베리 파이에서는 이것이 중요하다. 64GB Kubernetes 노드에서는 중요하지 않다.
+Caddy는 모든 배포 시나리오에 적합한 도구가 아니다. 커밋하기 전에 이해해야 할 트레이드오프는 다음과 같다: **대기 시 더 높은 메모리 사용량.** 동일한 수의 유휴 keep-alive 연결에 대해 Caddy는 Nginx보다 3-4배 더 많은 RAM을 사용한다. 1GB 라즈베리 파이에서는 이것이 중요하다. 64GB Kubernetes 노드에서는 중요하지 않다.
 
 **대형 파일 스트리밍 성능이 낮다.** Nginx의 `sendfile` 제로카피 경로는 1GB 이상의 파일에서 17%의 처리량 이점을 제공한다. 비디오 스트리밍 플랫폼을 운영하는 경우 Nginx가 여전히 더 나은 선택이다.
 
@@ -726,9 +647,7 @@ Caddy의 자동 HTTPS, 기본 HTTP/3 지원, 그리고 극도로 단순화된 �
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -750,7 +669,6 @@ Caddy의 자동 HTTPS, 기본 HTTP/3 지원, 그리고 극도로 단순화된 �
 *공개: 본 문서에는 DigitalOcean 및 HTStack의 제휴 링크가 포함되어 있습니다. 이 링크를 통해 서비스를 구매하면 dibi8.com에 추가 비용 없이 커미션이 지급됩니다. 모든 벤치마크 데이터와 추천은 독립적인 테스트와 편집 판단을 기반으로 합니다.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

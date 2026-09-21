@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/docmost-team-docs-collaboration" />
 title: 'Docmost 2026: The Open-Source Notion Alternative for Rea...
 description: 'Complete self-hosting guide for Docmost, the open-source collaborative wiki with real-time editing, Notion-like block editor, nested pages, and PostgreSQL backend. Deploy in 5 minutes.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [docmost, 'notion alternative', wiki, 'real-time collaboration', 'self-hosted', documentation, postgresql, docker, 'open source', 'team docs']
-aliases:
-- /posts/docmost-team-docs-collaboration/
+aliases: - /posts/docmost-team-docs-collaboration/-
 ---
-
 {{</* resource-info */>}}
 
 ## Introduction: Why Your Team Needs a Self-Hosted Notion Alternative
@@ -44,10 +40,12 @@ Docmost is an open-source, self-hosted collaborative wiki and documentation plat
 
 ## How Docmost Works: Architecture & Core Concepts
 
-Docmost uses a modern three-tier architecture that separates the application server, database, and real-time collaboration layer:
-
-| Layer | Technology |
-|---|---|
+Docmost uses a modern three-tier architecture that separates the application server, database, and real-time collaboration layer: | Layer | Technology |
+|
+---
+|
+---
+|
 | **Backend** | Node.js / NestJS (TypeScript) |
 | **Frontend** | React with block-based editor |
 | **Database** | PostgreSQL 16+ (required) |
@@ -75,47 +73,32 @@ Docmost requires **PostgreSQL and Redis** —— both can be deployed with a sin
 ```yaml
 version: '3.8'
 
-services:
-  docmost:
-    image: docmost/docmost:0.8.2
+services: docmost: image: docmost/docmost:0.8.2
     container_name: docmost
-    depends_on:
-      - db
+    depends_on: - db
       - redis
-    environment:
-      APP_URL: 'http://localhost:3000'
+    environment: APP_URL: 'http://localhost:3000'
       APP_SECRET: 'your-super-secret-key-change-this'
       DATABASE_URL: 'postgresql://docmost:your_db_password@db:5432/docmost?schema=public'
       REDIS_URL: 'redis://redis:6379'
-    ports:
-      - "3000:3000"
+    ports: - "3000:3000"
     restart: unless-stopped
-    volumes:
-      - docmost_data:/app/data/storage
+    volumes: - docmost_data:/app/data/storage
 
-  db:
-    image: postgres:16-alpine
+  db: image: postgres:16-alpine
     container_name: docmost_db
-    environment:
-      POSTGRES_DB: docmost
+    environment: POSTGRES_DB: docmost
       POSTGRES_USER: docmost
       POSTGRES_PASSWORD: your_db_password
     restart: unless-stopped
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+    volumes: - postgres_data:/var/lib/postgresql/data
 
-  redis:
-    image: redis:7.2-alpine
+  redis: image: redis:7.2-alpine
     container_name: docmost_redis
     restart: unless-stopped
-    volumes:
-      - redis_data:/data
+    volumes: - redis_data:/data
 
-volumes:
-  docmost_data:
-  postgres_data:
-  redis_data:
-```
+volumes: docmost_data: postgres_data: redis_data: ```
 
 This defines three services: the Docmost application on port 3000, PostgreSQL 16 for persistent storage, and Redis 7.2 for real-time collaboration state and caching.
 
@@ -222,9 +205,7 @@ ALLOW_PUBLIC_SIGNUP=false
 
 ## Real-Time Collaboration in Practice
 
-Docmost's headline feature is simultaneous multi-user editing. Here is how it works in practice:
-
-1. **User A** opens a page and starts typing. Changes are synced to the server via WebSocket every 300ms.
+Docmost's headline feature is simultaneous multi-user editing. Here is how it works in practice: 1. **User A** opens a page and starts typing. Changes are synced to the server via WebSocket every 300ms.
 2. **User B** opens the same page. The server sends the current document state plus User A's cursor position.
 3. **Both users** type simultaneously. Operational Transformation resolves conflicts automatically —— no locks, no merge conflicts.
 4. **Cursors** are visible in real-time, color-coded by user.
@@ -232,8 +213,7 @@ Docmost's headline feature is simultaneous multi-user editing. Here is how it wo
 
 ```javascript
 // Docmost uses Yjs (CRDT library) under the hood for OT
-// The WebSocket messages look like this:
-{
+// The WebSocket messages look like this: {
   "type": "doc:update",
   "pageId": "abc-123",
   "updates": [/* Yjs binary update */],
@@ -246,9 +226,7 @@ This is the same underlying technology that powers Figma and Notion. The differe
 
 ## Diagrams, Embeds & Rich Content
 
-Docmost supports inline diagrams without leaving the editor:
-
-```markdown
+Docmost supports inline diagrams without leaving the editor: ```markdown
 # Slash command for diagrams
 /drawio     - Opens Draw.io editor inline
 /mermaid    - Mermaid diagram block
@@ -270,10 +248,12 @@ File attachments are stored either locally (in the `docmost_data` volume) or on 
 
 ## Benchmarks & Real-World Performance
 
-I deployed Docmost v0.8.2 on a 2 vCPU / 4GB RAM VPS and ran a 30-minute load test simulating 20 concurrent users editing and reading pages:
-
-| Metric | Value |
-|---|---|
+I deployed Docmost v0.8.2 on a 2 vCPU / 4GB RAM VPS and ran a 30-minute load test simulating 20 concurrent users editing and reading pages: | Metric | Value |
+|
+---
+|
+---
+|
 | Cold start time | 2.8 seconds |
 | Page load (average) | 150ms |
 | Page load (95th percentile) | 280ms |
@@ -297,16 +277,11 @@ For context: Notion charges $10/user/month. At 20 users, that is $200/month. Doc
 # .github/workflows/publish-to-docmost.yml
 name: Publish Docs to Docmost
 
-on:
-  push:
-    branches: [main]
+on: push: branches: [main]
     paths: ['docs/**']
 
-jobs:
-  publish:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: publish: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
 
       - name: Convert Markdown to JSON
         run: |
@@ -354,12 +329,9 @@ find "$BACKUP_DIR" -name "*.gz" -mtime +14 -delete
 
 ```yaml
 # Add to docker-compose.yml for monitoring
-  postgres_exporter:
-    image: prometheuscommunity/postgres-exporter:v0.15.0
-    environment:
-      DATA_SOURCE_NAME: "postgresql://docmost:your_db_password@db:5432/docmost?sslmode=disable"
-    ports:
-      - "9187:9187"
+  postgres_exporter: image: prometheuscommunity/postgres-exporter:v0.15.0
+    environment: DATA_SOURCE_NAME: "postgresql://docmost:your_db_password@db:5432/docmost?sslmode=disable"
+    ports: - "9187:9187"
 ```
 
 ### Health check endpoint
@@ -395,22 +367,17 @@ With this setting, only existing workspace admins can invite new users via email
 
 ### Database connection pooling
 
-For teams with 50+ users, add connection pooling via PgBouncer:
-
-```yaml
+For teams with 50+ users, add connection pooling via PgBouncer: ```yaml
 # Add to docker-compose.yml
-  pgbouncer:
-    image: pgbouncer/pgbouncer:1.22
-    environment:
-      DATABASES_HOST: db
+  pgbouncer: image: pgbouncer/pgbouncer:1.22
+    environment: DATABASES_HOST: db
       DATABASES_PORT: 5432
       DATABASES_DATABASE: docmost
       DATABASES_USER: docmost
       DATABASES_PASSWORD: your_db_password
       POOL_MODE: transaction
       MAX_CLIENT_CONN: 200
-    ports:
-      - "6432:6432"
+    ports: - "6432:6432"
 ```
 
 Update the Docmost `DATABASE_URL` to point to `pgbouncer:6432` instead of `db:5432`.
@@ -431,7 +398,19 @@ location /auth/login {
 ## Comparison: Docmost vs. Alternatives
 
 | Feature | Docmost | Notion | Confluence | BookStack | Outline |
-|---|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **License** | AGPL-3.0 (Community) | Proprietary | Proprietary | MIT | BSL 1.1 |
 | **Self-hosted** | Yes (Docker) | No | Yes (complex) | Yes (Docker) | Yes (complex) |
 | **Real-time collaboration** | Yes (OT-based) | Yes | Yes (Confluence Cloud) | No | Yes |
@@ -460,9 +439,7 @@ location /auth/login {
 
 ## Limitations: An Honest Assessment
 
-Docmost is a young project (launched mid-2024) and it shows in places:
-
-**No offline mode.** Unlike Notion which has desktop and mobile apps with offline editing, Docmost requires an active network connection. The editor runs in the browser, and there is no native desktop application as of v0.8.2. If your team frequently works offline, this is a significant gap.
+Docmost is a young project (launched mid-2024) and it shows in places: **No offline mode.** Unlike Notion which has desktop and mobile apps with offline editing, Docmost requires an active network connection. The editor runs in the browser, and there is no native desktop application as of v0.8.2. If your team frequently works offline, this is a significant gap.
 
 **Community edition authentication is limited.** SSO, SAML, OIDC, and LDAP are Enterprise-only features. The Community edition supports only email/password authentication with optional Google OAuth. For teams that require centralized identity management, this means upgrading to Enterprise or placing Docmost behind a reverse proxy with authentication (like Authelia).
 
@@ -508,8 +485,8 @@ The project is young but the trajectory is strong. 20,000+ GitHub stars in under
 
 Join the dibi8.com community: [Telegram group](https://t.me/dibi8opensource) for daily open-source tool discussions, deployment tips, and troubleshooting help from 5,000+ developers.
 
----
 
+---
 ## Sources & Further Reading
 
 - [Docmost Official Documentation](https://docmost.com/docs/)
@@ -520,13 +497,9 @@ Join the dibi8.com community: [Telegram group](https://t.me/dibi8opensource) for
 
 ---
 
-
-
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -536,7 +509,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 This article contains affiliate links to [DigitalOcean](https://m.do.co/c/eca87ac14ee0). If you sign up through our link, we receive a referral credit at no additional cost to you. We only recommend infrastructure we use ourselves. The Docmost Community edition is free and open-source under AGPL-3.0 —— no affiliate relationship exists with the Docmost maintainers.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/superpowers" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/superpowers" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/superpowers" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/superpowers" />
 title: 'Superpowers: 200000+ Stars -- Agentic Skills Framework &...
 description: 'Superpowers, 200k+ 스타를 보유한 agentic skills framework를 살펴보세요. 몇 분 만에 설정하고, 벤치마킹했으며, 프로덕션에 바로 사용할 수 있습니다. LangChain, LlamaIndex, AutoGen과 비교해 보세요.'
 date: 2026-05-23
-lastmod:  2026-05-23slug: 'superpowers'
+lastmod: 2026-05-23
+slug: 'superpowers'
 category: 'llm-frameworks'
 tags: ['agentic-ai', 'llm-frameworks', 'shell-scripting', 'software-development', 'ai-agents', 'developer-tools']
 github_repo: 'https://github.com/obra/superpowers'
@@ -17,8 +13,6 @@ license: MIT
 featureImage: ''
 lang: ko
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/superpowers/ -->
 
 ## 소개
 
@@ -69,8 +63,7 @@ Superpowers는 "스킬"을 "에이전트"로 구성하여 작업을 실행하는
 
 ```
 
-이 다이어그램에서:
-*   **에이전트**는 요청(예: "런던 날씨는?")을 받습니다.
+이 다이어그램에서: *   **에이전트**는 요청(예: "런던 날씨는?")을 받습니다.
 *   날씨 정보의 필요성을 식별하고 `get_weather` 스킬을 호출합니다.
 *   `get_weather` 스킬은 `curl` 또는 `wget`과 같은 도구를 사용하여 외부 날씨 API와 상호 작용할 수 있습니다.
 *   API의 응답은 스킬에 의해 처리되어 에이전트로 반환됩니다.
@@ -202,9 +195,7 @@ LLM_MODEL="llama3:latest"
 LLM_API_BASE="http://localhost:11434"
 ```
 
-또는 OpenAI의 경우:
-
-```ini
+또는 OpenAI의 경우: ```ini
 LLM_PROVIDER="openai"
 LLM_MODEL="gpt-4o-mini"
 LLM_API_KEY="sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
@@ -418,8 +409,7 @@ echo "processed_data=\$PROCESSED_DATA"
 
 ### 사용 사례 2: 콘텐츠 생성 및 배포 파이프라인
 
-**시나리오:** 마케팅 팀은 Superpowers를 사용하여 콘텐츠 생성 및 배포를 자동화합니다. 에이전트의 워크플로우:
-1.  RSS 피드 또는 뉴스 API에서 인기 있는 주제 가져오기.
+**시나리오:** 마케팅 팀은 Superpowers를 사용하여 콘텐츠 생성 및 배포를 자동화합니다. 에이전트의 워크플로우: 1.  RSS 피드 또는 뉴스 API에서 인기 있는 주제 가져오기.
 2.  LLM을 사용하여 주제에 기반한 블로그 게시물 또는 소셜 미디어 업데이트 초안 작성.
 3.  다양한 플랫폼(예: Twitter, LinkedIn)에 맞게 콘텐츠 형식 지정.
 4.  (선택 사항) 플랫폼 API를 통해 게시물 예약 (사용자 지정 `post_to_platform.sh` 스킬 사용).
@@ -445,9 +435,7 @@ echo "processed_data=\$PROCESSED_DATA"
 
 **관련 스킬:** `read_file.sh`, `grep_logs.sh`, `run_script.sh` (수정 적용용), `send_notification.sh`.
 
-### 성능 고려 사항:
-
-*   **Shell 스크립트 속도:** 기본 Shell 작업은 매우 빠릅니다. `grep` 또는 `sed` 명령은 밀리초 단위로 실행됩니다.
+### 성능 고려 사항: *   **Shell 스크립트 속도:** 기본 Shell 작업은 매우 빠릅니다. `grep` 또는 `sed` 명령은 밀리초 단위로 실행됩니다.
 *   **LLM 지연 시간:** 많은 에이전트 작업에 대한 주요 병목 현상은 LLM 추론 시간입니다. 이는 LLM에 내재된 것이며 Superpowers 프레임워크 자체의 한계는 아닙니다.
 *   **외부 API 호출:** 외부 API 호출에 대한 네트워크 지연 시간은 작업 완료 시간에 영향을 미칩니다.
 *   **스킬 복잡성:** 사용자 지정 스킬의 효율성은 개발자에게 달려 있습니다. 잘 작성되고 최적화된 스크립트가 중요합니다.
@@ -503,8 +491,7 @@ echo "result=$RESULT"
 
 ```bash
 # 에이전트 진행 상태를 업데이트하는 스킬
-update_agent_state.sh:
-#!/bin/bash
+update_agent_state.sh: #!/bin/bash
 set -e
 STATE_FILE="$HOME/.superpowers/agent_state/my_agent.json"
 KEY="$1"
@@ -522,15 +509,13 @@ fi
 
 # 단순성을 위한 기본 문자열 대체; 실제 JSON의 경우 jq 사용
 NEW_STATE=$(echo "$CURRENT_STATE" | sed "s/\"$KEY\": \".*?\"/\"$KEY\": \"$VALUE\"/") # 매우 기본적이며 문자열 값을 가정합니다.
-# 올바른 JSON의 경우:
-# NEW_STATE=$(echo "$CURRENT_STATE" | jq --arg k "$KEY" --arg v "$VALUE" '."\($k)" = $v')
+# 올바른 JSON의 경우: # NEW_STATE=$(echo "$CURRENT_STATE" | jq --arg k "$KEY" --arg v "$VALUE" '."\($k)" = $v')
 
 echo "$NEW_STATE" > "$STATE_FILE"
 echo "state_updated=true"
 
 # 에이전트 진행 상태를 읽는 스킬
-read_agent_state.sh:
-#!/bin/bash
+read_agent_state.sh: #!/bin/bash
 set -e
 STATE_FILE="$HOME/.superpowers/agent_state/my_agent.json"
 
@@ -552,13 +537,11 @@ fi
 **예제: 로그에 타임스탬프 추가:**
 
 ```bash
-# 에이전트 실행 스크립트 또는 래퍼 스킬에서:
-log_with_timestamp() {
+# 에이전트 실행 스크립트 또는 래퍼 스킬에서: log_with_timestamp() {
     echo "$(date '+%Y-%m-%d %H:%M:%S') - $*"
 }
 
-# 스킬 호출 시:
-log_with_timestamp "Starting skill: my_skill.sh"
+# 스킬 호출 시: log_with_timestamp "Starting skill: my_skill.sh"
 ./my_skill.sh arg1 arg2 >> agent.log 2>&1
 EXIT_CODE=$?
 log_with_timestamp "Skill my_skill.sh finished with exit code $EXIT_CODE"
@@ -706,7 +689,6 @@ Shell 스크립팅에 능숙하거나 에이전트 AI를 위한 가볍고 이식
 
 *공개: 위 링크 중 일부는 제휴 링크입니다. dibi8.com은 가입 시 수수료를 받을 수 있으며, 이는 귀하의 비용에 영향을 미치지 않습니다. 사이트를 계속 운영하고 콘텐츠를 무료로 제공하는 데 도움이 됩니다.*
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

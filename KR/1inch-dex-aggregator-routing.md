@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/1inch-dex-aggregator-routing" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/1inch-dex-aggregator-routing" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/1inch-dex-aggregator-routing" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/1inch-dex-aggregator-routing" />
 title: '1inch-dex-aggregator-routing'
 description: '{'en': ''Master 1inch DEX aggregator in 2026. Learn how Pathfinder routes trades across 300+ liquidity sources, implement Fusion+ gasless swaps, limit orders, and portfolio tracking with the TypeScript SDK.'', 'zh': ''掌握 2026 年 1inch DEX 聚合器。了解 Pathfinder 如何跨 300+ 流动性来源路由交易，使用 TypeScript SDK 实现 Fusion+ 无 Gas 兑换、限价单和 portfolio 追踪。'', 'ko': ''2026년 1inch DEX 집계기를 마스터하세요. Pathfinder가 300개 이상의 유동성 소스에서 거래를 라우팅하는 방법, Fusion+ 가스 없는 스왑, 한도 주문 및 TypeScript SDK를 사용한 포트폴리오 추적을 구현하세요.'', 'vi': ''Làm chủ trình tổng hợp DEX 1inch năm 2026. Tìm hiểu cách Pathfinder định tuyến giao dịch qua 300+ nguồn thanh khoản, triển khai hoán đổi không gas Fusion+, lệnh giới hạn và theo dõi danh mục với SDK TypeScript.''}'
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: [1inch]
-aliases:
-- /kr/posts/1inch-dex-aggregator-routing/
+aliases: - /kr/posts/1inch-dex-aggregator-routing/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/1inch-dex-aggregator-routing/ -->
 
 {{</* resource-info */>}}
 
@@ -43,9 +35,7 @@ aliases:
 
 DEX 집계기는 DeFi의 가장 지속적인 과제 중 하나를 해결합니다: **유동성 단편화**. 수많은 탈중앙화 거래소가 여러 체인에서 운영되는 가울 — Uniswap, Curve, Balancer, PancakeSwap, SushiSwap 및 무수히 많은 다른 거래소 — 유동성은 고립된 풀에 존재합니다. 단일 토큰 쌍이 하나의 DEX에서는 깊은 풀을 가지고 다른 DEX에서는 얕은 풀을 가질 수 있습니다. 집계 없이 트레이더는 최적이 아닌 가격, 과도한 슬리피지 및 놓친 기회에 직면합니다.
 
-1inch는 개별 DEX 위에 **메타 레이어**로 기능하여 이 문제를 해결합니다. 1inch의 Pathfinder 알고리즘은 단일 거래소에서 스왑을 실행하는 대신, 모든 사용 가능한 유동성 소스를 동시에 검토하여 단일 거래를 여러 프로토콜과 심지어 여러 블록체인에 분할할 수 있는 복잡한 멀티 홉 경로를 구성합니다. 2026년 현재 이 네트워크는 다음을 포괄합니다:
-
-| 체인 | 주요 DEX 소스 | 대략적인 유동성 |
+1inch는 개별 DEX 위에 **메타 레이어**로 기능하여 이 문제를 해결합니다. 1inch의 Pathfinder 알고리즘은 단일 거래소에서 스왑을 실행하는 대신, 모든 사용 가능한 유동성 소스를 동시에 검토하여 단일 거래를 여러 프로토콜과 심지어 여러 블록체인에 분할할 수 있는 복잡한 멀티 홉 경로를 구성합니다. 2026년 현재 이 네트워크는 다음을 포괄합니다: | 체인 | 주요 DEX 소스 | 대략적인 유동성 |
 |-------|-------------------|----------------------|
 | Ethereum | Uniswap v3, Curve, Balancer, SushiSwap | $2.8B+ |
 | Arbitrum | Camelot, Uniswap v3, SushiSwap | $890M+ |
@@ -64,8 +54,7 @@ DEX 집계기는 DeFi의 가장 지속적인 과제 중 하나를 해결합니�
 
 토큰 A를 토큰 B로 스왑하기 위한 견적을 요청하면 Pathfinder는 다음을 해결해야 합니다: *깊이, 수수료 및 가격이 각기 다른 N개의 유동성 소스가 주어졌을 때, 주문의 총 비용을 최소화하는 홉과 분할의 시퀀스는 무엇인가?*
 
-이는 다음 이유로 계산 집약적입니다:
-- **300개 이상의 소스**의 현재 예비금과 수수료를 쿼리해야 함
+이는 다음 이유로 계산 집약적입니다: - **300개 이상의 소스**의 현재 예비금과 수수료를 쿼리해야 함
 - **멀티 홉 경로**(A → C → D → B)가 직접 쌍보다 더 나은 가격을 자주 제공함
 - **분할 라우팅** — 하나의 주문을 여러 경로에 분할 — 슬리피지를 줄임
 - 가스 비용은 경로 복잡도에 따라 다륾; 더 많은 홉은 더 높은 실행 비용을 의미함
@@ -73,12 +62,9 @@ DEX 집계기는 DeFi의 가장 지속적인 과제 중 하나를 해결합니�
 
 ### 2.2 발견 및 조립 단계
 
-Pathfinder는 두 개의 별개 단계에서 작동합니다:
+Pathfinder는 두 개의 별개 단계에서 작동합니다: **1단계 — 경로 발견**: 알고리즘은 구성 가능한 깊이(일반적으로 4-6 홉)까지 소스 및 대상 토큰 사이의 모든 가능한 경로를 탐색합니다. 수정된 Bellman-Ford 접근 방식을 사용하여 가격 공간에서 음의 사이클을 발견하여, 실질적으로 가격 비효율성을 나타내는 차익거래 인접 경로를 찾습니다.
 
-**1단계 — 경로 발견**: 알고리즘은 구성 가능한 깊이(일반적으로 4-6 홉)까지 소스 및 대상 토큰 사이의 모든 가능한 경로를 탐색합니다. 수정된 Bellman-Ford 접근 방식을 사용하여 가격 공간에서 음의 사이클을 발견하여, 실질적으로 가격 비효율성을 나타내는 차익거래 인접 경로를 찾습니다.
-
-**2단계 — 경로 조립**: 발견된 경로는 다음을 균형 있게 조정하는 다중 목적 함수를 사용하여 점수가 매겨집니다:
-- 예상 출력 금액(주요 목표)
+**2단계 — 경로 조립**: 발견된 경로는 다음을 균형 있게 조정하는 다중 목적 함수를 사용하여 점수가 매겨집니다: - 예상 출력 금액(주요 목표)
 - 가스 비용 추정(2차)
 - 과거 채우기 비율을 기반으로 한 성공 확률
 - MEV 보호 요구사항
@@ -126,17 +112,13 @@ yarn add @1inch/sdk
 npm install ethers axios dotenv
 ```
 
-API 자격 증명을 위한 `.env` 파일 생성:
-
-```bash
+API 자격 증명을 위한 `.env` 파일 생성: ```bash
 ONEINCH_API_KEY=your_api_key_here
 PRIVATE_KEY=your_wallet_private_key
 RPC_URL=https://mainnet.infura.io/v3/your_project_id
 ```
 
-구성으로 SDK 초기화:
-
-```typescript
+구성으로 SDK 초기화: ```typescript
 import { OneInchSdk } from '@1inch/sdk';
 import { ethers } from ethers;
 import * as dotenv from dotenv;
@@ -159,9 +141,7 @@ console.log('1inch SDK가', wallet.address, '에 대해 초기화됨');
 
 ### 3.2 SDK 아키텍처 개요
 
-SDK는 1inch의 API 구조를 반영하는 네임스페이스로 구성됩니다:
-
-```typescript
+SDK는 1inch의 API 구조를 반영하는 네임스페이스로 구성됩니다: ```typescript
 // SDK 모듈 구조
 import {
   SwapApi,        // 토큰 스왑 및 견적
@@ -241,9 +221,7 @@ executeSwap().catch(console.error);
 
 ### 4.2 슬리피지 및 부분 채우기 처리
 
-변동성이 큰 시장에서 슬리피지 허용 오차는 중요합니다. SDK는 세밀한 제어를 제공합니다:
-
-```typescript
+변동성이 큰 시장에서 슬리피지 허용 오차는 중요합니다. SDK는 세밀한 제어를 제공합니다: ```typescript
 // 대량 거래를 위한 보수적 설정
 const largeTradeParams = {
   src: 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE,
@@ -270,9 +248,7 @@ const quickTradeParams = {
 
 ### 4.3 Bridge API를 통한 크로스체인 스왑
 
-1inch의 집계는 단일 체인을 넘어 확장됩니다. Bridge API는 체인 간 최적 경로를 찾습니다:
-
-```typescript
+1inch의 집계는 단일 체인을 넘어 확장됩니다. Bridge API는 체인 간 최적 경로를 찾습니다: ```typescript
 // Ethereum USDC에서 Arbitrum ETH로 브리지
 const bridgeQuote = await sdk.crossChain.getQuote({
   srcChain: 1,        // Ethereum
@@ -307,9 +283,7 @@ const sentBridgeTx = await wallet.sendTransaction({
 
 ### 5.1 Fusion+ 작동 방식
 
-전통적인 스왑은 사용자가 기본 토큰으로 가스 수수료를 지불해야 합니다(Ethereum의 ETH). Fusion+는 이 장벽을 제거합니다:
-
-1. **사용자가 의도에 서명** — 최소 허용 비율로 스왑
+전통적인 스왑은 사용자가 기본 토큰으로 가스 수수료를 지불해야 합니다(Ethereum의 ETH). Fusion+는 이 장벽을 제거합니다: 1. **사용자가 의도에 서명** — 최소 허용 비율로 스왑
 2. **리졸버가 네덜란드 경매에서 경쟁** — 주문을 채우기 위해
 3. **승리한 리졸버**가 트랜잭션을 실행하고 사용자를 대신해 가스를 지불
 4. **리졸버의 수수료**는 스왑 비율에 내장되어 사용자에게 보이지 않음
@@ -751,7 +725,6 @@ DeFi 활동에 대한 신뢰할 수 있는 중앙화 거래소를 찾는 트레�
 오늘 1inch로 구축을 시작하여 사용자에게 DeFi가 제공할 수 있는 최상의 가격 실행을 제공하세요.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

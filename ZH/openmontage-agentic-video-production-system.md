@@ -1,17 +1,10 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/openmontage-agentic-video-production-system" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/openmontage-agentic-video-production-system" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/openmontage-agentic-video-production-system" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/openmontage-agentic-video-production-system" />
-lang: zh
 slug: openmontage-agentic-video-production-system
 title: "OpenMontage 评测：世界上第一个开源自主视频制作系统（52 个工具，12 个流程，500 多项技能）"
 description: "OpenMontage (8.3K+ GitHub stars) is the world's first open-source, agentic video production system. 12 production pipelines, 52 tools, 500+ agent skills. Turn any AI coding assistant into a full video studio — from animated explainers to cinematic trailers to real-footage documentaries. Zero API keys needed for basic output."
 date: "2026-06-22 00:00:00+08:00"
 lastmod: "2026-06-22 00:00:00+08:00"
-tech_stack:
-  - Python 3.10+
+tech_stack: - Python 3.10+
   - FFmpeg
   - Node.js 18+
   - Remotion
@@ -30,10 +23,8 @@ last_maintained: '2026-06-21'
 draft: false
 categories: ['ai-tools']
 tags: ["开放蒙太奇", "能动视频", "人工智能视频制作", "移除", "超框架", "视频生成", "开源", "克劳德代码", "光标", "多智能体", "纪录片", "动画"]
-aliases:
-- /posts/openmontage-agentic-video-production-system/
-faqs:
-  - q: '什么是OpenMontage？'
+aliases: - /posts/openmontage-agentic-video-production-system/
+faqs: - q: '什么是OpenMontage？'
     a: 'OpenMontage是世界上第一个开源的、具备自主代理能力的视频制作系统，拥有12条制作流程、52种制作工具和500多种代理技能。它可以将任何AI编码助手（如Claude Code、Cursor、Copilot、Windsurf或Codex）转变为一个完整的视频制作工作室。与单一提示视频生成器如Sora或Runway不同，OpenMontage通过结构化的流程清单和阶段导演技能，协调完整的制作工作流——研究、脚本编写、素材生成、编辑以及最终合成。'
   - q: 'OpenMontage 与 Sora、Runway 和 Pika 有何不同？'
     a: 'Sora、Runway 和 Pika 是单提示生成视频的工具，它们可以生成短片（5-30 秒），没有叙事结构、没有剧本、也没有音频。OpenMontage 是一个制作编排系统：它进行实时网络研究、撰写剧本、生成或获取素材（图像、视频、音乐、旁白）、将所有内容编辑成连贯的时间线、添加逐字字幕，并进行多点质量验证。它可以制作任意长度的完整视频，而不仅仅是单独的短片。'
@@ -47,10 +38,7 @@ faqs:
     a: 'OpenMontage 支持 Claude Code、Cursor、GitHub Copilot、Codex 和 Windsurf。每个平台都有一个专用的配置文件（CLAUDE.md、CURSOR.md、COPILOT.md、CODEX.md、.windsurfrules），这些文件指向共享的 AGENT_GUIDE.md 和 PROJECT_CONTEXT.md。系统以代理为先：没有代码协调器——您的 AI 编程助手就是协调器，它读取 YAML 流水线清单和 Markdown 技能文件来执行生产。'
   - q: '质量执行系统是什么？'
     a: 'OpenMontage 实现了生产级的质量门控：预合成验证（阻止违反交付承诺或存在关键幻灯片风险的渲染）、渲染后自我审核（ffprobe 验证、在 4 个位置提取帧以检测黑屏、音频级别分析以检测静音/削波、交付承诺验证）、以及六维幻灯片风险评分系统。每次提供者选择都记录了考虑的备选方案、置信度评分和理由。预算控制包括执行前的成本估算、每项操作的审批阈值以及可配置的支出上限。'
-featureImage: /articles/agentic-video-production-3a8f21.png/images/articles/agentic-video-production-3a8f21.png
----
-
-<!-- canonical: https://dibi8.com/zh/tools/openmontage-agentic-video-production-system/ -->
+featureImage: /articles/agentic-video-production-3a8f21.png/images/articles/agentic-video-production-3a8f21.png---
 
 
 
@@ -101,7 +89,13 @@ research → proposal → script → scene_plan → assets → edit → compose
 每个流程线都是从创意到成品视频的完整制作工作流程：
 
 | Pipeline | What It Produces | Best For |
-|----------|-----------------|----------|
+|
+---
+|
+---
+|
+---
+|
 | **Animated Explainer** | AI-generated explainer with research, narration, visuals, music | Educational content, tutorials, topic breakdowns |
 | **Animation** | Motion graphics, kinetic typography, animated sequences | Social media, product demos, abstract concepts |
 | **Avatar Spokesperson** | Avatar-driven presenter videos | Corporate comms, training, announcements |
@@ -122,7 +116,13 @@ research → proposal → script → scene_plan → assets → edit → compose
 你不需要付费的 API 密钥就可以制作真实视频。开箱即用，`make setup` 会为你提供：
 
 | Capability | Free Tool | What It Does |
-|-----------|-----------|-------------|
+|
+---
+|
+---
+|
+---
+|
 | **Narration** | Piper TTS | Free offline text-to-speech — real human-sounding narration |
 | **Open footage** | Archive.org + NASA + Wikimedia Commons | Free/open archival footage, educational media, documentary texture |
 | **Extra stock** | Pexels + Unsplash + Pixabay | Free stock footage/images (developer keys are free to get) |
@@ -153,7 +153,13 @@ research → proposal → script → scene_plan → assets → edit → compose
 ### Video Generation — 14 providers
 
 | Provider | Type | Notes |
-|----------|------|-------|
+|
+---
+|
+---
+|
+---
+|
 | **Kling** | Cloud API | High quality, fast |
 | **Runway Gen-4** | Cloud API | Cinematic quality, Gen-3 Alpha Turbo / Gen-4 Turbo / Gen-4 Aleph |
 | **Google Veo 3** | Cloud API | Long-form, cinematic. Via fal.ai or HeyGen. |
@@ -169,7 +175,13 @@ research → proposal → script → scene_plan → assets → edit → compose
 ### Image Generation — 10 tools/providers
 
 | Provider | Type | Notes |
-|----------|------|-------|
+|
+---
+|
+---
+|
+---
+|
 | **FLUX** | Cloud API | State-of-the-art quality |
 | **Google Imagen** | Cloud API | Imagen 4 — high-quality, multiple aspect ratios |
 | **Grok Imagine Image** | Cloud API | Strong image edits, style transfer, and multi-image compositing |
@@ -180,7 +192,13 @@ research → proposal → script → scene_plan → assets → edit → compose
 ### Text-to-Speech — 4 providers
 
 | Provider | Type | Notes |
-|----------|------|-------|
+|
+---
+|
+---
+|
+---
+|
 | **ElevenLabs** | Cloud API | Premium voice quality |
 | **Google TTS** | Cloud API | 700+ voices, 50+ languages — best for localization |
 | **OpenAI TTS** | Cloud API | Fast, affordable |
@@ -189,7 +207,13 @@ research → proposal → script → scene_plan → assets → edit → compose
 ### Music & Sound
 
 | Provider | Type | Notes |
-|----------|------|-------|
+|
+---
+|
+---
+|
+---
+|
 | **Suno AI** | Cloud API | Full song generation with vocals, lyrics, any genre. Up to 8 minutes. |
 | **ElevenLabs Music** | Cloud API | AI music generation |
 | **ElevenLabs SFX** | Cloud API | Sound effect generation |
@@ -215,7 +239,11 @@ OpenMontage 将视频制作视为真正的工程——在每个阶段都有质�
 每个工具选择（视频生成、图像生成、文本转语音、音乐）都通过一个7维评分引擎：
 
 | Dimension | Weight |
-|-----------|--------|
+|
+---
+|
+---
+|
 | Task Fit | 30% |
 | Output Quality | 20% |
 | Control Features | 15% |
@@ -271,7 +299,11 @@ OpenMontage/
 OpenMontage 可与任何可以读取文件并执行 Python 的 AI 编码助手配合使用。随附的专用说明文件包括：
 
 | Platform | Config File |
-|----------|------------|
+|
+---
+|
+---
+|
 | **Claude Code** | `CLAUDE.md` |
 | **Cursor** | `CURSOR.md` + `.cursor/rules/` |
 | **GitHub Copilot** | `COPILOT.md` + `.github/copilot-instructions.md` |
@@ -317,8 +349,7 @@ make setup
 
 ```bash
 make install-gpu
-# Then add to .env:
-# VIDEO_GEN_LOCAL_ENABLED=true
+# Then add to .env: # VIDEO_GEN_LOCAL_ENABLED=true
 # VIDEO_GEN_LOCAL_MODEL=wan2.1-1.3b  # or wan2.1-14b, hunyuan-1.5, ltx2-local, cogvideo-5b
 ```
 
@@ -327,19 +358,15 @@ make install-gpu
 每个 API 密钥都是可选的。请添加您已有的：
 
 ```bash
-# Image + video gateway:
-FAL_KEY=your-key               # FLUX images + Google Veo, Kling, MiniMax video + Recraft
+# Image + video gateway: FAL_KEY=your-key               # FLUX images + Google Veo, Kling, MiniMax video + Recraft
 
-# Free stock media:
-PEXELS_API_KEY=your-key        # Free stock footage and images
+# Free stock media: PEXELS_API_KEY=your-key        # Free stock footage and images
 PIXABAY_API_KEY=your-key       # Free stock footage and images
 UNSPLASH_ACCESS_KEY=your-key   # Free stock images
 
-# Music:
-SUNO_API_KEY=your-key          # Full songs, instrumentals, any genre
+# Music: SUNO_API_KEY=your-key          # Full songs, instrumentals, any genre
 
-# Voice & images:
-ELEVENLABS_API_KEY=your-key    # Premium TTS, AI music, sound effects
+# Voice & images: ELEVENLABS_API_KEY=your-key    # Premium TTS, AI music, sound effects
 OPENAI_API_KEY=your-key        # OpenAI TTS, DALL-E 3 images
 GOOGLE_API_KEY=your-key        # Google Imagen images, Google TTS (700+ voices)
 ```
@@ -347,7 +374,17 @@ GOOGLE_API_KEY=your-key        # Google Imagen images, Google TTS (700+ voices)
 ## Comparison: OpenMontage vs. Competitors
 
 | Feature | OpenMontage | Sora | Runway | Pika |
-|---------|------------|------|--------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Full production pipeline** | Yes (12 pipelines) | No | No | No |
 | **Script writing** | Automated with web research | Manual | Manual | Manual |
 | **Narration/TTS** | Built-in (Piper, ElevenLabs, Google) | Limited | Manual | Manual |
@@ -493,8 +530,8 @@ OpenMontage 代表了 AI 视频制作的范式转变。它不是在模型层面�
 
 对于自托管基础设施，可以考虑 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 或 [HTStack](https://my.htstack.com/aff.php?aff=27187) 提供可靠的支持 GPU 的主机服务。对于网页抓取和代理需求，[WebShare.io](https://www.webshare.io/?referral_code=oa14d5f0wx4f) 提供基础设施层。想要寻找 AI 工具和加密服务的优惠？请查看 [Bitget Web3](https://web3.bitget.com/share/3Wla0s?inviteCode=irBqLe) 和 [Crypto.com](https://www.bsmkweb.cc/register?aff=dibi8) 获取独家优惠。对于联盟营销和漏斗工具，[PromoOhLy](https://www.promoohubly.com/join/12190433) 提供自动化服务。
 
----
 
+---
 **来源:** [OpenMontage GitHub](https://github.com/calesthio/OpenMontage) · [代理指南](https://github.com/calesthio/OpenMontage/blob/main/AGENT_GUIDE.md) · [提供者文档](https://github.com/calesthio/OpenMontage/blob/main/docs/PROVIDERS.md)
 
 **加入社区：** [GitHub 讨论](https://github.com/calesthio/OpenMontage/discussions) · [YouTube](https://www.youtube.com/@OpenMontage) · [X](https://x.com/calesthioailabs)
@@ -502,7 +539,6 @@ OpenMontage 代表了 AI 视频制作的范式转变。它不是在模型层面�
 📢 **保持更新：** 加入我们的 [Telegram 群组](https://t.me/DIBI8_Group/2)，获取每日 AI 工具评测和新内容的抢先体验。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -528,8 +564,8 @@ OpenMontage 代表了 AI 视频制作的范式转变。它不是在模型层面�
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [tradingagents-llm-multi-agent-trading-framework-2026](openmontage-agentic-video-production-system)

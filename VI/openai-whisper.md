@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/openai-whisper" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/openai-whisper" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/openai-whisper" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/openai-whisper" />
 title: 'OpenAI Whisper: 99.8K+ Stars — Hướng Dẫn Cài Đặt ASR Đầy...
 description: 'OpenAI Whisper (ASR) nhận dạng giọng nói mạnh mẽ qua giám sát yếu quy mô lớn. Tương thích với WhisperX, faster-whisper, LibreTranslate. Bao gồm whisper tutorial, whisper vs whisperx, speech recognition setup, whisper python, whisper docker.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [whisper, 'nhan-dang-giong-noi', asr, openai, 'faster-whisper', whisperx, python, docker, 'hoc-may']
-aliases:
-- /vi/posts/openai-whisper/
+aliases: - /vi/posts/openai-whisper/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/openai-whisper/ -->
 
 {{</* resource-info */>}}
 
@@ -81,9 +73,7 @@ whisper --version
 
 ### Phụ thuộc hệ thống
 
-FFmpeg là bắt buộc cho tiền xử lý âm thanh:
-
-```bash
+FFmpeg là bắt buộc cho tiền xử lý âm thanh: ```bash
 # Ubuntu/Debian
 sudo apt update && sudo apt install ffmpeg
 
@@ -145,8 +135,7 @@ result = model.transcribe("audio.mp3")
 print(result["text"])
 
 # Lấy các phân đoạn có dấu thờ gian
-for segment in result["segments"]:
-    print(f"[{segment[start]:.2f}s -> {segment[end]:.2f}s] {segment[text]}")
+for segment in result["segments"]: print(f"[{segment[start]:.2f}s -> {segment[end]:.2f}s] {segment[text]}")
 ```
 
 ### Ví dụ sử dụng CLI
@@ -211,8 +200,7 @@ diarize_segments = diarize_model(audio)
 result = whisperx.assign_word_speakers(diarize_segments, result)
 
 # In bản phiên âm có gán nhãn ngườ nói
-for segment in result["segments"]:
-    speaker = segment.get("speaker", "UNKNOWN")
+for segment in result["segments"]: speaker = segment.get("speaker", "UNKNOWN")
     start = segment["start"]
     end = segment["end"]
     text = segment["text"]
@@ -255,8 +243,7 @@ segments, info = model.transcribe(
 
 print(f"Ngôn ngữ phát hiện: {info.language} (xác suất: {info.language_probability:.2f})")
 
-for segment in segments:
-    print(f"[{segment.start:.2f}s -> {segment.end:.2f}s] {segment.text}")
+for segment in segments: print(f"[{segment.start:.2f}s -> {segment.end:.2f}s] {segment.text}")
 ```
 
 ### Tích hợp LibreTranslate (Pipeline dịch)
@@ -272,8 +259,7 @@ result = model.transcribe(audio_path, language="ja")
 japanese_text = result["text"]
 
 # Dịch qua API LibreTranslate
-def translate(text, source="ja", target="en"):
-    response = requests.post(
+def translate(text, source="ja", target="en"): response = requests.post(
         "http://localhost:5000/translate",
         headers={"Content-Type": "application/json"},
         json={"q": text, "source": source, "target": target}
@@ -297,9 +283,7 @@ app = FastAPI()
 model = WhisperModel("medium", device="cuda", compute_type="float16")
 
 @app.post("/transcribe")
-async def transcribe(file: UploadFile = File(...)):
-    with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as tmp:
-        tmp.write(await file.read())
+async def transcribe(file: UploadFile = File(...)): with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as tmp: tmp.write(await file.read())
         tmp_path = tmp.name
 
     segments, info = model.transcribe(
@@ -346,8 +330,7 @@ TRANSCRIPTION_DURATION = Histogram(
     ["model"]
 )
 
-def transcribe_with_metrics(audio_path, model_name="medium"):
-    start = time.time()
+def transcribe_with_metrics(audio_path, model_name="medium"): start = time.time()
     segments, info = model.transcribe(audio_path)
     duration = time.time() - start
 
@@ -425,24 +408,21 @@ from faster_whisper import WhisperModel
 
 model = WhisperModel("medium", device="cuda", compute_type="float16")
 
-def process_file(audio_path):
-    segments, info = model.transcribe(
+def process_file(audio_path): segments, info = model.transcribe(
         audio_path,
         vad_filter=True,
         beam_size=5
     )
     text = " ".join([s.text for s in segments])
     output_path = audio_path.replace(".mp3", ".txt")
-    with open(output_path, "w") as f:
-        f.write(text)
+    with open(output_path, "w") as f: f.write(text)
     return output_path
 
 # Xử lý thư mục file âm thanh
 audio_dir = "/data/audio/"
 files = [os.path.join(audio_dir, f) for f in os.listdir(audio_dir) if f.endswith(".mp3")]
 
-with ThreadPoolExecutor(max_workers=4) as executor:
-    results = list(executor.map(process_file, files))
+with ThreadPoolExecutor(max_workers=4) as executor: results = list(executor.map(process_file, files))
 
 print(f"Đã xử lý {len(results)} file")
 ```
@@ -479,8 +459,7 @@ app = FastAPI()
 model = WhisperModel("medium", device="cuda", compute_type="float16")
 
 @app.get("/health")
-async def health():
-    gpu_available = torch.cuda.is_available()
+async def health(): gpu_available = torch.cuda.is_available()
     gpu_memory = torch.cuda.get_device_properties(0).total_memory if gpu_available else 0
     return {
         "status": "healthy",
@@ -501,11 +480,8 @@ import time
 r = redis.Redis(host=localhost, port=6379, db=0)
 model = WhisperModel("medium", device="cuda", compute_type="float16")
 
-def worker():
-    while True:
-        job = r.blpop("transcription_queue", timeout=5)
-        if job:
-            _, data = job
+def worker(): while True: job = r.blpop("transcription_queue", timeout=5)
+        if job: _, data = job
             task = json.loads(data)
             segments, info = model.transcribe(task["file_path"])
             result = {
@@ -516,8 +492,7 @@ def worker():
             r.setex(f"result:{task[job_id]}", 3600, json.dumps(result))
         time.sleep(0.1)
 
-if __name__ == "__main__":
-    worker()
+if __name__ == "__main__": worker()
 ```
 
 ## So sánh với các lựa chọn thay thế
@@ -540,9 +515,7 @@ if __name__ == "__main__":
 
 ## Hạn chế / Đánh giá trung thực
 
-Whisper không phải công cụ phù hợp cho mọi tác vụ giọng nói. Đây là những gì README không nói:
-
-1. **Không hỗ trợ streaming**: Whisper xử lý các khối 30 giây; không được thiết kế cho phiên âm thực sự real-time (độ trễ <200ms). Đối với ASR streaming, hãy xem xét NVIDIA Parakeet hoặc Moonshine v2.
+Whisper không phải công cụ phù hợp cho mọi tác vụ giọng nói. Đây là những gì README không nói: 1. **Không hỗ trợ streaming**: Whisper xử lý các khối 30 giây; không được thiết kế cho phiên âm thực sự real-time (độ trễ <200ms). Đối với ASR streaming, hãy xem xét NVIDIA Parakeet hoặc Moonshine v2.
 
 2. **Hallucination trên im lặng**: Large-v3 đôi khi tạo ra văn bản hallucinated trên các phân đoạn im lặng. Sử dụng lọc VAD (tích hợp sẵn trong faster-whisper) để giảm thiểu.
 
@@ -597,9 +570,7 @@ OpenAI Whisper vẫn là lựa chọn thực tế cho nhận dạng giọng nói
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -616,7 +587,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [Whisper API Blog — Model Comparison](https://whisperapi.com/accuracy-benchmarks-top-free-open-source-speech-to-text-offerings)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

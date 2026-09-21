@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/polymarket-agents-ai-trading-bot-framework" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/polymarket-agents-ai-trading-bot-framework" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/polymarket-agents-ai-trading-bot-framework" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/polymarket-agents-ai-trading-bot-framework" />
 title: Polymarket Agents：构建预测市场 AI 自动交易机器人的开源框架
 description: Polymarket Agents 是一个开源开发者框架，用于构建在 Polymarket 预测市场上进行 AI 自主交易的智能代理。. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
-tech_stack:
-- Docker
+tech_stack: - Docker
 - Python
 - TypeScript
 application_domain: Llm Frameworks
@@ -26,10 +20,8 @@ maintainer: "Polymarket"
 last_maintained: "2024-11-05"
 featureImage: ''
 draft: false
-aliases:
-- /zh/posts/polymarket-agents-ai-trading-bot-framework/
-faqs:
-  - q: '什么是 Polymarket Agents？'
+aliases: - /zh/posts/polymarket-agents-ai-trading-bot-framework/
+faqs: - q: '什么是 Polymarket Agents？'
     a: 'Polymarket Agents 是一个开源、采用 MIT 许可的开发者框架，用于构建在 Polymarket 预测市场上自主交易的 AI 智能体。它提供了分析市场的工具，可对接 Polymarket API 获取实时数据，并自动执行交易。'
   - q: '运行 Polymarket Agents 之前我需要做哪些准备？'
     a: '你需要在 .env 文件中设置 Polygon 钱包私钥和 OpenAI API key，还需要一个安装了 requirements.txt 中依赖的 Python 3.9 虚拟环境。此外，你必须为 Polygon 钱包充入 USDC，因为 Polymarket 上的交易以 USDC 结算。'
@@ -38,10 +30,7 @@ faqs:
   - q: 'Polymarket Agents 支持哪些交易策略？'
     a: '该框架支持基于新闻的交易（由 LLM 对事件进行情绪分析）、跨相关市场的套利检测、基于成交量和价格走势的趋势跟随，以及利用 RAG 查询历史数据的基本面分析。'
   - q: '如何用 Polymarket Agents CLI 执行一笔交易？'
-    a: '运行 CLI 命令 ''python scripts/python/cli.py trade --market-id <MARKET_ID> --side buy --size <SIZE>''。你也可以用 ''get-all-markets --sort-by volume'' 列出市场，或用 ''get-market --market-id <MARKET_ID>'' 查看单个市场。'
----
-
-<!-- canonical: https://dibi8.com/zh/tools/polymarket-agents-ai-trading-bot-framework/ -->
+    a: '运行 CLI 命令 ''python scripts/python/cli.py trade --market-id  --side buy --size ''。你也可以用 ''get-all-markets --sort-by volume'' 列出市场，或用 ''get-market --market-id '' 查看单个市场。'---
 {</* resource-info */>}
 
 ![Polymarket Agents CLI 命令清单](/images/articles/polymarket-agents-ai-trading-bot-framework/cli.png)
@@ -60,8 +49,8 @@ faqs:
 
 🔗 **GitHub**: [https://github.com/Polymarket/agents](https://github.com/Polymarket/agents)
 
----
 
+---
 ## 什么是 Polymarket？
 
 **Polymarket** 是一个去中心化的预测市场平台，用户可以在上面交易现实世界事件的结果：
@@ -74,12 +63,16 @@ faqs:
 
 交易者根据预测购买"是"或"否"的股份，价格反映市场共识概率。
 
----
 
+---
 ## 核心功能
 
 | 功能 | 说明 |
-|------|------|
+|
+---
+|
+---
+|
 | **Polymarket API 集成** | 完整访问市场数据、订单簿和交易执行 |
 | **AI 代理工具** | 构建自主交易代理的工具 |
 | **本地和远程 RAG** | 新闻和市场数据检索的向量数据库支持 |
@@ -98,7 +91,11 @@ Polymarket Agents 采用模块化组件设计，可由社区维护和扩展：
 ### 核心 API
 
 | 组件 | 用途 |
-|------|------|
+|
+---
+|
+---
+|
 | **Chroma.py** | 新闻源和 API 数据的向量数据库 |
 | **Gamma.py** | Polymarket Gamma API 客户端，获取市场元数据 |
 | **Polymarket.py** | 主要 API 类，用于市场数据和交易执行 |
@@ -210,7 +207,13 @@ Polymarket Agents 支持多种 AI 驱动的交易策略：
 该框架集成多个数据源：
 
 | 数据源 | 类型 | 用途 |
-|--------|------|------|
+|
+---
+|
+---
+|
+---
+|
 | **新闻 API** | 实时新闻 | 事件跟踪 |
 | **网络搜索** | 一般信息 | 背景研究 |
 | **博彩服务** | 赔率比较 | 价格发现 |
@@ -235,7 +238,11 @@ Polymarket Agents 支持多种 AI 驱动的交易策略：
 自动交易的重要考虑因素：
 
 | 风险 | 缓解措施 |
-|------|---------|
+|
+---
+|
+---
+|
 | **市场风险** | 仓位控制、止损 |
 | **流动性风险** | 在高交易量市场交易 |
 | **模型风险** | 实盘交易前回测策略 |
@@ -247,7 +254,15 @@ Polymarket Agents 支持多种 AI 驱动的交易策略：
 ## 与其他工具对比
 
 | 功能 | Polymarket Agents | 自定义机器人 | 手动交易 |
-|------|------------------|------------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **开源** | ✅ | 视情况而定 | 不适用 |
 | **AI 集成** | ✅ | 可选 | ❌ |
 | **RAG 支持** | ✅ | 很少 | ❌ |
@@ -286,7 +301,11 @@ Polymarket Agents 支持多种 AI 驱动的交易策略：
 ## 相关仓库
 
 | 仓库 | 用途 |
-|------|------|
+|
+---
+|
+---
+|
 | [py-clob-client](https://github.com/Polymarket/py-clob-client) | Polymarket CLOB 的 Python 客户端 |
 | [python-order-utils](https://github.com/Polymarket/python-order-utils) | 订单生成和签名 |
 | [clob-client](https://github.com/Polymarket/clob-client) | CLOB 的 TypeScript 客户端 |
@@ -335,7 +354,6 @@ Polymarket Agents 支持多种 AI 驱动的交易策略：
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -363,25 +381,20 @@ Polymarket Agents 支持多种 AI 驱动的交易策略：
 
 ## Why This Matters
 
-Understanding polymarket agents：构建预测市场 ai 自动交易机器人的开源框架 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding polymarket agents：构建预测市场 ai 自动交易机器人的开源框架 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -433,7 +446,17 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

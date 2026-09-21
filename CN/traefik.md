@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/traefik" />
 title: 'Traefik: 63,229 GitHub Stars — Cloud-Native Edge Router ...
 description: 'Traefik is a cloud-native application proxy and edge router with automatic service discovery. Compatible with Docker, Kubernetes, Consul, and Docker Compose. Covers installation, middleware, TLS, monitoring, and production hardening.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [traefik, docker, kubernetes, 'reverse-proxy', 'edge-router', ingress, devops, 'cloud-native']
-aliases:
-- /posts/traefik/
+aliases: - /posts/traefik/-
 ---
-
 {{</* resource-info */>}}
 
 Managing ingress traffic in containerized environments is a persistent headache. Every time a new microservice spins up, someone has to update the reverse proxy configuration, reload the service, and pray nothing breaks. In a world where deployments happen dozens of times per day, this manual approach collapses under its own weight. [Traefik](https://github.com/traefik/traefik), the open-source edge router built for cloud-native infrastructure, solves this by watching your container orchestrator and updating routes automatically — no config reloads, no downtime, no human intervention.
@@ -80,7 +76,13 @@ Traefik's architecture splits configuration into two layers: **static configurat
 ### Core Concepts
 
 | Component | Purpose | Example |
-|-----------|---------|---------|
+|
+---
+|
+---
+|
+---
+|
 | EntryPoint | Listening port for incoming traffic | `:80`, `:443`, `:8080` |
 | Router | Matches requests against rules | `Host("api.example.com")` |
 | Middleware | Modifies requests/responses | BasicAuth, RateLimit, RedirectScheme |
@@ -91,9 +93,7 @@ Traefik's architecture splits configuration into two layers: **static configurat
 
 ### Docker Compose (Single Node, ≤5 Minutes)
 
-Create a dedicated directory and the main Traefik configuration:
-
-```bash
+Create a dedicated directory and the main Traefik configuration: ```bash
 mkdir -p ~/traefik/{data,configs}
 cd ~/traefik
 touch data/acme.json && chmod 600 data/acme.json
@@ -101,31 +101,22 @@ touch data/acme.json && chmod 600 data/acme.json
 
 The `acme.json` file stores Let's Encrypt certificates. It must have restrictive permissions (`600`) or Let's Encrypt will refuse to write to it.
 
-**`docker-compose.yml`** — Traefik v3.x production-ready:
-
-```yaml
-services:
-  traefik:
-    image: traefik:v3.2
+**`docker-compose.yml`** — Traefik v3.x production-ready: ```yaml
+services: traefik: image: traefik:v3.2
     container_name: traefik
     restart: unless-stopped
-    security_opt:
-      - no-new-privileges:true
+    security_opt: - no-new-privileges:true
     read_only: true
-    networks:
-      - proxy
-    ports:
-      - "80:80"
+    networks: - proxy
+    ports: - "80:80"
       - "443:443"
       - "8080:8080"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+    volumes: - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./data/acme.json:/acme.json
       - ./data/traefik.yml:/etc/traefik/traefik.yml:ro
       - ./configs:/configs:ro
       - ./data/logs:/logs
-    labels:
-      - "traefik.enable=true"
+    labels: - "traefik.enable=true"
       - "traefik.http.routers.traefik.rule=Host(`traefik.yourdomain.com`)"
       - "traefik.http.routers.traefik.entrypoints=websecure"
       - "traefik.http.routers.traefik.tls.certresolver=letsencrypt"
@@ -133,83 +124,55 @@ services:
       - "traefik.http.middlewares.traefik-auth.basicauth.users=admin:$$apr1$$H6uskkkW$$IgXLP6ewTrSuBkTrqE8wj/"
       - "traefik.http.routers.traefik.middlewares=traefik-auth"
 
-  whoami:
-    image: traefik/whoami
+  whoami: image: traefik/whoami
     container_name: whoami
     restart: unless-stopped
-    networks:
-      - proxy
-    labels:
-      - "traefik.enable=true"
+    networks: - proxy
+    labels: - "traefik.enable=true"
       - "traefik.http.routers.whoami.rule=Host(`whoami.yourdomain.com`)"
       - "traefik.http.routers.whoami.entrypoints=websecure"
       - "traefik.http.routers.whoami.tls.certresolver=letsencrypt"
       - "traefik.http.services.whoami.loadbalancer.server.port=80"
 
-networks:
-  proxy:
-    external: true
+networks: proxy: external: true
 ```
 
-Create the network first:
-
-```bash
+Create the network first: ```bash
 docker network create proxy
 docker compose up -d
 ```
 
-**`data/traefik.yml`** — Static configuration:
+**`data/traefik.yml`** — Static configuration: ```yaml
+global: sendAnonymousUsage: false
 
-```yaml
-global:
-  sendAnonymousUsage: false
-
-api:
-  dashboard: true
+api: dashboard: true
   insecure: false
 
-entryPoints:
-  web:
-    address: ":80"
-    http:
-      redirections:
-        entryPoint:
-          to: websecure
+entryPoints: web: address: ":80"
+    http: redirections: entryPoint: to: websecure
           scheme: https
           permanent: true
-  websecure:
-    address: ":443"
-  traefik:
-    address: ":8080"
+  websecure: address: ":443"
+  traefik: address: ":8080"
 
-providers:
-  docker:
-    exposedByDefault: false
+providers: docker: exposedByDefault: false
     network: proxy
     watch: true
-  file:
-    directory: /configs
+  file: directory: /configs
     watch: true
 
-certificatesResolvers:
-  letsencrypt:
-    acme:
-      email: admin@yourdomain.com
+certificatesResolvers: letsencrypt: acme: email: admin@yourdomain.com
       storage: /acme.json
       tlsChallenge: {}
 
-log:
-  level: INFO
+log: level: INFO
   format: json
   filePath: "/logs/traefik.log"
 
-accessLog:
-  format: json
+accessLog: format: json
   filePath: "/logs/access.log"
 
-metrics:
-  prometheus:
-    addEntryPointsLabels: true
+metrics: prometheus: addEntryPointsLabels: true
     addRoutersLabels: true
     addServicesLabels: true
 ```
@@ -218,9 +181,7 @@ Verify the dashboard at `https://traefik.yourdomain.com`. The basic auth credent
 
 ### Binary Installation (Linux)
 
-For non-Docker environments, Traefik distributes a single static binary:
-
-```bash
+For non-Docker environments, Traefik distributes a single static binary: ```bash
 wget https://github.com/traefik/traefik/releases/download/v3.2.0/traefik_v3.2.0_linux_amd64.tar.gz
 tar -xzf traefik_v3.2.0_linux_amd64.tar.gz
 sudo mv traefik /usr/local/bin/
@@ -229,9 +190,7 @@ sudo chmod +x /usr/local/bin/traefik
 
 ### Kubernetes with Helm
 
-For Traefik Kubernetes deployments, Helm is the standard method for installing the ingress controller on clusters:
-
-```bash
+For Traefik Kubernetes deployments, Helm is the standard method for installing the ingress controller on clusters: ```bash
 helm repo add traefik https://traefik.github.io/charts
 helm repo update
 kubectl create namespace traefik
@@ -244,9 +203,7 @@ helm install traefik traefik/traefik \
   --set certResolvers.letsencrypt.acme.tlsChallenge=true
 ```
 
-Verify the deployment:
-
-```bash
+Verify the deployment: ```bash
 kubectl get pods -n traefik
 kubectl port-forward -n traefik svc/traefik 9000:9000
 # Open http://localhost:9000/dashboard/
@@ -256,16 +213,10 @@ kubectl port-forward -n traefik svc/traefik 9000:9000
 
 ### Docker Provider (Auto-Discovery)
 
-The Docker provider is Traefik's killer feature. Any container with Traefik labels gets registered automatically:
-
-```yaml
-services:
-  api:
-    image: myapp/api:latest
-    networks:
-      - proxy
-    labels:
-      - "traefik.enable=true"
+The Docker provider is Traefik's killer feature. Any container with Traefik labels gets registered automatically: ```yaml
+services: api: image: myapp/api:latest
+    networks: - proxy
+    labels: - "traefik.enable=true"
       - "traefik.http.routers.api.rule=Host(`api.example.com`) && PathPrefix(`/v2`)"
       - "traefik.http.routers.api.entrypoints=websecure"
       - "traefik.http.routers.api.tls.certresolver=letsencrypt"
@@ -279,89 +230,62 @@ services:
       - "traefik.http.services.api.loadbalancer.healthcheck.interval=10s"
 ```
 
-Key Docker labels explained:
-- `traefik.enable=true` — Required because `exposedByDefault: false` is set
+Key Docker labels explained: - `traefik.enable=true` — Required because `exposedByDefault: false` is set
 - `traefik.http.routers.<name>.rule` — Routing rule (Host, PathPrefix, Headers, etc.)
 - `traefik.http.middlewares.*` — Applied transformations
 - `traefik.http.services.*.loadbalancer.server.port` — Container port to forward to
 
 ### Kubernetes IngressRoute (CRD)
 
-Traefik's native `IngressRoute` CRD provides more control than standard Kubernetes `Ingress`:
-
-```yaml
+Traefik's native `IngressRoute` CRD provides more control than standard Kubernetes `Ingress`: ```yaml
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
-metadata:
-  name: api-route
+metadata: name: api-route
   namespace: production
-spec:
-  entryPoints:
-    - websecure
-  routes:
-    - match: Host(`api.example.com`) && PathPrefix(`/v2`)
+spec: entryPoints: - websecure
+  routes: - match: Host(`api.example.com`) && PathPrefix(`/v2`)
       kind: Rule
-      middlewares:
-        - name: rate-limit
+      middlewares: - name: rate-limit
         - name: strip-prefix
-      services:
-        - name: api-service
+      services: - name: api-service
           port: 8080
-          healthCheck:
-            path: /health
+          healthCheck: path: /health
             intervalSeconds: 10
     - match: Host(`api.example.com`) && PathPrefix(`/v1`)
       kind: Rule
-      services:
-        - name: api-v1-service
+      services: - name: api-v1-service
           port: 8080
-  tls:
-    certResolver: letsencrypt
+  tls: certResolver: letsencrypt
 ```
 
-Create the middleware separately:
-
-```yaml
+Create the middleware separately: ```yaml
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
-metadata:
-  name: rate-limit
+metadata: name: rate-limit
   namespace: production
-spec:
-  rateLimit:
-    average: 100
+spec: rateLimit: average: 100
     burst: 50
+
 ---
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
-metadata:
-  name: strip-prefix
+metadata: name: strip-prefix
   namespace: production
-spec:
-  stripPrefix:
-    prefixes:
-      - /v2
+spec: stripPrefix: prefixes: - /v2
 ```
 
 ### Consul Service Discovery
 
-For HashiCorp Consul environments, Traefik can discover services from the catalog:
-
-```yaml
+For HashiCorp Consul environments, Traefik can discover services from the catalog: ```yaml
 # traefik.yml snippet
-providers:
-  consulCatalog:
-    prefix: "traefik"
+providers: consulCatalog: prefix: "traefik"
     exposedByDefault: false
     refreshInterval: "5s"
-    endpoint:
-      address: "127.0.0.1:8500"
+    endpoint: address: "127.0.0.1:8500"
       token: "your-consul-token"
 ```
 
-Register a service in Consul with Traefik tags:
-
-```bash
+Register a service in Consul with Traefik tags: ```bash
 curl -X PUT http://localhost:8500/v1/agent/service/register \
   -d '{
     "Name": "payments-api",
@@ -376,42 +300,27 @@ curl -X PUT http://localhost:8500/v1/agent/service/register \
 
 ### Docker Compose Integration Pattern
 
-For multi-project setups, keep Traefik in a dedicated `docker-compose.yml` and connect application stacks via the external `proxy` network:
-
-```yaml
+For multi-project setups, keep Traefik in a dedicated `docker-compose.yml` and connect application stacks via the external `proxy` network: ```yaml
 # ~/projects/api/docker-compose.yml
-services:
-  app:
-    image: myapi:latest
-    networks:
-      - proxy
+services: app: image: myapi:latest
+    networks: - proxy
       - internal
-    labels:
-      - "traefik.enable=true"
+    labels: - "traefik.enable=true"
       - "traefik.http.routers.api.rule=Host(`api.example.com`)"
       - "traefik.http.routers.api.entrypoints=websecure"
       - "traefik.http.routers.api.tls.certresolver=letsencrypt"
       - "traefik.http.services.api.loadbalancer.server.port=3000"
-    environment:
-      - DATABASE_URL=postgres://db:5432/api
+    environment: - DATABASE_URL=postgres://db:5432/api
 
-  db:
-    image: postgres:16
-    networks:
-      - internal
-    environment:
-      - POSTGRES_DB=api
+  db: image: postgres:16
+    networks: - internal
+    environment: - POSTGRES_DB=api
 
-networks:
-  proxy:
-    external: true
-  internal:
-    driver: bridge
+networks: proxy: external: true
+  internal: driver: bridge
 ```
 
-Deploy without touching Traefik:
-
-```bash
+Deploy without touching Traefik: ```bash
 cd ~/projects/api && docker compose up -d
 ```
 
@@ -419,10 +328,20 @@ cd ~/projects/api && docker compose up -d
 
 ### Performance Benchmarks
 
-Community benchmarks on a 4 vCPU AMD server with 16GB RAM show Traefik holds its own against established proxies:
-
-| Metric | Nginx | HAProxy | Traefik v3.2 | Traefik v3.2 + FastProxy | Caddy |
-|--------|-------|---------|-------------|-------------------------|-------|
+Community benchmarks on a 4 vCPU AMD server with 16GB RAM show Traefik holds its own against established proxies: | Metric | Nginx | HAProxy | Traefik v3.2 | Traefik v3.2 + FastProxy | Caddy |
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Requests/sec | 25,367 | 24,263 | 18,291 | **20,795** | 13,573 |
 | Avg Latency (ms) | 3.93 | 4.12 | 5.60 | **4.86** | 7.45 |
 | 99th Percentile (ms) | 7.94 | 8.43 | 14.28 | **11.84** | 18.08 |
@@ -430,11 +349,8 @@ Community benchmarks on a 4 vCPU AMD server with 16GB RAM show Traefik holds its
 
 *Source: Community benchmark with wrk2, fibonacci endpoint load. Results vary by workload.*
 
-Traefik's experimental **FastProxy** engine (introduced in v3.2) delivers a ~50% throughput improvement over the standard engine. Enable it with:
-
-```yaml
-experimental:
-  fastProxy: {}
+Traefik's experimental **FastProxy** engine (introduced in v3.2) delivers a ~50% throughput improvement over the standard engine. Enable it with: ```yaml
+experimental: fastProxy: {}
 ```
 
 Limitations: FastProxy does not support HTTP/2 backends, and tracing/OTEL semantic convention metrics are not yet supported.
@@ -445,9 +361,7 @@ Limitations: FastProxy does not support HTTP/2 backends, and tracing/OTEL semant
 
 2. **Homelab and Self-Hosting**: Docker Compose + Traefik is the dominant stack in self-hosting communities. Automatic Let's Encrypt certificates, combined with the simple label-based config, make adding a new service a copy-paste operation.
 
-3. **Multi-Tenant SaaS Platform**: Using `HostRegexp` rules, a SaaS platform routes `{tenant}.app.example.com` to the correct namespace or service automatically:
-
-```yaml
+3. **Multi-Tenant SaaS Platform**: Using `HostRegexp` rules, a SaaS platform routes `{tenant}.app.example.com` to the correct namespace or service automatically: ```yaml
 - "traefik.http.routers.app.rule=HostRegexp(`{tenant:[a-z0-9-]+}.app.example.com`)"
 - "traefik.http.routers.app.service=app-service"
 ```
@@ -456,65 +370,43 @@ Limitations: FastProxy does not support HTTP/2 backends, and tracing/OTEL semant
 
 ### Security Checklist
 
-1. **Disable exposed by default** — Only register containers explicitly:
-```yaml
-providers:
-  docker:
-    exposedByDefault: false
+1. **Disable exposed by default** — Only register containers explicitly: ```yaml
+providers: docker: exposedByDefault: false
 ```
 
-2. **Run read-only with no-new-privileges**:
-```yaml
-security_opt:
-  - no-new-privileges:true
+2. **Run read-only with no-new-privileges**: ```yaml
+security_opt: - no-new-privileges:true
 read_only: true
 ```
 
-3. **Protect the Docker socket** — Use a socket proxy instead of mounting `/var/run/docker.sock` directly:
-```yaml
-services:
-  socket-proxy:
-    image: tecnativa/docker-socket-proxy
-    environment:
-      - CONTAINERS=1
+3. **Protect the Docker socket** — Use a socket proxy instead of mounting `/var/run/docker.sock` directly: ```yaml
+services: socket-proxy: image: tecnativa/docker-socket-proxy
+    environment: - CONTAINERS=1
       - SERVICES=1
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+    volumes: - /var/run/docker.sock:/var/run/docker.sock:ro
 ```
 
-4. **Add security headers globally**:
-```yaml
+4. **Add security headers globally**: ```yaml
 # configs/security.yml
-http:
-  middlewares:
-    security-headers:
-      headers:
-        frameDeny: true
+http: middlewares: security-headers: headers: frameDeny: true
         sslRedirect: true
         browserXssFilter: true
         contentTypeNosniff: true
         forceSTSHeader: true
         stsIncludeSubdomains: true
         stsSeconds: 31536000
-        customResponseHeaders:
-          X-Robots-Tag: "none,noarchive,nosnippet,notranslate,noimageindex"
+        customResponseHeaders: X-Robots-Tag: "none,noarchive,nosnippet,notranslate,noimageindex"
           Permissions-Policy: "camera=(), microphone=(), geolocation=()"
 ```
 
 ### Rate Limiting and Circuit Breakers
 
 ```yaml
-http:
-  middlewares:
-    api-ratelimit:
-      rateLimit:
-        average: 100
+http: middlewares: api-ratelimit: rateLimit: average: 100
         burst: 50
         period: 1m
     
-    api-circuitbreaker:
-      circuitBreaker:
-        expression: "LatencyAtQuantileMS(50.0) > 100"
+    api-circuitbreaker: circuitBreaker: expression: "LatencyAtQuantileMS(50.0) > 100"
         checkPeriod: "10s"
         fallbackDuration: "10s"
         recoveryDuration: "10s"
@@ -522,16 +414,11 @@ http:
 
 ### Observability: Prometheus + Grafana
 
-Enable Prometheus metrics in `traefik.yml`:
-
-```yaml
-metrics:
-  prometheus:
-    addEntryPointsLabels: true
+Enable Prometheus metrics in `traefik.yml`: ```yaml
+metrics: prometheus: addEntryPointsLabels: true
     addRoutersLabels: true
     addServicesLabels: true
-    buckets:
-      - 0.005
+    buckets: - 0.005
       - 0.01
       - 0.025
       - 0.05
@@ -544,22 +431,16 @@ metrics:
       - 10.0
 ```
 
-Prometheus scrape config:
-
-```yaml
-scrape_configs:
-  - job_name: traefik
+Prometheus scrape config: ```yaml
+scrape_configs: - job_name: traefik
     scrape_interval: 15s
-    static_configs:
-      - targets: ['traefik:8080']
+    static_configs: - targets: ['traefik:8080']
 ```
 
 ![Traefik Grafana Dashboard](https://grafana.com/api/dashboards/17346/images/14185/image)
 *The official Traefik Grafana dashboard (ID 17346) visualizes request rates, error rates, and response latencies.*
 
-Import the official Traefik dashboard in Grafana (ID: `17346`). Key metrics to monitor:
-
-```promql
+Import the official Traefik dashboard in Grafana (ID: `17346`). Key metrics to monitor: ```promql
 # Request rate by router
 rate(traefik_router_requests_total[5m])
 
@@ -575,23 +456,14 @@ traefik_tls_certs_not_after - time() < 7 * 86400
 
 ### Scaling Beyond a Single Node
 
-For high availability, run multiple Traefik replicas behind a Layer 4 load balancer:
-
-```yaml
+For high availability, run multiple Traefik replicas behind a Layer 4 load balancer: ```yaml
 # docker-compose.yml (Swarm mode)
-services:
-  traefik:
-    image: traefik:v3.2
-    deploy:
-      replicas: 3
-      placement:
-        constraints:
-          - node.role == manager
-      update_config:
-        parallelism: 1
+services: traefik: image: traefik:v3.2
+    deploy: replicas: 3
+      placement: constraints: - node.role == manager
+      update_config: parallelism: 1
         delay: 10s
-    ports:
-      - target: 80
+    ports: - target: 80
         published: 80
         mode: host
       - target: 443
@@ -602,7 +474,17 @@ services:
 ## Comparison with Alternatives
 
 | Feature | Traefik | Nginx | HAProxy | Caddy |
-|---------|---------|-------|---------|-------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Auto Service Discovery** | Yes (Docker, K8s, Consul) | No (requires reload) | No (requires reload) | Partial (via config) |
 | **Config Reload Without Downtime** | Yes (fully dynamic) | Yes (signal-based) | Yes (soft reload) | Yes |
 | **Let's Encrypt Integration** | Built-in, automatic | Requires certbot addon | Requires certbot addon | Built-in, automatic |
@@ -616,9 +498,7 @@ services:
 
 ## Limitations and Honest Assessment
 
-Traefik is not the right tool for every job. Here is what it does not do well:
-
-1. **Static file serving**: Traefik has no built-in static file server. For serving websites with heavy static assets, Nginx or Caddy is a better fit.
+Traefik is not the right tool for every job. Here is what it does not do well: 1. **Static file serving**: Traefik has no built-in static file server. For serving websites with heavy static assets, Nginx or Caddy is a better fit.
 
 2. **Ultra-high throughput proxying**: If your sole need is raw reverse proxy throughput at the edge of a high-traffic site, HAProxy and Nginx still outperform Traefik by 20-40% on pure HTTP request volume.
 
@@ -673,17 +553,15 @@ For hosting Traefik on production infrastructure, [DigitalOcean](https://www.dig
 
 💬 **Discuss this guide and get help on our [Telegram group](https://t.me/dibi8tech)** — share your Traefik configs, ask questions, and connect with other developers running production edge routers.
 
----
 
+---
 *Disclosure: This article contains affiliate links to DigitalOcean and HTStack. These are services the author genuinely recommends for Traefik hosting based on their Docker/Kubernetes compatibility and pricing. Affiliate links help support the creation of free, in-depth technical guides.*
 
 
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -701,7 +579,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [Caddy vs Traefik vs HAProxy vs Nginx — BigMike.help](https://bigmike.help/en/posts/102/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -728,7 +605,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 ---
-
 ## Related Articles
 
 - [trivy-production-security-scanner-2026](traefik)

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/cicd-tools-github-actions-vs-gitlab-ci-vs-jenkins" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cicd-tools-github-actions-vs-gitlab-ci-vs-jenkins" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cicd-tools-github-actions-vs-gitlab-ci-vs-jenkins" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cicd-tools-github-actions-vs-gitlab-ci-vs-jenkins" />
 title: 'So Sánh Công Cụ CI/CD: GitHub Actions vs GitLab CI vs Je...
 description: 'So sánh chi tiết GitHub Actions, GitLab CI và Jenkins năm 2025. Tìm hiểu ưu nhược điểm, bảng giá, tính năng bảo mật và hướng dẫn chọn CI/CD phù hợp cho team của bạn.'
 date: 2026-05-18 00:00:00+08:00
@@ -23,11 +18,9 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/cicd-tools-github-actions-vs-gitlab-ci-vs-jenkins/
+aliases: - /posts/cicd-tools-github-actions-vs-gitlab-ci-vs-jenkins/
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/cicd-tools-github-actions-vs-gitlab-ci-vs-jenkins/ -->
 # So Sánh Công Cụ CI/CD: GitHub Actions vs GitLab CI vs Jenkins Năm 2025
 
 
@@ -126,9 +119,7 @@ Với monorepo lớn, GitLab CI vượt trội nhờ **rules và only/except** c
 
 ### Quản Lý Secrets
 
-Cả ba nền tảng đều hỗ trợ lưu trữ secrets mã hóa, nhưng cách triển khai khác nhau:
-
-- **GitHub Actions**: Secrets được lưu ở cấp repository hoặc organization, tự động inject vào workflow dưới dạng biến môi trường. Hỗ trợ **secrets rotation** và **OIDC token** cho phép xác thực với AWS, Azure, GCP mà không cần lưu credential dài hạn.
+Cả ba nền tảng đều hỗ trợ lưu trữ secrets mã hóa, nhưng cách triển khai khác nhau: - **GitHub Actions**: Secrets được lưu ở cấp repository hoặc organization, tự động inject vào workflow dưới dạng biến môi trường. Hỗ trợ **secrets rotation** và **OIDC token** cho phép xác thực với AWS, Azure, GCP mà không cần lưu credential dài hạn.
 - **GitLab CI**: CI/CD variables hỗ trợ masking, protected (chỉ chạy trên protected branches), và environment-scoped. Tích hợp **HashiCorp Vault** từ phiên bản 13.0.
 - **Jenkins**: Qua **Credentials Plugin**, hỗ trợ nhiều loại credential (username/password, SSH key, secret file, certificate). Tích hợp với external vault linh hoạt nhất nhưng cấu hình thủ công.
 
@@ -140,9 +131,7 @@ Về **SBOM (Software Bill of Materials)** và quét lỗ hổng, GitHub Actions
 
 ## Các Công Cụ CI/CD Khác Đáng Chú Ý
 
-Bên cạnh ba ông lớn, năm 2025 còn có nhiều lựa chọn CI/CD đáng cân nhắc:
-
-- **[CircleCI](https://circleci.com)**: Tập trung vào trải nghiệm developer, giao diện trực quan, hiệu năng build nhanh. Phổ biến trong cộng đồng startup.
+Bên cạnh ba ông lớn, năm 2025 còn có nhiều lựa chọn CI/CD đáng cân nhắc: - **[CircleCI](https://circleci.com)**: Tập trung vào trải nghiệm developer, giao diện trực quan, hiệu năng build nhanh. Phổ biến trong cộng đồng startup.
 - **[Azure DevOps Pipelines](https://azure.microsoft.com/en-us/products/devops/pipelines)**: Lựa chọn tự nhiên cho team sử dụng Microsoft ecosystem (Azure, .NET, Office 365).
 - **[Drone CI](https://www.drone.io)**: Container-native, lightweight, mã nguồn mở. Ideal cho team yêu thích đơn giản.
 - **[Woodpecker CI](https://woodpecker-ci.org)**: Fork cộng đồng của Drone CI, hoàn toàn miễn phí, phù hợp cho self-hosted.
@@ -155,18 +144,12 @@ Bên cạnh ba ông lớn, năm 2025 còn có nhiều lựa chọn CI/CD đáng 
 ```yaml
 name: Node.js CI
 on: [push, pull_request]
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [18, 20, 22]
-    steps:
-      - uses: actions/checkout@v4
+jobs: build: runs-on: ubuntu-latest
+    strategy: matrix: node-version: [18, 20, 22]
+    steps: - uses: actions/checkout@v4
       - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
+        with: node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - run: npm ci
       - run: npm run lint
@@ -179,28 +162,20 @@ jobs:
 ```yaml
 stages: [build, test, deploy]
 
-variables:
-  NODE_VERSION: "20"
+variables: NODE_VERSION: "20"
 
-build:
-  stage: build
+build: stage: build
   image: node:${NODE_VERSION}
-  script:
-    - npm ci
+  script: - npm ci
     - npm run build
-  artifacts:
-    paths: [dist/]
+  artifacts: paths: [dist/]
 
-test:
-  stage: test
+test: stage: test
   image: node:${NODE_VERSION}
-  script:
-    - npm ci
+  script: - npm ci
     - npm run lint
     - npm test
-  parallel:
-    matrix:
-      - NODE_VERSION: [18, 20, 22]
+  parallel: matrix: - NODE_VERSION: [18, 20, 22]
 ```
 
 ### Ví Dụ Jenkinsfile
@@ -284,9 +259,7 @@ Quá trình migration gồm ba bước: (1) Phân tích pipeline Jenkins hiện 
 
 ## Hạ Tầng Đề Xuất
 
-Để chạy các công cụ trên 24/7 ổn định, lựa chọn hạ tầng rất quan trọng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu.
+Để chạy các công cụ trên 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp. dibi8.com cũng host ở đây.
 - **[Hostinger](https://www.hostinger.com/vn?REFERRALCODE=22RPIAOJIYJN)** — VPS giá tốt cho thị trường Việt Nam.
 
@@ -294,7 +267,6 @@ Quá trình migration gồm ba bước: (1) Phân tích pipeline Jenkins hiện 
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

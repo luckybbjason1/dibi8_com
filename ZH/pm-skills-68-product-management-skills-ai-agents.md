@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/pm-skills-68-product-management-skills-ai-agents" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/pm-skills-68-product-management-skills-ai-agents" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/pm-skills-68-product-management-skills-ai-agents" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/pm-skills-68-product-management-skills-ai-agents" />
 title: 'PM技能：68项产品管理技能和42个AI代理工作流程'
 description: '用于更好产品决策的人工智能操作系统。9 个插件覆盖发现、策略、执行、研究、分析、市场进入（GTM）、营销、工具包和 AI 发布。兼容 Claude Code、Codex、Cursor 以及 50 多个 AI 助手。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-22
@@ -14,15 +9,11 @@ categories: ['ai-tools']
 slug: pm-skills-68-product-management-skills-ai-agents
 featureImage: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
 aliases: ['/pm-skills']
-sources:
-  - name: GitHub
+sources: - name: GitHub
     url: 'https://github.com/phuryn/pm-skills'
   - name: 'The Product Compass'
     url: 'https://www.productcompass.pm'
-lang: zh
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/pm-skills-68-product-management-skills-ai-agents/ -->
 title: 'PM-Skills: 68 Product Management Skills and 42 Workflows for AI Agents'
 description: 'The AI operating system for better product decisions. 9 plugins covering discovery, strategy, execution, research, analytics, GTM, marketing, toolkit, and AI shipping. Works with Claude Code, Codex, Cursor, and 50+ AI assistants.'
 date: 2026-06-22
@@ -33,13 +24,12 @@ categories: ['ai-tools']
 slug: pm-skills-68-product-management-skills-ai-agents
 
 aliases: ['/pm-skills']
-sources:
-  - name: GitHub
+sources: - name: GitHub
     url: 'https://github.com/phuryn/pm-skills'
   - name: 'The Product Compass'
     url: 'https://www.productcompass.pm'
----
 
+---
 # PM-Skills: 68 Product Management Skills and 42 Workflows for AI Agents
 
 TL;DR — **PM-Skills Marketplace** is an open-source collection of 68 product management skills and 42 chained workflows across 9 plugins, designed for Claude Code, Cowork, and 50+ other AI assistants. From discovery to strategy, execution, launch, growth, and shipping AI-built code — it encodes proven PM frameworks from Teresa Torres, Marty Cagan, Alberto Savoia, and Dan Olsen directly into your AI agent's workflow.
@@ -52,9 +42,7 @@ Each skill encodes a proven product management framework — discovery, assumpti
 
 The result: better product decisions, not just faster documents.
 
-PM-Skills uses three abstractions:
-
-- **Skills** — Reusable PM knowledge (frameworks, templates, analytical tools). Loaded automatically when relevant to a conversation.
+PM-Skills uses three abstractions: - **Skills** — Reusable PM knowledge (frameworks, templates, analytical tools). Loaded automatically when relevant to a conversation.
 - **Commands** — User-triggered workflows (`/discover`, `/write-prd`, `/strategy`) that chain multiple skills into end-to-end processes.
 - **Plugins** — Installable packages grouping related skills and commands by PM domain.
 
@@ -65,7 +53,11 @@ Commands are designed to flow into each other, matching the real PM workflow. Af
 ## Quick Start
 
 | Need | Command |
-|------|---------|
+|
+---
+|
+---
+|
 | New idea? | `/discover` |
 | Strategic clarity? | `/strategy` |
 | Writing a PRD? | `/write-prd` |
@@ -327,9 +319,7 @@ All 9 plugins install automatically with both commands and skills.
 
 ### Codex CLI (OpenAI)
 
-Codex reads the same plugin marketplace file as Claude Code:
-
-```bash
+Codex reads the same plugin marketplace file as Claude Code: ```bash
 # Step 1: Add the marketplace
 codex plugin marketplace add phuryn/pm-skills
 
@@ -339,9 +329,7 @@ codex plugin add pm-product-strategy@pm-skills
 # ... etc
 ```
 
-**Note:** Codex plugins don't expose `/slash` commands. To run workflows, describe the steps in plain language:
-
-> Run product discovery on [your idea]: brainstorm options, map assumptions, prioritize the risky ones, then design experiments — pause between each step.
+**Note:** Codex plugins don't expose `/slash` commands. To run workflows, describe the steps in plain language: > Run product discovery on [your idea]: brainstorm options, map assumptions, prioritize the risky ones, then design experiments — pause between each step.
 
 Optionally, ask Codex to convert command files into equivalent skills for the workflows you use most.
 
@@ -350,7 +338,13 @@ Optionally, ask Codex to convert command files into equivalent skills for the wo
 The `skills/*/SKILL.md` files follow the universal skill format and work with any tool that reads them. Commands (`/slash-commands`) are Claude-specific.
 
 | Tool | How to Use | What Works |
-|------|-----------|------------|
+|
+---
+|
+---
+|
+---
+|
 | Gemini CLI | Copy skill folders to `.gemini/skills/` | Skills only |
 | OpenCode | Copy skill folders to `.opencode/skills/` | Skills only |
 | Cursor | Copy skill folders to `.cursor/skills/` | Skills only |
@@ -400,10 +394,14 @@ done
 
 ## Frameworks and Methodologies
 
-PM-Skills encodes frameworks from the world's most respected product thinkers:
-
-| Author | Framework | Used In |
-|--------|-----------|---------|
+PM-Skills encodes frameworks from the world's most respected product thinkers: | Author | Framework | Used In |
+|
+---
+|
+---
+|
+---
+|
 | Teresa Torres | Continuous Discovery, Opportunity Solution Trees | pm-product-discovery |
 | Marty Cagan | INSPIRED, TRANSFORMED methodology | pm-product-strategy |
 | Alberto Savoia | Pretotype, Right It | pm-product-discovery |
@@ -429,7 +427,17 @@ PM-Skills encodes frameworks from the world's most respected product thinkers:
 ## Alternatives Compared
 
 | Feature | PM-Skills | Generic AI Prompts | Notion Templates | AI2SDK |
-|---------|-----------|-------------------|-----------------|--------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Structured workflows | ✅ 42 commands | ❌ Free-form | ❌ Static docs | ❌ No workflows |
 | Multi-agent support | ✅ 50+ hosts | ✅ Any | ❌ N/A | ❌ Claude only |
 | Framework-based | ✅ 12 authors | ❌ Ad hoc | ❌ DIY | ❌ Generic |
@@ -476,36 +484,28 @@ Yes. PM-Skills is MIT licensed. No tracking, no analytics, no cloud dependency. 
 
 ## Writing Custom Skills
 
-You can extend PM-Skills with your own custom skills. Create a `SKILL.md` file in the `skills/` directory:
+You can extend PM-Skills with your own custom skills. Create a `SKILL.md` file in the `skills/` directory: ```markdown
 
-```markdown
 ---
 name: my-company-framework
 mode: inline
 ---
-
 # My Company Product Framework
 
-When working on product decisions for our company, follow this framework:
-
-1. Validate the problem with at least 3 customer interviews
+When working on product decisions for our company, follow this framework: 1. Validate the problem with at least 3 customer interviews
 2. Build an Opportunity Solution Tree
 3. Design a pretotype before building
 4. Measure against our North Star metric
 ```
 
-Test your custom skill with:
-
-```bash
+Test your custom skill with: ```bash
 # Force-load your custom skill
 /my-company-framework Brainstorm monetization for our analytics dashboard
 ```
 
 ## Full Discovery Workflow Example
 
-Here's a complete discovery workflow using PM-Skills commands in sequence:
-
-```
+Here's a complete discovery workflow using PM-Skills commands in sequence: ```
 # Step 1: Generate ideas
 /discover AI-powered code review tool for small teams
 
@@ -538,7 +538,6 @@ Here's a complete discovery workflow using PM-Skills commands in sequence:
 **Join the Dibi8 community:** [Telegram Group](https://t.me/DIBI8_Group/2)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

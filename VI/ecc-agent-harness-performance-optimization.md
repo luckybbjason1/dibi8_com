@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ecc-agent-harness-performance-optimization" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ecc-agent-harness-performance-optimization" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ecc-agent-harness-performance-optimization" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ecc-agent-harness-performance-optimization" />
 title: 'ECC: Tối ưu hiệu suất Claude Code, Codex và Cursor bằng ...
 description: 'ECC (Tối ưu hiệu suất Agent Harness) giảm sử dụng context window và tăng tốc phản hồi của AI coding agent. Tương thích với Claude Code, Codex, Opencode, Cursor và nhiều hơn nữa. Bao gồm điều chỉnh hiệu suất, hệ thống skill và cấu hình MCP server.'
 date: 2026-06-13
-lastmod:  2026-06-13slug: 'ecc-agent-harness-performance-optimization'
+lastmod: 2026-06-13
+slug: 'ecc-agent-harness-performance-optimization'
 category: dev-utils
 tags: ['ECC', 'agent-optimization', 'claude-code', 'codex', 'cursor', 'performance', 'mcp']
 github_repo: 'https://github.com/affaan-m/ECC'
@@ -15,8 +11,6 @@ license: 'MIT'
 lang: vi
 featureImage: /articles/docker-compose-37-393-github-stars-multi-a62205.png/images/articles/docker-compose-37-393-github-stars-multi-a62205.png
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/ecc-agent-harness-performance-optimization/ -->
 
 # ECC: Tối ưu hiệu suất Agent Harness — Hướng dẫn 2026
 
@@ -34,9 +28,7 @@ User → Agent (Claude Code) → ECC Middleware → Model (Sonnet/Opus)
            Performance optimization layer
 ```
 
-Hệ thống hoạt động thông qua ba cơ chế chính:
-
-1. **Context Compression** — Giảm kích thước đầu ra công cụ bằng cách xác định và loại bỏ các token dư thừa, khoảng trắng và đầu ra chẩn đoán có giá trị thấp
+Hệ thống hoạt động thông qua ba cơ chế chính: 1. **Context Compression** — Giảm kích thước đầu ra công cụ bằng cách xác định và loại bỏ các token dư thừa, khoảng trắng và đầu ra chẩn đoán có giá trị thấp
 2. **Skill Registry** — Các profile tối ưu hóa có sẵn cho các tác vụ coding phổ biến (debugging, code review, refactoring)
 3. **Memory System** — Theo dõi các mẫu hành vi của agent để tối ưu hóa dần dần các tương tác trong tương lai
 
@@ -46,9 +38,7 @@ ECC được viết bằng JavaScript/TypeScript và sử dụng giấy phép MI
 
 ## ECC hoạt động như thế nào
 
-Pipeline tối ưu hóa của ECC chạy theo thời gian thực khi dữ liệu lưu chuyển giữa agent của bạn và model. Dưới đây là luồng xử lý:
-
-```bash
+Pipeline tối ưu hóa của ECC chạy theo thời gian thực khi dữ liệu lưu chuyển giữa agent của bạn và model. Dưới đây là luồng xử lý: ```bash
 # ECC chặn đầu ra công cụ trước khi nó vào LLM context
 Claude Code → exec("ls -la /tmp") → [raw output: 15KB]
                     ↓
@@ -57,9 +47,7 @@ Claude Code → exec("ls -la /tmp") → [raw output: 15KB]
           [compressed output: 2.3KB] → LLM context
 ```
 
-Tỷ lệ nén phụ thuộc vào loại đầu ra:
-
-- **Terminal output**: giảm 60-85% (xóa mã ANSI, đường dẫn dư thừa, các mẫu lặp lại)
+Tỷ lệ nén phụ thuộc vào loại đầu ra: - **Terminal output**: giảm 60-85% (xóa mã ANSI, đường dẫn dư thừa, các mẫu lặp lại)
 - **Code diffs**: giảm 40-60% (giữ các hunks, xóa các dòng context khi không liên quan)
 - **File contents**: giảm 70-90% (xác định các phần không thay đổi, tóm tắt boilerplate)
 - **Log files**: giảm 80-95% (lọc nhiễu, chỉ giữ lỗi/cảnh báo)
@@ -67,8 +55,7 @@ Tỷ lệ nén phụ thuộc vào loại đầu ra:
 ECC đạt được điều này thông qua sự kết hợp của token filtering dựa trên regex, semantic deduplication và các profile nén có thể cấu hình. Mỗi profile nhắm vào một loại đầu ra cụ thể và có thể được điều chỉnh theo từng dự án.
 
 ```
-ECC Compression Flow:
-┌──────────┐     ┌──────────┐     ┌──────────┐     ┌──────────┐
+ECC Compression Flow: ┌──────────┐     ┌──────────┐     ┌──────────┐     ┌──────────┐
 │  Agent    │────▶│  ECC      │────▶│  Compress │────▶│  Model    │
 │  (Claude) │     │  Middleware│    │  Engine   │     │ (Sonnet)  │
 └──────────┘     └──────────┘     └──────────┘     └──────────┘
@@ -79,9 +66,7 @@ ECC Compression Flow:
 
 ## Cài đặt & Cấu hình
 
-ECC hỗ trợ nhiều phương thức cài đặt tùy thuộc vào quy trình làm việc của bạn:
-
-```bash
+ECC hỗ trợ nhiều phương thức cài đặt tùy thuộc vào quy trình làm việc của bạn: ```bash
 # Method 1: Git clone + npm (khuyến nghị cho đầy đủ tính năng)
 git clone https://github.com/affaan-m/ECC.git
 cd ECC
@@ -104,9 +89,7 @@ npm install -g ecc-universal
 npm install && bash scripts/sync-ecc-to-codex.sh
 ```
 
-Sau khi cài đặt, xác minh bằng:
-
-```bash
+Sau khi cài đặt, xác minh bằng: ```bash
 ecc --version
 # Sẽ hiển thị phiên bản đã cài đặt
 ```
@@ -117,9 +100,7 @@ Với Claude Code, ECC đăng ký như một lớp skill. Với Cursor, nó ho�
 
 ### Claude Code
 
-ECC tích hợp native với Claude Code thông qua hệ thống marketplace plugin. Sau khi cài đặt, nó tự động chặn các đầu ra công cụ:
-
-```bash
+ECC tích hợp native với Claude Code thông qua hệ thống marketplace plugin. Sau khi cài đặt, nó tự động chặn các đầu ra công cụ: ```bash
 # Claude Code với ECC compression đang hoạt động
 claude "explain the error in my last command"
 # ECC nén đầu ra lỗi từ ~8KB xuống ~1.2KB trước khi gửi đến model
@@ -129,9 +110,7 @@ Mã định danh marketplace là `ecc@ecc` (được rút gọn để phù hợp
 
 ### Codex CLI
 
-Đối với Codex của OpenAI, ECC cung cấp một script sync để cấu hình lớp compression:
-
-```bash
+Đối với Codex của OpenAI, ECC cung cấp một script sync để cấu hình lớp compression: ```bash
 # Cài đặt Codex CLI trước
 npm install -g opencode
 
@@ -161,15 +140,10 @@ ECC chạy như một Cursor extension. Trong cài đặt Cursor, bật lớp sk
 
 ### GitLab CI / GitHub Actions
 
-ECC có thể được tích hợp vào CI pipelines để giảm chi phí token:
-
-```yaml
+ECC có thể được tích hợp vào CI pipelines để giảm chi phí token: ```yaml
 # .github/workflows/ecc-optimization.yml
-jobs:
-  optimize:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: optimize: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - name: Install ECC
         run: npm install -g ecc-universal
       - name: Run ECC optimization
@@ -180,9 +154,7 @@ jobs:
 
 ### Benchmark giảm token
 
-Kiểm tra trên hơn 500 agent sessions thực tế (các phiên coding 5-30 phút):
-
-| Output Type | Trước ECC | Sau ECC | Giảm |
+Kiểm tra trên hơn 500 agent sessions thực tế (các phiên coding 5-30 phút): | Output Type | Trước ECC | Sau ECC | Giảm |
 |-------------|----------:|--------:|------:|
 | npm install output | 14.2 KB | 2.1 KB | 85% |
 | git diff (large PR) | 28.7 KB | 8.4 KB | 71% |
@@ -195,16 +167,12 @@ Nén trung bình trên tất cả các loại đầu ra: **giảm 73% token**, t
 
 ### Ví dụ tiết kiệm chi phí
 
-Đối với một phiên developer điển hình, bạn có thể khởi tạo môi trường phát triển tối ưu trên [DigitalOcean](https://m.do.co/c/eca87ac14ee0) để chạy ECC với bất kỳ agent nào. Sử dụng cấu hình sau cho production:
-
-```
-Trước ECC:
-  - 45 tool executions × avg 12KB output = 540KB processed
+Đối với một phiên developer điển hình, bạn có thể khởi tạo môi trường phát triển tối ưu trên [DigitalOcean](https://m.do.co/c/eca87ac14ee0) để chạy ECC với bất kỳ agent nào. Sử dụng cấu hình sau cho production: ```
+Trước ECC: - 45 tool executions × avg 12KB output = 540KB processed
   - ~3.200 tokens tiêu thụ bởi tool outputs
   - Ước tính chi phí API: $0.042 mỗi session
 
-Sau ECC:
-  - 45 tool executions × avg 3.2KB output = 144KB processed
+Sau ECC: - 45 tool executions × avg 3.2KB output = 144KB processed
   - ~860 tokens tiêu thụ bởi tool outputs
   - Ước tính chi phí API: $0.011 mỗi session
 
@@ -220,9 +188,7 @@ Các công ty sử dụng ECC báo cáo mức tiết kiệm token trung bình 60
 
 ### Custom compression profiles
 
-ECC cho phép tạo các profile nén riêng cho từng dự án:
-
-```json
+ECC cho phép tạo các profile nén riêng cho từng dự án: ```json
 // .ecc-profile.json
 {
   "name": "my-project",
@@ -243,9 +209,7 @@ ECC cho phép tạo các profile nén riêng cho từng dự án:
 
 ### Chế độ debugging
 
-Để xem ECC đang nén gì và bao nhiêu:
-
-```bash
+Để xem ECC đang nén gì và bao nhiêu: ```bash
 # Bật verbose logging
 export ECC_DEBUG=1
 claude "check my code"
@@ -261,9 +225,7 @@ claude "check my code"
 
 ### Performance tuning
 
-Hiệu suất của ECC có thể cấu hình thông qua environment variables:
-
-```bash
+Hiệu suất của ECC có thể cấu hình thông qua environment variables: ```bash
 # Nén tối đa (lọc mạnh tay, có thể bỏ sót một số edge cases)
 export ECC_COMPRESSION=aggressive
 
@@ -280,9 +242,7 @@ ECC có thể được triển khai trên [HTStack](https://my.htstack.com/aff.p
 
 ### Docker Deployment
 
-ECC có thể chạy như một dịch vụ Dockerized cho các môi trường multi-agent:
-
-```bash
+ECC có thể chạy như một dịch vụ Dockerized cho các môi trường multi-agent: ```bash
 docker run -d \
   --name ecc-service \
   -p 8080:8080 \
@@ -309,9 +269,7 @@ Các agent kết nối qua giao thức MCP trên port 8080. Docker image bao g�
 
 ## Hạn chế / Đánh giá trung thực
 
-ECC là một dự án trẻ (phát hành 2026) với đà tăng trưởng đáng kể nhưng vẫn có một số hạn chế đã biết:
-
-- **Compression artifacts**: Ở chế độ aggressive, bộ lọc nén đôi khi loại bỏ context mà model sau đó cần. Điều này hiếm gặp ở chế độ balanced (~2% các session báo cáo cần dữ liệu không nén).
+ECC là một dự án trẻ (phát hành 2026) với đà tăng trưởng đáng kể nhưng vẫn có một số hạn chế đã biết: - **Compression artifacts**: Ở chế độ aggressive, bộ lọc nén đôi khi loại bỏ context mà model sau đó cần. Điều này hiếm gặp ở chế độ balanced (~2% các session báo cáo cần dữ liệu không nén).
 - **Marketplace-only Claude integration**: Marketplace plugin (`ecc@ecc`) là đường dẫn tích hợp liền mạch nhất. Cài đặt thủ công yêu cầu cấu hình bổ sung.
 - **JavaScript ecosystem**: Dự án được xây dựng bằng JavaScript/TypeScript. Các agent dựa trên Python hoạt động thông qua MCP server nhưng chưa có Python bindings native.
 - **Không có GPU acceleration**: Nén chạy trên CPU. Đối với các đầu ra cực lớn (>100KB), nén có thể thêm 50-200ms latency.
@@ -353,15 +311,12 @@ Giá trị cốt lõi rất đơn giản: giảm dữ liệu mà agent của b�
 
 **Thử ECC ngay hôm nay** — cài đặt với `npm install -g ecc-universal` và trải nghiệm sự khác biệt. Marketplace plugin (`ecc@ecc`) là đường dẫn dễ nhất cho người dùng Claude Code.
 
-Tìm hiểu thêm về agent optimization:
-- [Headroom: Token Compression Proxy](/vi/resources/llm-frameworks/headroom-token-compression-proxy-library-mcp-server/) — cách tiếp cận nén thay thế
+Tìm hiểu thêm về agent optimization: - [Headroom: Token Compression Proxy](/vi/resources/llm-frameworks/headroom-token-compression-proxy-library-mcp-server/) — cách tiếp cận nén thay thế
 - [Agent Memory Systems](/vi/resources/llm-frameworks/ai-agent-memory-systems-2026/) — bổ sung ECC với persistent agent memory
 
-Tìm hiểu thêm về developer tools:
-- [Docker Development Best Practices](/vi/resources/dev-utils/docker-development-environment-best-practices/) — chạy ECC trong containers
+Tìm hiểu thêm về developer tools: - [Docker Development Best Practices](/vi/resources/dev-utils/docker-development-environment-best-practices/) — chạy ECC trong containers
 
-**Nguồn & Đọc thêm**:
-- Official docs: https://github.com/affaan-m/ECC
+**Nguồn & Đọc thêm**: - Official docs: https://github.com/affaan-m/ECC
 - GitHub repository: https://github.com/affaan-m/ECC
 - Marketplace plugin: claude.ai/code/marketplace?plugin=ecc@ecc
 - Community discussion: https://github.com/affaan-m/ECC/discussions
@@ -373,7 +328,6 @@ Tìm hiểu thêm về developer tools:
 **Disclosure**: Bài viết này chứa các affiliate links. Chúng tôi có thể nhận hoa hồng nếu bạn đăng ký qua các link của chúng tôi, mà không mất thêm chi phí cho bạn.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

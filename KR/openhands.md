@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/openhands" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/openhands" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/openhands" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/openhands" />
 title: 'OpenHands: 74K+ Stars — 코드를 작성하고 실행하는 AI 소프트웨어 엔지니어 (202...
 description: 'OpenHands는 소프트웨어 엔지니어링 에이전트로 작동하는 AI 기반 개발 플랫폼입니다. VS Code, Docker, GitHub, GitLab, Claude, OpenAI와 호환됩니다. Docker 설치, 모델 구성, 헤드리스 CI/CD 모드, 프로덕션 하드닝을 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,12 +20,9 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [openhands, 'ai 코딩 에이전트', docker, 'swe-bench', claude, openai, '셀프 호스팅', 자동화]
-aliases:
-- /kr/posts/openhands/
+aliases: - /kr/posts/openhands/
 - /kr/resources/llm-frameworks/openhands-architecture-ai-programmer-agent/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/openhands/ -->
 
 {{</* resource-info */>}}
 
@@ -44,8 +36,7 @@ aliases:
 
 OpenHands(이전 명칭 OpenDevin)는 Docker 컨테이너 난에 실행되는 오픈소스 AI 소프트웨어 엔지니어링 에이전트입니다. 컨트롤러-샌드박스 아키텍처를 사용합니다: Python 기반 컨트롤러가 에이전트 루프(관찰-사고-행동)를 관리하고, 격리된 샌드박스 컨테이너가 코드 실행, 파일 작업, 테스트 실행을 처리합니다.
 
-핵심 기능:
-- **자율 작업 실행**: GitHub 이슈 또는 자연어 작업을 주면 종단간 해결
+핵심 기능: - **자율 작업 실행**: GitHub 이슈 또는 자연어 작업을 주면 종단간 해결
 - **샌드박스 코드 실행**: 모든 코드는 Docker 컨테이너 난에서 실행되어 호스트와 격리
 - **멀티 에이전트 위임**: 복잡한 작업을 전문화된 하위 에이전트로 분할
 - **BYO 모델 지원**: Claude, GPT, Gemini, Ollama 또는 vLLM을 통한 로컬 모델, LiteLLM을 통한 100+ 제공업체와 호환
@@ -54,17 +45,13 @@ OpenHands(이전 명칭 OpenDevin)는 Docker 컨테이너 난에 실행되는 �
 
 ## OpenHands의 작동 원리
 
-아키텍처는 두 개의 주요 구성 요소로 구성됩니다:
-
-**컨트롤러 노드(Controller Node)**: 에이전트 루프를 관리하고, LiteLLM을 통해 LLM 추상화를 처리하고, 샌드박스 수명 주기를 조정하는 Python 서버. 작업을 받아 단계로 분해하고, 결정을 위해 LLM을 호출하고, 반복 간 상태를 추적합니다.
+아키텍처는 두 개의 주요 구성 요소로 구성됩니다: **컨트롤러 노드(Controller Node)**: 에이전트 루프를 관리하고, LiteLLM을 통해 LLM 추상화를 처리하고, 샌드박스 수명 주기를 조정하는 Python 서버. 작업을 받아 단계로 분해하고, 결정을 위해 LLM을 호출하고, 반복 간 상태를 추적합니다.
 
 **샌드박스 컨테이너(Sandbox Container)**: 작업마다 생성되는 Docker 컨테이너로, 모든 코드 실행이 이 안에서 이루어집니다. 에이전트는 격리된 환경에서 파일을 읽고, 셸 명령을 실행하고, 테스트를 실행하고, 패치를 작성합니다. 작업이 완료되면 샌드박스가 소멸됩니다.
 
 ![OpenHands 아키텍처](https://raw.githubusercontent.com/All-Hands-AI/OpenHands/main/docs/static/img/system_architecture_overview.png)
 
-에이전트 루프는 다음 패턴을 따릅니다:
-
-```
+에이전트 루프는 다음 패턴을 따릅니다: ```
 1. OBSERVE: 작업 설명, 저장소 상태, 이전 작업 결과 읽기
 2. THINK: LLM이 계획 생성(어떤 파일을 편집할지, 어떤 명령을 실행할지)
 3. ACT: 계획된 작업 실행(read_file, write_file, run_cmd 등)
@@ -78,18 +65,14 @@ OpenHands(이전 명칭 OpenDevin)는 Docker 컨테이너 난에 실행되는 �
 
 ### 사전 요구사항
 
-OpenHands를 설치하기 전에 다음이 준비되어야 합니다:
-
-- **Docker Desktop** 설치 및 실행 완료 (Docker 소켓 액세스 필요)
+OpenHands를 설치하기 전에 다음이 준비되어야 합니다: - **Docker Desktop** 설치 및 실행 완료 (Docker 소켓 액세스 필요)
 - **4GB+ RAM** (동시 세션에는 8GB 권장)
 - **Python 3.12+** (uv를 통한 CLI 설치 시 필요)
 - **LLM API 키** (Anthropic, OpenAI, Google 또는 로컬 모델 엔드포인트)
 
 ### 방법 1: uv로 CLI 설치 (권장)
 
-OpenHands를 가장 빠르게 실행하는 방법은 uv 기반 CLI 설치기를 통하는 것입니다:
-
-```bash
+OpenHands를 가장 빠르게 실행하는 방법은 uv 기반 CLI 설치기를 통하는 것입니다: ```bash
 # uv 설치 (아직 없는 경우)
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
@@ -104,17 +87,13 @@ openhands serve
 
 ![OpenHands Web UI](https://raw.githubusercontent.com/All-Hands-AI/OpenHands/main/docs/static/img/screenshot.png)
 
-나중에 업그레이드하려면:
-
-```bash
+나중에 업그레이드하려면: ```bash
 uv tool upgrade openhands --python 3.12
 ```
 
 ### 방법 2: Docker 직접 실행
 
-Python 도구를 설치하지 않고 Docker를 선호하는 경우:
-
-```bash
+Python 도구를 설치하지 않고 Docker를 선호하는 경우: ```bash
 # 최신 이미지 가져오기
 docker pull ghcr.io/openhands/openhands:latest
 
@@ -126,15 +105,11 @@ docker run -it --rm \
   ghcr.io/openhands/openhands:latest
 ```
 
-`--mount-cwd` 플래그는 현재 작업 디렉토리를 샌드박스에 마운트합니다:
-
-```bash
+`--mount-cwd` 플래그는 현재 작업 디렉토리를 샌드박스에 마운트합니다: ```bash
 openhands serve --mount-cwd
 ```
 
-GPU 가속 로컬 모델의 경우:
-
-```bash
+GPU 가속 로컬 모델의 경우: ```bash
 openhands serve --gpu
 ```
 
@@ -149,19 +124,14 @@ openhands serve
 
 ### Windows 설치 참고사항
 
-Windows에서는 모든 명령을 WSL2(Ubuntu) 난에서 실행해야 합니다:
-
-```powershell
+Windows에서는 모든 명령을 WSL2(Ubuntu) 난에서 실행해야 합니다: ```powershell
 # PowerShell 관리자 권한에서
 wsl --install -d Ubuntu
 wsl -d Ubuntu
 ```
 
-그리고 WSL 난에서:
-
-```bash
-# 먼저 Docker Desktop for Windows 설치한 후:
-uv tool install openhands --python 3.12
+그리고 WSL 난에서: ```bash
+# 먼저 Docker Desktop for Windows 설치한 후: uv tool install openhands --python 3.12
 openhands serve
 ```
 
@@ -169,16 +139,12 @@ openhands serve
 
 ### LLM 제공업체 설정
 
-OpenHands를 실행한 후 설정 패널(기어 아이콘)에서 모델을 구성합니다:
-
-1. **제공업체 선택**: Anthropic(Claude), OpenAI(GPT), Google(Gemini) 또는 로컬
+OpenHands를 실행한 후 설정 패널(기어 아이콘)에서 모델을 구성합니다: 1. **제공업체 선택**: Anthropic(Claude), OpenAI(GPT), Google(Gemini) 또는 로컬
 2. **모델 선택**: 최상의 결과를 위해 `anthropic/claude-sonnet-4-20250514` 권장
 3. **API 키 입력**: 제공업체의 API 키 붙여넣기
 4. **변경사항 저장**
 
-고급 구성을 위해 고급 설정을 활성화하고 LiteLLM 접두사 형식으로 커스텀 모델을 설정할 수 있습니다:
-
-```
+고급 구성을 위해 고급 설정을 활성화하고 LiteLLM 접두사 형식으로 커스텀 모델을 설정할 수 있습니다: ```
 anthropic/claude-sonnet-4-5-20250929
 openai/gpt-5-2025-08-07
 gemini/gemini-3-pro-preview
@@ -187,29 +153,22 @@ deepseek/deepseek-chat
 
 ### 로컬 모델 사용 (Ollama)
 
-오프라인 배포가 필요한 팀을 위한 방법:
-
-```bash
+오프라인 배포가 필요한 팀을 위한 방법: ```bash
 # Ollama로 강력한 코딩 모델 시작
 ollama run qwen3-coder:32b
 
-# OpenHands 설정에서 구성:
-# 커스텀 모델: openai/qwen3-coder:32b
+# OpenHands 설정에서 구성: # 커스텀 모델: openai/qwen3-coder:32b
 # 기본 URL: http://host.docker.internal:11434/v1
 # API 키: ollama (아무 값이나 가능)
 ```
 
 ### 첫 작업 실행
 
-`localhost:3000`에서 UI를 열고:
-
-1. 채팅 상자에 작업 입력: "app.py의 main 함수에 docstring 추가"
+`localhost:3000`에서 UI를 열고: 1. 채팅 상자에 작업 입력: "app.py의 main 함수에 docstring 추가"
 2. 에이전트가 샌드박스를 생성하고, 파일을 읽고, docstring을 작성하고, 변경사항을 확인합니다
 3. 수락하기 전에 diff를 검토합니다
 
-GitHub 이슈 해결의 경우:
-
-```
+GitHub 이슈 해결의 경우: ```
 이슈 #42에 설명된 인증 버그를 수정하세요.
 저장소를 클론하고, 오류를 재현하고, 수정을 구현하고, 테스트 스위트를 실행하세요.
 ```
@@ -218,9 +177,7 @@ GitHub 이슈 해결의 경우:
 
 ### ACP를 통한 VS Code 통합
 
-OpenHands v1.5+에는 IDE 통합을 위한 Agent Control Plane이 포함되어 있습니다:
-
-```bash
+OpenHands v1.5+에는 IDE 통합을 위한 Agent Control Plane이 포함되어 있습니다: ```bash
 # OpenHands VS Code 확장 설치
 # VS Code 확장 마켓플레이스에서 "OpenHands" 검색
 
@@ -232,9 +189,7 @@ ACP 프로토콜을 통해 VS Code는 작업을 OpenHands에 직접 전송하고
 
 ### GitHub 통합
 
-자동화된 이슈 해결을 위해 OpenHands를 GitHub 저장소에 연결합니다:
-
-```bash
+자동화된 이슈 해결을 위해 OpenHands를 GitHub 저장소에 연결합니다: ```bash
 # 세분화된 GitHub PAT(개인 액세스 토큰) 설정
 export GITHUB_TOKEN=ghp_your_token_here
 
@@ -246,8 +201,7 @@ docker run -it --rm \
   ghcr.io/openhands/openhands:latest
 ```
 
-UI에서 GitHub 이슈 URL을 붙여넣으면 OpenHands가 다음을 수행합니다:
-1. 저장소 클론
+UI에서 GitHub 이슈 URL을 붙여넣으면 OpenHands가 다음을 수행합니다: 1. 저장소 클론
 2. 이슈 설명 읽기
 3. 버그 재현
 4. 수정 구현
@@ -256,9 +210,7 @@ UI에서 GitHub 이슈 URL을 붙여넣으면 OpenHands가 다음을 수행합�
 
 ### GitLab 통합
 
-GitLab 지원(v1.5 추가)은 유사한 방식으로 작동합니다:
-
-```bash
+GitLab 지원(v1.5 추가)은 유사한 방식으로 작동합니다: ```bash
 export GITLAB_TOKEN=glpat-your-token
 docker run -it --rm \
   -p 3000:3000 \
@@ -269,40 +221,28 @@ docker run -it --rm \
 
 ### 프로덕션용 Docker Compose
 
-지속적인 배포를 위해 Docker Compose를 사용합니다:
-
-```yaml
+지속적인 배포를 위해 Docker Compose를 사용합니다: ```yaml
 version: "3.8"
-services:
-  openhands:
-    image: ghcr.io/openhands/openhands:latest
-    ports:
-      - "3000:3000"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+services: openhands: image: ghcr.io/openhands/openhands:latest
+    ports: - "3000:3000"
+    volumes: - /var/run/docker.sock:/var/run/docker.sock
       - ./workspace:/workspace
-    environment:
-      - SANDBOX_RUNTIME_CONTAINER_IMAGE=ghcr.io/openhands/openhands:latest
+    environment: - SANDBOX_RUNTIME_CONTAINER_IMAGE=ghcr.io/openhands/openhands:latest
       - LLM_API_KEY=${LLM_API_KEY}
       - LLM_MODEL=anthropic/claude-sonnet-4-20250514
       - SANDBOX_NETWORK_DISABLED=true
       - LOG_LEVEL=info
     restart: unless-stopped
-    security_opt:
-      - no-new-privileges:true
+    security_opt: - no-new-privileges:true
 ```
 
-배포:
-
-```bash
+배포: ```bash
 docker-compose up -d
 ```
 
 ### CI/CD 파이프라인 헤드리스 모드
 
-헤드리스 모드는 대화형 UI 없이 OpenHands를 실행하여 자동화에 적합합니다:
-
-```bash
+헤드리스 모드는 대화형 UI 없이 OpenHands를 실행하여 자동화에 적합합니다: ```bash
 # 헤드리스 모드로 작업 실행
 openhands --headless -t "인증 모듈에 대한 단위 테스트 작성"
 
@@ -313,19 +253,12 @@ openhands --headless -f task.txt
 openhands --headless --json -t "routes.py의 API 엔드포인트 수정" > output.jsonl
 ```
 
-GitHub Actions 워크플로우 예시:
-
-```yaml
+GitHub Actions 워크플로우 예시: ```yaml
 name: OpenHands 자동 수정
-on:
-  issues:
-    types: [labeled]
-jobs:
-  fix:
-    if: github.event.label.name == 'auto-fix'
+on: issues: types: [labeled]
+jobs: fix: if: github.event.label.name == 'auto-fix'
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+    steps: - uses: actions/checkout@v4
       - name: OpenHands 실행
         run: |
           docker run --rm \
@@ -339,9 +272,7 @@ jobs:
 
 ### MCP 서버 통합
 
-OpenHands는 확장 기능을 위해 Model Context Protocol(MCP) 서버를 지원합니다:
-
-```json
+OpenHands는 확장 기능을 위해 Model Context Protocol(MCP) 서버를 지원합니다: ```json
 {
   "mcpServers": {
     "fetch": {
@@ -374,9 +305,7 @@ SWE-bench Verified는 500개의 실제 GitHub 이슈에서 에이전트를 테�
 
 ### 성공적 수정당 비용
 
-일반적인 SWE-bench 작업이 ~55K 토큰을 소모할 때:
-
-| 모델 | 시도당 비용 | 성공률 | 성공당 비용 |
+일반적인 SWE-bench 작업이 ~55K 토큰을 소모할 때: | 모델 | 시도당 비용 | 성공률 | 성공당 비용 |
 |---|---|---|---|
 | Claude Opus 4.7 | ~$1.50 | 87.6% | ~$1.71 |
 | GPT-5.3-Codex | ~$0.90 | 85.0% | ~$1.06 |
@@ -385,9 +314,7 @@ SWE-bench Verified는 500개의 실제 GitHub 이슈에서 에이전트를 테�
 
 ### 실제 배포 지표
 
-커뮤니티가 보고한 프로덕션 배포 데이터 기준:
-
-- **이슈 해결률**: 30-40%의 라벨링된 버그가 첫 시도에 자율적으로 해결
+커뮤니티가 보고한 프로덕션 배포 데이터 기준: - **이슈 해결률**: 30-40%의 라벨링된 버그가 첫 시도에 자율적으로 해결
 - **코드 리뷰 지원**: 200라인 이하 PR의 리뷰 시간 60% 감소
 - **테스트 생성**: "X에 대한 테스트 작성" 프롬프트로 새 모듈 80%+ 커버리지 달성
 - **문서 생성**: docstring 및 README 생성 작업 90%+ 정확도
@@ -402,22 +329,17 @@ AMD, Apple, Google, Netflix가 모두 자동화 유지보수 작업을 위해 Op
 
 ### 보안 체크리스트
 
-자율 코드 실행 에이전트를 실행하려면 신중한 보안 설정이 필요합니다:
-
-**1. 샌드박스 네트워크 격리**
+자율 코드 실행 에이전트를 실행하려면 신중한 보안 설정이 필요합니다: **1. 샌드박스 네트워크 격리**
 
 ```yaml
-environment:
-  - SANDBOX_NETWORK_DISABLED=true
+environment: - SANDBOX_NETWORK_DISABLED=true
 ```
 
 이것은 샌드박스 컨테이너의 아웃바운드 요청을 차단합니다. 패키지 설치가 필요한 작업에서만 선택적으로 활성화하세요.
 
 **2. Docker 소켓 보안**
 
-Docker 소켓 마운트는 효과적으로 root 액세스와 동일합니다. 다음으로 완화합니다:
-
-```bash
+Docker 소켓 마운트는 효과적으로 root 액세스와 동일합니다. 다음으로 완화합니다: ```bash
 docker run --security-opt no-new-privileges \
   --cap-drop ALL \
   --cap-add SYS_ADMIN \
@@ -427,46 +349,35 @@ docker run --security-opt no-new-privileges \
 
 **3. 세분화된 GitHub PAT**
 
-조직 범위 토큰은 사용하지 마세요. PAT를 특정 저장소로 범위를 좁히세요:
-
-```bash
+조직 범위 토큰은 사용하지 마세요. PAT를 특정 저장소로 범위를 좁히세요: ```bash
 # GitHub > 설정 > 개발자 설정에서 세분화된 PAT 생성
 # 다음만 선택: 콘텐츠(읽기/쓰기), 이슈(읽기), 풀 리퀘스트(쓰기)
 ```
 
 **4. 비밀 관리**
 
-비밀을 환경 변수 대신 읽기 전용 볼륨으로 마운트합니다:
-
-```yaml
-volumes:
-  - /var/run/docker.sock:/var/run/docker.sock
+비밀을 환경 변수 대신 읽기 전용 볼륨으로 마운트합니다: ```yaml
+volumes: - /var/run/docker.sock:/var/run/docker.sock
   - /opt/secrets:/secrets:ro
-environment:
-  - LLM_API_KEY_FILE=/secrets/anthropic_key
+environment: - LLM_API_KEY_FILE=/secrets/anthropic_key
 ```
 
 ### 멀티 에이전트 위임
 
-대규모 기능을 위해 멀티 에이전트 모드를 활성화합니다:
-
-```bash
+대규모 기능을 위해 멀티 에이전트 모드를 활성화합니다: ```bash
 # config.toml 또는 환경 변수를 통해
 [agent]
 enable_multi_agent = true
 max_subagents = 3
 ```
 
-상위 에이전트가 "인증이 포함된 REST API 구축"을 다음으로 분해합니다:
-- 하위 에이전트 1: API 엔드포인트 구현
+상위 에이전트가 "인증이 포함된 REST API 구축"을 다음으로 분해합니다: - 하위 에이전트 1: API 엔드포인트 구현
 - 하위 에이전트 2: 인증 미들웨어 작성
 - 하위 에이전트 3: 데이터베이스 모델 생성
 
 ### 메모리 응축기 튜닝
 
-장기 실행 작업의 경우 메모리 응축기를 조정합니다:
-
-```toml
+장기 실행 작업의 경우 메모리 응축기를 조정합니다: ```toml
 [llm]
 enable_condenser = true
 condenser_max_history = 240  # 240개 이벤트 후 요약 (기본값: 240)
@@ -474,15 +385,11 @@ condenser_max_history = 240  # 240개 이벤트 후 요약 (기본값: 240)
 
 ### 모니터링 및 로깅
 
-가시성을 위해 구조화된 JSON 로깅을 활성화합니다:
-
-```bash
+가시성을 위해 구조화된 JSON 로깅을 활성화합니다: ```bash
 openhands --headless --json -t "작업" 2>&1 | tee openhands.log
 ```
 
-지표를 위해 로그를 파싱합니다:
-
-```bash
+지표를 위해 로그를 파싱합니다: ```bash
 # LLM 호출 횟수 계산
 jq 'select(.type == "llm")' openhands.log | wc -l
 
@@ -495,9 +402,7 @@ jq 'select(.type == "finish") | .timestamp' openhands.log
 
 ### Kubernetes 확장
 
-팀 배포를 위해 커뮤니티가 관리하는 Helm 차트를 사용합니다:
-
-```bash
+팀 배포를 위해 커뮤니티가 관리하는 Helm 차트를 사용합니다: ```bash
 # OpenHands Helm 리포지토리 추가
 helm repo add openhands https://charts.openhands.dev
 helm repo update
@@ -537,9 +442,7 @@ helm install openhands openhands/openhands \
 
 ## 한계 / 정직한 평가
 
-OpenHands는 모든 상황에 적합한 도구가 아닙니다. 다음은 적합하지 않은 경우입니다:
-
-**1. 시각적 피드백이 필요한 프론트엔드/UI 작업**: 에이전트는 렌더링된 출력을 "볼" 수 없습니다. "이 버튼을 가욱데 정렬" 또는 "CSS 그라데이션 수정"과 같은 작업은 에이전트가 시각적 검증이 부족하여 여러 번의 반복이 필요합니다.
+OpenHands는 모든 상황에 적합한 도구가 아닙니다. 다음은 적합하지 않은 경우입니다: **1. 시각적 피드백이 필요한 프론트엔드/UI 작업**: 에이전트는 렌더링된 출력을 "볼" 수 없습니다. "이 버튼을 가욱데 정렬" 또는 "CSS 그라데이션 수정"과 같은 작업은 에이전트가 시각적 검증이 부족하여 여러 번의 반복이 필요합니다.
 
 **2. 신속한 프로토타이핑**: Docker 샌드백 시작은 작업마다 10-30초의 지연을 추가합니다. 빠른 일회성 편집의 경우 Aider나 Cursor가 더 빠릅니다.
 
@@ -597,9 +500,7 @@ OpenHands는 2026년에 사용 가능한 가장 강력한 오픈소스 AI 소프
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -620,7 +521,6 @@ OpenHands는 2026년에 사용 가능한 가장 강력한 오픈소스 AI 소프
 *이 가이드는 독립적으로 유지관리되며 정기적으로 업데이트됩니다. 마지막 검증: 2026년 5월.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

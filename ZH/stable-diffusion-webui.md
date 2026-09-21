@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/stable-diffusion-webui" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/stable-diffusion-webui" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/stable-diffusion-webui" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/stable-diffusion-webui" />
 title: 'Stable Diffusion WebUI: 159K+ Stars — 2026 完整安装配置指南'
 description: 'Stable Diffusion WebUI (AUTOMATIC1111) 是最流行的本地 AI 图像生成 Web 界面。兼容 ControlNet、LoRA、ComfyUI 工作流。涵盖 Windows、Linux、Docker 安装、扩展配置、生产环境加固和 GPU 基准测试。'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: ['stable-diffusion', automatic1111, 图像生成, 'ai-webui', controlnet, lora, docker, gpu]
-aliases:
-- /zh/posts/stable-diffusion-webui/
+aliases: - /zh/posts/stable-diffusion-webui/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/stable-diffusion-webui/ -->
 
 {{</* resource-info */>}}
 
@@ -85,7 +77,13 @@ Stable Diffusion WebUI 支持 Windows、Linux 和 macOS。所有平台上最快�
 ### 系统要求
 
 | 组件 | 最低配置 | 推荐配置 |
-|------|---------|---------|
+|
+---
+|
+---
+|
+---
+|
 | GPU | NVIDIA 4GB 显存 | NVIDIA RTX 3060 12GB+ |
 | 内存 | 8GB | 16GB |
 | 存储 | 20GB SSD | 100GB SSD (存放模型) |
@@ -121,8 +119,7 @@ set GIT=git
 set VENV_DIR=venv
 set COMMANDLINE_ARGS=--xformers --autolaunch --update-check
 
-:: 显存优化选项（选择一个）:
-:: set COMMANDLINE_ARGS=--medvram    &:: 8GB 显卡
+:: 显存优化选项（选择一个）: :: set COMMANDLINE_ARGS=--medvram    &:: 8GB 显卡
 :: set COMMANDLINE_ARGS=--lowvram    &:: 4GB 显卡  
 :: set COMMANDLINE_ARGS=--normalvram &:: 12GB+ 显卡
 
@@ -215,27 +212,17 @@ docker-compose 配置：
 # docker-compose.yml
 version: '3.8'
 
-services:
-  stable-diffusion-webui:
-    build:
-      context: .
+services: stable-diffusion-webui: build: context: .
       dockerfile: Dockerfile.stable-diffusion-webui
     container_name: sd-webui
     runtime: nvidia
-    ports:
-      - "7860:7860"
-    volumes:
-      - ./models:/home/sduser/stable-diffusion-webui/models/Stable-diffusion
+    ports: - "7860:7860"
+    volumes: - ./models:/home/sduser/stable-diffusion-webui/models/Stable-diffusion
       - ./outputs:/home/sduser/stable-diffusion-webui/outputs
       - ./extensions:/home/sduser/stable-diffusion-webui/extensions
       - ./vae:/home/sduser/stable-diffusion-webui/models/VAE
-    environment:
-      - NVIDIA_VISIBLE_DEVICES=all
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+    environment: - NVIDIA_VISIBLE_DEVICES=all
+    deploy: resources: reservations: devices: - driver: nvidia
               count: all
               capabilities: [gpu]
     restart: unless-stopped
@@ -400,7 +387,17 @@ git clone https://github.com/Uminosachi/sd-webui-inpaint-anything.git
 所有基准测试使用 Stable Diffusion WebUI v1.10.1，DPM++ 2M Karras 采样器，20 步，批次大小 1：
 
 | GPU | 显存 | SD 1.5 512x512 | SDXL 1024x1024 | SDXL + ControlNet |
-|-----|------|----------------|----------------|-------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | RTX 4060 Ti 16GB | 16 GB | ~4.2秒 | ~12.0秒 | ~16.5秒 |
 | RTX 3090 | 24 GB | ~2.4秒 | ~5.6秒 | ~9.2秒 |
 | RTX 4090 | 24 GB | ~1.1秒 | ~3.2秒 | ~4.8秒 |
@@ -411,7 +408,13 @@ git clone https://github.com/Uminosachi/sd-webui-inpaint-anything.git
 ### 各工作流显存占用
 
 | 工作流 | 显存占用 (RTX 4090) | 说明 |
-|--------|-------------------|------|
+|
+---
+|
+---
+|
+---
+|
 | txt2img SD 1.5 @ 512x512 | ~4.5 GB | 任何现代显卡都能运行 |
 | txt2img SDXL @ 1024x1024 | ~8.0 GB | 需要 8GB+ 显存 |
 | SDXL + 1x ControlNet | ~12.5 GB | 8GB 显卡需使用 `--medvram` |
@@ -421,17 +424,13 @@ git clone https://github.com/Uminosachi/sd-webui-inpaint-anything.git
 ### 内存优化参数
 
 ```bash
-# 4GB 显存 GPU (入门级):
-python3 launch.py --lowvram --precision full --no-half --xformers
+# 4GB 显存 GPU (入门级): python3 launch.py --lowvram --precision full --no-half --xformers
 
-# 6-8GB 显存 GPU (主流级):
-python3 launch.py --medvram --xformers --opt-split-attention
+# 6-8GB 显存 GPU (主流级): python3 launch.py --medvram --xformers --opt-split-attention
 
-# 12GB+ 显存 GPU (高端):
-python3 launch.py --xformers --opt-sdp-attention
+# 12GB+ 显存 GPU (高端): python3 launch.py --xformers --opt-sdp-attention
 
-# 24GB 显存 GPU (发烧级):
-python3 launch.py --xformers --opt-sdp-attention --no-half-vae
+# 24GB 显存 GPU (发烧级): python3 launch.py --xformers --opt-sdp-attention --no-half-vae
 ```
 
 ## 高级用法 / 生产环境加固
@@ -467,9 +466,7 @@ result = response.json()
 
 # 保存生成的图像
 import base64
-for i, img_data in enumerate(result[images]):
-    with open(f"output_{i}.png", "wb") as f:
-        f.write(base64.b64decode(img_data))
+for i, img_data in enumerate(result[images]): with open(f"output_{i}.png", "wb") as f: f.write(base64.b64decode(img_data))
 ```
 
 ### 批处理脚本
@@ -482,8 +479,7 @@ import base64
 
 API_URL = "http://localhost:7860/sdapi/v1/txt2img"
 
-def generate_image(prompt, filename, width=1024, height=1024):
-    payload = {
+def generate_image(prompt, filename, width=1024, height=1024): payload = {
         "prompt": prompt,
         "negative_prompt": "blurry, low quality, deformed",
         "steps": 25,
@@ -496,16 +492,13 @@ def generate_image(prompt, filename, width=1024, height=1024):
     response = requests.post(API_URL, json=payload)
     result = response.json()
     
-    with open(filename, "wb") as f:
-        f.write(base64.b64decode(result[images][0]))
+    with open(filename, "wb") as f: f.write(base64.b64decode(result[images][0]))
     
     return filename
 
 # 从 CSV 处理提示词列表
-with open("prompts.csv", "r") as f:
-    reader = csv.DictReader(f)
-    for i, row in enumerate(reader):
-        filename = f"output_{i:04d}.png"
+with open("prompts.csv", "r") as f: reader = csv.DictReader(f)
+    for i, row in enumerate(reader): filename = f"output_{i:04d}.png"
         generate_image(row[prompt], filename)
         print(f"已生成: {filename}")
 ```
@@ -591,7 +584,17 @@ sudo systemctl start sd-webui
 ## 与替代方案对比
 
 | 功能 | Stable Diffusion WebUI | ComfyUI | InvokeAI | Fooocus |
-|------|----------------------|---------|----------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **UI 类型** | 标签页式 Web 界面 | 节点图编辑器 | 带画布的 Web 应用 | 极简单页 |
 | **GitHub Stars** | 159,000+ | 75,000+ | 25,000+ | 42,000+ |
 | **扩展生态** | 1,000+ 扩展 | 1,500+ 自定义节点 | ~100 社区节点 | 有限（预设） |
@@ -692,7 +695,6 @@ AUTOMATIC1111 的 Stable Diffusion WebUI 在 2026 年依然是本地 AI 图像�
 - [Hugging Face — 模型下载](https://huggingface.co/models?pipeline_tag=text-to-image)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -718,8 +720,8 @@ AUTOMATIC1111 的 Stable Diffusion WebUI 在 2026 年依然是本地 AI 图像�
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [stable-diffusion-complete-guide](stable-diffusion-webui)
@@ -728,6 +730,6 @@ AUTOMATIC1111 的 Stable Diffusion WebUI 在 2026 年依然是本地 AI 图像�
 - [comfyui-workflows-complete-guide](stable-diffusion-webui)
 - [modal-serverless-gpu-compute](stable-diffusion-webui)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

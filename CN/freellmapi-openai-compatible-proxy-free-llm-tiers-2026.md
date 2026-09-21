@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/freellmapi-openai-compatible-proxy-free-llm-tiers-2026" />
 title: 'FreeLLMAPI: Stack 16 Free LLM Tiers Behind One OpenAI-Co...
 description: 'Aggregate Google, Groq, Cerebras, Mistral, NVIDIA, OpenRouter and more free tiers into a single proxy. ~1.7B tokens/month. Docker install, Claude Code integration, tool calling, streaming, fallback chains.'
 tags: ["open-source"]
@@ -11,13 +9,10 @@ categories: ['ai-tools']
 slug: freellmapi-openai-compatible-proxy-free-llm-tiers-2026
 featureImage: 'https://images.pexels.com/photos/8644020/pexels-photo-8644020.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
 aliases: ['/freellmapi']
-sources:
-  - name: GitHub
+sources: - name: GitHub
     url: 'https://github.com/tashfeenahmed/freellmapi'
   - name: 'Official Site'
     url: 'https://freellmapi.co'
-lang: en
----
 ---
 title: 'FreeLLMAPI: Stack 16 Free LLM Tiers Behind One OpenAI-Co...
 description: 'Aggregate Google, Groq, Cerebras, Mistral, NVIDIA, OpenRouter and more free tiers into a single proxy. ~1.7B tokens/month. Docker install, Claude Code integration, tool calling, streaming, fallback chains.'
@@ -29,13 +24,12 @@ categories: ['ai-tools']
 slug: freellmapi-openai-compatible-proxy-free-llm-tiers-2026
 
 aliases: ['/freellmapi']
-sources:
-  - name: GitHub
+sources: - name: GitHub
     url: 'https://github.com/tashfeenahmed/freellmapi'
   - name: 'Official Site'
     url: 'https://freellmapi.co'
----
 
+---
 # FreeLLMAPI: Stack 16 Free LLM Tiers Behind One OpenAI-Compatible Endpoint
 
 TL;DR — **FreeLLMAPI** aggregates the free tiers of 16+ LLM providers (Google Gemini, Groq, Cerebras, Mistral, NVIDIA, OpenRouter, GitHub Models, Cohere, Cloudflare, HuggingFace, Z.ai, Ollama Cloud, Kilo, Pollinations, LLM7, OVH) behind a single `/v1/chat/completions` endpoint. Combined, they yield roughly **1.7 billion tokens per month** of working inference capacity. Install via Docker in one command, add your provider keys, and point any OpenAI-compatible client at your local server.
@@ -46,9 +40,7 @@ Every major AI lab now offers a free tier — a few million tokens a month, a fe
 
 The problem is that stacking them by hand is painful: seventeen different SDKs, seventeen different rate limits, seventeen places a request can fail. **FreeLLMAPI** collapses that into one OpenAI-compatible endpoint. Point any OpenAI client library at your local server, and it routes transparently across whichever providers you've added keys for.
 
-Built by **Tashfeen Ahmed**, FreeLLMAPI is a self-hosted Node.js proxy (TypeScript/Express) with a React admin dashboard. It supports:
-
-- OpenAI Chat Completions API (`/v1/chat/completions`)
+Built by **Tashfeen Ahmed**, FreeLLMAPI is a self-hosted Node.js proxy (TypeScript/Express) with a React admin dashboard. It supports: - OpenAI Chat Completions API (`/v1/chat/completions`)
 - Anthropic Messages API (`/v1/messages`) — works with Claude Code
 - Responses API (`/v1/responses`) — for Codex CLI
 - Image generation (`/v1/images/generations`)
@@ -63,10 +55,14 @@ Built by **Tashfeen Ahmed**, FreeLLMAPI is a self-hosted Node.js proxy (TypeScri
 
 ## Supported Providers
 
-FreeLLMAPI currently supports 16 free-tier providers with 100+ models:
-
-| Provider | Key Models | Rate Limits |
-|----------|-----------|-------------|
+FreeLLMAPI currently supports 16 free-tier providers with 100+ models: | Provider | Key Models | Rate Limits |
+|
+---
+|
+---
+|
+---
+|
 | Google AI | Gemini 2.5 Flash, 3.x previews | ~30 RPM |
 | Groq | Llama 3.3 70B, Llama 4, GPT-OSS, Qwen3 | ~40 RPM |
 | Cerebras | Qwen3 235B | Fast inference |
@@ -91,9 +87,7 @@ Plus a **custom** provider — point at any OpenAI-compatible endpoint (llama.cp
 
 ### One-Liner (Docker)
 
-The fastest path is a single command that sets up everything:
-
-```bash
+The fastest path is a single command that sets up everything: ```bash
 curl -fsSL https://freellmapi.co/install.sh | bash
 ```
 
@@ -132,9 +126,7 @@ Native `.dmg` (macOS) and `.exe` (Windows) installers are available from [Releas
 
 ## How the Router Works
 
-FreeLLMAPI's router makes a per-request decision:
-
-1. Pick the highest-priority model that has a healthy key and is under all rate limits
+FreeLLMAPI's router makes a per-request decision: 1. Pick the highest-priority model that has a healthy key and is under all rate limits
 2. Decrypt the key (AES-256-GCM), call the provider SDK
 3. On 429/5xx/timeout → cooldown + retry next model in the fallback chain (up to 20 attempts)
 
@@ -189,8 +181,7 @@ stream = client.chat.completions.create(
     messages=[{"role": "user", "content": "Stream me a haiku about SQLite."}],
     stream=True,
 )
-for chunk in stream:
-    print(chunk.choices[0].delta.content or "", end="", flush=True)
+for chunk in stream: print(chunk.choices[0].delta.content or "", end="", flush=True)
 ```
 
 ### Tool Calling
@@ -260,9 +251,7 @@ print(resp.choices[0].message.content)
 
 ## Claude Code Integration
 
-FreeLLMAPI also speaks the Anthropic Messages API, so **Claude Code** and the official Anthropic SDKs can run against your free pool:
-
-```bash
+FreeLLMAPI also speaks the Anthropic Messages API, so **Claude Code** and the official Anthropic SDKs can run against your free pool: ```bash
 export ANTHROPIC_BASE_URL=http://localhost:3001
 export ANTHROPIC_AUTH_TOKEN=freellmapi-your-unified-key
 claude
@@ -274,9 +263,7 @@ Claude model names map to your free pool on the **Keys → Anthropic** tab: each
 
 ## Embeddings
 
-`/v1/embeddings` is OpenAI-compatible with one deliberate difference: **failover never crosses models.** Vectors from different models live in incompatible spaces. Embeddings route by family:
-
-```python
+`/v1/embeddings` is OpenAI-compatible with one deliberate difference: **failover never crosses models.** Vectors from different models live in incompatible spaces. Embeddings route by family: ```python
 resp = client.embeddings.create(
     model="auto",
     input=["the quick brown fox", "pack my box with five dozen liquor jugs"],
@@ -284,10 +271,14 @@ resp = client.embeddings.create(
 print(len(resp.data), "vectors of", len(resp.data[0].embedding), "dims")
 ```
 
-Available embedding families:
-
-| Family | Dims | Providers |
-|--------|------|-----------|
+Available embedding families: | Family | Dims | Providers |
+|
+---
+|
+---
+|
+---
+|
 | `gemini-embedding-001` | 3072 | Google |
 | `text-embedding-3-large` | 3072 | GitHub Models |
 | `text-embedding-3-small` | 1536 | GitHub Models |
@@ -309,10 +300,12 @@ Available embedding families:
 
 ## Performance and Capacity
 
-The combined free-tier capacity is approximately **1.7 billion tokens per month**. Here's a rough breakdown by tier:
-
-| Tier | Estimated Monthly Tokens |
-|------|------------------------|
+The combined free-tier capacity is approximately **1.7 billion tokens per month**. Here's a rough breakdown by tier: | Tier | Estimated Monthly Tokens |
+|
+---
+|
+---
+|
 | Top tier (Gemini Pro, GPT-4o via GitHub) | ~500M tokens |
 | Mid tier (Groq, Cerebras, Mistral) | ~600M tokens |
 | Lower tier (Cloudflare, OVH, Pollinations) | ~600M tokens |
@@ -321,9 +314,7 @@ Your actual capacity depends on which providers you enable and their current fre
 
 ## Limitations
 
-Be honest about the trade-offs:
-
-- **No frontier models.** The free-tier catalog tops out around Llama 3.3 70B, GLM-4.5, Qwen 3 Coder, and Gemini 2.5 Pro. You will not get GPT-5 or Claude Opus class reasoning through this. For hard problems, pay for a real API.
+Be honest about the trade-offs: - **No frontier models.** The free-tier catalog tops out around Llama 3.3 70B, GLM-4.5, Qwen 3 Coder, and Gemini 2.5 Pro. You will not get GPT-5 or Claude Opus class reasoning through this. For hard problems, pay for a real API.
 - **Intelligence degrades as the day progresses.** Your top-ranked models have the lowest daily caps. Once they hit their limits, the router falls down your priority chain to smaller/weaker models. Expect effective intelligence to drop in the late hours of each day — then reset at UTC midnight.
 - **Latency is highly variable.** Cerebras and Groq are extremely fast; others are not. You get whichever one is available.
 - **Free tiers can change without notice.** Providers regularly tighten, loosen, or remove free tiers. When that happens you'll see 429s or auth errors until you update the catalog.
@@ -342,7 +333,15 @@ Be honest about the trade-offs:
 ## Alternatives Compared
 
 | Feature | FreeLLMAPI | LiteLLM | OpenRouter |
-|---------|-----------|---------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Free tier aggregation | ✅ 16 providers | ❌ Paid only | ❌ Paid only |
 | Self-hosted | ✅ Docker/Node | ✅ Docker/Node | ❌ Cloud only |
 | Anthropic API support | ✅ `/v1/messages` | ✅ | ✅ |
@@ -391,19 +390,12 @@ Free installs follow a monthly snapshot — zero cost, forever. Premium ($19/yea
 
 ## Docker Compose Setup
 
-For teams that prefer Docker Compose over the install script:
-
-```yaml
+For teams that prefer Docker Compose over the install script: ```yaml
 version: '3.8'
-services:
-  freellmapi:
-    image: freellmapi/server:latest
-    ports:
-      - "3001:3001"
-    volumes:
-      - ./data:/app/data
-    environment:
-      - ENCRYPTION_KEY=your-random-32-char-key-here
+services: freellmapi: image: freellmapi/server:latest
+    ports: - "3001:3001"
+    volumes: - ./data:/app/data
+    environment: - ENCRYPTION_KEY=your-random-32-char-key-here
     restart: unless-stopped
 ```
 
@@ -416,9 +408,7 @@ docker compose up -d
 
 ## Environment Variables
 
-All configuration can be set via environment variables:
-
-```bash
+All configuration can be set via environment variables: ```bash
 export PORT=3001
 export ENCRYPTION_KEY="a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6"
 export LOG_LEVEL=info
@@ -433,9 +423,7 @@ docker exec freellmapi node --eval "console.log(process.env.PORT)"
 
 ## CLI Management
 
-FreeLLMAPI ships with a management CLI for automation:
-
-```bash
+FreeLLMAPI ships with a management CLI for automation: ```bash
 # Check server status
 freellmapi status
 
@@ -464,14 +452,13 @@ freellmapi health --providers
 - [FreeLLMAPI Install Script](https://freellmapi.co/install.sh)
 - [FreeLLMAPI Desktop Releases](https://github.com/tashfeenahmed/freellmapi/releases)
 
----
 
+---
 **Want to try FreeLLMAPI?** Deploy it in under 2 minutes with Docker. No credit card, no API key management, no vendor lock-in. Just one endpoint for 16 free LLM providers.
 
 **Join the Dibi8 community:** [Telegram Group](https://t.me/DIBI8_Group/2)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

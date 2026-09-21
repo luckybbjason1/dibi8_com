@@ -1,17 +1,11 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/free-mcp-tools-top10-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/free-mcp-tools-top10-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/free-mcp-tools-top10-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/free-mcp-tools-top10-2026" />
 title: 'Top 10 Công Cụ MCP Miễn Phí 2026: Server Model Context P...
 description: '10 MCP server miễn phí tốt nhất cho Claude, Cursor và mọi AI client tương thích MCP — filesystem, tìm kiếm web, bộ nhớ, GitHub, database và nhiều hơn nữa. Toàn bộ mã nguồn mở, không tốn phí.'
 date: 2026-06-06 00:00:00+08:00
-lastmod:  2026-06-06 00:00:00+08:00draft: false
+lastmod: 2026-06-06 00:00:00+08:00draft: false
 tags: [mcp, model-context-protocol, công-cụ-mcp-miễn-phí, mcp-server, claude-mcp, ai-mã-nguồn-mở, công-cụ-ai]
 categories: [tools]
-faqs:
-  - q: 'MCP là gì và tại sao quan trọng?'
+faqs: - q: 'MCP là gì và tại sao quan trọng?'
     a: 'MCP (Model Context Protocol) là tiêu chuẩn mở của Anthropic giúp các AI model như Claude kết nối với công cụ bên ngoài, database và dịch vụ theo cách chuẩn hóa. Thay vì mỗi ứng dụng AI tự xây tích hợp riêng, MCP cung cấp một connector phổ quát. MCP server công khai các khả năng (đọc file, tìm kiếm web, truy vấn DB) mà bất kỳ AI client tương thích MCP nào cũng có thể dùng.'
   - q: 'Những công cụ MCP này có thực sự miễn phí không?'
     a: 'Có. Tất cả 10 công cụ trong danh sách này đều là mã nguồn mở, không có phí bản quyền. Một số yêu cầu API key miễn phí (GitHub token, Brave Search free tier) và hầu hết cần máy tính của bạn để chạy tiến trình server. Bản thân MCP server không tính phí theo từng request.'
@@ -23,7 +17,6 @@ faqs:
     a: 'Plugin và extension được xây cho một ứng dụng cụ thể (ví dụ: plugin ChatGPT chỉ hoạt động trong ChatGPT). MCP server không phụ thuộc client — cùng một filesystem server hoạt động trong Claude, Cursor và bất kỳ MCP client nào khác mà không cần chỉnh sửa. Đây là ưu điểm then chốt của tiêu chuẩn mở so với hệ thống plugin độc quyền.'
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/free-mcp-tools-top10-2026/ -->
 # Top 10 Công Cụ MCP Miễn Phí 2026: Server Model Context Protocol Tốt Nhất
 
 
@@ -219,9 +212,7 @@ Truy cập đọc/ghi vào database SQLite cục bộ, thêm hệ thống "memo"
 
 ## Stack Khởi Đầu Cho Developer
 
-Năng suất tối đa với thiết lập tối thiểu — cài ba cái này trước:
-
-```json
+Năng suất tối đa với thiết lập tối thiểu — cài ba cái này trước: ```json
 {
   "mcpServers": {
     "filesystem": {
@@ -247,7 +238,6 @@ Ba cái này cho bạn: truy cập file cục bộ + duyệt web + bộ nhớ li
 Tất cả server có tại [kho GitHub MCP chính thức](https://github.com/modelcontextprotocol/servers).
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -275,25 +265,20 @@ Tất cả server có tại [kho GitHub MCP chính thức](https://github.com/mo
 
 ## Why This Matters
 
-Understanding top 10 công cụ mcp miễn phí 2026: server model context protocol tốt nhất is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding top 10 công cụ mcp miễn phí 2026: server model context protocol tốt nhất is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

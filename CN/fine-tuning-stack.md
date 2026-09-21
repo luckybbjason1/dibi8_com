@@ -1,12 +1,9 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/fine-tuning-stack" />
 title: 'Fine-Tuning Stack 2026: 5-Component Pipeline From Datase...
 description: 'Complete LLM fine-tuning stack: Unsloth (fast single-GPU experiments) + Axolotl (production multi-GPU) + HuggingFace datasets/Hub + Weights & Biases (eval tracking) + vLLM (serving). $50-300/mo training infra. Full pipeline: dataset prep → experiment → production fine-tune → eval → deploy.'
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
-tech_stack:
-  - Python
+tech_stack: - Python
   - PyTorch
   - CUDA
   - YAML
@@ -26,10 +23,8 @@ featureImage: ''
 draft: false
 categories: [collections]
 tags: ['fine-tuning', llm, stack, collection]
-aliases:
-  - /posts/fine-tuning-stack/
+aliases: - /posts/fine-tuning-stack/-
 ---
-
 LLM fine-tuning in 2026 finally has a coherent stack — the days of duct-taping HuggingFace Trainer + DeepSpeed configs + custom eval scripts are over. This collection assembles the **5-component pipeline** that takes you from raw dataset to a production-deployed fine-tuned model, with a clean split between fast iteration (Unsloth) and production deploy (Axolotl). $50-300/mo training infrastructure depending on scale.
 
 If you're building a domain-specific model, instruction-tuning open-weight base models, doing DPO/GRPO alignment, or running production fine-tuning pipelines — this is the stack.
@@ -37,15 +32,24 @@ If you're building a domain-specific model, instruction-tuning open-weight base 
 ## TL;DR — The Stack at a Glance
 
 | # | Component | Stage | Role | Deep dive |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 1 | **Unsloth** | Experiment | Fast single-GPU fine-tuning, 2× speed + 70% less VRAM | [Unsloth 2026 guide](/resources/llm-frameworks/unsloth-fast-llm-fine-tuning-2026/) |
 | 2 | **Axolotl** | Production | YAML-driven multi-GPU production fine-tuning | [Axolotl 2026 guide](/resources/llm-frameworks/axolotl-llm-fine-tuning-framework-2026/) |
 | 3 | **HuggingFace datasets + Hub** | Data | Version dataset, share with team, push trained weights | [HF docs] |
 | 4 | **Weights & Biases (or alternative)** | Eval | Track loss curves, eval scores, hyperparameter sweeps | [W&B docs] |
 | 5 | **vLLM** | Serving | Production multi-tenant serving of fine-tuned model | [Local LLM Runner comparison](/resources/llm-frameworks/local-llm-runner-comparison-2026/) |
 
-**Total monthly cost** (excluding training capital):
-- **Hobbyist** (rent GPU 10 hrs/week): **$30-60/mo**
+**Total monthly cost** (excluding training capital): - **Hobbyist** (rent GPU 10 hrs/week): **$30-60/mo**
 - **Production team** (1-2 dedicated GPUs + monitoring): **$200-400/mo**
 - **Small AI lab** (8× H100 cluster): **$2000-5000/mo**
 
@@ -53,9 +57,7 @@ Compare against managed fine-tuning platforms: Together fine-tuning ~$0.50/M tok
 
 ## 1. Why "The Fine-Tuning Stack" Needed Defining in 2026
 
-Three shifts that crystallized the stack:
-
-1. **Unsloth + Axolotl reached production maturity** — the "fast experiment + scale production" split is now clean
+Three shifts that crystallized the stack: 1. **Unsloth + Axolotl reached production maturity** — the "fast experiment + scale production" split is now clean
 2. **GRPO became the default RL fine-tuning** (post-DeepSeek-R1) — both Unsloth and Axolotl support it natively
 3. **Open-weight base models hit GPT-4 class** — Llama 3.3 70B, Qwen 3 32B, DeepSeek V3. Fine-tuning these for your domain now genuinely competitive with closed alternatives
 
@@ -103,8 +105,7 @@ The split is what makes this work — Unsloth's fast iteration for the "what wor
 
 **Why Unsloth wins here**: 2× faster than HF TRL = 2× more experiments per dollar. 70% less VRAM = experiments on a $1500 RTX 4090 instead of needing an A100. See our [Unsloth deep-dive](/resources/llm-frameworks/unsloth-fast-llm-fine-tuning-2026/).
 
-**Quick install**:
-```bash
+**Quick install**: ```bash
 pip install unsloth
 ```
 
@@ -116,8 +117,7 @@ pip install unsloth
 
 **Why Axolotl wins here**: Multi-node distributed training that works out of the box, broadest method support (DPO/GRPO/KTO/ORPO/GDPO), config-as-code for reproducibility. See our [Axolotl deep-dive](/resources/llm-frameworks/axolotl-llm-fine-tuning-framework-2026/).
 
-**Quick install**:
-```bash
+**Quick install**: ```bash
 pip install axolotl
 ```
 
@@ -129,14 +129,12 @@ pip install axolotl
 
 **Why this is the obvious pick**: HF has won the AI dataset distribution layer (like GitHub for code, HF Hub for models + datasets). Every fine-tuning tool integrates with it natively.
 
-**Quick install**:
-```bash
+**Quick install**: ```bash
 pip install datasets
 huggingface-cli login
 ```
 
-**Pattern**:
-```python
+**Pattern**: ```python
 from datasets import load_dataset, Dataset
 
 # Local prep + push
@@ -153,8 +151,7 @@ For sensitive data (medical / financial / proprietary), use **private datasets**
 
 **The role**: When you run 50 experiments to find the winning recipe, you need a way to compare them. W&B is the de-facto choice — auto-logs loss curves, eval scores, hyperparams, hardware utilization.
 
-**Quick install** (works with both Unsloth and Axolotl via env var):
-```bash
+**Quick install** (works with both Unsloth and Axolotl via env var): ```bash
 pip install wandb
 wandb login
 export WANDB_PROJECT="my-finetune-project"
@@ -170,8 +167,7 @@ Now every Unsloth / Axolotl training run auto-logs to your W&B dashboard.
 
 See our [Local LLM Runner comparison](/resources/llm-frameworks/local-llm-runner-comparison-2026/) for the full rundown of why vLLM beats Ollama / LM Studio / llama.cpp for production multi-user serving.
 
-**Quick install + serve a fine-tuned model**:
-```bash
+**Quick install + serve a fine-tuned model**: ```bash
 pip install vllm
 vllm serve yourname/my-finetuned-llama \
   --enable-lora \
@@ -199,7 +195,15 @@ After 3-4 hours of setup + 1-2 weeks of experiments, you have your own fine-tune
 ## 9. Cost Breakdown
 
 | Item | Hobbyist | Production team | Small AI lab |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Experiment GPU (rented as needed) | $30-60/mo | $100-200/mo | $300-500/mo |
 | Production training (rented for runs) | $0-50/mo | $200-400/mo | $1500-3000/mo |
 | Dedicated serving GPU (vLLM) | $0 (use Ollama instead) | $200/mo (RTX 4090) | $1000/mo (H100) |
@@ -212,9 +216,7 @@ Compare against managed: Together fine-tuning at $0.50/M tokens × 100M token da
 
 ## 10. Upgrade Path
 
-When you outgrow this stack:
-
-- **Need to fine-tune > 70B models routinely** — Buy or long-lease H100 cluster instead of renting
+When you outgrow this stack: - **Need to fine-tune > 70B models routinely** — Buy or long-lease H100 cluster instead of renting
 - **Compliance / data residency** — Move from Vast.ai to dedicated bare-metal in your jurisdiction
 - **Multi-tenant fine-tuning SaaS** — Add user isolation layer; consider LangSmith or similar managed eval
 - **Continuous fine-tuning loop** — Pair with [AI Agent Tool Chain](/collections/ai-agent-tool-chain/) for automated retraining triggers when production model degrades
@@ -222,8 +224,7 @@ When you outgrow this stack:
 
 ## TL;DR — The Recipe
 
-**5 components for production LLM fine-tuning, $50-300/mo for hobbyist to production team**:
-1. **Unsloth** — fast single-GPU experiment phase
+**5 components for production LLM fine-tuning, $50-300/mo for hobbyist to production team**: 1. **Unsloth** — fast single-GPU experiment phase
 2. **Axolotl** — production multi-GPU phase
 3. **HuggingFace datasets + Hub** — data versioning + model distribution
 4. **Weights & Biases** — eval tracking
@@ -231,12 +232,11 @@ When you outgrow this stack:
 
 Rent a {{< aff "digitalocean" "footer-cta" "GPU droplet" >}} for experiments, scale to Vast.ai 8× H100 for production runs, deploy final model on a dedicated 24 GB GPU. End-to-end self-hosted, weights you own, costs that scale with how serious you are.
 
----
 
+---
 *Companion collections: [Cheap LLM Stack](/collections/cheap-llm-stack/) covers the inference cost side post-deployment. [AI Agent Tool Chain](/collections/ai-agent-tool-chain/) for automated fine-tuning loops. [Knowledge Base Stack](/collections/knowledge-base-stack/) for RAG as an alternative to fine-tuning in some cases.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -262,8 +262,8 @@ Rent a {{< aff "digitalocean" "footer-cta" "GPU droplet" >}} for experiments, sc
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [12-factor-agents-production-llm-software-2026](fine-tuning-stack)

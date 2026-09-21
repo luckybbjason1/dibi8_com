@@ -1,17 +1,11 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/supabase-vs-firebase" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/supabase-vs-firebase" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/supabase-vs-firebase" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/supabase-vs-firebase" />
 title: 'Supabase vs Firebase 2026: 어떤 BaaS가 더 좋은가?'
 description: 'Postgres 기반 오픈소스 Supabase와 Google NoSQL Firebase 비교 — 데이터베이스, 인증, 스토리지, 실시간, 엣지 함수, 가격, 종속성, 자체 호스팅. 2026년 업데이트.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-22 00:00:00+08:00
-lastmod:  2026-05-22 00:00:00+08:00draft: false
+lastmod: 2026-05-22 00:00:00+08:00draft: false
 tags: [supabase, firebase, baas, postgres, firestore, comparison, backend]
 categories: [vs]
-faqs:
-  - q: 'Supabase와 Firebase 중 어느 쪽이 더 저렴한가?'
+faqs: - q: 'Supabase와 Firebase 중 어느 쪽이 더 저렴한가?'
     a: '작은 프로젝트는 양쪽 모두 무료 한도가 넉넉하지만, 규모가 커질수록 Supabase가 구조적으로 더 저렴합니다. Postgres 쿼리는 "행 단위 읽기"로 과금되지 않기 때문입니다. Firebase Firestore는 문서 읽기마다 과금되어, 1만 행을 가져오는 대시보드 쿼리 하나가 Firebase에서는 실제 비용이 발생하지만 Supabase에서는 Pro 컴퓨트 한도 내에서는 무료입니다. 분석 위주 워크로드는 월 청구액이 5-10배 차이 납니다.'
   - q: '관계형 데이터에는 어느 쪽이 더 좋은가?'
     a: 'Supabase가 큰 차이로 우세합니다 — 내부적으로 Postgres이므로 JOIN, 외래 키, 트랜잭션, 뷰, CTE를 바로 사용할 수 있습니다. Firebase Firestore는 NoSQL/문서 기반이라 비정규화하거나 클라이언트에서 JOIN해야 합니다. 데이터에 관계가 있다면(사용자, 주문, 상품), Supabase가 정답입니다.'
@@ -23,7 +17,6 @@ faqs:
     a: 'Supabase의 압승입니다 — pgvector가 기본 탑재되어 임베딩을 앱 데이터와 같은 DB에 저장하고 코사인 유사도 검색을 실행할 수 있습니다. Firebase는 네이티브 벡터 지원이 없고 Vertex AI나 별도 벡터 DB를 붙여야 합니다. 2026년 RAG/AI 앱에는 Supabase가 명백한 선택입니다.'
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/supabase-vs-firebase/ -->
 # Supabase vs Firebase 2026: 어떤 BaaS가 더 좋은가?
 
 
@@ -160,9 +153,7 @@ Firebase Auth는 BaaS 세계에서 가장 성숙한 익명 인증과 SMS 전화 
 
 ## 시도해볼 만한 대안
 
-Supabase도 Firebase도 맞지 않다면:
-
-- **[Appwrite](https://dibi8.com/kr/resources/llm-frameworks/)** — 오픈소스 BaaS, 자체 호스팅 가능, Supabase보다 더 의견이 강함
+Supabase도 Firebase도 맞지 않다면: - **[Appwrite](https://dibi8.com/kr/resources/llm-frameworks/)** — 오픈소스 BaaS, 자체 호스팅 가능, Supabase보다 더 의견이 강함
 - **PocketBase** — 단일 바이너리 Go BaaS, 작은 프로젝트에 완벽
 - **Convex** — TypeScript 우선의 반응형 백엔드, 풀스택 TS 팀에 뛰어난 DX
 - **Nhost** — Postgres + Hasura GraphQL + Auth, Supabase와 유사하지만 GraphQL 네이티브
@@ -205,7 +196,6 @@ Supabase도 Firebase도 맞지 않다면:
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

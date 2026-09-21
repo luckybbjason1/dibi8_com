@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/moralis-web3-data-api" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/moralis-web3-data-api" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/moralis-web3-data-api" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/moralis-web3-data-api" />
 title: 'Moralis 2026: 100K+ DApp에 실시간 온체인 데이터를 제공하는 Web3 데이터 API...
 description: '2026년 Moralis Web3 Data API 완벽 가이드. JavaScript, Python, Unity SDK로 10개 이상의 체인에서 실시간 블록체인 데이터, NFT 메타데이터, 토큰 가격, 지갑 잔액을 가져오는 방법을 배우세요.'
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: [moralis]
-aliases:
-- /kr/posts/moralis-web3-data-api/
+aliases: - /kr/posts/moralis-web3-data-api/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/moralis-web3-data-api/ -->
 
 {{</* resource-info */>}}
 
@@ -47,9 +39,7 @@ Moralis는 개발자에게 블록체인 데이터에 대한 실시간 액세스�
 
 이 플랫폼은 Ethereum, Polygon, BNB Chain, Arbitrum, Optimism, Avalanche, Base 및 기타 여러 EVM 호환 네트워크를 지원합니다. 또한 Solana 및 기타 체인에 대한 비EVM 지원도 제공합니다. 핵심 가치 제안은 간단합니다. 복잡한 노드 인프라 운영 및 사용자 정의 인덱서 구축 대신 개발자가 Moralis API 엔드포인트를 호출하고 구조화된 사람이 읽을 수 있는 데이터를 수신합니다.
 
-Moralis는 여러 가지 핵심 API 그룹을 제공합니다:
-
-- **Web3 API** — 일반 블록체인 쿼리, 블록 데이터 및 트랜잭션 세부 정보
+Moralis는 여러 가지 핵심 API 그룹을 제공합니다: - **Web3 API** — 일반 블록체인 쿼리, 블록 데이터 및 트랜잭션 세부 정보
 - **Token API** — 토큰 잔액, 전송, 가격 데이터 및 메타데이터
 - **NFT API** — NFT 소유권, 메타데이터, 전송 및 컬렉션 통계
 - **Wallet API** — 포트폴리오 추적, 순자산 계산 및 트랜잭션 기록
@@ -137,8 +127,7 @@ from moralis import evm_api
 import os
 
 api_key = os.environ.get(MORALIS_API_KEY)
-if not api_key:
-    raise ValueError("MORALIS_API_KEY environment variable is required")
+if not api_key: raise ValueError("MORALIS_API_KEY environment variable is required")
 
 print("Moralis Python SDK ready")
 ```
@@ -582,7 +571,6 @@ Web3 생태계가 레이어 2 네트워크 및 대체 체인 전반에 걸쳐 �
 구축을 시작할 준비가 되셨나요? [Binance에 등록하여](https://www.bsmkweb.cc/register?ref=DIBI8) Web3 개발 지갑에 자금을 입금하고 테스트 및 배포에 필요한 토큰을 확보하세요.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

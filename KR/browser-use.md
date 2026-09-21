@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/browser-use" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/browser-use" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/browser-use" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/browser-use" />
 title: 'Browser Use: 94K+ Stars — 2026년 AI 브라우저 자동화 벤치마크 및 실전 가이드'
 description: 'Browser Use는 Playwright를 통해 LLM을 실제 브라우저에 연결하는 오픈소스 Python 프레임워크입니다. OpenAI, Anthropic, Gemini 및 로컬 모델을 지원합니다. 설치, WebVoyager 벤치마크, Selenium 비교, 프로덕션 하드닝, Docker 배포를 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['browser-use', 'ai-에이전트', playwright, '브라우저-자동화', '웹-크롤링', 대형언어모델, python, 오픈소스]
-aliases:
-- /kr/posts/browser-use/
+aliases: - /kr/posts/browser-use/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/browser-use/ -->
 
 {{</* resource-info */>}}
 
@@ -61,9 +53,7 @@ Browser Use는 Python 3.11 이상에서 LangChain 호환 LLM을 Playwright를 �
 
 ## Browser Use 작동 방식
 
-Browser Use는 **관찰 → 계획 → 실행 → 검증** 루프를 지속적으로 실행합니다:
-
-### 아키텍처 개요
+Browser Use는 **관찰 → 계획 → 실행 → 검증** 루프를 지속적으로 실행합니다: ### 아키텍처 개요
 
 ```
 ┌─────────────┐    DOM + 스크린샷      ┌─────────────┐
@@ -90,8 +80,7 @@ from browser_use import Agent, Browser
 from langchain_openai import ChatOpenAI
 import asyncio
 
-async def main():
-    browser = Browser()
+async def main(): browser = Browser()
     agent = Agent(
         task="Find the number of stars of the browser-use repo",
         llm=ChatOpenAI(model="gpt-4.1"),
@@ -100,8 +89,7 @@ async def main():
     result = await agent.run()
     print(result)
 
-if __name__ == "__main__":
-    asyncio.run(main())
+if __name__ == "__main__": asyncio.run(main())
 ```
 
 ---
@@ -147,8 +135,7 @@ BROWSER_USE_API_KEY=your-cloud-key
 import asyncio
 from browser_use import Agent, Browser, ChatBrowserUse
 
-async def main():
-    browser = Browser()
+async def main(): browser = Browser()
     agent = Agent(
         task="List the top 20 posts on Hacker News today with their points",
         llm=ChatBrowserUse(),
@@ -157,8 +144,7 @@ async def main():
     result = await agent.run()
     print(result.output)
 
-if __name__ == "__main__":
-    asyncio.run(main())
+if __name__ == "__main__": asyncio.run(main())
 ```
 
 ![Browser Use Quick Start Interface](https://docs.browser-use.com/assets/images/quickstart-browser-use-cloud.png)
@@ -181,14 +167,10 @@ CMD ["python", "agent.py"]
 ```yaml
 # docker-compose.yml
 version: '3.8'
-services:
-  browser-use:
-    build: .
-    environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
+services: browser-use: build: .
+    environment: - OPENAI_API_KEY=${OPENAI_API_KEY}
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
-    volumes:
-      - ./scripts:/app
+    volumes: - ./scripts:/app
     command: python agent.py
 ```
 
@@ -203,8 +185,7 @@ from browser_use import Agent, Browser
 from langchain_openai import ChatOpenAI
 import asyncio
 
-async def search_flights():
-    agent = Agent(
+async def search_flights(): agent = Agent(
         task="Find the cheapest flight from NYC to London next week",
         llm=ChatOpenAI(model="gpt-4o", temperature=0),
         browser=Browser(),
@@ -221,8 +202,7 @@ from browser_use import Agent, Browser
 from langchain_anthropic import ChatAnthropic
 import asyncio
 
-async def extract_data():
-    agent = Agent(
+async def extract_data(): agent = Agent(
         task="Extract all pricing plans from example.com/pricing",
         llm=ChatAnthropic(model="claude-sonnet-4-6"),
         browser=Browser(),
@@ -240,8 +220,7 @@ from browser_use import Agent, Browser
 from langchain_google_genai import ChatGoogleGenerativeAI
 import asyncio
 
-async def research_topic():
-    agent = Agent(
+async def research_topic(): agent = Agent(
         task="Research the latest AI news and summarize top 5 stories",
         llm=ChatGoogleGenerativeAI(model="gemini-3-flash-preview"),
         browser=Browser(),
@@ -258,8 +237,7 @@ from browser_use import Agent, Browser
 from langchain_ollama import ChatOllama
 import asyncio
 
-async def local_automation():
-    agent = Agent(
+async def local_automation(): agent = Agent(
         task="Fill out the contact form on example.com/contact",
         llm=ChatOllama(model="qwen2.5:72b"),
         browser=Browser(),
@@ -276,9 +254,7 @@ from playwright.async_api import async_playwright
 from browser_use import Agent
 from langchain_openai import ChatOpenAI
 
-async def hybrid_automation():
-    async with async_playwright() as p:
-        browser = await p.chromium.launch(headless=True)
+async def hybrid_automation(): async with async_playwright() as p: browser = await p.chromium.launch(headless=True)
         page = await browser.new_page()
         
         # 결정적 Playwright 단계
@@ -346,16 +322,14 @@ import asyncio
 from browser_use import Agent, Browser
 from langchain_openai import ChatOpenAI
 
-async def monitor_prices():
-    urls = [
+async def monitor_prices(): urls = [
         "https://amazon.com/dp/B0DHTYW7P5",
         "https://bestbuy.com/site/xyz",
         "https://newegg.com/product/abc",
     ]
     
     results = []
-    for url in urls:
-        agent = Agent(
+    for url in urls: agent = Agent(
             task=f"Go to {url} and extract the current price, availability, and seller name",
             llm=ChatOpenAI(model="gpt-4o-mini"),
             browser=Browser(),
@@ -380,8 +354,7 @@ import asyncio
 from browser_use import Agent, Browser
 from langchain_openai import ChatOpenAI
 
-async def run_parallel_agents(tasks):
-    browser = Browser()
+async def run_parallel_agents(tasks): browser = Browser()
     agents = [
         Agent(task=task, llm=ChatOpenAI(model="gpt-4o-mini"), browser=browser)
         for task in tasks
@@ -434,8 +407,7 @@ config = BrowserConfig(
     headless=False,  # 초기 로그인에 헤드 모드 사용
 )
 
-async def authenticated_task():
-    browser = Browser(config=config)
+async def authenticated_task(): browser = Browser(config=config)
     agent = Agent(
         task="Download my monthly invoice from the billing page",
         llm=ChatOpenAI(model="gpt-4o"),
@@ -451,20 +423,15 @@ import asyncio
 from browser_use import Agent, Browser
 from langchain_openai import ChatOpenAI
 
-async def robust_agent(task, max_retries=3):
-    for attempt in range(max_retries):
-        try:
-            agent = Agent(
+async def robust_agent(task, max_retries=3): for attempt in range(max_retries): try: agent = Agent(
                 task=task,
                 llm=ChatOpenAI(model="gpt-4o"),
                 browser=Browser(),
                 max_steps=25,  # 무한 루프 방지를 위한 단계 제한
             )
             result = await agent.run()
-            if result.success:
-                return result
-        except Exception as e:
-            print(f"Attempt {attempt + 1} failed: {e}")
+            if result.success: return result
+        except Exception as e: print(f"Attempt {attempt + 1} failed: {e}")
             await asyncio.sleep(2 ** attempt)  # 지수 백오프
     raise Exception(f"Task failed after {max_retries} attempts")
 ```
@@ -481,15 +448,11 @@ agent_duration = Histogram("browseruse_agent_duration_seconds", "Agent run durat
 
 start_http_server(8000)
 
-async def monitored_agent(task):
-    agent_runs.inc()
-    with agent_duration.time():
-        try:
-            agent = Agent(task=task, llm=llm, browser=Browser())
+async def monitored_agent(task): agent_runs.inc()
+    with agent_duration.time(): try: agent = Agent(task=task, llm=llm, browser=Browser())
             result = await agent.run()
             return result
-        except Exception:
-            agent_failures.inc()
+        except Exception: agent_failures.inc()
             raise
 ```
 
@@ -522,9 +485,7 @@ async def monitored_agent(task):
 
 ## 한계 / 객관적 평가
 
-Browser Use는 전통적인 브라우저 자동화의 만능 대체재가 아닙니다. 다음 시나리오에는 적합하지 않습니다:
-
-1. **고용량 저비용 크롤링**: LLM 비용이 작업당 $0.02–$0.30이므로 10만 페이지 크롤링에 $2,000–$30,000 소요. Scrapy + HTTP 요청은 정적 사이트에서 동일한 볼륨에 몇 센트만 소요.
+Browser Use는 전통적인 브라우저 자동화의 만능 대체재가 아닙니다. 다음 시나리오에는 적합하지 않습니다: 1. **고용량 저비용 크롤링**: LLM 비용이 작업당 $0.02–$0.30이므로 10만 페이지 크롤링에 $2,000–$30,000 소요. Scrapy + HTTP 요청은 정적 사이트에서 동일한 볼륨에 몇 센트만 소요.
 
 2. **결정적 테스트**: AI 에이전트는 비결정적입니다. 동일한 작업도 실행마다 다른 경로를 탈 수 있습니다. 100% 재현성이 필요한 CI/CD 테스트에는 Playwright나 Selenium을 사용하세요.
 
@@ -572,8 +533,7 @@ Browser Use는 94,731개의 GitHub Star를 통해 진정한 문제를 해결했�
 
 > **더 많은 AI 자동화 튜토리얼이 필요하신가요?** [Telegram 그룹](https://t.me/dibi8opensource)에 참여하여 오픈소스 AI 도구 주간 심층 분석, 프로덕션 배포 팁 및 벤치마크 데이터를 받아보세요.
 
-**실행 목록**:
-1. [browser-use/browser-use](https://github.com/browser-use/browser-use) 저장소 클론
+**실행 목록**: 1. [browser-use/browser-use](https://github.com/browser-use/browser-use) 저장소 클론
 2. `pip install browser-use` 실행 후 위 예제로 첫 에이전트 구성
 3. 자신의 사용 사례에 맞게 WebVoyager 벤치마크 평가
 4. [Browser Use Discord](https://link.browser-use.com/discord)에 참여하여 커뮤니티 지원과 프로덕션 팁 얻기
@@ -584,9 +544,7 @@ Browser Use는 94,731개의 GitHub Star를 통해 진정한 문제를 해결했�
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -607,7 +565,6 @@ Browser Use는 94,731개의 GitHub Star를 통해 진정한 문제를 해결했�
 *본 문서는 프로덕션급 브라우저 자동화가 필요한 개발자를 대상으로 합니다. 모든 벤치마크 데이터는 공개 리더보드와 2026년 5월 독립 테스트에서 가져왔습니다.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

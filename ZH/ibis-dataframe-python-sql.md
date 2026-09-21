@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ibis-dataframe-python-sql" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ibis-dataframe-python-sql" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ibis-dataframe-python-sql" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ibis-dataframe-python-sql" />
 title: 'ibis-dataframe-python-sql'
 description: '{'en': ''Discover Ibis, the Python DataFrame library that compiles expressions to SQL for 20+ backends including DuckDB, PostgreSQL, BigQuery, and Snowflake. Learn how lazy evaluation and type-safe expressions deliver 10x performance over pandas.'', 'zh': ''发现 Ibis，这款将表达式编译为 SQL 的 Python DataFrame 库，支持 DuckDB、PostgreSQL、BigQuery、Snowflake 等 20+ 后端。了解惰性求值和类型安全表达式如何带来比 pandas 快 10 倍的性能。'', 'ko': ''DuckDB, PostgreSQL, BigQuery, Snowflake를 포함한 20개 이상의 백엔드를 위해 표현식을 SQL로 컴파일하는 Python DataFrame 라이브러리 Ibis를 알아보세요. 지연 평가와 타입 안전 표현식이 pandas보다 10배 빠른 성능을 제공하는 방법을 배워보세요.'', 'vi': ''Khám phá Ibis, thư viện DataFrame Python biên dịch biểu thức thành SQL cho 20+ backend bao gồm DuckDB, PostgreSQL, BigQuery và Snowflake. Tìm hiểu cách đánh giá lưới và biểu thức kiểu an toàn mang lại hiệu suất gấp 10 lần so với pandas.''}'
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: [ibis]
-aliases:
-- /zh/posts/ibis-dataframe-python-sql/
+aliases: - /zh/posts/ibis-dataframe-python-sql/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/ibis-dataframe-python-sql/ -->
 
 {{</* resource-info */>}}
 
@@ -39,8 +31,8 @@ aliases:
 
 在本综合指南中，我们将探索 Ibis 的所有功能：从安装和基本查询到高级模式和实际基准测试。读完本文，您将明白为什么 Ibis 正成为拒绝在生产力和性能之间妥协的数据从业者的默认选择。
 
----
 
+---
 ## 什么是 Ibis？数据分析的新范式
 
 Ibis 是由 **Wes McKinney**（pandas 的原作者）创建的 Python DataFrame 库。与完全在内存中运行的 pandas 不同，Ibis 采用了一种根本不同的方法：它提供了一个**可编译为 SQL 的 DataFrame API**。这意味着您编写的代码外观和感觉都像 pandas，但 Ibis 会将这些表达式转换为优化的 SQL 查询，直接在您的数据库引擎中运行。
@@ -67,8 +59,8 @@ print(result.execute())
 
 在幕后，Ibis 将上述表达式编译为优化的 SQL 查询，将所有计算推送到后端，并仅返回最终的聚合结果。这种架构使 Ibis 能够处理足以使 pandas 进程崩溃的数据集。
 
----
 
+---
 ## 为什么 Ibis 在 2026 年至关重要
 
 2026 年的数据格局比以往任何时候都更加分散。组织在由多个系统组成的混合环境中运行分析：本地 DuckDB 用于开发，PostgreSQL 用于事务数据，BigQuery 用于数据仓库，Snowflake 用于企业分析，ClickHouse 用于实时工作负载。从历史上看，每个系统都需要学习不同的 SDK、不同的 SQL 方言和不同的心智模型。
@@ -460,8 +452,7 @@ top3 = ranked.filter(ranked.rn <= 3)
 ```python
 # 定义在 DuckDB 中运行的 Python UDF
 @ibis.udf.scalar.python
-def format_currency(value: float) -> str:
-    return f"${value:,.2f}"
+def format_currency(value: float) -> str: return f"${value:,.2f}"
 
 applied = t.mutate(
     formatted=format_currency(t.amount)
@@ -552,7 +543,15 @@ print(f"加速比: {pandas_time / ibis_time:.1f}x")
 了解 Ibis 与现有工具的比较有助于阐明其独特的价值主张。
 
 | 特性 | pandas | SQLAlchemy | Ibis |
-|------|--------|------------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | API 风格 | DataFrame | SQL/ORM | DataFrame |
 | 执行方式 | 内存 Python | Python 转 SQL | Python 转 SQL |
 | 后端支持 | 无（仅本地） | 多种数据库 | 20+ 后端 |
@@ -569,8 +568,7 @@ print(f"加速比: {pandas_time / ibis_time:.1f}x")
 
 ```python
 # Ibis 代码比等效的 SQLAlchemy 分析代码更简洁
-# Ibis:
-result = (
+# Ibis: result = (
     t.group_by("category")
      .aggregate(total=t.amount.sum())
      .order_by(ibis.desc("total"))
@@ -647,7 +645,6 @@ Ibis 代表了 Python 数据分析的范式转变。通过提供统一的、兼�
 如果您还没有将 Ibis 添加到您的数据工具包中，现在是时候了。从 DuckDB 开始本地开发，您会发现您的分析工作流在一夜之间变得更快、更可移植、更易于维护。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -675,25 +672,20 @@ Ibis 代表了 Python 数据分析的范式转变。通过提供统一的、兼�
 
 ## Why This Matters
 
-Understanding ibis-dataframe-python-sql is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding ibis-dataframe-python-sql is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

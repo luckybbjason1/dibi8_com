@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/melotts" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/melotts" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/melotts" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/melotts" />
 title: 'MeloTTS: 7.4K+ Stars — 多语言 TTS 基准对比 Coqui TTS、ChatTTS、Ba...
 description: 'MeloTTS 是一个高质量多语言文本转语音库，拥有 7.4K+ Stars。与 Coqui TTS、ChatTTS 和 Bark 进行基准对比。涵盖 Python 安装、Docker 部署、实时推理和生产环境加固。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [melotts, 文本转语音, tts, 多语言, python, 语音合成, 开源, cpu推理]
-aliases:
-- /zh/posts/melotts/
+aliases: - /zh/posts/melotts/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/melotts/ -->
 
 {{</* resource-info */>}}
 
@@ -224,25 +216,20 @@ app = FastAPI()
 
 # 预加载支持的语言模型
 models = {}
-for lang in [EN, ZH, ES, FR, JA, KO]:
-    models[lang] = TTS(language=lang, device=auto)
+for lang in [EN, ZH, ES, FR, JA, KO]: models[lang] = TTS(language=lang, device=auto)
 
-class TTSRequest(BaseModel):
-    text: str
+class TTSRequest(BaseModel): text: str
     language: str = EN
     speaker: str = 'EN-Default'
     speed: float = 1.0
 
 @app.post("/tts")
-async def text_to_speech(req: TTSRequest):
-    if req.language not in models:
-        raise HTTPException(status_code=400, detail=f"不支持的语言 {req.language}")
+async def text_to_speech(req: TTSRequest): if req.language not in models: raise HTTPException(status_code=400, detail=f"不支持的语言 {req.language}")
     
     model = models[req.language]
     speaker_ids = model.hps.data.spk2id
     
-    if req.speaker not in speaker_ids:
-        raise HTTPException(status_code=400, detail=f"找不到说话人 {req.speaker}")
+    if req.speaker not in speaker_ids: raise HTTPException(status_code=400, detail=f"找不到说话人 {req.speaker}")
     
     output_path = tempfile.mktemp(suffix='.wav')
     model.tts_to_file(req.text, speaker_ids[req.speaker], output_path, speed=req.speed)
@@ -261,25 +248,15 @@ uvicorn tts_api:app --host 0.0.0.0 --port 8000 --workers 2
 ```yaml
 version: '3.8'
 
-services:
-  melotts:
-    build:
-      context: .
+services: melotts: build: context: .
       dockerfile: Dockerfile
-    ports:
-      - "8888:8888"
-    environment:
-      - NVIDIA_VISIBLE_DEVICES=all
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+    ports: - "8888:8888"
+    environment: - NVIDIA_VISIBLE_DEVICES=all
+    deploy: resources: reservations: devices: - driver: nvidia
               count: 1
               capabilities: [gpu]
     restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8888"]
+    healthcheck: test: ["CMD", "curl", "-f", "http://localhost:8888"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -296,16 +273,13 @@ from melo.api import TTS
 model = TTS(language=EN, device=auto)
 speaker_ids = model.hps.data.spk2id
 
-async def tts_stream(websocket, path):
-    async for message in websocket:
-        data = json.loads(message)
+async def tts_stream(websocket, path): async for message in websocket: data = json.loads(message)
         text = data.get(text, '')
         speaker = data.get(speaker, 'EN-Default')
         speed = data.get(speed, 1.0)
         
         # 流式传输音频块
-        for chunk in model.stream_tts(text, speaker_ids[speaker], speed=speed):
-            await websocket.send(chunk)
+        for chunk in model.stream_tts(text, speaker_ids[speaker], speed=speed): await websocket.send(chunk)
 
 start_server = websockets.serve(tts_stream, '0.0.0.0', 8765)
 asyncio.get_event_loop().run_until_complete(start_server)
@@ -322,8 +296,7 @@ model = TTS(language=EN, device=auto)
 speaker_ids = model.hps.data.spk2id
 speaker_names = list(speaker_ids.keys())
 
-def synthesize(text, speaker, speed):
-    output_path = '/tmp/gradio_output.wav'
+def synthesize(text, speaker, speed): output_path = '/tmp/gradio_output.wav'
     model.tts_to_file(text, speaker_ids[speaker], output_path, speed=float(speed))
     return output_path
 
@@ -349,7 +322,15 @@ iface.launch(server_name='0.0.0.0', server_port=7860)
 实时因子（RTF）衡量模型生成音频相对于播放时长的速度。RTF < 1.0 表示快于实时生成。
 
 | 硬件 | RTF | 延迟（15 词） | 备注 |
-|------|-----|-------------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Intel i7-12700 (12代) | 0.41 | ~85 ms | 比实时快 2 倍 |
 | Apple M1 (8核) | 0.48 | ~95 ms | 无需 GPU |
 | AMD Ryzen 7 4800U | 0.55 | ~110 ms | 笔记本 CPU |
@@ -359,7 +340,17 @@ iface.launch(server_name='0.0.0.0', server_port=7860)
 ### 与替代品对比
 
 | 特性 | MeloTTS | Coqui TTS (XTTS) | ChatTTS | Bark |
-|------|---------|-----------------|---------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **GitHub Stars** | 7,400 | 34,000 | 33,000 | 37,000 |
 | **许可证** | MIT | MIT / AGPL | AGPL-3.0 | MIT |
 | **CPU 实时** | 是 (RTF 0.41) | 否 (需 GPU) | 部分支持 | 否 |
@@ -376,7 +367,13 @@ iface.launch(server_name='0.0.0.0', server_port=7860)
 ### 应用场景推荐
 
 | 应用场景 | 最佳选择 | 原因 |
-|----------|---------|------|
+|
+---
+|
+---
+|
+---
+|
 | 仅 CPU 边缘部署 | MeloTTS | CPU 上唯一 RTF < 0.5 的选项，模型不到 300MB |
 | 语音克隆应用 | Coqui XTTS | 专用语音克隆管线，6 秒参考音频即可 |
 | 中文对话 AI | ChatTTS | 针对对话韵律优化 |
@@ -391,7 +388,15 @@ iface.launch(server_name='0.0.0.0', server_port=7860)
 ### 内存占用对比
 
 | 工具 | 峰值内存 (CPU) | 峰值显存 (GPU) | 冷启动时间 |
-|------|--------------|--------------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **MeloTTS** | ~350 MB | ~1.2 GB | ~2 秒 |
 | **Coqui XTTS** | ~2.1 GB | ~4.5 GB | ~8 秒 |
 | **ChatTTS** | ~1.8 GB | ~3.8 GB | ~6 秒 |
@@ -417,13 +422,11 @@ from melo.api import TTS
 import functools
 
 @functools.lru_cache(maxsize=6)
-def get_model(language):
-    """缓存模型加载器 —— 模型只加载一次并复用。"""
+def get_model(language): """缓存模型加载器 —— 模型只加载一次并复用。"""
     return TTS(language=language, device=auto)
 
 # 启动时预热所有语言
-for lang in [EN, ZH, ES, FR, JA, KO]:
-    get_model(lang)
+for lang in [EN, ZH, ES, FR, JA, KO]: get_model(lang)
 print("所有模型已加载完毕。")
 ```
 
@@ -442,14 +445,12 @@ texts = [
     "第三条待合成语句。",
 ]
 
-def synth(text):
-    output_path = f"batch_{hash(text)}.wav"
+def synth(text): output_path = f"batch_{hash(text)}.wav"
     model.tts_to_file(text, speaker_ids['EN-Default'], output_path)
     return output_path
 
 # 并行批处理
-with concurrent.futures.ThreadPoolExecutor(max_workers=4) as executor:
-    results = list(executor.map(synth, texts))
+with concurrent.futures.ThreadPoolExecutor(max_workers=4) as executor: results = list(executor.map(synth, texts))
 ```
 
 ### Gunicorn + FastAPI 生产服务器
@@ -510,13 +511,10 @@ tts_requests = Counter(melotts_requests_total, 'TTS 请求总数', [language, sp
 tts_duration = Histogram(melotts_duration_seconds, 'TTS 生成耗时')
 
 @app.get("/metrics")
-async def metrics():
-    return Response(content=generate_latest(), media_type="text/plain")
+async def metrics(): return Response(content=generate_latest(), media_type="text/plain")
 
 @app.post("/tts")
-async def text_to_speech(req: TTSRequest):
-    with tts_duration.time():
-        # ... 现有 TTS 逻辑 ...
+async def text_to_speech(req: TTSRequest): with tts_duration.time(): # ... 现有 TTS 逻辑 ...
         tts_requests.labels(language=req.language, speaker=req.speaker).inc()
 ```
 
@@ -551,7 +549,17 @@ server {
 ### 详细功能矩阵
 
 | 能力 | MeloTTS | Coqui TTS | ChatTTS | Bark |
-|------|---------|-----------|---------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **架构** | VITS2 + BERT | VITS / XTTS | GPT-based | GPT-style transformer |
 | **训练数据** | 多语言语料库 | LJSpeech + 自定义 | 对话数据 | Suno 内部数据 |
 | **开放权重** | 是 | 是 | 是 | 是 |
@@ -665,7 +673,6 @@ MeloTTS 在开源 TTS 领域占据独特位置：它是唯一将多语言支持�
 - [MeloTTS 性能深入分析](https://blog.csdn.net/gitblog_02862/article/details/150221387)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -691,8 +698,8 @@ MeloTTS 在开源 TTS 领域占据独特位置：它是唯一将多语言支持�
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [ray-distributed-ai-framework-complete-guide](melotts)
@@ -701,6 +708,6 @@ MeloTTS 在开源 TTS 领域占据独特位置：它是唯一将多语言支持�
 - [agent-reach-internet-access-ai-agents](melotts)
 - [microsoft-markitdown-file-to-markdown-converter-cli](melotts)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

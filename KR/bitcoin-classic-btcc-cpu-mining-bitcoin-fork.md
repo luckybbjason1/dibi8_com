@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/bitcoin-classic-btcc-cpu-mining-bitcoin-fork" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/bitcoin-classic-btcc-cpu-mining-bitcoin-fork" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/bitcoin-classic-btcc-cpu-mining-bitcoin-fork" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/bitcoin-classic-btcc-cpu-mining-bitcoin-fork" />
 title: "Bitcoin-Classic (BTCC): 일반인도 CPU로 채굴할 수 있는 비트코인 복제판"
 description: "Bitcoin-Classic (BTCC)는 Bitcoin Core v28.1을 기반으로 재구축된 탈중앙화 디지털 통화입니다. CPU 채굴을 지원하며 내장 그래픽 채굴기를 제공하여 일반 사용자도 초기 비트코인 채굴을 경험할 수 있습니다."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - C++
+tech_stack: - C++
 application_domain: "Ai Tools"
 source_version: ""
 licensing_model: "Open Source"
@@ -24,10 +18,8 @@ maintainer: "Marcus-Vane"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases:
-- /kr/posts/bitcoin-classic-btcc-cpu-mining-bitcoin-fork/
-faqs:
-  - q: '일반 CPU로 Bitcoin-Classic (BTCC)을 채굴할 수 있나요?'
+aliases: - /kr/posts/bitcoin-classic-btcc-cpu-mining-bitcoin-fork/
+faqs: - q: '일반 CPU로 Bitcoin-Classic (BTCC)을 채굴할 수 있나요?'
     a: '네. BTCC는 일반 가정용 컴퓨터 CPU도 채굴에 참여할 수 있도록 설계되었으며, ASIC 장비나 전용 GPU가 필요하지 않습니다. 네트워크 해시레이트가 매우 낮기 때문에 일반 CPU로도 실제로 블록 보상을 받을 수 있습니다.'
   - q: 'Bitcoin-Classic (BTCC)의 총 공급량과 블록 보상은 얼마인가요?'
     a: 'BTCC의 총 공급량은 비트코인과 동일한 21,000,000개입니다. 초기 블록 보상은 50 BTCC이며, 210,000블록(약 4년)마다 반감기가 적용되고, 블록 생성 시간은 10분입니다.'
@@ -39,7 +31,6 @@ faqs:
     a: '아닙니다. BTCC는 현재 시가총액과 유동성이 거의 없고, 주요 거래소 지원도 없으며, 커뮤니티 규모도 매우 작습니다(GitHub 스타 약 18-23개). 투자 대상이 아닌 교육 및 실험적 프로젝트로 보는 것이 가장 적합합니다.'
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/bitcoin-classic-btcc-cpu-mining-bitcoin-fork/ -->
 # Bitcoin-Classic (BTCC): 일반인도 CPU로 채굴할 수 있는 비트코인 복제판
 
 {</* resource-info */>}
@@ -163,13 +154,11 @@ BTCC는 **낮은 난이도, CPU 친화적 채굴, 그래픽 인터페이스**를
 
 Bitcoin-Classic은 **교육적이고 체험적인** 성격이 강한 프로젝트입니다. 기술적 배경이 전혀 없는 사용자도 "블록을 채굴하는" 성취감을 직접 느낄 수 있습니다.
 
-하지만 현실적인 과제도 있습니다:
-- GitHub Stars 18개로 극소수 커뮤니티
+하지만 현실적인 과제도 있습니다: - GitHub Stars 18개로 극소수 커뮤니티
 - 주요 거래소 지원 없음
 - 장기 지속 가능성 불확실
 
-**적합한 사람**:
-- 블록체인 기초 원리를 배우고 싶은 기술 애호가
+**적합한 사람**: - 블록체인 기초 원리를 배우고 싶은 기술 애호가
 - 초기 비트코인 채굴 분위기를 체험하고 싶은 사용자
 - 암호화폐와 PoW 합의 메커니즘을 공부하는 학생
 
@@ -181,16 +170,13 @@ Bitcoin-Classic은 **교육적이고 체험적인** 성격이 강한 프로젝�
 
 ## 추천 도구
 
-오픈소스 AI 도구 개발/배포 시 권장:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
+오픈소스 AI 도구 개발/배포 시 권장: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
 - **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Anthropic Claude / OpenAI / DeepSeek API 프록시. 위의 AI 도구 대부분 (챗봇, 코드 생성, 번역, 검색 등) LLM API 키 필요 — 이 프록시로 안정적인 톱 모델 액세스, 공식 가격의 ~30%.
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -218,25 +204,20 @@ Bitcoin-Classic은 **교육적이고 체험적인** 성격이 강한 프로젝�
 
 ## Why This Matters
 
-Understanding bitcoin-classic (btcc): 일반인도 cpu로 채굴할 수 있는 비트코인 복제판 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding bitcoin-classic (btcc): 일반인도 cpu로 채굴할 수 있는 비트코인 복제판 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

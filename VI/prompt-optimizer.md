@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/prompt-optimizer" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/prompt-optimizer" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/prompt-optimizer" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/prompt-optimizer" />
 title: "Prompt Optimizer — Tái Cấu Trúc 5 Phần, Bỏ Từ Thừa, Tiết...
 description: "Công cụ tối ưu Prompt trực tuyến miễn phí. Phát hiện từ thừa, tái cấu trúc theo khung 5 phần (Vai trò / Nhiệm vụ / Bối cảnh / Ràng buộc / Ví dụ / Định dạng), so sánh token GPT-4o / Claude Sonnet / Gemini / DeepSeek V4 — hoàn toàn phía client, prompt không lên cloud."
 date: 2026-05-19
@@ -12,12 +7,10 @@ layout: "tool-prompt-optimizer"
 tool_id: "prompt-optimizer"
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/prompt-optimizer/ -->
 # Prompt Optimizer — Tái Cấu Trúc 5 Phần, Bỏ Từ Thừa, Tiết Kiệm Token (GPT / Claude / Gemini / DeepSeek)
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -45,25 +38,20 @@ tool_id: "prompt-optimizer"
 
 ## Why This Matters
 
-Understanding prompt optimizer — tái cấu trúc 5 phần, bỏ từ thừa, tiết kiệm token (gpt / claude / gemini / deepseek) is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding prompt optimizer — tái cấu trúc 5 phần, bỏ từ thừa, tiết kiệm token (gpt / claude / gemini / deepseek) is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -89,9 +77,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
-Understanding these core concepts will help you master the topic:
-
-1. **Abstraction**: Hide complexity behind simple interfaces
+Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces
 2. **Composition**: Build complex systems from simple parts
 3. **Immutability**: Prefer immutable data structures
 4. **Error Handling**: Handle failures gracefully
@@ -112,9 +98,7 @@ Understanding these core concepts will help you master the topic:
                      └─────────────┘
 ```
 
-Understanding these core concepts will help you master the topic:
-
-1. **Abstraction**: Hide complexity behind simple interfaces
+Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces
 2. **Composition**: Build complex systems from simple parts
 3. **Immutability**: Prefer immutable data structures
 4. **Error Handling**: Handle failures gracefully
@@ -135,9 +119,7 @@ Understanding these core concepts will help you master the topic:
                      └─────────────┘
 ```
 
-Understanding these core concepts will help you master the topic:
-
-1. **Abstraction**: Hide complexity behind simple interfaces
+Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces
 2. **Composition**: Build complex systems from simple parts
 3. **Immutability**: Prefer immutable data structures
 4. **Error Handling**: Handle failures gracefully
@@ -158,9 +140,7 @@ Understanding these core concepts will help you master the topic:
                      └─────────────┘
 ```
 
-Understanding these core concepts will help you master the topic:
-
-1. **Abstraction**: Hide complexity behind simple interfaces
+Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces
 2. **Composition**: Build complex systems from simple parts
 3. **Immutability**: Prefer immutable data structures
 4. **Error Handling**: Handle failures gracefully
@@ -181,9 +161,7 @@ Understanding these core concepts will help you master the topic:
                      └─────────────┘
 ```
 
-Understanding these core concepts will help you master the topic:
-
-1. **Abstraction**: Hide complexity behind simple interfaces
+Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces
 2. **Composition**: Build complex systems from simple parts
 3. **Immutability**: Prefer immutable data structures
 4. **Error Handling**: Handle failures gracefully
@@ -204,9 +182,7 @@ Understanding these core concepts will help you master the topic:
                      └─────────────┘
 ```
 
-Understanding these core concepts will help you master the topic:
-
-1. **Abstraction**: Hide complexity behind simple interfaces
+Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces
 2. **Composition**: Build complex systems from simple parts
 3. **Immutability**: Prefer immutable data structures
 4. **Error Handling**: Handle failures gracefully

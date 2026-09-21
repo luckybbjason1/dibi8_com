@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/langflow-visual-llm-workflow-builder-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/langflow-visual-llm-workflow-builder-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/langflow-visual-llm-workflow-builder-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/langflow-visual-llm-workflow-builder-2026" />
 title: 'Langflow：148k 星标的视觉化 LLM 工作流——2026 技术深度解析'
 description: 'Langflow (LF) 简化了 AI 代理和工作流的构建。它集成了 LangChain、OpenAI、Hugging Face 和 Anthropic。本文涵盖了其设置、集成、基准测试和生产环境强化。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-23
-lastmod:  2026-05-23slug: 'langflow'
+lastmod: 2026-05-23
+slug: 'langflow'
 category: 'llm-frameworks'
 tags: [Langflow, LLM 工作流, 可视化编程, AI 代理, LangChain, 流式编程, 提示工程, 部署, 低代码 AI]
 github_repo: 'https://github.com/langflow-ai/langflow'
@@ -15,10 +11,7 @@ stars: 148710
 maintainer: 'langflow-ai'
 license: MIT
 featureImage: 'https://deepwiki.com/badge.svg'
-lang: zh
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/langflow-visual-llm-workflow-builder-2026/ -->
 
 # Langflow：148k 星标的视觉化 LLM 工作流——2026 技术深度解析
 
@@ -261,33 +254,25 @@ from langflow import CustomCustomComponent
 from langflow.field_typing import Tool, Prompt
 from typing import Dict, Any
 
-class WebScraperTool(CustomCustomComponent):
-    display_name: str = "Web Scraper Tool"
+class WebScraperTool(CustomCustomComponent): display_name: str = "Web Scraper Tool"
     description: str = "A tool to scrape content from a URL."
-    icon = "Spider" # Optional icon for the UI
 
-    def build_config(self) -> Dict[str, Any]:
-        return {
+    def build_config(self) -> Dict[str, Any]: return {
             "url": {"display_name": "URL", "field_type": "str", "required": True},
             "selector": {"display_name": "CSS Selector (Optional)", "field_type": "str", "required": False},
         }
 
-    def build(self, url: str, selector: str = None) -> Tool:
-        try:
-            from bs4 import BeautifulSoup
+    def build(self, url: str, selector: str = None) -> Tool: try: from bs4 import BeautifulSoup
             import requests
 
-            def scrape_webpage(input_url: str, css_selector: str = None) -> str:
-                """Scrapes text content from a given URL, optionally filtered by a CSS selector."""
+            def scrape_webpage(input_url: str, css_selector: str = None) -> str: """Scrapes text content from a given URL, optionally filtered by a CSS selector."""
                 response = requests.get(input_url, timeout=10)
                 response.raise_for_status() # Raise an exception for HTTP errors
                 soup = BeautifulSoup(response.text, 'html.parser')
 
-                if css_selector:
-                    elements = soup.select(css_selector)
+                if css_selector: elements = soup.select(css_selector)
                     return "\n".join([elem.get_text(separator=" ", strip=True) for elem in elements])
-                else:
-                    return soup.get_text(separator=" ", strip=True)
+                else: return soup.get_text(separator=" ", strip=True)
 
             # Return a LangChain Tool object
             return Tool(
@@ -295,10 +280,8 @@ class WebScraperTool(CustomCustomComponent):
                 description="Use this tool to scrape text content from a URL. Input should be a URL string.",
                 func=lambda u: scrape_webpage(u, selector)
             )
-        except ImportError:
-            raise ImportError("Please install beautifulsoup4 and requests: `pip install beautifulsoup4 requests`")
-        except Exception as e:
-            # Log the error and re-raise or return an informative message
+        except ImportError: raise ImportError("Please install beautifulsoup4 and requests: `pip install beautifulsoup4 requests`")
+        except Exception as e: # Log the error and re-raise or return an informative message
             print(f"Error in WebScraperTool: {e}")
             return Tool(
                 name="error_tool",
@@ -350,7 +333,7 @@ curl -X POST "http://localhost:7860/api/v1/run/{flow_id}" \
 Langflow 是旨在简化 LLM 应用程序开发的众多工具之一。以下是它与一些主要替代方案的比较：
 
 | 特性 / 工具         | Langflow                                     | FlowiseAI                                   | Chainlit                                    | Dify                                        |
-| :--------------------- | :------------------------------------------- | :------------------------------------------ | :------------------------------------------ | :------------------------------------------ |
+| :--- | :--- | :--- | :--- | :--- |
 | **可视化构建器**     | 是（拖放节点图）                             | 是（拖放节点图）                            | 否（代码优先，然后 UI 交互）                | 是（基于画布的工作流）                      |
 | **核心框架**     | LangChain                                    | LangChain                                   | LangChain, LlamaIndex, OpenAI Assistant API | RAG, Agents, Workflows (内部引擎)           |
 | **自定义组件**  | 是（通过 `CustomComponent` 的 Python 代码）  | 是（通过自定义工具的 Python 代码）          | 是（任何 Python 代码）                      | 是（工具、函数、提示变量）                  |
@@ -406,8 +389,8 @@ Langflow 已将自己确立为 LLM 开发生态系统中的关键工具，其令
 
 加入 [dibi8 中文 Telegram 群](https://t.me/DIBI8_Group/4)，了解更多关于 AI 工具和框架的讨论。
 
----
 
+---
 ### 来源与延伸阅读
 
 *   **Langflow GitHub 仓库**：[https://github.com/langflow-ai/langflow](https://github.com/langflow-ai/langflow)
@@ -420,11 +403,10 @@ Langflow 已将自己确立为 LLM 开发生态系统中的关键工具，其令
 *   [使用 Docker 部署 LLM 应用](dibi8-internal-link-deploying-llm-apps-with-docker)
 *   [AI 代理简介](dibi8-internal-link-introduction-to-ai-agents)
 
+
 ---
 **披露**：上方部分链接含联盟推广。如通过链接注册，dibi8.com 可能获得佣金，不影响你的成本。这帮助 dibi8 持续免费运营。
 ---
-
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,19 +1,14 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/oh-my-pi" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/oh-my-pi" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/oh-my-pi" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/oh-my-pi" />
 title: "Oh My Pi：将任何树莓派变成智能设备——12K 星项目 2026"
-description: "Oh My Pi（12,554 颗星）通过一键式设置和自动化配置，将树莓派设备转变为智能家居中心、媒体中心和开发工作站。". Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "Oh My Pi（12,554 颗星）通过一键式设置和自动化配置，将树莓派设备转变为智能家居中心、媒体中心和开发工作站。"
 date: 2026-06-15
-lastmod:  2026-06-15slug: oh-my-pi
+lastmod: 2026-06-15
+slug: oh-my-pi
 category: dev-utils
 tags: ['树莓派', '智能家居', '物联网', '边缘计算', '家庭自动化', 'linux', '自动化']
 github_repo: "https://github.com/can1357/oh-my-pi"
 license: MIT
-images:
-  - url: "https://opengraph.github.com/github/can1357/oh-my-pi"
+images: - url: "https://opengraph.github.com/github/can1357/oh-my-pi"
     alt: "Oh My Pi GitHub OG"
     role: reference
   - url: "https://raw.githubusercontent.com/can1357/oh-my-pi/main/assets/pi-setup.png"
@@ -22,11 +17,7 @@ images:
   - url: "https://raw.githubusercontent.com/can1357/oh-my-pi/main/assets/smart-home-diagram.png"
     alt: "智能家居架构图"
     role: diagram
-lang: zh
-featureImage: /images/articles/oh-my-pi-turn-any-raspberry-pi-into-a-smart-device-12k-star-.jpg
----
-
-<!-- canonical: https://dibi8.com/zh/tools/oh-my-pi/ -->
+featureImage: /images/articles/oh-my-pi-turn-any-raspberry-pi-into-a-smart-device-12k-star-.jpg---
 
 ## 快速概览
 
@@ -108,42 +99,27 @@ Oh My Pi 对所有服务部署使用 Docker Compose：
 ```yaml
 # 安装服务后生成的 docker-compose.yaml
 version: "3.9"
-services:
-  homeassistant:
-    image: ghcr.io/home-assistant/home-assistant:stable
-    volumes:
-      - ha-data:/config
+services: homeassistant: image: ghcr.io/home-assistant/home-assistant:stable
+    volumes: - ha-data:/config
       - /etc/localtime:/etc/localtime:ro
-    ports:
-      - "8123:8123"
+    ports: - "8123:8123"
     restart: unless-stopped
 
-  adguard:
-    image: adguard/adguardhome:latest
-    volumes:
-      - adguard-conf:/opt/adguardhome/conf
+  adguard: image: adguard/adguardhome:latest
+    volumes: - adguard-conf:/opt/adguardhome/conf
       - adguard-work:/opt/adguardhome/work
-    ports:
-      - "53:53/tcp"
+    ports: - "53:53/tcp"
       - "53:53/udp"
       - "3000:3000"
       - "80:80/tcp"
     restart: unless-stopped
 
-  vaultwarden:
-    image: vaultwarden/server:latest
-    volumes:
-      - vw-data:/data
-    environment:
-      SIGNUPS_ALLOWED: "false"
+  vaultwarden: image: vaultwarden/server:latest
+    volumes: - vw-data:/data
+    environment: SIGNUPS_ALLOWED: "false"
     restart: unless-stopped
 
-volumes:
-  ha-data:
-  adguard-conf:
-  adguard-work:
-  vw-data:
-```
+volumes: ha-data: adguard-conf: adguard-work: vw-data: ```
 
 ### 网络配置
 
@@ -165,7 +141,15 @@ sudo omp firewall enable --allow 22 --allow 80 --allow 443 --allow 8123
 Oh My Pi 支持跨 6 个类别的 20+ 种服务：
 
 | 类别 | 服务 | 安装时间 | 资源占用 |
-|------|------|---------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **智能家居** | Home Assistant、Zigbee2MQTT | 5 分钟 | 512MB 内存 |
 | **网络** | AdGuard、Pi-hole、PiVPN | 3 分钟 | 128MB 内存 |
 | **媒体** | Jellyfin、Plex（手动）、Navidrome | 5 分钟 | 256MB 内存 |
@@ -187,7 +171,17 @@ sudo omp install homeassistant zigbee2mqtt adguard grafana vaultwarden
 市面上存在多个树莓派自动化项目，但 Oh My Pi 脱颖而出：
 
 | 特性 | Oh My Pi | CasaOS | Raspberry Pi Imager | OSMC |
-|------|----------|--------|-------------------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 星标数 | 12,554 | 18K+ | N/A | 3.2K |
 | 服务数量 | 20+ | 15+ | N/A | 1（仅媒体） |
 | 一键安装 | 是 | 是 | 否 | 否 |
@@ -207,35 +201,25 @@ sudo omp install homeassistant zigbee2mqtt adguard grafana vaultwarden
 
 ```yaml
 # my-service.yaml — 自定义服务定义
-service:
-  name: my-custom-app
+service: name: my-custom-app
   version: "1.0"
   description: "自定义应用程序部署"
-  
-  docker:
-    image: "myapp:latest"
-    ports:
-      - "8080:8080"
-    volumes:
-      - myapp-data:/data
-    environment:
-      APP_ENV: production
+  docker: image: "myapp:latest"
+    ports: - "8080:8080"
+    volumes: - myapp-data:/data
+    environment: APP_ENV: production
       LOG_LEVEL: info
   
-  health_check:
-    url: "http://localhost:8080/health"
+  health_check: url: "http://localhost:8080/health"
     interval: "30s"
     retries: 3
   
-  resources:
-    cpu_limit: "0.5"
+  resources: cpu_limit: "0.5"
     memory_limit: "256M"
   
-  backup:
-    enabled: true
+  backup: enabled: true
     schedule: "0 2 * * *"  # 每天凌晨 2 点
-    volumes:
-      - myapp-data
+    volumes: - myapp-data
 ```
 
 ### 自动备份
@@ -400,16 +384,15 @@ curl -sSL https://ohmypi.sh/install | sudo bash
 
 **相关文章**：[智能家居指南](https://dibi8.com/) · [使用 Pi 进行边缘计算](https://dibi8.com/ai-tools/)
 
----
 
+---
 **来源与延伸阅读**：
 - GitHub 仓库：https://github.com/can1357/oh-my-pi
 - 树莓派文档：https://www.raspberrypi.com/documentation/
 - Docker 文档：https://docs.docker.com/
 
 
-**Sources & Further Reading**:
-- GitHub仓库: https://github.com/can1357/oh-my-pi
+**Sources & Further Reading**: - GitHub仓库: https://github.com/can1357/oh-my-pi
 - Raspberry Pi docs: https://www.raspberrypi.com/documentation/
 - Docker docs: https://docs.docker.com/
 **行动号召**：加入 DIBI8 IoT 社区 Telegram —— [t.me/DIBI8_Group](https://t.me/DIBI8_Group)
@@ -417,7 +400,6 @@ curl -sSL https://ohmypi.sh/install | sudo bash
 **披露**：本文包含联盟链接。如果你通过我们的链接注册，我们可能会获得佣金，这不会给你增加额外费用。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -445,25 +427,20 @@ curl -sSL https://ohmypi.sh/install | sudo bash
 
 ## Why This Matters
 
-Understanding oh my pi：将任何树莓派变成智能设备——12k 星项目 2026 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding oh my pi：将任何树莓派变成智能设备——12k 星项目 2026 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -484,8 +461,8 @@ Oh My Pi：将任何树莓派变成智能设备——12K 星项目 2026 represen
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 

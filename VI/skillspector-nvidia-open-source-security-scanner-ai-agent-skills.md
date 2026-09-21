@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/skillspector-nvidia-open-source-security-scanner-ai-agent-skills" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/skillspector-nvidia-open-source-security-scanner-ai-agent-skills" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/skillspector-nvidia-open-source-security-scanner-ai-agent-skills" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/skillspector-nvidia-open-source-security-scanner-ai-agent-skills" />
 title: 'SkillSpector: Công cụ quét bảo mật mã nguồn mở cho kỹ nă...
 description: 'Một công cụ quét bảo mật dành riêng cho kỹ năng AI Agent, phát hiện lỗ hổng, mẫu độc hại và rủi ro bảo mật trước khi cài đặt kỹ năng. Đạt 10K sao từ NVIDIA. Bảo vệ Claude Code, Codex CLI và các khung tác nhân khác.'
 date: 2026-06-25
@@ -17,10 +12,6 @@ lang: vi
 github_repo: https://github.com/NVIDIA/SkillSpector
 license: Apache-2.0
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/skillspector-nvidia-open-source-security-scanner-ai-agent-skills/ -->
-
-
 
 # SkillSpector: Công cụ quét bảo mật mã nguồn mở cho kỹ năng AI Agent của NVIDIA
 
@@ -36,9 +27,7 @@ Khi kỹ năng AI Agent ngày càng phổ biến, các rủi ro bảo mật khi 
 
 SkillSpector ra đời từ một quan sát quan trọng: khi kỹ năng AI Agent lan rộng trong quy trình làm việc của nhà phát triển, diện tích bề mặt bảo mật mở rộng đáng kể. Không giống như các gói phần mềm truyền thống phải trải qua đánh giá mã nghiêm ngặt, nhiều kỹ năng agent chỉ là các tệp văn bản đơn giản (SKILL.md) hướng dẫn LLM thực hiện các thao tác tùy ý — bao gồm thực thi lệnh shell, truy cập API và sửa đổi tệp.
 
-Công cụ cung cấp:
-
-- **Quét lỗ hổng tự động** cho các tệp kỹ năng AI Agent
+Công cụ cung cấp: - **Quét lỗ hổng tự động** cho các tệp kỹ năng AI Agent
 - **Phát hiện hành vi độc hại dựa trên mẫu** bao gồm tiêm lệnh, đánh cắp dữ liệu và leo thang đặc quyền
 - **Phân tích theo khung cụ thể** cho Claude Code, GitHub Copilot, Codex CLI và nhiều hơn nữa
 - **Hướng dẫn khắc phục** với các sửa đổi cụ thể cho từng lỗ hổng được phát hiện
@@ -109,9 +98,7 @@ docker run -d \
 
 ### Danh mục phát hiện lỗ hổng
 
-SkillSpector phát hiện lỗ hổng trên nhiều danh mục:
-
-| Danh mục | Mô tả | Mức độ nghiêm trọng |
+SkillSpector phát hiện lỗ hổng trên nhiều danh mục: | Danh mục | Mô tả | Mức độ nghiêm trọng |
 |
 Tham gia cộng đồng: [Telegram](https://t.me/DIBI8_Group) · [HuggingFace](https://huggingface.co/collections/nvidia/cosmos3)
 
@@ -120,7 +107,6 @@ Liên kết nội bộ: [nvidia-cosmos-world-models-platform-2026](https://dibi8
 **Tiết lộ**: Bài viết này đề cập đến các công cụ có thể có quan hệ liên kết. Chúng tôi không chấp nhận thanh toán cho đánh giá. Tất cả ý kiến đều là của riêng chúng tôi.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -148,25 +134,20 @@ Liên kết nội bộ: [nvidia-cosmos-world-models-platform-2026](https://dibi8
 
 ## Why This Matters
 
-Understanding skillspector: công cụ quét bảo mật mã nguồn mở cho kỹ năng ai agent của nvidia is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding skillspector: công cụ quét bảo mật mã nguồn mở cho kỹ năng ai agent của nvidia is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

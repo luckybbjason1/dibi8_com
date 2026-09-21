@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/claude-code-subagent-patterns-multi-agent-workflows-2026" />
 title: 'Claude Code Subagent Patterns: 5 Multi-Agent Workflows T...
 description: 'Five battle-tested Claude Code subagent patterns — parallel research, isolated worktrees, specialist delegation, context protection, and pipeline orchestration — with real prompts and tradeoffs from production use.'
 date: 2026-05-28 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['claude-code', subagents, 'multi-agent', 'ai-coding-agents', 'llm-frameworks', 'developer-tools', 'agent-sdk']
-aliases:
-- /posts/claude-code-subagent-patterns/
-faq:
-  - q: "What exactly is a subagent in Claude Code, and how is it different from running another instance of the CLI?"
+aliases: - /posts/claude-code-subagent-patterns/
+faq: - q: "What exactly is a subagent in Claude Code, and how is it different from running another instance of the CLI?"
     a: "A subagent is a sandboxed Claude conversation spawned from within an active Claude session via the Agent (Task) tool. The parent only sees the subagent's final report — not the intermediate tool calls, file reads, or thinking. This is the key difference from launching a second CLI: the parent's context window is protected from the subagent's exploration noise. Subagents are spawned for parallel research, deep code exploration, and isolated experiments where you don't want the parent's working memory polluted."
   - q: "When should I NOT use a subagent and just keep working in the parent session?"
     a: "Skip subagents for trivial lookups where the parent already has the file open or the context loaded, for sequential edits where you need to see each intermediate state, and for tightly-coupled changes where the subagent would need to communicate back-and-forth (subagents are one-shot — they return a single report). The rule of thumb: if you can answer it in three or fewer tool calls from your current state, do it inline."
@@ -56,8 +52,7 @@ If you're already using Claude Code via the [official CLI](https://docs.anthropi
 **Pattern.** Spawn three Explore subagents in parallel, one per question. Each runs in its own sandboxed context. Each returns a short report. Your parent sees three concise paragraphs instead of three grep dumps.
 
 ```
-Single message → 3 Agent tool calls:
-  - Agent("Find auth handlers", subagent_type="Explore", prompt="...")
+Single message → 3 Agent tool calls: - Agent("Find auth handlers", subagent_type="Explore", prompt="...")
   - Agent("Map state management", subagent_type="Explore", prompt="...")
   - Agent("Find deprecated fn Z usages", subagent_type="Explore", prompt="...")
 ```
@@ -74,7 +69,7 @@ Single message → 3 Agent tool calls:
 
 ```
 Agent({
-  description: "Try the controller-level refactor",
+  description: "Try the controller-level refactor"
   isolation: "worktree",
   prompt: "Refactor controllers/orders.rb to extract the validation logic..."
 })
@@ -92,7 +87,7 @@ Agent({
 
 ```
 Agent({
-  description: "Independent code review",
+  description: "Independent code review"
   subagent_type: "code-reviewer",
   prompt: "Review the changes on branch feat/payment-gateway. I want a second
    opinion on the retry logic — I've checked idempotency but want
@@ -142,9 +137,7 @@ This is the opposite of the "one super-agent does everything" instinct that domi
 
 ## Setting Up Production-Ready Claude Code
 
-To run multi-agent workflows at scale you need three pieces of infrastructure:
-
-1. **A reliable host for long-running sessions.** If you're running Claude Code in CI or against a server-side codebase, you need a VPS that won't drop your SSH session or get throttled. **{{< aff "htstack" "footer-cta" "HTStack" >}}** — Hong Kong VPS with low-latency access from mainland China and stable BGP routing. Same IDC that hosts dibi8.com, so we run our own multi-agent pipelines on it. Solid value tier for $5-12/month.
+To run multi-agent workflows at scale you need three pieces of infrastructure: 1. **A reliable host for long-running sessions.** If you're running Claude Code in CI or against a server-side codebase, you need a VPS that won't drop your SSH session or get throttled. **{{< aff "htstack" "footer-cta" "HTStack" >}}** — Hong Kong VPS with low-latency access from mainland China and stable BGP routing. Same IDC that hosts dibi8.com, so we run our own multi-agent pipelines on it. Solid value tier for $5-12/month.
 
 2. **A cloud playground for parallel experiments.** When you're fanning out 6+ subagents that each need their own worktree, you want spare CPU. **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 free credit for 60 days across 14+ global regions. Indie devs use this to host Claude Code orchestrators alongside their main app without resource contention.
 
@@ -167,7 +160,6 @@ Start with Pattern 1 (parallel research fan-out) — it's the lowest friction ad
 The instinct to "just keep typing into the main session" dies hard. Override it. Spawn the subagent.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -193,8 +185,8 @@ The instinct to "just keep typing into the main session" dies hard. Override it.
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [claude-code-vs-cline](claude-code-subagent-patterns-multi-agent-workflows-2026)
@@ -203,8 +195,8 @@ The instinct to "just keep typing into the main session" dies hard. Override it.
 - [claude-code-vs-aider](claude-code-subagent-patterns-multi-agent-workflows-2026)
 - [cursor-vs-claude-code](claude-code-subagent-patterns-multi-agent-workflows-2026)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

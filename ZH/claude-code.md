@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-code" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code" />
 title: 'Claude Code: 125K+ Stars — 终端 AI 编程代理完整对比 2026'
 description: 'Claude Code 是 Anthropic 的终端编程代理工具，支持 VS Code、Cursor、GitHub、GitLab。涵盖安装教程、基准测试，以及与 Aider、OpenHands 和 Codex CLI 的对比分析。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['claude-code', 'ai-coding-agent', 终端编程, anthropic, claude教程, 'claude-code-vs-aider', 'claude-code安装']
-aliases:
-- /zh/posts/claude-code/
+aliases: - /zh/posts/claude-code/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/claude-code/ -->
 
 {{</* resource-info */>}}
 
@@ -61,7 +53,11 @@ Claude Code 作为 Node.js CLI 进程运行，封装了 Claude API。它保持�
 ### 核心概念
 
 | 概念 | 描述 |
-|---------|-------------|
+|
+---
+|
+---
+|
 | `CLAUDE.md` | 项目级配置文件，定义编码标准、约定和自定义指令 |
 | 计划模式 (`/plan`) | Claude 在接触磁盘之前概述所有预期变更，让你拥有审批控制权 |
 | 斜杠命令 | 可复用的工作流快捷方式，如 `/init`、`/desktop`、`/mcp` 和 `/bug` |
@@ -181,21 +177,15 @@ claude auth login --github
 
 ```yaml
 # .gitlab-ci.yml — 运行 Claude Code 进行自动化代码审查
-stages:
-  - review
+stages: - review
 
-claude_review:
-  stage: review
+claude_review: stage: review
   image: node:22
-  before_script:
-    - curl -fsSL https://claude.ai/install.sh | bash
+  before_script: - curl -fsSL https://claude.ai/install.sh | bash
     - export PATH="$HOME/.local/bin:$PATH"
     - claude auth login --token $CLAUDE_API_TOKEN
-  script:
-    - claude review --diff HEAD~1 --output review.json
-  artifacts:
-    reports:
-      codequality: review.json
+  script: - claude review --diff HEAD~1 --output review.json
+  artifacts: reports: codequality: review.json
 ```
 
 ### JetBrains IDE
@@ -216,7 +206,15 @@ SWE-bench Verified 是 AI 编程代理的黄金标准基准测试，衡量解决
 ![Claude Code 实战演示](https://img.youtube.com/vi/iI_zWNunkc4/maxresdefault.jpg)
 
 | 代理 / 模型 | SWE-bench Verified | 日期 | 来源 |
-|---------------|-------------------|------|--------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Claude Code + Opus 4.6 | **80.8%** | 2026-03 | Anthropic |
 | Claude Code + Opus 4.5 | 64.3% | 2025-12 | SWE-bench 排行榜 |
 | Codex CLI + GPT-5.5 | 58.6% | 2026-04 | OpenAI |
@@ -228,7 +226,15 @@ SWE-bench Verified 是 AI 编程代理的黄金标准基准测试，衡量解决
 Terminal-Bench 衡量真实终端任务完成准确率：
 
 | 代理 | 模型 | 准确率 | 排名 |
-|-------|-------|----------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Codex CLI | GPT-5.5 | **82.0%** | #7 |
 | Claude Code | Opus 4.6 | **58.0%** | #51 |
 | Claude Code | Opus 4.5 | 52.1% | #62 |
@@ -239,7 +245,15 @@ Terminal-Bench 衡量真实终端任务完成准确率：
 基于 2026 年第一季度的开发者报告汇总：
 
 | 指标 | Claude Code | Aider | Codex CLI |
-|--------|-------------|-------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 首次提交平均时间 | 4.2 分钟 | 6.1 分钟 | 3.8 分钟 |
 | 多文件重构成功率 | 78% | 62% | 71% |
 | 测试通过率（自主） | 84% | 71% | 79% |
@@ -355,7 +369,17 @@ claude status
 ### 横向功能对比
 
 | 功能 | Claude Code | Aider | OpenHands | Codex CLI |
-|---------|-------------|-------|-----------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **GitHub Stars** | 125,050 | 32,800 | 73,913 | 83,000 |
 | **许可证** | Anthropic 条款 | Apache-2.0 | MIT | Apache-2.0 |
 | **模型支持** | 仅 Claude | 任意 LLM | 任意 LLM | 仅 OpenAI |
@@ -481,12 +505,11 @@ Claude Code 代表了 2026 年最强大的终端原生 AI 编程代理。凭借 
 - [Anthropic 定价页面](https://www.anthropic.com/pricing)
 - [Claude Code 桌面应用下载](https://claude.com/download)
 
----
 
+---
 *免责声明：本文不含联盟营销链接。所有定价和基准测试数据反映截至 2026 年 5 月的公开信息。在购买决策前，请在官方供应商网站上核实当前定价。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -512,8 +535,8 @@ Claude Code 代表了 2026 年最强大的终端原生 AI 编程代理。凭借 
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [claude-code-vs-cline](claude-code)

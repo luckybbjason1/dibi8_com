@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/invokeai" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/invokeai" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/invokeai" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/invokeai" />
 title: 'InvokeAI: 27.2K+ Stars — 2026 完整安装配置指南'
 description: 'InvokeAI（Invoke）是 Stable Diffusion 模型的领先创意引擎，拥有业界领先的 WebUI。兼容 SD 1.5、SDXL、FLUX 和 ControlNet。涵盖 Docker 安装、工作流配置、与 AUTOMATIC1111 和 ComfyUI 的性能对比，以及生产环境加固。'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [invokeai, 'stable diffusion', ai图像生成, docker, flux, sdxl, webui, 开源]
-aliases:
-- /zh/posts/invokeai/
+aliases: - /zh/posts/invokeai/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/invokeai/ -->
 
 {{</* resource-info */>}}
 
@@ -183,50 +175,33 @@ sudo docker compose up -d
 
 x-invokeai: &invokeai
     image: "ghcr.io/invoke-ai/invokeai:latest"
-    build:
-      context: ..
+    build: context: ..
       dockerfile: docker/Dockerfile
-    env_file:
-      - .env
-    environment:
-      - INVOKEAI_ROOT=${CONTAINER_INVOKEAI_ROOT:-/invokeai}
+    env_file: - .env
+    environment: - INVOKEAI_ROOT=${CONTAINER_INVOKEAI_ROOT:-/invokeai}
       - HF_HOME
-    ports:
-      - "${INVOKEAI_PORT:-9090}:${INVOKEAI_PORT:-9090}"
-    volumes:
-      - type: bind
+    ports: - "${INVOKEAI_PORT:-9090}:${INVOKEAI_PORT:-9090}"
+    volumes: - type: bind
         source: ${HOST_INVOKEAI_ROOT:-${INVOKEAI_ROOT:-~/invokeai}}
         target: ${CONTAINER_INVOKEAI_ROOT:-/invokeai}
-        bind:
-          create_host_path: true
+        bind: create_host_path: true
       - ${HF_HOME:-~/.cache/huggingface}:${HF_HOME:-/invokeai/.cache/huggingface}
     tty: true
     stdin_open: true
 
-services:
-  invokeai-cuda:
-    <<: *invokeai
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+services: invokeai-cuda: <<: *invokeai
+    deploy: resources: reservations: devices: - driver: nvidia
               count: 1
               capabilities: [gpu]
 
-  invokeai-cpu:
-    <<: *invokeai
-    profiles:
-      - cpu
+  invokeai-cpu: <<: *invokeai
+    profiles: - cpu
 
-  invokeai-rocm:
-    <<: *invokeai
-    environment:
-      - AMD_VISIBLE_DEVICES=all
+  invokeai-rocm: <<: *invokeai
+    environment: - AMD_VISIBLE_DEVICES=all
       - RENDER_GROUP_ID=${RENDER_GROUP_ID}
     runtime: amd
-    profiles:
-      - rocm
+    profiles: - rocm
 ```
 
 ## 与 Stable Diffusion、ComfyUI 和 ControlNet 集成
@@ -304,7 +279,15 @@ print(response.json()["session_id"])
 ### SDXL 生成速度（RTX 3060 Ti，8GB VRAM）
 
 | 平台 | 768×1024（平均） | 1024×1024（平均） | 说明 |
-|------|-----------------|-------------------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **InvokeAI** | 18.83秒 | 24.44秒 | 专业 UI，队列系统 |
 | **ComfyUI** | 16.16秒 | 21.47秒 | 原始生成速度最快 |
 | **AUTOMATIC1111** | 27.33秒 | 36.00秒 | VRAM 开销最大 |
@@ -315,7 +298,13 @@ print(response.json()["session_id"])
 ### VRAM 使用对比（FLUX Dev，1024×1024）
 
 | 平台 | VRAM 使用 | 说明 |
-|------|----------|------|
+|
+---
+|
+---
+|
+---
+|
 | InvokeAI | 14.2 GB | 高效的模型缓存 |
 | ComfyUI | 13.8 GB | 最低开销 |
 | AUTOMATIC1111 | 16.1 GB | 单体架构 |
@@ -397,19 +386,13 @@ sudo systemctl enable --now invokeai
 
 ```yaml
 # docker-compose.monitoring.yml
-services:
-  prometheus:
-    image: prom/prometheus:latest
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
-    ports:
-      - "9091:9090"
+services: prometheus: image: prom/prometheus:latest
+    volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports: - "9091:9090"
 
-  dcgm-exporter:
-    image: nvcr.io/nvidia/k8s/dcgm-exporter:latest
+  dcgm-exporter: image: nvcr.io/nvidia/k8s/dcgm-exporter:latest
     runtime: nvidia
-    ports:
-      - "9400:9400"
+    ports: - "9400:9400"
 ```
 
 ### 自动备份
@@ -437,7 +420,17 @@ find "$BACKUP_DIR" -name "*.tar.gz" -mtime +7 -delete
 ## 与替代方案对比
 
 | 功能 | InvokeAI | AUTOMATIC1111 | ComfyUI | Fooocus |
-|------|----------|---------------|---------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **WebUI 完善度** | 专业，为创意人员设计 | 功能齐全但较旧 | 极简，节点为主 | 极简，提示词为主 |
 | **节点式工作流** | 是，可视化编辑器 | 否（基于扩展） | 是，原生支持 | 否 |
 | **画布（内/外绘）** | 完整图层画布 | 基础内绘 | 通过自定义节点 | 有限 |
@@ -543,12 +536,11 @@ InvokeAI 在 AI 图像生成生态中填补了特定空白：一款专业级、�
 - [ComfyUI vs InvokeAI vs Fooocus 对比](https://toolhalla.ai/blog/comfyui-vs-invokeai-vs-fooocus-2026)
 - [InvokeAI PyPI 包](https://pypi.org/project/InvokeAI/)
 
----
 
+---
 *本文包含 DigitalOcean 联盟链接。通过此链接注册，我们会在不向你额外收费的情况下获得佣金。这有助于支持网站和我们的开源内容。所有观点和基准测试均为独立制作。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -576,25 +568,20 @@ InvokeAI 在 AI 图像生成生态中填补了特定空白：一款专业级、�
 
 ## Why This Matters
 
-Understanding invokeai: 27.2k+ stars — 2026 完整安装配置指南 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding invokeai: 27.2k+ stars — 2026 完整安装配置指南 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -615,8 +602,8 @@ InvokeAI: 27.2K+ Stars — 2026 完整安装配置指南 represents an important
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*
 

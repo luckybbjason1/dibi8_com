@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/multi-agent-pipeline-postmortem-5-failures-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/multi-agent-pipeline-postmortem-5-failures-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/multi-agent-pipeline-postmortem-5-failures-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/multi-agent-pipeline-postmortem-5-failures-2026" />
 title: 'Báo cáo phân tích sự cố Pipeline đa tác tử: 5 kiểu điều ...
 description: 'Năm kiểu lỗi thực tế của pipeline đa tác tử Claude Code — tin vào báo cáo chưa kiểm chứng, rò rỉ ngữ cảnh, fan-out mất kiểm soát, cắt cụt âm thầm, và worktree mồ côi — mỗi kiểu kèm triệu chứng, nguyên nhân gốc và cách khắc phục.'
 date: 2026-05-28 00:00:00+08:00
@@ -25,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['claude-code', subagents, 'multi-agent', 'agent-sdk', debugging, 'llm-frameworks', 'developer-tools']
-aliases:
-- /posts/multi-agent-pipeline-postmortem/
-faq:
-  - q: "Lỗi đa tác tử phổ biến nhất là gì?"
+aliases: - /posts/multi-agent-pipeline-postmortem/
+faq: - q: "Lỗi đa tác tử phổ biến nhất là gì?"
     a: "Tin vào báo cáo của một subagent mà không kiểm chứng đầu ra thực tế của nó. Subagent trả về một bản tóm tắt bằng văn xuôi về những gì nó định làm — chứ không phải bằng chứng đảm bảo về những gì nó đã làm. Lỗi kinh điển là một orchestrator đọc «tôi đã refactor module auth và tất cả test đều pass», đánh dấu bước đó hoàn tất, rồi đi tiếp — trong khi thực tế subagent chỉ chỉnh sửa hời hợt, qua được type-check nhưng vỡ lúc runtime, và chưa bao giờ thật sự chạy test. Luôn kiểm chứng dựa trên sự thật cơ sở: git diff, mã thoát của test, đọc lại file. Bản tóm tắt là một lời tuyên bố, không phải bằng chứng."
   - q: "Làm sao ngăn hai subagent phá hỏng công việc của nhau?"
     a: "Cấp cho chúng phạm vi tách biệt, và dùng git worktree khi chúng thực hiện chỉnh sửa đáng kể. Sự phá hỏng xảy ra khi hai tác tử cùng ghi vào một file, hoặc cùng giả định một trạng thái working-tree chung mà con kia đã thay đổi bên dưới. Cách khắc phục là cô lập: giới hạn tác tử A vào /auth/ và tác tử B vào /payments/ không chồng lấn, hoặc giao cho mỗi con một worktree để chúng làm việc trên các checkout độc lập. Đừng bao giờ để hai bên ghi cùng chia sẻ một working tree."
@@ -42,7 +35,6 @@ faq:
     a: "Có, khi nhiệm vụ thực sự vượt quá một cửa sổ ngữ cảnh hoặc cần kiểm chứng độc lập — nhưng chính năm lỗi này là lý do bạn không nên với tới nó theo phản xạ. Một tác tử đơn lẻ được prompt tốt luôn thắng một pipeline năm tác tử đầy lỗi. Hãy dùng điều phối khi vấn đề là thật (bao phủ toàn diện, làm việc song song độc lập, rà soát đối kháng), và khi làm vậy hãy cài sẵn các bước kiểm chứng và điều kiện dừng để ngăn các kiểu lỗi này. Sự phức tạp bạn không kiểm chứng được còn tệ hơn sự đơn giản mà bạn kiểm chứng được."
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/multi-agent-pipeline-postmortem-5-failures-2026/ -->
 # Báo cáo phân tích sự cố Pipeline đa tác tử: 5 kiểu điều phối subagent đi sai (2026)
 
 
@@ -98,9 +90,7 @@ Mỗi lỗi trong số này đều chung một gốc rễ: **coi lời tuyên b�
 
 ## Thiết lập Claude Code sẵn sàng cho production
 
-Pipeline đáng tin cậy cần hạ tầng không tự thêm lỗi của riêng nó:
-
-1. **Một máy chủ ổn định cho pipeline dài và cổng CI.** Một phiên SSH bị rớt giữa lúc điều phối là một kiểu lỗi của riêng nó. **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hồng Kông, truy cập Trung Quốc đại lục độ trễ thấp, BGP ổn định. Cùng IDC đang host dibi8.com, nơi chúng tôi chạy chính các pipeline này. 5-12 USD/tháng.
+Pipeline đáng tin cậy cần hạ tầng không tự thêm lỗi của riêng nó: 1. **Một máy chủ ổn định cho pipeline dài và cổng CI.** Một phiên SSH bị rớt giữa lúc điều phối là một kiểu lỗi của riêng nó. **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hồng Kông, truy cập Trung Quốc đại lục độ trễ thấp, BGP ổn định. Cùng IDC đang host dibi8.com, nơi chúng tôi chạy chính các pipeline này. 5-12 USD/tháng.
 
 2. **Dư địa đám mây cho fan-out song song.** Khi bạn (có chủ đích, có ngân sách) fan-out các worker, CPU dư giúp chúng không tranh chấp. **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — 200 USD tín dụng miễn phí trong 60 ngày, hơn 14 khu vực.
 
@@ -118,7 +108,6 @@ Pipeline đáng tin cậy cần hạ tầng không tự thêm lỗi của riêng
 Điều phối đa tác tử đáng giá khi nhiệm vụ thực sự vượt quá một cửa sổ ngữ cảnh hoặc cần kiểm chứng độc lập — nhưng hãy với tới nó một cách có chủ đích, không theo phản xạ. Một tác tử đơn lẻ được prompt tốt luôn thắng một pipeline năm tác tử đầy lỗi. Khi bạn điều phối, sự khác biệt giữa sức mạnh và thảm họa nằm ở một thói quen: **kiểm chứng mọi lời tuyên bố dựa trên sự thật cơ sở, và giới hạn mọi vòng lặp.** Sự phức tạp bạn không kiểm chứng được còn tệ hơn sự đơn giản mà bạn kiểm chứng được.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

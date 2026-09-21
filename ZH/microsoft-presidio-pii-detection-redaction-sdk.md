@@ -1,17 +1,10 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/microsoft-presidio-pii-detection-redaction-sdk" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/microsoft-presidio-pii-detection-redaction-sdk" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/microsoft-presidio-pii-detection-redaction-sdk" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/microsoft-presidio-pii-detection-redaction-sdk" />
-lang: zh
 slug: microsoft-presidio-pii-detection-redaction-sdk
 title: Presidio 评论：微软的开源个人身份信息检测和数据脱敏框架（9.4K 星）
 description: 'Presidio（在 GitHub 上有 9.4K+ 星）由微软开发，是一个开源框架，用于检测、编辑、掩码和匿名化文本、图像及结构化数据中的敏感数据（PII）。支持自然语言处理（NLP）、正则表达式、基于规则的识别、DICOM 图像编辑以及可自定义的处理流程。采用 MIT 许可证，获得 OpenSSF 最佳实践认证。'
 date: 2026-06-22 00:00:00+08:00
 lastmod: 2026-06-22 00:00:00+08:00
-tech_stack:
-  - Python 3.8+
+tech_stack: - Python 3.8+
   - spaCy
   - Transformers
   - Docker
@@ -29,10 +22,8 @@ last_maintained: '2026-06-21'
 draft: false
 categories: ['dev-utils']
 tags: ["要塞", "个人身份信息检测", "数据脱敏", "数据匿名化", "微软", "自然语言处理", "命名实体识别", "图像编辑", "dicom", "通用数据保护法规", "健康保险可携性和责任法案", "打开-ssf", "隐私", "数据保护"]
-aliases:
-- /posts/microsoft-presidio-pii-detection-redaction-sdk/
-faqs:
-  - q: '微软 Presidio 是什么？'
+aliases: - /posts/microsoft-presidio-pii-detection-redaction-sdk/
+faqs: - q: '微软 Presidio 是什么？'
     a: 'Presidio 是微软推出的一个开源 SDK，用于在文本、图像和结构化数据中检测、编辑、掩码和匿名化个人身份信息（PII）。它的名称来源于拉丁语“保护”或“要塞”，提供上下文感知的、可插拔且可定制的 PII 去标识化模块。它支持命名实体识别（NER）、正则表达式、基于规则的逻辑和多语言的校验和验证。'
   - q: 'Presidio由哪些组件构成？'
     a: 'Presidio 包含四个主要组件：(1) **Presidio 分析器** — 使用定义好的或自定义的识别器，通过命名实体识别（NER）、正则表达式、基于规则的逻辑和校验和检测文本中的个人可识别信息（PII）；(2) **Presidio 匿名化器** — 对检测到的 PII 进行编辑、遮蔽、哈希或用可配置的转换替换；(3) **Presidio 图像编辑器** — 从图像中编辑 PII，包括标准图像类型和 DICOM 医学图像；(4) **Presidio 结构化模块** — 检测表格/结构化数据中的 PII，如 CSV 和 Excel 文件。'
@@ -44,10 +35,7 @@ faqs:
     a: 'Presidio 图像编辑器使用计算机视觉模型检测并编辑图像中的个人身份信息（PII）。它支持标准图像格式（PNG、JPEG 等）和 DICOM 医学图像。编辑可以将检测到的文本替换为黑色方框、模糊区域或完全删除文本。这对于需要在共享或发布前匿名化医学影像数据的医疗机构尤其有价值。'
   - q: 'Presidio 能否在大规模生产环境中运行？'
     a: '是的。Presidio 支持多种部署选项：Python 或 PySpark 工作负载、Docker 容器以及 Kubernetes 部署。分析器和匿名化工具可以作为 REST API 运行，结构化组件可以处理大型表格数据集。它设计用于跨多个平台的全自动和半自动 PII 去标识化流程。'
-featureImage: /images/articles/pii-detection-redaction-7b4e12.png
----
-
-<!-- canonical: https://dibi8.com/zh/tools/microsoft-presidio-pii-detection-redaction-sdk/ -->
+featureImage: /images/articles/pii-detection-redaction-7b4e12.png---
 
 
 
@@ -76,10 +64,14 @@ presidio/
 
 ### Presidio Analyzer — The Detection Engine
 
-分析器是Presidio的核心。它使用多种识别策略检测文本中的个人身份信息（PII）:
-
-| Strategy | Description | Example |
-|----------|-------------|---------|
+分析器是Presidio的核心。它使用多种识别策略检测文本中的个人身份信息（PII）: | Strategy | Description | Example |
+|
+---
+|
+---
+|
+---
+|
 | **Named Entity Recognition (NER)** | ML models that identify entities like persons, organizations, locations | "John Smith went to New York" → PERSON: John Smith, GPE: New York |
 | **Regular Expressions** | Pattern matching for structured data formats | Credit card numbers, email addresses, phone numbers |
 | **Rule-Based Logic** | Custom business rules and contextual analysis | Detecting "SSN:" followed by a 9-digit number |
@@ -93,7 +85,13 @@ presidio/
 一旦检测到个人可识别信息（PII），匿名器将应用转换：
 
 | Transformation | What It Does | Use Case |
-|---------------|-------------|----------|
+|
+---
+|
+---
+|
+---
+|
 | **Redact** | Replace with placeholder (e.g., `[PHONE_NUMBER]`) | General-purpose masking |
 | **Mask** | Hide part of the value (e.g., `***-**-1234`) | Partial obfuscation |
 | **Hash** | Replace with cryptographic hash | Analytics-friendly anonymization |
@@ -157,8 +155,7 @@ analyzer = AnalyzerEngine()
 text = "John Smith's SSN is 123-45-6789 and his email is john@example.com"
 results = analyzer.analyze(text=text, language=en)
 
-for result in results:
-    print(f"Entity: {result.entity_type}, "
+for result in results: print(f"Entity: {result.entity_type}, "
           f"Score: {result.score:.2f}, "
           f"Position: {result.start}-{result.end}")
 ```
@@ -232,15 +229,12 @@ from presidio_analyzer.recognizer_registry import RecognizerRegistry
 from presidio_analyzer.nlp_engine import NlpEngineProvider
 
 # Define a custom recognizer for employee IDs
-class EmployeeIdRecognizer(TextRegexRecognizer):
-    NAME = "employee_id"
+class EmployeeIdRecognizer(TextRegexRecognizer): NAME = "employee_id"
     DEFAULT_SCORE = 0.85
 
-    def build_regex(self):
-        return r"EMP-\d{4}-\d{4}"
+    def build_regex(self): return r"EMP-\d{4}-\d{4}"
 
-    def validate_result(self, list_output):
-        # Additional validation logic
+    def validate_result(self, list_output): # Additional validation logic
         pass
 
 # Register the custom recognizer
@@ -276,31 +270,19 @@ docker run -d -p 5001:5001 mcr.microsoft.com/presidio-anonymizer:latest
 
 ```yaml
 version: '3.8'
-services:
-  analyzer:
-    image: mcr.microsoft.com/presidio-analyzer:latest
-    ports:
-      - "5002:5002"
-    environment:
-      - PORT=5002
+services: analyzer: image: mcr.microsoft.com/presidio-analyzer:latest
+    ports: - "5002:5002"
+    environment: - PORT=5002
 
-  anonymizer:
-    image: mcr.microsoft.com/presidio-anonymizer:latest
-    ports:
-      - "5001:5001"
-    environment:
-      - PORT=5001
-    depends_on:
-      - analyzer
+  anonymizer: image: mcr.microsoft.com/presidio-anonymizer:latest
+    ports: - "5001:5001"
+    environment: - PORT=5001
+    depends_on: - analyzer
 
-  image-redactor:
-    image: mcr.microsoft.com/presidio-image-redactor:latest
-    ports:
-      - "5003:5003"
-    environment:
-      - PORT=5003
-    depends_on:
-      - analyzer
+  image-redactor: image: mcr.microsoft.com/presidio-image-redactor:latest
+    ports: - "5003:5003"
+    environment: - PORT=5003
+    depends_on: - analyzer
 ```
 
 使用 `docker compose up -d` 部署，并通过各自的端口访问所有组件。
@@ -318,7 +300,11 @@ Presidio 容器是为编排而设计的。将每个组件作为单独的服务�
 Presidio 包含用于几十种个人身份信息类型的内置识别器：
 
 | Category | Entity Types |
-|----------|-------------|
+|
+---
+|
+---
+|
 | **Financial** | CREDIT_CARD, IBAN, PET_CODE, CRYPTO, UK_NHS, US_BANK_NUMBER, US_ITIN, US_DRIVER_LICENSE, US_PASSPORT |
 | **Personal** | PERSON, AGE, NRP, RECOGNIZABLE_EVENT_DATE, DATE_TIME |
 | **Contact** | EMAIL_ADDRESS, PHONE_NUMBER, US_STATE, ZIP_CODE |
@@ -330,7 +316,17 @@ Presidio 包含用于几十种个人身份信息类型的内置识别器：
 ## Comparing Presidio to Alternatives
 
 | Feature | Presidio | OpenNRE | Amazon Comprehend | Google DLP |
-|---------|----------|---------|-------------------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **License** | MIT (free) | Apache 2.0 | N/A (paid API) | N/A (paid API) |
 | **Self-hosted** | Yes | Yes | No | No |
 | **Image redaction** | Yes (incl. DICOM) | No | No | No |
@@ -395,7 +391,15 @@ analyzer = AnalyzerEngine(nlp_engine=transformer_nlp)
 Presidio 的性能特点：
 
 | Component | Throughput | Latency | Notes |
-|-----------|-----------|---------|-------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Analyzer (CPU)** | ~100-500 docs/sec | 10-50ms/doc | Depends on NER model size |
 | **Analyzer (GPU)** | ~1000-5000 docs/sec | 1-10ms/doc | With transformer acceleration |
 | **Anonymizer** | ~1000+ docs/sec | <5ms/doc | Lightweight text transformation |
@@ -436,8 +440,7 @@ results = analyzer.analyze(
     text='Call John at 555-123-4567 or email john@example.com',
     language=en
 )
-for r in results:
-    print(f'{r.entity_type}: {r.start}-{r.end} (score: {r.score:.2f})')
+for r in results: print(f'{r.entity_type}: {r.start}-{r.end} (score: {r.score:.2f})')
 "
 ```
 
@@ -456,8 +459,8 @@ Microsoft Presidio 是最全面的开源个人身份信息（PII）检测和脱�
 
 对于基础设施，可以考虑 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 以实现简单的自托管部署，或使用 [HTStack](https://my.htstack.com/aff.php?aff=27187) 进行 GPU 加速的 NER 推理。需要可靠的代理来进行网页抓取和数据收集吗？[WebShare.io](https://www.webshare.io/?referral_code=oa14d5f0wx4f) 提供网络层服务。寻找数据处理优惠？查看 [Bitget Web3](https://web3.bitget.com/share/3Wla0s?inviteCode=irBqLe) 和 [Crypto.com](https://www.bsmkweb.cc/register?aff=dibi8) 的独家优惠。对于营销自动化，[PromoOhLy](https://www.promoohubly.com/join/12190433) 提供强大的漏斗工具。
 
----
 
+---
 **来源:** [Presidio GitHub](https://github.com/microsoft/presidio) · [文档](https://microsoft.github.io/presidio) · [演示](https://aka.ms/presidio-demo) · [OpenSSF 徽章](https://www.bestpractices.dev/projects/6076)
 
 **加入社区：** [GitHub 讨论](https://github.com/microsoft/presidio/discussions) · [GitHub 问题](https://github.com/microsoft/presidio/issues)
@@ -465,7 +468,6 @@ Microsoft Presidio 是最全面的开源个人身份信息（PII）检测和脱�
 📢 **保持更新：** 加入我们的 [Telegram 群组](https://t.me/DIBI8_Group/2)，获取每日 AI 工具评测和新内容的抢先体验。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -493,25 +495,20 @@ Microsoft Presidio 是最全面的开源个人身份信息（PII）检测和脱�
 
 ## Why This Matters
 
-Understanding presidio 评论：微软的开源个人身份信息检测和数据脱敏框架（9.4k 星） is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding presidio 评论：微软的开源个人身份信息检测和数据脱敏框架（9.4k 星） is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -532,7 +529,7 @@ Presidio 评论：微软的开源个人身份信息检测和数据脱敏框架�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/code-quality-tools-eslint-prettier-black-ruff" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/code-quality-tools-eslint-prettier-black-ruff" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/code-quality-tools-eslint-prettier-black-ruff" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/code-quality-tools-eslint-prettier-black-ruff" />
 title: '코드 품질 도구 가이드: ESLint, Prettier, Black, Ruff 및 기타 도구'
 description: 'JavaScript/TypeScript와 Python의 코드 품질 도구를 상세히 비교합니다. ESLint, Prettier, Black, Ruff의 설정 방법과 통합 전략, 그리고 Go와 Rust의 포맷터까지 완벽 정리했습니다.'
 date: 2026-05-18 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/code-quality-tools-eslint-prettier-black-ruff/
+aliases: - /posts/code-quality-tools-eslint-prettier-black-ruff/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/code-quality-tools-eslint-prettier-black-ruff/ -->
 
 {</* resource-info */>}
 
@@ -52,9 +44,7 @@ aliases:
 
 ### ESLint 9 Flat Config 설정
 
-Legacy `.eslintrc` 대신 `eslint.config.js` (또는 `.mjs`)를 사용합니다:
-
-```javascript
+Legacy `.eslintrc` 대신 `eslint.config.js` (또는 `.mjs`)를 사용합니다: ```javascript
 // eslint.config.mjs
 import js from "@eslint/js";
 import tseslint from "typescript-eslint";
@@ -86,9 +76,7 @@ export default [
 
 ### TypeScript 통합
 
-2024년 기준 `@typescript-eslint`는 ESLint 팀이 직접 관리합니다:
-
-```bash
+2024년 기준 `@typescript-eslint`는 ESLint 팀이 직접 관리합니다: ```bash
 npm install --save-dev typescript-eslint @eslint/js eslint
 ```
 
@@ -108,9 +96,7 @@ ESLint 9에서 코어 포맷팅 규칙이 제거되었습니다. 포맷팅 규�
 npm install --save-dev prettier
 ```
 
-`.prettierrc` 파일:
-
-```json
+`.prettierrc` 파일: ```json
 {
   "semi": true,
   "singleQuote": true,
@@ -122,15 +108,11 @@ npm install --save-dev prettier
 
 ### ESLint와 Prettier의 관계
 
-두 도구는 경쟁이 아닌 협력 관계입니다. ESLint는 린팅, Prettier는 포맷팅을 담당합니다. 충돌을 방지하려면 `eslint-config-prettier`를 설치하여 ESLint의 포맷팅 규칙을 비활성화합니다:
-
-```bash
+두 도구는 경쟁이 아닌 협력 관계입니다. ESLint는 린팅, Prettier는 포맷팅을 담당합니다. 충돌을 방지하려면 `eslint-config-prettier`를 설치하여 ESLint의 포맷팅 규칙을 비활성화합니다: ```bash
 npm install --save-dev eslint-config-prettier
 ```
 
-`eslint.config.mjs`에 추가:
-
-```javascript
+`eslint.config.mjs`에 추가: ```javascript
 import prettier from "eslint-config-prettier";
 
 export default [
@@ -151,9 +133,7 @@ npm install --save-dev eslint prettier eslint-config-prettier typescript-eslint 
 # 3. package.json 스크립트 추가
 ```
 
-`package.json` 스크립트:
-
-```json
+`package.json` 스크립트: ```json
 {
   "scripts": {
     "lint": "eslint .",
@@ -166,8 +146,7 @@ npm install --save-dev eslint prettier eslint-config-prettier typescript-eslint 
 
 ### Legacy Config에서 Flat Config 마이그레이션
 
-ESLint 8 → 9 업그레이드 시 `.eslintrc.json`을 `eslint.config.mjs`로 변환합니다. 주요 변경점:
-- `extends` → 배열의 설정 객체 임포트
+ESLint 8 → 9 업그레이드 시 `.eslintrc.json`을 `eslint.config.mjs`로 변환합니다. 주요 변경점: - `extends` → 배열의 설정 객체 임포트
 - `plugins` → 직접적인 플러그인 임포트
 - `.eslintignore` → `ignores` 배열
 
@@ -249,9 +228,7 @@ Ruff의 포맷터는 Black과 99.9% 동일한 출력을 생성하므로, 기존 
 
 Go는 [gofmt](https://pkg.go.dev/cmd/gofmt)가 언어 표준 도구체인에 내장되어 있습니다. 모든 Go 개발자가 동일한 포맷을 사용하며, 이는 Go 생태계의 큰 강점입니다.
 
-종합 린팅은 [golangci-lint](https://golangci-lint.run)를 사용합니다:
-
-```bash
+종합 린팅은 [golangci-lint](https://golangci-lint.run)를 사용합니다: ```bash
 golangci-lint run ./...
 ```
 
@@ -259,9 +236,7 @@ golangci-lint run ./...
 
 ## 7. Rust: rustfmt과 Clippy
 
-Rust도 `rustfmt`가 표준 포맷터로, `cargo fmt` 명령어로 실행합니다. [Clippy](https://doc.rust-lang.org/clippy)는 Rust의 공식 린터로 650개 이상의 검사 규칙을 제공합니다:
-
-```bash
+Rust도 `rustfmt`가 표준 포맷터로, `cargo fmt` 명령어로 실행합니다. [Clippy](https://doc.rust-lang.org/clippy)는 Rust의 공식 린터로 650개 이상의 검사 규칙을 제공합니다: ```bash
 cargo fmt        # 포맷팅
 cargo clippy     # 린팅
 ```
@@ -270,49 +245,37 @@ cargo clippy     # 린팅
 
 ### pre-commit 프레임워크
 
-[pre-commit](https://pre-commit.com)은 Git의 pre-commit 훅을 관리하는 Python 기반 도구입니다. `.pre-commit-config.yaml`로 여러 훅을 선언적으로 관리합니다:
-
-```yaml
-repos:
-  - repo: https://github.com/pre-commit/pre-commit-hooks
+[pre-commit](https://pre-commit.com)은 Git의 pre-commit 훅을 관리하는 Python 기반 도구입니다. `.pre-commit-config.yaml`로 여러 훅을 선언적으로 관리합니다: ```yaml
+repos: - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.6.0
-    hooks:
-      - id: trailing-whitespace
+    hooks: - id: trailing-whitespace
       - id: end-of-file-fixer
       - id: check-yaml
       - id: check-added-large-files
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.5.0
-    hooks:
-      - id: ruff
+    hooks: - id: ruff
         args: [--fix]
       - id: ruff-format
 
   - repo: https://github.com/pre-commit/mirrors-prettier
     rev: v4.0.0-alpha.8
-    hooks:
-      - id: prettier
+    hooks: - id: prettier
 ```
 
-설치와 실행:
-
-```bash
+설치와 실행: ```bash
 pre-commit install
 pre-commit run --all-files
 ```
 
 ### JavaScript 프로젝트: Husky
 
-[Husky](https://github.com/typicode/husky)는 JavaScript/TypeScript 프로젝트에서 널리 사용되는 Git hooks 관리자입니다:
-
-```bash
+[Husky](https://github.com/typicode/husky)는 JavaScript/TypeScript 프로젝트에서 널리 사용되는 Git hooks 관리자입니다: ```bash
 npx husky-init && npm install
 ```
 
-`.husky/pre-commit`:
-
-```bash
+`.husky/pre-commit`: ```bash
 npx lint-staged
 ```
 
@@ -323,14 +286,10 @@ npx lint-staged
 ```yaml
 name: Code Quality
 on: [push, pull_request]
-jobs:
-  lint-and-format:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: lint-and-format: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with:
-          node-version: 20
+        with: node-version: 20
       - run: npm ci
       - run: npm run lint
       - run: npm run format:check
@@ -339,13 +298,10 @@ jobs:
 ### GitLab CI 파이프라인
 
 ```yaml
-lint:
-  image: node:20-alpine
-  script:
-    - npm ci
+lint: image: node:20-alpine
+  script: - npm ci
     - npm run lint
-  rules:
-    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+  rules: - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
 ```
 
 린팅 오류가 발생하면 빌드를 실패시키는 것이 중요합니다. 이렇게 하면 품질 기준을 강제할 수 있습니다.
@@ -388,16 +344,13 @@ GitHub Actions나 GitLab CI에 린트/포맷 체크 단계를 추가하고, 실�
 
 ## 추천 인프라
 
-위 도구들을 24/7 안정 운영하려면 인프라가 중요하다:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전.
+위 도구들을 24/7 안정 운영하려면 인프라가 중요하다: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연. dibi8.com 자체 호스팅 IDC.
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -425,25 +378,20 @@ GitHub Actions나 GitLab CI에 린트/포맷 체크 단계를 추가하고, 실�
 
 ## Why This Matters
 
-Understanding 코드 품질 도구 가이드: eslint, prettier, black, ruff 및 기타 도구 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding 코드 품질 도구 가이드: eslint, prettier, black, ruff 및 기타 도구 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

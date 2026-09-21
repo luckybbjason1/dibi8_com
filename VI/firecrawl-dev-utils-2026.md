@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/firecrawl-dev-utils-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/firecrawl-dev-utils-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/firecrawl-dev-utils-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/firecrawl-dev-utils-2026" />
 title: 'Firecrawl: Biến mọi website thành dữ liệu sẵn sàng cho L...
 description: 'Firecrawl là API dữ liệu web mã nguồn mở giúp scrape, crawl, map và search web thành Markdown sạch hoặc JSON có cấu trúc, sẵn sàng cho LLM. 127,747 sao GitHub, giấy phép AGPL-3.0. Bao gồm cài đặt, các SDK chính thức, code thực tế, self-host và so sánh thẳng thắn với Puppeteer, Scrapy, Axios.'
 date: 2026-06-02 00:00:00+08:00
@@ -25,10 +20,8 @@ featureImage: 'https://raw.githubusercontent.com/firecrawl/firecrawl/main/img/op
 draft: false
 categories: ['dev-utils']
 tags: []
-aliases:
-- /posts/firecrawl-dev-utils-2026/
-faqs:
-  - q: 'Tôi cài Firecrawl như thế nào?'
+aliases: - /posts/firecrawl-dev-utils-2026/
+faqs: - q: 'Tôi cài Firecrawl như thế nào?'
     a: 'Hãy cài một trong các SDK chính thức. Với Node.js: ```bash npm install firecrawl ``` Với Python: ```bash pip install firecrawl-py ``` Sau đó tạo một client bằng API key lấy từ [firecrawl.dev](https://firecrawl.dev).'
   - q: 'Tôi có thể dùng Firecrawl với các ngôn ngữ khác ngoài TypeScript không?'
     a: 'Có. Firecrawl là một HTTP API, nên bất kỳ ngôn ngữ nào cũng có thể gọi nó. Có SDK chính thức cho Node.js và Python, và với các ngôn ngữ khác bạn có thể gọi trực tiếp các endpoint REST bằng một HTTP client bất kỳ.'
@@ -40,7 +33,6 @@ faqs:
     a: 'Mã nguồn miễn phí và mở theo AGPL-3.0, còn các SDK chính thức và thành phần UI theo MIT. API đám mây được lưu trữ có một bậc miễn phí cùng các gói trả phí cho mức dùng cao hơn. Nếu self-host, bạn tự chịu chi phí hạ tầng để vận hành.'
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/firecrawl-dev-utils-2026/ -->
 # Firecrawl: Biến mọi website thành dữ liệu sẵn sàng cho LLM (127K Stars) — Hướng dẫn thực chiến 2026
 
 
@@ -62,9 +54,7 @@ Nó được cung cấp theo hai cách: một API đám mây được lưu trữ
 
 ## Firecrawl hoạt động thế nào
 
-Firecrawl phơi bày một nhóm nhỏ các endpoint, mỗi cái giải quyết đúng một việc. Bạn xác thực bằng Bearer API key (định dạng `fc-...`) và gọi cái mình cần:
-
-1. **Scrape** — Chuyển một URL đơn lẻ thành Markdown, HTML, ảnh chụp màn hình, hoặc JSON có cấu trúc. Firecrawl render JavaScript và loại bỏ phần thừa giúp bạn.
+Firecrawl phơi bày một nhóm nhỏ các endpoint, mỗi cái giải quyết đúng một việc. Bạn xác thực bằng Bearer API key (định dạng `fc-...`) và gọi cái mình cần: 1. **Scrape** — Chuyển một URL đơn lẻ thành Markdown, HTML, ảnh chụp màn hình, hoặc JSON có cấu trúc. Firecrawl render JavaScript và loại bỏ phần thừa giúp bạn.
 
 2. **Crawl** — Chỉ cần đưa một URL, Firecrawl sẽ khám phá và scrape mọi trang truy cập được trên website, đồng thời tôn trọng `robots.txt`. Crawl chạy bất đồng bộ: bạn khởi động một tác vụ rồi poll để lấy kết quả.
 
@@ -74,9 +64,7 @@ Firecrawl phơi bày một nhóm nhỏ các endpoint, mỗi cái giải quyết 
 
 5. **Interact & Extract** — Thực hiện hành động trên trang (click, cuộn, gõ) trước khi scrape, và rút trích dữ liệu có cấu trúc theo schema bạn định nghĩa.
 
-Một lần scrape tối giản với Node SDK trông như sau:
-
-```typescript
+Một lần scrape tối giản với Node SDK trông như sau: ```typescript
 import { Firecrawl } from firecrawl;
 
 const app = new Firecrawl({ apiKey: 'fc-YOUR_API_KEY' });
@@ -124,17 +112,13 @@ app = Firecrawl(api_key="fc-YOUR_API_KEY")
 
 ### Self-host bằng Docker
 
-Nếu bạn thích chạy Firecrawl trên hạ tầng của riêng mình, hãy clone repo và dùng cấu hình Docker Compose đi kèm:
-
-```bash
+Nếu bạn thích chạy Firecrawl trên hạ tầng của riêng mình, hãy clone repo và dùng cấu hình Docker Compose đi kèm: ```bash
 git clone https://github.com/firecrawl/firecrawl.git
 cd firecrawl
 docker compose up
 ```
 
-Lệnh này khởi chạy API và các worker của nó. Theo mặc định, API lắng nghe ở cổng `3002`, nên bạn có thể truy cập qua `http://localhost:3002`. Để trỏ SDK tới instance self-host, chỉ cần đặt URL của API:
-
-```typescript
+Lệnh này khởi chạy API và các worker của nó. Theo mặc định, API lắng nghe ở cổng `3002`, nên bạn có thể truy cập qua `http://localhost:3002`. Để trỏ SDK tới instance self-host, chỉ cần đặt URL của API: ```typescript
 const app = new Firecrawl({
   apiKey: 'fc-YOUR_API_KEY',
   apiUrl: 'http://localhost:3002',
@@ -143,9 +127,7 @@ const app = new Firecrawl({
 
 ### Cấu hình
 
-Self-host được cấu hình thông qua biến môi trường. Sao chép mẫu được cung cấp và chỉnh sửa:
-
-```bash
+Self-host được cấu hình thông qua biến môi trường. Sao chép mẫu được cung cấp và chỉnh sửa: ```bash
 cp apps/api/.env.example apps/api/.env
 ```
 
@@ -171,9 +153,7 @@ console.log(doc.markdown);
 
 ### Crawl toàn bộ website
 
-`crawl` khám phá và scrape mọi trang truy cập được. Bạn có thể giới hạn số trang và giới hạn độ sâu:
-
-```typescript
+`crawl` khám phá và scrape mọi trang truy cập được. Bạn có thể giới hạn số trang và giới hạn độ sâu: ```typescript
 const result = await app.crawl('https://example.com', {
   limit: 100,
   scrapeOptions: { formats: [markdown] },
@@ -186,9 +166,7 @@ for (const page of result.data) {
 
 ### Rút trích dữ liệu có cấu trúc
 
-Truyền vào một JSON schema và Firecrawl trả về dữ liệu có kiểu thay vì văn bản thô — lý tưởng để lấy tiêu đề, giá, hay bất kỳ trường cố định nào:
-
-```typescript
+Truyền vào một JSON schema và Firecrawl trả về dữ liệu có kiểu thay vì văn bản thô — lý tưởng để lấy tiêu đề, giá, hay bất kỳ trường cố định nào: ```typescript
 const doc = await app.scrape('https://example.com', {
   formats: [{
     type: json,
@@ -213,9 +191,7 @@ Vì Firecrawl về cơ bản chỉ là một HTTP API với các SDK mỏng, nó
 
 ### Dùng trong một route phía server
 
-Một mẫu điển hình là bọc thao tác scrape sau endpoint của chính bạn:
-
-```typescript
+Một mẫu điển hình là bọc thao tác scrape sau endpoint của chính bạn: ```typescript
 import { Firecrawl } from firecrawl;
 
 const app = new Firecrawl({ apiKey: process.env.FIRECRAWL_API_KEY });
@@ -228,33 +204,24 @@ export async function scrapeHandler(url: string) {
 
 ### Chạy crawl theo lịch trong CI/CD
 
-Với các tác vụ định kỳ, hãy chạy Firecrawl từ GitHub Actions, GitLab CI, hoặc bất kỳ trình lập lịch nào. Dưới đây là một workflow GitHub Actions đơn giản, scrape một trang ở mỗi lần push và lưu Markdown:
-
-```yaml
+Với các tác vụ định kỳ, hãy chạy Firecrawl từ GitHub Actions, GitLab CI, hoặc bất kỳ trình lập lịch nào. Dưới đây là một workflow GitHub Actions đơn giản, scrape một trang ở mỗi lần push và lưu Markdown: ```yaml
 name: Firecrawl Scraper
 
-on:
-  push:
-    branches: [ main ]
+on: push: branches: [ main ]
 
-jobs:
-  scrape:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
+jobs: scrape: runs-on: ubuntu-latest
+    steps: - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
-        with:
-          node-version: 20
+        with: node-version: 20
 
       - name: Install dependencies
         run: npm install firecrawl
 
       - name: Run scraper
-        env:
-          FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
+        env: FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
         run: node scrape.js > output.json
 ```
 
@@ -311,9 +278,7 @@ Với các lập trình viên muốn có dữ liệu web sẵn sàng cho LLM v�
 
 ## Hạn chế và đánh giá thẳng thắn
 
-Firecrawl là một công cụ mạnh, nhưng không phải lựa chọn phù hợp cho mọi việc:
-
-1. **Không phải tầng thời gian thực, độ trễ thấp**: Crawl chạy như các tác vụ bất đồng bộ mà bạn phải poll để lấy kết quả, và ngay cả một lần scrape đơn lẻ cũng liên quan đến render và làm sạch. Nếu bạn cần phản hồi dưới 100 mili-giây cho mọi request, hãy đặt một lớp cache phía trước hoặc xem lại kiến trúc.
+Firecrawl là một công cụ mạnh, nhưng không phải lựa chọn phù hợp cho mọi việc: 1. **Không phải tầng thời gian thực, độ trễ thấp**: Crawl chạy như các tác vụ bất đồng bộ mà bạn phải poll để lấy kết quả, và ngay cả một lần scrape đơn lẻ cũng liên quan đến render và làm sạch. Nếu bạn cần phản hồi dưới 100 mili-giây cho mọi request, hãy đặt một lớp cache phía trước hoặc xem lại kiến trúc.
 
 2. **Chống scraping vẫn là chuyện khó**: Firecrawl xử lý nhiều cơ chế chống bot và cung cấp tùy chọn proxy, nhưng không công cụ nào vượt qua được một cách đáng tin các site có bảo vệ nghiêm ngặt hoặc giới hạn tốc độ gắt gao. Hãy lường trước việc một số đích đến sẽ chặn hoặc throttle bạn, và tôn trọng điều khoản dịch vụ của từng site.
 
@@ -336,19 +301,11 @@ Việc scrape quy mô lớn cần proxy xoay vòng — [WebShare](https://www.we
 
 ---
 
-**Nguồn & Đọc thêm**:
-- Kho GitHub: https://github.com/firecrawl/firecrawl
+**Nguồn & Đọc thêm**: - Kho GitHub: https://github.com/firecrawl/firecrawl
 - Tài liệu chính thức: https://docs.firecrawl.dev
 
 *Một số liên kết ở trên là liên kết tiếp thị (affiliate). dibi8.com có thể nhận hoa hồng nếu bạn đăng ký, mà bạn không tốn thêm chi phí nào. Điều này giúp duy trì hoạt động của trang và giữ cho nội dung miễn phí.*
 
-<!-- internal-link-candidates:
-  related open-source tools -> ai-tools-directory
-  related guides on dibi8 -> ai-coding-agent-landscape-2026-skills-mcp-opensource
--->
-
-
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/supabase-postgres-vector-ai-apps" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/supabase-postgres-vector-ai-apps" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/supabase-postgres-vector-ai-apps" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/supabase-postgres-vector-ai-apps" />
 title: 'Supabase 2026: 开源 Firebase 替代品，Postgres 向量搜索驱动 100 万+ AI...
 description: 'Supabase 完整指南：带有 Postgres + pgvector 的开源 Firebase 替代方案。认证、存储、实时、Edge 函数、RAG 流水线集成、自托管 Docker 部署、行级安全。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [supabase, postgres, 向量搜索, 'firebase 替代品', pgvector, 'ai 应用', rag, 开源, docker, 'edge 函数']
-aliases:
-- /zh/posts/supabase-postgres-vector-ai-apps/
+aliases: - /zh/posts/supabase-postgres-vector-ai-apps/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/supabase-postgres-vector-ai-apps/ -->
 
 {{</* resource-info */>}}
 
@@ -235,8 +227,7 @@ import openai
 supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 client = openai.OpenAI(api_key=OPENAI_API_KEY)
 
-def insert_document(title: str, content: str, source_url: str = None):
-    # 生成嵌入
+def insert_document(title: str, content: str, source_url: str = None): # 生成嵌入
     response = client.embeddings.create(
         input=content,
         model="text-embedding-3-large"
@@ -277,8 +268,7 @@ LIMIT 5;
 
 ```python
 # Python：RAG 检索函数
-async def search_similar_documents(query: str, top_k: int = 5):
-    # 生成查询嵌入
+async def search_similar_documents(query: str, top_k: int = 5): # 生成查询嵌入
     response = client.embeddings.create(
         input=query,
         model="text-embedding-3-large"
@@ -348,15 +338,11 @@ from supabase import create_client
 from openai import OpenAI
 import json
 
-class SupabaseRAG:
-    def __init__(self, supabase_url: str, supabase_key: str, openai_key: str):
-        self.supabase = create_client(supabase_url, supabase_key)
+class SupabaseRAG: def __init__(self, supabase_url: str, supabase_key: str, openai_key: str): self.supabase = create_client(supabase_url, supabase_key)
         self.openai = OpenAI(api_key=openai_key)
 
-    def embed_and_store(self, chunks: list[dict]):
-        """存储带嵌入的文档块。"""
-        for chunk in chunks:
-            embedding = self.openai.embeddings.create(
+    def embed_and_store(self, chunks: list[dict]): """存储带嵌入的文档块。"""
+        for chunk in chunks: embedding = self.openai.embeddings.create(
                 input=chunk[text],
                 model="text-embedding-3-large"
             ).data[0].embedding
@@ -368,8 +354,7 @@ class SupabaseRAG:
                 metadata: chunk.get(metadata, {})
             }).execute()
 
-    def retrieve(self, query: str, top_k: int = 5) -> list[dict]:
-        """使用向量搜索检索相关文档。"""
+    def retrieve(self, query: str, top_k: int = 5) -> list[dict]: """使用向量搜索检索相关文档。"""
         query_embedding = self.openai.embeddings.create(
             input=query,
             model="text-embedding-3-large"
@@ -385,8 +370,7 @@ class SupabaseRAG:
         ).execute()
         return results.data
 
-    def generate(self, query: str, context: list[dict]) -> str:
-        """使用检索到的上下文生成响应。"""
+    def generate(self, query: str, context: list[dict]) -> str: """使用检索到的上下文生成响应。"""
         context_text = "\n\n".join([
             f"[来源: {doc[title]}]\n{doc[content]}"
             for doc in context
@@ -409,8 +393,7 @@ class SupabaseRAG:
         )
         return response.choices[0].message.content
 
-    def chat(self, query: str) -> dict:
-        """端到端 RAG 流水线。"""
+    def chat(self, query: str) -> dict: """端到端 RAG 流水线。"""
         context = self.retrieve(query)
         answer = self.generate(query, context)
         return {
@@ -501,11 +484,9 @@ supabase.removeChannel(channel)
 # Python asyncio 版本
 import asyncio
 
-async def subscribe_to_changes():
-    channel = supabase.channel('documents-changes')
+async def subscribe_to_changes(): channel = supabase.channel('documents-changes')
     
-    def handle_insert(payload):
-        print(f"新文档: {payload[new][title]}")
+    def handle_insert(payload): print(f"新文档: {payload[new][title]}")
     
     channel.on(
         postgres_changes,
@@ -574,7 +555,19 @@ supabase functions invoke ai-completion --data '{"prompt": "Explain RAG"}'
 所有基准测试在 Supabase 托管层（Small Compute，2 vCPU，8GB RAM）上运行：
 
 | 数据规模 | 维度 | 索引类型 | 查询延迟 (p95) | Recall@10 | 索引构建时间 |
-|---------|------|---------|---------------|-----------|-------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 10K 文档 | 1,536 | HNSW (m=16, ef=64) | 12ms | 0.97 | 8s |
 | 100K 文档 | 1,536 | HNSW (m=16, ef=64) | 45ms | 0.96 | 72s |
 | 500K 文档 | 1,536 | HNSW (m=24, ef=128) | 120ms | 0.95 | 8min |
@@ -595,41 +588,30 @@ supabase functions invoke ai-completion --data '{"prompt": "Explain RAG"}'
 
 ```yaml
 # docker-compose.prod.yml（摘录）
-services:
-  db:
-    image: supabase/postgres:15.8.1.040
-    environment:
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+services: db: image: supabase/postgres:15.8.1.040
+    environment: POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       PGVECTOR_HNSW_EF_SEARCH: 64
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+    volumes: - pgdata:/var/lib/postgresql/data
     command: >
       postgres
         -c shared_preload_libraries='pg_stat_statements,pgvector'
         -c max_connections=200
         -c shared_buffers=2GB
         -c effective_cache_size=6GB
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
+    healthcheck: test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s
       timeout: 5s
       retries: 5
 
-  kong:
-    image: kong:3.7
-    environment:
-      KONG_DATABASE: "off"
+  kong: image: kong:3.7
+    environment: KONG_DATABASE: "off"
       KONG_DECLARATIVE_CONFIG: /var/lib/kong/kong.yml
-    ports:
-      - "8000:8000"
-    depends_on:
-      - auth
+    ports: - "8000:8000"
+    depends_on: - auth
       - rest
       - realtime
 
-volumes:
-  pgdata:
-```
+volumes: pgdata: ```
 
 ### 环境变量
 
@@ -668,7 +650,19 @@ STORAGE_S3_SECRET_KEY=...
 ## 竞品对比
 
 | 功能 | Supabase | Firebase | Appwrite | Convex | Directus |
-|------|----------|----------|----------|--------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 开源 | **是 (Apache-2.0)** | 否 | **是 (BSD)** | 否 | **是 (GPL-3.0)** |
 | 数据库 | **PostgreSQL 16** | Firestore (NoSQL) | MariaDB | 专有 | **PostgreSQL/SQLite** |
 | 向量搜索 | **是 (pgvector)** | 否（需 Algolia） | 否 | 否 | 否 |
@@ -778,7 +772,6 @@ Supabase 为你提供构建生产级 AI 应用所需的一切：坚如磐石的 
 本文包含联盟营销链接。如果你通过带有联盟 ID 的链接购买服务（如 DigitalOcean、HTStack），我们可能会获得佣金，而你无需支付额外费用。这有助于资助我们的开源文档工作。所有推荐均基于真正的技术价值，而非联盟可用性。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -804,8 +797,8 @@ Supabase 为你提供构建生产级 AI 应用所需的一切：坚如磐石的 
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [oh-my-pi](supabase-postgres-vector-ai-apps)
@@ -814,6 +807,6 @@ Supabase 为你提供构建生产级 AI 应用所需的一切：坚如磐石的 
 - [supabase-vs-firebase](supabase-postgres-vector-ai-apps)
 - [supabase-vs-firebase](supabase-postgres-vector-ai-apps)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

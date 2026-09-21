@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/zapper-defi-dashboard-aggregator" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/zapper-defi-dashboard-aggregator" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/zapper-defi-dashboard-aggregator" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/zapper-defi-dashboard-aggregator" />
 title: 'zapper-defi-dashboard-aggregator'
 description: '{'en': ''Comprehensive guide to Zapper, the DeFi dashboard aggregator tracking 500+ protocols. Learn portfolio tracking, yield farming analytics, Zap In/Out transactions, API integration, and custom dashboard building.'', 'zh': ''Zapper综合指南，这个追踪500+协议的DeFi仪表盘聚合器。了解投资组合追踪、收益耕作分析、Zap In/Out交易、API集成和自定义仪表盘构建。'', 'ko': ''500개 이상의 프로토콜을 추적하는 DeFi 대시보드 애그리게이터 Zapper에 대한 종합 가이드. 포트폴리오 추적, 이자 농사 분석, Zap In/Out 트랜잭션, API 통합, 커스텀 대시보드 구축을 알아보세요.'', 'vi': ''Hướng dẫn toàn diện về Zapper, bảng điều khiển DeFi tổng hợp theo dõi 500+ giao thức. Tìm hiểu theo dõi danh mục, phân tích yield farming, giao dịch Zap In/Out, tích hợp API, và xây dựng bảng điều khiển tùy chỉnh.''}'
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: [zapper, defi, dashboard, portfolio, 'yield-farming', nft, api, 'zap-in', 'zap-out', aggregator]
-aliases:
-- /vi/posts/zapper-defi-dashboard-aggregator/
+aliases: - /vi/posts/zapper-defi-dashboard-aggregator/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/zapper-defi-dashboard-aggregator/ -->
 
 {{</* resource-info */>}}
 
@@ -61,9 +53,7 @@ Hướng dẫn toàn diện này bao gồm kiến trúc của Zapper, các mẫu
 
 ### 2.1 Lớp Tổng Hợp Dữ Liệu Đa Giao Thức
 
-Cơ sở hạ tầng phụ trợ của Zapper kết nối với hàng trăm giao thức DeFi thông qua một hệ thống tích hợp mô-đun. Mỗi tích hợp giao thức trừu tượng hóa sự phức tạp của tương tác hợp đồng thông minh thành các mô hình dữ liệu chuẩn hóa:
-
-```typescript
+Cơ sở hạ tầng phụ trợ của Zapper kết nối với hàng trăm giao thức DeFi thông qua một hệ thống tích hợp mô-đun. Mỗi tích hợp giao thức trừu tượng hóa sự phức tạp của tương tác hợp đồng thông minh thành các mô hình dữ liệu chuẩn hóa: ```typescript
 // Kiến trúc tích hợp giao thức Zapper
 interface ProtocolPosition {
   // Định danh duy nhất
@@ -144,21 +134,13 @@ async function getPortfolio(address: string): Promise<PortfolioSummary> {
     
     // Phân loại vị thế
     switch (position.appId) {
-      case tokens:
-        portfolio.categories.wallet.push(position);
+      case tokens: portfolio.categories.wallet.push(position);
         break;
-      case 'aave-v3':
-      case compound:
-      case morpho:
-        portfolio.categories.lending.push(position);
+      case 'aave-v3': case compound: case morpho: portfolio.categories.lending.push(position);
         break;
-      case 'uniswap-v3':
-      case 'balancer-v2':
-      case curve:
-        portfolio.categories.liquidity.push(position);
+      case 'uniswap-v3': case 'balancer-v2': case curve: portfolio.categories.liquidity.push(position);
         break;
-      default:
-        if (position.positionType === staking) {
+      default: if (position.positionType === staking) {
           portfolio.categories.staking.push(position);
         }
     }
@@ -302,8 +284,7 @@ async function getFullPortfolio(address: string) {
     const category = categorizePosition(position);
     
     switch (category) {
-      case wallet:
-        breakdown.wallet.value += position.balanceUSD;
+      case wallet: breakdown.wallet.value += position.balanceUSD;
         breakdown.wallet.tokens.push({
           symbol: position.symbol,
           balance: formatUnits(position.balance, position.decimals),
@@ -311,8 +292,7 @@ async function getFullPortfolio(address: string) {
         });
         break;
         
-      case lending:
-        const supplied = position.balances?.supplied?.balanceUSD || 0;
+      case lending: const supplied = position.balances?.supplied?.balanceUSD || 0;
         const borrowed = position.balances?.borrowed?.balanceUSD || 0;
         breakdown.lending.supplied += supplied;
         breakdown.lending.borrowed += borrowed;
@@ -320,8 +300,7 @@ async function getFullPortfolio(address: string) {
         breakdown.lending.protocols.push(position.appName);
         break;
         
-      case liquidity:
-        breakdown.liquidityPools.value += position.balanceUSD;
+      case liquidity: breakdown.liquidityPools.value += position.balanceUSD;
         breakdown.liquidityPools.pools.push({
           protocol: position.appName,
           tokens: position.tokens.map((t: any) => t.symbol),
@@ -330,8 +309,7 @@ async function getFullPortfolio(address: string) {
         });
         break;
         
-      case staking:
-        breakdown.staking.value += position.balanceUSD;
+      case staking: breakdown.staking.value += position.balanceUSD;
         breakdown.staking.positions.push(position);
         break;
     }
@@ -566,9 +544,7 @@ bestYields.slice(0, 10).forEach((opp, i) => {
 
 ### 6.1 Cung Cấp Thanh Khoản Đơn Giản Hóa (Zap In)
 
-Một trong những tính năng mạnh mẽ nhất của Zapper là **Transaction Builder**, cho phép ngườidùng tham gia các vị thế thanh khoản phức tạp chỉ với một giao dịch. Thay vì thủ công hoán đổi, phê duyệt, và gửi token, tính năng "Zap In" của Zapper xử lý mọi thứ:
-
-```typescript
+Một trong những tính năng mạnh mẽ nhất của Zapper là **Transaction Builder**, cho phép ngườidùng tham gia các vị thế thanh khoản phức tạp chỉ với một giao dịch. Thay vì thủ công hoán đổi, phê duyệt, và gửi token, tính năng "Zap In" của Zapper xử lý mọi thứ: ```typescript
 // Zap vào vị thế Uniswap V3
 async function zapInUniswapV3(
   fromToken: string,        // Địa chỉ token để zap
@@ -735,17 +711,13 @@ const ws = new ZapperWebSocket({
 // Đăng ký cập nhật địa chỉ
 ws.subscribe('address:0xMyAddress...', (update: any) => {
   switch (update.type) {
-    case balance_change:
-      console.log(`💰 Cập nhật số dư: ${update.token} = ${update.newBalance}`);
+    case balance_change: console.log(`💰 Cập nhật số dư: ${update.token} = ${update.newBalance}`);
       break;
-    case new_position:
-      console.log(`📈 Phát hiện vị thế mới: ${update.protocol} — ${update.valueUSD}`);
+    case new_position: console.log(`📈 Phát hiện vị thế mới: ${update.protocol} — ${update.valueUSD}`);
       break;
-    case yield_claimed:
-      console.log(`🎁 Đã nhận thưởng: ${update.amount} ${update.token}`);
+    case yield_claimed: console.log(`🎁 Đã nhận thưởng: ${update.amount} ${update.token}`);
       break;
-    case nft_transfer:
-      console.log(`🖼️ NFT đã chuyển: ${update.collection} #${update.tokenId}`);
+    case nft_transfer: console.log(`🖼️ NFT đã chuyển: ${update.collection} #${update.tokenId}`);
       break;
   }
 });
@@ -1021,20 +993,17 @@ class YieldMonitor {
         if (alert.protocol && alert.protocol !== position.protocol) continue;
 
         switch (alert.condition) {
-          case apy_drop:
-            if (prev && (position.apy.total / prev.apy - 1) * 100 < -alert.threshold) {
+          case apy_drop: if (prev && (position.apy.total / prev.apy - 1) * 100 < -alert.threshold) {
               await this.sendAlert(`🚨 APY giảm ${alert.threshold}% trên ${position.poolName}: ${position.apy.total.toFixed(2)}%`);
             }
             break;
 
-          case il_warning:
-            if (position.impermanentLoss && position.impermanentLoss > alert.threshold) {
+          case il_warning: if (position.impermanentLoss && position.impermanentLoss > alert.threshold) {
               await this.sendAlert(`⚠️ Cảnh báo IL trên ${position.poolName}: ${position.impermanentLoss.toFixed(2)}%`);
             }
             break;
 
-          case reward_change:
-            const rewardChange = position.rewardTokens.reduce(
+          case reward_change: const rewardChange = position.rewardTokens.reduce(
               (sum, r) => sum + r.dailyValueUSD, 0
             );
             if (prev && Math.abs(rewardChange - prev.dailyRewards) > alert.threshold) {
@@ -1140,7 +1109,6 @@ Dù bạn là ngườidùng DeFi bình thường theo dõi pool thanh khoản đ
 **Trang web:** [zapper.xyz](https://zapper.xyz)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

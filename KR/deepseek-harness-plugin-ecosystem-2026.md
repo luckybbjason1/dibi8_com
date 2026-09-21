@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/deepseek-harness-plugin-ecosystem-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/deepseek-harness-plugin-ecosystem-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/deepseek-harness-plugin-ecosystem-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/deepseek-harness-plugin-ecosystem-2026" />
 title: 'DeepSeek Harness: 229K-Star 플러그인 생태계가 모든 것을 확장 가능하게 — 완전...
 description: 'DeepSeek Harness(DSH)는 2026년 가장 빠르게 성장하는 AI 에이전트 프레임워크로 GitHub 스타 229K+를 기록했습니다. 커스텀 플러그인 빌드, Claude Code/Cursor/Codex 통합, 몇 분 안에 프로덕션 에이전트 배포 방법을 배우세요.'
 date: 2026-09-19
-lastmod:  2026-09-19slug: 'deepseek-harness-plugin-ecosystem-2026'
+lastmod: 2026-09-19
+slug: 'deepseek-harness-plugin-ecosystem-2026'
 category: 'llm-frameworks'
 tags: ['deepseek', 'harness', '플러그인', 'ai-agent', 'dsh', 'automation']
 github_repo: 'https://github.com/deepseek-ai/deepseek-harness'
@@ -17,8 +13,6 @@ license: MIT
 featureImage: 'https://opengraph.github.com/github/deepseek-ai/deepseek-harness'
 lang: ko
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/deepseek-harness-plugin-ecosystem-2026/ -->
 
 # DeepSeek Harness: 2026년을 장악한 플러그인 프레임워크
 
@@ -36,9 +30,7 @@ npm for AI agent capabilities라고 생각하시면 됩니다 — 패키지를 �
 
 ## 작동 방식: 플러그인 아키텍처
 
-DeepSeek Harness는 세 가지 계층 아키텍처를 사용합니다:
-
-1. **코어 계층** — 에이전트 생명주기, 세션 처리, 플러그인 로딩 관리
+DeepSeek Harness는 세 가지 계층 아키텍처를 사용합니다: 1. **코어 계층** — 에이전트 생명주기, 세션 처리, 플러그인 로딩 관리
 2. **플러그인 계층** — 런타임에 로드되는 커스텀 코드
 3. **통합 계층** — Claude Code, Codex, Cursor 등에 연결
 
@@ -57,8 +49,7 @@ export class MyPlugin extends Plugin {
 }
 ```
 
-플러그인은 다음을 할 수 있습니다:
-- 에이전트 생명주기 이벤트에 훅
+플러그인은 다음을 할 수 있습니다: - 에이전트 생명주기 이벤트에 훅
 - CLI에 새 명령 추가
 - 시스템 프롬프트 동적 수정
 - 외부 API와 통합
@@ -99,8 +90,7 @@ npx @deepseek-ai/dsh web
 ```
 이는 기본 포트 3080에서 로컬 웹 인터페이스를 시작하고 기본 브라우저에서 엽니다. 구성 없이 바로 플러그인 빌드를 시작할 수 있습니다.
 
-SSH 서버나 헤드리스 환경의 경우:
-```bash
+SSH 서버나 헤드리스 환경의 경우: ```bash
 npx @deepseek-ai/dsh web --no-open
 # 그런 다음 포워딩 포트로 접근
 ssh -L 3080:localhost:3080 user@server
@@ -130,11 +120,9 @@ export class SummarizeCommitsPlugin extends Plugin {
     const commit = execSync('git log -1 --pretty=%B').toString();
     
     const prompt = `
-이 git 커밋을 한 문장으로 요약:
-${commit}
+이 git 커밋을 한 문장으로 요약: ${commit}
 
-변경된 파일:
-${diff}
+변경된 파일: ${diff}
 `;
     
     return { prompt };
@@ -215,9 +203,7 @@ this.on('before:commit', async (ctx) => {
 
 ## 보안 고려사항
 
-프로덕션 환경에서 DSH 플러그인 실행 시:
-
-1. **샌드박스 실행** — 항상 격리된 환경에서 플러그인 실행
+프로덕션 환경에서 DSH 플러그인 실행 시: 1. **샌드박스 실행** — 항상 격리된 환경에서 플러그인 실행
 2. **네트워크 제한** — 플러그인 외부 연결 제한을 위한 방화벽 규칙 사용
 3. **비밀번호 스캐닝** — pre-commit 플러그인으로 비밀번호 스캐너 통합
 4. **플러그인 감사** — 설치 전 서드파티 플러그인 검토
@@ -229,12 +215,9 @@ dsh security scan --deep ./plugins
 
 ## Cordis 프레임워크: 내부 구조
 
-DeepSeek Harness는 [Cordis](https://github.com/cordiverse/cordis)에 의해 구동되는데, 이는 시공간 조합을 위한 프로그래밍 패러다임입니다. 이 연구 논문은 이론적 기초를 설명합니다:
+DeepSeek Harness는 [Cordis](https://github.com/cordiverse/cordis)에 의해 구동되는데, 이는 시공간 조합을 위한 프로그래밍 패러다임입니다. 이 연구 논문은 이론적 기초를 설명합니다: > **"A Programming Paradigm for Spatiotemporal Composability"** (arXiv:2608.25512)
 
-> **"A Programming Paradigm for Spatiotemporal Composability"** (arXiv:2608.25512)
-
-Cordis 프레임워크는 다음을 가능하게 합니다:
-- **시간 여행 디버깅** — 플러그인 실행을 어느 시점에서나 재생
+Cordis 프레임워크는 다음을 가능하게 합니다: - **시간 여행 디버깅** — 플러그인 실행을 어느 시점에서나 재생
 - **공간 파티셔닝** — 차원별로 플러그인 상태 격리
 - **시간적 조합** — 시간 기간에 걸쳐 플러그인 체인
 
@@ -242,9 +225,7 @@ Cordis 프레임워크는 다음을 가능하게 합니다:
 
 ## 성능 튜닝
 
-고볼륨 환경에서 플러그인 성능 최적화:
-
-### 캐싱 전략
+고볼륨 환경에서 플러그인 성능 최적화: ### 캐싱 전략
 ```typescript
 const cache = new LRUMap({
   max: 1000,
@@ -288,8 +269,7 @@ dsh logs --plugin my-plugin --tail 50
 ```
 
 ### 일반 문제 2: 포트 이미 사용 중
-포트 3080이 점유된 경우:
-```bash
+포트 3080이 점유된 경우: ```bash
 npx @deepseek-ai/dsh web --port 3081
 ```
 
@@ -302,8 +282,7 @@ pnpm run build
 ```
 
 ### 일반 문제 4: 긴 세션에서 메모리 누수
-플러그인 구성에서 메모리 제한 활성화:
-```typescript
+플러그인 구성에서 메모리 제한 활성화: ```typescript
 // dsh.config.ts
 export default {
   memory: {
@@ -316,8 +295,7 @@ export default {
 ## 커뮤니티 & 생태계
 
 ### 플러그인 마켓플레이스
-https://marketplace.deepseek.ai에서 커뮤니티 플러그인 탐색:
-- **GitHub 통합** — PR 리뷰, 이슈 추적
+https://marketplace.deepseek.ai에서 커뮤니티 플러그인 탐색: - **GitHub 통합** — PR 리뷰, 이슈 추적
 - **클라우드 제공업체** — AWS, GCP, Azure 자동화
 - **개발 도구** — Docker, Kubernetes, Terraform 도우미
 
@@ -400,7 +378,6 @@ DeepSeek Harness는 우리가 AI 코딩 도구에 대해 생각하는 방식의 
 [Agent Skills 가이드](dibi8-internal-link) | [Agent-Reach 튜토리얼](dibi8-internal-link)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

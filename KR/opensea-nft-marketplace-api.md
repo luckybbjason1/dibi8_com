@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/opensea-nft-marketplace-api" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/opensea-nft-marketplace-api" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/opensea-nft-marketplace-api" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/opensea-nft-marketplace-api" />
 title: 'opensea-nft-marketplace-api'
 description: '{'en': ''Complete guide to the OpenSea NFT marketplace API covering API key setup, Python SDK integration, programmatic listing/buying/selling of NFTs, real-time WebSocket event streaming, rate limiting strategies, and building a production trading bot.'', 'zh': ''OpenSea NFT市场API完整指南，涵盖API密钥设置、Python SDK集成、NFT程序化上架/购买/出售、实时WebSocket事件流、速率限制策略以及构建生产级交易机器人。'', 'ko': ''OpenSea NFT 마켓플레이스 API의 완전한 가이드로 API 키 설정, Python SDK 통합, NFT 프로그래밍 방식 상장/구매/판매, 실시간 WebSocket 이벤트 스트리밍, 속도 제한 전략 및 프로덕션 트레이딩 봇 구축을 다룹니다.'', 'vi': ''Hướng dẫn đầy đủ về API thị trường NFT OpenSea bao gồm thiết lập khóa API, tích hợp Python SDK, niêm yết/mua/bán NFT lập trình, phát trực tuyến sự kiện WebSocket thở gian thực, chiến lược giới hạn tốc độ và xây dựng bot giao dịch sản xuất.''}'
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: [en, zh, ko, vi]
-aliases:
-- /kr/posts/opensea-nft-marketplace-api/
+aliases: - /kr/posts/opensea-nft-marketplace-api/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/opensea-nft-marketplace-api/ -->
 
 {{</* resource-info */>}}
 
@@ -59,14 +51,10 @@ API 호출을 하기 전에 OpenSea 개발자 포털을 통해 API 키를 등록
 
 ### 2단계: API 키 생성
 
-승인이 되면 대시보드에서 새 API 키를 만드세요. 두 가지 자격 증명을 받게 됩니다:
-
-- **API 키**: 애플리케이션 식별에 사용
+승인이 되면 대시보드에서 새 API 키를 만드세요. 두 가지 자격 증명을 받게 됩니다: - **API 키**: 애플리케이션 식별에 사용
 - **API 시크릿**: 특정 인증 요청 서명에 사용
 
-이 자격 증명을 안전하게 환경 변수에 저장하세요:
-
-```bash
+이 자격 증명을 안전하게 환경 변수에 저장하세요: ```bash
 # .env 파일
 OPENSEA_API_KEY=your_api_key_here
 OPENSEA_API_SECRET=your_api_secret_here
@@ -74,9 +62,7 @@ OPENSEA_API_SECRET=your_api_secret_here
 
 ### 3단계: 인증 테스트
 
-간단한 헬스 체크로 API 키가 작동하는지 확인하세요:
-
-```python
+간단한 헬스 체크로 API 키가 작동하는지 확인하세요: ```python
 import os
 import requests
 from dotenv import load_dotenv
@@ -104,9 +90,7 @@ print(f"컬렉션: {len(response.json()[collections])}")
 
 ### 4단계: SDK 설치
 
-공식 JavaScript SDK 또는 커뮤니티 Python 래퍼를 설치하세요:
-
-```bash
+공식 JavaScript SDK 또는 커뮤니티 Python 래퍼를 설치하세요: ```bash
 # 공식 JavaScript SDK
 npm install opensea-js
 
@@ -128,8 +112,7 @@ OpenSea API는 NFT 마켓플레이스의 모든 측면을 다루는 논리적 �
 컬렉션 엔드포인트는 바닥 가격, 거래량 통계, 특성 분포, 소셜 링크를 포함한 NFT 컬렉션에 대한 포괄적인 메타데이터를 제공합니다.
 
 ```python
-def get_collection_details(collection_slug: str):
-    """NFT 컬렉션의 상세 정보를 가져옵니다."""
+def get_collection_details(collection_slug: str): """NFT 컬렉션의 상세 정보를 가져옵니다."""
     endpoint = f"{BASE_URL}/collections/{collection_slug}"
     response = requests.get(endpoint, headers=headers)
     
@@ -154,8 +137,7 @@ print(f"CryptoPunks 바닥: {crypto_punks[floor_price]} ETH")
 자산 엔드포인트를 통해 개별 NFT의 메타데이터, 소유권 정보, 상장 상태를 검색할 수 있습니다.
 
 ```python
-def get_asset_details(chain: str, address: str, token_id: str):
-    """특정 NFT 자산의 메타데이터를 검색합니다."""
+def get_asset_details(chain: str, address: str, token_id: str): """특정 NFT 자산의 메타데이터를 검색합니다."""
     endpoint = f"{BASE_URL}/chain/{chain}/contract/{address}/nfts/{token_id}"
     response = requests.get(endpoint, headers=headers)
     
@@ -186,8 +168,7 @@ print(f"특성 개수: {len(bored_ape[traits])}")
 상장 엔드포인트는 NFT 판매 주문의 생성, 검색, 취소를 관리합니다. 이들은 프로그래밍 방식 거래의 핵심 엔드포인트입니다.
 
 ```python
-def get_listings_by_collection(collection_slug: str, limit: int = 20):
-    """특정 컬렉션의 활성 상장을 가져옵니다."""
+def get_listings_by_collection(collection_slug: str, limit: int = 20): """특정 컬렉션의 활성 상장을 가져옵니다."""
     endpoint = f"{BASE_URL}/listings/collection/{collection_slug}/all"
     params = {"limit": limit}
     
@@ -208,8 +189,7 @@ def get_listings_by_collection(collection_slug: str, limit: int = 20):
 
 # 가장 저렴한 상장 가져오기
 listings = get_listings_by_collection("boredapeyachtclub", limit=10)
-for listing in sorted(listings, key=lambda x: float(x["price"])):
-    print(f"가격: {listing[price]} | 토큰: {listing[token][identifier]}")
+for listing in sorted(listings, key=lambda x: float(x["price"])): print(f"가격: {listing[price]} | 토큰: {listing[token][identifier]}")
 ```
 
 ### 계정 및 활동 엔드포인트
@@ -217,8 +197,7 @@ for listing in sorted(listings, key=lambda x: float(x["price"])):
 모든 이더리움 주소의 지갑 활동, 소유 자산, 이력 이벤트를 추적합니다.
 
 ```python
-def get_account_events(account_address: str, event_type: str = "order", limit: int = 50):
-    """특정 계정의 활동 이벤트를 검색합니다."""
+def get_account_events(account_address: str, event_type: str = "order", limit: int = 50): """특정 계정의 활동 이벤트를 검색합니다."""
     endpoint = f"{BASE_URL}/events/accounts/{account_address}"
     params = {
         "event_type": event_type,
@@ -240,8 +219,7 @@ def get_account_events(account_address: str, event_type: str = "order", limit: i
 # 고래 지갑 활동 모니터링
 whale_address = "0x3b417faee9d1458e"
 events = get_account_events(whale_address, event_type="sale", limit=20)
-for event in events:
-    print(f"{event[timestamp]}: {event[asset]}이(가) {event[payment]}에 판매됨")
+for event in events: print(f"{event[timestamp]}: {event[asset]}이(가) {event[payment]}에 판매됨")
 ```
 
 ---
@@ -267,15 +245,12 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-class OpenSeaAPI:
-    """OpenSea API용 프로덕션 준비 Python SDK."""
+class OpenSeaAPI: """OpenSea API용 프로덕션 준비 Python SDK."""
     
     BASE_URL = "https://api.opensea.io/api/v2"
     
-    def __init__(self, api_key: Optional[str] = None, max_retries: int = 3):
-        self.api_key = api_key or os.getenv("OPENSEA_API_KEY")
-        if not self.api_key:
-            raise ValueError("API 키가 필요합니다. OPENSEA_API_KEY 환경 변수를 설정하세요.")
+    def __init__(self, api_key: Optional[str] = None, max_retries: int = 3): self.api_key = api_key or os.getenv("OPENSEA_API_KEY")
+        if not self.api_key: raise ValueError("API 키가 필요합니다. OPENSEA_API_KEY 환경 변수를 설정하세요.")
         
         self.session = requests.Session()
         self.session.headers.update({
@@ -293,16 +268,13 @@ class OpenSeaAPI:
         adapter = HTTPAdapter(max_retries=retry_strategy)
         self.session.mount("https://", adapter)
     
-    def _request(self, method: str, endpoint: str, **kwargs) -> Dict[str, Any]:
-        """속도 제한 처리와 함께 인증된 요청을 수행합니다."""
+    def _request(self, method: str, endpoint: str, **kwargs) -> Dict[str, Any]: """속도 제한 처리와 함께 인증된 요청을 수행합니다."""
         url = urljoin(self.BASE_URL, endpoint)
         
-        try:
-            response = self.session.request(method, url, **kwargs)
+        try: response = self.session.request(method, url, **kwargs)
             
             # 속도 제한 처리
-            if response.status_code == 429:
-                reset_time = int(response.headers.get("X-RateLimit-Reset", 60))
+            if response.status_code == 429: reset_time = int(response.headers.get("X-RateLimit-Reset", 60))
                 logger.warning(f"속도 제한됨. {reset_time}초 대기...")
                 time.sleep(reset_time)
                 response = self.session.request(method, url, **kwargs)
@@ -310,8 +282,7 @@ class OpenSeaAPI:
             response.raise_for_status()
             return response.json()
             
-        except requests.exceptions.RequestException as e:
-            logger.error(f"요청 실패: {e}")
+        except requests.exceptions.RequestException as e: logger.error(f"요청 실패: {e}")
             raise
     
     def get_collections(
@@ -319,16 +290,13 @@ class OpenSeaAPI:
         chain: str = "ethereum", 
         limit: int = 100,
         next_cursor: Optional[str] = None
-    ) -> Dict[str, Any]:
-        """페이징이 있는 NFT 컬렉션을 검색합니다."""
+    ) -> Dict[str, Any]: """페이징이 있는 NFT 컬렉션을 검색합니다."""
         params = {"chain": chain, "limit": min(limit, 100)}
-        if next_cursor:
-            params["next"] = next_cursor
+        if next_cursor: params["next"] = next_cursor
         
         return self._request("GET", "/collections", params=params)
     
-    def get_collection_stats(self, collection_slug: str) -> Dict[str, Any]:
-        """바닥 가격, 거래량, 공급량 통계를 가져옵니다."""
+    def get_collection_stats(self, collection_slug: str) -> Dict[str, Any]: """바닥 가격, 거래량, 공급량 통계를 가져옵니다."""
         return self._request("GET", f"/collections/{collection_slug}/stats")
     
     def get_nft(
@@ -336,8 +304,7 @@ class OpenSeaAPI:
         chain: str, 
         contract_address: str, 
         token_id: str
-    ) -> Dict[str, Any]:
-        """특정 NFT의 상세 정보를 가져옵니다."""
+    ) -> Dict[str, Any]: """특정 NFT의 상세 정보를 가져옵니다."""
         endpoint = f"/chain/{chain}/contract/{contract_address}/nfts/{token_id}"
         return self._request("GET", endpoint)
     
@@ -347,8 +314,7 @@ class OpenSeaAPI:
         contract_address: str, 
         token_id: str,
         limit: int = 50
-    ) -> List[Dict[str, Any]]:
-        """특정 NFT의 활성 상장을 가져옵니다."""
+    ) -> List[Dict[str, Any]]: """특정 NFT의 활성 상장을 가져옵니다."""
         endpoint = f"/orders/{chain}/seaport/listings"
         params = {
             "asset_contract_address": contract_address,
@@ -362,8 +328,7 @@ class OpenSeaAPI:
         chain: str, 
         contract_address: str, 
         token_id: str
-    ) -> Optional[Dict[str, Any]]:
-        """가장 저렴한 활성 상장을 가져옵니다."""
+    ) -> Optional[Dict[str, Any]]: """가장 저렴한 활성 상장을 가져옵니다."""
         listings = self.get_listings(chain, contract_address, token_id, limit=1)
         return listings[0] if listings else None
 
@@ -385,9 +350,7 @@ print(f"거래량: {stats[total][volume]}")
 
 ### 상장 생성하기
 
-NFT를 상장하려면 Seaport 주문을 생성해야 합니다. 이는 소유자의 개인 키로 주문에 서명해야 합니다:
-
-```python
+NFT를 상장하려면 Seaport 주문을 생성해야 합니다. 이는 소유자의 개인 키로 주문에 서명해야 합니다: ```python
 from web3 import Web3
 
 # 이더리움 노드에 연결
@@ -445,11 +408,8 @@ print(f"상장 생성됨: {response.status_code}")
 
 ### 주문 이행하기 (NFT 구매)
 
-상장된 NFT를 구매하려면 주문을 검색하고 이행 트랜잭션을 제출하세요:
-
-```python
-def fulfill_order(order_hash: str, buyer_address: str):
-    """기존 주문을 이행하여 NFT를 구매합니다."""
+상장된 NFT를 구매하려면 주문을 검색하고 이행 트랜잭션을 제출하세요: ```python
+def fulfill_order(order_hash: str, buyer_address: str): """기존 주문을 이행하여 NFT를 구매합니다."""
     # 주문 상세 정보 가져오기
     order_response = requests.get(
         f"{BASE_URL}/orders/ethereum/seaport/{order_hash}",
@@ -490,11 +450,8 @@ tx = fulfill_order(cheapest["order_hash"], "0xBuyerWalletAddress")
 
 ### 배치 작업
 
-고빈도 거래를 위해 배치 엔드포인트를 사용하여 여러 작업을 처리하세요:
-
-```python
-def batch_get_listings(requests_list: List[Dict]) -> List[Dict]:
-    """단일 요청으로 여러 상장을 가져옵니다."""
+고빈도 거래를 위해 배치 엔드포인트를 사용하여 여러 작업을 처리하세요: ```python
+def batch_get_listings(requests_list: List[Dict]) -> List[Dict]: """단일 요청으로 여러 상장을 가져옵니다."""
     response = requests.post(
         f"{BASE_URL}/listings/batch",
         headers=headers,
@@ -521,26 +478,22 @@ import json
 import asyncio
 import websockets
 
-class OpenSeaStreamClient:
-    """실시간 OpenSea 이벤트 스트리밍을 위한 WebSocket 클라이언트."""
+class OpenSeaStreamClient: """실시간 OpenSea 이벤트 스트리밍을 위한 WebSocket 클라이언트."""
     
     WS_URL = "wss://stream.opensea.io/socket"
     
-    def __init__(self, api_key: str):
-        self.api_key = api_key
+    def __init__(self, api_key: str): self.api_key = api_key
         self.subscriptions = []
         self.running = False
     
-    async def connect(self):
-        """인증과 함께 WebSocket 연결을 설정합니다."""
+    async def connect(self): """인증과 함께 WebSocket 연결을 설정합니다."""
         self.ws = await websockets.connect(
             self.WS_URL,
             extra_headers={"X-API-KEY": self.api_key}
         )
         logger.info("WebSocket 연결됨")
     
-    async def subscribe(self, event_type: str, filters: dict = None):
-        """특정 이벤트 스트림을 구독합니다."""
+    async def subscribe(self, event_type: str, filters: dict = None): """특정 이벤트 스트림을 구독합니다."""
         payload = {
             "topic": event_type,
             "filters": filters or {}
@@ -551,45 +504,33 @@ class OpenSeaStreamClient:
         }))
         logger.info(f"구독함: {event_type}")
     
-    async def listen(self, callback):
-        """들어오는 이벤트를 수신합니다."""
+    async def listen(self, callback): """들어오는 이벤트를 수신합니다."""
         self.running = True
-        while self.running:
-            try:
-                message = await self.ws.recv()
+        while self.running: try: message = await self.ws.recv()
                 data = json.loads(message)
                 await callback(data)
-            except websockets.exceptions.ConnectionClosed:
-                logger.warning("연결 종료됨, 재연결 중...")
+            except websockets.exceptions.ConnectionClosed: logger.warning("연결 종료됨, 재연결 중...")
                 await self.connect()
-                for sub in self.subscriptions:
-                    await self.subscribe(sub["type"], sub.get("filters"))
+                for sub in self.subscriptions: await self.subscribe(sub["type"], sub.get("filters"))
     
-    async def disconnect(self):
-        """WebSocket 연결을 닫습니다."""
+    async def disconnect(self): """WebSocket 연결을 닫습니다."""
         self.running = False
         await self.ws.close()
 
 
 # 이벤트 핸들러
-async def handle_event(event: dict):
-    """들어오는 마켓플레이스 이벤트를 처리합니다."""
+async def handle_event(event: dict): """들어오는 마켓플레이스 이벤트를 처리합니다."""
     event_type = event.get("event_type")
     payload = event.get("payload", {})
     
-    if event_type == "item_listed":
-        print(f"[상장] {payload[name]} 가격 {payload[base_price]} ETH")
-    elif event_type == "item_sold":
-        print(f"[판매] {payload[name]}이(가) {payload[sale_price]} ETH에 판매됨")
-    elif event_type == "item_cancelled":
-        print(f"[취소] {payload[name]}")
-    elif event_type == "collection_offer":
-        print(f"[오퍼] {payload[collection_slug]}에 대한 컬렉션 오퍼")
+    if event_type == "item_listed": print(f"[상장] {payload[name]} 가격 {payload[base_price]} ETH")
+    elif event_type == "item_sold": print(f"[판매] {payload[name]}이(가) {payload[sale_price]} ETH에 판매됨")
+    elif event_type == "item_cancelled": print(f"[취소] {payload[name]}")
+    elif event_type == "collection_offer": print(f"[오퍼] {payload[collection_slug]}에 대한 컬렉션 오퍼")
 
 
 # 이벤트 스트림 실행
-async def main():
-    client = OpenSeaStreamClient(api_key=API_KEY)
+async def main(): client = OpenSeaStreamClient(api_key=API_KEY)
     await client.connect()
     
     # 이벤트 구독
@@ -604,9 +545,7 @@ async def main():
 
 ### 이벤트 유형 참조
 
-WebSocket API는 다양한 사용 사례를 위한 여러 이벤트 유형을 지원합니다:
-
-```python
+WebSocket API는 다양한 사용 사례를 위한 여러 이벤트 유형을 지원합니다: ```python
 # 사용 가능한 이벤트 유형
 EVENT_TYPES = {
     "item_listed": "새 상장 생성됨",
@@ -638,11 +577,8 @@ EVENT_TYPES = {
 
 ### 속도 제한 헤더
 
-모든 API 응답은 속도 제한 헤더를 포함합니다:
-
-```python
-def check_rate_limits(response: requests.Response):
-    """속도 제한 상태를 추출하고 모니터링합니다."""
+모든 API 응답은 속도 제한 헤더를 포함합니다: ```python
+def check_rate_limits(response: requests.Response): """속도 제한 상태를 추출하고 모니터링합니다."""
     limit = response.headers.get("X-RateLimit-Limit")
     remaining = response.headers.get("X-RateLimit-Remaining")
     reset = response.headers.get("X-RateLimit-Reset")
@@ -651,8 +587,7 @@ def check_rate_limits(response: requests.Response):
     print(f"초기화까지: {reset}초")
     
     # 제한에 근접하면 경고
-    if int(remaining) < 10:
-        logger.warning(f"속도 제한에 근접! 남은 요청 {remaining}개")
+    if int(remaining) < 10: logger.warning(f"속도 제한에 근접! 남은 요청 {remaining}개")
     
     return {
         "limit": int(limit) if limit else None,
@@ -670,30 +605,24 @@ limits = check_rate_limits(response)
 ```python
 import random
 
-class AdaptiveRateLimiter:
-    """지수 백오프가 있는 적응형 속도 제한기."""
+class AdaptiveRateLimiter: """지수 백오프가 있는 적응형 속도 제한기."""
     
-    def __init__(self, base_delay: float = 1.0, max_delay: float = 60.0):
-        self.base_delay = base_delay
+    def __init__(self, base_delay: float = 1.0, max_delay: float = 60.0): self.base_delay = base_delay
         self.max_delay = max_delay
         self.current_delay = base_delay
         self.consecutive_errors = 0
     
-    def wait(self):
-        """적응형 지연과 함께 대기합니다."""
+    def wait(self): """적응형 지연과 함께 대기합니다."""
         jitter = random.uniform(0, 0.5)
         time.sleep(self.current_delay + jitter)
     
-    def on_success(self):
-        """성공한 요청 후 지연을 줄입니다."""
+    def on_success(self): """성공한 요청 후 지연을 줄입니다."""
         self.consecutive_errors = 0
         self.current_delay = max(self.base_delay, self.current_delay * 0.8)
     
-    def on_error(self, status_code: int):
-        """오류 후 지연을 증가시킵니다."""
+    def on_error(self, status_code: int): """오류 후 지연을 증가시킵니다."""
         self.consecutive_errors += 1
-        if status_code == 429:
-            self.current_delay = min(
+        if status_code == 429: self.current_delay = min(
                 self.max_delay,
                 self.current_delay * 2 ** self.consecutive_errors
             )
@@ -703,15 +632,12 @@ class AdaptiveRateLimiter:
 # 요청 루프에서 사용
 limiter = AdaptiveRateLimiter(base_delay=0.5)
 
-for page in range(100):
-    limiter.wait()
-    try:
-        response = requests.get(f"{BASE_URL}/assets", headers=headers, params={"offset": page * 50})
+for page in range(100): limiter.wait()
+    try: response = requests.get(f"{BASE_URL}/assets", headers=headers, params={"offset": page * 50})
         response.raise_for_status()
         limiter.on_success()
         process_assets(response.json())
-    except requests.exceptions.HTTPError as e:
-        limiter.on_error(e.response.status_code)
+    except requests.exceptions.HTTPError as e: limiter.on_error(e.response.status_code)
 ```
 
 ### 캐싱 전략
@@ -720,32 +646,24 @@ for page in range(100):
 from functools import lru_cache
 from datetime import datetime, timedelta
 
-class OpenSeaCache:
-    """API 응답을 위한 간단한 TTL 캐시."""
+class OpenSeaCache: """API 응답을 위한 간단한 TTL 캐시."""
     
-    def __init__(self, ttl_seconds: int = 60):
-        self.cache = {}
+    def __init__(self, ttl_seconds: int = 60): self.cache = {}
         self.ttl = ttl_seconds
     
-    def get(self, key: str):
-        if key in self.cache:
-            value, expiry = self.cache[key]
-            if datetime.now() < expiry:
-                return value
+    def get(self, key: str): if key in self.cache: value, expiry = self.cache[key]
+            if datetime.now() < expiry: return value
             del self.cache[key]
         return None
     
-    def set(self, key: str, value):
-        expiry = datetime.now() + timedelta(seconds=self.ttl)
+    def set(self, key: str, value): expiry = datetime.now() + timedelta(seconds=self.ttl)
         self.cache[key] = (value, expiry)
 
 # 컬렉션 메타데이터 캐싱 (드물게 변경됨)
 collection_cache = OpenSeaCache(ttl_seconds=300)
 
-def get_cached_collection(slug: str):
-    cached = collection_cache.get(slug)
-    if cached:
-        return cached
+def get_cached_collection(slug: str): cached = collection_cache.get(slug)
+    if cached: return cached
     
     data = sdk.get_collection_stats(slug)
     collection_cache.set(slug, data)
@@ -756,16 +674,13 @@ def get_cached_collection(slug: str):
 
 ## 트레이딩 봇 구축: 완전한 예제
 
-다음은 컬렉션 간 바닥 가격을 모니터링하는 차익 거래 탐지 트레이딩 봇의 완전한 예제입니다:
-
-```python
+다음은 컬렉션 간 바닥 가격을 모니터링하는 차익 거래 탐지 트레이딩 봇의 완전한 예제입니다: ```python
 import time
 from dataclasses import dataclass
 from typing import Callable
 
 @dataclass
-class ArbitrageOpportunity:
-    collection: str
+class ArbitrageOpportunity: collection: str
     token_id: str
     listed_price: float
     estimated_value: float
@@ -773,28 +688,23 @@ class ArbitrageOpportunity:
     listing_url: str
 
 
-class NFTArbitrageBot:
-    """OpenSea API를 사용하는 간단한 차익 거래 탐지 봇."""
+class NFTArbitrageBot: """OpenSea API를 사용하는 간단한 차익 거래 탐지 봇."""
     
-    def __init__(self, api: OpenSeaAPI, min_profit_pct: float = 15.0):
-        self.api = api
+    def __init__(self, api: OpenSeaAPI, min_profit_pct: float = 15.0): self.api = api
         self.min_profit_pct = min_profit_pct
         self.watchlist = []
         self.callbacks: List[Callable] = []
     
-    def add_collection(self, collection_slug: str, floor_threshold: float):
-        """감시 목록에 컬렉션을 추가합니다."""
+    def add_collection(self, collection_slug: str, floor_threshold: float): """감시 목록에 컬렉션을 추가합니다."""
         self.watchlist.append({
             "slug": collection_slug,
             "threshold": floor_threshold
         })
     
-    def on_opportunity(self, callback: Callable):
-        """차익 거래 기회에 대한 콜백을 등록합니다."""
+    def on_opportunity(self, callback: Callable): """차익 거래 기회에 대한 콜백을 등록합니다."""
         self.callbacks.append(callback)
     
-    def analyze_collection(self, collection: dict) -> List[ArbitrageOpportunity]:
-        """저가 상장을 위해 컬렉션을 스캔합니다."""
+    def analyze_collection(self, collection: dict) -> List[ArbitrageOpportunity]: """저가 상장을 위해 컬렉션을 스캔합니다."""
         slug = collection["slug"]
         
         # 바닥 가격과 활성 상장 가져오기
@@ -808,12 +718,10 @@ class NFTArbitrageBot:
         )
         
         opportunities = []
-        for listing in listings:
-            price = float(listing["price"])
+        for listing in listings: price = float(listing["price"])
             
             # 바닥 가격보다 현저히 낮은지 확인
-            if price < floor_price * (1 - self.min_profit_pct / 100):
-                opp = ArbitrageOpportunity(
+            if price < floor_price * (1 - self.min_profit_pct / 100): opp = ArbitrageOpportunity(
                     collection=slug,
                     token_id=listing["token_id"],
                     listed_price=price,
@@ -824,33 +732,23 @@ class NFTArbitrageBot:
                 opportunities.append(opp)
                 
                 # 콜백 알림
-                for cb in self.callbacks:
-                    cb(opp)
+                for cb in self.callbacks: cb(opp)
         
         return opportunities
     
-    def run(self, interval: int = 30):
-        """지정된 확인 간격으로 봇을 실행합니다."""
+    def run(self, interval: int = 30): """지정된 확인 간격으로 봇을 실행합니다."""
         logger.info(f"봇 시작, {len(self.watchlist)}개 컬렉션 모니터링 중")
         
-        try:
-            while True:
-                for collection in self.watchlist:
-                    try:
-                        opps = self.analyze_collection(collection)
-                        if opps:
-                            logger.info(f"{collection[slug]}에서 {len(opps)}개의 기회 발견")
-                    except Exception as e:
-                        logger.error(f"{collection[slug]} 분석 중 오류: {e}")
+        try: while True: for collection in self.watchlist: try: opps = self.analyze_collection(collection)
+                        if opps: logger.info(f"{collection[slug]}에서 {len(opps)}개의 기회 발견")
+                    except Exception as e: logger.error(f"{collection[slug]} 분석 중 오류: {e}")
                 
                 time.sleep(interval)
-        except KeyboardInterrupt:
-            logger.info("사용자가 봇을 중지함")
+        except KeyboardInterrupt: logger.info("사용자가 봇을 중지함")
 
 
 # 사용 예시
-def notify_discord(opp: ArbitrageOpportunity):
-    """기회에 대한 Discord 알림을 볃냅니다."""
+def notify_discord(opp: ArbitrageOpportunity): """기회에 대한 Discord 알림을 볃냅니다."""
     message = f"""
     **차익 거래 알림!**
     컬렉션: {opp.collection}
@@ -873,23 +771,16 @@ bot.on_opportunity(notify_discord)
 
 ## 오류 처리 및 디버깅
 
-프로덕션 애플리케이션에는 강력한 오류 처리가 필요합니다. OpenSea API는 구조화된 오류 응답을 반환합니다:
-
-```python
-class OpenSeaAPIError(Exception):
-    """OpenSea API 오류용 사용자 정의 예외."""
+프로덕션 애플리케이션에는 강력한 오류 처리가 필요합니다. OpenSea API는 구조화된 오류 응답을 반환합니다: ```python
+class OpenSeaAPIError(Exception): """OpenSea API 오류용 사용자 정의 예외."""
     
-    def __init__(self, message: str, status_code: int = None, response_data: dict = None):
-        super().__init__(message)
+    def __init__(self, message: str, status_code: int = None, response_data: dict = None): super().__init__(message)
         self.status_code = status_code
         self.response_data = response_data or {}
 
-def handle_api_error(response: requests.Response):
-    """적절한 예외를 구문 분석하고 발생시킵니다."""
-    try:
-        error_data = response.json()
-    except ValueError:
-        error_data = {"message": response.text}
+def handle_api_error(response: requests.Response): """적절한 예외를 구문 분석하고 발생시킵니다."""
+    try: error_data = response.json()
+    except ValueError: error_data = {"message": response.text}
     
     error_map = {
         400: ("잘못된 요청", ValueError),
@@ -910,11 +801,8 @@ def handle_api_error(response: requests.Response):
     raise error_class(f"{error_msg}: {detail}")
 
 # SDK에 적용
-class RobustOpenSeaAPI(OpenSeaAPI):
-    def _request(self, method: str, endpoint: str, **kwargs):
-        response = self.session.request(method, self.BASE_URL + endpoint, **kwargs)
-        if not response.ok:
-            handle_api_error(response)
+class RobustOpenSeaAPI(OpenSeaAPI): def _request(self, method: str, endpoint: str, **kwargs): response = self.session.request(method, self.BASE_URL + endpoint, **kwargs)
+        if not response.ok: handle_api_error(response)
         return response.json()
 ```
 
@@ -965,9 +853,7 @@ Seaport는 OpenSea의 탈중앙화된 NFT 트레이딩 프로토콜입니다. �
 
 OpenSea API는 2026년 현재 가장 포괄적이고 실전 검증된 NFT 마켓플레이스 API입니다. 여러 블록체인에 대한 지원, 실시간 WebSocket 스트리밍, 완전한 프로그래밍 방식 거래 기능을 갖추고 있어 정교한 NFT 애플리케이션을 구축하는 데 필요한 모든 것을 개발자에게 제공합니다.
 
-이 가이드의 핵심 요점:
-
-- **인증**: 개발자 대시보드에서 API 키를 얻고 항상 환경 변수를 사용하세요
+이 가이드의 핵심 요점: - **인증**: 개발자 대시보드에서 API 키를 얻고 항상 환경 변수를 사용하세요
 - **SDK 전략**: 공식 JavaScript SDK를 사용하거나 재시도 로직으로 사용자 정의 Python 래퍼를 구축하세요
 - **거래**: 프로그래밍 방식 매수/매도를 위해 Seaport 주문 생성 및 이행을 이해하세요
 - **실시간**: 즉각적인 이벤트 알림을 위해 WebSocket 스트림을 활용하세요
@@ -981,7 +867,6 @@ OpenSea API는 2026년 현재 가장 포괄적이고 실전 검증된 NFT 마켓
 *이 문서는 2026-05-19에 작성되었습니다. API 사양과 속도 제한은 변경될 수 있습니다. 최신 업데이트는 [공식 OpenSea 문서](https://docs.opensea.io/)를 참조하세요.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

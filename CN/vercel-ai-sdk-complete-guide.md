@@ -5,10 +5,7 @@ category: llm-frameworks
 tags: ['ai-sdk', 'vercel', 'react-server-components', 'streaming', 'tool-calling', 'llm-integration']
 slug: vercel-ai-sdk-complete-guide
 date: 2026-07-17 00:00:00+00:00
-lastmod:  2026-07-17 00:00:00+00:00featureImage: /images/articles/vercel-ai-sdk.jpg
----
-
-<!-- canonical: https://dibi8.com/cn/tools/vercel-ai-sdk-complete-guide/ -->
+lastmod: 2026-07-17 00:00:00+00:00featureImage: /images/articles/vercel-ai-sdk.jpg---
 
 ## TL;DR
 
@@ -31,9 +28,7 @@ Vercel AI SDK is a TypeScript library that provides a unified API for integratin
 
 ### Architecture Overview
 
-The AI SDK follows a layered architecture:
-
-1. **Core Layer**: Provider-agnostic API for LLM interactions (text generation, embeddings)
+The AI SDK follows a layered architecture: 1. **Core Layer**: Provider-agnostic API for LLM interactions (text generation, embeddings)
 2. **Adapter Layer**: Provider-specific implementations (OpenAI, Anthropic, Google, etc.)
 3. **UI Layer**: React components for streaming chat interfaces
 4. **Middleware Layer**: Server-side helpers for route handlers and API endpoints
@@ -67,9 +62,7 @@ cd my-ai-app
 npm install ai @ai-sdk/openai
 ```
 
-Create `.env.local`:
-
-```
+Create `.env.local`: ```
 OPENAI_API_KEY=sk-your-key-here
 ANTHROPIC_API_KEY=sk-ant-your-key-here
 ```
@@ -97,9 +90,7 @@ main();
 
 ### Text Generation
 
-The simplest way to interact with LLMs:
-
-```typescript
+The simplest way to interact with LLMs: ```typescript
 import { generateText } from 'ai';
 import { anthropic } from '@ai-sdk/anthropic';
 
@@ -116,9 +107,7 @@ console.log('Tokens used:', usage.totalTokens);
 
 ### Chat Completions
 
-Build conversational interfaces with message history:
-
-```typescript
+Build conversational interfaces with message history: ```typescript
 import { streamText } from 'ai';
 import { openai } from '@ai-sdk/openai';
 
@@ -139,9 +128,7 @@ for await (const textPart of result.textStream) {
 
 ### Embedding Generation
 
-Create vector representations for semantic search:
-
-```typescript
+Create vector representations for semantic search: ```typescript
 import { embed } from 'ai';
 import { openai } from '@ai-sdk/openai';
 
@@ -156,9 +143,7 @@ console.log(`Embedding dimension: ${embedding.length}`);
 
 ### Structured Outputs
 
-Generate typed JSON responses:
-
-```typescript
+Generate typed JSON responses: ```typescript
 import { generateObject } from 'ai';
 import { z } from 'zod';
 
@@ -180,9 +165,7 @@ console.log(movie.object.title); // Example: "Dune: Part Two"
 
 ### Text Stream
 
-Real-time token streaming for chat interfaces:
-
-```typescript
+Real-time token streaming for chat interfaces: ```typescript
 import { streamText } from 'ai';
 import { anthropic } from '@ai-sdk/anthropic';
 
@@ -204,9 +187,7 @@ for await (const chunk of fullText) {
 
 ### Data Stream
 
-Send custom structured data alongside text:
-
-```typescript
+Send custom structured data alongside text: ```typescript
 import { streamResponse } from 'ai';
 
 export async function POST(request: Request) {
@@ -282,9 +263,7 @@ export default function Chat() {
 
 ### Defining Tools
 
-Define tools that the model can call:
-
-```typescript
+Define tools that the model can call: ```typescript
 import { tool } from 'ai';
 import { z } from 'zod';
 
@@ -329,9 +308,7 @@ if (result.toolResults && result.toolResults.length > 0) {
 
 ### Streaming Tool Execution
 
-Execute tools while streaming the response:
-
-```typescript
+Execute tools while streaming the response: ```typescript
 import { streamText } from 'ai';
 
 const result = streamText({
@@ -360,7 +337,13 @@ const result = streamText({
 ### Supported Providers
 
 | Provider | Package | Models Available |
-|----------|---------|-----------------|
+|
+---
+|
+---
+|
+---
+|
 | OpenAI | @ai-sdk/openai | GPT-4o, GPT-4 Turbo, o1 |
 | Anthropic | @ai-sdk/anthropic | Claude 3.5 Sonnet, Haiku |
 | Google | @ai-sdk/google | Gemini Pro, Gemini Ultra |
@@ -372,9 +355,7 @@ const result = streamText({
 
 ### Multi-Provider Fallback
 
-Implement provider fallback for reliability:
-
-```typescript
+Implement provider fallback for reliability: ```typescript
 import { generateText } from 'ai';
 import { openai } from '@ai-sdk/openai';
 import { anthropic } from '@ai-sdk/anthropic';
@@ -400,9 +381,7 @@ async function generateWithFallback(prompt: string) {
 
 ### Custom Provider
 
-Integrate with any provider using the custom adapter:
-
-```typescript
+Integrate with any provider using the custom adapter: ```typescript
 import { createCustomProvider } from 'ai';
 
 const myProvider = createCustomProvider({
@@ -452,9 +431,7 @@ export async function POST(req: Request) {
 
 ### Rate Limiting
 
-Implement rate limiting for API endpoints:
-
-```typescript
+Implement rate limiting for API endpoints: ```typescript
 import { Ratelimit } from '@upstash/ratelimit';
 import { Redis } from '@upstash/redis';
 
@@ -477,9 +454,7 @@ export async function POST(req: Request) {
 
 ### Cost Tracking
 
-Monitor API usage and costs:
-
-```typescript
+Monitor API usage and costs: ```typescript
 interface UsageMetrics {
   totalTokens: number;
   promptTokens: number;
@@ -507,9 +482,7 @@ function trackUsage(modelId: string, usage: { promptTokens: number; completionTo
 
 ### Caching Responses
 
-Cache common queries to reduce API costs:
-
-```typescript
+Cache common queries to reduce API costs: ```typescript
 import { kv } from '@vercel/kv';
 
 async function getCachedResponse(key: string) {
@@ -536,7 +509,17 @@ if (!response) {
 ## Comparison with Alternatives
 
 | Feature | Vercel AI SDK | LangChain | LlamaIndex | Semantic Kernel |
-|---------|--------------|-----------|------------|----------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | TypeScript Native | ✅ | Partial | ❌ | ❌ |
 | React Components | ✅ | ❌ | ❌ | ❌ |
 | Streaming UI | ✅ | Manual | Manual | Manual |
@@ -588,7 +571,6 @@ Deploy to Vercel for the best experience with automatic edge runtime support. Yo
 Build your next AI-powered application with the Vercel AI SDK. [Explore the docs](https://dibi8.com/auth/) and join thousands of developers creating amazing AI experiences.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -614,8 +596,8 @@ Build your next AI-powered application with the Vercel AI SDK. [Explore the docs
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [vercel-ai-sdk-edge-compute](vercel-ai-sdk-complete-guide)
@@ -623,6 +605,6 @@ Build your next AI-powered application with the Vercel AI SDK. [Explore the docs
 - [vercel-ai-sdk-edge-compute](vercel-ai-sdk-complete-guide)
 - [vercel-ai-sdk-edge-compute](vercel-ai-sdk-complete-guide)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

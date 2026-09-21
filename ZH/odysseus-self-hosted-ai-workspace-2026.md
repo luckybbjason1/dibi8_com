@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/odysseus-self-hosted-ai-workspace-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/odysseus-self-hosted-ai-workspace-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/odysseus-self-hosted-ai-workspace-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/odysseus-self-hosted-ai-workspace-2026" />
 title: 'Odysseus：9天涨6.3万 GitHub Star 的自部署 AI 工作台 — 2026 完整安装指南'
 description: 'Odysseus 是开源、隐私优先的 AI 工作台（9天6.3万 star，MIT 协议）。一条 Docker 命令即可获得聊天、AI 智能体、深度调研、邮件自动分类、日历、笔记和模型 Cookbook——全部运行在自己的硬件上。本文详解安装步骤、核心功能及与 ChatGPT Plus 的对比。'
 date: 2026-06-09 00:00:00+08:00
@@ -25,10 +20,8 @@ featureImage: 'https://raw.githubusercontent.com/pewdiepie-archdaemon/odysseus/m
 draft: false
 categories: ['ai-tools']
 tags: [odysseus, '自部署 ai', 'ai 工作台', '本地 llm', 隐私, docker, 开源, 'chatgpt 替代', ollama, 深度调研]
-aliases:
-- /zh/posts/odysseus-self-hosted-ai-workspace-2026/
-faqs:
-  - q: 'Odysseus 必须有 GPU 才能运行吗？'
+aliases: - /zh/posts/odysseus-self-hosted-ai-workspace-2026/
+faqs: - q: 'Odysseus 必须有 GPU 才能运行吗？'
     a: '不需要。Odysseus 本身非常轻量。只有在使用 Cookbook 功能在本地运行大模型时才需要 GPU。你可以直接连接远程 API（OpenAI、Anthropic、OpenRouter）或独立的 Ollama 实例，完全不需要本地 GPU。'
   - q: 'Odysseus 和 Open WebUI 有什么区别？'
     a: 'Open WebUI 主要聚焦于聊天和基于 Ollama 的 RAG。Odysseus 在此之上增加了完整套件：支持 MCP 工具调用的 AI 智能体、带可视化报告的深度调研、AI 感知邮件客户端、CalDAV 日历、带提醒的笔记，以及能自动检测 VRAM 并推荐兼容模型的 Cookbook。它更像一个自部署的 ChatGPT Plus，而不是普通的 Ollama 前端。'
@@ -37,10 +30,7 @@ faqs:
   - q: '把 Odysseus 暴露到公网安全吗？'
     a: '默认的 Docker Compose 只绑定 127.0.0.1。如需局域网访问，在 .env 中设置 APP_BIND=0.0.0.0 并保持 AUTH_ENABLED=true。公网访问务必在前端加反向代理（Nginx、Caddy）并启用 TLS。官方明确建议：在未开启认证的情况下不要对外暴露 0.0.0.0 端口。'
   - q: '可以在手机上使用 Odysseus 吗？'
-    a: '可以。Odysseus 是一个渐进式 Web 应用（PWA），完全响应式设计。在 iOS 或 Android 上点击"添加到主屏幕"可获得接近原生 App 的体验。Cookbook 和 Agent 功能在手机上同样可用，但 GPU 密集型的本地模型推理仍需桌面/服务器环境。'
----
-
-<!-- canonical: https://dibi8.com/zh/tools/odysseus-self-hosted-ai-workspace-2026/ -->
+    a: '可以。Odysseus 是一个渐进式 Web 应用（PWA），完全响应式设计。在 iOS 或 Android 上点击"添加到主屏幕"可获得接近原生 App 的体验。Cookbook 和 Agent 功能在手机上同样可用，但 GPU 密集型的本地模型推理仍需桌面/服务器环境。'---
 # Odysseus：9天涨6.3万 GitHub Star 的自部署 AI 工作台 — 2026 完整安装指南
 
 
@@ -113,7 +103,15 @@ Cookbook 是 Odysseus 最具差异化的功能：
 ## 与主要竞品对比
 
 | 功能 | Odysseus | Open WebUI | ChatGPT Plus |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 自部署 | ✅ | ✅ | ❌ |
 | 智能体 + MCP 工具 | ✅ | 部分 | ✅ |
 | 深度调研 | ✅ | ❌ | ✅ |
@@ -136,7 +134,6 @@ Odysseus 目前是 1.0 版本，上线不到两周，难免存在不完善之处
 **GitHub：** [pewdiepie-archdaemon/odysseus](https://github.com/pewdiepie-archdaemon/odysseus)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -164,25 +161,20 @@ Odysseus 目前是 1.0 版本，上线不到两周，难免存在不完善之处
 
 ## Why This Matters
 
-Understanding odysseus：9天涨6.3万 github star 的自部署 ai 工作台 — 2026 完整安装指南 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding odysseus：9天涨6.3万 github star 的自部署 ai 工作台 — 2026 完整安装指南 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -203,13 +195,13 @@ Odysseus：9天涨6.3万 GitHub Star 的自部署 AI 工作台 — 2026 完整�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
 
+---
 ## Related Articles
 
 - [12-factor-agents-production-llm-software-2026](odysseus-self-hosted-ai-workspace-2026)

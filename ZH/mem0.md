@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mem0" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mem0" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mem0" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mem0" />
 title: 'Mem0: 56K+ Stars — AI智能体内存性能调优指南 2026'
 description: 'Mem0 (mem0ai) 是面向 AI 智能体的通用记忆层。兼容 Claude Code、OpenAI、LangChain、CrewAI、Cursor。涵盖 mem0 教程、持久化记忆设置、向量存储调优和生产部署基准测试。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [mem0, 'ai-agent-memory', 持久化记忆, langchain, 向量存储, 内存调优, mem0教程, 'mem0-vs-langchain', crewai, 开源]
-aliases:
-- /zh/posts/mem0/
+aliases: - /zh/posts/mem0/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/mem0/ -->
 
 {{</* resource-info */>}}
 
@@ -171,31 +163,23 @@ results = m.search("movie recommendations", filters={"user_id": "alice"})
 
 ```yaml
 # mem0config.yaml — 生产级调优配置
-llm:
-  provider: openai
-  config:
-    model: "gpt-4o-mini"
+llm: provider: openai
+  config: model: "gpt-4o-mini"
     temperature: 0.1
     max_tokens: 2000
 
-embedder:
-  provider: openai
-  config:
-    model: "text-embedding-3-small"
+embedder: provider: openai
+  config: model: "text-embedding-3-small"
     embedding_dims: 1536
 
-vector_store:
-  provider: qdrant
-  config:
-    host: "localhost"
+vector_store: provider: qdrant
+  config: host: "localhost"
     port: 6333
     collection_name: "mem0"
     on_disk: true  # 启用持久化存储
 
-reranker:
-  provider: cohere
-  config:
-    model: "rerank-multilingual-v3.0"
+reranker: provider: cohere
+  config: model: "rerank-multilingual-v3.0"
 
 custom_instructions: |
   提取用户偏好、个人事实和上下文。
@@ -214,7 +198,17 @@ m = Memory.from_config(config_path)
 ### 向量存储后端对比
 
 | 后端 | 适用场景 | 延迟 | 持久化 | 扩展性 |
-|------|----------|------|--------|--------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Qdrant | 生产环境、混合搜索 | <10ms | 磁盘 | 水平扩展 |
 | Chroma | 本地开发、原型设计 | <20ms | 文件 | 单节点 |
 | PGVector | PostgreSQL 生态 | <30ms | 数据库管理 | 读副本 |
@@ -230,8 +224,7 @@ import asyncio
 
 client = MemoryClient()
 
-async def batch_store(messages_list):
-    tasks = [client.add_async(msgs, user_id=f"user_{i}")
+async def batch_store(messages_list): tasks = [client.add_async(msgs, user_id=f"user_{i}")
              for i, msgs in enumerate(messages_list)]
     return await asyncio.gather(*tasks)
 
@@ -306,15 +299,12 @@ prompt = ChatPromptTemplate.from_messages([
     ("human", "{input}")
 ])
 
-def get_memories(user_id: str, query: str) -> str:
-    """检索相关记忆并格式化为字符串。"""
+def get_memories(user_id: str, query: str) -> str: """检索相关记忆并格式化为字符串。"""
     results = mem0.search(query, user_id=user_id, limit=5)
     return "\n".join([r["memory"] for r in results])
 
-def chat(user_id: str, message: str, history: List = None):
-    """带记忆增强上下文的对话。"""
-    if history is None:
-        history = []
+def chat(user_id: str, message: str, history: List = None): """带记忆增强上下文的对话。"""
+    if history is None: history = []
 
     memories = get_memories(user_id, message)
     formatted_prompt = prompt.format_messages(
@@ -360,14 +350,12 @@ from mem0 import MemoryClient
 mem0 = MemoryClient(api_key=os.getenv("MEM0_API_KEY"))
 
 @tool
-def retrieve_user_context(user_id: str, query: str) -> str:
-    """检索关于用户的记忆用于个性化。"""
+def retrieve_user_context(user_id: str, query: str) -> str: """检索关于用户的记忆用于个性化。"""
     results = mem0.search(query, user_id=user_id, limit=5)
     return "\n".join([f"- {r[memory]}" for r in results])
 
 @tool
-def store_interaction(user_id: str, content: str) -> str:
-    """存储智能体交互中学到的事实。"""
+def store_interaction(user_id: str, content: str) -> str: """存储智能体交互中学到的事实。"""
     messages = [{"role": "assistant", "content": content}]
     mem0.add(messages, user_id=user_id)
     return "Stored."
@@ -412,19 +400,16 @@ from mem0 import MemoryClient
 mem0 = MemoryClient(api_key=os.getenv("MEM0_API_KEY"))
 
 @dataclass
-class UserContext:
-    user_id: str
+class UserContext: user_id: str
 
 @function_tool
-def add_to_memory(ctx, messages: str) -> str:
-    """存储关于用户的事实。"""
+def add_to_memory(ctx, messages: str) -> str: """存储关于用户的事实。"""
     parsed = [{"role": "user", "content": m} for m in messages.split("\n")]
     mem0.add(parsed, user_id=ctx.context.user_id)
     return "Memory stored."
 
 @function_tool
-def search_memory(ctx, query: str) -> str:
-    """搜索相关记忆。"""
+def search_memory(ctx, query: str) -> str: """搜索相关记忆。"""
     results = mem0.search(query, user_id=ctx.context.user_id, limit=5)
     return "\n".join([r["memory"] for r in results])
 
@@ -435,8 +420,7 @@ memory_agent = Agent(
     model="gpt-4o-mini"
 )
 
-async def run_agent():
-    context = UserContext(user_id="user_42")
+async def run_agent(): context = UserContext(user_id="user_42")
     result = await Runner.run(
         memory_agent,
         "I'm a vegetarian who loves Italian food.",
@@ -453,43 +437,29 @@ async def run_agent():
 # mem0-production-stack.yml
 version: "3.8"
 
-services:
-  qdrant:
-    image: qdrant/qdrant:latest
-    ports:
-      - "6333:6333"
+services: qdrant: image: qdrant/qdrant:latest
+    ports: - "6333:6333"
       - "6334:6334"
-    volumes:
-      - qdrant_storage:/qdrant/storage
-    environment:
-      - QDRANT__SERVICE__GRPC_PORT=6334
+    volumes: - qdrant_storage:/qdrant/storage
+    environment: - QDRANT__SERVICE__GRPC_PORT=6334
 
-  mem0-server:
-    image: mem0/mem0-server:latest
-    ports:
-      - "8000:8000"
-    environment:
-      - MEM0_API_KEY=${MEM0_API_KEY}
+  mem0-server: image: mem0/mem0-server:latest
+    ports: - "8000:8000"
+    environment: - MEM0_API_KEY=${MEM0_API_KEY}
       - VECTOR_STORE_PROVIDER=qdrant
       - VECTOR_STORE_URL=http://qdrant:6333
       - LLM_PROVIDER=openai
       - OPENAI_API_KEY=${OPENAI_API_KEY}
       - EMBEDDER_PROVIDER=openai
       - OPENAI_EMBEDDING_MODEL=text-embedding-3-small
-    depends_on:
-      - qdrant
+    depends_on: - qdrant
 
-  mem0-dashboard:
-    image: mem0/mem0-dashboard:latest
-    ports:
-      - "3000:3000"
-    environment:
-      - MEM0_API_URL=http://mem0-server:8000
+  mem0-dashboard: image: mem0/mem0-dashboard:latest
+    ports: - "3000:3000"
+    environment: - MEM0_API_URL=http://mem0-server:8000
       - MEM0_API_KEY=${MEM0_API_KEY}
 
-volumes:
-  qdrant_storage:
-```
+volumes: qdrant_storage: ```
 
 ## 基准测试 / 实际用例
 
@@ -498,7 +468,17 @@ volumes:
 Mem0 的新型 token 高效算法（2026 年 4 月发布）在更低 token 成本下实现显著精度提升：
 
 | 基准测试 | 指标 | 旧算法 | 新算法（2026年4月） | 提升 |
-|----------|------|--------|---------------------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | LoCoMo | 总体准确率 | 66.9% | **92.5%** | +25.6 个百分点 |
 | LoCoMo | 平均 Token/查询 | ~26,000 | **6,956** | 3.7 倍减少 |
 | LongMemEval | 总体准确率 | 65.3% | **94.4%** | +29.1 个百分点 |
@@ -509,7 +489,15 @@ Mem0 的新型 token 高效算法（2026 年 4 月发布）在更低 token 成�
 ### 分类别细分（LoCoMo）
 
 | 类别 | 旧分数 | 新分数 | 增量 |
-|------|--------|--------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 单跳 | 76.6% | 94.6% | +18.0 |
 | 多跳 | 70.2% | 95.4% | +25.2 |
 | 开放域 | 57.3% | 82.3% | +25.0 |
@@ -539,8 +527,7 @@ Mem0 的新型 token 高效算法（2026 年 4 月发布）在更低 token 成�
 
 ```python
 # 使用元数据进行记忆访问控制
-def store_sensitive_memory(user_id: str, fact: str, classification: str):
-    """存储带安全等级的记忆。"""
+def store_sensitive_memory(user_id: str, fact: str, classification: str): """存储带安全等级的记忆。"""
     messages = [{"role": "user", "content": fact}]
     mem0.add(
         messages,
@@ -566,8 +553,7 @@ results = client.search(
 
 ```python
 # 面向 SaaS 应用的组织级记忆隔离
-def add_org_scoped_memory(org_id: str, user_id: str, messages: list):
-    """存储同时按组织和用户范围隔离的记忆。"""
+def add_org_scoped_memory(org_id: str, user_id: str, messages: list): """存储同时按组织和用户范围隔离的记忆。"""
     client.add(
         messages,
         user_id=f"{org_id}:{user_id}",
@@ -587,8 +573,7 @@ results = client.get_all(
 # 追踪记忆指标
 import time
 
-def timed_search(user_id: str, query: str):
-    """带延迟日志的搜索。"""
+def timed_search(user_id: str, query: str): """带延迟日志的搜索。"""
     start = time.time()
     results = client.search(query, user_id=user_id)
     latency = (time.time() - start) * 1000
@@ -600,8 +585,7 @@ def timed_search(user_id: str, query: str):
     return results
 
 # 定期记忆健康检查
-def memory_health_check(user_id: str):
-    """验证用户记忆的完整性。"""
+def memory_health_check(user_id: str): """验证用户记忆的完整性。"""
     all_memories = client.get_all(filters={"user_id": user_id})
 
     return {
@@ -619,25 +603,19 @@ def memory_health_check(user_id: str):
 from functools import wraps
 import time
 
-class Mem0RateLimiter:
-    """Mem0 API 调用的简单速率限制器。"""
-    def __init__(self, max_calls_per_minute=100):
-        self.max_calls = max_calls_per_minute
+class Mem0RateLimiter: """Mem0 API 调用的简单速率限制器。"""
+    def __init__(self, max_calls_per_minute=100): self.max_calls = max_calls_per_minute
         self.calls = []
 
-    def can_call(self) -> bool:
-        now = time.time()
+    def can_call(self) -> bool: now = time.time()
         self.calls = [c for c in self.calls if now - c < 60]
         return len(self.calls) < self.max_calls
 
-    def record_call(self):
-        self.calls.append(time.time())
+    def record_call(self): self.calls.append(time.time())
 
 limiter = Mem0RateLimiter(max_calls_per_minute=60)
 
-def rate_limited_add(messages, user_id):
-    if not limiter.can_call():
-        # 稍后排队或跳过非关键记忆
+def rate_limited_add(messages, user_id): if not limiter.can_call(): # 稍后排队或跳过非关键记忆
         print("触发速率限制，记忆入队")
         return {"status": "queued"}
     limiter.record_call()
@@ -647,7 +625,17 @@ def rate_limited_add(messages, user_id):
 ## 与替代品对比
 
 | 特性 | Mem0 | LangChain Memory | LlamaIndex Memory | Chroma（原始） |
-|------|------|------------------|-------------------|---------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **架构** | 混合 向量+图+KV | 键值+向量 | 向量+索引 | 纯向量数据库 |
 | **GitHub Stars** | 56,205 | 100K+ (LangChain) | 41,000 | 18,500 |
 | **LOCOMO 分数** | 92.5%（新算法） | 58.10% | 62.47% | N/A（仅存储） |
@@ -757,7 +745,6 @@ Mem0 解决了 AI 智能体开发中最持久的问题之一：跨会话记忆�
 - Evermind — Mem0 替代品 2026: https://evermind.ai/blogs/mem0-alternative
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -783,8 +770,8 @@ Mem0 解决了 AI 智能体开发中最持久的问题之一：跨会话记忆�
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [2026-06-22-trending-ai-agents](mem0)
@@ -793,8 +780,8 @@ Mem0 解决了 AI 智能体开发中最持久的问题之一：跨会话记忆�
 - [mattpocock-skills-ai-agent-framework-guide](mem0)
 - [nanochat-karpathy-100-chatgpt-single-gpu](mem0)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

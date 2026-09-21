@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/act" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/act" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/act" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/act" />
 title: 'act: 70,410 GitHub Stars — 本地运行 GitHub Actions，2026 生产级 ...
 description: 'act (nektos/act) 是一个使用 Docker 容器在本地运行 GitHub Actions 工作流的 CLI 工具。兼容 Docker、GitHub Actions、Go 和 VS Code。涵盖安装、配置、密钥管理、runner 镜像和生产环境加固。'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [act, 'github-actions', 'ci-cd', docker, 本地开发, devops, 测试, 自动化]
-aliases:
-- /zh/posts/act/
+aliases: - /zh/posts/act/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/act/ -->
 
 {{</* resource-info */>}}
 
@@ -63,7 +55,15 @@ act 作为本地 GitHub Actions runner 模拟器运行。当你在仓库中运�
 act 提供三种镜像层级，在保真度和磁盘空间之间取得平衡：
 
 | 镜像大小 | 下载 | 磁盘空间 | 使用场景 |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Micro | ~50 MB | <200 MB | 仅 Node.js，快速冒烟测试 |
 | Medium | ~200 MB | ~500 MB | 包含必要工具，适合大多数工作流 |
 | Large | ~5 GB | ~18-75 GB | 完整 GitHub runner 对等性，完整工具链 |
@@ -136,8 +136,7 @@ sudo make install
 ```bash
 # 首次运行 — 选择默认 runner 镜像
 act
-? Please choose the default image you want to use with act:
-  - Large size image: ~17GB download, ~75GB disk space, closest to GitHub runners
+? Please choose the default image you want to use with act: - Large size image: ~17GB download, ~75GB disk space, closest to GitHub runners
   - Medium size image: ~500MB, includes essential tools (RECOMMENDED)
   - Micro size image: <200MB, Node.js only
 ```
@@ -188,11 +187,8 @@ act --container-architecture linux/amd64
 # .github/workflows/dind-test.yml
 name: Docker Build Test
 on: push
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: build: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - name: Build Docker image
         run: docker build -t myapp:latest .
 ```
@@ -234,23 +230,16 @@ act --github-instance github.company.com -s GITHUB_TOKEN=ghp_xxxxxxxx
 # .github/workflows/tasks.yml
 name: Local Tasks
 on: workflow_dispatch
-jobs:
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: lint: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - name: Run linter
         run: npm run lint
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+  test: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - name: Run tests
         run: npm test
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+  build: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - name: Build
         run: npm run build
 ```
@@ -267,7 +256,15 @@ act -j build
 ### 反馈循环对比
 
 | 场景 | 推送到 GitHub | 使用 act 本地运行 | 节省时间 |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 修复工作流拼写错误 | 3-5 分钟 | 15-30 秒 | 90% |
 | 调试失败测试 | 5-10 分钟（多次推送） | 每次迭代 30-60 秒 | 85% |
 | 测试矩阵 (3 OS × 2 Node 版本) | 8-15 分钟 | 2-3 分钟 | 80% |
@@ -285,7 +282,15 @@ act -j build
 ### 按镜像大小的启动时间
 
 | 镜像 | 首次拉取 | 冷启动 | 热启动 |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Micro (node:16-slim) | ~10 秒 | 5 秒 | 2 秒 |
 | Medium (catthehacker/ubuntu:act-latest) | ~45 秒 | 15 秒 | 5 秒 |
 | Large (catthehacker/ubuntu:full-latest) | ~8 分钟 | 45 秒 | 15 秒 |
@@ -420,17 +425,12 @@ EOF
 
 ```yaml
 # 在你的工作流文件中
-jobs:
-  deploy:
-    if: ${{ !github.event.act }}  # 本地运行时跳过部署作业
+jobs: deploy: if: ${{ !github.event.act }}  # 本地运行时跳过部署作业
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+    steps: - uses: actions/checkout@v4
 
-  notify:
-    runs-on: ubuntu-latest
-    steps:
-      - name: 本地运行时跳过 Slack 通知
+  notify: runs-on: ubuntu-latest
+    steps: - name: 本地运行时跳过 Slack 通知
         if: ${{ !env.ACT }}
         run: |
           curl -X POST -H 'Content-type: application/json' \
@@ -473,7 +473,17 @@ act --action-offline-mode
 ## 与替代方案对比
 
 | 功能 | act | GitHub Actions Runner | Drone CI | Jenkins |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **本地执行** | 原生（Docker） | 可行（配置复杂） | 基于 Docker | 需要 Java + 插件 |
 | **GitHub 对等性** | 高（相同 YAML 语法） | 完整（官方 runner） | 中（不同语法） | 低（依赖插件） |
 | **配置时间** | <1 分钟 | 10-30 分钟 | 5-10 分钟 | 15-30 分钟 |
@@ -612,7 +622,6 @@ curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/nektos/ac
 - [catthehacker/docker_images](https://github.com/catthehacker/docker_images) — act 使用的社区 runner 镜像
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -638,8 +647,8 @@ curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/nektos/ac
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [apple-container](act)
@@ -648,6 +657,6 @@ curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/nektos/ac
 - [2026-06-15-trending-ai-agents](act)
 - [2026-06-22-trending-ai-agents](act)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

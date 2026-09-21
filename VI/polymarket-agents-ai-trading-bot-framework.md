@@ -1,16 +1,10 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/polymarket-agents-ai-trading-bot-framework" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/polymarket-agents-ai-trading-bot-framework" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/polymarket-agents-ai-trading-bot-framework" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/polymarket-agents-ai-trading-bot-framework" />
 title: 'Polymarket Agents: Xây Dựng Bot Giao Dịch AI cho Thị Trư...
 description: Polymarket Agents là một khung phát triển mã nguồn mở để xây dựng các. Comprehensive guide covering features, pricing, and best practices for 2026.
   tác nhân AI giao dịch tự động trên thị trường dự đoán Polymarket.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
-tech_stack:
-- Docker
+tech_stack: - Docker
 - Python
 - TypeScript
 application_domain: Llm Frameworks
@@ -27,10 +21,8 @@ maintainer: "Polymarket"
 last_maintained: "2024-11-05"
 featureImage: ''
 draft: false
-aliases:
-- /vi/posts/polymarket-agents-ai-trading-bot-framework/
-faqs:
-  - q: 'Polymarket Agents là gì?'
+aliases: - /vi/posts/polymarket-agents-ai-trading-bot-framework/
+faqs: - q: 'Polymarket Agents là gì?'
     a: 'Polymarket Agents là một framework dành cho nhà phát triển, mã nguồn mở và được cấp phép MIT, dùng để xây dựng các AI agent giao dịch tự động trên thị trường dự đoán Polymarket. Nó cung cấp các tiện ích để phân tích thị trường, tích hợp với Polymarket API để lấy dữ liệu thời gian thực và tự động thực hiện giao dịch.'
   - q: 'Tôi cần thiết lập những gì trước khi chạy Polymarket Agents?'
     a: 'Bạn cần private key của ví Polygon và một OpenAI API key được thiết lập trong file .env, cùng với một môi trường ảo Python 3.9 đã cài các dependency từ requirements.txt. Bạn cũng phải nạp USDC vào ví Polygon của mình, vì các giao dịch trên Polymarket được thanh toán bằng USDC.'
@@ -42,7 +34,6 @@ faqs:
     a: 'Chạy lệnh CLI ''python scripts/python/cli.py trade --market-id <MARKET_ID> --side buy --size <SIZE>''. Bạn cũng có thể liệt kê các thị trường bằng ''get-all-markets --sort-by volume'' hoặc xem một thị trường cụ thể bằng ''get-market --market-id <MARKET_ID>''.'
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/polymarket-agents-ai-trading-bot-framework/ -->
 {</* resource-info */>}
 
 ![Polymarket Agents CLI hiển thị các lệnh](/images/articles/polymarket-agents-ai-trading-bot-framework/cli.png)
@@ -52,8 +43,7 @@ faqs:
 
 **Polymarket Agents** là một khung phát triển mã nguồn mở và bộ tiện ích để xây dựng các tác nhân AI giao dịch tự động trên **Polymarket** — nền tảng thị trường dự đoán lớn nhất thế giới.
 
-Khung này cho phép nhà phát triển:
-- 🤖 Xây dựng các tác nhân AI phân tích thị trường và thực hiện giao dịch tự động
+Khung này cho phép nhà phát triển: - 🤖 Xây dựng các tác nhân AI phân tích thị trường và thực hiện giao dịch tự động
 - 📊 Tích hợp với API Polymarket để có dữ liệu thị trường thời gian thực
 - 🔍 Sử dụng RAG (Tạo sinh Tăng cường Truy xuất) để đưa ra quyết định giao dịch sáng suốt
 - 📰 Thu thập dữ liệu từ dịch vụ cá cược, nhà cung cấp tin tức và tìm kiếm web
@@ -65,9 +55,7 @@ Khung này cho phép nhà phát triển:
 
 ## Polymarket là gì?
 
-**Polymarket** là một nền tảng thị trường dự đoán phi tập trung nơi người dùng có thể giao dịch về kết quả của các sự kiện thế giới thực:
-
-- **Chính trị** — Kết quả bầu cử, quyết định chính sách
+**Polymarket** là một nền tảng thị trường dự đoán phi tập trung nơi người dùng có thể giao dịch về kết quả của các sự kiện thế giới thực: - **Chính trị** — Kết quả bầu cử, quyết định chính sách
 - **Tiền mã hóa** — Dự đoán giá Bitcoin, phê duyệt ETF
 - **Thể thao** — Kết quả trận đấu, nhà vô địch
 - **Khoa học** — Đột phá nghiên cứu, sứ mệnh không gian
@@ -94,9 +82,7 @@ Các nhà giao dịch mua cổ phiếu "Có" hoặc "Không" dựa trên dự đ
 
 ## Kiến trúc
 
-Polymarket Agents có các thành phần mô-đun có thể được duy trì và mở rộng bởi cộng đồng:
-
-### API cốt lõi
+Polymarket Agents có các thành phần mô-đun có thể được duy trì và mở rộng bởi cộng đồng: ### API cốt lõi
 
 | Thành phần | Mục đích |
 |-----------|----------|
@@ -107,9 +93,7 @@ Polymarket Agents có các thành phần mô-đun có thể được duy trì v�
 
 ### Lệnh CLI
 
-Giao diện người dùng chính để tương tác với Polymarket:
-
-```bash
+Giao diện người dùng chính để tương tác với Polymarket: ```bash
 # Lấy tất cả thị trường được sắp xếp theo khối lượng
 python scripts/python/cli.py get-all-markets --limit 10 --sort-by volume
 
@@ -144,9 +128,7 @@ pip install -r requirements.txt
 
 ### 3. Cấu hình khóa API
 
-Tạo tệp `.env`:
-
-```env
+Tạo tệp `.env`: ```env
 POLYGON_WALLET_PRIVATE_KEY="khóa riêng tư ví của bạn"
 OPENAI_API_KEY="khóa API OpenAI của bạn"
 ```
@@ -165,9 +147,7 @@ export PYTHONPATH="."
 python scripts/python/cli.py
 ```
 
-Hoặc thực hiện giao dịch trực tiếp:
-
-```bash
+Hoặc thực hiện giao dịch trực tiếp: ```bash
 python agents/application/trade.py
 ```
 
@@ -182,9 +162,7 @@ python agents/application/trade.py
 
 ## Chiến lược giao dịch
 
-Polymarket Agents hỗ trợ nhiều chiến lược giao dịch dựa trên AI:
-
-### 1. Giao dịch dựa trên tin tức
+Polymarket Agents hỗ trợ nhiều chiến lược giao dịch dựa trên AI: ### 1. Giao dịch dựa trên tin tức
 - Theo dõi nguồn tin tức để biết diễn biến sự kiện
 - Sử dụng LLM để phân tích tình cảm và tác động
 - Thực hiện giao dịch dựa trên kết quả dự đoán
@@ -208,9 +186,7 @@ Polymarket Agents hỗ trợ nhiều chiến lược giao dịch dựa trên AI:
 
 ## Nguồn dữ liệu
 
-Khung này tích hợp nhiều nguồn dữ liệu:
-
-| Nguồn | Loại | Trường hợp sử dụng |
+Khung này tích hợp nhiều nguồn dữ liệu: | Nguồn | Loại | Trường hợp sử dụng |
 |-------|------|-------------------|
 | **API tin tức** | Tin tức thời gian thực | Theo dõi sự kiện |
 | **Tìm kiếm web** | Thông tin chung | Nghiên cứu nền tảng |
@@ -222,9 +198,7 @@ Khung này tích hợp nhiều nguồn dữ liệu:
 
 ## Triển khai RAG
 
-Tạo sinh tăng cường truy xuất để giao dịch sáng suốt:
-
-1. **Cơ sở dữ liệu vector** — Chroma DB lưu trữ bài báo tin tức và dữ liệu thị trường
+Tạo sinh tăng cường truy xuất để giao dịch sáng suốt: 1. **Cơ sở dữ liệu vector** — Chroma DB lưu trữ bài báo tin tức và dữ liệu thị trường
 2. **Nhúng** — Chuyển đổi văn bản thành vector để tìm kiếm ngữ nghĩa
 3. **Truy xuất** — Truy vấn thông tin liên quan dựa trên ngữ cảnh thị trường
 4. **Tạo sinh** — LLM tổng hợp dữ liệu đã truy xuất thành quyết định giao dịch
@@ -233,9 +207,7 @@ Tạo sinh tăng cường truy xuất để giao dịch sáng suốt:
 
 ## Quản lý rủi ro
 
-Các cân nhắc quan trọng cho giao dịch tự động:
-
-| Rủi ro | Giảm thiểu |
+Các cân nhắc quan trọng cho giao dịch tự động: | Rủi ro | Giảm thiểu |
 |--------|-----------|
 | **Rủi ro thị trường** | Quy mô vị thế, cắt lỗ |
 | **Rủi ro thanh khoản** | Giao dịch trên thị trường có khối lượng cao |
@@ -326,9 +298,7 @@ Các cân nhắc quan trọng cho giao dịch tự động:
 
 ## Hạ Tầng Đề Xuất Cho Tự Lưu Trữ
 
-Để chạy stack này 24/7 ổn định, lựa chọn hạ tầng rất quan trọng:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu. Lựa chọn mặc định cho developer độc lập.
+Để chạy stack này 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu. Lựa chọn mặc định cho developer độc lập.
 - **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — VPS Hong Kong, độ trễ thấp với người dùng Việt Nam. dibi8.com cũng được host ở đây.
 - **{{< aff "hostinger" "footer-cta-legacy" "Hostinger" >}}** — Lựa chọn VPS giá tốt cho thị trường Việt Nam, giảm 60% gói đầu tiên.
 
@@ -337,7 +307,6 @@ Các cân nhắc quan trọng cho giao dịch tự động:
 *Cập nhật lần cuối: 2026-05-06*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/coqui-tts" />
 title: 'Coqui TTS: 45.3K+ Stars — Deep Learning TTS Toolkit Benc...
 description: 'Coqui TTS is an open-source deep learning toolkit for Text-to-Speech. Supports 1100+ languages, XTTS v2 voice cloning, VITS end-to-end synthesis. Benchmarks against ChatTTS, MeloTTS, Bark with real RTF numbers, Docker deployment, and production configs.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: ['coqui tts', 'text-to-speech', 'voice-cloning', xtts, vits, 'deep-learning', docker, python]
-aliases:
-- /posts/coqui-tts/
+aliases: - /posts/coqui-tts/-
 ---
-
 {{</* resource-info */>}}
 
 ## Introduction
@@ -42,9 +38,7 @@ Coqui TTS separates the synthesis pipeline into three interchangeable stages: **
 
 ![Coqui TTS Logo](https://raw.githubusercontent.com/coqui-ai/TTS/dev/images/coqui-logo-green.png)
 
-The architecture diagram below shows the data flow from raw text to audio output:
-
-![Coqui TTS Pipeline](https://raw.githubusercontent.com/coqui-ai/TTS/dev/images/tts_pipeline.png)
+The architecture diagram below shows the data flow from raw text to audio output: ![Coqui TTS Pipeline](https://raw.githubusercontent.com/coqui-ai/TTS/dev/images/tts_pipeline.png)
 
 **Core concepts:**
 
@@ -58,7 +52,13 @@ The architecture diagram below shows the data flow from raw text to audio output
 **Model categories available:**
 
 | Category | Models | Use Case |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | Spectrogram | Tacotron2, Glow-TTS, FastSpeech2, FastPitch, OverFlow | Single-speaker, resource-constrained deployments |
 | End-to-End | VITS, YourTTS, XTTS v2, Bark, Tortoise | High-quality, multi-speaker, voice cloning |
 | Vocoder | HiFi-GAN, MelGAN, UnivNet, WaveRNN | Waveform generation from spectrograms |
@@ -68,9 +68,7 @@ The architecture diagram below shows the data flow from raw text to audio output
 
 **Prerequisites:** Python 3.9+, CUDA 11.8+ (optional, for GPU), 4 GB RAM minimum, 8 GB VRAM recommended for XTTS v2.
 
-Install from PyPI in under two minutes:
-
-```bash
+Install from PyPI in under two minutes: ```bash
 python -m venv coqui-env
 source coqui-env/bin/activate
 
@@ -81,9 +79,7 @@ pip install coqui-tts
 tts --list_models | head -20
 ```
 
-Install the latest development version from the community fork:
-
-```bash
+Install the latest development version from the community fork: ```bash
 pip install coqui-tts --upgrade
 
 # Or install from source
@@ -92,9 +88,7 @@ cd coqui-ai-TTS
 pip install -e .
 ```
 
-Install espeak-ng for phoneme-based models (required for many non-English languages):
-
-```bash
+Install espeak-ng for phoneme-based models (required for many non-English languages): ```bash
 # Ubuntu / Debian
 sudo apt-get install espeak-ng
 
@@ -223,8 +217,7 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 tts = TTS("tts_models/multilingual/multi-dataset/xtts_v2").to(device)
 
 @app.route("/synthesize", methods=["POST"])
-def synthesize():
-    data = request.get_json()
+def synthesize(): data = request.get_json()
     text = data.get("text", "")
     language = data.get("language", "en")
     speaker_wav = data.get("speaker_wav", None)
@@ -238,8 +231,7 @@ def synthesize():
     
     return send_file(buffer, mimetype="audio/wav")
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+if __name__ == "__main__": app.run(host="0.0.0.0", port=5000)
 ```
 
 ### Docker Compose for Production
@@ -248,40 +240,27 @@ if __name__ == "__main__":
 # docker-compose.yml
 version: '3.8'
 
-services:
-  coqui-tts:
-    build: .
+services: coqui-tts: build: .
     container_name: coqui-tts-service
     restart: unless-stopped
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+    deploy: resources: reservations: devices: - driver: nvidia
               count: 1
               capabilities: [gpu]
-    ports:
-      - "5002:5002"
-    volumes:
-      - ./tts_models:/home/appuser/.local/share/tts
+    ports: - "5002:5002"
+    volumes: - ./tts_models:/home/appuser/.local/share/tts
       - ./config:/app/config
       - ./audio_output:/app/audio_output
-    environment:
-      - CUDA_VISIBLE_DEVICES=0
+    environment: - CUDA_VISIBLE_DEVICES=0
       - PYTHONUNBUFFERED=1
       - TTS_HOME=/home/appuser/.local/share/tts
     shm_size: 2gb
     command: >
       sh -c "python3 /app/config/server.py"
 
-  nginx:
-    image: nginx:alpine
-    ports:
-      - "80:80"
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
-    depends_on:
-      - coqui-tts
+  nginx: image: nginx:alpine
+    ports: - "80:80"
+    volumes: - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on: - coqui-tts
 ```
 
 ### Dockerfile for Coqui TTS
@@ -331,7 +310,19 @@ We ran a controlled **tts benchmark** on an NVIDIA A10 (24 GB VRAM), CUDA 12.1, 
 ![XTTS v2 Model](https://raw.githubusercontent.com/coqui-ai/TTS/dev/images/xtts2.png)
 
 | Model | RTF (lower is better) | Peak VRAM | MOS Score | Voice Cloning | Languages |
-|---|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Coqui XTTS v2 | 0.15 | 4.1 GB | 4.2 | Yes (3 sec ref) | 17 |
 | Coqui VITS | 0.08 | 2.1 GB | 4.1 | No | 1 per model |
 | Coqui FastSpeech2 | 0.054 | 1.4 GB | 3.9 | No | 1 per model |
@@ -349,30 +340,27 @@ We ran a controlled **tts benchmark** on an NVIDIA A10 (24 GB VRAM), CUDA 12.1, 
 **Real-world deployment metrics (production API serving 5000 req/day):**
 
 ```
-Hardware:        2x NVIDIA A10G (AWS g5.2xlarge)
-Load balancer:   nginx round-robin
-Container:       Docker + gunicorn (4 workers per GPU)
+Hardware: 2x NVIDIA A10G (AWS g5.2xlarge)
+Load balancer: nginx round-robin
+Container: Docker + gunicorn (4 workers per GPU)
 Average latency: 420 ms P50, 890 ms P95
-Throughput:      12 req/sec per GPU
-Error rate:      0.03% (OOM on >500 char inputs)
-Uptime:          99.7% over 30 days
+Throughput: 12 req/sec per GPU
+Error rate: 0.03% (OOM on >500 char inputs)
+Uptime: 99.7% over 30 days
 ```
 
 ## Advanced Usage / Production Hardening
 
 ### Model Warm-Up Script
 
-First inference after container start triggers CUDA kernel compilation, adding 5-10 seconds of latency. Bake this into your ENTRYPOINT:
-
-```python
+First inference after container start triggers CUDA kernel compilation, adding 5-10 seconds of latency. Bake this into your ENTRYPOINT: ```python
 # warm_up.py
 import os
 from TTS.api import TTS
 
 MODEL = os.getenv("TTS_MODEL", "tts_models/multilingual/multi-dataset/xtts_v2")
 tts = TTS(MODEL)
-if torch.cuda.is_available():
-    tts = tts.to("cuda")
+if torch.cuda.is_available(): tts = tts.to("cuda")
 
 # Trigger JIT compilation
 _ = tts.tts(text="warm up", speaker_wav=None, language="en")
@@ -402,31 +390,23 @@ torch.backends.cudnn.benchmark = True
 from concurrent.futures import ThreadPoolExecutor
 import queue
 
-def batch_worker(text_queue, result_queue):
-    """Process texts in batches to maximise GPU utilisation."""
+def batch_worker(text_queue, result_queue): """Process texts in batches to maximise GPU utilisation."""
     tts = TTS("tts_models/multilingual/multi-dataset/xtts_v2").to("cuda")
     batch = []
     
-    while True:
-        try:
-            item = text_queue.get(timeout=0.5)
+    while True: try: item = text_queue.get(timeout=0.5)
             batch.append(item)
             
-            if len(batch) >= 8:  # Batch size of 8
-                for b in batch:
-                    wav = tts.tts(text=b["text"], language=b["lang"])
+            if len(batch) >= 8: # Batch size of 8
+                for b in batch: wav = tts.tts(text=b["text"], language=b["lang"])
                     result_queue.put({"id": b["id"], "wav": wav})
                 batch = []
-        except queue.Empty:
-            if batch:
-                for b in batch:
-                    wav = tts.tts(text=b["text"], language=b["lang"])
+        except queue.Empty: if batch: for b in batch: wav = tts.tts(text=b["text"], language=b["lang"])
                     result_queue.put({"id": b["id"], "wav": wav})
                 batch = []
 
 # Usage
-with ThreadPoolExecutor(max_workers=2) as executor:
-    executor.submit(batch_worker, text_q, result_q)
+with ThreadPoolExecutor(max_workers=2) as executor: executor.submit(batch_worker, text_q, result_q)
 ```
 
 ### Fine-Tuning XTTS v2 on Custom Data
@@ -434,8 +414,7 @@ with ThreadPoolExecutor(max_workers=2) as executor:
 ![Training Dashboard](https://raw.githubusercontent.com/coqui-ai/TTS/dev/images/dashboard.gif)
 
 ```bash
-# Prepare dataset in LJSpeech format:
-# metadata.csv: audio_file|text|speaker_name
+# Prepare dataset in LJSpeech format: # metadata.csv: audio_file|text|speaker_name
 # wavs/*.wav: 22050 Hz, mono, 16-bit
 
 # Run fine-tuning recipe
@@ -462,24 +441,29 @@ TTS_LATENCY = Histogram(tts_latency_seconds, 'Request latency')
 TTS_ERRORS = Counter(tts_errors_total, 'Total errors', [error_type])
 
 @app.route("/metrics")
-def metrics():
-    return generate_latest()
+def metrics(): return generate_latest()
 
 @app.route("/synthesize", methods=["POST"])
-def synthesize():
-    with TTS_LATENCY.time():
-        try:
-            # ... synthesis logic
+def synthesize(): with TTS_LATENCY.time(): try: # ... synthesis logic
             TTS_REQUESTS.labels(language=lang).inc()
-        except Exception as e:
-            TTS_ERRORS.labels(error_type=type(e).__name__).inc()
+        except Exception as e: TTS_ERRORS.labels(error_type=type(e).__name__).inc()
             raise
 ```
 
 ## Comparison with Alternatives
 
 | Feature | Coqui TTS | ChatTTS | MeloTTS | Bark (Suno) |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **GitHub Stars** | 45,300 | 33,400 | 5,100 | 37,200 |
 | **License** | MPL-2.0 | AGPL-3.0 | MIT | MIT |
 | **Languages** | 17 (XTTS) / 1100+ (Fairseq) | 2 (zh, en) | 6 | 13+ |
@@ -504,9 +488,7 @@ def synthesize():
 
 ## Limitations / Honest Assessment
 
-Coqui TTS is not the right tool for every job. Here is what we learned the hard way:
-
-- **Company shutdown** — Coqui AI closed in December 2023. The project is now community-maintained by Idiap Research Institute. Expect slower feature releases and reliance on community PRs.
+Coqui TTS is not the right tool for every job. Here is what we learned the hard way: - **Company shutdown** — Coqui AI closed in December 2023. The project is now community-maintained by Idiap Research Institute. Expect slower feature releases and reliance on community PRs.
 - **License fragmentation** — The framework is MPL-2.0, but XTTS v2 uses the Coqui Public Model License (CPML) which restricts commercial use without a separate agreement. Audit your legal team before shipping.
 - **Cold start latency** — First inference after container boot triggers CUDA kernel compilation, adding 5-10 seconds. You must implement a warm-up script for production.
 - **Memory bloat on long text** — Inputs over 500 characters can OOM a 16 GB GPU. Implement sentence-level chunking with a 300-character limit per request.
@@ -564,9 +546,7 @@ Coqui TTS remains the most versatile open-source TTS toolkit in 2026. With 45,30
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -586,7 +566,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 *This article is for informational purposes. Verify benchmark numbers on your own hardware before making deployment decisions. Coqui TTS licensing terms are subject to change — review the current license before commercial use.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -612,8 +591,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [apple-container](coqui-tts)
@@ -622,6 +601,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](coqui-tts)
 - [moneyprinterturbo-one-click-ai-video-generator](coqui-tts)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

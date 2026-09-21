@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/feast-feature-store-ml" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/feast-feature-store-ml" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/feast-feature-store-ml" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/feast-feature-store-ml" />
 title: 'Feast: 开源特征存储亚秒级特征服务 — 2026 完整部署指南'
 description: 'Feast 完整指南 — 领先的开源特征存储。涵盖特征注册中心、在线/离线存储、亚秒级服务、Redis/BigQuery 后端、批处理与实时特征以及生产部署。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: [feast, 'feature store', mlops, 'ml pipeline', redis, bigquery, 在线存储, 离线存储, 实时ml, 特征工程]
-aliases:
-- /zh/posts/feast-feature-store-ml/
+aliases: - /zh/posts/feast-feature-store-ml/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/feast-feature-store-ml/ -->
 
 {{</* resource-info */>}}
 
@@ -71,13 +63,10 @@ Feast 架构由四个核心组件组成：
 # feature_store.yaml — Feast 项目配置
 project: fraud_detection
 provider: local
-registry: 
-  path: s3://my-bucket/registry.db  # 生产环境使用 SQL 注册中心
-online_store:
-  type: redis
+registry: path: s3://my-bucket/registry.db  # 生产环境使用 SQL 注册中心
+online_store: type: redis
   connection_string: "redis://localhost:6379"
-offline_store:
-  type: bigquery
+offline_store: type: bigquery
   project: my-gcp-project
   dataset: feast_offline
 entity_key_serialization_version: 2
@@ -314,26 +303,22 @@ feast materialize 2026-01-01T00:00:00 2026-05-19T00:00:00
 # feature_store.yaml — 生产配置
 project: fraud_detection
 provider: gcp
-registry:
-  registry_store_type: sql
+registry: registry_store_type: sql
   path: "postgresql://user:pass@pg-host:5432/feast_registry"
   cache_ttl_seconds: 60
 
-online_store:
-  type: redis
+online_store: type: redis
   connection_string: "redis://:password@redis-cluster.internal:6379"
   key_ttl_seconds: 604800  # 特征键的 7 天 TTL
   
-offline_store:
-  type: bigquery
+offline_store: type: bigquery
   project: my-gcp-project
   dataset: feast_offline
   location: US
 
 entity_key_serialization_version: 2
 
-flags:
-  alpha_features: true
+flags: alpha_features: true
   on_demand_transforms: true
 ```
 
@@ -343,8 +328,7 @@ flags:
 
 ```yaml
 # Redis Cluster 配置
-online_store:
-  type: redis
+online_store: type: redis
   redis_type: redis_cluster
   connection_string: "redis://redis-node-1:6379,redis-node-2:6379,redis-node-3:6379"
   key_ttl_seconds: 604800
@@ -431,8 +415,7 @@ store = FeatureStore(repo_path=".")
 model = joblib.load("models/fraud_xgboost.pkl")
 
 @app.post("/predict")
-async def predict(user_id: str, transaction_amount: float):
-    # 从 Redis 检索在线特征 (< 5ms)
+async def predict(user_id: str, transaction_amount: float): # 从 Redis 检索在线特征 (< 5ms)
     features = store.get_online_features(
         features=[
             "user_transaction_features:avg_order_amount_30d",
@@ -487,9 +470,7 @@ with DAG(
     schedule_interval="@hourly",
     start_date=datetime(2026, 1, 1),
     catchup=False,
-) as dag:
-    
-    materialize = BashOperator(
+) as dag: materialize = BashOperator(
         task_id="materialize_features",
         bash_command="""
             cd /opt/feast/fraud_detection_feature_store && \
@@ -513,7 +494,13 @@ with DAG(
 Feast 为从初创公司到企业的公司提供生产级 ML 系统支持。以下是性能基准和采用指标：
 
 | 指标 | 数值 | 来源 |
-|------|------|------|
+|
+---
+|
+---
+|
+---
+|
 | GitHub Stars | **7,000+** | GitHub (2026年5月) |
 | 贡献者 | **361** | GitHub |
 | 最新版本 | **v0.63.0** | 2026年5月 |
@@ -526,7 +513,15 @@ Feast 为从初创公司到企业的公司提供生产级 ML 系统支持。以�
 ### 延迟基准测试
 
 | 操作 | p50 延迟 | p99 延迟 | 测试环境 |
-|-----------|------------|-------------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 在线特征检索 (Redis, 6 个特征) | **1.2ms** | **3.8ms** | 单 Redis 节点，本地网络 |
 | 在线特征检索 (DynamoDB, 6 个特征) | **4.5ms** | **12ms** | DynamoDB on-demand, us-east-1 |
 | 在线特征检索 (Dragonfly, 6 个特征) | **0.8ms** | **2.1ms** | 单 Dragonfly 节点 |
@@ -566,8 +561,7 @@ from feast.types import Float64
     ],
     mode="python",
 )
-def transaction_transforms(inputs):
-    import pandas as pd
+def transaction_transforms(inputs): import pandas as pd
     df = pd.DataFrame()
     df["transaction_amount_ratio"] = (
         inputs["transaction_amount"] / inputs["avg_order_amount_30d"]
@@ -617,13 +611,10 @@ user_transaction_features_with_validation = FeatureView(
 ```yaml
 # feature_store_team_a.yaml
 project: team_a_fraud
-registry:
-  path: s3://shared-bucket/registry_team_a.db
-online_store:
-  type: redis
+registry: path: s3://shared-bucket/registry_team_a.db
+online_store: type: redis
   connection_string: "redis://shared-redis:6379/0"
-offline_store:
-  type: bigquery
+offline_store: type: bigquery
   project: my-gcp-project
   dataset: team_a_features
 ```
@@ -632,8 +623,7 @@ offline_store:
 
 ```yaml
 # RBAC 配置 (Feast 0.60+)
-auth:
-  type: oidc
+auth: type: oidc
   oidc_server_url: "https://auth.company.com"
   client_id: "feast-app"
   client_secret: "${OIDC_CLIENT_SECRET}"
@@ -644,7 +634,19 @@ dvc gc --workspace
 ## 与替代方案对比
 
 | 功能 | Feast | Tecton | SageMaker Feature Store | Vertex AI Feature Store | Hopsworks |
-|------|-------|--------|------------------------|------------------------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **开源** | 是 (Apache-2.0) | 否 | 否 (AWS 托管) | 否 (GCP 托管) | 是 (AGPL) |
 | **在线存储延迟** | **p99 < 5ms** (Redis) | **p99 < 10ms** | **p99 < 15ms** | **p99 < 10ms** | **p99 < 5ms** (RonDB) |
 | **离线存储选项** | 8+ 后端 | 内置 (Spark) | S3 | BigQuery | 内置 (Hive) |
@@ -746,7 +748,6 @@ feast materialize-incremental $(date -u +"%Y-%m-%dT%H:%M:%S")
 本文包含 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 的联盟链接。如果你通过这些链接注册，dibi8.com 将获得佣金，不会增加你的额外费用。我们只推荐经过评估、认为能为 ML 基础设施部署提供真正价值的服务。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -772,14 +773,14 @@ feast materialize-incremental $(date -u +"%Y-%m-%dT%H:%M:%S")
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [juicefs-distributed-posix-file-system-redis-s3-cloud-storage](feast-feature-store-ml)
 - [wandb-ml-experiment-tracking-platform-2026](feast-feature-store-ml)
 - [wandb-ml-experiment-tracking-platform-2026](feast-feature-store-ml)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

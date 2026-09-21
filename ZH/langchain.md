@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/langchain" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/langchain" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/langchain" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/langchain" />
 title: 'LangChain: 3种部署生产级AI智能体的方法 — 2026年完整部署指南'
 description: 'LangChain (LC) 是用于构建LLM驱动应用的Python/JS框架，拥有700+集成。学习如何安装LangChain，使用Docker部署，与OpenAI、Anthropic、Ollama集成，并通过LangSmith可观测性、LangGraph智能体和Kubernetes扩展至生产环境。'
 date: 2026-05-19 00:00:00+08:00
@@ -25,12 +20,9 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [langchain, 大语言模型, ai智能体, rag, 生产部署, docker, python, openai, langsmith, langgraph]
-aliases:
-- /zh/posts/langchain/
-- /zh/resources/llm-frameworks/langchain-complete-guide/
+aliases: - /zh/posts/langchain/
+- /zh/resources/llm-frameworks/langchain-complete-guide/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/langchain/ -->
 
 {{</* resource-info */>}}
 
@@ -181,38 +173,26 @@ httpx==0.28.0
 # docker-compose.yml
 version: '3.8'
 
-services:
-  app:
-    build: .
-    ports:
-      - "8000:8000"
-    environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
+services: app: build: .
+    ports: - "8000:8000"
+    environment: - OPENAI_API_KEY=${OPENAI_API_KEY}
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
       - LANGSMITH_API_KEY=${LANGSMITH_API_KEY}
       - LANGSMITH_TRACING=true
       - REDIS_URL=redis://redis:6379
-    depends_on:
-      - redis
+    depends_on: - redis
       - chroma
     restart: unless-stopped
 
-  redis:
-    image: redis:7-alpine
-    volumes:
-      - redis_data:/data
+  redis: image: redis:7-alpine
+    volumes: - redis_data:/data
     restart: unless-stopped
 
-  chroma:
-    image: chromadb/chroma:latest
-    volumes:
-      - chroma_data:/chroma/chroma
+  chroma: image: chromadb/chroma:latest
+    volumes: - chroma_data:/chroma/chroma
     restart: unless-stopped
 
-volumes:
-  redis_data:
-  chroma_data:
-```
+volumes: redis_data: chroma_data: ```
 
 ### 构建并运行
 
@@ -347,18 +327,14 @@ from langchain_openai import ChatOpenAI
 
 # 定义自定义工具
 @tool
-def search_knowledge_base(query: str) -> str:
-    """Search internal knowledge base for technical documentation."""
+def search_knowledge_base(query: str) -> str: """Search internal knowledge base for technical documentation."""
     return f"Results for '{query}': Found 3 relevant documents."
 
 @tool
-def calculate(expression: str) -> str:
-    """Evaluate a mathematical expression."""
-    try:
-        result = eval(expression)
+def calculate(expression: str) -> str: """Evaluate a mathematical expression."""
+    try: result = eval(expression)
         return str(result)
-    except Exception as e:
-        return f"Error: {str(e)}"
+    except Exception as e: return f"Error: {str(e)}"
 
 # 创建智能体
 tools = [search_knowledge_base, calculate]
@@ -381,7 +357,17 @@ print(result["output"])
 在AWS c5.4xlarge（16 vCPU，32GB内存）上使用gpt-3.5-turbo和sentence-transformers/all-mpnet-base-v2收集的基准数据：
 
 | 指标 | LangChain | LlamaIndex | Haystack | Semantic Kernel |
-|------|-----------|------------|----------|-----------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | QPS (查询/秒) | 78.2 | 85.4 | 102.5 | 65.4 |
 | 内存峰值 (MB) | 1,203 | 980 | 856 | 987 |
 | 首字节延迟 (ms) | 210 | 165 | 92 | 185 |
@@ -414,28 +400,22 @@ from langchain_openai import ChatOpenAI
 import operator
 
 # 定义状态
-class AgentState(TypedDict):
-    messages: Annotated[Sequence[BaseMessage], operator.add]
+class AgentState(TypedDict): messages: Annotated[Sequence[BaseMessage], operator.add]
     next_step: str
 
 # 定义节点
-def agent_node(state: AgentState):
-    model = ChatOpenAI(model="gpt-4o")
+def agent_node(state: AgentState): model = ChatOpenAI(model="gpt-4o")
     response = model.invoke(state["messages"])
     return {"messages": [response], "next_step": "human_review"}
 
-def human_review(state: AgentState):
-    # 生产中这里会暂停等待人工审批
+def human_review(state: AgentState): # 生产中这里会暂停等待人工审批
     last_msg = state["messages"][-1].content
-    if "DELETE" in last_msg.upper() or "DROP" in last_msg.upper():
-        return {"next_step": "reject"}
+    if "DELETE" in last_msg.upper() or "DROP" in last_msg.upper(): return {"next_step": "reject"}
     return {"next_step": "execute"}
 
-def execute_tool(state: AgentState):
-    return {"messages": [AIMessage(content="Action executed successfully.")], "next_step": END}
+def execute_tool(state: AgentState): return {"messages": [AIMessage(content="Action executed successfully.")], "next_step": END}
 
-def reject_action(state: AgentState):
-    return {"messages": [AIMessage(content="Action rejected by policy.")], "next_step": END}
+def reject_action(state: AgentState): return {"messages": [AIMessage(content="Action rejected by policy.")], "next_step": END}
 
 # 构建图
 workflow = StateGraph(AgentState)
@@ -473,11 +453,8 @@ from tenacity import retry, stop_after_attempt, wait_exponential
     wait=wait_exponential(multiplier=1, min=2, max=10),
     reraise=True
 )
-def invoke_with_retry(chain, inputs, config: RunnableConfig = None):
-    try:
-        return chain.invoke(inputs, config=config)
-    except Exception as e:
-        # 记录到LangSmith进行分析
+def invoke_with_retry(chain, inputs, config: RunnableConfig = None): try: return chain.invoke(inputs, config=config)
+    except Exception as e: # 记录到LangSmith进行分析
         print(f"Invocation failed: {e}. Retrying...")
         raise
 
@@ -508,8 +485,7 @@ model = ChatOpenAI(
 # 追踪每次请求的成本
 from langchain.callbacks import get_openai_callback
 
-with get_openai_callback() as cb:
-    response = model.invoke("Summarize this 50-page report.")
+with get_openai_callback() as cb: response = model.invoke("Summarize this 50-page report.")
     print(f"Tokens: {cb.total_tokens}, Cost: ${cb.total_cost:.4f}")
 ```
 
@@ -529,8 +505,7 @@ client = Client()
 # 程序化评估
 from langsmith.evaluation import evaluate
 
-def accuracy_evaluator(run, example):
-    prediction = run.outputs["output"]
+def accuracy_evaluator(run, example): prediction = run.outputs["output"]
     expected = example.outputs["expected_answer"]
     score = 1.0 if expected.lower() in prediction.lower() else 0.0
     return {"key": "accuracy", "score": score}
@@ -548,65 +523,39 @@ results = evaluate(
 # k8s-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
-metadata:
-  name: langchain-app
-  labels:
-    app: langchain-app
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: langchain-app
-  template:
-    metadata:
-      labels:
-        app: langchain-app
-    spec:
-      containers:
-      - name: app
+metadata: name: langchain-app
+  labels: app: langchain-app
+spec: replicas: 3
+  selector: matchLabels: app: langchain-app
+  template: metadata: labels: app: langchain-app
+    spec: containers: - name: app
         image: langchain-production-app:latest
-        ports:
-        - containerPort: 8000
-        env:
-        - name: OPENAI_API_KEY
-          valueFrom:
-            secretKeyRef:
-              name: api-secrets
+        ports: - containerPort: 8000
+        env: - name: OPENAI_API_KEY
+          valueFrom: secretKeyRef: name: api-secrets
               key: openai-key
         - name: LANGSMITH_API_KEY
-          valueFrom:
-            secretKeyRef:
-              name: api-secrets
+          valueFrom: secretKeyRef: name: api-secrets
               key: langsmith-key
-        resources:
-          requests:
-            memory: "512Mi"
+        resources: requests: memory: "512Mi"
             cpu: "500m"
-          limits:
-            memory: "2Gi"
+          limits: memory: "2Gi"
             cpu: "2000m"
-        livenessProbe:
-          httpGet:
-            path: /health
+        livenessProbe: httpGet: path: /health
             port: 8000
           initialDelaySeconds: 10
           periodSeconds: 30
-        readinessProbe:
-          httpGet:
-            path: /ready
+        readinessProbe: httpGet: path: /ready
             port: 8000
           initialDelaySeconds: 5
           periodSeconds: 10
+
 ---
 apiVersion: v1
 kind: Service
-metadata:
-  name: langchain-service
-spec:
-  selector:
-    app: langchain-app
-  ports:
-    - protocol: TCP
+metadata: name: langchain-service
+spec: selector: app: langchain-app
+  ports: - protocol: TCP
       port: 80
       targetPort: 8000
   type: ClusterIP
@@ -633,16 +582,13 @@ redis_client = redis.Redis.from_url("redis://localhost:6379")
 set_llm_cache(RedisCache(redis_client=redis_client))
 
 # 基于输入哈希的缓存键
-def get_cache_key(prefix: str, text: str) -> str:
-    hash_val = hashlib.md5(text.encode()).hexdigest()
+def get_cache_key(prefix: str, text: str) -> str: hash_val = hashlib.md5(text.encode()).hexdigest()
     return f"{prefix}:{hash_val}"
 
 # 昂贵LLM调用前检查缓存
-def cached_invoke(chain, inputs: dict, ttl: int = 3600):
-    cache_key = get_cache_key("llm", json.dumps(inputs, sort_keys=True))
+def cached_invoke(chain, inputs: dict, ttl: int = 3600): cache_key = get_cache_key("llm", json.dumps(inputs, sort_keys=True))
     cached = redis_client.get(cache_key)
-    if cached:
-        return json.loads(cached)
+    if cached: return json.loads(cached)
 
     result = chain.invoke(inputs)
     redis_client.setex(cache_key, ttl, json.dumps({"output": result.content}))
@@ -654,7 +600,17 @@ def cached_invoke(chain, inputs: dict, ttl: int = 3600):
 ## 与替代品对比
 
 | 特性 | LangChain | LlamaIndex | Haystack | Semantic Kernel |
-|------|-----------|------------|----------|-----------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **主要专注** | 多步骤工作流、智能体编排 | 文档索引、检索优化 | 语义搜索、RAG管道 | 企业集成、微软生态 |
 | **语言支持** | Python, TypeScript | Python, TypeScript | Python | C#, Python, Java |
 | **GitHub星标** | 137,165 | 39,200 | 17,900 | 26,300 |
@@ -756,7 +712,6 @@ LangChain的137,000个GitHub星标反映了它作为生产级LLM应用默认框�
 )
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -782,8 +737,8 @@ LangChain的137,000个GitHub星标反映了它作为生产级LLM应用默认框�
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [ray-distributed-ai-framework-complete-guide](langchain)
@@ -793,7 +748,6 @@ LangChain的137,000个GitHub星标反映了它作为生产级LLM应用默认框�
 - [microsoft-markitdown-file-to-markdown-converter-cli](langchain)
 
 ---
-
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

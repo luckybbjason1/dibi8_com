@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/hunyuan-video" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hunyuan-video" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hunyuan-video" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hunyuan-video" />
 title: 'HunyuanVideo: 12.1K+ Stars — 2026年生产环境部署指南'
 description: 'HunyuanVideo (HYV) 是腾讯开源的视频生成框架，拥有130亿参数。支持 ComfyUI、Diffusers、Gradio API。涵盖 Docker 部署、FP8 量化、多 GPU 推理和生产环境加固。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [视频生成, 扩散transformer, 腾讯, hunyuanvideo, comfyui, docker, fp8, 多模态]
-aliases:
-- /zh/posts/hunyuan-video/
+aliases: - /zh/posts/hunyuan-video/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/hunyuan-video/ -->
 
 {{</* resource-info */>}}
 
@@ -231,11 +223,9 @@ Gradio UI 提供了提示词、分辨率、帧数、CFG 缩放和种子等参数
 ```yaml
 #cloud-config
 package_update: true
-packages:
-  - docker.io
+packages: - docker.io
   - nvidia-container-toolkit
-runcmd:
-  - systemctl restart docker
+runcmd: - systemctl restart docker
   - docker pull hunyuanvideo/hunyuanvideo:cuda_12
   - docker run -d --gpus all --name hunyuan \
       -p 8081:8081 -v /mnt/models:/models \
@@ -248,7 +238,17 @@ runcmd:
 来自 RTX 4090 和数据中心 GPU 测试的社区基准（2026年3月）：
 
 | 模型 | 参数量 | 显存需求 (720p) | 生成时间 (5秒, RTX 4090) | 美学质量 |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | HunyuanVideo (原版) | 13B | ~60GB | ~5:50 | 8.8/10 |
 | HunyuanVideo-1.5 | 8.3B | ~24GB (INT8) | ~3:20 | 8.5/10 |
 | Wan 2.2 | 14B | ~48GB | ~4:20 | 8.5/10 |
@@ -312,7 +312,13 @@ torchrun --nproc_per_node=8 sample_video.py \
 1280x720、129 帧、50 步的延迟扩展数据：
 
 | GPU 数量 | 延迟 (秒) | 加速比 |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | 1 | 1904 | 1.00x |
 | 2 | 934 | 2.04x |
 | 4 | 514 | 3.70x |
@@ -373,8 +379,7 @@ inference_duration = Histogram(hunyuan_inference_seconds, 推理延迟)
 queue_depth = Gauge(hunyuan_queue_depth, 当前队列深度)
 
 @inference_duration.time()
-def generate_video(prompt, height, width, frames, steps):
-    inference_count.inc()
+def generate_video(prompt, height, width, frames, steps): inference_count.inc()
     # ... 现有推理逻辑
     return video
 
@@ -392,7 +397,17 @@ start_http_server(9090)
 ## 与替代方案对比
 
 | 特性 | HunyuanVideo | Wan 2.2 | CogVideoX-5B | Open-Sora |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 参数量 | 13B (1.5版 8.3B) | 14B | 5B | 1.1B - 7B |
 | 最大分辨率 | 1080p (超分) | 1080p | 720p | 720p |
 | 最低显存 (720p) | 24GB (INT8) | 24GB | 12GB | 16GB |
@@ -489,7 +504,6 @@ HunyuanVideo 是一个生产级视频生成框架，架起了闭源商业 API �
 - DigitalOcean GPU Droplets: https://www.digitalocean.com/products/gpu-droplets
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -515,8 +529,8 @@ HunyuanVideo 是一个生产级视频生成框架，架起了闭源商业 API �
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [bytedance-ui-tars-desktop-ai-agent-guide](hunyuan-video)
@@ -525,6 +539,6 @@ HunyuanVideo 是一个生产级视频生成框架，架起了闭源商业 API �
 - [comfyui-workflows-complete-guide](hunyuan-video)
 - [comfyui-workflows-complete-guide](hunyuan-video)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

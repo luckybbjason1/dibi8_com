@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/bumblebee-supply-chain-scanner-perplexity-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/bumblebee-supply-chain-scanner-perplexity-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/bumblebee-supply-chain-scanner-perplexity-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/bumblebee-supply-chain-scanner-perplexity-2026" />
 title: 'Bumblebee 2026：Perplexity AI 开源内部供应链扫描器，覆盖 MCP 配置与编辑器扩展'
 description: 'Bumblebee 是 Perplexity AI 的开源只读供应链扫描器，检查 npm、PyPI、Go 模块、MCP 配置、编辑器扩展和浏览器扩展中的已知受损包——不会执行您代码的任何一行。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-09 00:00:00+08:00
@@ -25,20 +20,15 @@ featureImage: '/images/articles/bumblebee-supply-chain-scanner-perplexity-2026/c
 draft: false
 categories: ['dev-utils']
 tags: [bumblebee, 供应链安全, mcp, security, go, npm, pypi, 'perplexity-ai']
-aliases:
-- /zh/posts/bumblebee-supply-chain-scanner-perplexity-2026/
-faqs:
-  - q: 'Bumblebee 是什么？它能扫描哪些内容？'
+aliases: - /zh/posts/bumblebee-supply-chain-scanner-perplexity-2026/
+faqs: - q: 'Bumblebee 是什么？它能扫描哪些内容？'
     a: 'Bumblebee 是 Perplexity AI 开源的只读开发者端点扫描器。它扫描 npm、pnpm、Yarn、Bun、PyPI、Go 模块、RubyGems、Composer、MCP 配置、编辑器扩展（VS Code、Cursor、Windsurf、Zed）和浏览器扩展的磁盘元数据。它永远不会执行安装脚本或调用包管理器——只读取磁盘上已有的内容。'
   - q: '为什么 AI 开发者需要特别关注 MCP 扫描？'
     a: 'MCP（模型上下文协议）服务器以较高权限运行在开发者机器上。受损的 MCP 包可能泄露数据或执行任意代码。Bumblebee 是首个公开扫描 MCP 配置文件（claude_desktop_config.json、mcp_settings.json 等）的工具，对使用 Claude Desktop、Cursor 或任何 MCP 工具的开发者来说至关重要。'
   - q: '三种扫描模式有什么区别？'
     a: 'baseline 模式扫描全局包、工具链、编辑器扩展和 MCP 配置，适合日常例行检查。project 模式在 baseline 基础上加入配置的开发目录（如 ~/code）。deep 模式扫描指定根目录（通常是整个 home 目录），专为发生安全事件时的彻查设计。'
   - q: '如何安装和使用 Bumblebee？'
-    a: '运行 go install github.com/perplexityai/bumblebee/cmd/bumblebee@v0.1.1 安装。日常检查运行 bumblebee scan --profile baseline > inventory.ndjson。针对特定漏洞快速排查运行 bumblebee scan --profile deep --root "$HOME" --exposure-catalog ./catalog.json --findings-only --max-duration 10m。'
----
-
-<!-- canonical: https://dibi8.com/zh/tools/bumblebee-supply-chain-scanner-perplexity-2026/ -->
+    a: '运行 go install github.com/perplexityai/bumblebee/cmd/bumblebee@v0.1.1 安装。日常检查运行 bumblebee scan --profile baseline > inventory.ndjson。针对特定漏洞快速排查运行 bumblebee scan --profile deep --root "$HOME" --exposure-catalog ./catalog.json --findings-only --max-duration 10m。'---
 
 ![Bumblebee 2026: Perplexity AI 供应链扫描器 — dibi8.com](/images/articles/bumblebee-supply-chain-scanner-perplexity-2026/cover.jpg)
 
@@ -76,7 +66,11 @@ bumblebee scan --profile deep \
 这是 2026 年 AI 开发者最关心的特性。Bumblebee 扫描以下配置路径：
 
 | 文件 | 工具 |
-|------|------|
+|
+---
+|
+---
+|
 | `~/.claude.json` | Claude CLI |
 | `claude_desktop_config.json` | Claude Desktop |
 | `mcp_settings.json` | Cline / Roo Code |
@@ -106,7 +100,6 @@ go install github.com/perplexityai/bumblebee/cmd/bumblebee@v0.1.1
 **GitHub：** [perplexityai/bumblebee](https://github.com/perplexityai/bumblebee) · v0.1.1 · Apache-2.0
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -134,25 +127,20 @@ go install github.com/perplexityai/bumblebee/cmd/bumblebee@v0.1.1
 
 ## Why This Matters
 
-Understanding bumblebee 2026：perplexity ai 开源内部供应链扫描器，覆盖 mcp 配置与编辑器扩展 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding bumblebee 2026：perplexity ai 开源内部供应链扫描器，覆盖 mcp 配置与编辑器扩展 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -173,13 +161,13 @@ Bumblebee 2026：Perplexity AI 开源内部供应链扫描器，覆盖 MCP 配�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
 
+---
 ## Related Articles
 
 - [free-mcp-tools-top10-2026](bumblebee-supply-chain-scanner-perplexity-2026)
@@ -215,9 +203,7 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
 
 
-When deploying AI agents in production, follow these best practices:
-
-1. **Start Small**: Begin with a single tool and simple prompt, then gradually add complexity
+When deploying AI agents in production, follow these best practices: 1. **Start Small**: Begin with a single tool and simple prompt, then gradually add complexity
 2. **Implement Guardrails**: Use permission prompts and approval workflows for dangerous operations
 3. **Monitor Everything**: Log all agent actions for debugging and compliance
 4. **Handle Failures Gracefully**: Implement retry logic and fallback mechanisms
@@ -225,16 +211,12 @@ When deploying AI agents in production, follow these best practices:
 
 ### Security Considerations
 
-AI agents have access to sensitive systems. Always:
-
-- Use least-privilege principles
+AI agents have access to sensitive systems. Always: - Use least-privilege principles
 - Implement audit logging
 - Encrypt sensitive data at rest and in transit
 - Regular security assessments
 
-When deploying AI agents in production, follow these best practices:
-
-1. **Start Small**: Begin with a single tool and simple prompt, then gradually add complexity
+When deploying AI agents in production, follow these best practices: 1. **Start Small**: Begin with a single tool and simple prompt, then gradually add complexity
 2. **Implement Guardrails**: Use permission prompts and approval workflows for dangerous operations
 3. **Monitor Everything**: Log all agent actions for debugging and compliance
 4. **Handle Failures Gracefully**: Implement retry logic and fallback mechanisms
@@ -242,9 +224,7 @@ When deploying AI agents in production, follow these best practices:
 
 ### Security Considerations
 
-AI agents have access to sensitive systems. Always:
-
-- Use least-privilege principles
+AI agents have access to sensitive systems. Always: - Use least-privilege principles
 - Implement audit logging
 - Encrypt sensitive data at rest and in transit
 - Regular security assessments
@@ -252,7 +232,17 @@ AI agents have access to sensitive systems. Always:
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

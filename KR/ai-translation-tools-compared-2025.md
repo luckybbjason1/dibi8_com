@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-translation-tools-compared-2025" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-translation-tools-compared-2025" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-translation-tools-compared-2025" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-translation-tools-compared-2025" />
 title: '2025년 최고의 AI 번역 도구: Google Translate vs DeepL vs ChatGPT...
 description: '2025년 최고의 AI 번역 도구를 비교합니다. Google Translate, DeepL, ChatGPT, Microsoft Translator의 번역 품질과 기능을 상세히 분석합니다.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
@@ -23,11 +18,9 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/ai-translation-tools-compared-2025/
+aliases: - /posts/ai-translation-tools-compared-2025/
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/ai-translation-tools-compared-2025/ -->
 # 2025년 최고의 AI 번역 도구: Google Translate vs DeepL vs ChatGPT 비교
 
 
@@ -225,15 +218,12 @@ Google Translate가 243개 언어로 압도적 1위다. 그 다음으로 Microso
 
 ## 추천 도구
 
-위 도구를 배포/사용 시 권장:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전.
+위 도구를 배포/사용 시 권장: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전.
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

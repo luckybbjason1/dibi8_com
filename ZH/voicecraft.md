@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/voicecraft" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/voicecraft" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/voicecraft" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/voicecraft" />
 title: 'VoiceCraft: 8.5K+ Stars — 零样本语音编辑对比 GPT-SoVITS、XTTS 2026'
 description: 'VoiceCraft 是基于神经编解码器的零样本语音编辑和 TTS 模型，可与 GPT-SoVITS、Coqui TTS 和 RVC 配合使用。涵盖安装教程、基准测试、Docker 部署和对比表。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [voicecraft, 零样本语音合成, 语音编辑, 神经编解码器, 语音克隆, ai音频, docker, python]
-aliases:
-- /zh/posts/voicecraft/
+aliases: - /zh/posts/voicecraft/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/voicecraft/ -->
 
 {{</* resource-info */>}}
 
@@ -61,7 +53,15 @@ aliases:
 ### 模型版本
 
 | 模型 | 参数量 | 适用场景 | 最大时长 |
-|------|--------|---------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | giga330M | 3.3亿 | 质量与速度平衡 | 16 秒 |
 | giga830M | 8.3亿 | 最高质量 | 30+ 秒 |
 | giga330M-TTS增强版 | 3.3亿 | TTS专项微调 | 16 秒 |
@@ -161,7 +161,15 @@ python gradio_app.py
 ### 硬件需求
 
 | 配置 | 最低 GPU | 推荐 GPU | 内存 |
-|------|---------|---------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 完整推理 (830M) | 8 GB (kvcache) | 32 GB VRAM | 32 GB |
 | 快速推理 (330M) | 8 GB | 16 GB VRAM | 16 GB |
 | Gradio 界面 | 8 GB | 16 GB VRAM | 16 GB |
@@ -272,8 +280,7 @@ async def tts(
     audio: UploadFile = File(...),
     reference_text: str = "",
     target_text: str = ""
-):
-    """零样本 TTS 端点。"""
+): """零样本 TTS 端点。"""
     ref_audio, sr = torchaudio.load(audio.file)
     output = model.tts(
         target_text=target_text,
@@ -311,7 +318,19 @@ model_dir = snapshot_download('AI-ModelScope/VoiceCraft')
 ACL 2024 论文中的人工评估结果，对比了 VoiceCraft 与 VALL-E、XTTS v2、FluentSpeech 和 YourTTS 在 250 条测试语音（LibriTTS + YouTube）上的表现：
 
 | 模型 | WER | SIM | 可懂度 MOS | 自然度 MOS | 说话人相似度 MOS |
-|------|-----|-----|-----------|-----------|----------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **VoiceCraft** | **4.5** | **0.55** | **4.23** | **4.17** | **4.34** |
 | XTTS v2 | 3.6 | 0.47 | 4.13 | 3.96 | 3.44 |
 | VALL-E | 7.1 | 0.50 | 4.00 | 3.86 | 4.07 |
@@ -326,7 +345,15 @@ VoiceCraft 在说话人相似度（SIM 0.55）和所有人评 MOS 指标上均�
 在 RealEdit 数据集（310 个真实世界编辑示例）上，VoiceCraft 超越了 FluentSpeech：
 
 | 模型 | WER | 可懂度 MOS | 自然度 MOS |
-|------|-----|-----------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **VoiceCraft** | 6.1 | **4.11** | **4.03** |
 | FluentSpeech | 4.5 | 3.97 | 3.81 |
 | 原始录音（未编辑） | 5.4 | 4.22 | 4.17 |
@@ -336,7 +363,15 @@ VoiceCraft 在说话人相似度（SIM 0.55）和所有人评 MOS 指标上均�
 ### 实际应用场景
 
 | 应用场景 | 参考音频 | 输出质量 | 设置时间 |
-|----------|---------|---------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 播客编辑 | 5 秒主持人声音 | 自然度 MOS 4.03 | < 2 分钟 |
 | 有声书克隆 | 5 秒朗读者声音 | 相似度 SIM 0.55 | < 2 分钟 |
 | YouTube 配音 | 5 秒说话者声音 | 自然度 MOS 4.17 | < 2 分钟 |
@@ -428,7 +463,17 @@ VoiceCraft 的许可证（代码 CC BY-NC-SA 4.0，权重 Coqui Public Model Lic
 ## 与替代方案对比
 
 | 特性 | VoiceCraft | GPT-SoVITS | Coqui TTS (XTTS v2) | VALL-E |
-|------|-----------|------------|-------------------|--------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **GitHub Stars** | 8,500 | 57,000 | 35,000* | N/A（仅论文） |
 | **参数量** | 3.3亿 / 8.3亿 | 约 10 亿 | 4.67 亿 | 10 亿 |
 | **语音编辑** | 原生支持，SotA | 不支持 | 不支持 | 有限支持 |
@@ -544,7 +589,6 @@ VoiceCraft 填补了大多数 TTS 工具忽视的空白：编辑现有语音，�
 *本指南由 dibi8 技术团队独立撰写。VoiceCraft 由 Puyuan Peng、Po-Yao Huang、Shang-Wen Li、Abdelrahman Mohamed 和 David Harwath 开发。dibi8 与 VoiceCraft 项目之间不存在商业关联。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -570,8 +614,8 @@ VoiceCraft 填补了大多数 TTS 工具忽视的空白：编辑现有语音，�
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [apple-container](voicecraft)
@@ -580,6 +624,6 @@ VoiceCraft 填补了大多数 TTS 工具忽视的空白：编辑现有语音，�
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](voicecraft)
 - [moneyprinterturbo-one-click-ai-video-generator](voicecraft)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

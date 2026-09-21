@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/llm-gateway-portkey-litellm-openrouter-comparison-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/llm-gateway-portkey-litellm-openrouter-comparison-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llm-gateway-portkey-litellm-openrouter-comparison-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/llm-gateway-portkey-litellm-openrouter-comparison-2026" />
 title: 'Portkey vs LiteLLM vs OpenRouter 2026: 정직한 LLM 게이트웨이 선택 ...
 description: '2026년 3대 LLM 게이트웨이 직접 비교. 실제 수치: Portkey <1ms 지연, LiteLLM 8ms P95, OpenRouter 100-150ms. 시나리오별 30초 결정 트리, $1000/월 비용 분석, 코딩 에이전트에서 9Router가 세 곳을 압도하는 이유까지.'
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
-tech_stack:
-  - Python
+tech_stack: - Python
   - TypeScript
   - Docker
   - Kubernetes
@@ -29,11 +23,9 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['llm gateway', portkey, litellm, openrouter, 비교]
-aliases:
-  - /posts/llm-gateway-portkey-litellm-openrouter-comparison-2026/
+aliases: - /posts/llm-gateway-portkey-litellm-openrouter-comparison-2026/
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/llm-gateway-portkey-litellm-openrouter-comparison-2026/ -->
 # Portkey vs LiteLLM vs OpenRouter 2026: 정직한 LLM 게이트웨이 선택 가이드 (지연시간, 비용, 셀프호스팅)
 
 
@@ -43,9 +35,7 @@ aliases:
 
 ## 1. 왜 LLM 게이트웨이가 필요한가
 
-직접 Provider SDK를 쓰던 애플리케이션이 3개월쯤 지나면 만나는 세 가지 문제:
-
-1. **벤더 락인 고통** — 코드가 OpenAI 모양인데 Claude 4.7이 막 출시됐다. 어쩌나?
+직접 Provider SDK를 쓰던 애플리케이션이 3개월쯤 지나면 만나는 세 가지 문제: 1. **벤더 락인 고통** — 코드가 OpenAI 모양인데 Claude 4.7이 막 출시됐다. 어쩌나?
 2. **신뢰성** — 각 Provider SLA가 99.5%. 페일오버 없이 셋을 병렬로 돌리면 누적 가용성이 떨어집니다(중복이 아니라 곱셈).
 3. **비용과 가시성** — 재무팀이 팀별 지출 추적을 원하는데 SDK는 안 됩니다.
 
@@ -67,9 +57,7 @@ LLM 게이트웨이는 앱과 N개 Provider 사이에 자리해서, 통일된 AP
 
 **한 줄 소개**: 1,600+ LLM을 위한 단일 컨트롤 플레인, <1ms 게이트웨이 지연, 내장 50+ 가드레일. SOC2/HIPAA/GDPR/CCPA 즉시 컴플라이언스.
 
-**실제 수치**:
-
-- **GitHub 스타**: 11.8k (MIT 라이선스, 오픈소스 코어)
+**실제 수치**: - **GitHub 스타**: 11.8k (MIT 라이선스, 오픈소스 코어)
 - **게이트웨이 지연**: <1ms 추가 (122kb 런타임 풋프린트)
 - **가격**: 오픈소스 무료. 클라우드 플랫폼 요금 ≈ $49/월 ($1K/월 API 지출 기준)
 - **컴플라이언스**: SOC2 Type II, HIPAA, GDPR, CCPA
@@ -85,9 +73,7 @@ Portkey 풀 가이드 — 프로덕션 배포, 가드레일 설정, 가시성 �
 
 **한 줄 소개**: 100+ Provider를 하나의 OpenAI 호환 API 뒤에 노출하는 오픈소스 프록시 서버. 셀프호스팅, 벤더 마진 0%.
 
-**실제 수치**:
-
-- **GitHub 스타**: 47.8k (셋 중 압도적 1위)
+**실제 수치**: - **GitHub 스타**: 47.8k (셋 중 압도적 1위)
 - **게이트웨이 지연**: 1,000 RPS에서 P95 8ms (공식 벤치마크) — 실측 10-20ms
 - **가격**: 셀프호스팅 무료. 엔터프라이즈 티어(SSO, 전문 지원)는 별도 가격
 - **셀프호스팅 스택**: Python 프록시 + PostgreSQL(지출 추적) + Redis(캐싱)
@@ -105,9 +91,7 @@ LiteLLM 풀 가이드(Docker compose, 가상 키, 지출 대시보드 포함)는
 
 **한 줄 소개**: API 키 하나. 모델 300+. 인프라 0. Provider 정가 + 신용카드 충전 시 5.5% 수수료로 토큰 단위 결제.
 
-**실제 수치**:
-
-- **모델**: 300+, 프론티어 오픈 웨이트 모델(DeepSeek-V4, Llama 4, Qwen 3) + 프로프라이어터리(GPT-5, Claude 4.7, Gemini 2 Pro) 포함
+**실제 수치**: - **모델**: 300+, 프론티어 오픈 웨이트 모델(DeepSeek-V4, Llama 4, Qwen 3) + 프로프라이어터리(GPT-5, Claude 4.7, Gemini 2 Pro) 포함
 - **게이트웨이 지연**: 실측 100-150ms 추가 (이게 진짜 비용 — Provider API 앞단에 호스팅된 서비스 한 층)
 - **가격**: Provider 정가 + **신용카드 충전 5.5% 수수료** (암호화폐 충전 시 이 수수료 회피 가능)
 - **공개 SLA 없음** — 커뮤니티에서 Provider 장애 시 5xx 군집 발생 보고
@@ -158,9 +142,7 @@ OpenRouter 풀 가이드(무료 모델 라우팅 팁 포함)는 [OpenRouter 통�
 
 ## TL;DR
 
-세 게이트웨이, 세 정직한 기본값:
-
-- **엔터프라이즈** → Portkey
+세 게이트웨이, 세 정직한 기본값: - **엔터프라이즈** → Portkey
 - **규모에서 비용에 민감** → LiteLLM
 - **빠르게 움직이며 모든 걸 원함** → OpenRouter
 - **코딩 에이전트로 토큰 태움** → 9Router
@@ -172,7 +154,6 @@ OpenRouter 풀 가이드(무료 모델 라우팅 팁 포함)는 [OpenRouter 통�
 *위 셋을 약속 없이 프로덕션에서 테스트하고 싶으신가요? $6/월 [DigitalOcean droplet](https://m.do.co/c/eca87ac14ee0) 하나 띄워서 LiteLLM 돌리고, 기존 OpenAI SDK base URL만 가리키면 애플리케이션 코드 0 라인 변경으로 페일오버 옵션이 폭발적으로 늘어납니다.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -200,25 +181,20 @@ OpenRouter 풀 가이드(무료 모델 라우팅 팁 포함)는 [OpenRouter 통�
 
 ## Why This Matters
 
-Understanding portkey vs litellm vs openrouter 2026: 정직한 llm 게이트웨이 선택 가이드 (지연시간, 비용, 셀프호스팅) is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding portkey vs litellm vs openrouter 2026: 정직한 llm 게이트웨이 선택 가이드 (지연시간, 비용, 셀프호스팅) is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

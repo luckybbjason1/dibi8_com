@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/eigenlayer-restaking-defi" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/eigenlayer-restaking-defi" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/eigenlayer-restaking-defi" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/eigenlayer-restaking-defi" />
 title: 'eigenlayer-restaking-defi'
 description: ''. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: [eigenlayer]
-aliases:
-- /kr/posts/eigenlayer-restaking-defi/
+aliases: - /kr/posts/eigenlayer-restaking-defi/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/eigenlayer-restaking-defi/ -->
 
 {{</* resource-info */>}}
 
@@ -47,9 +39,7 @@ EigenLayer는 지분 증명(PoS) 이후 이더리움 스테이킹 경제에서 �
 
 EigenLayer에서의 재스테이킹은 이더리움 검증자들이 추가 프로토콜 보안에 옵트인할 수 있게 합니다. 검증자가 재스테이킹할 때, 선택한 각 AVS에서 정의한 추가 슬래싱 조건에 자신을 노출시킵니다.
 
-재스테이킹 포지션의 라이프사이클은 다음 단계를 따릅니다:
-
-```bash
+재스테이킹 포지션의 라이프사이클은 다음 단계를 따릅니다: ```bash
 # 1단계: 이더리움 비콘 체인에서 ETH 스테이킹
 # 단독 검증자는 32 ETH, 또는 유동성 스테이킹 토큰(LST) 사용
 
@@ -161,9 +151,9 @@ func disperseBlob(data []byte) (*disperser.BlobStatus, error) {
         Data: data,
         SecurityParams: []*disperser.SecurityParam{
             {
-                QuorumId:           0,
+                QuorumId: 0,
                 AdversaryThreshold: 25,
-                QuorumThreshold:    50,
+                QuorumThreshold: 50,
             },
         },
     })
@@ -181,9 +171,7 @@ import asyncio
 import grpc
 from eigenda.api import retriever_pb2, retriever_pb2_grpc
 
-async def retrieve_blob(batch_header_hash bytes, blob_index int):
-    async with grpc.aio.insecure_channel('retriever.eigenda.io:443') as channel:
-        stub = retriever_pb2_grpc.RetrieverStub(channel)
+async def retrieve_blob(batch_header_hash bytes, blob_index int): async with grpc.aio.insecure_channel('retriever.eigenda.io:443') as channel: stub = retriever_pb2_grpc.RetrieverStub(channel)
         
         request = retriever_pb2.RetrieveBlobRequest(
             batch_header_hash=batch_header_hash,
@@ -344,13 +332,13 @@ func (g *PriceTaskGenerator) ProcessNewTask(
     signature := g.blsKeypair.Sign(responseDigest)
     
     signedResponse := &SignedPriceResponse{
-        TaskId:        task.TaskId,
-        AssetId:       task.AssetId,
-        Price:         price,
-        BlockNumber:   task.CreationBlockNumber,
-        Signature:     signature,
-        PubkeyG1:      g.blsKeypair.GetPubKeyG1(),
-        PubkeyG2:      g.blsKeypair.GetPubKeyG2(),
+        TaskId: task.TaskId,
+        AssetId: task.AssetId,
+        Price: price,
+        BlockNumber: task.CreationBlockNumber,
+        Signature: signature,
+        PubkeyG1: g.blsKeypair.GetPubKeyG1(),
+        PubkeyG2: g.blsKeypair.GetPubKeyG2(),
     }
     
     g.logger.Info("가격 응답 서명됨",
@@ -539,8 +527,7 @@ contract PriceOracleSlashing {
     
     mapping(address => SlashingRecord[]) public slashingHistory;
     
-    // 슬래싱 조건:
-    // 1. 동일한 작업에 대해 다른 가격 서명
+    // 슬래싱 조건: // 1. 동일한 작업에 대해 다른 가격 서명
     // 2. 응답 윈도우 내에서 응답하지 않음
     // 3. 편차 임계값을 초과하는 가격 서명
     
@@ -593,10 +580,8 @@ func (m *SlashMonitor) StartMonitoring(ctx context.Context) {
     
     for {
         select {
-        case <-ctx.Done():
-            return
-        case <-ticker.C:
-            m.checkForSlashableEvents(ctx)
+        case <-ctx.Done(): return
+        case <-ticker.C: m.checkForSlashableEvents(ctx)
         }
     }
 }
@@ -793,7 +778,6 @@ make telemetry
 *© 2026 dibi8.com | DeFi 개발자, 트레이더, 연구원을 위해 제작되었습니다.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

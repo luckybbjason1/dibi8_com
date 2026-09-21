@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-agent-skills-2026-developer-guide" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-agent-skills-2026-developer-guide" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-agent-skills-2026-developer-guide" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-agent-skills-2026-developer-guide" />
 title: 'Hướng Dẫn Toàn Diện AI Agent Skills 2026: Cách Dùng Clau...
 description: 'Hướng Dẫn Toàn Diện AI Agent Skills 2026: Cách Dùng Claude Code Skills và Các Repository Đang Hot Trên GitHub'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-16 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: ''
 last_maintained: '2026-05-16'
 featureImage: ''
 draft: false
-aliases:
-- /posts/ai-agent-skills-2026-developer-guide/
+aliases: - /posts/ai-agent-skills-2026-developer-guide/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/ai-agent-skills-2026-developer-guide/ -->
 
 {</* resource-info */>}
 
@@ -149,8 +141,7 @@ docker pull rohitg00/agentmemory
 
 ### Bước 1 — Chuẩn Bị Môi Trường
 
-Đảm bảo Claude Code đã cài đặt:
-```bash
+Đảm bảo Claude Code đã cài đặt: ```bash
 curl -fsSL https://claude.ai/install.sh | bash
 claude --version
 ```
@@ -176,8 +167,7 @@ ls .claude/skills/
 Tôi cần triển khai xác thực JWT cho API. Làm theo TDD.
 ```
 
-Skill `tdd` tự động thực thi:
-1. Phân tích cấu trúc codebase
+Skill `tdd` tự động thực thi: 1. Phân tích cấu trúc codebase
 2. Viết test thất bại đầu tiên
 3. Chạy test, xác nhận lý do thất bại đúng
 4. Viết implementation tối thiểu
@@ -200,9 +190,7 @@ Tôi muốn thiết kế API upload file, hỗ trợ resume và thông báo ti�
 
 ### Giải Phẫu Một Skill Chất Lượng Cao
 
-Tạo tệp `.claude/skills/code-review/SKILL.md`:
-
-```markdown
+Tạo tệp `.claude/skills/code-review/SKILL.md`: ```markdown
 # Code Review Skill
 
 ## Mô tả
@@ -266,8 +254,7 @@ Review hệ thống PR, kiểm tra performance, security, maintainability, style
 npx skills@latest add mattpocock/skills/write-a-skill
 ```
 
-Trong Claude Code:
-```
+Trong Claude Code: ```
 Tôi cần một skill tự động tạo migration script khi tôi sửa đổi database model. 
 Phải phát hiện thay đổi schema, tạo migration có khả năng rollback, 
 và bao gồm test data seeding.
@@ -285,8 +272,7 @@ và bao gồm test data seeding.
 
 **Kịch bản cộng tác thực tế:**
 
-Bạn đang phát triển web app với Claude Code:
-1. **MCP** kết nối GitHub, PostgreSQL, Sentry để agent đọc issue, query DB, xem log lỗi
+Bạn đang phát triển web app với Claude Code: 1. **MCP** kết nối GitHub, PostgreSQL, Sentry để agent đọc issue, query DB, xem log lỗi
 2. **Skills** định nghĩa quy trình TDD, tiêu chuẩn code review, checklist release của team
 3. **Prompts** xử lý chỉ thị cụ thể trong phiên: "Đổi tên hàm này thành userAuthentication"
 
@@ -364,7 +350,6 @@ mattpocock/skills mang lại kỷ luật production-tested. obra/superpowers man
 *Số star và thống kê repository dựa trên dữ liệu GitHub API tính đến ngày 13/5/2026. Tất cả repository đang được bảo trì tích cực với commit gần đây.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/toprank" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/toprank" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/toprank" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/toprank" />
 title: "Toprank：用Claude Code驱动的SEO+GEO+ADS一站式增长引擎"
-description: "Toprank 是一款基于 Claude Code 构建的开源 SEO/GEO/ADS 增长工具，自动化关键词研究、内容生成、排名监控与广告投放优化，帮助网站流量翻倍。". Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "Toprank 是一款基于 Claude Code 构建的开源 SEO/GEO/ADS 增长工具，自动化关键词研究、内容生成、排名监控与广告投放优化，帮助网站流量翻倍。"
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Go
+tech_stack: - Go
 application_domain: "Ai Tools"
 source_version: ""
 licensing_model: "Open Source"
@@ -24,10 +18,8 @@ maintainer: "nowork-studio"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases:
-- /zh/posts/toprank/
-faqs:
-  - q: 'Toprank 是什么？它与 SEO SaaS 工具有何不同？'
+aliases: - /zh/posts/toprank/
+faqs: - q: 'Toprank 是什么？它与 SEO SaaS 工具有何不同？'
     a: 'Toprank 是一套开源的 Claude Code 技能集，能将 Anthropic 的 Claude Code CLI 转化为营销自动化引擎。与基于网页仪表板的 SaaS 工具不同，它直接运行在你现有的开发环境中，无需切换浏览器标签页，不收取月费，也不存在上下文切换的问题。'
   - q: 'Toprank 可以自动化哪些 SEO 任务？'
     a: 'Toprank 的 SEO 模块包含以下技能：结合 Google Search Console 数据进行技术审计（seo-analysis）、符合 EEAT 标准的内容撰写（content-writer）、关键词研究与主题聚类、meta 标签和 Open Graph 优化、JSON-LD 结构化数据生成、单页 Core Web Vitals 分析（seo-page），以及死链和孤立页面检测。此外还有专门的 geo-optimizer 技能，用于生成引擎优化（GEO）。'
@@ -36,10 +28,7 @@ faqs:
   - q: 'Toprank 如何处理安装和更新？'
     a: 'Toprank 通过一次性安装脚本完成初始配置，此后每当仓库发布新版本时，技能会自动更新。无需监控包管理器或手动查阅更新日志，团队所有成员都会保持使用同一版本的技能，不存在 lockfile 冲突问题。'
   - q: 'Toprank 最适合哪类用户？'
-    a: 'Toprank 面向以下群体：在 CLI 中自动化审计工作的技术型 SEO 专员、将营销基础设施与应用代码一起维护的增长工程师、使用版本控制 playbook 管理大量客户账户的代理机构，以及无力承担每月 $500+ SaaS 订阅费、但仍需要专业级 SEO 和广告管理能力的创业公司创始人。'
----
-
-<!-- canonical: https://dibi8.com/zh/tools/toprank/ -->
+    a: 'Toprank 面向以下群体：在 CLI 中自动化审计工作的技术型 SEO 专员、将营销基础设施与应用代码一起维护的增长工程师、使用版本控制 playbook 管理大量客户账户的代理机构，以及无力承担每月 $500+ SaaS 订阅费、但仍需要专业级 SEO 和广告管理能力的创业公司创始人。'---
 {</* resource-info */>}
 
 # Toprank：用Claude Code驱动的SEO+GEO+ADS一站式增长引擎
@@ -91,7 +80,13 @@ Toprank 的 ADS 模块整合了 Google Ads、Meta Ads、TikTok Ads 等主流平�
 ## 为什么选择 Toprank？
 
 | 特性 | Toprank | 传统工具 |
-|------|---------|----------|
+|
+---
+|
+---
+|
+---
+|
 | 开源免费 | ✅ 完全开源 | ❌ 动辄月费数百美元 |
 | AI原生 | ✅ 基于Claude Code构建 | ❌ 后期嫁接AI功能 |
 | 全链路覆盖 | ✅ SEO+GEO+ADS一体化 | ❌ 需多个工具拼凑 |
@@ -132,16 +127,16 @@ npm run dev
 
 如果你正在寻找一款**开源、免费、AI驱动、全链路覆盖**的营销增长工具，Toprank 值得你立刻尝试。
 
----
 
+---
 **立即体验 Toprank：**
 - GitHub: [https://github.com/ToprankAI/toprank](https://github.com/ToprankAI/toprank)
 - 文档: [https://docs.toprank.ai](https://docs.toprank.ai)
 - 社区: [https://discord.gg/toprank](https://discord.gg/toprank)
 
 
----
 
+---
 ## 推荐工具
 
 跑或部署开源 AI 工具时，推荐：
@@ -154,7 +149,6 @@ npm run dev
 *本文发布于 2026-05-09，最后更新于 2026-05-09。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -182,25 +176,20 @@ npm run dev
 
 ## Why This Matters
 
-Understanding toprank：用claude code驱动的seo+geo+ads一站式增长引擎 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding toprank：用claude code驱动的seo+geo+ads一站式增长引擎 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -249,9 +238,7 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
 
 
-When deploying AI agents in production, follow these best practices:
-
-1. **Start Small**: Begin with a single tool and simple prompt, then gradually add complexity
+When deploying AI agents in production, follow these best practices: 1. **Start Small**: Begin with a single tool and simple prompt, then gradually add complexity
 2. **Implement Guardrails**: Use permission prompts and approval workflows for dangerous operations
 3. **Monitor Everything**: Log all agent actions for debugging and compliance
 4. **Handle Failures Gracefully**: Implement retry logic and fallback mechanisms
@@ -259,16 +246,12 @@ When deploying AI agents in production, follow these best practices:
 
 ### Security Considerations
 
-AI agents have access to sensitive systems. Always:
-
-- Use least-privilege principles
+AI agents have access to sensitive systems. Always: - Use least-privilege principles
 - Implement audit logging
 - Encrypt sensitive data at rest and in transit
 - Regular security assessments
 
-When deploying AI agents in production, follow these best practices:
-
-1. **Start Small**: Begin with a single tool and simple prompt, then gradually add complexity
+When deploying AI agents in production, follow these best practices: 1. **Start Small**: Begin with a single tool and simple prompt, then gradually add complexity
 2. **Implement Guardrails**: Use permission prompts and approval workflows for dangerous operations
 3. **Monitor Everything**: Log all agent actions for debugging and compliance
 4. **Handle Failures Gracefully**: Implement retry logic and fallback mechanisms
@@ -276,9 +259,7 @@ When deploying AI agents in production, follow these best practices:
 
 ### Security Considerations
 
-AI agents have access to sensitive systems. Always:
-
-- Use least-privilege principles
+AI agents have access to sensitive systems. Always: - Use least-privilege principles
 - Implement audit logging
 - Encrypt sensitive data at rest and in transit
 - Regular security assessments
@@ -286,7 +267,17 @@ AI agents have access to sensitive systems. Always:
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

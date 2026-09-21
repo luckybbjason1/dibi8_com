@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mlflow-experiment-tracking-production" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mlflow-experiment-tracking-production" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mlflow-experiment-tracking-production" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mlflow-experiment-tracking-production" />
 title: 'MLflow 2026: 10,000+ 실험을 추적하는 오픈소스 ML 라이프사이클 플랫폼 — 설정 가이드'
 description: 'MLflow를 활용한 ML 실험 추적, 모델 레지스트리, 모델 서빙에 대한 완전한 가이드. 설치, Python SDK, 프로덕션 배포, 10,000+ 실험에 대한 벤치마크를 다룹니다.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: [mlflow, 머신러닝, mlops, '실험 추적', '모델 레지스트리', '모델 서빙', python, 오픈소스, 데이터과학]
-aliases:
-- /kr/posts/mlflow-experiment-tracking-production/
+aliases: - /kr/posts/mlflow-experiment-tracking-production/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/mlflow-experiment-tracking-production/ -->
 
 {{</* resource-info */>}}
 
@@ -51,9 +43,7 @@ MLflow는 **머신러닝 라이프사이클 관리를 위한 오픈소스 플랫
 
 ## MLflow 작동 방식: 핵심 컴포넌트
 
-MLflow는 ML 라이프사이클의 별개 단계를 해결하는 네 가지 컴포넌트로 구성된다:
-
-**MLflow Tracking**은 실험, 파라미터, 메트릭 및 아티팩트를 기록한다. 각 실험 실행은 코드 버전, 데이터 소스, 구성 및 결과를 캡처한다. 추적 서버는 백엔드(SQLite, PostgreSQL, MySQL)에 데이터를 저장하고 아티팩트는 로컬 파일 시스템, S3, GCS 또는 Azure Blob Storage에 저장한다.
+MLflow는 ML 라이프사이클의 별개 단계를 해결하는 네 가지 컴포넌트로 구성된다: **MLflow Tracking**은 실험, 파라미터, 메트릭 및 아티팩트를 기록한다. 각 실험 실행은 코드 버전, 데이터 소스, 구성 및 결과를 캡처한다. 추적 서버는 백엔드(SQLite, PostgreSQL, MySQL)에 데이터를 저장하고 아티팩트는 로컬 파일 시스템, S3, GCS 또는 Azure Blob Storage에 저장한다.
 
 **MLflow Models**은 표준화된 형식으로 모델을 패키징한다. 한 번 저장하면 어디서든 배포할 수 있다: REST API, 배치 추론, Apache Spark, Amazon SageMaker, Azure ML 또는 Kubernetes. MLflow는 scikit-learn, TensorFlow, PyTorch, XGBoost, LightGBM, HuggingFace Transformers 등을 지원한다.
 
@@ -62,8 +52,7 @@ MLflow는 ML 라이프사이클의 별개 단계를 해결하는 네 가지 컴�
 **MLflow Projects**은 MLproject 파일로 재현 가능한 형식으로 ML 코드를 패키징하며, 진입점, 파라미터, 종속성 및 실행 환경을 정의한다.
 
 ```python
-# 하나의 다이어그램으로 보는 완전한 MLflow 아키텍처:
-# 1. Tracking Server (REST API + UI)
+# 하나의 다이어그램으로 보는 완전한 MLflow 아키텍처: # 1. Tracking Server (REST API + UI)
 #    ├── Backend Store: PostgreSQL / MySQL / SQLite
 #    └── Artifact Store: S3 / GCS / Azure / Local
 #
@@ -104,8 +93,7 @@ import mlflow
 mlflow.set_tracking_uri('http://localhost:5000')
 mlflow.set_experiment('quick-start')
 
-with mlflow.start_run():
-    mlflow.log_param(learning_rate, 0.01)
+with mlflow.start_run(): mlflow.log_param(learning_rate, 0.01)
     mlflow.log_param(epochs, 10)
     mlflow.log_metric(accuracy, 0.94)
     mlflow.log_metric(f1_score, 0.93)
@@ -140,32 +128,23 @@ mlflow server \
 ```bash
 # docker-compose.yml — 완전한 MLflow 스택
 version: '3.8'
-services:
-  postgres:
-    image: postgres:16
-    environment:
-      POSTGRES_USER: mlflow
+services: postgres: image: postgres:16
+    environment: POSTGRES_USER: mlflow
       POSTGRES_PASSWORD: mlflow_password
       POSTGRES_DB: mlflowdb
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+    volumes: - pgdata:/var/lib/postgresql/data
 
-  mlflow:
-    image: python:3.11-slim
+  mlflow: image: python:3.11-slim
     command: >
       bash -c "pip install mlflow==2.22.0 psycopg2-binary boto3 &&
                mlflow server
                --backend-store-uri postgresql://mlflow:mlflow_password@postgres:5432/mlflowdb
                --default-artifact-root s3://my-bucket/mlflow
                --host 0.0.0.0 --port 5000"
-    ports:
-      - "5000:5000"
-    depends_on:
-      - postgres
+    ports: - "5000:5000"
+    depends_on: - postgres
 
-volumes:
-  pgdata:
-```
+volumes: pgdata: ```
 
 ```bash
 # 전체 스택 시작
@@ -177,9 +156,7 @@ curl http://localhost:5000/api/2.0/mlflow/experiments/list
 
 ### DigitalOcean Droplet 배포
 
-전용 프로덕션 추적 서버용:
-
-```bash
+전용 프로덕션 추적 서버용: ```bash
 # Droplet을 생성하고 MLflow 설치
 ssh root@your-droplet-ip << EOF
 apt update && apt install -y python3-pip
@@ -226,9 +203,7 @@ warnings.filterwarnings(ignore)
 mlflow.set_tracking_uri('http://localhost:5000')
 mlflow.set_experiment('wine-classification')
 
-def run_experiment(n_estimators, max_depth, min_samples_split):
-    with mlflow.start_run():
-        # 파라미터 기록
+def run_experiment(n_estimators, max_depth, min_samples_split): with mlflow.start_run(): # 파라미터 기록
         mlflow.log_param(n_estimators, n_estimators)
         mlflow.log_param(max_depth, max_depth)
         mlflow.log_param(min_samples_split, min_samples_split)
@@ -267,16 +242,14 @@ def run_experiment(n_estimators, max_depth, min_samples_split):
         print(f'Run completed: accuracy={accuracy:.4f}, f1={f1:.4f}')
 
 # 여러 실험 실행
-if __name__ == __main__:
-    configs = [
+if __name__ == __main__: configs = [
         (50, 5, 0.01),
         (100, 10, 0.02),
         (200, 15, 0.05),
         (300, 20, 0.10),
         (500, None, 0.02),
     ]
-    for n_est, depth, min_split in configs:
-        run_experiment(n_est, depth, min_split)
+    for n_est, depth, min_split in configs: run_experiment(n_est, depth, min_split)
 ```
 
 ```bash
@@ -302,8 +275,7 @@ mlflow.sklearn.autolog()
 X, y = load_wine(return_X_y=True)
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
-with mlflow.start_run():
-    clf = RandomForestClassifier(n_estimators=100, random_state=42)
+with mlflow.start_run(): clf = RandomForestClassifier(n_estimators=100, random_state=42)
     clf.fit(X_train, y_train)
     # 수동 로깅 불필요 — autolog가 모든 것을 캡처
 ```
@@ -324,9 +296,7 @@ mlflow.set_experiment('pytorch-cifar10')
 # PyTorch autologging 활성화
 mlflow.pytorch.autolog()
 
-def train_model(epochs, lr, batch_size):
-    with mlflow.start_run():
-        mlflow.log_param(epochs, epochs)
+def train_model(epochs, lr, batch_size): with mlflow.start_run(): mlflow.log_param(epochs, epochs)
         mlflow.log_param(learning_rate, lr)
         mlflow.log_param(batch_size, batch_size)
 
@@ -354,10 +324,8 @@ def train_model(epochs, lr, batch_size):
 
         # 훈련 루프
         model.train()
-        for epoch in range(epochs):
-            total_loss = 0
-            for batch_idx, (data, target) in enumerate(train_loader):
-                data, target = data.to(device), target.to(device)
+        for epoch in range(epochs): total_loss = 0
+            for batch_idx, (data, target) in enumerate(train_loader): data, target = data.to(device), target.to(device)
                 optimizer.zero_grad()
                 output = model(data)
                 loss = criterion(output, target)
@@ -372,8 +340,7 @@ def train_model(epochs, lr, batch_size):
         # 최종 모델 기록
         mlflow.pytorch.log_model(model, model)
 
-if __name__ == __main__:
-    train_model(epochs=5, lr=0.001, batch_size=64)
+if __name__ == __main__: train_model(epochs=5, lr=0.001, batch_size=64)
 ```
 
 ## 모델 레지스트리: 모델 라이프사이클 관리
@@ -420,8 +387,7 @@ client.set_model_version_tag(
 # 모델의 모든 버전 나열
 mlflow models list-versions -m wine-classifier
 
-# 예상 출력:
-#   Version  Stage       Description
+# 예상 출력: #   Version  Stage       Description
 #   1        Production  Initial production model
 #   2        Staging     Wine classifier with 94.4% accuracy...
 #   3        None        Experimental architecture
@@ -521,9 +487,7 @@ mlflow.azureml.deploy(
 
 ### 추적 서버 처리량
 
-**8 vCPU / 32 GB RAM** 인스턴스에서 PostgreSQL 백엔드 및 S3 아티팩트 저장소로 MLflow 추적 서버(v2.22.0)를 벤치마킹했다:
-
-| 메트릭 | SQLite (로컬) | PostgreSQL (로컬) | PostgreSQL + S3 |
+**8 vCPU / 32 GB RAM** 인스턴스에서 PostgreSQL 백엔드 및 S3 아티팩트 저장소로 MLflow 추적 서버(v2.22.0)를 벤치마킹했다: | 메트릭 | SQLite (로컬) | PostgreSQL (로컬) | PostgreSQL + S3 |
 |---|---|---|---|
 | 초당 로그된 실행 수 | **~180** | **~350** | **~320** |
 | 안정적인 동시 클라이언트 | 5 | 50 | 40 |
@@ -569,16 +533,12 @@ VALID_CREDENTIALS = {
     'ml-engineer': engineer_pass_456
 }
 
-def check_auth():
-    auth = request.authorization
-    if not auth or not auth.password:
-        return False
+def check_auth(): auth = request.authorization
+    if not auth or not auth.password: return False
     return VALID_CREDENTIALS.get(auth.username) == auth.password
 
 @app.before_request
-def require_auth():
-    if not check_auth():
-        return Response('Authentication required', 401,
+def require_auth(): if not check_auth(): return Response('Authentication required', 401,
                        {'WWW-Authenticate': 'Basic realm="MLflow"'})
 
 # 인증 프록시 뒤에 MLflow 마운트
@@ -614,14 +574,11 @@ client = MlflowClient('http://localhost:5000')
 cutoff = datetime.now() - timedelta(days=90)
 experiments = client.search_experiments()
 
-for exp in experiments:
-    runs = client.search_runs(
+for exp in experiments: runs = client.search_runs(
         experiment_ids=[exp.experiment_id],
         filter_string=f"attributes.start_time < {int(cutoff.timestamp() * 1000)}"
     )
-    for run in runs:
-        if run.info.status == FINISHED:
-            client.delete_run(run.info.run_id)
+    for run in runs: if run.info.status == FINISHED: client.delete_run(run.info.run_id)
             print(f'Deleted run {run.info.run_id} from {exp.name}')
 
 print(f'Cleanup completed. Deleted {len(runs)} old runs.')
@@ -638,27 +595,20 @@ crontab -e
 ```yaml
 # .github/workflows/ml-pipeline.yml
 name: ML Training Pipeline
-on:
-  push:
-    branches: [main]
+on: push: branches: [main]
 
-jobs:
-  train:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: train: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
 
       - name: Setup Python
         uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
+        with: python-version: '3.11'
 
       - name: Install dependencies
         run: pip install mlflow==2.22.0 scikit-learn pandas
 
       - name: Train and register model
-        env:
-          MLFLOW_TRACKING_URI: ${{ secrets.MLFLOW_TRACKING_URI }}
+        env: MLFLOW_TRACKING_URI: ${{ secrets.MLFLOW_TRACKING_URI }}
         run: |
           python train.py --register-model --stage Staging
 
@@ -692,9 +642,7 @@ jobs:
 
 ## 한계 / 정직한 평가
 
-MLflow는 훌륭하지만 만능은 아니다:
-
-**내장 파이프라인 오케스트레이션 없음**: MLflow는 실험을 추적하지만 다단계 훈련 파이프라인을 오케스트레이션하지 않는다. 팀은 일반적으로 MLflow를 [Kubeflow Pipelines](dibi8-internal-link), Apache Airflow, 또는 Prefect와 함께 사용한다.
+MLflow는 훌륭하지만 만능은 아니다: **내장 파이프라인 오케스트레이션 없음**: MLflow는 실험을 추적하지만 다단계 훈련 파이프라인을 오케스트레이션하지 않는다. 팀은 일반적으로 MLflow를 [Kubeflow Pipelines](dibi8-internal-link), Apache Airflow, 또는 Prefect와 함께 사용한다.
 
 **UI 확장성**: MLflow UI는 단일 실험에서 **~100,000회 이상의 실행**이 넘어가면 느려지기 시작한다. 실험 명명 규칙과 검색/필터 API를 사용하여 뷰를 관리 가능하게 유지하라.
 
@@ -736,9 +684,7 @@ MLflow는 ML 라이프사이클 관리를 위한 가장 실용적인 오픈소�
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -759,7 +705,6 @@ MLflow는 ML 라이프사이클 관리를 위한 가장 실용적인 오픈소�
 *제휴 공개: 이 기사에는 DigitalOcean 제휴 링크가 포함되어 있다. 해당 링크를 통해 가입하면 추가 비용 없이 dibi8.com에 수수료가 지급된다. 우리는 자체 인프라에 사용하는 서비스만 추천한다.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

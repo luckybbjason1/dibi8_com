@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/odysseus-self-hosted-ai-workspace-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/odysseus-self-hosted-ai-workspace-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/odysseus-self-hosted-ai-workspace-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/odysseus-self-hosted-ai-workspace-2026" />
 title: 'Odysseus: Không Gian Làm Việc AI Tự Lưu Trữ Đạt 63.000 S...
 description: 'Odysseus là không gian làm việc AI mã nguồn mở, ưu tiên quyền riêng tư (63.000 sao trong 9 ngày, giấy phép MIT). Một lệnh Docker duy nhất giúp bạn có chat, AI agent, nghiên cứu chuyên sâu, phân loại email, lịch, ghi chú và Cookbook mô hình — tất cả chạy trên phần cứng của bạn. Bài viết hướng dẫn cài đặt, tính năng chính và so sánh với ChatGPT Plus.'
 date: 2026-06-09 00:00:00+08:00
@@ -25,10 +20,8 @@ featureImage: 'https://raw.githubusercontent.com/pewdiepie-archdaemon/odysseus/m
 draft: false
 categories: ['ai-tools']
 tags: [odysseus, 'ai tự lưu trữ', 'không gian làm việc ai', 'llm cục bộ', 'quyền riêng tư', docker, 'mã nguồn mở', 'thay thế chatgpt', ollama, 'nghiên cứu chuyên sâu']
-aliases:
-- /vi/posts/odysseus-self-hosted-ai-workspace-2026/
-faqs:
-  - q: 'Odysseus có cần GPU để chạy không?'
+aliases: - /vi/posts/odysseus-self-hosted-ai-workspace-2026/
+faqs: - q: 'Odysseus có cần GPU để chạy không?'
     a: 'Không. Bản thân Odysseus rất nhẹ. GPU chỉ cần thiết khi bạn muốn chạy mô hình cục bộ qua tính năng Cookbook. Bạn có thể kết nối với API từ xa (OpenAI, Anthropic, OpenRouter) hoặc instance Ollama riêng mà không cần GPU cục bộ.'
   - q: 'Odysseus khác Open WebUI ở điểm nào?'
     a: 'Open WebUI tập trung vào chat và RAG qua Ollama. Odysseus bổ sung thêm một bộ tính năng đầy đủ: AI agent hỗ trợ MCP tool calling, nghiên cứu chuyên sâu với báo cáo trực quan, ứng dụng email tích hợp AI, lịch CalDAV, ghi chú có nhắc nhở, và Cookbook tự động phát hiện VRAM để gợi ý mô hình tương thích. Nó gần với một ChatGPT Plus tự lưu trữ hơn là giao diện Ollama thông thường.'
@@ -40,7 +33,6 @@ faqs:
     a: 'Có. Odysseus là PWA (Progressive Web App) với thiết kế đáp ứng hoàn toàn. Trên iOS hoặc Android, bạn có thể "Thêm vào màn hình chính" để có trải nghiệm gần như ứng dụng native. Các tính năng Cookbook và Agent cũng hoạt động trên di động, nhưng việc chạy mô hình cục bộ cần GPU vẫn đòi hỏi máy tính hoặc server.'
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/odysseus-self-hosted-ai-workspace-2026/ -->
 # Odysseus: Không Gian Làm Việc AI Tự Lưu Trữ Đạt 63.000 Sao GitHub Trong 9 Ngày — Hướng Dẫn 2026
 
 
@@ -48,9 +40,7 @@ Odysseus ra mắt trên GitHub ngày 31 tháng 5 năm 2026 và đạt 63.000 sao
 
 ## Odysseus Thực Chất Là Gì
 
-Về mặt kỹ thuật, Odysseus là ứng dụng web Python (backend FastAPI + Uvicorn, frontend vanilla JS) tích hợp nhiều thành phần mã nguồn mở đã được kiểm chứng thành một không gian làm việc thống nhất:
-
-- **Chat** — trò chuyện với bất kỳ LLM cục bộ hoặc từ xa nào. Thêm server mô hình trong Cài đặt với URL và key; Odysseus xử lý phần còn lại. Backend hỗ trợ: vLLM, llama.cpp, Ollama, OpenRouter, OpenAI, GitHub Copilot.
+Về mặt kỹ thuật, Odysseus là ứng dụng web Python (backend FastAPI + Uvicorn, frontend vanilla JS) tích hợp nhiều thành phần mã nguồn mở đã được kiểm chứng thành một không gian làm việc thống nhất: - **Chat** — trò chuyện với bất kỳ LLM cục bộ hoặc từ xa nào. Thêm server mô hình trong Cài đặt với URL và key; Odysseus xử lý phần còn lại. Backend hỗ trợ: vLLM, llama.cpp, Ollama, OpenRouter, OpenAI, GitHub Copilot.
 - **Agent** — giao mục tiêu và công cụ (web, file, shell, MCP server, bộ nhớ) cho AI, để nó tự thực hiện toàn bộ tác vụ. Layer agent được xây dựng trên [opencode](https://github.com/anomalyco/opencode).
 - **Cookbook** — quét phần cứng, phát hiện VRAM khả dụng, gợi ý mô hình GGUF / FP8 / AWQ phù hợp và cho phép tải xuống, chạy bằng một cú nhấp. Được hỗ trợ bởi [llmfit](https://github.com/AlexsJones/llmfit).
 - **Nghiên Cứu Chuyên Sâu (Deep Research)** — nghiên cứu đa bước tự động: tìm kiếm web, đọc nguồn, tổng hợp thành báo cáo trực quan có cấu trúc. Phát triển từ [Tongyi DeepResearch](https://github.com/Alibaba-NLP/DeepResearch) của Alibaba.
@@ -71,9 +61,7 @@ cp .env.example .env          # tùy chọn nhưng khuyến nghị
 docker compose up -d --build
 ```
 
-Mở **http://localhost:7000**. Lần chạy đầu tiên, Odysseus in mật khẩu admin tạm thời vào Docker logs:
-
-```bash
+Mở **http://localhost:7000**. Lần chạy đầu tiên, Odysseus in mật khẩu admin tạm thời vào Docker logs: ```bash
 docker compose logs odysseus | grep "Admin password"
 ```
 
@@ -81,9 +69,7 @@ docker compose logs odysseus | grep "Admin password"
 
 ## Cài Đặt Native (Linux / macOS)
 
-Người dùng Apple Silicon nên chạy native thay vì Docker để sử dụng GPU Metal:
-
-```bash
+Người dùng Apple Silicon nên chạy native thay vì Docker để sử dụng GPU Metal: ```bash
 git clone https://github.com/pewdiepie-archdaemon/odysseus.git
 cd odysseus
 python3 -m venv venv && source venv/bin/activate
@@ -92,9 +78,7 @@ python setup.py
 python -m uvicorn app:app --host 127.0.0.1 --port 7000
 ```
 
-Khởi động nhanh trên Apple Silicon:
-
-```bash
+Khởi động nhanh trên Apple Silicon: ```bash
 ./start-macos.sh        # bind vào 127.0.0.1:7860
 ```
 
@@ -126,7 +110,6 @@ Nếu bạn muốn trải nghiệm AI như ChatGPT trên phần cứng của ch�
 **GitHub:** [pewdiepie-archdaemon/odysseus](https://github.com/pewdiepie-archdaemon/odysseus)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -154,25 +137,20 @@ Nếu bạn muốn trải nghiệm AI như ChatGPT trên phần cứng của ch�
 
 ## Why This Matters
 
-Understanding odysseus: không gian làm việc ai tự lưu trữ đạt 63.000 sao github trong 9 ngày — hướng dẫn 2026 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding odysseus: không gian làm việc ai tự lưu trữ đạt 63.000 sao github trong 9 ngày — hướng dẫn 2026 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/open-sora" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/open-sora" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/open-sora" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/open-sora" />
 title: 'Open-Sora: 29K+ Stars — 오픈소스 비디오 생성 완벽 설치 가이드 2026'
 description: 'Open-Sora는 29K+ GitHub stars를 보유한 오픈소스 비디오 생성 프레임워크입니다. Docker 설치, ComfyUI 통합, Stable Diffusion 호환, 프로덕션 배포, HunyuanVideo, CogVideo, Wan과의 성능 비교 벤치마크를 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: ['open-sora', '비디오-생성', '확산-transformer', 'ai-비디오', 오픈소스, docker, cuda, comfyui]
-aliases:
-- /kr/posts/open-sora/
+aliases: - /kr/posts/open-sora/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/open-sora/ -->
 
 {{</* resource-info */>}}
 
@@ -49,9 +41,7 @@ Open-Sora는 HPC-AI Tech가 개발한 오픈소스 비디오 생성 프레임워
 
 ### 아키텍처 개요
 
-Open-Sora의 생성 파이프라인은 순차적으로 작동하는 세 가지 주요 구성 요소로 구성됩니다:
-
-1. **텍스트 인코더 (T5-XXL)**: 자연어 프롬프트를 생성 과정을 조건화하는 4096차원 임베딩 벡터로 변환합니다.
+Open-Sora의 생성 파이프라인은 순차적으로 작동하는 세 가지 주요 구성 요소로 구성됩니다: 1. **텍스트 인코더 (T5-XXL)**: 자연어 프롬프트를 생성 과정을 조건화하는 4096차원 임베딩 벡터로 변환합니다.
 
 2. **STDiT 백본**: 이미지 패치 간 공간적 어텐션을 적용한 후 비디오 프레임 간 시간적 어텐션을 적용하고, 마지막으로 텍스트 의미를 시각적 특징과 정렬하기 위해 교차 어텐션을 수행하는 확산 Transformer입니다. 이러한 분해 어텐션 설계는 전체 3D 어텐션에 비해 메모리 오버헤드를 40-60% 줄이면서 생성 품질을 유지합니다.
 
@@ -92,8 +82,7 @@ latent = torch.randn(1, 16, 16, 128, 128).cuda()  # [B, C, T, H, W]
 
 # 정류 흐름으로 디노이징
 scheduler = RectifiedFlowScheduler(num_steps=50)
-for t in scheduler.timesteps:
-    noise_pred = stdit(latent, t, prompt_embed)
+for t in scheduler.timesteps: noise_pred = stdit(latent, t, prompt_embed)
     latent = scheduler.step(noise_pred, t, latent)
 
 # 비디오로 디코딩
@@ -158,9 +147,7 @@ huggingface-cli download hpcai-tech/Open-Sora-v2 --local-dir ./ckpts
 
 ### Dockerfile 설명
 
-공식 Dockerfile은 `nvidia/cuda:12.1.0-cudnn8-devel-ubuntu22.04`를 기본 이미지로 사용합니다. 주요 단계는 다음과 같습니다:
-
-```dockerfile
+공식 Dockerfile은 `nvidia/cuda:12.1.0-cudnn8-devel-ubuntu22.04`를 기본 이미지로 사용합니다. 주요 단계는 다음과 같습니다: ```dockerfile
 FROM nvidia/cuda:12.1.0-cudnn8-devel-ubuntu22.04
 
 WORKDIR /workspace/Open-Sora
@@ -189,9 +176,7 @@ CMD ["/bin/bash"]
 
 ### 모델 가중치 다운로드
 
-Open-Sora 2.0 가중치는 HuggingFace와 ModelScope 모두에서 사용 가능합니다:
-
-```bash
+Open-Sora 2.0 가중치는 HuggingFace와 ModelScope 모두에서 사용 가능합니다: ```bash
 # 옵션 1: HuggingFace
 pip install "huggingface_hub[cli]"
 huggingface-cli download hpcai-tech/Open-Sora-v2 --local-dir ./ckpts
@@ -211,9 +196,7 @@ ls -la ./ckpts/
 
 ### ComfyUI 통합
 
-Open-Sora는 공식 API 노드 또는 커뮤니티 커스텀 노드를 통해 ComfyUI와 통합할 수 있습니다. 아직 네이티브 ComfyUI 노드가 없지만 브리지 방식을 사용할 수 있습니다:
-
-```bash
+Open-Sora는 공식 API 노드 또는 커뮤니티 커스텀 노드를 통해 ComfyUI와 통합할 수 있습니다. 아직 네이티브 ComfyUI 노드가 없지만 브리지 방식을 사용할 수 있습니다: ```bash
 # 별도 환경에서 ComfyUI 설치
 git clone https://github.com/comfyanonymous/ComfyUI.git
 cd ComfyUI
@@ -230,12 +213,10 @@ import subprocess
 import torch
 import os
 
-class OpenSoraTextToVideo:
-    """Open-Sora 텍스트-비디오 생성용 ComfyUI 노드"""
+class OpenSoraTextToVideo: """Open-Sora 텍스트-비디오 생성용 ComfyUI 노드"""
     
     @classmethod
-    def INPUT_TYPES(cls):
-        return {
+    def INPUT_TYPES(cls): return {
             "required": {
                 "prompt": ("STRING", {"multiline": True}),
                 "resolution": (["256px", "768px"], {"default": "768px"}),
@@ -248,10 +229,8 @@ class OpenSoraTextToVideo:
     FUNCTION = "generate_video"
     CATEGORY = "video_generation"
     
-    def generate_video(self, prompt, resolution, num_frames, steps):
-        # 프롬프트를 CSV에 쓰기
-        with open("/tmp/opensora_input.csv", "w") as f:
-            f.write(f"id,text\n0,\"{prompt}\"\n")
+    def generate_video(self, prompt, resolution, num_frames, steps): # 프롬프트를 CSV에 쓰기
+        with open("/tmp/opensora_input.csv", "w") as f: f.write(f"id,text\n0,\"{prompt}\"\n")
         
         # 추론 실행
         cmd = [
@@ -278,9 +257,7 @@ NODE_DISPLAY_NAME_MAPPINGS = {
 
 ### Stable Diffusion / FLUX 통합
 
-Open-Sora 2.0은 T2I2V 파이프라인의 T2I 백본으로 FLUX를 사용합니다. 어떤 T2I 모델을 사용할지 구성할 수 있습니다:
-
-```python
+Open-Sora 2.0은 T2I2V 파이프라인의 T2I 백본으로 FLUX를 사용합니다. 어떤 T2I 모델을 사용할지 구성할 수 있습니다: ```python
 # configs/diffusion/inference/t2i2v_768px.py
 # 텍스트-이미지-비디오 구성
 model = dict(
@@ -314,9 +291,7 @@ cfg_channel = 3  # 이미지 조건화 스케일
 
 ### Gradio Web UI
 
-Open-Sora에는 대화형 생성을 위한 내장 Gradio 인터페이스가 포함되어 있습니다:
-
-```bash
+Open-Sora에는 대화형 생성을 위한 내장 Gradio 인터페이스가 포함되어 있습니다: ```bash
 # Gradio 종속성 설치
 pip install gradio spaces
 
@@ -324,9 +299,7 @@ pip install gradio spaces
 python gradio/app.py --model-type v2 --checkpoint ./ckpts
 ```
 
-브라우저에서 `http://localhost:7860`에 접속합니다. 인터페이스는 다음을 지원합니다:
-
-- 실시간 미리보기가 있는 텍스트-비디오 생성
+브라우저에서 `http://localhost:7860`에 접속합니다. 인터페이스는 다음을 지원합니다: - 실시간 미리보기가 있는 텍스트-비디오 생성
 - 이미지 업로드 및 조건화를 통한 이미지-비디오 생성
 - 모션 점수 조정 (1-7 스케일)
 - 해상도 및 프레임 수 선택
@@ -334,9 +307,7 @@ python gradio/app.py --model-type v2 --checkpoint ./ckpts
 
 ### 커스텀 파인튜닝용 ColossalAI 통합
 
-사용자 데이터에서 Open-Sora를 파인튜닝하려면 ColossalAI가 분산 훈련 백본을 제공합니다:
-
-```bash
+사용자 데이터에서 Open-Sora를 파인튜닝하려면 ColossalAI가 분산 훈련 백본을 제공합니다: ```bash
 # ColossalAI 설치
 pip install colossalai
 
@@ -401,9 +372,7 @@ VBench는 비디오 생성을 위한 표준 평가 도구로, 시각적 품질, 
 
 ### 메모리 최적화 기술
 
-VRAM이 제한된 GPU의 경우 Open-Sora는 여러 가지 최적화 전략을 제공합니다:
-
-```bash
+VRAM이 제한된 GPU의 경우 Open-Sora는 여러 가지 최적화 전략을 제공합니다: ```bash
 # 1. CPU 오프로딩 (~40% VRAM 절약, 25% 느림)
 torchrun --nproc_per_node 1 --standalone \
     scripts/diffusion/inference.py \
@@ -412,8 +381,7 @@ torchrun --nproc_per_node 1 --standalone \
     --offload True
 
 # 2. Flash Attention 3 (15-20% 속도 향상, 품질 손실 없음)
-# 먼저 설치:
-git clone https://github.com/Dao-AILab/flash-attention
+# 먼저 설치: git clone https://github.com/Dao-AILab/flash-attention
 cd flash-attention/hopper
 python setup.py install
 
@@ -446,9 +414,7 @@ torchrun --nproc_per_node 8 --standalone \
 
 ### Open-Sora 프롬프트 엔지니어링
 
-이 모델은 명시적 장면 구성이 있는 구조화된 프롬프트에 가장 잘 반응합니다:
-
-```python
+이 모델은 명시적 장면 구성이 있는 구조화된 프롬프트에 가장 잘 반응합니다: ```python
 # 효과적인 프롬프트 구조
 prompt = """A cinematic wide shot of a golden retriever running along a sandy beach at sunset. 
 Ocean waves break in the background with warm golden hour lighting. 
@@ -466,55 +432,36 @@ High production value, anamorphic lens, shallow depth of field."""
 # docker-compose.prod.yml
 version: '3.8'
 
-services:
-  opensora:
-    build: .
+services: opensora: build: .
     runtime: nvidia
-    environment:
-      - NVIDIA_VISIBLE_DEVICES=all
+    environment: - NVIDIA_VISIBLE_DEVICES=all
       - CUDA_VISIBLE_DEVICES=0,1,2,3
       - HF_HOME=/workspace/cache
-    volumes:
-      - ./ckpts:/workspace/Open-Sora/ckpts:ro
+    volumes: - ./ckpts:/workspace/Open-Sora/ckpts:ro
       - ./samples:/workspace/Open-Sora/samples
       - huggingface_cache:/workspace/cache
-    ports:
-      - "7860:7860"
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+    ports: - "7860:7860"
+    deploy: resources: reservations: devices: - driver: nvidia
               count: all
               capabilities: [gpu]
-    healthcheck:
-      test: ["CMD", "python", "-c", "import torch; torch.cuda.is_available()"]
+    healthcheck: test: ["CMD", "python", "-c", "import torch; torch.cuda.is_available()"]
       interval: 30s
       timeout: 10s
       retries: 3
     restart: unless-stopped
     
   # 선택적: 배치 작업 대기열 워커
-  worker:
-    build: .
+  worker: build: .
     runtime: nvidia
     command: python scripts/diffusion/batch_worker.py --queue redis:6379
-    environment:
-      - NVIDIA_VISIBLE_DEVICES=4,5,6,7
-    volumes:
-      - ./ckpts:/workspace/Open-Sora/ckpts:ro
+    environment: - NVIDIA_VISIBLE_DEVICES=4,5,6,7
+    volumes: - ./ckpts:/workspace/Open-Sora/ckpts:ro
       - ./samples:/workspace/Open-Sora/samples
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+    deploy: resources: reservations: devices: - driver: nvidia
               count: 4
               capabilities: [gpu]
 
-volumes:
-  huggingface_cache:
-```
+volumes: huggingface_cache: ```
 
 ### 모니터링 및 로깅
 
@@ -530,15 +477,13 @@ GENERATION_COUNTER = Counter(opensora_generations_total, '총 비디오 생성 �
 GENERATION_DURATION = Histogram(opensora_generation_seconds, '생성 시간')
 VRAM_USAGE = Histogram(opensora_vram_usage_bytes, '최대 VRAM 사용량')
 
-def generate_with_monitoring(prompt, config):
-    process = psutil.Process()
+def generate_with_monitoring(prompt, config): process = psutil.Process()
     start_mem = process.memory_info().rss
     
     torch.cuda.reset_peak_memory_stats()
     start_time = time.time()
     
-    try:
-        video = run_inference(prompt, config)
+    try: video = run_inference(prompt, config)
         
         duration = time.time() - start_time
         peak_vram = torch.cuda.max_memory_allocated()
@@ -553,8 +498,7 @@ def generate_with_monitoring(prompt, config):
             peak_vram_gb: peak_vram / 1e9,
             peak_ram_gb: (process.memory_info().rss - start_mem) / 1e9,
         }
-    except Exception as e:
-        raise
+    except Exception as e: raise
 
 # 9090 포트에서 메트릭 서버 시작
 start_http_server(9090)
@@ -593,9 +537,7 @@ start_http_server(9090)
 
 ## 한계 / 정직한 평가
 
-Open-Sora는 유능한 프레임워크이지만 모든 사용 사례에 적합한 것은 아닙니다. 배포를 결정하기 전에 이러한 제약을 고려하세요:
-
-1. **해상도 상한**: Open-Sora 2.0의 최대 해상도는 768x768입니다. Sora 및 Kling과 같은 상업용 모델은 네이티브 1080p 및 4K를 출력합니다. 방송 품질 출력을 위해서는 업스케일링 파이프라인이 필요합니다.
+Open-Sora는 유능한 프레임워크이지만 모든 사용 사례에 적합한 것은 아닙니다. 배포를 결정하기 전에 이러한 제약을 고려하세요: 1. **해상도 상한**: Open-Sora 2.0의 최대 해상도는 768x768입니다. Sora 및 Kling과 같은 상업용 모델은 네이티브 1080p 및 4K를 출력합니다. 방송 품질 출력을 위해서는 업스케일링 파이프라인이 필요합니다.
 
 2. **비디오 길이 제한**: 24FPS에서 128프레임은 약 5.3초에 해당합니다. 그 이상을 확장하려면 복잡성을 더하고 불연속성을 유발할 수 있는 슬라이딩 윈도우 또는 키프레임 보간 기법이 필요합니다.
 
@@ -654,9 +596,7 @@ Open-Sora 2.0은 오픈소스 비디오 생성의 이정표를 대표합니다: 
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -676,7 +616,6 @@ Open-Sora 2.0은 오픈소스 비디오 생성의 이정표를 대표합니다: 
 - ComfyUI 공식 저장소: https://github.com/comfyanonymous/ComfyUI
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

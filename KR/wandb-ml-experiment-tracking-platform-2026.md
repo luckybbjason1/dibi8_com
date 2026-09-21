@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/wandb-ml-experiment-tracking-platform-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/wandb-ml-experiment-tracking-platform-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/wandb-ml-experiment-tracking-platform-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/wandb-ml-experiment-tracking-platform-2026" />
 title: 'Weights & Biases (W&B): 전문가처럼 실험 추적하기 — ML 실험 플랫폼 2026'
 description: 'Weights & Biases (wandb/wandb)는 ML 실험을 추적, 비교, 배포하기 위한 AI 개발자 플랫폼입니다. PyTorch, TensorFlow, Hugging Face 및 LLM 파인튜닝을 지원합니다. 실험 추적, 데이터세트 버전 관리, 모델 레지스트리, 프로덕션 모니터링을 다룹니다.'
 date: 2026-06-09
-lastmod:  2026-06-09slug: 'wandb-ml-experiment-tracking-platform-2026'
+lastmod: 2026-06-09
+slug: 'wandb-ml-experiment-tracking-platform-2026'
 category: 'data-science'
 tags: ['ml-ops', 'experiment-tracking', 'deep-learning', 'pytorch', 'llm', 'model-registry', 'mlops']
 github_repo: 'https://github.com/wandb/wandb'
@@ -17,8 +13,6 @@ license: MIT
 featureImage: 'https://raw.githubusercontent.com/wandb/wandb/main/assets/screenshots/launch.png'
 lang: ko
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/wandb-ml-experiment-tracking-platform-2026/ -->
 
 ![Weights & Biases Dashboard](https://opengraph.github.com/github/wandb/wandb)
 
@@ -78,9 +72,7 @@ wandb.init(
     }
 )
 
-for epoch in range(config.epochs):
-    for batch in train_dataloader:
-        loss = model.train_step(batch)
+for epoch in range(config.epochs): for batch in train_dataloader: loss = model.train_step(batch)
         # Log metrics — W&B handles the rest
         wandb.log({"train_loss": loss, "lr": config.learning_rate})
 ```
@@ -127,9 +119,7 @@ W&B는 사실상 모든 인기 ML 프레임워크와 통합됩니다. 다음은 
 import pytorch_lightning as pl
 from pytorch_lightning.callbacks import WandbCallback
 
-class MyModel(pl.LightningModule):
-    def training_step(self, batch, batch_idx):
-        loss = self.forward(batch)
+class MyModel(pl.LightningModule): def training_step(self, batch, batch_idx): loss = self.forward(batch)
         self.log("train_loss", loss)
         return loss
 
@@ -168,8 +158,7 @@ import wandb
 
 ray.init()
 
-def train_model(config):
-    # W&B automatically captures the sweep config
+def train_model(config): # W&B automatically captures the sweep config
     wandb.init(config=config)
     score = my_training_function(config)
     wandb.log({"score": score})
@@ -187,9 +176,7 @@ sweep = tune.run(
 
 ## 벤치마크 / 실제 사용 사례
 
-W&B의 로깅 성능은 다양한 훈련 규모에서 벤치마킹되었습니다. 일반적인 훈련 워크로드에서 오버헤드는 무시할 수준입니다:
-
-| 시나리오 | 로깅 오버헤드 | 네트워크 대역폭 | 대시보드 로드 시간 |
+W&B의 로깅 성능은 다양한 훈련 규모에서 벤치마킹되었습니다. 일반적인 훈련 워크로드에서 오버헤드는 무시할 수준입니다: | 시나리오 | 로깅 오버헤드 | 네트워크 대역폭 | 대시보드 로드 시간 |
 |----------|---------------|-----------------|--------------------|
 | 소형 모델 (1만 파라미터) | 0.5% | <1 MB/run | <1초 |
 | 중형 모델 (1억 파라미터) | 1.2% | <5 MB/run | <2초 |
@@ -197,9 +184,7 @@ W&B의 로깅 성능은 다양한 훈련 규모에서 벤치마킹되었습니�
 | LLM 파인튜닝 (70억 파라미터) | 3.5% | <50 MB/run | <5초 |
 | 분산 훈련 (8 GPU) | 4.0% | <100 MB/run | <3초 |
 
-실제 사용 예시:
-
-```python
+실제 사용 예시: ```python
 # Log a confusion matrix as a W&B table
 import numpy as np
 import wandb
@@ -263,25 +248,17 @@ report.save("experiment-report")
 # sweeps.yaml
 name: nlp-sweep
 program: train.py
-metric:
-  name: val_accuracy
+metric: name: val_accuracy
   goal: maximize
-parameters:
-  learning_rate:
-    values: [1e-5, 2e-5, 5e-5, 1e-4]
-  optimizer:
-    values: [adamw, adam]
-  warmup_ratio:
-    min: 0.0
+parameters: learning_rate: values: [1e-5, 2e-5, 5e-5, 1e-4]
+  optimizer: values: [adamw, adam]
+  warmup_ratio: min: 0.0
     max: 0.1
-command:
-  - python
+command: - python
   - train.py
 ```
 
-스윕 실행:
-
-```bash
+스윕 실행: ```bash
 wandb sweep sweeps.yaml
 wandb agent $SWEEP_ID
 ```
@@ -317,11 +294,9 @@ config.batch_size = 64
 model = MyModel()
 optimizer = AdamW(model.parameters(), lr=config.learning_rate)
 
-for epoch in range(config.epochs):
-    model.train()
+for epoch in range(config.epochs): model.train()
     epoch_loss = 0
-    for i, (x, y) in enumerate(train_loader):
-        optimizer.zero_grad()
+    for i, (x, y) in enumerate(train_loader): optimizer.zero_grad()
         output = model(x)
         loss = criterion(output, y)
         loss.backward()
@@ -329,8 +304,7 @@ for epoch in range(config.epochs):
         epoch_loss += loss.item()
         
         # Log every 100 steps
-        if i % 100 == 0:
-            wandb.log({
+        if i % 100 == 0: wandb.log({
                 "train_loss": loss.item(),
                 "learning_rate": config.learning_rate,
                 "epoch": epoch
@@ -386,9 +360,7 @@ data_path = clean_data.download()
 
 ## 한계 / 솔직한 평가
 
-W&B는 가장 정교한 ML 추적 플랫폼이지만, 몇 가지 트레이드오프가 있습니다:
-
-1. **클라우드 우선 모델**: W&B의 무료 티어는 클라우드 플랫폼 사용이 필요합니다. 온프레미스 배포가 필요한 팀을 위해 자체 호스팅 W&B Enterprise를 제공하지만, 무료 티어에서는 자체 호스팅을 지원하지 않습니다. 조직 내 모든 데이터를 인프라 내부에 유지해야 하는 경우 문제가 될 수 있습니다.
+W&B는 가장 정교한 ML 추적 플랫폼이지만, 몇 가지 트레이드오프가 있습니다: 1. **클라우드 우선 모델**: W&B의 무료 티어는 클라우드 플랫폼 사용이 필요합니다. 온프레미스 배포가 필요한 팀을 위해 자체 호스팅 W&B Enterprise를 제공하지만, 무료 티어에서는 자체 호스팅을 지원하지 않습니다. 조직 내 모든 데이터를 인프라 내부에 유지해야 하는 경우 문제가 될 수 있습니다.
 2. **무료 티어 제한**: 무료 티어는 팀 멤버 1명으로 제한됩니다. 대형 연구 팀의 경우 특히 대형 모델 아티팩트에 필요한 추가 저장량을 고려할 때 유료 플랜의 초기 비용이 상당히 높습니다.
 3. **고급 기능의 학습 곡선**: 기본 로깅은 간단하지만, 스윕, 아티팩트 버전 관리, 맞춤형 보고서 등의 기능은 W&B의 데이터 모델을 이해해야 합니다. 신규 사용자는 플랫폼의 전체 기능을 익숙하게 되기까지 1~2시간이 필요할 수 있습니다.
 4. **제한된 오프라인 기능**: 훈련 환경에서 인터넷 연결이 intermittent한 경우 W&B는 연결이 복구될 때 데이터를 동기화합니다. 다만 SDK는 완전히 연결이 끊긴 환경을 위해 `wandb.init(mode="offline")`를 지원하며, 나중에 수동 동기화가 가능합니다.
@@ -436,8 +408,7 @@ ML 도구, 실험 추적, MLOps 관행에 대한 지속적인 토론을 위해 [
 
 ---
 
-**소스 및 더 읽을거리**:
-- W&B 문서: https://docs.wandb.ai/
+**소스 및 더 읽을거리**: - W&B 문서: https://docs.wandb.ai/
 - W&B GitHub 저장소: https://github.com/wandb/wandb
 - W&B API 참조: https://docs.wandb.ai/ref/python/
 - Sweeps 문서: https://docs.wandb.ai/guides/sweeps
@@ -447,7 +418,6 @@ ML 도구, 실험 추적, MLOps 관행에 대한 지속적인 토론을 위해 [
 **공개**: 이 기사에는 제휴 링크가 포함되어 있습니다. 저희 링크를 통해 가입하시면 추가 비용 없이 당사가 소액의 수수료를 받을 수 있습니다. 이는 독립적인 기술 저널리즘을 지원하고 dibi8.com과 같은 리소스를 무료 및 광고 없이 유지하는 데 도움이 됩니다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

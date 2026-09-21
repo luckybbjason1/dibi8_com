@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/bookstack-documentation-wiki" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/bookstack-documentation-wiki" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/bookstack-documentation-wiki" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/bookstack-documentation-wiki" />
 title: 'BookStack: Wiki Tài liệu Thân thiện với Lập trình viên, ...
 description: 'Hướng dẫn đầy đủ cài đặt và vận hành BookStack, wiki tài liệu mã nguồn mở với chỉnh sửa WYSIWYG + Markdown, cấu trúc kệ sách/chương/trang, và hỗ trợ LDAP/SSO. Tự host trong 5 phút.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [bookstack, 'tài liệu', wiki, 'tự host', php, laravel, 'cơ sở kiến thức', markdown, docker, 'mã nguồn mở']
-aliases:
-- /vi/posts/bookstack-documentation-wiki/
+aliases: - /vi/posts/bookstack-documentation-wiki/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/bookstack-documentation-wiki/ -->
 
 {{</* resource-info */>}}
 
@@ -49,9 +41,7 @@ BookStack là một wiki tài liệu miễn phí, mã nguồn mở, cấp phép 
 
 ## BookStack hoạt động như thế nào: Kiến trúc & Khái niệm cốt lõi
 
-BookStack chạy trên nền tảng PHP/LAMP cổ điển, khiến nó dễ dự đoán với bất kỳ ai đã triển khai ứng dụng PHP trước đó. Kiến trúc rất đơn giản:
-
-| Tầng | Công nghệ |
+BookStack chạy trên nền tảng PHP/LAMP cổ điển, khiến nó dễ dự đoán với bất kỳ ai đã triển khai ứng dụng PHP trước đó. Kiến trúc rất đơn giản: | Tầng | Công nghệ |
 |---|---|
 | **Backend** | PHP 8.2+ / Laravel 11.x |
 | **Cơ sở dữ liệu** | MySQL 8.0+ hoặc MariaDB 10.6+ |
@@ -78,12 +68,9 @@ Cách nhanh nhất để chạy BookStack là với Docker Compose. Bạn cần 
 ```yaml
 version: '3.8'
 
-services:
-  bookstack:
-    image: lscr.io/linuxserver/bookstack:v26.03.4
+services: bookstack: image: lscr.io/linuxserver/bookstack:v26.03.4
     container_name: bookstack
-    environment:
-      - PUID=1000
+    environment: - PUID=1000
       - PGID=1000
       - APP_URL=https://docs.yourdomain.com
       - DB_HOST=bookstack_db
@@ -91,27 +78,21 @@ services:
       - DB_USER=bookstack
       - DB_PASS=your_secure_db_password
       - DB_DATABASE=bookstackdb
-    volumes:
-      - ./bookstack_app_data:/config
-    ports:
-      - 6875:80
+    volumes: - ./bookstack_app_data:/config
+    ports: - 6875:80
     restart: unless-stopped
-    depends_on:
-      - bookstack_db
+    depends_on: - bookstack_db
 
-  bookstack_db:
-    image: lscr.io/linuxserver/mariadb:10.11
+  bookstack_db: image: lscr.io/linuxserver/mariadb:10.11
     container_name: bookstack_db
-    environment:
-      - PUID=1000
+    environment: - PUID=1000
       - PGID=1000
       - MYSQL_ROOT_PASSWORD=your_secure_root_password
       - TZ=UTC
       - MYSQL_DATABASE=bookstackdb
       - MYSQL_USER=bookstack
       - MYSQL_PASSWORD=your_secure_db_password
-    volumes:
-      - ./bookstack_db_data:/config
+    volumes: - ./bookstack_db_data:/config
     restart: unless-stopped
 ```
 
@@ -176,9 +157,7 @@ Sau khi kích hoạt site và lấy chứng chỉ bằng Certbot, cập nhật `
 
 ### Cài đặt thủ công (Ubuntu 24.04 LTS)
 
-Nếu bạn thích triển khai bare-metal:
-
-```bash
+Nếu bạn thích triển khai bare-metal: ```bash
 # Cài đặt dependencies
 sudo apt update
 sudo apt install -y apache2 php8.3 php8.3-curl php8.3-mbstring php8.3-ldap \
@@ -251,9 +230,7 @@ SAML2_IDP_x509="MIIDXTCCAkWgAwIBAgIJAJC1HiIA..."
 
 BookStack có sẵn hai trình chỉnh sửa. **Trình chỉnh sửa WYSIWYG** (dựa trên TinyMCE) là mặc định —— xử lý hình ảnh qua kéo-thả upload, hỗ trợ bảng, khối code với highlight cú pháp, và khối callout cho mẹo và cảnh báo. **Trình chỉnh sửa Markdown** cung cấp trải nghiệm chia màn hình với xem trước trực tiếp, lý tưởng cho lập trình viên thích viết Markdown.
 
-Upload hình ảnh rất đơn giản:
-
-```markdown
+Upload hình ảnh rất đơn giản: ```markdown
 # Ở chế độ Markdown —— hình ảnh được upload vào gallery của BookStack
 ![Văn bản thay thế](uploaded-image-name.png)
 
@@ -265,9 +242,7 @@ BookStack cũng hỗ trợ nhúng sơ đồ qua tích hợp Draw.io. Khi bạn c
 
 ## Benchmark & Hiệu suất thực tế
 
-Tôi chạy BookStack trên VPS 2 vCPU / 4GB RAM với 50 ngườó dùng đồng thờói được mô phỏng đọc và chỉnh sửa trang. Kết quả:
-
-| Chỉ số | Giá trị |
+Tôi chạy BookStack trên VPS 2 vCPU / 4GB RAM với 50 ngườó dùng đồng thờói được mô phỏng đọc và chỉnh sửa trang. Kết quả: | Chỉ số | Giá trị |
 |---|---|
 | Thờói gian khởi động lạnh | 3.2 giây |
 | Tải trang (trung bình) | 180ms |
@@ -291,16 +266,11 @@ Cho ngữ cảnh: Confluence Cloud tính $6.05/ngườó/tháng. Với 50 ngư�
 # .github/workflows/publish-docs.yml
 name: Publish API Docs to BookStack
 
-on:
-  push:
-    branches: [main]
+on: push: branches: [main]
     paths: ['docs/**']
 
-jobs:
-  publish:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: publish: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       
       - name: Upload to BookStack via API
         run: |
@@ -339,13 +309,10 @@ Thêm vào cron để sao lưu hàng ngày: `0 3 * * * /opt/scripts/backup-books
 
 ```yaml
 # Thêm vào docker-compose.yml cho monitoring
-  node-exporter:
-    image: prom/node-exporter:v1.7.0
-    volumes:
-      - /proc:/host/proc:ro
+  node-exporter: image: prom/node-exporter:v1.7.0
+    volumes: - /proc:/host/proc:ro
       - /sys:/host/sys:ro
-    command:
-      - '--path.procfs=/host/proc'
+    command: - '--path.procfs=/host/proc'
       - '--path.sysfs=/host/sys'
 ```
 
@@ -404,8 +371,7 @@ Theme::listen(ThemeEvents::THEME_REGISTER_VIEWS, function (ThemeViews $themeView
 });
 
 # views/welcome.blade.php
-<div class="welcome-banner">
-    Welcome, {{ user()->name }}! Check out the onboarding docs.
+Welcome, {{ user()->name }}! Check out the onboarding docs.
 </div>
 ```
 
@@ -419,8 +385,7 @@ Cài đặt module với: `php artisan bookstack:install-module /path/to/module.
 APP_CONTENT_FILTERING=default
 
 # Các bộ lọc khả dụng: script, form, iframe, object, embed, style, css_expression
-# Để tắt lọc style (hữu ích nếu cần inline styles):
-APP_CONTENT_FILTERING=script,form,iframe,object,embed,css_expression
+# Để tắt lọc style (hữu ích nếu cần inline styles): APP_CONTENT_FILTERING=script,form,iframe,object,embed,css_expression
 ```
 
 ## So sánh: BookStack với các phương án thay thế
@@ -452,9 +417,7 @@ APP_CONTENT_FILTERING=script,form,iframe,object,embed,css_expression
 
 ## Hạn chế: Đánh giá trung thực
 
-BookStack không phải công cụ phù hợp cho mọi trường hợp tài liệu. Đây là những gì nó không làm tốt:
-
-**Không có cộng tác thờói gian thực.** Hai ngườó dùng chỉnh sửa cùng trang đồng thờói sẽ ghi đè lên nhau. BookStack cảnh báo về chỉnh sửa cũ nhưng không cung cấp cộng tác thờói gian thực kiểu Google Docs. Nếu quy trình làm việc phụ thuộc vào chỉnh sửa đồng thờói, hãy dùng Outline hoặc Wiki.js.
+BookStack không phải công cụ phù hợp cho mọi trường hợp tài liệu. Đây là những gì nó không làm tốt: **Không có cộng tác thờói gian thực.** Hai ngườó dùng chỉnh sửa cùng trang đồng thờói sẽ ghi đè lên nhau. BookStack cảnh báo về chỉnh sửa cũ nhưng không cung cấp cộng tác thờói gian thực kiểu Google Docs. Nếu quy trình làm việc phụ thuộc vào chỉnh sửa đồng thờói, hãy dùng Outline hoặc Wiki.js.
 
 **Phân cấp cứng nhắc có thể cảm thấy hạn chế.** Mô hình kệ/sách/chương/trang tuyệt vờói cho tài liệu có cấu trúc nhưng vụng về cho cơ sở kiến thức lưu động, tái cấu trúc liên tục. Nếu tài liệu của bạn giống đồ thị kiến thức động hơn là thư viện tham khảo, Notion hoặc Obsidian có thể phù hợp hơn.
 
@@ -515,9 +478,7 @@ Tham gia cộng đồng dibi8.com: [Nhóm Telegram](https://t.me/dibi8opensource
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -527,7 +488,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 Bài viết này chứa liên kết liên kết đến [DigitalOcean](https://m.do.co/c/eca87ac14ee0). Nếu bạn đăng ký qua liên kết của chúng tôi, chúng tôi nhận được tín dụng giới thiệu mà bạn không phải trả thêm phí. Chúng tôi chỉ giới thiệu cơ sở hạ tầng mà chúng tôi tự sử dụng. Dự án BookStack miễn phí và mã nguồn mở —— không có mối quan hệ liên kết nào với ngườó duy trì BookStack.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

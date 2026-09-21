@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/aave-v4-defi-lending-protocol" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/aave-v4-defi-lending-protocol" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/aave-v4-defi-lending-protocol" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/aave-v4-defi-lending-protocol" />
 title: 'AAVE v4 2026: 150억 달러 이상의 예금을 관리하는 DeFi 대출 프로토콜 — 스마트 컨트...
 description: '2026년 AAVE v4 DeFi 대출 프로토콜 통합 완벽 가이드. 30개 이상의 암호화폐 자산을 공급하고 차입하며, 플래시 론을 사용하고, 격리 모드를 구현하며, DApp에서 GHO 스테이블코인을 통합하는 방법을 배우세요.'
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: [aave]
-aliases:
-- /kr/posts/aave-v4-defi-lending-protocol/
+aliases: - /kr/posts/aave-v4-defi-lending-protocol/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/aave-v4-defi-lending-protocol/ -->
 
 {{</* resource-info */>}}
 
@@ -47,9 +39,7 @@ AAVE는 사용자가 암호화폐 자산을 공급하고 차입할 수 있는 �
 
 이 프로토콜은 Ethereum, Polygon, Arbitrum, Optimism, Avalanche, Base 및 기타 여러 네트워크에 배포된 일련의 스마트 컨트랙트를 통해 작동합니다. 자산을 공급하는 사용자는 aToken을 받으며, 이는 실시간으로 이자가 누적됩니다. 대출인은 가변 또는 고정 이율 모드로 과잉 담론 대출을 받을 수 있으며, 둘 사이를 유연하게 전환할 수 있습니다.
 
-AAVE v4는 여러 아키텍처 혁신을 도입합니다:
-
-- **모듈형 풀 아키텍처** — 리스크 관리를 핵심 대출 로직에서 분리
+AAVE v4는 여러 아키텍처 혁신을 도입합니다: - **모듈형 풀 아키텍처** — 리스크 관리를 핵심 대출 로직에서 분리
 - **네이티브 플래시 론 단순화** — 통합 진입점
 - **강화된 격리 모드** — 제한된 리스크로 롱테일 자산 상장
 - **Chainlink CCIP 기반 크로스체인 유동성 레이어**
@@ -785,7 +775,6 @@ AAVE v4는 견고한 대출 메커니즘과 현대적인 아키텍처 개선을 
 AAVE에서 구축을 시작할 준비가 되셨나요? 가스비용을 위한 ETH와 공급할 자산이 필요합니다. [Binance에 등록하거나](https://www.bsmkweb.cc/register?ref=DIBI8) [OKX에 가입하여](https://www.promoohubly.com/join/12190433) 개발 지갑에 자금을 입금하고 테스트 및 배포에 필요한 토큰을 확보하세요.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

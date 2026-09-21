@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/chattts" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/chattts" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/chattts" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/chattts" />
 title: 'ChatTTS: 39.3K+ Stars — So Sánh Benchmark TTS Hội Thoại ...
 description: 'ChatTTS (AGPL-3.0) là mô hình giọng nói tạo sinh cho kịch bản hội thoại. Tương thích với Coqui TTS, MeloTTS, GPT-SoVITS. Bao gồm cài đặt, benchmark, triển khai production và bảng so sánh.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,12 +20,9 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [chattts, 'text-to-speech', tts, 'ai-hội-thoại', 'llm-assistant', 'tổng-hợp-giọng-nói', 'mã-nguồn-mở', benchmark]
-aliases:
-- /vi/posts/chattts/
+aliases: - /vi/posts/chattts/
 - /vi/resources/llm-frameworks/chattts-architecture-autoregressive-voice/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/chattts/ -->
 
 {{</* resource-info */>}}
 
@@ -54,9 +46,7 @@ Mô hình sử dụng kiến trúc tự hồi quy tương tự như Bark và VAL
 
 ### Tổng quan kiến trúc
 
-ChatTTS tuân theo pipeline ba giai đoạn:
-
-1. **Tinh chỉnh văn bản**: Văn bản đầu vào được xử lý bởi mô hình ngôn ngữ thêm các đánh dấu ngữ điệu (tiếng cườ, khoảng nghỉ, hơi thở) và chuẩn hóa văn bản để tổng hợp giọng nói.
+ChatTTS tuân theo pipeline ba giai đoạn: 1. **Tinh chỉnh văn bản**: Văn bản đầu vào được xử lý bởi mô hình ngôn ngữ thêm các đánh dấu ngữ điệu (tiếng cườ, khoảng nghỉ, hơi thở) và chuẩn hóa văn bản để tổng hợp giọng nói.
 2. **Tạo token ngữ nghĩa**: Bộ giải mã tự hồi quy kiểu GPT tạo token ngữ nghĩa dựa trên văn bản đã tinh chỉnh và nhúng ngườ nói. Đây là bước sáng tạo cốt lõi nơi mô hình quyết định nhịp điệu, ngữ điệu và biểu cảm cảm xúc.
 3. **Giải mã âm thanh**: Token ngữ nghĩa được chuyển đổi thành dạng sóng âm thanh thô sử dụng vocoder được đào tạo trước (Vocos). Đầu ra là âm thanh mono 24kHz.
 
@@ -71,8 +61,7 @@ Văn bản đầu vào → Bộ tinh chỉnh văn bản (LLM) → Token ngữ ng
 ### Các khái niệm cốt lõi
 
 - **Nhúng ngườ nói (`spk_emb`)**: Tensor mã hóa đặc điểm giọng nói. Bạn có thể lấy mẫu ngườ nói ngẫu nhiên, lưu nhúng để sử dụng sau, hoặc trích xuất từ âm thanh tham chiếu.
-- **Token ngữ điệu**: Các token đặc biệt chèn vào văn bản để điều khiển biểu cảm:
-  - `[laugh]` — chèn tiếng cườ
+- **Token ngữ điệu**: Các token đặc biệt chèn vào văn bản để điều khiển biểu cảm: - `[laugh]` — chèn tiếng cườ
   - `[uv_break]` — thêm khoảng nghỉ nhỏ
   - `[lbreak]` — thêm khoảng nghỉ dài
 - **Tham số suy luận**: Temperature, top-P và top-K sampling điều khiển tính ngẫu nhiên và đa dạng của giọng nói được tạo.
@@ -184,15 +173,13 @@ app = FastAPI()
 chat = ChatTTS.Chat()
 chat.load(compile=True)  # Bật torch.compile cho production
 
-class TTSRequest(BaseModel):
-    model: str = "chattts"
+class TTSRequest(BaseModel): model: str = "chattts"
     input: str
     voice: str = "default"
     response_format: str = "mp3"
 
 @app.post("/v1/audio/speech")
-async def create_speech(request: TTSRequest):
-    params_infer_code = ChatTTS.Chat.InferCodeParams(
+async def create_speech(request: TTSRequest): params_infer_code = ChatTTS.Chat.InferCodeParams(
         temperature=0.3,
         top_P=0.7,
         top_K=20,
@@ -204,9 +191,7 @@ async def create_speech(request: TTSRequest):
     return {"audio": base64.b64encode(buffer.read()).decode()}
 ```
 
-Chạy máy chủ:
-
-```bash
+Chạy máy chủ: ```bash
 uvicorn openai_api_server:app --host 0.0.0.0 --port 8000 --workers 2
 ```
 
@@ -222,8 +207,7 @@ import torchaudio
 chat = ChatTTS.Chat()
 chat.load(compile=False)
 
-def tts_tool(text: str) -> str:
-    """Tạo giọng nói và trả về đường dẫn tệp."""
+def tts_tool(text: str) -> str: """Tạo giọng nói và trả về đường dẫn tệp."""
     wavs = chat.infer([text])
     filepath = "/tmp/response.wav"
     torchaudio.save(filepath, torch.from_numpy(wavs[0]).unsqueeze(0), 24000)
@@ -252,8 +236,7 @@ import torchaudio
 chat = ChatTTS.Chat()
 chat.load(compile=False)
 
-def generate_speech(text, temperature, top_p, top_k, oral_level, laugh_level, break_level):
-    params_refine_text = ChatTTS.Chat.RefineTextParams(
+def generate_speech(text, temperature, top_p, top_k, oral_level, laugh_level, break_level): params_refine_text = ChatTTS.Chat.RefineTextParams(
         prompt=f"[oral_{oral_level}][laugh_{laugh_level}][break_{break_level}]"
     )
     params_infer_code = ChatTTS.Chat.InferCodeParams(
@@ -295,13 +278,10 @@ import sounddevice as sd
 chat = ChatTTS.Chat()
 chat.load(compile=True)
 
-class StreamingTTS:
-    def __init__(self, chat_model):
-        self.chat = chat_model
+class StreamingTTS: def __init__(self, chat_model): self.chat = chat_model
         self.sample_rate = 24000
 
-    def stream_and_play(self, text: str):
-        """Tạo âm thanh và phát theo khúc."""
+    def stream_and_play(self, text: str): """Tạo âm thanh và phát theo khúc."""
         wavs = self.chat.infer([text])
         audio = wavs[0]
         sd.play(audio, self.sample_rate)
@@ -322,18 +302,13 @@ TTS_REQUESTS = Counter("chattts_requests_total", "Tổng yêu cầu TTS", ["stat
 TTS_LATENCY = Histogram("chattts_inference_seconds", "Độ trễ suy luận")
 
 @app.post("/v1/audio/speech")
-async def create_speech(request: TTSRequest):
-    with TTS_LATENCY.time():
-        try:
-            wavs = chat.infer([request.input])
+async def create_speech(request: TTSRequest): with TTS_LATENCY.time(): try: wavs = chat.infer([request.input])
             TTS_REQUESTS.labels(status="success").inc()
-        except Exception as e:
-            TTS_REQUESTS.labels(status="error").inc()
+        except Exception as e: TTS_REQUESTS.labels(status="error").inc()
             raise
 
 @app.get("/metrics")
-async def metrics():
-    return Response(generate_latest(), media_type="text/plain")
+async def metrics(): return Response(generate_latest(), media_type="text/plain")
 ```
 
 ## Benchmark / Trường hợp sử dụng thực tế
@@ -368,9 +343,7 @@ Kiểm tra nghe kín với 6 ngườ tham gia đánh giá ChatTTS so với đố
 
 ### Trường hợp sử dụng: Trợ lý giọng nói LLM
 
-ChatTTS xuất sắc trong pipeline trợ lý LLM với độ trễ ~300ms:
-
-```python
+ChatTTS xuất sắc trong pipeline trợ lý LLM với độ trễ ~300ms: ```python
 import ChatTTS
 import torchaudio
 import time
@@ -378,9 +351,7 @@ import time
 chat = ChatTTS.Chat()
 chat.load(compile=True)
 
-class VoiceAssistant:
-    def synthesize_response(self, text: str) -> str:
-        start = time.time()
+class VoiceAssistant: def synthesize_response(self, text: str) -> str: start = time.time()
         params = ChatTTS.Chat.InferCodeParams(temperature=0.3, top_P=0.7)
         wavs = chat.infer([text], params_infer_code=params)
         filepath = "/tmp/response.wav"
@@ -398,9 +369,7 @@ audio_path = assistant.synthesize_response(
 
 ### Trường hợp sử dụng: Tạo hội thoại đa ngườ nói
 
-ChatTTS hỗ trợ chuyển đổi nhúng ngườ nói:
-
-```python
+ChatTTS hỗ trợ chuyển đổi nhúng ngườ nói: ```python
 import ChatTTS
 import torchaudio
 
@@ -417,8 +386,7 @@ dialogue = [
     ("Đúng không! [laugh] Tôi không thể tin được.", speaker_a),
 ]
 
-for i, (text, spk) in enumerate(dialogue):
-    params = ChatTTS.Chat.InferCodeParams(spk_emb=spk, temperature=0.3)
+for i, (text, spk) in enumerate(dialogue): params = ChatTTS.Chat.InferCodeParams(spk_emb=spk, temperature=0.3)
     wavs = chat.infer([text], params_infer_code=params)
     torchaudio.save(f"dialogue_{i}.wav", torch.from_numpy(wavs[0]).unsqueeze(0), 24000)
 ```
@@ -427,9 +395,7 @@ for i, (text, spk) in enumerate(dialogue):
 
 ### Biên dịch Torch để tăng tốc
 
-Bật `torch.compile()` để tăng ~20% tốc độ suy luận trên GPU Ampere:
-
-```python
+Bật `torch.compile()` để tăng ~20% tốc độ suy luận trên GPU Ampere: ```python
 import ChatTTS
 chat = ChatTTS.Chat()
 chat.load(compile=True)
@@ -437,9 +403,7 @@ chat.load(compile=True)
 
 ### Quản lý nhúng ngườ nói
 
-Lưu và tải nhúng ngườ nói cho hồ sơ giọng nói nhất quán:
-
-```python
+Lưu và tải nhúng ngườ nói cho hồ sơ giọng nói nhất quán: ```python
 import ChatTTS
 import torch
 
@@ -448,8 +412,7 @@ chat.load(compile=False)
 
 # Tạo và lưu nhúng ngườ nói
 speakers = {}
-for name in ["agent", "user", "narrator"]:
-    spk = chat.sample_random_speaker()
+for name in ["agent", "user", "narrator"]: spk = chat.sample_random_speaker()
     speakers[name] = spk
     torch.save(spk, f"speakers/{name}.pt")
 
@@ -460,9 +423,7 @@ params = ChatTTS.Chat.InferCodeParams(spk_emb=spk_agent)
 
 ### Tối ưu bộ nhớ GPU
 
-Sử dụng độ chính xác hỗn hợp và xóa cache:
-
-```python
+Sử dụng độ chính xác hỗn hợp và xóa cache: ```python
 import torch
 from ChatTTS import Chat
 
@@ -470,9 +431,7 @@ chat = Chat()
 chat.load(compile=False)
 
 @torch.inference_mode()
-def infer_with_cleanup(texts, params):
-    with torch.cuda.amp.autocast():
-        wavs = chat.infer(texts, params_infer_code=params)
+def infer_with_cleanup(texts, params): with torch.cuda.amp.autocast(): wavs = chat.infer(texts, params_infer_code=params)
     torch.cuda.empty_cache()
     return wavs
 ```
@@ -487,22 +446,17 @@ import ChatTTS
 app = FastAPI()
 chat = ChatTTS.Chat()
 
-try:
-    chat.load(compile=False)
+try: chat.load(compile=False)
     MODEL_LOADED = True
-except Exception as e:
-    MODEL_LOADED = False
+except Exception as e: MODEL_LOADED = False
     print(f"Tải mô hình thất bại: {e}")
 
 @app.get("/health")
-def health():
-    if not MODEL_LOADED:
-        raise HTTPException(status_code=503, detail="Mô hình chưa được tải")
+def health(): if not MODEL_LOADED: raise HTTPException(status_code=503, detail="Mô hình chưa được tải")
     return {"status": "healthy", "model": "chattts", "version": "0.2.5"}
 
 @app.get("/ready")
-def ready():
-    return {"status": "ready"}
+def ready(): return {"status": "ready"}
 ```
 
 ### Triển khai Kubernetes
@@ -511,37 +465,20 @@ def ready():
 # chattts-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
-metadata:
-  name: chattts-api
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: chattts
-  template:
-    metadata:
-      labels:
-        app: chattts
-    spec:
-      containers:
-      - name: chattts
+metadata: name: chattts-api
+spec: replicas: 2
+  selector: matchLabels: app: chattts
+  template: metadata: labels: app: chattts
+    spec: containers: - name: chattts
         image: chattts:0.2.5
-        resources:
-          limits:
-            nvidia.com/gpu: 1
+        resources: limits: nvidia.com/gpu: 1
             memory: "8Gi"
-          requests:
-            memory: "4Gi"
-        ports:
-        - containerPort: 8000
-        livenessProbe:
-          httpGet:
-            path: /health
+          requests: memory: "4Gi"
+        ports: - containerPort: 8000
+        livenessProbe: httpGet: path: /health
             port: 8000
           periodSeconds: 30
-        readinessProbe:
-          httpGet:
-            path: /ready
+        readinessProbe: httpGet: path: /ready
             port: 8000
           periodSeconds: 10
 ```
@@ -574,9 +511,7 @@ spec:
 
 ## Hạn chế / Đánh giá khách quan
 
-ChatTTS không phải giải pháp TTS vạn năng. Hiểu các ràng buộc sau:
-
-1. **Bất ổn định tự hồi quy**: ChatTTS có thể chuyển ngườ nói hoặc giảm chất lượng âm thanh. FAQ GitHub ghi rõ: "Đây là vấn đề thường gặp ở mô hình tự hồi quy. Có thể thử nhiều lần để tìm kết quả phù hợp."
+ChatTTS không phải giải pháp TTS vạn năng. Hiểu các ràng buộc sau: 1. **Bất ổn định tự hồi quy**: ChatTTS có thể chuyển ngườ nói hoặc giảm chất lượng âm thanh. FAQ GitHub ghi rõ: "Đây là vấn đề thường gặp ở mô hình tự hồi quy. Có thể thử nhiều lần để tìm kết quả phù hợp."
 
 2. **Tiếng Anh vẫn đang thử nghiệm**: Ngữ điệu tiếng Trung ở cấp bản ngữ; tiếng Anh đang cải thiện nhưng chưa bằng Coqui XTTS v2.
 
@@ -632,9 +567,7 @@ Theo dõi cập nhật và thảo luận chiến lược TTS hội thoại trong
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -652,7 +585,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [2025 Open Source AI Model Comparison](https://www.e-com-net.com/article/1936044193575137280.htm)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mastra" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mastra" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mastra" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mastra" />
 title: 'Mastra: 24K+ Stars — 节省 Token 成本 4-10 倍的 TypeScript AI 框...
 description: 'Mastra 是 Gatsby 团队打造的 TypeScript 原生 AI 框架，用于构建 AI 驱动的应用和智能体。涵盖 Mastra vs LangChain、安装教程、工作流、RAG、记忆系统、可观测性、基准测试和生产加固。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [mastra, typescript, ai框架, 智能体, llm, mastra教程, 'mastra-vs-langchain', 开源]
-aliases:
-- /zh/posts/mastra/
+aliases: - /zh/posts/mastra/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/mastra/ -->
 
 {{</* resource-info */>}}
 
@@ -391,7 +383,13 @@ Mastra 的 Observational Memory 是生产经济学的标志性功能。数据如
 ### 按工作负载的压缩比率
 
 | 工作负载类型 | 压缩比率 | 示例场景 |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | 纯文本对话 | 3-6x | 客户支持聊天 |
 | 工具调用密集型智能体 | 5-40x | 浏览器自动化、编码智能体 |
 | 带大截图/文件的智能体 | 10-40x | Playwright DOM 快照 |
@@ -399,7 +397,13 @@ Mastra 的 Observational Memory 是生产经济学的标志性功能。数据如
 ### LongMemEval 基准测试结果
 
 | 记忆系统 | GPT-4o 分数 | GPT-5-mini 分数 |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | Mastra Observational Memory | 84.23% | 94.87% |
 | Mastra RAG（基线） | 80.05% | — |
 | 传统对话历史 | ~72% | — |
@@ -409,7 +413,15 @@ Mastra 的 Observational Memory 是生产经济学的标志性功能。数据如
 ### 开发者体验基准
 
 | 框架 | DX 分数 (1-10) | 设置时间 | 首个智能体时间 |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Mastra | 9/10 | < 5 分钟 | 数分钟 |
 | LangChain (Python) | 5/10 | 15-30 分钟 | 数小时 |
 | CrewAI | 6/10 | 10-15 分钟 | 30 分钟 |
@@ -566,34 +578,34 @@ CMD ["node", ".mastra/output/index.mjs"]
 ```yaml
 # docker-compose.yml
 version: '3.8'
-services:
-  mastra:
-    build: .
-    ports:
-      - "4111:4111"
-    environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
+services: mastra: build: .
+    ports: - "4111:4111"
+    environment: - OPENAI_API_KEY=${OPENAI_API_KEY}
       - DATABASE_URL=postgresql://postgres:postgres@db:5432/mastra
-    depends_on:
-      - db
+    depends_on: - db
 
-  db:
-    image: pgvector/pgvector:pg17
-    environment:
-      POSTGRES_USER: postgres
+  db: image: pgvector/pgvector:pg17
+    environment: POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: mastra
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+    volumes: - pgdata:/var/lib/postgresql/data
 
-volumes:
-  pgdata:
-```
+volumes: pgdata: ```
 
 ## 与替代方案对比
 
 | 特性 | Mastra | LangChain | CrewAI | Vercel AI SDK |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **主要语言** | TypeScript (99.2%) | Python (也支持 JS) | Python | TypeScript |
 | **GitHub Stars** | 24,050 | 117,000 | 39,200 | N/A (Vercel 的一部分) |
 | **设置时间** | < 5 分钟 | 15-30 分钟 | 10-15 分钟 | < 5 分钟（手动配置） |
@@ -692,7 +704,6 @@ Mastra 填补了 AI 框架领域的明显空白 —— 一个生产级的 TypeSc
 - [Vercel AI SDK 文档](https://sdk.vercel.ai/docs)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -718,8 +729,8 @@ Mastra 填补了 AI 框架领域的明显空白 —— 一个生产级的 TypeSc
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [tradingagents-llm-multi-agent-trading-framework-2026](mastra)
@@ -728,8 +739,8 @@ Mastra 填补了 AI 框架领域的明显空白 —— 一个生产级的 TypeSc
 - [12-factor-agents](mastra)
 - [1m-context-window-llm-2026-real-test](mastra)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

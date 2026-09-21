@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ultimate-vocal-remover" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ultimate-vocal-remover" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ultimate-vocal-remover" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ultimate-vocal-remover" />
 title: 'Ultimate Vocal Remover: 24.7K+ Stars — Hướng Dẫn Cài Đặt...
 description: 'Ultimate Vocal Remover (UVR) là ứng dụng GUI tách giọng hát bằng mạng nơ-ron sâu. Tương thích với demucs, RVC, GPT-SoVITS. Bao gồm cài đặt Windows, macOS, Linux, chọn model, xử lý hàng loạt và tăng cường production.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: ['tách-giọng', 'tách-audio', 'học-sâu', pytorch, demucs, 'mdx-net', 'ai-audio', karaoke, 'sản-xuất-âm-nhạc']
-aliases:
-- /vi/posts/ultimate-vocal-remover/
+aliases: - /vi/posts/ultimate-vocal-remover/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/ultimate-vocal-remover/ -->
 
 {{</* resource-info */>}}
 
@@ -41,9 +33,7 @@ Tách giọng hát khỏi nhạc nền từng đòi hỏi plugin DAW đắt ti�
 
 **Ultimate Vocal Remover (UVR)** là ứng dụng GUI mã nguồn mở sử dụng mạng nơ-ron sâu để tách giọng hát khỏi âm thanh nhạc cụ. Được xây dựng chủ yếu bằng Python với PyTorch, nó đóng gói các mô hình tách nguồn phức tạp thành giao diện desktop mà ngườ dùng không chuyên cũng có thể sử dụng. Dự án được duy trì bởi Anjok07 và aufr03, phần lớn các mô hình được đội ngũ phát triển core tự huấn luyện.
 
-UVR hỗ trợ nhiều kiến trúc AI:
-
-- **VR Architecture** — Tách dựa trên spectrogram, phát triển bởi tsurumeso
+UVR hỗ trợ nhiều kiến trúc AI: - **VR Architecture** — Tách dựa trên spectrogram, phát triển bởi tsurumeso
 - **MDX-Net** — Mạng nơ-ron đa băng tần của Kuielab
 - **MDX23C** — MDX-Net mở rộng với cửa sổ ngữ cảnh lớn hơn
 - **Demucs v3/v4** — Mô hình hybrid spectrogram-waveform của Meta/Facebook Research
@@ -73,9 +63,7 @@ Audio đầu vào (MP3/WAV/FLAC)
     |-- Instrumental.wav
 ```
 
-Mỗi mô hình xử lý audio theo cách khác nhau:
-
-**VR Architecture** chuyển đổi audio thành spectrogram Short-Time Fourier Transform (STFT), áp dụng mặt nạ đã học để tách tần số giọng hát, và tái tạo dạng sóng qua STFT ngược. Phương pháp này nhanh nhưng có thể để lại tạp âm giọng hát trong track nhạc nền.
+Mỗi mô hình xử lý audio theo cách khác nhau: **VR Architecture** chuyển đổi audio thành spectrogram Short-Time Fourier Transform (STFT), áp dụng mặt nạ đã học để tách tần số giọng hát, và tái tạo dạng sóng qua STFT ngược. Phương pháp này nhanh nhưng có thể để lại tạp âm giọng hát trong track nhạc nền.
 
 **MDX-Net** chia spectrogram thành nhiều dải tần số và xử lý từng dải qua các nhánh mạng nơ-ron riêng biệt. Thiết kế đa băng tần bắt được cấu trúc hài âm trong giọng hát mà mặt nạ đơn băng tần bỏ sót.
 
@@ -96,8 +84,7 @@ UVR v5.6 cung cấp trình cài đặt độc lập cho Windows 10 trở lên. K
 # Windows 64-bit (hỗ trợ CUDA cho GPU Nvidia)
 # https://github.com/Anjok07/ultimatevocalremovergui/releases/download/v5.6/UVR_v5.6.0_setup.exe
 
-# Cho GPU AMD Radeon / Intel Arc, dùng bản DirectML:
-# https://github.com/Anjok07/ultimatevocalremovergui/releases/download/v5.6/UVR_1_15_25_22_30_BETA_full.exe
+# Cho GPU AMD Radeon / Intel Arc, dùng bản DirectML: # https://github.com/Anjok07/ultimatevocalremovergui/releases/download/v5.6/UVR_1_15_25_22_30_BETA_full.exe
 ```
 
 **Bước 2: Cài vào ổ C:\**
@@ -130,11 +117,9 @@ UVR hỗ trợ macOS Big Sur trở lên trên cả Mac Intel và Apple Silicon.
 
 ```bash
 # Bước 1: Tải DMG cho kiến trúc của bạn
-# Apple Silicon (M1/M2/M3):
-# https://github.com/Anjok07/ultimatevocalremovergui/releases/download/v5.6/Ultimate_Vocal_Remover_v5_6_MacOS_arm64.dmg
+# Apple Silicon (M1/M2/M3): # https://github.com/Anjok07/ultimatevocalremovergui/releases/download/v5.6/Ultimate_Vocal_Remover_v5_6_MacOS_arm64.dmg
 
-# Mac Intel:
-# https://github.com/Anjok07/ultimatevocalremovergui/releases/download/v5.6/Ultimate_Vocal_Remover_v5_6_MacOS_x86_64.dmg
+# Mac Intel: # https://github.com/Anjok07/ultimatevocalremovergui/releases/download/v5.6/Ultimate_Vocal_Remover_v5_6_MacOS_x86_64.dmg
 
 # Bước 2: Mount DMG và kéo UVR vào Applications
 
@@ -297,18 +282,15 @@ Track là bài pop/rock tiêu chuẩn?
 # Khử nhiễu: Bật
 # Xử lý hậu kỳ: Bật
 
-# Cho GPU có VRAM 8GB+:
-Kích thước Segment: 256
+# Cho GPU có VRAM 8GB+: Kích thước Segment: 256
 Độ chồng lấp: 0.85
 Kích thước Batch: 4
 
-# Cho GPU có VRAM 6GB:
-Kích thước Segment: 128
+# Cho GPU có VRAM 6GB: Kích thước Segment: 128
 Độ chồng lấp: 0.50
 Kích thước Batch: 1
 
-# Chỉ dùng CPU:
-Kích thước Segment: 64
+# Chỉ dùng CPU: Kích thước Segment: 64
 Độ chồng lấp: 0.25
 Kích thước Batch: 1
 Dự kiến chậm hơn 5-10 lần
@@ -317,15 +299,13 @@ Dự kiến chậm hơn 5-10 lần
 ### Cấu hình xử lý hàng loạt
 
 ```bash
-# Để xử lý cả thư mục qua GUI:
-# 1. Nhấp "Input" → Chọn Thư mục
+# Để xử lý cả thư mục qua GUI: # 1. Nhấp "Input" → Chọn Thư mục
 # 2. Bật checkbox "Batch Processing"
 # 3. Đặt thư mục đầu ra
 # 4. Chọn "Same as input" hoặc thư mục tùy chỉnh
 # 5. Chọn model và nhấp "Start Processing"
 
-# Cấu trúc file đầu ra:
-input/
+# Cấu trúc file đầu ra: input/
   track1.mp3
   track2.mp3
 tracks/
@@ -339,9 +319,7 @@ tracks/
 
 ### Tích hợp với RVC (Retrieval-based Voice Conversion)
 
-UVR + RVC là pipeline phổ biến để tạo cover giọng AI:
-
-```bash
+UVR + RVC là pipeline phổ biến để tạo cover giọng AI: ```bash
 # Pipeline: Bài gốc → UVR → Chỉ giọng → RVC → Cover giọng AI
 #         Bài gốc → UVR → Nhạc nền → Mix cuối
 
@@ -366,8 +344,7 @@ ffmpeg -i RVC_Converted_Vocals.wav -i UVR_Instrumental.wav \
 # Dùng UVR để tiền xử lý dữ liệu huấn luyện
 
 # Bước 1: Tách giọng hàng loạt từ mẫu huấn luyện
-# Cài đặt UVR:
-#   Model: UVR-MDX-NET Inst Main (giọng là sản phẩm phụ)
+# Cài đặt UVR: #   Model: UVR-MDX-NET Inst Main (giọng là sản phẩm phụ)
 #   Hoặc: MDX-Net Main → giữ đầu ra Vocals
 
 # Bước 2: Cung cấp giọng sạch cho cắt lát GPT-SoVITS
@@ -379,9 +356,7 @@ python webui.py --voice_slices slices/
 
 ### Tích hợp với demucs CLI
 
-UVR sử dụng Demucs nội bộ, nhưng bạn cũng có thể chuỗi phiên bản CLI:
-
-```bash
+UVR sử dụng Demucs nội bộ, nhưng bạn cũng có thể chuỗi phiên bản CLI: ```bash
 # Dùng demucs trực tiếp cho tách 4-stem
 demucs --mp3 --two-stems=vocals input.mp3
 
@@ -412,9 +387,7 @@ done
 
 ### So sánh tốc độ xử lý
 
-Tất cả test thực hiện trên file WAV stereo 4 phút 44.1kHz:
-
-| Phần cứng | MDX-Net | MDX23C | Demucs v4 | VR-DeEcho |
+Tất cả test thực hiện trên file WAV stereo 4 phút 44.1kHz: | Phần cứng | MDX-Net | MDX23C | Demucs v4 | VR-DeEcho |
 |-----------|---------|--------|-----------|-----------|
 | RTX 4090 (24GB) | 18giây | 42giây | 55giây | 12giây |
 | RTX 3060 (12GB) | 35giây | 85giây | 110giây | 22giây |
@@ -424,9 +397,7 @@ Tất cả test thực hiện trên file WAV stereo 4 phút 44.1kHz:
 
 ### Chất lượng phân tách (SDR — Tỷ lệ Tín hiệu-Meo mó)
 
-SDR cao hơn = chất lượng phân tách tốt hơn, test trên benchmark MUSDB18:
-
-| Model | SDR Giọng | SDR Nhạc nền | Mức tạp âm |
+SDR cao hơn = chất lượng phân tách tốt hơn, test trên benchmark MUSDB18: | Model | SDR Giọng | SDR Nhạc nền | Mức tạp âm |
 |-------|----------|-------------|-----------|
 | MDX23C | 9.42 | 14.8 | Thấp |
 | Demucs v4 | 9.28 | 14.2 | Thấp |
@@ -445,9 +416,7 @@ SDR cao hơn = chất lượng phân tách tốt hơn, test trên benchmark MUSD
 ### Quản lý bộ nhớ GPU
 
 ```python
-# Nếu gặp lỗi "CUDA out of memory":
-
-# Tùy chọn 1: Giảm kích thước segment trong GUI
+# Nếu gặp lỗi "CUDA out of memory": # Tùy chọn 1: Giảm kích thước segment trong GUI
 # Settings → Segment Size → Giảm từ 256 xuống 128 hoặc 64
 
 # Tùy chọn 2: Bật "Use CPU for secondary model"
@@ -474,8 +443,7 @@ python separate.py \
 # macOS: /Applications/Ultimate Vocal Remover.app/Contents/models/
 # Linux: ./models/
 
-# Để di chuyển model giữa các máy:
-# Sao chép toàn bộ thư mục models/
+# Để di chuyển model giữa các máy: # Sao chép toàn bộ thư mục models/
 rsync -avz --progress models/ user@new-server:/opt/uvr/models/
 
 # Model từ 50MB đến 500MB mỗi cái
@@ -502,8 +470,7 @@ MODEL = "MDX-Net Main"
 INPUT_DIR = "./input"
 OUTPUT_DIR = "./output"
 
-def process_file(input_path: str, output_dir: str) -> dict:
-    """Xử lý một file audio qua UVR."""
+def process_file(input_path: str, output_dir: str) -> dict: """Xử lý một file audio qua UVR."""
     cmd = [
         "python", UVR_PATH,
         "--input", input_path,
@@ -521,35 +488,28 @@ def process_file(input_path: str, output_dir: str) -> dict:
         "stderr": result.stderr if result.returncode != 0 else None
     }
 
-def main():
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
+def main(): os.makedirs(OUTPUT_DIR, exist_ok=True)
     results = []
 
-    for file in Path(INPUT_DIR).glob("*"):
-        if file.suffix.lower() in {".mp3", ".wav", ".flac", ".m4a"}:
-            logger.info(f"Đang xử lý: {file.name}")
+    for file in Path(INPUT_DIR).glob("*"): if file.suffix.lower() in {".mp3", ".wav", ".flac", ".m4a"}: logger.info(f"Đang xử lý: {file.name}")
             result = process_file(str(file), OUTPUT_DIR)
             results.append(result)
 
     # Lưu báo cáo batch
-    with open(f"{OUTPUT_DIR}/batch_report.json", "w") as f:
-        json.dump(results, f, indent=2)
+    with open(f"{OUTPUT_DIR}/batch_report.json", "w") as f: json.dump(results, f, indent=2)
 
     success_count = sum(1 for r in results if r["success"])
     logger.info(f"Hoàn tất: {success_count}/{len(results)} file đã xử lý")
 
-if __name__ == "__main__":
-    main()
+if __name__ == "__main__": main()
 ```
 
 ### Giám sát và ghi log
 
 ```python
-# UVR ghi log xử lý qua GUI:
-# Settings Button → Error Log → View Details
+# UVR ghi log xử lý qua GUI: # Settings Button → Error Log → View Details
 
-# Cho triển khai headless, bọc với logging:
-import sys
+# Cho triển khai headless, bọc với logging: import sys
 import logging
 from datetime import datetime
 
@@ -588,9 +548,7 @@ watch -n 1 nvidia-smi
 
 ## Hạn chế — Đánh giá trung thực
 
-UVR được xây dựng dành riêng cho **tách giọng nhạc**. Không phải công cụ phù hợp cho mọi tác vụ audio:
-
-1. **Tách lờ nói** — Các model UVR được huấn luyện trên dataset nhạc (MUSDB18, dataset nội bộ). Tách hai ngườ đang nói cùng lúc cho kết quả kém. Để tách lờ nói, hãy dùng pyannote.audio hoặc SpeechBrain.
+UVR được xây dựng dành riêng cho **tách giọng nhạc**. Không phải công cụ phù hợp cho mọi tác vụ audio: 1. **Tách lờ nói** — Các model UVR được huấn luyện trên dataset nhạc (MUSDB18, dataset nội bộ). Tách hai ngườ đang nói cùng lúc cho kết quả kém. Để tách lờ nói, hãy dùng pyannote.audio hoặc SpeechBrain.
 
 2. **Xử lý thờ gian thực** — UVR xử lý toàn bộ file offline. Độ trễ đượ tính bằng giây, không phải mili giây. Để tách nguồn thờ gian thực, hãy xem các triển khai streaming Demucs hoặc NVIDIA Maxine.
 
@@ -640,9 +598,7 @@ Ultimate Vocal Remover lấp đầy khoảng trống mà thư viện chỉ dùng
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -661,7 +617,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - Thư viện Audio Rubber Band: https://breakfastquay.com/rubberband/
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

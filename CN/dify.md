@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/dify" />
 title: 'Dify: Build Production-Grade AI Agents Visually in 5 Min...
 description: 'Dify is an open-source LLM application development platform with visual workflow builder, RAG pipelines, and agent orchestration. Compatible with OpenAI, Anthropic, Ollama, Qdrant, and Weaviate. Covers Docker deployment, API integration, production hardening, and comparison with Flowise, n8n, and LangChain.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,11 +20,9 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [dify, 'ai agent builder', 'llm workflow', rag, 'docker deployment', 'open-source ai', 'visual workflow builder', 'production ai']
-aliases:
-- /posts/dify/
-- /resources/llm-frameworks/dify-architecture-b2b-agent-orchestration/
+aliases: - /posts/dify/
+- /resources/llm-frameworks/dify-architecture-b2b-agent-orchestration/-
 ---
-
 {{</* resource-info */>}}
 
 Most teams ship AI chatbots the hard way. They wire Flask routes to OpenAI APIs, hand-craft prompt templates in JSON files, and build RAG pipelines from scratch with embedding models, vector stores, and chunking logic. Three months later, the prototype is unmaintainable, the product manager cannot update a prompt without a developer, and the knowledge base sync is a cron job that fails silently.
@@ -39,9 +35,7 @@ Most teams ship AI chatbots the hard way. They wire Flask routes to OpenAI APIs,
 
 The platform is built on a **Beehive (hexagonal) architecture** with modular components: a Python Flask API service, a Celery worker queue, a Next.js frontend, a plugin daemon for model providers, and a secure sandbox for code execution. It supports **30+ vector databases** (Weaviate, Qdrant, pgvector, Milvus), **20+ LLM providers** (OpenAI, Anthropic, Azure OpenAI, AWS Bedrock, Ollama, Groq), and ships with hybrid search, re-ranking, built-in observability, and RESTful API generation out of the box.
 
-Key application types you can build:
-
-- **Chatbot** — Conversational AI with memory, knowledge base, and tool calling
+Key application types you can build: - **Chatbot** — Conversational AI with memory, knowledge base, and tool calling
 - **Text Generator** — Single-shot completion apps for summarization, translation, coding
 - **Agent** — Autonomous AI with ReAct, Function Calling, and Chain-of-Thought reasoning
 - **Workflow** — Multi-step visual pipelines with conditional logic and parallel execution
@@ -55,7 +49,15 @@ Dify's architecture separates concerns into discrete services that communicate t
 ![Dify Architecture Diagram](https://res.cloudinary.com/asset-cloudinary/image/upload/v1776523341/Dify_-_railway_arch_xp1wuv.png)
 
 | Service | Port | Technology | Purpose |
-|---------|------|------------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Web Frontend | 3000 | Next.js | Visual builder, dashboard, management UI |
 | API Service | 5001 | Python Flask | REST API endpoints, business logic |
 | Worker | — | Celery | Async task processing, document indexing |
@@ -67,7 +69,13 @@ Dify's architecture separates concerns into discrete services that communicate t
 ### Data Layer
 
 | Component | Default | Alternatives |
-|-----------|---------|--------------|
+|
+---
+|
+---
+|
+---
+|
 | Metadata DB | PostgreSQL 15 | AWS RDS, Cloud SQL |
 | Cache/Queue | Redis 7 | AWS ElastiCache, Redis Cloud |
 | Vector Store | Weaviate 1.27 | Qdrant, Milvus, pgvector |
@@ -81,10 +89,14 @@ Dify's workflow engine uses a DAG (Directed Acyclic Graph) execution model with 
 
 ### Prerequisites
 
-Before you start, ensure your machine meets these requirements:
-
-| Resource | Minimum | Recommended |
-|----------|---------|-------------|
+Before you start, ensure your machine meets these requirements: | Resource | Minimum | Recommended |
+|
+---
+|
+---
+|
+---
+|
 | CPU | 2 cores | 4+ cores |
 | RAM | 4 GiB | 8 GiB |
 | Disk | 20 GB | 50 GB SSD |
@@ -93,9 +105,7 @@ Before you start, ensure your machine meets these requirements:
 
 ### Step 1 — Clone Dify
 
-Clone the latest release from GitHub:
-
-```bash
+Clone the latest release from GitHub: ```bash
 git clone --branch "$(curl -s https://api.github.com/repos/langgenius/dify/releases/latest | jq -r .tag_name)" https://github.com/langgenius/dify.git
 ```
 
@@ -108,17 +118,13 @@ cd dify/docker
 cp .env.example .env
 ```
 
-Edit `.env` to set a secure secret key:
-
-```bash
+Edit `.env` to set a secure secret key: ```bash
 # Generate a cryptographically secure secret
 SECRET=$(openssl rand -hex 32)
 sed -i "s/SECRET_KEY=.*/SECRET_KEY=${SECRET}/" .env
 ```
 
-Key variables to review in `.env`:
-
-```bash
+Key variables to review in `.env`: ```bash
 # Core settings
 CONSOLE_API_URL=http://localhost:5001
 CONSOLE_WEB_URL=http://localhost:3000
@@ -150,9 +156,7 @@ WEAVIATE_API_KEY=WVF5YThaHlkYwhGUSmCRgsX3tD5ngdN8pkih
 docker compose up -d
 ```
 
-This starts 11 containers: 5 core services and 6 dependencies. Verify everything is running:
-
-```bash
+This starts 11 containers: 5 core services and 6 dependencies. Verify everything is running: ```bash
 docker compose ps
 ```
 
@@ -160,29 +164,21 @@ You should see all containers in an `Up (healthy)` state. The first startup take
 
 ### Step 4 — Initialize Admin Account
 
-Open your browser and navigate to:
-
-```
+Open your browser and navigate to: ```
 http://localhost/install
 ```
 
-Complete the setup wizard with your email and password. After setup, log in at:
-
-```
+Complete the setup wizard with your email and password. After setup, log in at: ```
 http://localhost
 ```
 
 ### Step 5 — Add Your First Model Provider
 
-Navigate to **Settings → Model Provider** and add an API key for at least one provider. For OpenAI:
-
-1. Select "OpenAI" from the provider list
+Navigate to **Settings → Model Provider** and add an API key for at least one provider. For OpenAI: 1. Select "OpenAI" from the provider list
 2. Paste your API key (`sk-...`)
 3. Click "Save"
 
-For local development with Ollama:
-
-1. Ensure Ollama is running locally (`ollama serve`)
+For local development with Ollama: 1. Ensure Ollama is running locally (`ollama serve`)
 2. Select "Ollama" from the provider list
 3. Set the base URL to `http://host.docker.internal:11434`
 4. Select a downloaded model (e.g., `llama3.1:8b`)
@@ -198,17 +194,13 @@ Your Dify instance is now ready to build AI applications.
 
 ### OpenAI / Anthropic Claude
 
-Adding major LLM providers is a configuration change, not a deployment. After adding your API key in **Settings → Model Provider**, create your first chat app:
-
-1. Go to **Studio → Create App → Chatbot**
+Adding major LLM providers is a configuration change, not a deployment. After adding your API key in **Settings → Model Provider**, create your first chat app: 1. Go to **Studio → Create App → Chatbot**
 2. Name it "Support Assistant"
 3. In the prompt editor, write your system prompt
 4. Select your model (GPT-4o, Claude Sonnet, etc.) from the dropdown
 5. Click **Publish**
 
-Access the app via API:
-
-```bash
+Access the app via API: ```bash
 curl -X POST 'http://localhost/v1/chat-messages' \
   -H 'Authorization: Bearer YOUR_APP_API_KEY' \
   -H 'Content-Type: application/json' \
@@ -223,9 +215,7 @@ curl -X POST 'http://localhost/v1/chat-messages' \
 
 ### Ollama (Local LLMs)
 
-For air-gapped or cost-sensitive environments, Ollama integration lets you run local models:
-
-```bash
+For air-gapped or cost-sensitive environments, Ollama integration lets you run local models: ```bash
 # Start Ollama
 ollama serve
 
@@ -234,10 +224,12 @@ ollama pull llama3.1:8b
 ollama pull qwen2.5:14b
 ```
 
-In Dify, go to **Settings → Model Provider → Ollama** and configure:
-
-| Field | Value |
-|-------|-------|
+In Dify, go to **Settings → Model Provider → Ollama** and configure: | Field | Value |
+|
+---
+|
+---
+|
 | Model Name | `llama3.1:8b` |
 | Base URL | `http://host.docker.internal:11434` |
 
@@ -245,51 +237,34 @@ Use local models for development and switch to cloud models for production witho
 
 ### Qdrant Vector Store
 
-Replace Weaviate with Qdrant for better performance at scale:
-
-```bash
+Replace Weaviate with Qdrant for better performance at scale: ```bash
 cd dify/docker
 cp envs/vectorstores/qdrant.env.example envs/vectorstores/qdrant.env
 ```
 
-Edit `envs/vectorstores/qdrant.env`:
-
-```bash
+Edit `envs/vectorstores/qdrant.env`: ```bash
 VECTOR_STORE=qdrant
 QDRANT_URL=http://qdrant:6333
 QDRANT_API_KEY=your-api-key
 QDRANT_CLIENT_TIMEOUT=20
 ```
 
-Add Qdrant to your `docker-compose.override.yaml`:
+Add Qdrant to your `docker-compose.override.yaml`: ```yaml
+services: qdrant: image: qdrant/qdrant:latest
+    ports: - "6333:6333"
+    volumes: - qdrant_data:/qdrant/storage
+    environment: - QDRANT__SERVICE__API_KEY=your-api-key
 
-```yaml
-services:
-  qdrant:
-    image: qdrant/qdrant:latest
-    ports:
-      - "6333:6333"
-    volumes:
-      - qdrant_data:/qdrant/storage
-    environment:
-      - QDRANT__SERVICE__API_KEY=your-api-key
+volumes: qdrant_data: ```
 
-volumes:
-  qdrant_data:
-```
-
-Restart Dify:
-
-```bash
+Restart Dify: ```bash
 docker compose down
 docker compose up -d
 ```
 
 ### Weaviate
 
-Weaviate is the default vector store and works out of the box. For production, use an external Weaviate cluster:
-
-```bash
+Weaviate is the default vector store and works out of the box. For production, use an external Weaviate cluster: ```bash
 # In .env
 VECTOR_STORE=weaviate
 WEAVIATE_ENDPOINT=https://your-cluster.weaviate.network
@@ -298,14 +273,10 @@ WEAVIATE_API_KEY=your-api-key
 
 ### Claude Code Integration
 
-Export your Dify app as an MCP (Model Context Protocol) server and connect it to Claude Code:
-
-1. In your Dify app, go to **API Access → MCP Server**
+Export your Dify app as an MCP (Model Context Protocol) server and connect it to Claude Code: 1. In your Dify app, go to **API Access → MCP Server**
 2. Enable MCP publishing
 3. Copy the MCP server URL
-4. In Claude Code, run:
-
-```bash
+4. In Claude Code, run: ```bash
 claude config add mcp.dify http://localhost:5001/your-mcp-endpoint
 ```
 
@@ -315,10 +286,16 @@ Your Dify workflows are now callable directly from Claude Code conversations.
 
 ### Performance Characteristics
 
-Based on community benchmarks and load testing data:
-
-| Metric | 1 CPU / 2 GB RAM | 4 CPU / 8 GB RAM | 8 CPU / 16 GB RAM |
-|--------|------------------|------------------|-------------------|
+Based on community benchmarks and load testing data: | Metric | 1 CPU / 2 GB RAM | 4 CPU / 8 GB RAM | 8 CPU / 16 GB RAM |
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | QPS (no model call) | 3 req/s | 8 req/s | 11 req/s |
 | QPS (with GPT-4o) | 2 req/s | 5 req/s | 6 req/s |
 | P95 Latency (workflow) | 2.1s | 1.2s | 0.8s |
@@ -329,7 +306,15 @@ Based on community benchmarks and load testing data:
 ### Document Indexing Performance
 
 | Operation | 100 Docs | 1,000 Docs | 10,000 Docs |
-|-----------|----------|------------|-------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Upload + Chunk | 30s | 4 min | 35 min |
 | Embedding (OpenAI) | 45s | 6 min | 50 min |
 | Total Index Time | 75s | 10 min | 85 min |
@@ -337,7 +322,15 @@ Based on community benchmarks and load testing data:
 ### Cost Comparison (Self-Hosted Monthly)
 
 | Scale | VPS Cost | LLM Cost | Total |
-|-------|----------|----------|-------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Dev / 1 user | $20 | $5–10 | $25–30 |
 | Small team / 50 users | $40 | $50–100 | $90–140 |
 | Enterprise / 500 users | $200 | $500–1,000 | $700–1,200 |
@@ -354,16 +347,12 @@ Based on community benchmarks and load testing data:
 
 ### Environment Isolation
 
-For production, never use the default `.env` values. Create environment-specific configs:
-
-```bash
+For production, never use the default `.env` values. Create environment-specific configs: ```bash
 # Production environment
 cp .env .env.production
 ```
 
-Critical changes for production:
-
-```bash
+Critical changes for production: ```bash
 # Security
 SECRET_KEY=$(openssl rand -hex 48)
 CONSOLE_API_URL=https://dify.yourcompany.com
@@ -392,9 +381,7 @@ S3_REGION=us-east-1
 
 ### Reverse Proxy with SSL
 
-Use Nginx or Traefik for TLS termination:
-
-```nginx
+Use Nginx or Traefik for TLS termination: ```nginx
 server {
     listen 443 ssl http2;
     server_name dify.yourcompany.com;
@@ -420,38 +407,29 @@ server {
 
 ### Monitoring and Observability
 
-Dify exposes metrics via the API service. For production monitoring, set up:
-
-```yaml
+Dify exposes metrics via the API service. For production monitoring, set up: ```yaml
 # docker-compose.monitoring.yaml
-services:
-  prometheus:
-    image: prom/prometheus:latest
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
-    ports:
-      - "9090:9090"
+services: prometheus: image: prom/prometheus:latest
+    volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports: - "9090:9090"
 
-  grafana:
-    image: grafana/grafana:latest
-    ports:
-      - "3001:3000"
-    volumes:
-      - grafana_data:/var/lib/grafana
+  grafana: image: grafana/grafana:latest
+    ports: - "3001:3000"
+    volumes: - grafana_data:/var/lib/grafana
 
-  node-exporter:
-    image: prom/node-exporter:latest
-    ports:
-      - "9100:9100"
+  node-exporter: image: prom/node-exporter:latest
+    ports: - "9100:9100"
 
-volumes:
-  grafana_data:
-```
+volumes: grafana_data: ```
 
-Key metrics to track:
-
-| Metric | Warning Threshold | Critical Threshold |
-|--------|-------------------|--------------------|
+Key metrics to track: | Metric | Warning Threshold | Critical Threshold |
+|
+---
+|
+---
+|
+---
+|
 | API Response Time (P95) | > 2s | > 5s |
 | Worker Queue Depth | > 100 | > 500 |
 | Error Rate | > 1% | > 5% |
@@ -482,26 +460,28 @@ aws s3 sync $BACKUP_DIR/ s3://your-backup-bucket/dify/ --delete
 
 ### Scaling Workers
 
-For high-volume document processing, scale Celery workers horizontally:
-
-```bash
+For high-volume document processing, scale Celery workers horizontally: ```bash
 # docker-compose.override.yaml
-services:
-  worker:
-    deploy:
-      replicas: 3
-    environment:
-      - CELERY_WORKER_CONCURRENCY=8
+services: worker: deploy: replicas: 3
+    environment: - CELERY_WORKER_CONCURRENCY=8
 
-  worker-beat:
-    deploy:
-      replicas: 1  # Keep exactly 1 beat instance
+  worker-beat: deploy: replicas: 1  # Keep exactly 1 beat instance
 ```
 
 ## Comparison with Alternatives
 
 | Feature | Dify | Flowise | n8n | LangChain |
-|---------|------|---------|-----|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **GitHub Stars** | 141,955 | 51,000 | 182,000 | 110,000 |
 | **License** | Apache-2.0 | MIT | Fair-code | MIT |
 | **Primary Use Case** | AI app platform | LLM prototyping | Workflow automation | Code-first framework |
@@ -528,9 +508,7 @@ services:
 
 ## Limitations / Honest Assessment
 
-Dify is not the right tool for every AI project. Here is what it is **not** good at:
-
-**1. Sub-Second Latency Workloads**
+Dify is not the right tool for every AI project. Here is what it is **not** good at: **1. Sub-Second Latency Workloads**
 Dify's P95 latency for simple workflows is ~1.2 seconds, primarily due to database queries between nodes. If you need sub-500ms responses (e.g., real-time suggestion engines), use a code-first framework like LangGraph or deploy a dedicated FastAPI service.
 
 **2. Complex Data Structures**
@@ -597,9 +575,7 @@ In 5 minutes, you cloned Dify, started 11 containers, created an admin account, 
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -620,7 +596,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 12. Ollama Local LLM Setup — https://ollama.com/download
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -646,8 +621,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [dify-vs-flowise-2026](dify)
@@ -656,8 +631,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [12-factor-agents-production-llm-software-2026](dify)
 - [12-factor-agents](dify)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

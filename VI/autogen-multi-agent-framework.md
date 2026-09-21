@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/autogen-multi-agent-framework" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/autogen-multi-agent-framework" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/autogen-multi-agent-framework" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/autogen-multi-agent-framework" />
 title: 'Hướng Dẫn AutoGen 2025: Xây Dựng Hệ Thống AI Đa Agent Dễ...
 description: 'Hướng dẫn chi tiết Microsoft AutoGen 2025: kiến trúc multi-agent, ConversableAgent, GroupChat, code execution và triển khai production systems.'
 date: 2026-05-18 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/autogen-multi-agent-framework/
+aliases: - /posts/autogen-multi-agent-framework/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/autogen-multi-agent-framework/ -->
 
 {</* resource-info */>}
 
@@ -39,9 +31,7 @@ Khi các tác vụ AI ngày càng phức tạp — từ phân tích dữ liệu 
 
 AutoGen là một framework mã nguồn mở cho phép phát triển các ứng dụng LLM bằng cách sử dụng **nhiều agents có thể trò chuyện với nhau** (conversable agents). Khác với các framework truyền thống tập trung vào single-chain execution, AutoGen tổ chức computation như một cuộc hội thoại giữa các agents — mỗi agent có vai trò, khả năng và trách nhiệm riêng.
 
-Triết lý thiết kế của AutoGen dựa trên ba nguyên tắc:
-
-1. **Conversable**: agents giao tiếp với nhau qua messages tự nhiên
+Triết lý thiết kế của AutoGen dựa trên ba nguyên tắc: 1. **Conversable**: agents giao tiếp với nhau qua messages tự nhiên
 2. **Customizable**: dễ dàng định nghĩa agents với các khả năng và hành vi tùy chỉnh
 3. **Composable**: agents có thể kết hợp thành các hệ thống phức tạp
 
@@ -60,9 +50,7 @@ AutoGen nổi bật ở khả năng **thực thi code trực tiếp** — agents
 
 ### ConversableAgent: Lớp Agent Cơ Sở
 
-`ConversableAgent` là lớp cơ sở cho mọi agent trong AutoGen. Mỗi agent có:
-
-- **Name**: định danh duy nhất trong hệ thống
+`ConversableAgent` là lớp cơ sở cho mọi agent trong AutoGen. Mỗi agent có: - **Name**: định danh duy nhất trong hệ thống
 - **System message**: hướng dẫn vai trò và hành vi
 - **LLM config**: cấu hình model (GPT-4, Claude, local LLM)
 - **Code execution config**: khả năng thực thi code (Python, shell)
@@ -70,9 +58,7 @@ AutoGen nổi bật ở khả năng **thực thi code trực tiếp** — agents
 
 ### UserProxyAgent: Con Ngườitrong Vòng Lặp
 
-`UserProxyAgent` đại diện cho ngườidùng con ngườitrong hệ thống. Agent này có thể:
-
-- Nhập input từ ngườidùng khi được yêu cầu
+`UserProxyAgent` đại diện cho ngườidùng con ngườitrong hệ thống. Agent này có thể: - Nhập input từ ngườidùng khi được yêu cầu
 - Thực thi code trên máy local
 - Gửi kết quả thực thi cho các agents khác
 - Quyết định khi nào kết thúc cuộc hội thoại
@@ -83,17 +69,13 @@ AutoGen nổi bật ở khả năng **thực thi code trực tiếp** — agents
 
 ### GroupChat: Hợp Tác Đa Agent
 
-`GroupChat` cho phép nhiều hơn hai agents tham gia cùng một cuộc hội thoại. Các agents trong group chat có thể:
-
-- Trò chuyện theo thứ tự round-robin
+`GroupChat` cho phép nhiều hơn hai agents tham gia cùng một cuộc hội thoại. Các agents trong group chat có thể: - Trò chuyện theo thứ tự round-robin
 - Sử dụng speaker selection strategy để chọn agent tiếp theo
 - Chia sẻ context và kết quả với nhau
 
 ### Quản Lý Lịch Sử Và Bộ Nhớ
 
-AutoGen tự động lưu trữ toàn bộ lịch sử hội thoại giữa các agents. Mỗi message bao gồm:
-
-- **Role**: ai là ngườigửi (assistant, user, function)
+AutoGen tự động lưu trữ toàn bộ lịch sử hội thoại giữa các agents. Mỗi message bao gồm: - **Role**: ai là ngườigửi (assistant, user, function)
 - **Content**: nội dung message
 - **Metadata**: thông tin bổ sung như function calls
 
@@ -176,9 +158,7 @@ user_proxy.initiate_chat(
 
 ### Bật Thực Thi Code
 
-AutoGen có thể thực thi code trong sandbox environment:
-
-```python
+AutoGen có thể thực thi code trong sandbox environment: ```python
 code_execution_config = {
     "work_dir": "coding_workspace",  # Thư mục làm việc
     "use_docker": True,               # Chạy trong container Docker
@@ -253,9 +233,7 @@ result = user_proxy.initiate_chats(
 
 ### Nested Chat Patterns
 
-Nested cho phép một agent đóng vai trò như một "ngườimôi giới" — nhận message, chuyển nội bộ cho các agents khác xử lý, rồi trả lờingườigửi ban đầu:
-
-```python
+Nested cho phép một agent đóng vai trò như một "ngườimôi giới" — nhận message, chuyển nội bộ cho các agents khác xử lý, rồi trả lờingườigửi ban đầu: ```python
 # Thiết lập nested chat cho coding assistant
 coding_assistant.register_nested_chats(
     trigger=planner,
@@ -284,16 +262,13 @@ human_input_mode="TERMINATE"
 ```python
 from autogen import ConversableAgent
 
-class DataAnalystAgent(ConversableAgent):
-    def __init__(self, **kwargs):
-        super().__init__(
+class DataAnalystAgent(ConversableAgent): def __init__(self, **kwargs): super().__init__(
             name="data_analyst",
             system_message="Bạn là chuyên gia phân tích dữ liệu.",
             **kwargs
         )
 
-    def analyze_data(self, data_path):
-        # Logic phân tích tùy chỉnh
+    def analyze_data(self, data_path): # Logic phân tích tùy chỉnh
         pass
 ```
 
@@ -347,9 +322,7 @@ config_lmstudio = [{
 
 ### Pipeline Phân Tích Dữ Liệu Tự Động
 
-Một hệ thống gồm 3 agents tự động phân tích dataset:
-
-1. **Data Loader Agent**: tải và làm sạch dữ liệu
+Một hệ thống gồm 3 agents tự động phân tích dataset: 1. **Data Loader Agent**: tải và làm sạch dữ liệu
 2. **Analyst Agent**: thực hiện phân tích thống kê và trực quan hóa
 3. **Reporter Agent**: tổng hợp kết quả thành báo cáo
 
@@ -383,18 +356,14 @@ web_surfer = WebSurferAgent(
 
 ### AutoGen Cho Multi-Agent Hội Thoại
 
-Chọn AutoGen khi:
-
-- Agents cần **trò chuyện tự nhiên** với nhau qua nhiều turns
+Chọn AutoGen khi: - Agents cần **trò chuyện tự nhiên** với nhau qua nhiều turns
 - Cần **thực thi code** trực tiếp trong workflow
 - Cần **human-in-the-loop** với approval workflows
 - Dự án tập trung vào **research và data analysis**
 
 ### LangGraph Cho Stateful DAG Workflows
 
-Chọn LangGraph khi:
-
-- Workflow có cấu trúc **đồ thị cố định** với nodes và edges rõ ràng
+Chọn LangGraph khi: - Workflow có cấu trúc **đồ thị cố định** với nodes và edges rõ ràng
 - Cần **streaming và async execution** hiệu suất cao
 - Ứng dụng cần **integration sâu với LangChain ecosystem**
 - Dự án yêu cầu **observability qua LangSmith**
@@ -477,9 +446,7 @@ AutoGen được thiết kế để xây dựng các ứng dụng AI multi-agent
 
 ### AutoGen xử lý bảo mật thực thi code như thế nào?
 
-AutoGen cung cấp ba cấp độ bảo mật cho code execution:
-
-1. **No execution**: tắt hoàn toàn — agents chỉ tạo code nhưng không chạy
+AutoGen cung cấp ba cấp độ bảo mật cho code execution: 1. **No execution**: tắt hoàn toàn — agents chỉ tạo code nhưng không chạy
 2. **Docker sandbox**: chạy code trong container Docker cô lập — khuyến nghị cho production
 3. **Local execution**: chạy trực tiếp trên máy — chỉ dùng trong development
 
@@ -489,9 +456,7 @@ Luôn bật `use_docker=True` trong production và giới hạn network access c
 
 AutoGen đại diện cho một bước tiến quan trọng trong cách chúng ta xây dựng ứng dụng AI — thay vì dựa vào một single LLM call, chúng ta có thể tạo ra các hệ sinh thái agents hợp tác, mỗi agent mang một vai trò chuyên biệt. Khả năng thực thi code trực tiếp của AutoGen đặc biệt mạnh mẽ — nó biến LLM từ một "ngườivit lách" thành một "kỹ sư phần mềm" có khả năng viết, chạy và debug code.
 
-Để bắt đầu với AutoGen:
-
-1. **Đọc tài liệu chính thức**: [microsoft.github.io/autogen](https://microsoft.github.io/autogen)
+Để bắt đầu với AutoGen: 1. **Đọc tài liệu chính thức**: [microsoft.github.io/autogen](https://microsoft.github.io/autogen)
 2. **Chạy examples trên GitHub**: [github.com/microsoft/autogen](https://github.com/microsoft/autogen) có hơn 50 ví dụ cho mọi use case
 3. **Thử nghiệm với GPT-4o-mini**: bắt đầu với model rẻ tiền để làm quen trước khi chuyển sang GPT-4
 4. **Thiết lập Ollama**: chạy local LLM để tiết kiệm chi phí trong development
@@ -513,9 +478,7 @@ Multi-agent systems đang trở thành tiêu chuẩn cho các ứng dụng AI ph
 
 ## Hạ Tầng Đề Xuất
 
-Để chạy các công cụ trên 24/7 ổn định, lựa chọn hạ tầng rất quan trọng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu.
+Để chạy các công cụ trên 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp. dibi8.com cũng host ở đây.
 - **[Hostinger](https://www.hostinger.com/vn?REFERRALCODE=22RPIAOJIYJN)** — VPS giá tốt cho thị trường Việt Nam.
 
@@ -523,7 +486,6 @@ Multi-agent systems đang trở thành tiêu chuẩn cho các ứng dụng AI ph
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

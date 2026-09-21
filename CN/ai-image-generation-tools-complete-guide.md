@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/ai-image-generation-tools-complete-guide" />
 title: 'AI Image Generation Tools: Complete Guide to Midjourney,...
 description: 'Complete guide to AI image generation tools in 2025. Compare Midjourney v7, DALL-E 3, Stable Diffusion 3.5, Adobe Firefly, FLUX, and Leonardo.ai with features and pricing.'
 date: 2026-05-18 00:00:00+08:00
@@ -20,8 +18,7 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/ai-image-generation-tools-complete-guide/
+aliases: - /posts/ai-image-generation-tools-complete-guide/
 ---
 # AI Image Generation Tools: Complete Guide to Midjourney, DALL-E, Stable Diffusion & More
 
@@ -125,7 +122,19 @@ The platform operates on a token system. Free users receive 150 tokens daily (ap
 ## Feature Comparison: Resolution, Styles, and Pricing
 
 | Tool | Max Resolution | Artistic Quality | Prompt Fidelity | Commercial Use | Starting Price |
-|---|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Midjourney v7** | 2048x2048 | Excellent | Good | Yes | $10/month |
 | **DALL-E 3** | 1024x1024 | Good | Excellent | Yes | $20/month (ChatGPT Plus) |
 | **Stable Diffusion 3.5** | 2048x2048 | Excellent | Good | Yes | Free (self-hosted) |
@@ -147,9 +156,7 @@ Prompt engineering — the art of writing descriptions that produce desired imag
 
 For example, instead of "a cat," write "a fluffy orange tabby cat sitting on a windowsill, golden hour sunlight streaming through, shallow depth of field, photorealistic, shot on Canon EOS R5, 85mm lens, high detail."
 
-Key tips for better results:
-
-- **Be specific about style.** Include artist references, medium (oil painting, digital art, photograph), and era when relevant
+Key tips for better results: - **Be specific about style.** Include artist references, medium (oil painting, digital art, photograph), and era when relevant
 - **Use technical photography terms.** Specify lens, aperture, film stock, or lighting setup for photorealistic results
 - **Add quality boosters.** Terms like "8K," "highly detailed," "masterpiece," and "professional" measurably improve output
 - **Iterate systematically.** Change one element at a time to understand what each tool responds to
@@ -177,9 +184,7 @@ Professional designers need tools that integrate into existing workflows, preser
 
 ## What Are the Copyright and Legal Risks of AI-Generated Images?
 
-The legal landscape around AI-generated images remains unsettled in 2025. Three key issues demand attention:
-
-**Training data lawsuits** continue to work through courts. Artists allege that AI companies infringed copyright by scraping billions of copyrighted images without permission. [The New York Times lawsuit against OpenAI](https://openai.com) (filed December 2023) and similar cases from visual artists are expected to reach resolution in 2026-2027. These rulings could force changes in how AI models are trained.
+The legal landscape around AI-generated images remains unsettled in 2025. Three key issues demand attention: **Training data lawsuits** continue to work through courts. Artists allege that AI companies infringed copyright by scraping billions of copyrighted images without permission. [The New York Times lawsuit against OpenAI](https://openai.com) (filed December 2023) and similar cases from visual artists are expected to reach resolution in 2026-2027. These rulings could force changes in how AI models are trained.
 
 **Copyrightability of AI outputs** varies by jurisdiction. The U.S. Copyright Office has consistently held that purely AI-generated images cannot be copyrighted, though human-modified AI images may qualify. The European Union and Japan have taken more permissive stances. Businesses should consult legal counsel before using AI images in trademarked materials.
 
@@ -187,9 +192,7 @@ The legal landscape around AI-generated images remains unsettled in 2025. Three 
 
 ## Getting Started: Step-by-Step Tutorial
 
-For your first AI-generated image, follow these steps:
-
-1. **Choose your tool.** For beginners, start with [Midjourney](https://midjourney.com) or DALL-E 3 via ChatGPT Plus for the easiest experience
+For your first AI-generated image, follow these steps: 1. **Choose your tool.** For beginners, start with [Midjourney](https://midjourney.com) or DALL-E 3 via ChatGPT Plus for the easiest experience
 2. **Write a detailed prompt.** Use the formula: subject + description + style + quality modifiers. Example: "A serene Japanese garden with cherry blossoms, morning mist, watercolor painting style, soft pastel colors, highly detailed"
 3. **Generate and iterate.** Create 4 variations, pick the closest match, and refine your prompt based on what worked
 4. **Upscale if needed.** Use Leonardo.ai's upscaler or Topaz Gigapixel AI for print-ready resolution
@@ -218,19 +221,16 @@ For Stable Diffusion 3.5 Medium, you need an NVIDIA GPU with at least 8GB VRAM (
 
 Currently, purely AI-generated images without meaningful human creative input cannot be copyrighted in the United States. The Copyright Office has issued guidance stating that copyright protection requires human authorship. However, images where AI is used as a tool alongside significant human editing and creative direction may qualify for copyright protection. The legal landscape is evolving, with new cases and regulations expected in 2025-2026. For maximum protection, treat AI-generated images as starting points and apply substantial human creative modification.
 
----
 
+---
 ## Recommended Tools
 
-For developers exploring or deploying the tools above, we recommend:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, ideal for self-hosting AI/dev tools.
+For developers exploring or deploying the tools above, we recommend: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, ideal for self-hosting AI/dev tools.
 
 *Affiliate link — supports dibi8.com at no cost to you.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -255,3 +255,4 @@ For developers exploring or deploying the tools above, we recommend:
   }
 }
 </script>
+---

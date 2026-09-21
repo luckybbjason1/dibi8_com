@@ -1,12 +1,7 @@
 title: "LangChain vs CrewAI vs AutoGen vs LlamaIndex vs LangGrap...
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-agent-frameworks-comparison-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-agent-frameworks-comparison-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-agent-frameworks-comparison-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-agent-frameworks-comparison-2026" />
 description: "2026년 상위 5개 오픈 소스 AI 에이전트 프레임워크를 나란히 비교합니다. 실제 별 개수, 코드 예제, 성능 벤치마크 및 프로젝트에 적합한 프레임워크를 선택하기 위한 실용적인 지침입니다.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-30T00:00:00+09:00
-lastmod:  2026-06-30T00:00:00+09:00lang: ko
+lastmod: 2026-06-30T00:00:00+09:00lang: ko
 draft: false
 tags: ["ai-agents", "frameworks", "comparison", "langchain", "crewai", "autogen", "llamaindex", "langgraph"]
 categories: ["llm-frameworks"]
@@ -17,8 +12,7 @@ showSummary: true
 featureImage: /images/articles/b62165fb-ai-agent-frameworks-comparison.png
 github_repo: langchain-ai/langchain
 license: MIT
-sources:
-  - name: GitHub
+sources: - name: GitHub
     url: https://github.com/langchain-ai/langchain
     type: star_count
   - name: GitHub
@@ -41,7 +35,6 @@ sources:
 > **Editorial Disclosure**: This comparison uses real-time GitHub data (star counts, commit frequency, fork counts) as of June 30, 2026. All code examples are tested and verified. We do not accept payment from any framework vendor for inclusion or ranking.
 
 ---
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -73,11 +66,7 @@ sources:
 </script>
 
 
-<!-- canonical: https://dibi8.com/kr/tools/ai-agent-frameworks-comparison-2026/ -->
-
-Five frameworks dominate the open-source AI agent landscape in 2026. Here's the quick answer:
-
-- **LangChain** (141k ★) — Best for production-grade LLM apps with extensive integrations
+Five frameworks dominate the open-source AI agent landscape in 2026. Here's the quick answer: - **LangChain** (141k ★) — Best for production-grade LLM apps with extensive integrations
 - **CrewAI** (54.6k ★) — Best for multi-agent collaboration with role-based workflows
 - **Microsoft AutoGen** (59.4k ★) — Best for research-grade conversational agents and enterprise scenarios
 - **LlamaIndex** (50.5k ★) — Best for document-centric AI with RAG and data indexing
@@ -89,9 +78,7 @@ Choosing the right one depends on your use case: single-agent automation, multi-
 
 The AI agent framework space has matured dramatically since 2023. What started as simple prompt-chaining libraries has evolved into full orchestration platforms supporting multi-agent collaboration, persistent memory, tool execution, and human oversight.
 
-By mid-2026, the market has consolidated around five major open-source frameworks. Each has a distinct philosophy:
-
-- **LangChain** prioritizes breadth of integrations and production readiness
+By mid-2026, the market has consolidated around five major open-source frameworks. Each has a distinct philosophy: - **LangChain** prioritizes breadth of integrations and production readiness
 - **CrewAI** focuses on role-based multi-agent orchestration
 - **AutoGen** emphasizes conversational agent patterns and research flexibility
 - **LlamaIndex** specializes in document ingestion and retrieval-augmented generation
@@ -229,16 +216,13 @@ result = qa_chain.run("What are the main findings?")
 LangChain의 도구 시스템은 기능 기반 도구와 클래스 기반 도구를 모두 지원합니다. 
 
 @도구 
-def search_wikipedia(query: str) -> str: 
-"""위키피디아를 검색하고 요약을 반환합니다.""" 
+def search_wikipedia(query: str) -> str: """위키피디아를 검색하고 요약을 반환합니다.""" 
 langchain_community.tools에서 WikipediaQueryRun 가져오기 
 WikipediaQueryRun().run(쿼리)를 반환합니다. 
 
 LangChain은 대화 컨텍스트를 유지하기 위해 여러 가지 메모리 유형을 제공합니다. 
 
-완전한 검색-증강 생성 파이프라인: 
-
-- 최대 통합 옵션(벡터 DB, LLM 제공업체, 도구)이 필요합니다. 
+완전한 검색-증강 생성 파이프라인: - 최대 통합 옵션(벡터 DB, LLM 제공업체, 도구)이 필요합니다. 
 - 팀이 TypeScript에 익숙합니다. 
 - 관찰 가능성이 필요한 프로덕션 애플리케이션을 구축하고 있습니다(LangSmith) 
 - 가장 큰 커뮤니티와 가장 많은 문서를 원합니다. 
@@ -403,20 +387,13 @@ user_proxy.initiate_chat(
 
 ### Why It Matters
 
-CrewAI supports both sequential and hierarchical task execution:
+CrewAI supports both sequential and hierarchical task execution: Extend CrewAI agents with custom tools: class WebSearchInput(BaseModel): query: str = Field(description="The search query")
 
-Extend CrewAI agents with custom tools:
-
-class WebSearchInput(BaseModel):
-    query: str = Field(description="The search query")
-
-class WebSearchTool(BaseTool):
-    name: str = "Web Search"
+class WebSearchTool(BaseTool): name: str = "Web Search"
     description: str = "Search the web for information"
     args_schema: type[BaseModel] = WebSearchInput
 
-def _run(self, query: str) -> str:
-        # Implement your search logic
+def _run(self, query: str) -> str: # Implement your search logic
         return f"Results for: {query}"
 ```
 
@@ -499,8 +476,7 @@ AutoGen의 GroupChat은 구조화된 다중 에이전트 대화를 가능하게 
 
 AutoGen은 구조화된 에이전트 상호 작용을 호출하는 OpenAI 기능을 지원합니다. 
 
-def 계산_bmi(weight_kg: float, height_cm: float) -> dict: 
-"""체중과 키로 BMI를 계산하세요.""" 
+def 계산_bmi(weight_kg: float, height_cm: float) -> dict: """체중과 키로 BMI를 계산하세요.""" 
 bmi = 체중_kg / ((신장_cm / 100) ** 2) 
 return {"bmi": round(bmi, 1), "category": "normal" if 18.5 <= bmi < 25 else "other"} 
 
@@ -638,11 +614,8 @@ tech_index = VectorStoreIndex.from_documents(tech_docs)
 legal_index = VectorStoreIndex.from_documents(legal_docs)
 
 # Route queries based on keywords
-def route_query(query: str):
-    if any(kw in query.lower() for kw in ["patent", "copyright", "trademark"]):
-        return legal_index.as_retriever()
-    else:
-        return tech_index.as_retriever()
+def route_query(query: str): if any(kw in query.lower() for kw in ["patent", "copyright", "trademark"]): return legal_index.as_retriever()
+    else: return tech_index.as_retriever()
 ```
 
 
@@ -676,9 +649,7 @@ LlamaIndex는 이미지, PDF 및 기타 텍스트가 아닌 문서를 지원합�
 
 더 나은 검색을 위해 색인화하기 전에 문서를 사전 처리합니다. 
 
-의도에 따라 다른 인덱스에 대한 직접 쿼리: 
-
-- 귀하의 애플리케이션은 문서가 많습니다(RAG, 지식 기반, 연구). 
+의도에 따라 다른 인덱스에 대한 직접 쿼리: - 귀하의 애플리케이션은 문서가 많습니다(RAG, 지식 기반, 연구). 
 - 고급 색인 전략이 필요합니다(지식 그래프, 하이브리드 검색). 
 - 문서 수집에 대해 추론할 수 있는 에이전트를 원합니다. 
 - 데이터에는 정교한 전처리 및 변환이 필요합니다. 
@@ -691,8 +662,7 @@ LangChain 팀이 구축한 LangGraph는 체인 기반 프레임워크의 근본�
 
 LangGraph는 노드가 계산 단계를 나타내고 가장자리가 흐름을 정의하는 그래프 기반 추상화를 도입합니다. 이를 통해 반복하고, 단계를 다시 방문하고, 반복 전반에 걸쳐 상태를 유지하고, 언제든지 사람의 피드백을 통합할 수 있는 에이전트인 순환 그래프가 가능해집니다. 
 
-클래스 AgentState(TypedDict): 
-메시지: 주석이 달린[목록, 연산자.추가] 
+클래스 AgentState(TypedDict): 메시지: 주석이 달린[목록, 연산자.추가] 
 검사기: str
 
 # Build the graph
@@ -736,8 +706,7 @@ config = {"configurable": {"thread_id": "thread-1"}}
 result = agent.invoke({"messages": [("human", "Book a flight to Tokyo")]}, config)
 
 # The agent pauses at tool calls for approval
-# Resume with:
-# result = agent.invoke(None, config)
+# Resume with: # result = agent.invoke(None, config)
 ```
 
 ### Streaming Responses
@@ -749,10 +718,8 @@ from langchain_core.messages import AIMessageChunk
 for event in agent.stream(
     {"messages": [("human", "Write a poem about AI")]},
     config={"stream_mode": "values"},
-):
-    last_msg = event["messages"][-1]
-    if isinstance(last_msg, AIMessageChunk):
-        print(last_msg.content, end="", flush=True)
+): last_msg = event["messages"][-1]
+    if isinstance(last_msg, AIMessageChunk): print(last_msg.content, end="", flush=True)
 ```
 
 ### Subgraphs for Modular Design
@@ -783,18 +750,14 @@ workflow = main_graph.compile()
 import asyncio
 from functools import wraps
 
-def 챗봇(상태: AgentState): 
-langchain_openai에서 ChatOpenAI 가져오기 
+def 챗봇(상태: AgentState): langchain_openai에서 ChatOpenAI 가져오기 
 응답 = ChatOpenAI().invoke(state["messages"]) 
 {"메시지": [응답]}을 반환합니다. 
 
-def 검사기(상태: AgentState): 
-len(state["messages"])[-1].content > 100인 경우: 
-"승인됨" 반환 
+def 검사기(상태: AgentState): len(state["messages"])[-1].content > 100인 경우: "승인됨" 반환 
 "needs_revision"을 반환합니다. 
 
-def 수정(상태: AgentState): 
-langchain_openai에서 ChatOpenAI 가져오기 
+def 수정(상태: AgentState): langchain_openai에서 ChatOpenAI 가져오기 
 메시지 = 상태["메시지"] + [ 
 {"role": "user", "content": "더 짧게 만드세요. 100자 미만입니다."} 
 ] 
@@ -816,9 +779,7 @@ Human-In-The-Loop 지원은 특히 강력합니다. 모든 노드에서 실행�
 
 LangGraph는 모든 노드에서 인간 승인을 위한 일시 중지를 지원합니다. 
 
-LangGraph 에이전트의 실시간 토큰 스트리밍: 
-
-복잡한 워크플로를 재사용 가능한 하위 그래프로 나눕니다. 
+LangGraph 에이전트의 실시간 토큰 스트리밍: 복잡한 워크플로를 재사용 가능한 하위 그래프로 나눕니다. 
 
 그래프 노드에서 재시도 및 대체 논리를 구현합니다.
 
@@ -851,24 +812,16 @@ LangGraph 에이전트의 실시간 토큰 스트리밍:
 
 ### Recommended Combinations
 
-def retry_with_backoff(max_retries=3, base_delay=1.0): 
-def 데코레이터(func): 
-@wraps(기능) 
-비동기 def 래퍼(*args, **kwargs): 
-범위 내 시도(max_retries): 
-시도해 보세요: 
-return wait func(*args, **kwargs) 
-e와 같은 예외를 제외하고: 
-시도 == max_retries - 1인 경우: 
-올리다 
+def retry_with_backoff(max_retries=3, base_delay=1.0): def 데코레이터(func): @wraps(기능) 
+비동기 def 래퍼(*args, **kwargs): 범위 내 시도(max_retries): 시도해 보세요: return wait func(*args, **kwargs) 
+e와 같은 예외를 제외하고: 시도 == max_retries - 1인 경우: 올리다 
 지연 = base_delay * (2 ** 시도) 
 asyncio.sleep(지연)을 기다립니다 
 반환 포장지 
 반환 장식자 
 
 @retry_with_backoff(max_retries=3) 
-비동기 def call_llm_with_retry(프롬프트): 
-응답 = model.ainvoke(프롬프트)를 기다립니다. 
+비동기 def call_llm_with_retry(프롬프트): 응답 = model.ainvoke(프롬프트)를 기다립니다. 
 응답 반환 
 ```` 
 
@@ -1023,9 +976,7 @@ WORKDIR /앱
 CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root"] 
 ```` 
 
-빌드 및 실행: 
-
---- 
+빌드 및 실행: --- 
 
 --- 
 
@@ -1071,9 +1022,7 @@ CrewAI는 학습 곡선이 가장 완만합니다. 역할 기반 추상화는 �
 
 ## Dibi8의 더 많은 글
 
-오픈 소스 AI에는 투명한 커뮤니티 중심 분석이 필요하기 때문에 이러한 비교를 구축합니다. 이 내용이 도움이 되었다면: 
-
-- GitHub에서 **이 기사에 별표 표시** 
+오픈 소스 AI에는 투명한 커뮤니티 중심 분석이 필요하기 때문에 이러한 비교를 구축합니다. 이 내용이 도움이 되었다면: - GitHub에서 **이 기사에 별표 표시** 
 - 댓글로 이러한 프레임워크에 대한 **경험을 공유**하세요. 
 - 다음에 비교하고 싶은 프레임워크 제안** 
 

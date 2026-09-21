@@ -1,19 +1,14 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/taste-skill" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/taste-skill" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/taste-skill" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/taste-skill" />
 title: "品味技能：让 AI 告别平庸输出——Agent 技能框架 2026"
-description: "Taste Skill 是一个可移植的 Agent 技能框架，通过更强的布局、排版、动效和间距设计，全面提升 AI 生成的前端界面。兼容 Codex、Cursor、Claude Code 和 ChatGPT Images。". Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "Taste Skill 是一个可移植的 Agent 技能框架，通过更强的布局、排版、动效和间距设计，全面提升 AI 生成的前端界面。兼容 Codex、Cursor、Claude Code 和 ChatGPT Images。"
 date: 2026-06-15
-lastmod:  2026-06-15slug: taste-skill
+lastmod: 2026-06-15
+slug: taste-skill
 category: dev-utils
 tags: ['ai 设计', 'agent 技能', '反平庸', '前端', 'codex', 'cursor', 'claude code', '提示词工程']
 github_repo: "https://github.com/Leonxlnx/taste-skill"
 license: MIT
-images:
-  - url: "https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/assets/readme-banner.png"
+images: - url: "https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/assets/readme-banner.png"
     alt: "Taste Skill 横幅"
     role: hero
   - url: "https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/assets/taste-skill-logo.webp"
@@ -25,11 +20,7 @@ images:
   - url: "https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/assets/readme-banner.png"
     alt: "Taste Skill banner"
     role: hero
-lang: zh
-featureImage: /images/articles/taste-skill-stop-ai-from-generating-generic-slop-agent-skill.jpg
----
-
-<!-- canonical: https://dibi8.com/zh/tools/taste-skill/ -->
+featureImage: /images/articles/taste-skill-stop-ai-from-generating-generic-slop-agent-skill.jpg---
 
 ## 快速概览
 
@@ -140,7 +131,13 @@ curl -sL "https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/CHANGELOG.
 Taste Skill 是框架无关的，可与所有主流 AI 编程 Agent 配合使用：
 
 | Agent | 集成方式 | 推荐技能 |
-|-------|---------|---------|
+|
+---
+|
+---
+|
+---
+|
 | **Codex** | `npx skills add` + CLI | `gpt-taste`（更严格的变体） |
 | **Cursor** | 将 SKILL.md 粘贴到 `.cursorrules` | `design-taste-frontend` |
 | **Claude Code** | 通过 `.claude/skills/` 加载 | `design-taste-frontend` |
@@ -168,7 +165,11 @@ Taste Skill 生成的界面与普通 AI 输出之间的差距可在多个维度�
 
 ```
 指标              | 普通 AI 输出 | Taste Skill v2
-------------------|-------------|----------------
+
+---
+|
+---
+|---
 布局变化度        | 1-2         | 7-9
 重复率            | 高          | 接近零
 动效深度          | 仅悬停      | 滚动/磁性
@@ -301,7 +302,17 @@ VISUAL_DENSITY: 4
 Taste Skill 并非 GitHub 上唯一的设计强化技能。以下是它与最接近的替代方案的对比：
 
 | 特性 | Taste Skill v2 | PromptHero | Uiverse | AI UI Generator |
-|------|---------------|------------|---------|-----------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 星标数 | 44,229 | 8,400 | 12,300 | N/A（SaaS） |
 | 框架无关 | 是 | 部分 | 否 | 否 |
 | 可调参数 | 3 个（变化度/动效/密度） | 无 | 无 | 无 |
@@ -389,8 +400,8 @@ npx skills add https://github.com/Leonxlnx/taste-skill --skill "design-taste-fro
 
 **相关文章**：[了解 AI 编程 Agent](https://dibi8.com/ai-tools/oh-my-pi) · [比较开发工具](https://dibi8.com/dev-utils/)
 
----
 
+---
 **来源与延伸阅读**：
 - 官方网站：https://tasteskill.dev
 - GitHub 仓库：https://github.com/Leonxlnx/taste-skill
@@ -398,8 +409,7 @@ npx skills add https://github.com/Leonxlnx/taste-skill --skill "design-taste-fro
 - 社区：[@lexnlin on X](https://x.com/lexnlin)，[@blueemi99 on X](https://x.com/blueemi99)
 
 
-**Sources & Further Reading**:
-- 官方站: https://tasteskill.dev
+**Sources & Further Reading**: - 官方站: https://tasteskill.dev
 - GitHub仓库: https://github.com/Leonxlnx/taste-skill
 - 更新日志: https://www.tasteskill.dev/changelog
 - 社区: [@lexnlin 在 X 上](https://x.com/lexnlin), [@blueemi99 在 X 上](https://x.com/blueemi99)
@@ -408,7 +418,6 @@ npx skills add https://github.com/Leonxlnx/taste-skill --skill "design-taste-fro
 **披露**：本文包含联盟链接。如果你通过我们的链接注册，我们可能会获得佣金，这不会给你增加额外费用。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -436,25 +445,20 @@ npx skills add https://github.com/Leonxlnx/taste-skill --skill "design-taste-fro
 
 ## Why This Matters
 
-Understanding 品味技能：让 ai 告别平庸输出——agent 技能框架 2026 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding 品味技能：让 ai 告别平庸输出——agent 技能框架 2026 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -475,8 +479,8 @@ To implement this in your workflow:
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -520,7 +524,17 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

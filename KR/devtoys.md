@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/devtoys" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/devtoys" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/devtoys" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/devtoys" />
 title: 'DevToys: 31,533 GitHub Stars — 개발자 유틸리티 제품군 2026 완벽 설치 가이드'
 description: 'DevToys는 물론이고 오프라인 개발자용 스위스 아미 나이프입니다. JSON, Base64, JWT, 정규식 등 30개 이상의 도구를 Windows, macOS, Linux에서 사용할 수 있는 크로스 플랫폼 유틸리티로 스마트 감지 및 CLI 지원 기능을 갖추고 있습니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [devtoys, 개발자도구, 오프라인도구, json포맷터, base64인코더, jwt디코더, 정규식테스트, 크로스플랫폼, 오픈소스]
-aliases:
-- /kr/posts/devtoys/
+aliases: - /kr/posts/devtoys/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/devtoys/ -->
 
 {{</* resource-info */>}}
 
@@ -49,9 +41,7 @@ aliases:
 
 ### 아키텍처 개요
 
-DevToys는 모듈형 플러그인 기반 아키텍처를 따른다. 핵심 애플리케이션이 셸, UI 프레임워크, 스마트 감지 엔진을 제공한다. 개별 도구는 호스트에 자신을 등록하는 확장 프로그램으로 패키징된다:
-
-```
+DevToys는 모듈형 플러그인 기반 아키텍처를 따른다. 핵심 애플리케이션이 셸, UI 프레임워크, 스마트 감지 엔진을 제공한다. 개별 도구는 호스트에 자신을 등록하는 확장 프로그램으로 패키징된다: ```
 ┌─────────────────────────────────────────┐
 │           DevToys Shell (C#)            │
 │  ┌─────────┐  ┌─────────┐  ┌──────────┐ │
@@ -131,9 +121,7 @@ cp -R "/Volumes/DevToys/DevToys.app" /Applications
 hdiutil detach "/Volumes/DevToys"
 ```
 
-또는 Homebrew를 통해 설치(사용 가능한 경우):
-
-```bash
+또는 Homebrew를 통해 설치(사용 가능한 경우): ```bash
 brew install --cask devtoys
 ```
 
@@ -160,9 +148,7 @@ unzip devtoys_linux_x64_portable.zip -d ~/devtoys
 
 ### DevToys CLI 설치
 
-CLI는 별도로 배포되며 헤드리스 환경과 CI 파이프라인에 유용하다:
-
-```bash
+CLI는 별도로 배포되며 헤드리스 환경과 CI 파이프라인에 유용하다: ```bash
 # Windows
 wget https://github.com/DevToys-app/DevToys/releases/download/v2.0.9.0/devtoys.cli_win_x64_portable.zip
 
@@ -173,18 +159,14 @@ wget https://github.com/DevToys-app/DevToys/releases/download/v2.0.9.0/devtoys.c
 wget https://github.com/DevToys-app/DevToys/releases/download/v2.0.9.0/devtoys.cli_linux_x64_portable.zip
 ```
 
-설치 후 CLI가 정상 작동하는지 확인한다:
-
-```bash
+설치 후 CLI가 정상 작동하는지 확인한다: ```bash
 devtoys --version
 # 출력: DevToys CLI 2.0.9.0
 ```
 
 ### 첫 실행 및 구성
 
-첫 실행 시 DevToys는 어두운 테마의 사이드바와 함께 열리며 30개 이상의 도구를 나열한다. **설정**을 열어 다음을 구성한다:
-
-```yaml
+첫 실행 시 DevToys는 어두운 테마의 사이드바와 함께 열리며 30개 이상의 도구를 나열한다. **설정**을 열어 다음을 구성한다: ```yaml
 # 프로덕션 워크플로우 권장 설정
 Smart Detection: Enabled      # 클립보드에서 도구 자동 추천
 Theme: System default        # 또는 강제 다크/라이트
@@ -197,9 +179,7 @@ Telemetry: Disabled          # DevToys는 기본적으로 원격 측정이 없�
 
 ### VS Code
 
-DevToys는 독립 실행형 앱으로 실행되지만 키바인딩을 통해 VS Code에서 직접 실행할 수 있다. `keybindings.json`에 다음을 추가한다:
-
-```json
+DevToys는 독립 실행형 앱으로 실행되지만 키바인딩을 통해 VS Code에서 직접 실행할 수 있다. `keybindings.json`에 다음을 추가한다: ```json
 [
   {
     "key": "ctrl+alt+d",
@@ -214,9 +194,7 @@ DevToys는 독립 실행형 앱으로 실행되지만 키바인딩을 통해 VS 
 
 ### PowerShell / 터미널
 
-DevToys는 명령줄 인수를 통해 개별 도구에 대한 딥 링크를 지원한다. 이는 스크립팅과 별칭에 유용하다:
-
-```powershell
+DevToys는 명령줄 인수를 통해 개별 도구에 대한 딥 링크를 지원한다. 이는 스크립팅과 별칭에 유용하다: ```powershell
 # 특정 도구를 직접 열기
 start devtoys:?tool=jsonformat     # JSON 포맷터
 start devtoys:?tool=jsonyaml       # JSON <> YAML 변환기
@@ -232,16 +210,11 @@ start devtoys:?tool=diff           # 텍스트 비교기
 
 ### CI/CD 파이프라인 (GitHub Actions)
 
-DevToys CLI는 CI 워크플로우에 깔끔하게 통합된다. 다음은 리포지토리에서 JSON 파일을 검증하는 GitHub Actions 예시이다:
-
-```yaml
+DevToys CLI는 CI 워크플로우에 깔끔하게 통합된다. 다음은 리포지토리에서 JSON 파일을 검증하는 GitHub Actions 예시이다: ```yaml
 name: Validate JSON
 on: [push, pull_request]
-jobs:
-  validate:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: validate: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       
       - name: Install DevToys CLI
         run: |
@@ -256,9 +229,7 @@ jobs:
 
 ### Docker (비공식)
 
-컨테이너화된 워크플로우를 위해 DevToys CLI를 가벼운 이미지로 래핑할 수 있다:
-
-```dockerfile
+컨테이너화된 워크플로우를 위해 DevToys CLI를 가벼운 이미지로 래핑할 수 있다: ```dockerfile
 FROM mcr.microsoft.com/dotnet/runtime:8.0
 
 RUN apt-get update && apt-get install -y wget unzip \
@@ -270,9 +241,7 @@ RUN apt-get update && apt-get install -y wget unzip \
 ENTRYPOINT ["/app/devtoys"]
 ```
 
-빌드 및 실행:
-
-```bash
+빌드 및 실행: ```bash
 docker build -t devtoys-cli .
 echo '{"key":"value"}' | docker run -i devtoys-cli json format
 ```
@@ -281,9 +250,7 @@ echo '{"key":"value"}' | docker run -i devtoys-cli json format
 
 ### 성능 벤치마크
 
-DevToys는 완전히 로컬 머신의 메모리에서 데이터를 처리한다. 다음은 표준 개발 노트북(AMD Ryzen 7, 16GB RAM)에서 측정된 성능 수치이다:
-
-| 작업 | 데이터 크기 | DevToys (데스크톱) | DevToys CLI | 온라인 대안 |
+DevToys는 완전히 로컬 머신의 메모리에서 데이터를 처리한다. 다음은 표준 개발 노트북(AMD Ryzen 7, 16GB RAM)에서 측정된 성능 수치이다: | 작업 | 데이터 크기 | DevToys (데스크톱) | DevToys CLI | 온라인 대안 |
 |------|-------------|---------------------|-------------|-------------|
 | JSON 포맷 | 1 MB | ~45 ms | ~38 ms | ~200-500 ms* |
 | JSON 포맷 | 10 MB | ~320 ms | ~280 ms | ~2-5 s* |
@@ -312,36 +279,28 @@ Kubernetes와 Docker Compose 사용자에게 JSON과 YAML 간 변환은 일일 �
 
 ### 폐쇄망 환경에서 실행하기
 
-DevToys는 완전히 오프라인으로 작동한다 — 핵심 도구에는 네트워크 연결이 전혀 필요하지 않다. 보안 정책이 엄격한 조직의 경우:
-
-1. 인터넷에 연결된 머신에서 GitHub 릴리스 페이지에서 포터블 ZIP을 다운로드한다
+DevToys는 완전히 오프라인으로 작동한다 — 핵심 도구에는 네트워크 연결이 전혀 필요하지 않다. 보안 정책이 엄격한 조직의 경우: 1. 인터넷에 연결된 머신에서 GitHub 릴리스 페이지에서 포터블 ZIP을 다운로드한다
 2. 승인된 미디어를 통해 폐쇄망으로 아카이브를 전송한다
 3. 추출하고 설치나 네트워크 의존성 없이 실행한다
 
 ### 스마트 감지 구성
 
-오탐을 피하기 위해 스마트 감지를 미세 조정한다:
-
-```yaml
+오탐을 피하기 위해 스마트 감지를 미세 조정한다: ```yaml
 # 설정 > 스마트 감지
 Behavior: "Always ask"        # 옵션: Auto-open, Always ask, Disabled
 Minimum confidence: 85%       # 감지 임계값 조정
-Excluded tools:               # 특정 도구의 감지 비활성화
+Excluded tools: # 특정 도구의 감지 비활성화
   - "Lorem Ipsum Generator"
   - "Password Generator"
 ```
 
 ### 확장 프로그램 개발
 
-DevToys SDK를 사용하여 커스텀 도구를 만든다. SDK NuGet 패키지를 설치한다:
-
-```bash
+DevToys SDK를 사용하여 커스텀 도구를 만든다. SDK NuGet 패키지를 설치한다: ```bash
 dotnet add package DevToys.Sdk --version 2.0.0
 ```
 
-최소 확장 프로그램은 `IGuiTool` 인터페이스를 구현한다:
-
-```csharp
+최소 확장 프로그램은 `IGuiTool` 인터페이스를 구현한다: ```csharp
 using DevToys.Api;
 using System.ComponentModel.Composition;
 
@@ -377,9 +336,7 @@ internal sealed class MyCustomTool : IGuiTool
 
 ### 팀에서 사용량 모니터링
 
-DevToys에는 기본 원격 측정 기능이 없지만, CLI를 로깅 스크립트로 래핑하여 팀이 가장 많이 사용하는 도구를 추적할 수 있다:
-
-```bash
+DevToys에는 기본 원격 측정 기능이 없지만, CLI를 로깅 스크립트로 래핑하여 팀이 가장 많이 사용하는 도구를 추적할 수 있다: ```bash
 #!/bin/bash
 # /usr/local/bin/devtoys-wrapped
 LOGFILE="/var/log/devtoys/usage.log"
@@ -419,9 +376,7 @@ echo "$(date '+%Y-%m-%d %H:%M:%S') | User: $(whoami) | Tool: $1 $2" >> "$LOGFILE
 
 ## 한계 / 정직한 평가
 
-DevToys는 모든 상황에 맞는 도구는 아니다. 다음은 잘하지 못하는 것들이다:
-
-**복잡한 데이터 파이프라인이 없다.** CyberChef의 "레시피" 시스템은 단일 워크플로우에서 작업을 연결할 수 있다(Base64 디코딩 → GZip 압축 해제 → JSON 파싱). DevToys는 도구 간 수동 복사/붙여넣기가 필요하다.
+DevToys는 모든 상황에 맞는 도구는 아니다. 다음은 잘하지 못하는 것들이다: **복잡한 데이터 파이프라인이 없다.** CyberChef의 "레시피" 시스템은 단일 워크플로우에서 작업을 연결할 수 있다(Base64 디코딩 → GZip 압축 해제 → JSON 파싱). DevToys는 도구 간 수동 복사/붙여넣기가 필요하다.
 
 **모바일 지원이 없다.** iOS나 Android 버전이 없다. 주로 태블릿에서 작업하는 개발자는 다른 도구를 찾아야 한다.
 
@@ -484,9 +439,7 @@ DevToys는 개발자 툴킷에서 진정한 공백을 메운다: 프라이버시
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -504,7 +457,6 @@ DevToys는 개발자 툴킷에서 진정한 공백을 메운다: 프라이버시
 - DevToys SDK NuGet: https://www.nuget.org/packages/DevToys.Sdk
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

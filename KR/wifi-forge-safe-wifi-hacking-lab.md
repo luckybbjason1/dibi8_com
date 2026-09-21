@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/wifi-forge-safe-wifi-hacking-lab" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/wifi-forge-safe-wifi-hacking-lab" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/wifi-forge-safe-wifi-hacking-lab" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/wifi-forge-safe-wifi-hacking-lab" />
 title: "WiFi-Forge — WiFi 해킹을 안전하고 합법적으로 배우는 샌드박스"
 description: "WiFi Forge: 보안 연구를 위한 안전한 WiFi 해킹 연구소. 통제된 환경에서 침투 테스트, 무선 보안 및 윤리적 해킹을 배우세요.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Python
+tech_stack: - Python
 application_domain: "Ai Tools"
 source_version: ""
 licensing_model: "Open Source"
@@ -24,10 +18,8 @@ maintainer: "blackhillsinfosec"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases:
-- /kr/posts/wifi-forge-safe-wifi-hacking-lab/
-faqs:
-  - q: 'WiFi-Forge란 무엇인가요?'
+aliases: - /kr/posts/wifi-forge-safe-wifi-hacking-lab/
+faqs: - q: 'WiFi-Forge란 무엇인가요?'
     a: 'WiFi-Forge는 Black Hills InfoSec에서 만든 오픈소스 프로젝트로, 무선 공격 기법을 안전하고 합법적으로 실습할 수 있는 샌드박스 환경을 제공합니다. 별도 하드웨어를 구매할 필요 없이 노트북에서 가상 실습 환경을 구동하며, 타인의 네트워크에 접촉할 위험도 전혀 없습니다.'
   - q: 'WiFi-Forge로 WiFi 해킹을 배우려면 전용 WiFi 어댑터가 필요한가요?'
     a: '아니요. WiFi-Forge는 소프트웨어로 액세스 포인트, 스테이션, 무선 채널을 에뮬레이션하기 때문에 monitor mode를 지원하는 USB 어댑터가 전혀 필요 없습니다. 물리적 RF 계층을 학습하고 싶을 때만 실제 카드가 필요하며, 그 부분은 이 시뮬레이션에서 다루지 않습니다.'
@@ -39,7 +31,6 @@ faqs:
     a: 'Linux(Ubuntu 또는 Debian 권장), Python 3, 그리고 root 권한이 필요합니다. mininet-wifi가 커널 기능을 사용하기 때문입니다. 저장소를 클론한 후 sudo ./install.sh를 실행해 의존성을 설치하고, sudo python3 wififorge.py로 시작하면 됩니다.'
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/wifi-forge-safe-wifi-hacking-lab/ -->
 # WiFi-Forge — WiFi 해킹을 안전하고 합법적으로 배우는 샌드박스
 
 {</* resource-info */>}
@@ -52,9 +43,7 @@ WiFi 공격을 전통적인 방식으로 배워본 적이 있다면, 흐름은 �
 
 ## 왜 필요한가 —— WiFi 학습의 세 가지 함정
 
-기존 WiFi 실습 학습이 사람을 떨어뜨리는 세 가지 이유:
-
-1. **하드웨어 복불복.** 모든 USB 어댑터가 모니터 + 인젝션을 깔끔하게 지원하지는 않습니다. 검증된 모델(Alfa AWUS036, Panda PAU09 등)은 30~60 달러이며, 한 번에 한 개만 사용할 수 있습니다.
+기존 WiFi 실습 학습이 사람을 떨어뜨리는 세 가지 이유: 1. **하드웨어 복불복.** 모든 USB 어댑터가 모니터 + 인젝션을 깔끔하게 지원하지는 않습니다. 검증된 모델(Alfa AWUS036, Panda PAU09 등)은 30~60 달러이며, 한 번에 한 개만 사용할 수 있습니다.
 2. **법적 회색지대.** 대부분 국가에서 본인 소유가 아닌 네트워크를 건드리는 것은 —— 단순히 패시브 스니핑조차 —— 모두 위법입니다. *"그냥 보기만 했다"* 는 변명이 되지 않습니다.
 3. **롤백 비용.** 실제 하드웨어는 한 번의 명령으로 초기화되지 않습니다. 망가진 설정을 `git checkout`으로 되돌릴 수 없습니다.
 
@@ -70,9 +59,7 @@ WiFi-Forge가 그 위에 더하는 것: 미리 만들어진 토폴로지, 바로
 
 ![WiFi-Forge 실행 화면](https://github.com/her3ticAVI/MiniNet-framework/raw/main/images/wififorge-running.png)
 
-번들된 랩은 일반적인 WiFi 공격 카테고리를 망라합니다:
-
-- **WPA/WPA2 핸드셰이크 캡처** —— 클라이언트를 deauth하고, 4-way handshake를 캡처하고, hashcat이나 aircrack-ng로 오프라인 크래킹
+번들된 랩은 일반적인 WiFi 공격 카테고리를 망라합니다: - **WPA/WPA2 핸드셰이크 캡처** —— 클라이언트를 deauth하고, 4-way handshake를 캡처하고, hashcat이나 aircrack-ng로 오프라인 크래킹
 - **WPS 공격** —— Reaver PIN 무차별 대입, Pixie-Dust 공격
 - **Evil-twin / Karma** —— 타깃 SSID를 흉내낸 악성 AP를 띄우고 클라이언트가 자동 연결되는 모습 관찰
 - **Deauth 플러드** —— 합법 AP에서 클라이언트를 떨어뜨리기
@@ -118,16 +105,13 @@ Linux(Ubuntu 또는 Debian 권장), Python 3, root 권한이 필요합니다(min
 
 ## 추천 도구
 
-오픈소스 AI 도구 개발/배포 시 권장:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
+오픈소스 AI 도구 개발/배포 시 권장: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
 - **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Anthropic Claude / OpenAI / DeepSeek API 프록시. 위의 AI 도구 대부분 (챗봇, 코드 생성, 번역, 검색 등) LLM API 키 필요 — 이 프록시로 안정적인 톱 모델 액세스, 공식 가격의 ~30%.
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -155,25 +139,20 @@ Linux(Ubuntu 또는 Debian 권장), Python 3, root 권한이 필요합니다(min
 
 ## Why This Matters
 
-Understanding wifi-forge — wifi 해킹을 안전하고 합법적으로 배우는 샌드박스 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding wifi-forge — wifi 해킹을 안전하고 합법적으로 배우는 샌드박스 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

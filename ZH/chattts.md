@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/chattts" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/chattts" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/chattts" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/chattts" />
 title: 'ChatTTS: 39.3K+ Stars — 对话式TTS基准对比 vs Coqui、MeloTTS 2026'
 description: 'ChatTTS (AGPL-3.0) 是专门用于对话场景的生成式语音模型。兼容 Coqui TTS、MeloTTS、GPT-SoVITS。涵盖安装设置、基准测试、生产部署和对比表格。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,12 +20,9 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [chattts, 文本转语音, 语音合成, 对话式ai, 大模型助手, 语音克隆, 开源, 基准测试]
-aliases:
-- /zh/posts/chattts/
-- /zh/resources/llm-frameworks/chattts-architecture-autoregressive-voice/
+aliases: - /zh/posts/chattts/
+- /zh/resources/llm-frameworks/chattts-architecture-autoregressive-voice/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/chattts/ -->
 
 {{</* resource-info */>}}
 
@@ -184,15 +176,13 @@ app = FastAPI()
 chat = ChatTTS.Chat()
 chat.load(compile=True)  # 生产环境启用torch.compile
 
-class TTSRequest(BaseModel):
-    model: str = "chattts"
+class TTSRequest(BaseModel): model: str = "chattts"
     input: str
     voice: str = "default"
     response_format: str = "mp3"
 
 @app.post("/v1/audio/speech")
-async def create_speech(request: TTSRequest):
-    params_infer_code = ChatTTS.Chat.InferCodeParams(
+async def create_speech(request: TTSRequest): params_infer_code = ChatTTS.Chat.InferCodeParams(
         temperature=0.3,
         top_P=0.7,
         top_K=20,
@@ -222,8 +212,7 @@ import torchaudio
 chat = ChatTTS.Chat()
 chat.load(compile=False)
 
-def tts_tool(text: str) -> str:
-    """生成语音并返回文件路径。"""
+def tts_tool(text: str) -> str: """生成语音并返回文件路径。"""
     wavs = chat.infer([text])
     filepath = "/tmp/response.wav"
     torchaudio.save(filepath, torch.from_numpy(wavs[0]).unsqueeze(0), 24000)
@@ -252,8 +241,7 @@ import torchaudio
 chat = ChatTTS.Chat()
 chat.load(compile=False)
 
-def generate_speech(text, temperature, top_p, top_k, oral_level, laugh_level, break_level):
-    params_refine_text = ChatTTS.Chat.RefineTextParams(
+def generate_speech(text, temperature, top_p, top_k, oral_level, laugh_level, break_level): params_refine_text = ChatTTS.Chat.RefineTextParams(
         prompt=f"[oral_{oral_level}][laugh_{laugh_level}][break_{break_level}]"
     )
     params_infer_code = ChatTTS.Chat.InferCodeParams(
@@ -295,13 +283,10 @@ import sounddevice as sd
 chat = ChatTTS.Chat()
 chat.load(compile=True)
 
-class StreamingTTS:
-    def __init__(self, chat_model):
-        self.chat = chat_model
+class StreamingTTS: def __init__(self, chat_model): self.chat = chat_model
         self.sample_rate = 24000
 
-    def stream_and_play(self, text: str):
-        """生成音频并逐块输出到扬声器。"""
+    def stream_and_play(self, text: str): """生成音频并逐块输出到扬声器。"""
         wavs = self.chat.infer([text])
         audio = wavs[0]
         sd.play(audio, self.sample_rate)
@@ -322,18 +307,13 @@ TTS_REQUESTS = Counter("chattts_requests_total", "TTS请求总数", ["status"])
 TTS_LATENCY = Histogram("chattts_inference_seconds", "推理延迟")
 
 @app.post("/v1/audio/speech")
-async def create_speech(request: TTSRequest):
-    with TTS_LATENCY.time():
-        try:
-            wavs = chat.infer([request.input])
+async def create_speech(request: TTSRequest): with TTS_LATENCY.time(): try: wavs = chat.infer([request.input])
             TTS_REQUESTS.labels(status="success").inc()
-        except Exception as e:
-            TTS_REQUESTS.labels(status="error").inc()
+        except Exception as e: TTS_REQUESTS.labels(status="error").inc()
             raise
 
 @app.get("/metrics")
-async def metrics():
-    return Response(generate_latest(), media_type="text/plain")
+async def metrics(): return Response(generate_latest(), media_type="text/plain")
 ```
 
 ## 基准测试 / 实际用例
@@ -343,7 +323,17 @@ async def metrics():
 以下基准在NVIDIA RTX 4090、CUDA 12.4、无模型量化、批次大小1的条件下测试。这些数字反映真实对话式语音合成部署场景。
 
 | 模型 | 显存占用(30s音频) | RTF (RTX 4090) | Token/秒 | CPU推理 |
-|------|------------------|----------------|----------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | ChatTTS v0.2.5 | 4 GB | 0.30 | ~7语义tok/s | 不推荐 |
 | Coqui XTTS v2 | 4 GB | 0.25 | ~10 tok/s | 不支持 |
 | MeloTTS | 2 GB | 0.08 | ~25 tok/s | 支持 |
@@ -358,7 +348,17 @@ async def metrics():
 6名参与者参与的盲听测试，使用混合中英文对话脚本（187词，5个情感段落）评估ChatTTS与竞品的对比表现。
 
 | 评估维度 | ChatTTS | Coqui XTTS v2 | MeloTTS | Bark |
-|----------|---------|---------------|---------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 自然停顿 | 5/6票 | 1/6票 | 2/6票 | 3/6票 |
 | 笑声质量 | 6/6票 | 0/6票 | 0/6票 | 2/6票 |
 | 呼吸声 | 6/6票 | 0/6票 | 0/6票 | 1/6票 |
@@ -378,9 +378,7 @@ import time
 chat = ChatTTS.Chat()
 chat.load(compile=True)
 
-class VoiceAssistant:
-    def synthesize_response(self, text: str) -> str:
-        start = time.time()
+class VoiceAssistant: def synthesize_response(self, text: str) -> str: start = time.time()
         params = ChatTTS.Chat.InferCodeParams(temperature=0.3, top_P=0.7)
         wavs = chat.infer([text], params_infer_code=params)
         filepath = "/tmp/response.wav"
@@ -417,8 +415,7 @@ dialogue = [
     ("对吧！[laugh] 我都不敢相信。", speaker_a),
 ]
 
-for i, (text, spk) in enumerate(dialogue):
-    params = ChatTTS.Chat.InferCodeParams(spk_emb=spk, temperature=0.3)
+for i, (text, spk) in enumerate(dialogue): params = ChatTTS.Chat.InferCodeParams(spk_emb=spk, temperature=0.3)
     wavs = chat.infer([text], params_infer_code=params)
     torchaudio.save(f"dialogue_{i}.wav", torch.from_numpy(wavs[0]).unsqueeze(0), 24000)
 ```
@@ -448,8 +445,7 @@ chat.load(compile=False)
 
 # 生成并缓存说话人嵌入
 speakers = {}
-for name in ["agent", "user", "narrator"]:
-    spk = chat.sample_random_speaker()
+for name in ["agent", "user", "narrator"]: spk = chat.sample_random_speaker()
     speakers[name] = spk
     torch.save(spk, f"speakers/{name}.pt")
 
@@ -470,8 +466,7 @@ chat = Chat()
 chat.load(compile=False)
 
 @torch.inference_mode()
-def infer_with_cleanup(texts, params):
-    with torch.cuda.amp.autocast():  # 混合精度
+def infer_with_cleanup(texts, params): with torch.cuda.amp.autocast(): # 混合精度
         wavs = chat.infer(texts, params_infer_code=params)
     torch.cuda.empty_cache()  # 释放GPU内存
     return wavs
@@ -487,22 +482,17 @@ import ChatTTS
 app = FastAPI()
 chat = ChatTTS.Chat()
 
-try:
-    chat.load(compile=False)
+try: chat.load(compile=False)
     MODEL_LOADED = True
-except Exception as e:
-    MODEL_LOADED = False
+except Exception as e: MODEL_LOADED = False
     print(f"模型加载失败: {e}")
 
 @app.get("/health")
-def health():
-    if not MODEL_LOADED:
-        raise HTTPException(status_code=503, detail="模型未加载")
+def health(): if not MODEL_LOADED: raise HTTPException(status_code=503, detail="模型未加载")
     return {"status": "healthy", "model": "chattts", "version": "0.2.5"}
 
 @app.get("/ready")
-def ready():
-    return {"status": "ready"}
+def ready(): return {"status": "ready"}
 ```
 
 ### Kubernetes 部署
@@ -511,37 +501,20 @@ def ready():
 # chattts-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
-metadata:
-  name: chattts-api
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: chattts
-  template:
-    metadata:
-      labels:
-        app: chattts
-    spec:
-      containers:
-      - name: chattts
+metadata: name: chattts-api
+spec: replicas: 2
+  selector: matchLabels: app: chattts
+  template: metadata: labels: app: chattts
+    spec: containers: - name: chattts
         image: chattts:0.2.5
-        resources:
-          limits:
-            nvidia.com/gpu: 1
+        resources: limits: nvidia.com/gpu: 1
             memory: "8Gi"
-          requests:
-            memory: "4Gi"
-        ports:
-        - containerPort: 8000
-        livenessProbe:
-          httpGet:
-            path: /health
+          requests: memory: "4Gi"
+        ports: - containerPort: 8000
+        livenessProbe: httpGet: path: /health
             port: 8000
           periodSeconds: 30
-        readinessProbe:
-          httpGet:
-            path: /ready
+        readinessProbe: httpGet: path: /ready
             port: 8000
           periodSeconds: 10
 ```
@@ -549,7 +522,17 @@ spec:
 ## 与替代品对比
 
 | 特性 | ChatTTS | Coqui TTS (XTTS v2) | MeloTTS | Bark (Suno) |
-|------|---------|---------------------|---------|-------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **GitHub星标** | 39.3k | 45.3k | 7.4k | 39.1k |
 | **许可证** | AGPL-3.0 | MPL-2.0 | MIT | MIT |
 | **最低显存** | 4 GB | 4 GB | 2 GB | 5 GB |
@@ -653,7 +636,6 @@ ChatTTS在开源TTS领域占据独特地位。其对话式设计、token级韵�
 - [2025开源AI模型综合对比](https://www.e-com-net.com/article/1936044193575137280.htm) — TTS模型全景概览
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -681,25 +663,20 @@ ChatTTS在开源TTS领域占据独特地位。其对话式设计、token级韵�
 
 ## Why This Matters
 
-Understanding chattts: 39.3k+ stars — 对话式tts基准对比 vs coqui、melotts 2026 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding chattts: 39.3k+ stars — 对话式tts基准对比 vs coqui、melotts 2026 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -720,13 +697,13 @@ ChatTTS: 39.3K+ Stars — 对话式TTS基准对比 vs Coqui、MeloTTS 2026 repre
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*
 
----
 
+---
 ## Related Articles
 
 - [2026-06-22-trending-ai-agents](chattts)

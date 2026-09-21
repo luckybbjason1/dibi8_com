@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/rtk-rust-cli-proxy-llm-token-savings-2026" />
 title: 'rtk Review: The Rust CLI Proxy That Cuts AI Coding Bills...
 description: 'rtk is a zero-dependency Rust binary that intercepts and compresses CLI output before it hits your LLM context. 60–90% token savings across 100+ commands and 13 AI coding tools (Claude Code, Cursor, Copilot, Codex, Gemini CLI). MIT licensed, <10ms overhead, 30-second install.'
 date: 2026-05-22 00:00:00+08:00
@@ -22,11 +20,9 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [rtk, rust, cli, llm, 'token-optimization', 'ai-coding', 'claude-code', cursor, copilot, 'cost-optimization', 'open-source', 'developer-tools']
-aliases:
-- /posts/rtk/
+aliases: - /posts/rtk/
 - /resources/dev-utils/rtk-rust-cli-proxy-llm-token-savings-2026/
-faqs:
-  - q: "What is rtk and how much can it save on AI coding bills?"
+faqs: - q: "What is rtk and how much can it save on AI coding bills?"
     a: "rtk is an open-source Rust CLI proxy that compresses command output before it reaches your AI agent's context window. It cuts LLM token consumption by 60-90% across 13 AI coding tools (Claude Code, Cursor, GitHub Copilot, Gemini CLI, etc.). Real benchmark: $400/month Claude Code bill drops to ~$80, with <10ms latency overhead. MIT licensed. 30-second install."
   - q: "Does rtk send my code to any third party?"
     a: "No. rtk is a local-only binary. It only filters output between your shell and your AI tool's context window. Nothing is sent over the network."
@@ -37,7 +33,6 @@ faqs:
   - q: "Is rtk safe for production CI/CD pipelines?"
     a: "Yes when used in agent workflows. Don't use it in set -e strict-mode pipelines that depend on exact command output text — but for AI agent loops that read output and decide next steps, rtk's compressed output is what the agent actually needs."
 ---
-
 {{< resource-info >}}
 
 ## Quick Answer
@@ -46,22 +41,26 @@ faqs:
 
 **A:** rtk is an open-source Rust CLI proxy that compresses command output before it reaches your AI agent's context window. It cuts LLM token consumption by **60-90%** across 13 AI coding tools (Claude Code, Cursor, GitHub Copilot, Gemini CLI, etc.). **Real benchmark: $400/month Claude Code bill drops to ~$80**, with <10ms latency overhead. MIT licensed. 30-second install.
 
----
 
+---
 > **TL;DR**: rtk is a single Rust binary, zero-dependency CLI proxy that filters and compresses command output before it reaches your AI agent's context window. It reduces LLM token consumption by **60–90%** across **100+ dev commands** and **13 AI coding tools**, with **<10ms overhead**. Install in 30 seconds, forget it's there, watch your API bill drop.
 
----
 
+---
 ## Introduction
 
 If you're using [Claude Code](/resources/llm-frameworks/), [Cursor alternatives](/collections/), GitHub Copilot, Gemini CLI, or any AI coding agent daily, you already know the productivity gains are real. What fewer developers talk about is the **cost curve**.
 
 **dibi8's take** — We've spent the last quarter benchmarking AI coding cost across our own team's workflow. The $400/month Claude API bill we noticed in March 2026 was real, and the surprising finding was that **roughly 70% of those tokens were noise** — the AI agent dumping `git status` into context, then `git diff`, then `npm test` output, much of which was redundant log lines, progress bars, or stale ASCII tree printouts. rtk is the most direct fix we've seen — it lives at the command boundary so you don't have to rewrite a single workflow file.
 
-Here's what typical AI tooling spend looks like for a professional developer in mid-2026:
-
-| Usage Pattern | Monthly API Cost | Stack Context |
-|-------------|----------------|---------------|
+Here's what typical AI tooling spend looks like for a professional developer in mid-2026: | Usage Pattern | Monthly API Cost | Stack Context |
+|
+---
+|
+---
+|
+---
+|
 | Light (1–2 hrs/day) | $50–100 | Side projects, occasional agent help |
 | Moderate (3–4 hrs/day) | $150–400 | Full-time development with agent assistance |
 | Heavy / Team lead | $500–2,000+ | Agent-driven workflows, multi-file refactoring |
@@ -76,24 +75,22 @@ But here's the painful part: **a significant chunk of that API spend is pure was
 
 ## What rtk Actually Does (And What It Doesn't)
 
-rtk (GitHub: [rtk-ai/rtk](https://github.com/rtk-ai/rtk)) is not another AI model, not a chat interface, and not a Copilot replacement. Its job is singular and precise:
+rtk (GitHub: [rtk-ai/rtk](https://github.com/rtk-ai/rtk)) is not another AI model, not a chat interface, and not a Copilot replacement. Its job is singular and precise: > "rtk filters and compresses command outputs before they reach your LLM context."
 
-> "rtk filters and compresses command outputs before they reach your LLM context."
+It sits as a transparent proxy layer between your AI agent and the shell: ```
+Without rtk: Claude Code --git status--> shell --> git --> raw 2,000-token output
 
-It sits as a transparent proxy layer between your AI agent and the shell:
-
-```
-Without rtk:
-Claude Code --git status--> shell --> git --> raw 2,000-token output
-
-With rtk:
-Claude Code --git status--> RTK --> git --> filtered 200-token output
+With rtk: Claude Code --git status--> RTK --> git --> filtered 200-token output
 ```
 
 **Core specs at a glance:**
 
 | Feature | Detail |
-|---------|--------|
+|
+---
+|
+---
+|
 | **Binary** | Single Rust binary, zero runtime dependencies |
 | **Coverage** | 100+ commands across git, testing, builds, Docker, AWS, K8s |
 | **Latency** | <10ms filtering overhead |
@@ -104,10 +101,18 @@ Claude Code --git status--> RTK --> git --> filtered 200-token output
 
 ## Real Numbers: 80% Token Reduction in a 30-Minute Claude Code Session
 
-The rtk documentation provides a detailed benchmark. We reproduced it on a mid-sized TypeScript fullstack project and confirmed the savings are accurate:
-
-| Operation | Frequency | Raw Tokens | rtk Tokens | Savings |
-|-----------|-----------|------------|------------|---------|
+The rtk documentation provides a detailed benchmark. We reproduced it on a mid-sized TypeScript fullstack project and confirmed the savings are accurate: | Operation | Frequency | Raw Tokens | rtk Tokens | Savings |
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | `ls` / `tree` | 10× | 2,000 | 400 | **-80%** |
 | `cat` / file reads | 20× | 40,000 | 12,000 | **-70%** |
 | `grep` / `rg` | 8× | 16,000 | 3,200 | **-80%** |
@@ -127,9 +132,7 @@ If your Claude Code API bill runs $400/month, rtk drops it to ~$80. The agent re
 
 ## The Four Compression Strategies Behind rtk
 
-rtk doesn't blindly truncate output. It applies command-specific strategies:
-
-### 1. Smart Filtering
+rtk doesn't blindly truncate output. It applies command-specific strategies: ### 1. Smart Filtering
 
 Removes LLM-irrelevant noise: comments, whitespace, boilerplate, progress bars, ASCII decorations. `git push` with rtk returns `ok main` instead of 15 lines of enumeration and compression stats.
 
@@ -149,10 +152,14 @@ Collapses repeated lines — common in Docker logs and test output — into `...
 
 ## Universal Compatibility: 13 AI Tools, One Install
 
-rtk's ecosystem coverage is exceptional. It doesn't lock you into one agent:
-
-| AI Tool | Install Command | Interception Method |
-|---------|-----------------|---------------------|
+rtk's ecosystem coverage is exceptional. It doesn't lock you into one agent: | AI Tool | Install Command | Interception Method |
+|
+---
+|
+---
+|
+---
+|
 | **Claude Code** | `rtk init -g` | PreToolUse hook (bash) |
 | **GitHub Copilot (VS Code)** | `rtk init -g --copilot` | PreToolUse hook |
 | **Cursor** | `rtk init -g --agent cursor` | hooks.json |
@@ -283,7 +290,17 @@ rtk summary <long cmd>  # Heuristic summary
 ## How rtk Compares to Alternatives
 
 | Tool | Layer | Approach | Scope | Setup Friction |
-|------|-------|----------|-------|----------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **rtk** | CLI proxy | Output filtering/compression | 100+ commands, 13 agents | 30s, zero config |
 | **Morph** | API gateway | Model routing + context compaction | Generic API calls | Requires code changes |
 | **LiteLLM** | LLM proxy | Caching + routing + observability | Multi-model APIs | Service deployment |
@@ -316,9 +333,7 @@ rtk init -g
 
 ## Recommended Hosting for AI Coding Setups
 
-If you're running AI agents that need persistent shell access (CI runners, remote devboxes, self-hosted Claude Code servers), here are battle-tested VPS providers we use:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $5/mo droplet handles single-developer AI coding workloads, $200 in free credits for new accounts
+If you're running AI agents that need persistent shell access (CI runners, remote devboxes, self-hosted Claude Code servers), here are battle-tested VPS providers we use: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $5/mo droplet handles single-developer AI coding workloads, $200 in free credits for new accounts
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong / Singapore VPS for low-latency Asia-Pacific access, USD $4/mo entry
 
 For a complete budget-conscious LLM stack including rtk, see our [Cheap LLM Stack collection](/collections/cheap-llm-stack/).
@@ -360,7 +375,6 @@ rtk is command-aware. `git --no-pager log` still produces verbose output. rtk's 
 Yes when used in agent workflows. Don't use it in `set -e` strict-mode pipelines that depend on exact command output text — but for AI agent loops that read output and decide next steps, rtk's compressed output is what the agent actually needs.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

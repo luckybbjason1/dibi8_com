@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/portkey-ai-gateway-production" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/portkey-ai-gateway-production" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/portkey-ai-gateway-production" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/portkey-ai-gateway-production" />
 title: 'Portkey AI Gateway 2026: 管理200+模型的LLM网关与可观测性 — 生产环境部署'
 description: ''. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['portkey ai gateway']
-aliases:
-- /zh/posts/portkey-ai-gateway-production/
+aliases: - /zh/posts/portkey-ai-gateway-production/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/portkey-ai-gateway-production/ -->
 
 {{</* resource-info */>}}
 
@@ -39,8 +31,8 @@ aliases:
 
 > **快速开始**：Portkey AI Gateway采用MIT许可证开源，拥有14,000+ GitHub星标。你可以选择自托管或使用托管云服务。准备好了吗？让我们开始吧。
 
----
 
+---
 ## 什么是Portkey AI Gateway？
 
 Portkey AI Gateway是一款开源AI网关，位于你的应用和LLM提供商之间。可以将其视为专为AI工作负载设计的智能反向代理。它统一了来自OpenAI、Anthropic、Google、Azure、Cohere、Mistral等20+提供商的200+模型的API接口，让你的代码只需要使用一种语言。
@@ -58,8 +50,8 @@ Portkey AI Gateway是一款开源AI网关，位于你的应用和LLM提供商之
 
 无论你是运行单个模型的初创公司，还是管理数十个提供商的企业，Portkey都能提供你所需的基础设施层来将AI应用投入生产。
 
----
 
+---
 ## 架构概述和部署选项
 
 Portkey AI Gateway提供两种部署模式：**云（托管）** 和 **自托管**。该架构围绕一个轻量级、高性能的网关服务器构建，该服务器拦截LLM请求，应用你配置的策略，并将其路由到相应的提供商。
@@ -87,17 +79,12 @@ docker run -p 8787:8787 -e PORTKEY_GATEWAY_API_KEY=your-gateway-key portkeyai/ga
 
 ```yaml
 version: '3.8'
-services:
-  portkey-gateway:
-    image: portkeyai/gateway:latest
-    ports:
-      - "8787:8787"
-    environment:
-      - PORTKEY_GATEWAY_API_KEY=${GATEWAY_API_KEY}
+services: portkey-gateway: image: portkeyai/gateway:latest
+    ports: - "8787:8787"
+    environment: - PORTKEY_GATEWAY_API_KEY=${GATEWAY_API_KEY}
       - CACHE_ENABLED=true
       - CACHE_TTL=3600
-    volumes:
-      - ./config:/app/config
+    volumes: - ./config:/app/config
     restart: unless-stopped
 ```
 
@@ -106,39 +93,22 @@ services:
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
-metadata:
-  name: portkey-gateway
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: portkey-gateway
-  template:
-    metadata:
-      labels:
-        app: portkey-gateway
-    spec:
-      containers:
-      - name: gateway
+metadata: name: portkey-gateway
+spec: replicas: 3
+  selector: matchLabels: app: portkey-gateway
+  template: metadata: labels: app: portkey-gateway
+    spec: containers: - name: gateway
         image: portkeyai/gateway:latest
-        ports:
-        - containerPort: 8787
-        env:
-        - name: PORTKEY_GATEWAY_API_KEY
-          valueFrom:
-            secretKeyRef:
-              name: portkey-secrets
+        ports: - containerPort: 8787
+        env: - name: PORTKEY_GATEWAY_API_KEY
+          valueFrom: secretKeyRef: name: portkey-secrets
               key: gateway-api-key
 ---
 apiVersion: v1
 kind: Service
-metadata:
-  name: portkey-gateway-service
-spec:
-  selector:
-    app: portkey-gateway
-  ports:
-  - port: 80
+metadata: name: portkey-gateway-service
+spec: selector: app: portkey-gateway
+  ports: - port: 80
     targetPort: 8787
   type: ClusterIP
 ```
@@ -156,29 +126,23 @@ spec:
 创建 `providers.yaml` 配置文件：
 
 ```yaml
-providers:
-  openai-primary:
-    type: openai
+providers: openai-primary: type: openai
     api_key: ${OPENAI_API_KEY}
     organization: ${OPENAI_ORG_ID}
     
-  anthropic-primary:
-    type: anthropic
+  anthropic-primary: type: anthropic
     api_key: ${ANTHROPIC_API_KEY}
     
-  azure-gpt4:
-    type: azure-openai
+  azure-gpt4: type: azure-openai
     api_key: ${AZURE_API_KEY}
     resource_name: ${AZURE_RESOURCE_NAME}
     deployment_id: gpt-4
     api_version: 2025-12-01
     
-  google-gemini:
-    type: google
+  google-gemini: type: google
     api_key: ${GOOGLE_API_KEY}
     
-  mistral-local:
-    type: mistral
+  mistral-local: type: mistral
     api_key: ${MISTRAL_API_KEY}
     base_url: http://mistral-service:8000/v1
 ```
@@ -272,9 +236,7 @@ stream = portkey.chat.completions.create(
     stream=True
 )
 
-for chunk in stream:
-    if chunk.choices[0].delta.content:
-        print(chunk.choices[0].delta.content, end="")
+for chunk in stream: if chunk.choices[0].delta.content: print(chunk.choices[0].delta.content, end="")
 ```
 
 ---
@@ -289,11 +251,8 @@ for chunk in stream:
 
 ```yaml
 # config/load-balance.yaml
-strategies:
-  gpt4-pool:
-    type: load_balance
-    providers:
-      - provider: openai-primary
+strategies: gpt4-pool: type: load_balance
+    providers: - provider: openai-primary
         weight: 1
       - provider: azure-gpt4
         weight: 1
@@ -315,11 +274,8 @@ response = portkey.chat.completions.create(
 定义自动故障切换的链路：
 
 ```yaml
-strategies:
-  production-fallback:
-    type: fallback
-    targets:
-      - provider: azure-gpt4
+strategies: production-fallback: type: fallback
+    targets: - provider: azure-gpt4
         timeout: 10
         retry: 2
       - provider: openai-primary
@@ -349,21 +305,15 @@ curl -X POST http://localhost:8787/v1/chat/completions \
 根据内容、用户或其他请求属性路由请求：
 
 ```yaml
-strategies:
-  smart-router:
-    type: conditional
-    rules:
-      - condition: "request.messages[0].content.length > 4000"
-        target: 
-          provider: anthropic-primary
+strategies: smart-router: type: conditional
+    rules: - condition: "request.messages[0].content.length > 4000"
+        target: provider: anthropic-primary
           model: claude-sonnet-4  # 更好的长上下文处理
       - condition: "request.user == 'code-assistant'"
-        target:
-          provider: openai-primary
+        target: provider: openai-primary
           model: gpt-4o
       - condition: "default"
-        target:
-          provider: azure-gpt4
+        target: provider: azure-gpt4
           model: gpt-4o-mini
 ```
 
@@ -376,8 +326,7 @@ LLM API调用既昂贵又缓慢。Portkey的语义缓存存储响应并为类似
 ### 启用缓存
 
 ```yaml
-cache:
-  enabled: true
+cache: enabled: true
   mode: semantic  # 或 "exact" 用于精确匹配缓存
   ttl: 3600       # 缓存生存时间（秒）
   max_size: 10000 # 最大缓存条目数
@@ -468,23 +417,18 @@ curl "http://localhost:8787/v1/admin/analytics/spend?start_date=2026-05-01&end_d
 ### 预算告警
 
 ```yaml
-alerts:
-  daily-budget:
-    type: budget
+alerts: daily-budget: type: budget
     threshold: 500  # 美元
     period: daily
-    channels:
-      - type: webhook
+    channels: - type: webhook
         url: https://hooks.slack.com/services/YOUR/WEBHOOK/URL
       - type: email
         address: team@company.com
   
-  abnormal-spike:
-    type: anomaly
+  abnormal-spike: type: anomaly
     baseline_multiplier: 3
     window: 1h
-    channels:
-      - type: pagerduty
+    channels: - type: pagerduty
         integration_key: your-pd-key
 ```
 
@@ -553,9 +497,7 @@ Portkey的安全防护系统允许你在请求和响应上强制执行内容策�
 ### 配置安全防护
 
 ```yaml
-guardrails:
-  input-validation:
-    - type: keyword_filter
+guardrails: input-validation: - type: keyword_filter
       blocklist: ["password", "ssn", "credit_card", "secret_key"]
       action: block
     - type: pii_detector
@@ -565,13 +507,11 @@ guardrails:
       threshold: 0.8
       action: block
       
-  output-validation:
-    - type: content_policy
+  output-validation: - type: content_policy
       categories: ["hate", "violence", "self-harm"]
       action: block
     - type: response_format
-      required_schema:
-        type: json_object
+      required_schema: type: json_object
       action: retry
 ```
 
@@ -592,15 +532,11 @@ import json
 
 portkey = Portkey(api_key="your-gateway-api-key")
 
-def custom_validator(request, response):
-    """自定义业务逻辑验证。"""
-    try:
-        data = json.loads(response.choices[0].message.content)
-        if "confidence" not in data or data["confidence"] < 0.7:
-            return False, "置信度分数太低"
+def custom_validator(request, response): """自定义业务逻辑验证。"""
+    try: data = json.loads(response.choices[0].message.content)
+        if "confidence" not in data or data["confidence"] < 0.7: return False, "置信度分数太低"
         return True, None
-    except json.JSONDecodeError:
-        return False, "响应必须是有效的JSON"
+    except json.JSONDecodeError: return False, "响应必须是有效的JSON"
 
 portkey.guardrails.register("confidence-check", custom_validator)
 ```
@@ -635,13 +571,10 @@ response = portkey.chat.completions.create(
 ### OpenTelemetry集成
 
 ```yaml
-observability:
-  tracing:
-    enabled: true
+observability: tracing: enabled: true
     exporter: otlp
     endpoint: http://jaeger-collector:4317
-  metrics:
-    enabled: true
+  metrics: enabled: true
     exporter: prometheus
     port: 9090
 ```
@@ -711,48 +644,38 @@ curl http://localhost:8787/metrics
 ```yaml
 # 使用Redis缓存和PostgreSQL日志的生产级docker-compose
 version: '3.8'
-services:
-  gateway:
-    image: portkeyai/gateway:latest
-    ports:
-      - "8787:8787"
-    environment:
-      - PORTKEY_GATEWAY_API_KEY=${GATEWAY_API_KEY}
+services: gateway: image: portkeyai/gateway:latest
+    ports: - "8787:8787"
+    environment: - PORTKEY_GATEWAY_API_KEY=${GATEWAY_API_KEY}
       - REDIS_URL=redis://redis:6379
       - DATABASE_URL=postgres://user:pass@postgres:5432/portkey
-    depends_on:
-      - redis
+    depends_on: - redis
       - postgres
-    deploy:
-      replicas: 3
-      resources:
-        limits:
-          memory: 2G
+    deploy: replicas: 3
+      resources: limits: memory: 2G
           cpus: '1.0'
   
-  redis:
-    image: redis:7-alpine
-    volumes:
-      - redis-data:/data
+  redis: image: redis:7-alpine
+    volumes: - redis-data:/data
   
-  postgres:
-    image: postgres:16-alpine
-    environment:
-      POSTGRES_DB: portkey
+  postgres: image: postgres:16-alpine
+    environment: POSTGRES_DB: portkey
       POSTGRES_USER: user
       POSTGRES_PASSWORD: ${DB_PASSWORD}
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
+    volumes: - postgres-data:/var/lib/postgresql/data
 
-volumes:
-  redis-data:
-  postgres-data:
-```
+volumes: redis-data: postgres-data: ```
 
 ### 安全清单
 
 | 项目 | 状态 | 备注 |
-|------|------|------|
+|
+---
+|
+---
+|
+---
+|
 | API密钥轮换 | 必需 | 每月轮换网关密钥 |
 | TLS终止 | 必需 | 使用反向代理或负载均衡器 |
 | 速率限制 | 必需 | 配置每用户和每IP限制 |
@@ -772,16 +695,12 @@ curl http://localhost:8787/health
 
 ```yaml
 # Kubernetes存活和就绪探针
-livenessProbe:
-  httpGet:
-    path: /health
+livenessProbe: httpGet: path: /health
     port: 8787
   initialDelaySeconds: 10
   periodSeconds: 15
 
-readinessProbe:
-  httpGet:
-    path: /ready
+readinessProbe: httpGet: path: /ready
     port: 8787
   initialDelaySeconds: 5
   periodSeconds: 5
@@ -853,7 +772,6 @@ Portkey AI Gateway将管理多个LLM提供商的复杂性转化为一个已解�
 *发布日期：2026-05-19 | Portkey AI Gateway v2.5.0 | [GitHub: Portkey-AI/gateway](https://github.com/Portkey-AI/gateway)*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -881,25 +799,20 @@ Portkey AI Gateway将管理多个LLM提供商的复杂性转化为一个已解�
 
 ## Why This Matters
 
-Understanding portkey ai gateway 2026: 管理200+模型的llm网关与可观测性 — 生产环境部署 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding portkey ai gateway 2026: 管理200+模型的llm网关与可观测性 — 生产环境部署 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/bat" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/bat" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/bat" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/bat" />
 title: 'bat: Bản sao cat với Syntax Highlighting 58K+ Stars — So...
 description: 'bat là bản sao cat(1) với syntax highlighting và tích hợp Git. Tương thích với Rust, Git, Homebrew, Cargo. Hướng dẫn cài đặt, benchmark hiệu năng, file cấu hình và so sánh với cat, less, ccat.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [bat, 'thay thế cat', 'syntax highlighting', 'công cụ cli', rust, terminal, 'trình xem file', 'dòng lệnh']
-aliases:
-- /vi/posts/bat/
+aliases: - /vi/posts/bat/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/bat/ -->
 
 {{</* resource-info */>}}
 
@@ -57,9 +49,7 @@ Lệnh `cat` đã là công cụ xem file mặc định trên các hệ thống 
               Phân tích shebang      Đánh dấu diff Git
 ```
 
-Các khái niệm cốt lõi mọi ngườ dùng cần biết:
-
-- **Tự động phát hiện ngôn ngữ**: `bat` xác định cú pháp từ phần mở rộng file (`.rs`, `.py`, `.md`) hoặc dòng shebang (`#!/bin/bash`).
+Các khái niệm cốt lõi mọi ngườ dùng cần biết: - **Tự động phát hiện ngôn ngữ**: `bat` xác định cú pháp từ phần mở rộng file (`.rs`, `.py`, `.md`) hoặc dòng shebang (`#!/bin/bash`).
 - **Engine Syntect**: Cùng định nghĩa grammar TextMate/Sublime Text điều khiển highlighting, nên độ chính xác ngang với editor hiện đại.
 - **Ủy quyền pager**: Mặc định, `bat` pipe qua `less` khi output vượt một màn hình. Trong ngữ cảnh non-interactive (pipe sang process khác), nó hoạt động giống hệt `cat`.
 - **Tích hợp Git**: File trong repository Git hiển thị thanh đánh dấu modification ở lề —— xanh lá cho dòng thêm, vàng cho dòng sửa.
@@ -85,8 +75,7 @@ bat --version
 sudo apt install bat
 
 # Trên một số hệ thống Debian/Ubuntu, binary tên là batcat để tránh xung đột
-# Tạo alias nếu cần:
-mkdir -p ~/.local/bin
+# Tạo alias nếu cần: mkdir -p ~/.local/bin
 ln -s /usr/bin/batcat ~/.local/bin/bat
 ```
 
@@ -127,9 +116,7 @@ sudo cp target/release/bat /usr/local/bin/
 
 ### Cấu hình sau cài đặt
 
-Tạo thư mục config và file cấu hình:
-
-```bash
+Tạo thư mục config và file cấu hình: ```bash
 # Tạo thư mục cấu hình
 mkdir -p "$(bat --config-dir)"
 
@@ -138,9 +125,7 @@ bat --config-file
 # Hiển thị đường dẫn, ví dụ: ~/.config/bat/config
 ```
 
-Chỉnh sửa file cấu hình:
-
-```bash
+Chỉnh sửa file cấu hình: ```bash
 # ~/.config/bat/config
 --theme="TwoDark"
 --style="numbers,changes,header"
@@ -152,9 +137,7 @@ Chỉnh sửa file cấu hình:
 
 ### Git — Lịch sử file có màu
 
-Xem file ở bất kỳ Git revision nào với syntax highlighting đầy đủ:
-
-```bash
+Xem file ở bất kỳ Git revision nào với syntax highlighting đầy đủ: ```bash
 # Xem file ở tag cụ thể
 git show v0.26.1:src/main.rs | bat -l rs
 
@@ -167,9 +150,7 @@ git diff --cached | bat -l diff
 ![Tích hợp fzf với bat hiển thị panel preview file với syntax highlighting và số dòng](https://raw.githubusercontent.com/sharkdp/bat/master/doc/screenshot.png)
 *fzf file picker sử dụng bat làm preview engine cho file preview có syntax highlighting.*
 
-`bat` tích hợp sạch sẽ với `fzf` như một preview engine:
-
-```bash
+`bat` tích hợp sạch sẽ với `fzf` như một preview engine: ```bash
 # Dùng bat làm fzf previewer
 fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'
 
@@ -177,18 +158,14 @@ fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'
 fzf --preview 'bat --color=always {}' --preview-window=right:60%:wrap
 ```
 
-Thêm vào `.bashrc` hoặc `.zshrc`:
-
-```bash
+Thêm vào `.bashrc` hoặc `.zshrc`: ```bash
 # ~/.bashrc
 export FZF_DEFAULT_OPTS="--preview 'bat --color=always --style=numbers --line-range=:500 {}'"
 ```
 
 ### man — Trang manual có syntax highlighting
 
-Đặt `bat` làm man pager:
-
-```bash
+Đặt `bat` làm man pager: ```bash
 # ~/.bashrc hoặc ~/.zshrc
 export MANPAGER="bat -plman"
 
@@ -199,9 +176,7 @@ man bash
 
 ### Shell Alias — Thay thế cat
 
-Hầu hết ngườ dùng alias `cat` thành `bat` cho session tương tác:
-
-```bash
+Hầu hết ngườ dùng alias `cat` thành `bat` cho session tương tác: ```bash
 # ~/.bashrc hoặc .zshrc
 alias cat='bat --paging=never'
 
@@ -209,9 +184,7 @@ alias cat='bat --paging=never'
 alias b=bat
 ```
 
-Với ngườ dùng zsh, global alias có thể tô màu output `--help`:
-
-```bash
+Với ngườ dùng zsh, global alias có thể tô màu output `--help`: ```bash
 # ~/.zshrc
 alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 ```
@@ -225,9 +198,7 @@ tmux split-window -h "bat src/main.rs"
 
 ### delta — Git Diff nâng cao
 
-Trong khi `bat` xử lý việc xem file, `delta` (cùng hệ sinh thái Rust CLI) xử lý việc xem diff. Ghép cặp chúng:
-
-```bash
+Trong khi `bat` xử lý việc xem file, `delta` (cùng hệ sinh thái Rust CLI) xử lý việc xem diff. Ghép cặp chúng: ```bash
 # ~/.gitconfig
 [pager]
     diff = delta
@@ -256,9 +227,7 @@ Trong khi `bat` xử lý việc xem file, `delta` (cùng hệ sinh thái Rust CL
 
 ### Chế độ Pipe Non-Interactive
 
-Khi `bat` phát hiện terminal non-interactive (output piped), nó tự động chuyển sang chế độ plain —— khớp hành vi `cat`:
-
-```bash
+Khi `bat` phát hiện terminal non-interactive (output piped), nó tự động chuyển sang chế độ plain —— khớp hành vi `cat`: ```bash
 # bat tự động chuyển sang chế độ plain ở đây
 cat large_file.txt | wc -l
 bat large_file.txt | wc -l
@@ -277,9 +246,7 @@ bat large_file.txt | wc -l
 
 ### Theme tùy chỉnh
 
-`bat` đi kèm 20+ theme built-in. Liệt kê và preview:
-
-```bash
+`bat` đi kèm 20+ theme built-in. Liệt kê và preview: ```bash
 # Liệt kê tất cả theme
 bat --list-themes
 
@@ -292,9 +259,7 @@ echo '--theme="Dracula"' >> "$(bat --config-file)"
 
 ### Định nghĩa Syntax tùy chỉnh
 
-Thêm file Sublime Text `.sublime-syntax` cho ngôn ngữ `bat` chưa hỗ trợ:
-
-```bash
+Thêm file Sublime Text `.sublime-syntax` cho ngôn ngữ `bat` chưa hỗ trợ: ```bash
 # Tạo thư mục syntax
 mkdir -p "$(bat --config-dir)/syntaxes"
 
@@ -309,17 +274,13 @@ bat cache --build
 bat --list-languages | grep -i purescript
 ```
 
-Để reset về mặc định:
-
-```bash
+Để reset về mặc định: ```bash
 bat cache --clear
 ```
 
 ### Tắt tính năng để tăng tốc
 
-Khi xử lý hàng nghìn file trong script, giảm overhead:
-
-```bash
+Khi xử lý hàng nghìn file trong script, giảm overhead: ```bash
 # Lờ gọi bat nhanh nhất cho xử lý hàng loạt
 bat --no-config --style=plain --paging=never --no-custom-assets file.txt
 ```
@@ -426,9 +387,7 @@ Có. Cài đặt qua `scoop install bat`, `choco install bat`, hoặc tải bina
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -444,7 +403,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [So sánh với Alternatives](https://github.com/sharkdp/bat#project-goals-and-alternatives) —— So sánh chính thức từ maintainers của bat.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

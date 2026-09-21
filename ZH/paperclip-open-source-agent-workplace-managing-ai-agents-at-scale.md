@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale" />
 title: 'paperclip: 69,700 星标开源代理工作场所 — 规模化 AI 代理管理 — 2026 实战指南'
 description: 'paperclip（69,700 GitHub 星标）是开源的 AI 代理工作场所应用。协调多个代理、管理任务、部署自托管代理工作流。包含安装教程、架构分析和真实基准测试。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-08
-lastmod:  2026-06-08slug: 'paperclip-open-source-agent-workplace-managing-ai-agents-at-scale'
+lastmod: 2026-06-08
+slug: 'paperclip-open-source-agent-workplace-managing-ai-agents-at-scale'
 category: 'llm-frameworks'
 tags: ['AI 代理管理', '多代理协调', 'paperclip', '开源代理', '代理工作流', '自托管代理', 'AI 代理工作场所', '代理编排']
 github_repo: 'https://github.com/paperclipai/paperclip'
@@ -15,10 +11,7 @@ stars: 69700
 maintainer: 'paperclipai'
 license: MIT
 featureImage: 'https://raw.githubusercontent.com/paperclipai/paperclip/master/doc/screenshots/main.png'
-lang: zh
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale/ -->
 
 # paperclip: 69,700 星标开源代理工作场所 — 规模化 AI 代理管理 — 2026 实战指南
 
@@ -156,21 +149,16 @@ paperclip 附带预配置的代理模板：
 
 ```yaml
 # 常见代理角色的模板
-templates:
-  coder:
-    model: claude-sonnet-4-20250514
+templates: coder: model: claude-sonnet-4-20250514
     system_prompt: "编写干净、经过测试的代码。使用类型提示。"
     tools: [fs, terminal, git]
-  reviewer:
-    model: claude-sonnet-4-20250514
+  reviewer: model: claude-sonnet-4-20250514
     system_prompt: "审查代码中的 bug、安全问题和风格违规。"
     tools: [fs, diff]
-  researcher:
-    model: claude-opus-4-20250514
+  researcher: model: claude-opus-4-20250514
     system_prompt: "深入研究主题。引用来源。"
     tools: [web_search, file_read]
-  deployer:
-    model: claude-haiku-4-20250514
+  deployer: model: claude-haiku-4-20250514
     system_prompt: "编写部署脚本和基础设施代码。"
     tools: [fs, terminal]
 ```
@@ -201,7 +189,15 @@ paperclip agent test my-codex
 在 10K 行 Python 重构任务的受控测试中：
 
 | 方法 | 时间 | 成功率 | 代码质量得分 |
-|------|------|--------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 单代理（Claude） | 23 分钟 | 78% | 7.2/10 |
 | paperclip 3 代理管线 | 18 分钟 | 96% | 9.1/10 |
 | paperclip 5 代理管线 | 15 分钟 | 98% | 9.4/10 |
@@ -209,7 +205,15 @@ paperclip agent test my-codex
 ### Token 使用基准
 
 | 代理数 | 日 Token（百万） | API 成本（美元） | 效率 |
-|--------|----------------|-----------------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 1 代理 | 2.1M | $0.42 | 基准 |
 | 3 代理 | 3.8M | $0.76 | 每个 token 任务完成率高 22% |
 | 5 代理 | 5.2M | $1.04 | 每个 token 任务完成率高 31% |
@@ -257,10 +261,8 @@ paperclip agent configure reviewer \
 
 ```yaml
 # workflows/code-review.yaml
-workflow:
-  name: "full-code-review"
-  steps:
-    - agent: linter
+workflow: name: "full-code-review"
+  steps: - agent: linter
       task: "对更改的文件运行 linting"
       output: "lint_results"
     - agent: security
@@ -312,7 +314,17 @@ paperclip team assign data-science --agents researcher-1 coder-3
 ## Comparison with Alternatives
 
 | 功能 | paperclip | CrewAI | AutoGen | OpenAI Agents SDK |
-|------|-----------|--------|---------|-------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Web UI | 功能完整的仪表板 | 仅 CLI | 仅 CLI | 仅代码 |
 | 多代理任务 | 看板风格 | 顺序/并行 | 基于对话 | 基于护栏 |
 | 自托管 | 是（Docker/K8s） | 是 | 是 | 是 |
@@ -379,7 +391,6 @@ paperclip 解决了一个大多数开发者在规模上遇到的真实问题：�
 上方部分链接含联盟推广。如通过链接注册，dibi8.com 可能获得佣金，不影响你的成本。这帮助 dibi8 持续免费运营。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -407,25 +418,20 @@ paperclip 解决了一个大多数开发者在规模上遇到的真实问题：�
 
 ## Why This Matters
 
-Understanding paperclip: 69,700 星标开源代理工作场所 — 规模化 ai 代理管理 — 2026 实战指南 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding paperclip: 69,700 星标开源代理工作场所 — 规模化 ai 代理管理 — 2026 实战指南 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -446,13 +452,13 @@ paperclip: 69,700 星标开源代理工作场所 — 规模化 AI 代理管理 �
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
 
+---
 ## Related Articles
 
 - [12-factor-agents](paperclip-open-source-agent-workplace-managing-ai-agents-at-scale)
@@ -491,7 +497,17 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

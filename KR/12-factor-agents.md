@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/12-factor-agents" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/12-factor-agents" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/12-factor-agents" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/12-factor-agents" />
 title: "12-Factor Agents: 신뢰할 수 있는 LLM 애플리케이션 빌드를 위한 원칙 기반 프레임워크"
 description: "12-Factor Agents 프레임워크는 검증된 12-Factor App 방법을 LLM 기반 애플리케이션에 맞게 조정하여, 신뢰할 수 있고 확장 가능하며 관찰 가능한 AI 에이전트를 빌드하기 위한 원칙적인 접근 방식을 제공합니다."
 date: 2026-06-10
-lastmod:  2026-06-10slug: 12-factor-agents
+lastmod: 2026-06-10
+slug: 12-factor-agents
 category: llm-frameworks
 tags: [12-factor-agents, LLM, AI agents, observability, reliability, human-layer, framework]
 github_repo: https://github.com/humanlayer/12-factor-agents
@@ -17,8 +13,6 @@ license: Apache-2.0
 featureImage: https://raw.githubusercontent.com/humanlayer/12-factor-agents/main/docs/assets/12factor-agents-banner.png
 lang: ko
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/12-factor-agents/ -->
 
 ## 소개
 
@@ -137,9 +131,7 @@ npx create-12-factor-agent admin:export-audit-log --since 2026-01-01 --format cs
 
 12-Factor Agents 프레임워크는 CLI 도구와 아키텍처 관념의 조합으로 동작합니다. 주요 진입점은 `create-12-factor-agent` CLI로, 권장 디렉토리 구조, 구성 관리 및 관찰 가능성 hook을 사용하여 프로젝트를 scaffold합니다.
 
-일반적인 작업 흐름은 다음과 같습니다:
-
-```bash
+일반적인 작업 흐름은 다음과 같습니다: ```bash
 # 1단계: 새 에이전트 프로젝트 scaffold
 npx create-12-factor-agent finance-bot
 
@@ -147,8 +139,7 @@ npx create-12-factor-agent finance-bot
 cd finance-bot
 
 # 3단계: 생성된 구조 검토
-# scaffold 포함:
-# - config/        (환경 기반 구성)
+# scaffold 포함: # - config/        (환경 기반 구성)
 # - prompts/       (버전 관리된 프롬프트 템플릿)
 # - tools/         (도구 정의 및 구현)
 # - services/      (백킹 서비스 통합)
@@ -162,9 +153,7 @@ cd finance-bot
 
 ## 설치 및 설정
 
-원칙 기반 프레임워크로서, 12-Factor Agents는 전통적인 `pip install` 또는 `npm install`이 필요하지 않습니다. 대신 두 가지 CLI 도구 중 하나를 사용하여 프로젝트 scaffold를 생성합니다:
-
-```bash
+원칙 기반 프레임워크로서, 12-Factor Agents는 전통적인 `pip install` 또는 `npm install`이 필요하지 않습니다. 대신 두 가지 CLI 도구 중 하나를 사용하여 프로젝트 scaffold를 생성합니다: ```bash
 # 방법 1: npx 사용(Node.js)
 npx create-12-factor-agent
 
@@ -182,9 +171,7 @@ pip install uv
 uvx create-12-factor-agent --name my-agent --template production
 ```
 
-scaffold 없이 처음부터 시작하고 싶은 팀을 위해, 프레임워크 문서는 프로덕션 등급 에이전트 구현에 필요한 모든 것이 무엇인지에 대한 완전한 체크리스트를 제공합니다:
-
-```bash
+scaffold 없이 처음부터 시작하고 싶은 팀을 위해, 프레임워크 문서는 프로덕션 등급 에이전트 구현에 필요한 모든 것이 무엇인지에 대한 완전한 체크리스트를 제공합니다: ```bash
 # 체크리스트 검증 스크립트
 # 에이전트가 12-팩터 원칙을 따르는지 확인
 cat > verify-12factor.sh << 'EOF'
@@ -219,9 +206,7 @@ npx create-12-factor-agent run --enable-hil
 
 ### 관찰 가능성 통합
 
-모든 에이전트 프로세스는 구조화된 로그, 메트릭 및 trace를 emission합니다. 프레임워크는 표준 관찰 가능성 백엔드와 통합됩니다:
-
-```bash
+모든 에이전트 프로세스는 구조화된 로그, 메트릭 및 trace를 emission합니다. 프레임워크는 표준 관찰 가능성 백엔드와 통합됩니다: ```bash
 # 분산 트레이싱을 위한 OpenTelemetry 구성
 export OTEL_SERVICE_NAME="finance-bot"
 export OTEL_EXPORTER_OTLP_ENDPOINT="http://jaeger:4317"
@@ -238,11 +223,9 @@ npx create-12-factor-agent run --telemetry enabled
 ```bash
 # 다중 에이전트 구성 정의
 cat > agents.yaml << 'EOF'
-supervisor:
-  model: gpt-4o
+supervisor: model: gpt-4o
   tools: [delegate, synthesize]
-workers:
-  - name: research
+workers: - name: research
     model: claude-sonnet-4-20250514
     tools: [web_search, read_file]
   - name: analyst
@@ -257,9 +240,7 @@ EOF
 
 ### 프로덕션 안정성 개선
 
-12-팩터 원칙을 채택한 팀은 측정 가능한 개선을 보고했습니다:
-
-| 지표 | 12-팩터 이전 | 12-팩터 이후 | 개선 |
+12-팩터 원칙을 채택한 팀은 측정 가능한 개선을 보고했습니다: | 지표 | 12-팩터 이전 | 12-팩터 이후 | 개선 |
 |------|-------------|-------------|------|
 | 평균 복구 시간(MTTR) | 4.2시간 | 47분 | 81% 감소 |
 | 에이전트 실패율 | 18.5% | 3.2% | 83% 감소 |
@@ -275,9 +256,7 @@ EOF
 
 ### 사용자 정의 도구 레지스트리
 
-12-Factor Agents는 에이전트 코드와 별도로 버전을 지정, 테스트 및 배포할 수 있는 사용자 정의 도구 레지스트리를 지원합니다:
-
-```bash
+12-Factor Agents는 에이전트 코드와 별도로 버전을 지정, 테스트 및 배포할 수 있는 사용자 정의 도구 레지스트리를 지원합니다: ```bash
 # 사용자 정의 도구 등록
 npx create-12-factor-agent tools:register \
   --source ./tools/custom \
@@ -291,9 +270,7 @@ npx create-12-factor-agent tools:test \
 
 ### 프롬프트 템플릿 버전 관리
 
-프롬프트 템플릿은 버전 관리되고 테스트해야 하는 first-class 아티팩트로 간주됩니다. 프레임워크는 프롬프트 버전 관리 scheme을 권장합니다:
-
-```bash
+프롬프트 템플릿은 버전 관리되고 테스트해야 하는 first-class 아티팩트로 간주됩니다. 프레임워크는 프롬프트 버전 관리 scheme을 권장합니다: ```bash
 # 프롬프트 템플릿 버전 관리
 npx create-12-factor-agent prompts:version \
   --name "finance-summary" \
@@ -308,18 +285,13 @@ npx create-12-factor-agent prompts:rollback \
 
 ###レート 제한 및 가드레일
 
-프로덕션 에이전트는 비용 초과 및 남용을 방지하기 위해 견고한 rate limiting이 필요합니다. 프레임워크에는 built-in rate limiting이 포함되어 있습니다:
-
-```bash
+프로덕션 에이전트는 비용 초과 및 남용을 방지하기 위해 견고한 rate limiting이 필요합니다. 프레임워크에는 built-in rate limiting이 포함되어 있습니다: ```bash
 #レート 제한 구성
 cat > rate-limits.yaml << 'EOF'
-global:
-  requests_per_minute: 60
+global: requests_per_minute: 60
   tokens_per_day: 1000000
   max_cost_per_day: 50.00
-per_agent:
-  finance-bot:
-    requests_per_minute: 30
+per_agent: finance-bot: requests_per_minute: 30
     max_cost_per_day: 25.00
 EOF
 
@@ -329,9 +301,7 @@ npx create-12-factor-agent run --rate-limits rate-limits.yaml
 
 ### 감사 로그
 
-규제 산업에서는 audit log가 에이전트가 내리는 모든 결정을 추적합니다:
-
-```bash
+규제 산업에서는 audit log가 에이전트가 내리는 모든 결정을 추적합니다: ```bash
 # 포괄적인 감사 log 활성화
 export AUDIT_LOG_PATH="/var/log/agents/finance-bot/audit.jsonl"
 export AUDIT_LOG_RETENTION_DAYS="365"
@@ -361,9 +331,7 @@ DSPy는 완전히 다른 접근 방식을 취하며, 프롬프트와 chain-of-th
 
 ## 제한 사항
 
-어떤 프레임워크도 완벽하지 않으며, 12-Factor Agents에도 주목할 만한 제한 사항이 있습니다:
-
-**코드 라이브러리가 아님.** 이것이 프레임워크의 가장 큰 강점이면서 동시에 가장 큰 도전입니다. 코드 대신 원칙을 제공하기 때문에, 팀은 각 원칙을 자체적으로 구현하는 데 투자해야 합니다. "12-팩터를 수행하는" 단일 패키지는 없습니다.
+어떤 프레임워크도 완벽하지 않으며, 12-Factor Agents에도 주목할 만한 제한 사항이 있습니다: **코드 라이브러리가 아님.** 이것이 프레임워크의 가장 큰 강점이면서 동시에 가장 큰 도전입니다. 코드 대신 원칙을 제공하기 때문에, 팀은 각 원칙을 자체적으로 구현하는 데 투자해야 합니다. "12-팩터를 수행하는" 단일 패키지는 없습니다.
 
 **가파른 개념적 학습 곡선.** 12개 팩터 각각이 LLM 컨텍스트에서 왜 중요한지 이해하려면 읽기와 성찰이 필요합니다. 새로운 팀은 한번에 12개 팩터 모두를 채택하는 것을 overwhelming하게 느낄 수 있습니다. 권장 접근 방식은 팩터 1, 2, 3, 10(코드베이스, 종속성, 구성 및 개발/프로덕션 일관성)에서 시작하고 시간이 지남에 따라 나머지를 layering하는 것입니다.
 
@@ -422,7 +390,6 @@ LLM 에이전트를 시작하거나 기존 시스템을 확장하든, 12-팩터 
 7. [WebShare - 데이터 파이프라인을 위한 프록시 서비스](https://webshare.io/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ragflow" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ragflow" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ragflow" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ragflow" />
 title: 'RAGFlow: Triển khai RAG Engine sản xuất với 80K+ Stars —...
 description: 'RAGFlow là engine RAG mã nguồn mở với khả năng hiểu sâu tài liệu và tích hợp Agent. Tương thích với Ollama, OpenAI, Qdrant, Elasticsearch, Redis. Bao gồm triển khai Docker, nhập tài liệu, tối ưu tìm kiếm và bảo mật production.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [ragflow, 'rag-engine', 'hieu-tai-lieu', 'docker-trien-khai', 'llm-agent', 'rag-production', 'ai-ma-nguon-mo']
-aliases:
-- /vi/posts/ragflow/
+aliases: - /vi/posts/ragflow/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/ragflow/ -->
 
 {{</* resource-info */>}}
 
@@ -47,9 +39,7 @@ RAGFlow là một engine Retrieval-Augmented Generation mã nguồn mở kết h
 
 ![RAGFlow System Architecture](https://raw.githubusercontent.com/infiniflow/ragflow/main/docs/img/ragflow-architecture.png)
 
-Kiến trúc của RAGFlow tuân theo thiết kế pipeline module với sáu giai đoạn cốt lõi:
-
-### 1. Nhập tài liệu (DeepDoc)
+Kiến trúc của RAGFlow tuân theo thiết kế pipeline module với sáu giai đoạn cốt lõi: ### 1. Nhập tài liệu (DeepDoc)
 
 Tài liệu đi vào RAGFlow thông qua engine phân tích **DeepDoc**. DeepDoc thực hiện phân tích bố cục trên các tệp PDF, Word, Excel, PowerPoint, hình ảnh và bản sao quét. Nó sử dụng mô hình bố cục tài liệu dựa trên thị giác để nhận diện bảng biểu, hình ảnh, tiêu đề, đoạn văn và khối văn bản. Giai đoạn này cũng hỗ trợ các trình phân tích bên ngo như MinerU và Docling cho các định dạng chuyên biệt.
 
@@ -101,9 +91,7 @@ Vượt ra ngoài hỏi đáp đơn giản, framework agent của RAGFlow hỗ t
 
 ### Trước triển khai: Tối ưu hệ thống
 
-Trước khi khởi động RAGFlow, đảm bảo tham số kernel được tối ưu cho Elasticsearch:
-
-```bash
+Trước khi khởi động RAGFlow, đảm bảo tham số kernel được tối ưu cho Elasticsearch: ```bash
 # Kiểm tra giá trị vm.max_map_count hiện tại
 sysctl vm.max_map_count
 
@@ -130,9 +118,7 @@ cp .env .env.backup
 nano .env
 ```
 
-Các biến quan trọng cần thiết lập:
-
-```bash
+Các biến quan trọng cần thiết lập: ```bash
 # docker/.env
 RAGFLOW_IMAGE=infiniflow/ragflow:v0.25.4
 SVR_HTTP_PORT=80
@@ -155,14 +141,11 @@ docker compose -f docker-compose.yml up -d
 # docker compose -f docker-compose.yml up -d
 ```
 
-Xác minh triển khai:
-
-```bash
+Xác minh triển khai: ```bash
 # Theo dõi log cho đến khi thấy thông báo thành công
 docker logs -f ragflow-server
 
-# Output mong đợi:
-#     ____   ___    ______ ______ __
+# Output mong đợi: #     ____   ___    ______ ______ __
 #    / __ \ /   |  / ____// ____// /____  _      __
 #   / /_/ // /| | / / __ / /_   / // __ \| | /| / /
 #  / _, _// ___ |/ /_/ // __/  / // /_/ /| |/ |/ /
@@ -172,29 +155,22 @@ docker logs -f ragflow-server
 
 ### Bước 4: Cấu hình nhà cung cấp LLM
 
-Chỉnh sửa `service_conf.yaml.template` để thêm API key LLM:
-
-```yaml
+Chỉnh sửa `service_conf.yaml.template` để thêm API key LLM: ```yaml
 # docker/service_conf.yaml.template
-user_default_llm:
-  factory: OpenAI
+user_default_llm: factory: OpenAI
   api_key: sk-your-openai-api-key
   base_url: https://api.openai.com/v1
   default_model: gpt-4.1-mini
 ```
 
-Các nhà cung cấp LLM được hỗ trợ bao gồm OpenAI, Anthropic, DeepSeek, Gemini, Azure OpenAI, Bedrock, và các mô hình local qua Ollama hoặc vLLM. Khởi động lại container sau khi thay đổi cấu hình:
-
-```bash
+Các nhà cung cấp LLM được hỗ trợ bao gồm OpenAI, Anthropic, DeepSeek, Gemini, Azure OpenAI, Bedrock, và các mô hình local qua Ollama hoặc vLLM. Khởi động lại container sau khi thay đổi cấu hình: ```bash
 docker compose -f docker-compose.yml down
 docker compose -f docker-compose.yml up -d
 ```
 
 ### Bước 5: Truy cập giao diện Web
 
-Mở trình duyệt và điều hướng đến `http://YOUR_SERVER_IP`. Thông tin đăng nhập mặc định:
-
-```
+Mở trình duyệt và điều hướng đến `http://YOUR_SERVER_IP`. Thông tin đăng nhập mặc định: ```
 Email: admin@ragflow.io
 Mật khẩu: (thiết lập lần đầu đăng nhập)
 ```
@@ -205,20 +181,15 @@ Mật khẩu: (thiết lập lần đầu đăng nhập)
 
 ### Ollama (LLM cục bộ)
 
-Đối với triển khai air-gapped hoặc nhạy cảm về quyền riêng tư, kết nối RAGFlow với Ollama:
-
-```yaml
+Đối với triển khai air-gapped hoặc nhạy cảm về quyền riêng tư, kết nối RAGFlow với Ollama: ```yaml
 # docker/service_conf.yaml.template
-user_default_llm:
-  factory: Ollama
+user_default_llm: factory: Ollama
   api_key: ""
   base_url: http://host.docker.internal:11434
   default_model: llama3.2
 ```
 
-Pull model trong Ollama trước khi sử dụng:
-
-```bash
+Pull model trong Ollama trước khi sử dụng: ```bash
 ollama pull llama3.2
 ollama pull nomic-embed-text
 ```
@@ -228,25 +199,20 @@ Cấu hình mô hình embedding trong giao diện web RAGFlow tại **Cài đặ
 ### OpenAI (API đám mây)
 
 ```yaml
-user_default_llm:
-  factory: OpenAI
+user_default_llm: factory: OpenAI
   api_key: ${OPENAI_API_KEY}
   base_url: https://api.openai.com/v1
   default_model: gpt-4.1-mini
 ```
 
-Sử dụng thay thế biến môi trường để tránh hardcode bí mật:
-
-```bash
+Sử dụng thay thế biến môi trường để tránh hardcode bí mật: ```bash
 # Trong .env
 OPENAI_API_KEY=sk-your-key
 ```
 
 ### Chuyển từ Elasticsearch sang Infinity
 
-Infinity là engine ngữ cảnh hội tụ của RAGFlow, được tối ưu cho triển khai quy mô lớn. Để chuyển đổi:
-
-```bash
+Infinity là engine ngữ cảnh hội tụ của RAGFlow, được tối ưu cho triển khai quy mô lớn. Để chuyển đổi: ```bash
 # 1. Dừng tất cả container và xóa volume
 docker compose -f docker-compose.yml down -v
 
@@ -261,27 +227,17 @@ docker compose -f docker-compose.yml up -d
 
 ### Redis làm cache bên ngoài
 
-Đối với triển khai production, sử dụng Redis cluster bên ngoài:
-
-```yaml
+Đối với triển khai production, sử dụng Redis cluster bên ngoài: ```yaml
 # docker-compose.yml (trích)
-services:
-  redis:
-    image: redis:7-alpine
+services: redis: image: redis:7-alpine
     command: redis-server --requirepass ${REDIS_PASSWORD}
-    volumes:
-      - redis_data:/data
-    deploy:
-      resources:
-        limits:
-          memory: 2G
+    volumes: - redis_data:/data
+    deploy: resources: limits: memory: 2G
 ```
 
 ### Qdrant làm kho lưu trữ vector thay thế
 
-Mặc dù RAGFlow sử dụng Elasticsearch hoặc Infinity một cách tự nhiên, bạn có thể tích hợp Qdrant qua Python SDK cho các pipeline retrieval tùy chỉnh:
-
-```python
+Mặc dù RAGFlow sử dụng Elasticsearch hoặc Infinity một cách tự nhiên, bạn có thể tích hợp Qdrant qua Python SDK cho các pipeline retrieval tùy chỉnh: ```python
 from qdrant_client import QdrantClient
 from ragflow_sdk import RAGFlow
 
@@ -298,9 +254,7 @@ vectors = qdrant.search(collection="financial_reports", vector=query_embedding, 
 
 ### Benchmark chất lượng Retrieval
 
-Một bài benchmark năm 2026 của AI Multiple đã so sánh RAGFlow với các framework khác sử dụng 100 truy vấn chuẩn hóa với GPT-4.1-mini làm mô hình sinh:
-
-| Chỉ số | RAGFlow | LlamaIndex | Haystack | LangChain RAG |
+Một bài benchmark năm 2026 của AI Multiple đã so sánh RAGFlow với các framework khác sử dụng 100 truy vấn chuẩn hóa với GPT-4.1-mini làm mô hình sinh: | Chỉ số | RAGFlow | LlamaIndex | Haystack | LangChain RAG |
 |--------|---------|------------|----------|---------------|
 | Độ chính xác câu trả lờ | 97% | 94% | 95% | 91% |
 | Độ trễ retrieval trung bình | 420ms | 380ms | 450ms | 510ms |
@@ -356,9 +310,7 @@ server {
 
 ### Bật GraphRAG cho suy luận đa bước
 
-GraphRAG trích xuất đồ thị tri thức từ tài liệu, cho phép suy luận xuyên tài liệu:
-
-```python
+GraphRAG trích xuất đồ thị tri thức từ tài liệu, cho phép suy luận xuyên tài liệu: ```python
 # Qua giao diện web RAGFlow hoặc API
 POST /api/datasets/{dataset_id}/chunks/graph
 {
@@ -372,50 +324,33 @@ GraphRAG đặc biệt hiệu quả cho tài liệu pháp lý, bài báo nghiên
 
 ### Cấu hình Sandbox (Thực thi mã)
 
-Agent của RAGFlow có thể thực thi mã Python và JavaScript trong môi trường sandbox. Điều này yêu cầu gVisor:
-
-```bash
+Agent của RAGFlow có thể thực thi mã Python và JavaScript trong môi trường sandbox. Điều này yêu cầu gVisor: ```bash
 # Cài đặt gVisor (bắt buộc cho sandbox)
 sudo apt-get install -y runsc
 
 # Bật trong docker-compose.yml
-services:
-  ragflow:
-    environment:
-      - ENABLE_SANDBOX=true
-    devices:
-      - /dev/kvm
+services: ragflow: environment: - ENABLE_SANDBOX=true
+    devices: - /dev/kvm
 ```
 
 ### Giám sát với Prometheus
 
 ```yaml
 # Thêm vào docker-compose.yml
-services:
-  prometheus:
-    image: prom/prometheus:latest
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+services: prometheus: image: prom/prometheus:latest
+    volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus_data:/prometheus
-    ports:
-      - "9090:9090"
+    ports: - "9090:9090"
 
-  grafana:
-    image: grafana/grafana:latest
-    ports:
-      - "3000:3000"
-    volumes:
-      - grafana_data:/var/lib/grafana
+  grafana: image: grafana/grafana:latest
+    ports: - "3000:3000"
+    volumes: - grafana_data:/var/lib/grafana
 ```
 
-Các chỉ số chính cần giám sát:
-
-```yaml
+Các chỉ số chính cần giám sát: ```yaml
 # prometheus.yml
-scrape_configs:
-  - job_name: ragflow
-    static_configs:
-      - targets: ['ragflow-server:9380']
+scrape_configs: - job_name: ragflow
+    static_configs: - targets: ['ragflow-server:9380']
     metrics_path: /metrics
 ```
 
@@ -545,9 +480,7 @@ Tham gia [cộng đồng lập trình viên Telegram](https://t.me/dibi8opensour
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -568,7 +501,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [Triển khai Production RAGFlow trên VPS](https://zhujibaike.com/2497.html)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

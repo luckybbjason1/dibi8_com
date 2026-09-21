@@ -1,22 +1,14 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/compound-engineering-multi-agent-coding-claude-codex-cursor" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/compound-engineering-multi-agent-coding-claude-codex-cursor" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/compound-engineering-multi-agent-coding-claude-codex-cursor" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/compound-engineering-multi-agent-coding-claude-codex-cursor" />
 title: 'Compound Engineering：联合编排 Claude Code、Codex 和 Cursor — 多...
 description: 'Compound Engineering（2 万星标）是用于 Claude Code、Codex 和 Cursor 的多代理插件。9 个命令用于头脑风暴、规划、审查和复合学习。80% 规划、20% 执行的工作流。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-13
-lastmod:  2026-06-13slug: 'compound-engineering-multi-agent-coding-claude-codex-cursor'
+lastmod: 2026-06-13
+slug: 'compound-engineering-multi-agent-coding-claude-codex-cursor'
 category: llm-frameworks
 tags: ['compound-engineering', 'multi-agent', 'claude-code', 'codex', 'cursor', 'planning', 'review']
 github_repo: 'https://github.com/EveryInc/compound-engineering-plugin'
 license: 'MIT'
-lang: zh
-featureImage: /articles/multi-agent-f22f19.jpg/images/articles/multi-agent-f22f19.jpg
----
-
-<!-- canonical: https://dibi8.com/zh/tools/compound-engineering-multi-agent-coding-claude-codex-cursor/ -->
+featureImage: /articles/multi-agent-f22f19.jpg/images/articles/multi-agent-f22f19.jpg---
 
 # Compound Engineering：多代理编排插件 — 2026 指南
 
@@ -55,7 +47,13 @@ Compound Engineering：
 Compound Engineering 逆转了这一趋势：
 
 | 阶段 | 命令 | 目的 |
-|------|------|------|
+|
+---
+|
+---
+|
+---
+|
 | 策略 | `/ce-strategy` | 定义产品的目标问题、方法、人物画像、指标 |
 | 构思 | `/ce-ideate` | 在承诺之前生成和评估大局想法 |
 | 头脑风暴 | `/ce-brainstorm` | 交互式问答，在规划之前编写需求 |
@@ -262,7 +260,17 @@ bunx @every-env/compound-plugin install compound-engineering --to codex
 ## 与替代方案的比较
 
 | 功能 | Compound Engineering | AutoGPT | Aider | Claude Code 内置 |
-|------|---------------------|---------|-------|-----------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 命令数 | 9 | 通用 | 基础 | 无 |
 | 规划阶段 | ✅ 结构化 | ❌ | ❌ | ❌ |
 | 多代理审查 | ✅ | 部分 | ❌ | ❌ |
@@ -284,7 +292,15 @@ Compound Engineering 的关键差异化在于其**结构化工作流**——它�
 使用 Compound Engineering 的团队报告了可衡量的技术债减少：
 
 | 指标 | Compound Eng. 之前 | Compound Eng. 之后 | 变化 |
-|------|-------------------:|-------------------:|------:|
+|
+---
+|
+---
+:|
+---
+:|
+---
+:|
 | 每 PR 的代码审查问题 | 12.4 | 3.2 | -74% |
 | 返工率（代码重写） | 18% | 6% | -67% |
 | 修复 bug 的平均时间 | 4.2 小时 | 1.8 小时 | -57% |
@@ -389,19 +405,15 @@ Compound Engineering 集成到 CI/CD 流水线中：
 
 ```yaml
 # .github/workflows/compound-engineering.yml
-jobs:
-  review:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: review: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - name: 运行 CE 代码审查
         run: |
           /ce-code-review --head main --branch feature/auth
           /ce-code-review --output review-report.md
       - name: 上传审查报告
         uses: actions/upload-artifact@v4
-        with:
-          name: review-report
+        with: name: review-report
           path: review-report.md
 ```
 
@@ -484,8 +496,8 @@ Compound Engineering 解决了 AI 辅助开发中的一个根本性空白：缺�
 - [ECC：Agent Harness 性能优化](/zh/resources/dev-utils/ecc-agent-harness-performance-optimization/) — 在结构化工作流的同时优化代理性能
 - [Impeccable：AI 设计语言](/zh/resources/ai-tools/impeccable-ai-design-language-harness-quality-ui/) — 为你的复合工程流程添加设计质量
 
----
 
+---
 **来源与延伸阅读**：
 - GitHub 仓库：https://github.com/EveryInc/compound-engineering-plugin
 - 哲学文章：https://every.to/chain-of-thought/compound-engineering-how-every-codes-with-agents
@@ -493,12 +505,11 @@ Compound Engineering 解决了 AI 辅助开发中的一个根本性空白：缺�
 
 **加入我们的社区**：https://t.me/DIBI8_Group
 
----
 
+---
 **披露**：本文包含联盟链接。如果你通过我们的链接注册，我们可能会获得佣金，对你不会产生额外费用。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -526,25 +537,20 @@ Compound Engineering 解决了 AI 辅助开发中的一个根本性空白：缺�
 
 ## Why This Matters
 
-Understanding compound engineering：联合编排 claude code、codex 和 cursor — 多代理插件指南 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding compound engineering：联合编排 claude code、codex 和 cursor — 多代理插件指南 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -610,7 +616,17 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

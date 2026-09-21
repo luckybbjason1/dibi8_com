@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/n8n" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/n8n" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/n8n" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/n8n" />
 title: 'n8n AI Tự động hóa Quy trình: Tự host với 188K+ Star — T...
 description: 'n8n (fair-code) là nền tảng tự động hóa quy trình với khả năng AI tích hợp và 400+ tích hợp. Tương thích Claude Code, OpenAI, Anthropic, Slack, Discord, Telegram. Bao gồm cài đặt Docker, cấu hình AI node, triển khai Webhook và bảo mật production.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,12 +20,9 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [n8n, 'tự-động-hóa-quy-trình', 'tự-host', 'ai-agent', docker, langchain, 'mã-nguồn-mở', 'low-code']
-aliases:
-- /vi/posts/n8n/
+aliases: - /vi/posts/n8n/
 - /vi/resources/dev-utils/n8n-ai-workflow-automation-self-hosted-2026/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/n8n/ -->
 
 {{</* resource-info */>}}
 
@@ -97,30 +89,21 @@ sudo chmod +x /usr/local/bin/docker-compose
 # docker-compose.dev.yml
 version: '3.8'
 
-services:
-  n8n:
-    image: n8nio/n8n:latest
+services: n8n: image: n8nio/n8n:latest
     container_name: n8n
     restart: unless-stopped
-    ports:
-      - "5678:5678"
-    environment:
-      - N8N_BASIC_AUTH_ACTIVE=true
+    ports: - "5678:5678"
+    environment: - N8N_BASIC_AUTH_ACTIVE=true
       - N8N_BASIC_AUTH_USER=admin
       - N8N_BASIC_AUTH_PASSWORD=changeme
       - N8N_ENCRYPTION_KEY=your-32-char-encryption-key-here
       - GENERIC_TIMEZONE=UTC
       - TZ=UTC
-    volumes:
-      - n8n_data:/home/node/.n8n
+    volumes: - n8n_data:/home/node/.n8n
 
-volumes:
-  n8n_data:
-```
+volumes: n8n_data: ```
 
-Khởi động:
-
-```bash
+Khởi động: ```bash
 docker-compose -f docker-compose.dev.yml up -d
 # Truy cập tại http://localhost:5678
 ```
@@ -131,31 +114,22 @@ docker-compose -f docker-compose.dev.yml up -d
 # docker-compose.prod.yml
 version: '3.8'
 
-services:
-  postgres:
-    image: postgres:16-alpine
+services: postgres: image: postgres:16-alpine
     restart: unless-stopped
-    environment:
-      POSTGRES_USER: n8n
+    environment: POSTGRES_USER: n8n
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: n8n
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U n8n"]
+    volumes: - postgres_data:/var/lib/postgresql/data
+    healthcheck: test: ["CMD-SHELL", "pg_isready -U n8n"]
       interval: 10s
       timeout: 5s
       retries: 5
-    networks:
-      - n8n_network
+    networks: - n8n_network
 
-  n8n:
-    image: n8nio/n8n:latest
+  n8n: image: n8nio/n8n:latest
     restart: unless-stopped
-    ports:
-      - "127.0.0.1:5678:5678"
-    environment:
-      - DB_TYPE=postgresdb
+    ports: - "127.0.0.1:5678:5678"
+    environment: - DB_TYPE=postgresdb
       - DB_POSTGRESDB_HOST=postgres
       - DB_POSTGRESDB_PORT=5432
       - DB_POSTGRESDB_DATABASE=n8n
@@ -168,26 +142,14 @@ services:
       - N8N_METRICS=true
       - EXECUTIONS_MODE=regular
       - GENERIC_TIMEZONE=UTC
-    volumes:
-      - n8n_data:/home/node/.n8n
-    depends_on:
-      postgres:
-        condition: service_healthy
-    networks:
-      - n8n_network
+    volumes: - n8n_data:/home/node/.n8n
+    depends_on: postgres: condition: service_healthy
+    networks: - n8n_network
 
-volumes:
-  postgres_data:
-  n8n_data:
-
-networks:
-  n8n_network:
-    driver: bridge
+volumes: postgres_data: n8n_data: networks: n8n_network: driver: bridge
 ```
 
-Biến môi trường trong `.env`:
-
-```bash
+Biến môi trường trong `.env`: ```bash
 # .env
 POSTGRES_PASSWORD=$(openssl rand -base64 32)
 N8N_ENCRYPTION_KEY=$(openssl rand -hex 32)
@@ -200,45 +162,32 @@ N8N_HOST=automation.yourdomain.com
 # docker-compose.queue.yml
 version: '3.8'
 
-services:
-  postgres:
-    image: postgres:16-alpine
+services: postgres: image: postgres:16-alpine
     restart: unless-stopped
-    environment:
-      POSTGRES_USER: n8n
+    environment: POSTGRES_USER: n8n
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: n8n
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U n8n"]
+    volumes: - postgres_data:/var/lib/postgresql/data
+    healthcheck: test: ["CMD-SHELL", "pg_isready -U n8n"]
       interval: 10s
       timeout: 5s
       retries: 5
-    networks:
-      - n8n_network
+    networks: - n8n_network
 
-  redis:
-    image: redis:7-alpine
+  redis: image: redis:7-alpine
     restart: unless-stopped
     command: redis-server --requirepass ${REDIS_PASSWORD} --appendonly yes
-    volumes:
-      - redis_data:/data
-    healthcheck:
-      test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD}", "ping"]
+    volumes: - redis_data:/data
+    healthcheck: test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD}", "ping"]
       interval: 10s
       timeout: 3s
       retries: 5
-    networks:
-      - n8n_network
+    networks: - n8n_network
 
-  n8n-main:
-    image: n8nio/n8n:latest
+  n8n-main: image: n8nio/n8n:latest
     restart: unless-stopped
-    ports:
-      - "127.0.0.1:5678:5678"
-    environment:
-      - EXECUTIONS_MODE=queue
+    ports: - "127.0.0.1:5678:5678"
+    environment: - EXECUTIONS_MODE=queue
       - QUEUE_BULL_REDIS_HOST=redis
       - QUEUE_BULL_REDIS_PORT=6379
       - QUEUE_BULL_REDIS_PASSWORD=${REDIS_PASSWORD}
@@ -252,22 +201,15 @@ services:
       - N8N_PROTOCOL=https
       - WEBHOOK_URL=https://${N8N_HOST}/
       - N8N_METRICS=true
-    volumes:
-      - n8n_data:/home/node/.n8n
-    depends_on:
-      postgres:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
-    networks:
-      - n8n_network
+    volumes: - n8n_data:/home/node/.n8n
+    depends_on: postgres: condition: service_healthy
+      redis: condition: service_healthy
+    networks: - n8n_network
 
-  n8n-worker:
-    image: n8nio/n8n:latest
+  n8n-worker: image: n8nio/n8n:latest
     restart: unless-stopped
     command: worker --concurrency=10
-    environment:
-      - EXECUTIONS_MODE=queue
+    environment: - EXECUTIONS_MODE=queue
       - QUEUE_BULL_REDIS_HOST=redis
       - QUEUE_BULL_REDIS_PORT=6379
       - QUEUE_BULL_REDIS_PASSWORD=${REDIS_PASSWORD}
@@ -277,31 +219,17 @@ services:
       - DB_POSTGRESDB_USER=n8n
       - DB_POSTGRESDB_PASSWORD=${POSTGRES_PASSWORD}
       - N8N_ENCRYPTION_KEY=${N8N_ENCRYPTION_KEY}
-    deploy:
-      replicas: 2
-      resources:
-        limits:
-          cpus: 2
+    deploy: replicas: 2
+      resources: limits: cpus: 2
           memory: 2G
-    depends_on:
-      - postgres
+    depends_on: - postgres
       - redis
-    networks:
-      - n8n_network
+    networks: - n8n_network
 
-volumes:
-  postgres_data:
-  redis_data:
-  n8n_data:
-
-networks:
-  n8n_network:
-    driver: bridge
+volumes: postgres_data: redis_data: n8n_data: networks: n8n_network: driver: bridge
 ```
 
-Triển khai:
-
-```bash
+Triển khai: ```bash
 # Tạo khóa bí mật
 openssl rand -base64 32 > .postgres_password
 openssl rand -base64 32 > .redis_password
@@ -358,9 +286,7 @@ server {
 }
 ```
 
-Kích hoạt:
-
-```bash
+Kích hoạt: ```bash
 sudo ln -s /etc/nginx/sites-available/n8n /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl reload nginx
@@ -401,9 +327,7 @@ sudo certbot --nginx -d automation.yourdomain.com
 }
 ```
 
-Thêm credential trong UI n8n:
-
-```bash
+Thêm credential trong UI n8n: ```bash
 # Điều hướng đến Settings > Credentials > Add Credential
 # Chọn "OpenAI API"
 # Dán API key từ https://platform.openai.com/api-keys
@@ -618,8 +542,7 @@ N8N_PROTOCOL=https
 WEBHOOK_URL=https://automation.yourdomain.com/
 
 # 4. Chỉ bind localhost, proxy qua Nginx
-ports:
-  - "127.0.0.1:5678:5678"
+ports: - "127.0.0.1:5678:5678"
 
 # 5. Bật dọn dữ liệu thực thi
 EXECUTIONS_DATA_PRUNE=true
@@ -658,42 +581,29 @@ SELECT pg_reload_conf();
 
 ```yaml
 # Thêm vào docker-compose.queue.yml
-  prometheus:
-    image: prom/prometheus:latest
+  prometheus: image: prom/prometheus:latest
     restart: unless-stopped
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
       - prometheus_data:/prometheus
-    command:
-      - --config.file=/etc/prometheus/prometheus.yml
+    command: - --config.file=/etc/prometheus/prometheus.yml
       - --storage.tsdb.path=/prometheus
-    networks:
-      - n8n_network
-    ports:
-      - "127.0.0.1:9090:9090"
+    networks: - n8n_network
+    ports: - "127.0.0.1:9090:9090"
 
-  grafana:
-    image: grafana/grafana:latest
+  grafana: image: grafana/grafana:latest
     restart: unless-stopped
-    environment:
-      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-admin}
-    volumes:
-      - grafana_data:/var/lib/grafana
-    networks:
-      - n8n_network
-    ports:
-      - "127.0.0.1:3000:3000"
+    environment: - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-admin}
+    volumes: - grafana_data:/var/lib/grafana
+    networks: - n8n_network
+    ports: - "127.0.0.1:3000:3000"
 ```
 
 ```yaml
 # prometheus.yml
-global:
-  scrape_interval: 15s
+global: scrape_interval: 15s
 
-scrape_configs:
-  - job_name: n8n
-    static_configs:
-      - targets: ['n8n-main:5678']
+scrape_configs: - job_name: n8n
+    static_configs: - targets: ['n8n-main:5678']
     metrics_path: /metrics
 ```
 
@@ -739,9 +649,7 @@ find $BACKUP_DIR -name "*.tar.gz" -mtime +7 -delete
 # aws s3 sync $BACKUP_DIR s3://your-backup-bucket/n8n/
 ```
 
-Thêm vào crontab:
-
-```bash
+Thêm vào crontab: ```bash
 # Chạy sao lưu lúc 2 giờ sáng mỗi ngày
 0 2 * * * /opt/n8n/backup-n8n.sh >> /var/log/n8n-backup.log 2>&1
 ```
@@ -841,9 +749,7 @@ n8n cung cấp tự động hóa workflow với khả năng AI ở phần nhỏ 
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -862,7 +768,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - Thực hành bảo mật n8n: https://docs.n8n.io/hosting/security/
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

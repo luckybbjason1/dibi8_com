@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/anythingllm-architecture-local-rag" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/anythingllm-architecture-local-rag" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/anythingllm-architecture-local-rag" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/anythingllm-architecture-local-rag" />
 title: "기업들은 왜 ChatGPT를 두려워하는가?"
 description: "기업들은 왜 ChatGPT를 두려워하는가?". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Docker
+tech_stack: - Docker
   - Go
   - JavaScript
   - Python
@@ -27,8 +21,7 @@ maintainer: "Mintplex-Labs"
 last_maintained: "2026-05-16"
 featureImage: ""
 draft: false
-faqs:
-  - q: 'Docker 안에서 Ollama에 연결할 때 AnythingLLM의 ''Connection Refused'' 오류는 어떻게 해결하나요?'
+faqs: - q: 'Docker 안에서 Ollama에 연결할 때 AnythingLLM의 ''Connection Refused'' 오류는 어떻게 해결하나요?'
     a: 'Docker 컨테이너 안에서 localhost는 호스트 머신이 아니라 컨테이너 자신을 가리키므로, AnythingLLM의 LLM URL을 http://host.docker.internal:11434로 지정하세요. 또한 네트워크 인터페이스 전반에서의 접근을 허용하려면 환경 변수 OLLAMA_HOST=0.0.0.0 으로 Ollama를 실행해야 합니다.'
   - q: 'AnythingLLM은 RAG에서 어떤 청킹 전략을 사용하나요?'
     a: 'AnythingLLM은 LangChain의 RecursiveCharacterTextSplitter를 사용하며, 기본 chunkSize는 1000, chunkOverlap은 200으로, 단락과 줄바꿈 우선순위에 따라 분할합니다(구분자 "\n\n", "\n", " ", ""). 200 토큰의 오버랩은 단락 간 문맥을 보존하여 임의의 잘림으로 의미가 손실되지 않도록 합니다.'
@@ -40,7 +33,6 @@ faqs:
     a: '기본 임베디드 벡터 데이터베이스(LanceDB/Chroma)는 고빈도 동시 쓰기 상황에서 파일 잠금 문제가 있어, 여러 사용자가 같은 워크스페이스에 대용량 PDF를 업로드할 때 SQLITE_BUSY 또는 쓰기 잠금 오류를 발생시킵니다. 직원이 많은 프로덕션 환경에서는 Vector DB를 독립형 Qdrant 또는 Milvus 인스턴스로 전환하세요.'
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/anythingllm-architecture-local-rag/ -->
 {</* resource-info */>}
 
 # 기업들은 왜 ChatGPT를 두려워하는가?
@@ -104,8 +96,7 @@ async function processDocument(documentText, workspaceConfig) {
 }
 ```
 
-**심층 분석**:
-이 코드는 AnythingLLM이 문서를 다루는 섬세함을 보여줍니다. `RecursiveCharacterTextSplitter`에 무려 200 token의 `chunkOverlap`을 결합하여, 글자 수 제한 때문에 문단 간의 핵심 논리가 유실되는 것을 막아냅니다. 이러한 중첩(Overlap) 절단은 로컬 LLM이 답변의 지능을 유지하는 데 결정적인 역할을 합니다.
+**심층 분석**: 이 코드는 AnythingLLM이 문서를 다루는 섬세함을 보여줍니다. `RecursiveCharacterTextSplitter`에 무려 200 token의 `chunkOverlap`을 결합하여, 글자 수 제한 때문에 문단 간의 핵심 논리가 유실되는 것을 막아냅니다. 이러한 중첩(Overlap) 절단은 로컬 LLM이 답변의 지능을 유지하는 데 결정적인 역할을 합니다.
 
 ### 2. 프론트엔드-백엔드 데이터 교환: Server-Sent Events (SSE) 스트리밍 출력
 
@@ -139,8 +130,7 @@ app.post('/api/workspace/:slug/chat', async (request, response) => {
 });
 ```
 
-**심층 분석**:
-무겁고 복잡한 WebSocket 대신, AnythingLLM은 더 가벼운 단방향 통신 스트림인 SSE를 선택했습니다. 이는 다중 Nginx 리버스 프록시를 거치는 험악한 기업 내부망 배포 환경에서 방화벽에 막힐 확률을 획기적으로 낮춰주는, 매우 전략적이고 똑똑한 엔지니어링 결정입니다.
+**심층 분석**: 무겁고 복잡한 WebSocket 대신, AnythingLLM은 더 가벼운 단방향 통신 스트림인 SSE를 선택했습니다. 이는 다중 Nginx 리버스 프록시를 거치는 험악한 기업 내부망 배포 환경에서 방화벽에 막힐 확률을 획기적으로 낮춰주는, 매우 전략적이고 똑똑한 엔지니어링 결정입니다.
 
 ## 엔지니어링 실전: 프라이빗 배포의 데스 트랩(Death Trap)과 지뢰 제거
 
@@ -161,8 +151,7 @@ app.post('/api/workspace/:slug/chat', async (request, response) => {
 - **증권사/투자은행 로컬 리포트 질의응답 시스템**: 금융 기관의 재무제표와 고객 명단은 절대적인 기밀입니다. AnythingLLM과 Qwen 모델이 탑재된 하드코어 워크스테이션(심지어 인터넷 선도 뽑아버린 채로)을 들고 가 그들의 내부망에 꽂아 넣으십시오. 당신이 파는 것은 소프트웨어가 아니라 단가 수천만 원짜리 "금융 데이터 프라이버시 AI 금고"입니다.
 - **대형 로펌 사건 기록 가속기**: 변호사들은 산더미 같은 사건 기록에 파묻혀 삽니다. AnythingLLM의 Workspace 기능을 활용해 '각 사건마다' 독립적인 지식 공간을 만들어, 고객 간의 사건 데이터가 물리적으로 완벽히 격리됨을 보장하십시오. 그리고 매월 값비싼 시스템 유지보수 및 모델 업그레이드 비용을 청구하십시오.
 
-### 외부 권위 있는 참고 자료:
-1. [AnythingLLM 공식 GitHub Repository](https://github.com/Mintplex-Labs/anything-llm)
+### 외부 권위 있는 참고 자료: 1. [AnythingLLM 공식 GitHub Repository](https://github.com/Mintplex-Labs/anything-llm)
 2. [AnythingLLM 공식 문서 및 아키텍처 다이어그램](https://docs.useanything.com/)
 
 **결론**: AnythingLLM은 화려한 프론트엔드 껍데기와 엔터프라이즈급 권한 격리 기능을 통해, 뼈 빠지고 지루한 기저의 RAG 엔진을 완벽하게 포장해 냅니다. 이것을 마스터하면, 당신은 차갑고 기괴한 대형 모델과 벡터 DB를, B2B 기업 대표의 책상 위에 올려놓고 기꺼이 거액의 수표를 쓰게 만드는 궁극의 디지털 자산으로 둔갑시킬 수 있습니다.
@@ -171,16 +160,13 @@ app.post('/api/workspace/:slug/chat', async (request, response) => {
 
 ## 자체 호스팅 추천 인프라
 
-24/7 안정 운영을 위해 인프라 선택이 중요하다:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 60일 $200 크레딧, 글로벌 14+ 리전. 오픈소스 AI 도구 자체 호스팅에 적합.
+24/7 안정 운영을 위해 인프라 선택이 중요하다: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 60일 $200 크레딧, 글로벌 14+ 리전. 오픈소스 AI 도구 자체 호스팅에 적합.
 - **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — 홍콩 VPS, 중국 본토 접근 시 저지연. dibi8.com 자체가 호스팅된 검증된 IDC.
 
 *추천 링크입니다. 추가 비용 없이 dibi8.com 운영에 도움이 됩니다.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -208,25 +194,20 @@ app.post('/api/workspace/:slug/chat', async (request, response) => {
 
 ## Why This Matters
 
-Understanding 기업들은 왜 chatgpt를 두려워하는가? is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding 기업들은 왜 chatgpt를 두려워하는가? is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

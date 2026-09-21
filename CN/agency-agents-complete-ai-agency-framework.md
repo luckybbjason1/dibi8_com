@@ -1,7 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/agency-agents-complete-ai-agency-framework" />
-lang: en
 title: 'Agency Agents: 125K+ Star Open-Source AI Agency Framework'
 description: 'Agency Agents is a complete open-source AI agency framework with 12+ specialized agents — from frontend designers to Reddit moderators. Learn how to deploy a full AI team for $0.'
 date: 2026-07-03 09:00:00+09:00
@@ -11,15 +8,11 @@ category: dev-utils
 tags: ['ai-agents', 'open-source', 'automation', 'multi-agent', 'agency']
 github_repo: 'https://github.com/msitarzewski/agency-agents'
 license: 'MIT'
-tech_stack:
-  - Bash
+tech_stack: - Bash
   - Python
   - Shell
 featureImage: /images/articles/free-llm-api-resources-ai-development.png
-stars: 128667
-
----
-
+stars: 128667---
 ![Hero Image](https://picsum.photos/seed/artificial-intelligence/1200x800)
 
 
@@ -36,9 +29,7 @@ Agency Agents is a collection of specialized AI agents, each designed to perform
 
 The project gained explosive popularity after going viral on GitHub in early 2026, quickly climbing to over 125K stars. Its success stems from a simple but powerful idea: instead of relying on a single AI agent to do everything, Agency Agents delegates tasks to specialized agents, each with its own expertise and toolset.
 
-The repository includes agents for:
-
-- **Frontend Designer:** Creates responsive UI components and landing pages
+The repository includes agents for: - **Frontend Designer:** Creates responsive UI components and landing pages
 - **Backend Developer:** Writes APIs, database schemas, and server logic
 - **DevOps Engineer:** Manages CI/CD pipelines, Docker, and cloud infrastructure
 - **QA Tester:** Writes and runs automated tests
@@ -71,9 +62,7 @@ Every agent in the framework produces production-ready code, not just prototypes
 
 ### Prerequisites
 
-You'll need:
-
-- Python 3.10+
+You'll need: - Python 3.10+
 - An AI API key (Claude, OpenAI, or compatible)
 - Git
 
@@ -158,8 +147,7 @@ cd my-ai-project
 # Initialize the agency workspace
 python -m agency_agents init --project "My SaaS Dashboard"
 
-# This creates the following structure:
-# my-ai-project/
+# This creates the following structure: # my-ai-project/
 # ├── agents/
 # │   ├── config.yaml
 # │   └── tasks.yaml
@@ -170,43 +158,31 @@ python -m agency_agents init --project "My SaaS Dashboard"
 
 ### Step 2: Configure Your Team
 
-Edit the `config.yaml` to specify which agents you want to activate:
-
-```yaml
-team:
-  frontend:
-    model: claude-sonnet-4-20250514
+Edit the `config.yaml` to specify which agents you want to activate: ```yaml
+team: frontend: model: claude-sonnet-4-20250514
     temperature: 0.3
     max_tokens: 4096
-  backend:
-    model: claude-sonnet-4-20250514
+  backend: model: claude-sonnet-4-20250514
     temperature: 0.2
     max_tokens: 4096
-  devops:
-    model: claude-sonnet-4-20250514
+  devops: model: claude-sonnet-4-20250514
     temperature: 0.1
     max_tokens: 2048
-  qa:
-    model: claude-sonnet-4-20250514
+  qa: model: claude-sonnet-4-20250514
     temperature: 0.2
     max_tokens: 2048
 ```
 
 ### Step 3: Define Your Tasks
 
-Create a `tasks.yaml` file that describes your project requirements:
-
-```yaml
-project:
-  name: "SaaS Dashboard"
+Create a `tasks.yaml` file that describes your project requirements: ```yaml
+project: name: "SaaS Dashboard"
   description: "A real-time analytics dashboard for e-commerce"
-  tech_stack:
-    - React
+  tech_stack: - React
     - Node.js
     - PostgreSQL
     - Redis
-  milestones:
-    - name: "UI Design"
+  milestones: - name: "UI Design"
       agent: frontend
       deadline: "Day 1-2"
     - name: "API Development"
@@ -235,9 +211,7 @@ python -m agency_agents output --agent frontend --latest
 
 ### Step 5: Review and Iterate
 
-After the pipeline completes, review the generated code:
-
-```bash
+After the pipeline completes, review the generated code: ```bash
 # Check the output directory
 tree output/
 
@@ -257,13 +231,10 @@ This tutorial demonstrates the full lifecycle of an AI-powered project, from ini
 The task router is the brain of Agency Agents. It uses a combination of keyword matching and semantic analysis to determine which agent should handle a given task.
 
 ```python
-class TaskRouter:
-    def __init__(self, agents):
-        self.agents = agents
+class TaskRouter: def __init__(self, agents): self.agents = agents
         self.keywords = self._build_keyword_index()
     
-    def _build_keyword_index(self):
-        return {
+    def _build_keyword_index(self): return {
             'frontend': ['ui', 'css', 'html', 'react', 'vue', 'component'],
             'backend': ['api', 'database', 'server', 'route', 'endpoint'],
             'devops': ['docker', 'ci-cd', 'deploy', 'pipeline', 'kubernetes'],
@@ -271,10 +242,8 @@ class TaskRouter:
             # ... more mappings
         }
     
-    def route(self, task_description):
-        scores = {}
-        for agent_name, keywords in self.keywords.items():
-            score = sum(1 for kw in keywords if kw in task_description.lower())
+    def route(self, task_description): scores = {}
+        for agent_name, keywords in self.keywords.items(): score = sum(1 for kw in keywords if kw in task_description.lower())
             scores[agent_name] = score
         
         return max(scores, key=scores.get)
@@ -288,21 +257,17 @@ Agents communicate through a shared task queue, enabling parallel processing and
 from queue import Queue
 import threading
 
-class AgentQueue:
-    def __init__(self):
-        self.tasks = Queue()
+class AgentQueue: def __init__(self): self.tasks = Queue()
         self.results = {}
     
-    def add_task(self, task, agent_type, priority=0):
-        self.tasks.put({
+    def add_task(self, task, agent_type, priority=0): self.tasks.put({
             'task': task,
             'agent': agent_type,
             'priority': priority,
             'timestamp': datetime.now()
         })
     
-    def get_next_task(self):
-        return self.tasks.get(block=False)
+    def get_next_task(self): return self.tasks.get(block=False)
 ```
 
 ### Quality Assurance Pipeline
@@ -310,8 +275,7 @@ class AgentQueue:
 Each agent's output goes through a quality check before being accepted.
 
 ```python
-def quality_check(agent_output, task_requirements):
-    checks = [
+def quality_check(agent_output, task_requirements): checks = [
         ('syntax', check_syntax(agent_output)),
         ('completeness', check_completeness(agent_output, task_requirements)),
         ('security', check_security(agent_output)),
@@ -329,7 +293,17 @@ def quality_check(agent_output, task_requirements):
 ## Comparison with Alternatives
 
 | Feature | Agency Agents | AutoGPT | CrewAI | LangGraph |
-|---------|--------------|---------|--------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Number of Agents | 12+ | 1-2 | 3-5 | Custom |
 | Pre-built Roles | Yes | No | Partial | No |
 | Task Routing | Semantic + Keyword | Manual | Manual | Manual |
@@ -385,9 +359,7 @@ A: Agency Agents differs from AutoGPT in its multi-agent approach. While AutoGPT
 
 ### Q: Is there a Docker setup?
 
-A: Yes. The repository includes a `Dockerfile` and `docker-compose.yml` for easy deployment. You can run the entire agency with:
-
-```bash
+A: Yes. The repository includes a `Dockerfile` and `docker-compose.yml` for easy deployment. You can run the entire agency with: ```bash
 docker-compose up -d
 docker exec -it agency-agents python agency.py --project "Build a web app"
 ```
@@ -410,12 +382,11 @@ docker exec -it agency-agents python agency.py --project "Build a web app"
 - [GitHub API — Star Count Verification](https://api.github.com/repos/msitarzewski/agency-agents)
 - [Agency Agents README](https://github.com/msitarzewski/agency-agents/blob/main/README.md)
 
----
 
+---
 *This article was independently researched and written by the Dibi8 editorial team. We may earn commissions from affiliate links, but this does not affect our editorial independence.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -444,7 +415,6 @@ docker exec -it agency-agents python agency.py --project "Build a web app"
 }
 </script>
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -470,8 +440,8 @@ docker exec -it agency-agents python agency.py --project "Build a web app"
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [agency-agents-complete-ai-agency-framework](agency-agents-complete-ai-agency-framework)

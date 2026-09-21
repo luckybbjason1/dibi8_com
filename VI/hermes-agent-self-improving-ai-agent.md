@@ -1,17 +1,11 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/hermes-agent-self-improving-ai-agent" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hermes-agent-self-improving-ai-agent" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hermes-agent-self-improving-ai-agent" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hermes-agent-self-improving-ai-agent" />
 title: Hermes Agent：AI Agent tự tiến hóa, càng dùng càng hiểu bạn
 description: Hermes Agent là tác nhân AI mã nguồn mở của Nous Research, có vòng lặp. Comprehensive guide covering features, pricing, and best practices for 2026.
   học tập tích hợp — tạo kỹ năng từ kinh nghiệm, cải thiện liên tục, ghi nhớ sở thích
   của bạn.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
-tech_stack:
-- Docker
+tech_stack: - Docker
 - Python
 - TypeScript
 application_domain: Llm Frameworks
@@ -28,11 +22,9 @@ maintainer: "NousResearch"
 last_maintained: "2026-05-16"
 featureImage: ''
 draft: false
-aliases:
-- /vi/posts/genericagent-self-evolving-ai-agent.vi/
+aliases: - /vi/posts/genericagent-self-evolving-ai-agent.vi/
 - /vi/posts/hermes-agent-self-improving-ai-agent/
-faqs:
-  - q: 'Hermes Agent khác gì so với các công cụ như Claude Code, Cursor hay GitHub Copilot?'
+faqs: - q: 'Hermes Agent khác gì so với các công cụ như Claude Code, Cursor hay GitHub Copilot?'
     a: 'Hermes Agent có sẵn vòng lặp tự học, bộ nhớ bền vững xuyên suốt các phiên làm việc, và một hệ thống kỹ năng mà không công cụ nào trong số đó cung cấp. Nó cũng chạy được trên 6 nền tảng nhắn tin, hỗ trợ lập lịch cron và MCP, đồng thời là mã nguồn mở và có thể tự lưu trữ; trong khi những công cụ kia chỉ giới hạn ở CLI, máy tính để bàn hoặc IDE, và thu phí thuê bao hoặc phí API.'
   - q: 'Vòng lặp tự cải thiện của Hermes Agent hoạt động như thế nào?'
     a: 'Sau khi hoàn thành một tác vụ, Hermes phân tích điều gì đã hiệu quả và điều gì không, trích xuất các mẫu có thể tái sử dụng, tạo một tệp kỹ năng ghi lại cách tiếp cận đó, kiểm thử kỹ năng ấy trên các tác vụ tương tự, rồi tinh chỉnh dựa trên kết quả. Theo thời gian, điều này xây dựng nên một thư viện kỹ năng cá nhân riêng biệt cho từng người dùng.'
@@ -44,7 +36,6 @@ faqs:
     a: 'Trên Linux, macOS hoặc WSL2, bạn có thể cài đặt bằng một script curl một dòng đưa qua bash, hoặc clone repo rồi chạy `./setup-hermes.sh`. Sau đó bạn thiết lập nhà cung cấp bằng các lệnh như `hermes config set provider openai` và `hermes config set model gpt-4o`, hoặc dùng một mô hình cục bộ qua `hermes config set provider ollama`.'
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/hermes-agent-self-improving-ai-agent/ -->
 {</* resource-info */>}
 
 ## Vấn đề: Hầu hết các tác nhân AI đều quên bạn
@@ -61,8 +52,7 @@ Bạn dành hàng giờ dạy trợ lý AI về quy trình làm việc, phong c�
 
 Slogan của dự án nói lên tất cả: **"Tác nhân phát triển cùng bạn."**
 
-Không giống như các tác nhân khác là công cụ tĩnh, Hermes Agent:
-- **Tạo kỹ năng từ kinh nghiệm** — học quy trình làm việc của bạn và lưu chúng thành kỹ năng có thể tái sử dụng
+Không giống như các tác nhân khác là công cụ tĩnh, Hermes Agent: - **Tạo kỹ năng từ kinh nghiệm** — học quy trình làm việc của bạn và lưu chúng thành kỹ năng có thể tái sử dụng
 - **Cải thiện kỹ năng trong quá trình sử dụng** — tinh chỉnh khả năng dựa trên phản hồi
 - **Duy trì kiến thức xuyên suốt các phiên** — nhớ bạn là ai và bạn thích gì
 - **Xây dựng mô hình sâu sắc về bạn** — càng sử dụng nhiều, nó càng hiểu bạn hơn
@@ -71,14 +61,11 @@ Không giống như các tác nhân khác là công cụ tĩnh, Hermes Agent:
 
 ### 1. Vòng lặp học tập tích hợp
 
-Đổi mới cốt lõi của Hermes Agent là **chu kỳ tự cải thiện**:
-
-```
+Đổi mới cốt lõi của Hermes Agent là **chu kỳ tự cải thiện**: ```
 Kinh nghiệm → Suy ngẫm → Tạo kỹ năng → Thực hành → Cải thiện
 ```
 
-Khi bạn hoàn thành một tác vụ với Hermes, nó sẽ:
-1. **Phân tích** điều gì hiệu quả và điều gì không
+Khi bạn hoàn thành một tác vụ với Hermes, nó sẽ: 1. **Phân tích** điều gì hiệu quả và điều gì không
 2. **Trích xuất** các mẫu có thể tái sử dụng
 3. **Tạo** tệp kỹ năng ghi lại phương pháp
 4. **Kiểm tra** kỹ năng trên các tác vụ tương tự
@@ -88,9 +75,7 @@ Theo thời gian, điều này tạo ra một **thư viện kỹ năng cá nhân
 
 ### 2. 40+ công cụ tích hợp
 
-Hermes Agent đi kèm với bộ công cụ toàn diện:
-
-| Danh mục công cụ | Ví dụ |
+Hermes Agent đi kèm với bộ công cụ toàn diện: | Danh mục công cụ | Ví dụ |
 |-------------|---------|
 | **Thao tác tệp** | Đọc, ghi, tìm kiếm, so sánh, vá |
 | **Terminal** | Thực thi lệnh, phiên shell, tác vụ nền |
@@ -103,32 +88,25 @@ Hermes Agent đi kèm với bộ công cụ toàn diện:
 
 ### 3. Hệ thống kỹ năng (Bộ nhớ thủ tục)
 
-Kỹ năng là vũ khí bí mật của Hermes Agent. Chúng là **tệp thủ tục có thể tái sử dụng** ghi lại:
-
-- **Điều kiện kích hoạt** — khi nào sử dụng kỹ năng này
+Kỹ năng là vũ khí bí mật của Hermes Agent. Chúng là **tệp thủ tục có thể tái sử dụng** ghi lại: - **Điều kiện kích hoạt** — khi nào sử dụng kỹ năng này
 - **Hướng dẫn từng bước** — phải làm gì
 - **Cạm bẫy** — những sai lầm phổ biến cần tránh
 - **Bước xác minh** — cách xác nhận thành công
 
-Kỹ năng có thể:
-- **Tự động tạo** từ các lần hoàn thành tác vụ thành công
+Kỹ năng có thể: - **Tự động tạo** từ các lần hoàn thành tác vụ thành công
 - **Tải từ Skills Hub** — kỹ năng do cộng đồng đóng góp
 - **Viết thủ công** cho quy trình làm việc cụ thể của bạn
 - **Chia sẻ** với người dùng khác
 
 ### 4. Bộ nhớ lâu dài
 
-Hermes Agent duy trì **hai loại bộ nhớ**:
-
-**Bộ nhớ hồ sơ người dùng**:
-- Phong cách lập trình ưa thích của bạn
+Hermes Agent duy trì **hai loại bộ nhớ**: **Bộ nhớ hồ sơ người dùng**: - Phong cách lập trình ưa thích của bạn
 - Các dự án bạn đang làm việc
 - Công cụ bạn thích
 - Sở thích giao tiếp
 - Lỗi phổ biến bạn mắc phải (để nó có thể bắt chúng)
 
-**Bộ nhớ phiên**:
-- Ngữ cảnh dự án hiện tại
+**Bộ nhớ phiên**: - Ngữ cảnh dự án hiện tại
 - Lệnh và đầu ra gần đây
 - Tệp bạn đang chỉnh sửa
 - Cuộc trò chuyện từ phiên này
@@ -137,9 +115,7 @@ Bộ nhớ này tồn tại xuyên suốt các phiên, vì vậy Hermes **nhớ 
 
 ### 5. Cổng tin nhắn
 
-Hermes Agent không chỉ là công cụ CLI — nó là **bot tin nhắn đa nền tảng**:
-
-| Nền tảng | Thiết lập | Trường hợp sử dụng |
+Hermes Agent không chỉ là công cụ CLI — nó là **bot tin nhắn đa nền tảng**: | Nền tảng | Thiết lập | Trường hợp sử dụng |
 |---------|-------|---------|
 | **Telegram** | `hermes gateway setup` | Trợ lý AI di động |
 | **Discord** | `hermes gateway setup` | Cộng tác nhóm |
@@ -152,9 +128,7 @@ Sau khi cấu hình, bạn có thể trò chuyện với Hermes từ bất kỳ 
 
 ### 6. Tích hợp MCP
 
-Hermes Agent hỗ trợ **Giao thức ngữ cảnh mô hình (MCP)**, cho phép nó kết nối với bất kỳ máy chủ MCP nào để có khả năng mở rộng:
-
-- **Máy chủ cơ sở dữ liệu** — truy vấn cơ sở dữ liệu SQL
+Hermes Agent hỗ trợ **Giao thức ngữ cảnh mô hình (MCP)**, cho phép nó kết nối với bất kỳ máy chủ MCP nào để có khả năng mở rộng: - **Máy chủ cơ sở dữ liệu** — truy vấn cơ sở dữ liệu SQL
 - **Máy chủ tệp** — truy cập hệ thống tệp từ xa
 - **Máy chủ API** — tương tác với bất kỳ REST API nào
 - **Máy chủ tùy chỉnh** — xây dựng tích hợp của riêng bạn
@@ -163,9 +137,7 @@ Hermes Agent hỗ trợ **Giao thức ngữ cảnh mô hình (MCP)**, cho phép 
 
 ### 7. Lập lịch Cron
 
-Hermes Agent có thể chạy **tác vụ đã lên lịch** thông qua hệ thống cron tích hợp:
-
-```bash
+Hermes Agent có thể chạy **tác vụ đã lên lịch** thông qua hệ thống cron tích hợp: ```bash
 # Chạy một kỹ năng mỗi ngày lúc 9 giờ sáng
 hermes cron add --skill "daily-report" --schedule "0 9 * * *"
 
@@ -180,9 +152,7 @@ Hoàn hảo cho các quy trình tự động cần chạy theo lịch trình.
 
 ### 8. Tính năng bảo mật
 
-Hermes Agent coi trọng bảo mật:
-
-- **Phê duyệt lệnh** — các lệnh rủi ro cần xác nhận rõ ràng
+Hermes Agent coi trọng bảo mật: - **Phê duyệt lệnh** — các lệnh rủi ro cần xác nhận rõ ràng
 - **Ghép nối DM** — xác minh danh tính của bạn trước các thao tác nhạy cảm
 - **Cách ly container** — chạy mã không đáng tin cậy trong môi trường cách ly
 - **Ghi nhật ký kiểm toán** — tất cả hành động được ghi lại để xem xét
@@ -247,9 +217,7 @@ hermes config set model llama3.1
 
 ## Kiến trúc
 
-Hermes Agent được xây dựng với kiến trúc mô-đun:
-
-```
+Hermes Agent được xây dựng với kiến trúc mô-đun: ```
 Hermes Agent
 ├── Giao diện CLI (UI terminal)
 ├── Cổng tin nhắn (Telegram, Discord, v.v.)
@@ -328,9 +296,7 @@ Bạn đã thử Hermes Agent chưa? Bạn có kinh nghiệm gì với các tác
 
 ## Hạ Tầng Đề Xuất Cho Tự Lưu Trữ
 
-Để chạy stack này 24/7 ổn định, lựa chọn hạ tầng rất quan trọng:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu. Lựa chọn mặc định cho developer độc lập.
+Để chạy stack này 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu. Lựa chọn mặc định cho developer độc lập.
 - **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — VPS Hong Kong, độ trễ thấp với người dùng Việt Nam. dibi8.com cũng được host ở đây.
 - **{{< aff "hostinger" "footer-cta-legacy" "Hostinger" >}}** — Lựa chọn VPS giá tốt cho thị trường Việt Nam, giảm 60% gói đầu tiên.
 
@@ -338,7 +304,6 @@ Bạn đã thử Hermes Agent chưa? Bạn có kinh nghiệm gì với các tác
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

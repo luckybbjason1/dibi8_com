@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/comfyui-workflow-2026-5-production-templates" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/comfyui-workflow-2026-5-production-templates" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/comfyui-workflow-2026-5-production-templates" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/comfyui-workflow-2026-5-production-templates" />
 title: 'ComfyUI 워크플로 2026: 초보자 셋업 + 프로덕션 템플릿 5종'
 description: '2026년 ComfyUI는 GitHub 스타 10.6만 개를 돌파했습니다. 초보자 친화적 셋업 가이드, 2026년 모델 추천, 그리고 곧바로 실무에 투입 가능한 워크플로 템플릿 5종(텍스트→이미지, 인페인트, 업스케일, 비디오, 캐릭터 일관성).'
 date: 2026-05-25 00:00:00+08:00
@@ -21,10 +16,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [comfyui, 'stable-diffusion', 'image-generation', workflows, 2026]
-aliases:
-- /kr/posts/comfyui-workflow-2026-5-production-templates/
-faq:
-  - q: "2026년에 ComfyUI가 Stable Diffusion WebUI보다 나은가요?"
+aliases: - /kr/posts/comfyui-workflow-2026-5-production-templates/
+faq: - q: "2026년에 ComfyUI가 Stable Diffusion WebUI보다 나은가요?"
     a: "워크플로 자동화와 프로덕션 용도라면: 단연코 예. ComfyUI의 노드 기반 그래프는 복잡한 다단계 파이프라인(업스케일 → 인페인트 → ControlNet → 재렌더)을 손쉽게 만들어줍니다. SD WebUI는 일회성 생성에 더 간편합니다. 대부분의 프로 AI 아티스트는 둘 다 사용합니다."
   - q: "어떤 하드웨어가 필요한가요?"
     a: "최소: 8GB VRAM(RTX 3060, RTX 4060) — 적당한 품질의 SDXL용. 쾌적: 16GB+ VRAM(RTX 4080, 4090) — SDXL + Flux 모델 + LoRA 스택용. 프로덕션: H100 / 멀티 GPU — 배치 워크플로용."
@@ -33,8 +26,6 @@ faq:
   - q: "ComfyUI를 처음부터 배우는 데 얼마나 걸리나요?"
     a: "워크플로 로드 + 생성: 30분. 직접 워크플로 구축: 1-2일. 프로덕션용 노드 마스터: 2-3주. 학습 곡선은 초반에 가파르지만 보상이 큽니다 — 워크플로는 재사용·공유·재현이 가능합니다."
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/comfyui-workflow-2026-5-production-templates/ -->
 
 {{</* resource-info */>}}
 
@@ -69,13 +60,11 @@ python main.py
 브라우저가 `http://localhost:8188`에서 열립니다.
 
 ### 2단계: 모델 다운로드 (30분)
-`ComfyUI/models/checkpoints/`에 넣으세요:
-- **SDXL base + refiner** (가장 범용적, 총 ~13GB)
+`ComfyUI/models/checkpoints/`에 넣으세요: - **SDXL base + refiner** (가장 범용적, 총 ~13GB)
 - **Flux.1 Schnell** (빠른 프로토타이핑, ~24GB)
 - **SD 3.5 Large** (최고 수준의 사진 사실감, ~17GB)
 
-선택 사항이지만 유용:
-- 본인 스타일에 맞는 LoRA 2-3개 (Civitai에서 "2026 SDXL trending" 검색)
+선택 사항이지만 유용: - 본인 스타일에 맞는 LoRA 2-3개 (Civitai에서 "2026 SDXL trending" 검색)
 - ControlNet 모델 (OpenPose, Depth, Canny — 각 ~1.5GB)
 
 ### 3단계: 첫 생성 (15분)
@@ -119,8 +108,7 @@ python main.py
 
 위 5개 템플릿은 모두 `.json`으로 저장 가능합니다. ComfyUI 캔버스에 드래그해서 로드. git이나 Discord로 팀과 공유하세요.
 
-커뮤니티는 수천 개의 워크플로를 다음에 공개합니다:
-- ComfyUI 서브레딧
+커뮤니티는 수천 개의 워크플로를 다음에 공개합니다: - ComfyUI 서브레딧
 - OpenArt.ai 워크플로 라이브러리
 - Civitai ("ComfyUI workflow" 필터로 검색)
 
@@ -128,8 +116,7 @@ python main.py
 
 ## 추천 인프라
 
-본격적인 ComfyUI 작업을 위해:
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 크레딧, GPU droplet(H100/L40S/A100)
+본격적인 ComfyUI 작업을 위해: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 크레딧, GPU droplet(H100/L40S/A100)
 - **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 아시아 저지연 생성용 홍콩 VPS
 
 *제휴 링크 — 동일 가격, dibi8.com을 지원합니다.*
@@ -145,7 +132,6 @@ ComfyUI의 학습 곡선은 진짜지만 보상도 진짜입니다. 재사용 �
 **관련 문서**: [Stable Diffusion WebUI 셋업](https://dibi8.com/kr/resources/ai-tools/stable-diffusion-webui/) · [2026 최고의 AI 이미지 생성 도구](https://dibi8.com/kr/resources/ai-tools/ai-image-generation-tools-2025/) · [2026 로컬 퍼스트 AI 스택](https://dibi8.com/kr/resources/llm-frameworks/2026-local-first-ai-stack-production-architecture/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -173,25 +159,20 @@ ComfyUI의 학습 곡선은 진짜지만 보상도 진짜입니다. 재사용 �
 
 ## Why This Matters
 
-Understanding comfyui 워크플로 2026: 초보자 셋업 + 프로덕션 템플릿 5종 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding comfyui 워크플로 2026: 초보자 셋업 + 프로덕션 템플릿 5종 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

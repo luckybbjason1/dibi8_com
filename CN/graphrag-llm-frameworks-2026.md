@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/graphrag-llm-frameworks-2026" />
 title: 'GraphRAG: Microsoft''s Graph-Based RAG for Better LLM An...
 description: 'GraphRAG is Microsoft''''s modular, knowledge-graph-based RAG system (33,403 GitHub stars, MIT license). This guide covers installation, the init/index/query workflow, real CLI examples, and an honest comparison with LangChain and Haystack.'
 date: 2026-06-02 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: []
-aliases:
-- /posts/graphrag-llm-frameworks-2026/
-faqs:
-  - q: 'How do I install graphrag?'
+aliases: - /posts/graphrag-llm-frameworks-2026/
+faqs: - q: 'How do I install graphrag?'
     a: 'Install it from PyPI with a single command (Python 3.10–3.12): ```bash pip install graphrag ```'
   - q: 'What are the system requirements for running graphrag?'
     a: 'GraphRAG needs Python 3.10–3.12 and access to a language model (OpenAI, Azure OpenAI, or another supported provider) via an API key. It runs on any modern operating system that supports Python.'
@@ -34,9 +30,7 @@ faqs:
   - q: 'How do I report an issue or bug?'
     a: 'Use the GitHub Issues page for the repository. Include as much detail as possible — error messages, your configuration, and steps to reproduce the problem.'
   - q: 'How is GraphRAG different from regular vector RAG?'
-    a: 'Regular RAG retrieves a few similar chunks and answers from them. GraphRAG additionally builds a knowledge graph and community summaries from your documents, which lets it answer broad, corpus-wide questions (global search) as well as entity-focused ones (local search).'
----
-
+    a: 'Regular RAG retrieves a few similar chunks and answers from them. GraphRAG additionally builds a knowledge graph and community summaries from your documents, which lets it answer broad, corpus-wide questions (global search) as well as entity-focused ones (local search).'---
 {{< resource-info >}}
 
 ## Introduction
@@ -51,9 +45,7 @@ The project is maintained by Microsoft Research and is written in Python. It is 
 
 ## How graphrag Works
 
-GraphRAG splits the problem into an offline indexing phase and an online query phase:
-
-1. **Indexing**: GraphRAG chunks your source documents, then prompts an LLM to extract entities, relationships, and claims from each chunk. These are merged into a single knowledge graph. The graph is partitioned into communities (using the Leiden algorithm), and the LLM writes a summary report for each community.
+GraphRAG splits the problem into an offline indexing phase and an online query phase: 1. **Indexing**: GraphRAG chunks your source documents, then prompts an LLM to extract entities, relationships, and claims from each chunk. These are merged into a single knowledge graph. The graph is partitioned into communities (using the Leiden algorithm), and the LLM writes a summary report for each community.
 
 2. **Querying — Global Search**: For broad questions about the whole corpus, GraphRAG uses the community summaries in a map-reduce fashion: it reasons over many community reports, then combines the partial answers into a final response.
 
@@ -65,23 +57,17 @@ This two-mode design is what separates GraphRAG from a plain vector store: globa
 
 To run graphrag as a scheduled production job you want an always-on box — spin one up on [DigitalOcean](https://m.do.co/c/eca87ac14ee0) (free trial credit for new accounts), or [HTStack](https://my.htstack.com/aff.php?aff=27187) for low-latency Hong Kong VPS (same IDC that hosts dibi8.com).
 
-GraphRAG requires Python 3.10–3.12. The recommended way to install it is via pip:
-
-```bash
+GraphRAG requires Python 3.10–3.12. The recommended way to install it is via pip: ```bash
 pip install graphrag
 ```
 
-Once installed, you initialize a workspace. This creates the configuration files and folder structure GraphRAG expects:
-
-```bash
+Once installed, you initialize a workspace. This creates the configuration files and folder structure GraphRAG expects: ```bash
 mkdir -p ./ragtest/input
 # put your .txt or .csv documents into ./ragtest/input
 python -m graphrag init --root ./ragtest
 ```
 
-The `init` command generates a `settings.yaml` and a `.env` file in the project root. Open `.env` and set your model API key, for example:
-
-```bash
+The `init` command generates a `settings.yaml` and a `.env` file in the project root. Open `.env` and set your model API key, for example: ```bash
 GRAPHRAG_API_KEY=<your-openai-or-azure-key>
 ```
 
@@ -95,9 +81,7 @@ After `init`, the typical workflow is: drop documents in the input folder, build
 
 ### Step 1: Build the Index
 
-Run the indexing pipeline over your workspace. This is the expensive step — it makes many LLM calls to extract the graph:
-
-```bash
+Run the indexing pipeline over your workspace. This is the expensive step — it makes many LLM calls to extract the graph: ```bash
 python -m graphrag index --root ./ragtest
 ```
 
@@ -105,9 +89,7 @@ When it finishes, GraphRAG writes the entity graph, community reports, and embed
 
 ### Step 2: Global Search
 
-Use global search for broad, corpus-wide questions that require synthesizing across many documents:
-
-```bash
+Use global search for broad, corpus-wide questions that require synthesizing across many documents: ```bash
 python -m graphrag query \
   --root ./ragtest \
   --method global \
@@ -116,9 +98,7 @@ python -m graphrag query \
 
 ### Step 3: Local Search
 
-Use local search when your question centers on a specific entity or a narrow part of the corpus:
-
-```bash
+Use local search when your question centers on a specific entity or a narrow part of the corpus: ```bash
 python -m graphrag query \
   --root ./ragtest \
   --method local \
@@ -133,9 +113,7 @@ Because indexing produces plain Parquet outputs (entities, relationships, commun
 
 ### Working with the Output
 
-You can load the generated graph and reports directly with pandas for inspection, custom retrieval, or downstream analytics:
-
-```python
+You can load the generated graph and reports directly with pandas for inspection, custom retrieval, or downstream analytics: ```python
 import pandas as pd
 
 entities = pd.read_parquet("./ragtest/output/entities.parquet")
@@ -148,23 +126,16 @@ print(community_reports[["title", "summary"]].head())
 
 ### Customizing with settings.yaml
 
-GraphRAG's behavior is controlled through the `settings.yaml` file created by `init`. There you choose the chat and embedding models, set chunk size, tune concurrency, and point at your input data. A simplified excerpt looks like this:
-
-```yaml
-models:
-  default_chat_model:
-    type: openai_chat
+GraphRAG's behavior is controlled through the `settings.yaml` file created by `init`. There you choose the chat and embedding models, set chunk size, tune concurrency, and point at your input data. A simplified excerpt looks like this: ```yaml
+models: default_chat_model: type: openai_chat
     model: gpt-4o-mini
-  default_embedding_model:
-    type: openai_embedding
+  default_embedding_model: type: openai_embedding
     model: text-embedding-3-small
 
-chunks:
-  size: 1200
+chunks: size: 1200
   overlap: 100
 
-input:
-  type: file
+input: type: file
   file_type: text
   base_dir: "input"
 ```
@@ -190,7 +161,15 @@ See also our [related open-source tools](dibi8-internal-link) coverage.
 GraphRAG, LangChain, and Haystack solve overlapping but different problems. GraphRAG is a focused, opinionated graph-RAG pipeline; LangChain and Haystack are general frameworks for building LLM applications and RAG pipelines of many kinds. The table below is a rough orientation, not a head-to-head benchmark — star counts and issue counts move over time, so treat them as approximate.
 
 | Feature | **GraphRAG** | **LangChain** | **Haystack** |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Primary focus | Graph-based RAG pipeline | General LLM app framework | RAG / search framework |
 | Language | Python | Python | Python |
 | License | MIT | MIT | Apache-2.0 |
@@ -212,9 +191,7 @@ If you simply need top-k retrieval for short factual answers, a general framewor
 
 ## Limitations & Honest Assessment
 
-GraphRAG is a strong tool for the right job, but it has real trade-offs:
-
-1. **Indexing is expensive**: Building the graph makes many LLM calls, so both cost and time grow with corpus size. This is the single biggest factor to budget for.
+GraphRAG is a strong tool for the right job, but it has real trade-offs: 1. **Indexing is expensive**: Building the graph makes many LLM calls, so both cost and time grow with corpus size. This is the single biggest factor to budget for.
 2. **Configuration takes effort**: Getting good results often requires tuning chunk size, prompts, and model choices in `settings.yaml`. It is not a one-line drop-in.
 3. **Overkill for simple lookups**: For narrow Q&A where the answer lives in one chunk, classic vector RAG is faster and far cheaper.
 4. **Operational overhead**: You manage an indexing pipeline and its Parquet outputs, plus periodic re-indexing as your documents change.
@@ -229,21 +206,17 @@ GraphRAG is a well-maintained, modular graph-based RAG system from Microsoft Res
 - Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) for open-source AI tool drops.
 - Read next: [related guides on dibi8](dibi8-internal-link).
 
----
 
-**Sources & Further Reading**:
-- GitHub repository: https://github.com/microsoft/graphrag
+---
+**Sources & Further Reading**: - GitHub repository: https://github.com/microsoft/graphrag
 - Official docs / README: https://github.com/microsoft/graphrag#readme
 
 *Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.*
 
-<!-- internal-link-candidates:
   related open-source tools -> ai-tools-directory
   related guides on dibi8 -> ai-coding-agent-landscape-2026-skills-mcp-opensource
--->
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -290,3 +263,5 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 
 使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。
 
+
+---

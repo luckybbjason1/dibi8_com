@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mcp-server-security-audit-2026-real-cases" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mcp-server-security-audit-2026-real-cases" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mcp-server-security-audit-2026-real-cases" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mcp-server-security-audit-2026-real-cases" />
 title: 'MCP 服务器安全审计 2026：5 个真实社区服务器实测 + 陷阱模式'
 description: '生产环境中实测 5 个热门社区 MCP 服务器：GitHub、Slack、Postgres、Brave Search、Fetch。具体漏洞披露、攻击路径演示，外加每个服务器 5 分钟搞定的 8 点装前审计清单。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-25 00:00:00+08:00
@@ -21,10 +16,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [mcp, security, audit, 'claude-code', 'supply-chain', 'agent-security', 2026]
-aliases:
-- /zh/posts/mcp-server-security-audit-2026-real-cases/
-faq:
-  - q: "Anthropic 官方维护的 MCP 服务器是否比社区版更安全？"
+aliases: - /zh/posts/mcp-server-security-audit-2026-real-cases/
+faq: - q: "Anthropic 官方维护的 MCP 服务器是否比社区版更安全？"
     a: "是的，差距明显。Anthropic 参考实现（filesystem、git、github、fetch、sequentialthinking）经过内部审查、有签名发布、有明确的安全模型。社区服务器质量参差不齐——少数经过审计，多数没有。只要 Anthropic 提供了对应版本，默认选 Anthropic；社区替代品在你证明它安全前，要按「拥有完整本地权限的不可信代码」来对待。"
   - q: "2026 年最常见的 MCP 真实攻击模式是什么？"
     a: "三类并列第一：(1) 抢注仿冒——`github-mcp-server-v2` 这种假包窃取 token。(2) 维护者易主 + 遥测——热门社区服务器换了主人，悄悄加上「分析」功能泄露文件路径或环境变量。(3) 通过抓取内容的 prompt injection——`fetch` 服务器拉到恶意 markdown，agent 被提示词诱导后泄露 `~/.ssh/id_rsa`。"
@@ -37,8 +30,6 @@ faq:
   - q: "判断 MCP 服务器是否恶意的「煤矿金丝雀」信号是什么？"
     a: "依赖分析里出现解释不清的网络调用。filesystem 或 git MCP 服务器应该是零 HTTP 调用。fetch 或 github 服务器有定义清晰的端点。任何调用陌生域名（尤其是随机子域或裸 IP 字面量）的都是红旗——这是社区服务器最常见的数据泄露方式。"
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/mcp-server-security-audit-2026-real-cases/ -->
 
 {{</* resource-info */>}}
 
@@ -60,8 +51,8 @@ faq:
 >
 > **默认规则**：Anthropic 参考实现 > 活跃且审计过的社区版 > 其他一切。
 
----
 
+---
 ## 我们审计的 5 个服务器
 
 ### 1. `github-mcp-server-v2`（社区，约 120 stars）— ❌ 抢注仿冒
@@ -112,7 +103,13 @@ faq:
 ## 常见审计结果（基于 50+ 服务器的模式）
 
 | 模式 | 占社区服务器比例 | 严重度 |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | 停滞（commit > 180 天） | 41% | 中 |
 | Token 权限过大 | 28% | 高 |
 | 隐藏遥测 | 7% | 严重 |
@@ -153,12 +150,11 @@ MCP 服务器以你的完整本地权限运行。社区生态如今已经大到�
 
 只要 Anthropic 有就用 Anthropic。对社区服务器，每次装前都跑 8 点清单。锁版本。绝不授予完整权限的 token。**把 MCP 服务器当作"碰巧好用的安全敏感代码"——而不是"碰巧需要凭证的好用代码"。**
 
----
 
+---
 **相关阅读**：[MCP 服务器 2026 全景排名](https://dibi8.com/zh/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/) · [Claude Code 配置指南](https://dibi8.com/zh/resources/llm-frameworks/claude-code/) · [AI Agent 安全模式](https://dibi8.com/zh/resources/llm-frameworks/ai-agent-skills-framework-spec-driven-development-2026/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -186,25 +182,20 @@ MCP 服务器以你的完整本地权限运行。社区生态如今已经大到�
 
 ## Why This Matters
 
-Understanding mcp 服务器安全审计 2026：5 个真实社区服务器实测 + 陷阱模式 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding mcp 服务器安全审计 2026：5 个真实社区服务器实测 + 陷阱模式 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

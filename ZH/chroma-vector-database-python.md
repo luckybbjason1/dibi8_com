@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/chroma-vector-database-python" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/chroma-vector-database-python" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/chroma-vector-database-python" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/chroma-vector-database-python" />
 title: 'Chroma DB 2026：面向开发者的 RAG 向量数据库，嵌入搜索速度提升 50 倍 — Python 实...
 description: 'Chroma 向量数据库的 Python 实战指南。学习安装、RAG 集成、嵌入搜索和生产环境部署。包含基准测试、对比分析和真实案例。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: []
-aliases:
-- /zh/posts/chroma-vector-database-python/
+aliases: - /zh/posts/chroma-vector-database-python/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/chroma-vector-database-python/ -->
 
 {{</* resource-info */>}}
 
@@ -64,7 +56,15 @@ Chroma 的架构刻意保持简洁。理解三个核心概念即可掌握 80% �
 
 ### 存储模式
 | 模式 | 持久化 | 适用场景 | 性能 |
-|------|--------|----------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | `:memory:` | 无 | 测试、CI/CD | 最快 |
 | `./chroma_db` | 磁盘 | 本地开发、小型生产 | 快 |
 | Docker 卷 | 持久化容器 | 自托管生产环境 | 快 |
@@ -232,8 +232,7 @@ vector_store.add_documents(docs)
 
 # 搜索
 results = vector_store.similarity_search("How do I use LangChain with Chroma?", k=2)
-for doc in results:
-    print(doc.page_content)
+for doc in results: print(doc.page_content)
 ```
 
 ### LlamaIndex 集成
@@ -330,14 +329,11 @@ app = FastAPI()
 client = chromadb.PersistentClient(path="./chroma_api")
 collection = client.get_or_create_collection("api_docs")
 
-class QueryRequest(BaseModel):
-    query: str
+class QueryRequest(BaseModel): query: str
     n_results: int = 5
 
 @app.post("/search")
-def search_docs(request: QueryRequest):
-    try:
-        results = collection.query(
+def search_docs(request: QueryRequest): try: results = collection.query(
             query_texts=[request.query],
             n_results=request.n_results
         )
@@ -346,12 +342,10 @@ def search_docs(request: QueryRequest):
             "distances": results["distances"][0],
             "metadatas": results["metadatas"][0]
         }
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+    except Exception as e: raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/health")
-def health():
-    return {"status": "ok", "count": collection.count()}
+def health(): return {"status": "ok", "count": collection.count()}
 
 # Run: uvicorn main:app --reload
 ```
@@ -363,7 +357,17 @@ def health():
 我们在 AWS c6i.2xlarge 实例上对 Chroma v0.6.0 与 numpy 暴力搜索进行了基准测试：
 
 | 数据集规模 | 朴素（numpy） | Chroma（HNSW） | 加速比 | Chroma 内存占用 |
-|-----------|--------------|---------------|--------|----------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 1,000 向量 | 12ms | 0.8ms | **15x** | 45MB |
 | 10,000 向量 | 180ms | 1.2ms | **150x** | 120MB |
 | 100,000 向量 | 3,200ms | 2.1ms | **1,523x** | 850MB |
@@ -376,7 +380,15 @@ def health():
 ### 真实案例
 
 | 公司/项目 | 规模 | 用例 | 结果 |
-|----------|------|------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 法律 AI 创业公司 | 200 万案件文档 | 语义判例搜索 | 查询时间：4.2s → 89ms |
 | 电商平台 | 50 万商品描述 | 商品推荐 | 点击率提升 23% |
 | 医疗 RAG | 15 万医学论文 | 临床决策支持 | top-5 相关性 99.2% |
@@ -448,8 +460,7 @@ results = collection.query(
 
 ```python
 # 每个用户/租户一个集合 —— 天然隔离
-def get_user_collection(user_id: str):
-    return client.get_or_create_collection(f"user_{user_id}_docs")
+def get_user_collection(user_id: str): return client.get_or_create_collection(f"user_{user_id}_docs")
 
 # 每个用户的数据完全隔离
 user_a = get_user_collection("alice")
@@ -465,28 +476,17 @@ user_b.add(documents=["Bob's private document"], ids=["bob_1"])
 # docker-compose.yml
 version: "3.8"
 
-services:
-  chroma:
-    image: chromadb/chroma:0.6.0
-    ports:
-      - "8000:8000"
-    volumes:
-      - chroma_data:/chroma/chroma
-    environment:
-      - IS_PERSISTENT=TRUE
+services: chroma: image: chromadb/chroma:0.6.0
+    ports: - "8000:8000"
+    volumes: - chroma_data:/chroma/chroma
+    environment: - IS_PERSISTENT=TRUE
       - PERSIST_DIRECTORY=/chroma/chroma
       - ANONYMIZED_TELEMETRY=FALSE
     restart: unless-stopped
-    deploy:
-      resources:
-        limits:
-          memory: 8G
-        reservations:
-          memory: 2G
+    deploy: resources: limits: memory: 8G
+        reservations: memory: 2G
 
-volumes:
-  chroma_data:
-```
+volumes: chroma_data: ```
 
 部署命令：
 
@@ -510,7 +510,17 @@ tar -xzf chroma_backup_20260519.tar.gz
 ## 替代品对比
 
 | 功能 | **Chroma** | Pinecone | Weaviate | pgvector（PostgreSQL）|
-|---------|-----------|----------|----------|----------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **自托管** | ✅ 免费 | ❌ 仅云端 | ✅ Docker | ✅ 扩展 |
 | **设置时间** | **< 2 分钟** | ~15 分钟（API 密钥） | ~10 分钟 | ~30 分钟 |
 | **Python API** | **原生，直观** | REST 包装 | GraphQL + Python | SQLAlchemy |
@@ -608,12 +618,11 @@ Chroma 填补了 AI 工具链中的关键空白：一个优先考虑开发者体
 
 本文包含联盟营销链接。如果你通过本文中的链接注册服务（如 DigitalOcean），dibi8.com 可能会获得佣金，而你无需额外付费。我们只推荐我们使用且真正认可的工具。Chroma 本身在 Apache-2.0 下免费开源 —— 与 Chroma 项目不存在联盟营销关系。
 
----
 
+---
 *发表于 dibi8.com —— AI 源代码中心。最后更新：2026-05-19*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -642,14 +651,12 @@ Chroma 填补了 AI 工具链中的关键空白：一个优先考虑开发者体
 
 ## Related Articles
 
-Explore more articles in this category:
-
-1. [Arize Ai Observability Llm](/zh/arize-ai-observability-llm)
+Explore more articles in this category: 1. [Arize Ai Observability Llm](/zh/arize-ai-observability-llm)
 2. [Feast Feature Store Ml](/zh/feast-feature-store-ml)
 3. [Haystack Rag Pipeline Framework](/zh/haystack-rag-pipeline-framework)
 
----
 
+---
 ## Frequently Asked Questions (FAQ)
 
 **问：LangChain和LlamaIndex哪个更好？**

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/tabby" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/tabby" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/tabby" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/tabby" />
 title: 'Tabby: 33K+ Stars 자체 호스팅 AI 코딩 어시스턴트 — 2026년 프라이버시 우선 설치...
 description: 'Tabby는 자체 호스팅 AI 코딩 어시스턴트입니다. VS Code, JetBrains, Vim, Neovim, Ollama, DeepSeek 지원. Docker 설치, IDE 통합, 벤치마크, 프로덕션 하드닝.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [tabby, ai코딩어시스턴트, 자체호스팅, githubcopilot대체, 코드자동완성, docker, 오픈소스]
-aliases:
-- /kr/posts/tabby/
+aliases: - /kr/posts/tabby/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/tabby/ -->
 
 {{</* resource-info */>}}
 
@@ -41,9 +33,7 @@ Tabby는 자체 호스팅 AI 코딩 어시스턴트이자 GitHub Copilot의 오�
 
 ## Tabby 작동 방식
 
-Tabby는 세 가지 핵심 구성 요소로 구성됩니다:
-
-1. **추론 서버**: 코딩 LLM을 로드하고 OpenAPI 호환 엔드포인트를 통해 자동완성을 제공하는 Rust 기반 HTTP 서버입니다. 모델 추론, 프롬프트 템플릿, 스트리밍 응답을 처리합니다.
+Tabby는 세 가지 핵심 구성 요소로 구성됩니다: 1. **추론 서버**: 코딩 LLM을 로드하고 OpenAPI 호환 엔드포인트를 통해 자동완성을 제공하는 Rust 기반 HTTP 서버입니다. 모델 추론, 프롬프트 템플릿, 스트리밍 응답을 처리합니다.
 
 2. **IDE 확장**: VS Code, JetBrains IDE, Vim/Neovim, Emacs용 네이티브 확장으로, 편집기 컨텍스트를 캡처하고 자동완성 요청을 추론 서버로 전달합니다.
 
@@ -84,9 +74,7 @@ docker run -d \
   --device cuda
 ```
 
-SELinux가 활성화된 시스템에서는 볼륨 마운트에 `:Z` 플래그를 추가합니다:
-
-```bash
+SELinux가 활성화된 시스템에서는 볼륨 마운트에 `:Z` 플래그를 추가합니다: ```bash
 docker run -d \
   --name tabby \
   --gpus all \
@@ -158,26 +146,15 @@ open http://localhost:8080
 
 ### Docker Compose (프로덕션 준비)
 
-영구 배포에는 Docker Compose를 사용합니다:
-
-```yaml
+영구 배포에는 Docker Compose를 사용합니다: ```yaml
 version: '3.8'
-services:
-  tabby:
-    image: registry.tabbyml.com/tabbyml/tabby
+services: tabby: image: registry.tabbyml.com/tabbyml/tabby
     container_name: tabby
     restart: unless-stopped
-    ports:
-      - "8080:8080"
-    volumes:
-      - $HOME/.tabby:/data
-    environment:
-      - TABBY_WEBSERVER_JWT_TOKEN_SECRET=CHANGE_ME_TO_RANDOM_STRING
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+    ports: - "8080:8080"
+    volumes: - $HOME/.tabby:/data
+    environment: - TABBY_WEBSERVER_JWT_TOKEN_SECRET=CHANGE_ME_TO_RANDOM_STRING
+    deploy: resources: reservations: devices: - driver: nvidia
               count: all
               capabilities: [gpu]
     command: >
@@ -188,23 +165,17 @@ services:
       --parallelism 4
 ```
 
-보안 JWT 키 생성:
-
-```bash
+보안 JWT 키 생성: ```bash
 openssl rand -hex 32
 ```
 
-배포:
-
-```bash
+배포: ```bash
 docker compose up -d
 ```
 
 ### Homebrew (macOS 네이티브)
 
-macOS에서 Docker를 사용하지 않으려면:
-
-```bash
+macOS에서 Docker를 사용하지 않으려면: ```bash
 # Homebrew로 설치
 brew install tabbyml/tabby/tabby
 
@@ -237,9 +208,7 @@ curl http://localhost:8080/v1/health
 
 ### Vim / Neovim
 
-`nvim-cmp` 및 `cmp-tabby`를 사용하는 Neovim의 경우:
-
-```lua
+`nvim-cmp` 및 `cmp-tabby`를 사용하는 Neovim의 경우: ```lua
 -- Neovim 설정에서 (예: init.lua)
 require(cmp).setup({
   sources = {
@@ -253,9 +222,7 @@ vim.g.tabby_server_url = 'http://localhost:8080'
 
 ### Ollama를 백엔드로 사용
 
-Tabby는 추론을 Ollama에 위임하여 동적 모델 전환과 다중 모델 관리를 가능하게 합니다:
-
-```toml
+Tabby는 추론을 Ollama에 위임하여 동적 모델 전환과 다중 모델 관리를 가능하게 합니다: ```toml
 # ~/.tabby/config.toml
 [model.completion.http]
 kind = "ollama/completion"
@@ -269,17 +236,13 @@ model_name = "qwen2.5-coder:7b"
 api_endpoint = "http://localhost:11434/v1"
 ```
 
-필요한 모델로 Ollama 시작:
-
-```bash
+필요한 모델로 Ollama 시작: ```bash
 ollama pull deepseek-coder:6.7b
 ollama pull qwen2.5-coder:7b
 ollama serve
 ```
 
-그런 다음 `--model`을 지정하지 않고 Tabby를 시작합니다(config.toml에서 읽음):
-
-```bash
+그런 다음 `--model`을 지정하지 않고 Tabby를 시작합니다(config.toml에서 읽음): ```bash
 tabby serve --device cuda
 ```
 
@@ -287,9 +250,7 @@ tabby serve --device cuda
 
 ## 벤치마크 / 실제 사용 사례
 
-Tabby의 성능은 모델 크기와 하드웨어에 크게 의존합니다. 다음 수치는 커뮤니티 벤치마크와 낮선 테스트에서 수집되었습니다:
-
-| 모델 | 크기 | GPU VRAM | 평균 지연 | 채택률 | 최적 사용场景 |
+Tabby의 성능은 모델 크기와 하드웨어에 크게 의존합니다. 다음 수치는 커뮤니티 벤치마크와 낮선 테스트에서 수집되었습니다: | 모델 | 크기 | GPU VRAM | 평균 지연 | 채택률 | 최적 사용场景 |
 |---|---|---|---|---|---|
 | Qwen2.5-Coder-0.5B | 0.5B | 2 GB | ~200ms | 18% | CPU 전용 설정, 빠른 테스트 |
 | StarCoder-1B | 1B | 3 GB | ~180ms | 22% | 저사원 배포 |
@@ -316,16 +277,12 @@ Tabby의 성능은 모델 크기와 하드웨어에 크게 의존합니다. 다�
 
 팀을 위한 Tabby의 킬러 기능은 저장소 수준 컨텍스트 인덱싱입니다. Git 저장소를 클론하고 인덱싱한 다음, 자동완성 중에 관련 납부 코드 스니펫을 제공하기 위해 RAG(검색 증강 생성)를 사용합니다.
 
-관리 대시보드를 통해 저장소 추가:
-
-```bash
+관리 대시보드를 통해 저장소 추가: ```bash
 # 저장소 → Git URL 추가로 이동
 # GitHub, GitLab, 자체 호스팅 Git 인스턴스 지원
 ```
 
-또는 스케줄러 CLI를 통해 구성:
-
-```bash
+또는 스케줄러 CLI를 통해 구성: ```bash
 docker exec tabby /opt/tabby/bin/tabby-cpu scheduler --now
 ```
 
@@ -333,9 +290,7 @@ docker exec tabby /opt/tabby/bin/tabby-cpu scheduler --now
 
 1. **기본 JWT 키 변경**: `TABBY_WEBSERVER_JWT_TOKEN_SECRET`을 암호학적으로 안전한 32바이트 16진수 문자열로 설정합니다.
 
-2. **TLS 종료와 함께 리버스 프록시 뒤에서 실행**:
-
-```nginx
+2. **TLS 종료와 함께 리버스 프록시 뒤에서 실행**: ```nginx
 # Nginx 예시
 server {
     listen 443 ssl;
@@ -354,9 +309,7 @@ server {
 
 3. **LDAP/SSO 인증 활성화** (엔터프라이즈 기능)으로 팀 전체 접근 제어.
 
-4. **Docker 컨테이너에 리소스 제한 설정**:
-
-```bash
+4. **Docker 컨테이너에 리소스 제한 설정**: ```bash
 docker run -d \
   --memory=24g \
   --cpus=8 \
@@ -412,9 +365,7 @@ Tabby는 이 그룹에서 100% 코드를 온프레미스로 유지하는 유일�
 
 ## 한계 / 정직한 평가
 
-Tabby는 모든 Copilot 사용 사례에서 즉시 대체제는 아닙니다. 다음 트레이드오프를 인식하세요:
-
-- **소형 모델의 복잡한 추론에서 뒤처짐**: 3B 파라미터 모델은 다중 파일 리팩토링이나 아키텍처 제안에서 GPT-4를 따라잡지 못합니다. 이러한 작업의 경우 여전히 클라우드 기반 채팅 도구가 필요할 수 있습니다.
+Tabby는 모든 Copilot 사용 사례에서 즉시 대체제는 아닙니다. 다음 트레이드오프를 인식하세요: - **소형 모델의 복잡한 추론에서 뒤처짐**: 3B 파라미터 모델은 다중 파일 리팩토링이나 아키텍처 제안에서 GPT-4를 따라잡지 못합니다. 이러한 작업의 경우 여전히 클라우드 기반 채팅 도구가 필요할 수 있습니다.
 - **인프라 부담**: GPU 유지보수, 모델 업데이트, 서버 가동 시간을 책임져야 합니다. 서버가 다울 때 SaaS 대안이 없습니다.
 - **기본 설치에 채팅 없음**: 채팅/응답 엔진은 별도의 채팅 모델과 추가 VRAM이 필요합니다. GPU 크기에 맞게 계획하세요.
 - **엔터프라이즈 SSO 비용**: LDAP 및 고급 SSO는 Tabby의 유료 엔터프라이즈 계층에 포함됩니다.
@@ -473,9 +424,7 @@ Tabby는 AI 코딩 어시스턴트 시장에서 핵심적인 격차를 메웁니
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -494,7 +443,6 @@ Tabby는 AI 코딩 어시스턴트 시장에서 핵심적인 격차를 메웁니
 - [HTStack GPU 클라우드](https://www.htstack.com/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

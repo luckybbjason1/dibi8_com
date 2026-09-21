@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/continue" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/continue" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/continue" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/continue" />
 title: 'Continue.dev: 33K+ Stars — 开源 AI 编程助手对比 Copilot、Cursor 2...
 description: 'Continue.dev（开源 AI 编程助手）VS Code/JetBrains 插件。支持任意 LLM：Ollama、OpenAI、Anthropic、Gemini。对比 GitHub Copilot、Cursor、Tabby。安装教程、配置示例、基准测试。'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['continue.dev', ai编程助手, 'vs-code插件', jetbrains插件, 开源, ollama本地部署, copilot替代品, 本地大模型, mcp协议]
-aliases:
-- /zh/posts/continue/
+aliases: - /zh/posts/continue/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/continue/ -->
 
 {{</* resource-info */>}}
 
@@ -46,7 +38,11 @@ aliases:
 关键数据一览：
 
 | 指标 | 数值 |
-|------|------|
+|
+---
+|
+---
+|
 | GitHub Stars | 33,277+ |
 | 贡献者 | 473+ |
 | 协议 | Apache-2.0 |
@@ -114,14 +110,12 @@ name: 我的开发环境
 version: 1.0.0
 schema: v1
 
-models:
-  - name: Claude Sonnet
+models: - name: Claude Sonnet
     provider: anthropic
     model: claude-sonnet-4-6
     apiKey: ${{ secrets.ANTHROPIC_API_KEY }}
     roles: [chat, edit, agent]
-    defaultCompletionOptions:
-      temperature: 0.1
+    defaultCompletionOptions: temperature: 0.1
       maxTokens: 8192
 
   - name: GPT-4o
@@ -161,8 +155,7 @@ ollama serve
 添加到 `config.yaml`：
 
 ```yaml
-models:
-  - name: Qwen Coder 7B
+models: - name: Qwen Coder 7B
     provider: ollama
     model: qwen2.5-coder:7b
     apiBase: http://localhost:11434
@@ -173,8 +166,7 @@ models:
     model: qwen2.5-coder:1.5b
     apiBase: http://localhost:11434
     roles: [autocomplete]
-    autocompleteOptions:
-      debounceDelay: 300
+    autocompleteOptions: debounceDelay: 300
       maxPromptTokens: 512
 
   - name: Nomic Embed
@@ -202,24 +194,14 @@ CMD ["continue", "check", "--config", "/root/.continue/config.yaml"]
 ```yaml
 # docker-compose.yml 团队 Ollama + Continue
 version: '3.8'
-services:
-  ollama:
-    image: ollama/ollama:latest
-    volumes:
-      - ollama-data:/root/.ollama
-    ports:
-      - "11434:11434"
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+services: ollama: image: ollama/ollama:latest
+    volumes: - ollama-data:/root/.ollama
+    ports: - "11434:11434"
+    deploy: resources: reservations: devices: - driver: nvidia
               count: 1
               capabilities: [gpu]
 
-volumes:
-  ollama-data:
-```
+volumes: ollama-data: ```
 
 ## 与 VS Code、Ollama、OpenAI、Anthropic 和 JetBrains 集成
 
@@ -233,15 +215,13 @@ name: 生产环境 VS Code
 version: 1.0.0
 schema: v1
 
-models:
-  # 主力：Claude 处理复杂任务
+models: # 主力：Claude 处理复杂任务
   - name: Claude Sonnet 4.6
     provider: anthropic
     model: claude-sonnet-4-6
     apiKey: ${{ secrets.ANTHROPIC_API_KEY }}
     roles: [chat, edit, agent]
-    defaultCompletionOptions:
-      temperature: 0.1
+    defaultCompletionOptions: temperature: 0.1
       maxTokens: 8192
 
   # 备用：GPT-4o 追求速度
@@ -265,15 +245,13 @@ models:
     apiBase: http://localhost:11434
     roles: [embed]
 
-context:
-  - provider: code
+context: - provider: code
   - provider: docs
   - provider: diff
   - provider: terminal
   - provider: codebase
 
-rules:
-  - name: TypeScript 标准
+rules: - name: TypeScript 标准
     pattern: "**/*.ts"
     rule: |
       使用严格 TypeScript。优先使用 interface 而非 type。
@@ -295,14 +273,12 @@ curl http://localhost:11434/api/tags
 ### Anthropic Claude 集成
 
 ```yaml
-models:
-  - name: Claude Opus
+models: - name: Claude Opus
     provider: anthropic
     model: claude-opus-4-6
     apiKey: ${{ secrets.ANTHROPIC_API_KEY }}
     roles: [chat, edit, agent]
-    defaultCompletionOptions:
-      temperature: 0.2
+    defaultCompletionOptions: temperature: 0.2
       maxTokens: 16384
 ```
 
@@ -311,8 +287,7 @@ Claude 模型原生支持 MCP 工具调用 —— 使 Continue 的 Agent 模式�
 ### OpenAI 集成
 
 ```yaml
-models:
-  - name: GPT-4o
+models: - name: GPT-4o
     provider: openai
     model: gpt-4o
     apiKey: ${{ secrets.OPENAI_API_KEY }}
@@ -323,8 +298,7 @@ models:
     model: gpt-4o-mini
     apiKey: ${{ secrets.OPENAI_API_KEY }}
     roles: [autocomplete]
-    defaultCompletionOptions:
-      maxTokens: 1024
+    defaultCompletionOptions: maxTokens: 1024
 ```
 
 ### JetBrains：全功能配置
@@ -350,16 +324,14 @@ JetBrains 快捷键：
 Continue.dev 支持 MCP 服务器的工具调用。添加到 `config.yaml`：
 
 ```yaml
-mcpServers:
-  - name: filesystem
+mcpServers: - name: filesystem
     command: npx
     args: ["-y", "@modelcontextprotocol/server-filesystem", "/home/user/projects"]
 
   - name: github
     command: npx
     args: ["-y", "@modelcontextprotocol/server-github"]
-    env:
-      GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    env: GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   - name: postgres
     command: npx
@@ -371,7 +343,17 @@ mcpServers:
 ### 生产力指标（2026 年开发者调研）
 
 | 指标 | Continue.dev + Claude | Continue.dev + Ollama | GitHub Copilot | Cursor Pro |
-|------|----------------------|----------------------|----------------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 代码接受率 | 68% | 52% | 72% | 75% |
 | 平均响应时间（聊天） | 2.1秒 | 0.8秒（本地） | 1.4秒 | 1.2秒 |
 | 平均响应时间（自动补全） | 0.5秒 | 0.3秒 | 0.4秒 | 0.3秒 |
@@ -396,8 +378,7 @@ mcpServers:
 
 ```yaml
 # 优化成本性能配置
-models:
-  - name: Claude Haiku
+models: - name: Claude Haiku
     provider: anthropic
     model: claude-haiku-4-5
     apiKey: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -419,14 +400,12 @@ Continue.dev 的 2026 年 Agent 模式可自主规划和执行多步骤任务：
 
 ```yaml
 # 启用带工具策略的 Agent 模式
-models:
-  - name: Claude Sonnet Agent
+models: - name: Claude Sonnet Agent
     provider: anthropic
     model: claude-sonnet-4-6
     apiKey: ${{ secrets.ANTHROPIC_API_KEY }}
     roles: [chat, edit, agent]
-    capabilities:
-      - tool_use
+    capabilities: - tool_use
       - image_input
 ```
 
@@ -440,8 +419,7 @@ name: TypeScript 规则
 version: 1.0.0
 schema: v1
 
-rules:
-  - pattern: "**/*.ts"
+rules: - pattern: "**/*.ts"
     rule: |
       1. 使用严格 TypeScript（noImplicitAny、strictNullChecks）
       2. 优先使用 `interface` 而非 `type` 定义对象形状
@@ -475,8 +453,7 @@ Continue 的 `@` 命令为 AI 提供精准上下文：
 
 ```yaml
 # 切勿硬编码 API 密钥。使用环境变量替换：
-models:
-  - name: Claude
+models: - name: Claude
     provider: anthropic
     model: claude-sonnet-4-6
     apiKey: ${{ secrets.ANTHROPIC_API_KEY }}  # 来自环境变量
@@ -502,7 +479,13 @@ export CONTINUE_LOG_LEVEL=debug
 ## 与替代品对比
 
 | 特性 | Continue.dev | GitHub Copilot | Cursor | Tabby |
-|------|:----------:|:------------:|:------:|:-----:|
+|
+---
+|: ---
+:|: ---
+:|: ---
+:|: ---
+:|
 | **协议** | Apache-2.0 | 专有协议 | 专有协议 | Apache-2.0 |
 | **个人版价格** | 免费 | 10-19美元/月 | 20美元/月 | 免费（自托管） |
 | **开源** | 是 | 否 | 否 | 是 |
@@ -610,7 +593,6 @@ Continue.dev 独树一帜，是唯一一款结合 33,277+ GitHub Stars、任意 
 - [Continue.dev 博客](https://blog.continue.dev/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -636,8 +618,8 @@ Continue.dev 独树一帜，是唯一一款结合 33,277+ GitHub Stars、任意 
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [2026-06-22-trending-ai-agents](continue)
@@ -646,8 +628,8 @@ Continue.dev 独树一帜，是唯一一款结合 33,277+ GitHub Stars、任意 
 - [mattpocock-skills-ai-agent-framework-guide](continue)
 - [nanochat-karpathy-100-chatgpt-single-gpu](continue)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

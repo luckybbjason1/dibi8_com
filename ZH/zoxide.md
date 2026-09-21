@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/zoxide" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/zoxide" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/zoxide" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/zoxide" />
 title: 'Zoxide: 36,752 GitHub Stars — 2026 年完整安装配置指南'
 description: 'Zoxide 是一个更智能的 cd 命令，能学习你的目录使用习惯。支持 Bash、Zsh、Fish、Nushell 和 PowerShell。涵盖安装、Shell 集成、fzf 配置、算法原理以及从 autojump/fasd 迁移。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [zoxide, 命令行, 终端, cd替代品, rust, shell, 效率工具, fzf]
-aliases:
-- /zh/posts/zoxide/
+aliases: - /zh/posts/zoxide/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/zoxide/ -->
 
 {{</* resource-info */>}}
 
@@ -52,7 +44,11 @@ Zoxide（发音为 "zoh-kside"）是一个用 Rust 编写的跨 Shell 目录跳�
 Zoxide 使用 **frecency**（**freq**uency 频率 + re**cency** 新近度）对目录进行排名。每个目录在首次访问时初始分数为 1，每次后续访问分数增加 1。当你查询时，分数会根据目录最近访问的时间进行加权：
 
 | 最近访问时间    | Frecency 乘数 |
-|----------------|--------------|
+|
+---
+|
+---
+|
 | 1 小时内       | score × 4    |
 | 1 天内         | score × 2    |
 | 1 周内         | score ÷ 2    |
@@ -75,7 +71,11 @@ Zoxide 使用可预测的、不区分大小写的匹配方式：
 Zoxide 将数据库存储在平台特定的路径：
 
 | 操作系统  | 默认数据库路径                                        |
-|----------|------------------------------------------------------|
+|
+---
+|
+---
+|
 | Linux    | `$XDG_DATA_HOME/zoxide/db.sqlite` 或 `~/.local/share/zoxide/db.sqlite` |
 | macOS    | `~/Library/Application Support/zoxide/db.sqlite`     |
 | Windows  | `%LOCALAPPDATA%\\zoxide\\db.sqlite`                   |
@@ -297,7 +297,17 @@ Yazi 原生支持 zoxide。在 Yazi 中按 `Z` 键触发 zoxide 目录跳转。
 ### 启动与查询性能
 
 | 工具          | 编程语言    | 启动时间   | 查询时间（1万目录） | 模糊搜索 |
-|--------------|------------|-----------|-------------------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Zoxide**   | Rust       | ~5 ms     | < 10 ms           | 完整支持 |
 | autojump     | Python     | ~50 ms    | 20-50 ms          | 不支持   |
 | fasd         | POSIX sh   | ~20 ms    | 15-30 ms          | 部分支持 |
@@ -308,7 +318,15 @@ Yazi 原生支持 zoxide。在 Yazi 中按 `Z` 键触发 zoxide 目录跳转。
 ### 每日节省时间
 
 | 场景                             | 原生 cd   | Zoxide   | 节省时间  |
-|---------------------------------|----------:|---------:|----------:|
+|
+---
+|
+---
+:|
+---
+:|
+---
+:|
 | 跳转到项目根目录（深层路径）      | 5 秒      | 0.5 秒   | 4.5 秒    |
 | 在两个常用目录间切换              | 3 秒      | 0.5 秒   | 2.5 秒    |
 | 查找很少使用的目录                | 10 秒     | 2 秒     | 8 秒      |
@@ -410,7 +428,17 @@ rm ~/.zcompdump*; compinit     # 如有需要重建补全缓存
 ## 与替代方案对比
 
 | 特性                         | Zoxide    | autojump  | fasd      | 原生 cd     |
-|-----------------------------|-----------|-----------|-----------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **编程语言**                 | Rust      | Python    | POSIX sh  | Shell 内置  |
 | **启动时间**                 | ~5 ms     | ~50 ms    | ~20 ms    | 0 ms       |
 | **模糊搜索**                 | 完整支持   | 仅前缀匹配 | 部分支持   | 不支持      |
@@ -509,7 +537,6 @@ Zoxide 是 2026 年最成熟、性能最强、维护最活跃的目录跳转工�
 - [navi 速查表与 Zoxide](https://github.com/denisidoro/navi)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -537,25 +564,20 @@ Zoxide 是 2026 年最成熟、性能最强、维护最活跃的目录跳转工�
 
 ## Why This Matters
 
-Understanding zoxide: 36,752 github stars — 2026 年完整安装配置指南 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding zoxide: 36,752 github stars — 2026 年完整安装配置指南 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -576,13 +598,13 @@ Zoxide: 36,752 GitHub Stars — 2026 年完整安装配置指南 represents an i
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
 
+---
 ## Related Articles
 
 - [cc-switch-all-in-one-ai-coding-agent-manager](zoxide)

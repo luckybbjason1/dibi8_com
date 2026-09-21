@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/httpie" />
 title: 'HTTPie: 38,200 GitHub Stars — Modern CLI HTTP Client vs ...
 description: 'HTTPie is a modern command-line HTTP client for the API era with JSON support, colors, and sessions. Compatible with Python, pip, Homebrew, Docker. Covers installation, benchmark comparison, production hardening, and FAQ.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [httpie, cli, 'http-client', 'api-testing', 'curl-alternative', json, terminal, 'developer-tools']
-aliases:
-- /posts/httpie/
+aliases: - /posts/httpie/-
 ---
-
 {{</* resource-info */>}}
 
 **HTTPie** (pronounced "aitch-tee-tee-pie") is a command-line HTTP client designed for the API era. With **38,200 GitHub stars**, it stands as one of the most popular developer tools in the `api testing cli` category. This guide covers everything from `httpie setup` to `httpie vs curl` comparisons with real benchmarks.
@@ -46,10 +42,12 @@ HTTPie is an open-source command-line HTTP client written in Python that makes C
 
 The tool is designed specifically for testing, debugging, and interacting with APIs and HTTP servers. Unlike general-purpose download tools, HTTPie optimizes for the read-eval-print loop of API development: send a request, read the formatted response, tweak, repeat.
 
-Key characteristics at a glance:
-
-| Attribute | Value |
-|-----------|-------|
+Key characteristics at a glance: | Attribute | Value |
+|
+---
+|
+---
+|
 | **Language** | Python (3.7+) |
 | **License** | BSD-3-Clause |
 | **GitHub Stars** | 38,200+ |
@@ -62,14 +60,10 @@ Key characteristics at a glance:
 
 ### Architecture Overview
 
-HTTPie sits on top of two well-known Python libraries:
-
-1. **Requests** — handles the actual HTTP transport (connection pooling, keep-alives, SSL, redirects)
+HTTPie sits on top of two well-known Python libraries: 1. **Requests** — handles the actual HTTP transport (connection pooling, keep-alives, SSL, redirects)
 2. **Pygments** — provides syntax highlighting for terminal output
 
-When you run an HTTPie command, the tool performs these steps:
-
-1. **Parse request items** — headers (`Name:Value`), query params (`name==value`), data fields (`name=value`), raw JSON fields (`name:=value`), and file uploads (`name@file`)
+When you run an HTTPie command, the tool performs these steps: 1. **Parse request items** — headers (`Name:Value`), query params (`name==value`), data fields (`name=value`), raw JSON fields (`name:=value`), and file uploads (`name@file`)
 2. **Build the request** — serialize data to JSON (default), form data (`--form`), or multipart (`--multipart`)
 3. **Send via Requests library** — handle SSL, authentication, proxies, cookies
 4. **Format and colorize response** — use Pygments for syntax highlighting based on Content-Type
@@ -79,9 +73,7 @@ When you run an HTTPie command, the tool performs these steps:
 
 ### Core Design Philosophy
 
-The command-line syntax maps directly to the HTTP request being sent. Compare this HTTP request:
-
-```http
+The command-line syntax maps directly to the HTTP request being sent. Compare this HTTP request: ```http
 POST /post HTTP/1.1
 Host: pie.dev
 X-API-Key: 123
@@ -91,9 +83,7 @@ Content-Type: application/x-www-form-urlencoded
 name=value&name2=value2
 ```
 
-With the HTTPie command:
-
-```bash
+With the HTTPie command: ```bash
 http -f POST pie.dev/post \
     X-API-Key:123 \
     User-Agent:Bacon/1.0 \
@@ -109,9 +99,7 @@ The order and syntax are nearly identical. The only HTTPie-specific flag is `-f`
 
 ### Prerequisites
 
-HTTPie requires **Python 3.7 or newer**. Verify your version:
-
-```bash
+HTTPie requires **Python 3.7 or newer**. Verify your version: ```bash
 python --version
 ```
 
@@ -210,9 +198,7 @@ Content-Type: application/json
 
 ### Integration with jq (JSON Processing)
 
-HTTPie's JSON output pairs naturally with `jq`, the CLI JSON processor:
-
-```bash
+HTTPie's JSON output pairs naturally with `jq`, the CLI JSON processor: ```bash
 # Extract specific fields from API response
 http GET https://api.github.com/repos/httpie/cli | jq '.stargazers_count, .forks_count'
 
@@ -225,9 +211,7 @@ http GET https://api.github.com/user | jq -r '.login' | http POST example.com/we
 
 ### Integration with Shell Scripts
 
-Best practices for scripting with HTTPie:
-
-```bash
+Best practices for scripting with HTTPie: ```bash
 #!/bin/bash
 
 # Always use --ignore-stdin in scripts to avoid hanging
@@ -275,11 +259,8 @@ name: API Health Check
 
 on: [push, pull_request]
 
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: test: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - name: Install HTTPie
         run: pip install httpie
       - name: Test API endpoints
@@ -290,9 +271,7 @@ jobs:
 
 ### Integration with VS Code
 
-Add HTTPie commands as VS Code tasks in `.vscode/tasks.json`:
-
-```json
+Add HTTPie commands as VS Code tasks in `.vscode/tasks.json`: ```json
 {
   "version": "2.0.0",
   "tasks": [
@@ -310,10 +289,16 @@ Add HTTPie commands as VS Code tasks in `.vscode/tasks.json`:
 
 ### Transfer Performance
 
-In raw throughput tests transferring 80GB from localhost, HTTPie's Python/Requests foundation shows its limits against curl's C/libcurl implementation:
-
-| Tool | Version | Time (80GB) | Throughput |
-|------|---------|-------------|------------|
+In raw throughput tests transferring 80GB from localhost, HTTPie's Python/Requests foundation shows its limits against curl's C/libcurl implementation: | Tool | Version | Time (80GB) | Throughput |
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | curl | 7.51.0 | 25 sec | 3,276 MB/s |
 | HTTPie | 0.9.8 | 153 sec | 535 MB/s |
 
@@ -323,10 +308,16 @@ In raw throughput tests transferring 80GB from localhost, HTTPie's Python/Reques
 
 ### Developer Productivity Comparison
 
-A timed task study of 50 developers performing 10 common API operations:
-
-| Operation | HTTPie (avg) | curl (avg) | Time Saved |
-|-----------|-------------|------------|------------|
+A timed task study of 50 developers performing 10 common API operations: | Operation | HTTPie (avg) | curl (avg) | Time Saved |
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | GET + parse JSON | 4.2s | 12.8s | 67% |
 | POST with auth | 6.1s | 18.3s | 67% |
 | Upload file + form | 8.4s | 22.1s | 62% |
@@ -526,7 +517,17 @@ httpie cli check-updates
 ## Comparison with Alternatives
 
 | Feature | HTTPie | curl | wget | Postman CLI (Newman) |
-|---------|--------|------|------|---------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Primary Use Case** | API testing & debugging | General HTTP/file transfer | File downloading | Collection-based API testing |
 | **Language** | Python | C | C | JavaScript (Node.js) |
 | **JSON Support** | Native — auto serialize/format | Manual — pipe to jq | None | Native |
@@ -556,9 +557,7 @@ httpie cli check-updates
 
 ## Limitations / Honest Assessment
 
-HTTPie is purpose-built for API interaction, and that focus creates clear boundaries:
-
-**1. Performance ceiling.** Being written in Python on top of Requests, HTTPie cannot match the throughput of C-based curl. For bulk data transfer (>1GB), curl is the pragmatic choice.
+HTTPie is purpose-built for API interaction, and that focus creates clear boundaries: **1. Performance ceiling.** Being written in Python on top of Requests, HTTPie cannot match the throughput of C-based curl. For bulk data transfer (>1GB), curl is the pragmatic choice.
 
 **2. Single URL per invocation.** Unlike curl, HTTPie only supports one URL per command. You cannot batch-fetch multiple URLs in parallel from one process.
 
@@ -584,9 +583,7 @@ Not entirely. HTTPie excels at interactive API testing and debugging but lacks c
 
 ### How do I send JSON data with HTTPie?
 
-HTTPie uses `=` for string fields and `:=` for raw JSON types (numbers, booleans, arrays, objects):
-
-```bash
+HTTPie uses `=` for string fields and `:=` for raw JSON types (numbers, booleans, arrays, objects): ```bash
 http POST api.example.com/users \
     name="John Doe" \
     age:=29 \
@@ -607,9 +604,7 @@ HTTPie supports Basic, Digest, and Bearer authentication natively, plus a plugin
 
 ### Can I use HTTPie with proxies?
 
-Yes. HTTPie supports HTTP, HTTPS, and SOCKS proxies via the `--proxy` flag or standard environment variables:
-
-```bash
+Yes. HTTPie supports HTTP, HTTPS, and SOCKS proxies via the `--proxy` flag or standard environment variables: ```bash
 # Per-request proxy
 http --proxy=http:http://proxy.company.com:8080 api.example.com
 
@@ -621,9 +616,7 @@ export NO_PROXY=localhost,127.0.0.1
 
 ### Does HTTPie support file uploads?
 
-Yes, via the `@` syntax for file fields combined with `--form` or `--multipart`:
-
-```bash
+Yes, via the `@` syntax for file fields combined with `--form` or `--multipart`: ```bash
 # Form upload with file
 http -f POST api.example.com/upload name="My File" file@~/documents/report.pdf
 
@@ -633,9 +626,7 @@ http --multipart POST api.example.com/data field1=value1 field2=value2
 
 ### How do I disable colors in HTTPie output?
 
-For CI environments or when piping to other tools, colors are automatically disabled. To force plain output in a terminal, use:
-
-```bash
+For CI environments or when piping to other tools, colors are automatically disabled. To force plain output in a terminal, use: ```bash
 http --pretty=none GET api.example.com/data
 # Or set environment variable
 export HTTPIE_NO_COLORS=1
@@ -661,9 +652,7 @@ This `httpie tutorial` covered installation across seven methods, real integrati
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -679,7 +668,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 7. **CurliPie — Convert curl to HTTPie** — https://curlipie.// (community tool)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -705,8 +693,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [superpowers](httpie)
@@ -715,6 +703,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [claude-code-vs-aider](httpie)
 - [deepseek-reasonix-terminal-ai-coding-agent-prefix-cache](httpie)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

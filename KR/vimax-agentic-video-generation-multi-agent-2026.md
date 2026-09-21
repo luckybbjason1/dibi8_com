@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/vimax-agentic-video-generation-multi-agent-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/vimax-agentic-video-generation-multi-agent-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/vimax-agentic-video-generation-multi-agent-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/vimax-agentic-video-generation-multi-agent-2026" />
 title: 'ViMax 리뷰: HKUDS가 만든 멀티 신(scene) 에이전트 영상 생성 프레임워크 (감독·작가·...
 description: '홍콩과학기술대 데이터사이언스랩이 만든 ViMax(GitHub 7.1K+ stars)는 본격적으로 채택되기 시작한 첫 오픈소스 에이전트 기반 영상 생성 프레임워크다. Sora나 Runway처럼 프롬프트 한 방으로 영상을 만드는 대신, 감독·작가·프로듀서·영상 생성기 네 개의 AI 역할을 오케스트레이션해 단 하나의 아이디어에서 멀티 신 장편 영상을 뽑아낸다. 에이전트 파이프라인 구조, 지원 백엔드(Gemini Flash, MiniMax, Google Veo), 설치, idea-to-video 및 script-to-video 워크플로, Sora·OpenSora·Runway와의 정직한 비교까지 한 번에 정리.'
 date: 2026-05-23 00:00:00+08:00
@@ -25,17 +20,12 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [vimax, 'agentic-video', 'ai-video-generation', hkuds, 'multi-agent', veo, 'long-form-video', 'video-ai', 'open-source-video', 'rag-screenwriting']
-aliases:
-- /kr/posts/vimax-agentic-video-generation-multi-agent-2026/
+aliases: - /kr/posts/vimax-agentic-video-generation-multi-agent-2026/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/vimax-agentic-video-generation-multi-agent-2026/ -->
 
 ## 2025년 AI 영상을 막아세운 세 가지 한계
 
-2024–2025년 사이 대중에게 인지된 AI 영상 생성 도구들 — Sora, Runway Gen-3, Pika, Luma Dream Machine, OpenSora — 은 모두 똑같은 세 가지 한계를 공유했다:
-
-1. **짧은 클립만 가능.** 5~10초가 사실상 천장이었다. 그 이상으로 가면 일관성이 무너졌다.
+2024–2025년 사이 대중에게 인지된 AI 영상 생성 도구들 — Sora, Runway Gen-3, Pika, Luma Dream Machine, OpenSora — 은 모두 똑같은 세 가지 한계를 공유했다: 1. **짧은 클립만 가능.** 5~10초가 사실상 천장이었다. 그 이상으로 가면 일관성이 무너졌다.
 2. **일관성 카오스.** 같은 캐릭터의 얼굴이 컷마다 달라진다. 같은 방의 소품이 매번 뒤섞인다. 단일 프롬프트 파이프라인은 "1번 신에 나왔던 그 강아지"라는 개념 자체가 없다.
 3. **비주얼 단독 출력.** 대본도, 내러티브 곡선도, 동기화된 오디오도 없다. 움직이는 예쁜 그림은 얻지만, *영화*는 얻지 못한다.
 
@@ -49,9 +39,7 @@ aliases:
 
 ## 네 개의 에이전트 역할
 
-ViMax의 아키텍처적 베팅은 분명하다 — 현실의 영상 제작은 다중 역할 파이프라인이니, AI 영상 제작도 그래야 한다. 프레임워크는 각자 다른 LLM 기반 임무를 가진 네 개의 자율 에이전트 역할을 정의한다:
-
-### 🎬 Screenwriter (작가)
+ViMax의 아키텍처적 베팅은 분명하다 — 현실의 영상 제작은 다중 역할 파이프라인이니, AI 영상 제작도 그래야 한다. 프레임워크는 각자 다른 LLM 기반 임무를 가진 네 개의 자율 에이전트 역할을 정의한다: ### 🎬 Screenwriter (작가)
 "고양이와 강아지가 친구가 됐다가 새 고양이를 만난다" 같은 고수준 아이디어를 받아서 *구조화된 풀 대본*을 뽑아낸다 — 캐릭터, 신 분할, 대사, 장면 전환까지. **RAG 기반 long script 엔진**을 써서 긴 이야기를 멀티 신 포맷으로 똑똑하게 쪼갠다. 1분이 넘는 영상도 일관되게 만들 수 있게 해주는 핵심 레이어가 바로 여기다.
 
 ### 🎭 Director (감독)
@@ -125,9 +113,7 @@ Screenwriter가 아이디어를 3-신 대본으로 확장한다. Director가 컷
 
 ## ViMax가 *아닌* 것
 
-기대치 보정을 위해:
-
-- **완전한 오픈소스 영상 모델이 아니다.** 상용 영상·이미지 모델 호출을 오케스트레이션할 뿐이다. 엔드 투 엔드 셀프 호스팅은 오픈 영상 모델 레이어가 따라잡길 한 사이클 더 기다려야 한다.
+기대치 보정을 위해: - **완전한 오픈소스 영상 모델이 아니다.** 상용 영상·이미지 모델 호출을 오케스트레이션할 뿐이다. 엔드 투 엔드 셀프 호스팅은 오픈 영상 모델 레이어가 따라잡길 한 사이클 더 기다려야 한다.
 - **노코드 도구가 아니다.** 현재 인터페이스는 Python 스크립트와 설정 파일이다. 에이전트 부분은 정교하지만 UX는 "연구실 프로토타입" 수준이다.
 - **정식 릴리스가 아직 없다.** main 브랜치에 329 커밋, 태그된 릴리스 0개. API churn은 각오해라.
 - **README에 성능 벤치마크가 없다.** ViMax는 *정성적* 강점(일관성, 길이, 내러티브)을 마케팅한다. 정량적 ablation은 아직 공개되지 않았다.
@@ -137,9 +123,7 @@ Screenwriter가 아이디어를 3-신 대본으로 확장한다. Director가 컷
 
 ## 실전 활용 케이스
 
-ViMax의 에이전트 파이프라인이 실제로 차이를 만드는 지점들:
-
-- **교육·설명 영상** — 멀티 신, 캐릭터 연속성, 내러티브 구조. "선생님 목소리 + 애니메이션 예시"라는 고전 포맷.
+ViMax의 에이전트 파이프라인이 실제로 차이를 만드는 지점들: - **교육·설명 영상** — 멀티 신, 캐릭터 연속성, 내러티브 구조. "선생님 목소리 + 애니메이션 예시"라는 고전 포맷.
 - **어린이 콘텐츠** — README의 예시 케이스, 컷마다 캐릭터가 일관되게 유지되는 짧은 동화.
 - **마케팅 스토리보드** — 캠페인 브리프에서 전체 대본 + 스토리보드를 뽑아내고, 마케팅 팀이 비싼 생성 단계 전에 승인.
 - **롱폼 소셜 콘텐츠** — 5초짜리 단일 컷 클립으로 이미 포화된 피드 대신, 60–90초짜리 일관된 마이크로 내러티브가 있는 TikTok / Reels 콘텐츠.
@@ -151,9 +135,7 @@ ViMax의 에이전트 파이프라인이 실제로 차이를 만드는 지점들
 
 ## 2026년 AI 영상 지형에서 ViMax의 자리
 
-ViMax와 함께 묶으면 좋은 것들:
-
-- **이미지 생성기** — 이미 Nanobana가 통합되어 있지만, 셀프 호스팅 [이미지 생성 워크플로](/kr/resources/ai-tools/comfyui-architecture-node-based-ai-image/)를 원하면 Stable Diffusion / ComfyUI로 교체 가능.
+ViMax와 함께 묶으면 좋은 것들: - **이미지 생성기** — 이미 Nanobana가 통합되어 있지만, 셀프 호스팅 [이미지 생성 워크플로](/kr/resources/ai-tools/comfyui-architecture-node-based-ai-image/)를 원하면 Stable Diffusion / ComfyUI로 교체 가능.
 - **내레이션용 TTS** — 온디바이스 다국어 음성용 [Supertonic](/kr/resources/ai-tools/supertonic-on-device-multilingual-tts-2026/). ViMax와 묶으면 내레이션까지 완전 통합된 영상이 나온다.
 - **롱 컨텍스트 LLM** — 풀 대본을 다루려면 MiniMax-M2.7의 1M 컨텍스트가 현실적인 선택. 12-Factor의 "own your context window" 원칙이 그대로 적용된다 — 컨텍스트 규율이 가장 중요한 자리가 바로 Screenwriter 에이전트다.
 
@@ -189,7 +171,6 @@ MIT 라이선스, HKUDS의 학술적 배경, 그리고 몇 달 만에 7,100 star
 **GitHub**: [HKUDS/ViMax](https://github.com/HKUDS/ViMax) · **라이선스**: MIT · **Stars**: 7.1K+ · **저자**: 홍콩과학기술대 데이터사이언스랩(HKUDS) · **상태**: 활발한 개발 중, 태그된 릴리스 아직 없음
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -217,25 +198,20 @@ MIT 라이선스, HKUDS의 학술적 배경, 그리고 몇 달 만에 7,100 star
 
 ## Why This Matters
 
-Understanding vimax 리뷰: hkuds가 만든 멀티 신(scene) 에이전트 영상 생성 프레임워크 (감독·작가·프로듀서·생성기, 2026) is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding vimax 리뷰: hkuds가 만든 멀티 신(scene) 에이전트 영상 생성 프레임워크 (감독·작가·프로듀서·생성기, 2026) is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

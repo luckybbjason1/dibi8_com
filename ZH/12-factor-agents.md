@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/12-factor-agents" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/12-factor-agents" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/12-factor-agents" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/12-factor-agents" />
 title: "12-Factor Agents：构建可靠 LLM 应用程序的原则性框架"
-description: "12-Factor Agents 框架将经过实战检验的 12-Factor App 方法论适配到 LLM 驱动的应用程序，提供了一种构建可靠、可伸缩、可观测的 AI 代理的原则性方法。". Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "12-Factor Agents 框架将经过实战检验的 12-Factor App 方法论适配到 LLM 驱动的应用程序，提供了一种构建可靠、可伸缩、可观测的 AI 代理的原则性方法。"
 date: 2026-06-10
-lastmod:  2026-06-10slug: 12-factor-agents
+lastmod: 2026-06-10
+slug: 12-factor-agents
 category: llm-frameworks
 tags: [12-factor-agents, LLM, AI agents, observability, reliability, human-layer, framework]
 github_repo: https://github.com/humanlayer/12-factor-agents
@@ -15,10 +11,7 @@ stars: 23161
 maintainer: humanlayer
 license: Apache-2.0
 featureImage: https://raw.githubusercontent.com/humanlayer/12-factor-agents/main/docs/assets/12factor-agents-banner.png
-lang: zh
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/12-factor-agents/ -->
 
 ## 简介
 
@@ -238,11 +231,9 @@ npx create-12-factor-agent run --telemetry enabled
 ```bash
 # 定义多代理配置
 cat > agents.yaml << 'EOF'
-supervisor:
-  model: gpt-4o
+supervisor: model: gpt-4o
   tools: [delegate, synthesize]
-workers:
-  - name: research
+workers: - name: research
     model: claude-sonnet-4-20250514
     tools: [web_search, read_file]
   - name: analyst
@@ -260,7 +251,15 @@ EOF
 采用 12 因子原则的团队报告了可衡量的改进：
 
 | 指标 | 12 因子之前 | 12 因子之后 | 改进 |
-|------|------------|------------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 平均恢复时间（MTTR） | 4.2 小时 | 47 分钟 | 减少 81% |
 | 代理失败率 | 18.5% | 3.2% | 减少 83% |
 | 与配置相关的 bug | 每个冲刺 12 个 | 每个冲刺 1.5 个 | 减少 87.5% |
@@ -313,13 +312,10 @@ npx create-12-factor-agent prompts:rollback \
 ```bash
 # 配置速率限制
 cat > rate-limits.yaml << 'EOF'
-global:
-  requests_per_minute: 60
+global: requests_per_minute: 60
   tokens_per_day: 1000000
   max_cost_per_day: 50.00
-per_agent:
-  finance-bot:
-    requests_per_minute: 30
+per_agent: finance-bot: requests_per_minute: 30
     max_cost_per_day: 25.00
 EOF
 
@@ -344,7 +340,17 @@ npx create-12-factor-agent run --audit-logging enabled
 12-Factor Agents 与构建可靠 LLM 应用程序的其他方法相比如何？
 
 | 特性 | 12-Factor Agents | LangChain | LlamaIndex | DSPy |
-|------|------------------|-----------|------------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 理念 | 基于原则的框架 | 代码库 | 代码库 | 基于编译器的优化 |
 | 学习曲线 | 中等（概念性） | 高 | 高 | 高 |
 | 可观测性 | 内置约定 | 插件生态系统 | 插件生态系统 | 有限 |
@@ -422,7 +428,6 @@ DSPy 采取了完全不同的方法，专注于提示和思维链推理的程序
 7. [WebShare - 数据管道的代理服务](https://webshare.io/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -450,25 +455,20 @@ DSPy 采取了完全不同的方法，专注于提示和思维链推理的程序
 
 ## Why This Matters
 
-Understanding 12-factor agents：构建可靠 llm 应用程序的原则性框架 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding 12-factor agents：构建可靠 llm 应用程序的原则性框架 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -489,13 +489,13 @@ To implement this in your workflow:
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
 
+---
 ## Related Articles
 
 - [12-factor-agents](12-factor-agents)
@@ -534,7 +534,17 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

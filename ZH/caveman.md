@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/caveman" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/caveman" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/caveman" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/caveman" />
 title: "Caveman：让 Claude Code Token 消耗减少 65%，省钱又提速"
 description: "Caveman 是一款 Claude Code 技能，通过智能压缩 AI 输出提示词，平均减少 65% Token 消耗，响应速度提升约 3 倍，技术准确性 100% 不变。支持 Claude Code、Cursor、Gemini CLI、Codex 等 30+ AI 编程助手。"
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Docker
+tech_stack: - Docker
   - JavaScript
 application_domain: "Ai Tools"
 source_version: ""
@@ -25,10 +19,8 @@ maintainer: "JuliusBrussee"
 last_maintained: "2026-05-12"
 featureImage: ""
 draft: false
-aliases:
-- /zh/posts/caveman/
-faq:
-  - q: "Caveman 会影响 AI 的思考质量吗?"
+aliases: - /zh/posts/caveman/
+faq: - q: "Caveman 会影响 AI 的思考质量吗?"
     a: "**不会。** Caveman 只压缩**输出 Token**（AI 说出来的话），不影响**思考/推理 Token**（AI 内部思考过程）。AI 的\"大脑\"保持不变，只是\"嘴巴\"变小了。"
   - q: "所有任务都能省 65% 吗?"
     a: "**不一定。** 65% 是平均值。代码重构类任务（本身输出就很精简）可能只省 22%，而解释性、架构类任务可能省 87%。"
@@ -37,9 +29,10 @@ faq:
   - q: "安装安全吗?"
     a: "**安全。** 安装脚本只读取已安装的 AI 助手配置，不会修改系统文件。可以安全地重复运行。开源 MIT 协议，代码完全透明。"
   - q: "免费吗?"
-    a: "**完全免费。** Caveman 是开源项目，使用 MIT 许可证。 ---"
-faqs:
-  - q: 'Caveman 是什么？它与 Claude Code 有什么关系？'
+    a: "**完全免费。** Caveman 是开源项目，使用 MIT 许可证。
+---
+"
+faqs: - q: 'Caveman 是什么？它与 Claude Code 有什么关系？'
     a: 'Caveman 是一个 Claude Code 技能插件，它让 Claude 以压缩、简洁的「原始人」风格回复——去掉废话、冠词和客套开场白。平均可将输出 token 减少 65%，同时不损失任何技术准确性。'
   - q: 'Caveman 能把 token 用量减少多少？'
     a: '根据仓库中可复现的基准测试，Caveman 平均减少了 65% 的输出 token，范围从 22% 到 87% 不等，具体取决于原始任务有多冗长。举个例子，解释一个 React 重渲染 bug 的回复从 1,180 个 token 降到了 159 个（节省 87%）。'
@@ -49,9 +42,8 @@ faqs:
     a: '用 ''git clone https://github.com/JuliusBrussee/caveman.git ~/.claude/skills/caveman'' 将仓库克隆到全局技能目录，然后重启 Claude Code，技能会自动加载。它同样支持 Cursor、Cline、Windsurf 和 Codex，分别通过各自的规则文件启用。'
   - q: 'Caveman 提供哪些强度等级和命令？'
     a: 'Caveman 共有三个等级：Lite（去除废话，保留语法）、Full（默认模式，省略冠词，使用片段句式）和 Ultra（最大电报式压缩）。此外还附带子命令，如 /caveman-commit、/caveman-review、/caveman-stats，以及 /caveman:compress，用于重写 CLAUDE.md 等记忆文件。'
----
 
-<!-- canonical: https://dibi8.com/zh/tools/caveman/ -->
+---
 {</* resource-info */>}
 
 # Caveman：让 Claude Code Token 消耗减少 65%，省钱又提速
@@ -62,8 +54,8 @@ faqs:
 
 这不是玩笑。这是经过真实 API 调用基准测试验证的数据。
 
----
 
+---
 ## 一、Caveman 是什么？
 
 **Caveman** 是由 Julius Brussee 开发的一款 Claude Code 技能，核心理念极其简单：
@@ -79,7 +71,6 @@ faqs:
 - **许可证：** MIT
 
 ---
-
 ## 二、为什么你需要 Caveman？
 
 ### 1. Token 消耗平均减少 65%（实测数据）
@@ -87,7 +78,15 @@ faqs:
 Caveman 团队使用 Claude API 进行了真实基准测试，以下是部分结果：
 
 | 任务 | 正常模式 (Tokens) | Caveman 模式 (Tokens) | 节省比例 |
-|------|------------------|----------------------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 解释 React 重渲染 Bug | 1,180 | 159 | **87%** |
 | 修复 Auth 中间件 Token 过期 | 704 | 121 | **83%** |
 | 配置 PostgreSQL 连接池 | 2,347 | 380 | **84%** |
@@ -125,7 +124,13 @@ Caveman 的核心机制是**输出压缩**（Output Compression）。它不影�
 它提供三种压缩强度：
 
 | 等级 | 触发指令 | 效果 |
-|------|---------|------|
+|
+---
+|
+---
+|
+---
+|
 | **Lite** | `/caveman lite` | 去掉填充词，保留语法。专业但无废话 |
 | **Full** | `/caveman full` | 默认模式。去掉冠词、碎片化表达，原始人风格 |
 | **Ultra** | `/caveman ultra` | 最大压缩。电报式表达，能缩写的全缩写 |
@@ -137,7 +142,13 @@ Caveman 的核心机制是**输出压缩**（Output Compression）。它不影�
 Caveman 甚至提供了一个极具创意的**文言文模式**——用人类历史上最精简的书面语言来传递技术信息：
 
 | 等级 | 触发指令 | 效果 |
-|------|---------|------|
+|
+---
+|
+---
+|
+---
+|
 | **Wenyan-Lite** | `/caveman wenyan-lite` | 半文言。语法完整，填充词消失 |
 | **Wenyan-Full** | `/caveman wenyan` | 全文言。极致古典简练 |
 | **Wenyan-Ultra** | `/caveman wenyan-ultra` | 极端模式。古代学者省钱版 |
@@ -209,7 +220,11 @@ irm https://raw.githubusercontent.com/JuliusBrussee/caveman/main/install.ps1 | i
 ### 安装选项
 
 | 参数 | 效果 |
-|------|------|
+|
+---
+|
+---
+|
 | `--all` | 完整安装：插件 + hooks + 状态栏 + MCP shrink + 当前目录的 per-repo 规则文件 |
 | `--minimal` | 仅安装插件/扩展，跳过 hooks 和 MCP shrink |
 | `--with-init` | 在当前仓库中放置常驻规则文件（Cursor / Windsurf / Cline / Copilot / AGENTS.md） |
@@ -235,7 +250,13 @@ irm https://raw.githubusercontent.com/JuliusBrussee/caveman/main/install.ps1 | i
 Caveman 其实只是一个更大生态的入口。Julius Brussee 还开发了另外两个配套工具：
 
 | 项目 | 功能 | 一句话描述 |
-|------|------|-----------|
+|
+---
+|
+---
+|
+---
+|
 | [**caveman**](https://github.com/JuliusBrussee/caveman) | 输出压缩 | 压缩 AI "说"的话 |
 | [**cavemem**](https://github.com/JuliusBrussee/cavemem) | 跨助手持久记忆 | 压缩 AI "记住"的话 |
 | [**cavekit**](https://github.com/JuliusBrussee/cavekit) | 规范驱动自主构建 | 自然语言 → 套件 → 并行构建 → 验证 |
@@ -352,7 +373,6 @@ Caveman 是 2026 年 AI 编程助手领域最实用、最有趣的效率工具�
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -380,25 +400,20 @@ Caveman 是 2026 年 AI 编程助手领域最实用、最有趣的效率工具�
 
 ## Why This Matters
 
-Understanding caveman：让 claude code token 消耗减少 65%，省钱又提速 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding caveman：让 claude code token 消耗减少 65%，省钱又提速 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -450,7 +465,17 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

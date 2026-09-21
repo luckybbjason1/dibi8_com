@@ -1,16 +1,10 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/agent-reach-ai-agent-internet-access" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/agent-reach-ai-agent-internet-access" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/agent-reach-ai-agent-internet-access" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/agent-reach-ai-agent-internet-access" />
 title: Agent Reach：让你的 AI Agent 一键连接互联网
 description: Agent Reach 是一个开源脚手架工具，只需一条命令就能让 AI Agent 访问 YouTube、Twitter、Reddit、小红书、B站等. Comprehensive guide covering features, pricing, and best practices for 2026.
   15+ 平台。
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
-tech_stack:
-- Docker
+tech_stack: - Docker
 - Go
 - JavaScript
 application_domain: Llm Frameworks
@@ -27,10 +21,8 @@ maintainer: ''
 last_maintained: '2026-05-15'
 featureImage: ''
 draft: false
-aliases:
-- /zh/posts/agent-reach-ai-agent-internet-access/
-faqs:
-  - q: 'Agent Reach 是什么，它能做什么？'
+aliases: - /zh/posts/agent-reach-ai-agent-internet-access/
+faqs: - q: 'Agent Reach 是什么，它能做什么？'
     a: 'Agent Reach 是由 Panniantong 开发的一款开源 MIT 许可脚手架工具，只需一条命令就能让 AI agent 即时访问 15+ 个互联网平台。它会自动为每个平台选择、安装并配置最合适的开源工具，而不是用一层抽象把这些工具包起来。'
   - q: 'Agent Reach 支持哪些平台？'
     a: '它支持 15+ 个平台，包括 Web、YouTube、RSS、GitHub、Twitter/X、Reddit、Bilibili、Xiaohongshu、Douyin、LinkedIn、WeChat、Weibo、V2EX、Xueqiu、播客转写以及 AI 网络搜索。功能涵盖读取网页、提取 YouTube 字幕、搜索推文、阅读 Reddit 评论，乃至在 Xiaohongshu 上发帖等。'
@@ -39,10 +31,7 @@ faqs:
   - q: 'Agent Reach 如何存储凭证并保证其安全？'
     a: 'Cookie 和 token 以 600 文件权限存储在本地的 ~/.agent-reach/config.yaml 中。所有代码和依赖均为开源、可审计，并且 Agent Reach 建议对基于 cookie 的平台使用一次性的专用账户，以降低被封号的风险。'
   - q: 'Agent Reach 与哪些 AI agent 和编程工具兼容？'
-    a: 'Agent Reach 可与 Claude Code、GitHub Copilot、OpenAI Codex CLI、Cursor、Windsurf、Gemini CLI 以及任何兼容 MCP 的 agent 配合使用。每个平台都实现为一个独立、可替换的 channel 文件，因此你可以替换任意平台底层使用的工具，而不会被锁定。'
----
-
-<!-- canonical: https://dibi8.com/zh/tools/agent-reach-ai-agent-internet-access/ -->
+    a: 'Agent Reach 可与 Claude Code、GitHub Copilot、OpenAI Codex CLI、Cursor、Windsurf、Gemini CLI 以及任何兼容 MCP 的 agent 配合使用。每个平台都实现为一个独立、可替换的 channel 文件，因此你可以替换任意平台底层使用的工具，而不会被锁定。'---
 
 {</* resource-info */>}
 
@@ -84,7 +73,13 @@ Claude Code、Cursor、OpenAI Codex CLI 等 AI Agent 在写代码、分析文档
 ### 支持的平台
 
 | 平台 | 能力 | 配置 |
-|------|------|------|
+|
+---
+|
+---
+|
+---
+|
 | **网页** | 阅读任意网页 | 无需配置 |
 | **YouTube** | 字幕提取 + 搜索 | 无需配置 |
 | **RSS** | 解析任意源 | 无需配置 |
@@ -176,8 +171,8 @@ Agent Reach 代表了我们对 AI Agent 能力认知的转变。它不再将互�
 **许可证**：MIT  
 **Stars**：在 AI Agent 社区快速增长
 
----
 
+---
 ## 推荐自托管基础设施
 
 要 7×24 稳定跑这套，服务器选择很关键：
@@ -189,7 +184,6 @@ Agent Reach 代表了我们对 AI Agent 能力认知的转变。它不再将互�
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -217,25 +211,20 @@ Agent Reach 代表了我们对 AI Agent 能力认知的转变。它不再将互�
 
 ## Why This Matters
 
-Understanding agent reach：让你的 ai agent 一键连接互联网 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding agent reach：让你的 ai agent 一键连接互联网 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -256,8 +245,8 @@ Agent Reach：让你的 AI Agent 一键连接互联网 represents an important s
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -287,7 +276,17 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/marker-dev-utils-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/marker-dev-utils-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/marker-dev-utils-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/marker-dev-utils-2026" />
 title: 'Marker: Chuyển PDF, DOCX & EPUB sang Markdown/JSON nhanh...
 description: 'Marker (datalab-to/marker) chuyển PDF, DOCX, EPUB và nhiều định dạng khác sang Markdown, JSON, HTML và chunks một cách nhanh chóng, chính xác. 35.694 sao GitHub, mã nguồn theo giấy phép GPL-3.0. Bao gồm cài đặt, CLI và Python API, ví dụ mã thực tế, chế độ LLM, cùng so sánh khách quan với các công cụ thay thế.'
 date: 2026-06-02 00:00:00+08:00
@@ -25,10 +20,8 @@ featureImage: 'https://raw.githubusercontent.com/VikParuchuri/marker/master/data
 draft: false
 categories: ['dev-utils']
 tags: []
-aliases:
-- /posts/marker-dev-utils-2026/
-faqs:
-  - q: 'Cài marker như thế nào?'
+aliases: - /posts/marker-dev-utils-2026/
+faqs: - q: 'Cài marker như thế nào?'
     a: 'Cài từ PyPI bằng `pip install marker-pdf`. Với các định dạng không phải PDF (DOCX, PPTX, XLSX, EPUB, HTML, hình ảnh), dùng `pip install marker-pdf[full]`.'
   - q: 'Tôi có thể dùng công cụ này cho dự án thương mại không?'
     a: 'Mã nguồn theo giấy phép GPL-3.0, nhưng trọng số mô hình dùng giấy phép AI Pubs Open Rail-M đã sửa đổi. Giấy phép đó miễn phí cho nghiên cứu, sử dụng cá nhân và các công ty có vốn/doanh thu dưới khoảng 2 triệu USD; người dùng thương mại lớn hơn cần giấy phép thương mại từ Datalab. Hãy kiểm tra điều khoản hiện hành trước khi triển khai.'
@@ -39,8 +32,6 @@ faqs:
   - q: 'Tôi báo lỗi hoặc đề xuất tính năng bằng cách nào?'
     a: 'Truy cập kho mã GitHub tại <https://github.com/datalab-to/marker> và mở một issue mới trong tab Issues với thông tin chi tiết về vấn đề hoặc đề xuất của bạn.'
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/marker-dev-utils-2026/ -->
 
 {{< resource-info >}}
 
@@ -60,9 +51,7 @@ Marker là một công cụ chuyển đổi tài liệu bằng Python của Data
 
 ## marker hoạt động như thế nào
 
-`marker` được thiết kế để chuyển tài liệu sang Markdown, JSON, HTML và chunks một cách nhanh chóng và chính xác. Dưới đây là cách pipeline vận hành:
-
-1. **Trích xuất văn bản**: Marker lấy văn bản trực tiếp từ tài liệu khi có thể, và quay về OCR cho các trang quét hoặc trang dạng ảnh.
+`marker` được thiết kế để chuyển tài liệu sang Markdown, JSON, HTML và chunks một cách nhanh chóng và chính xác. Dưới đây là cách pipeline vận hành: 1. **Trích xuất văn bản**: Marker lấy văn bản trực tiếp từ tài liệu khi có thể, và quay về OCR cho các trang quét hoặc trang dạng ảnh.
 2. **Bố cục & thứ tự đọc**: Các mô hình học sâu phát hiện bố cục trang và thứ tự đọc đúng — đây chính là điều khiến PDF nhiều cột cho ra kết quả dễ đọc.
 3. **Làm sạch & định dạng khối**: Mỗi khối (tiêu đề, đoạn văn, bảng, công thức, mã) được làm sạch và định dạng, với bảng được dựng thành Markdown/HTML và công thức thành LaTeX.
 4. **Tinh chỉnh tùy chọn bằng LLM**: Với `--use_llm`, một mô hình (Gemini, Claude, OpenAI hoặc mô hình Ollama cục bộ) được dùng để cải thiện độ chính xác trên bảng, biểu mẫu và công thức.
@@ -82,23 +71,17 @@ Cách đơn giản nhất để điều khiển tất cả những điều này 
 
 ### Dùng pip
 
-Trước hết, hãy đảm bảo hệ thống của bạn đã có Python. Sau đó cài gói `marker-pdf`:
-
-```bash
+Trước hết, hãy đảm bảo hệ thống của bạn đã có Python. Sau đó cài gói `marker-pdf`: ```bash
 pip install marker-pdf
 ```
 
-Nếu bạn cần chuyển các định dạng không phải PDF (DOCX, PPTX, XLSX, EPUB, HTML, hình ảnh), hãy cài kèm phần phụ thuộc đầy đủ:
-
-```bash
+Nếu bạn cần chuyển các định dạng không phải PDF (DOCX, PPTX, XLSX, EPUB, HTML, hình ảnh), hãy cài kèm phần phụ thuộc đầy đủ: ```bash
 pip install marker-pdf[full]
 ```
 
 ### Clone kho mã
 
-Hoặc bạn có thể clone trực tiếp kho mã từ GitHub để phát triển cục bộ:
-
-```bash
+Hoặc bạn có thể clone trực tiếp kho mã từ GitHub để phát triển cục bộ: ```bash
 git clone https://github.com/datalab-to/marker.git
 cd marker
 pip install -e .
@@ -106,9 +89,7 @@ pip install -e .
 
 ### Lỗi thường gặp và cách khắc phục
 
-Một vấn đề phổ biến là trộn lẫn việc cài đặt ở môi trường hệ thống và môi trường ảo, dẫn đến "command not found" cho `marker_single` hoặc xung đột phụ thuộc. Hãy đảm bảo môi trường ảo đã được kích hoạt trước khi cài đặt và chạy:
-
-```bash
+Một vấn đề phổ biến là trộn lẫn việc cài đặt ở môi trường hệ thống và môi trường ảo, dẫn đến "command not found" cho `marker_single` hoặc xung đột phụ thuộc. Hãy đảm bảo môi trường ảo đã được kích hoạt trước khi cài đặt và chạy: ```bash
 # Activate the virtual environment (assuming you're using venv)
 source .venv/bin/activate
 
@@ -125,9 +106,7 @@ Sau khi cài `marker-pdf`, bạn có hai điểm vào CLI: `marker_single` cho m
 
 ### Ví dụ 1: Chuyển một file đơn lẻ
 
-Để chuyển một tài liệu sang Markdown (định dạng đầu ra mặc định):
-
-```bash
+Để chuyển một tài liệu sang Markdown (định dạng đầu ra mặc định): ```bash
 marker_single /path/to/report.pdf
 ```
 
@@ -135,31 +114,23 @@ Kết quả chuyển đổi được ghi vào một thư mục đầu ra; bạn 
 
 ### Ví dụ 2: Chọn định dạng đầu ra
 
-Marker hỗ trợ `markdown`, `json`, `html` và `chunks` (một bố cục JSON phẳng được thiết kế cho pipeline RAG):
-
-```bash
+Marker hỗ trợ `markdown`, `json`, `html` và `chunks` (một bố cục JSON phẳng được thiết kế cho pipeline RAG): ```bash
 marker_single /path/to/report.pdf --output_format json
 ```
 
 ### Ví dụ 3: Chuyển cả một thư mục tài liệu
 
-Để chuyển hàng loạt mọi tài liệu trong một thư mục:
-
-```bash
+Để chuyển hàng loạt mọi tài liệu trong một thư mục: ```bash
 marker /path/to/input/folder --output_format markdown
 ```
 
 ### Ví dụ 4: Chuyển các trang cụ thể, hoặc dùng LLM
 
-Bạn có thể giới hạn việc chuyển đổi theo một khoảng trang và bật độ chính xác có LLM hỗ trợ:
-
-```bash
+Bạn có thể giới hạn việc chuyển đổi theo một khoảng trang và bật độ chính xác có LLM hỗ trợ: ```bash
 marker_single /path/to/report.pdf --page_range "0,5-10,20" --use_llm
 ```
 
-`--page_range` nhận các trang và khoảng trang ngăn cách bằng dấu phẩy, còn `--use_llm` chuyển những bảng, biểu mẫu và công thức nội dòng khó nhằn qua một mô hình (Gemini, Claude, OpenAI hoặc Ollama) để tăng độ chính xác. Với các tác vụ đa GPU lớn, còn có `marker_chunk_convert`:
-
-```bash
+`--page_range` nhận các trang và khoảng trang ngăn cách bằng dấu phẩy, còn `--use_llm` chuyển những bảng, biểu mẫu và công thức nội dòng khó nhằn qua một mô hình (Gemini, Claude, OpenAI hoặc Ollama) để tăng độ chính xác. Với các tác vụ đa GPU lớn, còn có `marker_chunk_convert`: ```bash
 NUM_DEVICES=4 NUM_WORKERS=15 marker_chunk_convert ../pdf_in ../md_out
 ```
 
@@ -171,9 +142,7 @@ Những ví dụ này đủ để bạn khởi đầu. Để xem danh sách đ�
 
 ### Dùng Python API
 
-Chuyển một file và lấy về văn bản đã dựng cùng hình ảnh trích xuất chỉ với vài dòng:
-
-```python
+Chuyển một file và lấy về văn bản đã dựng cùng hình ảnh trích xuất chỉ với vài dòng: ```python
 from marker.converters.pdf import PdfConverter
 from marker.models import create_model_dict
 from marker.output import text_from_rendered
@@ -183,9 +152,7 @@ rendered = converter("FILEPATH")
 text, _, images = text_from_rendered(rendered)
 ```
 
-Để đổi định dạng đầu ra hoặc bật dịch vụ LLM, hãy điều khiển qua `ConfigParser`:
-
-```python
+Để đổi định dạng đầu ra hoặc bật dịch vụ LLM, hãy điều khiển qua `ConfigParser`: ```python
 from marker.converters.pdf import PdfConverter
 from marker.models import create_model_dict
 from marker.config.parser import ConfigParser
@@ -205,26 +172,18 @@ Marker cũng đi kèm các bộ chuyển đổi chuyên dụng — `TableConvert
 
 ### Tích hợp với pipeline CI/CD
 
-Vì nó là một CLI thuần túy, bạn có thể chạy marker như một bước trong bất kỳ tác vụ CI/CD nào. Dưới đây là ví dụ GitHub Actions tối giản, chuyển một PDF mỗi khi có push:
-
-```yaml
+Vì nó là một CLI thuần túy, bạn có thể chạy marker như một bước trong bất kỳ tác vụ CI/CD nào. Dưới đây là ví dụ GitHub Actions tối giản, chuyển một PDF mỗi khi có push: ```yaml
 name: Convert PDF to Markdown
 
-on:
-  push:
-    branches: [ master ]
+on: push: branches: [ master ]
 
-jobs:
-  convert-pdf:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
+jobs: convert-pdf: runs-on: ubuntu-latest
+    steps: - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
+        with: python-version: '3.11'
 
       - name: Install marker
         run: pip install marker-pdf
@@ -269,9 +228,7 @@ Khi chọn một công cụ chuyển PDF sang Markdown, hãy cân nhắc độ c
 
 ## Hạn chế & Đánh giá thẳng thắn
 
-Dù `marker` rất mạnh với tài liệu phức tạp, nó có những đánh đổi thực tế đáng biết trước:
-
-1. **Phụ thuộc nặng & yêu cầu phần cứng cao**: marker dựa vào các mô hình học sâu, nên có GPU hay không tạo khác biệt lớn. Trên máy chỉ có CPU thì vẫn chạy được nhưng chậm hơn nhiều, và bản cài đặt cũng nặng hơn so với các thư viện theo luật.
+Dù `marker` rất mạnh với tài liệu phức tạp, nó có những đánh đổi thực tế đáng biết trước: 1. **Phụ thuộc nặng & yêu cầu phần cứng cao**: marker dựa vào các mô hình học sâu, nên có GPU hay không tạo khác biệt lớn. Trên máy chỉ có CPU thì vẫn chạy được nhưng chậm hơn nhiều, và bản cài đặt cũng nặng hơn so với các thư viện theo luật.
 2. **Bảng phức tạp chưa hoàn hảo**: Bảng trải dài qua nhiều trang hoặc có ô lồng/gộp sâu vẫn có thể bị lệch và cần dọn dẹp thủ công.
 3. **Chế độ LLM thêm chi phí và độ trễ**: `--use_llm` cải thiện độ chính xác nhưng thêm một lệnh gọi mô hình bên ngoài (và chi phí API, trừ khi bạn chạy mô hình Ollama cục bộ), nên chậm hơn và không miễn phí.
 4. **Tốc độ dao động lớn**: Các con số thông lượng nổi bật giả định GPU cao cấp và xử lý theo lô; trên phần cứng phổ thông hoặc khi bật chế độ LLM, hãy chuẩn bị cho việc chạy chậm hơn đáng kể.
@@ -281,9 +238,7 @@ Những đánh đổi này rất quan trọng khi cân nhắc liệu `marker` c�
 
 ## Kết luận
 
-Với hơn 35.694 sao và một pipeline được xây dựng để xử lý những tài liệu lộn xộn của thực tế, `marker` là một lựa chọn vững chắc khi bạn cần đầu ra Markdown, JSON, HTML hoặc chunks chính xác từ PDF, file Office và EPUB — đặc biệt khi có bảng, công thức hay trang quét. Bước tiếp theo là cài nó và chạy thử trên một trong các tài liệu của chính bạn:
-
-```bash
+Với hơn 35.694 sao và một pipeline được xây dựng để xử lý những tài liệu lộn xộn của thực tế, `marker` là một lựa chọn vững chắc khi bạn cần đầu ra Markdown, JSON, HTML hoặc chunks chính xác từ PDF, file Office và EPUB — đặc biệt khi có bảng, công thức hay trang quét. Bước tiếp theo là cài nó và chạy thử trên một trong các tài liệu của chính bạn: ```bash
 pip install marker-pdf
 marker_single /path/to/your/file.pdf
 ```
@@ -293,19 +248,11 @@ marker_single /path/to/your/file.pdf
 
 ---
 
-**Nguồn & Đọc thêm**:
-- Kho mã GitHub: https://github.com/datalab-to/marker
+**Nguồn & Đọc thêm**: - Kho mã GitHub: https://github.com/datalab-to/marker
 - Tài liệu chính thức / README: https://github.com/datalab-to/marker#readme
 
 *Một số liên kết ở trên là liên kết tiếp thị liên kết. dibi8.com có thể nhận được hoa hồng nếu bạn đăng ký, mà bạn không phải trả thêm chi phí nào. Điều này giúp duy trì hoạt động của trang web và giữ cho nội dung được miễn phí.*
 
-<!-- internal-link-candidates:
-  related open-source tools -> ai-tools-directory
-  related guides on dibi8 -> ai-coding-agent-landscape-2026-skills-mcp-opensource
--->
-
-
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

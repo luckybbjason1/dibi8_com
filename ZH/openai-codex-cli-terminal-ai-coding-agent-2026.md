@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/openai-codex-cli-terminal-ai-coding-agent-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/openai-codex-cli-terminal-ai-coding-agent-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/openai-codex-cli-terminal-ai-coding-agent-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/openai-codex-cli-terminal-ai-coding-agent-2026" />
 title: 'OpenAI Codex CLI 完全指南：2026年最值得入手的终端 AI 编程助手（安装配置 + 多智能体工...
 description: '深入解析 OpenAI Codex CLI——2026年 GitHub 上增长最快的开源 AI 编程工具之一。本文涵盖从零安装配置、AGENTS.md 高级用法、多智能体并行开发到与 Claude Code 的实测对比，助你掌握终端原生 AI 编程的完整工作流。'
 date: 2026-05-17 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: 'openai'
 last_maintained: '2026-05-17'
 featureImage: ''
 draft: false
-aliases:
-- /posts/openai-codex-cli-terminal-ai-coding-agent-2026/
+aliases: - /posts/openai-codex-cli-terminal-ai-coding-agent-2026/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/openai-codex-cli-terminal-ai-coding-agent-2026/ -->
 
 {</* resource-info */>}
 
@@ -47,8 +39,8 @@ OpenAI Codex CLI 正是这场革命的核心参与者之一。这个基于 Rust 
 
 如果你还在复制粘贴 ChatGPT 的代码片段，那么 Codex CLI 将彻底改变你的工作方式。
 
----
 
+---
 ## 二、五分钟极速安装：从零到第一个 AI 编程任务
 
 Codex CLI 的安装过程被设计得极其简洁。以下是在 macOS、Linux 和 Windows（WSL）上的标准流程。
@@ -120,8 +112,8 @@ Codex 会：
 4. 运行测试并报告结果
 5. 以 diff 形式展示修改，等待你确认
 
----
 
+---
 ## 三、核心工作流：从"写代码"进化为"指挥 AI 写代码"
 
 Codex CLI 的真正威力不在于它能生成一段代码，而在于它能**端到端地完成一个开发任务**。要发挥这种威力，关键在于转变思维方式：不要把它当成搜索引擎或代码片段库，而是当成一位能理解自然语言指令并自主执行的团队成员。
@@ -131,7 +123,13 @@ Codex CLI 的真正威力不在于它能生成一段代码，而在于它能**�
 优秀的 Codex 指令通常包含四个部分：
 
 | 要素 | 说明 | 示例 |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | **目标** | 你要构建或修改什么 | "实现一个基于 JWT 的用户认证中间件" |
 | **上下文** | 涉及哪些文件或模块 | "使用 Go + Gin 框架，数据库连接在 db/conn.go" |
 | **约束** | 必须遵守的规则 | "不要破坏现有 API 接口，所有新函数必须带单元测试" |
@@ -153,7 +151,17 @@ Codex 会依次执行：创建项目结构 → 编写代码 → 安装依赖 →
 Codex CLI 提供三种审批模式，对应不同的信任级别：
 
 | 模式 | 文件读取 | 文件编辑 | 命令执行 | 适用场景 |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Auto（默认）** | 自动允许 | 需确认 | 需确认 | 日常开发，保留安全边界 |
 | **Read Only** | 自动允许 | 禁止 | 禁止 | 代码审查、项目分析、学习代码库 |
 | **Full Access** | 自动允许 | 自动允许 | 自动允许 | 可信环境、CI/CD 流水线、Docker 容器 |
@@ -214,7 +222,13 @@ Codex 支持嵌套 AGENTS.md。你可以在子目录（如 `src/api/`、`src/ml/
 ### 5.1 典型角色分工
 
 | 角色 | 职责 | 启动方式 |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | **explorer** | 扫描代码库、映射依赖关系、定位相关文件 | 自动附加于复杂任务 |
 | **worker** | 执行具体的代码实现、文件修改 | 默认主智能体 |
 | **reviewer** | 在提交前审查代码质量、检查安全风险 | `/review` 命令触发 |
@@ -280,7 +294,13 @@ Skills 遵循开放的 Agent Skills 标准，可在 Claude Code、GitHub Copilot
 Codex CLI 的安全设计是其区别于早期 AI 编程工具的关键。核心安全机制包括：
 
 | 层级 | 技术 | 保护范围 |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | 进程级沙箱 | Linux Landlock / macOS Seatbelt | 限制文件系统访问范围 |
 | 网络隔离 | 默认禁止出站网络 | 防止数据外泄（除非显式授权） |
 | 命令审批 | 三类审批模式 | 人工确认或自动策略判断 |
@@ -300,7 +320,15 @@ Codex CLI 的安全设计是其区别于早期 AI 编程工具的关键。核心
 Codex CLI 默认使用 `gpt-5.3-codex`——OpenAI 专为编程优化的旗舰模型。但 2026 年还新增了一个特殊变体：**GPT-5.3-Codex-Spark**。
 
 | 模型 | 核心优势 | 最佳场景 | 注意事项 |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **gpt-5.3-codex** | 复杂推理、架构设计、代码审查、大规模重构 | 多文件重构、Bug 排查、长期任务 | 标准模型，通用首选 |
 | **gpt-5.3-codex-spark** | 超高速响应（1000+ tokens/秒）、实时协作 | 即时编辑、快速迭代、交互式开发 | 仅 ChatGPT Pro 用户可用；最小化目标修改；测试自动运行需手动触发 |
 
@@ -330,7 +358,13 @@ model_reasoning_effort = "low"      # 简单任务，省 token
 两者都是 2026 年终端 AI 编程的顶级选择，但气质不同：
 
 | 维度 | Codex CLI | Claude Code |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | **定价模型** | ChatGPT 订阅捆绑（Plus $20/月起） | Claude 订阅独立（Pro $20/月起） |
 | **开源程度** | Apache-2.0，完全开源可定制 | 闭源，通过 API 调用 |
 | **上下文窗口** | 1M tokens（官方标称） | 1M+ tokens（实测表现更优） |
@@ -475,7 +509,6 @@ A：CLI 支持 Windows（推荐 WSL2）。2026 年 4 月起还推出了原生 Wi
 *本文最后更新：2026 年 5 月 17 日。Codex CLI 处于快速迭代期，部分功能可能随版本更新而变化，建议以官方文档为准。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -503,25 +536,20 @@ A：CLI 支持 Windows（推荐 WSL2）。2026 年 4 月起还推出了原生 Wi
 
 ## Why This Matters
 
-Understanding openai codex cli 完全指南：2026年最值得入手的终端 ai 编程助手（安装配置 + 多智能体工作流实战教程） is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding openai codex cli 完全指南：2026年最值得入手的终端 ai 编程助手（安装配置 + 多智能体工作流实战教程） is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

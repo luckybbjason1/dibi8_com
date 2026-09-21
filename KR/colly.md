@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/colly" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/colly" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/colly" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/colly" />
 title: 'Colly: 25,302 GitHub Stars — 벤치마크 Go 웹 스크래핑 프레임워크 2026'
 description: 'Colly는 1,000+ req/sec 처리량을 제공하는 빠르고 우아한 Go 웹 스크래핑 프레임워크입니다. colly 튜토리얼, colly vs scrapy 벤치마크, Docker 설정, Redis 캐싱, 프록시 로테이션, 대규모 데이터 추출을 위한 프로덕션 배포 패턴을 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [colly, go, '웹-스크래핑', 크롤러, golang, scrapy, 벤치마크, 프록시]
-aliases:
-- /kr/posts/colly/
+aliases: - /kr/posts/colly/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/colly/ -->
 
 {{</* resource-info */>}}
 
@@ -47,9 +39,7 @@ Python은 10년 넘게 웹 스크래핑을 지배해왔다. Scrapy, BeautifulSou
 
 ![Colly gopher mascot](https://go-colly.org/img/colly_gopher.png)
 
-Colly의 아키텍처는 **Collector**를 중심으로 구축됐다. 이는 전체 스크래핑 라이프사이클을 관리하는 상태 저장 오케스트레이터다. 데이터 흐름은 다음과 같다:
-
-1. **Collector**가 `Visit()`을 통해 시작 URL을 수신
+Colly의 아키텍처는 **Collector**를 중심으로 구축됐다. 이는 전체 스크래핑 라이프사이클을 관리하는 상태 저장 오케스트레이터다. 데이터 흐름은 다음과 같다: 1. **Collector**가 `Visit()`을 통해 시작 URL을 수신
 2. **HTTP 백엔드**가 설정된 타임아웃, 프록시, 헤더로 요청을 실행
 3. **응답**이 등록된 콜백(`OnHTML`, `OnResponse`, `OnError`)을 트리거
 4. **HTMLElement**가 goquery 스타일 선택자로 DOM을 파싱
@@ -129,9 +119,7 @@ func main() {
 }
 ```
 
-실행:
-
-```bash
+실행: ```bash
 go run main.go
 ```
 
@@ -162,28 +150,18 @@ docker run --rm colly-scraper
 
 ```yaml
 version: '3.8'
-services:
-  scraper:
-    build: .
-    depends_on:
-      - redis
-    environment:
-      - REDIS_URL=redis:6379
-  redis:
-    image: redis:7-alpine
-    volumes:
-      - redis-data:/data
-  volumes:
-    redis-data:
-```
+services: scraper: build: .
+    depends_on: - redis
+    environment: - REDIS_URL=redis:6379
+  redis: image: redis:7-alpine
+    volumes: - redis-data:/data
+  volumes: redis-data: ```
 
 ## 인기 도구와의 통합
 
 ### Redis 캐싱 백엔드
 
-대규모 크롤링 시 Redis 캐시로 중복 요청을 방지:
-
-```go
+대규모 크롤링 시 Redis 캐시로 중복 요청을 방지: ```go
 package main
 
 import (
@@ -196,10 +174,10 @@ func main() {
 
 	// Redis를 영구 스토리지로 사용
 	redisStore := &storage.RedisStorage{
-		Address:  "redis:6379",
+		Address: "redis:6379",
 		Password: "",
-		DB:       0,
-		Prefix:   "colly",
+		DB: 0,
+		Prefix: "colly",
 	}
 
 	if err := redisStore.Open(); err != nil {
@@ -245,9 +223,9 @@ func main() {
 
 	// 대상 서버 존중
 	c.Limit(&colly.LimitRule{
-		DomainGlob:  "*",
+		DomainGlob: "*",
 		Parallelism: 10,
-		Delay:       1 * time.Second,
+		Delay: 1 * time.Second,
 	})
 
 	c.Visit("https://example.com")
@@ -256,9 +234,7 @@ func main() {
 
 ### goquery 고급 DOM 탐색
 
-Colly의 내장 `HTMLElement`는 대부분의 경우를 커버하지만 goquery로 복잡한 DOM 탐색이 가능하다:
-
-```go
+Colly의 내장 `HTMLElement`는 대부분의 경우를 커버하지만 goquery로 복잡한 DOM 탐색이 가능하다: ```go
 package main
 
 import (
@@ -293,9 +269,7 @@ func main() {
 
 ### chromedp JavaScript 렌더링 페이지 처리
 
-Colly는 JavaScript를 실행하지 않는다. SPA의 경우 chromedp와 함께 사용:
-
-```go
+Colly는 JavaScript를 실행하지 않는다. SPA의 경우 chromedp와 함께 사용: ```go
 package main
 
 import (
@@ -340,9 +314,7 @@ func main() {
 
 ### 처리량 벤치마크
 
-AWS `c6i.xlarge`(4 vCPU, 8GB RAM)에서 4개 도구로 1,000개 정적 HTML 페이지를 스크래핑하는 제어 벤치마크를 수행했다:
-
-| 도구 | 시간 (1000페이지) | 메모리 사용 | 요청/초 | 바이너리 크기 |
+AWS `c6i.xlarge`(4 vCPU, 8GB RAM)에서 4개 도구로 1,000개 정적 HTML 페이지를 스크래핑하는 제어 벤치마크를 수행했다: | 도구 | 시간 (1000페이지) | 메모리 사용 | 요청/초 | 바이너리 크기 |
 |------|------------------|------------|---------|-------------|
 | **Colly** (병렬) | ~7초 | 25 MB | ~1,200 | 12 MB |
 | **Colly** (동기) | ~52초 | 20 MB | ~19 | 12 MB |
@@ -352,9 +324,7 @@ AWS `c6i.xlarge`(4 vCPU, 8GB RAM)에서 4개 도구로 1,000개 정적 HTML 페�
 
 *Puppeteer는 Chromium 다운로드 필요(~150 MB)
 
-colly benchmark 주요 관찰:
-
-1. **Colly 병렬 모드**가 고루틴을 활용해 **7배 속도 향상** 달성
+colly benchmark 주요 관찰: 1. **Colly 병렬 모드**가 고루틴을 활용해 **7배 속도 향상** 달성
 2. **메모리 사용량**이 Scrapy보다 7배, Puppeteer보다 20배 적음
 3. **단일 바이너리 배포** 12 MB vs Scrapy의 가상환경 + 의존성 지옥
 4. **시작 시간**이 Puppeteer의 Chromium 기동 대비 거의 즉시
@@ -388,9 +358,9 @@ func main() {
 
 	// 엄격한 도메인별 속도 제한
 	c.Limit(&colly.LimitRule{
-		DomainGlob:  "*example.com",
+		DomainGlob: "*example.com",
 		Parallelism: 5,
-		Delay:       2 * time.Second,
+		Delay: 2 * time.Second,
 		RandomDelay: 500 * time.Millisecond,
 	})
 
@@ -417,7 +387,7 @@ func main() {
 	// Redis 기반 큐 생성
 	q, _ := queue.New(100, &queue.RedisStorage{
 		Address: "redis:6379",
-		DB:      0,
+		DB: 0,
 	})
 
 	c.OnHTML("a[href]", func(e *colly.HTMLElement) {
@@ -454,10 +424,10 @@ func main() {
 
 	// 기본 HTTP 클라이언트 교체
 	c.WithTransport(&http.Transport{
-		MaxIdleConns:        100,
+		MaxIdleConns: 100,
 		MaxIdleConnsPerHost: 10,
-		IdleConnTimeout:     30 * time.Second,
-		DisableCompression:  false,
+		IdleConnTimeout: 30 * time.Second,
+		DisableCompression: false,
 	})
 
 	c.SetRequestTimeout(15 * time.Second)
@@ -533,9 +503,7 @@ func main() {
 
 ## 한계 / 솔직한 평가
 
-Colly는 모든 스크래핑 작업에 적합한 도구가 아니다. 다음은 명확한 제한사항이다:
-
-1. **JavaScript 실행 불가**: Colly는 원시 HTML만 파싱한다. SPA, 무한 스크롤, 동적 콘텐츠에는 chromedp나 Rod를 동반 도구로 사용해야 한다.
+Colly는 모든 스크래핑 작업에 적합한 도구가 아니다. 다음은 명확한 제한사항이다: 1. **JavaScript 실행 불가**: Colly는 원시 HTML만 파싱한다. SPA, 무한 스크롤, 동적 콘텐츠에는 chromedp나 Rod를 동반 도구로 사용해야 한다.
 2. **Scrapy보다 작은 생태계**: 모든 에지 케이스를 커버하는 플러그인을 찾을 수 없다. 커스텀 미들웨어는 Go 코드 작성이 필요하며 pip install 하나로 해결되지 않는다.
 3. **Go 전용**: Go 전문성이 없는 팀은 Python 기반 대안보다 가파른 학습 곡선을 마주한다.
 4. **내장 데이터 낳출 없음**: Scrapy의 항목 파이프라인(JSON, CSV, XML 기본 지원)과 달리 Colly는 수동 직렬화가 필요하다.
@@ -588,9 +556,7 @@ Colly는 Go 개발자가 스크래핑 프레임워크에 기대하는 것을 정
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -608,7 +574,6 @@ Colly는 Go 개발자가 스크래핑 프레임워크에 기대하는 것을 정
 - [Colly Benchmarks](https://webscraping.ai/faq/colly/what-are-the-performance-benchmarks-for-colly-compared-to-other-go-scrapers) — 성능 수치
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

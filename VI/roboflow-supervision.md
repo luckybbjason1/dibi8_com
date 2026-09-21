@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/roboflow-supervision" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/roboflow-supervision" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/roboflow-supervision" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/roboflow-supervision" />
 title: "Roboflow Supervision: Bộ công cụ chú thích thị giác máy ...
 description: "Supervision của Roboflow là một bộ công cụ thị giác máy tính toàn diện giúp đơn giản hóa chú thích CV, xử lý dữ liệu và đánh giá mô hình. pip install supervision để truy cập các công cụ thị giác máy tính tái sử dụng cho dự án của bạn."
 date: 2026-06-10
-lastmod:  2026-06-10slug: roboflow-supervision
+lastmod: 2026-06-10
+slug: roboflow-supervision
 category: data-science
 tags: [supervision, roboflow, computer vision, annotation, object detection, CV toolkit, data-science]
 github_repo: https://github.com/roboflow/supervision
@@ -17,8 +13,6 @@ license: MIT
 featureImage: https://raw.githubusercontent.com/roboflow/supervision/main/docs/assets/supervision-banner.png
 lang: vi
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/roboflow-supervision/ -->
 
 ## Giới thiệu
 
@@ -42,9 +36,7 @@ Library được xây dựng dựa trên một simple philosophy: làm cho most 
 
 ## Tính năng Cốt lõi
 
-Supervision cung cấp tools across toàn bộ computer vision lifecycle:
-
-### Data Annotation
+Supervision cung cấp tools across toàn bộ computer vision lifecycle: ### Data Annotation
 
 Supervision cung cấp utility cho việc tạo, manipulat và convert annotation format. Nó hỗ trợ COCO, YOLO, Pascal VOC và custom format, làm cho dễ dàng làm việc với các ML framework và pipeline khác nhau.
 
@@ -94,9 +86,7 @@ detections = detections[detections.confidence > 0.6]
 
 ### Visualization và Annotation Drawing
 
-Một trong những strength của Supervision là visualization toolkit. Vẽ bounding box, segmentation mask, keypoint và tracking ID trên image và video frame là straightforward:
-
-```python
+Một trong những strength của Supervision là visualization toolkit. Vẽ bounding box, segmentation mask, keypoint và tracking ID trên image và video frame là straightforward: ```python
 # Tạo annotation context cho drawing
 annotation_context = sv.BoxAnnotator(
     thickness=2,
@@ -139,9 +129,7 @@ cv2.imwrite("annotated_scene.jpg", annotated_image)
 
 ### Tracking Support
 
-Supervision có first-class support cho object tracking, với built-in integration cho các tracking algorithm phổ biến:
-
-```python
+Supervision có first-class support cho object tracking, với built-in integration cho các tracking algorithm phổ biến: ```python
 # Khởi tạo một tracker
 tracker = sv.Tracker(
     tracker_type="ocsort",  # hoặc "bytetrack"
@@ -154,8 +142,7 @@ tracker = sv.Tracker(
 video_path = "traffic_camera.mp4"
 for frame_number, frame in enumerate(
     sv.VideoInfo.from_video_path(video_path).iter_frames()
-):
-    detections = detect_objects(frame)  # detection model của bạn
+): detections = detect_objects(frame)  # detection model của bạn
     detections = tracker.update_with_detections(detections)
     
     # Annotated frame với tracking ID
@@ -164,9 +151,7 @@ for frame_number, frame in enumerate(
 
 ### Metric Computation
 
-Supervision cung cấp tools cho việc computing common CV evaluation metric:
-
-```python
+Supervision cung cấp tools cho việc computing common CV evaluation metric: ```python
 # Compute confusion matrix
 confusion_matrix = sv.ConfusionMatrix(
     num_classes=10,
@@ -181,15 +166,12 @@ confusion_matrix.compute(
 confusion_matrix.plot(title="Model Performance")
 
 # Get precision, recall và F1 per class
-for class_name, metrics in confusion_matrix.class_metrics().items():
-    print(f"{class_name}: precision={metrics.precision:.3f}, recall={metrics.recall:.3f}, f1={metrics.f1:.3f}")
+for class_name, metrics in confusion_matrix.class_metrics().items(): print(f"{class_name}: precision={metrics.precision:.3f}, recall={metrics.recall:.3f}, f1={metrics.f1:.3f}")
 ```
 
 ## Cách hoạt động
 
-Supervision hoạt động qua một clean, consistent API theo một vài core design pattern:
-
-### Detections như Data Structure
+Supervision hoạt động qua một clean, consistent API theo một vài core design pattern: ### Detections như Data Structure
 
 Trái tim của Supervision là class `Detections`, cung cấp unified representation cho tất cả các loại object detection output — bounding box, segmentation mask, keypoint và orientation angle.
 
@@ -218,9 +200,7 @@ ious = sv.match_iou(detections_a, detections_b, iou_threshold=0.5)
 
 ### Pipeline Composition
 
-Supervision khuyến nghị composing operation vào pipeline. Mỗi step lấy một `Detections` object và produce một cái mới:
-
-```python
+Supervision khuyến nghị composing operation vào pipeline. Mỗi step lấy một `Detections` object và produce một cái mới: ```python
 # Build một detection pipeline
 pipeline = [
     {"operation": "filter_confidence", "threshold": 0.5},
@@ -235,9 +215,7 @@ results = apply_pipeline(original_detections, pipeline)
 
 ## Cài đặt
 
-Cài đặt Supervision là đơn giản:
-
-```bash
+Cài đặt Supervision là đơn giản: ```bash
 # Cài đặt qua pip
 pip install supervision
 
@@ -250,9 +228,7 @@ pip install supervision[all]
 
 ### Cài đặt với PyTorch
 
-Cho deep learning workflow, cài đặt với PyTorch:
-
-```bash
+Cho deep learning workflow, cài đặt với PyTorch: ```bash
 # Cài đặt với PyTorch (CPU)
 pip install supervision torch torchvision
 
@@ -262,14 +238,11 @@ pip install supervision torch torchvision --index-url https://download.pytorch.o
 
 ### Colab Demo
 
-Roboflow cung cấp một interactive Colab notebook cho việc exploring Supervision capability:
-
-```bash
+Roboflow cung cấp một interactive Colab notebook cho việc exploring Supervision capability: ```bash
 # Mở interactive Colab demo
 # https://colab.research.google.com/github/roboflow/supervision/blob/main/demo.ipynb
 
-# Hoặc chạy local:
-# Clone repository để access demo notebook
+# Hoặc chạy local: # Clone repository để access demo notebook
 git clone https://github.com/roboflow/supervision.git
 cd supervision
 jupyter notebook demo.ipynb
@@ -279,9 +252,7 @@ jupyter notebook demo.ipynb
 
 ### YOLO Integration
 
-Supervision có first-class integration với YOLO model:
-
-```python
+Supervision có first-class integration với YOLO model: ```python
 # Integration với YOLOv8 (Ultralytics)
 from ultralytics import YOLO
 import supervision as sv
@@ -305,9 +276,7 @@ annotated_frame = annotator.annotate(
 
 ### MediaPipe Integration
 
-Cho pose estimation và landmark detection:
-
-```python
+Cho pose estimation và landmark detection: ```python
 import supervision as sv
 from mediapipe import solutions
 
@@ -318,15 +287,12 @@ pose = solutions.pose.Pose(static_image_mode=True)
 results = pose.process(image)
 
 # Convert sang Supervision keypoint format
-if results.pose_landmarks:
-    keypoints = sv.KeyPoints.from_mediapipe(results.pose_landmarks)
+if results.pose_landmarks: keypoints = sv.KeyPoints.from_mediapipe(results.pose_landmarks)
 ```
 
 ### ONNX Runtime Integration
 
-Cho optimized inference:
-
-```python
+Cho optimized inference: ```python
 import supervision as sv
 from onnxruntime import InferenceSession
 
@@ -344,9 +310,7 @@ detections = sv.Detections.from_onnx(outputs)
 
 ### Evaluation Speed
 
-Evaluation function của Supervision được optimize cho speed:
-
-| Operation | Dataset Size | Time | Performance |
+Evaluation function của Supervision được optimize cho speed: | Operation | Dataset Size | Time | Performance |
 |-----------|-------------|------|-------------|
 | Confusion Matrix (10 classes) | 10.000 sample | 0.3s | 33.333 sample/sec |
 | IoU Computation | 100 box vs 100 box | 0.02s | 5.000 pairing/sec |
@@ -356,19 +320,15 @@ Evaluation function của Supervision được optimize cho speed:
 
 ### Model Evaluation Throughput
 
-Supervision được sử dụng để evaluate model ở quy mô lớn:
-
-```python
+Supervision được sử dụng để evaluate model ở quy mô lớn: ```python
 # Batch evaluation script
 import supervision as sv
 from tqdm import tqdm
 
-def evaluate_model(model, dataset):
-    all_predictions = []
+def evaluate_model(model, dataset): all_predictions = []
     all_targets = []
     
-    for images, labels in tqdm(dataset, desc="Đang đánh giá"):
-        preds = model.predict(images)
+    for images, labels in tqdm(dataset, desc="Đang đánh giá"): preds = model.predict(images)
         all_predictions.extend(preds)
         all_targets.extend(labels)
     
@@ -392,37 +352,27 @@ def evaluate_model(model, dataset):
 
 ### Custom Annotator
 
-Bạn có thể tạo custom annotator cho specialized visualization need:
-
-```python
+Bạn có thể tạo custom annotator cho specialized visualization need: ```python
 import supervision as sv
 import cv2
 import numpy as np
 
-class ArrowAnnotator(sv.Annotator):
-    """Custom annotator cho việc vẽ directional arrow."""
+class ArrowAnnotator(sv.Annotator): """Custom annotator cho việc vẽ directional arrow."""
     
-    def __init__(self, color=None, thickness=2):
-        super().__init__()
+    def __init__(self, color=None, thickness=2): super().__init__()
         self.color = color or sv.Color.WHITE
         self.thickness = thickness
     
-    def annotate(self, scene, detections, direction="right"):
-        for i, detection in enumerate(detections):
-            center_x = int((detection.xyxy[0] + detection.xyxy[2]) / 2)
+    def annotate(self, scene, detections, direction="right"): for i, detection in enumerate(detections): center_x = int((detection.xyxy[0] + detection.xyxy[2]) / 2)
             center_y = int((detection.xyxy[1] + detection.xyxy[3]) / 2)
             
-            if direction == "right":
-                end_x = center_x + 50
+            if direction == "right": end_x = center_x + 50
                 end_y = center_y
-            elif direction == "left":
-                end_x = center_x - 50
+            elif direction == "left": end_x = center_x - 50
                 end_y = center_y
-            elif direction == "up":
-                end_x = center_x
+            elif direction == "up": end_x = center_x
                 end_y = center_y - 50
-            else:
-                end_x = center_x
+            else: end_x = center_x
                 end_y = center_y + 50
             
             cv2.arrowedLine(
@@ -444,14 +394,10 @@ arrow_annotator = ArrowAnnotator(
 
 ### Video Analytics Pipeline
 
-Cho real-time video analytics:
-
-```python
+Cho real-time video analytics: ```python
 import supervision as sv
 
-class VideoAnalyticsPipeline:
-    def __init__(self, video_path, model):
-        self.video_path = video_path
+class VideoAnalyticsPipeline: def __init__(self, video_path, model): self.video_path = video_path
         self.model = model
         self.counter = sv.ObjectCounter()
         self.line_annotator = sv.LineAnnotator()
@@ -463,8 +409,7 @@ class VideoAnalyticsPipeline:
             end=(1200, 400)
         )
     
-    def process_frame(self, frame):
-        # Run detection
+    def process_frame(self, frame): # Run detection
         detections = self.model.predict(frame)
         
         # Update counter với line crossing
@@ -495,9 +440,7 @@ pipeline.run()
 
 ### Metric Visualization
 
-Supervision cung cấp built-in visualization cho evaluation metric:
-
-```python
+Supervision cung cấp built-in visualization cho evaluation metric: ```python
 import supervision as sv
 
 # ROC curve
@@ -537,9 +480,7 @@ Supervision fill một niche duy nhất. Albumentations tập trung vào data au
 
 ## Giới hạn
 
-Trong khi Supervision là một powerful toolkit, nó có một số limitation:
-
-**Không phải là Training Framework.** Supervision không được thiết kế cho việc training model. Nó hoạt động với output của training framework (YOLO, Detectron, custom model) nhưng không bao gồm training loop hoặc loss function.
+Trong khi Supervision là một powerful toolkit, nó có một số limitation: **Không phải là Training Framework.** Supervision không được thiết kế cho việc training model. Nó hoạt động với output của training framework (YOLO, Detectron, custom model) nhưng không bao gồm training loop hoặc loss function.
 
 **Chỉ Python.** Library là Python-only, điều này có nghĩa nó không trực tiếp hỗ trợ ngôn ngữ khác. Nếu bạn cần integrate với Java hoặc C++ CV pipeline, bạn sẽ cần call Python library qua một bridge.
 
@@ -596,7 +537,6 @@ Bắt đầu với `pip install supervision` và explore [interactive Colab demo
 7. [WebShare - Dịch vụ Proxy cho Pipeline Dữ liệu](https://webshare.io/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

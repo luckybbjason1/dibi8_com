@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/fine-tuning-stack" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/fine-tuning-stack" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/fine-tuning-stack" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/fine-tuning-stack" />
 title: 'Fine-Tuning Stack 2026: Pipeline 5 Thành Phần Từ Dataset...
 description: 'Stack fine-tuning LLM đầy đủ: Unsloth (experiment single-GPU nhanh) + Axolotl (production multi-GPU) + HuggingFace datasets/Hub + Weights & Biases (theo dõi eval) + vLLM (serving). $50-300/tháng hạ tầng training. Pipeline đầy đủ: chuẩn bị dataset → experiment → fine-tune production → eval → deploy.'
 date: 2026-05-21 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: [collections]
 tags: ['fine-tuning', llm, stack, collection]
-aliases:
-  - /posts/fine-tuning-stack/
+aliases: - /posts/fine-tuning-stack/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/fine-tuning-stack/ -->
 
 Fine-tuning LLM năm 2026 cuối cùng có stack mạch lạc — những ngày của duct-tape HuggingFace Trainer + DeepSpeed config + script eval tùy chỉnh đã kết thúc. Bộ sưu tập này lắp ráp **pipeline 5 thành phần** đưa bạn từ dataset thô tới mô hình fine-tuned được triển khai production, với phân chia rõ giữa iterate nhanh (Unsloth) và deploy production (Axolotl). $50-300/tháng hạ tầng training tùy scale.
 
@@ -45,8 +37,7 @@ Nếu bạn đang xây mô hình đặc thù domain, instruction-tune mô hình 
 | 4 | **Weights & Biases** (hoặc thay thế) | Eval | Theo dõi đường cong loss, điểm eval, sweep hyperparameter | [W&B docs] |
 | 5 | **vLLM** | Serving | Serving multi-tenant production mô hình fine-tuned | [So sánh Local LLM Runner](/vi/resources/llm-frameworks/local-llm-runner-comparison-2026/) |
 
-**Tổng chi phí tháng** (không bao gồm vốn training):
-- **Hobbyist** (thuê GPU 10h/tuần): **$30-60/tháng**
+**Tổng chi phí tháng** (không bao gồm vốn training): - **Hobbyist** (thuê GPU 10h/tuần): **$30-60/tháng**
 - **Team production** (1-2 GPU chuyên dụng + monitoring): **$200-400/tháng**
 - **Lab AI nhỏ** (cluster 8× H100): **$2000-5000/tháng**
 
@@ -54,9 +45,7 @@ So với nền tảng fine-tuning managed: Together fine-tuning ~$0.50/M token (
 
 ## 1. Vì Sao "Stack Fine-Tuning" Cần Định Nghĩa Năm 2026
 
-3 dịch chuyển kết tinh stack:
-
-1. **Unsloth + Axolotl đạt độ chín production** — phân chia "experiment nhanh + scale production" giờ sạch
+3 dịch chuyển kết tinh stack: 1. **Unsloth + Axolotl đạt độ chín production** — phân chia "experiment nhanh + scale production" giờ sạch
 2. **GRPO trở thành mặc định fine-tuning RL** (sau DeepSeek-R1) — cả Unsloth và Axolotl hỗ trợ native
 3. **Mô hình base open-weight đạt class GPT-4** — Llama 3.3 70B, Qwen 3 32B, DeepSeek V3. Fine-tune chúng cho domain của bạn giờ thực sự cạnh tranh với lựa chọn closed
 
@@ -104,8 +93,7 @@ Phân chia là cái làm này hoạt động — iterate nhanh của Unsloth cho
 
 **Vì sao Unsloth thắng ở đây**: Nhanh hơn 2× HF TRL = 2× experiment per dollar. Ít hơn 70% VRAM = experiment trên RTX 4090 $1500 thay vì cần A100. Xem [Unsloth deep-dive](/vi/resources/llm-frameworks/unsloth-fast-llm-fine-tuning-2026/).
 
-**Cài nhanh**:
-```bash
+**Cài nhanh**: ```bash
 pip install unsloth
 ```
 
@@ -117,8 +105,7 @@ pip install unsloth
 
 **Vì sao Axolotl thắng ở đây**: Training phân tán multi-node hoạt động box-ngoài, hỗ trợ phương pháp rộng nhất (DPO/GRPO/KTO/ORPO/GDPO), config-as-code cho tái lập. Xem [Axolotl deep-dive](/vi/resources/llm-frameworks/axolotl-llm-fine-tuning-framework-2026/).
 
-**Cài nhanh**:
-```bash
+**Cài nhanh**: ```bash
 pip install axolotl
 ```
 
@@ -130,14 +117,12 @@ pip install axolotl
 
 **Vì sao đây là pick rõ ràng**: HF đã thắng layer phân phối dataset AI (như GitHub cho code, HF Hub cho mô hình + datasets). Mọi tool fine-tuning tích hợp native với nó.
 
-**Cài nhanh**:
-```bash
+**Cài nhanh**: ```bash
 pip install datasets
 huggingface-cli login
 ```
 
-**Pattern**:
-```python
+**Pattern**: ```python
 from datasets import load_dataset, Dataset
 
 # Chuẩn bị local + push
@@ -154,8 +139,7 @@ Cho data nhạy cảm (y tế / tài chính / độc quyền), dùng **datasets 
 
 **Vai trò**: Khi chạy 50 experiment để tìm công thức thắng, cần cách so sánh chúng. W&B là lựa chọn de-facto — tự log đường cong loss, điểm eval, hyperparameter, sử dụng phần cứng.
 
-**Cài nhanh** (hoạt động với cả Unsloth và Axolotl qua env var):
-```bash
+**Cài nhanh** (hoạt động với cả Unsloth và Axolotl qua env var): ```bash
 pip install wandb
 wandb login
 export WANDB_PROJECT="my-finetune-project"
@@ -171,8 +155,7 @@ Giờ mọi chạy training Unsloth / Axolotl tự log tới dashboard W&B của
 
 Xem [So sánh Local LLM Runner](/vi/resources/llm-frameworks/local-llm-runner-comparison-2026/) cho rundown đầy đủ vì sao vLLM thắng Ollama / LM Studio / llama.cpp cho serving production multi-user.
 
-**Cài nhanh + serve mô hình đã fine-tune**:
-```bash
+**Cài nhanh + serve mô hình đã fine-tune**: ```bash
 pip install vllm
 vllm serve yourname/my-finetuned-llama \
   --enable-lora \
@@ -213,9 +196,7 @@ So với managed: Together fine-tuning $0.50/M token × dataset 100M token = $50
 
 ## 10. Đường Nâng Cấp
 
-Khi vượt stack này:
-
-- **Cần fine-tune mô hình > 70B thường xuyên** — Mua hoặc thuê dài hạn cluster H100 thay vì thuê
+Khi vượt stack này: - **Cần fine-tune mô hình > 70B thường xuyên** — Mua hoặc thuê dài hạn cluster H100 thay vì thuê
 - **Compliance / data residency** — Di chuyển từ Vast.ai sang bare-metal chuyên dụng ở quản hạt của bạn
 - **SaaS fine-tuning multi-tenant** — Thêm layer cô lập user; xem xét LangSmith hoặc eval managed tương tự
 - **Vòng fine-tuning liên tục** — Pair với [AI Agent Tool Chain](/vi/collections/ai-agent-tool-chain/) cho trigger retrain tự động khi mô hình production suy giảm
@@ -223,8 +204,7 @@ Khi vượt stack này:
 
 ## TL;DR — Recipe
 
-**5 thành phần cho fine-tuning LLM production, hobbyist tới team production $50-300/tháng**:
-1. **Unsloth** — giai đoạn experiment single-GPU nhanh
+**5 thành phần cho fine-tuning LLM production, hobbyist tới team production $50-300/tháng**: 1. **Unsloth** — giai đoạn experiment single-GPU nhanh
 2. **Axolotl** — giai đoạn production multi-GPU
 3. **HuggingFace datasets + Hub** — versioning data + phân phối mô hình
 4. **Weights & Biases** — theo dõi eval
@@ -237,7 +217,6 @@ Thuê {{< aff "digitalocean" "footer-cta" "GPU droplet" >}} cho experiment, scal
 *Bộ sưu tập đồng hành: [Stack LLM Rẻ](/vi/collections/cheap-llm-stack/) cover phía chi phí suy luận sau deploy. [AI Agent Tool Chain](/vi/collections/ai-agent-tool-chain/) cho vòng fine-tuning tự động. [Stack Knowledge Base](/vi/collections/knowledge-base-stack/) cho RAG như thay thế fine-tuning trong một số trường hợp.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

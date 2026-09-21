@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/open-source-llm-ranking-guide" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/open-source-llm-ranking-guide" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/open-source-llm-ranking-guide" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/open-source-llm-ranking-guide" />
 title: 'Bảng Xếp Hạng LLM Mã Nguồn Mở 2025: Llama, Mistral, Qwen...
 description: 'Bảng xếp hạng và hướng dẫn chọn LLM mã nguồn mở tốt nhất 2025. So sánh Llama 3, Mistral, Qwen, DeepSeek qua các benchmark MMLU, HumanEval, MT-Bench.'
 date: 2026-05-18 00:00:00+08:00
@@ -23,11 +18,9 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/open-source-llm-ranking-guide/
+aliases: - /posts/open-source-llm-ranking-guide/
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/open-source-llm-ranking-guide/ -->
 # Bảng Xếp Hạng LLM Mã Nguồn Mở 2025: Llama, Mistral, Qwen, DeepSeek & Hơn Nữa
 
 
@@ -41,45 +34,35 @@ Năm 2025 đánh dấu một cột mốc quan trọng trong lĩnh vực trí tu�
 
 Xu hướng mã nguồn mở trong AI đã tạo ra một vòng phản hồi tích cực: càng nhiều tổ chức công bố model, cộng đồng càng có nhiều dữ liệu để cải thiện; càng cải thiện, càng nhiều ngườii dùng chuyển sang mã nguồn mở. Theo thống kê từ Hugging Face, lượt tải model mã nguồn mở tăng 340% trong năm 2024 [^1^](https://huggingface.co/spaces/open-llm-leaderboard).
 
-Các lý do chính khiến doanh nghiệp chuyển sang mã nguồn mở:
-
-- **Kiểm soát dữ liệu**: Dữ liệu không rờii khỏi hệ thống
+Các lý do chính khiến doanh nghiệp chuyển sang mã nguồn mở: - **Kiểm soát dữ liệu**: Dữ liệu không rờii khỏi hệ thống
 - **Chi phí dự đoán được**: Không phụ thuộc vào giá API có thể thay đổi
 - **Tùy chỉnh**: Fine-tune trên dữ liệu riêng không giới hạn
 - **Không rate limit**: Chạy bao nhiêu request tùy ý
 
 ### Các Benchmark Chính: MMLU, HumanEval, MT-Bench
 
-Để so sánh các LLM một cách khách quan, cộng đồng sử dụng nhiều benchmark:
-
-- **MMLU (Massive Multitask Language Understanding)**: Đo khả năng hiểu biết đa lĩnh vực (57 chủ đề từ toán học đến luật), điểm tính theo %
+Để so sánh các LLM một cách khách quan, cộng đồng sử dụng nhiều benchmark: - **MMLU (Massive Multitask Language Understanding)**: Đo khả năng hiểu biết đa lĩnh vực (57 chủ đề từ toán học đến luật), điểm tính theo %
 - **HumanEval**: Đo khả năng viết code Python, tính theo pass@1 (tỷ lệ giải đúng từ lần thử đầu)
 - **MT-Bench (Multi-Turn Benchmark)**: Đo khả năng hội thoại đa lượt, chấm điểm bởi GPT-4
 - **MATH**: Đo khả năng giải toán đại số, hình học, số học
 
 ### Cách Đọc Bảng Xếp Hạng LLM
 
-Hai bảng xếp hạng uy tín nhất hiện nay:
-
-- **Open LLM Leaderboard (Hugging Face)**: Tổng hợp điểm nhiều benchmark tự động [^1^](https://huggingface.co/spaces/open-llm-leaderboard)
+Hai bảng xếp hạng uy tín nhất hiện nay: - **Open LLM Leaderboard (Hugging Face)**: Tổng hợp điểm nhiều benchmark tự động [^1^](https://huggingface.co/spaces/open-llm-leaderboard)
 - **LMSYS Chatbot Arena**: Xếp hạng dựa trên đánh giá của ngườii dùng thực (ELO rating), model nào thắng nhiều hơn được xếp cao hơn [^2^](https://chat.lmsys.org)
 
 ## Meta Llama 3/3.1/3.2: Tiêu Chuẩn Mã Nguồn Mở
 
 ### Các Biến Thể Model
 
-Meta ra mắt Llama 3 tháng 4/2024, tiếp theo là Llama 3.1 (tháng 7/2024) và Llama 3.2 (tháng 9/2024) [^3^](https://ai.meta.com/llama):
-
-- **Llama 3.2 1B/3B**: Model nhỏ cho edge devices
+Meta ra mắt Llama 3 tháng 4/2024, tiếp theo là Llama 3.1 (tháng 7/2024) và Llama 3.2 (tháng 9/2024) [^3^](https://ai.meta.com/llama): - **Llama 3.2 1B/3B**: Model nhỏ cho edge devices
 - **Llama 3.1 8B**: Cân bằng hiệu suất và tài nguyên
 - **Llama 3.1 70B**: Hiệu suất cao cho server
 - **Llama 3.1 405B**: Model mã nguồn mở lớn nhất từ trước đến nay
 
 ### Khả Năng Và Cải Tiến
 
-Llama 3.1 đem lại nhiều cải tiến quan trọng:
-
-- **Context window 128K**: Gấp 8 lần Llama 3 gốc (16K)
+Llama 3.1 đem lại nhiều cải tiến quan trọng: - **Context window 128K**: Gấp 8 lần Llama 3 gốc (16K)
 - **Multilingual**: Hỗ trợ 8 ngôn ngữ chính thức
 - **Tool use**: Gọi hàm và sử dụng công cụ tích hợp
 - **Better reasoning**: Cải thiện đáng kể khả năng suy luận
@@ -104,9 +87,7 @@ Khi ra mắt tháng 9/2023, Mistral 7B gây chấn động bằng cách vượt 
 
 ### Mixtral 8x7B Và 8x22B (MoE)
 
-Mixtral sử dụng kiến trúc Mixture of Experts (MoE):
-
-- **8x7B**: 8 chuyên gia, mỗi lượt forward chỉ kích hoạt 2 (12B active)
+Mixtral sử dụng kiến trúc Mixture of Experts (MoE): - **8x7B**: 8 chuyên gia, mỗi lượt forward chỉ kích hoạt 2 (12B active)
 - **8x22B**: Phiên bản mở rộng, mỗi lượt forward 39B active từ tổng 141B
 
 MoE cho phép model lớn mà vẫn nhanh vì chỉ một phần được kích hoạt mỗi lần.
@@ -129,9 +110,7 @@ MoE cho phép model lớn mà vẫn nhanh vì chỉ một phần được kích 
 
 ### Series Qwen2 Và Qwen2.5
 
-Qwen là dòng model do Alibaba Cloud phát triển, trở thành một trong những model mã nguồn mở tốt nhất năm 2024-2025 [^5^](https://huggingface.co/Qwen). Qwen2.5 ra mắt tháng 9/2024 với nhiều cải tiến:
-
-- **Qwen2.5 0.5B đến 72B**: Phủ phổ từ edge đến server
+Qwen là dòng model do Alibaba Cloud phát triển, trở thành một trong những model mã nguồn mở tốt nhất năm 2024-2025 [^5^](https://huggingface.co/Qwen). Qwen2.5 ra mắt tháng 9/2024 với nhiều cải tiến: - **Qwen2.5 0.5B đến 72B**: Phủ phổ từ edge đến server
 - **Context window 128K**: Hỗ trợ xử lý tài liệu dài
 - **Cải thiện đáng kể** về instruction following và reasoning
 
@@ -155,16 +134,12 @@ CodeQwen1.5-7B đạt 83.7% trên HumanEval — vượt trội hơn nhiều mode
 
 ### DeepSeek V2.5 Và V3
 
-DeepSeek, phát triển bởi công ty Trung Quốc DeepSeek AI, gây tiếng vang với kiến trúc MLA (Multi-head Latent Attention) giúp giảm VRAM trong inference [^6^](https://deepseek.com):
-
-- **DeepSeek V2.5**: 236B tổng, 21B active mỗi token
+DeepSeek, phát triển bởi công ty Trung Quốc DeepSeek AI, gây tiếng vang với kiến trúc MLA (Multi-head Latent Attention) giúp giảm VRAM trong inference [^6^](https://deepseek.com): - **DeepSeek V2.5**: 236B tổng, 21B active mỗi token
 - **DeepSeek V3**: 671B tổng, 37B active — mạnh ngang GPT-4o
 
 ### Kiến Trúc MoE Củaa DeepSeek
 
-DeepSeek V3 sử dụng kiến trúc MoE với 671 tỷ tham số nhưng chỉ kích hoạt 37 tỷ mỗi token. Điều này cho phép:
-
-- Chi phí training thấp hơn 10 lần so với model dense tương đương
+DeepSeek V3 sử dụng kiến trúc MoE với 671 tỷ tham số nhưng chỉ kích hoạt 37 tỷ mỗi token. Điều này cho phép: - Chi phí training thấp hơn 10 lần so với model dense tương đương
 - Inference nhanh hơn với ít VRAM hơn
 - Chất lượng ngang GPT-4o trên nhiều benchmark
 
@@ -184,9 +159,7 @@ DeepSeek Coder v2 đạt 90.2% trên HumanEval — một trong những model cod
 
 ### Gemma 2 (2B, 9B, 27B)
 
-Google ra mắt Gemma 2 tháng 6/2024 với ba kích thước [^1^](https://huggingface.co/spaces/open-llm-leaderboard):
-
-- **Gemma 2 2B**: Chạy mượt trên điện thoại, điểm MMLU 51.3%
+Google ra mắt Gemma 2 tháng 6/2024 với ba kích thước [^1^](https://huggingface.co/spaces/open-llm-leaderboard): - **Gemma 2 2B**: Chạy mượt trên điện thoại, điểm MMLU 51.3%
 - **Gemma 2 9B**: Cân bằng, điểm MMLU 71.8%
 - **Gemma 2 27B**: Hiệu suất cao, điểm MMLU 84.6%
 
@@ -198,9 +171,7 @@ Gemma sử dụng giấy phép Gemma Terms of Use — cho phép sử dụng thư
 
 ### Series Phi-3 Và Phi-4
 
-Microsoft đẩy mạnh dòng model nhỏ với hiệu suất vượt trội:
-
-- **Phi-3 Mini (3.8B)**: Mạnh ngang model 7B khác nhờ training data chất lượng cao
+Microsoft đẩy mạnh dòng model nhỏ với hiệu suất vượt trội: - **Phi-3 Mini (3.8B)**: Mạnh ngang model 7B khác nhờ training data chất lượng cao
 - **Phi-3 Small (7B)**: Cân bằng tốt cho nhiều tác vụ
 - **Phi-3 Medium (14B)**: Tiệm cận model 30B khác
 - **Phi-4 (14B)**: Ra mắt cuối 2024, cải thiện đáng kể reasoning
@@ -246,42 +217,32 @@ Với kích thước nhỏ, Phi-3 là lựa chọn lý tưởng cho triển khai
 
 ### Tốt Nhất Cho Lập Trình: DeepSeek Coder, Codestral
 
-Nếu ứng dụng của bạn liên quan đến code generation, code completion, hoặc code review:
-
-- **DeepSeek Coder v2**: Tốt nhất tổng thể, 90.2% HumanEval
+Nếu ứng dụng của bạn liên quan đến code generation, code completion, hoặc code review: - **DeepSeek Coder v2**: Tốt nhất tổng thể, 90.2% HumanEval
 - **Codestral 22B**: Fill-in-the-middle tốt nhất, 80+ ngôn ngữ
 - **Qwen2.5 Coder 7B**: Cân bằng hiệu suất và tài nguyên
 
 ### Tốt Nhất Cho Chatbot: Llama 3.1, Qwen2.5
 
-Với ứng dụng chatbot đa năng:
-
-- **Llama 3.1 70B**: MT-Bench cao nhất, ecosystem rộng
+Với ứng dụng chatbot đa năng: - **Llama 3.1 70B**: MT-Bench cao nhất, ecosystem rộng
 - **Qwen2.5 72B**: Hỗ trợ tiếng Việt tốt, context window 128K
 - **DeepSeek V3**: Reasoning tốt, giá trị cao
 
 ### Tốt Nhất Cho Local Deployment: Mistral, Phi, Gemma
 
-Nếu chạy trên máy cá nhân hoặc server giới hạn:
-
-- **Mistral 7B**: Hiệu suất tốt nhất cho 7B class
+Nếu chạy trên máy cá nhân hoặc server giới hạn: - **Mistral 7B**: Hiệu suất tốt nhất cho 7B class
 - **Phi-3 Mini**: Nhỏ nhất với hiệu suất chấp nhận được
 - **Gemma 2 2B**: Chạy trên điện thoại
 
 ### Tốt Nhất Cho Doanh Nghiệp: Llama 3.1, Mistral Large
 
-Với yêu cầu enterprise: hỗ trợ, bảo mật, compliance:
-
-- **Llama 3.1 405B**: Mạnh nhất, được nhiều vendor hỗ trợ
+Với yêu cầu enterprise: hỗ trợ, bảo mật, compliance: - **Llama 3.1 405B**: Mạnh nhất, được nhiều vendor hỗ trợ
 - **Mistral Large**: Có commercial support từ Mistral AI
 
 ## Tải Và Chạy Các Model
 
 ### Hugging Face Hub
 
-Hugging Face là nền tảng chính để tải model mã nguồn mở:
-
-```python
+Hugging Face là nền tảng chính để tải model mã nguồn mở: ```python
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-3.1-8B-Instruct")
@@ -290,9 +251,7 @@ tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-3.1-8B-Instruct")
 
 ### Thư Viện Model Ollama
 
-Ollama là cách dễ nhất để chạy model local [^7^](https://ollama.com/library):
-
-```bash
+Ollama là cách dễ nhất để chạy model local [^7^](https://ollama.com/library): ```bash
 ollama run llama3.1:8b
 ollama run mistral
 ollama run qwen2.5:7b
@@ -337,9 +296,7 @@ Tổng thể, DeepSeek V3 và Llama 3.1 405B là hai model mã nguồn mở mạ
 
 ### Có Thể Dùng LLM Mã Nguồn Mở Cho Mục Đích Thương Mại Không?
 
-Hầu hết các model mã nguồn mở cho phép sử dụng thương mại, nhưng có một số hạn chế:
-
-- **Llama 3**: Miễn phí nếu <700 triệu ngườii dùng
+Hầu hết các model mã nguồn mở cho phép sử dụng thương mại, nhưng có một số hạn chế: - **Llama 3**: Miễn phí nếu <700 triệu ngườii dùng
 - **Mistral**: Apache 2.0 (tự do)
 - **Qwen2.5**: Qwen License (cho phép thương mại)
 - **DeepSeek**: MIT License (tự do nhất)
@@ -361,9 +318,7 @@ Với quantization 4-bit, Llama 3 70B cần khoảng 40-45GB VRAM — có thể 
 
 ## Hạ Tầng Đề Xuất
 
-Để chạy các công cụ trên 24/7 ổn định, lựa chọn hạ tầng rất quan trọng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu.
+Để chạy các công cụ trên 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp. dibi8.com cũng host ở đây.
 - **[Hostinger](https://www.hostinger.com/vn?REFERRALCODE=22RPIAOJIYJN)** — VPS giá tốt cho thị trường Việt Nam.
 
@@ -371,7 +326,6 @@ Với quantization 4-bit, Llama 3 70B cần khoảng 40-45GB VRAM — có thể 
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

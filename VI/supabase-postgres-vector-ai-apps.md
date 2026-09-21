@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/supabase-postgres-vector-ai-apps" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/supabase-postgres-vector-ai-apps" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/supabase-postgres-vector-ai-apps" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/supabase-postgres-vector-ai-apps" />
 title: 'Supabase 2026: Giải pháp thay thế Firebase mã nguồn mở v...
 description: 'Hướng dẫn đầy đủ về Supabase: giải pháp thay thế Firebase mã nguồn mở với Postgres + pgvector cho ứng dụng AI. Xác thực, lưu trữ, realtime, edge functions, tích hợp RAG, triển khai Docker tự host, Row Level Security.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [supabase, postgres, 'tìm kiếm vector', 'thay thế firebase', pgvector, 'ứng dụng ai', rag, 'mã nguồn mở', docker, 'edge functions']
-aliases:
-- /vi/posts/supabase-postgres-vector-ai-apps/
+aliases: - /vi/posts/supabase-postgres-vector-ai-apps/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/supabase-postgres-vector-ai-apps/ -->
 
 {{</* resource-info */>}}
 
@@ -68,8 +60,7 @@ Supabase là hơn cả một trình bao bọc cơ sở dữ liệu. Kiến trúc
 ### Đám mây được Host (Đường dẫn nhanh nhất)
 
 ```bash
-# Dự án của bạn đi kèm với:
-# - Cơ sở dữ liệu PostgreSQL 16
+# Dự án của bạn đi kèm với: # - Cơ sở dữ liệu PostgreSQL 16
 # - API REST tự động tạo
 # - Xác thực tích hợp
 # - 500 MB lưu trữ cơ sở dữ liệu (tier miễn phí)
@@ -111,9 +102,7 @@ Stack cục bộ bao gồm PostgreSQL, PostgREST, GoTrue, Realtime, Storage, và
 
 ### Tự host qua Docker Compose
 
-Để tự host production trên hạ tầng của riêng bạn (ví dụ: qua [DigitalOcean](https://m.do.co/c/eca87ac14ee0) hoặc [HTStack](https://my.htstack.com/aff.php?aff=27187)):
-
-```bash
+Để tự host production trên hạ tầng của riêng bạn (ví dụ: qua [DigitalOcean](https://m.do.co/c/eca87ac14ee0) hoặc [HTStack](https://my.htstack.com/aff.php?aff=27187)): ```bash
 # Clone repository tự host chính thức
 git clone https://github.com/supabase/supabase.git
 cd supabase/docker
@@ -134,8 +123,7 @@ docker compose up -d
 # Xác minh tất cả dịch vụ đều khỏe mạnh
 docker compose ps
 
-# Output kỳ vọng:
-# NAME                STATUS
+# Output kỳ vọng: # NAME                STATUS
 # supabase-db         healthy
 # supabase-kong       healthy
 # supabase-auth       healthy
@@ -235,8 +223,7 @@ import openai
 supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 client = openai.OpenAI(api_key=OPENAI_API_KEY)
 
-def insert_document(title: str, content: str, source_url: str = None):
-    # Tạo embedding
+def insert_document(title: str, content: str, source_url: str = None): # Tạo embedding
     response = client.embeddings.create(
         input=content,
         model="text-embedding-3-large"
@@ -277,8 +264,7 @@ LIMIT 5;
 
 ```python
 # Python: Hàm truy xuất RAG
-async def search_similar_documents(query: str, top_k: int = 5):
-    # Tạo query embedding
+async def search_similar_documents(query: str, top_k: int = 5): # Tạo query embedding
     response = client.embeddings.create(
         input=query,
         model="text-embedding-3-large"
@@ -333,9 +319,7 @@ $$;
 
 ### Tổng quan Kiến trúc
 
-Một pipeline RAG điển hình với Supabase bao gồm bốn giai đoạn:
-
-1. **Tiếp nhận** — Tài liệu được chunk, embed, và lưu trữ trong bảng `documents`.
+Một pipeline RAG điển hình với Supabase bao gồm bốn giai đoạn: 1. **Tiếp nhận** — Tài liệu được chunk, embed, và lưu trữ trong bảng `documents`.
 2. **Truy xuất** — Các truy vấn ngườ dùng được embed và khớp với vector đã lưu qua `pgvector`.
 3. **Sinh nội dung** — Các chunk được truy xuất được cung cấp như ngữ cảnh cho LLM (OpenAI, [Ollama](dibi8-internal-link), hoặc Claude).
 4. **Lưu trữ** — Các cuộc hội thoại được lưu trong bảng `conversations` để duy trì.
@@ -348,15 +332,11 @@ from supabase import create_client
 from openai import OpenAI
 import json
 
-class SupabaseRAG:
-    def __init__(self, supabase_url: str, supabase_key: str, openai_key: str):
-        self.supabase = create_client(supabase_url, supabase_key)
+class SupabaseRAG: def __init__(self, supabase_url: str, supabase_key: str, openai_key: str): self.supabase = create_client(supabase_url, supabase_key)
         self.openai = OpenAI(api_key=openai_key)
 
-    def embed_and_store(self, chunks: list[dict]):
-        """Lưu trữ các chunk tài liệu với embedding."""
-        for chunk in chunks:
-            embedding = self.openai.embeddings.create(
+    def embed_and_store(self, chunks: list[dict]): """Lưu trữ các chunk tài liệu với embedding."""
+        for chunk in chunks: embedding = self.openai.embeddings.create(
                 input=chunk[text],
                 model="text-embedding-3-large"
             ).data[0].embedding
@@ -368,8 +348,7 @@ class SupabaseRAG:
                 metadata: chunk.get(metadata, {})
             }).execute()
 
-    def retrieve(self, query: str, top_k: int = 5) -> list[dict]:
-        """Truy xuất tài liệu liên quan sử dụng tìm kiếm vector."""
+    def retrieve(self, query: str, top_k: int = 5) -> list[dict]: """Truy xuất tài liệu liên quan sử dụng tìm kiếm vector."""
         query_embedding = self.openai.embeddings.create(
             input=query,
             model="text-embedding-3-large"
@@ -385,8 +364,7 @@ class SupabaseRAG:
         ).execute()
         return results.data
 
-    def generate(self, query: str, context: list[dict]) -> str:
-        """Tạo phản hồi sử dụng ngữ cảnh đã truy xuất."""
+    def generate(self, query: str, context: list[dict]) -> str: """Tạo phản hồi sử dụng ngữ cảnh đã truy xuất."""
         context_text = "\n\n".join([
             f"[Nguồn: {doc[title]}]\n{doc[content]}"
             for doc in context
@@ -409,8 +387,7 @@ class SupabaseRAG:
         )
         return response.choices[0].message.content
 
-    def chat(self, query: str) -> dict:
-        """Pipeline RAG end-to-end."""
+    def chat(self, query: str) -> dict: """Pipeline RAG end-to-end."""
         context = self.retrieve(query)
         answer = self.generate(query, context)
         return {
@@ -501,11 +478,9 @@ supabase.removeChannel(channel)
 # Python asyncio version
 import asyncio
 
-async def subscribe_to_changes():
-    channel = supabase.channel('documents-changes')
+async def subscribe_to_changes(): channel = supabase.channel('documents-changes')
     
-    def handle_insert(payload):
-        print(f"Tài liệu mới: {payload[new][title]}")
+    def handle_insert(payload): print(f"Tài liệu mới: {payload[new][title]}")
     
     channel.on(
         postgres_changes,
@@ -571,9 +546,7 @@ supabase functions invoke ai-completion --data '{"prompt": "Explain RAG"}'
 
 ## Benchmark: Hiệu năng Tìm kiếm Vector Supabase
 
-Tất cả các benchmark chạy trên tier Supabase được host (Small Compute, 2 vCPU, 8GB RAM):
-
-| Kích thước Dataset | Chiều | Loại chỉ mục | Độ trễ truy vấn (p95) | Recall@10 | Thờ gian xây dựng chỉ mục |
+Tất cả các benchmark chạy trên tier Supabase được host (Small Compute, 2 vCPU, 8GB RAM): | Kích thước Dataset | Chiều | Loại chỉ mục | Độ trễ truy vấn (p95) | Recall@10 | Thờ gian xây dựng chỉ mục |
 |-------------------|-------|-------------|---------------------|-----------|----------------------|
 | 10K tài liệu | 1.536 | HNSW (m=16, ef=64) | 12ms | 0.97 | 8s |
 | 100K tài liệu | 1.536 | HNSW (m=16, ef=64) | 45ms | 0.96 | 72s |
@@ -595,41 +568,30 @@ Tất cả các benchmark chạy trên tier Supabase được host (Small Comput
 
 ```yaml
 # docker-compose.prod.yml (đoạn trích)
-services:
-  db:
-    image: supabase/postgres:15.8.1.040
-    environment:
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+services: db: image: supabase/postgres:15.8.1.040
+    environment: POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       PGVECTOR_HNSW_EF_SEARCH: 64
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+    volumes: - pgdata:/var/lib/postgresql/data
     command: >
       postgres
         -c shared_preload_libraries='pg_stat_statements,pgvector'
         -c max_connections=200
         -c shared_buffers=2GB
         -c effective_cache_size=6GB
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
+    healthcheck: test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s
       timeout: 5s
       retries: 5
 
-  kong:
-    image: kong:3.7
-    environment:
-      KONG_DATABASE: "off"
+  kong: image: kong:3.7
+    environment: KONG_DATABASE: "off"
       KONG_DECLARATIVE_CONFIG: /var/lib/kong/kong.yml
-    ports:
-      - "8000:8000"
-    depends_on:
-      - auth
+    ports: - "8000:8000"
+    depends_on: - auth
       - rest
       - realtime
 
-volumes:
-  pgdata:
-```
+volumes: pgdata: ```
 
 ### Biến môi trường
 
@@ -720,9 +682,7 @@ Có. Stack Docker Compose tự host chạy hoàn toàn trong môi trường air-
 
 ### Làm thế nào để xử lý schema migrations trong Supabase?
 
-Sử dụng hệ thống migration của Supabase CLI:
-
-```bash
+Sử dụng hệ thống migration của Supabase CLI: ```bash
 # Tạo migration mới
 supabase migration new add_documents_table
 
@@ -766,9 +726,7 @@ Supabase cung cấp cho bạn mọi thứ cần thiết để xây dựng các �
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -778,7 +736,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 Bài viết này chứa các liên kết liên kết. Nếu bạn mua dịch vụ thông qua các liên kết có đánh dấu ID liên kết (như DigitalOcean hoặc HTStack), chúng tôi có thể kiếm được hoa hồng mà không có chi phí bổ sung cho bạn. Điều này giúp tài trợ cho công việc tài liệu mã nguồn mở của chúng tôi. Tất cả các khuyến nghị đều dựa trên giá trị kỹ thuật thực sự, không phải khả năng có sẵn của liên kết.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

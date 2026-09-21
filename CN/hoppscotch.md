@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/hoppscotch" />
 title: 'Hoppscotch: 79,200 GitHub Stars — Open-Source API Develo...
 description: 'Hoppscotch (HOPP) is an open-source API development ecosystem. Docker, GitHub Actions, Node.js, Vue.js compatible. Covers hoppscotch tutorial, self-hosting, CLI automation, and comparison vs alternatives.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [hoppscotch, 'api-testing', 'postman-alternative', 'open-source', docker, cli, 'rest-api', graphql]
-aliases:
-- /posts/hoppscotch/
+aliases: - /posts/hoppscotch/-
 ---
-
 {{</* resource-info */>}}
 
 ## Introduction
@@ -131,51 +127,34 @@ docker run -d \
 # docker-compose.yml
 version: "3.8"
 
-services:
-  hoppscotch:
-    image: hoppscotch/hoppscotch:2026.4.1
+services: hoppscotch: image: hoppscotch/hoppscotch:2026.4.1
     container_name: hoppscotch-app
-    ports:
-      - "3000:3000"   # Main app
+    ports: - "3000:3000"   # Main app
       - "3100:3100"   # Admin dashboard
       - "3170:3170"   # Backend API
     env_file: .env
     restart: unless-stopped
-    depends_on:
-      postgres:
-        condition: service_healthy
-    networks:
-      - hoppscotch-net
+    depends_on: postgres: condition: service_healthy
+    networks: - hoppscotch-net
 
-  postgres:
-    image: postgres:16-alpine
+  postgres: image: postgres:16-alpine
     container_name: hoppscotch-db
-    environment:
-      POSTGRES_DB: hoppscotch
+    environment: POSTGRES_DB: hoppscotch
       POSTGRES_USER: hoppscotch
       POSTGRES_PASSWORD: ${DB_PASSWORD:-changeme}
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U hoppscotch"]
+    volumes: - postgres_data:/var/lib/postgresql/data
+    healthcheck: test: ["CMD-SHELL", "pg_isready -U hoppscotch"]
       interval: 10s
       timeout: 5s
       retries: 5
-    networks:
-      - hoppscotch-net
+    networks: - hoppscotch-net
 
-volumes:
-  postgres_data:
-    driver: local
+volumes: postgres_data: driver: local
 
-networks:
-  hoppscotch-net:
-    driver: bridge
+networks: hoppscotch-net: driver: bridge
 ```
 
-Deploy to start the stack:
-
-```bash
+Deploy to start the stack: ```bash
 docker compose up -d
 
 # Verify all services are healthy
@@ -195,23 +174,16 @@ For teams ready to deploy on a VPS, [DigitalOcean](https://m.do.co/c/dibi8) offe
 # .github/workflows/api-tests.yml
 name: API Tests with Hoppscotch CLI
 
-on:
-  push:
-    branches: [main, develop]
-  pull_request:
-    branches: [main]
+on: push: branches: [main, develop]
+  pull_request: branches: [main]
 
-jobs:
-  api-test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
+jobs: api-test: runs-on: ubuntu-latest
+    steps: - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
-        with:
-          node-version: "20"
+        with: node-version: "20"
           cache: "npm"
 
       - name: Install Hoppscotch CLI
@@ -231,14 +203,12 @@ jobs:
             -e environments/test.json \
             --reporter-junit test-results.xml \
             --delay 500
-        env:
-          API_BASE_URL: http://localhost:8080
+        env: API_BASE_URL: http://localhost:8080
 
       - name: Upload test results
         uses: actions/upload-artifact@v4
         if: always()
-        with:
-          name: api-test-results
+        with: name: api-test-results
           path: test-results.xml
 ```
 
@@ -346,7 +316,17 @@ pw.test("Response time is acceptable", () => {
 ### Performance Comparison
 
 | Metric | Hoppscotch | Postman | Insomnia | Bruno |
-|--------|-----------|---------|----------|-------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Cold start (web) | < 1s | 8–12s | 4–6s | 2–3s |
 | Desktop app size | ~8 MB | ~180 MB | ~120 MB | ~45 MB |
 | Memory footprint | ~40 MB | ~350 MB | ~200 MB | ~90 MB |
@@ -451,33 +431,18 @@ server {
 # docker-compose.monitoring.yml
 version: "3.8"
 
-services:
-  prometheus:
-    image: prom/prometheus:latest
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+services: prometheus: image: prom/prometheus:latest
+    volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus_data:/prometheus
-    ports:
-      - "9090:9090"
-    networks:
-      - hoppscotch-net
+    ports: - "9090:9090"
+    networks: - hoppscotch-net
 
-  grafana:
-    image: grafana/grafana:latest
-    ports:
-      - "3001:3000"
-    volumes:
-      - grafana_data:/var/lib/grafana
-    networks:
-      - hoppscotch-net
+  grafana: image: grafana/grafana:latest
+    ports: - "3001:3000"
+    volumes: - grafana_data:/var/lib/grafana
+    networks: - hoppscotch-net
 
-volumes:
-  prometheus_data:
-  grafana_data:
-
-networks:
-  hoppscotch-net:
-    external: true
+volumes: prometheus_data: grafana_data: networks: hoppscotch-net: external: true
 ```
 
 ### Database Backup Strategy
@@ -517,7 +482,17 @@ echo "Backup completed: hoppscotch_${TIMESTAMP}.dump.gz"
 ## Comparison with Alternatives
 
 | Feature | Hoppscotch | Postman | Insomnia | Bruno |
-|---------|-----------|---------|----------|-------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Open source | Yes (MIT) | No (proprietary) | Yes (Apache-2.0) | Yes (MIT) |
 | Self-hosted | Free (CE) | Enterprise only | Cloud only | N/A (local) |
 | Web-based | Yes (PWA) | Yes + Desktop | Desktop only | Desktop only |
@@ -543,9 +518,7 @@ echo "Backup completed: hoppscotch_${TIMESTAMP}.dump.gz"
 
 ## Limitations / Honest Assessment
 
-Hoppscotch is not the right tool for every situation. Here is what to consider before migrating:
-
-- **gRPC support is incomplete**: Unlike Postman and Insomnia, Hoppscotch does not yet offer full gRPC-Web debugging. If your stack relies heavily on gRPC, use Postman or Insomnia until this gap closes.
+Hoppscotch is not the right tool for every situation. Here is what to consider before migrating: - **gRPC support is incomplete**: Unlike Postman and Insomnia, Hoppscotch does not yet offer full gRPC-Web debugging. If your stack relies heavily on gRPC, use Postman or Insomnia until this gap closes.
 - **No native Git integration**: Collections are stored in PostgreSQL, not flat files. Bruno excels here — Hoppscotch collections must be exported/imported for Git workflows.
 - **Enterprise SSO requires paid plan**: SAML-based single sign-on and dedicated support start at $19/user/month. The Community Edition supports OAuth providers (GitHub, Google, Microsoft) but not enterprise SAML.
 - **Offline mode has limits**: The PWA caches assets but collection data syncs when online. Extended offline work requires the desktop application.
@@ -593,9 +566,7 @@ Join our [Telegram group](https://t.me/dibi8channel) for weekly open-source tool
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -615,7 +586,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [Insomnia Website](https://insomnia.rest)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -641,8 +611,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [claude-code-vs-aider](hoppscotch)
@@ -651,6 +621,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [claude-code-vs-aider](hoppscotch)
 - [microsoft-markitdown-file-to-markdown-converter-cli](hoppscotch)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

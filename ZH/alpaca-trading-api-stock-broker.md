@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/alpaca-trading-api-stock-broker" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/alpaca-trading-api-stock-broker" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/alpaca-trading-api-stock-broker" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/alpaca-trading-api-stock-broker" />
 title: 'Alpaca交易API 2026：面向算法交易的零佣金股票经纪API — 设置指南'
 description: '零佣金算法交易的Alpaca交易API完整指南。学习设置、下单、WebSocket实时流、碎股交易和模拟交易，附Python代码示例。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: ['alpaca trading api']
-aliases:
-- /zh/posts/alpaca-trading-api-stock-broker/
+aliases: - /zh/posts/alpaca-trading-api-stock-broker/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/alpaca-trading-api-stock-broker/ -->
 
 {{</* resource-info */>}}
 
@@ -37,12 +29,12 @@ aliases:
 > 
 > 🚀 **体验AI驱动交易**：[注册Minara](https://minara.ai/r/OSXG4X) —— AI交易平台，助您零代码构建、回测和部署自动化交易策略。
 
----
 
+---
 **发布日期：** 2026-05-19 | **类别：** AI交易 | **阅读时间：** 15分钟
 
----
 
+---
 ## 什么是Alpaca交易API？
 
 **Alpaca交易API**是一个面向开发者和算法交易者的零佣金、API优先的经纪平台。Alpaca成立于2015年，总部位于硅谷，已迅速成为构建自动化交易系统最受欢迎的选择之一，拥有超过**700万个API连接账户**，并于2026年1月被BrokerChooser评为**最佳券商第一名**。
@@ -52,7 +44,11 @@ aliases:
 Alpaca真正的独特之处在于其**零佣金模式**。您在美国股票和ETF交易上不支付任何佣金，这对于每天执行数十笔甚至数百笔交易的高频策略来说极具成本效益。API免费使用，包括完整的模拟交易环境，这意味着您可以在不支付任何平台费用的情况下开发、测试和部署策略。
 
 | 功能 | 规格 |
-|---------|--------------|
+|
+---
+|
+---
+|
 | **API类型** | REST API、WebSocket流式传输、FIX API |
 | **支持资产** | 美国股票、ETF、期权、加密货币 |
 | **SDK语言** | Python、JavaScript/Node.js、Go、C# |
@@ -244,8 +240,7 @@ portfolio = {
     VNQ: 500.00     # 房地产
 }
 
-for symbol, amount in portfolio.items():
-    order = api.submit_order(
+for symbol, amount in portfolio.items(): order = api.submit_order(
         symbol=symbol,
         notional=amount,
         side=buy,
@@ -297,14 +292,11 @@ import asyncio
 from alpaca_trade_api.stream import Stream
 
 # 用于实时数据的WebSocket流式传输
-async def handle_trade(t):
-    print(f"成交: {t.symbol} @ ${t.price} x {t.size}")
+async def handle_trade(t): print(f"成交: {t.symbol} @ ${t.price} x {t.size}")
 
-async def handle_quote(q):
-    print(f"报价: {q.symbol} 买入: ${q.bid_price} 卖出: ${q.ask_price}")
+async def handle_quote(q): print(f"报价: {q.symbol} 买入: ${q.bid_price} 卖出: ${q.ask_price}")
 
-async def handle_bar(bar):
-    print(f"K线: {bar.symbol} 开:{bar.open} 高:{bar.high} 低:{bar.low} 收:{bar.close}")
+async def handle_bar(bar): print(f"K线: {bar.symbol} 开:{bar.open} 高:{bar.high} 低:{bar.low} 收:{bar.close}")
 
 # 初始化流
 stream = Stream(
@@ -329,17 +321,14 @@ stream.run()
 import asyncio
 from alpaca_trade_api.stream import Stream
 
-async def run_streaming_strategy():
-    stream = Stream(
+async def run_streaming_strategy(): stream = Stream(
         key_id=YOUR_API_KEY,
         secret_key=YOUR_SECRET_KEY,
         data_feed=iex
     )
     
-    async def on_bar(bar):
-        # 您的策略逻辑
-        if bar.close > bar.vwap * 1.02:
-            print(f"潜在突破: {bar.symbol} 在 ${bar.close}")
+    async def on_bar(bar): # 您的策略逻辑
+        if bar.close > bar.vwap * 1.02: print(f"潜在突破: {bar.symbol} 在 ${bar.close}")
     
     stream.subscribe_bars(on_bar, AAPL, MSFT, GOOGL, AMZN)
     
@@ -400,8 +389,7 @@ print(f"当日交易次数: {account.daytrade_count}")
 positions = api.list_positions()
 print(f"持仓数量: {len(positions)}")
 
-for pos in positions:
-    print(f"{pos.symbol}: {pos.qty} 股 @ ${pos.avg_entry_price}")
+for pos in positions: print(f"{pos.symbol}: {pos.qty} 股 @ ${pos.avg_entry_price}")
     print(f"  当前: ${pos.current_price} | 盈亏: ${pos.unrealized_pl} ({pos.unrealized_plpc}%)")
 ```
 
@@ -418,8 +406,7 @@ print(f"未实现盈亏: ${aapl_position.unrealized_pl}")
 ```python
 # 列出所有未成交订单
 open_orders = api.list_orders(status=open)
-for order in open_orders:
-    print(f"订单 {order.id}: {order.side} {order.qty} {order.symbol} @ {order.type}")
+for order in open_orders: print(f"订单 {order.id}: {order.side} {order.qty} {order.symbol} @ {order.type}")
 ```
 
 ```python
@@ -442,8 +429,7 @@ closed_orders = api.list_orders(
     after='2026-05-01T00:00:00Z'
 )
 
-for order in closed_orders:
-    print(f"{order.symbol}: {order.side} {order.filled_qty}/{order.qty} @ ${order.filled_avg_price}")
+for order in closed_orders: print(f"{order.symbol}: {order.side} {order.filled_qty}/{order.qty} @ ${order.filled_avg_price}")
 ```
 
 ---
@@ -503,8 +489,7 @@ import pandas as pd
 symbols = [AAPL, MSFT, GOOGL, AMZN, META]
 all_bars = {}
 
-for symbol in symbols:
-    bars = api.get_bars(
+for symbol in symbols: bars = api.get_bars(
         symbol,
         timeframe=1Day,
         start='2026-01-01T00:00:00Z',
@@ -548,46 +533,33 @@ WATCHLIST = [AAPL, MSFT, GOOGL, AMZN, NVDA]
 POSITION_SIZE = 1000  # 每笔交易金额
 SMA_PERIOD = 20
 
-class MomentumTrader:
-    def __init__(self):
-        self.api = REST(key_id=API_KEY, secret_key=API_SECRET, base_url=BASE_URL)
+class MomentumTrader: def __init__(self): self.api = REST(key_id=API_KEY, secret_key=API_SECRET, base_url=BASE_URL)
         self.price_history = {s: [] for s in WATCHLIST}
         self.positions_held = set()
     
-    def get_sma(self, prices, period):
-        """计算简单移动平均线"""
-        if len(prices) < period:
-            return None
+    def get_sma(self, prices, period): """计算简单移动平均线"""
+        if len(prices) < period: return None
         return sum(prices[-period:]) / period
     
-    def check_for_signal(self, symbol, current_price):
-        """基于SMA交叉生成买入/卖出信号"""
+    def check_for_signal(self, symbol, current_price): """基于SMA交叉生成买入/卖出信号"""
         self.price_history[symbol].append(current_price)
         
-        if len(self.price_history[symbol]) < SMA_PERIOD + 5:
-            return None
+        if len(self.price_history[symbol]) < SMA_PERIOD + 5: return None
         
         sma = self.get_sma(self.price_history[symbol], SMA_PERIOD)
         prev_price = self.price_history[symbol][-2]
         prev_sma = self.get_sma(self.price_history[symbol][:-1], SMA_PERIOD)
         
         # 买入信号: 价格上穿SMA
-        if prev_price <= prev_sma and current_price > sma:
-            if symbol not in self.positions_held:
-                return buy
+        if prev_price <= prev_sma and current_price > sma: if symbol not in self.positions_held: return buy
         
         # 卖出信号: 价格下穿SMA
-        if prev_price >= prev_sma and current_price < sma:
-            if symbol in self.positions_held:
-                return sell
+        if prev_price >= prev_sma and current_price < sma: if symbol in self.positions_held: return sell
         
         return None
     
-    def execute_trade(self, symbol, signal):
-        """根据信号执行交易"""
-        try:
-            if signal == buy:
-                order = self.api.submit_order(
+    def execute_trade(self, symbol, signal): """根据信号执行交易"""
+        try: if signal == buy: order = self.api.submit_order(
                     symbol=symbol,
                     notional=POSITION_SIZE,
                     side=buy,
@@ -597,8 +569,7 @@ class MomentumTrader:
                 self.positions_held.add(symbol)
                 print(f"买入 {symbol}: ${POSITION_SIZE} | 订单ID: {order.id}")
             
-            elif signal == sell:
-                position = self.api.get_position(symbol)
+            elif signal == sell: position = self.api.get_position(symbol)
                 order = self.api.submit_order(
                     symbol=symbol,
                     qty=position.qty,
@@ -609,37 +580,28 @@ class MomentumTrader:
                 self.positions_held.discard(symbol)
                 print(f"卖出 {symbol}: {position.qty} 股 | 订单ID: {order.id}")
         
-        except Exception as e:
-            print(f"{symbol} 交易错误: {e}")
+        except Exception as e: print(f"{symbol} 交易错误: {e}")
     
-    def run(self):
-        """使用轮询的主交易循环"""
+    def run(self): """使用轮询的主交易循环"""
         print("动量交易器启动...")
         
-        while True:
-            try:
-                clock = self.api.get_clock()
-                if not clock.is_open:
-                    print(f"市场已收盘。下次开盘: {clock.next_open}")
+        while True: try: clock = self.api.get_clock()
+                if not clock.is_open: print(f"市场已收盘。下次开盘: {clock.next_open}")
                     time.sleep(60)
                     continue
                 
-                for symbol in WATCHLIST:
-                    # 获取最新价格
+                for symbol in WATCHLIST: # 获取最新价格
                     bars = self.api.get_latest_bar(symbol)
                     signal = self.check_for_signal(symbol, bars.c)
                     
-                    if signal:
-                        self.execute_trade(symbol, signal)
+                    if signal: self.execute_trade(symbol, signal)
                 
                 time.sleep(60)  # 每分钟检查一次
                 
-            except Exception as e:
-                print(f"主循环错误: {e}")
+            except Exception as e: print(f"主循环错误: {e}")
                 time.sleep(60)
 
-if __name__ == __main__:
-    trader = MomentumTrader()
+if __name__ == __main__: trader = MomentumTrader()
     trader.run()
 ```
 
@@ -689,13 +651,11 @@ app = Flask(__name__)
 api = REST(key_id=YOUR_KEY, secret_key=YOUR_SECRET)
 
 @app.route('/webhook/trading-signal', methods=[POST])
-def handle_trading_signal():
-    data = request.json
+def handle_trading_signal(): data = request.json
     symbol = data.get(symbol)
     signal = data.get(signal)  # buy 或 sell
     
-    if signal == buy:
-        order = api.submit_order(
+    if signal == buy: order = api.submit_order(
             symbol=symbol,
             notional=1000,
             side=buy,
@@ -704,8 +664,7 @@ def handle_trading_signal():
         )
         return jsonify({status: success, order_id: order.id})
     
-    elif signal == sell:
-        position = api.get_position(symbol)
+    elif signal == sell: position = api.get_position(symbol)
         order = api.submit_order(
             symbol=symbol,
             qty=position.qty,
@@ -717,8 +676,7 @@ def handle_trading_signal():
     
     return jsonify({status: unknown_signal}), 400
 
-if __name__ == __main__:
-    app.run(host='0.0.0.0', port=5000)
+if __name__ == __main__: app.run(host='0.0.0.0', port=5000)
 ```
 
 ---
@@ -775,7 +733,6 @@ Alpaca和Interactive Brokers服务于不同的用例。Alpaca是希望拥有现�
 *最后更新：2026-05-19 | Alpaca API版本：v2*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -803,25 +760,20 @@ Alpaca和Interactive Brokers服务于不同的用例。Alpaca是希望拥有现�
 
 ## Why This Matters
 
-Understanding alpaca交易api 2026：面向算法交易的零佣金股票经纪api — 设置指南 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding alpaca交易api 2026：面向算法交易的零佣金股票经纪api — 设置指南 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

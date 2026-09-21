@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/rtk-rust-cli-proxy-ai-token-saver" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/rtk-rust-cli-proxy-ai-token-saver" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/rtk-rust-cli-proxy-ai-token-saver" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/rtk-rust-cli-proxy-ai-token-saver" />
 title: 'RTK: Công Cụ Rust Mã Nguồn Mở Giảm 60-90% Chi Phí Token ...
 description: 'RTK (Rust Token Killer) là proxy CLI mã nguồn mở viết bằng Rust, giúp giảm 60-90% lượng token LLM tiêu thụ cho Claude Code, Cursor, Copilot, Codex và Gemini CLI. Một file binary duy nhất, không phụ thuộc, cài đặt chỉ một dòng lệnh. Bao gồm phân tích kiến trúc và benchmark thực tế.'
 date: 2026-05-14 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: ''
 last_maintained: '2026-05-14'
 featureImage: ''
 draft: false
-aliases:
-- /posts/rtk-rust-cli-proxy-ai-token-saver/
+aliases: - /posts/rtk-rust-cli-proxy-ai-token-saver/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/rtk-rust-cli-proxy-ai-token-saver/ -->
 
 {</* resource-info */>}
 
@@ -69,22 +61,19 @@ RTK được xây dựng trên một nhận định đơn giản: **khoảng 80%
 
 **Kịch bản 1: Đầu ra `git status`**
 
-Đầu ra thô có thể liệt kê 50 file đã sửa đổi với đường dẫn đầy đủ và trạng thái. RTK:
-- Giữ lại tóm tắt quan trọng (số file đã sửa / thêm / xóa)
+Đầu ra thô có thể liệt kê 50 file đã sửa đổi với đường dẫn đầy đủ và trạng thái. RTK: - Giữ lại tóm tắt quan trọng (số file đã sửa / thêm / xóa)
 - Thu gọn các tiền tố đường dẫn lặp lại
 - Loại bỏ các đánh dấu diff chi tiết không liên quan đến nhiệm vụ hiện tại
 
 **Kịch bản 2: Đầu ra test runner**
 
-Khi `pytest` hoặc `cargo test` thực thi:
-- Các test pass được nén thành một thống kê duy nhất ("47 passed")
+Khi `pytest` hoặc `cargo test` thực thi: - Các test pass được nén thành một thống kê duy nhất ("47 passed")
 - Chỉ các test thất bại giữ lại trace lỗi và log đầy đủ
 - Phần lớn nhiễu từ test thành công không bao giờ vào context LLM
 
 **Kịch bản 3: Log build và biên dịch**
 
-Đầu ra `npm run build` hoặc `go build` được loại bỏ:
-- Thanh tiến trình và metadata thời gian
+Đầu ra `npm run build` hoặc `go build` được loại bỏ: - Thanh tiến trình và metadata thời gian
 - Mọi thứ ngoại trừ lỗi và cảnh báo
 - Build thành công giảm xuống tín hiệu xác nhận
 
@@ -119,9 +108,7 @@ Binary được đặt trong `~/.local/bin/` hoặc `~/.cargo/bin/`.
 
 ### Bước 2: Kích hoạt Shell Hook
 
-RTK chặn lệnh agent AI thông qua shell hook. Chọn shell của bạn:
-
-**Bash / Zsh:**
+RTK chặn lệnh agent AI thông qua shell hook. Chọn shell của bạn: **Bash / Zsh:**
 ```bash
 echo 'eval "$(rtk hook bash)"' >> ~/.bashrc
 echo 'eval "$(rtk hook zsh)"' >> ~/.zshrc
@@ -199,9 +186,7 @@ Dữ liệu từ benchmark chính thức của RTK và các phép đo đã đư�
 
 ### Viết bộ lọc tùy chỉnh
 
-RTK hỗ trợ chính sách nén cho từng dự án và từng lệnh:
-
-```bash
+RTK hỗ trợ chính sách nén cho từng dự án và từng lệnh: ```bash
 # Thêm quy tắc tùy chỉnh cho lệnh độc quyền
 rtk rule add "my-custom-command" --keep-pattern="ERROR|WARN" --discard-pattern="INFO|DEBUG"
 
@@ -214,16 +199,13 @@ rtk bypass --command="git log"
 
 ### Triển khai cấp độ nhóm
 
-Các tổ chức muốn kiểm soát chi phí AI tập trung có thể triển khai RTK như một lớp proxy chia sẻ:
-
-1. **Cấu hình chia sẻ**: Commit `.rtk.yml` vào repo để mọi thành viên nhóm sử dụng chính sách lọc giống nhau.
+Các tổ chức muốn kiểm soát chi phí AI tập trung có thể triển khai RTK như một lớp proxy chia sẻ: 1. **Cấu hình chia sẻ**: Commit `.rtk.yml` vào repo để mọi thành viên nhóm sử dụng chính sách lọc giống nhau.
 2. **Tích hợp CI/CD**: Bật RTK trong pipeline build để giảm lượng token tiêu thụ trong giai đoạn test tự động.
 3. **Báo cáo sử dụng**: Định tuyến đầu ra `rtk gain` vào dashboard nhóm để có khả năng hiển thị token xuyên dự án.
 
 ```yaml
 # Ví dụ .rtk.yml (cấu hình cấp dự án)
-rules:
-  - command: "pytest"
+rules: - command: "pytest"
     keep: "FAILED|ERROR|skipped summary"
     compress_passed: true
   - command: "docker compose logs"
@@ -295,7 +277,6 @@ Hơn 45,000 sao GitHub. Apache-2.0. Một binary duy nhất, không phụ thuộ
 *Tags: RTK, AI coding agent, tối ưu token LLM, công cụ CLI Rust, công cụ phát triển mã nguồn mở, Claude Code, Cursor IDE, GitHub Copilot, OpenAI Codex, giảm chi phí token, năng suất lập trình viên 2026*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,16 +1,10 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/polymarket-agents-ai-trading-bot-framework" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/polymarket-agents-ai-trading-bot-framework" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/polymarket-agents-ai-trading-bot-framework" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/polymarket-agents-ai-trading-bot-framework" />
 title: 'Polymarket Agents: Polymarket 예측 시장용 AI 자동 거래 봇 구축'
 description: Polymarket Agents는 Polymarket 예측 시장에서 AI가 자율적으로 거래하는 에이전트를 구축하기 위한 오픈소스. Comprehensive guide covering features, pricing, and best practices for 2026.
   개발자 프레임워크입니다.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
-tech_stack:
-- Docker
+tech_stack: - Docker
 - Python
 - TypeScript
 application_domain: Llm Frameworks
@@ -27,10 +21,8 @@ maintainer: "Polymarket"
 last_maintained: "2024-11-05"
 featureImage: ''
 draft: false
-aliases:
-- /ko/posts/polymarket-agents-ai-trading-bot-framework/
-faqs:
-  - q: 'Polymarket Agents란 무엇인가요?'
+aliases: - /ko/posts/polymarket-agents-ai-trading-bot-framework/
+faqs: - q: 'Polymarket Agents란 무엇인가요?'
     a: 'Polymarket Agents는 Polymarket 예측 시장에서 자율적으로 거래하는 AI 에이전트를 구축하기 위한 오픈소스 MIT 라이선스 개발자 프레임워크입니다. 시장을 분석하는 유틸리티를 제공하며, 실시간 데이터를 위해 Polymarket API와 연동하고 거래를 자동으로 실행합니다.'
   - q: 'Polymarket Agents를 실행하기 전에 무엇을 준비해야 하나요?'
     a: '.env 파일에 설정된 Polygon 지갑 개인 키와 OpenAI API key가 필요하며, requirements.txt에서 의존성을 설치한 Python 3.9 가상 환경도 필요합니다. 또한 Polymarket의 거래는 USDC로 정산되므로 Polygon 지갑에 USDC를 충전해야 합니다.'
@@ -42,7 +34,6 @@ faqs:
     a: 'CLI 명령어 ''python scripts/python/cli.py trade --market-id <MARKET_ID> --side buy --size <SIZE>''를 실행하세요. 또한 ''get-all-markets --sort-by volume''로 시장 목록을 조회하거나 ''get-market --market-id <MARKET_ID>''로 단일 시장을 확인할 수도 있습니다.'
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/polymarket-agents-ai-trading-bot-framework/ -->
 {</* resource-info */>}
 
 ![Polymarket Agents CLI 명령어 목록](/images/articles/polymarket-agents-ai-trading-bot-framework/cli.png)
@@ -52,8 +43,7 @@ faqs:
 
 **Polymarket Agents**는 **Polymarket** — 세계 최대의 예측 시장 플랫폼 — 에서 AI가 자율적으로 거래하는 에이전트를 구축하기 위한 오픈소스 개발자 프레임워크 및 유틸리티 세트입니다.
 
-이 프레임워크는 개발자가 다음을 할 수 있게 합니다:
-- 🤖 시장을 분석하고 자동으로 거래를 실행하는 AI 에이전트 구축
+이 프레임워크는 개발자가 다음을 할 수 있게 합니다: - 🤖 시장을 분석하고 자동으로 거래를 실행하는 AI 에이전트 구축
 - 📊 실시간 시장 데이터를 위한 Polymarket API 통합
 - 🔍 정보에 입각한 거래 결정을 위한 RAG(검색 증강 생성) 사용
 - 📰 베팅 서비스, 뉴스 제공업체, 웹 검색에서 데이터 소싱
@@ -65,9 +55,7 @@ faqs:
 
 ## Polymarket이란?
 
-**Polymarket**은 사용자가 실제 세계 이벤트의 결과를 거래할 수 있는 분산형 예측 시장 플랫폼입니다:
-
-- **정치** — 선거 결과, 정책 결정
+**Polymarket**은 사용자가 실제 세계 이벤트의 결과를 거래할 수 있는 분산형 예측 시장 플랫폼입니다: - **정치** — 선거 결과, 정책 결정
 - **암호화폐** — 비트코인 가격 예측, ETF 승인
 - **스포츠** — 경기 결과, 챔피언십 우승자
 - **과학** — 연구 돌파구, 우주 임무
@@ -94,9 +82,7 @@ faqs:
 
 ## 아키텍처
 
-Polymarket Agents는 개별 커뮤니티 멤버가 유지 관리하고 확장할 수 있는 모듈식 구성 요소를 특징으로 합니다:
-
-### 핵심 API
+Polymarket Agents는 개별 커뮤니티 멤버가 유지 관리하고 확장할 수 있는 모듈식 구성 요소를 특징으로 합니다: ### 핵심 API
 
 | 구성 요소 | 목적 |
 |-----------|------|
@@ -107,9 +93,7 @@ Polymarket Agents는 개별 커뮤니티 멤버가 유지 관리하고 확장할
 
 ### CLI 명령
 
-Polymarket과 상호작용하기 위한 주요 사용자 인터페이스:
-
-```bash
+Polymarket과 상호작용하기 위한 주요 사용자 인터페이스: ```bash
 # 거래량별로 정렬된 모든 시장 가져오기
 python scripts/python/cli.py get-all-markets --limit 10 --sort-by volume
 
@@ -144,9 +128,7 @@ pip install -r requirements.txt
 
 ### 3. API 키 구성
 
-`.env` 파일 생성:
-
-```env
+`.env` 파일 생성: ```env
 POLYGON_WALLET_PRIVATE_KEY="귀하의 지갑 개인 키"
 OPENAI_API_KEY="귀하의 OpenAI API 키"
 ```
@@ -165,9 +147,7 @@ export PYTHONPATH="."
 python scripts/python/cli.py
 ```
 
-또는 직접 거래 실행:
-
-```bash
+또는 직접 거래 실행: ```bash
 python agents/application/trade.py
 ```
 
@@ -182,9 +162,7 @@ python agents/application/trade.py
 
 ## 거래 전략
 
-Polymarket Agents는 다양한 AI 기반 거래 전략을 지원합니다:
-
-### 1. 뉴스 기반 거래
+Polymarket Agents는 다양한 AI 기반 거래 전략을 지원합니다: ### 1. 뉴스 기반 거래
 - 이벤트 진행 상황을 위한 뉴스 소스 모니터링
 - 감정 및 영향 분석을 위한 LLM 사용
 - 예측 결과에 기반한 거래 실행
@@ -208,9 +186,7 @@ Polymarket Agents는 다양한 AI 기반 거래 전략을 지원합니다:
 
 ## 데이터 소스
 
-프레임워크는 여러 데이터 소스를 통합합니다:
-
-| 소스 | 유형 | 사용 사례 |
+프레임워크는 여러 데이터 소스를 통합합니다: | 소스 | 유형 | 사용 사례 |
 |------|------|----------|
 | **뉴스 API** | 실시간 뉴스 | 이벤트 추적 |
 | **웹 검색** | 일반 정보 | 배경 연구 |
@@ -222,9 +198,7 @@ Polymarket Agents는 다양한 AI 기반 거래 전략을 지원합니다:
 
 ## RAG 구현
 
-정보에 입각한 거래를 위한 검색 증강 생성:
-
-1. **벡터 데이터베이스** — Chroma DB가 뉴스 기사 및 시장 데이터 저장
+정보에 입각한 거래를 위한 검색 증강 생성: 1. **벡터 데이터베이스** — Chroma DB가 뉴스 기사 및 시장 데이터 저장
 2. **임베딩** — 의미 검색을 위해 텍스트를 벡터로 변환
 3. **검색** — 시장 맥락에 기반한 관련 정보 쿼리
 4. **생성** — LLM이 검색된 데이터를 거래 결정으로 종합
@@ -233,9 +207,7 @@ Polymarket Agents는 다양한 AI 기반 거래 전략을 지원합니다:
 
 ## 리스크 관리
 
-자동 거래에 대한 중요 고려사항:
-
-| 리스크 | 완화 조치 |
+자동 거래에 대한 중요 고려사항: | 리스크 | 완화 조치 |
 |------|-----------|
 | **시장 리스크** | 포지션 크기 조정, 손절매 |
 | **유동성 리스크** | 높은 거래량 시장에서 거래 |
@@ -326,9 +298,7 @@ Polymarket Agents는 다양한 AI 기반 거래 전략을 지원합니다:
 
 ## 자체 호스팅 추천 인프라
 
-24/7 안정 운영을 위해 인프라 선택이 중요하다:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 60일 $200 크레딧, 글로벌 14+ 리전. 오픈소스 AI 도구 자체 호스팅에 적합.
+24/7 안정 운영을 위해 인프라 선택이 중요하다: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 60일 $200 크레딧, 글로벌 14+ 리전. 오픈소스 AI 도구 자체 호스팅에 적합.
 - **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — 홍콩 VPS, 중국 본토 접근 시 저지연. dibi8.com 자체가 호스팅된 검증된 IDC.
 
 *추천 링크입니다. 추가 비용 없이 dibi8.com 운영에 도움이 됩니다.*
@@ -336,7 +306,6 @@ Polymarket Agents는 다양한 AI 기반 거래 전략을 지원합니다:
 *마지막 업데이트: 2026-05-06*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -364,25 +333,20 @@ Polymarket Agents는 다양한 AI 기반 거래 전략을 지원합니다:
 
 ## Why This Matters
 
-Understanding polymarket agents: polymarket 예측 시장용 ai 자동 거래 봇 구축 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding polymarket agents: polymarket 예측 시장용 ai 자동 거래 봇 구축 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

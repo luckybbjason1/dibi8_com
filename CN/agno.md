@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/agno" />
 title: 'Agno: 40K+ Stars — Lightweight AI Agent Framework Deep D...
 description: 'Agno is a lightweight open-source Python SDK for building AI agent platforms with 40K+ GitHub stars. Supports OpenAI, Anthropic, Ollama, Docker, AWS. Covers installation, multi-agent systems, benchmarks, production hardening, and comparison with CrewAI, AutoGen, and LangChain.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [agno, 'ai-agent', 'python-sdk', 'multi-agent', 'open-source', 'lightweight-framework', 'agent-platform', ollama, openai]
-aliases:
-- /posts/agno/
+aliases: - /posts/agno/-
 ---
-
 {{</* resource-info */>}}
 
 Choosing an AI agent framework in 2026 feels like navigating a minefield. Over the past 18 months, dozens of libraries have emerged promising to "simplify" agent development, yet most introduce more abstraction than value. Teams report spending weeks learning graph-based orchestration semantics only to discover their use case needed nothing more than a lightweight tool-calling loop. Agno (formerly Phidata) cuts through this noise with a runtime-first philosophy: build agents fast, serve them as services, and own your entire stack. With **40,233 GitHub stars**, **452 contributors**, and a fresh Apache-2.0 license, it has become the go-to framework for Python teams shipping production agent systems. This guide — a practical **agno tutorial** for 2026 — walks through **agno setup**, architecture, real code examples, benchmarks in the **agno vs crewai** debate, and the hard truths about where this **lightweight ai framework** falls short.
@@ -42,9 +38,7 @@ Agno's value proposition is simple: you build agents with plain Python classes, 
 
 ### Architecture Overview
 
-Agno's architecture separates concerns into three distinct layers, each replaceable independently:
-
-```
+Agno's architecture separates concerns into three distinct layers, each replaceable independently: ```
 ┌─────────────────────────────────────────────────────────────┐
 │                    Control Plane (AgentOS UI)                │
 │         Chat · Trace Inspection · Session Management         │
@@ -115,9 +109,7 @@ python -c "import agno; print(agno.__version__)"
 
 ### Step 4: Run Your First Agent
 
-Create `basic_agent.py`:
-
-```python
+Create `basic_agent.py`: ```python
 from agno.agent import Agent
 
 agent = Agent(
@@ -213,16 +205,11 @@ CMD ["python", "workbench.py"]
 ```yaml
 # docker-compose.yml
 version: '3.8'
-services:
-  agentos:
-    build: .
-    ports:
-      - "8000:8000"
-    environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
+services: agentos: build: .
+    ports: - "8000:8000"
+    environment: - OPENAI_API_KEY=${OPENAI_API_KEY}
       - AGNO_ENV=production
-    volumes:
-      - ./data:/app/data
+    volumes: - ./data:/app/data
     restart: unless-stopped
 ```
 
@@ -249,14 +236,22 @@ aws ecs create-service \
 
 ### Performance Benchmarks
 
-This **ai agent tutorial** includes real numbers. Agno's lightweight design shows measurable advantages in head-to-head testing:
-
-![Agno Performance Comparison](https://docs.agno.com/_next/image?url=%2Fassets%2Fagno-og.jpg&w=1200&q=75)
+This **ai agent tutorial** includes real numbers. Agno's lightweight design shows measurable advantages in head-to-head testing: ![Agno Performance Comparison](https://docs.agno.com/_next/image?url=%2Fassets%2Fagno-og.jpg&w=1200&q=75)
 
 ![Agno 文档网站](https://docs.agno.com/introduction)
 
 | Metric | Agno | CrewAI | AutoGen | LangGraph |
-|--------|------|--------|---------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Agent initialization | ~3 μs | ~12 ms | ~45 ms | ~150 ms |
 | Memory per agent | ~6.5 KiB | ~320 KiB | ~1.2 MiB | ~2.8 MiB |
 | Cold start (local) | 45 ms | 890 ms | 2.1 s | 4.5 s |
@@ -280,9 +275,7 @@ These numbers matter at scale. A service running 1,000 concurrent agent sessions
 
 ### Multi-Agent Systems
 
-Agno teams let you compose agent groups without graph definitions:
-
-```python
+Agno teams let you compose agent groups without graph definitions: ```python
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
 from agno.tools.duckduckgo import DuckDuckGoTools
@@ -402,7 +395,17 @@ AgentOS.serve(host="0.0.0.0", port=8000)
 ## Comparison with Alternatives
 
 | Feature | Agno | CrewAI | AutoGen | LangChain + LangGraph |
-|---------|------|--------|---------|----------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **GitHub Stars** | 40,233 | 51,000+ | 58,000+ | 96,000+ / 31,000+ |
 | **License** | Apache-2.0 | MIT | MIT (Code) / CC-BY-4.0 (Docs) | MIT |
 | **Architecture** | SDK + FastAPI Runtime + Control Plane | Role-based Teams | Conversational Multi-Agent | Graph-based Orchestration |
@@ -427,9 +430,7 @@ AgentOS.serve(host="0.0.0.0", port=8000)
 
 ## Limitations / Honest Assessment — What This Lightweight AI Framework Is NOT Good For
 
-Agno is not the right tool for every agent use case. Here is what to consider before adopting:
-
-**No graph semantics**: If your workflow requires explicit state transitions, checkpointing, and replayable execution paths, LangGraph's graph model is a better fit. Agno's team-based orchestration is simpler but less precise for complex branching logic.
+Agno is not the right tool for every agent use case. Here is what to consider before adopting: **No graph semantics**: If your workflow requires explicit state transitions, checkpointing, and replayable execution paths, LangGraph's graph model is a better fit. Agno's team-based orchestration is simpler but less precise for complex branching logic.
 
 **Smaller community than LangChain**: With 452 contributors versus LangChain's 3,000+, third-party tutorials and StackOverflow answers are fewer. The documentation has improved rapidly but still has gaps in edge-case scenarios.
 
@@ -479,9 +480,7 @@ The 40,233 GitHub stars and 452-contributor community signal that Agno has cross
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -497,12 +496,11 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [AI Agents Kit Comparison 2026](https://aiagentskit.com/blog/best-ai-agent-frameworks-compared/) — Community-driven framework rankings
 - [Agno vs CrewAI Detailed Comparison](https://respan.ai/market-map/compare/agno-vs-crewai) — Feature-by-feature analysis with community reviews
 
----
 
+---
 *This article contains affiliate links. If you sign up for services through these links, dibi8.com may receive a commission at no extra cost to you.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -528,8 +526,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [ollama-vs-lm-studio](agno)

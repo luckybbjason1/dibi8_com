@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/nanochat-karpathy-train-your-own-llm-100-dollars-2026" />
 title: 'nanochat 2026: Andrej Karpathy''s Open-Source "ChatGPT f...
 description: 'nanochat by Andrej Karpathy is a single-file, full-stack LLM training pipeline — tokenizer, pretraining, finetuning, evaluation, inference, and chat UI — designed to train a GPT-2-level chatbot from scratch for under $100 on a single 8×H100 node.'
 date: 2026-06-09 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: '/images/articles/nanochat-karpathy-train-your-own-llm-100-dollars
 draft: false
 categories: ['llm-frameworks']
 tags: [nanochat, karpathy, 'llm-training', pytorch, gpt, 'self-hosted-llm', 'open-source', transformer, 'fine-tuning']
-aliases:
-- /posts/nanochat-karpathy-train-your-own-llm-100-dollars-2026/
-faqs:
-  - q: 'What is nanochat and who built it?'
+aliases: - /posts/nanochat-karpathy-train-your-own-llm-100-dollars-2026/
+faqs: - q: 'What is nanochat and who built it?'
     a: 'nanochat is a minimal, full-stack LLM training and inference pipeline built by Andrej Karpathy (founding member of OpenAI, former Director of AI at Tesla). Unlike his earlier nanoGPT which only covered pretraining, nanochat includes the complete pipeline: custom Rust BPE tokenizer, pretraining, supervised finetuning on conversations and tool use, evaluation, inference, and a working ChatGPT-style web UI — all in about 8,000 lines of readable Python and Rust.'
   - q: 'How much does it cost to train a model with nanochat?'
     a: 'Karpathy estimates roughly $48–$100 to train a GPT-2-capability chatbot from scratch. The training runs on a single 8×H100 GPU node (≈$24/hour on cloud rentals). Two hours gets you a working model; four hours produces a model that can hold a real conversation. The cost dropped by orders of magnitude vs. the original GPT-2 training because of improvements in hardware, software (FlashAttention, BF16, etc.), and better data (FineWeb).'
@@ -34,18 +30,14 @@ faqs:
   - q: 'What is the difference between nanochat and Ollama or vLLM?'
     a: 'Ollama and vLLM are inference runtimes — you load an existing pretrained model and serve it. nanochat is a training framework — it trains a model from raw text data, from the very first token. Think of Ollama as the car, and nanochat as the factory that builds the engine. The repo also includes an inference server and chat UI so you can talk to your trained model, but training is the core purpose.'
   - q: 'Can I finetune an existing model with nanochat instead of training from scratch?'
-    a: 'The primary path in nanochat is full pretraining from scratch on FineWeb followed by supervised finetuning. However, the pipeline is explicitly designed to be "maximally forkable" — the modular structure makes it straightforward to replace the pretraining data loader with a starting checkpoint and proceed with just the SFT stage on your own data. Community forks have demonstrated this pattern.'
----
-
+    a: 'The primary path in nanochat is full pretraining from scratch on FineWeb followed by supervised finetuning. However, the pipeline is explicitly designed to be "maximally forkable" — the modular structure makes it straightforward to replace the pretraining data loader with a starting checkpoint and proceed with just the SFT stage on your own data. Community forks have demonstrated this pattern.'---
 ![nanochat 2026: Andrej Karpathy LLM Training Pipeline — dibi8.com](/images/articles/nanochat-karpathy-train-your-own-llm-100-dollars-2026/cover.jpg)
 
 In October 2025, Andrej Karpathy announced [nanochat](https://github.com/karpathy/nanochat) with a simple premise: "The best ChatGPT that $100 can buy." By June 2026 it has accumulated **54,700 GitHub stars** and become the most-read LLM training tutorial in the open-source community. If you want to understand how ChatGPT works from the inside — and build your own version — nanochat is where you start.
 
 ## What nanochat Is (and Is Not)
 
-nanochat is not a wrapper around an existing model. It is not a deployment tool. It is the complete factory:
-
-1. **Tokenizer** — a custom Byte-Pair Encoding (BPE) tokenizer trained from scratch on your data, implemented in Rust for speed. You own the vocabulary; there's no dependency on tiktoken or sentencepiece.
+nanochat is not a wrapper around an existing model. It is not a deployment tool. It is the complete factory: 1. **Tokenizer** — a custom Byte-Pair Encoding (BPE) tokenizer trained from scratch on your data, implemented in Rust for speed. You own the vocabulary; there's no dependency on tiktoken or sentencepiece.
 2. **Pretraining** — a Transformer (GPT architecture) trained on FineWeb, a high-quality crawled web text dataset. Implements FlashAttention-2, BF16 mixed precision, and gradient checkpointing to fit large batches on a single node.
 3. **Finetuning (SFT)** — trains the pretrained base model on user-assistant conversation data (SmolTalk), multiple-choice questions, and tool-use examples. This is the step that turns a next-token predictor into a chatbot.
 4. **Evaluation** — runs the CORE benchmark suite automatically after each training stage, reporting reasoning, knowledge, coding, and instruction-following scores.
@@ -56,10 +48,16 @@ The whole thing is ~8,000 lines of Python and Rust. Karpathy describes it as "am
 
 ## The $100 Training Run
 
-The advertised $100 assumes you rent a cloud GPU node. In 2026 prices:
-
-| Config | Cost/hr | Time to train | Total cost |
-|--------|---------|---------------|------------|
+The advertised $100 assumes you rent a cloud GPU node. In 2026 prices: | Config | Cost/hr | Time to train | Total cost |
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 8× H100 (SXM5) | ~$24 | 2 hours | ~$48 |
 | 8× A100 (80GB) | ~$16 | 4 hours | ~$64 |
 | 8× H100 (PCIe) | ~$18 | 3 hours | ~$54 |
@@ -74,9 +72,7 @@ You can rent these nodes from Lambda Labs, CoreWeave, vast.ai, or RunPod. The na
 
 Most LLM toolkits delegate tokenization to Python bindings around a C library (sentencepiece) or a pre-trained vocabulary (tiktoken). nanochat trains its own BPE tokenizer from scratch on the pretraining corpus. The implementation is in Rust for throughput — tokenizing FineWeb at full dataset scale in Python would take hours.
 
-Training the tokenizer is a separate command:
-
-```bash
+Training the tokenizer is a separate command: ```bash
 python tokenize_dataset.py --dataset fineweb --vocab-size 32768
 ```
 
@@ -110,9 +106,7 @@ After each training stage, nanochat runs the CORE benchmark automatically — a 
 
 ### Inference Server
 
-The inference server implements the OpenAI `/v1/chat/completions` endpoint:
-
-```bash
+The inference server implements the OpenAI `/v1/chat/completions` endpoint: ```bash
 python serve.py --checkpoint checkpoints/sft_final.pt --port 8000
 ```
 
@@ -137,9 +131,7 @@ In March 2026 Karpathy published [autoresearch](https://github.com/karpathy/auto
 
 ## Related Projects in the nanochat Ecosystem
 
-The community has built several projects on top of nanochat:
-
-- **nanochat-VLM** — adds vision-language capabilities (image → text)
+The community has built several projects on top of nanochat: - **nanochat-VLM** — adds vision-language capabilities (image → text)
 - **nanochat-workshop** (i-dot-ai) — a structured workshop curriculum for training LLMs step by step
 - **nanollama** — a learning-from-scratch baseline extracted from nanochat discussion thread #557
 
@@ -154,7 +146,6 @@ nanochat demystifies the entire LLM stack. In a world where most AI tooling hide
 **GitHub:** [karpathy/nanochat](https://github.com/karpathy/nanochat) · 54.7k stars · MIT
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -182,25 +173,20 @@ nanochat demystifies the entire LLM stack. In a world where most AI tooling hide
 
 ## Why This Matters
 
-Understanding nanochat 2026: andrej karpathy''s open-source "chatgpt for $100" — full llm pipeline in 8,000 lines is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding nanochat 2026: andrej karpathy''s open-source "chatgpt for $100" — full llm pipeline in 8,000 lines is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -221,13 +207,13 @@ nanochat 2026: Andrej Karpathy''s Open-Source "ChatGPT for $100" — Full LLM Pi
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
 
+---
 ## Related Articles
 
 - [nanochat-karpathy-100-chatgpt-single-gpu](nanochat-karpathy-train-your-own-llm-100-dollars-2026)

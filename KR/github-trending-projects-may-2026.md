@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/github-trending-projects-may-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/github-trending-projects-may-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/github-trending-projects-may-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/github-trending-projects-may-2026" />
 title: "DeepSeek TUI + Anthropic 금융 AI: 2026년 5월 GitHub에서 실제로 수익...
 description: "하루 만에 5,800스타를 기록한 터미널 기반 코딩 에이전트와 Anthropic의 첫 수직형 금융 서비스 프레임워크 — 현재 GitHub에서 실제 상용 가치가 있는 핫한 오픈소스 프로젝트 3선을 분석합니다.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - C++
+tech_stack: - C++
   - Docker
   - Go
   - JavaScript
@@ -27,10 +21,8 @@ maintainer: "Hmbown"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases:
-- /kr/posts/github-trending-projects-may-2026/
-faqs:
-  - q: 'DeepSeek-TUI는 무엇이며 Cursor나 GitHub Copilot과 어떻게 다른가요?'
+aliases: - /kr/posts/github-trending-projects-may-2026/
+faqs: - q: 'DeepSeek-TUI는 무엇이며 Cursor나 GitHub Copilot과 어떻게 다른가요?'
     a: 'DeepSeek-TUI는 `deepseek` 명령어를 통해 로컬에서 실행되는 터미널 기반 AI 코딩 에이전트로, 추론 블록을 스트리밍하고 디스크의 파일을 읽고 쓰며, 파일 시스템을 변경하기 전에 승인 게이트를 거칩니다. 완전한 GUI 에디터로 동작하는 Cursor나 Copilot과 달리, tmux, neovim, zsh에서 작업하는 터미널 사용자를 위해 설계되었으며 브라우저와 IDE 사이를 오가는 컨텍스트 전환이 없습니다.'
   - q: 'DeepSeek-TUI의 auto 모드는 어떻게 비용을 절감하나요?'
     a: 'auto 모드(`deepseek --model auto`)에서는 도구가 먼저 thinking을 끈 deepseek-v4-flash로 아주 작은 라우팅 호출을 보내 요청을 평가한 다음, 가장 저렴하면서도 실행 가능한 모델과 thinking 수준을 선택합니다. 단순한 리팩터링은 thinking을 끈 빠른 모델을 사용하고, 보안 검토 같은 복잡한 작업은 더 높은 thinking 수준의 pro 모델을 트리거하므로 짧은 질문은 계속 저렴하게 유지됩니다.'
@@ -42,7 +34,6 @@ faqs:
     a: 'Local Deep Research는 텔레메트리 없이 클라우드 의존성도 없이 전적으로 사용자 자신의 하드웨어에서 실행되며, 연구 기록을 SQLCipher로 암호화된 데이터베이스에 저장합니다. 로컬에서 실행됨에도 불구하고 RTX 3090에서 Qwen3.6-27B와 함께 사용할 때 SimpleQA에서 약 95%의 정확도에 도달하며, arXiv와 PubMed를 포함해 10개 이상의 검색 엔진을 지원합니다.'
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/github-trending-projects-may-2026/ -->
 {</* resource-info */>}
 
 ## 소개
@@ -69,9 +60,7 @@ Cursor나 Copilot과 같은 전체 GUI 에디터를 필요로 하는 도구와 �
 
 ### Auto Mode: 스마트 모델 라우팅으로 비용 절감
 
-가장 돋보이는 기능은 자동 모드(`deepseek --model auto`)입니다. 각 요청을 보내기 전에 DeepSeek-TUI는 `deepseek-v4-flash`(추론 비활성)로 작은 라우팅 호출을 수행합니다. 라우터는 최신 요청과 최근 대화 컨텍스트를 평가하여 최적 조합을 선택합니다:
-
-- **모델:** 빠른 작업에는 `deepseek-v4-flash`, 복잡한 아키텍처 작업에는 `deepseek-v4-pro`
+가장 돋보이는 기능은 자동 모드(`deepseek --model auto`)입니다. 각 요청을 보내기 전에 DeepSeek-TUI는 `deepseek-v4-flash`(추론 비활성)로 작은 라우팅 호출을 수행합니다. 라우터는 최신 요청과 최근 대화 컨텍스트를 평가하여 최적 조합을 선택합니다: - **모델:** 빠른 작업에는 `deepseek-v4-flash`, 복잡한 아키텍처 작업에는 `deepseek-v4-pro`
 - **추론 레벨:** 간단한 리팩토링에는 `off`, 보안 검토나 다단계 디버깅에는 `high` 또는 `max`
 
 단순 질문은 저가로 유지되고, 정말 복잡한 작업만 고비용 추론을 트리거합니다. 업스트림 API는 `"model": "auto"`를 받지 않습니다 — TUI가 내부적으로 해석하며 실제 사용된 모델 기준으로 요금이 부과됩니다. 비용 추적은 투명하게 이루어집니다.
@@ -136,9 +125,7 @@ DeepSeek-TUI는 Claude Code보다 가격 경쟁력이 있으면서 핵심 기능
 
 ### 포함된 내용
 
-이 저장소는 특정 금융 워크플로우를 커버하는 11개의 네임드 에이전트를 제공합니다:
-
-| 기능 | 에이전트 | 출력물 |
+이 저장소는 특정 금융 워크플로우를 커버하는 11개의 네임드 에이전트를 제공합니다: | 기능 | 에이전트 | 출력물 |
 |---|---|---|
 |_coverage_ 및 자문 | **Pitch Agent** | comps, precedents, LBO → 브랜드 피칭 PPT |
 | 연구 및 모델링 | **Market Researcher** | 산업 개요 + 경쟁 구도 +peer comps |
@@ -150,17 +137,13 @@ DeepSeek-TUI는 Claude Code보다 가격 경쟁력이 있으면서 핵심 기능
 
 ### 두 가지 배포 경로
 
-진정한 핵심은 이중 분배 모델입니다:
-
-1. **Claude Cowork 플러그인** — Claude.ai에 저장소 URL 붙이거나 zip 업로드 후 설치. 개별 에이전트 또는 풀 스택 선택 가능. 프리랜서 애널리스트나 소형 팀에 적합.
+진정한 핵심은 이중 분배 모델입니다: 1. **Claude Cowork 플러그인** — Claude.ai에 저장소 URL 붙이거나 zip 업로드 후 설치. 개별 에이전트 또는 풀 스택 선택 가능. 프리랜서 애널리스트나 소형 팀에 적합.
 
 2. **Claude Managed Agents API** — `/v1/agents` 엔드포인트를 통해 자체 워크플로우 엔진 뒤에 배포. `agent.yaml` 구성, 리프-워커 서브에이전트 템플릿, 이벤트 스티어링, per-agent 보안 노트 포함. 감사 추적, 역할 기반 접근 제어, 내부 시스템 통합이 필요한 대형 기관을 위한 디자인.
 
 ### 상업적 가치
 
-금융 서비스는 미국에서만 4조 달러 규모의 산업입니다. 애널리스트 업무와 AI 도구 간의 마찰은 엄청났습니다 — 대부분의 AI 도메인이 도메인 전문성이 부족하거나 엔터프라이즈 방화벽 내부에 안전하게 배포할 수 없었습니다. 이 저장소는 두 가지 격차를 모두 해소합니다:
-
-- **도메인 심층 지식:** comps 테이블, DCF 모델, GL 정산을 이해하는 실무자가 작성한 스킬 — 일반 프롬프트 엔지니어가 아님
+금융 서비스는 미국에서만 4조 달러 규모의 산업입니다. 애널리스트 업무와 AI 도구 간의 마찰은 엄청났습니다 — 대부분의 AI 도메인이 도메인 전문성이 부족하거나 엔터프라이즈 방화벽 내부에 안전하게 배포할 수 없었습니다. 이 저장소는 두 가지 격차를 모두 해소합니다: - **도메인 심층 지식:** comps 테이블, DCF 모델, GL 정산을 이해하는 실무자가 작성한 스킬 — 일반 프롬프트 엔지니어가 아님
 - **엔터프라이즈 준비도:** 모든 출력이_human review 위해 예약됨. 자율적으로 거래 실행, 리스크 바인딩, 온보딩 승인 불가
 - **컴플라이언스 인식:** 명확한 면책 조항, 대기열 출력, Human-in-the-loop 요구사항이 규제 기대치와 일치
 - **파트너 확장성:** LSEG와 S&P Global connectors로 실시간 시장 데이터 확보 가능
@@ -211,8 +194,7 @@ AI 생성 콘텐츠가 인터넷을 범람하면서, 진정한 딥 리서치를 
 pip install local-deep-research
 ```
 
-Docker 이미지로 격리 배포:
-```bash
+Docker 이미지로 격리 배포: ```bash
 docker pull localdeepresearch/local-deep-research
 ```
 
@@ -235,9 +217,7 @@ docker pull localdeepresearch/local-deep-research
 
 ## 선정 기준
 
-우리는 단순 star 숫자보다 상업적 관련성을 우선시합니다. 세 프로젝트가 선별된 이유:
-
-1. **성장률이 총량보다 중요** — DeepSeek-TUI의 일일 5,799star 성장은 단순 숫자로 포착할 수 없는 제품-시장 적합성 신호
+우리는 단순 star 숫자보다 상업적 관련성을 우선시합니다. 세 프로젝트가 선별된 이유: 1. **성장률이 총량보다 중요** — DeepSeek-TUI의 일일 5,799star 성장은 단순 숫자로 포착할 수 없는 제품-시장 적합성 신호
 2. **수직 특화 승자** — Anthropic 금융 서비스 제품은 잘 정의된 예산 부유 시장에 타겟팅
 3. **프라이버시가 성장하는 요새** — Local Deep Research가 클라우드 AI로부터 기업 이탈을 유도하는 규제顺风에 대응
 
@@ -266,9 +246,7 @@ docker pull localdeepresearch/local-deep-research
 
 ## 추천 도구
 
-오픈소스 AI 도구 개발/배포 시 권장:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
+오픈소스 AI 도구 개발/배포 시 권장: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
@@ -282,7 +260,6 @@ docker pull localdeepresearch/local-deep-research
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

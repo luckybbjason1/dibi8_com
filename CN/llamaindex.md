@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/llamaindex" />
 title: 'LlamaIndex: 49K+ Stars — Production RAG Deployment Guide...
 description: 'LlamaIndex is a data framework for building production RAG systems with LLMs. Supports OpenAI, Anthropic, Ollama, Qdrant, Weaviate, Chroma. Covers Docker deployment, query engines, agents, and benchmarks vs LangChain/Haystack/RAGFlow.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [llamaindex, rag, llm, 'vector-database', 'retrieval-augmented-generation', openai, ollama, qdrant, python, docker]
-aliases:
-- /posts/llamaindex/
+aliases: - /posts/llamaindex/-
 ---
-
 {{</* resource-info */>}}
 
 ![LlamaIndex Logo](https://raw.githubusercontent.com/run-llama/llama_index/main/docs/docs/_static/assets/LlamaSquareBlack.svg)
@@ -46,9 +42,7 @@ Originally focused on indexing (hence the name), LlamaIndex has expanded into a 
 
 ### Core Architecture
 
-LlamaIndex separates concerns into four layers:
-
-1. **Data Loading** — `SimpleDirectoryReader` and 160+ LlamaHub connectors parse PDFs, databases, APIs, and cloud storage into `Document` objects.
+LlamaIndex separates concerns into four layers: 1. **Data Loading** — `SimpleDirectoryReader` and 160+ LlamaHub connectors parse PDFs, databases, APIs, and cloud storage into `Document` objects.
 2. **Indexing** — Documents split into `Nodes`. Embeddings feed into indices (`VectorStoreIndex`, `SummaryIndex`, `TreeIndex`, `KnowledgeGraphIndex`).
 3. **Querying** — `QueryEngine`, `ChatEngine`, and `RouterQueryEngine` handle retrieval, post-processing, and response synthesis.
 4. **Agents & Workflows** — Event-driven `Workflow` classes and agent tools enable multi-step reasoning with human-in-the-loop support.
@@ -117,12 +111,10 @@ from llama_index.core import StorageContext, load_index_from_storage
 
 PERSIST_DIR = "./storage"
 
-if not os.path.exists(PERSIST_DIR):
-    documents = SimpleDirectoryReader("./data").load_data()
+if not os.path.exists(PERSIST_DIR): documents = SimpleDirectoryReader("./data").load_data()
     index = VectorStoreIndex.from_documents(documents)
     index.storage_context.persist(persist_dir=PERSIST_DIR)
-else:
-    storage_context = StorageContext.from_defaults(persist_dir=PERSIST_DIR)
+else: storage_context = StorageContext.from_defaults(persist_dir=PERSIST_DIR)
     index = load_index_from_storage(storage_context)
 ```
 
@@ -203,10 +195,18 @@ index = VectorStoreIndex.from_documents(documents, storage_context=storage_conte
 
 ### RAG Performance Benchmarks
 
-Independent benchmarks from 2025-2026 testing on 10,000-document corpora with GPT-4o-mini:
-
-| Metric | LlamaIndex | LangChain | Haystack | RAGFlow |
-|---|---|---|---|---|
+Independent benchmarks from 2025-2026 testing on 10,000-document corpora with GPT-4o-mini: | Metric | LlamaIndex | LangChain | Haystack | RAGFlow |
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | RAG Accuracy (RAGAS) | 0.81 | 0.72 | 0.79 | 0.77 |
 | Avg Query Latency | 0.9s | 1.2s | 1.1s | 1.4s |
 | Index Build Time (10k docs) | 6 min | 8 min | 7 min | 9 min |
@@ -225,7 +225,11 @@ Source: Aggregated from community benchmarks and independent testing reports (20
 ### When to Choose LlamaIndex
 
 | Scenario | Recommended Approach |
-|---|---|
+|
+---
+|
+---
+|
 | Document-heavy Q&A | `VectorStoreIndex` + query engine |
 | Multiple data sources | `RouterQueryEngine` + multiple indices |
 | Multi-turn chat | `ChatEngine` with memory |
@@ -236,9 +240,7 @@ Source: Aggregated from community benchmarks and independent testing reports (20
 
 ### Router Query Engine
 
-Route queries to different indices based on intent:
-
-```python
+Route queries to different indices based on intent: ```python
 from llama_index.core.tools import QueryEngineTool, ToolMetadata
 from llama_index.core.query_engine import RouterQueryEngine
 from llama_index.core.selectors import PydanticSingleSelector
@@ -284,15 +286,12 @@ response = router_engine.query("Summarize the main points")
 from llama_index.core.postprocessor import BaseNodePostprocessor
 from llama_index.core.schema import NodeWithScore, QueryBundle
 
-class ScoreThresholdPostprocessor(BaseNodePostprocessor):
-    def __init__(self, threshold: float = 0.7):
-        self.threshold = threshold
+class ScoreThresholdPostprocessor(BaseNodePostprocessor): def __init__(self, threshold: float = 0.7): self.threshold = threshold
         super().__init__()
 
     def _postprocess_nodes(
         self, nodes: list[NodeWithScore], query_bundle: QueryBundle | None = None
-    ) -> list[NodeWithScore]:
-        return [n for n in nodes if n.score >= self.threshold]
+    ) -> list[NodeWithScore]: return [n for n in nodes if n.score >= self.threshold]
 
 # Use in query engine
 query_engine = index.as_query_engine(
@@ -305,8 +304,7 @@ query_engine = index.as_query_engine(
 ```python
 import asyncio
 
-async def batch_queries(queries: list[str]) -> list[str]:
-    tasks = [query_engine.aquery(q) for q in queries]
+async def batch_queries(queries: list[str]) -> list[str]: tasks = [query_engine.aquery(q) for q in queries]
     responses = await asyncio.gather(*tasks)
     return [str(r) for r in responses]
 
@@ -317,8 +315,7 @@ queries = [
 ]
 
 results = asyncio.run(batch_queries(queries))
-for q, r in zip(queries, results):
-    print(f"Q: {q}\nA: {r}\n")
+for q, r in zip(queries, results): print(f"Q: {q}\nA: {r}\n")
 ```
 
 ### Docker Deployment
@@ -351,12 +348,10 @@ storage_context = StorageContext.from_defaults(persist_dir=PERSIST_DIR)
 index = load_index_from_storage(storage_context)
 query_engine = index.as_query_engine()
 
-class QueryRequest(BaseModel):
-    query: str
+class QueryRequest(BaseModel): query: str
 
 @app.post("/query")
-async def query_docs(request: QueryRequest):
-    response = query_engine.query(request.query)
+async def query_docs(request: QueryRequest): response = query_engine.query(request.query)
     return {
         "answer": str(response),
         "sources": [n.metadata for n in response.source_nodes],
@@ -366,35 +361,23 @@ async def query_docs(request: QueryRequest):
 ```yaml
 # docker-compose.yml
 version: "3.8"
-services:
-  app:
-    build: .
-    ports:
-      - "8000:8000"
-    environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
+services: app: build: .
+    ports: - "8000:8000"
+    environment: - OPENAI_API_KEY=${OPENAI_API_KEY}
       - PERSIST_DIR=/app/storage
-    volumes:
-      - ./storage:/app/storage:ro
+    volumes: - ./storage:/app/storage:ro
 
-  qdrant:
-    image: qdrant/qdrant:latest
-    ports:
-      - "6333:6333"
-    volumes:
-      - qdrant_data:/qdrant/storage
+  qdrant: image: qdrant/qdrant:latest
+    ports: - "6333:6333"
+    volumes: - qdrant_data:/qdrant/storage
 
-volumes:
-  qdrant_data:
-```
+volumes: qdrant_data: ```
 
 ### DigitalOcean Deployment
 
 For production deployments on cloud infrastructure, **DigitalOcean** provides a straightforward path. Their App Platform supports Docker containers with automatic HTTPS, and managed databases can host your vector store backend.
 
-Deploy the Docker Compose stack to a DigitalOcean Droplet:
-
-```bash
+Deploy the Docker Compose stack to a DigitalOcean Droplet: ```bash
 # On your Droplet
 docker-compose up -d
 
@@ -424,7 +407,11 @@ print(f"Embedding Tokens: {token_counter.total_embedding_token_count}")
 ### Production Checklist
 
 | Concern | Implementation |
-|---|---|
+|
+---
+|
+---
+|
 | Index persistence | `storage_context.persist()` on build |
 | Hot reload | Load from storage at startup |
 | API rate limiting | Add FastAPI middleware |
@@ -437,7 +424,17 @@ print(f"Embedding Tokens: {token_counter.total_embedding_token_count}")
 ## Comparison with Alternatives
 
 | Feature | LlamaIndex | LangChain | Haystack | RAGFlow |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Primary Focus** | Data indexing & retrieval | Agent orchestration & chains | Production RAG pipelines | Visual RAG builder |
 | **GitHub Stars** | 49.5k | 95k | 25.3k | 80.9k |
 | **License** | MIT | MIT | Apache-2.0 | Apache-2.0 |
@@ -453,9 +450,7 @@ print(f"Embedding Tokens: {token_counter.total_embedding_token_count}")
 
 ## Limitations / Honest Assessment
 
-**What LlamaIndex is not good for**:
-
-1. **Complex multi-agent orchestration**: LangGraph provides better abstractions for agents with conditional branching, cycles, and parallel execution.
+**What LlamaIndex is not good for**: 1. **Complex multi-agent orchestration**: LangGraph provides better abstractions for agents with conditional branching, cycles, and parallel execution.
 2. **No-code users**: RAGFlow's visual builder is a better fit for teams that prefer drag-and-drop interfaces.
 3. **Heavy document parsing**: While LlamaParse exists as a paid service, RAGFlow's DeepDoc parser handles complex PDFs (tables, layouts) more effectively out of the box.
 4. **Non-Python stacks**: TypeScript support exists (`llamaindex` npm package) but lags behind Python in feature parity.
@@ -477,20 +472,15 @@ Use a production vector database (Qdrant, Weaviate, or Pinecone) instead of in-m
 
 **Q4: Does LlamaIndex support streaming responses?**
 
-Yes. Pass `streaming=True` to `as_query_engine()` and iterate over the response:
-
-```python
+Yes. Pass `streaming=True` to `as_query_engine()` and iterate over the response: ```python
 query_engine = index.as_query_engine(streaming=True)
 response = query_engine.query("Explain the architecture")
-for token in response.response_gen:
-    print(token, end="")
+for token in response.response_gen: print(token, end="")
 ```
 
 **Q5: How do I evaluate my RAG pipeline quality?**
 
-LlamaIndex provides built-in evaluation modules:
-
-```python
+LlamaIndex provides built-in evaluation modules: ```python
 from llama_index.core.evaluation import FaithfulnessEvaluator, RelevancyEvaluator
 
 faith_eval = FaithfulnessEvaluator()
@@ -522,9 +512,7 @@ LlamaIndex occupies a specific and valuable niche: it makes building production 
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -541,7 +529,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [RAGFlow GitHub](https://github.com/infiniflow/ragflow)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -567,8 +554,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [12-factor-agents-production-llm-software-2026](llamaindex)
@@ -577,8 +564,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [9router-smart-llm-proxy-token-saver-free-coding](llamaindex)
 - [ai-engineering-from-scratch](llamaindex)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

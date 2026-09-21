@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/schema-bug-faked-overfit-diagnosis-2026" />
 title: 'Schema Bug Faked My Overfit Diagnosis: The Backtest Post...
 description: 'Ran 7 quant experiments, found "textbook overfit" (Train PF 2.08 → OOS 0.94, ratio 2.21). Then discovered the diagnosis itself was wrong — silent schema field mismatch made the optimizer run with default 10x leverage instead of the evolved 2x. The corrected version is healthy (ratio 1.01). The meta-lesson is uglier than the original.'
 date: 2026-05-26 00:00:00+08:00
@@ -18,10 +16,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: [backtest, overfit, quant, 'schema-drift', 'walk-forward', postmortem, 2026]
-aliases:
-- /posts/schema-bug-faked-overfit-diagnosis-2026/
-faq:
-  - q: "What is schema drift and why does it fake backtest results?"
+aliases: - /posts/schema-bug-faked-overfit-diagnosis-2026/
+faq: - q: "What is schema drift and why does it fake backtest results?"
     a: "Schema drift means parameter field names in your config no longer match the runtime schema. The deserializer silently drops unknown fields and uses defaults. If those defaults are aggressive (like 10x leverage when you intended 2x), backtest results swing massively. The numbers look real but they came from a different strategy than the one you wrote."
   - q: "How did the original overfit diagnosis look so convincing?"
     a: "Textbook signature: Train PF 2.08, OOS PF 0.94, ratio 2.21. Every quant trader has seen this pattern in literature — the optimizer fits noise that doesn't repeat. The conclusion overfit fit the data shape perfectly. The hidden 10x leverage just amplified everything, making both numbers extreme. With the correct 2x leverage, the same parameters give Train 1.494 / OOS 1.478 ratio 1.01 — boringly stable."
@@ -34,7 +30,6 @@ faq:
   - q: "What's the new 'Seven Donts list after this?"
     a: "Expanded from 7 to 13. The new entries: don't trust experiments without schema validation, don't make calls on datasets under 200 trading days, don't accept PF > 3 with under 30 trades, don't ship strategies without cross-asset validation, don't ignore stdev/mean ratio (over 1 = noise), don't report PF without per-segment decomposition, don't accept reports without IS/OOS ratio."
 ---
-
 {{</* resource-info */>}}
 
 # Schema Bug Faked My Overfit Diagnosis
@@ -65,8 +60,7 @@ We ran moss-trade-bot-skills v1.0.26 paper mode on BTC/USDC 15m bars, July 2025 
 
 The strategy was a mean-revert variant evolved by the framework's parameter optimizer. The evolved configuration looked sensible: low trend weight, high mean-revert weight, conservative 2x leverage, symmetric sl/tp.
 
-Backtest results came back clean:
-- Train (212 days): PF 2.08
+Backtest results came back clean: - Train (212 days): PF 2.08
 - OOS (92 days): PF 0.94
 - Ratio: 2.21
 
@@ -90,9 +84,7 @@ Same parameters, same asset, different time windows giving opposite patterns. Ei
 
 In Python's typical `dataclass.from_dict()` pattern, unknown fields are silently dropped. Pydantic does it too unless you set strict mode.
 
-The evolved configuration file contained:
-
-```json
+The evolved configuration file contained: ```json
 {
   "leverage": 2,
   "sl_atr_mult": 2.5,
@@ -101,9 +93,7 @@ The evolved configuration file contained:
 }
 ```
 
-The runtime `DecisionParams` schema expected:
-
-```python
+The runtime `DecisionParams` schema expected: ```python
 base_leverage: float = 10.0
 max_leverage: float = 40.0
 sl_atr_mult: float = ...
@@ -119,9 +109,7 @@ Five seconds of `print(vars(params))` after `from_dict()` would have shown this.
 
 ## The Corrected Numbers
 
-Same BTC 304d, same 70/30 split, same evolved parameters — but mapped correctly to current schema fields:
-
-- Train PF: 1.494
+Same BTC 304d, same 70/30 split, same evolved parameters — but mapped correctly to current schema fields: - Train PF: 1.494
 - OOS PF: 1.478
 - Ratio: **1.01**
 
@@ -133,10 +121,16 @@ The strategy isn't broken. The diagnosis was broken.
 
 The corrected results are stable on BTC 304d, but cross-asset testing tells a less flattering story.
 
-Eight crypto pairs, same 148-day window, same corrected parameters:
-
-| Asset | Train PF | OOS PF | Ratio |
-|---|---|---|---|
+Eight crypto pairs, same 148-day window, same corrected parameters: | Asset | Train PF | OOS PF | Ratio |
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | ETH | 1.154 | 0.697 | 1.66 |
 | BNB | 1.512 | 0.213 | 7.10 |
 | AVAX | 0.581 | 1.302 | 0.45 |
@@ -153,30 +147,21 @@ A walk-forward test confirmed: Segment 1 as in-sample, Segments 2-5 as out-of-sa
 
 ## The Defenses
 
-Three layers, in order of effort/value:
-
-**1. Strict deserialization.** Make your parameter loader reject unknown fields. In Python:
-
-```python
+Three layers, in order of effort/value: **1. Strict deserialization.** Make your parameter loader reject unknown fields. In Python: ```python
 @dataclass(frozen=True, kw_only=True)
-class DecisionParams:
-    base_leverage: float = 10.0
+class DecisionParams: base_leverage: float = 10.0
     # ...
     
     @classmethod
-    def from_dict(cls, d: dict) -> "DecisionParams":
-        valid = {f.name for f in cls.__dataclass_fields__.values()}
+    def from_dict(cls, d: dict) -> "DecisionParams": valid = {f.name for f in cls.__dataclass_fields__.values()}
         unknown = set(d.keys()) - valid
-        if unknown:
-            raise ValueError(f"Unknown fields: {unknown}")
+        if unknown: raise ValueError(f"Unknown fields: {unknown}")
         return cls(**{k: v for k, v in d.items() if k in valid})
 ```
 
 The original `from_dict()` filtered to valid fields *without raising* on unknown fields. One missing `raise` cost seven experiments.
 
-**2. Print effective params before backtest.** Three lines:
-
-```python
+**2. Print effective params before backtest.** Three lines: ```python
 params = DecisionParams.from_dict(raw)
 print(f"Effective: leverage={params.base_leverage}, sl={params.sl_atr_mult}, tp={params.tp_rr_ratio}")
 assert params.base_leverage == raw.get("base_leverage", raw.get("leverage")), "leverage mismatch"
@@ -186,9 +171,7 @@ assert params.base_leverage == raw.get("base_leverage", raw.get("leverage")), "l
 
 ## The New "Seven Don'ts" — Now Thirteen
 
-The original seven backtest discipline rules grew to thirteen after this incident. The six new ones come directly from these experiments:
-
-- **Don't trust experiments without schema validation.** Print params before backtest.
+The original seven backtest discipline rules grew to thirteen after this incident. The six new ones come directly from these experiments: - **Don't trust experiments without schema validation.** Print params before backtest.
 - **Don't make calls on datasets under 200 trading days.** 148-day sub-windows of the same asset gave opposite diagnoses.
 - **Don't accept PF > 3 with under 30 trades.** Default red flag.
 - **Don't ship strategies without cross-asset validation.** Single-asset stability is necessary, not sufficient.
@@ -205,19 +188,16 @@ If you only take one habit from this postmortem: print your effective params bef
 
 ## Recommended Infrastructure
 
-For walk-forward + multi-asset experiment scaffolding:
-
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit, easy GPU/CPU droplets
+For walk-forward + multi-asset experiment scaffolding: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit, easy GPU/CPU droplets
 - **{{< aff "htstack" "footer-cta" "HTStack" >}}** — Hong Kong VPS, low-latency to Asia exchange APIs
 
 *Affiliate links — same price, supports dibi8.com.*
 
----
 
+---
 **Related**: [Moss Trade Bot Factory 2026 Review](https://dibi8.com/resources/ai-trading/moss-trade-bot-factory-2026-review/) · [Backtest OVERFIT 5 Patterns 2026](https://dibi8.com/resources/ai-trading/backtest-overfit-5-patterns-2026/) · [Backtrader Python Backtesting](https://dibi8.com/resources/ai-trading/backtrader-python-backtesting/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -245,25 +225,20 @@ For walk-forward + multi-asset experiment scaffolding:
 
 ## Why This Matters
 
-Understanding schema bug faked my overfit diagnosis: the backtest postmortem nobody talks about is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding schema bug faked my overfit diagnosis: the backtest postmortem nobody talks about is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -284,8 +259,8 @@ Schema Bug Faked My Overfit Diagnosis: The Backtest Postmortem Nobody Talks Abou
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/skyvern-dev-utils-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/skyvern-dev-utils-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/skyvern-dev-utils-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/skyvern-dev-utils-2026" />
 title: 'Skyvern：用 AI 智能体自动化浏览器工作流（21K 星）——2026 实用指南'
 description: 'Skyvern 用大语言模型和计算机视觉自动化浏览器工作流（21,803 GitHub 星，AGPL-3.0）。涵盖安装、真实的 Python API、可运行的代码示例，以及与 Selenium、Playwright 的诚实对比。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-02 00:00:00+08:00
@@ -25,10 +20,8 @@ featureImage: 'https://raw.githubusercontent.com/Skyvern-AI/skyvern/main/fern/im
 draft: false
 categories: ['dev-utils']
 tags: []
-aliases:
-- /posts/skyvern-dev-utils-2026/
-faqs:
-  - q: '我该如何安装 Skyvern-AI/skyvern？'
+aliases: - /posts/skyvern-dev-utils-2026/
+faqs: - q: '我该如何安装 Skyvern-AI/skyvern？'
     a: '用 pip 安装并运行 quickstart： ```bash pip install "skyvern[all]" skyvern quickstart ``` quickstart 会帮你配置 LLM 提供方，并启动本地服务器和 UI。'
   - q: '运行 Skyvern-AI/skyvern 的系统要求是什么？'
     a: 'Skyvern 需要 Python 3.11+ 以及至少一个 LLM API key（OpenAI、Anthropic、Gemini、Bedrock，或通过 Ollama 接入的本地模型）。一台有几 GB 内存的现代机器就足以本地使用；生产环境的定时任务最好跑在常开的服务器上。'
@@ -37,10 +30,7 @@ faqs:
   - q: '我该如何为 Skyvern-AI/skyvern 项目做贡献？'
     a: '欢迎贡献。你可以在 GitHub 上报告问题或提交 pull request；社区很活跃，对修复 bug 和新增功能反应积极。'
   - q: '在哪里可以找到更多关于使用 Skyvern-AI/skyvern 的信息？'
-    a: '可查阅官网 <https://www.skyvern.com> 和 GitHub README，二者都深入介绍了安装、API 和示例工作流。'
----
-
-<!-- canonical: https://dibi8.com/zh/tools/skyvern-dev-utils-2026/ -->
+    a: '可查阅官网  和 GitHub README，二者都深入介绍了安装、API 和示例工作流。'---
 
 {{< resource-info >}}
 
@@ -150,8 +140,7 @@ Skyvern 以「从自然语言提示词运行智能体任务」为核心。下面
 import asyncio
 from skyvern import Skyvern
 
-async def main():
-    skyvern = Skyvern.local()
+async def main(): skyvern = Skyvern.local()
     task = await skyvern.run_task(
         prompt="Go to news.ycombinator.com and find the title of the top post today",
     )
@@ -168,8 +157,7 @@ asyncio.run(main())
 import asyncio
 from skyvern import Skyvern
 
-async def main():
-    skyvern = Skyvern.local()
+async def main(): skyvern = Skyvern.local()
     task = await skyvern.run_task(
         prompt="Extract the top 3 posts on Hacker News",
         data_extraction_schema={
@@ -201,8 +189,7 @@ asyncio.run(main())
 import asyncio
 from skyvern import Skyvern
 
-async def main():
-    skyvern = Skyvern.local()
+async def main(): skyvern = Skyvern.local()
     browser = await skyvern.launch_cloud_browser()
     page = await browser.get_working_page()
 
@@ -239,8 +226,7 @@ app = FastAPI()
 skyvern = Skyvern.local()
 
 @app.get("/automate")
-async def automate():
-    task = await skyvern.run_task(
+async def automate(): task = await skyvern.run_task(
         prompt="Go to example.com and click the Submit button",
     )
     return {"result": task}
@@ -297,7 +283,15 @@ Skyvern 面向的是那些「跨众多不同网站的可靠性比纯速度更重
 挑选浏览器自动化工具时，从社区规模、技术路线、易用性和维护情况几方面比较会很有帮助。下面把 Skyvern 与两款广泛使用的替代方案——Selenium WebDriver 和 Playwright——做个对比。请注意，Skyvern 是构建在 Playwright 这类框架之上的更高层 AI 智能体——它们解决的问题有重叠，但并不完全相同。
 
 | 特性                  | Skyvern-AI/skyvern             | Selenium WebDriver        | Playwright                  |
-|-----------------------|--------------------------------|---------------------------|-----------------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **星标数**            | 21,803                         | ~31,000                   | ~75,000                     |
 | **技术路线**          | AI 智能体（LLM + 视觉）        | 基于选择器的脚本          | 基于选择器的脚本            |
 | **编程语言**          | Python                         | Java/Python/JS 等         | JavaScript/Python/.NET/Java |
@@ -338,21 +332,18 @@ Skyvern-AI/skyvern 是一款用 AI 自动化浏览器工作流的能干工具，
 - 加入 [dibi8 英文 Telegram 群](https://t.me/DIBI8_Group/2)，获取开源 AI 工具的第一手分享。
 - 继续阅读：[dibi8 上的相关指南](dibi8-internal-link)。
 
----
 
+---
 **来源与延伸阅读**：
 - GitHub 仓库：https://github.com/Skyvern-AI/skyvern
 - 官方文档 / README：https://github.com/Skyvern-AI/skyvern#readme
 
 *以上部分链接为联盟链接。若你通过它注册，dibi8.com 可能获得一笔佣金，而你不会有任何额外花费。这有助于网站持续运营、内容保持免费。*
 
-<!-- internal-link-candidates:
   related open-source tools -> ai-tools-directory
   related guides on dibi8 -> ai-coding-agent-landscape-2026-skills-mcp-opensource
--->
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -380,25 +371,20 @@ Skyvern-AI/skyvern 是一款用 AI 自动化浏览器工作流的能干工具，
 
 ## Why This Matters
 
-Understanding skyvern：用 ai 智能体自动化浏览器工作流（21k 星）——2026 实用指南 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding skyvern：用 ai 智能体自动化浏览器工作流（21k 星）——2026 实用指南 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -419,7 +405,7 @@ Skyvern：用 AI 智能体自动化浏览器工作流（21K 星）——2026 实
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/qiaomu-anything-to-notebooklm" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/qiaomu-anything-to-notebooklm" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/qiaomu-anything-to-notebooklm" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/qiaomu-anything-to-notebooklm" />
 title: "Qiaomu Anything to NotebookLM：任意コンテンツソースを Google Noteboo...
 description: "Qiaomu Anything to NotebookLM は、YouTube ビデオ、ポッドキャスト、記事、PDF など 15 種類以上のコンテンツソースを Google NotebookLM のナレッジベースに変換する Claude Code スキルおよび Python ツールキットで、ペイウォール回避機能も備えています。"
 date: 2026-06-10
-lastmod:  2026-06-10slug: qiaomu-anything-to-notebooklm
+lastmod: 2026-06-10
+slug: qiaomu-anything-to-notebooklm
 category: data-science
 tags: [qiaomu-notebooklm, notebooklm, コンテンツ変換, Claude Code, ナレッジマネジメント, AI ツール]
 github_repo: https://github.com/joeseesun/qiaomu-anything-to-notebooklm
@@ -17,8 +13,6 @@ license: MIT
 featureImage: https://raw.githubusercontent.com/joeseesun/qiaomu-anything-to-notebooklm/main/docs/assets/notebooklm-converter-banner.png
 lang: ko
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/qiaomu-anything-to-notebooklm/ -->
 
 ## はじめに
 
@@ -120,8 +114,7 @@ converter.export(
 
 # エクスポートされたファイルを一覧表示
 import os
-for f in os.listdir("./notebooklm_sources/"):
-    filepath = os.path.join("./notebooklm_sources/", f)
+for f in os.listdir("./notebooklm_sources/"): filepath = os.path.join("./notebooklm_sources/", f)
     size = os.path.getsize(filepath)
     print(f"{f}: {size / 1024:.1f} KB")
 ```
@@ -216,8 +209,7 @@ results = converter.batch_convert(
     concurrent_workers=4
 )
 
-for url, result in results.items():
-    status = "成功" if result.success else "失敗"
+for url, result in results.items(): status = "成功" if result.success else "失敗"
     print(f"[{status}] {url}: {result.word_count} 語変換済み")
 ```
 
@@ -230,8 +222,7 @@ import schedule
 import time
 from datetime import datetime
 
-def daily_content_sync():
-    """毎日新しいコンテンツを確認し、NotebookLM に変換。"""
+def daily_content_sync(): """毎日新しいコンテンツを確認し、NotebookLM に変換。"""
     converter = ContentConverter()
     
     # YouTube チャンネルをモニタリング
@@ -248,15 +239,13 @@ def daily_content_sync():
     
     # NotebookLM にアップロード
     notebooklm = converter.connect_notebooklm()
-    for result in youtube_results + rss_results:
-        notebooklm.upload_source(result.file_path)
+    for result in youtube_results + rss_results: notebooklm.upload_source(result.file_path)
         print(f"アップロード済み: {result.file_path}")
 
 # 毎日午前6時にスケジュール
 schedule.every().day.at("06:00").do(daily_content_sync)
 
-while True:
-    schedule.run_pending()
+while True: schedule.run_pending()
     time.sleep(60)
 ```
 
@@ -317,9 +306,7 @@ result = converter.convert(
 from qiaomu_notebooklm.plugins import BaseExtractor
 
 @BaseExtractor.register("my_custom_source")
-class MyCustomExtractor(BaseExtractor):
-    def extract(self, url: str) -> dict:
-        """カスタムソースからコンテンツを抽出。"""
+class MyCustomExtractor(BaseExtractor): def extract(self, url: str) -> dict: """カスタムソースからコンテンツを抽出。"""
         # カスタム抽出ロジック
         content = self.fetch_content(url)
         cleaned = self.clean_content(content)
@@ -359,14 +346,12 @@ projects = {
     ]
 }
 
-for notebook_name, urls in projects.items():
-    notebook = notebooklm.create_notebook(
+for notebook_name, urls in projects.items(): notebook = notebooklm.create_notebook(
         title=f"{notebook_name.replace('_', ' ').title()} ソース",
         description=f"{notebook_name} 用のキュレーション済みソース"
     )
     
-    for url in urls:
-        result = converter.convert(url, output_format="notebooklm")
+    for url in urls: result = converter.convert(url, output_format="notebooklm")
         notebook.upload_source(result.file_path)
         print(f"{notebook_name} にソースを追加: {url}")
 ```
@@ -480,7 +465,6 @@ pip install qiaomu-notebooklm
 6. [WebShare - データパイプライン用プロキシサービス](https://webshare.io/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -508,25 +492,20 @@ pip install qiaomu-notebooklm
 
 ## Why This Matters
 
-Understanding qiaomu anything to notebooklm：任意コンテンツソースを google notebooklm に変換 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding qiaomu anything to notebooklm：任意コンテンツソースを google notebooklm に変換 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

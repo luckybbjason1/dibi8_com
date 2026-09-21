@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/aiohttp-async-web-scraping" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/aiohttp-async-web-scraping" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/aiohttp-async-web-scraping" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/aiohttp-async-web-scraping" />
 title: 'aiohttp 2026: 초당 10K+ 요청을 처리하는 고성능 비동기 웹 스크래퍼 구축 — Pytho...
 description: 'aiohttp 3.11을 마스터하여 Python으로 고성능 비동기 웹 스크래퍼를 구축하세요. 연결 풀링, 세션 관리, 속도 제한, 프로덕션 배포까지 지원합니다.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [aiohttp, 비동기, '웹 스크래핑', python, 'http 클라이언트', asyncio]
-aliases:
-- /kr/posts/aiohttp-async-web-scraping/
+aliases: - /kr/posts/aiohttp-async-web-scraping/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/aiohttp-async-web-scraping/ -->
 
 {{</* resource-info */>}}
 
@@ -91,10 +83,7 @@ import sys
 print(f"aiohttp version: {aiohttp.__version__}")
 print(f"Python version: {sys.version}")
 
-async def check():
-    async with aiohttp.ClientSession() as session:
-        async with session.get("https://httpbin.org/get") as resp:
-            data = await resp.json()
+async def check(): async with aiohttp.ClientSession() as session: async with session.get("https://httpbin.org/get") as resp: data = await resp.json()
             print(f"Status: {resp.status}")
             print(f"Response keys: {list(data.keys())}")
 
@@ -113,16 +102,11 @@ urls = [
     "https://httpbin.org/get?param=3",
 ]
 
-async def fetch(session, url):
-    async with session.get(url) as response:
-        return await response.json()
+async def fetch(session, url): async with session.get(url) as response: return await response.json()
 
-async def main():
-    async with aiohttp.ClientSession() as session:
-        tasks = [fetch(session, url) for url in urls]
+async def main(): async with aiohttp.ClientSession() as session: tasks = [fetch(session, url) for url in urls]
         results = await asyncio.gather(*tasks)
-        for r in results:
-            print(r["args"])
+        for r in results: print(r["args"])
 
 asyncio.run(main())
 ```
@@ -138,26 +122,18 @@ import aiohttp
 import asyncio
 from bs4 import BeautifulSoup
 
-async def scrape_titles(session, urls):
-    """여러 URL에서 동시에 페이지 제목을 추출합니다."""
+async def scrape_titles(session, urls): """여러 URL에서 동시에 페이지 제목을 추출합니다."""
     titles = []
-    for url in urls:
-        try:
-            async with session.get(url, timeout=aiohttp.ClientTimeout(total=10)) as resp:
-                html = await resp.text()
+    for url in urls: try: async with session.get(url, timeout=aiohttp.ClientTimeout(total=10)) as resp: html = await resp.text()
                 soup = BeautifulSoup(html, "lxml")
                 title = soup.find("title")
                 titles.append({"url": url, "title": title.text if title else "N/A"})
-        except Exception as e:
-            titles.append({"url": url, "title": f"Error: {e}"})
+        except Exception as e: titles.append({"url": url, "title": f"Error: {e}"})
     return titles
 
-async def main():
-    urls = ["https://example.com", "https://httpbin.org/html"]
-    async with aiohttp.ClientSession() as session:
-        results = await scrape_titles(session, urls)
-        for r in results:
-            print(f"{r[url]}: {r[title]}")
+async def main(): urls = ["https://example.com", "https://httpbin.org/html"]
+    async with aiohttp.ClientSession() as session: results = await scrape_titles(session, urls)
+        for r in results: print(f"{r[url]}: {r[title]}")
 
 asyncio.run(main())
 ```
@@ -169,17 +145,13 @@ import aiohttp
 import asyncio
 from lxml import html as lh
 
-async def extract_links(session, url):
-    """lxml을 사용하여 페이지에서 모든 href 링크를 추출합니다."""
-    async with session.get(url) as resp:
-        text = await resp.text()
+async def extract_links(session, url): """lxml을 사용하여 페이지에서 모든 href 링크를 추출합니다."""
+    async with session.get(url) as resp: text = await resp.text()
         tree = lh.fromstring(text)
         links = tree.xpath("//a/@href")
         return [l for l in links if l.startswith("http")]
 
-async def main():
-    async with aiohttp.ClientSession() as session:
-        links = await extract_links(session, "https://example.com")
+async def main(): async with aiohttp.ClientSession() as session: links = await extract_links(session, "https://example.com")
         print(f"Found {len(links)} external links")
 
 asyncio.run(main())
@@ -195,16 +167,11 @@ import aiofiles
 import asyncio
 import json
 
-async def scrape_and_save(session, url, filepath):
-    """데이터를 스크래핑하고 비동기적으로 디스크에 씁니다."""
-    async with session.get(url) as resp:
-        data = await resp.json()
-        async with aiofiles.open(filepath, "w") as f:
-            await f.write(json.dumps(data, indent=2))
+async def scrape_and_save(session, url, filepath): """데이터를 스크래핑하고 비동기적으로 디스크에 씁니다."""
+    async with session.get(url) as resp: data = await resp.json()
+        async with aiofiles.open(filepath, "w") as f: await f.write(json.dumps(data, indent=2))
 
-async def main():
-    async with aiohttp.ClientSession() as session:
-        await scrape_and_save(
+async def main(): async with aiohttp.ClientSession() as session: await scrape_and_save(
             session,
             "https://httpbin.org/json",
             "/tmp/scraped_data.json"
@@ -222,44 +189,33 @@ import aiohttp
 import aiosqlite
 import asyncio
 
-async def scrape_to_db(session, db, url):
-    """스크래핑한 데이터를 SQLite에 비동기적으로 저장합니다."""
-    async with session.get(url) as resp:
-        data = await resp.json()
+async def scrape_to_db(session, db, url): """스크래핑한 데이터를 SQLite에 비동기적으로 저장합니다."""
+    async with session.get(url) as resp: data = await resp.json()
         await db.execute(
             "INSERT INTO scraped (url, data) VALUES (?, ?)",
             (url, json.dumps(data))
         )
         await db.commit()
 
-async def main():
-    async with aiosqlite.connect("scraped.db") as db:
-        await db.execute("CREATE TABLE IF NOT EXISTS scraped (url TEXT, data TEXT)")
-        async with aiohttp.ClientSession() as session:
-            await scrape_to_db(session, db, "https://httpbin.org/json")
+async def main(): async with aiosqlite.connect("scraped.db") as db: await db.execute("CREATE TABLE IF NOT EXISTS scraped (url TEXT, data TEXT)")
+        async with aiohttp.ClientSession() as session: await scrape_to_db(session, db, "https://httpbin.org/json")
 
 asyncio.run(main())
 ```
 
 ### WebShare를 통한 프록시 로테이션 통합
 
-프로덕션 규모의 스크래핑에서는 프록시 로테이션이 필수적이다. WebShare는 aiohttp와 원활하게 통합되는 안정적인 로테이션 프록시를 제공한다:
-
-```python
+프로덕션 규모의 스크래핑에서는 프록시 로테이션이 필수적이다. WebShare는 aiohttp와 원활하게 통합되는 안정적인 로테이션 프록시를 제공한다: ```python
 import aiohttp
 import asyncio
 
 PROXY_URL = "http://username:password@proxy.webshare.io:80"
 
-async def fetch_with_proxy(session, url):
-    """WebShare 로테이션 프록시를 통해 요청을 라우팅합니다."""
-    async with session.get(url, proxy=PROXY_URL) as resp:
-        return await resp.text()
+async def fetch_with_proxy(session, url): """WebShare 로테이션 프록시를 통해 요청을 라우팅합니다."""
+    async with session.get(url, proxy=PROXY_URL) as resp: return await resp.text()
 
-async def main():
-    connector = aiohttp.TCPConnector(limit=100, limit_per_host=10)
-    async with aiohttp.ClientSession(connector=connector) as session:
-        html = await fetch_with_proxy(session, "https://httpbin.org/ip")
+async def main(): connector = aiohttp.TCPConnector(limit=100, limit_per_host=10)
+    async with aiohttp.ClientSession(connector=connector) as session: html = await fetch_with_proxy(session, "https://httpbin.org/ip")
         print(html[:200])
 
 asyncio.run(main())
@@ -329,19 +285,14 @@ session = aiohttp.ClientSession(
 import aiohttp
 import asyncio
 
-async def bounded_fetch(session, url, semaphore):
-    """세마포어로 동시 요청을 제한합니다."""
-    async with semaphore:
-        async with session.get(url) as resp:
-            return await resp.text()
+async def bounded_fetch(session, url, semaphore): """세마포어로 동시 요청을 제한합니다."""
+    async with semaphore: async with session.get(url) as resp: return await resp.text()
 
-async def main():
-    semaphore = asyncio.Semaphore(50)  # 최대 50개 동시 요청
+async def main(): semaphore = asyncio.Semaphore(50)  # 최대 50개 동시 요청
     urls = [f"https://httpbin.org/get?i={i}" for i in range(500)]
     
     connector = aiohttp.TCPConnector(limit=100)
-    async with aiohttp.ClientSession(connector=connector) as session:
-        tasks = [bounded_fetch(session, url, semaphore) for url in urls]
+    async with aiohttp.ClientSession(connector=connector) as session: tasks = [bounded_fetch(session, url, semaphore) for url in urls]
         results = await asyncio.gather(*tasks, return_exceptions=True)
         successes = sum(1 for r in results if not isinstance(r, Exception))
         print(f"Successful: {successes}/500")
@@ -356,27 +307,16 @@ import aiohttp
 import asyncio
 import random
 
-async def fetch_with_retry(session, url, max_retries=3):
-    """지수 백오프로 실패한 요청을 재시도합니다."""
-    for attempt in range(max_retries):
-        try:
-            async with session.get(url) as resp:
-                if resp.status == 200:
-                    return await resp.json()
-                elif resp.status in (429, 503, 502):
-                    wait = (2 ** attempt) + random.uniform(0, 1)
+async def fetch_with_retry(session, url, max_retries=3): """지수 백오프로 실패한 요청을 재시도합니다."""
+    for attempt in range(max_retries): try: async with session.get(url) as resp: if resp.status == 200: return await resp.json()
+                elif resp.status in (429, 503, 502): wait = (2 ** attempt) + random.uniform(0, 1)
                     await asyncio.sleep(wait)
-                else:
-                    resp.raise_for_status()
-        except (aiohttp.ClientError, asyncio.TimeoutError) as e:
-            if attempt == max_retries - 1:
-                raise
+                else: resp.raise_for_status()
+        except (aiohttp.ClientError, asyncio.TimeoutError) as e: if attempt == max_retries - 1: raise
             await asyncio.sleep(2 ** attempt)
     return None
 
-async def main():
-    async with aiohttp.ClientSession() as session:
-        data = await fetch_with_retry(session, "https://httpbin.org/json")
+async def main(): async with aiohttp.ClientSession() as session: data = await fetch_with_retry(session, "https://httpbin.org/json")
         print(data)
 
 asyncio.run(main())
@@ -388,20 +328,13 @@ asyncio.run(main())
 import aiohttp
 import asyncio
 
-async def websocket_scraper():
-    """WebSocket 엔드포인트에서 실시간 데이터를 스크래핑합니다."""
-    async with aiohttp.ClientSession() as session:
-        async with session.ws_connect("wss://echo.websocket.org") as ws:
-            await ws.send_str("Hello Server")
+async def websocket_scraper(): """WebSocket 엔드포인트에서 실시간 데이터를 스크래핑합니다."""
+    async with aiohttp.ClientSession() as session: async with session.ws_connect("wss://echo.websocket.org") as ws: await ws.send_str("Hello Server")
             
-            async for msg in ws:
-                if msg.type == aiohttp.WSMsgType.TEXT:
-                    print(f"Received: {msg.data}")
-                    if "done" in msg.data.lower():
-                        await ws.close()
+            async for msg in ws: if msg.type == aiohttp.WSMsgType.TEXT: print(f"Received: {msg.data}")
+                    if "done" in msg.data.lower(): await ws.close()
                         break
-                elif msg.type == aiohttp.WSMsgType.ERROR:
-                    print(f"WebSocket error: {ws.exception()}")
+                elif msg.type == aiohttp.WSMsgType.ERROR: print(f"WebSocket error: {ws.exception()}")
                     break
 
 asyncio.run(websocket_scraper())
@@ -424,20 +357,12 @@ CMD ["python", "scraper.py"]
 ```yaml
 # docker-compose.yml
 version: "3.8"
-services:
-  scraper:
-    build: .
+services: scraper: build: .
     restart: unless-stopped
-    environment:
-      - PYTHONUNBUFFERED=1
-    deploy:
-      resources:
-        limits:
-          memory: 2G
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "100m"
+    environment: - PYTHONUNBUFFERED=1
+    deploy: resources: limits: memory: 2G
+    logging: driver: "json-file"
+      options: max-size: "100m"
         max-file: "3"
 ```
 
@@ -453,14 +378,9 @@ from prometheus_client import Counter, Histogram, start_http_server
 REQUEST_COUNT = Counter("scraper_requests_total", "총 요청 수", ["status"])
 REQUEST_DURATION = Histogram("scraper_request_duration_seconds", "요청 소요 시간")
 
-async def monitored_fetch(session, url):
-    with REQUEST_DURATION.time():
-        try:
-            async with session.get(url) as resp:
-                REQUEST_COUNT.labels(status=str(resp.status)).inc()
+async def monitored_fetch(session, url): with REQUEST_DURATION.time(): try: async with session.get(url) as resp: REQUEST_COUNT.labels(status=str(resp.status)).inc()
                 return await resp.text()
-        except Exception as e:
-            REQUEST_COUNT.labels(status="error").inc()
+        except Exception as e: REQUEST_COUNT.labels(status="error").inc()
             raise
 
 # 포트 9090에서 메트릭 서버 시작
@@ -553,9 +473,7 @@ aiohttp는 HTTP 클라이언트이자 서버이다. 서버 측에서는 Flask, F
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -565,7 +483,6 @@ aiohttp는 HTTP 클라이언트이자 서버이다. 서버 측에서는 Flask, F
 이 글에는 DigitalOcean 및 WebShare의 제휴 링크가 포함되어 있다. 이 링크를 통해 서비스를 구매하면 추가 비용 없이 커미션을 받을 수 있다. 이 추천은 프로덕션 스크래핑 워크플로에 대한 진정한 유용성을 기반으로 한다. 모든 벤치마크는 독립적으로 수행되었다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

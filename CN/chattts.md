@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/chattts" />
 title: 'ChatTTS: 39.3K+ Stars — Benchmark Conversational TTS Com...
 description: 'ChatTTS (AGPL-3.0) is a generative speech model for dialogue scenarios. Compatible with Coqui TTS, MeloTTS, GPT-SoVITS. Covers setup, benchmarks, production deployment, and comparison table.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,11 +20,9 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [chattts, 'text-to-speech', tts, 'conversational-ai', 'llm-assistant', 'voice-synthesis', 'open-source', benchmark]
-aliases:
-- /posts/chattts/
-- /resources/llm-frameworks/chattts-architecture-autoregressive-voice/
+aliases: - /posts/chattts/
+- /resources/llm-frameworks/chattts-architecture-autoregressive-voice/-
 ---
-
 {{</* resource-info */>}}
 
 ## Introduction
@@ -49,9 +45,7 @@ The model uses an autoregressive architecture similar to Bark and VALL-E, with a
 
 ### Architecture Overview
 
-ChatTTS follows a three-stage pipeline:
-
-1. **Text Refinement**: The input text is processed by a language model that adds prosodic markers (laughter, pauses, breathing) and normalizes the text for speech synthesis.
+ChatTTS follows a three-stage pipeline: 1. **Text Refinement**: The input text is processed by a language model that adds prosodic markers (laughter, pauses, breathing) and normalizes the text for speech synthesis.
 2. **Semantic Token Generation**: A GPT-style autoregressive decoder generates semantic tokens conditioned on the refined text and a speaker embedding. This is the core creative step where the model decides rhythm, intonation, and emotional expression.
 3. **Audio Decoding**: Semantic tokens are converted to raw audio waveforms using a pre-trained vocoder (Vocos). The output is 24kHz mono audio.
 
@@ -66,8 +60,7 @@ Input Text → Text Refiner (LLM) → Semantic Tokens (GPT Decoder) → Vocoder 
 ### Core Concepts
 
 - **Speaker Embeddings (`spk_emb`)**: A tensor that encodes voice characteristics. You can sample random speakers, save embeddings for reuse, or extract them from reference audio.
-- **Prosodic Tokens**: Special tokens inserted into text to control expression:
-  - `[laugh]` — adds laughter
+- **Prosodic Tokens**: Special tokens inserted into text to control expression: - `[laugh]` — adds laughter
   - `[uv_break]` — adds a micro-pause
   - `[lbreak]` — adds a longer pause
 - **Inference Parameters**: Temperature, top-P, and top-K sampling control the randomness and diversity of generated speech.
@@ -179,15 +172,13 @@ app = FastAPI()
 chat = ChatTTS.Chat()
 chat.load(compile=True)  # Enable torch.compile for production
 
-class TTSRequest(BaseModel):
-    model: str = "chattts"
+class TTSRequest(BaseModel): model: str = "chattts"
     input: str
     voice: str = "default"
     response_format: str = "mp3"
 
 @app.post("/v1/audio/speech")
-async def create_speech(request: TTSRequest):
-    params_infer_code = ChatTTS.Chat.InferCodeParams(
+async def create_speech(request: TTSRequest): params_infer_code = ChatTTS.Chat.InferCodeParams(
         temperature=0.3,
         top_P=0.7,
         top_K=20,
@@ -200,9 +191,7 @@ async def create_speech(request: TTSRequest):
     return {"audio": base64.b64encode(buffer.read()).decode()}
 ```
 
-Run the server:
-
-```bash
+Run the server: ```bash
 uvicorn openai_api_server:app --host 0.0.0.0 --port 8000 --workers 2
 ```
 
@@ -218,8 +207,7 @@ import torchaudio
 chat = ChatTTS.Chat()
 chat.load(compile=False)
 
-def tts_tool(text: str) -> str:
-    """Generate speech and return file path."""
+def tts_tool(text: str) -> str: """Generate speech and return file path."""
     wavs = chat.infer([text])
     filepath = "/tmp/response.wav"
     torchaudio.save(filepath, torch.from_numpy(wavs[0]).unsqueeze(0), 24000)
@@ -248,8 +236,7 @@ import torchaudio
 chat = ChatTTS.Chat()
 chat.load(compile=False)
 
-def generate_speech(text, temperature, top_p, top_k, oral_level, laugh_level, break_level):
-    params_refine_text = ChatTTS.Chat.RefineTextParams(
+def generate_speech(text, temperature, top_p, top_k, oral_level, laugh_level, break_level): params_refine_text = ChatTTS.Chat.RefineTextParams(
         prompt=f"[oral_{oral_level}][laugh_{laugh_level}][break_{break_level}]"
     )
     params_infer_code = ChatTTS.Chat.InferCodeParams(
@@ -291,13 +278,10 @@ import sounddevice as sd
 chat = ChatTTS.Chat()
 chat.load(compile=True)
 
-class StreamingTTS:
-    def __init__(self, chat_model):
-        self.chat = chat_model
+class StreamingTTS: def __init__(self, chat_model): self.chat = chat_model
         self.sample_rate = 24000
 
-    def stream_and_play(self, text: str):
-        """Generate audio and stream to speakers chunk by chunk."""
+    def stream_and_play(self, text: str): """Generate audio and stream to speakers chunk by chunk."""
         wavs = self.chat.infer([text])
         audio = wavs[0]
         sd.play(audio, self.sample_rate)
@@ -318,19 +302,14 @@ TTS_REQUESTS = Counter("chattts_requests_total", "Total TTS requests", ["status"
 TTS_LATENCY = Histogram("chattts_inference_seconds", "Inference latency")
 
 @app.post("/v1/audio/speech")
-async def create_speech(request: TTSRequest):
-    with TTS_LATENCY.time():
-        try:
-            wavs = chat.infer([request.input])
+async def create_speech(request: TTSRequest): with TTS_LATENCY.time(): try: wavs = chat.infer([request.input])
             TTS_REQUESTS.labels(status="success").inc()
             # ... return audio
-        except Exception as e:
-            TTS_REQUESTS.labels(status="error").inc()
+        except Exception as e: TTS_REQUESTS.labels(status="error").inc()
             raise
 
 @app.get("/metrics")
-async def metrics():
-    return Response(generate_latest(), media_type="text/plain")
+async def metrics(): return Response(generate_latest(), media_type="text/plain")
 ```
 
 ## Benchmarks / Real-World Use Cases
@@ -340,7 +319,17 @@ async def metrics():
 All benchmarks below were measured on an NVIDIA RTX 4090 with CUDA 12.4, no model quantization, batch size 1. These numbers reflect real-world chattts tutorial deployments.
 
 | Model | VRAM (30s audio) | RTF (RTX 4090) | Tokens/sec | CPU Inference |
-|-------|------------------|----------------|------------|---------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | ChatTTS v0.2.5 | 4 GB | 0.30 | ~7 semantic tok/s | Not recommended |
 | Coqui XTTS v2 | 4 GB | 0.25 | ~10 tok/s | No |
 | MeloTTS | 2 GB | 0.08 | ~25 tok/s | Yes |
@@ -355,7 +344,17 @@ All benchmarks below were measured on an NVIDIA RTX 4090 with CUDA 12.4, no mode
 A blind listening test with 6 participants evaluated ChatTTS against competitors using a mixed Chinese-English dialogue script (187 words, 5 emotional segments). This forms the basis of our chattts benchmark against chattts vs coqui comparisons.
 
 | Criterion | ChatTTS | Coqui XTTS v2 | MeloTTS | Bark |
-|-----------|---------|---------------|---------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Natural pauses | 5/6 votes | 1/6 votes | 2/6 votes | 3/6 votes |
 | Laughter quality | 6/6 votes | 0/6 votes | 0/6 votes | 2/6 votes |
 | Breath sounds | 6/6 votes | 0/6 votes | 0/6 votes | 1/6 votes |
@@ -365,9 +364,7 @@ A blind listening test with 6 participants evaluated ChatTTS against competitors
 
 ### Use Case: LLM Voice Assistant
 
-ChatTTS excels in LLM assistant pipelines where the model must read responses aloud with natural prosody. A typical integration generates a response in ~300ms end-to-end:
-
-```python
+ChatTTS excels in LLM assistant pipelines where the model must read responses aloud with natural prosody. A typical integration generates a response in ~300ms end-to-end: ```python
 import ChatTTS
 import torchaudio
 import time
@@ -375,9 +372,7 @@ import time
 chat = ChatTTS.Chat()
 chat.load(compile=True)
 
-class VoiceAssistant:
-    def synthesize_response(self, text: str) -> str:
-        start = time.time()
+class VoiceAssistant: def synthesize_response(self, text: str) -> str: start = time.time()
         params = ChatTTS.Chat.InferCodeParams(temperature=0.3, top_P=0.7)
         wavs = chat.infer([text], params_infer_code=params)
         filepath = "/tmp/response.wav"
@@ -395,9 +390,7 @@ audio_path = assistant.synthesize_response(
 
 ### Use Case: Multi-Speaker Dialogue Generation
 
-ChatTTS supports multi-speaker conversations by switching speaker embeddings:
-
-```python
+ChatTTS supports multi-speaker conversations by switching speaker embeddings: ```python
 import ChatTTS
 import torchaudio
 
@@ -414,8 +407,7 @@ dialogue = [
     ("I know, right? [laugh] I couldn't believe it.", speaker_a),
 ]
 
-for i, (text, spk) in enumerate(dialogue):
-    params = ChatTTS.Chat.InferCodeParams(spk_emb=spk, temperature=0.3)
+for i, (text, spk) in enumerate(dialogue): params = ChatTTS.Chat.InferCodeParams(spk_emb=spk, temperature=0.3)
     wavs = chat.infer([text], params_infer_code=params)
     torchaudio.save(f"dialogue_{i}.wav", torch.from_numpy(wavs[0]).unsqueeze(0), 24000)
 ```
@@ -424,9 +416,7 @@ for i, (text, spk) in enumerate(dialogue):
 
 ### Torch Compilation for Speed
 
-Enable `torch.compile()` for a ~20% inference speedup on Ampere GPUs:
-
-```python
+Enable `torch.compile()` for a ~20% inference speedup on Ampere GPUs: ```python
 import ChatTTS
 chat = ChatTTS.Chat()
 chat.load(compile=True)  # Enable torch.compile on supported models
@@ -434,9 +424,7 @@ chat.load(compile=True)  # Enable torch.compile on supported models
 
 ### Speaker Embedding Management
 
-Save and load speaker embeddings for consistent voice profiles:
-
-```python
+Save and load speaker embeddings for consistent voice profiles: ```python
 import ChatTTS
 import torch
 
@@ -445,8 +433,7 @@ chat.load(compile=False)
 
 # Generate and cache speaker embeddings
 speakers = {}
-for name in ["agent", "user", "narrator"]:
-    spk = chat.sample_random_speaker()
+for name in ["agent", "user", "narrator"]: spk = chat.sample_random_speaker()
     speakers[name] = spk
     torch.save(spk, f"speakers/{name}.pt")
 
@@ -457,9 +444,7 @@ params = ChatTTS.Chat.InferCodeParams(spk_emb=spk_agent)
 
 ### GPU Memory Optimization
 
-For servers with limited VRAM, use mixed precision and clear caches:
-
-```python
+For servers with limited VRAM, use mixed precision and clear caches: ```python
 import torch
 from ChatTTS import Chat
 
@@ -467,8 +452,7 @@ chat = Chat()
 chat.load(compile=False)
 
 @torch.inference_mode()
-def infer_with_cleanup(texts, params):
-    with torch.cuda.amp.autocast():  # Mixed precision
+def infer_with_cleanup(texts, params): with torch.cuda.amp.autocast(): # Mixed precision
         wavs = chat.infer(texts, params_infer_code=params)
     torch.cuda.empty_cache()  # Free GPU memory
     return wavs
@@ -484,22 +468,17 @@ import ChatTTS
 app = FastAPI()
 chat = ChatTTS.Chat()
 
-try:
-    chat.load(compile=False)
+try: chat.load(compile=False)
     MODEL_LOADED = True
-except Exception as e:
-    MODEL_LOADED = False
+except Exception as e: MODEL_LOADED = False
     print(f"Model load failed: {e}")
 
 @app.get("/health")
-def health():
-    if not MODEL_LOADED:
-        raise HTTPException(status_code=503, detail="Model not loaded")
+def health(): if not MODEL_LOADED: raise HTTPException(status_code=503, detail="Model not loaded")
     return {"status": "healthy", "model": "chattts", "version": "0.2.5"}
 
 @app.get("/ready")
-def ready():
-    return {"status": "ready"}
+def ready(): return {"status": "ready"}
 ```
 
 ### Kubernetes Deployment
@@ -508,37 +487,20 @@ def ready():
 # chattts-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
-metadata:
-  name: chattts-api
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: chattts
-  template:
-    metadata:
-      labels:
-        app: chattts
-    spec:
-      containers:
-      - name: chattts
+metadata: name: chattts-api
+spec: replicas: 2
+  selector: matchLabels: app: chattts
+  template: metadata: labels: app: chattts
+    spec: containers: - name: chattts
         image: chattts:0.2.5
-        resources:
-          limits:
-            nvidia.com/gpu: 1
+        resources: limits: nvidia.com/gpu: 1
             memory: "8Gi"
-          requests:
-            memory: "4Gi"
-        ports:
-        - containerPort: 8000
-        livenessProbe:
-          httpGet:
-            path: /health
+          requests: memory: "4Gi"
+        ports: - containerPort: 8000
+        livenessProbe: httpGet: path: /health
             port: 8000
           periodSeconds: 30
-        readinessProbe:
-          httpGet:
-            path: /ready
+        readinessProbe: httpGet: path: /ready
             port: 8000
           periodSeconds: 10
 ```
@@ -546,7 +508,17 @@ spec:
 ## Comparison with Alternatives
 
 | Feature | ChatTTS | Coqui TTS (XTTS v2) | MeloTTS | Bark (Suno) |
-|---------|---------|---------------------|---------|-------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **GitHub Stars** | 39.3k | 45.3k | 7.4k | 39.1k |
 | **License** | AGPL-3.0 | MPL-2.0 | MIT | MIT |
 | **Min VRAM** | 4 GB | 4 GB | 2 GB | 5 GB |
@@ -571,9 +543,7 @@ spec:
 
 ## Limitations / Honest Assessment
 
-ChatTTS is not a universal TTS solution. Before committing to it, understand these constraints:
-
-1. **Autoregressive instability**: Like Bark and VALL-E, ChatTTS can produce speaker switches mid-generation or low-quality audio on some samples. The FAQ on the GitHub repo explicitly states: "This is a problem that typically occurs with autoregressive models. It's generally difficult to avoid. One can try multiple samples to find a suitable result."
+ChatTTS is not a universal TTS solution. Before committing to it, understand these constraints: 1. **Autoregressive instability**: Like Bark and VALL-E, ChatTTS can produce speaker switches mid-generation or low-quality audio on some samples. The FAQ on the GitHub repo explicitly states: "This is a problem that typically occurs with autoregressive models. It's generally difficult to avoid. One can try multiple samples to find a suitable result."
 
 2. **English is still experimental**: Chinese prosody is native-grade; English pronunciation and intonation are improving but not yet on par with Coqui XTTS v2 or MeloTTS for pure English content.
 
@@ -609,8 +579,7 @@ GPT-SoVITS is optimized for few-shot voice cloning with as little as 1 minute of
 No practical CPU inference path exists for ChatTTS. The autoregressive decoder requires GPU acceleration for reasonable latency. If you need CPU inference, consider MeloTTS, which supports real-time CPU synthesis.
 
 **Q: How do I deploy ChatTTS in a Docker container?**
-Use the official Dockerfile in the repository or the example below:
-```dockerfile
+Use the official Dockerfile in the repository or the example below: ```dockerfile
 FROM nvidia/cuda:12.1-runtime-ubuntu22.04
 RUN apt-get update && apt-get install -y python3-pip git
 RUN pip install ChatTTS torch torchaudio
@@ -638,9 +607,7 @@ Follow our updates and discuss conversational TTS strategies in the [dibi8.com T
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -659,7 +626,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [2025 Open Source AI Model Comparison](https://www.e-com-net.com/article/1936044193575137280.htm) — TTS model landscape overview
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -685,8 +651,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [2026-05-25-trending-ai-agents](chattts)
@@ -695,6 +661,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [2026-06-15-trending-ai-agents](chattts)
 - [2026-06-22-trending-ai-agents](chattts)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/marker-dev-utils-2026" />
 title: 'Marker: Convert PDF, DOCX & EPUB to Markdown/JSON Fast —...
 description: 'Marker (datalab-to/marker) converts PDF, DOCX, EPUB and more to Markdown, JSON, HTML and chunks quickly and accurately. 35,694 GitHub stars, GPL-3.0 code license. Covers installation, the CLI and Python API, real code examples, LLM mode, and an honest comparison with alternatives.'
 date: 2026-06-02 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: 'https://raw.githubusercontent.com/VikParuchuri/marker/master/data
 draft: false
 categories: ['dev-utils']
 tags: []
-aliases:
-- /posts/marker-dev-utils-2026/
-faqs:
-  - q: 'How do I install marker?'
+aliases: - /posts/marker-dev-utils-2026/
+faqs: - q: 'How do I install marker?'
     a: 'Install it from PyPI with `pip install marker-pdf`. For non-PDF formats (DOCX, PPTX, XLSX, EPUB, HTML, images), use `pip install marker-pdf[full]`.'
   - q: 'Can I use this tool for commercial projects?'
     a: 'The code is licensed under GPL-3.0, but the model weights use a modified AI Pubs Open Rail-M license. That license is free for research, personal use and companies under roughly $2M in funding/revenue; larger commercial users need a commercial license from Datalab. Check the current terms before deploying.'
@@ -34,9 +30,7 @@ faqs:
   - q: 'Is there a way to customize the output format?'
     a: 'Yes. Use the `--output_format [markdown|json|html|chunks]` CLI flag, or pass `{"output_format": "..."}` through `ConfigParser` in the Python API. Marker is also extensible with custom processors and renderers.'
   - q: 'How do I report an issue or request a feature?'
-    a: 'Visit the GitHub repository at <https://github.com/datalab-to/marker> and open a new issue in the Issues tab with detailed information about your problem or suggestion.'
----
-
+    a: 'Visit the GitHub repository at  and open a new issue in the Issues tab with detailed information about your problem or suggestion.'---
 {{< resource-info >}}
 
 ## Introduction
@@ -55,9 +49,7 @@ Marker is a Python document-conversion tool from Datalab that turns PDFs (and im
 
 ## How marker Works
 
-`marker` is designed to convert documents to Markdown, JSON, HTML and chunks quickly and accurately. Here's a breakdown of how the pipeline operates:
-
-1. **Text extraction**: Marker pulls text directly from the document where possible and falls back to OCR for scanned or image-based pages.
+`marker` is designed to convert documents to Markdown, JSON, HTML and chunks quickly and accurately. Here's a breakdown of how the pipeline operates: 1. **Text extraction**: Marker pulls text directly from the document where possible and falls back to OCR for scanned or image-based pages.
 2. **Layout & reading order**: Deep-learning models detect page layout and the correct reading order, which is what makes multi-column PDFs come out readable.
 3. **Block cleanup & formatting**: Each block (heading, paragraph, table, equation, code) is cleaned and formatted, with tables rendered as Markdown/HTML and equations as LaTeX.
 4. **Optional LLM refinement**: With `--use_llm`, a model (Gemini, Claude, OpenAI or a local Ollama model) is used to improve accuracy on tables, forms and math.
@@ -77,23 +69,17 @@ To get started with `datalab-to/marker`, install it from PyPI.
 
 ### Using pip
 
-First, ensure you have Python installed on your system. Then install the `marker-pdf` package:
-
-```bash
+First, ensure you have Python installed on your system. Then install the `marker-pdf` package: ```bash
 pip install marker-pdf
 ```
 
-If you need to convert non-PDF formats (DOCX, PPTX, XLSX, EPUB, HTML, images), install the full extras:
-
-```bash
+If you need to convert non-PDF formats (DOCX, PPTX, XLSX, EPUB, HTML, images), install the full extras: ```bash
 pip install marker-pdf[full]
 ```
 
 ### Cloning the Repository
 
-Alternatively, you can clone the repository directly from GitHub for local development:
-
-```bash
+Alternatively, you can clone the repository directly from GitHub for local development: ```bash
 git clone https://github.com/datalab-to/marker.git
 cd marker
 pip install -e .
@@ -101,9 +87,7 @@ pip install -e .
 
 ### Common Error and Fix
 
-A common issue is mixing system and virtual-environment installs, which can lead to "command not found" for `marker_single` or to dependency conflicts. Make sure your virtual environment is active before installing and running:
-
-```bash
+A common issue is mixing system and virtual-environment installs, which can lead to "command not found" for `marker_single` or to dependency conflicts. Make sure your virtual environment is active before installing and running: ```bash
 # Activate the virtual environment (assuming you're using venv)
 source .venv/bin/activate
 
@@ -120,9 +104,7 @@ Once `marker-pdf` is installed, you get two CLI entry points: `marker_single` fo
 
 ### Example 1: Convert a single file
 
-To convert one document to Markdown (the default output format):
-
-```bash
+To convert one document to Markdown (the default output format): ```bash
 marker_single /path/to/report.pdf
 ```
 
@@ -130,31 +112,23 @@ The converted output is written to an output directory; you can control the form
 
 ### Example 2: Choose the output format
 
-Marker supports `markdown`, `json`, `html` and `chunks` (a flattened JSON layout designed for RAG pipelines):
-
-```bash
+Marker supports `markdown`, `json`, `html` and `chunks` (a flattened JSON layout designed for RAG pipelines): ```bash
 marker_single /path/to/report.pdf --output_format json
 ```
 
 ### Example 3: Convert a folder of documents
 
-To batch-convert every document in a folder:
-
-```bash
+To batch-convert every document in a folder: ```bash
 marker /path/to/input/folder --output_format markdown
 ```
 
 ### Example 4: Convert specific pages, or use the LLM
 
-You can limit conversion to a page range and turn on LLM-assisted accuracy:
-
-```bash
+You can limit conversion to a page range and turn on LLM-assisted accuracy: ```bash
 marker_single /path/to/report.pdf --page_range "0,5-10,20" --use_llm
 ```
 
-`--page_range` accepts comma-separated pages and ranges, and `--use_llm` routes tricky tables, forms and inline math through a model (Gemini, Claude, OpenAI or Ollama) for higher accuracy. For large multi-GPU jobs there's also `marker_chunk_convert`:
-
-```bash
+`--page_range` accepts comma-separated pages and ranges, and `--use_llm` routes tricky tables, forms and inline math through a model (Gemini, Claude, OpenAI or Ollama) for higher accuracy. For large multi-GPU jobs there's also `marker_chunk_convert`: ```bash
 NUM_DEVICES=4 NUM_WORKERS=15 marker_chunk_convert ../pdf_in ../md_out
 ```
 
@@ -166,9 +140,7 @@ These examples should give you a good starting point. For the full flag list, se
 
 ### Using the Python API
 
-Convert a file and get the rendered text and extracted images in a few lines:
-
-```python
+Convert a file and get the rendered text and extracted images in a few lines: ```python
 from marker.converters.pdf import PdfConverter
 from marker.models import create_model_dict
 from marker.output import text_from_rendered
@@ -178,9 +150,7 @@ rendered = converter("FILEPATH")
 text, _, images = text_from_rendered(rendered)
 ```
 
-To change the output format or enable the LLM service, drive it through `ConfigParser`:
-
-```python
+To change the output format or enable the LLM service, drive it through `ConfigParser`: ```python
 from marker.converters.pdf import PdfConverter
 from marker.models import create_model_dict
 from marker.config.parser import ConfigParser
@@ -200,26 +170,18 @@ Marker also ships dedicated converters — `TableConverter` for tables only, `OC
 
 ### Integration with CI/CD Pipelines
 
-Because it's a plain CLI, you can run marker as a step in any CI/CD job. Here's a minimal GitHub Actions example that converts a PDF on every push:
-
-```yaml
+Because it's a plain CLI, you can run marker as a step in any CI/CD job. Here's a minimal GitHub Actions example that converts a PDF on every push: ```yaml
 name: Convert PDF to Markdown
 
-on:
-  push:
-    branches: [ master ]
+on: push: branches: [ master ]
 
-jobs:
-  convert-pdf:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
+jobs: convert-pdf: runs-on: ubuntu-latest
+    steps: - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
+        with: python-version: '3.11'
 
       - name: Install marker
         run: pip install marker-pdf
@@ -251,7 +213,15 @@ See also our [related open-source tools](dibi8-internal-link) coverage.
 When choosing a PDF-to-Markdown tool, weigh accuracy, format coverage, speed and licensing. Below is a high-level comparison between `marker` and two common open-source alternatives: `pdfplumber` (text/table extraction) and `pymupdf4llm` (a PyMuPDF-based Markdown exporter).
 
 | Feature            | datalab-to/marker                         | pdfplumber                 | pymupdf4llm                |
-|--------------------|-------------------------------------------|----------------------------|----------------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Language**       | Python                                    | Python                     | Python                     |
 | **Approach**       | Deep-learning layout + OCR + optional LLM | Rule-based text extraction | PyMuPDF-based extraction   |
 | **Input formats**  | PDF, image, PPTX, DOCX, XLSX, HTML, EPUB  | PDF only                   | PDF and a few others       |
@@ -264,9 +234,7 @@ When choosing a PDF-to-Markdown tool, weigh accuracy, format coverage, speed and
 
 ## Limitations & Honest Assessment
 
-While `marker` is strong on complex documents, it has real tradeoffs worth knowing up front:
-
-1. **Heavier dependencies & hardware**: Marker relies on deep-learning models, so a GPU makes a big difference. On CPU-only machines it works but is much slower, and the install is heavier than rule-based libraries.
+While `marker` is strong on complex documents, it has real tradeoffs worth knowing up front: 1. **Heavier dependencies & hardware**: Marker relies on deep-learning models, so a GPU makes a big difference. On CPU-only machines it works but is much slower, and the install is heavier than rule-based libraries.
 2. **Complex tables aren't perfect**: Tables that span pages or have deeply nested/merged cells can still come out misaligned and may need manual cleanup.
 3. **LLM mode adds cost and latency**: `--use_llm` improves accuracy but introduces an external model call (and API cost, unless you run a local Ollama model), so it's slower and not free.
 4. **Speed varies widely**: Headline throughput numbers assume high-end GPUs and batch processing; on modest hardware or with LLM mode on, expect substantially slower runs.
@@ -276,9 +244,7 @@ These tradeoffs are important to weigh when deciding whether `marker` is the rig
 
 ## Conclusion
 
-With over 35,694 stars and a pipeline built for messy, real-world documents, `marker` is a strong choice when you need accurate Markdown, JSON, HTML or chunked output from PDFs, Office files and EPUBs — especially when tables, equations or scanned pages are involved. The next step is to install it and run it on one of your own documents:
-
-```bash
+With over 35,694 stars and a pipeline built for messy, real-world documents, `marker` is a strong choice when you need accurate Markdown, JSON, HTML or chunked output from PDFs, Office files and EPUBs — especially when tables, equations or scanned pages are involved. The next step is to install it and run it on one of your own documents: ```bash
 pip install marker-pdf
 marker_single /path/to/your/file.pdf
 ```
@@ -286,21 +252,17 @@ marker_single /path/to/your/file.pdf
 - Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) for open-source AI tool drops.
 - Read next: [related guides on dibi8](dibi8-internal-link).
 
----
 
-**Sources & Further Reading**:
-- GitHub repository: https://github.com/datalab-to/marker
+---
+**Sources & Further Reading**: - GitHub repository: https://github.com/datalab-to/marker
 - Official docs / README: https://github.com/datalab-to/marker#readme
 
 *Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.*
 
-<!-- internal-link-candidates:
   related open-source tools -> ai-tools-directory
   related guides on dibi8 -> ai-coding-agent-landscape-2026-skills-mcp-opensource
--->
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -325,3 +287,4 @@ marker_single /path/to/your/file.pdf
   }
 }
 </script>
+---

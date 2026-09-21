@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/aiohttp-async-web-scraping" />
 title: 'aiohttp 2026: Build High-Performance Async Web Scrapers ...
 description: 'Master aiohttp 3.11 for high-performance async web scraping in Python. Build scrapers handling 10K+ requests/second with session management, connection pooling, and production deployment.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [aiohttp, async, 'web scraping', python, 'http client', asyncio]
-aliases:
-- /posts/aiohttp-async-web-scraping/
+aliases: - /posts/aiohttp-async-web-scraping/-
 ---
-
 {{</* resource-info */>}}
 
 ## Introduction: The Synchronous Scraping Bottleneck
@@ -42,9 +38,7 @@ Unlike synchronous libraries such as `requests` or `urllib3`, aiohttp uses Pytho
 
 ## How aiohttp Works: Architecture and Core Concepts
 
-Understanding aiohttp's architecture is critical to writing efficient scrapers. The framework is built on several key concepts:
-
-### Event Loop and Asyncio Integration
+Understanding aiohttp's architecture is critical to writing efficient scrapers. The framework is built on several key concepts: ### Event Loop and Asyncio Integration
 
 aiohttp runs on Python's `asyncio` event loop. When you make an HTTP request, aiohttp registers a callback with the event loop and yields control. The loop then processes other tasks until the network response arrives. This cooperative multitasking avoids the overhead of OS-level thread switching.
 
@@ -86,10 +80,7 @@ import sys
 print(f"aiohttp version: {aiohttp.__version__}")
 print(f"Python version: {sys.version}")
 
-async def check():
-    async with aiohttp.ClientSession() as session:
-        async with session.get("https://httpbin.org/get") as resp:
-            data = await resp.json()
+async def check(): async with aiohttp.ClientSession() as session: async with session.get("https://httpbin.org/get") as resp: data = await resp.json()
             print(f"Status: {resp.status}")
             print(f"Response keys: {list(data.keys())}")
 
@@ -108,16 +99,11 @@ urls = [
     "https://httpbin.org/get?param=3",
 ]
 
-async def fetch(session, url):
-    async with session.get(url) as response:
-        return await response.json()
+async def fetch(session, url): async with session.get(url) as response: return await response.json()
 
-async def main():
-    async with aiohttp.ClientSession() as session:
-        tasks = [fetch(session, url) for url in urls]
+async def main(): async with aiohttp.ClientSession() as session: tasks = [fetch(session, url) for url in urls]
         results = await asyncio.gather(*tasks)
-        for r in results:
-            print(r["args"])
+        for r in results: print(r["args"])
 
 asyncio.run(main())
 ```
@@ -133,26 +119,18 @@ import aiohttp
 import asyncio
 from bs4 import BeautifulSoup
 
-async def scrape_titles(session, urls):
-    """Extract page titles from multiple URLs concurrently."""
+async def scrape_titles(session, urls): """Extract page titles from multiple URLs concurrently."""
     titles = []
-    for url in urls:
-        try:
-            async with session.get(url, timeout=aiohttp.ClientTimeout(total=10)) as resp:
-                html = await resp.text()
+    for url in urls: try: async with session.get(url, timeout=aiohttp.ClientTimeout(total=10)) as resp: html = await resp.text()
                 soup = BeautifulSoup(html, "lxml")
                 title = soup.find("title")
                 titles.append({"url": url, "title": title.text if title else "N/A"})
-        except Exception as e:
-            titles.append({"url": url, "title": f"Error: {e}"})
+        except Exception as e: titles.append({"url": url, "title": f"Error: {e}"})
     return titles
 
-async def main():
-    urls = ["https://example.com", "https://httpbin.org/html"]
-    async with aiohttp.ClientSession() as session:
-        results = await scrape_titles(session, urls)
-        for r in results:
-            print(f"{r[url]}: {r[title]}")
+async def main(): urls = ["https://example.com", "https://httpbin.org/html"]
+    async with aiohttp.ClientSession() as session: results = await scrape_titles(session, urls)
+        for r in results: print(f"{r[url]}: {r[title]}")
 
 asyncio.run(main())
 ```
@@ -164,17 +142,13 @@ import aiohttp
 import asyncio
 from lxml import html as lh
 
-async def extract_links(session, url):
-    """Extract all href links from a page using lxml."""
-    async with session.get(url) as resp:
-        text = await resp.text()
+async def extract_links(session, url): """Extract all href links from a page using lxml."""
+    async with session.get(url) as resp: text = await resp.text()
         tree = lh.fromstring(text)
         links = tree.xpath("//a/@href")
         return [l for l in links if l.startswith("http")]
 
-async def main():
-    async with aiohttp.ClientSession() as session:
-        links = await extract_links(session, "https://example.com")
+async def main(): async with aiohttp.ClientSession() as session: links = await extract_links(session, "https://example.com")
         print(f"Found {len(links)} external links")
 
 asyncio.run(main())
@@ -190,16 +164,11 @@ import aiofiles
 import asyncio
 import json
 
-async def scrape_and_save(session, url, filepath):
-    """Scrape data and write asynchronously to disk."""
-    async with session.get(url) as resp:
-        data = await resp.json()
-        async with aiofiles.open(filepath, "w") as f:
-            await f.write(json.dumps(data, indent=2))
+async def scrape_and_save(session, url, filepath): """Scrape data and write asynchronously to disk."""
+    async with session.get(url) as resp: data = await resp.json()
+        async with aiofiles.open(filepath, "w") as f: await f.write(json.dumps(data, indent=2))
 
-async def main():
-    async with aiohttp.ClientSession() as session:
-        await scrape_and_save(
+async def main(): async with aiohttp.ClientSession() as session: await scrape_and_save(
             session,
             "https://httpbin.org/json",
             "/tmp/scraped_data.json"
@@ -217,44 +186,33 @@ import aiohttp
 import aiosqlite
 import asyncio
 
-async def scrape_to_db(session, db, url):
-    """Store scraped data in SQLite asynchronously."""
-    async with session.get(url) as resp:
-        data = await resp.json()
+async def scrape_to_db(session, db, url): """Store scraped data in SQLite asynchronously."""
+    async with session.get(url) as resp: data = await resp.json()
         await db.execute(
             "INSERT INTO scraped (url, data) VALUES (?, ?)",
             (url, json.dumps(data))
         )
         await db.commit()
 
-async def main():
-    async with aiosqlite.connect("scraped.db") as db:
-        await db.execute("CREATE TABLE IF NOT EXISTS scraped (url TEXT, data TEXT)")
-        async with aiohttp.ClientSession() as session:
-            await scrape_to_db(session, db, "https://httpbin.org/json")
+async def main(): async with aiosqlite.connect("scraped.db") as db: await db.execute("CREATE TABLE IF NOT EXISTS scraped (url TEXT, data TEXT)")
+        async with aiohttp.ClientSession() as session: await scrape_to_db(session, db, "https://httpbin.org/json")
 
 asyncio.run(main())
 ```
 
 ### Integration with Proxy Rotation via WebShare
 
-For production scraping at scale, proxy rotation is essential. WebShare provides reliable rotating proxies that integrate seamlessly with aiohttp:
-
-```python
+For production scraping at scale, proxy rotation is essential. WebShare provides reliable rotating proxies that integrate seamlessly with aiohttp: ```python
 import aiohttp
 import asyncio
 
 PROXY_URL = "http://username:password@proxy.webshare.io:80"
 
-async def fetch_with_proxy(session, url):
-    """Route requests through WebShare rotating proxy."""
-    async with session.get(url, proxy=PROXY_URL) as resp:
-        return await resp.text()
+async def fetch_with_proxy(session, url): """Route requests through WebShare rotating proxy."""
+    async with session.get(url, proxy=PROXY_URL) as resp: return await resp.text()
 
-async def main():
-    connector = aiohttp.TCPConnector(limit=100, limit_per_host=10)
-    async with aiohttp.ClientSession(connector=connector) as session:
-        html = await fetch_with_proxy(session, "https://httpbin.org/ip")
+async def main(): connector = aiohttp.TCPConnector(limit=100, limit_per_host=10)
+    async with aiohttp.ClientSession(connector=connector) as session: html = await fetch_with_proxy(session, "https://httpbin.org/ip")
         print(html[:200])
 
 asyncio.run(main())
@@ -267,7 +225,15 @@ asyncio.run(main())
 ### Performance Benchmarks (aiohttp vs. requests vs. httpx)
 
 | Metric | requests (sync) | httpx (async) | aiohttp 3.11 |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 1,000 requests (local) | 187s | 12s | **8.2s** |
 | 10,000 requests (local) | 1,870s | 98s | **62s** |
 | Memory (10K requests) | 2.1 GB | 380 MB | **210 MB** |
@@ -324,19 +290,14 @@ session = aiohttp.ClientSession(
 import aiohttp
 import asyncio
 
-async def bounded_fetch(session, url, semaphore):
-    """Limit concurrent requests with a semaphore."""
-    async with semaphore:
-        async with session.get(url) as resp:
-            return await resp.text()
+async def bounded_fetch(session, url, semaphore): """Limit concurrent requests with a semaphore."""
+    async with semaphore: async with session.get(url) as resp: return await resp.text()
 
-async def main():
-    semaphore = asyncio.Semaphore(50)  # Max 50 concurrent requests
+async def main(): semaphore = asyncio.Semaphore(50)  # Max 50 concurrent requests
     urls = [f"https://httpbin.org/get?i={i}" for i in range(500)]
     
     connector = aiohttp.TCPConnector(limit=100)
-    async with aiohttp.ClientSession(connector=connector) as session:
-        tasks = [bounded_fetch(session, url, semaphore) for url in urls]
+    async with aiohttp.ClientSession(connector=connector) as session: tasks = [bounded_fetch(session, url, semaphore) for url in urls]
         results = await asyncio.gather(*tasks, return_exceptions=True)
         successes = sum(1 for r in results if not isinstance(r, Exception))
         print(f"Successful: {successences}/500")
@@ -351,27 +312,16 @@ import aiohttp
 import asyncio
 import random
 
-async def fetch_with_retry(session, url, max_retries=3):
-    """Retry failed requests with exponential backoff."""
-    for attempt in range(max_retries):
-        try:
-            async with session.get(url) as resp:
-                if resp.status == 200:
-                    return await resp.json()
-                elif resp.status in (429, 503, 502):
-                    wait = (2 ** attempt) + random.uniform(0, 1)
+async def fetch_with_retry(session, url, max_retries=3): """Retry failed requests with exponential backoff."""
+    for attempt in range(max_retries): try: async with session.get(url) as resp: if resp.status == 200: return await resp.json()
+                elif resp.status in (429, 503, 502): wait = (2 ** attempt) + random.uniform(0, 1)
                     await asyncio.sleep(wait)
-                else:
-                    resp.raise_for_status()
-        except (aiohttp.ClientError, asyncio.TimeoutError) as e:
-            if attempt == max_retries - 1:
-                raise
+                else: resp.raise_for_status()
+        except (aiohttp.ClientError, asyncio.TimeoutError) as e: if attempt == max_retries - 1: raise
             await asyncio.sleep(2 ** attempt)
     return None
 
-async def main():
-    async with aiohttp.ClientSession() as session:
-        data = await fetch_with_retry(session, "https://httpbin.org/json")
+async def main(): async with aiohttp.ClientSession() as session: data = await fetch_with_retry(session, "https://httpbin.org/json")
         print(data)
 
 asyncio.run(main())
@@ -383,20 +333,13 @@ asyncio.run(main())
 import aiohttp
 import asyncio
 
-async def websocket_scraper():
-    """Scrape real-time data from WebSocket endpoint."""
-    async with aiohttp.ClientSession() as session:
-        async with session.ws_connect("wss://echo.websocket.org") as ws:
-            await ws.send_str("Hello Server")
+async def websocket_scraper(): """Scrape real-time data from WebSocket endpoint."""
+    async with aiohttp.ClientSession() as session: async with session.ws_connect("wss://echo.websocket.org") as ws: await ws.send_str("Hello Server")
             
-            async for msg in ws:
-                if msg.type == aiohttp.WSMsgType.TEXT:
-                    print(f"Received: {msg.data}")
-                    if "done" in msg.data.lower():
-                        await ws.close()
+            async for msg in ws: if msg.type == aiohttp.WSMsgType.TEXT: print(f"Received: {msg.data}")
+                    if "done" in msg.data.lower(): await ws.close()
                         break
-                elif msg.type == aiohttp.WSMsgType.ERROR:
-                    print(f"WebSocket error: {ws.exception()}")
+                elif msg.type == aiohttp.WSMsgType.ERROR: print(f"WebSocket error: {ws.exception()}")
                     break
 
 asyncio.run(websocket_scraper())
@@ -419,20 +362,12 @@ CMD ["python", "scraper.py"]
 ```yaml
 # docker-compose.yml
 version: "3.8"
-services:
-  scraper:
-    build: .
+services: scraper: build: .
     restart: unless-stopped
-    environment:
-      - PYTHONUNBUFFERED=1
-    deploy:
-      resources:
-        limits:
-          memory: 2G
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "100m"
+    environment: - PYTHONUNBUFFERED=1
+    deploy: resources: limits: memory: 2G
+    logging: driver: "json-file"
+      options: max-size: "100m"
         max-file: "3"
 ```
 
@@ -448,14 +383,9 @@ from prometheus_client import Counter, Histogram, start_http_server
 REQUEST_COUNT = Counter("scraper_requests_total", "Total requests", ["status"])
 REQUEST_DURATION = Histogram("scraper_request_duration_seconds", "Request duration")
 
-async def monitored_fetch(session, url):
-    with REQUEST_DURATION.time():
-        try:
-            async with session.get(url) as resp:
-                REQUEST_COUNT.labels(status=str(resp.status)).inc()
+async def monitored_fetch(session, url): with REQUEST_DURATION.time(): try: async with session.get(url) as resp: REQUEST_COUNT.labels(status=str(resp.status)).inc()
                 return await resp.text()
-        except Exception as e:
-            REQUEST_COUNT.labels(status="error").inc()
+        except Exception as e: REQUEST_COUNT.labels(status="error").inc()
             raise
 
 # Start metrics server on port 9090
@@ -465,7 +395,19 @@ start_http_server(9090)
 ## Comparison with Alternatives
 
 | Feature | aiohttp 3.11 | requests 2.32 | httpx 0.28 | urllib3 2.2 | pycurl 7.45 |
-|---|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Async support | Yes (native) | No | Yes | No | No |
 | HTTP/2 support | No | No | Yes | No | Yes |
 | WebSocket client | Yes | No | No | No | No |
@@ -487,9 +429,7 @@ start_http_server(9090)
 
 ## Limitations: Honest Assessment
 
-No tool is perfect. aiohttp has specific limitations you should understand:
-
-**No HTTP/2 support.** As of v3.11, aiohttp only supports HTTP/1.1. If your targets require HTTP/2 (increasingly common for APIs behind Cloudflare), use `httpx` instead. There is an open issue (#2217) tracking HTTP/2 implementation, but no committed timeline.
+No tool is perfect. aiohttp has specific limitations you should understand: **No HTTP/2 support.** As of v3.11, aiohttp only supports HTTP/1.1. If your targets require HTTP/2 (increasingly common for APIs behind Cloudflare), use `httpx` instead. There is an open issue (#2217) tracking HTTP/2 implementation, but no committed timeline.
 
 **Learning curve for asyncio.** Developers new to `async`/`await` will encounter a significant learning curve. Common pitfalls include forgetting `await`, mixing sync and async code, and debugging hanging event loops. The `RuntimeError: Event loop is closed` error is a rite of passage for every asyncio developer.
 
@@ -542,15 +482,11 @@ Start with the 5-minute setup in this guide, implement connection pooling and se
 - [aiosqlite - Async SQLite](https://github.com/omnilib/aiosqlite)
 - [Real Python - asyncio Guide](https://realpython.com/async-io-python/)
 
+
 ---
-
-
-
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -560,7 +496,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 This article contains affiliate links to DigitalOcean and WebShare. If you purchase services through these links, we may earn a commission at no additional cost to you. These recommendations are based on genuine utility for production scraping workflows. All benchmarks were conducted independently.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

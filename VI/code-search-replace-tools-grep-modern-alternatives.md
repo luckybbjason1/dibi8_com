@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/code-search-replace-tools-grep-modern-alternatives" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/code-search-replace-tools-grep-modern-alternatives" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/code-search-replace-tools-grep-modern-alternatives" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/code-search-replace-tools-grep-modern-alternatives" />
 title: 'Công Cụ Tìm Kiếm và Thay Thế Mã: Từ grep đến ripgrep, sd...
 description: 'Hướng dẫn đầy đủ về công cụ tìm kiếm và thay thế code: so sánh grep, ack, ag, ripgrep, fzf, sd. Bảng benchmark, workflow thực tế và cách xây dựng bộ công cụ tìm kiếm hiệu quả.'
 date: 2026-05-18 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/code-search-replace-tools-grep-modern-alternatives/
+aliases: - /posts/code-search-replace-tools-grep-modern-alternatives/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/code-search-replace-tools-grep-modern-alternatives/ -->
 
 {</* resource-info */>}
 
@@ -37,9 +29,7 @@ Từ `grep` — công cụ 50 năm tuổi có mặt trên mọi hệ thống Uni
 
 ## Tại Sao grep Không Còn Đủ Cho Developer?
 
-`grep` là công cụ tuyệt vờii cho việc tìm kiếm đơn giản trong một hoặc vài file. Tuy nhiên, khi làm việc với codebase hiện đại, `grep` gặp phải nhiều hạn chế:
-
-- **Không tự động đệ quy**: Phải thêm flag `-r` hoặc kết hợp với `find`
+`grep` là công cụ tuyệt vờii cho việc tìm kiếm đơn giản trong một hoặc vài file. Tuy nhiên, khi làm việc với codebase hiện đại, `grep` gặp phải nhiều hạn chế: - **Không tự động đệ quy**: Phải thêm flag `-r` hoặc kết hợp với `find`
 - **Không tôn trọng .gitignore**: Tìm kiếm vào cả `node_modules/`, `.git/`, `vendor/`, tạo ra kết quả nhiễu
 - **Tốc độ chậm hơn**: Không song song hóa, không tối ưu cho large codebase
 - **Xử lý Unicode kém**: Gặp vấn đề với file UTF-8 có BOM
@@ -83,9 +73,7 @@ grep -L "pattern" *.txt
 
 ## ack: grep Dành Riêng Cho Developer
 
-[ack](https://beyondgrep.com) (viết bằng Perl) là bước tiến đầu tiên trong việc tạo công cụ tìm kiếm "developer-friendly":
-
-- **Tự động đệ quy**: Không cần flag `-r`
+[ack](https://beyondgrep.com) (viết bằng Perl) là bước tiến đầu tiên trong việc tạo công cụ tìm kiếm "developer-friendly": - **Tự động đệ quy**: Không cần flag `-r`
 - **Tôn trọng .gitignore**: Tự động bỏ qua file trong `.gitignore` và các thư mục như `.git/`, `node_modules/`
 - **Nhận diện file type**: `--js` tìm trong file JavaScript, `--py` cho Python, `--html` cho HTML
 - **Output có màu**: Mặc định highlight kết quả
@@ -128,9 +116,7 @@ Tuy nhiên, dự án ag hiện ít được bảo trì tích cực so với ripg
 
 ### Tại Sao ripgrep Thống Trị Code Search Ngày Nay?
 
-[ripgrep](https://github.com/BurntSushi/ripgrep) (`rg`) được viết bằng Rust bởi Andrew Gallant, hiện là công cụ tìm kiếm code phổ biến nhất trong cộng đồng developer. Lý do chiếm ưu thế:
-
-1. **Tốc độ cực nhanh**: Nhanh hơn grep 10x, nhanh hơn ag ~2-3x trong hầu hết benchmarks
+[ripgrep](https://github.com/BurntSushi/ripgrep) (`rg`) được viết bằng Rust bởi Andrew Gallant, hiện là công cụ tìm kiếm code phổ biến nhất trong cộng đồng developer. Lý do chiếm ưu thế: 1. **Tốc độ cực nhanh**: Nhanh hơn grep 10x, nhanh hơn ag ~2-3x trong hầu hết benchmarks
 2. **Song song hóa tự động**: Sử dụng tất cả CPU core có sẵn
 3. **Smart defaults**: Đệ quy, hiển thị số dòng, tôn trọng .gitignore, hidden files — tất cả là mặc định
 4. **Unicode support tuyệt vờii**: Xử lý đa ngôn ngữ tốt hơn bất kỳ đối thủ nào
@@ -239,9 +225,7 @@ rg --line-number --no-heading --smart-case "pattern" | \
 
 ### Tại Sao sd Thay Thế sed Cho Hầu Hết Tác Vụ?
 
-[sd](https://github.com/chmln/sd) là công cụ tìm và thay thế dòng lệnh với cú pháp đơn giản hơn `sed` đáng kể:
-
-| Tác vụ | sed | sd |
+[sd](https://github.com/chmln/sd) là công cụ tìm và thay thế dòng lệnh với cú pháp đơn giản hơn `sed` đáng kể: | Tác vụ | sed | sd |
 |--------|-----|-----|
 | Thay thế đơn giản | `sed 's/old/new/g'` | `sd 'old' 'new'` |
 | Thay thế file | `sed -i 's/old/new/g' file` | `sd 'old' 'new' file` |
@@ -353,9 +337,7 @@ sd "oldFunctionName" "newFunctionName" $(rg "oldFunctionName" -l)
 
 ## Kết Luận: Xây Dựng Bộ Công Cụ Tìm Kiếm CủA Bạn
 
-Bộ công cụ tìm kiếm code hiệu quả nhất năm 2025 gồm ba thành phần cốt lõi:
-
-1. **ripgrep** (`rg`): Tìm kiếm code siêu tốc trên toàn bộ codebase
+Bộ công cụ tìm kiếm code hiệu quả nhất năm 2025 gồm ba thành phần cốt lõi: 1. **ripgrep** (`rg`): Tìm kiếm code siêu tốc trên toàn bộ codebase
 2. **fzf**: Lọc và chọn tương tác từ bất kỳ danh sách nào
 3. **sd**: Thay thế text đơn giản, trực quan hơn sed
 
@@ -400,9 +382,7 @@ VS Code đã sử dụng ripgrep làm backend cho tính năng tìm kiếm mặc 
 
 ## Hạ Tầng Đề Xuất
 
-Để chạy các công cụ trên 24/7 ổn định, lựa chọn hạ tầng rất quan trọng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu.
+Để chạy các công cụ trên 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp. dibi8.com cũng host ở đây.
 - **[Hostinger](https://www.hostinger.com/vn?REFERRALCODE=22RPIAOJIYJN)** — VPS giá tốt cho thị trường Việt Nam.
 
@@ -410,7 +390,6 @@ VS Code đã sử dụng ripgrep làm backend cho tính năng tìm kiếm mặc 
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

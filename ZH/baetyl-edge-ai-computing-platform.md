@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/baetyl-edge-ai-computing-platform" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/baetyl-edge-ai-computing-platform" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/baetyl-edge-ai-computing-platform" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/baetyl-edge-ai-computing-platform" />
 title: 'Baetyl：将 AI 模型部署到 IoT 设备的云原生边缘计算平台 — 2026 部署指南'
 description: '部署 Baetyl v2.4 将 Kubernetes 原生边缘计算带到 IoT 设备。AI 模型推理、MQTT/BACnet 支持、OTA 更新、K3s 运行时和云边同步。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [baetyl, 边缘计算, iot, kubernetes, k3s, ai推理, mqtt, 边缘ai, ota更新, 'lf-edge']
-aliases:
-- /zh/posts/baetyl-edge-ai-computing-platform/
+aliases: - /zh/posts/baetyl-edge-ai-computing-platform/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/baetyl-edge-ai-computing-platform/ -->
 
 {{</* resource-info */>}}
 
@@ -58,15 +50,25 @@ Baetyl 的 v2 架构使用受 Kubernetes 控制器和 IoT 设备影子启发的�
 
 ```
 云端 (Kubernetes)                      边缘端 (K3s/Kubernetes)
-+---------------------+              +---------------------+
++
+---
++              +
+---
++
 |  baetyl-cloud       |  Report    |  baetyl-init        |
-|  (管理 API)         | <--------> |  (一次性设置)       |
+|  (管理 API)         | <
+---
+> |  (一次性设置)       |
 |                     |  Desire    |                     |
 |  - 节点注册         |              |  baetyl-core        |
-|  - 应用部署         | <--------> |  - 本地节点管理     |
+|  - 应用部署         | <
+---
+> |  - 本地节点管理     |
 |  - 配置管理         |   同步      |  - 云同步           |
 |  - 批量预配         |              |  - 应用引擎         |
-+---------------------+              |                     |
++
+---
++              |                     |
        |                             |  baetyl-function    |
        |   HTTPS/WSS                 |  - 函数代理         |
        v                             |                     |
@@ -74,7 +76,9 @@ Baetyl 的 v2 架构使用受 Kubernetes 控制器和 IoT 设备影子启发的�
   (状态存储)                         |  - AI 推理          |
                                      |  - MQTT 代理        |
                                      |  - 流处理器         |
-                                     +---------------------+
+                                     +
+---
++
 ```
 
 影子同步通过两个字段工作：**Report**（边缘关于自身的报告）和 **Desire**（云端希望边缘变成的状态）。当你在云端更新应用规范时，baetyl-core 检测到 Desire 变化，拉取新容器镜像，并在本地重新部署。即使在间歇性连接下也能实现可靠的 OTA 更新。
@@ -130,8 +134,7 @@ mysql -u root -p < scripts/sql/data.sql
 
 # 配置数据库连接
 cat > scripts/charts/baetyl-cloud/conf/cloud.yml << EOF
-database:
-  type: "mysql"
+database: type: "mysql"
   url: "baetyl:password@tcp(localhost:3306)/baetyl_cloud?charset=utf8&parseTime=true"
 EOF
 
@@ -189,19 +192,14 @@ baetyl-broker 模块提供边缘端 MQTT 代理，在设备、云和本地应用
 # MQTT 代理应用配置
 name: mqtt-app
 version: v1
-services:
-  - name: broker
+services: - name: broker
     image: baetyl-broker:v2.4.3
-    ports:
-      - "1883:1883"
+    ports: - "1883:1883"
       - "8883:8883"
-    volumeMounts:
-      - name: broker-conf
+    volumeMounts: - name: broker-conf
         mountPath: /etc/baetyl
-volumes:
-  - name: broker-conf
-    config:
-      name: broker-conf
+volumes: - name: broker-conf
+    config: name: broker-conf
       version: v1
 ```
 
@@ -216,18 +214,14 @@ mosquitto_sub -h localhost -p 1883 -t "devices/+/temp"
 ```yaml
 # Modbus 设备连接器配置
 name: modbus-app
-services:
-  - name: modbus-connector
+services: - name: modbus-connector
     image: baetyl-modbus:v2.4.3
-    devices:
-      - name: temperature-sensor
-        modbus:
-          mode: tcp
+    devices: - name: temperature-sensor
+        modbus: mode: tcp
           address: 192.168.1.100:502
           slaveid: 1
           interval: 5s
-          read:
-            - function: 3
+          read: - function: 3
               address: 0
               quantity: 2
               type: float
@@ -238,15 +232,11 @@ services:
 ```yaml
 # HVAC 系统的 BACnet 连接器
 name: bacnet-app
-services:
-  - name: bacnet-connector
+services: - name: bacnet-connector
     image: baetyl-bacnet:v2.4.3
-    config:
-      devices:
-        - device_id: 1234
+    config: devices: - device_id: 1234
           address: 192.168.10.50
-          objects:
-            - type: analog-input
+          objects: - type: analog-input
               instance: 0
               property: present-value
 ```
@@ -272,7 +262,13 @@ curl -X PUT http://localhost:30004/v1/nodes/edge-prod-01 \
 性能对比：云端推理 vs. Baetyl 边缘推理（NVIDIA Jetson Nano）：
 
 | 指标 | 云端 (AWS g4dn) | Baetyl 边缘 (Jetson Nano) |
-|--------|-----------------|---------------------------|
+|
+---
+|
+---
+|
+---
+|
 | 网络往返 | 120-280ms | **0ms** (本地) |
 | 模型加载时间 | 1.2s (冷启动) | **800ms** (缓存) |
 | 推理延迟 (ResNet-50) | 45ms + RTT | **85ms** 总计 |
@@ -291,24 +287,17 @@ curl -X PUT http://localhost:30004/v1/nodes/edge-prod-01 \
 # 边缘端 PyTorch 图像分类模型
 name: ai-inference-app
 version: v1
-services:
-  - name: defect-detector
+services: - name: defect-detector
     image: myregistry/defect-model:trt-v3.2
     runtime: nvidia
-    resources:
-      limits:
-        nvidia.com/gpu: 1
+    resources: limits: nvidia.com/gpu: 1
         memory: "2Gi"
         cpu: "1000m"
-    ports:
-      - "8080:8080"
-    volumeMounts:
-      - name: model-cache
+    ports: - "8080:8080"
+    volumeMounts: - name: model-cache
         mountPath: /models
-volumes:
-  - name: model-cache
-    hostPath:
-      path: /opt/baetyl/models
+volumes: - name: model-cache
+    hostPath: path: /opt/baetyl/models
 ```
 
 **GPU 监控与共享：**
@@ -317,9 +306,7 @@ baetyl-core 可实时监控 GPU 内存使用、温度和能耗。多个应用可
 
 ```yaml
 # GPU 资源配置
-resources:
-  limits:
-    nvidia.com/gpu.shared: 0.5  # 在应用间共享 GPU
+resources: limits: nvidia.com/gpu.shared: 0.5  # 在应用间共享 GPU
 ```
 
 **OTA 更新滚动策略：**
@@ -350,16 +337,12 @@ curl -X PUT http://cloud:30004/v1/apps/defect-model-v4 \
 # 部署 SQLite 用于边缘本地数据缓存
 cat > sqlite-app.yml << EOF
 name: local-cache
-services:
-  - name: sqlite
+services: - name: sqlite
     image: baetyl-sqlite:v2.4.3
-    volumeMounts:
-      - name: data
+    volumeMounts: - name: data
         mountPath: /data
-volumes:
-  - name: data
-    hostPath:
-      path: /opt/baetyl/sqlite
+volumes: - name: data
+    hostPath: path: /opt/baetyl/sqlite
 EOF
 
 baetyl apply -f sqlite-app.yml
@@ -388,7 +371,17 @@ curl -X POST http://cloud:30004/v1/nodes/edge-prod-01/secrets \
 ## 与替代品对比
 
 | 功能 | Baetyl v2.4 | KubeEdge v1.18 | EdgeX Foundry 3.1 | Azure IoT Edge |
-|---------|-------------|----------------|-------------------|----------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 许可证 | **Apache-2.0** | Apache-2.0 | Apache-2.0 | 专有 |
 | Kubernetes 原生 | **是 (K3s/K8s)** | 是 (K8s) | 否 (Docker) | 否 (Docker) |
 | 云端管理套件 | **是 (开源)** | CloudCore | 否 (仅边缘) | Azure Portal |
@@ -475,7 +468,6 @@ Baetyl 弥合了云端 AI 训练和边缘 AI 推理之间的差距。通过将 K
 本文包含 DigitalOcean 和虎网云的联盟营销链接。如果你通过我们的链接注册，我们会获得佣金，但不会额外增加你的费用。所有推荐均基于实际测试，不受联盟计划影响。Baetyl 在 Apache-2.0 许可下完全开源且免费使用。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -503,25 +495,20 @@ Baetyl 弥合了云端 AI 训练和边缘 AI 推理之间的差距。通过将 K
 
 ## Why This Matters
 
-Understanding baetyl：将 ai 模型部署到 iot 设备的云原生边缘计算平台 — 2026 部署指南 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding baetyl：将 ai 模型部署到 iot 设备的云原生边缘计算平台 — 2026 部署指南 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -542,13 +529,13 @@ Baetyl：将 AI 模型部署到 IoT 设备的云原生边缘计算平台 — 202
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*
 
----
 
+---
 ## Related Articles
 
 - [trivy-production-security-scanner-2026](baetyl-edge-ai-computing-platform)

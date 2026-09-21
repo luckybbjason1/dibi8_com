@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/rvc" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/rvc" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/rvc" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/rvc" />
 title: 'RVC: 35K+ Stars 部署 AI 语音转换 — 2026 年 10 分钟训练指南'
 description: 'RVC (Retrieval-based Voice Conversion) 是基于 VITS 的语音转换框架，兼容 GPT-SoVITS、Coqui TTS 和 demucs。本教程涵盖 Docker 部署、训练流程、API 集成和生产级加固。'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [rvc, 语音转换, ai语音克隆, vits, 语音合成, docker, 教程, 检索式语音转换]
-aliases:
-- /zh/posts/rvc/
+aliases: - /zh/posts/rvc/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/rvc/ -->
 
 {{</* resource-info */>}}
 
@@ -95,24 +87,15 @@ docker-compose 用户：
 ```yaml
 version: '3.8'
 
-services:
-  rvc:
-    build: .
+services: rvc: build: .
     container_name: rvc-webui
     runtime: nvidia
-    environment:
-      - NVIDIA_VISIBLE_DEVICES=all
-    ports:
-      - "7865:7865"
-    volumes:
-      - ./weights:/app/weights
+    environment: - NVIDIA_VISIBLE_DEVICES=all
+    ports: - "7865:7865"
+    volumes: - ./weights:/app/weights
       - ./opt:/app/opt
       - ./assets:/app/assets
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+    deploy: resources: reservations: devices: - driver: nvidia
               count: 1
               capabilities: [gpu]
     restart: unless-stopped
@@ -264,7 +247,17 @@ logs/
 ### 训练基准测试
 
 | 硬件 | 数据集大小 | 轮数 | 训练时间 | 输出质量 |
-|------|-----------|------|----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | RTX 3090 (24GB) | 10 分钟音频 | 200 | ~18 分钟 | 极佳 |
 | RTX 4090 (24GB) | 10 分钟音频 | 200 | ~12 分钟 | 极佳 |
 | RTX 3060 (12GB) | 10 分钟音频 | 200 | ~35 分钟 | 很好 |
@@ -281,8 +274,7 @@ GPT-SoVITS 从文本生成语音；RVC 将其转换为目标声音。两者结�
 # gpt_sovits_rvc_pipeline.py
 import requests
 
-def tts_then_convert(text: str, speaker_wav: str, rvc_model: str):
-    """GPT-SoVITS TTS → RVC 语音转换流水线"""
+def tts_then_convert(text: str, speaker_wav: str, rvc_model: str): """GPT-SoVITS TTS → RVC 语音转换流水线"""
     
     # 第一步：使用 GPT-SoVITS 生成语音
     tts_response = requests.post("http://localhost:9880/tts", json={
@@ -293,8 +285,7 @@ def tts_then_convert(text: str, speaker_wav: str, rvc_model: str):
         "text_language": "zh"
     })
     
-    with open("/tmp/tts_output.wav", "wb") as f:
-        f.write(tts_response.content)
+    with open("/tmp/tts_output.wav", "wb") as f: f.write(tts_response.content)
     
     # 第二步：使用 RVC API 转换语音
     rvc_response = requests.post("http://localhost:7865/voice_conversion", json={
@@ -316,8 +307,7 @@ def tts_then_convert(text: str, speaker_wav: str, rvc_model: str):
 from TTS.api import TTS
 import requests
 
-def coqui_to_rvc(text: str, rvc_model: str, output_path: str):
-    # 使用 Coqui XTTS v2 生成
+def coqui_to_rvc(text: str, rvc_model: str, output_path: str): # 使用 Coqui XTTS v2 生成
     tts = TTS("tts_models/multilingual/multi-dataset/xtts_v2", gpu=True)
     tts.tts_to_file(
         text=text,
@@ -327,16 +317,14 @@ def coqui_to_rvc(text: str, rvc_model: str, output_path: str):
     )
     
     # 通过 RVC 转换
-    with open("/tmp/coqui_out.wav", "rb") as f:
-        files = {"file": f}
+    with open("/tmp/coqui_out.wav", "rb") as f: files = {"file": f}
         data = {"model_name": rvc_model, "pitch": 0, "index_rate": 0.5}
         response = requests.post(
             "http://localhost:7865/api/voice_conversion",
             files=files, data=data
         )
     
-    with open(output_path, "wb") as f:
-        f.write(response.content)
+    with open(output_path, "wb") as f: f.write(response.content)
     return output_path
 ```
 
@@ -414,8 +402,7 @@ requests.post("http://localhost:7865/load_model", json={
 })
 
 # 执行语音转换
-with open("input_audio.wav", "rb") as f:
-    response = requests.post(
+with open("input_audio.wav", "rb") as f: response = requests.post(
         "http://localhost:7865/voice_conversion",
         files={"file": f},
         data={
@@ -427,8 +414,7 @@ with open("input_audio.wav", "rb") as f:
         }
     )
 
-with open("converted_output.wav", "wb") as f:
-    f.write(response.content)
+with open("converted_output.wav", "wb") as f: f.write(response.content)
 ```
 
 ## 基准测试 / 实际应用案例
@@ -436,7 +422,17 @@ with open("converted_output.wav", "wb") as f:
 ### 客观质量指标
 
 | 指标 | RVC v2 | So-VITS-SVC 4.1 | GPT-SoVITS (SVC) | DDSP-SVC |
-|------|--------|-----------------|-------------------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 说话人相似度（余弦） | 0.85 | 0.79 | 0.82 | 0.71 |
 | PESQ（质量，/4.5） | 3.6 | 3.3 | 3.4 | 2.8 |
 | UTMOS（自然度，/5） | 4.19 | 3.95 | 4.05 | 3.45 |
@@ -468,19 +464,16 @@ import hashlib
 
 security = HTTPBearer()
 
-def verify_token(credentials: HTTPAuthorizationCredentials):
-    """验证生产部署的 API 令牌"""
+def verify_token(credentials: HTTPAuthorizationCredentials): """验证生产部署的 API 令牌"""
     expected = hashlib.sha256(TOKEN.encode()).hexdigest()
-    if credentials.credentials != expected:
-        raise HTTPException(status_code=401, detail="无效的令牌")
+    if credentials.credentials != expected: raise HTTPException(status_code=401, detail="无效的令牌")
     return True
 
 @app.post("/voice_conversion")
 async def secure_convert(
     file: UploadFile,
     credentials: HTTPAuthorizationCredentials = Depends(security)
-):
-    verify_token(credentials)
+): verify_token(credentials)
     # ... 转换逻辑
     return {"output_url": signed_url}
 ```
@@ -509,16 +502,13 @@ models/
 import os
 import glob
 
-def list_available_models(models_dir="./models"):
-    """列出所有可用的语音模型"""
+def list_available_models(models_dir="./models"): """列出所有可用的语音模型"""
     models = []
-    for model_dir in glob.glob(os.path.join(models_dir, "*/")):
-        name = os.path.basename(os.path.dirname(model_dir))
+    for model_dir in glob.glob(os.path.join(models_dir, "*/")): name = os.path.basename(os.path.dirname(model_dir))
         pth_files = glob.glob(os.path.join(model_dir, "*.pth"))
         index_files = glob.glob(os.path.join(model_dir, "*.faiss")) + \
                       glob.glob(os.path.join(model_dir, "*.index"))
-        if pth_files and index_files:
-            models.append({"name": name, "pth": pth_files[0], "index": index_files[0]})
+        if pth_files and index_files: models.append({"name": name, "pth": pth_files[0], "index": index_files[0]})
     return models
 ```
 
@@ -533,17 +523,13 @@ conversion_count = Counter(rvc_conversions_total, 总转换次数)
 conversion_duration = Histogram(rvc_conversion_seconds, 转换延迟)
 error_count = Counter(rvc_errors_total, 总错误数, [error_type])
 
-def monitored_convert(audio_path, model_name):
-    start = time.time()
-    try:
-        result = perform_conversion(audio_path, model_name)
+def monitored_convert(audio_path, model_name): start = time.time()
+    try: result = perform_conversion(audio_path, model_name)
         conversion_count.inc()
         return result
-    except Exception as e:
-        error_count.labels(error_type=type(e).__name__).inc()
+    except Exception as e: error_count.labels(error_type=type(e).__name__).inc()
         raise
-    finally:
-        conversion_duration.observe(time.time() - start)
+    finally: conversion_duration.observe(time.time() - start)
 
 # 启动指标端点
 start_http_server(9090)
@@ -562,7 +548,17 @@ python tools/export_onnx.py \
 ## 与替代方案对比
 
 | 特性 | RVC v2 | GPT-SoVITS | So-VITS-SVC 4.1 | DDSP-SVC |
-|------|--------|------------|-----------------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **主要用途** | 语音转换 | TTS + 语音克隆 | 歌声转换 | 歌声转换 |
 | **训练时间**（10分钟数据） | ~18 分钟 (RTX 3090) | ~45 分钟 | ~2 小时 | ~15 分钟 |
 | **最低 GPU 显存**（训练） | 4GB | 8GB | 8GB | 4GB |
@@ -664,7 +660,6 @@ RVC 在中等硬件上提供训练时间低于 20 分钟的生产级语音转换
 - [PetVocalia: 零样本 SVC 基准测试 (IJCAI 2025)](https://www.ijcai.org/proceedings/2025/1135.pdf)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -690,8 +685,8 @@ RVC 在中等硬件上提供训练时间低于 20 分钟的生产级语音转换
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [apple-container](rvc)
@@ -700,6 +695,6 @@ RVC 在中等硬件上提供训练时间低于 20 分钟的生产级语音转换
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](rvc)
 - [moneyprinterturbo-one-click-ai-video-generator](rvc)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

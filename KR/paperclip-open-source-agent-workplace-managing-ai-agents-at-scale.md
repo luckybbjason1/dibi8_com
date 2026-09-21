@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale" />
 title: 'paperclip: 69,700 star 오픈소스 에이전트 워크플레이스 — 규모별 AI 에이전트 관리...
 description: 'paperclip (69,700 GitHub star)은 AI 에이전트를 관리하는 오픈소스 워크플레이스 앱입니다. 멀티 에이전트 조정, 작업 관리, 셀프호스팅 에이전트 워크플로우 배포 포함.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-08
-lastmod:  2026-06-08slug: 'paperclip-open-source-agent-workplace-managing-ai-agents-at-scale'
+lastmod: 2026-06-08
+slug: 'paperclip-open-source-agent-workplace-managing-ai-agents-at-scale'
 category: 'llm-frameworks'
 tags: ['AI 에이전트 관리', '멀티 에이전트 조정', 'paperclip', '오픈소스 에이전트', '에이전트 워크플로우', '셀프호스팅 에이전트', 'AI 에이전트 워크플레이스', '에이전트 오케스트레이션']
 github_repo: 'https://github.com/paperclipai/paperclip'
@@ -17,8 +13,6 @@ license: MIT
 featureImage: 'https://raw.githubusercontent.com/paperclipai/paperclip/master/doc/screenshots/main.png'
 lang: ko
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale/ -->
 
 # paperclip: 69,700 star 오픈소스 에이전트 워크플레이스 — 규모별 AI 에이전트 관리 — 2026 실전 가이드
 
@@ -48,8 +42,7 @@ lang: ko
 
 paperclip은 **오픈소스 에이전트 워크플레이스 플랫폼**으로, 여러 AI 에이전트를 동시에 오케스트레이션해야 하는 팀과 독립 개발자를 위해 설계되었습니다. AI 에이전트를 위한 Jira — 에이전트에게 작업이 할당되고, 진행 상황이 실시간으로 추적되며, 한 에이전트의 출력이 다른 에이전트의 입력이 되는 구조화된 환경입니다.
 
-핵심 기능:
-- **멀티 에이전트 작업 할당** — 전용 프롬프트와 함께 다른 에이전트에 다른 작업 할당
+핵심 기능: - **멀티 에이전트 작업 할당** — 전용 프롬프트와 함께 다른 에이전트에 다른 작업 할당
 - **대화 기록** — 모든 에이전트 상호작용이 기록, 검색, 재생 가능
 - **셀프호스팅 배포** — 자체 인프라(Docker, Kubernetes, 베어 메탈)에서 전체 실행
 - **에이전트 마켓플레이스** — 사전 구축된 에이전트 템플릿 가져오기 또는 직접 생성
@@ -82,23 +75,17 @@ npm run dev --prefix frontend
 
 ```yaml
 # 내장 에이전트 템플릿
-templates:
-  coder:
-    model: claude-sonnet-4-20250514
+templates: coder: model: claude-sonnet-4-20250514
     tools: [fs, terminal, git]
-  reviewer:
-    model: claude-sonnet-4-20250514
+  reviewer: model: claude-sonnet-4-20250514
     tools: [fs, diff]
-  researcher:
-    model: claude-opus-4-20250514
+  researcher: model: claude-opus-4-20250514
     tools: [web_search, file_read]
-  deployer:
-    model: claude-haiku-4-20250514
+  deployer: model: claude-haiku-4-20250514
     tools: [fs, terminal]
 ```
 
-외부 에이전트 연결:
-```bash
+외부 에이전트 연결: ```bash
 paperclip agent register \
   --name "my-codex" \
   --type "openai-compatible" \
@@ -133,10 +120,8 @@ paperclip run pipeline
 
 ```yaml
 # workflows/code-review.yaml
-workflow:
-  name: "full-code-review"
-  steps:
-    - agent: linter
+workflow: name: "full-code-review"
+  steps: - agent: linter
       task: "linting 실행"
       output: "lint_results"
     - agent: security
@@ -174,9 +159,7 @@ paperclip vector-store configure --type qdrant --host vector.internal --port 633
 
 ## Limitations / Honest Assessment
 
-paperclip이 적합하지 않은 시나리오:
-
-1. **싱글 에이전트 워크플로우** — 하나의 AI 에이전트만 쓴다면 paperclip은 불필요한 오버헤드
+paperclip이 적합하지 않은 시나리오: 1. **싱글 에이전트 워크플로우** — 하나의 AI 에이전트만 쓴다면 paperclip은 불필요한 오버헤드
 2. **실시간 에이전트 조정** — non-real-time async 작업 최적화, 실시간 대화가 필요하면 AutoGen 고려
 3. **리소스 집약적 설정** — Docker로 실행 시 ~500MB RAM 필요, 2GB 미만 머신은 직접 실행 권장
 4. **내장 AI 모델 없음** — 외부 API 연결만 지원, 모델 호스팅이 필요하면 타 솔루션 고려
@@ -223,7 +206,6 @@ paperclip은 여러 AI 에이전트 조정이 관리 레이어 없이 혼란스�
 위 링크 중 일부는 제휴 링크입니다. 가입 시 dibi8.com이 수수료를 받을 수 있으며, 귀하의 비용에는 영향이 없습니다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -251,25 +233,20 @@ paperclip은 여러 AI 에이전트 조정이 관리 레이어 없이 혼란스�
 
 ## Why This Matters
 
-Understanding paperclip: 69,700 star 오픈소스 에이전트 워크플레이스 — 규모별 ai 에이전트 관리 — 2026 실전 가이드 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding paperclip: 69,700 star 오픈소스 에이전트 워크플레이스 — 규모별 ai 에이전트 관리 — 2026 실전 가이드 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

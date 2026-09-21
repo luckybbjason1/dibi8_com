@@ -1,16 +1,14 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/academic-research-skills" />
-title: "Academic Research Skills: Automate Literature Reviews wi...
+title: "Academic Research Skills: Automate Literature Reviews wi..."
 description: "Academic Research Skills (31,628 stars) automates the research pipeline: search papers, extract insights, synthesize findings, and write literature reviews. Built for Claude Code with modular skill architecture."
 tags: ["ai-agent", "deep-research", "dev-tools", "engine", "open-source", "research", "search"]
 date: 2026-06-15
-lastmod:  2026-06-15slug: academic-research-skills
+lastmod: 2026-06-15
+slug: academic-research-skills
 category: dev-utils
 github_repo: "https://github.com/Imbad0202/academic-research-skills"
 license: Other
-images:
-  - url: "https://opengraph.github.com/github/Imbad0202/academic-research-skills"
+images: - url: "https://opengraph.github.com/github/Imbad0202/academic-research-skills"
     alt: "Academic Research Skills GitHub OG"
     role: reference
   - url: "https://raw.githubusercontent.com/Imbad0202/academic-research-skills/main/assets/research-pipeline.png"
@@ -19,10 +17,7 @@ images:
   - url: "https://raw.githubusercontent.com/Imbad0202/academic-research-skills/main/assets/skill-architecture.png"
     alt: "Skill Architecture"
     role: architecture
-lang: en
-featureImage: /images/articles/academic-research-skills-automate-literature-reviews-with-ai.jpg
----
-
+featureImage: /images/articles/academic-research-skills-automate-literature-reviews-with-ai.jpg---
 ![Hero Image](https://picsum.photos/seed/ai/1200x800)
 
 
@@ -37,9 +32,7 @@ Academic Research Skills transforms Claude Code into a research assistant that c
 
 Academic Research Skills is a modular skill system designed specifically for Claude Code that automates the end-to-end research pipeline. Instead of manually searching PubMed, arXiv, and Google Scholar, then reading each paper, then synthesizing findings into a coherent review, this framework chains specialized skills that handle each step.
 
-The skill suite includes:
-
-- **Paper Search** — Query academic databases (PubMed, arXiv, Semantic Scholar) with intelligent filtering
+The skill suite includes: - **Paper Search** — Query academic databases (PubMed, arXiv, Semantic Scholar) with intelligent filtering
 - **PDF Extraction** — Parse PDF papers, extract figures, tables, and key passages using a combination of PDF parsing and OCR for scanned documents
 - **Citation Analysis** — Track citation networks, identify influential papers
 - **Synthesis Engine** — Combine findings from multiple papers into structured summaries
@@ -55,9 +48,7 @@ npx skills list | grep research
 
 ## How the Research Pipeline Works
 
-The research pipeline operates as a directed acyclic graph (DAG), where each skill's output feeds into the next:
-
-```
+The research pipeline operates as a directed acyclic graph (DAG), where each skill's output feeds into the next: ```
 Query → Search → Filter → Extract → Analyze → Synthesize → Write
 ```
 
@@ -86,9 +77,7 @@ python3 scripts/synthesize.py --extractions extractions.json --output synthesis.
 
 ## Installation & Setup
 
-Setting up Academic Research Skills requires Python 3.10+ and API access to academic databases:
-
-```bash
+Setting up Academic Research Skills requires Python 3.10+ and API access to academic databases: ```bash
 # Clone the repository
 curl -sL "https://github.com/Imbad0202/academic-research-skills/archive/refs/heads/main.zip" -o /tmp/research-skills.zip
 unzip -q /tmp/research-skills.zip -d /tmp
@@ -105,7 +94,13 @@ cp config.example.yaml config.yaml
 ### Required API Keys
 
 | Service | Purpose | Free Tier |
-|---------|---------|-----------|
+|
+---
+|
+---
+|
+---
+|
 | **Semantic Scholar** | Paper search and citation data | 100 req/min |
 | **arXiv** | Preprint paper access | Unlimited |
 | **PubMed/PMC** | Biomedical literature | 10 req/sec |
@@ -150,10 +145,14 @@ The Docker image includes tesseract-ocr for scanned document processing and popp
 
 ## Integration with Research Tools
 
-Academic Research Skills integrates with popular research and writing tools:
-
-| Tool | Integration Method | Use Case |
-|------|-------------------|----------|
+Academic Research Skills integrates with popular research and writing tools: | Tool | Integration Method | Use Case |
+|
+---
+|
+---
+|
+---
+|
 | **Zotero** | CSV export/import | Reference management |
 | **Notion** | Markdown import | Research notes |
 | **Overleaf** | LaTeX export | Paper writing |
@@ -170,11 +169,15 @@ python3 scripts/export.py --format latex --input synthesis.json --output bibliog
 
 ## Benchmarks: Manual vs Automated Research
 
-The time savings from automating literature reviews are substantial:
-
-```
+The time savings from automating literature reviews are substantial: ```
 Research Task                  | Manual | Automated | Speedup
--------------------------------|--------|-----------|--------
+
+---
+|
+---
+|
+---
+|---
 Search 50 relevant papers      | 8 hrs  | 15 min    | 32x
 Extract key findings from 20   | 16 hrs | 45 min    | 21x
 Synthesize into review         | 12 hrs | 2 hrs     | 6x
@@ -198,9 +201,7 @@ metrics = {
 
 ## Advanced Usage: Custom Research Workflows
 
-Experienced researchers extend the base skills with custom workflows:
-
-### Multi-Database Search Strategy
+Experienced researchers extend the base skills with custom workflows: ### Multi-Database Search Strategy
 
 ```python
 # Search across multiple databases with unified results
@@ -228,8 +229,7 @@ graph.compute_centrality()  # PageRank, H-index, citation count
 
 # Identify seminal papers
 seminal = graph.get_top_cited(k=10)
-for paper in seminal:
-    print(f"{paper.title} — {paper.citation_count} citations")
+for paper in seminal: print(f"{paper.title} — {paper.citation_count} citations")
 ```
 
 ### Custom Synthesis Templates
@@ -257,9 +257,7 @@ templates = {
 
 ### Automated Citation Formatting
 
-Proper citation formatting is critical for academic work. The skill suite includes a citation formatter that supports APA, IEEE, Chicago, and Vancouver styles:
-
-```python
+Proper citation formatting is critical for academic work. The skill suite includes a citation formatter that supports APA, IEEE, Chicago, and Vancouver styles: ```python
 from citation_formatter import CitationFormatter
 
 formatter = CitationFormatter(style="APA", version="7th")
@@ -273,10 +271,20 @@ formatted.export("references_ris.ris")
 
 ## Comparison with Alternatives
 
-Several tools automate parts of the research process, but Academic Research Skills is unique in its end-to-end approach:
-
-| Feature | Academic Research Skills | ResearchRabbit | Elicit | Consensus | Litmaps |
-|---------|-------------------------|----------------|--------|-----------|---------|
+Several tools automate parts of the research process, but Academic Research Skills is unique in its end-to-end approach: | Feature | Academic Research Skills | ResearchRabbit | Elicit | Consensus | Litmaps |
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Stars | 31,628 | 5,200 | 12,000 | 3,800 | 2,100 |
 | Multi-Database Search | 4 databases | Semantic Scholar only | Semantic Scholar | Semantic Scholar | Crossref only |
 | PDF Extraction | Full (text + figures) | No | Abstracts only | Abstracts only | No |
@@ -290,9 +298,7 @@ The key differentiator is **open-source flexibility**. Unlike proprietary altern
 
 ## Limitations: When Manual Research Still Wins
 
-Despite its capabilities, the automated pipeline has limitations:
-
-1. **Domain expertise required** — The system can find and synthesize papers, but interpreting results in the context of your specific research question requires domain knowledge.
+Despite its capabilities, the automated pipeline has limitations: 1. **Domain expertise required** — The system can find and synthesize papers, but interpreting results in the context of your specific research question requires domain knowledge.
 
 2. **Paywalled content** — Papers behind paywalls cannot be fully extracted. The system works best with open-access or preprint papers.
 
@@ -353,10 +359,9 @@ npx skills add https://github.com/Imbad0202/academic-research-skills
 
 **Internal links**: [Compare AI coding agents](https://dibi8.com/ai-tools/oh-my-pi) · [Build production AI systems](https://dibi8.com/llm-frameworks/ai-engineering-from-scratch)
 
----
 
-**Sources & Further Reading**:
-- GitHub repository: https://github.com/Imbad0202/academic-research-skills
+---
+**Sources & Further Reading**: - GitHub repository: https://github.com/Imbad0202/academic-research-skills
 - Semantic Scholar API: https://api.semanticscholar.org/
 - arXiv API: https://info.arxiv.org/help/api/index.html
 - PubMed API: https://www.ncbi.nlm.nih.gov/books/NBK25500/
@@ -366,7 +371,6 @@ npx skills add https://github.com/Imbad0202/academic-research-skills
 **Disclosure**: This article contains affiliate links. If you sign up through our links, we may earn a commission at no extra cost to you.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -392,8 +396,8 @@ npx skills add https://github.com/Imbad0202/academic-research-skills
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [last30days-skill-ai-agent-research-engine-social-media](academic-research-skills)

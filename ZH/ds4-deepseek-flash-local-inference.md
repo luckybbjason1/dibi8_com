@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ds4-deepseek-flash-local-inference" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ds4-deepseek-flash-local-inference" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ds4-deepseek-flash-local-inference" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ds4-deepseek-flash-local-inference" />
-title: "DS4 vs Ollama vs llama.cpp：128GB Mac 极限测评 DeepSeek V4 Fl...
+title: "DS4 vs Ollama vs llama.cpp：128GB Mac 极限测评 DeepSeek V4 Fl..."
 description: "了解 antirez（Redis 创始人）打造的 DS4 推理引擎。本文详述 DeepSeek V4 Flash 本地部署、macOS/Linux 安装教程、与 Ollama/llama.cpp 的性能对比、代码示例及百万 token 长上下文应用场景。"
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - C++
+tech_stack: - C++
   - Go
   - Python
 application_domain: "Ai Tools"
@@ -26,8 +20,7 @@ maintainer: ""
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-faqs:
-  - q: 'DS4（DwarfStar 4）是什么，由谁创建的？'
+faqs: - q: 'DS4（DwarfStar 4）是什么，由谁创建的？'
     a: 'DS4（DwarfStar 4）是一款小型原生推理引擎，专为在 Apple Metal 和 NVIDIA CUDA 硬件上本地运行 DeepSeek V4 Flash 模型而设计。它由 Salvatore Sanfilippo（antirez）创建，此人正是意大利程序员、Redis 的发明者。'
   - q: '使用 DS4 运行 DeepSeek V4 Flash 需要多少内存？'
     a: '运行 2-bit（q2）权重至少需要 96GB 内存，推荐 128GB。4-bit（q4）权重则需要 256GB 或以上，这使大多数消费级笔记本电脑无缘使用。'
@@ -36,10 +29,7 @@ faqs:
   - q: 'DS4 的磁盘 KV 缓存是什么，为什么它很重要？'
     a: 'DS4 将 KV 缓存视为一等磁盘公民，将检查点写入高速 SSD，而非将所有状态保留在内存中。这使内存受限的设备也能支持 100K–1M token 的上下文窗口，并让 Agent 工作流可以即时恢复长对话，无需重新处理提示词。'
   - q: 'DS4 是否提供兼容 OpenAI 的 API 服务器？'
-    a: '是的。构建 DS4 后会生成一个 ds4-server 二进制文件，它在 http://127.0.0.1:8000 上暴露兼容 OpenAI 和 Anthropic 的 HTTP API，包含 /v1/chat/completions、/v1/completions 和 /v1/messages 等端点。它支持 OpenAI 风格的函数调用，并可与 OpenCode、Pi 和 Claude Code 等 Agent 框架配合使用。'
----
-
-<!-- canonical: https://dibi8.com/zh/tools/ds4-deepseek-flash-local-inference/ -->
+    a: '是的。构建 DS4 后会生成一个 ds4-server 二进制文件，它在 http://127.0.0.1:8000 上暴露兼容 OpenAI 和 Anthropic 的 HTTP API，包含 /v1/chat/completions、/v1/completions 和 /v1/messages 等端点。它支持 OpenAI 风格的函数调用，并可与 OpenCode、Pi 和 Claude Code 等 Agent 框架配合使用。'---
 
 {</* resource-info */>}
 
@@ -51,8 +41,8 @@ faqs:
 
 在这篇全面指南中，我们将深入探讨 DS4 的独特之处、其技术架构与 Ollama 和 llama.cpp 等替代方案的区别，并提供分步安装说明、性能基准测试、代码示例以及真实应用场景分析。
 
----
 
+---
 ## 本地推理极限测评：DS4 vs Ollama vs llama.cpp
 跑 DeepSeek V4 Flash 这种吞金兽级别的巨型模型，必须抠死底层优化。以下是 DS4 在 M 系列 Mac 上暴打竞品的实测数据：
 
@@ -83,14 +73,20 @@ Sanfilippo 认为 DeepSeek V4 Flash 是本地部署领域一个极具吸引力�
 6. **压缩 KV 缓存**：支持在本地机器上进行长上下文推理，并支持**磁盘 KV 缓存持久化** —— 对智能体工作流而言是游戏规则的改变者。
 7. **2-bit 量化可行性**：当采用非对称量化（仅量化路由专家层）时，2-bit 权重运行效果出奇地好，可在 96-128GB 内存的 MacBook 上运行。
 
----
 
+---
 ## 技术架构：Metal 与 CUDA 优化详解
 
 DS4 的架构体现了一种清晰的设计理念：**最大化目标硬件性能**，即使这意味着牺牲通用性。项目维护三种构建目标：
 
 | 构建目标 | 平台 | 用途 |
-|---------|------|------|
+|
+---
+|
+---
+|
+---
+|
 | `make` | macOS | Metal 优化生产构建 |
 | `make cuda-spark` | Linux (DGX Spark / GB10) | 针对 NVIDIA GB10 系统的 CUDA |
 | `make cuda-generic` | Linux (其他 CUDA GPU) | 通用 CUDA GPU 支持 |
@@ -216,7 +212,17 @@ make cpu
 ### DS4 官方基准测试 (Metal, `--ctx 32768`, 贪婪解码, `-n 256`)
 
 | 机器配置 | 量化 | 提示词 | 预填充速度 | 生成速度 |
-|---------|------|--------|-----------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | MacBook Pro M3 Max, 128GB | q2 | 短提示 | 58.52 t/s | 26.68 t/s |
 | MacBook Pro M3 Max, 128GB | q2 | 11,709 token | **250.11 t/s** | 21.47 t/s |
 | Mac Studio M3 Ultra, 512GB | q2 | 短提示 | 84.43 t/s | 36.86 t/s |
@@ -308,9 +314,7 @@ response = client.chat.completions.create(
     temperature=0.7
 )
 
-for chunk in response:
-    if chunk.choices[0].delta.content:
-        print(chunk.choices[0].delta.content, end="")
+for chunk in response: if chunk.choices[0].delta.content: print(chunk.choices[0].delta.content, end="")
 ```
 
 ### 工具调用示例
@@ -407,6 +411,7 @@ DS4 代表了对本地 LLM 推理未来的一次大胆押注：**把一件事做
 ---
 
 
+-
 ---
 
 ## 推荐自托管基础设施
@@ -432,7 +437,6 @@ A: 如果你是 24 小时高强度跑多智能体自动写代码，API 费用分
 A: Ollama 一关掉对话，所有上下文就丢了，下次还要重新运算。DS4 直接把庞大的 KV Cache 塞进你的 SSD 固态硬盘里！昨天聊了 10 万 token 的代码，今天秒恢复，完全不需要等待 Prompt 重算。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -460,25 +464,20 @@ A: Ollama 一关掉对话，所有上下文就丢了，下次还要重新运算�
 
 ## Why This Matters
 
-Understanding ds4 vs ollama vs llama.cpp：128gb mac 极限测评 deepseek v4 flash 本地部署指南 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding ds4 vs ollama vs llama.cpp：128gb mac 极限测评 deepseek v4 flash 本地部署指南 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

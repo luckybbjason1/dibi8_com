@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/llm-data-analysis-workflow-complete-guide" />
 title: 'Using LLMs for Data Analysis: Complete Workflow with Pan...
 description: 'Master LLM-powered data analysis with PandasAI, ChatGPT Code Interpreter, and OpenAI API. Build complete workflows for conversational data science.'
 date: 2026-05-18 00:00:00+08:00
@@ -20,10 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/llm-data-analysis-workflow-complete-guide/
+aliases: - /posts/llm-data-analysis-workflow-complete-guide/-
 ---
-
 {</* resource-info */>}
 
 Large language models have fundamentally changed how data analysts interact with information. The shift from code-first to conversation-first analysis means that complex data transformations, statistical tests, and visualizations can now be triggered through natural language prompts rather than hundreds of lines of Python or SQL. This transformation does not eliminate the need for analytical rigor — it changes the interface through which analysts express their intent and validate results.
@@ -46,15 +42,11 @@ Behind the scenes, PandasAI constructs detailed prompts that include DataFrame s
 
 ### PandasAI Setup and Basic Usage
 
-Installation requires Python 3.9+ and a single pip command:
-
-```bash
+Installation requires Python 3.9+ and a single pip command: ```bash
 pip install pandasai
 ```
 
-Basic usage wraps any Pandas DataFrame with PandasAI's `SmartDataFrame` or `Agent` interfaces:
-
-```python
+Basic usage wraps any Pandas DataFrame with PandasAI's `SmartDataFrame` or `Agent` interfaces: ```python
 import pandas as pd
 from pandasai import SmartDataFrame
 
@@ -99,10 +91,14 @@ The Assistants API extends this with persistent threads, file attachments, and b
 
 ## Building a Complete LLM-Powered Analysis Pipeline
 
-Production-grade LLM analysis requires more than prompting a model. A robust architecture layers human oversight between generation and action:
-
-| Stage | Component | Purpose |
-|-------|-----------|---------|
+Production-grade LLM analysis requires more than prompting a model. A robust architecture layers human oversight between generation and action: | Stage | Component | Purpose |
+|
+---
+|
+---
+|
+---
+|
 | **Ingestion** | Data loading + validation | Ensure schema compliance and quality checks |
 | **Preprocessing** | LLM-generated cleaning code | Handle missing values, type conversion, formatting |
 | **Validation** | Human review of generated code | Catch hallucinations and domain errors |
@@ -126,7 +122,17 @@ Cost estimation varies by workload. ChatGPT Plus costs $20/month for unlimited C
 ## Comparison: When to Use Which Tool
 
 | Use Case | PandasAI | Code Interpreter | OpenAI API | Local LLM |
-|----------|----------|------------------|------------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Jupyter notebook workflows** | Excellent | Not applicable | Good (code generation) | Good |
 | **Non-programmer analysts** | Requires Python basics | Excellent | Requires engineering | Requires setup |
 | **Production pipelines** | Possible (scripted) | Not suitable | Excellent | Excellent |
@@ -167,20 +173,17 @@ Yes, and this is increasingly the preferred approach for regulated industries. M
 
 API costs scale with model choice and usage volume. GPT-4o (the current default for analysis) costs $2.50 per million input tokens and $10.00 per million output tokens as of early 2026. A typical analytical session — loading a dataset schema, asking 10 questions with moderate responses — consumes roughly 50,000-150,000 tokens total, costing $0.50-$2.00. The Assistants API with Code Interpreter tool adds a $0.03 per session code execution fee. For high-volume workloads, the Batch API offers 50% discounts with 24-hour latency. Most individual analysts spend under $50/month; small teams under $500/month; enterprise deployments vary widely based on dataset sizes and query volumes.
 
----
 
+---
 ## Recommended Infrastructure
 
-To run any of the tools above reliably 24/7, infrastructure matters:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.
+To run any of the tools above reliably 24/7, infrastructure matters: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low latency for mainland China access. This is the same IDC hosting dibi8.com — production-proven.
 
 *Affiliate links — no extra cost to you, helps keep dibi8.com running.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -205,3 +208,4 @@ To run any of the tools above reliably 24/7, infrastructure matters:
   }
 }
 </script>
+---

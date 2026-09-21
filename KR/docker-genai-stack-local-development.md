@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/docker-genai-stack-local-development" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/docker-genai-stack-local-development" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/docker-genai-stack-local-development" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/docker-genai-stack-local-development" />
 title: 'Docker GenAI Stack: LangChain, 벡터 DB, LLM을 하나의 Docker Co...
 description: 'Docker GenAI Stack으로 완전한 로컬 GenAI 개발 환경을 구축하세요. LangChain, Neo4j, Ollama, 벡터 데이터베이스를 단일 docker-compose에 포함. 2026년 프로덕션 준비 튜토리얼.'
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: ['docker genai stack']
-aliases:
-- /kr/posts/docker-genai-stack-local-development/
+aliases: - /kr/posts/docker-genai-stack-local-development/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/docker-genai-stack-local-development/ -->
 
 {{</* resource-info */>}}
 
@@ -47,14 +39,11 @@ Docker는 이 문제를 인식했습니다. DockerCon 2024에서 **Docker GenAI 
 
 ## Docker GenAI Stack의 작동 방식
 
-아키텍처는 모듈식 파이프라인 패턴을 따릅니다. 각 서비스는 독립적인 컨테이너이며 Docker 낶망 통해 통신합니다:
-
-```yaml
-services:
-  llm:          # Ollama — 로컬 LLM 추론
-  database:     # Neo4j — 지식 그래프 + 벡터 검색
-  loader:       # 문서 수집 파이프라인
-  bot:          # LangChain 기반 채팅 인터페이스
+아키텍처는 모듈식 파이프라인 패턴을 따릅니다. 각 서비스는 독립적인 컨테이너이며 Docker 낶망 통해 통신합니다: ```yaml
+services: llm: # Ollama — 로컬 LLM 추론
+  database: # Neo4j — 지식 그래프 + 벡터 검색
+  loader: # 문서 수집 파이프라인
+  bot: # LangChain 기반 채팅 인터페이스
   pdf-frontend: # 선택적 PDF 상호작용 UI
 ```
 
@@ -84,9 +73,7 @@ cd genai-stack
 cp .env.example .env
 ```
 
-`.env`를 편집하여 LLM과 임베딩 모델을 선택합니다:
-
-```bash
+`.env`를 편집하여 LLM과 임베딩 모델을 선택합니다: ```bash
 # .env —— 로컬 Ollama 최소 설정
 LLM=ollama
 EMBEDDING_MODEL=sentence_transformer
@@ -101,9 +88,7 @@ NEO4J_PASSWORD=password
 docker compose up --build
 ```
 
-첫 빌드는 모든 이미지를 가져오고 모델을 다운로드합니다. 커피를 드세요 —— 현대적인 연결에서는 **3–5분**이 소요됩니다. Ollama가 기본 모델(일반적으로 Llama 3.2 7B)을 가져오는 것을 볼 수 있습니다:
-
-```
+첫 빌드는 모든 이미지를 가져오고 모델을 다운로드합니다. 커피를 드세요 —— 현대적인 연결에서는 **3–5분**이 소요됩니다. Ollama가 기본 모델(일반적으로 Llama 3.2 7B)을 가져오는 것을 볼 수 있습니다: ```
 [+] Running 6/6
  ⠿ Network genai-stack_default       Created
  ⠿ Container genai-stack-database-1  Started
@@ -133,9 +118,7 @@ Streamlit 채팅 UI는 `http://localhost:8501`에서, PDF 프론트엔드는 `ht
 
 ### LangChain 통합
 
-Stack은 LangChain의 `Neo4jVector`와 `GraphCypherQAChain`을 사용하여 지식 그래프 기반 검색 증강 생성을 구현합니다:
-
-```python
+Stack은 LangChain의 `Neo4jVector`와 `GraphCypherQAChain`을 사용하여 지식 그래프 기반 검색 증강 생성을 구현합니다: ```python
 # 예제: LangChain으로 지식 그래프 쿼리
 from langchain_community.graphs import Neo4jGraph
 from langchain.chains import GraphCypherQAChain
@@ -161,9 +144,7 @@ print(result[result])
 
 ### Neo4j 지식 그래프 설정
 
-Stack은 Neo4j 시작 시 자동으로 벡터 인덱스를 생성합니다. 그래프 스키마를 검사하고 확장할 수 있습니다:
-
-```bash
+Stack은 Neo4j 시작 시 자동으로 벡터 인덱스를 생성합니다. 그래프 스키마를 검사하고 확장할 수 있습니다: ```bash
 # Neo4j Browser http://localhost:7474 접근
 # 로그인: neo4j / password
 
@@ -184,9 +165,7 @@ OPTIONS {indexConfig: {
 
 ### Ollama 모델 관리
 
-Stack을 재시작하지 않고도 모델을 전환할 수 있습니다:
-
-```bash
+Stack을 재시작하지 않고도 모델을 전환할 수 있습니다: ```bash
 # 다른 모델 가져오기
 docker compose exec llm ollama pull mistral:7b
 
@@ -197,18 +176,14 @@ docker compose exec llm ollama list
 docker compose exec llm ollama run llama3.2 "Explain Docker containers"
 ```
 
-환경 변수로 기본 모델을 재정의합니다:
-
-```bash
+환경 변수로 기본 모델을 재정의합니다: ```bash
 # .env 또는 docker-compose.override.yml에서
 OLLAMA_MODEL=mistral:7b docker compose up
 ```
 
 ### 외부 벡터 데이터베이스 연결
 
-Neo4j가 벡터를 기본 처리하지만, LangChain 벡터 스토어 초기화를 수정하여 Pinecone, Weaviate, pgvector로 교체할 수 있습니다:
-
-```python
+Neo4j가 벡터를 기본 처리하지만, LangChain 벡터 스토어 초기화를 수정하여 Pinecone, Weaviate, pgvector로 교체할 수 있습니다: ```python
 # Neo4jVector를 Pinecone으로 교체 (.env에 PINECONE_API_KEY 필요)
 from langchain_pinecone import PineconeVectorStore
 
@@ -260,17 +235,9 @@ vectorstore = PineconeVectorStore.from_documents(
 
 ### Ollama GPU 가속
 
-NVIDIA GPU 지원을 활성화하여 **5–10배** 빠른 추론을 달성합니다:
-
-```yaml
+NVIDIA GPU 지원을 활성화하여 **5–10배** 빠른 추론을 달성합니다: ```yaml
 # docker-compose.override.yml
-services:
-  llm:
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+services: llm: deploy: resources: reservations: devices: - driver: nvidia
               count: 1
               capabilities: [gpu]
 ```
@@ -283,27 +250,19 @@ nvidia-smi
 
 ### 지속성 데이터 볼륨
 
-기본적으로 Neo4j 데이터는 Docker 볼륨에 저장됩니다. 프로덕션급 지속성을 위해:
-
-```yaml
-services:
-  database:
-    volumes:
-      - ./neo4j-data:/data
+기본적으로 Neo4j 데이터는 Docker 볼륨에 저장됩니다. 프로덕션급 지속성을 위해: ```yaml
+services: database: volumes: - ./neo4j-data:/data
       - ./neo4j-logs:/logs
       - ./neo4j-plugins:/plugins
 ```
 
 ### 커스텀 문서 로더
 
-데이터 소스에서 수집하도록 loader 서비스를 확장합니다:
-
-```python
+데이터 소스에서 수집하도록 loader 서비스를 확장합니다: ```python
 # loader/custom_loader.py
 from langchain_community.document_loaders import ConfluenceLoader
 
-def load_confluence():
-    loader = ConfluenceLoader(
+def load_confluence(): loader = ConfluenceLoader(
         url="https://your-domain.atlassian.net",
         username="email@example.com",
         api_key="your-api-key"
@@ -318,8 +277,7 @@ def load_confluence():
 openssl rand -base64 32
 
 # Neo4j 인증 활성화 (기본적으로 이미 켜져 있음)
-# .env에서:
-NEO4J_AUTH=neo4j/YOUR_SECURE_PASSWORD_HERE
+# .env에서: NEO4J_AUTH=neo4j/YOUR_SECURE_PASSWORD_HERE
 
 # Ollama를 낶망으로만 제한
 # docker-compose.yml에서 11434 포트 제거
@@ -328,18 +286,14 @@ NEO4J_AUTH=neo4j/YOUR_SECURE_PASSWORD_HERE
 
 ### [DigitalOcean](https://m.do.co/c/eca87ac14ee0)에 배포
 
-팀 공유 인스턴스나 고객 데모의 경우, Stack은 **4 vCPU / 8GB RAM Droplet** (월 약 $48)에서 잘 실행됩니다:
-
-```bash
+팀 공유 인스턴스나 고객 데모의 경우, Stack은 **4 vCPU / 8GB RAM Droplet** (월 약 $48)에서 잘 실행됩니다: ```bash
 # DigitalOcean Droplet (Ubuntu 24.04)에서
 sudo apt update && sudo apt install -y docker.io docker-compose-plugin
 git clone https://github.com/docker/genai-stack.git
 cd genai-stack && docker compose up -d
 ```
 
-리버스 프록시와 HTTPS 추가:
-
-```nginx
+리버스 프록시와 HTTPS 추가: ```nginx
 # /etc/nginx/sites-available/genai
 server {
     listen 443 ssl;
@@ -457,7 +411,6 @@ Stack이 모든 GenAI 문제를 해결하는 것은 아닙니다 —— 여전�
 이 문서에는 제휴 마케팅 링크가 포함되어 있습니다. 당사의 추천 링크를 통해 DigitalOcean에 가입하면, 추가 비용 없이 당사에 커미션이 지급됩니다. 우리는 자체 인프라에도 사용하는 서비스만을 추천합니다. Docker GenAI Stack은 오픈소스(MIT 라이선스)이며 묣으로 사용할 수 있습니다 —— 구매가 필요하지 않습니다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

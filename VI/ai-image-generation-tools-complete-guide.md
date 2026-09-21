@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-image-generation-tools-complete-guide" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-image-generation-tools-complete-guide" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-image-generation-tools-complete-guide" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-image-generation-tools-complete-guide" />
 title: 'Công Cụ Tạo Hình Ảnh AI: Hướng Dẫn Đầy Đủ Về Midjourney,...
 description: 'Hướng dẫn toàn diện về công cụ tạo hình ảnh AI 2025: so sánh Midjourney v7, DALL-E 3, Stable Diffusion 3.5, Adobe Firefly, FLUX và Leonardo.ai. Bảng giá, tính năng và cách sử dụng.'
 date: 2026-05-18 00:00:00+08:00
@@ -23,11 +18,9 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/ai-image-generation-tools-complete-guide/
+aliases: - /posts/ai-image-generation-tools-complete-guide/
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/ai-image-generation-tools-complete-guide/ -->
 # Công Cụ Tạo Hình Ảnh AI: Hướng Dẫn Đầy Đủ Về Midjourney, DALL-E, Stable Diffusion
 
 
@@ -47,9 +40,7 @@ Theo [OpenAI](https://openai.com), mô hình DALL-E 3 đã được huấn luy�
 
 ### Mô Hình Khuếch Tán vs GAN vs Mô Hình Transformer
 
-Ba loại kiến trúc chính trong tạo hình ảnh AI bao gồm:
-
-- **Mô hình Diffusion**: Được sử dụng bởi Midjourney, DALL-E 3 và Stable Diffusion. Tạo ra hình ảnh chất lượng cao nhất nhưng đòi hỏi nhiều tàI nguyên tính toán hơn. Quá trình khuếch tán ngược từ từ loại bỏ nhiễu để tạo hình ảnh.
+Ba loại kiến trúc chính trong tạo hình ảnh AI bao gồm: - **Mô hình Diffusion**: Được sử dụng bởi Midjourney, DALL-E 3 và Stable Diffusion. Tạo ra hình ảnh chất lượng cao nhất nhưng đòi hỏi nhiều tàI nguyên tính toán hơn. Quá trình khuếch tán ngược từ từ loại bỏ nhiễu để tạo hình ảnh.
 
 - **GAN (Generative Adversarial Networks)**: Kiến trúc cũ hơn, sử dụng hai mạng neural đối đầu nhau. Tuy nhanh hơn nhưng thường gặp vấn đề về đa dạng và ổn định. Hiện ít được dùng trong các công cụ thương mại.
 
@@ -122,9 +113,7 @@ Tuy nhiên, nếu bạn cần chất lượng cao nhất và không muốn lo v�
 
 ## Cách Viết LờI Nhắc Hình Ảnh AI Hiệu Quả
 
-Viết prompt tốt là chìa khóa để tạo ra hình ảnh chất lượng cao. Dưới đây là các nguyên tắc cơ bản:
-
-- **Mô tả chi tiết**: Thay vì "một con chó", hãy viết "một chú chó Golden Retriever đang chạy trên bãi biển cát vàng lúc hoàng hôn, nước biển xanh ngọc, ảnh chụp bằng Canon EOS R5".
+Viết prompt tốt là chìa khóa để tạo ra hình ảnh chất lượng cao. Dưới đây là các nguyên tắc cơ bản: - **Mô tả chi tiết**: Thay vì "một con chó", hãy viết "một chú chó Golden Retriever đang chạy trên bãi biển cát vàng lúc hoàng hôn, nước biển xanh ngọc, ảnh chụp bằng Canon EOS R5".
 - **Chỉ định phong cách**: Thêm từ khóa như "oil painting", "cyberpunk", "minimalist", "photorealistic" hoặc tên nghệ sĩ cụ thể.
 - **Sử dụng thông số kỹ thuật**: Chỉ định tỷ lệ khung hình, độ phân giải và các thông số như "--ar 16:9" trong Midjourney.
 - **Loại trừ yếu tố không mong muốn**: Sử dụng negative prompt để tránh các lỗi phổ biến như "deformed hands", "blurry", "low quality".
@@ -154,9 +143,7 @@ Nếu bạn sử dụng hình ảnh AI cho mục đích thương mại, hãy lu�
 
 ## Bắt Đầu: Hướng Dẫn Từng Bước
 
-Để bắt đầu tạo hình ảnh AI, hãy làm theo các bước sau:
-
-**Bước 1 — Chọn công cụ phù hợp**: Dựa vào nhu cầu và ngân sách của bạn từ bảng so sánh ở trên.
+Để bắt đầu tạo hình ảnh AI, hãy làm theo các bước sau: **Bước 1 — Chọn công cụ phù hợp**: Dựa vào nhu cầu và ngân sách của bạn từ bảng so sánh ở trên.
 
 **Bước 2 — Tạo tàI khoản**: Đăng ký tàI khoản và chọn gói dịch vụ phù hợp. Hầu hết đều có thờI gian dùng thử.
 
@@ -196,16 +183,13 @@ TạI Mỹ, USCO hiện không cấp bản quyền cho tác phẩm hoàn toàn d
 
 ## Công Cụ Đề Xuất
 
-Cho việc triển khai/sử dụng các công cụ trên:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 tín dụng miễn phí cho người dùng mới, 14+ region.
+Cho việc triển khai/sử dụng các công cụ trên: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 tín dụng miễn phí cho người dùng mới, 14+ region.
 - **[Hostinger](https://www.hostinger.com/vn?REFERRALCODE=22RPIAOJIYJN)** — VPS giá tốt cho thị trường Việt Nam.
 
 *Affiliate link — không tăng chi phí, hỗ trợ dibi8.com.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

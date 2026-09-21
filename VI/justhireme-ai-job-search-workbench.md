@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/justhireme-ai-job-search-workbench" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/justhireme-ai-job-search-workbench" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/justhireme-ai-job-search-workbench" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/justhireme-ai-job-search-workbench" />
 title: "JustHireMe：AI Giúp Bạn Tự Động Tìm Việc, Từ Gửi Hồ Sơ Đế...
 description: "Đánh giá JustHireMe - bàn làm việc thông minh AI mã nguồn mở cho việc tìm kiếm việc làm. Hệ thống tình báo việc làm ưu tiên cục bộ, tự động thu thập vị trí, đánh giá mức độ phù hợp AI, tạo hồ sơ và thư xin việc tùy chỉnh."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - JavaScript
+tech_stack: - JavaScript
   - Python
   - TypeScript
 application_domain: "Ai Tools"
@@ -26,10 +20,8 @@ maintainer: "vasu-devs"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases:
-- /vi/posts/justhireme-ai-job-search-workbench/
-faqs:
-  - q: 'JustHireMe có miễn phí và mã nguồn mở không?'
+aliases: - /vi/posts/justhireme-ai-job-search-workbench/
+faqs: - q: 'JustHireMe có miễn phí và mã nguồn mở không?'
     a: 'Có. JustHireMe là phần mềm mã nguồn mở theo giấy phép MIT, không có phí đăng ký hay chi phí ẩn. Bạn là chủ sở hữu toàn bộ hồ sơ và dữ liệu của mình, và thuật toán chấm điểm hoàn toàn minh bạch.'
   - q: 'JustHireMe có yêu cầu API key AI hoặc gửi dữ liệu của tôi lên đám mây không?'
     a: 'Không. JustHireMe hoạt động theo nguyên tắc ưu tiên cục bộ: toàn bộ tính toán AI chạy ngay trên máy của bạn mà không cần API key, và dữ liệu được lưu trữ trong cơ sở dữ liệu SQLite trên máy tính của bạn thay vì tải lên đám mây.'
@@ -41,15 +33,13 @@ faqs:
     a: 'Ứng dụng desktop sử dụng Tauri 2 kết hợp React 19 và TypeScript; phần backend chạy Python 3.13 với FastAPI và WebSockets; dữ liệu được lưu trong SQLite cùng cơ sở dữ liệu đồ thị Kuzu và kho vector LanceDB; và Playwright đảm nhiệm tự động hóa trình duyệt cho việc thu thập dữ liệu và nộp đơn.'
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/justhireme-ai-job-search-workbench/ -->
 {</* resource-info */>}
 
 ## Vấn Đề: Tìm Việc Là Một Công Việc Toàn Thời Gian
 
 Gửi 100 hồ sơ, nhận 2 phỏng vấn, 0 Offer. Đây không phải lỗi của bạn, là lỗi của hệ thống.
 
-Mỗi trang web tuyển dụng là một hòn đảo:
-- **LinkedIn**: Tìm kiếm nâng cao phải trả phí
+Mỗi trang web tuyển dụng là một hòn đảo: - **LinkedIn**: Tìm kiếm nâng cao phải trả phí
 - **Indeed**: Vị trí trùng lặp, thông tin hết hạn
 - **Glassdoor**: Dữ liệu lương chậm cập nhật
 - **Website công ty**: Mỗi nơi phải điền lại từ đầu
@@ -67,8 +57,7 @@ Mỗi trang web tuyển dụng là một hòn đảo:
 
 ### 1. Thu Thập Vị Trí Thông Minh
 
-Tự động thu thập vị trí từ nhiều nền tảng:
-- LinkedIn, Indeed, Glassdoor
+Tự động thu thập vị trí từ nhiều nền tảng: - LinkedIn, Indeed, Glassdoor
 - AngelList, Hacker News
 - Trang tuyển dụng của công ty
 - Khu vực làm việc từ xa
@@ -77,8 +66,7 @@ Tự động thu thập vị trí từ nhiều nền tảng:
 
 ### 2. Đánh Giá Mức Độ Phù Hợp AI
 
-Không phải ghép từ khóa, mà là **hiểu ngữ nghĩa thực sự**:
-- Kỹ năng của bạn vs yêu cầu vị trí
+Không phải ghép từ khóa, mà là **hiểu ngữ nghĩa thực sự**: - Kỹ năng của bạn vs yêu cầu vị trí
 - Kinh nghiệm của bạn vs cấp độ vị trí
 - Mong đợi lương của bạn vs ngân sách
 - Mục tiêu nghề nghiệp của bạn vs hướng công ty
@@ -87,8 +75,7 @@ Không phải ghép từ khóa, mà là **hiểu ngữ nghĩa thực sự**:
 
 ### 3. Tùy Chỉnh Hồ Sơ Tự Động
 
-**Viết lại hồ sơ** cho từng vị trí:
-- Làm nổi bật kỹ năng liên quan
+**Viết lại hồ sơ** cho từng vị trí: - Làm nổi bật kỹ năng liên quan
 - Điều chỉnh mô tả dự án
 - Ghép từ khóa
 - Tối ưu hóa bố cục
@@ -97,8 +84,7 @@ Không phải điền mẫu, mà là **viết lại AI thực sự**.
 
 ### 4. Tạo Thư Xin Việc
 
-Mỗi thư xin việc là **duy nhất**:
-- Nghiên cứu bối cảnh công ty
+Mỗi thư xin việc là **duy nhất**: - Nghiên cứu bối cảnh công ty
 - Trích dẫn dự án cụ thể
 - Trình bày kinh nghiệm liên quan
 - Bày tỏ sự quan tâm chân thành
@@ -107,8 +93,7 @@ HR có thể phân biệt mẫu và bài viết tâm huyết.
 
 ### 5. Quản Lý CRM Cục Bộ
 
-Tất cả dữ liệu lưu trữ cục bộ:
-- Cơ sở dữ liệu SQLite
+Tất cả dữ liệu lưu trữ cục bộ: - Cơ sở dữ liệu SQLite
 - Lịch sử vị trí
 - Theo dõi trạng thái gửi hồ sơ
 - Quản lý lịch phỏng vấn
@@ -155,8 +140,7 @@ npm run tauri dev
 
 ## Tại Sao Mã Nguồn Mở?
 
-Tìm việc không nên bị độc quyền bởi nền tảng:
-- **Quyền sở hữu dữ liệu**: Hồ sơ của bạn, dữ liệu của bạn
+Tìm việc không nên bị độc quyền bởi nền tảng: - **Quyền sở hữu dữ liệu**: Hồ sơ của bạn, dữ liệu của bạn
 - **Thuật toán minh bạch**: Biết AI đánh giá như thế nào
 - **Sử dụng miễn phí**: Không phí đăng ký, không chi phí ẩn
 - **Cộng đồng thúc đẩy**: Mọi người cùng cải thiện
@@ -185,9 +169,7 @@ Tìm việc không nên bị độc quyền bởi nền tảng:
 
 ## Công Cụ Đề Xuất
 
-Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
+Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
 - **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Proxy Anthropic Claude / OpenAI / DeepSeek API. Hầu hết AI tool ở trên (chatbot, code gen, translation, search, v.v.) cần LLM API key — proxy này cho access ổn định top model với ~30% giá chính thức.
 - **{{< aff "hostinger" "footer-cta-legacy" "Hostinger" >}}** — Lựa chọn VPS giá tốt cho thị trường Việt Nam.
 
@@ -195,7 +177,6 @@ Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -223,25 +204,20 @@ Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
 
 ## Why This Matters
 
-Understanding justhireme：ai giúp bạn tự động tìm việc, từ gửi hồ sơ đến nhận offer is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding justhireme：ai giúp bạn tự động tìm việc, từ gửi hồ sơ đến nhận offer is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

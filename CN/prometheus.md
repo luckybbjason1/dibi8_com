@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/prometheus" />
 title: 'Prometheus: 64,094 GitHub Stars — Docker Deployment Guid...
 description: 'Prometheus (Prom) is an open-source monitoring system and time series database. Compatible with Docker, Kubernetes, Grafana, and Alertmanager. Covers installation, PromQL queries, production hardening, and performance benchmarks.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [prometheus, monitoring, docker, kubernetes, grafana, devops, observability, 'time-series']
-aliases:
-- /posts/prometheus/
+aliases: - /posts/prometheus/-
 ---
-
 {{</* resource-info */>}}
 
 ## Introduction
@@ -42,10 +38,12 @@ Prometheus is an open-source monitoring system and time series database designed
 
 Prometheus uses a **pull-based architecture**. Instead of applications pushing metrics to a central collector, Prometheus scrapes HTTP endpoints on a configured interval. This design simplifies service discovery, eliminates the need for agents on every host, and provides built-in health detection — if a target does not respond, the `up` metric immediately reports `0`.
 
-The core components are:
-
-| Component | Role |
-|---|---|
+The core components are: | Component | Role |
+|
+---
+|
+---
+|
 | **Prometheus Server** | Scrapes metrics, stores them in TSDB, evaluates rules |
 | **TSDB** | Custom time-series database with Head (in-memory) and Block (on-disk) layers |
 | **Service Discovery** | Automatically finds targets via Kubernetes API, AWS EC2, Consul, DNS |
@@ -66,46 +64,33 @@ Data flows as follows: Service Discovery identifies targets, the Scraper pulls m
 
 ### Docker Setup (Single Node, < 5 Minutes)
 
-The fastest path to a running Prometheus instance is Docker. Create a project directory and two files:
-
-**prometheus.yml:**
+The fastest path to a running Prometheus instance is Docker. Create a project directory and two files: **prometheus.yml:**
 ```yaml
-global:
-  scrape_interval: 15s
+global: scrape_interval: 15s
   evaluation_interval: 15s
 
-scrape_configs:
-  - job_name: prometheus
-    static_configs:
-      - targets: ['localhost:9090']
+scrape_configs: - job_name: prometheus
+    static_configs: - targets: ['localhost:9090']
 ```
 
 **docker-compose.yml:**
 ```yaml
 version: '3.8'
 
-services:
-  prometheus:
-    image: prom/prometheus:v3.11.0
+services: prometheus: image: prom/prometheus:v3.11.0
     container_name: prometheus
-    ports:
-      - "9090:9090"
-    volumes:
-      - prometheus-data:/prometheus
+    ports: - "9090:9090"
+    volumes: - prometheus-data:/prometheus
       - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
-    command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
+    command: - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
       - '--storage.tsdb.retention.time=30d'
       - '--web.enable-lifecycle'
     restart: unless-stopped
 
-volumes:
-  prometheus-data:
-```
+volumes: prometheus-data: ```
 
-Start the stack:
-```bash
+Start the stack: ```bash
 docker compose up -d
 ```
 
@@ -113,93 +98,65 @@ Access the UI at `http://localhost:9090`. The `--web.enable-lifecycle` flag enab
 
 ### Docker Full Stack: Prometheus + Grafana + Node Exporter + cAdvisor
 
-For a complete monitoring stack, add Grafana for visualization and exporters for host/container metrics:
-
-```yaml
+For a complete monitoring stack, add Grafana for visualization and exporters for host/container metrics: ```yaml
 version: '3.8'
 
-services:
-  prometheus:
-    image: prom/prometheus:v3.11.0
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+services: prometheus: image: prom/prometheus:v3.11.0
+    volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
       - prometheus-data:/prometheus
-    ports:
-      - "9090:9090"
-    command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports: - "9090:9090"
+    command: - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
       - '--storage.tsdb.retention.time=30d'
       - '--web.enable-lifecycle'
     restart: unless-stopped
 
-  grafana:
-    image: grafana/grafana:11.0.0
-    ports:
-      - "3000:3000"
-    volumes:
-      - grafana-data:/var/lib/grafana
-    environment:
-      - GF_SECURITY_ADMIN_PASSWORD=admin
-    depends_on:
-      - prometheus
+  grafana: image: grafana/grafana:11.0.0
+    ports: - "3000:3000"
+    volumes: - grafana-data:/var/lib/grafana
+    environment: - GF_SECURITY_ADMIN_PASSWORD=admin
+    depends_on: - prometheus
     restart: unless-stopped
 
-  node-exporter:
-    image: prom/node-exporter:v1.9.0
-    volumes:
-      - /proc:/host/proc:ro
+  node-exporter: image: prom/node-exporter:v1.9.0
+    volumes: - /proc:/host/proc:ro
       - /sys:/host/sys:ro
       - /:/rootfs:ro
-    command:
-      - '--path.procfs=/host/proc'
+    command: - '--path.procfs=/host/proc'
       - '--path.rootfs=/rootfs'
       - '--path.sysfs=/host/sys'
       - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
     restart: unless-stopped
 
-  cadvisor:
-    image: gcr.io/cadvisor/cadvisor:v0.49.1
-    volumes:
-      - /:/rootfs:ro
+  cadvisor: image: gcr.io/cadvisor/cadvisor:v0.49.1
+    volumes: - /:/rootfs:ro
       - /var/run:/var/run:ro
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
       - /dev/disk/:/dev/disk:ro
-    ports:
-      - "8080:8080"
+    ports: - "8080:8080"
     restart: unless-stopped
 
-volumes:
-  prometheus-data:
-  grafana-data:
-```
+volumes: prometheus-data: grafana-data: ```
 
 **Updated prometheus.yml for full stack:**
 ```yaml
-global:
-  scrape_interval: 15s
+global: scrape_interval: 15s
   evaluation_interval: 15s
 
-scrape_configs:
-  - job_name: prometheus
-    static_configs:
-      - targets: ['prometheus:9090']
+scrape_configs: - job_name: prometheus
+    static_configs: - targets: ['prometheus:9090']
 
   - job_name: 'node-exporter'
-    static_configs:
-      - targets: ['node-exporter:9100']
+    static_configs: - targets: ['node-exporter:9100']
 
   - job_name: cadvisor
-    static_configs:
-      - targets: ['cadvisor:8080']
+    static_configs: - targets: ['cadvisor:8080']
 ```
 
 ### Kubernetes Deployment with Helm
 
-For production Kubernetes environments, use the `kube-prometheus-stack` Helm chart. This is the standard approach for Prometheus Kubernetes deployments:
-
-```bash
+For production Kubernetes environments, use the `kube-prometheus-stack` Helm chart. This is the standard approach for Prometheus Kubernetes deployments: ```bash
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo update
 
@@ -215,13 +172,11 @@ helm install prometheus prometheus-community/kube-prometheus-stack \
   --set grafana.adminPassword='your-secure-password'
 ```
 
-Verify the deployment:
-```bash
+Verify the deployment: ```bash
 kubectl get pods -n monitoring
 ```
 
-Port-forward to access services locally:
-```bash
+Port-forward to access services locally: ```bash
 # Prometheus UI
 kubectl port-forward svc/prometheus-kube-prometheus-prometheus 9090:9090 -n monitoring
 
@@ -236,47 +191,29 @@ kubectl port-forward svc/prometheus-kube-prometheus-alertmanager 9093:9093 -n mo
 
 ```yaml
 # values-production.yaml
-prometheus:
-  prometheusSpec:
-    resources:
-      requests:
-        memory: 2Gi
+prometheus: prometheusSpec: resources: requests: memory: 2Gi
         cpu: 500m
-      limits:
-        memory: 4Gi
+      limits: memory: 4Gi
         cpu: 2000m
-    storageSpec:
-      volumeClaimTemplate:
-        spec:
-          storageClassName: gp3
+    storageSpec: volumeClaimTemplate: spec: storageClassName: gp3
           accessModes: ["ReadWriteOnce"]
-          resources:
-            requests:
-              storage: 100Gi
+          resources: requests: storage: 100Gi
     retention: "30d"
     retentionSize: "90GB"
     scrapeInterval: "30s"
     enableAdminAPI: false
 
-alertmanager:
-  alertmanagerSpec:
-    resources:
-      requests:
-        memory: 256Mi
+alertmanager: alertmanagerSpec: resources: requests: memory: 256Mi
         cpu: 100m
-      limits:
-        memory: 512Mi
+      limits: memory: 512Mi
         cpu: 500m
 
-grafana:
-  enabled: true
-  persistence:
-    enabled: true
+grafana: enabled: true
+  persistence: enabled: true
     size: 10Gi
 ```
 
-Apply with:
-```bash
+Apply with: ```bash
 helm upgrade --install prometheus prometheus-community/kube-prometheus-stack \
   -n monitoring -f values-production.yaml
 ```
@@ -285,9 +222,7 @@ helm upgrade --install prometheus prometheus-community/kube-prometheus-stack \
 
 ### Prometheus + Grafana Dashboard
 
-Grafana connects to Prometheus as a data source. After launching the stack, add Prometheus:
-
-1. Navigate to Grafana → Configuration → Data Sources → Add Data Source
+Grafana connects to Prometheus as a data source. After launching the stack, add Prometheus: 1. Navigate to Grafana → Configuration → Data Sources → Add Data Source
 2. Select **Prometheus**
 3. URL: `http://prometheus:9090` (Docker) or `http://prometheus-kube-prometheus-prometheus.monitoring.svc.cluster.local:9090` (Kubernetes)
 4. Click **Save & Test**
@@ -298,86 +233,58 @@ Import dashboard ID **1860** (Node Exporter Full) for a complete host metrics da
 
 ### Prometheus + Alertmanager Alerting Rules
 
-Create `alert-rules.yml`:
-```yaml
-groups:
-  - name: node-alerts
-    rules:
-      - alert: HighMemoryUsage
+Create `alert-rules.yml`: ```yaml
+groups: - name: node-alerts
+    rules: - alert: HighMemoryUsage
         expr: (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes * 100 > 85
         for: 5m
-        labels:
-          severity: warning
-        annotations:
-          summary: "High memory usage on {{ $labels.instance }}"
+        labels: severity: warning
+        annotations: summary: "High memory usage on {{ $labels.instance }}"
           description: "Memory usage is above 85% (current value: {{ $value }}%)"
-
       - alert: HighCPUUsage
         expr: 100 - (avg by(instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 80
         for: 5m
-        labels:
-          severity: critical
-        annotations:
-          summary: "High CPU usage on {{ $labels.instance }}"
+        labels: severity: critical
+        annotations: summary: "High CPU usage on {{ $labels.instance }}"
           description: "CPU usage is above 80% (current value: {{ $value }}%)"
-
       - alert: DiskSpaceLow
         expr: (node_filesystem_avail_bytes / node_filesystem_size_bytes) * 100 < 10
         for: 5m
-        labels:
-          severity: warning
-        annotations:
-          summary: "Low disk space on {{ $labels.instance }}"
+        labels: severity: warning
+        annotations: summary: "Low disk space on {{ $labels.instance }}"
           description: "Disk space is below 10% (mountpoint: {{ $labels.mountpoint }})"
-
       - alert: InstanceDown
         expr: up == 0
         for: 3m
-        labels:
-          severity: critical
-        annotations:
-          summary: "Instance {{ $labels.instance }} is down"
+        labels: severity: critical
+        annotations: summary: "Instance {{ $labels.instance }} is down"
           description: "Target has been unreachable for more than 3 minutes"
-
       - alert: HighRequestLatency
         expr: histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m])) > 0.5
         for: 5m
-        labels:
-          severity: warning
-        annotations:
-          summary: "High request latency on {{ $labels.instance }}"
+        labels: severity: warning
+        annotations: summary: "High request latency on {{ $labels.instance }}"
           description: "95th percentile latency is {{ $value }}s"
-```
 
-Reference the rules in `prometheus.yml`:
-```yaml
-rule_files:
-  - '/etc/prometheus/alert-rules.yml'
+Reference the rules in `prometheus.yml`: ```yaml
+rule_files: - '/etc/prometheus/alert-rules.yml'
 
-alerting:
-  alertmanagers:
-    - static_configs:
-        - targets: ['alertmanager:9093']
+alerting: alertmanagers: - static_configs: - targets: ['alertmanager:9093']
 ```
 
 ### Alertmanager Configuration for Slack
 
-Create `alertmanager.yml`:
-```yaml
-global:
-  slack_api_url: YOUR_SLACK_WEBHOOK_URL
+Create `alertmanager.yml`: ```yaml
+global: slack_api_url: YOUR_SLACK_WEBHOOK_URL
 
-route:
-  receiver: 'slack-notifications'
+route: receiver: 'slack-notifications'
   group_by: [alertname, severity]
   group_wait: 30s
   group_interval: 5m
   repeat_interval: 4h
 
-receivers:
-  - name: 'slack-notifications'
-    slack_configs:
-      - channel: '#alerts'
+receivers: - name: 'slack-notifications'
+    slack_configs: - channel: '#alerts'
         send_resolved: true
         title: '{{ range .Alerts }}{{ .Annotations.summary }}{{ end }}'
         text: '{{ range .Alerts }}{{ .Annotations.description }}{{ end }}'
@@ -385,18 +292,12 @@ receivers:
 
 ### Prometheus + Kubernetes Service Discovery
 
-Prometheus discovers Kubernetes targets automatically:
-```yaml
-scrape_configs:
-  - job_name: 'kubernetes-pods'
-    kubernetes_sd_configs:
-      - role: pod
-        namespaces:
-          names:
-            - default
+Prometheus discovers Kubernetes targets automatically: ```yaml
+scrape_configs: - job_name: 'kubernetes-pods'
+    kubernetes_sd_configs: - role: pod
+        namespaces: names: - default
             - production
-    relabel_configs:
-      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
+    relabel_configs: - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
         action: keep
         regex: true
       - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_port]
@@ -452,7 +353,15 @@ predict_linear(
 ### Ingestion Performance
 
 | Setup | Samples/Second | CPU Cores | Memory |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Prometheus single-node | ~100,000–300,000 | 4 | 2–4 GB |
 | Prometheus + Cortex | 1M+ | Cluster | Scales horizontally |
 | VictoriaMetrics (single) | Up to 1,000,000 | 8 | ~2 GB |
@@ -464,7 +373,15 @@ Source: Independent TSBS benchmarks, 2025–2026. Prometheus trades raw ingestio
 ### Resource Footprint by Scale
 
 | Cluster Size | Prometheus CPU | Prometheus RAM | Storage (30d) |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Small (< 50 pods) | 500m | 1–2 Gi | 20–50 Gi |
 | Medium (50–200 pods) | 1000m | 2–4 Gi | 50–100 Gi |
 | Large (200–500 pods) | 2000m | 4–8 Gi | 100–200 Gi |
@@ -480,11 +397,9 @@ Source: Independent TSBS benchmarks, 2025–2026. Prometheus trades raw ingestio
 
 ### Security Best Practices
 
-1. **Enable Basic Authentication** (Prometheus v2.24+):
-```yaml
+1. **Enable Basic Authentication** (Prometheus v2.24+): ```yaml
 # web.yml
-basic_auth_users:
-  admin: $2y$10$... # bcrypt hash
+basic_auth_users: admin: $2y$10$... # bcrypt hash
 ```
 
 ```bash
@@ -492,20 +407,16 @@ basic_auth_users:
 htpasswd -nBC 10 "" | tr -d ':\n'
 ```
 
-Reference in startup flags:
-```yaml
-command:
-  - '--config.file=/etc/prometheus/prometheus.yml'
+Reference in startup flags: ```yaml
+command: - '--config.file=/etc/prometheus/prometheus.yml'
   - '--web.config.file=/etc/prometheus/web.yml'
 ```
 
 2. **Use TLS for scrape targets:**
 ```yaml
-scrape_configs:
-  - job_name: 'secure-target'
+scrape_configs: - job_name: 'secure-target'
     scheme: https
-    tls_config:
-      ca_file: /etc/prometheus/certs/ca.crt
+    tls_config: ca_file: /etc/prometheus/certs/ca.crt
       cert_file: /etc/prometheus/certs/client.crt
       key_file: /etc/prometheus/certs/client.key
       insecure_skip_verify: false
@@ -541,18 +452,14 @@ prometheus_notifications_dropped_total
 
 ### Long-Term Storage with Thanos
 
-Thanos extends Prometheus with object storage (S3, GCS, Azure Blob) for long-term retention and global querying:
-
-```yaml
+Thanos extends Prometheus with object storage (S3, GCS, Azure Blob) for long-term retention and global querying: ```yaml
 # Sidecar runs alongside each Prometheus pod
 - name: thanos-sidecar
   image: quay.io/thanos/thanos:v0.37.0
-  args:
-    - sidecar
+  args: - sidecar
     - --tsdb.path=/prometheus
     - --objstore.config-file=/etc/thanos/objstore.yml
-  volumeMounts:
-    - name: prometheus-data
+  volumeMounts: - name: prometheus-data
       mountPath: /prometheus
     - name: thanos-objstore
       mountPath: /etc/thanos
@@ -561,7 +468,17 @@ Thanos extends Prometheus with object storage (S3, GCS, Azure Blob) for long-ter
 ## Comparison with Alternatives
 
 | Feature | Prometheus | InfluxDB | Datadog | New Relic |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **License** | Apache-2.0 | MIT | Proprietary | Proprietary |
 | **Cost** | Free (self-hosted) | Free OSS / Enterprise $ | $15–$23/host/month | $0.25/GB + user fees |
 | **Deployment** | Self-hosted, Docker, K8s | Self-hosted / Cloud | SaaS only | SaaS only |
@@ -580,9 +497,7 @@ Thanos extends Prometheus with object storage (S3, GCS, Azure Blob) for long-ter
 
 ## Limitations / Honest Assessment
 
-Prometheus is not a universal monitoring solution. Be aware of these constraints before committing:
-
-1. **No native log aggregation**: Prometheus handles metrics, not logs. You need Loki, ELK, or Fluentd for log management. The "metrics, logs, traces" trilogy requires additional tools.
+Prometheus is not a universal monitoring solution. Be aware of these constraints before committing: 1. **No native log aggregation**: Prometheus handles metrics, not logs. You need Loki, ELK, or Fluentd for log management. The "metrics, logs, traces" trilogy requires additional tools.
 
 2. **Single-node limitations**: A single Prometheus server can handle roughly 100,000–300,000 samples/second depending on hardware. Beyond that, you need federation or remote-write solutions like Thanos, Cortex, or VictoriaMetrics.
 
@@ -635,9 +550,7 @@ Prometheus remains the gold standard for cloud-native monitoring in 2026. With 6
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -655,7 +568,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [CNCF Prometheus Project Page](https://www.cncf.io/projects/prometheus/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -681,8 +593,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [trivy-production-security-scanner-2026](prometheus)
@@ -691,6 +603,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [12-factor-agents](prometheus)
 - [12-factor-agents](prometheus)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

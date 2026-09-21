@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/preset-superset-data-exploration" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/preset-superset-data-exploration" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/preset-superset-data-exploration" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/preset-superset-data-exploration" />
 title: 'Apache Superset 2026: 拥有50多种图表类型的开源数据探索平台 — 自托管指南'
 description: 'Apache Superset 2026 完整指南 — 5分钟内通过Docker安装，连接30多个数据源，构建50多种图表类型，并部署具有基于角色的访问控制的生产级仪表板。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: ['apache superset', 数据可视化, 商业智能, 仪表板, 开源, docker, sql, 数据分析]
-aliases:
-- /zh/posts/preset-superset-data-exploration/
+aliases: - /zh/posts/preset-superset-data-exploration/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/preset-superset-data-exploration/ -->
 
 {{</* resource-info */>}}
 
@@ -52,7 +44,13 @@ Apache Superset是一个开源数据探索和可视化平台，可连接SQL数�
 Superset的架构在展示层、元数据和查询执行之间保持清晰的分离：
 
 | 组件 | 用途 | 技术栈 |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | Superset应用服务器 | UI、API、查询编排 | Flask + React |
 | 元数据库 | 存储仪表板、图表、用户数据 | PostgreSQL / MySQL |
 | 缓存层 | 查询结果缓存 | Redis / Memcached |
@@ -120,11 +118,8 @@ docker compose restart superset
 
 ```yaml
 # docker-compose.prod.yml
-services:
-  superset:
-    image: apache/superset:5.0.0
-    environment:
-      - DATABASE_DB=superset
+services: superset: image: apache/superset:5.0.0
+    environment: - DATABASE_DB=superset
       - DATABASE_HOST=your-postgres-host.internal
       - DATABASE_PASSWORD=${DB_PASSWORD}
       - DATABASE_USER=superset
@@ -132,13 +127,9 @@ services:
       - REDIS_PORT=6379
       - SUPERSET_SECRET_KEY=${SUPERSET_SECRET_KEY}
       - SQLALCHEMY_DATABASE_URI=postgresql://superset:${DB_PASSWORD}@your-postgres-host.internal:5432/superset
-    ports:
-      - "8088:8088"
-    deploy:
-      replicas: 2
-      resources:
-        limits:
-          memory: 2G
+    ports: - "8088:8088"
+    deploy: replicas: 2
+      resources: limits: memory: 2G
 ```
 
 **自托管提示**：如需可靠的VPS来运行Superset，[DigitalOcean](https://m.do.co/c/eca87ac14ee0)提供每月12美元起的2 GB内存Droplet，支持一键Docker部署。使用我们的推荐链接可获得60天内200美元的额度。
@@ -214,7 +205,15 @@ duckdb:///path/to/local/database.db
 ### 性能数据
 
 | 指标 | Superset + PostgreSQL | Superset + BigQuery | Superset + Druid |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 仪表板加载（已缓存） | 120毫秒 | 180毫秒 | 95毫秒 |
 | 仪表板加载（缓存未命中） | 3.2秒 | 4.1秒 | 1.8秒 |
 | 并发用户（2 CPU） | 45 | 38 | 60 |
@@ -330,7 +329,17 @@ find /backups -name "superset-*.sql" -mtime +7 -delete
 ## 与替代品对比
 
 | 功能 | Apache Superset | Tableau | Metabase | Grafana |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 许可证 | Apache-2.0 | 专有 | AGPL / 商业 | AGPL |
 | 自托管 | 是 | 否（仅Server） | 是 | 是 |
 | GitHub星标 | 66,000 | 不适用 | 41,000 | 66,500 |
@@ -401,10 +410,8 @@ Apache Superset是2026年最强大的开源BI平台。凭借50多种图表类型
 
 加入我们的数据工程师Telegram群组：**t.me/dibi8** —— 分享你的Superset仪表板、提问并获得5,000多名数据专业人士的帮助。
 
+
 ---
-
-
-
 ## 推荐部署与基础设施
 
 上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：
@@ -429,7 +436,6 @@ Apache Superset是2026年最强大的开源BI平台。凭借50多种图表类型
 *联盟披露：本文包含DigitalOcean的联盟链接。如果你使用我们的链接注册，我们会收到佣金，而你无需支付额外费用。我们只推荐我们自己使用的服务。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -457,25 +463,20 @@ Apache Superset是2026年最强大的开源BI平台。凭借50多种图表类型
 
 ## Why This Matters
 
-Understanding apache superset 2026: 拥有50多种图表类型的开源数据探索平台 — 自托管指南 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding apache superset 2026: 拥有50多种图表类型的开源数据探索平台 — 自托管指南 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

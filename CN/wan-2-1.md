@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/wan-2-1" />
 title: 'Wan 2.1: 16.1K+ Stars — Open Video Generation Deep Dive ...
 description: 'Wan 2.1 is an open suite of video foundation models by Alibaba with SOTA performance. Supports ComfyUI, Diffusers, and Gradio. Covers T2V, I2V, video editing, and text generation with 1.3B and 14B parameter variants.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: ['wan-2-1', 'video-generation', 'diffusion-transformer', 'ai-video', 'open-source', alibaba, comfyui, diffusers]
-aliases:
-- /posts/wan-2-1/
+aliases: - /posts/wan-2-1/-
 ---
-
 {{</* resource-info */>}}
 
 ![Wan 2.1 Feature Image](https://raw.githubusercontent.com/dibi8/articles/main/wan-2-1/feature.jpg)
@@ -44,9 +40,7 @@ Wan 2.1 is an open and advanced large-scale video generative model suite release
 
 ### Architecture Overview
 
-Wan 2.1 is built on the Diffusion Transformer (DiT) paradigm with Flow Matching, the same architectural family used by Stable Diffusion 3 and subsequent image generation models. The architecture has three core components:
-
-**Wan-VAE (Video Variational Autoencoder):** A 3D causal VAE that encodes and decodes video with 256x spatio-temporal compression. Unlike standard image VAEs, Wan-VAE preserves temporal causality — meaning frames only attend to previous frames, not future ones. This eliminates the flickering artifacts common in early video generation models. Wan-VAE can encode 1080P video of any length without losing temporal information, making it suitable for long-form video tasks beyond the base model's 81-frame generation window.
+Wan 2.1 is built on the Diffusion Transformer (DiT) paradigm with Flow Matching, the same architectural family used by Stable Diffusion 3 and subsequent image generation models. The architecture has three core components: **Wan-VAE (Video Variational Autoencoder):** A 3D causal VAE that encodes and decodes video with 256x spatio-temporal compression. Unlike standard image VAEs, Wan-VAE preserves temporal causality — meaning frames only attend to previous frames, not future ones. This eliminates the flickering artifacts common in early video generation models. Wan-VAE can encode 1080P video of any length without losing temporal information, making it suitable for long-form video tasks beyond the base model's 81-frame generation window.
 
 **Diffusion Transformer (DiT):** The generation backbone uses a standard transformer with cross-attention for text conditioning. Each transformer block processes spatio-temporal patches and applies text guidance through T5 encoder embeddings. The MLP modulation uses a shared MLP across all blocks with per-block learned biases, an optimization that improved quality at the same parameter scale.
 
@@ -55,7 +49,17 @@ Wan 2.1 is built on the Diffusion Transformer (DiT) paradigm with Flow Matching,
 ### Model Specifications
 
 | Model | Parameters | Resolution | VRAM (single GPU) | Typical Generation Time |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | T2V-1.3B | 1.3B | 480P | 8.19 GB | ~4 min on RTX 4090 |
 | T2V-14B | 14B | 480P / 720P | 40–48 GB (480P fp8) | ~4 min on H100 (480P) |
 | I2V-14B | 14B | 480P / 720P | 65–80 GB (720P) | ~10–12 min on H100 (720P) |
@@ -86,9 +90,7 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-The `requirements.txt` includes:
-
-```
+The `requirements.txt` includes: ```
 torch>=2.4.0
 torchvision>=0.19.0
 opencv-python>=4.9.0.80
@@ -114,9 +116,7 @@ poetry install
 
 ### Model Download
 
-Download models using the HuggingFace CLI:
-
-```bash
+Download models using the HuggingFace CLI: ```bash
 # Install huggingface-cli
 pip install "huggingface_hub[cli]"
 
@@ -133,9 +133,7 @@ huggingface-cli download Wan-AI/Wan2.1-VAE --local-dir ./Wan2.1-VAE
 huggingface-cli download Wan-AI/Wan2.1-T5 --local-dir ./Wan2.1-T5
 ```
 
-Or use ModelScope for faster downloads from China:
-
-```bash
+Or use ModelScope for faster downloads from China: ```bash
 pip install modelscope
 modelscope download Wan-AI/Wan2.1-T2V-14B --local_dir ./Wan2.1-T2V-14B
 ```
@@ -179,9 +177,7 @@ python t2v_1.3B_singleGPU.py \
 
 ### ComfyUI Integration
 
-Wan 2.1 has native ComfyUI integration. The recommended approach uses the ComfyUI-WanVideoWrapper custom nodes by Kijai:
-
-```bash
+Wan 2.1 has native ComfyUI integration. The recommended approach uses the ComfyUI-WanVideoWrapper custom nodes by Kijai: ```bash
 # Install custom nodes
 cd ComfyUI/custom_nodes
 git clone https://github.com/Kijai/ComfyUI-WanVideoWrapper.git
@@ -193,9 +189,7 @@ cd ComfyUI-WanVideoWrapper
 pip install -r requirements.txt
 ```
 
-Download the model files and place them in the appropriate ComfyUI directories:
-
-```bash
+Download the model files and place them in the appropriate ComfyUI directories: ```bash
 # Diffusion models -> ComfyUI/models/diffusion_models
 # Wan2_1-T2V-14B_fp8_e4m3fn.safetensors
 # Wan2_1-T2V-1_3B_fp32.safetensors
@@ -211,9 +205,7 @@ Download the model files and place them in the appropriate ComfyUI directories:
 
 ### Diffusers Integration
 
-Wan 2.1 is available through HuggingFace Diffusers:
-
-```python
+Wan 2.1 is available through HuggingFace Diffusers: ```python
 import torch
 from diffusers.utils import export_to_video
 from diffusers import AutoencoderKLWan, WanPipeline
@@ -269,9 +261,7 @@ export_to_video(output, "output.mp4", fps=16)
 
 ### Multi-GPU Inference with FSDP + xDiT
 
-For production deployments, Wan 2.1 supports distributed inference:
-
-```bash
+For production deployments, Wan 2.1 supports distributed inference: ```bash
 # Install xDiT
 pip install "xfuser>=0.4.1"
 
@@ -310,9 +300,7 @@ python generate.py \
 
 ### Prompt Extension for Better Results
 
-Wan 2.1 includes an optional prompt extension feature that uses Qwen models to expand short prompts into detailed descriptions:
-
-```bash
+Wan 2.1 includes an optional prompt extension feature that uses Qwen models to expand short prompts into detailed descriptions: ```bash
 # Using local Qwen model
 python generate.py \
   --task t2v-14B \
@@ -342,10 +330,16 @@ Wan 2.1 was evaluated across 14 major dimensions and 26 sub-dimensions using 1,0
 
 ### GPU Performance Benchmarks
 
-Performance across different GPUs (total time in seconds / peak GPU memory in GB):
-
-| GPU | 1.3B 480P | 14B 480P | 14B 720P |
-|---|---|---|---|
+Performance across different GPUs (total time in seconds / peak GPU memory in GB): | GPU | 1.3B 480P | 14B 480P | 14B 720P |
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | RTX 4090 (24GB) | 281s / 8.2GB | Not supported | Not supported |
 | A5000 (24GB) | 462s / 8.2GB | Not supported | Not supported |
 | A40 (48GB) | 350s / 8.2GB | 1083s / 42GB | Not supported |
@@ -355,10 +349,20 @@ Performance across different GPUs (total time in seconds / peak GPU memory in GB
 
 ### Real-World Production Costs
 
-For teams evaluating cloud GPU costs for video generation (as of early 2026):
-
-| Model | Resolution | Duration | Gen Time | GPU Cost | Cost per clip |
-|---|---|---|---|---|---|
+For teams evaluating cloud GPU costs for video generation (as of early 2026): | Model | Resolution | Duration | Gen Time | GPU Cost | Cost per clip |
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Wan 2.1 1.3B | 480P | 5s | ~4 min | RTX 4090 local | ~$0.02 (electricity) |
 | Wan 2.1 14B | 480P | 5s | ~4 min | $2.50/hr (H100) | ~$0.17 |
 | Wan 2.1 14B | 720P | 5s | ~10 min | $2.50/hr (H100) | ~$0.42 |
@@ -376,9 +380,7 @@ For teams evaluating cloud GPU costs for video generation (as of early 2026):
 
 ### FP8 Quantization for VRAM Reduction
 
-For running the 14B model on limited VRAM:
-
-```bash
+For running the 14B model on limited VRAM: ```bash
 # FP8 quantization reduces VRAM by ~20%
 python generate.py \
   --task t2v-14B \
@@ -392,7 +394,13 @@ python generate.py \
 ### VRAM Optimization Flags
 
 | Flag | Description | VRAM Impact |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | `--offload_model True` | Offload transformer to CPU between steps | -15–20GB |
 | `--t5_cpu` | Run T5 encoder on CPU | -2–3GB |
 | `--dit_fsdp` | Shard DiT across GPUs | Divides by GPU count |
@@ -417,25 +425,20 @@ EXPOSE 7860
 CMD ["python", "gradio/t2v_14B_singleGPU.py", "--ckpt_dir", "./Wan2.1-T2V-14B"]
 ```
 
-Build and run:
-
-```bash
+Build and run: ```bash
 docker build -t wan2.1 .
 docker run --gpus all -p 7860:7860 wan2.1
 ```
 
 ### Monitoring Generation Jobs
 
-For production deployments, wrap generation in a monitoring script:
-
-```python
+For production deployments, wrap generation in a monitoring script: ```python
 import time
 import psutil
 import torch
 from wan.utils.generation import generate_video
 
-def generate_with_monitoring(prompt, **kwargs):
-    process = psutil.Process()
+def generate_with_monitoring(prompt, **kwargs): process = psutil.Process()
     start_mem = process.memory_info().rss / 1024**3
     start_time = time.time()
     
@@ -454,9 +457,7 @@ def generate_with_monitoring(prompt, **kwargs):
 
 ### LoRA Fine-Tuning
 
-Community tools like DiffSynth-Studio support LoRA training on Wan 2.1 for style-specific video generation:
-
-```bash
+Community tools like DiffSynth-Studio support LoRA training on Wan 2.1 for style-specific video generation: ```bash
 # Install DiffSynth-Studio
 pip install diffsynth-studio
 
@@ -472,7 +473,17 @@ python -m diffsynth.train \
 ## Comparison with Alternatives
 
 | Feature | Wan 2.1 | HunyuanVideo | CogVideoX-1.5-5B | Open-Sora 2.0 |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Parameters** | 1.3B / 14B | ~13B | 5B | 7B |
 | **Min VRAM (T2V)** | 8.19GB (1.3B) | 12GB (quantized) | 5GB (diffusers) | 24GB |
 | **Max Resolution** | 720P | 1080P | 1360x768 | 768P |
@@ -497,9 +508,7 @@ python -m diffsynth.train \
 
 ## Limitations / Honest Assessment
 
-Wan 2.1 is not a magic wand. Here is what the spec sheets do not tell you:
-
-**Clip length is hard-capped at ~5 seconds.** The model was trained on 81 frames at 16 FPS. Attempting to generate longer clips through sliding window or autoregressive approaches produces visible drift and quality degradation after frame 81.
+Wan 2.1 is not a magic wand. Here is what the spec sheets do not tell you: **Clip length is hard-capped at ~5 seconds.** The model was trained on 81 frames at 16 FPS. Attempting to generate longer clips through sliding window or autoregressive approaches produces visible drift and quality degradation after frame 81.
 
 **720P on the 14B model is H100-only.** The official README states 720P support, but in practice you need 65–80GB of VRAM. An RTX 4090 (24GB) cannot run 720P even with quantization. For consumer GPUs, 480P is the realistic ceiling.
 
@@ -562,9 +571,7 @@ Join the [dibi8 Telegram group](https://t.me/dibi8channel) for weekly AI tool de
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -583,7 +590,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [Open-Sora 2.0 Technical Report](https://arxiv.org/abs/2503.09642)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -609,8 +615,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [stable-diffusion-complete-guide](wan-2-1)
@@ -619,6 +625,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [comfyui-workflows-complete-guide](wan-2-1)
 - [2026-05-25-trending-ai-agents](wan-2-1)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

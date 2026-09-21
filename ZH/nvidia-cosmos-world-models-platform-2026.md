@@ -1,22 +1,14 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/nvidia-cosmos-world-models-platform-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/nvidia-cosmos-world-models-platform-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/nvidia-cosmos-world-models-platform-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/nvidia-cosmos-world-models-platform-2026" />
 title: 'NVIDIA Cosmos：面向物理AI的开源世界模型（10K+星标）'
 description: 'NVIDIA Cosmos 是一个开源的世界模型平台，包含数据集和工具，用于构建物理AI——机器人、自动驾驶汽车、智能基础设施。Cosmos 3 采用混合Transformer架构，统一支持语言、图像、视频、音频和行动生成。提供16B和64B两种模型。'
 date: 2026-06-13
-lastmod:  2026-06-13slug: 'nvidia-cosmos-world-models-platform-2026'
+lastmod: 2026-06-13
+slug: 'nvidia-cosmos-world-models-platform-2026'
 category: ai-tools
 tags: ['nvidia-cosmos', 'world-models', 'physical-ai', 'robotics', 'video-generation', 'multimodal', 'mixture-of-transformers', 'open-source', 'ai-simulation']
 github_repo: 'https://github.com/NVIDIA/cosmos'
 license: 'Apache-2.0'
-lang: zh
-featureImage: /articles/nvidia-cosmos-open-source-world-models-for-physical-ai-10k-s.jpg/images/articles/nvidia-cosmos-open-source-world-models-for-physical-ai-10k-s.jpg
----
-
-<!-- canonical: https://dibi8.com/zh/tools/nvidia-cosmos-world-models-platform-2026/ -->
+featureImage: /articles/nvidia-cosmos-open-source-world-models-for-physical-ai-10k-s.jpg/images/articles/nvidia-cosmos-open-source-world-models-for-physical-ai-10k-s.jpg---
 
 ![NVIDIA Cosmos 平台](https://raw.githubusercontent.com/NVIDIA/cosmos/main/cookbooks/cosmos3/cosmos3-model-architecture.png)
 
@@ -35,8 +27,7 @@ Cosmos 3 是 NVIDIA 最新的模型家族，基于统一的混合Transformer（M
 NVIDIA Cosmos 是一个**面向构建物理AI系统的世界模型、数据集和工具的开放平台**。它超越了传统AI的能力边界：
 
 ```
-传统AI:              Cosmos:
-  输入 → 输出       →  输入 → 推理 → 输出
+传统AI: Cosmos: 输入 → 输出       →  输入 → 推理 → 输出
   （图片进入，        （理解物理规律，
    描述出来）         预测未来，
                      生成行动）
@@ -51,7 +42,13 @@ NVIDIA Cosmos 是一个**面向构建物理AI系统的世界模型、数据集�
 Cosmos 3 模型家族包括：
 
 | 模型 | 规模 | 能力 |
-|---------|---------|------------|
+|
+---
+|
+---
+|
+---
+|
 | Cosmos3-Nano | 16B | 紧凑型多模态模型，用于理解和模拟 |
 | Cosmos3-Super | 64B | 前沿规模模型，用于高级多模态任务 |
 | Cosmos3-Super-Text2Image | 64B | 高保真文本到图像生成 |
@@ -236,7 +233,11 @@ result = run_inference(
 ### 支持的生成设置
 
 | 参数 | 选项 |
-|-----------|---------|
+|
+---
+|
+---
+|
 | 分辨率 | 256p、480p、720p（默认：480p） |
 | 宽高比 | 16:9、4:3、1:1、3:4、9:16（默认：16:9） |
 | 帧率 | 10、16、24、30 FPS（默认：24） |
@@ -358,7 +359,17 @@ training_config = {
 ## 与替代方案对比
 
 | 特性 | NVIDIA Cosmos | Runway Gen-3 | Sora | Pika Labs |
-|---------|--------------|-------------|------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **开源** | ✅ 是 | ❌ 专有 | ❌ 专有 | ❌ 专有 |
 | **推理模式** | ✅ 内置 | ❌ | ❌ | ❌ |
 | **行动生成** | ✅ 内置 | ❌ | ❌ | ❌ |
@@ -371,7 +382,15 @@ training_config = {
 | **许可证** | Apache-2.0 | 专有 | 专有 | 专有 |
 
 | 特性 | NVIDIA Cosmos | Stable Video Diffusion | Luma Dream Machine |
-|---------|--------------|----------------------|------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **开源** | ✅ 是 | ✅ 是 | ❌ 专有 |
 | **多模态** | ✅ 文本+图像+视频+音频+行动 | ❌ 仅图生视频 | ❌ 仅文生视频 |
 | **物理推理** | ✅ 内置 | ❌ | ❌ |
@@ -384,7 +403,17 @@ training_config = {
 Cosmos 3模型在多个基准上进行了评估：
 
 | 基准 | Cosmos3-Nano | Cosmos3-Super | Runway Gen-3 | Sora |
-|-----------|-------------|---------------|-------------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | VideoFID（↓） | 8.2 | 5.1 | 6.3 | 4.8 |
 | CLIP-I 分数（↑） | 0.89 | 0.93 | 0.91 | 0.92 |
 | 物理合理性（↑） | 0.76 | 0.89 | 不适用 | 不适用 |
@@ -395,7 +424,17 @@ Cosmos 3模型在多个基准上进行了评估：
 ### 推理速度
 
 | 模型 | 分辨率 | 帧数 | GPU | 时间 |
-|-------|-----------|-------------|-----|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Cosmos3-Nano | 480p | 189帧 | 1×H100 | ~45秒 |
 | Cosmos3-Nano | 720p | 189帧 | 1×H100 | ~90秒 |
 | Cosmos3-Super | 480p | 189帧 | 1×H100 | ~180秒 |
@@ -446,16 +485,16 @@ NVIDIA Cosmos代表了我们在AI和物理世界交互方式上的根本性转�
 
 如果你正在构建物理AI系统，Cosmos应该成为你研究清单上的首选。
 
----
 
+---
 **来源与延伸阅读**：
 - 技术报告：https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf
 - Cosmos 3 模型：https://huggingface.co/collections/nvidia/cosmos3
 - Cosmos 框架：https://github.com/NVIDIA/cosmos-framework
 - 官网：https://www.nvidia.com/en-us/ai/cosmos/
 
----
 
+---
 **体验 NVIDIA Cosmos**：访问 [nvidia.com/en-us/ai/cosmos/](https://www.nvidia.com/en-us/ai/cosmos/) 获取引导式体验，或克隆 [github.com/NVIDIA/cosmos-framework](https://github.com/NVIDIA/cosmos-framework) 获取完整框架。
 
 加入社区：[Telegram](https://t.me/DIBI8_Group) · [HuggingFace](https://huggingface.co/collections/nvidia/cosmos3)
@@ -465,7 +504,6 @@ NVIDIA Cosmos代表了我们在AI和物理世界交互方式上的根本性转�
 **披露声明**：本文提及的工具可能存在联盟关系。我们不接受付费正面评价。所有基准测试均为自行实施或源自官方文档。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -493,25 +531,20 @@ NVIDIA Cosmos代表了我们在AI和物理世界交互方式上的根本性转�
 
 ## Why This Matters
 
-Understanding nvidia cosmos：面向物理ai的开源世界模型（10k+星标） is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding nvidia cosmos：面向物理ai的开源世界模型（10k+星标） is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -554,7 +587,17 @@ For the latest updates and community discussions, join our Telegram channel: htt
 ## Trading Bot Comparison
 
 | Bot | Exchange | Strategy | Cost | Difficulty |
-|-----|----------|----------|------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Freqtrade** | Multi | Custom | Free | Medium |
 | **Hummingbot** | DEX/CEX | Market making | Free | Hard |
 | **Jesse** | Crypto | Backtesting | Free | Medium |

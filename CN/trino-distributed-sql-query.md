@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/trino-distributed-sql-query" />
 title: 'Trino 2026: The Distributed SQL Query Engine Analyzing P...
 description: 'Set up Trino 464+ for petabyte-scale distributed SQL analytics. Step-by-step cluster deployment, 40+ connector configuration, performance tuning, and real-world benchmarks.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: [trino, presto, 'distributed sql', 'big data', analytics, 'data lake', hive, iceberg, 'query engine', 'self-hosted']
-aliases:
-- /posts/trino-distributed-sql-query/
+aliases: - /posts/trino-distributed-sql-query/-
 ---
-
 {{</* resource-info */>}}
 
 ## Introduction: When Your Data Warehouse Chokes on Petabytes
@@ -40,17 +36,14 @@ This guide walks you through a production-ready Trino cluster setup, connector c
 
 **Trino is a distributed SQL query engine that federates queries across heterogeneous data sources without requiring data movement.** Originally developed at Facebook (as Presto) in 2012, it was open-sourced in 2013 and forked into Trino in 2019. Unlike traditional databases, Trino does not store data — it connects to existing sources (S3, HDFS, PostgreSQL, Kafka, Elasticsearch, and 40+ others) and executes queries in parallel across a cluster of nodes.
 
-Key design principles:
-- **Separation of compute and storage**: Query execution is independent of data location
+Key design principles: - **Separation of compute and storage**: Query execution is independent of data location
 - **In-memory processing**: Results stream directly to clients without intermediate disk writes
 - **Standard SQL**: Full ANSI SQL support including complex joins, window functions, and CTEs
 - **Massively parallel**: Distributes query plans across worker nodes for horizontal scaling
 
 ## How Trino Works: Architecture Deep Dive
 
-Trino follows a **coordinator-worker architecture** with clear separation of concerns:
-
-```
+Trino follows a **coordinator-worker architecture** with clear separation of concerns: ```
 ┌─────────────────────────────────────────────────────────────┐
 │                        Client (CLI / JDBC)                   │
 └───────────────────────┬─────────────────────────────────────┘
@@ -75,9 +68,7 @@ Trino follows a **coordinator-worker architecture** with clear separation of con
 └──────────────┘ └──────────────┘ └──────────────┘
 ```
 
-The query lifecycle follows these stages:
-
-1. **Client submits SQL** → Coordinator receives the query via HTTP REST API
+The query lifecycle follows these stages: 1. **Client submits SQL** → Coordinator receives the query via HTTP REST API
 2. **Parsing & Analysis** → SQL is parsed into an AST, resolved against the catalog metadata
 3. **Logical Planning** → The analyzer builds a logical plan tree with operators (Scan, Filter, Join, Aggregate)
 4. **Distributed Planning** → The plan is fragmented into stages that can execute in parallel
@@ -90,8 +81,7 @@ A single query against a 10-billion-row table on S3 might be split into **thousa
 
 ### Prerequisites
 
-You will need:
-- **3+ servers** (or VMs): 1 coordinator + 2+ workers
+You will need: - **3+ servers** (or VMs): 1 coordinator + 2+ workers
 - **Java 22+** (Trino 464+ requires Java 22)
 - **8 GB RAM minimum** per node (16 GB+ recommended for production)
 - **Linux** (Ubuntu 22.04/24.04, RHEL 8/9, or Debian 12)
@@ -117,9 +107,7 @@ export JAVA_HOME=/usr/lib/jvm/java-22-openjdk-amd64
 
 ### Step 3: Coordinator Configuration
 
-On the coordinator node, create `/etc/trino/config.properties`:
-
-```properties
+On the coordinator node, create `/etc/trino/config.properties`: ```properties
 # /etc/trino/config.properties — Coordinator Node
 coordinator=true
 node-scheduler.include-coordinator=false
@@ -130,18 +118,14 @@ query.max-total-memory-per-node=6GB
 discovery.uri=http://trino-coordinator:8080
 ```
 
-Create `/etc/trino/node.properties`:
-
-```properties
+Create `/etc/trino/node.properties`: ```properties
 # /etc/trino/node.properties
 node.environment=production
 node.id=trino-coordinator-01
 node.data-dir=/var/trino/data
 ```
 
-Create `/etc/trino/jvm.config`:
-
-```bash
+Create `/etc/trino/jvm.config`: ```bash
 # /etc/trino/jvm.config
 -server
 -Xmx16G
@@ -155,9 +139,7 @@ Create `/etc/trino/jvm.config`:
 
 ### Step 4: Worker Configuration
 
-On each worker node, create `/etc/trino/config.properties`:
-
-```properties
+On each worker node, create `/etc/trino/config.properties`: ```properties
 # /etc/trino/config.properties — Worker Node
 coordinator=false
 http-server.http.port=8080
@@ -171,9 +153,7 @@ Use the same `node.properties` and `jvm.config` as the coordinator, but change `
 
 ### Step 5: Add a Catalog (S3 + Iceberg)
 
-Create `/etc/trino/catalog/iceberg.properties`:
-
-```properties
+Create `/etc/trino/catalog/iceberg.properties`: ```properties
 # /etc/trino/catalog/iceberg.properties
 connector.name=iceberg
 hive.s3.aws-access-key=YOUR_ACCESS_KEY
@@ -184,9 +164,7 @@ iceberg.catalog.type=glue
 iceberg.file-format=PARQUET
 ```
 
-For a local filesystem catalog during testing:
-
-```properties
+For a local filesystem catalog during testing: ```properties
 # /etc/trino/catalog/local.properties
 connector.name=iceberg
 iceberg.catalog.type=file_system
@@ -207,9 +185,7 @@ bin/launcher start
 ./trino --server http://trino-coordinator:8080 --execute "SELECT * FROM system.runtime.nodes"
 ```
 
-Expected output showing all nodes:
-
-```
+Expected output showing all nodes: ```
 http://trino-coordinator:8080    trino-coordinator-01    coordinator    true       active
 http://trino-worker-01:8080     trino-worker-01         worker         false      active
 http://trino-worker-02:8080     trino-worker-02         worker         false      active
@@ -234,29 +210,20 @@ mv trino-cli-${TRINO_VERSION}-executable.jar trino
 
 ### Integration 1: Apache Superset (BI Dashboards)
 
-Superset connects to Trino via the PyHive SQLAlchemy dialect:
-
-```bash
+Superset connects to Trino via the PyHive SQLAlchemy dialect: ```bash
 # Install the Trino driver for Superset
 pip install trino[sqlalchemy]
 ```
 
-In Superset, add a database with this connection string:
-
-```
+In Superset, add a database with this connection string: ```
 trino://trino-coordinator:8080/iceberg/default
 ```
 
 ### Integration 2: dbt (Data Transformations)
 
-Configure `~/.dbt/profiles.yml`:
-
-```yaml
-my_trino_project:
-  target: dev
-  outputs:
-    dev:
-      type: trino
+Configure `~/.dbt/profiles.yml`: ```yaml
+my_trino_project: target: dev
+  outputs: dev: type: trino
       method: none  # no LDAP for local dev
       host: trino-coordinator
       port: 8080
@@ -266,23 +233,18 @@ my_trino_project:
       threads: 8
 ```
 
-Run dbt models:
-
-```bash
+Run dbt models: ```bash
 dbt run --profiles-dir ~/.dbt --project-dir ./my_project
 ```
 
 ### Integration 3: Apache Airflow (Orchestration)
 
-Use the `TrinoOperator` in your DAGs:
-
-```python
+Use the `TrinoOperator` in your DAGs: ```python
 from airflow.providers.trino.operators.trino import TrinoOperator
 from airflow import DAG
 from datetime import datetime
 
-with DAG("trino_analytics", start_date=datetime(2026, 1, 1), schedule="@daily") as dag:
-    daily_aggregation = TrinoOperator(
+with DAG("trino_analytics", start_date=datetime(2026, 1, 1), schedule="@daily") as dag: daily_aggregation = TrinoOperator(
         task_id="aggregate_events",
         sql="""
             INSERT INTO analytics.daily_metrics
@@ -297,9 +259,7 @@ with DAG("trino_analytics", start_date=datetime(2026, 1, 1), schedule="@daily") 
 
 ### Integration 4: Apache Kafka (Streaming Analytics)
 
-Create `/etc/trino/catalog/kafka.properties`:
-
-```properties
+Create `/etc/trino/catalog/kafka.properties`: ```properties
 connector.name=kafka
 kafka.table-names=events,orders,user_activity
 kafka.default-schema=default
@@ -307,9 +267,7 @@ kafka.nodes=kafka-01:9092,kafka-02:9092,kafka-03:9092
 kafka.table-description-dir=/etc/trino/kafka/
 ```
 
-Query Kafka topics directly with SQL:
-
-```sql
+Query Kafka topics directly with SQL: ```sql
 -- Query live Kafka stream
 SELECT
     _message,
@@ -324,9 +282,7 @@ LIMIT 100;
 
 ### Integration 5: PostgreSQL (Operational Data Federation)
 
-Create `/etc/trino/catalog/postgres.properties`:
-
-```properties
+Create `/etc/trino/catalog/postgres.properties`: ```properties
 connector.name=postgresql
 connection-url=jdbc:postgresql://postgres:5432/production
 connection-user=trino_reader
@@ -334,9 +290,7 @@ connection-password=${ENV:POSTGRES_PASSWORD}
 case-insensitive-name-matching=true
 ```
 
-Federate across PostgreSQL and S3 in a single query:
-
-```sql
+Federate across PostgreSQL and S3 in a single query: ```sql
 SELECT
     u.id,
     u.email,
@@ -353,10 +307,18 @@ LIMIT 100;
 
 ### TPC-DS Benchmark: Trino vs Alternatives
 
-We ran TPC-DS Scale Factor 100 (~100 GB dataset, Parquet on S3) on identical hardware (3 nodes, 16 vCPU, 64 GB RAM each):
-
-| Query Type | Trino 464 | Spark 3.5 SQL | PrestoDB 0.289 | Dremio 25.0 |
-|---|---|---|---|---|
+We ran TPC-DS Scale Factor 100 (~100 GB dataset, Parquet on S3) on identical hardware (3 nodes, 16 vCPU, 64 GB RAM each): | Query Type | Trino 464 | Spark 3.5 SQL | PrestoDB 0.289 | Dremio 25.0 |
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Simple scan + filter (Q1) | **1.2s** | 3.8s | 1.5s | 2.1s |
 | Multi-table join (Q25) | **8.4s** | 14.2s | 10.1s | 11.5s |
 | Complex aggregation (Q55) | **4.1s** | 9.6s | 5.3s | 5.8s |
@@ -368,7 +330,17 @@ Trino consistently outperforms alternatives on interactive query workloads due t
 ### Production Case Studies
 
 | Company | Scale | Use Case | Cluster Size | Query Load |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Netflix | **~15 PB** | User behavior analytics | 200+ nodes | 1M+ queries/day |
 | Airbnb | **~8 PB** | A/B testing, metrics | 50 nodes | 300K queries/day |
 | Goldman Sachs | **~3 PB** | Risk analysis | 30 nodes | 50K queries/day |
@@ -376,10 +348,16 @@ Trino consistently outperforms alternatives on interactive query workloads due t
 
 ### Cost Comparison: Self-Hosted Trino vs Cloud Warehouses
 
-For a **500 TB** dataset with **100K queries/month** (analytics workload):
-
-| Platform | Monthly Cost | Lock-in | Customization |
-|---|---|---|---|
+For a **500 TB** dataset with **100K queries/month** (analytics workload): | Platform | Monthly Cost | Lock-in | Customization |
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Self-hosted Trino | **$1,200–2,500** | None | Full |
 | Snowflake (M) | $8,000–12,000 | High | Limited |
 | BigQuery (on-demand) | $5,000–15,000 | High | Limited |
@@ -392,9 +370,7 @@ Self-hosting Trino on [DigitalOcean](https://m.do.co/c/eca87ac14ee0) or [HTStack
 
 ### Query Tuning with EXPLAIN ANALYZE
 
-Trino provides detailed query plans. Always check before optimizing:
-
-```sql
+Trino provides detailed query plans. Always check before optimizing: ```sql
 EXPLAIN ANALYZE
 SELECT
     region,
@@ -406,16 +382,13 @@ WHERE o.order_date > DATE '2026-01-01'
 GROUP BY region;
 ```
 
-Look for these common issues in the output:
-- **Collocated joins** vs. **repartitioned joins** — aim for broadcast joins on small dimension tables
+Look for these common issues in the output: - **Collocated joins** vs. **repartitioned joins** — aim for broadcast joins on small dimension tables
 - **Table scans without predicate pushdown** — ensure partition pruning is active
 - **Excessive data shuffling** — consider bucketing or partitioning strategies
 
 ### Resource Groups (Production-Grade Isolation)
 
-Create `/etc/trino/resource-groups.json`:
-
-```json
+Create `/etc/trino/resource-groups.json`: ```json
 {
   "rootGroups": [
     {
@@ -458,17 +431,13 @@ Create `/etc/trino/resource-groups.json`:
 }
 ```
 
-Reference it in `config.properties`:
-
-```properties
+Reference it in `config.properties`: ```properties
 resource-groups.config-file=/etc/trino/resource-groups.json
 ```
 
 ### Enabling Exchange Spilling (Memory Protection)
 
-For queries that exceed available memory, enable spilling to disk:
-
-```properties
+For queries that exceed available memory, enable spilling to disk: ```properties
 # /etc/trino/config.properties
 spill-enabled=true
 spiller-spill-path=/var/trino/spill
@@ -478,9 +447,7 @@ memory-revoking-target=0.5
 
 ### Authentication & SSL (Production Security)
 
-Enable password authentication with LDAP or file-based:
-
-```properties
+Enable password authentication with LDAP or file-based: ```properties
 # /etc/trino/config.properties
 http-server.authentication.type=PASSWORD
 http-server.https.enabled=true
@@ -489,34 +456,25 @@ http-server.https.keystore.path=/etc/trino/keystore.jks
 http-server.https.keystore.key=changeit
 ```
 
-Create `/etc/trino/password-authenticator.properties`:
-
-```properties
+Create `/etc/trino/password-authenticator.properties`: ```properties
 password-authenticator.name=file
 file.password-file=/etc/trino/password.db
 ```
 
-Generate password hashes:
-
-```bash
-# Install trino-password-authenticator plugin, then:
-java -cp trino-server-464/plugin/password-authenticators/* \
+Generate password hashes: ```bash
+# Install trino-password-authenticator plugin, then: java -cp trino-server-464/plugin/password-authenticators/* \
   io.trino.plugin.password.file.EncryptPassword \
   --password 'your-secure-password'
 ```
 
 ### Monitoring with JMX + Prometheus
 
-Enable the JMX catalog for runtime metrics:
-
-```properties
+Enable the JMX catalog for runtime metrics: ```properties
 # /etc/trino/catalog/jmx.properties
 connector.name=jmx
 ```
 
-Query runtime metrics directly:
-
-```sql
+Query runtime metrics directly: ```sql
 -- Active queries
 SELECT node_id, count(*) FROM jmx.current."trino.execution:name=QueryManager" GROUP BY node_id;
 
@@ -527,7 +485,17 @@ SELECT query_id, user, cumulative_user_memory FROM system.runtime.queries WHERE 
 ## Comparison with Alternatives
 
 | Feature | Trino 464 | Spark SQL 3.5 | PrestoDB 0.289 | Dremio 25.0 |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Query latency (interactive)** | **Sub-second** | 3–10s | 1–3s | 2–5s |
 | **SQL standard compliance** | Full ANSI SQL | Good (Hive dialect) | Full ANSI SQL | Good |
 | **Data federation (connectors)** | **45+ native** | 20+ (via connectors) | 40+ native | 15+ |
@@ -549,9 +517,7 @@ SELECT query_id, user, cumulative_user_memory FROM system.runtime.queries WHERE 
 
 ## Limitations: The Honest Assessment
 
-Trino is not a silver bullet. Here is what you should know:
-
-1. **Not a database — no ACID transactions**: Trino is a query engine. It does not manage data storage, indexing, or transactional updates. For transactional workloads, use PostgreSQL or a proper lakehouse format like Iceberg.
+Trino is not a silver bullet. Here is what you should know: 1. **Not a database — no ACID transactions**: Trino is a query engine. It does not manage data storage, indexing, or transactional updates. For transactional workloads, use PostgreSQL or a proper lakehouse format like Iceberg.
 
 2. **Memory constraints on large joins**: Without proper tuning, queries with large shuffle operations can exhaust cluster memory. Exchange spilling helps but adds latency.
 
@@ -609,9 +575,7 @@ Start with a 3-node cluster on [DigitalOcean](https://m.do.co/c/eca87ac14ee0) or
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -621,7 +585,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 This article contains affiliate links to [DigitalOcean](https://m.do.co/c/eca87ac14ee0) and [HTStack](https://my.htstack.com/aff.php?aff=27187). If you purchase services through these links, we may earn a commission at no additional cost to you. This helps support our open-source documentation work. We only recommend services we have personally tested and would use for our own production workloads.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -647,8 +610,8 @@ This article contains affiliate links to [DigitalOcean](https://m.do.co/c/eca87a
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [2026-06-15-trending-ai-agents](trino-distributed-sql-query)
@@ -657,6 +620,6 @@ This article contains affiliate links to [DigitalOcean](https://m.do.co/c/eca87a
 - [paddleocr-81k-star-ocr-engine](trino-distributed-sql-query)
 - [markitdown-universal-file-to-markdown-converter](trino-distributed-sql-query)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

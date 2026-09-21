@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/mastra" />
 title: 'Mastra: 24K+ Stars — TypeScript AI Framework That Cuts T...
 description: 'Mastra is a TypeScript-native AI framework for building AI-powered applications and agents from the Gatsby team. Covers Mastra vs LangChain, installation, workflows, RAG, memory, observability, benchmarks, and production hardening.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [mastra, typescript, 'ai-framework', agents, llm, 'mastra-tutorial', 'mastra-vs-langchain', 'open-source']
-aliases:
-- /posts/mastra/
+aliases: - /posts/mastra/-
 ---
-
 {{</* resource-info */>}}
 
 Most AI frameworks are built for Python. If your stack runs on TypeScript and Node.js, you either bridge languages or accept a sub-par developer experience. That changed when the Gatsby team launched Mastra — a TypeScript-native framework for building AI agents that reached **24,050 GitHub stars** by May 2026 and is now used in production at Replit, PayPal, and Sanity. This article covers everything you need to install Mastra, build your first agent, and understand how its Observational Memory reduces token costs by 4-10x compared to traditional RAG approaches.
@@ -42,9 +38,7 @@ The core idea is simple: agents handle open-ended conversational tasks with tool
 
 ## How Mastra Works — Architecture and Core Concepts
 
-Mastra's architecture revolves around six building blocks that mirror what production AI systems actually need:
-
-### Agents
+Mastra's architecture revolves around six building blocks that mirror what production AI systems actually need: ### Agents
 Agents are the primary actors. You give them instructions, a model, and access to tools. They decide what to call, when to stop, and how to respond. Agents expose `.generate()` for complete responses and `.stream()` for real-time token streaming — essential for chat UIs where users expect to see responses form progressively.
 
 ### Workflows
@@ -91,8 +85,7 @@ Mastra requires Node.js 22.13.0 or later. The recommended path is the CLI wizard
 # Scaffold a new Mastra project with the interactive CLI
 npm create mastra@latest
 
-# The wizard prompts for:
-# - Project name
+# The wizard prompts for: # - Project name
 # - Components (agents, workflows, RAG, memory)
 # - LLM provider (OpenAI, Anthropic, Google, etc.)
 # - Whether to include example code
@@ -100,9 +93,7 @@ npm create mastra@latest
 
 ### Step 2: Manual Installation (Alternative)
 
-If you prefer to add Mastra to an existing project:
-
-```bash
+If you prefer to add Mastra to an existing project: ```bash
 # Install core package with Zod for schema validation
 npm install @mastra/core@latest zod@^4
 
@@ -329,9 +320,7 @@ npx mastra start
 
 ### Vercel AI SDK Integration
 
-Mastra is built on the Vercel AI SDK. You can drop down to the SDK for low-level control:
-
-```typescript
+Mastra is built on the Vercel AI SDK. You can drop down to the SDK for low-level control: ```typescript
 // Mastra uses AI SDK providers under the hood
 import { openai } from '@ai-sdk/openai';
 import { anthropic } from '@ai-sdk/anthropic';
@@ -380,16 +369,20 @@ const agent = new Agent({
 
 ### Token Cost Reduction — The 4-10x Claim
 
-Mastra's Observational Memory is the headline feature for production economics. Here's how the numbers break down:
-
-**The Problem:** Traditional RAG-based memory systems dynamically retrieve different context on every turn. Each retrieval changes the prompt prefix, invalidating the prompt cache. With Anthropic and OpenAI both offering 90% discounts on cached prompt tokens, every cache miss represents a 10x cost penalty on the cached portion.
+Mastra's Observational Memory is the headline feature for production economics. Here's how the numbers break down: **The Problem:** Traditional RAG-based memory systems dynamically retrieve different context on every turn. Each retrieval changes the prompt prefix, invalidating the prompt cache. With Anthropic and OpenAI both offering 90% discounts on cached prompt tokens, every cache miss represents a 10x cost penalty on the cached portion.
 
 **The Solution:** Observational Memory divides context into two blocks — compressed observations (append-only until reflection runs) and raw recent messages. The observations block stays consistent across turns, making it fully cacheable.
 
 ### Compression Ratios by Workload
 
 | Workload Type | Compression Ratio | Example Scenario |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | Text-only conversations | 3-6x | Customer support chat |
 | Tool-call-heavy agents | 5-40x | Browser automation, coding agents |
 | Agents with large screenshots/files | 10-40x | Playwright DOM snapshots |
@@ -397,7 +390,13 @@ Mastra's Observational Memory is the headline feature for production economics. 
 ### LongMemEval Benchmark Results
 
 | Memory System | GPT-4o Score | GPT-5-mini Score |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | Mastra Observational Memory | 84.23% | 94.87% |
 | Mastra RAG (baseline) | 80.05% | — |
 | Traditional conversation history | ~72% | — |
@@ -407,7 +406,15 @@ A browser automation agent that captures Playwright screenshots can compress 200
 ### Developer Experience Benchmark
 
 | Framework | DX Score (1-10) | Setup Time | Time to First Agent |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Mastra | 9/10 | < 5 min | Minutes |
 | LangChain (Python) | 5/10 | 15-30 min | Hours |
 | CrewAI | 6/10 | 10-15 min | 30 min |
@@ -564,34 +571,34 @@ CMD ["node", ".mastra/output/index.mjs"]
 ```yaml
 # docker-compose.yml
 version: '3.8'
-services:
-  mastra:
-    build: .
-    ports:
-      - "4111:4111"
-    environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
+services: mastra: build: .
+    ports: - "4111:4111"
+    environment: - OPENAI_API_KEY=${OPENAI_API_KEY}
       - DATABASE_URL=postgresql://postgres:postgres@db:5432/mastra
-    depends_on:
-      - db
+    depends_on: - db
 
-  db:
-    image: pgvector/pgvector:pg17
-    environment:
-      POSTGRES_USER: postgres
+  db: image: pgvector/pgvector:pg17
+    environment: POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: mastra
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+    volumes: - pgdata:/var/lib/postgresql/data
 
-volumes:
-  pgdata:
-```
+volumes: pgdata: ```
 
 ## Comparison with Alternatives
 
 | Feature | Mastra | LangChain | CrewAI | Vercel AI SDK |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Primary Language** | TypeScript (99.2%) | Python (also JS) | Python | TypeScript |
 | **GitHub Stars** | 24,050 | 117,000 | 39,200 | N/A (part of Vercel) |
 | **Setup Time** | < 5 min | 15-30 min | 10-15 min | < 5 min (manual wiring) |
@@ -609,9 +616,7 @@ volumes:
 
 ## Limitations — Honest Assessment
 
-Mastra is not the right tool for every situation. Here is what the framework is NOT good at:
-
-**Python Ecosystem Lock-In:** If your entire data science stack is Python — pandas, NumPy, PyTorch, Jupyter — Mastra forces you to bridge two languages. The framework is TypeScript-only. For teams deeply invested in Python, LangChain or CrewAI remain more natural choices.
+Mastra is not the right tool for every situation. Here is what the framework is NOT good at: **Python Ecosystem Lock-In:** If your entire data science stack is Python — pandas, NumPy, PyTorch, Jupyter — Mastra forces you to bridge two languages. The framework is TypeScript-only. For teams deeply invested in Python, LangChain or CrewAI remain more natural choices.
 
 **Smaller Integration Ecosystem:** LangChain has 100+ LLM integrations and 50+ vector stores. Mastra supports 40+ providers and covers the major vector databases, but if you need an obscure model or a niche vector store, you may need to write custom integration code.
 
@@ -664,9 +669,7 @@ If you are building AI features into a Next.js application, Node.js service, or 
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -690,7 +693,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [Vercel AI SDK Documentation](https://sdk.vercel.ai/docs)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -716,8 +718,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [12-factor-agents-production-llm-software-2026](mastra)
@@ -726,8 +728,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [9router-smart-llm-proxy-token-saver-free-coding](mastra)
 - [ai-engineering-from-scratch](mastra)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/arize-ai-observability-llm" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/arize-ai-observability-llm" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/arize-ai-observability-llm" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/arize-ai-observability-llm" />
 title: 'Arize AI Phoenix: Công cụ Giám sát LLM Mã nguồn mở Truy ...
 description: 'Hướng dẫn đầy đủ về Arize Phoenix năm 2026: giám sát LLM mã nguồn mở, truy vết RAG, quản lý phiên bản prompt, theo dõi token, và triển khai sản xuất với LangChain và LlamaIndex.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: [llm, 'giám sát', 'arize phoenix', rag, langchain, llamaindex, opentelemetry, python, docker, 'hạ tầng ai']
-aliases:
-- /vi/posts/arize-ai-observability-llm/
+aliases: - /vi/posts/arize-ai-observability-llm/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/arize-ai-observability-llm/ -->
 
 {{</* resource-info */>}}
 
@@ -53,9 +45,7 @@ Phoenix không chỉ là một trình xem log. Đó là **công cụ debug cấu
 
 ## Phoenix Hoạt Động Như Thế Nào: Kiến trúc & Khái niệm Cốt lõi
 
-Phoenix sử dụng **mô hình truy vết dựa trên span** phù hợp với OpenTelemetry. Mỗi thao tác trong pipeline LLM trở thành một span với các thuộc tính, sự kiện, và mối quan hệ cha-con. Kiến trúc được chia thành ba tầng:
-
-### Tầng Instrumentation
+Phoenix sử dụng **mô hình truy vết dựa trên span** phù hợp với OpenTelemetry. Mỗi thao tác trong pipeline LLM trở thành một span với các thuộc tính, sự kiện, và mối quan hệ cha-con. Kiến trúc được chia thành ba tầng: ### Tầng Instrumentation
 
 Phoenix cung cấp các gói instrumentation tự động cho framework Python. Khi bạn gọi một agent LangChain hoặc query engine LlamaIndex, Phoenix chặn cuộc gọi và tạo span cho mỗi thao tác con: tìm kiếm vector, tải tài liệu, định dạng prompt, gọi LLM, và xử lý sau. Bạn không cần viết mã log thủ công cho các tích hợp tiêu chuẩn.
 
@@ -81,9 +71,7 @@ UI Phoenix hiển thị trace dưới dạng flame graph tương tác. Bạn có
 
 ### Tùy chọn A: Khởi động nhanh với pip
 
-Cách nhanh nhất để chạy Phoenix trên máy local:
-
-```bash
+Cách nhanh nhất để chạy Phoenix trên máy local: ```bash
 python -m venv phoenix-env
 source phoenix-env/bin/activate
 
@@ -98,9 +86,7 @@ Sau khi chạy `launch_app()`, Phoenix khởi động một server nhúng tại 
 
 ### Tùy chọn B: Triển khai Docker (Sản xuất)
 
-Cho môi trường sản xuất hoặc nhóm, chạy Phoenix dưới dạng container:
-
-```bash
+Cho môi trường sản xuất hoặc nhóm, chạy Phoenix dưới dạng container: ```bash
 # Pull image chính thức
 docker pull arizephoenix/phoenix:latest
 
@@ -112,9 +98,7 @@ docker run -d \
   arizephoenix/phoenix:latest
 ```
 
-Xác minh triển khai:
-
-```bash
+Xác minh triển khai: ```bash
 curl http://localhost:6006/health
 # Kết quả mong đợi: {"status":"healthy"}
 ```
@@ -123,33 +107,21 @@ Cho triển khai VPS cloud, [DigitalOcean](https://m.do.co/c/eca87ac14ee0) cung 
 
 ### Tùy chọn C: Docker Compose với PostgreSQL
 
-Cho lưu trữ liên tục và truy cập đa ngườ dùng:
-
-```yaml
+Cho lưu trữ liên tục và truy cập đa ngườ dùng: ```yaml
 # docker-compose.yml
 version: "3.8"
-services:
-  phoenix:
-    image: arizephoenix/phoenix:latest
-    ports:
-      - "6006:6006"
-    environment:
-      - PHOENIX_SQL_DATABASE_URL=postgresql://phoenix:phoenix@db:5432/phoenix
-    depends_on:
-      - db
+services: phoenix: image: arizephoenix/phoenix:latest
+    ports: - "6006:6006"
+    environment: - PHOENIX_SQL_DATABASE_URL=postgresql://phoenix:phoenix@db:5432/phoenix
+    depends_on: - db
 
-  db:
-    image: postgres:16-alpine
-    environment:
-      POSTGRES_USER: phoenix
+  db: image: postgres:16-alpine
+    environment: POSTGRES_USER: phoenix
       POSTGRES_PASSWORD: phoenix
       POSTGRES_DB: phoenix
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+    volumes: - pgdata:/var/lib/postgresql/data
 
-volumes:
-  pgdata:
-```
+volumes: pgdata: ```
 
 ```bash
 docker-compose up -d
@@ -159,9 +131,7 @@ docker-compose up -d
 
 ### Instrumentation Tự động cho LangChain
 
-Phoenix tích hợp với LangChain qua OpenTelemetry. Thêm hai dòng vào ứng dụng LangChain hiện có:
-
-```python
+Phoenix tích hợp với LangChain qua OpenTelemetry. Thêm hai dòng vào ứng dụng LangChain hiện có: ```python
 # phoenix_langchain_demo.py
 import phoenix as px
 from phoenix.trace.langchain import LangChainInstrumentor
@@ -198,9 +168,7 @@ Chạy script và mở http://localhost:6006. Bạn sẽ thấy một cây trace
 
 ### Tích hợp LlamaIndex
 
-Phoenix cung cấp hỗ trợ hàng đầu cho query engine LlamaIndex:
-
-```python
+Phoenix cung cấp hỗ trợ hàng đầu cho query engine LlamaIndex: ```python
 # phoenix_llamaindex_demo.py
 import phoenix as px
 from phoenix.trace.llamaindex import LlamaIndexInstrumentor
@@ -227,9 +195,7 @@ print(response)
 
 ### OpenTelemetry SDK (Không phụ thuộc Framework)
 
-Cho pipeline tùy chỉnh hoặc framework không có instrumentation chuyên dụng:
-
-```python
+Cho pipeline tùy chỉnh hoặc framework không có instrumentation chuyên dụng: ```python
 # phoenix_otel_manual.py
 from opentelemetry import trace
 from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExporter
@@ -245,16 +211,13 @@ trace.set_tracer_provider(trace_provider)
 tracer = trace.get_tracer("my-llm-app")
 
 # Tạo span thủ công
-with tracer.start_as_current_span("rag_pipeline") as span:
-    span.set_attribute("query", "What is Phoenix?")
+with tracer.start_as_current_span("rag_pipeline") as span: span.set_attribute("query", "What is Phoenix?")
 
-    with tracer.start_as_current_span("retrieval") as ret_span:
-        chunks = retrieve_chunks("What is Phoenix?")
+    with tracer.start_as_current_span("retrieval") as ret_span: chunks = retrieve_chunks("What is Phoenix?")
         ret_span.set_attribute("chunk_count", len(chunks))
         ret_span.set_attribute("chunks", [c[:200] for c in chunks])
 
-    with tracer.start_as_current_span("llm_call") as llm_span:
-        response = call_llm(chunks)
+    with tracer.start_as_current_span("llm_call") as llm_span: response = call_llm(chunks)
         llm_span.set_attribute("model", "gpt-4o-mini")
         llm_span.set_attribute("tokens_used", response.usage.total_tokens)
         llm_span.set_attribute("latency_ms", 340)
@@ -262,9 +225,7 @@ with tracer.start_as_current_span("rag_pipeline") as span:
 
 ### Truy vết OpenAI SDK
 
-Phoenix cũng tự động truy vết các cuộc gọi OpenAI SDK trực tiếp:
-
-```python
+Phoenix cũng tự động truy vết các cuộc gọi OpenAI SDK trực tiếp: ```python
 # phoenix_openai_demo.py
 import phoenix as px
 from phoenix.trace.openai import OpenAIInstrumentor
@@ -296,9 +257,7 @@ Phoenix ghi nhận mức sử dụng token ở cấp độ span với độ chí
 
 ### Độ trễ Phụ trội
 
-Instrumentation thêm một lượng phụ trội tối thiểu. Đo trên Droplet DigitalOcean 4 lõi:
-
-| Kịch bản | Độ trễ Cơ sở | Với Phoenix Tracing | Phụ trội |
+Instrumentation thêm một lượng phụ trội tối thiểu. Đo trên Droplet DigitalOcean 4 lõi: | Kịch bản | Độ trễ Cơ sở | Với Phoenix Tracing | Phụ trội |
 |---|---|---|---|
 | Gọi LLM đơn giản (1 chunk) | **245 ms** | **251 ms** | **+2.4%** |
 | RAG pipeline (5 chunks) | **890 ms** | **912 ms** | **+2.5%** |
@@ -308,9 +267,7 @@ Phụ trội đến từ việc serial span và HTTP export, không phải từ 
 
 ### Gỡ lỗi RAG Sản xuất quy mô Lớn
 
-Một công ty tư vấn ML đã triển khai Phoenix cho khách hàng xử lý **~50,000 truy vấn RAG/ngày** trong tìm kiếm tài liệu pháp lý. Các phát hiện chính sau 30 ngày:
-
-- **18% truy vấn** truy xuất chunk không liên quan do model embedding cũ
+Một công ty tư vấn ML đã triển khai Phoenix cho khách hàng xử lý **~50,000 truy vấn RAG/ngày** trong tìm kiếm tài liệu pháp lý. Các phát hiện chính sau 30 ngày: - **18% truy vấn** truy xuất chunk không liên quan do model embedding cũ
 - Tiêu thụ token trung bình mỗi truy vấn là **4,200 token** — **cao hơn 2.1 lần** so với ước tính
 - Một retriever cấu hình sai (`top_k=20` thay vì `top_k=5`) chịu trách nhiệm cho **$1,200/tháng** chi phí API không cần thiết
 
@@ -318,9 +275,7 @@ Sau khi khắc phục các vấn đề này dựa trên trace Phoenix, khách h�
 
 ### Benchmark Framework Đánh giá
 
-Phoenix bao gồm các evaluator tích hợp cho relevance, phát hiện hallucination, và phát hiện toxicity:
-
-| Evaluator | Độ chính xác vs. Gán nhãn Ngườ | Thờ gian Chạy trung bình/Trace |
+Phoenix bao gồm các evaluator tích hợp cho relevance, phát hiện hallucination, và phát hiện toxicity: | Evaluator | Độ chính xác vs. Gán nhãn Ngườ | Thờ gian Chạy trung bình/Trace |
 |---|---|---|
 | QA Relevance | **0.91** F1 score | **120 ms** |
 | Phát hiện Hallucination | **0.87** F1 score | **95 ms** |
@@ -331,15 +286,12 @@ Phoenix bao gồm các evaluator tích hợp cho relevance, phát hiện halluci
 
 ### Thuộc tính Span Tùy chỉnh cho Chỉ số Kinh doanh
 
-Thêm thuộc tính liên quan đến kinh doanh vào trace để lọc và phân tích:
-
-```python
+Thêm thuộc tính liên quan đến kinh doanh vào trace để lọc và phân tích: ```python
 from opentelemetry import trace
 
 tracer = trace.get_tracer("my-app")
 
-with tracer.start_as_current_span("customer_query") as span:
-    span.set_attribute("customer_tier", "enterprise")
+with tracer.start_as_current_span("customer_query") as span: span.set_attribute("customer_tier", "enterprise")
     span.set_attribute("query_category", "billing")
     span.set_attribute("expected_revenue", 15000.00)
 
@@ -350,9 +302,7 @@ Trong UI Phoenix, lọc trace theo `customer_tier=enterprise` để debug truy v
 
 ### Đánh giá Lập trình
 
-Chạy đánh giá hàng loạt trên trace đã thu thập:
-
-```python
+Chạy đánh giá hàng loạt trên trace đã thu thập: ```python
 # phoenix_evaluations.py
 import phoenix as px
 from phoenix.evals import HallucinationEvaluator, QAEvaluator
@@ -371,9 +321,7 @@ print(f"Phát hiện {len(risky)} phản hồi có thể bị hallucination")
 
 ### Cảnh báo trên Chỉ số Trace
 
-Export chỉ số Phoenix sang Prometheus để cảnh báo:
-
-```python
+Export chỉ số Phoenix sang Prometheus để cảnh báo: ```python
 # phoenix_prometheus.py
 from phoenix.trace import PrometheusExporter
 
@@ -381,25 +329,19 @@ prometheus_exporter = PrometheusExporter(port=8000)
 px.launch_app(additional_exporters=[prometheus_exporter])
 ```
 
-Sau đó tạo cảnh báo Prometheus:
-
-```yaml
+Sau đó tạo cảnh báo Prometheus: ```yaml
 # alerts.yml
 - alert: HighTokenBurn
   expr: phoenix_tokens_total > 100000
   for: 5m
-  annotations:
-    summary: "Mức tiêu thụ token vượt quá 100K trong 5 phút"
+  annotations: summary: "Mức tiêu thụ token vượt quá 100K trong 5 phút"
 ```
 
 ### Quản lý Phiên bản Prompt qua Tag Trace
 
-Theo dõi thay đổi prompt qua các lần triển khai:
-
-```python
+Theo dõi thay đổi prompt qua các lần triển khai: ```python
 # Gán tag trace với phiên bản prompt đã sử dụng
-with tracer.start_as_current_span("llm_call") as span:
-    span.set_attribute("prompt.version", "v2.3.1")
+with tracer.start_as_current_span("llm_call") as span: span.set_attribute("prompt.version", "v2.3.1")
     span.set_attribute("prompt.git_sha", "abc1234")
     span.set_attribute("deployment.env", "production")
 ```
@@ -473,9 +415,7 @@ Triển khai Phoenix lên VPS trong vài phút với [DigitalOcean](https://m.do
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -495,7 +435,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 **Tuyên bố Liên kết:** Một số liên kết trong bài viết này là liên kết affiliate. Nếu bạn dùng [liên kết giới thiệu DigitalOcean](https://m.do.co/c/eca87ac14ee0) của chúng tôi để đăng ký, bạn nhận được $200 tín dụng và chúng tôi nhận thưởng giới thiệu — không tốn thêm chi phí cho bạn. Điều này hỗ trợ nghiên cứu độc lập của chúng tôi và giữ nội dung miễn phí.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

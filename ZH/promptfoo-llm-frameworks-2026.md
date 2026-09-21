@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/promptfoo-llm-frameworks-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/promptfoo-llm-frameworks-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/promptfoo-llm-frameworks-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/promptfoo-llm-frameworks-2026" />
 title: 'Promptfoo：测试、评估并红队你的 LLM 提示词 —— 2026 实战指南'
 description: 'Promptfoo 是一款开源的 CLI 与代码库，用于评估和红队 LLM 应用。用简单的声明式配置即可对比 GPT、Claude、Gemini、DeepSeek，并无缝接入命令行与 CI/CD。本 2026 指南讲解安装、promptfooconfig.yaml、断言与红队测试。'
 date: 2026-06-02 00:00:00+08:00
@@ -25,10 +20,8 @@ featureImage: 'https://raw.githubusercontent.com/promptfoo/promptfoo/main/site/s
 draft: false
 categories: ['llm-frameworks']
 tags: []
-aliases:
-- /posts/promptfoo-llm-frameworks-2026/
-faqs:
-  - q: '如何在本地安装并运行 promptfoo？'
+aliases: - /posts/promptfoo-llm-frameworks-2026/
+faqs: - q: '如何在本地安装并运行 promptfoo？'
     a: '最快的路径完全不用安装： ```bash npx promptfoo@latest init --example getting-started ``` 要全局安装，用 `npm install -g promptfoo`（或 `brew install promptfoo`，或 `pip install promptfoo`）。然后用 `promptfoo eval` 做评估，用 `promptfoo view` 打开本地查看器。'
   - q: '能用 promptfoo 测试我自己的模型吗？'
     a: '可以。Promptfoo 支持众多 provider —— OpenAI、Anthropic、Google、DeepSeek、本地模型等等。你在 `promptfooconfig.yaml` 的 `providers` 列表中声明每一个，并通过环境变量提供对应的 API 密钥即可。'
@@ -37,10 +30,7 @@ faqs:
   - q: '有办法把 promptfoo 接入 CI/CD 流水线吗？'
     a: '有。因为 promptfoo 是 CLI，你可以在任何流水线里跑 `npx promptfoo@latest eval`。它常被接入 GitHub Actions，让每次 push 或 pull request 都运行你的评估套件。'
   - q: '如何为 promptfoo 项目做贡献？'
-    a: '欢迎贡献。你可以在 GitHub 上提 issue 或提交 pull request。详情见[贡献指南](https://github.com/promptfoo/promptfoo/blob/main/CONTRIBUTING.md)。'
----
-
-<!-- canonical: https://dibi8.com/zh/tools/promptfoo-llm-frameworks-2026/ -->
+    a: '欢迎贡献。你可以在 GitHub 上提 issue 或提交 pull request。详情见[贡献指南](https://github.com/promptfoo/promptfoo/blob/main/CONTRIBUTING.md)。'---
 
 {{< resource-info >}}
 
@@ -76,20 +66,14 @@ Promptfoo 是一款用于评估和红队 LLM 应用的 CLI 与代码库。你只
 ```yaml
 # promptfooconfig.yaml
 description: "GPT vs Claude on a couple of prompts"
-
-prompts:
-  - "What is the capital of {{country}}?"
+prompts: - "What is the capital of {{country}}?"
   - "Explain quantum mechanics in one sentence."
 
-providers:
-  - openai:gpt-4o-mini
+providers: - openai:gpt-4o-mini
   - anthropic:messages:claude-3-5-sonnet-20241022
 
-tests:
-  - vars:
-      country: France
-    assert:
-      - type: contains
+tests: - vars: country: France
+    assert: - type: contains
         value: Paris
 ```
 
@@ -165,18 +149,12 @@ promptfoo view
 ```yaml
 # promptfooconfig.yaml
 description: "Basic prompt test"
+prompts: - "What is the capital of {{country}}?"
 
-prompts:
-  - "What is the capital of {{country}}?"
+providers: - openai:gpt-4o-mini
 
-providers:
-  - openai:gpt-4o-mini
-
-tests:
-  - vars:
-      country: France
-    assert:
-      - type: contains
+tests: - vars: country: France
+    assert: - type: contains
         value: Paris
 ```
 
@@ -195,24 +173,16 @@ Promptfoo 会执行该测试用例，并报告断言是否通过。
 ```yaml
 # promptfooconfig.yaml
 description: "GPT vs Claude comparison"
+prompts: - "Answer concisely: {{question}}"
 
-prompts:
-  - "Answer concisely: {{question}}"
-
-providers:
-  - openai:gpt-4o
+providers: - openai:gpt-4o
   - anthropic:messages:claude-3-5-sonnet-20241022
 
-defaultTest:
-  assert:
-    - type: llm-rubric
+defaultTest: assert: - type: llm-rubric
       value: does not describe itself as an AI, model, or chatbot
 
-tests:
-  - vars:
-      question: "What is the meaning of life?"
-    assert:
-      - type: similar
+tests: - vars: question: "What is the meaning of life?"
+    assert: - type: similar
         value: "It depends on the person"
         threshold: 0.6
 ```
@@ -231,27 +201,19 @@ promptfoo eval
 # .github/workflows/eval.yml
 name: Promptfoo Eval
 
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+on: push: branches: [ main ]
+  pull_request: branches: [ main ]
 
-jobs:
-  eval:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
+jobs: eval: runs-on: ubuntu-latest
+    steps: - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
-        with:
-          node-version: 22
+        with: node-version: 22
 
       - name: Run promptfoo eval
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        env: OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: npx promptfoo@latest eval
 ```
 
@@ -300,7 +262,11 @@ npx promptfoo@latest eval && npx promptfoo@latest view
 在挑选 LLM 评估与红队工具时，promptfoo 的主要吸引力在于：声明式配置、本地优先的工作流，以及内置的红队能力三者结合。
 
 | 特性                  | promptfoo                                                                 |
-|-----------------------|---------------------------------------------------------------------------|
+|
+---
+|
+---
+|
 | **Star 数**           | 21,825                                                                     |
 | **许可证**            | MIT                                                                        |
 | **维护方**            | promptfoo                                                                  |
@@ -338,21 +304,18 @@ Promptfoo 把提示词和模型测试，从凭感觉的猜测变成了可复现�
 - 加入 [dibi8 英文 Telegram 群](https://t.me/DIBI8_Group/2)，获取开源 AI 工具速递。
 - 延伸阅读：[dibi8 上的相关指南](dibi8-internal-link)。
 
----
 
+---
 **来源与延伸阅读**：
 - GitHub 仓库：https://github.com/promptfoo/promptfoo
 - 官方文档 / README：https://github.com/promptfoo/promptfoo#readme
 
 *以上部分链接为联盟链接。若你通过它注册，dibi8.com 可能获得一笔佣金，你无需为此多付任何费用。这有助于网站运转、内容免费。*
 
-<!-- internal-link-candidates:
   related open-source tools -> ai-tools-directory
   related guides on dibi8 -> ai-coding-agent-landscape-2026-skills-mcp-opensource
--->
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -380,25 +343,20 @@ Promptfoo 把提示词和模型测试，从凭感觉的猜测变成了可复现�
 
 ## Why This Matters
 
-Understanding promptfoo：测试、评估并红队你的 llm 提示词 —— 2026 实战指南 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding promptfoo：测试、评估并红队你的 llm 提示词 —— 2026 实战指南 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -419,8 +377,8 @@ Promptfoo：测试、评估并红队你的 LLM 提示词 —— 2026 实战指�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -450,7 +408,17 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 ## Framework Comparison
 
 | Framework | Primary Use | Learning Curve | Community | Production Ready |
-|-----------|-------------|----------------|-----------|------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **LangChain** | General-purpose | Medium | Large | ✅ Yes |
 | **LlamaIndex** | RAG/Retrieval | Low | Growing | ✅ Yes |
 | **Haystack** | Document processing | Medium | Medium | ✅ Yes |

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/zoxide" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/zoxide" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/zoxide" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/zoxide" />
 title: 'Zoxide: 36,752 GitHub Stars — 2026 완벽 설치 가이드'
 description: 'Zoxide는 디렉토리 사용 패턴을 학습하는 더 똑똑한 cd 명령어입니다. Bash, Zsh, Fish, Nushell, PowerShell을 지원합니다. 설치, 셸 통합, fzf 설정, 알고리즘 낶부, autojump/fasd 마이그레이션을 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [zoxide, cli, 셸, cd대체, rust, 터미널, 생산성, fzf]
-aliases:
-- /kr/posts/zoxide/
+aliases: - /kr/posts/zoxide/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/zoxide/ -->
 
 {{</* resource-info */>}}
 
@@ -49,9 +41,7 @@ Zoxide(발음: "zoh-kside")는 Rust로 작성된 크로스셸 디렉토리 점�
 
 ### Frecency 알고리즘
 
-Zoxide는 **frecency**(**freq**uency 빈도 + re**cency** 최근성)를 사용하여 디렉토리를 순위 매깁니다. 각 디렉토리는 첫 접근 시 점수 1로 시작하고, 이후 매 접근 시 점수가 1씩 증가합니다. 쿼리 시 디렉토리의 최근 접근 시간에 따라 점수에 가중치가 적용됩니다:
-
-| 최근 접근 시간   | Frecency 승수 |
+Zoxide는 **frecency**(**freq**uency 빈도 + re**cency** 최근성)를 사용하여 디렉토리를 순위 매깁니다. 각 디렉토리는 첫 접근 시 점수 1로 시작하고, 이후 매 접근 시 점수가 1씩 증가합니다. 쿼리 시 디렉토리의 최근 접근 시간에 따라 점수에 가중치가 적용됩니다: | 최근 접근 시간   | Frecency 승수 |
 |----------------|--------------|
 | 1시간 내        | score × 4    |
 | 1일 내          | score × 2    |
@@ -62,9 +52,7 @@ Zoxide는 **frecency**(**freq**uency 빈도 + re**cency** 최근성)를 사용�
 
 ### 매칭 규칙
 
-Zoxide는 예측 가능한 대소문자 구분 없는 매칭을 사용합니다:
-
-- 모든 쿼리 용어는 경로 내에 **순서대로** 나타나야 합니다.
+Zoxide는 예측 가능한 대소문자 구분 없는 매칭을 사용합니다: - 모든 쿼리 용어는 경로 내에 **순서대로** 나타나야 합니다.
 - `z fo ba`는 `/foo/bar`를 매칭하지만 `/bar/foo`는 매칭하지 않습니다.
 - 마지막 용어는 경로의 마지막 구성 요소와 매칭되어야 합니다.
 - `z bar`는 `/foo/bar`를 매칭하지만 `/bar/foo`는 매칭하지 않습니다.
@@ -72,9 +60,7 @@ Zoxide는 예측 가능한 대소문자 구분 없는 매칭을 사용합니다:
 
 ### 데이터베이스 관리
 
-Zoxide는 플랫폼별 경로에 데이터베이스를 저장합니다:
-
-| 운영체제  | 기본 데이터베이스 경로                                |
+Zoxide는 플랫폼별 경로에 데이터베이스를 저장합니다: | 운영체제  | 기본 데이터베이스 경로                                |
 |----------|-----------------------------------------------------|
 | Linux    | `$XDG_DATA_HOME/zoxide/db.sqlite` 또는 `~/.local/share/zoxide/db.sqlite` |
 | macOS    | `~/Library/Application Support/zoxide/db.sqlite`    |
@@ -134,9 +120,7 @@ scoop install zoxide
 cargo install zoxide --locked
 ```
 
-설치 확인:
-
-```bash
+설치 확인: ```bash
 zoxide --version
 # zoxide 0.9.7
 ```
@@ -145,53 +129,37 @@ zoxide --version
 
 Zoxide는 셸 구성에서 일회성 초기화가 필요합니다. 이는 `z` 및 `zi` 명령어를 활성화하고 디렉토리 변경 이벤트에 후킹하여 데이터베이스를 업데이트합니다.
 
-**Bash** — `~/.bashrc`에 추가:
-
-```bash
+**Bash** — `~/.bashrc`에 추가: ```bash
 eval "$(zoxide init bash)"
 ```
 
-**Zsh** — `~/.zshrc`에 추가 (`compinit` 이후):
-
-```zsh
+**Zsh** — `~/.zshrc`에 추가 (`compinit` 이후): ```zsh
 eval "$(zoxide init zsh)"
 ```
 
-**Fish** — `~/.config/fish/config.fish`에 추가:
-
-```fish
+**Fish** — `~/.config/fish/config.fish`에 추가: ```fish
 zoxide init fish | source
 ```
 
-**Nushell** — 환경 파일(`$nu.env-path`)에 추가:
-
-```nu
+**Nushell** — 환경 파일(`$nu.env-path`)에 추가: ```nu
 zoxide init nushell | save -f ~/.zoxide.nu
 ```
 
-그런 다음 설정 파일(`$nu.config-path`)에서 소싱:
-
-```nu
+그런 다음 설정 파일(`$nu.config-path`)에서 소싱: ```nu
 source ~/.zoxide.nu
 ```
 
-**PowerShell** — 프로필에 추가 (경로는 `echo $profile`로 확인):
-
-```powershell
+**PowerShell** — 프로필에 추가 (경로는 `echo $profile`로 확인): ```powershell
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
 ```
 
-셸을 다시 로드하거나 설정을 소싱:
-
-```bash
+셸을 다시 로드하거나 설정을 소싱: ```bash
 source ~/.bashrc   # 또는 ~/.zshrc 등
 ```
 
 ### 3단계: fzf 설치 (선택사항이지만 권장)
 
-`zi` 명령어는 fzf로 구동되는 대화형 퍼지 선택 기능을 제공합니다:
-
-```bash
+`zi` 명령어는 fzf로 구동되는 대화형 퍼지 선택 기능을 제공합니다: ```bash
 # macOS
 brew install fzf
 
@@ -208,9 +176,7 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 
 ### 4단계: 기존 데이터 가져오기 (선택사항)
 
-다른 디렉토리 점퍼에서 마이그레이션하는 경우 기록을 가져올 수 있습니다:
-
-```bash
+다른 디렉토리 점퍼에서 마이그레이션하는 경우 기록을 가져올 수 있습니다: ```bash
 # autojump에서
 zoxide import autojump
 
@@ -228,24 +194,18 @@ zoxide import atuin
 
 ### fzf 대화형 선택
 
-fzf가 설치되면 `zi`는 디렉토리 기록 위에 대화형 퍼지 파인더를 엽니다:
-
-```bash
+fzf가 설치되면 `zi`는 디렉토리 기록 위에 대화형 퍼지 파인더를 엽니다: ```bash
 zi frontend        # "frontend"와 매칭되는 디렉토리 퍼지 검색
 zi                 # 전체 디렉토리 기록 탐색
 ```
 
-zoxide의 fzf 동작 사용자 정의:
-
-```bash
+zoxide의 fzf 동작 사용자 정의: ```bash
 export _ZO_FZF_OPTS="--height 40% --reverse --preview 'ls -la {}'"
 ```
 
 ### nnn 파일 관리자
 
-Zoxide는 `nnn-autojump` 플러그인을 통해 nnn과 기본적으로 통합됩니다. nnn 구성에 추가:
-
-```bash
+Zoxide는 `nnn-autojump` 플러그인을 통해 nnn과 기본적으로 통합됩니다. nnn 구성에 추가: ```bash
 export NNN_PLUG="z:zoxide"
 ```
 
@@ -253,9 +213,7 @@ export NNN_PLUG="z:zoxide"
 
 ### tmux 세션 관리자
 
-`sesh`, `tmux-session-wizard`, `tmux-sessionx` 등의 도구는 zoxide를 기본적으로 지원하여 가장 많이 사용하는 디렉토리에서 tmux 세션을 시작할 수 있습니다:
-
-```bash
+`sesh`, `tmux-session-wizard`, `tmux-sessionx` 등의 도구는 zoxide를 기본적으로 지원하여 가장 많이 사용하는 디렉토리에서 tmux 세션을 시작할 수 있습니다: ```bash
 # sesh 설치 후
 sesh list          # zoxide 순위 디렉토리 표시
 sesh connect       # zoxide 목록에서 대화형 tmux 세션
@@ -263,9 +221,7 @@ sesh connect       # zoxide 목록에서 대화형 tmux 세션
 
 ### Neovim / Vim
 
-`telescope-zoxide`를 사용하여 Neovim 낶부에서 퍼지 디렉토리 낤비게이션:
-
-```lua
+`telescope-zoxide`를 사용하여 Neovim 낶부에서 퍼지 디렉토리 낤비게이션: ```lua
 -- Neovim 설정에서 (Lazy.nvim)
 {
   "jvgrootvelte/telescope-zoxide",
@@ -284,9 +240,7 @@ Yazi는 zoxide를 기본적으로 지원합니다. Yazi에서 `Z`를 눌러 zoxi
 
 ### Emacs
 
-MELPA에서 `zoxide.el` 설치:
-
-```elisp
+MELPA에서 `zoxide.el` 설치: ```elisp
 (use-package zoxide
   :ensure t
   :bind (("C-c z" . zoxide-find-file)))
@@ -322,9 +276,7 @@ Ryzen 9 5900X + SSD에서 10,000개 추적 디렉토리로 측정.
 
 ### cd 완전 대체
 
-`cd` 자체가 zoxide를 사용하도록 하려면 `--cmd cd`로 초기화:
-
-```bash
+`cd` 자체가 zoxide를 사용하도록 하려면 `--cmd cd`로 초기화: ```bash
 eval "$(zoxide init bash --cmd cd)"
 ```
 
@@ -338,15 +290,11 @@ eval "$(zoxide init bash --cmd j)"    # z/zi 대신 j/ji 사용
 
 ### 디렉토리 제외
 
-Zoxide가 민감하거나 임시 디렉토리를 추적하지 않도록 방지:
-
-```bash
+Zoxide가 민감하거나 임시 디렉토리를 추적하지 않도록 방지: ```bash
 export _ZO_EXCLUDE_DIRS="$HOME:$HOME/private/*:/tmp:/var/tmp"
 ```
 
-Windows에서는 세미콜론을 구분자로 사용:
-
-```powershell
+Windows에서는 세미콜론을 구분자로 사용: ```powershell
 $env:_ZO_EXCLUDE_DIRS = "$HOME;$HOME\private\*;C:\Temp"
 ```
 
@@ -358,25 +306,19 @@ export _ZO_DATA_DIR="/mnt/fast-ssd/zoxide-data"
 
 ### 에코 모드 활성화
 
-낤비게이션 전에 매칭된 디렉토리를 출력 (스크립팅에 유용):
-
-```bash
+낤비게이션 전에 매칭된 디렉토리를 출력 (스크립팅에 유용): ```bash
 export _ZO_ECHO=1
 ```
 
 ### 심볼릭 링크 해석
 
-심볼릭 링크 환경에서 작업하는 경우, 데이터베이스 쓰기 전에 심볼릭 링크를 강제로 해석:
-
-```bash
+심볼릭 링크 환경에서 작업하는 경우, 데이터베이스 쓰기 전에 심볼릭 링크를 강제로 해석: ```bash
 export _ZO_RESOLVE_SYMLINKS=1
 ```
 
 ### Hook 구성
 
-zoxide가 디렉토리 점수를 업데이트하는 시점 제어:
-
-```bash
+zoxide가 디렉토리 점수를 업데이트하는 시점 제어: ```bash
 eval "$(zoxide init bash --hook prompt)"   # 매 프롬프트에서 업데이트
 eval "$(zoxide init bash --hook pwd)"      # cd 시에만 업데이트 (기본값)
 eval "$(zoxide init bash --hook none)"     # 자동 업데이트 비활성화; 필요시 zoxide add 수동 실행
@@ -397,9 +339,7 @@ zoxide edit                    # $EDITOR에서 데이터베이스 열기
 
 ### 셸 자동완성 설정
 
-**Zsh** — 초기화 줄이 `compinit` 이후에 있어야 함:
-
-```zsh
+**Zsh** — 초기화 줄이 `compinit` 이후에 있어야 함: ```zsh
 autoload -Uz compinit; compinit
 eval "$(zoxide init zsh)"      # 반드시 compinit 이후에 와야 함
 rm ~/.zcompdump*; compinit     # 필요시 자동완성 캐시 재구성
@@ -428,9 +368,7 @@ Zoxide는 기본 `cd`와의 순수 시작 시간 비교를 제외한 모든 메�
 
 ## 한계 및 솔직한 평가
 
-**Zoxide는 만능 `cd` 대체제가 아닙니다.** 다음과 같은 특정 시나리오에서는 가치를 추가하지 않습니다:
-
-- **CI/CD 파이프라인:** 스크립트는 결정론적 동작을 위해 절대 경로나 `cd`를 사용해야 합니다. Zoxide의 데이터베이스 의존 동작은 비재현성을 초래합니다.
+**Zoxide는 만능 `cd` 대체제가 아닙니다.** 다음과 같은 특정 시나리오에서는 가치를 추가하지 않습니다: - **CI/CD 파이프라인:** 스크립트는 결정론적 동작을 위해 절대 경로나 `cd`를 사용해야 합니다. Zoxide의 데이터베이스 의존 동작은 비재현성을 초래합니다.
 - **공유 시스템 / 다중 사용자 서버:** 데이터베이스는 사용자별로 설계되었습니다. 한 번도 방문하지 않은 디렉토리를 발견하는 데 도움이 되지 않습니다.
 - **매우 짧은 경로:** `z d`를 입력하여 `/home/user/Downloads`에 도달하는 것은 `cd ~/D` + Tab보다 키 입력을 줄여주지 않습니다.
 - **첫 번째 낤비게이션:** Zoxide는 최소한 한 번 이상 방문한 디렉토리만 알고 있습니다. 첫 방문에는 일반적인 `cd`나 절대 경로가 필요합니다.
@@ -491,9 +429,7 @@ Zoxide는 2026년 현재 가장 성숙하고, 성능이 뛰어나며, 활발히 
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -509,7 +445,6 @@ Zoxide는 2026년 현재 가장 성숙하고, 성능이 뛰어나며, 활발히 
 - [navi 치트시트와 Zoxide](https://github.com/denisidoro/navi)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

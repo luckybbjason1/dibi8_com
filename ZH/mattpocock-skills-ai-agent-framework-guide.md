@@ -1,19 +1,12 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mattpocock-skills-ai-agent-framework-guide" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mattpocock-skills-ai-agent-framework-guide" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mattpocock-skills-ai-agent-framework-guide" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mattpocock-skills-ai-agent-framework-guide" />
 title: "Matt Pocock 的 Skills：赋予 AI Agent 真正超能力的 CLI 框架——npm 安装，零配置"
 description: "了解如何使用 Matt Pocock 的 Skills 框架为 Claude Code、Cursor 和 Gemini CLI 等 AI 编程 Agent 赋予代码之外的真正能力——数据库、文件系统、CI/CD 等。包含逐步 npx 安装指南、架构分析和实际基准测试。"
 date: 2026-06-10
-lastmod:  2026-06-10slug: "mattpocock-skills-ai-agent-framework-guide"
+lastmod: 2026-06-10
+slug: "mattpocock-skills-ai-agent-framework-guide"
 category: dev-utils
 tags: [matt-pocock, skills, AI Agent, CLI框架, AI编程工具, Agent能力, 开发者工具, 开源]
-lang: zh
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/mattpocock-skills-ai-agent-framework-guide/ -->
 
 ## 简介
 
@@ -269,7 +262,11 @@ npx skills@latest run custom-http --url https://api.example.com/users --method G
 ### 技能执行速度
 
 | 技能类型 | 典型执行时间 |
-|---------|-----------|
+|
+---
+|
+---
+|
 | 数据库查询（简单） | 约 100 毫秒 |
 | 数据库查询（复杂关联） | 约 500 毫秒 |
 | 文件系统操作 | 约 50 毫秒 |
@@ -283,7 +280,13 @@ npx skills@latest run custom-http --url https://api.example.com/users --method G
 在 50 个任务基准测试中，测试有无 Skills 的 AI Agent 任务完成率：
 
 | 任务类别 | 无 Skills | 有 Skills |
-|---------|---------|---------|
+|
+---
+|
+---
+|
+---
+|
 | 数据库设置 | 0%（Agent 编写代码但无法运行） | 100% |
 | 文件管理 | 30% | 95% |
 | 部署 | 0% | 85% |
@@ -357,7 +360,17 @@ npx skills@latest env set AWS_KEY "$(aws secretsmanager get-secret-value --secre
 ## 与替代方案比较
 
 | 功能 | Skills | OpenHands Tools | CrewAI Tools | AutoGen Tools |
-|------|--------|-----------------|-------------|---------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 安装方式 | `npx skills@latest add` | pip install | pip install | pip install |
 | 插件系统 | 是（CLI 优先） | 是（Python） | 是（Python） | 是（Python） |
 | Agent 支持 | Claude Code、Cursor、Gemini CLI、Codex | OpenHands | CrewAI Agents | AutoGen Agents |
@@ -438,7 +451,6 @@ Matt Pocock 的 Skills 框架解决了 AI 辅助开发中的一个根本问题�
 以上链接中包含联盟链接。dibi8.com 可能会在你注册时赚取佣金，而无需你支付额外费用。这有助于保持网站运行和内容免费。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -466,25 +478,20 @@ Matt Pocock 的 Skills 框架解决了 AI 辅助开发中的一个根本问题�
 
 ## Why This Matters
 
-Understanding matt pocock 的 skills：赋予 ai agent 真正超能力的 cli 框架——npm 安装，零配置 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding matt pocock 的 skills：赋予 ai agent 真正超能力的 cli 框架——npm 安装，零配置 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -505,13 +512,13 @@ Matt Pocock 的 Skills：赋予 AI Agent 真正超能力的 CLI 框架——npm 
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
 
+---
 ## Related Articles
 
 - [agent-skills-production-workflows](mattpocock-skills-ai-agent-framework-guide)

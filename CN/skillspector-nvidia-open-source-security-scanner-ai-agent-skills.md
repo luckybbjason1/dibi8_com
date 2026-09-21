@@ -1,7 +1,5 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/skillspector-nvidia-open-source-security-scanner-ai-agent-skills" />
-  title: "SkillSpector: NVIDIA's Open-Source Security Scanner for ...
+title: "SkillSpector: NVIDIA's Open-Source Security Scanner for ..."
   description: 'A security scanner for AI agent skills that detects vulnerabilities, malicious patterns, and security risks before installing agent skills. 10K stars from NVIDIA. Protect Claude Code, Codex CLI, and other agent frameworks.'
   date: 2026-06-25
   lastmod: 2026-06-25
@@ -12,9 +10,7 @@
   tags: [security, 'ai-agents', scanner, 'vulnerability-detection', 'claude-code', codex, mcp, 'agent-skills', nvidia]
   slug: skillspector-nvidia-open-source-security-scanner-ai-agent-skills
   featureImage: /images/articles/skillspector-nvidias-open-source-security-scanner-for-ai-agent-skills.png
-  license: Apache-2.0
----
-
+  license: Apache-2.0---
 
 
 # SkillSpector: NVIDIA's Open-Source Security Scanner for AI Agent Skills
@@ -31,9 +27,7 @@ As AI agent skills become increasingly popular, so do the security risks of inst
 
 SkillSpector was born from a critical observation: as AI agent skills proliferate across developer workflows, the security surface area expands dramatically. Unlike traditional software packages that undergo rigorous code review, many agent skills are simple text files (SKILL.md) that instruct an LLM to perform arbitrary actions — including executing shell commands, accessing APIs, and modifying files.
 
-The tool provides:
-
-- **Automated vulnerability scanning** for AI agent skill files
+The tool provides: - **Automated vulnerability scanning** for AI agent skill files
 - **Pattern-based malicious behavior detection** including command injection, data exfiltration, and privilege escalation
 - **Framework-specific analysis** for Claude Code, GitHub Copilot, Codex CLI, and more
 - **Remediation guidance** with specific fixes for detected vulnerabilities
@@ -104,9 +98,7 @@ docker run -d \
 
 ### Vulnerability Detection Categories
 
-SkillSpector detects vulnerabilities across multiple categories:
-
-| Category | Description | Severity |
+SkillSpector detects vulnerabilities across multiple categories: | Category | Description | Severity |
 |
 Join the community: [Telegram](https://t.me/DIBI8_Group) · [HuggingFace](https://huggingface.co/collections/nvidia/cosmos3)
 
@@ -115,7 +107,6 @@ Internal links: [nvidia-cosmos-world-models-platform-2026](https://dibi8.com/en/
 **Disclosure**: This article mentions tools that may have affiliate relationships. We do not accept payment for reviews. All opinions are our own.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -143,25 +134,20 @@ Internal links: [nvidia-cosmos-world-models-platform-2026](https://dibi8.com/en/
 
 ## Why This Matters
 
-Understanding skillspector: nvidia's open-source security scanner for ai agent skills is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding skillspector: nvidia's open-source security scanner for ai agent skills is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -182,13 +168,13 @@ SkillSpector: NVIDIA's Open-Source Security Scanner for AI Agent Skills represen
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
 
+---
 ## Related Articles
 
 - [claude-code-vs-cline](skillspector-nvidia-open-source-security-scanner-ai-agent-skills)
@@ -227,7 +213,17 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

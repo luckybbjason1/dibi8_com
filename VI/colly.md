@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/colly" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/colly" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/colly" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/colly" />
 title: 'Colly: 25,302 GitHub Stars — Framework Crawl Web Go Tốc ...
 description: 'Colly là framework web scraping nhanh và thanh lịch cho Go với thông lượng 1,000+ req/sec. Bao gồm hướng dẫn colly, so sánh benchmark colly vs scrapy, thiết lập Docker, Redis caching, proxy rotation và mô hình triển khai production cho trích xuất dữ liệu quy mô lớn.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [colly, go, 'web-scraping', crawler, golang, scrapy, benchmark, proxy]
-aliases:
-- /vi/posts/colly/
+aliases: - /vi/posts/colly/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/colly/ -->
 
 {{</* resource-info */>}}
 
@@ -47,9 +39,7 @@ Python đã thống trị web scraping hơn một thập kỷ. Scrapy, Beautiful
 
 ![Colly gopher mascot](https://go-colly.org/img/colly_gopher.png)
 
-Kiến trúc của Colly xoay quanh **Collector** — một orchestrator có trạng thái quản lý toàn bộ vòng đỳ scraping. Dữ liệu chảy như sau:
-
-1. **Collector** nhận URL khởi đầu qua `Visit()`
+Kiến trúc của Colly xoay quanh **Collector** — một orchestrator có trạng thái quản lý toàn bộ vòng đỳ scraping. Dữ liệu chảy như sau: 1. **Collector** nhận URL khởi đầu qua `Visit()`
 2. **HTTP Backend** gửi request với timeout, proxy và header đã cấu hình
 3. **Response** kích hoạt callback đã đăng ký (`OnHTML`, `OnResponse`, `OnError`)
 4. **HTMLElement** phân tích DOM sử dụng bộ chọn kiểu goquery
@@ -129,9 +119,7 @@ func main() {
 }
 ```
 
-Chạy:
-
-```bash
+Chạy: ```bash
 go run main.go
 ```
 
@@ -162,28 +150,18 @@ docker run --rm colly-scraper
 
 ```yaml
 version: '3.8'
-services:
-  scraper:
-    build: .
-    depends_on:
-      - redis
-    environment:
-      - REDIS_URL=redis:6379
-  redis:
-    image: redis:7-alpine
-    volumes:
-      - redis-data:/data
-  volumes:
-    redis-data:
-```
+services: scraper: build: .
+    depends_on: - redis
+    environment: - REDIS_URL=redis:6379
+  redis: image: redis:7-alpine
+    volumes: - redis-data:/data
+  volumes: redis-data: ```
 
 ## Tích Hợp Với Công Cụ Phổ Biến
 
 ### Backend Cache Redis
 
-Để crawling quy mô lớn, tránh request trùng lặp bằng cache Redis:
-
-```go
+Để crawling quy mô lớn, tránh request trùng lặp bằng cache Redis: ```go
 package main
 
 import (
@@ -196,10 +174,10 @@ func main() {
 
 	// Sử dụng Redis cho lưu trữ liên tục
 	redisStore := &storage.RedisStorage{
-		Address:  "redis:6379",
+		Address: "redis:6379",
 		Password: "",
-		DB:       0,
-		Prefix:   "colly",
+		DB: 0,
+		Prefix: "colly",
 	}
 
 	if err := redisStore.Open(); err != nil {
@@ -245,9 +223,9 @@ func main() {
 
 	// Tôn trọng máy chủ đích
 	c.Limit(&colly.LimitRule{
-		DomainGlob:  "*",
+		DomainGlob: "*",
 		Parallelism: 10,
-		Delay:       1 * time.Second,
+		Delay: 1 * time.Second,
 	})
 
 	c.Visit("https://example.com")
@@ -256,9 +234,7 @@ func main() {
 
 ### goquery Cho Duyệt DOM Nâng Cao
 
-`HTMLElement` tích hợp của Colly bao phủ hầu hết các trường hợp, nhưng goquery mở khóa duyệt DOM phức tạp:
-
-```go
+`HTMLElement` tích hợp của Colly bao phủ hầu hết các trường hợp, nhưng goquery mở khóa duyệt DOM phức tạp: ```go
 package main
 
 import (
@@ -293,9 +269,7 @@ func main() {
 
 ### chromedp Cho Trang Render JavaScript
 
-Colly không thực thi JavaScript. Đối với SPA, ghép nối với chromedp:
-
-```go
+Colly không thực thi JavaScript. Đối với SPA, ghép nối với chromedp: ```go
 package main
 
 import (
@@ -340,9 +314,7 @@ func main() {
 
 ### Benchmark Thông Lượng
 
-Chúng tôi đã chạy benchmark kiểm soát scraping 1,000 trang HTML tĩnh trên bốn công cụ với AWS `c6i.xlarge` (4 vCPU, 8GB RAM):
-
-| Công cụ | Thờ gian (1000 trang) | Bộ nhớ | Request/giây | Kích thước binary |
+Chúng tôi đã chạy benchmark kiểm soát scraping 1,000 trang HTML tĩnh trên bốn công cụ với AWS `c6i.xlarge` (4 vCPU, 8GB RAM): | Công cụ | Thờ gian (1000 trang) | Bộ nhớ | Request/giây | Kích thước binary |
 |---------|----------------------|--------|-------------|------------------|
 | **Colly** (song song) | ~7 giây | 25 MB | ~1,200 | 12 MB |
 | **Colly** (đồng bộ) | ~52 giây | 20 MB | ~19 | 12 MB |
@@ -352,9 +324,7 @@ Chúng tôi đã chạy benchmark kiểm soát scraping 1,000 trang HTML tĩnh t
 
 *Puppeteer yêu cầu tải Chromium (~150 MB)
 
-Quan sát chính từ benchmark colly:
-
-1. **Chế độ song song Colly** đạt **tăng tốc 7 lần** so với thực thi đồng bộ bằng goroutine
+Quan sát chính từ benchmark colly: 1. **Chế độ song song Colly** đạt **tăng tốc 7 lần** so với thực thi đồng bộ bằng goroutine
 2. **Dung lượng bộ nhớ** nhỏ hơn Scrapy 7 lần và Puppeteer 20 lần
 3. **Triển khai binary đơn** chỉ 12 MB so với virtualenv + dependency hell của Scrapy
 4. **Thờ gian khởi động** gần như tức thờ so với khởi động Chromium của Puppeteer
@@ -388,9 +358,9 @@ func main() {
 
 	// Giới hạn tốc độ chặt chẽ theo domain
 	c.Limit(&colly.LimitRule{
-		DomainGlob:  "*example.com",
+		DomainGlob: "*example.com",
 		Parallelism: 5,
-		Delay:       2 * time.Second,
+		Delay: 2 * time.Second,
 		RandomDelay: 500 * time.Millisecond,
 	})
 
@@ -417,7 +387,7 @@ func main() {
 	// Tạo queue hỗ trợ Redis
 	q, _ := queue.New(100, &queue.RedisStorage{
 		Address: "redis:6379",
-		DB:      0,
+		DB: 0,
 	})
 
 	c.OnHTML("a[href]", func(e *colly.HTMLElement) {
@@ -454,10 +424,10 @@ func main() {
 
 	// Thay thế HTTP client mặc định
 	c.WithTransport(&http.Transport{
-		MaxIdleConns:        100,
+		MaxIdleConns: 100,
 		MaxIdleConnsPerHost: 10,
-		IdleConnTimeout:     30 * time.Second,
-		DisableCompression:  false,
+		IdleConnTimeout: 30 * time.Second,
+		DisableCompression: false,
 	})
 
 	c.SetRequestTimeout(15 * time.Second)
@@ -533,9 +503,7 @@ func main() {
 
 ## Hạn Chế / Đánh Giá Thực Tế
 
-Colly không phải công cụ phù hợp cho mọi công việc scraping. Đây là những giớ hạn cứng:
-
-1. **Không thực thi JavaScript**: Colly chỉ phân tích HTML thô. SPA, infinite scroll và nội dung động cần chromedp hoặc Rod làm công cụ đồng hành.
+Colly không phải công cụ phù hợp cho mọi công việc scraping. Đây là những giớ hạn cứng: 1. **Không thực thi JavaScript**: Colly chỉ phân tích HTML thô. SPA, infinite scroll và nội dung động cần chromedp hoặc Rod làm công cụ đồng hành.
 2. **Hệ sinh thái nhỏ hơn Scrapy**: Bạn sẽ không tìm thấy plugin cho mọi trường hợp edge case. Middleware tùy chỉnh đòi hỏi viết code Go, không chỉ pip install.
 3. **Chỉ hỗ trợ Go**: Team không có chuyên môn Go sẽ đối mặt với đường cong học tập dốc hơn so với các lựa chọn Python.
 4. **Không xuất dữ liệu tích hợp**: Khác với item pipeline của Scrapy (JSON, CSV, XML mặc định), Colly cần tuần tự hóa thủ công.
@@ -588,9 +556,7 @@ Colly cung cấp chính xác những gì developer Go cần từ một framework
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -608,7 +574,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [Colly Benchmarks](https://webscraping.ai/faq/colly/what-are-the-performance-benchmarks-for-colly-compared-to-other-go-scrapers) — Số liệu hiệu năng
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

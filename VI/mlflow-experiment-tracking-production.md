@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mlflow-experiment-tracking-production" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mlflow-experiment-tracking-production" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mlflow-experiment-tracking-production" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mlflow-experiment-tracking-production" />
 title: 'MLflow 2026: Nền Tảng ML Lifecycle Mã Nguồn Mở Theo Dõi ...
 description: 'Hướng dẫn đầy đủ về MLflow cho theo dõi thử nghiệm ML, model registry và model serving. Bao gồm thiết lập, Python SDK, triển khai production và benchmark cho 10,000+ thử nghiệm.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: [mlflow, 'machine learning', mlops, 'theo dõi thử nghiệm', 'model registry', 'model serving', python, 'mã nguồn mở', 'khoa học dữ liệu']
-aliases:
-- /vi/posts/mlflow-experiment-tracking-production/
+aliases: - /vi/posts/mlflow-experiment-tracking-production/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/mlflow-experiment-tracking-production/ -->
 
 {{</* resource-info */>}}
 
@@ -51,9 +43,7 @@ Khác với các nền tảng MLOps nặng nề đòi hỏi team infrastructure 
 
 ## MLflow Hoạt Động Như Thế Nào: Các Thành Phần Cốt Lõi
 
-MLflow được tổ chức thành bốn thành phần đề cập đến các giai đoạn riêng biệt của vòng đồi ML:
-
-**MLflow Tracking** ghi log các thử nghiệm, parameters, metrics, và artifacts. Mỗi lần chạy thử nghiệm capture phiên bản code, nguồn dữ liệu, cấu hình, và kết quả. Tracking server lưu trữ dữ liệu này trong một backend (SQLite, PostgreSQL, MySQL) với artifacts trong filesystem local, S3, GCS, hoặc Azure Blob Storage.
+MLflow được tổ chức thành bốn thành phần đề cập đến các giai đoạn riêng biệt của vòng đồi ML: **MLflow Tracking** ghi log các thử nghiệm, parameters, metrics, và artifacts. Mỗi lần chạy thử nghiệm capture phiên bản code, nguồn dữ liệu, cấu hình, và kết quả. Tracking server lưu trữ dữ liệu này trong một backend (SQLite, PostgreSQL, MySQL) với artifacts trong filesystem local, S3, GCS, hoặc Azure Blob Storage.
 
 **MLflow Models** đóng gói các mô hình ở định dạng chuẩn. Lưu mô hình một lần, và deploy ở bất kỳ đâu: REST API, batch inference, Apache Spark, Amazon SageMaker, Azure ML, hoặc Kubernetes. MLflow hỗ trợ scikit-learn, TensorFlow, PyTorch, XGBoost, LightGBM, HuggingFace Transformers, và nhiều hơn nữa.
 
@@ -62,8 +52,7 @@ MLflow được tổ chức thành bốn thành phần đề cập đến các g
 **MLflow Projects** đóng gói code ML ở định dạng reproducible với một file `MLproject` định nghĩa các entry points, parameters, dependencies, và môi trường thực thi.
 
 ```python
-# Kiến trúc MLflow đầy đủ trong một sơ đồ:
-# 1. Tracking Server (REST API + UI)
+# Kiến trúc MLflow đầy đủ trong một sơ đồ: # 1. Tracking Server (REST API + UI)
 #    ├── Backend Store: PostgreSQL / MySQL / SQLite
 #    └── Artifact Store: S3 / GCS / Azure / Local
 #
@@ -104,8 +93,7 @@ import mlflow
 mlflow.set_tracking_uri('http://localhost:5000')
 mlflow.set_experiment('quick-start')
 
-with mlflow.start_run():
-    mlflow.log_param(learning_rate, 0.01)
+with mlflow.start_run(): mlflow.log_param(learning_rate, 0.01)
     mlflow.log_param(epochs, 10)
     mlflow.log_metric(accuracy, 0.94)
     mlflow.log_metric(f1_score, 0.93)
@@ -140,32 +128,23 @@ mlflow server \
 ```bash
 # docker-compose.yml — Stack MLflow hoàn chỉnh
 version: '3.8'
-services:
-  postgres:
-    image: postgres:16
-    environment:
-      POSTGRES_USER: mlflow
+services: postgres: image: postgres:16
+    environment: POSTGRES_USER: mlflow
       POSTGRES_PASSWORD: mlflow_password
       POSTGRES_DB: mlflowdb
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+    volumes: - pgdata:/var/lib/postgresql/data
 
-  mlflow:
-    image: python:3.11-slim
+  mlflow: image: python:3.11-slim
     command: >
       bash -c "pip install mlflow==2.22.0 psycopg2-binary boto3 &&
                mlflow server
                --backend-store-uri postgresql://mlflow:mlflow_password@postgres:5432/mlflowdb
                --default-artifact-root s3://my-bucket/mlflow
                --host 0.0.0.0 --port 5000"
-    ports:
-      - "5000:5000"
-    depends_on:
-      - postgres
+    ports: - "5000:5000"
+    depends_on: - postgres
 
-volumes:
-  pgdata:
-```
+volumes: pgdata: ```
 
 ```bash
 # Khởi chạy toàn bộ stack
@@ -177,9 +156,7 @@ curl http://localhost:5000/api/2.0/mlflow/experiments/list
 
 ### DigitalOcean Droplet Deployment
 
-Cho một production tracking server chuyên dụng:
-
-```bash
+Cho một production tracking server chuyên dụng: ```bash
 # Tạo droplet và cài đặt MLflow
 ssh root@your-droplet-ip << EOF
 apt update && apt install -y python3-pip
@@ -226,9 +203,7 @@ warnings.filterwarnings(ignore)
 mlflow.set_tracking_uri('http://localhost:5000')
 mlflow.set_experiment('wine-classification')
 
-def run_experiment(n_estimators, max_depth, min_samples_split):
-    with mlflow.start_run():
-        # Log parameters
+def run_experiment(n_estimators, max_depth, min_samples_split): with mlflow.start_run(): # Log parameters
         mlflow.log_param(n_estimators, n_estimators)
         mlflow.log_param(max_depth, max_depth)
         mlflow.log_param(min_samples_split, min_samples_split)
@@ -267,16 +242,14 @@ def run_experiment(n_estimators, max_depth, min_samples_split):
         print(f'Run completed: accuracy={accuracy:.4f}, f1={f1:.4f}')
 
 # Chạy nhiều thử nghiệm
-if __name__ == __main__:
-    configs = [
+if __name__ == __main__: configs = [
         (50, 5, 0.01),
         (100, 10, 0.02),
         (200, 15, 0.05),
         (300, 20, 0.10),
         (500, None, 0.02),
     ]
-    for n_est, depth, min_split in configs:
-        run_experiment(n_est, depth, min_split)
+    for n_est, depth, min_split in configs: run_experiment(n_est, depth, min_split)
 ```
 
 ```bash
@@ -302,8 +275,7 @@ mlflow.sklearn.autolog()
 X, y = load_wine(return_X_y=True)
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
-with mlflow.start_run():
-    clf = RandomForestClassifier(n_estimators=100, random_state=42)
+with mlflow.start_run(): clf = RandomForestClassifier(n_estimators=100, random_state=42)
     clf.fit(X_train, y_train)
     # Không cần manual logging — autolog capture tất cả
 ```
@@ -324,9 +296,7 @@ mlflow.set_experiment('pytorch-cifar10')
 # Bật PyTorch autologging
 mlflow.pytorch.autolog()
 
-def train_model(epochs, lr, batch_size):
-    with mlflow.start_run():
-        mlflow.log_param(epochs, epochs)
+def train_model(epochs, lr, batch_size): with mlflow.start_run(): mlflow.log_param(epochs, epochs)
         mlflow.log_param(learning_rate, lr)
         mlflow.log_param(batch_size, batch_size)
 
@@ -354,10 +324,8 @@ def train_model(epochs, lr, batch_size):
 
         # Training loop
         model.train()
-        for epoch in range(epochs):
-            total_loss = 0
-            for batch_idx, (data, target) in enumerate(train_loader):
-                data, target = data.to(device), target.to(device)
+        for epoch in range(epochs): total_loss = 0
+            for batch_idx, (data, target) in enumerate(train_loader): data, target = data.to(device), target.to(device)
                 optimizer.zero_grad()
                 output = model(data)
                 loss = criterion(output, target)
@@ -372,8 +340,7 @@ def train_model(epochs, lr, batch_size):
         # Log final model
         mlflow.pytorch.log_model(model, model)
 
-if __name__ == __main__:
-    train_model(epochs=5, lr=0.001, batch_size=64)
+if __name__ == __main__: train_model(epochs=5, lr=0.001, batch_size=64)
 ```
 
 ## Model Registry: Quản Lý Vòng Đồi Mô Hình
@@ -420,8 +387,7 @@ client.set_model_version_tag(
 # Liệt kê tất cả phiên bản của một mô hình
 mlflow models list-versions -m wine-classifier
 
-# Output dự kiến:
-#   Version  Stage       Description
+# Output dự kiến: #   Version  Stage       Description
 #   1        Production  Initial production model
 #   2        Staging     Wine classifier with 94.4% accuracy...
 #   3        None        Experimental architecture
@@ -521,9 +487,7 @@ mlflow.azureml.deploy(
 
 ### Throughput Tracking Server
 
-Chúng tôi đã benchmark MLflow tracking server (v2.22.0) với PostgreSQL backend và S3 artifact store trên một instance **8 vCPU / 32 GB RAM**:
-
-| Metric | SQLite (Local) | PostgreSQL (Local) | PostgreSQL + S3 |
+Chúng tôi đã benchmark MLflow tracking server (v2.22.0) với PostgreSQL backend và S3 artifact store trên một instance **8 vCPU / 32 GB RAM**: | Metric | SQLite (Local) | PostgreSQL (Local) | PostgreSQL + S3 |
 |---|---|---|---|
 | Số run log mỗi giây | **~180** | **~350** | **~320** |
 | Clients đồng thờ (ổn định) | 5 | 50 | 40 |
@@ -569,16 +533,12 @@ VALID_CREDENTIALS = {
     'ml-engineer': engineer_pass_456
 }
 
-def check_auth():
-    auth = request.authorization
-    if not auth or not auth.password:
-        return False
+def check_auth(): auth = request.authorization
+    if not auth or not auth.password: return False
     return VALID_CREDENTIALS.get(auth.username) == auth.password
 
 @app.before_request
-def require_auth():
-    if not check_auth():
-        return Response('Authentication required', 401,
+def require_auth(): if not check_auth(): return Response('Authentication required', 401,
                        {'WWW-Authenticate': 'Basic realm="MLflow"'})
 
 # Mount MLflow phía sau authenticated proxy
@@ -614,14 +574,11 @@ client = MlflowClient('http://localhost:5000')
 cutoff = datetime.now() - timedelta(days=90)
 experiments = client.search_experiments()
 
-for exp in experiments:
-    runs = client.search_runs(
+for exp in experiments: runs = client.search_runs(
         experiment_ids=[exp.experiment_id],
         filter_string=f"attributes.start_time < {int(cutoff.timestamp() * 1000)}"
     )
-    for run in runs:
-        if run.info.status == FINISHED:
-            client.delete_run(run.info.run_id)
+    for run in runs: if run.info.status == FINISHED: client.delete_run(run.info.run_id)
             print(f'Deleted run {run.info.run_id} from {exp.name}')
 
 print(f'Cleanup completed. Deleted {len(runs)} old runs.')
@@ -638,27 +595,20 @@ crontab -e
 ```yaml
 # .github/workflows/ml-pipeline.yml
 name: ML Training Pipeline
-on:
-  push:
-    branches: [main]
+on: push: branches: [main]
 
-jobs:
-  train:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: train: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
 
       - name: Setup Python
         uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
+        with: python-version: '3.11'
 
       - name: Install dependencies
         run: pip install mlflow==2.22.0 scikit-learn pandas
 
       - name: Train and register model
-        env:
-          MLFLOW_TRACKING_URI: ${{ secrets.MLFLOW_TRACKING_URI }}
+        env: MLFLOW_TRACKING_URI: ${{ secrets.MLFLOW_TRACKING_URI }}
         run: |
           python train.py --register-model --stage Staging
 
@@ -692,9 +642,7 @@ jobs:
 
 ## Hạn Chế / Đánh Giá Trung Thực
 
-MLflow xuất sắc nhưng không phải phổ quát:
-
-**Không có pipeline orchestration built-in**: MLflow theo dõi thử nghiệm nhưng không điều phối các training pipeline đa bước. Các đội thường ghép MLflow với [Kubeflow Pipelines](dibi8-internal-link), Apache Airflow, hoặc Prefect cho việc điều phối workflow.
+MLflow xuất sắc nhưng không phải phổ quát: **Không có pipeline orchestration built-in**: MLflow theo dõi thử nghiệm nhưng không điều phối các training pipeline đa bước. Các đội thường ghép MLflow với [Kubeflow Pipelines](dibi8-internal-link), Apache Airflow, hoặc Prefect cho việc điều phối workflow.
 
 **Khả năng mở rộng UI**: UI MLflow trở nên chậm chạp khi vượt quá **~100,000 runs** trong một experiment đơn. Sử dụng quy ước đặt tên experiment và API search/filter để giữ các view quản lý được.
 
@@ -736,9 +684,7 @@ Sẵn sàng deploy? [Nhận $200 credit trên DigitalOcean](https://m.do.co/c/ec
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -759,7 +705,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 *Tuyên bố tiếp thị liên kết: Bài viết này chứa các liên kết tiếp thị liên kết đến DigitalOcean. Nếu bạn đăng ký qua các liên kết này, dibi8.com nhận được hoa hồng mà không phát sinh chi phí bổ sung cho bạn. Chúng tôi chỉ giới thiệu các dịch vụ mà chúng tôi sử dụng cho chính hạ tầng của mình.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

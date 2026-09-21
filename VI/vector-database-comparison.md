@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/vector-database-comparison" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/vector-database-comparison" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/vector-database-comparison" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/vector-database-comparison" />
 title: 'So Sánh Vector Database 2025: Pinecone vs Weaviate vs Ch...
 description: 'So sánh chi tiết 4 vector database hàng đầu 2025: Pinecone, Weaviate, Chroma, Milvus. Bảng benchmark, tính năng và hướng dẫn chọn database phù hợp cho RAG.'
 date: 2026-05-18 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/vector-database-comparison/
+aliases: - /posts/vector-database-comparison/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/vector-database-comparison/ -->
 
 {</* resource-info */>}
 
@@ -45,9 +37,7 @@ Các database truyền thống như PostgreSQL, MySQL thiếu khả năng tìm k
 
 ### Vai Trò Cứa Vector Database Trong Ứng Dụng RAG
 
-Trong kiến trúc RAG, vector database đóng vai trò lưu trữ tri thức và truy xuất thông tin liên quan [^1^](https://python.langchain.com):
-
-1. **Documents** được chia thành các chunks
+Trong kiến trúc RAG, vector database đóng vai trò lưu trữ tri thức và truy xuất thông tin liên quan [^1^](https://python.langchain.com): 1. **Documents** được chia thành các chunks
 2. **Embedding model** chuyển chunks thành vector
 3. **Vector database** lưu trữ và đánh index các vector
 4. **Retriever** tìm vector gần nhất với truy vấn
@@ -85,9 +75,7 @@ Weaviate là vector search engine mã nguồn mở với thiết kế AI-native 
 
 ### Giao Diện GraphQL
 
-Weaviate cung cấp API GraphQL trực quan cho cả tìm kiếm vector và truy vấn dữ liệu:
-
-```graphql
+Weaviate cung cấp API GraphQL trực quan cho cả tìm kiếm vector và truy vấn dữ liệu: ```graphql
 {
   Get {
     Article(
@@ -128,9 +116,7 @@ Chroma là vector database được thiết kế đặc biệt cho developer, v�
 
 ### API Python/JS Đơn Giản
 
-Chroma có API trực quan nhất trong số các vector database:
-
-```python
+Chroma có API trực quan nhất trong số các vector database: ```python
 import chromadb
 client = chromadb.Client()
 collection = client.create_collection("my_docs")
@@ -202,9 +188,7 @@ Zilliz Cloud là phiên bản managed của Milvus, cung cấp trải nghiệm t
 
 ### Queries Per Second (QPS)
 
-Theo benchmark độc lập từ ann-benchmarks.com:
-
-| Database | QPS (1M vectors, 768d) | QPS (10M vectors, 768d) |
+Theo benchmark độc lập từ ann-benchmarks.com: | Database | QPS (1M vectors, 768d) | QPS (10M vectors, 768d) |
 |----------|------------------------|-------------------------|
 | Milvus | 12,500 | 8,200 |
 | Pinecone | 10,800 | 7,500 |
@@ -222,9 +206,7 @@ Theo benchmark độc lập từ ann-benchmarks.com:
 
 ### Tỷ Lệ Recall
 
-Recall rate đo lường tỷ lệ kết quả thực sự gần nhất được tìm thấy (so với brute force search):
-
-| Database | Recall@10 (HNSW) | Recall@100 (HNSW) |
+Recall rate đo lường tỷ lệ kết quả thực sự gần nhất được tìm thấy (so với brute force search): | Database | Recall@10 (HNSW) | Recall@100 (HNSW) |
 |----------|------------------|-------------------|
 | Milvus | 0.982 | 0.995 |
 | Pinecone | 0.978 | 0.991 |
@@ -268,9 +250,7 @@ Nếu team không có DevOps để quản lý cơ sở hạ tầng, Pinecone ho�
 
 ### Tích Hợp LangChain
 
-Cả bốn database đều có integration native với LangChain:
-
-```python
+Cả bốn database đều có integration native với LangChain: ```python
 from langchain.vectorstores import Pinecone, Weaviate, Chroma, Milvus
 
 # Pinecone
@@ -335,9 +315,7 @@ Theo benchmark, Milvus có hiệu suất tốt nhất với QPS cao nhất (12,5
 
 ## Hạ Tầng Đề Xuất
 
-Để chạy các công cụ trên 24/7 ổn định, lựa chọn hạ tầng rất quan trọng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu.
+Để chạy các công cụ trên 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp. dibi8.com cũng host ở đây.
 - **[Hostinger](https://www.hostinger.com/vn?REFERRALCODE=22RPIAOJIYJN)** — VPS giá tốt cho thị trường Việt Nam.
 
@@ -345,7 +323,6 @@ Theo benchmark, Milvus có hiệu suất tốt nhất với QPS cao nhất (12,5
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

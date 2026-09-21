@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/code-search-replace-tools-grep-modern-alternatives" />
 title: 'Code Search & Replace Tools: From grep to ripgrep, sd, a...
 description: 'Explore modern code search tools from grep to ripgrep, fzf, sd, and Sourcegraph. Benchmarks, workflows, and setup guide for developer search in 2025.'
 date: 2026-05-18 00:00:00+08:00
@@ -20,10 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/code-search-replace-tools-grep-modern-alternatives/
+aliases: - /posts/code-search-replace-tools-grep-modern-alternatives/-
 ---
-
 {</* resource-info */>}
 
 Searching through code is one of the most frequent tasks developers perform. Finding where a function is defined, tracing how a variable is used, or replacing a deprecated API across dozens of files — these operations happen dozens of times per day. The right search tool turns minutes of scrolling into seconds of typing.
@@ -66,18 +62,14 @@ The smart defaults eliminate configuration for typical use. ripgrep automaticall
 
 ripgrep supports Unicode properly, including searching across mixed-encoding files and matching Unicode-aware regex patterns. This matters for codebases with internationalized strings, emoji in comments, or non-ASCII identifiers.
 
-Type filtering narrows searches by language without manual glob patterns:
-
-```bash
+Type filtering narrows searches by language without manual glob patterns: ```bash
 rg "User" --type js          # JavaScript files only
 rg "User" --type-add 'config:*.conf' --type config  # Custom types
 rg "User" -tjs -trs          # Multiple types: JS and Rust
 rg "User" --type-not json    # Exclude JSON files
 ```
 
-Configuration file support via `.ripgreprc` lets you set project-wide defaults. Common settings include:
-
-```bash
+Configuration file support via `.ripgreprc` lets you set project-wide defaults. Common settings include: ```bash
 # ~/.ripgreprc
 --smart-case
 --follow
@@ -97,9 +89,7 @@ The core concept is simple: pipe any list into fzf, type characters to filter, a
 
 The default key bindings transform daily workflows. `Ctrl+T` pastes a fuzzy-selected file path at the cursor. `Alt+C` changes directory into a fuzzy-selected subdirectory. `Ctrl+R` replaces the shell's history search with an interactive, fuzzy-filtered list of previous commands.
 
-The preview window displays file contents as you navigate. Combined with bat for syntax highlighting, the preview makes file selection visual:
-
-```bash
+The preview window displays file contents as you navigate. Combined with bat for syntax highlighting, the preview makes file selection visual: ```bash
 rg --files | fzf --preview 'bat --style=numbers --color=always {}' --bind 'enter:execute(vim {})'
 ```
 
@@ -113,17 +103,13 @@ Searching is half the problem. Replacing text across files is the other half. se
 
 sd replaces sed for human-facing find-and-replace tasks. Its syntax is straightforward: `sd 'old_pattern' 'replacement' file`. sd uses regex by default but provides a `--string-mode` flag for literal replacement. In string mode, no characters need escaping — `sd 'foo.bar' 'baz' file` replaces the literal string `foo.bar`, not the regex pattern.
 
-Recursive directory replacement replaces all occurrences across a project tree:
-
-```bash
+Recursive directory replacement replaces all occurrences across a project tree: ```bash
 sd 'deprecated_function' 'new_function' $(rg -l 'deprecated_function')
 ```
 
 This combines ripgrep (finding files containing the pattern) with sd (performing the replacement). The `--preview` flag shows changes before applying them, preventing costly mistakes in production code.
 
-Comparison with alternatives for a common task — replacing "http" with "https" in all JavaScript files:
-
-```bash
+Comparison with alternatives for a common task — replacing "http" with "https" in all JavaScript files: ```bash
 # sed: complex escaping, easy to get wrong
 sed -i 's/http/https/g' $(find . -name "*.js")
 
@@ -162,9 +148,7 @@ When your codebase exceeds a single repository, or when you need to search acros
 
 ## Complete Search Workflows for Daily Development
 
-The best developers combine tools into workflows for specific tasks:
-
-**Daily code navigation:** `rg --files | fzf --preview 'bat {}'` — fuzzy-find files with syntax-highlighted preview. This is your default for exploring codebases.
+The best developers combine tools into workflows for specific tasks: **Daily code navigation:** `rg --files | fzf --preview 'bat {}'` — fuzzy-find files with syntax-highlighted preview. This is your default for exploring codebases.
 
 **Finding definitions:** `rg "^fn main" --type rust` — regex-anchored search for function definitions. For language-aware search, use your IDE's "Go to Definition" feature.
 
@@ -178,10 +162,14 @@ The best developers combine tools into workflows for specific tasks:
 
 ## Performance Benchmarks: How Fast Is Fast?
 
-Andrew Gallant's official ripgrep benchmarks compare grep, ack, ag, git grep, and ripgrep across multiple test cases. The results on a warm cache searching the Linux kernel source:
-
-| Tool | Time (seconds) | Notes |
-|------|---------------|-------|
+Andrew Gallant's official ripgrep benchmarks compare grep, ack, ag, git grep, and ripgrep across multiple test cases. The results on a warm cache searching the Linux kernel source: | Tool | Time (seconds) | Notes |
+|
+---
+|
+---
+|
+---
+|
 | **ripgrep (rg)** | 0.8 | Fastest, smart defaults |
 | **The Silver Searcher (ag)** | 2.3 | Good, but surpassed by rg |
 | **git grep** | 1.5 | Fast within git repos, limited features |
@@ -202,8 +190,8 @@ The future of code search is AI-assisted. Tools like GitHub Copilot Chat and Sou
 
 Invest in your search toolkit. The seconds saved on each search compound into hours over a month. More importantly, low-friction search encourages exploration — reading more code, understanding more systems, and making better architectural decisions.
 
----
 
+---
 ## FAQ
 
 **Is ripgrep faster than grep?**
@@ -226,20 +214,17 @@ VS Code uses ripgrep internally for its search functionality — you are already
 
 ack was the first developer-focused grep replacement (2005), written in Perl. It introduced .gitignore respect, file type filtering, and colored output. ag (The Silver Searcher, 2011) rewrote ack's feature set in C for 3-5x speed improvement. rg (ripgrep, 2016) surpassed both with superior performance, better Unicode support, broader platform availability, and ongoing active development. In 2025, ripgrep is the clear choice for new setups. ack and ag are legacy tools — functional but unmaintained or minimally maintained. All three share similar command-line interfaces, so transitioning from one to another requires minimal relearning.
 
----
 
+---
 ## Recommended Infrastructure
 
-To run any of the tools above reliably 24/7, infrastructure matters:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.
+To run any of the tools above reliably 24/7, infrastructure matters: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low latency for mainland China access. This is the same IDC hosting dibi8.com — production-proven.
 
 *Affiliate links — no extra cost to you, helps keep dibi8.com running.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,6 +1,6 @@
 ---
 title: "LangChain vs LlamaIndex vs LangGraph 2026: 完整对比指南"
-description: "2026年LangChain、LlamaIndex和LangGraph三大LLM框架的深度对比。从RAG性能、Agent编排到生产部署，帮你选择最适合的项目框架。". Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "2026年LangChain、LlamaIndex和LangGraph三大LLM框架的深度对比。从RAG性能、Agent编排到生产部署，帮你选择最适合的项目框架。"
 date: 2026-09-20
 lastmod: 2026-09-20
 tags: [langchain, llamaindex, langgraph, rag, ai-frameworks, 2026]
@@ -9,7 +9,6 @@ license_type: Open Source
 source: "LangChain, LlamaIndex"
 github: "langchain-ai/langchain, run-llama/llamaindex, langchain-ai/langgraph"
 ---
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -41,7 +40,6 @@ github: "langchain-ai/langchain, run-llama/llamaindex, langchain-ai/langgraph"
 </script>
 
 
-<!-- canonical: https://dibi8.com/zh/tools/2026-09-20-langchain-vs-llamaindex-vs-langgraph/ -->
 
 # LangChain vs LlamaIndex vs LangGraph 2026: 完整对比指南
 
@@ -95,7 +93,17 @@ LangGraph是LangChain生态中的低层级编排框架，专注于长运行、�
 ### RAG检索性能
 
 | 框架 | 检索速度 | 准确率 | 内存占用 | 易用性 |
-|------|---------|--------|----------|--------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | LlamaIndex | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | 低 | ⭐⭐⭐⭐ |
 | LangChain | ⭐⭐⭐ | ⭐⭐⭐⭐ | 中 | ⭐⭐⭐ |
 | LangGraph | N/A | N/A | 高 | ⭐⭐ |
@@ -105,7 +113,17 @@ LlamaIndex在纯RAG场景下明显领先，因为它专注于文档索引和检�
 ### Agent编排能力
 
 | 框架 | 工作流复杂度 | 错误恢复 | 人工干预 | 学习曲线 |
-|------|-------------|----------|----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | LangChain | ⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐ | 中等 |
 | LlamaIndex | ⭐⭐ | ⭐⭐ | ⭐⭐ | 简单 |
 | LangGraph | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | 陡峭 |
@@ -161,8 +179,7 @@ print(response)
 ```python
 from langchain.agents import create_agent
 
-def get_weather(city: str) -> str:
-    """获取指定城市的天气"""
+def get_weather(city: str) -> str: """获取指定城市的天气"""
     return f"{city}今天晴朗，25°C"
 
 agent = create_agent(
@@ -182,18 +199,15 @@ print(result)
 from langgraph.graph import StateGraph, START, END
 from typing import TypedDict
 
-class AgentState(TypedDict):
-    messages: list
+class AgentState(TypedDict): messages: list
     tool_calls: list
     final_answer: str
 
-def weather_tool(state: AgentState) -> AgentState:
-    # 执行天气查询
+def weather_tool(state: AgentState) -> AgentState: # 执行天气查询
     state["final_answer"] = "旧金山25°C"
     return state
 
-def should_continue(state: AgentState) -> str:
-    return "end" if "final_answer" in state else "tool"
+def should_continue(state: AgentState) -> str: return "end" if "final_answer" in state else "tool"
 
 graph = StateGraph(AgentState)
 graph.add_node("tool", weather_tool)
@@ -253,12 +267,10 @@ agent = create_agent(
 from llama_index.workflow import Workflow, Step
 
 @Step(deps=[1, 2])
-async def retrieve_docs(query: str) -> list:
-    return await index.aretrieve(query)
+async def retrieve_docs(query: str) -> list: return await index.aretrieve(query)
 
 @Step(deps=[3])
-async def generate_response(docs: list) -> str:
-    prompt = f"基于以下文档回答问题...\n{docs}"
+async def generate_response(docs: list) -> str: prompt = f"基于以下文档回答问题...\n{docs}"
     return await llm.acomplete(prompt)
 
 workflow = Workflow()
@@ -283,7 +295,15 @@ result = await workflow.run("查询问题")
 ## 社区和生态系统
 
 | 指标 | LangChain | LlamaIndex | LangGraph |
-|------|-----------|------------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | GitHub Stars | ~143k | ~51k | ~15k |
 | 月PyPI下载 | ~299M | ~23M | N/A |
 | 文档完善度 | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐ |
@@ -319,8 +339,8 @@ result = await workflow.run("查询问题")
 
 记住，没有"最好"的框架，只有"最适合"你场景的框架。评估你的需求，选择对应的工具，然后在必要时组合使用。
 
----
 
+---
 **问：** LangChain 1.0和旧版本有什么区别？
 **答：** LangChain 1.0完全重写了Agent API，使用`create_agent`简化了开发。旧版链式结构被移到`langchain-classic`包，不再推荐新用户使用。
 
@@ -336,8 +356,8 @@ result = await workflow.run("查询问题")
 **问：** 如何选择向量数据库？
 **答：** LlamaIndex支持Chroma、Qdrant、Weaviate等。对于新项目，建议从Chroma开始（免费、易用），需要时再迁移到其他方案。
 
----
 
+---
 *觉得有用？加入Telegram社区获取每日AI工具更新：https://t.me/DIBI8_Group*
 
 ## Frequently Asked Questions (FAQ)
@@ -363,17 +383,13 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
 
 
-To get started with AI agents, you need to understand three core components:
-
-1. **Perception**: How the agent senses its environment (APIs, tools, sensors)
+To get started with AI agents, you need to understand three core components: 1. **Perception**: How the agent senses its environment (APIs, tools, sensors)
 2. **Reasoning**: How the agent processes information (LLM, rule-based, hybrid)
 3. **Action**: How the agent interacts with the world (API calls, code execution, UI automation)
 
 ### Prerequisites
 
-Before building your first agent, ensure you have:
-
-```bash
+Before building your first agent, ensure you have: ```bash
 # Required tools
 python3 >= 3.9
 pip install openai anthropic langchain
@@ -415,17 +431,13 @@ agent = initialize_agent(
 
 This foundation allows you to build increasingly sophisticated agents.
 
-To get started with AI agents, you need to understand three core components:
-
-1. **Perception**: How the agent senses its environment (APIs, tools, sensors)
+To get started with AI agents, you need to understand three core components: 1. **Perception**: How the agent senses its environment (APIs, tools, sensors)
 2. **Reasoning**: How the agent processes information (LLM, rule-based, hybrid)
 3. **Action**: How the agent interacts with the world (API calls, code execution, UI automation)
 
 ### Prerequisites
 
-Before building your first agent, ensure you have:
-
-```bash
+Before building your first agent, ensure you have: ```bash
 # Required tools
 python3 >= 3.9
 pip install openai anthropic langchain
@@ -470,7 +482,17 @@ This foundation allows you to build increasingly sophisticated agents.
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

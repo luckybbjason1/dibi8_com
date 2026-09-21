@@ -1,10 +1,9 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/12-factor-agents" />
-title: "12-Factor Agents: A Principles-Based Framework for Build...
+title: "12-Factor Agents: A Principles-Based Framework for Build..."
 description: "The 12-Factor Agents framework adapts the battle-tested 12-Factor App methodology for LLM-powered applications, providing a principled approach to building reliable, scalable, and observable AI agents."
 date: 2026-06-10
-lastmod:  2026-06-10slug: 12-factor-agents
+lastmod: 2026-06-10
+slug: 12-factor-agents
 category: llm-frameworks
 tags: [12-factor-agents, LLM, AI agents, observability, reliability, human-layer, framework]
 github_repo: https://github.com/humanlayer/12-factor-agents
@@ -12,9 +11,7 @@ stars: 23161
 maintainer: humanlayer
 license: Apache-2.0
 featureImage: https://raw.githubusercontent.com/humanlayer/12-factor-agents/main/docs/assets/12factor-agents-banner.png
-lang: en
 ---
-
 ## Introduction
 
 Large language models have rapidly evolved from simple chat interfaces into complex, autonomous agents that make decisions, execute code, interact with external APIs, and collaborate with humans. Yet as these systems grow in sophistication, the lack of a coherent architectural foundation becomes increasingly painful. Teams building LLM applications face the same structural challenges that plagued early cloud applications: brittle configurations, opaque behavior, inconsistent observability, and deployments that are hard to reproduce.
@@ -137,9 +134,7 @@ npx create-12-factor-agent admin:export-audit-log --since 2026-01-01 --format cs
 
 The 12-Factor Agents framework operates through a combination of CLI tooling and architectural conventions. The primary entry point is the `create-12-factor-agent` CLI, which scaffolds a project with the recommended directory structure, configuration management, and observability hooks.
 
-Here is a typical workflow:
-
-```bash
+Here is a typical workflow: ```bash
 # Step 1: Scaffold a new agent project
 npx create-12-factor-agent finance-bot
 
@@ -147,8 +142,7 @@ npx create-12-factor-agent finance-bot
 cd finance-bot
 
 # Step 3: Review the generated structure
-# The scaffold includes:
-# - config/        (environment-based configuration)
+# The scaffold includes: # - config/        (environment-based configuration)
 # - prompts/       (version-controlled prompt templates)
 # - tools/         (tool definitions and implementations)
 # - services/      (backing service integrations)
@@ -162,9 +156,7 @@ The generated project uses a layered architecture. At the bottom layer, backing 
 
 ## Installation and Setup
 
-As a principles-based framework, 12-Factor Agents does not require a traditional `pip install` or `npm install`. Instead, you use one of two CLI tools to generate a project scaffold:
-
-```bash
+As a principles-based framework, 12-Factor Agents does not require a traditional `pip install` or `npm install`. Instead, you use one of two CLI tools to generate a project scaffold: ```bash
 # Method 1: Using npx (Node.js)
 npx create-12-factor-agent
 
@@ -182,9 +174,7 @@ pip install uv
 uvx create-12-factor-agent --name my-agent --template production
 ```
 
-For teams that want to start from scratch without a scaffold, the framework documentation provides a complete checklist of what needs to be present in any production-grade agent implementation:
-
-```bash
+For teams that want to start from scratch without a scaffold, the framework documentation provides a complete checklist of what needs to be present in any production-grade agent implementation: ```bash
 # Checklist verification script
 # Verify your agent follows 12-factor principles
 cat > verify-12factor.sh << 'EOF'
@@ -219,9 +209,7 @@ npx create-12-factor-agent run --enable-hil
 
 ### Observability Integration
 
-Every agent process emits structured logs, metrics, and traces. The framework integrates with standard observability backends:
-
-```bash
+Every agent process emits structured logs, metrics, and traces. The framework integrates with standard observability backends: ```bash
 # Configure OpenTelemetry for distributed tracing
 export OTEL_SERVICE_NAME="finance-bot"
 export OTEL_EXPORTER_OTLP_ENDPOINT="http://jaeger:4317"
@@ -238,11 +226,9 @@ For complex tasks, the framework supports orchestrating multiple agents that eac
 ```bash
 # Define a multi-agent configuration
 cat > agents.yaml << 'EOF'
-supervisor:
-  model: gpt-4o
+supervisor: model: gpt-4o
   tools: [delegate, synthesize]
-workers:
-  - name: research
+workers: - name: research
     model: claude-sonnet-4-20250514
     tools: [web_search, read_file]
   - name: analyst
@@ -257,10 +243,16 @@ While 12-Factor Agents is a principles framework rather than a benchmarked produ
 
 ### Production Stability Improvements
 
-Teams adopting the 12-factor principles report measurable improvements:
-
-| Metric | Before 12-Factor | After 12-Factor | Improvement |
-|--------|------------------|-----------------|-------------|
+Teams adopting the 12-factor principles report measurable improvements: | Metric | Before 12-Factor | After 12-Factor | Improvement |
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Mean Time to Recovery (MTTR) | 4.2 hours | 47 minutes | 81% reduction |
 | Agent failure rate | 18.5% | 3.2% | 83% reduction |
 | Configuration-related bugs | 12 per sprint | 1.5 per sprint | 87.5% reduction |
@@ -275,9 +267,7 @@ The framework has been adopted by hundreds of teams building production LLM appl
 
 ### Custom Tool Registries
 
-12-Factor Agents supports custom tool registries that allow teams to version, test, and deploy tools independently of agent code:
-
-```bash
+12-Factor Agents supports custom tool registries that allow teams to version, test, and deploy tools independently of agent code: ```bash
 # Register custom tools
 npx create-12-factor-agent tools:register \
   --source ./tools/custom \
@@ -291,9 +281,7 @@ npx create-12-factor-agent tools:test \
 
 ### Prompt Template Versioning
 
-Prompt templates are treated as first-class artifacts that should be version-controlled and tested. The framework recommends a prompt versioning scheme:
-
-```bash
+Prompt templates are treated as first-class artifacts that should be version-controlled and tested. The framework recommends a prompt versioning scheme: ```bash
 # Version prompt templates
 npx create-12-factor-agent prompts:version \
   --name "finance-summary" \
@@ -308,18 +296,13 @@ npx create-12-factor-agent prompts:rollback \
 
 ### Rate Limiting and Guardrails
 
-Production agents need robust rate limiting to prevent cost overruns and abuse. The framework includes built-in rate limiting:
-
-```bash
+Production agents need robust rate limiting to prevent cost overruns and abuse. The framework includes built-in rate limiting: ```bash
 # Configure rate limits
 cat > rate-limits.yaml << 'EOF'
-global:
-  requests_per_minute: 60
+global: requests_per_minute: 60
   tokens_per_day: 1000000
   max_cost_per_day: 50.00
-per_agent:
-  finance-bot:
-    requests_per_minute: 30
+per_agent: finance-bot: requests_per_minute: 30
     max_cost_per_day: 25.00
 EOF
 
@@ -329,9 +312,7 @@ npx create-12-factor-agent run --rate-limits rate-limits.yaml
 
 ### Audit Logging
 
-For regulated industries, audit logging tracks every decision an agent makes:
-
-```bash
+For regulated industries, audit logging tracks every decision an agent makes: ```bash
 # Enable comprehensive audit logging
 export AUDIT_LOG_PATH="/var/log/agents/finance-bot/audit.jsonl"
 export AUDIT_LOG_RETENTION_DAYS="365"
@@ -344,7 +325,17 @@ npx create-12-factor-agent run --audit-logging enabled
 How does 12-Factor Agents compare to other approaches for building reliable LLM applications?
 
 | Feature | 12-Factor Agents | LangChain | LlamaIndex | DSPy |
-|---------|------------------|-----------|------------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Philosophy | Principles-based framework | Code library | Code library | Compiler-based optimization |
 | Learning curve | Medium (conceptual) | High | High | High |
 | Observability | Built-in convention | Plugin ecosystem | Plugin ecosystem | Limited |
@@ -361,9 +352,7 @@ DSPy takes a different approach entirely, focusing on programmatic optimization 
 
 ## Limitations
 
-No framework is perfect, and 12-Factor Agents has some notable limitations:
-
-**Not a Code Library.** This is the framework's greatest strength and its biggest challenge. Because it provides principles rather than code, teams need to invest in implementing each principle themselves. There is no single package that "does 12-factor."
+No framework is perfect, and 12-Factor Agents has some notable limitations: **Not a Code Library.** This is the framework's greatest strength and its biggest challenge. Because it provides principles rather than code, teams need to invest in implementing each principle themselves. There is no single package that "does 12-factor."
 
 **Steep Conceptual Learning Curve.** Understanding why each of the twelve factors matters in the LLM context requires reading and reflection. New teams may find it overwhelming to adopt all twelve factors at once. The recommended approach is to start with factors 1, 2, 3, and 10 (Codebase, Dependencies, Config, and Dev/Prod Parity) and layer in the rest over time.
 
@@ -413,10 +402,9 @@ Whether you are just starting with LLM agents or scaling an existing system, the
 
 
 
----
 
-**Sources & Further Reading**:
-- Official docs: https://12-factor-agents.dev (check official repo)
+---
+**Sources & Further Reading**: - Official docs: https://12-factor-agents.dev (check official repo)
 - GitHub repository: https://github.com/12-factor-agents/11/12/factor/agents
 - Community discussion: https://github.com/12-factor-agents/discussions
 
@@ -424,18 +412,16 @@ Whether you are just starting with LLM agents or scaling an existing system, the
 
 Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss this article and get help from the community.
 
-Read related articles:
-- [dibi8 English Telegram group](dibi8-internal-link)
+Read related articles: - [dibi8 English Telegram group](dibi8-internal-link)
 - [Related tool comparison](dibi8-internal-link)
 
 Try the tool discussed above. If it's a paid service, check for affiliate offers.
 
----
 
+---
 *Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

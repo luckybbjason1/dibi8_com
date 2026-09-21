@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/cheap-llm-stack" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cheap-llm-stack" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cheap-llm-stack" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cheap-llm-stack" />
 title: 'Stack LLM Giá Rẻ 2026: Chạy AI Production $0-15/Tháng Bằ...
 description: 'Stack 5 thành phần chạy workload AI thực tế $0-15/tháng: Ollama local + DeepSeek API + Gemini free tier + nén RTK + orchestration 9Router. Toán chi phí thực, lựa model theo loại task, thứ tự lắp ráp.'
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
-tech_stack:
-  - Python
+tech_stack: - Python
   - Docker
   - Go
   - Rust
@@ -29,11 +23,9 @@ featureImage: ''
 draft: false
 categories: [collections]
 tags: ['llm rẻ', 'free tier', 'tối ưu chi phí', stack, collection]
-aliases:
-  - /posts/cheap-llm-stack/
+aliases: - /posts/cheap-llm-stack/
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/cheap-llm-stack/ -->
 # Stack LLM Giá Rẻ 2026: Chạy AI Production $0-15/Tháng Bằng Free Tier + Nén Token
 
 
@@ -57,9 +49,7 @@ So với pure API cùng volume: $40 / $200 / $800 tương ứng. **Giảm 20-50�
 
 ## 1. Vì Sao "Rẻ" Khả Thi Năm 2026
 
-Ba điều thay đổi trong 12 tháng qua:
-
-1. **DeepSeek-V4 đạt chất lượng Claude Sonnet với 1/10 giá** ($0.27/M vs $3/M input). Cho 80% task khoảng cách chất lượng không quan trọng
+Ba điều thay đổi trong 12 tháng qua: 1. **DeepSeek-V4 đạt chất lượng Claude Sonnet với 1/10 giá** ($0.27/M vs $3/M input). Cho 80% task khoảng cách chất lượng không quan trọng
 2. **Free tier nghiêm túc**: Gemini cho 1,000 request free/ngày, GLM-4.6 ra free tier, OpenRouter rotate model free tài trợ cộng đồng. Ngân sách kết hợp ~3,000 free call/ngày
 3. **RTK (Repetition-Token Compression) hoạt động**: loại bỏ 20-40% token thuần dư thừa (file header, system prompt lặp 10× mỗi session)
 
@@ -88,8 +78,7 @@ Mỗi provider có "vùng chuyên môn." 9Router (hoặc wrapper Python 10 dòng
 
 **Vai trò**: Bất cứ gì nhạy cảm, không muốn bị tính phí, chất lượng draft.
 
-**Thực tế trên phần cứng tiêu dùng** (số liệu 2026):
-- **8 GB RAM** (M1 / PC tầm trung): Llama 3.2 3B ở 20+ tok/s — ổn cho autocomplete, phân loại, viết draft
+**Thực tế trên phần cứng tiêu dùng** (số liệu 2026): - **8 GB RAM** (M1 / PC tầm trung): Llama 3.2 3B ở 20+ tok/s — ổn cho autocomplete, phân loại, viết draft
 - **16 GB RAM** (M2/M3 / PC khá): Qwen 3 Coder 14B ở 15 tok/s — coding production
 - **32 GB RAM** (Mac Studio / workstation): Llama 3.3 70B Q4 ở 8 tok/s — chất lượng Claude Sonnet, cho người kiên nhẫn
 
@@ -101,8 +90,7 @@ Cài đặt đầy đủ + lựa model: [Hướng dẫn Ollama production](/vi/r
 
 **Vai trò**: Khi local không đủ tốt, đây là provider trả phí mặc định.
 
-**Vì sao đánh bại mọi người về giá/chất lượng**:
-- DeepSeek-V4 input $0.27/M token vs Claude Sonnet $3/M vs GPT-5 $2.50/M
+**Vì sao đánh bại mọi người về giá/chất lượng**: - DeepSeek-V4 input $0.27/M token vs Claude Sonnet $3/M vs GPT-5 $2.50/M
 - Khoảng cách benchmark code với Claude Sonnet: ~5% trung bình
 - Off-peak giảm thêm 50% (UTC 16:30-00:30)
 
@@ -120,8 +108,7 @@ Setup đầy đủ + khi nào *không* dùng DeepSeek: [So sánh DeepSeek-V4 vs 
 
 **Lưu ý**: Google log prompt cho "cải thiện model" ở free tier — đừng gửi code độc quyền hoặc PII.
 
-**Cài nhanh**:
-```bash
+**Cài nhanh**: ```bash
 npm install -g @google/gemini-cli
 gemini auth login  # mở trình duyệt, dùng tài khoản Google
 gemini "giải thích regex này: /^[a-z]+$/i"
@@ -137,8 +124,7 @@ Tổng quan đi kèm về Gemini vs Perplexity vs ChatGPT free tier và mỗi c�
 
 **Cơ chế**: Dedup ngữ nghĩa. Nếu bạn gửi cùng system prompt 2,000 token 50 lần hôm nay, RTK nhận biết từ call #2 và gửi pointer thay vì full text.
 
-**Cài nhanh**:
-```bash
+**Cài nhanh**: ```bash
 docker run -d --name rtk -p 8765:8765 \
   ghcr.io/rtk-ai/rtk:latest
 ```
@@ -155,8 +141,7 @@ Sau đó đổi API base URL từ `https://api.deepseek.com/v1` thành `http://l
 
 **Bonus**: 9Router gồm layer nén RTK riêng cho premium provider, cộng auto-fallback khi free tier đụng cap hàng ngày.
 
-**Cài nhanh**:
-```bash
+**Cài nhanh**: ```bash
 docker run -d --name 9router -p 9999:9999 \
   -e PROVIDERS=ollama,deepseek,gemini,openrouter \
   ghcr.io/rtk-ai/9router:latest
@@ -166,9 +151,7 @@ Cấu hình đầy đủ + công thức combo coding free tier: [Hướng dẫn 
 
 ## 8. Bảng Routing — Ai Xử Lý Cái Gì
 
-Config routing mặc định khả thi cho solo dev:
-
-| Loại task | Provider | Vì sao |
+Config routing mặc định khả thi cho solo dev: | Loại task | Provider | Vì sao |
 |---|---|---|
 | Inline code completion | **Ollama** (Qwen 3 Coder 14B local) | Latency quan trọng hơn chất lượng |
 | Code generation (scope hàm) | **DeepSeek-V4 via RTK** | Chất lượng quan trọng, nén tiết kiệm |
@@ -181,20 +164,17 @@ Config routing mặc định khả thi cho solo dev:
 
 ## 9. Toán $0-15/Tháng
 
-**Dùng nhẹ** (solo dev, trung bình 100 calls/ngày):
-- Gemini free phủ ~70% calls → $0
+**Dùng nhẹ** (solo dev, trung bình 100 calls/ngày): - Gemini free phủ ~70% calls → $0
 - DeepSeek cho 30% còn lại (~900 calls/tháng, chủ yếu nhỏ) → $1-3
 - Ollama cho nhạy cảm (không API cost) → $0
 - **Tổng: $1-3/tháng** (so với pure API $40+)
 
-**Dùng trung bình** (500 calls/ngày, gồm coding):
-- Gemini free: vẫn còn ~1000 calls/ngày
+**Dùng trung bình** (500 calls/ngày, gồm coding): - Gemini free: vẫn còn ~1000 calls/ngày
 - DeepSeek cho coding nghiêm túc: ~3000 calls/tháng với nén RTK → $3-8
 - Ollama fallback → $0
 - **Tổng: $3-8/tháng** (so với pure API $200+)
 
-**Dùng nặng** (2000 calls/ngày, workflow agent):
-- Gemini cạn 10am, fallback kicks in
+**Dùng nặng** (2000 calls/ngày, workflow agent): - Gemini cạn 10am, fallback kicks in
 - DeepSeek tải nặng, RTK giảm ~30% → $5-12
 - Job batch off-peak → giảm thêm 50%
 - Ollama xử lý phân loại bulk, nhạy cảm → $0
@@ -213,9 +193,7 @@ Sau 60 phút bạn có router LLM rẻ cấp production thực sự trên máy m
 
 ## 11. Khi Nào Upgrade (và lên gì)
 
-Stack $0-15 hoạt động đến khi đụng bất kỳ điều nào:
-
-- **Yêu cầu latency < 500ms** — Thêm Claude/GPT-5 cho hot path (vẫn giữ DeepSeek cho batch)
+Stack $0-15 hoạt động đến khi đụng bất kỳ điều nào: - **Yêu cầu latency < 500ms** — Thêm Claude/GPT-5 cho hot path (vẫn giữ DeepSeek cho batch)
 - **Tuân thủ yêu cầu provider chỉ dữ liệu Mỹ** — Bỏ DeepSeek + Gemini, dùng OpenRouter với provider filtering hoặc self-host thêm
 - **Workload bulk yêu cầu SLA** — Thêm gateway LiteLLM managed với nhiều provider trả phí + logic retry ([LiteLLM gateway 2026](/vi/resources/llm-frameworks/litellm/) xem)
 - **Muốn observability đầy đủ** — Thêm Portkey ($49 phí platform ở $1k chi tiêu, [Portkey vs LiteLLM 2026](/vi/resources/llm-frameworks/llm-gateway-portkey-litellm-openrouter-comparison-2026/) xem)
@@ -224,8 +202,7 @@ Stack $0-15 hoạt động đến khi đụng bất kỳ điều nào:
 
 ## TL;DR — Recipe
 
-**5 công cụ, $0-15/tháng, setup 60 phút**:
-1. **Ollama** — local & nhạy cảm
+**5 công cụ, $0-15/tháng, setup 60 phút**: 1. **Ollama** — local & nhạy cảm
 2. **DeepSeek-V4** — API rẻ cho task khó
 3. **Gemini CLI free tier** — 1k req/ngày free LLM chung
 4. **Proxy RTK** — tiết kiệm 20-40% token trên API có phí
@@ -238,7 +215,6 @@ Stack tự hoàn vốn nếu bạn hiện tiêu $30+/tháng cho AI SaaS bất k�
 *Ghép bộ sưu tập này với [Workflow AI Coding Self-Host](/vi/collections/self-hosted-ai-coding-workflow/) cho stack coding đầy đủ — chúng chia sẻ Ollama + 9Router + RTK làm nền tảng.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

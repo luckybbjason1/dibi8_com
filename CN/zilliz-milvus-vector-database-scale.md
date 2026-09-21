@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/zilliz-milvus-vector-database-scale" />
 title: 'Milvus/Zilliz 2026: The Vector Database Handling 10 Bill...
 description: 'Production guide for Milvus 2.5: billion-scale vector search, GPU-accelerated indexing, Kubernetes deployment, hybrid search, and Zilliz Cloud setup.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: [milvus, zilliz, 'vector-database', ann, 'similarity-search', kubernetes, 'gpu-indexing', 'ai-infrastructure']
-aliases:
-- /posts/zilliz-milvus-vector-database-scale/
+aliases: - /posts/zilliz-milvus-vector-database-scale/-
 ---
-
 {{</* resource-info */>}}
 
 ## Introduction: The Billion-Vector Problem
@@ -45,7 +41,11 @@ The commercial sibling, **Zilliz Cloud**, offers a fully managed version with ze
 **Key stats (May 2026):**
 
 | Metric | Value |
-|--------|-------|
+|
+---
+|
+---
+|
 | Current version | **2.5.10** |
 | GitHub stars | **32,000+** |
 | Max tested scale | **10 billion vectors** |
@@ -55,9 +55,7 @@ The commercial sibling, **Zilliz Cloud**, offers a fully managed version with ze
 
 ## How Milvus Works: Architecture Deep Dive
 
-Milvus 2.5 follows a **cloud-native microservices architecture** with five core components:
-
-1. **Proxy** — Handles client requests, load balances, and forwards to query nodes.
+Milvus 2.5 follows a **cloud-native microservices architecture** with five core components: 1. **Proxy** — Handles client requests, load balances, and forwards to query nodes.
 2. **Query Node** — Executes ANN search against loaded index segments.
 3. **Data Node** — Manages data insertion, flush, and compaction.
 4. **Index Node** — Builds vector indexes (HNSW, IVF, DiskANN, GPU-based).
@@ -76,12 +74,8 @@ Storage is decoupled: **etcd** stores metadata, **MinIO/S3** stores actual vecto
 
 ```yaml
 # GPU resource allocation for Milvus index node (Helm values)
-indexNode:
-  resources:
-    limits:
-      nvidia.com/gpu: 1  # Request 1 GPU for index building
-    requests:
-      memory: "16Gi"
+indexNode: resources: limits: nvidia.com/gpu: 1  # Request 1 GPU for index building
+    requests: memory: "16Gi"
       cpu: "8"
 ```
 
@@ -201,8 +195,7 @@ import numpy as np
 batch_size = 10000
 total_vectors = 100000
 
-for i in range(0, total_vectors, batch_size):
-    embeddings = np.random.randn(batch_size, 1536).tolist()
+for i in range(0, total_vectors, batch_size): embeddings = np.random.randn(batch_size, 1536).tolist()
     texts = [f"document_{i+j}" for j in range(batch_size)]
     categories = ["tech" if j % 2 == 0 else "finance" for j in range(batch_size)]
     
@@ -226,8 +219,7 @@ results = collection.search(
     output_fields=["text", "category"]
 )
 
-for hit in results[0]:
-    print(f"ID: {hit.id}, Distance: {hit.distance:.4f}, Text: {hit.entity.text}")
+for hit in results[0]: print(f"ID: {hit.id}, Distance: {hit.distance:.4f}, Text: {hit.entity.text}")
 ```
 
 ```python
@@ -250,10 +242,20 @@ print(f"Found {len(results[0])} filtered results")
 
 ## Benchmarks: Real-World Numbers
 
-Independent benchmarks from April 2026 on `dbpedia-openai-1M` dataset (1M vectors, 1536 dimensions, AWS c6i.8xlarge unless noted):
-
-| Metric | Milvus (CPU) | Milvus (GPU T4) | Pinecone | Weaviate | Qdrant |
-|--------|-------------|-----------------|----------|----------|--------|
+Independent benchmarks from April 2026 on `dbpedia-openai-1M` dataset (1M vectors, 1536 dimensions, AWS c6i.8xlarge unless noted): | Metric | Milvus (CPU) | Milvus (GPU T4) | Pinecone | Weaviate | Qdrant |
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **p99 Query Latency** | 18 ms | **8 ms** | 28 ms | 19 ms | 12 ms |
 | **Recall@10** | **0.99** | **0.99** | 0.94 | 0.97 | 0.99 |
 | **Throughput (QPS)** | 3,900 | **8,200** | 1,200 | 2,800 | 4,100 |
@@ -318,8 +320,7 @@ vector_store.add_documents(docs)
 
 # Similarity search
 results = vector_store.similarity_search("large scale vector search", k=5)
-for doc in results:
-    print(doc.page_content)
+for doc in results: print(doc.page_content)
 ```
 
 ### LlamaIndex Integration
@@ -357,8 +358,7 @@ import numpy as np
 
 client = OpenAI()
 
-def get_embedding(text: str) -> list[float]:
-    resp = client.embeddings.create(
+def get_embedding(text: str) -> list[float]: resp = client.embeddings.create(
         model="text-embedding-3-large",
         input=text,
         dimensions=1536
@@ -374,25 +374,17 @@ collection.insert([[embedding], ["milvus_overview"]])
 
 ### Tiered Storage Configuration
 
-Milvus 2.5 supports tiered storage to reduce costs for large datasets:
-
-```yaml
+Milvus 2.5 supports tiered storage to reduce costs for large datasets: ```yaml
 # Helm values for tiered storage
-extraConfigFiles:
-  user.yaml: |+
-    common:
-      storageType: remote
-    minio:
-      address: minio.milvus.svc:9000
+extraConfigFiles: user.yaml: |+
+    common: storageType: remote
+    minio: address: minio.milvus.svc:9000
       bucketName: milvus-bucket
       rootPath: files
     # Enable tiered storage
-    queryNode:
-      cache:
-        warmUp: async
+    queryNode: cache: warmUp: async
         memoryLimit: 8GB  # Hot data in memory
-      disk:
-        enabled: true     # Warm data on local disk
+      disk: enabled: true     # Warm data on local disk
         capacity: 100GB
 ```
 
@@ -415,10 +407,8 @@ make
 
 ```yaml
 # Helm values for Milvus monitoring
-metrics:
-  enabled: true
-  serviceMonitor:
-    enabled: true
+metrics: enabled: true
+  serviceMonitor: enabled: true
     interval: 30s
 
 # Grafana dashboard: https://github.com/zilliztech/milvus-insight
@@ -458,7 +448,19 @@ results = collection.search(
 ## Comparison with Alternatives
 
 | Feature | Milvus 2.5 | Pinecone | Weaviate 1.25 | Qdrant 1.11 | pgvector 0.8 |
-|---------|-----------|----------|---------------|-------------|--------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Open Source** | Apache-2.0 | No | BSD-3 | Apache-2.0 | PostgreSQL |
 | **Max Scale** | **10B+ vectors** | Unlimited | 200M/node | 500M/node | ~50M |
 | **p99 Latency** | 8ms (GPU) | 28ms | 19ms | 12ms | 25-40ms |
@@ -519,9 +521,7 @@ Milvus 2.5 integrates NVIDIA RAFT for GPU-accelerated HNSW and IVF index constru
 
 ### What backup strategies does Milvus support?
 
-Milvus Backup (official tool) supports full cluster snapshots to S3-compatible storage. For production, schedule daily backups via cron:
-
-```bash
+Milvus Backup (official tool) supports full cluster snapshots to S3-compatible storage. For production, schedule daily backups via cron: ```bash
 0 2 * * * /usr/local/bin/milvus-backup create -n "auto_$(date +\%Y\%m\%d)"
 ```
 
@@ -554,9 +554,7 @@ Join our [Telegram community](https://t.me/dibi8en) to share your Milvus deploym
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -566,7 +564,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 This article contains affiliate links to [DigitalOcean](https://m.do.co/c/eca87ac14ee0) for cloud hosting. If you sign up through our link, we receive a commission at no extra cost to you. We only recommend services we use in our own production environments. Affiliate links help fund the development of dibi8.com open-source content.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -592,13 +589,13 @@ This article contains affiliate links to [DigitalOcean](https://m.do.co/c/eca87a
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [trivy-production-security-scanner-2026](zilliz-milvus-vector-database-scale)
 - [trivy-production-security-scanner-2026](zilliz-milvus-vector-database-scale)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

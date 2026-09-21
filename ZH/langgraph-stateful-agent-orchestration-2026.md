@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/langgraph-stateful-agent-orchestration-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/langgraph-stateful-agent-orchestration-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/langgraph-stateful-agent-orchestration-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/langgraph-stateful-agent-orchestration-2026" />
 title: 'LangGraph 1.2 生产实战：能熬过崩溃的有状态 Agent 编排（2026 完整指南）'
 description: 'LangGraph 是长跑、有状态 AI agent 的底层编排框架。GitHub 32.6k stars，v1.2.1。真实部署指南覆盖图设计、持久化执行、human-in-loop 检查点、LangSmith 调试、以及 LangGraph 何时胜过 CrewAI / AutoGen / 纯 LangChain。'
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
-tech_stack:
-  - Python
+tech_stack: - Python
   - TypeScript
   - PostgreSQL
   - Redis
@@ -29,11 +23,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [langgraph, agent, 有状态, 编排, langchain, 生产]
-aliases:
-  - /posts/langgraph-stateful-agent-orchestration-2026/
+aliases: - /posts/langgraph-stateful-agent-orchestration-2026/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/langgraph-stateful-agent-orchestration-2026/ -->
 
 你写过简单 LLM agent，看过它进程重启就忘光、一个 tool call 超时就丢半进度、两个事件并发就静默搞坏状态 —— 那你撞到的就是 **LangGraph** 要打穿的墙。
 
@@ -68,8 +59,7 @@ LangGraph 的 `Checkpointer`（用 Postgres / Redis / 内存做后端）在每�
 
 ```bash
 pip install -U langgraph langchain langchain-openai
-# 或带 Postgres checkpointer:
-pip install -U langgraph langgraph-checkpoint-postgres
+# 或带 Postgres checkpointer: pip install -U langgraph langgraph-checkpoint-postgres
 ```
 
 最小有状态 agent —— 数到 5，状态 checkpointed，进程重启不丢：
@@ -79,14 +69,11 @@ from typing import TypedDict
 from langgraph.graph import StateGraph, START, END
 from langgraph.checkpoint.memory import MemorySaver
 
-class State(TypedDict):
-    counter: int
+class State(TypedDict): counter: int
 
-def increment(state: State) -> State:
-    return {"counter": state["counter"] + 1}
+def increment(state: State) -> State: return {"counter": state["counter"] + 1}
 
-def should_continue(state: State) -> str:
-    return "increment" if state["counter"] < 5 else END
+def should_continue(state: State) -> str: return "increment" if state["counter"] < 5 else END
 
 graph = StateGraph(State)
 graph.add_node("increment", increment)
@@ -114,8 +101,7 @@ print(result)  # {counter: 5}
 ```python
 from langgraph.types import interrupt
 
-def approval_gate(state):
-    user_decision = interrupt({"proposed_action": state["plan"]})
+def approval_gate(state): user_decision = interrupt({"proposed_action": state["plan"]})
     return {"approved": user_decision}
 ```
 
@@ -157,7 +143,11 @@ def approval_gate(state):
 ## 6. LangGraph vs LangChain vs CrewAI vs AutoGen（什么时候挑哪个）
 
 | 需求 | 挑 |
-|---|---|
+|
+---
+|
+---
+|
 | 有状态、长跑、必须熬过重启的 agent | **LangGraph** |
 | 快速 LLM-powered app（chatbot / RAG / 简单 agent）| **LangChain** 单用 |
 | 角色化多 agent 团队（"researcher" + "writer" + "critic"）| **CrewAI** |
@@ -210,12 +200,11 @@ LangGraph = **基于图的有状态 agent 运行时**，针对要熬过崩溃、
 
 开一个 {{< aff "digitalocean" "footer-cta" "DigitalOcean droplet" >}} 配 Postgres，跑第 3 节的例子，你就明白为啥跑真生产 agent 的团队最后都汇到这里。
 
----
 
+---
 *想看 LangGraph 在更大语境？看我们的 [AI Agent 工具链合集](/zh/collections/)（即将上线），讲它怎么和 MCP server / AgentMemory / 代码执行沙箱配合。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -243,25 +232,20 @@ LangGraph = **基于图的有状态 agent 运行时**，针对要熬过崩溃、
 
 ## Why This Matters
 
-Understanding langgraph 1.2 生产实战：能熬过崩溃的有状态 agent 编排（2026 完整指南） is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding langgraph 1.2 生产实战：能熬过崩溃的有状态 agent 编排（2026 完整指南） is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -282,8 +266,8 @@ LangGraph 1.2 生产实战：能熬过崩溃的有状态 Agent 编排（2026 完
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 

@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/open-design-local-first-ai-design-tool" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/open-design-local-first-ai-design-tool" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/open-design-local-first-ai-design-tool" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/open-design-local-first-ai-design-tool" />
 title: "Open Design: Công Cụ Thiết Kế AI Ưu Tiên Local Thay Thế ...
 description: "Khám phá Open Design, giải pháp thay thế Claude Design mã nguồn mở ưu tiên local với 19 kỹ năng AI, 71 hệ thống thiết kế, hỗ trợ tạo prototype, slide, video và xuất đa định dạng."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Go
+tech_stack: - Go
   - JavaScript
   - TypeScript
 application_domain: "Dev Utils"
@@ -26,10 +20,8 @@ maintainer: ""
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases:
-- /vi/posts/open-design-local-first-ai-design-tool/
-faqs:
-  - q: 'Open Design là gì và khác gì so với Claude Design?'
+aliases: - /vi/posts/open-design-local-first-ai-design-tool/
+faqs: - q: 'Open Design là gì và khác gì so với Claude Design?'
     a: 'Open Design là giải pháp thay thế mã nguồn mở, ưu tiên chạy cục bộ cho Claude Design của Anthropic, có khả năng tạo ra prototype web, giao diện di động và desktop, slide, hình ảnh, video và HyperFrame tương tác. Khác với Claude Design chỉ hoạt động trên đám mây, Open Design chạy hoàn toàn offline sau khi cài đặt, được cấp phép MIT và miễn phí.'
   - q: 'Open Design hoạt động với những trợ lý lập trình AI nào?'
     a: 'Open Design tích hợp với hơn chín trợ lý: Claude Code, GitHub Copilot, Cursor, Gemini, Codex, OpenCode, Qwen, Hermes và Kimi CLI. Bạn chỉ cần cấu hình API key cho những nhà cung cấp mà bạn thực sự có kế hoạch sử dụng.'
@@ -40,8 +32,6 @@ faqs:
   - q: 'Sử dụng Open Design có mất phí không?'
     a: 'Bản thân công cụ này hoàn toàn miễn phí và mã nguồn mở theo giấy phép MIT, không có phí đăng ký hay phí theo số lượng người dùng. Chi phí duy nhất là lượng sử dụng API của nhà cung cấp AI mà bạn tiêu thụ.'
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/open-design-local-first-ai-design-tool/ -->
 
 {</* resource-info */>}
 
@@ -63,9 +53,7 @@ Kho lưu trữ GitHub tại [https://github.com/nexu-io/open-design](https://git
 
 ### 19 Kỹ Năng AI Chuyên Biệt
 
-Open Design đi kèm với **19 kỹ năng AI tích hợp** bao phủ toàn bộ phổ thiết kế và tạo nguyên mẫu. Đây không phải là các khả năng tạo văn bản chung chung — chúng là các mô hình và quy trình được tinh chỉnh đặc biệt cho các tác vụ thiết kế:
-
-- **Tạo Nguyên Mẫu Web** — Tạo nguyên mẫu HTML/CSS/JavaScript đáp ứng từ mô tả ngôn ngữ tự nhiên
+Open Design đi kèm với **19 kỹ năng AI tích hợp** bao phủ toàn bộ phổ thiết kế và tạo nguyên mẫu. Đây không phải là các khả năng tạo văn bản chung chung — chúng là các mô hình và quy trình được tinh chỉnh đặc biệt cho các tác vụ thiết kế: - **Tạo Nguyên Mẫu Web** — Tạo nguyên mẫu HTML/CSS/JavaScript đáp ứng từ mô tả ngôn ngữ tự nhiên
 - **Thiết Kế UI Di Động** — Tạo giao diện di động mang cảm giác native với quy ước dành riêng cho nền tảng
 - **Mô Hình Ứng Dụng Desktop** — Xây dựng nguyên mẫu ứng dụng desktop đa nền tảng
 - **Tạo Bộ Slide** — Sản xuất slide sẵn sàng cho bài thuyết trình ở định dạng PPTX
@@ -87,9 +75,7 @@ Open Design đi kèm với **19 kỹ năng AI tích hợp** bao phủ toàn bộ
 
 ### 71 Hệ Thống Thiết Kế Đạt Chuẩn Thương Hiệu
 
-Một trong những tính năng nổi bật của Open Design là thư viện **71 hệ thống thiết kế được cấu hình sẵn, đạt chuẩn production**. Đây không phải là các mẫu cơ bản — chúng là các ngôn ngữ thiết kế toàn diện được các thương hiệu lớn sử dụng, được tái tạo tỉ mỉ để hỗ trợ tạo bằng AI:
-
-| Hệ Thống Thiết Kế | Danh Mục | Phù Hợp Nhất Cho |
+Một trong những tính năng nổi bật của Open Design là thư viện **71 hệ thống thiết kế được cấu hình sẵn, đạt chuẩn production**. Đây không phải là các mẫu cơ bản — chúng là các ngôn ngữ thiết kế toàn diện được các thương hiệu lớn sử dụng, được tái tạo tỉ mỉ để hỗ trợ tạo bằng AI: | Hệ Thống Thiết Kế | Danh Mục | Phù Hợp Nhất Cho |
 |-------------------|----------|-----------------|
 | Material Design 3 | Di động/Web | Ứng dụng Android, UI đa nền tảng |
 | Apple Human Interface | iOS/macOS | Ứng dụng native hệ sinh thái Apple |
@@ -106,9 +92,7 @@ Mỗi hệ thống thiết kế bao gồm thang đo kiểu chữ đầy đủ, b
 
 ### Công Cụ Xuất Đa Định Dạng
 
-Khả năng xuất của Open Design thực sự ấn tượng. Một thiết kế có thể được kết xuất thành nhiều định dạng đồng thời:
-
-- **HTML/CSS/JS** — Các trang web đầy đủ chức năng, tuân thủ tiêu chuẩn
+Khả năng xuất của Open Design thực sự ấn tượng. Một thiết kế có thể được kết xuất thành nhiều định dạng đồng thời: - **HTML/CSS/JS** — Các trang web đầy đủ chức năng, tuân thủ tiêu chuẩn
 - **PDF** — Tài liệu sẵn sàng in với phông chữ nhúng và đồ họa vector
 - **PPTX** — Bài thuyết trình PowerPoint native với các thành phần có thể chỉnh sửa
 - **MP4** — Video render độ phân giải cao cho demo và mạng xã hội
@@ -124,9 +108,7 @@ Bảo mật là tối quan trọng khi thực thi mã được tạo bởi AI. O
 
 ### Khả Năng Tương Thích Với Mọi Trợ Lý AI
 
-Open Design không bị khóa vào một nhà cung cấp AI duy nhất. Nó hoạt động với:
-
-- **Claude Code** — Công cụ CLI chính thức của Anthropic
+Open Design không bị khóa vào một nhà cung cấp AI duy nhất. Nó hoạt động với: - **Claude Code** — Công cụ CLI chính thức của Anthropic
 - **GitHub Copilot** — Lập trình viên AI theo cặp của Microsoft
 - **Cursor** — Trình soạn thảo mã native AI
 - **Gemini** — Hệ thống AI đa phương thức của Google
@@ -144,9 +126,7 @@ Chạy Open Design trên máy của bạn rất đơn giản. Làm theo các bư
 
 ### Yêu Cầu Hệ Thống
 
-Trước khi cài đặt, hãy đảm bảo hệ thống của bạn đáp ứng các yêu cầu sau:
-
-- **Node.js** 18.0 trở lên
+Trước khi cài đặt, hãy đảm bảo hệ thống của bạn đáp ứng các yêu cầu sau: - **Node.js** 18.0 trở lên
 - **npm** 9.0 trở lên (hoặc pnpm/yarn)
 - **Git** để clone kho lưu trữ
 - Ít nhất **4GB RAM** khả dụng cho các thao tác mô hình AI
@@ -161,9 +141,7 @@ cd open-design
 
 ### Bước 2: Cài Đặt Các Phụ Thuộc
 
-Open Design sử dụng cấu trúc monorepo. Cài đặt tất cả các gói bằng:
-
-```bash
+Open Design sử dụng cấu trúc monorepo. Cài đặt tất cả các gói bằng: ```bash
 npm install
 # hoặc
 pnpm install
@@ -173,15 +151,11 @@ yarn install
 
 ### Bước 3: Cấu Hình Biến Môi Trường
 
-Sao chép tệp môi trường mẫu và tùy chỉnh nó:
-
-```bash
+Sao chép tệp môi trường mẫu và tùy chỉnh nó: ```bash
 cp .env.example .env
 ```
 
-Chỉnh sửa `.env` để thêm khóa API của nhà cung cấp AI bạn dự định sử dụng:
-
-```env
+Chỉnh sửa `.env` để thêm khóa API của nhà cung cấp AI bạn dự định sử dụng: ```env
 # Anthropic Claude
 ANTHROPIC_API_KEY=sk-ant-your-key-here
 
@@ -206,9 +180,7 @@ Việc này biên dịch các nguồn TypeScript và đóng gói các tài sản
 
 ### Bước 5: Khởi Tạo Hệ Thống Thiết Kế
 
-Tải xuống 71 hệ thống thiết kế đạt chuẩn thương hiệu:
-
-```bash
+Tải xuống 71 hệ thống thiết kế đạt chuẩn thương hiệu: ```bash
 npm run init:design-systems
 ```
 
@@ -216,9 +188,7 @@ Lệnh này tìm nạp và lưu trong bộ nhớ cache tất cả các định n
 
 ### Bước 6: Khởi Chạy Open Design
 
-Khởi động máy chủ phát triển local:
-
-```bash
+Khởi động máy chủ phát triển local: ```bash
 npm run dev
 ```
 
@@ -226,9 +196,7 @@ Giao diện sẽ khả dụng tại `http://localhost:3000`. Mở trình duyệt
 
 ### Bước 7: Cấu Hình Trợ Lý AI (Tùy Chọn)
 
-Nếu bạn sử dụng Open Design với trợ lý AI bên ngoài như Claude Code hoặc Cursor, hãy cài đặt plugin đi kèm:
-
-```bash
+Nếu bạn sử dụng Open Design với trợ lý AI bên ngoài như Claude Code hoặc Cursor, hãy cài đặt plugin đi kèm: ```bash
 npm run install:cursor-plugin
 # hoặc
 npm run install:claude-plugin
@@ -322,9 +290,7 @@ Với **39.107 sao** và đang không ngừng tăng trưởng, dự án rõ ràn
 
 ## Hạ Tầng Đề Xuất Cho Tự Lưu Trữ
 
-Để chạy stack này 24/7 ổn định, lựa chọn hạ tầng rất quan trọng:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu. Lựa chọn mặc định cho developer độc lập.
+Để chạy stack này 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu. Lựa chọn mặc định cho developer độc lập.
 - **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — VPS Hong Kong, độ trễ thấp với người dùng Việt Nam. dibi8.com cũng được host ở đây.
 - **{{< aff "hostinger" "footer-cta-legacy" "Hostinger" >}}** — Lựa chọn VPS giá tốt cho thị trường Việt Nam, giảm 60% gói đầu tiên.
 
@@ -332,7 +298,6 @@ Với **39.107 sao** và đang không ngừng tăng trưởng, dự án rõ ràn
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

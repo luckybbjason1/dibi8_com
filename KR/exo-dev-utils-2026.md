@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/exo-dev-utils-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/exo-dev-utils-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/exo-dev-utils-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/exo-dev-utils-2026" />
 title: 'exo: 내 기기들을 묶어 프런티어 AI를 로컬에서 (45K Stars) — 2026 실전 가이드'
 description: 'exo는 여러분의 Mac, PC, 심지어 휴대폰까지 하나의 클러스터로 묶어 프런티어 AI 모델을 로컬에서 실행합니다. GitHub 스타 45,088개, Apache-2.0 라이선스. 설치, 대시보드, OpenAI/Claude/Ollama 호환 API, 실제 명령어, 그리고 솔직한 비교까지 다룹니다.'
 date: 2026-06-02 00:00:00+08:00
@@ -25,10 +20,8 @@ featureImage: 'https://raw.githubusercontent.com/exo-explore/exo/main/docs/imgs/
 draft: false
 categories: ['dev-utils']
 tags: []
-aliases:
-- /posts/exo-dev-utils-2026/
-faqs:
-  - q: 'exo는 어떻게 설치하나요?'
+aliases: - /posts/exo-dev-utils-2026/
+faqs: - q: 'exo는 어떻게 설치하나요?'
     a: 'Mac에서는 미리 빌드된 앱이 가장 간편합니다. ```bash brew install --cask exo ``` macOS나 Linux에서 최신 소스를 돌리려면 저장소를 클론하고 `uv`로 실행하세요. ```bash git clone https://github.com/exo-explore/exo cd exo/dashboard && npm install && npm run build && cd .. uv run exo ```'
   - q: 'exo는 어떤 하드웨어에서 동작하나요?'
     a: 'exo는 macOS와 Linux에서 실행됩니다. GPU 가속은 현재 Apple Silicon(예: M3 Ultra, M4 계열 Mac)을 겨냥하며, Linux는 당분간 CPU 전용으로 GPU 지원은 개발 중입니다. 여러 기기를 하나의 클러스터로 묶어 메모리와 연산을 모을 수 있습니다.'
@@ -39,8 +32,6 @@ faqs:
   - q: '클러스터 상태는 어디서 보나요?'
     a: '브라우저로 `http://localhost:52415`의 대시보드를 여세요. 발견된 모든 기기, 모델이 그 위에 분할된 방식, 실시간 처리량과 메모리 사용량을 보여줍니다.'
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/exo-dev-utils-2026/ -->
 
 {{< resource-info >}}
 
@@ -271,19 +262,11 @@ exo-explore의 exo는 자신의 하드웨어에서 프런티어 AI를 돌릴 수
 
 ---
 
-**Sources & Further Reading**:
-- GitHub repository: https://github.com/exo-explore/exo
+**Sources & Further Reading**: - GitHub repository: https://github.com/exo-explore/exo
 - Official docs / README: https://github.com/exo-explore/exo#readme
 
 *위 링크 중 일부는 제휴(affiliate) 링크입니다. 이 링크를 통해 가입하시면 dibi8.com이 약간의 수수료를 받을 수 있으며, 여러분에게는 추가 비용이 들지 않습니다. 사이트 운영과 무료 콘텐츠 유지에 도움이 됩니다.*
 
-<!-- internal-link-candidates:
-  related open-source tools -> ai-tools-directory
-  related guides on dibi8 -> ai-coding-agent-landscape-2026-skills-mcp-opensource
--->
-
-
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

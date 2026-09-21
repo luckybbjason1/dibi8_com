@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/perplexity-api-rag-search" />
 title: 'perplexity-api-rag-search'
 description: '{'en': ''Learn how to build RAG-enhanced search applications using the Perplexity API. Covers Sonar models, real-time web citations, streaming, and production integration patterns.'', 'zh': ''学习如何使用Perplexity API构建RAG增强搜索应用。涵盖Sonar模型、实时网络引用、流式传输和生产集成模式。'', 'ko': ''Perplexity API를 사용하여 RAG 강화 검색 애플리케이션을构建하는 방법을 알아보세요. Sonar 모델, 실시간 웹 인용, 스트리밍 및 프로덕션 통합 패턴을 다룹니다.'', 'vi': ''Tìm hiểu cách xây dựng ứng dụng tìm kiếm tăng cường RAG bằng Perplexity API. Bao gồm mô hình Sonar, trích dẫn web thờigian thực, streaming và các mẫu tích hợp sản xuất.''}'
 date: 2026-05-20 00:00:00+08:00
@@ -22,18 +20,16 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['perplexity api']
-aliases:
-- /posts/perplexity-api-rag-search/
+aliases: - /posts/perplexity-api-rag-search/-
 ---
-
 {{</* resource-info */>}}
 
 The race to build intelligent, fact-aware applications reached a pivotal milestone with the Perplexity API — a purpose-built RAG (Retrieval-Augmented Generation) search service that fuses large language models with live web indexing. Unlike traditional LLM APIs that rely solely on static training data, Perplexity's Sonar models query the internet in real time, retrieve authoritative sources, and return structured answers complete with inline citations. For developers building chatbots, research tools, knowledge assistants, and content verification pipelines, this represents a paradigm shift: applications that don't just generate text, but ground every claim in verifiable reality.
 
 This guide provides a comprehensive integration roadmap for the Perplexity API in 2026. You'll learn how the RAG search architecture works, which Sonar model fits your use case, how to implement streaming chat completions, handle citations programmatically, manage rate limits, and deploy production-grade search applications that deliver accurate, sourced answers to users.
 
----
 
+---
 ## What Is the Perplexity API and Why Does RAG Matter?
 
 Perplexity AI launched its API to solve a fundamental limitation of conventional language models: hallucination and knowledge cutoff. Standard LLMs are frozen in time, trained on data that stops at a specific date. Ask them about yesterday's market movement, a breaking news story, or a recently released software version, and they either confabulate or admit ignorance.
@@ -44,8 +40,8 @@ This architecture matters because it transforms LLMs from closed-book exam taker
 
 For developers, the practical implication is profound: you no longer need to build your own retrieval pipeline, manage vector databases, or tune chunking strategies. Perplexity handles document retrieval, relevance scoring, and context injection automatically, exposing a clean chat completions interface that feels familiar to anyone who has worked with OpenAI's API.
 
----
 
+---
 ## Understanding the Sonar Model Family: Which One to Choose
 
 Perplexity offers a tiered model lineup under the Sonar brand, each optimized for different latency, accuracy, and cost requirements. Selecting the right model is the first architectural decision you'll make.
@@ -112,8 +108,7 @@ The Perplexity API implements an OpenAI-compatible chat completions interface, m
 import requests
 import json
 
-def perplexity_query(query: str, model: str = "sonar-pro") -> dict:
-    """Send a single RAG-enhanced query to Perplexity API."""
+def perplexity_query(query: str, model: str = "sonar-pro") -> dict: """Send a single RAG-enhanced query to Perplexity API."""
     url = f"{BASE_URL}/chat/completions"
     
     payload = {
@@ -145,9 +140,7 @@ print(result["choices"][0]["message"]["content"])
 
 Notice that no search parameters, document IDs, or retrieval configuration is required. Perplexity automatically determines whether web search is needed, executes the retrieval, and grounds the response in sourced material.
 
-The response includes not just the generated text but also citation metadata:
-
-```python
+The response includes not just the generated text but also citation metadata: ```python
 # Extract citations from the response
 message = result["choices"][0]["message"]
 answer_text = message["content"]
@@ -155,8 +148,7 @@ citations = message.get("citations", [])
 
 print(f"Answer: {answer_text[:200]}...")
 print(f"\nSources cited: {len(citations)}")
-for i, citation in enumerate(citations[:5], 1):
-    print(f"  [{i}] {citation}")
+for i, citation in enumerate(citations[:5], 1): print(f"  [{i}] {citation}")
 ```
 
 ---
@@ -170,15 +162,15 @@ Citations are the defining feature of Perplexity's RAG implementation. Every fac
 Perplexity returns citations as a list of URLs in the `citations` field of the assistant's message. In the content text, citations are referenced using bracketed indices `[1]`, `[2]`, etc., matching the order of the citations array.
 
 ```python
-def format_response_with_citations(result: dict) -> str:
-    """Format a Perplexity response with clickable citation links."""
+def format_response_with_citations(result: dict) -> str: """Format a Perplexity response with clickable citation links."""
     message = result["choices"][0]["message"]
     content = message["content"]
     citations = message.get("citations", [])
     
-    formatted = f"{content}\n\n---\n**Sources:**\n"
-    for i, url in enumerate(citations, 1):
-        formatted += f"\n[{i}] [{url}]({url})"
+    formatted = f"{content}\n\n
+---
+\n**Sources:**\n"
+    for i, url in enumerate(citations, 1): formatted += f"\n[{i}] [{url}]({url})"
     
     return formatted
 
@@ -187,10 +179,7 @@ print(format_response_with_citations(result))
 
 ### Rendering Citations in Web Applications
 
-When building web interfaces, render citations as interactive footnotes or sidebar references:
-
-```html
-<!-- React component for cited responses -->
+When building web interfaces, render citations as interactive footnotes or sidebar references: ```html
 function CitedResponse({ content, citations }) {
   // Parse [1], [2] markers in content
   const parts = content.split(/(\[\d+\])/g);
@@ -229,8 +218,7 @@ For interactive applications, Perplexity supports Server-Sent Events (SSE) strea
 import sseclient
 import io
 
-def perplexity_stream(query: str, model: str = "sonar-pro"):
-    """Stream a RAG query response token by token."""
+def perplexity_stream(query: str, model: str = "sonar-pro"): """Stream a RAG query response token by token."""
     url = f"{BASE_URL}/chat/completions"
     
     payload = {
@@ -250,22 +238,18 @@ def perplexity_stream(query: str, model: str = "sonar-pro"):
     full_content = []
     citations = []
     
-    for event in client.events():
-        if event.data == "[DONE]":
-            break
+    for event in client.events(): if event.data == "[DONE]": break
         
         chunk = json.loads(event.data)
         delta = chunk["choices"][0].get("delta", {})
         
         # Accumulate content tokens
-        if "content" in delta:
-            token = delta["content"]
+        if "content" in delta: token = delta["content"]
             full_content.append(token)
             print(token, end="", flush=True)
         
         # Capture citations from the final chunk
-        if "citations" in delta:
-            citations.extend(delta["citations"])
+        if "citations" in delta: citations.extend(delta["citations"])
     
     print(f"\n\nSources: {citations}")
     return "".join(full_content), citations
@@ -321,18 +305,14 @@ async function streamPerplexity(query) {
 Perplexity maintains conversation context across multiple turns, enabling follow-up questions that reference previous exchanges. The search system adapts to the conversation flow, refining retrievals based on accumulated context.
 
 ```python
-class PerplexityConversation:
-    """Stateful conversation handler with RAG search memory."""
+class PerplexityConversation: """Stateful conversation handler with RAG search memory."""
     
-    def __init__(self, model: str = "sonar-pro", system_prompt: str = None):
-        self.model = model
+    def __init__(self, model: str = "sonar-pro", system_prompt: str = None): self.model = model
         self.messages = []
-        if system_prompt:
-            self.messages.append({"role": "system", "content": system_prompt})
+        if system_prompt: self.messages.append({"role": "system", "content": system_prompt})
         self.citation_history = []
     
-    def ask(self, query: str) -> dict:
-        """Send a message and maintain conversation history."""
+    def ask(self, query: str) -> dict: """Send a message and maintain conversation history."""
         self.messages.append({"role": "user", "content": query})
         
         payload = {
@@ -360,8 +340,7 @@ class PerplexityConversation:
         
         return result
     
-    def get_conversation_summary(self) -> str:
-        """Generate a summary of the conversation and sources used."""
+    def get_conversation_summary(self) -> str: """Generate a summary of the conversation and sources used."""
         unique_sources = list(set(self.citation_history))
         return f"Turns: {len(self.messages)//2}, Unique sources: {len(unique_sources)}"
 
@@ -391,11 +370,8 @@ Beyond basic Q&A, the Perplexity API supports advanced query patterns that give 
 
 ### Search Domain Targeting
 
-Restrict searches to specific domains for authoritative sourcing in specialized fields:
-
-```python
-def targeted_search(query: str, domains: list[str]) -> dict:
-    """Search within specified domains for authoritative results."""
+Restrict searches to specific domains for authoritative sourcing in specialized fields: ```python
+def targeted_search(query: str, domains: list[str]) -> dict: """Search within specified domains for authoritative results."""
     payload = {
         "model": "sonar-pro",
         "messages": [
@@ -425,11 +401,8 @@ medical_result = targeted_search(
 
 ### Recency Filtering
 
-Control the temporal scope of web searches to ensure freshness:
-
-```python
-def recent_search(query: str, recency_days: int = 7) -> dict:
-    """Search for recent information only."""
+Control the temporal scope of web searches to ensure freshness: ```python
+def recent_search(query: str, recency_days: int = 7) -> dict: """Search for recent information only."""
     payload = {
         "model": "sonar-pro",
         "messages": [{"role": "user", "content": query}],
@@ -450,13 +423,10 @@ breaking = recent_search("Major tech acquisitions today", recency_days=1)
 
 ### JSON Mode for Structured Extraction
 
-When building data pipelines, request structured output for automatic parsing:
-
-```python
+When building data pipelines, request structured output for automatic parsing: ```python
 import json
 
-def structured_search(query: str, schema: dict) -> dict:
-    """Search and return structured JSON matching a schema."""
+def structured_search(query: str, schema: dict) -> dict: """Search and return structured JSON matching a schema."""
     payload = {
         "model": "sonar-pro",
         "messages": [
@@ -508,11 +478,9 @@ Production integrations require robust handling of API limits and transient fail
 import time
 from functools import wraps
 
-class PerplexityClient:
-    """Production-ready Perplexity API client with retry and rate limiting."""
+class PerplexityClient: """Production-ready Perplexity API client with retry and rate limiting."""
     
-    def __init__(self, api_key: str, model: str = "sonar-pro", max_retries: int = 3):
-        self.api_key = api_key
+    def __init__(self, api_key: str, model: str = "sonar-pro", max_retries: int = 3): self.api_key = api_key
         self.model = model
         self.max_retries = max_retries
         self.headers = {
@@ -522,23 +490,18 @@ class PerplexityClient:
         self.request_count = 0
         self.last_reset = time.time()
     
-    def _rate_limit_check(self, rpm_limit: int = 50):
-        """Basic rate limiting to stay within tier limits."""
+    def _rate_limit_check(self, rpm_limit: int = 50): """Basic rate limiting to stay within tier limits."""
         now = time.time()
-        if now - self.last_reset >= 60:
-            self.request_count = 0
+        if now - self.last_reset >= 60: self.request_count = 0
             self.last_reset = now
         
-        if self.request_count >= rpm_limit:
-            sleep_time = 60 - (now - self.last_reset)
-            if sleep_time > 0:
-                print(f"Rate limit reached. Sleeping {sleep_time:.1f}s")
+        if self.request_count >= rpm_limit: sleep_time = 60 - (now - self.last_reset)
+            if sleep_time > 0: print(f"Rate limit reached. Sleeping {sleep_time:.1f}s")
                 time.sleep(sleep_time)
             self.request_count = 0
             self.last_reset = time.time()
     
-    def query(self, user_query: str, temperature: float = 0.2, **kwargs) -> dict:
-        """Execute query with automatic retry on failure."""
+    def query(self, user_query: str, temperature: float = 0.2, **kwargs) -> dict: """Execute query with automatic retry on failure."""
         self._rate_limit_check()
         
         payload = {
@@ -549,17 +512,14 @@ class PerplexityClient:
             **kwargs
         }
         
-        for attempt in range(self.max_retries):
-            try:
-                response = requests.post(
+        for attempt in range(self.max_retries): try: response = requests.post(
                     f"{BASE_URL}/chat/completions",
                     headers=self.headers,
                     json=payload,
                     timeout=30
                 )
                 
-                if response.status_code == 429:
-                    retry_after = int(response.headers.get("Retry-After", 2 ** attempt))
+                if response.status_code == 429: retry_after = int(response.headers.get("Retry-After", 2 ** attempt))
                     print(f"Rate limited. Retrying after {retry_after}s")
                     time.sleep(retry_after)
                     continue
@@ -568,13 +528,10 @@ class PerplexityClient:
                 self.request_count += 1
                 return response.json()
                 
-            except requests.exceptions.Timeout:
-                print(f"Timeout on attempt {attempt + 1}")
+            except requests.exceptions.Timeout: print(f"Timeout on attempt {attempt + 1}")
                 time.sleep(2 ** attempt)
-            except requests.exceptions.HTTPError as e:
-                print(f"HTTP error: {e}")
-                if attempt < self.max_retries - 1:
-                    time.sleep(2 ** attempt)
+            except requests.exceptions.HTTPError as e: print(f"HTTP error: {e}")
+                if attempt < self.max_retries - 1: time.sleep(2 ** attempt)
         
         raise Exception("Max retries exceeded")
 
@@ -589,13 +546,10 @@ queries = [
 ]
 
 results = []
-for q in queries:
-    try:
-        result = client.query(q)
+for q in queries: try: result = client.query(q)
         results.append(result)
         print(f"✓ Query completed: {q[:50]}...")
-    except Exception as e:
-        print(f"✗ Query failed: {q[:50]}... - {e}")
+    except Exception as e: print(f"✗ Query failed: {q[:50]}... - {e}")
 ```
 
 ---
@@ -618,15 +572,12 @@ CORS(app)
 PERPLEXITY_KEY = os.environ["PERPLEXITY_API_KEY"]
 BASE_URL = "https://api.perplexity.ai"
 
-class RAGSearchService:
-    def __init__(self):
-        self.headers = {
+class RAGSearchService: def __init__(self): self.headers = {
             "Authorization": f"Bearer {PERPLEXITY_KEY}",
             "Content-Type": "application/json"
         }
     
-    def search(self, query: str, model: str = "sonar-pro", stream: bool = False):
-        """Execute RAG search with optional streaming."""
+    def search(self, query: str, model: str = "sonar-pro", stream: bool = False): """Execute RAG search with optional streaming."""
         payload = {
             "model": model,
             "messages": [
@@ -653,17 +604,14 @@ class RAGSearchService:
 service = RAGSearchService()
 
 @app.route("/search", methods=["POST"])
-def search():
-    """Synchronous RAG search endpoint."""
+def search(): """Synchronous RAG search endpoint."""
     data = request.get_json()
     query = data.get("query", "")
     model = data.get("model", "sonar-pro")
     
-    if not query:
-        return jsonify({"error": "Query is required"}), 400
+    if not query: return jsonify({"error": "Query is required"}), 400
     
-    try:
-        result = service.search(query, model=model)
+    try: result = service.search(query, model=model)
         data = result.json()
         
         message = data["choices"][0]["message"]
@@ -673,26 +621,19 @@ def search():
             "model": model,
             "usage": data.get("usage", {})
         })
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
+    except Exception as e: return jsonify({"error": str(e)}), 500
 
 @app.route("/search/stream", methods=["POST"])
-def search_stream():
-    """Streaming RAG search endpoint with Server-Sent Events."""
+def search_stream(): """Streaming RAG search endpoint with Server-Sent Events."""
     data = request.get_json()
     query = data.get("query", "")
     model = data.get("model", "sonar-pro")
     
-    if not query:
-        return jsonify({"error": "Query is required"}), 400
+    if not query: return jsonify({"error": "Query is required"}), 400
     
-    def generate():
-        response = service.search(query, model=model, stream=True)
-        for line in response.iter_lines():
-            if line:
-                decoded = line.decode("utf-8")
-                if decoded.startswith("data: "):
-                    yield f"{decoded}\n\n"
+    def generate(): response = service.search(query, model=model, stream=True)
+        for line in response.iter_lines(): if line: decoded = line.decode("utf-8")
+                if decoded.startswith("data: "): yield f"{decoded}\n\n"
     
     return Response(
         generate(),
@@ -701,12 +642,10 @@ def search_stream():
     )
 
 @app.route("/health", methods=["GET"])
-def health():
-    """Health check endpoint."""
+def health(): """Health check endpoint."""
     return jsonify({"status": "healthy", "service": "rag-search"})
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+if __name__ == "__main__": app.run(host="0.0.0.0", port=5000, debug=True)
 ```
 
 ```bash
@@ -728,16 +667,11 @@ CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5000", "app:app"]
 ```yaml
 # docker-compose.yml
 version: "3.8"
-services:
-  rag-search:
-    build: .
-    ports:
-      - "5000:5000"
-    environment:
-      - PERPLEXITY_API_KEY=${PERPLEXITY_API_KEY}
+services: rag-search: build: .
+    ports: - "5000:5000"
+    environment: - PERPLEXITY_API_KEY=${PERPLEXITY_API_KEY}
     restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+    healthcheck: test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -781,9 +715,7 @@ Yes, the API supports `search_domain_filter` to restrict queries to specific dom
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -797,7 +729,6 @@ For developers building the next generation of intelligent applications — from
 As we move through 2026, the expectation that AI applications provide sourced, verifiable answers is becoming the standard, not the exception. Integrating Perplexity's RAG search API positions your applications to meet this expectation, delivering experiences that users can trust because every answer stands on a foundation of real, citable sources.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

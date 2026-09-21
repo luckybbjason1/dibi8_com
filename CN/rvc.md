@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/rvc" />
 title: 'RVC: Deploy AI Voice Conversion with 35K+ Stars — 10-Min...
 description: 'RVC (Retrieval-based Voice Conversion) is a VITS-based voice conversion framework compatible with GPT-SoVITS, Coqui TTS, and demucs. This tutorial covers Docker deployment, training pipelines, API integration, and production hardening.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [rvc, 'voice-conversion', 'ai-voice-cloning', vits, 'speech-synthesis', docker, tutorial, 'retrieval-vc']
-aliases:
-- /posts/rvc/
+aliases: - /posts/rvc/-
 ---
-
 {{</* resource-info */>}}
 
 ![RVC Logo](https://raw.githubusercontent.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI/main/assets/rvc_logo.png)
@@ -40,9 +36,7 @@ RVC is an open-source voice conversion framework that converts one person's voic
 
 ## How RVC Works
 
-RVC's architecture combines four core modules:
-
-**Content Feature Extraction** — Uses ContentVec (a disentangled variant of HuBERT) to extract speaker-invariant phonetic and linguistic features from source audio. ContentVec strips speaker identity while preserving content information, making it ideal for voice conversion tasks.
+RVC's architecture combines four core modules: **Content Feature Extraction** — Uses ContentVec (a disentangled variant of HuBERT) to extract speaker-invariant phonetic and linguistic features from source audio. ContentVec strips speaker identity while preserving content information, making it ideal for voice conversion tasks.
 
 **Pitch Extraction** — Employs RMVPE (Robust Model for Vocal Pitch Estimation), presented at Interspeech 2023, to extract fundamental frequency (F0). RMVPE handles polyphonic audio and performs accurately even when source separation is imperfect.
 
@@ -66,9 +60,7 @@ RVC runs on Linux, macOS, and Windows. For training, an NVIDIA GPU with at least
 
 ### Method 1: Docker Deployment (Recommended for Production)
 
-The official Dockerfile uses CUDA 11.6.2 on Ubuntu 20.04 with Python 3.9:
-
-```bash
+The official Dockerfile uses CUDA 11.6.2 on Ubuntu 20.04 with Python 3.9: ```bash
 # Clone the repository
 git clone https://github.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI.git
 cd Retrieval-based-Voice-Conversion-WebUI
@@ -85,29 +77,18 @@ docker run -d --name rvc \
   rvc-webui:latest
 ```
 
-For docker-compose users:
-
-```yaml
+For docker-compose users: ```yaml
 version: '3.8'
 
-services:
-  rvc:
-    build: .
+services: rvc: build: .
     container_name: rvc-webui
     runtime: nvidia
-    environment:
-      - NVIDIA_VISIBLE_DEVICES=all
-    ports:
-      - "7865:7865"
-    volumes:
-      - ./weights:/app/weights
+    environment: - NVIDIA_VISIBLE_DEVICES=all
+    ports: - "7865:7865"
+    volumes: - ./weights:/app/weights
       - ./opt:/app/opt
       - ./assets:/app/assets
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+    deploy: resources: reservations: devices: - driver: nvidia
               count: 1
               capabilities: [gpu]
     restart: unless-stopped
@@ -178,16 +159,12 @@ python infer-web.py
 
 ### Step 1: Prepare Your Dataset
 
-RVC requires clean, monophonic audio. For best results:
-
-- **Duration:** 10–30 minutes of clean speech (minimum 1 minute works)
+RVC requires clean, monophonic audio. For best results: - **Duration:** 10–30 minutes of clean speech (minimum 1 minute works)
 - **Format:** WAV, 16-bit or 24-bit, 22050Hz or 40000Hz sampling rate
 - **Content:** Single speaker, minimal background noise, no music or reverb
 - **Silence:** Remove long silent segments (> 3 seconds)
 
-Use UVR5 (included) for source separation:
-
-```bash
+Use UVR5 (included) for source separation: ```bash
 # Separate vocals from background music
 python tools/uvr5/uvr5_cli.py \
   --input_path ./raw_audio/song_with_music.wav \
@@ -197,18 +174,14 @@ python tools/uvr5/uvr5_cli.py \
 
 ### Step 2: Preprocess and Extract Features
 
-In the WebUI **Train** tab:
-
-1. Set **Experiment Name** (e.g., `my_voice_v2`)
+In the WebUI **Train** tab: 1. Set **Experiment Name** (e.g., `my_voice_v2`)
 2. Set **Target Sampling Rate** to 40kHz (recommended)
 3. Set **RVC Version** to v2
 4. Set **Model Architecture** to `rmvpe_gpu`
 5. Set **Dataset Path** to your audio folder
 6. Click **One-Click Training**
 
-Or via the command line:
-
-```bash
+Or via the command line: ```bash
 # Step 1: Preprocess (resample, slice, remove silence)
 python trainset_preprocess_pipeline_print.py \
   ./dataset/my_voice \
@@ -243,9 +216,7 @@ python tools/infer/train_index.py \
   --sample_rate 40000
 ```
 
-Training output locations:
-
-```
+Training output locations: ```
 logs/
 └── my_voice_v2/
     ├── added_IVF512_Flat_nprobe_1.index   # Faiss retrieval index
@@ -259,7 +230,17 @@ logs/
 ### Training Benchmarks
 
 | Hardware | Dataset Size | Epochs | Training Time | Output Quality |
-|----------|-------------|--------|---------------|----------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | RTX 3090 (24GB) | 10 min audio | 200 | ~18 min | Excellent |
 | RTX 4090 (24GB) | 10 min audio | 200 | ~12 min | Excellent |
 | RTX 3060 (12GB) | 10 min audio | 200 | ~35 min | Very Good |
@@ -270,16 +251,13 @@ logs/
 
 ### Integration 1: GPT-SoVITS (TTS + RVC Pipeline)
 
-GPT-SoVITS generates speech from text; RVC converts it to a target voice. Together they form a complete text-to-speech cloning pipeline:
-
-```python
+GPT-SoVITS generates speech from text; RVC converts it to a target voice. Together they form a complete text-to-speech cloning pipeline: ```python
 # gpt_sovits_rvc_pipeline.py
 import subprocess
 import requests
 import os
 
-def tts_then_convert(text: str, speaker_wav: str, rvc_model: str):
-    """GPT-SoVITS TTS → RVC voice conversion pipeline"""
+def tts_then_convert(text: str, speaker_wav: str, rvc_model: str): """GPT-SoVITS TTS → RVC voice conversion pipeline"""
     
     # Step 1: Generate speech with GPT-SoVITS
     tts_response = requests.post("http://localhost:9880/tts", json={
@@ -290,8 +268,7 @@ def tts_then_convert(text: str, speaker_wav: str, rvc_model: str):
         "text_language": "en"
     })
     
-    with open("/tmp/tts_output.wav", "wb") as f:
-        f.write(tts_response.content)
+    with open("/tmp/tts_output.wav", "wb") as f: f.write(tts_response.content)
     
     # Step 2: Convert voice with RVC API
     rvc_response = requests.post("http://localhost:7865/voice_conversion", json={
@@ -320,8 +297,7 @@ print(f"Converted audio saved to: {result}")
 from TTS.api import TTS
 import requests
 
-def coqui_to_rvc(text: str, rvc_model: str, output_path: str):
-    # Generate with Coqui XTTS v2
+def coqui_to_rvc(text: str, rvc_model: str, output_path: str): # Generate with Coqui XTTS v2
     tts = TTS("tts_models/multilingual/multi-dataset/xtts_v2", gpu=True)
     tts.tts_to_file(
         text=text,
@@ -331,8 +307,7 @@ def coqui_to_rvc(text: str, rvc_model: str, output_path: str):
     )
     
     # Convert through RVC
-    with open("/tmp/coqui_out.wav", "rb") as f:
-        files = {"file": f}
+    with open("/tmp/coqui_out.wav", "rb") as f: files = {"file": f}
         data = {
             "model_name": rvc_model,
             "pitch": 0,
@@ -344,16 +319,13 @@ def coqui_to_rvc(text: str, rvc_model: str, output_path: str):
             data=data
         )
     
-    with open(output_path, "wb") as f:
-        f.write(response.content)
+    with open(output_path, "wb") as f: f.write(response.content)
     return output_path
 ```
 
 ### Integration 3: demucs (Advanced Source Separation)
 
-For production-grade vocal isolation before training:
-
-```bash
+For production-grade vocal isolation before training: ```bash
 # Install demucs
 pip install demucs
 
@@ -368,25 +340,20 @@ mv separated/htdemucs/input_song/vocals.wav ./dataset/clean_voice.wav
 
 ![RVC Real-time GUI](https://raw.githubusercontent.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI/main/assets/gui_preview.png)
 
-RVC includes a real-time voice conversion GUI for live applications:
-
-```bash
+RVC includes a real-time voice conversion GUI for live applications: ```bash
 # Start the real-time GUI
 python gui_v1.py
 
 # Or with DirectML for AMD/Intel GPUs
 python gui_v1.py --dml
 
-# Key parameters for low latency:
-# - Block time: 0.25s (lower = less latency, more CPU)
+# Key parameters for low latency: # - Block time: 0.25s (lower = less latency, more CPU)
 # - Crossfade: 0.05s
 # - Extra time: 2.5s
 # - Pitch extractor: fcpe (fastest) or rmvpe (best quality)
 ```
 
-Configuration for streaming (90ms end-to-end latency with ASIO):
-
-```python
+Configuration for streaming (90ms end-to-end latency with ASIO): ```python
 # gui_config.py example
 config = {
     "block_time": 0.1,        # 100ms blocks for lower latency
@@ -403,9 +370,7 @@ config = {
 
 ### Integration 5: API Server (FastAPI)
 
-RVC provides a FastAPI-based REST API for production deployments:
-
-```bash
+RVC provides a FastAPI-based REST API for production deployments: ```bash
 # Start the API server
 python api_240604.py
 
@@ -423,8 +388,7 @@ requests.post("http://localhost:7865/load_model", json={
 })
 
 # Perform voice conversion
-with open("input_audio.wav", "rb") as f:
-    response = requests.post(
+with open("input_audio.wav", "rb") as f: response = requests.post(
         "http://localhost:7865/voice_conversion",
         files={"file": f},
         data={
@@ -436,8 +400,7 @@ with open("input_audio.wav", "rb") as f:
         }
     )
 
-with open("converted_output.wav", "wb") as f:
-    f.write(response.content)
+with open("converted_output.wav", "wb") as f: f.write(response.content)
 ```
 
 ## Benchmarks / Real-World Use Cases
@@ -445,7 +408,17 @@ with open("converted_output.wav", "wb") as f:
 ### Objective Quality Metrics
 
 | Metric | RVC v2 | So-VITS-SVC 4.1 | GPT-SoVITS (SVC) | DDSP-SVC |
-|--------|--------|-----------------|-------------------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Speaker Similarity (cosine) | 0.85 | 0.79 | 0.82 | 0.71 |
 | PESQ (quality, /4.5) | 3.6 | 3.3 | 3.4 | 2.8 |
 | UTMOS (naturalness, /5) | 4.19 | 3.95 | 4.05 | 3.45 |
@@ -477,19 +450,16 @@ import hashlib
 
 security = HTTPBearer()
 
-def verify_token(credentials: HTTPAuthorizationCredentials):
-    """Verify API token for production deployments"""
+def verify_token(credentials: HTTPAuthorizationCredentials): """Verify API token for production deployments"""
     expected = hashlib.sha256(TOKEN.encode()).hexdigest()
-    if credentials.credentials != expected:
-        raise HTTPException(status_code=401, detail="Invalid token")
+    if credentials.credentials != expected: raise HTTPException(status_code=401, detail="Invalid token")
     return True
 
 @app.post("/voice_conversion")
 async def secure_convert(
     file: UploadFile,
     credentials: HTTPAuthorizationCredentials = Depends(security)
-):
-    verify_token(credentials)
+): verify_token(credentials)
     # ... conversion logic
     return {"output_url": signed_url}
 ```
@@ -518,16 +488,13 @@ models/
 import os
 import glob
 
-def list_available_models(models_dir="./models"):
-    """List all available voice models"""
+def list_available_models(models_dir="./models"): """List all available voice models"""
     models = []
-    for model_dir in glob.glob(os.path.join(models_dir, "*/")):
-        name = os.path.basename(os.path.dirname(model_dir))
+    for model_dir in glob.glob(os.path.join(models_dir, "*/")): name = os.path.basename(os.path.dirname(model_dir))
         pth_files = glob.glob(os.path.join(model_dir, "*.pth"))
         index_files = glob.glob(os.path.join(model_dir, "*.faiss")) + \
                       glob.glob(os.path.join(model_dir, "*.index"))
-        if pth_files and index_files:
-            models.append({
+        if pth_files and index_files: models.append({
                 "name": name,
                 "pth": pth_files[0],
                 "index": index_files[0]
@@ -546,17 +513,13 @@ conversion_count = Counter(rvc_conversions_total, 'Total conversions')
 conversion_duration = Histogram(rvc_conversion_seconds, 'Conversion latency')
 error_count = Counter(rvc_errors_total, 'Total errors', [error_type])
 
-def monitored_convert(audio_path, model_name):
-    start = time.time()
-    try:
-        result = perform_conversion(audio_path, model_name)
+def monitored_convert(audio_path, model_name): start = time.time()
+    try: result = perform_conversion(audio_path, model_name)
         conversion_count.inc()
         return result
-    except Exception as e:
-        error_count.labels(error_type=type(e).__name__).inc()
+    except Exception as e: error_count.labels(error_type=type(e).__name__).inc()
         raise
-    finally:
-        conversion_duration.observe(time.time() - start)
+    finally: conversion_duration.observe(time.time() - start)
 
 # Start metrics endpoint
 start_http_server(9090)
@@ -575,7 +538,17 @@ python tools/export_onnx.py \
 ## Comparison with Alternatives
 
 | Feature | RVC v2 | GPT-SoVITS | So-VITS-SVC 4.1 | DDSP-SVC |
-|---------|--------|------------|-----------------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Primary Purpose** | Voice Conversion | TTS + Voice Cloning | Singing Voice Conversion | Singing Voice Conversion |
 | **Training Time** (10min data) | ~18 min (RTX 3090) | ~45 min | ~2 hours | ~15 min |
 | **Min GPU VRAM** (training) | 4GB | 8GB | 8GB | 4GB |
@@ -601,9 +574,7 @@ python tools/export_onnx.py \
 
 ## Limitations / Honest Assessment
 
-RVC is a capable tool, but it is not the right choice for every voice application:
-
-**No Text-to-Speech.** RVC converts audio to audio. It cannot generate speech from text. Combine it with GPT-SoVITS, Coqui TTS, or Edge-TTS for a full TTS pipeline.
+RVC is a capable tool, but it is not the right choice for every voice application: **No Text-to-Speech.** RVC converts audio to audio. It cannot generate speech from text. Combine it with GPT-SoVITS, Coqui TTS, or Edge-TTS for a full TTS pipeline.
 
 **Speaker Similarity Ceiling.** While RVC produces convincing conversions, it does not match the fidelity of commercial solutions like ElevenLabs Voice Cloning or Microsoft Azure Speech Studio. For enterprise-grade voice cloning, paid APIs still lead.
 
@@ -651,9 +622,7 @@ RVC delivers production-grade voice conversion with training times under 20 minu
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -677,7 +646,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [PetVocalia: Zero-Shot SVC Benchmark (IJCAI 2025)](https://www.ijcai.org/proceedings/2025/1135.pdf)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -703,8 +671,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [ai-engineering-from-scratch](rvc)
@@ -713,6 +681,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [prompts-chat](rvc)
 - [llm-inference-cost-optimization-guide-2026](rvc)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/pendle-yield-tokenization-defi" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/pendle-yield-tokenization-defi" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/pendle-yield-tokenization-defi" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/pendle-yield-tokenization-defi" />
 title: 'pendle-yield-tokenization-defi'
 description: ''. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: [pendle]
-aliases:
-- /kr/posts/pendle-yield-tokenization-defi/
+aliases: - /kr/posts/pendle-yield-tokenization-defi/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/pendle-yield-tokenization-defi/ -->
 
 {{</* resource-info */>}}
 
@@ -1042,26 +1034,20 @@ from decimal import Decimal
 from pendle_sdk import PendleSDK, MarketSnapshot
 
 @dataclass
-class YieldStrategy:
-    name: str
+class YieldStrategy: name: str
     market_address: str
     allocation_pct: Decimal
     expected_apy: Decimal
     risk_score: int  # 1-10
 
-class InstitutionalYieldManager:
-    
-    def __init__(self, rpc_url: str, wallet_key: str):
-        self.sdk = PendleSDK(rpc_url=rpc_url, private_key=wallet_key)
+class InstitutionalYieldManager: def __init__(self, rpc_url: str, wallet_key: str): self.sdk = PendleSDK(rpc_url=rpc_url, private_key=wallet_key)
         self.strategies: list[YieldStrategy] = []
     
-    async def analyze_yield_opportunities(self) -> list[dict]:
-        """모든 Pendle 시장에서 최적의 위험 조정 수익 스캔"""
+    async def analyze_yield_opportunities(self) -> list[dict]: """모든 Pendle 시장에서 최적의 위험 조정 수익 스캔"""
         markets = await self.sdk.get_all_markets()
         opportunities = []
         
-        for market in markets:
-            snapshot = await market.get_snapshot()
+        for market in markets: snapshot = await market.get_snapshot()
             
             # 위험 조정 수익 계산
             sharpe_ratio = self._calculate_sharpe(snapshot)
@@ -1079,8 +1065,7 @@ class InstitutionalYieldManager:
         
         return sorted(opportunities, key=lambda x: x[sharpe_ratio], reverse=True)
     
-    async def execute_yield_portfolio(self, total_capital: Decimal):
-        """여러 PT 전략에 자본 배포"""
+    async def execute_yield_portfolio(self, total_capital: Decimal): """여러 PT 전략에 자본 배포"""
         opportunities = await self.analyze_yield_opportunities()
         
         # 양의 캐리가 있는 유동성 시장 필터링
@@ -1089,8 +1074,7 @@ class InstitutionalYieldManager:
                   and o[pt_apy] > 0.03]
         
         # 상위 5개 기회에 자본 배포
-        for opp in viable[:5]:
-            allocation = total_capital * Decimal('0.2')
+        for opp in viable[:5]: allocation = total_capital * Decimal('0.2')
             
             print(f"${allocation}를 {opp[asset]} PT에 배포 "
                   f"({opp[maturity]}) @ {opp[pt_apy]:.2%} APY")
@@ -1099,8 +1083,7 @@ class InstitutionalYieldManager:
         
         return await self.get_portfolio_summary()
     
-    async def get_portfolio_summary(self) -> dict:
-        """현재 포트폴리오 포지션 및 손익 가져오기"""
+    async def get_portfolio_summary(self) -> dict: """현재 포트폴리오 포지션 및 손익 가져오기"""
         positions = await self.sdk.get_positions()
         
         total_value = sum(p.current_value for p in positions)
@@ -1123,18 +1106,14 @@ class InstitutionalYieldManager:
             maturities: list(set(p.maturity for p in positions))
         }
     
-    def _calculate_sharpe(self, snapshot: MarketSnapshot) -> Decimal:
-        """수익 기회의 단순화된 샤프 비율 계산"""
+    def _calculate_sharpe(self, snapshot: MarketSnapshot) -> Decimal: """수익 기회의 단순화된 샤프 비율 계산"""
         excess_yield = snapshot.pt_implied_apy - Decimal('0.02')  # 무위험 대비
         volatility = Decimal('0.05')  # 가정 5% 수익 변동성
         return excess_yield / volatility if volatility > 0 else Decimal(0)
     
-    def _generate_recommendation(self, snapshot: MarketSnapshot) -> str:
-        spread = snapshot.underlying_apy - snapshot.pt_implied_apy
-        if spread > Decimal('0.02'):
-            return "LONG_PT"
-        elif spread < Decimal('-0.02'):
-            return "LONG_YT"
+    def _generate_recommendation(self, snapshot: MarketSnapshot) -> str: spread = snapshot.underlying_apy - snapshot.pt_implied_apy
+        if spread > Decimal('0.02'): return "LONG_PT"
+        elif spread < Decimal('-0.02'): return "LONG_YT"
         return "HOLD"
 ```
 
@@ -1257,7 +1236,6 @@ quickstart().catch(console.error);
 *© 2026 dibi8.com | DeFi 개발자, 트레이더, 연구원을 위해 제작되었습니다.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

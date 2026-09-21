@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/superagent-ai-agent-framework" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/superagent-ai-agent-framework" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/superagent-ai-agent-framework" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/superagent-ai-agent-framework" />
 title: 'Superagent: Triển Khai AI Agent Lên Production Chỉ Với 1...
 description: 'Hướng dẫn thực hành triển khai AI Agent với Superagent. Một lệnh CLI, hỗ trợ nhiều LLM, workflow RAG, tích hợp vector DB, và triển khai REST API. Kèm benchmark thực tế.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [superagent, 'ai agent', llm, rag, 'vector db', openai, langchain, python, typescript]
-aliases:
-- /vi/posts/superagent-ai-agent-framework/
+aliases: - /vi/posts/superagent-ai-agent-framework/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/superagent-ai-agent-framework/ -->
 
 {{</* resource-info */>}}
 
@@ -55,9 +47,7 @@ Không giống như các nền tảng no-code đồ sộ, Superagent luôn đặ
 
 ## How Superagent Works
 
-Kiến trúc của Superagent tuân theo **mô hình pipeline 5 lớp**:
-
-```
+Kiến trúc của Superagent tuân theo **mô hình pipeline 5 lớp**: ```
 ┌─────────────────────────────────────────────────────────────┐
 │                    Ứng dụng Client                            │
 │         (SDK / REST API / WebSocket / CLI)                    │
@@ -84,9 +74,7 @@ Kiến trúc của Superagent tuân theo **mô hình pipeline 5 lớp**:
 └─────────────────────────────────────────────────────────────┘
 ```
 
-Các thành phần cốt lõi:
-
-1. **Agents** — Đơn vị suy luận. Mỗi Agent được gắn với một LLM, một tập tool, và backend memory.
+Các thành phần cốt lõi: 1. **Agents** — Đơn vị suy luận. Mỗi Agent được gắn với một LLM, một tập tool, và backend memory.
 2. **Tools** — Các hàm mà Agent có thể gọi (tìm kiếm web, gọi API, thực thi code, truy vấn database).
 3. **Datasources** — Tài liệu hoặc API cung cấp dữ liệu cho pipeline RAG, tự động được chunk và vector hóa.
 4. **Workflows** — Tự động hóa nhiều bước chuỗi các Agent, tool, và logic điều kiện.
@@ -106,9 +94,7 @@ superagent --version
 # Output: superagent/0.4.2 linux-x64 node-v20.12.0
 ```
 
-CLI là con đường nhanh nhất để triển khai. Ngoài ra, cài đặt Python SDK nếu bạn thích điều khiển bằng code:
-
-```bash
+CLI là con đường nhanh nhất để triển khai. Ngoài ra, cài đặt Python SDK nếu bạn thích điều khiển bằng code: ```bash
 # Cài đặt Python SDK
 pip install superagent-py
 
@@ -152,9 +138,7 @@ superagent init --template qa-agent
 superagent deploy
 ```
 
-Sau `superagent deploy`, bạn nhận được một API endpoint live:
-
-```
+Sau `superagent deploy`, bạn nhận được một API endpoint live: ```
 ✅ Agent triển khai thành công!
 🔗 API Endpoint: https://api.superagent.sh/v1/agents/ag_01hwxyz123
 📖 Tài liệu: https://api.superagent.sh/v1/agents/ag_01hwxyz123/docs
@@ -173,9 +157,7 @@ curl -X POST https://api.superagent.sh/v1/agents/ag_01hwxyz123/invoke \
   }'
 ```
 
-Phản hồi bao gồm câu trả lờ được tạo, trích dẫn nguồn nếu RAG được bật, và metadata thực thi:
-
-```json
+Phản hồi bao gồm câu trả lờ được tạo, trích dẫn nguồn nếu RAG được bật, và metadata thực thi: ```json
 {
   "output": "Superagent provides: (1) One-command deployment, (2) Multi-LLM support including OpenAI and local models, (3) Built-in RAG with vector database integration, (4) REST API with streaming support, (5) Python and TypeScript SDKs, and (6) Workflow automation for chaining agents.",
   "intermediate_steps": [],
@@ -190,9 +172,7 @@ Phản hồi bao gồm câu trả lờ được tạo, trích dẫn nguồn nế
 
 ### OpenAI / Anthropic / Cohere
 
-Superagent hỗ trợ mọi API tương thích OpenAI ngay từ đầu. Chuyển đổi giữa các provider chỉ là thay đổi cấu hình:
-
-```python
+Superagent hỗ trợ mọi API tương thích OpenAI ngay từ đầu. Chuyển đổi giữa các provider chỉ là thay đổi cấu hình: ```python
 from superagent.client import Superagent
 
 client = Superagent()
@@ -215,9 +195,7 @@ agent_claude = client.agent.create(
 
 ### Tích hợp LangChain
 
-Superagent có thể tiếp nhận mọi LangChain tool hoặc chain, giúp việc migration trở nên đơn giản:
-
-```python
+Superagent có thể tiếp nhận mọi LangChain tool hoặc chain, giúp việc migration trở nên đơn giản: ```python
 from langchain.tools import DuckDuckGoSearchRun
 from superagent.client import Superagent
 
@@ -236,9 +214,7 @@ agent = client.agent.create(
 
 ### Pinecone / Weaviate Vector Database
 
-Kết nối vector store hiện có cho workflow RAG:
-
-```python
+Kết nối vector store hiện có cho workflow RAG: ```python
 import os
 from superagent.client import Superagent
 
@@ -269,9 +245,7 @@ datasource_weaviate = client.datasource.create(
 
 ### Tích hợp Backend FastAPI / Express.js
 
-Nhúng Superagent vào backend hiện có:
-
-```python
+Nhúng Superagent vào backend hiện có: ```python
 # Ví dụ tích hợp FastAPI
 from fastapi import FastAPI
 from superagent.client import Superagent
@@ -281,8 +255,7 @@ app = FastAPI()
 client = Superagent(api_key=os.getenv("SUPERAGENT_API_KEY"))
 
 @app.post("/api/ask")
-async def ask_question(question: str):
-    response = await client.agent.invoke(
+async def ask_question(question: str): response = await client.agent.invoke(
         agent_id="ag_01hwxyz123",
         input=question,
         enable_streaming=True
@@ -292,9 +265,7 @@ async def ask_question(question: str):
 
 ### Triển khai Docker
 
-Để tự host, sử dụng Docker image chính thức:
-
-```bash
+Để tự host, sử dụng Docker image chính thức: ```bash
 # Pull image chính thức
 docker pull superagentai/superagent:latest
 
@@ -311,41 +282,26 @@ docker run -d \
 docker ps | grep superagent
 ```
 
-Để triển khai production, hãy sử dụng [DigitalOcean Droplet](https://m.do.co/c/eca87ac14ee0) với Docker Compose:
-
-```yaml
+Để triển khai production, hãy sử dụng [DigitalOcean Droplet](https://m.do.co/c/eca87ac14ee0) với Docker Compose: ```yaml
 # docker-compose.yml cho production
 version: "3.8"
-services:
-  superagent:
-    image: superagentai/superagent:latest
-    ports:
-      - "3000:3000"
-    environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
+services: superagent: image: superagentai/superagent:latest
+    ports: - "3000:3000"
+    environment: - OPENAI_API_KEY=${OPENAI_API_KEY}
       - DATABASE_URL=postgresql://postgres:postgres@db:5432/superagent
       - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
-    depends_on:
-      - db
+    depends_on: - db
       - redis
 
-  db:
-    image: postgres:16-alpine
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_PASSWORD=postgres
+  db: image: postgres:16-alpine
+    volumes: - pgdata:/var/lib/postgresql/data
+    environment: - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=superagent
 
-  redis:
-    image: redis:7-alpine
-    volumes:
-      - redisdata:/data
+  redis: image: redis:7-alpine
+    volumes: - redisdata:/data
 
-volumes:
-  pgdata:
-  redisdata:
-```
+volumes: pgdata: redisdata: ```
 
 ---
 
@@ -353,9 +309,7 @@ volumes:
 
 ### Kinh tế Token
 
-Mô hình định giá của Superagent dựa trên mức sử dụng. Tính đến đầu năm 2026, tỷ giá token cho các mô hình Guard, Verify, và Redact là:
-
-| Dịch vụ | Token Đầu vào | Token Đầu ra |
+Mô hình định giá của Superagent dựa trên mức sử dụng. Tính đến đầu năm 2026, tỷ giá token cho các mô hình Guard, Verify, và Redact là: | Dịch vụ | Token Đầu vào | Token Đầu ra |
 |---------|-------------|---------------|
 | Guard | $0.90 / triệu | $1.90 / triệu |
 | Verify | $0.90 / triệu | $1.90 / triệu |
@@ -385,16 +339,13 @@ Mô hình định giá của Superagent dựa trên mức sử dụng. Tính đ�
 
 ### Phát triển Tool Tùy chỉnh
 
-Xây dựng tool chuyên biệt theo lĩnh vực mà Agent của bạn có thể gọi:
-
-```python
+Xây dựng tool chuyên biệt theo lĩnh vực mà Agent của bạn có thể gọi: ```python
 from superagent.client import Superagent
 import requests
 
 client = Superagent()
 
-def get_stock_price(symbol: str) -> str:
-    """Lấy giá cổ phiếu thờ gian thực từ API tài chính."""
+def get_stock_price(symbol: str) -> str: """Lấy giá cổ phiếu thờ gian thực từ API tài chính."""
     resp = requests.get(
         f"https://api.example.com/stocks/{symbol}",
         headers={"Authorization": f"Bearer {API_KEY}"}
@@ -412,9 +363,7 @@ client.tool.create(
 
 ### Chiến lược Quản lý Memory
 
-Superagent hỗ trợ nhiều backend memory. Chọn dựa trên use case:
-
-```python
+Superagent hỗ trợ nhiều backend memory. Chọn dựa trên use case: ```python
 from superagent.client import Superagent
 
 client = Superagent()
@@ -440,9 +389,7 @@ agent = client.agent.create(
 
 ### Tự động hóa Workflow
 
-Chuỗi nhiều Agent thành workflow đa bước:
-
-```python
+Chuỗi nhiều Agent thành workflow đa bước: ```python
 from superagent.client import Superagent
 
 client = Superagent()
@@ -479,9 +426,7 @@ print(result.steps[-1].output)  # Bài đăng đã chỉnh sửa cuối cùng
 
 ### Xác thực và Giới hạn Tốc độ
 
-Đối với API production, thực thi kiểm soát truy cập:
-
-```python
+Đối với API production, thực thi kiểm soát truy cập: ```python
 # Cấu hình xác thực API key
 superagent config set auth.type=api_key
 superagent config set auth.rate_limit=100/minute
@@ -497,8 +442,7 @@ superagent config set logging.retention=30d
 # Health endpoint tích hợp
 curl https://your-superagent-instance.com/health
 
-# Phản hồi mong đợi:
-# {"status": "ok", "version": "0.4.2", "uptime": 86400}
+# Phản hồi mong đợi: # {"status": "ok", "version": "0.4.2", "uptime": 86400}
 
 # Prometheus metrics endpoint (khi bật)
 curl https://your-superagent-instance.com/metrics
@@ -608,9 +552,7 @@ Bắt đầu vớ phần setup 5 phút trong bài này, kết nối vector datab
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -620,7 +562,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 Bài viết này chứa các liên kết affiliate. Nếu bạn đăng ký [DigitalOcean](https://m.do.co/c/eca87ac14ee0) qua liên kết của chúng tôi, chúng tôi nhận được hoa hồng mà không phát sinh thêm chi phí cho bạn. Chúng tôi chỉ giới thiệu các dịch vụ mà chính chúng tôi sử dụng cho các triển khai của mình. Superagent riêng là mã nguồn mở và miễn phí sử dụng dưới giấy phép MIT.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

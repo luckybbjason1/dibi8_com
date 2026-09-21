@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/lazydocker" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/lazydocker" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/lazydocker" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/lazydocker" />
 title: 'LazyDocker: 51,092 GitHub Stars — Hướng Dẫn Thiết Lập UI...
 description: 'LazyDocker (LD) là UI terminal để quản lý container, image, volume và log Docker. Tương thích với Docker, Docker Compose, Go và Terminal. Bao gồm cài đặt, phím tắt, cấu hình và bảo mật production.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [lazydocker, docker, 'terminal-ui', devops, containers, 'cli-tools', 'docker-compose', tui]
-aliases:
-- /vi/posts/lazydocker/
+aliases: - /vi/posts/lazydocker/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/lazydocker/ -->
 
 {{</* resource-info */>}}
 
@@ -73,9 +65,7 @@ LazyDocker tuân theo một kiến trúc đơn giản: binary đọc và ghi và
 └─────────────────────────────────────────┘
 ```
 
-Các khái niệm cốt lõi bạn cần hiểu:
-
-- **Panels**: Bên trái hiển thị danh sách phân loại (Containers, Services, Images, Volumes, Networks). Bên phải hiển thị chi tiết, log, hoặc stats cho item được chọn.
+Các khái niệm cốt lõi bạn cần hiểu: - **Panels**: Bên trái hiển thị danh sách phân loại (Containers, Services, Images, Volumes, Networks). Bên phải hiển thị chi tiết, log, hoặc stats cho item được chọn.
 - **Context-aware actions**: Cùng một phím thực hiện các hành động khác nhau tùy thuộc vào panel nào đang được focus. Nhấn `d` trên container sẽ xóa container; nhấn `d` trên image sẽ xóa image.
 - **Docker Compose integration**: Khi khởi chạy trong thư mục có file `docker-compose.yml`, LazyDocker nhóm các service theo project và thêm các hành động đặc thù của Compose như `up` và `down`.
 
@@ -252,21 +242,14 @@ LazyDocker lưu trữ cấu hình tại các đường dẫn đặc thù theo n�
 
 ```yaml
 # ~/.config/lazydocker/config.yml
-gui:
-  language: "en"  # auto | en | fr | de | es | pl | nl | tr | zh
+gui: language: "en"  # auto | en | fr | de | es | pl | nl | tr | zh
   border: "rounded"  # rounded | single | double | hidden
-  theme:
-    activeBorderColor:
-      - cyan
+  theme: activeBorderColor: - cyan
       - bold
-    inactiveBorderColor:
-      - white
-    selectedLineBgColor:
-      - black
-    selectedLineFgColor:
-      - yellow
-    optionsTextColor:
-      - blue
+    inactiveBorderColor: - white
+    selectedLineBgColor: - black
+    selectedLineFgColor: - yellow
+    optionsTextColor: - blue
   scrollHeight: 2
   sidePanelWidth: 0.333
   screenMode: "normal"  # normal | half | fullscreen
@@ -275,20 +258,15 @@ gui:
 ### Thiết Lập Hiển Thị Log
 
 ```yaml
-logs:
-  timestamps: true
+logs: timestamps: true
   since: "60m"    # Hiển thị log 60 phút gần nhất; '' = toàn bộ
   tail: "200"     # Số dòng hiển thị
 ```
 
 ### Lệnh Tùy Chỉnh
 
-Thêm lệnh của riêng bạn có thể truy cập qua phím `c`:
-
-```yaml
-customCommands:
-  containers:
-    - name: bash
+Thêm lệnh của riêng bạn có thể truy cập qua phím `c`: ```yaml
+customCommands: containers: - name: bash
       attach: true
       command: "docker exec -it {{ .Container.ID }} bash"
       serviceNames: []
@@ -301,11 +279,8 @@ Các biến template khả dụng: `{{ .Container.ID }}`, `{{ .Container.Name }}
 
 ### Hỗ Trợ Podman
 
-LazyDocker hoạt động với Podman bằng cách thay đổi command template:
-
-```yaml
-commandTemplates:
-  docker: "podman"
+LazyDocker hoạt động với Podman bằng cách thay đổi command template: ```yaml
+commandTemplates: docker: "podman"
   dockerCompose: "podman-compose"
   containerInspect: "podman inspect {{ .Container.ID }}"
 ```
@@ -324,17 +299,14 @@ cd ~/projects/my-app
 lazydocker
 ```
 
-Trong panel Services:
-- Nhấn `u` để khởi động một service
+Trong panel Services: - Nhấn `u` để khởi động một service
 - Nhấn `U` để khởi động toàn bộ project
 - Nhấn `D` để teardown toàn bộ stack
 - Nhấn `E` để exec vào container service
 
 ### Tích Hợp Tmux
 
-Cho ngườ dùng tmux, thêm keybinding để khởi chạy LazyDocker trong popup hoặc split:
-
-```bash
+Cho ngườ dùng tmux, thêm keybinding để khởi chạy LazyDocker trong popup hoặc split: ```bash
 # ~/.tmux.conf
 # Mở LazyDocker trong cửa sổ popup
 bind D display-popup -E -w 90% -h 90% "lazydocker"
@@ -343,9 +315,7 @@ bind D display-popup -E -w 90% -h 90% "lazydocker"
 bind d split-window -h "lazydocker"
 ```
 
-Reload và dùng `Ctrl+b D` để mở:
-
-```bash
+Reload và dùng `Ctrl+b D` để mở: ```bash
 tmux source-file ~/.tmux.conf
 ```
 
@@ -365,9 +335,7 @@ source ~/.bashrc
 
 ### Tích Hợp VS Code
 
-Thêm VS Code task để khởi chạy LazyDocker trong integrated terminal:
-
-```json
+Thêm VS Code task để khởi chạy LazyDocker trong integrated terminal: ```json
 // .vscode/tasks.json
 {
   "version": "2.0.0",
@@ -390,17 +358,12 @@ Thêm VS Code task để khởi chạy LazyDocker trong integrated terminal:
 
 ### Tích Hợp CI/CD Pipeline
 
-LazyDocker hoạt động tốt trong GitHub Actions để debug trạng thái container trong quá trình build:
-
-```yaml
+LazyDocker hoạt động tốt trong GitHub Actions để debug trạng thái container trong quá trình build: ```yaml
 # .github/workflows/debug.yml
 name: Debug Containers
 on: workflow_dispatch
-jobs:
-  debug:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: debug: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
 
       - name: Install LazyDocker
         run: |
@@ -445,9 +408,7 @@ Một kỹ sư DevOps dùng LazyDocker trong GitHub Actions để capture trạn
 
 ### Chạy Trên Máy Chủ Từ Xa Qua SSH
 
-LazyDocker không hỗ trợ native Docker host từ xa, nhưng bạn có thể forward Docker socket qua SSH:
-
-```bash
+LazyDocker không hỗ trợ native Docker host từ xa, nhưng bạn có thể forward Docker socket qua SSH: ```bash
 # Forward remote Docker socket đến máy local
 ssh -nNT -L /tmp/docker_remote.sock:/var/run/docker.sock user@remote-server &
 
@@ -460,9 +421,7 @@ kill %1
 rm /tmp/docker_remote.sock
 ```
 
-Hoặc dùng SSH context trực tiếp:
-
-```bash
+Hoặc dùng SSH context trực tiếp: ```bash
 # Tạo Docker context cho máy chủ từ xa
 docker context create remote --docker "host=ssh://user@remote-server"
 docker context use remote
@@ -514,9 +473,7 @@ Bind script này trong LazyDocker qua custom commands để truy cập một ph�
 
 ### Tích Hợp Giám Sát
 
-Xuất stats LazyDocker ra monitoring bên ngoài bằng cách pipe `docker stats` đến Prometheus Node Exporter textfile collector:
-
-```bash
+Xuất stats LazyDocker ra monitoring bên ngoài bằng cách pipe `docker stats` đến Prometheus Node Exporter textfile collector: ```bash
 #!/bin/bash
 # cron job mỗi 60 giây
 while true; do
@@ -546,9 +503,7 @@ done
 
 ## Hạn Chế / Đánh Giá Trung Thực
 
-LazyDocker không phải công cụ phù hợp cho mọi tình huống. Đây là các ràng buộc:
-
-- **Không quản lý đa máy chủ**: Bạn không thể quản lý nhiều Docker host từ một instance LazyDocker duy nhất. Cho việc này, dùng Portainer với agents hoặc Rancher.
+LazyDocker không phải công cụ phù hợp cho mọi tình huống. Đây là các ràng buộc: - **Không quản lý đa máy chủ**: Bạn không thể quản lý nhiều Docker host từ một instance LazyDocker duy nhất. Cho việc này, dùng Portainer với agents hoặc Rancher.
 - **Không có giao diện web**: LazyDocker yêu cầu truy cập terminal. Nếu bạn cần quản lý container từ điện thoại hoặc tablet, Web UI responsive của Portainer là lựa chọn tốt hơn.
 - **Không có RBAC hoặc quản lý user**: LazyDocker kế thừa quyền Docker của user OS. Không có khái niệm team, role, hoặc audit trail.
 - **Không hỗ trợ Kubernetes**: LazyDocker chỉ xử lý Docker và Docker Compose. Cho workload Kubernetes, dùng `k9s`, Rancher, hoặc `kubectl` trực tiếp.
@@ -604,9 +559,7 @@ Tham gia [cộng đồng Telegram dibi8](https://t.me/dibi8_chat) để chia s�
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -623,7 +576,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [Mở Rộng LazyDocker Podman](https://github.com/szchan/lazydocker-podman)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

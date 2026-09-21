@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ultimate-vocal-remover" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ultimate-vocal-remover" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ultimate-vocal-remover" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ultimate-vocal-remover" />
 title: 'Ultimate Vocal Remover: 24.7K+ Stars — 2026 완전 설치 가이드'
 description: 'Ultimate Vocal Remover (UVR)는 심층 신경망을 사용하여 보컬을 분리하는 GUI 애플리케이션입니다. demucs, RVC, GPT-SoVITS와 호환됩니다. Windows, macOS, Linux 설치, 모델 선택, 배치 처리 및 프로덕션 강화를 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: ['보컬-제거', '오디오-분리', 딥러닝, pytorch, demucs, 'mdx-net', 'ai-오디오', 노래방, '음악-제작']
-aliases:
-- /kr/posts/ultimate-vocal-remover/
+aliases: - /kr/posts/ultimate-vocal-remover/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/ultimate-vocal-remover/ -->
 
 {{</* resource-info */>}}
 
@@ -41,9 +33,7 @@ aliases:
 
 **Ultimate Vocal Remover(UVR)**는 심층 신경망을 사용하여 음악 오디오에서 보컬을 분리하는 오픈소스 GUI 애플리케이션이다. 주로 Python과 PyTorch로 구축되었으며, 복잡한 소스 분리 모델을 프로그래머가 아닌 사용자도 접근할 수 있는 데스크톱 인터페이스로 패키징한다. 이 프로젝트는 Anjok07과 aufr03이 유지보수하며, 대부분의 모델은 코어 개발 팀이 직접 훈련했다.
 
-UVR은 여러 AI 아키텍처를 지원한다:
-
-- **VR Architecture** — tsurumeso가 개발한 스펙트로그램 기반 분리
+UVR은 여러 AI 아키텍처를 지원한다: - **VR Architecture** — tsurumeso가 개발한 스펙트로그램 기반 분리
 - **MDX-Net** — Kuielab의 멀티밴드 심층 신경망
 - **MDX23C** — 확장 컨텍스트 윈도우를 가진 확장 MDX-Net
 - **Demucs v3/v4** — Meta/Facebook Research의 하이브리드 스펙트로그램-파형 모델
@@ -73,9 +63,7 @@ UVR은 단일 모놀리식 모델을 구현하는 것이 아니다. 대신 **모
     |-- Instrumental.wav
 ```
 
-각 모델은 오디오를 다르게 처리한다:
-
-**VR Architecture**는 오디오를 단시간 푸리에 변환(STFT) 스펙트로그램으로 변환하고, 학습된 마스크를 적용하여 보컬 주파수를 분리한 다음, 역 STFT를 통해 파형을 재구성한다. 이 접근 방식은 빠르지만 반주 트랙에 보컬 아티팩트가 남을 수 있다.
+각 모델은 오디오를 다르게 처리한다: **VR Architecture**는 오디오를 단시간 푸리에 변환(STFT) 스펙트로그램으로 변환하고, 학습된 마스크를 적용하여 보컬 주파수를 분리한 다음, 역 STFT를 통해 파형을 재구성한다. 이 접근 방식은 빠르지만 반주 트랙에 보컬 아티팩트가 남을 수 있다.
 
 **MDX-Net**은 스펙트로그램을 여러 주파수 대역으로 분할하고 각 대역을 별도의 신경망 브랜치를 통해 처리한다. 멀티밴드 설계는 단일 대역 마스크가 놓칠 수 있는 보컬의 고조파 구조를 포착한다.
 
@@ -96,8 +84,7 @@ UVR v5.6은 Windows 10 이상을 위한 독립 설치 프로그램을 제공한�
 # 64비트 Windows (Nvidia GPU용 CUDA 지원)
 # https://github.com/Anjok07/ultimatevocalremovergui/releases/download/v5.6/UVR_v5.6.0_setup.exe
 
-# AMD Radeon / Intel Arc GPU의 경우 DirectML 빌드 사용:
-# https://github.com/Anjok07/ultimatevocalremovergui/releases/download/v5.6/UVR_1_15_25_22_30_BETA_full.exe
+# AMD Radeon / Intel Arc GPU의 경우 DirectML 빌드 사용: # https://github.com/Anjok07/ultimatevocalremovergui/releases/download/v5.6/UVR_1_15_25_22_30_BETA_full.exe
 ```
 
 **2단계: C:\ 드라이브에 설치**
@@ -130,11 +117,9 @@ UVR은 Intel 및 Apple Silicon Mac 모두에서 macOS Big Sur 이상을 지원�
 
 ```bash
 # 1단계: 아키텍처용 DMG 다운로드
-# Apple Silicon (M1/M2/M3):
-# https://github.com/Anjok07/ultimatevocalremovergui/releases/download/v5.6/Ultimate_Vocal_Remover_v5_6_MacOS_arm64.dmg
+# Apple Silicon (M1/M2/M3): # https://github.com/Anjok07/ultimatevocalremovergui/releases/download/v5.6/Ultimate_Vocal_Remover_v5_6_MacOS_arm64.dmg
 
-# Intel Mac:
-# https://github.com/Anjok07/ultimatevocalremovergui/releases/download/v5.6/Ultimate_Vocal_Remover_v5_6_MacOS_x86_64.dmg
+# Intel Mac: # https://github.com/Anjok07/ultimatevocalremovergui/releases/download/v5.6/Ultimate_Vocal_Remover_v5_6_MacOS_x86_64.dmg
 
 # 2단계: DMG 마운트 후 UVR을 Applications로 드래그
 
@@ -297,18 +282,15 @@ UVR에는 수십 개의 사전 훈련된 모델이 포함되어 있다. 올바�
 # 디노이즈: 활성화
 # 후처리: 활성화
 
-# VRAM 8GB+ GPU:
-세그먼트 크기: 256
+# VRAM 8GB+ GPU: 세그먼트 크기: 256
 오버랩: 0.85
 배치 크기: 4
 
-# VRAM 6GB GPU:
-세그먼트 크기: 128
+# VRAM 6GB GPU: 세그먼트 크기: 128
 오버랩: 0.50
 배치 크기: 1
 
-# CPU 전용:
-세그먼트 크기: 64
+# CPU 전용: 세그먼트 크기: 64
 오버랩: 0.25
 배치 크기: 1
 5-10배 느린 처리 예상
@@ -317,15 +299,13 @@ UVR에는 수십 개의 사전 훈련된 모델이 포함되어 있다. 올바�
 ### 배치 처리 설정
 
 ```bash
-# GUI를 통한 전체 폴더 처리:
-# 1. "Input" 클릭 → 폴더 선택
+# GUI를 통한 전체 폴더 처리: # 1. "Input" 클릭 → 폴더 선택
 # 2. "Batch Processing" 체크박스 활성화
 # 3. 출력 폴더 설정
 # 4. "Same as input" 또는 사용자 정의 디렉터리 선택
 # 5. 모델 선택 후 "Start Processing" 클릭
 
-# 출력 파일 구조:
-input/
+# 출력 파일 구조: input/
   track1.mp3
   track2.mp3
 tracks/
@@ -339,9 +319,7 @@ tracks/
 
 ### RVC(Retrieval-based Voice Conversion)와의 통합
 
-UVR + RVC은 AI 보컬 커버 제작을 위한 인기 파이프라인이다:
-
-```bash
+UVR + RVC은 AI 보컬 커버 제작을 위한 인기 파이프라인이다: ```bash
 # 파이프라인: 원곡 → UVR → 보컬만 → RVC → AI 보컬 커버
 #         원곡 → UVR → 반주 → 최종 믹스
 
@@ -366,8 +344,7 @@ ffmpeg -i RVC_Converted_Vocals.wav -i UVR_Instrumental.wav \
 # 훈련 데이터 전처리에 UVR 사용
 
 # 1단계: 훈련 샘플에서 보컬 배치 추출
-# UVR 설정:
-#   모델: UVR-MDX-NET Inst Main (부산물로 보컬 추출)
+# UVR 설정: #   모델: UVR-MDX-NET Inst Main (부산물로 보컬 추출)
 #   또는: MDX-Net Main → 보컬 출력 유지
 
 # 2단계: 깨끗한 보컬을 GPT-SoVITS 슬라이싱에 공급
@@ -379,9 +356,7 @@ python webui.py --voice_slices slices/
 
 ### demucs CLI와의 통합
 
-UVR은 낶部적으로 Demucs를 사용하지만 CLI 버전을 체인으로 연결할 수도 있다:
-
-```bash
+UVR은 낶部적으로 Demucs를 사용하지만 CLI 버전을 체인으로 연결할 수도 있다: ```bash
 # demucs를 직접 사용하여 4-스템 분리
 demucs --mp3 --two-stems=vocals input.mp3
 
@@ -412,9 +387,7 @@ done
 
 ### 처리 속도 비교
 
-모든 테스트는 4분 44.1kHz 스테레오 WAV 파일에서 수행:
-
-| 하드웨어 | MDX-Net | MDX23C | Demucs v4 | VR-DeEcho |
+모든 테스트는 4분 44.1kHz 스테레오 WAV 파일에서 수행: | 하드웨어 | MDX-Net | MDX23C | Demucs v4 | VR-DeEcho |
 |----------|---------|--------|-----------|-----------|
 | RTX 4090 (24GB) | 18초 | 42초 | 55초 | 12초 |
 | RTX 3060 (12GB) | 35초 | 85초 | 110초 | 22초 |
@@ -424,9 +397,7 @@ done
 
 ### 분리 품질 (SDR — Signal-to-Distortion Ratio)
 
-높은 SDR = 더 나은 분리 품질, MUSDB18 벤치마크에서 테스트:
-
-| 모델 | 보컬 SDR | 반주 SDR | 아티팩트 수준 |
+높은 SDR = 더 나은 분리 품질, MUSDB18 벤치마크에서 테스트: | 모델 | 보컬 SDR | 반주 SDR | 아티팩트 수준 |
 |------|---------|---------|-------------|
 | MDX23C | 9.42 | 14.8 | 낮음 |
 | Demucs v4 | 9.28 | 14.2 | 낮음 |
@@ -445,9 +416,7 @@ done
 ### GPU 메모리 관리
 
 ```python
-# "CUDA out of memory" 오류가 발생하는 경우:
-
-# 옵션 1: GUI에서 세그먼트 크기 줄이기
+# "CUDA out of memory" 오류가 발생하는 경우: # 옵션 1: GUI에서 세그먼트 크기 줄이기
 # 설정 → Segment Size → 256에서 128 또는 64로 낮추기
 
 # 옵션 2: "Use CPU for secondary model" 활성화
@@ -474,8 +443,7 @@ python separate.py \
 # macOS: /Applications/Ultimate Vocal Remover.app/Contents/models/
 # Linux: ./models/
 
-# 머신 간 모델 마이그레이션:
-# 전체 models/ 디렉터리 복사
+# 머신 간 모델 마이그레이션: # 전체 models/ 디렉터리 복사
 rsync -avz --progress models/ user@new-server:/opt/uvr/models/
 
 # 모델은 50MB에서 500MB 각각
@@ -502,8 +470,7 @@ MODEL = "MDX-Net Main"
 INPUT_DIR = "./input"
 OUTPUT_DIR = "./output"
 
-def process_file(input_path: str, output_dir: str) -> dict:
-    """단일 오디오 파일을 UVR을 통해 처리."""
+def process_file(input_path: str, output_dir: str) -> dict: """단일 오디오 파일을 UVR을 통해 처리."""
     cmd = [
         "python", UVR_PATH,
         "--input", input_path,
@@ -521,35 +488,28 @@ def process_file(input_path: str, output_dir: str) -> dict:
         "stderr": result.stderr if result.returncode != 0 else None
     }
 
-def main():
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
+def main(): os.makedirs(OUTPUT_DIR, exist_ok=True)
     results = []
 
-    for file in Path(INPUT_DIR).glob("*"):
-        if file.suffix.lower() in {".mp3", ".wav", ".flac", ".m4a"}:
-            logger.info(f"처리 중: {file.name}")
+    for file in Path(INPUT_DIR).glob("*"): if file.suffix.lower() in {".mp3", ".wav", ".flac", ".m4a"}: logger.info(f"처리 중: {file.name}")
             result = process_file(str(file), OUTPUT_DIR)
             results.append(result)
 
     # 배치 보고서 저장
-    with open(f"{OUTPUT_DIR}/batch_report.json", "w") as f:
-        json.dump(results, f, indent=2)
+    with open(f"{OUTPUT_DIR}/batch_report.json", "w") as f: json.dump(results, f, indent=2)
 
     success_count = sum(1 for r in results if r["success"])
     logger.info(f"완료: {success_count}/{len(results)}개 파일 처리됨")
 
-if __name__ == "__main__":
-    main()
+if __name__ == "__main__": main()
 ```
 
 ### 모니터링 및 로깅
 
 ```python
-# UVR은 GUI를 통해 처리 로그를 기록:
-# 설정 버튼 → 오류 로그 → 세부 정보 보기
+# UVR은 GUI를 통해 처리 로그를 기록: # 설정 버튼 → 오류 로그 → 세부 정보 보기
 
-# 헤드리스 배포의 경우 로깅으로 래핑:
-import sys
+# 헤드리스 배포의 경우 로깅으로 래핑: import sys
 import logging
 from datetime import datetime
 
@@ -588,9 +548,7 @@ watch -n 1 nvidia-smi
 
 ## 한계점 — 솔직한 평가
 
-UVR은 **음악 보컬 분리**를 위해 특별히 설계되었다. 모든 오디오 작업에 적합한 도구는 아니다:
-
-1. **음성 분리** — UVR 모델은 음악 데이터셋(MUSDB18, 낶부 데이터셋)에서 훈련되었다. 두 사람이 동시에 말하는 것을 분리하면 결과가 좋지 않다. 음성 분리에는 pyannote.audio 또는 SpeechBrain을 사용하라.
+UVR은 **음악 보컬 분리**를 위해 특별히 설계되었다. 모든 오디오 작업에 적합한 도구는 아니다: 1. **음성 분리** — UVR 모델은 음악 데이터셋(MUSDB18, 낶부 데이터셋)에서 훈련되었다. 두 사람이 동시에 말하는 것을 분리하면 결과가 좋지 않다. 음성 분리에는 pyannote.audio 또는 SpeechBrain을 사용하라.
 
 2. **실시간 처리** — UVR은 전체 파일을 오프라인으로 처리한다. 지연 시간은 밀리초가 아닌 초 단위로 측정된다. 실시간 소스 분리를 위해서는 스트리밍 Demucs 구현이나 NVIDIA Maxine을 살펴 볼 것.
 
@@ -640,9 +598,7 @@ Ultimate Vocal Remover는 CLI 전용 라이브러리가 할 수 없는 공백을
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -661,7 +617,6 @@ Ultimate Vocal Remover는 CLI 전용 라이브러리가 할 수 없는 공백을
 - Rubber Band 오디오 라이브러리: https://breakfastquay.com/rubberband/
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/open-codesign-claude-design-alternative" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/open-codesign-claude-design-alternative" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/open-codesign-claude-design-alternative" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/open-codesign-claude-design-alternative" />
-title: "Open Codesign：开源 Claude Design 替代品，GitHub 5,790+ Star 的 ...
-description: "Open Codesign 是 MIT 协议开源的 Claude Design 替代品。支持多模型、BYOK 自带密钥、本地优先架构，通过自然语言提示词一键生成原型、幻灯片和 PDF。". Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Open Codesign：开源 Claude Design 替代品，GitHub 5,790+ Star 的 ..."
+description: "Open Codesign 是 MIT 协议开源的 Claude Design 替代品。支持多模型、BYOK 自带密钥、本地优先架构，通过自然语言提示词一键生成原型、幻灯片和 PDF。"
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - JavaScript
+tech_stack: - JavaScript
 application_domain: "Dev Utils"
 source_version: ""
 licensing_model: "Open Source"
@@ -24,8 +18,7 @@ maintainer: ""
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-faqs:
-  - q: 'Open Codesign 是免费的吗？使用费用是多少？'
+faqs: - q: 'Open Codesign 是免费的吗？使用费用是多少？'
     a: 'Open Codesign 是一款采用 MIT 许可证的免费应用程序。它采用 BYOK（自带密钥）模式，因此你只需为通过现有提供商账户消耗的 LLM token 付费，无需支付月度订阅费。'
   - q: 'Open Codesign 支持哪些 AI 模型？'
     a: '它支持来自多个提供商的 20 余个模型，包括 Anthropic（Claude）、OpenAI（GPT-4o、Codex）、Google Gemini、DeepSeek、OpenRouter、SiliconFlow，以及通过 Ollama 使用的本地模型。动态模型选择器会实时查询各提供商的模型目录，因此无需更新应用程序，新模型就会自动出现。'
@@ -34,10 +27,7 @@ faqs:
   - q: 'Open Codesign 与 Claude Design 和 v0 by Vercel 相比有何不同？'
     a: '与 Claude Design（仅限 Anthropic、仅限云端）和 v0 by Vercel（GPT-4o、仅限云端、针对 Vercel 优化）不同，Open Codesign 采用 MIT 许可证，可在桌面端本地运行，通过 BYOK 支持 20 余个模型，并可导出与框架无关的 HTML、PDF、PPTX、ZIP 和 Markdown 格式。'
   - q: 'Open Codesign 中的 DESIGN.md 文件是什么？'
-    a: 'DESIGN.md 是一个 Markdown 文件，你可以在其中定义设计系统，例如品牌色彩、排版规范和间距 token。将该文件放置在工作区后，每次生成内容时都会自动继承这些 token，从而使模型保持品牌一致性，而不会在多次对话中出现偏移。'
----
-
-<!-- canonical: https://dibi8.com/zh/tools/open-codesign-claude-design-alternative/ -->
+    a: 'DESIGN.md 是一个 Markdown 文件，你可以在其中定义设计系统，例如品牌色彩、排版规范和间距 token。将该文件放置在工作区后，每次生成内容时都会自动继承这些 token，从而使模型保持品牌一致性，而不会在多次对话中出现偏移。'---
 
 {</* resource-info */>}
 
@@ -49,8 +39,8 @@ Open Codesign 由 [OpenCoworkAI](https://github.com/OpenCoworkAI) 团队开发�
 
 在本篇深度指南中，我们将全面剖析 Open Codesign 的独特之处、配置方法、与专有竞品的对比，以及它为何值得成为你设计工作流的核心工具。
 
----
 
+---
 ## 什么是 Open Codesign，它为何重要
 
 Open Codesign 是一款基于 **Electron + React 19 + Vite 6 + Tailwind CSS v4** 构建的 MIT 许可证桌面应用。其核心使命是弥合自然语言与生产级设计产物之间的鸿沟。输入类似 *"一个现代 SaaS 落地页，包含毛玻璃效果首屏、定价卡片和带邮件订阅的页脚"* 的提示词，几秒钟内，Open Codesign 就能生成一个具备悬停状态、响应式断点和空状态处理的完整交互式 HTML 原型。
@@ -69,8 +59,8 @@ Open Codesign 是一款基于 **Electron + React 19 + Vite 6 + Tailwind CSS v4**
 
 Open Codesign 逐一解决了上述所有问题。由于采用本地优先和 BYOK（自带密钥）架构，你对自己的数据、模型选择和预算拥有完全控制权。MIT 许可证意味着你可以自由 Fork、修改、内部自托管，甚至在其之上构建商业产品 —— 无需任何许可顾虑。
 
----
 
+---
 ## 核心功能：多模型支持、本地优先、BYOK
 
 ### 多模型架构：自由选择的权利
@@ -78,7 +68,11 @@ Open Codesign 逐一解决了上述所有问题。由于采用本地优先和 BY
 Open Codesign 最引人注目的差异化优势在于其**统一供应商模型**。不同于 Claude Design（仅限 Anthropic）或 v0 by Vercel（主要 GPT-4o），Open Codesign 支持横跨多元生态的 **20+ 模型**：
 
 | 供应商 | 支持的模型 |
-|--------|-----------|
+|
+---
+|
+---
+|
 | **Anthropic** | Claude 3.5 Sonnet、Claude 3 Opus、Claude Code 配置 |
 | **OpenAI** | GPT-4o、GPT-4 Turbo、通过 API 或 ChatGPT Plus 订阅使用 Codex 模型 |
 | **Google** | Gemini 1.5 Pro、Gemini Ultra |
@@ -175,7 +169,17 @@ Open Codesign 通过多种渠道分发二进制文件：
 ## 与 Claude Design、Figma AI、v0.dev 的对比
 
 | 功能 | **Open Codesign** | Claude Design | v0 by Vercel | Figma AI |
-|------|------------------|---------------|--------------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **许可证** | MIT（开源） | 闭源 | 闭源 | 闭源 |
 | **平台** | 桌面端（Electron） | 纯 Web | 纯 Web | Web + 桌面 |
 | **模型支持** | 20+（Claude、GPT、Gemini、Ollama 等） | 仅限 Claude | 主要 GPT-4o | 专有模型 |
@@ -362,6 +366,7 @@ Open Codesign 标志着 AI 设计工具领域的一个有意义的转折点。�
 ---
 
 
+-
 ---
 
 ## 推荐自托管基础设施
@@ -376,7 +381,6 @@ Open Codesign 标志着 AI 设计工具领域的一个有意义的转折点。�
 *本文由 dibi8 Tech Team 撰写。更多关于 AI 开发者工具、开源工作流和设计工程的深度内容，请关注我们的博客 [dibi8.com](https://dibi8.com)。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -404,25 +408,20 @@ Open Codesign 标志着 AI 设计工具领域的一个有意义的转折点。�
 
 ## Why This Matters
 
-Understanding open codesign：开源 claude design 替代品，github 5,790+ star 的 ai 设计神器 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding open codesign：开源 claude design 替代品，github 5,790+ star 的 ai 设计神器 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

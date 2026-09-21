@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/cross-border-ai-marketing-stack" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cross-border-ai-marketing-stack" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cross-border-ai-marketing-stack" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cross-border-ai-marketing-stack" />
 title: '국경 간 AI 마케팅 스택 2026: 글로벌 출시하는 중국 팀을 위한 7-도구 셋업'
 description: '국경 간 운영을 위해 특별 제작된 7컴포넌트 AI 스택 — 다국어 콘텐츠 자동화, 글로벌 시장 정보 스크래핑, GDPR 호환 분석, 결제 마찰 우회, 전체를 홍콩 VPS에서 실행. 총 $35-80/월, OSS 또는 aff 친화적.'
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
-tech_stack:
-  - Docker
+tech_stack: - Docker
   - Python
   - TypeScript
   - PostgreSQL
@@ -29,11 +23,9 @@ featureImage: ''
 draft: false
 categories: [collections]
 tags: ['국경 간', 'ai 마케팅', '글로벌 진출', 스택, 컬렉션]
-aliases:
-  - /posts/cross-border-ai-marketing-stack/
+aliases: - /posts/cross-border-ai-marketing-stack/
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/cross-border-ai-marketing-stack/ -->
 # 국경 간 AI 마케팅 스택 2026: 글로벌 출시하는 중국 팀을 위한 7-도구 셋업
 
 
@@ -57,9 +49,7 @@ aliases:
 
 ## 1. 왜 "국경 간"이 자체 스택 필요한가
 
-출시 전엔 직관적이지 않은 통증 포인트:
-
-1. **결제 마찰**: Stripe는 본토 중국 카드 안 받음. PayPal은 특정 제품 카테고리 제한. 대부분 미국 SaaS는 Alipay 안 받음
+출시 전엔 직관적이지 않은 통증 포인트: 1. **결제 마찰**: Stripe는 본토 중국 카드 안 받음. PayPal은 특정 제품 카테고리 제한. 대부분 미국 SaaS는 Alipay 안 받음
 2. **데이터 거주성**: EU 사용자 데이터가 중국 서버 닿으면 GDPR 벌금. 중국 데이터법은 EU 서버가 중국 사용자 데이터 닿을 때
 3. **대역폭 비대칭**: 미국에서 200ms 로드 사이트가 중국에서 4초 (CDN 없이), 역도 마찬가지
 4. **콘텐츠 라이프사이클**: "한 번 게시, 모든 곳 배포" 워크플로우는 Reddit (미국 편향), HN (미국 편향), Twitter/X (글로벌), 微信 (중국), 小红书 (중국 디아스포라)을 쳐야 — 각각 다른 게시 규범
@@ -110,8 +100,7 @@ HK VPS는 브리지: 중국과 글로벌 양쪽에 낮은 레이턴시, 분석�
 
 **셀프호스트가 여기서 중요한 이유**: Zapier의 "task당" 가격이 국경 간 워크플로우 처벌 — 모든 번역, 플랫폼 변형, 분석 체크가 "task". 셀프호스트 VPS의 n8n = $6 인프라로 무제한 task.
 
-**빠른 설치**:
-```bash
+**빠른 설치**: ```bash
 docker run -d --name n8n -p 5678:5678 \
   -v ~/.n8n:/home/node/.n8n \
   -e WEBHOOK_URL=https://n8n.yourdomain.com \
@@ -128,8 +117,7 @@ docker run -d --name n8n -p 5678:5678 \
 
 **왜 LlamaIndex / AutoGen보다 이거**: 성숙한 i18n primitive (PromptTemplate이 locale 인식 날짜/통화 포맷 처리), 가장 많은 프로바이더 통합 (100+), 그리고 국경 간 task용 사전 빌드 도구 (번역 API, 스크래핑, 캘린더)의 가장 큰 생태계.
 
-**빠른 설치**:
-```bash
+**빠른 설치**: ```bash
 pip install langchain langchain-community langchain-openai
 ```
 
@@ -141,8 +129,7 @@ LangChain 전체 셋업 + 에이전트 레시피: [LangChain 프로덕션 가이
 
 **역할**: "이번 주 미국/EU 개발자들이 MCP에 대해 뭐라 말하는지" 알아야 할 때 — 12개 서브레딧, 8개 뉴스레터, HN 수동 모니터링 없이.
 
-**3-티어 픽**:
-- **Gemini CLI 무료 티어** (1000 req/day) — 벌크 일일 모니터링
+**3-티어 픽**: - **Gemini CLI 무료 티어** (1000 req/day) — 벌크 일일 모니터링
 - **Perplexity Pro** ($20/월) — 인용 있는 근거 리서치 필요할 때
 - **ChatGPT 검색** (계정 무료) — 다른 티어 한도 도달 시 fallback
 
@@ -154,13 +141,11 @@ LangChain 전체 셋업 + 에이전트 레시피: [LangChain 프로덕션 가이
 
 **역할**: 글로벌 제품 방문자 파악 — (a) EU 트래픽에 Google 차단, (b) 광고 차단기가 GA 데이터 ~40% 차단, (c) 중국 사용자가 차단된 Google 스크립트로 페이지 느려지는 문제 없이.
 
-**Plausible이 국경 간에 이기는 이유**:
-- 단일 1KB 스크립트, 쿠키 없음, GDPR 동의 배너 불필요
+**Plausible이 국경 간에 이기는 이유**: - 단일 1KB 스크립트, 쿠키 없음, GDPR 동의 배너 불필요
 - 홍콩에서 셀프호스트 가능 = 본토 AND EU에서 차단 안 됨
 - ~80% 데이터 캡처율 vs GA ~60% (광고 차단기 필터링 없음)
 
-**빠른 설치**:
-```bash
+**빠른 설치**: ```bash
 docker compose -f https://github.com/plausible/community-edition/raw/v3.0.0/compose.yml up -d
 ```
 
@@ -170,13 +155,11 @@ docker compose -f https://github.com/plausible/community-edition/raw/v3.0.0/comp
 
 **역할**: dev 팀의 Cursor ($20 USD/시트) + Claude Code Pro ($80 USD/시트) 대체. OpenCode는 에디터, DeepSeek은 모델.
 
-**국경 간 특화 이점**:
-- **DeepSeek API가 본토에서 VPN 없이 작동** — 중국 dev 팀이 실제로 사용 가능
+**국경 간 특화 이점**: - **DeepSeek API가 본토에서 VPN 없이 작동** — 중국 dev 팀이 실제로 사용 가능
 - **같은 task에서 Claude보다 20× 저렴** — 3+ dev에서 수학 진지해짐
 - **DeepSeek가 RMB 결제 받음** — 재무에 USD 카드 충전 설득 불필요
 
-**빠른 설치**:
-```bash
+**빠른 설치**: ```bash
 npm install -g @opencode-ai/opencode
 opencode --provider deepseek --api-key $DEEPSEEK_KEY
 ```
@@ -187,8 +170,7 @@ opencode --provider deepseek --api-key $DEEPSEEK_KEY
 
 **역할**: 위 모든 것을 중국과 글로벌 브리지하는 한 곳에 호스팅.
 
-**왜 특히 HK**:
-- **본토 중국 사용자 sub-30ms 레이턴시** (합법 서비스는 만리 방화벽 합병증 없음)
+**왜 특히 HK**: - **본토 중국 사용자 sub-30ms 레이턴시** (합법 서비스는 만리 방화벽 합병증 없음)
 - **도쿄/싱가포르 sub-100ms** (APAC 글로벌 게이트웨이)
 - **미국 서부/프랑크푸르트 sub-200ms** (비실시간 워크로드 허용)
 - **HK 관할** = 중국과 글로벌 데이터 모두 중립
@@ -204,8 +186,7 @@ dibi8.com 자체를 정확히 이 이유로 {{< aff "htstack" "stack-vps" "HTSta
 
 **Trade-off**: OpenRouter는 직접 프로바이더 연결 대비 100-150ms 레이턴시 추가 — 오프라인 콘텐츠 생성에 괜찮, 실시간 채팅엔 별로.
 
-**빠른 설치**: openrouter.ai 가입, 암호화폐 충전, OpenAI 호환 클라이언트로 사용:
-```python
+**빠른 설치**: openrouter.ai 가입, 암호화폐 충전, OpenAI 호환 클라이언트로 사용: ```python
 from openai import OpenAI
 client = OpenAI(base_url="https://openrouter.ai/api/v1", api_key="sk-or-...")
 ```
@@ -245,17 +226,14 @@ SaaS 등가물과 비교: Cursor + Notion + Slack + Mailchimp + GA 360 + DeepL P
 
 ## 12. 업그레이드 경로 — 이 스택을 벗어날 때
 
-다음 시점에 이 $35-80/월 티어 벗어남:
-
-- **팀 > 10명** — dev별 가상 키로 LiteLLM 추가 ([LiteLLM 가이드](/kr/resources/llm-frameworks/litellm/))
+다음 시점에 이 $35-80/월 티어 벗어남: - **팀 > 10명** — dev별 가상 키로 LiteLLM 추가 ([LiteLLM 가이드](/kr/resources/llm-frameworks/litellm/))
 - **감사 등급 컴플라이언스 필요** — OpenRouter+DeepSeek를 Portkey 엔터프라이즈로 교체 ([Portkey vs LiteLLM 2026](/kr/resources/llm-frameworks/llm-gateway-portkey-litellm-openrouter-comparison-2026/))
 - **월 사이트 방문 >1M** — Plausible을 전용 VPS로 이동, 앞에 Cloudflare 추가
 - **실제 제품 (마케팅 인프라가 아님) 구축** — 이 스택을 [셀프호스트 AI 코딩 워크플로우](/kr/collections/self-hosted-ai-coding-workflow/) + [저렴한 LLM 스택](/kr/collections/cheap-llm-stack/)과 페어링 (dev 측용)
 
 ## TL;DR — 레시피
 
-**글로벌 진출하는 중국 팀용 7 컴포넌트, 1-3 창업자 $35-80/월**:
-1. **n8n** — 다국어 콘텐츠 배포
+**글로벌 진출하는 중국 팀용 7 컴포넌트, 1-3 창업자 $35-80/월**: 1. **n8n** — 다국어 콘텐츠 배포
 2. **LangChain** — 에이전트 워크플로우
 3. **AI 검색 도구** — 글로벌 시장 정보
 4. **Plausible** — GDPR + 광고 차단 면역 분석
@@ -270,7 +248,6 @@ SaaS 등가물과 비교: Cursor + Notion + Slack + Mailchimp + GA 360 + DeepL P
 *동반 컬렉션: [셀프호스트 AI 코딩 워크플로우](/kr/collections/self-hosted-ai-coding-workflow/) dev 측, [저렴한 LLM 스택](/kr/collections/cheap-llm-stack/) 비용 극단 추론용.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

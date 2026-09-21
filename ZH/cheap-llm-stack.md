@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/cheap-llm-stack" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cheap-llm-stack" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cheap-llm-stack" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cheap-llm-stack" />
 title: '便宜跑大模型 Stack 2026：用免费层 + Token 压缩把生产 AI 月成本压到 $0-15'
 description: '5 组件 stack 跑真实 AI 负载月成本 $0-15：Ollama 本地 + DeepSeek API + Gemini 免费层 + RTK 压缩 + 9Router 编排。真实成本数学、按任务类型的模型选择、组装顺序。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
-tech_stack:
-  - Python
+tech_stack: - Python
   - Docker
   - Go
   - Rust
@@ -29,11 +23,8 @@ featureImage: ''
 draft: false
 categories: [collections]
 tags: [便宜大模型, 免费层, 成本优化, stack, 合集]
-aliases:
-  - /posts/cheap-llm-stack/
+aliases: - /posts/cheap-llm-stack/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/cheap-llm-stack/ -->
 # 便宜跑大模型 Stack 2026：用免费层 + Token 压缩把生产 AI 月成本压到 $0-15
 
 
@@ -44,7 +35,17 @@ aliases:
 ## TL;DR —— Stack 全貌
 
 | # | 组件 | 成本 | 角色 | 深度指南 |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 1 | **Ollama**（本地）| $0 | 重/敏感负载在自己硬件上 | [Ollama 指南](/zh/resources/llm-frameworks/ollama/) |
 | 2 | **DeepSeek API** | $2-8/月 | 硬任务便宜推理（$0.27/M 输入 vs Claude $3）| [DeepSeek vs OpenAI](/zh/resources/llm-frameworks/deepseek-ds4-vs-openai-api/) |
 | 3 | **Gemini CLI 免费层** | $0 | 1000 请求/天，通用 LLM 任务，免费 | [AI 搜索工具](/zh/resources/ai-tools/ai-search-tools-perplexity-gemini-chatgpt/) |
@@ -169,7 +170,13 @@ docker run -d --name 9router -p 9999:9999 \
 单干 dev 的可用默认路由配置：
 
 | 任务类型 | Provider | 为什么 |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | 内联代码补全 | **Ollama**（Qwen 3 Coder 14B 本地）| 延迟比质量重要 |
 | 代码生成（函数级）| **DeepSeek-V4 via RTK** | 质量重要，压缩省钱 |
 | 多文件 refactor | **DeepSeek-V4 via RTK** 或 fallback **Claude** | 硬任务，DeepSeek 卡住就上 premium |
@@ -233,12 +240,11 @@ $0-15 stack 撑到你撞上以下任一情况：
 
 你当前 AI SaaS 月支出 $30+ 的话这 stack 立刻回本。在笔记本上跑就行（便宜 LLM 不必非要 VPS —— 但 {{< aff "digitalocean" "footer-cta" "$6/月 DigitalOcean droplet" >}} 适合团队常驻）。
 
----
 
+---
 *这个合集和 [自托管 AI 编程工作流](/zh/collections/self-hosted-ai-coding-workflow/) 配套食用最佳 —— 共享 Ollama + 9Router + RTK 三个底层组件。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -266,25 +272,20 @@ $0-15 stack 撑到你撞上以下任一情况：
 
 ## Why This Matters
 
-Understanding 便宜跑大模型 stack 2026：用免费层 + token 压缩把生产 ai 月成本压到 $0-15 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding 便宜跑大模型 stack 2026：用免费层 + token 压缩把生产 ai 月成本压到 $0-15 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -305,17 +306,15 @@ To implement this in your workflow:
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
 
 ## Related Articles
 
-Explore more articles in this category:
-
-1. [Ai Agent Code Of Ethics](/zh/ai-agent-code-of-ethics)
+Explore more articles in this category: 1. [Ai Agent Code Of Ethics](/zh/ai-agent-code-of-ethics)
 2. [Ai Agent Tool Chain](/zh/ai-agent-tool-chain)
 3. [Ai Seo Geo Toolkit Stack](/zh/ai-seo-geo-toolkit-stack)
 

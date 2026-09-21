@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/1m-context-window-llm-2026-real-test" />
 title: '1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Son...
 description: 'Both claim 1M token context. We loaded a 950K-token codebase into each and measured: retrieval quality, latency, cost, and which one actually delivers on the 1M promise vs collapsing in the long tail.'
 date: 2026-05-25 00:00:00+08:00
@@ -18,10 +16,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [gemini, claude, 'long-context', llm, 2026]
-aliases:
-- /posts/1m-context-window-llm-2026-real-test/
-faq:
-  - q: "Do both Gemini 2.5 Pro and Claude Sonnet 4.6 really handle 1M tokens?"
+aliases: - /posts/1m-context-window-llm-2026-real-test/
+faq: - q: "Do both Gemini 2.5 Pro and Claude Sonnet 4.6 really handle 1M tokens?"
     a: "Both technically accept 1M+ tokens of input. Quality at the long end differs: Gemini stays consistent across the full window; Claude degrades on retrieval tasks beyond ~700K tokens. For practical purposes, both win in different scenarios — Gemini for raw recall across huge contexts, Claude for reasoning quality at moderate-large contexts."
   - q: "What's the cost difference at 1M tokens?"
     a: "Gemini 2.5 Pro: ~$1.25 per 1M input tokens. Claude Sonnet 4.6 at 1M tier: ~$3.50 per 1M input tokens (premium pricing). Output is comparable. For pure context-stuffing workloads, Gemini is ~3x cheaper."
@@ -30,7 +26,6 @@ faq:
   - q: "Which is better for reading whole codebases?"
     a: "For ingesting + summarizing: both work well. For finding specific bugs across files: Gemini's 'needle in haystack' performance is more consistent. For multi-step reasoning across files: Claude wins despite shorter effective context."
 ---
-
 ![Hero Image](https://picsum.photos/seed/large-language-model/1200x800)
 
 
@@ -57,15 +52,20 @@ The 1M token context window claim is everywhere in 2026. Both Gemini 2.5 Pro and
 
 ## Test Setup
 
-Loaded a 950K-token open-source TypeScript codebase (similar size to medium SaaS apps) into both models. Ran 30 retrieval questions:
-- 10 questions about code in the first 100K tokens
+Loaded a 950K-token open-source TypeScript codebase (similar size to medium SaaS apps) into both models. Ran 30 retrieval questions: - 10 questions about code in the first 100K tokens
 - 10 questions about code in tokens 400K-600K (middle)
 - 10 questions about code in tokens 800K-950K (deep)
 
 ## Retrieval Accuracy
 
 | Position | Gemini 2.5 Pro | Claude Sonnet 4.6 |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | First 100K tokens | 100% | 100% |
 | Middle 400-600K tokens | 95% | 90% |
 | Deep 800-950K tokens | 92% | 65% |
@@ -81,21 +81,18 @@ Both are slow at full context. Don't use 1M context for interactive workflows wh
 
 ## Cost Reality
 
-At 50 queries/day at 950K tokens average:
-- Gemini: 50 × 0.95M × $1.25/1M = $59/day = $1770/month
+At 50 queries/day at 950K tokens average: - Gemini: 50 × 0.95M × $1.25/1M = $59/day = $1770/month
 - Claude (1M tier): 50 × 0.95M × $3.50/1M = $166/day = $4980/month
 
 For high-volume long-context work, Gemini is 3x cheaper. Both will burn through budget — at 1M context, $0.001/query becomes $1/query.
 
 ## When to Actually Use 1M Context
 
-**Yes, use 1M when**:
-- One-shot analysis of large codebase/document
+**Yes, use 1M when**: - One-shot analysis of large codebase/document
 - Long-context Q&A where RAG retrieval would miss connections
 - Reasoning across many files where citation matters
 
-**No, don't use 1M when**:
-- Queries are repeated (RAG amortizes embedding cost)
+**No, don't use 1M when**: - Queries are repeated (RAG amortizes embedding cost)
 - Latency matters (1M is slow)
 - Corpus updates frequently (RAG handles updates trivially)
 
@@ -111,8 +108,7 @@ Corpus size?
 
 ## Recommended Infrastructure
 
-For RAG hosting when 1M isn't enough:
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit covers vector DB setup
+For RAG hosting when 1M isn't enough: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit covers vector DB setup
 - **{{< aff "htstack" "footer-cta" "HTStack" >}}** — Hong Kong VPS for low-latency retrieval
 
 *Affiliate links — same price, supports dibi8.com.*
@@ -123,12 +119,11 @@ The "1M context window" marketing is real but workload-dependent. Gemini 2.5 Pro
 
 For most production work in 2026: use neither at 1M for interactive flows (too slow + expensive). Use RAG. Reserve 1M context for one-shot deep analysis tasks where the cost is justified by the breadth of insight.
 
----
 
+---
 **Related**: [RAG vs Fine-Tuning 2026](https://dibi8.com/resources/llm-frameworks/rag-vs-fine-tuning-2026-decision-framework/) · [AI Coding Shootout 2026 Q2](https://dibi8.com/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) · [MCP Servers 2026](https://dibi8.com/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -156,25 +151,20 @@ For most production work in 2026: use neither at 1M for interactive flows (too s
 
 ## Why This Matters
 
-Understanding 1m context window llm 2026: gemini 2.5 pro vs claude sonnet 4.6 real test is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding 1m context window llm 2026: gemini 2.5 pro vs claude sonnet 4.6 real test is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -195,8 +185,8 @@ To implement this in your workflow:
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 

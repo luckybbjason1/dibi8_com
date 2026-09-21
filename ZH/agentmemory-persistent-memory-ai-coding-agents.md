@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/agentmemory-persistent-memory-ai-coding-agents" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/agentmemory-persistent-memory-ai-coding-agents" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/agentmemory-persistent-memory-ai-coding-agents" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/agentmemory-persistent-memory-ai-coding-agents" />
 title: 'AgentMemory: 为 AI 编程代理提供持久记忆的首要选择 — 基于真实基准测试的 22,000 星开源...
 description: 'AgentMemory（22,038 GitHub 星标）基于真实基准测试为 AI 编程代理提供持久记忆。记住过去的会话，跨天保持上下文，从前次交互中学习。支持 Claude Code、Codex CLI、OpenCode 等。包含安装教程、架构解析和基准测试。'
 date: 2026-06-08
-lastmod:  2026-06-08slug: 'agentmemory-persistent-memory-ai-coding-agents'
+lastmod: 2026-06-08
+slug: 'agentmemory-persistent-memory-ai-coding-agents'
 category: 'data-science'
 tags: ['agent memory', 'persistent memory', 'AI coding agents', 'context continuity', 'AgentMemory', 'session memory', 'agent framework', 'AI benchmark']
 github_repo: 'https://github.com/rohitg00/agentmemory'
@@ -15,10 +11,7 @@ stars: 22038
 maintainer: 'rohitg00'
 license: MIT
 featureImage: 'https://avatars.githubusercontent.com/u/33592279'
-lang: zh
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/agentmemory-persistent-memory-ai-coding-agents/ -->
 
 # AgentMemory: 为 AI 编程代理提供持久记忆的首要选择 — 基于真实基准测试的 22,000 星开源项目 — 2026 实用指南
 
@@ -235,7 +228,15 @@ agentmemory install opencode
 在 500 个真实开发会话（bug 修复、功能实现、重构）上测试：
 
 | 指标 | 无记忆 | 使用 AgentMemory | 提升 |
-|------|--------|-----------------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 上下文召回准确率 | 58% | 89% | +53% |
 | 完成 bug 修复时间 | 42 分钟 | 28 分钟 | -33% |
 | 重复过去错误 | 23% | 7% | -70% |
@@ -246,7 +247,11 @@ agentmemory install opencode
 记忆在不同时间跨度的持久效果：
 
 | 距上次会话时间 | 准确率 |
-|---------------|--------|
+|
+---
+|
+---
+|
 | 同一天 | 96% |
 | 1 周 | 91% |
 | 1 个月 | 84% |
@@ -333,7 +338,17 @@ agentmemory export --format json --output ./memory-report.json
 ## 与替代方案对比
 
 | 功能 | AgentMemory | Cursor Memories | GitHub Copilot Chat | 自定义 RAG |
-|------|------------|-----------------|---------------------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 持久记忆 | 是 | 是（仅限本地） | 否 | 是 |
 | 跨会话 | 是 | 否 | 否 | 是 |
 | 多代理 | 6+ 代理 | 仅 Cursor | 仅 Copilot | 自定义 |
@@ -347,7 +362,15 @@ agentmemory export --format json --output ./memory-report.json
 ## 与替代方案对比：AgentMemory vs. 传统代理
 
 | 方面 | AgentMemory | 无记忆代理 | 手动上下文传递 |
-|------|------------|-----------|---------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 上下文保留 | 跨会话持久 | 会话结束即遗忘 | 需要手动复制粘贴 |
 | 信息检索速度 | 毫秒级语义搜索 | N/A | 分钟级手动查找 |
 | 结构化程度 | 高（事实+图+向量） | 无 | 低（纯文本） |
@@ -414,7 +437,6 @@ AgentMemory 是将 AI 编程代理从单会话工具转变为终身协作者的�
 以上部分链接为 affiliate 链接。如果你通过链接注册，dibi8.com 可能会获得佣金，对你没有任何额外费用。这有助于保持网站运行和内容免费。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -442,25 +464,20 @@ AgentMemory 是将 AI 编程代理从单会话工具转变为终身协作者的�
 
 ## Why This Matters
 
-Understanding agentmemory: 为 ai 编程代理提供持久记忆的首要选择 — 基于真实基准测试的 22,000 星开源项目 — 2026 实用指南 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding agentmemory: 为 ai 编程代理提供持久记忆的首要选择 — 基于真实基准测试的 22,000 星开源项目 — 2026 实用指南 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -481,13 +498,13 @@ AgentMemory: 为 AI 编程代理提供持久记忆的首要选择 — 基于真�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
 
+---
 ## Related Articles
 
 - [codebase-memory-mcp-high-performance-code-intelligence](agentmemory-persistent-memory-ai-coding-agents)

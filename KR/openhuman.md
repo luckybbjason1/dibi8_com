@@ -1,27 +1,22 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/openhuman" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/openhuman" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/openhuman" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/openhuman" />
 title: 'OpenHuman이란 무엇인가?'
 lang: ko
 description: 'content/ko/resources/openhuman.md'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-13
-lastmod:  2026-06-13layout: article
+lastmod: 2026-06-13layout: article
 category: resources
 slug: openhuman
 featureImage: /articles/what-is-openhuman.jpg/images/articles/what-is-openhuman.jpg
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/openhuman/ -->
 ![OpenHuman 데스크탑 앱](https://raw.githubusercontent.com/tinyhumansai/openhuman/main/gitbooks/.gitbook/assets/demo.png)
 
 ---
 title: 'OpenHuman: 가장 빠르게 성장하는 로컬 AI 에이전트 (31K 스타) — 오픈소스 AI 하니스 2026'
 description: 'OpenHuman은 메모리 트리, 옵시디언 금고, 118개 이상의 통합, 내장 모델 라우팅을 갖춘 오픈소스 로컬 AI 에이전트입니다. Homebrew 또는 apt를 통해 설치하세요. Claude Cowork, OpenClaw, Hermes Agent와 비교해보세요.'
 date: 2026-06-13
-lastmod:  2026-06-13slug: 'openhuman-local-ai-agent-rust-2026'
+lastmod: 2026-06-13
+slug: 'openhuman-local-ai-agent-rust-2026'
 category: 'ai-tools'
 tags: ['openhuman', '로컬-ai', 'ai-에이전트', 'ai-어시스턴트', '메모리-트리', '옵시디언', '에이전틱', '오픈-소스', 'llm', '데스크탑-앱']
 github_repo: 'https://github.com/tinyhumansai/openhuman'
@@ -43,9 +38,7 @@ OpenHuman은 이를 다르게 해결합니다. 한 달 만에 29,805개의 스�
 
 ## OpenHuman이란?
 
-OpenHuman은 모든 것을 로컬에서 유지하면서 일상 작업 흐름에 통합되도록 설계된 **오픈 소스 에이전트형 비서**입니다. 브라우저에서 작동하는 채팅 기반 비서와 달리, OpenHuman은 다음 기능을 갖춘 **데스크톱 애플리케이션**입니다:
-
-- **메모리 트리(Memory Tree)**: 워크플로우 기록, 선호도, 프로젝트 컨텍스트를 저장하는 지속적인, Obsidian 호환 Markdown 저장소 — 로컬에 동기화되고 클라우드에는 절대 저장되지 않음
+OpenHuman은 모든 것을 로컬에서 유지하면서 일상 작업 흐름에 통합되도록 설계된 **오픈 소스 에이전트형 비서**입니다. 브라우저에서 작동하는 채팅 기반 비서와 달리, OpenHuman은 다음 기능을 갖춘 **데스크톱 애플리케이션**입니다: - **메모리 트리(Memory Tree)**: 워크플로우 기록, 선호도, 프로젝트 컨텍스트를 저장하는 지속적인, Obsidian 호환 Markdown 저장소 — 로컬에 동기화되고 클라우드에는 절대 저장되지 않음
 - **모델 라우팅(Model routing)**: 단일 계정을 통해 50개 이상의 AI 모델을 기본 지원하며, 자동 부하 분산과 장애 조치 기능 포함
 - **118개 이상의 통합(Integrations)**: GitHub, Slack, Notion, Figma 등을 위한 OAuth 기반 커넥터 — 수동 API 키 관리 불필요
 - **토큰주스(TokenJuice)**: 정확도를 잃지 않으면서 컨텍스트 윈도우 사용량을 60~95% 줄이는 지능형 토큰 압축 계층
@@ -55,8 +48,7 @@ OpenHuman은 모든 것을 로컬에서 유지하면서 일상 작업 흐름에 
 ```yaml
 # OpenHuman 설정 — 메모리 트리 위치
 # 모든 데이터는 기본적으로 사용자의 기기에만 저장됩니다
-memory:
-  vault_path: ~/.openhuman/vault
+memory: vault_path: ~/.openhuman/vault
   sync_mode: local  # 또는 선택적 클라우드 동기화를 위해 "managed"
   model_default: gpt-4o
   model_fallback: claude-sonnet-4
@@ -65,9 +57,7 @@ memory:
 
 ## OpenHuman 작동 방식
 
-OpenHuman은 선택적 관리 서비스와 함께 **로컬 우선 아키텍처**를 따릅니다:
-
-```
+OpenHuman은 선택적 관리 서비스와 함께 **로컬 우선 아키텍처**를 따릅니다: ```
 ┌─────────────────────────────────────────────┐
 │              OpenHuman 데스크탑 앱            │
 ├─────────────┬──────────────┬────────────────┤
@@ -138,8 +128,7 @@ openhuman --version
 
 ```bash
 # openhuman-bin AUR 레시피는 저장소 자체에 있음
-# AUR에 게시되면:
-yay -S openhuman-bin
+# AUR에 게시되면: yay -S openhuman-bin
 ```
 
 ### 윈도우
@@ -172,17 +161,14 @@ openhuman configure github --repo tinyhumansai/openhuman
 
 ### Obsidian 호환성
 
-Memory Tree는 표준 Markdown 볼트이므로 Obsidian과 원활하게 작동합니다:
-
-```bash
+Memory Tree는 표준 Markdown 볼트이므로 Obsidian과 원활하게 작동합니다: ```bash
 # Obsidian에서 Memory Tree 열기
 # 모든 AI 대화 기록이 이미 노트로 저장되어 있습니다
 # 일반 노트처럼 검색, 링크, 정리할 수 있습니다
 
 # 금고 구조 확인
  tree ~/.openhuman/vault --dirsfirst
-# 출력:
-# .openhuman/vault/
+# 출력: # .openhuman/vault/
 # ├── _index.md
 # ├── projects/
 # │   ├── project-alpha/
@@ -196,9 +182,7 @@ Memory Tree는 표준 Markdown 볼트이므로 Obsidian과 원활하게 작동�
 
 ### Composio 커넥터 레이어
 
-Composio는 OAuth 기반의 통합 프레임워크를 제공합니다:
-
-```bash
+Composio는 OAuth 기반의 통합 프레임워크를 제공합니다: ```bash
 # 사용 가능한 Composio 커넥터 목록
 openhuman integrations list
 
@@ -231,9 +215,7 @@ openhuman config models \
 
 ### 메모리 트리 효과
 
-테스트에서 OpenHuman의 메모리 트리는 시간이 지남에 따라 맥락 정확도가 측정 가능하게 향상되는 것을 보여주었습니다:
-
-| 지표 | 1주차 | 4주차 | 8주차 |
+테스트에서 OpenHuman의 메모리 트리는 시간이 지남에 따라 맥락 정확도가 측정 가능하게 향상되는 것을 보여주었습니다: | 지표 | 1주차 | 4주차 | 8주차 |
 |--------|--------|--------|--------|
 | 메모리 파일 | 45 | 312 | 680 |
 | 평균 응답 정확도 (자가 보고) | 62% | 81% | 93% |
@@ -244,9 +226,7 @@ openhuman config models \
 
 ### TokenJuice 토큰 압축
 
-TokenJuice는 3가지 모델 계열에서 정확도 손실 <2%로 60~95%의 토큰 감소를 달성함:
-
-```
+TokenJuice는 3가지 모델 계열에서 정확도 손실 <2%로 60~95%의 토큰 감소를 달성함: ```
 모델                | 기준치 (토큰) | 압축 후 (토큰) | 절감률 | 정확도 Δ
 --------------------|---------------|----------------|--------|----------
 gpt-4o              | 12,400        | 2,100          | 83.1%  | -1.2%
@@ -270,9 +250,7 @@ llama-3.2 (로컬)     | 6,200         | 1,400          | 77.4%  | -1.5%
 
 ### 100% 로컬 실행 (관리형 서비스 없음)
 
-클라우드 의존성을 완전히 제거하려면:
-
-```bash
+클라우드 의존성을 완전히 제거하려면: ```bash
 # 완전 로컬 모드로 전환
 openhuman config sync --mode local
 openhuman config managed --disable```
@@ -308,24 +286,18 @@ openhuman config tokenjuice \
 
 ### Obsidian Vault 자동화
 
-메모리 트리가 표준 Markdown 저장소이므로, 고급 워크플로를 위해 Obsidian 플러그인을 사용할 수 있습니다:
-
-```bash
+메모리 트리가 표준 Markdown 저장소이므로, 고급 워크플로를 위해 Obsidian 플러그인을 사용할 수 있습니다: ```bash
 # Obsidian과 메모리 트리를 매일 동기화
-crontab -e  # 다음 줄을 추가:
-0 */4 * * * rsync -az ~/.openhuman/vault/ /path/to/obsidian-vault/.openhuman/
+crontab -e  # 다음 줄을 추가: 0 */4 * * * rsync -az ~/.openhuman/vault/ /path/to/obsidian-vault/.openhuman/
 
 # 메모리 트리 쿼리를 위해 Obsidian dataview 사용
-# Obsidian Dataview 플러그인에서:
-# TABLE file.mdate, file.tags FROM "projects/"
+# Obsidian Dataview 플러그인에서: # TABLE file.mdate, file.tags FROM "projects/"
 # SORT file.mdate DESC
 ```
 
 ### Composio 커넥터와 CI/CD 통합
 
-OpenHuman을 개발 워크플로우에 사용하는 팀을 위해:
-
-```bash
+OpenHuman을 개발 워크플로우에 사용하는 팀을 위해: ```bash
 # 자동화된 테스트 러너 통합
 openhuman integrations enable github --scope repo,workflow
 
@@ -335,8 +307,7 @@ openhuman integrations enable github --scope repo,workflow
 
 # 메모리 트리의 파이프라인 상태
 openhuman ci status project-alpha --last 5
-# 출력:
-#   Build #142: ✅ 2분 13초 | 847개 테스트 통과
+# 출력: #   Build #142: ✅ 2분 13초 | 847개 테스트 통과
 #   Build #141: ❌ 0분 31초 | 인증 모듈에서 3개 실패
 #   Build #140: ✅ 1분 58초 | 847개 테스트 통과
 ```
@@ -357,9 +328,7 @@ openhuman ci status project-alpha --last 5
 
 ## 한계 / 솔직한 평가
 
-OpenHuman은 인상적이지만, 여전히 **초기 베타** 단계에 있습니다(저자들이 직접 언급한 바 있음). 주의할 점은 다음과 같습니다:
-
-1. **Memory Tree는 새로운 기능** — Obsidian 호환 금고는 혁신적이지만 대규모 환경에서는 테스트되지 않았습니다. Memory Tree가 10,000개 이상의 파일로 성장하면 성능이 저하될 수 있습니다. 아키텍처 자체는 견고해 보이지만 장기 데이터는 없습니다.
+OpenHuman은 인상적이지만, 여전히 **초기 베타** 단계에 있습니다(저자들이 직접 언급한 바 있음). 주의할 점은 다음과 같습니다: 1. **Memory Tree는 새로운 기능** — Obsidian 호환 금고는 혁신적이지만 대규모 환경에서는 테스트되지 않았습니다. Memory Tree가 10,000개 이상의 파일로 성장하면 성능이 저하될 수 있습니다. 아키텍처 자체는 견고해 보이지만 장기 데이터는 없습니다.
 
 2. **관리형 서비스 의존성** — 100% 로컬에서 실행할 수는 있지만 일부 실시간 트리거와 호스팅 기능(웹 검색 프록시, Composio OAuth 흐름)은 관리형 백엔드를 필요로 합니다. 이는 큰 문제는 아니지만, '프라이버시 우선'이라는 접근이 별표와 함께 제공된다는 의미입니다.
 
@@ -396,8 +365,7 @@ OpenHuman은 2026년에 로컬 AI 비서에게 일어난 최고의 사건이며,
 
 ---
 
-**출처 및 추가 읽을거리**:
-- 공식 문서: https://tinyhumans.gitbook.io/openhuman/
+**출처 및 추가 읽을거리**: - 공식 문서: https://tinyhumans.gitbook.io/openhuman/
 - GitHub 저장소: https://github.com/tinyhumansai/openhuman
 - Discord 커뮤니티: https://discord.tinyhumans.ai/
 - Product Hunt: https://www.producthunt.com/products/openhuman
@@ -412,7 +380,6 @@ OpenHuman은 2026년에 로컬 AI 비서에게 일어난 최고의 사건이며,
 
 **공지**: 이 글에서는 제휴 관계가 있을 수 있는 도구를 언급합니다. 우리는 긍정적인 리뷰에 대해 금전을 받지 않습니다. 모든 벤치마크는 직접 수행했거나 공식 문서에서 가져왔습니다.
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

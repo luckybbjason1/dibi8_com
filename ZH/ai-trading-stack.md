@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-trading-stack" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-trading-stack" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-trading-stack" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-trading-stack" />
 title: 'AI 量化交易 Stack 2026：7 组件开源量化工作流（加密 + 预测市场）'
 description: '自托管 AI 交易 stack：ta-lib（信号）+ vectorbt（回测）+ freqtrade（执行）+ AI Trader（AI 策略层）+ Hyperliquid（perp DEX 场所）+ Polymarket Agents（预测市场）+ Minara（AI+crypto hub）。$30-150/月基础设施，真生产级量化管线，不是玩具。'
 date: 2026-05-21 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: [collections]
 tags: ['ai 交易', 量化, 加密货币, hyperliquid, polymarket, stack, 合集]
-aliases:
-  - /posts/ai-trading-stack/
+aliases: - /posts/ai-trading-stack/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/ai-trading-stack/ -->
 
 > ⚠️ **免责声明**：本文是构建 AI 交易 stack 的技术指南，**不是投资建议**。量化交易有实质性的资本损失风险。部署真金前在 paper / testnet 上充分测试。过去回测表现不预测未来收益。
 
@@ -40,7 +32,17 @@ aliases:
 ## TL;DR —— Stack 全貌
 
 | # | 组件 | 层 | 角色 | 深度指南 |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 1 | **ta-lib** | 信号 | 200+ 技术指标（RSI / MACD / Bollinger 等）| [ta-lib 指南](/zh/resources/ai-trading/ta-lib-technical-analysis-trading/) |
 | 2 | **vectorbt** | 回测 | 向量化 Python 回测，比 for 循环快 100× | [vectorbt 2026](/zh/resources/ai-trading/vectorbt-quantitative-backtesting/) |
 | 3 | **freqtrade** | 执行 | 生产级加密交易机器人，交易所无关 | [freqtrade AI 策略](/zh/resources/llm-frameworks/freqtrade-ai-trading-strategies/) |
@@ -117,8 +119,7 @@ aliases:
 apt install libta-lib-dev
 pip install TA-Lib
 
-# 或预编译 wheel:
-pip install TA-Lib-Precompiled
+# 或预编译 wheel: pip install TA-Lib-Precompiled
 ```
 
 **Hello world** —— 1000 根 K 线计算 RSI <10ms：
@@ -253,7 +254,15 @@ print(info.l2_snapshot("BTC"))  # 实时 order book
 ## 11. 成本拆解
 
 | 项 | 单干散户 | 主动策略 dev | 小基金（3 策略实盘）|
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | VPS | $12-24 | $24-48 | $60-120 |
 | 数据 feed（多数交易所有免费 websocket）| $0 | $0-20 | $50-150 |
 | LLM API（AI Trader 策略生成）| $5-15 | $20-50 | $80-200 |
@@ -301,14 +310,13 @@ print(info.l2_snapshot("BTC"))  # 实时 order book
 
 开一个 {{< aff "htstack" "footer-htstack" "HTStack HK VPS" >}} 拿低延迟执行，部署真金前纸面交易 2-4 周，从你能损失的资本起步，实盘表现匹配回测预期后才扩。
 
----
 
+---
 *配套合集：[便宜 LLM Stack](/zh/collections/cheap-llm-stack/) 给 AI Trader 的 LLM API 成本侧。[AI Agent 工具链](/zh/collections/ai-agent-tool-chain/) 想让自主 agent 驱动交易循环。[自托管 AI 编程工作流](/zh/collections/self-hosted-ai-coding-workflow/) 给策略代码开发侧。*
 
 *⚠️ 重申：非投资建议。风险自担。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -336,25 +344,20 @@ print(info.l2_snapshot("BTC"))  # 实时 order book
 
 ## Why This Matters
 
-Understanding ai 量化交易 stack 2026：7 组件开源量化工作流（加密 + 预测市场） is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding ai 量化交易 stack 2026：7 组件开源量化工作流（加密 + 预测市场） is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -375,8 +378,8 @@ AI 量化交易 Stack 2026：7 组件开源量化工作流（加密 + 预测市�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 

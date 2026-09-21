@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/docmost-team-docs-collaboration" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/docmost-team-docs-collaboration" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/docmost-team-docs-collaboration" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/docmost-team-docs-collaboration" />
 title: 'Docmost 2026：实时团队协作的开源 Notion 替代方案 —— 自托管指南'
 description: 'Docmost 完整自托管指南：支持实时协作编辑、类 Notion 块编辑器、嵌套页面和 PostgreSQL 后端的开源协作 Wiki。5 分钟内部署。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [docmost, 'notion 替代品', wiki, 实时协作, 自托管, 文档, postgresql, docker, 开源, 团队文档]
-aliases:
-- /zh/posts/docmost-team-docs-collaboration/
+aliases: - /zh/posts/docmost-team-docs-collaboration/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/docmost-team-docs-collaboration/ -->
 
 {{</* resource-info */>}}
 
@@ -52,7 +44,11 @@ Docmost 是一款开源自托管协作 Wiki 和文档平台，基于 TypeScript 
 Docmost 使用现代的三层架构，将应用服务器、数据库和实时协作层分离：
 
 | 层级 | 技术 |
-|---|---|
+|
+---
+|
+---
+|
 | **后端** | Node.js / NestJS (TypeScript) |
 | **前端** | React 块编辑器 |
 | **数据库** | PostgreSQL 16+ (必需) |
@@ -80,47 +76,32 @@ Docmost 需要 **PostgreSQL 和 Redis** —— 两者都可以通过单个 Docke
 ```yaml
 version: '3.8'
 
-services:
-  docmost:
-    image: docmost/docmost:0.8.2
+services: docmost: image: docmost/docmost:0.8.2
     container_name: docmost
-    depends_on:
-      - db
+    depends_on: - db
       - redis
-    environment:
-      APP_URL: 'http://localhost:3000'
+    environment: APP_URL: 'http://localhost:3000'
       APP_SECRET: 'your-super-secret-key-change-this'
       DATABASE_URL: 'postgresql://docmost:your_db_password@db:5432/docmost?schema=public'
       REDIS_URL: 'redis://redis:6379'
-    ports:
-      - "3000:3000"
+    ports: - "3000:3000"
     restart: unless-stopped
-    volumes:
-      - docmost_data:/app/data/storage
+    volumes: - docmost_data:/app/data/storage
 
-  db:
-    image: postgres:16-alpine
+  db: image: postgres:16-alpine
     container_name: docmost_db
-    environment:
-      POSTGRES_DB: docmost
+    environment: POSTGRES_DB: docmost
       POSTGRES_USER: docmost
       POSTGRES_PASSWORD: your_db_password
     restart: unless-stopped
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+    volumes: - postgres_data:/var/lib/postgresql/data
 
-  redis:
-    image: redis:7.2-alpine
+  redis: image: redis:7.2-alpine
     container_name: docmost_redis
     restart: unless-stopped
-    volumes:
-      - redis_data:/data
+    volumes: - redis_data:/data
 
-volumes:
-  docmost_data:
-  postgres_data:
-  redis_data:
-```
+volumes: docmost_data: postgres_data: redis_data: ```
 
 这定义了三个服务：端口 3000 上的 Docmost 应用、用于持久存储的 PostgreSQL 16 和用于实时协作状态的 Redis 7.2。
 
@@ -237,8 +218,7 @@ Docmost 的招牌功能是同时多用户编辑。以下是它在实际中的工
 
 ```javascript
 // Docmost 底层使用 Yjs (CRDT 库) 进行 OT
-// WebSocket 消息格式如下:
-{
+// WebSocket 消息格式如下: {
   "type": "doc:update",
   "pageId": "abc-123",
   "updates": [/* Yjs 二进制更新 */],
@@ -278,7 +258,11 @@ graph TD
 我在一台 2 vCPU / 4GB 内存 VPS 上部署了 Docmost v0.8.2，并运行了 30 分钟负载测试，模拟 20 个并发用户编辑和阅读页面：
 
 | 指标 | 数值 |
-|---|---|
+|
+---
+|
+---
+|
 | 冷启动时间 | 2.8 秒 |
 | 页面加载（平均） | 150ms |
 | 页面加载（95 百分位） | 280ms |
@@ -302,16 +286,11 @@ graph TD
 # .github/workflows/publish-to-docmost.yml
 name: Publish Docs to Docmost
 
-on:
-  push:
-    branches: [main]
+on: push: branches: [main]
     paths: ['docs/**']
 
-jobs:
-  publish:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: publish: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
 
       - name: Convert Markdown to JSON
         run: |
@@ -359,12 +338,9 @@ find "$BACKUP_DIR" -name "*.gz" -mtime +14 -delete
 
 ```yaml
 # 在 docker-compose.yml 中添加监控
-  postgres_exporter:
-    image: prometheuscommunity/postgres-exporter:v0.15.0
-    environment:
-      DATA_SOURCE_NAME: "postgresql://docmost:your_db_password@db:5432/docmost?sslmode=disable"
-    ports:
-      - "9187:9187"
+  postgres_exporter: image: prometheuscommunity/postgres-exporter:v0.15.0
+    environment: DATA_SOURCE_NAME: "postgresql://docmost:your_db_password@db:5432/docmost?sslmode=disable"
+    ports: - "9187:9187"
 ```
 
 ### 健康检查端点
@@ -404,18 +380,15 @@ ALLOW_PUBLIC_SIGNUP=false
 
 ```yaml
 # 添加到 docker-compose.yml
-  pgbouncer:
-    image: pgbouncer/pgbouncer:1.22
-    environment:
-      DATABASES_HOST: db
+  pgbouncer: image: pgbouncer/pgbouncer:1.22
+    environment: DATABASES_HOST: db
       DATABASES_PORT: 5432
       DATABASES_DATABASE: docmost
       DATABASES_USER: docmost
       DATABASES_PASSWORD: your_db_password
       POOL_MODE: transaction
       MAX_CLIENT_CONN: 200
-    ports:
-      - "6432:6432"
+    ports: - "6432:6432"
 ```
 
 更新 Docmost 的 `DATABASE_URL` 指向 `pgbouncer:6432` 而不是 `db:5432`。
@@ -436,7 +409,19 @@ location /auth/login {
 ## 对比：Docmost 与替代方案
 
 | 特性 | Docmost | Notion | Confluence | BookStack | Outline |
-|---|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **许可证** | AGPL-3.0 (社区版) | 专有 | 专有 | MIT | BSL 1.1 |
 | **自托管** | 是 (Docker) | 否 | 是 (复杂) | 是 (Docker) | 是 (复杂) |
 | **实时协作** | 是 (基于 OT) | 是 | 是 (Confluence Cloud) | 否 | 是 |
@@ -513,8 +498,8 @@ Docmost 是 2026 年最令人信服的开源 Notion 替代方案。它掌握了�
 
 加入 dibi8.com 社区：[Telegram 群组](https://t.me/dibi8opensource)，每天与 5,000+ 开发者讨论开源工具、部署技巧和故障排除。
 
----
 
+---
 ## 来源与延伸阅读
 
 - [Docmost 官方文档](https://docmost.com/docs/)
@@ -524,8 +509,6 @@ Docmost 是 2026 年最令人信服的开源 Notion 替代方案。它掌握了�
 - [Docmost Docker 部署指南](https://lowcloud.io/en/blog/self-host-docmost-with-docker-and-traefik)
 
 ---
-
-
 
 ## 推荐部署与基础设施
 
@@ -541,7 +524,6 @@ Docmost 是 2026 年最令人信服的开源 Notion 替代方案。它掌握了�
 本文包含 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 的联盟链接。如果你通过我们的链接注册，我们会获得推荐积分，而你无需支付额外费用。我们只推荐自己使用过的基础设施。Docmost 社区版是免费开源的，采用 AGPL-3.0 —— 我们与 Docmost 维护者之间不存在联盟关系。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/rag-architecture-implementation-guide" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/rag-architecture-implementation-guide" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/rag-architecture-implementation-guide" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/rag-architecture-implementation-guide" />
 title: 'RAG检索增强生成架构实现指南2025：构建生产级系统'
 description: '2025年RAG架构完整实现指南：从Naive RAG到Advanced RAG、Agentic RAG，涵盖分块策略、Embedding选型、向量数据库、重排序等全流程优化。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/rag-architecture-implementation-guide/
+aliases: - /posts/rag-architecture-implementation-guide/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/rag-architecture-implementation-guide/ -->
 
 {</* resource-info */>}
 
@@ -48,7 +40,13 @@ RAG（Retrieval-Augmented Generation，检索增强生成）是让大语言模�
 ### RAG vs 微调：什么时候用哪个？
 
 | 维度 | RAG | 微调 |
-|------|-----|------|
+|
+---
+|
+---
+|
+---
+|
 | 知识更新 | 实时（只需更新文档） | 需重新训练 |
 | 事实准确性 | 高（有据可查） | 依赖训练数据 |
 | 领域适配 | 快速（几小时搭建） | 慢（数天训练） |
@@ -146,7 +144,13 @@ vectorstore = Chroma.from_documents(documents, hyde_embeddings)
 纯向量搜索（Dense Retrieval）擅长语义匹配，但在处理特定术语、型号、人名时不如关键词搜索（Sparse Retrieval）。混合搜索将两者结合：
 
 | 检索方式 | 优势 | 劣势 |
-|----------|------|------|
+|
+---
+|
+---
+|
+---
+|
 | 向量搜索（Dense） | 语义理解强，容错性好 | 对精确术语不敏感 |
 | 关键词搜索（BM25） | 精确匹配，计算快 | 无法理解语义 |
 | 混合搜索 | 两者互补 | 需要额外的融合逻辑 |
@@ -190,7 +194,13 @@ compression_retriever = ContextualCompressionRetriever(
 常用开源重排序模型：
 
 | 模型 | 参数 | 适用场景 |
-|------|------|----------|
+|
+---
+|
+---
+|
+---
+|
 | BAAI/bge-reranker-base | 约 100M | 通用重排序 |
 | BAAI/bge-reranker-large | 约 300M | 高质量需求 |
 | BAAI/bge-reranker-v2-m3 | 约 500M | 多语言场景 |
@@ -199,7 +209,15 @@ compression_retriever = ContextualCompressionRetriever(
 ### 高级检索策略对比
 
 | 策略 | 原理 | 效果提升 | 额外开销 |
-|------|------|----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 父文档检索 | 检索小块，返回完整父文档 | 上下文更完整 | 存储冗余 |
 | 句子窗口 | 检索句子，返回周围窗口 | 边界问题减少 | 存储增加 |
 | 多查询检索 | 生成多个查询变体分别检索 | 覆盖更广 | 检索次数×N |
@@ -259,7 +277,17 @@ Agent 可以自主决定：调用哪个工具、是否需要多次检索、如�
 [Massive Text Embedding Benchmark (MTEB)](https://huggingface.co/spaces/mteb/leaderboard) 是选择 Embedding 模型的权威参考：
 
 | 模型 | 维度 | 上下文 | 特点 | 排名（MTEB） |
-|------|------|--------|------|-------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | text-embedding-3-large | 3072 | 8K | OpenAI 最强，效果好 | 闭源 |
 | BAAI/bge-m3 | 1024 | 8K | 多语言，开源免费 | Top 3 |
 | intfloat/multilingual-e5-large | 1024 | 512 | 多语言，微软出品 | Top 5 |
@@ -272,7 +300,15 @@ Agent 可以自主决定：调用哪个工具、是否需要多次检索、如�
 分块策略对检索质量影响巨大：
 
 | 策略 | chunk_size | overlap | 适用场景 |
-|------|-----------|---------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 固定大小 | 512-1024 | 100-200 | 通用场景 |
 | 语义分块 | 动态 | 0 | 需要保持语义完整性的文档 |
 | 递归结构 | 动态 | 50 | 有明确层级结构的文档（HTML/Markdown） |
@@ -296,7 +332,13 @@ Agent 可以自主决定：调用哪个工具、是否需要多次检索、如�
 检索质量的评估指标：
 
 | 指标 | 说明 | 目标值 |
-|------|------|--------|
+|
+---
+|
+---
+|
+---
+|
 | 召回率@K | Top-K 中包含正确答案的比例 | > 80% |
 | MRR（平均倒数排名） | 正确答案的平均排名倒数 | > 0.6 |
 | NDCG | 考虑排序质量的综合指标 | > 0.7 |
@@ -338,7 +380,13 @@ LLM 选型建议：
 [RAGAS](https://docs.ragas.io) 是目前最流行的 RAG 评估框架，提供以下指标：
 
 | 指标 | 衡量内容 | 计算方式 |
-|------|----------|----------|
+|
+---
+|
+---
+|
+---
+|
 | Faithfulness | 回答是否忠实于检索到的文档 | 对比回答与文档的一致性 |
 | Answer Relevancy | 回答是否与问题相关 | 语义相似度评分 |
 | Context Precision | 检索到的文档中有多少是相关的 | 精确率计算 |
@@ -368,7 +416,13 @@ result = evaluate(
 ### 延迟优化
 
 | 技术 | 效果 | 实现难度 |
-|------|------|----------|
+|
+---
+|
+---
+|
+---
+|
 | 查询缓存（Redis） | 命中时延迟 < 50ms | 低 |
 | 向量索引预热 | 避免冷启动 | 低 |
 | Streaming 输出 | 首 token 延迟降低 60% | 中 |
@@ -387,7 +441,13 @@ result = evaluate(
 对于数据隐私要求高的场景，可以完全使用开源组件构建 RAG：
 
 | 组件 | 本地替代方案 | 硬件需求 |
-|------|-------------|----------|
+|
+---
+|
+---
+|
+---
+|
 | Embedding 模型 | BAAI/bge-m3（Ollama/Hugging Face） | 4-8GB 显存 |
 | 向量数据库 | Chroma 或 Milvus | 内存/磁盘 |
 | LLM | Llama 3.1 8B / Qwen2.5 7B（Ollama） | 8-16GB 显存 |
@@ -398,7 +458,13 @@ result = evaluate(
 ## RAG 工具与框架对比
 
 | 框架 | 特点 | 适用场景 |
-|------|------|----------|
+|
+---
+|
+---
+|
+---
+|
 | **LangChain** | 生态最完善，组件最丰富 | 需要高度定制的复杂管道 |
 | **LlamaIndex** | 专注 RAG/数据检索，高级抽象 | 以文档检索为核心的项目 |
 | **Haystack** | 企业级，Pipeline 可视化 | 需要监控和审计的企业环境 |
@@ -407,7 +473,13 @@ result = evaluate(
 ## 常见陷阱与解决方案
 
 | 问题 | 原因 | 解决方案 |
-|------|------|----------|
+|
+---
+|
+---
+|
+---
+|
 | 回答不准确 | 分块切断了关键上下文 | 增大 overlap，使用父文档检索 |
 | 检索不到相关内容 | 查询与文档用词差异大 | 查询改写 + 混合搜索 |
 | 回答包含无关信息 | Top-K 不够精确 | 添加重排序层 |
@@ -448,12 +520,12 @@ RAG 在推理时动态检索外部知识，知识更新只需更新文档；微�
 
 Agentic RAG 更灵活但延迟更高，适合复杂的多步骤查询场景。
 
----
 
+---
 更多技术细节可参考 [LangChain 文档](https://python.langchain.com)、[LlamaIndex 文档](https://docs.llamaindex.ai)、[RAGAS 框架](https://docs.ragas.io)、[MTEB Embedding 排行榜](https://huggingface.co/spaces/mteb/leaderboard) 及 [LangChain GitHub 仓库](https://github.com/langchain-ai/langchain)。
 
----
 
+---
 ## 推荐基础设施
 
 要 7×24 稳跑上述工具，服务器选择关键：
@@ -465,7 +537,6 @@ Agentic RAG 更灵活但延迟更高，适合复杂的多步骤查询场景。
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -493,25 +564,20 @@ Agentic RAG 更灵活但延迟更高，适合复杂的多步骤查询场景。
 
 ## Why This Matters
 
-Understanding rag检索增强生成架构实现指南2025：构建生产级系统 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding rag检索增强生成架构实现指南2025：构建生产级系统 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

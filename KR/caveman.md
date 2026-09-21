@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/caveman" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/caveman" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/caveman" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/caveman" />
 title: "Claude Code 토큰 비용 65% 절감: Caveman 스킬 완벽 가이드"
 description: "GitHub 57K Star Claude Code 스킬 Caveman으로 AI 코딩 비용 절반 이상 줄이는 방법. 설치, 사용법, 벤치마크, MCP 미들웨어까지 상세 정리.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Docker
+tech_stack: - Docker
   - Go
   - JavaScript
 application_domain: "Ai Tools"
@@ -26,10 +20,8 @@ maintainer: "JuliusBrussee"
 last_maintained: "2026-05-12"
 featureImage: ""
 draft: false
-aliases:
-- /kr/posts/caveman/
-faqs:
-  - q: 'Claude Code용 Caveman은 무엇인가요?'
+aliases: - /kr/posts/caveman/
+faqs: - q: 'Claude Code용 Caveman은 무엇인가요?'
     a: 'Caveman은 Claude가 불필요한 표현, 관사, 정중한 서두를 생략하고 압축된 원시인 스타일의 간결한 언어로 응답하도록 만드는 Claude Code 스킬입니다. 기술적 정확성을 그대로 유지하면서 평균 65%의 출력 토큰을 줄여줍니다.'
   - q: 'Caveman은 토큰 사용량을 얼마나 줄여주나요?'
     a: '저장소에 포함된 재현 가능한 벤치마크 기준으로, Caveman은 평균 65%의 출력 토큰을 절감했으며, 원래 작업이 얼마나 장황했느냐에 따라 22%에서 87%까지 다양합니다. 예를 들어 React 리렌더 버그 설명은 1,180 토큰에서 159 토큰으로 줄었습니다(87% 절감).'
@@ -41,7 +33,6 @@ faqs:
     a: 'Caveman에는 세 가지 레벨이 있습니다: Lite(불필요한 표현 제거, 문법 유지), Full(기본 모드, 관사 생략 및 단편 문장 사용), Ultra(최대 전보식 압축). 또한 /caveman-commit, /caveman-review, /caveman-stats, 그리고 CLAUDE.md 같은 메모리 파일을 재작성하는 /caveman:compress 같은 서브 커맨드도 제공합니다.'
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/caveman/ -->
 {</* resource-info */>}
 
 # Claude Code 토큰 비용 65% 절감: Caveman 스킬 완벽 가이드
@@ -205,9 +196,7 @@ npm 패키지: [`caveman-shrink`](https://www.npmjs.com/package/caveman-shrink).
 
 ## 과학적 근거
 
-2026년 3월 발표된 논문 **"Brevity Constraints Reverse Performance Hierarchies in Language Models"** (arXiv:2604.00025)는 다음을 입증했습니다:
-
-- 간결한 응답 제약 시 특정 벤치마크에서 **정확도 26%p 향상**
+2026년 3월 발표된 논문 **"Brevity Constraints Reverse Performance Hierarchies in Language Models"** (arXiv:2604.00025)는 다음을 입증했습니다: - 간결한 응답 제약 시 특정 벤치마크에서 **정확도 26%p 향상**
 - 성능 계층 구조가 완전히 역전됨
 - 장황함 ≠ 정확함
 
@@ -254,16 +243,13 @@ curl -fsSL https://raw.githubusercontent.com/JuliusBrussee/caveman/main/install.
 
 ## 추천 도구
 
-오픈소스 AI 도구 개발/배포 시 권장:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
+오픈소스 AI 도구 개발/배포 시 권장: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
 - **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Anthropic Claude / OpenAI / DeepSeek API 프록시. 위의 AI 도구 대부분 (챗봇, 코드 생성, 번역, 검색 등) LLM API 키 필요 — 이 프록시로 안정적인 톱 모델 액세스, 공식 가격의 ~30%.
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -291,25 +277,20 @@ curl -fsSL https://raw.githubusercontent.com/JuliusBrussee/caveman/main/install.
 
 ## Why This Matters
 
-Understanding claude code 토큰 비용 65% 절감: caveman 스킬 완벽 가이드 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding claude code 토큰 비용 65% 절감: caveman 스킬 완벽 가이드 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/comfyui-workflow-2026-5-production-templates" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/comfyui-workflow-2026-5-production-templates" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/comfyui-workflow-2026-5-production-templates" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/comfyui-workflow-2026-5-production-templates" />
 title: 'ComfyUI Workflow 2026: Hướng dẫn cài đặt cho người mới +...
 description: 'ComfyUI cán mốc 106K stars trên GitHub trong năm 2026. Hướng dẫn cài đặt thân thiện với người mới, gợi ý mô hình cho năm 2026, và 5 template workflow sẵn sàng đưa vào production (text-to-image, inpaint, upscale, video, nhất quán nhân vật).'
 date: 2026-05-25 00:00:00+08:00
@@ -21,10 +16,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [comfyui, 'stable-diffusion', 'image-generation', workflows, 2026]
-aliases:
-- /vi/posts/comfyui-workflow-2026-5-production-templates/
-faq:
-  - q: "Năm 2026, ComfyUI có tốt hơn Stable Diffusion WebUI không?"
+aliases: - /vi/posts/comfyui-workflow-2026-5-production-templates/
+faq: - q: "Năm 2026, ComfyUI có tốt hơn Stable Diffusion WebUI không?"
     a: "Đối với tự động hóa workflow và sử dụng production: có, một cách dứt khoát. Đồ thị dựa trên node của ComfyUI khiến các pipeline phức tạp nhiều bước (upscale → inpaint → ControlNet → render lại) trở nên cực kỳ dễ dàng. SD WebUI đơn giản hơn cho các lần sinh ảnh đơn lẻ. Hầu hết nghệ sĩ AI chuyên nghiệp đều dùng cả hai."
   - q: "Tôi cần phần cứng nào?"
     a: "Tối thiểu: 8GB VRAM (RTX 3060, RTX 4060) cho SDXL ở chất lượng vừa phải. Thoải mái: 16GB+ VRAM (RTX 4080, 4090) cho SDXL + mô hình Flux + xếp chồng LoRA. Production: H100 / nhiều GPU cho các workflow chạy theo batch."
@@ -33,8 +26,6 @@ faq:
   - q: "Học ComfyUI từ đầu mất bao lâu?"
     a: "Load một workflow + sinh ảnh: 30 phút. Tự dựng workflow riêng: 1-2 ngày. Thành thạo node cho production: 2-3 tuần. Đường cong học tập ban đầu rất dốc nhưng đáng — workflow có thể tái sử dụng, chia sẻ và tái lập."
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/comfyui-workflow-2026-5-production-templates/ -->
 
 {{</* resource-info */>}}
 
@@ -69,13 +60,11 @@ python main.py
 Trình duyệt sẽ mở tại `http://localhost:8188`.
 
 ### Bước 2: Tải mô hình (30 phút)
-Thả vào `ComfyUI/models/checkpoints/`:
-- **SDXL base + refiner** (đa năng nhất, tổng ~13GB)
+Thả vào `ComfyUI/models/checkpoints/`: - **SDXL base + refiner** (đa năng nhất, tổng ~13GB)
 - **Flux.1 Schnell** (prototype nhanh, ~24GB)
 - **SD 3.5 Large** (chân thực ảnh tốt nhất, ~17GB)
 
-Tùy chọn nhưng hữu ích:
-- 2-3 LoRA hợp phong cách của bạn (trên Civitai, tìm "2026 SDXL trending")
+Tùy chọn nhưng hữu ích: - 2-3 LoRA hợp phong cách của bạn (trên Civitai, tìm "2026 SDXL trending")
 - Mô hình ControlNet (OpenPose, Depth, Canny — mỗi cái ~1.5GB)
 
 ### Bước 3: Sinh ảnh lần đầu (15 phút)
@@ -119,8 +108,7 @@ Xong. Bạn đã bắt đầu sinh ảnh. Phần khó bắt đầu từ bây gi�
 
 Cả 5 template đều có thể lưu dưới dạng `.json`. Kéo lên canvas ComfyUI để load. Chia sẻ với team qua git hoặc Discord.
 
-Cộng đồng đã đăng hàng nghìn workflow tại:
-- Subreddit ComfyUI
+Cộng đồng đã đăng hàng nghìn workflow tại: - Subreddit ComfyUI
 - Thư viện workflow OpenArt.ai
 - Civitai (tìm bộ lọc "ComfyUI workflow")
 
@@ -128,8 +116,7 @@ Mang 2-3 workflow cộng đồng vào và tùy biến theo phong cách của b�
 
 ## Hạ Tầng Khuyến Nghị
 
-Cho công việc ComfyUI nghiêm túc:
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — credit $200, GPU droplet (H100/L40S/A100)
+Cho công việc ComfyUI nghiêm túc: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — credit $200, GPU droplet (H100/L40S/A100)
 - **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hồng Kông để sinh ảnh độ trễ thấp tại châu Á
 
 *Liên kết tiếp thị liên kết — cùng giá, ủng hộ dibi8.com.*
@@ -145,7 +132,6 @@ Bắt đầu với 5 template ở trên. Tùy biến. Chia sẻ. Hiệu ứng l�
 **Bài liên quan**: [Cài đặt Stable Diffusion WebUI](https://dibi8.com/vi/resources/ai-tools/stable-diffusion-webui/) · [Công cụ sinh ảnh AI hàng đầu 2026](https://dibi8.com/vi/resources/ai-tools/ai-image-generation-tools-2025/) · [Stack AI Local-First 2026](https://dibi8.com/vi/resources/llm-frameworks/2026-local-first-ai-stack-production-architecture/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -173,25 +159,20 @@ Bắt đầu với 5 template ở trên. Tùy biến. Chia sẻ. Hiệu ứng l�
 
 ## Why This Matters
 
-Understanding comfyui workflow 2026: hướng dẫn cài đặt cho người mới + 5 template sẵn sàng production is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding comfyui workflow 2026: hướng dẫn cài đặt cho người mới + 5 template sẵn sàng production is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

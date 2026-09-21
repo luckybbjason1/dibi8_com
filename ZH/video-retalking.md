@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/video-retalking" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/video-retalking" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/video-retalking" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/video-retalking" />
 title: 'VideoReTalking: 7.2K+ Stars — AI 唇形同步视频编辑完整搭建指南 2026'
 description: 'VideoReTalking (VRT) 是一款基于音频的唇形同步系统，用于说话人脸视频编辑。兼容 RVC、GPT-SoVITS 和 Coqui TTS。涵盖安装、推理、Gradio WebUI、生产部署，以及与 Wav2Lip 和 SadTalker 的对比测试。'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [唇形同步, 视频编辑, 数字人, 深度学习, ffmpeg, pytorch, gradio, ai视频]
-aliases:
-- /zh/posts/video-retalking/
+aliases: - /zh/posts/video-retalking/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/video-retalking/ -->
 
 {{</* resource-info */>}}
 
@@ -68,7 +60,13 @@ VideoReTalking 采用三阶段架构，将表情、唇形同步和增强解耦�
 ### 硬件要求
 
 | 组件 | 最低配置 | 推荐配置 |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | GPU | NVIDIA 8GB 显存 | NVIDIA RTX 3090 / 4090 (24GB) |
 | 内存 | 16 GB | 32 GB |
 | 存储 | 10 GB 可用空间 | 20 GB 可用空间（模型 + 临时文件） |
@@ -221,7 +219,13 @@ python inference.py \
 在 NVIDIA RTX 4090 上测试，输入为 10 秒 512x512 视频：
 
 | 阶段 | 耗时 | 显存峰值 |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | D-Net（表情归一化） | 2.1s | 4.2 GB |
 | L-Net（唇形同步） | 3.8s | 3.8 GB |
 | E-Net（GFPGAN 增强） | 4.5s | 5.1 GB |
@@ -233,7 +237,17 @@ VideoReTalking 在现代 GPU 上处理 512x512 分辨率视频的速度约为 **
 ### 视频质量基准
 
 | 指标 | VideoReTalking | Wav2Lip | SadTalker | GeneFace |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | LSE-C（唇形同步置信度） | 8.7 | 8.3 | 7.9 | 8.1 |
 | PSNR (dB) | 32.4 | 28.1 | 29.8 | 30.2 |
 | LPIPS（越低越好） | 0.11 | 0.19 | 0.14 | 0.13 |
@@ -322,8 +336,7 @@ os.makedirs(OUTPUT_DIR, exist_ok=True)
 video_files = sorted(Path(INPUT_DIR).glob("*.mp4"))
 audio_files = sorted(Path(AUDIO_DIR).glob("*.wav"))
 
-for vid, aud in zip(video_files, audio_files):
-    outname = f"{OUTPUT_DIR}/{vid.stem}_synced.mp4"
+for vid, aud in zip(video_files, audio_files): outname = f"{OUTPUT_DIR}/{vid.stem}_synced.mp4"
     print(f"Processing: {vid.name} + {aud.name}")
     subprocess.run([
         "python", "inference.py",
@@ -351,8 +364,7 @@ logging.basicConfig(
     ]
 )
 
-def inference_with_monitoring(face_path, audio_path, output_path):
-    start = time.time()
+def inference_with_monitoring(face_path, audio_path, output_path): start = time.time()
     vram_before = torch.cuda.memory_allocated() / 1e9
     
     # 运行推理
@@ -375,7 +387,17 @@ def inference_with_monitoring(face_path, audio_path, output_path):
 ## 与替代方案对比
 
 | 特性 | VideoReTalking | Wav2Lip | SadTalker | GeneFace |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 输入类型 | 视频 + 音频 | 视频 + 音频 | 图片 + 音频 | 视频 + 音频 |
 | 输出质量 | 高（含增强） | 中等 | 中高 | 高 |
 | 推理速度 | ~1x 实时（GPU） | ~2x 实时 | ~0.5x 实时 | ~0.8x 实时 |
@@ -465,7 +487,6 @@ VideoReTalking 为音频驱动唇形同步提供了一个实用的自托管解�
 - [预训练模型 (Google Drive)](https://drive.google.com/drive/folders/18rhjMpxK8LVVxf7PI6XwOidt8Vouv_H0)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -493,25 +514,20 @@ VideoReTalking 为音频驱动唇形同步提供了一个实用的自托管解�
 
 ## Why This Matters
 
-Understanding videoretalking: 7.2k+ stars — ai 唇形同步视频编辑完整搭建指南 2026 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding videoretalking: 7.2k+ stars — ai 唇形同步视频编辑完整搭建指南 2026 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -532,13 +548,13 @@ VideoReTalking: 7.2K+ Stars — AI 唇形同步视频编辑完整搭建指南 20
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
 
+---
 ## Related Articles
 
 - [wandb-ml-experiment-tracking-platform-2026](video-retalking)

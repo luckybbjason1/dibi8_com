@@ -1,12 +1,8 @@
+---
 title: 'LangChain vs CrewAI vs AutoGen vs LlamaIndex vs LangGrap...
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-agent-frameworks-comparison-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-agent-frameworks-comparison-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-agent-frameworks-comparison-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-agent-frameworks-comparison-2026" />
 description: '2026 年前五大开源 AI 代理框架的并排比较。真实的收藏量、代码示例、性能基准，以及为您的项目选择合适框架的实用指南。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-30T00:00:00+09:00
-lastmod:  2026-06-30T00:00:00+09:00lang: zh-cn
+lastmod: 2026-06-30T00:00:00+09:00lang: zh-cn
 draft: false
 tags: [" 人工智能代理 "
 " 框架 "
@@ -24,8 +20,7 @@ showSummary: true
 featureImage: /images/articles/b62165fb-ai-agent-frameworks-comparison.png
 github_repo: langchain-ai/langchain
 license: MIT
-sources:
-  - name: GitHub
+sources: - name: GitHub
     url: https://github.com/langchain-ai/langchain
     type: star_count
   - name: GitHub
@@ -39,15 +34,13 @@ sources:
     type: star_count
   - name: GitHub
     url: https://github.com/langchain-ai/langgraph
-    type: star_count
----
-
+    type: star_count---
 
 
 > **编辑披露**：此比较使用截至 2026 年 6 月 30 日的 GitHub 实时数据（星标数量、提交频率、Fork 数量）。所有代码示例均经过测试和验证。我们不接受任何框架供应商的付款用于包含或排名。
 
+
 ---
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -86,7 +79,6 @@ sources:
 </script>
 
 
-<!-- canonical: https://dibi8.com/zh/tools/ai-agent-frameworks-comparison-2026/ -->
 
 ## TL;DR
 
@@ -100,8 +92,8 @@ sources:
 
 选择合适的取决于您的使用场景：单代理自动化、多代理协作或以文档为主的RAG流程。请继续阅读详细比较。
 
----
 
+---
 ## 为什么我们要比较 AI Agent 框架
 
 自2023年以来，AI代理框架领域已经显著成熟。最初只是简单的提示链库，现已发展成为支持多代理协作、持久记忆、工具执行和人工监督的完整编排平台。
@@ -117,7 +109,6 @@ sources:
 在选择框架之前，理解这些哲学上的差异至关重要。错误的选择可能意味着数月的重构工作。
 
 ---
-
 ## 1. LangChain —— 集成之王
 
 **星标**: 141k · **语言**: TypeScript · **分支**: 23.3k · **许可证**: MIT
@@ -189,8 +180,7 @@ LangChain 的工具系统支持基于函数和基于类的工具：
 from langchain.tools import tool
 
 @tool
-def search_wikipedia(query: str) -> str:
-    """Search Wikipedia and return the summary."""
+def search_wikipedia(query: str) -> str: """Search Wikipedia and return the summary."""
     from langchain_community.tools import WikipediaQueryRun
     return WikipediaQueryRun().run(query)
 
@@ -384,16 +374,13 @@ crew = Crew(
 from crewai.tools import BaseTool
 from pydantic import BaseModel, Field
 
-class WebSearchInput(BaseModel):
-    query: str = Field(description="The search query")
+class WebSearchInput(BaseModel): query: str = Field(description="The search query")
 
-class WebSearchTool(BaseTool):
-    name: str = "Web Search"
+class WebSearchTool(BaseTool): name: str = "Web Search"
     description: str = "Search the web for information"
     args_schema: type[BaseModel] = WebSearchInput
 
-    def _run(self, query: str) -> str:
-        # Implement your search logic
+    def _run(self, query: str) -> str: # Implement your search logic
         return f"Results for: {query}"
 ```
 
@@ -507,8 +494,7 @@ AutoGen 支持 OpenAI 函数调用以实现结构化代理交互：
 ```python
 from autogen.function_utils import get_function_schema
 
-def calculate_bmi(weight_kg: float, height_cm: float) -> dict:
-    """Calculate BMI from weight and height."""
+def calculate_bmi(weight_kg: float, height_cm: float) -> dict: """Calculate BMI from weight and height."""
     bmi = weight_kg / ((height_cm / 100) ** 2)
     return {"bmi": round(bmi, 1), "category": "normal" if 18.5 <= bmi < 25 else "other"}
 
@@ -672,11 +658,8 @@ tech_index = VectorStoreIndex.from_documents(tech_docs)
 legal_index = VectorStoreIndex.from_documents(legal_docs)
 
 # Route queries based on keywords
-def route_query(query: str):
-    if any(kw in query.lower() for kw in ["patent", "copyright", "trademark"]):
-        return legal_index.as_retriever()
-    else:
-        return tech_index.as_retriever()
+def route_query(query: str): if any(kw in query.lower() for kw in ["patent", "copyright", "trademark"]): return legal_index.as_retriever()
+    else: return tech_index.as_retriever()
 ```
 
 
@@ -708,22 +691,17 @@ from langgraph.graph import StateGraph, START, END
 from typing import TypedDict, Annotated
 import operator
 
-class AgentState(TypedDict):
-    messages: Annotated[list, operator.add]
+class AgentState(TypedDict): messages: Annotated[list, operator.add]
     checker: str
 
-def chatbot(state: AgentState):
-    from langchain_openai import ChatOpenAI
+def chatbot(state: AgentState): from langchain_openai import ChatOpenAI
     response = ChatOpenAI().invoke(state["messages"])
     return {"messages": [response]}
 
-def checker(state: AgentState):
-    if len(state["messages"])[-1].content > 100:
-        return "approved"
+def checker(state: AgentState): if len(state["messages"])[-1].content > 100: return "approved"
     return "needs_revision"
 
-def revise(state: AgentState):
-    from langchain_openai import ChatOpenAI
+def revise(state: AgentState): from langchain_openai import ChatOpenAI
     messages = state["messages"] + [
         {"role": "user", "content": "Make it shorter. Under 100 characters."}
     ]
@@ -786,25 +764,20 @@ config = {"configurable": {"thread_id": "thread-1"}}
 result = agent.invoke({"messages": [("human", "Book a flight to Tokyo")]}, config)
 
 # The agent pauses at tool calls for approval
-# Resume with:
-# result = agent.invoke(None, config)
+# Resume with: # result = agent.invoke(None, config)
 ```
 
 ### Streaming Responses
 
-来自 LangGraph 代理的实时令牌流:
-
-```python
+来自 LangGraph 代理的实时令牌流: ```python
 from langchain_core.messages import AIMessageChunk
 
 # Stream agent execution
 for event in agent.stream(
     {"messages": [("human", "Write a poem about AI")]},
     config={"stream_mode": "values"},
-):
-    last_msg = event["messages"][-1]
-    if isinstance(last_msg, AIMessageChunk):
-        print(last_msg.content, end="", flush=True)
+): last_msg = event["messages"][-1]
+    if isinstance(last_msg, AIMessageChunk): print(last_msg.content, end="", flush=True)
 ```
 
 ### Subgraphs for Modular Design
@@ -839,24 +812,16 @@ workflow = main_graph.compile()
 import asyncio
 from functools import wraps
 
-def retry_with_backoff(max_retries=3, base_delay=1.0):
-    def decorator(func):
-        @wraps(func)
-        async def wrapper(*args, **kwargs):
-            for attempt in range(max_retries):
-                try:
-                    return await func(*args, **kwargs)
-                except Exception as e:
-                    if attempt == max_retries - 1:
-                        raise
+def retry_with_backoff(max_retries=3, base_delay=1.0): def decorator(func): @wraps(func)
+        async def wrapper(*args, **kwargs): for attempt in range(max_retries): try: return await func(*args, **kwargs)
+                except Exception as e: if attempt == max_retries - 1: raise
                     delay = base_delay * (2 ** attempt)
                     await asyncio.sleep(delay)
         return wrapper
     return decorator
 
 @retry_with_backoff(max_retries=3)
-async def call_llm_with_retry(prompt):
-    response = await model.ainvoke(prompt)
+async def call_llm_with_retry(prompt): response = await model.ainvoke(prompt)
     return response
 ```
 
@@ -875,7 +840,19 @@ async def call_llm_with_retry(prompt):
 ## 横向对比
 
 | Feature | LangChain | CrewAI | AutoGen | LlamaIndex | LangGraph |
-|---------|-----------|--------|---------|------------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Stars** | 141k | 54.6k | 59.4k | 50.5k | 36k |
 | **Language** | TypeScript | Python | Python | Python | Python |
 | **Primary Strength** | Integrations | Multi-agent roles | Conversational | Document RAG | Stateful graphs |
@@ -931,7 +908,15 @@ async def call_llm_with_retry(prompt):
 任务：根据自然语言描述生成一个可运行的 Python 函数。
 
 | Framework | Accuracy | Time (avg) | Notes |
-|-----------|----------|------------|-------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | LangChain | 87% | 12s | Strong tool integration for code execution |
 | CrewAI | 82% | 18s | Multi-agent review improves quality |
 | AutoGen | 91% | 25s | Conversational refinement boosts accuracy |
@@ -943,7 +928,15 @@ async def call_llm_with_retry(prompt):
 任务：将一份50页的技术文档总结为关键发现。
 
 | Framework | Quality Score | Time (avg) | Notes |
-|-----------|---------------|------------|-------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | LangChain | 7.2/10 | 30s | Good but loses nuance |
 | CrewAI | 8.1/10 | 45s | Multi-agent synthesis works well |
 | AutoGen | 7.8/10 | 50s | Conversational approach adds verbosity |
@@ -955,7 +948,15 @@ async def call_llm_with_retry(prompt):
 任务：解决一个需要使用工具的多步推理问题。
 
 | Framework | Success Rate | Time (avg) | Notes |
-|-----------|--------------|------------|-------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | LangChain | 73% | 20s | Chain-of-thought helps but limited recovery |
 | CrewAI | 81% | 35s | Agent delegation handles complexity |
 | AutoGen | 88% | 40s | Negotiation resolves disagreements |

@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/understand-anything-interactive-knowledge-graphs-codebases" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/understand-anything-interactive-knowledge-graphs-codebases" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/understand-anything-interactive-knowledge-graphs-codebases" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/understand-anything-interactive-knowledge-graphs-codebases" />
 title: "Hiểu Mọi Thứ: Đồ Thị Kiến Thức Tương Tác cho Các Cơ Sở M...
 description: "Understand-Anything biến bất kỳ cơ sở mã nào thành đồ thị tri thức tương tác mà bạn có thể khám phá, tìm kiếm và truy vấn. Hoạt động với Claude Code, Codex, Cursor, Copilot, Gemini CLI. 60.339 sao trên GitHub."
 date: 2026-06-17
-lastmod:  2026-06-17slug: understand-anything-interactive-knowledge-graphs-codebases
+lastmod: 2026-06-17
+slug: understand-anything-interactive-knowledge-graphs-codebases
 category: ai-tools
 tags: ['understand-anything', 'knowledge-graph', 'codebase-analysis', 'claude-code', 'codex', 'cursor', 'AI-agents', 'code-visualization', 'semantic-search']
 github_repo: "https://github.com/Egonex-AI/Understand-Anything"
@@ -15,8 +11,6 @@ license: MIT
 lang: vi
 featureImage: /images/articles/egonex-understand-anything-interactive-knowledge-graphs-from.jpg
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/understand-anything-interactive-knowledge-graphs-codebases/ -->
 
 ## Giới thiệu
 
@@ -50,9 +44,7 @@ Công cụ này hoạt động với Claude Code, Codex, Cursor, Copilot, Gemini
 
 ## Cách Hiểu-Mọi-Thứ Hoạt Động
 
-Đường ống có ba giai đoạn: phân tích cú pháp, xây dựng đồ thị và lập chỉ mục:
-
-```
+Đường ống có ba giai đoạn: phân tích cú pháp, xây dựng đồ thị và lập chỉ mục: ```
 Source Code (all languages)
         │
         ▼
@@ -63,8 +55,7 @@ Source Code (all languages)
          │
          ▼
 ┌─────────────────┐
-│  Graph Builder   │  Creates nodes + edges:
-│                  │  Nodes: files, classes, funcs
+│  Graph Builder   │  Creates nodes + edges: │                  │  Nodes: files, classes, funcs
 │                  │  Edges: calls, imports, extends
 └────────┬────────┘
          │
@@ -210,14 +201,11 @@ Thời gian phân tích tăng xấp xỉ tuyến tính theo số lượng tệp.
 
 ### Trường hợp sử dụng: Đưa các nhà phát triển mới vào
 
-Một nhóm 15 lập trình viên tham gia vào một dự án TypeScript dài 50.000 dòng. Trước khi Sử dụng Understand-Anything, việc làm quen mất 2 tuần để đọc mã. Sau đó:
-
-```bash
+Một nhóm 15 lập trình viên tham gia vào một dự án TypeScript dài 50.000 dòng. Trước khi Sử dụng Understand-Anything, việc làm quen mất 2 tuần để đọc mã. Sau đó: ```bash
 # Generate onboarding graph
 understand-anything analyze ./src --onboarding
 
-# Outputs:
-# - Architecture overview (HLD + LLD)
+# Outputs: # - Architecture overview (HLD + LLD)
 # - Key entry points
 # - Module dependency map
 # - Common patterns and anti-patterns
@@ -282,11 +270,8 @@ understand-anything gql "cycle where type == 'import'"
 name: Knowledge Graph CI
 on: [pull_request]
 
-jobs:
-  analyze:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: analyze: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - name: Build knowledge graph
         run: |
           npx understand-anything analyze ./src --format ci
@@ -297,8 +282,7 @@ jobs:
       - name: Upload violations
         if: failure()
         uses: actions/upload-artifact@v4
-        with:
-          name: graph-violations
+        with: name: graph-violations
           path: graph-violations.json
 ```
 
@@ -355,9 +339,7 @@ Understand-Anything là công cụ duy nhất kết hợp trực quan hóa tươ
 
 ## Giới hạn / Đánh giá trung thực
 
-Understand-Anything mạnh mẽ nhưng có những hạn chế trung thực:
-
-1. **Mã được tạo ra không được phân tích.** Mã động (eval, exec, các lớp được tạo ra trong thời gian chạy) sẽ không xuất hiện trong biểu đồ. Đây là một hạn chế cơ bản của phân tích tĩnh — không có công cụ nào giải quyết vấn đề này một cách hoàn hảo.
+Understand-Anything mạnh mẽ nhưng có những hạn chế trung thực: 1. **Mã được tạo ra không được phân tích.** Mã động (eval, exec, các lớp được tạo ra trong thời gian chạy) sẽ không xuất hiện trong biểu đồ. Đây là một hạn chế cơ bản của phân tích tĩnh — không có công cụ nào giải quyết vấn đề này một cách hoàn hảo.
 
 2. **Thư viện bên thứ ba cần được phân tích riêng.** Biểu đồ tập trung vào mã nguồn của bạn. Để bao gồm các phụ thuộc, bạn cần phân tích `node_modules`, `vendor/`, hoặc tương đương một cách riêng biệt.
 
@@ -417,8 +399,7 @@ Hãy thử nó trong dự án tiếp theo của bạn. Sao chép một kho lưu 
 
 ---
 
-**Nguồn & Đọc thêm**:
-- Tài liệu chính thức: https://github.com/Egonex-AI/Understand-Anything
+**Nguồn & Đọc thêm**: - Tài liệu chính thức: https://github.com/Egonex-AI/Understand-Anything
 - Kho lưu trữ GitHub: https://github.com/Egonex-AI/Understand-Anything
 - Trình diễn trực tiếp: https://egonex.ai/understand-anything/demo
 - Thảo luận cộng đồng: https://github.com/Egonex-AI/Understand-Anything/discussions
@@ -431,7 +412,6 @@ Hãy thử nó trong dự án tiếp theo của bạn. Sao chép một kho lưu 
 - Proxy để thu thập dữ liệu web: [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

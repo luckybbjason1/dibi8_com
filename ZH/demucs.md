@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/demucs" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/demucs" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/demucs" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/demucs" />
 title: 'Demucs: 10K+ Stars 的音乐源分离工具 — 2026年对比 UVR、Spleeter'
 description: 'Demucs 是 Meta AI 开发的混合频谱图和波形域源分离模型。兼容 Ultimate Vocal Remover、RVC、GPT-SoVITS。涵盖 demucs 教程、demucs vs uvr、demucs Docker 部署和生产环境基准测试。'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [demucs, 音乐源分离, ai音频, 音轨分离, pytorch, docker, 开源]
-aliases:
-- /zh/posts/demucs/
+aliases: - /zh/posts/demucs/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/demucs/ -->
 
 {{</* resource-info */>}}
 
@@ -64,7 +56,17 @@ Demucs 与早期工具的核心区别在于其**混合处理方式**：它同时
 Demucs 提供多个针对不同速度/质量权衡优化的预训练模型：
 
 | 模型 | 音轨数 | 显存占用 | SDR (MUSDB) | 适用场景 |
-|------|--------|----------|-------------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | `htdemucs` | 4 | ~5.2 GB | 7.1 dB | 默认，速度质量平衡 |
 | `htdemucs_ft` | 4 | ~7.8 GB | 7.8 dB | 最高质量，慢约 4 倍 |
 | `htdemucs_6s` | 6 | ~6.5 GB | 6.8 dB | 吉他+钢琴分离 |
@@ -152,14 +154,10 @@ docker run --gpus all -v $(pwd):/audio demucs song.mp3
 ```yaml
 version: '3.8'
 
-services:
-  demucs:
-    build: .
+services: demucs: build: .
     runtime: nvidia
-    environment:
-      - NVIDIA_VISIBLE_DEVICES=all
-    volumes:
-      - ./input:/audio/input:ro
+    environment: - NVIDIA_VISIBLE_DEVICES=all
+    volumes: - ./input:/audio/input:ro
       - ./output:/audio/output
     command: ["-n", "htdemucs_ft", "--mp3", "-o", "/audio/output", "/audio/input"]
 ```
@@ -228,8 +226,7 @@ RVC 流水线通常使用 Demucs 作为预处理步骤，在声音提取之前�
 import subprocess
 import os
 
-def preprocess_for_rvc(input_song, output_dir):
-    """为 RVC 声音转换提取干净的人声。"""
+def preprocess_for_rvc(input_song, output_dir): """为 RVC 声音转换提取干净的人声。"""
     os.makedirs(output_dir, exist_ok=True)
 
     # 步骤 1：使用 Demucs 分离
@@ -280,8 +277,7 @@ from demucs.api import Separator
 
 separator = Separator(model="htdemucs_ft")
 
-def separate(audio_file, stem):
-    origin, separated = separator.separate_audio_file(audio_file)
+def separate(audio_file, stem): origin, separated = separator.separate_audio_file(audio_file)
     output_path = f"{stem}.wav"
     separator.save_audio(separated[stem], output_path, samplerate=44100)
     return output_path
@@ -311,7 +307,21 @@ demo.launch(server_name="0.0.0.0", server_port=7860)
 MUSDB18-HQ 是音乐源分离的标准基准数据集，包含 150 首完整歌曲及其对应的独立音轨真值。SDR（信号失真比）越高，表示分离越干净。
 
 | 模型 | 整体 SDR | 人声 | 鼓 | 贝斯 | 其他 | 速度 (RTX 3090) |
-|------|----------|------|-----|------|------|-----------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **HTDemucs FT (v4)** | **7.8 dB** | **8.5 dB** | **8.9 dB** | **7.5 dB** | **6.2 dB** | ~4 倍实时 |
 | HTDemucs (v4) | 7.1 dB | 7.8 dB | 8.2 dB | 6.9 dB | 5.6 dB | ~16 倍实时 |
 | Hybrid Demucs (v3) | 7.7 dB | 8.1 dB | 8.5 dB | 7.2 dB | 5.9 dB | ~12 倍实时 |
@@ -333,7 +343,15 @@ MUSDB18-HQ 是音乐源分离的标准基准数据集，包含 150 首完整歌�
 一首 4 分钟立体声 44.1 kHz 曲目的处理时间：
 
 | 硬件 | htdemucs | htdemucs_ft | htdemucs_6s |
-|------|----------|-------------|-------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | RTX 4080 GPU | ~15s | ~55s | ~25s |
 | RTX 3080 GPU | ~20s | ~75s | ~35s |
 | Apple M3 (MPS) | ~45s | ~3min | ~70s |
@@ -361,15 +379,13 @@ model.eval()
 wav, sr = torchaudio.load("input.mp3")
 
 # 确保立体声
-if wav.shape[0] == 1:
-    wav = wav.repeat(2, 1)
+if wav.shape[0] == 1: wav = wav.repeat(2, 1)
 
 # 添加批次维度
 mix = wav.unsqueeze(0).to(device)
 
 # 使用优化设置进行分离
-with torch.no_grad():
-    sources = apply_model(
+with torch.no_grad(): sources = apply_model(
         model,
         mix,
         shifts=1,       # Shift trick：值越高质量越好，速度越慢
@@ -384,8 +400,7 @@ with torch.no_grad():
 source_names = model.sources  # [drums, bass, other, vocals]
 
 # 保存各音轨
-for i, name in enumerate(source_names):
-    torchaudio.save(f"{name}.wav", sources[i].cpu(), sr)
+for i, name in enumerate(source_names): torchaudio.save(f"{name}.wav", sources[i].cpu(), sr)
 ```
 
 ### 批量处理流水线
@@ -395,8 +410,7 @@ from pathlib import Path
 import subprocess
 import json
 
-def batch_separate(input_dir, output_dir, model="htdemucs"):
-    """处理目录中的所有音频文件。"""
+def batch_separate(input_dir, output_dir, model="htdemucs"): """处理目录中的所有音频文件。"""
     input_dir = Path(input_dir)
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -415,8 +429,7 @@ def batch_separate(input_dir, output_dir, model="htdemucs"):
 
     # 生成元数据清单
     manifest = {}
-    for f in files:
-        base = f.stem
+    for f in files: base = f.stem
         stem_dir = output_dir / model / base
         manifest[base] = {
             drums: str(stem_dir / 'drums.mp3'),
@@ -425,8 +438,7 @@ def batch_separate(input_dir, output_dir, model="htdemucs"):
             vocals: str(stem_dir / 'vocals.mp3'),
         }
 
-    with open(output_dir / 'manifest.json', w) as fp:
-        json.dump(manifest, fp, indent=2)
+    with open(output_dir / 'manifest.json', w) as fp: json.dump(manifest, fp, indent=2)
 
     return manifest
 
@@ -463,8 +475,7 @@ import time
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(demucs)
 
-def separate_with_metrics(input_path, output_dir):
-    start = time.time()
+def separate_with_metrics(input_path, output_dir): start = time.time()
 
     separator = Separator(model="htdemucs_ft", device="cuda")
     origin, separated = separator.separate_audio_file(input_path)
@@ -473,8 +484,7 @@ def separate_with_metrics(input_path, output_dir):
     logger.info(f"分离 {input_path} 耗时 {duration:.1f} 秒")
 
     # 记录各音轨电平
-    for name, audio in separated.items():
-        rms = torch.sqrt(torch.mean(audio ** 2)).item()
+    for name, audio in separated.items(): rms = torch.sqrt(torch.mean(audio ** 2)).item()
         logger.info(f"  {name}: RMS={rms:.4f}")
 
     return separated
@@ -483,7 +493,17 @@ def separate_with_metrics(input_path, output_dir):
 ## 与替代方案对比
 
 | 特性 | Demucs (v4) | Ultimate Vocal Remover | Spleeter | Open-Unmix |
-|------|-------------|------------------------|----------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **架构** | 混合波形 + 频谱图 + Transformer | GUI 封装（多后端） | 频谱图 U-Net | 频谱图 LSTM |
 | **MUSDB SDR** | 7.8 dB (htdemucs_ft) | N/A（使用 Demucs/MDX） | 5.9 dB | 5.3 dB |
 | **最大音轨数** | 6（人声、鼓、贝斯、吉他、钢琴、其他） | 4（取决于模型） | 5（含 sides） | 4 |
@@ -567,7 +587,6 @@ Demucs 在 2026 年仍然是开源音乐源分离的参考实现。其混合 Tra
 - [Audio Developers Conference 2025 — Demucs ONNX 导出演讲](https://mixxx.discourse.group/t/gsoc-2025-converting-demucs-v4-hybrid-transformer-ai-model-to-onnx-format/32874)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -593,8 +612,8 @@ Demucs 在 2026 年仍然是开源音乐源分离的参考实现。其混合 Tra
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [apple-container](demucs)
@@ -603,6 +622,6 @@ Demucs 在 2026 年仍然是开源音乐源分离的参考实现。其混合 Tra
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](demucs)
 - [moneyprinterturbo-one-click-ai-video-generator](demucs)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-code-subagent-mastery-stack" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-subagent-mastery-stack" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-subagent-mastery-stack" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-subagent-mastery-stack" />
 title: 'Bộ Kỹ Năng Làm Chủ Subagent Claude Code 2026: Từ Một Cuộ...
 description: 'Bộ học tập + công cụ hoàn chỉnh để làm chủ quy trình đa agent của Claude Code: 5 mô hình subagent + cách viết agent tùy chỉnh + khung quyết định skill/subagent/MCP + các kiểu thất bại khi điều phối + cách viết skill. Lộ trình đầy đủ từ lập trình đơn luồng đến một pipeline agent đáng tin cậy.'
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-30 00:00:00+08:00
-tech_stack:
-  - Claude Code
+tech_stack: - Claude Code
   - Agent SDK
   - MCP
   - Bash
@@ -30,10 +24,8 @@ featureImage: ''
 draft: false
 categories: [collections]
 tags: ['claude code', subagents, 'multi-agent', 'agent sdk', mcp, stack, collection]
-aliases:
-  - /posts/claude-code-subagent-mastery-stack/
-faqs:
-  - q: 'Năm mẫu subagent trong Claude Code là gì?'
+aliases: - /posts/claude-code-subagent-mastery-stack/
+faqs: - q: 'Năm mẫu subagent trong Claude Code là gì?'
     a: 'Năm mẫu bao gồm: parallel research fan-out, worktree isolation, specialist delegation, context protection và pipeline orchestration. Chúng tạo thành lớp nền tảng của multi-agent workflow, trong đó parallel fan-out là điểm khởi đầu có ít ma sát nhất.'
   - q: 'Làm thế nào để quyết định giữa skill, subagent hay MCP server trong Claude Code?'
     a: 'Sử dụng framework ba trục dựa trên thứ bạn đang thiếu: viết skill khi thiếu kiến thức, tạo subagent khi thiếu context, và xây dựng MCP server khi thiếu năng lực. Hầu hết các nhóm đều lạm dụng MCP server trong khi một file markdown đơn giản cũng có thể mang lại kết quả tương đương.'
@@ -45,7 +37,6 @@ faqs:
     a: 'Năm failure mode đã được ghi chép là: trust trap, context bleed, runaway fan-out, silent truncation và orphaned worktree. Nghiên cứu những điều này là yếu tố phân biệt một bản demo hoạt động được với một pipeline sẵn sàng cho môi trường production.'
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/claude-code-subagent-mastery-stack/ -->
 # Bộ Kỹ Năng Làm Chủ Subagent Claude Code 2026: Từ Một Cuộc Hội Thoại Đến Một Hội Đồng Agent Phối Hợp Nhịp Nhàng
 
 
@@ -86,9 +77,7 @@ Các bài blog rải rác dạy bạn *rằng* subagent tồn tại. Bộ kỹ n
 
 ## Vượt Qua Việc Làm Chủ: Chọn Nền Tảng Để Xây Dựng
 
-Một khi bạn đã thấm nhuần các mô hình ở trên, câu hỏi tiếp theo là *nên* gắn bó với công cụ nào. Chúng tôi đã viết một bộ ba bài quyết định để trả lời chính xác điều đó:
-
-- **[Subagents vs LangGraph/CrewAI/AutoGen](/vi/resources/llm-frameworks/claude-code-subagents-vs-langgraph-crewai-autogen-2026/)** — khi nào subagents tích hợp sẵn là đủ, và khi nào nên nâng cấp lên một framework độc lập.
+Một khi bạn đã thấm nhuần các mô hình ở trên, câu hỏi tiếp theo là *nên* gắn bó với công cụ nào. Chúng tôi đã viết một bộ ba bài quyết định để trả lời chính xác điều đó: - **[Subagents vs LangGraph/CrewAI/AutoGen](/vi/resources/llm-frameworks/claude-code-subagents-vs-langgraph-crewai-autogen-2026/)** — khi nào subagents tích hợp sẵn là đủ, và khi nào nên nâng cấp lên một framework độc lập.
 - **[Claude Agent SDK vs OpenAI Agents SDK](/vi/vs/claude-agent-sdk-vs-openai-agents-sdk/)** — hai bộ agent SDK hàng đầu đối đầu trực tiếp: hooks+subagents so với handoffs+guardrails.
 - **[Claude Code vs Cline](/vi/vs/claude-code-vs-cline/)** — quyền tự chủ so với khả năng kiểm soát, dành cho chính công cụ lập trình agentic.
 
@@ -99,7 +88,6 @@ Hãy làm chủ các mô hình trước; rồi dùng bộ ba bài này để quy
 Đừng học subagent như năm mánh khóe rời rạc. Hãy đi qua bộ kỹ năng theo thứ tự — mô hình → viết agent → khung quyết định → skill → các kiểu thất bại — và bạn sẽ tốt nghiệp từ "một cuộc hội thoại lớn" lên một hội đồng agent phối hợp nhịp nhàng mà bạn thực sự có thể tin tưởng trong production. Hãy bắt đầu với Mô Hình 1 ngay hôm nay; xếp chồng phần còn lại khi các phiên làm việc dài ra và các tác vụ nặng dần lên.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -127,25 +115,20 @@ Hãy làm chủ các mô hình trước; rồi dùng bộ ba bài này để quy
 
 ## Why This Matters
 
-Understanding bộ kỹ năng làm chủ subagent claude code 2026: từ một cuộc hội thoại đến một hội đồng agent phối hợp nhịp nhàng is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding bộ kỹ năng làm chủ subagent claude code 2026: từ một cuộc hội thoại đến một hội đồng agent phối hợp nhịp nhàng is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

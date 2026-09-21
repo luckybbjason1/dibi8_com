@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/wifi-forge-safe-wifi-hacking-lab" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/wifi-forge-safe-wifi-hacking-lab" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/wifi-forge-safe-wifi-hacking-lab" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/wifi-forge-safe-wifi-hacking-lab" />
 title: "WiFi-Forge — Sandbox An Toàn và Hợp Pháp Để Học Hack WiFi"
 description: "WiFi Forge: phòng thí nghiệm hack WiFi an toàn cho nghiên cứu bảo mật. Học kiểm thử xâm nhập, bảo mật không dây và hack đạo đức trong môi trường được kiểm soát."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Python
+tech_stack: - Python
 application_domain: "Ai Tools"
 source_version: ""
 licensing_model: "Open Source"
@@ -24,10 +18,8 @@ maintainer: "blackhillsinfosec"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases:
-- /vi/posts/wifi-forge-safe-wifi-hacking-lab/
-faqs:
-  - q: 'WiFi-Forge là gì?'
+aliases: - /vi/posts/wifi-forge-safe-wifi-hacking-lab/
+faqs: - q: 'WiFi-Forge là gì?'
     a: 'WiFi-Forge là dự án mã nguồn mở của Black Hills InfoSec, cung cấp môi trường sandbox an toàn và hợp pháp để luyện tập các kỹ thuật tấn công không dây. Nó chạy một phòng lab ảo ngay trên laptop của bạn, không cần mua phần cứng và không có rủi ro đụng chạm vào mạng của người khác.'
   - q: 'Tôi có cần adapter WiFi đặc biệt để học tấn công WiFi với WiFi-Forge không?'
     a: 'Không. WiFi-Forge mô phỏng toàn bộ access point, station và sóng vô tuyến bằng phần mềm, hoàn toàn loại bỏ nhu cầu dùng USB adapter hỗ trợ monitor mode. Bạn chỉ cần card thật khi muốn tìm hiểu lớp vật lý RF, phần mà môi trường mô phỏng này không đề cập đến.'
@@ -39,7 +31,6 @@ faqs:
     a: 'Bạn cần Linux (Ubuntu hoặc Debian là tốt nhất), Python 3 và quyền root vì mininet-wifi sử dụng các tính năng của kernel. Sau khi clone repo, chạy sudo ./install.sh để cài đặt các dependency, rồi chạy sudo python3 wififorge.py để khởi động.'
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/wifi-forge-safe-wifi-hacking-lab/ -->
 # WiFi-Forge — Sandbox An Toàn và Hợp Pháp Để Học Hack WiFi
 
 {</* resource-info */>}
@@ -52,9 +43,7 @@ Nếu bạn từng thử học các cuộc tấn công WiFi theo cách truyền 
 
 ## Vì sao tồn tại —— ba cái bẫy khi học WiFi
 
-Học WiFi truyền thống có ba điểm khiến nhiều người bỏ cuộc:
-
-1. **Hên xui phần cứng.** Không phải USB adapter nào cũng hỗ trợ monitor + injection sạch sẽ. Những cái đáng tin (Alfa AWUS036, Panda PAU09, v.v.) tốn 30–60 USD, và một lần chỉ dùng được một cái.
+Học WiFi truyền thống có ba điểm khiến nhiều người bỏ cuộc: 1. **Hên xui phần cứng.** Không phải USB adapter nào cũng hỗ trợ monitor + injection sạch sẽ. Những cái đáng tin (Alfa AWUS036, Panda PAU09, v.v.) tốn 30–60 USD, và một lần chỉ dùng được một cái.
 2. **Vùng xám pháp lý.** Ở hầu hết các nước, chạm vào bất kỳ mạng nào bạn không sở hữu —— kể cả nghe lén bị động —— đều là phạm pháp. *"Tôi chỉ sniff thôi"* không phải lý do biện hộ được.
 3. **Chi phí reset.** Phần cứng thật không reset bằng một lệnh. Bạn không thể `git checkout` để hoàn tác cấu hình hỏng.
 
@@ -70,9 +59,7 @@ WiFi-Forge thêm vào trên đó: các topology dựng sẵn, các kịch bản 
 
 ![WiFi-Forge đang chạy](https://github.com/her3ticAVI/MiniNet-framework/raw/main/images/wififorge-running.png)
 
-Các lab có sẵn bao phủ những loại tấn công WiFi phổ biến:
-
-- **Bắt handshake WPA/WPA2** —— deauth một client, bắt 4-way handshake, crack offline bằng hashcat hoặc aircrack-ng
+Các lab có sẵn bao phủ những loại tấn công WiFi phổ biến: - **Bắt handshake WPA/WPA2** —— deauth một client, bắt 4-way handshake, crack offline bằng hashcat hoặc aircrack-ng
 - **Tấn công WPS** —— brute-force PIN bằng Reaver, tấn công Pixie-Dust
 - **Evil-twin / Karma** —— dựng AP giả mạo SSID mục tiêu, xem các client tự động kết nối
 - **Deauth flood** —— đá client khỏi các AP hợp pháp
@@ -118,9 +105,7 @@ Loại dự án này bắt buộc phải nói thẳng: **chỉ sử dụng các 
 
 ## Công Cụ Đề Xuất
 
-Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
+Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
 - **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Proxy Anthropic Claude / OpenAI / DeepSeek API. Hầu hết AI tool ở trên (chatbot, code gen, translation, search, v.v.) cần LLM API key — proxy này cho access ổn định top model với ~30% giá chính thức.
 - **{{< aff "hostinger" "footer-cta-legacy" "Hostinger" >}}** — Lựa chọn VPS giá tốt cho thị trường Việt Nam.
 
@@ -128,7 +113,6 @@ Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -156,25 +140,20 @@ Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
 
 ## Why This Matters
 
-Understanding wifi-forge — sandbox an toàn và hợp pháp để học hack wifi is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding wifi-forge — sandbox an toàn và hợp pháp để học hack wifi is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/hunyuan-video" />
 title: 'HunyuanVideo: 12.1K+ Stars — Production Deployment Guide...
 description: 'HunyuanVideo (HYV) is an open-source video generation framework by Tencent with 13B parameters. Supports ComfyUI, Diffusers, Gradio API. Covers Docker setup, FP8 quantization, multi-GPU inference, and production hardening.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: ['video-generation', 'diffusion-transformer', tencent, hunyuanvideo, comfyui, docker, fp8, multimodal]
-aliases:
-- /posts/hunyuan-video/
+aliases: - /posts/hunyuan-video/-
 ---
-
 {{</* resource-info */>}}
 
 A video generation model that needs 60GB of VRAM for a 5-second clip at 720p is not a toy — it is infrastructure. Tencent's HunyuanVideo, a 13-billion-parameter diffusion transformer for video generation, has accumulated over 12,100 GitHub stars and become a go-to choice for teams that need cinematic-quality video synthesis on self-hosted hardware. This hunyuanvideo tutorial walks through the complete production setup: from a hunyuanvideo Docker deployment to FP8 quantization, multi-GPU parallel inference, ComfyUI integration, and the monitoring you need when serving video generation production workloads at scale.
@@ -36,9 +32,7 @@ HunyuanVideo is a systematic framework for large video generation models develop
 
 ## How HunyuanVideo Works
 
-The architecture follows a latent diffusion pipeline with three major components:
-
-![HunyuanVideo Overall Architecture](https://raw.githubusercontent.com/Tencent-Hunyuan/HunyuanVideo/main/assets/backbone.png)
+The architecture follows a latent diffusion pipeline with three major components: ![HunyuanVideo Overall Architecture](https://raw.githubusercontent.com/Tencent-Hunyuan/HunyuanVideo/main/assets/backbone.png)
 
 **Causal 3D VAE** compresses input video into a latent space with 4x temporal and 8x spatial compression ratios. This reduces the token count fed into the transformer, enabling higher-resolution generation without proportional compute growth.
 
@@ -142,9 +136,7 @@ The `--use-cpu-offload` flag is essential for GPUs with less than 80GB VRAM. It 
 
 ### ComfyUI (Native Nodes)
 
-ComfyUI added native HunyuanVideo support in early 2025. Download the repackaged model files from Comfy-Org:
-
-```bash
+ComfyUI added native HunyuanVideo support in early 2025. Download the repackaged model files from Comfy-Org: ```bash
 # Model files go to ComfyUI/models/
 # - text_encoders/clip_l.safetensors
 # - text_encoders/llava_llama3_vision.safetensors
@@ -156,9 +148,7 @@ Load the official workflow by dragging the JSON into ComfyUI. The key nodes are 
 
 ### Kijai's HunyuanVideoWrapper (Advanced)
 
-For FP8 inference, video-to-video, and image-to-video, use the community wrapper:
-
-```bash
+For FP8 inference, video-to-video, and image-to-video, use the community wrapper: ```bash
 # Install via ComfyUI Manager or git
 cd ComfyUI/custom_nodes
 git clone https://github.com/kijai/ComfyUI-HunyuanVideoWrapper.git
@@ -221,16 +211,12 @@ The Gradio UI exposes parameters for prompt, resolution, frame count, CFG scale,
 
 ### DigitalOcean GPU Droplets
 
-For teams without local GPU hardware, DigitalOcean GPU Droplets provide NVIDIA H100 and A100 instances on demand. Deploy HunyuanVideo with the following cloud-init:
-
-```yaml
+For teams without local GPU hardware, DigitalOcean GPU Droplets provide NVIDIA H100 and A100 instances on demand. Deploy HunyuanVideo with the following cloud-init: ```yaml
 #cloud-config
 package_update: true
-packages:
-  - docker.io
+packages: - docker.io
   - nvidia-container-toolkit
-runcmd:
-  - systemctl restart docker
+runcmd: - systemctl restart docker
   - docker pull hunyuanvideo/hunyuanvideo:cuda_12
   - docker run -d --gpus all --name hunyuan \
       -p 8081:8081 -v /mnt/models:/models \
@@ -240,10 +226,18 @@ runcmd:
 
 ## Benchmarks / Real-World Use Cases
 
-Community benchmarks from RTX 4090 and datacenter GPU testing (March 2026):
-
-| Model | Params | VRAM (720p) | Gen Time (5s, RTX 4090) | Aesthetic Quality |
-|---|---|---|---|---|
+Community benchmarks from RTX 4090 and datacenter GPU testing (March 2026): | Model | Params | VRAM (720p) | Gen Time (5s, RTX 4090) | Aesthetic Quality |
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | HunyuanVideo (original) | 13B | ~60GB | ~5:50 | 8.8/10 |
 | HunyuanVideo-1.5 | 8.3B | ~24GB (INT8) | ~3:20 | 8.5/10 |
 | Wan 2.2 | 14B | ~48GB | ~4:20 | 8.5/10 |
@@ -288,9 +282,7 @@ The `--use-fp8` flag activates the FP8 pipeline in `hyvideo/modules/fp8_optimiza
 
 ### Multi-GPU Parallel Inference with xDiT
 
-For production workloads, xDiT provides Unified Sequence Parallelism that scales across multiple GPUs:
-
-```bash
+For production workloads, xDiT provides Unified Sequence Parallelism that scales across multiple GPUs: ```bash
 # 8-GPU parallel inference
 torchrun --nproc_per_node=8 sample_video.py \
     --video-size 1280 720 \
@@ -304,10 +296,14 @@ torchrun --nproc_per_node=8 sample_video.py \
     --save-path ./results
 ```
 
-Latency scaling on 1280x720, 129 frames, 50 steps:
-
-| GPUs | Latency (sec) | Speedup |
-|---|---|---|
+Latency scaling on 1280x720, 129 frames, 50 steps: | GPUs | Latency (sec) | Speedup |
+|
+---
+|
+---
+|
+---
+|
 | 1 | 1904 | 1.00x |
 | 2 | 934 | 2.04x |
 | 4 | 514 | 3.70x |
@@ -329,9 +325,7 @@ python gradio_server.py \
   --queue-timeout 300
 ```
 
-Behind an Nginx reverse proxy with rate limiting:
-
-```nginx
+Behind an Nginx reverse proxy with rate limiting: ```nginx
 upstream hunyuan {
     server 127.0.0.1:8081;
     keepalive 32;
@@ -368,8 +362,7 @@ inference_duration = Histogram(hunyuan_inference_seconds, 'Inference latency')
 queue_depth = Gauge(hunyuan_queue_depth, 'Current queue depth')
 
 @inference_duration.time()
-def generate_video(prompt, height, width, frames, steps):
-    inference_count.inc()
+def generate_video(prompt, height, width, frames, steps): inference_count.inc()
     # ... existing inference logic
     return video
 
@@ -387,7 +380,17 @@ start_http_server(9090)
 ## Comparison with Alternatives
 
 | Feature | HunyuanVideo | Wan 2.2 | CogVideoX-5B | Open-Sora |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Parameters | 13B (8.3B in 1.5) | 14B | 5B | 1.1B - 7B |
 | Max resolution | 1080p (via SR) | 1080p | 720p | 720p |
 | Min VRAM (720p) | 24GB (INT8) | 24GB | 12GB | 16GB |
@@ -406,9 +409,7 @@ In the hunyuanvideo vs wan debate, HunyuanVideo's primary differentiator is its 
 
 ## Limitations / Honest Assessment
 
-HunyuanVideo is not the right tool for every video generation task. Here is what it does poorly:
-
-**Speed**: Even with FP8 and SSTA, HunyuanVideo is slower than Wan 2.2 and significantly slower than LTX-Video. If your workflow requires rapid iteration (hundreds of clips per hour), LTX-Video or commercial APIs are better fits.
+HunyuanVideo is not the right tool for every video generation task. Here is what it does poorly: **Speed**: Even with FP8 and SSTA, HunyuanVideo is slower than Wan 2.2 and significantly slower than LTX-Video. If your workflow requires rapid iteration (hundreds of clips per hour), LTX-Video or commercial APIs are better fits.
 
 **VRAM requirements**: The original 13B model needs 60GB for 720p generation. Only the 1.5 release with INT8 quantization brings this down to 24GB. Teams without A100, H100, or RTX 4090-class hardware should consider CogVideoX or cloud inference.
 
@@ -450,9 +451,7 @@ A: The Tencent team maintains a Discord server and WeChat group linked from the 
 
 HunyuanVideo is a production-grade video generation framework that bridges the gap between closed-source commercial APIs and open-source accessibility. With the 1.5 release bringing 8.3B parameters, SSTA attention, and consumer-GPU compatibility, it has become a practical choice for studios and indie creators alike.
 
-Action items to get started today:
-
-1. Clone the repo and run the Docker image on a GPU instance — the official CUDA 12 image is the fastest path.
+Action items to get started today: 1. Clone the repo and run the Docker image on a GPU instance — the official CUDA 12 image is the fastest path.
 2. Download the FP8 weights and run your first 720p generation with `sample_video.py`.
 3. Integrate with ComfyUI using Kijai's wrapper for visual workflow editing.
 4. Join the [dibi8 Telegram group](https://t.me/dibi8Channel) to discuss deployment strategies and share your generated videos with the community.
@@ -463,9 +462,7 @@ Action items to get started today:
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -484,7 +481,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - DigitalOcean GPU Droplets: https://www.digitalocean.com/products/gpu-droplets
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -510,8 +506,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [nvidia-cosmos-world-models-platform-2026](hunyuan-video)
@@ -520,6 +516,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [comfyui-workflows-complete-guide](hunyuan-video)
 - [comfyui-workflows-complete-guide](hunyuan-video)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/lazydocker" />
 title: 'LazyDocker: 51,092 GitHub Stars — Complete Terminal Dock...
 description: 'LazyDocker (LD) is a terminal UI for managing Docker containers, images, volumes, and logs. Compatible with Docker, Docker Compose, Go, and Terminal. Covers installation, keybindings, configuration, and production hardening.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [lazydocker, docker, 'terminal-ui', devops, containers, 'cli-tools', 'docker-compose', tui]
-aliases:
-- /posts/lazydocker/
+aliases: - /posts/lazydocker/-
 ---
-
 {{</* resource-info */>}}
 
 Managing Docker from the command line means memorizing dozens of flags, piping output through `grep`, and constantly switching between `docker ps`, `docker logs`, and `docker exec`. For developers who spend hours in the terminal, this friction adds up. LazyDocker solves this with a single binary that wraps your Docker workflow into a keyboard-driven terminal interface — no browser, no daemon, no setup overhead. With over 51,000 GitHub stars and a thriving ecosystem, it has become the default TUI tool for Docker management in 2026.
@@ -68,9 +64,7 @@ LazyDocker follows a simple architecture: the binary reads from and writes to th
 └─────────────────────────────────────────┘
 ```
 
-Core concepts you need to understand:
-
-- **Panels**: The left side shows categorized lists (Containers, Services, Images, Volumes, Networks). The right side shows details, logs, or stats for the selected item.
+Core concepts you need to understand: - **Panels**: The left side shows categorized lists (Containers, Services, Images, Volumes, Networks). The right side shows details, logs, or stats for the selected item.
 - **Context-aware actions**: The same key performs different actions depending on which panel is focused. Pressing `d` on a container removes it; pressing `d` on an image removes the image.
 - **Docker Compose integration**: When launched inside a directory with a `docker-compose.yml` file, LazyDocker groups services by project and adds Compose-specific actions like `up` and `down`.
 
@@ -172,7 +166,11 @@ LazyDocker's efficiency comes from its vim-like keybindings. Navigation uses arr
 ### Global Navigation
 
 | Key | Action |
-|-----|--------|
+|
+---
+|
+---
+|
 | `Tab` / `Shift+Tab` | Cycle between left panels |
 | `↑` `↓` / `k` `j` | Navigate items in a panel |
 | `Enter` | Focus main panel / select |
@@ -184,7 +182,11 @@ LazyDocker's efficiency comes from its vim-like keybindings. Navigation uses arr
 ### Container Actions
 
 | Key | Action |
-|-----|--------|
+|
+---
+|
+---
+|
 | `r` | Restart container |
 | `s` | Stop container |
 | `d` | Remove container (with confirmation) |
@@ -201,7 +203,11 @@ LazyDocker's efficiency comes from its vim-like keybindings. Navigation uses arr
 ### Docker Compose Service Actions
 
 | Key | Action |
-|-----|--------|
+|
+---
+|
+---
+|
 | `u` | Up service |
 | `U` | Up entire project |
 | `d` | Remove service containers |
@@ -215,7 +221,13 @@ LazyDocker's efficiency comes from its vim-like keybindings. Navigation uses arr
 ### Image & Volume Actions
 
 | Key | Action (Images) | Action (Volumes) |
-|-----|-----------------|------------------|
+|
+---
+|
+---
+|
+---
+|
 | `d` | Remove image | Remove volume |
 | `p` | Pull latest image | — |
 | `Enter` | Inspect image details | Inspect volume |
@@ -223,7 +235,11 @@ LazyDocker's efficiency comes from its vim-like keybindings. Navigation uses arr
 ### Log Navigation
 
 | Key | Action |
-|-----|--------|
+|
+---
+|
+---
+|
 | `PageUp` / `PageDown` | Scroll through logs |
 | `g` | Jump to beginning of logs |
 | `G` | Jump to end of logs |
@@ -238,7 +254,11 @@ LazyDocker stores configuration in platform-specific paths. Press `o` in the Pro
 ### Config File Locations
 
 | OS | Path |
-|----|------|
+|
+---
+|
+---
+|
 | Linux | `~/.config/lazydocker/config.yml` |
 | macOS | `~/Library/Application Support/jesseduffield/lazydocker/config.yml` |
 | Windows | `C:\Users\<User>\AppData\Roaming\lazydocker\config.yml` |
@@ -247,21 +267,14 @@ LazyDocker stores configuration in platform-specific paths. Press `o` in the Pro
 
 ```yaml
 # ~/.config/lazydocker/config.yml
-gui:
-  language: "en"  # auto | en | fr | de | es | pl | nl | tr | zh
+gui: language: "en"  # auto | en | fr | de | es | pl | nl | tr | zh
   border: "rounded"  # rounded | single | double | hidden
-  theme:
-    activeBorderColor:
-      - cyan
+  theme: activeBorderColor: - cyan
       - bold
-    inactiveBorderColor:
-      - white
-    selectedLineBgColor:
-      - black
-    selectedLineFgColor:
-      - yellow
-    optionsTextColor:
-      - blue
+    inactiveBorderColor: - white
+    selectedLineBgColor: - black
+    selectedLineFgColor: - yellow
+    optionsTextColor: - blue
   scrollHeight: 2
   sidePanelWidth: 0.333
   screenMode: "normal"  # normal | half | fullscreen
@@ -270,20 +283,15 @@ gui:
 ### Log Display Settings
 
 ```yaml
-logs:
-  timestamps: true
+logs: timestamps: true
   since: "60m"    # Show logs from last 60 minutes; '' = all time
   tail: "200"     # Number of lines to display
 ```
 
 ### Custom Commands
 
-Add your own commands accessible via the `c` key:
-
-```yaml
-customCommands:
-  containers:
-    - name: bash
+Add your own commands accessible via the `c` key: ```yaml
+customCommands: containers: - name: bash
       attach: true
       command: "docker exec -it {{ .Container.ID }} bash"
       serviceNames: []
@@ -296,11 +304,8 @@ Available template variables: `{{ .Container.ID }}`, `{{ .Container.Name }}`, `{
 
 ### Podman Support
 
-LazyDocker works with Podman by swapping the command templates:
-
-```yaml
-commandTemplates:
-  docker: "podman"
+LazyDocker works with Podman by swapping the command templates: ```yaml
+commandTemplates: docker: "podman"
   dockerCompose: "podman-compose"
   containerInspect: "podman inspect {{ .Container.ID }}"
 ```
@@ -319,17 +324,14 @@ cd ~/projects/my-app
 lazydocker
 ```
 
-Within the Services panel:
-- Press `u` to bring up a single service
+Within the Services panel: - Press `u` to bring up a single service
 - Press `U` to start the entire project
 - Press `D` to tear down the full stack
 - Press `E` to exec into a service container
 
 ### Tmux Integration
 
-For tmux users, add a keybinding to launch LazyDocker in a popup or split:
-
-```bash
+For tmux users, add a keybinding to launch LazyDocker in a popup or split: ```bash
 # ~/.tmux.conf
 # Open LazyDocker in a popup window
 bind D display-popup -E -w 90% -h 90% "lazydocker"
@@ -338,9 +340,7 @@ bind D display-popup -E -w 90% -h 90% "lazydocker"
 bind d split-window -h "lazydocker"
 ```
 
-Reload and use `Ctrl+b D` to open:
-
-```bash
+Reload and use `Ctrl+b D` to open: ```bash
 tmux source-file ~/.tmux.conf
 ```
 
@@ -360,9 +360,7 @@ source ~/.bashrc
 
 ### VS Code Integration
 
-Add a VS Code task to launch LazyDocker in the integrated terminal:
-
-```json
+Add a VS Code task to launch LazyDocker in the integrated terminal: ```json
 // .vscode/tasks.json
 {
   "version": "2.0.0",
@@ -385,17 +383,12 @@ Add a VS Code task to launch LazyDocker in the integrated terminal:
 
 ### CI/CD Pipeline Integration
 
-LazyDocker works well in GitHub Actions for debugging container states during builds:
-
-```yaml
+LazyDocker works well in GitHub Actions for debugging container states during builds: ```yaml
 # .github/workflows/debug.yml
 name: Debug Containers
 on: workflow_dispatch
-jobs:
-  debug:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: debug: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
 
       - name: Install LazyDocker
         run: |
@@ -419,7 +412,17 @@ jobs:
 LazyDocker adds virtually no resource overhead because it runs as an ephemeral client process — not a persistent daemon.
 
 | Scenario | Binary Size | RAM (running) | Startup Time | Background Process |
-|----------|------------|---------------|--------------|-------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | LazyDocker | ~15 MB | ~20 MB | <200 ms | None |
 | Docker Desktop | ~1.5 GB | ~400-800 MB | 10-30 s | Yes (VM) |
 | Portainer CE | ~80 MB image | ~100-200 MB | 5-10 s | Yes (container) |
@@ -440,9 +443,7 @@ A DevOps engineer uses LazyDocker in GitHub Actions to capture container state a
 
 ### Running on Remote Hosts via SSH
 
-LazyDocker does not natively support remote Docker hosts, but you can forward the Docker socket over SSH:
-
-```bash
+LazyDocker does not natively support remote Docker hosts, but you can forward the Docker socket over SSH: ```bash
 # Forward remote Docker socket to local machine
 ssh -nNT -L /tmp/docker_remote.sock:/var/run/docker.sock user@remote-server &
 
@@ -455,9 +456,7 @@ kill %1
 rm /tmp/docker_remote.sock
 ```
 
-Alternatively, use SSH context directly:
-
-```bash
+Alternatively, use SSH context directly: ```bash
 # Create Docker context for remote host
 docker context create remote --docker "host=ssh://user@remote-server"
 docker context use remote
@@ -509,9 +508,7 @@ Bind this in LazyDocker via custom commands for one-key access.
 
 ### Monitoring Integration
 
-Export LazyDocker stats to external monitoring by piping `docker stats` to Prometheus Node Exporter textfile collector:
-
-```bash
+Export LazyDocker stats to external monitoring by piping `docker stats` to Prometheus Node Exporter textfile collector: ```bash
 #!/bin/bash
 # cron job every 60 seconds
 while true; do
@@ -525,7 +522,17 @@ done
 ## Comparison with Alternatives
 
 | Feature | LazyDocker | Docker Desktop | Portainer CE | Rancher |
-|---------|------------|----------------|--------------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Interface | Terminal TUI | Native desktop GUI | Web GUI | Web GUI |
 | Install size | ~15 MB | ~1.5 GB | ~80 MB image | ~300 MB image |
 | RAM overhead | ~20 MB (ephemeral) | ~400-800 MB | ~100-200 MB | ~500 MB+ |
@@ -541,9 +548,7 @@ done
 
 ## Limitations / Honest Assessment
 
-LazyDocker is not the right tool for every situation. Here are the constraints:
-
-- **No multi-host management**: You cannot manage multiple Docker hosts from a single LazyDocker instance. For that, use Portainer with agents or Rancher.
+LazyDocker is not the right tool for every situation. Here are the constraints: - **No multi-host management**: You cannot manage multiple Docker hosts from a single LazyDocker instance. For that, use Portainer with agents or Rancher.
 - **No web interface**: LazyDocker requires terminal access. If you need to manage containers from a phone or tablet, Portainer's responsive web UI is the better choice.
 - **No RBAC or user management**: LazyDocker inherits your OS user's Docker permissions. There is no concept of teams, roles, or audit trails.
 - **No Kubernetes support**: LazyDocker handles Docker and Docker Compose only. For Kubernetes workloads, use `k9s`, Rancher, or `kubectl` directly.
@@ -599,9 +604,7 @@ Join the [dibi8 Telegram community](https://t.me/dibi8_chat) to share your LazyD
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -618,7 +621,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [LazyDocker Podman Extension](https://github.com/szchan/lazydocker-podman)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -644,8 +646,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [apple-container](lazydocker)
@@ -654,6 +656,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](lazydocker)
 - [moneyprinterturbo-one-click-ai-video-generator](lazydocker)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

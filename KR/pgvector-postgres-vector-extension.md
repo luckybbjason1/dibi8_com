@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/pgvector-postgres-vector-extension" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/pgvector-postgres-vector-extension" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/pgvector-postgres-vector-extension" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/pgvector-postgres-vector-extension" />
 title: 'pgvector 2026: PostgreSQL을 고성능 벡터 데이터베이스로 전환 — 설치, 튜닝 및 ...
 description: 'pgvector 0.8.2 프로덕션 가이드: HNSW/IVFFlat 인덱스, 벡터 유사도 검색, 성능 튜닝, LangChain 및 LlamaIndex와의 RAG 통합.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: [pgvector, postgresql, '벡터-데이터베이스', hnsw, ann, rag, '유사도-검색', '전문-검색']
-aliases:
-- /kr/posts/pgvector-postgres-vector-extension/
+aliases: - /kr/posts/pgvector-postgres-vector-extension/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/pgvector-postgres-vector-extension/ -->
 
 {{</* resource-info */>}}
 
@@ -63,9 +55,7 @@ aliases:
 
 ## pgvector 작동 방식: 인덱스 타입과 쿼리 계획
 
-pgvector는 서로 다른 트레이드오프를 가진 두 ANN 인덱스 타입을 지원한다:
-
-### HNSW (Hierarchical Navigable Small World)
+pgvector는 서로 다른 트레이드오프를 가진 두 ANN 인덱스 타입을 지원한다: ### HNSW (Hierarchical Navigable Small World)
 
 대부분의 워크로드에 대한 기본 선택이다. HNSW는 각 레이어가 이전 레이어의 부분집합인 다층 그래프를 구축한다. 쿼리 순회는 최상위 레이어에서 시작하여 가장 밀집된 그래프에 도달할 때까지 탐욕적으로 아래로 이동한다.
 
@@ -95,9 +85,7 @@ CREATE INDEX ON documents
 
 ### 거리 연산자
 
-pgvector는 세 가지 거리 연산자를 제공한다:
-
-| 연산자 | 설명 | 사용 사례 |
+pgvector는 세 가지 거리 연산자를 제공한다: | 연산자 | 설명 | 사용 사례 |
 |----------|-------------|----------|
 | `<->` | 유클리드 (L2) 거리 | 일반 유사성 (기본값) |
 | `<#>` | 음수 내적 | OpenAI 임베딩 |
@@ -148,8 +136,7 @@ psql -U postgres -d mydb -c "CREATE EXTENSION IF NOT EXISTS vector;"
 ### 옵션 C: Supabase (관리형)
 
 ```sql
--- pgvector는 Supabase에 사전 설치되어 있음. 활성화만 하면 됨:
-CREATE EXTENSION IF NOT EXISTS vector;
+-- pgvector는 Supabase에 사전 설치되어 있음. 활성화만 하면 됨: CREATE EXTENSION IF NOT EXISTS vector;
 
 -- 버전 확인
 SELECT extversion FROM pg_extension WHERE extname = vector;
@@ -321,9 +308,7 @@ LIMIT 10;
 
 ### 반정밀도 양자화 (halfvec)
 
-pgvector 0.8.2는 최소한의 리콜 손실로 **50% 스토리지 절감**을 위한 `halfvec` 타입을 지원한다:
-
-```sql
+pgvector 0.8.2는 최소한의 리콜 손실로 **50% 스토리지 절감**을 위한 `halfvec` 타입을 지원한다: ```sql
 -- 양자화된 스토리지를 위한 halfvec 컬럼 추가
 ALTER TABLE documents ADD COLUMN embedding_half halfvec(1536);
 
@@ -406,8 +391,7 @@ results = vector_store.similarity_search(
     k=5,
     filter={"source": "blog"}
 )
-for doc in results:
-    print(f"Content: {doc.page_content}")
+for doc in results: print(f"Content: {doc.page_content}")
 ```
 
 ### LlamaIndex + pgvector
@@ -457,14 +441,12 @@ import numpy as np
 client = OpenAI()
 conn = psycopg2.connect("dbname=vectordb user=postgres password=mysecretpassword host=localhost")
 
-def get_embedding(text: str) -> list[float]:
-    resp = client.embeddings.create(
+def get_embedding(text: str) -> list[float]: resp = client.embeddings.create(
         model="text-embedding-3-large", input=text, dimensions=1536
     )
     return resp.data[0].embedding
 
-def retrieve_documents(query: str, top_k: int = 5, tenant_id: int = 1):
-    query_vec = get_embedding(query)
+def retrieve_documents(query: str, top_k: int = 5, tenant_id: int = 1): query_vec = get_embedding(query)
     cur = conn.cursor()
     cur.execute("""
         SELECT title, content, embedding <=> %s::vector AS distance
@@ -476,8 +458,7 @@ def retrieve_documents(query: str, top_k: int = 5, tenant_id: int = 1):
     return cur.fetchall()
 
 # 전체 RAG 파이프라인
-def rag_query(user_question: str) -> str:
-    docs = retrieve_documents(user_question, top_k=5)
+def rag_query(user_question: str) -> str: docs = retrieve_documents(user_question, top_k=5)
     context = "\n\n".join([f"Title: {d[0]}\n{d[1]}" for d in docs])
     
     response = client.chat.completions.create(
@@ -559,17 +540,14 @@ conn_pool = pool.ThreadedConnectionPool(
     password="mysecretpassword"
 )
 
-def search_with_pool(query_vec, limit=10):
-    conn = conn_pool.getconn()
-    try:
-        cur = conn.cursor()
+def search_with_pool(query_vec, limit=10): conn = conn_pool.getconn()
+    try: cur = conn.cursor()
         cur.execute(
             "SELECT id, title FROM documents ORDER BY embedding <-> %s::vector LIMIT %s",
             (query_vec, limit)
         )
         return cur.fetchall()
-    finally:
-        conn_pool.putconn(conn)
+    finally: conn_pool.putconn(conn)
 ```
 
 ## 대안과의 비교
@@ -630,9 +608,7 @@ pgvector 0.8.2는 **PostgreSQL 14 ~ 18**을 지원한다. 프로덕션 배포에
 
 ### pgvector를 관리형 PostgreSQL 서비스와 함께 사용할 수 있나요?
 
-예. pgvector는 다음에서 사용 가능하다:
-
-- **Supabase** — 사전 설치됨, `CREATE EXTENSION vector;`만 실행하면 됨
+예. pgvector는 다음에서 사용 가능하다: - **Supabase** — 사전 설치됨, `CREATE EXTENSION vector;`만 실행하면 됨
 - **Neon** — 모든 플랜에서 지원, 묶티어 포함
 - **AWS RDS** — PostgreSQL 15+에서 사용 가능
 - **Google Cloud SQL** — PostgreSQL 15+에서 사용 가능
@@ -642,9 +618,7 @@ pgvector 0.8.2는 **PostgreSQL 14 ~ 18**을 지원한다. 프로덕션 배포에
 
 ### pgvector는 필터링된 벡터 검색을 지원하나요?
 
-예, 그리고 이것이 pgvector가 전용 벡터 데이터베이스보다 뛰어난 부분이다. 벡터 데이터가 PostgreSQL에 있기 때문에 벡터 유사성과 함께 모든 SQL `WHERE` 절을 적용할 수 있다:
-
-```sql
+예, 그리고 이것이 pgvector가 전용 벡터 데이터베이스보다 뛰어난 부분이다. 벡터 데이터가 PostgreSQL에 있기 때문에 벡터 유사성과 함께 모든 SQL `WHERE` 절을 적용할 수 있다: ```sql
 SELECT title, embedding <-> $1::vector AS distance
 FROM documents
 WHERE tenant_id = 42
@@ -658,9 +632,7 @@ PostgreSQL의 플래너는 HNSW 순회 중 `WHERE` 술어를 푸시다운하여 
 
 ### 내 워크로드에 맞게 HNSW를 어떻게 튜닝하나요?
 
-두 가지 핵심 파라미터:
-
-- `ef_construction` (기본값 64): 높을수록 = 인덱스 품질이 더 좋지만 빌드가 더 느림. 프로덕션 RAG의 경우 **128-256** 사용.
+두 가지 핵심 파라미터: - `ef_construction` (기본값 64): 높을수록 = 인덱스 품질이 더 좋지만 빌드가 더 느림. 프로덕션 RAG의 경우 **128-256** 사용.
 - `ef_search` (기본값 40): 높을수록 = 리콜이 더 좋지만 쿼리가 더 느림. 리콜을 벤치마크하고 **64-100**으로 설정.
 
 ```sql
@@ -699,9 +671,7 @@ pgvector 0.8.2는 이미 PostgreSQL을 실행 중인 팀을 위한 가장 실용
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -711,7 +681,6 @@ pgvector 0.8.2는 이미 PostgreSQL을 실행 중인 팀을 위한 가장 실용
 이 문서에는 클라우드 호스팅을 위한 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 및 관리형 PostgreSQL을 위한 [Supabase](https://supabase.com) 제휴 링크가 포함되어 있다. 우리 링크를 통해 가입하면 추가 비용 없이 커미션을 받는다. 우리는 자체 프로덕션 환경에서 사용하는 서비스만 추천한다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

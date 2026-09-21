@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/caveman" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/caveman" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/caveman" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/caveman" />
 title: "Caveman: Giảm 65% Token Claude Code — Tiết Kiệm Chi Phí ...
 description: "Hướng dẫn cài đặt và sử dụng Caveman skill cho Claude Code. Công cụ nén prompt thông minh giúp giảm 65% token usage, tiết kiệm chi phí API và tăng tốc độ phản hồi AI mà không làm giảm chất lượng kỹ thuật."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Docker
+tech_stack: - Docker
   - Go
   - JavaScript
 application_domain: "Ai Tools"
@@ -26,10 +20,8 @@ maintainer: "JuliusBrussee"
 last_maintained: "2026-05-12"
 featureImage: ""
 draft: false
-aliases:
-- /vi/posts/caveman/
-faqs:
-  - q: 'Caveman dành cho Claude Code là gì?'
+aliases: - /vi/posts/caveman/
+faqs: - q: 'Caveman dành cho Claude Code là gì?'
     a: 'Caveman là một skill của Claude Code, giúp Claude phản hồi bằng ngôn ngữ nén gọn, súc tích theo phong cách người tiền sử — bỏ qua các từ đệm, mạo từ và lời mở đầu xã giao. Trung bình giảm 65% token đầu ra mà không làm giảm độ chính xác kỹ thuật.'
   - q: 'Caveman giảm được bao nhiêu token?'
     a: 'Theo các benchmark có thể tái tạo trong repository, Caveman cắt giảm trung bình 65% token đầu ra, dao động từ 22% đến 87% tùy theo độ dài dòng của tác vụ gốc. Ví dụ: giải thích lỗi re-render của React giảm từ 1,180 xuống còn 159 token (tiết kiệm 87%).'
@@ -41,7 +33,6 @@ faqs:
     a: 'Caveman có ba cấp độ: Lite (loại bỏ từ đệm, giữ nguyên ngữ pháp), Full (chế độ mặc định, bỏ mạo từ, dùng câu rút gọn) và Ultra (nén tối đa kiểu điện tín). Ngoài ra còn có các lệnh phụ như /caveman-commit, /caveman-review, /caveman-stats và /caveman:compress để viết lại các file bộ nhớ như CLAUDE.md.'
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/caveman/ -->
 {</* resource-info */>}
 
 # Caveman: Giảm 65% Token Claude Code — Tiết Kiệm Chi Phí AI, Tăng Tốc Phản Hồi
@@ -56,9 +47,7 @@ Mỗi ngày, hàng triệu lập trình viên trên thế giới đang đốt ti
 
 Một nghiên cứu tháng 3/2026 từ arXiv (`arXiv:2604.00025`) chỉ ra rằng: **hạn chế độ dài phản hồi không chỉ giảm token, mà còn tăng độ chính xác lên 26 điểm phần trăm** trên một số benchmark. Nói cách khác — **ngắn gọn = đúng hơn**.
 
-**Caveman** ra đời từ chính insight này. Đây là một **Claude Code skill** mã nguồn mở (GitHub: `JuliusBrussee/caveman`, **57.003 stars**) với slogan đầy hài hước nhưng chính xác:
-
-> 🪨 *"why use many token when few token do trick"*
+**Caveman** ra đời từ chính insight này. Đây là một **Claude Code skill** mã nguồn mở (GitHub: `JuliusBrussee/caveman`, **57.003 stars**) với slogan đầy hài hước nhưng chính xác: > 🪨 *"why use many token when few token do trick"*
 
 Caveman không làm giảm khả năng suy nghĩ của AI. Nó chỉ làm **"miệng" AI nhỏ lại** — bỏ filler, giữ nguyên kỹ thuật. Kết quả: **giảm trung bình 65% output token**, phản hồi nhanh hơn ~3x, dễ đọc hơn, và tiết kiệm tiền API thực sự.
 
@@ -66,9 +55,7 @@ Caveman không làm giảm khả năng suy nghĩ của AI. Nó chỉ làm **"mi�
 
 ## Caveman là gì? — Bản chất của "Nói như người tiền sử"
 
-Caveman là một **prompt compression skill** cho Claude Code và hơn 30 agent AI khác. Nó hoạt động bằng cách:
-
-1. **Loại bỏ filler words**: "I would like to suggest that...", "It is important to note that...", "In my humble opinion..."
+Caveman là một **prompt compression skill** cho Claude Code và hơn 30 agent AI khác. Nó hoạt động bằng cách: 1. **Loại bỏ filler words**: "I would like to suggest that...", "It is important to note that...", "In my humble opinion..."
 2. **Rút gọn cấu trúc câu**: Bỏ articles (a, an, the), dùng fragments, mệnh lệnh trực tiếp
 3. **Giữ nguyên accuracy**: Code, URL, path, technical terms được bảo toàn byte-by-byte
 4. **Tối ưu theo cấp độ**: Lite → Full → Ultra, tùy mức độ nén bạn cần
@@ -85,9 +72,7 @@ Cấp độ được chọn sẽ **giữ nguyên cho đến khi bạn đổi ho�
 
 ### Chế độ Văn ngôn (文言文 Wenyan)
 
-Ngoài 3 cấp độ tiếng Anh, Caveman còn có chế độ **Văn ngôn** — ngôn ngữ viết cổ điển Trung Hoa, được coi là ngôn ngữ viết tiết kiệm token nhất mà con người từng phát minh:
-
-| Cấp độ | Lệnh | Mô tả |
+Ngoài 3 cấp độ tiếng Anh, Caveman còn có chế độ **Văn ngôn** — ngôn ngữ viết cổ điển Trung Hoa, được coi là ngôn ngữ viết tiết kiệm token nhất mà con người từng phát minh: | Cấp độ | Lệnh | Mô tả |
 |--------|------|-------|
 | Wenyan-Lite | `/caveman wenyan-lite` | Bán cổ điển, giữ ngữ pháp, bỏ filler |
 | Wenyan-Full | `/caveman wenyan` | Văn ngôn đầy đủ, ngắn gọn tối đa |
@@ -97,9 +82,7 @@ Ngoài 3 cấp độ tiếng Anh, Caveman còn có chế độ **Văn ngôn** �
 
 ## Bằng chứng thực tế: Benchmark từ Claude API
 
-Caveman không chỉ là lý thuyết. Dưới đây là số liệu token thực tế từ API Claude (có thể reproduce tại `benchmarks/` trong repo):
-
-| Tác vụ | Token thường | Token Caveman | Tiết kiệm |
+Caveman không chỉ là lý thuyết. Dưới đây là số liệu token thực tế từ API Claude (có thể reproduce tại `benchmarks/` trong repo): | Tác vụ | Token thường | Token Caveman | Tiết kiệm |
 |--------|-------------|---------------|-----------|
 | Giải thích React re-render bug | 1.180 | 159 | **87%** |
 | Sửa auth middleware token expiry | 704 | 121 | **83%** |
@@ -121,9 +104,7 @@ Caveman không chỉ là lý thuyết. Dưới đây là số liệu token thự
 
 ## Các Caveman Skill mở rộng
 
-Ngoài mode nén cơ bản, Caveman cung cấp nhiều skill chuyên biệt:
-
-| Skill | Chức năng |
+Ngoài mode nén cơ bản, Caveman cung cấp nhiều skill chuyên biệt: | Skill | Chức năng |
 |-------|-----------|
 | `/caveman-commit` | Commit message ngắn gọn. Conventional Commits, ≤50 ký tự subject. Nêu "tại sao" thay vì "cái gì" |
 | `/caveman-review` | Comment PR một dòng: `L42: 🔴 bug: user null. Add guard.` Không dài dòng |
@@ -189,9 +170,7 @@ Caveman cung cấp proxy MCP `caveman-shrink` (chạy qua `npx caveman-shrink`).
 
 ## Khoa học đằng sau Caveman: Tại sao ngắn gọn lại chính xác hơn?
 
-Paper tháng 3/2026 — **"Brevity Constraints Reverse Performance Hierarchies in Language Models"** (`arXiv:2604.00025`) — chỉ ra:
-
-- **Hạn chế độ dài phản hồi tăng độ chính xác 26 điểm %** trên một số benchmark
+Paper tháng 3/2026 — **"Brevity Constraints Reverse Performance Hierarchies in Language Models"** (`arXiv:2604.00025`) — chỉ ra: - **Hạn chế độ dài phản hồi tăng độ chính xác 26 điểm %** trên một số benchmark
 - **Hoàn toàn đảo ngược performance hierarchy** giữa các model
 - Model nhỏ hơn khi bị ép ngắn gọn có thể vượt model lớn hơn viết dài dòng
 
@@ -214,9 +193,7 @@ Paper tháng 3/2026 — **"Brevity Constraints Reverse Performance Hierarchies i
 
 ## Các công cụ và agent được hỗ trợ
 
-Caveman không chỉ dành cho Claude Code. Nó hỗ trợ **30+ agent và IDE**:
-
-- **Claude Code** (chính — có hooks, statusline, stats badge)
+Caveman không chỉ dành cho Claude Code. Nó hỗ trợ **30+ agent và IDE**: - **Claude Code** (chính — có hooks, statusline, stats badge)
 - **Cursor**, **Windsurf**, **Cline**, **Copilot**
 - **Gemini CLI**, **Codex**, **Continue**, **Kilo**, **Roo**
 - **Augment**, **Aider Desk**, **Devin**, **Goose**
@@ -306,9 +283,7 @@ Với **57.003 stars** trên GitHub và cộng đồng đang phát triển mạn
 
 ## Công Cụ Đề Xuất
 
-Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
+Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
 - **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Proxy Anthropic Claude / OpenAI / DeepSeek API. Hầu hết AI tool ở trên (chatbot, code gen, translation, search, v.v.) cần LLM API key — proxy này cho access ổn định top model với ~30% giá chính thức.
 - **{{< aff "hostinger" "footer-cta-legacy" "Hostinger" >}}** — Lựa chọn VPS giá tốt cho thị trường Việt Nam.
 
@@ -316,7 +291,6 @@ Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/vectara-rag-as-service-platform" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/vectara-rag-as-service-platform" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/vectara-rag-as-service-platform" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/vectara-rag-as-service-platform" />
 title: 'Vectara 2026: 90%+ 답변 정확도를 가진 RAG-as-a-Service 플랫폼 — API...
 description: '관리형 RAG 플랫폼 Vectara의 실전 가이드. 90%+ 정확도, Boomerang 검색, API 통합, 다국어 지원, 하이브리드 검색 및 프로덕션 벤치마크를 다룹니다.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: [vectara, rag, '벡터 검색', llm, 임베딩, boomerang, hhem, '할루시네이션 감지', '엔터프라이즈 ai']
-aliases:
-- /kr/posts/vectara-rag-as-service-platform/
+aliases: - /kr/posts/vectara-rag-as-service-platform/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/vectara-rag-as-service-platform/ -->
 
 {{</* resource-info */>}}
 
@@ -57,9 +49,7 @@ Vectara는 관리형 API를 통해 전체 검색-증강 생성 파이프라인�
 
 ## How Vectara Works
 
-Vectara의 아키텍처는 통합 API를 통해 노출되는 **6단계 RAG 파이프라인**이다:
-
-```
+Vectara의 아키텍처는 통합 API를 통해 노출되는 **6단계 RAG 파이프라인**이다: ```
 ┌─────────────────────────────────────────────────────────────┐
 │  1. 수용 (INGESTION)                                         │
 │     문서 → 텍스트 추출 → 표/이미지 파싱                       │
@@ -110,8 +100,7 @@ Vectara의 아키텍처는 통합 API를 통해 노출되는 **6단계 RAG 파�
 ### 1단계: 계정 생성 및 API 자격 증명 획득
 
 ```bash
-# 가입 후 콘솔에서 자격 증명을 확인:
-# - Customer ID
+# 가입 후 콘솔에서 자격 증명을 확인: # - Customer ID
 # - Corpus ID  
 # - API Key
 
@@ -187,16 +176,13 @@ response = client.query(
 
 print("Answer:", response.summary)
 print("\nSources:")
-for idx, result in enumerate(response.search_results, 1):
-    print(f"[{idx}] {result.text[:100]}... (score: {result.score:.3f})")
+for idx, result in enumerate(response.search_results, 1): print(f"[{idx}] {result.text[:100]}... (score: {result.score:.3f})")
 ```
 
-출력:
-```
+출력: ```
 Answer: The Vectara Query API uses OAuth 2.0 client credentials flow for authentication [1]. You need to obtain your client ID and secret from the Vectara Console [1]. The API accepts JSON payloads with three required fields: query, corpusKey, and numResults [2].
 
-Sources:
-[1] Authentication uses OAuth 2.0 client credentials flow... (score: 0.941)
+Sources: [1] Authentication uses OAuth 2.0 client credentials flow... (score: 0.941)
 [2] The Vectara Query API accepts JSON payloads... (score: 0.893)
 ```
 
@@ -208,9 +194,7 @@ from pathlib import Path
 
 # 디렉토리의 모든 PDF 일괄 업로드
 pdf_dir = Path("./documentation")
-for pdf_file in pdf_dir.glob("*.pdf"):
-    with open(pdf_file, "rb") as f:
-        client.upload_file(
+for pdf_file in pdf_dir.glob("*.pdf"): with open(pdf_file, "rb") as f: client.upload_file(
             corpus_id="your-corpus-id",
             file_content=f.read(),
             file_name=pdf_file.name,
@@ -227,9 +211,7 @@ print("Batch upload complete!")
 
 ### REST API 직접 통합
 
-공식 SDK가 없는 언어의 경우 REST API를 직접 사용:
-
-```bash
+공식 SDK가 없는 언어의 경우 REST API를 직접 사용: ```bash
 # 쿼리 엔드포인트
 curl -X POST "https://api.vectara.io/v1/query" \
   -H "x-api-key: ${VECTARA_API_KEY}" \
@@ -284,9 +266,7 @@ app.post("/api/rag", async (req, res) => {
 
 ### 메타데이터 필터링
 
-구조화된 메타데이터로 검색 결과를 정제:
-
-```python
+구조화된 메타데이터로 검색 결과를 정제: ```python
 # 메타데이터 필드로 필터링
 response = client.query(
     corpus_id="your-corpus-id",
@@ -307,9 +287,7 @@ response = client.query(
 
 ### 다국어 RAG
 
-Vectara의 Boomerang 모델은 교차 언어 검색을 기본적으로 처리:
-
-```python
+Vectara의 Boomerang 모델은 교차 언어 검색을 기본적으로 처리: ```python
 # 영어로 스페인어 문서에 대해 쿼리
 response = client.query(
     corpus_id="your-corpus-id",
@@ -329,9 +307,7 @@ response = client.query(
 
 ### 스트리밍 응답
 
-실시간 챗 인터페이스를 위해 스트리밍 사용:
-
-```python
+실시간 챗 인터페이스를 위해 스트리밍 사용: ```python
 import json
 
 # SSE 스트리밍으로 챗 애플리케이션 구현
@@ -343,18 +319,13 @@ response = client.query(
 )
 
 # 스트리밍 청크 처리
-for chunk in response:
-    if chunk.type == "search_result":
-        print(f"Source: {chunk.document_id}")
-    elif chunk.type == "generation":
-        print(chunk.text, end="", flush=True)  # 토큰 스트리밍
+for chunk in response: if chunk.type == "search_result": print(f"Source: {chunk.document_id}")
+    elif chunk.type == "generation": print(chunk.text, end="", flush=True)  # 토큰 스트리밍
 ```
 
 ### 하이브리드 검색 구성
 
-키워드와 의미 검색의 균형 조정:
-
-```python
+키워드와 의미 검색의 균형 조정: ```python
 # 하이브리드 검색 가중치 구성
 response = client.query(
     corpus_id="your-corpus-id",
@@ -409,9 +380,7 @@ response = client.query(
 
 ### 커스텀 재순위화
 
-도메인 특화 애플리케이션을 위해 결과 순서 미세 조정:
-
-```python
+도메인 특화 애플리케이션을 위해 결과 순서 미세 조정: ```python
 # 다양한 결과를 위한 MMR 재순위화
 response = client.query(
     corpus_id="your-corpus-id",
@@ -439,9 +408,7 @@ response = client.query(
 
 ### 문서 업데이트 및 버전 관리
 
-모든 것을 다시 인덱싱하지 않고 문서 변경 처리:
-
-```python
+모든 것을 다시 인덱싱하지 않고 문서 변경 처리: ```python
 # 특정 문서 업데이트
 document_update = {
     "documentId": "api-guide-v2",
@@ -464,9 +431,7 @@ client.index_document(
 
 ### 다중 코퍼스 쿼리
 
-여러 문서 모음을 동시에 검색:
-
-```python
+여러 문서 모음을 동시에 검색: ```python
 response = client.query(
     query="authentication timeout",
     corpus_keys=[
@@ -480,14 +445,11 @@ response = client.query(
 
 ### 대화 기록 구현
 
-여러 턴에 걸쳐 대화 맥락 유지:
-
-```python
+여러 턴에 걸쳐 대화 맥락 유지: ```python
 # 대화 기록 저장
 conversation = []
 
-def chat_turn(user_query: str) -> str:
-    global conversation
+def chat_turn(user_query: str) -> str: global conversation
     
     response = client.query(
         corpus_id="your-corpus-id",
@@ -631,9 +593,7 @@ Vectara 묣 티어는 **50MB 저장소**와 **월 10,000회 쿼리**를 포함�
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -643,7 +603,6 @@ Vectara 묣 티어는 **50MB 저장소**와 **월 10,000회 쿼리**를 포함�
 이 글에는 제휴 링크가 포함되어 있다. [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 링크를 통해 가입하면 추가 비용 없이 우리가 수수료를 받는다. 우리는 자체 배포에 사용하는 서비스만을 추천한다. Vectara는 신용카드 없이 묣 티어를 제공하며, 모든 수용 도구는 Apache-2.0 라이선스 하에 오픈소스이다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

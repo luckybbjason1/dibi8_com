@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/hkuds-ai-trader" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hkuds-ai-trader" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hkuds-ai-trader" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hkuds-ai-trader" />
 title: "AI-Trader：来自 HKUDS 的原生 AI 交易平台"
-description: "AI-Trader 是 HKUDS 推出的原生 AI 交易平台，使 Claude Code、Codex、Cursor 和 OpenClaw 等 AI 编程代理能够自主执行交易、管理投资组合和优化策略。". Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "AI-Trader 是 HKUDS 推出的原生 AI 交易平台，使 Claude Code、Codex、Cursor 和 OpenClaw 等 AI 编程代理能够自主执行交易、管理投资组合和优化策略。"
 date: 2026-06-10
-lastmod:  2026-06-10slug: hkuds-ai-trader
+lastmod: 2026-06-10
+slug: hkuds-ai-trader
 category: ai-trading
 tags: [ai-trader, HKUDS, ai-trading, 原生代理, 自主交易, 投资组合管理, AI 代理]
 github_repo: https://github.com/HKUDS/AI-Trader
@@ -15,10 +11,7 @@ stars: 19464
 maintainer: HKUDS
 license: MIT
 featureImage: https://raw.githubusercontent.com/HKUDS/AI-Trader/main/assets/ai-trader-hero-banner.png
-lang: zh
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/hkuds-ai-trader/ -->
 
 ## 简介
 
@@ -83,7 +76,13 @@ ai-trader data stream --symbols AAPL,TSLA,MSFT --output websocket
 AI-Trader 支持越来越多的 AI 编程代理作为操作员：
 
 | 代理 | 支持级别 | 配置 |
-|-------|--------------|---------------|
+|
+---
+|
+---
+|
+---
+|
 | Claude Code | 完整 | SKILL.md 集成 |
 | Codex | 完整 | API 密钥 + 上下文配置 |
 | Cursor | 完整 | Cursor 插件 |
@@ -130,30 +129,22 @@ registration = {
 # 定义自定义交易策略
 from ai_trader import Strategy
 
-class MomentumReversalStrategy(Strategy):
-    def __init__(self, lookback=20, threshold=0.05):
-        self.lookback = lookback
+class MomentumReversalStrategy(Strategy): def __init__(self, lookback=20, threshold=0.05): self.lookback = lookback
         self.threshold = threshold
     
-    def analyze(self, market_data):
-        # 计算动量
+    def analyze(self, market_data): # 计算动量
         returns = market_data.close.pct_change(self.lookback)
         
         # 识别反转信号
-        if returns.iloc[-1] > self.threshold:
-            return "SELL"
-        elif returns.iloc[-1] < -self.threshold:
-            return "BUY"
+        if returns.iloc[-1] > self.threshold: return "SELL"
+        elif returns.iloc[-1] < -self.threshold: return "BUY"
         return "HOLD"
     
-    def generate_order(self, signal, current_position):
-        if signal == "BUY":
-            return self.create_buy_order(
+    def generate_order(self, signal, current_position): if signal == "BUY": return self.create_buy_order(
                 symbol=current_position.symbol,
                 size=current_position.size * 0.5
             )
-        elif signal == "SELL":
-            return self.create_sell_order(
+        elif signal == "SELL": return self.create_sell_order(
                 symbol=current_position.symbol,
                 size=current_position.size
             )
@@ -240,8 +231,7 @@ exchanges = {
     }
 }
 
-for name, config in exchanges.items():
-    ai_trader.connect_exchange(name, config)
+for name, config in exchanges.items(): ai_trader.connect_exchange(name, config)
 ```
 
 ### 策略库集成
@@ -309,7 +299,17 @@ results.plot_equity_curve(save_path="equity_curve.png")
 AI-Trader 在多个市场中展示了强劲的表现：
 
 | 市场 | 策略 | 年化回报 | 夏普比率 | 最大回撤 |
-|--------|----------|--------------|-------------|-------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 美股 | 动量 + ML | 34.2% | 1.85 | -12.3% |
 | 加密货币 | 均值回归 | 28.7% | 1.42 | -18.5% |
 | 外汇 | 配对交易 | 19.5% | 2.10 | -8.7% |
@@ -318,7 +318,11 @@ AI-Trader 在多个市场中展示了强劲的表现：
 ### 执行速度
 
 | 操作 | 延迟 |
-|-----------|---------|
+|
+---
+|
+---
+|
 | 订单放置（加密货币） | 45ms |
 | 订单放置（股票） | 120ms |
 | 市场数据更新 | 15ms |
@@ -330,7 +334,15 @@ AI-Trader 在多个市场中展示了强劲的表现：
 当多个 AI 代理同时运行时：
 
 | 代理数 | 投资组合大小 | 平均延迟 | 交易成功率 |
-|--------|---------------|-------------|-------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 1 | 1 | 45ms | 99.2% |
 | 3 | 3 | 52ms | 98.9% |
 | 5 | 5 | 58ms | 98.5% |
@@ -434,7 +446,17 @@ ai_trader.configure_risk(
 AI-Trader 与其他 AI 交易平台相比如何？
 
 | 功能 | AI-Trader | QuantConnect | MetaTrader | Backtrader |
-|---------|-----------|-------------|------------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 原生代理 | 是 | 否 | 否 | 否 |
 | 代理支持 | 5+ 代理 | 仅 API | 否 | 否 |
 | 开源 | 是（MIT） | 部分 | 否 | 是 |
@@ -511,7 +533,6 @@ HKUDS 的 AI-Trader 代表了交易平台设计和运营的根本性转变。通
 7. [WebShare - 数据管道代理服务](https://webshare.io/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -539,25 +560,20 @@ HKUDS 的 AI-Trader 代表了交易平台设计和运营的根本性转变。通
 
 ## Why This Matters
 
-Understanding ai-trader：来自 hkuds 的原生 ai 交易平台 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding ai-trader：来自 hkuds 的原生 ai 交易平台 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -578,13 +594,13 @@ AI-Trader：来自 HKUDS 的原生 AI 交易平台 represents an important step 
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
 
+---
 ## Related Articles
 
 - [hkuds-ai-trader](hkuds-ai-trader)

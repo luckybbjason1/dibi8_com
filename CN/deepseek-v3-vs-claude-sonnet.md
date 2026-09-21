@@ -1,14 +1,11 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/deepseek-v3-vs-claude-sonnet" />
 title: 'DeepSeek V3.5 vs Claude Sonnet 4.6 in 2026: Open Weights...
 description: 'Side-by-side breakdown of DeepSeek V3.5 (685B MoE, open weights) and Claude Sonnet 4.6 — pricing per MTok, context window, SWE-bench, multilingual, API availability. Updated 2026.'
 date: 2026-05-22 00:00:00+08:00
-lastmod:  2026-05-22 00:00:00+08:00draft: false
+lastmod: 2026-05-22 00:00:00+08:00draft: false
 tags: [deepseek, claude-sonnet, anthropic, llm, comparison, open-source, ai-coding]
 categories: [vs]
-faqs:
-  - q: 'Is DeepSeek V3.5 really 10x cheaper than Claude Sonnet 4.6?'
+faqs: - q: 'Is DeepSeek V3.5 really 10x cheaper than Claude Sonnet 4.6?'
     a: 'Yes, on raw token price. DeepSeek V3.5 charges roughly $0.27 per million input tokens and $1.10 per million output, while Claude Sonnet 4.6 charges $3 input / $15 output. That is ~11x cheaper input and ~13x cheaper output. However, Sonnet uses fewer tokens per task on average (better reasoning compression) and supports 1M context vs DeepSeek''s 128K — so the effective cost gap on real workloads is closer to 5-7x.'
   - q: 'Which is better for coding, DeepSeek V3.5 or Claude Sonnet 4.6?'
     a: 'On SWE-bench Verified, Claude Sonnet 4.6 scores around 77% and DeepSeek V3.5 sits near 55-60%. Sonnet wins on multi-file refactors, ambiguous specs, and long-context debugging. DeepSeek wins on price-per-correct-fix for well-scoped, single-file coding tasks — making it the budget choice for high-volume agentic loops.'
@@ -30,12 +27,18 @@ Use **DeepSeek V3.5** if: You're cost-sensitive, run high-volume agentic loops, 
 
 Use **Claude Sonnet 4.6** if: You need top-tier SWE-bench performance, long-context (1M tokens), reliable tool-use, and you ship to global English-first audiences where Anthropic's polish matters.
 
----
 
+---
 ## Side-by-Side Comparison
 
 | Feature | DeepSeek V3.5 | Claude Sonnet 4.6 |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | **Vendor** | DeepSeek (China) | Anthropic (USA) |
 | **Architecture** | MoE, 685B total / 37B active | Dense transformer (size undisclosed) |
 | **Released** | 2025 Q1 (V3) / 2026 Q1 (V3.5 update) | 2025 Q4 (Sonnet 4) / 2026 update (4.6) |
@@ -53,8 +56,8 @@ Use **Claude Sonnet 4.6** if: You need top-tier SWE-bench performance, long-cont
 | **Self-hosting** | Yes (~8x H100 for FP8) | No |
 | **Best for** | High-volume, cost-sensitive, Chinese, self-host | Coding agents, long-context, tool use |
 
----
 
+---
 ## When to Choose DeepSeek V3.5
 
 ### Use case 1: Brutal cost optimization
@@ -110,7 +113,13 @@ For cost-per-correct-answer on hard tasks: **closer than headline numbers sugges
 ## Performance Benchmarks
 
 | Task | DeepSeek V3.5 | Claude Sonnet 4.6 |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | Single-file bug fix | 8/10 | 9/10 |
 | Multi-file refactor | 6/10 | 9/10 |
 | New feature from spec | 7/10 | 9/10 |
@@ -149,9 +158,7 @@ Want to spin up your own DeepSeek inference server to test against Sonnet API on
 
 ## Alternatives Worth Trying
 
-If neither DeepSeek nor Sonnet fits, consider:
-
-- **[Claude Code](https://dibi8.com/vs/cursor-vs-claude-code/)** — Terminal-native agent built on Sonnet, best for large codebases
+If neither DeepSeek nor Sonnet fits, consider: - **[Claude Code](https://dibi8.com/vs/cursor-vs-claude-code/)** — Terminal-native agent built on Sonnet, best for large codebases
 - **[Aider](https://dibi8.com/resources/llm-frameworks/aider/)** — Open-source coding agent, works with both DeepSeek and Sonnet
 - **[Continue.dev](https://dibi8.com/resources/llm-frameworks/continue/)** — Free VS Code extension, BYO model (DeepSeek or Sonnet)
 - **[cc-switch](https://dibi8.com/resources/dev-utils/cc-switch-claude-code-api-router/)** — Route Claude Code through DeepSeek backend, 60-80% cost cut
@@ -195,7 +202,6 @@ For most indie devs in 2026, the smart move is a **router pattern**: cheap defau
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

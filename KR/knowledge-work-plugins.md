@@ -1,19 +1,14 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/knowledge-work-plugins" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/knowledge-work-plugins" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/knowledge-work-plugins" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/knowledge-work-plugins" />
 title: "지식 작업 플러그인: 향상된 AI 생산성을 위한 Anthropic 플러그인 생태계 2026"
 description: "지식 작업 플러그인(20,728 스타)은 Anthropic의 Claude 확장용으로 문서 편집, 코드 분석, 웹 브라우징, 파일 작업을 위한 강력한 도구 모음을 제공합니다. 워크플로우에 맞는 사용자 지정 플러그인을 구축하세요."
 date: 2026-06-15
-lastmod:  2026-06-15slug: knowledge-work-plugins
+lastmod: 2026-06-15
+slug: knowledge-work-plugins
 category: dev-utils
 tags: ['anthropic', 'claude', '플러그인', '생산성', '문서 편집', '코드 분석', '웹 브라우징', '도구 사용']
 github_repo: "https://github.com/anthropics/knowledge-work-plugins"
 license: Apache-2.0
-images:
-  - url: "https://opengraph.github.com/github/anthropics/knowledge-work-plugins"
+images: - url: "https://opengraph.github.com/github/anthropics/knowledge-work-plugins"
     alt: "Knowledge Work Plugins GitHub OG"
     role: reference
   - url: "https://raw.githubusercontent.com/anthropics/knowledge-work-plugins/main/assets/plugin-diagram.png"
@@ -25,8 +20,6 @@ images:
 lang: kr
 featureImage: /images/articles/ai-trading-stack-2026--7-th-nh-ph-n-workflow-quant-m--ngu-n-m--cho-crypto---th--.png
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/knowledge-work-plugins/ -->
 
 ## TL;DR
 
@@ -58,9 +51,7 @@ npx skills list | grep knowledge-work
 
 ## 플러그인 시스템 작동 방식
 
-플러그인 시스템은 3단계 사이클로 동작합니다:
-
-1. **Claude가 작업 식별** — LLM이 텍스트 생성을 넘어선 작업 수행이 필요하다고 판단
+플러그인 시스템은 3단계 사이클로 동작합니다: 1. **Claude가 작업 식별** — LLM이 텍스트 생성을 넘어선 작업 수행이 필요하다고 판단
 2. **도구 호출 발행** — Claude가 작업과 매개변수를 명시하는 구조화된 JSON 요청 전송
 3. **플러그인 실행 및 반환** — 플러그인 시스템이 샌드박스 환경에서 작업을 실행하고 결과를 Claude에 반환
 
@@ -89,9 +80,7 @@ print(response)  # {"status": "success", "lines_changed": 5}
 
 ## 설치 및 설정
 
-지식 작업 플러그인 설정에는 Python 3.10+와 작동 중인 Claude Code 또는 Anthropic API 통합이 필요합니다:
-
-```bash
+지식 작업 플러그인 설정에는 Python 3.10+와 작동 중인 Claude Code 또는 Anthropic API 통합이 필요합니다: ```bash
 # 레포지토리 클론
 git clone https://github.com/anthropics/knowledge-work-plugins.git
 cd knowledge-work-plugins
@@ -105,15 +94,10 @@ cp plugins.config.example.yaml plugins.config.yaml
 
 ### 플러그인 구성
 
-각 플러그인은 `plugins.config.yaml`에서 독립적으로 구성됩니다:
-
-```yaml
-plugins:
-  document-edit:
-    enabled: true
+각 플러그인은 `plugins.config.yaml`에서 독립적으로 구성됩니다: ```yaml
+plugins: document-edit: enabled: true
     max_file_size: 1048576  # 1MB
-    allowed_extensions:
-      - .md
+    allowed_extensions: - .md
       - .txt
       - .json
       - .yaml
@@ -121,19 +105,15 @@ plugins:
       - .js
       - .ts
 
-  code-analysis:
-    enabled: true
-    linters:
-      - pylint
+  code-analysis: enabled: true
+    linters: - pylint
       - eslint
       - tsc
-    test_frameworks:
-      - pytest
+    test_frameworks: - pytest
       - jest
       - vitest
 
-  web-browse:
-    enabled: true
+  web-browse: enabled: true
     max_results: 20
     timeout: 30
     user_agent: "Knowledge-Work-Plugins/1.0"
@@ -149,9 +129,7 @@ docker run -v $(pwd)/plugins.config.yaml:/app/config.yaml knowledge-work-plugins
 
 ## 개발 워크플로우와의 통합
 
-지식 작업 플러그인은 모든 주요 개발 환경과 통합됩니다:
-
-|| 환경 | 통합 방법 | 최적 플러그인 |
+지식 작업 플러그인은 모든 주요 개발 환경과 통합됩니다: || 환경 | 통합 방법 | 최적 플러그인 |
 ||------|-------------------|-------------|
 || **Claude Code** | 내장 플러그인 로더 | document-edit |
 || **Cursor** | 플러그인 SDK + VS Code 확장 | code-analysis |
@@ -166,22 +144,16 @@ docker run -v $(pwd)/plugins.config.yaml:/app/config.yaml knowledge-work-plugins
 # .github/workflows/plugin-audit.yml
 name: Plugin Audit
 on: [pull_request]
-jobs:
-  audit:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: audit: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - uses: anthropics/knowledge-work-plugins@v1
-        with:
-          plugins: "code-analysis,docker-lint"
+        with: plugins: "code-analysis,docker-lint"
           config: plugins.config.yaml
 ```
 
 ## 벤치마크: 플러그인 보조 vs 표준 AI
 
-구조화된 도구를 AI 에이전트에 추가하는 성능 영향은 측정 가능합니다:
-
-```
+구조화된 도구를 AI 에이전트에 추가하는 성능 영향은 측정 가능합니다: ```
 작업                            | 표준 AI | 플러그인 보조 | 개선도
 ------------------------------|---------|---------------|--------
 10K LOC 코드베이스 버그 수정     | 2.3 시간 | 18분         | 7.7배
@@ -208,21 +180,17 @@ Metric              | 표준 AI | 플러그인 보조
 
 ## 고급 사용: 사용자 지정 플러그인 개발
 
-플러그인 SDK는 특정 워크플로우용 사용자 지정 도구를 쉽게 구축할 수 있게 합니다:
-
-### 사용자 지정 플러그인 구축
+플러그인 SDK는 특정 워크플로우용 사용자 지정 도구를 쉽게 구축할 수 있게 합니다: ### 사용자 지정 플러그인 구축
 
 ```python
 # 사용자 지정 플러그인: PR 검토 자동화
 from knowledge_work_plugins import PluginBase, PluginResult
 
-class PRReviewPlugin(PluginBase):
-    name = "pr-review"
+class PRReviewPlugin(PluginBase): name = "pr-review"
     version = "1.0.0"
     description = "중요도 점수가 포함된 자동 PR 검토"
 
-    async def execute(self, params):
-        pr_url = params.get("pr_url")
+    async def execute(self, params): pr_url = params.get("pr_url")
         review_depth = params.get("depth", "standard")  # standard | deep
 
         # PR diff 가져오기
@@ -241,20 +209,16 @@ class PRReviewPlugin(PluginBase):
             recommendations=review["recommendations"]
         )
 
-    def analyze_diff(self, diff, depth="standard"):
-        # 구현 세부사항...
+    def analyze_diff(self, diff, depth="standard"): # 구현 세부사항...
         pass
 
-    def generate_review(self, issues):
-        # 구조화된 검토 생성...
+    def generate_review(self, issues): # 구조화된 검토 생성...
         pass
 ```
 
 ### 플러그인 조합
 
-복잡한 작업은 여러 플러그인을 조합하여 해결할 수 있습니다:
-
-```python
+복잡한 작업은 여러 플러그인을 조합하여 해결할 수 있습니다: ```python
 # 조합: 검색 → 분석 → 편집 → 검증
 from knowledge_work_plugins import Pipeline
 
@@ -273,34 +237,26 @@ result = pipeline.execute(
 
 ### 플러그인 오류 처리
 
-프로덕션 플러그인 사용에서 견고한 오류 처리는 필수적입니다. SDK는 구조화된 오류 유형과 자동 재시도 로직을 제공합니다:
-
-```python
+프로덕션 플러그인 사용에서 견고한 오류 처리는 필수적입니다. SDK는 구조화된 오류 유형과 자동 재시도 로직을 제공합니다: ```python
 from knowledge_work_plugins import Pipeline, PluginError
 
 pipeline = Pipeline(["document-edit", "code-analysis"])
 
-try:
-    result = pipeline.execute(task="Refactor authentication module")
-except PluginError.TimeoutError as e:
-    print(f"Plugin timed out after {e.timeout}s")
+try: result = pipeline.execute(task="Refactor authentication module")
+except PluginError.TimeoutError as e: print(f"Plugin timed out after {e.timeout}s")
     # 재시도 시간 증가
     result = pipeline.execute(task="Refactor authentication module", timeout=600)
-except PluginError.PermissionDenied as e:
-    print(f"Permission denied: {e.plugin}")
+except PluginError.PermissionDenied as e: print(f"Permission denied: {e.plugin}")
     # 격상된 권한 요청
     result = pipeline.execute(task="Refactor authentication module", elevated=True)
-except PluginError.ValidationError as e:
-    print(f"Validation failed: {e.message}")
+except PluginError.ValidationError as e: print(f"Validation failed: {e.message}")
     # 수정 후 재시도
     result = pipeline.execute(task=f"Fix: {e.suggestion}")
 ```
 
 ### 플러그인 모니터링 및 로깅
 
-내장 관찰성으로 플러그인 실행을 추적하세요:
-
-```python
+내장 관찰성으로 플러그인 실행을 추적하세요: ```python
 # 상세 로깅 활성화
 import logging
 logging.basicConfig(level=logging.DEBUG)
@@ -318,9 +274,7 @@ print(f"Error rate: {metrics.error_rate:.1%}")
 
 ### 성능 최적화
 
-대규모 코드베이스의 경우, 플러그인 실행은 캐싱과 병렬화로 최적화할 수 있습니다:
-
-```python
+대규모 코드베이스의 경우, 플러그인 실행은 캐싱과 병렬화로 최적화할 수 있습니다: ```python
 # 병렬 플러그인 실행 활성화
 pipeline.set_parallel(True, max_workers=4)
 
@@ -337,9 +291,7 @@ pipeline.set_budget(
 
 ## 대체재와의 비교
 
-지식 작업 플러그인은 경쟁 도구 사용 프레임워크와 차별화됩니다:
-
-|| 기능 | 지식 작업 플러그인 | LangChain Tools | AutoGPT Tools | OpenAI Tools |
+지식 작업 플러그인은 경쟁 도구 사용 프레임워크와 차별화됩니다: || 기능 | 지식 작업 플러그인 | LangChain Tools | AutoGPT Tools | OpenAI Tools |
 ||---------|----------------------|-----------------|---------------|--------------|
 || 스타 | 20,728 | 50K+ | 140K+ | N/A |
 || 개발자 | Anthropic | LangChain | AutoGPT | OpenAI |
@@ -356,9 +308,7 @@ pipeline.set_budget(
 
 ## 한계: 플러그인이 답이 아닐 때
 
-지식 작업 플러그인은 강력하지만 보편적이지는 않습니다:
-
-1. **API 의존성** — 플러그인은 Claude API 또는 Claude Code가 필요합니다. 다른 LLM 공급업체에서는 적응 없이는 작동하지 않습니다.
+지식 작업 플러그인은 강력하지만 보편적이지는 않습니다: 1. **API 의존성** — 플러그인은 Claude API 또는 Claude Code가 필요합니다. 다른 LLM 공급업체에서는 적응 없이는 작동하지 않습니다.
 
 2. **플러그인 생태계 크기** — 빠르게 성장 중이지만, 공식 플러그인 카탈로그는 LangChain의 200개 이상 통합보다 작습니다.
 
@@ -419,14 +369,12 @@ npx skills add https://github.com/anthropics/knowledge-work-plugins
 
 ---
 
-**소스 및 추가 읽을거리**:
-- GitHub 레포지토리: https://github.com/anthropics/knowledge-work-plugins
+**소스 및 추가 읽을거리**: - GitHub 레포지토리: https://github.com/anthropics/knowledge-work-plugins
 - 플러그인 SDK 문서: https://github.com/anthropics/knowledge-work-plugins/blob/main/docs/sdk.md
 - Claude API 참조: https://docs.anthropic.com/claude/reference/
 
 
-**Sources & Further Reading**:
-- GitHub 저장소: https://github.com/anthropics/knowledge-work-plugins
+**Sources & Further Reading**: - GitHub 저장소: https://github.com/anthropics/knowledge-work-plugins
 - Plugin SDK 문서: https://github.com/anthropics/knowledge-work-plugins/blob/main/docs/sdk.md
 - Claude API 참조: https://docs.anthropic.com/claude/reference/
 **CTA**: Telegram에서 DIBI8 개발자 커뮤니티에 가입하세요 — [t.me/DIBI8_Group](https://t.me/DIBI8_Group)
@@ -434,7 +382,6 @@ npx skills add https://github.com/anthropics/knowledge-work-plugins
 **고지사항**: 이 기사에는 제휴 링크가 포함되어 있습니다. 링크를 통해 가입하시면 추가 비용 없이 저희가 커미션을 받을 수 있습니다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/graphrag-llm-frameworks-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/graphrag-llm-frameworks-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/graphrag-llm-frameworks-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/graphrag-llm-frameworks-2026" />
 title: 'GraphRAG: 마이크로소프트의 지식 그래프 기반 RAG로 더 나은 LLM 답변 (33K Stars...
 description: 'GraphRAG는 마이크로소프트의 모듈형 지식 그래프 기반 RAG 시스템입니다(GitHub 33,403 스타, MIT 라이선스). 이 가이드는 설치, init/index/query 워크플로, 실제 CLI 예제, 그리고 LangChain·Haystack과의 솔직한 비교를 다룹니다.'
 date: 2026-06-02 00:00:00+08:00
@@ -25,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: []
-aliases:
-- /posts/graphrag-llm-frameworks-2026/
-faqs:
-  - q: 'graphrag는 어떻게 설치하나요?'
+aliases: - /posts/graphrag-llm-frameworks-2026/
+faqs: - q: 'graphrag는 어떻게 설치하나요?'
     a: 'PyPI에서 한 줄로 설치합니다(Python 3.10–3.12): ```bash pip install graphrag ```'
   - q: 'graphrag 실행에 필요한 시스템 요건은 무엇인가요?'
     a: 'GraphRAG에는 Python 3.10–3.12와, API 키를 통한 언어 모델 접근(OpenAI, Azure OpenAI 또는 그 밖의 지원 제공자)이 필요합니다. Python을 지원하는 모든 현대 운영체제에서 동작합니다.'
@@ -39,8 +32,6 @@ faqs:
   - q: 'GraphRAG는 일반 벡터 RAG와 무엇이 다른가요?'
     a: '일반 RAG는 유사한 청크 몇 개를 가져와 거기서 답을 만듭니다. GraphRAG는 이에 더해 문서로부터 지식 그래프와 커뮤니티 요약을 구축하므로, 넓고 코퍼스 전체에 걸친 질문(전역 검색)뿐 아니라 엔티티에 집중된 질문(지역 검색)에도 답할 수 있습니다.'
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/graphrag-llm-frameworks-2026/ -->
 
 {{< resource-info >}}
 
@@ -70,23 +61,17 @@ GraphRAG는 문제를 오프라인 인덱싱 단계와 온라인 질의 단계�
 
 graphrag를 정기적으로 실행되는 프로덕션 작업으로 돌리려면 항상 켜져 있는 서버가 필요합니다. [DigitalOcean](https://m.do.co/c/eca87ac14ee0)에서 하나 띄우거나(신규 계정 무료 체험 크레딧 제공), dibi8.com을 호스팅하는 곳과 같은 IDC인 [HTStack](https://my.htstack.com/aff.php?aff=27187)의 저지연 홍콩 VPS를 쓰면 됩니다.
 
-GraphRAG는 Python 3.10–3.12가 필요합니다. 권장 설치 방법은 pip입니다:
-
-```bash
+GraphRAG는 Python 3.10–3.12가 필요합니다. 권장 설치 방법은 pip입니다: ```bash
 pip install graphrag
 ```
 
-설치한 뒤 워크스페이스를 초기화합니다. 이 단계가 GraphRAG가 기대하는 설정 파일과 폴더 구조를 만들어 줍니다:
-
-```bash
+설치한 뒤 워크스페이스를 초기화합니다. 이 단계가 GraphRAG가 기대하는 설정 파일과 폴더 구조를 만들어 줍니다: ```bash
 mkdir -p ./ragtest/input
 # put your .txt or .csv documents into ./ragtest/input
 python -m graphrag init --root ./ragtest
 ```
 
-`init` 명령은 프로젝트 루트에 `settings.yaml`과 `.env` 파일을 생성합니다. `.env`를 열어 모델 API 키를 설정하세요. 예를 들면:
-
-```bash
+`init` 명령은 프로젝트 루트에 `settings.yaml`과 `.env` 파일을 생성합니다. `.env`를 열어 모델 API 키를 설정하세요. 예를 들면: ```bash
 GRAPHRAG_API_KEY=<your-openai-or-azure-key>
 ```
 
@@ -100,9 +85,7 @@ GRAPHRAG_API_KEY=<your-openai-or-azure-key>
 
 ### 1단계: 인덱스 빌드
 
-워크스페이스에 대해 인덱싱 파이프라인을 실행합니다. 그래프를 추출하느라 LLM 호출이 많아지는, 비용이 가장 큰 단계입니다:
-
-```bash
+워크스페이스에 대해 인덱싱 파이프라인을 실행합니다. 그래프를 추출하느라 LLM 호출이 많아지는, 비용이 가장 큰 단계입니다: ```bash
 python -m graphrag index --root ./ragtest
 ```
 
@@ -110,9 +93,7 @@ python -m graphrag index --root ./ragtest
 
 ### 2단계: 전역 검색
 
-여러 문서를 종합해야 하는 넓고 코퍼스 전체에 걸친 질문에는 전역 검색을 사용합니다:
-
-```bash
+여러 문서를 종합해야 하는 넓고 코퍼스 전체에 걸친 질문에는 전역 검색을 사용합니다: ```bash
 python -m graphrag query \
   --root ./ragtest \
   --method global \
@@ -121,9 +102,7 @@ python -m graphrag query \
 
 ### 3단계: 지역 검색
 
-질문이 특정 엔티티나 코퍼스의 좁은 부분에 집중될 때는 지역 검색을 사용합니다:
-
-```bash
+질문이 특정 엔티티나 코퍼스의 좁은 부분에 집중될 때는 지역 검색을 사용합니다: ```bash
 python -m graphrag query \
   --root ./ragtest \
   --method local \
@@ -138,9 +117,7 @@ python -m graphrag query \
 
 ### 산출물 직접 다루기
 
-생성된 그래프와 보고서를 pandas로 바로 불러와 검사, 맞춤 검색, 다운스트림 분석에 쓸 수 있습니다:
-
-```python
+생성된 그래프와 보고서를 pandas로 바로 불러와 검사, 맞춤 검색, 다운스트림 분석에 쓸 수 있습니다: ```python
 import pandas as pd
 
 entities = pd.read_parquet("./ragtest/output/entities.parquet")
@@ -153,23 +130,16 @@ print(community_reports[["title", "summary"]].head())
 
 ### settings.yaml로 커스터마이즈
 
-GraphRAG의 동작은 `init`이 만들어 준 `settings.yaml` 파일로 제어합니다. 거기서 채팅·임베딩 모델을 고르고, 청크 크기를 정하고, 동시성을 조절하며, 입력 데이터를 지정합니다. 간략화한 발췌는 다음과 같습니다:
-
-```yaml
-models:
-  default_chat_model:
-    type: openai_chat
+GraphRAG의 동작은 `init`이 만들어 준 `settings.yaml` 파일로 제어합니다. 거기서 채팅·임베딩 모델을 고르고, 청크 크기를 정하고, 동시성을 조절하며, 입력 데이터를 지정합니다. 간략화한 발췌는 다음과 같습니다: ```yaml
+models: default_chat_model: type: openai_chat
     model: gpt-4o-mini
-  default_embedding_model:
-    type: openai_embedding
+  default_embedding_model: type: openai_embedding
     model: text-embedding-3-small
 
-chunks:
-  size: 1200
+chunks: size: 1200
   overlap: 100
 
-input:
-  type: file
+input: type: file
   file_type: text
   base_dir: "input"
 ```
@@ -236,19 +206,11 @@ GraphRAG는 마이크로소프트 리서치가 만든, 잘 유지보수되는 �
 
 ---
 
-**출처 및 더 읽어보기**:
-- GitHub 저장소: https://github.com/microsoft/graphrag
+**출처 및 더 읽어보기**: - GitHub 저장소: https://github.com/microsoft/graphrag
 - 공식 문서 / README: https://github.com/microsoft/graphrag#readme
 
 *위 링크 중 일부는 제휴(affiliate) 링크입니다. 이를 통해 가입하시면 추가 비용 없이 dibi8.com이 수수료를 받을 수 있습니다. 사이트 운영과 무료 콘텐츠 유지에 도움이 됩니다.*
 
-<!-- internal-link-candidates:
-  related open-source tools -> ai-tools-directory
-  related guides on dibi8 -> ai-coding-agent-landscape-2026-skills-mcp-opensource
--->
-
-
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -276,25 +238,20 @@ GraphRAG는 마이크로소프트 리서치가 만든, 잘 유지보수되는 �
 
 ## Why This Matters
 
-Understanding graphrag: 마이크로소프트의 지식 그래프 기반 rag로 더 나은 llm 답변 (33k stars) — 2026 실전 가이드 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding graphrag: 마이크로소프트의 지식 그래프 기반 rag로 더 나은 llm 답변 (33k stars) — 2026 실전 가이드 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

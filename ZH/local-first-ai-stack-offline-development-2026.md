@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/local-first-ai-stack-offline-development-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/local-first-ai-stack-offline-development-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/local-first-ai-stack-offline-development-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/local-first-ai-stack-offline-development-2026" />
 title: '本地优先 AI 技术栈 2026：完全离线的 AI 开发环境'
 description: '2026 年搭建完全离线的 AI 编码环境：Ollama 跑 LLM、Aider 做编码代理、ChromaDB 做 RAG，全部本地化。包含安装指南、硬件实情，以及离线方案的真正适用场景（隐私、合规、物理隔离、出差）。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-25 00:00:00+08:00
@@ -21,10 +16,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['local-first', offline, ollama, 'ai-coding', privacy, 2026]
-aliases:
-- /zh/posts/local-first-ai-stack-offline-development-2026/
-faq:
-  - q: "2026 年为什么要做完全离线？"
+aliases: - /zh/posts/local-first-ai-stack-offline-development-2026/
+faq: - q: "2026 年为什么要做完全离线？"
     a: "三个真实原因：(1) 隐私/合规——金融、医疗、政府等受监管行业不能把代码发给 OpenAI/Anthropic。(2) 物理隔离环境——涉及安全审查的工作。(3) 可靠性——跨国出差网络差、或者 API 宕机时仍然能工作。"
   - q: "到底需要什么硬件？"
     a: "实用配置：M3 Max MacBook（或 RTX 4090 台式机）+ 32GB 以上统一内存。能跑的模型：Llama 3.3 70B Q4 量化版、Mistral Large、DeepSeek Coder。低于 16GB 内存只能跑更小的模型（8B-13B 级别）——能用，但相对于商用 API 的质量差距会明显拉大。"
@@ -33,8 +26,6 @@ faq:
   - q: "本地和云端工作流能联动吗？"
     a: "可以。常用模式：本地 Ollama 作为主力，遇到难任务再回退到商用 API。Aider 支持会话中途切换模型。大多数开发者采用混合模式——本地为默认，云端处理那 10-20% 真正需要的部分。"
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/local-first-ai-stack-offline-development-2026/ -->
 
 {{</* resource-info */>}}
 
@@ -100,7 +91,13 @@ model = SentenceTransformer("BAAI/bge-m3")
 ## 硬件实情
 
 | 配置 | 能跑的模型 | 性能 |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | Mac M3 Max 64GB | Llama 3.3 70B + DeepSeek Coder | 20-30 tok/秒 |
 | RTX 4090 24GB | Llama 3.3 70B Q4 | 25-30 tok/秒 |
 | Mac M2 32GB | Mistral Large 22B | 30-40 tok/秒 |
@@ -161,12 +158,11 @@ model = SentenceTransformer("BAAI/bge-m3")
 
 正确的混合方案是：本地为默认 + 商用 API 兜底。大多数"本地优先"的开发者最终都会跑这套模式——既享受到大部分隐私收益，又能在需要时拿到云端质量。
 
----
 
+---
 **相关阅读**：[自建 LLM 2026：Ollama vs vLLM vs LocalAI](https://dibi8.com/zh/resources/llm-frameworks/self-hosted-llm-2026-ollama-vllm-localai/) · [Ollama 安装指南](https://dibi8.com/zh/resources/llm-frameworks/ollama/) · [2026 本地优先 AI 技术栈生产架构](https://dibi8.com/zh/resources/llm-frameworks/2026-local-first-ai-stack-production-architecture/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -194,25 +190,20 @@ model = SentenceTransformer("BAAI/bge-m3")
 
 ## Why This Matters
 
-Understanding 本地优先 ai 技术栈 2026：完全离线的 ai 开发环境 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding 本地优先 ai 技术栈 2026：完全离线的 ai 开发环境 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -233,8 +224,8 @@ To implement this in your workflow:
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -275,10 +266,16 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。
 
 
-When choosing an LLM framework, consider these factors:
-
-| Factor | LangChain | LlamaIndex | Haystack |
-|--------|-----------|------------|----------|
+When choosing an LLM framework, consider these factors: | Factor | LangChain | LlamaIndex | Haystack |
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Primary Use** | General-purpose | RAG/Retrieval | Document Processing |
 | **Learning Curve** | Medium | Low | Medium |
 | **Community** | Large | Growing | Medium |
@@ -287,20 +284,17 @@ When choosing an LLM framework, consider these factors:
 
 ### When to Use Each
 
-**LangChain** is ideal for:
-- Complex agent workflows
+**LangChain** is ideal for: - Complex agent workflows
 - Multi-step reasoning tasks
 - Integration with external tools
 - Production-grade applications
 
-**LlamaIndex** excels at:
-- Retrieval-Augmented Generation (RAG)
+**LlamaIndex** excels at: - Retrieval-Augmented Generation (RAG)
 - Data indexing and querying
 - Enterprise knowledge bases
 - Semantic search implementations
 
-**Haystack** shines in:
-- Document understanding pipelines
+**Haystack** shines in: - Document understanding pipelines
 - Question answering systems
 - Search engine integration
 - NLP task orchestration

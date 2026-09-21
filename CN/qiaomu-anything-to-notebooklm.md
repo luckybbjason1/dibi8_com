@@ -1,10 +1,9 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/qiaomu-anything-to-notebooklm" />
-title: "Qiaomu Anything to NotebookLM: Convert Any Content Sourc...
+title: "Qiaomu Anything to NotebookLM: Convert Any Content Sourc..."
 description: "Qiaomu Anything to NotebookLM is a Claude Code Skill and Python toolkit that converts 15+ content sources — YouTube videos, podcasts, articles, PDFs — into Google NotebookLM knowledge bases, with paywall bypass capabilities."
 date: 2026-06-10
-lastmod:  2026-06-10slug: qiaomu-anything-to-notebooklm
+lastmod: 2026-06-10
+slug: qiaomu-anything-to-notebooklm
 category: data-science
 tags: [qiaomu-notebooklm, notebooklm, content conversion, Claude Code, knowledge management, AI tools]
 github_repo: https://github.com/joeseesun/qiaomu-anything-to-notebooklm
@@ -12,9 +11,7 @@ stars: 5015
 maintainer: joeseesun
 license: MIT
 featureImage: https://raw.githubusercontent.com/joeseesun/qiaomu-anything-to-notebooklm/main/docs/assets/notebooklm-converter-banner.png
-lang: en
 ---
-
 ## Introduction
 
 Google NotebookLM has rapidly become one of the most useful AI-powered knowledge management tools available. By uploading documents and sources, users can create a personal "notebook" that an AI assistant can reason over, answer questions about, and synthesize into summaries, study guides, and deep-dive analyses. It is essentially a RAG system that you can use out of the box.
@@ -36,9 +33,7 @@ Enter **Qiaomu Anything to NotebookLM** by [joeseesun](https://github.com/joesee
 
 Qiaomu Anything to NotebookLM is a comprehensive toolkit that converts content from 15+ different sources into formats compatible with Google NotebookLM. It works as both a standalone Python package and as a Claude Code Skill, making it accessible to both programmatic users and those who prefer conversational AI workflows.
 
-The toolkit is built around two main modes of operation:
-
-1. **Claude Code Skill Mode** — Use natural language in Claude Code to trigger conversions: "Convert this YouTube video about machine learning into a NotebookLM source." The skill handles the entire pipeline.
+The toolkit is built around two main modes of operation: 1. **Claude Code Skill Mode** — Use natural language in Claude Code to trigger conversions: "Convert this YouTube video about machine learning into a NotebookLM source." The skill handles the entire pipeline.
 2. **Python Package Mode** — Use the `qiaomu-notebooklm` Python package programmatically for batch processing, scheduling, and integration into larger data pipelines.
 
 **Feature Image:**
@@ -47,10 +42,12 @@ The toolkit is built around two main modes of operation:
 
 ## Supported Content Sources
 
-The toolkit supports an impressive range of content sources. Here is the complete list:
-
-| Category | Sources |
-|----------|---------|
+The toolkit supports an impressive range of content sources. Here is the complete list: | Category | Sources |
+|
+---
+|
+---
+|
 | Video | YouTube, Vimeo, Bilibili |
 | Audio | Podcasts (RSS feeds), MP3 files, Spotify (via transcript) |
 | Web | Websites, Blog articles, Twitter/X threads, Reddit threads |
@@ -64,13 +61,9 @@ This breadth of support means that regardless of where your knowledge lives, Qia
 
 ## How It Works
 
-The conversion pipeline has four main stages:
+The conversion pipeline has four main stages: ### 1. Content Extraction
 
-### 1. Content Extraction
-
-The tool extracts content from the source using appropriate extraction strategies:
-
-```python
+The tool extracts content from the source using appropriate extraction strategies: ```python
 # Install the package
 pip install qiaomu-notebooklm
 
@@ -89,9 +82,7 @@ print(f"Converted {result.word_count} words to NotebookLM format")
 
 ### 2. Text Processing and Cleaning
 
-Extracted content is cleaned, deduplicated, and structured. The tool removes navigation elements, advertisements, footers, and other non-content elements:
-
-```python
+Extracted content is cleaned, deduplicated, and structured. The tool removes navigation elements, advertisements, footers, and other non-content elements: ```python
 # Advanced conversion with preprocessing options
 result = converter.convert(
     source_url="https://example.com/article",
@@ -108,9 +99,7 @@ result = converter.convert(
 
 ### 3. NotebookLM Formatting
 
-The processed content is formatted into a structure that Google NotebookLM can ingest. This typically means generating well-structured Markdown or PDF files:
-
-```python
+The processed content is formatted into a structure that Google NotebookLM can ingest. This typically means generating well-structured Markdown or PDF files: ```python
 # Export to NotebookLM-compatible formats
 converter.export(
     result,
@@ -120,17 +109,14 @@ converter.export(
 
 # List exported files
 import os
-for f in os.listdir("./notebooklm_sources/"):
-    filepath = os.path.join("./notebooklm_sources/", f)
+for f in os.listdir("./notebooklm_sources/"): filepath = os.path.join("./notebooklm_sources/", f)
     size = os.path.getsize(filepath)
     print(f"{f}: {size / 1024:.1f} KB")
 ```
 
 ### 4. Upload to NotebookLM
 
-Optionally, the tool can upload the converted content directly to Google NotebookLM via the API (when available):
-
-```python
+Optionally, the tool can upload the converted content directly to Google NotebookLM via the API (when available): ```python
 # Upload to NotebookLM
 notebooklm = converter.connect_notebooklm(
     google_account="your_email@gmail.com"
@@ -164,9 +150,7 @@ pip install qiaomu-notebooklm[all]
 
 ### Git Clone Installation
 
-For the latest development version:
-
-```bash
+For the latest development version: ```bash
 # Clone the repository
 git clone https://github.com/joeseesun/qiaomu-anything-to-notebooklm.git
 cd qiaomu-anything-to-notebooklm
@@ -180,9 +164,7 @@ pip install -r requirements-dev.txt
 
 ### Claude Code Skill Installation
 
-To use as a Claude Code Skill, add the skill configuration to your Claude Code setup:
-
-```bash
+To use as a Claude Code Skill, add the skill configuration to your Claude Code setup: ```bash
 # In your Claude Code configuration directory
 mkdir -p ~/.claude/skills
 
@@ -197,9 +179,7 @@ claude --reload-skills
 
 ### Batch Processing Workflow
 
-For processing large collections of content:
-
-```python
+For processing large collections of content: ```python
 # Batch process a list of URLs
 urls = [
     "https://youtube.com/watch?v=video1",
@@ -216,22 +196,18 @@ results = converter.batch_convert(
     concurrent_workers=4
 )
 
-for url, result in results.items():
-    status = "SUCCESS" if result.success else "FAILED"
+for url, result in results.items(): status = "SUCCESS" if result.success else "FAILED"
     print(f"[{status}] {url}: {result.word_count} words converted")
 ```
 
 ### Scheduled Conversion
 
-Set up scheduled content ingestion:
-
-```python
+Set up scheduled content ingestion: ```python
 import schedule
 import time
 from datetime import datetime
 
-def daily_content_sync():
-    """Check for new content daily and convert to NotebookLM."""
+def daily_content_sync(): """Check for new content daily and convert to NotebookLM."""
     converter = ContentConverter()
     
     # Monitor a YouTube channel
@@ -248,23 +224,19 @@ def daily_content_sync():
     
     # Upload to NotebookLM
     notebooklm = converter.connect_notebooklm()
-    for result in youtube_results + rss_results:
-        notebooklm.upload_source(result.file_path)
+    for result in youtube_results + rss_results: notebooklm.upload_source(result.file_path)
         print(f"Uploaded: {result.file_path}")
 
 # Schedule daily at 6 AM
 schedule.every().day.at("06:00").do(daily_content_sync)
 
-while True:
-    schedule.run_pending()
+while True: schedule.run_pending()
     time.sleep(60)
 ```
 
 ### Paywall Bypass
 
-One of the most distinctive features of Qiaomu is its ability to access paywalled content:
-
-```python
+One of the most distinctive features of Qiaomu is its ability to access paywalled content: ```python
 # Bypass paywall to extract article content
 result = converter.convert(
     source_url="https://premium-article.example.com/breaking-news",
@@ -275,8 +247,7 @@ result = converter.convert(
     }
 )
 
-# The tool tries multiple strategies:
-# 1. Direct extraction
+# The tool tries multiple strategies: # 1. Direct extraction
 # 2. Archive service lookup
 # 3. Text-only fallback
 # 4. Proxy-based access (via WebShare)
@@ -289,7 +260,13 @@ result = converter.convert(
 ### Conversion Accuracy
 
 | Content Type | Accuracy | Avg. Processing Time |
-|-------------|----------|---------------------|
+|
+---
+|
+---
+|
+---
+|
 | YouTube videos | 98.5% | 45 seconds |
 | Podcast transcripts | 97.2% | 30 seconds |
 | Blog articles | 96.8% | 15 seconds |
@@ -301,7 +278,13 @@ result = converter.convert(
 ### Batch Processing Performance
 
 | Batch Size | Total Time | Throughput |
-|-----------|-----------|-----------|
+|
+---
+|
+---
+|
+---
+|
 | 10 items | 4 minutes | 2.5 items/min |
 | 50 items | 18 minutes | 2.8 items/min |
 | 100 items | 35 minutes | 2.9 items/min |
@@ -311,15 +294,11 @@ result = converter.convert(
 
 ### Custom Extraction Plugins
 
-You can write custom extraction plugins for content sources not yet supported:
-
-```python
+You can write custom extraction plugins for content sources not yet supported: ```python
 from qiaomu_notebooklm.plugins import BaseExtractor
 
 @BaseExtractor.register("my_custom_source")
-class MyCustomExtractor(BaseExtractor):
-    def extract(self, url: str) -> dict:
-        """Extract content from custom source."""
+class MyCustomExtractor(BaseExtractor): def extract(self, url: str) -> dict: """Extract content from custom source."""
         # Your custom extraction logic
         content = self.fetch_content(url)
         cleaned = self.clean_content(content)
@@ -342,9 +321,7 @@ result = converter.convert(
 
 ### Multi-Notebook Management
 
-Manage multiple NotebookLM notebooks from a single script:
-
-```python
+Manage multiple NotebookLM notebooks from a single script: ```python
 notebooklm = converter.connect_notebooklm()
 
 # Create project-specific notebooks
@@ -359,23 +336,19 @@ projects = {
     ]
 }
 
-for notebook_name, urls in projects.items():
-    notebook = notebooklm.create_notebook(
+for notebook_name, urls in projects.items(): notebook = notebooklm.create_notebook(
         title=f"{notebook_name.replace('_', ' ').title()} Sources",
         description=f"Curated sources for {notebook_name}"
     )
     
-    for url in urls:
-        result = converter.convert(url, output_format="notebooklm")
+    for url in urls: result = converter.convert(url, output_format="notebooklm")
         notebook.upload_source(result.file_path)
         print(f"Added source to {notebook_name}: {url}")
 ```
 
 ### Knowledge Graph Generation
 
-Generate structured knowledge from converted content:
-
-```python
+Generate structured knowledge from converted content: ```python
 from qiaomu_notebooklm import KnowledgeExtractor
 
 extractor = KnowledgeExtractor()
@@ -399,7 +372,17 @@ print(f"Found {len(entities)} entities: {[e.name for e in entities]}")
 How does Qiaomu Anything to NotebookLM compare to other content-to-notebook solutions?
 
 | Feature | Qiaomu | NotebookLM Native | Notion AI | Obsidian + AI |
-|---------|--------|-------------------|-----------|---------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Source Support | 15+ formats | Manual upload only | Limited | Plugin-dependent |
 | Automated Conversion | Yes | No | Limited | Plugin-dependent |
 | Paywall Bypass | Yes | No | No | Plugin-dependent |
@@ -414,9 +397,7 @@ Qiaomu fills a gap that no other tool addresses: automated, programmatic content
 
 ## Limitations
 
-While Qiaomu is a powerful tool, some limitations should be noted:
-
-**Google NotebookLM API Dependency.** Direct upload to NotebookLM requires access to the Google NotebookLM API, which may have limited availability. Some users may need to manually upload the converted files to NotebookLM.
+While Qiaomu is a powerful tool, some limitations should be noted: **Google NotebookLM API Dependency.** Direct upload to NotebookLM requires access to the Google NotebookLM API, which may have limited availability. Some users may need to manually upload the converted files to NotebookLM.
 
 **Paywall Bypass Effectiveness.** While the paywall bypass feature works well for many sources, its effectiveness varies by publisher and anti-bot measures. Complex paywalls may require manual intervention.
 
@@ -474,9 +455,7 @@ Whether you want to automatically convert YouTube tutorials into study notebooks
 
 The paywall bypass feature alone makes this tool invaluable for researchers and students who need to access a wide range of content for their NotebookLM knowledge bases.
 
-Install it today and start building your automated knowledge pipeline:
-
-```bash
+Install it today and start building your automated knowledge pipeline: ```bash
 pip install qiaomu-notebooklm
 ```
 
@@ -484,10 +463,9 @@ pip install qiaomu-notebooklm
 
 
 
----
 
-**Sources & Further Reading**:
-- Official docs: https://qiaomu.dev (check official repo)
+---
+**Sources & Further Reading**: - Official docs: https://qiaomu.dev (check official repo)
 - GitHub repository: https://github.com/qiaomu/11/qiaomu
 - Community discussion: https://github.com/qiaomu/discussions
 
@@ -495,18 +473,16 @@ pip install qiaomu-notebooklm
 
 Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss this article and get help from the community.
 
-Read related articles:
-- [dibi8 English Telegram group](dibi8-internal-link)
+Read related articles: - [dibi8 English Telegram group](dibi8-internal-link)
 - [Related tool comparison](dibi8-internal-link)
 
 Try the tool discussed above. If it's a paid service, check for affiliate offers.
 
----
 
+---
 *Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

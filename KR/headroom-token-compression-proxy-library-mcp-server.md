@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/headroom-token-compression-proxy-library-mcp-server" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/headroom-token-compression-proxy-library-mcp-server" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/headroom-token-compression-proxy-library-mcp-server" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/headroom-token-compression-proxy-library-mcp-server" />
 title: 'Headroom: LLM 입력 60-95% 압축 — 토큰 절약 프록시, 라이브러리 & MCP 서버 —...
 description: 'Headroom (19,745 GitHub stars)는 도구 출력, 로그, 파일, RAG 청크를 LLM에 전달하기 전 압축합니다. 60-95% 적은 토큰, 동일한 답변. Python 라이브러리, 프록시, MCP 서버 포함. 설치 튜토리얼, 아키텍처 분석, 실제 벤치마킹 포함.'
 date: 2026-06-08
-lastmod:  2026-06-08slug: 'headroom-token-compression-proxy-library-mcp-server'
+lastmod: 2026-06-08
+slug: 'headroom-token-compression-proxy-library-mcp-server'
 category: 'llm-frameworks'
 tags: ['토큰 압축', 'LLM 토큰 최적화', 'MCP 서버', 'RAG 압축', 'Headroom', '컨텍스트 최적화', '토큰 비용 절감', 'AI 에이전트']
 github_repo: 'https://github.com/chopratejas/headroom'
@@ -17,8 +13,6 @@ license: MIT
 featureImage: 'https://raw.githubusercontent.com/chopratejas/headroom/main/headroom-savings.png'
 lang: ko
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/headroom-token-compression-proxy-library-mcp-server/ -->
 
 # Headroom: LLM 입력 60-95% 압축 — 토큰 절약 프록시, 라이브러리 & MCP 서버 — 2026 실전 가이드
 
@@ -54,8 +48,7 @@ lang: ko
 
 Headroom은 **LLM 파이프라인용 토큰 압축 계층**으로, 입력이 모델에 도달하기 전 토큰 수를 줄여줍니다. 요약 도구가 아닙니다 — 구조 최적화 도구입니다. 도구 출력, 로그, 파일, RAG 청크에서 "중요한 신호"와 "노이즈 컨텍스트"를 구분할 줄 압니다.
 
-핵심 기능:
-- **입력 압축** — LLM 소비 전 도구 출력의 중복 제거, 불필요 부분 삭제, 요약
+핵심 기능: - **입력 압축** — LLM 소비 전 도구 출력의 중복 제거, 불필요 부분 삭제, 요약
 - **다중 형식 지원** — JSON, 로그, 마크다운, 코드 파일, RAG 임베딩 처리
 - **3가지 배포 모드** — Python 라이브러리, CLI 프록시, MCP 서버
 - **모델 비종속** — Claude, GPT-4o, Gemini, 모든 OpenAI 호환 엔드포인트와 작동
@@ -66,9 +59,7 @@ Headroom은 **LLM 파이프라인용 토큰 압축 계층**으로, 입력이 모
 
 ## How Headroom Works
 
-Headroom은 세 단계 파이프라인으로 동작합니다:
-
-### 단계 1: 입력 수집
+Headroom은 세 단계 파이프라인으로 동작합니다: ### 단계 1: 입력 수집
 
 ```bash
 # 라이브러리 설치
@@ -89,9 +80,7 @@ print(f'절약률: {result.savings_pct}%')
 
 ### 단계 2: 압축 엔진
 
-압축 엔진은 여러 전략을 적용합니다:
-
-```python
+압축 엔진은 여러 전략을 적용합니다: ```python
 # 커스텀 압축 규칙
 from headroom import Compressor
 
@@ -159,8 +148,7 @@ curl -X POST http://localhost:8787/compress \
   -H "Content-Type: application/json" \
   -d '{"input": "매우 긴 컨텍스트..."}' | jq
 
-# 예상 응답:
-# {
+# 예상 응답: # {
 #   "original_tokens": 4523,
 #   "compressed_tokens": 891,
 #   "savings_pct": 80.3,
@@ -177,8 +165,7 @@ headroom mcp-serve --port 9090
 # Claude Code에서 연결
 claude-code --mcp http://localhost:9090
 
-# MCP 서버가 노출하는 기능:
-# - headroom/compress — 텍스트 입력 압축
+# MCP 서버가 노출하는 기능: # - headroom/compress — 텍스트 입력 압축
 # - headroom/benchmark — 압축 벤치마크 실행
 # - headroom/config — 압축 설정 조회/갱신
 ```
@@ -200,9 +187,7 @@ curl http://localhost:8787/stats | jq
 
 ## Integration with Claude Code, Codex CLI, Copilot, and Gemini CLI
 
-Headroom은 LLM API로 HTTP 요청을 보내는 모든 에이전트와 함께 동작합니다. 인기 있는 도구와의 통합 방법입니다:
-
-### Claude Code
+Headroom은 LLM API로 HTTP 요청을 보내는 모든 에이전트와 함께 동작합니다. 인기 있는 도구와의 통합 방법입니다: ### Claude Code
 
 ```bash
 # 방법 1: MCP 서버로 사용
@@ -242,9 +227,7 @@ headroom serve \
 
 ### 압축 벤치마크
 
-실제 도구 출력 100개(터미널 출력, git diff, 파일 내용, RAG 청크 혼합)로 테스트:
-
-| 구성 | 평균 원본 토큰 | 평균 압축 토큰 | 절약률 | 답변 품질 |
+실제 도구 출력 100개(터미널 출력, git diff, 파일 내용, RAG 청크 혼합)로 테스트: | 구성 | 평균 원본 토큰 | 평균 압축 토큰 | 절약률 | 답변 품질 |
 |------|-------------|-------------|--------|----------|
 | 압축 없음 | 4,820 | 4,820 | 0% | 100% |
 | 보존적 (90% 상한) | 4,820 | 1,450 | 70% | 98% |
@@ -253,24 +236,18 @@ headroom serve \
 
 ### 비용 절감: 실제 시나리오
 
-50K 라인 Python 프로젝트를 Claude Code로 처리하는 개발자:
-
-```bash
-# Headroom使用前:
-# 일일 컨텍스트: ~120,000 토큰/일
+50K 라인 Python 프로젝트를 Claude Code로 처리하는 개발자: ```bash
+# Headroom使用前: # 일일 컨텍스트: ~120,000 토큰/일
 # 비용: ~$48/월 (Claude Sonnet @ $3/M)
 
-# Headroom 后 (균형 모드):
-# 일일 컨텍스트: ~28,000 토큰/일
+# Headroom 后 (균형 모드): # 일일 컨텍스트: ~28,000 토큰/일
 # 비용: ~$11/월
 # 절약: ~$37/월 = 77% 절감
 ```
 
 ### RAG 청크 압축
 
-LLM에 전달하기 전 검색된 문서 압축:
-
-```python
+LLM에 전달하기 전 검색된 문서 압축: ```python
 from headroom import Compressor, rag_compress
 
 # LLM 전 RAG 청크 압축
@@ -287,9 +264,7 @@ compressed_chunks = rag_compress(
 
 ### 실제 사용 사례: CI/CD 로그 분석
 
-한 팀이 주당 500개 GitHub Actions 로그를 처리:
-
-```bash
+한 팀이 주당 500개 GitHub Actions 로그를 처리: ```bash
 # 배치로 로그 압축
 headroom compress-batch \
   --input ./ci-logs/*.log \
@@ -306,12 +281,9 @@ cat ./compressed-logs/build-42.log | \
 
 ### 커스텀 압축 규칙
 
-도메인 특화 압축 규칙 정의:
-
-```yaml
+도메인 특화 압축 규칙 정의: ```yaml
 # headroom-config.yaml
-rules:
-  # 코드 파일은 임계값 이하 압축 건너뛰기
+rules: # 코드 파일은 임계값 이하 압축 건너뛰기
   - pattern: "\\.py$"
     min_compress_ratio: 0.5
   
@@ -332,9 +304,7 @@ rules:
 
 ### Redis 기반 세션 상태
 
-멀티 세션 시나리오에서 압축 상태 지속:
-
-```bash
+멀티 세션 시나리오에서 압축 상태 지속: ```bash
 # Redis 상태 백엔드로 시작
 headroom serve \
   --redis-url redis://localhost:6379/0 \
@@ -380,9 +350,7 @@ curl -s http://localhost:8787/config | jq
 
 ## Limitations / Honest Assessment
 
-Headroom은 만능 해결책이 아닙니다. 아래 상황에서는 적합하지 않습니다:
-
-1. **지연 민감 애플리케이션** — 압축은 요청당 10-50ms 추가됩니다. 초저지연 사용 사례(총 지연 <100ms)에서는 오버헤드가 허용되지 않을 수 있습니다.
+Headroom은 만능 해결책이 아닙니다. 아래 상황에서는 적합하지 않습니다: 1. **지연 민감 애플리케이션** — 압축은 요청당 10-50ms 추가됩니다. 초저지연 사용 사례(총 지연 <100ms)에서는 오버헤드가 허용되지 않을 수 있습니다.
 
 2. **극히 짧은 입력** — 500 토큰 미만 입력에서는 압축 오버헤드가 절약분을 상쇄합니다. Headroom은 긴 컨텍스트 시나리오(2,000+ 토큰)에 최적화되었습니다.
 
@@ -433,7 +401,6 @@ Claude API 비용 절감을 원하는 개인 개발자든, AI 기반 CI/CD를 �
 위 일부 링크는 제휴 링크입니다. 링크를 통해 가입하면 dibi8.com이 커미션을 받을 수 있으며, 이는 이용자에게 추가 비용이 없습니다. 이 사이트가 무료로 운영될 수 있도록 돕습니다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

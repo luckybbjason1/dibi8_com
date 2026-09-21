@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/jesse-ai-trading-framework" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/jesse-ai-trading-framework" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/jesse-ai-trading-framework" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/jesse-ai-trading-framework" />
 title: 'Jesse: 30개 이상 기술 지표를 갖춘 고급 Python 암호화폐 트레이딩 프레임워크 — 2026...
 description: 'Jesse AI 트레이딩 프레임워크의 프로덕션 가이드 — 설치, 30개 이상 지표로 백테스팅, 커스텀 전략 구축, Python으로 라이브 암호화폐 트레이딩 봇 배포.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: [jesse, '암호화폐 트레이딩', python, 백테스팅, '기술 지표', '알고리즘 트레이딩', 'ai 트레이딩', '퀀트 트레이딩']
-aliases:
-- /kr/posts/jesse-ai-trading-framework/
+aliases: - /kr/posts/jesse-ai-trading-framework/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/jesse-ai-trading-framework/ -->
 
 {{</* resource-info */>}}
 
@@ -47,9 +39,7 @@ aliases:
 
 Jesse는 양적 전략 개발, 백테스팅, 라이브 실행에 초점을 맞춘 **고급 Python 암호화폐 트레이딩 프레임워크**다. 가벼운 래퍼 라이브러리와 달리, Jesse는 데이터 수집, 지표 계산, 전략 로직, 포트폴리오 추적, 트레이드 실행까지 완전한 연구-프로덕션 파이프라인을 제공한다 — 모두 통합되고 확장 가능한 아키텍처 내에서.
 
-2026년 5월 기준 핵심 사실:
-
-- **GitHub 스타**: 6,200+
+2026년 5월 기준 핵심 사실: - **GitHub 스타**: 6,200+
 - **라이선스**: MIT
 - **최신 안정 버전**: v1.7.2 (2026-04-28 릴리스)
 - **Python 지원**: 3.10–3.12
@@ -77,9 +67,7 @@ Jesse의 백테스트 엔진은 역사적 데이터를 사용해 현실적인 �
 ### 5. 라이브 트레이딩 모듈
 라이브 모듈은 WebSocket을 통해 실시간 가격 피드를 받고 REST API로 주문 실행을 처리한다. 알림 시스템(Telegram, Discord, Slack), 포트폴리오 트래커, 자동 재연결 처리 기능이 포함된다.
 
-다음은 고수준 데이터 흐름이다:
-
-```
+다음은 고수준 데이터 흐름이다: ```
 거소소 API → 데이터 모듈 → 전략 로직 → 리스크 매니저 → 주문 실행기 → 거소소 API
                                     ↑
                               지표 모듈
@@ -109,9 +97,7 @@ mkdir my-trading-bot && cd my-trading-bot
 jesse init
 ```
 
-`jesse init` 실행 후 프로젝트 구조는 다음과 같다:
-
-```
+`jesse init` 실행 후 프로젝트 구조는 다음과 같다: ```
 my-trading-bot/
 ├── config.py          # 거소소 API 키, 데이터베이스, 알림 설정
 ├── routes.py          # 트레이딩 페어와 타임프레임
@@ -123,9 +109,7 @@ my-trading-bot/
 
 ### 3단계: 데이터베이스 설정
 
-`config.py`를 편집해 데이터베이스 연결을 설정한다:
-
-```python
+`config.py`를 편집해 데이터베이스 연결을 설정한다: ```python
 # config.py — 데이터베이스 설정
 DATABASES = {
     default: {
@@ -139,9 +123,7 @@ DATABASES = {
 }
 ```
 
-SQLite로 빠른 테스트:
-
-```python
+SQLite로 빠른 테스트: ```python
 DATABASES = {
     default: {
         driver: sqlite,
@@ -152,9 +134,7 @@ DATABASES = {
 
 ### 4단계: 트레이딩 라우트 정의
 
-`routes.py`를 편집해 봇이 트레이딩할 페어와 타임프레임을 지정한다:
-
-```python
+`routes.py`를 편집해 봇이 트레이딩할 페어와 타임프레임을 지정한다: ```python
 # routes.py — 트레이딩 페어 정의
 from jesse.enums import timeframes
 
@@ -177,38 +157,28 @@ jesse import-candles Binance BTC-USDT 2025-01-01
 
 ### 6단계: 첫 전략 만들기
 
-`strategies/SimpleMA/__init__.py` 생성:
-
-```python
+`strategies/SimpleMA/__init__.py` 생성: ```python
 # strategies/SimpleMA/__init__.py
 from jesse.strategies import Strategy
 import jesse.indicators as ta
 
-class SimpleMA(Strategy):
-    def __init__(self):
-        super().__init__()
+class SimpleMA(Strategy): def __init__(self): super().__init__()
         self.period = 20
 
-    def should_long(self) -> bool:
-        # 가격이 20주기 SMA 위로 돌파할 때 롱 진입
+    def should_long(self) -> bool: # 가격이 20주기 SMA 위로 돌파할 때 롱 진입
         sma = ta.sma(self.candles, self.period)
         return self.close > sma and self.close[-2] <= sma[-2]
 
-    def should_short(self) -> bool:
-        return False  # 이 간단한 예제에서는 숏 미사용
+    def should_short(self) -> bool: return False  # 이 간단한 예제에서는 숏 미사용
 
-    def go_long(self):
-        qty = self.capital / self.close
+    def go_long(self): qty = self.capital / self.close
         self.buy = qty, self.close
 
-    def go_short(self):
-        pass
+    def go_short(self): pass
 
-    def update_position(self):
-        # 가격이 SMA 아래로 떨어지면 청산
+    def update_position(self): # 가격이 SMA 아래로 떨어지면 청산
         sma = ta.sma(self.candles, self.period)
-        if self.close < sma:
-            self.liquidate()
+        if self.close < sma: self.liquidate()
 ```
 
 ### 7단계: 백테스트 실행
@@ -218,9 +188,7 @@ class SimpleMA(Strategy):
 jesse backtest 2025-01-01 2025-12-31
 ```
 
-다음과 같은 출력이 표시된다:
-
-```
+다음과 같은 출력이 표시된다: ```
 Loading candles...
 Executing backtest...
 =====================================
@@ -243,13 +211,10 @@ Jesse는 Python 양적 트레이딩 생태계와 깔끔하게 통합된다. 가�
 import numpy as np
 import jesse.indicators as ta
 
-def custom_zscore(candles, period=20):
-    closes = np.array([c[2] for c in candles[-period:]])
+def custom_zscore(candles, period=20): closes = np.array([c[2] for c in candles[-period:]])
     return (closes[-1] - closes.mean()) / closes.std()
 
-class ZScoreStrategy(Strategy):
-    def should_long(self):
-        z = custom_zscore(self.candles, 20)
+class ZScoreStrategy(Strategy): def should_long(self): z = custom_zscore(self.candles, 20)
         return z < -2.0  # 가격이 평균보다 2표준편차 아래일 때 매수
 ```
 
@@ -260,15 +225,12 @@ class ZScoreStrategy(Strategy):
 from sklearn.ensemble import RandomForestClassifier
 import numpy as np
 
-class MLStrategy(Strategy):
-    def __init__(self):
-        super().__init__()
+class MLStrategy(Strategy): def __init__(self): super().__init__()
         self.model = RandomForestClassifier(n_estimators=100)
         self.features = []
         self.labels = []
 
-    def should_long(self):
-        rsi = ta.rsi(self.candles, 14)
+    def should_long(self): rsi = ta.rsi(self.candles, 14)
         sma20 = ta.sma(self.candles, 20)
         sma50 = ta.sma(self.candles, 50)
         atr = ta.atr(self.candles, 14)
@@ -308,30 +270,20 @@ CMD ["jesse", "run"]
 ```yaml
 # docker-compose.yml
 version: '3.8'
-services:
-  postgres:
-    image: postgres:16
-    environment:
-      POSTGRES_DB: jesse_db
+services: postgres: image: postgres:16
+    environment: POSTGRES_DB: jesse_db
       POSTGRES_USER: jesse_user
       POSTGRES_PASSWORD: your_password
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+    volumes: - pgdata:/var/lib/postgresql/data
 
-  jesse:
-    build: .
-    depends_on:
-      - postgres
-    environment:
-      DATABASE_URL: postgres://jesse_user:your_password@postgres:5432/jesse_db
-    volumes:
-      - ./strategies:/app/strategies
+  jesse: build: .
+    depends_on: - postgres
+    environment: DATABASE_URL: postgres://jesse_user:your_password@postgres:5432/jesse_db
+    volumes: - ./strategies:/app/strategies
       - ./config.py:/app/config.py
       - ./routes.py:/app/routes.py
 
-volumes:
-  pgdata:
-```
+volumes: pgdata: ```
 
 ### 5. Prometheus & Grafana 모니터링
 
@@ -375,9 +327,7 @@ Jesse는 2020년부터 개인 트레이더와 소규모 퀀트 펀드에 의해 
 
 ### 사례 연구: 커뮤니티 펀드 (익명, 2024–2025)
 
-소규모 퀀트 팀이 Jesse를 사용해 **4개 페어** (BTC, ETH, SOL, AVAX)에서 **8개 전략**을 실행한 연간 결과:
-
-- **시작 자본**: $50,000
+소규모 퀀트 팀이 Jesse를 사용해 **4개 페어** (BTC, ETH, SOL, AVAX)에서 **8개 전략**을 실행한 연간 결과: - **시작 자본**: $50,000
 - **종료 자본**: $71,400
 - **총 수익**: **42.8%**
 - **최대 드로다운**: -11.3%
@@ -404,13 +354,10 @@ RISK_MANAGEMENT = {
 
 ```python
 # 다중 타임프레임 전략 예제
-class MultiTFStrategy(Strategy):
-    def prepare(self):
-        # 트렌드 편향을 위해 4시간 캔들 사용
+class MultiTFStrategy(Strategy): def prepare(self): # 트렌드 편향을 위해 4시간 캔들 사용
         self.h4_candles = self.get_candles(Binance, 'BTC-USDT', 4h)
 
-    def should_long(self):
-        h4_sma50 = ta.sma(self.h4_candles, 50)
+    def should_long(self): h4_sma50 = ta.sma(self.h4_candles, 50)
         h1_sma20 = ta.sma(self.candles, 20)
 
         # 4시간 트렌드가 상승이고 1시간 모멘텀이 확인될 때만 롱
@@ -421,9 +368,7 @@ class MultiTFStrategy(Strategy):
 
 ```python
 # 고급 청산 로직
-class RiskManagedStrategy(Strategy):
-    def go_long(self):
-        entry = self.close
+class RiskManagedStrategy(Strategy): def go_long(self): entry = self.close
         stop_loss = entry * 0.97       # 3% 스톱
         take_profit = entry * 1.06     # 6% 목표
         qty = (self.capital * 0.02) / (entry - stop_loss)
@@ -474,9 +419,7 @@ tail -f storage/logs/live-trading.log
 
 ## 한계: 정직한 평가
 
-어떤 프레임워크도 완벽하지 않다. 다음은 Jesse v1.7.2의 실제 한계다:
-
-1. **제한된 거소소 지원**: Freqtrade의 10+에 비해 4개 거소소(Binance, Bitfinex, Coinbase Pro, Bybit)만 지원한다. 소규모 거소소가 필요하면 커스텀 드라이버를 작성해야 한다.
+어떤 프레임워크도 완벽하지 않다. 다음은 Jesse v1.7.2의 실제 한계다: 1. **제한된 거소소 지원**: Freqtrade의 10+에 비해 4개 거소소(Binance, Bitfinex, Coinbase Pro, Bybit)만 지원한다. 소규모 거소소가 필요하면 커스텀 드라이버를 작성해야 한다.
 
 2. **더 작은 커뮤니티**: 6,200 스타로 Jesse의 커뮤니티는 Freqtrade의 약 1/5 규모다. 사전 빌드된 플러그인이나 전략 템플릿을 찾기 위해 더 많은 노력이 필요하다.
 
@@ -510,9 +453,7 @@ Jesse는 암호화폐 시장 전용으로 설계되었다. 커스텀 거소소 �
 
 ### 프로덕션에서 API 키 보안을 어떻게 처리하나요?
 
-API 키를 절대 버전 관리에 커밋하지 마라. 환경 변수를 사용하라:
-
-```python
+API 키를 절대 버전 관리에 커밋하지 마라. 환경 변수를 사용하라: ```python
 # config.py — 안전한 API 키 처리
 import os
 
@@ -541,9 +482,7 @@ Jesse는 Python 트레이딩 생태계의 중요한 공백을 메운다. 배우�
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -562,7 +501,6 @@ Jesse는 Python 트레이딩 생태계의 중요한 공백을 메운다. 배우�
 *제휴 고지: 이 기사에는 Binance, OKX, Minara, DigitalOcean, HTStack으로의 제휴 링크가 포함되어 있다. 이러한 링크를 통해 가입하면 dibi8.com이 추가 비용 없이 커미션을 받을 수 있다. 우리는 직접 테스트하거나 철저히 조사한 도구만을 추천한다.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

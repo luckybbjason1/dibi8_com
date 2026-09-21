@@ -1,15 +1,10 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/n8n-ai-workflow-automation-self-hosted-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/n8n-ai-workflow-automation-self-hosted-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/n8n-ai-workflow-automation-self-hosted-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/n8n-ai-workflow-automation-self-hosted-2026" />
 title: "n8n AI工作流自动化实战指南2026：从零搭建开源智能Agent，替代Zapier省70%成本"
-description: "2026年最热门开源自动化平台n8n完整教程。覆盖n8n自托管部署、AI Agent搭建、LangChain集成、SEO自动化工作流实战，对比Zapier/Make，助你节省70%自动化成本。". Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "2026年最热门开源自动化平台n8n完整教程。覆盖n8n自托管部署、AI Agent搭建、LangChain集成、SEO自动化工作流实战，对比Zapier/Make，助你节省70%自动化成本。"
 keywords: n8n, AI工作流自动化, n8n教程2026, 开源自动化工具, AI Agent搭建, n8n自托管部署, 工作流自动化平台, n8n vs Zapier, LangChain集成, 无代码自动化
 author: Home Hermes
 date: 2026-05-20
-lastmod:  2026-05-20---
+lastmod: 2026-05-20---
 
 # n8n AI工作流自动化实战指南2026：从零搭建开源智能Agent，替代Zapier省70%成本
 
@@ -17,10 +12,8 @@ lastmod:  2026-05-20---
 
 如果你还在用Zapier或Make（原Integromat），每月为几百条工作流任务支付上百美元，这篇文章会告诉你：如何用n8n搭建同样甚至更强力的AI驱动自动化系统，同时把成本压到接近零。
 
+
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/n8n-ai-workflow-automation-self-hosted-2026/ -->
-
 ## 一、为什么2026年是n8n的爆发年
 
 ### 1.1 增速碾压同类工具
@@ -28,7 +21,15 @@ lastmod:  2026-05-20---
 根据2025年Q1 GitHub数据追踪，n8n以**18,420颗星增长**位列低代码平台增速榜首，远超第二名AppFlowy的2,913颗。截至2026年，n8n在GitHub上的总星数已突破71,000，社区贡献者超过500人。
 
 | 平台 | Q1星增长 | 总星数 | 开源许可 |
-|------|---------|--------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **n8n** | **+18,420** | 71,043 | Apache 2.0 |
 | AppFlowy | +2,913 | 63,035 | AGPL |
 | PocketBase | +2,399 | 43,466 | MIT |
@@ -44,8 +45,8 @@ n8n的核心定位已经悄然转变。2026年的n8n不再是简单的"Zapier替
 - **自托管能力**：数据完全留在本地，满足合规要求
 - **400+原生集成**：从Notion到PostgreSQL，从Slack到WhatsApp
 
----
 
+---
 ## 二、n8n自托管部署：5分钟上手的三种方案
 
 ### 2.1 方案A：Docker一键部署（推荐）
@@ -54,19 +55,14 @@ n8n的核心定位已经悄然转变。2026年的n8n不再是简单的"Zapier替
 # 创建docker-compose.yml
 cat > docker-compose.yml << 'EOF'
 version: "3"
-services:
-  n8n:
-    image: n8nio/n8n:latest
+services: n8n: image: n8nio/n8n:latest
     restart: always
-    ports:
-      - "5678:5678"
-    environment:
-      - N8N_BASIC_AUTH_ACTIVE=true
+    ports: - "5678:5678"
+    environment: - N8N_BASIC_AUTH_ACTIVE=true
       - N8N_BASIC_AUTH_USER=admin
       - N8N_BASIC_AUTH_PASSWORD=your-strong-password
       - WEBHOOK_URL=https://your-domain.com/
-    volumes:
-      - ~/.n8n:/home/node/.n8n
+    volumes: - ~/.n8n:/home/node/.n8n
 EOF
 
 docker-compose up -d
@@ -207,7 +203,15 @@ Notion任务已创建，请查看并分配。
 ## 四、n8n vs Zapier vs Make：2026年选型指南
 
 | 维度 | n8n | Zapier | Make |
-|------|-----|--------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **定价模式** | 自托管免费 / Cloud按执行次数 | 按任务数，专业版$73/月 | 按操作数，核心$10.59/月 |
 | **开源** | ✅ Apache 2.0 | ❌ 闭源 | ❌ 闭源 |
 | **自托管** | ✅ 完全支持 | ❌ 不支持 | ❌ 不支持 |
@@ -343,7 +347,6 @@ docker run -it --rm \
 *本文最后更新于2026年5月20日。n8n版本号参考：1.84+*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -371,25 +374,20 @@ docker run -it --rm \
 
 ## Why This Matters
 
-Understanding n8n ai工作流自动化实战指南2026：从零搭建开源智能agent，替代zapier省70%成本 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding n8n ai工作流自动化实战指南2026：从零搭建开源智能agent，替代zapier省70%成本 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -441,7 +439,17 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

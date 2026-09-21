@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/lobe-chat-openai-alternative-ui" />
 title: 'Lobe Chat: The Open-Source ChatGPT UI Alternative with 2...
 description: 'Deploy Lobe Chat as your self-hosted ChatGPT alternative. Supports 20+ LLM providers, plugin system, PWA, multi-language UI. Complete Docker setup guide with benchmarks and comparisons.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: ['lobe chat', chatgpt, 'openai alternative', llm, 'self-hosted', docker, pwa, 'plugin system', ai, 'chat ui']
-aliases:
-- /posts/lobe-chat-openai-alternative-ui/
+aliases: - /posts/lobe-chat-openai-alternative-ui/-
 ---
-
 {{</* resource-info */>}}
 
 ## Introduction: ChatGPT Won't Cut It Anymore
@@ -44,9 +40,7 @@ This guide walks through installation, provider configuration, plugin developmen
 
 ## How Lobe Chat Works
 
-Lobe Chat's architecture separates the presentation layer from model inference. The Next.js frontend handles UI rendering, conversation state, and plugin orchestration, while LLM calls proxy through configurable API endpoints:
-
-```
+Lobe Chat's architecture separates the presentation layer from model inference. The Next.js frontend handles UI rendering, conversation state, and plugin orchestration, while LLM calls proxy through configurable API endpoints: ```
 ┌─────────────────────────────────────────────┐
 │           User Browser / PWA                │
 │  ┌─────────┐  ┌─────────┐  ┌────────────┐  │
@@ -117,35 +111,23 @@ docker run -d -p 3210:3210 \
 
 ```yaml
 # docker-compose.yml
-services:
-  lobe-chat:
-    image: lobehub/lobe-chat:latest
-    ports:
-      - "3210:3210"
-    environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
+services: lobe-chat: image: lobehub/lobe-chat:latest
+    ports: - "3210:3210"
+    environment: - OPENAI_API_KEY=${OPENAI_API_KEY}
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
       - ACCESS_CODE=${ACCESS_CODE}
       - DATABASE_URL=postgresql://postgres:password@db:5432/lobe
-    volumes:
-      - lobe-data:/app/.config/lobe-chat
-    depends_on:
-      - db
+    volumes: - lobe-data:/app/.config/lobe-chat
+    depends_on: - db
     restart: unless-stopped
 
-  db:
-    image: postgres:16-alpine
-    environment:
-      - POSTGRES_PASSWORD=password
+  db: image: postgres:16-alpine
+    environment: - POSTGRES_PASSWORD=password
       - POSTGRES_DB=lobe
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+    volumes: - pgdata:/var/lib/postgresql/data
     restart: unless-stopped
 
-volumes:
-  lobe-data:
-  pgdata:
-```
+volumes: lobe-data: pgdata: ```
 
 ```bash
 # Start with persistence
@@ -179,9 +161,7 @@ Add DNS A record pointing to your Droplet IP and you're live in under 15 minutes
 
 ## Integration with 20+ LLM Providers
 
-Lobe Chat normalizes API calls across providers through a unified adapter. Here's how to configure the most popular ones:
-
-### OpenAI (GPT-4, GPT-4o)
+Lobe Chat normalizes API calls across providers through a unified adapter. Here's how to configure the most popular ones: ### OpenAI (GPT-4, GPT-4o)
 
 ```bash
 # Via environment variable
@@ -241,9 +221,7 @@ echo "AWS_REGION=us-east-1" >> .env
 
 ### Switching Providers at Runtime
 
-Users can switch providers per-conversation in the UI. This lets you compare GPT-4 and Claude side-by-side:
-
-```
+Users can switch providers per-conversation in the UI. This lets you compare GPT-4 and Claude side-by-side: ```
 # No restart needed —— provider switching is client-side
 # Click provider icon in chat header → Select different model
 # Each conversation remembers its provider choice
@@ -262,9 +240,7 @@ Lobe Chat's plugin architecture uses a manifest-based system. Plugins declare th
 
 ### Building a Custom Plugin
 
-Create a simple plugin that queries your internal API:
-
-```json
+Create a simple plugin that queries your internal API: ```json
 {
   "api": [
     {
@@ -297,9 +273,7 @@ Host this at a public URL, then add it via **Plugin Store → Custom Plugin → 
 
 ### Plugin Runtime Security
 
-Plugins execute in sandboxed iframes with restricted permissions:
-
-```
+Plugins execute in sandboxed iframes with restricted permissions: ```
 ┌─────────────────────────────┐
 │  Lobe Chat Main Window      │
 │  ┌───────────────────────┐  │
@@ -335,9 +309,7 @@ Lobe Chat functions as a Progressive Web App, making it feel like a native app o
 
 ### Offline Support
 
-The service worker caches the app shell and recent conversations. Without internet:
-
-```
+The service worker caches the app shell and recent conversations. Without internet: ```
 ✅ Browse conversation history
 ✅ View previous responses
 ✅ Compose messages (queued for send)
@@ -349,7 +321,15 @@ The service worker caches the app shell and recent conversations. Without intern
 ### Response Latency (measured from US-East)
 
 | Provider | Time to First Token | Full Response (100 tokens) | Notes |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | OpenAI GPT-4o | **0.8s** | **2.1s** | Fastest overall |
 | Claude 3.5 Sonnet | 1.1s | 2.8s | Higher quality reasoning |
 | Gemini 1.5 Pro | 1.3s | 3.0s | Large context window |
@@ -360,7 +340,17 @@ The service worker caches the app shell and recent conversations. Without intern
 ### Resource Usage
 
 | Deployment | Memory | CPU | Users | Cost/Month |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Docker single-instance | **350MB** | **0.2 cores** | 1–5 | $0 (self-hosted) |
 | Docker + 5 providers | 400MB | 0.3 cores | 1–10 | API costs only |
 | With PostgreSQL backend | 650MB | 0.4 cores | 10–50 | ~$24 VPS |
@@ -390,18 +380,14 @@ The service worker caches the app shell and recent conversations. Without intern
 
 ### Enabling Authentication
 
-For team deployments, set an access code:
-
-```bash
+For team deployments, set an access code: ```bash
 docker run -d -p 3210:3210 \
   -e ACCESS_CODE=your-secure-password-2026 \
   -e OPENAI_API_KEY=sk-xxx \
   lobehub/lobe-chat:latest
 ```
 
-For SSO integration, configure OAuth:
-
-```bash
+For SSO integration, configure OAuth: ```bash
   -e AUTH_PROVIDER=auth0 \
   -e AUTH_AUTH0_ID=your-client-id \
   -e AUTH_AUTH0_SECRET=your-secret \
@@ -410,9 +396,7 @@ For SSO integration, configure OAuth:
 
 ### Custom Themes
 
-Create a theme JSON file:
-
-```json
+Create a theme JSON file: ```json
 {
   "primaryColor": "#1890ff",
   "neutralColor": "#8c8c8c",
@@ -425,31 +409,20 @@ Upload via **Settings → Theme → Custom Theme**.
 
 ### Database-Backed Conversations
 
-For multi-user persistence, configure PostgreSQL:
-
-```yaml
+For multi-user persistence, configure PostgreSQL: ```yaml
 # docker-compose.prod.yml
-services:
-  lobe-chat:
-    image: lobehub/lobe-chat:latest
-    environment:
-      - DATABASE_URL=postgresql://user:pass@db:5432/lobechat
+services: lobe-chat: image: lobehub/lobe-chat:latest
+    environment: - DATABASE_URL=postgresql://user:pass@db:5432/lobechat
       - APP_URL=https://chat.yourdomain.com
-    ports:
-      - "3210:3210"
+    ports: - "3210:3210"
 
-  db:
-    image: postgres:16-alpine
-    environment:
-      POSTGRES_USER: user
+  db: image: postgres:16-alpine
+    environment: POSTGRES_USER: user
       POSTGRES_PASSWORD: pass
       POSTGRES_DB: lobechat
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+    volumes: - pgdata:/var/lib/postgresql/data
 
-volumes:
-  pgdata:
-```
+volumes: pgdata: ```
 
 ### Reverse Proxy with Caddy
 
@@ -471,28 +444,30 @@ caddy run --config Caddyfile
 
 ### Monitoring with Prometheus
 
-Lobe Chat exposes metrics at `/api/metrics`:
-
-```yaml
+Lobe Chat exposes metrics at `/api/metrics`: ```yaml
 # docker-compose.monitoring.yml
-services:
-  prometheus:
-    image: prom/prometheus
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
-    ports:
-      - "9090:9090"
+services: prometheus: image: prom/prometheus
+    volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports: - "9090:9090"
 
-  grafana:
-    image: grafana/grafana
-    ports:
-      - "3000:3000"
+  grafana: image: grafana/grafana
+    ports: - "3000:3000"
 ```
 
 ## Comparison with Alternatives
 
 | Feature | Lobe Chat | LibreChat | ChatGPT Web | HuggingChat |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **GitHub Stars** | **~60,000** | ~20,000 | ~30,000 | N/A (product) |
 | **LLM Providers** | **20+** | 10+ | OpenAI only | HF models only |
 | **Plugin System** | **Manifest-based** | Basic tools | None | None |
@@ -582,8 +557,8 @@ The plugin system and PWA support make Lobe Chat more than a ChatGPT clone — i
 
 Join our Telegram community for AI developers: **@dibi8dev** —— share your Lobe Chat configs and get help from 5,000+ builders.
 
----
 
+---
 ## Sources & Further Reading
 
 1. [Lobe Chat GitHub Repository](https://github.com/lobehub/lobe-chat) — Official source code, releases, and documentation
@@ -595,13 +570,9 @@ Join our Telegram community for AI developers: **@dibi8dev** —— share your L
 
 ---
 
-
-
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -611,7 +582,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 This article contains affiliate links. If you sign up for DigitalOcean using our referral link, we receive a commission at no extra cost to you. We only recommend services we use for our own infrastructure. Lobe Chat is open-source (MIT license) and free to use — no purchase is required.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

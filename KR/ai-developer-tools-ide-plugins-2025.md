@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-developer-tools-ide-plugins-2025" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-developer-tools-ide-plugins-2025" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-developer-tools-ide-plugins-2025" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-developer-tools-ide-plugins-2025" />
 title: '2025년 최고의 AI 개발 도구 및 IDE 플러그인: 코드 생성을 넘어서'
 description: '2025년 최고의 AI 개발 도구와 IDE 플러그인을 소개합니다. GitHub Copilot, Sourcegraph Cody, Codeium, JetBrains AI 등 코드 작성부터 검토, 디버깅까지 완벽 분석.'
 date: 2026-05-18 00:00:00+08:00
@@ -23,11 +18,9 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/ai-developer-tools-ide-plugins-2025/
+aliases: - /posts/ai-developer-tools-ide-plugins-2025/
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/ai-developer-tools-ide-plugins-2025/ -->
 # 2025년 최고의 AI 개발 도구 및 IDE 플러그인: 코드 생성을 넘어서
 
 
@@ -273,15 +266,12 @@ CodeRabbit이 PR 자동 리뷰에 가장 특화되어 있다. GitHub/GitLab PR�
 
 ## 추천 도구
 
-위 도구를 배포/사용 시 권장:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전.
+위 도구를 배포/사용 시 권장: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전.
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

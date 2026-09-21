@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/scrapy" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/scrapy" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/scrapy" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/scrapy" />
 title: 'Scrapy: Benchmark 61K+ Star Web Crawler — Performance vs...
 description: 'Scrapy는 Python 기반의 빠른 고수준 웹 크롤링 및 스크래핑 프레임워크이다. Python, Docker, Redis, PostgreSQL과 호환된다. 벤치마크, 아키텍처, 프로덕션 배포, BeautifulSoup 및 Selenium과의 비교를 다룬다.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: ['web-scraping', python, crawler, async, docker, scrapy튜토리얼, 벤치마크, 데이터파이프라인]
-aliases:
-- /kr/posts/scrapy/
+aliases: - /kr/posts/scrapy/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/scrapy/ -->
 
 {{</* resource-info */>}}
 
@@ -47,9 +39,7 @@ Scrapy는 비동기 네트워킹 엔진인 Twisted를 기반으로 구축된 오
 
 ## Scrapy의 작동 방식
 
-Scrapy의 아키텍처는 관심사를 명확하게 분리한 이벤트 기반 비차단 디자인을 따른다:
-
-![Scrapy 아키텍처](https://scrapy.readthedocs.io/en/latest/_images/scrapy_architecture_02.png)
+Scrapy의 아키텍처는 관심사를 명확하게 분리한 이벤트 기반 비차단 디자인을 따른다: ![Scrapy 아키텍처](https://scrapy.readthedocs.io/en/latest/_images/scrapy_architecture_02.png)
 
 ### 핵심 컴포넌트
 
@@ -110,9 +100,7 @@ cd price_monitor
 scrapy genspider products example.com
 ```
 
-표준 프로젝트 구조가 생성된다:
-
-```
+표준 프로젝트 구조가 생성된다: ```
 price_monitor/
 ├── scrapy.cfg              # 프로젝트 설정
 ├── price_monitor/
@@ -132,8 +120,7 @@ price_monitor/
 # price_monitor/spiders/products.py
 import scrapy
 
-class ProductsSpider(scrapy.Spider):
-    name = products
+class ProductsSpider(scrapy.Spider): name = products
     allowed_domains = ['example.com']
     start_urls = ['https://example.com/products']
     
@@ -143,10 +130,8 @@ class ProductsSpider(scrapy.Spider):
         AUTOTHROTTLE_ENABLED: True,
     }
 
-    def parse(self, response):
-        """상품 데이터 추출 및 페이지네이션 팔로우."""
-        for product in response.css('.product-card'):
-            yield {
+    def parse(self, response): """상품 데이터 추출 및 페이지네이션 팔로우."""
+        for product in response.css('.product-card'): yield {
                 name: product.css('.title::text').get(),
                 price: product.css('.price::text').get(),
                 url: product.css('a::attr(href)').get(),
@@ -155,8 +140,7 @@ class ProductsSpider(scrapy.Spider):
         
         # 페이지네이션 팔로우
         next_page = response.css('.next-page::attr(href)').get()
-        if next_page:
-            yield response.follow(next_page, self.parse)
+        if next_page: yield response.follow(next_page, self.parse)
 ```
 
 ### 스파이더 실행
@@ -189,42 +173,28 @@ CMD ["scrapy", "crawl", "products"]
 ```yaml
 # docker-compose.yml
 version: '3.8'
-services:
-  scrapy:
-    build: .
-    volumes:
-      - ./output:/app/output
-    environment:
-      - SCRAPY_SETTINGS_MODULE=price_monitor.settings
-    depends_on:
-      - redis
+services: scrapy: build: .
+    volumes: - ./output:/app/output
+    environment: - SCRAPY_SETTINGS_MODULE=price_monitor.settings
+    depends_on: - redis
       - postgres
   
-  redis:
-    image: redis:7-alpine
-    ports:
-      - "6379:6379"
+  redis: image: redis:7-alpine
+    ports: - "6379:6379"
   
-  postgres:
-    image: postgres:16-alpine
-    environment:
-      POSTGRES_DB: scrapy_data
+  postgres: image: postgres:16-alpine
+    environment: POSTGRES_DB: scrapy_data
       POSTGRES_USER: scraper
       POSTGRES_PASSWORD: scraper_pass
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+    volumes: - pgdata:/var/lib/postgresql/data
 
-volumes:
-  pgdata:
-```
+volumes: pgdata: ```
 
 ## 인기 도구와의 통합
 
 ### Redis를 활용한 분산 크롤링 (scrapy-redis)
 
-단일 머신으로는 부족할 때, scrapy-redis는 Redis를 공유 큐로 사용하여 크롤링을 여러 노드에 분산한다:
-
-```bash
+단일 머신으로는 부족할 때, scrapy-redis는 Redis를 공유 큐로 사용하여 크롤링을 여러 노드에 분산한다: ```bash
 pip install scrapy-redis
 ```
 
@@ -243,9 +213,7 @@ SCHEDULER_PERSIST = True  # 실행 간 큐 유지
 import psycopg2
 from scrapy.exceptions import DropItem
 
-class PostgresPipeline:
-    def open_spider(self, spider):
-        self.conn = psycopg2.connect(
+class PostgresPipeline: def open_spider(self, spider): self.conn = psycopg2.connect(
             host=postgres, dbname=scrapy_data,
             user=scraper, password=scraper_pass
         )
@@ -262,21 +230,17 @@ class PostgresPipeline:
         ''')
         self.conn.commit()
 
-    def process_item(self, item, spider):
-        try:
-            self.cur.execute('''
+    def process_item(self, item, spider): try: self.cur.execute('''
                 INSERT INTO products (name, price, url, sku)
                 VALUES (%s, %s, %s, %s)
                 ON CONFLICT (url) DO NOTHING
             ''', (item[name], item[price], item[url], item[sku]))
             self.conn.commit()
-        except psycopg2.Error as e:
-            spider.logger.error(f"DB 오류: {e}")
+        except psycopg2.Error as e: spider.logger.error(f"DB 오류: {e}")
             raise DropItem(f"삽입 실패: {e}")
         return item
 
-    def close_spider(self, spider):
-        self.cur.close()
+    def close_spider(self, spider): self.cur.close()
         self.conn.close()
 ```
 
@@ -300,11 +264,9 @@ TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 import scrapy
 from scrapy_playwright.page import PageMethod
 
-class JSSpider(scrapy.Spider):
-    name = js_site
+class JSSpider(scrapy.Spider): name = js_site
     
-    def start_requests(self):
-        yield scrapy.Request(
+    def start_requests(self): yield scrapy.Request(
             'https://spa-example.com/products',
             meta={
                 playwright: True,
@@ -316,9 +278,7 @@ class JSSpider(scrapy.Spider):
             }
         )
 
-    def parse(self, response):
-        for item in response.css('.product-item'):
-            yield {
+    def parse(self, response): for item in response.css('.product-item'): yield {
                 name: item.css('.name::text').get(),
                 price: item.css('.price::text').get(),
             }
@@ -326,22 +286,16 @@ class JSSpider(scrapy.Spider):
 
 ### WebShare를 활용한 프록시 로테이션
 
-프로덕션 크롤링을 위해 안정적인 로테이팅 프록시 풀은 필수적이다. WebShare는 데이터센터 및 레지덴셜 프록시를 제공하여 Scrapy의 미들웨어와 깔끔하게 통합된다:
-
-```python
+프로덕션 크롤링을 위해 안정적인 로테이팅 프록시 풀은 필수적이다. WebShare는 데이터센터 및 레지덴셜 프록시를 제공하여 Scrapy의 미들웨어와 깔끔하게 통합된다: ```python
 # middlewares.py
 import base64
 
-class ProxyMiddleware:
-    def __init__(self, proxy_url):
-        self.proxy_url = proxy_url
+class ProxyMiddleware: def __init__(self, proxy_url): self.proxy_url = proxy_url
 
     @classmethod
-    def from_crawler(cls, crawler):
-        return cls(proxy_url=crawler.settings.get(WEBSHARE_PROXY_URL))
+    def from_crawler(cls, crawler): return cls(proxy_url=crawler.settings.get(WEBSHARE_PROXY_URL))
 
-    def process_request(self, request, spider):
-        request.meta[proxy] = self.proxy_url
+    def process_request(self, request, spider): request.meta[proxy] = self.proxy_url
         spider.logger.debug(f'{request.url}에 프록시 사용 중')
 ```
 
@@ -362,9 +316,7 @@ WEBSHARE_PROXY_URL = 'http://proxy.webshare.io:80'
 
 ![Scrapy Benchmark](https://docs.scrapy.org/en/latest/_images/scrapy_architecture_02.png)
 
-2026년 초 4코어 VPS(8GB RAM)에서 50개 이상의 사이트를 대상으로 수행된 벤치마크는 도구 간 상당한 차이를 보여준다:
-
-| 지표 | Scrapy | BeautifulSoup + requests | Selenium | Playwright |
+2026년 초 4코어 VPS(8GB RAM)에서 50개 이상의 사이트를 대상으로 수행된 벤치마크는 도구 간 상당한 차이를 보여준다: | 지표 | Scrapy | BeautifulSoup + requests | Selenium | Playwright |
 |---|---|---|---|---|
 | **처리량 (페이지/초)** | 100+ | 1–3 | 2–4 | 3–5 |
 | **인스턴스당 메모리** | ~150 MB | ~80 MB | ~500 MB | ~400 MB |
@@ -386,9 +338,7 @@ WEBSHARE_PROXY_URL = 'http://proxy.webshare.io:80'
 
 ### 실제 프로덕션 배포 프로필
 
-중규모 전자상거래 인텔리전스 회사의 프로덕션 가격 모니터링 파이프라인이 Scrapy 사용으로 다음과 같은 수치를 보고했다:
-
-- 하루 **120만 페이지**를 800개 도메인에서 크롤링
+중규모 전자상거래 인텔리전스 회사의 프로덕션 가격 모니터링 파이프라인이 Scrapy 사용으로 다음과 같은 수치를 보고했다: - 하루 **120만 페이지**를 800개 도메인에서 크롤링
 - **24개 Scrapy 인스턴스**가 6대 서버에 분산
 - **평균 지연 시간**: 요청당 340ms (p95 1.2초)
 - **메모리 사용량**: 스파이더 프로세스당 180MB
@@ -400,9 +350,7 @@ WEBSHARE_PROXY_URL = 'http://proxy.webshare.io:80'
 
 ### 자동 스로틀 구성
 
-스로틀링 없이는 Scrapy가 대상 서버를 압도하고 수 초 내에 차단될 수 있다. AutoThrottle은 서버 응답 시간에 기반하여 다운로드 지연을 동적으로 조정한다:
-
-```python
+스로틀링 없이는 Scrapy가 대상 서버를 압도하고 수 초 내에 차단될 수 있다. AutoThrottle은 서버 응답 시간에 기반하여 다운로드 지연을 동적으로 조정한다: ```python
 # settings.py
 AUTOTHROTTLE_ENABLED = True
 AUTOTHROTTLE_START_DELAY = 1.0
@@ -434,9 +382,7 @@ USER_AGENTS = [
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0',
 ]
 
-class RotateUserAgentMiddleware:
-    def process_request(self, request, spider):
-        request.headers['User-Agent'] = random.choice(USER_AGENTS)
+class RotateUserAgentMiddleware: def process_request(self, request, spider): request.headers['User-Agent'] = random.choice(USER_AGENTS)
 ```
 
 ### 통계 수집을 통한 모니터링
@@ -445,29 +391,22 @@ class RotateUserAgentMiddleware:
 # extensions.py
 from scrapy import signals
 
-class StatsCollector:
-    def __init__(self):
-        self.requests_count = 0
+class StatsCollector: def __init__(self): self.requests_count = 0
         self.items_count = 0
 
     @classmethod
-    def from_crawler(cls, crawler):
-        ext = cls()
+    def from_crawler(cls, crawler): ext = cls()
         crawler.signals.connect(ext.spider_opened, signal=signals.spider_opened)
         crawler.signals.connect(ext.request_scheduled, signal=signals.request_scheduled)
         crawler.signals.connect(ext.item_scraped, signal=signals.item_scraped)
         return ext
 
-    def spider_opened(self, spider):
-        spider.logger.info(f'스파이더 열림: {spider.name}')
+    def spider_opened(self, spider): spider.logger.info(f'스파이더 열림: {spider.name}')
 
-    def request_scheduled(self, request, spider):
-        self.requests_count += 1
+    def request_scheduled(self, request, spider): self.requests_count += 1
 
-    def item_scraped(self, item, spider):
-        self.items_count += 1
-        if self.items_count % 1000 == 0:
-            spider.logger.info(f'{self.items_count}개 아이템, {self.requests_count}개 요청 스크랩됨')
+    def item_scraped(self, item, spider): self.items_count += 1
+        if self.items_count % 1000 == 0: spider.logger.info(f'{self.items_count}개 아이템, {self.requests_count}개 요청 스크랩됨')
 ```
 
 ### 로그 로테이션 및 구조화된 로깅
@@ -513,9 +452,7 @@ curl http://localhost:6800/listjobs.json -d project=price_monitor
 
 ## 한계 / 솔직한 평가
 
-Scrapy는 모든 스크래핑 문제에 적합한 도구가 아니다. 다음은 잘 수행하지 못하는 영역이다:
-
-1. **단일 페이지, 일회성 스크립트** — 단일 HTML 파일이나 소량의 페이지를 파싱해야 하는 경우, 프로젝트 스캐폴드 오버헤드가 그만한 가치가 없다. 100페이지 미만 작업의 경우 BeautifulSoup과 requests가 작성 및 배포가 더 빠르다.
+Scrapy는 모든 스크래핑 문제에 적합한 도구가 아니다. 다음은 잘 수행하지 못하는 영역이다: 1. **단일 페이지, 일회성 스크립트** — 단일 HTML 파일이나 소량의 페이지를 파싱해야 하는 경우, 프로젝트 스캐폴드 오버헤드가 그만한 가치가 없다. 100페이지 미만 작업의 경우 BeautifulSoup과 requests가 작성 및 배포가 더 빠르다.
 
 2. **미들웨어 없는 무거운 JavaScript SPA** — Scrapy는 원시 HTML을 다운로드한다. 대상 사이트가 클라이언트 사이드에서 데이터를 가져오는 React나 Vue 애플리케이션인 경우 scrapy-playwright나 Splash가 필요하다. 이는 복잡성을 추가하고 처리량을 80–90% 감소시킨다.
 
@@ -568,9 +505,7 @@ Scrapy는 Python에서 대규모, 프로덕션급 웹 크롤링을 위한 가장
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -591,7 +526,6 @@ Scrapy는 Python에서 대규모, 프로덕션급 웹 크롤링을 위한 가장
 *이 기사에는 제휴 링크가 포함되어 있다. 이 기사의 WebShare 링크를 통해 프록시 서비스를 구매할 때, 추가 비용 없이 커미션을 받을 수 있다. 모든 벤치마크 데이터와 추천은 독립적인 테스트와 커뮤니티 검증 출처에 기반한다.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

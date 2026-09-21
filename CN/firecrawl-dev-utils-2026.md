@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/firecrawl-dev-utils-2026" />
 title: 'Firecrawl: Turn Any Website into LLM-Ready Data (127K St...
 description: 'Firecrawl is the open-source web data API that scrapes, crawls, maps, and searches the web into clean, LLM-ready markdown or structured JSON. 127,747 GitHub stars, AGPL-3.0. Covers install, the official SDKs, real code, self-hosting, and an honest comparison with Puppeteer, Scrapy, and Axios.'
 date: 2026-06-02 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: 'https://raw.githubusercontent.com/firecrawl/firecrawl/main/img/op
 draft: false
 categories: ['dev-utils']
 tags: []
-aliases:
-- /posts/firecrawl-dev-utils-2026/
-faqs:
-  - q: 'How do I install Firecrawl?'
+aliases: - /posts/firecrawl-dev-utils-2026/
+faqs: - q: 'How do I install Firecrawl?'
     a: 'Install one of the official SDKs. For Node.js: ```bash npm install firecrawl ``` For Python: ```bash pip install firecrawl-py ``` Then create a client with your API key from [firecrawl.dev](https://firecrawl.dev).'
   - q: 'Can I use Firecrawl with languages other than TypeScript?'
     a: 'Yes. Firecrawl is an HTTP API, so any language can call it. There are official SDKs for Node.js and Python, and you can hit the REST endpoints directly from anything else with an HTTP client.'
@@ -57,9 +53,7 @@ It is offered two ways: a hosted cloud API at `api.firecrawl.dev` (you sign up f
 
 ## How Firecrawl Works
 
-Firecrawl exposes a small set of endpoints, each solving one job. You authenticate with a Bearer API key (format `fc-...`) and call the one you need:
-
-1. **Scrape** — Convert a single URL into markdown, HTML, a screenshot, or structured JSON. Firecrawl renders JavaScript and strips boilerplate for you.
+Firecrawl exposes a small set of endpoints, each solving one job. You authenticate with a Bearer API key (format `fc-...`) and call the one you need: 1. **Scrape** — Convert a single URL into markdown, HTML, a screenshot, or structured JSON. Firecrawl renders JavaScript and strips boilerplate for you.
 
 2. **Crawl** — Give it one URL and Firecrawl discovers and scrapes every reachable page on the site, respecting `robots.txt`. Crawls run asynchronously: you start a job and poll for results.
 
@@ -69,9 +63,7 @@ Firecrawl exposes a small set of endpoints, each solving one job. You authentica
 
 5. **Interact & Extract** — Perform actions on a page (click, scroll, type) before scraping, and pull structured data against a schema you define.
 
-A minimal scrape with the Node SDK looks like this:
-
-```typescript
+A minimal scrape with the Node SDK looks like this: ```typescript
 import { Firecrawl } from firecrawl;
 
 const app = new Firecrawl({ apiKey: 'fc-YOUR_API_KEY' });
@@ -119,17 +111,13 @@ app = Firecrawl(api_key="fc-YOUR_API_KEY")
 
 ### Self-Hosting with Docker
 
-If you prefer to run Firecrawl on your own infrastructure, clone the repo and use the bundled Docker Compose setup:
-
-```bash
+If you prefer to run Firecrawl on your own infrastructure, clone the repo and use the bundled Docker Compose setup: ```bash
 git clone https://github.com/firecrawl/firecrawl.git
 cd firecrawl
 docker compose up
 ```
 
-This brings up the API and its workers. By default the API listens on port `3002`, so you can reach it at `http://localhost:3002`. Point your SDK at the self-hosted instance by setting the API URL:
-
-```typescript
+This brings up the API and its workers. By default the API listens on port `3002`, so you can reach it at `http://localhost:3002`. Point your SDK at the self-hosted instance by setting the API URL: ```typescript
 const app = new Firecrawl({
   apiKey: 'fc-YOUR_API_KEY',
   apiUrl: 'http://localhost:3002',
@@ -138,9 +126,7 @@ const app = new Firecrawl({
 
 ### Configuration
 
-Self-hosting is configured through environment variables. Copy the provided template and edit it:
-
-```bash
+Self-hosting is configured through environment variables. Copy the provided template and edit it: ```bash
 cp apps/api/.env.example apps/api/.env
 ```
 
@@ -166,9 +152,7 @@ console.log(doc.markdown);
 
 ### Crawl a Whole Site
 
-`crawl` discovers and scrapes every reachable page. You can cap the number of pages and limit how deep it goes:
-
-```typescript
+`crawl` discovers and scrapes every reachable page. You can cap the number of pages and limit how deep it goes: ```typescript
 const result = await app.crawl('https://example.com', {
   limit: 100,
   scrapeOptions: { formats: [markdown] },
@@ -181,9 +165,7 @@ for (const page of result.data) {
 
 ### Extract Structured Data
 
-Pass a JSON schema and Firecrawl returns typed data instead of raw text — ideal for pulling titles, prices, or any fixed fields:
-
-```typescript
+Pass a JSON schema and Firecrawl returns typed data instead of raw text — ideal for pulling titles, prices, or any fixed fields: ```typescript
 const doc = await app.scrape('https://example.com', {
   formats: [{
     type: json,
@@ -208,9 +190,7 @@ Because Firecrawl is just an HTTP API with thin SDKs, it drops into almost any s
 
 ### Use It in a Server Route
 
-A typical pattern is to wrap a scrape behind your own endpoint:
-
-```typescript
+A typical pattern is to wrap a scrape behind your own endpoint: ```typescript
 import { Firecrawl } from firecrawl;
 
 const app = new Firecrawl({ apiKey: process.env.FIRECRAWL_API_KEY });
@@ -223,33 +203,24 @@ export async function scrapeHandler(url: string) {
 
 ### Run Scheduled Crawls in CI/CD
 
-For recurring jobs, run Firecrawl from GitHub Actions, GitLab CI, or any scheduler. Here is a simple GitHub Actions workflow that scrapes a page on every push and saves the markdown:
-
-```yaml
+For recurring jobs, run Firecrawl from GitHub Actions, GitLab CI, or any scheduler. Here is a simple GitHub Actions workflow that scrapes a page on every push and saves the markdown: ```yaml
 name: Firecrawl Scraper
 
-on:
-  push:
-    branches: [ main ]
+on: push: branches: [ main ]
 
-jobs:
-  scrape:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
+jobs: scrape: runs-on: ubuntu-latest
+    steps: - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
-        with:
-          node-version: 20
+        with: node-version: 20
 
       - name: Install dependencies
         run: npm install firecrawl
 
       - name: Run scraper
-        env:
-          FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
+        env: FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
         run: node scrape.js > output.json
 ```
 
@@ -289,7 +260,17 @@ See also our [related open-source tools](dibi8-internal-link) coverage.
 It helps to be clear about what Firecrawl is and is not. Firecrawl is a managed (or self-hostable) web-data API focused on LLM-ready output. Puppeteer is a browser automation library, Scrapy is a Python crawling framework, and Axios is a generic HTTP client. They overlap in "getting data off the web," but they sit at different layers.
 
 | Feature            | firecrawl/firecrawl      | Puppeteer               | Scrapy                  | Axios                   |
-|--------------------|--------------------------|-------------------------|-------------------------|-------------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Stars**          | 127,747                  | ~90k                    | ~55k                    | ~107k                   |
 | **Type**           | Web data API             | Browser automation lib  | Crawling framework      | HTTP client             |
 | **Language**       | TypeScript               | JavaScript              | Python                  | JavaScript              |
@@ -306,9 +287,7 @@ For developers who want LLM-ready web data with the least amount of glue code, F
 
 ## Limitations & Honest Assessment
 
-Firecrawl is a strong tool, but it is not the right fit for every job:
-
-1. **Not a real-time, low-latency layer**: Crawls run as asynchronous jobs you poll for, and even a single scrape involves rendering and cleanup. If you need sub-100ms responses on every request, put a cache in front or rethink the architecture.
+Firecrawl is a strong tool, but it is not the right fit for every job: 1. **Not a real-time, low-latency layer**: Crawls run as asynchronous jobs you poll for, and even a single scrape involves rendering and cleanup. If you need sub-100ms responses on every request, put a cache in front or rethink the architecture.
 
 2. **Anti-scraping is still hard**: Firecrawl handles many anti-bot measures and offers proxy options, but no tool reliably bypasses sites with strict protections or aggressive rate limits. Expect some targets to block or throttle you, and respect each site's terms of service.
 
@@ -329,21 +308,17 @@ Large-scale scraping needs rotating proxies — [WebShare](https://www.webshare.
 - Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) for open-source AI tool drops.
 - Read next: [related guides on dibi8](dibi8-internal-link).
 
----
 
-**Sources & Further Reading**:
-- GitHub repository: https://github.com/firecrawl/firecrawl
+---
+**Sources & Further Reading**: - GitHub repository: https://github.com/firecrawl/firecrawl
 - Official docs: https://docs.firecrawl.dev
 
 *Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.*
 
-<!-- internal-link-candidates:
   related open-source tools -> ai-tools-directory
   related guides on dibi8 -> ai-coding-agent-landscape-2026-skills-mcp-opensource
--->
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -368,3 +343,4 @@ Large-scale scraping needs rotating proxies — [WebShare](https://www.webshare.
   }
 }
 </script>
+---

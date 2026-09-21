@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/open-source-llm-ranking-guide" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/open-source-llm-ranking-guide" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/open-source-llm-ranking-guide" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/open-source-llm-ranking-guide" />
 title: '오픈소스 LLM 순위 및 선택 가이드 2025: Llama, Mistral, Qwen, DeepSee...
 description: '2025년 최신 오픈소스 LLM 순위와 성능 비교. Llama 3, Mistral, Qwen, DeepSeek, Gemma, Phi의 벤치마크 점수와 사용 사례별 추천 모델을 상세히 분석합니다.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
@@ -23,11 +18,9 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/open-source-llm-ranking-guide/
+aliases: - /posts/open-source-llm-ranking-guide/
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/open-source-llm-ranking-guide/ -->
 # 오픈소스 LLM 순위 및 선택 가이드 2025: Llama, Mistral, Qwen, DeepSeek 비교
 
 
@@ -241,16 +234,13 @@ FP16 기준으로 140GB VRAM이 필요합니다. 4비트 양자화 시 약 40GB�
 
 ## 추천 인프라
 
-위 도구들을 24/7 안정 운영하려면 인프라가 중요하다:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전.
+위 도구들을 24/7 안정 운영하려면 인프라가 중요하다: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연. dibi8.com 자체 호스팅 IDC.
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -278,25 +268,20 @@ FP16 기준으로 140GB VRAM이 필요합니다. 4비트 양자화 시 약 40GB�
 
 ## Why This Matters
 
-Understanding 오픈소스 llm 순위 및 선택 가이드 2025: llama, mistral, qwen, deepseek 비교 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding 오픈소스 llm 순위 및 선택 가이드 2025: llama, mistral, qwen, deepseek 비교 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

@@ -5,10 +5,7 @@ category: llm-frameworks
 tags: ['haystack', 'rag', 'retrieval-augmented-generation', 'deepset', 'document-processing', 'llm-pipeline']
 slug: deepset-haystack-rag-framework-complete-guide
 date: 2026-07-17 00:00:00+00:00
-lastmod:  2026-07-17 00:00:00+00:00featureImage: /images/articles/deepset-haystack-rag.jpg
----
-
-<!-- canonical: https://dibi8.com/cn/tools/deepset-haystack-rag-framework-complete-guide/ -->
+lastmod: 2026-07-17 00:00:00+00:00featureImage: /images/articles/deepset-haystack-rag.jpg---
 
 ## TL;DR
 
@@ -31,9 +28,7 @@ Haystack is an end-to-end framework for building custom LLM applications centere
 
 ### Architecture Overview
 
-Haystack follows a component-based architecture where each piece of the pipeline is a modular, swappable component:
-
-```
+Haystack follows a component-based architecture where each piece of the pipeline is a modular, swappable component: ```
 Documents → Preprocessing → Embedding → Storage → Retrieval → Reranking → Generation
     │            │              │           │          │           │           │
     └── FileConverter ──┘   └── Embedder ─┘   └── Retriever ─┘   └── Generator ──┘
@@ -83,9 +78,7 @@ print("Pipeline created successfully!")
 
 ### Step 1: Document Ingestion
 
-Load and preprocess documents:
-
-```python
+Load and preprocess documents: ```python
 from haystack import Pipeline, Document
 from haystack.components.converters import TextFileToDocument
 from haystack.components.preprocessors import DocumentCleaner, DocumentSplitter
@@ -112,9 +105,7 @@ print(f"Processed {len(documents)} document chunks")
 
 ### Step 2: Generate Embeddings
 
-Convert text to vector embeddings:
-
-```python
+Convert text to vector embeddings: ```python
 from haystack.components.embedders import SentenceTransformersDocumentEmbedder
 
 # Use local embeddings (no API key needed)
@@ -156,15 +147,13 @@ from haystack_integrations.components.generators.openai import OpenAIGenerator
 retriever = WeaviateEmbeddingRetriever(document_store=document_store)
 
 prompt_builder = PromptBuilder(template="""
-    Context:
-    {% for doc in documents %}
+    Context: {% for doc in documents %}
     {{ doc.content }}
     {% endfor %}
     
     Question: {{ question }}
     
-    Answer based on the context above:
-""")
+    Answer based on the context above: """)
 
 generator = OpenAIGenerator(model="gpt-4o")
 
@@ -182,8 +171,7 @@ rag_pipeline.connect("prompt_builder.prompt", "generator.prompt")
 ### Step 5: Query the Pipeline
 
 ```python
-def ask_question(query: str, top_k: int = 5) -> str:
-    result = rag_pipeline.run({
+def ask_question(query: str, top_k: int = 5) -> str: result = rag_pipeline.run({
         "retriever": {"query": query, "top_k": top_k},
         "prompt_builder": {"question": query}
     })
@@ -197,9 +185,7 @@ print(answer)
 
 ### Hybrid Search (BM25 + Dense)
 
-Combine keyword and semantic search for best results:
-
-```python
+Combine keyword and semantic search for best results: ```python
 from haystack_integrations.document_stores.elasticsearch import ElasticsearchDocumentStore
 from haystack_integrations.components.retrievers.elasticsearch import ElasticsearchEmbeddingRetriever
 
@@ -219,9 +205,7 @@ retriever = ElasticsearchEmbeddingRetriever(
 
 ### Cross-Encoder Reranking
 
-Improve retrieval precision with cross-encoder reranking:
-
-```python
+Improve retrieval precision with cross-encoder reranking: ```python
 from haystack_integrations.components.rankers.transformers import TransformersRanker
 
 # Rerank retrieved documents using a cross-encoder
@@ -237,9 +221,7 @@ rag_pipeline.connect("retriever.documents", "ranker.documents")
 
 ### Multi-Query Retrieval
 
-Generate multiple queries for better coverage:
-
-```python
+Generate multiple queries for better coverage: ```python
 from haystack.components.generators.chat import OpenAIChatGenerator
 from haystack.components.builders import PromptBuilder
 
@@ -250,8 +232,7 @@ multi_query_prompt = PromptBuilder(template="""
     
     Question: {{ question }}
     
-    Generate exactly 3 queries, one per line:
-""")
+    Generate exactly 3 queries, one per line: """)
 
 multi_query_gen = OpenAIChatGenerator(model="gpt-4o-mini")
 
@@ -267,8 +248,7 @@ queries = result["generator"]["replies"][0].split("\n")[:3]
 
 # Retrieve for each query
 all_docs = []
-for q in queries:
-    docs = retriever.run(query=q.strip(), top_k=5)["documents"]
+for q in queries: docs = retriever.run(query=q.strip(), top_k=5)["documents"]
     all_docs.extend(docs)
 
 # Deduplicate and rank
@@ -280,7 +260,13 @@ unique_docs = deduplicate_documents(all_docs)
 ### Supported LLM Providers
 
 | Provider | Package | Models |
-|----------|---------|--------|
+|
+---
+|
+---
+|
+---
+|
 | OpenAI | haystack-integrations-generators-openai | GPT-4o, GPT-4 Turbo, o1 |
 | Anthropic | haystack-integrations-generators-anthropic | Claude 3.5 Sonnet, Haiku |
 | Hugging Face | haystack-integrations-generators-hugging-face | Any HF model |
@@ -290,9 +276,7 @@ unique_docs = deduplicate_documents(all_docs)
 
 ### Using Ollama for Local LLMs
 
-Run LLMs entirely locally with no API costs:
-
-```python
+Run LLMs entirely locally with no API costs: ```python
 from haystack_integrations.components.generators.ollama import OllamaGenerator
 
 generator = OllamaGenerator(
@@ -311,9 +295,7 @@ print(result["replies"][0])
 
 ### Streaming Responses
 
-Stream LLM responses in real-time:
-
-```python
+Stream LLM responses in real-time: ```python
 from haystack_integrations.components.generators.openai import OpenAIGenerator
 
 generator = OpenAIGenerator(
@@ -328,9 +310,7 @@ result = generator.run(prompt="Write a detailed explanation of machine learning"
 
 ### Retrieval Evaluation
 
-Evaluate how well your retriever finds relevant documents:
-
-```python
+Evaluate how well your retriever finds relevant documents: ```python
 from haystack import Pipeline
 from haystack.dataclasses import Document, GeneratedAnswer
 from haystack_integrations.components.evaluators.ragas import RagasEvaluator
@@ -357,16 +337,12 @@ print(f"Average context recall: {results['context_recall']:.3f}")
 
 ### Custom Evaluation Metrics
 
-Build custom evaluation pipelines:
-
-```python
+Build custom evaluation pipelines: ```python
 from haystack import component
 
 @component
-class RelevanceChecker:
-    @component.output_types(is_relevant=bool, confidence=float)
-    def run(self, query: str, document: Document) -> dict:
-        # Simple relevance scoring
+class RelevanceChecker: @component.output_types(is_relevant=bool, confidence=float)
+    def run(self, query: str, document: Document) -> dict: # Simple relevance scoring
         keywords = set(query.lower().split())
         doc_words = set(document.content.lower().split())
         
@@ -405,8 +381,7 @@ EXPOSE 8000
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
 ```
 
-requirements.txt:
-```
+requirements.txt: ```
 haystack-ai
 fastapi
 uvicorn
@@ -416,9 +391,7 @@ sentence-transformers
 
 ### FastAPI Integration
 
-Build a REST API around your RAG pipeline:
-
-```python
+Build a REST API around your RAG pipeline: ```python
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from haystack import Pipeline
@@ -428,20 +401,16 @@ app = FastAPI(title="RAG API")
 # Load pipeline at startup
 rag_pipeline = load_rag_pipeline()
 
-class QueryRequest(BaseModel):
-    question: str
+class QueryRequest(BaseModel): question: str
     top_k: int = 5
     use_reranking: bool = True
 
-class QueryResponse(BaseModel):
-    answer: str
+class QueryResponse(BaseModel): answer: str
     sources: list
     confidence: float
 
 @app.post("/query", response_model=QueryResponse)
-async def query(request: QueryRequest):
-    try:
-        result = await rag_pipeline.ainvoke({
+async def query(request: QueryRequest): try: result = await rag_pipeline.ainvoke({
             "retriever": {"query": request.question, "top_k": request.top_k},
             "prompt_builder": {"question": request.question}
         })
@@ -453,8 +422,7 @@ async def query(request: QueryRequest):
             sources=result.get("sources", []),
             confidence=result.get("confidence", 0.0)
         )
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+    except Exception as e: raise HTTPException(status_code=500, detail=str(e))
 ```
 
 ### Kubernetes Deployment
@@ -462,42 +430,37 @@ async def query(request: QueryRequest):
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
-metadata:
-  name: rag-service
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: rag
-  template:
-    spec:
-      containers:
-      - name: rag-api
+metadata: name: rag-service
+spec: replicas: 3
+  selector: matchLabels: app: rag
+  template: spec: containers: - name: rag-api
         image: rag-service:latest
-        ports:
-        - containerPort: 8000
-        resources:
-          limits:
-            cpu: "2"
+        ports: - containerPort: 8000
+        resources: limits: cpu: "2"
             memory: "4Gi"
             nvidia.com/gpu: 1
-        env:
-        - name: OPENAI_API_KEY
-          valueFrom:
-            secretKeyRef:
-              name: api-keys
+        env: - name: OPENAI_API_KEY
+          valueFrom: secretKeyRef: name: api-keys
               key: openai
         - name: WEAVIATE_URL
-          valueFrom:
-            secretKeyRef:
-              name: weaviate
+          valueFrom: secretKeyRef: name: weaviate
               key: url
 ```
 
 ## Comparison with Alternatives
 
 | Feature | Haystack | LangChain | LlamaIndex | RAGFlow |
-|---------|----------|-----------|------------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Python Native | ✅ | ✅ | ✅ | Partial |
 | Type Safety | Good | Limited | Moderate | Limited |
 | Evaluation | Built-in | Manual | Manual | Basic |
@@ -508,9 +471,7 @@ spec:
 
 ### Document Preprocessing Pipeline
 
-Efficient preprocessing is critical for RAG quality:
-
-```python
+Efficient preprocessing is critical for RAG quality: ```python
 from haystack.components.preprocessors import RecursiveDocumentSplitter
 from haystack.components.preprocessors import DocumentCleaner
 from haystack.components.extractors import NamedEntityExtractor
@@ -550,9 +511,7 @@ processed_docs = result["extractor"]["documents"]
 
 ### Hybrid Search Implementation
 
-Combine keyword and semantic search for best retrieval:
-
-```python
+Combine keyword and semantic search for best retrieval: ```python
 from haystack_integrations.document_stores.elasticsearch import ElasticsearchDocumentStore
 from haystack_integrations.components.retrievers.elasticsearch import ElasticsearchEmbeddingRetriever
 from haystack_integrations.components.rankers.elasticsearch import ElasticsearchRanker
@@ -592,18 +551,13 @@ result = hybrid_pipeline.run({
 
 ### Multi-Tenant RAG Architecture
 
-Support multiple users with isolated knowledge bases:
-
-```python
+Support multiple users with isolated knowledge bases: ```python
 from haystack import Pipeline, Document
 
-class MultiTenantRAG:
-    def __init__(self):
-        self.tenant_pipelines = {}
+class MultiTenantRAG: def __init__(self): self.tenant_pipelines = {}
         self.tenant_stores = {}
     
-    def setup_tenant(self, tenant_id: str, document_store_url: str):
-        """Initialize RAG pipeline for a tenant"""
+    def setup_tenant(self, tenant_id: str, document_store_url: str): """Initialize RAG pipeline for a tenant"""
         store = WeaviateDocumentStore(url=document_store_url)
         
         retriever = WeaviateEmbeddingRetriever(document_store=store)
@@ -620,11 +574,9 @@ class MultiTenantRAG:
         self.tenant_pipelines[tenant_id] = pipeline
         self.tenant_stores[tenant_id] = store
     
-    async def query(self, tenant_id: str, question: str) -> dict:
-        """Query tenant-specific RAG pipeline"""
+    async def query(self, tenant_id: str, question: str) -> dict: """Query tenant-specific RAG pipeline"""
         pipeline = self.tenant_pipelines.get(tenant_id)
-        if not pipeline:
-            raise ValueError(f"Tenant {tenant_id} not configured")
+        if not pipeline: raise ValueError(f"Tenant {tenant_id} not configured")
         
         result = await pipeline.arun({
             "retriever": {"query": question, "top_k": 5},
@@ -639,10 +591,20 @@ class MultiTenantRAG:
 
 ### Embedding Model Selection Guide
 
-Choosing the right embedding model impacts retrieval quality:
-
-| Model | Dimensions | Max Tokens | mAP Score | Speed | Best For |
-|-------|-----------|------------|-----------|-------|----------|
+Choosing the right embedding model impacts retrieval quality: | Model | Dimensions | Max Tokens | mAP Score | Speed | Best For |
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | all-MiniLM-L6-v2 | 384 | 256 | 42.3 | Fast | General purpose |
 | all-mpnet-base-v2 | 768 | 512 | 58.7 | Medium | High accuracy |
 | text-embedding-3-small | 1536 | 8191 | 61.2 | Fast | OpenAI API |
@@ -654,8 +616,7 @@ Choosing the right embedding model impacts retrieval quality:
 from sentence_transformers import SentenceTransformer
 import numpy as np
 
-def benchmark_model(model_name: str, test_queries: list, relevant_docs: list) -> float:
-    model = SentenceTransformer(model_name)
+def benchmark_model(model_name: str, test_queries: list, relevant_docs: list) -> float: model = SentenceTransformer(model_name)
     
     query_embeddings = model.encode(test_queries)
     doc_embeddings = model.encode(relevant_docs)
@@ -663,12 +624,9 @@ def benchmark_model(model_name: str, test_queries: list, relevant_docs: list) ->
     # Compute recall@K
     scores = np.dot(query_embeddings, doc_embeddings.T)
     recalls = []
-    for i, score_row in enumerate(scores):
-        top_k_idx = np.argsort(score_row)[-5:]
-        if i in top_k_idx:
-            recalls.append(1.0)
-        else:
-            recalls.append(0.0)
+    for i, score_row in enumerate(scores): top_k_idx = np.argsort(score_row)[-5:]
+        if i in top_k_idx: recalls.append(1.0)
+        else: recalls.append(0.0)
     
     return np.mean(recalls)
 
@@ -679,8 +637,7 @@ models = [
     "text-embedding-3-small"
 ]
 
-for model in models:
-    recall = benchmark_model(model, queries, docs)
+for model in models: recall = benchmark_model(model, queries, docs)
     print(f"{model}: Recall@5 = {recall:.3f}")
 ```
 
@@ -740,7 +697,6 @@ Yes, Haystack supports BM25, dense vector, hybrid search, and cross-encoder rera
 Build production-ready RAG applications with Haystack. [Start building](https://dibi8.com/auth/) today with our deployment guides and pipeline templates.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -766,8 +722,8 @@ Build production-ready RAG applications with Haystack. [Start building](https://
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [markitdown-universal-file-to-markdown-converter](deepset-haystack-rag-framework-complete-guide)
@@ -776,6 +732,6 @@ Build production-ready RAG applications with Haystack. [Start building](https://
 - [arize-ai-observability-llm](deepset-haystack-rag-framework-complete-guide)
 - [cognee-ai-memory-platform](deepset-haystack-rag-framework-complete-guide)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

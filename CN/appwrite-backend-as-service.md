@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/appwrite-backend-as-service" />
 title: 'Appwrite 2026: The Open-Source Firebase Alternative with...
 description: 'Complete guide to Appwrite 1.6 — self-hosted open-source backend with authentication, database, storage, functions, and real-time subscriptions. Docker setup, SDK integration, benchmarks, and production hardening.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [appwrite, 'backend-as-a-service', 'firebase alternative', docker, 'open source', authentication, database, 'cloud functions', 'self-hosted']
-aliases:
-- /posts/appwrite-backend-as-service/
+aliases: - /posts/appwrite-backend-as-service/-
 ---
-
 {{</* resource-info */>}}
 
 ## Introduction: The $8.5B Problem Firebase Created
@@ -38,9 +34,7 @@ This guide walks you through a production-ready Appwrite setup in under 5 minute
 
 ## What Is Appwrite?
 
-Appwrite is a self-hosted backend server packaged as a Docker stack that bundles:
-
-- **Authentication** — Email/password, OAuth2, magic links, phone OTP, anonymous login
+Appwrite is a self-hosted backend server packaged as a Docker stack that bundles: - **Authentication** — Email/password, OAuth2, magic links, phone OTP, anonymous login
 - **Database** — Document-oriented NoSQL with MongoDB/MariaDB under the hood
 - **Storage** — File uploads with compression, encryption, and CDN-ready delivery
 - **Functions** — Serverless cloud functions in 15+ runtimes
@@ -51,9 +45,7 @@ One `docker compose up` gives you a full backend API with multi-platform SDKs fo
 
 ## How Appwrite Works: Architecture Overview
 
-Appwrite follows a modular microservices architecture containerized with Docker:
-
-```
+Appwrite follows a modular microservices architecture containerized with Docker: ```
 ┌─────────────────────────────────────────────────────┐
 │                    Appwrite Stack                    │
 ├─────────────┬─────────────┬─────────────┬───────────┤
@@ -68,9 +60,7 @@ Appwrite follows a modular microservices architecture containerized with Docker:
 └─────────────────────────────────────────────────────┘
 ```
 
-Key architectural decisions:
-
-- **Traefik** handles reverse proxying and automatic SSL via Let's Encrypt
+Key architectural decisions: - **Traefik** handles reverse proxying and automatic SSL via Let's Encrypt
 - **MariaDB** is the default database (MongoDB optional); Redis caches sessions
 - **MinIO** provides S3-compatible object storage locally
 - **Functions executor** isolates each serverless invocation in a Firecracker microVM (v1.6+)
@@ -106,9 +96,7 @@ sed -i 's|_APP_DOMAIN=localhost|_APP_DOMAIN=api.yourdomain.com|' .env
 sed -i 's|_APP_OPTIONS_ABUSE=enabled|_APP_OPTIONS_ABUSE=enabled|' .env
 ```
 
-For production with SSL on a [DigitalOcean droplet](https://m.do.co/c/eca87ac14ee0):
-
-```bash
+For production with SSL on a [DigitalOcean droplet](https://m.do.co/c/eca87ac14ee0): ```bash
 # Point your domain to the droplet IP first
 export _APP_DOMAIN=api.yourdomain.com
 export _APP_ENV=production
@@ -141,15 +129,11 @@ Navigate to the console, create a project, and note the **Project ID** — you n
 
 ### Web / Node.js SDK
 
-Install the SDK:
-
-```bash
+Install the SDK: ```bash
 npm install appwrite@16.1.0
 ```
 
-Initialize the client and create a document:
-
-```javascript
+Initialize the client and create a document: ```javascript
 import { Client, Account, Databases, ID } from appwrite;
 
 const client = new Client()
@@ -213,8 +197,7 @@ print(f"Found {results[total]} matching documents")
 
 ```yaml
 # pubspec.yaml
-dependencies:
-  appwrite: ^15.0.0
+dependencies: appwrite: ^15.0.0
 ```
 
 ```dart
@@ -254,15 +237,12 @@ class AppwriteService {
 
 ### n8n Workflow Automation
 
-Appwrite has an official n8n community node. Install it:
-
-```bash
+Appwrite has an official n8n community node. Install it: ```bash
 cd ~/.n8n/custom && npm install n8n-nodes-appwrite
 # Restart n8n
 ```
 
-In your workflow, use the Appwrite node to:
-1. **Trigger**: Watch a collection for new documents (using polling or webhooks)
+In your workflow, use the Appwrite node to: 1. **Trigger**: Watch a collection for new documents (using polling or webhooks)
 2. **Action**: Create a user after Stripe payment
 3. **Query**: Fetch documents matching criteria for reporting
 
@@ -287,9 +267,7 @@ In your workflow, use the Appwrite node to:
 
 ## Cloud Functions: Serverless Without the Lock-in
 
-Appwrite Functions support 15+ runtimes. Here's a Node.js function triggered by database events:
-
-```javascript
+Appwrite Functions support 15+ runtimes. Here's a Node.js function triggered by database events: ```javascript
 // src/main.js
 import { Client, Databases, Messaging } from 'node-appwrite';
 
@@ -328,9 +306,7 @@ export default async ({ req, res, log, error }) => {
 };
 ```
 
-Deploy via CLI:
-
-```bash
+Deploy via CLI: ```bash
 # Install Appwrite CLI
 npm install -g appwrite-cli@6.2.0
 
@@ -343,10 +319,16 @@ appwrite push function --id order-processor --source ./order-processor
 
 ## Benchmarks / Real-World Use Cases
 
-I tested Appwrite 1.6.1 on a [DigitalOcean droplet](https://m.do.co/c/eca87ac14ee0) (4 vCPU / 8GB RAM / $48/mo) against common backend operations:
-
-| Operation | Appwrite 1.6.1 | Firebase (US-Central) | Supabase (Small) |
-|-----------|---------------|----------------------|------------------|
+I tested Appwrite 1.6.1 on a [DigitalOcean droplet](https://m.do.co/c/eca87ac14ee0) (4 vCPU / 8GB RAM / $48/mo) against common backend operations: | Operation | Appwrite 1.6.1 | Firebase (US-Central) | Supabase (Small) |
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Auth signup (email) | **~45ms** | ~120ms | ~80ms |
 | DB create document | **~18ms** | ~35ms | ~25ms |
 | DB query (indexed, 10K docs) | **~12ms** | ~28ms | ~20ms |
@@ -365,11 +347,9 @@ I tested Appwrite 1.6.1 on a [DigitalOcean droplet](https://m.do.co/c/eca87ac14e
 
 ```bash
 # Add to docker-compose.yml under services
-redis:
-  image: redis:7-alpine
+redis: image: redis:7-alpine
   restart: unless-stopped
-  volumes:
-    - redis-data:/data
+  volumes: - redis-data:/data
 
 # Add to .env
 _APP_REDIS_HOST=redis
@@ -419,14 +399,10 @@ await databases.createDocument(
 
 ### 4. Monitoring with Prometheus
 
-Appwrite exposes metrics at `/_metrics` for Prometheus scraping:
-
-```yaml
+Appwrite exposes metrics at `/_metrics` for Prometheus scraping: ```yaml
 # prometheus.yml
-scrape_configs:
-  - job_name: appwrite
-    static_configs:
-      - targets: ['appwrite:80']
+scrape_configs: - job_name: appwrite
+    static_configs: - targets: ['appwrite:80']
     metrics_path: '/_metrics'
 ```
 
@@ -446,7 +422,19 @@ docker service scale appwrite_appwrite-executor=5
 ## Comparison with Alternatives
 
 | Feature | Appwrite 1.6 | Firebase | Supabase | Nhost | PocketBase |
-|---------|-------------|----------|----------|-------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Self-hosted | **Yes (Docker)** | No | Yes | Yes (K8s) | Yes (single binary) |
 | Open Source | **BSD-3-Clause** | Proprietary | Apache-2.0 | Apache-2.0 | MIT |
 | Auth providers | **50+ OAuth** | 10+ | 20+ | 10+ | 5+ |
@@ -493,9 +481,7 @@ Always backup before upgrading. Read the [migration guide](https://appwrite.io/d
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -520,12 +506,12 @@ Start with the [HTStack one-click Appwrite installer](https://my.htstack.com/aff
 **Affiliate Disclosure**
 This article contains affiliate links to [DigitalOcean](https://m.do.co/c/eca87ac14ee0) and [HTStack](https://my.htstack.com/aff.php?aff=27187). If you purchase hosting through these links, dibi8.com earns a commission at no extra cost to you. We only recommend services we use for our own infrastructure. All benchmarks were conducted independently on paid instances.
 
+
 ---
 *Article published: 2026-05-19 | Category: dev-utils | Tool: Appwrite 1.6.1*
 *Join the dibi8 developer community: [English](https://t.me/dibi8en) | [Chinese](https://t.me/dibi8zh) | [Korean](https://t.me/dibi8ko) | [Vietnamese](https://t.me/dibi8vn)*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -551,8 +537,8 @@ This article contains affiliate links to [DigitalOcean](https://m.do.co/c/eca87a
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [database-management-tools-comparison](appwrite-backend-as-service)
@@ -562,5 +548,4 @@ This article contains affiliate links to [DigitalOcean](https://m.do.co/c/eca87a
 - [qdrant-vector-database-rust](appwrite-backend-as-service)
 
 ---
-
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

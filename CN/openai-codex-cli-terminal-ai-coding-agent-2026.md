@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/openai-codex-cli-terminal-ai-coding-agent-2026" />
 title: 'OpenAI Codex CLI: The Definitive 2026 Guide to Terminal-...
 description: 'Master OpenAI Codex CLI—the fastest-growing open-source AI coding agent of 2026. This complete guide covers zero-to-hero installation, AGENTS.md configuration, multi-agent parallel development, MCP integration, sandbox security, and head-to-head comparison with Claude Code. Boost your developer productivity today.'
 date: 2026-05-17 00:00:00+08:00
@@ -20,10 +18,8 @@ maintainer: 'openai'
 last_maintained: '2026-05-17'
 featureImage: ''
 draft: false
-aliases:
-- /posts/openai-codex-cli-terminal-ai-coding-agent-2026/
+aliases: - /posts/openai-codex-cli-terminal-ai-coding-agent-2026/-
 ---
-
 {</* resource-info */>}
 
 ## What Is OpenAI Codex CLI and Why Developers Are Switching in 2026
@@ -32,9 +28,7 @@ The developer tooling landscape has shifted dramatically between 2025 and 2026. 
 
 OpenAI Codex CLI sits at the center of this shift. With **83,000+ GitHub stars** and one of the fastest growth trajectories in the AI developer tools category, it is not merely a chatbot wrapper. It is an open-source, Rust-built coding agent that reads files, edits code, runs shell commands, executes tests, performs code reviews, and delegates long-running tasks to cloud sandboxes.
 
-Here is what distinguishes Codex CLI from earlier-generation tools:
-
-- **Zero marginal cost for ChatGPT subscribers** — If you already pay for Plus ($20/month) or Pro ($200/month), Codex CLI usage is bundled. No separate API billing.
+Here is what distinguishes Codex CLI from earlier-generation tools: - **Zero marginal cost for ChatGPT subscribers** — If you already pay for Plus ($20/month) or Pro ($200/month), Codex CLI usage is bundled. No separate API billing.
 - **Fully open source (Apache-2.0)** — Fork it, audit it, extend it. The Rust rewrite from the original TypeScript base delivers sub-second cold starts.
 - **Four entry points, one shared state** — Start a task in VS Code, hand it off to the cloud agent while you sleep, and merge the PR from GitHub the next morning.
 - **Multi-agent concurrency** — Run up to 6 parallel sub-agents with distinct roles: explorer, worker, reviewer, tester.
@@ -43,8 +37,8 @@ Here is what distinguishes Codex CLI from earlier-generation tools:
 
 If you are still copy-pasting snippets from a browser tab, this tool will fundamentally restructure how you write software.
 
----
 
+---
 ## Zero-to-Production Installation in Under Five Minutes
 
 ### Prerequisites
@@ -84,38 +78,30 @@ codex login
 
 Your default browser opens the OpenAI authorization flow. Sign in with your ChatGPT account, approve the OAuth request, and return to the terminal. No API key management. No separate billing dashboard. Your usage counts against your ChatGPT plan quota.
 
-For teams requiring API-key mode (common in enterprise environments where shared subscriptions are insufficient):
-
-```bash
+For teams requiring API-key mode (common in enterprise environments where shared subscriptions are insufficient): ```bash
 export OPENAI_API_KEY="sk-..."
 codex
 ```
 
-Or persist it in `~/.codex/config.toml`:
-
-```toml
+Or persist it in `~/.codex/config.toml`: ```toml
 preferred_auth_method = "apikey"
 ```
 
 ### First Task: The Canonical Smoke Test
 
-Navigate to any repository and issue a bounded task:
-
-```bash
+Navigate to any repository and issue a bounded task: ```bash
 cd ~/projects/your-repo
 codex "Add a unit test for the parseDate function in src/utils/date.ts. Cover valid inputs, edge cases, and invalid formats. Run the test suite and confirm all tests pass."
 ```
 
-Watch Codex:
-
-1. Scan the repository to identify the test framework (Jest, Vitest, Mocha, pytest, etc.)
+Watch Codex: 1. Scan the repository to identify the test framework (Jest, Vitest, Mocha, pytest, etc.)
 2. Read the implementation of `parseDate`
 3. Generate a test file with meaningful cases
 4. Execute the tests
 5. Present a diff and ask for approval before writing to disk
 
----
 
+---
 ## The Mental Model Shift: From Typing Code to Directing Agents
 
 The single most important adaptation when using Codex CLI is changing your self-conception. You are no longer the person who types every semicolon. You are the **engineering lead who delegates tasks to an AI teammate**—and that teammate needs context, constraints, and clear acceptance criteria.
@@ -123,7 +109,13 @@ The single most important adaptation when using Codex CLI is changing your self-
 ### The Four-Element Prompt Structure
 
 | Element | Purpose | Example |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | **Objective** | What to build or modify | "Implement JWT-based auth middleware" |
 | **Context** | Which files, frameworks, or conventions matter | "Use Go + Gin. Database connection is in db/conn.go. Follow existing error handling patterns." |
 | **Constraints** | Rules that must not be violated | "Do not break the existing REST API contract. Every new function must have unit tests." |
@@ -133,8 +125,7 @@ The single most important adaptation when using Codex CLI is changing your self-
 
 **Strong prompt:**
 
-> "Build a user authentication system for this Go/Gin project:
-> 1. Registration and login REST endpoints with JWT tokens
+> "Build a user authentication system for this Go/Gin project: > 1. Registration and login REST endpoints with JWT tokens
 > 2. MySQL user table schema matching the existing conventions in db/schema.sql
 > 3. Run the server and give me curl commands to verify registration and login end-to-end."
 
@@ -143,14 +134,22 @@ Codex will scaffold the package structure, write the handlers, wire the database
 ### Three Approval Modes for Different Trust Levels
 
 | Mode | File Read | File Edit | Command Execution | When to Use |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Auto (default)** | Auto-allowed | Requires approval | Requires approval | Daily development; safe default |
 | **Read Only** | Auto-allowed | Prohibited | Prohibited | Codebase exploration, onboarding, audits |
 | **Full Access** | Auto-allowed | Auto-allowed | Auto-allowed | CI/CD containers, isolated VMs, trusted automation |
 
-Launch flags:
-
-```bash
+Launch flags: ```bash
 codex --sandbox read-only              # Pure analysis; zero mutation risk
 codex --sandbox workspace-write        # Can edit files; untrusted commands still require approval
 codex --full-auto                      # Automates approvals; sandbox still active
@@ -205,7 +204,13 @@ The post-April-2026 Codex CLI introduces **Subagents**—concurrently running sp
 ### Standard Agent Roles
 
 | Role | Responsibility | Trigger |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | **Explorer** | Map repository structure, identify dependencies, locate relevant files | Auto-attached to complex tasks |
 | **Worker** | Implement code changes, create files, modify logic | Default primary agent |
 | **Reviewer** | Audit changes for correctness, security, and style compliance | `/review` or pre-merge hook |
@@ -213,9 +218,7 @@ The post-April-2026 Codex CLI introduces **Subagents**—concurrently running sp
 
 ### Real-World Parallel Workflow
 
-Imagine adding a "loyalty discount" feature to an e-commerce backend. Instead of sequencing work, you parallelize it across three surfaces:
-
-**Terminal 1 — Implementation (CLI):**
+Imagine adding a "loyalty discount" feature to an e-commerce backend. Instead of sequencing work, you parallelize it across three surfaces: **Terminal 1 — Implementation (CLI):**
 
 ```bash
 codex "Add `loyalty_discount(price, customer_tier)` to pricing.py. Tiers: bronze(0%), silver(5%), gold(10%). Reject unknown tiers with ValueError. Do not modify any other function."
@@ -237,16 +240,12 @@ All three tasks proceed simultaneously. When the implementation lands, tests val
 
 ### Model Context Protocol (MCP) Integrations
 
-MCP has become the universal adapter for AI tools in 2026. Codex CLI ships with first-class MCP support, enabling direct connections to:
-
-- **PostgreSQL / MySQL / Redis** — Query schema and sample data as context for code generation
+MCP has become the universal adapter for AI tools in 2026. Codex CLI ships with first-class MCP support, enabling direct connections to: - **PostgreSQL / MySQL / Redis** — Query schema and sample data as context for code generation
 - **Stripe / Twilio / SendGrid APIs** — Read OpenAPI specs to generate typed SDK calls
 - **Notion / Confluence / Internal Wikis** — Pull business rules and feature specifications into the coding session
 - **Datadog / Sentry / CloudWatch** — Ingest error traces to auto-diagnose and patch production incidents
 
-Command references:
-
-```bash
+Command references: ```bash
 codex /mcp          # List configured MCP servers and tools
 codex /apps         # Browse and activate available app connectors
 ```
@@ -259,9 +258,7 @@ Recurring prompt patterns should be encapsulated as **Skills**—shareable, vers
 $skill-creator      # Interactive wizard for authoring new skills
 ```
 
-Skills follow the open Agent Skills standard, making them portable across Codex CLI, Claude Code, and GitHub Copilot. Typical skill applications:
-
-- Localization PR generation (extract strings → translate → open PR)
+Skills follow the open Agent Skills standard, making them portable across Codex CLI, Claude Code, and GitHub Copilot. Typical skill applications: - Localization PR generation (extract strings → translate → open PR)
 - Security audit checklists (scan for SQL injection, XSS, secrets leakage)
 - Release note drafting from commit history
 - Migration scripts (Python 2→3, Flask→FastAPI, JavaScript→TypeScript)
@@ -270,19 +267,21 @@ Skills follow the open Agent Skills standard, making them portable across Codex 
 
 ## Security Architecture: Why Enterprises Are Approving Codex CLI
 
-Developer adoption is only half the battle; enterprise security teams are the gatekeepers. Codex CLI addresses their concerns with a defense-in-depth model:
-
-| Layer | Technology | What It Protects |
-|---|---|---|
+Developer adoption is only half the battle; enterprise security teams are the gatekeepers. Codex CLI addresses their concerns with a defense-in-depth model: | Layer | Technology | What It Protects |
+|
+---
+|
+---
+|
+---
+|
 | **Filesystem sandbox** | Linux Landlock / macOS Seatbelt | Restricts file access to designated workspace trees |
 | **Network egress control** | Default deny; opt-in per command | Prevents accidental data exfiltration to unauthorized endpoints |
 | **Approval gating** | Three-mode policy engine | Human-in-the-loop or policy-driven auto-approval |
 | **Audit trail** | Local SQLite database | Every file read, edit, and command execution is timestamped and diffable |
 | **Environment variable filtering** | Configurable allowlists/denylists | Blocks secrets (API keys, passwords) from being logged or transmitted |
 
-For regulated industries, additional enterprise controls include:
-
-- **Hook Engine**: Intercept prompts pre-submission for compliance scanning; auto-trigger post-execution tests
+For regulated industries, additional enterprise controls include: - **Hook Engine**: Intercept prompts pre-submission for compliance scanning; auto-trigger post-execution tests
 - **RBAC Workspaces**: Separate admin and user scopes with different approval thresholds
 - **Context Compaction**: Automatically compress long-running session history to prevent sensitive data from lingering in context windows
 
@@ -293,23 +292,27 @@ For regulated industries, additional enterprise controls include:
 Codex CLI defaults to `gpt-5.3-codex`, OpenAI's flagship coding-optimized model. A second variant, **Spark**, was introduced in early 2026 for latency-critical workflows.
 
 | Model | Strength | Ideal Use Case | Availability |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **gpt-5.3-codex** | Deep reasoning, architecture design, multi-file refactoring, code review | Complex migrations, bug archaeology, security audits | All ChatGPT paid tiers |
 | **gpt-5.3-codex-spark** | 1,000+ tokens/second; sub-100ms first-token latency | Live pair programming, rapid UI iteration, interactive debugging | ChatGPT Pro only (research preview) |
 
 Spark is co-engineered with Cerebras on the WSE-3 wafer-scale chip—the first production OpenAI model not running on NVIDIA silicon. It minimizes target edits by default and does not auto-run tests, so it is best for tight feedback loops rather than autonomous long-horizon tasks.
 
-Switch models on the fly:
-
-```bash
+Switch models on the fly: ```bash
 codex -m gpt-5.3-codex
 codex -m gpt-5.3-codex-spark
 /model                    # Interactive model menu during session
 ```
 
-Tune reasoning effort per task type:
-
-```toml
+Tune reasoning effort per task type: ```toml
 # ~/.codex/config.toml
 model_reasoning_effort = "high"      # Architecture, debugging, audits
 model_reasoning_effort = "medium"    # Daily coding, tests, refactors (default)
@@ -323,7 +326,13 @@ model_reasoning_effort = "low"       # Formatting, renaming, simple queries
 Both tools dominate the terminal AI coding space in 2026. The right choice depends on your existing subscriptions, codebase scale, and workflow preferences.
 
 | Dimension | Codex CLI | Claude Code |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | **Pricing** | Bundled with ChatGPT Plus/Pro/Business | Separate Anthropic subscription (Pro $20/mo, Max tiers $100–200/mo) |
 | **License** | Apache-2.0, fully open source | Closed source; API access only |
 | **Context window** | 1M tokens (advertised) | 1M+ tokens (demonstrably stronger on 100k+ file repos) |
@@ -470,7 +479,6 @@ The era of vibe coding is not coming. It is here. And Codex CLI is your invitati
 *Last updated: May 17, 2026. Codex CLI is under rapid iteration; verify current capabilities against the official documentation.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

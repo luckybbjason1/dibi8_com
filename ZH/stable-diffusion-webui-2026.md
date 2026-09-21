@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/stable-diffusion-webui-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/stable-diffusion-webui-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/stable-diffusion-webui-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/stable-diffusion-webui-2026" />
 title: 'Stable Diffusion WebUI 2026（AUTOMATIC1111）：163k 星自托管图像生成...
 description: 'AUTOMATIC1111 stable-diffusion-webui 是 163k 星的自托管 SD/SDXL 图像生成事实标准 UI。2026 完整安装+生产指南：txt2img / img2img / 修复 / 扩展 / LoRA / ControlNet、硬件要求、替代品（Forge / SD.Next）。'
 date: 2026-05-21 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: ['stable diffusion', sdxl, 图像生成, automatic1111, 开源]
-aliases:
-  - /posts/stable-diffusion-webui-2026/
+aliases: - /posts/stable-diffusion-webui-2026/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/stable-diffusion-webui-2026/ -->
 # Stable Diffusion WebUI 2026（AUTOMATIC1111）：163k 星自托管图像生成完整指南
 
 
@@ -60,7 +52,15 @@ Flux（2024 年 9 月）和 SD 3.5 后图像生成生态严重碎片化。ComfyU
 ## 2. 硬件真实数字（2026）
 
 | GPU | SD 1.5（512×768）| SDXL（1024×1024）| Flux（1024×1024）|
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 4 GB（GTX 1650 / 3050）| ~15 秒/图 | ~60 秒（`--lowvram`）| 不实用 |
 | 8 GB（RTX 3060 / 4060）| ~5 秒 | ~12 秒 | ~30 秒（`--medvram`）|
 | 12 GB（RTX 3060 12GB / 4070）| ~3 秒 | ~6 秒 | ~15 秒 |
@@ -150,7 +150,11 @@ Civitai 是社区 LoRA 和 checkpoint 的事实 hub。Civitai Helper 扩展自�
 ## 9. A1111 vs Forge vs SD.Next vs ComfyUI
 
 | 挑 | 何时 |
-|---|---|
+|
+---
+|
+---
+|
 | **A1111 主线** | 默认，SD 1.x/SDXL 焦点，最大扩展生态 |
 | **Forge** | 同 A1111 UI 但快 30-75%，SDXL/Flux 就绪，VRAM 占用更小 |
 | **SD.Next** | Rolling release，几乎支持 A1111+Forge 所有但单 fork |
@@ -164,12 +168,11 @@ AUTOMATIC1111 SD WebUI = **2026 个人创作者自托管图像生成默认**。1
 
 开 GPU 实例，跑第 3 节安装，15 分钟后你有本地图像生成，任何有意义量上和 Midjourney 打平。
 
----
 
+---
 *dibi8 多模态内容 stack 的一部分 —— 见 [ComfyUI 节点式工作流](/zh/resources/ai-tools/comfyui-node-based-ai-image-2026/) 和即将上线的多模态内容 Pipeline 合集。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -197,25 +200,20 @@ AUTOMATIC1111 SD WebUI = **2026 个人创作者自托管图像生成默认**。1
 
 ## Why This Matters
 
-Understanding stable diffusion webui 2026（automatic1111）：163k 星自托管图像生成完整指南 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding stable diffusion webui 2026（automatic1111）：163k 星自托管图像生成完整指南 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -236,8 +234,8 @@ Stable Diffusion WebUI 2026（AUTOMATIC1111）：163k 星自托管图像生成�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 

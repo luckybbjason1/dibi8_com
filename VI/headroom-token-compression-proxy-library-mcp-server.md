@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/headroom-token-compression-proxy-library-mcp-server" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/headroom-token-compression-proxy-library-mcp-server" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/headroom-token-compression-proxy-library-mcp-server" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/headroom-token-compression-proxy-library-mcp-server" />
 title: 'Headroom: Nén 60-95% đầu vào LLM — Proxy tiết kiệm token...
 description: 'Headroom (19.745 sao GitHub) nén công cụ đầu ra, nhật ký, tệp và RAG chunks trước khi đến LLM. Ít hơn 60-95% token, cùng câu trả lời. Thư viện, proxy và máy chủ MCP. Bao gồm hướng dẫn cài đặt, phân tích kiến trúc và benchmark thực tế.'
 date: 2026-06-08
-lastmod:  2026-06-08slug: 'headroom-token-compression-proxy-library-mcp-server'
+lastmod: 2026-06-08
+slug: 'headroom-token-compression-proxy-library-mcp-server'
 category: 'llm-frameworks'
 tags: ['nén token', 'tối ưu token LLM', 'máy chủ MCP', 'nén RAG', 'Headroom', 'tối ưu ngữ cảnh', 'giảm chi phí token', 'AI agent']
 github_repo: 'https://github.com/chopratejas/headroom'
@@ -17,8 +13,6 @@ license: MIT
 featureImage: 'https://raw.githubusercontent.com/chopratejas/headroom/main/headroom-savings.png'
 lang: vi
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/headroom-token-compression-proxy-library-mcp-server/ -->
 
 # Headroom: Nén 60-95% đầu vào LLM — Proxy tiết kiệm token, thư viện & máy chủ MCP — Hướng dẫn thực tế 2026
 
@@ -55,8 +49,7 @@ Nếu bạn đang phải trả tiền cho các lệnh gọi API LLM trong năm 2
 
 Headroom là **lớp nén token** cho các đường dẫn LLM, giảm số lượng token đầu vào trước khi chúng đến mô hình. Nó không phải là công cụ tổng hợp — nó là công cụ tối ưu cấu trúc. Nó hiểu sự khác biệt giữa "tín hiệu quan trọng" và "ngữ cảnh nhiễu" trong đầu ra công cụ, nhật ký, tệp và các chunk tăng cường truy xuất.
 
-Tính năng chính:
-- **Nén đầu vào** — Loại bỏ trùng lặp, cắt giảm và tổng hợp đầu ra công cụ trước khi LLM tiêu thụ
+Tính năng chính: - **Nén đầu vào** — Loại bỏ trùng lặp, cắt giảm và tổng hợp đầu ra công cụ trước khi LLM tiêu thụ
 - **Hỗ trợ đa định dạng** — Xử lý JSON, nhật ký, markdown, tệp mã nguồn và embedding RAG
 - **3 chế độ triển khai** — Thư viện Python, proxy CLI và máy chủ MCP
 - **Không phụ thuộc mô hình** — Hoạt động với Claude, GPT-4o, Gemini và mọi điểm cuối tương thích OpenAI
@@ -67,9 +60,7 @@ Dự án được xây dựng bằng Python, sử dụng tối thiểu phụ thu
 
 ## How Headroom Works
 
-Headroom hoạt động qua 3 giai đoạn trong đường dẫn:
-
-### Giai đoạn 1: Thu thập đầu vào
+Headroom hoạt động qua 3 giai đoạn trong đường dẫn: ### Giai đoạn 1: Thu thập đầu vào
 
 ```bash
 # Cài đặt thư viện
@@ -90,9 +81,7 @@ print(f'Savings: {result.savings_pct}%')
 
 ### Giai đoạn 2: Công cụ nén
 
-Công cụ nén áp dụng nhiều chiến lược:
-
-```python
+Công cụ nén áp dụng nhiều chiến lược: ```python
 # Quy tắc nén tùy chỉnh
 from headroom import Compressor
 
@@ -160,8 +149,7 @@ curl -X POST http://localhost:8787/compress \
   -H "Content-Type: application/json" \
   -d '{"input": "Ngữ cảnh rất dài..."}' | jq
 
-# Phản hồi dự kiến:
-# {
+# Phản hồi dự kiến: # {
 #   "original_tokens": 4523,
 #   "compressed_tokens": 891,
 #   "savings_pct": 80.3,
@@ -178,8 +166,7 @@ headroom mcp-serve --port 9090
 # Kết nối từ Claude Code
 claude-code --mcp http://localhost:9090
 
-# Máy chủ MCP expose:
-# - headroom/compress — Nén đầu vào văn bản
+# Máy chủ MCP expose: # - headroom/compress — Nén đầu vào văn bản
 # - headroom/benchmark — Chạy benchmark nén
 # - headroom/config — Lấy/cập nhật cài đặt nén
 ```
@@ -201,9 +188,7 @@ curl http://localhost:8787/stats | jq
 
 ## Integration with Claude Code, Codex CLI, Copilot, and Gemini CLI
 
-Headroom hoạt động với mọi agent gửi HTTP request đến LLM API. Dưới đây là cách tích hợp với các công cụ phổ biến:
-
-### Claude Code
+Headroom hoạt động với mọi agent gửi HTTP request đến LLM API. Dưới đây là cách tích hợp với các công cụ phổ biến: ### Claude Code
 
 ```bash
 # Cách 1: Dùng làm máy chủ MCP
@@ -243,9 +228,7 @@ Tự host proxy infrastructure: [DigitalOcean](https://m.do.co/c/eca87ac14ee0) d
 
 ### Benchmark nén
 
-Kiểm tra trên 100 đầu ra công cụ thực tế (hỗn hợp đầu ra terminal, git diff, nội dung tệp và chunk RAG):
-
-| Cấu hình | Avg Original Tokens | Avg Compressed Tokens | Savings | Answer Quality |
+Kiểm tra trên 100 đầu ra công cụ thực tế (hỗn hợp đầu ra terminal, git diff, nội dung tệp và chunk RAG): | Cấu hình | Avg Original Tokens | Avg Compressed Tokens | Savings | Answer Quality |
 |----------|-------------------|---------------------|---------|---------------|
 | Không nén | 4.820 | 4.820 | 0% | 100% |
 | Bảo thủ (90% cap) | 4.820 | 1.450 | 70% | 98% |
@@ -254,24 +237,18 @@ Kiểm tra trên 100 đầu ra công cụ thực tế (hỗn hợp đầu ra ter
 
 ### Giảm chi phí: Kịch bản thực tế
 
-Một developer dùng Claude Code cho dự án Python 50K dòng:
-
-```bash
-# Trước Headroom:
-# Ngữ cảnh hàng ngày: ~120.000 tokens/ngày
+Một developer dùng Claude Code cho dự án Python 50K dòng: ```bash
+# Trước Headroom: # Ngữ cảnh hàng ngày: ~120.000 tokens/ngày
 # Chi phí: ~$48/tháng (Claude Sonnet @ $3/M)
 
-# Sau Headroom (chế độ cân bằng):
-# Ngữ cảnh hàng ngày: ~28.000 tokens/ngày
+# Sau Headroom (chế độ cân bằng): # Ngữ cảnh hàng ngày: ~28.000 tokens/ngày
 # Chi phí: ~$11/tháng
 # Tiết kiệm: ~$37/tháng = giảm 77%
 ```
 
 ### Nén chunk RAG
 
-Nén tài liệu được truy xuất trước khi gửi đến LLM:
-
-```python
+Nén tài liệu được truy xuất trước khi gửi đến LLM: ```python
 from headroom import Compressor, rag_compress
 
 # Nén chunk RAG trước LLM
@@ -288,9 +265,7 @@ compressed_chunks = rag_compress(
 
 ### Use case thực tế: Phân tích nhật ký CI/CD
 
-Một team xử lý 500 GitHub Actions logs mỗi tuần:
-
-```bash
+Một team xử lý 500 GitHub Actions logs mỗi tuần: ```bash
 # Nén batch logs
 headroom compress-batch \
   --input ./ci-logs/*.log \
@@ -307,12 +282,9 @@ cat ./compressed-logs/build-42.log | \
 
 ### Quy tắc nén tùy chỉnh
 
-Định nghĩa quy tắc nén đặc thù cho domain:
-
-```yaml
+Định nghĩa quy tắc nén đặc thù cho domain: ```yaml
 # headroom-config.yaml
-rules:
-  # Bỏ qua nén file code dưới threshold
+rules: # Bỏ qua nén file code dưới threshold
   - pattern: "\\.py$"
     min_compress_ratio: 0.5
   
@@ -333,9 +305,7 @@ rules:
 
 ### Session State với Redis
 
-Cho các kịch bản đa phiên, lưu trạng thái nén:
-
-```bash
+Cho các kịch bản đa phiên, lưu trạng thái nén: ```bash
 # Khởi động với Redis state backend
 headroom serve \
   --redis-url redis://localhost:6379/0 \
@@ -381,9 +351,7 @@ curl -s http://localhost:8787/config | jq
 
 ## Limitations / Honest Assessment
 
-Headroom không phải là giải pháp vạn năng. Đây là những trường hợp KHÔNG phù hợp:
-
-1. **Ứng dụng nhạy cảm với độ trễ** — Nén thêm 10-50ms mỗi request. Cho các use case siêu-low-latency (tổng <100ms), overhead có thể không chấp nhận được.
+Headroom không phải là giải pháp vạn năng. Đây là những trường hợp KHÔNG phù hợp: 1. **Ứng dụng nhạy cảm với độ trễ** — Nén thêm 10-50ms mỗi request. Cho các use case siêu-low-latency (tổng <100ms), overhead có thể không chấp nhận được.
 
 2. **Đầu vào cực ngắn** — Cho đầu vào dưới 500 token, overhead nén vượt quá tiết kiệm. Headroom được tối ưu cho kịch bản ngữ cảnh dài (2.000+ token).
 
@@ -434,7 +402,6 @@ Tham gia [nhóm Telegram tiếng Việt dibi8](https://t.me/DIBI8_Group/18) đ�
 Một số link trên là affiliate link. dibi8.com có thể nhận commission nếu bạn đăng ký, không tốn thêm chi phí cho bạn. Giúp giữ site hoạt động và nội dung miễn phí.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

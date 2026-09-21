@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/agno" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/agno" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/agno" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/agno" />
 title: 'Agno: 40K+ Stars — Framework AI Agent Nhẹ, So Sánh Sâu v...
 description: 'Agno là SDK Python mã nguồn mở để xây dựng nền tảng AI Agent, có 40K+ Star trên GitHub. Hỗ trợ OpenAI, Anthropic, Ollama, Docker, AWS. Bao gồm cài đặt, hệ thống đa Agent, benchmark, so sánh với CrewAI, AutoGen, LangChain.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [agno, 'ai-agent', 'python-sdk', 'multi-agent', 'mã-nguồn-mở', 'framework-nhẹ', 'nền-tảng-agent', ollama, openai]
-aliases:
-- /vi/posts/agno/
+aliases: - /vi/posts/agno/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/agno/ -->
 
 {{</* resource-info */>}}
 
@@ -47,9 +39,7 @@ Giá trị cốt lõi của Agno rất đơn giản: bạn xây dựng agent b�
 
 ### Tổng Quan Kiến Trúc
 
-Kiến trúc của Agno tách biệt các mối quan tâm thành ba lớp riêng biệt, mỗi lớp có thể thay thế độc lập:
-
-```
+Kiến trúc của Agno tách biệt các mối quan tâm thành ba lớp riêng biệt, mỗi lớp có thể thay thế độc lập: ```
 ┌─────────────────────────────────────────────────────────────┐
 │                    Control Plane (AgentOS UI)                │
 │         Chat · Trace Inspection · Session Management         │
@@ -118,9 +108,7 @@ python -c "import agno; print(agno.__version__)"
 
 ### Bước 4: Chạy Agent Đầu Tiên
 
-Tạo `basic_agent.py`:
-
-```python
+Tạo `basic_agent.py`: ```python
 from agno.agent import Agent
 
 agent = Agent(
@@ -217,16 +205,11 @@ CMD ["python", "workbench.py"]
 ```yaml
 # docker-compose.yml
 version: '3.8'
-services:
-  agentos:
-    build: .
-    ports:
-      - "8000:8000"
-    environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
+services: agentos: build: .
+    ports: - "8000:8000"
+    environment: - OPENAI_API_KEY=${OPENAI_API_KEY}
       - AGNO_ENV=production
-    volumes:
-      - ./data:/app/data
+    volumes: - ./data:/app/data
     restart: unless-stopped
 ```
 
@@ -253,9 +236,7 @@ aws ecs create-service \
 
 ### Benchmark Hiệu Năng
 
-Thiết kế nhẹ của Agno cho thấy lợi thế đo lường được trong thử nghiệm so sánh trực tiếp:
-
-![Agno Tài Liệu Chính Thức](https://docs.agno.com/introduction)
+Thiết kế nhẹ của Agno cho thấy lợi thế đo lường được trong thử nghiệm so sánh trực tiếp: ![Agno Tài Liệu Chính Thức](https://docs.agno.com/introduction)
 
 | Chỉ số | Agno | CrewAI | AutoGen | LangGraph |
 |--------|------|--------|---------|-----------|
@@ -282,9 +263,7 @@ Những con số này có ý nghĩa khi quy mô lớn. Một dịch vụ chạy 
 
 ### Hệ Thống Đa Agent
 
-Team Agno cho phép bạn tạo nhóm agent mà không cần định nghĩa đồ thị:
-
-```python
+Team Agno cho phép bạn tạo nhóm agent mà không cần định nghĩa đồ thị: ```python
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
 from agno.tools.duckduckgo import DuckDuckGoTools
@@ -429,9 +408,7 @@ AgentOS.serve(host="0.0.0.0", port=8000)
 
 ## Hạn Chế / Đánh Giá Trung Thực
 
-Agno không phải là công cụ phù hợp cho mọi use case agent. Sau đây là những gì cần cân nhắc trước khi áp dụng:
-
-**Không có ngữ nghĩa đồ thị**: Nếu workflow của bạn yêu cầu các chuyển đổi trạng thái tường minh, checkpointing và các đường dẫn thực thi có thể phát lại, mô hình đồ thị của LangGraph phù hợp hơn. Điều phối dựa trên team của Agno đơn giản hơn nhưng kém chính xác hơn cho logic phân nhánh phức tạp.
+Agno không phải là công cụ phù hợp cho mọi use case agent. Sau đây là những gì cần cân nhắc trước khi áp dụng: **Không có ngữ nghĩa đồ thị**: Nếu workflow của bạn yêu cầu các chuyển đổi trạng thái tường minh, checkpointing và các đường dẫn thực thi có thể phát lại, mô hình đồ thị của LangGraph phù hợp hơn. Điều phối dựa trên team của Agno đơn giản hơn nhưng kém chính xác hơn cho logic phân nhánh phức tạp.
 
 **Cộng đồng nhỏ hơn LangChain**: Với 452 ngườI đóng góp so với 3.000+ của LangChain, hướng dẫn bên thứ ba và câu trả lờI StackOverflow ít hơn. Tài liệu đã cải thiện nhanh chóng nhưng vẫn còn thiếu sót trong các trường hợp ngoại lệ.
 
@@ -481,9 +458,7 @@ Agno lấp đầy một khoảng trống cụ thể trong bức tranh framework 
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -504,7 +479,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 *Bài viết này chứa liên kết tiếp thị. Nếu bạn đăng ký dịch vụ thông qua các liên kết này, dibi8.com có thể nhận được hoa hồng mà không phát sinh chi phí thêm cho bạn.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

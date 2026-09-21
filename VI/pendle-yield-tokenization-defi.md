@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/pendle-yield-tokenization-defi" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/pendle-yield-tokenization-defi" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/pendle-yield-tokenization-defi" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/pendle-yield-tokenization-defi" />
 title: 'pendle-yield-tokenization-defi'
 description: ''. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: [pendle]
-aliases:
-- /vi/posts/pendle-yield-tokenization-defi/
+aliases: - /vi/posts/pendle-yield-tokenization-defi/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/pendle-yield-tokenization-defi/ -->
 
 {{</* resource-info */>}}
 
@@ -1067,7 +1059,6 @@ quickstart().catch(console.error);
 *© 2026 dibi8.com | Được xây dựng cho nhà phát triển DeFi, trader, và nhà nghiên cứu.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

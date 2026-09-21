@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/prefect-workflow-orchestration" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/prefect-workflow-orchestration" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/prefect-workflow-orchestration" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/prefect-workflow-orchestration" />
 title: 'Prefect 2026: Công Cụ Điều Phối Workflow Hiện Đại cho Pi...
 description: 'Hướng dẫn thực hành về Prefect 3.x — công cụ điều phối workflow Python-native với thực thi async, retry tự động, và server tự host. Triển khai pipeline dữ liệu trong 5 phút.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: []
-aliases:
-- /vi/posts/prefect-workflow-orchestration/
+aliases: - /vi/posts/prefect-workflow-orchestration/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/prefect-workflow-orchestration/ -->
 
 {{</* resource-info */>}}
 
@@ -60,23 +52,20 @@ Một **Flow** là một hàm Python được decorated định nghĩa một wor
 from prefect import flow, task
 
 @task(retries=3, retry_delay_seconds=5)
-def fetch_data(url: str) -> dict:
-    """Fetch data from an API with automatic retry."""
+def fetch_data(url: str) -> dict: """Fetch data from an API with automatic retry."""
     import requests
     response = requests.get(url, timeout=30)
     response.raise_for_status()
     return response.json()
 
 @flow(name="data-ingestion-pipeline")
-def main_flow():
-    """Main pipeline orchestrating multiple tasks."""
+def main_flow(): """Main pipeline orchestrating multiple tasks."""
     raw_data = fetch_data("https://api.example.com/data")
     # ... more tasks
 ```
 
 ### Prefect Server
-**Prefect server** là một control plane nhẹ, có thể tự host cung cấp:
-- **REST API** cho đăng ký flow, lập lịch, và theo dõi thực thi
+**Prefect server** là một control plane nhẹ, có thể tự host cung cấp: - **REST API** cho đăng ký flow, lập lịch, và theo dõi thực thi
 - **Lớp WebSocket** cho cập nhật trạng thái task real-time
 - **Dashboard dựa trên React** cho giám sát, lọc, và debug các run
 - **Tích hợp Webhook** cho Slack, PagerDuty, và các endpoints tùy chỉnh
@@ -84,15 +73,12 @@ def main_flow():
 Server có thể chạy trên một máy với SQLite (cho team nhỏ) hoặc mở rộng lên PostgreSQL + Redis cho production workloads.
 
 ### Work Pools và Workers
-**Work pools** tách biệt việc submit flow khỏi thực thi. Bạn submit một flow run đến pool, và **workers** (các tiến trình Python nhẹ) nhận và thực thi chúng. Điều này cho phép:
-- Nhiều môi trường thực thi (local, Docker, Kubernetes, serverless)
+**Work pools** tách biệt việc submit flow khỏi thực thi. Bạn submit một flow run đến pool, và **workers** (các tiến trình Python nhẹ) nhận và thực thi chúng. Điều này cho phép: - Nhiều môi trường thực thi (local, Docker, Kubernetes, serverless)
 - Mở rộng workers động dựa trên độ sâu queue
 - Tách biệt điều phối khỏi compute
 
 ### States và State Transitions
-Mỗi task và flow run chuyển đổi qua một state machine được định nghĩa rõ ràng:
-
-```
+Mỗi task và flow run chuyển đổi qua một state machine được định nghĩa rõ ràng: ```
 Scheduled → Pending → Running → Completed
                               → Failed → Retrying → Running
                               → Cancelled
@@ -132,49 +118,32 @@ prefect server start
 # Mở dashboard trong trình duyệt
 ```
 
-Cho team deployment với PostgreSQL:
-
-```bash
+Cho team deployment với PostgreSQL: ```bash
 # Tùy chọn B: Docker Compose với PostgreSQL
 cat > docker-compose.yml << EOF
-services:
-  prefect-server:
-    image: prefecthq/prefect:3.3.0-python3.12
-    ports:
-      - "4200:4200"
-    environment:
-      - PREFECT_API_DATABASE_CONNECTION_URL=postgresql+asyncpg://prefect:prefect@postgres:5432/prefect
+services: prefect-server: image: prefecthq/prefect:3.3.0-python3.12
+    ports: - "4200:4200"
+    environment: - PREFECT_API_DATABASE_CONNECTION_URL=postgresql+asyncpg://prefect:prefect@postgres:5432/prefect
       - PREFECT_HOME=/home/prefect
     command: prefect server start --host 0.0.0.0
-    depends_on:
-      - postgres
+    depends_on: - postgres
 
-  postgres:
-    image: postgres:16-alpine
-    environment:
-      POSTGRES_USER: prefect
+  postgres: image: postgres:16-alpine
+    environment: POSTGRES_USER: prefect
       POSTGRES_PASSWORD: prefect
       POSTGRES_DB: prefect
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
+    volumes: - postgres_data:/var/lib/postgresql/data
+    ports: - "5432:5432"
 
-  redis:
-    image: redis:7-alpine
-    ports:
-      - "6379:6379"
+  redis: image: redis:7-alpine
+    ports: - "6379:6379"
 
-volumes:
-  postgres_data:
-EOF
+volumes: postgres_data: EOF
 
 docker-compose up -d
 ```
 
-Cấu hình Prefect client để kết nối:
-
-```bash
+Cấu hình Prefect client để kết nối: ```bash
 # Chỉ Prefect CLI đến server của bạn
 prefect config set PREFECT_API_URL=http://localhost:4200/api
 
@@ -185,9 +154,7 @@ prefect version
 
 ### Bước 3: Xây Dựng Flow Đầu Tiên
 
-Tạo `etl_pipeline.py`:
-
-```python
+Tạo `etl_pipeline.py`: ```python
 from prefect import flow, task
 from prefect.tasks import task_input_hash
 from prefect.artifacts import create_table_artifact
@@ -196,8 +163,7 @@ import pandas as pd
 from datetime import timedelta
 
 @task(retries=3, retry_delay_seconds=[10, 30, 60], cache_key_fn=task_input_hash, cache_expiration=timedelta(hours=1))
-def extract_api_data(endpoint: str, api_key: str) -> list[dict]:
-    """Extract data from REST API with retry and caching."""
+def extract_api_data(endpoint: str, api_key: str) -> list[dict]: """Extract data from REST API with retry and caching."""
     headers = {"Authorization": f"Bearer {api_key}"}
     response = requests.get(endpoint, headers=headers, timeout=30)
     response.raise_for_status()
@@ -206,8 +172,7 @@ def extract_api_data(endpoint: str, api_key: str) -> list[dict]:
     return data
 
 @task(retries=2)
-def transform_validate(raw_data: list[dict]) -> pd.DataFrame:
-    """Transform and validate raw API data."""
+def transform_validate(raw_data: list[dict]) -> pd.DataFrame: """Transform and validate raw API data."""
     df = pd.DataFrame(raw_data)
     
     # Data quality checks
@@ -225,8 +190,7 @@ def transform_validate(raw_data: list[dict]) -> pd.DataFrame:
     return df
 
 @task
-def load_to_database(df: pd.DataFrame, table_name: str) -> int:
-    """Load cleaned data to PostgreSQL."""
+def load_to_database(df: pd.DataFrame, table_name: str) -> int: """Load cleaned data to PostgreSQL."""
     from sqlalchemy import create_engine
     
     engine = create_engine("postgresql://user:pass@localhost:5432/analytics")
@@ -236,8 +200,7 @@ def load_to_database(df: pd.DataFrame, table_name: str) -> int:
     return rows_inserted
 
 @task
-def generate_summary_report(df: pd.DataFrame) -> None:
-    """Create a summary artifact visible in the dashboard."""
+def generate_summary_report(df: pd.DataFrame) -> None: """Create a summary artifact visible in the dashboard."""
     summary = df.groupby("category").agg({
         "amount": ["sum", "mean", "count"]
     }).round(2).to_dict()
@@ -252,8 +215,7 @@ def generate_summary_report(df: pd.DataFrame) -> None:
     )
 
 @flow(name="daily-etl-pipeline", log_prints=True)
-def etl_pipeline(endpoint: str = "https://api.example.com/transactions", api_key: str = "demo-key"):
-    """End-to-end ETL pipeline with full observability."""
+def etl_pipeline(endpoint: str = "https://api.example.com/transactions", api_key: str = "demo-key"): """End-to-end ETL pipeline with full observability."""
     # Extract
     raw_data = extract_api_data(endpoint, api_key)
     
@@ -268,14 +230,11 @@ def etl_pipeline(endpoint: str = "https://api.example.com/transactions", api_key
     
     return {"rows_processed": rows_loaded, "categories": cleaned_data["category"].nunique()}
 
-if __name__ == "__main__":
-    result = etl_pipeline()
+if __name__ == "__main__": result = etl_pipeline()
     print(f"Pipeline completed: {result}")
 ```
 
-Chạy:
-
-```bash
+Chạy: ```bash
 python etl_pipeline.py
 ```
 
@@ -296,9 +255,7 @@ etl_pipeline.serve(
 )
 ```
 
-Hoặc dùng cú pháp cron:
-
-```bash
+Hoặc dùng cú pháp cron: ```bash
 # Deploy với lịch trình cron
 prefect deployment build etl_pipeline.py:etl_pipeline \
   --name "daily-etl-cron" \
@@ -312,14 +269,11 @@ Prefect tích hợp native với hệ sinh thái dữ liệu hiện đại. Dư�
 
 ### Docker và Kubernetes Execution
 
-Chạy flows trong container Docker cô lập:
-
-```python
+Chạy flows trong container Docker cô lập: ```python
 from prefect.docker import DockerImage
 
 @flow
-def containerized_flow():
-    """Run tasks inside Docker containers."""
+def containerized_flow(): """Run tasks inside Docker containers."""
     pass
 
 # Deploy với Docker
@@ -330,9 +284,7 @@ containerized_flow.deploy(
 )
 ```
 
-Cấu hình Docker work pool:
-
-```bash
+Cấu hình Docker work pool: ```bash
 # Tạo Docker work pool
 prefect work-pool create docker-pool --type docker
 
@@ -340,9 +292,7 @@ prefect work-pool create docker-pool --type docker
 prefect worker start --pool docker-pool
 ```
 
-Cho Kubernetes:
-
-```bash
+Cho Kubernetes: ```bash
 # Tạo Kubernetes work pool
 prefect work-pool create k8s-pool --type kubernetes
 
@@ -356,16 +306,13 @@ prefect deployment build etl_pipeline.py:etl_pipeline \
 
 ### Tích Hợp dbt
 
-Điều phối models dbt trực tiếp từ Prefect:
-
-```python
+Điều phối models dbt trực tiếp từ Prefect: ```python
 from prefect import flow
 from prefect_dbt.cli.commands import trigger_dbt_cli_command
 from prefect_dbt.cli.configs import TargetConfigs
 
 @flow(name="dbt-transform-pipeline")
-def run_dbt_models():
-    """Run dbt models with Prefect orchestration."""
+def run_dbt_models(): """Run dbt models with Prefect orchestration."""
     # Run dbt deps
     trigger_dbt_cli_command("dbt deps")
     
@@ -382,9 +329,7 @@ def run_dbt_models():
 run_dbt_models.serve(name="dbt-daily")
 ```
 
-Cài đặt integration:
-
-```bash
+Cài đặt integration: ```bash
 pip install prefect-dbt[cli]
 ```
 
@@ -396,28 +341,23 @@ from prefect_aws import AwsCredentials
 from prefect_aws.s3 import S3Bucket
 
 @task
-def download_from_s3(bucket: str, key: str) -> str:
-    """Download file from S3."""
+def download_from_s3(bucket: str, key: str) -> str: """Download file from S3."""
     s3 = S3Bucket.load("my-s3-block")
     return s3.read_path(f"{bucket}/{key}")
 
 @task
-def upload_to_s3(local_path: str, bucket: str, key: str) -> None:
-    """Upload file to S3."""
+def upload_to_s3(local_path: str, bucket: str, key: str) -> None: """Upload file to S3."""
     s3 = S3Bucket.load("my-s3-block")
     s3.upload_from_path(local_path, f"{bucket}/{key}")
 
 @flow(name="s3-data-pipeline")
-def s3_pipeline():
-    """Pipeline moving data through S3."""
+def s3_pipeline(): """Pipeline moving data through S3."""
     data = download_from_s3("raw-data", "input.csv")
     # ... process ...
     upload_to_s3("processed.csv", "processed-data", "output.csv")
 ```
 
-Cấu hình AWS credentials:
-
-```bash
+Cấu hình AWS credentials: ```bash
 pip install prefect-aws
 
 # Đăng ký AWS credentials block
@@ -431,12 +371,10 @@ from prefect import flow
 from prefect.blocks.notifications import SlackWebhook
 
 @flow(on_failure=[send_slack_alert], on_crashed=[send_slack_alert])
-def monitored_flow():
-    """Flow with automatic Slack alerting on failure."""
+def monitored_flow(): """Flow with automatic Slack alerting on failure."""
     pass
 
-def send_slack_alert(flow, flow_run, state):
-    """Send alert to Slack when flow fails."""
+def send_slack_alert(flow, flow_run, state): """Send alert to Slack when flow fails."""
     slack = SlackWebhook.load("alerts-webhook")
     slack.notify(
         body=f"Flow {flow.name} failed with state {state.name}. "
@@ -446,15 +384,12 @@ def send_slack_alert(flow, flow_run, state):
 
 ### Triggers Dựa Trên Sự Kiện Tùy Chỉnh
 
-Phản ứng với events bên ngoài mà không cần polling:
-
-```python
+Phản ứng với events bên ngoài mà không cần polling: ```python
 from prefect.events import emit_event
 from prefect import flow
 
 @flow
-def on_file_uploaded(file_path: str):
-    """Process file when S3 upload event fires."""
+def on_file_uploaded(file_path: str): """Process file when S3 upload event fires."""
     result = process_file(file_path)
     
     # Phát event tùy chỉnh cho downstream flows
@@ -470,23 +405,18 @@ def on_file_uploaded(file_path: str):
 
 ### Thực Thi Async và Đồng Thờ
 
-Hỗ trợ async của Prefect cho phép đồng thờ quy mô lớn:
-
-```python
+Hỗ trợ async của Prefect cho phép đồng thờ quy mô lớn: ```python
 import asyncio
 from prefect import flow, task
 
 @task
-async def fetch_async(url: str) -> dict:
-    """Async HTTP fetch."""
+async def fetch_async(url: str) -> dict: """Async HTTP fetch."""
     import httpx
-    async with httpx.AsyncClient() as client:
-        response = await client.get(url)
+    async with httpx.AsyncClient() as client: response = await client.get(url)
         return response.json()
 
 @flow
-async def concurrent_fetch_flow(urls: list[str]):
-    """Fetch all URLs concurrently."""
+async def concurrent_fetch_flow(urls: list[str]): """Fetch all URLs concurrently."""
     tasks = [fetch_async.submit(url) for url in urls]
     results = [t.result() for t in tasks]
     return results
@@ -511,9 +441,7 @@ Prefect cung cấp năng lượng cho pipelines dữ liệu tại các tổ ch�
 
 ### Benchmark Hiện Năng
 
-Chúng tôi đã benchmark Prefect 3.3.0 với các patterns điều phối phổ biến trên **DigitalOcean 8 vCPU / 32GB RAM droplet** (xem [DigitalOcean](https://m.do.co/c/eca87ac14ee0) cho $200 credit miễn phí):
-
-| Chỉ Số | Prefect 3.x | Airflow 2.10 | Dagster 1.9 |
+Chúng tôi đã benchmark Prefect 3.3.0 với các patterns điều phối phổ biến trên **DigitalOcean 8 vCPU / 32GB RAM droplet** (xem [DigitalOcean](https://m.do.co/c/eca87ac14ee0) cho $200 credit miễn phí): | Chỉ Số | Prefect 3.x | Airflow 2.10 | Dagster 1.9 |
 |--------|-------------|--------------|-------------|
 | Cold start (task đơn) | **0.8s** | 3.2s | 2.1s |
 | 100 task đồng thờ | **1.2s** | 8.5s | 4.3s |
@@ -554,8 +482,7 @@ from datetime import timedelta
     retry_delay_seconds=[1, 2, 4, 8, 16],  # Exponential backoff
     retry_jitter=True  # Thêm tính ngẫu nhiên để ngăn thundering herd
 )
-def call_external_api(endpoint: str) -> dict:
-    """Call external API with smart retry logic."""
+def call_external_api(endpoint: str) -> dict: """Call external API with smart retry logic."""
     import requests
     response = requests.get(endpoint, timeout=10)
     response.raise_for_status()
@@ -564,30 +491,23 @@ def call_external_api(endpoint: str) -> dict:
 
 ### Giới Hạn Đồng Thờ Task
 
-Ngăn kiệt tài nguyên với giới hạn đồng thờ toàn cục:
-
-```python
+Ngăn kiệt tài nguyên với giới hạn đồng thờ toàn cục: ```python
 from prefect import flow, task
 from prefect.concurrency.sync import concurrency
 
 @task
-def process_with_resource_limit(item_id: str) -> dict:
-    """Process item with controlled concurrency."""
-    with concurrency("database-slots", occupy=1):
-        # Chỉ N task có thể thực thi block này đồng thờ
+def process_with_resource_limit(item_id: str) -> dict: """Process item with controlled concurrency."""
+    with concurrency("database-slots", occupy=1): # Chỉ N task có thể thực thi block này đồng thờ
         return query_database(item_id)
 
 @flow
-def limited_processing_flow(item_ids: list[str]):
-    """Process items with max 10 concurrent database queries."""
+def limited_processing_flow(item_ids: list[str]): """Process items with max 10 concurrent database queries."""
     from prefect.tasks import map
     results = map(process_with_resource_limit, item_ids)
     return results
 ```
 
-Cấu hình giới hạn:
-
-```bash
+Cấu hình giới hạn: ```bash
 # Tạo concurrency limit qua CLI
 prefect concurrency-limit create database-slots 10
 ```
@@ -599,27 +519,23 @@ from prefect import flow, task
 from pydantic import BaseModel, Field
 from typing import List
 
-class Transaction(BaseModel):
-    """Validated transaction model."""
+class Transaction(BaseModel): """Validated transaction model."""
     id: str
     amount: float = Field(gt=0, description="Must be positive")
     currency: str = Field(pattern="^(USD|EUR|GBP)$")
     created_at: str
 
-class PipelineOutput(BaseModel):
-    """Validated pipeline output."""
+class PipelineOutput(BaseModel): """Validated pipeline output."""
     total_amount: float
     transaction_count: int
     currency: str
 
 @task
-def validate_transactions(raw_data: List[dict]) -> List[Transaction]:
-    """Validate and parse raw transaction data."""
+def validate_transactions(raw_data: List[dict]) -> List[Transaction]: """Validate and parse raw transaction data."""
     return [Transaction(**item) for item in raw_data]
 
 @flow
-def validated_pipeline(raw_data: List[dict]) -> PipelineOutput:
-    """Pipeline with full input/output validation."""
+def validated_pipeline(raw_data: List[dict]) -> PipelineOutput: """Pipeline with full input/output validation."""
     transactions = validate_transactions(raw_data)
     
     return PipelineOutput(
@@ -634,20 +550,14 @@ def validated_pipeline(raw_data: List[dict]) -> PipelineOutput:
 ```yaml
 # .github/workflows/prefect-deploy.yml
 name: Deploy Prefect Flows
-on:
-  push:
-    branches: [main]
+on: push: branches: [main]
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: deploy: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       
       - name: Setup Python
         uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
+        with: python-version: "3.12"
       
       - name: Install dependencies
         run: |
@@ -675,41 +585,29 @@ jobs:
 name: production-pipelines
 prefect-version: 3.3.0
 
-build:
-  - prefect_docker.deployments.steps.build_docker_image:
-      requires: prefect-docker
+build: - prefect_docker.deployments.steps.build_docker_image: requires: prefect-docker
       image_name: my-pipeline
       tag: "{{ sha }}"
       dockerfile: Dockerfile
 
-push:
-  - prefect_docker.deployments.steps.push_docker_image:
-      requires: prefect-docker
+push: - prefect_docker.deployments.steps.push_docker_image: requires: prefect-docker
       image_name: my-pipeline
       tag: "{{ sha }}"
       credentials: "{{ prefect.blocks.docker-registry-credentials.prod-registry }}"
 
-pull:
-  - prefect.deployments.steps.set_working_directory:
-      directory: /opt/prefect
+pull: - prefect.deployments.steps.set_working_directory: directory: /opt/prefect
 
-deployments:
-  - name: daily-etl
+deployments: - name: daily-etl
     entrypoint: etl_pipeline.py:etl_pipeline
-    work_pool:
-      name: docker-pool
-    schedule:
-      cron: "0 6 * * *"
-    parameters:
-      endpoint: "https://api.production.example.com/v1/data"
+    work_pool: name: docker-pool
+    schedule: cron: "0 6 * * *"
+    parameters: endpoint: "https://api.production.example.com/v1/data"
     tags: ["production", "etl", "daily"]
     
   - name: hourly-analytics
     entrypoint: analytics_pipeline.py:hourly_flow
-    work_pool:
-      name: k8s-pool
-    schedule:
-      interval: 3600
+    work_pool: name: k8s-pool
+    schedule: interval: 3600
     tags: ["production", "analytics"]
 ```
 
@@ -725,20 +623,17 @@ from datetime import timedelta
     on_failure=[notify_team],
     on_crashed=[notify_team, escalate_to_pagerduty]
 )
-def critical_revenue_pipeline():
-    """Revenue pipeline with full monitoring."""
+def critical_revenue_pipeline(): """Revenue pipeline with full monitoring."""
     # Pipeline logic here
     pass
 
-def notify_team(flow, flow_run, state):
-    """Send notification on failure."""
+def notify_team(flow, flow_run, state): """Send notification on failure."""
     webhook = Webhook.load("slack-alerts")
     webhook.notify(
         body=f"CRITICAL: {flow.name} failed after {flow_run.total_run_time}s"
     )
 
-def escalate_to_pagerduty(flow, flow_run, state):
-    """Escalate to PagerDuty for crashed flows."""
+def escalate_to_pagerduty(flow, flow_run, state): """Escalate to PagerDuty for crashed flows."""
     webhook = Webhook.load("pagerduty-integration")
     webhook.notify(
         body=json.dumps({
@@ -774,9 +669,7 @@ def escalate_to_pagerduty(flow, flow_run, state):
 
 ## Hạn Chế: Đánh Giá Trung Thực
 
-Prefect không phải là công cụ đúng cho mọi workflow. Hiểu các trade-offs sau:
-
-1. **Độ trưởng thành hệ sinh thái plugin**: Airflow có 500+ provider packages. Thư viện tích hợp của Prefect nhỏ hơn nhưng phát triển nhanh. Các tích hợp tùy chỉnh đòi hỏi viết task wrappers của riêng bạn.
+Prefect không phải là công cụ đúng cho mọi workflow. Hiểu các trade-offs sau: 1. **Độ trưởng thành hệ sinh thái plugin**: Airflow có 500+ provider packages. Thư viện tích hợp của Prefect nhỏ hơn nhưng phát triển nhanh. Các tích hợp tùy chỉnh đòi hỏi viết task wrappers của riêng bạn.
 
 2. **Workflow chạy dài**: Timeout mặc định của Prefect là 1 giờ mỗi flow. Cho các workflow multi-day (phổ biến trong ML training), bạn cần cấu hình `timeout_seconds=None` và đảm bảo worker processes sống sót qua restarts.
 
@@ -811,14 +704,12 @@ from prefect import flow, task
 from prefect.tasks import map
 
 @task
-def process_file(filename: str) -> dict:
-    """Process a single file."""
+def process_file(filename: str) -> dict: """Process a single file."""
     # ... processing logic ...
     return {"file": filename, "rows": 1000}
 
 @flow
-def dynamic_processing_flow(directory: str):
-    """Dynamically process all files in a directory."""
+def dynamic_processing_flow(directory: str): """Dynamically process all files in a directory."""
     import os
     files = [f for f in os.listdir(directory) if f.endswith(".csv")]
     results = map(process_file, files)
@@ -846,9 +737,7 @@ Bắt đầu với thiết lập 5 phút trong hướng dẫn này. Kết nối 
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -858,7 +747,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 Bài viết này chứa các liên kết tiếp thị liên kết. Nếu bạn đăng ký dịch vụ thông qua các liên kết được đánh dấu trong bài viết này, dibi8.com có thể nhận được hoa hồng mà không phát sinh chi phí thêm cho bạn. Chúng tôi chỉ giới thiệu các công cụ mà chúng tôi đã đánh giá cá nhân và tin rằng mang lại giá trị thực sự. Các ý kiến được trình bày là của chúng tôi.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

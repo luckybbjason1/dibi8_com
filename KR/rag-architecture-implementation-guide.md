@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/rag-architecture-implementation-guide" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/rag-architecture-implementation-guide" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/rag-architecture-implementation-guide" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/rag-architecture-implementation-guide" />
 title: 'RAG 아키텍처 구현 가이드 2025: 프로덕션급 검색 증강 생성 시스템 구축'
 description: 'RAG(Retrieval-Augmented Generation) 아키텍처의 기본부터 고급 기법까지 상세히 설명합니다. LangChain, LlamaIndex를 활용한 프로덕션급 RAG 시스템 구축 가이드.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/rag-architecture-implementation-guide/
+aliases: - /posts/rag-architecture-implementation-guide/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/rag-architecture-implementation-guide/ -->
 
 {</* resource-info */>}
 
@@ -37,9 +29,7 @@ LLM은 방대한 지식을 갖추고 있지만, 학습 데이터에 없는 최�
 
 ### 기본 RAG 개념과 워크플로우
 
-RAG는 2020년 Meta AI의 논문에서 처음 제안된 아키텍처로, 크게 3단계로 동작합니다:
-
-1. **인덱싱**: 문서를 임베딩 벡터로 변환해 벡터 데이터베이스에 저장
+RAG는 2020년 Meta AI의 논문에서 처음 제안된 아키텍처로, 크게 3단계로 동작합니다: 1. **인덱싱**: 문서를 임베딩 벡터로 변환해 벡터 데이터베이스에 저장
 2. **검색**: 사용자 질문과 유사한 벡터를 데이터베이스에서 검색
 3. **생성**: 검색된 문맥을 LLM에 전달해 답변 생성
 
@@ -323,16 +313,13 @@ Ollama로 Llama 3.1 8B와 nomic-embed-text를 실행하고, Chroma를 벡터 DB�
 
 ## 추천 인프라
 
-위 도구들을 24/7 안정 운영하려면 인프라가 중요하다:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전.
+위 도구들을 24/7 안정 운영하려면 인프라가 중요하다: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연. dibi8.com 자체 호스팅 IDC.
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -360,25 +347,20 @@ Ollama로 Llama 3.1 8B와 nomic-embed-text를 실행하고, Chroma를 벡터 DB�
 
 ## Why This Matters
 
-Understanding rag 아키텍처 구현 가이드 2025: 프로덕션급 검색 증강 생성 시스템 구축 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding rag 아키텍처 구현 가이드 2025: 프로덕션급 검색 증강 생성 시스템 구축 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

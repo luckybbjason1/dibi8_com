@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/meta-tags-generator" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/meta-tags-generator" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/meta-tags-generator" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/meta-tags-generator" />
 title: "Trình Tạo Meta Tags — SEO Title, Description, Open Graph...
 description: "Tạo các thẻ meta HTML head sẵn sàng copy-paste — SEO title, description, canonical, Open Graph và Twitter Card — chỉ từ một biểu mẫu đơn giản. Tối ưu cách trang của bạn hiển thị trên Google, Facebook, X và AI search."
 date: 2026-05-18
@@ -11,7 +6,6 @@ lastmod: 2026-05-19
 layout: "tool-meta-tags-generator"
 tool_id: "meta-tags-generator"
 ---
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -49,9 +43,7 @@ This guide will help you get started with the topic. Whether you're a beginner o
 
 ### Prerequisites
 
-Before diving in, make sure you have:
-
-```bash
+Before diving in, make sure you have: ```bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
@@ -76,9 +68,7 @@ This guide will help you get started with the topic. Whether you're a beginner o
 
 ### Prerequisites
 
-Before diving in, make sure you have:
-
-```bash
+Before diving in, make sure you have: ```bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
@@ -103,9 +93,7 @@ This guide will help you get started with the topic. Whether you're a beginner o
 
 ### Prerequisites
 
-Before diving in, make sure you have:
-
-```bash
+Before diving in, make sure you have: ```bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
@@ -130,9 +118,7 @@ This guide will help you get started with the topic. Whether you're a beginner o
 
 ### Prerequisites
 
-Before diving in, make sure you have:
-
-```bash
+Before diving in, make sure you have: ```bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
@@ -157,9 +143,7 @@ This guide will help you get started with the topic. Whether you're a beginner o
 
 ### Prerequisites
 
-Before diving in, make sure you have:
-
-```bash
+Before diving in, make sure you have: ```bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
@@ -184,9 +168,7 @@ This guide will help you get started with the topic. Whether you're a beginner o
 
 ### Prerequisites
 
-Before diving in, make sure you have:
-
-```bash
+Before diving in, make sure you have: ```bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9

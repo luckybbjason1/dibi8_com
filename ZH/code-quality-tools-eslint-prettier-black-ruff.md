@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/code-quality-tools-eslint-prettier-black-ruff" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/code-quality-tools-eslint-prettier-black-ruff" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/code-quality-tools-eslint-prettier-black-ruff" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/code-quality-tools-eslint-prettier-black-ruff" />
 title: '代码质量工具指南：ESLint、Prettier、Black、Ruff等完整配置教程'
 description: '2025年最全代码质量工具配置指南，涵盖JavaScript/TypeScript的ESLint与Prettier、Python的Black与Ruff、Go与Rust的格式化工具，含pre-commit与CI/CD集成方案。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/code-quality-tools-eslint-prettier-black-ruff/
+aliases: - /posts/code-quality-tools-eslint-prettier-black-ruff/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/code-quality-tools-eslint-prettier-black-ruff/ -->
 # 代码质量工具指南：ESLint、Prettier、Black、Ruff等完整配置教程
 
 
@@ -270,7 +262,17 @@ cargo fmt -- --check   # CI中检查格式
 ## 各语言工具链一览对比
 
 | 语言 | 格式化工具 | Linter | 配置文件 | 速度评级 |
-|------|-----------|--------|---------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **JavaScript/TypeScript** | Prettier | ESLint | `eslint.config.js` + `.prettierrc` | ★★★☆ |
 | **Python（传统）** | Black | Flake8 + isort | `pyproject.toml` | ★★☆☆ |
 | **Python（2025推荐）** | Ruff format | Ruff lint | `pyproject.toml` | ★★★★ |
@@ -290,25 +292,21 @@ pip install pre-commit
 创建 `.pre-commit-config.yaml`：
 
 ```yaml
-repos:
-  - repo: https://github.com/pre-commit/pre-commit-hooks
+repos: - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.5.0
-    hooks:
-      - id: trailing-whitespace
+    hooks: - id: trailing-whitespace
       - id: end-of-file-fixer
       - id: check-yaml
       - id: check-added-large-files
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.4.0
-    hooks:
-      - id: ruff
+    hooks: - id: ruff
         args: [--fix]
       - id: ruff-format
 
   - repo: local
-    hooks:
-      - id: eslint
+    hooks: - id: eslint
         name: ESLint
         entry: npx eslint --fix
         language: system
@@ -343,21 +341,16 @@ JavaScript项目也可以使用 [Husky](https://typicode.github.io/husky/) + lin
 ```yaml
 name: Code Quality
 on: [push, pull_request]
-jobs:
-  lint-js:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: lint-js: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: { node-version: '20' }
       - run: npm ci
       - run: npm run lint
       - run: npm run format:check
 
-  lint-python:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+  lint-python: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v2
       - run: uv pip install ruff
       - run: ruff check .
@@ -369,24 +362,18 @@ jobs:
 ```yaml
 stages: [lint]
 
-lint:js:
-  stage: lint
+lint:js: stage: lint
   image: node:20-alpine
-  script:
-    - npm ci
+  script: - npm ci
     - npm run lint
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  rules: - if: $CI_PIPELINE_SOURCE == "merge_request_event"
 
-lint:python:
-  stage: lint
+lint:python: stage: lint
   image: python:3.12-slim
-  script:
-    - pip install ruff
+  script: - pip install ruff
     - ruff check .
     - ruff format --check .
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  rules: - if: $CI_PIPELINE_SOURCE == "merge_request_event"
 ```
 
 关键原则：**CI中的检查命令与本地配置完全一致**，使用相同的配置文件（`pyproject.toml`、`eslint.config.js`），确保本地通过即CI通过。
@@ -419,8 +406,8 @@ A: 没有真正意义上的全语言通用工具。但pre-commit框架可以统�
 **Q: 如何在CI/CD中强制执行代码质量？**
 A: 在CI流水线中添加lint和format检查步骤，使用 `--check` 模式（只检查不修复），任何不合规的代码都会导致流水线失败。配合分支保护规则，未通过检查的PR禁止合并。
 
----
 
+---
 ## 推荐基础设施
 
 要 7×24 稳跑上述工具，服务器选择关键：
@@ -432,7 +419,6 @@ A: 在CI流水线中添加lint和format检查步骤，使用 `--check` 模式（
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -460,25 +446,20 @@ A: 在CI流水线中添加lint和format检查步骤，使用 `--check` 模式（
 
 ## Why This Matters
 
-Understanding 代码质量工具指南：eslint、prettier、black、ruff等完整配置教程 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding 代码质量工具指南：eslint、prettier、black、ruff等完整配置教程 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -499,7 +480,7 @@ To implement this in your workflow:
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

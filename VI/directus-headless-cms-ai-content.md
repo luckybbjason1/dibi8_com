@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/directus-headless-cms-ai-content" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/directus-headless-cms-ai-content" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/directus-headless-cms-ai-content" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/directus-headless-cms-ai-content" />
 title: 'Directus: Headless CMS Mã Nguồn Mở Cung Cấp Năng Lượng c...
 description: 'Hướng dẫn đầy đủ về Directus 11.x — Headless CMS mã nguồn mở với API động, quản lý phiên bản nội dung, AI content workflows, và triển khai Docker tự host. Benchmark API REST và GraphQL.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [directus, 'headless cms', 'quản lý nội dung', api, docker, 'mã nguồn mở', ai, graphql, rest, 'tự host']
-aliases:
-- /vi/posts/directus-headless-cms-ai-content/
+aliases: - /vi/posts/directus-headless-cms-ai-content/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/directus-headless-cms-ai-content/ -->
 
 {{</* resource-info */>}}
 
@@ -43,9 +35,7 @@ Directus là một Headless CMS mã nguồn mở bao bọc bất kỳ cơ sở d
 
 ## Directus là gì?
 
-Directus nằm trên cơ sở dữ liệu SQL hiện có của bạn (PostgreSQL, MySQL, SQLite, Oracle, MS SQL, CockroachDB, hoặc Supabase) và tự động tạo ra:
-
-- **REST API** — CRUD đầy đủ với lọc, sắp xếp, tổng hợp, và chọn trường
+Directus nằm trên cơ sở dữ liệu SQL hiện có của bạn (PostgreSQL, MySQL, SQLite, Oracle, MS SQL, CockroachDB, hoặc Supabase) và tự động tạo ra: - **REST API** — CRUD đầy đủ với lọc, sắp xếp, tổng hợp, và chọn trường
 - **GraphQL API** — Endpoint có thể introspect schema với hỗ trợ subscriptions
 - **Admin App** — Giao diện no-code dựa trên Vue.js cho content editors
 - **File Asset Management** — Adapter lưu trữ cho local, S3, GCS, Azure, với biến đổi ảnh on-the-fly
@@ -76,9 +66,7 @@ Không giống các nền tảng CMS truyền thống sở hữu cấu trúc d�
 └─────────────────────────────────────────────────────────────┘
 ```
 
-Các quyết định kiến trúc chính:
-
-- **Database-first**: Directus không trừu tượng hóa database — nó nâng cao nó. Mỗi collection ánh xạ 1:1 với một bảng. Migrations là SQL chuẩn.
+Các quyết định kiến trúc chính: - **Database-first**: Directus không trừu tượng hóa database — nó nâng cao nó. Mỗi collection ánh xạ 1:1 với một bảng. Migrations là SQL chuẩn.
 - **Stateless API server**: Mở rộng ngang là tầm thường — chỉ cần thêm các container replica API phía sau load balancer.
 - **File storage abstraction**: Adapters cho S3, Google Cloud Storage, Azure Blob, và local disk. Biến đổi ảnh qua tham số URL (ví dụ: `?width=800&height=600&fit=cover`).
 - **Hệ thống Extensions**: Endpoint tùy chỉnh, hooks (event-driven), interfaces (UI components tùy chỉnh), displays, và dashboard panels — tất cả hot-reloaded.
@@ -100,17 +88,12 @@ mkdir ~/directus && cd ~/directus
 # Tạo file compose
 cat > docker-compose.yml << EOF
 version: "3"
-services:
-  directus:
-    image: directus/directus:11.3.0
-    ports:
-      - 8055:8055
-    volumes:
-      - ./uploads:/directus/uploads
+services: directus: image: directus/directus:11.3.0
+    ports: - 8055:8055
+    volumes: - ./uploads:/directus/uploads
       - ./extensions:/directus/extensions
       - ./templates:/directus/templates
-    environment:
-      SECRET: "your-random-secret-key-here"
+    environment: SECRET: "your-random-secret-key-here"
       ADMIN_EMAIL: "admin@example.com"
       ADMIN_PASSWORD: "SecureAdminPass123!"
       DB_CLIENT: "pg"
@@ -122,28 +105,19 @@ services:
       WEBSOCKETS_ENABLED: "true"
       CORS_ENABLED: "true"
       CORS_ORIGIN: "true"
-    depends_on:
-      - database
+    depends_on: - database
       - redis
 
-  database:
-    image: postgres:16-alpine
-    environment:
-      POSTGRES_DB: "directus"
+  database: image: postgres:16-alpine
+    environment: POSTGRES_DB: "directus"
       POSTGRES_USER: "directus"
       POSTGRES_PASSWORD: "directus-pass"
-    volumes:
-      - pg-data:/var/lib/postgresql/data
+    volumes: - pg-data:/var/lib/postgresql/data
 
-  redis:
-    image: redis:7-alpine
-    volumes:
-      - redis-data:/data
+  redis: image: redis:7-alpine
+    volumes: - redis-data:/data
 
-volumes:
-  pg-data:
-  redis-data:
-EOF
+volumes: pg-data: redis-data: EOF
 ```
 
 ### Bước 2: Khởi động Stack
@@ -210,9 +184,7 @@ Cho triển khai production trên [DigitalOcean droplet](https://m.do.co/c/eca87
 
 Qua admin UI: Settings → Data Model → Create Collection → `articles`.
 
-Hoặc qua API:
-
-```bash
+Hoặc qua API: ```bash
 # Tạo collection qua REST API
 curl -X POST http://localhost:8055/collections \
   -H "Content-Type: application/json" \
@@ -328,9 +300,7 @@ console.log('Đã tạo:', newArticle.id);
 
 ## AI Content Workflows: Kết nối Directus với LLMs
 
-Directus Flows + Extensions cho phép pipeline nội dung AI-powered mà không cần công cụ bên ngoài. Đây là workflow AI content hoàn chỉnh:
-
-### Bước 1: Tạo Flow cho AI Draft Generation
+Directus Flows + Extensions cho phép pipeline nội dung AI-powered mà không cần công cụ bên ngoài. Đây là workflow AI content hoàn chỉnh: ### Bước 1: Tạo Flow cho AI Draft Generation
 
 ```bash
 # Tạo Flow qua API kích hoạt khi article được tạo với ai_flag=true
@@ -432,9 +402,7 @@ await client.request(
 
 ## Benchmark / Use Case Thực tế
 
-Tôi đã test Directus 11.3.0 trên [DigitalOcean droplet](https://m.do.co/c/eca87ac14ee0) (2 vCPU / 4GB RAM / $24/tháng):
-
-| Thao tác | Directus 11.3.0 | Strapi 5.x | Sanity (Managed) | Contentful (Managed) |
+Tôi đã test Directus 11.3.0 trên [DigitalOcean droplet](https://m.do.co/c/eca87ac14ee0) (2 vCPU / 4GB RAM / $24/tháng): | Thao tác | Directus 11.3.0 | Strapi 5.x | Sanity (Managed) | Contentful (Managed) |
 |----------|----------------|------------|------------------|---------------------|
 | Đọc 1 item (cached) | **~8ms** | ~15ms | ~25ms | ~40ms |
 | Đọc 100 items với relations | **~35ms** | ~80ms | ~60ms | ~120ms |
@@ -455,27 +423,19 @@ Tôi đã test Directus 11.3.0 trên [DigitalOcean droplet](https://m.do.co/c/ec
 ```bash
 # Scale API theo chiều ngang với read replicas
 version: "3"
-services:
-  directus-api-1:
-    image: directus/directus:11.3.0
-    environment:
-      DB_CLIENT: "pg"
+services: directus-api-1: image: directus/directus:11.3.0
+    environment: DB_CLIENT: "pg"
       DB_HOST: "postgres-primary"
       # ... các biến khác
 
-  directus-api-2:
-    image: directus/directus:11.3.0
-    environment:
-      DB_CLIENT: "pg"
+  directus-api-2: image: directus/directus:11.3.0
+    environment: DB_CLIENT: "pg"
       DB_HOST: "postgres-replica"
       # ... các biến khác
 
-  nginx:
-    image: nginx:alpine
-    ports:
-      - "8055:8055"
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
+  nginx: image: nginx:alpine
+    ports: - "8055:8055"
+    volumes: - ./nginx.conf:/etc/nginx/nginx.conf
 ```
 
 ### 2. Backups Tự động
@@ -560,9 +520,7 @@ const adminPermissions = {
 
 ### 5. Giám sát với Prometheus
 
-Directus expose metrics qua endpoint `/server/health` và có thể mở rộng cho Prometheus:
-
-```javascript
+Directus expose metrics qua endpoint `/server/health` và có thể mở rộng cho Prometheus: ```javascript
 // extensions/endpoints/metrics/index.js
 import { defineEndpoint } from '@directus/extensions-sdk';
 
@@ -641,9 +599,7 @@ Cho các ứng dụng nặng về CRUD với nhu cầu quản lý nội dung, Di
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -674,7 +630,6 @@ Bài viết này chứa liên kết liên kết đến [DigitalOcean](https://m.
 *Tham gia cộng đồng dibi8: [English](https://t.me/dibi8en) | [Chinese](https://t.me/dibi8zh) | [Korean](https://t.me/dibi8ko) | [Vietnamese](https://t.me/dibi8vn)*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

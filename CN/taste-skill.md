@@ -1,16 +1,14 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/taste-skill" />
-title: "Taste Skill: Stop AI From Generating Generic Slop — Agen...
+title: "Taste Skill: Stop AI From Generating Generic Slop — Agen..."
 description: "Taste Skill is a portable agent skill framework that upgrades AI-built interfaces with stronger layout, typography, motion, and spacing. Works with Codex, Cursor, Claude Code, and ChatGPT Images."
 tags: ["ai-agent", "automation", "open-source"]
 date: 2026-06-15
-lastmod:  2026-06-15slug: taste-skill
+lastmod: 2026-06-15
+slug: taste-skill
 category: dev-utils
 github_repo: "https://github.com/Leonxlnx/taste-skill"
 license: MIT
-images:
-  - url: "https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/assets/readme-banner.png"
+images: - url: "https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/assets/readme-banner.png"
     alt: "Taste Skill banner"
     role: hero
   - url: "https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/assets/taste-skill-logo.webp"
@@ -19,10 +17,7 @@ images:
   - url: "https://opengraph.github.com/github/Leonxlnx/taste-skill"
     alt: "Taste Skill GitHub OG"
     role: reference
-lang: en
-featureImage: /images/articles/taste-skill-stop-ai-from-generating-generic-slop-agent-skill.jpg
----
-
+featureImage: /images/articles/taste-skill-stop-ai-from-generating-generic-slop-agent-skill.jpg---
 ## TL;DR
 
 Taste Skill gives your AI agent a design brain. Instead of generating the same generic, centered, boring UI that every AI tool produces, it enforces stronger layout variance, intentional motion, and premium visual density. It ships as portable SKILL.md files that work with Codex, Cursor, Claude Code, and ChatGPT Images.
@@ -33,9 +28,7 @@ Taste Skill gives your AI agent a design brain. Instead of generating the same g
 
 Taste Skill is a collection of portable agent skills designed to upgrade AI-generated frontend output. Each skill does one job: enforce specific design rules, generate reference images, or apply a particular visual style. The framework is **not tied to any single coding agent or framework** — it works across React, Vue, Svelte, and static HTML.
 
-The core insight is simple: AI models are trained on the same internet, so they generate the same layouts. Taste Skill breaks this by providing explicit design constraints that force variance. Three adjustable dials control the output:
-
-- **DESIGN_VARIANCE (1-10):** Layout experimentation — lower for centered/clean, higher for asymmetric/modern
+The core insight is simple: AI models are trained on the same internet, so they generate the same layouts. Taste Skill breaks this by providing explicit design constraints that force variance. Three adjustable dials control the output: - **DESIGN_VARIANCE (1-10):** Layout experimentation — lower for centered/clean, higher for asymmetric/modern
 - **MOTION_INTENSITY (1-10):** Animation depth — lower for hover effects, higher for scroll/magnetic animations
 - **VISUAL_DENSITY (1-10):** Information per viewport — lower for spacious layouts, higher for dense dashboards
 
@@ -54,9 +47,7 @@ The default skill is now **v2 (experimental)**, a substantial rewrite of the ori
 
 ## How Taste Skill Works
 
-Taste Skill operates through a three-layer architecture:
-
-1. **Implementation Skills** — These output production-ready code. The flagship `design-taste-frontend` skill reads your project brief, infers a design language, tunes the three dials, and generates code with strict anti-repetition rules.
+Taste Skill operates through a three-layer architecture: 1. **Implementation Skills** — These output production-ready code. The flagship `design-taste-frontend` skill reads your project brief, infers a design language, tunes the three dials, and generates code with strict anti-repetition rules.
 
 2. **Image Generation Skills** — These produce reference boards (not code). `imagegen-frontend-web` generates website comps, `imagegen-frontend-mobile` creates mobile flows, and `brandkit` produces identity boards. Feed these to Codex or ChatGPT Images for implementation.
 
@@ -89,9 +80,7 @@ ls ~/.hermes/skills/ | grep taste
 
 ### Updating to v2
 
-If you have v1 installed and want the experimental v2:
-
-```bash
+If you have v1 installed and want the experimental v2: ```bash
 # Re-run install — the install name didn't change
 npx skills add https://github.com/Leonxlnx/taste-skill --skill "design-taste-frontend"
 
@@ -101,9 +90,7 @@ curl -sL https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/CHANGELOG.m
 
 ### Manual Installation
 
-You can also copy any SKILL.md directly into your project or paste it into ChatGPT/Codex conversations:
-
-```bash
+You can also copy any SKILL.md directly into your project or paste it into ChatGPT/Codex conversations: ```bash
 # Clone for manual access
 curl -sL "https://github.com/Leonxlnx/taste-skill/archive/refs/heads/main.zip" -o /tmp/taste-skill.zip
 unzip -q /tmp/taste-skill.zip -d /tmp
@@ -112,9 +99,7 @@ ls /tmp/taste-skill-main/skills/
 
 ### Listing Available Skills
 
-After installation, see what skills are available:
-
-```bash
+After installation, see what skills are available: ```bash
 # List all installed skills
 npx skills list | grep taste
 
@@ -129,10 +114,14 @@ curl -sL "https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/CHANGELOG.
 
 ## Integration with Major Coding Agents
 
-Taste Skill is framework-agnostic and works with every major AI coding agent:
-
-| Agent | Integration Method | Best Skill |
-|-------|-------------------|------------|
+Taste Skill is framework-agnostic and works with every major AI coding agent: | Agent | Integration Method | Best Skill |
+|
+---
+|
+---
+|
+---
+|
 | **Codex** | `npx skills add` + CLI | `gpt-taste` (stricter variant) |
 | **Cursor** | Paste SKILL.md into `.cursorrules` | `design-taste-frontend` |
 | **Claude Code** | Load via `.claude/skills/` | `design-taste-frontend` |
@@ -156,11 +145,13 @@ curl -sL "https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/skills/des
 
 ## Benchmarks: Taste Skill vs Generic AI Output
 
-The difference between a Taste Skill-generated interface and a generic AI output is measurable across several dimensions:
-
-```
+The difference between a Taste Skill-generated interface and a generic AI output is measurable across several dimensions: ```
 Metric              | Generic AI | Taste Skill v2
---------------------|-----------|----------------
+
+---
+|
+---
+|---
 Layout Variance     | 1-2       | 7-9
 Repetition Rate     | High      | Near Zero
 Motion Depth        | Hover     | Scroll/Magnetic
@@ -173,9 +164,7 @@ The benchmark comes from comparing 50+ generated landing pages across two groups
 
 ### Code Quality Comparison
 
-Generic AI output typically produces centered layouts with uniform spacing, repetitive component patterns, and minimal visual hierarchy. Taste Skill enforces:
-
-- **Asymmetric layouts** with deliberate visual weight distribution
+Generic AI output typically produces centered layouts with uniform spacing, repetitive component patterns, and minimal visual hierarchy. Taste Skill enforces: - **Asymmetric layouts** with deliberate visual weight distribution
 - **Multi-level typography** (display, heading, body, caption) with proper scale ratios
 - **Intentional motion** that serves navigation, not decoration
 - **Contextual visual density** — sparse for hero sections, dense for data panels
@@ -183,8 +172,7 @@ Generic AI output typically produces centered layouts with uniform spacing, repe
 ```bash
 # Verify your generated output passes taste check
 # Taste Skill includes a pre-flight checklist in the SKILL.md
-# Key checks:
-# - No centered-only layouts
+# Key checks: # - No centered-only layouts
 # - Minimum 3 typography levels
 # - At least one intentional asymmetry
 # - Motion serves function, not decoration
@@ -262,9 +250,7 @@ VISUAL_DENSITY: 5
 
 ### Real-World Dial Configuration Examples
 
-Different project types benefit from different dial combinations. Here are proven configurations from Taste Skill's own examples:
-
-```yaml
+Different project types benefit from different dial combinations. Here are proven configurations from Taste Skill's own examples: ```yaml
 # Portfolio with magnetic scroll animations
 DESIGN_VARIANCE: 8
 MOTION_INTENSITY: 9
@@ -290,10 +276,18 @@ These configurations are tested across 44,000+ stars worth of community feedback
 
 ## Comparison with Alternatives
 
-Taste Skill is not the only design-enforcement skill on GitHub. Here's how it compares to the closest alternatives:
-
-| Feature | Taste Skill v2 | PromptHero | Uiverse | AI UI Generator |
-|---------|---------------|------------|---------|-----------------|
+Taste Skill is not the only design-enforcement skill on GitHub. Here's how it compares to the closest alternatives: | Feature | Taste Skill v2 | PromptHero | Uiverse | AI UI Generator |
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Star Rating | 44,229 | 8,400 | 12,300 | N/A (SaaS) |
 | Framework Agnostic | Yes | Partial | No | No |
 | Adjustable Dials | 3 (Variance/Motion/Density) | None | None | None |
@@ -306,9 +300,7 @@ The key differentiator is **adjustable dials**. While other tools produce static
 
 ## Limitations: When Taste Skill Won't Help
 
-Taste Skill is powerful but not a magic wand. Here's when it won't solve your problem:
-
-1. **Complex backend logic** — Taste Skill focuses on frontend design. It won't architect your API, database schema, or authentication flow.
+Taste Skill is powerful but not a magic wand. Here's when it won't solve your problem: 1. **Complex backend logic** — Taste Skill focuses on frontend design. It won't architect your API, database schema, or authentication flow.
 
 2. **Brand identity from scratch** — If you need a full brand system (logo, color palette, typography selection), Taste Skill assumes you already have design direction. Use `brandkit` for reference boards, but the final brand decisions are yours.
 
@@ -381,10 +373,9 @@ npx skills add https://github.com/Leonxlnx/taste-skill --skill "design-taste-fro
 
 **Internal links**: [Learn about AI coding agents](https://dibi8.com/ai-tools/oh-my-pi) · [Compare dev utilities](https://dibi8.com/dev-utils/)
 
----
 
-**Sources & Further Reading**:
-- Official site: https://tasteskill.dev
+---
+**Sources & Further Reading**: - Official site: https://tasteskill.dev
 - GitHub repository: https://github.com/Leonxlnx/taste-skill
 - Changelog: https://www.tasteskill.dev/changelog
 - Community: [@lexnlin on X](https://x.com/lexnlin), [@blueemi99 on X](https://x.com/blueemi99)
@@ -394,7 +385,6 @@ npx skills add https://github.com/Leonxlnx/taste-skill --skill "design-taste-fro
 **Disclosure**: This article contains affiliate links. If you sign up through our links, we may earn a commission at no extra cost to you.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -420,8 +410,8 @@ npx skills add https://github.com/Leonxlnx/taste-skill --skill "design-taste-fro
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [2026-06-15-trending-ai-agents](taste-skill)

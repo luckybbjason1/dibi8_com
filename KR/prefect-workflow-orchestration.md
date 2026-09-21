@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/prefect-workflow-orchestration" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/prefect-workflow-orchestration" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/prefect-workflow-orchestration" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/prefect-workflow-orchestration" />
 title: 'Prefect 2026: 데이터 및 AI 파이프라인을 위한 현대적 워크플로우 오케스트레이션 엔진 — ...
 description: 'Prefect 3.x에 대한 실습 가이드 — 비동기 실행, 내장 재시도, 셀프 호스팅 서버를 갖춘 Python 네이티브 워크플로우 오케스트레이터. 5분 안에 데이터 파이프라인을 배포하세요.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: []
-aliases:
-- /kr/posts/prefect-workflow-orchestration/
+aliases: - /kr/posts/prefect-workflow-orchestration/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/prefect-workflow-orchestration/ -->
 
 {{</* resource-info */>}}
 
@@ -60,23 +52,20 @@ Prefect 3.x는 로컬 개발의 단순성과 분산 오케스트레이션의 강
 from prefect import flow, task
 
 @task(retries=3, retry_delay_seconds=5)
-def fetch_data(url: str) -> dict:
-    """Fetch data from an API with automatic retry."""
+def fetch_data(url: str) -> dict: """Fetch data from an API with automatic retry."""
     import requests
     response = requests.get(url, timeout=30)
     response.raise_for_status()
     return response.json()
 
 @flow(name="data-ingestion-pipeline")
-def main_flow():
-    """Main pipeline orchestrating multiple tasks."""
+def main_flow(): """Main pipeline orchestrating multiple tasks."""
     raw_data = fetch_data("https://api.example.com/data")
     # ... more tasks
 ```
 
 ### Prefect 서버
-**Prefect 서버**는 다음을 제공하는 경량의 셀프 호스팅 가능한 제어 평면이다:
-- 흐름 등록, 스케줄링, 실행 추적을 위한 **REST API**
+**Prefect 서버**는 다음을 제공하는 경량의 셀프 호스팅 가능한 제어 평면이다: - 흐름 등록, 스케줄링, 실행 추적을 위한 **REST API**
 - 실시간 작업 상태 업데이트를 위한 **WebSocket 레이어**
 - 실행 모니터링, 필터링, 디버깅을 위한 **React 기반 대시보드**
 - Slack, PagerDuty, 커스텀 엔드포인트를 위한 **Webhook 통합**
@@ -84,15 +73,12 @@ def main_flow():
 서버는 단일 머신에서 SQLite로(소규모 팀용) 실행하거나, 프로덕션 워크로드를 위해 PostgreSQL + Redis로 확장할 수 있다.
 
 ### 작업 풀(Work Pools)과 워커(Workers)
-**작업 풀**은 흐름 제출과 실행을 분리한다. 흐름 실행을 풀에 제출하고, **워커**(경량 Python 프로세스)가 이를 받아 실행한다. 이는 다음을 가능하게 한다:
-- 다양한 실행 환경(로컬, Docker, Kubernetes, 서버리스)
+**작업 풀**은 흐름 제출과 실행을 분리한다. 흐름 실행을 풀에 제출하고, **워커**(경량 Python 프로세스)가 이를 받아 실행한다. 이는 다음을 가능하게 한다: - 다양한 실행 환경(로컬, Docker, Kubernetes, 서버리스)
 - 큐 깊이에 따른 워커 동적 확장
 - 오케스트레이션과 컴퓨팅의 분리
 
 ### 상태와 상태 전환
-모든 작업과 흐름 실행은 잘 정의된 상태 머신을 통해 전환된다:
-
-```
+모든 작업과 흐름 실행은 잘 정의된 상태 머신을 통해 전환된다: ```
 Scheduled → Pending → Running → Completed
                               → Failed → Retrying → Running
                               → Cancelled
@@ -132,49 +118,32 @@ prefect server start
 # 브라우저에서 대시보드 열기
 ```
 
-PostgreSQL을 사용한 팀 배포:
-
-```bash
+PostgreSQL을 사용한 팀 배포: ```bash
 # 옵션 B: PostgreSQL이 있는 Docker Compose
 cat > docker-compose.yml << EOF
-services:
-  prefect-server:
-    image: prefecthq/prefect:3.3.0-python3.12
-    ports:
-      - "4200:4200"
-    environment:
-      - PREFECT_API_DATABASE_CONNECTION_URL=postgresql+asyncpg://prefect:prefect@postgres:5432/prefect
+services: prefect-server: image: prefecthq/prefect:3.3.0-python3.12
+    ports: - "4200:4200"
+    environment: - PREFECT_API_DATABASE_CONNECTION_URL=postgresql+asyncpg://prefect:prefect@postgres:5432/prefect
       - PREFECT_HOME=/home/prefect
     command: prefect server start --host 0.0.0.0
-    depends_on:
-      - postgres
+    depends_on: - postgres
 
-  postgres:
-    image: postgres:16-alpine
-    environment:
-      POSTGRES_USER: prefect
+  postgres: image: postgres:16-alpine
+    environment: POSTGRES_USER: prefect
       POSTGRES_PASSWORD: prefect
       POSTGRES_DB: prefect
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
+    volumes: - postgres_data:/var/lib/postgresql/data
+    ports: - "5432:5432"
 
-  redis:
-    image: redis:7-alpine
-    ports:
-      - "6379:6379"
+  redis: image: redis:7-alpine
+    ports: - "6379:6379"
 
-volumes:
-  postgres_data:
-EOF
+volumes: postgres_data: EOF
 
 docker-compose up -d
 ```
 
-Prefect 클라이언트 연결 구성:
-
-```bash
+Prefect 클라이언트 연결 구성: ```bash
 # Prefect CLI를 서버로 향하게 설정
 prefect config set PREFECT_API_URL=http://localhost:4200/api
 
@@ -185,9 +154,7 @@ prefect version
 
 ### 단계 3: 첫 번째 흐름 빌드
 
-`etl_pipeline.py` 생성:
-
-```python
+`etl_pipeline.py` 생성: ```python
 from prefect import flow, task
 from prefect.tasks import task_input_hash
 from prefect.artifacts import create_table_artifact
@@ -196,8 +163,7 @@ import pandas as pd
 from datetime import timedelta
 
 @task(retries=3, retry_delay_seconds=[10, 30, 60], cache_key_fn=task_input_hash, cache_expiration=timedelta(hours=1))
-def extract_api_data(endpoint: str, api_key: str) -> list[dict]:
-    """Extract data from REST API with retry and caching."""
+def extract_api_data(endpoint: str, api_key: str) -> list[dict]: """Extract data from REST API with retry and caching."""
     headers = {"Authorization": f"Bearer {api_key}"}
     response = requests.get(endpoint, headers=headers, timeout=30)
     response.raise_for_status()
@@ -206,8 +172,7 @@ def extract_api_data(endpoint: str, api_key: str) -> list[dict]:
     return data
 
 @task(retries=2)
-def transform_validate(raw_data: list[dict]) -> pd.DataFrame:
-    """Transform and validate raw API data."""
+def transform_validate(raw_data: list[dict]) -> pd.DataFrame: """Transform and validate raw API data."""
     df = pd.DataFrame(raw_data)
     
     # Data quality checks
@@ -225,8 +190,7 @@ def transform_validate(raw_data: list[dict]) -> pd.DataFrame:
     return df
 
 @task
-def load_to_database(df: pd.DataFrame, table_name: str) -> int:
-    """Load cleaned data to PostgreSQL."""
+def load_to_database(df: pd.DataFrame, table_name: str) -> int: """Load cleaned data to PostgreSQL."""
     from sqlalchemy import create_engine
     
     engine = create_engine("postgresql://user:pass@localhost:5432/analytics")
@@ -236,8 +200,7 @@ def load_to_database(df: pd.DataFrame, table_name: str) -> int:
     return rows_inserted
 
 @task
-def generate_summary_report(df: pd.DataFrame) -> None:
-    """Create a summary artifact visible in the dashboard."""
+def generate_summary_report(df: pd.DataFrame) -> None: """Create a summary artifact visible in the dashboard."""
     summary = df.groupby("category").agg({
         "amount": ["sum", "mean", "count"]
     }).round(2).to_dict()
@@ -252,8 +215,7 @@ def generate_summary_report(df: pd.DataFrame) -> None:
     )
 
 @flow(name="daily-etl-pipeline", log_prints=True)
-def etl_pipeline(endpoint: str = "https://api.example.com/transactions", api_key: str = "demo-key"):
-    """End-to-end ETL pipeline with full observability."""
+def etl_pipeline(endpoint: str = "https://api.example.com/transactions", api_key: str = "demo-key"): """End-to-end ETL pipeline with full observability."""
     # Extract
     raw_data = extract_api_data(endpoint, api_key)
     
@@ -268,14 +230,11 @@ def etl_pipeline(endpoint: str = "https://api.example.com/transactions", api_key
     
     return {"rows_processed": rows_loaded, "categories": cleaned_data["category"].nunique()}
 
-if __name__ == "__main__":
-    result = etl_pipeline()
+if __name__ == "__main__": result = etl_pipeline()
     print(f"Pipeline completed: {result}")
 ```
 
-실행:
-
-```bash
+실행: ```bash
 python etl_pipeline.py
 ```
 
@@ -296,9 +255,7 @@ etl_pipeline.serve(
 )
 ```
 
-또는 cron 구문 사용:
-
-```bash
+또는 cron 구문 사용: ```bash
 # cron 일정으로 배포
 prefect deployment build etl_pipeline.py:etl_pipeline \
   --name "daily-etl-cron" \
@@ -312,14 +269,11 @@ Prefect는 현대적인 데이터 에코시스템과 네이티브 통합된다. 
 
 ### Docker 및 Kubernetes 실행
 
-격리된 Docker 컨테이너에서 흐름 실행:
-
-```python
+격리된 Docker 컨테이너에서 흐름 실행: ```python
 from prefect.docker import DockerImage
 
 @flow
-def containerized_flow():
-    """Run tasks inside Docker containers."""
+def containerized_flow(): """Run tasks inside Docker containers."""
     pass
 
 # Docker로 배포
@@ -330,9 +284,7 @@ containerized_flow.deploy(
 )
 ```
 
-Docker 작업 풀 구성:
-
-```bash
+Docker 작업 풀 구성: ```bash
 # Docker 작업 풀 생성
 prefect work-pool create docker-pool --type docker
 
@@ -340,9 +292,7 @@ prefect work-pool create docker-pool --type docker
 prefect worker start --pool docker-pool
 ```
 
-Kubernetes용:
-
-```bash
+Kubernetes용: ```bash
 # Kubernetes 작업 풀 생성
 prefect work-pool create k8s-pool --type kubernetes
 
@@ -356,16 +306,13 @@ prefect deployment build etl_pipeline.py:etl_pipeline \
 
 ### dbt 통합
 
-Prefect에서 직접 dbt 모델 오케스트레이션:
-
-```python
+Prefect에서 직접 dbt 모델 오케스트레이션: ```python
 from prefect import flow
 from prefect_dbt.cli.commands import trigger_dbt_cli_command
 from prefect_dbt.cli.configs import TargetConfigs
 
 @flow(name="dbt-transform-pipeline")
-def run_dbt_models():
-    """Run dbt models with Prefect orchestration."""
+def run_dbt_models(): """Run dbt models with Prefect orchestration."""
     # Run dbt deps
     trigger_dbt_cli_command("dbt deps")
     
@@ -382,9 +329,7 @@ def run_dbt_models():
 run_dbt_models.serve(name="dbt-daily")
 ```
 
-통합 설치:
-
-```bash
+통합 설치: ```bash
 pip install prefect-dbt[cli]
 ```
 
@@ -396,28 +341,23 @@ from prefect_aws import AwsCredentials
 from prefect_aws.s3 import S3Bucket
 
 @task
-def download_from_s3(bucket: str, key: str) -> str:
-    """Download file from S3."""
+def download_from_s3(bucket: str, key: str) -> str: """Download file from S3."""
     s3 = S3Bucket.load("my-s3-block")
     return s3.read_path(f"{bucket}/{key}")
 
 @task
-def upload_to_s3(local_path: str, bucket: str, key: str) -> None:
-    """Upload file to S3."""
+def upload_to_s3(local_path: str, bucket: str, key: str) -> None: """Upload file to S3."""
     s3 = S3Bucket.load("my-s3-block")
     s3.upload_from_path(local_path, f"{bucket}/{key}")
 
 @flow(name="s3-data-pipeline")
-def s3_pipeline():
-    """Pipeline moving data through S3."""
+def s3_pipeline(): """Pipeline moving data through S3."""
     data = download_from_s3("raw-data", "input.csv")
     # ... process ...
     upload_to_s3("processed.csv", "processed-data", "output.csv")
 ```
 
-AWS 자격 증명 구성:
-
-```bash
+AWS 자격 증명 구성: ```bash
 pip install prefect-aws
 
 # AWS 자격 증명 블록 등록
@@ -431,12 +371,10 @@ from prefect import flow
 from prefect.blocks.notifications import SlackWebhook
 
 @flow(on_failure=[send_slack_alert], on_crashed=[send_slack_alert])
-def monitored_flow():
-    """Flow with automatic Slack alerting on failure."""
+def monitored_flow(): """Flow with automatic Slack alerting on failure."""
     pass
 
-def send_slack_alert(flow, flow_run, state):
-    """Send alert to Slack when flow fails."""
+def send_slack_alert(flow, flow_run, state): """Send alert to Slack when flow fails."""
     slack = SlackWebhook.load("alerts-webhook")
     slack.notify(
         body=f"Flow {flow.name} failed with state {state.name}. "
@@ -446,15 +384,12 @@ def send_slack_alert(flow, flow_run, state):
 
 ### 커스텀 이벤트 기반 트리거
 
-폴링 없이 외부 이벤트에 반응:
-
-```python
+폴링 없이 외부 이벤트에 반응: ```python
 from prefect.events import emit_event
 from prefect import flow
 
 @flow
-def on_file_uploaded(file_path: str):
-    """Process file when S3 upload event fires."""
+def on_file_uploaded(file_path: str): """Process file when S3 upload event fires."""
     result = process_file(file_path)
     
     # 하류 흐름을 위한 커스텀 이벤트 발생
@@ -470,23 +405,18 @@ def on_file_uploaded(file_path: str):
 
 ### 비동기 및 동시 실행
 
-Prefect의 비동기 지원은 대규모 동시성을 허용한다:
-
-```python
+Prefect의 비동기 지원은 대규모 동시성을 허용한다: ```python
 import asyncio
 from prefect import flow, task
 
 @task
-async def fetch_async(url: str) -> dict:
-    """Async HTTP fetch."""
+async def fetch_async(url: str) -> dict: """Async HTTP fetch."""
     import httpx
-    async with httpx.AsyncClient() as client:
-        response = await client.get(url)
+    async with httpx.AsyncClient() as client: response = await client.get(url)
         return response.json()
 
 @flow
-async def concurrent_fetch_flow(urls: list[str]):
-    """Fetch all URLs concurrently."""
+async def concurrent_fetch_flow(urls: list[str]): """Fetch all URLs concurrently."""
     tasks = [fetch_async.submit(url) for url in urls]
     results = [t.result() for t in tasks]
     return results
@@ -511,9 +441,7 @@ Prefect는 스타트업부터 포춘 500대 기업까지 조직의 데이터 파
 
 ### 성능 벤치마크
 
-**DigitalOcean 8 vCPU / 32GB RAM 드롭릿**에서 Prefect 3.3.0을 일반적인 오케스트레이션 패턴으로 벤치마크했다 ([DigitalOcean](https://m.do.co/c/eca87ac14ee0)에서 $200 물크레딧):
-
-| 지표 | Prefect 3.x | Airflow 2.10 | Dagster 1.9 |
+**DigitalOcean 8 vCPU / 32GB RAM 드롭릿**에서 Prefect 3.3.0을 일반적인 오케스트레이션 패턴으로 벤치마크했다 ([DigitalOcean](https://m.do.co/c/eca87ac14ee0)에서 $200 물크레딧): | 지표 | Prefect 3.x | Airflow 2.10 | Dagster 1.9 |
 |--------|-------------|--------------|-------------|
 | 콜드 스타트 (단일 작업) | **0.8s** | 3.2s | 2.1s |
 | 100개 동시 작업 | **1.2s** | 8.5s | 4.3s |
@@ -554,8 +482,7 @@ from datetime import timedelta
     retry_delay_seconds=[1, 2, 4, 8, 16],  # 지수 백오프
     retry_jitter=True  # 썬더링 허드 방지를 위한 무작위성 추가
 )
-def call_external_api(endpoint: str) -> dict:
-    """Call external API with smart retry logic."""
+def call_external_api(endpoint: str) -> dict: """Call external API with smart retry logic."""
     import requests
     response = requests.get(endpoint, timeout=10)
     response.raise_for_status()
@@ -564,30 +491,23 @@ def call_external_api(endpoint: str) -> dict:
 
 ### 작업 동시성 제한
 
-전역 동시성 제한으로 리소스 고갈 방지:
-
-```python
+전역 동시성 제한으로 리소스 고갈 방지: ```python
 from prefect import flow, task
 from prefect.concurrency.sync import concurrency
 
 @task
-def process_with_resource_limit(item_id: str) -> dict:
-    """Process item with controlled concurrency."""
-    with concurrency("database-slots", occupy=1):
-        # 동시에 N개 작업만 이 블록을 실행할 수 있음
+def process_with_resource_limit(item_id: str) -> dict: """Process item with controlled concurrency."""
+    with concurrency("database-slots", occupy=1): # 동시에 N개 작업만 이 블록을 실행할 수 있음
         return query_database(item_id)
 
 @flow
-def limited_processing_flow(item_ids: list[str]):
-    """Process items with max 10 concurrent database queries."""
+def limited_processing_flow(item_ids: list[str]): """Process items with max 10 concurrent database queries."""
     from prefect.tasks import map
     results = map(process_with_resource_limit, item_ids)
     return results
 ```
 
-제한 구성:
-
-```bash
+제한 구성: ```bash
 # CLI를 통해 동시성 제한 생성
 prefect concurrency-limit create database-slots 10
 ```
@@ -599,27 +519,23 @@ from prefect import flow, task
 from pydantic import BaseModel, Field
 from typing import List
 
-class Transaction(BaseModel):
-    """Validated transaction model."""
+class Transaction(BaseModel): """Validated transaction model."""
     id: str
     amount: float = Field(gt=0, description="Must be positive")
     currency: str = Field(pattern="^(USD|EUR|GBP)$")
     created_at: str
 
-class PipelineOutput(BaseModel):
-    """Validated pipeline output."""
+class PipelineOutput(BaseModel): """Validated pipeline output."""
     total_amount: float
     transaction_count: int
     currency: str
 
 @task
-def validate_transactions(raw_data: List[dict]) -> List[Transaction]:
-    """Validate and parse raw transaction data."""
+def validate_transactions(raw_data: List[dict]) -> List[Transaction]: """Validate and parse raw transaction data."""
     return [Transaction(**item) for item in raw_data]
 
 @flow
-def validated_pipeline(raw_data: List[dict]) -> PipelineOutput:
-    """Pipeline with full input/output validation."""
+def validated_pipeline(raw_data: List[dict]) -> PipelineOutput: """Pipeline with full input/output validation."""
     transactions = validate_transactions(raw_data)
     
     return PipelineOutput(
@@ -634,20 +550,14 @@ def validated_pipeline(raw_data: List[dict]) -> PipelineOutput:
 ```yaml
 # .github/workflows/prefect-deploy.yml
 name: Deploy Prefect Flows
-on:
-  push:
-    branches: [main]
+on: push: branches: [main]
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: deploy: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       
       - name: Setup Python
         uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
+        with: python-version: "3.12"
       
       - name: Install dependencies
         run: |
@@ -675,41 +585,29 @@ jobs:
 name: production-pipelines
 prefect-version: 3.3.0
 
-build:
-  - prefect_docker.deployments.steps.build_docker_image:
-      requires: prefect-docker
+build: - prefect_docker.deployments.steps.build_docker_image: requires: prefect-docker
       image_name: my-pipeline
       tag: "{{ sha }}"
       dockerfile: Dockerfile
 
-push:
-  - prefect_docker.deployments.steps.push_docker_image:
-      requires: prefect-docker
+push: - prefect_docker.deployments.steps.push_docker_image: requires: prefect-docker
       image_name: my-pipeline
       tag: "{{ sha }}"
       credentials: "{{ prefect.blocks.docker-registry-credentials.prod-registry }}"
 
-pull:
-  - prefect.deployments.steps.set_working_directory:
-      directory: /opt/prefect
+pull: - prefect.deployments.steps.set_working_directory: directory: /opt/prefect
 
-deployments:
-  - name: daily-etl
+deployments: - name: daily-etl
     entrypoint: etl_pipeline.py:etl_pipeline
-    work_pool:
-      name: docker-pool
-    schedule:
-      cron: "0 6 * * *"
-    parameters:
-      endpoint: "https://api.production.example.com/v1/data"
+    work_pool: name: docker-pool
+    schedule: cron: "0 6 * * *"
+    parameters: endpoint: "https://api.production.example.com/v1/data"
     tags: ["production", "etl", "daily"]
     
   - name: hourly-analytics
     entrypoint: analytics_pipeline.py:hourly_flow
-    work_pool:
-      name: k8s-pool
-    schedule:
-      interval: 3600
+    work_pool: name: k8s-pool
+    schedule: interval: 3600
     tags: ["production", "analytics"]
 ```
 
@@ -725,20 +623,17 @@ from datetime import timedelta
     on_failure=[notify_team],
     on_crashed=[notify_team, escalate_to_pagerduty]
 )
-def critical_revenue_pipeline():
-    """Revenue pipeline with full monitoring."""
+def critical_revenue_pipeline(): """Revenue pipeline with full monitoring."""
     # Pipeline logic here
     pass
 
-def notify_team(flow, flow_run, state):
-    """Send notification on failure."""
+def notify_team(flow, flow_run, state): """Send notification on failure."""
     webhook = Webhook.load("slack-alerts")
     webhook.notify(
         body=f"CRITICAL: {flow.name} failed after {flow_run.total_run_time}s"
     )
 
-def escalate_to_pagerduty(flow, flow_run, state):
-    """Escalate to PagerDuty for crashed flows."""
+def escalate_to_pagerduty(flow, flow_run, state): """Escalate to PagerDuty for crashed flows."""
     webhook = Webhook.load("pagerduty-integration")
     webhook.notify(
         body=json.dumps({
@@ -774,9 +669,7 @@ def escalate_to_pagerduty(flow, flow_run, state):
 
 ## 한계: 정직한 평가
 
-Prefect는 모든 워크플로우에 적합한 도구가 아니다. 이러한 트레이드오프를 이해하라:
-
-1. **플러그인 생태계 성숙도**: Airflow는 500+ 프로바이더 패키지를 보유한다. Prefect의 통합 라이브러리는 더 작지만 빠르게 성장 중이다. 커스텀 통합은 자체 작업 래퍼를 작성해야 한다.
+Prefect는 모든 워크플로우에 적합한 도구가 아니다. 이러한 트레이드오프를 이해하라: 1. **플러그인 생태계 성숙도**: Airflow는 500+ 프로바이더 패키지를 보유한다. Prefect의 통합 라이브러리는 더 작지만 빠르게 성장 중이다. 커스텀 통합은 자체 작업 래퍼를 작성해야 한다.
 
 2. **장기 실행 워크플로우**: Prefect의 기본 타임아웃은 흐름당 1시간이다. ML 학습에서 일반적인 멀티데이 워크플로우의 경우 `timeout_seconds=None`을 구성하고 워커 프로세스가 재시작 후에도 살아남도록 해야 한다.
 
@@ -811,14 +704,12 @@ from prefect import flow, task
 from prefect.tasks import map
 
 @task
-def process_file(filename: str) -> dict:
-    """Process a single file."""
+def process_file(filename: str) -> dict: """Process a single file."""
     # ... processing logic ...
     return {"file": filename, "rows": 1000}
 
 @flow
-def dynamic_processing_flow(directory: str):
-    """Dynamically process all files in a directory."""
+def dynamic_processing_flow(directory: str): """Dynamically process all files in a directory."""
     import os
     files = [f for f in os.listdir(directory) if f.endswith(".csv")]
     results = map(process_file, files)
@@ -846,9 +737,7 @@ Prefect 3.x는 데이터 팀이 워크플로우를 구축하고 운영하는 방
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -858,7 +747,6 @@ Prefect 3.x는 데이터 팀이 워크플로우를 구축하고 운영하는 방
 본 문서에는 제휴 링크가 포함되어 있습니다. 본 문서의 링크를 통해 서비스에 가입하면 dibi8.com에서 추가 비용 없이 커미션을 받을 수 있습니다. 우리는 직접 평가하고 진정한 가치가 있다고 믿는 도구만을 추천합니다. 표현된 의견은 우리 자신의 것입니다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

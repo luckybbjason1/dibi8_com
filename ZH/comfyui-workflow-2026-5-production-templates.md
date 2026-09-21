@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/comfyui-workflow-2026-5-production-templates" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/comfyui-workflow-2026-5-production-templates" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/comfyui-workflow-2026-5-production-templates" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/comfyui-workflow-2026-5-production-templates" />
 title: 'ComfyUI 工作流 2026：新手搭建指南 + 5 套生产级模板'
 description: 'ComfyUI 在 2026 年突破 10.6 万 GitHub stars。新手友好的搭建指南、2026 年模型推荐，以及 5 套可直接投产的工作流模板（文生图、局部重绘、放大、视频、角色一致性）。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-25 00:00:00+08:00
@@ -21,10 +16,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [comfyui, 'stable-diffusion', 'image-generation', workflows, 2026]
-aliases:
-- /zh/posts/comfyui-workflow-2026-5-production-templates/
-faq:
-  - q: "2026 年 ComfyUI 比 Stable Diffusion WebUI 更好用吗？"
+aliases: - /zh/posts/comfyui-workflow-2026-5-production-templates/
+faq: - q: "2026 年 ComfyUI 比 Stable Diffusion WebUI 更好用吗？"
     a: "在工作流自动化和生产场景下：是的，毫无悬念。ComfyUI 基于节点图，让复杂的多步流水线（放大 → 局部重绘 → ControlNet → 再次渲染）变得轻而易举。SD WebUI 更适合一次性出图。大多数职业 AI 艺术家两个都用。"
   - q: "需要什么样的硬件？"
     a: "最低配置：8GB 显存（RTX 3060、RTX 4060），可跑中等画质的 SDXL。舒适配置：16GB+ 显存（RTX 4080、4090），可跑 SDXL + Flux 模型 + LoRA 叠加。生产配置：H100 / 多卡，适合批量工作流。"
@@ -33,8 +26,6 @@ faq:
   - q: "从零学 ComfyUI 需要多久？"
     a: "加载一个工作流并出图：30 分钟。自己搭建工作流：1-2 天。精通节点用于生产：2-3 周。学习曲线一开始很陡，但回报丰厚——工作流可复用、可分享、可复现。"
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/comfyui-workflow-2026-5-production-templates/ -->
 
 {{</* resource-info */>}}
 
@@ -140,12 +131,11 @@ ComfyUI 的学习曲线很真实，但回报同样真实。当你拥有 5 套可
 
 从上面 5 套模板开始。改造。分享。可复用工作流的复利效应会在第 2 周后显现 — 那时你会发现，自己组合节点的速度比写代码还快。
 
----
 
+---
 **相关阅读**：[Stable Diffusion WebUI 搭建](https://dibi8.com/zh/resources/ai-tools/stable-diffusion-webui/) · [2026 年顶级 AI 图像生成工具](https://dibi8.com/zh/resources/ai-tools/ai-image-generation-tools-2025/) · [2026 本地优先 AI 技术栈](https://dibi8.com/zh/resources/llm-frameworks/2026-local-first-ai-stack-production-architecture/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -173,25 +163,20 @@ ComfyUI 的学习曲线很真实，但回报同样真实。当你拥有 5 套可
 
 ## Why This Matters
 
-Understanding comfyui 工作流 2026：新手搭建指南 + 5 套生产级模板 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding comfyui 工作流 2026：新手搭建指南 + 5 套生产级模板 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -212,8 +197,8 @@ ComfyUI 工作流 2026：新手搭建指南 + 5 套生产级模板 represents an
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -230,9 +215,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
-Understanding these core concepts will help you master the topic:
-
-1. **Abstraction**: Hide complexity behind simple interfaces
+Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces
 2. **Composition**: Build complex systems from simple parts
 3. **Immutability**: Prefer immutable data structures
 4. **Error Handling**: Handle failures gracefully

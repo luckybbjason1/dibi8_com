@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/howtocook-programmer-open-source-cookbook" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/howtocook-programmer-open-source-cookbook" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/howtocook-programmer-open-source-cookbook" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/howtocook-programmer-open-source-cookbook" />
 title: "HowToCook Hướng Dẫn Nấu Ăn Cho Lập Trình Viên: 297 Công ...
 description: "Khám phá HowToCook Hướng Dẫn Nấu Ăn Cho Lập Trình Viên — 297 công thức nấu ăn mã nguồn mở, nấu ăn chính xác như viết code. Từ trứng xào cà chua đến vịt quay Bắc Kinh, phân loại độ khó, các bước rõ ràng."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Docker
+tech_stack: - Docker
   - JavaScript
 application_domain: "Ai Tools"
 source_version: ""
@@ -25,10 +19,8 @@ maintainer: "Anduin2017"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases:
-- /vi/posts/howtocook-programmer-open-source-cookbook/
-faqs:
-  - q: 'HowToCook là gì?'
+aliases: - /vi/posts/howtocook-programmer-open-source-cookbook/
+faqs: - q: 'HowToCook là gì?'
     a: 'HowToCook (程序员做饭指南) là dự án sách nấu ăn mã nguồn mở do lập trình viên Anduin2017 tạo ra, bao gồm 297 công thức nấu ăn được viết với độ chính xác và rõ ràng mà các nhà phát triển quen thuộc trong tài liệu kỹ thuật.'
   - q: 'HowToCook khác gì so với các công thức nấu ăn truyền thống?'
     a: 'Thay vì những hướng dẫn mơ hồ như ''một ít muối'' hay ''chiên đến khi vàng'', mỗi công thức trong HowToCook đều dùng định lượng chính xác (ví dụ: ''3g muối''), thời gian chính xác (ví dụ: ''chiên 90 giây mỗi mặt''), danh sách nguyên liệu đầy đủ từ đầu, danh sách dụng cụ cần thiết, và đánh giá độ khó từ 1 đến 5 sao.'
@@ -40,7 +32,6 @@ faqs:
     a: 'Fork repository, sao chép công thức mẫu, viết công thức của bạn theo định dạng có cấu trúc của dự án, rồi gửi Pull Request. Dự án đã có hơn 200 người đóng góp và hỗ trợ tiếng Trung, tiếng Anh và tiếng Nhật.'
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/howtocook-programmer-open-source-cookbook/ -->
 {</* resource-info */>}
 
 ## HowToCook là gì?
@@ -175,15 +166,11 @@ docker run -d -p 5000:5000 ghcr.io/anduin2017/how-to-cook:latest
 
 ## Gói NPM
 
-Cài đặt như gói Node.js:
-
-```bash
+Cài đặt như gói Node.js: ```bash
 npm install how-to-cook
 ```
 
-Sử dụng qua chương trình:
-
-```javascript
+Sử dụng qua chương trình: ```javascript
 const recipes = require('how-to-cook');
 
 // Tìm kiếm công thức
@@ -222,9 +209,7 @@ const dinner = recipes.random();
 
 ## Tại sao dự án này đáng chú ý
 
-**HowToCook** là ví dụ hoàn hảo cho:
-
-1. **Nội dung do cộng đồng tạo**: 200+ người đóng góp tạo nội dung chân thực
+**HowToCook** là ví dụ hoàn hảo cho: 1. **Nội dung do cộng đồng tạo**: 200+ người đóng góp tạo nội dung chân thực
 2. **Dữ liệu có cấu trúc**: Công thức tuân theo định dạng schema.org
 3. **Từ khóa đuôi dài**: "hướng dẫn nấu ăn cho lập trình viên", "how to cook for developers"
 4. **Nội dung evergreen**: Nấu ăn không bao giờ lỗi thời
@@ -246,9 +231,7 @@ const dinner = recipes.random();
 
 ## Công Cụ Đề Xuất
 
-Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
+Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
 - **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Proxy Anthropic Claude / OpenAI / DeepSeek API. Hầu hết AI tool ở trên (chatbot, code gen, translation, search, v.v.) cần LLM API key — proxy này cho access ổn định top model với ~30% giá chính thức.
 - **{{< aff "hostinger" "footer-cta-legacy" "Hostinger" >}}** — Lựa chọn VPS giá tốt cho thị trường Việt Nam.
 
@@ -256,7 +239,6 @@ Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -284,25 +266,20 @@ Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
 
 ## Why This Matters
 
-Understanding howtocook hướng dẫn nấu ăn cho lập trình viên: 297 công thức nấu ăn mã nguồn mở is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding howtocook hướng dẫn nấu ăn cho lập trình viên: 297 công thức nấu ăn mã nguồn mở is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

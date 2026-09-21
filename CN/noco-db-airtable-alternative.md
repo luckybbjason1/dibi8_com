@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/noco-db-airtable-alternative" />
 title: 'NocoDB 2026: The Open-Source Airtable Alternative Turnin...
 description: 'Deploy NocoDB in 5 minutes with Docker. Turn MySQL, PostgreSQL, or SQLite into a collaborative spreadsheet with auto-generated REST APIs, Kanban boards, and role-based access control.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [nocodb, 'airtable-alternative', 'open-source', database, spreadsheet, 'self-hosted', docker, mysql, postgresql]
-aliases:
-- /posts/noco-db-airtable-alternative/
+aliases: - /posts/noco-db-airtable-alternative/-
 ---
-
 {{</* resource-info */>}}
 
 ## Introduction: When Spreadsheets Hit the Wall
@@ -63,9 +59,7 @@ This separation is key: your data stays in your database. NocoDB is just a smart
 
 ### Option 1: Docker (Recommended for Development)
 
-The fastest way to get NocoDB running locally:
-
-```bash
+The fastest way to get NocoDB running locally: ```bash
 # Create a directory for NocoDB data
 mkdir -p ~/nocodb-data && cd ~/nocodb-data
 
@@ -81,38 +75,27 @@ Visit `http://localhost:8080` and sign up with an admin email and password. Done
 
 ### Option 2: Docker Compose with Existing PostgreSQL
 
-For production, connect NocoDB to an existing PostgreSQL database:
-
-```bash
+For production, connect NocoDB to an existing PostgreSQL database: ```bash
 # docker-compose.yml
 version: "3.8"
 
-services:
-  nocodb:
-    image: nocodb/nocodb:0.260.7
-    ports:
-      - "8080:8080"
-    environment:
-      - NC_DB="pg://host.docker.internal:5432?u=postgres&p=yourpassword&d=nocodb_meta"
+services: nocodb: image: nocodb/nocodb:0.260.7
+    ports: - "8080:8080"
+    environment: - NC_DB="pg://host.docker.internal:5432?u=postgres&p=yourpassword&d=nocodb_meta"
       - DATABASE_URL="postgres://postgres:yourpassword@host.docker.internal:5432/myapp_production"
       - NC_AUTH_JWT_SECRET="change-this-to-a-64-char-random-string"
       - NC_PUBLIC_URL=https://nocodb.yourcompany.com
-    volumes:
-      - ./nocodb-data:/usr/app/data
+    volumes: - ./nocodb-data:/usr/app/data
     restart: unless-stopped
 ```
 
-Start with:
-
-```bash
+Start with: ```bash
 docker-compose up -d
 ```
 
 ### Option 3: Deploy on DigitalOcean (Production)
 
-For a production VPS deployment, [spin up a $6/month Droplet on DigitalOcean](https://m.do.co/c/eca87ac14ee0) and run:
-
-```bash
+For a production VPS deployment, [spin up a $6/month Droplet on DigitalOcean](https://m.do.co/c/eca87ac14ee0) and run: ```bash
 # Update system
 sudo apt update && sudo apt upgrade -y
 
@@ -134,13 +117,9 @@ docker run -d \
 
 ### Adding Your First Data Source
 
-After logging into the NocoDB UI:
-
-1. Click **"Add New Base"** → **"Connect to Data Source"**
+After logging into the NocoDB UI: 1. Click **"Add New Base"** → **"Connect to Data Source"**
 2. Select **PostgreSQL** (or MySQL/SQLite)
-3. Enter connection details:
-
-```yaml
+3. Enter connection details: ```yaml
 # Example connection for a PostgreSQL database
 Host: db.yourcompany.com
 Port: 5432
@@ -156,9 +135,7 @@ NocoDB introspects the schema in ~10 seconds and presents all tables as interact
 
 ### REST API Auto-Generation
 
-Every table automatically gets a full REST API. Click **"API"** on any table to see the Swagger docs:
-
-```bash
+Every table automatically gets a full REST API. Click **"API"** on any table to see the Swagger docs: ```bash
 # List all records in the "customers" table
 curl -X GET "https://nocodb.yourcompany.com/api/v2/tables/customers/records" \
   -H "xc-token: YOUR_API_TOKEN" \
@@ -186,13 +163,9 @@ curl -X PATCH "https://nocodb.yourcompany.com/api/v2/tables/customers/records" \
 
 ### Webhook Automations
 
-Trigger external workflows on data changes:
-
-1. Go to **Base** → **Automation** → **Webhooks**
+Trigger external workflows on data changes: 1. Go to **Base** → **Automation** → **Webhooks**
 2. Click **"Add Webhook"**
-3. Configure the trigger:
-
-```json
+3. Configure the trigger: ```json
 {
   "title": "Notify Slack on New Order",
   "event": "after.insert",
@@ -212,9 +185,7 @@ Trigger external workflows on data changes:
 
 ### n8n Integration
 
-NocoDB works seamlessly with [n8n workflow automation](n8n-workflow-automation-dibi8-internal-link):
-
-```bash
+NocoDB works seamlessly with [n8n workflow automation](n8n-workflow-automation-dibi8-internal-link): ```bash
 # n8n NocoDB node credentials
 Host: https://nocodb.yourcompany.com
 API Token: noco_xxxxxxxxxxxx
@@ -223,9 +194,7 @@ Base ID: your-base-id
 
 ### Metabase / BI Integration
 
-Since your data stays in PostgreSQL, connect Metabase directly to the same database for analytics while NocoDB handles the operational editing layer:
-
-```yaml
+Since your data stays in PostgreSQL, connect Metabase directly to the same database for analytics while NocoDB handles the operational editing layer: ```yaml
 # Metabase connects to the same PostgreSQL database
 # NocoDB handles data entry, Metabase handles dashboards
 # Both read from the same source of truth
@@ -233,9 +202,7 @@ Since your data stays in PostgreSQL, connect Metabase directly to the same datab
 
 ### Sync to Airtable (Migration Path)
 
-Moving from Airtable? Export as CSV, import into NocoDB:
-
-1. **Airtable** → **Download CSV** for each table
+Moving from Airtable? Export as CSV, import into NocoDB: 1. **Airtable** → **Download CSV** for each table
 2. **NocoDB** → **Add New Table** → **Import CSV**
 3. Re-create linked record fields as **Links** in NocoDB
 4. Re-create views (Grid, Kanban, Gallery) with NocoDB's view builder
@@ -245,7 +212,13 @@ Moving from Airtable? Export as CSV, import into NocoDB:
 ### Performance: NocoDB vs. Airtable
 
 | Metric | NocoDB (Self-Hosted) | Airtable Pro |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | Records per base | **Unlimited** | 50,000 |
 | File attachments | **Limited by disk** | 20 GB |
 | API rate limit | **None (your server)** | 10 req/sec |
@@ -255,9 +228,7 @@ Moving from Airtable? Export as CSV, import into NocoDB:
 
 ### Real-World Deployment Numbers
 
-Based on community reports and load testing:
-
-- **Startup CRM**: 150,000 customer records, 15 team members, 3 views per table. PostgreSQL 14 on a 4-vCPU VPS. Average query time: **23ms**.
+Based on community reports and load testing: - **Startup CRM**: 150,000 customer records, 15 team members, 3 views per table. PostgreSQL 14 on a 4-vCPU VPS. Average query time: **23ms**.
 - **Inventory Management**: 50,000 SKUs across 8 warehouses. REST API consumed by 3 client applications. **Zero downtime** over 6 months with watchtower auto-updates.
 - **HR Candidate Tracker**: 12 recruiters, 8,000 candidates, Kanban view by hiring stage. Switched from Airtable saving **$2,880/year**.
 
@@ -295,9 +266,7 @@ server {
 }
 ```
 
-Enable and restart:
-
-```bash
+Enable and restart: ```bash
 sudo ln -s /etc/nginx/sites-available/nocodb /etc/nginx/sites-enabled/
 sudo nginx -t && sudo systemctl restart nginx
 ```
@@ -320,11 +289,8 @@ sudo chmod 600 /opt/nocodb/.env
 
 ### 3. Role-Based Access Control
 
-Configure granular permissions per base:
-
-1. **Project Settings** → **Data Sources** → **Users**
-2. Assign roles:
-   - **Owner** — Full control, can delete base
+Configure granular permissions per base: 1. **Project Settings** → **Data Sources** → **Users**
+2. Assign roles: - **Owner** — Full control, can delete base
    - **Creator** — Create tables, views, automations
    - **Editor** — Edit records, cannot modify schema
    - **Commenter** — Add comments only
@@ -353,9 +319,7 @@ aws s3 sync /backups/ s3://yourcompany-backups/nocodb/
 find /backups -name "*.sql" -mtime +7 -delete
 ```
 
-Add to crontab:
-
-```bash
+Add to crontab: ```bash
 0 2 * * * /opt/backup/nocodb-backup.sh >> /var/log/nocodb-backup.log 2>&1
 ```
 
@@ -363,29 +327,30 @@ Add to crontab:
 
 ```yaml
 # docker-compose.monitoring.yml
-services:
-  prometheus:
-    image: prom/prometheus:v2.51.0
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
-    ports:
-      - "9090:9090"
+services: prometheus: image: prom/prometheus:v2.51.0
+    volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports: - "9090:9090"
 
-  grafana:
-    image: grafana/grafana:10.4.0
-    ports:
-      - "3000:3000"
-    volumes:
-      - grafana-data:/var/lib/grafana
+  grafana: image: grafana/grafana:10.4.0
+    ports: - "3000:3000"
+    volumes: - grafana-data:/var/lib/grafana
 
-volumes:
-  grafana-data:
-```
+volumes: grafana-data: ```
 
 ## Comparison with Alternatives
 
 | Feature | NocoDB | Airtable | Baserow | Teable |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **License** | AGPL-3.0 | Proprietary | MIT | AGPL-3.0 |
 | **Self-hosted** | Yes | No | Yes | Yes |
 | **Connects to existing DB** | **Yes** (PG, MySQL, SQLite) | No | No | Yes |
@@ -407,9 +372,7 @@ volumes:
 
 ## Limitations: Honest Assessment
 
-**NocoDB is not perfect.** Before committing, consider these constraints:
-
-1. **UI polish gap**: Airtable's interface is smoother. NocoDB's grid can feel sluggish with 100,000+ rows in the browser — though the underlying database handles it fine.
+**NocoDB is not perfect.** Before committing, consider these constraints: 1. **UI polish gap**: Airtable's interface is smoother. NocoDB's grid can feel sluggish with 100,000+ rows in the browser — though the underlying database handles it fine.
 
 2. **No native mobile app**: You get a responsive web UI, but there's no dedicated iOS/Android app like Airtable offers.
 
@@ -463,15 +426,11 @@ If you are paying Airtable $200+/month and have a PostgreSQL or MySQL database a
 
 **Related tools**: [n8n Workflow Automation](n8n-workflow-automation-dibi8-internal-link) | [Metabase BI Setup Guide](metabase-bi-setup-dibi8-internal-link)
 
+
 ---
-
-
-
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -491,7 +450,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 *This article may contain affiliate links. If you sign up for DigitalOcean through our referral link, we receive a commission at no extra cost to you. We only recommend services we use ourselves.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

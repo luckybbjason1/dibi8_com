@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-agent-memory-persistence-letta-mem0-a-mem-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-agent-memory-persistence-letta-mem0-a-mem-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-agent-memory-persistence-letta-mem0-a-mem-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-agent-memory-persistence-letta-mem0-a-mem-2026" />
 title: 'AI Agent 메모리 영속화 2026: Letta vs Mem0 vs A-MEM 실전 비교'
 description: '영속 메모리가 없는 Agent는 세션마다 처음부터 다시 시작합니다. 동일한 멀티 세션 워크로드에서 Letta, Mem0, A-MEM을 실측 — 누가 진짜로 컨텍스트를 유지하는지, 비용은 어떤지, 언제 직접 만들어야 하는지.'
 date: 2026-05-25 00:00:00+08:00
@@ -21,10 +16,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['ai-agent', memory, persistence, letta, mem0, 2026]
-aliases:
-- /kr/posts/ai-agent-memory-persistence-letta-mem0-a-mem-2026/
-faq:
-  - q: "AI Agent에 영속 메모리가 왜 필요한가요?"
+aliases: - /kr/posts/ai-agent-memory-persistence-letta-mem0-a-mem-2026/
+faq: - q: "AI Agent에 영속 메모리가 왜 필요한가요?"
     a: "영속화가 없으면 모든 세션이 0에서 다시 시작됩니다 — Agent는 어제의 선호, 결정, 컨텍스트를 기억하지 못합니다. 지속적인 협업(코딩 파트너, 리서치 어시스턴트, 고객 응대 챗봇)에서는 영속 메모리가 도구와 파트너를 가르는 분기점입니다."
   - q: "세 가지 접근 방식의 차이는?"
     a: "Letta는 OS 같은 메모리 계층(core / archival / recall)을 사용합니다. Mem0은 간단한 add/search API로 개발자 편의에 집중합니다. A-MEM은 능동적 망각과 감쇠를 가진 연구 지향형입니다. 셋 다 같은 문제를 다른 방식으로 풉니다."
@@ -33,8 +26,6 @@ faq:
   - q: "Agent 메모리는 그 복잡도를 감수할 가치가 있나요?"
     a: "실사용자를 응대하는 프로덕션 Agent 대부분에서: 네, 실질적으로 가치 있습니다. '당신을 기억한다'와 '처음부터 시작한다' 사이의 품질 격차는 큽니다. 일회성 작업이나 단순 워크플로에는: 복잡도를 감당할 가치가 없습니다."
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/ai-agent-memory-persistence-letta-mem0-a-mem-2026/ -->
 
 {{</* resource-info */>}}
 
@@ -70,8 +61,7 @@ faq:
 
 ## 테스트: 10세션 멀티턴 워크로드
 
-코딩 어시스턴트 Agent로 2주에 걸쳐 10 세션을 시뮬레이션했습니다. 추적 지표:
-- 메모리 유지 정확도 (Session 1에서 설정한 사용자 선호를 Agent가 기억하는가?)
+코딩 어시스턴트 Agent로 2주에 걸쳐 10 세션을 시뮬레이션했습니다. 추적 지표: - 메모리 유지 정확도 (Session 1에서 설정한 사용자 선호를 Agent가 기억하는가?)
 - 메모리 레이어가 추가하는 지연
 - 셋업 시간
 - 비용(토큰 사용 + DB)
@@ -105,30 +95,25 @@ faq:
 
 ## 각각의 사용 시점
 
-### Letta가 이기는 경우:
-- 멀티턴 Agent가 같은 사용자를 수개월 이상 응대
+### Letta가 이기는 경우: - 멀티턴 Agent가 같은 사용자를 수개월 이상 응대
 - 메모리 복잡도가 중요(우선순위, 변화하는 선호)
 - 프로덕션 완성도를 위해 셋업 시간을 투자할 수 있음
 
-### Mem0이 이기는 경우:
-- 기존 Agent에 빠르게 메모리 추가
+### Mem0이 이기는 경우: - 기존 Agent에 빠르게 메모리 추가
 - 단순한 "이 사실들을 기억해" 워크플로
 - 개발자 편의성이 중요함
 
-### A-MEM이 이기는 경우:
-- 장기 실행 Agent에 감쇠가 필요(오래된 사실의 관련성 하락)
+### A-MEM이 이기는 경우: - 장기 실행 Agent에 감쇠가 필요(오래된 사실의 관련성 하락)
 - 연구 / 실험
 - 메모리 다이내믹스를 튜닝하고 싶음
 
-### 전용 메모리 레이어를 건너뛸 때:
-- 일회성 작업
+### 전용 메모리 레이어를 건너뛸 때: - 일회성 작업
 - 단일 세션 워크플로
 - 단순 "사용자 이름 기억하기" — MCP memory server 사용
 
 ## 구현 현실
 
-Mem0(가장 단순)으로 기존 Agent에 메모리 추가하기:
-```python
+Mem0(가장 단순)으로 기존 Agent에 메모리 추가하기: ```python
 from mem0 import Memory
 m = Memory()
 m.add("User prefers TypeScript over JavaScript", user_id="alice")
@@ -145,8 +130,7 @@ Letta는 통합이 더 무겁지만 정교한 계층을 얻을 수 있습니다.
 
 ## 비용 영향
 
-메모리 프레임워크는 실제 비용을 추가합니다:
-- 새 메모리 임베딩: add당 $0.0001-0.0005
+메모리 프레임워크는 실제 비용을 추가합니다: - 새 메모리 임베딩: add당 $0.0001-0.0005
 - 턴당 검색: $0.0002-0.001
 - 벡터 DB 호스팅: 월 $20-100
 
@@ -154,8 +138,7 @@ Letta는 통합이 더 무겁지만 정교한 계층을 얻을 수 있습니다.
 
 ## 추천 인프라
 
-메모리 프레임워크 + 벡터 DB 호스팅:
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 크레딧
+메모리 프레임워크 + 벡터 DB 호스팅: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 크레딧
 - **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 홍콩 VPS
 
 *제휴 링크 — 가격 동일, dibi8.com을 지원합니다.*
@@ -171,7 +154,6 @@ Letta는 통합이 더 무겁지만 정교한 계층을 얻을 수 있습니다.
 **관련 글**: [AI Agent 메모리 시스템 2026](https://dibi8.com/kr/resources/llm-frameworks/ai-agent-memory-systems-open-source-infrastructure-2026/) · [MCP Servers 2026 랭킹](https://dibi8.com/kr/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/) · [오픈소스 AI Agent 프레임워크 Top 10](https://dibi8.com/kr/resources/llm-frameworks/open-source-ai-agent-framework-top-10-2026/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -199,25 +181,20 @@ Letta는 통합이 더 무겁지만 정교한 계층을 얻을 수 있습니다.
 
 ## Why This Matters
 
-Understanding ai agent 메모리 영속화 2026: letta vs mem0 vs a-mem 실전 비교 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding ai agent 메모리 영속화 2026: letta vs mem0 vs a-mem 실전 비교 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

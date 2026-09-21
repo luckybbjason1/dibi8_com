@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/openrouter-unified-llm-api-gateway" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/openrouter-unified-llm-api-gateway" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/openrouter-unified-llm-api-gateway" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/openrouter-unified-llm-api-gateway" />
 title: 'OpenRouter：连接300+模型的统一LLM API网关，节省40%成本 —— 2026年设置指南'
 description: 'OpenRouter完整指南：通过统一OpenAI兼容端点访问60+提供商的300+AI模型。学习5分钟内的设置、集成、基准测试和生产部署。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [openrouter, llm, api网关, 人工智能, openai, claude, 机器学习, 成本优化]
-aliases:
-- /zh/posts/openrouter-unified-llm-api-gateway/
+aliases: - /zh/posts/openrouter-unified-llm-api-gateway/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/openrouter-unified-llm-api-gateway/ -->
 
 {{</* resource-info */>}}
 
@@ -340,7 +332,17 @@ print(response.model)  # 显示实际使用了哪个模型
 ### 成本对比：直接提供商API vs OpenRouter
 
 | 提供商 | 模型 | 直接API成本（每百万token） | OpenRouter成本 | 差异 |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Anthropic | Claude Sonnet 4.5 | $3.00 / $15.00 | $3.17 / $15.83 | +5.5% 加价 |
 | OpenAI | GPT-5 | $1.25 / $10.00 | $1.32 / $10.55 | +5.5% 加价 |
 | Google | Gemini 3 Pro | $0.50 / $2.00 | $0.53 / $2.11 | +5.5% 加价 |
@@ -356,7 +358,15 @@ print(response.model)  # 显示实际使用了哪个模型
 ### 延迟基准测试（2026年5月）
 
 | 模型 | 提供商 | 平均延迟（毫秒） | 吞吐量（token/秒） |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | GPT-5 | OpenAI（直接） | 320 | 45 |
 | GPT-5 | 通过OpenRouter | 340 | 43 |
 | Claude Sonnet 4.5 | Anthropic（直接） | 410 | 38 |
@@ -372,7 +382,13 @@ print(response.model)  # 显示实际使用了哪个模型
 一家中型SaaS公司每月处理**5000万token**，从管理5个独立提供商集成切换到OpenRouter：
 
 | 指标 | 使用OpenRouter前 | 使用OpenRouter后 |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | 月度API成本 | $4,200 | $3,180 |
 | 工程维护 | 12小时/周 | 1小时/周 |
 | 提供商中断事件 | 3次/月 | 0次/月 |
@@ -472,15 +488,10 @@ CMD ["node", "proxy.js"]
 ```yaml
 # docker-compose.yml
 version: "3.8"
-services:
-  openrouter-proxy:
-    build:
-      context: .
+services: openrouter-proxy: build: context: .
       dockerfile: Dockerfile.openrouter-proxy
-    ports:
-      - "3000:3000"
-    environment:
-      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+    ports: - "3000:3000"
+    environment: - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
       - FALLBACK_MODELS=openai/gpt-5,google/gemini-3-pro
       - CACHE_ENABLED=true
     restart: unless-stopped
@@ -509,7 +520,19 @@ print(f"总使用量: ${usage[data][total_usage]}")
 ## 与替代品对比
 
 | 功能 | OpenRouter | LiteLLM | Portkey | Cloudflare AI Gateway | ngrok AI Gateway |
-|---|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **支持模型** | 300+ | 100+ | 250+ | 取决于提供商 | 云+本地 |
 | **部署方式** | 托管SaaS | 自托管OSS | 托管+自托管 | 托管（Cloudflare） | 托管 |
 | **开源** | 部分 | 是（MIT） | 部分 | 否 | 部分 |
@@ -628,7 +651,6 @@ OpenRouter消除了多提供商LLM开发中最大的摩擦：集成复杂性。�
 本文包含 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 的联盟链接。如果你通过这些链接注册，我们可能会获得佣金，而不会向你收取额外费用。所有意见和基准测试均经过独立验证。产品推荐基于实际技术评估，而非联盟可用性。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -656,25 +678,20 @@ OpenRouter消除了多提供商LLM开发中最大的摩擦：集成复杂性。�
 
 ## Why This Matters
 
-Understanding openrouter：连接300+模型的统一llm api网关，节省40%成本 —— 2026年设置指南 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding openrouter：连接300+模型的统一llm api网关，节省40%成本 —— 2026年设置指南 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -695,13 +712,13 @@ OpenRouter：连接300+模型的统一LLM API网关，节省40%成本 —— 202
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
 
+---
 ## Related Articles
 
 - [12-factor-agents-production-llm-software-2026](openrouter-unified-llm-api-gateway)

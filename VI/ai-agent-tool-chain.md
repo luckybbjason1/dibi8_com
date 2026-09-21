@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-agent-tool-chain" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-agent-tool-chain" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-agent-tool-chain" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-agent-tool-chain" />
 title: 'AI Agent Tool Chain 2026: Stack 6 Thành Phần Để Xây Agen...
 description: 'Stack AI agent production hoàn chỉnh: LangGraph cho orchestration có trạng thái + MCP servers cho tool + mem0 cho memory + OpenClaw cho phối hợp multi-agent + Hermes Agent cho tự cải thiện + e2b cho thực thi code sandboxed. $20-60/tháng self-host. Lắp ráp thực tế với deep dive đã link nội bộ.'
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
-tech_stack:
-  - Python
+tech_stack: - Python
   - TypeScript
   - Docker
   - PostgreSQL
@@ -29,11 +23,8 @@ featureImage: ''
 draft: false
 categories: [collections]
 tags: ['ai agent', 'tool chain', langgraph, mcp, stack, collection]
-aliases:
-  - /posts/ai-agent-tool-chain/
+aliases: - /posts/ai-agent-tool-chain/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/ai-agent-tool-chain/ -->
 
 "AI agent" ngừng là chủ đề nghiên cứu năm 2025 và trở thành category kỹ thuật production năm 2026. Các team ship agent tự trị thực sự — bot hỗ trợ khách hàng sống sót restart, coding agent refactor qua trăm file, research agent chạy hàng giờ — hội tụ về một stack nhất quán đáng kinh ngạc. Bộ sưu tập này lắp ráp nó.
 
@@ -56,9 +47,7 @@ So với pure-SaaS: mỗi nền tảng agent (LangChain Cloud, Vellum, v.v.) b�
 
 ## 1. Vì Sao Tự Xây Stack Agent Năm 2026
 
-Ba lực hội tụ năm nay:
-
-1. **LangGraph đạt 1.x và chứng minh thực thi bền vững ở quy mô** — bug "agent quên mọi thứ sau restart" được giải quyết
+Ba lực hội tụ năm nay: 1. **LangGraph đạt 1.x và chứng minh thực thi bền vững ở quy mô** — bug "agent quên mọi thứ sau restart" được giải quyết
 2. **MCP chuẩn hóa tích hợp tool** — viết tool một lần làm MCP server, dùng trong Claude / OpenCode / Cursor / agent tự xây
 3. **Vòng tự cải thiện trở nên tái lập được** — Hermes Agent và các project tương tự cho thấy agent có thể cải thiện lặp lại prompt của chúng dựa trên dữ liệu kết quả
 
@@ -92,8 +81,7 @@ Kết hợp nghĩa là team nhỏ có thể xây agent mà trước đây cần 
                 │  - chuyên domain     │
                 └──────────────────────┘
 
-   Layer tùy chọn:
-   - OpenClaw orchestrate nhiều agent LangGraph song song
+   Layer tùy chọn: - OpenClaw orchestrate nhiều agent LangGraph song song
    - Hermes Agent quan sát kết quả và viết lại prompt theo thời gian
 ```
 
@@ -105,8 +93,7 @@ Mô hình tinh thần: **LangGraph là não quyết định làm gì tiếp. MCP
 
 **Vì sao chọn**: 32.6k stars, v1.2.1, xây bởi team LangChain. Framework duy nhất được áp dụng rộng rãi nơi "agent sống sót deploy" là mặc định thay vì cái bạn lắp thêm.
 
-**Cài nhanh**:
-```bash
+**Cài nhanh**: ```bash
 pip install -U langgraph langgraph-checkpoint-postgres
 ```
 
@@ -120,8 +107,7 @@ pip install -U langgraph langgraph-checkpoint-postgres
 
 **Vì sao quan trọng**: Trước MCP (đầu 2025), mọi framework agent tái triển khai cùng 20 tool (filesystem, search web, thực thi code) và chúng không tương tác. Hôm nay bạn wire up Anthropic 7 reference server + 3-5 chuyên biệt và có siêu sức mạnh agent mà không viết code tool.
 
-**Bộ MCP tối thiểu cho agent tự trị**:
-- `modelcontextprotocol/server-filesystem` (đọc file project)
+**Bộ MCP tối thiểu cho agent tự trị**: - `modelcontextprotocol/server-filesystem` (đọc file project)
 - `modelcontextprotocol/server-git` (kiểm tra state git)
 - `tavily-mcp` hoặc `brave-search-mcp-server` (search web)
 - `e2b-sandbox-mcp` (thực thi code sandbox — xem thành phần 6)
@@ -133,12 +119,10 @@ pip install -U langgraph langgraph-checkpoint-postgres
 
 **Vai trò**: Cái agent nhớ qua các lần chạy. Không có cái này, mọi invocation agent bắt đầu từ context 0. Có cái này, agent nhớ sự thật về user, project, quyết định trước, thất bại trước.
 
-**Pattern 2-tier**:
-- **mem0** lưu memory ngữ nghĩa (service Python backed bởi vector DB)
+**Pattern 2-tier**: - **mem0** lưu memory ngữ nghĩa (service Python backed bởi vector DB)
 - **AgentMemory MCP** expose mem0 cho bất kỳ host nhận thức MCP (LangGraph node, Claude Desktop, OpenCode)
 
-**Cài nhanh**:
-```bash
+**Cài nhanh**: ```bash
 docker run -d --name mem0 -p 8765:8765 mem0ai/mem0-server:latest
 npm install -g @mem0/mem0-mcp
 # Sau đó thêm agentmemory vào MCP toolset của LangGraph
@@ -152,8 +136,7 @@ npm install -g @mem0/mem0-mcp
 
 **Vì sao chọn hơn CrewAI**: OpenClaw self-host được, MCP native, tích hợp sạch với LangGraph (mỗi "agent chuyên gia" chính nó có thể là LangGraph). CrewAI tốt nhưng cloud-first và khó compose với state machine tùy biến.
 
-**Cài nhanh**:
-```bash
+**Cài nhanh**: ```bash
 docker run -d --name openclaw \
   -p 7050:7050 \
   -v ~/.openclaw:/data \
@@ -168,8 +151,7 @@ docker run -d --name openclaw \
 
 **Vì sao quan trọng**: Prompt agent tĩnh decay — cái hoạt động ở v1 ngừng hoạt động khi codebase tiến hóa, domain dịch chuyển, tool mới xuất hiện. Hermes Agent là framework mã nguồn mở được áp dụng rộng rãi duy nhất cụ thể cho vòng tự cải thiện agent.
 
-**Cài nhanh**:
-```bash
+**Cài nhanh**: ```bash
 pip install hermes-agent
 # Wire nó như "post-run observer" trên workflow LangGraph
 ```
@@ -184,8 +166,7 @@ Pattern: Hermes xem trace log LangGraph (qua xuất LangSmith), tương quan đi
 
 **Vì sao e2b expose MCP thắng SDK e2b raw**: Server `e2b-sandbox-mcp` làm "chạy code trong sandbox" thành một tool call đơn của agent LangGraph — cùng interface như đọc filesystem hoặc search web.
 
-**Cài nhanh** (thêm vào MCP config cùng những cái khác):
-```json
+**Cài nhanh** (thêm vào MCP config cùng những cái khác): ```json
 {
   "mcpServers": {
     "e2b-sandbox": {
@@ -233,9 +214,7 @@ So với nền tảng agent managed: LangChain Cloud $99/user/tháng, Vellum sta
 
 ## 11. Đường Nâng Cấp
 
-Khi vượt stack này:
-
-- **Hơn 10 agent đồng thời** — Di chuyển LangGraph sang cluster Kubernetes chuyên dụng với autoscaling
+Khi vượt stack này: - **Hơn 10 agent đồng thời** — Di chuyển LangGraph sang cluster Kubernetes chuyên dụng với autoscaling
 - **Cần giữ trace cấp audit** — LangSmith Enterprise hoặc gisibility self-host (Grafana + Loki + Tempo)
 - **SaaS agent multi-tenant** — Thêm LiteLLM cho virtual-key-per-customer ([hướng dẫn LiteLLM](/vi/resources/llm-frameworks/litellm/))
 - **Yêu cầu latency sub-giây** — Di chuyển workload e2b sang Firecracker VM chuyên dụng bạn kiểm soát
@@ -243,8 +222,7 @@ Khi vượt stack này:
 
 ## TL;DR — Recipe
 
-**6 thành phần cho agent tự trị cấp production, solo hoặc team prototype $20-60/tháng**:
-1. **LangGraph** — não orchestration có trạng thái
+**6 thành phần cho agent tự trị cấp production, solo hoặc team prototype $20-60/tháng**: 1. **LangGraph** — não orchestration có trạng thái
 2. **MCP servers** — tool & context (filesystem + git + search + sandbox)
 3. **mem0 + AgentMemory MCP** — memory dài hạn
 4. **OpenClaw** — phối hợp multi-agent
@@ -258,7 +236,6 @@ Bật {{< aff "digitalocean" "footer-cta" "DigitalOcean $24/tháng droplet" >}},
 *Bộ sưu tập đồng hành: [Workflow AI Coding Self-Host](/vi/collections/self-hosted-ai-coding-workflow/) cho stack đặc thù coding agent. [Stack Knowledge Base](/vi/collections/knowledge-base-stack/) cho agent backend RAG tương đương Glean. [Stack LLM Rẻ](/vi/collections/cheap-llm-stack/) cover phía chi phí.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

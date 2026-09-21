@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/snapshot-dao-governance-voting" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/snapshot-dao-governance-voting" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/snapshot-dao-governance-voting" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/snapshot-dao-governance-voting" />
 title: 'snapshot-dao-governance-voting'
 description: '{'en': ''Comprehensive guide to Snapshot, the open-source off-chain DAO voting platform with 10M+ votes processed. Learn gas-free governance, voting strategies, delegation, SDK integration, and IPFS storage.'', 'zh': ''Snapshot综合指南，这个开源链下DAO投票平台已处理超过1000万张选票。了解无Gas治理、投票策略、委托、SDK集成和IPFS存储。'', 'ko': ''1,000만 개 이상의 투표를 처리한 오픈소스 오프체인 DAO 투표 플랫폼 Snapshot에 대한 종합 가이드. 가스 없는 거버넌스, 투표 전략, 위임, SDK 통합, IPFS 저장소를 알아보세요.'', 'vi': ''Hướng dẫn toàn diện về Snapshot, nền tảng bỏ phiếu DAO off-chain mã nguồn mở đã xử lý 10M+ phiếu bầu. Tìm hiểu quản trị không tốn gas, chiến lược bỏ phiếu, ủy quyền, tích hợp SDK, và lưu trữ IPFS.''}'
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: [snapshot, dao, governance, voting, 'off-chain', 'eip-712', ipfs, delegation, defi, web3]
-aliases:
-- /zh/posts/snapshot-dao-governance-voting/
+aliases: - /zh/posts/snapshot-dao-governance-voting/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/snapshot-dao-governance-voting/ -->
 
 {{</* resource-info */>}}
 
@@ -39,12 +31,12 @@ aliases:
 **工具：** [Snapshot](https://snapshot.org)  
 **GitHub：** [snapshot-labs/snapshot](https://github.com/snapshot-labs/snapshot) — ⭐ 9,500星，MIT许可证
 
----
 
+---
 > 有兴趣交易治理代币？在[币安](https://www.bsmkweb.cc/register?ref=DIBI8)注册，开始DAO代币交易。
 
----
 
+---
 ## 1. 引言：为什么DAO治理在2026年至关重要
 
 去中心化自治组织（DAO）从根本上改变了社区进行集体决策的方式。到2026年，DAO管理着DeFi协议、NFT项目、基础设施网络和投资集体超过**500亿美元**的国库资产。然而，在以太坊等网络上进行链上投票在拥堵期间仍然成本高昂，单次投票的Gas费可达5至50美元。这种财务障碍剥夺了较小代币持有者的权利，破坏了去中心化的民主精神。
@@ -215,8 +207,7 @@ curl -X POST https://hub.snapshot.org/graphql \
 # Python验证脚本
 import requests
 
-def verify_snapshot_space(space_id: str) -> dict:
-    """验证Snapshot空间配置。"""
+def verify_snapshot_space(space_id: str) -> dict: """验证Snapshot空间配置。"""
     query = """
     query GetSpace($id: String!) {
       space(id: $id) {
@@ -254,15 +245,13 @@ def verify_snapshot_space(space_id: str) -> dict:
 
     data = response.json()
 
-    if data.get("data", {}).get("space"):
-        space = data["data"]["space"]
+    if data.get("data", {}).get("space"): space = data["data"]["space"]
         print(f"空间 '{space[name]}' 验证成功！")
         print(f"网络: {space[network]}")
         print(f"策略: {[s[name] for s in space[strategies]]}")
         print(f"最低分数: {space[filters][minScore]}")
         return space
-    else:
-        raise ValueError(f"未找到空间 '{space_id}'")
+    else: raise ValueError(f"未找到空间 '{space_id}'")
 
 # 验证
 space = verify_snapshot_space("mydao.eth")
@@ -277,7 +266,13 @@ space = verify_snapshot_space("mydao.eth")
 Snapshot支持50多种投票策略来决定如何计算投票权。最常用的策略包括：
 
 | 策略 | 用例 | 示例DAO |
-|------|------|---------|
+|
+---
+|
+---
+|
+---
+|
 | `erc20-balance-of` | 简单代币余额 | Uniswap, Aave |
 | `erc721` | NFT所有权 | Bored Ape Yacht Club |
 | `contract-call` | 通过智能合约自定义逻辑 | Compound |
@@ -750,16 +745,13 @@ app.post('/webhooks/snapshot', (req, res) => {
   const event = req.body;
 
   switch (event.event) {
-    case 'proposal/created':
-      console.log(`新提案: ${event.id}`);
+    case 'proposal/created': console.log(`新提案: ${event.id}`);
       notifyDiscord(event);
       break;
-    case 'proposal/end':
-      console.log(`投票结束: ${event.id}`);
+    case 'proposal/end': console.log(`投票结束: ${event.id}`);
       tallyResults(event);
       break;
-    case vote:
-      console.log(`${event.proposal.id} 上的新投票`);
+    case vote: console.log(`${event.proposal.id} 上的新投票`);
       updateLeaderboard(event);
       break;
   }
@@ -860,25 +852,20 @@ const treasuryVote: TreasuryProposal = {
 
 ```yaml
 # snapshot-security-checklist.yml
-space_security:
-  admin_keys:
-    - use_multisig: true
+space_security: admin_keys: - use_multisig: true
     - minimum_signers: 3
     - hardware_wallets_required: true
 
-  proposal_validation:
-    - min_score_threshold: 10000
+  proposal_validation: - min_score_threshold: 10000
     - require_forum_discussion: true
     - discussion_min_duration: "7天"
 
-  voting_security:
-    - snapshot_block: "使用提案创建区块"
+  voting_security: - snapshot_block: "使用提案创建区块"
     - voting_delay: "最少24小时"
     - voting_period: "最少3天"
     - quorum_required: true
 
-  monitoring:
-    - enable_webhooks: true
+  monitoring: - enable_webhooks: true
     - discord_notifications: true
     - unusual_activity_alerts: true
     - delegate_change_alerts: true
@@ -957,7 +944,6 @@ Snapshot通过消除参与的财务障碍，从根本上实现了DAO治理的民
 **网站：** [snapshot.org](https://snapshot.org)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

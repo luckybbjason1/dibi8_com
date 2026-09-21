@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/instructor-structured-llm-output" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/instructor-structured-llm-output" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/instructor-structured-llm-output" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/instructor-structured-llm-output" />
 title: 'Instructor：让LLM 100%输出有效JSON的Python库 —— 2026指南'
 description: '停止与不稳定的LLM输出作斗争。了解Instructor如何修补OpenAI客户端，使用Pydantic模型保证有效、类型安全的JSON响应。具有重试逻辑、多提供商支持和流式传输功能。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [instructor]
-aliases:
-- /zh/posts/instructor-structured-llm-output/
+aliases: - /zh/posts/instructor-structured-llm-output/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/instructor-structured-llm-output/ -->
 
 {{</* resource-info */>}}
 
@@ -39,8 +31,8 @@ aliases:
 
 Instructor是一个Python库，它修补OpenAI客户端（以及其他10多个LLM提供商），使用**Pydantic模型**来保证结构化、类型安全、经过验证的输出。它将LLM文本生成的狂野西部转变为一个可预测的、软件工程化的流程。拥有11,000多个GitHub星标、MIT许可证和一个蓬勃发展的社区，Instructor已成为Python中结构化LLM输出的事实标准。本指南涵盖了2026年从基本设置到高级多提供商模式的所有内容。
 
----
 
+---
 ## 什么是Instructor？为什么它很重要？
 
 Instructor由**Jason Liu**（`jxnl`）创建，是一个轻量级的Python库，位于你现有的LLM客户端之上，通过Pydantic模型验证强制执行结构化输出。与其从LLM接收原始文本并祈祷它能正确解析，不如定义一个Pydantic模式，Instructor确保每个响应都符合该模式——或者自动使用修正后的提示重试。
@@ -55,8 +47,8 @@ pip install instructor
 pip install openai
 ```
 
----
 
+---
 ## 核心概念：修补OpenAI客户端
 
 Instructor的神奇之处在于**客户端修补**。与其直接调用OpenAI的API，不如创建一个修补过的客户端，拦截响应，根据你的Pydantic模型验证它们，并自动处理失败。
@@ -70,15 +62,13 @@ from pydantic import BaseModel
 client = instructor.from_openai(OpenAI())
 
 # 将你的输出模式定义为Pydantic模型
-class UserProfile(BaseModel):
-    name: str
+class UserProfile(BaseModel): name: str
     age: int
     email: str
     interests: list[str]
 
 # 从自然语言中提取结构化数据
-def extract_profile(user_description: str) -> UserProfile:
-    return client.chat.completions.create(
+def extract_profile(user_description: str) -> UserProfile: return client.chat.completions.create(
         model="gpt-4o",
         response_model=UserProfile,
         messages=[
@@ -116,29 +106,23 @@ print(f"邮箱有效: {'@' in profile.email}")
 ```python
 from pydantic import BaseModel, Field, field_validator
 
-class ValidatedProduct(BaseModel):
-    name: str = Field(description="产品名称，最多50个字符")
+class ValidatedProduct(BaseModel): name: str = Field(description="产品名称，最多50个字符")
     price: float = Field(description="美元价格，必须为正数")
     category: str = Field(description="以下之一: electronics, clothing, food, books")
     
     @field_validator(category)
     @classmethod
-    def validate_category(cls, v):
-        allowed = {electronics, clothing, food, books}
-        if v.lower() not in allowed:
-            raise ValueError(f"类别必须是以下之一: {allowed}")
+    def validate_category(cls, v): allowed = {electronics, clothing, food, books}
+        if v.lower() not in allowed: raise ValueError(f"类别必须是以下之一: {allowed}")
         return v.lower()
     
     @field_validator(price)
     @classmethod
-    def validate_price(cls, v):
-        if v <= 0:
-            raise ValueError("价格必须为正数")
+    def validate_price(cls, v): if v <= 0: raise ValueError("价格必须为正数")
         return round(v, 2)
 
 # 验证失败时Instructor自动重试
-def parse_product(description: str) -> ValidatedProduct:
-    return client.chat.completions.create(
+def parse_product(description: str) -> ValidatedProduct: return client.chat.completions.create(
         model="gpt-4o",
         response_model=ValidatedProduct,
         max_retries=3,  # 最多重试3次并附带反馈
@@ -167,24 +151,20 @@ print(product)
 from typing import Optional, List
 from pydantic import BaseModel, Field
 
-class Address(BaseModel):
-    street: str
+class Address(BaseModel): street: str
     city: str
     state: str = Field(description="2字母州代码")
     zip_code: str
     country: str = "US"
 
-class OrderItem(BaseModel):
-    product_name: str
+class OrderItem(BaseModel): product_name: str
     quantity: int = Field(ge=1, description="必须至少为1")
     unit_price: float = Field(gt=0)
     
     @property
-    def total(self) -> float:
-        return self.quantity * self.unit_price
+    def total(self) -> float: return self.quantity * self.unit_price
 
-class CustomerOrder(BaseModel):
-    customer_name: str
+class CustomerOrder(BaseModel): customer_name: str
     customer_email: str
     shipping_address: Address
     billing_address: Optional[Address] = None
@@ -192,11 +172,9 @@ class CustomerOrder(BaseModel):
     order_notes: Optional[str] = None
     
     @property
-    def grand_total(self) -> float:
-        return sum(item.total for item in self.items)
+    def grand_total(self) -> float: return sum(item.total for item in self.items)
 
-def extract_order(email_text: str) -> CustomerOrder:
-    return client.chat.completions.create(
+def extract_order(email_text: str) -> CustomerOrder: return client.chat.completions.create(
         model="gpt-4o",
         response_model=CustomerOrder,
         messages=[
@@ -285,14 +263,12 @@ from pydantic import BaseModel
 # 使用异步客户端进行批处理
 async_client = instructor.from_openai(AsyncOpenAI())
 
-class SentimentResult(BaseModel):
-    text: str
+class SentimentResult(BaseModel): text: str
     sentiment: str  # "positive", "negative", "neutral"
     confidence: float
     key_phrases: list[str]
 
-async def analyze_single(text: str) -> SentimentResult:
-    return await async_client.chat.completions.create(
+async def analyze_single(text: str) -> SentimentResult: return await async_client.chat.completions.create(
         model="gpt-4o-mini",
         response_model=SentimentResult,
         messages=[
@@ -300,8 +276,7 @@ async def analyze_single(text: str) -> SentimentResult:
         ]
     )
 
-async def analyze_batch(texts: list[str]) -> list[SentimentResult]:
-    """并发处理多个文本。"""
+async def analyze_batch(texts: list[str]) -> list[SentimentResult]: """并发处理多个文本。"""
     tasks = [analyze_single(text) for text in texts]
     results = await asyncio.gather(*tasks)
     return results
@@ -329,14 +304,12 @@ print(f"正面: {positive}/{len(results)}")
 from typing import Iterable
 from pydantic import BaseModel
 
-class PartialArticle(BaseModel):
-    title: str
+class PartialArticle(BaseModel): title: str
     sections: list[str]
     key_points: list[str]
 
 # 在生成过程中流式传输结构化数据
-def stream_article(topic: str) -> Iterable[PartialArticle]:
-    return client.chat.completions.create_partial(
+def stream_article(topic: str) -> Iterable[PartialArticle]: return client.chat.completions.create_partial(
         model="gpt-4o",
         response_model=PartialArticle,
         stream=True,
@@ -346,10 +319,11 @@ def stream_article(topic: str) -> Iterable[PartialArticle]:
     )
 
 # 在部分结果到达时消费它们
-for partial in stream_article("2026年可再生能源趋势"):
-    print(f"标题: {partial.title}")
+for partial in stream_article("2026年可再生能源趋势"): print(f"标题: {partial.title}")
     print(f"已有章节数: {len(partial.sections)}")
-    print("---")
+    print("
+---
+")
 ```
 
 ---
@@ -361,28 +335,23 @@ Instructor的重试系统不仅仅是重复请求——它向LLM提供关于验�
 ```python
 from pydantic import BaseModel, field_validator
 
-class StrictDateRange(BaseModel):
-    start_date: str = Field(description="YYYY-MM-DD格式")
+class StrictDateRange(BaseModel): start_date: str = Field(description="YYYY-MM-DD格式")
     end_date: str = Field(description="YYYY-MM-DD格式，必须在开始日期之后")
     
     @field_validator(start_date, end_date)
     @classmethod
-    def validate_date_format(cls, v):
-        from datetime import datetime
+    def validate_date_format(cls, v): from datetime import datetime
         datetime.strptime(v, "%Y-%m-%d")
         return v
     
     @field_validator(end_date)
     @classmethod
-    def validate_order(cls, end, info):
-        start = info.data.get(start_date)
-        if start and end <= start:
-            raise ValueError("end_date必须在start_date之后")
+    def validate_order(cls, end, info): start = info.data.get(start_date)
+        if start and end <= start: raise ValueError("end_date必须在start_date之后")
         return end
 
 # Instructor将使用特定验证错误反馈进行重试
-def extract_date_range(text: str) -> StrictDateRange:
-    return client.chat.completions.create(
+def extract_date_range(text: str) -> StrictDateRange: return client.chat.completions.create(
         model="gpt-4o",
         response_model=StrictDateRange,
         max_retries=3,
@@ -393,13 +362,11 @@ def extract_date_range(text: str) -> StrictDateRange:
 
 # 即使模型最初交换日期或使用错误格式，
 # Instructor也会使用具体的错误消息重新询问
-try:
-    result = extract_date_range(
+try: result = extract_date_range(
         "项目从2026年3月15日持续到2026年1月10日"
     )
     print(result)
-except Exception as e:
-    print(f"达到最大重试次数后失败: {e}")
+except Exception as e: print(f"达到最大重试次数后失败: {e}")
 ```
 
 ---
@@ -411,8 +378,7 @@ except Exception as e:
 ```python
 from typing import Literal
 
-class SupportTicket(BaseModel):
-    customer_query: str
+class SupportTicket(BaseModel): customer_query: str
     category: Literal[
         "billing", 
         "technical_support", 
@@ -424,8 +390,7 @@ class SupportTicket(BaseModel):
     priority: Literal["low", "medium", "high", "urgent"]
     suggested_response: str
 
-def classify_ticket(ticket_text: str) -> SupportTicket:
-    return client.chat.completions.create(
+def classify_ticket(ticket_text: str) -> SupportTicket: return client.chat.completions.create(
         model="gpt-4o-mini",
         response_model=SupportTicket,
         messages=[
@@ -462,21 +427,17 @@ app = FastAPI(title="结构化LLM API")
 client = instructor.from_openai(OpenAI())
 
 # 请求模式
-class ExtractionRequest(BaseModel):
-    text: str
+class ExtractionRequest(BaseModel): text: str
     extract_fields: list[str]
 
 # 响应模式
-class ExtractedData(BaseModel):
-    entities: list[dict]
+class ExtractedData(BaseModel): entities: list[dict]
     relationships: list[dict]
     summary: str
 
 @app.post("/extract", response_model=ExtractedData)
-async def extract_entities(request: ExtractionRequest):
-    """从非结构化文本中提取结构化实体。"""
-    try:
-        result = client.chat.completions.create(
+async def extract_entities(request: ExtractionRequest): """从非结构化文本中提取结构化实体。"""
+    try: result = client.chat.completions.create(
             model="gpt-4o",
             response_model=ExtractedData,
             messages=[
@@ -491,8 +452,7 @@ async def extract_entities(request: ExtractionRequest):
             ]
         )
         return result
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+    except Exception as e: raise HTTPException(status_code=500, detail=str(e))
 
 # 使用 uvicorn main:app --reload 运行
 ```
@@ -506,14 +466,12 @@ Instructor可以用更强大的基于Pydantic的模式替代OpenAI的函数调�
 ```python
 from typing import Type
 
-class SearchQuery(BaseModel):
-    """带有参数的生成搜索查询"""
+class SearchQuery(BaseModel): """带有参数的生成搜索查询"""
     keywords: list[str]
     filters: dict[str, str]
     sort_by: Literal["relevance", "date", "price_asc", "price_desc"]
     
-def generate_search(user_request: str) -> SearchQuery:
-    return client.chat.completions.create(
+def generate_search(user_request: str) -> SearchQuery: return client.chat.completions.create(
         model="gpt-4o",
         response_model=SearchQuery,
         messages=[
@@ -620,7 +578,6 @@ Instructor将LLM从不可预测的文本生成器转变为可靠的结构化数�
 如果你仍然在用`json.loads()`解析原始LLM输出并祈祷它能正常工作，那么是时候升级了。今天安装Instructor，体验**100%有效的JSON，100%的时间**意味着什么。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -648,25 +605,20 @@ Instructor将LLM从不可预测的文本生成器转变为可靠的结构化数�
 
 ## Why This Matters
 
-Understanding instructor：让llm 100%输出有效json的python库 —— 2026指南 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding instructor：让llm 100%输出有效json的python库 —— 2026指南 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -718,7 +670,17 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 ## Framework Comparison
 
 | Framework | Primary Use | Learning Curve | Community | Production Ready |
-|-----------|-------------|----------------|-----------|------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **LangChain** | General-purpose | Medium | Large | ✅ Yes |
 | **LlamaIndex** | RAG/Retrieval | Low | Growing | ✅ Yes |
 | **Haystack** | Document processing | Medium | Medium | ✅ Yes |

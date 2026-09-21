@@ -1,12 +1,9 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/claude-code-subagent-mastery-stack" />
 title: 'Claude Code Subagent Mastery Stack 2026: From One Conver...
 description: 'The complete learning + tooling stack for mastering Claude Code multi-agent workflows: 5 subagent patterns + custom agent authoring + the skill/subagent/MCP decision framework + orchestration failure modes + skill authoring. The full path from single-threaded coding to a reliable agent pipeline.'
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-30 00:00:00+08:00
-tech_stack:
-  - Claude Code
+tech_stack: - Claude Code
   - Agent SDK
   - MCP
   - Bash
@@ -27,10 +24,8 @@ featureImage: ''
 draft: false
 categories: [collections]
 tags: ['claude code', subagents, 'multi-agent', 'agent sdk', mcp, stack, collection]
-aliases:
-  - /posts/claude-code-subagent-mastery-stack/
-faqs:
-  - q: 'What are the five Claude Code subagent patterns?'
+aliases: - /posts/claude-code-subagent-mastery-stack/
+faqs: - q: 'What are the five Claude Code subagent patterns?'
     a: 'The five patterns are parallel research fan-out, worktree isolation, specialist delegation, context protection, and pipeline orchestration. They form the foundation layer of multi-agent workflows, with parallel fan-out being the lowest-friction entry point.'
   - q: 'How do I decide between a Claude Code skill, subagent, or MCP server?'
     a: 'Use a three-axis framework based on what you lack: write a skill when you''re short on knowledge, spawn a subagent when you''re short on context, and build an MCP server when you''re short on capability. Most teams over-reach for MCP servers when a markdown file would deliver the same outcome.'
@@ -51,7 +46,17 @@ This collection assembles the **complete path** to get there: five deep-dive gui
 ## TL;DR — The Mastery Stack at a Glance
 
 | # | Component | Layer | Role | Deep dive |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 1 | **5 Subagent Patterns** | Foundation | The five workflows: parallel fan-out, worktree isolation, specialist delegation, context protection, pipeline orchestration | [Subagent Patterns](/resources/llm-frameworks/claude-code-subagent-patterns-multi-agent-workflows-2026/) |
 | 2 | **Custom Agent Authoring** | Build | How to write `.claude/agents/*.md` — frontmatter, system prompt, tool allowlists | [Custom Agent Authoring](/resources/llm-frameworks/claude-code-custom-agent-authoring-guide-2026/) |
 | 3 | **Subagent vs MCP vs Skill** | Decide | The three-axis framework — knowledge (skill), context (subagent), capability (MCP) | [Subagent vs MCP vs Skill](/resources/llm-frameworks/claude-code-subagent-vs-mcp-server-skill-agent-2026/) |
@@ -81,9 +86,7 @@ To run multi-agent pipelines at scale you want stable infrastructure: a reliable
 
 ## Beyond Mastery: Choosing What to Build On
 
-Once you've internalized the patterns above, the next questions are *which* tools to commit to. We wrote a decision trilogy to answer exactly that:
-
-- **[Subagents vs LangGraph/CrewAI/AutoGen](/resources/llm-frameworks/claude-code-subagents-vs-langgraph-crewai-autogen-2026/)** — when built-in subagents are enough, and when to graduate to a standalone framework.
+Once you've internalized the patterns above, the next questions are *which* tools to commit to. We wrote a decision trilogy to answer exactly that: - **[Subagents vs LangGraph/CrewAI/AutoGen](/resources/llm-frameworks/claude-code-subagents-vs-langgraph-crewai-autogen-2026/)** — when built-in subagents are enough, and when to graduate to a standalone framework.
 - **[Claude Agent SDK vs OpenAI Agents SDK](/vs/claude-agent-sdk-vs-openai-agents-sdk/)** — the two leading agent SDKs head-to-head: hooks+subagents vs handoffs+guardrails.
 - **[Claude Code vs Cline](/vs/claude-code-vs-cline/)** — autonomy vs control, for the agentic coding tool itself.
 
@@ -93,7 +96,6 @@ Master the patterns first; use the trilogy to decide what to build on.
 
 Don't learn subagents as five disconnected tricks. Walk the stack in order — patterns → authoring → decision framework → skills → failure modes — and you graduate from "one big conversation" to a coordinated agent council you can actually trust in production. Start with Pattern 1 today; layer the rest as your sessions get longer and your tasks get heavier.
 
-<!--auto-references-->
 ## References & Sources
 
 - [Claude Code](https://docs.claude.com/en/docs/claude-code/overview)
@@ -106,7 +108,6 @@ Don't learn subagents as five disconnected tricks. Walk the stack in order — p
 - [Cline](https://github.com/cline/cline)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -134,25 +135,20 @@ Don't learn subagents as five disconnected tricks. Walk the stack in order — p
 
 ## Why This Matters
 
-Understanding claude code subagent mastery stack 2026: from one conversation to a coordinated agent council is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding claude code subagent mastery stack 2026: from one conversation to a coordinated agent council is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -173,13 +169,13 @@ Claude Code Subagent Mastery Stack 2026: From One Conversation to a Coordinated 
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
 
+---
 ## Related Articles
 
 - [free-mcp-tools-top10-2026](claude-code-subagent-mastery-stack)

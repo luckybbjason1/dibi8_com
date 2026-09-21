@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/mem0" />
 title: 'Mem0: 56K+ Stars — AI Agent Memory Performance Tuning Gu...
 description: 'Mem0 (mem0ai) is a universal memory layer for AI agents. Compatible with Claude Code, OpenAI, LangChain, CrewAI, Cursor. Covers mem0 tutorial, persistent memory setup, vector store tuning, and production deployment benchmarks.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [mem0, 'ai-agent-memory', 'persistent-memory', langchain, 'vector-store', 'memory-tuning', 'mem0-tutorial', 'mem0-vs-langchain', crewai, 'open-source']
-aliases:
-- /posts/mem0/
+aliases: - /posts/mem0/-
 ---
-
 {{</* resource-info */>}}
 
 ## Introduction
@@ -38,9 +34,7 @@ Mem0 is an open-source universal memory layer for LLM applications and AI agents
 
 ## How Mem0 Works
 
-Mem0's architecture separates memory into four operational layers:
-
-**1. Extraction Layer**: An LLM (configurable, default GPT-4o-mini) processes incoming messages and extracts structured facts. The April 2026 token-efficient algorithm uses single-pass hierarchical extraction that reduces token usage by 3-4x compared to full-context baselines.
+Mem0's architecture separates memory into four operational layers: **1. Extraction Layer**: An LLM (configurable, default GPT-4o-mini) processes incoming messages and extracts structured facts. The April 2026 token-efficient algorithm uses single-pass hierarchical extraction that reduces token usage by 3-4x compared to full-context baselines.
 
 **2. Embedding Layer**: Extracted facts are vectorized using an embedding model (default: text-embedding-3-small) and stored in a vector database. Mem0 supports 19 vector store backends including Qdrant, Chroma, PGVector, Pinecone, Weaviate, Milvus, and Azure AI Search.
 
@@ -110,9 +104,7 @@ print(results)
 
 ### Self-Hosted Setup (Docker)
 
-For teams that need data residency or air-gapped deployments:
-
-```bash
+For teams that need data residency or air-gapped deployments: ```bash
 # Clone the repository
 git clone https://github.com/mem0ai/mem0.git
 cd mem0
@@ -162,35 +154,25 @@ results = m.search("movie recommendations", filters={"user_id": "alice"})
 
 ### Custom Configuration with YAML
 
-The `mem0config.yaml` file controls every component of the memory pipeline:
-
-```yaml
+The `mem0config.yaml` file controls every component of the memory pipeline: ```yaml
 # mem0config.yaml — Production tuning config
-llm:
-  provider: openai
-  config:
-    model: "gpt-4o-mini"
+llm: provider: openai
+  config: model: "gpt-4o-mini"
     temperature: 0.1
     max_tokens: 2000
 
-embedder:
-  provider: openai
-  config:
-    model: "text-embedding-3-small"
+embedder: provider: openai
+  config: model: "text-embedding-3-small"
     embedding_dims: 1536
 
-vector_store:
-  provider: qdrant
-  config:
-    host: "localhost"
+vector_store: provider: qdrant
+  config: host: "localhost"
     port: 6333
     collection_name: "mem0"
     on_disk: true  # Enable persistent storage
 
-reranker:
-  provider: cohere
-  config:
-    model: "rerank-multilingual-v3.0"
+reranker: provider: cohere
+  config: model: "rerank-multilingual-v3.0"
 
 custom_instructions: |
   Extract user preferences, personal facts, and context.
@@ -209,7 +191,17 @@ m = Memory.from_config(config_path)
 ### Vector Store Backend Comparison
 
 | Backend | Best For | Latency | Persistence | Scaling |
-|---------|----------|---------|-------------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Qdrant | Production, hybrid search | <10ms | On-disk | Horizontal |
 | Chroma | Local dev, prototyping | <20ms | File-based | Single node |
 | PGVector | Postgres ecosystems | <30ms | Database-managed | Read replicas |
@@ -225,8 +217,7 @@ import asyncio
 
 client = MemoryClient()
 
-async def batch_store(messages_list):
-    tasks = [client.add_async(msgs, user_id=f"user_{i}")
+async def batch_store(messages_list): tasks = [client.add_async(msgs, user_id=f"user_{i}")
              for i, msgs in enumerate(messages_list)]
     return await asyncio.gather(*tasks)
 
@@ -255,14 +246,12 @@ results = client.search(
 # Guide what facts get extracted and stored
 m = Memory.from_config({
     "custom_instructions": """
-    Extract and store:
-    - User's name, profession, location
+    Extract and store: - User's name, profession, location
     - Technical preferences (languages, frameworks, tools)
     - Dietary restrictions and allergies
     - Communication preferences
 
-    Do NOT store:
-    - Temporary mood or emotional states
+    Do NOT store: - Temporary mood or emotional states
     - One-time requests
     - Third-party information without consent
     """
@@ -293,23 +282,19 @@ mem0 = MemoryClient(api_key=os.getenv("MEM0_API_KEY"))
 # Prompt template with memory injection
 prompt = ChatPromptTemplate.from_messages([
     ("system", """You are a helpful assistant with long-term memory.
-    Relevant past context about the user:
-    {memories}
+    Relevant past context about the user: {memories}
 
     Use this context to personalize your responses."""),
     MessagesPlaceholder(variable_name="history"),
     ("human", "{input}")
 ])
 
-def get_memories(user_id: str, query: str) -> str:
-    """Retrieve relevant memories as formatted string."""
+def get_memories(user_id: str, query: str) -> str: """Retrieve relevant memories as formatted string."""
     results = mem0.search(query, user_id=user_id, limit=5)
     return "\n".join([r["memory"] for r in results])
 
-def chat(user_id: str, message: str, history: List = None):
-    """Chat with memory-augmented context."""
-    if history is None:
-        history = []
+def chat(user_id: str, message: str, history: List = None): """Chat with memory-augmented context."""
+    if history is None: history = []
 
     memories = get_memories(user_id, message)
     formatted_prompt = prompt.format_messages(
@@ -355,14 +340,12 @@ from mem0 import MemoryClient
 mem0 = MemoryClient(api_key=os.getenv("MEM0_API_KEY"))
 
 @tool
-def retrieve_user_context(user_id: str, query: str) -> str:
-    """Retrieve memories about the user for personalization."""
+def retrieve_user_context(user_id: str, query: str) -> str: """Retrieve memories about the user for personalization."""
     results = mem0.search(query, user_id=user_id, limit=5)
     return "\n".join([f"- {r[memory]}" for r in results])
 
 @tool
-def store_interaction(user_id: str, content: str) -> str:
-    """Store facts learned during agent interaction."""
+def store_interaction(user_id: str, content: str) -> str: """Store facts learned during agent interaction."""
     messages = [{"role": "assistant", "content": content}]
     mem0.add(messages, user_id=user_id)
     return "Stored."
@@ -407,19 +390,16 @@ from mem0 import MemoryClient
 mem0 = MemoryClient(api_key=os.getenv("MEM0_API_KEY"))
 
 @dataclass
-class UserContext:
-    user_id: str
+class UserContext: user_id: str
 
 @function_tool
-def add_to_memory(ctx, messages: str) -> str:
-    """Store facts about the user."""
+def add_to_memory(ctx, messages: str) -> str: """Store facts about the user."""
     parsed = [{"role": "user", "content": m} for m in messages.split("\n")]
     mem0.add(parsed, user_id=ctx.context.user_id)
     return "Memory stored."
 
 @function_tool
-def search_memory(ctx, query: str) -> str:
-    """Search for relevant memories."""
+def search_memory(ctx, query: str) -> str: """Search for relevant memories."""
     results = mem0.search(query, user_id=ctx.context.user_id, limit=5)
     return "\n".join([r["memory"] for r in results])
 
@@ -430,8 +410,7 @@ memory_agent = Agent(
     model="gpt-4o-mini"
 )
 
-async def run_agent():
-    context = UserContext(user_id="user_42")
+async def run_agent(): context = UserContext(user_id="user_42")
     result = await Runner.run(
         memory_agent,
         "I'm a vegetarian who loves Italian food.",
@@ -448,52 +427,46 @@ async def run_agent():
 # mem0-production-stack.yml
 version: "3.8"
 
-services:
-  qdrant:
-    image: qdrant/qdrant:latest
-    ports:
-      - "6333:6333"
+services: qdrant: image: qdrant/qdrant:latest
+    ports: - "6333:6333"
       - "6334:6334"
-    volumes:
-      - qdrant_storage:/qdrant/storage
-    environment:
-      - QDRANT__SERVICE__GRPC_PORT=6334
+    volumes: - qdrant_storage:/qdrant/storage
+    environment: - QDRANT__SERVICE__GRPC_PORT=6334
 
-  mem0-server:
-    image: mem0/mem0-server:latest
-    ports:
-      - "8000:8000"
-    environment:
-      - MEM0_API_KEY=${MEM0_API_KEY}
+  mem0-server: image: mem0/mem0-server:latest
+    ports: - "8000:8000"
+    environment: - MEM0_API_KEY=${MEM0_API_KEY}
       - VECTOR_STORE_PROVIDER=qdrant
       - VECTOR_STORE_URL=http://qdrant:6333
       - LLM_PROVIDER=openai
       - OPENAI_API_KEY=${OPENAI_API_KEY}
       - EMBEDDER_PROVIDER=openai
       - OPENAI_EMBEDDING_MODEL=text-embedding-3-small
-    depends_on:
-      - qdrant
+    depends_on: - qdrant
 
-  mem0-dashboard:
-    image: mem0/mem0-dashboard:latest
-    ports:
-      - "3000:3000"
-    environment:
-      - MEM0_API_URL=http://mem0-server:8000
+  mem0-dashboard: image: mem0/mem0-dashboard:latest
+    ports: - "3000:3000"
+    environment: - MEM0_API_URL=http://mem0-server:8000
       - MEM0_API_KEY=${MEM0_API_KEY}
 
-volumes:
-  qdrant_storage:
-```
+volumes: qdrant_storage: ```
 
 ## Benchmarks / Real-World Use Cases
 
 ### LoCoMo and LongMemEval Results
 
-Mem0's new token-efficient algorithm (released April 2026) delivers significant accuracy improvements at lower token cost:
-
-| Benchmark | Metric | Old Algorithm | New Algorithm (April 2026) | Improvement |
-|-----------|--------|---------------|---------------------------|-------------|
+Mem0's new token-efficient algorithm (released April 2026) delivers significant accuracy improvements at lower token cost: | Benchmark | Metric | Old Algorithm | New Algorithm (April 2026) | Improvement |
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | LoCoMo | Overall Accuracy | 66.9% | **92.5%** | +25.6 points |
 | LoCoMo | Mean Tokens/Query | ~26,000 | **6,956** | 3.7x reduction |
 | LongMemEval | Overall Accuracy | 65.3% | **94.4%** | +29.1 points |
@@ -504,7 +477,15 @@ Mem0's new token-efficient algorithm (released April 2026) delivers significant 
 ### Per-Category Breakdown (LoCoMo)
 
 | Category | Old Score | New Score | Delta |
-|----------|-----------|-----------|-------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Single-hop | 76.6% | 94.6% | +18.0 |
 | Multi-hop | 70.2% | 95.4% | +25.2 |
 | Open-domain | 57.3% | 82.3% | +25.0 |
@@ -534,8 +515,7 @@ Mem0's new token-efficient algorithm (released April 2026) delivers significant 
 
 ```python
 # Memory access control with metadata
-def store_sensitive_memory(user_id: str, fact: str, classification: str):
-    """Store memory with security classification."""
+def store_sensitive_memory(user_id: str, fact: str, classification: str): """Store memory with security classification."""
     messages = [{"role": "user", "content": fact}]
     mem0.add(
         messages,
@@ -561,8 +541,7 @@ results = client.search(
 
 ```python
 # Organization-scoped memory for SaaS applications
-def add_org_scoped_memory(org_id: str, user_id: str, messages: list):
-    """Store memory scoped to both organization and user."""
+def add_org_scoped_memory(org_id: str, user_id: str, messages: list): """Store memory scoped to both organization and user."""
     client.add(
         messages,
         user_id=f"{org_id}:{user_id}",
@@ -582,8 +561,7 @@ results = client.get_all(
 # Track memory metrics
 import time
 
-def timed_search(user_id: str, query: str):
-    """Search with latency logging."""
+def timed_search(user_id: str, query: str): """Search with latency logging."""
     start = time.time()
     results = client.search(query, user_id=user_id)
     latency = (time.time() - start) * 1000
@@ -595,8 +573,7 @@ def timed_search(user_id: str, query: str):
     return results
 
 # Periodic memory health check
-def memory_health_check(user_id: str):
-    """Verify memory integrity for a user."""
+def memory_health_check(user_id: str): """Verify memory integrity for a user."""
     all_memories = client.get_all(filters={"user_id": user_id})
 
     return {
@@ -614,25 +591,19 @@ def memory_health_check(user_id: str):
 from functools import wraps
 import time
 
-class Mem0RateLimiter:
-    """Simple rate limiter for Mem0 API calls."""
-    def __init__(self, max_calls_per_minute=100):
-        self.max_calls = max_calls_per_minute
+class Mem0RateLimiter: """Simple rate limiter for Mem0 API calls."""
+    def __init__(self, max_calls_per_minute=100): self.max_calls = max_calls_per_minute
         self.calls = []
 
-    def can_call(self) -> bool:
-        now = time.time()
+    def can_call(self) -> bool: now = time.time()
         self.calls = [c for c in self.calls if now - c < 60]
         return len(self.calls) < self.max_calls
 
-    def record_call(self):
-        self.calls.append(time.time())
+    def record_call(self): self.calls.append(time.time())
 
 limiter = Mem0RateLimiter(max_calls_per_minute=60)
 
-def rate_limited_add(messages, user_id):
-    if not limiter.can_call():
-        # Queue for later or skip non-critical memories
+def rate_limited_add(messages, user_id): if not limiter.can_call(): # Queue for later or skip non-critical memories
         print("Rate limit hit, queuing memory")
         return {"status": "queued"}
     limiter.record_call()
@@ -642,7 +613,17 @@ def rate_limited_add(messages, user_id):
 ## Comparison with Alternatives
 
 | Feature | Mem0 | LangChain Memory | LlamaIndex Memory | Chroma (Raw) |
-|---------|------|------------------|-------------------|--------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Architecture** | Hybrid Vector + Graph + KV | Key-value + Vector | Vector + Index | Pure Vector DB |
 | **GitHub Stars** | 56,205 | 100K+ (LangChain) | 41,000 | 18,500 |
 | **LOCOMO Score** | 92.5% (new algo) | 58.10% | 62.47% | N/A (just storage) |
@@ -667,9 +648,7 @@ def rate_limited_add(messages, user_id):
 
 ## Limitations / Honest Assessment
 
-Mem0 is not the right tool for every use case. Here is what it does not do well:
-
-**1. Temporal reasoning gap**: On LongMemEval temporal sub-tasks, Mem0 scores 49-82% depending on the category. Zep with Graphiti hits 63.8-71.2% on temporal tasks due to explicit time-anchored graph storage. If your agent needs to reason about sequences of events ("what happened before X?"), Mem0 may fall short.
+Mem0 is not the right tool for every use case. Here is what it does not do well: **1. Temporal reasoning gap**: On LongMemEval temporal sub-tasks, Mem0 scores 49-82% depending on the category. Zep with Graphiti hits 63.8-71.2% on temporal tasks due to explicit time-anchored graph storage. If your agent needs to reason about sequences of events ("what happened before X?"), Mem0 may fall short.
 
 **2. Graph memory pricing**: Graph features are locked behind the $249/month Pro tier. The Starter tier at $19/month only gets vector similarity search. For teams that need relationship-aware memory on a budget, alternatives like Zep ($25/month) or Cognee (free self-hosted) offer graph at lower price points.
 
@@ -728,9 +707,7 @@ Mem0 solves one of the most persistent problems in AI agent development: cross-s
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -752,7 +729,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - Evermind — Mem0 Alternatives 2026: https://evermind.ai/blogs/mem0-alternative
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -778,8 +754,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [ai-agent-frameworks-comparison-2026](mem0)
@@ -788,8 +764,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [docker-genai-stack-local-development](mem0)
 - [langchain-complete-guide](mem0)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

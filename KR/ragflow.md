@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ragflow" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ragflow" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ragflow" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ragflow" />
 title: 'RAGFlow: 80K+ Stars를 가진 프로덕션급 RAG 엔진 배포하기 — 2026년 Docker...
 description: 'RAGFlow는 심층 문서 이해와 내장 에이전트 기능을 갖춘 오픈소스 검색 증강 생성(RAG) 엔진입니다. Ollama, OpenAI, Qdrant, Elasticsearch, Redis와 호환됩니다. Docker 배포, 문서 수집, 검색 튜닝 및 프로덕션 하드닝을 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [ragflow, rag엔진, 문서이해, docker배포, llm에이전트, 프로덕션rag, 오픈소스ai]
-aliases:
-- /kr/posts/ragflow/
+aliases: - /kr/posts/ragflow/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/ragflow/ -->
 
 {{</* resource-info */>}}
 
@@ -47,9 +39,7 @@ RAGFlow는 심층 문서 이해와 LLM 기반 에이전트를 결합하여 복�
 
 ![RAGFlow System Architecture](https://raw.githubusercontent.com/infiniflow/ragflow/main/docs/img/ragflow-architecture.png)
 
-RAGFlow의 아키텍처는 모듈식 파이프라인 디자인을 따륾며, 6개의 핵심 단계가 있습니다:
-
-### 1. 문서 수집 (DeepDoc)
+RAGFlow의 아키텍처는 모듈식 파이프라인 디자인을 따륾며, 6개의 핵심 단계가 있습니다: ### 1. 문서 수집 (DeepDoc)
 
 문서는 **DeepDoc** 파싱 엔진을 통해 RAGFlow에 들어옵니다. DeepDoc은 PDF, Word 파일, Excel 시트, PowerPoint 슬라이드, 이미지 및 스캔 복사본에 대해 레이아웃 분석을 수행합니다. 시각 기반 문서 레이아웃 모델을 사용하여 표, 그림, 제목, 단락 및 텍스트 블록을 식별합니다. 이 단계에서는 MinerU 및 Docling과 같은 외부 파서도 지원됩니다.
 
@@ -101,9 +91,7 @@ RAGFlow는 추적 가능한 인용이 포함된 검색된 청크로 구성된 �
 
 ### 배포 전: 시스템 튜닝
 
-RAGFlow를 시작하기 전에 커널 매개변수가 Elasticsearch에 맞게 튜닝되었는지 확인하세요:
-
-```bash
+RAGFlow를 시작하기 전에 커널 매개변수가 Elasticsearch에 맞게 튜닝되었는지 확인하세요: ```bash
 # 현재 vm.max_map_count 확인
 sysctl vm.max_map_count
 
@@ -130,9 +118,7 @@ cp .env .env.backup
 nano .env
 ```
 
-설정해야 할 핵심 변수:
-
-```bash
+설정해야 할 핵심 변수: ```bash
 # docker/.env
 RAGFLOW_IMAGE=infiniflow/ragflow:v0.25.4
 SVR_HTTP_PORT=80
@@ -155,14 +141,11 @@ docker compose -f docker-compose.yml up -d
 # docker compose -f docker-compose.yml up -d
 ```
 
-배포 확인:
-
-```bash
+배포 확인: ```bash
 # 로그를 확인하여 성공 메시지가 나올 때까지 대기
 docker logs -f ragflow-server
 
-# 예상 출력:
-#     ____   ___    ______ ______ __
+# 예상 출력: #     ____   ___    ______ ______ __
 #    / __ \ /   |  / ____// ____// /____  _      __
 #   / /_/ // /| | / / __ / /_   / // __ \| | /| / /
 #  / _, _// ___ |/ /_/ // __/  / // /_/ /| |/ |/ /
@@ -172,29 +155,22 @@ docker logs -f ragflow-server
 
 ### 4단계: LLM 공급자 구성
 
-`service_conf.yaml.template`를 편집하여 LLM API 키를 추가하세요:
-
-```yaml
+`service_conf.yaml.template`를 편집하여 LLM API 키를 추가하세요: ```yaml
 # docker/service_conf.yaml.template
-user_default_llm:
-  factory: OpenAI
+user_default_llm: factory: OpenAI
   api_key: sk-your-openai-api-key
   base_url: https://api.openai.com/v1
   default_model: gpt-4.1-mini
 ```
 
-지원되는 LLM 공급자는 OpenAI, Anthropic, DeepSeek, Gemini, Azure OpenAI, Bedrock, Ollama 또는 vLLM을 통한 로컬 모델을 포함합니다. 구성 변경 후 컨테이너를 재시작하세요:
-
-```bash
+지원되는 LLM 공급자는 OpenAI, Anthropic, DeepSeek, Gemini, Azure OpenAI, Bedrock, Ollama 또는 vLLM을 통한 로컬 모델을 포함합니다. 구성 변경 후 컨테이너를 재시작하세요: ```bash
 docker compose -f docker-compose.yml down
 docker compose -f docker-compose.yml up -d
 ```
 
 ### 5단계: 웹 UI 접속
 
-브라우저를 열고 `http://YOUR_SERVER_IP`로 이동하세요. 기본 로그인 정보는 다음과 같습니다:
-
-```
+브라우저를 열고 `http://YOUR_SERVER_IP`로 이동하세요. 기본 로그인 정보는 다음과 같습니다: ```
 이메일: admin@ragflow.io
 비밀번호: (첫 로그인 시 설정)
 ```
@@ -205,20 +181,15 @@ docker compose -f docker-compose.yml up -d
 
 ### Ollama (로컬 LLM)
 
-에어갭 환경이나 프라이버시에 민감한 배포의 경우 RAGFlow를 Ollama에 연결하세요:
-
-```yaml
+에어갭 환경이나 프라이버시에 민감한 배포의 경우 RAGFlow를 Ollama에 연결하세요: ```yaml
 # docker/service_conf.yaml.template
-user_default_llm:
-  factory: Ollama
+user_default_llm: factory: Ollama
   api_key: ""
   base_url: http://host.docker.internal:11434
   default_model: llama3.2
 ```
 
-사용하기 전에 Ollama에서 모델을 가져오세요:
-
-```bash
+사용하기 전에 Ollama에서 모델을 가져오세요: ```bash
 ollama pull llama3.2
 ollama pull nomic-embed-text
 ```
@@ -228,25 +199,20 @@ RAGFlow 웹 UI의 **설정 > 모델 공급자**에서 임베딩 모델을 구성
 ### OpenAI (클우드 API)
 
 ```yaml
-user_default_llm:
-  factory: OpenAI
+user_default_llm: factory: OpenAI
   api_key: ${OPENAI_API_KEY}
   base_url: https://api.openai.com/v1
   default_model: gpt-4.1-mini
 ```
 
-환경 변수 치환을 사용하여 비밀 하드코딩을 피하세요:
-
-```bash
+환경 변수 치환을 사용하여 비밀 하드코딩을 피하세요: ```bash
 # .env 에서
 OPENAI_API_KEY=sk-your-key
 ```
 
 ### Elasticsearch에서 Infinity로 마이그레이션
 
-Infinity는 대규모 배포에 최적화된 RAGFlow의 융합 컨텍스트 엔진입니다. 전환 방법:
-
-```bash
+Infinity는 대규모 배포에 최적화된 RAGFlow의 융합 컨텍스트 엔진입니다. 전환 방법: ```bash
 # 1. 모든 컨테이너 중지 및 볼륨 삭제
 docker compose -f docker-compose.yml down -v
 
@@ -261,27 +227,17 @@ docker compose -f docker-compose.yml up -d
 
 ### Redis를 외부 캐시로 사용
 
-프로덕션 배포를 위해 외부 Redis 클러스터를 사용하세요:
-
-```yaml
+프로덕션 배포를 위해 외부 Redis 클러스터를 사용하세요: ```yaml
 # docker-compose.yml (발췌)
-services:
-  redis:
-    image: redis:7-alpine
+services: redis: image: redis:7-alpine
     command: redis-server --requirepass ${REDIS_PASSWORD}
-    volumes:
-      - redis_data:/data
-    deploy:
-      resources:
-        limits:
-          memory: 2G
+    volumes: - redis_data:/data
+    deploy: resources: limits: memory: 2G
 ```
 
 ### Qdrant를 대안 벡터 스토어로 사용
 
-RAGFlow가 Elasticsearch 또는 Infinity를 기본으로 사용하지만, Python SDK를 통해 Qdrant를 통합하여 사용자 정의 검색 파이프라인을 구축할 수 있습니다:
-
-```python
+RAGFlow가 Elasticsearch 또는 Infinity를 기본으로 사용하지만, Python SDK를 통해 Qdrant를 통합하여 사용자 정의 검색 파이프라인을 구축할 수 있습니다: ```python
 from qdrant_client import QdrantClient
 from ragflow_sdk import RAGFlow
 
@@ -298,9 +254,7 @@ vectors = qdrant.search(collection="financial_reports", vector=query_embedding, 
 
 ### 검색 품질 벤치마크
 
-AI Multiple의 2026년 벤치마크는 GPT-4.1-mini를 생성 모델로 사용하여 100개의 표준화된 쿼리로 RAGFlow를 다른 프레임워크와 비교했습니다:
-
-| 메트릭 | RAGFlow | LlamaIndex | Haystack | LangChain RAG |
+AI Multiple의 2026년 벤치마크는 GPT-4.1-mini를 생성 모델로 사용하여 100개의 표준화된 쿼리로 RAGFlow를 다른 프레임워크와 비교했습니다: | 메트릭 | RAGFlow | LlamaIndex | Haystack | LangChain RAG |
 |--------|---------|------------|----------|---------------|
 | 답변 정확도 | 97% | 94% | 95% | 91% |
 | 평균 검색 지연 시간 | 420ms | 380ms | 450ms | 510ms |
@@ -356,9 +310,7 @@ server {
 
 ### 다중 홉 추론을 위한 GraphRAG 활성화
 
-GraphRAG은 문서에서 지식 그래프를 추출하여 교차 문서 추론을 가능하게 합니다:
-
-```python
+GraphRAG은 문서에서 지식 그래프를 추출하여 교차 문서 추론을 가능하게 합니다: ```python
 # RAGFlow 웹 UI 또는 API를 통해
 POST /api/datasets/{dataset_id}/chunks/graph
 {
@@ -372,50 +324,33 @@ GraphRAG은 특히 법률 문서, 연구 논문, 금융 보고서에서 엔터�
 
 ### 샌드박스 구성 (코드 실행)
 
-RAGFlow의 에이전트는 샌드박스 환경에서 Python 및 JavaScript 코드를 실행할 수 있습니다. 이는 gVisor가 필요합니다:
-
-```bash
+RAGFlow의 에이전트는 샌드박스 환경에서 Python 및 JavaScript 코드를 실행할 수 있습니다. 이는 gVisor가 필요합니다: ```bash
 # gVisor 설치 (샌드박스에 필요)
 sudo apt-get install -y runsc
 
 # docker-compose.yml에서 활성화
-services:
-  ragflow:
-    environment:
-      - ENABLE_SANDBOX=true
-    devices:
-      - /dev/kvm
+services: ragflow: environment: - ENABLE_SANDBOX=true
+    devices: - /dev/kvm
 ```
 
 ### Prometheus로 모니터링
 
 ```yaml
 # docker-compose.yml에 추가
-services:
-  prometheus:
-    image: prom/prometheus:latest
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+services: prometheus: image: prom/prometheus:latest
+    volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus_data:/prometheus
-    ports:
-      - "9090:9090"
+    ports: - "9090:9090"
 
-  grafana:
-    image: grafana/grafana:latest
-    ports:
-      - "3000:3000"
-    volumes:
-      - grafana_data:/var/lib/grafana
+  grafana: image: grafana/grafana:latest
+    ports: - "3000:3000"
+    volumes: - grafana_data:/var/lib/grafana
 ```
 
-모니터링할 핵심 메트릭:
-
-```yaml
+모니터링할 핵심 메트릭: ```yaml
 # prometheus.yml
-scrape_configs:
-  - job_name: ragflow
-    static_configs:
-      - targets: ['ragflow-server:9380']
+scrape_configs: - job_name: ragflow
+    static_configs: - targets: ['ragflow-server:9380']
     metrics_path: /metrics
 ```
 
@@ -545,9 +480,7 @@ RAGFlow는 심층 문서 이해, 프로덕션 준비 웹 UI 및 내장 에이전
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -568,7 +501,6 @@ RAGFlow는 심층 문서 이해, 프로덕션 준비 웹 UI 및 내장 에이전
 - [RAGFlow VPS 프로덕션 배포](https://zhujibaike.com/2497.html)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

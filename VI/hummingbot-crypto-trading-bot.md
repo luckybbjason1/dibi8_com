@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/hummingbot-crypto-trading-bot" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hummingbot-crypto-trading-bot" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hummingbot-crypto-trading-bot" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hummingbot-crypto-trading-bot" />
 title: 'Hummingbot 2026: Bot Giao Dịch Tiền Mã Hóa Mã Nguồn Mở V...
 description: 'Hướng dẫn triển khai thực tế Hummingbot v2, bot giao dịch tiền mã hóa mã nguồn mở với 50+ sàn giao dịch. Bao gồm thiết lập Docker, chiến lược tùy chỉnh, backtest, gateway DEX và củng cố môi trường production.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: []
-aliases:
-- /vi/posts/hummingbot-crypto-trading-bot/
+aliases: - /vi/posts/hummingbot-crypto-trading-bot/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/hummingbot-crypto-trading-bot/ -->
 
 {{</* resource-info */>}}
 
@@ -45,9 +37,7 @@ Giới thiệu **Hummingbot** — framework giao dịch thuật toán được c
 
 ## Hummingbot Là Gì?
 
-Hummingbot là một framework mã nguồn mở để xây dựng và chạy các chiến lược giao dịch tiền mã hóa tự động. Ban đầu được ra mắt năm 2019 bởi CoinAlpha, nó đã phát triển thành một công cụ mạnh mẽ được cộng đồng duy trì, hỗ trợ:
-
-- **Sàn giao dịch tập trung (CEX):** Binance, Coinbase, Kraken, KuCoin, Gate.io, Bybit và 40+ sàn khác
+Hummingbot là một framework mã nguồn mở để xây dựng và chạy các chiến lược giao dịch tiền mã hóa tự động. Ban đầu được ra mắt năm 2019 bởi CoinAlpha, nó đã phát triển thành một công cụ mạnh mẽ được cộng đồng duy trì, hỗ trợ: - **Sàn giao dịch tập trung (CEX):** Binance, Coinbase, Kraken, KuCoin, Gate.io, Bybit và 40+ sàn khác
 - **Sàn giao dịch phi tập trung (DEX):** Uniswap, PancakeSwap, TraderJoe và nhiều sàn khác qua Hummingbot Gateway
 - **Loại chiến lược:** Market making, chênh lệch giá, cross-exchange market making, perpetual futures và script tùy chỉnh
 - **Chế độ triển khai:** Docker containers, cài đặt từ source và cloud VPS
@@ -56,9 +46,7 @@ Phiên bản v2.0 mới nhất (phát hành tháng 3/2026) giới thiệu kiến
 
 ## Hummingbot Hoạt Động Như Thế Nào: Tổng Quan Kiến Trúc
 
-Kiến trúc của Hummingbot tuân theo sự phân tách trách nhiệm rõ ràng:
-
-```
+Kiến trúc của Hummingbot tuân theo sự phân tách trách nhiệm rõ ràng: ```
 ┌─────────────────────────────────────────────────────┐
 │                   Tầng Chiến Lược                    │
 │  (Pure Market Making / Chênh Lệch Giá / Script)    │
@@ -74,8 +62,7 @@ Kiến trúc của Hummingbot tuân theo sự phân tách trách nhiệm rõ rà
 └─────────────────────────────────────────────────────┘
 ```
 
-**Vòng lặp lõi** hoạt động như sau:
-1. **Strategy** định nghĩa tham số lệnh (spread, inventory skew, thờ gian refresh)
+**Vòng lặp lõi** hoạt động như sau: 1. **Strategy** định nghĩa tham số lệnh (spread, inventory skew, thờ gian refresh)
 2. **Connector** chuẩn hóa API của từng sàn thành một giao diện thống nhất
 3. **Engine** quản lý vòng đờ lệnh, theo dõi khớp lệnh và xử lý lỗi
 4. **Database** lưu trữ giao dịch, số dư và trạng thái chiến lược
@@ -109,9 +96,7 @@ docker run -it --name hummingbot \
   hummingbot/hummingbot:latest
 ```
 
-Sau khi container khởi động, bạn sẽ thấy CLI của Hummingbot:
-
-```
+Sau khi container khởi động, bạn sẽ thấy CLI của Hummingbot: ```
     ╔═╗┬ ┬┌┬┐┌┬┐┌┬┐┌─┐┌─┐┌┐┌
     ╠╣ │ │ │  │ │ │ │ │├┤ │││
     ╚  └─┘ ┴  ┴ ┴ ┴ └─┘└─┘┘└┘
@@ -142,8 +127,7 @@ Enter your Binance API secret >>> YOUR_API_SECRET
 ```
 Updating balances, please wait...
 
- binance:
-     asset    amount
+ binance: asset    amount
      USDT     1,234.56
      BTC      0.0234
      ETH      1.5678
@@ -184,12 +168,10 @@ What is the amount of BTC per order? >>> 0.001
 
 ```
 The pure_market_making strategy is starting.
-Markets:
-  Exchange    Market    Best Bid    Best Ask    Mid Price
+Markets: Exchange    Market    Best Bid    Best Ask    Mid Price
   binance     BTC-USDT  67,234.50   67,245.00   67,239.75
 
-Orders:
-  Level  Type   Price       Amount    Spread    Order ID
+Orders: Level  Type   Price       Amount    Spread    Order ID
   1      buy    66,898.30   0.001     0.50%     ...
   1      sell   67,581.20   0.001     0.50%     ...
 ```
@@ -230,9 +212,7 @@ use_futures: false
 
 ### Coinbase Advanced Trade
 
-Coinbase sử dụng phương thức xác thực khác (JWT-based từ 2024). Connector Coinbase của Hummingbot xử lý việc ký JWT bên trong:
-
-```bash
+Coinbase sử dụng phương thức xác thực khác (JWT-based từ 2024). Connector Coinbase của Hummingbot xử lý việc ký JWT bên trong: ```bash
 >>> connect coinbase_advanced_trade
 Enter your Coinbase API key (UUID format) >>> xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 Enter your Coinbase API secret >>> YOUR_PRIVATE_KEY
@@ -240,9 +220,7 @@ Enter your Coinbase API secret >>> YOUR_PRIVATE_KEY
 
 ### Hummingbot Gateway Cho Giao Dịch DEX
 
-Để giao dịch trên Uniswap, PancakeSwap và các DEX khác, bạn cần dịch vụ Gateway:
-
-```bash
+Để giao dịch trên Uniswap, PancakeSwap và các DEX khác, bạn cần dịch vụ Gateway: ```bash
 # Kéo và chạy Gateway
 docker pull hummingbot/gateway:latest
 
@@ -257,17 +235,12 @@ docker run -d --name gateway \
 
 ```yaml
 # Cấu hình Gateway cho Uniswap trên Ethereum
-networks:
-  ethereum:
-    rpc_url: https://mainnet.infura.io/v3/YOUR_INFURA_KEY
+networks: ethereum: rpc_url: https://mainnet.infura.io/v3/YOUR_INFURA_KEY
     chain_id: 1
     token_list_type: FILE
     token_list_source: /home/gateway/conf/lists/ethereum_token_list.json
 
-connectors:
-  uniswap:
-    contract_addresses:
-      v3: 0xE592427A0AEce92De3Edee1F18E0157C05861564
+connectors: uniswap: contract_addresses: v3: 0xE592427A0AEce92De3Edee1F18E0157C05861564
 ```
 
 ### Thông Báo Telegram
@@ -277,17 +250,14 @@ connectors:
 telegram_enabled: true
 telegram_token: "YOUR_BOT_TOKEN"
 telegram_chat_id: "YOUR_CHAT_ID"
-notify_events:
-  - order_filled
+notify_events: - order_filled
   - trade_completed
   - strategy_error
 ```
 
 ### Xuất Dữ Liệu Sang Grafana
 
-Hummingbot ghi tất cả giao dịch vào SQLite. Bạn có thể xuất sang Prometheus/Grafana để trực quan hóa:
-
-```bash
+Hummingbot ghi tất cả giao dịch vào SQLite. Bạn có thể xuất sang Prometheus/Grafana để trực quan hóa: ```bash
 # Ví dụ truy vấn sqlite
 sqlite3 hummingbot_files/hummingbot_data/hummingbot_trades.db \
   "SELECT timestamp, trading_pair, order_type, amount, price FROM trades ORDER BY timestamp DESC LIMIT 10;"
@@ -306,24 +276,20 @@ sqlite3 hummingbot_files/hummingbot_data/hummingbot_trades.db \
 
 ### Case Study: Market Making BTC-USDT Trên Binance
 
-Một thành viên cộng đồng chia sẻ số liệu từ phiên chạy pure market making **30 ngày** trên BTC-USDT với vốn **$5.000**:
-
-```
-Tổng giao dịch đã thực hiện:  8,247
-Phí maker (0.02%):           0.412 BTC
-Spread capture (trung bình):  0.42%
+Một thành viên cộng đồng chia sẻ số liệu từ phiên chạy pure market making **30 ngày** trên BTC-USDT với vốn **$5.000**: ```
+Tổng giao dịch đã thực hiện: 8,247
+Phí maker (0.02%): 0.412 BTC
+Spread capture (trung bình): 0.42%
 Tốc độ luân chuyển inventory: 1.8x/ngày
-PnL (trước phí):              +2.14%/tháng
-PnL (sau phí):                +1.72%/tháng
-Sharpe ratio:                 1.34
-Max drawdown:                 1.2%
+PnL (trước phí): +2.14%/tháng
+PnL (sau phí): +1.72%/tháng
+Sharpe ratio: 1.34
+Max drawdown: 1.2%
 ```
 
 ### Mức Sử Dụng Tài Nguyên
 
-Hummingbot được thiết kế nhẹ:
-
-| Tài Nguyên | Idle | Hoạt Động (1 chiến lược) | Hoạt Động (5 chiến lược) |
+Hummingbot được thiết kế nhẹ: | Tài Nguyên | Idle | Hoạt Động (1 chiến lược) | Hoạt Động (5 chiến lược) |
 |-----------|------|------------------------|------------------------|
 | CPU | <1% | 5-15% | 20-40% |
 | RAM | 80MB | 200-400MB | 800MB-1.5GB |
@@ -336,16 +302,13 @@ Những con số này khiến Hummingbot phù hợp với **VPS $5/tháng** cho 
 
 ### Chiến Lược Tùy Chỉnh Bằng Python
 
-Giao diện script strategy của Hummingbot v2.0 cho phép bạn viết logic bằng Python thuần:
-
-```python
+Giao diện script strategy của Hummingbot v2.0 cho phép bạn viết logic bằng Python thuần: ```python
 # strategies/my_custom_mm.py
 from decimal import Decimal
 from hummingbot.strategy.script_strategy_base import ScriptStrategyBase
 from hummingbot.core.data_type.common import OrderType, TradeType
 
-class CustomMarketMaker(ScriptStrategyBase):
-    """
+class CustomMarketMaker(ScriptStrategyBase): """
     Dynamic spread market maker that adjusts based on volatility.
     """
     spread_base = Decimal("0.005")      # 0.5% spread cơ bản
@@ -354,25 +317,21 @@ class CustomMarketMaker(ScriptStrategyBase):
     order_refresh_time = 30.0           # giây
     volatility_threshold = Decimal("0.02")  # 2% thay đổi giá = biến động
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self): super().__init__()
         self.last_mid_price = None
         self.is_volatile = False
 
-    def on_tick(self):
-        mid_price = self.connectors["binance"].get_mid_price("BTC-USDT")
+    def on_tick(self): mid_price = self.connectors["binance"].get_mid_price("BTC-USDT")
         
         # Phát hiện biến động
-        if self.last_mid_price:
-            change = abs(mid_price - self.last_mid_price) / self.last_mid_price
+        if self.last_mid_price: change = abs(mid_price - self.last_mid_price) / self.last_mid_price
             self.is_volatile = change > self.volatility_threshold
         
         self.last_mid_price = mid_price
         
         # Điều chỉnh spread
         spread = self.spread_base
-        if self.is_volatile:
-            spread *= self.spread_multiplier
+        if self.is_volatile: spread *= self.spread_multiplier
         
         buy_price = mid_price * (Decimal("1") - spread)
         sell_price = mid_price * (Decimal("1") + spread)
@@ -384,17 +343,14 @@ class CustomMarketMaker(ScriptStrategyBase):
         self.buy("binance", "BTC-USDT", self.order_amount, OrderType.LIMIT, buy_price)
         self.sell("binance", "BTC-USDT", self.order_amount, OrderType.LIMIT, sell_price)
 
-    def cancel_all_orders(self):
-        for order in self.get_active_orders("binance"):
-            self.cancel(order)
+    def cancel_all_orders(self): for order in self.get_active_orders("binance"): self.cancel(order)
 ```
 
 ### Quản Lý Inventory Với RSI
 
 ```python
 # Thêm vào chiến lược để điều chỉnh inventory
-    def calculate_inventory_skew(self):
-        """Điều chỉnh kích thước lệnh dựa trên tỷ lệ inventory."""
+    def calculate_inventory_skew(self): """Điều chỉnh kích thước lệnh dựa trên tỷ lệ inventory."""
         base_balance = self.connectors["binance"].get_balance("BTC")
         quote_balance = self.connectors["binance"].get_balance("USDT")
         
@@ -406,12 +362,10 @@ class CustomMarketMaker(ScriptStrategyBase):
         target_ratio = Decimal("0.5")  # Mục tiêu 50/50
         
         # Điều chỉnh lệnh dựa trên inventory
-        if inventory_ratio > target_ratio:
-            # Giữ quá nhiều BTC, giảm kích thước mua
+        if inventory_ratio > target_ratio: # Giữ quá nhiều BTC, giảm kích thước mua
             self.buy_multiplier = Decimal("0.5")
             self.sell_multiplier = Decimal("1.5")
-        else:
-            self.buy_multiplier = Decimal("1.5")
+        else: self.buy_multiplier = Decimal("1.5")
             self.sell_multiplier = Decimal("0.5")
 ```
 
@@ -437,30 +391,26 @@ python scripts/backtest.py \
 ```
 Kết Quả Backtest (2026-01-01 đến 2026-03-31)
 ========================================
-Tổng giao dịch:        12,450
-Tổng lợi nhuận:        +5.23%
-Sharpe ratio:           2.14
-Max drawdown:           -2.1%
-Thờ gian giao dịch TB:  18.4 phút
-Tỷ lệ thắng:           62.3%
-Profit factor:          1.48
+Tổng giao dịch: 12,450
+Tổng lợi nhuận: +5.23%
+Sharpe ratio: 2.14
+Max drawdown: -2.1%
+Thờ gian giao dịch TB: 18.4 phút
+Tỷ lệ thắng: 62.3%
+Profit factor: 1.48
 ```
 
 ### Chế Độ Paper Trading
 
-Luôn kiểm tra bằng paper trading trước khi chạy thực:
-
-```bash
+Luôn kiểm tra bằng paper trading trước khi chạy thực: ```bash
 # Bật paper trading trong cấu hình
 paper_trade_enabled: true
-paper_trade_account_balance:
-  BTC: 1.0
+paper_trade_account_balance: BTC: 1.0
   USDT: 50000.0
 
 # Paper trades hiển thị với prefix [PAPER]
 >>> status
-  Markets:
-    [PAPER] binance  BTC-USDT  67,234.50  67,245.00  67,239.75
+  Markets: [PAPER] binance  BTC-USDT  67,234.50  67,245.00  67,239.75
 ```
 
 ### Docker Compose Cho Production
@@ -469,31 +419,21 @@ paper_trade_account_balance:
 # docker-compose.yml
 version: '3.8'
 
-services:
-  hummingbot:
-    image: hummingbot/hummingbot:2.0.0
+services: hummingbot: image: hummingbot/hummingbot:2.0.0
     container_name: hummingbot_prod
     restart: unless-stopped
-    volumes:
-      - ./conf:/conf
+    volumes: - ./conf:/conf
       - ./logs:/logs
       - ./data:/data
-    environment:
-      - CONFIG_PASSWORD=${HBOT_PASSWORD}
+    environment: - CONFIG_PASSWORD=${HBOT_PASSWORD}
       - STRATEGY=pure_market_making
       - CONFIG_FILE=pmm_btc_usdt.yml
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "50m"
+    logging: driver: "json-file"
+      options: max-size: "50m"
         max-file: "5"
-    deploy:
-      resources:
-        limits:
-          memory: 2G
+    deploy: resources: limits: memory: 2G
           cpus: '1.0'
-    healthcheck:
-      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:15888/')"]
+    healthcheck: test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:15888/')"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -536,9 +476,7 @@ openssl enc -aes-256-cbc -salt -in secrets.yml -out secrets.yml.enc
 
 ## Hạn Chế & Đánh Giá Trung Thực
 
-**Hummingbot không phải là máy in tiền.** Trước khi triển khai vốn, hãy hiểu các ràng buộc sau:
-
-1. **Market making cần inventory.** Bạn cần số dư ở cả base và quote asset. Bắt đầu với ít hơn **$1.000** thường dẫn đến phí giao dịch ăn hết phần lớn lợi nhuận.
+**Hummingbot không phải là máy in tiền.** Trước khi triển khai vốn, hãy hiểu các ràng buộc sau: 1. **Market making cần inventory.** Bạn cần số dư ở cả base và quote asset. Bắt đầu với ít hơn **$1.000** thường dẫn đến phí giao dịch ăn hết phần lớn lợi nhuận.
 
 2. **Độ trễ quan trọng.** Nếu VPS của bạn ở Singapore và matching engine của Binance ở Tokyo, bạn đang ở thế bất lợi so với các market maker colocated. Cân nhắc các tùy chọn VPS độ trễ thấp.
 
@@ -596,8 +534,7 @@ Có. Các connector Binance, Bybit và OKX hỗ trợ perpetual futures. Đặt 
 
 Hummingbot là framework market making mã nguồn mở trưởng thành nhất có sẵn trong năm 2026. Với 50+ connector sàn giao dịch, triển khai Docker trong vòng 5 phút, và khả năng mở rộng Python đầy đủ, nó đạt được sự cân bằng đúng đắn giữa khả năng tiếp cận và sức mạnh.
 
-Các bước tiếp theo của bạn:
-1. **Đăng ký trên [Binance](https://www.bsmkweb.cc/register?ref=DIBI8) hoặc [OKX](https://www.promoohubly.com/join/12190433)** và tạo API key
+Các bước tiếp theo của bạn: 1. **Đăng ký trên [Binance](https://www.bsmkweb.cc/register?ref=DIBI8) hoặc [OKX](https://www.promoohubly.com/join/12190433)** và tạo API key
 2. **Triển khai Hummingbot** với Docker quick-start ở trên
 3. **Paper trade trong 1 tuần** trước khi cam kết vốn thực
 4. **Tham gia cộng đồng** — [Hummingbot Discord](https://discord.gg/hummingbot) có 15.000+ trader hoạt động chia sẻ chiến lược
@@ -619,9 +556,7 @@ Tham gia cộng đồng developer Telegram: [t.me/dibi8developers](https://t.me/
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -631,7 +566,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 Hướng dẫn này chứa liên kết affiliate cho [Binance](https://www.bsmkweb.cc/register?ref=DIBI8), [OKX](https://www.promoohubly.com/join/12190433), và [Minara](https://minara.ai/r/OSXG4X). Nếu bạn đăng ký qua các liên kết này, chúng tôi nhận được hoa hồng mà không phát sinh chi phí thêm cho bạn. Điều này hỗ trợ các nỗ lực tài liệu mã nguồn mở của chúng tôi. Chúng tôi chỉ giới thiệu các công cụ mà chúng tôi tích cực sử dụng và kiểm tra.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

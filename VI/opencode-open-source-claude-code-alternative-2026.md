@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/opencode-open-source-claude-code-alternative-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/opencode-open-source-claude-code-alternative-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/opencode-open-source-claude-code-alternative-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/opencode-open-source-claude-code-alternative-2026" />
 title: 'Hướng Dẫn OpenCode 2026: Công Cụ AI Lập Trình Mã Nguồn M...
 description: 'OpenCode đạt 160K+ stars trên GitHub năm 2026, hỗ trợ 75+ nhà cung cấp LLM, miễn phí 100%. Hướng dẫn này dành cho lập trình viên Việt Nam: cài đặt từ zero, tối ưu chi phí API, chạy model local và tích hợp MCP.'
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [opencode, 'ai-coding-agent', 'claude-code-alternative', 'open-source']
-aliases:
-- /vi/posts/opencode-open-source-claude-code-alternative-2026/
+aliases: - /vi/posts/opencode-open-source-claude-code-alternative-2026/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/opencode-open-source-claude-code-alternative-2026/ -->
 
 {</* resource-info */>}
 
@@ -41,9 +33,7 @@ aliases:
 
 Thị trường công cụ lập trình AI năm 2026 đang chia làm hai phe rõ rệt: **trả phí đóng hộp** và **miễn phí mở**. Claude Code của Anthropic thu phí $20-$200/tháng, Cursor lấy $20/tháng, trong khi **OpenCode** xuất hiện với giá **$0** và giờ đây đã vượt mặt tất cả với **160.000+ sao GitHub**.
 
-Sự bùng nổ này đến từ ba lý do rất thực tế với lập trình viên Việt Nam và khu vực Đông Nam Á:
-
-1. **Không mất tiền thuê bao hàng tháng**: Phần mềm miễn phí 100% (MIT License). Bạn chỉ trả tiền API nếu dùng mô hình cloud—hoặc **không trả đồng nào** nếu chạy model local qua Ollama.
+Sự bùng nổ này đến từ ba lý do rất thực tế với lập trình viên Việt Nam và khu vực Đông Nam Á: 1. **Không mất tiền thuê bao hàng tháng**: Phần mềm miễn phí 100% (MIT License). Bạn chỉ trả tiền API nếu dùng mô hình cloud—hoặc **không trả đồng nào** nếu chạy model local qua Ollama.
 2. **Tự do chọn mô hình**: Claude Code chỉ dùng Anthropic, Copilot chỉ dùng OpenAI. OpenCode hỗ trợ **75+ nhà cung cấp** bao gồm GPT-5.5, Gemini 3.1 Pro, DeepSeek-V4, và cả model miễn phí local.
 3. **Chạy được trên máy cũ**: Không cần MacBook Pro hay GPU RTX 4090. Với Ollama + Gemma 4 9B, bạn có thể chạy OpenCode trên laptop có 16GB RAM—phù hợp điều kiện phổ biến tại Việt Nam.
 
@@ -98,8 +88,7 @@ Chạy `opencode` để vào giao diện TUI, sau đó gõ `/connect`.
 
 ### Lựa Chọn 1: API Key Riêng (BYOK) — Linh Hoạt
 
-Nếu bạn đã có tài khoản OpenAI, Anthropic, hoặc Google:
-- Nhập API key trực tiếp
+Nếu bạn đã có tài khoản OpenAI, Anthropic, hoặc Google: - Nhập API key trực tiếp
 - **Mẹo tiết kiệm**: Dùng DeepSeek-V4 hoặc Gemini 2.0 Flash cho tác vụ thường ngày—giá rẻ hơn Claude 5-10 lần, chất lượng tương đương 90%.
 
 ### Lựa Chọn 2: OpenCode Zen — Đơn Giản, Không Cần Quản Lý Nhiều API
@@ -125,16 +114,13 @@ ollama pull qwen3:14b
 
 ## Khởi Tạo Dự Án: File AGENTS.md Quan Trọng Như Thế Nào?
 
-Sau khi cài đặt, di chuyển vào thư mục dự án và chạy:
-
-```bash
+Sau khi cài đặt, di chuyển vào thư mục dự án và chạy: ```bash
 cd du-an-cua-ban
 opencode
 /init
 ```
 
-Lệnh `/init` sẽ quét code của bạn và tạo file `AGENTS.md`. File này là **"bản hướng dẫn nội bộ"** giúp OpenCode hiểu dự án:
-- Dùng framework gì (React, Laravel, Django...)
+Lệnh `/init` sẽ quét code của bạn và tạo file `AGENTS.md`. File này là **"bản hướng dẫn nội bộ"** giúp OpenCode hiểu dự án: - Dùng framework gì (React, Laravel, Django...)
 - Cấu trúc thư mục thế nào
 - Quy ước đặt tên, coding style
 - File quan trọng không được động vào
@@ -169,11 +155,9 @@ OpenCode có thiết kế rất thông minh: **hai chế độ** chuyển đổi
 
 Bạn mô tả yêu cầu. OpenCode phân tích code, đưa ra kế hoạch chi tiết—sửa file nào, tại sao sửa, rủi ro gì—**nhưng chưa động vào file nào cả**. Bạn xem xét, yêu cầu điều chỉnh, rồi mới chuyển sang Build mode.
 
-**Ví dụ thực tế**:
-> "Thêm tính năng đăng nhập bằng Google OAuth2 vào hệ thống hiện tại. Dùng Passport.js, JWT làm session. Cập nhật Prisma schema thêm bảng User và Account."
+**Ví dụ thực tế**: > "Thêm tính năng đăng nhập bằng Google OAuth2 vào hệ thống hiện tại. Dùng Passport.js, JWT làm session. Cập nhật Prisma schema thêm bảng User và Account."
 
-Plan mode sẽ liệt kê:
-1. Tạo `src/auth/google.ts` — xử lý OAuth callback
+Plan mode sẽ liệt kê: 1. Tạo `src/auth/google.ts` — xử lý OAuth callback
 2. Sửa `prisma/schema.prisma` — thêm model User, Account, Session
 3. Thêm `src/middleware/requireAuth.ts` — bảo vệ route
 4. Cập nhật `.env.example` — thêm GOOGLE_CLIENT_ID
@@ -205,8 +189,7 @@ opencode
 > tìm kiếm theo tên và category. Viết unit test cho tất cả endpoint.
 ```
 
-OpenCode phân tích xong liệt kê:
-- `prisma/schema.prisma`: model Product
+OpenCode phân tích xong liệt kê: - `prisma/schema.prisma`: model Product
 - `src/routes/products.ts`: 5 endpoint (GET list, GET detail, POST, PUT, DELETE)
 - `src/services/productService.ts`: business logic + validation
 - `src/tests/products.test.ts`: test với supertest + jest
@@ -251,8 +234,7 @@ MCP (Model Context Protocol) cho phép OpenCode nói chuyện với thế giới
 
 ### Ví dụ: Kết Nối PostgreSQL
 
-Thêm vào file `~/.config/opencode/opencode.json`:
-```json
+Thêm vào file `~/.config/opencode/opencode.json`: ```json
 {
   "mcpServers": {
     "database": {
@@ -263,8 +245,7 @@ Thêm vào file `~/.config/opencode/opencode.json`:
 }
 ```
 
-Giờ bạn có thể hỏi:
-> "Cho tôi xem schema bảng orders. Query nào trong `src/reports/quarterly.ts` chậm? Gợi ý index tối ưu."
+Giờ bạn có thể hỏi: > "Cho tôi xem schema bảng orders. Query nào trong `src/reports/quarterly.ts` chậm? Gợi ý index tối ưu."
 
 OpenCode sẽ query trực tiếp database, đọc file code, và đề xuất `CREATE INDEX` kèm lệnh `EXPLAIN ANALYZE` kiểm chứng.
 
@@ -302,22 +283,19 @@ OpenCode sẽ query trực tiếp database, đọc file code, và đề xuất `
 
 ### 1. Dùng OpenCode Học Lập Trình
 
-Sinh viên có thể dùng OpenCode để:
-- Giải thích đoạn code khó hiểu: "`@src/algorithms/dijkstra.ts` giải thích thuật toán này bằng tiếng Việt"
+Sinh viên có thể dùng OpenCode để: - Giải thích đoạn code khó hiểu: "`@src/algorithms/dijkstra.ts` giải thích thuật toán này bằng tiếng Việt"
 - Tạo bài tập luyện tập: "Tạo 5 bài test về async/await, có đáp án chi tiết"
 - Review code bài tập: "Review đoạn code này, chỉ lỗi logic và cách sửa"
 
 ### 2. Tích Hợp Model Giá Rẻ Châu Á
 
-Qua OpenRouter, OpenCode có thể kết nối:
-- **DeepSeek-V4**: Giá rẻ, chất lượng cao cho coding
+Qua OpenRouter, OpenCode có thể kết nối: - **DeepSeek-V4**: Giá rẻ, chất lượng cao cho coding
 - **Qwen3 14B/32B** (Alibaba): Rất tốt cho tiếng Trung và tiếng Việt
 - **GLM-4.7** (Zhipu AI): Phù hợp dự án có tài liệu tiếng Trung
 
 ### 3. Lập Trình Game/App Mobile Bằng OpenCode + Local Model
 
-Với laptop có GPU tầm trung (GTX 1660 trở lên):
-```bash
+Với laptop có GPU tầm trung (GTX 1660 trở lên): ```bash
 ollama pull codellama:13b
 # Trong OpenCode chọn ollama://codellama:13b
 ```
@@ -349,9 +327,7 @@ Viết code Unity (C#), React Native, hoặc Flutter hoàn toàn miễn phí.
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -381,7 +357,6 @@ curl -fsSL https://opencode.ai/install | bash
 *Bài viết cập nhật lần cuối: 2026-05-19. Công cụ AI thay đổi nhanh—luôn kiểm tra tài liệu chính thức để có thông tin mới nhất.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

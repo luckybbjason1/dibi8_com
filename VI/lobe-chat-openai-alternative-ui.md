@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/lobe-chat-openai-alternative-ui" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/lobe-chat-openai-alternative-ui" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/lobe-chat-openai-alternative-ui" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/lobe-chat-openai-alternative-ui" />
 title: 'Lobe Chat: Giao Diện ChatGPT Mã Nguồn Mở với 20+ Nhà Cun...
 description: 'Triển khai Lobe Chat như một giải pháp thay thế ChatGPT tự host. Hỗ trợ 20+ nhà cung cấp LLM, hệ thống plugin, PWA, giao diện đa ngôn ngữ. Hướng dẫn Docker đầy đủ với benchmark và so sánh.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: ['lobe chat', chatgpt, 'thay thế openai', llm, 'tự host', docker, pwa, 'hệ thống plugin', ai, 'ui chat']
-aliases:
-- /vi/posts/lobe-chat-openai-alternative-ui/
+aliases: - /vi/posts/lobe-chat-openai-alternative-ui/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/lobe-chat-openai-alternative-ui/ -->
 
 {{</* resource-info */>}}
 
@@ -49,9 +41,7 @@ Hướng dẫn này đi qua cài đặt, cấu hình nhà cung cấp, phát tri�
 
 ## Lobe Chat hoạt động như thế nào?
 
-Kiến trúc của Lobe Chat tách lớp presentation khỏi model inference. Frontend Next.js xử lý việc render UI, trạng thái cuộc trò chuyện, và orchestration plugin, trong khi các lệnh gọi LLM được proxy qua các endpoint API có thể cấu hình:
-
-```
+Kiến trúc của Lobe Chat tách lớp presentation khỏi model inference. Frontend Next.js xử lý việc render UI, trạng thái cuộc trò chuyện, và orchestration plugin, trong khi các lệnh gọi LLM được proxy qua các endpoint API có thể cấu hình: ```
 ┌─────────────────────────────────────────────┐
 │           Trình duyệt ngườ dùng / PWA      │
 │  ┌─────────┐  ┌─────────┐  ┌────────────┐  │
@@ -122,35 +112,23 @@ docker run -d -p 3210:3210 \
 
 ```yaml
 # docker-compose.yml
-services:
-  lobe-chat:
-    image: lobehub/lobe-chat:latest
-    ports:
-      - "3210:3210"
-    environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
+services: lobe-chat: image: lobehub/lobe-chat:latest
+    ports: - "3210:3210"
+    environment: - OPENAI_API_KEY=${OPENAI_API_KEY}
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
       - ACCESS_CODE=${ACCESS_CODE}
       - DATABASE_URL=postgresql://postgres:password@db:5432/lobe
-    volumes:
-      - lobe-data:/app/.config/lobe-chat
-    depends_on:
-      - db
+    volumes: - lobe-data:/app/.config/lobe-chat
+    depends_on: - db
     restart: unless-stopped
 
-  db:
-    image: postgres:16-alpine
-    environment:
-      - POSTGRES_PASSWORD=password
+  db: image: postgres:16-alpine
+    environment: - POSTGRES_PASSWORD=password
       - POSTGRES_DB=lobe
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+    volumes: - pgdata:/var/lib/postgresql/data
     restart: unless-stopped
 
-volumes:
-  lobe-data:
-  pgdata:
-```
+volumes: lobe-data: pgdata: ```
 
 ```bash
 # Khởi động với persistence
@@ -184,9 +162,7 @@ Thêm bản ghi DNS A trỏ đến IP Droplet của bạn và bạn sẽ online 
 
 ## Tích hợp với 20+ Nhà Cung Cấp LLM
 
-Lobe Chat chuẩn hóa các lệnh gọi API xuyên suốt các nhà cung cấp thông qua một adapter thống nhất. Sau đây là cách cấu hình các nhà cung cấp phổ biến nhất:
-
-### OpenAI (GPT-4, GPT-4o)
+Lobe Chat chuẩn hóa các lệnh gọi API xuyên suốt các nhà cung cấp thông qua một adapter thống nhất. Sau đây là cách cấu hình các nhà cung cấp phổ biến nhất: ### OpenAI (GPT-4, GPT-4o)
 
 ```bash
 # Qua biến môi trường
@@ -246,9 +222,7 @@ echo "AWS_REGION=us-east-1" >> .env
 
 ### Chuyển Đổi Nhà Cung Cấp tại Runtime
 
-Ngườ dùng có thể chuyển đổi nhà cung cấp theo từng cuộc trò chuyện trong UI. Điều này cho phép bạn so sánh GPT-4 và Claude cạnh nhau:
-
-```
+Ngườ dùng có thể chuyển đổi nhà cung cấp theo từng cuộc trò chuyện trong UI. Điều này cho phép bạn so sánh GPT-4 và Claude cạnh nhau: ```
 # Không cần restart —— chuyển nhà cung cấp là client-side
 # Click icon nhà cung cấp ở header chat → Chọn model khác
 # Mỗi cuộc trò chuyện nhớ lựa chọn nhà cung cấp của nó
@@ -267,9 +241,7 @@ Kiến trúc plugin của Lobe Chat sử dụng hệ thống dựa trên manifes
 
 ### Xây dựng Plugin Tùy Chỉnh
 
-Tạo một plugin đơn giản query API nội bộ của bạn:
-
-```json
+Tạo một plugin đơn giản query API nội bộ của bạn: ```json
 {
   "api": [
     {
@@ -302,9 +274,7 @@ Host điều này tại một URL công khai, sau đó thêm qua **Plugin Store 
 
 ### Bảo Mật Runtime Plugin
 
-Các plugin thực thi trong iframe sandboxed với quyền hạn bị hạn chế:
-
-```
+Các plugin thực thi trong iframe sandboxed với quyền hạn bị hạn chế: ```
 ┌─────────────────────────────┐
 │  Lobe Chat Main Window      │
 │  ┌───────────────────────┐  │
@@ -340,9 +310,7 @@ Lobe Chat hoạt động như một Progressive Web App, tạo cảm giác như 
 
 ### Hỗ Trợ Offline
 
-Service worker cache app shell và các cuộc trò chuyện gần đây. Không có internet:
-
-```
+Service worker cache app shell và các cuộc trò chuyện gần đây. Không có internet: ```
 ✅ Duyệt lịch sử cuộc trò chuyện
 ✅ Xem phản hồi trước đó
 ✅ Soạn tin nhắn (xếp hàng để gửi)
@@ -395,18 +363,14 @@ Service worker cache app shell và các cuộc trò chuyện gần đây. Không
 
 ### Bật Xác thực
 
-Cho triển khai team, đặt mã truy cập:
-
-```bash
+Cho triển khai team, đặt mã truy cập: ```bash
 docker run -d -p 3210:3210 \
   -e ACCESS_CODE=your-secure-password-2026 \
   -e OPENAI_API_KEY=sk-xxx \
   lobehub/lobe-chat:latest
 ```
 
-Cho tích hợp SSO, cấu hình OAuth:
-
-```bash
+Cho tích hợp SSO, cấu hình OAuth: ```bash
   -e AUTH_PROVIDER=auth0 \
   -e AUTH_AUTH0_ID=your-client-id \
   -e AUTH_AUTH0_SECRET=your-secret \
@@ -415,9 +379,7 @@ Cho tích hợp SSO, cấu hình OAuth:
 
 ### Theme Tùy Chỉnh
 
-Tạo file theme JSON:
-
-```json
+Tạo file theme JSON: ```json
 {
   "primaryColor": "#1890ff",
   "neutralColor": "#8c8c8c",
@@ -430,31 +392,20 @@ Tải lên qua **Cài đặt → Theme → Theme Tùy chỉnh**.
 
 ### Conversations Hỗ trợ Database
 
-Cho persistence đa ngườ dùng, cấu hình PostgreSQL:
-
-```yaml
+Cho persistence đa ngườ dùng, cấu hình PostgreSQL: ```yaml
 # docker-compose.prod.yml
-services:
-  lobe-chat:
-    image: lobehub/lobe-chat:latest
-    environment:
-      - DATABASE_URL=postgresql://user:pass@db:5432/lobechat
+services: lobe-chat: image: lobehub/lobe-chat:latest
+    environment: - DATABASE_URL=postgresql://user:pass@db:5432/lobechat
       - APP_URL=https://chat.yourdomain.com
-    ports:
-      - "3210:3210"
+    ports: - "3210:3210"
 
-  db:
-    image: postgres:16-alpine
-    environment:
-      POSTGRES_USER: user
+  db: image: postgres:16-alpine
+    environment: POSTGRES_USER: user
       POSTGRES_PASSWORD: pass
       POSTGRES_DB: lobechat
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+    volumes: - pgdata:/var/lib/postgresql/data
 
-volumes:
-  pgdata:
-```
+volumes: pgdata: ```
 
 ### Reverse Proxy với Caddy
 
@@ -476,22 +427,14 @@ caddy run --config Caddyfile
 
 ### Giám sát với Prometheus
 
-Lobe Chat expose metrics tại `/api/metrics`:
-
-```yaml
+Lobe Chat expose metrics tại `/api/metrics`: ```yaml
 # docker-compose.monitoring.yml
-services:
-  prometheus:
-    image: prom/prometheus
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
-    ports:
-      - "9090:9090"
+services: prometheus: image: prom/prometheus
+    volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports: - "9090:9090"
 
-  grafana:
-    image: grafana/grafana
-    ports:
-      - "3000:3000"
+  grafana: image: grafana/grafana
+    ports: - "3000:3000"
 ```
 
 ## So sánh với các Giải pháp Thay thế
@@ -604,9 +547,7 @@ Tham gia cộng đồng Telegram cho AI developers: **@dibi8dev** —— chia s�
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -616,7 +557,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 Bài viết này chứa liên kết affiliate. Nếu bạn đăng ký DigitalOcean qua liên kết giới thiệu của chúng tôi, chúng tôi nhận được hoa hồng mà không phát sinh chi phí cho bạn. Chúng tôi chỉ giới thiệu các dịch vụ mà chính chúng tôi sử dụng cho hạ tầng. Lobe Chat là mã nguồn mở (giấy phép MIT) và miễn phí sử dụng —— không cần mua hàng.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

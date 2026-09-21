@@ -1,20 +1,13 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/timesfm-google-time-series-foundation-model" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/timesfm-google-time-series-foundation-model" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/timesfm-google-time-series-foundation-model" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/timesfm-google-time-series-foundation-model" />
 title: 'TimesFM 2.5: 예측을 위한 구글 혁신적 시계열 기초 모델'
 description: 'TimesFM 2.5 완전 가이드 - 시계열 예측을 위한 구글 리서치 디코더 전용 기초 모델. 설치, 미세 조정, 벤치마크, 실제 응용 사례를 다룹니다.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-19
-lastmod:  2026-06-19tags: []
+lastmod: 2026-06-19tags: []
 category: "data-science"
 lang: kr
 slug: timesfm-google-time-series-foundation-model
 featureImage: /images/articles/timesfm-google-time-series-foundation-model-4cb99070.png
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/timesfm-google-time-series-foundation-model/ -->
 
 # TimesFM 2.5: 예측을 위한 Google의 혁신적인 시계열 기반 모델 
 
@@ -89,9 +82,7 @@ pip 설치 시간fm[xreg]
 
 ### 옵션 2: 개발 설치 
 
-최신 기능에 참여하거나 액세스하려는 사람들을 위해: 
-
-``배쉬 
+최신 기능에 참여하거나 액세스하려는 사람들을 위해: ``배쉬 
 # 저장소를 복제합니다 
 자식 클론 https://github.com/google-research/timesfm.git 
 CD타임스FM 
@@ -258,9 +249,7 @@ X_future=np.random.randn(12, 5)
 
 ### 일괄 예측 
 
-동시에 여러 시계열의 경우: 
-
-``파이썬 
+동시에 여러 시계열의 경우: ``파이썬 
 # 시계열 배치 준비 
 배치_데이터 = np.random.randn(10, 1024) # 10개 계열, 각각 1024개의 시간 단계 
 
@@ -273,9 +262,7 @@ print(f"일괄 예측 형태: {forecasts.shape}")
 
 ### 일괄 예측 
 
-동시에 여러 시계열의 경우: 
-
-``파이썬 
+동시에 여러 시계열의 경우: ``파이썬 
 # 시계열 배치 준비 
 배치_데이터 = np.random.randn(10, 1024) # 10개 계열, 각각 1024개의 시간 단계 
 
@@ -288,9 +275,7 @@ print(f"일괄 예측 형태: {forecasts.shape}")
 
 ### 일괄 예측 
 
-동시에 여러 시계열의 경우: 
-
-``파이썬 
+동시에 여러 시계열의 경우: ``파이썬 
 # 시계열 배치 준비 
 배치_데이터 = np.random.randn(10, 1024) # 10개 계열, 각각 1024개의 시간 단계 
 
@@ -303,17 +288,14 @@ print(f"일괄 예측 형태: {forecasts.shape}")
 
 ### 스트리밍 추론 
 
-실시간 예측 애플리케이션의 경우:
-
-``파이썬 
+실시간 예측 애플리케이션의 경우: ``파이썬 
 # 스트리밍 클라이언트 초기화 
 Streaming_model = timesfm.StreamingTimesFM( 
 model_path="google/timesfm-2.5-200m-flax" 
 ) 
 
 # 들어오는 데이터 스트림을 처리합니다. 
-True인 동안: 
-new_data = get_next_time_step() 
+True인 동안: new_data = get_next_time_step() 
 예측 = Streaming_model.update_and_predict(new_data, horizon=12) 
 display_forecast(예측) 
 ```` 
@@ -349,9 +331,7 @@ TimesFM의 독특한 장점 중 하나는 Google 생태계와의 통합입니다
 
 ### BigQuery ML 
 
-엔터프라이즈 규모 예측의 경우: 
-
-``sql 
+엔터프라이즈 규모 예측의 경우: ``sql 
 -- BigQuery ML에서 TimesFM 모델 사용 
 모델 생성 my_project.my_timesfm_model 
 OPTIONS(model_type='TIMESFM') AS 
@@ -364,18 +344,14 @@ value_col,
 
 ### Google 스프레드시트 통합 
 
-기술적인 지식이 없는 사용자의 경우: 
-
-1. [TimesFM 부가기능](https://workspaceupdates.googleblog.com/2026/02/forecast-data-in-connected-sheets-BigQueryML-TimesFM.html)을 설치합니다. 
+기술적인 지식이 없는 사용자의 경우: 1. [TimesFM 부가기능](https://workspaceupdates.googleblog.com/2026/02/forecast-data-in-connected-sheets-BigQueryML-TimesFM.html)을 설치합니다. 
 2. 데이터 범위를 선택하세요 
 3. 예측 범위 선택 
 4. 스프레드시트에서 직접 예측 가져오기 
 
 ### Vertex AI 모델 가든 
 
-클라우드 배포의 경우:
-
-``파이썬 
+클라우드 배포의 경우: ``파이썬 
 google.cloud에서 aiplatform 가져오기 
 
 # TimesFM 모델을 Vertex AI에 배포 
@@ -622,7 +598,6 @@ Google 생태계와의 통합, 활발한 개발 커뮤니티, 지속적인 개�
 - [虎网云](https://www.huwangyun.cn/gpu-server/?aff_id=f872dfc7e2864e62822c83c023354367) - 훈련용 GPU 서버(중국어)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

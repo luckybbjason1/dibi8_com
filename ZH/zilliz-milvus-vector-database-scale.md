@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/zilliz-milvus-vector-database-scale" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/zilliz-milvus-vector-database-scale" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/zilliz-milvus-vector-database-scale" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/zilliz-milvus-vector-database-scale" />
 title: 'Milvus/Zilliz 2026：毫秒级延迟处理百亿向量的向量数据库——部署指南'
 description: 'Milvus 2.5 生产指南：十亿级向量检索、GPU 加速索引构建、Kubernetes 部署、混合搜索与 Zilliz Cloud 配置。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: [milvus, zilliz, 向量数据库, ann, 相似性搜索, kubernetes, gpu索引, ai基础设施]
-aliases:
-- /zh/posts/zilliz-milvus-vector-database-scale/
+aliases: - /zh/posts/zilliz-milvus-vector-database-scale/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/zilliz-milvus-vector-database-scale/ -->
 
 {{</* resource-info */>}}
 
@@ -50,7 +42,11 @@ aliases:
 **核心数据（2026年5月）：**
 
 | 指标 | 数值 |
-|--------|-------|
+|
+---
+|
+---
+|
 | 当前版本 | **2.5.10** |
 | GitHub Stars | **32,000+** |
 | 最大测试规模 | **100 亿向量** |
@@ -81,12 +77,8 @@ Milvus 2.5 采用 **云原生微服务架构**，包含五个核心组件：
 
 ```yaml
 # Milvus index node 的 GPU 资源分配（Helm values）
-indexNode:
-  resources:
-    limits:
-      nvidia.com/gpu: 1  # 为索引构建请求 1 块 GPU
-    requests:
-      memory: "16Gi"
+indexNode: resources: limits: nvidia.com/gpu: 1  # 为索引构建请求 1 块 GPU
+    requests: memory: "16Gi"
       cpu: "8"
 ```
 
@@ -206,8 +198,7 @@ import numpy as np
 batch_size = 10000
 total_vectors = 100000
 
-for i in range(0, total_vectors, batch_size):
-    embeddings = np.random.randn(batch_size, 1536).tolist()
+for i in range(0, total_vectors, batch_size): embeddings = np.random.randn(batch_size, 1536).tolist()
     texts = [f"document_{i+j}" for j in range(batch_size)]
     categories = ["tech" if j % 2 == 0 else "finance" for j in range(batch_size)]
     
@@ -231,8 +222,7 @@ results = collection.search(
     output_fields=["text", "category"]
 )
 
-for hit in results[0]:
-    print(f"ID: {hit.id}, 距离: {hit.distance:.4f}, 文本: {hit.entity.text}")
+for hit in results[0]: print(f"ID: {hit.id}, 距离: {hit.distance:.4f}, 文本: {hit.entity.text}")
 ```
 
 ```python
@@ -258,7 +248,19 @@ print(f"找到 {len(results[0])} 条过滤结果")
 2026 年 4 月独立基准测试，使用 `dbpedia-openai-1M` 数据集（100 万向量，1536 维，AWS c6i.8xlarge 除非特别注明）：
 
 | 指标 | Milvus (CPU) | Milvus (GPU T4) | Pinecone | Weaviate | Qdrant |
-|--------|-------------|-----------------|----------|----------|--------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **p99 查询延迟** | 18 ms | **8 ms** | 28 ms | 19 ms | 12 ms |
 | **Recall@10** | **0.99** | **0.99** | 0.94 | 0.97 | 0.99 |
 | **吞吐 (QPS)** | 3,900 | **8,200** | 1,200 | 2,800 | 4,100 |
@@ -323,8 +325,7 @@ vector_store.add_documents(docs)
 
 # 相似度搜索
 results = vector_store.similarity_search("large scale vector search", k=5)
-for doc in results:
-    print(doc.page_content)
+for doc in results: print(doc.page_content)
 ```
 
 ### LlamaIndex 集成
@@ -362,8 +363,7 @@ import numpy as np
 
 client = OpenAI()
 
-def get_embedding(text: str) -> list[float]:
-    resp = client.embeddings.create(
+def get_embedding(text: str) -> list[float]: resp = client.embeddings.create(
         model="text-embedding-3-large",
         input=text,
         dimensions=1536
@@ -383,21 +383,15 @@ Milvus 2.5 支持分层存储以降低大规模数据集成本：
 
 ```yaml
 # 分层存储的 Helm values
-extraConfigFiles:
-  user.yaml: |+
-    common:
-      storageType: remote
-    minio:
-      address: minio.milvus.svc:9000
+extraConfigFiles: user.yaml: |+
+    common: storageType: remote
+    minio: address: minio.milvus.svc:9000
       bucketName: milvus-bucket
       rootPath: files
     # 启用分层存储
-    queryNode:
-      cache:
-        warmUp: async
+    queryNode: cache: warmUp: async
         memoryLimit: 8GB  # 热数据保存在内存中
-      disk:
-        enabled: true     # 温数据保存在本地磁盘
+      disk: enabled: true     # 温数据保存在本地磁盘
         capacity: 100GB
 ```
 
@@ -420,10 +414,8 @@ make
 
 ```yaml
 # Helm values 中的 Milvus 监控配置
-metrics:
-  enabled: true
-  serviceMonitor:
-    enabled: true
+metrics: enabled: true
+  serviceMonitor: enabled: true
     interval: 30s
 
 # Grafana 仪表板: https://github.com/zilliztech/milvus-insight
@@ -463,7 +455,19 @@ results = collection.search(
 ## 与竞品对比
 
 | 特性 | Milvus 2.5 | Pinecone | Weaviate 1.25 | Qdrant 1.11 | pgvector 0.8 |
-|---------|-----------|----------|---------------|-------------|--------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **开源协议** | Apache-2.0 | No | BSD-3 | Apache-2.0 | PostgreSQL |
 | **最大规模** | **10B+ 向量** | 无限 | 200M/节点 | 500M/节点 | ~50M |
 | **p99 延迟** | 8ms (GPU) | 28ms | 19ms | 12ms | 25-40ms |
@@ -571,7 +575,6 @@ Milvus 2.5 是十亿级工作负载中最强大的开源向量数据库。如果
 本文包含 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 云托管服务的附属链接。如果你通过我们的链接注册，我们会获得佣金，不会增加你的额外成本。我们只推荐在自己的生产环境中使用过的服务。附属链接支持 dibi8.com 开源内容的持续开发。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -597,13 +600,13 @@ Milvus 2.5 是十亿级工作负载中最强大的开源向量数据库。如果
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [trivy-production-security-scanner-2026](zilliz-milvus-vector-database-scale)
 - [trivy-production-security-scanner-2026](zilliz-milvus-vector-database-scale)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -1,21 +1,14 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/llamafile-portable-local-llm" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/llamafile-portable-local-llm" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/llamafile-portable-local-llm" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llamafile-portable-local-llm" />
 title: LlamaFile — Chạy Local LLMs với một Portable Binary duy nhất
 description: Hướng dẫn toàn diện về LlamaFile của Meta/MLC AI. Chạy 100+ open-source LLMs local mà không cần cài đặt, yêu cầu GPU hay setup phức tạp. Một binary, mọi nền tảng.
 tags: [llamafile, 'local-llm', 'portable-binary', 'meta-ai', 'mlc-llm', privacy]
 category: dev-utils
 featureImage: /images/articles/llamafile-local-llm.jpg
 date: 2026-07-16T00:00:00+00:00
-lastmod:  2026-07-16T00:00:00+00:00draft: false
+lastmod: 2026-07-16T00:00:00+00:00draft: false
 slug: llamafile-portable-local-llm
 lang: vi
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/llamafile-portable-local-llm/ -->
 
 ## TL;DR
 
@@ -45,8 +38,7 @@ chmod +x llama-3.2-8b-instruct.Q4_K_M.llamafile
 # Done. Hoạt động trên CPU, macOS, Linux, Windows.
 ```
 
-The magic kết hợp nhiều technologies:
-1. **GGUF quantization** — Compress models để fit trong consumer hardware
+The magic kết hợp nhiều technologies: 1. **GGUF quantization** — Compress models để fit trong consumer hardware
 2. **llama.cpp runtime** — Optimized C++ inference engine
 3. **Self-extracting archive** — Bundle model + engine trong một file
 4. **OpenAI-compatible API** — Works với existing tools và frameworks
@@ -55,9 +47,7 @@ The magic kết hợp nhiều technologies:
 
 ## Tại sao Local LLMs quan trọng vào năm 2026
 
-Chạy AI local mang lại ba lợi ích critical:
-
-1. **Privacy** — Data của bạn không bao giờ rời khỏi machine. Không API calls, không logging, không third-party access.
+Chạy AI local mang lại ba lợi ích critical: 1. **Privacy** — Data của bạn không bao giờ rời khỏi machine. Không API calls, không logging, không third-party access.
 2. **Cost** — Sau khi download, inference miễn phí. Không per-token billing, không subscription fees.
 3. **Reliability** — Hoạt động offline. Không API rate limits, không service outages, không network dependency.
 
@@ -110,9 +100,7 @@ nohup ./llama-3.2-8b-instruct.Q4_K_M.llamafile --server > llama.log 2>&1 &
 
 ### API Compatibility
 
-LlamaFile expose một OpenAI-compatible API endpoint:
-
-```bash
+LlamaFile expose một OpenAI-compatible API endpoint: ```bash
 # Test API
 curl http://localhost:8080/v1/models
 
@@ -134,9 +122,7 @@ curl http://localhost:8080/v1/chat/completions \
 
 ### Các Model Available
 
-LlamaFile hỗ trợ hàng trăm models across categories:
-
-| Category | Ví dụ Models | Size | Tốt nhất cho |
+LlamaFile hỗ trợ hàng trăm models across categories: | Category | Ví dụ Models | Size | Tốt nhất cho |
 |---------|-------------|------|-------------|
 | General Chat | Llama 3.2 8B/70B | 5-40 GB | Conversations, Q&A |
 | Coding | Codestral, DeepSeek Coder | 7-30 GB | Code generation, review |
@@ -159,17 +145,11 @@ LlamaFile hỗ trợ hàng trăm models across categories:
 
 ```python
 # Decision matrix cho model selection
-def choose_model(ram_gb, gpu_available, use_case):
-    if ram_gb >= 64:
-        return "llama-3.2-70b-Q4_K_M"  # Full 70B model
-    elif ram_gb >= 32:
-        return "llama-3.2-8b-Q8_0"      # High-quality 8B
-    elif ram_gb >= 16:
-        return "llama-3.2-8b-Q4_K_M"    # Balanced choice
-    elif ram_gb >= 8:
-        return "phi-3-mini-Q4_K_M"      # Lightweight option
-    else:
-        return "gemma-2b-Q4_K_M"        # Minimum viable
+def choose_model(ram_gb, gpu_available, use_case): if ram_gb >= 64: return "llama-3.2-70b-Q4_K_M"  # Full 70B model
+    elif ram_gb >= 32: return "llama-3.2-8b-Q8_0"      # High-quality 8B
+    elif ram_gb >= 16: return "llama-3.2-8b-Q4_K_M"    # Balanced choice
+    elif ram_gb >= 8: return "phi-3-mini-Q4_K_M"      # Lightweight option
+    else: return "gemma-2b-Q4_K_M"        # Minimum viable
 ```
 
 ---
@@ -212,9 +192,7 @@ Quantization có minimal impact on quality — Q4 retains ~97% of full precision
 
 ### Pattern 1: Embedding Server
 
-Use LlamaFile as a local embedding service:
-
-```bash
+Use LlamaFile as a local embedding service: ```bash
 ./all-MiniLM-L6-v2.Q4_K_M.llamafile --embedding --server -c 2048
 
 # Generate embeddings
@@ -225,24 +203,20 @@ curl http://localhost:8080/v1/embeddings \
 
 ### Pattern 2: RAG Pipeline
 
-Combine với vector database cho retrieval-augmented generation:
-
-```python
+Combine với vector database cho retrieval-augmented generation: ```python
 # Simple RAG workflow
 import subprocess
 import requests
 
 # Step 1: Embed documents
-def embed(text):
-    resp = requests.post("http://localhost:8080/v1/embeddings", json={
+def embed(text): resp = requests.post("http://localhost:8080/v1/embeddings", json={
         "input": text,
         "model": "all-MiniLM-L6-v2"
     })
     return resp.json()["data"][0]["embedding"]
 
 # Step 2: Query với context
-def rag_query(query, retrieved_docs):
-    context = "\n".join(retrieved_docs)
+def rag_query(query, retrieved_docs): context = "\n".join(retrieved_docs)
     prompt = f"Trả lời dựa trên:\n{context}\n\nCâu hỏi: {query}"
     
     resp = requests.post("http://localhost:8080/v1/chat/completions", json={
@@ -255,9 +229,7 @@ def rag_query(query, retrieved_docs):
 
 ### Pattern 3: Multi-Model Ensemble
 
-Run multiple models simultaneously cho different tasks:
-
-```bash
+Run multiple models simultaneously cho different tasks: ```bash
 # Terminal 1: Chat model
 ./llama-3.2-8b-instruct.Q4_K_M.llamafile --server -p 8080
 
@@ -270,9 +242,7 @@ Run multiple models simultaneously cho different tasks:
 
 ### Pattern 4: Docker Deployment
 
-Containerize LlamaFile cho consistent deployment:
-
-```dockerfile
+Containerize LlamaFile cho consistent deployment: ```dockerfile
 FROM ubuntu:22.04
 RUN apt-get update && apt-get install -y curl
 COPY llama-3.2-8b-instruct.Q4_K_M.llamafile /app/llamafile
@@ -299,8 +269,7 @@ ollama pull llama3.2:8b
 
 ### Với LM Studio
 
-LM Studio có thể load LlamaFile formats directly:
-1. Mở LM Studio
+LM Studio có thể load LlamaFile formats directly: 1. Mở LM Studio
 2. Drag `.llamafile` lên window
 3. Start chatting immediately
 
@@ -389,9 +358,7 @@ ps aux | grep llamafile
 
 ### Running Untrusted Models
 
-Since LlamaFiles là self-extracting archives, luôn verify sources:
-
-```bash
+Since LlamaFiles là self-extracting archives, luôn verify sources: ```bash
 # Check SHA256 hash before running
 sha256sum llama-3.2-8b.Q4_K_M.llamafile
 # Compare với official hash từ HuggingFace
@@ -402,9 +369,7 @@ bubblewrap --ro-bind / / --bind . /app --run /app/llamafile --server
 
 ### Network Exposure
 
-Khi running `--server`, API được expose trên localhost mặc định. Để expose externally:
-
-```bash
+Khi running `--server`, API được expose trên localhost mặc định. Để expose externally: ```bash
 # ❌ Dangerous: Exposes to all interfaces
 ./model.llamafile --server --host 0.0.0.0
 
@@ -419,9 +384,7 @@ nginx -c /path/to/proxy.conf
 
 ### LlamaFile Roadmap
 
-Meta và MLC AI đã announce plans cho:
-
-1. **GPU Offload Support** — Better integration với NVIDIA/AMD GPUs cho faster inference
+Meta và MLC AI đã announce plans cho: 1. **GPU Offload Support** — Better integration với NVIDIA/AMD GPUs cho faster inference
 2. **Multi-Model Bundling** — Bundle chat + embedding + vision models together
 3. **Mobile Optimization** — Native iOS/Android builds cho on-device AI
 4. **Plugin System** — Extend functionality với custom nodes và handlers
@@ -446,15 +409,12 @@ Meta và MLC AI đã announce plans cho:
 
 ## Community and Ecosystem
 
-LlamaFile has a vibrant community:
-
-- **GitHub Stars**: 30,000+
+LlamaFile has a vibrant community: - **GitHub Stars**: 30,000+
 - **HuggingFace Collections**: 500+ pre-built LlamaFiles
 - **Discord**: Active community sharing models và tips
 - **Template Gallery**: Pre-configured workflows cho common use cases
 
-Popular community resources:
-- [Mozilla's LlamaFile GitHub](https://github.com/Mozilla-Ocho/llamafile)
+Popular community resources: - [Mozilla's LlamaFile GitHub](https://github.com/Mozilla-Ocho/llamafile)
 - [HuggingFace LlamaFile Collection](https://huggingface.co/collections/jartine/llamafiles)
 - [LocalAI Community](https://localai.io) — Alternative self-hosted AI platform
 
@@ -502,7 +462,6 @@ Not directly — LlamaFiles are frozen. Nhưng bạn có thể fine-tune models 
 *Tham gia nhóm Telegram để thảo luận công cụ AI thời gian thực và mẹo deployment: [t.me/dibi8](https://t.me/dibi8)*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

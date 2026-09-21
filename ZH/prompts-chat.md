@@ -1,38 +1,29 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/prompts-chat" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/prompts-chat" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/prompts-chat" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/prompts-chat" />
 title: 'prompts.chat：16.3万+ 提示——开源提示库指南 2026'
 description: 'Deploy prompts.chat in 5 mins. 163,640 stars. Works with ChatGPT, Claude, Gemini. Self-host for privacy. No-cost, open-source prompt library.'
 date: 2026-06-12
-lastmod:  2026-06-12slug: 'prompts-chat'
+lastmod: 2026-06-12
+slug: 'prompts-chat'
 category: llm-frameworks
 tags: [prompts.chat, open-source, prompt-engineering, self-hosting, llm-tools, ai-library, github]
 github_repo: 'https://github.com/f/prompts.chat'
 license: NOASSERTION
-lang: zh
-featureImage: /articles/prompts-chat-e570dc.jpg/images/articles/prompts-chat-e570dc.jpg
----
-
-<!-- canonical: https://dibi8.com/zh/tools/prompts-chat/ -->
+featureImage: /articles/prompts-chat-e570dc.jpg/images/articles/prompts-chat-e570dc.jpg---
 # prompts.chat：16.3万+ 提示——开源提示库指南 2026
 
 title: 'prompts.chat：16.3万+ 提示词——2026年开源提示词库指南'
 description: '5分钟部署 prompts.chat。163,640 星。兼容 ChatGPT、Claude、Gemini。支持隐私保护的自托管。零成本开源提示词库。'
 date: 2026-06-12
-lastmod:  2026-06-12slug: 'prompts-chat'
+lastmod: 2026-06-12
+slug: 'prompts-chat'
 category: 'llm-frameworks'
 tags: [prompts.chat, open-source, prompt-engineering, self-hosting, llm-tools, ai-library, github]
 github_repo: 'https://github.com/f/prompts.chat'
 stars: 163640
 maintainer: 'f'
 license: NOASSERTION
-lang: zh
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -60,25 +51,20 @@ lang: zh
 
 ## Why This Matters
 
-Understanding prompts.chat：16.3万+ 提示——开源提示库指南 2026 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding prompts.chat：16.3万+ 提示——开源提示库指南 2026 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -99,13 +85,13 @@ prompts.chat：16.3万+ 提示——开源提示库指南 2026 represents an imp
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
 
+---
 ## Related Articles
 
 - [prompts-chat](prompts-chat)
@@ -118,9 +104,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
-Understanding these core concepts will help you master the topic:
-
-1. **Abstraction**: Hide complexity behind simple interfaces
+Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces
 2. **Composition**: Build complex systems from simple parts
 3. **Immutability**: Prefer immutable data structures
 4. **Error Handling**: Handle failures gracefully
@@ -141,9 +125,7 @@ Understanding these core concepts will help you master the topic:
                      └─────────────┘
 ```
 
-Understanding these core concepts will help you master the topic:
-
-1. **Abstraction**: Hide complexity behind simple interfaces
+Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces
 2. **Composition**: Build complex systems from simple parts
 3. **Immutability**: Prefer immutable data structures
 4. **Error Handling**: Handle failures gracefully
@@ -164,9 +146,7 @@ Understanding these core concepts will help you master the topic:
                      └─────────────┘
 ```
 
-Understanding these core concepts will help you master the topic:
-
-1. **Abstraction**: Hide complexity behind simple interfaces
+Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces
 2. **Composition**: Build complex systems from simple parts
 3. **Immutability**: Prefer immutable data structures
 4. **Error Handling**: Handle failures gracefully
@@ -187,9 +167,7 @@ Understanding these core concepts will help you master the topic:
                      └─────────────┘
 ```
 
-Understanding these core concepts will help you master the topic:
-
-1. **Abstraction**: Hide complexity behind simple interfaces
+Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces
 2. **Composition**: Build complex systems from simple parts
 3. **Immutability**: Prefer immutable data structures
 4. **Error Handling**: Handle failures gracefully
@@ -210,9 +188,7 @@ Understanding these core concepts will help you master the topic:
                      └─────────────┘
 ```
 
-Understanding these core concepts will help you master the topic:
-
-1. **Abstraction**: Hide complexity behind simple interfaces
+Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces
 2. **Composition**: Build complex systems from simple parts
 3. **Immutability**: Prefer immutable data structures
 4. **Error Handling**: Handle failures gracefully
@@ -233,9 +209,7 @@ Understanding these core concepts will help you master the topic:
                      └─────────────┘
 ```
 
-Understanding these core concepts will help you master the topic:
-
-1. **Abstraction**: Hide complexity behind simple interfaces
+Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces
 2. **Composition**: Build complex systems from simple parts
 3. **Immutability**: Prefer immutable data structures
 4. **Error Handling**: Handle failures gracefully

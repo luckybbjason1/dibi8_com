@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/aitoearn-ai-monetization" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/aitoearn-ai-monetization" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/aitoearn-ai-monetization" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/aitoearn-ai-monetization" />
 title: "AiToEarn: 오픈소스 AI 콘텐츠 수익화 도구 — GPT 대화를 수동 소득으로 전환"
 description: "AiToEarn은 AI 생성 콘텐츠를 수익성 있는 제품으로 전환하는 오픈소스 AI 콘텐츠 수익화 플랫폼입니다. 다중 플랫폼 배포, 구독 결제 및 광고 수익화를 지원합니다.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - JavaScript
+tech_stack: - JavaScript
   - TypeScript
 application_domain: "Llm Frameworks"
 source_version: ""
@@ -25,10 +19,8 @@ maintainer: "yikart"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases:
-- /kr/posts/aitoearn-ai-monetization/
-faqs:
-  - q: 'AiToEarn이란 무엇인가요?'
+aliases: - /kr/posts/aitoearn-ai-monetization/
+faqs: - q: 'AiToEarn이란 무엇인가요?'
     a: 'AiToEarn은 크리에이터가 글, 이미지, 영상 스크립트, 코드 같은 AI 생성 콘텐츠를 수동 수입원으로 전환하도록 돕는 오픈소스 AI 콘텐츠 수익화 플랫폼입니다. AI 콘텐츠 생성, 원클릭 멀티 플랫폼 배포, 내장형 수익화 기능을 하나의 셀프 호스팅 도구에 통합했습니다.'
   - q: 'AiToEarn은 크리에이터에게 어떻게 수익을 만들어 주나요?'
     a: 'AiToEarn은 다섯 가지 수익화 방식을 지원합니다: 유료 구독(사용자당 $5-50/month), Google AdSense 및 Media.net을 통한 광고 수익, Amazon 및 Taobao 링크가 자동 삽입되는 제휴 마케팅(5-50% 수수료), 템플릿과 프롬프트 팩의 유료 다운로드(개당 $1-20), 그리고 패키징된 AI 워크플로우의 API 과금(호출당 $0.01-0.1)입니다.'
@@ -40,7 +32,6 @@ faqs:
     a: '네, AiToEarn은 셀프 호스팅이 가능합니다. GitHub 저장소를 클론하고 npm install을 실행한 뒤, .env.example을 .env로 복사하고 API 키를 입력한 다음 npm run dev를 실행합니다. 그러면 앱이 http://localhost:3000에서 로컬로 실행됩니다.'
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/aitoearn-ai-monetization/ -->
 {</* resource-info */>}
 
 ![AiToEarn 모바일 — 12+ 소셜 플랫폼에 분배](/images/articles/aitoearn-ai-monetization/app.png)
@@ -66,8 +57,7 @@ faqs:
 - AI 이미지 생성 및 편집(DALL-E, Midjourney, Stable Diffusion)
 
 ### 📡 원클릭 배포
-다음으로 자동 게시 지원:
-- **블로그 플랫폼**: WordPress, Ghost, Notion
+다음으로 자동 게시 지원: - **블로그 플랫폼**: WordPress, Ghost, Notion
 - **소셜 미디어**: Twitter/X, LinkedIn, Facebook, Instagram
 - **중국 플랫폼**: 위챗 공식 계정, 지후, 샤오홍슈, 비리비리
 - **비디오 플랫폼**: YouTube, TikTok, 도우인(스크립트 생성)
@@ -192,9 +182,7 @@ AiToEarn은 **AI 시대의 창작자 경제**를 위한 새로운 패러다임�
 
 ## 추천 도구
 
-오픈소스 AI 도구 개발/배포 시 권장:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
+오픈소스 AI 도구 개발/배포 시 권장: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
@@ -208,7 +196,6 @@ AiToEarn은 **AI 시대의 창작자 경제**를 위한 새로운 패러다임�
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -236,25 +223,20 @@ AiToEarn은 **AI 시대의 창작자 경제**를 위한 새로운 패러다임�
 
 ## Why This Matters
 
-Understanding aitoearn: 오픈소스 ai 콘텐츠 수익화 도구 — gpt 대화를 수동 소득으로 전환 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding aitoearn: 오픈소스 ai 콘텐츠 수익화 도구 — gpt 대화를 수동 소득으로 전환 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

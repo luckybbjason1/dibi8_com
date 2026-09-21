@@ -1,19 +1,14 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-engineering-from-scratch" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-engineering-from-scratch" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-engineering-from-scratch" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-engineering-from-scratch" />
 title: "스크래치 AI 엔지니어링: 프로덕션 LLM 시스템 구축 — 2026 완전 가이드"
 description: "스크래치 AI 엔지니어링(32,771 스타)은 LLM 파인튜닝, RAG, 에이전트 프레임워크, 프로덕션 배포를 아우르는 포괄적인 커리큘럼입니다. AI 시스템을 구축하고, 출시하고, 확장하는 방법을 배워보세요.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-15
-lastmod:  2026-06-15slug: ai-engineering-from-scratch
+lastmod: 2026-06-15
+slug: ai-engineering-from-scratch
 category: llm-frameworks
 tags: ['ai 엔지니어링', 'llm', '파인튜닝', 'rag', '에이전트 프레임워크', '프로덕션 배포', '머신러닝']
 github_repo: "https://github.com/rohitg00/ai-engineering-from-scratch"
 license: MIT
-images:
-  - url: "https://opengraph.github.com/github/rohitg00/ai-engineering-from-scratch"
+images: - url: "https://opengraph.github.com/github/rohitg00/ai-engineering-from-scratch"
     alt: "스크래치 AI 엔지니어링 GitHub OG"
     role: reference
   - url: "https://raw.githubusercontent.com/rohitg00/ai-engineering-from-scratch/main/README.md"
@@ -26,8 +21,6 @@ lang: kr
 featureImage: /images/articles/ai-engineering-from-scratch-build-production-llm-systems-com.jpg
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/ai-engineering-from-scratch/ -->
-
 ## TL;DR
 
 스크래치 AI 엔지니어링은 프로덕션 수준의 AI 시스템을 구축하기 위한 포괄적이고 실무 중심의 커리큘럼입니다. 32,771 스타를 달성하며 LLM 파인튜닝, RAG 파이프라인, 에이전트 프레임워크, 벡터 데이터베이스, 클라우드 배포를 전반적으로 다룹니다. 이 프로젝트는 추상적인 이론이 아닌 실용적인 코드 예시를 제공합니다.
@@ -38,9 +31,7 @@ featureImage: /images/articles/ai-engineering-from-scratch-build-production-llm-
 
 스크래치 AI 엔지니어링은 AI 시스템을 처음부터 구축하는 방법을 가르치는 교육용 레포지토리입니다. 복잡성을 추상화하는 고수준 튜토리얼과 달리, 이 프로젝트는 스스로 핵심 알고리즘을 구현하도록 유도합니다: 처음부터 트랜스포머, 경사 하강법, 주의 메커니즘, 검색 증강 생성을 직접 작성합니다.
 
-커리큘럼은 진행식 모듈로 구성됩니다:
-
-1. **기초** — 머신러닝을 위한 선형대수, 미적분, 확률, Python 기초
+커리큘럼은 진행식 모듈로 구성됩니다: 1. **기초** — 머신러닝을 위한 선형대수, 미적분, 확률, Python 기초
 2. **신경망** — 퍼셉트론, MLP, 백프로패게이션을 처음부터 구축
 3. **트랜스포머** — 주의 기제, 멀티헤드 주의, 위치 부호화 구현
 4. **파인튜닝** — LoRA, QLoRA, 전체 파인튜닝, 정렬 기법
@@ -60,9 +51,7 @@ find /tmp/ai-engineering-from-scratch-main -name "*.py" | head -20
 
 ## 학습 파이프라인: 어떻게 작동하는가
 
-이 프로젝트는 "구축하고, 깨뜨리고, 고친다"라는 방법론을 따릅니다. 각 모듈은 다음을 제공합니다:
-
-- **처음부터 구현** — 초기 모듈에서는 PyTorch 추상화 없이 수학을 직접 작성합니다
+이 프로젝트는 "구축하고, 깨뜨리고, 고친다"라는 방법론을 따릅니다. 각 모듈은 다음을 제공합니다: - **처음부터 구현** — 초기 모듈에서는 PyTorch 추상화 없이 수학을 직접 작성합니다
 - **점진적 복잡성** — 매 수업은 이전 내용을 기반으로 구축됩니다
 - **실제 데이터셋** — 장난감 예시가 아닌 실제 코퍼스 학습
 - **프로덕션 배포** — 마지막 모듈은 서빙, 모니터링, 확장 다루기
@@ -83,9 +72,7 @@ module-name/
 
 ## 설치 및 설정
 
-이 프로젝트는 Python 3.10+와 표준 ML 라이브러리에 의존합니다:
-
-```bash
+이 프로젝트는 Python 3.10+와 표준 ML 라이브러리에 의존합니다: ```bash
 # 레포지토리 클론
 git clone https://github.com/rohitg00/ai-engineering-from-scratch.git
 cd ai-engineering-from-scratch
@@ -104,9 +91,7 @@ python3 -c "import transformers; print(f'Transformers {transformers.__version__}
 
 ### GPU 가속
 
-파인튜닝 및 추론 모듈에서는 GPU 가속이 권장됩니다:
-
-```bash
+파인튜닝 및 추론 모듈에서는 GPU 가속이 권장됩니다: ```bash
 # CUDA 사용 가능성 확인
 python3 -c "import torch; print(f'CUDA: {torch.cuda.is_available()}')"
 
@@ -116,9 +101,7 @@ pip install torch torchvision torchaudio --index-url https://download.pytorch.or
 
 ### 대안: GPU 없이 실행
 
-모든 모듈은 CPU에서도 작동하지만, 파인튜닝과 대규모 추론은 훨씬 느려집니다:
-
-```bash
+모든 모듈은 CPU에서도 작동하지만, 파인튜닝과 대규모 추론은 훨씬 느려집니다: ```bash
 # CPU 모드 강제
 export CUDA_VISIBLE_DEVICES=""
 python3 src/train.py --device cpu
@@ -126,9 +109,7 @@ python3 src/train.py --device cpu
 
 ##主流 AI 도구와의 통합
 
-스크래치 AI 엔지니어링은 인기가 있는 AI 개발 도구를 대체하지 않고 보완합니다:
-
-|| 도구 | 통합 지점 | 목적 |
+스크래치 AI 엔지니어링은 인기가 있는 AI 개발 도구를 대체하지 않고 보완합니다: || 도구 | 통합 지점 | 목적 |
 ||------|-------------------|---------|
 || **LangChain** | 모듈 5 (RAG) | 프로덕션 RAG 파이프라인 구축 |
 || **LlamaIndex** | 모듈 5 (RAG) | 고급 인덱싱 및 검색 |
@@ -154,9 +135,7 @@ python3 -m vllm.entrypoints.api_server \
 
 ## 벤치마크: 처음부터 vs 프레임워크 전용 학습
 
-전체 스크래치 AI 엔지니어링 커리큘럼을 완료한 학생들은 프레임워크만으로 학습한 학생보다 측정 가능한 더 나은 성과를 보입니다:
-
-```
+전체 스크래치 AI 엔지니어링 커리큘럼을 완료한 학생들은 프레임워크만으로 학습한 학생보다 측정 가능한 더 나은 성과를 보입니다: ```
 Metric                      | 프레임워크 전용 | 처음부터
 ----------------------------|---------------|-------------
 디버깅 시간 (평균)          | 4.2 시간      | 1.1 시간
@@ -179,15 +158,13 @@ RAG 품질 개선              | 템플릿 기반  | 알고리즘적
 import torch
 import torch.nn.functional as F
 
-def attention_from_scratch(Q, K, V, mask=None):
-    """수학적 정의에서 구현한 멀티헤드 주의."""
+def attention_from_scratch(Q, K, V, mask=None): """수학적 정의에서 구현한 멀티헤드 주의."""
     d_k = Q.size(-1)
     
     # 스케일된 도트 제품 주의
     scores = torch.matmul(Q, K.transpose(-2, -1)) / (d_k ** 0.5)
     
-    if mask is not None:
-        scores = scores.masked_fill(mask == 0, -1e9)
+    if mask is not None: scores = scores.masked_fill(mask == 0, -1e9)
     
     attention_weights = F.softmax(scores, dim=-1)
     output = torch.matmul(attention_weights, V)
@@ -197,9 +174,7 @@ def attention_from_scratch(Q, K, V, mask=None):
 
 ## 고급 사용: 사용자 지정 학습 전략
 
-제공된 모듈 외에도 숙련된 실무자는 레포지토리를 사용자 지정 학습 전략의 기반도로 활용합니다:
-
-### 양화 인식 파인튜닝
+제공된 모듈 외에도 숙련된 실무자는 레포지토리를 사용자 지정 학습 전략의 기반도로 활용합니다: ### 양화 인식 파인튜닝
 
 ```bash
 # 4비트 양화 QLoRA
@@ -244,9 +219,7 @@ reranked = reranker.rank("your query here", results)
 
 ### 분산 학습 전략
 
-더 큰 모델의 경우 여러 GPU에 걸친 분산 학습이 필수적입니다:
-
-```bash
+더 큰 모델의 경우 여러 GPU에 걸친 분산 학습이 필수적입니다: ```bash
 # DeepSpeed로 멀티 GPU 학습
 pip install deepspeed
 
@@ -272,9 +245,7 @@ model = FSDP(model, auto_wrap_policy=policy, cpu_offload=Offload(cpu=True))
 
 ### 평가 프레임워크
 
-모델 품질 측정은 체계적인 평가가 필요합니다:
-
-```python
+모델 품질 측정은 체계적인 평가가 필요합니다: ```python
 # 자동 평가 파이프라인
 from eval_framework import Evaluator
 
@@ -313,9 +284,7 @@ similar_semantic = semantic.query("RAG optimization", top_k=5)
 
 ## 대체재와의 비교
 
-많은 AI 학습 자료가 존재하지만, 스크래치 AI 엔지니어링의 깊이와 범위를 따라잡는 곳은 드뭅니다:
-
-|| 기능 | AI Eng. From Scratch | Fast.ai | DeepLearning.AI | Kaggle Courses |
+많은 AI 학습 자료가 존재하지만, 스크래치 AI 엔지니어링의 깊이와 범위를 따라잡는 곳은 드뭅니다: || 기능 | AI Eng. From Scratch | Fast.ai | DeepLearning.AI | Kaggle Courses |
 ||---------|---------------------|---------|-----------------|----------------|
 || 스타 | 32,771 | 24,000 | N/A (플랫폼) | N/A |
 || 처음부터 구현 | 전체 | 부분 | 없음 | 없음 |
@@ -330,9 +299,7 @@ similar_semantic = semantic.query("RAG optimization", top_k=5)
 
 ## 한계: 이 프로젝트가 다루지 않는 내용
 
-스크래치 AI 엔지니어링은 포괄적이지만 알려진 격차가 있습니다:
-
-1. **GPU 하드웨어 요구사항** — 전체 파인튜닝 모듈은 24GB 이상 VRAM이 필요합니다. CPU 전용 학습자는 따라갈 수 있지만 작은 모델로 제한됩니다.
+스크래치 AI 엔지니어링은 포괄적이지만 알려진 격차가 있습니다: 1. **GPU 하드웨어 요구사항** — 전체 파인튜닝 모듈은 24GB 이상 VRAM이 필요합니다. CPU 전용 학습자는 따라갈 수 있지만 작은 모델로 제한됩니다.
 
 2. **상용 모델 접근 불가** — 커리큘럼은 오픈 가중치 모델(Llama, Mistral, Qwen)에 집중합니다. GPT-4나 Claude API 접근은 다루지 않습니다.
 
@@ -372,8 +339,7 @@ similar_semantic = semantic.query("RAG optimization", top_k=5)
 ### 커뮤니티나 지원 채널이 있나요?
 
 이 프로젝트는 활성화된 GitHub Discussions 섹션을 보유하고 있습니다. 실시간 대화를 위해 
-**Sources & Further Reading**:
-- GitHub 저장소: https://github.com/rohitg00/ai-engineering-from-scratch
+**Sources & Further Reading**: - GitHub 저장소: https://github.com/rohitg00/ai-engineering-from-scratch
 - LangChain docs: https://python.langchain.com/
 - Hugging Face: https://huggingface.co/
 - PyTorch: https://pytorch.org/
@@ -403,8 +369,7 @@ pip install -r requirements.txt
 
 ---
 
-**소스 및 추가 읽을거리**:
-- GitHub 레포지토리: https://github.com/rohitg00/ai-engineering-from-scratch
+**소스 및 추가 읽을거리**: - GitHub 레포지토리: https://github.com/rohitg00/ai-engineering-from-scratch
 - PyTorch 문서: https://pytorch.org/docs/
 - Hugging Face Transformers: https://huggingface.co/docs/transformers
 - vLLM 문서: https://docs.vllm.ai/
@@ -412,7 +377,6 @@ pip install -r requirements.txt
 **고지사항**: 이 기사에는 제휴 링크가 포함되어 있습니다. 링크를 통해 가입하시면 추가 비용 없이 저희가 커미션을 받을 수 있습니다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

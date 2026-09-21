@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/tabby" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/tabby" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/tabby" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/tabby" />
 title: 'Tabby: 33K+ Stars 的自托管 AI 编程助手 — 2026 隐私优先设置指南'
 description: 'Tabby 是自托管 AI 编程助手。支持 VS Code、JetBrains、Vim、Neovim、Ollama、DeepSeek。Docker 安装、IDE 集成、基准测试和生产环境加固。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [tabby, ai编程助手, 自托管, 'github copilot替代品', 代码补全, docker, 开源]
-aliases:
-- /zh/posts/tabby/
+aliases: - /zh/posts/tabby/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/tabby/ -->
 
 {{</* resource-info */>}}
 
@@ -162,22 +154,13 @@ open http://localhost:8080
 
 ```yaml
 version: '3.8'
-services:
-  tabby:
-    image: registry.tabbyml.com/tabbyml/tabby
+services: tabby: image: registry.tabbyml.com/tabbyml/tabby
     container_name: tabby
     restart: unless-stopped
-    ports:
-      - "8080:8080"
-    volumes:
-      - $HOME/.tabby:/data
-    environment:
-      - TABBY_WEBSERVER_JWT_TOKEN_SECRET=CHANGE_ME_TO_RANDOM_STRING
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+    ports: - "8080:8080"
+    volumes: - $HOME/.tabby:/data
+    environment: - TABBY_WEBSERVER_JWT_TOKEN_SECRET=CHANGE_ME_TO_RANDOM_STRING
+    deploy: resources: reservations: devices: - driver: nvidia
               count: all
               capabilities: [gpu]
     command: >
@@ -290,7 +273,19 @@ tabby serve --device cuda
 Tabby 的性能高度依赖模型大小和硬件。以下数据来自社区基准测试和内部测试：
 
 | 模型 | 参数量 | GPU VRAM | 平均延迟 | 采纳率 | 适用场景 |
-|---|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Qwen2.5-Coder-0.5B | 0.5B | 2 GB | ~200ms | 18% | 仅 CPU 环境、快速测试 |
 | StarCoder-1B | 1B | 3 GB | ~180ms | 22% | 低资源配置 |
 | StarCoder2-3B | 3B | 6 GB | ~250ms | 28% | 质量与速度平衡 |
@@ -302,7 +297,15 @@ Tabby 的性能高度依赖模型大小和硬件。以下数据来自社区基�
 ### 部署场景
 
 | 场景 | 硬件 | 推荐模型 | 月成本 |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 个人开发者，笔记本 | M2/M3 MacBook 16GB | StarCoder2-3B | $0 |
 | 小团队（5-10 人） | RTX 4070 Ti, 16GB VRAM | Qwen2.5-Coder-7B | ~$50（电费） |
 | 企业（50+ 人） | 2× A100 80GB | Qwen2.5-Coder-7B + chat | ~$500（托管费） |
@@ -395,7 +398,17 @@ docker logs tabby 2>&1 | grep ERROR
 ## 与替代品对比
 
 | 功能 | Tabby | GitHub Copilot | Cursor | Codeium |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **自托管** | 是 | 否 | 否 | 部分（企业版） |
 | **许可证** | Apache-2.0 | 专有 | 专有 | 专有 |
 | **个人价格** | 免费 | $10/月 | $20/月 | 免费版 |
@@ -493,7 +506,6 @@ Tabby 填补了 AI 编程助手市场的关键空白：一个完全开源、自�
 - [虎网云 GPU 云](https://www.htstack.com/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -521,25 +533,20 @@ Tabby 填补了 AI 编程助手市场的关键空白：一个完全开源、自�
 
 ## Why This Matters
 
-Understanding tabby: 33k+ stars 的自托管 ai 编程助手 — 2026 隐私优先设置指南 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding tabby: 33k+ stars 的自托管 ai 编程助手 — 2026 隐私优先设置指南 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -560,13 +567,13 @@ Tabby: 33K+ Stars 的自托管 AI 编程助手 — 2026 隐私优先设置指南
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
 
+---
 ## Related Articles
 
 - [2026-06-22-trending-ai-agents](tabby)

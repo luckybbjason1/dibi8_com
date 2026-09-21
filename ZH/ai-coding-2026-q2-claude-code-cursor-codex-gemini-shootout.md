@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout" />
 title: 'AI 编程 2026 Q2 终极对决: Claude Code 1.0 vs Cursor Pro vs Cod...
 description: '2026 年中四大主流 AI 编程 agent 横评：Claude Code 1.0、Cursor Pro、OpenAI Codex CLI、Google Gemini CLI。同一 50K 行 TypeScript 代码库 5 工作流实测、MCP 支持、上下文窗口经济学、定价分析、各自真正胜出场景。'
 date: 2026-05-26 00:00:00+08:00
@@ -25,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: ['claude-code', cursor, 'codex-cli', 'gemini-cli', 'ai 编程', agent, 2026]
-aliases:
-- /zh/posts/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/
-faq:
-  - q: "2026 Q2 哪个 AI 编程 agent 最好？"
+aliases: - /zh/posts/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/
+faq: - q: "2026 Q2 哪个 AI 编程 agent 最好？"
     a: "没有单一赢家。Claude Code 1.0 在长上下文重构上领先（200K+ context，工具调用扎实）。Cursor Pro 在 IDE 体验和 tab 补全延迟上赢。OpenAI Codex CLI 最适合 shell 重的工作流，跟 GPT-5 集成好。Gemini CLI 最便宜，1M+ 上下文窗口最大但工具调用可靠性较低。多数专业开发者用其中 2 个 — 通常是 Claude Code + Cursor。"
   - q: "重度用户每月花多少？"
     a: "3+ 小时/天的重度使用：Claude Code 约 $200/月（Anthropic Max plan）、Cursor Pro $20/月 + API 费（若用 premium model 约加 $50-150）、Codex CLI 约 $80-150/月（ChatGPT Plus + API）、Gemini CLI 约 $0-30/月（极慷慨的免费档）。全套四个工具约 $250-350/月。多数人合并到 2 个工具省钱。"
@@ -41,8 +34,6 @@ faq:
   - q: "2026 年中谁有最大上下文窗口？"
     a: "Gemini CLI 配 Gemini 2.5 Pro 支持 1M+ token 上下文（远远最大）。Claude Code 1.0 配 Claude Sonnet 4.6（或 Opus 4.7）支持 1M token（via 1M-context tier）。Cursor Pro 默认 200K。Codex CLI 配 GPT-5 支持 256K。超大 monorepo 的话 Gemini CLI 的上下文优势是真的，但工具调用可靠性落后。"
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/ -->
 
 {{</* resource-info */>}}
 
@@ -66,12 +57,22 @@ faq:
 >
 > **开源选项仍重要**: Aider、Cline、Roo Code 对预算紧愿意自带 API key 的开发者仍可用。
 
----
 
+---
 ## 四工具一览
 
 | 工具 | 厂商 | 最新版本 | 主接口 | 上下文窗口 |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Claude Code | Anthropic | 1.0 | CLI + IDE 扩展 | 200K（1M 档） |
 | Cursor Pro | Anysphere | 2026.05 | 独立 IDE（VS Code fork） | 200K |
 | Codex CLI | OpenAI | 0.42 | CLI | 256K |
@@ -90,7 +91,17 @@ faq:
 给 User 实体加 `userRoles` 字段，传递到 API + Prisma schema + 前端表单 + 测试。
 
 | 工具 | 耗时 | 首次成功 | Token | 成本 |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Claude Code | 4m 12s | ✅ 3/3 | ~85K | $0.42 |
 | Cursor Pro | 5m 38s | ✅ 2/3 | ~95K | $0.18 |
 | Codex CLI | 6m 04s | ✅ 2/3 | ~110K | $0.55 |
@@ -101,7 +112,17 @@ faq:
 ### 工作流 2: 全仓重构（重命名工具函数，~40 调用点）
 
 | 工具 | 耗时 | 找到 | 漏 | 备注 |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Claude Code | 2m 50s | 40/40 | 0 | 语义搜索 + ripgrep 用对 |
 | Cursor Pro | 1m 12s | 40/40 | 0 | 内建 symbol-aware rename |
 | Codex CLI | 4m 30s | 38/40 | 2 | 漏 `.mdx` |
@@ -114,7 +135,15 @@ faq:
 测试 30% 概率失败。找根因 + 修复不让其他测试变慢。
 
 | 工具 | 诊断 | 修复 | 时间 |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Claude Code | ✅ 首次答对（async setup 竞态） | 干净 + 注释 | 8m |
 | Cursor Pro | ⚠️ 部分（症状不是根因） | 掩盖 patch | 6m |
 | Codex CLI | ✅ 一次错答后答对 | 可接受 | 11m |
@@ -125,7 +154,15 @@ faq:
 ### 工作流 4: 读 2000 行旧代码 + 总结
 
 | 工具 | 总结质量 | 重构建议 | 阅读速度 |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Claude Code | 优秀 — 准确结构化 | 5 个具体 + 排序 | 快 |
 | Cursor Pro | 好 — 略表面 | 3 个通用 | 快 |
 | Codex CLI | 优秀 | 4 个具体 | 中 |
@@ -138,7 +175,15 @@ faq:
 生成 Prisma migration、本地跑、验证 schema、跑测试、按 conventional commit 提交。
 
 | 工具 | 工具协调 | 错误 | 恢复 |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Claude Code | ✅ 流畅，4 工具干净用 | 1（缺 env var） | 自动恢复 |
 | Cursor Pro | ⚠️ IDE 动作混终端 | 2 | 需用户提示 |
 | Codex CLI | ✅ 纯终端流极佳 | 1 | 自动恢复 |
@@ -149,7 +194,15 @@ faq:
 ## 重度用户定价
 
 | 工具 | 计划 | 月费 | 含 |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Claude Code | Anthropic Max | **$200** | Claude Code + Claude.ai 无限 |
 | Cursor Pro | Pro | $20 | Cursor IDE + 500 fast premium/月 |
 | Cursor Pro (重度) | Pro + API | $20 + $50–150 | + pay-per-use |
@@ -158,8 +211,7 @@ faq:
 | Gemini CLI | 免费档 | **$0** | 60 请求/分钟，1500/天 |
 | Gemini CLI (Pro) | API 按用 | $0–30 | 免费档之外 |
 
-**典型专业组合**:
-- **业余/独立**: Gemini CLI 免费 + Cursor 免费 = $0–20/月
+**典型专业组合**: - **业余/独立**: Gemini CLI 免费 + Cursor 免费 = $0–20/月
 - **专业单兵**: Claude Code Max $200/月
 - **多元专业**: Claude Code + Cursor = $220/月
 - **全覆盖**: 四个全 = $300–350/月（很少值得）
@@ -219,12 +271,11 @@ faq:
 
 最大错误：开发者追最新版本因为 HN 说。**别因 hype 换工具**。跑自己的三工作流基准。**对的工具是真让你工作可测量更快的，不是模型最大的**。
 
----
 
+---
 **相关**: [Cursor 替代品 2026](https://dibi8.com/zh/resources/dev-utils/cursor-alternatives-2026-best-ai-coding-tools/) · [Claude Code 设置指南](https://dibi8.com/zh/resources/llm-frameworks/claude-code/) · [MCP 服务器 2026](https://dibi8.com/zh/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -252,25 +303,20 @@ faq:
 
 ## Why This Matters
 
-Understanding ai 编程 2026 q2 终极对决: claude code 1.0 vs cursor pro vs codex cli vs gemini cli is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding ai 编程 2026 q2 终极对决: claude code 1.0 vs cursor pro vs codex cli vs gemini cli is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

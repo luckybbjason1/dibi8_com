@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/bookstack-documentation-wiki" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/bookstack-documentation-wiki" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/bookstack-documentation-wiki" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/bookstack-documentation-wiki" />
 title: 'BookStack: 支持 Markdown 的开发者友好文档 Wiki — 2026 安装与评测'
 description: '完整指南：安装和运行 BookStack，这款支持 WYSIWYG + Markdown 编辑、书架/章节/页面结构、LDAP/SSO 支持的开源文档 Wiki。5 分钟内完成自托管部署。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [bookstack, 文档, wiki, 自托管, php, laravel, 知识库, markdown, docker, 开源]
-aliases:
-- /zh/posts/bookstack-documentation-wiki/
+aliases: - /zh/posts/bookstack-documentation-wiki/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/bookstack-documentation-wiki/ -->
 
 {{</* resource-info */>}}
 
@@ -52,7 +44,11 @@ BookStack 是一款免费、开源、MIT 许可证的文档 Wiki，基于 PHP/La
 BookStack 运行在经典的 PHP/LAMP 技术栈上，这使得任何部署过 PHP 应用的人都能轻松上手。架构简单直接：
 
 | 层级 | 技术 |
-|---|---|
+|
+---
+|
+---
+|
 | **后端** | PHP 8.2+ / Laravel 11.x |
 | **数据库** | MySQL 8.0+ 或 MariaDB 10.6+ |
 | **前端** | Vue.js 组件、WYSIWYG 编辑器 (TinyMCE)、Markdown 编辑器 |
@@ -78,12 +74,9 @@ BookStack 使用基于角色的权限系统。你可以定义角色（如"编辑
 ```yaml
 version: '3.8'
 
-services:
-  bookstack:
-    image: lscr.io/linuxserver/bookstack:v26.03.4
+services: bookstack: image: lscr.io/linuxserver/bookstack:v26.03.4
     container_name: bookstack
-    environment:
-      - PUID=1000
+    environment: - PUID=1000
       - PGID=1000
       - APP_URL=https://docs.yourdomain.com
       - DB_HOST=bookstack_db
@@ -91,27 +84,21 @@ services:
       - DB_USER=bookstack
       - DB_PASS=your_secure_db_password
       - DB_DATABASE=bookstackdb
-    volumes:
-      - ./bookstack_app_data:/config
-    ports:
-      - 6875:80
+    volumes: - ./bookstack_app_data:/config
+    ports: - 6875:80
     restart: unless-stopped
-    depends_on:
-      - bookstack_db
+    depends_on: - bookstack_db
 
-  bookstack_db:
-    image: lscr.io/linuxserver/mariadb:10.11
+  bookstack_db: image: lscr.io/linuxserver/mariadb:10.11
     container_name: bookstack_db
-    environment:
-      - PUID=1000
+    environment: - PUID=1000
       - PGID=1000
       - MYSQL_ROOT_PASSWORD=your_secure_root_password
       - TZ=UTC
       - MYSQL_DATABASE=bookstackdb
       - MYSQL_USER=bookstack
       - MYSQL_PASSWORD=your_secure_db_password
-    volumes:
-      - ./bookstack_db_data:/config
+    volumes: - ./bookstack_db_data:/config
     restart: unless-stopped
 ```
 
@@ -268,7 +255,11 @@ BookStack 还支持通过 Draw.io 集成嵌入图表。插入图表时，BookSta
 我在一台 2 vCPU / 4GB 内存 VPS 上对 BookStack 进行了测试，模拟 50 个并发用户读写页面。结果如下：
 
 | 指标 | 数值 |
-|---|---|
+|
+---
+|
+---
+|
 | 冷启动时间 | 3.2 秒 |
 | 页面加载（平均） | 180ms |
 | 页面加载（95 百分位） | 340ms |
@@ -291,16 +282,11 @@ BookStack 还支持通过 Draw.io 集成嵌入图表。插入图表时，BookSta
 # .github/workflows/publish-docs.yml
 name: Publish API Docs to BookStack
 
-on:
-  push:
-    branches: [main]
+on: push: branches: [main]
     paths: ['docs/**']
 
-jobs:
-  publish:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: publish: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       
       - name: Upload to BookStack via API
         run: |
@@ -339,13 +325,10 @@ find "$BACKUP_DIR" -name "*.gz" -mtime +14 -delete
 
 ```yaml
 # 在 docker-compose.yml 中添加监控
-  node-exporter:
-    image: prom/node-exporter:v1.7.0
-    volumes:
-      - /proc:/host/proc:ro
+  node-exporter: image: prom/node-exporter:v1.7.0
+    volumes: - /proc:/host/proc:ro
       - /sys:/host/sys:ro
-    command:
-      - '--path.procfs=/host/proc'
+    command: - '--path.procfs=/host/proc'
       - '--path.sysfs=/host/sys'
 ```
 
@@ -404,8 +387,7 @@ Theme::listen(ThemeEvents::THEME_REGISTER_VIEWS, function (ThemeViews $themeView
 });
 
 # views/welcome.blade.php
-<div class="welcome-banner">
-    Welcome, {{ user()->name }}! Check out the onboarding docs.
+Welcome, {{ user()->name }}! Check out the onboarding docs.
 </div>
 ```
 
@@ -426,7 +408,19 @@ APP_CONTENT_FILTERING=script,form,iframe,object,embed,css_expression
 ## 对比：BookStack 与替代方案
 
 | 特性 | BookStack | Wiki.js | DokuWiki | MediaWiki | Outline |
-|---|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **许可证** | MIT | AGPL-3.0 | GPL-2.0 | GPL-2.0+ | BSL 1.1 |
 | **技术栈** | PHP / Laravel | Node.js | PHP (无 DB) | PHP | Node.js |
 | **编辑器** | WYSIWYG + Markdown | Markdown + 可视化 | Wiki 语法 | Wikitext | 块编辑器 |
@@ -498,8 +492,8 @@ BookStack 官方支持 MySQL 和 MariaDB。已讨论过 PostgreSQL 支持但尚�
 
 加入 dibi8.com 社区：[Telegram 群组](https://t.me/dibi8opensource)，每天与 5,000+ 开发者讨论开源工具、部署技巧和故障排除。
 
----
 
+---
 ## 来源与延伸阅读
 
 - [BookStack 官方文档](https://www.bookstackapp.com/docs/)
@@ -510,8 +504,6 @@ BookStack 官方支持 MySQL 和 MariaDB。已讨论过 PostgreSQL 支持但尚�
 - [BookStack vs Wiki.js 对比](https://blog.canadianwebhosting.com/bookstack-vs-wikijs-choosing-self-hosted-team-wiki/)
 
 ---
-
-
 
 ## 推荐部署与基础设施
 
@@ -527,7 +519,6 @@ BookStack 官方支持 MySQL 和 MariaDB。已讨论过 PostgreSQL 支持但尚�
 本文包含 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 的联盟链接。如果你通过我们的链接注册，我们会获得推荐积分，而你无需支付额外费用。我们只推荐自己使用过的基础设施。BookStack 项目是免费开源的 —— 我们与 BookStack 维护者之间不存在联盟关系。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

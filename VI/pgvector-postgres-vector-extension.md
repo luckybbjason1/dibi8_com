@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/pgvector-postgres-vector-extension" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/pgvector-postgres-vector-extension" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/pgvector-postgres-vector-extension" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/pgvector-postgres-vector-extension" />
 title: 'pgvector 2026: Biến PostgreSQL thành Cơ sở dữ liệu Vecto...
 description: 'Hướng dẫn sản xuất cho pgvector 0.8.2: chỉ mục HNSW/IVFFlat, tìm kiếm tương tự vector, tối ưu hiệu năng, và tích hợp RAG với LangChain và LlamaIndex.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: [pgvector, postgresql, 'vector-database', hnsw, ann, rag, 'similarity-search', 'full-text-search']
-aliases:
-- /vi/posts/pgvector-postgres-vector-extension/
+aliases: - /vi/posts/pgvector-postgres-vector-extension/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/pgvector-postgres-vector-extension/ -->
 
 {{</* resource-info */>}}
 
@@ -63,9 +55,7 @@ Không giống như các cơ sở dữ liệu vector độc lập, pgvector th�
 
 ## pgvector hoạt động như thế nào: Loại chỉ mục và Lập kế hoạch truy vấn
 
-pgvector hỗ trợ hai loại chỉ mục ANN, mỗi loại có những đánh đổi riêng:
-
-### HNSW (Hierarchical Navigable Small World)
+pgvector hỗ trợ hai loại chỉ mục ANN, mỗi loại có những đánh đổi riêng: ### HNSW (Hierarchical Navigable Small World)
 
 Lựa chọn mặc định cho hầu hết các khối lượng công việc. HNSW xây dựng một đồ thị đa lớp, trong đó mỗi lớp là một tập con của lớp trước. Duyệt truy vấn bắt đầu ở lớp trên cùng và điều hướng tham lam xuống dưới cho đến khi đạt đến đồ thị dày đặc nhất ở lớp dưới cùng.
 
@@ -95,9 +85,7 @@ CREATE INDEX ON documents
 
 ### Toán tử khoảng cách
 
-pgvector cung cấp ba toán tử khoảng cách:
-
-| Toán tử | Mô tả | Trường hợp sử dụng |
+pgvector cung cấp ba toán tử khoảng cách: | Toán tử | Mô tả | Trường hợp sử dụng |
 |----------|-------------|----------|
 | `<->` | Khoảng cách Euclid (L2) | Tương tự chung (mặc định) |
 | `<#>` | Tích trong âm | OpenAI embeddings |
@@ -148,8 +136,7 @@ psql -U postgres -d mydb -c "CREATE EXTENSION IF NOT EXISTS vector;"
 ### Tùy chọn C: Supabase (Managed)
 
 ```sql
--- pgvector được cài sẵn trên Supabase. Chỉ cần kích hoạt:
-CREATE EXTENSION IF NOT EXISTS vector;
+-- pgvector được cài sẵn trên Supabase. Chỉ cần kích hoạt: CREATE EXTENSION IF NOT EXISTS vector;
 
 -- Xác minh phiên bản
 SELECT extversion FROM pg_extension WHERE extname = vector;
@@ -321,9 +308,7 @@ LIMIT 10;
 
 ### Lượng tử hóa Half-Precision (halfvec)
 
-pgvector 0.8.2 hỗ trợ kiểu `halfvec` để **giảm 50% lưu trữ** với mất mát độ chính xác tối thiểu:
-
-```sql
+pgvector 0.8.2 hỗ trợ kiểu `halfvec` để **giảm 50% lưu trữ** với mất mát độ chính xác tối thiểu: ```sql
 -- Thêm cột halfvec cho lưu trữ lượng tử
 ALTER TABLE documents ADD COLUMN embedding_half halfvec(1536);
 
@@ -406,8 +391,7 @@ results = vector_store.similarity_search(
     k=5,
     filter={"source": "blog"}
 )
-for doc in results:
-    print(f"Content: {doc.page_content}")
+for doc in results: print(f"Content: {doc.page_content}")
 ```
 
 ### LlamaIndex + pgvector
@@ -457,14 +441,12 @@ import numpy as np
 client = OpenAI()
 conn = psycopg2.connect("dbname=vectordb user=postgres password=mysecretpassword host=localhost")
 
-def get_embedding(text: str) -> list[float]:
-    resp = client.embeddings.create(
+def get_embedding(text: str) -> list[float]: resp = client.embeddings.create(
         model="text-embedding-3-large", input=text, dimensions=1536
     )
     return resp.data[0].embedding
 
-def retrieve_documents(query: str, top_k: int = 5, tenant_id: int = 1):
-    query_vec = get_embedding(query)
+def retrieve_documents(query: str, top_k: int = 5, tenant_id: int = 1): query_vec = get_embedding(query)
     cur = conn.cursor()
     cur.execute("""
         SELECT title, content, embedding <=> %s::vector AS distance
@@ -476,8 +458,7 @@ def retrieve_documents(query: str, top_k: int = 5, tenant_id: int = 1):
     return cur.fetchall()
 
 # Pipeline RAG đầy đủ
-def rag_query(user_question: str) -> str:
-    docs = retrieve_documents(user_question, top_k=5)
+def rag_query(user_question: str) -> str: docs = retrieve_documents(user_question, top_k=5)
     context = "\n\n".join([f"Title: {d[0]}\n{d[1]}" for d in docs])
     
     response = client.chat.completions.create(
@@ -559,17 +540,14 @@ conn_pool = pool.ThreadedConnectionPool(
     password="mysecretpassword"
 )
 
-def search_with_pool(query_vec, limit=10):
-    conn = conn_pool.getconn()
-    try:
-        cur = conn.cursor()
+def search_with_pool(query_vec, limit=10): conn = conn_pool.getconn()
+    try: cur = conn.cursor()
         cur.execute(
             "SELECT id, title FROM documents ORDER BY embedding <-> %s::vector LIMIT %s",
             (query_vec, limit)
         )
         return cur.fetchall()
-    finally:
-        conn_pool.putconn(conn)
+    finally: conn_pool.putconn(conn)
 ```
 
 ## So sánh với Các Lựa chọn Thay thế
@@ -630,9 +608,7 @@ Sử dụng **HNSW** làm mặc định. Nó cung cấp độ chính xác tốt 
 
 ### Tôi có thể sử dụng pgvector với các dịch vụ PostgreSQL được quản lý không?
 
-Có. pgvector có sẵn trên:
-
-- **Supabase** — cài sẵn, chỉ cần chạy `CREATE EXTENSION vector;`
+Có. pgvector có sẵn trên: - **Supabase** — cài sẵn, chỉ cần chạy `CREATE EXTENSION vector;`
 - **Neon** — được hỗ trợ trên mọi gói, bao gồm gói miễn phí
 - **AWS RDS** — có sẵn trên PostgreSQL 15+
 - **Google Cloud SQL** — có sẵn trên PostgreSQL 15+
@@ -642,9 +618,7 @@ Không cần thay đổi cơ sở hạ tầng — đây là một phần mở r�
 
 ### pgvector có hỗ trợ tìm kiếm vector có lọc không?
 
-Có, và đây là nơi pgvector vượt trội hơn các cơ sở dữ liệu vector chuyên dụng. Vì dữ liệu vector sống trong PostgreSQL, bạn có thể áp dụng bất kỳ mệnh đề SQL `WHERE` nào cùng với vector similarity:
-
-```sql
+Có, và đây là nơi pgvector vượt trội hơn các cơ sở dữ liệu vector chuyên dụng. Vì dữ liệu vector sống trong PostgreSQL, bạn có thể áp dụng bất kỳ mệnh đề SQL `WHERE` nào cùng với vector similarity: ```sql
 SELECT title, embedding <-> $1::vector AS distance
 FROM documents
 WHERE tenant_id = 42
@@ -658,9 +632,7 @@ Trình tối ưu hóa của PostgreSQL tối ưu hóa điều này bằng cách 
 
 ### Làm thế nào để tinh chỉnh HNSW cho khối lượng công việc của tôi?
 
-Hai tham số chính:
-
-- `ef_construction` (mặc định 64): Cao hơn = chất lượng chỉ mục tốt hơn, bản dựng chậm hơn. Đối với RAG sản xuất, sử dụng **128-256**.
+Hai tham số chính: - `ef_construction` (mặc định 64): Cao hơn = chất lượng chỉ mục tốt hơn, bản dựng chậm hơn. Đối với RAG sản xuất, sử dụng **128-256**.
 - `ef_search` (mặc định 40): Cao hơn = độ chính xác tốt hơn, truy vấn chậm hơn. Đánh giá độ chính xác của bạn và đặt thành **64-100**.
 
 ```sql
@@ -699,9 +671,7 @@ Tham gia [cộng đồng Telegram](https://t.me/dibi8en) của chúng tôi để
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -711,7 +681,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 Bài viết này chứa các liên kết liên kết đến [DigitalOcean](https://m.do.co/c/eca87ac14ee0) cho lưu trữ đám mây và [Supabase](https://supabase.com) cho PostgreSQL được quản lý. Nếu bạn đăng ký qua các liên kết của chúng tôi, chúng tôi nhận được hoa hồng mà không có chi phí phụ thêm cho bạn. Chúng tôi chỉ giới thiệu các dịch vụ chúng tôi sử dụng trong môi trường sản xuất của chính mình.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

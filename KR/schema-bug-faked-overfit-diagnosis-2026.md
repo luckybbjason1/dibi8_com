@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/schema-bug-faked-overfit-diagnosis-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/schema-bug-faked-overfit-diagnosis-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/schema-bug-faked-overfit-diagnosis-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/schema-bug-faked-overfit-diagnosis-2026" />
 title: '스키마 버그가 가짜로 만든 Overfit 진단: 아무도 말하지 않는 백테스트 사후 분석'
 description: '7번의 퀀트 실험을 돌려 「교과서적 overfit」을 발견했습니다 (Train PF 2.08 → OOS 0.94, ratio 2.21). 그런데 진단 자체가 틀렸다는 사실이 밝혀졌습니다 — 조용한 schema 필드 불일치 때문에 옵티마이저가 진화된 2x leverage 가 아니라 기본값 10x leverage 로 돌아갔던 것입니다. 교정된 버전은 건강합니다 (ratio 1.01). 메타 교훈은 원본보다 더 추합니다.'
 date: 2026-05-26 00:00:00+08:00
@@ -21,10 +16,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: [backtest, overfit, quant, 'schema-drift', 'walk-forward', postmortem, 2026]
-aliases:
-- /kr/posts/schema-bug-faked-overfit-diagnosis-2026/
-faq:
-  - q: "schema drift 란 무엇이며 왜 백테스트 결과를 가짜로 만듭니까?"
+aliases: - /kr/posts/schema-bug-faked-overfit-diagnosis-2026/
+faq: - q: "schema drift 란 무엇이며 왜 백테스트 결과를 가짜로 만듭니까?"
     a: "schema drift 란 설정 파일의 파라미터 필드 이름이 런타임 schema 와 더 이상 일치하지 않는 것을 의미합니다. 디시리얼라이저는 알 수 없는 필드를 조용히 버리고 기본값을 사용합니다. 그 기본값이 공격적이라면 (예: 2x 를 의도했는데 10x leverage), 백테스트 결과는 극단적으로 흔들립니다. 숫자는 진짜처럼 보이지만 실제로는 작성한 전략이 아닌 다른 전략에서 나온 결과입니다."
   - q: "원본 overfit 진단은 어떻게 그렇게 설득력 있어 보였습니까?"
     a: "교과서적 시그니처입니다: Train PF 2.08, OOS PF 0.94, ratio 2.21. 모든 퀀트 트레이더는 문헌에서 이 패턴을 본 적이 있습니다 — 옵티마이저가 반복되지 않는 노이즈에 핏 되는 현상입니다. 「overfit」이라는 결론은 데이터 모양에 완벽하게 맞았습니다. 숨겨진 10x leverage 가 모든 것을 증폭시켜 양쪽 숫자를 극단적으로 만들었습니다. 올바른 2x leverage 로는 동일한 파라미터가 Train 1.494 / OOS 1.478, ratio 1.01 — 지루할 정도로 안정적입니다."
@@ -37,8 +30,6 @@ faq:
   - q: "이 사건 이후의 새로운 「Seven Don'ts」리스트는 무엇입니까?"
     a: "7개에서 13개로 확장되었습니다. 새로 추가된 항목은: schema 검증 없는 실험을 신뢰하지 말 것, 200 거래일 미만 데이터셋에 대해 판단을 내리지 말 것, 30 트레이드 미만에서 PF > 3 을 받아들이지 말 것, 크로스에셋 검증 없이 전략을 출시하지 말 것, stdev/mean 비율을 무시하지 말 것 (1 초과 = 노이즈), 세그먼트별 분해 없이 PF 를 보고하지 말 것, IS/OOS ratio 없이 보고서를 받아들이지 말 것."
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/schema-bug-faked-overfit-diagnosis-2026/ -->
 
 {{</* resource-info */>}}
 
@@ -70,8 +61,7 @@ moss-trade-bot-skills v1.0.26 paper 모드를 BTC/USDC 15분봉으로 돌렸습�
 
 전략은 프레임워크의 파라미터 옵티마이저가 진화시킨 평균회귀 변형이었습니다. 진화된 구성은 합리적으로 보였습니다: 낮은 트렌드 가중치, 높은 평균회귀 가중치, 보수적인 2x leverage, 대칭적인 sl/tp.
 
-백테스트 결과는 깨끗하게 나왔습니다:
-- Train (212일): PF 2.08
+백테스트 결과는 깨끗하게 나왔습니다: - Train (212일): PF 2.08
 - OOS (92일): PF 0.94
 - Ratio: 2.21
 
@@ -95,9 +85,7 @@ ETH 가 돌았습니다. PF 1.154 → 0.697, ratio 1.66. 가벼운 overfit, 대�
 
 Python 의 전형적인 `dataclass.from_dict()` 패턴에서, 알 수 없는 필드는 조용히 버려집니다. Pydantic 도 strict 모드를 설정하지 않는 한 마찬가지입니다.
 
-진화된 구성 파일에는 다음이 포함되어 있었습니다:
-
-```json
+진화된 구성 파일에는 다음이 포함되어 있었습니다: ```json
 {
   "leverage": 2,
   "sl_atr_mult": 2.5,
@@ -106,9 +94,7 @@ Python 의 전형적인 `dataclass.from_dict()` 패턴에서, 알 수 없는 필
 }
 ```
 
-런타임 `DecisionParams` schema 는 다음을 기대했습니다:
-
-```python
+런타임 `DecisionParams` schema 는 다음을 기대했습니다: ```python
 base_leverage: float = 10.0
 max_leverage: float = 40.0
 sl_atr_mult: float = ...
@@ -124,9 +110,7 @@ tp_rr_ratio: float = ...
 
 ## 교정된 숫자
 
-같은 BTC 304일, 같은 70/30 분할, 같은 진화 파라미터 — 그러나 현재 schema 필드에 올바르게 매핑:
-
-- Train PF: 1.494
+같은 BTC 304일, 같은 70/30 분할, 같은 진화 파라미터 — 그러나 현재 schema 필드에 올바르게 매핑: - Train PF: 1.494
 - OOS PF: 1.478
 - Ratio: **1.01**
 
@@ -138,9 +122,7 @@ tp_rr_ratio: float = ...
 
 교정된 결과는 BTC 304일에서 안정적이지만, 크로스에셋 테스트는 덜 칭찬할 만한 이야기를 들려줍니다.
 
-8개 암호화폐 페어, 같은 148일 윈도우, 같은 교정된 파라미터:
-
-| 자산 | Train PF | OOS PF | Ratio |
+8개 암호화폐 페어, 같은 148일 윈도우, 같은 교정된 파라미터: | 자산 | Train PF | OOS PF | Ratio |
 |---|---|---|---|
 | ETH | 1.154 | 0.697 | 1.66 |
 | BNB | 1.512 | 0.213 | 7.10 |
@@ -158,30 +140,21 @@ DOT 가 두드러져 보였습니다 — Train 1.65, OOS 1.91, 양쪽 모두 강
 
 ## 방어선
 
-세 가지 레이어, 노력/가치 순:
-
-**1. 엄격한 디시리얼라이제이션.** 파라미터 로더가 알 수 없는 필드를 거부하게 만드십시오. Python 에서:
-
-```python
+세 가지 레이어, 노력/가치 순: **1. 엄격한 디시리얼라이제이션.** 파라미터 로더가 알 수 없는 필드를 거부하게 만드십시오. Python 에서: ```python
 @dataclass(frozen=True, kw_only=True)
-class DecisionParams:
-    base_leverage: float = 10.0
+class DecisionParams: base_leverage: float = 10.0
     # ...
     
     @classmethod
-    def from_dict(cls, d: dict) -> "DecisionParams":
-        valid = {f.name for f in cls.__dataclass_fields__.values()}
+    def from_dict(cls, d: dict) -> "DecisionParams": valid = {f.name for f in cls.__dataclass_fields__.values()}
         unknown = set(d.keys()) - valid
-        if unknown:
-            raise ValueError(f"Unknown fields: {unknown}")
+        if unknown: raise ValueError(f"Unknown fields: {unknown}")
         return cls(**{k: v for k, v in d.items() if k in valid})
 ```
 
 원본 `from_dict()` 는 유효한 필드로 필터링했지만 알 수 없는 필드에 대해 *예외를 던지지 않았습니다*. `raise` 하나가 빠진 비용이 7번의 실험이었습니다.
 
-**2. 백테스트 전에 유효 파라미터 출력.** 세 줄:
-
-```python
+**2. 백테스트 전에 유효 파라미터 출력.** 세 줄: ```python
 params = DecisionParams.from_dict(raw)
 print(f"Effective: leverage={params.base_leverage}, sl={params.sl_atr_mult}, tp={params.tp_rr_ratio}")
 assert params.base_leverage == raw.get("base_leverage", raw.get("leverage")), "leverage mismatch"
@@ -191,9 +164,7 @@ assert params.base_leverage == raw.get("base_leverage", raw.get("leverage")), "l
 
 ## 새로운 「Seven Don'ts」— 이제 13개
 
-원본 7개의 백테스트 규율 규칙이 이 사건 이후 13개로 늘었습니다. 새로운 6개는 이 실험들에서 직접 나옵니다:
-
-- **schema 검증 없는 실험을 신뢰하지 말 것.** 백테스트 전에 파라미터를 출력하십시오.
+원본 7개의 백테스트 규율 규칙이 이 사건 이후 13개로 늘었습니다. 새로운 6개는 이 실험들에서 직접 나옵니다: - **schema 검증 없는 실험을 신뢰하지 말 것.** 백테스트 전에 파라미터를 출력하십시오.
 - **200 거래일 미만 데이터셋에 대해 판단을 내리지 말 것.** 같은 자산의 148일 서브 윈도우가 반대 진단을 내놓았습니다.
 - **30 트레이드 미만에서 PF > 3 을 받아들이지 말 것.** 기본 적신호.
 - **크로스에셋 검증 없이 전략을 출시하지 말 것.** 단일 자산의 안정성은 필요하지만 충분하지 않습니다.
@@ -210,9 +181,7 @@ assert params.base_leverage == raw.get("base_leverage", raw.get("leverage")), "l
 
 ## 권장 인프라
 
-워크포워드 + 멀티에셋 실험 스캐폴딩용:
-
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 크레딧, 손쉬운 GPU/CPU droplet
+워크포워드 + 멀티에셋 실험 스캐폴딩용: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 크레딧, 손쉬운 GPU/CPU droplet
 - **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 홍콩 VPS, 아시아 거래소 API 까지 저지연
 
 *제휴 링크 — 가격은 동일하며, dibi8.com 을 후원합니다.*
@@ -222,7 +191,6 @@ assert params.base_leverage == raw.get("base_leverage", raw.get("leverage")), "l
 **관련 글**: [Moss Trade Bot Factory 2026 리뷰](https://dibi8.com/kr/resources/ai-trading/moss-trade-bot-factory-2026-review/) · [백테스트 OVERFIT 5가지 패턴 2026](https://dibi8.com/kr/resources/ai-trading/backtest-overfit-5-patterns-2026/) · [Backtrader Python 백테스팅](https://dibi8.com/kr/resources/ai-trading/backtrader-python-backtesting/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -250,25 +218,20 @@ assert params.base_leverage == raw.get("base_leverage", raw.get("leverage")), "l
 
 ## Why This Matters
 
-Understanding 스키마 버그가 가짜로 만든 overfit 진단: 아무도 말하지 않는 백테스트 사후 분석 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding 스키마 버그가 가짜로 만든 overfit 진단: 아무도 말하지 않는 백테스트 사후 분석 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

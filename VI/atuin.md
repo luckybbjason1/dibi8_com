@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/atuin" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/atuin" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/atuin" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/atuin" />
 title: 'Atuin: 29,794 GitHub Stars — Hướng Dẫn Cài Đặt Đồng Bộ S...
 description: 'Atuin thay thế lịch sử shell bằng SQLite, ghi ngữ cảnh lệnh (mã thoát, thư mục, thờ gian), đồng bộ hóa lịch sử qua nhiều máy với mã hóa E2E. Hỗ trợ Bash, Zsh, Fish, Nushell. Bao gồm cài đặt, tự host, cấu hình và so sánh Atuin vs mcfly vs fzf vs Hstr.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [atuin, 'lich-su-shell', 'cong-cu-cli', sqlite, rust, 'dong-bo', bash, zsh, fish]
-aliases:
-- /vi/posts/atuin/
+aliases: - /vi/posts/atuin/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/atuin/ -->
 
 {{</* resource-info */>}}
 
@@ -135,9 +127,7 @@ winget install -e Atuinsh.Atuin
 
 ### Tích hợp Shell
 
-Sau cài đặt, thêm Atuin vào file rc của shell:
-
-```bash
+Sau cài đặt, thêm Atuin vào file rc của shell: ```bash
 # Bash — thêm vào ~/.bashrc
 eval "$(atuin init bash)"
 
@@ -185,13 +175,9 @@ Checking for diagnostics
 
 ## Cấu hình cốt lõi
 
-File cấu hình Atuin nằm tại `~/.config/atuin/config.toml`. Trước khi đi sâu vào cài đặt, đây là giao diện tìm kiếm trong thực tế với các chế độ lọc khác nhau:
+File cấu hình Atuin nằm tại `~/.config/atuin/config.toml`. Trước khi đi sâu vào cài đặt, đây là giao diện tìm kiếm trong thực tế với các chế độ lọc khác nhau: ![Atuin Search UI](https://docs.atuin.sh/assets/images/search.png)
 
-![Atuin Search UI](https://docs.atuin.sh/assets/images/search.png)
-
-*Giao diện TUI của Atuin hiển thị cửa sổ tìm kiếm nội tuyến với fuzzy matching và kết quả theo phạm vi thư mục.* Đây là cấu hình production-hardened:
-
-```toml
+*Giao diện TUI của Atuin hiển thị cửa sổ tìm kiếm nội tuyến với fuzzy matching và kết quả theo phạm vi thư mục.* Đây là cấu hình production-hardened: ```toml
 # ~/.config/atuin/config.toml
 [settings]
 # Chế độ tìm kiếm: prefix, fulltext, fuzzy, skim
@@ -271,9 +257,7 @@ atuin search --delete "rm -rf /accident"
 
 ### Starship Prompt
 
-Starship hoạt động cùng Atuin không có xung đột. Cả hai đều hook vào sự kiện shell độc lập:
-
-```toml
+Starship hoạt động cùng Atuin không có xung đột. Cả hai đều hook vào sự kiện shell độc lập: ```toml
 # ~/.config/starship.toml — không cần cấu hình đặc biệt
 # Atuin xử lý lịch sử; Starship xử lý prompt
 # Đảm bảo Atuin init chạy trước Starship init trong file rc
@@ -287,9 +271,7 @@ eval "$(starship init zsh)"    # Starship sau
 
 ### tmux
 
-Atuin tích hợp sạch sẽ với phiên tmux. Mỗi cửa sổ tmux nhận ID phiên riêng, cho phép lọc lịch sử theo cửa sổ:
-
-```bash
+Atuin tích hợp sạch sẽ với phiên tmux. Mỗi cửa sổ tmux nhận ID phiên riêng, cho phép lọc lịch sử theo cửa sổ: ```bash
 # ~/.tmux.conf — gán phím mở tìm kiếm Atuin
 bind-key r run-shell "tmux send-keys C-r"
 
@@ -299,9 +281,7 @@ bind-key r run-shell "tmux send-keys C-r"
 
 ### fzf
 
-Một số ngườ dùng kết hợp Atuin với fzf để tìm file fuzzy, dùng Atuin cho lịch sử:
-
-```bash
+Một số ngườ dùng kết hợp Atuin với fzf để tìm file fuzzy, dùng Atuin cho lịch sử: ```bash
 # Giữ fzf cho file, Atuin cho lịch sử
 # Vô hiệu hóa fzf history binding (trong ~/.bashrc hoặc ~/.zshrc)
 export FZF_DEFAULT_COMMAND='fd --type f --hidden'
@@ -315,9 +295,7 @@ alias ff='fzf --preview "bat --style=numbers --color=always {}"'
 
 ### Nushell
 
-Tích hợp Nushell yêu cầu thiết lập rõ ràng vì Nushell dùng hệ thống cấu hình khác:
-
-```nushell
+Tích hợp Nushell yêu cầu thiết lập rõ ràng vì Nushell dùng hệ thống cấu hình khác: ```nushell
 # config.nu
 source ~/.config/nushell/atuin.nu
 
@@ -343,47 +321,34 @@ Cho team hoặc ngườ dùng quan tâm quyền riêng tư, server đồng bộ 
 ```yaml
 # docker-compose.yml
 version: "3"
-services:
-  atuin:
-    restart: always
+services: atuin: restart: always
     image: ghcr.io/atuinsh/atuin:latest
     command: server start
-    volumes:
-      - ./config:/config
+    volumes: - ./config:/config
       - ./atuin-data:/atuin-data
-    links:
-      - postgresql
-    ports:
-      - "8888:8888"
-    environment:
-      ATUIN_HOST: "0.0.0.0"
+    links: - postgresql
+    ports: - "8888:8888"
+    environment: ATUIN_HOST: "0.0.0.0"
       ATUIN_PORT: "8888"
       ATUIN_OPEN_REGISTRATION: "true"
       ATUIN_DB_URI: "postgres://atuin:change-me@postgresql/atuin"
       RUST_LOG: "info,atuin_server=debug"
     user: "1000:1000"
 
-  postgresql:
-    image: postgres:14
+  postgresql: image: postgres:14
     restart: always
-    volumes:
-      - ./postgres-data:/var/lib/postgresql/data
-    environment:
-      POSTGRES_USER: atuin
+    volumes: - ./postgres-data:/var/lib/postgresql/data
+    environment: POSTGRES_USER: atuin
       POSTGRES_PASSWORD: change-me
       POSTGRES_DB: atuin
     user: "1000:1000"
 
   # Tùy chọn: sao lưu tự động
-  backup:
-    image: prodrigestivill/postgres-backup-local
+  backup: image: prodrigestivill/postgres-backup-local
     restart: always
-    volumes:
-      - ./backups:/backups
-    links:
-      - postgresql
-    environment:
-      POSTGRES_HOST: postgresql
+    volumes: - ./backups:/backups
+    links: - postgresql
+    environment: POSTGRES_HOST: postgresql
       POSTGRES_DB: atuin
       POSTGRES_USER: atuin
       POSTGRES_PASSWORD: change-me
@@ -437,42 +402,25 @@ atuin sync
 # atuin-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
-metadata:
-  name: atuin-server
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: atuin
-  template:
-    metadata:
-      labels:
-        app: atuin
-    spec:
-      containers:
-        - name: atuin
+metadata: name: atuin-server
+spec: replicas: 2
+  selector: matchLabels: app: atuin
+  template: metadata: labels: app: atuin
+    spec: containers: - name: atuin
           image: ghcr.io/atuinsh/atuin:18.16.1
           command: ["atuin", "server", "start"]
-          ports:
-            - containerPort: 8888
-          env:
-            - name: ATUIN_HOST
+          ports: - containerPort: 8888
+          env: - name: ATUIN_HOST
               value: "0.0.0.0"
             - name: ATUIN_DB_URI
-              valueFrom:
-                secretKeyRef:
-                  name: atuin-db-secret
+              valueFrom: secretKeyRef: name: atuin-db-secret
                   key: uri
 ---
 apiVersion: v1
 kind: Service
-metadata:
-  name: atuin-service
-spec:
-  selector:
-    app: atuin
-  ports:
-    - port: 8888
+metadata: name: atuin-service
+spec: selector: app: atuin
+  ports: - port: 8888
       targetPort: 8888
 ```
 
@@ -480,9 +428,7 @@ spec:
 
 ### Đặc tính hiệu năng
 
-Triển khai Rust và backend SQLite của Atuin cung cấp hiệu năng ổn định trên dataset lịch sử lớn:
-
-| Chỉ số | Giá trị | Ghi chú |
+Triển khai Rust và backend SQLite của Atuin cung cấp hiệu năng ổn định trên dataset lịch sử lớn: | Chỉ số | Giá trị | Ghi chú |
 |--------|---------|---------|
 | Truy vấn lịch sử (100K mục) | ~15ms | tìm kiếm fuzzy, cache lạnh |
 | Truy vấn lịch sử (500K mục) | ~45ms | tìm kiếm fuzzy, cache ấm |
@@ -512,17 +458,15 @@ $ atuin stats
 [▮         ]  1,357 rg
 [▮         ]  1,348 cd
 [▮         ]  1,322 git log
-Total commands:   62,849
-Unique commands:  26,908
+Total commands: 62,849
+Unique commands: 26,908
 ```
 
 ## Sử dụng nâng cao / Củng cố production
 
 ### Bộ lọc quyền riêng tư lịch sử
 
-Ngăn lệnh nhạy cảm vào cơ sở dữ liệu:
-
-```toml
+Ngăn lệnh nhạy cảm vào cơ sở dữ liệu: ```toml
 # ~/.config/atuin/config.toml
 [settings]
 history_filter = [
@@ -591,9 +535,7 @@ accent = "#89b4fa"
 
 ### Di chuyển key đa máy
 
-Khi thiết lập máy mới, chuyển encryption key một cách an toàn:
-
-```bash
+Khi thiết lập máy mới, chuyển encryption key một cách an toàn: ```bash
 # Trên máy cũ — copy key vào clipboard (hoặc chuyển an toàn)
 cat ~/.local/share/atuin/key
 
@@ -633,9 +575,7 @@ atuin stats
 
 ## Hạn chế / Đánh giá trung thực
 
-Atuin không phải công cụ phù hợp mọi kịch bản:
-
-1. **Không theo dõi ngườ thực thi**: Atuin ghi lệnh nhưng không biết lệnh được gõ thủ công, chạy bởi script, hay tạo bởi AI assistant. Mọi nguồn đều giống nhau trong CSDL.
+Atuin không phải công cụ phù hợp mọi kịch bản: 1. **Không theo dõi ngườ thực thi**: Atuin ghi lệnh nhưng không biết lệnh được gõ thủ công, chạy bởi script, hay tạo bởi AI assistant. Mọi nguồn đều giống nhau trong CSDL.
 
 2. **CSDL local không mã hóa**: CSDL SQLite tại `~/.local/share/atuin/` được lưu dạng plain text để đảm bảo hiệu năng tìm kiếm. Đồng bộ có mã hóa nhưng lưu trữ local thì không. Dùng mã hóa hệ thống file (LUKS, FileVault) để bảo vệ.
 
@@ -651,9 +591,7 @@ Atuin không phải công cụ phù hợp mọi kịch bản:
 
 ### Làm sao tắt binding phím mũi tên lên?
 
-Thêm `filter_mode_shell_up_key = "global"` hoặc `show_preview = false` trong cấu hình. Để hoàn toàn tắt Atuin trên phím mũi tên lên, thêm `export ATUIN_NOBIND=1` trước dòng init và bind thủ công chỉ `Ctrl+R`:
-
-```bash
+Thêm `filter_mode_shell_up_key = "global"` hoặc `show_preview = false` trong cấu hình. Để hoàn toàn tắt Atuin trên phím mũi tên lên, thêm `export ATUIN_NOBIND=1` trước dòng init và bind thủ công chỉ `Ctrl+R`: ```bash
 # ~/.bashrc
 export ATUIN_NOBIND=1
 eval "$(atuin init bash)"
@@ -703,9 +641,7 @@ Atuin biến lịch sử shell từ file text phẳng thành cơ sở dữ liệ
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -723,7 +659,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [Hstr GitHub Repository](https://github.com/dvorka/hstr)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

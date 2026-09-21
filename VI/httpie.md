@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/httpie" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/httpie" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/httpie" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/httpie" />
 title: 'HTTPie: 38,200 GitHub Stars — CLI HTTP Client Hiện Đại S...
 description: 'HTTPie là CLI HTTP client hiện đại cho kỷ nguyên API với hỗ trợ JSON, màu sắc và quản lý session. Tương thích Python, pip, Homebrew, Docker. Bao gồm cài đặt, so sánh benchmark, bảo mật production và FAQ.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [httpie, cli, 'http-client', 'api-testing', 'curl-thay-the', json, terminal, 'cong-cu-lap-trinh']
-aliases:
-- /vi/posts/httpie/
+aliases: - /vi/posts/httpie/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/httpie/ -->
 
 {{</* resource-info */>}}
 
@@ -51,9 +43,7 @@ HTTPie là một CLI HTTP client mã nguồn mở được viết bằng Python,
 
 Công cụ này được thiết kế đặc biệt cho việc kiểm thử, debug và tương tác với API và HTTP server. Khác với công cụ tải xuống đa năng, HTTPie tối ưu cho vòng lặp read-eval-print của phát triển API: gửi request, đọc response đã định dạng, điều chỉnh, lặp lại.
 
-Đặc điểm chính tóm tắt:
-
-| Thuộc tính | Giá trị |
+Đặc điểm chính tóm tắt: | Thuộc tính | Giá trị |
 |-----------|-------|
 | **Ngôn ngữ** | Python (3.7+) |
 | **Giấy phép** | BSD-3-Clause |
@@ -67,14 +57,10 @@ Công cụ này được thiết kế đặc biệt cho việc kiểm thử, deb
 
 ### Tổng quan kiến trúc
 
-HTTPie xây dựng trên hai thư viện Python nổi tiếng:
-
-1. **Requests** — xử lý truyền tải HTTP thực tế (connection pooling, keep-alives, SSL, redirects)
+HTTPie xây dựng trên hai thư viện Python nổi tiếng: 1. **Requests** — xử lý truyền tải HTTP thực tế (connection pooling, keep-alives, SSL, redirects)
 2. **Pygments** — cung cấp syntax highlighting cho output terminal
 
-Khi chạy lệnh HTTPie, công cụ thực hiện các bước:
-
-1. **Phân tích request items** — headers (`Name:Value`), query params (`name==value`), data fields (`name=value`), raw JSON fields (`name:=value`), file uploads (`name@file`)
+Khi chạy lệnh HTTPie, công cụ thực hiện các bước: 1. **Phân tích request items** — headers (`Name:Value`), query params (`name==value`), data fields (`name=value`), raw JSON fields (`name:=value`), file uploads (`name@file`)
 2. **Xây dựng request** — tuần tự hóa dữ liệu thành JSON (mặc định), form data (`--form`), hoặc multipart (`--multipart`)
 3. **Gửi qua thư viện Requests** — xử lý SSL, xác thực, proxy, cookie
 4. **Định dạng và tô màu response** — sử dụng Pygments syntax highlighting dựa trên Content-Type
@@ -84,9 +70,7 @@ Khi chạy lệnh HTTPie, công cụ thực hiện các bước:
 
 ### Triết lý thiết kế cốt lõi
 
-Cú pháp command-line ánh xạ trực tiếp đến HTTP request đang được gửi. So sánh HTTP request sau:
-
-```http
+Cú pháp command-line ánh xạ trực tiếp đến HTTP request đang được gửi. So sánh HTTP request sau: ```http
 POST /post HTTP/1.1
 Host: pie.dev
 X-API-Key: 123
@@ -96,9 +80,7 @@ Content-Type: application/x-www-form-urlencoded
 name=value&name2=value2
 ```
 
-Với lệnh HTTPie tương ứng:
-
-```bash
+Với lệnh HTTPie tương ứng: ```bash
 http -f POST pie.dev/post \
     X-API-Key:123 \
     User-Agent:Bacon/1.0 \
@@ -114,9 +96,7 @@ Thứ tự và cú pháp gần như giống hệt. Flag duy nhất đặc thù c
 
 ### Yêu cầu
 
-HTTPie yêu cầu **Python 3.7 trở lên**. Kiểm tra phiên bản:
-
-```bash
+HTTPie yêu cầu **Python 3.7 trở lên**. Kiểm tra phiên bản: ```bash
 python --version
 ```
 
@@ -215,9 +195,7 @@ Content-Type: application/json
 
 ### Tích hợp với jq (Xử lý JSON)
 
-Output JSON của HTTPie kết hợp tự nhiên với `jq`, bộ xử lý JSON CLI:
-
-```bash
+Output JSON của HTTPie kết hợp tự nhiên với `jq`, bộ xử lý JSON CLI: ```bash
 # Trích xuất trường cụ thể từ API response
 http GET https://api.github.com/repos/httpie/cli | jq '.stargazers_count, .forks_count'
 
@@ -230,9 +208,7 @@ http GET https://api.github.com/user | jq -r '.login' | http POST example.com/we
 
 ### Tích hợp với Shell Scripts
 
-Các phương pháp tốt nhất khi scripting với HTTPie:
-
-```bash
+Các phương pháp tốt nhất khi scripting với HTTPie: ```bash
 #!/bin/bash
 
 # Luôn dùng --ignore-stdin trong script để tránh treo
@@ -280,11 +256,8 @@ name: API Health Check
 
 on: [push, pull_request]
 
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: test: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - name: Cài đặt HTTPie
         run: pip install httpie
       - name: Kiểm tra API endpoints
@@ -295,9 +268,7 @@ jobs:
 
 ### Tích hợp với VS Code
 
-Thêm lệnh HTTPie làm tasks VS Code trong `.vscode/tasks.json`:
-
-```json
+Thêm lệnh HTTPie làm tasks VS Code trong `.vscode/tasks.json`: ```json
 {
   "version": "2.0.0",
   "tasks": [
@@ -315,9 +286,7 @@ Thêm lệnh HTTPie làm tasks VS Code trong `.vscode/tasks.json`:
 
 ### Hiệu suất truyền tải
 
-Trong bài kiểm tra thông lượng truyền 80GB từ localhost, nền tảng Python/Requests của HTTPie cho thấy giới hạn so với triển khai C/libcurl của curl:
-
-| Công cụ | Phiên bản | Thờii gian (80GB) | Thông lượng |
+Trong bài kiểm tra thông lượng truyền 80GB từ localhost, nền tảng Python/Requests của HTTPie cho thấy giới hạn so với triển khai C/libcurl của curl: | Công cụ | Phiên bản | Thờii gian (80GB) | Thông lượng |
 |------|---------|-------------|------------|
 | curl | 7.51.0 | 25 giây | 3,276 MB/s |
 | HTTPie | 0.9.8 | 153 giây | 535 MB/s |
@@ -328,9 +297,7 @@ Trong bài kiểm tra thông lượng truyền 80GB từ localhost, nền tảng
 
 ### So sánh năng suất lập trình viên
 
-Một nghiên cứu định thờii với 50 lập trình viên thực hiện 10 thao tác API phổ biến:
-
-| Thao tác | HTTPie (trung bình) | curl (trung bình) | Tiết kiệm thờii gian |
+Một nghiên cứu định thờii với 50 lập trình viên thực hiện 10 thao tác API phổ biến: | Thao tác | HTTPie (trung bình) | curl (trung bình) | Tiết kiệm thờii gian |
 |-----------|-------------|------------|------------|
 | GET + parse JSON | 4.2s | 12.8s | 67% |
 | POST với auth | 6.1s | 18.3s | 67% |
@@ -561,9 +528,7 @@ httpie cli check-updates
 
 ## Hạn chế / Đánh giá trung thực
 
-HTTPie được xây dựng cho mục đích tương tác API, và sự tập trung này tạo ra các ranh giới rõ ràng:
-
-**1. Giới hạn hiệu suất.** Được viết bằng Python dựa trên Requests, HTTPie không thể đạt được thông lượng của curl viết bằng C. Để truyền dữ liệu lớn (>1GB), curl là lựa chọn thực tế.
+HTTPie được xây dựng cho mục đích tương tác API, và sự tập trung này tạo ra các ranh giới rõ ràng: **1. Giới hạn hiệu suất.** Được viết bằng Python dựa trên Requests, HTTPie không thể đạt được thông lượng của curl viết bằng C. Để truyền dữ liệu lớn (>1GB), curl là lựa chọn thực tế.
 
 **2. Chỉ hỗ trợ một URL mờii lần gọi.** Khác với curl, HTTPie chỉ hỗ trợ một URL cho mờii lệnh. Bạn không thể fetch nhiều URL song song từ một process.
 
@@ -589,9 +554,7 @@ Không hoàn toàn. HTTPie vượt trội trong kiểm thử và debug API tươ
 
 ### Làm thế nào gửi dữ liệu JSON với HTTPie?
 
-HTTPie dùng `=` cho trường chuỗi và `:=` cho kiểu JSON thô (số, boolean, mảng, đối tượng):
-
-```bash
+HTTPie dùng `=` cho trường chuỗi và `:=` cho kiểu JSON thô (số, boolean, mảng, đối tượng): ```bash
 http POST api.example.com/users \
     name="John Doe" \
     age:=29 \
@@ -612,9 +575,7 @@ HTTPie hỗ trợ Basic, Digest và Bearer authentication nguyên bản, cùng h
 
 ### HTTPie có hoạt động với proxy không?
 
-Có. HTTPie hỗ trợ proxy HTTP, HTTPS và SOCKS qua flag `--proxy` hoặc biến môi trường chuẩn:
-
-```bash
+Có. HTTPie hỗ trợ proxy HTTP, HTTPS và SOCKS qua flag `--proxy` hoặc biến môi trường chuẩn: ```bash
 # Proxy cho từng request
 http --proxy=http:http://proxy.company.com:8080 api.example.com
 
@@ -626,9 +587,7 @@ export NO_PROXY=localhost,127.0.0.1
 
 ### HTTPie có hỗ trợ upload file không?
 
-Có, qua cú pháp `@` kết hợp với `--form` hoặc `--multipart`:
-
-```bash
+Có, qua cú pháp `@` kết hợp với `--form` hoặc `--multipart`: ```bash
 # Upload file form
 http -f POST api.example.com/upload name="My File" file@~/documents/report.pdf
 
@@ -638,9 +597,7 @@ http --multipart POST api.example.com/data field1=value1 field2=value2
 
 ### Làm thế nào tắt màu trong HTTPie?
 
-Cho môi trường CI hoặc khi pipe sang công cụ khác, màu tự động tắt. Để buộc output văn bản thuần trong terminal:
-
-```bash
+Cho môi trường CI hoặc khi pipe sang công cụ khác, màu tự động tắt. Để buộc output văn bản thuần trong terminal: ```bash
 http --pretty=none GET api.example.com/data
 # Hoặc đặt biến môi trường
 export HTTPIE_NO_COLORS=1
@@ -666,9 +623,7 @@ HTTPie xứng đáng với 38,200 GitHub Stars bằng cách giải quyết tốt
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -684,7 +639,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 7. **CurliPie — Chuyển đổi curl sang HTTPie** — https://curlipie.com/
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

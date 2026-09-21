@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mcp-servers-2026-rankings-selection-guide" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mcp-servers-2026-rankings-selection-guide" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mcp-servers-2026-rankings-selection-guide" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mcp-servers-2026-rankings-selection-guide" />
 title: 'MCP Servers 2026: Bản Đồ Hệ Sinh Thái 100+ + Cây Quyết Đ...
 description: 'Hệ sinh thái Model Context Protocol vượt mốc 1000+ public servers giữa 2026. Hướng dẫn xếp hạng top 30 theo category, giải thích trade-off kiến trúc giữa stdio / HTTP-SSE / OAuth-bridged, và cây quyết định để chọn servers mà không chết đuối trong registries.'
 date: 2026-05-26 00:00:00+08:00
@@ -21,10 +16,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [mcp, 'model-context-protocol', 'claude-code', 'ai-agents', 'developer-tools', integration, 2026]
-aliases:
-- /vi/posts/mcp-servers-2026-rankings-selection-guide/
-faq:
-  - q: "MCP là gì và tại sao quan trọng năm 2026?"
+aliases: - /vi/posts/mcp-servers-2026-rankings-selection-guide/
+faq: - q: "MCP là gì và tại sao quan trọng năm 2026?"
     a: "Model Context Protocol (MCP) là spec open-source của Anthropic để kết nối AI agent với external tools, data sources và services. Năm 2026 trở thành plug-in standard de facto được Claude Code, Cursor, Codex CLI, Gemini CLI và hầu hết AI coding agents lớn hỗ trợ. Hệ sinh thái tăng từ ~30 servers cuối 2024 lên 1000+ public servers giữa 2026."
   - q: "Nên dùng stdio, HTTP hay SSE-based MCP servers?"
     a: "stdio cho servers chỉ local (filesystem, git, databases localhost) — latency thấp nhất, network zero. HTTP/SSE cho remote SaaS integrations (GitHub, Linear, Notion) nơi server hosted bởi bên thứ ba. MCP 2025-06 spec mới thêm OAuth bridge cho credential-managed servers. Hầu hết setup production dùng mix: 80% stdio local, 20% HTTP for SaaS."
@@ -35,8 +28,6 @@ faq:
   - q: "Làm sao tránh MCP server hell (quá nhiều servers, startup chậm)?"
     a: "Ba quy tắc: (1) Chỉ cài servers dùng hàng tuần — rare integrations tốt hơn là one-off scripts. (2) Dùng per-project MCP config (.cursor/mcp.json, .claude/mcp.json) thay vì global, để unrelated agents không load 30 servers. (3) Audit startup time — nếu server take >500ms initialize, nó đang slow mọi agent session."
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/mcp-servers-2026-rankings-selection-guide/ -->
 
 {{</* resource-info */>}}
 
@@ -145,9 +136,7 @@ Anthropic reference servers: [github.com/modelcontextprotocol/servers](https://g
 
 ## Hạ Tầng Đề Xuất Cho Self-Hosted MCP Servers
 
-Nếu chạy team-shared MCP servers (HTTP/SSE), VPS ổn định quan trọng:
-
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit 60 ngày.
+Nếu chạy team-shared MCP servers (HTTP/SSE), VPS ổn định quan trọng: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit 60 ngày.
 - **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hong Kong, cùng IDC với dibi8.com.
 
 *Affiliate links — không tốn thêm chi phí, giúp dibi8.com hoạt động.*
@@ -165,7 +154,6 @@ Sai lầm phổ biến nhất: developers cài 30+ MCP servers vì free, rồi a
 **Reference**: [github.com/modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers) · **Spec**: MCP 2025-06 · **Stars**: 60K+
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -193,25 +181,20 @@ Sai lầm phổ biến nhất: developers cài 30+ MCP servers vì free, rồi a
 
 ## Why This Matters
 
-Understanding mcp servers 2026: bản đồ hệ sinh thái 100+ + cây quyết định lựa chọn is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding mcp servers 2026: bản đồ hệ sinh thái 100+ + cây quyết định lựa chọn is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

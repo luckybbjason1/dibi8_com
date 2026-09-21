@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/worldmonitor-real-time-global-intelligence-dashboard" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/worldmonitor-real-time-global-intelligence-dashboard" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/worldmonitor-real-time-global-intelligence-dashboard" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/worldmonitor-real-time-global-intelligence-dashboard" />
 title: 'WorldMonitor: Bảng Điều Khiển Thông Tình Báo Toàn Cầu Th...
 description: 'Một bảng điều khiển thông tình báo toàn cầu theo thời gian thực do AI hỗ trợ, tổng hợp tin tức, sự kiện địa chính trị và giám sát cơ sở hạ tầng. 59K sao. Giải pháp mã nguồn mở thay thế Palantir Gotham.'
 date: 2026-06-25
@@ -17,10 +12,6 @@ lang: vi
 github_repo: https://github.com/WorldMonitorHQ/worldmonitor
 license: MIT
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/worldmonitor-real-time-global-intelligence-dashboard/ -->
-
-
 
 # WorldMonitor: Bảng Điều Khiển Thông Tình Báo Toàn Cầu Theo Thời Gian Thực
 
@@ -38,9 +29,7 @@ WorldMonitor là một bảng điều khiển thông tình báo tự lưu trữ,
 
 Nền tảng được thiết kế cho các nhà báo, nhà nghiên cứu, nhà phân hoạch chính sách và chuyên gia bảo mật cần nhận thức tình huống theo thời gian thực trên nhiều khu vực địa lý và danh mục dữ liệu. Nó hỗ trợ cả triển khai đơn instance cho nhà phân tích cá nhân và kiến trúc phân tán cho hoạt động toàn đội.
 
-Các khả năng chính bao gồm:
-
-- **Tổng hợp tin tức đa nguồn** từ nguồn cấp RSS, API và trình thu thập web bao phủ hơn 50 nguồn tin tức toàn cầu
+Các khả năng chính bao gồm: - **Tổng hợp tin tức đa nguồn** từ nguồn cấp RSS, API và trình thu thập web bao phủ hơn 50 nguồn tin tức toàn cầu
 - **Theo dõi sự kiện địa chính trị** với bản đồ theo thời gian thực và trực quan hóa dòng thời gian
 - **Giám sát cơ sở hạ tầng** cho các cơ sở quan trọng bao gồm lưới điện, tháp viễn thông và trung tâm giao thông
 - **Công cụ tương quan do AI hỗ trợ** xác định mối quan hệ giữa các sự kiện tưởng chừng không liên quan
@@ -52,9 +41,7 @@ Các khả năng chính bao gồm:
 
 ### Yêu Cầu Tiên Quyết
 
-Trước khi cài đặt WorldMonitor, hãy đảm bảo hệ thống của bạn đáp ứng các yêu cầu sau:
-
-- **Hệ điều hành**: Ubuntu 22.04 LTS, Debian 12 hoặc macOS 14+
+Trước khi cài đặt WorldMonitor, hãy đảm bảo hệ thống của bạn đáp ứng các yêu cầu sau: - **Hệ điều hành**: Ubuntu 22.04 LTS, Debian 12 hoặc macOS 14+
 - **CPU**: Tối thiểu 4 nhân (khuyến nghị 8 nhân cho sản xuất)
 - **RAM**: Tối thiểu 8GB (khuyến nghị 16GB)
 - **Lưu trữ**: 50GB SSD (tăng theo thời gian giữ dữ liệu)
@@ -63,9 +50,7 @@ Trước khi cài đặt WorldMonitor, hãy đảm bảo hệ thống của bạ
 
 ### Tùy Chọn 1: Triển Khai Docker Compose (Khuyến Nghị)
 
-Cách nhanh nhất để bắt đầu là sử dụng cấu hình Docker Compose được cung cấp:
-
-```bash
+Cách nhanh nhất để bắt đầu là sử dụng cấu hình Docker Compose được cung cấp: ```bash
 git clone https://github.com/koala73/worldmonitor.git
 cd worldmonitor
 
@@ -80,9 +65,7 @@ docker compose up -d
 
 ### Tùy Chọn 2: Cài Đặt Thủ Công
 
-Dành cho người dùng cần kiểm soát tinh tế đối với việc triển khai:
-
-```bash
+Dành cho người dùng cần kiểm soát tinh tế đối với việc triển khai: ```bash
 # Sao chép kho lưu trữ
 git clone https://github.com/koala73/worldmonitor.git
 cd worldmonitor
@@ -113,37 +96,20 @@ cd frontend && npm run start
 
 ### Tùy Chọn 3: Triển Khai Kubernetes
 
-Dành cho triển khai quy mô sản xuất trên nhiều nút:
-
-```yaml
+Dành cho triển khai quy mô sản xuất trên nhiều nút: ```yaml
 apiVersion: apps/v1
 kind: Deployment
-metadata:
-  name: worldmonitor
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: worldmonitor
-  template:
-    metadata:
-      labels:
-        app: worldmonitor
-    spec:
-      containers:
-      - name: worldmonitor
+metadata: name: worldmonitor
+spec: replicas: 3
+  selector: matchLabels: app: worldmonitor
+  template: metadata: labels: app: worldmonitor
+    spec: containers: - name: worldmonitor
         image: ghcr.io/koala73/worldmonitor:latest
-        ports:
-        - containerPort: 8000
-        envFrom:
-        - configMapRef:
-            name: worldmonitor-config
-        resources:
-          requests:
-            memory: "2Gi"
+        ports: - containerPort: 8000
+        envFrom: - configMapRef: name: worldmonitor-config
+        resources: requests: memory: "2Gi"
             cpu: "1000m"
-          limits:
-            memory: "4Gi"
+          limits: memory: "4Gi"
             cpu: "2000m"
 ```
 
@@ -151,14 +117,9 @@ spec:
 
 ### Cấu Hình Nguồn Dữ Liệu
 
-WorldMonitor hỗ trợ nhiều loại nguồn dữ liệu. Cấu hình chúng trong `config.yaml`:
-
-```yaml
-data_sources:
-  rss_feeds:
-    enabled: true
-    sources:
-      - name: "Reuters"
+WorldMonitor hỗ trợ nhiều loại nguồn dữ liệu. Cấu hình chúng trong `config.yaml`: ```yaml
+data_sources: rss_feeds: enabled: true
+    sources: - name: "Reuters"
         url: "https://feeds.reuters.com/reuters/worldNews"
         categories: ["politics", "business"]
         refresh_interval: 300
@@ -171,10 +132,8 @@ data_sources:
         categories: ["politics", "conflict"]
         refresh_interval: 600
 
-  api_feeds:
-    enabled: true
-    sources:
-      - name: "GDELT"
+  api_feeds: enabled: true
+    sources: - name: "GDELT"
         api_key: "${GDELT_API_KEY}"
         endpoint: "https://api.gdeltproject.org/api/v2/event/doc"
         categories: ["conflict", "political"]
@@ -185,15 +144,11 @@ data_sources:
         categories: ["conflict", "protest"]
         refresh_interval: 3600
 
-  web_scrapers:
-    enabled: true
-    sources:
-      - name: "Government Press Releases"
-        urls:
-          - "https://www.state.gov/latest-releases/"
+  web_scrapers: enabled: true
+    sources: - name: "Government Press Releases"
+        urls: - "https://www.state.gov/latest-releases/"
           - "https://www.un.org/press/en/"
-        selectors:
-          title: "h2.article-title"
+        selectors: title: "h2.article-title"
           content: ".article-body"
           date: ".article-date"
         refresh_interval: 1800
@@ -201,9 +156,7 @@ data_sources:
 
 ### Pipeline Phân Tích AI
 
-Công cụ phân tích do AI hỗ trợ xử lý dữ liệu đầu vào qua nhiều giai đoạn:
-
-```python
+Công cụ phân tích do AI hỗ trợ xử lý dữ liệu đầu vào qua nhiều giai đoạn: ```python
 from worldmonitor.ai.pipeline import AnalysisPipeline
 from worldmonitor.ai.models import EventClassifier, CorrelationEngine
 
@@ -231,51 +184,41 @@ correlated = await pipeline.get_correlated_events(
 
 ### Cấu Hình Cảnh Báo
 
-Thiết lập cảnh báo tùy chỉnh dựa trên ưu tiên giám sát của bạn:
-
-```yaml
-alerts:
-  rules:
-    - name: "Phát Hiện Xung Đột Nghiêm Trọng"
-      conditions:
-        - field: "event_type"
+Thiết lập cảnh báo tùy chỉnh dựa trên ưu tiên giám sát của bạn: ```yaml
+alerts: rules: - name: "Phát Hiện Xung Đột Nghiêm Trọng"
+      conditions: - field: "event_type"
           operator: "eq"
           value: "armed_conflict"
         - field: "severity"
           operator: "gte"
           value: 7
-      actions:
-        - type: "notification"
+      actions: - type: "notification"
           channels: ["email", "telegram"]
           template: "high_severity_conflict"
         - type: "dashboard_highlight"
           duration: "3600"
 
     - name: "Gián Đoạn Cơ Sở Hạ Tầng"
-      conditions:
-        - field: "infrastructure_type"
+      conditions: - field: "infrastructure_type"
           operator: "in"
           value: ["power_grid", "telecom", "transport"]
         - field: "status"
           operator: "eq"
           value: "disrupted"
-      actions:
-        - type: "notification"
+      actions: - type: "notification"
           channels: ["email", "slack", "pagerduty"]
           template: "infrastructure_alert"
         - type: "geopoint_map"
           zoom_level: 12
 
     - name: "Phát Hiện Bùng Nổ Từ Khóa"
-      conditions:
-        - field: "keywords"
+      conditions: - field: "keywords"
           operator: "contains_any"
           value: ["sanctions", "embargo", "tariff", "trade_war"]
         - field: "volume_change"
           operator: "gte"
           value: 200
-      actions:
-        - type: "notification"
+      actions: - type: "notification"
           channels: ["email"]
           template: "keyword_surge"
           cooldown: "1800"
@@ -305,9 +248,7 @@ Sự kiện được vẽ trên bản đồ thế giới tương tác với mứ
 
 ### Mô-đun Theo Dõi Cơ Sở Hạ Tầng
 
-Mô-đun cơ sở hạ tầng duy trì cơ sở dữ liệu về các cơ sở quan trọng trên toàn thế giới, bao gồm:
-
-- Nhà máy điện và lưới điện
+Mô-đun cơ sở hạ tầng duy trì cơ sở dữ liệu về các cơ sở quan trọng trên toàn thế giới, bao gồm: - Nhà máy điện và lưới điện
 - Tháp viễn thông và tuyến cáp quang
 - Trung tâm giao thông (sân bay, cảng biển, ga đường sắt)
 - Cơ sở xử lý nước
@@ -332,8 +273,7 @@ correlations = engine.find_correlations(
     correlation_types=["temporal", "geographic", "thematic"]
 )
 
-for corr in correlations:
-    print(f"Mức độ: {corr.strength:.2f}")
+for corr in correlations: print(f"Mức độ: {corr.strength:.2f}")
     print(f"Loại: {corr.type}")
     print(f"Sự kiện: {corr.event_ids}")
     print(f"Giải thích: {corr.explanation}")
@@ -341,9 +281,7 @@ for corr in correlations:
 
 ## Tham Khảo API
 
-WorldMonitor cung cấp REST API toàn diện cho truy cập lập trình:
-
-### Xác Thực
+WorldMonitor cung cấp REST API toàn diện cho truy cập lập trình: ### Xác Thực
 
 ```bash
 # Lấy token API
@@ -403,9 +341,7 @@ curl -X POST "https://your-worldmonitor/api/v1/alerts/rules" \
 
 ### Đơn Instance (Nhà Phân Tích Cá Nhân)
 
-Dành cho nhà báo hoặc nhà nghiên cứu cá nhân, một triển khai Docker Compose đơn trên VPS 4 nhân là đủ:
-
-```
+Dành cho nhà báo hoặc nhà nghiên cứu cá nhân, một triển khai Docker Compose đơn trên VPS 4 nhân là đủ: ```
 Máy chủ: 4 vCPU, 8GB RAM, 100GB SSD
 Chi phí: ~$20/tháng (DigitalOcean / HTStack)
 Công suất: ~1.000 sự kiện/ngày, giữ 30 ngày
@@ -413,9 +349,7 @@ Công suất: ~1.000 sự kiện/ngày, giữ 30 ngày
 
 ### Triển Khai Đội Ngũ
 
-Cho nhóm phân tích 5-20 người, thêm Redis clustering và PostgreSQL read replicas:
-
-```
+Cho nhóm phân tích 5-20 người, thêm Redis clustering và PostgreSQL read replicas: ```
 Máy chủ Ứng dụng: 3x 4 vCPU, 16GB RAM (sau load balancer)
 Cơ sở dữ liệu: PostgreSQL primary + 2 read replicas
 Bộ nhớ đệm: Redis Cluster (3 node)
@@ -426,9 +360,7 @@ Công suất: ~10.000 sự kiện/ngày, giữ 90 ngày
 
 ### Doanh Nghiệp / Phân Tán
 
-Cho triển khai chính phủ hoặc tổ chức lớn:
-
-```
+Cho triển khai chính phủ hoặc tổ chức lớn: ```
 Triển khai đa vùng với kiểm soát chủ quyền dữ liệu
 Mở rộng ngang qua 10+ nút ứng dụng
 PostgreSQL với Patroni cho failover tự động
@@ -440,9 +372,7 @@ Công suất: Không giới hạn, với thu thập dữ liệu phân tán đị
 
 ## Tích Hợp Với Các Công Cụ Khác
 
-WorldMonitor tích hợp liền mạch với các công cụ thông tình báo và truyền thông phổ biến:
-
-### Tích Hợp Slack
+WorldMonitor tích hợp liền mạch với các công cụ thông tình báo và truyền thông phổ biến: ### Tích Hợp Slack
 
 ```bash
 # Cài đặt ứng dụng Slack
@@ -487,9 +417,7 @@ curl -X POST "https://your-worldmonitor/api/v1/metrics/grafana" \
 
 ```yaml
 # Cấu hình đầu ra Elasticsearch của WorldMonitor
-output:
-  elasticsearch:
-    hosts: ["https://es-cluster.internal:9200"]
+output: elasticsearch: hosts: ["https://es-cluster.internal:9200"]
     index: "worldmonitor-%{+yyyy.MM.dd}"
     username: "${ES_USER}"
     password: "${ES_PASS}"
@@ -509,7 +437,6 @@ Liên kết nội bộ: [nvidia-cosmos-world-models-platform-2026](https://dibi8
 **Tiết lộ**: Bài viết này đề cập đến các công cụ có thể có quan hệ liên kết. Chúng tôi không chấp nhận thanh toán cho đánh giá. Tất cả ý kiến đều là của riêng chúng tôi.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

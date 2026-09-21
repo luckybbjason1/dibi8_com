@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/terax-ai-lightweight-ai-terminal" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/terax-ai-lightweight-ai-terminal" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/terax-ai-lightweight-ai-terminal" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/terax-ai-lightweight-ai-terminal" />
 title: "Terax AI: 당신을 이해하는 경량 AI 터미널 에뮬레이터"
 description: "Terax AI를 알아보세요. Tauri 2 + Rust로 구축된 7 MB AI 네이티브 터미널 에뮬레이터입니다. 자연어를 Shell 명령으로 변환하고, 인라인 AI 지원, 스마트 자동완성을 제공하며 bash, zsh, fish, PowerShell을 지원합니다."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Docker
+tech_stack: - Docker
   - Go
   - Java
   - JavaScript
@@ -30,10 +24,8 @@ maintainer: "crynta"
 last_maintained: "2026-05-16"
 featureImage: ""
 draft: false
-aliases:
-- /kr/posts/terax-ai-lightweight-ai-terminal/
-faqs:
-  - q: 'Terax AI란 무엇인가요?'
+aliases: - /kr/posts/terax-ai-lightweight-ai-terminal/
+faqs: - q: 'Terax AI란 무엇인가요?'
     a: 'Terax AI는 Tauri 2 기반의 오픈소스 AI 네이티브 터미널 에뮬레이터로, Rust 백엔드와 React 19 프론트엔드로 구성되어 있습니다. 네이티브 PTY 터미널에 멀티탭 지원, 통합 코드 에디터, 파일 탐색기, 그리고 전용 AI 사이드 패널을 결합한 도구입니다.'
   - q: 'Terax AI가 내 데이터나 API 키를 클라우드로 전송하나요?'
     a: '아니요. Terax는 자체 키 사용(BYOK) 방식을 채택하며 텔레메트리가 전혀 없습니다. API 키는 디스크나 localStorage가 아닌 keyring 시스템을 통해 OS 키체인에 안전하게 저장됩니다. 또한 Terax를 로컬 LM Studio 추론 엔드포인트에 연결하면 완전히 오프라인으로도 사용할 수 있습니다.'
@@ -45,7 +37,6 @@ faqs:
     a: 'Terax는 소스에서 빌드해야 합니다. Rust(stable)와 pnpm이 포함된 Node.js 20+를 설치하고, git으로 저장소를 클론한 뒤 pnpm install을 실행합니다. 개발 모드는 pnpm tauri dev, 프로덕션 번들은 pnpm tauri build로 빌드합니다. 공식 사전 빌드 설치 파일은 별도로 제공되지 않습니다.'
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/terax-ai-lightweight-ai-terminal/ -->
 {</* resource-info */>}
 
 # Terax AI: 당신을 이해하는 경량 AI 터미널 에뮬레이터
@@ -80,9 +71,7 @@ Terax는 명령을 생성하는 것뿐만 아니라 이해를 돕습니다. 임�
 
 ### 크로스 셸 지원
 
-Terax는 진정한 셸 중립성을 가집니다. 다음과 원활하게 작동합니다:
-
-- **bash** 및 **zsh** (삽입된 초기화 스크립트를 통한 셸 통합)
+Terax는 진정한 셸 중립성을 가집니다. 다음과 원활하게 작동합니다: - **bash** 및 **zsh** (삽입된 초기화 스크립트를 통한 셸 통합)
 - **fish** (네이티브 호환)
 - **PowerShell 7+** 및 **Windows PowerShell 5.1**
 - **cmd.exe** (Windows 폴백)
@@ -101,9 +90,7 @@ Terax는 TS/JS, Rust, Python, HTML/CSS, JSON, Markdown을 지원하는 내장 �
 
 ### 사전 요구사항
 
-소스에서 빌드하기 전에 다음이 설치되어 있는지 확인하세요:
-
-- **Rust** (stable) — [rustup.rs](https://rustup.rs)를 통해 설치
+소스에서 빌드하기 전에 다음이 설치되어 있는지 확인하세요: - **Rust** (stable) — [rustup.rs](https://rustup.rs)를 통해 설치
 - **Node.js 20+** 및 **pnpm**
 - 플랫폼별 Tauri 사전 요구사항 — [tauri.app/start/prerequisites](https://tauri.app/start/prerequisites/) 참조
 
@@ -182,9 +169,7 @@ macOS, Windows, Linux에서 작업하는 팀은 종종 터미널 불일치에 �
 
 ## 기술 아키텍처 심층 분석
 
-Terax가 특별한 이유를 이해하려면 납작한 구조를 살펴야 합니다. 아키텍처는 성능과 확장성을 위해 의도적으로 계층화되어 있습니다:
-
-**Rust 백엔드 레이어** — 핵심 PTY(Pseudo Terminal) 관리는 `portable-pty`를 통해 Rust에서 실행되며, Electron이나 Java 기반 터미널의 메모리 비대 없이 네이티브 속도의 셸 통합을 제공합니다. Rust의 소유권 모델은 전통적인 터미널 에뮬레이터를 괴롭히는 한 entire 클래스의 메모리 안전성 버그를 제거합니다.
+Terax가 특별한 이유를 이해하려면 납작한 구조를 살펴야 합니다. 아키텍처는 성능과 확장성을 위해 의도적으로 계층화되어 있습니다: **Rust 백엔드 레이어** — 핵심 PTY(Pseudo Terminal) 관리는 `portable-pty`를 통해 Rust에서 실행되며, Electron이나 Java 기반 터미널의 메모리 비대 없이 네이티브 속도의 셸 통합을 제공합니다. Rust의 소유권 모델은 전통적인 터미널 에뮬레이터를 괴롭히는 한 entire 클래스의 메모리 안전성 버그를 제거합니다.
 
 **Tauri 2 프레임워크** — 전체 Chromium 인스턴스(100+ MB)를 번들링하는 Electron과 달리, Tauri 2는 운영 체제의 네이티브 WebView를 사용합니다. macOS에서는 WKWebView, Windows에서는 WebView2, Linux에서는 WebKitGTK입니다. 이 아키텍처 선택만으로 ~7MB 번들 크기를 설명할 수 있습니다.
 
@@ -230,9 +215,7 @@ Terax가 특별한 이유를 이해하려면 납작한 구조를 살펴야 합�
 
 ## 시작하기 팁
 
-첫날부터 Terax AI를 최대한 활용하려면:
-
-1. **프로젝트 루트에 `TERAX.md` 파일 생성** — 기술 스택, 규칙, 자주 사용하는 명령에 대한 컨텍스트를 포함하세요. AI가 이를 참조하여 더 관련성 높은 제안을 제공합니다.
+첫날부터 Terax AI를 최대한 활용하려면: 1. **프로젝트 루트에 `TERAX.md` 파일 생성** — 기술 스택, 규칙, 자주 사용하는 명령에 대한 컨텍스트를 포함하세요. AI가 이를 참조하여 더 관련성 높은 제안을 제공합니다.
 2. **여러 AI 제공업체 구성** — 복잡한 추론을 위한 클라우드 제공업체와 빠른 오프라인 쿼리를 위한 LM Studio를 모두 설정하여 작업에 따라 전환할 수 있습니다.
 3. **셸 통합 스크립트 활성화** — Terax가 셸 구성에 초기화 스크립트를 주입하도록 허용하여 가장 풍부한 문맥 인식을 얻으세요.
 4. **키보드 단축키 탐색** — Terax는 탭 전환, AI 패널 토글, 파일 탐색기 난비게이션을 위한 광범위한 단축키를 지원하여 워크플로우를 극적으로 가속화합니다.
@@ -271,16 +254,13 @@ Terax 프로젝트는 GitHub에서 확인할 수 있는 투명한 로드맵과 �
 
 ## 추천 도구
 
-오픈소스 AI 도구 개발/배포 시 권장:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
+오픈소스 AI 도구 개발/배포 시 권장: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
 - **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Anthropic Claude / OpenAI / DeepSeek API 프록시. 위의 AI 도구 대부분 (챗봇, 코드 생성, 번역, 검색 등) LLM API 키 필요 — 이 프록시로 안정적인 톱 모델 액세스, 공식 가격의 ~30%.
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

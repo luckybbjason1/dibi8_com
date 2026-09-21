@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/traefik" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/traefik" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/traefik" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/traefik" />
 title: 'Traefik: 63,229 GitHub Stars — 클라우드 네이티브 엣지 라우터 2026 프로덕...
 description: 'Traefik은 자동 서비스 검색을 지원하는 클라우드 네이티브 애플리케이션 프록시 및 엣지 라우터입니다. Docker, Kubernetes, Consul, Docker Compose와 호환됩니다. 설치, 미들웨어, TLS, 모니터링 및 프로덕션 강화를 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [traefik, docker, kubernetes, '리버스 프록시', '엣지 라우터', ingress, devops, '클우드 네이티브']
-aliases:
-- /kr/posts/traefik/
+aliases: - /kr/posts/traefik/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/traefik/ -->
 
 {{</* resource-info */>}}
 
@@ -96,9 +88,7 @@ Traefik의 아키텍처는 구성을 두 계층으로 나눕니다: **정적 구
 
 ### Docker Compose (단일 노드, 5분 이내)
 
-전용 디렉토리와 주요 Traefik 구성을 생성합니다:
-
-```bash
+전용 디렉토리와 주요 Traefik 구성을 생성합니다: ```bash
 mkdir -p ~/traefik/{data,configs}
 cd ~/traefik
 touch data/acme.json && chmod 600 data/acme.json
@@ -106,31 +96,22 @@ touch data/acme.json && chmod 600 data/acme.json
 
 `acme.json` 파일은 Let's Encrypt 인증서를 저장합니다. 제한적인 권한(`600`)이 있어야 Let's Encrypt가 쓰기를 거부하지 않습니다.
 
-**`docker-compose.yml`** — Traefik v3.x 프로덕션 준비:
-
-```yaml
-services:
-  traefik:
-    image: traefik:v3.2
+**`docker-compose.yml`** — Traefik v3.x 프로덕션 준비: ```yaml
+services: traefik: image: traefik:v3.2
     container_name: traefik
     restart: unless-stopped
-    security_opt:
-      - no-new-privileges:true
+    security_opt: - no-new-privileges:true
     read_only: true
-    networks:
-      - proxy
-    ports:
-      - "80:80"
+    networks: - proxy
+    ports: - "80:80"
       - "443:443"
       - "8080:8080"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+    volumes: - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./data/acme.json:/acme.json
       - ./data/traefik.yml:/etc/traefik/traefik.yml:ro
       - ./configs:/configs:ro
       - ./data/logs:/logs
-    labels:
-      - "traefik.enable=true"
+    labels: - "traefik.enable=true"
       - "traefik.http.routers.traefik.rule=Host(`traefik.yourdomain.com`)"
       - "traefik.http.routers.traefik.entrypoints=websecure"
       - "traefik.http.routers.traefik.tls.certresolver=letsencrypt"
@@ -138,83 +119,55 @@ services:
       - "traefik.http.middlewares.traefik-auth.basicauth.users=admin:$$apr1$$H6uskkkW$$IgXLP6ewTrSuBkTrqE8wj/"
       - "traefik.http.routers.traefik.middlewares=traefik-auth"
 
-  whoami:
-    image: traefik/whoami
+  whoami: image: traefik/whoami
     container_name: whoami
     restart: unless-stopped
-    networks:
-      - proxy
-    labels:
-      - "traefik.enable=true"
+    networks: - proxy
+    labels: - "traefik.enable=true"
       - "traefik.http.routers.whoami.rule=Host(`whoami.yourdomain.com`)"
       - "traefik.http.routers.whoami.entrypoints=websecure"
       - "traefik.http.routers.whoami.tls.certresolver=letsencrypt"
       - "traefik.http.services.whoami.loadbalancer.server.port=80"
 
-networks:
-  proxy:
-    external: true
+networks: proxy: external: true
 ```
 
-먼저 네트워크를 생성합니다:
-
-```bash
+먼저 네트워크를 생성합니다: ```bash
 docker network create proxy
 docker compose up -d
 ```
 
-**`data/traefik.yml`** — 정적 구성:
+**`data/traefik.yml`** — 정적 구성: ```yaml
+global: sendAnonymousUsage: false
 
-```yaml
-global:
-  sendAnonymousUsage: false
-
-api:
-  dashboard: true
+api: dashboard: true
   insecure: false
 
-entryPoints:
-  web:
-    address: ":80"
-    http:
-      redirections:
-        entryPoint:
-          to: websecure
+entryPoints: web: address: ":80"
+    http: redirections: entryPoint: to: websecure
           scheme: https
           permanent: true
-  websecure:
-    address: ":443"
-  traefik:
-    address: ":8080"
+  websecure: address: ":443"
+  traefik: address: ":8080"
 
-providers:
-  docker:
-    exposedByDefault: false
+providers: docker: exposedByDefault: false
     network: proxy
     watch: true
-  file:
-    directory: /configs
+  file: directory: /configs
     watch: true
 
-certificatesResolvers:
-  letsencrypt:
-    acme:
-      email: admin@yourdomain.com
+certificatesResolvers: letsencrypt: acme: email: admin@yourdomain.com
       storage: /acme.json
       tlsChallenge: {}
 
-log:
-  level: INFO
+log: level: INFO
   format: json
   filePath: "/logs/traefik.log"
 
-accessLog:
-  format: json
+accessLog: format: json
   filePath: "/logs/access.log"
 
-metrics:
-  prometheus:
-    addEntryPointsLabels: true
+metrics: prometheus: addEntryPointsLabels: true
     addRoutersLabels: true
     addServicesLabels: true
 ```
@@ -223,9 +176,7 @@ metrics:
 
 ### 바이너리 설치 (Linux)
 
-Docker가 아닌 환경의 경우, Traefik은 단일 정적 바이너리를 배포합니다:
-
-```bash
+Docker가 아닌 환경의 경우, Traefik은 단일 정적 바이너리를 배포합니다: ```bash
 wget https://github.com/traefik/traefik/releases/download/v3.2.0/traefik_v3.2.0_linux_amd64.tar.gz
 tar -xzf traefik_v3.2.0_linux_amd64.tar.gz
 sudo mv traefik /usr/local/bin/
@@ -234,9 +185,7 @@ sudo chmod +x /usr/local/bin/traefik
 
 ### Kubernetes Helm 설치
 
-Traefik Kubernetes 배포의 경우, Helm은 클러스터에 인그레스 컨트롤러를 설치하는 표준 방법입니다:
-
-```bash
+Traefik Kubernetes 배포의 경우, Helm은 클러스터에 인그레스 컨트롤러를 설치하는 표준 방법입니다: ```bash
 helm repo add traefik https://traefik.github.io/charts
 helm repo update
 kubectl create namespace traefik
@@ -249,9 +198,7 @@ helm install traefik traefik/traefik \
   --set certResolvers.letsencrypt.acme.tlsChallenge=true
 ```
 
-배포 확인:
-
-```bash
+배포 확인: ```bash
 kubectl get pods -n traefik
 kubectl port-forward -n traefik svc/traefik 9000:9000
 # http://localhost:9000/dashboard/ 열기
@@ -261,16 +208,10 @@ kubectl port-forward -n traefik svc/traefik 9000:9000
 
 ### Docker 프로바이더 (자동 검색)
 
-Docker 프로바이더는 Traefik의 킬러 기능입니다. Traefik 라벨이 있는 모든 컨테이너는 자동으로 등록됩니다:
-
-```yaml
-services:
-  api:
-    image: myapp/api:latest
-    networks:
-      - proxy
-    labels:
-      - "traefik.enable=true"
+Docker 프로바이더는 Traefik의 킬러 기능입니다. Traefik 라벨이 있는 모든 컨테이너는 자동으로 등록됩니다: ```yaml
+services: api: image: myapp/api:latest
+    networks: - proxy
+    labels: - "traefik.enable=true"
       - "traefik.http.routers.api.rule=Host(`api.example.com`) && PathPrefix(`/v2`)"
       - "traefik.http.routers.api.entrypoints=websecure"
       - "traefik.http.routers.api.tls.certresolver=letsencrypt"
@@ -284,89 +225,61 @@ services:
       - "traefik.http.services.api.loadbalancer.healthcheck.interval=10s"
 ```
 
-주요 Docker 라벨 설명:
-- `traefik.enable=true` — `exposedByDefault: false`가 설정되었으므로 필수
+주요 Docker 라벨 설명: - `traefik.enable=true` — `exposedByDefault: false`가 설정되었으므로 필수
 - `traefik.http.routers.<name>.rule` — 라우팅 규칙 (Host, PathPrefix, Headers 등)
 - `traefik.http.middlewares.*` — 적용된 변환
 - `traefik.http.services.*.loadbalancer.server.port` — 포워딩할 컨테이너 포트
 
 ### Kubernetes IngressRoute (CRD)
 
-Traefik의 네이티브 `IngressRoute` CRD는 표준 Kubernetes `Ingress`보다 더 많은 제어를 제공합니다:
-
-```yaml
+Traefik의 네이티브 `IngressRoute` CRD는 표준 Kubernetes `Ingress`보다 더 많은 제어를 제공합니다: ```yaml
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
-metadata:
-  name: api-route
+metadata: name: api-route
   namespace: production
-spec:
-  entryPoints:
-    - websecure
-  routes:
-    - match: Host(`api.example.com`) && PathPrefix(`/v2`)
+spec: entryPoints: - websecure
+  routes: - match: Host(`api.example.com`) && PathPrefix(`/v2`)
       kind: Rule
-      middlewares:
-        - name: rate-limit
+      middlewares: - name: rate-limit
         - name: strip-prefix
-      services:
-        - name: api-service
+      services: - name: api-service
           port: 8080
-          healthCheck:
-            path: /health
+          healthCheck: path: /health
             intervalSeconds: 10
     - match: Host(`api.example.com`) && PathPrefix(`/v1`)
       kind: Rule
-      services:
-        - name: api-v1-service
+      services: - name: api-v1-service
           port: 8080
-  tls:
-    certResolver: letsencrypt
+  tls: certResolver: letsencrypt
 ```
 
-미들웨어는 별도로 생성합니다:
-
-```yaml
+미들웨어는 별도로 생성합니다: ```yaml
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
-metadata:
-  name: rate-limit
+metadata: name: rate-limit
   namespace: production
-spec:
-  rateLimit:
-    average: 100
+spec: rateLimit: average: 100
     burst: 50
 ---
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
-metadata:
-  name: strip-prefix
+metadata: name: strip-prefix
   namespace: production
-spec:
-  stripPrefix:
-    prefixes:
-      - /v2
+spec: stripPrefix: prefixes: - /v2
 ```
 
 ### Consul 서비스 검색
 
-HashiCorp Consul 환경의 경우, Traefik은 카탈로그에서 서비스를 검색할 수 있습니다:
-
-```yaml
+HashiCorp Consul 환경의 경우, Traefik은 카탈로그에서 서비스를 검색할 수 있습니다: ```yaml
 # traefik.yml 일부
-providers:
-  consulCatalog:
-    prefix: "traefik"
+providers: consulCatalog: prefix: "traefik"
     exposedByDefault: false
     refreshInterval: "5s"
-    endpoint:
-      address: "127.0.0.1:8500"
+    endpoint: address: "127.0.0.1:8500"
       token: "your-consul-token"
 ```
 
-Consul에 Traefik 태그가 있는 서비스를 등록합니다:
-
-```bash
+Consul에 Traefik 태그가 있는 서비스를 등록합니다: ```bash
 curl -X PUT http://localhost:8500/v1/agent/service/register \
   -d '{
     "Name": "payments-api",
@@ -381,42 +294,27 @@ curl -X PUT http://localhost:8500/v1/agent/service/register \
 
 ### Docker Compose 통합 패턴
 
-다중 프로젝트 설정의 경우, 전용 `docker-compose.yml`에 Traefik을 유지하고 외부 `proxy` 네트워크를 통해 애플리케이션 스택을 연결합니다:
-
-```yaml
+다중 프로젝트 설정의 경우, 전용 `docker-compose.yml`에 Traefik을 유지하고 외부 `proxy` 네트워크를 통해 애플리케이션 스택을 연결합니다: ```yaml
 # ~/projects/api/docker-compose.yml
-services:
-  app:
-    image: myapi:latest
-    networks:
-      - proxy
+services: app: image: myapi:latest
+    networks: - proxy
       - internal
-    labels:
-      - "traefik.enable=true"
+    labels: - "traefik.enable=true"
       - "traefik.http.routers.api.rule=Host(`api.example.com`)"
       - "traefik.http.routers.api.entrypoints=websecure"
       - "traefik.http.routers.api.tls.certresolver=letsencrypt"
       - "traefik.http.services.api.loadbalancer.server.port=3000"
-    environment:
-      - DATABASE_URL=postgres://db:5432/api
+    environment: - DATABASE_URL=postgres://db:5432/api
 
-  db:
-    image: postgres:16
-    networks:
-      - internal
-    environment:
-      - POSTGRES_DB=api
+  db: image: postgres:16
+    networks: - internal
+    environment: - POSTGRES_DB=api
 
-networks:
-  proxy:
-    external: true
-  internal:
-    driver: bridge
+networks: proxy: external: true
+  internal: driver: bridge
 ```
 
-Traefik을 건드리지 않고 배포합니다:
-
-```bash
+Traefik을 건드리지 않고 배포합니다: ```bash
 cd ~/projects/api && docker compose up -d
 ```
 
@@ -424,9 +322,7 @@ cd ~/projects/api && docker compose up -d
 
 ### 성능 벤치마크
 
-16GB RAM이 장착된 4 vCPU AMD 서버에서의 커뮤니티 벤치마크는 Traefik이 기존 프록시와 견줄 만한 성능을 보여줍니다:
-
-| 메트릭 | Nginx | HAProxy | Traefik v3.2 | Traefik v3.2 + FastProxy | Caddy |
+16GB RAM이 장착된 4 vCPU AMD 서버에서의 커뮤니티 벤치마크는 Traefik이 기존 프록시와 견줄 만한 성능을 보여줍니다: | 메트릭 | Nginx | HAProxy | Traefik v3.2 | Traefik v3.2 + FastProxy | Caddy |
 |--------|-------|---------|-------------|-------------------------|-------|
 | 초당 요청 | 25,367 | 24,263 | 18,291 | **20,795** | 13,573 |
 | 평균 지연 시간 (ms) | 3.93 | 4.12 | 5.60 | **4.86** | 7.45 |
@@ -435,11 +331,8 @@ cd ~/projects/api && docker compose up -d
 
 *출처: wrk2를 사용한 커뮤니티 벤치마크, fibonacci 엔드포인트 부하. 워크로드에 따라 결과가 다릅니다.*
 
-Traefik의 실험적 **FastProxy** 엔진(v3.2에서 도입)은 표준 엔진에 비해 약 50%의 처리량 향상을 제공합니다. 다음으로 활성화합니다:
-
-```yaml
-experimental:
-  fastProxy: {}
+Traefik의 실험적 **FastProxy** 엔진(v3.2에서 도입)은 표준 엔진에 비해 약 50%의 처리량 향상을 제공합니다. 다음으로 활성화합니다: ```yaml
+experimental: fastProxy: {}
 ```
 
 제한 사항: FastProxy는 HTTP/2 백엔드를 지원하지 않으며, 추적/OTEL 시맨틱 규칙 메트릭은 아직 지원되지 않습니다.
@@ -450,9 +343,7 @@ experimental:
 
 2. **홈랩 및 셀프 호스팅**: Docker Compose + Traefik은 셀프 호스팅 커뮤니티의 주요 스택입니다. 자동 Let's Encrypt 인증서와 간단한 라벨 기반 구성의 조합은 새 서비스를 추가하는 것을 복사-붙여넣기 작업으로 만듭니다.
 
-3. **멀티 테넌트 SaaS 플랫폼**: `HostRegexp` 규칙을 사용하여 SaaS 플랫폼이 `{tenant}.app.example.com`을 올바른 네임스페이스 또는 서비스로 자동 라우팅합니다:
-
-```yaml
+3. **멀티 테넌트 SaaS 플랫폼**: `HostRegexp` 규칙을 사용하여 SaaS 플랫폼이 `{tenant}.app.example.com`을 올바른 네임스페이스 또는 서비스로 자동 라우팅합니다: ```yaml
 - "traefik.http.routers.app.rule=HostRegexp(`{tenant:[a-z0-9-]+}.app.example.com`)"
 - "traefik.http.routers.app.service=app-service"
 ```
@@ -461,65 +352,43 @@ experimental:
 
 ### 보안 체크리스트
 
-1. **기본값으로 노출 비활성화** — 명시적으로 등록된 컨테이너만:
-```yaml
-providers:
-  docker:
-    exposedByDefault: false
+1. **기본값으로 노출 비활성화** — 명시적으로 등록된 컨테이너만: ```yaml
+providers: docker: exposedByDefault: false
 ```
 
-2. **새로운 권한 없이 읽기 전용으로 실행**:
-```yaml
-security_opt:
-  - no-new-privileges:true
+2. **새로운 권한 없이 읽기 전용으로 실행**: ```yaml
+security_opt: - no-new-privileges:true
 read_only: true
 ```
 
-3. **Docker 소켓 보호** — `/var/run/docker.sock`을 직접 마운트하는 대신 소켓 프록시 사용:
-```yaml
-services:
-  socket-proxy:
-    image: tecnativa/docker-socket-proxy
-    environment:
-      - CONTAINERS=1
+3. **Docker 소켓 보호** — `/var/run/docker.sock`을 직접 마운트하는 대신 소켓 프록시 사용: ```yaml
+services: socket-proxy: image: tecnativa/docker-socket-proxy
+    environment: - CONTAINERS=1
       - SERVICES=1
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+    volumes: - /var/run/docker.sock:/var/run/docker.sock:ro
 ```
 
-4. **전역 보안 헤더 추가**:
-```yaml
+4. **전역 보안 헤더 추가**: ```yaml
 # configs/security.yml
-http:
-  middlewares:
-    security-headers:
-      headers:
-        frameDeny: true
+http: middlewares: security-headers: headers: frameDeny: true
         sslRedirect: true
         browserXssFilter: true
         contentTypeNosniff: true
         forceSTSHeader: true
         stsIncludeSubdomains: true
         stsSeconds: 31536000
-        customResponseHeaders:
-          X-Robots-Tag: "none,noarchive,nosnippet,notranslate,noimageindex"
+        customResponseHeaders: X-Robots-Tag: "none,noarchive,nosnippet,notranslate,noimageindex"
           Permissions-Policy: "camera=(), microphone=(), geolocation=()"
 ```
 
 ### 속도 제한 및 서킷 브레이커
 
 ```yaml
-http:
-  middlewares:
-    api-ratelimit:
-      rateLimit:
-        average: 100
+http: middlewares: api-ratelimit: rateLimit: average: 100
         burst: 50
         period: 1m
     
-    api-circuitbreaker:
-      circuitBreaker:
-        expression: "LatencyAtQuantileMS(50.0) > 100"
+    api-circuitbreaker: circuitBreaker: expression: "LatencyAtQuantileMS(50.0) > 100"
         checkPeriod: "10s"
         fallbackDuration: "10s"
         recoveryDuration: "10s"
@@ -527,16 +396,11 @@ http:
 
 ### 가시성: Prometheus + Grafana
 
-`traefik.yml`에서 Prometheus 메트릭 활성화:
-
-```yaml
-metrics:
-  prometheus:
-    addEntryPointsLabels: true
+`traefik.yml`에서 Prometheus 메트릭 활성화: ```yaml
+metrics: prometheus: addEntryPointsLabels: true
     addRoutersLabels: true
     addServicesLabels: true
-    buckets:
-      - 0.005
+    buckets: - 0.005
       - 0.01
       - 0.025
       - 0.05
@@ -549,19 +413,13 @@ metrics:
       - 10.0
 ```
 
-Prometheus 스크랩 구성:
-
-```yaml
-scrape_configs:
-  - job_name: traefik
+Prometheus 스크랩 구성: ```yaml
+scrape_configs: - job_name: traefik
     scrape_interval: 15s
-    static_configs:
-      - targets: ['traefik:8080']
+    static_configs: - targets: ['traefik:8080']
 ```
 
-Grafana에서 공식 Traefik 대시보드를 가져옵니다(ID: `17346`). 모니터링할 핵심 메트릭:
-
-```promql
+Grafana에서 공식 Traefik 대시보드를 가져옵니다(ID: `17346`). 모니터링할 핵심 메트릭: ```promql
 # 라우터별 요청율
 rate(traefik_router_requests_total[5m])
 
@@ -580,23 +438,14 @@ traefik_tls_certs_not_after - time() < 7 * 86400
 
 ### 단일 노드를 넘어 확장
 
-고가용성을 위해 Layer 4 로드 밸런서 뒤에서 여러 Traefik 복제본을 실행합니다:
-
-```yaml
+고가용성을 위해 Layer 4 로드 밸런서 뒤에서 여러 Traefik 복제본을 실행합니다: ```yaml
 # docker-compose.yml (Swarm 모드)
-services:
-  traefik:
-    image: traefik:v3.2
-    deploy:
-      replicas: 3
-      placement:
-        constraints:
-          - node.role == manager
-      update_config:
-        parallelism: 1
+services: traefik: image: traefik:v3.2
+    deploy: replicas: 3
+      placement: constraints: - node.role == manager
+      update_config: parallelism: 1
         delay: 10s
-    ports:
-      - target: 80
+    ports: - target: 80
         published: 80
         mode: host
       - target: 443
@@ -621,9 +470,7 @@ services:
 
 ## 한계 및 솔직한 평가
 
-Traefik은 모든 작업에 적합한 도구가 아닙니다. 다음은 Traefik이 잘하지 못하는 것들입니다:
-
-1. **정적 파일 제공**: Traefik에는 내장 정적 파일 서버가 없습니다. 무거운 정적 자산이 있는 웹사이트를 제공하려면 Nginx나 Caddy가 더 나은 선택입니다.
+Traefik은 모든 작업에 적합한 도구가 아닙니다. 다음은 Traefik이 잘하지 못하는 것들입니다: 1. **정적 파일 제공**: Traefik에는 내장 정적 파일 서버가 없습니다. 무거운 정적 자산이 있는 웹사이트를 제공하려면 Nginx나 Caddy가 더 나은 선택입니다.
 
 2. **초고속 처리량 프록시**: 순수한 고트래픽 사이트의 엣지에서 원시 리버스 프록시 처리량이 유일한 요구사항이라면, HAProxy와 Nginx는 여전히 Traefik보다 순수 HTTP 요청량에서 20-40% 더 뛰어납니다.
 
@@ -683,9 +530,7 @@ Traefik은 컨테이너화된 환경에서 동적 서비스 검색이라는 실�
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -703,7 +548,6 @@ Traefik은 컨테이너화된 환경에서 동적 서비스 검색이라는 실�
 - [Caddy vs Traefik vs HAProxy vs Nginx — BigMike.help](https://bigmike.help/en/posts/102/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

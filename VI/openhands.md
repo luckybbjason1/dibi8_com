@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/openhands" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/openhands" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/openhands" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/openhands" />
 title: 'OpenHands: 74K+ Stars — Kỹ sư phần mềm AI viết và chạy c...
 description: 'OpenHands là nền tảng phát triển AI đóng vai trò agent kỹ sư phần mềm. Tương thích với VS Code, Docker, GitHub, GitLab, Claude và OpenAI. Bao gồm thiết lập Docker, cấu hình model, chế độ headless CI/CD và bảo mật production.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,12 +20,9 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [openhands, 'agent lập trình ai', docker, 'swe-bench', claude, openai, 'tự host', 'tự động hóa']
-aliases:
-- /vi/posts/openhands/
+aliases: - /vi/posts/openhands/
 - /vi/resources/llm-frameworks/openhands-architecture-ai-programmer-agent/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/openhands/ -->
 
 {{</* resource-info */>}}
 
@@ -44,8 +36,7 @@ Hướng dẫn này đi qua cài đặt OpenHands locally, kết nối với LLM
 
 OpenHands (trước đây là OpenDevin) là agent kỹ sư phần mềm AI open source chạy bên trong container Docker. Nó sử dụng kiến trúc controller-sandbox: controller dựa trên Python quản lý vòng lặp agent (quan sát-suy nghĩ-hành động), trong khi container sandbox cô lập xử lý việc thực thi code, thao tác file, và chạy test.
 
-Các khả năng chính:
-- **Thực thi task tự chủ**: Đưa ra một GitHub issue hoặc task ngôn ngữ tự nhiên, nó sẽ giải quyết end-to-end
+Các khả năng chính: - **Thực thi task tự chủ**: Đưa ra một GitHub issue hoặc task ngôn ngữ tự nhiên, nó sẽ giải quyết end-to-end
 - **Thực thi code trong sandbox**: Mọi code chạy bên trong container Docker, cô lập với host
 - **Phân công multi-agent**: Các task phức tạp được chia cho các sub-agent chuyên biệt
 - **Hỗ trợ BYO model**: Hoạt động với Claude, GPT, Gemini, model local qua Ollama hoặc vLLM, và 100+ provider qua LiteLLM
@@ -54,17 +45,13 @@ Các khả năng chính:
 
 ## OpenHands hoạt động như thế nào
 
-Kiến trúc có hai thành phần chính:
-
-**Controller Node**: Một server Python quản lý vòng lặp agent, xử lý abstraction LLM qua LiteLLM, và điều phối vòng đồi sandbox. Nó nhận task, phân rã thành các bước, gọi LLM để đưa ra quyết định, và theo dõi trạng thái qua các vòng lặp.
+Kiến trúc có hai thành phần chính: **Controller Node**: Một server Python quản lý vòng lặp agent, xử lý abstraction LLM qua LiteLLM, và điều phối vòng đồi sandbox. Nó nhận task, phân rã thành các bước, gọi LLM để đưa ra quyết định, và theo dõi trạng thái qua các vòng lặp.
 
 **Sandbox Container**: Container Docker được tạo ra cho mỗi task, nơi mọi thực thi code diễn ra. Agent đọc file, chạy lệnh shell, thực thi test, và viết patch bên trong môi trường cô lập này. Khi task hoàn thành, sandbox bị hủy.
 
 ![Kiến trúc OpenHands](https://raw.githubusercontent.com/All-Hands-AI/OpenHands/main/docs/static/img/system_architecture_overview.png)
 
-Vòng lặp agent tuân theo mẫu sau:
-
-```
+Vòng lặp agent tuân theo mẫu sau: ```
 1. OBSERVE: Đọc mô tả task, trạng thái repository, kết quả hành động trước
 2. THINK: LLM tạo kế hoạch (file nào cần sửa, lệnh nào cần chạy)
 3. ACT: Thực thi hành động đã lên kế hoạch (read_file, write_file, run_cmd, v.v.)
@@ -78,18 +65,14 @@ Vòng lặp này thường tiêu tốn 30-50 lần gọi LLM mỗi task. Memory 
 
 ### Yêu cầu trước khi cài
 
-Trước khi cài đặt OpenHands, hãy đảm bảo bạn có:
-
-- **Docker Desktop** đã cài và đang chạy (cần truy cập Docker socket)
+Trước khi cài đặt OpenHands, hãy đảm bảo bạn có: - **Docker Desktop** đã cài và đang chạy (cần truy cập Docker socket)
 - **4GB+ RAM** (khuyến nghị 8GB cho session đồng thờii)
 - **Python 3.12+** (khi cài CLI qua uv)
 - **LLM API key** (Anthropic, OpenAI, Google, hoặc endpoint model local)
 
 ### Cách 1: Cài CLI qua uv (Khuyến nghị)
 
-Cách nhanh nhất để chạy OpenHands là qua trình cài đặt CLI dựa trên uv:
-
-```bash
+Cách nhanh nhất để chạy OpenHands là qua trình cài đặt CLI dựa trên uv: ```bash
 # Cài uv nếu chưa có
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
@@ -104,17 +87,13 @@ Server khởi động tại `http://localhost:3000`. Mở trình duyệt, chọn
 
 ![OpenHands Web UI](https://raw.githubusercontent.com/All-Hands-AI/OpenHands/main/docs/static/img/screenshot.png)
 
-Để nâng cấp sau này:
-
-```bash
+Để nâng cấp sau này: ```bash
 uv tool upgrade openhands --python 3.12
 ```
 
 ### Cách 2: Chạy Docker trực tiếp
 
-Nếu bạn muốn dùng Docker mà không cài Python tools:
-
-```bash
+Nếu bạn muốn dùng Docker mà không cài Python tools: ```bash
 # Pull image mới nhất
 docker pull ghcr.io/openhands/openhands:latest
 
@@ -126,15 +105,11 @@ docker run -it --rm \
   ghcr.io/openhands/openhands:latest
 ```
 
-Flag `--mount-cwd` mount thư mục làm việc hiện tại vào sandbox:
-
-```bash
+Flag `--mount-cwd` mount thư mục làm việc hiện tại vào sandbox: ```bash
 openhands serve --mount-cwd
 ```
 
-Cho model local với GPU acceleration:
-
-```bash
+Cho model local với GPU acceleration: ```bash
 openhands serve --gpu
 ```
 
@@ -149,19 +124,14 @@ openhands serve
 
 ### Lưu ý cài đặt trên Windows
 
-Trên Windows, chạy mọi lệnh bên trong WSL2 (Ubuntu):
-
-```powershell
+Trên Windows, chạy mọi lệnh bên trong WSL2 (Ubuntu): ```powershell
 # Trong PowerShell với quyền Administrator
 wsl --install -d Ubuntu
 wsl -d Ubuntu
 ```
 
-Sau đó bên trong WSL:
-
-```bash
-# Cài Docker Desktop for Windows trước, sau đó:
-uv tool install openhands --python 3.12
+Sau đó bên trong WSL: ```bash
+# Cài Docker Desktop for Windows trước, sau đó: uv tool install openhands --python 3.12
 openhands serve
 ```
 
@@ -169,16 +139,12 @@ openhands serve
 
 ### Thiết lập LLM Provider
 
-Sau khi khởi chạy OpenHands, cấu hình model trong panel Settings (biểu tượng bánh răng):
-
-1. **Chọn Provider**: Anthropic (Claude), OpenAI (GPT), Google (Gemini), hoặc Local
+Sau khi khởi chạy OpenHands, cấu hình model trong panel Settings (biểu tượng bánh răng): 1. **Chọn Provider**: Anthropic (Claude), OpenAI (GPT), Google (Gemini), hoặc Local
 2. **Chọn Model**: `anthropic/claude-sonnet-4-20250514` được khuyến nghị cho kết quả tốt nhất
 3. **Nhập API Key**: Dán API key của provider
 4. **Lưu thay đổi**
 
-Cho cấu hình nâng cao, bật Advanced settings để đặt model tùy chỉnh với định dạng tiền tố LiteLLM:
-
-```
+Cho cấu hình nâng cao, bật Advanced settings để đặt model tùy chỉnh với định dạng tiền tố LiteLLM: ```
 anthropic/claude-sonnet-4-5-20250929
 openai/gpt-5-2025-08-07
 gemini/gemini-3-pro-preview
@@ -187,29 +153,22 @@ deepseek/deepseek-chat
 
 ### Dùng Model Local (Ollama)
 
-Cho các team cần triển khai air-gapped:
-
-```bash
+Cho các team cần triển khai air-gapped: ```bash
 # Khởi động Ollama với model coding mạnh
 ollama run qwen3-coder:32b
 
-# Trong OpenHands settings, đặt:
-# Custom Model: openai/qwen3-coder:32b
+# Trong OpenHands settings, đặt: # Custom Model: openai/qwen3-coder:32b
 # Base URL: http://host.docker.internal:11434/v1
 # API Key: ollama (giá trị nào cũng được)
 ```
 
 ### Chạy task đầu tiên
 
-Mở UI tại `localhost:3000`:
-
-1. Nhập task vào hộp chat: "Thêm docstring cho hàm main trong app.py"
+Mở UI tại `localhost:3000`: 1. Nhập task vào hộp chat: "Thêm docstring cho hàm main trong app.py"
 2. Agent sẽ tạo sandbox, đọc file, viết docstring, và xác nhận thay đổi
 3. Xem xét diff trước khi chấp nhận
 
-Để giải quyết GitHub issue:
-
-```
+Để giải quyết GitHub issue: ```
 Sửa lỗi xác thực được mô tả trong issue #42.
 Clone repo, tái tạo lỗi, triển khai bản sửa, và chạy test suite.
 ```
@@ -218,9 +177,7 @@ Clone repo, tái tạo lỗi, triển khai bản sửa, và chạy test suite.
 
 ### Tích hợp VS Code qua Agent Control Plane (ACP)
 
-OpenHands v1.5+ bao gồm Agent Control Plane cho tích hợp IDE:
-
-```bash
+OpenHands v1.5+ bao gồm Agent Control Plane cho tích hợp IDE: ```bash
 # Cài extension OpenHands VS Code
 # Tìm "OpenHands" trong VS Code Extensions marketplace
 
@@ -232,9 +189,7 @@ Giao thức ACP cho phép VS Code gửi task trực tiếp đến OpenHands và 
 
 ### Tích hợp GitHub
 
-Kết nối OpenHands với repository GitHub để tự động giải quyết issue:
-
-```bash
+Kết nối OpenHands với repository GitHub để tự động giải quyết issue: ```bash
 # Đặt GitHub PAT (Personal Access Token) chi tiết
 export GITHUB_TOKEN=ghp_your_token_here
 
@@ -246,8 +201,7 @@ docker run -it --rm \
   ghcr.io/openhands/openhands:latest
 ```
 
-Trong UI, dán URL GitHub issue và OpenHands sẽ:
-1. Clone repository
+Trong UI, dán URL GitHub issue và OpenHands sẽ: 1. Clone repository
 2. Đọc mô tả issue
 3. Tái tạo bug
 4. Triển khai bản sửa
@@ -256,9 +210,7 @@ Trong UI, dán URL GitHub issue và OpenHands sẽ:
 
 ### Tích hợp GitLab
 
-Hỗ trợ GitLab (thêm trong v1.5) hoạt động tương tự:
-
-```bash
+Hỗ trợ GitLab (thêm trong v1.5) hoạt động tương tự: ```bash
 export GITLAB_TOKEN=glpat-your-token
 docker run -it --rm \
   -p 3000:3000 \
@@ -269,40 +221,28 @@ docker run -it --rm \
 
 ### Docker Compose cho Production
 
-Cho các triển khai persistent, sử dụng Docker Compose:
-
-```yaml
+Cho các triển khai persistent, sử dụng Docker Compose: ```yaml
 version: "3.8"
-services:
-  openhands:
-    image: ghcr.io/openhands/openhands:latest
-    ports:
-      - "3000:3000"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+services: openhands: image: ghcr.io/openhands/openhands:latest
+    ports: - "3000:3000"
+    volumes: - /var/run/docker.sock:/var/run/docker.sock
       - ./workspace:/workspace
-    environment:
-      - SANDBOX_RUNTIME_CONTAINER_IMAGE=ghcr.io/openhands/openhands:latest
+    environment: - SANDBOX_RUNTIME_CONTAINER_IMAGE=ghcr.io/openhands/openhands:latest
       - LLM_API_KEY=${LLM_API_KEY}
       - LLM_MODEL=anthropic/claude-sonnet-4-20250514
       - SANDBOX_NETWORK_DISABLED=true
       - LOG_LEVEL=info
     restart: unless-stopped
-    security_opt:
-      - no-new-privileges:true
+    security_opt: - no-new-privileges:true
 ```
 
-Triển khai:
-
-```bash
+Triển khai: ```bash
 docker-compose up -d
 ```
 
 ### Chế độ Headless cho Pipeline CI/CD
 
-Chế độ headless chạy OpenHands không có UI tương tác, lý tưởng cho tự động hóa:
-
-```bash
+Chế độ headless chạy OpenHands không có UI tương tác, lý tưởng cho tự động hóa: ```bash
 # Chạy task headless
 openhands --headless -t "Viết unit test cho auth module"
 
@@ -313,19 +253,12 @@ openhands --headless -f task.txt
 openhands --headless --json -t "Sửa API endpoint trong routes.py" > output.jsonl
 ```
 
-Ví dụ workflow GitHub Actions:
-
-```yaml
+Ví dụ workflow GitHub Actions: ```yaml
 name: OpenHands Auto-Fix
-on:
-  issues:
-    types: [labeled]
-jobs:
-  fix:
-    if: github.event.label.name == 'auto-fix'
+on: issues: types: [labeled]
+jobs: fix: if: github.event.label.name == 'auto-fix'
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+    steps: - uses: actions/checkout@v4
       - name: Chạy OpenHands
         run: |
           docker run --rm \
@@ -339,9 +272,7 @@ jobs:
 
 ### Tích hợp MCP Server
 
-OpenHands hỗ trợ Model Context Protocol (MCP) servers cho khả năng mở rộng:
-
-```json
+OpenHands hỗ trợ Model Context Protocol (MCP) servers cho khả năng mở rộng: ```json
 {
   "mcpServers": {
     "fetch": {
@@ -374,9 +305,7 @@ SWE-bench Verified thử nghiệm agent trên 500 issue GitHub thực. Điểm c
 
 ### Chi phí mỗi lần sửa thành công
 
-Cho một task SWE-bench điển hình tiêu thụ ~55K token:
-
-| Model | Chi phí mỗi lần thử | Tỷ lệ thành công | Chi phí mỗi lần thành công |
+Cho một task SWE-bench điển hình tiêu thụ ~55K token: | Model | Chi phí mỗi lần thử | Tỷ lệ thành công | Chi phí mỗi lần thành công |
 |---|---|---|---|
 | Claude Opus 4.7 | ~$1.50 | 87.6% | ~$1.71 |
 | GPT-5.3-Codex | ~$0.90 | 85.0% | ~$1.06 |
@@ -385,9 +314,7 @@ Cho một task SWE-bench điển hình tiêu thụ ~55K token:
 
 ### Chỉ số triển khai thực tế
 
-Dựa trên các triển khai production được báo cáo bởi cộng đồng:
-
-- **Giải quyết issue**: 30-40% bug được gắn nhãn được giải quyết tự động ngay lần thử đầu
+Dựa trên các triển khai production được báo cáo bởi cộng đồng: - **Giải quyết issue**: 30-40% bug được gắn nhãn được giải quyết tự động ngay lần thử đầu
 - **Hỗ trợ code review**: Giảm 60% thờii gian review cho PR dưới 200 dòng
 - **Tạo test**: Đạt 80%+ coverage trên module mới với prompt "viết test cho X"
 - **Tạo tài liệu**: Độ chính xác 90%+ cho việc tạo docstring và README
@@ -402,22 +329,17 @@ AMD, Apple, Google, và Netflix đều đã triển khai OpenHands nội bộ ch
 
 ### Checklist bảo mật
 
-Chạy agent tự động thực thi code đòi hỏi thiết lập bảo mật cẩn thận:
-
-**1. Cô lập mạng sandbox**
+Chạy agent tự động thực thi code đòi hỏi thiết lập bảo mật cẩn thận: **1. Cô lập mạng sandbox**
 
 ```yaml
-environment:
-  - SANDBOX_NETWORK_DISABLED=true
+environment: - SANDBOX_NETWORK_DISABLED=true
 ```
 
 Điều này ngăn container sandbox thực hiện request outbound. Chỉ bật chọn lọc cho các task cần cài đặt gói.
 
 **2. Bảo mật Docker Socket**
 
-Mount Docker socket tương đương với quyền root. Giảm thiểu bằng:
-
-```bash
+Mount Docker socket tương đương với quyền root. Giảm thiểu bằng: ```bash
 docker run --security-opt no-new-privileges \
   --cap-drop ALL \
   --cap-add SYS_ADMIN \
@@ -427,46 +349,35 @@ docker run --security-opt no-new-privileges \
 
 **3. GitHub PAT chi tiết**
 
-Không bao giờ dùng token phạm vi toàn tổ chức. Giới hạn PAT cho từng repository cụ thể:
-
-```bash
+Không bao giờ dùng token phạm vi toàn tổ chức. Giới hạn PAT cho từng repository cụ thể: ```bash
 # Tạo fine-grained PAT tại GitHub > Settings > Developer settings
 # Chọn chỉ: Contents (read/write), Issues (read), Pull Requests (write)
 ```
 
 **4. Quản lý secret**
 
-Mount secret dưới dạng read-only volume thay vì biến môi trường:
-
-```yaml
-volumes:
-  - /var/run/docker.sock:/var/run/docker.sock
+Mount secret dưới dạng read-only volume thay vì biến môi trường: ```yaml
+volumes: - /var/run/docker.sock:/var/run/docker.sock
   - /opt/secrets:/secrets:ro
-environment:
-  - LLM_API_KEY_FILE=/secrets/anthropic_key
+environment: - LLM_API_KEY_FILE=/secrets/anthropic_key
 ```
 
 ### Phân công Multi-Agent
 
-Cho các tính năng lớn, bật chế độ multi-agent:
-
-```bash
+Cho các tính năng lớn, bật chế độ multi-agent: ```bash
 # Trong config.toml hoặc qua biến môi trường
 [agent]
 enable_multi_agent = true
 max_subagents = 3
 ```
 
-Agent cha phân rã "Xây dựng REST API với xác thực" thành:
-- Sub-agent 1: Triển khai endpoint API
+Agent cha phân rã "Xây dựng REST API với xác thực" thành: - Sub-agent 1: Triển khai endpoint API
 - Sub-agent 2: Viết middleware xác thực
 - Sub-agent 3: Tạo model cơ sở dữ liệu
 
 ### Tinh chỉnh Memory Condenser
 
-Cho các task chạy dài, điều chỉnh memory condenser:
-
-```toml
+Cho các task chạy dài, điều chỉnh memory condenser: ```toml
 [llm]
 enable_condenser = true
 condenser_max_history = 240  # Tóm tắt sau 240 sự kiện (mặc định: 240)
@@ -474,15 +385,11 @@ condenser_max_history = 240  # Tóm tắt sau 240 sự kiện (mặc định: 24
 
 ### Giám sát và Logging
 
-Bật structured JSON logging cho khả năng quan sát:
-
-```bash
+Bật structured JSON logging cho khả năng quan sát: ```bash
 openhands --headless --json -t "Task của bạn" 2>&1 | tee openhands.log
 ```
 
-Parse log để lấy metrics:
-
-```bash
+Parse log để lấy metrics: ```bash
 # Đếm số lần gọi LLM
 jq 'select(.type == "llm")' openhands.log | wc -l
 
@@ -495,9 +402,7 @@ jq 'select(.type == "finish") | .timestamp' openhands.log
 
 ### Mở rộng với Kubernetes
 
-Cho triển khai team, cộng đồng duy trì Helm chart:
-
-```bash
+Cho triển khai team, cộng đồng duy trì Helm chart: ```bash
 # Thêm Helm repository OpenHands
 helm repo add openhands https://charts.openhands.dev
 helm repo update
@@ -537,9 +442,7 @@ helm install openhands openhands/openhands \
 
 ## Hạn chế / Đánh giá trung thực
 
-OpenHands không phải công cụ phù hợp cho mọi tình huống. Đây là những gì nó KHÔNG giỏi:
-
-**1. Task frontend/UI cần phản hồi trực quan**: Agent không thể "nhìn thấy" output được render. Các task như "căn giữa nút này" hoặc "sửa gradient CSS" thường cần nhiều lần lặp vì agent thiếu xác minh trực quan.
+OpenHands không phải công cụ phù hợp cho mọi tình huống. Đây là những gì nó KHÔNG giỏi: **1. Task frontend/UI cần phản hồi trực quan**: Agent không thể "nhìn thấy" output được render. Các task như "căn giữa nút này" hoặc "sửa gradient CSS" thường cần nhiều lần lặp vì agent thiếu xác minh trực quan.
 
 **2. Prototyping nhanh**: Khởi động Docker sandbox thêm 10-30 giây latency mỗi task. Cho các chỉnh sửa nhanh một lần, Aider hoặc Cursor sẽ nhanh hơn.
 
@@ -597,9 +500,7 @@ Quá trình thiết lập mất 10-15 phút: cài qua uv hoặc Docker, cấu h�
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -620,7 +521,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 *Hướng dẫn này được duy trì độc lập và cập nhật định kỳ. Xác minh lần cuối: Tháng 5 năm 2026.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

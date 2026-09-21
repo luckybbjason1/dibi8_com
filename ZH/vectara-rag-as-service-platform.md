@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/vectara-rag-as-service-platform" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/vectara-rag-as-service-platform" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/vectara-rag-as-service-platform" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/vectara-rag-as-service-platform" />
 title: 'Vectara 2026: 准确率超 90% 的 RAG-as-a-Service 平台 — API 集成与基准测试'
 description: 'Vectara 实战指南，托管 RAG 平台，准确率超 90%。涵盖 Boomerang 检索、API 集成、多语言支持、混合搜索和生产基准。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: [vectara, rag, 向量搜索, llm, embedding, boomerang, hhem, 幻觉检测, 企业ai]
-aliases:
-- /zh/posts/vectara-rag-as-service-platform/
+aliases: - /zh/posts/vectara-rag-as-service-platform/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/vectara-rag-as-service-platform/ -->
 
 {{</* resource-info */>}}
 
@@ -45,16 +37,16 @@ aliases:
 
 > **前置要求：** Vectara 账户（有免费层），Python 3.10+，以及 `curl` 或 `requests` 用于 API 调用。
 
----
 
+---
 ## What Is Vectara?
 
 Vectara 是一个 **RAG-as-a-Service 平台**，通过托管 API 提供完整的检索增强生成管道。由前 Google AI 研究员在帕洛阿尔托创立，该平台处理文档摄取、嵌入、混合搜索、重排序、响应生成和幻觉检测——所有这些都无需你操作向量数据库、嵌入模型或推理基础设施。
 
 该平台的核心差异化在于**始终开启的治理**。幻觉检测、事实一致性检查、品牌策略执行和引用追踪直接嵌入生成管道中，而非作为可选的后处理步骤附加。这使得 Vectara 对受监管行业特别具有吸引力，在这些行业中准确性和可审计性是不可协商的。
 
----
 
+---
 ## How Vectara Works
 
 Vectara 的架构是一个**六阶段 RAG 管道**，通过统一 API 暴露：
@@ -187,16 +179,14 @@ response = client.query(
 
 print("Answer:", response.summary)
 print("\nSources:")
-for idx, result in enumerate(response.search_results, 1):
-    print(f"[{idx}] {result.text[:100]}... (score: {result.score:.3f})")
+for idx, result in enumerate(response.search_results, 1): print(f"[{idx}] {result.text[:100]}... (score: {result.score:.3f})")
 ```
 
 输出：
 ```
 Answer: The Vectara Query API uses OAuth 2.0 client credentials flow for authentication [1]. You need to obtain your client ID and secret from the Vectara Console [1]. The API accepts JSON payloads with three required fields: query, corpusKey, and numResults [2].
 
-Sources:
-[1] Authentication uses OAuth 2.0 client credentials flow... (score: 0.941)
+Sources: [1] Authentication uses OAuth 2.0 client credentials flow... (score: 0.941)
 [2] The Vectara Query API accepts JSON payloads... (score: 0.893)
 ```
 
@@ -208,9 +198,7 @@ from pathlib import Path
 
 # 批量上传目录中所有 PDF
 pdf_dir = Path("./documentation")
-for pdf_file in pdf_dir.glob("*.pdf"):
-    with open(pdf_file, "rb") as f:
-        client.upload_file(
+for pdf_file in pdf_dir.glob("*.pdf"): with open(pdf_file, "rb") as f: client.upload_file(
             corpus_id="your-corpus-id",
             file_content=f.read(),
             file_name=pdf_file.name,
@@ -343,11 +331,8 @@ response = client.query(
 )
 
 # 处理流式块
-for chunk in response:
-    if chunk.type == "search_result":
-        print(f"Source: {chunk.document_id}")
-    elif chunk.type == "generation":
-        print(chunk.text, end="", flush=True)  # 流式输出 token
+for chunk in response: if chunk.type == "search_result": print(f"Source: {chunk.document_id}")
+    elif chunk.type == "generation": print(chunk.text, end="", flush=True)  # 流式输出 token
 ```
 
 ### 混合搜索配置
@@ -378,7 +363,15 @@ response = client.query(
 ### 回答准确率基准测试
 
 | 基准测试 | Vectara (Mockingbird) | GPT-4 + 标准 RAG | 提升 |
-|-----------|----------------------|---------------------|-------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Bert-F1 (RAG 准确率) | **0.42** | 0.38 | +10.5% |
 | 幻觉率 (sub-7B LLM) | **< 1%** | 8-12% | **> 8 倍降低** |
 | HHEM 忠实度分数 | **0.94** | N/A (无内置检查) | — |
@@ -388,7 +381,13 @@ response = client.query(
 ### HHEM 性能特征
 
 | 指标 | 数值 | 对比 |
-|--------|-------|------------|
+|
+---
+|
+---
+|
+---
+|
 | 评估时间 (RTX 3090) | **0.6s** | RAGAS: ~35s |
 | 评估时间 (CPU) | **2.1s** | RAGAS: ~120s |
 | 与人类评估的一致性 | **90%+** | 行业平均: 75% |
@@ -486,8 +485,7 @@ response = client.query(
 # 存储对话历史
 conversation = []
 
-def chat_turn(user_query: str) -> str:
-    global conversation
+def chat_turn(user_query: str) -> str: global conversation
     
     response = client.query(
         corpus_id="your-corpus-id",
@@ -531,7 +529,17 @@ print(f"Hallucination rate: {analytics.hallucination_rate}%")
 ## Comparison with Alternatives
 
 | 特性 | Vectara | Pinecone | Weaviate | LlamaIndex |
-|---------|---------|----------|----------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **部署模式** | 全托管 SaaS | 托管 + 自建 | 自建 + 云 | 仅库 |
 | **包含嵌入模型** | Boomerang (专有) | 否 (自备) | 否 (自备) | 否 (自备) |
 | **幻觉检测** | HHEM 内置 | 否 | 否 | 通过集成 |
@@ -643,7 +651,6 @@ Vectara 免费层包含 **50MB 存储**和**每月 10,000 次查询**。这足�
 本文包含联盟链接。如果你通过我们的链接注册 [DigitalOcean](https://m.do.co/c/eca87ac14ee0)，我们会获得佣金，不会额外增加你的费用。我们只推荐用于自身部署的服务。Vectara 提供免费层，无需信用卡，所有摄取工具在 Apache-2.0 许可证下开源。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

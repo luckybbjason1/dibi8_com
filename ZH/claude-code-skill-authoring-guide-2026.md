@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-code-skill-authoring-guide-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-skill-authoring-guide-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-skill-authoring-guide-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-skill-authoring-guide-2026" />
 title: 'Claude Code Skill 编写指南：如何把流程打包成 Claude 只在相关时才加载的能力（2026）'
 description: '一份完整的 Claude Code skill 编写指南——SKILL.md 结构、决定加载时机的触发 description、渐进式披露，以及何时该用 skill 而非 CLAUDE.md 或子代理。附实战范例与应避免的坑。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-28 00:00:00+08:00
@@ -25,11 +20,9 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['claude-code', skills, 'agent-sdk', 'ai-coding-agents', 'llm-frameworks', 'developer-tools', 'prompt-engineering']
-aliases:
-- /posts/claude-code-skill-authoring/
-faq:
-  - q: "skill 放在哪里？一个 SKILL.md 最少需要什么？"
-    a: "一个 skill 是位于 .claude/skills/<name>/（项目级）或 ~/.claude/skills/<name>/（用户级）下的一个目录，里面包含一个 SKILL.md 文件。最低要求是一段带 name 和 description 的 YAML frontmatter，后面跟正文里的指令。该目录还可以存放 skill 所引用的支持文件——参考文档、脚本、模板——但带这两个 frontmatter 字段的 SKILL.md 才是不可再简化的核心。"
+aliases: - /posts/claude-code-skill-authoring/
+faq: - q: "skill 放在哪里？一个 SKILL.md 最少需要什么？"
+    a: "一个 skill 是位于 .claude/skills//（项目级）或 ~/.claude/skills//（用户级）下的一个目录，里面包含一个 SKILL.md 文件。最低要求是一段带 name 和 description 的 YAML frontmatter，后面跟正文里的指令。该目录还可以存放 skill 所引用的支持文件——参考文档、脚本、模板——但带这两个 frontmatter 字段的 SKILL.md 才是不可再简化的核心。"
   - q: "skill 跟直接把指令写进 CLAUDE.md 有什么区别？"
     a: "CLAUDE.md 在每一次交互中都会加载——它适合放常驻、项目级的规则。而 skill 只在它的 description 匹配当前任务时才加载。CLAUDE.md 用来放『一律用 tab 缩进，绝不直接提交到 main』这类规则；skill 用来放『如何发布一个版本』或『如何排查不稳定测试』这类情境性流程——这些知识你不希望让每个 prompt 都背上，只在真正做那件事时才出现。skill 让你的基础上下文保持精简。"
   - q: "description 字段如何控制 skill 的加载时机？"
@@ -41,8 +34,6 @@ faq:
   - q: "我什么时候该写子代理而不是 skill？"
     a: "当你需要教会一个在当前对话中运行的流程时，写 skill。当工作需要自己独立的上下文窗口时——大量探索、并行研究、或会拖垮父代理的独立审查——写子代理。两者可以组合：一个子代理可以在隔离运行时加载某个 skill 来遵循你的方法论。扩展决策框架里的经验法则是——skill 改变行为，子代理保护上下文，MCP server 增加能力。"
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/claude-code-skill-authoring-guide-2026/ -->
 # Claude Code Skill 编写指南：如何把流程打包成 Claude 只在相关时才加载的能力（2026）
 
 
@@ -79,11 +70,12 @@ skill 是三者中最被低估的，因为它看起来太简单了——"不就�
 ## Frontmatter：name 和 description
 
 ```markdown
+
 ---
 name: cut-release
 description: Use when cutting a release, publishing a new version, tagging a build, or preparing release notes. Walks through version bump, changelog, tag, and publish steps.
----
 
+---
 You are helping cut a release. Follow these steps in order...
 ```
 
@@ -126,6 +118,7 @@ Claude 只在真正需要这些规则时才读取 `references/versioning.md`，�
 ## 实战范例：一个发布清单 skill
 
 ```markdown
+
 ---
 name: cut-release
 description: Use when cutting a release, publishing a version, or tagging a build. Covers version bump, changelog, tag, publish, and the green-CI precondition.
@@ -135,8 +128,7 @@ You are cutting a release. Do NOT skip the precondition check.
 
 PRECONDITION: confirm CI is green on main. If not, stop and report.
 
-Steps:
-1. Determine the new version (semver; see references/versioning.md).
+Steps: 1. Determine the new version (semver; see references/versioning.md).
 2. Bump it in package.json and any version constants.
 3. Generate the changelog from commits since the last tag.
 4. Open a release PR; wait for review.
@@ -155,8 +147,7 @@ name: debug-flaky-test
 description: Use when a test passes sometimes and fails other times, or when investigating CI flakiness, intermittent failures, or race conditions in the suite.
 ---
 
-You are diagnosing a flaky test. Flakiness is almost always one of:
-shared state, timing/async, test-order dependence, or external resources.
+You are diagnosing a flaky test. Flakiness is almost always one of: shared state, timing/async, test-order dependence, or external resources.
 
 1. Reproduce: run the test 20x in isolation and 20x with the full suite.
    Different results = test-order or shared-state dependence.
@@ -201,7 +192,6 @@ skill 在一个稳定、共享的环境里最能发光：
 skill 是最便宜、最被低估的扩展点——一个带 markdown 文件的目录，把情境性专业知识变成即时调用的上下文。整门手艺归结为两件事：一个塞满真实触发短语的 **description**，让它在恰当时刻触发；以及**渐进式披露**，让它在任务需要其深度之前都保持轻量。把这两点写好，你就打包出了一个流程，你的整个团队——以及每一次 CI 运行——都能免费获得它，恰好在它相关的时候出现。这便补齐了三件套：skill 管知识，子代理管上下文，MCP server 管能力。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -229,25 +219,20 @@ skill 是最便宜、最被低估的扩展点——一个带 markdown 文件的�
 
 ## Why This Matters
 
-Understanding claude code skill 编写指南：如何把流程打包成 claude 只在相关时才加载的能力（2026） is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding claude code skill 编写指南：如何把流程打包成 claude 只在相关时才加载的能力（2026） is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -313,7 +298,17 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

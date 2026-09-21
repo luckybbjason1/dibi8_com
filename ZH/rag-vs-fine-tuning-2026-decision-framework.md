@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/rag-vs-fine-tuning-2026-decision-framework" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/rag-vs-fine-tuning-2026-decision-framework" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/rag-vs-fine-tuning-2026-decision-framework" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/rag-vs-fine-tuning-2026-decision-framework" />
 title: 'RAG 还是微调 2026：基于真实成本数据的决策框架'
 description: '何时用 RAG、何时微调、何时两者结合。结合 2026 年当前模型价格的现实情况：单次任务成本、延迟、数据新鲜度，以及基于数据量、查询延迟预算和更新频率的清晰决策树。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-25 00:00:00+08:00
@@ -21,10 +16,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [rag, 'fine-tuning', llm, 'cost-optimization', 'decision-framework', 2026]
-aliases:
-- /zh/posts/rag-vs-fine-tuning-2026-decision-framework/
-faq:
-  - q: "2026 年 RAG 何时胜过微调？"
+aliases: - /zh/posts/rag-vs-fine-tuning-2026-decision-framework/
+faq: - q: "2026 年 RAG 何时胜过微调？"
     a: "RAG 胜出的条件：(a) 知识库每周以上频率更新；(b) 需要引用/可溯源；(c) 文档语料库 < 10 万 chunks；(d) 延迟预算允许 200-400ms 检索。微调胜出的条件：需要风格/格式一致性、知识稳定、且能承担前期训练成本。"
   - q: "RAG 在生产环境实际成本是多少？"
     a: "2026 年单次查询成本：embedding 查询约 $0.0001，检索+重排约 $0.0003，LLM 生成约 $0.003-0.015（取决于模型）。Claude Sonnet 总计约 $0.005/次，GPT-4o-mini 约 $0.001/次。每月 10 万次查询：计算成本 $100-500，向量数据库托管 $20-100。"
@@ -37,8 +30,6 @@ faq:
   - q: "应该用向量数据库还是 SQLite 全文搜索？"
     a: "1 万 chunks 以下：全文搜索（FTS5、MeiliSearch）通常足够，且简单 10 倍。5 万 chunks 以上：向量数据库的复杂度才值得。1 万-5 万的灰色地带——先试 FTS，只有当检索精度低于 precision@5 80% 时再切换到向量。"
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/rag-vs-fine-tuning-2026-decision-framework/ -->
 
 {{</* resource-info */>}}
 
@@ -60,8 +51,8 @@ RAG 与微调之争已积累了三年的相互矛盾建议。2026 年，技术�
 >
 > **盈亏平衡点**：在知识稳定且每月 100 万+ 查询时，微调经济性优于 RAG。
 
----
 
+---
 ## 自 2024 年以来发生了什么变化
 
 三股力量改变了计算公式：
@@ -96,7 +87,13 @@ LLM 生成：           $0.003-0.015/次（视模型而定）
 ### 2026 年 RAG 基础设施选型：
 
 | 级别 | 技术栈 | 适用 |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | 轻量级 | SQLite FTS5 / MeiliSearch | < 1 万文档 |
 | 中型 | pgvector / Weaviate（自托管） | 1 万-100 万文档 |
 | 重型 | Qdrant / Pinecone | 100 万+ 文档、多租户 |
@@ -186,7 +183,17 @@ LoRA 微调（Llama 3.3 70B）：
 ## 2026 成本对比表
 
 | 方案 | 启动成本 | 单次成本（1K tokens） | 延迟 | 更新延迟 |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 塞入上下文 | $0 | $0.003-0.015 | 200ms | 实时 |
 | RAG（向量数据库） | $100-500/月 | $0.005 | 200-400ms | 数小时 |
 | 微调（API、OpenAI） | $50-500 | $0.0015 | 100ms | 需重训 |
@@ -207,12 +214,11 @@ RAG / 微调托管：
 
 对于 2026 年大多数生产系统：从 RAG 开始，当风格/规模值得时加入微调。混合方案日益成为默认——这不是因为有人这样规划，而是因为每一层都解决了一个不同的真实问题。
 
----
 
+---
 **相关阅读**：[MCP 服务器 2026 排名](https://dibi8.com/zh/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/) · [AI Agent 记忆系统 2026](https://dibi8.com/zh/resources/llm-frameworks/ai-agent-memory-systems-open-source-infrastructure-2026/) · [12-Factor Agents 指南](https://dibi8.com/zh/resources/llm-frameworks/12-factor-agents-production-llm-software-2026/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -240,25 +246,20 @@ RAG / 微调托管：
 
 ## Why This Matters
 
-Understanding rag 还是微调 2026：基于真实成本数据的决策框架 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding rag 还是微调 2026：基于真实成本数据的决策框架 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

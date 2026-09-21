@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/portkey-ai-gateway-production" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/portkey-ai-gateway-production" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/portkey-ai-gateway-production" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/portkey-ai-gateway-production" />
 title: 'Portkey AI Gateway 2026: 200+ 모델을 관리하는 LLM 게이트웨이와 관찰 가능성...
 description: ''. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['portkey ai gateway']
-aliases:
-- /kr/posts/portkey-ai-gateway-production/
+aliases: - /kr/posts/portkey-ai-gateway-production/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/portkey-ai-gateway-production/ -->
 
 {{</* resource-info */>}}
 
@@ -45,9 +37,7 @@ aliases:
 
 Portkey AI Gateway는 애플리케이션과 LLM 제공업체 사이에 위치하는 오픈소스 AI 게이트웨이입니다. AI 워크로드를 위해 특별히 설계된 스마트 리버스 프록시로 생각하면 됩니다. OpenAI, Anthropic, Google, Azure, Cohere, Mistral 등 20개 이상의 제공업체에서 200개 이상의 모델에 대한 API 표면을 정규화하여 코드가 한 가지 언어만 사용하면 됩니다.
 
-게이트웨이는 LLM 프로덕션 배포의 지저분한 부분을 처리합니다:
-
-- **통합 API**: 20개 이상의 제공업체에 걸쳐 200개 이상의 모델을 위한 하나의 엔드포인트
+게이트웨이는 LLM 프로덕션 배포의 지저분한 부분을 처리합니다: - **통합 API**: 20개 이상의 제공업체에 걸쳐 200개 이상의 모델을 위한 하나의 엔드포인트
 - **부하 분산**: 여러 API 키 또는 제공업체 간에 트래픽 분산
 - **폴 백 라우팅**: 제공업체가 다울 때 자동으로 페일오버
 - **요청 캐싱**: 비용과 지연 시간을 줄이기 위해 동일한 요청을 캐싱
@@ -87,17 +77,12 @@ docker run -p 8787:8787 -e PORTKEY_GATEWAY_API_KEY=your-gateway-key portkeyai/ga
 
 ```yaml
 version: '3.8'
-services:
-  portkey-gateway:
-    image: portkeyai/gateway:latest
-    ports:
-      - "8787:8787"
-    environment:
-      - PORTKEY_GATEWAY_API_KEY=${GATEWAY_API_KEY}
+services: portkey-gateway: image: portkeyai/gateway:latest
+    ports: - "8787:8787"
+    environment: - PORTKEY_GATEWAY_API_KEY=${GATEWAY_API_KEY}
       - CACHE_ENABLED=true
       - CACHE_TTL=3600
-    volumes:
-      - ./config:/app/config
+    volumes: - ./config:/app/config
     restart: unless-stopped
 ```
 
@@ -106,39 +91,22 @@ services:
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
-metadata:
-  name: portkey-gateway
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: portkey-gateway
-  template:
-    metadata:
-      labels:
-        app: portkey-gateway
-    spec:
-      containers:
-      - name: gateway
+metadata: name: portkey-gateway
+spec: replicas: 3
+  selector: matchLabels: app: portkey-gateway
+  template: metadata: labels: app: portkey-gateway
+    spec: containers: - name: gateway
         image: portkeyai/gateway:latest
-        ports:
-        - containerPort: 8787
-        env:
-        - name: PORTKEY_GATEWAY_API_KEY
-          valueFrom:
-            secretKeyRef:
-              name: portkey-secrets
+        ports: - containerPort: 8787
+        env: - name: PORTKEY_GATEWAY_API_KEY
+          valueFrom: secretKeyRef: name: portkey-secrets
               key: gateway-api-key
 ---
 apiVersion: v1
 kind: Service
-metadata:
-  name: portkey-gateway-service
-spec:
-  selector:
-    app: portkey-gateway
-  ports:
-  - port: 80
+metadata: name: portkey-gateway-service
+spec: selector: app: portkey-gateway
+  ports: - port: 80
     targetPort: 8787
   type: ClusterIP
 ```
@@ -153,32 +121,24 @@ spec:
 
 ### 제공업체 설정
 
-`providers.yaml` 구성 파일 생성:
-
-```yaml
-providers:
-  openai-primary:
-    type: openai
+`providers.yaml` 구성 파일 생성: ```yaml
+providers: openai-primary: type: openai
     api_key: ${OPENAI_API_KEY}
     organization: ${OPENAI_ORG_ID}
     
-  anthropic-primary:
-    type: anthropic
+  anthropic-primary: type: anthropic
     api_key: ${ANTHROPIC_API_KEY}
     
-  azure-gpt4:
-    type: azure-openai
+  azure-gpt4: type: azure-openai
     api_key: ${AZURE_API_KEY}
     resource_name: ${AZURE_RESOURCE_NAME}
     deployment_id: gpt-4
     api_version: 2025-12-01
     
-  google-gemini:
-    type: google
+  google-gemini: type: google
     api_key: ${GOOGLE_API_KEY}
     
-  mistral-local:
-    type: mistral
+  mistral-local: type: mistral
     api_key: ${MISTRAL_API_KEY}
     base_url: http://mistral-service:8000/v1
 ```
@@ -272,9 +232,7 @@ stream = portkey.chat.completions.create(
     stream=True
 )
 
-for chunk in stream:
-    if chunk.choices[0].delta.content:
-        print(chunk.choices[0].delta.content, end="")
+for chunk in stream: if chunk.choices[0].delta.content: print(chunk.choices[0].delta.content, end="")
 ```
 
 ---
@@ -285,15 +243,10 @@ for chunk in stream:
 
 ### 라운드 로빈 부하 분산
 
-여러 API 키 또는 제공업체 간에 트래픽을 균등하게 분산합니다:
-
-```yaml
+여러 API 키 또는 제공업체 간에 트래픽을 균등하게 분산합니다: ```yaml
 # config/load-balance.yaml
-strategies:
-  gpt4-pool:
-    type: load_balance
-    providers:
-      - provider: openai-primary
+strategies: gpt4-pool: type: load_balance
+    providers: - provider: openai-primary
         weight: 1
       - provider: azure-gpt4
         weight: 1
@@ -312,14 +265,9 @@ response = portkey.chat.completions.create(
 
 ### 우선순위 기반 폴 백 라우팅
 
-자동 페일오버를 위한 폴 백 체인을 정의합니다:
-
-```yaml
-strategies:
-  production-fallback:
-    type: fallback
-    targets:
-      - provider: azure-gpt4
+자동 페일오버를 위한 폴 백 체인을 정의합니다: ```yaml
+strategies: production-fallback: type: fallback
+    targets: - provider: azure-gpt4
         timeout: 10
         retry: 2
       - provider: openai-primary
@@ -346,24 +294,16 @@ curl -X POST http://localhost:8787/v1/chat/completions \
 
 ### 요청 속성 기반 조걸 라우팅
 
-콘텐츠, 사용자 또는 기타 요청 속성을 기반으로 요청을 라우팅합니다:
-
-```yaml
-strategies:
-  smart-router:
-    type: conditional
-    rules:
-      - condition: "request.messages[0].content.length > 4000"
-        target: 
-          provider: anthropic-primary
+콘텐츠, 사용자 또는 기타 요청 속성을 기반으로 요청을 라우팅합니다: ```yaml
+strategies: smart-router: type: conditional
+    rules: - condition: "request.messages[0].content.length > 4000"
+        target: provider: anthropic-primary
           model: claude-sonnet-4  # 더 나은 긴 컨텍스트 처리
       - condition: "request.user == 'code-assistant'"
-        target:
-          provider: openai-primary
+        target: provider: openai-primary
           model: gpt-4o
       - condition: "default"
-        target:
-          provider: azure-gpt4
+        target: provider: azure-gpt4
           model: gpt-4o-mini
 ```
 
@@ -376,8 +316,7 @@ LLM API 호출은 비용이 많이 들고 느립니다. Portkey의 의미론적 
 ### 캐시 활성화
 
 ```yaml
-cache:
-  enabled: true
+cache: enabled: true
   mode: semantic  # 또는 "exact"는 정확한 일치 캐싱용
   ttl: 3600       # 캐시 생존 시간(초)
   max_size: 10000 # 최대 캐시 항목 수
@@ -468,23 +407,18 @@ curl "http://localhost:8787/v1/admin/analytics/spend?start_date=2026-05-01&end_d
 ### 예산 알림
 
 ```yaml
-alerts:
-  daily-budget:
-    type: budget
+alerts: daily-budget: type: budget
     threshold: 500  # USD
     period: daily
-    channels:
-      - type: webhook
+    channels: - type: webhook
         url: https://hooks.slack.com/services/YOUR/WEBHOOK/URL
       - type: email
         address: team@company.com
   
-  abnormal-spike:
-    type: anomaly
+  abnormal-spike: type: anomaly
     baseline_multiplier: 3
     window: 1h
-    channels:
-      - type: pagerduty
+    channels: - type: pagerduty
         integration_key: your-pd-key
 ```
 
@@ -553,9 +487,7 @@ Portkey의 가드레일 시스템을 사용하면 요청과 응답 모두에서 
 ### 가드레일 구성
 
 ```yaml
-guardrails:
-  input-validation:
-    - type: keyword_filter
+guardrails: input-validation: - type: keyword_filter
       blocklist: ["password", "ssn", "credit_card", "secret_key"]
       action: block
     - type: pii_detector
@@ -565,13 +497,11 @@ guardrails:
       threshold: 0.8
       action: block
       
-  output-validation:
-    - type: content_policy
+  output-validation: - type: content_policy
       categories: ["hate", "violence", "self-harm"]
       action: block
     - type: response_format
-      required_schema:
-        type: json_object
+      required_schema: type: json_object
       action: retry
 ```
 
@@ -592,15 +522,11 @@ import json
 
 portkey = Portkey(api_key="your-gateway-api-key")
 
-def custom_validator(request, response):
-    """사용자 정의 비즈니스 로직 검증."""
-    try:
-        data = json.loads(response.choices[0].message.content)
-        if "confidence" not in data or data["confidence"] < 0.7:
-            return False, "신뢰도 점수가 너무 낮습니다"
+def custom_validator(request, response): """사용자 정의 비즈니스 로직 검증."""
+    try: data = json.loads(response.choices[0].message.content)
+        if "confidence" not in data or data["confidence"] < 0.7: return False, "신뢰도 점수가 너무 낮습니다"
         return True, None
-    except json.JSONDecodeError:
-        return False, "응답은 유효한 JSON이어야 합니다"
+    except json.JSONDecodeError: return False, "응답은 유효한 JSON이어야 합니다"
 
 portkey.guardrails.register("confidence-check", custom_validator)
 ```
@@ -635,28 +561,22 @@ response = portkey.chat.completions.create(
 ### OpenTelemetry 통합
 
 ```yaml
-observability:
-  tracing:
-    enabled: true
+observability: tracing: enabled: true
     exporter: otlp
     endpoint: http://jaeger-collector:4317
-  metrics:
-    enabled: true
+  metrics: enabled: true
     exporter: prometheus
     port: 9090
 ```
 
 ### Prometheus 메트릭
 
-게이트웨이는 `/metrics`에서 Prometheus 호환 메트릭을 노출합니다:
-
-```bash
+게이트웨이는 `/metrics`에서 Prometheus 호환 메트릭을 노출합니다: ```bash
 # 메트릭 스크래핑
 curl http://localhost:8787/metrics
 ```
 
-주요 메트릭:
-- `portkey_requests_total` — 제공업체, 모델, 상태별 총 요청 수
+주요 메트릭: - `portkey_requests_total` — 제공업체, 모델, 상태별 총 요청 수
 - `portkey_request_duration_seconds` — 요청 지연 시간 히스토그램
 - `portkey_tokens_total` — 유형(입력/출력) 및 모델별 토큰 사용량
 - `portkey_cache_hits_total` — 캐시 적중/미적중 카운트
@@ -664,9 +584,7 @@ curl http://localhost:8787/metrics
 
 ### Grafana 대시보드
 
-Portkey의 공식 Grafana 대시보드(ID: `portkey-ai-gateway`)를 가져와 즉시 사용 가능한 시각화를 얻으세요:
-
-```json
+Portkey의 공식 Grafana 대시보드(ID: `portkey-ai-gateway`)를 가져와 즉시 사용 가능한 시각화를 얻으세요: ```json
 {
   "dashboard": {
     "title": "Portkey AI Gateway 개요",
@@ -704,50 +622,32 @@ Portkey의 공식 Grafana 대시보드(ID: `portkey-ai-gateway`)를 가져와 �
 
 ## 프로덕션 배포 체크리스트
 
-Portkey AI Gateway를 프로덕션에 도입하기 전에 다음 중요 항목을 확인했는지 확인하세요:
-
-### 인프라
+Portkey AI Gateway를 프로덕션에 도입하기 전에 다음 중요 항목을 확인했는지 확인하세요: ### 인프라
 
 ```yaml
 # Redis 캐싱 및 PostgreSQL 로그가 있는 프로덕션 docker-compose
 version: '3.8'
-services:
-  gateway:
-    image: portkeyai/gateway:latest
-    ports:
-      - "8787:8787"
-    environment:
-      - PORTKEY_GATEWAY_API_KEY=${GATEWAY_API_KEY}
+services: gateway: image: portkeyai/gateway:latest
+    ports: - "8787:8787"
+    environment: - PORTKEY_GATEWAY_API_KEY=${GATEWAY_API_KEY}
       - REDIS_URL=redis://redis:6379
       - DATABASE_URL=postgres://user:pass@postgres:5432/portkey
-    depends_on:
-      - redis
+    depends_on: - redis
       - postgres
-    deploy:
-      replicas: 3
-      resources:
-        limits:
-          memory: 2G
+    deploy: replicas: 3
+      resources: limits: memory: 2G
           cpus: '1.0'
   
-  redis:
-    image: redis:7-alpine
-    volumes:
-      - redis-data:/data
+  redis: image: redis:7-alpine
+    volumes: - redis-data:/data
   
-  postgres:
-    image: postgres:16-alpine
-    environment:
-      POSTGRES_DB: portkey
+  postgres: image: postgres:16-alpine
+    environment: POSTGRES_DB: portkey
       POSTGRES_USER: user
       POSTGRES_PASSWORD: ${DB_PASSWORD}
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
+    volumes: - postgres-data:/var/lib/postgresql/data
 
-volumes:
-  redis-data:
-  postgres-data:
-```
+volumes: redis-data: postgres-data: ```
 
 ### 보안 체크리스트
 
@@ -772,16 +672,12 @@ curl http://localhost:8787/health
 
 ```yaml
 # Kubernetes 활성 및 준비 프로브
-livenessProbe:
-  httpGet:
-    path: /health
+livenessProbe: httpGet: path: /health
     port: 8787
   initialDelaySeconds: 10
   periodSeconds: 15
 
-readinessProbe:
-  httpGet:
-    path: /ready
+readinessProbe: httpGet: path: /ready
     port: 8787
   initialDelaySeconds: 5
   periodSeconds: 5
@@ -813,9 +709,7 @@ Portkey는 두 가지 캐싱 모드를 제공합니다: **정확한 일치**(동
 
 ### 기존 OpenAI SDK 코드에서 Portkey를 사용할 수 있나요?
 
-네. Portkey는 OpenAI SDK와 드롭인 호환성을 제공합니다. `base_url`을 게이트웨이 엔드포인트로 변경하고 Portkey API 키를 사용하기만 하면 됩니다:
-
-```python
+네. Portkey는 OpenAI SDK와 드롭인 호환성을 제공합니다. `base_url`을 게이트웨이 엔드포인트로 변경하고 Portkey API 키를 사용하기만 하면 됩니다: ```python
 import openai
 
 client = openai.OpenAI(
@@ -851,7 +745,6 @@ Docker 빠른 시작으로 시작하여, 제공업체를 구성하고, 폴 백 �
 *게시일: 2026-05-19 | Portkey AI Gateway v2.5.0 | [GitHub: Portkey-AI/gateway](https://github.com/Portkey-AI/gateway)*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

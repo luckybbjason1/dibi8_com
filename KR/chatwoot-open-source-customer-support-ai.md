@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/chatwoot-open-source-customer-support-ai" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/chatwoot-open-source-customer-support-ai" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/chatwoot-open-source-customer-support-ai" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/chatwoot-open-source-customer-support-ai" />
 title: 'Chatwoot 2026: 오픈소스 AI 통합 고객 지원 플랫폼 — 셀프 호스팅 완벽 가이드'
 description: 'Chatwoot v4 완벽 가이드 — 오픈소스 고객 지원 플랫폼. Docker로 셀프 호스팅하고 AI 에이전트를 통합하며 다중 채널을 연결하세요. 실제 벤치마크와 프로덕션 설정.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [chatwoot, 고객지원, 오픈소스, ai챗봇, 셀프호스팅, docker, 'ruby-on-rails', 라이브챗]
-aliases:
-- /kr/posts/chatwoot-open-source-customer-support-ai/
+aliases: - /kr/posts/chatwoot-open-source-customer-support-ai/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/chatwoot-open-source-customer-support-ai/ -->
 
 {{</* resource-info */>}}
 
@@ -157,8 +149,7 @@ docker compose -f docker-compose.production.yaml up -d
 # 모든 서비스가 실행 중인지 확인
 docker compose ps
 
-# 예상 출력:
-# NAME                STATUS         PORTS
+# 예상 출력: # NAME                STATUS         PORTS
 # chatwoot_app        Up 30 seconds  0.0.0.0:3000->3000/tcp
 # chatwoot_worker     Up 30 seconds
 # chatwoot_postgres   Up 30 seconds  5432/tcp
@@ -234,13 +225,11 @@ AI_AUTO_REPLY_THRESHOLD=0.85  # 자동 응답 신뢰도 점수
 
 ```ruby
 # config/ai_assistants.yml — 어시스턴트 동작 정의
-support_bot:
-  name: "Support Assistant"
+support_bot: name: "Support Assistant"
   model: gpt-4.1-mini
   system_prompt: |
     You are a helpful support assistant for Acme Inc.
-    Follow these rules:
-    1. Answer only questions in the knowledge base
+    Follow these rules: 1. Answer only questions in the knowledge base
     2. For billing issues, always offer to connect a human
     3. Keep responses under 150 words
   handoff_keywords: ["refund", "chargeback", "legal", "complaint"]
@@ -272,8 +261,7 @@ app = Flask(__name__)
 llm = ChatOpenAI(model="gpt-4.1-mini", temperature=0.3)
 
 @app.route("/chatwoot/webhook", methods=["POST"])
-def handle_chatwoot():
-    data = request.json
+def handle_chatwoot(): data = request.json
     message = data.get("content", "")
     conversation_id = data["conversation"]["id"]
 
@@ -295,9 +283,7 @@ def handle_chatwoot():
 ```bash
 # HubSpot CRM — Chatwoot 앱 마켓플레이스에서 설치
 # 경로: 설정 > 애플리케이션 > HubSpot
-# 또는 API를 통해 구성:
-
-curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/integrations/hubspot" \
+# 또는 API를 통해 구성: curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/integrations/hubspot" \
   -H "Content-Type: application/json" \
   -H "Api-Access-Token: YOUR_API_TOKEN" \
   -d '{
@@ -351,8 +337,7 @@ curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/inboxes" \
 # Chatwoot 대시보드: 설정 > 통합 > Slack
 # 승인하고 지원 알림용 채널 선택
 
-# 봇이 게시할 내용:
-# - 새 대화 알림
+# 봇이 게시할 내용: # - 새 대화 알림
 # - 상담원 멘션 알림
 # - 에스컬레이션 알림
 ```
@@ -382,9 +367,7 @@ curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/inboxes" \
 
 ### 사례 연구: 15인 전자상거래 팀의 8배 비용 절감
 
-동남아시아의 중견 전자상거래 기업이 2026년 1월 Zendesk Suite에서 셀프 호스팅 Chatwoot으로 마이그레이션했다. 4개월 후의 결과:
-
-- **지원 도구 비용**: 월 $2,160 → $64 (**97% 절감**)
+동남아시아의 중견 전자상거래 기업이 2026년 1월 Zendesk Suite에서 셀프 호스팅 Chatwoot으로 마이그레이션했다. 4개월 후의 결과: - **지원 도구 비용**: 월 $2,160 → $64 (**97% 절감**)
 - **AI 자동 해결율**: 1차 문의의 34%가 인간 개입 없이 해결됨
 - **평균 응답 시간**: 4.2시간 → 28분
 - **상담원 만족도**: 6.8/10 → 8.4/10 (더 나은 UI, 적은 컨텍스트 전환)
@@ -395,32 +378,23 @@ curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/inboxes" \
 
 ```yaml
 # docker-compose.scale.yaml — Sidekiq 워커 추가
-services:
-  worker_default:
-    image: chatwoot/chatwoot:v4.0.1
+services: worker_default: image: chatwoot/chatwoot:v4.0.1
     command: bundle exec sidekiq -C config/sidekiq.yml
-    deploy:
-      replicas: 3  # 큐 깊이 기준 확장
-    environment:
-      - REDIS_URL=redis://redis:6379/0
+    deploy: replicas: 3  # 큐 깊이 기준 확장
+    environment: - REDIS_URL=redis://redis:6379/0
 
-  worker_high_priority:
-    image: chatwoot/chatwoot:v4.0.1
+  worker_high_priority: image: chatwoot/chatwoot:v4.0.1
     command: bundle exec sidekiq -q high -q default -q low
-    deploy:
-      replicas: 2
+    deploy: replicas: 2
 ```
 
 ### 데이터베이스 읽기 복제본
 
 ```ruby
 # config/database.yml — 읽기 복제본 추가
-production:
-  primary:
-    <<: *default
+production: primary: <<: *default
     host: <%= ENV[POSTGRES_HOST] %>
-  primary_replica:
-    <<: *default
+  primary_replica: <<: *default
     host: <%= ENV[POSTGRES_REPLICA_HOST] %>
     replica: true
 ```
@@ -465,10 +439,8 @@ find /backup/chatwoot -maxdepth 1 -type d -mtime +14 -exec rm -rf {} \;
 # Chatwoot이 /metrics 엔드포인트를 노출
 # prometheus.yml에 추가
 
-scrape_configs:
-  - job_name: chatwoot
-    static_configs:
-      - targets: ['support.yourdomain.com:3000']
+scrape_configs: - job_name: chatwoot
+    static_configs: - targets: ['support.yourdomain.com:3000']
     metrics_path: '/metrics'
     scrape_interval: 30s
 ```
@@ -507,9 +479,7 @@ add_header Content-Security-Policy "default-src self" always;
 
 ## 한계점: 솔직한 평가
 
-Chatwoot이 모든 조직에 적합한 것은 아니다. 알아야 할 사항:
-
-**모바일 SDK 성숙도** — iOS 및 Android SDK가 존재하지만 기능 면에서 웹 대시보드보다 뒤처져 있다. 모바일 우선 지원이 중요하다면 커밋하기 전에 철저히 테스트하라.
+Chatwoot이 모든 조직에 적합한 것은 아니다. 알아야 할 사항: **모바일 SDK 성숙도** — iOS 및 Android SDK가 존재하지만 기능 면에서 웹 대시보드보다 뒤처져 있다. 모바일 우선 지원이 중요하다면 커밋하기 전에 철저히 테스트하라.
 
 **보고 깊이** — 내장 보고 기능은 기본을 커버(응답 시간, 해결 시간, CSAT)하지만 감정 추세 분석이나 예측 워크로드 예측과 같은 고급 분석은 부족하다. BI 도구로의 낮출 수 있어야 할 수 있다.
 
@@ -535,9 +505,7 @@ Chatwoot이 모든 조직에 적합한 것은 아니다. 알아야 할 사항:
 
 **버전 간 업그레이드 프로세스는 무엇인가요?**
 
-Chatwoot은 시맨틱 버저닝을 따른다. 마이너 업데이트(v4.0.0 → v4.0.1)는 일반적으로 데이터베이스 마이그레이션이 필요 없다. 메이저 업데이트(v3.x → v4.x)는 마이그레이션 실행이 필요하다. 표준 프로세스:
-
-```bash
+Chatwoot은 시맨틱 버저닝을 따른다. 마이너 업데이트(v4.0.0 → v4.0.1)는 일반적으로 데이터베이스 마이그레이션이 필요 없다. 메이저 업데이트(v3.x → v4.x)는 마이그레이션 실행이 필요하다. 표준 프로세스: ```bash
 # 먼저 백업
 /opt/scripts/chatwoot-backup.sh
 
@@ -573,9 +541,7 @@ Chatwoot v4.0은 오픈소스 고객 지원의 중요한 성숙 단계를 대표
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -596,7 +562,6 @@ Chatwoot v4.0은 오픈소스 고객 지원의 중요한 성숙 단계를 대표
 *본 문서에는 DigitalOcean 및 HTStack의 제휴 링크가 포함되어 있습니다. 이 링크를 통해 서비스를 구매할 경우 dibi8.com에 추가 비용 없이 커미션이 지급될 수 있습니다. 모든 추천은 실제 테스트와 실제 배포 경험에 기반합니다.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

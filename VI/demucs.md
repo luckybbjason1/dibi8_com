@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/demucs" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/demucs" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/demucs" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/demucs" />
 title: 'Demucs: Tách Nguồn Nhạc 10K+ Stars — So Sánh với UVR, Sp...
 description: 'Demucs là mô hình tách nguồn nhạc hybrid spectrogram và waveform từ Meta AI. Tương thích với Ultimate Vocal Remover, RVC, GPT-SoVITS. Hướng dẫn demucs, demucs vs uvr, cài đặt docker demucs, và benchmark production.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [demucs, 'tach-nguon-nhac', 'ai-audio', 'tach-stem', pytorch, docker, 'ma-nguon-mo']
-aliases:
-- /vi/posts/demucs/
+aliases: - /vi/posts/demucs/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/demucs/ -->
 
 {{</* resource-info */>}}
 
@@ -49,9 +41,7 @@ Dự án nằm trên repository `facebookresearch/demucs` trên GitHub, đã tí
 
 ### Tổng quan kiến trúc
 
-Thế hệ Demucs hiện tại — chính thức gọi là **Hybrid Transformer Demucs (HTDemucs)** — xây dựng trên backbone convolutional U-Net với các lớp transformer. Kiến trúc hoạt động theo ba giai đoạn khái niệm:
-
-1. **Encoder**: Waveform đầu vào đi qua cả encoder miền thờ gian (convolution 1D) và encoder miền tần số (STFT theo sau là convolution 2D). Việc mã hóa kép này nắm bắt cả chi tiết thờ gian tinh vi và cấu trúc tần số hài.
+Thế hệ Demucs hiện tại — chính thức gọi là **Hybrid Transformer Demucs (HTDemucs)** — xây dựng trên backbone convolutional U-Net với các lớp transformer. Kiến trúc hoạt động theo ba giai đoạn khái niệm: 1. **Encoder**: Waveform đầu vào đi qua cả encoder miền thờ gian (convolution 1D) và encoder miền tần số (STFT theo sau là convolution 2D). Việc mã hóa kép này nắm bắt cả chi tiết thờ gian tinh vi và cấu trúc tần số hài.
 
 2. **Transformer bottleneck**: Các lớp sâu nhất của U-Net sử dụng encoder transformer cross-domain với self-attention trong từng miền và cross-attention giữa các miền. Cơ chế này mô hình các phụ thuộc dài hạn — rất quan trọng để tách, ví dụ, một giai điệu vocal trải dài nhiều ô nhịp khỏi một đường guitar có cao độ tương tự.
 
@@ -61,9 +51,7 @@ Thế hệ Demucs hiện tại — chính thức gọi là **Hybrid Transformer 
 
 ### Các mô hình có sẵn
 
-Demucs đi kèm với nhiều mô hình pretrained được tối ưu cho các đánh đổi tốc độ/chất lượng khác nhau:
-
-| Mô hình | Số stem | VRAM | SDR (MUSDB) | Trường hợp sử dụng |
+Demucs đi kèm với nhiều mô hình pretrained được tối ưu cho các đánh đổi tốc độ/chất lượng khác nhau: | Mô hình | Số stem | VRAM | SDR (MUSDB) | Trường hợp sử dụng |
 |---------|---------|------|-------------|-------------------|
 | `htdemucs` | 4 | ~5.2 GB | 7.1 dB | Mặc định, cân bằng tốc độ/chất lượng |
 | `htdemucs_ft` | 4 | ~7.8 GB | 7.8 dB | Chất lượng tối đa, chậm hơn ~4 lần |
@@ -76,9 +64,7 @@ Mô hình `htdemucs_ft` đạt SDR tổng thể 7.8 dB trên MUSDB18-HQ, với c
 
 ### Yêu cầu tiên quyết
 
-Trước khi cài đặt Demucs, xác minh môi trường:
-
-```bash
+Trước khi cài đặt Demucs, xác minh môi trường: ```bash
 # Python 3.8+ bắt buộc
 python --version
 
@@ -91,9 +77,7 @@ nvidia-smi
 
 ### Tùy chọn 1: pip Install (Nhanh nhất)
 
-Cách đơn giản nhất để chạy Demucs:
-
-```bash
+Cách đơn giản nhất để chạy Demucs: ```bash
 # Tạo môi trường ảo
 python -m venv demucs-env
 source demucs-env/bin/activate  # Linux/macOS
@@ -108,9 +92,7 @@ demucs --help
 
 ### Tùy chọn 2: Conda với GPU Support (Khuyến nghị)
 
-Để suy luận tăng tốc GPU và training:
-
-```bash
+Để suy luận tăng tốc GPU và training: ```bash
 # Clone repository
 git clone https://github.com/adefossez/demucs.git
 cd demucs
@@ -128,9 +110,7 @@ python -c "import torch; print(f'CUDA available: {torch.cuda.is_available()}')"
 
 ### Tùy chọn 3: Docker (Cách ly sạch nhất)
 
-Để triển khai có thể tái tạo, không phụ thuộc:
-
-```bash
+Để triển khai có thể tái tạo, không phụ thuộc: ```bash
 # Dockerfile
 FROM pytorch/pytorch:2.5.1-cuda12.4-cudnn9-runtime
 
@@ -140,9 +120,7 @@ WORKDIR /audio
 ENTRYPOINT ["demucs"]
 ```
 
-Build và chạy:
-
-```bash
+Build và chạy: ```bash
 docker build -t demucs .
 docker run --gpus all -v $(pwd):/audio demucs song.mp3
 ```
@@ -152,23 +130,17 @@ docker run --gpus all -v $(pwd):/audio demucs song.mp3
 ```yaml
 version: '3.8'
 
-services:
-  demucs:
-    build: .
+services: demucs: build: .
     runtime: nvidia
-    environment:
-      - NVIDIA_VISIBLE_DEVICES=all
-    volumes:
-      - ./input:/audio/input:ro
+    environment: - NVIDIA_VISIBLE_DEVICES=all
+    volumes: - ./input:/audio/input:ro
       - ./output:/audio/output
     command: ["-n", "htdemucs_ft", "--mp3", "-o", "/audio/output", "/audio/input"]
 ```
 
 ### Chạy tách đầu tiên
 
-Sau khi cài đặt, tách track đầu tiên:
-
-```bash
+Sau khi cài đặt, tách track đầu tiên: ```bash
 # Tách 4-stem cơ bản với mô hình mặc định
 demucs song.mp3
 
@@ -187,14 +159,11 @@ demucs --mp3 --mp3-bitrate 320 song.mp3
 
 ### Xác minh Model Download và Cache
 
-Các model tải xuống tự động khi sử dụng lần đầu. Xác minh cache:
-
-```bash
+Các model tải xuống tự động khi sử dụng lần đầu. Xác minh cache: ```bash
 # Liệt kê model đã tải
 ls ~/.cache/torch/hub/checkpoints/
 
-# Output dự kiến:
-# htdemucs-*.th, htdemucs_ft-*.th
+# Output dự kiến: # htdemucs-*.th, htdemucs_ft-*.th
 
 # Kiểm tra model sẽ được sử dụng
 demucs -n htdemucs_ft --help | grep "name"
@@ -210,9 +179,7 @@ demucs -n htdemucs test_tone.wav
 
 Ultimate Vocal Remover là frontend GUI phổ biến nhất cho Demucs. Thay vì sử dụng Demucs trực tiếp qua command line, hầu hết producer sử dụng UVR vì nó bundle các mô hình Demucs với kiến trúc khác và thêm xử lý ensemble.
 
-Cấu hình trong UVR:
-
-1. Tải UVR5 từ [GitHub Releases chính thức](https://github.com/Anjok07/ultimatevocalremovergui/releases)
+Cấu hình trong UVR: 1. Tải UVR5 từ [GitHub Releases chính thức](https://github.com/Anjok07/ultimatevocalremovergui/releases)
 2. Trong UI, chọn **Process Method: "Demucs"**
 3. Chọn mô hình: `V4 | htdemucs_ft`
 4. Bật **GPU Conversion** nếu có
@@ -222,14 +189,11 @@ Chế độ ensemble của UVR chạy song song nhiều mô hình và pha trộn
 
 ### RVC (Retrieval-based Voice Conversion)
 
-Các pipeline RVC thường sử dụng Demucs như một bước tiền xử lý để tách vocal trước khi trích xuất giọng:
-
-```python
+Các pipeline RVC thường sử dụng Demucs như một bước tiền xử lý để tách vocal trước khi trích xuất giọng: ```python
 import subprocess
 import os
 
-def preprocess_for_rvc(input_song, output_dir):
-    """Trích xuất vocal sạch cho chuyển đổi giọng RVC."""
+def preprocess_for_rvc(input_song, output_dir): """Trích xuất vocal sạch cho chuyển đổi giọng RVC."""
     os.makedirs(output_dir, exist_ok=True)
 
     # Bước 1: Tách bằng Demucs
@@ -254,9 +218,7 @@ vocals = preprocess_for_rvc('input.mp3', './separated')
 
 ### GPT-SoVITS
 
-Voice cloning GPT-SoVITS yêu cầu audio tham chiếu sạch. Demucs loại bỏ nhạc nền trước khi đưa mẫu vào pipeline TTS:
-
-```python
+Voice cloning GPT-SoVITS yêu cầu audio tham chiếu sạch. Demucs loại bỏ nhạc nền trước khi đưa mẫu vào pipeline TTS: ```python
 from demucs.api import Separator
 import torchaudio
 
@@ -272,16 +234,13 @@ torchaudio.save("clean_reference.wav", vocals, 24000)
 
 ### Giao diện Web Gradio
 
-Để tự host dịch vụ tách nhạc:
-
-```python
+Để tự host dịch vụ tách nhạc: ```python
 import gradio as gr
 from demucs.api import Separator
 
 separator = Separator(model="htdemucs_ft")
 
-def separate(audio_file, stem):
-    origin, separated = separator.separate_audio_file(audio_file)
+def separate(audio_file, stem): origin, separated = separator.separate_audio_file(audio_file)
     output_path = f"{stem}.wav"
     separator.save_audio(separated[stem], output_path, samplerate=44100)
     return output_path
@@ -330,9 +289,7 @@ MUSDB18-HQ là bộ benchmark chuẩn cho tách nguồn nhạc, chứa 150 bài 
 
 ### Tham chiếu thờ gian xử lý
 
-Cho track stereo 4 phút ở 44.1 kHz:
-
-| Phần cứng | htdemucs | htdemucs_ft | htdemucs_6s |
+Cho track stereo 4 phút ở 44.1 kHz: | Phần cứng | htdemucs | htdemucs_ft | htdemucs_6s |
 |-----------|----------|-------------|-------------|
 | RTX 4080 GPU | ~15 giây | ~55 giây | ~25 giây |
 | RTX 3080 GPU | ~20 giây | ~75 giây | ~35 giây |
@@ -343,9 +300,7 @@ Cho track stereo 4 phút ở 44.1 kHz:
 
 ### Python API cho pipeline tùy chỉnh
 
-Để kiểm soát lập trình, bỏ qua CLI và sử dụng Python API trực tiếp:
-
-```python
+Để kiểm soát lập trình, bỏ qua CLI và sử dụng Python API trực tiếp: ```python
 import torch
 import torchaudio
 from demucs.pretrained import get_model
@@ -361,15 +316,13 @@ model.eval()
 wav, sr = torchaudio.load("input.mp3")
 
 # Đảm bảo stereo
-if wav.shape[0] == 1:
-    wav = wav.repeat(2, 1)
+if wav.shape[0] == 1: wav = wav.repeat(2, 1)
 
 # Thêm chiều batch
 mix = wav.unsqueeze(0).to(device)
 
 # Tách với cài đặt tối ưu
-with torch.no_grad():
-    sources = apply_model(
+with torch.no_grad(): sources = apply_model(
         model,
         mix,
         shifts=1,       # Shift trick: cao hơn = tốt hơn, chậm hơn
@@ -384,8 +337,7 @@ with torch.no_grad():
 source_names = model.sources  # [drums, bass, other, vocals]
 
 # Lưu từng stem riêng lẻ
-for i, name in enumerate(source_names):
-    torchaudio.save(f"{name}.wav", sources[i].cpu(), sr)
+for i, name in enumerate(source_names): torchaudio.save(f"{name}.wav", sources[i].cpu(), sr)
 ```
 
 ### Pipeline xử lý hàng loạt
@@ -395,8 +347,7 @@ from pathlib import Path
 import subprocess
 import json
 
-def batch_separate(input_dir, output_dir, model="htdemucs"):
-    """Xử lý tất cả file audio trong thư mục."""
+def batch_separate(input_dir, output_dir, model="htdemucs"): """Xử lý tất cả file audio trong thư mục."""
     input_dir = Path(input_dir)
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -415,8 +366,7 @@ def batch_separate(input_dir, output_dir, model="htdemucs"):
 
     # Tạo manifest metadata
     manifest = {}
-    for f in files:
-        base = f.stem
+    for f in files: base = f.stem
         stem_dir = output_dir / model / base
         manifest[base] = {
             drums: str(stem_dir / 'drums.mp3'),
@@ -425,8 +375,7 @@ def batch_separate(input_dir, output_dir, model="htdemucs"):
             vocals: str(stem_dir / 'vocals.mp3'),
         }
 
-    with open(output_dir / 'manifest.json', w) as fp:
-        json.dump(manifest, fp, indent=2)
+    with open(output_dir / 'manifest.json', w) as fp: json.dump(manifest, fp, indent=2)
 
     return manifest
 
@@ -436,9 +385,7 @@ batch_separate('./raw_songs/', './stems/', model=htdemucs_ft)
 
 ### Tối ưu bộ nhớ cho file dài
 
-Demucs tải toàn bộ file audio vào bộ nhớ GPU. Cho track dài hoặc VRAM hạn chế:
-
-```python
+Demucs tải toàn bộ file audio vào bộ nhớ GPU. Cho track dài hoặc VRAM hạn chế: ```python
 # Ép offload CPU cho file lớn
 import os
 os.environ[PYTORCH_CUDA_ALLOC_CONF] = 'max_split_size_mb:128'
@@ -463,8 +410,7 @@ import time
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(demucs)
 
-def separate_with_metrics(input_path, output_dir):
-    start = time.time()
+def separate_with_metrics(input_path, output_dir): start = time.time()
 
     separator = Separator(model="htdemucs_ft", device="cuda")
     origin, separated = separator.separate_audio_file(input_path)
@@ -473,8 +419,7 @@ def separate_with_metrics(input_path, output_dir):
     logger.info(f"Đã tách {input_path} trong {duration:.1f} giây")
 
     # Log mức từng stem
-    for name, audio in separated.items():
-        rms = torch.sqrt(torch.mean(audio ** 2)).item()
+    for name, audio in separated.items(): rms = torch.sqrt(torch.mean(audio ** 2)).item()
         logger.info(f"  {name}: RMS={rms:.4f}")
 
     return separated
@@ -498,9 +443,7 @@ def separate_with_metrics(input_path, output_dir):
 
 ## Hạn chế / Đánh giá trung thực
 
-Demucs không phải công cụ phù hợp cho mọi tác vụ audio. Đây là những gì nó không làm tốt:
-
-**Tách real-time**: Ngay cả mô hình Demucs nhanh nhất (`htdemucs`) cũng chỉ xử lý ở tốc độ khoảng 16x real-time trên RTX 4080. Điều này quá chậm cho biểu diễn trực tiếp hoặc ứng dụng streaming real-time. Các công cụ như Spleeter hoặc bản export ONNX chuyên dụng phù hợp hơn cho các use case nhạy cảm với độ trễ.
+Demucs không phải công cụ phù hợp cho mọi tác vụ audio. Đây là những gì nó không làm tốt: **Tách real-time**: Ngay cả mô hình Demucs nhanh nhất (`htdemucs`) cũng chỉ xử lý ở tốc độ khoảng 16x real-time trên RTX 4080. Điều này quá chậm cho biểu diễn trực tiếp hoặc ứng dụng streaming real-time. Các công cụ như Spleeter hoặc bản export ONNX chuyên dụng phù hợp hơn cho các use case nhạy cảm với độ trễ.
 
 **Tách guitar và piano**: Mô hình `htdemucs_6s` cố gắng tách guitar và piano thành các stem riêng biệt, nhưng SDR trên các nguồn này thấp hơn đáng kể so với 4 stem chính. Nếu nhu cầu chính là tách track guitar cụ thể, các công cụ chuyển phổ chuyên dụng như Basic Pitch có thể phù hợp hơn.
 
@@ -547,9 +490,7 @@ Demucs vẫn là triển khai tham chiếu cho tách nguồn nhạc mã nguồn 
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -567,7 +508,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [Audio Developers Conference 2025 — Bài thuyết trình ONNX Export Demucs](https://mixxx.discourse.group/t/gsoc-2025-converting-demucs-v4-hybrid-transformer-ai-model-to-onnx-format/32874)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

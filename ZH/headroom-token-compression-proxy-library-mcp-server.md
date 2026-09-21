@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/headroom-token-compression-proxy-library-mcp-server" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/headroom-token-compression-proxy-library-mcp-server" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/headroom-token-compression-proxy-library-mcp-server" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/headroom-token-compression-proxy-library-mcp-server" />
 title: 'Headroom: 压缩 LLM 输入 60-95% — 省 Token 代理、库与 MCP 服务器 — 202...
 description: 'Headroom (19,745 GitHub stars) 压缩工具输出、日志、文件、RAG 块后再送入 LLM。节省 60-95% token，答案不变。含 Python 库、代理、MCP 服务器。附设置教程、架构解析和真实基准数据。'
 date: 2026-06-08
-lastmod:  2026-06-08slug: 'headroom-token-compression-proxy-library-mcp-server'
+lastmod: 2026-06-08
+slug: 'headroom-token-compression-proxy-library-mcp-server'
 category: 'llm-frameworks'
 tags: ['Token 压缩', 'LLM 节省 Token', 'MCP 服务器', 'RAG 压缩', 'Headroom', '上下文优化', 'Token 成本降低', 'AI 代理']
 github_repo: 'https://github.com/chopratejas/headroom'
@@ -15,10 +11,7 @@ stars: 19745
 maintainer: 'chopratejas'
 license: MIT
 featureImage: 'https://raw.githubusercontent.com/chopratejas/headroom/main/headroom-savings.png'
-lang: zh
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/headroom-token-compression-proxy-library-mcp-server/ -->
 
 # Headroom: 压缩 LLM 输入 60-95% — 省 Token 代理、库与 MCP 服务器 — 2026 实用指南
 
@@ -138,8 +131,7 @@ curl -X POST http://localhost:8787/compress \
   -H "Content-Type: application/json" \
   -d '{"input": "非常长的上下文..."}' | jq
 
-# 预期响应:
-# {
+# 预期响应: # {
 #   "original_tokens": 4523,
 #   "compressed_tokens": 891,
 #   "savings_pct": 80.3,
@@ -155,8 +147,7 @@ headroom mcp-serve --port 9090
 
 # 从 Claude Code 连接
 claude-code --mcp http://localhost:9090
-# MCP 服务器暴露:
-# - headroom/compress — 压缩文本输入
+# MCP 服务器暴露: # - headroom/compress — 压缩文本输入
 # - headroom/benchmark — 运行压缩基准测试
 # - headroom/config — 获取/更新压缩设置
 ```
@@ -214,7 +205,17 @@ headroom serve --proxy http://api.openrouter.ai/api/v1 \
 在 100 个真实工具输出（终端输出、git diff、文件内容、RAG 块混合）上测试：
 
 | 配置 | 平均原始 Token | 平均压缩 Token | 节省 | 答案质量 |
-|------|-------------|-------------|------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 无压缩 | 4,820 | 4,820 | 0% | 100% |
 | 保守 (90% 上限) | 4,820 | 1,450 | 70% | 98% |
 | 均衡 (75% 上限) | 4,820 | 1,080 | 78% | 96% |
@@ -225,12 +226,10 @@ headroom serve --proxy http://api.openrouter.ai/api/v1 \
 一位开发者用 Claude Code 处理 50K 行 Python 项目：
 
 ```bash
-# 使用前:
-# 每日上下文: ~120,000 tokens/天
+# 使用前: # 每日上下文: ~120,000 tokens/天
 # 成本: ~$48/月 (Claude Sonnet @ $3/M)
 
-# 使用后 (均衡模式):
-# 每日上下文: ~28,000 tokens/天
+# 使用后 (均衡模式): # 每日上下文: ~28,000 tokens/天
 # 成本: ~$11/月
 # 节省: ~$37/月 = 77% 降低
 ```
@@ -256,8 +255,7 @@ compressed_chunks = rag_compress(
 
 ```yaml
 # headroom-config.yaml
-rules:
-  - pattern: "\\.py$"
+rules: - pattern: "\\.py$"
     min_compress_ratio: 0.5
   - pattern: "test_.*\\.py$"
     compress: false
@@ -293,7 +291,17 @@ curl -s http://localhost:8787/stats | jq
 ## Comparison with Alternatives
 
 | 功能 | Headroom | 仅 Tiktoken | RAG 压缩库 | 令牌优化框架 |
-|------|----------|-----------|-----------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Token 节省 | 60-95% | 0% (仅计数) | 30-60% | 50-80% |
 | 多格式 (JSON, 日志, 文件) | 是 | 否 | 有限 | 否 |
 | 部署模式 | 库 + 代理 + MCP | 仅库 | 仅库 | 仅库 |
@@ -356,7 +364,6 @@ Headroom 是每个 AI 代理流水线都需要的缺失基础设施层。与其�
 上方部分链接含联盟推广。如通过链接注册，dibi8.com 可能获得佣金，不影响你的成本。这帮助 dibi8 持续免费运营。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -384,25 +391,20 @@ Headroom 是每个 AI 代理流水线都需要的缺失基础设施层。与其�
 
 ## Why This Matters
 
-Understanding headroom: 压缩 llm 输入 60-95% — 省 token 代理、库与 mcp 服务器 — 2026 实用指南 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding headroom: 压缩 llm 输入 60-95% — 省 token 代理、库与 mcp 服务器 — 2026 实用指南 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -423,13 +425,13 @@ Headroom: 压缩 LLM 输入 60-95% — 省 Token 代理、库与 MCP 服务器 �
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
 
+---
 ## Related Articles
 
 - [free-mcp-tools-top10-2026](headroom-token-compression-proxy-library-mcp-server)

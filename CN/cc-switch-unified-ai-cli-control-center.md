@@ -1,10 +1,9 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/cc-switch-unified-ai-cli-control-center" />
 title: 'cc-switch: The Cross-Platform Desktop CLI Control Center...
 description: 'cc-switch (95,900 GitHub stars) is a cross-platform desktop tool that unifies Claude Code, Codex, OpenCode, Gemini CLI, OpenClaw, and Hermes Agent into one control center. Single binary, zero dependencies. Includes setup tutorial, architecture breakdown, and real benchmarks.'
 date: 2026-06-08
-lastmod:  2026-06-08slug: 'cc-switch-unified-ai-cli-control-center'
+lastmod: 2026-06-08
+slug: 'cc-switch-unified-ai-cli-control-center'
 category: 'dev-utils'
 tags: ['AI CLI management', 'Claude Code alternative', 'ai coding tools', 'developer productivity', 'multi-agent CLI', 'cc-switch', 'ai coding agent', 'CLI proxy']
 github_repo: 'https://github.com/farion1231/cc-switch'
@@ -12,9 +11,7 @@ stars: 95900
 maintainer: 'farion1231'
 license: MIT
 featureImage: 'https://raw.githubusercontent.com/farion1231/cc-switch/main/assets/screenshots/main-en.png'
-lang: en
 ---
-
 # cc-switch: The Cross-Platform Desktop CLI Control Center That Unifies 6+ AI Coding Agents — A Practical Setup Guide 2026
 
 ![cc-switch main interface](https://raw.githubusercontent.com/farion1231/cc-switch/main/assets/screenshots/main-en.png)
@@ -33,9 +30,7 @@ The key differentiator: cc-switch doesn't replace your AI coding agents. It mana
 
 ## How cc-switch Works
 
-cc-switch operates on three architectural layers:
-
-1. **Agent Registry Layer** — Maintains a registry of installed AI coding agents, their CLI commands, environment variables, and working directories. When you select an agent, cc-switch reads the agent's executable path and configures the environment accordingly.
+cc-switch operates on three architectural layers: 1. **Agent Registry Layer** — Maintains a registry of installed AI coding agents, their CLI commands, environment variables, and working directories. When you select an agent, cc-switch reads the agent's executable path and configures the environment accordingly.
 
 2. **Session Manager** — Tracks active sessions across all agents. When you switch from Claude Code to Codex CLI, cc-switch saves Claude Code's current working directory, git branch, and prompt history, then restores Codex CLI's last known state.
 
@@ -60,9 +55,7 @@ The agent registry layer queries your `$PATH` and common installation directorie
 
 ### Agent Profiles
 
-cc-switch supports agent profiles that define fine-grained configuration per agent instance. You can create multiple profiles for the same agent with different models, token limits, and system prompts. Profile definitions are stored in the `~/.cc-switch/profiles/` directory as JSON files:
-
-```json
+cc-switch supports agent profiles that define fine-grained configuration per agent instance. You can create multiple profiles for the same agent with different models, token limits, and system prompts. Profile definitions are stored in the `~/.cc-switch/profiles/` directory as JSON files: ```json
 {
   "profile_name": "claude-pro",
   "agent": "claude-code",
@@ -84,9 +77,7 @@ Profiles can be listed, created, and deleted from the desktop GUI or via the CLI
 
 ### Multi-Profile Management
 
-Switch between profiles without editing config files manually:
-
-```bash
+Switch between profiles without editing config files manually: ```bash
 # List all available profiles
 cc-switch profiles list
 
@@ -106,24 +97,17 @@ cc-switch profiles delete --name temporary-test
 
 ### Automatic Model Routing
 
-cc-switch can automatically route requests to different models based on task type. Define routing rules in your preset:
-
-```yaml
+cc-switch can automatically route requests to different models based on task type. Define routing rules in your preset: ```yaml
 # presets/routed-claude.yaml
 agent: claude-code
-routing:
-  default_model: "claude-sonnet-4-20250514"
-  rules:
-    - when:
-        task_pattern: ".*(?:review|audit|security).*"
+routing: default_model: "claude-sonnet-4-20250514"
+  rules: - when: task_pattern: ".*(?:review|audit|security).*"
         model: "claude-opus-4-20250514"
         temperature: 0.0
-    - when:
-        task_pattern: ".*(?:draft|brainstorm|ideate).*"
+    - when: task_pattern: ".*(?:draft|brainstorm|ideate).*"
         model: "claude-haiku-4-20250514"
         temperature: 0.7
-    - when:
-        max_tokens_needed: ">= 128000"
+    - when: max_tokens_needed: ">= 128000"
         model: "claude-sonnet-4-20250514"
       fallback_model: "claude-opus-4-20250514"
 ```
@@ -132,9 +116,7 @@ This feature eliminates manual model selection for repetitive workflows. When yo
 
 ### Terminal Window Management
 
-cc-switch manages terminal windows and tabs across agents. When you switch agents, it can create a new terminal tab or reuse an existing one:
-
-```bash
+cc-switch manages terminal windows and tabs across agents. When you switch agents, it can create a new terminal tab or reuse an existing one: ```bash
 # Configure terminal behavior
 cc-switch config set terminal.mode "reuse-tab"
 cc-switch config set terminal.terminal_app "alacritty"
@@ -149,26 +131,19 @@ cc-switch terminal close-all --confirm
 
 ### Notification System
 
-Get notified when agents complete long-running tasks, when API rate limits approach, or when agents encounter errors:
-
-```yaml
+Get notified when agents complete long-running tasks, when API rate limits approach, or when agents encounter errors: ```yaml
 # config/notifications.yaml
-notifications:
-  agent_complete:
-    sound: "default"
+notifications: agent_complete: sound: "default"
     desktop: true
     log: true
-  rate_limit_warning:
-    threshold_tokens: 90000
+  rate_limit_warning: threshold_tokens: 90000
     action: "auto_fallback"
     log: true
-  agent_error:
-    desktop: true
+  agent_error: desktop: true
     sound: "alert"
     retry_on_error: true
     max_retries: 3
-  session_start:
-    desktop: false
+  session_start: desktop: false
     log: true
 ```
 
@@ -180,17 +155,14 @@ CC Switch is a cross-platform desktop app built with Tauri 2. Install by downloa
 
 ### First Launch Setup
 
-After launching, cc-switch scans your system for installed AI coding agents and presents them in a desktop GUI. Click "Add Agent" to manually specify a path if auto-detection misses it. The "Add Agent" dialog accepts:
-- Agent name (free text)
+After launching, cc-switch scans your system for installed AI coding agents and presents them in a desktop GUI. Click "Add Agent" to manually specify a path if auto-detection misses it. The "Add Agent" dialog accepts: - Agent name (free text)
 - Executable path
 - Default working directory
 - Environment variable template
 
 ## Integration with Claude Code, Codex, OpenCode, Gemini CLI, OpenClaw, Hermes Agent
 
-cc-switch integrates with each agent through a combination of CLI command interception and environment variable injection. When you click "Switch to Claude Code", cc-switch:
-
-1. Sets `CLAUDE_CODE_SESSION=cc-switch-active` environment variable
+cc-switch integrates with each agent through a combination of CLI command interception and environment variable injection. When you click "Switch to Claude Code", cc-switch: 1. Sets `CLAUDE_CODE_SESSION=cc-switch-active` environment variable
 2. Applies the selected preset's model configuration (e.g., `claude-sonnet-4-20250514`, token limit 128K)
 3. Opens a new terminal window or tab with the agent's CLI pre-launched
 4. Logs the session metadata for cross-agent comparison
@@ -206,8 +178,7 @@ max_tokens: 128000
 temperature: 0.2
 system_prompt: "You are an expert Python developer focused on clean, tested code."
 proxy: "http://localhost:8080"  # Use WebShare for reliable proxy access
-env:
-  ANTHROPIC_API_KEY: "${env.ANTHROPIC_API_KEY}"
+env: ANTHROPIC_API_KEY: "${env.ANTHROPIC_API_KEY}"
   CLAUDE_CODE_TELEMETRY: "disabled"
 ```
 
@@ -222,8 +193,7 @@ env:
 # ⌘+5 → OpenClaw
 # ⌘+6 → Hermes Agent
 
-# From CLI, switch agent directly:
-cc-switch switch claude-code
+# From CLI, switch agent directly: cc-switch switch claude-code
 cc-switch switch opencode --preset claude-pro
 ```
 
@@ -236,7 +206,15 @@ For self-hosted setups, I use [HTStack](https://my.htstack.com/aff.php?aff=27187
 Performance isn't cc-switch's main selling point — it's a lightweight wrapper after all. But its session management and preset system have real impact on daily workflow metrics.
 
 | Metric | Without cc-switch | With cc-switch | Improvement |
-|--------|-------------------|----------------|-------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Agent switching time | 45-90 seconds | 2-3 seconds | 30-45x faster |
 | Config files edited/day | 8-12 per agent (40-60 total) | 0 (all managed in cc-switch) | 100% reduction |
 | Context switch errors | 3-5 per week | <1 per week | 80% fewer mistakes |
@@ -244,9 +222,7 @@ Performance isn't cc-switch's main selling point — it's a lightweight wrapper 
 
 ### Real-World Use Case 1: Multi-Agent A/B Testing
 
-A developer at a mid-size startup uses cc-switch to run daily A/B tests between Claude Code and Codex CLI on the same codebase:
-
-```bash
+A developer at a mid-size startup uses cc-switch to run daily A/B tests between Claude Code and Codex CLI on the same codebase: ```bash
 # Set up A/B testing workflow
 mkdir ab-test-repo && cd ab-test-repo
 git init
@@ -281,9 +257,7 @@ The session manager preserves both agents' states. When you switch back, the pre
 
 ### Custom Provider Presets
 
-cc-switch v3.16+ added custom provider support. You can define custom AI providers (beyond the built-in Claude, OpenAI, Google) in preset files:
-
-```yaml
+cc-switch v3.16+ added custom provider support. You can define custom AI providers (beyond the built-in Claude, OpenAI, Google) in preset files: ```yaml
 # presets/custom-llm.yaml
 agent: open-code
 provider: "custom-llm"
@@ -308,13 +282,10 @@ cc-switch preset sync --remote github --repo my-org/cc-switch-presets
 
 ### Agent Session Management
 
-cc-switch stores full terminal states per session. You can list, save, and restore agent sessions:
-
-```bash
+cc-switch stores full terminal states per session. You can list, save, and restore agent sessions: ```bash
 # List all active sessions
 cc-switch sessions list
-# Output:
-# claude-ab      Claude Code    [active]  since 14:32
+# Output: # claude-ab      Claude Code    [active]  since 14:32
 # codex-review   Codex CLI      [active]  since 15:01
 # opencode-deploy OpenCode      [idle]    since 16:45
 
@@ -327,27 +298,31 @@ cc-switch sessions restore --name pre-deploy
 
 ### Rate Limit Configuration
 
-Configure per-agent API rate limits to avoid hitting provider quotas:
-
-```yaml
+Configure per-agent API rate limits to avoid hitting provider quotas: ```yaml
 # config.yaml
-rate_limits:
-  claude-code:
-    max_tokens_per_minute: 50000
+rate_limits: claude-code: max_tokens_per_minute: 50000
     max_requests_per_hour: 1000
     fallback_model: "claude-haiku-4-20250514"
-  codex-cli:
-    max_tokens_per_minute: 30000
+  codex-cli: max_tokens_per_minute: 30000
     max_requests_per_hour: 500
-  gemini-cli:
-    max_tokens_per_minute: 40000
+  gemini-cli: max_tokens_per_minute: 40000
     max_requests_per_hour: 800
 ```
 
 ## Comparison with Alternatives
 
 | Feature | cc-switch | Claude Code CLI | Codex CLI | Gemini CLI |
-|---------|-----------|-----------------|-----------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Cross-platform | macOS, Linux, Windows | macOS, Linux | macOS, Linux | macOS, Linux |
 | Multi-agent support | 6+ agents unified | Claude only | Codex only | Gemini only |
 | Agent switching | 2-3 seconds (UI click) | Requires terminal close + reopen | Requires terminal close + reopen | Requires terminal close + reopen |
@@ -362,9 +337,7 @@ rate_limits:
 
 ## Limitations / Honest Assessment
 
-cc-switch is not for everyone. Here's when it's NOT a good fit:
-
-1. **Single-agent workflows** — If you only use Claude Code or only use one AI coding agent, cc-switch adds unnecessary complexity. Just use the agent's native CLI.
+cc-switch is not for everyone. Here's when it's NOT a good fit: 1. **Single-agent workflows** — If you only use Claude Code or only use one AI coding agent, cc-switch adds unnecessary complexity. Just use the agent's native CLI.
 
 2. **CI/CD environments** — cc-switch is a desktop application. It's not designed for headless CI pipelines. Use raw CLI commands or shell scripts for that.
 
@@ -442,7 +415,6 @@ Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss c
 Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -468,8 +440,8 @@ Some links above are affiliate links. dibi8.com may earn a commission if you sig
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [deepseek-reasonix-terminal-ai-coding-agent-prefix-cache](cc-switch-unified-ai-cli-control-center)
@@ -478,8 +450,8 @@ Some links above are affiliate links. dibi8.com may earn a commission if you sig
 - [moneyprinterturbo-one-click-ai-video-generator](cc-switch-unified-ai-cli-control-center)
 - [pm-skills-68-product-management-skills-ai-agents](cc-switch-unified-ai-cli-control-center)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/terax-ai-lightweight-ai-terminal" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/terax-ai-lightweight-ai-terminal" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/terax-ai-lightweight-ai-terminal" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/terax-ai-lightweight-ai-terminal" />
 title: "Terax AI: Trình Giả Lập Terminal AI Nhẹ Hiểu Bạn"
 description: "Khám phá Terax AI, trình giả lập terminal AI native 7 MB được xây dựng trên Tauri 2 + Rust. Tính năng chuyển đổi ngôn ngữ tự nhiên thành lệnh Shell, hỗ trợ AI nội tuyến, tự động hoàn thành thông minh, hỗ trợ bash, zsh, fish và PowerShell."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Docker
+tech_stack: - Docker
   - Go
   - Java
   - JavaScript
@@ -30,10 +24,8 @@ maintainer: "crynta"
 last_maintained: "2026-05-16"
 featureImage: ""
 draft: false
-aliases:
-- /vi/posts/terax-ai-lightweight-ai-terminal/
-faqs:
-  - q: 'Terax AI là gì?'
+aliases: - /vi/posts/terax-ai-lightweight-ai-terminal/
+faqs: - q: 'Terax AI là gì?'
     a: 'Terax AI là một trình giả lập terminal mã nguồn mở, tích hợp AI ngay từ nền tảng, được xây dựng trên Tauri 2 với backend Rust và frontend React 19. Nó kết hợp terminal PTY gốc với hỗ trợ đa tab, trình soạn thảo code tích hợp, trình khám phá file và bảng AI chuyên dụng ở thanh bên.'
   - q: 'Terax AI có gửi dữ liệu hoặc API key của tôi lên cloud không?'
     a: 'Không. Terax theo mô hình Tự Mang Khóa (BYOK) với zero telemetry, API key của bạn được lưu trữ an toàn trong keychain của hệ điều hành thông qua hệ thống keyring — không lưu trên ổ đĩa hay localStorage. Bạn cũng có thể chạy hoàn toàn offline bằng cách trỏ Terax đến endpoint suy luận LM Studio cục bộ.'
@@ -45,7 +37,6 @@ faqs:
     a: 'Terax được build từ mã nguồn: cài đặt Rust (stable) và Node.js 20+ kèm pnpm, clone repository bằng git, chạy pnpm install, sau đó dùng pnpm tauri dev để phát triển hoặc pnpm tauri build để tạo bản phân phối chính thức. Hiện chưa có file cài đặt prebuilt chính thức nào được cung cấp.'
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/terax-ai-lightweight-ai-terminal/ -->
 {</* resource-info */>}
 
 # Terax AI: Trình Giả Lập Terminal AI Nhẹ Hiểu Bạn
@@ -80,9 +71,7 @@ Vượt xa tự động hoàn thành đường dẫn và lệnh truyền thống
 
 ### Hỗ Trợ Đa Shell
 
-Terax thực sự độc lập với shell. Nó hoạt động liền mạch với:
-
-- **bash** và **zsh** (tích hợp shell thông qua các script init được chèn)
+Terax thực sự độc lập với shell. Nó hoạt động liền mạch với: - **bash** và **zsh** (tích hợp shell thông qua các script init được chèn)
 - **fish** (tương thích native)
 - **PowerShell 7+** và **Windows PowerShell 5.1**
 - **cmd.exe** (dự phòng trên Windows)
@@ -101,9 +90,7 @@ Terax đi kèm trình soạn thảo mã tích hợp (CodeMirror 6) hỗ trợ TS
 
 ### Yêu Cầu Trước Khi Cài
 
-Trước khi build từ source, hãy đảm bảo bạn đã cài đặt:
-
-- **Rust** (stable) — cài đặt qua [rustup.rs](https://rustup.rs)
+Trước khi build từ source, hãy đảm bảo bạn đã cài đặt: - **Rust** (stable) — cài đặt qua [rustup.rs](https://rustup.rs)
 - **Node.js 20+** và **pnpm**
 - Các yêu cầu cụ thể theo nền tảng cho Tauri — xem [tauri.app/start/prerequisites](https://tauri.app/start/prerequisites/)
 
@@ -182,9 +169,7 @@ Các tổ chức có yêu cầu quyền riêng tư dữ liệu nghiêm ngặt c�
 
 ## Tìm Hiểu Sâu Về Kiến Trúc Kỹ Thuật
 
-Để hiểu điều gì làm cho Terax đặc biệt, cần phải nhìn vào bên trong. Kiến trúc được phân lớp một cách có chủ đích để đảm bảo hiệu năng và khả năng mở rộng:
-
-**Lớp Backend Rust** — Quản lý PTY (Pseudo Terminal) cốt lõi chạy trên Rust thông qua `portable-pty`, cung cấp tích hợp shell ở tốc độ gốc mà không có sự phình to bộ nhớ của các terminal Electron hay Java. Mô hình sở hữu (ownership) của Rust loại bỏ toàn bộ một lớp lỗi bộ nhớ không an toàn thường gặp ở các trình giả lập terminal truyền thống.
+Để hiểu điều gì làm cho Terax đặc biệt, cần phải nhìn vào bên trong. Kiến trúc được phân lớp một cách có chủ đích để đảm bảo hiệu năng và khả năng mở rộng: **Lớp Backend Rust** — Quản lý PTY (Pseudo Terminal) cốt lõi chạy trên Rust thông qua `portable-pty`, cung cấp tích hợp shell ở tốc độ gốc mà không có sự phình to bộ nhớ của các terminal Electron hay Java. Mô hình sở hữu (ownership) của Rust loại bỏ toàn bộ một lớp lỗi bộ nhớ không an toàn thường gặp ở các trình giả lập terminal truyền thống.
 
 **Framework Tauri 2** — Không giống Electron buộc phải đóng gói toàn bộ một phiên bản Chromium (100+ MB), Tauri 2 sử dụng WebView gốc của hệ điều hành. Trên macOS đó là WKWebView, trên Windows là WebView2, và trên Linux là WebKitGTK. Chỉ riêng lựa chọn kiến trúc này đã giải thích được kích thước gói ~7 MB.
 
@@ -230,9 +215,7 @@ Các tổ chức có yêu cầu quyền riêng tư dữ liệu nghiêm ngặt c�
 
 ## Mẹo Bắt Đầu Sử Dụng
 
-Để tận dụng tối đa Terax AI ngay từ ngày đầu tiên:
-
-1. **Tạo tệp `TERAX.md`** trong thư mục gốc dự án của bạn với ngữ cảnh về tech stack, quy ước và các lệnh thường dùng. AI sẽ tham khảo tệp này để đưa ra các đề xuất phù hợp hơn.
+Để tận dụng tối đa Terax AI ngay từ ngày đầu tiên: 1. **Tạo tệp `TERAX.md`** trong thư mục gốc dự án của bạn với ngữ cảnh về tech stack, quy ước và các lệnh thường dùng. AI sẽ tham khảo tệp này để đưa ra các đề xuất phù hợp hơn.
 2. **Cấu hình nhiều nhà cung cấp AI** — Thiết lập cả nhà cung cấp đám mây (cho suy luận phức tạp) và LM Studio (cho truy vấn nhanh, ngoại tuyến) để bạn có thể chuyển đổi dựa trên tác vụ.
 3. **Bật script tích hợp shell** — Cho phép Terax chèn script khởi tạo vào cấu hình shell của bạn để có khả năng nhận thức ngữ cảnh phong phú nhất.
 4. **Khám phá phím tắt** — Terax hỗ trợ nhiều phím tắt để chuyển tab, bật/tắt bảng AI và điều hướng trình quản lý tệp, giúp tăng tốc đáng kể quy trình làm việc.
@@ -271,9 +254,7 @@ Sẵn sàng nâng cấp trải nghiệm terminal của bạn?
 
 ## Công Cụ Đề Xuất
 
-Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
+Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
 - **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Proxy Anthropic Claude / OpenAI / DeepSeek API. Hầu hết AI tool ở trên (chatbot, code gen, translation, search, v.v.) cần LLM API key — proxy này cho access ổn định top model với ~30% giá chính thức.
 - **{{< aff "hostinger" "footer-cta-legacy" "Hostinger" >}}** — Lựa chọn VPS giá tốt cho thị trường Việt Nam.
 
@@ -281,7 +262,6 @@ Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

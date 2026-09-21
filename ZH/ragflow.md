@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ragflow" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ragflow" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ragflow" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ragflow" />
 title: 'RAGFlow: 部署拥有 80K+ Stars 的生产级 RAG 引擎 — 2026 年 Docker 搭建与...
 description: 'RAGFlow 是具备深度文档理解和内置 Agent 能力的开源检索增强生成（RAG）引擎。兼容 Ollama、OpenAI、Qdrant、Elasticsearch、Redis。涵盖 Docker 部署、文档导入、检索调优和生产环境加固。'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [ragflow, rag引擎, 文档理解, docker部署, llm智能体, 生产级rag, 开源ai]
-aliases:
-- /zh/posts/ragflow/
+aliases: - /zh/posts/ragflow/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/ragflow/ -->
 
 {{</* resource-info */>}}
 
@@ -76,7 +68,13 @@ RAGFlow 构建一个包含检索到的带可追溯引用分块的提示词。LLM
 ### 基础设施技术栈
 
 | 服务 | 用途 | 默认后端 |
-|------|------|----------|
+|
+---
+|
+---
+|
+---
+|
 | 向量 + 全文存储 | 文档索引与搜索 | Elasticsearch 或 Infinity |
 | 对象存储 | 上传文档的文件存储 | MinIO |
 | 元数据库 | 用户数据、数据集配置、聊天历史 | MySQL |
@@ -90,7 +88,13 @@ RAGFlow 构建一个包含检索到的带可追溯引用分块的提示词。LLM
 ### 硬件要求
 
 | 资源 | 最低要求 | 生产环境推荐 |
-|------|---------|-------------|
+|
+---
+|
+---
+|
+---
+|
 | CPU | 4 核 (x86_64) | 8+ 核 |
 | 内存 | 16 GB | 32+ GB |
 | 磁盘 | 50 GB SSD | 200+ GB NVMe |
@@ -176,8 +180,7 @@ docker logs -f ragflow-server
 
 ```yaml
 # docker/service_conf.yaml.template
-user_default_llm:
-  factory: OpenAI
+user_default_llm: factory: OpenAI
   api_key: sk-your-openai-api-key
   base_url: https://api.openai.com/v1
   default_model: gpt-4.1-mini
@@ -209,8 +212,7 @@ docker compose -f docker-compose.yml up -d
 
 ```yaml
 # docker/service_conf.yaml.template
-user_default_llm:
-  factory: Ollama
+user_default_llm: factory: Ollama
   api_key: ""
   base_url: http://host.docker.internal:11434
   default_model: llama3.2
@@ -228,8 +230,7 @@ ollama pull nomic-embed-text
 ### OpenAI（云端 API）
 
 ```yaml
-user_default_llm:
-  factory: OpenAI
+user_default_llm: factory: OpenAI
   api_key: ${OPENAI_API_KEY}
   base_url: https://api.openai.com/v1
   default_model: gpt-4.1-mini
@@ -265,16 +266,10 @@ docker compose -f docker-compose.yml up -d
 
 ```yaml
 # docker-compose.yml（节选）
-services:
-  redis:
-    image: redis:7-alpine
+services: redis: image: redis:7-alpine
     command: redis-server --requirepass ${REDIS_PASSWORD}
-    volumes:
-      - redis_data:/data
-    deploy:
-      resources:
-        limits:
-          memory: 2G
+    volumes: - redis_data:/data
+    deploy: resources: limits: memory: 2G
 ```
 
 ### Qdrant 作为替代向量存储
@@ -301,7 +296,17 @@ vectors = qdrant.search(collection="financial_reports", vector=query_embedding, 
 AI Multiple 在 2026 年进行的一项基准测试比较了 RAGFlow 与其他框架，使用 100 个标准化查询，生成模型为 GPT-4.1-mini：
 
 | 指标 | RAGFlow | LlamaIndex | Haystack | LangChain RAG |
-|------|---------|------------|----------|---------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 回答准确率 | 97% | 94% | 95% | 91% |
 | 平均检索延迟 | 420ms | 380ms | 450ms | 510ms |
 | 令牌效率（每查询） | 1,450 | 1,600 | 1,570 | 2,400 |
@@ -313,7 +318,15 @@ RAGFlow 在准确率和引用 grounding 方面领先，这归功于 DeepDoc 的�
 ### 文档解析性能
 
 | 文档类型 | RAGFlow (DeepDoc) | LlamaIndex | Haystack |
-|---------|-------------------|------------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 含表格的 PDF | 完整结构保留 | 扁平文本 | 扁平文本 |
 | 扫描版 PDF (OCR) | 原生支持 | 需要扩展 | 需要扩展 |
 | PPT 幻灯片 | 幻灯片感知分块 | 按幻灯片 | 按幻灯片 |
@@ -323,7 +336,17 @@ RAGFlow 在准确率和引用 grounding 方面领先，这归功于 DeepDoc 的�
 ### 生产部署配置参考
 
 | 配置档 | 用户数 | 文档数 | 硬件 | 月度云成本 |
-|--------|--------|--------|------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 团队 (10 用户) | 10 | 10,000 | 4 vCPU, 16 GB RAM | ~$80 (DigitalOcean) |
 | 部门 (100 用户) | 100 | 100,000 | 8 vCPU, 32 GB RAM | ~$200 (DigitalOcean) |
 | 企业 (1000+ 用户) | 1000+ | 100万+ | 16 vCPU, 64 GB RAM + GPU | ~$800+ (云端) |
@@ -379,43 +402,30 @@ RAGFlow 的 Agent 可以在沙箱环境中执行 Python 和 JavaScript 代码。
 sudo apt-get install -y runsc
 
 # 在 docker-compose.yml 中启用
-services:
-  ragflow:
-    environment:
-      - ENABLE_SANDBOX=true
-    devices:
-      - /dev/kvm
+services: ragflow: environment: - ENABLE_SANDBOX=true
+    devices: - /dev/kvm
 ```
 
 ### 使用 Prometheus 监控
 
 ```yaml
 # 添加到 docker-compose.yml
-services:
-  prometheus:
-    image: prom/prometheus:latest
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+services: prometheus: image: prom/prometheus:latest
+    volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus_data:/prometheus
-    ports:
-      - "9090:9090"
+    ports: - "9090:9090"
 
-  grafana:
-    image: grafana/grafana:latest
-    ports:
-      - "3000:3000"
-    volumes:
-      - grafana_data:/var/lib/grafana
+  grafana: image: grafana/grafana:latest
+    ports: - "3000:3000"
+    volumes: - grafana_data:/var/lib/grafana
 ```
 
 需要监控的关键指标：
 
 ```yaml
 # prometheus.yml
-scrape_configs:
-  - job_name: ragflow
-    static_configs:
-      - targets: ['ragflow-server:9380']
+scrape_configs: - job_name: ragflow
+    static_configs: - targets: ['ragflow-server:9380']
     metrics_path: /metrics
 ```
 
@@ -446,7 +456,17 @@ rclone sync $BACKUP_DIR s3:my-backup-bucket/ragflow/
 ## 与替代方案对比
 
 | 特性 | RAGFlow | LlamaIndex | Haystack | LangChain RAG |
-|------|---------|------------|----------|---------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **GitHub Stars** | 80,853 | 49,500 | 25,300 | 105,000 |
 | **许可证** | Apache-2.0 | MIT | Apache-2.0 | MIT |
 | **深度文档解析** | DeepDoc（内置） | LlamaParse（付费） | 基础 | 基础 |
@@ -568,7 +588,6 @@ RAGFlow 是唯一的开源 RAG 平台，将深度文档理解、生产级 Web UI
 - [RAGFlow VPS 生产部署](https://zhujibaike.com/2497.html)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -615,3 +634,5 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
 
+
+---

@@ -1,14 +1,10 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/design-md-google-open-source-format-ai-coding-agents-design-systems" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/design-md-google-open-source-format-ai-coding-agents-design-systems" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/design-md-google-open-source-format-ai-coding-agents-design-systems" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/design-md-google-open-source-format-ai-coding-agents-design-systems" />
 title: 'DESIGN.md: Các tác nhân AI lập trình cung cấp hệ thống t...
 description: 'DESIGN.md của Google Labs Code là một đặc tả định dạng mã nguồn mở để mô tả nhận diện hình ảnh cho các tác nhân lập trình AI. 20,8 nghìn sao trên GitHub. Tìm hiểu cách nó kết nối các hệ thống thiết kế và tạo mã AI với các token YAML và các ràng buộc dựa trên văn bản.'
 tags: ["guide", "open-source", "ai-agents", "design-systems", "reference", "google"]
 date: 2026-06-27
-lastmod:  2026-06-27slug: 'design-md-google-open-source-format-ai-coding-agents-design-systems'
+lastmod: 2026-06-27
+slug: 'design-md-google-open-source-format-ai-coding-agents-design-systems'
 category: dev-utils
 github_repo: 'https://github.com/google-labs-code/design.md'
 license: Apache-2.0
@@ -16,7 +12,6 @@ lang: vi
 featureImage: /images/articles/design-md-format-specification-for-ai-coding-agents.png
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/design-md-google-open-source-format-ai-coding-agents-design-systems/ -->
 # DESIGN.md: Các tác nhân AI lập trình cung cấp hệ thống thiết kế của Google qua định dạng mã nguồn mở
 
 
@@ -36,9 +31,7 @@ Khi bạn yêu cầu một đại lý lập trình AI xây dựng một trang đ
 
 DESIGN.md là một tệp markdown phục vụ như nguồn thông tin chính duy nhất về nhận diện hình ảnh của một dự án. Nó được thiết kế để các tác nhân lập trình AI (Claude, ChatGPT, Codex, Cursor, v.v.) đọc được, giúp họ tạo giao diện người dùng phù hợp với thương hiệu của bạn một cách nhất quán — mà không cần bạn phải giải thích lại hệ thống thiết kế của mình mỗi lần.
 
-Định dạng có hai lớp bổ trợ cho nhau:
-
-```
+Định dạng có hai lớp bổ trợ cho nhau: ```
 ┌──────────────────────────────────────────────────┐
 │              DESIGN.md Structure                  │
 ├──────────────────────────────────────────────────┤
@@ -49,7 +42,7 @@ DESIGN.md là một tệp markdown phục vụ như nguồn thông tin chính du
 │                                                  │
 │  ## Colors                                     │
 │  ```yaml                                       │
-│  colors:                                       │
+│  colors: │
 │    paper: '#F4F0E4'                             │
 │    ink: '#1E1A14'                               │
 │    accent: '#C3402A'                            │
@@ -60,7 +53,7 @@ DESIGN.md là một tệp markdown phục vụ như nguồn thông tin chính du
 │                                                  │
 │  ## Typography                                 │
 │  ```yaml                                       │
-│  typography:                                   │
+│  typography: │
 │    heading: 'Playfair Display'                 │
 │    body: 'Source Serif 4'                      │
 │    mono: 'JetBrains Mono'                      │
@@ -68,7 +61,7 @@ DESIGN.md là một tệp markdown phục vụ như nguồn thông tin chính du
 │                                                  │
 │  ## Spacing                                    │
 │  ```yaml                                       │
-│  spacing:                                      │
+│  spacing: │
 │    unit: 8px                                   │
 │    scale: [4, 8, 16, 24, 32, 48, 64]           │
 │  ```                                           │
@@ -84,9 +77,7 @@ Các token YAML cung cấp các giá trị có thể đọc bằng máy. Phần 
 
 ## Tại Sao Văn Xuôi Quan Trọng Hơn Các Token
 
-Các nhà thiết kế đứng sau DESIGN.md đã đưa ra một lựa chọn có chủ ý: **phần văn bản là phần quan trọng nhất của bản đặc tả**. Tài liệu triết lý của họ giải thích điều đó một cách hoàn hảo:
-
-"> *“Một thiết kế tham khảo 'Bài giảng tay của sinh viên tốt nghiệp thập niên 1970 theo truyền thống của một trường đại học lâu đời và uy tín' gợi lên một thế giới hoàn chỉnh: màu mực duy nhất, lề rộng rãi, phông chữ serif ở kích thước đọc, và không có trang trí. Một câu duy nhất đó mang nhiều thông tin hữu ích hơn một chục giá trị đo lường.”*
+Các nhà thiết kế đứng sau DESIGN.md đã đưa ra một lựa chọn có chủ ý: **phần văn bản là phần quan trọng nhất của bản đặc tả**. Tài liệu triết lý của họ giải thích điều đó một cách hoàn hảo: "> *“Một thiết kế tham khảo 'Bài giảng tay của sinh viên tốt nghiệp thập niên 1970 theo truyền thống của một trường đại học lâu đời và uy tín' gợi lên một thế giới hoàn chỉnh: màu mực duy nhất, lề rộng rãi, phông chữ serif ở kích thước đọc, và không có trang trí. Một câu duy nhất đó mang nhiều thông tin hữu ích hơn một chục giá trị đo lường.”*
 
 Đây là một cái nhìn sâu sắc về phát triển hỗ trợ AI. Khi bạn bảo một LLM “sử dụng thẩm mỹ biên tập ấm áp, cao cấp,” nó tạo ra thứ gì đó chung chung. Khi bạn bảo nó “tài liệu giảng bài tốt nghiệp những năm 1970,” nó hiểu toàn bộ tham chiếu văn hóa — kết cấu giấy, kiểu chữ hạn chế, sự thiếu vắng các yếu tố trang trí. Mô hình điền đầy tất cả các khoảng trống từ dữ liệu huấn luyện của nó.
 
@@ -94,9 +85,7 @@ DESIGN.md chính thức hóa nguyên tắc này. Các token là ngữ cảnh, kh
 
 ## Cách Nó Hoạt Động Ở Bên Trong
 
-Kho lưu trữ DESIGN.md được cấu trúc như một monorepo Bun với Turbo để điều phối:
-
-```
+Kho lưu trữ DESIGN.md được cấu trúc như một monorepo Bun với Turbo để điều phối: ```
 design.md/
 ├── packages/
 │   └── cli/                    # @google/design.md CLI toolkit
@@ -111,8 +100,7 @@ design.md/
 └── PHILOSOPHY.md               # Design philosophy manifesto
 ```
 
-Công cụ CLI (`@google/design.md`) cung cấp:
-- **Linting**: Xác thực các tệp DESIGN.md theo lược đồ đặc tả
+Công cụ CLI (`@google/design.md`) cung cấp: - **Linting**: Xác thực các tệp DESIGN.md theo lược đồ đặc tả
 - **Trích xuất token**: Phân tích các khối YAML thành dữ liệu có cấu trúc
 - **Tích hợp agent**: Được đóng gói dưới dạng định nghĩa `.agents/skills/` cho Claude, ChatGPT và các agent lập trình khác
 
@@ -126,17 +114,13 @@ Trình kiểm tra mã đảm bảo rằng các phần bắt buộc (tên, màu s
 bun install -g @google/design.md
 ```
 
-Hoặc sử dụng trực tiếp với npx:
-
-```bash
+Hoặc sử dụng trực tiếp với npx: ```bash
 npx @google/design.md lint DESIGN.md
 ```
 
 ### 2. Tạo Tập Tin DESIGN.md Đầu Tiên Của Bạn
 
-Bắt đầu với cấu trúc tối thiểu cần thiết:
-
-```markdown
+Bắt đầu với cấu trúc tối thiểu cần thiết: ```markdown
 ---
 name: My Project Design
 ---
@@ -144,8 +128,7 @@ name: My Project Design
 ## Màu sắc
 
 ```yaml
-colors:
-  primary: '#2563EB'
+colors: primary: '#2563EB'
   background: '#FFFFFF'
   text: '#111827'
 ```
@@ -155,8 +138,7 @@ Một hệ thống xanh lam và trắng sạch sẽ cho một sản phẩm SaaS 
 ## Kiểu chữ
 
 ```yaml
-typography:
-  heading: 'Inter'
+typography: heading: 'Inter'
   body: 'Inter'
   mono: 'JetBrains Mono'
 ```
@@ -166,8 +148,7 @@ Hệ thống kiểu chữ cho một gia đình nhằm đảm bảo tính nhất 
 ## Khoảng cách
 
 ```yaml
-spacing:
-  unit: 4px
+spacing: unit: 4px
   scale: [4, 8, 16, 24, 32, 48, 64]
 ```
 
@@ -176,9 +157,7 @@ Lưới cơ bản 4px, 8px cho các phần tử lớn hơn.
 
 ### 3. Gửi nó đến các đại lý lập trình của bạn
 
-Thêm DESIGN.md vào kho lưu trữ dự án của bạn. Khi làm việc với bất kỳ tác nhân lập trình nào, hãy tham chiếu tệp này trong lời nhắc hệ thống của bạn:
-
-```
+Thêm DESIGN.md vào kho lưu trữ dự án của bạn. Khi làm việc với bất kỳ tác nhân lập trình nào, hãy tham chiếu tệp này trong lời nhắc hệ thống của bạn: ```
 System: Read the DESIGN.md file in the project root.
 All UI components must follow the design specifications defined there.
 ```
@@ -187,9 +166,7 @@ All UI components must follow the design specifications defined there.
 
 ## Ví dụ Thực tế
 
-Kho lưu trữ bao gồm một số tệp DESIGN.md mẫu minh họa các phương pháp thẩm mỹ khác nhau:
-
-**Tài liệu Giảng dạy Cao học**: Một tờ giấy ấm với kiểu chữ mực đơn và các điểm nhấn màu đỏ chỉ giới hạn ở các sơ đồ. Văn bản ghi rõ “Một tài liệu giảng dạy môn khoa học máy tính cấp cao theo truyền thống của một trường đại học lâu đời” — ngay lập tức truyền tải lề trang, phông chữ có chân, và sự tiết chế.
+Kho lưu trữ bao gồm một số tệp DESIGN.md mẫu minh họa các phương pháp thẩm mỹ khác nhau: **Tài liệu Giảng dạy Cao học**: Một tờ giấy ấm với kiểu chữ mực đơn và các điểm nhấn màu đỏ chỉ giới hạn ở các sơ đồ. Văn bản ghi rõ “Một tài liệu giảng dạy môn khoa học máy tính cấp cao theo truyền thống của một trường đại học lâu đời” — ngay lập tức truyền tải lề trang, phông chữ có chân, và sự tiết chế.
 
 **Hệ thống Thiết kế Chuyển động**: Định nghĩa các hằng số thời gian cho phản hồi giao diện người dùng (120ms cho di chuột/nhấn, 250ms cho chuyển đổi nội dung) với đường cong làm mềm cơ học. Văn bản nhấn mạnh “Không gì bật lại, không gì vượt quá, không gì lưu lại” — mang đến cho người dùng một thẩm mỹ thời gian rõ ràng.
 
@@ -201,8 +178,7 @@ DESIGN.md giải quyết một nút thắt cơ bản trong phát triển hỗ tr
 
 Nếu không có một đặc tả thiết kế, mỗi trang, thành phần hoặc màn hình do AI tạo ra đều là một bài tập sáng tạo mới. Tác nhân không biết màu sắc thương hiệu của bạn ngoài những gì có trong gợi ý, không hiểu triết lý về khoảng cách của bạn và không có ký ức về việc 'hoàn thành' trông như thế nào đối với dự án của bạn.
 
-Với DESIGN.md:
-- **Các tác nhân có bộ nhớ thiết kế liên tục** — tệp tồn tại trong kho của bạn, được kiểm soát phiên bản và xem xét
+Với DESIGN.md: - **Các tác nhân có bộ nhớ thiết kế liên tục** — tệp tồn tại trong kho của bạn, được kiểm soát phiên bản và xem xét
 - **Nhiều tác nhân giữ sự nhất quán** — Claude, ChatGPT và Codex đều đọc cùng một tệp
 - **Các đánh giá thiết kế trở nên tự động** — trình kiểm tra lỗi bắt các vi phạm trước khi chúng đến sản xuất
 - **Các nhà phát triển mới tham gia ngay lập tức** — tệp *chính là* tài liệu hệ thống thiết kế
@@ -211,9 +187,7 @@ Với DESIGN.md:
 
 ## Giới hạn và sự đánh đổi
 
-DESIGN.md không phải là giải pháp hoàn hảo. Một số cân nhắc:
-
-1. **Chất lượng phụ thuộc vào tác nhân**: Hiệu quả phụ thuộc vào việc mỗi tác nhân đọc và theo dõi phần văn bản prose tốt đến mức nào. Một số tác nhân có thể phân tích YAML nhưng bỏ qua các mô tả bằng văn xuôi.
+DESIGN.md không phải là giải pháp hoàn hảo. Một số cân nhắc: 1. **Chất lượng phụ thuộc vào tác nhân**: Hiệu quả phụ thuộc vào việc mỗi tác nhân đọc và theo dõi phần văn bản prose tốt đến mức nào. Một số tác nhân có thể phân tích YAML nhưng bỏ qua các mô tả bằng văn xuôi.
 
 2. **Không có hiển thị trực quan**: DESIGN.md là một bản đặc tả, không phải là một công cụ hiển thị. Bạn vẫn cần đại lý (hoặc một nhà thiết kế con người) để chuyển các đặc tả thành mã thực tế.
 
@@ -225,9 +199,7 @@ DESIGN.md không phải là giải pháp hoàn hảo. Một số cân nhắc:
 
 ## Cộng đồng và Sự chấp nhận
 
-DESIGN.md được phát triển bởi Google Labs Code và đã thu hút sự chú ý đáng kể:
-
-- **20,800+ stars** on GitHub (2,319 gained in a single day)
+DESIGN.md được phát triển bởi Google Labs Code và đã thu hút sự chú ý đáng kể: - **20,800+ stars** on GitHub (2,319 gained in a single day)
 - **1,700+ forks** with active community contributions
 - **40+ commits** in 2 months with rapid iteration
 - **18 issues** and **17 pull requests** showing active development
@@ -255,8 +227,7 @@ Tham gia cộng đồng DIBI8 trên [Telegram](https://t.me/DIBI8_Group) để t
 
 ---
 
-**Nguồn & Tài liệu Tham khảo**:
-- Kho chính thức: https://github.com/google-labs-code/design.md
+**Nguồn & Tài liệu Tham khảo**: - Kho chính thức: https://github.com/google-labs-code/design.md
 - Triết lý DESIGN.md: https://github.com/google-labs-code/design.md/blob/main/PHILOSOPHY.md
 - Bộ công cụ CLI: https://github.com/google-labs-code/design.md/tree/main/packages/cli
 - Ví dụ về các tệp DESIGN.md: https://github.com/google-labs-code/design.md/tree/main/examples
@@ -265,7 +236,6 @@ Tham gia cộng đồng DIBI8 trên [Telegram](https://t.me/DIBI8_Group) để t
 
 **Tiết lộ**: Bài viết này chứa các liên kết liên kết. Nếu bạn đăng ký thông qua các liên kết của chúng tôi, chúng tôi có thể kiếm được một khoản hoa hồng nhỏ mà không tốn thêm phí nào đối với bạn. Điều này giúp hỗ trợ báo chí công nghệ độc lập và giữ cho các tài nguyên như dibi8.com miễn phí và không có quảng cáo.
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

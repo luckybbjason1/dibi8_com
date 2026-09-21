@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/openai-whisper" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/openai-whisper" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/openai-whisper" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/openai-whisper" />
 title: 'OpenAI Whisper: 99.8K+ Stars — 完整ASR配置教程 vs WhisperX、fas...
 description: 'OpenAI Whisper (ASR) 基于大规模弱监督的鲁棒语音识别。兼容 WhisperX、faster-whisper、LibreTranslate。涵盖 whisper 教程、whisper vs whisperx、语音识别配置、whisper python、whisper docker。'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [whisper, 语音识别, asr, openai, 'faster-whisper', whisperx, python, docker, 机器学习]
-aliases:
-- /zh/posts/openai-whisper/
+aliases: - /zh/posts/openai-whisper/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/openai-whisper/ -->
 
 {{</* resource-info */>}}
 
@@ -55,7 +47,19 @@ Whisper 采用编码器-解码器 Transformer 架构。音频输入被转换为�
 - **以上下文为条件**：解码器接收前一段落的 token，以保持跨边界格式一致
 
 | 模型 | 参数量 | 英语 WER | 多语言 WER | 显存 (GPU) | 相对速度 |
-|------|--------|----------|------------|------------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | tiny  | 39M    | ~7.6%    | ~12%       | ~1 GB      | ~10x     |
 | base  | 74M    | ~5.0%    | ~10%       | ~1 GB      | ~7x      |
 | small | 244M   | ~3.4%    | ~7%        | ~2 GB      | ~4x      |
@@ -145,8 +149,7 @@ result = model.transcribe("audio.mp3")
 print(result["text"])
 
 # 获取带时间戳的分段
-for segment in result["segments"]:
-    print(f"[{segment[start]:.2f}s -> {segment[end]:.2f}s] {segment[text]}")
+for segment in result["segments"]: print(f"[{segment[start]:.2f}s -> {segment[end]:.2f}s] {segment[text]}")
 ```
 
 ### CLI 使用示例
@@ -211,8 +214,7 @@ diarize_segments = diarize_model(audio)
 result = whisperx.assign_word_speakers(diarize_segments, result)
 
 # 打印带说话人标签的转录结果
-for segment in result["segments"]:
-    speaker = segment.get("speaker", "UNKNOWN")
+for segment in result["segments"]: speaker = segment.get("speaker", "UNKNOWN")
     start = segment["start"]
     end = segment["end"]
     text = segment["text"]
@@ -255,8 +257,7 @@ segments, info = model.transcribe(
 
 print(f"检测到的语言: {info.language} (概率: {info.language_probability:.2f})")
 
-for segment in segments:
-    print(f"[{segment.start:.2f}s -> {segment.end:.2f}s] {segment.text}")
+for segment in segments: print(f"[{segment.start:.2f}s -> {segment.end:.2f}s] {segment.text}")
 ```
 
 ### LibreTranslate 集成（翻译流水线）
@@ -272,8 +273,7 @@ result = model.transcribe(audio_path, language="ja")
 japanese_text = result["text"]
 
 # 通过 LibreTranslate API 翻译
-def translate(text, source="ja", target="en"):
-    response = requests.post(
+def translate(text, source="ja", target="en"): response = requests.post(
         "http://localhost:5000/translate",
         headers={"Content-Type": "application/json"},
         json={"q": text, "source": source, "target": target}
@@ -297,9 +297,7 @@ app = FastAPI()
 model = WhisperModel("medium", device="cuda", compute_type="float16")
 
 @app.post("/transcribe")
-async def transcribe(file: UploadFile = File(...)):
-    with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as tmp:
-        tmp.write(await file.read())
+async def transcribe(file: UploadFile = File(...)): with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as tmp: tmp.write(await file.read())
         tmp_path = tmp.name
 
     segments, info = model.transcribe(
@@ -346,8 +344,7 @@ TRANSCRIPTION_DURATION = Histogram(
     ["model"]
 )
 
-def transcribe_with_metrics(audio_path, model_name="medium"):
-    start = time.time()
+def transcribe_with_metrics(audio_path, model_name="medium"): start = time.time()
     segments, info = model.transcribe(audio_path)
     duration = time.time() - start
 
@@ -367,7 +364,17 @@ start_http_server(9090)
 ### 词错误率对比 (LibriSpeech test-clean)
 
 | 模型 / 引擎 | WER (clean) | WER (other) | 多语言 | 年份 |
-|-------------|-------------|-------------|--------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Whisper tiny | 7.6% | 12.0% | 12.0% | 2022 |
 | Whisper base | 5.0% | 8.1% | 10.0% | 2022 |
 | Whisper small | 3.4% | 5.8% | 7.0% | 2022 |
@@ -381,7 +388,17 @@ start_http_server(9090)
 ### 推理速度基准 (1 小时音频, NVIDIA RTX 4090)
 
 | 引擎 | 模型 | 时间 | 显存 | 说明 |
-|------|------|------|------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | OpenAI Whisper | large-v3 | ~90 分钟 | ~10 GB | 基线 |
 | faster-whisper | large-v3 | ~18 分钟 | ~6 GB | float16, 4-8 倍加速 |
 | faster-whisper | large-v3 | ~12 分钟 | ~4 GB | int8 量化 |
@@ -392,7 +409,17 @@ start_http_server(9090)
 ### 生产部署场景
 
 | 用例 | 推荐模型 | 引擎 | 硬件 | 日处理量 |
-|------|----------|------|------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 播客转录 | large-v3 | faster-whisper | 1x A100 | 500+ 小时 |
 | 实时会议笔记 | turbo | faster-whisper | 1x RTX 4090 | 200+ 小时 |
 | 呼叫中心分析 | medium | faster-whisper (int8) | 2x RTX 3080 | 1000+ 小时 |
@@ -425,24 +452,21 @@ from faster_whisper import WhisperModel
 
 model = WhisperModel("medium", device="cuda", compute_type="float16")
 
-def process_file(audio_path):
-    segments, info = model.transcribe(
+def process_file(audio_path): segments, info = model.transcribe(
         audio_path,
         vad_filter=True,
         beam_size=5
     )
     text = " ".join([s.text for s in segments])
     output_path = audio_path.replace(".mp3", ".txt")
-    with open(output_path, "w") as f:
-        f.write(text)
+    with open(output_path, "w") as f: f.write(text)
     return output_path
 
 # 处理目录中的音频文件
 audio_dir = "/data/audio/"
 files = [os.path.join(audio_dir, f) for f in os.listdir(audio_dir) if f.endswith(".mp3")]
 
-with ThreadPoolExecutor(max_workers=4) as executor:
-    results = list(executor.map(process_file, files))
+with ThreadPoolExecutor(max_workers=4) as executor: results = list(executor.map(process_file, files))
 
 print(f"已处理 {len(results)} 个文件")
 ```
@@ -479,8 +503,7 @@ app = FastAPI()
 model = WhisperModel("medium", device="cuda", compute_type="float16")
 
 @app.get("/health")
-async def health():
-    gpu_available = torch.cuda.is_available()
+async def health(): gpu_available = torch.cuda.is_available()
     gpu_memory = torch.cuda.get_device_properties(0).total_memory if gpu_available else 0
     return {
         "status": "healthy",
@@ -501,11 +524,8 @@ import time
 r = redis.Redis(host=localhost, port=6379, db=0)
 model = WhisperModel("medium", device="cuda", compute_type="float16")
 
-def worker():
-    while True:
-        job = r.blpop("transcription_queue", timeout=5)
-        if job:
-            _, data = job
+def worker(): while True: job = r.blpop("transcription_queue", timeout=5)
+        if job: _, data = job
             task = json.loads(data)
             segments, info = model.transcribe(task["file_path"])
             result = {
@@ -516,8 +536,7 @@ def worker():
             r.setex(f"result:{task[job_id]}", 3600, json.dumps(result))
         time.sleep(0.1)
 
-if __name__ == "__main__":
-    worker()
+if __name__ == "__main__": worker()
 ```
 
 ## 与替代品对比
@@ -525,7 +544,17 @@ if __name__ == "__main__":
 ![Whisper 模型变体对比](https://opengraph.githubassets.com/1/openai/whisper)
 
 | 功能 | OpenAI Whisper | WhisperX | faster-whisper | DeepSpeech |
-|------|---------------|----------|----------------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **GitHub Stars** | 99,800 | 19,700 | 20,400 | 26,700 (已归档) |
 | **许可证** | MIT | BSD-2 | MIT | MPL-2.0 |
 | **相对基线速度** | 1x (基线) | 0.8-1x | 4-8x | 2x |
@@ -616,7 +645,6 @@ OpenAI Whisper 在 2026 年仍然是生产语音识别的务实选择。99,800 �
 - [Whisper API Blog — Model Comparison](https://whisperapi.com/accuracy-benchmarks-top-free-open-source-speech-to-text-offerings)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -642,8 +670,8 @@ OpenAI Whisper 在 2026 年仍然是生产语音识别的务实选择。99,800 �
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [apple-container](openai-whisper)
@@ -652,6 +680,6 @@ OpenAI Whisper 在 2026 年仍然是生产语音识别的务实选择。99,800 �
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](openai-whisper)
 - [moneyprinterturbo-one-click-ai-video-generator](openai-whisper)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

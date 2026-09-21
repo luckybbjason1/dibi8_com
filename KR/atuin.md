@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/atuin" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/atuin" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/atuin" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/atuin" />
 title: 'Atuin: 29,794 GitHub Stars — 셸 히스토리 동기화 완벽 설정 가이드 2026'
 description: 'Atuin은 셸 히스토리를 SQLite 데이터베이스로 교체하고, 명령어 컨텍스트(종료 코드, 작업 디렉토리, 실행 시간)를 기록하며, E2E 암호화로 여러 머신 간 히스토리를 동기화한다. Bash, Zsh, Fish, Nushell 지원. 설치, 자체 호스팅, 설정 및 Atuin vs mcfly vs fzf vs Hstr 비교 포함.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [atuin, '셸-히스토리', 'cli-도구', sqlite, rust, 동기화, bash, zsh, fish]
-aliases:
-- /kr/posts/atuin/
+aliases: - /kr/posts/atuin/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/atuin/ -->
 
 {{</* resource-info */>}}
 
@@ -135,9 +127,7 @@ winget install -e Atuinsh.Atuin
 
 ### 셸 통합
 
-설치 후 셸의 rc 파일에 Atuin을 추가한다:
-
-```bash
+설치 후 셸의 rc 파일에 Atuin을 추가한다: ```bash
 # Bash — ~/.bashrc에 추가
 eval "$(atuin init bash)"
 
@@ -185,13 +175,9 @@ Checking for diagnostics
 
 ## 핵심 설정
 
-Atuin의 설정 파일은 `~/.config/atuin/config.toml`에 있다. 설정을 자세히 살펴 보기 전에, 다양한 필터 모드가 적용된 검색 인터페이스의 실제 모습은 다음과 같다:
+Atuin의 설정 파일은 `~/.config/atuin/config.toml`에 있다. 설정을 자세히 살펴 보기 전에, 다양한 필터 모드가 적용된 검색 인터페이스의 실제 모습은 다음과 같다: ![Atuin Search UI](https://docs.atuin.sh/assets/images/search.png)
 
-![Atuin Search UI](https://docs.atuin.sh/assets/images/search.png)
-
-*Atuin의 TUI가 퍼지 매칭과 디렉토리 범위 결과가 포함된 인라인 검색 창을 표시한다.* 다음은 프로덕션 하드닝 설정이다:
-
-```toml
+*Atuin의 TUI가 퍼지 매칭과 디렉토리 범위 결과가 포함된 인라인 검색 창을 표시한다.* 다음은 프로덕션 하드닝 설정이다: ```toml
 # ~/.config/atuin/config.toml
 [settings]
 # 검색 모드: prefix, fulltext, fuzzy, skim
@@ -271,9 +257,7 @@ atuin search --delete "rm -rf /accident"
 
 ### Starship 프롬프트
 
-Starship은 Atuin과 충돌 없이 함께 작동한다. 둘 다 독립적으로 셸 이벤트에 후킹한다:
-
-```toml
+Starship은 Atuin과 충돌 없이 함께 작동한다. 둘 다 독립적으로 셸 이벤트에 후킹한다: ```toml
 # ~/.config/starship.toml — 특별한 설정 불필요
 # Atuin이 히스토리 처리; Starship이 프롬프트 처리
 # rc 파일에서 Atuin init이 Starship init보다 먼저 실행되도록 설정
@@ -287,9 +271,7 @@ eval "$(starship init zsh)"    # Starship 다음
 
 ### tmux
 
-Atuin은 tmux 세션과 깔끔하게 통합된다. 각 tmux 윈도우는 고유한 세션 ID를 가져 세션별 히스토리 필터링이 가능하다:
-
-```bash
+Atuin은 tmux 세션과 깔끔하게 통합된다. 각 tmux 윈도우는 고유한 세션 ID를 가져 세션별 히스토리 필터링이 가능하다: ```bash
 # ~/.tmux.conf — 키를 Atuin 검색 열기에 바인딩
 bind-key r run-shell "tmux send-keys C-r"
 
@@ -299,9 +281,7 @@ bind-key r run-shell "tmux send-keys C-r"
 
 ### fzf
 
-일부 사용자는 파일 퍼지 검색은 fzf로, 히스토리는 Atuin으로 함께 사용한다:
-
-```bash
+일부 사용자는 파일 퍼지 검색은 fzf로, 히스토리는 Atuin으로 함께 사용한다: ```bash
 # 파일은 fzf로, 히스토리는 Atuin으로
 # fzf 히스토리 바인딩 비활성화 (~/.bashrc 또는 ~/.zshrc에서)
 export FZF_DEFAULT_COMMAND='fd --type f --hidden'
@@ -315,9 +295,7 @@ alias ff='fzf --preview "bat --style=numbers --color=always {}"'
 
 ### Nushell
 
-Nushell은 다른 설정 시스템을 사용하므로 명시적 설정이 필요하다:
-
-```nushell
+Nushell은 다른 설정 시스템을 사용하므로 명시적 설정이 필요하다: ```nushell
 # config.nu
 source ~/.config/nushell/atuin.nu
 
@@ -343,47 +321,34 @@ RUN echo 'eval "$(atuin init bash)"' >> /root/.bashrc
 ```yaml
 # docker-compose.yml
 version: "3"
-services:
-  atuin:
-    restart: always
+services: atuin: restart: always
     image: ghcr.io/atuinsh/atuin:latest
     command: server start
-    volumes:
-      - ./config:/config
+    volumes: - ./config:/config
       - ./atuin-data:/atuin-data
-    links:
-      - postgresql
-    ports:
-      - "8888:8888"
-    environment:
-      ATUIN_HOST: "0.0.0.0"
+    links: - postgresql
+    ports: - "8888:8888"
+    environment: ATUIN_HOST: "0.0.0.0"
       ATUIN_PORT: "8888"
       ATUIN_OPEN_REGISTRATION: "true"
       ATUIN_DB_URI: "postgres://atuin:change-me@postgresql/atuin"
       RUST_LOG: "info,atuin_server=debug"
     user: "1000:1000"
 
-  postgresql:
-    image: postgres:14
+  postgresql: image: postgres:14
     restart: always
-    volumes:
-      - ./postgres-data:/var/lib/postgresql/data
-    environment:
-      POSTGRES_USER: atuin
+    volumes: - ./postgres-data:/var/lib/postgresql/data
+    environment: POSTGRES_USER: atuin
       POSTGRES_PASSWORD: change-me
       POSTGRES_DB: atuin
     user: "1000:1000"
 
   # 선택: 자동 백업
-  backup:
-    image: prodrigestivill/postgres-backup-local
+  backup: image: prodrigestivill/postgres-backup-local
     restart: always
-    volumes:
-      - ./backups:/backups
-    links:
-      - postgresql
-    environment:
-      POSTGRES_HOST: postgresql
+    volumes: - ./backups:/backups
+    links: - postgresql
+    environment: POSTGRES_HOST: postgresql
       POSTGRES_DB: atuin
       POSTGRES_USER: atuin
       POSTGRES_PASSWORD: change-me
@@ -437,42 +402,25 @@ atuin sync
 # atuin-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
-metadata:
-  name: atuin-server
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: atuin
-  template:
-    metadata:
-      labels:
-        app: atuin
-    spec:
-      containers:
-        - name: atuin
+metadata: name: atuin-server
+spec: replicas: 2
+  selector: matchLabels: app: atuin
+  template: metadata: labels: app: atuin
+    spec: containers: - name: atuin
           image: ghcr.io/atuinsh/atuin:18.16.1
           command: ["atuin", "server", "start"]
-          ports:
-            - containerPort: 8888
-          env:
-            - name: ATUIN_HOST
+          ports: - containerPort: 8888
+          env: - name: ATUIN_HOST
               value: "0.0.0.0"
             - name: ATUIN_DB_URI
-              valueFrom:
-                secretKeyRef:
-                  name: atuin-db-secret
+              valueFrom: secretKeyRef: name: atuin-db-secret
                   key: uri
 ---
 apiVersion: v1
 kind: Service
-metadata:
-  name: atuin-service
-spec:
-  selector:
-    app: atuin
-  ports:
-    - port: 8888
+metadata: name: atuin-service
+spec: selector: app: atuin
+  ports: - port: 8888
       targetPort: 8888
 ```
 
@@ -480,9 +428,7 @@ spec:
 
 ### 성능 특성
 
-Atuin의 Rust 구현과 SQLite 백엔드는 대용량 히스토리 데이터셋에서 일관된 성능을 제공한다:
-
-| 지표 | 값 | 참고 |
+Atuin의 Rust 구현과 SQLite 백엔드는 대용량 히스토리 데이터셋에서 일관된 성능을 제공한다: | 지표 | 값 | 참고 |
 |------|------|------|
 | 히스토리 쿼리 (10만 개) | ~15ms | 퍼지 검색, 콜드 캐시 |
 | 히스토리 쿼리 (50만 개) | ~45ms | 퍼지 검색, 웜 캐시 |
@@ -512,17 +458,15 @@ $ atuin stats
 [▮         ]  1,357 rg
 [▮         ]  1,348 cd
 [▮         ]  1,322 git log
-Total commands:   62,849
-Unique commands:  26,908
+Total commands: 62,849
+Unique commands: 26,908
 ```
 
 ## 고급 사용법 / 프로덕션 하드닝
 
 ### 히스토리 프라이버시 필터
 
-민감한 명령어가 데이터베이스에 들어가는 것을 방지한다:
-
-```toml
+민감한 명령어가 데이터베이스에 들어가는 것을 방지한다: ```toml
 # ~/.config/atuin/config.toml
 [settings]
 history_filter = [
@@ -591,9 +535,7 @@ accent = "#89b4fa"
 
 ### 다중 머신 키 마이그레이션
 
-새 머신을 설정할 때 암호화 키를 안전하게 전송한다:
-
-```bash
+새 머신을 설정할 때 암호화 키를 안전하게 전송한다: ```bash
 # 이전 머신에서 — 클립보드에 키 복사 (또는 안전한 전송)
 cat ~/.local/share/atuin/key
 
@@ -633,9 +575,7 @@ atuin stats
 
 ## 한계 / 솔직한 평가
 
-Atuin은 모든 시나리오에 적합한 도구가 아니다:
-
-1. **실행자 추적 없음**: Atuin은 명령어를 기록하지만 수동 입력, 스크립트 실행, AI 코딩 보조 생성 여부는 구분하지 않는다. 모든 소스가 데이터베이스에서 동일하게 보인다.
+Atuin은 모든 시나리오에 적합한 도구가 아니다: 1. **실행자 추적 없음**: Atuin은 명령어를 기록하지만 수동 입력, 스크립트 실행, AI 코딩 보조 생성 여부는 구분하지 않는다. 모든 소스가 데이터베이스에서 동일하게 보인다.
 
 2. **로컬 데이터베이스는 암호화되지 않음**: `~/.local/share/atuin/`의 SQLite 데이터베이스는 성능을 위해 평문으로 저장된다. 동기화는 암호화되지만 로컬 저장은 그렇지 않다. 보호를 위해 파일 시스템 암호화(LUKS, FileVault)를 사용하라.
 
@@ -651,9 +591,7 @@ Atuin은 모든 시나리오에 적합한 도구가 아니다:
 
 ### 위쪽 화살표 바인딩을 비활성화하려면?
 
-설정에 `filter_mode_shell_up_key = "global"` 또는 `show_preview = false`를 추가한다. Atuin의 위쪽 화살표를 완전히 비활성화하려면 init 줄 전에 `export ATUIN_NOBIND=1`을 추가하고 `Ctrl+R`만 수동으로 바인딩한다:
-
-```bash
+설정에 `filter_mode_shell_up_key = "global"` 또는 `show_preview = false`를 추가한다. Atuin의 위쪽 화살표를 완전히 비활성화하려면 init 줄 전에 `export ATUIN_NOBIND=1`을 추가하고 `Ctrl+R`만 수동으로 바인딩한다: ```bash
 # ~/.bashrc
 export ATUIN_NOBIND=1
 eval "$(atuin init bash)"
@@ -703,9 +641,7 @@ Atuin은 셸 히스토리를 평평한 텍스트 파일에서 구조화되고 �
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -723,7 +659,6 @@ Atuin은 셸 히스토리를 평평한 텍스트 파일에서 구조화되고 �
 - [Hstr GitHub 저장소](https://github.com/dvorka/hstr)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

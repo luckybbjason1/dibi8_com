@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/odysseus-self-hosted-ai-workspace-chat-agent-deep-research" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/odysseus-self-hosted-ai-workspace-chat-agent-deep-research" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/odysseus-self-hosted-ai-workspace-chat-agent-deep-research" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/odysseus-self-hosted-ai-workspace-chat-agent-deep-research" />
 title: 'Odysseus: 내장 도구 10+ 개의 자체 호스팅 AI 워크스페이스 — 65,000 스타 — 20...
 description: 'Odysseus(65,243개 GitHub 스타)는 채팅, 에이전트 자동화, 딥 리서치, 문서 편집, 이메일 분류, 캘린더 등을 결합한 자체 호스팅 AI 워크스페이스입니다. vLLM, llama.cpp, Ollama, OpenRouter, OpenAI, GitHub Copilot을 지원합니다. Docker 및 네이티브 Linux/macOS 설치가 가능합니다.'
 date: 2026-06-09
-lastmod:  2026-06-09slug: odysseus-self-hosted-ai-workspace-chat-agent-deep-research
+lastmod: 2026-06-09
+slug: odysseus-self-hosted-ai-workspace-chat-agent-deep-research
 category: ai-tools
 tags: ['odysseus', '자체 호스팅 AI', 'AI 워크스페이스', '로컬 AI', '딥 리서치', 'AI 에이전트', '채팅 인터페이스', '오픈소스 AI', '홈랩 AI']
 github_repo: https://github.com/pewdiepie-archdaemon/odysseus
@@ -17,9 +13,6 @@ license: MIT
 featureImage: https://raw.githubusercontent.com/pewdiepie-archdaemon/odysseus/dev/docs/odysseus.jpg
 lang: ko
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/odysseus-self-hosted-ai-workspace-chat-agent-deep-research/ -->
-
 
 # Odysseus: Self-Hosted AI Workspace with 10+ Built-in Tools — 65,000 Stars — Full Setup Guide 2026
 
@@ -61,9 +54,7 @@ ChatGPT나 Claude와 달리 데이터를 넘겨야 하는 것과 달리, Odysseu
 
 Odysseus는 Python(FastAPI 백엔드, 반응형 웹 프론트엔드)으로 구축된 풀스택 AI 워크스페이스입니다.
 
-이 프로젝트는 단일 웹 애플리케이션에 다음 기능을 통합합니다:
-
-| Feature | Description | Built On |
+이 프로젝트는 단일 웹 애플리케이션에 다음 기능을 통합합니다: | Feature | Description | Built On |
 |---------|-------------|----------|
 | Chat | Multi-model conversations | vLLM, llama.cpp, Ollama, OpenRouter, OpenAI, GitHub Copilot |
 | Agent | Tool-using autonomous agent | OpenCode, MCP, web, files, shell, skills, memory |
@@ -141,16 +132,12 @@ docker compose up -d --build
 
 시작 후 `http://localhost:7000`을 엽니다.
 
-선택적 기능(PDF 뷰어, AGPL PyMuPDF를 사용한 Office 추출)을 포함하려면:
-
-```bash
+선택적 기능(PDF 뷰어, AGPL PyMuPDF를 사용한 Office 추출)을 포함하려면: ```bash
 docker compose build --build-arg INSTALL_OPTIONAL=true
 docker compose up -d --build
 ```
 
-NVIDIA GPU에 대한 GPU 패스스루를 활성화하려면:
-
-```bash
+NVIDIA GPU에 대한 GPU 패스스루를 활성화하려면: ```bash
 # Diagnose GPU passthrough
 scripts/check-docker-gpu.sh
 
@@ -161,9 +148,7 @@ scripts/check-docker-gpu.sh --install-nvidia-toolkit
 scripts.check-docker-gpu.sh --enable-nvidia-overlay
 ```
 
-AMD/ROCm의 경우:
-
-```bash
+AMD/ROCm의 경우: ```bash
 scripts/check-docker-amd-gpu.sh
 ```
 
@@ -171,9 +156,7 @@ scripts/check-docker-amd-gpu.sh
 
 ### 네이티브 Linux/macOS 설치
 
-Docker를 사용하지 않으려는 경우:
-
-```bash
+Docker를 사용하지 않으려는 경우: ```bash
 git clone https://github.com/pewdiepie-archdaemon/odysseus.git
 cd odysseus
 
@@ -213,9 +196,7 @@ ODYSSEUS_HOST=0.0.0.0 ./start-macos.sh
 
 ### 데스크톱 앱 빌드
 
-Odysseus를 네이티브 데스크톱 앱 래퍼로 패키징할 수 있습니다:
-
-```bash
+Odysseus를 네이티브 데스크톱 앱 래퍼로 패키징할 수 있습니다: ```bash
 ./build-macos-app.sh
 ```
 
@@ -269,8 +250,7 @@ Odysseus 에이전트는 [OpenCode](https://github.com/anomalyco/opencode)를 �
 # Configure MCP in .env
 MCP_SERVERS=http://localhost:3000,mcp://your-server
 
-# Your agent can then use:
-# - File tools (read/write/search)
+# Your agent can then use: # - File tools (read/write/search)
 # - Shell execution
 # - Web search
 # - Custom skills
@@ -285,8 +265,7 @@ Odysseus는 벡터 기반 영구 메모리를 위해 ChromaDB를 포함합니다
 odysseus memory export --output memory.json
 odysseus memory import --input memory.json
 
-# The memory system uses:
-# - ChromaDB for vector storage
+# The memory system uses: # - ChromaDB for vector storage
 # - fastembed (ONNX) for embeddings
 # - Combined vector + keyword retrieval
 ```
@@ -303,9 +282,7 @@ odysseus memory import --input memory.json
 
 ### 이메일 통합
 
-Odysseus에는 AI 기반 분류가 있는 전체 IMAP/SMTP 수신함이 포함되어 있습니다:
-
-```yaml
+Odysseus에는 AI 기반 분류가 있는 전체 IMAP/SMTP 수신함이 포함되어 있습니다: ```yaml
 # Email config in .env
 EMAIL_IMAP_SERVER=imap.gmail.com
 EMAIL_IMAP_PORT=993
@@ -330,9 +307,7 @@ AI는 자동으로 다음을 수행할 수 있습니다: 이메일 요약, 긴�
 
 ### 딥 리서치 성능
 
-Odysseus의 딥 리서치 기능(알리바바의 퉁이 딥리서치에서 적응)은 다단계 연구 워크플로우를 수행합니다:
-
-```
+Odysseus의 딥 리서치 기능(알리바바의 퉁이 딥리서치에서 적응)은 다단계 연구 워크플로우를 수행합니다: ```
 Research Task: "Compare RAG vs. fine-tuning for enterprise QA"
 
 Step 1: Web search (SearXNG) → 15 sources
@@ -345,9 +320,7 @@ Step 4: Visualize with charts → auto-generated
 
 ### 모델 비교 모드
 
-비교 기능을 사용하여 서로 다른 모델을 병렬로 맹점 A/B 테스트할 수 있습니다:
-
-```
+비교 기능을 사용하여 서로 다른 모델을 병렬로 맹점 A/B 테스트할 수 있습니다: ```
 Prompt: "Write a Python binary search implementation"
 
 Model A: [hidden] → Response
@@ -378,9 +351,7 @@ ODYSSEUS_ADMIN_PASSWORD=secure-password
 
 ### 리버스 프록시 구성
 
-For production deployment behind a reverse proxy:
-
-```nginx
+For production deployment behind a reverse proxy: ```nginx
 server {
     listen 443 ssl;
     server_name ai.yourdomain.com;
@@ -405,21 +376,13 @@ server {
 
 ```yaml
 # docker-compose.prod.yml
-services:
-  odysseus:
-    image: pewdiepie-archdaemon/odysseus:latest
+services: odysseus: image: pewdiepie-archdaemon/odysseus:latest
     restart: unless-stopped
-    ports:
-      - "127.0.0.1:7000:7000"
-    volumes:
-      - ./data:/app/data
+    ports: - "127.0.0.1:7000:7000"
+    volumes: - ./data:/app/data
       - ./config:/app/config
     env_file: .env
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+    deploy: resources: reservations: devices: - driver: nvidia
               count: 1
               capabilities: [gpu]
 ```
@@ -453,9 +416,7 @@ tar czf odysseus-backup-$(date +%Y%m%d).tar.gz \
 
 ## 제한사항 / 정직한 평가
 
-Odysseus는 인상적이지만 알아야 할 몇 가지 제한사항이 있습니다:
-
-1. **새로운 프로젝트(2026년 5월 31일 생성)** — 65,000개 이상의 스타를 보유하고 있지만, Odysseus는 매우 젊습니다. 버그, 변경 사항 및 불완전한 문서를 예상해야 합니다. `dev` 브랜치가 기본이지만 "불안정할 수 있습니다."
+Odysseus는 인상적이지만 알아야 할 몇 가지 제한사항이 있습니다: 1. **새로운 프로젝트(2026년 5월 31일 생성)** — 65,000개 이상의 스타를 보유하고 있지만, Odysseus는 매우 젊습니다. 버그, 변경 사항 및 불완전한 문서를 예상해야 합니다. `dev` 브랜치가 기본이지만 "불안정할 수 있습니다."
 
 2. **GPU 지원은 Docker/NVIDIA 중심** — AMD ROCm 지원은 존재하지만 수동 `.env` 구성이 필요합니다. Apple Silicon은 네이티브 설치가 필요합니다(Docker GPU 없음).
 
@@ -519,7 +480,6 @@ Docker 기반 설치는 깊은 Linux 전문 지식이 없는 사용자도 접근
 **면책 조항:** 이 글은 정보 목적으로만 작성되었습니다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

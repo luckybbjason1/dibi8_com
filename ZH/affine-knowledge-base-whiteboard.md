@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/affine-knowledge-base-whiteboard" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/affine-knowledge-base-whiteboard" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/affine-knowledge-base-whiteboard" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/affine-knowledge-base-whiteboard" />
 title: 'AFFiNE 2026：开源 Notion+Miro 混合体 — AI 增强知识管理完整部署指南'
 description: '使用 Docker 部署 AFFiNE v0.26.3 作为 Notion+Miro 的开源自托管替代方案。本地优先 CRDT 协作、无边画布、AI 写作助手、5 分钟 Docker 部署。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [affine, 知识库, 白板, 自托管, docker, notion替代品, miro替代品, crdt, 本地优先, ai写作]
-aliases:
-- /zh/posts/affine-knowledge-base-whiteboard/
+aliases: - /zh/posts/affine-knowledge-base-whiteboard/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/affine-knowledge-base-whiteboard/ -->
 
 {{</* resource-info */>}}
 
@@ -215,7 +207,15 @@ git add backup-*.sql && git commit -m "docs: daily AFFiNE backup $(date +%Y-%m-%
 AFFiNE 的性能特征对生产部署至关重要：
 
 | 指标 | AFFiNE 自托管 | Notion 云端 | Miro 云端 |
-|------|-------------|-------------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 首次内容绘制 | **1.2s**（本地） | 2.8s | 3.1s |
 | 同步延迟（同一局域网） | **<50ms** | 180-400ms | 200-500ms |
 | 离线能力 | **完整支持** | 只读缓存 | 无 |
@@ -303,8 +303,7 @@ echo "0 2 * * * /root/backup-affine.sh" | crontab -
 
 ```yaml
 # 在 docker-compose.yml 中添加高负载配置
-environment:
-  - DATABASE_URL=postgresql://affine:${DB_PASSWORD}@postgres:5432/affine
+environment: - DATABASE_URL=postgresql://affine:${DB_PASSWORD}@postgres:5432/affine
   - DATABASE_POOL_SIZE=20
   - DATABASE_POOL_MAX=50
   - DATABASE_TIMEOUT=30000
@@ -313,7 +312,17 @@ environment:
 ## 与替代品对比
 
 | 功能 | AFFiNE v0.26 | Notion | Miro | Obsidian |
-|------|-------------|--------|------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 开源 | **是 (MPL-2.0)** | 否 | 否 | 否 |
 | 可自托管 | **是** | 否 | 否 | 否（同步为云端） |
 | 本地优先 / 离线 | **是 (CRDT)** | 部分（缓存） | 否 | **是** |
@@ -400,7 +409,6 @@ AFFiNE 代表了知识管理的范式转变：从依赖云端的订阅制到本�
 本文包含 DigitalOcean 和虎网云的联盟营销链接。如果你通过我们的链接注册，我们会获得佣金，但不会额外增加你的费用。所有推荐均基于实际测试，不受联盟计划影响。AFFiNE 完全开源，自托管无需任何付费。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -428,25 +436,20 @@ AFFiNE 代表了知识管理的范式转变：从依赖云端的订阅制到本�
 
 ## Why This Matters
 
-Understanding affine 2026：开源 notion+miro 混合体 — ai 增强知识管理完整部署指南 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding affine 2026：开源 notion+miro 混合体 — ai 增强知识管理完整部署指南 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -467,13 +470,13 @@ AFFiNE 2026：开源 Notion+Miro 混合体 — AI 增强知识管理完整部署
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
 
+---
 ## Related Articles
 
 - [open-notebook-open-source-notebooklm-alternative-15-ai-providers](affine-knowledge-base-whiteboard)

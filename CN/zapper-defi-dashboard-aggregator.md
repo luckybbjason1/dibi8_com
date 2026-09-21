@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/zapper-defi-dashboard-aggregator" />
 title: 'zapper-defi-dashboard-aggregator'
 description: '{'en': ''Comprehensive guide to Zapper, the DeFi dashboard aggregator tracking 500+ protocols. Learn portfolio tracking, yield farming analytics, Zap In/Out transactions, API integration, and custom dashboard building.'', 'zh': ''Zapper综合指南，这个追踪500+协议的DeFi仪表盘聚合器。了解投资组合追踪、收益耕作分析、Zap In/Out交易、API集成和自定义仪表盘构建。'', 'ko': ''500개 이상의 프로토콜을 추적하는 DeFi 대시보드 애그리게이터 Zapper에 대한 종합 가이드. 포트폴리오 추적, 이자 농사 분석, Zap In/Out 트랜잭션, API 통합, 커스텀 대시보드 구축을 알아보세요.'', 'vi': ''Hướng dẫn toàn diện về Zapper, bảng điều khiển DeFi tổng hợp theo dõi 500+ giao thức. Tìm hiểu theo dõi danh mục, phân tích yield farming, giao dịch Zap In/Out, tích hợp API, và xây dựng bảng điều khiển tùy chỉnh.''}'
 date: 2026-05-20 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: [zapper, defi, dashboard, portfolio, 'yield-farming', nft, api, 'zap-in', 'zap-out', aggregator]
-aliases:
-- /posts/zapper-defi-dashboard-aggregator/
+aliases: - /posts/zapper-defi-dashboard-aggregator/-
 ---
-
 {{</* resource-info */>}}
 
 **Date:** 2026-05-19  
@@ -34,12 +30,12 @@ aliases:
 **Tool:** [Zapper](https://zapper.xyz)  
 **GitHub:** [Zapper-fi](https://github.com/Zapper-fi) — ⭐ 300+ stars, MIT License
 
----
 
+---
 > Start tracking your DeFi portfolio today! Register on [Binance](https://www.bsmkweb.cc/register?ref=DIBI8) or [OKX](https://www.promoohubly.com/join/12190433) to begin your DeFi journey.
 
----
 
+---
 ## 1. Introduction: The DeFi Dashboard Revolution in 2026
 
 Decentralized Finance (DeFi) has exploded into a multi-trillion-dollar ecosystem spanning lending protocols, decentralized exchanges (DEXs), yield aggregators, derivatives platforms, and NFT marketplaces. By 2026, sophisticated DeFi users interact with 20–50+ protocols simultaneously, making portfolio tracking and position management increasingly complex. The fragmentation of liquidity across Layer-1 chains, Layer-2 rollups, and app-chains has created an urgent need for unified dashboard solutions.
@@ -56,9 +52,7 @@ This comprehensive guide covers Zapper's architecture, API integration patterns,
 
 ### 2.1 Multi-Protocol Data Aggregation Layer
 
-Zapper's backend infrastructure connects to hundreds of DeFi protocols through a modular integration system. Each protocol integration abstracts the complexity of smart contract interactions into standardized data models:
-
-```typescript
+Zapper's backend infrastructure connects to hundreds of DeFi protocols through a modular integration system. Each protocol integration abstracts the complexity of smart contract interactions into standardized data models: ```typescript
 // Zapper protocol integration architecture
 interface ProtocolPosition {
   // Unique identifiers
@@ -139,21 +133,13 @@ async function getPortfolio(address: string): Promise<PortfolioSummary> {
     
     // Categorize position
     switch (position.appId) {
-      case tokens:
-        portfolio.categories.wallet.push(position);
+      case tokens: portfolio.categories.wallet.push(position);
         break;
-      case 'aave-v3':
-      case compound:
-      case morpho:
-        portfolio.categories.lending.push(position);
+      case 'aave-v3': case compound: case morpho: portfolio.categories.lending.push(position);
         break;
-      case 'uniswap-v3':
-      case 'balancer-v2':
-      case curve:
-        portfolio.categories.liquidity.push(position);
+      case 'uniswap-v3': case 'balancer-v2': case curve: portfolio.categories.liquidity.push(position);
         break;
-      default:
-        if (position.positionType === staking) {
+      default: if (position.positionType === staking) {
           portfolio.categories.staking.push(position);
         }
     }
@@ -297,8 +283,7 @@ async function getFullPortfolio(address: string) {
     const category = categorizePosition(position);
     
     switch (category) {
-      case wallet:
-        breakdown.wallet.value += position.balanceUSD;
+      case wallet: breakdown.wallet.value += position.balanceUSD;
         breakdown.wallet.tokens.push({
           symbol: position.symbol,
           balance: formatUnits(position.balance, position.decimals),
@@ -306,8 +291,7 @@ async function getFullPortfolio(address: string) {
         });
         break;
         
-      case lending:
-        const supplied = position.balances?.supplied?.balanceUSD || 0;
+      case lending: const supplied = position.balances?.supplied?.balanceUSD || 0;
         const borrowed = position.balances?.borrowed?.balanceUSD || 0;
         breakdown.lending.supplied += supplied;
         breakdown.lending.borrowed += borrowed;
@@ -315,8 +299,7 @@ async function getFullPortfolio(address: string) {
         breakdown.lending.protocols.push(position.appName);
         break;
         
-      case liquidity:
-        breakdown.liquidityPools.value += position.balanceUSD;
+      case liquidity: breakdown.liquidityPools.value += position.balanceUSD;
         breakdown.liquidityPools.pools.push({
           protocol: position.appName,
           tokens: position.tokens.map((t: any) => t.symbol),
@@ -325,8 +308,7 @@ async function getFullPortfolio(address: string) {
         });
         break;
         
-      case staking:
-        breakdown.staking.value += position.balanceUSD;
+      case staking: breakdown.staking.value += position.balanceUSD;
         breakdown.staking.positions.push(position);
         break;
     }
@@ -561,9 +543,7 @@ bestYields.slice(0, 10).forEach((opp, i) => {
 
 ### 6.1 Simplified Liquidity Provision (Zap In)
 
-One of Zapper's most powerful features is the **Transaction Builder**, which allows users to enter complex liquidity positions with a single transaction. Instead of manually swapping, approving, and depositing tokens, Zapper's "Zap In" feature handles everything:
-
-```typescript
+One of Zapper's most powerful features is the **Transaction Builder**, which allows users to enter complex liquidity positions with a single transaction. Instead of manually swapping, approving, and depositing tokens, Zapper's "Zap In" feature handles everything: ```typescript
 // Zap into a Uniswap V3 position
 async function zapInUniswapV3(
   fromToken: string,        // Token address to zap from
@@ -730,17 +710,13 @@ const ws = new ZapperWebSocket({
 // Subscribe to address updates
 ws.subscribe('address:0xMyAddress...', (update: any) => {
   switch (update.type) {
-    case balance_change:
-      console.log(`💰 Balance update: ${update.token} = ${update.newBalance}`);
+    case balance_change: console.log(`💰 Balance update: ${update.token} = ${update.newBalance}`);
       break;
-    case new_position:
-      console.log(`📈 New position detected: ${update.protocol} — ${update.valueUSD}`);
+    case new_position: console.log(`📈 New position detected: ${update.protocol} — ${update.valueUSD}`);
       break;
-    case yield_claimed:
-      console.log(`🎁 Rewards claimed: ${update.amount} ${update.token}`);
+    case yield_claimed: console.log(`🎁 Rewards claimed: ${update.amount} ${update.token}`);
       break;
-    case nft_transfer:
-      console.log(`🖼️ NFT transferred: ${update.collection} #${update.tokenId}`);
+    case nft_transfer: console.log(`🖼️ NFT transferred: ${update.collection} #${update.tokenId}`);
       break;
   }
 });
@@ -1016,20 +992,17 @@ class YieldMonitor {
         if (alert.protocol && alert.protocol !== position.protocol) continue;
 
         switch (alert.condition) {
-          case apy_drop:
-            if (prev && (position.apy.total / prev.apy - 1) * 100 < -alert.threshold) {
+          case apy_drop: if (prev && (position.apy.total / prev.apy - 1) * 100 < -alert.threshold) {
               await this.sendAlert(`🚨 APY dropped ${alert.threshold}% on ${position.poolName}: ${position.apy.total.toFixed(2)}%`);
             }
             break;
 
-          case il_warning:
-            if (position.impermanentLoss && position.impermanentLoss > alert.threshold) {
+          case il_warning: if (position.impermanentLoss && position.impermanentLoss > alert.threshold) {
               await this.sendAlert(`⚠️ IL warning on ${position.poolName}: ${position.impermanentLoss.toFixed(2)}%`);
             }
             break;
 
-          case reward_change:
-            const rewardChange = position.rewardTokens.reduce(
+          case reward_change: const rewardChange = position.rewardTokens.reduce(
               (sum, r) => sum + r.dailyValueUSD, 0
             );
             if (prev && Math.abs(rewardChange - prev.dailyRewards) > alert.threshold) {
@@ -1108,9 +1081,7 @@ Zapper provides a **RESTful API** with comprehensive documentation at [docs.zapp
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -1137,7 +1108,6 @@ Whether you're a casual DeFi user tracking your first liquidity pool or an insti
 **Website:** [zapper.xyz](https://zapper.xyz)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

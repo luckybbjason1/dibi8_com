@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/open-notebook-open-source-notebooklm-alternative-15-ai-providers" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/open-notebook-open-source-notebooklm-alternative-15-ai-providers" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/open-notebook-open-source-notebooklm-alternative-15-ai-providers" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/open-notebook-open-source-notebooklm-alternative-15-ai-providers" />
 title: 'open-notebook: 15+ AI 제공자 지원 오픈소스 Notebook LM 대안 — 셀프호스팅...
 description: 'open-notebook (28,200 GitHub star)은 15+ AI 제공자를 지원하는 Google NotebookLM 오픈소스 대안입니다. 셀프호스팅 RAG 지식베이스, 멀티모달 오디오 에피소드 포함.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-08
-lastmod:  2026-06-08slug: 'open-notebook-open-source-notebooklm-alternative-15-ai-providers'
+lastmod: 2026-06-08
+slug: 'open-notebook-open-source-notebooklm-alternative-15-ai-providers'
 category: 'data-science'
 tags: ['open notebook', 'notebook lm 대안', '셀프호스팅 RAG', '지식베이스 AI', '멀티모달 RAG', '오픈소스 노트북', 'AI 팟캐스트 생성기', '셀프호스팅 LLM']
 github_repo: 'https://github.com/lfnovo/open-notebook'
@@ -17,8 +13,6 @@ license: MIT
 featureImage: 'https://raw.githubusercontent.com/lfnovo/open-notebook/main/frontend/public/og-image.png'
 lang: ko
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/open-notebook-open-source-notebooklm-alternative-15-ai-providers/ -->
 
 # open-notebook: 15+ AI 제공자 지원 오픈소스 Notebook LM 대안 — 셀프호스팅, 28,000 스타 — 설정 가이드 2026
 
@@ -34,8 +28,7 @@ Google NotebookLM은 출시 후 몇 달 만에 100만 주간 활성 사용자를
 
 open-notebook은 **셀프호스팅 RAG (Retrieval-Augmented Generation) 지식베이스**로, 문서를 상호작용 AI 연구 작업장으로 변환합니다. 문서 질문응답 시스템과 AI 팟캐스트 생성기의 교차점으로 생각하세요.
 
-핵심 기능:
-- **문서 ingestion** — PDF, markdown, 텍스트 파일, URL 등 업로드
+핵심 기능: - **문서 ingestion** — PDF, markdown, 텍스트 파일, URL 등 업로드
 - **RAG 기반 Q&A** — 문서에 대한 질문; 출처 인용과 함께 답변
 - **오디오 에피소드** — 두 호스트 간 대화처럼 들리는 AI 오디오 요약 생성
 - **15+ AI 제공자** — Claude, GPT-4, Gemini, Ollama/vLLM 로컬 모델, OpenRouter 등
@@ -83,9 +76,7 @@ cd frontend && npm run dev &
 
 ### RAG Retrieval Accuracy
 
-50 문서 컬렉션 테스트:
-
-| 구성 | Top-3 정확도 | 인용 정확도 | Hallucination Rate |
+50 문서 컬렉션 테스트: | 구성 | Top-3 정확도 | 인용 정확도 | Hallucination Rate |
 |------|-------------|-----------|-------------------|
 | OpenAI + GPT-4o | 94% | 96% | 2% |
 | Anthropic + Claude Sonnet 4 | 92% | 95% | 1.5% |
@@ -189,7 +180,6 @@ open-notebook은 개인 AI 연구 보조가 Google 서버에 살 필요가 없�
 위 링크 중 일부는 제휴 링크입니다. 가입 시 dibi8.com이 수수료를 받을 수 있으며, 귀하의 비용에는 영향이 없습니다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -217,25 +207,20 @@ open-notebook은 개인 AI 연구 보조가 Google 서버에 살 필요가 없�
 
 ## Why This Matters
 
-Understanding open-notebook: 15+ ai 제공자 지원 오픈소스 notebook lm 대안 — 셀프호스팅, 28,000 스타 — 설정 가이드 2026 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding open-notebook: 15+ ai 제공자 지원 오픈소스 notebook lm 대안 — 셀프호스팅, 28,000 스타 — 설정 가이드 2026 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

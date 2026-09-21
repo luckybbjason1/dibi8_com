@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/freqtrade-ai-trading-strategies" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/freqtrade-ai-trading-strategies" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/freqtrade-ai-trading-strategies" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/freqtrade-ai-trading-strategies" />
 title: 'Freqtrade 2026：使用机器学习构建AI驱动的加密货币交易策略 — 完整机器人设置指南'
 description: 'Freqtrade与FreqAI实战部署指南，开源Python加密货币交易机器人，集成机器学习。涵盖Docker设置、超参数优化、回测、Telegram集成和生产环境部署。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: []
-aliases:
-- /zh/posts/freqtrade-ai-trading-strategies/
+aliases: - /zh/posts/freqtrade-ai-trading-strategies/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/freqtrade-ai-trading-strategies/ -->
 
 {{</* resource-info */>}}
 
@@ -140,8 +132,7 @@ import talib.abstract as ta
 from pandas import DataFrame
 from freqtrade.strategy import IStrategy
 
-class SampleStrategy(IStrategy):
-    """
+class SampleStrategy(IStrategy): """
     A simple RSI-based strategy for Freqtrade.
     """
     minimal_roi = {
@@ -157,8 +148,7 @@ class SampleStrategy(IStrategy):
     timeframe = 5m     # 5分钟K线
     can_short = False    # 仅现货交易
 
-    def populate_indicators(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
-        # RSI指标
+    def populate_indicators(self, dataframe: DataFrame, metadata: dict) -> DataFrame: # RSI指标
         dataframe[rsi] = ta.RSI(dataframe, timeperiod=14)
         
         # MACD指标
@@ -178,8 +168,7 @@ class SampleStrategy(IStrategy):
         
         return dataframe
 
-    def populate_entry_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
-        dataframe.loc[
+    def populate_entry_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame: dataframe.loc[
             (
                 (dataframe[rsi] < 30) &                    # 超卖条件
                 (dataframe[macd] > dataframe[macdsignal]) &  # MACD金叉
@@ -189,8 +178,7 @@ class SampleStrategy(IStrategy):
         ] = 1
         return dataframe
 
-    def populate_exit_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
-        dataframe.loc[
+    def populate_exit_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame: dataframe.loc[
             (
                 (dataframe[rsi] > 70) &                    # 超买条件
                 (dataframe[macd] < dataframe[macdsignal])  # MACD死叉
@@ -285,8 +273,7 @@ FreqAI将机器学习预测带入你的策略。首先添加FreqAI配置：
 import pandas as pd
 from freqtrade.strategy import IStrategy
 
-class FreqAISrategy(IStrategy):
-    """
+class FreqAISrategy(IStrategy): """
     Strategy using FreqAI ML predictions as entry signals.
     """
     minimal_roi = {"0": 0.15, "60": 0.05, "120": 0}
@@ -294,8 +281,7 @@ class FreqAISrategy(IStrategy):
     timeframe = 5m
     can_short = False
     
-    def feature_engineering_expand_all(self, dataframe, metadata, **kwargs):
-        """Add custom features for FreqAI to use."""
+    def feature_engineering_expand_all(self, dataframe, metadata, **kwargs): """Add custom features for FreqAI to use."""
         dataframe["rsi"] = ta.RSI(dataframe, timeperiod=14)
         dataframe["macdhist"] = ta.MACD(dataframe)[macdhist]
         dataframe["atr"] = ta.ATR(dataframe, timeperiod=14)
@@ -306,25 +292,20 @@ class FreqAISrategy(IStrategy):
         
         return dataframe
 
-    def feature_engineering_expand_basic(self, dataframe, metadata, **kwargs):
-        return dataframe
+    def feature_engineering_expand_basic(self, dataframe, metadata, **kwargs): return dataframe
 
-    def feature_engineering_standard(self, dataframe, metadata, **kwargs):
-        return dataframe
+    def feature_engineering_standard(self, dataframe, metadata, **kwargs): return dataframe
 
-    def set_freqai_targets(self, dataframe, metadata, **kwargs):
-        """Define what we want to predict - price goes up or down."""
+    def set_freqai_targets(self, dataframe, metadata, **kwargs): """Define what we want to predict - price goes up or down."""
         dataframe["&-target"] = (
             dataframe["close"].shift(-24) > dataframe["close"]
         ).astype(int)
         return dataframe
 
-    def populate_indicators(self, dataframe: pd.DataFrame, metadata: dict) -> pd.DataFrame:
-        dataframe = self.freqai.start(dataframe, metadata, self)
+    def populate_indicators(self, dataframe: pd.DataFrame, metadata: dict) -> pd.DataFrame: dataframe = self.freqai.start(dataframe, metadata, self)
         return dataframe
 
-    def populate_entry_trend(self, dataframe: pd.DataFrame, metadata: dict) -> pd.DataFrame:
-        # 当ML预测上涨且置信度高时入场
+    def populate_entry_trend(self, dataframe: pd.DataFrame, metadata: dict) -> pd.DataFrame: # 当ML预测上涨且置信度高时入场
         dataframe.loc[
             (
                 (dataframe["&-target"] == 1) &           # ML预测: 上涨
@@ -335,8 +316,7 @@ class FreqAISrategy(IStrategy):
         ] = 1
         return dataframe
 
-    def populate_exit_trend(self, dataframe: pd.DataFrame, metadata: dict) -> pd.DataFrame:
-        dataframe.loc[
+    def populate_exit_trend(self, dataframe: pd.DataFrame, metadata: dict) -> pd.DataFrame: dataframe.loc[
             (
                 (dataframe["&-target"] == 0) |           # ML预测: 下跌
                 (dataframe["do_predict"] != 1)             # 模型不确定
@@ -351,7 +331,15 @@ class FreqAISrategy(IStrategy):
 FreqAI支持多种ML后端：
 
 | 模型 | 后端 | 最适合 | 训练速度 |
-|------|------|--------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | LightGBM | LightGBM | 表格数据，速度 | 非常快 |
 | XGBoost | XGBoost | 表格数据，精度 | 快 |
 | CatBoost | CatBoost | 分类特征 | 中等 |
@@ -373,20 +361,16 @@ docker compose run --rm freqtrade hyperopt \
 ```
 
 ```
-Best result:
-
-    87/100:   2469 trades. 1371/247/851 Wins/Draws/Losses. 
+Best result: 87/100: 2469 trades. 1371/247/851 Wins/Draws/Losses. 
     Avg profit   0.34%. Median profit   0.18%. 
     Total profit  842.345 USDT ( 84.23%).
     Avg duration 47.2 min. Objective: 2.14321
 
-Buy hypers:
-    buy_rsi.value = 28.5
+Buy hypers: buy_rsi.value = 28.5
     buy_macd_enabled = True
     buy_bb_enabled = True
 
-ROI table:
-    minimal_roi = {0: 0.143, 30: 0.072, 60: 0.028, 120: 0}
+ROI table: minimal_roi = {0: 0.143, 30: 0.072, 60: 0.028, 120: 0}
 
 Stoploss: -0.08
 Trailing stop: True (positive: 0.025)
@@ -415,14 +399,22 @@ docker compose run --rm freqtrade backtesting \
 Result for strategy SampleStrategy
 ===========================================================
 BACKTESTING REPORT
-----------------------------------------------
+---
 | 交易对      |  入场次数 |  平均利润 %   |  累计利润 %   |
-|-------------|----------|---------------|---------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | BTC/USDT    |      45  |         0.82  |        36.9   |
 | ETH/USDT    |      52  |         0.64  |        33.3   |
 | SOL/USDT    |      38  |         0.71  |        27.0   |
-----------------------------------------------
-总计:                          97.2 USDT (9.72%)
+---
+总计: 97.2 USDT (9.72%)
 
 夏普比率: 2.34
 索提诺比率: 3.12
@@ -490,7 +482,19 @@ curl -X POST -u admin:your-secure-password \
 ### 策略性能对比（2026 Q1回测）
 
 | 策略类型 | 月均收益 | 夏普比率 | 最大回撤 | 胜率 | 月均交易次数 |
-|---------|---------|---------|---------|------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | RSI + MACD (基础) | 4-8% | 1.2-1.8 | 8-12% | 55-60% | 80-150 |
 | FreqAI LightGBM | 8-15% | 1.8-2.5 | 6-10% | 60-68% | 60-120 |
 | 布林带均值回归 | 3-6% | 1.0-1.5 | 10-15% | 50-58% | 100-200 |
@@ -500,7 +504,17 @@ curl -X POST -u admin:your-secure-password \
 ### 资源使用概况
 
 | 资源 | 模拟模式 | 实盘（1对） | 实盘（10对） | FreqAI模式 |
-|------|---------|-----------|------------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | CPU | 1-3% | 3-8% | 10-20% | 30-60% |
 | RAM | 150MB | 200-300MB | 400-800MB | 1-2GB |
 | 磁盘/天 | 5MB | 10-20MB | 30-50MB | 50-100MB |
@@ -573,11 +587,9 @@ Q1总收益: +12.1%
 ```python
 # 添加到策略中实现动态止损
 def custom_stoploss(self, pair: str, trade: Trade, current_time: datetime,
-                    current_rate: float, current_profit: float, **kwargs) -> float:
-    """基于ATR的动态止损."""
+                    current_rate: float, current_profit: float, **kwargs) -> float: """基于ATR的动态止损."""
     dataframe, _ = self.dp.get_analyzed_dataframe(pair, self.timeframe)
-    if dataframe.empty:
-        return self.stoploss
+    if dataframe.empty: return self.stoploss
     
     last_candle = dataframe.iloc[-1]
     atr = last_candle[atr]
@@ -592,15 +604,13 @@ def custom_stoploss(self, pair: str, trade: Trade, current_time: datetime,
 ### 多时间框架分析
 
 ```python
-def informative_pairs(self):
-    """定义用于分析的高时间框架交易对."""
+def informative_pairs(self): """定义用于分析的高时间框架交易对."""
     return [
         ("BTC/USDT", "1h"),
         ("ETH/USDT", "1h"),
     ]
 
-def populate_indicators(self, dataframe: pd.DataFrame, metadata: dict) -> pd.DataFrame:
-    # 获取BTC的1小时数据
+def populate_indicators(self, dataframe: pd.DataFrame, metadata: dict) -> pd.DataFrame: # 获取BTC的1小时数据
     inf_pair, inf_timeframe = self.informative_pairs()[0]
     informative = self.dp.get_pair_dataframe(inf_pair, inf_timeframe)
     
@@ -625,22 +635,14 @@ def populate_indicators(self, dataframe: pd.DataFrame, metadata: dict) -> pd.Dat
 # 支持FreqAI GPU的docker-compose.yml
 version: '3.8'
 
-services:
-  freqtrade:
-    image: freqtradeorg/freqtrade:stable
+services: freqtrade: image: freqtradeorg/freqtrade:stable
     container_name: freqtrade_gpu
     restart: unless-stopped
-    volumes:
-      - ./user_data:/freqtrade/user_data
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+    volumes: - ./user_data:/freqtrade/user_data
+    deploy: resources: reservations: devices: - driver: nvidia
               count: 1
               capabilities: [gpu]
-    environment:
-      - FREQTRADE__FREQAI__MODEL_TRAINING__DEVICE=cuda
+    environment: - FREQTRADE__FREQAI__MODEL_TRAINING__DEVICE=cuda
     command: >
       trade --strategy FreqAIStrategy --config user_data/config.json
 ```
@@ -651,27 +653,17 @@ services:
 # docker-compose.yml
 version: '3.8'
 
-services:
-  freqtrade:
-    image: freqtradeorg/freqtrade:stable
+services: freqtrade: image: freqtradeorg/freqtrade:stable
     container_name: freqtrade_prod
     restart: unless-stopped
-    volumes:
-      - ./user_data:/freqtrade/user_data
-    ports:
-      - "127.0.0.1:8080:8080"
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "100m"
+    volumes: - ./user_data:/freqtrade/user_data
+    ports: - "127.0.0.1:8080:8080"
+    logging: driver: "json-file"
+      options: max-size: "100m"
         max-file: "3"
-    deploy:
-      resources:
-        limits:
-          memory: 4G
+    deploy: resources: limits: memory: 4G
           cpus: '2.0'
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/api/v1/ping"]
+    healthcheck: test: ["CMD", "curl", "-f", "http://localhost:8080/api/v1/ping"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -683,7 +675,17 @@ services:
 ## 与替代方案对比
 
 | 功能 | Freqtrade | Hummingbot | 3Commas | Gunbot |
-|------|-----------|------------|---------|--------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **许可证** | GPL-3.0 | Apache-2.0 | 专有 | 专有 |
 | **CEX连接器** | 20+ (CCXT) | 50+ | 15+ | 10+ |
 | **DEX支持** | 有限 | 是 (Gateway) | 否 | 否 |
@@ -749,9 +751,7 @@ FreqAI抽象了ML工程复杂性 —— 特征工程、模型训练、推理和�
 from freqtrade.freqai.base_models import BaseRegressionModel
 from sklearn.ensemble import RandomForestRegressor
 
-class MyCustomModel(BaseRegressionModel):
-    def fit(self, data_dictionary: dict, **kwargs):
-        model = RandomForestRegressor(n_estimators=200, max_depth=10)
+class MyCustomModel(BaseRegressionModel): def fit(self, data_dictionary: dict, **kwargs): model = RandomForestRegressor(n_estimators=200, max_depth=10)
         model.fit(data_dictionary["train_features"], data_dictionary["train_labels"])
         return model
 ```
@@ -801,7 +801,6 @@ Freqtrade与FreqAI是2026年用于ML增强加密货币交易的最强大开源�
 本指南包含 [Binance](https://www.bsmkweb.cc/register?ref=DIBI8)、[OKX](https://www.promoohubly.com/join/12190433) 和 [Minara](https://minara.ai/r/OSXG4X) 的联盟链接。如果你通过这些链接注册，我们会获得佣金，你不会产生额外费用。这支持我们的开源文档工作。我们只推荐我们积极使用和测试的工具。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -848,3 +847,5 @@ Freqtrade与FreqAI是2026年用于ML增强加密货币交易的最强大开源�
 
 包括服务器费用、数据订阅、算法更新、以及监控维护时间。
 
+
+---

@@ -1,16 +1,10 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mineru-document-parsing-engine" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mineru-document-parsing-engine" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mineru-document-parsing-engine" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mineru-document-parsing-engine" />
-
 lang: en
 title: 'MinerU: 70,6K sao — Chuyển đổi bất kỳ tài liệu nào sang ...
 description: 'MinerU (70.600+ sao GitHub) chuyển đổi PDF, DOCX, PPTX, XLSX, hình ảnh và trang web thành Markdown và JSON có cấu trúc cho quy trình làm việc LLM, RAG và Đại lý. Hỗ trợ OCR 109 ngôn ngữ, chuyển công thức sang LaTeX, chuyển bảng sang HTML và chạy trên CPU hoặc GPU.'
 tags: ["guide", "open-source", "ai-agents", "rag", "pdf", "ocr", "reference", "tutorial"]
 date: 2026-06-27 00:00:00+08:00
-lastmod:  2026-06-27 00:00:00+08:00slug: 'mineru-document-parsing-engine'
+lastmod: 2026-06-27 00:00:00+08:00slug: 'mineru-document-parsing-engine'
 category: ai-tools
 github_repo: 'https://github.com/opendatalab/MinerU'
 license: MinerU Open Source License (Apache 2.0-based)
@@ -18,9 +12,6 @@ lang: en
 featureImage: /images/articles/mineru-docs.png
 
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/mineru-document-parsing-engine/ -->
-
 
 ![MinerU logo](https://gcore.jsdelivr.net/gh/opendatalab/MinerU@master/docs/images/MinerU-logo.png)
 
@@ -38,9 +29,7 @@ MinerU ra đời trong quá trình đào tạo trước của [InternLM](https:/
 
 Vì vậy họ đã xây dựng MinerU.
 
-Không giống như các trình phân tích cú pháp PDF truyền thống chỉ trích xuất văn bản thô, MinerU hiểu cấu trúc tài liệu:
-
-- **Xóa** đầu trang, chân trang, chú thích cuối trang và số trang phá vỡ tính mạch lạc về mặt ngữ nghĩa 
+Không giống như các trình phân tích cú pháp PDF truyền thống chỉ trích xuất văn bản thô, MinerU hiểu cấu trúc tài liệu: - **Xóa** đầu trang, chân trang, chú thích cuối trang và số trang phá vỡ tính mạch lạc về mặt ngữ nghĩa 
 - **Giữ nguyên** thứ tự đọc cho bố cục một cột, nhiều cột và bố cục phức tạp 
 - **Chuyển đổi** công thức sang LaTeX, bảng thành HTML 
 - **Phát hiện** các tệp PDF được quét và cắt xén và tự động bật OCR 
@@ -51,9 +40,7 @@ Kết quả là nội dung tài liệu mà các tác nhân AI và LLM thực s�
 
 ## Installation and Setup
 
-MinerU cung cấp nhiều đường dẫn cài đặt tùy theo nhu cầu của bạn:
-
-### pip (Được khuyến nghị cho hầu hết người dùng)
+MinerU cung cấp nhiều đường dẫn cài đặt tùy theo nhu cầu của bạn: ### pip (Được khuyến nghị cho hầu hết người dùng)
 
 ```bash
 pip install mineru
@@ -74,9 +61,7 @@ cd MinerU
 pip install -e .
 ```
 
-MinerU hỗ trợ cả suy luận **chỉ dành cho CPU** và **tăng tốc GPU**. Để tăng tốc GPU, hãy cài đặt với sự hỗ trợ CUDA:
-
-```bash
+MinerU hỗ trợ cả suy luận **chỉ dành cho CPU** và **tăng tốc GPU**. Để tăng tốc GPU, hãy cài đặt với sự hỗ trợ CUDA: ```bash
 pip install mineru[cuda]
 ```
 
@@ -84,9 +69,7 @@ Trên macOS có Apple Silicon, MinerU tận dụng MPS (Bộ tạo bóng hiệu 
 
 ## Three Parsing Engines
 
-MinerU cung cấp ba phần phụ trợ phân tích cú pháp khác nhau, mỗi phần được tối ưu hóa cho các tình huống khác nhau:
-
-### 1. Pipeline Backend (Nhanh & Ổn định)
+MinerU cung cấp ba phần phụ trợ phân tích cú pháp khác nhau, mỗi phần được tối ưu hóa cho các tình huống khác nhau: ### 1. Pipeline Backend (Nhanh & Ổn định)
 
 Phần phụ trợ `pipeline` là lựa chọn mặc định cho hầu hết người dùng. Nó nhanh, ổn định và không tạo ra ảo giác. Nó chạy hiệu quả trên CPU và lý tưởng cho việc xử lý hàng loạt.
 
@@ -108,9 +91,7 @@ mineru ./complex.pdf -o ./output/ --engine vlm-engine
 
 ### 3. Động cơ Hybrid (Cân bằng)
 
-Công cụ `hybrid` kết hợp trích xuất văn bản gốc với phân tích dựa trên VLM. Bắt đầu từ phiên bản 3.3, nó bao gồm tham số `nỗ lực` với mức độ `trung bình` và `cao`:
-
-- **Nỗ lực trung bình:** Nhanh hơn 35-220% so với mức cao, với độ chính xác chỉ giảm 0,13 điểm trên OmniDocBench 
+Công cụ `hybrid` kết hợp trích xuất văn bản gốc với phân tích dựa trên VLM. Bắt đầu từ phiên bản 3.3, nó bao gồm tham số `nỗ lực` với mức độ `trung bình` và `cao`: - **Nỗ lực trung bình:** Nhanh hơn 35-220% so với mức cao, với độ chính xác chỉ giảm 0,13 điểm trên OmniDocBench 
 - **Nỗ lực cao:** Độ chính xác tối đa với hỗ trợ phân tích hình ảnh
 
 ```bash
@@ -121,9 +102,7 @@ mineru ./document.pdf -o ./output/ --engine hybrid-engine --effort medium
 
 ## Supported Formats
 
-MinerU hỗ trợ nhiều định dạng đầu vào:
-
-| Format | Support Level | Notes |
+MinerU hỗ trợ nhiều định dạng đầu vào: | Format | Support Level | Notes |
 |--------|--------------|-------|
 | PDF | Native | Text PDFs, scanned PDFs, garbled PDFs |
 | DOCX | Native | Full structural preservation |
@@ -177,9 +156,7 @@ Với sự hỗ trợ cho suy luận đồng thời đa luồng và ghi trực t
 
 ## Integration Ecosystem
 
-MinerU tích hợp với hầu hết mọi khung AI chính:
-
-| Framework | Integration |
+MinerU tích hợp với hầu hết mọi khung AI chính: | Framework | Integration |
 |-----------|-------------|
 | LangChain | Native document loader |
 | LlamaIndex | Document parser integration |
@@ -202,9 +179,7 @@ mineru-mcp-server
 
 Phần phụ trợ `pipeline` của MinerU đạt được số điểm **86,2 trên OmniDocBench v1.5**, vượt qua độ chính xác của mô hình VLM thế hệ trước `MinerU2.0-2505-0.9B`.
 
-Động cơ Hybrid với `nỗ lực=trung bình` mang lại:
-
-- **~80% nhanh hơn** đối với các kịch bản PDF văn bản trên Linux 
+Động cơ Hybrid với `nỗ lực=trung bình` mang lại: - **~80% nhanh hơn** đối với các kịch bản PDF văn bản trên Linux 
 - **~90% nhanh hơn** cho các kịch bản PDF văn bản trên Windows 
 - **~nhanh hơn 220%** đối với các kịch bản PDF văn bản trên macOS 
 - Chỉ **giảm độ chính xác 0,13 điểm** so với `nỗ lực=cao`
@@ -261,7 +236,6 @@ Với hơn 70.600 sao, đội ngũ phát triển tích cực và khả năng tí
 
 **Tiết lộ**: Bài viết này có chứa các liên kết liên kết. Nếu bạn đăng ký thông qua các liên kết của chúng tôi, chúng tôi có thể kiếm được một khoản hoa hồng nhỏ mà bạn không phải trả thêm phí. Điều này giúp hỗ trợ báo chí công nghệ độc lập và giữ cho các tài nguyên như dibi8.com miễn phí và không có quảng cáo.
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

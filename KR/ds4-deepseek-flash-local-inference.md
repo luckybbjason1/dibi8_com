@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ds4-deepseek-flash-local-inference" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ds4-deepseek-flash-local-inference" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ds4-deepseek-flash-local-inference" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ds4-deepseek-flash-local-inference" />
 title: "DS4 vs Ollama vs llama.cpp: 128GB Mac에서 딥시크 V4 Flash 로컬 ...
 description: "Redis 창시자 antirez가 개발한 DS4 추론 엔진을 알아보세요. DeepSeek V4 Flash 로컬 배포, macOS/Linux 설치 튜토리얼, Ollama/llama.cpp 성능 비교, 코드 예제, 100만 토큰 장문 맥락 활용 사례를 상세히 설명합니다."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - C++
+tech_stack: - C++
   - Go
   - Python
 application_domain: "Ai Tools"
@@ -26,8 +20,7 @@ maintainer: ""
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-faqs:
-  - q: 'DS4(DwarfStar 4)란 무엇이며, 누가 만들었나요?'
+faqs: - q: 'DS4(DwarfStar 4)란 무엇이며, 누가 만들었나요?'
     a: 'DS4(DwarfStar 4)는 Apple Metal 및 NVIDIA CUDA 하드웨어에서 DeepSeek V4 Flash 모델을 로컬로 실행하기 위해 특별히 제작된 소형 네이티브 추론 엔진입니다. Redis를 만든 것으로 유명한 이탈리아 프로그래머 Salvatore Sanfilippo(antirez)가 개발했습니다.'
   - q: 'DS4로 DeepSeek V4 Flash를 실행하려면 RAM이 얼마나 필요한가요?'
     a: '2-bit(q2) 가중치를 실행하려면 최소 96GB RAM이 필요하며, 128GB를 권장합니다. 4-bit(q4) 가중치는 256GB 이상이 필요하므로 일반 소비자용 노트북에서는 대부분 사용이 불가능합니다.'
@@ -38,8 +31,6 @@ faqs:
   - q: 'DS4는 OpenAI 호환 API 서버를 제공하나요?'
     a: '네. DS4를 빌드하면 http://127.0.0.1:8000 에서 OpenAI 및 Anthropic 호환 HTTP API를 노출하는 ds4-server 바이너리가 생성됩니다. /v1/chat/completions, /v1/completions, /v1/messages 등의 엔드포인트를 포함하며, OpenAI 스타일의 함수 호출을 지원하고 OpenCode, Pi, Claude Code 등의 에이전트 프레임워크와 연동됩니다.'
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/ds4-deepseek-flash-local-inference/ -->
 
 {</* resource-info */>}
 
@@ -54,9 +45,7 @@ faqs:
 ---
 
 ## 로컬 추론 벤치마크: DS4 vs Ollama vs llama.cpp
-DeepSeek V4 Flash 같은 괴물 모델을 돌리려면 하드코어한 최적화가 필수입니다. M-시리즈 Mac에서 DS4가 경쟁자들을 어떻게 박살내는지 보십시오:
-
-| 프레임워크 | 2-bit 양자화(Quantization) 속도 | KV Cache 영구 보존 | 하드웨어 가속 최적화 | 설치 난이도 |
+DeepSeek V4 Flash 같은 괴물 모델을 돌리려면 하드코어한 최적화가 필수입니다. M-시리즈 Mac에서 DS4가 경쟁자들을 어떻게 박살내는지 보십시오: | 프레임워크 | 2-bit 양자화(Quantization) 속도 | KV Cache 영구 보존 | 하드웨어 가속 최적화 | 설치 난이도 |
 | :--- | :--- | :--- | :--- | :--- |
 | **DwarfStar 4 (DS4)** | **초고속 (35+ t/s)** | **지원 (SSD 디스크에 저장)** | Metal / CUDA 네이티브 지원 | 보통 |
 | **Ollama** | 느림 | 미지원 (종료 시 RAM 초기화)| 범용 호환성에만 집중 | 매우 쉬움 |
@@ -250,8 +239,7 @@ llama.cpp는 로컬 LLM 추론을 가능하게 한 기초 프로젝트입니다.
 ./ds4
 ```
 
-이는 지속적인 KV 상태를 가진 다중 턴 대화를 시작합니다. 유용한 명령어:
-- `/help` — 사용 가능한 명령어 표시
+이는 지속적인 KV 상태를 가진 다중 턴 대화를 시작합니다. 유용한 명령어: - `/help` — 사용 가능한 명령어 표시
 - `/think` — 사고 모드 활성화 (기본값)
 - `/think-max` — 최대 추론 노력
 - `/nothink` — 더 빠른 응답을 위해 사고 비활성화
@@ -308,9 +296,7 @@ response = client.chat.completions.create(
     temperature=0.7
 )
 
-for chunk in response:
-    if chunk.choices[0].delta.content:
-        print(chunk.choices[0].delta.content, end="")
+for chunk in response: if chunk.choices[0].delta.content: print(chunk.choices[0].delta.content, end="")
 ```
 
 ### 도구 사용 예제
@@ -423,16 +409,13 @@ A: 창을 닫으면 문맥을 다 까먹는 Ollama와 달리, DS4는 방대한 K
 
 ## 자체 호스팅 추천 인프라
 
-24/7 안정 운영을 위해 인프라 선택이 중요하다:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 60일 $200 크레딧, 글로벌 14+ 리전. 오픈소스 AI 도구 자체 호스팅에 적합.
+24/7 안정 운영을 위해 인프라 선택이 중요하다: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 60일 $200 크레딧, 글로벌 14+ 리전. 오픈소스 AI 도구 자체 호스팅에 적합.
 - **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — 홍콩 VPS, 중국 본토 접근 시 저지연. dibi8.com 자체가 호스팅된 검증된 IDC.
 
 *추천 링크입니다. 추가 비용 없이 dibi8.com 운영에 도움이 됩니다.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

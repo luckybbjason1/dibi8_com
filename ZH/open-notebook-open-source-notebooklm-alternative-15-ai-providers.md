@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/open-notebook-open-source-notebooklm-alternative-15-ai-providers" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/open-notebook-open-source-notebooklm-alternative-15-ai-providers" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/open-notebook-open-source-notebooklm-alternative-15-ai-providers" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/open-notebook-open-source-notebooklm-alternative-15-ai-providers" />
 title: 'open-notebook: 支持 15+ AI 提供商的开源 Notebook LM 替代方案 — 自托管，2...
 description: 'open-notebook（28,200 GitHub 星标）是 Google NotebookLM 的开源替代方案，支持 15+ AI 提供商。自托管 RAG 知识库，支持多模态音频剧集。包含设置指南、提供商对比和真实基准测试。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-08
-lastmod:  2026-06-08slug: 'open-notebook-open-source-notebooklm-alternative-15-ai-providers'
+lastmod: 2026-06-08
+slug: 'open-notebook-open-source-notebooklm-alternative-15-ai-providers'
 category: 'data-science'
 tags: ['open notebook', 'notebook lm 替代方案', '自托管 RAG', 'AI 知识库', '多模态 RAG', '开源笔记本', 'AI 播客生成器', '自托管 LLM']
 github_repo: 'https://github.com/lfnovo/open-notebook'
@@ -15,10 +11,7 @@ stars: 28200
 maintainer: 'lfnovo'
 license: MIT
 featureImage: 'https://raw.githubusercontent.com/lfnovo/open-notebook/main/frontend/public/og-image.png'
-lang: zh
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/open-notebook-open-source-notebooklm-alternative-15-ai-providers/ -->
 
 # open-notebook: 支持 15+ AI 提供商的开源 Notebook LM 替代方案 — 自托管，28,000 星标 — 设置指南 2026
 
@@ -150,8 +143,7 @@ ollama pull nomic-embed-text:latest
 ollama pull llama3.2:3b
 
 # open-notebook with Ollama backend
-# In .env:
-# AI_PROVIDER=ollama
+# In .env: # AI_PROVIDER=ollama
 # OLLAMA_HOST=http://localhost:11434
 # EMBEDDING_MODEL=nomic-embed-text
 # COMPLETION_MODEL=llama3.2:3b
@@ -166,7 +158,19 @@ open-notebook 通过统一的配置接口支持广泛的 AI 提供商：
 ### 支持的提供商
 
 | 提供商 | 类型 | 嵌入 | 聊天 | 音频 | 成本 |
-|--------|------|------|------|------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | OpenAI | 云端 | GPT-4o 嵌入 | GPT-4o | GPT-4o Realtime | $20-50/月 |
 | Anthropic | 云端 | 无 | Claude Sonnet 4 | 无 | $15-40/月 |
 | Google Gemini | 云端 | text-embedding-004 | Gemini 2.0 Pro | Cloud TTS | $5-25/月 |
@@ -180,31 +184,22 @@ open-notebook 通过统一的配置接口支持广泛的 AI 提供商：
 
 ```yaml
 # config.yaml — 提供商配置
-providers:
-  default_chat: anthropic
+providers: default_chat: anthropic
   default_embedding: openai
   default_tts: openai
   
-  anthropic:
-    api_key: "${ANTHROPIC_API_KEY}"
-    models:
-      chat:
-        - claude-sonnet-4-20250514
+  anthropic: api_key: "${ANTHROPIC_API_KEY}"
+    models: chat: - claude-sonnet-4-20250514
         - claude-opus-4-20250514
   
-  openai:
-    api_key: "${OPENAI_API_KEY}"
-    models:
-      embedding: gpt-4o-embedding
+  openai: api_key: "${OPENAI_API_KEY}"
+    models: embedding: gpt-4o-embedding
       chat: gpt-4o
       tts: gpt-4o-realtime
   
-  ollama:
-    host: "${OLLAMA_HOST:-http://localhost:11434}"
-    models:
-      embedding: nomic-embed-text
-      chat:
-        - llama3.2:3b
+  ollama: host: "${OLLAMA_HOST:-http://localhost:11434}"
+    models: embedding: nomic-embed-text
+      chat: - llama3.2:3b
         - qwen2.5:7b
 ```
 
@@ -217,7 +212,15 @@ providers:
 在 50 个文档集合（PDF 研究论文和技术文档混合）上的测试：
 
 | 配置 | Top-3 准确率 | 引用准确率 | 幻觉率 |
-|------|-------------|-----------|--------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | OpenAI + GPT-4o | 94% | 96% | 2% |
 | Anthropic + Claude Sonnet 4 | 92% | 95% | 1.5% |
 | Ollama + llama3.2:3b | 78% | 82% | 8% |
@@ -228,7 +231,13 @@ providers:
 从 5 个文档生成 10 分钟音频剧集：
 
 | 提供商 | 生成时间 | 音频质量 |
-|--------|---------|---------|
+|
+---
+|
+---
+|
+---
+|
 | OpenAI GPT-4o + TTS | ~4 分钟 | 优秀 |
 | Anthropic + Piper TTS | ~2 分钟 | 良好 |
 | Ollama + Piper TTS | ~8 分钟 | 可接受 |
@@ -309,8 +318,7 @@ docker run -p 6333:6333 -p 6334:6334 \
   qdrant/qdrant:latest
 
 # 连接 open-notebook 到远程 Qdrant
-# In .env:
-# VECTOR_DB=qdrant
+# In .env: # VECTOR_DB=qdrant
 # QDRANT_HOST=qdrant.internal
 # QDRANT_PORT=6333
 ```
@@ -319,8 +327,7 @@ docker run -p 6333:6333 -p 6334:6334 \
 
 ```bash
 # 启用用户认证
-# In .env:
-# ENABLE_AUTH=true
+# In .env: # ENABLE_AUTH=true
 # JWT_SECRET=<generate...n
 # 添加用户
 curl -X POST http://localhost:3000/api/users \
@@ -331,7 +338,17 @@ curl -X POST http://localhost:3000/api/users \
 ## Comparison with Alternatives
 
 | 功能 | open-notebook | NotebookLM | RAGflow | LangChain Chat |
-|------|--------------|------------|---------|----------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 自托管 | 是 | 否 | 是 | 是 |
 | AI 提供商 | 15+ | 仅 Google | 多种 | 多种 |
 | 音频剧集 | 是 | 是 | 否 | 否 |
@@ -398,7 +415,6 @@ open-notebook 证明个人 AI 研究助手不需要生活在 Google 的服务器
 上方部分链接含联盟推广。如通过链接注册，dibi8.com 可能获得佣金，不影响你的成本。这帮助 dibi8 持续免费运营。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -426,25 +442,20 @@ open-notebook 证明个人 AI 研究助手不需要生活在 Google 的服务器
 
 ## Why This Matters
 
-Understanding open-notebook: 支持 15+ ai 提供商的开源 notebook lm 替代方案 — 自托管，28,000 星标 — 设置指南 2026 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding open-notebook: 支持 15+ ai 提供商的开源 notebook lm 替代方案 — 自托管，28,000 星标 — 设置指南 2026 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -465,13 +476,13 @@ open-notebook: 支持 15+ AI 提供商的开源 Notebook LM 替代方案 — 自
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
 
+---
 ## Related Articles
 
 - [open-notebook-open-source-notebooklm-alternative-15-ai-providers](open-notebook-open-source-notebooklm-alternative-15-ai-providers)

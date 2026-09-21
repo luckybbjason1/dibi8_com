@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ruvnet-ruview-wifi-spatial-intelligence-guide" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ruvnet-ruview-wifi-spatial-intelligence-guide" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ruvnet-ruview-wifi-spatial-intelligence-guide" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ruvnet-ruview-wifi-spatial-intelligence-guide" />
 title: "RuView: Trí tuệ không gian WiFi cho Smart Buildings — Py...
 description: "Tìm hiểu cách sử dụng RuView, nền tảng trí tuệ không gian WiFi dựa trên Python theo dõi vị trí thời gian thực, lập bản đồ layout tòa nhà và tối ưu hóa WiFi mesh networks. Hướng dẫn cài đặt pip từng bước, theo dõi thời gian thực và cấu hình mesh network."
 date: 2026-06-10
-lastmod:  2026-06-10slug: "ruvnet-ruview-wifi-spatial-intelligence-guide"
+lastmod: 2026-06-10
+slug: "ruvnet-ruview-wifi-spatial-intelligence-guide"
 category: ai-tools
 tags: [ruvnet, ruview, wifi, spatial-intelligence, position-tracking, mesh-network, smart-buildings, python, open-source]
 github_repo: "https://github.com/ruvnet/RuView"
@@ -17,8 +13,6 @@ license: MIT
 featureImage: "https://raw.githubusercontent.com/ruvnet/RuView/main/assets/ruview-seed.png"
 lang: vi
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/ruvnet-ruview-wifi-spatial-intelligence-guide/ -->
 
 ## Giới thiệu
 
@@ -32,9 +26,7 @@ Xây dựng trên nguyên tắc rằng WiFi signals chứa thông tin không gia
 
 RuView là **một platform Python-based WiFi spatial intelligence** trích xuất real-time position data, building floor plans và network optimization insights từ standard WiFi signals. Nó sử dụng sự kết hợp của các WiFi sensing techniques bao gồm Received Signal Strength Indicator (RSSI) analysis, Time of Flight (ToF) measurements và Channel State Information (CSI) processing để đạt được sub-meter location accuracy.
 
-Các khả năng chính bao gồm:
-
-- **Real-time position tracking** — Track các thiết bị enabled WiFi trong phạm vi centimeter-level accuracy bằng các thuật toán RSSI, ToF hoặc CSI
+Các khả năng chính bao gồm: - **Real-time position tracking** — Track các thiết bị enabled WiFi trong phạm vi centimeter-level accuracy bằng các thuật toán RSSI, ToF hoặc CSI
 - **Floor plan extraction** — Tự động generate building floor plans từ WiFi signal patterns và signal propagation data
 - **Mesh network optimization** — Tối ưu hóa WiFi access point placement cho maximum coverage bằng simulated annealing
 - **WiFi sensing** — Phát hiện motion, presence và activity patterns qua WiFi signal analysis mà không cần camera
@@ -45,9 +37,7 @@ Các khả năng chính bao gồm:
 
 ## RuView hoạt động như thế nào
 
-RuView hoạt động bằng cách phân tích WiFi signals từ standard 802.11 network interfaces. Platform sử dụng nhiều kỹ thuật spatial intelligence để đạt được các mức độ accuracy khác nhau tùy thuộc vào hardware và environment:
-
-**RSSI-based positioning** sử dụng Received Signal Strength Indicator từ multiple access points để triangulate device positions. Đây là kỹ thuật đơn giản nhất và yêu cầu tối thiểu configuration, nhưng đạt được accuracy trong phạm vi 1-3 meter trong các office environments điển hình.
+RuView hoạt động bằng cách phân tích WiFi signals từ standard 802.11 network interfaces. Platform sử dụng nhiều kỹ thuật spatial intelligence để đạt được các mức độ accuracy khác nhau tùy thuộc vào hardware và environment: **RSSI-based positioning** sử dụng Received Signal Strength Indicator từ multiple access points để triangulate device positions. Đây là kỹ thuật đơn giản nhất và yêu cầu tối thiểu configuration, nhưng đạt được accuracy trong phạm vi 1-3 meter trong các office environments điển hình.
 
 **Time of Flight (ToF) positioning** đo thời gian signals travel giữa các devices, cung cấp các distance measurements chính xác hơn. ToF đặc biệt effective trong các environments với multiple reflections, đạt được sub-meter accuracy (0.3-0.8 meters).
 
@@ -210,8 +200,7 @@ curl -X POST http://localhost:5000/api/config \
 
 ```yaml
 # Trong configuration.yaml của Home Assistant
-sensor:
-  - platform: ruview
+sensor: - platform: ruview
     host: localhost
     port: 5000
     scan_interval: 5
@@ -258,9 +247,7 @@ ruview stream --port 8765 --format websocket
 
 ### Mesh Optimization Performance
 
-Cho một 5000 square meter building với 10 access points:
-
-```bash
+Cho một 5000 square meter building với 10 access points: ```bash
 time ruview optimize --device wlan0 --points 5000 --output optimization.yaml
 real 2m45s
 user 2m30s
@@ -271,9 +258,7 @@ Optimizer tìm optimal access point placements trong dưới 3 phút cho các bu
 
 ### Use case thực tế: Smart Retail Store
 
-Một retail chain sử dụng RuView để track customer movement patterns across 12 store locations:
-
-```bash
+Một retail chain sử dụng RuView để track customer movement patterns across 12 store locations: ```bash
 #!/bin/bash
 # Daily retail analytics pipeline
 for store in /data/stores/*/; do
@@ -286,9 +271,7 @@ Store sử dụng data này để tối ưu product placement, phân tích foot 
 
 ### Use case thực tế: Office Building WiFi Optimization
 
-Một office building management team sử dụng RuView để tối ưu WiFi coverage across 3 floors:
-
-```bash
+Một office building management team sử dụng RuView để tối ưu WiFi coverage across 3 floors: ```bash
 # Run optimization across all floors
 ruview optimize --device wlan0 --points 5000 --output optimization.yaml
 ruview map --device wlan0 --output floorplan.svg --format svg
@@ -304,9 +287,7 @@ Optimization xác định 4 dead zones và đề xuất 3 additional access poin
 ruview init --config ruview.yaml
 ```
 
-Điều này tạo một file cấu hình `ruview.yaml` với default settings. Sau đó bạn có thể customize:
-
-```yaml
+Điều này tạo một file cấu hình `ruview.yaml` với default settings. Sau đó bạn có thể customize: ```yaml
 device: wlan0
 sample_rate: 100
 position_algorithm: tof
@@ -329,8 +310,7 @@ Tracks devices sử dụng nhiều WiFi interfaces simultaneously, cải thiện
 import ruview
 
 # Define a custom positioning algorithm
-def custom_triangulation(rssi_data):
-    # Custom positioning logic
+def custom_triangulation(rssi_data): # Custom positioning logic
     positions = perform_rssi_triangulation(rssi_data)
     return positions
 
@@ -405,9 +385,7 @@ Lợi thế chính của RuView là sự kết hợp của accuracy, cost và fl
 
 ## Hạn chế / Đánh giá khách quan
 
-Mặc dù RuView rất mạnh, hãy lưu ý những hạn chế sau:
-
-1. **Hardware requirements** — CSI-based positioning yêu cầu WiFi adapters hỗ trợ CSI extraction, không có sẵn trên tất cả hardware. Standard WiFi adapters chỉ hỗ trợ RSSI-based positioning.
+Mặc dù RuView rất mạnh, hãy lưu ý những hạn chế sau: 1. **Hardware requirements** — CSI-based positioning yêu cầu WiFi adapters hỗ trợ CSI extraction, không có sẵn trên tất cả hardware. Standard WiFi adapters chỉ hỗ trợ RSSI-based positioning.
 2. **Line-of-sight** — Accuracy giảm trong các environments với heavy RF interference hoặc nhiều obstacles. Các cấu trúc kim loại và walls dày làm degrade signal quality đáng kể.
 3. **Initial calibration** — Để đạt kết quả tốt nhất, RuView yêu cầu một initial calibration phase nơi reference points được establish khắp building.
 4. **Building-specific tuning** — Các building materials khác nhau ảnh hưởng đến WiFi signals khác nhau, vì vậy models trained trên một building có thể không transfer perfectly sang một building khác.
@@ -467,7 +445,6 @@ Tham gia [nhóm Telegram tiếng Anh của dibi8](https://t.me/DIBI8_Group/2) đ
 Một số liên kết trên là affiliate links. dibi8.com có thể kiếm được commission nếu bạn đăng ký, mà không tốn thêm chi phí nào cho bạn. Giúp giữ cho trang web hoạt động và nội dung miễn phí.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

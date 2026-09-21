@@ -1,22 +1,14 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/impeccable-ai-design-language-harness-quality-ui" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/impeccable-ai-design-language-harness-quality-ui" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/impeccable-ai-design-language-harness-quality-ui" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/impeccable-ai-design-language-harness-quality-ui" />
 title: 'Impeccable：让 AI 生成的 UI 真正好看的编程语言 — 2026 评测'
 description: 'Impeccable（3.7 万星标）是为 AI 编码代理设计的编程语言，包含 23 个命令、41 个检测规则和实时浏览器迭代。通过确定性的设计质量检查修复 AI 生成的 UI 粗糙问题。兼容 Claude Code、Cursor 和 Codex。'
 date: 2026-06-13
-lastmod:  2026-06-13slug: 'impeccable-ai-design-language-harness-quality-ui'
+lastmod: 2026-06-13
+slug: 'impeccable-ai-design-language-harness-quality-ui'
 category: ai-tools
 tags: ['impeccable', 'design-language', 'ai-design', 'frontend', 'claude-code', 'cursor']
 github_repo: 'https://github.com/pbakaus/impeccable'
 license: 'Apache-2.0'
-lang: zh
-featureImage: /articles/ai-trading-stack.png/images/articles/ai-trading-stack.png
----
-
-<!-- canonical: https://dibi8.com/zh/tools/impeccable-ai-design-language-harness-quality-ui/ -->
+featureImage: /articles/ai-trading-stack.png/images/articles/ai-trading-stack.png---
 
 # Impeccable：让 AI 生成的 UI 真正好看的编程语言 — 2026 评测
 
@@ -109,7 +101,13 @@ npx impeccable skills install
 Impeccable 提供 23 个专用命令，每个针对设计质量的特定方面：
 
 | 命令 | 作用 | 分类 |
-|------|------|------|
+|
+---
+|
+---
+|
+---
+|
 | `/impeccable craft` | 完整的先形状后构建流程，含视觉迭代 | 构建 |
 | `/impeccable init` | 一次性设置：收集设计上下文，编写 PRODUCT.md 和 DESIGN.md | 设置 |
 | `/impeccable document` | 从现有项目代码生成根目录 DESIGN.md | 文档 |
@@ -222,7 +220,15 @@ Impeccable 包含 41 个确定性检测规则，无需 LLM API 调用即可自�
 对应用 Impeccable 前后的 200+ AI 生成 UI 组件进行测试：
 
 | 指标 | 没有 Impeccable | 有 Impeccable | 改进 |
-|------|----------------:|--------------:|------:|
+|
+---
+|
+---
+:|
+---
+:|
+---
+:|
 | 独特字体族 | 平均 1.2 | 平均 2.4 | +100% |
 | 调色板大小 | 3.1 种颜色 | 6.8 种颜色 | +119% |
 | WCAG AA 通过率 | 62% | 94% | +32% |
@@ -257,7 +263,15 @@ Impeccable 包含 41 个确定性检测规则，无需 LLM API 调用即可自�
 与雇佣设计师完成相同工作相比：
 
 | 方案 | 成本 | 交付时间 | 设计质量 |
-|------|------|---------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 人类设计师 | $2,000-8,000 | 1-2 周 | 不等 |
 | 仅 AI（无 Impeccable）| $5（API） | 30 分钟 | 3.1/10 |
 | AI + Impeccable | $5（API） | 2-4 小时 | 7.4/10 |
@@ -318,11 +332,8 @@ Impeccable 包含 41 个确定性检测规则，无需 LLM API 调用即可自�
 
 ```yaml
 # .github/workflows/design-quality.yml
-jobs:
-  design-quality:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: design-quality: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - name: 安装 Impeccable
         run: npx impeccable skills install
       - name: 运行检测规则
@@ -348,7 +359,17 @@ jobs:
 ## 与替代方案的比较
 
 | 功能 | Impeccable | Anthropic frontend-design | Tailwind UI | 自定义 CSS |
-|------|-----------|--------------------------|-------------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 命令数 | 23 | 5 | 0（库） | 0 |
 | 检测规则 | 41 | 0 | 0 | 0 |
 | LLM 集成 | ✅ | ✅ | ❌ | ❌ |
@@ -414,8 +435,8 @@ Impeccable 解决了一个每个 AI 编码代理用户都经历过的真实问�
 了解更多开发者工具：
 - [Docker 开发最佳实践](/zh/resources/dev-utils/docker-development-environment-best-practices/) — 容器化的设计环境
 
----
 
+---
 **来源与延伸阅读**：
 - 官方文档：https://impeccable.style
 - GitHub 仓库：https://github.com/pbakaus/impeccable
@@ -424,12 +445,11 @@ Impeccable 解决了一个每个 AI 编码代理用户都经历过的真实问�
 
 **加入我们的社区**：https://t.me/DIBI8_Group
 
----
 
+---
 **披露**：本文包含联盟链接。如果你通过我们的链接注册，我们可能会获得佣金，对你不会产生额外费用。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -457,25 +477,20 @@ Impeccable 解决了一个每个 AI 编码代理用户都经历过的真实问�
 
 ## Why This Matters
 
-Understanding impeccable：让 ai 生成的 ui 真正好看的编程语言 — 2026 评测 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding impeccable：让 ai 生成的 ui 真正好看的编程语言 — 2026 评测 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

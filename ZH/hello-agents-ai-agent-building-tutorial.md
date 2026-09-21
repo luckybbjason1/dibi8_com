@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/hello-agents-ai-agent-building-tutorial" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hello-agents-ai-agent-building-tutorial" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hello-agents-ai-agent-building-tutorial" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hello-agents-ai-agent-building-tutorial" />
 title: "Hello-Agents: Datawhale 开源 AI 智能体教程如何帮你从零构建生产级 Agent"
 description: "Datawhale Hello-Agents 是 GitHub 上最火的 AI 智能体开源教程，涵盖 ReAct、AutoGen、LangGraph、MCP、Agentic RL 等 16 章完整课程，拥有 45,600+ Stars。"
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Go
+tech_stack: - Go
   - JavaScript
   - Python
 application_domain: "Llm Frameworks"
@@ -26,8 +20,7 @@ maintainer: "datawhalechina"
 last_maintained: "2026-05-14"
 featureImage: ""
 draft: false
-faqs:
-  - q: 'Datawhale Hello-Agents 是什么？'
+faqs: - q: 'Datawhale Hello-Agents 是什么？'
     a: 'Hello-Agents 是来自中国 Datawhale 社区的免费开源教程，教你从零开始构建 AI agent。它提供一套 16 章的课程，配有可运行代码，并以在线书籍、本地文档和可下载的 PDF 三种形式提供。'
   - q: 'Hello-Agents 的 16 章课程涵盖哪些主题？'
     a: '课程涵盖 agent 与 LLM 基础、经典范式（ReAct、Plan-and-Solve、Reflection）、低代码平台（Coze、Dify、n8n）、专业框架（AutoGen、AgentScope、LangGraph）、记忆与 RAG、上下文工程、通信协议（MCP、A2A、ANP）、Agentic RL（SFT、RLHF、GRPO）、评估，以及三个综合实战案例。'
@@ -36,10 +29,7 @@ faqs:
   - q: 'Hello-Agents 免费吗？它采用什么许可证？'
     a: '是的，Hello-Agents 完全免费，采用开源许可证，完整 PDF 可通过 GitHub releases 或 Datawhale 官网免费获取。该 PDF 带有 Datawhale 水印以防止商业转售，但完全可用于个人学习。'
   - q: '跟着 Hello-Agents 可以做出哪些真实项目？'
-    a: '教程包含三个综合案例：一个通过 MCP 工具调用协调多个专业 agent 的智能旅行助手；一个搜索网络信息并将其综合成报告的自动化深度研究 agent；以及一个由具有不同性格和日常行为的 AI agent 组成的赛博小镇模拟。'
----
-
-<!-- canonical: https://dibi8.com/zh/tools/hello-agents-ai-agent-building-tutorial/ -->
+    a: '教程包含三个综合案例：一个通过 MCP 工具调用协调多个专业 agent 的智能旅行助手；一个搜索网络信息并将其综合成报告的自动化深度研究 agent；以及一个由具有不同性格和日常行为的 AI agent 组成的赛博小镇模拟。'---
 {</* resource-info */>}
 
 ## Hello-Agents 是什么？
@@ -50,16 +40,16 @@ faqs:
 **Stars**: 45,600+
 **协议**: Apache 2.0
 
----
 
+---
 ## 为什么需要 Hello-Agents？
 
 2025 年被公认为"AI 智能体元年"。从 OpenAI 的 Operator 到 Google 的 A2A 协议，从 Anthropic 的 MCP 到字节跳动的 UI-TARS，整个行业都在向能够感知、规划并代替用户行动的自主智能系统转型。
 
 然而，对大多数开发者来说，从"使用聊天机器人"到"构建真正的 Agent"之间的鸿沟依然巨大。Hello-Agents 正是填补这一空缺的完整解决方案。
 
----
 
+---
 ## 16 章完整课程体系
 
 ### 第一部分：Agent 与大模型基础
@@ -93,7 +83,17 @@ faqs:
 ## 核心亮点
 
 | 能力 | Hello-Agents | 框架文档 | 付费训练营 | 视频教程 |
-|------|-------------|---------|-----------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 体系化课程 | 16章渐进式 | 碎片化 | 参差不齐 | 无结构 |
 | 理论深度 | 从 Transformer 到 RL | 仅框架层面 | 通常较浅 | 通常较浅 |
 | 动手编码 | 每章都有 | 仅示例 | 受成本限制 | 很少完整 |
@@ -163,21 +163,17 @@ messages = [
     {"role": "user", "content": "东京人口除以1000是多少？"}
 ]
 
-for step in range(5):
-    response = openai.chat.completions.create(
+for step in range(5): response = openai.chat.completions.create(
         model="gpt-4", messages=messages, tools=tools, tool_choice="auto"
     )
     message = response.choices[0].message
     messages.append(message)
     
-    if message.tool_calls:
-        for tc in message.tool_calls:
-            name = tc.function.name
+    if message.tool_calls: for tc in message.tool_calls: name = tc.function.name
             args = json.loads(tc.function.arguments)
             result = search_web(**args) if name == "search_web" else calculate(**args)
             messages.append({"role": "tool", "tool_call_id": tc.id, "content": result})
-    else:
-        print("最终答案:", message.content)
+    else: print("最终答案:", message.content)
         break
 ```
 
@@ -188,7 +184,11 @@ for step in range(5):
 ## 适用人群
 
 | 人群 | 价值 |
-|------|------|
+|
+---
+|
+---
+|
 | **AI 工程师求职者** | 系统掌握 Agent 工程核心能力，面试题直接来自大厂真题 |
 | **产品团队** | 用低代码章节快速原型验证，再用框架章节与开发团队高效协作 |
 | **研究者/学者** | Agentic RL 和评估章节足以作为研究项目的起点 |
@@ -217,7 +217,6 @@ Hello-Agents 是当今最全面、最易懂、社区支持最强的 AI 智能体
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -245,25 +244,20 @@ Hello-Agents 是当今最全面、最易懂、社区支持最强的 AI 智能体
 
 ## Why This Matters
 
-Understanding hello-agents: datawhale 开源 ai 智能体教程如何帮你从零构建生产级 agent is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding hello-agents: datawhale 开源 ai 智能体教程如何帮你从零构建生产级 agent is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -315,7 +309,17 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

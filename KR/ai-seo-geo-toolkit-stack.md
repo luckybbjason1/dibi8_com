@@ -3,8 +3,7 @@ title: 'AI-SEO & GEO 툴킷 스택 2026: 전통 SEO + 생성형 엔진 최적화
 description: 'AI 시대 SEO를 위한 완벽한 무료 툴킷: llms.txt 생성기 + AI 크롤러용 robots.txt + 메타 태그 + Schema.org JSON-LD + hreflang + OG 카드 미리보기. 클래식 검색(Google/Bing)과 생성형 엔진(ChatGPT, Claude, Perplexity)을 모두 아우릅니다. 전부 브라우저 기반이며 가입 불필요.'
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-30 00:00:00+08:00
-tech_stack:
-  - HTML
+tech_stack: - HTML
   - JavaScript
   - JSON-LD
   - SEO
@@ -25,10 +24,8 @@ featureImage: ''
 draft: false
 categories: [collections]
 tags: [seo, geo, 'llms.txt', schema, 'meta tags', stack, collection]
-aliases:
-  - /posts/ai-seo-geo-toolkit-stack/
-faqs:
-  - q: 'llms.txt가 무엇이며, 2026년 SEO에서 왜 중요한가요?'
+aliases: - /posts/ai-seo-geo-toolkit-stack/
+faqs: - q: 'llms.txt가 무엇이며, 2026년 SEO에서 왜 중요한가요?'
     a: 'llms.txt는 ''AI를 위한 robots.txt''입니다. ChatGPT, Claude, Perplexity 같은 생성형 엔진 크롤러에게 사이트 구조를 어떻게 읽어야 하는지 알려주는 파일이죠. 생성형 엔진이 새로운 콘텐츠 발견 채널로 부상했기 때문에 중요합니다. AI 검색에서 인용되는 것은 2026년판 구글 1페이지 랭킹과 같습니다.'
   - q: '어떤 AI 크롤러가 내 웹사이트에 접근할 수 있는지 어떻게 제어하나요?'
     a: 'robots.txt 파일에 AI 크롤러 전용 규칙을 추가해 GPTBot, ClaudeBot, PerplexityBot, CCBot, Google-Extended 등의 봇을 명시적으로 허용하거나 차단하세요. 이를 통해 어떤 생성형 엔진이 콘텐츠를 크롤링하고 인용할 수 있는지 직접 제어할 수 있습니다.'
@@ -40,7 +37,6 @@ faqs:
     a: '대부분의 사이트가 아직 하지 않은 GEO 레이어부터 시작하세요. llms.txt를 생성하고 AI 크롤러를 고려한 robots.txt를 만드는 것입니다. 그런 다음 기존 온페이지 레이어를 적용하세요. meta 태그, Schema.org JSON-LD, 다국어 사이트라면 hreflang까지요. 마지막으로 공유 레이어를 마무리하며 Open Graph 카드를 미리 확인하세요.'
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/ai-seo-geo-toolkit-stack/ -->
 # AI-SEO & GEO 툴킷 스택 2026: 전통 SEO + 생성형 엔진 최적화를 위한 무료 도구 6선
 
 
@@ -78,7 +74,6 @@ faqs:
 2026년의 SEO = 클래식 온페이지 **더하기** 생성형 엔진 최적화. 대부분의 사이트는 전반부만 하고 후반부는 무시합니다 — 바로 그 점이 파고들어야 할 빈틈입니다. 6개 도구를 순서대로 실행하세요: AI 크롤러가 당신을 보는 방식을 단단히 잠그고(llms.txt + robots), 온페이지 기본기를 확실히 다지고(meta + schema + hreflang), 공유 카드를 다듬으세요. 무료, 브라우저 기반, 10분. 그런 다음 경쟁자들이 최적화를 잊은 AI 엔진들에게 인용되러 가세요.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -106,25 +101,20 @@ faqs:
 
 ## Why This Matters
 
-Understanding ai-seo & geo 툴킷 스택 2026: 전통 seo + 생성형 엔진 최적화를 위한 무료 도구 6선 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding ai-seo & geo 툴킷 스택 2026: 전통 seo + 생성형 엔진 최적화를 위한 무료 도구 6선 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

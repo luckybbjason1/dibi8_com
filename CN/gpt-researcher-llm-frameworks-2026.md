@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/gpt-researcher-llm-frameworks-2026" />
 title: 'GPT Researcher: Autonomous Agent for Deep Research Repor...
 description: 'GPT Researcher is an open deep-research agent that runs web and local research on any task and writes cited reports. 27,473 GitHub stars, Apache-2.0. Covers installation, the async Python API, Docker, and real code examples.'
 date: 2026-06-02 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: 'https://contrib.rocks/image?repo=assafelovic/gpt-researcher&max=1
 draft: false
 categories: ['llm-frameworks']
 tags: []
-aliases:
-- /posts/gpt-researcher-llm-frameworks-2026/
-faqs:
-  - q: 'How do I install gpt-researcher?'
+aliases: - /posts/gpt-researcher-llm-frameworks-2026/
+faqs: - q: 'How do I install gpt-researcher?'
     a: 'Install the Python package via pip: ```bash pip install gpt-researcher ```'
   - q: 'Which LLM providers and search engines can I use?'
     a: 'OpenAI is the default LLM and Tavily is the default retriever, but both are configurable through environment variables and the config file, and the agent supports additional retrievers including MCP-based sources.'
@@ -57,9 +53,7 @@ The project has over 27,000 stars on GitHub and is maintained by `assafelovic` u
 
 ## How GPT Researcher Works
 
-Under the hood, GPT Researcher runs a planner-executor loop rather than a single prompt:
-
-1. **Plan**: From your query, the agent generates a set of research sub-questions to cover the topic from several angles.
+Under the hood, GPT Researcher runs a planner-executor loop rather than a single prompt: 1. **Plan**: From your query, the agent generates a set of research sub-questions to cover the topic from several angles.
 
 2. **Search and gather**: For each sub-question it queries a retriever (Tavily by default) and scrapes the resulting pages, keeping only the relevant passages as context.
 
@@ -79,23 +73,17 @@ There are two common ways to run GPT Researcher: as a Python package inside your
 
 ### Using pip (Python package)
 
-First confirm Python is installed:
-
-```sh
+First confirm Python is installed: ```sh
 python3 --version
 ```
 
-Then install the package:
-
-```sh
+Then install the package: ```sh
 pip install gpt-researcher
 ```
 
 ### API keys via .env
 
-GPT Researcher uses an LLM (OpenAI by default) and a search retriever (Tavily by default). Create a `.env` file in your project root with both keys:
-
-```plaintext
+GPT Researcher uses an LLM (OpenAI by default) and a search retriever (Tavily by default). Create a `.env` file in your project root with both keys: ```plaintext
 OPENAI_API_KEY=your_openai_key_here
 TAVILY_API_KEY=your_tavily_key_here
 ```
@@ -104,9 +92,7 @@ If you point at a custom OpenAI-compatible endpoint, also set `OPENAI_BASE_URL`.
 
 ### Using Docker (full app with frontend)
 
-To run the complete application — the FastAPI server plus the web UI — clone the repo and use Docker Compose:
-
-```sh
+To run the complete application — the FastAPI server plus the web UI — clone the repo and use Docker Compose: ```sh
 git clone https://github.com/assafelovic/gpt-researcher.git
 cd gpt-researcher
 docker-compose up --build
@@ -116,9 +102,7 @@ By default this starts the Python server on `localhost:8000` and the frontend on
 
 ### Running the server without Docker
 
-You can also start the FastAPI server directly:
-
-```sh
+You can also start the FastAPI server directly: ```sh
 python -m uvicorn main:app --reload
 ```
 
@@ -134,8 +118,7 @@ The Python API is built around the `GPTResearcher` class. Both research and repo
 import asyncio
 from gpt_researcher import GPTResearcher
 
-async def main():
-    query = "why is Nvidia stock going up?"
+async def main(): query = "why is Nvidia stock going up?"
     researcher = GPTResearcher(query=query)
     # Conduct research: plan, search, scrape, and gather context
     research_result = await researcher.conduct_research()
@@ -148,14 +131,11 @@ asyncio.run(main())
 
 ### Example 2: Choosing a report type
 
-`GPTResearcher` accepts a `report_type` argument so you can ask for a short summary, a resource list, or a longer detailed report instead of the default research report:
-
-```python
+`GPTResearcher` accepts a `report_type` argument so you can ask for a short summary, a resource list, or a longer detailed report instead of the default research report: ```python
 import asyncio
 from gpt_researcher import GPTResearcher
 
-async def main():
-    researcher = GPTResearcher(
+async def main(): researcher = GPTResearcher(
         query="What are the latest advancements in natural language processing?",
         report_type="detailed_report",
     )
@@ -168,14 +148,11 @@ asyncio.run(main())
 
 ### Example 3: Inspecting the gathered sources
 
-After research runs, you can pull out the underlying context and source URLs the agent used — useful for auditing or building your own citation list:
-
-```python
+After research runs, you can pull out the underlying context and source URLs the agent used — useful for auditing or building your own citation list: ```python
 import asyncio
 from gpt_researcher import GPTResearcher
 
-async def main():
-    researcher = GPTResearcher(query="How does AI impact society?")
+async def main(): researcher = GPTResearcher(query="How does AI impact society?")
     await researcher.conduct_research()
     report = await researcher.write_report()
 
@@ -196,9 +173,7 @@ GPT Researcher slots into existing Python workflows because it is a plain async 
 
 ### Swapping LLM providers and retrievers
 
-You are not locked into OpenAI or Tavily. The default LLM is OpenAI and the default retriever is Tavily, but both are configurable through environment variables and the config file. For example, to combine the default web search with MCP-based sources you set the retriever list:
-
-```sh
+You are not locked into OpenAI or Tavily. The default LLM is OpenAI and the default retriever is Tavily, but both are configurable through environment variables and the config file. For example, to combine the default web search with MCP-based sources you set the retriever list: ```sh
 export RETRIEVER=tavily,mcp
 ```
 
@@ -206,14 +181,11 @@ This hybrid setup lets the agent pull from both general web search and specializ
 
 ### Using it inside a notebook or service
 
-Because the API is just two awaited calls, you can drop GPT Researcher into a Jupyter notebook, a background task, or a FastAPI endpoint:
-
-```python
+Because the API is just two awaited calls, you can drop GPT Researcher into a Jupyter notebook, a background task, or a FastAPI endpoint: ```python
 import asyncio
 from gpt_researcher import GPTResearcher
 
-async def research(topic: str) -> str:
-    researcher = GPTResearcher(query=topic)
+async def research(topic: str) -> str: researcher = GPTResearcher(query=topic)
     await researcher.conduct_research()
     return await researcher.write_report()
 
@@ -227,9 +199,7 @@ For more complex pipelines, the repository also ships a multi-agent setup built 
 
 ### Real-world use cases
 
-GPT Researcher is used to automate the slow parts of research and report writing:
-
-1. **Automated research briefs**: Generating first-draft reports on a topic or product idea, with sources attached, instead of manual web searching.
+GPT Researcher is used to automate the slow parts of research and report writing: 1. **Automated research briefs**: Generating first-draft reports on a topic or product idea, with sources attached, instead of manual web searching.
 
 2. **Literature and market scans**: Quickly gathering and summarizing material across many pages so a human can review the synthesis rather than read every source.
 
@@ -243,10 +213,12 @@ The README does not publish formal accuracy benchmarks, so treat any performance
 
 See also our [related open-source tools](dibi8-internal-link) coverage.
 
-GPT Researcher sits in the "autonomous research agent" category. Rather than invent competitor numbers, here is how to frame the comparison honestly:
-
-| Aspect | GPT Researcher |
-|----------------------|----------------------------------------|
+GPT Researcher sits in the "autonomous research agent" category. Rather than invent competitor numbers, here is how to frame the comparison honestly: | Aspect | GPT Researcher |
+|
+---
+|
+---
+|
 | **Stars** | 27,473 |
 | **Language** | Python |
 | **License** | Apache-2.0 |
@@ -266,9 +238,7 @@ GPT Researcher sits in the "autonomous research agent" category. Rather than inv
 
 ## Limitations & Honest Assessment
 
-GPT Researcher is capable, but be aware of the tradeoffs:
-
-1. **API cost and latency**: Each run fans out into multiple LLM calls and page scrapes, so deep or detailed reports can be slow and run up token and search-API costs.
+GPT Researcher is capable, but be aware of the tradeoffs: 1. **API cost and latency**: Each run fans out into multiple LLM calls and page scrapes, so deep or detailed reports can be slow and run up token and search-API costs.
 2. **Configuration surface**: Getting non-default LLMs, retrievers, or the multi-agent pipeline working takes time reading the docs and tuning the config.
 3. **Internet dependency**: Web research needs network access and a working search API; offline use is limited to local-document mode.
 4. **Quality tracks the model and sources**: Output is only as good as the underlying LLM and the pages it retrieves, so reports still need human fact-checking before you rely on them.
@@ -285,21 +255,17 @@ Large-scale scraping needs rotating proxies — [WebShare](https://www.webshare.
 - Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) for open-source AI tool drops.
 - Read next: [related guides on dibi8](dibi8-internal-link).
 
----
 
-**Sources & Further Reading**:
-- GitHub repository: https://github.com/assafelovic/gpt-researcher
+---
+**Sources & Further Reading**: - GitHub repository: https://github.com/assafelovic/gpt-researcher
 - Official docs / README: https://github.com/assafelovic/gpt-researcher#readme
 
 *Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.*
 
-<!-- internal-link-candidates:
   related open-source tools -> ai-tools-directory
   related guides on dibi8 -> ai-coding-agent-landscape-2026-skills-mcp-opensource
--->
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -346,3 +312,5 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
 
+
+---

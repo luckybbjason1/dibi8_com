@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/whisperx" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/whisperx" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/whisperx" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/whisperx" />
 title: 'WhisperX: 22K+ Stars — Hướng Dẫn Triển Khai ASR Producti...
 description: 'WhisperX là bộ công cụ ASR mã nguồn mở với timestamp cấp từ và phân tách ngưới nói. Tương thích với faster-whisper, pyannote.audio và OpenAI Whisper. Bao gồm Docker, Python API, benchmark và production hardening.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [whisperx, asr, 'nhận-dạng-giọng-nói', 'phân-tách-ngưới-nói', 'timestamp-từ', 'faster-whisper', pyannote, docker]
-aliases:
-- /vi/posts/whisperx/
+aliases: - /vi/posts/whisperx/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/whisperx/ -->
 
 {{</* resource-info */>}}
 
@@ -49,11 +41,9 @@ Khác với timestamp cấp đoạn của Whisper (sai lệch 1-3 giây), Whispe
 
 ## WhisperX hoạt động như thế nào
 
-WhisperX vận hành như một pipeline ba giai đoạn, mỗi giai đoạn tạo ra đầu ra ngày càng phong phú:
-
-```
+WhisperX vận hành như một pipeline ba giai đoạn, mỗi giai đoạn tạo ra đầu ra ngày càng phong phú: ```
 ┌─────────────────┐    ┌──────────────────┐    ┌──────────────────┐
-│  Giai đoạn 1:   │ →  │  Giai đoạn 2:    │ →  │  Giai đoạn 3:    │
+│  Giai đoạn 1: │ →  │  Giai đoạn 2: │ →  │  Giai đoạn 3: │
 │     ASR         │    │     Căn chỉnh    │    │     Phân tách    │
 │ (faster-whisper)│    │ (wav2vec2 forced)│    │ (pyannote.audio) │
 └─────────────────┘    └──────────────────┘    └──────────────────┘
@@ -137,13 +127,10 @@ docker run --gpus all -v $(pwd)/audio:/workspace/audio \
 
 ### Thiết lập Token Hugging Face (Bắt buộc cho Phân tách)
 
-Phân tách ngưới nói yêu cầu chấp nhận giấy phép mô hình pyannote:
-
-```bash
+Phân tách ngưới nói yêu cầu chấp nhận giấy phép mô hình pyannote: ```bash
 # 1. Tạo tài khoản Hugging Face tại https://huggingface.co
 # 2. Tạo token đọc tại https://huggingface.co/settings/tokens
-# 3. Chấp nhận giấy phép cho:
-#    - pyannote/speaker-diarization-community-1
+# 3. Chấp nhận giấy phép cho: #    - pyannote/speaker-diarization-community-1
 #    - pyannote/segmentation-3.0
 
 # Xuất token
@@ -157,9 +144,7 @@ whisperx audio.wav --diarize --hf_token $HF_TOKEN
 
 ### faster-whisper
 
-WhisperX sử dụng `faster-whisper` làm backend ASR mặc định qua CTranslate2. Bạn có thể cấu hình beam size và compute type để cân bằng tốc độ và độ chính xác:
-
-```python
+WhisperX sử dụng `faster-whisper` làm backend ASR mặc định qua CTranslate2. Bạn có thể cấu hình beam size và compute type để cân bằng tốc độ và độ chính xác: ```python
 import whisperx
 
 # Tải mô hình với backend faster-whisper
@@ -178,9 +163,7 @@ model = whisperx.load_model(
 
 ### pyannote.audio
 
-Phân tách sử dụng mô hình pyannote.audio 3.1+. `DiarizationPipeline` bọc pyannote với chức năng gán ngưới nói đặc thù của WhisperX:
-
-```python
+Phân tách sử dụng mô hình pyannote.audio 3.1+. `DiarizationPipeline` bọc pyannote với chức năng gán ngưới nói đặc thù của WhisperX: ```python
 from whisperx.diarize import DiarizationPipeline
 
 # Khởi tạo phân tách với backend pyannote
@@ -204,9 +187,7 @@ result = whisperx.assign_word_speakers(diarize_segments, result)
 
 ### OpenAI Whisper
 
-WhisperX tải trọng số OpenAI Whisper nhưng chuyển đổi sang định dạng CTranslate2 để suy luận nhanh hơn 4 lần. Dùng cờ `--model` để chọn biến thể Whisper:
-
-```bash
+WhisperX tải trọng số OpenAI Whisper nhưng chuyển đổi sang định dạng CTranslate2 để suy luận nhanh hơn 4 lần. Dùng cờ `--model` để chọn biến thể Whisper: ```bash
 # Các kích cỡ mô hình: tiny, base, small, medium, large-v1, large-v2, large-v3
 whisperx audio.wav --model large-v3 --language en
 
@@ -220,18 +201,13 @@ whisperx audio.wav --model large-v2 --compute_type int8
 # docker-compose.yml
 version: "3.8"
 
-services:
-  whisperx:
-    build:
-      context: .
+services: whisperx: build: context: .
       dockerfile: Dockerfile.whisperx
     runtime: nvidia
-    environment:
-      - NVIDIA_VISIBLE_DEVICES=all
+    environment: - NVIDIA_VISIBLE_DEVICES=all
       - HF_TOKEN=${HF_TOKEN}
       - CUDA_VISIBLE_DEVICES=0
-    volumes:
-      - ./audio:/workspace/audio:ro
+    volumes: - ./audio:/workspace/audio:ro
       - ./output:/workspace/output
       - ./models:/root/.cache:rw
     command: >
@@ -243,19 +219,13 @@ services:
       --output_format json
       --batch_size 16
       --compute_type float16
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+    deploy: resources: reservations: devices: - driver: nvidia
               count: 1
               capabilities: [gpu]
 
   # Tùy chọn: Hàng đợi Redis cho công việc batch
-  redis:
-    image: redis:7-alpine
-    ports:
-      - "6379:6379"
+  redis: image: redis:7-alpine
+    ports: - "6379:6379"
 ```
 
 ### FastAPI Service Wrapper
@@ -286,14 +256,11 @@ async def transcribe(
     file: UploadFile = File(...),
     diarize: bool = True,
     language: str = "en"
-):
-    """Phiên âm âm thanh với timestamp cấp từ và nhãn ngưới nói."""
-    with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as tmp:
-        tmp.write(await file.read())
+): """Phiên âm âm thanh với timestamp cấp từ và nhãn ngưới nói."""
+    with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as tmp: tmp.write(await file.read())
         tmp_path = tmp.name
 
-    try:
-        # Tải âm thanh
+    try: # Tải âm thanh
         audio = whisperx.load_audio(tmp_path)
 
         # Giai đoạn 1: Phiên âm
@@ -306,8 +273,7 @@ async def transcribe(
         )
 
         # Giai đoạn 3: Phân tách (tùy chọn)
-        if diarize:
-            diarize_segments = DIARIZE_MODEL(audio)
+        if diarize: diarize_segments = DIARIZE_MODEL(audio)
             result = whisperx.assign_word_speakers(diarize_segments, result)
 
         return {
@@ -320,17 +286,13 @@ async def transcribe(
                 for w in s.get("words", [])
             )) if diarize else []
         }
-    finally:
-        os.unlink(tmp_path)
+    finally: os.unlink(tmp_path)
 
 @app.get("/health")
-async def health():
-    return {"status": "ok", "device": DEVICE, "model": "large-v2"}
+async def health(): return {"status": "ok", "device": DEVICE, "model": "large-v2"}
 ```
 
-Chạy API:
-
-```bash
+Chạy API: ```bash
 # Cài đặt dependencies
 pip install fastapi uvicorn python-multipart
 
@@ -346,9 +308,7 @@ curl -X POST "http://localhost:8000/transcribe?diarize=true" \
 
 ### Benchmark Tốc độ: 1 Giờ Âm thanh
 
-Kiểm tra trên AMD RX 7700 XT với CUDA 12.8:
-
-| Mô hình | OpenAI Whisper | faster-whisper | WhisperX (đầy đủ) | Tăng tốc so với Whisper |
+Kiểm tra trên AMD RX 7700 XT với CUDA 12.8: | Mô hình | OpenAI Whisper | faster-whisper | WhisperX (đầy đủ) | Tăng tốc so với Whisper |
 |---------|---------------|----------------|-------------------|-------------------|
 | tiny | ~12 phút | ~1.5 phút | ~2 phút | 6x |
 | base | ~20 phút | ~2.5 phút | ~3.5 phút | 5.7x |
@@ -360,18 +320,14 @@ WhisperX thêm khoảng 30-40% overhead so với faster-whisper do căn chỉnh 
 
 ### Benchmark Độ chính xác: Phân đoạn Từ và WER
 
-Từ bài báo WhisperX (Bain et al., INTERSPEECH 2023) kiểm tra trên các corpus TEDLIUM, AMI và Switchboard:
-
-| Chỉ số | Whisper | wav2vec2 | WhisperX | Cải thiện |
+Từ bài báo WhisperX (Bain et al., INTERSPEECH 2023) kiểm tra trên các corpus TEDLIUM, AMI và Switchboard: | Chỉ số | Whisper | wav2vec2 | WhisperX | Cải thiện |
 |--------|---------|----------|----------|-----------|
 | WER (TEDLIUM) | 4.2% | 6.8% | **3.9%** | -7% so với Whisper |
 | Precision Phân đoạn Từ | 62% | 71% | **89%** | +18% so với wav2vec2 |
 | Recall Phân đoạn Từ | 58% | 68% | **86%** | +18% so với wav2vec2 |
 | Độ trôi Timestamp | ~1.5s | N/A | **<80ms** | Tốt hơn 18 lần |
 
-WER thực tế từ các nghiên cứu độc lập (2024-2025):
-
-| Kịch bản | Whisper WER | WhisperX WER | Ghi chú |
+WER thực tế từ các nghiên cứu độc lập (2024-2025): | Kịch bản | Whisper WER | WhisperX WER | Ghi chú |
 |----------|-------------|--------------|---------|
 | Chất lượng studio, 1 ngưới nói | 5.2% | **4.8%** | Âm thanh podcast sạch |
 | Họp nhiều ngưới (AMI) | 12.1% | **8.8%** | 3-4 ngưới nói |
@@ -392,9 +348,7 @@ WER thực tế từ các nghiên cứu độc lập (2024-2025):
 
 ### Triển khai với Bộ nhớ Hạn chế
 
-Với GPU VRAM hạn chế:
-
-```bash
+Với GPU VRAM hạn chế: ```bash
 # Lượng tử hóa INT8: Giảm VRAM 30-40%, mất chính xác tối thiểu
 whisperx audio.wav \
   --model large-v2 \
@@ -455,8 +409,7 @@ REQUEST_COUNT = Counter(
     ["model", "status"]
 )
 
-def transcribe_with_metrics(audio_path, model_name="large-v2"):
-    start = time.time()
+def transcribe_with_metrics(audio_path, model_name="large-v2"): start = time.time()
     audio = whisperx.load_audio(audio_path)
 
     # Giai đoạn 1
@@ -507,48 +460,29 @@ docker run --gpus all \
 # k8s-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
-metadata:
-  name: whisperx-asr
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: whisperx
-  template:
-    metadata:
-      labels:
-        app: whisperx
-    spec:
-      runtimeClassName: nvidia
-      containers:
-      - name: whisperx
+metadata: name: whisperx-asr
+spec: replicas: 2
+  selector: matchLabels: app: whisperx
+  template: metadata: labels: app: whisperx
+    spec: runtimeClassName: nvidia
+      containers: - name: whisperx
         image: whisperx:latest
-        resources:
-          limits:
-            nvidia.com/gpu: 1
+        resources: limits: nvidia.com/gpu: 1
             memory: "16Gi"
-          requests:
-            nvidia.com/gpu: 1
+          requests: nvidia.com/gpu: 1
             memory: "8Gi"
-        env:
-        - name: HF_TOKEN
-          valueFrom:
-            secretKeyRef:
-              name: hf-token-secret
+        env: - name: HF_TOKEN
+          valueFrom: secretKeyRef: name: hf-token-secret
               key: token
-        volumeMounts:
-        - name: model-cache
+        volumeMounts: - name: model-cache
           mountPath: /root/.cache
         - name: audio-input
           mountPath: /workspace/audio
           readOnly: true
-      volumes:
-      - name: model-cache
-        persistentVolumeClaim:
-          claimName: whisperx-model-cache
+      volumes: - name: model-cache
+        persistentVolumeClaim: claimName: whisperx-model-cache
       - name: audio-input
-        nfs:
-          server: 10.0.0.5
+        nfs: server: 10.0.0.5
           path: /shared/audio
 ```
 
@@ -631,9 +565,7 @@ WhisperX lấp đầy khoảng trống quan trọng trong stack ASR mã nguồn 
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -651,7 +583,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [WhisperX Examples](https://github.com/m-bain/whisperX/blob/main/EXAMPLES.md) — Ví dụ sử dụng đa ngôn ngữ
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

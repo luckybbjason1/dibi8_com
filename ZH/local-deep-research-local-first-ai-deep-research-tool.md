@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/local-deep-research-local-first-ai-deep-research-tool" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/local-deep-research-local-first-ai-deep-research-tool" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/local-deep-research-local-first-ai-deep-research-tool" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/local-deep-research-local-first-ai-deep-research-tool" />
 title: "Local Deep Research：终极本地优先 AI 深度研究工具"
-description: "掌握 Local Deep Research (LDR) —— 本地优先的 AI 研究助手。了解如何结合 Ollama 和 SearXNG 进行深度迭代研究，同时保持 100% 的隐私。". Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "掌握 Local Deep Research (LDR) —— 本地优先的 AI 研究助手。了解如何结合 Ollama 和 SearXNG 进行深度迭代研究，同时保持 100% 的隐私。"
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Docker
+tech_stack: - Docker
   - Python
 application_domain: "Llm Frameworks"
 source_version: ""
@@ -25,10 +19,8 @@ maintainer: "searxng"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases:
-- /zh/posts/local-deep-research-local-first-ai-deep-research-tool/
-faqs:
-  - q: '什么是 Local Deep Research (LDR)？'
+aliases: - /zh/posts/local-deep-research-local-first-ai-deep-research-tool/
+faqs: - q: '什么是 Local Deep Research (LDR)？'
     a: 'Local Deep Research (LDR) 是一款开源的 AI 研究助手，它执行系统化、迭代式的研究，而不是给出快速的对话式回答。它会将一个查询拆解为多个子查询，并行搜索网络、学术数据库和本地文件，然后综合生成一份带引用的报告。'
   - q: 'Local Deep Research 能否为了隐私而完全离线运行？'
     a: '可以。通过与 Ollama 集成，LDR 可以完全在本地硬件上运行，因此研究查询、专有文档和最终报告都不会离开你的机器。这种本地优先的设计使其适用于企业级或涉密的技术研究。'
@@ -37,10 +29,7 @@ faqs:
   - q: '如何用 Docker 部署 Local Deep Research？'
     a: '先用 `docker run -d -p 8080:8080 --name searxng searxng/searxng` 运行 SearXNG，然后用 `docker run -d -p 5000:5000 --name ldr localdeepresearch/local-deep-research` 运行 LDR。这样就同时启动了元搜索引擎和研究智能体。'
   - q: 'Local Deep Research 如何避免 AI 幻觉并确保可信度？'
-    a: 'LDR 提供高保真的引用，为它做出的每一个论断都附上参考文献来源，让你可以即时核实原始资料。它还会执行迭代式综合，识别信息空白并运行后续搜索，而不是依赖单一的表层答案。'
----
-
-<!-- canonical: https://dibi8.com/zh/tools/local-deep-research-local-first-ai-deep-research-tool/ -->
+    a: 'LDR 提供高保真的引用，为它做出的每一个论断都附上参考文献来源，让你可以即时核实原始资料。它还会执行迭代式综合，识别信息空白并运行后续搜索，而不是依赖单一的表层答案。'---
 {</* resource-info */>}
 
 大多数 AI 助手都是“对话优先”的，这意味着它们根据预训练数据为你提供快速答案。但如果你需要一种**“研究优先”**的方法，能够抓取网页、学术论文和本地文档，并合成一份深度报告呢？更重要的是，如果你希望在 **100% 隐私保护**的前提下完成这一切呢？
@@ -98,13 +87,13 @@ docker run -d -p 5000:5000 --name ldr localdeepresearch/local-deep-research
 
 Local Deep Research 不仅仅是一个工具，它是 AI 时代我们与信息交互方式的范式转移。如果你厌倦了浅薄的 AI 回答，并担心数据隐私，那么是时候将你的研究转入本地了。
 
----
 
+---
 ### 相关资源
 - [精通 Python 上下文管理器](/zh/resources/ai-tools/python-context-managers-the-three-cases-you-actually-need/) —— 优化你的本地 AI 脚本。
 
----
 
+---
 ## 推荐自托管基础设施
 
 要 7×24 稳定跑这套，服务器选择很关键：
@@ -116,7 +105,6 @@ Local Deep Research 不仅仅是一个工具，它是 AI 时代我们与信息�
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -144,25 +132,20 @@ Local Deep Research 不仅仅是一个工具，它是 AI 时代我们与信息�
 
 ## Why This Matters
 
-Understanding local deep research：终极本地优先 ai 深度研究工具 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding local deep research：终极本地优先 ai 深度研究工具 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -211,10 +194,16 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。
 
 
-When choosing an LLM framework, consider these factors:
-
-| Factor | LangChain | LlamaIndex | Haystack |
-|--------|-----------|------------|----------|
+When choosing an LLM framework, consider these factors: | Factor | LangChain | LlamaIndex | Haystack |
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Primary Use** | General-purpose | RAG/Retrieval | Document Processing |
 | **Learning Curve** | Medium | Low | Medium |
 | **Community** | Large | Growing | Medium |
@@ -223,28 +212,31 @@ When choosing an LLM framework, consider these factors:
 
 ### When to Use Each
 
-**LangChain** is ideal for:
-- Complex agent workflows
+**LangChain** is ideal for: - Complex agent workflows
 - Multi-step reasoning tasks
 - Integration with external tools
 - Production-grade applications
 
-**LlamaIndex** excels at:
-- Retrieval-Augmented Generation (RAG)
+**LlamaIndex** excels at: - Retrieval-Augmented Generation (RAG)
 - Data indexing and querying
 - Enterprise knowledge bases
 - Semantic search implementations
 
-**Haystack** shines in:
-- Document understanding pipelines
+**Haystack** shines in: - Document understanding pipelines
 - Question answering systems
 - Search engine integration
 - NLP task orchestration
 
-When choosing an LLM framework, consider these factors:
-
-| Factor | LangChain | LlamaIndex | Haystack |
-|--------|-----------|------------|----------|
+When choosing an LLM framework, consider these factors: | Factor | LangChain | LlamaIndex | Haystack |
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Primary Use** | General-purpose | RAG/Retrieval | Document Processing |
 | **Learning Curve** | Medium | Low | Medium |
 | **Community** | Large | Growing | Medium |
@@ -253,20 +245,17 @@ When choosing an LLM framework, consider these factors:
 
 ### When to Use Each
 
-**LangChain** is ideal for:
-- Complex agent workflows
+**LangChain** is ideal for: - Complex agent workflows
 - Multi-step reasoning tasks
 - Integration with external tools
 - Production-grade applications
 
-**LlamaIndex** excels at:
-- Retrieval-Augmented Generation (RAG)
+**LlamaIndex** excels at: - Retrieval-Augmented Generation (RAG)
 - Data indexing and querying
 - Enterprise knowledge bases
 - Semantic search implementations
 
-**Haystack** shines in:
-- Document understanding pipelines
+**Haystack** shines in: - Document understanding pipelines
 - Question answering systems
 - Search engine integration
 - NLP task orchestration
@@ -274,7 +263,17 @@ When choosing an LLM framework, consider these factors:
 ## Framework Comparison
 
 | Framework | Primary Use | Learning Curve | Community | Production Ready |
-|-----------|-------------|----------------|-----------|------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **LangChain** | General-purpose | Medium | Large | ✅ Yes |
 | **LlamaIndex** | RAG/Retrieval | Low | Growing | ✅ Yes |
 | **Haystack** | Document processing | Medium | Medium | ✅ Yes |

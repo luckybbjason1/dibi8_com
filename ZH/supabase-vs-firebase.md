@@ -1,17 +1,11 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/supabase-vs-firebase" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/supabase-vs-firebase" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/supabase-vs-firebase" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/supabase-vs-firebase" />
 title: 'Supabase vs Firebase 2026：哪个 BaaS 更值得选？'
 description: '基于 Postgres 的开源 Supabase 和 Google NoSQL Firebase 横向对比 — 数据库、认证、存储、实时、边缘函数、定价、锁定、自托管。2026 年更新。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-22 00:00:00+08:00
-lastmod:  2026-05-22 00:00:00+08:00draft: false
+lastmod: 2026-05-22 00:00:00+08:00draft: false
 tags: [supabase, firebase, baas, postgres, firestore, comparison, backend]
 categories: [vs]
-faqs:
-  - q: 'Supabase 和 Firebase 哪个更便宜？'
+faqs: - q: 'Supabase 和 Firebase 哪个更便宜？'
     a: '小项目两家免费额度都很慷慨，但规模化之后 Supabase 在结构上更便宜，因为 Postgres 查询不按"每行读取"计费。Firebase Firestore 按文档读取数计费 — 一个拉 1 万行的 Dashboard 查询在 Firebase 上是真金白银，在 Supabase 上只要不超出 Pro 计算配额就是免费的。重分析负载月账单 Supabase 普遍便宜 5-10 倍。'
   - q: '哪个更适合关系型数据？'
     a: 'Supabase 大幅领先 — 底层就是 Postgres，开箱即用支持 JOIN、外键、事务、视图、CTE。Firebase Firestore 是 NoSQL 文档型，强制你做反范式化或在客户端做 JOIN。只要你的数据有关系（用户、订单、商品），就选 Supabase。'
@@ -20,10 +14,7 @@ faqs:
   - q: '哪个实时更强？'
     a: 'Firebase 实时更成熟 — 它从 2012 年起就是核心功能，不调优都能扛住百万并发连接。Supabase 实时（Postgres 逻辑复制 + Phoenix Channels）较新但追赶很快，1 万并发以内表现良好。10K 用户以内的聊天/在线状态应用两家都行；超过这个量级 Firebase 优势明显。'
   - q: '哪个更适合 AI / 向量搜索？'
-    a: 'Supabase 完胜 — 内置 pgvector，可以把 Embedding 存到和业务数据同一个库里，用一行 SQL 跑余弦相似度查询。Firebase 没有原生向量支持，需要外挂 Vertex AI 或单独的向量数据库。做 2026 年的 RAG/AI 应用，Supabase 是显而易见的选择。'
----
-
-<!-- canonical: https://dibi8.com/zh/tools/supabase-vs-firebase/ -->
+    a: 'Supabase 完胜 — 内置 pgvector，可以把 Embedding 存到和业务数据同一个库里，用一行 SQL 跑余弦相似度查询。Firebase 没有原生向量支持，需要外挂 Vertex AI 或单独的向量数据库。做 2026 年的 RAG/AI 应用，Supabase 是显而易见的选择。'---
 # Supabase vs Firebase 2026：哪个 BaaS 更值得选？
 
 
@@ -35,12 +26,18 @@ faqs:
 
 选 **Firebase** 如果：你需要超大规模的稳定实时同步，已经深度使用 Google Cloud，偏好 NoSQL 文档模型，或者在做移动优先的应用并希望 Firebase Auth + Crashlytics + Analytics 一站式打包。
 
----
 
+---
 ## 横向对比表
 
 | 特性 | Supabase | Firebase |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | **厂商** | Supabase Inc. | Google |
 | **发布** | 2020 | 2011（2014 被 Google 收购）|
 | **数据库** | PostgreSQL 15+（关系型）| Firestore + Realtime DB（NoSQL）|
@@ -58,8 +55,8 @@ faqs:
 | **厂商锁定** | 低（标准 Postgres + S3）| 高（Firestore 数据模型私有）|
 | **SDK 语言** | JS、Dart、Swift、Kotlin、Python、Go | JS、Dart、Swift、Kotlin、Unity、C++ |
 
----
 
+---
 ## 什么时候选 Supabase
 
 ### 场景 1：带 JOIN 的关系型数据
@@ -119,7 +116,13 @@ Firebase Auth 是 BaaS 圈里匿名认证和 SMS 手机认证最成熟的。社�
 ## 性能打分（主观，基于日常使用）
 
 | 任务 | Supabase | Firebase |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | 简单 CRUD 应用 | 9/10 | 9/10 |
 | 复杂关系查询 | 10/10 | 4/10 |
 | 实时聊天（1K 用户）| 9/10 | 10/10 |
@@ -205,7 +208,6 @@ Firebase Auth 是 BaaS 圈里匿名认证和 SMS 手机认证最成熟的。社�
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -233,25 +235,20 @@ Firebase Auth 是 BaaS 圈里匿名认证和 SMS 手机认证最成熟的。社�
 
 ## Why This Matters
 
-Understanding supabase vs firebase 2026：哪个 baas 更值得选？ is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding supabase vs firebase 2026：哪个 baas 更值得选？ is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

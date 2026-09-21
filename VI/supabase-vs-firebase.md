@@ -1,17 +1,11 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/supabase-vs-firebase" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/supabase-vs-firebase" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/supabase-vs-firebase" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/supabase-vs-firebase" />
 title: 'Supabase vs Firebase 2026: BaaS nào tốt hơn?'
 description: 'So sánh Supabase mã nguồn mở dựa trên Postgres và Firebase NoSQL của Google — database, auth, storage, realtime, edge functions, giá cả, lock-in, self-host. Cập nhật 2026.'
 date: 2026-05-22 00:00:00+08:00
-lastmod:  2026-05-22 00:00:00+08:00draft: false
+lastmod: 2026-05-22 00:00:00+08:00draft: false
 tags: [supabase, firebase, baas, postgres, firestore, comparison, backend]
 categories: [vs]
-faqs:
-  - q: 'Supabase hay Firebase rẻ hơn?'
+faqs: - q: 'Supabase hay Firebase rẻ hơn?'
     a: 'Với dự án nhỏ, cả hai đều có hạn mức miễn phí hào phóng, nhưng Supabase rẻ hơn về cấu trúc khi mở rộng quy mô vì truy vấn Postgres không tính phí theo từng hàng. Firebase Firestore tính phí theo số document đọc — một truy vấn dashboard kéo 10K document tốn tiền thật trên Firebase nhưng miễn phí trên Supabase nếu nằm trong compute đã bao gồm. Với khối lượng nặng về phân tích, hóa đơn hàng tháng của Supabase rẻ hơn 5-10 lần.'
   - q: 'Cái nào tốt hơn cho dữ liệu quan hệ?'
     a: 'Supabase thắng cách biệt — nó chính là Postgres bên dưới, nên bạn có JOIN, foreign key, transaction, view, CTE ngay từ đầu. Firebase Firestore là NoSQL/document và buộc bạn phải denormalize hoặc JOIN ở client. Nếu dữ liệu có quan hệ (user, order, product), chọn Supabase.'
@@ -23,7 +17,6 @@ faqs:
     a: 'Supabase thắng tuyệt đối — nó có pgvector tích hợp sẵn, bạn có thể lưu embedding và chạy truy vấn cosine-similarity trong cùng database với dữ liệu app. Firebase không hỗ trợ vector native và phải gắn thêm Vertex AI hoặc DB vector riêng. Cho app RAG/AI năm 2026, Supabase là lựa chọn hiển nhiên.'
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/supabase-vs-firebase/ -->
 # Supabase vs Firebase 2026: BaaS nào tốt hơn?
 
 
@@ -160,9 +153,7 @@ Muốn chạy Supabase trên server riêng để thoát hoàn toàn hóa đơn c
 
 ## Phương Án Thay Thế Đáng Thử
 
-Nếu Supabase và Firebase đều không hợp, hãy xem xét:
-
-- **[Appwrite](https://dibi8.com/vi/resources/llm-frameworks/)** — BaaS mã nguồn mở, self-host được, có ý kiến mạnh hơn Supabase
+Nếu Supabase và Firebase đều không hợp, hãy xem xét: - **[Appwrite](https://dibi8.com/vi/resources/llm-frameworks/)** — BaaS mã nguồn mở, self-host được, có ý kiến mạnh hơn Supabase
 - **PocketBase** — BaaS Go single-binary, hoàn hảo cho project nhỏ
 - **Convex** — Backend reactive TypeScript-first, DX tuyệt vời cho team full-stack TS
 - **Nhost** — Postgres + Hasura GraphQL + Auth, tương tự Supabase nhưng GraphQL native
@@ -205,7 +196,6 @@ Indie dev ship một SaaS năm 2026? **Supabase Pro $25/tháng** là ROI thô t�
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

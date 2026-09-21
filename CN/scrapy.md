@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/scrapy" />
 title: 'Scrapy: Benchmark 61K+ Star Web Crawler — Performance vs...
 description: 'Scrapy is a fast high-level web crawling and scraping framework for Python. Compatible with Python, Docker, Redis, PostgreSQL. Covers benchmarks, architecture, production deployment, and comparison with BeautifulSoup, Selenium, and Playwright.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: ['web-scraping', python, crawler, async, docker, 'scrapy-tutorial', benchmark, 'data-pipeline']
-aliases:
-- /posts/scrapy/
+aliases: - /posts/scrapy/-
 ---
-
 {{</* resource-info */>}}
 
 When a single Python framework powers an estimated **34% of production scraping projects** worldwide and maintains a 61,700-star GitHub repository, it warrants a closer look. Scrapy has been the workhorse of web crawling since 2008, but in 2026 the landscape includes modern browser automation tools like Playwright and proven libraries like BeautifulSoup. The question is no longer "Can Scrapy crawl?" — it is "Should you still pick Scrapy over the alternatives for your specific workload?"
@@ -42,9 +38,7 @@ Originally developed at Mydeco and maintained by Zyte (formerly Scrapinghub), Sc
 
 ## How Scrapy Works
 
-Scrapy's architecture follows an event-driven, non-blocking design that separates concerns into well-defined components:
-
-![Scrapy Architecture](https://scrapy.readthedocs.io/en/latest/_images/scrapy_architecture_02.png)
+Scrapy's architecture follows an event-driven, non-blocking design that separates concerns into well-defined components: ![Scrapy Architecture](https://scrapy.readthedocs.io/en/latest/_images/scrapy_architecture_02.png)
 
 ### Core Components
 
@@ -105,9 +99,7 @@ cd price_monitor
 scrapy genspider products example.com
 ```
 
-This creates the standard project structure:
-
-```
+This creates the standard project structure: ```
 price_monitor/
 ├── scrapy.cfg              # Project configuration
 ├── price_monitor/
@@ -127,8 +119,7 @@ price_monitor/
 # price_monitor/spiders/products.py
 import scrapy
 
-class ProductsSpider(scrapy.Spider):
-    name = products
+class ProductsSpider(scrapy.Spider): name = products
     allowed_domains = ['example.com']
     start_urls = ['https://example.com/products']
     
@@ -138,10 +129,8 @@ class ProductsSpider(scrapy.Spider):
         AUTOTHROTTLE_ENABLED: True,
     }
 
-    def parse(self, response):
-        """Extract product data and follow pagination."""
-        for product in response.css('.product-card'):
-            yield {
+    def parse(self, response): """Extract product data and follow pagination."""
+        for product in response.css('.product-card'): yield {
                 name: product.css('.title::text').get(),
                 price: product.css('.price::text').get(),
                 url: product.css('a::attr(href)').get(),
@@ -150,8 +139,7 @@ class ProductsSpider(scrapy.Spider):
         
         # Follow pagination
         next_page = response.css('.next-page::attr(href)').get()
-        if next_page:
-            yield response.follow(next_page, self.parse)
+        if next_page: yield response.follow(next_page, self.parse)
 ```
 
 ### Running the Spider
@@ -184,42 +172,28 @@ CMD ["scrapy", "crawl", "products"]
 ```yaml
 # docker-compose.yml
 version: '3.8'
-services:
-  scrapy:
-    build: .
-    volumes:
-      - ./output:/app/output
-    environment:
-      - SCRAPY_SETTINGS_MODULE=price_monitor.settings
-    depends_on:
-      - redis
+services: scrapy: build: .
+    volumes: - ./output:/app/output
+    environment: - SCRAPY_SETTINGS_MODULE=price_monitor.settings
+    depends_on: - redis
       - postgres
   
-  redis:
-    image: redis:7-alpine
-    ports:
-      - "6379:6379"
+  redis: image: redis:7-alpine
+    ports: - "6379:6379"
   
-  postgres:
-    image: postgres:16-alpine
-    environment:
-      POSTGRES_DB: scrapy_data
+  postgres: image: postgres:16-alpine
+    environment: POSTGRES_DB: scrapy_data
       POSTGRES_USER: scraper
       POSTGRES_PASSWORD: scraper_pass
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+    volumes: - pgdata:/var/lib/postgresql/data
 
-volumes:
-  pgdata:
-```
+volumes: pgdata: ```
 
 ## Integration with Popular Tools
 
 ### Redis for Distributed Crawling (scrapy-redis)
 
-When a single machine is not enough, scrapy-redis distributes the crawl across multiple nodes using Redis as a shared queue:
-
-```bash
+When a single machine is not enough, scrapy-redis distributes the crawl across multiple nodes using Redis as a shared queue: ```bash
 pip install scrapy-redis
 ```
 
@@ -238,9 +212,7 @@ SCHEDULER_PERSIST = True  # Keep queue between runs
 import psycopg2
 from scrapy.exceptions import DropItem
 
-class PostgresPipeline:
-    def open_spider(self, spider):
-        self.conn = psycopg2.connect(
+class PostgresPipeline: def open_spider(self, spider): self.conn = psycopg2.connect(
             host=postgres, dbname=scrapy_data,
             user=scraper, password=scraper_pass
         )
@@ -257,21 +229,17 @@ class PostgresPipeline:
         ''')
         self.conn.commit()
 
-    def process_item(self, item, spider):
-        try:
-            self.cur.execute('''
+    def process_item(self, item, spider): try: self.cur.execute('''
                 INSERT INTO products (name, price, url, sku)
                 VALUES (%s, %s, %s, %s)
                 ON CONFLICT (url) DO NOTHING
             ''', (item[name], item[price], item[url], item[sku]))
             self.conn.commit()
-        except psycopg2.Error as e:
-            spider.logger.error(f"DB error: {e}")
+        except psycopg2.Error as e: spider.logger.error(f"DB error: {e}")
             raise DropItem(f"Failed to insert: {e}")
         return item
 
-    def close_spider(self, spider):
-        self.cur.close()
+    def close_spider(self, spider): self.cur.close()
         self.conn.close()
 ```
 
@@ -295,11 +263,9 @@ TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 import scrapy
 from scrapy_playwright.page import PageMethod
 
-class JSSpider(scrapy.Spider):
-    name = js_site
+class JSSpider(scrapy.Spider): name = js_site
     
-    def start_requests(self):
-        yield scrapy.Request(
+    def start_requests(self): yield scrapy.Request(
             'https://spa-example.com/products',
             meta={
                 playwright: True,
@@ -311,9 +277,7 @@ class JSSpider(scrapy.Spider):
             }
         )
 
-    def parse(self, response):
-        for item in response.css('.product-item'):
-            yield {
+    def parse(self, response): for item in response.css('.product-item'): yield {
                 name: item.css('.name::text').get(),
                 price: item.css('.price::text').get(),
             }
@@ -321,22 +285,16 @@ class JSSpider(scrapy.Spider):
 
 ### Proxy Rotation with WebShare
 
-For production crawling, a reliable rotating proxy pool is essential. WebShare provides datacenter and residential proxies that integrate cleanly with Scrapy's middleware:
-
-```python
+For production crawling, a reliable rotating proxy pool is essential. WebShare provides datacenter and residential proxies that integrate cleanly with Scrapy's middleware: ```python
 # middlewares.py
 import base64
 
-class ProxyMiddleware:
-    def __init__(self, proxy_url):
-        self.proxy_url = proxy_url
+class ProxyMiddleware: def __init__(self, proxy_url): self.proxy_url = proxy_url
 
     @classmethod
-    def from_crawler(cls, crawler):
-        return cls(proxy_url=crawler.settings.get(WEBSHARE_PROXY_URL))
+    def from_crawler(cls, crawler): return cls(proxy_url=crawler.settings.get(WEBSHARE_PROXY_URL))
 
-    def process_request(self, request, spider):
-        request.meta[proxy] = self.proxy_url
+    def process_request(self, request, spider): request.meta[proxy] = self.proxy_url
         # WebShare supports IP rotation per request
         spider.logger.debug(f'Using proxy for {request.url}')
 ```
@@ -358,10 +316,18 @@ Configure your proxy list in the Scrapy settings and the middleware will rotate 
 
 ![Scrapy Benchmark Comparison](https://docs.scrapy.org/en/latest/_images/scrapy_architecture_02.png)
 
-Benchmarks conducted across 50+ sites in early 2026 on a 4-core VPS with 8GB RAM reveal substantial differences between tools:
-
-| Metric | Scrapy | BeautifulSoup + requests | Selenium | Playwright |
-|---|---|---|---|---|
+Benchmarks conducted across 50+ sites in early 2026 on a 4-core VPS with 8GB RAM reveal substantial differences between tools: | Metric | Scrapy | BeautifulSoup + requests | Selenium | Playwright |
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Throughput (pages/sec)** | 100+ | 1–3 | 2–4 | 3–5 |
 | **Memory per instance** | ~150 MB | ~80 MB | ~500 MB | ~400 MB |
 | **Startup time** | <1s | <1s | 3–5s | 2–3s |
@@ -382,9 +348,7 @@ Benchmarks conducted across 50+ sites in early 2026 on a 4-core VPS with 8GB RAM
 
 ### Real-World Deployment Profile
 
-A production price monitoring pipeline at a mid-size e-commerce intelligence firm using Scrapy reports the following numbers:
-
-- **1.2 million pages/day** crawled across 800 domains
+A production price monitoring pipeline at a mid-size e-commerce intelligence firm using Scrapy reports the following numbers: - **1.2 million pages/day** crawled across 800 domains
 - **24 Scrapy instances** distributed across 6 servers
 - **Average latency**: 340ms per request (with 1.2s p95)
 - **Memory footprint**: 180MB per spider process
@@ -396,9 +360,7 @@ A production price monitoring pipeline at a mid-size e-commerce intelligence fir
 
 ### Autothrottle Configuration
 
-Without throttling, Scrapy can overwhelm target servers and get banned within seconds. Autothrottle dynamically adjusts download delay based on server response times:
-
-```python
+Without throttling, Scrapy can overwhelm target servers and get banned within seconds. Autothrottle dynamically adjusts download delay based on server response times: ```python
 # settings.py
 AUTOTHROTTLE_ENABLED = True
 AUTOTHROTTLE_START_DELAY = 1.0
@@ -430,9 +392,7 @@ USER_AGENTS = [
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0',
 ]
 
-class RotateUserAgentMiddleware:
-    def process_request(self, request, spider):
-        request.headers['User-Agent'] = random.choice(USER_AGENTS)
+class RotateUserAgentMiddleware: def process_request(self, request, spider): request.headers['User-Agent'] = random.choice(USER_AGENTS)
 ```
 
 ### Monitoring with Stats Collection
@@ -441,29 +401,22 @@ class RotateUserAgentMiddleware:
 # extensions.py
 from scrapy import signals
 
-class StatsCollector:
-    def __init__(self):
-        self.requests_count = 0
+class StatsCollector: def __init__(self): self.requests_count = 0
         self.items_count = 0
 
     @classmethod
-    def from_crawler(cls, crawler):
-        ext = cls()
+    def from_crawler(cls, crawler): ext = cls()
         crawler.signals.connect(ext.spider_opened, signal=signals.spider_opened)
         crawler.signals.connect(ext.request_scheduled, signal=signals.request_scheduled)
         crawler.signals.connect(ext.item_scraped, signal=signals.item_scraped)
         return ext
 
-    def spider_opened(self, spider):
-        spider.logger.info(f'Spider opened: {spider.name}')
+    def spider_opened(self, spider): spider.logger.info(f'Spider opened: {spider.name}')
 
-    def request_scheduled(self, request, spider):
-        self.requests_count += 1
+    def request_scheduled(self, request, spider): self.requests_count += 1
 
-    def item_scraped(self, item, spider):
-        self.items_count += 1
-        if self.items_count % 1000 == 0:
-            spider.logger.info(f'Scraped {self.items_count} items, {self.requests_count} requests')
+    def item_scraped(self, item, spider): self.items_count += 1
+        if self.items_count % 1000 == 0: spider.logger.info(f'Scraped {self.items_count} items, {self.requests_count} requests')
 ```
 
 ### Log Rotation and Structured Logging
@@ -501,7 +454,17 @@ curl http://localhost:6800/listjobs.json -d project=price_monitor
 ## Comparison with Alternatives
 
 | Feature | Scrapy | BeautifulSoup | Selenium | Playwright |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **License** | BSD-3-Clause | MIT | Apache-2.0 | Apache-2.0 |
 | **Language** | Python | Python | Multi | Multi |
 | **Async/Concurrent** | Built-in (Twisted) | Manual | Limited | Built-in |
@@ -518,9 +481,7 @@ curl http://localhost:6800/listjobs.json -d project=price_monitor
 
 ## Limitations / Honest Assessment
 
-Scrapy is not the right tool for every scraping problem. Here is what it does not do well:
-
-1. **Single-page, one-off scripts** — If you need to parse one HTML file or a handful of pages, the project scaffolding overhead is not worth it. BeautifulSoup with requests is faster to write and deploy for sub-100-page jobs.
+Scrapy is not the right tool for every scraping problem. Here is what it does not do well: 1. **Single-page, one-off scripts** — If you need to parse one HTML file or a handful of pages, the project scaffolding overhead is not worth it. BeautifulSoup with requests is faster to write and deploy for sub-100-page jobs.
 
 2. **Heavy JavaScript SPAs without middleware** — Scrapy downloads raw HTML. If your target site is a React or Vue application that fetches data client-side, you need scrapy-playwright or Splash. This adds complexity and drops throughput by 80–90%.
 
@@ -573,9 +534,7 @@ The decision matrix is straightforward: **BeautifulSoup** for quick scripts unde
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -591,12 +550,11 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - Performance Benchmarks (NextGrowth.ai): https://nextgrowth.ai/best-tools-for-web-scraping/
 - Scrapy vs BeautifulSoup Analysis (HasData): https://hasdata.com/blog/scrapy-vs-beautifulsoup
 
----
 
+---
 *This article contains affiliate links. When you purchase proxy services through WebShare links in this article, we may receive a commission at no additional cost to you. All benchmark data and recommendations are based on independent testing and community-verified sources.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -622,8 +580,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [ray-distributed-ai-framework-complete-guide](scrapy)

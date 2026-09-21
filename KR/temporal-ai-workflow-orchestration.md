@@ -1,21 +1,14 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/temporal-ai-workflow-orchestration" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/temporal-ai-workflow-orchestration" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/temporal-ai-workflow-orchestration" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/temporal-ai-workflow-orchestration" />
 title: Temporal AI 워크플로우 오케스트레이션 — 신뢰할 수 있는 다단계 AI 파이프라인
 description: AI/ML 워크플로우 오케스트레이션을 위한 Temporal 완전 가이드. 내장 내구성, 재시도 및 관찰 가능성으로 신뢰할 수 있는 LLM 파이프라인, 멀티 에이전트 시스템 및 ML 훈련 작업을 구축하세요.. Comprehensive guide covering features, pricing, and best practices for 2026.
 tags: ['workflow', 'orchestration', 'temporal', 'machine-learning', 'llm', 'reliability']
 category: dev-utils
 featureImage: /images/articles/temporal-ai-workflow-orchestration.jpg
 date: 2026-07-15T00:00:00+00:00
-lastmod:  2026-07-15T00:00:00+00:00draft: false
+lastmod: 2026-07-15T00:00:00+00:00draft: false
 slug: temporal-ai-workflow-orchestration
 lang: ko
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/temporal-ai-workflow-orchestration/ -->
 
 ## TL;DR
 
@@ -27,22 +20,18 @@ Temporal은 신뢰할 수 있는 AI 워크플로우를 쉽게 구축할 수 있�
 
 Temporal은 규모에서 결함 허용 워크플로우를 실행하기 위한 오픈소스 분산 시스템입니다. 핵심적으로 **내구성 실행**을 제공하며 — 코드가 Temporal의 관리형 인프라 내에서 실행되며, 실패, 재시도, 체크포인트 및 상태 지속성을 자동으로 처리합니다.
 
-AI 워크로드에这意味着:
-- rate limit로 인해 실패하는 LLM 추론 호출이 백오프로 자동 재시도됨
+AI 워크로드에这意味着: - rate limit로 인해 실패하는 LLM 추론 호출이 백오프로 자동 재시도됨
 - 컨테이너 크래시가 발생해도 진행 상황을 잃지 않는 다단계 파인튜닝 파이프라인
 - 각 단계의 출력이 지속되고 검사 가능한 agent 오케스트레이션
 - GPU 장애 후 마지막 체크포인트에서 재개되는 훈련 작업
 
 ### 전통적 AI 오케스트레이션의 문제
 
-典型的인 AI 파이프라인을 고려해보세요:
-
-```
+典型的인 AI 파이프라인을 고려해보세요: ```
 [데이터 로드] → [전처리] → [문서 임베딩] → [벡터 DB 인덱싱] → [검색 테스트] → [팀 알림]
 ```
 
-전통적 도구(Airflow, Celery, cron 스크립트)로 구현하려면 각 단계가 필요합니다:
-- 네트워크 타임아웃용 커스텀 에러 핸들링
+전통적 도구(Airflow, Celery, cron 스크립트)로 구현하려면 각 단계가 필요합니다: - 네트워크 타임아웃용 커스텀 에러 핸들링
 - 장애 시 재개를 위한 수동 체크포인팅
 - 분산 worker 간 상태 관리
 - 디버깅용 관찰성 대시보드
@@ -79,8 +68,7 @@ docker compose up -d
 temporal cluster health
 ```
 
-기본 Docker Compose 설정 포함:
-- Temporal Server(gRPC API + history)
+기본 Docker Compose 설정 포함: - Temporal Server(gRPC API + history)
 - Temporal UI(localhost:8233)
 - Elasticsearch(search/indexing)
 - Temporal Frontend(port 7233)
@@ -101,16 +89,14 @@ from temporalio.common import RetryPolicy
 
 # activity 정의(개별 단계)
 @activity.defn
-async def load_dataset(dataset_name: str):
-    """데이터셋 로드 및 검증."""
+async def load_dataset(dataset_name: str): """데이터셋 로드 및 검증."""
     print(f"데이터셋 로드 중: {dataset_name}")
     data = {"samples": 10000, "features": 128}
     activity.info(f"{data['samples']} 샘플 로드 완료")
     return data
 
 @activity.defn
-async def preprocess(data: dict):
-    """데이터 정리 및 정규화."""
+async def preprocess(data: dict): """데이터 정리 및 정규화."""
     print("데이터 전처리 중...")
     processed = {
         "cleaned_samples": data["samples"],
@@ -120,8 +106,7 @@ async def preprocess(data: dict):
     return processed
 
 @activity.defn
-async def train_model(preprocessed_data: dict, epochs: int = 10):
-    """전처리 데이터로 모델 훈련."""
+async def train_model(preprocessed_data: dict, epochs: int = 10): """전처리 데이터로 모델 훈련."""
     print(f"{epochs} epoch 동안 모델 훈련 중...")
     metrics = {
         "final_loss": 0.0234,
@@ -132,8 +117,7 @@ async def train_model(preprocessed_data: dict, epochs: int = 10):
     return metrics
 
 @activity.defn
-async def deploy_model(metrics: dict):
-    """훈련된 모델을 프로덕션에 배포."""
+async def deploy_model(metrics: dict): """훈련된 모델을 프로덕션에 배포."""
     print("모델을 프로덕션에 배포 중...")
     deployment = {
         "model_id": f"model-{metrics['final_accuracy']:.4f}",
@@ -145,10 +129,8 @@ async def deploy_model(metrics: dict):
 
 # workflow 정의
 @workflow.defn
-class MLTrainingPipeline:
-    @workflow.run
-    async def run(self, dataset_name: str, epochs: int = 10) -> dict:
-        # 각 단계는 activity 호출
+class MLTrainingPipeline: @workflow.run
+    async def run(self, dataset_name: str, epochs: int = 10) -> dict: # 각 단계는 activity 호출
         data = await workflow.execute_activity(
             load_dataset, dataset_name,
             retry=RetryPolicy(max_attempts=3)
@@ -180,8 +162,7 @@ import asyncio
 from temporalio.worker import Worker
 from my_workflow import MLTrainingPipeline, load_dataset, preprocess, train_model, deploy_model
 
-async def main():
-    worker = Worker(
+async def main(): worker = Worker(
         client,  # Temporal Client instance
         task_queue="ml-pipeline",
         workflows=[MLTrainingPipeline],
@@ -190,8 +171,7 @@ async def main():
     print("Worker 시작됨. Ctrl+C를 눌러 종료.")
     await worker.run()
 
-if __name__ == "__main__":
-    asyncio.run(main())
+if __name__ == "__main__": asyncio.run(main())
 ```
 
 ---
@@ -200,50 +180,39 @@ if __name__ == "__main__":
 
 ### 패턴 1: 폴백이 있는 LLM 체인
 
-여러 LLM 호출을 체인하고 더 저렴한 모델로 자동 폴백:
-
-```python
+여러 LLM 호출을 체인하고 더 저렴한 모델로 자동 폴백: ```python
 from temporalio import workflow, activity
 
 @activity.defn
-async def generate_with_gpt4(prompt: str) -> str:
-    """먼저 GPT-4 시도."""
+async def generate_with_gpt4(prompt: str) -> str: """먼저 GPT-4 시도."""
     response = await call_openai(prompt, model="gpt-4o")
     return response
 
 @activity.defn
-async def generate_with_claude(prompt: str) -> str:
-    """Claude로 폴백."""
+async def generate_with_claude(prompt: str) -> str: """Claude로 폴백."""
     response = await call_anthropic(prompt, model="claude-sonnet-4")
     return response
 
 @activity.defn
-async def generate_with_local(prompt: str) -> str:
-    """마지막 수단: local 모델."""
+async def generate_with_local(prompt: str) -> str: """마지막 수단: local 모델."""
     response = await call_ollama(prompt, model="llama3.2")
     return response
 
 @workflow.defn
-class ResilientLLMChain:
-    @workflow.run
-    async def run(self, prompt: str) -> dict:
-        try:
-            result = await workflow.execute_activity(
+class ResilientLLMChain: @workflow.run
+    async def run(self, prompt: str) -> dict: try: result = await workflow.execute_activity(
                 generate_with_gpt4, prompt,
                 timeout=timedelta(minutes=5),
                 retry=RetryPolicy(max_attempts=2)
             )
             model_used = "gpt-4o"
-        except Exception:
-            try:
-                result = await workflow.execute_activity(
+        except Exception: try: result = await workflow.execute_activity(
                     generate_with_claude, prompt,
                     timeout=timedelta(minutes=5),
                     retry=RetryPolicy(max_attempts=2)
                 )
                 model_used = "claude-sonnet-4"
-            except Exception:
-                result = await workflow.execute_activity(
+            except Exception: result = await workflow.execute_activity(
                     generate_with_local, prompt,
                     timeout=timedelta(minutes=10),
                     retry=RetryPolicy(max_attempts=3)
@@ -255,32 +224,25 @@ class ResilientLLMChain:
 
 ### 패턴 2: 비동기 멀티 에이전트 오케스트레이션
 
-여러 AI agent를 병렬로 실행한 다음 결과 집계:
-
-```python
+여러 AI agent를 병렬로 실행한 다음 결과 집계: ```python
 @activity.defn
-async def agent_research(query: str) -> dict:
-    """연구 agent: 웹에서 정보 수집."""
+async def agent_research(query: str) -> dict: """연구 agent: 웹에서 정보 수집."""
     results = await search_web(query)
     return {"type": "research", "sources": len(results), "summary": summarize(results)}
 
 @activity.defn
-async def agent_analysis(research_data: dict) -> dict:
-    """분석 agent: 발견 사항 평가."""
+async def agent_analysis(research_data: dict) -> dict: """분석 agent: 발견 사항 평가."""
     analysis = await analyze_findings(research_data["summary"])
     return {"type": "analysis", "confidence": analysis["confidence_score"]}
 
 @activity.defn
-async def agent_synthesis(research: dict, analysis: dict) -> dict:
-    """합성 agent: 연구와 분석을 보고서로 결합."""
+async def agent_synthesis(research: dict, analysis: dict) -> dict: """합성 agent: 연구와 분석을 보고서로 결합."""
     report = await synthesize_report(research, analysis)
     return {"type": "synthesis", "report_length": len(report)}
 
 @workflow.defn
-class MultiAgentResearch:
-    @workflow.run
-    async def run(self, query: str) -> dict:
-        research_handle = workflow.execute_activity(
+class MultiAgentResearch: @workflow.run
+    async def run(self, query: str) -> dict: research_handle = workflow.execute_activity(
             agent_research, query, start_to_close_timeout=timedelta(minutes=5)
         )
         
@@ -301,43 +263,34 @@ class MultiAgentResearch:
 
 ### 패턴 3: 체크포인트 복원이 있는 ML 훈련
 
-어떤 장애 후에도 마지막 체크포인트에서 자동 재개:
-
-```python
+어떤 장애 후에도 마지막 체크포인트에서 자동 재개: ```python
 @activity.defn
-async def save_checkpoint(epoch: int, model_state: dict) -> str:
-    """훈련 체크포인트를 영구 저장소에 저장."""
+async def save_checkpoint(epoch: int, model_state: dict) -> str: """훈련 체크포인트를 영구 저장소에 저장."""
     checkpoint_path = f"s3://my-bucket/checkpoints/epoch_{epoch}.pt"
     await upload_to_s3(model_state, checkpoint_path)
     activity.info(f"체크포인트 저장됨: {checkpoint_path}")
     return checkpoint_path
 
 @activity.defn
-async def load_checkpoint(checkpoint_path: str) -> dict:
-    """체크포인트에서 모델 상태 로드."""
+async def load_checkpoint(checkpoint_path: str) -> dict: """체크포인트에서 모델 상태 로드."""
     model_state = await download_from_s3(checkpoint_path)
     activity.info(f"체크포인트 로드됨: {checkpoint_path}")
     return model_state
 
 @workflow.defn
-class ResumableTraining:
-    @workflow.run
-    async def run(self, dataset_url: str, total_epochs: int, lr: float = 0.001) -> dict:
-        checkpoint_path = workflow.info().get_memo_field("last_checkpoint")
+class ResumableTraining: @workflow.run
+    async def run(self, dataset_url: str, total_epochs: int, lr: float = 0.001) -> dict: checkpoint_path = workflow.info().get_memo_field("last_checkpoint")
         
-        if checkpoint_path:
-            model_state = await workflow.execute_activity(
+        if checkpoint_path: model_state = await workflow.execute_activity(
                 load_checkpoint, checkpoint_path,
                 start_to_close_timeout=timedelta(minutes=2)
             )
             start_epoch = int(checkpoint_path.split("_")[-1].split(".")[0])
             activity.info(f"{start_epoch} epoch에서 재개")
-        else:
-            model_state = initialize_model(dataset_url)
+        else: model_state = initialize_model(dataset_url)
             start_epoch = 0
         
-        for epoch in range(start_epoch, total_epochs):
-            result = await workflow.execute_activity(
+        for epoch in range(start_epoch, total_epochs): result = await workflow.execute_activity(
                 train_epoch, model_state, epoch, lr,
                 start_to_close_timeout=timedelta(minutes=30),
                 retry=RetryPolicy(max_attempts=3, backoff_coefficient=2.0)
@@ -345,8 +298,7 @@ class ResumableTraining:
             
             model_state = result["state"]
             
-            if (epoch + 1) % 5 == 0:
-                cp_path = await workflow.execute_activity(
+            if (epoch + 1) % 5 == 0: cp_path = await workflow.execute_activity(
                     save_checkpoint, epoch + 1, model_state,
                     start_to_close_timeout=timedelta(minutes=5)
                 )
@@ -357,15 +309,11 @@ class ResumableTraining:
 
 ### 패턴 4: 스트리밍 LLM 출력
 
-워크플로우 내에서 LLM의 스트리밍 응답 처리:
-
-```python
+워크플로우 내에서 LLM의 스트리밍 응답 처리: ```python
 @activity.defn
-async def stream_llm_response(prompt: str, max_tokens: int = 1024) -> list[str]:
-    """LLM에서 토큰을 스트리밍하여 리스트로 반환."""
+async def stream_llm_response(prompt: str, max_tokens: int = 1024) -> list[str]: """LLM에서 토큰을 스트리밍하여 리스트로 반환."""
     tokens = []
-    async for token in call_streaming_api(prompt, max_tokens):
-        tokens.append(token)
+    async for token in call_streaming_api(prompt, max_tokens): tokens.append(token)
         await asyncio.sleep(0.01)
     return tokens
 ```
@@ -376,51 +324,37 @@ async def stream_llm_response(prompt: str, max_tokens: int = 1024) -> list[str]:
 
 ### 신호 기반 워크플로우 제어
 
-외부에서 워크플로우에 신호를 보내 취소, 우선순위 업데이트 또는 새 데이터 주입:
-
-```python
+외부에서 워크플로우에 신호를 보내 취소, 우선순위 업데이트 또는 새 데이터 주입: ```python
 @workflow.defn
-class PriorityWorkflow:
-    def __init__(self):
-        self.priority = "normal"
+class PriorityWorkflow: def __init__(self): self.priority = "normal"
         self.cancel_requested = False
     
     @workflow.signal
-    def set_priority(self, new_priority: str):
-        self.priority = new_priority
+    def set_priority(self, new_priority: str): self.priority = new_priority
         workflow.logger.info(f"우선순위 {new_priority}(으)로 변경됨")
     
     @workflow.signal
-    def cancel_workflow(self):
-        self.cancel_requested = True
+    def cancel_workflow(self): self.cancel_requested = True
         workflow.logger.info("취소 요청됨")
     
     @workflow.run
-    async def run(self, task_data: dict) -> dict:
-        while not self.cancel_requested:
-            result = await process_task(task_data, self.priority)
+    async def run(self, task_data: dict) -> dict: while not self.cancel_requested: result = await process_task(task_data, self.priority)
             await asyncio.sleep(0.1)
         return {"status": "cancelled", "partial_result": result}
 ```
 
 ### 하위 워크플로우로 모듈식 설계
 
-복잡한 파이프라인을 중첩 하위 워크플로우로 분해:
-
-```python
+복잡한 파이프라인을 중첩 하위 워크플로우로 분해: ```python
 @workflow.defn
-class DataPreparation:
-    @workflow.run
-    async def run(self, raw_data: dict) -> dict:
-        cleaned = await workflow.execute_activity(clean_data, raw_data)
+class DataPreparation: @workflow.run
+    async def run(self, raw_data: dict) -> dict: cleaned = await workflow.execute_activity(clean_data, raw_data)
         validated = await workflow.execute_activity(validate_data, cleaned)
         return validated
 
 @workflow.defn
-class FullMLPipeline:
-    @workflow.run
-    async def run(self, raw_data: dict, model_config: dict) -> dict:
-        prepared_data = await workflow.child_execute(DataPreparation.run, raw_data)
+class FullMLPipeline: @workflow.run
+    async def run(self, raw_data: dict, model_config: dict) -> dict: prepared_data = await workflow.child_execute(DataPreparation.run, raw_data)
         trained_model = await workflow.child_execute(ModelTraining.run, prepared_data, model_config)
         eval_results = await workflow.child_execute(ModelEvaluation.run, trained_model)
         return eval_results
@@ -428,9 +362,7 @@ class FullMLPipeline:
 
 ### 워크플로우 상태 쿼리
 
-중단 없이 실행 중인 워크플로우 검사:
-
-```python
+중단 없이 실행 중인 워크플로우 검사: ```python
 from temporalio.client import Client
 
 client = await Client.connect("localhost:7233")
@@ -450,8 +382,7 @@ print(f"시작 시간: {info.start_time}")
 
 ### Temporal Web UI
 
-`http://localhost:8233`에서 빌트인 Web UI 접근:
-- 실행 중 및 완료된 모든 워크플로우 보기
+`http://localhost:8233`에서 빌트인 Web UI 접근: - 실행 중 및 완료된 모든 워크플로우 보기
 - 각 activity의 input/output 데이터 검사
 - 단계별 워크플로우 히스토리 리플레이
 - ID, 상태 또는 사용자 정의 속성으로 워크플로우 검색
@@ -484,11 +415,9 @@ from temporalio import activity
 logger = structlog.get_logger()
 
 @activity.defn
-async def train_with_logging(model_config: dict) -> dict:
-    logger.info("training_start", config=model_config)
+async def train_with_logging(model_config: dict) -> dict: logger.info("training_start", config=model_config)
     
-    for epoch in range(10):
-        loss = perform_training_epoch(model_config)
+    for epoch in range(10): loss = perform_training_epoch(model_config)
         logger.info("epoch_complete", epoch=epoch, loss=loss, learning_rate=model_config["lr"])
     
     logger.info("training_complete", final_loss=loss)
@@ -503,13 +432,9 @@ async def train_with_logging(model_config: dict) -> dict:
 
 ### 장기간 실행 작업을 위한 Activity Heartbeat
 
-진행률 보고로 계산 낭비 방지:
-
-```python
+진행률 보고로 계산 낭비 방지: ```python
 @activity.defn
-async def long_training_job(config: dict):
-    for epoch in range(100):
-        activity.heartbeat(f"{epoch}/100 epoch 완료")
+async def long_training_job(config: dict): for epoch in range(100): activity.heartbeat(f"{epoch}/100 epoch 완료")
         loss = train_one_epoch(config)
     return {"final_loss": loss}
 ```
@@ -541,9 +466,7 @@ worker = Worker(
 
 ### Temporal의 AI 로드맵
 
-Temporal은 AI 전용 기능을 적극적으로 구축 중:
-
-1. **네이티브 LLM activity 템플릿**: 공통 LLM 작업(채팅, completion, embedding)용 사전 구축 activity, 내장 재시도 및 rate-limit 처리
+Temporal은 AI 전용 기능을 적극적으로 구축 중: 1. **네이티브 LLM activity 템플릿**: 공통 LLM 작업(채팅, completion, embedding)용 사전 구축 activity, 내장 재시도 및 rate-limit 처리
 2. **벡터 메모리**: 실행 간 워크플로우 컨텍스트 지속화를 위한 빌트인 벡터 저장소
 3. **Agent SDK**: 공유 메모리 및 통신 프로토콜과 함께 퍼스트 클래스 멀티 에이전트 오케스트레이션 지원
 4. **GPU 인식 스케줄링**: ML 워크로드를 위한 GPU 클러스터와의 네이티브 통합
@@ -568,9 +491,7 @@ Temporal은 AI 전용 기능을 적극적으로 구축 중:
 
 ## 커뮤니티 업데이트
 
-워크플로우 오케스트레이션 환경이 지속적으로 진화 중. 2026년 주목할 만한 발전:
-
-- **Temporal Cloud**가 GPU 최적화 워커 노드로 5개 지역으로 확장
+워크플로우 오케스트레이션 환경이 지속적으로 진화 중. 2026년 주목할 만한 발전: - **Temporal Cloud**가 GPU 최적화 워커 노드로 5개 지역으로 확장
 - **오픈소스 Temporal**이 Python 3.12 및 PyPy 네이티브 지원 추가
 - **커뮤니티 통합**: LangChain, LlamaIndex, CrewAI가 공식 Temporal connector 릴리스
 - **엔터프라이즈 채택**: Scale AI 및 Hugging Face 등 주요 AI 회사가 프로덕션 ML 파이프라인에 Temporal 사용
@@ -583,9 +504,7 @@ Temporal 커뮤니티는 프로덕션 AI 시스템을 구축하는 회사의 활
 
 ### Q: Temporal은 LLM rate limiting을 어떻게 처리하나요?
 
-Temporal의 재시도 정책을 지수 백오프와 함께 사용합니다. `initial_interval`, `maximum_interval`, `backoff_coefficient`를 구성하여 정중한 재시도 전략을 구현합니다:
-
-```python
+Temporal의 재시도 정책을 지수 백오프와 함께 사용합니다. `initial_interval`, `maximum_interval`, `backoff_coefficient`를 구성하여 정중한 재시도 전략을 구현합니다: ```python
 retry=RetryPolicy(
     initial_interval=timedelta(seconds=1),
     maximum_interval=timedelta(minutes=5),
@@ -627,7 +546,6 @@ Temporal 워크플로우는 무기한 실행할 수 있습니다 — 하드 타�
 *실시간 AI 도구 토론 및 배포 팁을 위한 Telegram 그룹 가입: [t.me/dibi8](https://t.me/dibi8)*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-code-subagent-mastery-stack" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-subagent-mastery-stack" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-subagent-mastery-stack" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-subagent-mastery-stack" />
 title: 'Claude Code 子智能体精通栈 2026：从单次对话到协调的智能体议会'
 description: '掌握 Claude Code 多智能体工作流的完整学习 + 工具栈：5 种子智能体模式 + 自定义智能体编写 + 技能/子智能体/MCP 决策框架 + 编排失败模式 + 技能编写。从单线程编码到可靠智能体流水线的完整路径。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-30 00:00:00+08:00
-tech_stack:
-  - Claude Code
+tech_stack: - Claude Code
   - Agent SDK
   - MCP
   - Bash
@@ -30,10 +24,8 @@ featureImage: ''
 draft: false
 categories: [collections]
 tags: ['claude code', subagents, 'multi-agent', 'agent sdk', mcp, stack, collection]
-aliases:
-  - /posts/claude-code-subagent-mastery-stack/
-faqs:
-  - q: 'Claude Code 的五种子代理模式是什么？'
+aliases: - /posts/claude-code-subagent-mastery-stack/
+faqs: - q: 'Claude Code 的五种子代理模式是什么？'
     a: '五种模式分别是：并行研究扇出、worktree 隔离、专家委派、上下文保护和流水线编排。它们构成多代理工作流的基础层，其中并行扇出是摩擦最低的入门起点。'
   - q: '我该如何在 Claude Code 的 skill、subagent 和 MCP server 之间做选择？'
     a: '使用一个三轴框架，根据你缺少什么来决定：当你缺乏知识时写一个 skill，当你缺乏上下文时派生一个 subagent，当你缺乏能力时构建一个 MCP server。大多数团队都会过度追求 MCP server，而一个 markdown 文件就能达到同样的效果。'
@@ -42,10 +34,7 @@ faqs:
   - q: '多代理流水线故障最常见的根本原因是什么？'
     a: '每种重大故障模式都有一个共同的根本原因：将代理的声明当作已验证的事实来信任。解决办法是在流水线的每个接缝处都内置验证（例如 git diff 和测试退出码）以及约束（停止条件和预算）。'
   - q: 'Claude Code 中多代理流水线的五种失败方式是什么？'
-    a: '五种已记录的失败模式分别是：信任陷阱、上下文泄漏、失控扇出、静默截断和孤立 worktree。研究这些内容是区分一个能运行的 demo 和生产就绪流水线的关键所在。'
----
-
-<!-- canonical: https://dibi8.com/zh/tools/claude-code-subagent-mastery-stack/ -->
+    a: '五种已记录的失败模式分别是：信任陷阱、上下文泄漏、失控扇出、静默截断和孤立 worktree。研究这些内容是区分一个能运行的 demo 和生产就绪流水线的关键所在。'---
 # Claude Code 子智能体精通栈 2026：从单次对话到协调的智能体议会
 
 
@@ -56,7 +45,17 @@ faqs:
 ## TL;DR——一览精通栈
 
 | # | 组件 | 层级 | 角色 | 深入阅读 |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 1 | **5 种子智能体模式** | 基础 | 五种工作流：并行扇出、worktree 隔离、专家委派、上下文保护、流水线编排 | [子智能体模式](/zh/resources/llm-frameworks/claude-code-subagent-patterns-multi-agent-workflows-2026/) |
 | 2 | **自定义智能体编写** | 构建 | 如何编写 `.claude/agents/*.md`——frontmatter、系统提示词、工具白名单 | [自定义智能体编写](/zh/resources/llm-frameworks/claude-code-custom-agent-authoring-guide-2026/) |
 | 3 | **子智能体 vs MCP vs 技能** | 决策 | 三轴框架——知识（技能）、上下文（子智能体）、能力（MCP） | [子智能体 vs MCP vs 技能](/zh/resources/llm-frameworks/claude-code-subagent-vs-mcp-server-skill-agent-2026/) |
@@ -99,7 +98,6 @@ faqs:
 别把子智能体当成五个互不相干的小把戏来学。按顺序走完整个栈——模式 → 编写 → 决策框架 → 技能 → 失败模式——你就能从『一个大对话』毕业，升级为一个你真正能在生产中信任的协调智能体议会。今天就从模式 1 开始；随着你的会话越来越长、任务越来越重，再逐层叠加其余部分。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -127,25 +125,20 @@ faqs:
 
 ## Why This Matters
 
-Understanding claude code 子智能体精通栈 2026：从单次对话到协调的智能体议会 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding claude code 子智能体精通栈 2026：从单次对话到协调的智能体议会 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -166,13 +159,13 @@ Claude Code 子智能体精通栈 2026：从单次对话到协调的智能体议
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
 
+---
 ## Related Articles
 
 - [free-mcp-tools-top10-2026](claude-code-subagent-mastery-stack)
@@ -208,9 +201,7 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
 
 
-When deploying AI agents in production, follow these best practices:
-
-1. **Start Small**: Begin with a single tool and simple prompt, then gradually add complexity
+When deploying AI agents in production, follow these best practices: 1. **Start Small**: Begin with a single tool and simple prompt, then gradually add complexity
 2. **Implement Guardrails**: Use permission prompts and approval workflows for dangerous operations
 3. **Monitor Everything**: Log all agent actions for debugging and compliance
 4. **Handle Failures Gracefully**: Implement retry logic and fallback mechanisms
@@ -218,16 +209,12 @@ When deploying AI agents in production, follow these best practices:
 
 ### Security Considerations
 
-AI agents have access to sensitive systems. Always:
-
-- Use least-privilege principles
+AI agents have access to sensitive systems. Always: - Use least-privilege principles
 - Implement audit logging
 - Encrypt sensitive data at rest and in transit
 - Regular security assessments
 
-When deploying AI agents in production, follow these best practices:
-
-1. **Start Small**: Begin with a single tool and simple prompt, then gradually add complexity
+When deploying AI agents in production, follow these best practices: 1. **Start Small**: Begin with a single tool and simple prompt, then gradually add complexity
 2. **Implement Guardrails**: Use permission prompts and approval workflows for dangerous operations
 3. **Monitor Everything**: Log all agent actions for debugging and compliance
 4. **Handle Failures Gracefully**: Implement retry logic and fallback mechanisms
@@ -235,9 +222,7 @@ When deploying AI agents in production, follow these best practices:
 
 ### Security Considerations
 
-AI agents have access to sensitive systems. Always:
-
-- Use least-privilege principles
+AI agents have access to sensitive systems. Always: - Use least-privilege principles
 - Implement audit logging
 - Encrypt sensitive data at rest and in transit
 - Regular security assessments

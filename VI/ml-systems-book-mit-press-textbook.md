@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ml-systems-book-mit-press-textbook" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ml-systems-book-mit-press-textbook" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ml-systems-book-mit-press-textbook" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ml-systems-book-mit-press-textbook" />
 title: "ML Systems Book：Giáo trình miễn phí về Hệ thống Machine ...
 description: "Machine Learning Systems là giáo trình mã nguồn mở miễn phí do MIT Press xuất bản, bao gồm kỹ thuật dữ liệu, tối ưu mô hình, huấn luyện nhận biết phần cứng, tăng tốc suy luận và các kiến thức cốt lõi về kỹ thuật hệ thống ML."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - C++
+tech_stack: - C++
   - Docker
   - Go
   - Python
@@ -27,10 +21,8 @@ maintainer: ""
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases:
-- /vi/posts/ml-systems-book-mit-press-textbook/
-faqs:
-  - q: 'ML Systems Book bao gồm những chủ đề gì?'
+aliases: - /vi/posts/ml-systems-book-mit-press-textbook/
+faqs: - q: 'ML Systems Book bao gồm những chủ đề gì?'
     a: 'ML Systems Book đề cập đến huấn luyện phân tán (song song hóa dữ liệu, mô hình và pipeline, cùng khả năng chịu lỗi), phục vụ mô hình (suy luận theo lô và thời gian thực, quản lý phiên bản, tự động mở rộng), tăng tốc phần cứng (GPU, TPU, ASIC, lượng tử hóa, tỉa thưa), hạ tầng ML (feature store, theo dõi thực nghiệm, CI/CD, giám sát) và tối ưu hóa chi phí (spot instance, nén mô hình, dynamic batching).'
   - q: 'ML Systems Book có bao nhiêu chương và được tổ chức như thế nào?'
     a: 'Cuốn sách được chia thành 12 chương, đi từ Giới thiệu về Hệ thống ML và Khối lượng Công việc ML, qua Huấn luyện Phân tán, Phục vụ Mô hình, Bộ tăng tốc Phần cứng, Vận hành ML, Quản lý Dữ liệu, Tối ưu hóa, Độ tin cậy, Bảo mật, Tính bền vững, và kết thúc bằng Hướng đi Tương lai.'
@@ -42,15 +34,11 @@ faqs:
     a: 'Cuốn sách hướng đến các kỹ sư ML cần mở rộng quy mô huấn luyện và phục vụ mô hình có độ trễ thấp trong môi trường sản xuất, các kỹ sư phần mềm đang chuyển sang lĩnh vực ML, các nhà nghiên cứu muốn tăng tốc thực nghiệm, và các quản lý kỹ thuật cần lập kế hoạch đầu tư hạ tầng ML cũng như cơ cấu đội nhóm.'
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/ml-systems-book-mit-press-textbook/ -->
-
 {</* resource-info */>}
 
 ## Vấn đề: Ngoài thuật toán, kỹ sư ML còn cần gì?
 
-Bạn thành thạo kiến trúc Transformer, có thể tự triển khai BERT từ đầu, nhưng trong công việc thực tế lại liên tục gặp khó khăn:
-
-- Tốc độ huấn luyện mô hình quá chậm, không biết nút thắt nằm ở tải dữ liệu hay tính toán GPU
+Bạn thành thạo kiến trúc Transformer, có thể tự triển khai BERT từ đầu, nhưng trong công việc thực tế lại liên tục gặp khó khăn: - Tốc độ huấn luyện mô hình quá chậm, không biết nút thắt nằm ở tải dữ liệu hay tính toán GPU
 - Triển khai lên thiết bị biên độ chính xác giảm mạnh, không biết cách tối ưu lượng tử hóa
 - QPS dịch vụ không lên được, độ trễ suy luận khiến người dùng bực bội
 - Đường ống dữ liệu sập mỗi đêm, không ai biết tại sao
@@ -63,9 +51,7 @@ Hầu hết các khóa học ML chỉ dạy mô hình và thuật toán, nhưng 
 
 [Machine Learning Systems](https://mlsysbook.ai/) là giáo trình hệ thống học máy do **MIT Press** xuất bản, phát hành chính thức năm 2026. Cuốn sách này có **24.113+ Stars** trên GitHub, với mục tiêu giúp **1 triệu người học** nắm vững kỹ thuật hệ thống ML trước năm 2030.
 
-Khác với các nguồn chỉ nói về thuật toán và kiến trúc mô hình, cuốn sách này nhấn mạnh **góc nhìn hệ thống**:
-
-- Kỹ thuật dữ liệu ảnh hưởng thế nào đến hiệu quả huấn luyện
+Khác với các nguồn chỉ nói về thuật toán và kiến trúc mô hình, cuốn sách này nhấn mạnh **góc nhìn hệ thống**: - Kỹ thuật dữ liệu ảnh hưởng thế nào đến hiệu quả huấn luyện
 - Đặc tính phần cứng quyết định thiết kế mô hình ra sao
 - Các đánh đổi kỹ thuật trong tăng tốc suy luận
 - Chuỗi hoàn chỉnh từ phòng thí nghiệm đến môi trường sản xuất
@@ -90,8 +76,7 @@ dataset = (tf.data.Dataset.from_tensor_slices(data)
            .prefetch(tf.data.AUTOTUNE))
 ```
 
-Các chủ đề bao phủ:
-- Định dạng dữ liệu (TFRecord, Parquet, Arrow)
+Các chủ đề bao phủ: - Định dạng dữ liệu (TFRecord, Parquet, Arrow)
 - Thiết kế đường ống ETL
 - Quản lý phiên bản dữ liệu
 - Giám sát và làm sạch chất lượng
@@ -265,9 +250,7 @@ Nếu bạn chỉ biết huấn luyện mô hình nhưng không biết triển k
 
 ## Công Cụ Đề Xuất
 
-Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
+Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
 - **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Proxy Anthropic Claude / OpenAI / DeepSeek API. Hầu hết AI tool ở trên (chatbot, code gen, translation, search, v.v.) cần LLM API key — proxy này cho access ổn định top model với ~30% giá chính thức.
 - **{{< aff "hostinger" "footer-cta-legacy" "Hostinger" >}}** — Lựa chọn VPS giá tốt cho thị trường Việt Nam.
 
@@ -275,7 +258,6 @@ Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

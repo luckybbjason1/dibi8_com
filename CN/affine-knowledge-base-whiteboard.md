@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/affine-knowledge-base-whiteboard" />
 title: 'AFFiNE 2026: The Open-Source Notion+Miro Hybrid for AI-E...
 description: 'Deploy AFFiNE v0.26.3 as a self-hosted Notion+Miro alternative. Local-first CRDT collaboration, edgeless whiteboard, AI writing assistant, Docker setup in 5 minutes.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [affine, 'knowledge-base', whiteboard, 'self-hosted', docker, 'notion-alternative', 'miro-alternative', crdt, 'local-first', 'ai-writing']
-aliases:
-- /posts/affine-knowledge-base-whiteboard/
+aliases: - /posts/affine-knowledge-base-whiteboard/-
 ---
-
 ![Hero Image](https://picsum.photos/seed/ai/1200x800)
 
 
@@ -52,9 +48,7 @@ AFFiNE supports importing from Notion, exporting to Markdown, and syncing across
 
 ## How AFFiNE Works: Architecture Under the Hood
 
-AFFiNE's architecture is a three-layer stack:
-
-**Layer 1: OctoBase (Rust CRDT Engine)** — Handles conflict resolution, real-time synchronization, and persistent storage. Data is stored as a flat operation log that can merge changes from any client without server coordination. This enables offline-first editing: you can work on a plane, and all changes sync when you reconnect.
+AFFiNE's architecture is a three-layer stack: **Layer 1: OctoBase (Rust CRDT Engine)** — Handles conflict resolution, real-time synchronization, and persistent storage. Data is stored as a flat operation log that can merge changes from any client without server coordination. This enables offline-first editing: you can work on a plane, and all changes sync when you reconnect.
 
 **Layer 2: BlockSuite (TypeScript Editor Framework)** — A block-based editor framework that renders both document and whiteboard views from the same data model. Every paragraph, image, shape, or database table is a "block" with a unique ID and typed schema.
 
@@ -77,17 +71,13 @@ The default port is **3010**. The first user who registers becomes the admin aut
 
 AFFiNE's official Docker Compose setup is the recommended deployment method. It handles database migrations, persistent storage, and service dependencies automatically.
 
-**Step 1:** Create a directory and download the official compose file:
-
-```bash
+**Step 1:** Create a directory and download the official compose file: ```bash
 mkdir -p ~/affine-selfhost && cd ~/affine-selfhost
 wget -O docker-compose.yml https://github.com/toeverything/affine/releases/latest/download/docker-compose.yml
 wget -O .env https://github.com/toeverything/affine/releases/latest/download/.env.example
 ```
 
-**Step 2:** Edit the environment file with your credentials:
-
-```bash
+**Step 2:** Edit the environment file with your credentials: ```bash
 # Edit .env file
 cat > .env << EOF
 AFFINE_ADMIN_EMAIL=admin@yourdomain.com
@@ -102,18 +92,14 @@ CONFIG_LOCATION=./config
 EOF
 ```
 
-**Step 3:** Launch the stack:
-
-```bash
+**Step 3:** Launch the stack: ```bash
 docker compose up -d
 # Pulls: affineteams/affine-graphql, postgres:16, redis:7.2
 # Runs automatic DB migrations
 # Creates admin account from .env on first boot
 ```
 
-**Step 4:** Verify all containers are healthy:
-
-```bash
+**Step 4:** Verify all containers are healthy: ```bash
 $ docker compose ps
 NAME            STATUS          PORTS
 affine-server   Up 10 seconds   0.0.0.0:3010->3010/tcp
@@ -159,13 +145,9 @@ The `Upgrade` and `Connection` headers are critical — they enable WebSocket-ba
 
 ## Integration with 4 Mainstream Tools
 
-AFFiNE connects to your existing toolchain through its plugin system and API:
+AFFiNE connects to your existing toolchain through its plugin system and API: **1. CalDAV Calendar Integration**
 
-**1. CalDAV Calendar Integration**
-
-AFFiNE v0.26+ supports CalDAV, letting you sync tasks and deadlines with external calendars. Configure it from **Settings > Integrations > CalDAV**:
-
-```bash
+AFFiNE v0.26+ supports CalDAV, letting you sync tasks and deadlines with external calendars. Configure it from **Settings > Integrations > CalDAV**: ```bash
 # Test CalDAV connectivity
 curl -X PROPFIND https://your-nextcloud.com/remote.php/dav/calendars/admin/personal/ \
   -u admin:password \
@@ -175,9 +157,7 @@ curl -X PROPFIND https://your-nextcloud.com/remote.php/dav/calendars/admin/perso
 
 **2. AI Assistant Configuration (OpenAI API)**
 
-The AI assistant can be pointed to any OpenAI-compatible endpoint, including local models via Ollama or LiteLLM:
-
-```bash
+The AI assistant can be pointed to any OpenAI-compatible endpoint, including local models via Ollama or LiteLLM: ```bash
 # In AFFiNE admin panel > Settings > AI
 # Provider URL: http://your-ollama:11434/v1
 # API Key: sk-ollama (or your key)
@@ -204,9 +184,7 @@ curl -X POST http://localhost:3010/api/docs \
 
 **4. Git Sync for Developer Workflows**
 
-Use AFFiNE's export feature combined with `git` for version-controlled documentation:
-
-```bash
+Use AFFiNE's export feature combined with `git` for version-controlled documentation: ```bash
 #!/bin/bash
 # daily-backup.sh - cron this every night
 docker exec affine-postgres pg_dump -U affine affine > backup-$(date +%Y%m%d).sql
@@ -215,10 +193,16 @@ git add backup-*.sql && git commit -m "docs: daily AFFiNE backup $(date +%Y-%m-%
 
 ## Benchmarks / Real-World Use Cases
 
-AFFiNE's performance characteristics matter for production deployment:
-
-| Metric | AFFiNE Self-Hosted | Notion Cloud | Miro Cloud |
-|--------|-------------------|--------------|------------|
+AFFiNE's performance characteristics matter for production deployment: | Metric | AFFiNE Self-Hosted | Notion Cloud | Miro Cloud |
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | First Contentful Paint | **1.2s** (local) | 2.8s | 3.1s |
 | Sync Latency (same LAN) | **<50ms** | 180-400ms | 200-500ms |
 | Offline Capability | **Full** | Read-only cache | None |
@@ -308,8 +292,7 @@ echo "0 2 * * * /root/backup-affine.sh" | crontab -
 
 ```yaml
 # Add to docker-compose.yml for high-load scenarios
-environment:
-  - DATABASE_URL=postgresql://affine:${DB_PASSWORD}@postgres:5432/affine
+environment: - DATABASE_URL=postgresql://affine:${DB_PASSWORD}@postgres:5432/affine
   - DATABASE_POOL_SIZE=20
   - DATABASE_POOL_MAX=50
   - DATABASE_TIMEOUT=30000
@@ -318,7 +301,17 @@ environment:
 ## Comparison with Alternatives
 
 | Feature | AFFiNE v0.26 | Notion | Miro | Obsidian |
-|---------|-------------|--------|------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Open Source | **Yes (MPL-2.0)** | No | No | No |
 | Self-Hostable | **Yes** | No | No | No (sync is cloud) |
 | Local-First / Offline | **Yes (CRDT)** | Partial (cache) | No | **Yes** |
@@ -338,9 +331,7 @@ environment:
 
 ## Limitations: Honest Assessment
 
-AFFiNE is not perfect. Here is what to know before committing:
-
-1. **Database formulas are limited** compared to Notion. Complex rollups and cross-database queries are planned but not yet implemented (target: Q3 2026).
+AFFiNE is not perfect. Here is what to know before committing: 1. **Database formulas are limited** compared to Notion. Complex rollups and cross-database queries are planned but not yet implemented (target: Q3 2026).
 
 2. **No native mobile app** as of v0.26. The PWA works on mobile browsers, but it is not as smooth as native Notion or Obsidian apps.
 
@@ -395,9 +386,7 @@ For teams currently paying $15-20 per user per month for Notion or Miro, the eco
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -407,7 +396,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 This article contains affiliate links for DigitalOcean. If you sign up through our link, we receive a commission at no additional cost to you. All recommendations are based on actual testing and are not influenced by the affiliate program. AFFiNE is fully open-source and free to self-host without any paid requirements.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -433,8 +421,8 @@ This article contains affiliate links for DigitalOcean. If you sign up through o
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [mempalace-open-source-ai-memory-system](affine-knowledge-base-whiteboard)
@@ -443,6 +431,6 @@ This article contains affiliate links for DigitalOcean. If you sign up through o
 - [prompts-chat](affine-knowledge-base-whiteboard)
 - [paddleocr-81k-star-ocr-engine](affine-knowledge-base-whiteboard)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

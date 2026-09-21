@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/playwright-browser-automation-testing" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/playwright-browser-automation-testing" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/playwright-browser-automation-testing" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/playwright-browser-automation-testing" />
 title: 'Playwright 2026: 比 Selenium 快 3 倍的跨浏览器自动化工具 — 安装指南'
 description: '掌握 Playwright 1.51 进行跨浏览器自动化。支持 Chrome、Firefox、WebKit。自动等待、追踪、代码生成和并行测试。比 Selenium 快 3 倍。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [playwright, 浏览器自动化, 测试, 网页抓取, python, 端到端测试]
-aliases:
-- /zh/posts/playwright-browser-automation-testing/
+aliases: - /zh/posts/playwright-browser-automation-testing/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/playwright-browser-automation-testing/ -->
 
 {{</* resource-info */>}}
 
@@ -84,8 +76,7 @@ playwright install chromium
 ```python
 from playwright.sync_api import sync_playwright
 
-with sync_playwright() as p:
-    browser = p.chromium.launch()
+with sync_playwright() as p: browser = p.chromium.launch()
     page = browser.new_page()
     page.goto("https://httpbin.org/get")
     print(f"Title: {page.title()}")
@@ -99,9 +90,7 @@ print("Playwright is ready!")
 ```python
 from playwright.sync_api import sync_playwright
 
-def test_login_flow():
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
+def test_login_flow(): with sync_playwright() as p: browser = p.chromium.launch(headless=True)
         context = browser.new_context(
             viewport={"width": 1920, "height": 1080}
         )
@@ -124,8 +113,7 @@ def test_login_flow():
         context.close()
         browser.close()
 
-if __name__ == "__main__":
-    test_login_flow()
+if __name__ == "__main__": test_login_flow()
     print("Test passed!")
 ```
 
@@ -141,15 +129,12 @@ import pytest
 from playwright.sync_api import sync_playwright
 
 @pytest.fixture(scope="session")
-def browser():
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
+def browser(): with sync_playwright() as p: browser = p.chromium.launch(headless=True)
         yield browser
         browser.close()
 
 @pytest.fixture
-def page(browser):
-    context = browser.new_context(
+def page(browser): context = browser.new_context(
         viewport={"width": 1920, "height": 1080}
     )
     page = context.new_page()
@@ -159,16 +144,14 @@ def page(browser):
 
 ```python
 # test_ecommerce.py
-def test_add_to_cart(page):
-    page.goto("https://example.com/products")
+def test_add_to_cart(page): page.goto("https://example.com/products")
     page.click("button[data-testid='add-to-cart']")
     
     # 自动等待购物车徽标更新
     cart_count = page.inner_text(".cart-badge")
     assert cart_count == "1"
 
-def test_search_results(page):
-    page.goto("https://example.com")
+def test_search_results(page): page.goto("https://example.com")
     page.fill("[name=q]", "laptop")
     page.press("[name=q]", "Enter")
     
@@ -184,21 +167,16 @@ def test_search_results(page):
 # .github/workflows/playwright.yml
 name: Playwright Tests
 on: [push, pull_request]
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: test: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
+        with: python-version: "3.12"
       - run: pip install playwright==1.51.0 pytest
       - run: playwright install chromium
       - run: pytest --tracing=retain-on-failure
       - uses: actions/upload-artifact@v4
         if: failure()
-        with:
-          name: playwright-traces
+        with: name: playwright-traces
           path: test-results/
 ```
 
@@ -225,14 +203,11 @@ codegen 工具会打开一个浏览器窗口和一个检查器面板。每次点
 import asyncio
 from playwright.async_api import async_playwright
 
-async def scrape_multiple_pages():
-    async with async_playwright() as p:
-        browser = await p.chromium.launch()
+async def scrape_multiple_pages(): async with async_playwright() as p: browser = await p.chromium.launch()
         
         # 并发运行 5 个页面
         tasks = []
-        for i in range(5):
-            context = await browser.new_context()
+        for i in range(5): context = await browser.new_context()
             page = await context.new_page()
             task = page.goto(f"https://httpbin.org/get?page={i}")
             tasks.append(task)
@@ -282,7 +257,15 @@ CMD ["pytest", "-n", "4", "--tracing=retain-on-failure"]
 ### 性能基准测试（Playwright 对比 Selenium 对比 Cypress）
 
 | 指标 | Selenium 4.26 | Cypress 14.0 | Playwright 1.51 |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 登录测试 (毫秒) | 2,840 | 1,920 | **680** |
 | 加购测试 (毫秒) | 3,120 | 2,100 | **720** |
 | 表单提交测试 (毫秒) | 2,560 | 1,780 | **590** |
@@ -313,9 +296,7 @@ CMD ["pytest", "-n", "4", "--tracing=retain-on-failure"]
 ```python
 from playwright.sync_api import sync_playwright
 
-def test_with_mocked_api():
-    with sync_playwright() as p:
-        browser = p.chromium.launch()
+def test_with_mocked_api(): with sync_playwright() as p: browser = p.chromium.launch()
         page = browser.new_page()
         
         # 拦截并模拟 API 响应
@@ -336,9 +317,7 @@ def test_with_mocked_api():
 from playwright.sync_api import sync_playwright
 import json
 
-def save_auth_state():
-    with sync_playwright() as p:
-        browser = p.chromium.launch()
+def save_auth_state(): with sync_playwright() as p: browser = p.chromium.launch()
         context = browser.new_context()
         page = context.new_page()
         
@@ -353,9 +332,7 @@ def save_auth_state():
         context.storage_state(path="auth.json")
         browser.close()
 
-def test_with_saved_auth():
-    with sync_playwright() as p:
-        browser = p.chromium.launch()
+def test_with_saved_auth(): with sync_playwright() as p: browser = p.chromium.launch()
         # 复用已保存的认证
         context = browser.new_context(storage_state="auth.json")
         page = context.new_page()
@@ -373,9 +350,7 @@ def test_with_saved_auth():
 ```python
 from playwright.sync_api import sync_playwright
 
-def test_visual_regression():
-    with sync_playwright() as p:
-        browser = p.chromium.launch()
+def test_visual_regression(): with sync_playwright() as p: browser = p.chromium.launch()
         page = browser.new_page(viewport={"width": 1920, "height": 1080})
         
         page.goto("https://example.com/landing")
@@ -396,9 +371,7 @@ from playwright.sync_api import sync_playwright
 
 iphone = sync_playwright().start().devices["iPhone 14 Pro Max"]
 
-def test_mobile_viewport():
-    with sync_playwright() as p:
-        browser = p.chromium.launch()
+def test_mobile_viewport(): with sync_playwright() as p: browser = p.chromium.launch()
         context = browser.new_context(**p.devices["iPhone 14 Pro Max"])
         page = context.new_page()
         
@@ -419,9 +392,7 @@ Playwright 支持 **40 多个预配置设备配置文件**，包括 iPhone、iPa
 ```python
 from playwright.sync_api import sync_playwright
 
-def test_api_contract():
-    with sync_playwright() as p:
-        browser = p.chromium.launch()
+def test_api_contract(): with sync_playwright() as p: browser = p.chromium.launch()
         page = browser.new_page()
         
         responses = []
@@ -448,9 +419,7 @@ def test_api_contract():
 ```python
 from playwright.sync_api import sync_playwright
 
-def scrape_with_stealth():
-    with sync_playwright() as p:
-        browser = p.chromium.launch(
+def scrape_with_stealth(): with sync_playwright() as p: browser = p.chromium.launch(
             headless=True,
             args=["--disable-blink-features=AutomationControlled"]
         )
@@ -474,7 +443,17 @@ def scrape_with_stealth():
 ## 与替代方案对比
 
 | 特性 | Playwright 1.51 | Selenium 4.26 | Cypress 14.0 | Puppeteer 24.0 |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 浏览器支持 | Chromium, Firefox, WebKit | Chrome, FF, Safari, Edge | 仅 Chromium | 仅 Chromium |
 | 自动等待 | **完整（所有操作）** | 仅手动 | 部分 | 有限 |
 | 并行执行 | **原生（上下文）** | Grid/Selenium 4 | 否 | 有限 |
@@ -554,10 +533,8 @@ playwright install
 - [从 Selenium 迁移到 Playwright](https://playwright.dev/python/docs/selenium)
 - [Playwright Docker 镜像](https://mcr.microsoft.com/en-us/product/playwright/about)
 
+
 ---
-
-
-
 ## 推荐部署与基础设施
 
 上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：
@@ -572,7 +549,6 @@ playwright install
 本文包含 DigitalOcean 的联盟链接。如果你通过这些链接购买服务，我们可能会获得佣金，不会向你收取额外费用。此推荐基于对 CI/CD 和浏览器自动化基础设施的真实实用性。所有基准测试均为独立进行。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

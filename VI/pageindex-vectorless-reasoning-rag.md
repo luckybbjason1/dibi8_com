@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/pageindex-vectorless-reasoning-rag" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/pageindex-vectorless-reasoning-rag" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/pageindex-vectorless-reasoning-rag" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/pageindex-vectorless-reasoning-rag" />
 title: "PageIndex：29K⭐Hệ thống RAG cách mạng, tìm kiếm tài liệu ...
 description: "PageIndex là hệ thống RAG mã nguồn mở không dùng vector của VectifyAI. 29K+ Stars, xây dựng cấu trúc cây tài liệu để tìm kiếm như con người, đạt 98.7% độ chính xác trên FinanceBench."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Go
+tech_stack: - Go
   - Python
 application_domain: "Llm Frameworks"
 source_version: ""
@@ -25,10 +19,8 @@ maintainer: "VectifyAI"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases:
-- /vi/posts/pageindex-vectorless-reasoning-rag/
-faqs:
-  - q: 'PageIndex là gì và nó khác với RAG truyền thống như thế nào?'
+aliases: - /vi/posts/pageindex-vectorless-reasoning-rag/
+faqs: - q: 'PageIndex là gì và nó khác với RAG truyền thống như thế nào?'
     a: 'PageIndex là một hệ thống RAG mã nguồn mở của VectifyAI, truy xuất thông tin mà không cần cơ sở dữ liệu vector. Thay vì embedding và chia nhỏ (chunking) tài liệu, nó xây dựng một cấu trúc cây phân cấp cho mỗi tài liệu và sử dụng khả năng suy luận của LLM để duyệt qua cây đó, mô phỏng cách một chuyên gia đọc mục lục để tìm ra phần liên quan.'
   - q: 'PageIndex có cần cơ sở dữ liệu vector hay việc chia nhỏ tài liệu không?'
     a: 'Không. PageIndex loại bỏ cả hai. Nó không lưu trữ vector embedding, nhờ đó tránh được chi phí lưu trữ vector đắt đỏ, và nó không chia nhỏ tài liệu, qua đó giữ nguyên cấu trúc logic tự nhiên của tài liệu thay vì cắt xuyên qua nó.'
@@ -40,7 +32,6 @@ faqs:
     a: 'PageIndex được thiết kế cho các tài liệu chuyên môn dài, nơi cấu trúc đóng vai trò quan trọng và cần có trích dẫn có thể giải thích được, chẳng hạn như báo cáo tài chính và bản cáo bạch, hợp đồng pháp lý và án lệ, tài liệu y khoa và báo cáo thử nghiệm lâm sàng, cùng các tài liệu kỹ thuật như tài liệu tham khảo API và sổ tay vận hành.'
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/pageindex-vectorless-reasoning-rag/ -->
 {</* resource-info */>}
 
 ![PageIndex — banner chính thức](/images/articles/pageindex-vectorless-reasoning-rag/banner.png)
@@ -75,8 +66,7 @@ Stars: **29.202+** | Ngôn ngữ: Python | Giấy phép: Apache-2.0
 
 ### Giải pháp của PageIndex
 
-PageIndex mô phỏng cách **chuyên gia con người** đọc tài liệu:
-1. Xem cấu trúc mục lục trước (cây lập chỉ mục)
+PageIndex mô phỏng cách **chuyên gia con người** đọc tài liệu: 1. Xem cấu trúc mục lục trước (cây lập chỉ mục)
 2. Suy luận nên đi đến chương nào dựa trên câu hỏi
 3. Tìm kiếm sâu trong chương liên quan
 
@@ -86,9 +76,7 @@ PageIndex mô phỏng cách **chuyên gia con người** đọc tài liệu:
 
 ### 1. Tạo cấu trúc cây tài liệu
 
-PageIndex chuyển đổi PDF thành cấu trúc cây phân cấp:
-
-```json
+PageIndex chuyển đổi PDF thành cấu trúc cây phân cấp: ```json
 {
   "title": "Financial Stability",
   "node_id": "0006",
@@ -114,16 +102,14 @@ PageIndex chuyển đổi PDF thành cấu trúc cây phân cấp:
 
 ### 2. Tìm kiếm cây dựa trên suy luận
 
-Khi người dùng đặt câu hỏi, LLM sẽ:
-1. **Hiểu câu hỏi** — Phân tích ý định truy vấn
+Khi người dùng đặt câu hỏi, LLM sẽ: 1. **Hiểu câu hỏi** — Phân tích ý định truy vấn
 2. **Duyệt cấu trúc cây** — Suy luận nút nào có thể chứa câu trả lời
 3. **Tìm kiếm sâu trong nút liên quan** — Tìm thông tin cụ thể trong nút ứng viên
 4. **Trả về kết quả** — Kèm theo trích dẫn nguồn (số trang, chương)
 
 ### 3. Tìm kiếm cây Monte Carlo tương tự AlphaGo
 
-PageIndex lấy cảm hứng từ AlphaGo, sử dụng **thuật toán tìm kiếm cây**:
-- **Chọn** — Chọn nút hứa hẹn nhất
+PageIndex lấy cảm hứng từ AlphaGo, sử dụng **thuật toán tìm kiếm cây**: - **Chọn** — Chọn nút hứa hẹn nhất
 - **Mở rộng** — Mở rộng nút con
 - **Đánh giá** — LLM đánh giá mức độ liên quan của nút
 - **Lan truyền ngược** — Cập nhật trọng số nút
@@ -240,24 +226,21 @@ result = pi.query(
 
 ### 1. Phân tích tài liệu doanh nghiệp
 
-Giấy phép Apache-2.0 của PageIndex cho phép sử dụng thương mại:
-- **Phân tích tài chính** — Phân tích tự động báo cáo tài chính, hồ sơ SEC
+Giấy phép Apache-2.0 của PageIndex cho phép sử dụng thương mại: - **Phân tích tài chính** — Phân tích tự động báo cáo tài chính, hồ sơ SEC
 - **Tư vấn pháp lý** — Xem xét hợp đồng, nghiên cứu vụ án
 - **Tài liệu y tế** — Phân tích hồ sơ bệnh án, tài liệu y khoa
 - **Tài liệu chính phủ** — Phân tích chính sách, tìm kiếm quy định
 
 ### 2. Xây dựng sản phẩm SaaS
 
-Xây dựng dựa trên PageIndex:
-- **Nền tảng Q&A tài liệu thông minh**
+Xây dựng dựa trên PageIndex: - **Nền tảng Q&A tài liệu thông minh**
 - **Hệ thống cơ sở tri thức doanh nghiệp**
 - **Trình tạo báo cáo tự động**
 - **Công cụ xem xét tuân thủ**
 
 ### 3. Dịch vụ tư vấn
 
-Cung cấp liên quan đến PageIndex:
-- **Tư vấn kỹ thuật**
+Cung cấp liên quan đến PageIndex: - **Tư vấn kỹ thuật**
 - **Phát triển tùy chỉnh**
 - **Dịch vụ đào tạo**
 
@@ -317,9 +300,7 @@ Phù hợp: Khởi động nhanh, môi trường production
 
 ## Tóm tắt
 
-PageIndex là sự tiến hóa thế hệ tiếp theo của công nghệ RAG:
-
-✅ **29K+ Stars** — Cộng đồng công nhận  
+PageIndex là sự tiến hóa thế hệ tiếp theo của công nghệ RAG: ✅ **29K+ Stars** — Cộng đồng công nhận  
 ✅ **Không cần vector DB** — Tiết kiệm chi phí cơ sở hạ tầng đắt đỏ  
 ✅ **Dựa trên suy luận** — Thực sự hiểu cấu trúc tài liệu  
 ✅ **98.7% độ chính xác** — Dẫn đầu ngành  
@@ -350,9 +331,7 @@ PageIndex là sự tiến hóa thế hệ tiếp theo của công nghệ RAG:
 
 ## Hạ Tầng Đề Xuất Cho Tự Lưu Trữ
 
-Để chạy stack này 24/7 ổn định, lựa chọn hạ tầng rất quan trọng:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu. Lựa chọn mặc định cho developer độc lập.
+Để chạy stack này 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu. Lựa chọn mặc định cho developer độc lập.
 - **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — VPS Hong Kong, độ trễ thấp với người dùng Việt Nam. dibi8.com cũng được host ở đây.
 - **{{< aff "hostinger" "footer-cta-legacy" "Hostinger" >}}** — Lựa chọn VPS giá tốt cho thị trường Việt Nam, giảm 60% gói đầu tiên.
 
@@ -361,7 +340,6 @@ PageIndex là sự tiến hóa thế hệ tiếp theo của công nghệ RAG:
 *Last updated: 2026-05-07*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

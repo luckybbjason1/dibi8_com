@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/shellcheck" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/shellcheck" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/shellcheck" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/shellcheck" />
 title: 'ShellCheck: 39,456 GitHub Stars — Hướng Dẫn Cài Đặt và T...
 description: 'ShellCheck (SC) là công cụ phân tích tĩnh cho bash/sh shell script. Tích hợp với Docker, GitHub Actions, VS Code. Bao gồm cài đặt, cấu hình CI/CD, và tăng cường production.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [shellcheck, bash, 'phân-tích-tĩnh', linting, 'shell-script', devops, 'ci-cd', docker]
-aliases:
-- /vi/posts/shellcheck/
+aliases: - /vi/posts/shellcheck/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/shellcheck/ -->
 
 {{</* resource-info */>}}
 
@@ -78,9 +70,7 @@ Source Script → Lexer → Parser (AST) → Analyzer → Reporter
 
 ### Mức độ nghiêm trọng
 
-Mỗi phát hiện của ShellCheck mang một trong bốn mức độ nghiêm trọng:
-
-| Mức | Tác động exit code | Ví dụ |
+Mỗi phát hiện của ShellCheck mang một trong bốn mức độ nghiêm trọng: | Mức | Tác động exit code | Ví dụ |
 |-----|-------------------|-------|
 | Error | Exit khác 0 | Lỗi cú pháp, biến chưa định nghĩa |
 | Warning | Exit khác 0 | Biến không quote (SC2086) |
@@ -180,11 +170,9 @@ cabal install
 
 ```bash
 # Thêm vào .pre-commit-config.yaml
-repos:
-  - repo: https://github.com/koalaman/shellcheck-precommit
+repos: - repo: https://github.com/koalaman/shellcheck-precommit
     rev: v0.11.0
-    hooks:
-      - id: shellcheck
+    hooks: - id: shellcheck
         args: ["--severity=warning"]
 ```
 
@@ -208,9 +196,7 @@ Cài đặt extension **ShellCheck** của Timon Wong (marketplace ID: `timonwon
 
 ### Vim / Neovim
 
-Sử dụng ALE (Asynchronous Lint Engine):
-
-```vim
+Sử dụng ALE (Asynchronous Lint Engine): ```vim
 " .vimrc hoặc init.vim
 let g:ale_linters = {
 \   sh: [shellcheck],
@@ -221,9 +207,7 @@ let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = always
 ```
 
-Sử dụng native LSP trong Neovim:
-
-```lua
+Sử dụng native LSP trong Neovim: ```lua
 -- init.lua (nvim-lspconfig)
 require(lspconfig).bashls.setup {
   settings = {
@@ -270,36 +254,26 @@ name: ShellCheck
 
 on: [push, pull_request]
 
-jobs:
-  shellcheck:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
+jobs: shellcheck: runs-on: ubuntu-latest
+    steps: - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Chạy ShellCheck
         uses: ludeeus/action-shellcheck@master
-        env:
-          SEVERITY: warning
-        with:
-          ignore_paths: >-
+        env: SEVERITY: warning
+        with: ignore_paths: >-
             ./vendor
             ./third_party
 ```
 
-Cách thiết lập thủ công với phiên bản cố định:
-
-```yaml
+Cách thiết lập thủ công với phiên bản cố định: ```yaml
 # .github/workflows/shellcheck-manual.yml
 name: ShellCheck Manual
 
 on: [push, pull_request]
 
-jobs:
-  shellcheck:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: shellcheck: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
 
       - name: Cài đặt ShellCheck
         run: |
@@ -316,16 +290,12 @@ jobs:
 
 ```yaml
 # .gitlab-ci.yml
-stages:
-  - lint
+stages: - lint
 
-shellcheck:
-  stage: lint
+shellcheck: stage: lint
   image: koalaman/shellcheck-alpine:stable
-  script:
-    - find . -name "*.sh" -type f -exec shellcheck --severity=warning {} +
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  script: - find . -name "*.sh" -type f -exec shellcheck --severity=warning {} +
+  rules: - if: $CI_PIPELINE_SOURCE == "merge_request_event"
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 ```
 
@@ -368,14 +338,9 @@ pipeline {
 ```yaml
 # .circleci/config.yml
 version: 2.1
-orbs:
-  shellcheck: circleci/shellcheck@3.2.0
+orbs: shellcheck: circleci/shellcheck@3.2.0
 
-workflows:
-  lint:
-    jobs:
-      - shellcheck/check:
-          severity: "warning"
+workflows: lint: jobs: - shellcheck/check: severity: "warning"
           exclude: "SC1090,SC1091"
 ```
 
@@ -455,9 +420,7 @@ ShellCheck được áp dụng từ developer cá nhân đến enterprise CI/CD 
 
 ### Benchmark hiệu năng
 
-Test trên CI runner tiêu chuẩn 2024 (Ubuntu 24.04, 2 vCPU, 4 GB RAM):
-
-| Kích thước script | Số dòng | ThờI gian phân tích | Bộ nhớ |
+Test trên CI runner tiêu chuẩn 2024 (Ubuntu 24.04, 2 vCPU, 4 GB RAM): | Kích thước script | Số dòng | ThờI gian phân tích | Bộ nhớ |
 |------------------|---------|---------------------|--------|
 | Nhỏ | 50 | 0.05s | 12 MB |
 | Trung bình | 500 | 0.3s | 28 MB |
@@ -515,14 +478,10 @@ echo "Tất cả script đã pass ShellCheck ở mức: $SEVERITY"
 name: Security Scan
 on: [push, pull_request]
 
-jobs:
-  scan:
-    runs-on: ubuntu-latest
-    permissions:
-      security-events: write
+jobs: scan: runs-on: ubuntu-latest
+    permissions: security-events: write
       contents: read
-    steps:
-      - uses: actions/checkout@v4
+    steps: - uses: actions/checkout@v4
 
       - name: Chạy ShellCheck SARIF
         run: |
@@ -532,8 +491,7 @@ jobs:
       - name: Upload lên GitHub Security
         uses: github/codeql-action/upload-sarif@v3
         if: always()
-        with:
-          sarif_file: shellcheck.sarif
+        with: sarif_file: shellcheck.sarif
 ```
 
 ### Stage linting trong Dockerfile
@@ -552,9 +510,7 @@ ENTRYPOINT ["/usr/local/bin/deploy.sh"]
 
 ### Theo dõi ShellCheck trong CI
 
-Theo dõi số lượng lỗi ShellCheck như một team metric:
-
-```bash
+Theo dõi số lượng lỗi ShellCheck như một team metric: ```bash
 #!/bin/bash
 # ci-metrics.sh — theo dõi số warning shellcheck theo thờI gian
 
@@ -643,9 +599,7 @@ Dùng image chính thức: `docker run --rm -v "$PWD:/mnt" koalaman/shellcheck:s
 
 ShellCheck là công cụ phân tích tĩnh shell script trưởng thành và được áp dụng rộng rãi nhất. Với 39,456+ sao GitHub, tích hợp CI/CD toàn diện và hỗ trợ mọi editor chính, ShellCheck xứng đáng có mặt trong toolchain của mọi developer. Bắt đầu với Docker one-liner để có phản hồi tức thì, thêm cấu hình project `.shellcheckrc` cho tính nhất quán team, và kết nối GitHub Actions để bắt bug trước khi merge.
 
-Các hành động cho team bạn:
-
-1. Chạy `shellcheck` trên top 5 script triển khai quan trọng nhất ngay hôm nay
+Các hành động cho team bạn: 1. Chạy `shellcheck` trên top 5 script triển khai quan trọng nhất ngay hôm nay
 2. Cài extension VS Code hoặc tích hợp Vim ALE để có phản hồi real-time
 3. Tạo `.shellcheckrc` ở repo root với các quy tắc project-specific
 4. Thiết lập workflow GitHub Actions để chặn merge có warning
@@ -656,9 +610,7 @@ Tham gia [nhóm Telegram dibi8](https://t.me/dibi8) để thảo luận về dev
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -677,7 +629,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [POSIX.1-2017 Shell Command Language](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

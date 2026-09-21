@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/agentmemory-persistent-memory-ai-coding-agents" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/agentmemory-persistent-memory-ai-coding-agents" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/agentmemory-persistent-memory-ai-coding-agents" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/agentmemory-persistent-memory-ai-coding-agents" />
 title: 'AgentMemory: Hệ Thống Bộ Nhớ Bền Vững Số 1 cho Đại Lý Mã...
 description: 'AgentMemory (22.038 sao GitHub) cung cấp bộ nhớ bền vững cho đại lý mã hóa AI dựa trên các đánh giá thực tế. Nhớ các phiên trước, duy trì ngữ cảnh qua nhiều ngày, học từ các tương tác trước. Hỗ trợ Claude Code, Codex CLI, OpenCode và hơn thế. Bao gồm hướng dẫn cài đặt, phân tích kiến trúc và đánh giá.'
 date: 2026-06-08
-lastmod:  2026-06-08slug: 'agentmemory-persistent-memory-ai-coding-agents'
+lastmod: 2026-06-08
+slug: 'agentmemory-persistent-memory-ai-coding-agents'
 category: 'data-science'
 tags: ['agent memory', 'persistent memory', 'AI coding agents', 'context continuity', 'AgentMemory', 'session memory', 'agent framework', 'AI benchmark']
 github_repo: 'https://github.com/rohitg00/agentmemory'
@@ -17,8 +13,6 @@ license: MIT
 featureImage: 'https://avatars.githubusercontent.com/u/33592279'
 lang: vi
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/agentmemory-persistent-memory-ai-coding-agents/ -->
 
 # AgentMemory: Hệ Thống Bộ Nhớ Bền Vững Số 1 cho Đại Lý Mã Hóa AI — 22.000 Sao Với Đánh Giá Thực Tế — Hướng Dẫn Thực Tế 2026
 
@@ -56,8 +50,7 @@ lang: vi
 
 AgentMemory là **một hệ thống bộ nhớ bền vững cho đại lý mã hóa AI** cho phép đại lý nhớ và truy xuất thông tin giữa các phiên. Nó sử dụng sự kết hợp của vector embeddings, knowledge graphs và lưu trữ事实 có cấu trúc để tạo ra một bộ nhớ có thể tìm kiếm mà đại lý có thể truy vấn vào đầu mỗi phiên.
 
-Tính năng cốt lõi:
-- **Bộ nhớ liên phiên** — Nhớ những gì đã xảy ra trong các phiên trước, ngày hoặc tuần trước
+Tính năng cốt lõi: - **Bộ nhớ liên phiên** — Nhớ những gì đã xảy ra trong các phiên trước, ngày hoặc tuần trước
 - **Hỗ trợ đa đại lý** — Chia sẻ bộ nhớ giữa Claude Code, Codex, OpenCode và hơn thế
 - **Sự kiện có cấu trúc** — Lưu trữ quyết định, sửa bug, mẫu kiến trúc dưới dạng dữ liệu có cấu trúc
 - **Tìm kiếm ngữ nghĩa** — Tìm ngữ cảnh quá khứ liên quan bằng truy xuất dựa trên embedding
@@ -105,8 +98,7 @@ extractor.extract_from_session(
     extract_types=["decisions", "fixes", "patterns", "config"]
 )
 
-# Kết quả:
-# - 47 sự kiện được trích xuất (sửa bug, quyết định, mẫu)
+# Kết quả: # - 47 sự kiện được trích xuất (sửa bug, quyết định, mẫu)
 # - 12 vector embeddings được lưu trữ
 # - 89 edges trong knowledge graph
 ```
@@ -129,8 +121,7 @@ context = retriever.retrieve(
     session_type="coding"
 )
 
-# Trả về ngữ cảnh bộ nhớ có cấu trúc:
-# [
+# Trả về ngữ cảnh bộ nhớ có cấu trúc: # [
 #   {"type": "fix", "date": "2026-06-05", "summary": "Đã sửa vấn đề refresh token JWT"},
 #   {"type": "decision", "date": "2026-06-01", "summary": "Chọn bcrypt thay vì argon2 cho hash mật khẩu"},
 #   ...
@@ -192,16 +183,13 @@ agentmemory init --graph-store neo4j --neo4j-url bolt://neo4j:7687
 
 ## Tích hợp với Claude Code, Codex CLI, OpenCode và Gemini CLI
 
-AgentMemory tích hợp như một hook/middleware cho bất kỳ đại lý nào hỗ trợ gọi công cụ:
-
-### Claude Code
+AgentMemory tích hợp như một hook/middleware cho bất kỳ đại lý nào hỗ trợ gọi công cụ: ### Claude Code
 
 ```bash
 # Plugin AgentMemory cho Claude Code
 agentmemory install claude-code
 
-# Bây giờ mỗi phiên Claude Code tự động:
-# 1. Bắt đầu bằng cách truy xuất bộ nhớ liên quan
+# Bây giờ mỗi phiên Claude Code tự động: # 1. Bắt đầu bằng cách truy xuất bộ nhớ liên quan
 # 2. Lưu trữ sự kiện mới trong suốt phiên
 # 3. Cập nhật bộ nhớ vào cuối phiên
 ```
@@ -221,8 +209,7 @@ export AGENTMEMORY_PROJECT=./my-project
 # Plugin OpenCode
 agentmemory install opencode
 
-# Ngữ cảnh bộ nhớ được injected như một tool call:
-# agentmemory.query("auth-related changes")
+# Ngữ cảnh bộ nhớ được injected như một tool call: # agentmemory.query("auth-related changes")
 # Trả về ngữ cảnh quá khứ liên quan dưới dạng dữ liệu có cấu trúc
 ```
 
@@ -232,9 +219,7 @@ agentmemory install opencode
 
 ### Tác động của Bộ nhớ đến Hiệu suất Đại lý
 
-Đánh giá trên 500 phiên phát triển thực tế (sửa bug, triển khai tính năng, refactoring):
-
-| Chỉ số | Không Bộ nhớ | Dùng AgentMemory | Cải thiện |
+Đánh giá trên 500 phiên phát triển thực tế (sửa bug, triển khai tính năng, refactoring): | Chỉ số | Không Bộ nhớ | Dùng AgentMemory | Cải thiện |
 |--------|-------------|-----------------|-----------|
 | Độ chính xác Recall ngữ cảnh | 58% | 89% | +53% |
 | Thời gian sửa bug | 42 phút | 28 phút | -33% |
@@ -243,9 +228,7 @@ agentmemory install opencode
 
 ### Bảo tồn Theo Thời gian
 
-Bộ nhớ tồn tại như thế nào qua các khoảng thời gian khác nhau:
-
-| Thời gian kể từ Phiên trước | Độ chính xác |
+Bộ nhớ tồn tại như thế nào qua các khoảng thời gian khác nhau: | Thời gian kể từ Phiên trước | Độ chính xác |
 |---------------------------|-------------|
 | Cùng ngày | 96% |
 | 1 tuần | 91% |
@@ -255,9 +238,7 @@ Bộ nhớ tồn tại như thế nào qua các khoảng thời gian khác nhau:
 
 ### Trường hợp Sử dụng Thực tế: Phát triển Đội nhóm
 
-Một đội 5 nhà phát triển sử dụng AgentMemory:
-
-```bash
+Một đội 5 nhà phát triển sử dụng AgentMemory: ```bash
 # Developer A sửa bug auth vào thứ Hai
 # Developer B nhận cùng task vào thứ Ba
 # AgentMemory truy xuất sửa chữa và ngữ cảnh của A
@@ -267,8 +248,7 @@ agentmemory query \
   --query "authentication bug fixes" \
   --since "2026-06-02"
 
-# Trả về:
-# - Fix được áp dụng ngày 2026-06-02 bởi dev-A
+# Trả về: # - Fix được áp dụng ngày 2026-06-02 bởi dev-A
 # - Nguyên nhân gốc: JWT tokens hết hạn
 # - Giải pháp: thêm token refresh middleware
 # - File liên quan: middleware/auth.py, services/jwt.js
@@ -319,8 +299,7 @@ agentmemory pull --project ./my-app
 # Xem thống kê bộ nhớ
 agentmemory stats --project ./my-app
 
-# Output:
-# Tổng số facts: 1,247
+# Output: # Tổng số facts: 1,247
 # Tổng số phiên: 89
 # Fact type phổ biến nhất: "bug_fix" (34%)
 # Tăng trưởng bộ nhớ: +127 facts tuần này
@@ -357,9 +336,7 @@ agentmemory export --format json --output ./memory-report.json
 
 ## Hạn chế / Đánh giá Trung thực
 
-AgentMemory không dành cho tất cả mọi người:
-
-1. **Dự án cá nhân nhỏ** — Nếu bạn là nhà phát triển duy nhất và làm việc trong các phiên đơn, bộ nhớ mang lại giá trị hạn chế. Đại lý đủ nhanh để xử lý mã nguồn nhỏ mà không cần bộ nhớ.
+AgentMemory không dành cho tất cả mọi người: 1. **Dự án cá nhân nhỏ** — Nếu bạn là nhà phát triển duy nhất và làm việc trong các phiên đơn, bộ nhớ mang lại giá trị hạn chế. Đại lý đủ nhanh để xử lý mã nguồn nhỏ mà không cần bộ nhớ.
 2. **Mã nhạy cảm với quyền riêng tư** — Bộ nhớ lưu trữ các mẫu mã và quyết định tại chỗ. Đối với mã nguồn doanh nghiệp, bạn cần kiểm tra các fact được trích xuất và lưu trữ. Dự án bao gồm kiểm soát quyền riêng tư, nhưng hãy xem xét kỹ schema.
 3. **Thời gian Cold Start** — Bộ nhớ cần thời gian để xây dựng. Một dự án mới bắt đầu với bộ nhớ trống và cần 10-20 phiên trước khi hệ thống trở nên hữu ích. Lập kế hoạch cho giai đoạn ramp-up này.
 4. **Memory Drift** — Theo thời gian, các fact cũ có thể làm nhầm lẫn đại lý. Triển khai dọn dẹp bộ nhớ định kỳ (hàng tháng khuyến nghị bằng cách sử dụng `agentmemory prune --older-than 90d`).
@@ -414,7 +391,6 @@ Tham gia [nhóm Telegram tiếng Việt dibi8](https://t.me/DIBI8_Group/18) đ�
 Một số liên kết trên là affiliate links. dibi8.com có thể nhận hoa hồng nếu bạn đăng ký, không tốn thêm chi phí cho bạn. Điều này giúp duy trì trang web và nội dung miễn phí.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

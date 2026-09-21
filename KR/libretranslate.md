@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/libretranslate" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/libretranslate" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/libretranslate" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/libretranslate" />
 title: 'LibreTranslate: 14.4K+ Stars 자체 호스팅 번역 API — 2026 프로덕션 배...
 description: 'LibreTranslate (LT)는 Argos Translate 기반의 무ㅣㅣ료 오픈소스 기계 번역 API입니다. Docker, CUDA GPU, 30개 이상 언어 및 오프라인 배포를 지원합니다. 설치 설정, 성능 벤치마크, 모니터링 및 OpenAI Whisper, Coqui TTS, Argos Translate와의 통합을 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [libretranslate, 기계번역, 자체호스팅, docker, api, 오픈소스, 'argos translate', 자연어처리]
-aliases:
-- /kr/posts/libretranslate/
+aliases: - /kr/posts/libretranslate/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/libretranslate/ -->
 
 {{</* resource-info */>}}
 
@@ -88,9 +80,7 @@ LibreTranslate는 여러 배포 경로를 제공합니다. 격리, 재현성 및
 
 ### Docker 빠른 시작
 
-로컬에서 LibreTranslate를 실행하는 가장 빠른 방법:
-
-```bash
+로컬에서 LibreTranslate를 실행하는 가장 빠른 방법: ```bash
 # Docker로 실행
 docker run -ti --rm -p 5000:5000 \
   -v lt-models:/home/libretranslate/.local \
@@ -102,49 +92,32 @@ docker run -ti --rm -p 5000:5000 \
 
 ### 프로덕션 Docker Compose
 
-프로덕션 배포를 위해 지속성 볼륨, 상태 확인 및 리소스 제한이 있는 전용 `docker-compose.yml`을 사용합니다:
-
-```yaml
+프로덕션 배포를 위해 지속성 볼륨, 상태 확인 및 리소스 제한이 있는 전용 `docker-compose.yml`을 사용합니다: ```yaml
 # docker-compose.yml - 프로덕션 설정
 version: '3.8'
 
-services:
-  libretranslate:
-    container_name: libretranslate
+services: libretranslate: container_name: libretranslate
     image: libretranslate/libretranslate:v1.9.5
     restart: unless-stopped
-    ports:
-      - "5000:5000"
-    environment:
-      - LT_LOAD_ONLY=en,es,fr,de,it,zh,ja,ru,pt,pl,nl
+    ports: - "5000:5000"
+    environment: - LT_LOAD_ONLY=en,es,fr,de,it,zh,ja,ru,pt,pl,nl
       - LT_API_KEYS=true
       - LT_REQ_LIMIT=60
       - LT_THREADS=4
       - LT_UPDATE_MODELS=true
-    volumes:
-      - lt-models:/home/libretranslate/.local
+    volumes: - lt-models:/home/libretranslate/.local
       - lt-db:/app/db
-    healthcheck:
-      test: ['CMD-SHELL', './venv/bin/python scripts/healthcheck.py']
+    healthcheck: test: ['CMD-SHELL', './venv/bin/python scripts/healthcheck.py']
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 60s
-    deploy:
-      resources:
-        limits:
-          memory: 4G
-        reservations:
-          memory: 2G
+    deploy: resources: limits: memory: 4G
+        reservations: memory: 2G
 
-volumes:
-  lt-models:
-  lt-db:
-```
+volumes: lt-models: lt-db: ```
 
-배포:
-
-```bash
+배포: ```bash
 docker compose up -d
 ```
 
@@ -161,17 +134,13 @@ cd LibreTranslate
 docker compose -f docker-compose.cuda.yml up -d --build
 ```
 
-GPU 활용 확인:
-
-```bash
+GPU 활용 확인: ```bash
 nvidia-smi
 ```
 
 ### 네이티브 Python 설치
 
-개발 환경이나 Docker를 사용할 수 없는 환경의 경우:
-
-```bash
+개발 환경이나 Docker를 사용할 수 없는 환경의 경우: ```bash
 # pip를 통해 설치
 pip install libretranslate==1.9.5
 
@@ -182,9 +151,7 @@ libretranslate --host 0.0.0.0 --port 5000 \
   --threads 4
 ```
 
-또는 소스에서 빌드:
-
-```bash
+또는 소스에서 빌드: ```bash
 git clone https://github.com/LibreTranslate/LibreTranslate.git
 cd LibreTranslate
 pip install -e .
@@ -193,9 +160,7 @@ python main.py --host 0.0.0.0 --port 5000
 
 ### DigitalOcean에 배포하기 (프로덕션 클라우드)
 
-큐호스팅 프로덕션 인스턴스의 경우 DigitalOcean은 App Platform 또는 Droplet을 통해 쉬운 배포 경로를 제공합니다. 1-Click Docker 이미지를 사용하여 배포합니다:
-
-```bash
+큐호스팅 프로덕션 인스턴스의 경우 DigitalOcean은 App Platform 또는 Droplet을 통해 쉬운 배포 경로를 제공합니다. 1-Click Docker 이미지를 사용하여 배포합니다: ```bash
 # 새로운 Ubuntu 24.04 Droplet에서
 curl -fsSL https://get.docker.com | sh
 mkdir -p ~/libretranslate && cd ~/libretranslate
@@ -203,19 +168,14 @@ mkdir -p ~/libretranslate && cd ~/libretranslate
 # 프로덕션 compose 파일 생성
 cat > docker-compose.yml << EOF
 version: '3.8'
-services:
-  libretranslate:
-    image: libretranslate/libretranslate:v1.9.5
+services: libretranslate: image: libretranslate/libretranslate:v1.9.5
     restart: always
-    ports:
-      - "5000:5000"
-    environment:
-      - LT_LOAD_ONLY=en,es,fr,de,it,zh,ja,ru,pt
+    ports: - "5000:5000"
+    environment: - LT_LOAD_ONLY=en,es,fr,de,it,zh,ja,ru,pt
       - LT_API_KEYS=true
       - LT_REQ_LIMIT=120
       - LT_THREADS=4
-    volumes:
-      - ./models:/home/libretranslate/.local
+    volumes: - ./models:/home/libretranslate/.local
       - ./db:/app/db
 EOF
 
@@ -236,8 +196,7 @@ import requests
 
 LIBRETRANSLATE_URL = "http://localhost:5000/translate"
 
-def translate_text(text: str, source: str = "en", target: str = "es") -> str:
-    payload = {
+def translate_text(text: str, source: str = "en", target: str = "es") -> str: payload = {
         "q": text,
         "source": source,
         "target": target,
@@ -251,8 +210,7 @@ def translate_text(text: str, source: str = "en", target: str = "es") -> str:
     return response.json()["translatedText"]
 
 # 사용 예시
-if __name__ == "__main__":
-    result = translate_text("Hello, production deployment!", "en", "de")
+if __name__ == "__main__": result = translate_text("Hello, production deployment!", "en", "de")
     print(f"번역 결과: {result}")
 ```
 
@@ -307,9 +265,7 @@ console.log(result); // "Déployer en production"
 
 ### OpenAI Whisper 오디오-번역 파이프라인
 
-일반적인 패턴은 음성 인식과 번역을 결합하는 것입니다. 다음은 Whisper를 사용한 전사 및 LibreTranslate를 사용한 번역의 완전한 파이프라인입니다:
-
-```python
+일반적인 패턴은 음성 인식과 번역을 결합하는 것입니다. 다음은 Whisper를 사용한 전사 및 LibreTranslate를 사용한 번역의 완전한 파이프라인입니다: ```python
 # whisper_translate_pipeline.py
 import whisper
 import requests
@@ -317,8 +273,7 @@ import requests
 WHISPER_MODEL = whisper.load_model("base")
 LIBRE_URL = "http://localhost:5000/translate"
 
-def transcribe_and_translate(audio_path: str, target_lang: str = "en") -> dict:
-    # 단계 1: Whisper로 오디오 전사
+def transcribe_and_translate(audio_path: str, target_lang: str = "en") -> dict: # 단계 1: Whisper로 오디오 전사
     result = WHISPER_MODEL.transcribe(audio_path)
     source_text = result["text"]
     detected_lang = result.get("language", "auto")
@@ -347,9 +302,7 @@ print(f"ES: {output[translated]}")
 
 ### Coqui TTS 통합 (번역 + 음성 합성)
 
-텍스트를 번역하고 대상 언어로 음성을 합성합니다:
-
-```python
+텍스트를 번역하고 대상 언어로 음성을 합성합니다: ```python
 # translate_and_speak.py
 import requests
 from TTS.api import TTS
@@ -357,8 +310,7 @@ from TTS.api import TTS
 # TTS 초기화
 tts = TTS("tts_models/multilingual/multi-dataset/xtts_v2", gpu=False)
 
-def translate_and_speak(text: str, target_lang: str, speaker_wav: str):
-    # 번역
+def translate_and_speak(text: str, target_lang: str, speaker_wav: str): # 번역
     payload = {"q": text, "source": "en", "target": target_lang, "format": "text"}
     response = requests.post("http://localhost:5000/translate", json=payload)
     translated = response.json()["translatedText"]
@@ -374,8 +326,7 @@ def translate_and_speak(text: str, target_lang: str, speaker_wav: str):
     return output_path
 
 # 다국어 오디오 생성
-for lang in ["es", "fr", "de"]:
-    translate_and_speak("Welcome to our service", lang, "reference.wav")
+for lang in ["es", "fr", "de"]: translate_and_speak("Welcome to our service", lang, "reference.wav")
 ```
 
 ### cURL API 예시
@@ -415,9 +366,7 @@ curl -X POST http://localhost:5000/translate \
 
 ### Nginx 역방향 프록시 구성
 
-도메인 및 HTTPS가 있는 프로덕션 배포의 경우:
-
-```nginx
+도메인 및 HTTPS가 있는 프로덕션 배포의 경우: ```nginx
 # /etc/nginx/sites-available/libretranslate
 server {
     listen 443 ssl http2;
@@ -446,9 +395,7 @@ server {
 }
 ```
 
-구성 활성화:
-
-```bash
+구성 활성화: ```bash
 sudo ln -s /etc/nginx/sites-available/libretranslate /etc/nginx/sites-enabled/
 sudo nginx -t && sudo systemctl reload nginx
 ```
@@ -471,9 +418,7 @@ LibreTranslate의 성능은 하드웨어 구성, 로드된 언어 및 텍스트 
 
 ### 번역 품질 비교
 
-WMT14 영어-독일어 테스트 세트에서의 BLEU 점수 (높을수록 좋음):
-
-| 시스템 | BLEU 점수 | 단어 오류율 | 추론 시간 |
+WMT14 영어-독일어 테스트 세트에서의 BLEU 점수 (높을수록 좋음): | 시스템 | BLEU 점수 | 단어 오류율 | 추론 시간 |
 |-------|----------|-----------|---------|
 | LibreTranslate (Argos) | 22.4 | 62% | 120ms |
 | Google Translate API | 26.8 | 51% | 85ms |
@@ -508,19 +453,13 @@ LibreTranslate의 경제적 논거는 볼륨에 비례하여 강화됩니다. �
 
 ### API 키 관리
 
-액세스를 제어하고 남용을 방지하기 위해 API 키 인증을 활성화합니다:
-
-```yaml
+액세스를 제어하고 남용을 방지하기 위해 API 키 인증을 활성화합니다: ```yaml
 # API 키가 활성화된 docker-compose.yml
-services:
-  libretranslate:
-    image: libretranslate/libretranslate:v1.9.5
-    environment:
-      - LT_API_KEYS=true
+services: libretranslate: image: libretranslate/libretranslate:v1.9.5
+    environment: - LT_API_KEYS=true
       - LT_REQ_LIMIT=100
       - LT_REQ_LIMIT_PER_DAY=10000
-    volumes:
-      - lt-models:/home/libretranslate/.local
+    volumes: - lt-models:/home/libretranslate/.local
       - lt-db:/app/db
 ```
 
@@ -528,9 +467,7 @@ services:
 
 ### 커스텀 모델 로딩
 
-필요한 언어만 로드하여 메모리 사용을 제어합니다:
-
-```bash
+필요한 언어만 로드하여 메모리 사용을 제어합니다: ```bash
 # 유럽 언어만 로드
 LT_LOAD_ONLY=en,es,fr,de,it,pt,nl,pl,ru docker compose up -d
 
@@ -540,18 +477,14 @@ LT_LOAD_ONLY=en,ja,zh,ko,es,fr,de docker compose up -d
 
 ### 상태 모니터링
 
-LibreTranslate는 내장 상태 확인 엔드포인트를 포함합니다:
-
-```bash
+LibreTranslate는 내장 상태 확인 엔드포인트를 포함합니다: ```bash
 # 서비스 상태 확인
 curl http://localhost:5000/health
 
 # 예상 응답: {"status": "ok"}
 ```
 
-Prometheus 기반 모니터링의 경우 간단한 익스포터를 추가합니다:
-
-```python
+Prometheus 기반 모니터링의 경우 간단한 익스포터를 추가합니다: ```python
 # prometheus_exporter.py
 from prometheus_client import start_http_server, Counter, Histogram
 import requests
@@ -560,95 +493,64 @@ import time
 TRANSLATION_COUNTER = Counter(libretranslate_requests_total, '총 번역 수')
 LATENCY_HISTOGRAM = Histogram(libretranslate_latency_seconds, '번역 지연 시간')
 
-def monitor():
-    start_http_server(9090)
-    while True:
-        start = time.time()
+def monitor(): start_http_server(9090)
+    while True: start = time.time()
         requests.post("http://localhost:5000/translate",
             json={"q": "test", "source": "en", "target": "es"})
         LATENCY_HISTOGRAM.observe(time.time() - start)
         TRANSLATION_COUNTER.inc()
         time.sleep(30)
 
-if __name__ == "__main__":
-    monitor()
+if __name__ == "__main__": monitor()
 ```
 
 ### Kubernetes 자동 확장
 
-고가용성 배포를 위해 HPA가 있는 Kubernetes를 사용합니다:
-
-```yaml
+고가용성 배포를 위해 HPA가 있는 Kubernetes를 사용합니다: ```yaml
 # libretranslate-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
-metadata:
-  name: libretranslate
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: libretranslate
-  template:
-    metadata:
-      labels:
-        app: libretranslate
-    spec:
-      containers:
-      - name: libretranslate
+metadata: name: libretranslate
+spec: replicas: 2
+  selector: matchLabels: app: libretranslate
+  template: metadata: labels: app: libretranslate
+    spec: containers: - name: libretranslate
         image: libretranslate/libretranslate:v1.9.5
-        ports:
-        - containerPort: 5000
-        env:
-        - name: LT_LOAD_ONLY
+        ports: - containerPort: 5000
+        env: - name: LT_LOAD_ONLY
           value: "en,es,fr,de,it"
         - name: LT_THREADS
           value: "4"
-        resources:
-          requests:
-            memory: "2Gi"
+        resources: requests: memory: "2Gi"
             cpu: "1000m"
-          limits:
-            memory: "4Gi"
+          limits: memory: "4Gi"
             cpu: "2000m"
-        livenessProbe:
-          httpGet:
-            path: /health
+        livenessProbe: httpGet: path: /health
             port: 5000
           initialDelaySeconds: 60
           periodSeconds: 30
 ---
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
-metadata:
-  name: libretranslate-hpa
-spec:
-  scaleTargetRef:
-    apiVersion: apps/v1
+metadata: name: libretranslate-hpa
+spec: scaleTargetRef: apiVersion: apps/v1
     kind: Deployment
     name: libretranslate
   minReplicas: 2
   maxReplicas: 10
-  metrics:
-  - type: Resource
-    resource:
-      name: cpu
-      target:
-        type: Utilization
+  metrics: - type: Resource
+    resource: name: cpu
+      target: type: Utilization
         averageUtilization: 70
 ```
 
-배포:
-
-```bash
+배포: ```bash
 kubectl apply -f libretranslate-deployment.yaml
 ```
 
 ### 백업 전략
 
-언어 모델은 다시 다운로드할 수 있지만 API 키와 로그가 있는 SQLite 데이터베이스는 백업해야 합니다:
-
-```bash
+언어 모델은 다시 다운로드할 수 있지만 API 키와 로그가 있는 SQLite 데이터베이스는 백업해야 합니다: ```bash
 #!/bin/bash
 # backup.sh - 일일 백업 cron 작업
 BACKUP_DIR="/backups/libretranslate"
@@ -664,9 +566,7 @@ rsync -av /var/lib/docker/volumes/lt-models/_data/ "$BACKUP_DIR/models/"
 find "$BACKUP_DIR" -name "db_*.sqlite" -mtime +7 -delete
 ```
 
-crontab에 추가:
-
-```bash
+crontab에 추가: ```bash
 0 2 * * * /path/to/backup.sh
 ```
 
@@ -733,9 +633,7 @@ LibreTranslate는 Argos Translate 형식(OpenNMT CTranslate2 모델)을 지원�
 
 ### React나 Vue와 같은 프론트엔드 프레임워크에서 LibreTranslate를 사용할 수 있나요?
 
-예. `/translate` 엔드포인트는 JSON을 수락하고 구성 시 CORS를 지원합니다. React Hook 예시:
-
-```typescript
+예. `/translate` 엔드포인트는 JSON을 수락하고 구성 시 CORS를 지원합니다. React Hook 예시: ```typescript
 // useTranslation.ts
 import { useState, useCallback } from "react";
 
@@ -781,9 +679,7 @@ LibreTranslate는 핵심 약속을 이행합니다: 제로 요청당 비용과 �
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -805,7 +701,6 @@ LibreTranslate는 핵심 약속을 이행합니다: 제로 요청당 비용과 �
 > **고지사항**: 이 문서에는 제휴 링크가 포함되어 있습니다. 이 가이드의 추천 링크를 통해 DigitalOcean에 가입하면 추가 비용 없이 커미션을 받을 수 있습니다. 제휴 링크는 이와 같은 오픈소스 문서 프로젝트의 지속적인 유지보수를 지원하는 데 도움이 됩니다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

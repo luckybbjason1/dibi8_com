@@ -1,19 +1,14 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-engineering-from-scratch" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-engineering-from-scratch" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-engineering-from-scratch" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-engineering-from-scratch" />
 title: "从零开始构建 AI 工程：打造生产级 LLM 系统——2026 完整指南"
-description: "AI Engineering From Scratch（32,771 颗星）是一套全面的课程体系，涵盖 LLM 微调、RAG、Agent 框架和生产部署。学习构建、交付和扩展 AI 系统。". Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "AI Engineering From Scratch（32,771 颗星）是一套全面的课程体系，涵盖 LLM 微调、RAG、Agent 框架和生产部署。学习构建、交付和扩展 AI 系统。"
 date: 2026-06-15
-lastmod:  2026-06-15slug: ai-engineering-from-scratch
+lastmod: 2026-06-15
+slug: ai-engineering-from-scratch
 category: llm-frameworks
 tags: ['ai 工程', 'llm', '微调', 'rag', 'agent 框架', '生产部署', '机器学习']
 github_repo: "https://github.com/rohitg00/ai-engineering-from-scratch"
 license: MIT
-images:
-  - url: "https://opengraph.github.com/github/rohitg00/ai-engineering-from-scratch"
+images: - url: "https://opengraph.github.com/github/rohitg00/ai-engineering-from-scratch"
     alt: "AI Engineering From Scratch GitHub OG"
     role: reference
   - url: "https://raw.githubusercontent.com/rohitg00/ai-engineering-from-scratch/main/README.md"
@@ -22,11 +17,7 @@ images:
   - url: "https://api.star-history.com/svg?repos=rohitg00/ai-engineering-from-scratch&type=date"
     alt: "星标历史"
     role: reference
-lang: zh
-featureImage: /images/articles/ai-engineering-from-scratch-build-production-llm-systems-com.jpg
----
-
-<!-- canonical: https://dibi8.com/zh/tools/ai-engineering-from-scratch/ -->
+featureImage: /images/articles/ai-engineering-from-scratch-build-production-llm-systems-com.jpg---
 
 ## 快速概览
 
@@ -129,7 +120,13 @@ python3 src/train.py --device cpu
 AI Engineering From Scratch 是对流行 AI 开发工具的补充，而非替代：
 
 | 工具 | 集成点 | 用途 |
-|------|-------|------|
+|
+---
+|
+---
+|
+---
+|
 | **LangChain** | 模块 5（RAG） | 构建生产级 RAG 管道 |
 | **LlamaIndex** | 模块 5（RAG） | 高级索引和检索 |
 | **Hugging Face** | 模块 4（微调） | 模型仓库、数据集和推理 |
@@ -158,7 +155,11 @@ python3 -m vllm.entrypoints.api_server \
 
 ```
 指标                      | 仅学框架 | 从零实现
---------------------------|---------|----------
+
+---
+|
+---
+|---
 调试时间（平均）          | 4.2 小时 | 1.1 小时
 自定义架构设计            | 罕见    | 常规操作
 性能优化                  | 表面理解 | 深入掌握
@@ -179,15 +180,13 @@ Agent 故障恢复            | 重启    | 根因分析
 import torch
 import torch.nn.functional as F
 
-def attention_from_scratch(Q, K, V, mask=None):
-    """从数学定义实现的注意力机制。"""
+def attention_from_scratch(Q, K, V, mask=None): """从数学定义实现的注意力机制。"""
     d_k = Q.size(-1)
     
     # 缩放点积注意力
     scores = torch.matmul(Q, K.transpose(-2, -1)) / (d_k ** 0.5)
     
-    if mask is not None:
-        scores = scores.masked_fill(mask == 0, -1e9)
+    if mask is not None: scores = scores.masked_fill(mask == 0, -1e9)
     
     attention_weights = F.softmax(scores, dim=-1)
     output = torch.matmul(attention_weights, V)
@@ -316,7 +315,17 @@ similar_semantic = semantic.query("RAG optimization", top_k=5)
 市面上存在许多 AI 学习资源，但很少有能匹敌 AI Engineering From Scratch 的深度和广度：
 
 | 特性 | AI Engineering From Scratch | Fast.ai | DeepLearning.AI | Kaggle Courses |
-|------|---------------------------|---------|-----------------|----------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 星标数 | 32,771 | 24,000 | N/A（平台） | N/A |
 | 从零实现 | 完整 | 部分 | 无 | 无 |
 | RAG 覆盖 | 广泛 | 有限 | 中等 | 基础 |
@@ -395,8 +404,8 @@ pip install -r requirements.txt
 
 **相关文章**：[比较 AI Agent 框架](https://dibi8.com/ai-tools/oh-my-pi) · [学习提示词工程](https://dibi8.com/dev-utils/taste-skill)
 
----
 
+---
 **来源与延伸阅读**：
 - GitHub 仓库：https://github.com/rohitg00/ai-engineering-from-scratch
 - PyTorch 文档：https://pytorch.org/docs/
@@ -406,7 +415,6 @@ pip install -r requirements.txt
 **披露**：本文包含联盟链接。如果你通过我们的链接注册，我们可能会获得佣金，这不会给你增加额外费用。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -434,25 +442,20 @@ pip install -r requirements.txt
 
 ## Why This Matters
 
-Understanding 从零开始构建 ai 工程：打造生产级 llm 系统——2026 完整指南 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding 从零开始构建 ai 工程：打造生产级 llm 系统——2026 完整指南 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -473,8 +476,8 @@ To implement this in your workflow:
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -518,7 +521,17 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

@@ -1,18 +1,14 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/prompts-chat" />
 title: 'prompts.chat: 163k+ Prompts -- The Open-Source Prompt Li...
 description: 'Deploy prompts.chat in 5 mins. 163,640 stars. Works with ChatGPT, Claude, Gemini. Self-host for privacy. No-cost, open-source prompt library.'
 tags: ["ai-tools", "collection", "guide", "library", "llm", "open-source", "prompt-engineering", "reference", "self-hosted", "tutorial"]
 date: 2026-06-12
-lastmod:  2026-06-12slug: 'prompts-chat'
+lastmod: 2026-06-12
+slug: 'prompts-chat'
 category: llm-frameworks
 github_repo: 'https://github.com/f/prompts.chat'
 license: NOASSERTION
-lang: en
-featureImage: /articles/prompts-chat-e570dc.jpg/images/articles/prompts-chat-e570dc.jpg
----
-
+featureImage: /articles/prompts-chat-e570dc.jpg/images/articles/prompts-chat-e570dc.jpg---
 # prompts.chat: 163k+ Prompts -- The Open-Source Prompt Library Guide 2026
 
 If you are a developer, product manager, or AI researcher, you have likely hit the wall where the model is capable, but the prompt is not. We spend hours tweaking system instructions, debugging few-shot examples, and trying to get consistent outputs from LLMs.
@@ -25,17 +21,14 @@ In this guide, we will break down how to deploy your own instance, integrate it 
 
 The AI landscape in 2026 is saturated with tools that promise to "solve" prompt engineering. Most are overpriced SaaS platforms that lock you into their ecosystem. **prompts.chat** takes a different approach: it is a static-site-based, open-source repository that can be self-hosted.
 
-This matters for two reasons:
-1.  **Privacy:** Your proprietary prompts never leave your infrastructure.
+This matters for two reasons: 1.  **Privacy:** Your proprietary prompts never leave your infrastructure.
 2.  **Cost:** The core library is free. You only pay for the hosting (which can be near-zero) and the model API calls.
 
 We will walk you through the technical setup, integration patterns, and honest limitations of using prompts.chat in a production environment.
 
 ## What Is prompts.chat?
 
-At its core, prompts.chat is a curated collection of prompt examples. However, calling it a "list" undersells its utility. It is a structured dataset and a web application that allows for:
-
-*   **Discovery:** Browse 163k+ prompts categorized by use case (coding, writing, analysis, etc.).
+At its core, prompts.chat is a curated collection of prompt examples. However, calling it a "list" undersells its utility. It is a structured dataset and a web application that allows for: *   **Discovery:** Browse 163k+ prompts categorized by use case (coding, writing, analysis, etc.).
 *   **Contribution:** Users can submit prompts via the web interface, which syncs to the main GitHub repository.
 *   **Data Export:** Prompts are available in CSV, Markdown, and as a Hugging Face dataset.
 *   **Self-Hosting:** Organizations can clone the repo, configure authentication, and run a branded, private instance.
@@ -86,17 +79,14 @@ cd my-prompt-library
 npm run setup
 ```
 
-The `npm run setup` command will guide you through:
-1.  **Branding:** Logo, site title, description.
+The `npm run setup` command will guide you through: 1.  **Branding:** Logo, site title, description.
 2.  **Theme:** Dark/Light mode defaults.
 3.  **Authentication:** Configure GitHub, Google, or Azure AD login (critical for enterprise).
 4.  **Database:** Configure PostgreSQL (recommended: Neon).
 
 ### Option 2: Manual Setup (Git Clone)
 
-For those who want full control over the codebase:
-
-```bash
+For those who want full control over the codebase: ```bash
 # Clone the repository
 git clone https://github.com/f/prompts.chat.git
 
@@ -123,9 +113,7 @@ GITHUB_SECRET=your_github_client_secret
 
 ### Docker Deployment
 
-If you prefer containerization, use the provided `DOCKER.md` guide. Generally, it involves:
-
-```bash
+If you prefer containerization, use the provided `DOCKER.md` guide. Generally, it involves: ```bash
 # Build the image
 docker build -t prompts-chat .
 
@@ -223,9 +211,7 @@ For production deployments, there are several hardening steps you should conside
 
 ### 1. Custom Domain & SSL
 
-Ensure your self-hosted instance uses a custom domain with valid SSL certificates. If using a reverse proxy (Nginx/Apache):
-
-```nginx
+Ensure your self-hosted instance uses a custom domain with valid SSL certificates. If using a reverse proxy (Nginx/Apache): ```nginx
 server {
     listen 443 ssl;
     server_name prompts.internal.yourcompany.com;
@@ -298,9 +284,7 @@ How does prompts.chat compare to other solutions?
 
 ## Limitations / Honest Assessment
 
-No tool is perfect. Here are the limitations you should be aware of:
-
-1.  **No Native Model Execution:** prompts.chat does not run the prompts. You still need to copy/paste or use an integration (CLI/MCP) to send them to an LLM.
+No tool is perfect. Here are the limitations you should be aware of: 1.  **No Native Model Execution:** prompts.chat does not run the prompts. You still need to copy/paste or use an integration (CLI/MCP) to send them to an LLM.
 2.  **Prompt Quality Variance:** While curated, the prompts are user-submitted. Some may be outdated, ineffective, or poorly written. You must review and curate your own instance.
 3.  **Static Content:** The core prompt library is updated via PRs to GitHub. It is not a real-time, live-updating feed. You must sync your self-hosted instance to get new prompts.
 4.  **Limited Analytics:** The self-hosted version does not provide built-in analytics on prompt usage (e.g., which prompts are most copied). You would need to add logging to your web server or integration layer.
@@ -315,8 +299,7 @@ Yes, the software and the prompt library are free and open-source. You only pay 
 Yes, you can self-host it for your organization. However, check the `NOASSERTION` license and the content of individual prompts for any specific restrictions. The code itself is open.
 
 ### 3. How do I update my self-hosted instance?
-You can pull the latest changes from the GitHub repository:
-```bash
+You can pull the latest changes from the GitHub repository: ```bash
 git pull origin main
 npm install
 npm run setup # Re-run setup to apply any new config defaults
@@ -340,8 +323,8 @@ The 5-minute setup is real. The self-hosting capability is robust. And the commu
 
 Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss your deployment experiences and share your custom prompt configurations.
 
----
 
+---
 ## Sources & Further Reading
 
 *   [prompts.chat GitHub Repository](https://github.com/f/prompts.chat)
@@ -353,11 +336,10 @@ Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss y
 *   [Forbes: ChatGPT Success Depends on Your Prompt](https://www.forbes.com/sites/tjmccue/2023/01/19/chatgpt-success-completely-depends-on-your-prompt/)
 *   [Harvard: AI Prompts](https://www.huit.harvard.edu/news/ai-prompts)
 *   [Columbia: Prompt Library](https://etc.cuit.columbia.edu/news/columbia-prompt-library-effective-academic-ai-use)
----
 
+---
 Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

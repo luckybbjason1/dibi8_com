@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/aider-cline-openhands-2026-honest-comparison" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/aider-cline-openhands-2026-honest-comparison" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/aider-cline-openhands-2026-honest-comparison" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/aider-cline-openhands-2026-honest-comparison" />
 title: 'Aider vs Cline vs OpenHands 2026：开源编程 Agent 三方诚实对比'
 description: '在同一个 5K 行 TypeScript 代码库上实测三款开源 AI 编程 Agent。给出具体基准数据、各自胜出场景、各自短板，以及自带 API Key 模式的真实成本与商业方案的对比。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-25 00:00:00+08:00
@@ -21,10 +16,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: ['ai-coding', 'open-source', aider, cline, openhands, 2026]
-aliases:
-- /zh/posts/aider-cline-openhands-2026-honest-comparison/
-faq:
-  - q: "2026 年最好的开源编程 Agent 是哪个？"
+aliases: - /zh/posts/aider-cline-openhands-2026-honest-comparison/
+faq: - q: "2026 年最好的开源编程 Agent 是哪个？"
     a: "看情况。Aider 适合终端优先的 git 友好编辑（模型无关、速度最快）。Cline 适合 IDE 原生集成的 VS Code（对非 CLI 用户体验最好）。OpenHands 适合完全自主的多步骤 Agent 工作（浏览器 + Shell + 代码库）。大多数资深用户都把 Aider 当默认工具，再用 Cline 或 OpenHands 处理特定任务。"
   - q: "和 Claude Code 或 Cursor 比成本如何？"
     a: "自带 API Key 模式意味着按 token 付费。以 Sonnet 4.6 每月 60 小时使用为例：大约 80-130 美元（vs Claude Max 200 美元）。GPT-5 大约 100-180 美元。「比商业版便宜」这个说法只在你节制上下文时成立，让它膨胀的话就不成立。"
@@ -37,8 +30,6 @@ faq:
   - q: "每个工具的学习曲线如何？"
     a: "Aider：15 分钟上手（它就是一个遵循显而易见模式的 CLI）。Cline：30 分钟（VS Code 扩展设置 + 模型配置）。OpenHands：2-3 小时（Docker 部署、浏览器工具配置、Agent 循环调优）。Aider 门槛最低，OpenHands 上限最高。"
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/aider-cline-openhands-2026-honest-comparison/ -->
 
 {{</* resource-info */>}}
 
@@ -60,8 +51,8 @@ faq:
 >
 > **纯开源用户的最佳双工具组合**：Aider（日常主力）+ OpenHands（自主任务）。
 
----
 
+---
 ## 它们各是什么
 
 ### Aider
@@ -86,7 +77,17 @@ git 友好的结对编程工具。读取代码库，通过 diff 格式编辑，�
 ### 任务 1：添加新功能（3 个文件，约 150 行）
 
 | Agent | 耗时 | 首次成功率 | Token 数 | 成本（Sonnet 4.6） |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Aider | 4 分 30 秒 | ✅ 3/3 | 78K | $0.39 |
 | Cline | 5 分 50 秒 | ✅ 2/3（一次需要重试） | 92K | $0.46 |
 | OpenHands | 8 分 20 秒 | ✅ 3/3（自主性较慢） | 120K | $0.60 |
@@ -96,7 +97,15 @@ git 友好的结对编程工具。读取代码库，通过 diff 格式编辑，�
 ### 任务 2：仓库范围重构（在 30+ 调用点重命名工具函数）
 
 | Agent | 耗时 | 找到 | 漏掉 |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Aider | 3 分 | 30/30 | 0 |
 | Cline | 4 分 | 30/30 | 0 |
 | OpenHands | 6 分 | 28/30 | 2（测试 fixture 中） |
@@ -106,7 +115,13 @@ git 友好的结对编程工具。读取代码库，通过 diff 格式编辑，�
 ### 任务 3：调试一个 flaky test
 
 | Agent | 诊断 | 修复质量 |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | Aider | ✅ 异步竞态条件（首次诊断正确） | 干净，注释完善 |
 | Cline | ⚠️ 表象级（加了重试而非修复竞态） | 能用但掩盖了 bug |
 | OpenHands | ✅ 竞态条件（一次失败尝试后） | 可接受 |
@@ -116,7 +131,13 @@ git 友好的结对编程工具。读取代码库，通过 diff 格式编辑，�
 ### 任务 4：阅读并总结 2000 行的遗留文件
 
 | Agent | 质量 | 建议重构数 |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | Aider | 良 — 聚焦 | 4 条具体建议 |
 | Cline | 良 — 略更全面 | 5 条具体建议 |
 | OpenHands | 最佳 — 完整架构图 | 7 条按优先级排序 |
@@ -126,7 +147,15 @@ git 友好的结对编程工具。读取代码库，通过 diff 格式编辑，�
 ### 任务 5：多工具迁移（重命名 DB + 更新配置 + 重生成类型 + 测试）
 
 | Agent | 工具协调 | 错误数 | 恢复 |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Aider | ✅ 3 个工具间顺畅 | 1（环境变量缺失） | 需手动修复 |
 | Cline | ⚠️ 在 IDE 操作和终端间脱节 | 3 | 多次手动修复 |
 | OpenHands | ✅ 此任务最佳 — 自主链式 | 1 | 自动恢复 |
@@ -139,11 +168,11 @@ git 友好的结对编程工具。读取代码库，通过 diff 格式编辑，�
 
 ```
 每月 60 小时使用：
-  Aider:        ~$80-110  （上下文使用最高效）
-  Cline:        ~$95-140  （计划更详细 = token 更多）
-  OpenHands:    ~$120-180 （自主循环 = 迭代更多）
+  Aider: ~$80-110  （上下文使用最高效）
+  Cline: ~$95-140  （计划更详细 = token 更多）
+  OpenHands: ~$120-180 （自主循环 = 迭代更多）
 
-vs Claude Max:  $200 无限量
+vs Claude Max: $200 无限量
 vs Cursor Pro + API: $87（Agent 工作少很多）
 ```
 
@@ -213,12 +242,11 @@ OpenHands 默认 Docker 沙箱 — 最安全。Aider 每条命令询问 — 交�
 
 商业 vs 开源的抉择不是价格（两者比营销宣传得更接近）。它关乎控制权、打磨度，以及你在工具部署 vs 实际工作上花的时间比例。对已经熟练使用 git 的独立开发者和小团队，开源胜出。对需要可预测支持和统一 UX 的大团队，商业仍然胜出。
 
----
 
+---
 **相关阅读**：[AI 编程 2026-Q2 大乱斗](https://dibi8.com/zh/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) · [Cursor 替代品 2026](https://dibi8.com/zh/resources/dev-utils/cursor-alternatives-2026-best-ai-coding-tools/) · [OpenCode 部署](https://dibi8.com/zh/resources/llm-frameworks/opencode-open-source-claude-code-alternative-2026/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -246,25 +274,20 @@ OpenHands 默认 Docker 沙箱 — 最安全。Aider 每条命令询问 — 交�
 
 ## Why This Matters
 
-Understanding aider vs cline vs openhands 2026：开源编程 agent 三方诚实对比 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding aider vs cline vs openhands 2026：开源编程 agent 三方诚实对比 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

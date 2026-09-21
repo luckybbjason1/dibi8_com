@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/self-hosted-ai-coding-workflow" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/self-hosted-ai-coding-workflow" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/self-hosted-ai-coding-workflow" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/self-hosted-ai-coding-workflow" />
 title: '自托管 AI 编程工作流：2026 年 $6/月 完整 stack'
 description: '7 个组件的自托管 AI 编程 stack，用 $6/月 的基础设施替换掉 $290/月 的 SaaS 订阅（Cursor + Claude Code Pro + Copilot + Replit）。真实数字、真实配置、完整一步步组装指南。'
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
-tech_stack:
-  - Docker
+tech_stack: - Docker
   - Python
   - TypeScript
   - PostgreSQL
@@ -29,11 +23,8 @@ featureImage: ''
 draft: false
 categories: [collections]
 tags: [自托管, 'ai 编程', stack, 工作流, 合集]
-aliases:
-  - /posts/self-hosted-ai-coding-workflow/
+aliases: - /posts/self-hosted-ai-coding-workflow/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/self-hosted-ai-coding-workflow/ -->
 
 如果你正在付 $20/月 给 Cursor + $80/月 给 Claude Code Pro + $19/月 给 Copilot + $50/月 给 Replit credits + $120/月 给 OpenAI API 充值，你的 AI 编程月支出是 **$289/月**。12 个月就是 **$3,468** —— 而这些工具你不拥有、不能审计、随时可能被限流或停服。
 
@@ -42,7 +33,17 @@ aliases:
 ## TL;DR —— Stack 全貌
 
 | # | 组件 | 工具 | 为什么选 | 深度指南 |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 1 | 编辑器 / Agent | **OpenCode** | 开源版 Claude Code，DeepSeek-V4 跑 $0.007/任务 vs $0.14 | [OpenCode 设置](/zh/resources/llm-frameworks/opencode-open-source-claude-code-alternative-2026/) |
 | 2 | 本地 LLM Runner | **Ollama** | 137k stars，一行装，5 年老 M1 跑 22 tok/秒 | [Ollama 指南](/zh/resources/llm-frameworks/ollama/) |
 | 3 | LLM 网关 | **LiteLLM** | 47.8k stars，100+ 模型统一 API，自托管 | [LiteLLM 网关](/zh/resources/llm-frameworks/litellm/) |
@@ -174,8 +175,7 @@ docker run -d --name 9router -p 9999:9999 \
 **快装**：
 ```bash
 npm install -g @mem0/mem0-mcp
-# 加到 OpenCode 的 MCP config:
-# { "agentmemory": { "command": "mem0-mcp", "args": [] } }
+# 加到 OpenCode 的 MCP config: # { "agentmemory": { "command": "mem0-mcp", "args": [] } }
 ```
 
 **完整设置**（含 embedding 模型选 + 向量库挑选）见 [AgentMemory MCP 指南](/zh/resources/llm-frameworks/agentmemory-mcp-persistent-memory-2026/)。
@@ -242,7 +242,13 @@ Tavily 免费层每月 1000 次搜索，足够撑住 $6 预算。
 ## 11. 月成本拆解
 
 | 项 | 入门 tier | 5 人团队 tier |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | VPS（4 GB → 16 GB）| $6 | $24 |
 | Ollama 模型 | $0（自己拥有硬盘）| $0 |
 | LiteLLM | $0（自托管）| $0 |
@@ -281,12 +287,11 @@ stack 超过 $6 tier 时（不止 1 个 dev / 不止 1 个项目 / 持久化 sta
 
 你每月 AI 编程 SaaS 烧 $200+，这个 stack 第一周就回本。开一个 {{< aff "digitalocean" "footer-cta" "DigitalOcean $6 droplet" >}}，跟第 10 节做，下周回来报数。
 
----
 
+---
 *收藏这页 —— 每季度根据新开源版本更新组件选择。最后更新：2026-05-21。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -314,25 +319,20 @@ stack 超过 $6 tier 时（不止 1 个 dev / 不止 1 个项目 / 持久化 sta
 
 ## Why This Matters
 
-Understanding 自托管 ai 编程工作流：2026 年 $6/月 完整 stack is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding 自托管 ai 编程工作流：2026 年 $6/月 完整 stack is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -353,8 +353,8 @@ To implement this in your workflow:
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 

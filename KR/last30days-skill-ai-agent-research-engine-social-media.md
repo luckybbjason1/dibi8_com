@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/last30days-skill-ai-agent-research-engine-social-media" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/last30days-skill-ai-agent-research-engine-social-media" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/last30days-skill-ai-agent-research-engine-social-media" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/last30days-skill-ai-agent-research-engine-social-media" />
 title: '지난 30일간-기술: 실제 참여를 기준으로 소셜 미디어를 평가하는 AI 에이전트 검색 엔진'
 description: 'Reddit, X, YouTube, TikTok, Polymarket, GitHub 등에서 병렬로 검색합니다. 결과를 편집자가 아닌 추천 수, 좋아요, 실제 금액으로 평가합니다. Claude Code, Codex, Cursor 및 50개 이상의 에이전트 호스트와 함께 작동합니다.'
 date: 2026-06-22
@@ -14,15 +9,13 @@ categories: ['ai-tools']
 slug: last30days-skill-ai-agent-research-engine-social-media
 featureImage: 'https://images.pexels.com/photos/5468134/pexels-photo-5468134.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
 aliases: ['/last30days-skill']
-sources:
-  - name: GitHub
+sources: - name: GitHub
     url: 'https://github.com/mvanhorn/last30days-skill'
   - name: 'Agent Skills'
     url: 'https://agentskills.io'
 lang: kr
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/last30days-skill-ai-agent-research-engine-social-media/ -->
 title: 'Last30Days-Skill: AI Agent Search Engine That Scores Social Media by Real Engagement'
 description: 'Search Reddit, X, YouTube, TikTok, Polymarket, GitHub and more in parallel. Scores results by upvotes, likes, and real money — not editors. Works with Claude Code, Codex, Cursor, and 50+ agent hosts.'
 date: 2026-06-22
@@ -33,8 +26,7 @@ categories: ['ai-tools']
 slug: last30days-skill-ai-agent-research-engine-social-media
 
 aliases: ['/last30days-skill']
-sources:
-  - name: GitHub
+sources: - name: GitHub
     url: 'https://github.com/mvanhorn/last30days-skill'
   - name: 'Agent Skills'
     url: 'https://agentskills.io'
@@ -58,9 +50,7 @@ Type `/last30days Peter Steinberger` and get a research report covering: his Ope
 
 ## Data Sources
 
-Last30Days-Skill searches 14+ platforms in parallel:
-
-| Source | What It Reveals | Access |
+Last30Days-Skill searches 14+ platforms in parallel: | Source | What It Reveals | Access |
 |--------|----------------|--------|
 | **Reddit** | Unfiltered community opinions, top comments with upvote counts | Free (public JSON) |
 | **X / Twitter** | Hot takes, expert threads, breaking reactions | Browser cookies or API key |
@@ -139,18 +129,13 @@ JSON-structured prompts are replacing tag soup. Nested formats prevent "concept 
 
 ## v3 Engine Features
 
-The v3 engine introduced several major improvements:
+The v3 engine introduced several major improvements: ### Shareable HTML Briefs
 
-### Shareable HTML Briefs
-
-Generate dark-mode, print-friendly HTML briefs you can drop into Slack, email, or Notion:
-
-```
+Generate dark-mode, print-friendly HTML briefs you can drop into Slack, email, or Notion: ```
 /last30days OpenClaw --emit=html
 ```
 
-Or just ask in plain language:
-```
+Or just ask in plain language: ```
 /last30days Cursor IDE for slack
 /last30days Anthropic earnings export as html
 ```
@@ -159,8 +144,7 @@ The skill saves a self-contained HTML file to `~/Documents/Last30Days/{topic}-br
 
 ### Intelligent Topic Resolution
 
-The v3 engine doesn't just search for your topic — it figures out **where** to search first. Type "OpenClaw" and the engine resolves:
-- @steipete (Peter Steinberger, creator)
+The v3 engine doesn't just search for your topic — it figures out **where** to search first. Type "OpenClaw" and the engine resolves: - @steipete (Peter Steinberger, creator)
 - r/openclaw subreddit
 - r/ClaudeCode community
 - Right YouTube channels and TikTok hashtags
@@ -189,9 +173,7 @@ Tells the hosting reasoning model to discover the top 2 peers via WebSearch (Ant
 
 ### GitHub Person-Mode
 
-When the topic is a person, the engine switches from keyword search to author-scoped queries:
-
-```
+When the topic is a person, the engine switches from keyword search to author-scoped queries: ```
 /last30days Peter Steinberger --github-user=steipete
 ```
 
@@ -203,9 +185,7 @@ Say "eli5 on" after any research run. The synthesis rewrites in plain language. 
 
 ## Installation
 
-Last30Days-Skill installs across 50+ AI agent hosts:
-
-| Surface | Install Command | Updates |
+Last30Days-Skill installs across 50+ AI agent hosts: | Surface | Install Command | Updates |
 |---------|----------------|---------|
 | **Claude Code** (recommended) | `/plugin marketplace add mvanhorn/last30days-skill` | Auto via marketplace |
 | **Codex, Cursor, Copilot, Gemini CLI** | `npx skills add mvanhorn/last30days-skill -g` | `npx skills update last30days -g` |
@@ -229,8 +209,7 @@ npx skills add mvanhorn/last30days-skill -g
 
 The `-g` flag installs globally for your user, available across all projects. Supports Codex, Cursor, Copilot, Gemini CLI, Windsurf, Cline, Continue, Roo, Aider-Desk, OpenCode, Goose, and more.
 
-Target specific hosts:
-```bash
+Target specific hosts: ```bash
 npx skills add mvanhorn/last30days-skill -g -a codex
 npx skills add mvanhorn/last30days-skill -g -a cursor
 npx skills add mvanhorn/last30days-skill -g -a gemini-cli
@@ -268,25 +247,18 @@ The symlink keeps the install in sync with your working tree as you edit.
 
 ### Research File Storage
 
-Files save to `~/Documents/Last30Days/` by default. Override with:
-
-```bash
+Files save to `~/Documents/Last30Days/` by default. Override with: ```bash
 export LAST30DAYS_MEMORY_DIR=/path/to/dir
-# Or per-run:
-/last30days topic --save-dir /custom/path
+# Or per-run: /last30days topic --save-dir /custom/path
 ```
 
 ### Trend Monitoring Across Runs
 
-For accumulating findings over time:
-
-```bash
+For accumulating findings over time: ```bash
 /last30days topic --store
 ```
 
-Persists into a SQLite database. Use included scripts for scheduled runs:
-
-- `scripts/watchlist.py` — scheduled runs with optional Slack/webhook delivery on new findings
+Persists into a SQLite database. Use included scripts for scheduled runs: - `scripts/watchlist.py` — scheduled runs with optional Slack/webhook delivery on new findings
 - `scripts/briefing.py` — daily/weekly digest generation
 
 Full configuration documented in [CONFIGURATION.md](https://github.com/mvanhorn/last30days-skill/blob/main/CONFIGURATION.md).
@@ -307,9 +279,7 @@ Reddit, Hacker News, Polymarket, and GitHub work immediately with zero configura
 
 ## macOS Keychain Integration
 
-Store keys in the system keychain instead of `.env` files:
-
-```bash
+Store keys in the system keychain instead of `.env` files: ```bash
 # Interactive setup
 skills/last30days/scripts/setup-keychain.sh
 
@@ -405,7 +375,6 @@ No. All research stays on your local machine. The skill has zero tracking and ze
 **Join the Dibi8 community:** [Telegram Group](https://t.me/DIBI8_Group/2)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

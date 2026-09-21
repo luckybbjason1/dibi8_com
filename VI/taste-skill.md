@@ -1,19 +1,14 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/taste-skill" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/taste-skill" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/taste-skill" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/taste-skill" />
 title: "Kỹ Năng Taste: Ngăn AI Tạo Ra Nội Dung Đại Chúng — Khung...
 description: "Taste Skill là một khung kỹ năng tác nhân di động, nâng cấp giao diện do AI xây dựng với bố cục mạnh mẽ hơn, kiểu chữ, chuyển động và khoảng cách. Hoạt động với Codex, Cursor, Claude Code và ChatGPT Images."
 date: 2026-06-15
-lastmod:  2026-06-15slug: taste-skill
+lastmod: 2026-06-15
+slug: taste-skill
 category: dev-utils
 tags: ['thiết kế ai', 'kỹ năng tác nhân', 'chống-slop', 'frontend', 'codex', 'cursor', 'claude code', 'kỹ thuật prompt']
 github_repo: "https://github.com/Leonxlnx/taste-skill"
 license: MIT
-images:
-  - url: "https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/assets/readme-banner.png"
+images: - url: "https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/assets/readme-banner.png"
     alt: "Biểu ngữ Taste Skill"
     role: hero
   - url: "https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/assets/taste-skill-logo.webp"
@@ -26,8 +21,6 @@ lang: vi
 featureImage: /images/articles/taste-skill-stop-ai-from-generating-generic-slop-agent-skill.jpg
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/taste-skill/ -->
-
 ## TL;DR
 
 Taste Skill cung cấp cho tác nhân AI của bạn một bộ não thiết kế. Thay vì tạo ra cùng một giao diện người dùng trung tâm, nhàm chán mà mọi công cụ AI đều sản xuất, nó bắt buộc phải có sự đa dạng bố cục mạnh mẽ hơn, chuyển động có chủ đích và mật độ hình ảnh cao cấp. Nó được đóng gói dưới dạng các tập tin SKILL.md di động, hoạt động với Codex, Cursor, Claude Code và ChatGPT Images.
@@ -38,9 +31,7 @@ Taste Skill cung cấp cho tác nhân AI của bạn một bộ não thiết k�
 
 Taste Skill là một bộ sưu tập các kỹ năng tác nhân di động được thiết kế để nâng cấp đầu ra frontend do AI tạo ra. Mỗi kỹ năng thực hiện một nhiệm vụ cụ thể: tuân thủ các quy tắc thiết kế nhất định, tạo hình ảnh tham chiếu hoặc áp dụng một phong cách hình ảnh cụ thể. Khung này **không gắn liền với bất kỳ tác nhân mã hóa hoặc khung nào** — nó hoạt động trên React, Vue, Svelte và HTML tĩnh.
 
-Nhận thức cốt lõi rất đơn giản: các mô hình AI được huấn luyện trên cùng một internet, nên chúng tạo ra cùng một bố cục. Taste Skill phá vỡ điều này bằng cách cung cấp các ràng buộc thiết kế rõ ràng bắt buộc phải có sự khác biệt. Ba núm điều chỉnh kiểm soát đầu ra:
-
-- **DESIGN_VARIANCE (1-10):** Thử nghiệm bố cục — thấp cho căn giữa/gọn gàng, cao cho bất đối xứng/hiện đại
+Nhận thức cốt lõi rất đơn giản: các mô hình AI được huấn luyện trên cùng một internet, nên chúng tạo ra cùng một bố cục. Taste Skill phá vỡ điều này bằng cách cung cấp các ràng buộc thiết kế rõ ràng bắt buộc phải có sự khác biệt. Ba núm điều chỉnh kiểm soát đầu ra: - **DESIGN_VARIANCE (1-10):** Thử nghiệm bố cục — thấp cho căn giữa/gọn gàng, cao cho bất đối xứng/hiện đại
 - **MOTION_INTENSITY (1-10):** Độ sâu hoạt hình — thấp cho hiệu ứng hover, cao cho hoạt hình cuộn/làm từ
 - **VISUAL_DENSITY (1-10):** Thông tin trên mỗi khung hình — thấp cho bố cục thoáng đãng, cao cho bảng điều khiển dày đặc
 
@@ -59,9 +50,7 @@ Kỹ năng mặc định bây giờ là **v2 (thử nghiệm)**, một bản vi�
 
 ## Taste Skill Hoạt Động Như Thế Nào
 
-Taste Skill hoạt động thông qua kiến trúc ba lớp:
-
-1. **Kỹ năng Triển khai** — Những cái này xuất ra mã sẵn sàng sản xuất. Kỹ năng cờ hiệu `design-taste-frontend` đọc bản tóm tắt dự án của bạn, suy luận ngôn ngữ thiết kế, điều chỉnh ba núm và tạo mã với các quy tắc chống-lặp nghiêm ngặt.
+Taste Skill hoạt động thông qua kiến trúc ba lớp: 1. **Kỹ năng Triển khai** — Những cái này xuất ra mã sẵn sàng sản xuất. Kỹ năng cờ hiệu `design-taste-frontend` đọc bản tóm tắt dự án của bạn, suy luận ngôn ngữ thiết kế, điều chỉnh ba núm và tạo mã với các quy tắc chống-lặp nghiêm ngặt.
 
 2. **Kỹ năng Tạo Ảnh** — Những cái này tạo ra bảng tham chiếu (không phải mã). `imagegen-frontend-web` tạo bản thiết kế trang web, `imagegen-frontend-mobile` tạo luồng di động, và `brandkit` tạo bảng nhận diện. Đưa những cái này vào Codex hoặc ChatGPT Images để triển khai.
 
@@ -94,9 +83,7 @@ ls ~/.hermes/skills/ | grep taste
 
 ### Cập nhật lên v2
 
-Nếu bạn đã cài đặt v1 và muốn v2 thử nghiệm:
-
-```bash
+Nếu bạn đã cài đặt v1 và muốn v2 thử nghiệm: ```bash
 # Chạy lại cài đặt — tên cài đặt không thay đổi
 npx skills add https://github.com/Leonxlnx/taste-skill --skill "design-taste-frontend"
 
@@ -106,9 +93,7 @@ curl -sL https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/CHANGELOG.m
 
 ### Cài Đặt Thủ Công
 
-Bạn cũng có thể sao chép bất kỳ SKILL.md nào trực tiếp vào dự án của mình hoặc dán vào cuộc trò chuyện ChatGPT/Codex:
-
-```bash
+Bạn cũng có thể sao chép bất kỳ SKILL.md nào trực tiếp vào dự án của mình hoặc dán vào cuộc trò chuyện ChatGPT/Codex: ```bash
 # Clone để truy cập thủ công
 curl -sL "https://github.com/Leonxlnx/taste-skill/archive/refs/heads/main.zip" -o /tmp/taste-skill.zip
 unzip -q /tmp/taste-skill.zip -d /tmp
@@ -117,9 +102,7 @@ ls /tmp/taste-skill-main/skills/
 
 ### Liệt Kê Các Kỹ Năng Có Sẵn
 
-Sau khi cài đặt, xem những kỹ năng nào có sẵn:
-
-```bash
+Sau khi cài đặt, xem những kỹ năng nào có sẵn: ```bash
 # Liệt kê tất cả kỹ năng đã cài đặt
 npx skills list | grep taste
 
@@ -134,9 +117,7 @@ curl -sL "https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/CHANGELOG.
 
 ## Tích Hợp Với Các Tác Nhân Mã Hóa Chính
 
-Taste Skill độc lập với khung và hoạt động với mọi tác nhân mã hóa AI chính:
-
-| Tác Nhân | Phương Thức Tích Hợp | Kỹ Năng Tốt Nhất |
+Taste Skill độc lập với khung và hoạt động với mọi tác nhân mã hóa AI chính: | Tác Nhân | Phương Thức Tích Hợp | Kỹ Năng Tốt Nhất |
 |----------|---------------------|------------------|
 | **Codex** | `npx skills add` + CLI | `gpt-taste` (biến thể nghiêm ngặt hơn) |
 | **Cursor** | Dán SKILL.md vào `.cursorrules` | `design-taste-frontend` |
@@ -161,9 +142,7 @@ curl -sL "https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/skills/des
 
 ## Số Liệu So Sánh: Taste Skill So Với Đầu Ra AI Đại Chúng
 
-Sự khác biệt giữa giao diện tạo bởi Taste Skill và đầu ra AI đại chúng có thể đo lường được qua nhiều chiều:
-
-```
+Sự khác biệt giữa giao diện tạo bởi Taste Skill và đầu ra AI đại chúng có thể đo lường được qua nhiều chiều: ```
 Chỉ Số               | AI Đại Chúng | Taste Skill v2
 ---------------------|-------------|----------------
 Đa Dạng Bố Cục       | 1-2         | 7-9
@@ -178,9 +157,7 @@ Số liệu benchmark đến từ việc so sánh hơn 50 trang đích được 
 
 ### So Sánh Chất Lượng Mã
 
-Đầu ra AI đại chúng thường tạo ra bố cục căn giữa với khoảng cách đồng nhất, mẫu thành phần lặp lại và phân cấp hình ảnh tối thiểu. Taste Skill tuân thủ:
-
-- **Bố cục bất đối xứng** với phân phối trọng lượng hình ảnh có chủ đích
+Đầu ra AI đại chúng thường tạo ra bố cục căn giữa với khoảng cách đồng nhất, mẫu thành phần lặp lại và phân cấp hình ảnh tối thiểu. Taste Skill tuân thủ: - **Bố cục bất đối xứng** với phân phối trọng lượng hình ảnh có chủ đích
 - **Kiểu chữ nhiều mức** (hiển thị, tiêu đề, thân, chú thích) với tỷ lệ thang đo phù hợp
 - **Chuyển động có chủ đích** phục vụ điều hướng, không phải trang trí
 - **Mật độ hình ảnh theo ngữ cảnh** — thưa cho phần hero, dày cho bảng dữ liệu
@@ -188,8 +165,7 @@ Số liệu benchmark đến từ việc so sánh hơn 50 trang đích được 
 ```bash
 # Xác minh đầu ra được tạo của bạn vượt qua kiểm tra taste
 # Taste Skill bao gồm một danh sách kiểm tra tiền bay trong SKILL.md
-# Các kiểm tra chính:
-# - Không chỉ có bố cục căn giữa
+# Các kiểm tra chính: # - Không chỉ có bố cục căn giữa
 # - Tối thiểu 3 mức kiểu chữ
 # - Ít nhất một bất đối xứng có chủ đích
 # - Chuyển động phục vụ chức năng, không phải trang trí
@@ -267,9 +243,7 @@ VISUAL_DENSITY: 5
 
 ### Ví dụ Cấu Hình Núm Trong Thế Giới Thực
 
-Các loại dự án khác nhau hưởng lợi từ các kết hợp núm khác nhau. Dưới đây là các cấu hình đã được chứng minh từ ví dụ của chính Taste Skill:
-
-```yaml
+Các loại dự án khác nhau hưởng lợi từ các kết hợp núm khác nhau. Dưới đây là các cấu hình đã được chứng minh từ ví dụ của chính Taste Skill: ```yaml
 # Hồ sơ với hoạt hình cuộn làm từ
 DESIGN_VARIANCE: 8
 MOTION_INTENSITY: 9
@@ -295,9 +269,7 @@ Các cấu hình này đã được thử nghiệm trên hơn 44.000 sao với p
 
 ## So Sánh Với Các Giải Pháp Thay Thế
 
-Taste Skill không phải là kỹ năng tuân thủ thiết kế duy nhất trên GitHub. Dưới đây là cách nó so với các giải pháp gần nhất:
-
-| Tính Năng | Taste Skill v2 | PromptHero | Uiverse | AI UI Generator |
+Taste Skill không phải là kỹ năng tuân thủ thiết kế duy nhất trên GitHub. Dưới đây là cách nó so với các giải pháp gần nhất: | Tính Năng | Taste Skill v2 | PromptHero | Uiverse | AI UI Generator |
 |-----------|---------------|------------|---------|-----------------|
 | Xếp Hạng Sao | 44.229 | 8.400 | 12.300 | N/A (SaaS) |
 | Độc Lập Khung | Có | Một phần | Không | Không |
@@ -311,9 +283,7 @@ Khác biệt chính là **núm điều chỉnh**. Trong khi các công cụ khá
 
 ## Hạn Chế: Khi Taste Skill Sẽ Không Giúp Đỡ
 
-Taste Skill mạnh mẽ nhưng không phải cây đũa phép. Đây là khi nó sẽ không giải quyết vấn đề của bạn:
-
-1. **Logic backend phức tạp** — Taste Skill tập trung vào thiết kế frontend. Nó sẽ không kiến trúc API, lược đồ cơ sở dữ liệu hoặc luồng xác thực của bạn.
+Taste Skill mạnh mẽ nhưng không phải cây đũa phép. Đây là khi nó sẽ không giải quyết vấn đề của bạn: 1. **Logic backend phức tạp** — Taste Skill tập trung vào thiết kế frontend. Nó sẽ không kiến trúc API, lược đồ cơ sở dữ liệu hoặc luồng xác thực của bạn.
 
 2. **Nhận diện thương hiệu từ đầu** — Nếu bạn cần toàn bộ hệ thống thương hiệu (logo, bảng màu, lựa chọn kiểu chữ), Taste Skill giả định bạn đã có hướng thiết kế. Sử dụng `brandkit` cho bảng tham chiếu, nhưng quyết định thương hiệu cuối cùng thuộc về bạn.
 
@@ -388,15 +358,13 @@ npx skills add https://github.com/Leonxlnx/taste-skill --skill "design-taste-fro
 
 ---
 
-**Nguồn & Đọc Thêm**:
-- Trang chính thức: https://tasteskill.dev
+**Nguồn & Đọc Thêm**: - Trang chính thức: https://tasteskill.dev
 - Kho lưu trữ GitHub: https://github.com/Leonxlnx/taste-skill
 - Changelog: https://www.tasteskill.dev/changelog
 - Cộng đồng: [@lexnlin trên X](https://x.com/lexnlin), [@blueemi99 trên X](https://x.com/blueemi99)
 
 
-**Sources & Further Reading**:
-- Trang chủ: https://tasteskill.dev
+**Sources & Further Reading**: - Trang chủ: https://tasteskill.dev
 - GitHub repository: https://github.com/Leonxlnx/taste-skill
 - Changelog: https://www.tasteskill.dev/changelog
 - Cộng đồng: [@lexnlin trên X](https://x.com/lexnlin), [@blueemi99 trên X](https://x.com/blueemi99)
@@ -405,7 +373,6 @@ npx skills add https://github.com/Leonxlnx/taste-skill --skill "design-taste-fro
 **Tiết lộ**: Bài viết này chứa liên kết chi phí. Nếu bạn đăng ký qua liên kết của chúng tôi, chúng tôi có thể kiếm được hoa hồng mà không tốn thêm chi phí cho bạn.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

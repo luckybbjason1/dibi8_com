@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mempalace-guide" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mempalace-guide" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mempalace-guide" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mempalace-guide" />
-title: "Claude Code Session Memory: 结合 MemPalace 实现 96.6% 召回率的永生...
-description: "Claude Code Session Memory: 结合 MemPalace 实现 96.6% 召回率的永生记忆指南 (2026)". Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Claude Code Session Memory: 结合 MemPalace 实现 96.6% 召回率的永生..."
+description: "Claude Code Session Memory: 结合 MemPalace 实现 96.6% 召回率的永生记忆指南 (2026)"
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - AI
+tech_stack: - AI
 application_domain: "Ai Tools"
 source_version: ""
 licensing_model: "Open Source"
@@ -24,10 +18,8 @@ maintainer: ""
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases:
-- /zh/posts/mempalace-guide/
-faqs:
-  - q: '如何为 Claude Code 添加持久记忆？'
+aliases: - /zh/posts/mempalace-guide/
+faqs: - q: '如何为 Claude Code 添加持久记忆？'
     a: '在本地运行 MemPalace，并通过配置 claude_code_config.json 将其 MCP 端点指向 http://localhost:8787/mcp，赋予读写权限，从而将其接入 Claude Code。此后 Claude 在需要历史上下文时，会将 MemPalace 作为语义向量数据库进行查询。'
   - q: 'Claude Code 的记忆能否跨会话和重启持续保留？'
     a: '可以。由于 MemPalace 将数据写入本地 SQLite/ChromaDB 磁盘实例，AI 的记忆可以跨重启、崩溃以及全新终端会话持续保留，而不会在终端关闭时丢失。'
@@ -36,10 +28,7 @@ faqs:
   - q: 'MemPalace 的数据是存储在本地还是上传到云端？'
     a: 'MemPalace 使用 ChromaDB 将数据 100% 存储在本地，项目上下文不会被发送到外部云服务器。这与 Pinecone 不同——Pinecone 会将数据发送至云服务器。'
   - q: 'MemPalace 是免费使用的吗？'
-    a: '是的。MemPalace 以 MIT 协议开源，费用为 $0，没有任何 API 费用或订阅费用，而 Pinecone 则需要收取订阅或使用费。'
----
-
-<!-- canonical: https://dibi8.com/zh/tools/mempalace-guide/ -->
+    a: '是的。MemPalace 以 MIT 协议开源，费用为 $0，没有任何 API 费用或订阅费用，而 Pinecone 则需要收取订阅或使用费。'---
 
 {</* resource-info */>}
 
@@ -73,8 +62,8 @@ A: 最优解是在本地运行 MemPalace，并将其 MCP 端点喂给 Claude Cod
 **Q: Claude Code 的 Session 会话记忆如何跨终端保留？**
 A: 原生系统不支持。但因为 MemPalace 是将记忆落盘存储到本地的 SQLite/ChromaDB 中的，所以无论是重启电脑还是新开一个终端面板，你的 AI 都不会丢失任何记忆。
 
----
 
+---
 ## 推荐工具
 
 跑或部署开源 AI 工具时，推荐：
@@ -86,7 +75,6 @@ A: 原生系统不支持。但因为 MemPalace 是将记忆落盘存储到本地
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -114,25 +102,20 @@ A: 原生系统不支持。但因为 MemPalace 是将记忆落盘存储到本地
 
 ## Why This Matters
 
-Understanding claude code session memory: 结合 mempalace 实现 96.6% 召回率的永生记忆指南 (2026) is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding claude code session memory: 结合 mempalace 实现 96.6% 召回率的永生记忆指南 (2026) is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -153,8 +136,8 @@ Claude Code Session Memory: 结合 MemPalace 实现 96.6% 召回率的永生记�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -181,9 +164,7 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
 
 
-When deploying AI agents in production, follow these best practices:
-
-1. **Start Small**: Begin with a single tool and simple prompt, then gradually add complexity
+When deploying AI agents in production, follow these best practices: 1. **Start Small**: Begin with a single tool and simple prompt, then gradually add complexity
 2. **Implement Guardrails**: Use permission prompts and approval workflows for dangerous operations
 3. **Monitor Everything**: Log all agent actions for debugging and compliance
 4. **Handle Failures Gracefully**: Implement retry logic and fallback mechanisms
@@ -191,16 +172,12 @@ When deploying AI agents in production, follow these best practices:
 
 ### Security Considerations
 
-AI agents have access to sensitive systems. Always:
-
-- Use least-privilege principles
+AI agents have access to sensitive systems. Always: - Use least-privilege principles
 - Implement audit logging
 - Encrypt sensitive data at rest and in transit
 - Regular security assessments
 
-When deploying AI agents in production, follow these best practices:
-
-1. **Start Small**: Begin with a single tool and simple prompt, then gradually add complexity
+When deploying AI agents in production, follow these best practices: 1. **Start Small**: Begin with a single tool and simple prompt, then gradually add complexity
 2. **Implement Guardrails**: Use permission prompts and approval workflows for dangerous operations
 3. **Monitor Everything**: Log all agent actions for debugging and compliance
 4. **Handle Failures Gracefully**: Implement retry logic and fallback mechanisms
@@ -208,9 +185,7 @@ When deploying AI agents in production, follow these best practices:
 
 ### Security Considerations
 
-AI agents have access to sensitive systems. Always:
-
-- Use least-privilege principles
+AI agents have access to sensitive systems. Always: - Use least-privilege principles
 - Implement audit logging
 - Encrypt sensitive data at rest and in transit
 - Regular security assessments
@@ -218,7 +193,17 @@ AI agents have access to sensitive systems. Always:
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

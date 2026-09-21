@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/12-factor-agents-production-llm-software-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/12-factor-agents-production-llm-software-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/12-factor-agents-production-llm-software-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/12-factor-agents-production-llm-software-2026" />
 title: 'Giải mã 12-Factor Agents: 12 nguyên tắc xây dựng phần mề...
 description: '12-Factor Agents của HumanLayer (22K+ stars GitHub) định nghĩa các design pattern phân định prototype LLM cấp demo với agent cấp production mà khách hàng thực sự phụ thuộc. Phân tích đầy đủ 12 nguyên tắc — sở hữu prompt, sở hữu context window, mô hình stateless reducer, sở hữu control flow, human-in-the-loop qua tool call, error gọn, agent nhỏ tập trung, và hơn nữa. Kèm hướng dẫn áp dụng thực tế cho Claude Code, Codex, OpenCode và stack agent dựa trên MCP.'
 date: 2026-05-23 00:00:00+08:00
@@ -25,11 +20,9 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['12-factor-agents', 'production-ai', 'llm-engineering', 'agent-architecture', humanlayer, 'agent-design-patterns', 'context-window', 'prompt-engineering', 'tool-calls', 'developer-productivity']
-aliases:
-- /vi/posts/12-factor-agents-production-llm-software-2026/
+aliases: - /vi/posts/12-factor-agents-production-llm-software-2026/
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/12-factor-agents-production-llm-software-2026/ -->
 # Giải mã 12-Factor Agents: 12 nguyên tắc xây dựng phần mềm LLM cấp Production (Hướng dẫn 2026)
 
 
@@ -47,9 +40,7 @@ Code Apache 2.0, văn bản CC BY-SA 4.0. 273 commit và tăng, chủ yếu Type
 
 ## Insight cốt lõi
 
-Các framework trừu tượng hóa đi bốn thứ thực sự quan trọng nhất khi agent hỏng:
-
-1. **Prompt đã được gửi đi**.
+Các framework trừu tượng hóa đi bốn thứ thực sự quan trọng nhất khi agent hỏng: 1. **Prompt đã được gửi đi**.
 2. **Context window đang hoạt động**.
 3. **Control flow quyết định làm gì tiếp**.
 4. **Execution state cần sống sót qua crash**.
@@ -130,9 +121,7 @@ Những công cụ này cho bạn khởi đầu sẵn về factor 1, 4, 8 (agent
 
 ## Nơi 12-Factor Agents Bất Đồng với Marketing Framework Chủ Lưu
 
-Vài nguyên tắc trong manifesto đẩy lùi mạnh khẩu hiệu "dùng framework chúng tôi và quên đi chi tiết":
-
-- **Factor 2 vs prompt library**: Hầu hết framework agent ship một prompt library. 12-Factor nói: copy prompt vào repo, rồi chúng thuộc về bạn.
+Vài nguyên tắc trong manifesto đẩy lùi mạnh khẩu hiệu "dùng framework chúng tôi và quên đi chi tiết": - **Factor 2 vs prompt library**: Hầu hết framework agent ship một prompt library. 12-Factor nói: copy prompt vào repo, rồi chúng thuộc về bạn.
 - **Factor 3 vs auto-memory**: Framework thích cung cấp memory tự động ("RAG out of the box"). 12-Factor nói: đó là nguồn duy nhất lớn nhất của bí ẩn "tại sao agent đang làm thế này?". Tự xây lắp ráp.
 - **Factor 8 vs runtime giấu loop**: Runtime hosted giấu loop tiện cho đến khi bạn cần inject logic tùy biến. 12-Factor nói: tự viết loop, nó nhỏ.
 
@@ -142,9 +131,7 @@ Vài nguyên tắc trong manifesto đẩy lùi mạnh khẩu hiệu "dùng frame
 
 ## 12-Factor Agents KHÔNG là gì
 
-Đặt kỳ vọng đúng:
-
-- **Không phải runtime**. Không có `pip install twelve-factor-agents`. Là chữ, ví dụ, pattern.
+Đặt kỳ vọng đúng: - **Không phải runtime**. Không có `pip install twelve-factor-agents`. Là chữ, ví dụ, pattern.
 - **Không gắn ngôn ngữ đơn**. Ví dụ là TypeScript và Python, nhưng nguyên tắc độc lập ngôn ngữ.
 - **Không phải tôn giáo**. Một số factor (đặc biệt 10 — agent nhỏ tập trung) đi kèm trade-off thật. Manifesto thừa nhận thẳng.
 - **Chưa hoàn thành**. 273 commit và tăng. Issue và discussion liên tục lặp về cách diễn đạt.
@@ -178,7 +165,6 @@ Kết hợp 12 factor với [lớp symbol hiệu quả token như CodeGraph](htt
 **GitHub**: [humanlayer/12-factor-agents](https://github.com/humanlayer/12-factor-agents) · **License**: Apache 2.0 (code) / CC BY-SA 4.0 (content) · **Stars**: 22K+ · **Tác giả**: Dex Horthy / HumanLayer
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

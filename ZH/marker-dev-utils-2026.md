@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/marker-dev-utils-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/marker-dev-utils-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/marker-dev-utils-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/marker-dev-utils-2026" />
 title: 'Marker：快速将 PDF、DOCX 与 EPUB 转为 Markdown/JSON —— 2026 实用指南'
 description: 'Marker（datalab-to/marker）能快速、准确地把 PDF、DOCX、EPUB 等文档转成 Markdown、JSON、HTML 和 chunks。35,694 个 GitHub star，代码采用 GPL-3.0 许可。涵盖安装、CLI 与 Python API、真实代码示例、LLM 模式，以及与同类工具的客观对比。'
 date: 2026-06-02 00:00:00+08:00
@@ -25,10 +20,8 @@ featureImage: 'https://raw.githubusercontent.com/VikParuchuri/marker/master/data
 draft: false
 categories: ['dev-utils']
 tags: []
-aliases:
-- /posts/marker-dev-utils-2026/
-faqs:
-  - q: '怎么安装 marker？'
+aliases: - /posts/marker-dev-utils-2026/
+faqs: - q: '怎么安装 marker？'
     a: '从 PyPI 安装：`pip install marker-pdf`。如果要处理非 PDF 格式（DOCX、PPTX、XLSX、EPUB、HTML、图片），用 `pip install marker-pdf[full]`。'
   - q: '这个工具能用于商业项目吗？'
     a: '代码采用 GPL-3.0 许可，但模型权重用的是经过修改的 AI Pubs Open Rail-M 许可。该许可对研究、个人使用以及资金/营收大致低于 200 万美元的公司免费；更大的商业用户需要向 Datalab 申请商业许可。部署前请先核对当前条款。'
@@ -37,10 +30,7 @@ faqs:
   - q: '有办法自定义输出格式吗？'
     a: '可以。使用 CLI 参数 `--output_format [markdown|json|html|chunks]`，或在 Python API 里通过 `ConfigParser` 传入 `{"output_format": "..."}`。Marker 还支持用自定义的 processor 和 renderer 进行扩展。'
   - q: '怎么报告问题或提需求？'
-    a: '访问 GitHub 仓库 <https://github.com/datalab-to/marker>，在 Issues 标签页里新建一个 issue，并详细描述你的问题或建议。'
----
-
-<!-- canonical: https://dibi8.com/zh/tools/marker-dev-utils-2026/ -->
+    a: '访问 GitHub 仓库 ，在 Issues 标签页里新建一个 issue，并详细描述你的问题或建议。'---
 
 {{< resource-info >}}
 
@@ -210,21 +200,15 @@ Marker 还自带几个专用转换器——`TableConverter` 只处理表格，`O
 ```yaml
 name: Convert PDF to Markdown
 
-on:
-  push:
-    branches: [ master ]
+on: push: branches: [ master ]
 
-jobs:
-  convert-pdf:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
+jobs: convert-pdf: runs-on: ubuntu-latest
+    steps: - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
+        with: python-version: '3.11'
 
       - name: Install marker
         run: pip install marker-pdf
@@ -256,7 +240,15 @@ Marker 常被用于这类任务：构建文档检索与 RAG 语料、从报告�
 挑选 PDF 转 Markdown 的工具时，要权衡准确度、格式覆盖面、速度和许可。下面是 `marker` 与两个常见开源替代品的概览对比：`pdfplumber`（文本/表格抽取）和 `pymupdf4llm`（基于 PyMuPDF 的 Markdown 导出器）。
 
 | 特性             | datalab-to/marker                         | pdfplumber                 | pymupdf4llm                |
-|------------------|-------------------------------------------|----------------------------|----------------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **语言**         | Python                                    | Python                     | Python                     |
 | **思路**         | 深度学习版面 + OCR + 可选 LLM             | 基于规则的文本抽取         | 基于 PyMuPDF 的抽取        |
 | **输入格式**     | PDF、图片、PPTX、DOCX、XLSX、HTML、EPUB    | 仅 PDF                     | PDF 及少数几种             |
@@ -291,21 +283,18 @@ marker_single /path/to/your/file.pdf
 - 加入 [dibi8 英文 Telegram 群](https://t.me/DIBI8_Group/2)，获取开源 AI 工具速递。
 - 继续阅读：[dibi8 上的相关指南](dibi8-internal-link)。
 
----
 
+---
 **来源与延伸阅读**：
 - GitHub 仓库：https://github.com/datalab-to/marker
 - 官方文档 / README：https://github.com/datalab-to/marker#readme
 
 *以上部分链接为推广链接。如果你通过它们注册，dibi8.com 可能会获得一笔佣金，而你不会因此多付任何费用。这有助于维持网站运营，让内容保持免费。*
 
-<!-- internal-link-candidates:
   related open-source tools -> ai-tools-directory
   related guides on dibi8 -> ai-coding-agent-landscape-2026-skills-mcp-opensource
--->
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -333,25 +322,20 @@ marker_single /path/to/your/file.pdf
 
 ## Why This Matters
 
-Understanding marker：快速将 pdf、docx 与 epub 转为 markdown/json —— 2026 实用指南 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding marker：快速将 pdf、docx 与 epub 转为 markdown/json —— 2026 实用指南 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -372,7 +356,7 @@ Marker：快速将 PDF、DOCX 与 EPUB 转为 Markdown/JSON —— 2026 实用�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

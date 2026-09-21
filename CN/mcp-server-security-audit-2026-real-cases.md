@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/mcp-server-security-audit-2026-real-cases" />
 title: 'MCP Server Security Audit 2026: 5 Real Community Server ...
 description: 'Audited 5 popular community MCP servers in production: GitHub, Slack, Postgres, Brave Search, Fetch. Concrete vulnerabilities found, exploit walkthroughs, and a 8-point pre-install audit checklist that takes 5 minutes per server.'
 date: 2026-05-25 00:00:00+08:00
@@ -18,10 +16,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [mcp, security, audit, 'claude-code', 'supply-chain', 'agent-security', 2026]
-aliases:
-- /posts/mcp-server-security-audit-2026-real-cases/
-faq:
-  - q: "Are Anthropic-maintained MCP servers safer than community ones?"
+aliases: - /posts/mcp-server-security-audit-2026-real-cases/
+faq: - q: "Are Anthropic-maintained MCP servers safer than community ones?"
     a: "Yes, materially. Anthropic reference servers (filesystem, git, github, fetch, sequentialthinking) get internal review, signed releases, and a defined security model. Community servers vary widely — some are audited, most are not. Default to Anthropic when an Anthropic version exists; treat community alternatives as untrusted code with full local permissions until you prove otherwise."
   - q: "What's the biggest real-world MCP attack pattern in 2026?"
     a: "Three tied for first: (1) Typosquatting — fake packages like `github-mcp-server-v2` that exfiltrate tokens. (2) Maintainer transfer + telemetry — popular community server changes hands, adds analytics that leaks file paths or env vars. (3) Prompt injection via fetched content — `fetch` server pulls hostile markdown, the agent then exfiltrates `~/.ssh/id_rsa` because the prompt tricked it."
@@ -34,7 +30,6 @@ faq:
   - q: "What's the canary in the coal mine that an MCP server is malicious?"
     a: "Unexplained network calls in dependency analysis. A filesystem or git MCP server should make zero HTTP calls. A fetch or github server has well-defined endpoints. Anything calling out to a domain you don't recognize (especially via random subdomains or IP literals) is a red flag — and the most common way community servers exfiltrate data."
 ---
-
 {{</* resource-info */>}}
 
 # MCP Server Security Audit 2026: 5 Real Community Server Reviews + Trap Patterns
@@ -55,8 +50,8 @@ The MCP ecosystem hit 1000+ public servers by mid-2026. Most developers treat th
 >
 > **Default rule**: Anthropic reference > active community with audit > everything else.
 
----
 
+---
 ## The 5 Servers We Audited
 
 ### 1. `github-mcp-server-v2` (community, ~120 stars) — ❌ Typosquat
@@ -91,9 +86,7 @@ Code is clean. Problem is what it enables: pulls arbitrary HTML/markdown, hands 
 
 ## The 8-Point Pre-Install Audit Checklist
 
-For every community MCP server, before install:
-
-### 1. **Maintainer freshness** — Has the last commit been within 90 days? Stale = signal.
+For every community MCP server, before install: ### 1. **Maintainer freshness** — Has the last commit been within 90 days? Stale = signal.
 ### 2. **Maintainer identity** — Original maintainer, or transferred? Check GitHub `Owner` history.
 ### 3. **Dependency network calls** — `npm ls` + audit each dep. Filesystem/git/sqlite servers should have **zero outbound HTTP**.
 ### 4. **File system scope** — README explicit about scope? If `filesystem` claims `cwd-only` but the code does `path.resolve(..)` upward — red flag.
@@ -107,7 +100,13 @@ For every community MCP server, before install:
 ## Common Audit Outcomes (Patterns from 50+ Servers)
 
 | Pattern | % of community servers | Severity |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | Stale (commit > 180 days) | 41% | Medium |
 | Over-scoped token requirements | 28% | High |
 | Hidden telemetry | 7% | Critical |
@@ -135,9 +134,7 @@ For every community MCP server, before install:
 
 ## Recommended Infrastructure
 
-If you're running team-shared MCP servers (HTTP/SSE), a hardened VPS makes the sandboxing tractable:
-
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 free credit, easy firewall rules per droplet
+If you're running team-shared MCP servers (HTTP/SSE), a hardened VPS makes the sandboxing tractable: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 free credit, easy firewall rules per droplet
 - **{{< aff "htstack" "footer-cta" "HTStack" >}}** — Hong Kong VPS, same IDC as dibi8.com
 
 *Affiliate links — same price, supports dibi8.com.*
@@ -148,12 +145,11 @@ MCP servers run with your full local permissions. The community ecosystem is now
 
 Default to Anthropic when available. For community servers, run the 8-point checklist before install, every time. Pin versions. Never grant full-access tokens. **Treat MCP servers as security-relevant code that happens to be ergonomic — not as ergonomic code that happens to need credentials.**
 
----
 
+---
 **Related**: [MCP Servers 2026 Rankings](https://dibi8.com/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/) · [Claude Code Setup Guide](https://dibi8.com/resources/llm-frameworks/claude-code/) · [AI Agent Security Patterns](https://dibi8.com/resources/llm-frameworks/ai-agent-skills-framework-spec-driven-development-2026/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -181,25 +177,20 @@ Default to Anthropic when available. For community servers, run the 8-point chec
 
 ## Why This Matters
 
-Understanding mcp server security audit 2026: 5 real community server reviews + trap patterns is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding mcp server security audit 2026: 5 real community server reviews + trap patterns is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

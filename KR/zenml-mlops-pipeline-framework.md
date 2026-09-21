@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/zenml-mlops-pipeline-framework" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/zenml-mlops-pipeline-framework" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/zenml-mlops-pipeline-framework" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/zenml-mlops-pipeline-framework" />
 title: 'ZenML 2026: 20개 이상의 도구를 프로덕션 파이프라인으로 연결하는 MLOps 프레임워크 — ...
 description: '20개 이상의 도구를 통합된 재현 가능한 ML 파이프라인으로 연결하는 오픈소스 MLOps 프레임워크인 ZenML에 대한 종합 가이드. 셀프 호스팅, 실제 벤치마크, 프로덕션 배포.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: []
-aliases:
-- /kr/posts/zenml-mlops-pipeline-framework/
+aliases: - /kr/posts/zenml-mlops-pipeline-framework/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/zenml-mlops-pipeline-framework/ -->
 
 {{</* resource-info */>}}
 
@@ -65,8 +57,7 @@ ZenML의 아키텍처는 실제 ML 워크플로우 요구사항에 직접 매핑
 각 단계의 출력은 **아티팩트** — 아티팩트 저장소에 저장된 타입화되고 버전 관리된 객체이다. 아티팩트는 데이터셋(pandas DataFrame, NumPy 배열), 모델(sklearn, PyTorch, TensorFlow), 또는 커스텀 객체가 될 수 있다. ZenML은 모든 아티팩트에 대해 자동으로 직렬화, 버전 관리, 리니지 추적을 수행한다.
 
 ### 스택(Stacks)
-**스택**은 파이프라인이 어디서, 어떻게 실행되는지 정의한다. 구성 요소는 다음과 같다:
-- **오케스트레이터**: 파이프라인 실행 (로컬, Airflow, Kubernetes, Vertex AI 등)
+**스택**은 파이프라인이 어디서, 어떻게 실행되는지 정의한다. 구성 요소는 다음과 같다: - **오케스트레이터**: 파이프라인 실행 (로컬, Airflow, Kubernetes, Vertex AI 등)
 - **아티팩트 저장소**: 파이프라인 출력 저장 (로컬 파일시스템, S3, GCS, Azure Blob)
 - **컨테이너 레지스트리**: 컨테이너화된 실행을 위한 Docker 이미지 저장
 - **실험 트래커**: 메트릭과 파라미터 로깅 (MLflow, Weights & Biases, Neptune)
@@ -130,9 +121,7 @@ zenml stack describe
 
 ### 단계 4: 첫 번째 파이프라인 실행
 
-`first_pipeline.py` 파일을 생성한다:
-
-```python
+`first_pipeline.py` 파일을 생성한다: ```python
 from zenml import pipeline, step
 import pandas as pd
 from sklearn.datasets import load_iris
@@ -141,15 +130,13 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 
 @step
-def load_data() -> pd.DataFrame:
-    """Load the iris dataset."""
+def load_data() -> pd.DataFrame: """Load the iris dataset."""
     iris = load_iris(as_frame=True)
     df = iris.frame
     return df
 
 @step
-def split_data(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame, pd.Series, pd.Series]:
-    """Split data into training and test sets."""
+def split_data(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame, pd.Series, pd.Series]: """Split data into training and test sets."""
     X = df.drop("target", axis=1)
     y = df["target"]
     X_train, X_test, y_train, y_test = train_test_split(
@@ -158,8 +145,7 @@ def split_data(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame, pd.Series,
     return X_train, X_test, y_train, y_test
 
 @step
-def train_model(X_train: pd.DataFrame, y_train: pd.Series) -> RandomForestClassifier:
-    """Train a Random Forest classifier."""
+def train_model(X_train: pd.DataFrame, y_train: pd.Series) -> RandomForestClassifier: """Train a Random Forest classifier."""
     clf = RandomForestClassifier(n_estimators=100, random_state=42)
     clf.fit(X_train, y_train)
     return clf
@@ -169,29 +155,24 @@ def evaluate_model(
     model: RandomForestClassifier,
     X_test: pd.DataFrame,
     y_test: pd.Series
-) -> float:
-    """Evaluate the trained model."""
+) -> float: """Evaluate the trained model."""
     predictions = model.predict(X_test)
     accuracy = accuracy_score(y_test, predictions)
     print(f"Model accuracy: {accuracy:.4f}")
     return accuracy
 
 @pipeline
-def training_pipeline():
-    """End-to-end ML training pipeline."""
+def training_pipeline(): """End-to-end ML training pipeline."""
     df = load_data()
     X_train, X_test, y_train, y_test = split_data(df)
     model = train_model(X_train, y_train)
     accuracy = evaluate_model(model, X_test, y_test)
 
-if __name__ == "__main__":
-    run = training_pipeline()
+if __name__ == "__main__": run = training_pipeline()
     print(f"Pipeline run completed: {run.name}")
 ```
 
-실행:
-
-```bash
+실행: ```bash
 python first_pipeline.py
 ```
 
@@ -202,9 +183,7 @@ python first_pipeline.py
 ZenML의 강력함은 통합 에코시스템에 있다. 다음은 ML 라이프사이클 전반에서 가장 일반적으로 연결되는 도구들이다.
 
 ### 오케스트레이터
-ZenML은 다양한 규모 요구사항을 위해 여러 오케스트레이터를 지원한다:
-
-```bash
+ZenML은 다양한 규모 요구사항을 위해 여러 오케스트레이터를 지원한다: ```bash
 # Airflow 통합 설치
 pip install zenml[airflow]
 
@@ -244,17 +223,14 @@ zenml stack update local_stack \
   -r mlflow_registry
 ```
 
-이제 실험 로깅을 위해 파이프라인을 수정한다:
-
-```python
+이제 실험 로깅을 위해 파이프라인을 수정한다: ```python
 from zenml import pipeline, step
 from zenml.client import Client
 import mlflow
 import mlflow.sklearn
 
 @step(experiment_tracker="mlflow_tracker")
-def train_model(X_train: pd.DataFrame, y_train: pd.Series) -> RandomForestClassifier:
-    """Train with MLflow logging."""
+def train_model(X_train: pd.DataFrame, y_train: pd.Series) -> RandomForestClassifier: """Train with MLflow logging."""
     mlflow.autolog()  # Auto-log parameters, metrics, and model
     clf = RandomForestClassifier(n_estimators=100, random_state=42)
     clf.fit(X_train, y_train)
@@ -270,10 +246,8 @@ def train_model(X_train: pd.DataFrame, y_train: pd.Series) -> RandomForestClassi
 def register_model(
     model: RandomForestClassifier,
     accuracy: float
-) -> str:
-    """Register model to MLflow model registry."""
-    if accuracy > 0.90:
-        model_version = mlflow.sklearn.log_model(
+) -> str: """Register model to MLflow model registry."""
+    if accuracy > 0.90: model_version = mlflow.sklearn.log_model(
             model,
             artifact_path="model",
             registered_model_name="iris-classifier"
@@ -326,39 +300,24 @@ zenml experiment-tracker register wandb_tracker \
 ```yaml
 # stack.yaml — 코드로 전체 MLOps 스택 정의
 stack_name: production_stack
-components:
-  orchestrator:
-    flavor: kubernetes
-    configuration:
-      kubernetes_context: prod-cluster
+components: orchestrator: flavor: kubernetes
+    configuration: kubernetes_context: prod-cluster
       namespace: ml-pipelines
-  artifact_store:
-    flavor: s3
-    configuration:
-      path: s3://prod-ml-artifacts/zenml
+  artifact_store: flavor: s3
+    configuration: path: s3://prod-ml-artifacts/zenml
       authentication_secret: aws-s3-secret
-  container_registry:
-    flavor: default
-    configuration:
-      uri: 123456789.dkr.ecr.us-east-1.amazonaws.com
-  experiment_tracker:
-    flavor: mlflow
-    configuration:
-      tracking_uri: http://mlflow.internal:5000
-  model_registry:
-    flavor: mlflow
-    configuration:
-      uri: http://mlflow.internal:5000
-  step_operator:
-    flavor: sagemaker
-    configuration:
-      role: arn:aws:iam::123456789:role/SageMakerRole
+  container_registry: flavor: default
+    configuration: uri: 123456789.dkr.ecr.us-east-1.amazonaws.com
+  experiment_tracker: flavor: mlflow
+    configuration: tracking_uri: http://mlflow.internal:5000
+  model_registry: flavor: mlflow
+    configuration: uri: http://mlflow.internal:5000
+  step_operator: flavor: sagemaker
+    configuration: role: arn:aws:iam::123456789:role/SageMakerRole
       instance_type: ml.p3.2xlarge
 ```
 
-이 스택 등록:
-
-```bash
+이 스택 등록: ```bash
 zenml stack register -f stack.yaml --set
 ```
 
@@ -377,9 +336,7 @@ ZenML은 다양한 산업에서 프로덕션 환경에 사용되고 있다. 다�
 
 ### 성능 벤치마크
 
-**DigitalOcean 8 vCPU / 32GB RAM 드롭릿**에서 ZenML v0.80.0을 대표적인 MLOps 패턴으로 벤치마크했다 ([DigitalOcean](https://m.do.co/c/eca87ac14ee0)에서 $200 물크레딧 받기):
-
-| 지표 | 로컬 모드 | Airflow | Kubernetes |
+**DigitalOcean 8 vCPU / 32GB RAM 드롭릿**에서 ZenML v0.80.0을 대표적인 MLOps 패턴으로 벤치마크했다 ([DigitalOcean](https://m.do.co/c/eca87ac14ee0)에서 $200 물크레딧 받기): | 지표 | 로컬 모드 | Airflow | Kubernetes |
 |--------|-----------|---------|------------|
 | 콜드 스타트 시간 | **1.2s** | 8.5s | 45s |
 | 파이프라인 오버헤드 | **0.3s** | 2.1s | 12s |
@@ -410,14 +367,11 @@ ZenML은 다양한 산업에서 프로덕션 환경에 사용되고 있다. 다�
 
 ### GPU 워크로드를 위한 커스텀 단계 오퍼레이터
 
-학습에 GPU가 필요할 때 파이프라인 코드를 변경하지 않고 특정 단계를 클라우드 인스턴스에 오프로드한다:
-
-```python
+학습에 GPU가 필요할 때 파이프라인 코드를 변경하지 않고 특정 단계를 클라우드 인스턴스에 오프로드한다: ```python
 from zenml.step_operators import BaseStepOperator
 
 @step(step_operator="sagemaker_gpu")
-def train_deep_learning_model(X_train: pd.DataFrame, y_train: pd.Series):
-    """SageMaker를 통해 GPU에서 학습, 다른 단계는 로컬에서 실행."""
+def train_deep_learning_model(X_train: pd.DataFrame, y_train: pd.Series): """SageMaker를 통해 GPU에서 학습, 다른 단계는 로컬에서 실행."""
     import tensorflow as tf
     
     # 이 단계는 SageMaker에서 ml.p3.2xlarge에서 실행
@@ -450,12 +404,9 @@ zenml.pipeline_schedule register daily_schedule
 
 ### 캐싱과 재현 가능성
 
-ZenML의 캐싱 시스템은 자동적이고 아티팩트를 인식한다. 입력과 단계 코드가 변경되지 않으면 ZenML은 캐시된 출력을 재사용한다:
-
-```python
+ZenML의 캐싱 시스템은 자동적이고 아티팩트를 인식한다. 입력과 단계 코드가 변경되지 않으면 ZenML은 캐시된 출력을 재사용한다: ```python
 @step(enable_cache=True)  # 기본 동작
-def expensive_preprocessing(df: pd.DataFrame) -> pd.DataFrame:
-    """입력 df 또는 이 함수가 변경될 때만 재실행."""
+def expensive_preprocessing(df: pd.DataFrame) -> pd.DataFrame: """입력 df 또는 이 함수가 변경될 때만 재실행."""
     # 30분 걸리는 무거운 변환
     return processed_df
 
@@ -480,14 +431,11 @@ zenml secrets-manager secret register db_credentials \
   --password=$DB_PASSWORD
 ```
 
-단계에서 접근:
-
-```python
+단계에서 접근: ```python
 from zenml.client import Client
 
 @step
-def load_from_database() -> pd.DataFrame:
-    """ZenML 시크릿 매니저의 자격 증명을 사용해 데이터 로드."""
+def load_from_database() -> pd.DataFrame: """ZenML 시크릿 매니저의 자격 증명을 사용해 데이터 로드."""
     client = Client()
     credentials = client.get_secret("db_credentials")
     
@@ -506,17 +454,11 @@ def load_from_database() -> pd.DataFrame:
 ```yaml
 # .github/workflows/ml-pipeline.yml
 name: ML Pipeline CI
-on:
-  push:
-    branches: [main]
-  schedule:
-    - cron: "0 2 * * *"
+on: push: branches: [main]
+  schedule: - cron: "0 2 * * *"
 
-jobs:
-  train:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: train: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       
       - name: Setup ZenML
         run: |
@@ -560,9 +502,7 @@ jobs:
 
 ## 한계: 정직한 평가
 
-ZenML은 만병통치약이 아니다. 투입하기 전에 이해해야 할 트레이드오프는 다음과 같다:
-
-1. **Kubernetes 복잡성**: ZenML이 오케스트레이터를 추상화하더라도 프로덕션 Kubernetes를 운영하는 것은 여전히 클러스터 전문 지식을 필요로 한다. ZenML 팀은 관리형 Kubernetes 통합을 작업 중이다 (목표 v0.85.0).
+ZenML은 만병통치약이 아니다. 투입하기 전에 이해해야 할 트레이드오프는 다음과 같다: 1. **Kubernetes 복잡성**: ZenML이 오케스트레이터를 추상화하더라도 프로덕션 Kubernetes를 운영하는 것은 여전히 클러스터 전문 지식을 필요로 한다. ZenML 팀은 관리형 Kubernetes 통합을 작업 중이다 (목표 v0.85.0).
 
 2. **문서 공백**: 고급 통합(커스텀 단계 오퍼레이터, 이벤트 기반 트리거)은 포괄적인 예시가 부족하다. 커뮤니티 Discord는 지원에 활발하지만 공식 문서는 릴리스보다 뒤처진다.
 
@@ -613,9 +553,7 @@ ZenML은 머신러닝에서 가장 흔한 실패 모드를 해결한다: "내 �
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -625,7 +563,6 @@ ZenML은 머신러닝에서 가장 흔한 실패 모드를 해결한다: "내 �
 본 문서에는 제휴 링크가 포함되어 있습니다. 본 문서의 링크를 통해 서비스에 가입하면 dibi8.com에서 추가 비용 없이 커미션을 받을 수 있습니다. 우리는 직접 평가하고 진정한 가치가 있다고 믿는 도구만을 추천합니다. 표현된 의견은 우리 자신의 것입니다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

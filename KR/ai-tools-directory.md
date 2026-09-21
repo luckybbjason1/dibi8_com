@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-tools-directory" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-tools-directory" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-tools-directory" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-tools-directory" />
 title: "2024 AI 도구 디렉토리: 최고의 AI 도구 완벽 가이드 | Dibi8"
 description: "2024년 최고의 AI 도구를 찾아보세요. 글쓰기, 이미지 생성, 코딩, 마케팅 등 200개 이상의 AI 도구가 포함된 완전한 디렉토리. 무료 및 유료 옵션, 상세 리뷰 포함.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Go
+tech_stack: - Go
   - JavaScript
 application_domain: "Dev Utils"
 source_version: ""
@@ -25,8 +19,7 @@ maintainer: ""
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-faqs:
-  - q: '2024년 최고의 무료 AI 도구는 무엇인가요?'
+faqs: - q: '2024년 최고의 무료 AI 도구는 무엇인가요?'
     a: '최고의 무료 AI 도구로는 챗봇 분야의 ChatGPT와 Claude, 디자인 분야의 Canva AI, 글쓰기 분야의 Grammarly, 배경 제거 도구인 Remove.bg, 코딩 보조 도구인 Codeium, 생산성 도구인 Notion AI, 소셜 미디어 예약 게시 도구인 Buffer가 있습니다. Codeium은 무제한 무료 코드 자동완성을 제공하며, Stable Diffusion은 셀프 호스팅 시 완전히 무료입니다.'
   - q: '무제한 코드 자동완성을 무료로 제공하는 AI 코딩 도구로는 무엇이 가장 좋나요?'
     a: 'Codeium은 비용 없이 무제한으로 사용할 수 있는 압도적인 무료 옵션입니다. 그 밖에 무료 플랜을 제공하는 코딩 도구로는 Cursor (무료 / $20/mo), Bolt.new, React UI 생성용 V0 by Vercel이 있으며, GitHub Copilot은 $10/mo부터 시작합니다.'
@@ -37,8 +30,6 @@ faqs:
   - q: '보컬이 포함된 완성된 노래를 생성하는 데 가장 적합한 AI 도구는 무엇인가요?'
     a: 'Suno는 보컬이 포함된 완성된 노래를 만드는 데 가장 적합합니다 (무료 / $10/mo). 그 외 음악 생성 옵션으로는 고품질 음악 생성의 Udio, 클래식 및 영화음악의 AIVA, 저작권 무료 배경 음악의 Soundraw가 있습니다.'
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/ai-tools-directory/ -->
 
 {</* resource-info */>}
 
@@ -353,9 +344,7 @@ AI 개발자와 엔지니어를 위한 필수 도구.
 
 ## 💡 AI 도구 선택 가이드
 
-어떤 AI 도구를 선택해야 할지 모르시겠나요? 이 가이드를 따르세요:
-
-### 1단계: 필요 사항 파악
+어떤 AI 도구를 선택해야 할지 모르시겠나요? 이 가이드를 따르세요: ### 1단계: 필요 사항 파악
 - **글쓰기**: 블로그, 이메일, 소셜 미디어
 - **이미지**: 마케팅, 디자인, 제품 사진
 - **비디오**: 소셜 미디어, 교육, 마케팅
@@ -413,9 +402,7 @@ AI 도구 분야에서 핫한 트렌드는 무엇인가요?
 
 ## 📝 마무리
 
-AI 도구 분야는 빠르게 진화하고 있습니다. 매일 새로운 도구가 출시되고, 기존 도구는 지속적으로 개선되고 있습니다. 핵심은:
-
-1. **필요에서 시작**: AI를 위해 AI를 사용하지 마세요
+AI 도구 분야는 빠르게 진화하고 있습니다. 매일 새로운 도구가 출시되고, 기존 도구는 지속적으로 개선되고 있습니다. 핵심은: 1. **필요에서 시작**: AI를 위해 AI를 사용하지 마세요
 2. **커밋 전 테스트**: 무료 티어와 체험판 활용
 3. **최신 정보 유지**: AI 뉴스와 트렌드 팔로우
 4. **경험 공유**: 다른 사람들이 적합한 도구를 찾도록 도와주세요
@@ -429,9 +416,7 @@ AI 도구 분야는 빠르게 진화하고 있습니다. 매일 새로운 도구
 
 ## 추천 도구
 
-오픈소스 AI 도구 개발/배포 시 권장:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
+오픈소스 AI 도구 개발/배포 시 권장: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
 - **{{< aff "shiyunapi" "category-footer" "Shiyunapi Claude API" >}}** — Claude / OpenAI / DeepSeek API 프록시. 이런 디렉토리의 AI 도구 대부분 LLM 키 필요 — 프록시로 안정적인 액세스, 공식 가격의 ~30%.
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
@@ -441,7 +426,6 @@ AI 도구 분야는 빠르게 진화하고 있습니다. 매일 새로운 도구
 *이 가이드는 최신 AI 도구와 트렌드를 반영하여 정기적으로 업데이트됩니다. 이 페이지를 북마크하고 새로운 내용을 확인하세요.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

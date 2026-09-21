@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/github-trending-projects-may-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/github-trending-projects-may-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/github-trending-projects-may-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/github-trending-projects-may-2026" />
 title: "DeepSeek TUI + Anthropic Financial AI: 3 Dự Án GitHub Tr...
 description: "Phân tích chuyên sâu 3 dự án GitHub trending hot nhất tháng 5/2026: DeepSeek-TUI tăng 5.800 stars trong một ngày, bộ công cụ Claude cho tài chính của Anthropic, và nền tảng giao dịch AI hoàn toàn tự động."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - C++
+tech_stack: - C++
   - Docker
   - Go
   - JavaScript
@@ -27,10 +21,8 @@ maintainer: "Hmbown"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases:
-- /vi/posts/github-trending-projects-may-2026/
-faqs:
-  - q: 'DeepSeek-TUI là gì và nó khác với Cursor hay GitHub Copilot như thế nào?'
+aliases: - /vi/posts/github-trending-projects-may-2026/
+faqs: - q: 'DeepSeek-TUI là gì và nó khác với Cursor hay GitHub Copilot như thế nào?'
     a: 'DeepSeek-TUI là một AI agent lập trình chạy trên terminal, hoạt động cục bộ thông qua lệnh `deepseek`, truyền trực tiếp các khối suy luận đồng thời đọc/ghi tệp trên ổ đĩa với các cổng phê duyệt trước bất kỳ thay đổi nào trên hệ thống tệp. Khác với Cursor hay Copilot vốn chạy như những trình soạn thảo GUI đầy đủ, nó được xây dựng cho người dùng terminal làm việc trong tmux, neovim hoặc zsh, không cần chuyển đổi ngữ cảnh giữa trình duyệt và IDE.'
   - q: 'Chế độ auto của DeepSeek-TUI tiết kiệm chi phí như thế nào?'
     a: 'Ở chế độ auto (`deepseek --model auto`), công cụ trước tiên thực hiện một lệnh gọi định tuyến nhỏ bằng deepseek-v4-flash với thinking tắt để đánh giá yêu cầu của bạn, rồi chọn mô hình khả thi rẻ nhất và mức thinking phù hợp. Các tác vụ tái cấu trúc đơn giản dùng mô hình nhanh với thinking tắt, trong khi các tác vụ phức tạp như rà soát bảo mật sẽ kích hoạt mô hình pro ở mức thinking cao hơn, nhờ vậy những câu hỏi ngắn vẫn giữ chi phí thấp.'
@@ -42,7 +34,6 @@ faqs:
     a: 'Local Deep Research chạy hoàn toàn trên phần cứng của riêng bạn với zero telemetry và không phụ thuộc đám mây, lưu lịch sử nghiên cứu trong một cơ sở dữ liệu được mã hóa bằng SQLCipher. Dù chạy cục bộ, nó đạt độ chính xác khoảng 95% trên SimpleQA khi kết hợp với Qwen3.6-27B trên RTX 3090, và hỗ trợ hơn 10 công cụ tìm kiếm bao gồm arXiv và PubMed.'
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/github-trending-projects-may-2026/ -->
 {</* resource-info */>}
 
 ## Giới thiệu
@@ -69,9 +60,7 @@ Khác với Cursor hoặc Copilot chạy như full GUI editors, DeepSeek-TUI đ�
 
 ### Auto Mode: Smart Model Routing Tiết Kiệm Tiền
 
-Tính năng nổi bật nhất là auto mode (`deepseek --model auto`). Trước khi gửi mỗi request, DeepSeek-TUI thực hiện một cuộc gọi routing nhỏ dùng `deepseek-v4-flash` (không enabled thinking). Router đánh giá request mới nhất và context hội thoại gần đây, sau đó chọn kết hợp tối ưu:
-
-- **Model:** `deepseek-v4-flash` cho nhiệm vụ nhanh, `deepseek-v4-pro` cho kiến trúc phức tạp
+Tính năng nổi bật nhất là auto mode (`deepseek --model auto`). Trước khi gửi mỗi request, DeepSeek-TUI thực hiện một cuộc gọi routing nhỏ dùng `deepseek-v4-flash` (không enabled thinking). Router đánh giá request mới nhất và context hội thoại gần đây, sau đó chọn kết hợp tối ưu: - **Model:** `deepseek-v4-flash` cho nhiệm vụ nhanh, `deepseek-v4-pro` cho kiến trúc phức tạp
 - **Thinking level:** `off` cho refactoring đơn giản, `high` hoặc `max` cho security review hoặc debugging multi-step
 
 Điều này có nghĩa là câu hỏi ngắn giữ mức chi phí thấp, chỉ thật sự phức tạp mới kích hoạt inference chi phí cao. Upstream API không bao giờ nhận `"model": "auto"` — TUI phân giải nội bộ và tính phí theo model thực tế đã dùng. Theo dõi chi phí diễn ra minh bạch.
@@ -136,9 +125,7 @@ Trong khi consumer-facing AI coding tools thống trị headlines, Anthropic âm
 
 ### Những Gì Được Bao Gồm
 
-Repository cung cấp 11 named agents, mỗi cái cover một specific financial workflow:
-
-| Chức Năng | Agent | Output |
+Repository cung cấp 11 named agents, mỗi cái cover một specific financial workflow: | Chức Năng | Agent | Output |
 |---|---|---|
 | Coverage & Advisory | **Pitch Agent** | Comps, precedents, LBO → branded pitch deck |
 | Research & Modeling | **Market Researcher** | Sector overview + competitive landscape + peer comps |
@@ -150,17 +137,13 @@ Cộng thêm vertical plugins cho `/comps`, `/dcf`, `/earnings` và granular sla
 
 ### Hai Đường Deploy
 
-Điều khiến điều này truly distinctive là dual distribution model:
-
-1. **Claude Cowork Plugin** — Install trực tiếp trong Claude.ai bằng cách paste repo URL hoặc upload zip file. Chọn individual agents hoặc full stack. Hoàn hảo cho solo analysts hoặc small teams.
+Điều khiến điều này truly distinctive là dual distribution model: 1. **Claude Cowork Plugin** — Install trực tiếp trong Claude.ai bằng cách paste repo URL hoặc upload zip file. Chọn individual agents hoặc full stack. Hoàn hảo cho solo analysts hoặc small teams.
 
 2. **Claude Managed Agents API** — Deploy behind own workflow engine qua endpoint `/v1/agents`. Kèm `agent.yaml` configs, leaf-worker subagent templates, steering events, và per-agent security notes. Thiết kế cho firms cần audit trails, role-based access, và integration với internal systems.
 
 ### Tại Sao Điều Này Quan Trọng Về Mặt Thương Mại
 
-Financial services là ngành $4 trillion riêng ở Mỹ. Friction giữa analyst work và AI tools từng khổng lồ — đa số AI tools hoặc thiếu domain expertise hoặc không thể deploy securely behind enterprise firewalls. Repository này bridging cả hai gaps:
-
-- **Domain depth:** Skills được viết bởi practitioners hiểu comp tables, DCF models, và GL reconciliation, không phải generalist prompt engineers
+Financial services là ngành $4 trillion riêng ở Mỹ. Friction giữa analyst work và AI tools từng khổng lồ — đa số AI tools hoặc thiếu domain expertise hoặc không thể deploy securely behind enterprise firewalls. Repository này bridging cả hai gaps: - **Domain depth:** Skills được viết bởi practitioners hiểu comp tables, DCF models, và GL reconciliation, không phải generalist prompt engineers
 - **Enterprise readiness:** Mỗi output được stage cho human sign-off. Không gì executes transactions, binds risk, hay approves onboarding autonomously
 - **Compliance-aware:** Clear disclaimers, staged outputs, và human-in-the-loop requirements align với regulatory expectations
 - **Partner extensibility:** LSEG và S&P Global connectors means agents có thể pull live market data, không chỉ static files
@@ -211,8 +194,7 @@ Năm 2026, data privacy regulations (GDPR, CCPA, China PIPL, Brazil LGPD) làm c
 pip install local-deep-research
 ```
 
-Hoặc dùng Docker image cho isolated deployment:
-```bash
+Hoặc dùng Docker image cho isolated deployment: ```bash
 docker pull localdeepresearch/local-deep-research
 ```
 
@@ -235,9 +217,7 @@ docker pull localdeepresearch/local-deep-research
 
 ## Tiêu Chí Đánh Giá Của Chúng Tôi
 
-Selection criteria ưu tiên commercial relevance over raw star count. Lý do ba dự án này được chọn:
-
-1. **Velocity quan trọng hơn volume** — DeepSeek-TUI 5.799-star daily gain signal một product-market inflection point mà raw numbers không capture alone
+Selection criteria ưu tiên commercial relevance over raw star count. Lý do ba dự án này được chọn: 1. **Velocity quan trọng hơn volume** — DeepSeek-TUI 5.799-star daily gain signal một product-market inflection point mà raw numbers không capture alone
 2. **Vertical specialization wins** — Anthropic financial-services suite targets documented, budget-rich market với identifiable buyers
 3. **Privacy là growing moat** — Local Deep Research addressing regulatory tailwinds pushing enterprises away from cloud AI
 
@@ -266,9 +246,7 @@ Cả ba dự án demonstrate rằng 2026's open-source AI revolution đang shift
 
 ## Công Cụ Đề Xuất
 
-Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
+Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
 - **{{< aff "hostinger" "footer-cta-legacy" "Hostinger" >}}** — Lựa chọn VPS giá tốt cho thị trường Việt Nam.
 
 *Affiliate link — không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.*
@@ -283,7 +261,6 @@ Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

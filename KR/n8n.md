@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/n8n" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/n8n" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/n8n" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/n8n" />
 title: 'n8n AI 워크플로 자동화: 18.8만 Star 자체 호스팅 설정 — Zapier 대비 70% 절약'
 description: 'n8n(fair-code)은 네이티브 AI 기능과 400+ 통합을 갖춘 워크플로 자동화 플랫폼이다. Claude Code, OpenAI, Anthropic, Slack, Discord, Telegram과 호환. Docker 설정, AI 노드 구성, Webhook 배포, 프로덕션 강화를 다룬다.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,12 +20,9 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [n8n, '워크플로-자동화', '자체-호스팅', 'ai-에이전트', docker, langchain, 오픈소스, 로우코드]
-aliases:
-- /kr/posts/n8n/
+aliases: - /kr/posts/n8n/
 - /kr/resources/dev-utils/n8n-ai-workflow-automation-self-hosted-2026/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/n8n/ -->
 
 {{</* resource-info */>}}
 
@@ -97,30 +89,21 @@ sudo chmod +x /usr/local/bin/docker-compose
 # docker-compose.dev.yml
 version: '3.8'
 
-services:
-  n8n:
-    image: n8nio/n8n:latest
+services: n8n: image: n8nio/n8n:latest
     container_name: n8n
     restart: unless-stopped
-    ports:
-      - "5678:5678"
-    environment:
-      - N8N_BASIC_AUTH_ACTIVE=true
+    ports: - "5678:5678"
+    environment: - N8N_BASIC_AUTH_ACTIVE=true
       - N8N_BASIC_AUTH_USER=admin
       - N8N_BASIC_AUTH_PASSWORD=changeme
       - N8N_ENCRYPTION_KEY=your-32-char-encryption-key-here
       - GENERIC_TIMEZONE=UTC
       - TZ=UTC
-    volumes:
-      - n8n_data:/home/node/.n8n
+    volumes: - n8n_data:/home/node/.n8n
 
-volumes:
-  n8n_data:
-```
+volumes: n8n_data: ```
 
-시작:
-
-```bash
+시작: ```bash
 docker-compose -f docker-compose.dev.yml up -d
 # http://localhost:5678 접속
 ```
@@ -131,31 +114,22 @@ docker-compose -f docker-compose.dev.yml up -d
 # docker-compose.prod.yml
 version: '3.8'
 
-services:
-  postgres:
-    image: postgres:16-alpine
+services: postgres: image: postgres:16-alpine
     restart: unless-stopped
-    environment:
-      POSTGRES_USER: n8n
+    environment: POSTGRES_USER: n8n
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: n8n
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U n8n"]
+    volumes: - postgres_data:/var/lib/postgresql/data
+    healthcheck: test: ["CMD-SHELL", "pg_isready -U n8n"]
       interval: 10s
       timeout: 5s
       retries: 5
-    networks:
-      - n8n_network
+    networks: - n8n_network
 
-  n8n:
-    image: n8nio/n8n:latest
+  n8n: image: n8nio/n8n:latest
     restart: unless-stopped
-    ports:
-      - "127.0.0.1:5678:5678"
-    environment:
-      - DB_TYPE=postgresdb
+    ports: - "127.0.0.1:5678:5678"
+    environment: - DB_TYPE=postgresdb
       - DB_POSTGRESDB_HOST=postgres
       - DB_POSTGRESDB_PORT=5432
       - DB_POSTGRESDB_DATABASE=n8n
@@ -168,26 +142,14 @@ services:
       - N8N_METRICS=true
       - EXECUTIONS_MODE=regular
       - GENERIC_TIMEZONE=UTC
-    volumes:
-      - n8n_data:/home/node/.n8n
-    depends_on:
-      postgres:
-        condition: service_healthy
-    networks:
-      - n8n_network
+    volumes: - n8n_data:/home/node/.n8n
+    depends_on: postgres: condition: service_healthy
+    networks: - n8n_network
 
-volumes:
-  postgres_data:
-  n8n_data:
-
-networks:
-  n8n_network:
-    driver: bridge
+volumes: postgres_data: n8n_data: networks: n8n_network: driver: bridge
 ```
 
-`.env` 파일의 환경 변수:
-
-```bash
+`.env` 파일의 환경 변수: ```bash
 # .env
 POSTGRES_PASSWORD=$(openssl rand -base64 32)
 N8N_ENCRYPTION_KEY=$(openssl rand -hex 32)
@@ -200,45 +162,32 @@ N8N_HOST=automation.yourdomain.com
 # docker-compose.queue.yml
 version: '3.8'
 
-services:
-  postgres:
-    image: postgres:16-alpine
+services: postgres: image: postgres:16-alpine
     restart: unless-stopped
-    environment:
-      POSTGRES_USER: n8n
+    environment: POSTGRES_USER: n8n
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: n8n
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U n8n"]
+    volumes: - postgres_data:/var/lib/postgresql/data
+    healthcheck: test: ["CMD-SHELL", "pg_isready -U n8n"]
       interval: 10s
       timeout: 5s
       retries: 5
-    networks:
-      - n8n_network
+    networks: - n8n_network
 
-  redis:
-    image: redis:7-alpine
+  redis: image: redis:7-alpine
     restart: unless-stopped
     command: redis-server --requirepass ${REDIS_PASSWORD} --appendonly yes
-    volumes:
-      - redis_data:/data
-    healthcheck:
-      test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD}", "ping"]
+    volumes: - redis_data:/data
+    healthcheck: test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD}", "ping"]
       interval: 10s
       timeout: 3s
       retries: 5
-    networks:
-      - n8n_network
+    networks: - n8n_network
 
-  n8n-main:
-    image: n8nio/n8n:latest
+  n8n-main: image: n8nio/n8n:latest
     restart: unless-stopped
-    ports:
-      - "127.0.0.1:5678:5678"
-    environment:
-      - EXECUTIONS_MODE=queue
+    ports: - "127.0.0.1:5678:5678"
+    environment: - EXECUTIONS_MODE=queue
       - QUEUE_BULL_REDIS_HOST=redis
       - QUEUE_BULL_REDIS_PORT=6379
       - QUEUE_BULL_REDIS_PASSWORD=${REDIS_PASSWORD}
@@ -252,22 +201,15 @@ services:
       - N8N_PROTOCOL=https
       - WEBHOOK_URL=https://${N8N_HOST}/
       - N8N_METRICS=true
-    volumes:
-      - n8n_data:/home/node/.n8n
-    depends_on:
-      postgres:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
-    networks:
-      - n8n_network
+    volumes: - n8n_data:/home/node/.n8n
+    depends_on: postgres: condition: service_healthy
+      redis: condition: service_healthy
+    networks: - n8n_network
 
-  n8n-worker:
-    image: n8nio/n8n:latest
+  n8n-worker: image: n8nio/n8n:latest
     restart: unless-stopped
     command: worker --concurrency=10
-    environment:
-      - EXECUTIONS_MODE=queue
+    environment: - EXECUTIONS_MODE=queue
       - QUEUE_BULL_REDIS_HOST=redis
       - QUEUE_BULL_REDIS_PORT=6379
       - QUEUE_BULL_REDIS_PASSWORD=${REDIS_PASSWORD}
@@ -277,31 +219,17 @@ services:
       - DB_POSTGRESDB_USER=n8n
       - DB_POSTGRESDB_PASSWORD=${POSTGRES_PASSWORD}
       - N8N_ENCRYPTION_KEY=${N8N_ENCRYPTION_KEY}
-    deploy:
-      replicas: 2
-      resources:
-        limits:
-          cpus: 2
+    deploy: replicas: 2
+      resources: limits: cpus: 2
           memory: 2G
-    depends_on:
-      - postgres
+    depends_on: - postgres
       - redis
-    networks:
-      - n8n_network
+    networks: - n8n_network
 
-volumes:
-  postgres_data:
-  redis_data:
-  n8n_data:
-
-networks:
-  n8n_network:
-    driver: bridge
+volumes: postgres_data: redis_data: n8n_data: networks: n8n_network: driver: bridge
 ```
 
-배포:
-
-```bash
+배포: ```bash
 # 비밀 키 생성
 openssl rand -base64 32 > .postgres_password
 openssl rand -base64 32 > .redis_password
@@ -358,9 +286,7 @@ server {
 }
 ```
 
-활성화:
-
-```bash
+활성화: ```bash
 sudo ln -s /etc/nginx/sites-available/n8n /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl reload nginx
@@ -401,9 +327,7 @@ sudo certbot --nginx -d automation.yourdomain.com
 }
 ```
 
-c8n UI에서 자격 증명 추가:
-
-```bash
+c8n UI에서 자격 증명 추가: ```bash
 # Settings > Credentials > Add Credential 이동
 # "OpenAI API" 선택
 # https://platform.openai.com/api-keys 에서 복사한 API 키 붙여넣기
@@ -618,8 +542,7 @@ N8N_PROTOCOL=https
 WEBHOOK_URL=https://automation.yourdomain.com/
 
 # 4. localhost에만 바인딩, Nginx를 통해 프록시
-ports:
-  - "127.0.0.1:5678:5678"
+ports: - "127.0.0.1:5678:5678"
 
 # 5. 실행 데이터 정리 활성화
 EXECUTIONS_DATA_PRUNE=true
@@ -658,42 +581,29 @@ SELECT pg_reload_conf();
 
 ```yaml
 # docker-compose.queue.yml에 추가
-  prometheus:
-    image: prom/prometheus:latest
+  prometheus: image: prom/prometheus:latest
     restart: unless-stopped
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
       - prometheus_data:/prometheus
-    command:
-      - --config.file=/etc/prometheus/prometheus.yml
+    command: - --config.file=/etc/prometheus/prometheus.yml
       - --storage.tsdb.path=/prometheus
-    networks:
-      - n8n_network
-    ports:
-      - "127.0.0.1:9090:9090"
+    networks: - n8n_network
+    ports: - "127.0.0.1:9090:9090"
 
-  grafana:
-    image: grafana/grafana:latest
+  grafana: image: grafana/grafana:latest
     restart: unless-stopped
-    environment:
-      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-admin}
-    volumes:
-      - grafana_data:/var/lib/grafana
-    networks:
-      - n8n_network
-    ports:
-      - "127.0.0.1:3000:3000"
+    environment: - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-admin}
+    volumes: - grafana_data:/var/lib/grafana
+    networks: - n8n_network
+    ports: - "127.0.0.1:3000:3000"
 ```
 
 ```yaml
 # prometheus.yml
-global:
-  scrape_interval: 15s
+global: scrape_interval: 15s
 
-scrape_configs:
-  - job_name: n8n
-    static_configs:
-      - targets: ['n8n-main:5678']
+scrape_configs: - job_name: n8n
+    static_configs: - targets: ['n8n-main:5678']
     metrics_path: /metrics
 ```
 
@@ -739,9 +649,7 @@ find $BACKUP_DIR -name "*.tar.gz" -mtime +7 -delete
 # aws s3 sync $BACKUP_DIR s3://your-backup-bucket/n8n/
 ```
 
-crontab 추가:
-
-```bash
+crontab 추가: ```bash
 # 매일 오전 2시 백업 실행
 0 2 * * * /opt/n8n/backup-n8n.sh >> /var/log/n8n-backup.log 2>&1
 ```
@@ -841,9 +749,7 @@ n8n은 상용 플랫폼 비용의 일부로 AI 기능을 갖춘 워크플로 자
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -862,7 +768,6 @@ n8n은 상용 플랫폼 비용의 일부로 AI 기능을 갖춘 워크플로 자
 - n8n 보안 모범 사례: https://docs.n8n.io/hosting/security/
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

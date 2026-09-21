@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/promptfoo-llm-frameworks-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/promptfoo-llm-frameworks-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/promptfoo-llm-frameworks-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/promptfoo-llm-frameworks-2026" />
 title: 'Promptfoo: LLM 프롬프트를 테스트·평가·레드팀하기 — 2026 실전 가이드'
 description: 'Promptfoo는 LLM 앱을 평가하고 레드팀하기 위한 오픈소스 CLI이자 라이브러리입니다. 간단한 선언형 설정만으로 GPT, Claude, Gemini, DeepSeek를 비교하고 CLI와 CI/CD에 매끄럽게 연동할 수 있습니다. 이 2026 가이드에서는 설치, promptfooconfig.yaml, 어서션, 레드팀 테스트를 다룹니다.'
 date: 2026-06-02 00:00:00+08:00
@@ -25,10 +20,8 @@ featureImage: 'https://raw.githubusercontent.com/promptfoo/promptfoo/main/site/s
 draft: false
 categories: ['llm-frameworks']
 tags: []
-aliases:
-- /posts/promptfoo-llm-frameworks-2026/
-faqs:
-  - q: 'promptfoo를 로컬에 설치하고 실행하려면?'
+aliases: - /posts/promptfoo-llm-frameworks-2026/
+faqs: - q: 'promptfoo를 로컬에 설치하고 실행하려면?'
     a: '가장 빠른 길은 설치 없이 시작하는 것입니다. ```bash npx promptfoo@latest init --example getting-started ``` 전역 설치는 `npm install -g promptfoo`(또는 `brew install promptfoo`, `pip install promptfoo`)를 사용하세요. 이후 `promptfoo eval`로 평가하고 `promptfoo view`로 로컬 뷰어를 엽니다.'
   - q: '내 모델로 promptfoo를 쓸 수 있나요?'
     a: '네. Promptfoo는 OpenAI, Anthropic, Google, DeepSeek, 로컬 모델 등 다수의 provider를 지원합니다. `promptfooconfig.yaml`의 `providers` 목록에 각각을 선언하고, 해당하는 API 키를 환경 변수로 제공하면 됩니다.'
@@ -39,8 +32,6 @@ faqs:
   - q: 'promptfoo 프로젝트에 기여하려면?'
     a: '기여를 환영합니다. GitHub에서 이슈를 남기거나 pull request를 제출하면 됩니다. 자세한 내용은 [기여 가이드라인](https://github.com/promptfoo/promptfoo/blob/main/CONTRIBUTING.md)을 참고하세요.'
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/promptfoo-llm-frameworks-2026/ -->
 
 {{< resource-info >}}
 
@@ -77,19 +68,14 @@ Promptfoo는 LLM 앱을 평가하고 레드팀하기 위한 CLI이자 라이브�
 # promptfooconfig.yaml
 description: "GPT vs Claude on a couple of prompts"
 
-prompts:
-  - "What is the capital of {{country}}?"
+prompts: - "What is the capital of {{country}}?"
   - "Explain quantum mechanics in one sentence."
 
-providers:
-  - openai:gpt-4o-mini
+providers: - openai:gpt-4o-mini
   - anthropic:messages:claude-3-5-sonnet-20241022
 
-tests:
-  - vars:
-      country: France
-    assert:
-      - type: contains
+tests: - vars: country: France
+    assert: - type: contains
         value: Paris
 ```
 
@@ -137,9 +123,7 @@ pip install promptfoo
 
 ### API 키 설정
 
-Promptfoo는 provider 자격 증명을 환경 변수에서 읽습니다. OpenAI의 경우:
-
-```bash
+Promptfoo는 provider 자격 증명을 환경 변수에서 읽습니다. OpenAI의 경우: ```bash
 export OPENAI_API_KEY=sk-abc123
 ```
 
@@ -166,23 +150,16 @@ promptfoo view
 # promptfooconfig.yaml
 description: "Basic prompt test"
 
-prompts:
-  - "What is the capital of {{country}}?"
+prompts: - "What is the capital of {{country}}?"
 
-providers:
-  - openai:gpt-4o-mini
+providers: - openai:gpt-4o-mini
 
-tests:
-  - vars:
-      country: France
-    assert:
-      - type: contains
+tests: - vars: country: France
+    assert: - type: contains
         value: Paris
 ```
 
-실행:
-
-```bash
+실행: ```bash
 promptfoo eval
 ```
 
@@ -196,23 +173,16 @@ Promptfoo가 해당 테스트 케이스를 실행하고 어서션 통과 여부�
 # promptfooconfig.yaml
 description: "GPT vs Claude comparison"
 
-prompts:
-  - "Answer concisely: {{question}}"
+prompts: - "Answer concisely: {{question}}"
 
-providers:
-  - openai:gpt-4o
+providers: - openai:gpt-4o
   - anthropic:messages:claude-3-5-sonnet-20241022
 
-defaultTest:
-  assert:
-    - type: llm-rubric
+defaultTest: assert: - type: llm-rubric
       value: does not describe itself as an AI, model, or chatbot
 
-tests:
-  - vars:
-      question: "What is the meaning of life?"
-    assert:
-      - type: similar
+tests: - vars: question: "What is the meaning of life?"
+    assert: - type: similar
         value: "It depends on the person"
         threshold: 0.6
 ```
@@ -231,27 +201,19 @@ promptfoo eval
 # .github/workflows/eval.yml
 name: Promptfoo Eval
 
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+on: push: branches: [ main ]
+  pull_request: branches: [ main ]
 
-jobs:
-  eval:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
+jobs: eval: runs-on: ubuntu-latest
+    steps: - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
-        with:
-          node-version: 22
+        with: node-version: 22
 
       - name: Run promptfoo eval
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        env: OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: npx promptfoo@latest eval
 ```
 
@@ -340,19 +302,11 @@ Promptfoo는 프롬프트와 모델 테스트를 막연한 추측에서 재현 �
 
 ---
 
-**출처 및 참고 자료**:
-- GitHub 저장소: https://github.com/promptfoo/promptfoo
+**출처 및 참고 자료**: - GitHub 저장소: https://github.com/promptfoo/promptfoo
 - 공식 문서 / README: https://github.com/promptfoo/promptfoo#readme
 
 *위 링크 중 일부는 제휴 링크입니다. 가입 시 dibi8.com이 수수료를 받을 수 있으며, 추가 비용은 발생하지 않습니다. 사이트 운영과 무료 콘텐츠 유지에 도움이 됩니다.*
 
-<!-- internal-link-candidates:
-  related open-source tools -> ai-tools-directory
-  related guides on dibi8 -> ai-coding-agent-landscape-2026-skills-mcp-opensource
--->
-
-
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -380,25 +334,20 @@ Promptfoo는 프롬프트와 모델 테스트를 막연한 추측에서 재현 �
 
 ## Why This Matters
 
-Understanding promptfoo: llm 프롬프트를 테스트·평가·레드팀하기 — 2026 실전 가이드 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding promptfoo: llm 프롬프트를 테스트·평가·레드팀하기 — 2026 실전 가이드 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

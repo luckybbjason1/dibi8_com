@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/hummingbot-crypto-trading-bot" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hummingbot-crypto-trading-bot" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hummingbot-crypto-trading-bot" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hummingbot-crypto-trading-bot" />
 title: 'Hummingbot 2026：开源加密货币交易机器人支持50+交易所连接器 — 安装与策略指南'
 description: 'Hummingbot v2实战部署指南，开源加密货币交易机器人，支持50+交易所连接器。涵盖Docker安装、自定义策略、回测、DEX网关和生产环境加固。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: []
-aliases:
-- /zh/posts/hummingbot-crypto-trading-bot/
+aliases: - /zh/posts/hummingbot-crypto-trading-bot/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/hummingbot-crypto-trading-bot/ -->
 
 {{</* resource-info */>}}
 
@@ -142,8 +134,7 @@ Enter your Binance API secret >>> YOUR_API_SECRET
 ```
 Updating balances, please wait...
 
- binance:
-     asset    amount
+ binance: asset    amount
      USDT     1,234.56
      BTC      0.0234
      ETH      1.5678
@@ -184,12 +175,10 @@ What is the amount of BTC per order? >>> 0.001
 
 ```
 The pure_market_making strategy is starting.
-Markets:
-  Exchange    Market    Best Bid    Best Ask    Mid Price
+Markets: Exchange    Market    Best Bid    Best Ask    Mid Price
   binance     BTC-USDT  67,234.50   67,245.00   67,239.75
 
-Orders:
-  Level  Type   Price       Amount    Spread    Order ID
+Orders: Level  Type   Price       Amount    Spread    Order ID
   1      buy    66,898.30   0.001     0.50%     ...
   1      sell   67,581.20   0.001     0.50%     ...
 ```
@@ -257,17 +246,12 @@ docker run -d --name gateway \
 
 ```yaml
 # Gateway配置：以太坊主网上的Uniswap
-networks:
-  ethereum:
-    rpc_url: https://mainnet.infura.io/v3/YOUR_INFURA_KEY
+networks: ethereum: rpc_url: https://mainnet.infura.io/v3/YOUR_INFURA_KEY
     chain_id: 1
     token_list_type: FILE
     token_list_source: /home/gateway/conf/lists/ethereum_token_list.json
 
-connectors:
-  uniswap:
-    contract_addresses:
-      v3: 0xE592427A0AEce92De3Edee1F18E0157C05861564
+connectors: uniswap: contract_addresses: v3: 0xE592427A0AEce92De3Edee1F18E0157C05861564
 ```
 
 ### Telegram通知
@@ -277,8 +261,7 @@ connectors:
 telegram_enabled: true
 telegram_token: "YOUR_BOT_TOKEN"
 telegram_chat_id: "YOUR_CHAT_ID"
-notify_events:
-  - order_filled
+notify_events: - order_filled
   - trade_completed
   - strategy_error
 ```
@@ -298,7 +281,17 @@ sqlite3 hummingbot_files/hummingbot_data/hummingbot_trades.db \
 ### 按策略类型划分的性能对比
 
 | 策略类型 | 日均交易次数 | 平均价差捕获 | 交易所延迟 | 适用场景 |
-|---------|------------|------------|----------|--------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 纯做市 | 150-400 | 0.3-0.8% | 50-200ms | 流动性好的交易对 |
 | 跨所做市 | 80-200 | 0.5-1.2% | 100-300ms | BTC/ETH跨所套利 |
 | 套利 | 20-60 | 1.0-3.0% | 80-250ms | 高波动时期 |
@@ -324,7 +317,15 @@ PnL（税后）：            +1.72%/月
 Hummingbot设计轻量：
 
 | 资源 | 空闲 | 活跃（1个策略） | 活跃（5个策略） |
-|------|------|--------------|--------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | CPU | <1% | 5-15% | 20-40% |
 | RAM | 80MB | 200-400MB | 800MB-1.5GB |
 | 网络 | ~0 | 5-20 KB/s | 20-80 KB/s |
@@ -344,8 +345,7 @@ from decimal import Decimal
 from hummingbot.strategy.script_strategy_base import ScriptStrategyBase
 from hummingbot.core.data_type.common import OrderType, TradeType
 
-class CustomMarketMaker(ScriptStrategyBase):
-    """
+class CustomMarketMaker(ScriptStrategyBase): """
     Dynamic spread market maker that adjusts based on volatility.
     """
     spread_base = Decimal("0.005")      # 0.5% base spread
@@ -354,25 +354,21 @@ class CustomMarketMaker(ScriptStrategyBase):
     order_refresh_time = 30.0           # 秒
     volatility_threshold = Decimal("0.02")  # 2%价格变动=高波动
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self): super().__init__()
         self.last_mid_price = None
         self.is_volatile = False
 
-    def on_tick(self):
-        mid_price = self.connectors["binance"].get_mid_price("BTC-USDT")
+    def on_tick(self): mid_price = self.connectors["binance"].get_mid_price("BTC-USDT")
         
         # Detect volatility
-        if self.last_mid_price:
-            change = abs(mid_price - self.last_mid_price) / self.last_mid_price
+        if self.last_mid_price: change = abs(mid_price - self.last_mid_price) / self.last_mid_price
             self.is_volatile = change > self.volatility_threshold
         
         self.last_mid_price = mid_price
         
         # Adjust spread
         spread = self.spread_base
-        if self.is_volatile:
-            spread *= self.spread_multiplier
+        if self.is_volatile: spread *= self.spread_multiplier
         
         buy_price = mid_price * (Decimal("1") - spread)
         sell_price = mid_price * (Decimal("1") + spread)
@@ -384,17 +380,14 @@ class CustomMarketMaker(ScriptStrategyBase):
         self.buy("binance", "BTC-USDT", self.order_amount, OrderType.LIMIT, buy_price)
         self.sell("binance", "BTC-USDT", self.order_amount, OrderType.LIMIT, sell_price)
 
-    def cancel_all_orders(self):
-        for order in self.get_active_orders("binance"):
-            self.cancel(order)
+    def cancel_all_orders(self): for order in self.get_active_orders("binance"): self.cancel(order)
 ```
 
 ### 基于库存管理的订单偏移
 
 ```python
 # 添加到你的策略中实现库存偏移
-    def calculate_inventory_skew(self):
-        """Adjust order sizes based on inventory ratio."""
+    def calculate_inventory_skew(self): """Adjust order sizes based on inventory ratio."""
         base_balance = self.connectors["binance"].get_balance("BTC")
         quote_balance = self.connectors["binance"].get_balance("USDT")
         
@@ -406,12 +399,10 @@ class CustomMarketMaker(ScriptStrategyBase):
         target_ratio = Decimal("0.5")  # 50/50目标
         
         # Skew orders based on inventory
-        if inventory_ratio > target_ratio:
-            # BTC持仓过多，减少买单
+        if inventory_ratio > target_ratio: # BTC持仓过多，减少买单
             self.buy_multiplier = Decimal("0.5")
             self.sell_multiplier = Decimal("1.5")
-        else:
-            self.buy_multiplier = Decimal("1.5")
+        else: self.buy_multiplier = Decimal("1.5")
             self.sell_multiplier = Decimal("0.5")
 ```
 
@@ -453,14 +444,12 @@ python scripts/backtest.py \
 ```bash
 # 在配置中启用模拟交易
 paper_trade_enabled: true
-paper_trade_account_balance:
-  BTC: 1.0
+paper_trade_account_balance: BTC: 1.0
   USDT: 50000.0
 
 # 模拟交易会显示[PAPER]前缀
 >>> status
-  Markets:
-    [PAPER] binance  BTC-USDT  67,234.50  67,245.00  67,239.75
+  Markets: [PAPER] binance  BTC-USDT  67,234.50  67,245.00  67,239.75
 ```
 
 ### 生产环境Docker Compose配置
@@ -469,31 +458,21 @@ paper_trade_account_balance:
 # docker-compose.yml
 version: '3.8'
 
-services:
-  hummingbot:
-    image: hummingbot/hummingbot:2.0.0
+services: hummingbot: image: hummingbot/hummingbot:2.0.0
     container_name: hummingbot_prod
     restart: unless-stopped
-    volumes:
-      - ./conf:/conf
+    volumes: - ./conf:/conf
       - ./logs:/logs
       - ./data:/data
-    environment:
-      - CONFIG_PASSWORD=${HBOT_PASSWORD}
+    environment: - CONFIG_PASSWORD=${HBOT_PASSWORD}
       - STRATEGY=pure_market_making
       - CONFIG_FILE=pmm_btc_usdt.yml
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "50m"
+    logging: driver: "json-file"
+      options: max-size: "50m"
         max-file: "5"
-    deploy:
-      resources:
-        limits:
-          memory: 2G
+    deploy: resources: limits: memory: 2G
           cpus: '1.0'
-    healthcheck:
-      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:15888/')"]
+    healthcheck: test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:15888/')"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -514,7 +493,17 @@ openssl enc -aes-256-cbc -salt -in secrets.yml -out secrets.yml.enc
 ## 与替代方案对比
 
 | 功能 | Hummingbot | Freqtrade | 3Commas | Gunbot |
-|------|-----------|-----------|---------|--------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **许可证** | Apache-2.0 | GPL-3.0 | 专有 | 专有 |
 | **CEX连接器** | 50+ | 20+ | 15+ | 10+ |
 | **DEX支持** | 是（Gateway） | 有限 | 否 | 否 |
@@ -631,7 +620,6 @@ Hummingbot是2026年最成熟的做市开源框架。凭借50+交易所连接器
 本指南包含 [Binance](https://www.bsmkweb.cc/register?ref=DIBI8)、[OKX](https://www.promoohubly.com/join/12190433) 和 [Minara](https://minara.ai/r/OSXG4X) 的联盟链接。如果你通过这些链接注册，我们会获得佣金，你不会产生额外费用。这支持我们的开源文档工作。我们只推荐我们积极使用和测试的工具。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -659,25 +647,20 @@ Hummingbot是2026年最成熟的做市开源框架。凭借50+交易所连接器
 
 ## Why This Matters
 
-Understanding hummingbot 2026：开源加密货币交易机器人支持50+交易所连接器 — 安装与策略指南 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding hummingbot 2026：开源加密货币交易机器人支持50+交易所连接器 — 安装与策略指南 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -698,8 +681,8 @@ Hummingbot 2026：开源加密货币交易机器人支持50+交易所连接器 �
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*
 
@@ -725,3 +708,5 @@ For the latest updates and community discussions, join our Telegram channel: htt
 
 包括服务器费用、数据订阅、算法更新、以及监控维护时间。
 
+
+---

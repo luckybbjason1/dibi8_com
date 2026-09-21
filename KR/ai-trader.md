@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-trader" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-trader" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-trader" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-trader" />
 title: "AI-Trader: 14K⭐ 완전 자동화 AI 트레이딩 에이전트, AI가 24시간 매매 대행"
 description: "AI-Trader는 HKUDS가 개발한 오픈소스 완전 자동화 AI 트레이딩 에이전트 시스템으로, 14K+ Stars를 보유하고 있으며 주식, 암호화폐, 외환 다중 시장 자동 거래를 지원합니다.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Python
+tech_stack: - Python
 application_domain: "Llm Frameworks"
 source_version: ""
 licensing_model: "Open Source"
@@ -24,10 +18,8 @@ maintainer: "HKUDS"
 last_maintained: "2026-05-13"
 featureImage: ""
 draft: false
-aliases:
-- /kr/posts/ai-trader/
-faqs:
-  - q: 'HKUDS가 개발한 AI-Trader란 무엇인가요?'
+aliases: - /kr/posts/ai-trader/
+faqs: - q: 'HKUDS가 개발한 AI-Trader란 무엇인가요?'
     a: 'AI-Trader는 홍콩대학교 데이터과학 연구실(HKUDS)이 개발한 오픈소스 완전 자동화 AI 트레이딩 에이전트 시스템입니다. 강화학습과 멀티 에이전트 협업 방식을 활용해 주식, 암호화폐, 외환, 선물 거래를 지원하며 MIT 라이선스로 배포됩니다.'
   - q: 'AI-Trader는 어떤 시장과 자산을 지원하나요?'
     a: 'AI-Trader는 네 가지 시장을 지원합니다: 주식(미국, 홍콩, A주), 암호화폐(BTC, ETH, 알트코인), 외환(주요 통화쌍), 선물(원자재 및 지수). 각 시장별로 모멘텀, 추세 추종, 캐리 트레이드, 스프레드 거래 등 맞춤형 전략 유형이 적용됩니다.'
@@ -39,7 +31,6 @@ faqs:
     a: '네, 가능합니다. AI-Trader에는 과거 데이터를 활용한 고정밀 백테스팅 엔진과 페이퍼 트레이딩 모드(설정 파일에서 mode: paper로 지정)가 내장되어 있습니다. 프로젝트 문서에서는 실거래 배포 전에 반드시 페이퍼 트레이딩을 먼저 사용하도록 권장하고 있습니다.'
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/ai-trader/ -->
 {</* resource-info */>}
 
 ## AI-Trader란?
@@ -62,9 +53,7 @@ faqs:
 
 ### 1. 100% 에이전트 네이티브 아키텍처
 
-기존 트레이딩 봇은 "스크립트 네이티브"입니다 — 미리 프로그래밍된 규칙을 실행합니다. AI-Trader는 "에이전트 네이티브"입니다:
-
-- **자율 의사결정** — AI가 매수, 매도, 보유 시점을 결정
+기존 트레이딩 봇은 "스크립트 네이티브"입니다 — 미리 프로그래밍된 규칙을 실행합니다. AI-Trader는 "에이전트 네이티브"입니다: - **자율 의사결정** — AI가 매수, 매도, 보유 시점을 결정
 - **시장 분석 에이전트** — 여러 전문 에이전트가 다양한 측면 분석 (기술적, 기본적, 감성)
 - **리스크 관리 에이전트** — 전용 에이전트가 포트폴리오 리스크 모니터링 및 손절 실행
 - **실행 에이전트** — 주문 처리, 슬리피지 제어, 거래소 상호작용
@@ -80,9 +69,7 @@ faqs:
 
 ### 3. 강화학습 코어
 
-AI-Trader는 전략 최적화를 위해 **심층 강화학습(DRL)**을 사용합니다:
-
-```python
+AI-Trader는 전략 최적화를 위해 **심층 강화학습(DRL)**을 사용합니다: ```python
 # 간소화된 훈련 루프
 from ai_trader import TradingAgent, MarketEnv
 
@@ -102,9 +89,7 @@ agent.deploy(mode='paper', exchange='binance')
 
 ### 4. 다중 에이전트 협업
 
-시스템은 **계층적 다중 에이전트 아키텍처**를 사용합니다:
-
-```
+시스템은 **계층적 다중 에이전트 아키텍처**를 사용합니다: ```
 ┌─────────────────────────────────────┐
 │      포트폴리오 관리 에이전트        │
 │    (자본 배분, 리밸런싱)           │
@@ -161,9 +146,7 @@ python trade.py --mode paper --config config.yaml
 
 ## 성능 벤치마크
 
-백테스트 결과 기준 (2020-2025):
-
-| 전략 | 연간 수익률 | 최대 드로다운 | 샤프 비율 |
+백테스트 결과 기준 (2020-2025): | 전략 | 연간 수익률 | 최대 드로다운 | 샤프 비율 |
 |------|------------|--------------|-----------|
 | 모멘텀 | 45.2% | 18.3% | 1.82 |
 | 평균 회귀 | 32.1% | 12.7% | 1.65 |
@@ -186,8 +169,7 @@ python trade.py --mode paper --config config.yaml
 
 ## 면책 조항
 
-**트레이딩은 상당한 손실 위험이 있습니다.** AI-Trader는 교육 및 연구 목적으로만 제공됩니다. 반드시:
-1. 모의 트레이딩부터 시작
+**트레이딩은 상당한 손실 위험이 있습니다.** AI-Trader는 교육 및 연구 목적으로만 제공됩니다. 반드시: 1. 모의 트레이딩부터 시작
 2. 감당할 수 있는 금액만 투자
 3. 배포 전 전략 원리 이해
 4. 성과 정기 모니터링
@@ -200,9 +182,7 @@ python trade.py --mode paper --config config.yaml
 
 ## 추천 도구
 
-오픈소스 AI 도구 개발/배포 시 권장:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
+오픈소스 AI 도구 개발/배포 시 권장: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
@@ -218,7 +198,6 @@ python trade.py --mode paper --config config.yaml
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -246,25 +225,20 @@ python trade.py --mode paper --config config.yaml
 
 ## Why This Matters
 
-Understanding ai-trader: 14k⭐ 완전 자동화 ai 트레이딩 에이전트, ai가 24시간 매매 대행 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding ai-trader: 14k⭐ 완전 자동화 ai 트레이딩 에이전트, ai가 24시간 매매 대행 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

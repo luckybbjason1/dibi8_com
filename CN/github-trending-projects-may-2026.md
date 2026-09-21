@@ -1,12 +1,9 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/github-trending-projects-may-2026" />
-title: "DeepSeek TUI + Anthropic Financial Agents: Top Trending ...
+title: "DeepSeek TUI + Anthropic Financial Agents: Top Trending ..."
 description: "Discover the hottest open-source AI projects on GitHub right now — a terminal-based coding agent that grew 5,800 stars overnight and Anthropic's first vertical-specific financial services framework."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - C++
+tech_stack: - C++
   - Docker
   - Go
   - JavaScript
@@ -24,10 +21,8 @@ maintainer: "Hmbown"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases:
-- /posts/github-trending-projects-may-2026/
-faqs:
-  - q: 'What is DeepSeek-TUI and how is it different from Cursor or GitHub Copilot?'
+aliases: - /posts/github-trending-projects-may-2026/
+faqs: - q: 'What is DeepSeek-TUI and how is it different from Cursor or GitHub Copilot?'
     a: 'DeepSeek-TUI is a terminal-based AI coding agent that runs locally via the `deepseek` command, streaming reasoning blocks and reading/writing files on disk with approval gates before any filesystem changes. Unlike Cursor or Copilot, which run as full GUI editors, it is built for terminal users working in tmux, neovim, or zsh, with no browser-to-IDE context switching.'
   - q: 'How does DeepSeek-TUI''s auto mode save money?'
     a: 'In auto mode (`deepseek --model auto`), the tool first makes a tiny routing call using deepseek-v4-flash with no thinking to evaluate your request, then picks the cheapest viable model and thinking level. Simple refactors use the fast model with thinking off, while complex tasks like security reviews trigger the pro model at higher thinking levels, so short questions stay cheap.'
@@ -48,8 +43,8 @@ This article breaks down the hottest trending projects you should actually care 
 
 ![Modern workspace with multiple monitors](https://images.pexels.com/photos/34804018/pexels-photo-34804018.jpeg?auto=compress&cs=tinysrgb&h=350) *Image credit: Daniil Komov via Pexels*
 
----
 
+---
 ## Project 1: Hmbown / DeepSeek-TUI — Your Terminal Is Now a Supercharged Coding Agent
 
 **Stars:** 21,085 &nbsp;|&nbsp; **+5,799 stars today** &nbsp;|&nbsp; Repository: [`Hmbown/DeepSeek-TUI`](https://github.com/Hmbown/DeepSeek-TUI)
@@ -64,9 +59,7 @@ Unlike Cursor or Copilot which run as full GUI editors, DeepSeek-TUI is designed
 
 ### Auto Mode: Smart Model Routing That Saves Money
 
-The standout feature is auto mode (`deepseek --model auto`). Before sending each request, DeepSeek-TUI makes a tiny routing call using `deepseek-v4-flash` (no thinking enabled). The router evaluates your latest request and recent conversation context, then picks the optimal combination:
-
-- **Model:** `deepseek-v4-flash` for quick tasks, `deepseek-v4-pro` for complex architecture work
+The standout feature is auto mode (`deepseek --model auto`). Before sending each request, DeepSeek-TUI makes a tiny routing call using `deepseek-v4-flash` (no thinking enabled). The router evaluates your latest request and recent conversation context, then picks the optimal combination: - **Model:** `deepseek-v4-flash` for quick tasks, `deepseek-v4-pro` for complex architecture work
 - **Thinking level:** `off` for simple refactors, `high` or `max` for security reviews or debugging multi-step problems
 
 This means short questions stay cheap, and only genuinely complex tasks trigger higher-cost inference. The upstream API never receives `"model": "auto"` — the TUI resolves it internally and charges you against the actual model used. Cost tracking happens transparently.
@@ -103,7 +96,11 @@ When a task is large enough, DeepSeek-TUI can spawn sub-agents. Each sub-agent i
 ### Real-World Use Cases
 
 | Scenario | Benefit |
-|---|---|
+|
+---
+|
+---
+|
 | Rapid prototyping | Describe a feature in plain English, get working code in your editor |
 | Legacy code refactoring | Batch-fix inconsistent patterns across hundreds of files |
 | Security audits | Ask the agent to scan your repo for vulnerabilities with detailed reasoning |
@@ -113,7 +110,17 @@ When a task is large enough, DeepSeek-TUI can spawn sub-agents. Each sub-agent i
 ### Competitive Landscape
 
 | Tool | Editor | Pricing | Reasoning Streams | Approval Gates |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | DeepSeek-TUI | Terminal | Pay per token | ✅ Yes | ✅ Configurable |
 | Cursor | GUI App | $20/mo | ✅ Yes | ❌ Full automation |
 | GitHub Copilot | IDE Extension | $19/mo | Limited | ❌ None |
@@ -121,8 +128,8 @@ When a task is large enough, DeepSeek-TUI can spawn sub-agents. Each sub-agent i
 
 DeepSeek-TUI undercuts Claude Code on pricing while matching its core capabilities. For teams running on Linux servers or headless CI pipelines, DeepSeek-TUI is the only option that runs comfortably in a terminal environment.
 
----
 
+---
 ## Project 2: anthropics / financial-services — Enterprise-Grade AI Agents for Wall Street
 
 **Stars:** 13,496 &nbsp;|&nbsp; **+1,343 stars today** &nbsp;|&nbsp; Repository: [`anthropics/financial-services`](https://github.com/anthropics/claude-for-financial-services)
@@ -131,10 +138,14 @@ While consumer-facing AI coding tools dominate headlines, Anthropic quietly rele
 
 ### What It Includes
 
-The repository ships 11 named agents, each covering a specific financial workflow:
-
-| Function | Agent | Output |
-|---|---|---|
+The repository ships 11 named agents, each covering a specific financial workflow: | Function | Agent | Output |
+|
+---
+|
+---
+|
+---
+|
 | Coverage & Advisory | **Pitch Agent** | Comps, precedents, LBO → branded pitch deck |
 | Research & Modeling | **Market Researcher** | Sector overview + competitive landscape + peer comps |
 | Research & Modeling | **Earnings Reviewer** | Earnings call analysis → model update → note draft |
@@ -145,17 +156,13 @@ Plus vertical plugins for `/comps`, `/dcf`, `/earnings`, and more granular slash
 
 ### Two Deployment Paths
 
-What makes this truly distinctive is the dual distribution model:
-
-1. **Claude Cowork Plugin** — Install directly in Claude.ai by pasting the repo URL or uploading a zip file. Pick individual agents or the full stack. Perfect for solo analysts or small teams.
+What makes this truly distinctive is the dual distribution model: 1. **Claude Cowork Plugin** — Install directly in Claude.ai by pasting the repo URL or uploading a zip file. Pick individual agents or the full stack. Perfect for solo analysts or small teams.
 
 2. **Claude Managed Agents API** — Deploy behind your own workflow engine via the `/v1/agents` endpoint. Comes with `agent.yaml` configs, leaf-worker subagent templates, steering events, and per-agent security notes. Designed for firms that need audit trails, role-based access, and integration with internal systems.
 
 ### Why This Matters Commercially
 
-Financial services is a $4 trillion industry in the U.S. alone. The friction between analyst work and AI tools has been enormous — most AI tools either lack domain expertise or cannot be deployed securely behind enterprise firewalls. This repository bridges both gaps:
-
-- **Domain depth:** Skills are written by practitioners who understand comp tables, DCF models, and GL reconciliation, not generalist prompt engineers
+Financial services is a $4 trillion industry in the U.S. alone. The friction between analyst work and AI tools has been enormous — most AI tools either lack domain expertise or cannot be deployed securely behind enterprise firewalls. This repository bridges both gaps: - **Domain depth:** Skills are written by practitioners who understand comp tables, DCF models, and GL reconciliation, not generalist prompt engineers
 - **Enterprise readiness:** Every output is staged for human sign-off. Nothing executes transactions, binds risk, or approves onboarding autonomously
 - **Compliance-aware:** Clear disclaimers, staged outputs, and human-in-the-loop requirements align with regulatory expectations
 - **Partner extensibility:** LSEG and S&P Global connectors mean your agents can pull live market data, not just static files
@@ -206,8 +213,7 @@ In 2026, data privacy regulations (GDPR, CCPA, China PIPL, Brazil LGPD) make clo
 pip install local-deep-research
 ```
 
-Or use the Docker image for isolated deployment:
-```bash
+Or use the Docker image for isolated deployment: ```bash
 docker pull localdeepresearch/local-deep-research
 ```
 
@@ -216,7 +222,15 @@ docker pull localdeepresearch/local-deep-research
 ## Side-by-Side Comparison
 
 | Feature | DeepSeek-TUI | Anthropic FinServ | Local Deep Research |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Category** | Terminal coding agent | Financial AI agents | Local research engine |
 | **Daily Star Growth** | +5,799 | +1,343 | N/A (steady) |
 | **Total Stars** | 21,085 | 13,496 | 6,542 |
@@ -230,9 +244,7 @@ docker pull localdeepresearch/local-deep-research
 
 ## How We Ranked These Projects
 
-Our selection criteria prioritize commercial relevance over raw star count. Here is why these three made the cut:
-
-1. **Velocity matters more than volume** — DeepSeek-TUI's 5,799-star daily gain signals a product-market inflection point that raw numbers cannot capture alone
+Our selection criteria prioritize commercial relevance over raw star count. Here is why these three made the cut: 1. **Velocity matters more than volume** — DeepSeek-TUI's 5,799-star daily gain signals a product-market inflection point that raw numbers cannot capture alone
 2. **Vertical specialization wins** — Anthropic's financial-services suite targets a documented, budget-rich market with identifiable buyers
 3. **Privacy is a growing moat** — Local Deep Research addresses the regulatory tailwinds pushing enterprises away from cloud AI
 
@@ -261,9 +273,7 @@ All three projects demonstrate that 2026's open-source AI revolution is shifting
 
 ## Recommended Tools
 
-For developers building or deploying open-source AI tools, we recommend:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
+For developers building or deploying open-source AI tools, we recommend: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
 
 *Affiliate link — supports dibi8.com at no cost to you.*
 
@@ -275,7 +285,6 @@ For developers building or deploying open-source AI tools, we recommend:
 
 *Affiliate link — supports dibi8.com at no extra cost to you.*
 
-<!--auto-references-->
 ## References & Sources
 
 - [anthropics/claude-for-financial-services](https://github.com/anthropics/claude-for-financial-services)
@@ -287,7 +296,6 @@ For developers building or deploying open-source AI tools, we recommend:
 - [PubMed](https://pubmed.ncbi.nlm.nih.gov/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

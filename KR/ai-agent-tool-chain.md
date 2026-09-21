@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-agent-tool-chain" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-agent-tool-chain" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-agent-tool-chain" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-agent-tool-chain" />
 title: 'AI 에이전트 도구 체인 2026: 프로덕션급 자율 에이전트 구축용 6-컴포넌트 스택'
 description: '완전한 프로덕션 AI 에이전트 스택: 상태 유지 오케스트레이션 LangGraph + 도구용 MCP servers + 메모리 mem0 + 멀티 에이전트 조정 OpenClaw + 자가 개선 Hermes Agent + 샌드박스 코드 실행 e2b. $20-60/월 셀프호스트. 내부 링크된 심층 가이드로 실제 조립.'
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
-tech_stack:
-  - Python
+tech_stack: - Python
   - TypeScript
   - Docker
   - PostgreSQL
@@ -29,11 +23,8 @@ featureImage: ''
 draft: false
 categories: [collections]
 tags: ['ai 에이전트', '도구 체인', langgraph, mcp, 스택, 컬렉션]
-aliases:
-  - /posts/ai-agent-tool-chain/
+aliases: - /posts/ai-agent-tool-chain/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/ai-agent-tool-chain/ -->
 
 "AI 에이전트"는 2025년에 연구 주제이기를 멈췄고 2026년에 프로덕션 엔지니어링 카테고리가 됐습니다. 실제 자율 에이전트를 ship하는 팀 — 재시작 견디는 고객 지원 봇, 100파일에 걸쳐 리팩토링하는 코딩 에이전트, 몇 시간 실행되는 리서치 에이전트 — 은 놀랍도록 일관된 스택으로 수렴했습니다. 이 컬렉션이 그것을 조립합니다.
 
@@ -56,9 +47,7 @@ aliases:
 
 ## 1. 2026에 왜 자체 에이전트 스택 구축
 
-올해 세 가지 힘 수렴:
-
-1. **LangGraph가 1.x 도달하고 스케일에서 영구 실행 증명** — "에이전트가 재시작 후 모두 잊음" 버그 해결
+올해 세 가지 힘 수렴: 1. **LangGraph가 1.x 도달하고 스케일에서 영구 실행 증명** — "에이전트가 재시작 후 모두 잊음" 버그 해결
 2. **MCP가 도구 통합 표준화** — 도구를 MCP server로 한 번 작성, Claude / OpenCode / Cursor / 자체 에이전트에서 사용
 3. **자가 개선 루프 재현 가능해짐** — Hermes Agent와 유사 프로젝트가 에이전트가 결과 데이터 기반으로 자체 prompt 반복 개선할 수 있음을 보여줌
 
@@ -92,8 +81,7 @@ aliases:
                 │  - 도메인 특정       │
                 └──────────────────────┘
 
-   옵션 레이어:
-   - OpenClaw가 여러 LangGraph 에이전트 병렬 오케스트레이션
+   옵션 레이어: - OpenClaw가 여러 LangGraph 에이전트 병렬 오케스트레이션
    - Hermes Agent가 결과 관찰하고 시간 경과로 prompt 재작성
 ```
 
@@ -105,8 +93,7 @@ aliases:
 
 **왜 이거 선택**: 32.6k stars, v1.2.1, LangChain 팀 구축. "에이전트가 배포 견딘다"가 부가 기능이 아닌 기본인 유일한 널리 채택된 프레임워크.
 
-**빠른 설치**:
-```bash
+**빠른 설치**: ```bash
 pip install -U langgraph langgraph-checkpoint-postgres
 ```
 
@@ -120,8 +107,7 @@ pip install -U langgraph langgraph-checkpoint-postgres
 
 **중요한 이유**: MCP 이전 (2025 초), 모든 에이전트 프레임워크가 같은 20개 도구(filesystem, 웹 검색, 코드 실행)를 재구현했고 상호운용 안 됐음. 오늘 Anthropic 7 reference + 3-5개 특화 연결하면 도구 코드 작성 없이 에이전트 슈퍼파워.
 
-**자율 에이전트 최소 MCP 세트**:
-- `modelcontextprotocol/server-filesystem` (프로젝트 파일 읽기)
+**자율 에이전트 최소 MCP 세트**: - `modelcontextprotocol/server-filesystem` (프로젝트 파일 읽기)
 - `modelcontextprotocol/server-git` (git 상태 검사)
 - `tavily-mcp` 또는 `brave-search-mcp-server` (웹 검색)
 - `e2b-sandbox-mcp` (샌드박스 코드 실행 — 컴포넌트 6 참조)
@@ -133,12 +119,10 @@ pip install -U langgraph langgraph-checkpoint-postgres
 
 **역할**: 에이전트가 실행 간 기억하는 것. 이거 없으면 모든 에이전트 호출이 0 컨텍스트로 시작. 이거 있으면 에이전트가 사용자에 대한 사실, 프로젝트, 이전 결정, 이전 실패 기억.
 
-**2-tier 패턴**:
-- **mem0**가 시맨틱 메모리 저장 (벡터 DB 백엔드 Python 서비스)
+**2-tier 패턴**: - **mem0**가 시맨틱 메모리 저장 (벡터 DB 백엔드 Python 서비스)
 - **AgentMemory MCP**가 mem0를 임의의 MCP 인식 host (LangGraph 노드, Claude Desktop, OpenCode)에 노출
 
-**빠른 설치**:
-```bash
+**빠른 설치**: ```bash
 docker run -d --name mem0 -p 8765:8765 mem0ai/mem0-server:latest
 npm install -g @mem0/mem0-mcp
 # 그러면 agentmemory를 LangGraph MCP toolset에 추가
@@ -152,8 +136,7 @@ npm install -g @mem0/mem0-mcp
 
 **왜 CrewAI 대신 이거**: OpenClaw는 셀프호스트 가능, MCP 네이티브, LangGraph와 깔끔하게 통합 (각 "전문가 에이전트"가 자체로 LangGraph일 수 있음). CrewAI는 좋지만 클라우드 우선, 커스텀 상태 머신과 조합 어려움.
 
-**빠른 설치**:
-```bash
+**빠른 설치**: ```bash
 docker run -d --name openclaw \
   -p 7050:7050 \
   -v ~/.openclaw:/data \
@@ -168,8 +151,7 @@ docker run -d --name openclaw \
 
 **중요한 이유**: 정적 에이전트 prompt는 감쇠 — v1에서 작동한 게 코드베이스 진화, 도메인 변화, 새 도구 등장하면서 멈춤. Hermes Agent는 자가 개선 에이전트 루프 위해 특별히 널리 채택된 유일한 오픈소스 프레임워크.
 
-**빠른 설치**:
-```bash
+**빠른 설치**: ```bash
 pip install hermes-agent
 # LangGraph 워크플로우에 "post-run observer"로 연결
 ```
@@ -184,8 +166,7 @@ pip install hermes-agent
 
 **MCP 노출 e2b가 raw e2b SDK를 이기는 이유**: `e2b-sandbox-mcp` server가 "샌드박스에서 코드 실행"을 LangGraph 에이전트의 단일 도구 호출로 만듦 — filesystem 읽기 또는 웹 검색과 같은 인터페이스.
 
-**빠른 설치** (다른 것들과 함께 MCP config에 추가):
-```json
+**빠른 설치** (다른 것들과 함께 MCP config에 추가): ```json
 {
   "mcpServers": {
     "e2b-sandbox": {
@@ -233,9 +214,7 @@ pip install hermes-agent
 
 ## 11. 업그레이드 경로
 
-이 스택 벗어날 때:
-
-- **10개 이상 동시 에이전트** — LangGraph를 autoscaling 있는 전용 Kubernetes 클러스터로 이동
+이 스택 벗어날 때: - **10개 이상 동시 에이전트** — LangGraph를 autoscaling 있는 전용 Kubernetes 클러스터로 이동
 - **감사 등급 trace 보존 필요** — LangSmith 엔터프라이즈 또는 셀프호스트 가시성 (Grafana + Loki + Tempo)
 - **멀티테넌트 에이전트 SaaS** — 고객별 가상 키용 LiteLLM 추가 ([LiteLLM 가이드](/kr/resources/llm-frameworks/litellm/))
 - **서브초 레이턴시 요구** — e2b 워크로드를 본인 제어 전용 Firecracker VM으로 이동
@@ -243,8 +222,7 @@ pip install hermes-agent
 
 ## TL;DR — 레시피
 
-**프로덕션급 자율 에이전트용 6 컴포넌트, 솔로 또는 팀 프로토타입 $20-60/월**:
-1. **LangGraph** — 상태 유지 오케스트레이션 뇌
+**프로덕션급 자율 에이전트용 6 컴포넌트, 솔로 또는 팀 프로토타입 $20-60/월**: 1. **LangGraph** — 상태 유지 오케스트레이션 뇌
 2. **MCP servers** — 도구 & 컨텍스트 (filesystem + git + search + 샌드박스)
 3. **mem0 + AgentMemory MCP** — 장기 메모리
 4. **OpenClaw** — 멀티 에이전트 조정
@@ -258,7 +236,6 @@ pip install hermes-agent
 *동반 컬렉션: [셀프호스트 AI 코딩 워크플로우](/kr/collections/self-hosted-ai-coding-workflow/) 코딩 에이전트 특화 스택. [지식 베이스 스택](/kr/collections/knowledge-base-stack/) 에이전트에 Glean 등가 RAG 백엔드 제공. [저렴한 LLM 스택](/kr/collections/cheap-llm-stack/) 비용 측 커버.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

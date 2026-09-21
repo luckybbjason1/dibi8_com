@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/terminal-command-line-tools-tmux-zsh-fzf-ripgrep" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/terminal-command-line-tools-tmux-zsh-fzf-ripgrep" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/terminal-command-line-tools-tmux-zsh-fzf-ripgrep" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/terminal-command-line-tools-tmux-zsh-fzf-ripgrep" />
 title: '터미널 및 CLI 생산성 도구: tmux, zsh, fzf, ripgrep 완벽 가이드'
 description: '개발자의 터미널 생산성을 극대화하는 tmux, zsh, fzf, ripgrep 등 필수 CLI 도구의 설치부터 설정, 활용법까지 상세히 다룹니다.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/terminal-command-line-tools-tmux-zsh-fzf-ripgrep/
+aliases: - /posts/terminal-command-line-tools-tmux-zsh-fzf-ripgrep/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/terminal-command-line-tools-tmux-zsh-fzf-ripgrep/ -->
 
 {</* resource-info */>}
 
@@ -293,16 +285,13 @@ Windows Subsystem for Linux(WSL2)를 설치하면 동일한 환경을 구성할 
 
 ## 추천 인프라
 
-위 도구들을 24/7 안정 운영하려면 인프라가 중요하다:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전.
+위 도구들을 24/7 안정 운영하려면 인프라가 중요하다: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연. dibi8.com 자체 호스팅 IDC.
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/aider-cline-openhands-2026-honest-comparison" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/aider-cline-openhands-2026-honest-comparison" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/aider-cline-openhands-2026-honest-comparison" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/aider-cline-openhands-2026-honest-comparison" />
 title: 'Aider vs Cline vs OpenHands 2026: So sánh trung thực 3 C...
 description: 'Đã thử nghiệm cả ba AI coding agent mã nguồn mở trên cùng một codebase TypeScript 5K dòng. Số liệu benchmark cụ thể, nơi mỗi cái thắng, nơi mỗi cái thua, và thực tế chi phí BYO API key so với các phương án thương mại.'
 date: 2026-05-25 00:00:00+08:00
@@ -21,10 +16,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: ['ai-coding', 'open-source', aider, cline, openhands, 2026]
-aliases:
-- /vi/posts/aider-cline-openhands-2026-honest-comparison/
-faq:
-  - q: "Coding agent mã nguồn mở nào tốt nhất năm 2026?"
+aliases: - /vi/posts/aider-cline-openhands-2026-honest-comparison/
+faq: - q: "Coding agent mã nguồn mở nào tốt nhất năm 2026?"
     a: "Tùy hoàn cảnh. Aider cho chỉnh sửa nhận biết git ưu tiên terminal (không phụ thuộc model, nhanh nhất). Cline cho tích hợp VS Code IDE-native (UX tốt nhất cho người không dùng CLI). OpenHands cho công việc agent đa bước hoàn toàn tự động (browser + shell + repo). Hầu hết người dùng có kinh nghiệm giữ Aider làm mặc định + thêm Cline hoặc OpenHands cho các tác vụ cụ thể."
   - q: "Chi phí so với Claude Code hoặc Cursor như thế nào?"
     a: "Mô hình BYO API key nghĩa là bạn trả theo token. Với Sonnet 4.6 sử dụng 60 giờ/tháng: khoảng $80-130 (vs Claude Max $200). Với GPT-5: khoảng $100-180. Quan điểm 'rẻ hơn thương mại' đúng khi bạn kiểm soát kích thước context, sai khi để nó phình ra."
@@ -37,8 +30,6 @@ faq:
   - q: "Đường cong học tập cho mỗi cái như thế nào?"
     a: "Aider: 15 phút để bắt đầu hiệu quả (là một CLI theo các pattern hiển nhiên). Cline: 30 phút (cài đặt VS Code extension + thiết lập model). OpenHands: 2-3 giờ (cài đặt Docker, cấu hình công cụ browser, điều chỉnh vòng lặp agent). Aider có rào cản thấp nhất, OpenHands có trần cao nhất."
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/aider-cline-openhands-2026-honest-comparison/ -->
 
 {{</* resource-info */>}}
 
@@ -81,9 +72,7 @@ Tự động nhất trong ba. Thiết kế cho "đưa mô tả tác vụ, đi đ
 
 ## Benchmark: Cùng khối lượng công việc, ba Agent
 
-Bộ tác vụ (mỗi agent chạy cùng 5 tác vụ trên app TypeScript 5K LOC):
-
-### Tác vụ 1: Thêm tính năng mới (3 file, ~150 LOC)
+Bộ tác vụ (mỗi agent chạy cùng 5 tác vụ trên app TypeScript 5K LOC): ### Tác vụ 1: Thêm tính năng mới (3 file, ~150 LOC)
 
 | Agent | Thời gian | Thành công lần đầu | Tokens | Chi phí (Sonnet 4.6) |
 |---|---|---|---|---|
@@ -135,20 +124,16 @@ Bộ tác vụ (mỗi agent chạy cùng 5 tác vụ trên app TypeScript 5K LOC
 
 ## Thực tế chi phí ở quy mô
 
-BYO API key với Sonnet 4.6 (model cân bằng nhất cho các công cụ này):
+BYO API key với Sonnet 4.6 (model cân bằng nhất cho các công cụ này): ```
+Sử dụng 60 giờ/tháng: Aider: ~$80-110  (sử dụng context hiệu quả nhất)
+  Cline: ~$95-140  (kế hoạch dài dòng hơn = nhiều token hơn)
+  OpenHands: ~$120-180 (vòng lặp tự động = nhiều lần lặp hơn)
 
-```
-Sử dụng 60 giờ/tháng:
-  Aider:        ~$80-110  (sử dụng context hiệu quả nhất)
-  Cline:        ~$95-140  (kế hoạch dài dòng hơn = nhiều token hơn)
-  OpenHands:    ~$120-180 (vòng lặp tự động = nhiều lần lặp hơn)
-
-vs Claude Max:  $200 không giới hạn
+vs Claude Max: $200 không giới hạn
 vs Cursor Pro + API: $87 (ít công việc agent hơn nhiều)
 ```
 
-Tuyên bố "rẻ hơn thương mại" chỉ đúng nếu bạn:
-- Theo dõi kích thước context (không truyền toàn bộ repo vào mọi cuộc gọi)
+Tuyên bố "rẻ hơn thương mại" chỉ đúng nếu bạn: - Theo dõi kích thước context (không truyền toàn bộ repo vào mọi cuộc gọi)
 - Dùng Sonnet thay vì Opus cho tác vụ thường xuyên
 - Hủy vòng lặp tự động chạy vô tận sớm
 
@@ -156,28 +141,24 @@ Trên 80 giờ/tháng, Claude Max thắng về chi phí.
 
 ## Nơi mỗi cái thực sự thắng
 
-### Aider thắng khi:
-- Bạn sống trong terminal
+### Aider thắng khi: - Bạn sống trong terminal
 - Workflow git thiêng liêng (mỗi thay đổi là một commit sạch với thông điệp mô tả)
 - Bạn muốn chi tiêu token có thể dự đoán
 - Bạn đang debug — từng bước thận trọng là điều bạn muốn
 
-### Cline thắng khi:
-- Bạn ở VS Code cả ngày
+### Cline thắng khi: - Bạn ở VS Code cả ngày
 - Bạn muốn sự tiện lợi của agent sidebar IDE
 - Công việc trộn "hỏi AI" + "chỉnh sửa file trực tiếp" + "chạy shell"
 - Bạn coi trọng phản hồi trực quan thời gian thực
 
-### OpenHands thắng khi:
-- Tác vụ là công việc tự động "bắn và quên"
+### OpenHands thắng khi: - Tác vụ là công việc tự động "bắn và quên"
 - Bạn muốn phối hợp browser + shell + repo
 - Tác vụ chạy dài không thể giám sát (tác vụ qua đêm, xử lý batch)
 - Bạn có thể chấp nhận thời gian cài đặt
 
 ## Mẫu an toàn
 
-Cho cả ba:
-- **Tắt tự động phê duyệt** trong công việc production
+Cho cả ba: - **Tắt tự động phê duyệt** trong công việc production
 - **Xem xét mọi commit** trước khi push
 - **Sandbox vòng lặp tự động** (Docker / firejail đặc biệt cho OpenHands)
 - **Dùng API key giới hạn phạm vi** với giới hạn sử dụng
@@ -187,22 +168,19 @@ OpenHands mặc định sandbox Docker — an toàn nhất. Aider hỏi từng l
 
 ## Quyết định Stack OSS vs Stack thương mại
 
-**Chọn OSS (Aider + OpenHands + có thể Cline) nếu**:
-- Bạn muốn kiểm soát đầy đủ và linh hoạt BYO API key
+**Chọn OSS (Aider + OpenHands + có thể Cline) nếu**: - Bạn muốn kiểm soát đầy đủ và linh hoạt BYO API key
 - Bạn thoải mái với terminal + Docker + file config
 - Bạn coi trọng độc lập nhà cung cấp (không phụ thuộc model)
 - Sử dụng < 80 giờ/tháng
 
-**Chọn Thương mại (Claude Code + Cursor) nếu**:
-- Bạn muốn độ hoàn thiện, UX, phục hồi lỗi được xử lý
+**Chọn Thương mại (Claude Code + Cursor) nếu**: - Bạn muốn độ hoàn thiện, UX, phục hồi lỗi được xử lý
 - Sử dụng > 80 giờ/tháng
 - Bạn coi trọng hỗ trợ, thanh toán có thể dự đoán
 - Thời gian cài đặt quan trọng hơn chi phí dài hạn
 
 ## Cơ sở hạ tầng đề xuất
 
-Cho OpenHands tự host hoặc chạy model fine-tuned cục bộ:
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit, có sẵn GPU droplet
+Cho OpenHands tự host hoặc chạy model fine-tuned cục bộ: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit, có sẵn GPU droplet
 - **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hong Kong, độ trễ thấp
 
 *Liên kết affiliate — cùng giá, ủng hộ dibi8.com.*
@@ -218,7 +196,6 @@ Lựa chọn thương mại vs OSS không phải về giá (chúng gần nhau h�
 **Liên quan**: [AI Coding 2026-Q2 Shootout](https://dibi8.com/vi/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) · [Các phương án thay thế Cursor 2026](https://dibi8.com/vi/resources/dev-utils/cursor-alternatives-2026-best-ai-coding-tools/) · [Cài đặt OpenCode](https://dibi8.com/vi/resources/llm-frameworks/opencode-open-source-claude-code-alternative-2026/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

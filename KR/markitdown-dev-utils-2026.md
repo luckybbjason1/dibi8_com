@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/markitdown-dev-utils-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/markitdown-dev-utils-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/markitdown-dev-utils-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/markitdown-dev-utils-2026" />
 title: 'markitdown: 파일과 오피스 문서를 마크다운으로 변환 (141K Stars) — 2026 실전...
 description: 'markitdown은 각종 파일과 오피스 문서를 마크다운으로 변환해 주는 마이크로소프트의 파이썬 도구입니다. GitHub 스타 141,153개, MIT 라이선스. 설치, 핵심 CLI 및 파이썬 사용법, 실제 코드 예제, 그리고 pandoc·docx2txt와의 솔직한 비교를 다룹니다.'
 date: 2026-06-02 00:00:00+08:00
@@ -25,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: []
-aliases:
-- /posts/markitdown-dev-utils-2026/
-faqs:
-  - q: 'markitdown은 어떻게 설치하나요?'
+aliases: - /posts/markitdown-dev-utils-2026/
+faqs: - q: 'markitdown은 어떻게 설치하나요?'
     a: 'pip로 설치합니다. 보통은 모든 포맷 extras를 함께 설치합니다. ```bash pip install ''markitdown[all]'' ```'
   - q: 'markitdown은 모든 종류의 오피스 문서를 변환할 수 있나요?'
     a: 'Word(.docx), Excel(.xlsx), PowerPoint(.pptx), PDF, HTML, 이미지, 오디오 등 매우 다양한 포맷을 지원하지만, 모든 포맷의 모든 기능이 보존되는 것은 아닙니다. 지원되는 유형과 필요한 extras는 문서를 확인하세요.'
@@ -40,7 +33,6 @@ faqs:
     a: '네, 일부 고급 기능과 복잡한 문서 구조는 완전히 보존되지 않을 수 있습니다. 프로젝트는 활발히 유지보수되지만, 시각적 재현보다 텍스트 정확성을 우선합니다.'
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/markitdown-dev-utils-2026/ -->
 # markitdown: 파일과 오피스 문서를 마크다운으로 변환 (141K Stars) — 2026 실전 가이드
 
 
@@ -158,8 +150,7 @@ from markitdown import MarkItDown
 md = MarkItDown()
 result = md.convert('example.docx')
 
-with open('output.md', w) as file:
-    file.write(result.text_content)
+with open('output.md', w) as file: file.write(result.text_content)
 ```
 
 이 파이썬 스크립트는 앞서 본 명령줄 예제와 같은 일을 하지만, 더 통합된 방식으로 동작합니다.
@@ -197,8 +188,7 @@ Jupyter Notebook 환경에서 작업한다면, `markitdown`으로 원본 문서�
 !pip install 'markitdown[all]'
 from markitdown import MarkItDown
 
-def convert_to_markdown(path):
-    md = MarkItDown()
+def convert_to_markdown(path): md = MarkItDown()
     return md.convert(path).text_content
 
 content = convert_to_markdown('example.docx')
@@ -234,17 +224,11 @@ markitdown input.docx -o output.md
 ```yaml
 name: Convert Docs to Markdown
 
-on:
-  push:
-    branches:
-      - main
+on: push: branches: - main
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+jobs: build: runs-on: ubuntu-latest
 
-    steps:
-    - uses: actions/checkout@v4
+    steps: - uses: actions/checkout@v4
     - name: Install MarkItDown
       run: pip install 'markitdown[all]'
     - name: Convert Docs to Markdown
@@ -309,19 +293,11 @@ jobs:
 
 ---
 
-**출처 및 더 읽을거리**:
-- GitHub 저장소: https://github.com/microsoft/markitdown
+**출처 및 더 읽을거리**: - GitHub 저장소: https://github.com/microsoft/markitdown
 - 공식 문서 / README: https://github.com/microsoft/markitdown#readme
 
 *위 링크 중 일부는 제휴(affiliate) 링크입니다. 여러분이 가입하면 dibi8.com이 수수료를 받을 수 있으며, 추가 비용은 들지 않습니다. 사이트 운영과 무료 콘텐츠 유지에 도움이 됩니다.*
 
-<!-- internal-link-candidates:
-  related open-source tools -> ai-tools-directory
-  related guides on dibi8 -> ai-coding-agent-landscape-2026-skills-mcp-opensource
--->
-
-
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

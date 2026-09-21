@@ -5,10 +5,7 @@ category: ai-tools
 tags: ['stable-diffusion', 'ai-image-generation', 'diffusion-models', 'openai-alternative', 'midjourney-alternative', 'comfyui']
 slug: stable-diffusion-complete-guide
 date: 2026-07-17 00:00:00+00:00
-lastmod:  2026-07-17 00:00:00+00:00featureImage: /images/articles/stable-diffusion-ai-image-generation.jpg
----
-
-<!-- canonical: https://dibi8.com/cn/tools/stable-diffusion-complete-guide/ -->
+lastmod: 2026-07-17 00:00:00+00:00featureImage: /images/articles/stable-diffusion-ai-image-generation.jpg---
 
 ## TL;DR
 
@@ -30,18 +27,14 @@ Stable Diffusion is a latent diffusion model that generates high-quality images 
 
 ### How Diffusion Models Work
 
-Diffusion models generate images through a two-phase process:
-
-1. **Forward Process**: Gradually add noise to an image until it becomes pure random noise
+Diffusion models generate images through a two-phase process: 1. **Forward Process**: Gradually add noise to an image until it becomes pure random noise
 2. **Reverse Process**: A neural network learns to remove this noise step-by-step, reconstructing the original image from randomness
 
 The key innovation of Stable Diffusion is performing this process in "latent space" (a compressed representation) rather than pixel space, reducing computational requirements by ~1000x compared to pixel-based diffusion.
 
 #### The Denoising U-Net Architecture
 
-At the heart of Stable Diffusion lies a U-Net architecture that predicts noise at each denoising step. The U-Net consists of:
-
-- **Encoder**: Compresses the input through convolutional layers
+At the heart of Stable Diffusion lies a U-Net architecture that predicts noise at each denoising step. The U-Net consists of: - **Encoder**: Compresses the input through convolutional layers
 - **Bottleneck**: Applies attention mechanisms for global context understanding
 - **Decoder**: Reconstructs the image through transposed convolutions
 
@@ -61,9 +54,7 @@ print(unet.config)
 
 #### The Autoencoder (VAE)
 
-The Variational Autoencoder compresses images into latent space before diffusion and reconstructs them afterward:
-
-```python
+The Variational Autoencoder compresses images into latent space before diffusion and reconstructs them afterward: ```python
 from diffusers import AutoencoderKL
 
 vae = AutoencoderKL.from_pretrained(
@@ -78,9 +69,7 @@ print(f"Latent shape: {latent.shape}")  # [B, 4, 64, 64] for SDXL
 
 #### The Text Encoder
 
-CLIP text encoders convert natural language prompts into embeddings that guide the diffusion process:
-
-```python
+CLIP text encoders convert natural language prompts into embeddings that guide the diffusion process: ```python
 from transformers import CLIPTextModel, CLIPTokenizer
 
 tokenizer = CLIPTokenizer.from_pretrained("openai/clip-vit-large-patch14")
@@ -121,9 +110,7 @@ CMD ["python3", "webui.py", "--api"]
 
 ### Option 3: Python Library Installation
 
-For programmatic access without UI:
-
-```bash
+For programmatic access without UI: ```bash
 pip install diffusers transformers accelerate safetensors
 ```
 
@@ -152,7 +139,17 @@ image.save("output.png")
 ## Model Selection Guide
 
 | Model | Resolution | Parameters | Best For | Download Size |
-|-------|-----------|------------|----------|---------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | SD 1.5 | 512×512 | 860M | Speed, compatibility | 2 GB |
 | SDXL Base | 1024×1024 | 3.5B | Quality, versatility | 6.9 GB |
 | SDXL Turbo | 512×512 | 3.5B | Real-time generation | 6.9 GB |
@@ -171,9 +168,7 @@ image.save("output.png")
 
 ### LoRA Fine-Tuning
 
-Train a Low-Rank Adaptation model on your custom dataset:
-
-```python
+Train a Low-Rank Adaptation model on your custom dataset: ```python
 from diffusers import StableDiffusionXLPipeline
 import torch
 
@@ -223,9 +218,7 @@ accelerate launch train_dreambooth.py \
 
 ### ControlNet for Precise Composition
 
-Use ControlNet to guide generation with structural inputs:
-
-```python
+Use ControlNet to guide generation with structural inputs: ```python
 from diffusers import ControlNetModel, StableDiffusionControlNetPipeline
 import torch
 from PIL import Image
@@ -257,9 +250,7 @@ image = pipe(
 
 ### IP-Adapter for Style Transfer
 
-Transfer style from reference images:
-
-```python
+Transfer style from reference images: ```python
 from diffusers import StableDiffusionIPAdapterPipeline
 import torch
 
@@ -282,9 +273,7 @@ image = pipe(
 
 ### AnimateDiff for Video Generation
 
-Create short animations from text prompts:
-
-```python
+Create short animations from text prompts: ```python
 from diffusers import DiffusionPipeline, AnimateDiffPipeline
 import torch
 
@@ -299,8 +288,7 @@ motion_module = "guoyww/animatediff-motion-modules"
 
 # Generate video frames
 frames = []
-for i in range(16):
-    frame = pipeline(
+for i in range(16): frame = pipeline(
         prompt="a butterfly flying through a garden",
         negative_prompt="blurry, distorted",
         num_inference_steps=25,
@@ -330,8 +318,7 @@ pipe = StableDiffusionPipeline.from_pretrained(
 pipe = pipe.to("cuda")
 
 @app.route("/generate", methods=["POST"])
-def generate():
-    data = request.json
+def generate(): data = request.json
     prompt = data.get("prompt", "")
     negative_prompt = data.get("negative_prompt", "")
     steps = data.get("steps", 30)
@@ -354,8 +341,7 @@ def generate():
         "seed": None
     })
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8000)
+if __name__ == "__main__": app.run(host="0.0.0.0", port=8000)
 ```
 
 ### Optimized Inference with xFormers
@@ -382,9 +368,7 @@ image = pipe("a cat wearing sunglasses", num_inference_steps=20).images[0]
 
 ### TensorRT Optimization
 
-For maximum throughput on NVIDIA GPUs:
-
-```python
+For maximum throughput on NVIDIA GPUs: ```python
 from diffusers import StableDiffusionXLPipeline
 from optimum.intel import IPEXQuantizedModelForCausalLM
 
@@ -403,7 +387,17 @@ ort_model = ORTModelForDiffusion.from_pretrained("./model.onnx")
 ## Performance Comparison
 
 | Configuration | Steps | Time/Image | VRAM Used | Quality |
-|--------------|-------|------------|-----------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | SD 1.5 + CPU | 50 | 45s | N/A | Good |
 | SD 1.5 + RTX 3080 | 50 | 2s | 6 GB | Good |
 | SDXL + RTX 3080 | 30 | 5s | 8 GB | Excellent |
@@ -414,9 +408,7 @@ ort_model = ORTModelForDiffusion.from_pretrained("./model.onnx")
 
 ### Image-to-Image Transformation
 
-Transform existing images with text prompts:
-
-```python
+Transform existing images with text prompts: ```python
 from diffusers import StableDiffusionImg2ImgPipeline
 import torch
 from PIL import Image
@@ -443,9 +435,7 @@ result.save("transformed.jpg")
 
 ### Upscaling with Latent Upscale
 
-Generate at lower resolution then upscale:
-
-```python
+Generate at lower resolution then upscale: ```python
 from diffusers import StableDiffusionUpscalePipeline
 
 upscale_pipeline = StableDiffusionUpscalePipeline.from_pretrained(
@@ -485,8 +475,7 @@ prompts = [
 ]
 
 images = []
-for prompt in prompts:
-    img = pipeline(prompt, num_inference_steps=25).images[0]
+for prompt in prompts: img = pipeline(prompt, num_inference_steps=25).images[0]
     images.append(img)
 
 # Create grid
@@ -494,8 +483,7 @@ grid_size = int(len(images) ** 0.5)
 width, height = images[0].size
 grid = Image.new("RGB", (width * grid_size, height * ((len(images) + grid_size - 1) // grid_size)))
 
-for i, img in enumerate(images):
-    row = i // grid_size
+for i, img in enumerate(images): row = i // grid_size
     col = i % grid_size
     grid.paste(img, (col * width, row * height))
 
@@ -504,9 +492,7 @@ grid.save("generation_grid.png")
 
 ### Negative Prompt Engineering
 
-Craft effective negative prompts to improve output quality:
-
-```python
+Craft effective negative prompts to improve output quality: ```python
 # Generic quality boosters
 generic_negative = """
 low quality, blurry, noisy, jpeg artifacts, 
@@ -538,7 +524,17 @@ image = pipe(
 ## Comparison with Alternatives
 
 | Feature | Stable Diffusion | Midjourney | DALL-E 3 | Imagen 3 |
-|---------|-----------------|------------|----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Open Source | ✅ | ❌ | ❌ | ❌ |
 | Self-Hosted | ✅ | ❌ | ❌ | ❌ |
 | Free Tier | Unlimited | $10/mo | Limited | GCP credits |
@@ -610,10 +606,16 @@ image = pipe(
 
 ### Scheduler Types and Their Impact
 
-Different schedulers affect generation quality, speed, and image characteristics:
-
-| Scheduler | Speed | Quality | Best For |
-|-----------|-------|---------|----------|
+Different schedulers affect generation quality, speed, and image characteristics: | Scheduler | Speed | Quality | Best For |
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Euler A | Fast | Good | Quick iterations |
 | Euler | Fast | Good | General purpose |
 | DPM++ 2M | Medium | Excellent | Photorealism |
@@ -639,9 +641,7 @@ image = pipe(prompt, num_inference_steps=20).images[0]
 
 ### Structured Prompt Format
 
-Effective prompts follow a structured format that maximizes model understanding:
-
-```
+Effective prompts follow a structured format that maximizes model understanding: ```
 [Quality tags], [Subject description], [Setting or Environment], 
 [Style or Medium], [Lighting], [Camera or Composition], [Technical details]
 ```
@@ -650,9 +650,7 @@ Effective prompts follow a structured format that maximizes model understanding:
 
 #### Weighted Prompts
 
-Emphasize or de-emphasize specific elements:
-
-```python
+Emphasize or de-emphasize specific elements: ```python
 # Emphasize sunset with weight 1.3
 prompt = "a beautiful landscape with (sunset:1.3) and mountains"
 
@@ -690,9 +688,7 @@ print(torch.equal(image2, image))  # True
 
 ### Negative Prompt Strategies
 
-Effective negative prompts significantly improve output quality:
-
-```python
+Effective negative prompts significantly improve output quality: ```python
 # Universal quality boosters
 universal_negative = """
 lowres, bad anatomy, bad hands, text, error, missing fingers,
@@ -718,10 +714,14 @@ poorly drawn hands, poorly drawn face, mutation
 
 ### Available ControlNet Models
 
-ControlNet comes in multiple variants for different types of structural control:
-
-| ControlNet Type | Input | Use Case |
-|----------------|-------|----------|
+ControlNet comes in multiple variants for different types of structural control: | ControlNet Type | Input | Use Case |
+|
+---
+|
+---
+|
+---
+|
 | Canny | Edge detection | Precise structure control |
 | Depth | Depth maps | 3D-aware generation |
 | OpenPose | Human poses | Character positioning |
@@ -773,9 +773,7 @@ image = pipe(
 
 ### Multi-ControlNet Composition
 
-Combine multiple ControlNets for precise control:
-
-```python
+Combine multiple ControlNets for precise control: ```python
 from diffusers import UniPCMultistepScheduler
 
 # Use OpenPose for body plus Canny for edges
@@ -882,8 +880,7 @@ prompts = [
     "an underwater coral reef"
 ]
 
-def generate_image(args):
-    idx, prompt = args
+def generate_image(args): idx, prompt = args
     image = pipe(
         prompt=prompt,
         num_inference_steps=25,
@@ -893,11 +890,9 @@ def generate_image(args):
     return idx, image
 
 start_time = time.time()
-with ThreadPoolExecutor(max_workers=4) as executor:
-    futures = [executor.submit(generate_image, (i, p)) for i, p in enumerate(prompts)]
+with ThreadPoolExecutor(max_workers=4) as executor: futures = [executor.submit(generate_image, (i, p)) for i, p in enumerate(prompts)]
     
-    for future in as_completed(futures):
-        idx, image = future.result()
+    for future in as_completed(futures): idx, image = future.result()
         image.save(f"output_{idx}.png")
 
 elapsed = time.time() - start_time
@@ -911,13 +906,10 @@ print(f"Average: {elapsed/len(prompts):.2f}s per image")
 import gc
 import torch
 
-def batch_generate(prompts, batch_size=4):
-    for i in range(0, len(prompts), batch_size):
-        batch = prompts[i:i+batch_size]
+def batch_generate(prompts, batch_size=4): for i in range(0, len(prompts), batch_size): batch = prompts[i:i+batch_size]
         
         images = []
-        for prompt in batch:
-            image = pipe(
+        for prompt in batch: image = pipe(
                 prompt=prompt,
                 num_inference_steps=25
             ).images[0]
@@ -932,7 +924,15 @@ def batch_generate(prompts, batch_size=4):
 ## Cost Analysis: Self-Hosted vs Commercial
 
 | Provider | Pricing Model | Cost per Image | Min Order |
-|----------|--------------|----------------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Midjourney | $10/mo basic | $0.03/image | Monthly sub |
 | DALL-E 3 | Via ChatGPT Plus | $0.04/image | $20/mo |
 | Adobe Firefly | Credits-based | $0.05/image | Included in CC |
@@ -999,7 +999,6 @@ Use xFormers for memory-efficient attention, quantize the model to FP16 or INT8,
 Ready to build your own AI image generation platform? Explore our collection of production-ready Stable Diffusion deployments and custom model training guides. [Join the community](https://dibi8.com/auth/) for weekly updates on the latest AI tools.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -1025,8 +1024,8 @@ Ready to build your own AI image generation platform? Explore our collection of 
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [comfyui-workflows-complete-guide](stable-diffusion-complete-guide)
@@ -1034,6 +1033,6 @@ Ready to build your own AI image generation platform? Explore our collection of 
 - [comfyui-workflows-complete-guide](stable-diffusion-complete-guide)
 - [fastchat-open-source-llm-chatbot-platform](stable-diffusion-complete-guide)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

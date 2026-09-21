@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/trino-distributed-sql-query" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/trino-distributed-sql-query" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/trino-distributed-sql-query" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/trino-distributed-sql-query" />
 title: 'Trino 2026: PB级分布式 SQL 查询引擎 — 自托管集群搭建完全指南'
 description: '部署 Trino 464+ 实现 PB 级分布式 SQL 分析。包含分步集群部署、40+ 连接器配置、性能调优及真实基准测试。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: [trino, presto, 分布式sql, 大数据, 数据分析, 数据湖, hive, iceberg, 查询引擎, 自托管]
-aliases:
-- /zh/posts/trino-distributed-sql-query/
+aliases: - /zh/posts/trino-distributed-sql-query/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/trino-distributed-sql-query/ -->
 
 {{</* resource-info */>}}
 
@@ -257,11 +249,8 @@ trino://trino-coordinator:8080/iceberg/default
 配置 `~/.dbt/profiles.yml`：
 
 ```yaml
-my_trino_project:
-  target: dev
-  outputs:
-    dev:
-      type: trino
+my_trino_project: target: dev
+  outputs: dev: type: trino
       method: none
       host: trino-coordinator
       port: 8080
@@ -286,8 +275,7 @@ from airflow.providers.trino.operators.trino import TrinoOperator
 from airflow import DAG
 from datetime import datetime
 
-with DAG("trino_analytics", start_date=datetime(2026, 1, 1), schedule="@daily") as dag:
-    daily_aggregation = TrinoOperator(
+with DAG("trino_analytics", start_date=datetime(2026, 1, 1), schedule="@daily") as dag: daily_aggregation = TrinoOperator(
         task_id="aggregate_events",
         sql="""
             INSERT INTO analytics.daily_metrics
@@ -361,7 +349,17 @@ LIMIT 100;
 我们在相同硬件（3 节点，16 vCPU，64 GB 内存）上运行 TPC-DS Scale Factor 100（约 100 GB 数据集，Parquet on S3）：
 
 | 查询类型 | Trino 464 | Spark 3.5 SQL | PrestoDB 0.289 | Dremio 25.0 |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 简单扫描+过滤 (Q1) | **1.2秒** | 3.8秒 | 1.5秒 | 2.1秒 |
 | 多表连接 (Q25) | **8.4秒** | 14.2秒 | 10.1秒 | 11.5秒 |
 | 复杂聚合 (Q55) | **4.1秒** | 9.6秒 | 5.3秒 | 5.8秒 |
@@ -373,7 +371,17 @@ Trino 在交互式查询工作负载上始终优于竞品，这归功于其**惰
 ### 生产案例
 
 | 公司 | 规模 | 用例 | 集群规模 | 查询负载 |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Netflix | **约 15 PB** | 用户行为分析 | 200+ 节点 | 每天 100万+ 查询 |
 | Airbnb | **约 8 PB** | A/B 测试、指标 | 50 节点 | 每天 30万 查询 |
 | 高盛 | **约 3 PB** | 风险分析 | 30 节点 | 每天 5万 查询 |
@@ -384,7 +392,15 @@ Trino 在交互式查询工作负载上始终优于竞品，这归功于其**惰
 针对 **500 TB** 数据集、**每月 10万 查询**（分析工作负载）：
 
 | 平台 | 月费用 | 锁定风险 | 定制化 |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 自托管 Trino | **1,200–2,500 美元** | 无 | 完全 |
 | Snowflake (M) | 8,000–12,000 美元 | 高 | 有限 |
 | BigQuery (按需) | 5,000–15,000 美元 | 高 | 有限 |
@@ -532,7 +548,17 @@ SELECT query_id, user, cumulative_user_memory FROM system.runtime.queries WHERE 
 ## 与竞品对比
 
 | 特性 | Trino 464 | Spark SQL 3.5 | PrestoDB 0.289 | Dremio 25.0 |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **交互式查询延迟** | **亚秒级** | 3–10秒 | 1–3秒 | 2–5秒 |
 | **SQL 标准兼容性** | 完整 ANSI SQL | 良好 (Hive 方言) | 完整 ANSI SQL | 良好 |
 | **数据联邦（连接器）** | **45+ 原生** | 20+ (通过连接器) | 40+ 原生 | 15+ |
@@ -626,7 +652,6 @@ Trino 代表了大规模分布式 SQL 分析最成熟的开源选择。凭借 **
 本文包含 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 和 [HTStack](https://my.htstack.com/aff.php?aff=27187) 的联盟链接。如果你通过这些链接购买服务，我们可能会获得佣金，你无需额外付费。这有助于支持我们的开源文档工作。我们只推荐亲自测试过的服务，并且我们自己的生产工作负载也会使用。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -651,3 +676,4 @@ Trino 代表了大规模分布式 SQL 分析最成熟的开源选择。凭借 **
   }
 }
 </script>
+---

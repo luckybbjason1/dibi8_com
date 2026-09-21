@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/gpt-sovits" />
 title: 'GPT-SoVITS: 57.5K+ Stars — Deploy AI Voice Cloning Produ...
 description: 'GPT-SoVITS (GSV) is a few-shot voice cloning and TTS tool with zero-shot capabilities. Supports ComfyUI, RVC, and MeloTTS integration. Covers Docker deployment, voice training, API setup, and production hardening.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: ['voice-cloning', 'text-to-speech', 'gpt-sovits', tts, 'ai-voice', docker, rvc, python]
-aliases:
-- /posts/gpt-sovits/
+aliases: - /posts/gpt-sovits/-
 ---
-
 {{</* resource-info */>}}
 
 > Clone any voice with 5 seconds of audio. Fine-tune with 1 minute. Deploy in production under 20 minutes. This guide walks you through the full setup.
@@ -42,9 +38,7 @@ Building a voice cloning pipeline used to require recording studios, weeks of da
 
 ### Architecture Overview
 
-GPT-SoVITS uses a two-stage pipeline that separates linguistic understanding from audio waveform generation:
-
-```
+GPT-SoVITS uses a two-stage pipeline that separates linguistic understanding from audio waveform generation: ```
 Text Input → BERT Text Encoder → GPT Model (330M params) → Semantic Tokens
                                                           ↓
 Reference Audio → HuBERT Encoder → SoVITS Model (77M params) → Vocoder → 48kHz Audio
@@ -57,7 +51,13 @@ Reference Audio → HuBERT Encoder → SoVITS Model (77M params) → Vocoder →
 ### Core Components
 
 | Component | Purpose | Parameters |
-|-----------|---------|------------|
+|
+---
+|
+---
+|
+---
+|
 | GPT Model | Semantic token prediction | 330M |
 | SoVITS Generator | Waveform synthesis | 77M |
 | BERT Text Encoder | Linguistic feature extraction | Shared with GPT |
@@ -68,7 +68,13 @@ Reference Audio → HuBERT Encoder → SoVITS Model (77M params) → Vocoder →
 ### Version Evolution
 
 | Version | Key Improvement | Training Data |
-|---------|----------------|---------------|
+|
+---
+|
+---
+|
+---
+|
 | V1 | Initial release | 2,000 hours |
 | V2 | +Korean, +Cantonese, optimized frontend | 5,000 hours |
 | V3 | Higher timbre similarity, LoRA support | 7,000 hours |
@@ -79,9 +85,7 @@ Reference Audio → HuBERT Encoder → SoVITS Model (77M params) → Vocoder →
 
 ### Pipeline Data Flow
 
-The complete training and inference pipeline follows this flow:
-
-```
+The complete training and inference pipeline follows this flow: ```
 Raw Audio → UVR5 Separation → Audio Slicer → ASR Transcription → Text Labeling
                                                                                 ↓
 Pretrained GPT + SoVITS ← Fine-tuning (1 min data) ← Formatted Dataset
@@ -96,7 +100,13 @@ Inference: Reference Audio + Text → GPT (Semantic Tokens) → SoVITS → 48kHz
 ### Hardware Requirements
 
 | Component | Minimum | Recommended |
-|-----------|---------|-------------|
+|
+---
+|
+---
+|
+---
+|
 | GPU | NVIDIA GTX 1060 (6GB) | RTX 4060 Ti or better |
 | VRAM | 6 GB | 8+ GB (fp16) |
 | RAM | 16 GB | 32 GB |
@@ -125,8 +135,7 @@ pip install -r requirements.txt
 
 ```powershell
 # Download the integrated package from HuggingFace
-# Extract and run:
-conda create -n GPTSoVits python=3.10
+# Extract and run: conda create -n GPTSoVits python=3.10
 conda activate GPTSoVits
 pwsh -F install.ps1 -Device CU126 -Source HF
 ```
@@ -152,22 +161,13 @@ docker compose run --service-ports GPT-SoVITS-CU128
 
 ```yaml
 # docker-compose.override.yaml for production
-services:
-  GPT-SoVITS-CU128:
-    shm_size: 16g
-    environment:
-      - is_half=true
-    ports:
-      - "9874:9874"
+services: GPT-SoVITS-CU128: shm_size: 16g
+    environment: - is_half=true
+    ports: - "9874:9874"
       - "9880:9880"
-    volumes:
-      - ./models:/workspace/models
+    volumes: - ./models:/workspace/models
       - ./outputs:/workspace/outputs
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+    deploy: resources: reservations: devices: - driver: nvidia
               count: 1
               capabilities: [gpu]
 ```
@@ -179,8 +179,7 @@ services:
 mkdir -p GPT_SoVITS/pretrained_models
 
 # Download from HuggingFace (auto-download via install.sh)
-# Or manually for v4:
-# s2v4.pth, vocoder.pth → GPT_SoVITS/pretrained_models/gsv-v4-pretrained/
+# Or manually for v4: # s2v4.pth, vocoder.pth → GPT_SoVITS/pretrained_models/gsv-v4-pretrained/
 
 # Download G2PW model for Chinese TTS
 # Unzip G2PWModel.zip and place in: GPT_SoVITS/text/G2PWModel/
@@ -206,9 +205,7 @@ python api_v2.py
 
 ### Integration with ComfyUI
 
-ComfyUI nodes for GPT-SoVITS enable voice generation inside visual workflows:
-
-```bash
+ComfyUI nodes for GPT-SoVITS enable voice generation inside visual workflows: ```bash
 # Install ComfyUI-GPT-SoVITS nodes
 cd ComfyUI/custom_nodes
 git clone https://github.com/yaolidi/ComfyUI-GPT-SoVITS.git
@@ -216,17 +213,14 @@ git clone https://github.com/yaolidi/ComfyUI-GPT-SoVITS.git
 # Install dependencies
 pip install -r ComfyUI-GPT-SoVITS/requirements.txt
 
-# Place your trained .pth and .ckpt models in:
-# ComfyUI/models/GPT-SoVITS/
+# Place your trained .pth and .ckpt models in: # ComfyUI/models/GPT-SoVITS/
 ```
 
 The node exposes GPT-SoVITS inference as a ComfyUI node with inputs for reference audio, text, and model selection.
 
 ### Integration with RVC (Retrieval-based Voice Conversion)
 
-RVC and GPT-SoVITS share the same ecosystem. Use RVC for real-time voice conversion and GPT-SoVITS for high-quality TTS:
-
-```python
+RVC and GPT-SoVITS share the same ecosystem. Use RVC for real-time voice conversion and GPT-SoVITS for high-quality TTS: ```python
 # Pipeline: GPT-SoVITS TTS → RVC Voice Conversion
 import requests
 import subprocess
@@ -242,8 +236,7 @@ tts_payload = {
 }
 
 response = requests.post("http://localhost:9880/tts", json=tts_payload)
-with open("tts_output.wav", "wb") as f:
-    f.write(response.content)
+with open("tts_output.wav", "wb") as f: f.write(response.content)
 
 # Step 2: Convert through RVC (optional real-time VC)
 rvc_cmd = [
@@ -257,9 +250,7 @@ subprocess.run(rvc_cmd)
 
 ### Integration with MeloTTS
 
-MeloTTS handles multilingual text preprocessing before GPT-SoVITS synthesis:
-
-```python
+MeloTTS handles multilingual text preprocessing before GPT-SoVITS synthesis: ```python
 from melo.api import TTS
 import requests
 
@@ -279,9 +270,7 @@ response = requests.post("http://localhost:9880/tts", json={
 
 ### REST API Integration
 
-The built-in `api_v2.py` provides a full REST API for production use:
-
-```bash
+The built-in `api_v2.py` provides a full REST API for production use: ```bash
 # Start the API server
 python api_v2.py -a 0.0.0.0 -p 9880
 
@@ -292,8 +281,7 @@ python api_v2.py -a 0.0.0.0 -p 9880
 # Python client example
 import requests
 
-def synthesize(text, ref_audio, prompt_text, output_path):
-    payload = {
+def synthesize(text, ref_audio, prompt_text, output_path): payload = {
         "text": text,
         "text_lang": "en",
         "ref_audio_path": ref_audio,
@@ -312,9 +300,7 @@ def synthesize(text, ref_audio, prompt_text, output_path):
         timeout=60
     )
     
-    if response.status_code == 200:
-        with open(output_path, "wb") as f:
-            f.write(response.content)
+    if response.status_code == 200: with open(output_path, "wb") as f: f.write(response.content)
         return True
     return False
 
@@ -348,7 +334,15 @@ docker compose up -d
 ### Inference Speed Benchmarks
 
 | Hardware | Version | RTF (Real-Time Factor) | 1400 Words Inference Time |
-|----------|---------|----------------------|--------------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | RTX 4090 | V2 ProPlus | 0.014 | 3.36s |
 | RTX 4060 Ti | V2 ProPlus | 0.028 | ~7s |
 | Apple M4 (CPU) | V2 ProPlus | 0.526 | ~120s |
@@ -361,7 +355,15 @@ RTF < 1 means faster than real-time generation. GPT-SoVITS V2 ProPlus on an RTX 
 ### Voice Quality Benchmarks
 
 | Model | MOS (Mean Opinion Score) | Training Data Required | Parameters |
-|-------|------------------------|----------------------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Human Speech | 4.5+ | N/A | N/A |
 | GPT-SoVITS V4 | ~4.0 (estimated) | 5s zero-shot / 1min fine-tune | 407M total |
 | XTTS v2 | 4.0 | 6s reference | 467M |
@@ -383,7 +385,17 @@ RTF < 1 means faster than real-time generation. GPT-SoVITS V2 ProPlus on an RTX 
 ### Training Time Benchmarks
 
 | Dataset Size | GPU | Steps | Training Time (SoVITS) | Training Time (GPT) |
-|-------------|-----|-------|----------------------|-------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 1 minute | RTX 4090 | 300 | ~5 min | ~10 min |
 | 5 minutes | RTX 4090 | 300 | ~8 min | ~15 min |
 | 10 minutes | RTX 4090 | 300 | ~12 min | ~20 min |
@@ -436,12 +448,11 @@ app = FastAPI()
 rate_limits = defaultdict(list)
 
 @app.middleware("http")
-async def rate_limit(request, call_next):
-    client = request.client.host
+async def rate_limit(request, call_next): client = request.client.host
     now = time.time()
     rate_limits[client] = [t for t in rate_limits[client] if now - t < 60]
     
-    if len(rate_limits[client]) >= 10:  # 10 req/min
+    if len(rate_limits[client]) >= 10: # 10 req/min
         raise HTTPException(429, "Rate limit exceeded")
     
     rate_limits[client].append(now)
@@ -522,7 +533,17 @@ server {
 ## Comparison with Alternatives
 
 | Feature | GPT-SoVITS | Coqui XTTS v2 | Bark | F5-TTS |
-|---------|-----------|--------------|------|--------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **License** | MIT (commercial OK) | CPML (non-commercial) | MIT (commercial OK) | CC-BY-NC 4.0 |
 | **Stars** | 57,500+ | 4,200+ | 37,000+ | 10,800+ |
 | **Parameters** | 407M (GPT+SoVITS) | 467M | 900M | 336M |
@@ -596,9 +617,7 @@ GPT-SoVITS delivers production-grade voice cloning with minimal data requirement
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -617,7 +636,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [GPT-SoVITS v3 Technical Paper Reference](https://arxiv.org/pdf/2504.19146)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -643,8 +661,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [ray-distributed-ai-framework-complete-guide](gpt-sovits)
@@ -653,8 +671,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [agent-reach-internet-access-ai-agents](gpt-sovits)
 - [microsoft-markitdown-file-to-markdown-converter-cli](gpt-sovits)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

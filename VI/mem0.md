@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mem0" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mem0" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mem0" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mem0" />
 title: 'Mem0: 56K+ Stars — Hướng Dẫn Tinh Chỉnh Hiệu Suất Bộ Nhớ...
 description: 'Mem0 (mem0ai) là lớp bộ nhớ phổ quát cho AI agent. Tương thích với Claude Code, OpenAI, LangChain, CrewAI, Cursor. Bao gồm hướng dẫn mem0, thiết lập bộ nhớ liên tục, tinh chỉnh vector store và benchmark triển khai production.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [mem0, 'ai-agent-memory', 'bộ-nhớ-liên-tục', langchain, 'vector-store', 'tinh-chỉnh-bộ-nhớ', 'hướng-dẫn-mem0', 'mem0-vs-langchain', crewai, 'mã-nguồn-mở']
-aliases:
-- /vi/posts/mem0/
+aliases: - /vi/posts/mem0/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/mem0/ -->
 
 {{</* resource-info */>}}
 
@@ -43,9 +35,7 @@ Mem0 là một lớp bộ nhớ phổ quát mã nguồn mở cho ứng dụng LL
 
 ## Mem0 hoạt động như thế nào?
 
-Kiến trúc của Mem0 chia bộ nhớ thành bốn lớp hoạt động:
-
-**1. Lớp Trích xuất**: Một LLM (có thể cấu hình, mặc định GPT-4o-mini) xử lý tin nhắn đến và trích xuất các sự kiện có cấu trúc. Thuật toán hiệu quả về token tháng 4/2026 sử dụng trích xuất phân cấp một lượt giảm lượng token sử dụng 3-4 lần so với baselines đầy đủ ngữ cảnh.
+Kiến trúc của Mem0 chia bộ nhớ thành bốn lớp hoạt động: **1. Lớp Trích xuất**: Một LLM (có thể cấu hình, mặc định GPT-4o-mini) xử lý tin nhắn đến và trích xuất các sự kiện có cấu trúc. Thuật toán hiệu quả về token tháng 4/2026 sử dụng trích xuất phân cấp một lượt giảm lượng token sử dụng 3-4 lần so với baselines đầy đủ ngữ cảnh.
 
 **2. Lớp Embedding**: Các sự kiện được trích xuất được vector hóa bằng mô hình embedding (mặc định: text-embedding-3-small) và lưu trữ trong cơ sở dữ liệu vector. Mem0 hỗ trợ 19 backend vector store bao gồm Qdrant, Chroma, PGVector, Pinecone, Weaviate, Milvus và Azure AI Search.
 
@@ -115,9 +105,7 @@ print(results)
 
 ### Thiết lập Self-Hosted (Docker)
 
-Dành cho các team cần lưu trữ dữ liệu tại chỗ hoặc triển khai air-gapped:
-
-```bash
+Dành cho các team cần lưu trữ dữ liệu tại chỗ hoặc triển khai air-gapped: ```bash
 # Clone repository
 git clone https://github.com/mem0ai/mem0.git
 cd mem0
@@ -167,35 +155,25 @@ results = m.search("movie recommendations", filters={"user_id": "alice"})
 
 ### Cấu hình tùy chỉnh với YAML
 
-Tệp `mem0config.yaml` điều khiển mọi thành phần của pipeline bộ nhớ:
-
-```yaml
+Tệp `mem0config.yaml` điều khiển mọi thành phần của pipeline bộ nhớ: ```yaml
 # mem0config.yaml — Cấu hình tinh chỉnh production
-llm:
-  provider: openai
-  config:
-    model: "gpt-4o-mini"
+llm: provider: openai
+  config: model: "gpt-4o-mini"
     temperature: 0.1
     max_tokens: 2000
 
-embedder:
-  provider: openai
-  config:
-    model: "text-embedding-3-small"
+embedder: provider: openai
+  config: model: "text-embedding-3-small"
     embedding_dims: 1536
 
-vector_store:
-  provider: qdrant
-  config:
-    host: "localhost"
+vector_store: provider: qdrant
+  config: host: "localhost"
     port: 6333
     collection_name: "mem0"
     on_disk: true  # Bật lưu trữ liên tục
 
-reranker:
-  provider: cohere
-  config:
-    model: "rerank-multilingual-v3.0"
+reranker: provider: cohere
+  config: model: "rerank-multilingual-v3.0"
 
 custom_instructions: |
   Trích xuất sở thích ngườ dùng, sự kiện cá nhân và ngữ cảnh.
@@ -230,8 +208,7 @@ import asyncio
 
 client = MemoryClient()
 
-async def batch_store(messages_list):
-    tasks = [client.add_async(msgs, user_id=f"user_{i}")
+async def batch_store(messages_list): tasks = [client.add_async(msgs, user_id=f"user_{i}")
              for i, msgs in enumerate(messages_list)]
     return await asyncio.gather(*tasks)
 
@@ -260,14 +237,12 @@ results = client.search(
 # Hớng dẫn trích xuất và lưu trữ những sự kiện nào
 m = Memory.from_config({
     "custom_instructions": """
-    Trích xuất và lưu trữ:
-    - Tên, nghề nghiệp, vị trí của ngườ dùng
+    Trích xuất và lưu trữ: - Tên, nghề nghiệp, vị trí của ngườ dùng
     - Sở thích công nghệ (ngôn ngữ, framework, công cụ)
     - Hạn chế chế độ ăn và dị ứng
     - Sở thích giao tiếp
 
-    KHÔNG lưu trữ:
-    - Trạng thái tâm trạng tạm thờ
+    KHÔNG lưu trữ: - Trạng thái tâm trạng tạm thờ
     - Yêu cầu một lần
     - Thông tin bên thứ ba không có sự đồng ý
     """
@@ -298,23 +273,19 @@ mem0 = MemoryClient(api_key=os.getenv("MEM0_API_KEY"))
 # Template prompt với memory injection
 prompt = ChatPromptTemplate.from_messages([
     ("system", """Bạn là trợ lý hữu ích với bộ nhớ dài hạn.
-    Ngữ cảnh quá khứ liên quan về ngườ dùng:
-    {memories}
+    Ngữ cảnh quá khứ liên quan về ngườ dùng: {memories}
 
     Sử dụng ngữ cảnh này để cá nhân hóa phản hồi."""),
     MessagesPlaceholder(variable_name="history"),
     ("human", "{input}")
 ])
 
-def get_memories(user_id: str, query: str) -> str:
-    """Truy xuất ký ức liên quan dưới dạng chuỗi."""
+def get_memories(user_id: str, query: str) -> str: """Truy xuất ký ức liên quan dưới dạng chuỗi."""
     results = mem0.search(query, user_id=user_id, limit=5)
     return "\n".join([r["memory"] for r in results])
 
-def chat(user_id: str, message: str, history: List = None):
-    """Chat với ngữ cảnh tăng cường bộ nhớ."""
-    if history is None:
-        history = []
+def chat(user_id: str, message: str, history: List = None): """Chat với ngữ cảnh tăng cường bộ nhớ."""
+    if history is None: history = []
 
     memories = get_memories(user_id, message)
     formatted_prompt = prompt.format_messages(
@@ -360,14 +331,12 @@ from mem0 import MemoryClient
 mem0 = MemoryClient(api_key=os.getenv("MEM0_API_KEY"))
 
 @tool
-def retrieve_user_context(user_id: str, query: str) -> str:
-    """Truy xuất ký ức về ngườ dùng để cá nhân hóa."""
+def retrieve_user_context(user_id: str, query: str) -> str: """Truy xuất ký ức về ngườ dùng để cá nhân hóa."""
     results = mem0.search(query, user_id=user_id, limit=5)
     return "\n".join([f"- {r[memory]}" for r in results])
 
 @tool
-def store_interaction(user_id: str, content: str) -> str:
-    """Lưu trữ sự kiện học được trong tương tác agent."""
+def store_interaction(user_id: str, content: str) -> str: """Lưu trữ sự kiện học được trong tương tác agent."""
     messages = [{"role": "assistant", "content": content}]
     mem0.add(messages, user_id=user_id)
     return "Stored."
@@ -412,19 +381,16 @@ from mem0 import MemoryClient
 mem0 = MemoryClient(api_key=os.getenv("MEM0_API_KEY"))
 
 @dataclass
-class UserContext:
-    user_id: str
+class UserContext: user_id: str
 
 @function_tool
-def add_to_memory(ctx, messages: str) -> str:
-    """Lưu trữ sự kiện về ngườ dùng."""
+def add_to_memory(ctx, messages: str) -> str: """Lưu trữ sự kiện về ngườ dùng."""
     parsed = [{"role": "user", "content": m} for m in messages.split("\n")]
     mem0.add(parsed, user_id=ctx.context.user_id)
     return "Memory stored."
 
 @function_tool
-def search_memory(ctx, query: str) -> str:
-    """Tìm kiếm ký ức liên quan."""
+def search_memory(ctx, query: str) -> str: """Tìm kiếm ký ức liên quan."""
     results = mem0.search(query, user_id=ctx.context.user_id, limit=5)
     return "\n".join([r["memory"] for r in results])
 
@@ -435,8 +401,7 @@ memory_agent = Agent(
     model="gpt-4o-mini"
 )
 
-async def run_agent():
-    context = UserContext(user_id="user_42")
+async def run_agent(): context = UserContext(user_id="user_42")
     result = await Runner.run(
         memory_agent,
         "I'm a vegetarian who loves Italian food.",
@@ -453,51 +418,35 @@ async def run_agent():
 # mem0-production-stack.yml
 version: "3.8"
 
-services:
-  qdrant:
-    image: qdrant/qdrant:latest
-    ports:
-      - "6333:6333"
+services: qdrant: image: qdrant/qdrant:latest
+    ports: - "6333:6333"
       - "6334:6334"
-    volumes:
-      - qdrant_storage:/qdrant/storage
-    environment:
-      - QDRANT__SERVICE__GRPC_PORT=6334
+    volumes: - qdrant_storage:/qdrant/storage
+    environment: - QDRANT__SERVICE__GRPC_PORT=6334
 
-  mem0-server:
-    image: mem0/mem0-server:latest
-    ports:
-      - "8000:8000"
-    environment:
-      - MEM0_API_KEY=${MEM0_API_KEY}
+  mem0-server: image: mem0/mem0-server:latest
+    ports: - "8000:8000"
+    environment: - MEM0_API_KEY=${MEM0_API_KEY}
       - VECTOR_STORE_PROVIDER=qdrant
       - VECTOR_STORE_URL=http://qdrant:6333
       - LLM_PROVIDER=openai
       - OPENAI_API_KEY=${OPENAI_API_KEY}
       - EMBEDDER_PROVIDER=openai
       - OPENAI_EMBEDDING_MODEL=text-embedding-3-small
-    depends_on:
-      - qdrant
+    depends_on: - qdrant
 
-  mem0-dashboard:
-    image: mem0/mem0-dashboard:latest
-    ports:
-      - "3000:3000"
-    environment:
-      - MEM0_API_URL=http://mem0-server:8000
+  mem0-dashboard: image: mem0/mem0-dashboard:latest
+    ports: - "3000:3000"
+    environment: - MEM0_API_URL=http://mem0-server:8000
       - MEM0_API_KEY=${MEM0_API_KEY}
 
-volumes:
-  qdrant_storage:
-```
+volumes: qdrant_storage: ```
 
 ## Benchmark / Trường hợp sử dụng thực tế
 
 ### Kết quả LoCoMo và LongMemEval
 
-Thuật toán token hiệu quả mới của Mem0 (phát hành tháng 4/2026) mang lại cải thiện độ chính xác đáng kể với chi phí token thấp hơn:
-
-| Benchmark | Chỉ số | Thuật toán cũ | Thuật toán mới (04/2026) | Cải thiện |
+Thuật toán token hiệu quả mới của Mem0 (phát hành tháng 4/2026) mang lại cải thiện độ chính xác đáng kể với chi phí token thấp hơn: | Benchmark | Chỉ số | Thuật toán cũ | Thuật toán mới (04/2026) | Cải thiện |
 |-----------|--------|--------------|-------------------------|-----------|
 | LoCoMo | Độ chính xác tổng | 66,9% | **92,5%** | +25,6 điểm |
 | LoCoMo | Token trung bình/truy vấn | ~26.000 | **6.956** | Giảm 3,7 lần |
@@ -539,8 +488,7 @@ Thuật toán token hiệu quả mới của Mem0 (phát hành tháng 4/2026) ma
 
 ```python
 # Kiểm soát truy cập bộ nhớ bằng metadata
-def store_sensitive_memory(user_id: str, fact: str, classification: str):
-    """Lưu trữ bộ nhớ với phân loại bảo mật."""
+def store_sensitive_memory(user_id: str, fact: str, classification: str): """Lưu trữ bộ nhớ với phân loại bảo mật."""
     messages = [{"role": "user", "content": fact}]
     mem0.add(
         messages,
@@ -566,8 +514,7 @@ results = client.search(
 
 ```python
 # Bộ nhớ phạm vi tổ chức cho ứng dụng SaaS
-def add_org_scoped_memory(org_id: str, user_id: str, messages: list):
-    """Lưu trữ bộ nhớ phạm vi tổ chức và ngườ dùng."""
+def add_org_scoped_memory(org_id: str, user_id: str, messages: list): """Lưu trữ bộ nhớ phạm vi tổ chức và ngườ dùng."""
     client.add(
         messages,
         user_id=f"{org_id}:{user_id}",
@@ -587,8 +534,7 @@ results = client.get_all(
 # Theo dõi metrics bộ nhớ
 import time
 
-def timed_search(user_id: str, query: str):
-    """Tìm kiếm với ghi log độ trễ."""
+def timed_search(user_id: str, query: str): """Tìm kiếm với ghi log độ trễ."""
     start = time.time()
     results = client.search(query, user_id=user_id)
     latency = (time.time() - start) * 1000
@@ -600,8 +546,7 @@ def timed_search(user_id: str, query: str):
     return results
 
 # Kiểm tra sức khỏe bộ nhớ định kỳ
-def memory_health_check(user_id: str):
-    """Xác minh tính toàn vẹn bộ nhớ cho ngườ dùng."""
+def memory_health_check(user_id: str): """Xác minh tính toàn vẹn bộ nhớ cho ngườ dùng."""
     all_memories = client.get_all(filters={"user_id": user_id})
 
     return {
@@ -619,25 +564,19 @@ def memory_health_check(user_id: str):
 from functools import wraps
 import time
 
-class Mem0RateLimiter:
-    """Bộ giới hạn tốc độ đơn giản cho cuộc gọi API Mem0."""
-    def __init__(self, max_calls_per_minute=100):
-        self.max_calls = max_calls_per_minute
+class Mem0RateLimiter: """Bộ giới hạn tốc độ đơn giản cho cuộc gọi API Mem0."""
+    def __init__(self, max_calls_per_minute=100): self.max_calls = max_calls_per_minute
         self.calls = []
 
-    def can_call(self) -> bool:
-        now = time.time()
+    def can_call(self) -> bool: now = time.time()
         self.calls = [c for c in self.calls if now - c < 60]
         return len(self.calls) < self.max_calls
 
-    def record_call(self):
-        self.calls.append(time.time())
+    def record_call(self): self.calls.append(time.time())
 
 limiter = Mem0RateLimiter(max_calls_per_minute=60)
 
-def rate_limited_add(messages, user_id):
-    if not limiter.can_call():
-        # Xếp hàng cho sau hoặc bỏ qua bộ nhớ không quan trọng
+def rate_limited_add(messages, user_id): if not limiter.can_call(): # Xếp hàng cho sau hoặc bỏ qua bộ nhớ không quan trọng
         print("Đạt giới hạn tốc độ, xếp hàng bộ nhớ")
         return {"status": "queued"}
     limiter.record_call()
@@ -672,9 +611,7 @@ def rate_limited_add(messages, user_id):
 
 ## Hạn chế / Đánh giá Trung thực
 
-Mem0 không phải công cụ phù hợp cho mọi trường hợp sử dụng. Dưới đây là những gì nó không làm tốt:
-
-**1. Khoảng cách suy luận thờ gian**: Trên các tác vụ con thờ gian LongMemEval, Mem0 đạt 49-82% tùy danh mục. Zep với Graphiti đạt 63,8-71,2% trên các tác vụ thờ gian nhờ lưu trữ đồ thị có neo thờ gian. Nếu agent cần suy luận về chuỗi sự kiện ("điều gì xảy ra trước X?"), Mem0 có thể không đủ.
+Mem0 không phải công cụ phù hợp cho mọi trường hợp sử dụng. Dưới đây là những gì nó không làm tốt: **1. Khoảng cách suy luận thờ gian**: Trên các tác vụ con thờ gian LongMemEval, Mem0 đạt 49-82% tùy danh mục. Zep với Graphiti đạt 63,8-71,2% trên các tác vụ thờ gian nhờ lưu trữ đồ thị có neo thờ gian. Nếu agent cần suy luận về chuỗi sự kiện ("điều gì xảy ra trước X?"), Mem0 có thể không đủ.
 
 **2. Giá Graph Memory**: Tính năng đồ thị bị khóa sau Pro tier $249/tháng. Tier Starter $19/tháng chỉ có tìm kiếm tương đồng vector. Với các team cần bộ nhớ nhận thức quan hệ trong ngân sách, Zep ($25/tháng) hoặc Cognee (tự host miễn phí) cung cấp đồ thị ở mức giá thấp hơn.
 
@@ -733,9 +670,7 @@ Mem0 giải quyết một trong những vấn đề dai dẳng nhất trong phá
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -757,7 +692,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - Evermind — Các lựa chọn thay thế Mem0 2026: https://evermind.ai/blogs/mem0-alternative
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

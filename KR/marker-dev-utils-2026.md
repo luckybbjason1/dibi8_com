@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/marker-dev-utils-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/marker-dev-utils-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/marker-dev-utils-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/marker-dev-utils-2026" />
 title: 'Marker: PDF, DOCX, EPUB를 Markdown/JSON으로 빠르게 변환 — 2026 실...
 description: 'Marker(datalab-to/marker)는 PDF, DOCX, EPUB 등 문서를 Markdown, JSON, HTML, chunks로 빠르고 정확하게 변환합니다. GitHub 스타 35,694개, 코드 라이선스는 GPL-3.0. 설치, CLI와 Python API, 실제 코드 예제, LLM 모드, 그리고 대안 도구와의 솔직한 비교를 다룹니다.'
 date: 2026-06-02 00:00:00+08:00
@@ -25,10 +20,8 @@ featureImage: 'https://raw.githubusercontent.com/VikParuchuri/marker/master/data
 draft: false
 categories: ['dev-utils']
 tags: []
-aliases:
-- /posts/marker-dev-utils-2026/
-faqs:
-  - q: 'marker는 어떻게 설치하나요?'
+aliases: - /posts/marker-dev-utils-2026/
+faqs: - q: 'marker는 어떻게 설치하나요?'
     a: 'PyPI에서 `pip install marker-pdf`로 설치합니다. PDF가 아닌 형식(DOCX, PPTX, XLSX, EPUB, HTML, 이미지)에는 `pip install marker-pdf[full]`을 사용하세요.'
   - q: '상업 프로젝트에 사용할 수 있나요?'
     a: '코드는 GPL-3.0 라이선스이지만, 모델 가중치는 수정된 AI Pubs Open Rail-M 라이선스를 사용합니다. 이 라이선스는 연구·개인 사용과 자금/매출이 대략 200만 달러 미만인 기업에는 무료이며, 더 큰 상업 사용자는 Datalab의 상업용 라이선스가 필요합니다. 배포 전에 최신 조항을 확인하세요.'
@@ -39,8 +32,6 @@ faqs:
   - q: '문제를 보고하거나 기능을 요청하려면 어떻게 하나요?'
     a: 'GitHub 저장소 <https://github.com/datalab-to/marker>를 방문해 Issues 탭에서 문제나 제안을 상세히 적어 새 이슈를 등록하세요.'
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/marker-dev-utils-2026/ -->
 
 {{< resource-info >}}
 
@@ -125,9 +116,7 @@ marker_single /path/to/file.pdf
 
 ### 예제 1: 단일 파일 변환
 
-문서 하나를 Markdown(기본 출력 형식)으로 변환하려면:
-
-```bash
+문서 하나를 Markdown(기본 출력 형식)으로 변환하려면: ```bash
 marker_single /path/to/report.pdf
 ```
 
@@ -143,9 +132,7 @@ marker_single /path/to/report.pdf --output_format json
 
 ### 예제 3: 폴더 단위 변환
 
-폴더 안의 모든 문서를 일괄 변환하려면:
-
-```bash
+폴더 안의 모든 문서를 일괄 변환하려면: ```bash
 marker /path/to/input/folder --output_format markdown
 ```
 
@@ -210,21 +197,15 @@ Marker에는 전용 변환기도 함께 제공됩니다. 표만 처리하는 `Ta
 ```yaml
 name: Convert PDF to Markdown
 
-on:
-  push:
-    branches: [ master ]
+on: push: branches: [ master ]
 
-jobs:
-  convert-pdf:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
+jobs: convert-pdf: runs-on: ubuntu-latest
+    steps: - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
+        with: python-version: '3.11'
 
       - name: Install marker
         run: pip install marker-pdf
@@ -293,19 +274,11 @@ marker_single /path/to/your/file.pdf
 
 ---
 
-**출처 및 더 읽어보기**:
-- GitHub 저장소: https://github.com/datalab-to/marker
+**출처 및 더 읽어보기**: - GitHub 저장소: https://github.com/datalab-to/marker
 - 공식 문서 / README: https://github.com/datalab-to/marker#readme
 
 *위 링크 중 일부는 제휴 링크입니다. 이를 통해 가입하시면 dibi8.com이 수수료를 받을 수 있으며, 추가 비용은 들지 않습니다. 사이트 운영과 무료 콘텐츠 유지에 도움이 됩니다.*
 
-<!-- internal-link-candidates:
-  related open-source tools -> ai-tools-directory
-  related guides on dibi8 -> ai-coding-agent-landscape-2026-skills-mcp-opensource
--->
-
-
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -333,25 +306,20 @@ marker_single /path/to/your/file.pdf
 
 ## Why This Matters
 
-Understanding marker: pdf, docx, epub를 markdown/json으로 빠르게 변환 — 2026 실전 가이드 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding marker: pdf, docx, epub를 markdown/json으로 빠르게 변환 — 2026 실전 가이드 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

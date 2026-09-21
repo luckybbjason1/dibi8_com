@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/litellm-unified-api-tutorial" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/litellm-unified-api-tutorial" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/litellm-unified-api-tutorial" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/litellm-unified-api-tutorial" />
 title: 'LiteLLM 튜토리얼 2025: 하나의 API로 100개 이상의 LLM 사용하기'
 description: 'LiteLLM으로 OpenAI, Anthropic, Google, 오픈소스 모델을 하나의 통합 API로 호출하는 방법을 상세히 설명합니다. 프록시 서버 설정, 라우팅, 폴리백 전략까지 실전 가이드.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/litellm-unified-api-tutorial/
+aliases: - /posts/litellm-unified-api-tutorial/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/litellm-unified-api-tutorial/ -->
 
 {</* resource-info */>}
 
@@ -134,24 +126,19 @@ litellm --config config.yaml
 ### config.yaml 상세 구성
 
 ```yaml
-model_list:
-  - model_name: gpt-4o
-    litellm_params:
-      model: openai/gpt-4o
+model_list: - model_name: gpt-4o
+    litellm_params: model: openai/gpt-4o
       api_key: os.environ/OPENAI_API_KEY
 
   - model_name: claude-sonnet
-    litellm_params:
-      model: anthropic/claude-3-sonnet-20240229
+    litellm_params: model: anthropic/claude-3-sonnet-20240229
       api_key: os.environ/ANTHROPIC_API_KEY
 
   - model_name: gemini-pro
-    litellm_params:
-      model: gemini/gemini-1.5-pro
+    litellm_params: model: gemini/gemini-1.5-pro
       api_key: os.environ/GEMINI_API_KEY
 
-router_settings:
-  routing_strategy: simple-shuffle
+router_settings: routing_strategy: simple-shuffle
   timeout: 30
   num_retries: 3
 ```
@@ -159,8 +146,7 @@ router_settings:
 ### 가상 키 관리
 
 ```yaml
-litellm_settings:
-  fallbacks: [{"gpt-4o": ["claude-sonnet", "gemini-pro"]}]
+litellm_settings: fallbacks: [{"gpt-4o": ["claude-sonnet", "gemini-pro"]}]
   budget_alerts: True
   max_budget: 100
 ```
@@ -176,8 +162,7 @@ litellm_settings:
 ### 폴리백과 재시도
 
 ```yaml
-fallbacks:
-  - {"gpt-4o": ["claude-3-sonnet", "gemini-1.5-pro"]}
+fallbacks: - {"gpt-4o": ["claude-3-sonnet", "gemini-1.5-pro"]}
   - {"claude-3-opus": ["gpt-4-turbo"]}
 ```
 
@@ -187,8 +172,7 @@ fallbacks:
 
 ```yaml
 cache: True
-cache_params:
-  type: redis
+cache_params: type: redis
   host: localhost
   port: 6379
 ```
@@ -295,16 +279,13 @@ SDK는 Python 라이브러리로 코드에서 직접 호출합니다. 프록시 
 
 ## 추천 인프라
 
-위 도구들을 24/7 안정 운영하려면 인프라가 중요하다:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전.
+위 도구들을 24/7 안정 운영하려면 인프라가 중요하다: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연. dibi8.com 자체 호스팅 IDC.
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -332,25 +313,20 @@ SDK는 Python 라이브러리로 코드에서 직접 호출합니다. 프록시 
 
 ## Why This Matters
 
-Understanding litellm 튜토리얼 2025: 하나의 api로 100개 이상의 llm 사용하기 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding litellm 튜토리얼 2025: 하나의 api로 100개 이상의 llm 사용하기 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

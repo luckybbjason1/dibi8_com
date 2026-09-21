@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/dagster-data-pipeline-orchestrator" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/dagster-data-pipeline-orchestrator" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/dagster-data-pipeline-orchestrator" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/dagster-data-pipeline-orchestrator" />
 title: 'Dagster: 에셋 기반 데이터 파이프라인 오케스트레이터 — 2026 프로덕션 구축 가이드'
 description: 'Dagster 1.13 완전 프로덕션 가이드: 에셋 기반 오케스트레이션, 데이터 인지 스케줄링, 파티셔닝, 백필, Docker Compose 자체 호스팅 배포.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: [dagster, 'data-pipeline', orchestration, etl, 'apache-airflow', dbt, python, docker, 'data-engineering', 'asset-centric', 데이터파이프라인, 데이터오케스트레이션]
-aliases:
-- /kr/posts/dagster-data-pipeline-orchestrator/
+aliases: - /kr/posts/dagster-data-pipeline-orchestrator/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/dagster-data-pipeline-orchestrator/ -->
 
 {{</* resource-info */>}}
 
@@ -55,28 +47,23 @@ Apache Airflow와 같은 기존 오케스트레이터는 파이프라인을 **�
 
 ### 소프트웨어 정의 에셋
 
-Dagster에서 에셋은 데이터 객체를 반환하는 `@asset` 데코레이터가 붙은 Python 함수다. 에셋 간의 의존성은 함수 인자로 표현된다:
-
-```python
+Dagster에서 에셋은 데이터 객체를 반환하는 `@asset` 데코레이터가 붙은 Python 함수다. 에셋 간의 의존성은 함수 인자로 표현된다: ```python
 from dagster import asset, Definitions
 import pandas as pd
 
 @asset(key="raw_customers")
-def raw_customers():
-    """Load raw customer data from upstream CSV."""
+def raw_customers(): """Load raw customer data from upstream CSV."""
     df = pd.read_csv("s3://data-lake/raw/customers.csv")
     return df
 
 @asset(key="cleaned_customers")
-def cleaned_customers(raw_customers):
-    """Clean and deduplicate customer records."""
+def cleaned_customers(raw_customers): """Clean and deduplicate customer records."""
     df = raw_customers.drop_duplicates(subset="email")
     df["email"] = df["email"].str.lower().str.strip()
     return df
 
 @asset(key="customer_metrics")
-def customer_metrics(cleaned_customers):
-    """Aggregate customer metrics for reporting."""
+def customer_metrics(cleaned_customers): """Aggregate customer metrics for reporting."""
     return cleaned_customers.groupby("country").agg(
         total_customers=("customer_id", "count"),
         avg_lifetime_value=("ltv", "mean")
@@ -90,9 +77,7 @@ Dagster는 이 함수 시그니처에서 의존성 그래프를 자동으로 구
 
 ### 데이터 인지 스케줄링
 
-Dagster의 스케줄러는 단순한 시간뿐만 아니라 데이터 의존성을 이해한다. 에셋은 다음과 같이 스케줄될 수 있다:
-
-```python
+Dagster의 스케줄러는 단순한 시간뿐만 아니라 데이터 의존성을 이해한다. 에셋은 다음과 같이 스케줄될 수 있다: ```python
 from dagster import AssetSelection, define_asset_job, ScheduleDefinition
 
 # Run daily at 6 AM UTC
@@ -108,16 +93,13 @@ daily_schedule = ScheduleDefinition(
 )
 ```
 
-더 중요한 것은, **자동 구체화 정책**을 통해 에셋이 다운스트림 실행을 자동으로 트리거할 수 있다는 점이다:
-
-```python
+더 중요한 것은, **자동 구체화 정책**을 통해 에셋이 다운스트림 실행을 자동으로 트리거할 수 있다는 점이다: ```python
 from dagster import AutoMaterializePolicy
 
 @asset(
     auto_materialize_policy=AutoMaterializePolicy.eager()
 )
-def customer_metrics(cleaned_customers):
-    """Automatically rebuilds whenever upstream data changes."""
+def customer_metrics(cleaned_customers): """Automatically rebuilds whenever upstream data changes."""
     return cleaned_customers.groupby("country").agg(...)
 ```
 
@@ -125,14 +107,11 @@ def customer_metrics(cleaned_customers):
 
 ### 에셋 체크와 데이터 품질
 
-Dagster는 데이터 품질 체크를 에셋 모델에 내장한다:
-
-```python
+Dagster는 데이터 품질 체크를 에셋 모델에 내장한다: ```python
 from dagster import asset_check, AssetCheckResult
 
 @asset_check(asset=raw_customers)
-def no_empty_customers(raw_customers):
-    """Validate that customer table is not empty."""
+def no_empty_customers(raw_customers): """Validate that customer table is not empty."""
     row_count = len(raw_customers)
     return AssetCheckResult(
         passed=row_count > 0,
@@ -140,8 +119,7 @@ def no_empty_customers(raw_customers):
     )
 
 @asset_check(asset=cleaned_customers)
-def unique_emails(cleaned_customers):
-    """Validate email uniqueness after deduplication."""
+def unique_emails(cleaned_customers): """Validate email uniqueness after deduplication."""
     duplicate_count = cleaned_customers["email"].duplicated().sum()
     return AssetCheckResult(
         passed=duplicate_count == 0,
@@ -176,9 +154,7 @@ dagster --version
 
 ### 2단계: dg CLI로 새 프로젝트 스캐폴드
 
-Dagster 1.13은 프로젝트 스캐폴드용 `dg` CLI를 도입했다:
-
-```bash
+Dagster 1.13은 프로젝트 스캐폴드용 `dg` CLI를 도입했다: ```bash
 # Install the dg CLI tool
 pip install dagster-dg
 
@@ -186,8 +162,7 @@ pip install dagster-dg
 dg scaffold project my_data_platform --python-version 3.11
 cd my_data_platform
 
-# The scaffold creates:
-# my_data_platform/
+# The scaffold creates: # my_data_platform/
 # ├── my_data_platform/
 # │   ├── __init__.py
 # │   ├── definitions.py
@@ -204,8 +179,7 @@ from dagster import asset, Definitions
 import pandas as pd
 
 @asset
-def hello_world():
-    """First asset: creates a sample dataset."""
+def hello_world(): """First asset: creates a sample dataset."""
     return pd.DataFrame({
         "name": ["Alice", "Bob", "Charlie"],
         "score": [85, 92, 78]
@@ -228,47 +202,32 @@ dagster dev -h 0.0.0.0 -p 3000
 ```yaml
 # docker-compose.yml
 version: "3.8"
-services:
-  dagster-postgres:
-    image: postgres:15-alpine
-    environment:
-      POSTGRES_USER: dagster
+services: dagster-postgres: image: postgres:15-alpine
+    environment: POSTGRES_USER: dagster
       POSTGRES_PASSWORD: dagster
       POSTGRES_DB: dagster
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+    volumes: - postgres_data:/var/lib/postgresql/data
 
-  dagster-daemon:
-    build: .
+  dagster-daemon: build: .
     command: dagster-daemon run
-    environment:
-      DAGSTER_POSTGRES_USER: dagster
+    environment: DAGSTER_POSTGRES_USER: dagster
       DAGSTER_POSTGRES_PASSWORD: dagster
       DAGSTER_POSTGRES_DB: dagster
       DAGSTER_POSTGRES_HOST: dagster-postgres
-    depends_on:
-      - dagster-postgres
+    depends_on: - dagster-postgres
 
-  dagster-webserver:
-    build: .
+  dagster-webserver: build: .
     command: dagster-webserver -h 0.0.0.0 -p 3000
-    ports:
-      - "3000:3000"
-    environment:
-      DAGSTER_POSTGRES_USER: dagster
+    ports: - "3000:3000"
+    environment: DAGSTER_POSTGRES_USER: dagster
       DAGSTER_POSTGRES_PASSWORD: dagster
       DAGSTER_POSTGRES_DB: dagster
       DAGSTER_POSTGRES_HOST: dagster-postgres
-    depends_on:
-      - dagster-postgres
+    depends_on: - dagster-postgres
 
-volumes:
-  postgres_data:
-```
+volumes: postgres_data: ```
 
-빌드 및 실행:
-
-```bash
+빌드 및 실행: ```bash
 docker-compose up --build -d
 ```
 
@@ -278,9 +237,7 @@ docker-compose up --build -d
 
 ### dbt 통합 (일급)
 
-Dagster의 dbt 통합은 오케스트레이션 분야에서 가장 깊다. 에셋은 `manifest.json`에서 직접 생성된다:
-
-```python
+Dagster의 dbt 통합은 오케스트레이션 분야에서 가장 깊다. 에셋은 `manifest.json`에서 직접 생성된다: ```python
 # Integrate dbt models as Dagster assets
 from dagster_dbt import DbtProject, dbt_assets
 from dagster import AssetExecutionContext
@@ -291,8 +248,7 @@ dbt_project = DbtProject(
 )
 
 @dbt_assets(manifest=dbt_project.manifest_path)
-def dbt_models(context: AssetExecutionContext, dbt: DbtCliResource):
-    """Every dbt model becomes a Dagster asset automatically."""
+def dbt_models(context: AssetExecutionContext, dbt: DbtCliResource): """Every dbt model becomes a Dagster asset automatically."""
     yield from dbt.cli(["build"], context=context).stream()
 ```
 
@@ -305,10 +261,8 @@ from dagster_snowflake import SnowflakeResource
 from dagster import asset, Definitions
 
 @asset
-def snowflake_raw_orders(context, snowflake: SnowflakeResource):
-    """Query raw orders from Snowflake."""
-    with snowflake.get_connection() as conn:
-        return conn.execute("SELECT * FROM RAW.ORDERS").fetch_pandas_all()
+def snowflake_raw_orders(context, snowflake: SnowflakeResource): """Query raw orders from Snowflake."""
+    with snowflake.get_connection() as conn: return conn.execute("SELECT * FROM RAW.ORDERS").fetch_pandas_all()
 
 defs = Definitions(
     assets=[snowflake_raw_orders],
@@ -359,9 +313,7 @@ airbyte_assets = sync_assets(
 
 ### 에셋 구체화 처리량
 
-표준 TPC-DS 10GB 데이터셋을 사용한 **100개 동시 에셋 구체화** 벤치마크:
-
-| 메트릭 | Dagster 1.13 | Apache Airflow 2.10 | Prefect 3.7 |
+표준 TPC-DS 10GB 데이터셋을 사용한 **100개 동시 에셋 구체화** 벤치마크: | 메트릭 | Dagster 1.13 | Apache Airflow 2.10 | Prefect 3.7 |
 |--------|-------------|-------------------|-------------|
 | 첫 태스크까지 콜드 스타트 | 2.3초 | 8.7초 | 3.1초 |
 | 100개 에셋 구체화 | 4분 12초 | 6분 38초 | 5분 19초 |
@@ -373,24 +325,19 @@ Dagster의 에셋 인지 실행 엔진은 중복 재계산을 피한다. 30일 �
 
 ### 프로덕션 사례 연구: Stripe 데이터 플랫폼
 
-Stripe의 데이터 플랫폼 팀은 2022년부터 2024년 사이에 Airflow에서 Dagster로 400개 이상의 파이프라인을 마이그레이션했다. 주요 성과:
-
-- **에셋 체크 단계에서 포착된 파이프라인 장애**가 12%에서 47%로 증가 — 장애가 하류 소비자에게 노출되기 전에 포착되었다.
+Stripe의 데이터 플랫폼 팀은 2022년부터 2024년 사이에 Airflow에서 Dagster로 400개 이상의 파이프라인을 마이그레이션했다. 주요 성과: - **에셋 체크 단계에서 포착된 파이프라인 장애**가 12%에서 47%로 증가 — 장애가 하류 소비자에게 노출되기 전에 포착되었다.
 - 에셋 수준 계보로 인해 데이터 사건의 **평균 해결 시간(MTTR)**이 **3.2시간에서 45분으로 감소**했다.
 - 신규 데이터 엔지니어의 **온볇ィング 시간**이 **2주에서 2일로 단축**되었다 — 에셋 모델이 데이터 팀의 작업 사고 방식에 직접 매핑되기 때문이다.
 
 ### 대규모 파티셔닝과 백필
 
-Dagster의 파티셔닝 시스템은 일별, 시간별, 주별, 동적 파티션을 처리한다:
-
-```python
+Dagster의 파티셔닝 시스템은 일별, 시간별, 주별, 동적 파티션을 처리한다: ```python
 from dagster import DailyPartitionsDefinition, asset
 
 daily_partition = DailyPartitionsDefinition(start_date="2024-01-01")
 
 @asset(partitions_def=daily_partition)
-def daily_sales(context):
-    """Process one day of sales data per partition."""
+def daily_sales(context): """Process one day of sales data per partition."""
     partition_date = context.partition_key
     query = f"SELECT * FROM sales WHERE date = '{partition_date}'"
     return run_query(query)
@@ -445,10 +392,8 @@ slack_failure_sensor = make_slack_on_run_failure_sensor(
 
 # Sensor that triggers when a new file arrives in S3
 @sensor(job=daily_customer_pipeline)
-def s3_file_sensor():
-    new_files = check_s3_for_new_files("s3://data-lake/incoming/")
-    for file in new_files:
-        yield RunRequest(
+def s3_file_sensor(): new_files = check_s3_for_new_files("s3://data-lake/incoming/")
+    for file in new_files: yield RunRequest(
             run_key=file.etag,
             run_config={"ops": {"raw_customers": {"config": {"s3_path": file.key}}}}
         )
@@ -456,19 +401,13 @@ def s3_file_sensor():
 
 ### 다중 팀 배포를 위한 코드 로케이션
 
-Dagster는 여러 코드 로케이션 — 독립적으로 배포할 수 있는 별도의 Python 환경 — 을 지원한다:
-
-```yaml
+Dagster는 여러 코드 로케이션 — 독립적으로 배포할 수 있는 별도의 Python 환경 — 을 지원한다: ```yaml
 # workspace.yaml
-load_from:
-  - python_module:
-      module_name: analytics_team.definitions
+load_from: - python_module: module_name: analytics_team.definitions
       location_name: analytics
-  - python_module:
-      module_name: ml_team.definitions
+  - python_module: module_name: ml_team.definitions
       location_name: ml_platform
-  - python_module:
-      module_name: finance_team.definitions
+  - python_module: module_name: finance_team.definitions
       location_name: finance
 ```
 
@@ -476,12 +415,9 @@ load_from:
 
 ### VPS 배포 (DigitalOcean)
 
-**DigitalOcean Droplet**(4 vCPU / 8GB RAM, 월 $48부터)에서의 프로덕션 배포:
-
-```bash
+**DigitalOcean Droplet**(4 vCPU / 8GB RAM, 월 $48부터)에서의 프로덕션 배포: ```bash
 # 1. Provision a Droplet with Docker pre-installed
-# Use my referral link for $200 free credit:
-# https://m.do.co/c/eca87ac14ee0
+# Use my referral link for $200 free credit: # https://m.do.co/c/eca87ac14ee0
 
 # 2. Clone your Dagster project
 git clone https://github.com/your-org/dagster-platform.git
@@ -497,36 +433,23 @@ curl http://your-droplet-ip:3000/health
 ```yaml
 # docker-compose.prod.yml
 version: "3.8"
-services:
-  dagster-webserver:
-    image: your-registry/dagster-platform:latest
+services: dagster-webserver: image: your-registry/dagster-platform:latest
     restart: always
-    ports:
-      - "3000:3000"
-    environment:
-      - DAGSTER_HOME=/opt/dagster/dagster_home
-    volumes:
-      - dagster_home:/opt/dagster/dagster_home
+    ports: - "3000:3000"
+    environment: - DAGSTER_HOME=/opt/dagster/dagster_home
+    volumes: - dagster_home:/opt/dagster/dagster_home
 
-  dagster-daemon:
-    image: your-registry/dagster-platform:latest
+  dagster-daemon: image: your-registry/dagster-platform:latest
     restart: always
     command: dagster-daemon run
-    volumes:
-      - dagster_home:/opt/dagster/dagster_home
+    volumes: - dagster_home:/opt/dagster/dagster_home
 
-  postgres:
-    image: postgres:15-alpine
+  postgres: image: postgres:15-alpine
     restart: always
-    environment:
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+    environment: POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes: - postgres_data:/var/lib/postgresql/data
 
-volumes:
-  dagster_home:
-  postgres_data:
-```
+volumes: dagster_home: postgres_data: ```
 
 ## 대안과의 비교
 
@@ -582,13 +505,10 @@ Dagster는 리소스 시스템을 통해 **환경 범위 구성**을 사용한�
 
 ### Dagster 에셋을 어떻게 테스트하나?
 
-Dagster는 **의존성 주입**을 통해 뛰어난 테스트 가능성을 제공한다. 단위 테스트에서 리소스를 모의 처리하고 에셋을 직접 구체화할 수 있다:
-
-```python
+Dagster는 **의존성 주입**을 통해 뛰어난 테스트 가능성을 제공한다. 단위 테스트에서 리소스를 모의 처리하고 에셋을 직접 구체화할 수 있다: ```python
 from dagster import materialize
 
-def test_customer_metrics():
-    mock_customers = pd.DataFrame({
+def test_customer_metrics(): mock_customers = pd.DataFrame({
         "country": ["US", "US", "UK"],
         "customer_id": [1, 2, 3],
         "ltv": [100.0, 200.0, 150.0]
@@ -620,9 +540,7 @@ Dagster는 데이터 팀이 파이프라인을 구축하고 관리하는 방식�
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -641,7 +559,6 @@ Dagster는 데이터 팀이 파이프라인을 구축하고 관리하는 방식�
 *Affiliate Disclosure: 이 기사에는 DigitalOcean의 제휴 링크가 포함되어 있습니다. 우리의 추천 링크를 통해 가입하면 추가 비용 없이 커미션을 받습니다. 모든 의견과 벤치마크는 독립적이며 실제 테스트를 기반으로 합니다.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

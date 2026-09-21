@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/weaviate-vector-search-enterprise" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/weaviate-vector-search-enterprise" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/weaviate-vector-search-enterprise" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/weaviate-vector-search-enterprise" />
 title: 'Weaviate 2026: Cỗ Máy Tìm Kiếm Vector AI-Native Xử Lý 10...
 description: 'Hướng dẫn triển khai Weaviate vector search ở quy mô doanh nghiệp. Bao gồm Kubernetes, hybrid search, multi-modal, RBAC, monitoring, và benchmarks cho 10B+ đối tượng.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: []
-aliases:
-- /vi/posts/weaviate-vector-search-enterprise/
+aliases: - /vi/posts/weaviate-vector-search-enterprise/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/weaviate-vector-search-enterprise/ -->
 
 {{</* resource-info */>}}
 
@@ -57,9 +49,7 @@ Dự án được Weaviate B.V. duy trì theo giấy phép **BSD-3-Clause**. Wea
 
 ### Các Thành Phần Cốt Lõi
 
-Kiến trúc Weaviate tách biệt concerns thành bốn lớp:
-
-**Ingestion Layer**: Xử lý data validation, vectorization (nếu dùng module), và indexing. Objects đến được validate theo schema, vectors được generate hoặc cung cấp, và object được ghi song song vào inverted index và vector index.
+Kiến trúc Weaviate tách biệt concerns thành bốn lớp: **Ingestion Layer**: Xử lý data validation, vectorization (nếu dùng module), và indexing. Objects đến được validate theo schema, vectors được generate hoặc cung cấp, và object được ghi song song vào inverted index và vector index.
 
 **Vector Index Layer**: Đồ thị HNSW (Hierarchical Navigable Small World) index vectors cho approximate nearest neighbor search. Weaviate sử dụng HNSW implementation tùy chỉnh với các tham số có thể điều chỉnh `ef`, `maxConnections`, và `dynamicEF`. Cho collections nhỏ hoặc maximum recall, tùy chọn flat index có sẵn.
 
@@ -96,9 +86,7 @@ docker run -d \
   --env OPENAI_APIKEY=$OPENAI_API_KEY
 ```
 
-Xác nhận instance:
-
-```bash
+Xác nhận instance: ```bash
 curl http://localhost:8080/v1/meta
 # Trả về: {"hostname":"...","version":"1.31.0","modules":{...}}
 ```
@@ -108,14 +96,10 @@ curl http://localhost:8080/v1/meta
 ```yaml
 # docker-compose.yml
 version: '3.8'
-services:
-  weaviate:
-    image: semitechnologies/weaviate:1.31.0
-    ports:
-      - "8080:8080"
+services: weaviate: image: semitechnologies/weaviate:1.31.0
+    ports: - "8080:8080"
       - "50051:50051"
-    environment:
-      QUERY_DEFAULTS_LIMIT: 100
+    environment: QUERY_DEFAULTS_LIMIT: 100
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: false
       AUTHENTICATION_APIKEY_ENABLED: true
       AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'your-api-key-here'
@@ -124,15 +108,9 @@ services:
       DEFAULT_VECTORIZER_MODULE: none
       ENABLE_MODULES: ''
       CLUSTER_HOSTNAME: node1
-    volumes:
-      - weaviate_data:/var/lib/weaviate
-    deploy:
-      resources:
-        limits:
-          memory: 16G
-volumes:
-  weaviate_data:
-```
+    volumes: - weaviate_data:/var/lib/weaviate
+    deploy: resources: limits: memory: 16G
+volumes: weaviate_data: ```
 
 Khởi động: `docker-compose up -d`
 
@@ -167,9 +145,7 @@ client.collections.create(
 
 # Batch import products
 products = client.collections.get("Product")
-with products.batch.dynamic() as batch:
-    for item in product_data:
-        batch.add_object(properties=item)
+with products.batch.dynamic() as batch: for item in product_data: batch.add_object(properties=item)
 
 print(f"Imported {len(products)} objects")
 ```
@@ -182,9 +158,7 @@ Tham số `ef` điều khiển kích thước danh sách candidate động trong
 
 ### 1. LangChain + Weaviate Cho RAG
 
-Xây dựng pipelines retrieval-augmented generation với [LangChain](dibi8-internal-link):
-
-```python
+Xây dựng pipelines retrieval-augmented generation với [LangChain](dibi8-internal-link): ```python
 from langchain_weaviate import WeaviateVectorStore
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain.chains import RetrievalQA
@@ -214,9 +188,7 @@ print(result["result"])
 
 ### 2. Hybrid Search (Vector + BM25)
 
-Hybrid search của Weaviate kết hợp vector similarity và BM25 keyword relevance:
-
-```python
+Hybrid search của Weaviate kết hợp vector similarity và BM25 keyword relevance: ```python
 products = client.collections.get("Product")
 
 results = products.query.hybrid(
@@ -228,8 +200,7 @@ results = products.query.hybrid(
         & Filter.by_property("price").less_than(300)
 )
 
-for obj in results.objects:
-    print(f"{obj.properties[name]}: ${obj.properties[price]}")
+for obj in results.objects: print(f"{obj.properties[name]}: ${obj.properties[price]}")
 ```
 
 Tham số `alpha` cân bằng vector vs. keyword scores. `alpha=0.7` nghĩa là 70% vector, 30% BM25. Bắt đầu với 0.75 và tune dựa trên data.
@@ -260,9 +231,7 @@ Cho cluster 3-node xử lý 1B+ objects, cấp phát **32GB RAM và 8 CPU cores 
 
 ### 4. Multi-Modal Collections (Text + Image)
 
-Lưu trữ và search text và image vectors trong cùng collection:
-
-```python
+Lưu trữ và search text và image vectors trong cùng collection: ```python
 from weaviate.classes import ConfiguredBatch, Vectorizers, Multi2VecField
 
 client.collections.create(
@@ -286,26 +255,20 @@ results = collection.query.near_text(
 
 # Search bằng image (tìm products tương tự)
 import base64
-with open("query_image.jpg", "rb") as f:
-    img_b64 = base64.b64encode(f.read()).decode()
+with open("query_image.jpg", "rb") as f: img_b64 = base64.b64encode(f.read()).decode()
 
 results = collection.query.near_image(near_image=img_b64, limit=5)
 ```
 
 ### 5. Prometheus + Grafana Monitoring
 
-Enable Prometheus metrics trong Weaviate:
-
-```yaml
+Enable Prometheus metrics trong Weaviate: ```yaml
 # Biến môi trường bổ sung cho monitoring
-environment:
-  PROMETHEUS_MONITORING_ENABLED: true
+environment: PROMETHEUS_MONITORING_ENABLED: true
   PROMETHEUS_MONITORING_PORT: 2112
 ```
 
-Các metrics cần alert:
-
-```bash
+Các metrics cần alert: ```bash
 # Weaviate query latency
 weaviate_queries_durations_ms_bucket
 
@@ -330,9 +293,7 @@ Import dashboard Grafana chính thức cho Weaviate (ID `19275`) từ grafana.co
 
 ### Benchmarks Query Latency
 
-Benchmarks chạy trên **3-node Weaviate cluster** (32GB RAM, 8 vCPU, NVMe SSD per node), vectors 768 chiều:
-
-| Kích Thước Collection | Pure Vector (HNSW) | Hybrid (alpha=0.75) | Filtered Vector | BM25 Only |
+Benchmarks chạy trên **3-node Weaviate cluster** (32GB RAM, 8 vCPU, NVMe SSD per node), vectors 768 chiều: | Kích Thước Collection | Pure Vector (HNSW) | Hybrid (alpha=0.75) | Filtered Vector | BM25 Only |
 |---|---|---|---|---|
 | 1M đối tượng | 1.2ms | 3.1ms | 2.8ms | 1.8ms |
 | 10M đối tượng | 2.1ms | 5.4ms | 4.9ms | 3.2ms |
@@ -343,9 +304,7 @@ Benchmarks chạy trên **3-node Weaviate cluster** (32GB RAM, 8 vCPU, NVMe SSD 
 
 ### Benchmarks Throughput
 
-Single-node Weaviate, 10M đối tượng, concurrent clients:
-
-| Concurrent Clients | QPS (queries/sec) | Avg Latency | P99 Latency |
+Single-node Weaviate, 10M đối tượng, concurrent clients: | Concurrent Clients | QPS (queries/sec) | Avg Latency | P99 Latency |
 |---|---|---|---|
 | 1 | 380 | 2.6ms | 4.1ms |
 | 10 | 1,420 | 7.0ms | 12.3ms |
@@ -365,9 +324,7 @@ Một marketplace tuyển dụng toàn cầu index **3.2 tỷ job descriptions v
 
 ### 1. Role-Based Access Control (RBAC)
 
-Weaviate v1.31+ giới thiệu RBAC cho enterprise security:
-
-```python
+Weaviate v1.31+ giới thiệu RBAC cho enterprise security: ```python
 from weaviate.classes.rbac import Permissions, Roles
 
 # Tạo role read-only
@@ -394,9 +351,7 @@ client.roles.create(
 
 ### 2. Backup và Disaster Recovery
 
-Cấu hình backups S3-compatible:
-
-```bash
+Cấu hình backups S3-compatible: ```bash
 # Trigger backup thủ công
 curl -X POST http://localhost:8080/v1/backups/s3 \
   -H "Content-Type: application/json" \
@@ -411,25 +366,15 @@ curl -X POST http://localhost:8080/v1/backups/s3 \
   }'
 ```
 
-Tự động hóa với CronJob:
-
-```yaml
+Tự động hóa với CronJob: ```yaml
 # kubernetes/backup-cronjob.yaml
 apiVersion: batch/v1
 kind: CronJob
-metadata:
-  name: weaviate-backup
-spec:
-  schedule: "0 2 * * *"  # Hàng ngày lúc 2 AM
-  jobTemplate:
-    spec:
-      template:
-        spec:
-          containers:
-          - name: backup
+metadata: name: weaviate-backup
+spec: schedule: "0 2 * * *"  # Hàng ngày lúc 2 AM
+  jobTemplate: spec: template: spec: containers: - name: backup
             image: curlimages/curl:latest
-            command:
-            - /bin/sh
+            command: - /bin/sh
             - -c
             - |
               curl -X POST http://weaviate:8080/v1/backups/s3 \
@@ -440,37 +385,28 @@ spec:
 
 ### 3. Clustering và Replication
 
-Cho deployments 10B+ objects, dùng cluster 5–7 node với replication:
-
-```yaml
+Cho deployments 10B+ objects, dùng cluster 5–7 node với replication: ```yaml
 # Helm values cho cluster quy mô lớn
 replicas: 5
-env:
-  CLUSTER_JOIN: "weaviate-0.weaviate-headless:7001"
+env: CLUSTER_JOIN: "weaviate-0.weaviate-headless:7001"
   CLUSTER_GOSSIP_BIND_PORT: "7100"
   CLUSTER_DATA_BIND_PORT: "7101"
   RAFT_JOIN: "weaviate-0,weaviate-1,weaviate-2"
   RAFT_BOOTSTRAP_EXPECT: "3"
 
-persistence:
-  enabled: true
+persistence: enabled: true
   size: 1Ti
   storageClass: premium-rwo
 
-resources:
-  requests:
-    memory: "64Gi"
+resources: requests: memory: "64Gi"
     cpu: "16"
-  limits:
-    memory: "128Gi"
+  limits: memory: "128Gi"
     cpu: "32"
 ```
 
 ### 4. gRPC Cho High-Throughput Ingestion
 
-Dùng gRPC thay vì REST cho batch ingestion —— **nhanh hơn 3-5 lần**:
-
-```python
+Dùng gRPC thay vì REST cho batch ingestion —— **nhanh hơn 3-5 lần**: ```python
 import weaviate
 from weaviate.classes import DataObject
 
@@ -481,11 +417,9 @@ client = weaviate.connect_to_local(
 products = client.collections.get("Product")
 
 # gRPC batch insert —— nhanh hơn REST đáng kể
-with products.batch.fixed_size(batch_size=1000) as batch:
-    for item in large_dataset:  # 10M+ objects
+with products.batch.fixed_size(batch_size=1000) as batch: for item in large_dataset: # 10M+ objects
         batch.add_object(properties=item)
-        if batch.number_errors > 100:
-            print("Quá nhiều lỗi, dừng")
+        if batch.number_errors > 100: print("Quá nhiều lỗi, dừng")
             break
 
 failed = products.batch.failed_objects
@@ -494,9 +428,7 @@ print(f"Import thất bại: {len(failed)}")
 
 ### 5. Custom Vectors (Mang Embeddings Riêng)
 
-Cho teams dùng custom embedding models:
-
-```python
+Cho teams dùng custom embedding models: ```python
 # Bỏ qua vectorizer —— cung cấp vectors thủ công
 client.collections.create(
     name="CustomEmbedding",
@@ -603,9 +535,7 @@ Cho enterprise deployments, con đường rõ ràng: bắt đầu với Docker C
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -626,7 +556,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 *Tuyên bố Affiliate: Bài viết này chứa liên kết affiliate đến DigitalOcean và HTStack. Nếu bạn mua infrastructure qua các liên kết này, dibi8.com nhận được hoa hồng không phát sinh thêm chi phí cho bạn. Chúng tôi chỉ giới thiệu providers đã benchmark trong môi trường production. Doanh thu affiliate hỗ trợ nghiên cứu kỹ thuật độc lập và phát triển công cụ open-source.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

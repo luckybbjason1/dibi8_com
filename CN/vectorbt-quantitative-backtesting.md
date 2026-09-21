@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/vectorbt-quantitative-backtesting" />
 title: 'VectorBT: The Lightning-Fast Python Backtesting Library ...
 description: 'Master VectorBT for quantitative backtesting in Python. Build, test, and optimize trading strategies with vectorized Numba-accelerated simulations. Complete 2026 guide with code examples.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: []
-aliases:
-- /posts/vectorbt-quantitative-backtesting/
+aliases: - /posts/vectorbt-quantitative-backtesting/-
 ---
-
 {{</* resource-info */>}}
 
 ## Introduction: Why Your Backtesting Is Too Slow
@@ -42,9 +38,7 @@ VectorBT (Vector Backtesting) is a Python library for backtesting trading strate
 
 ## How VectorBT Works: Architecture & Core Concepts
 
-VectorBT's speed comes from three architectural decisions:
-
-### NumPy-First Data Representation
+VectorBT's speed comes from three architectural decisions: ### NumPy-First Data Representation
 
 All price data lives as NumPy ndarrays. A DataFrame of 10 years of daily data for 100 assets becomes a 2D array of shape `(2,520, 100)` — approximately 252 trading days per year. No row-wise iteration happens anywhere in the hot path.
 
@@ -85,16 +79,12 @@ pip install vectorbt
 pip install "vectorbt[all]"
 ```
 
-Verify the installation:
-
-```python
+Verify the installation: ```python
 import vectorbt as vbt
 print(vbt.__version__)  # 0.27.2 or later
 ```
 
-For reproducibility, pin your environment:
-
-```bash
+For reproducibility, pin your environment: ```bash
 # requirements.txt
 vectorbt==0.27.2
 numba==0.60.0
@@ -104,9 +94,7 @@ yfinance==0.2.54
 plotly==5.24.1
 ```
 
-Common installation issue on macOS: Numba requires `llvmlite`, which needs Xcode Command Line Tools:
-
-```bash
+Common installation issue on macOS: Numba requires `llvmlite`, which needs Xcode Command Line Tools: ```bash
 xcode-select --install  # Run this first if Numba installation fails
 ```
 
@@ -152,9 +140,7 @@ This runs in under **2 seconds** for three assets across six years. The same bac
 
 ## Parameter Optimization: Grid Search at Warp Speed
 
-The real power of VectorBT emerges when you sweep parameters. Let us test MA windows from 5 to 200:
-
-```python
+The real power of VectorBT emerges when you sweep parameters. Let us test MA windows from 5 to 200: ```python
 import vectorbt as vbt
 
 price = vbt.YFData.download("BTC-USD", start="2020-01-01", end="2026-01-01").get("Close")
@@ -189,9 +175,7 @@ This grid of **180 parameter combinations** evaluates in approximately **3.5 sec
 
 ## Walk-Forward Analysis: Robust Strategy Validation
 
-Backtesting on a single period overfits. Walk-forward analysis (WFA) splits data into in-sample training and out-of-sample testing windows. VectorBT implements this via `Portfolio.from_signals` with date slicing:
-
-```python
+Backtesting on a single period overfits. Walk-forward analysis (WFA) splits data into in-sample training and out-of-sample testing windows. VectorBT implements this via `Portfolio.from_signals` with date slicing: ```python
 import vectorbt as vbt
 from datetime import datetime
 import pandas as pd
@@ -203,8 +187,7 @@ n_splits = 10
 split_size = len(price) // n_splits
 results = []
 
-for i in range(n_splits):
-    # Define train/test windows
+for i in range(n_splits): # Define train/test windows
     train_start = i * split_size
     train_end = train_start + split_size - 60
     test_end = train_start + split_size
@@ -255,9 +238,7 @@ Mean out-of-sample Sharpe ratio below 0.5 signals the strategy is not robust —
 
 ## Integration with Machine Learning
 
-VectorBT pairs naturally with scikit-learn for ML-driven signals. Train a classifier to predict next-day direction, then feed predictions into VectorBT for realistic execution simulation:
-
-```python
+VectorBT pairs naturally with scikit-learn for ML-driven signals. Train a classifier to predict next-day direction, then feed predictions into VectorBT for realistic execution simulation: ```python
 import vectorbt as vbt
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
@@ -317,9 +298,7 @@ print(f"Buy & Hold Return: {(test_price.iloc[-1] / test_price.iloc[0] - 1):.2%}"
 
 ## Portfolio Optimization with VectorBT
 
-VectorBT PRO (paid tier, $299/year) adds portfolio-level optimization via Markowitz mean-variance and Black-Litterman models. The open-source version still supports multi-asset weighting:
-
-```python
+VectorBT PRO (paid tier, $299/year) adds portfolio-level optimization via Markowitz mean-variance and Black-Litterman models. The open-source version still supports multi-asset weighting: ```python
 import vectorbt as vbt
 import numpy as np
 
@@ -338,8 +317,7 @@ weights = 1 / volatility
 weights = weights / weights.sum()
 
 print("Portfolio weights:")
-for symbol, w in weights.items():
-    print(f"  {symbol}: {w:.2%}")
+for symbol, w in weights.items(): print(f"  {symbol}: {w:.2%}")
 
 # Backtest the allocation
 portfolio = vbt.Portfolio.from_holding(
@@ -359,7 +337,17 @@ For live trading on major exchanges, connect your account via API. Binance offer
 ## Benchmarks / Real-World Use Cases
 
 | Scenario | VectorBT | Backtrader | Zipline | pandas loop |
-|----------|----------|------------|---------|-------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | MA crossover (3 assets, 6yr) | **1.8s** | 92s | 45s | 340s |
 | Grid search (180 params) | **3.5s** | N/A | 810s | 6,200s |
 | 50-asset portfolio (1yr daily) | **0.9s** | 180s | 95s | N/A |
@@ -377,20 +365,16 @@ A systematic crypto fund uses VectorBT as the first stage of their signal valida
 
 ### Custom Indicators
 
-VectorBT's `IndicatorFactory` converts any function into a vectorized indicator:
-
-```python
+VectorBT's `IndicatorFactory` converts any function into a vectorized indicator: ```python
 import vectorbt as vbt
 import numpy as np
 from numba import njit
 
 @njit
-def custom_momentum_nb(price, period):
-    """Numba-accelerated momentum indicator."""
+def custom_momentum_nb(price, period): """Numba-accelerated momentum indicator."""
     momentum = np.empty_like(price)
     momentum[:period] = np.nan
-    for i in range(period, len(price)):
-        momentum[i] = (price[i] / price[i - period] - 1) * 100
+    for i in range(period, len(price)): momentum[i] = (price[i] / price[i - period] - 1) * 100
     return momentum
 
 # Wrap with IndicatorFactory
@@ -435,15 +419,12 @@ print(f"Avg trade: {portfolio.trades.returns.mean():.2%}")
 
 ### Parallel Execution
 
-VectorBT's tensor operations already saturate single cores. For multi-core scaling, split parameter grids across processes:
-
-```python
+VectorBT's tensor operations already saturate single cores. For multi-core scaling, split parameter grids across processes: ```python
 from multiprocessing import Pool
 import vectorbt as vbt
 import numpy as np
 
-def run_chunk(param_chunk):
-    price = vbt.YFData.download("BTC-USD").get("Close")
+def run_chunk(param_chunk): price = vbt.YFData.download("BTC-USD").get("Close")
     fast_ma = vbt.MA.run(price, param_chunk[:, 0])
     slow_ma = vbt.MA.run(price, param_chunk[:, 1])
     entries = fast_ma.ma_crossed_above(slow_ma)
@@ -455,14 +436,23 @@ def run_chunk(param_chunk):
 params = np.array(np.meshgrid(np.arange(5, 41, 5), np.arange(20, 121, 10))).T.reshape(-1, 2)
 chunks = np.array_split(params, 4)
 
-with Pool(4) as p:
-    results = p.map(run_chunk, chunks)
+with Pool(4) as p: results = p.map(run_chunk, chunks)
 ```
 
 ## Comparison with Alternatives
 
 | Feature | VectorBT | Backtrader | Zipline | QuantConnect (Lean) |
-|---------|----------|------------|---------|---------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Execution model | Vectorized | Event-driven | Event-driven | Event-driven |
 | Speed (trades/sec) | **1M+** | ~500 | ~1,000 | ~5,000 (cloud) |
 | Parameter optimization | Native grid search | Cerebro optreturn | Limited | Full support |
@@ -483,9 +473,7 @@ with Pool(4) as p:
 
 ## Limitations / Honest Assessment
 
-VectorBT is not a universal solution. Here is what it does not do:
-
-1. **No live trading execution.** VectorBT is a research library only. For live trading, you need a separate execution framework like CCXT, IBKR API, or Lean.
+VectorBT is not a universal solution. Here is what it does not do: 1. **No live trading execution.** VectorBT is a research library only. For live trading, you need a separate execution framework like CCXT, IBKR API, or Lean.
 
 2. **Vectorized approximations.** The vectorized model fills orders at the same bar's close by default. Real slippage and market impact are approximated, not simulated tick-by-tick. High-frequency strategies will see distorted results.
 
@@ -550,9 +538,7 @@ For AI-powered automated trading execution, explore [Minara](https://minara.ai/r
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -562,7 +548,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 This article contains affiliate links to Binance, OKX, Minara, and related platforms. If you register through these links, dibi8.com may receive a commission at no additional cost to you. We only recommend tools we use for our own quantitative research. Affiliate income supports our open-source technical content.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -609,3 +594,5 @@ This article contains affiliate links to Binance, OKX, Minara, and related platf
 
 包括服务器费用、数据订阅、算法更新、以及监控维护时间。
 
+
+---

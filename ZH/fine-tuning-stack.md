@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/fine-tuning-stack" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/fine-tuning-stack" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/fine-tuning-stack" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/fine-tuning-stack" />
 title: 'Fine-Tuning Stack 2026：从数据集到生产部署 LLM 的 5 组件管线'
 description: '完整 LLM 微调 stack：Unsloth（单 GPU 快速实验）+ Axolotl（生产多 GPU）+ HuggingFace datasets/Hub + Weights & Biases（eval 跟踪）+ vLLM（serving）。$50-300/月训练基础设施。完整管线：数据集准备 → 实验 → 生产微调 → eval → 部署。'
 date: 2026-05-21 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: [collections]
 tags: ['fine-tuning', llm, stack, 合集]
-aliases:
-  - /posts/fine-tuning-stack/
+aliases: - /posts/fine-tuning-stack/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/fine-tuning-stack/ -->
 
 2026 LLM 微调终于有了一致的 stack —— 用胶带粘 HuggingFace Trainer + DeepSpeed config + 自定义 eval 脚本的日子结束了。这个合集组装的是 **5 组件管线**，从原始数据集到生产部署的微调模型，快速迭代（Unsloth）和生产部署（Axolotl）干净分离。按规模 $50-300/月训练基础设施。
 
@@ -38,7 +30,17 @@ aliases:
 ## TL;DR —— Stack 全貌
 
 | # | 组件 | 阶段 | 角色 | 深度指南 |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 1 | **Unsloth** | 实验 | 单 GPU 快速微调，2× 速度 + 70% VRAM 节省 | [Unsloth 2026 指南](/zh/resources/llm-frameworks/unsloth-fast-llm-fine-tuning-2026/) |
 | 2 | **Axolotl** | 生产 | YAML 驱动的多 GPU 生产微调 | [Axolotl 2026 指南](/zh/resources/llm-frameworks/axolotl-llm-fine-tuning-framework-2026/) |
 | 3 | **HuggingFace datasets + Hub** | 数据 | 数据集版本控制、团队共享、推训练权重 | [HF docs] |
@@ -200,7 +202,15 @@ vllm serve yourname/my-finetuned-llama \
 ## 9. 成本拆解
 
 | 项 | 业余 | 生产团队 | 小 AI lab |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 实验 GPU（按需租）| $30-60/月 | $100-200/月 | $300-500/月 |
 | 生产训练（跑租）| $0-50/月 | $200-400/月 | $1500-3000/月 |
 | 独立服务 GPU（vLLM）| $0（用 Ollama 代替）| $200/月（RTX 4090）| $1000/月（H100）|
@@ -232,12 +242,11 @@ vllm serve yourname/my-finetuned-llama \
 
 实验租 {{< aff "digitalocean" "footer-cta" "GPU droplet" >}}，生产跑扩到 Vast.ai 8× H100，最终模型部署在独立 24 GB GPU。端到端自托管，权重你拥有，成本随严肃程度扩展。
 
----
 
+---
 *配套合集：[便宜 LLM Stack](/zh/collections/cheap-llm-stack/) 部署后覆盖推理成本侧。[AI Agent 工具链](/zh/collections/ai-agent-tool-chain/) 做自动微调循环。[知识库 Stack](/zh/collections/knowledge-base-stack/) 在某些情况下 RAG 是微调的替代品。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -265,25 +274,20 @@ vllm serve yourname/my-finetuned-llama \
 
 ## Why This Matters
 
-Understanding fine-tuning stack 2026：从数据集到生产部署 llm 的 5 组件管线 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding fine-tuning stack 2026：从数据集到生产部署 llm 的 5 组件管线 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -304,8 +308,8 @@ Fine-Tuning Stack 2026：从数据集到生产部署 LLM 的 5 组件管线 repr
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 

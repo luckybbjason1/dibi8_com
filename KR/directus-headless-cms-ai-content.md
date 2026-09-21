@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/directus-headless-cms-ai-content" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/directus-headless-cms-ai-content" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/directus-headless-cms-ai-content" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/directus-headless-cms-ai-content" />
 title: 'Directus: AI 콘텐츠 워크플로우를 구동하는 오픈소스 Headless CMS — 2026 설치...
 description: 'Directus 11.x 완벽 가이드 — 동적 API 생성, 콘텐츠 버전 관리, AI 콘텐츠 워크플로우, 셀프호스팅 Docker 배포를 갖춘 오픈소스 Headless CMS. REST 및 GraphQL API 벤치마크.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [directus, 'headless cms', '콘텐츠 관리', api, docker, 오픈소스, ai, graphql, rest, 셀프호스팅]
-aliases:
-- /kr/posts/directus-headless-cms-ai-content/
+aliases: - /kr/posts/directus-headless-cms-ai-content/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/directus-headless-cms-ai-content/ -->
 
 {{</* resource-info */>}}
 
@@ -43,9 +35,7 @@ Directus는 동적 API와 직관적인 관리 인터페이스로 SQL 데이터�
 
 ## Directus란 무엇인가?
 
-Directus는 기존 SQL 데이터베이스(PostgreSQL, MySQL, SQLite, Oracle, MS SQL, CockroachDB 또는 Supabase) 위에 자동으로 다음을 생성한다:
-
-- **REST API** — 필터링, 정렬, 집계, 필드 선택이 가능한 전체 CRUD
+Directus는 기존 SQL 데이터베이스(PostgreSQL, MySQL, SQLite, Oracle, MS SQL, CockroachDB 또는 Supabase) 위에 자동으로 다음을 생성한다: - **REST API** — 필터링, 정렬, 집계, 필드 선택이 가능한 전체 CRUD
 - **GraphQL API** — 스키마 내성이 가능한 엔드포인트로 구독 지원
 - **관리 앱** — 콘텐츠 편집자를 위한 Vue.js 기반 노코드 인터페이스
 - **파일 자산 관리** — 로컬, S3, GCS, Azure 스토리지 어댑터와 즉석 이미지 변환
@@ -76,9 +66,7 @@ Directus는 기존 SQL 데이터베이스(PostgreSQL, MySQL, SQLite, Oracle, MS 
 └─────────────────────────────────────────────────────────────┘
 ```
 
-주요 아키텍처 결정:
-
-- **데이터베이스 우선**: Directus는 데이터베이스를 추상화하지 않는다 — 향상시킨다. 모든 컬렉션은 테이블에 1:1 매핑된다. 마이그레이션은 표준 SQL이다.
+주요 아키텍처 결정: - **데이터베이스 우선**: Directus는 데이터베이스를 추상화하지 않는다 — 향상시킨다. 모든 컬렉션은 테이블에 1:1 매핑된다. 마이그레이션은 표준 SQL이다.
 - **상태 비저장 API 서버**: 수평 확장은 간단하다 — 로드 밸런서 뒤에 더 많은 API 컨테이너 레플리카를 추가하면 된다.
 - **파일 스토리지 추상화**: S3, Google Cloud Storage, Azure Blob, 로컬 디스크용 어댑터. URL 파라미터를 통한 이미지 변환(예: `?width=800&height=600&fit=cover`).
 - **확장 시스템**: 커스텀 엔드포인트, 훅(이벤트 기반), 인터페이스(커스텀 UI 컴포넌트), 디스플레이, 대시보드 패널 — 모두 핫 리로드된다.
@@ -100,17 +88,12 @@ mkdir ~/directus && cd ~/directus
 # compose 파일 생성
 cat > docker-compose.yml << EOF
 version: "3"
-services:
-  directus:
-    image: directus/directus:11.3.0
-    ports:
-      - 8055:8055
-    volumes:
-      - ./uploads:/directus/uploads
+services: directus: image: directus/directus:11.3.0
+    ports: - 8055:8055
+    volumes: - ./uploads:/directus/uploads
       - ./extensions:/directus/extensions
       - ./templates:/directus/templates
-    environment:
-      SECRET: "your-random-secret-key-here"
+    environment: SECRET: "your-random-secret-key-here"
       ADMIN_EMAIL: "admin@example.com"
       ADMIN_PASSWORD: "SecureAdminPass123!"
       DB_CLIENT: "pg"
@@ -122,28 +105,19 @@ services:
       WEBSOCKETS_ENABLED: "true"
       CORS_ENABLED: "true"
       CORS_ORIGIN: "true"
-    depends_on:
-      - database
+    depends_on: - database
       - redis
 
-  database:
-    image: postgres:16-alpine
-    environment:
-      POSTGRES_DB: "directus"
+  database: image: postgres:16-alpine
+    environment: POSTGRES_DB: "directus"
       POSTGRES_USER: "directus"
       POSTGRES_PASSWORD: "directus-pass"
-    volumes:
-      - pg-data:/var/lib/postgresql/data
+    volumes: - pg-data:/var/lib/postgresql/data
 
-  redis:
-    image: redis:7-alpine
-    volumes:
-      - redis-data:/data
+  redis: image: redis:7-alpine
+    volumes: - redis-data:/data
 
-volumes:
-  pg-data:
-  redis-data:
-EOF
+volumes: pg-data: redis-data: EOF
 ```
 
 ### 단계 2: 스택 시작
@@ -210,9 +184,7 @@ EOF
 
 관리 UI를 통해: 설정 → 데이터 모델 → 컬렉션 생성 → `articles`.
 
-또는 API를 통해:
-
-```bash
+또는 API를 통해: ```bash
 # REST API로 컬렉션 생성
 curl -X POST http://localhost:8055/collections \
   -H "Content-Type: application/json" \
@@ -328,9 +300,7 @@ console.log('생성됨:', newArticle.id);
 
 ## AI 콘텐츠 워크플로우: Directus를 LLM에 연결하기
 
-Directus Flows + 확장 기능은 외부 도구 없이 AI 기반 콘텐츠 파이프라인을 가능하게 한다. 완전한 AI 콘텐츠 워크플로우는 다음과 같다:
-
-### 단계 1: AI 초안 생성 Flow 생성
+Directus Flows + 확장 기능은 외부 도구 없이 AI 기반 콘텐츠 파이프라인을 가능하게 한다. 완전한 AI 콘텐츠 워크플로우는 다음과 같다: ### 단계 1: AI 초안 생성 Flow 생성
 
 ```bash
 # ai_flag=true로 아티클이 생성될 때 트리거되는 Flow를 API로 생성
@@ -432,9 +402,7 @@ await client.request(
 
 ## 벤치마크 / 실전 활용 사례
 
-[DigitalOcean 드롭릿](https://m.do.co/c/eca87ac14ee0) (2 vCPU / 4GB RAM / 월 $24)에서 Directus 11.3.0을 테스트했다:
-
-| 작업 | Directus 11.3.0 | Strapi 5.x | Sanity (관리형) | Contentful (관리형) |
+[DigitalOcean 드롭릿](https://m.do.co/c/eca87ac14ee0) (2 vCPU / 4GB RAM / 월 $24)에서 Directus 11.3.0을 테스트했다: | 작업 | Directus 11.3.0 | Strapi 5.x | Sanity (관리형) | Contentful (관리형) |
 |------|----------------|------------|-----------------|--------------------|
 | 단일 항목 읽기 (캐시) | **~8ms** | ~15ms | ~25ms | ~40ms |
 | 100개 항목 관계와 함께 읽기 | **~35ms** | ~80ms | ~60ms | ~120ms |
@@ -455,27 +423,19 @@ await client.request(
 ```bash
 # 읽기 레플리카로 API 수평 확장
 version: "3"
-services:
-  directus-api-1:
-    image: directus/directus:11.3.0
-    environment:
-      DB_CLIENT: "pg"
+services: directus-api-1: image: directus/directus:11.3.0
+    environment: DB_CLIENT: "pg"
       DB_HOST: "postgres-primary"
       # ... 기타 환경 변수
 
-  directus-api-2:
-    image: directus/directus:11.3.0
-    environment:
-      DB_CLIENT: "pg"
+  directus-api-2: image: directus/directus:11.3.0
+    environment: DB_CLIENT: "pg"
       DB_HOST: "postgres-replica"
       # ... 기타 환경 변수
 
-  nginx:
-    image: nginx:alpine
-    ports:
-      - "8055:8055"
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
+  nginx: image: nginx:alpine
+    ports: - "8055:8055"
+    volumes: - ./nginx.conf:/etc/nginx/nginx.conf
 ```
 
 ### 2. 자동 백업
@@ -560,9 +520,7 @@ const adminPermissions = {
 
 ### 5. Prometheus 모니터링
 
-Directus는 `/server/health` 엔드포인트를 통해 메트릭을 노출하고 Prometheus를 위해 확장할 수 있다:
-
-```javascript
+Directus는 `/server/health` 엔드포인트를 통해 메트릭을 노출하고 Prometheus를 위해 확장할 수 있다: ```javascript
 // extensions/endpoints/metrics/index.js
 import { defineEndpoint } from '@directus/extensions-sdk';
 
@@ -641,9 +599,7 @@ CRUD 중심이고 콘텐츠 관리가 필요한 애플리케이션의 경우 Dir
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -674,7 +630,6 @@ Docker를 사용하여 [DigitalOcean 드롭릿](https://m.do.co/c/eca87ac14ee0)�
 *dibi8 개발자 커뮤니티 참여: [English](https://t.me/dibi8en) | [Chinese](https://t.me/dibi8zh) | [Korean](https://t.me/dibi8ko) | [Vietnamese](https://t.me/dibi8vn)*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

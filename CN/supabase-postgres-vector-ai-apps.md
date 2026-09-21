@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/supabase-postgres-vector-ai-apps" />
 title: 'Supabase 2026: The Open-Source Firebase Alternative Powe...
 description: 'Complete guide to Supabase: the open-source Firebase alternative with Postgres + pgvector for AI apps. Auth, storage, realtime, edge functions, RAG pipeline integration, self-hosted Docker deployment, and Row Level Security.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [supabase, postgres, 'vector search', 'firebase alternative', pgvector, 'ai apps', rag, 'open source', docker, 'edge functions']
-aliases:
-- /posts/supabase-postgres-vector-ai-apps/
+aliases: - /posts/supabase-postgres-vector-ai-apps/-
 ---
-
 {{</* resource-info */>}}
 
 ## Introduction: Why AI App Builders Are Switching from Firebase to Supabase
@@ -63,8 +59,7 @@ Supabase is more than a database wrapper. Its architecture is designed around th
 ### Hosted Cloud (Fastest Path)
 
 ```bash
-# Your project comes with:
-# - PostgreSQL 16 database
+# Your project comes with: # - PostgreSQL 16 database
 # - Auto-generated REST API
 # - Built-in Auth
 # - 500 MB database storage (free tier)
@@ -106,9 +101,7 @@ The local stack includes PostgreSQL, PostgREST, GoTrue, Realtime, Storage, and S
 
 ### Self-Hosted via Docker Compose
 
-For production self-hosting on your own infrastructure (e.g., via [DigitalOcean](https://m.do.co/c/eca87ac14ee0) or [HTStack](https://my.htstack.com/aff.php?aff=27187)):
-
-```bash
+For production self-hosting on your own infrastructure (e.g., via [DigitalOcean](https://m.do.co/c/eca87ac14ee0) or [HTStack](https://my.htstack.com/aff.php?aff=27187)): ```bash
 # Clone the official self-hosting repository
 git clone https://github.com/supabase/supabase.git
 cd supabase/docker
@@ -129,8 +122,7 @@ docker compose up -d
 # Verify all services are healthy
 docker compose ps
 
-# Expected output:
-# NAME                STATUS
+# Expected output: # NAME                STATUS
 # supabase-db         healthy
 # supabase-kong       healthy
 # supabase-auth       healthy
@@ -230,8 +222,7 @@ import openai
 supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 client = openai.OpenAI(api_key=OPENAI_API_KEY)
 
-def insert_document(title: str, content: str, source_url: str = None):
-    # Generate embedding
+def insert_document(title: str, content: str, source_url: str = None): # Generate embedding
     response = client.embeddings.create(
         input=content,
         model="text-embedding-3-large"
@@ -272,8 +263,7 @@ LIMIT 5;
 
 ```python
 # Python: RAG retrieval function
-async def search_similar_documents(query: str, top_k: int = 5):
-    # Generate query embedding
+async def search_similar_documents(query: str, top_k: int = 5): # Generate query embedding
     response = client.embeddings.create(
         input=query,
         model="text-embedding-3-large"
@@ -328,9 +318,7 @@ $$;
 
 ### Architecture Overview
 
-A typical RAG pipeline with Supabase consists of four stages:
-
-1. **Ingestion** — Documents are chunked, embedded, and stored in `documents` table.
+A typical RAG pipeline with Supabase consists of four stages: 1. **Ingestion** — Documents are chunked, embedded, and stored in `documents` table.
 2. **Retrieval** — User queries are embedded and matched against stored vectors via `pgvector`.
 3. **Generation** — Retrieved chunks are fed as context to an LLM (OpenAI, Ollama, or Claude).
 4. **Storage** — Conversations are stored in a `conversations` table for persistence.
@@ -343,15 +331,11 @@ from supabase import create_client
 from openai import OpenAI
 import json
 
-class SupabaseRAG:
-    def __init__(self, supabase_url: str, supabase_key: str, openai_key: str):
-        self.supabase = create_client(supabase_url, supabase_key)
+class SupabaseRAG: def __init__(self, supabase_url: str, supabase_key: str, openai_key: str): self.supabase = create_client(supabase_url, supabase_key)
         self.openai = OpenAI(api_key=openai_key)
 
-    def embed_and_store(self, chunks: list[dict]):
-        """Store document chunks with embeddings."""
-        for chunk in chunks:
-            embedding = self.openai.embeddings.create(
+    def embed_and_store(self, chunks: list[dict]): """Store document chunks with embeddings."""
+        for chunk in chunks: embedding = self.openai.embeddings.create(
                 input=chunk[text],
                 model="text-embedding-3-large"
             ).data[0].embedding
@@ -363,8 +347,7 @@ class SupabaseRAG:
                 metadata: chunk.get(metadata, {})
             }).execute()
 
-    def retrieve(self, query: str, top_k: int = 5) -> list[dict]:
-        """Retrieve relevant documents using vector search."""
+    def retrieve(self, query: str, top_k: int = 5) -> list[dict]: """Retrieve relevant documents using vector search."""
         query_embedding = self.openai.embeddings.create(
             input=query,
             model="text-embedding-3-large"
@@ -380,8 +363,7 @@ class SupabaseRAG:
         ).execute()
         return results.data
 
-    def generate(self, query: str, context: list[dict]) -> str:
-        """Generate response using retrieved context."""
+    def generate(self, query: str, context: list[dict]) -> str: """Generate response using retrieved context."""
         context_text = "\n\n".join([
             f"[Source: {doc[title]}]\n{doc[content]}"
             for doc in context
@@ -404,8 +386,7 @@ class SupabaseRAG:
         )
         return response.choices[0].message.content
 
-    def chat(self, query: str) -> dict:
-        """End-to-end RAG pipeline."""
+    def chat(self, query: str) -> dict: """End-to-end RAG pipeline."""
         context = self.retrieve(query)
         answer = self.generate(query, context)
         return {
@@ -496,11 +477,9 @@ supabase.removeChannel(channel)
 # Python asyncio version
 import asyncio
 
-async def subscribe_to_changes():
-    channel = supabase.channel('documents-changes')
+async def subscribe_to_changes(): channel = supabase.channel('documents-changes')
     
-    def handle_insert(payload):
-        print(f"New document: {payload[new][title]}")
+    def handle_insert(payload): print(f"New document: {payload[new][title]}")
     
     channel.on(
         postgres_changes,
@@ -566,10 +545,20 @@ supabase functions invoke ai-completion --data '{"prompt": "Explain RAG"}'
 
 ## Benchmarks: Supabase Vector Search Performance
 
-All benchmarks run on Supabase hosted tier (Small Compute, 2 vCPU, 8GB RAM):
-
-| Dataset Size | Dimensions | Index Type | Query Latency (p95) | Recall@10 | Index Build Time |
-|-------------|-----------|------------|---------------------|-----------|-----------------|
+All benchmarks run on Supabase hosted tier (Small Compute, 2 vCPU, 8GB RAM): | Dataset Size | Dimensions | Index Type | Query Latency (p95) | Recall@10 | Index Build Time |
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 10K docs | 1,536 | HNSW (m=16, ef=64) | 12ms | 0.97 | 8s |
 | 100K docs | 1,536 | HNSW (m=16, ef=64) | 45ms | 0.96 | 72s |
 | 500K docs | 1,536 | HNSW (m=24, ef=128) | 120ms | 0.95 | 8min |
@@ -590,41 +579,30 @@ All benchmarks run on Supabase hosted tier (Small Compute, 2 vCPU, 8GB RAM):
 
 ```yaml
 # docker-compose.prod.yml (excerpt)
-services:
-  db:
-    image: supabase/postgres:15.8.1.040
-    environment:
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+services: db: image: supabase/postgres:15.8.1.040
+    environment: POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       PGVECTOR_HNSW_EF_SEARCH: 64
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+    volumes: - pgdata:/var/lib/postgresql/data
     command: >
       postgres
         -c shared_preload_libraries='pg_stat_statements,pgvector'
         -c max_connections=200
         -c shared_buffers=2GB
         -c effective_cache_size=6GB
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
+    healthcheck: test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s
       timeout: 5s
       retries: 5
 
-  kong:
-    image: kong:3.7
-    environment:
-      KONG_DATABASE: "off"
+  kong: image: kong:3.7
+    environment: KONG_DATABASE: "off"
       KONG_DECLARATIVE_CONFIG: /var/lib/kong/kong.yml
-    ports:
-      - "8000:8000"
-    depends_on:
-      - auth
+    ports: - "8000:8000"
+    depends_on: - auth
       - rest
       - realtime
 
-volumes:
-  pgdata:
-```
+volumes: pgdata: ```
 
 ### Environment Variables
 
@@ -663,7 +641,19 @@ Deploy to your VPS via [DigitalOcean](https://m.do.co/c/eca87ac14ee0) for a reli
 ## Comparison with Alternatives
 
 | Feature | Supabase | Firebase | Appwrite | Convex | Directus |
-|---------|----------|----------|----------|--------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Open-source | **Yes (Apache-2.0)** | No | **Yes (BSD)** | No | **Yes (GPL-3.0)** |
 | Database | **PostgreSQL 16** | Firestore (NoSQL) | MariaDB | Proprietary | **PostgreSQL/SQLite** |
 | Vector search | **Yes (pgvector)** | No (requires Algolia) | No | No | No |
@@ -715,9 +705,7 @@ Yes. The self-hosted Docker Compose stack runs fully air-gapped. All services (A
 
 ### How do I handle schema migrations in Supabase?
 
-Use the Supabase CLI migration system:
-
-```bash
+Use the Supabase CLI migration system: ```bash
 # Create a new migration
 supabase migration new add_documents_table
 
@@ -761,9 +749,7 @@ For your next AI project, start with the free tier to validate your idea, then s
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -773,7 +759,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 This article contains affiliate links. If you purchase services through links marked with affiliate IDs (such as DigitalOcean or HTStack), we may earn a commission at no additional cost to you. This helps fund our open-source documentation work. All recommendations are based on genuine technical merit, not affiliate availability.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -799,8 +784,8 @@ This article contains affiliate links. If you purchase services through links ma
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [oh-my-pi](supabase-postgres-vector-ai-apps)
@@ -809,8 +794,8 @@ This article contains affiliate links. If you purchase services through links ma
 - [supabase-vs-firebase](supabase-postgres-vector-ai-apps)
 - [supabase-vs-firebase](supabase-postgres-vector-ai-apps)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

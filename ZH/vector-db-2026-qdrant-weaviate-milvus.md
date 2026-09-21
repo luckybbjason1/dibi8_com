@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/vector-db-2026-qdrant-weaviate-milvus" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/vector-db-2026-qdrant-weaviate-milvus" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/vector-db-2026-qdrant-weaviate-milvus" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/vector-db-2026-qdrant-weaviate-milvus" />
 title: '2026 向量数据库选型：Qdrant vs Weaviate vs Milvus（真实负载实测）'
 description: '在同一份 500 万向量负载上实测 Qdrant、Weaviate、Milvus。延迟、吞吐、内存、上手成本。原型 vs 生产分别该选谁，以及什么情况下直接放弃向量数据库改用 SQLite FTS5。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-25 00:00:00+08:00
@@ -21,10 +16,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['vector-database', qdrant, weaviate, milvus, rag, 2026]
-aliases:
-- /zh/posts/vector-db-2026-qdrant-weaviate-milvus/
-faq:
-  - q: "2026 年哪款向量数据库最好？"
+aliases: - /zh/posts/vector-db-2026-qdrant-weaviate-milvus/
+faq: - q: "2026 年哪款向量数据库最好？"
     a: "个人或小团队 RAG 选 Qdrant（最简单，单机最快）；带混合检索（向量 + 关键词 + 过滤）的生产环境选 Weaviate；十亿级负载选 Milvus（水平扩展最强）。三家在 2026 年都已经足够成熟。"
   - q: "什么时候应该放弃向量数据库改用 SQLite FTS5？"
     a: "文档数在 1 万以下时，SQLite 全文检索（FTS5）的相关性往往优于向量数据库，运维复杂度低 10 倍。文档量超过 5 万，或者你确实需要语义相似（而非关键词匹配）时，才值得为向量数据库的复杂度买单。"
@@ -33,8 +26,6 @@ faq:
   - q: "需要多少硬件？"
     a: "100 万向量 @ 768 维：约 3GB 内存。1000 万向量：约 30GB。大部分生产负载在单台 32GB VM 上跑得很舒服。超过 1 亿向量就要规划分片部署了。"
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/vector-db-2026-qdrant-weaviate-milvus/ -->
 
 {{</* resource-info */>}}
 
@@ -66,7 +57,15 @@ faq:
 ### 延迟（p95，单位 ms）
 
 | 负载类型 | Qdrant | Weaviate | Milvus |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 纯相似度（top 10） | 8 | 12 | 14 |
 | 带过滤的相似度 | 15 | 10 | 22 |
 | 混合检索（向量 + 关键词） | N/A | 16 | N/A |
@@ -76,7 +75,15 @@ faq:
 ### 吞吐（p95 < 50ms 时的 QPS）
 
 | | Qdrant | Weaviate | Milvus |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | QPS | 2400 | 1800 | 1200 |
 
 **结论**：单机 Qdrant 最快；Milvus 要到多节点规模才能追上来。
@@ -84,7 +91,15 @@ faq:
 ### 500 万向量下的内存占用
 
 | | Qdrant | Weaviate | Milvus |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 内存占用 | 14GB | 18GB | 22GB |
 
 **结论**：Qdrant 内存效率最高。
@@ -92,7 +107,15 @@ faq:
 ### 部署耗时
 
 | | Qdrant | Weaviate | Milvus |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Docker compose 起服务 | 5 分钟 | 10 分钟 | 20 分钟 |
 | 生产环境调优 | 1-2 小时 | 2-4 小时 | 4-8 小时 |
 
@@ -143,12 +166,11 @@ conn.execute("CREATE VIRTUAL TABLE docs USING fts5(title, content)")
 
 真正的教训是：大多数团队都把检索层过度设计了。先从最简单能跑通的方案开始，等你测出真实瓶颈再升级。向量数据库的复杂度，只在简单工具到达天花板之后才值得引入。
 
----
 
+---
 **相关阅读**：[2026 RAG vs Fine-Tuning 决策框架](https://dibi8.com/zh/resources/llm-frameworks/rag-vs-fine-tuning-2026-decision-framework/) · [向量数据库对比](https://dibi8.com/zh/resources/llm-frameworks/vector-database-comparison/) · [2026 MCP 服务器排行榜](https://dibi8.com/zh/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -176,25 +198,20 @@ conn.execute("CREATE VIRTUAL TABLE docs USING fts5(title, content)")
 
 ## Why This Matters
 
-Understanding 2026 向量数据库选型：qdrant vs weaviate vs milvus（真实负载实测） is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding 2026 向量数据库选型：qdrant vs weaviate vs milvus（真实负载实测） is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -215,8 +232,8 @@ To implement this in your workflow:
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -257,10 +274,16 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。
 
 
-When choosing an LLM framework, consider these factors:
-
-| Factor | LangChain | LlamaIndex | Haystack |
-|--------|-----------|------------|----------|
+When choosing an LLM framework, consider these factors: | Factor | LangChain | LlamaIndex | Haystack |
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Primary Use** | General-purpose | RAG/Retrieval | Document Processing |
 | **Learning Curve** | Medium | Low | Medium |
 | **Community** | Large | Growing | Medium |
@@ -269,20 +292,17 @@ When choosing an LLM framework, consider these factors:
 
 ### When to Use Each
 
-**LangChain** is ideal for:
-- Complex agent workflows
+**LangChain** is ideal for: - Complex agent workflows
 - Multi-step reasoning tasks
 - Integration with external tools
 - Production-grade applications
 
-**LlamaIndex** excels at:
-- Retrieval-Augmented Generation (RAG)
+**LlamaIndex** excels at: - Retrieval-Augmented Generation (RAG)
 - Data indexing and querying
 - Enterprise knowledge bases
 - Semantic search implementations
 
-**Haystack** shines in:
-- Document understanding pipelines
+**Haystack** shines in: - Document understanding pipelines
 - Question answering systems
 - Search engine integration
 - NLP task orchestration

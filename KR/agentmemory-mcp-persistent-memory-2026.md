@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/agentmemory-mcp-persistent-memory-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/agentmemory-mcp-persistent-memory-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/agentmemory-mcp-persistent-memory-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/agentmemory-mcp-persistent-memory-2026" />
 title: 'AI 코딩 에이전트 지속 메모리 완벽 가이드: agentmemory + MCP로 Claude Code...
 description: 'Claude Code, Cursor를 쓸 때마다 세션 끝나면 기억 초기화되는 문제 해결. agentmemory 오픈소스 프레임워크와 MCP 프로토콜로 AI 코딩 에이전트에 영구 기억력을 부여하는 방법, 팀 공유 설정법까지 상세 설명.'
 date: 2026-05-17 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: 'rohitg00'
 last_maintained: '2026-05-17'
 featureImage: ''
 draft: false
-aliases:
-- /posts/agentmemory-mcp-persistent-memory-2026/
+aliases: - /posts/agentmemory-mcp-persistent-memory-2026/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/agentmemory-mcp-persistent-memory-2026/ -->
 
 {</* resource-info */>}
 
@@ -75,9 +67,7 @@ SQLite 기반 벡터 인덱스(sqlite-vec)를 통해 최근 약 100개의 상호
 
 ### 3단계: 장기 기억(Long-term Memory) — 지식 그래프
 
-핵심 역할을 담당한다. agentmemory는 핵심 사실을 **엔티티-관계-엔티티 삼중항** 지식 그래프로 저장한다:
-
-```
+핵심 역할을 담당한다. agentmemory는 핵심 사실을 **엔티티-관계-엔티티 삼중항** 지식 그래프로 저장한다: ```
 (프로젝트A) --[사용_프레임워크]--> (React)
 (프로젝트A) --[규칙]--> (Hook은 useXxx 형식)
 (프로젝트A) --[해결책]--> (Issue #442 수정)
@@ -87,9 +77,7 @@ SQLite 기반 벡터 인덱스(sqlite-vec)를 통해 최근 약 100개의 상호
 
 ### 4단계: 메타 기억(Meta-memory) — 신뢰도 점수
 
-최상위 집행 레이어. 모든 메모리 항목은 0-1 사이의 신뢰도 점수를 갖는다. 세 가지 신호로 구동된다:
-
-1. **검색 빈도** — 자주 사용되는 메모리는 중요할 가능성이 높다
+최상위 집행 레이어. 모든 메모리 항목은 0-1 사이의 신뢰도 점수를 갖는다. 세 가지 신호로 구동된다: 1. **검색 빈도** — 자주 사용되는 메모리는 중요할 가능성이 높다
 2. **수정 이벤트** — 수동으로 수정된 메모리는 신뢰도가 초기화된다
 3. **시간적 감쇠** — 오래된 메모리는 강화되지 않는 한 선형적으로 가중치를 잃는다
 
@@ -116,8 +104,7 @@ agentmemory의 진정한 전략적 이점은 그래프 알고리즘이 아니라
                                     └─────────┘
 ```
 
-MCP는 단순한 클라이언트-서버 아키텍처를 사용한다:
-- **Host**: AI 애플리케이션 자체 (Claude Code, Cursor 등)
+MCP는 단순한 클라이언트-서버 아키텍처를 사용한다: - **Host**: AI 애플리케이션 자체 (Claude Code, Cursor 등)
 - **Client**: Host 내부의 통신 계층
 - **Server**: 독립 프로세스로 실행되는 agentmemory
 
@@ -125,9 +112,7 @@ MCP는 단순한 클라이언트-서버 아키텍처를 사용한다:
 
 ### 50개 이상의 원자적 도구
 
-agentmemory는 세분화된 도표면을 노출한다—각 도구는 정확히 한 가지 작업만 수행한다:
-
-| 도구 | 기능 | 호출 시점 |
+agentmemory는 세분화된 도표면을 노출한다—각 도구는 정확히 한 가지 작업만 수행한다: | 도구 | 기능 | 호출 시점 |
 |------|------|----------|
 | `memory_add` | 새 메모리 쓰기 | 아키텍처 결정 후 자동 보관 |
 | `memory_search` | 의미론적 검색 | 사용자가 "인증은 어떻게 처리했지?"라고 물을 때 |
@@ -165,9 +150,7 @@ node dist/mcp-server.js --stdio
 
 ### 단계 2: MCP 클라이언트 설정
 
-MCP 설정 파일 편집 (Claude Code의 경우 보통 `~/.claude/mcp.json`):
-
-```json
+MCP 설정 파일 편집 (Claude Code의 경우 보통 `~/.claude/mcp.json`): ```json
 {
   "mcpServers": {
     "agentmemory": {
@@ -187,15 +170,11 @@ MCP 설정 파일 편집 (Claude Code의 경우 보통 `~/.claude/mcp.json`):
 
 ### 단계 3: 기억 지속성 테스트
 
-Claude Code에서 입력:
-
-```
+Claude Code에서 입력: ```
 기억해: 이 프로젝트의 모든 React Hook은 useXxx 네이밍 규칙을 사용해야 해. 언더스코어 절대 금지.
 ```
 
-Claude Code를 종료하고 재시작. 질문:
-
-```
+Claude Code를 종료하고 재시작. 질문: ```
 우리 프로젝트의 Hook 네이밍 규칙이 뭐였지?
 ```
 
@@ -203,9 +182,7 @@ Claude Code를 종료하고 재시작. 질문:
 
 ### 단계 4: 자동 통합 활성화 (선택)
 
-`~/.claude/settings.json`에 추가:
-
-```json
+`~/.claude/settings.json`에 추가: ```json
 {
   "hooks": {
     "SessionEnd": {
@@ -233,17 +210,14 @@ git clone git@github.com:yourteam/agentmemory-core.git
 cd agentmemory-core
 
 # 각 멤버의 MCP 설정이 공유 DB를 가리키도록 설정
-# ~/.claude/mcp.json에서:
-# "AGENTMEMORY_DB_PATH": "~/workspace/agentmemory-core/memory.db"
+# ~/.claude/mcp.json에서: # "AGENTMEMORY_DB_PATH": "~/workspace/agentmemory-core/memory.db"
 ```
 
 엔지니어 A가 "인증 모듀 해결책"을 업데이트하면, 모든 팀원의 에이전트가 다음 검색 시 이를 인식한다.
 
 ### 옵션 B: 중앙 집중식 MCP 서버 (10인 이상 팀 권장)
 
-단일 공유 인스턴스 배포:
-
-```bash
+단일 공유 인스턴스 배포: ```bash
 # 공유 서버에서
 npx agentmemory-server --port 3000 --transport sse
 
@@ -257,15 +231,13 @@ npx agentmemory-server --port 3000 --transport sse
 }
 ```
 
-장점:
-- **실시간 동기화**: 한 번 쓰고, 모든 곳에서 즉시 읽기
+장점: - **실시간 동기화**: 한 번 쓰고, 모든 곳에서 즉시 읽기
 - **감사 추적**: 누가 언제 어떤 메모리를 변경했는지
 - **접근 제어**: 민감한 아키텍처 결정에 대한 역할 기반 가시성
 
 ### 측정된 팀 효과
 
-공유 에이전트 메모리를 사용하는 팀의 보고:
-- 신규 엔지니어 **온보딩 속도 2-3배 향상**
+공유 에이전트 메모리를 사용하는 팀의 보고: - 신규 엔지니어 **온보딩 속도 2-3배 향상**
 - 동일 규칙에 대한 **반복 설명 80% 감소**
 - 팀 린트 규칙 대비 코드 스타일 일관성 점수가 62%에서 **89%로 향상**
 
@@ -303,8 +275,7 @@ npx agentmemory-server --port 3000 --transport sse
 
 ### 성능 벤치마크
 
-M3 MacBook Pro에서 테스트:
-- 10K 항목 메모리에서 검색: **< 50ms**
+M3 MacBook Pro에서 테스트: - 10K 항목 메모리에서 검색: **< 50ms**
 - 세션 종료 통합(100턴 대화): **~800ms**
 - 저장소 증가: 대화 턴당 약 5KB (벡터 인덱스 포함)
 
@@ -333,7 +304,6 @@ agentmemory의 MCP 기반 전략은 특히 영리하다. 사용자를 특정 생
 *2026년 5월 17일 작성. Star 수와 MCP 스펙 버전은 시점에 따라 변할 수 있으니, 인용 전 공식 출처에서 확인하시기 바랍니다.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

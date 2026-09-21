@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/wan-2-1" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/wan-2-1" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/wan-2-1" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/wan-2-1" />
 title: 'Wan 2.1: 16.1K+ Stars — 오픈소스 비디오 생성 심층 분석 vs HunyuanVide...
 description: 'Wan 2.1은 Alibaba의 오픈소스 비디오 기반 모델로 SOTA 성능 제공. ComfyUI, Diffusers, Gradio 지원. T2V, I2V, 비디오 편집, 텍스트 생성을 1.3B 및 14B 파라미터로 제공.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: ['wan-2-1', '비디오-생성', '디퓨전-트랜스포머', 'ai-비디오', 오픈소스, 알리바바, comfyui, diffusers]
-aliases:
-- /kr/posts/wan-2-1/
+aliases: - /kr/posts/wan-2-1/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/wan-2-1/ -->
 
 {{</* resource-info */>}}
 
@@ -49,9 +41,7 @@ Wan 2.1은 2025년 2월 Alibaba의 Wan 팀이 공개한 고급 대규모 비디�
 
 ### 아키텍처 개요
 
-Wan 2.1은 Stable Diffusion 3과 동일한 Diffusion Transformer(DiT) 패러다임에 Flow Matching을 사용합니다. 아키텍처의 세 가지 핵심 구성 요소는 다음과 같습니다:
-
-**Wan-VAE(비디오 변분 오토인코더):** 256배 시공간 압축을 제공하는 3D 인과 VAE입니다. 일반 이미지 VAE와 달리 Wan-VAE는 시간적 인과성을 유지합니다 — 각 프레임이 이전 프레임만 참조합니다. 이로 인해 초기 비디오 생성 모델에서 흔했던 깜빡임 아티팩트가 제거됩니다. Wan-VAE는 1080P 비디오를 시간 정보 손실 없이 임의 길이로 인코딩할 수 있습니다.
+Wan 2.1은 Stable Diffusion 3과 동일한 Diffusion Transformer(DiT) 패러다임에 Flow Matching을 사용합니다. 아키텍처의 세 가지 핵심 구성 요소는 다음과 같습니다: **Wan-VAE(비디오 변분 오토인코더):** 256배 시공간 압축을 제공하는 3D 인과 VAE입니다. 일반 이미지 VAE와 달리 Wan-VAE는 시간적 인과성을 유지합니다 — 각 프레임이 이전 프레임만 참조합니다. 이로 인해 초기 비디오 생성 모델에서 흔했던 깜빡임 아티팩트가 제거됩니다. Wan-VAE는 1080P 비디오를 시간 정보 손실 없이 임의 길이로 인코딩할 수 있습니다.
 
 **Diffusion Transformer(DiT):** 생성 백본은 교차 어텐션을 통한 텍스트 조건을 사용하는 표준 트랜스포머입니다. T5 인코더 임베딩을 통해 텍스트 가이드를 적용하고, 모든 블록에서 공유되는 MLP 변조를 사용합니다. 각 블록은 별도의 편향 세트를 학습하여 동일한 파라미터 규모에서 품질을 향상시킵니다.
 
@@ -91,9 +81,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-requirements.txt 내용:
-
-```
+requirements.txt 내용: ```
 torch>=2.4.0
 torchvision>=0.19.0
 opencv-python>=4.9.0.80
@@ -119,9 +107,7 @@ poetry install
 
 ### 모델 다운로드
 
-HuggingFace CLI를 사용한 모델 다운로드:
-
-```bash
+HuggingFace CLI를 사용한 모델 다운로드: ```bash
 # huggingface-cli 설치
 pip install "huggingface_hub[cli]"
 
@@ -138,9 +124,7 @@ huggingface-cli download Wan-AI/Wan2.1-VAE --local-dir ./Wan2.1-VAE
 huggingface-cli download Wan-AI/Wan2.1-T5 --local-dir ./Wan2.1-T5
 ```
 
-ModelScope로 더 빠른 다운로드:
-
-```bash
+ModelScope로 더 빠른 다운로드: ```bash
 pip install modelscope
 modelscope download Wan-AI/Wan2.1-T2V-14B --local_dir ./Wan2.1-T2V-14B
 ```
@@ -184,9 +168,7 @@ python t2v_1.3B_singleGPU.py \
 
 ### ComfyUI 통합
 
-Wan 2.1은 네이티브 ComfyUI 통합을 제공합니다. Kijai의 ComfyUI-WanVideoWrapper 커스텀 노드를 권장합니다:
-
-```bash
+Wan 2.1은 네이티브 ComfyUI 통합을 제공합니다. Kijai의 ComfyUI-WanVideoWrapper 커스텀 노드를 권장합니다: ```bash
 # 커스텀 노드 설치
 cd ComfyUI/custom_nodes
 git clone https://github.com/Kijai/ComfyUI-WanVideoWrapper.git
@@ -198,9 +180,7 @@ cd ComfyUI-WanVideoWrapper
 pip install -r requirements.txt
 ```
 
-모델 파일을 적절한 ComfyUI 디렉토리에 배치:
-
-```bash
+모델 파일을 적절한 ComfyUI 디렉토리에 배치: ```bash
 # 확산 모델 -> ComfyUI/models/diffusion_models
 # Wan2_1-T2V-14B_fp8_e4m3fn.safetensors
 # Wan2_1-T2V-1_3B_fp32.safetensors
@@ -340,9 +320,7 @@ Wan 2.1은 1,035개 낸부 프롬프트를 사용하여 14개 주요 차원과 2
 
 ### GPU 성능 벤치마크
 
-다양한 GPU에서의 성능(총 시간 초 / 피크 GPU 메모리 GB):
-
-| GPU | 1.3B 480P | 14B 480P | 14B 720P |
+다양한 GPU에서의 성능(총 시간 초 / 피크 GPU 메모리 GB): | GPU | 1.3B 480P | 14B 480P | 14B 720P |
 |---|---|---|---|
 | RTX 4090 (24GB) | 281초 / 8.2GB | 지원 안됨 | 지원 안됨 |
 | A5000 (24GB) | 462초 / 8.2GB | 지원 안됨 | 지원 안됨 |
@@ -353,9 +331,7 @@ Wan 2.1은 1,035개 낸부 프롬프트를 사용하여 14개 주요 차원과 2
 
 ### 프로덕션 비용
 
-2026년 초 클라우드 GPU 비디오 생성 비용:
-
-| 모델 | 해상도 | 길이 | 생성 시간 | GPU 비용 | 클립당 비용 |
+2026년 초 클라우드 GPU 비디오 생성 비용: | 모델 | 해상도 | 길이 | 생성 시간 | GPU 비용 | 클립당 비용 |
 |---|---|---|---|---|---|
 | Wan 2.1 1.3B | 480P | 5초 | ~4분 | RTX 4090 로컬 | ~$0.02 |
 | Wan 2.1 14B | 480P | 5초 | ~4분 | $2.50/시 (H100) | ~$0.17 |
@@ -413,9 +389,7 @@ EXPOSE 7860
 CMD ["python", "gradio/t2v_14B_singleGPU.py", "--ckpt_dir", "./Wan2.1-T2V-14B"]
 ```
 
-빌드 및 실행:
-
-```bash
+빌드 및 실행: ```bash
 docker build -t wan2.1 .
 docker run --gpus all -p 7860:7860 wan2.1
 ```
@@ -427,8 +401,7 @@ import time
 import psutil
 import torch
 
-def generate_with_monitoring(prompt, **kwargs):
-    process = psutil.Process()
+def generate_with_monitoring(prompt, **kwargs): process = psutil.Process()
     start_mem = process.memory_info().rss / 1024**3
     start_time = time.time()
     
@@ -488,9 +461,7 @@ python -m diffsynth.train \
 
 ## 한계 / 정직한 평가
 
-Wan 2.1은 만능 도구가 아닙니다. 다음은 공개되지 않은 제한 사항입니다:
-
-**클립 길이는 약 5초로 하드캡됩니다.** 81 프레임 16 FPS로 학습되었습니다. 슬라이딩 윈도우나 자기회귀 방식으로 더 긴 클립을 생성하면 81 프레임 이후 품질 저하가 발생합니다.
+Wan 2.1은 만능 도구가 아닙니다. 다음은 공개되지 않은 제한 사항입니다: **클립 길이는 약 5초로 하드캡됩니다.** 81 프레임 16 FPS로 학습되었습니다. 슬라이딩 윈도우나 자기회귀 방식으로 더 긴 클립을 생성하면 81 프레임 이후 품질 저하가 발생합니다.
 
 **14B 모델의 720P는 H100 전용입니다.** 공식 문서에 720P 지원이 명시되어 있지만 실제로는 65–80GB VRAM이 필요합니다. RTX 4090(24GB)은 양자화 후에도 720P를 실행할 수 없습니다. 소비자용 GPU의 현실적인 한도는 480P입니다.
 
@@ -553,9 +524,7 @@ Wan 2.1은 접근 가능한 하드웨어에서 프로덕션 품질 출력을 제
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -572,7 +541,6 @@ Wan 2.1은 접근 가능한 하드웨어에서 프로덕션 품질 출력을 제
 - [Open-Sora 2.0 기술 보고서](https://arxiv.org/abs/2503.09642)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

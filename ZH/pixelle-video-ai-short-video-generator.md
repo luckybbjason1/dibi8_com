@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/pixelle-video-ai-short-video-generator" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/pixelle-video-ai-short-video-generator" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/pixelle-video-ai-short-video-generator" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/pixelle-video-ai-short-video-generator" />
 title: Pixelle-Video 评测：AI 全自动短视频生成引擎，输入主题自动生成完整视频
 description: Pixelle-Video 是一款开源 AI 全自动短视频生成引擎，输入主题即可自动生成文案、AI 配图、语音解说和背景音乐的完整视频。. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
-tech_stack:
-- Python
+tech_stack: - Python
 application_domain: Ai Tools
 source_version: ''
 licensing_model: Open Source
@@ -24,10 +18,8 @@ maintainer: "AIDC-AI"
 last_maintained: "2026-05-06"
 featureImage: ''
 draft: false
-aliases:
-- /zh/posts/pixelle-video-ai-short-video-generator/
-faqs:
-  - q: 'Pixelle-Video 是什么？'
+aliases: - /zh/posts/pixelle-video-ai-short-video-generator/
+faqs: - q: 'Pixelle-Video 是什么？'
     a: 'Pixelle-Video 是一款开源、MIT 授权的 AI 引擎，能将单个主题自动生成完整的短视频。只需输入一个主题，它就会自动撰写脚本、生成配套 AI 图片或视频、用 TTS 合成配音，并在渲染最终视频前添加背景音乐。'
   - q: 'Pixelle-Video 是免费开源的吗？'
     a: '是的。Pixelle-Video 由 AIDC-AI 以 MIT 许可证发布，可免费自行部署。本地部署除需要 GPU 外无额外费用；如果没有本地硬件，也可以选择使用 RunningHub 等按需付费的云服务来生成图像。'
@@ -38,7 +30,6 @@ faqs:
   - q: 'Pixelle-Video 除基础视频生成外还能做什么？'
     a: '它包含三个扩展模块：数字人 Avatar，可将一张照片转换为支持韩语、中文或英语的唇形同步讲话头像视频；Image-to-Video，可将静态图片制作成动态视频；Motion Transfer，可将参考视频中的动作映射到静止图像上。'
 ---
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -70,7 +61,6 @@ faqs:
 </script>
 
 
-<!-- canonical: https://dibi8.com/zh/tools/pixelle-video-ai-short-video-generator/ -->
 # Pixelle-Video 评测：AI 全自动短视频生成引擎，输入主题自动生成完整视频
 
 {</* resource-info */>}
@@ -92,12 +82,16 @@ faqs:
 
 🔗 **GitHub**: [https://github.com/AIDC-AI/Pixelle-Video](https://github.com/AIDC-AI/Pixelle-Video)
 
----
 
+---
 ## 核心功能亮点
 
 | 功能 | 说明 |
-|------|------|
+|
+---
+|
+---
+|
 | **全自动生成** | 输入主题 → 获得完整视频 |
 | **AI 智能文案** | AI 自动写解说词，无需手动写脚本 |
 | **AI 生成配图** | 每句话都配上精美的 AI 插图 |
@@ -109,8 +103,8 @@ faqs:
 | **多种 AI 模型** | GPT、通义千问、DeepSeek、Ollama 等 |
 | **ComfyUI 架构** | 模块化设计，可自定义任意能力 |
 
----
 
+---
 ## 视频生成流程
 
 Pixelle-Video 采用模块化设计，整个视频生成流程清晰简洁：
@@ -213,7 +207,11 @@ python webui.py
 ## 使用场景
 
 | 场景 | 示例主题 |
-|------|---------|
+|
+---
+|
+---
+|
 | **知识分享** | "Python 新手必知的 10 个技巧" |
 | **产品评测** | "iPhone 16 vs 三星 S24 对比" |
 | **故事讲述** | "一个创业者的旅程" |
@@ -254,7 +252,15 @@ Pixelle-Video 基于 **ComfyUI** 架构构建：
 ## 性能与成本
 
 | 方案 | 成本 | 速度 | 质量 |
-|------|------|------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **本地部署** | 免费（需要 GPU） | 快 | 高 |
 | **RunningHub 云端** | 按量付费 | 即时 | 高 |
 | **混合模式** | 灵活 | 均衡 | 高 |
@@ -269,7 +275,17 @@ Pixelle-Video 基于 **ComfyUI** 架构构建：
 ## 与其他工具对比
 
 | 功能 | Pixelle-Video | HeyGen | Synthesia | Pictory |
-|------|--------------|--------|-----------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **开源** | ✅ | ❌ | ❌ | ❌ |
 | **免费使用** | ✅ | 有限 | 有限 | 有限 |
 | **本地部署** | ✅ | ❌ | ❌ | ❌ |

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/docmost-team-docs-collaboration" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/docmost-team-docs-collaboration" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/docmost-team-docs-collaboration" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/docmost-team-docs-collaboration" />
 title: 'Docmost 2026: 실시간 팀 협업을 위한 오픈소스 Notion 대안 — 셀프 호스팅 가이드'
 description: 'Docmost 완벽 셀프 호스팅 가이드. 실시간 편집, Notion 스타일 블록 편집기, 중첩 페이지, PostgreSQL 백엔드를 갖춘 오픈소스 협업 Wiki. 5분 안에 배포.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [docmost, 'notion 대안', wiki, '실시간 협업', '셀프 호스팅', 문서, postgresql, docker, 오픈소스, '팀 문서']
-aliases:
-- /kr/posts/docmost-team-docs-collaboration/
+aliases: - /kr/posts/docmost-team-docs-collaboration/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/docmost-team-docs-collaboration/ -->
 
 {{</* resource-info */>}}
 
@@ -49,9 +41,7 @@ Docmost은 TypeScript와 PostgreSQL로 빌드된 오픈소스 셀프 호스팅 �
 
 ## Docmost의 작동 원리: 아키텍처 및 핵심 개념
 
-Docmost은 애플리케이션 서버, 데이터베이스 및 실시간 협업 계층을 분리한 현대적인 3계층 아키텍처를 사용한다:
-
-| 계층 | 기술 |
+Docmost은 애플리케이션 서버, 데이터베이스 및 실시간 협업 계층을 분리한 현대적인 3계층 아키텍처를 사용한다: | 계층 | 기술 |
 |---|---|
 | **백엔드** | Node.js / NestJS (TypeScript) |
 | **프론트엔드** | React 블록 기반 편집기 |
@@ -80,47 +70,32 @@ Docmost에는 **PostgreSQL과 Redis**가 필요하다 —— 둘 다 단일 Dock
 ```yaml
 version: '3.8'
 
-services:
-  docmost:
-    image: docmost/docmost:0.8.2
+services: docmost: image: docmost/docmost:0.8.2
     container_name: docmost
-    depends_on:
-      - db
+    depends_on: - db
       - redis
-    environment:
-      APP_URL: 'http://localhost:3000'
+    environment: APP_URL: 'http://localhost:3000'
       APP_SECRET: 'your-super-secret-key-change-this'
       DATABASE_URL: 'postgresql://docmost:your_db_password@db:5432/docmost?schema=public'
       REDIS_URL: 'redis://redis:6379'
-    ports:
-      - "3000:3000"
+    ports: - "3000:3000"
     restart: unless-stopped
-    volumes:
-      - docmost_data:/app/data/storage
+    volumes: - docmost_data:/app/data/storage
 
-  db:
-    image: postgres:16-alpine
+  db: image: postgres:16-alpine
     container_name: docmost_db
-    environment:
-      POSTGRES_DB: docmost
+    environment: POSTGRES_DB: docmost
       POSTGRES_USER: docmost
       POSTGRES_PASSWORD: your_db_password
     restart: unless-stopped
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+    volumes: - postgres_data:/var/lib/postgresql/data
 
-  redis:
-    image: redis:7.2-alpine
+  redis: image: redis:7.2-alpine
     container_name: docmost_redis
     restart: unless-stopped
-    volumes:
-      - redis_data:/data
+    volumes: - redis_data:/data
 
-volumes:
-  docmost_data:
-  postgres_data:
-  redis_data:
-```
+volumes: docmost_data: postgres_data: redis_data: ```
 
 이것은 세 가지 서비스를 정의한다: 포트 3000의 Docmost 애플리케이션, 지속적 저장소용 PostgreSQL 16, 실시간 협업 상태 및 캐싱용 Redis 7.2.
 
@@ -227,9 +202,7 @@ ALLOW_PUBLIC_SIGNUP=false
 
 ## 실전에서의 실시간 협업
 
-Docmost의 헤드라인 기능은 동시 다중 사용자 편집이다. 실제 작동 방식:
-
-1. **사용자 A**가 페이지를 열고 타이핑을 시작한다. 변경 사항은 WebSocket을 통해 300ms마다 서버에 동기화된다.
+Docmost의 헤드라인 기능은 동시 다중 사용자 편집이다. 실제 작동 방식: 1. **사용자 A**가 페이지를 열고 타이핑을 시작한다. 변경 사항은 WebSocket을 통해 300ms마다 서버에 동기화된다.
 2. **사용자 B**가 동일한 페이지를 연다. 서버는 현재 문서 상태와 사용자 A의 커서 위치를 전송한다.
 3. **두 사용자**가 동시에 입력한다. 운영 변환은 충돌을 자동으로 해결한다 —— 잠금 없음, 병합 충돌 없음.
 4. **커서**가 실시간으로 보이며 사용자별로 색상이 지정된다.
@@ -237,8 +210,7 @@ Docmost의 헤드라인 기능은 동시 다중 사용자 편집이다. 실제 �
 
 ```javascript
 // Docmost는 낮에는 Yjs(CRDT 라이브러리)를 사용한다
-// WebSocket 메시지는 다음과 같이 보인다:
-{
+// WebSocket 메시지는 다음과 같이 보인다: {
   "type": "doc:update",
   "pageId": "abc-123",
   "updates": [/* Yjs 바이너리 업데이트 */],
@@ -251,9 +223,7 @@ Docmost의 헤드라인 기능은 동시 다중 사용자 편집이다. 실제 �
 
 ## 다이어그램, 임베드 및 풍부한 콘텐츠
 
-Docmost는 편집기를 떠나지 않고 인라인 다이어그램을 지원한다:
-
-```markdown
+Docmost는 편집기를 떠나지 않고 인라인 다이어그램을 지원한다: ```markdown
 # 다이어그램용 슬래시 명령
 /drawio     - 인라인 Draw.io 편집기 열기
 /mermaid    - Mermaid 다이어그램 블록
@@ -275,9 +245,7 @@ graph TD
 
 ## 벤치마크 및 실제 성능
 
-2 vCPU / 4GB RAM VPS에 Docmost v0.8.2를 배포하고 20명의 동시 사용자가 페이지를 편집하고 읽는 것을 시뮬레이션하는 30분 부하 테스트를 실행했다. 결과:
-
-| 메트릭 | 값 |
+2 vCPU / 4GB RAM VPS에 Docmost v0.8.2를 배포하고 20명의 동시 사용자가 페이지를 편집하고 읽는 것을 시뮬레이션하는 30분 부하 테스트를 실행했다. 결과: | 메트릭 | 값 |
 |---|---|
 | 콜드 시작 시간 | 2.8초 |
 | 페이지 로드 (평균) | 150ms |
@@ -302,16 +270,11 @@ graph TD
 # .github/workflows/publish-to-docmost.yml
 name: Publish Docs to Docmost
 
-on:
-  push:
-    branches: [main]
+on: push: branches: [main]
     paths: ['docs/**']
 
-jobs:
-  publish:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: publish: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
 
       - name: Convert Markdown to JSON
         run: |
@@ -359,12 +322,9 @@ find "$BACKUP_DIR" -name "*.gz" -mtime +14 -delete
 
 ```yaml
 # docker-compose.yml에 모니터링 추가
-  postgres_exporter:
-    image: prometheuscommunity/postgres-exporter:v0.15.0
-    environment:
-      DATA_SOURCE_NAME: "postgresql://docmost:your_db_password@db:5432/docmost?sslmode=disable"
-    ports:
-      - "9187:9187"
+  postgres_exporter: image: prometheuscommunity/postgres-exporter:v0.15.0
+    environment: DATA_SOURCE_NAME: "postgresql://docmost:your_db_password@db:5432/docmost?sslmode=disable"
+    ports: - "9187:9187"
 ```
 
 ### 헬스 체크 엔드포인트
@@ -400,22 +360,17 @@ ALLOW_PUBLIC_SIGNUP=false
 
 ### 데이터베이스 연결 풀링
 
-50명 이상의 사용자를 위한 팀의 경우 PgBouncer를 통해 연결 풀링을 추가하라:
-
-```yaml
+50명 이상의 사용자를 위한 팀의 경우 PgBouncer를 통해 연결 풀링을 추가하라: ```yaml
 # docker-compose.yml에 추가
-  pgbouncer:
-    image: pgbouncer/pgbouncer:1.22
-    environment:
-      DATABASES_HOST: db
+  pgbouncer: image: pgbouncer/pgbouncer:1.22
+    environment: DATABASES_HOST: db
       DATABASES_PORT: 5432
       DATABASES_DATABASE: docmost
       DATABASES_USER: docmost
       DATABASES_PASSWORD: your_db_password
       POOL_MODE: transaction
       MAX_CLIENT_CONN: 200
-    ports:
-      - "6432:6432"
+    ports: - "6432:6432"
 ```
 
 Docmost의 `DATABASE_URL`을 `db:5432` 대신 `pgbouncer:6432`를 가리키도록 업데이트하라.
@@ -465,9 +420,7 @@ location /auth/login {
 
 ## 한계: 정직한 평가
 
-Docmost은 젊은 프로젝트(2024년 중반 출시)이며 몇 가지에서 경험이 부족하다:
-
-**오프라인 모드가 없다.** Notion과 달리 오프라인 편집 기능이 있는 데스크톱 및 모바일 앱이 있는 Notion과 달리 Docmost은 활성 네트워크 연결이 필요하다. 편집기는 브라우저에서 실행되며 v0.8.2 기준 네이티브 데스크톱 애플리케이션이 없다. 팀이 자주 오프라인으로 작업하는 경우 이것은 상당한 격차이다.
+Docmost은 젊은 프로젝트(2024년 중반 출시)이며 몇 가지에서 경험이 부족하다: **오프라인 모드가 없다.** Notion과 달리 오프라인 편집 기능이 있는 데스크톱 및 모바일 앱이 있는 Notion과 달리 Docmost은 활성 네트워크 연결이 필요하다. 편집기는 브라우저에서 실행되며 v0.8.2 기준 네이티브 데스크톱 애플리케이션이 없다. 팀이 자주 오프라인으로 작업하는 경우 이것은 상당한 격차이다.
 
 **Community 에디션 인증이 제한적이다.** SSO, SAML, OIDC, LDAP은 Enterprise 전용 기능이다. Community 에디션은 Google OAuth가 선택적으로 포함된 이메일/비밀번호 인증만 지원한다. 중앙 집중식 ID 관리가 필요한 팀의 경우 이는 Enterprise로 업그레이드하거나 인증이 있는 리버스 프록시(예: Authelia) 뒤에 Docmost을 배치하는 것을 의미한다.
 
@@ -529,9 +482,7 @@ dibi8.com 커뮤니티에 참여하세요: 5,000명 이상의 개발자와 매�
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -541,7 +492,6 @@ dibi8.com 커뮤니티에 참여하세요: 5,000명 이상의 개발자와 매�
 본 문서에는 [DigitalOcean](https://m.do.co/c/eca87ac14ee0)의 제휴 링크가 포함되어 있다. 당사 링크를 통해 가입하면 추가 비용 없이 당사에 추천 크레딧이 지급된다. 당사는 자체적으로 사용하는 인프라만을 추천한다. Docmost Community 에디션은 AGPL-3.0에 따라 물론 오픈소스이며 —— Docmost 유지관리자와는 제휴 관계가 없다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

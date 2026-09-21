@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/odysseus-self-hosted-ai-workspace-2026" />
 title: 'Odysseus: The Self-Hosted AI Workspace That Hit 63,000 G...
 description: 'Odysseus is an open-source, privacy-first AI workspace (63 k GitHub stars in 9 days, MIT). One Docker command gives you chat, agents, deep research, email triage, calendar, notes, and a model cookbook — all on your own hardware. This guide covers installation, key features, and how it stacks up against ChatGPT Plus and Claude.ai.'
 date: 2026-06-09 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: 'https://raw.githubusercontent.com/pewdiepie-archdaemon/odysseus/m
 draft: false
 categories: ['ai-tools']
 tags: [odysseus, 'self-hosted ai', 'ai workspace', 'local llm', privacy, docker, 'open source', 'chatgpt alternative', ollama, 'deep research']
-aliases:
-- /posts/odysseus-self-hosted-ai-workspace-2026/
-faqs:
-  - q: 'Does Odysseus require a GPU?'
+aliases: - /posts/odysseus-self-hosted-ai-workspace-2026/
+faqs: - q: 'Does Odysseus require a GPU?'
     a: 'No. Odysseus itself is lightweight. The GPU requirement only applies if you want to run local models via the Cookbook feature. You can connect to remote APIs (OpenAI, Anthropic, OpenRouter) or a separate Ollama instance without any local GPU.'
   - q: 'How is Odysseus different from Open WebUI?'
     a: 'Open WebUI focuses on chat and RAG over Ollama. Odysseus adds a full suite on top: agents with MCP tool calling, deep research with visual reports, an AI-aware email client, CalDAV calendar, notes with reminders, and a model Cookbook that detects your VRAM and auto-recommends compatible models. It is closer to a self-hosted ChatGPT Plus than a plain Ollama front-end.'
@@ -43,9 +39,7 @@ Odysseus launched on GitHub on 31 May 2026 and crossed 63,000 stars by 8 June �
 
 ## What Odysseus Actually Is
 
-At its core Odysseus is a Python web app (FastAPI + Uvicorn backend, vanilla JS front-end) that wraps several well-tested open-source components into a coherent workspace. You get:
-
-- **Chat** — send messages to any local or remote LLM. Add a model server in Settings with a URL and key; Odysseus handles the rest. Supported backends: vLLM, llama.cpp, Ollama, OpenRouter, OpenAI, GitHub Copilot.
+At its core Odysseus is a Python web app (FastAPI + Uvicorn backend, vanilla JS front-end) that wraps several well-tested open-source components into a coherent workspace. You get: - **Chat** — send messages to any local or remote LLM. Add a model server in Settings with a URL and key; Odysseus handles the rest. Supported backends: vLLM, llama.cpp, Ollama, OpenRouter, OpenAI, GitHub Copilot.
 - **Agent** — hand the agent a goal plus tools (web, files, shell, MCP servers, memory) and it runs autonomously. The agent layer is built on top of [opencode](https://github.com/anomalyco/opencode), the open-source coding agent.
 - **Cookbook** — scans your hardware, detects available VRAM, and recommends GGUF / FP8 / AWQ models you can download and serve in one click. Powered by [llmfit](https://github.com/AlexsJones/llmfit).
 - **Deep Research** — multi-step agentic research that searches the web, reads sources, and synthesises a structured visual report. Adapted from Alibaba's [Tongyi DeepResearch](https://github.com/Alibaba-NLP/DeepResearch).
@@ -59,18 +53,14 @@ At its core Odysseus is a Python web app (FastAPI + Uvicorn backend, vanilla JS 
 
 ## Quick Start (Docker)
 
-The fastest path to a running instance:
-
-```bash
+The fastest path to a running instance: ```bash
 git clone https://github.com/pewdiepie-archdaemon/odysseus.git
 cd odysseus
 cp .env.example .env          # optional but recommended
 docker compose up -d --build
 ```
 
-Open **http://localhost:7000**. On first boot Odysseus prints a temporary admin password to the Docker logs:
-
-```bash
+Open **http://localhost:7000**. On first boot Odysseus prints a temporary admin password to the Docker logs: ```bash
 docker compose logs odysseus | grep "Admin password"
 ```
 
@@ -78,9 +68,7 @@ Log in, change the password in Settings, then add your first model server (Ollam
 
 ## Native Install (Linux / macOS)
 
-For GPU-accelerated local models on Apple Silicon, run native rather than Docker (Docker cannot access the Metal GPU):
-
-```bash
+For GPU-accelerated local models on Apple Silicon, run native rather than Docker (Docker cannot access the Metal GPU): ```bash
 git clone https://github.com/pewdiepie-archdaemon/odysseus.git
 cd odysseus
 python3 -m venv venv && source venv/bin/activate
@@ -89,9 +77,7 @@ python setup.py
 python -m uvicorn app:app --host 127.0.0.1 --port 7000
 ```
 
-Apple Silicon shortcut:
-
-```bash
+Apple Silicon shortcut: ```bash
 ./start-macos.sh        # binds to 127.0.0.1:7860
 ```
 
@@ -99,9 +85,7 @@ Requirements: Python 3.11+. `tmux` is needed by Cookbook for background model do
 
 ## The Cookbook Feature in Depth
 
-Cookbook is the standout differentiator. It:
-
-1. Detects your GPU model and available VRAM
+Cookbook is the standout differentiator. It: 1. Detects your GPU model and available VRAM
 2. Scores a curated model catalogue against your hardware using `llmfit`'s fit algorithm (VRAM × quantisation × context window)
 3. Lets you click **Download & Serve** — it fetches the model in the background, launches the appropriate runtime (vLLM for FP8/AWQ, llama.cpp for GGUF), and registers it in your model list automatically
 
@@ -114,7 +98,15 @@ Odysseus stores agent memory in ChromaDB using fastembed for embeddings (pure ON
 ## How It Compares
 
 | Feature | Odysseus | Open WebUI | ChatGPT Plus |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Self-hosted | ✅ | ✅ | ❌ |
 | Agent + MCP tools | ✅ | Partial | ✅ |
 | Deep Research | ✅ | ❌ | ✅ |
@@ -137,7 +129,6 @@ If you want a ChatGPT-like experience on your own hardware without a monthly sub
 **GitHub:** [pewdiepie-archdaemon/odysseus](https://github.com/pewdiepie-archdaemon/odysseus)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -165,25 +156,20 @@ If you want a ChatGPT-like experience on your own hardware without a monthly sub
 
 ## Why This Matters
 
-Understanding odysseus: the self-hosted ai workspace that hit 63,000 github stars in 9 days — 2026 setup guide is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding odysseus: the self-hosted ai workspace that hit 63,000 github stars in 9 days — 2026 setup guide is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -204,13 +190,13 @@ Odysseus: The Self-Hosted AI Workspace That Hit 63,000 GitHub Stars in 9 Days �
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
 
+---
 ## Related Articles
 
 - [academic-research-skills](odysseus-self-hosted-ai-workspace-2026)

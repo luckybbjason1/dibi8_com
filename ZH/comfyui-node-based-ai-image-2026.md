@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/comfyui-node-based-ai-image-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/comfyui-node-based-ai-image-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/comfyui-node-based-ai-image-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/comfyui-node-based-ai-image-2026" />
 title: 'ComfyUI 2026：114k 星节点式 AI 图像/视频/音频工作流引擎完整指南'
 description: 'ComfyUI 是 114k 星节点式可视化工作流引擎，支持 SD/SDXL/Flux/Wan/Hunyuan 等。支持图像、视频、音频、3D 生成。2026 完整安装指南：节点基础、workflow JSON 导入、ComfyUI Manager、何时 ComfyUI 胜过 AUTOMATIC1111。'
 date: 2026-05-21 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [comfyui, 图像生成, 视频生成, 节点式, 工作流, 开源]
-aliases:
-  - /posts/comfyui-node-based-ai-image-2026/
+aliases: - /posts/comfyui-node-based-ai-image-2026/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/comfyui-node-based-ai-image-2026/ -->
 
 如果 [AUTOMATIC1111](/zh/resources/ai-tools/stable-diffusion-webui-2026/) 是"AI 图像生成的 Photoshop"（打字生图），**ComfyUI** 就是 **"生成式 AI 的 Blender 节点编辑器"** —— 你把工作流当有向图来搭，对每个模型、采样器、条件步、后处理都有显式控制。114k GitHub 星，GPL-3.0，支持 2024-2026 出的几乎所有生成式 AI 模型家族：SD 1.x、SDXL、SD3/3.5、Flux（1 & 2）、Wan、Hunyuan（图/视频/3D）、PixArt、AuraFlow、LTX-Video。
 
@@ -62,7 +54,15 @@ A1111 UI 假设一输入 → 一输出。ComfyUI 假设"你可能想"：
 ComfyUI 智能内存管理比 A1111 好得多。同 GPU 在 ComfyUI 干更多事：
 
 | GPU | SDXL | Flux dev | Hunyuan 视频（5s）|
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 4 GB（带 offload）| ~30 秒 | 可能但慢 | 不行 |
 | 8 GB | ~6 秒 | ~25 秒 | ~4 分 |
 | 12 GB | ~3 秒 | ~12 秒 | ~2 分 |
@@ -160,7 +160,11 @@ ComfyUI 暴露 `POST /prompt` 端点接 workflow JSON。在上面搭薄 auth + �
 ## 9. ComfyUI vs A1111 vs SwarmUI
 
 | 挑 | 何时 |
-|---|---|
+|
+---
+|
+---
+|
 | **ComfyUI** | 复杂工作流、多模型、视频、音频、要精确可复现、要把 AI 媒体作为产品 ship |
 | **AUTOMATIC1111** | 单图生成，80% 轻度用例，最大扩展库，最低学习曲线。看我们的 [A1111 指南](/zh/resources/ai-tools/stable-diffusion-webui-2026/) |
 | **SwarmUI** | 要 ComfyUI 力量但 A1111 UI —— 自动把简单表单输入转成底层 ComfyUI 工作流 |
@@ -181,12 +185,11 @@ ComfyUI = **节点式 AI 媒体生成工作流引擎，2026 单图 txt2img 之�
 
 装 ComfyUI + ComfyUI Manager（共 ~15 分钟），把 OpenArt 社区工作流拖到画布上，看生成式 AI 作为有向图的方式让 A1111 永远无法呈现。
 
----
 
+---
 *dibi8 多模态内容 stack 的一部分 —— 配 [Stable Diffusion WebUI 轻度用](/zh/resources/ai-tools/stable-diffusion-webui-2026/) 和 [ChatTTS 做语音](/zh/resources/ai-tools/chattts-dialogue-tts-2026/)。见即将上线的多模态内容 Pipeline 合集拿完整创作者 stack。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -214,25 +217,20 @@ ComfyUI = **节点式 AI 媒体生成工作流引擎，2026 单图 txt2img 之�
 
 ## Why This Matters
 
-Understanding comfyui 2026：114k 星节点式 ai 图像/视频/音频工作流引擎完整指南 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding comfyui 2026：114k 星节点式 ai 图像/视频/音频工作流引擎完整指南 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -253,8 +251,8 @@ ComfyUI 2026：114k 星节点式 AI 图像/视频/音频工作流引擎完整指
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 

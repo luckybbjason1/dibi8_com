@@ -1,10 +1,9 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/ruv-pi" />
-title: "Ruv Pi: The Self-Extensible Coding Agent CLI with Multi-...
+title: "Ruv Pi: The Self-Extensible Coding Agent CLI with Multi-..."
 description: "Ruv Pi is a self-extensible coding agent CLI from Earendil Works that provides a unified multi-provider LLM API, enabling developers to build, run, and extend AI-powered coding agents with support for Claude, OpenAI, Gemini, and more."
 date: 2026-06-10
-lastmod:  2026-06-10slug: ruv-pi
+lastmod: 2026-06-10
+slug: ruv-pi
 category: llm-frameworks
 tags: [ruv-pi, pi-agent, coding agent, LLM, multi-provider, AI coding, self-extensible]
 github_repo: https://github.com/earendil-works/pi
@@ -12,9 +11,7 @@ stars: 61200
 maintainer: earendil-works
 license: MIT
 featureImage: https://raw.githubusercontent.com/earendil-works/pi/main/docs/assets/pi-hero-banner.png
-lang: en
 ---
-
 ## Introduction
 
 The landscape of AI coding tools has become remarkably fragmented. Developers juggle between Claude Code, Cursor, Copilot, Codex, and a growing zoo of CLI tools — each with its own configuration, pricing, and capabilities. Managing multiple model providers, each with different APIs, rate limits, and token costs, has become a significant operational burden for teams building intelligent applications.
@@ -34,9 +31,7 @@ The landscape of AI coding tools has become remarkably fragmented. Developers ju
 
 Ruv Pi is a self-extensible coding agent CLI that provides an agent runtime with tool calling capabilities and a unified multi-provider LLM API. Think of it as the bridge between your coding needs and the ever-growing world of LLM providers.
 
-At its core, Pi is built on two pillars:
-
-1. **Self-Extensible Agent Runtime** — The agent can add new tools, modify its own behavior, and extend its capabilities at runtime. If a task requires a tool that doesn't exist, Pi can create it.
+At its core, Pi is built on two pillars: 1. **Self-Extensible Agent Runtime** — The agent can add new tools, modify its own behavior, and extend its capabilities at runtime. If a task requires a tool that doesn't exist, Pi can create it.
 2. **Unified Multi-Provider LLM API** — A single API call that works with OpenAI, Anthropic, Google, and other providers. You specify which model you want; Pi handles the rest.
 
 **Feature Image:**
@@ -45,9 +40,7 @@ At its core, Pi is built on two pillars:
 
 ## Core Architecture
 
-Pi's architecture is designed around three main components:
-
-### Agent Runtime
+Pi's architecture is designed around three main components: ### Agent Runtime
 
 The agent runtime is the brain of the system. It maintains conversation context, manages tool execution, and orchestrates the interaction between the user, the LLM, and external tools. The runtime is stateful, maintaining conversation history and tool state across multiple interactions.
 
@@ -65,8 +58,7 @@ def calculate_compound_interest(
     rate: float,
     time: int,
     compounds_per_year: int = 12
-) -> dict:
-    """Calculate compound interest for given parameters."""
+) -> dict: """Calculate compound interest for given parameters."""
     result = principal * (1 + rate / compounds_per_year) ** (compounds_per_year * time)
     return {
         "final_amount": round(result, 2),
@@ -98,9 +90,7 @@ export PI_PROVIDER=auto
 
 ## How It Works
 
-Pi operates through a continuous loop of three phases:
-
-1. **Think** — The agent analyzes the user's request, breaking it down into subtasks and determining which tools are needed.
+Pi operates through a continuous loop of three phases: 1. **Think** — The agent analyzes the user's request, breaking it down into subtasks and determining which tools are needed.
 2. **Act** — The agent calls the appropriate tools, executing code, reading files, querying databases, or making API calls.
 3. **Reflect** — The agent evaluates the results, checking for errors or incomplete work, and decides whether to continue or report completion.
 
@@ -130,9 +120,7 @@ pi sessions archive abc123
 
 ## Installation
 
-Installing Pi is straightforward. The primary installation method is through pip:
-
-```bash
+Installing Pi is straightforward. The primary installation method is through pip: ```bash
 # Install via pip
 pip install pi-agent
 
@@ -143,9 +131,7 @@ pi --version
 pi providers list
 ```
 
-Alternatively, you can install through npm if you prefer a JavaScript-based setup:
-
-```bash
+Alternatively, you can install through npm if you prefer a JavaScript-based setup: ```bash
 # Install via npm
 npm install @earendil-works/pi-coding-agent
 
@@ -153,9 +139,7 @@ npm install @earendil-works/pi-coding-agent
 npx pi --version
 ```
 
-For development or to contribute to the project:
-
-```bash
+For development or to contribute to the project: ```bash
 # Clone the repository
 git clone https://github.com/earendil-works/pi.git
 
@@ -171,13 +155,9 @@ pytest tests/
 
 ## Integration Patterns
 
-Pi is designed to integrate seamlessly into existing development workflows. Here are the key integration patterns:
+Pi is designed to integrate seamlessly into existing development workflows. Here are the key integration patterns: ### Git Integration
 
-### Git Integration
-
-Pi can interact with your Git repository, making commits, creating branches, and managing pull requests:
-
-```bash
+Pi can interact with your Git repository, making commits, creating branches, and managing pull requests: ```bash
 # Configure Git integration
 export PI_GIT_ENABLED="true"
 export PI_GIT_AUTO_COMMIT="true"
@@ -189,9 +169,7 @@ pi start --task "Refactor database module and commit changes"
 
 ### CI/CD Pipeline Integration
 
-Pi can be integrated into CI/CD pipelines for automated testing, code review, and deployment:
-
-```bash
+Pi can be integrated into CI/CD pipelines for automated testing, code review, and deployment: ```bash
 # Configure Pi for CI/CD
 export PI_CI_ENABLED="true"
 export PI_CI_MODE="review"  # review, test, or deploy
@@ -202,9 +180,7 @@ pi ci-review --base main --head feature-branch
 
 ### IDE Integration
 
-Pi works alongside your preferred IDE, providing intelligent suggestions and executing tasks:
-
-```bash
+Pi works alongside your preferred IDE, providing intelligent suggestions and executing tasks: ```bash
 # Start Pi in watch mode, monitoring file changes
 pi watch --directory ./src --interval 5
 
@@ -214,25 +190,17 @@ pi watch --directory ./src --interval 5
 
 ### Multi-Provider Routing
 
-One of Pi's most powerful features is intelligent model routing. Based on the task type, Pi can automatically select the best model:
-
-```yaml
+One of Pi's most powerful features is intelligent model routing. Based on the task type, Pi can automatically select the best model: ```yaml
 # pi-config.yaml
-routing:
-  code_generation:
-    model: claude-sonnet-4-20250514
+routing: code_generation: model: claude-sonnet-4-20250514
     temperature: 0.3
-  code_review:
-    model: gpt-4o
+  code_review: model: gpt-4o
     temperature: 0.1
-  debugging:
-    model: claude-sonnet-4-20250514
+  debugging: model: claude-sonnet-4-20250514
     temperature: 0.5
-  documentation:
-    model: gemini-pro
+  documentation: model: gemini-pro
     temperature: 0.3
-  default:
-    model: auto
+  default: model: auto
     temperature: 0.7
 ```
 
@@ -242,10 +210,16 @@ routing:
 
 ### Model Comparison
 
-Pi's unified API enables direct comparison of different models on the same tasks:
-
-| Task Type | Best Model (Pi Auto-Select) | Avg. Latency | Cost per 1K tokens |
-|-----------|---------------------------|--------------|-------------------|
+Pi's unified API enables direct comparison of different models on the same tasks: | Task Type | Best Model (Pi Auto-Select) | Avg. Latency | Cost per 1K tokens |
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Code generation | Claude Sonnet 4 | 1.2s | $0.003 |
 | Code review | GPT-4o | 0.8s | $0.005 |
 | Debugging | Claude Sonnet 4 | 1.5s | $0.003 |
@@ -254,10 +228,12 @@ Pi's unified API enables direct comparison of different models on the same tasks
 
 ### Self-Extension Performance
 
-Pi's self-extending capabilities have been benchmarked on a suite of complex coding tasks:
-
-| Metric | Value |
-|--------|-------|
+Pi's self-extending capabilities have been benchmarked on a suite of complex coding tasks: | Metric | Value |
+|
+---
+|
+---
+|
 | Average tools generated per complex task | 3.2 |
 | Tool success rate (first try) | 94.5% |
 | Average time to generate custom tool | 8.3 seconds |
@@ -268,9 +244,7 @@ Pi's self-extending capabilities have been benchmarked on a suite of complex cod
 
 ### Custom Tool Development
 
-For power users, creating custom tools gives you full control over Pi's capabilities:
-
-```python
+For power users, creating custom tools gives you full control over Pi's capabilities: ```python
 # Advanced custom tool with error handling
 from pi_agent import tool, ToolResponse
 
@@ -278,10 +252,8 @@ from pi_agent import tool, ToolResponse
     name="deploy_to_docker",
     description="Build and deploy a Docker container"
 )
-def deploy_docker(image_name: str, tag: str = "latest") -> ToolResponse:
-    """Deploy a Docker image with comprehensive error handling."""
-    try:
-        # Build the image
+def deploy_docker(image_name: str, tag: str = "latest") -> ToolResponse: """Deploy a Docker image with comprehensive error handling."""
+    try: # Build the image
         build_result = subprocess.run(
             ["docker", "build", "-t", f"{image_name}:{tag}", "."],
             capture_output=True, text=True, check=True
@@ -296,17 +268,14 @@ def deploy_docker(image_name: str, tag: str = "latest") -> ToolResponse:
         return ToolResponse.success(
             f"Successfully deployed {image_name}:{tag}"
         )
-    except subprocess.CalledProcessError as e:
-        return ToolResponse.error(
+    except subprocess.CalledProcessError as e: return ToolResponse.error(
             f"Deployment failed: {e.stderr}"
         )
 ```
 
 ### Agent Memory and Context Management
 
-For long-running sessions, managing context is critical:
-
-```bash
+For long-running sessions, managing context is critical: ```bash
 # Configure context window
 export PI_CONTEXT_WINDOW="200000"
 export PI_CONTEXT_STRATEGY="summary"  # summary, truncate, or keep-all
@@ -321,9 +290,7 @@ pi context status
 
 ### Multi-Agent Collaboration
 
-Pi supports multi-agent collaboration for complex tasks that require specialized expertise:
-
-```bash
+Pi supports multi-agent collaboration for complex tasks that require specialized expertise: ```bash
 # Launch a collaborative session
 pi collaborate --agents research,implementation,review
 
@@ -335,9 +302,7 @@ pi collaborate --agents research,implementation,review
 
 ### Plugin System
 
-Pi has a rich plugin ecosystem that extends its capabilities:
-
-```bash
+Pi has a rich plugin ecosystem that extends its capabilities: ```bash
 # List available plugins
 pi plugins list
 
@@ -354,7 +319,17 @@ pi plugins configure pi-plugin-django --settings dev
 How does Pi compare to other coding agents and LLM frameworks?
 
 | Feature | Ruv Pi | Claude Code | Cursor | OpenClaw |
-|---------|--------|-------------|--------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Installation | `pip install pi-agent` | Invite-only | IDE Extension | Custom CLI |
 | Model Support | 10+ providers | Anthropic only | OpenAI + Anthropic | Multiple |
 | Self-Extension | Yes | No | Limited | Limited |
@@ -369,9 +344,7 @@ Pi stands out for its self-extensible architecture and multi-provider support. W
 
 ## Limitations
 
-While Pi is a powerful tool, it has some limitations worth noting:
-
-**Model Provider Coverage.** While Pi supports many providers, it doesn't support every available model. If your preferred provider isn't on the supported list, you'll need to use the API directly or request support through the GitHub issues.
+While Pi is a powerful tool, it has some limitations worth noting: **Model Provider Coverage.** While Pi supports many providers, it doesn't support every available model. If your preferred provider isn't on the supported list, you'll need to use the API directly or request support through the GitHub issues.
 
 **Self-Extension Reliability.** The self-extending capability, while impressive, is not perfect. Generated tools succeed on first try approximately 94.5% of the time, meaning roughly 1 in 20 custom tools may need manual adjustment.
 
@@ -421,10 +394,9 @@ Visit the official documentation at [https://pi.dev/docs/latest](https://pi.dev/
 
 
 
----
 
-**Sources & Further Reading**:
-- Official docs: https://ruv-pi.dev (check official repo)
+---
+**Sources & Further Reading**: - Official docs: https://ruv-pi.dev (check official repo)
 - GitHub repository: https://github.com/ruv-pi/11/ruv/pi
 - Community discussion: https://github.com/ruv-pi/discussions
 
@@ -432,18 +404,16 @@ Visit the official documentation at [https://pi.dev/docs/latest](https://pi.dev/
 
 Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss this article and get help from the community.
 
-Read related articles:
-- [dibi8 English Telegram group](dibi8-internal-link)
+Read related articles: - [dibi8 English Telegram group](dibi8-internal-link)
 - [Related tool comparison](dibi8-internal-link)
 
 Try the tool discussed above. If it's a paid service, check for affiliate offers.
 
----
 
+---
 *Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

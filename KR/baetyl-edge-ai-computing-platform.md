@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/baetyl-edge-ai-computing-platform" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/baetyl-edge-ai-computing-platform" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/baetyl-edge-ai-computing-platform" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/baetyl-edge-ai-computing-platform" />
 title: 'Baetyl: IoT 기기에 AI 모델을 배포하는 클라우드 네이티브 엣지 AI 컴퓨팅 플랫폼 — 20...
 description: 'Baetyl v2.4를 배포하여 IoT 기기에 Kubernetes 네이티브 엣지 컴퓨팅을 제공합니다. AI 모델 추론, MQTT/BACnet 지원, OTA 업데이트, K3s 런타임, 클라우드-엣지 동기화.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [baetyl, '엣지-컴퓨팅', iot, kubernetes, k3s, 'ai-추론', mqtt, '엣지-ai', 'ota-업데이트', 'lf-edge']
-aliases:
-- /kr/posts/baetyl-edge-ai-computing-platform/
+aliases: - /kr/posts/baetyl-edge-ai-computing-platform/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/baetyl-edge-ai-computing-platform/ -->
 
 {{</* resource-info */>}}
 
@@ -45,18 +37,14 @@ Baidu에서 원래 개발한 Linux Foundation Edge 프로젝트인 Baetyl(발음
 
 Baetyl은 LF Edge 산하의 오픈소스 엣지 컴퓨팅 프레임워크로, 클라우드 컴퓨팅, 데이터 및 서비스를 엣지 장치에 원활하게 확장합니다. Baidu Intelligent Edge(BIE) 팀에서 원래 개발했으며, 장치 연결, 메시지 라우팅, 원격 동기화, 함수 컴퓨팅, 비디오 캡처, AI 추론, 상태 보고 및 구성 OTA를 포함한 임시 오프라인, 저지연 컴퓨팅 서비스를 제공합니다.
 
-Baetyl v2(현재 안정 버전: v2.4.3, 2024년 10월 릴리스)는 두 개의 상호 보완적인 시스템으로 구성됩니다:
-
-- **엣지 컴퓨팅 프레임워크** (`baetyl/baetyl`): 엣지 노드의 Kubernetes/K3s에서 실행됩니다. 시스템 서비스(baetyl-init, baetyl-core, baetyl-function)를 통해 모든 애플리케이션을 관리하고 배포합니다.
+Baetyl v2(현재 안정 버전: v2.4.3, 2024년 10월 릴리스)는 두 개의 상호 보완적인 시스템으로 구성됩니다: - **엣지 컴퓨팅 프레임워크** (`baetyl/baetyl`): 엣지 노드의 Kubernetes/K3s에서 실행됩니다. 시스템 서비스(baetyl-init, baetyl-core, baetyl-function)를 통해 모든 애플리케이션을 관리하고 배포합니다.
 - **클우드 관리 스위트** (`baetyl/baetyl-cloud`): 클라우드의 Kubernetes에 배포됩니다. 노드 관리, 애플리케이션 배포, 구성 및 일괄 프로비저닝을 위한 RESTful API를 제공합니다.
 
 엣지 프레임워크는 Linux/amd64, Linux/arm64 및 Linux/armv7을 지원합니다. 리소스가 제한된 장치의 경우 최소 **1GB RAM 및 1 CPU 코어**가 필요한 K3s(경량 Kubernetes)가 권장됩니다.
 
 ## Baetyl의 작동 방식: 클라우드-엣지 아키텍처
 
-Baetyl의 v2 아키텍처는 Kubernetes 컨트롤러와 IoT 장치 섀도우에서 영감을 받은 선언적 섀도우 기반 동기화 모델을 사용합니다:
-
-```
+Baetyl의 v2 아키텍처는 Kubernetes 컨트롤러와 IoT 장치 섀도우에서 영감을 받은 선언적 섀도우 기반 동기화 모델을 사용합니다: ```
 클우드 측 (Kubernetes)              엣지 측 (K3s/Kubernetes)
 +---------------------+              +---------------------+
 |  baetyl-cloud       |  Report    |  baetyl-init        |
@@ -130,8 +118,7 @@ mysql -u root -p < scripts/sql/data.sql
 
 # 데이터베이스 연결 구성
 cat > scripts/charts/baetyl-cloud/conf/cloud.yml << EOF
-database:
-  type: "mysql"
+database: type: "mysql"
   url: "baetyl:password@tcp(localhost:3306)/baetyl_cloud?charset=utf8&parseTime=true"
 EOF
 
@@ -179,34 +166,24 @@ curl http://localhost:30004/v1/nodes/edge-prod-01
 
 ## 4가지 주요 프로토콜과의 통합
 
-Baetyl은 내장 프로토콜 어댑터를 통해 다양한 IoT 에코시스템에 연결합니다:
+Baetyl은 내장 프로토콜 어댑터를 통해 다양한 IoT 에코시스템에 연결합니다: **1. MQTT 메시지 브로커**
 
-**1. MQTT 메시지 브로커**
-
-baetyl-broker 모듈은 장치, 클라우드 및 로컬 애플리케이션 간에 메시지를 라우팅하는 엣지 측 MQTT 브로커를 제공합니다:
-
-```yaml
+baetyl-broker 모듈은 장치, 클라우드 및 로컬 애플리케이션 간에 메시지를 라우팅하는 엣지 측 MQTT 브로커를 제공합니다: ```yaml
 # MQTT 브로커 애플리케이션 구성
 name: mqtt-app
 version: v1
-services:
-  - name: broker
+services: - name: broker
     image: baetyl-broker:v2.4.3
-    ports:
-      - "1883:1883"
+    ports: - "1883:1883"
       - "8883:8883"
-    volumeMounts:
-      - name: broker-conf
+    volumeMounts: - name: broker-conf
         mountPath: /etc/baetyl
-volumes:
-  - name: broker-conf
-    config:
-      name: broker-conf
+volumes: - name: broker-conf
+    config: name: broker-conf
       version: v1
 ```
 
-연결 테스트:
-```bash
+연결 테스트: ```bash
 mosquitto_pub -h localhost -p 1883 -t "devices/sensor01/temp" -m "23.5"
 mosquitto_sub -h localhost -p 1883 -t "devices/+/temp"
 ```
@@ -216,18 +193,14 @@ mosquitto_sub -h localhost -p 1883 -t "devices/+/temp"
 ```yaml
 # Modbus 장치 커넥터 구성
 name: modbus-app
-services:
-  - name: modbus-connector
+services: - name: modbus-connector
     image: baetyl-modbus:v2.4.3
-    devices:
-      - name: temperature-sensor
-        modbus:
-          mode: tcp
+    devices: - name: temperature-sensor
+        modbus: mode: tcp
           address: 192.168.1.100:502
           slaveid: 1
           interval: 5s
-          read:
-            - function: 3
+          read: - function: 3
               address: 0
               quantity: 2
               type: float
@@ -238,24 +211,18 @@ services:
 ```yaml
 # HVAC 시스템용 BACnet 커넥터
 name: bacnet-app
-services:
-  - name: bacnet-connector
+services: - name: bacnet-connector
     image: baetyl-bacnet:v2.4.3
-    config:
-      devices:
-        - device_id: 1234
+    config: devices: - device_id: 1234
           address: 192.168.10.50
-          objects:
-            - type: analog-input
+          objects: - type: analog-input
               instance: 0
               property: present-value
 ```
 
 **4. eKuiper 스트림 처리 통합**
 
-Baetyl v2.4.3+는 엣지 스트림 처리를 위해 eKuiper를 선택적 시스템 애플리케이션으로 통합합니다:
-
-```bash
+Baetyl v2.4.3+는 엣지 스트림 처리를 위해 eKuiper를 선택적 시스템 애플리케이션으로 통합합니다: ```bash
 # 노드 생성/업데이트 시 eKuiper 활성화
 curl -X PUT http://localhost:30004/v1/nodes/edge-prod-01 \
   -H "Content-Type: application/json" \
@@ -270,9 +237,7 @@ curl -X PUT http://localhost:30004/v1/nodes/edge-prod-01 \
 
 ## 벤치마크 / 실제 엣지 AI 배포
 
-성능 비교: 클라우드 추론 대 Baetyl 엣지 추론 (NVIDIA Jetson Nano):
-
-| 메트릭 | 클라우드 (AWS g4dn) | Baetyl 엣지 (Jetson Nano) |
+성능 비교: 클라우드 추론 대 Baetyl 엣지 추론 (NVIDIA Jetson Nano): | 메트릭 | 클라우드 (AWS g4dn) | Baetyl 엣지 (Jetson Nano) |
 |--------|---------------------|---------------------------|
 | 네트워크 왕복 | 120-280ms | **0ms** (로컬) |
 | 모델 로드 시간 | 1.2s (콜드) | **800ms** (캐시) |
@@ -292,35 +257,24 @@ curl -X PUT http://localhost:30004/v1/nodes/edge-prod-01 \
 # 엣지에서 PyTorch 이미지 분류 모델
 name: ai-inference-app
 version: v1
-services:
-  - name: defect-detector
+services: - name: defect-detector
     image: myregistry/defect-model:trt-v3.2
     runtime: nvidia
-    resources:
-      limits:
-        nvidia.com/gpu: 1
+    resources: limits: nvidia.com/gpu: 1
         memory: "2Gi"
         cpu: "1000m"
-    ports:
-      - "8080:8080"
-    volumeMounts:
-      - name: model-cache
+    ports: - "8080:8080"
+    volumeMounts: - name: model-cache
         mountPath: /models
-volumes:
-  - name: model-cache
-    hostPath:
-      path: /opt/baetyl/models
+volumes: - name: model-cache
+    hostPath: path: /opt/baetyl/models
 ```
 
 **GPU 모니터링 및 공유:**
 
-baetyl-core는 GPU 메모리 사용량, 온도 및 전력 소비를 실시간으로 모니터링할 수 있습니다. 여러 애플리케이션이 GPU 리소스를 공유할 수 있습니다:
-
-```yaml
+baetyl-core는 GPU 메모리 사용량, 온도 및 전력 소비를 실시간으로 모니터링할 수 있습니다. 여러 애플리케이션이 GPU 리소스를 공유할 수 있습니다: ```yaml
 # GPU 리소스 구성
-resources:
-  limits:
-    nvidia.com/gpu.shared: 0.5  # 앱 간 GPU 공유
+resources: limits: nvidia.com/gpu.shared: 0.5  # 앱 간 GPU 공유
 ```
 
 **OTA 업데이트 롤아웃 전략:**
@@ -351,16 +305,12 @@ curl -X PUT http://cloud:30004/v1/apps/defect-model-v4 \
 # 엣지에서 로컬 데이터 캐싱을 위한 SQLite 배포
 cat > sqlite-app.yml << EOF
 name: local-cache
-services:
-  - name: sqlite
+services: - name: sqlite
     image: baetyl-sqlite:v2.4.3
-    volumeMounts:
-      - name: data
+    volumeMounts: - name: data
         mountPath: /data
-volumes:
-  - name: data
-    hostPath:
-      path: /opt/baetyl/sqlite
+volumes: - name: data
+    hostPath: path: /opt/baetyl/sqlite
 EOF
 
 baetyl apply -f sqlite-app.yml
@@ -464,9 +414,7 @@ Baetyl은 클라우드 AI 학습과 엣지 AI 추론 사이의 격차를 해소�
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -476,7 +424,6 @@ Baetyl은 클라우드 AI 학습과 엣지 AI 추론 사이의 격차를 해소�
 본 기사에는 DigitalOcean의 제휴 링크가 포함되어 있습니다. 당사 링크를 통해 가입하면 추가 비용 없이 커미션을 받습니다. 모든 권장 사항은 실제 테스트를 기반으로 하며 제휴 프로그램의 영향을 받지 않습니다. Baetyl은 Apache-2.0 라이선스에 따라 완전히 오픈소스이며 물론 사용할 수 있습니다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

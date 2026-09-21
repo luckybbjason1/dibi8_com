@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/wan-2-1" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/wan-2-1" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/wan-2-1" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/wan-2-1" />
 title: 'Wan 2.1: 16.1K+ Stars — Phân tích sâu tạo video mở so vớ...
 description: 'Wan 2.1 là bộ mô hình video nền mở của Alibaba với hiệu suất SOTA. Hỗ trợ ComfyUI, Diffusers và Gradio. Bao gồm T2V, I2V, chỉnh sửa video và tạo văn bản với các biến thể 1.3B và 14B.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: ['wan-2-1', 'tạo-video', 'diffusion-transformer', 'ai-video', 'mã-nguồn-mở', alibaba, comfyui, diffusers]
-aliases:
-- /vi/posts/wan-2-1/
+aliases: - /vi/posts/wan-2-1/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/wan-2-1/ -->
 
 {{</* resource-info */>}}
 
@@ -49,9 +41,7 @@ Wan 2.1 là bộ mô hình tạo video nền quy mô lớn nâng cao và mở đ
 
 ### Tổng quan kiến trúc
 
-Wan 2.1 được xây dựng trên nền tảng Diffusion Transformer (DiT) với Flow Matching, cùng họ kiến trúc với Stable Diffusion 3. Kiến trúc có ba thành phần cốt lõi:
-
-**Wan-VAE (Bộ mã hóa tự động biến phân video):** Một VAE nhân quả 3D thực hiện nén không-thờ gian 256x. Không giống các VAE hình ảnh tiêu chuẩn, Wan-VAE bảo toàn tính nhân quả thờ gian — nghĩa là mỗi khung chỉ quan sát các khung trước đó, không phải khung tương lai. Điều này loại bỏ hiện tượng nhấp nháy phổ biến ở các mô hình tạo video đầu tiên. Wan-VAE có thể mã hóa video 1080P với độ dài bất kỳ mà không mất thông tin thờ gian.
+Wan 2.1 được xây dựng trên nền tảng Diffusion Transformer (DiT) với Flow Matching, cùng họ kiến trúc với Stable Diffusion 3. Kiến trúc có ba thành phần cốt lõi: **Wan-VAE (Bộ mã hóa tự động biến phân video):** Một VAE nhân quả 3D thực hiện nén không-thờ gian 256x. Không giống các VAE hình ảnh tiêu chuẩn, Wan-VAE bảo toàn tính nhân quả thờ gian — nghĩa là mỗi khung chỉ quan sát các khung trước đó, không phải khung tương lai. Điều này loại bỏ hiện tượng nhấp nháy phổ biến ở các mô hình tạo video đầu tiên. Wan-VAE có thể mã hóa video 1080P với độ dài bất kỳ mà không mất thông tin thờ gian.
 
 **Diffusion Transformer (DiT):** Xương sống tạo sinh sử dụng transformer tiêu chuẩn với cross-attention để điều khiển theo văn bản. Mỗi khối transformer xử lý các patch không-thờ gian và áp dụng hướng dẫn văn bản thông qua embedding T5. Phép điều chế MLP sử dụng MLP được chia sẻ trên tất cả các khối, mỗi khối học một bộ bias riêng.
 
@@ -91,9 +81,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Nội dung requirements.txt:
-
-```
+Nội dung requirements.txt: ```
 torch>=2.4.0
 torchvision>=0.19.0
 opencv-python>=4.9.0.80
@@ -119,9 +107,7 @@ poetry install
 
 ### Tải mô hình
 
-Tải mô hình bằng HuggingFace CLI:
-
-```bash
+Tải mô hình bằng HuggingFace CLI: ```bash
 # Cài đặt huggingface-cli
 pip install "huggingface_hub[cli]"
 
@@ -138,9 +124,7 @@ huggingface-cli download Wan-AI/Wan2.1-VAE --local-dir ./Wan2.1-VAE
 huggingface-cli download Wan-AI/Wan2.1-T5 --local-dir ./Wan2.1-T5
 ```
 
-Hoặc dùng ModelScope để tải nhanh hơn từ Trung Quốc:
-
-```bash
+Hoặc dùng ModelScope để tải nhanh hơn từ Trung Quốc: ```bash
 pip install modelscope
 modelscope download Wan-AI/Wan2.1-T2V-14B --local_dir ./Wan2.1-T2V-14B
 ```
@@ -184,9 +168,7 @@ python t2v_1.3B_singleGPU.py \
 
 ### Tích hợp ComfyUI
 
-Wan 2.1 có tích hợp ComfyUI gốc. Cách tiếp cận được đề xuất sử dụng các node tùy chỉnh ComfyUI-WanVideoWrapper của Kijai:
-
-```bash
+Wan 2.1 có tích hợp ComfyUI gốc. Cách tiếp cận được đề xuất sử dụng các node tùy chỉnh ComfyUI-WanVideoWrapper của Kijai: ```bash
 # Cài đặt node tùy chỉnh
 cd ComfyUI/custom_nodes
 git clone https://github.com/Kijai/ComfyUI-WanVideoWrapper.git
@@ -198,9 +180,7 @@ cd ComfyUI-WanVideoWrapper
 pip install -r requirements.txt
 ```
 
-Tải file mô hình và đặt vào thư mục ComfyUI phù hợp:
-
-```bash
+Tải file mô hình và đặt vào thư mục ComfyUI phù hợp: ```bash
 # Diffusion models -> ComfyUI/models/diffusion_models
 # Wan2_1-T2V-14B_fp8_e4m3fn.safetensors
 # Wan2_1-T2V-1_3B_fp32.safetensors
@@ -340,9 +320,7 @@ Wan 2.1 được đánh giá trên 14 chiều chính và 26 chiều phụ với 
 
 ### Benchmark hiệu suất GPU
 
-Hiệu suất trên các GPU khác nhau (tổng thờ gian giây / bộ nhớ GPU đỉnh GB):
-
-| GPU | 1.3B 480P | 14B 480P | 14B 720P |
+Hiệu suất trên các GPU khác nhau (tổng thờ gian giây / bộ nhớ GPU đỉnh GB): | GPU | 1.3B 480P | 14B 480P | 14B 720P |
 |---|---|---|---|
 | RTX 4090 (24GB) | 281s / 8,2GB | Không hỗ trợ | Không hỗ trợ |
 | A5000 (24GB) | 462s / 8,2GB | Không hỗ trợ | Không hỗ trợ |
@@ -353,9 +331,7 @@ Hiệu suất trên các GPU khác nhau (tổng thờ gian giây / bộ nhớ GP
 
 ### Chi phí production thực tế
 
-Chi phí GPU cloud cho tạo video đầu năm 2026:
-
-| Mô hình | Độ phân giải | Thờ lượng | Thờ gian tạo | Chi phí GPU | Chi phí/clip |
+Chi phí GPU cloud cho tạo video đầu năm 2026: | Mô hình | Độ phân giải | Thờ lượng | Thờ gian tạo | Chi phí GPU | Chi phí/clip |
 |---|---|---|---|---|---|
 | Wan 2.1 1.3B | 480P | 5s | ~4 phút | RTX 4090 local | ~$0,02 |
 | Wan 2.1 14B | 480P | 5s | ~4 phút | $2,50/giờ (H100) | ~$0,17 |
@@ -413,9 +389,7 @@ EXPOSE 7860
 CMD ["python", "gradio/t2v_14B_singleGPU.py", "--ckpt_dir", "./Wan2.1-T2V-14B"]
 ```
 
-Build và chạy:
-
-```bash
+Build và chạy: ```bash
 docker build -t wan2.1 .
 docker run --gpus all -p 7860:7860 wan2.1
 ```
@@ -427,8 +401,7 @@ import time
 import psutil
 import torch
 
-def generate_with_monitoring(prompt, **kwargs):
-    process = psutil.Process()
+def generate_with_monitoring(prompt, **kwargs): process = psutil.Process()
     start_mem = process.memory_info().rss / 1024**3
     start_time = time.time()
     
@@ -488,9 +461,7 @@ python -m diffsynth.train \
 
 ## Hạn chế / Đánh giá trung thực
 
-Wan 2.1 không phải đũa thần. Đây là những gì bảng thông số không nói cho bạn biết:
-
-**Độ dài clip bị giới hạn cứng ở ~5 giây.** Mô hình được đào tạo trên 81 khung 16 FPS. Cố gắng tạo clip dài hơn qua cửa sổ trượt hoặc tiếp cận tự hồi quy sẽ gây suy giảm chất lượng sau khung 81.
+Wan 2.1 không phải đũa thần. Đây là những gì bảng thông số không nói cho bạn biết: **Độ dài clip bị giới hạn cứng ở ~5 giây.** Mô hình được đào tạo trên 81 khung 16 FPS. Cố gắng tạo clip dài hơn qua cửa sổ trượt hoặc tiếp cận tự hồi quy sẽ gây suy giảm chất lượng sau khung 81.
 
 **720P trên mô hình 14B chỉ dành cho H100.** README chính thức ghi hỗ trợ 720P nhưng thực tế cần 65–80GB VRAM. RTX 4090 (24GB) không thể chạy 720P ngay cả khi lượng tử hóa.
 
@@ -553,9 +524,7 @@ Tham gia [nhóm Telegram dibi8](https://t.me/dibi8channel) để nhận phân t�
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -573,7 +542,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [Báo cáo kỹ thuật Open-Sora 2.0](https://arxiv.org/abs/2503.09642)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

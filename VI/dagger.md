@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/dagger" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/dagger" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/dagger" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/dagger" />
 title: 'Dagger: CI/CD Lập Trình Được với 15K+ Stars — So sánh vớ...
 description: 'Dagger là một engine CI/CD lập trình được chạy pipeline trong container. Tương thích với Docker, Go, Python, TypeScript. Bao gồm cài đặt Dagger, hướng dẫn, so sánh với GitHub Actions và tăng cường production.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [cicd, devops, containers, 'pipeline-code', docker, 'github-actions', 'gitlab-ci', 'build-automation']
-aliases:
-- /vi/posts/dagger/
+aliases: - /vi/posts/dagger/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/dagger/ -->
 
 {{</* resource-info */>}}
 
@@ -59,9 +51,7 @@ Một engine CI/CD lập trình được thực thi pipeline automation bên tro
 
 ### Tổng quan kiến trúc
 
-Kiến trúc của Dagger gồm bốn lớp:
-
-1. **Code Pipeline** (Go / Python / TypeScript) —— định nghĩa logic bằng Dagger SDK.
+Kiến trúc của Dagger gồm bốn lớp: 1. **Code Pipeline** (Go / Python / TypeScript) —— định nghĩa logic bằng Dagger SDK.
 2. **Dagger SDK** —— chuyển đổi native function calls thành GraphQL queries.
 3. **Dagger Engine** —— runtime container dựa trên BuildKit thực thi pipeline graph.
 4. **Container Runtime** —— Docker, Podman hoặc runtime OCI-compliant nào host engine.
@@ -172,8 +162,7 @@ dagger init --sdk=go --source=./dagger my-pipeline
 # Hoặc với TypeScript
 dagger init --sdk=typescript --source=./dagger my-pipeline
 
-# Lệnh này tạo ra:
-# ├── dagger/
+# Lệnh này tạo ra: # ├── dagger/
 # │   └── src/main.py (hoặc main.go, hoặc index.ts)
 # ├── dagger.json
 # └── .gitignore
@@ -187,10 +176,8 @@ import dagger
 from dagger import dag, function, object_type
 
 @object_type
-class MyPipeline:
-    @function
-    async def hello(self, name: str = "World") -> str:
-        return await dag.container()
+class MyPipeline: @function
+    async def hello(self, name: str = "World") -> str: return await dag.container()
             .from_("alpine:latest")
             .with_exec(["echo", f"Hello, {name}!"])
             .stdout()
@@ -200,24 +187,20 @@ class MyPipeline:
 # Chạy function locally
 dagger call hello --name="Dagger"
 
-# Output:
-# Hello, Dagger!
+# Output: # Hello, Dagger!
 ```
 
 ## Tích hợp với Docker, Go, Python và TypeScript
 
 ### Tích hợp Docker — Build và Push Image
 
-Dagger thao tác container trong hệ sinh thái Docker một cách native. Đây là pipeline đầy đủ build, tag và push Docker image:
-
-```python
+Dagger thao tác container trong hệ sinh thái Docker một cách native. Đây là pipeline đầy đủ build, tag và push Docker image: ```python
 # dagger/src/main.py — Build và push Docker image
 import dagger
 from dagger import dag, function, object_type, Directory
 
 @object_type
-class CiPipeline:
-    @function
+class CiPipeline: @function
     async def build_and_push(
         self,
         source: Directory,
@@ -226,8 +209,7 @@ class CiPipeline:
         password: dagger.Secret,
         repository: str,
         tag: str = "latest"
-    ) -> str:
-        # Build container từ Dockerfile trong source directory
+    ) -> str: # Build container từ Dockerfile trong source directory
         image = await dag.container()
             .build(source, dockerfile="Dockerfile")
 
@@ -302,10 +284,8 @@ import dagger
 from dagger import dag, function, object_type, Directory, Service
 
 @object_type
-class TestPipeline:
-    @function
-    async def integration_test(self, source: Directory) -> str:
-        # Khởi động PostgreSQL service container
+class TestPipeline: @function
+    async def integration_test(self, source: Directory) -> str: # Khởi động PostgreSQL service container
         postgres = dag.service(
             dag.container()
             .from_("postgres:16-alpine")
@@ -361,9 +341,7 @@ class BuildPipeline {
 
 ### Hiệu năng Caching
 
-Cache content-addressed của Dagger cung cấp tốc độ đo được so với hệ thống CI truyền thống. Trong benchmark kiểm soát build Go microservice (khoảng 50 dependencies) qua 10 lần chạy liên tiếp:
-
-| Kịch bản | GitHub Actions | GitLab CI | Dagger (local cache) | Dagger (shared cache) |
+Cache content-addressed của Dagger cung cấp tốc độ đo được so với hệ thống CI truyền thống. Trong benchmark kiểm soát build Go microservice (khoảng 50 dependencies) qua 10 lần chạy liên tiếp: | Kịch bản | GitHub Actions | GitLab CI | Dagger (local cache) | Dagger (shared cache) |
 |----------|---------------|-----------|---------------------|----------------------|
 | Cold build | 4p 12s | 3p 48s | 4p 05s | 4p 05s |
 | Lần 2 (không đổi code) | 3p 55s | 3p 30s | 8s | 8s |
@@ -374,18 +352,14 @@ Insight chính: GitHub Actions và GitLab CI cache Docker layers và dependency 
 
 ### Case Study: Thay thế 700 dòng GitHub Actions YAML
 
-Một nhóm kỹ sư đã thay thế workflow GitHub Actions 700 dòng (build, test, push và deploy 3 microservices) bằng pipeline Dagger Python 180 dòng. Kết quả sau 30 ngày:
-
-- Bật chạy pipeline local: developer test thay đổi CI trước khi push (trước đây không thể)
+Một nhóm kỹ sư đã thay thế workflow GitHub Actions 700 dòng (build, test, push và deploy 3 microservices) bằng pipeline Dagger Python 180 dòng. Kết quả sau 30 ngày: - Bật chạy pipeline local: developer test thay đổi CI trước khi push (trước đây không thể)
 - Thờigian debug CI trung bình: giảm từ 45 phút xuống 5 phút mỗi developer mỗi tuần
 - Tiêu thụ phút CI: giảm 34% nhờ caching thông minh
 - Trùng lặp code pipeline: loại bỏ thông qua Dagger modules chia sẻ
 
 ### Daggerverse: Hệ sinh thái Module
 
-Daggerverse ([daggerverse.dev](https://daggerverse.dev)) là registry module cộng đồng. Tính đến tháng 5/2026, nó host 800+ module bao gồm:
-
-- Language toolchains: Go, Python, Node.js, Rust builds
+Daggerverse ([daggerverse.dev](https://daggerverse.dev)) là registry module cộng đồng. Tính đến tháng 5/2026, nó host 800+ module bao gồm: - Language toolchains: Go, Python, Node.js, Rust builds
 - Cloud deployments: AWS, GCP, Azure, Fly.io
 - Security scanning: Trivy, Snyk, SLSA verification
 - Testing: k6 load tests, Playwright browser tests
@@ -403,21 +377,17 @@ dagger module use github.com/Dudesons/daggerverse/node
 
 ### Quản lý Secret
 
-Không bao giờ truyền secret dạng plain string. Kiểu `Secret` của Dagger đảm bảo các giá trị nhạy cảm được che trong log và trace:
-
-```python
+Không bao giờ truyền secret dạng plain string. Kiểu `Secret` của Dagger đảm bảo các giá trị nhạy cảm được che trong log và trace: ```python
 import dagger
 from dagger import dag, function, object_type, Secret
 
 @object_type
-class SecurePipeline:
-    @function
+class SecurePipeline: @function
     async def deploy(
         self,
         kubeconfig: Secret,
         image_digest: str
-    ) -> str:
-        return await (
+    ) -> str: return await (
             dag.container()
             .from_("bitnami/kubectl:latest")
             .with_mounted_secret("/root/.kube/config", kubeconfig)
@@ -440,17 +410,13 @@ dagger call deploy \
 
 ### Mẫu thực thi song song
 
-Dagger tự động song song hóa các operations độc lập. Cấu trúc pipeline một cách rõ ràng để tối đa hóa tính song song:
-
-```python
+Dagger tự động song song hóa các operations độc lập. Cấu trúc pipeline một cách rõ ràng để tối đa hóa tính song song: ```python
 import asyncio
 from dagger import dag, function, object_type, Directory
 
 @object_type
-class ParallelPipeline:
-    @function
-    async def run_parallel(self, source: Directory) -> list[str]:
-        # Ba operations này chạy song song tự động
+class ParallelPipeline: @function
+    async def run_parallel(self, source: Directory) -> list[str]: # Ba operations này chạy song song tự động
         results = await asyncio.gather(
             self.lint(source),
             self.unit_tests(source),
@@ -458,24 +424,21 @@ class ParallelPipeline:
         )
         return list(results)
 
-    async def lint(self, source: Directory) -> str:
-        return await dag.container()
+    async def lint(self, source: Directory) -> str: return await dag.container()
             .from_("golangci/golangci-lint:latest")
             .with_mounted_directory("/src", source)
             .with_workdir("/src")
             .with_exec(["golangci-lint", "run", "--timeout=5m"])
             .stdout()
 
-    async def unit_tests(self, source: Directory) -> str:
-        return await dag.container()
+    async def unit_tests(self, source: Directory) -> str: return await dag.container()
             .from_("golang:1.24")
             .with_mounted_directory("/src", source)
             .with_workdir("/src")
             .with_exec(["go", "test", "-short", "./..."])
             .stdout()
 
-    async def security_scan(self, source: Directory) -> str:
-        return await dag.container()
+    async def security_scan(self, source: Directory) -> str: return await dag.container()
             .from_("aquasec/trivy:latest")
             .with_mounted_directory("/src", source)
             .with_workdir("/src")
@@ -485,9 +448,7 @@ class ParallelPipeline:
 
 ### Monitoring với OpenTelemetry
 
-Dagger phát ra OpenTelemetry traces cho mọi operation. Export ra backend để có khả năng quan sát pipeline:
-
-```bash
+Dagger phát ra OpenTelemetry traces cho mọi operation. Export ra backend để có khả năng quan sát pipeline: ```bash
 # Chạy với OTel export sang Jaeger
 export OTEL_EXPORTER_OTLP_ENDPOINT=http://jaeger:4317
 export OTEL_EXPORTER_OTLP_PROTOCOL=grpc
@@ -505,21 +466,16 @@ name: Dagger CI
 
 on: [push, pull_request]
 
-jobs:
-  ci:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: ci: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
 
       - name: Chạy pipeline Dagger
         uses: dagger/dagger-for-github@v7
-        with:
-          version: "0.19.7"
+        with: version: "0.19.7"
           verb: call
           module: .
           args: run --source=.
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        env: GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 ### Tích hợp CI — GitLab CI
@@ -528,22 +484,15 @@ jobs:
 # .gitlab-ci.yml
 stages: [build]
 
-dagger:build:
-  stage: build
+dagger:build: stage: build
   image: docker:24-dind
-  services:
-    - docker:24-dind
-  variables:
-    DAGGER_VERSION: "0.19.7"
-  before_script:
-    - apk add --no-cache curl
+  services: - docker:24-dind
+  variables: DAGGER_VERSION: "0.19.7"
+  before_script: - apk add --no-cache curl
     - curl -fsSL https://dl.dagger.io/dagger/install.sh | BIN_DIR=/usr/local/bin sh
-  script:
-    - dagger call run --source=.
-  cache:
-    key: dagger-cache
-    paths:
-      - .dagger-cache/
+  script: - dagger call run --source=.
+  cache: key: dagger-cache
+    paths: - .dagger-cache/
 ```
 
 ### Tích hợp CI — Jenkins
@@ -609,9 +558,7 @@ pipeline {
 
 ## Hạn chế / Đánh giá trung thực
 
-Dagger không phải công cụ phù hợp cho mọi tình huống. Đây là những gì nó không làm tốt:
-
-**Đường cong học tập là thực tế.** Viết pipeline bằng Go hoặc Python đòi hỏi đầu tư ban đầu nhiều hơn so với copy template YAML GitHub Actions. Các team không thành thạo Go/TypeScript/Python đối mặt với lộ trình áp dụng dốc hơn.
+Dagger không phải công cụ phù hợp cho mọi tình huống. Đây là những gì nó không làm tốt: **Đường cong học tập là thực tế.** Viết pipeline bằng Go hoặc Python đòi hỏi đầu tư ban đầu nhiều hơn so với copy template YAML GitHub Actions. Các team không thành thạo Go/TypeScript/Python đối mặt với lộ trình áp dụng dốc hơn.
 
 **Hệ sinh thái nhỏ hơn.** Với ~800 module Daggerverse so với 20,000+ GitHub Actions, đôi khi bạn cần viết chức năng mà trong GitHub Actions chỉ cần một dòng Action step.
 
@@ -664,9 +611,7 @@ Theo dõi nhóm Telegram DevOps dibi8 để cập nhật công cụ CI/CD hàng 
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -686,7 +631,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [Dagger for GitHub Action](https://github.com/dagger/dagger-for-github)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

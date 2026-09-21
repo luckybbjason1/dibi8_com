@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/act" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/act" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/act" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/act" />
 title: 'act: 70,410 GitHub Stars — 로컬에서 GitHub Actions 실행, 2026 ...
 description: 'act (nektos/act)는 Docker 컨테이너에서 GitHub Actions 워크플로우를 로컬로 실행하는 CLI 도구입니다. Docker, GitHub Actions, Go, VS Code와 호환됩니다. 설치, 설정, 시크릿 관리, runner 이미지, 프로덕션 하드닝을 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [act, 'github-actions', 'ci-cd', docker, '로컬-개발', devops, 테스트, 자동화]
-aliases:
-- /kr/posts/act/
+aliases: - /kr/posts/act/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/act/ -->
 
 {{</* resource-info */>}}
 
@@ -45,9 +37,7 @@ act는 `.github/workflows/`에서 GitHub Actions 워크플로우 파일을 읽�
 
 ## act의 작동 원리
 
-act는 로컬 GitHub Actions runner 시뮬레이터로 작동합니다. 저장소에서 `act`를 실행하면 다음 단계를 수행합니다:
-
-1. **워크플로우 발견**: `.github/workflows/`에서 YAML 워크플로우 파일 스캔
+act는 로컬 GitHub Actions runner 시뮬레이터로 작동합니다. 저장소에서 `act`를 실행하면 다음 단계를 수행합니다: 1. **워크플로우 발견**: `.github/workflows/`에서 YAML 워크플로우 파일 스캔
 2. **이벤트 파싱**: 이벤트 유형(push, pull_request 등)에 따라 실행할 워크플로우 결정
 3. **의존성 해결**: 작업 의존성의 방향성 비순환 그래프(DAG) 구축
 4. **이미지 준비**: 지정된 runner용 Docker 이미지 풀링 또는 빌드
@@ -60,9 +50,7 @@ act는 로컬 GitHub Actions runner 시뮬레이터로 작동합니다. 저장�
 
 ### Runner 이미지 크기
 
-act는 충실도와 디스크 공간 간의 균형을 맞추기 위해 세 가지 이미지 계층을 제공합니다:
-
-| 이미지 크기 | 다운로드 | 디스크 공간 | 사용 사례 |
+act는 충실도와 디스크 공간 간의 균형을 맞추기 위해 세 가지 이미지 계층을 제공합니다: | 이미지 크기 | 다운로드 | 디스크 공간 | 사용 사례 |
 |---|---|---|---|
 | Micro | ~50 MB | <200 MB | Node.js 전용, 빠른 스모크 테스트 |
 | Medium | ~200 MB | ~500 MB | 필수 도구 포함, 대부분의 워크플로우에 적합 |
@@ -72,9 +60,7 @@ act는 충실도와 디스크 공간 간의 균형을 맞추기 위해 세 가�
 
 ## 설치 및 설정
 
-act는 Docker가 설치된 모든 플랫폼에서 60초 이내에 설치됩니다. 원하는 방법을 선택하세요:
-
-### macOS (Homebrew)
+act는 Docker가 설치된 모든 플랫폼에서 60초 이내에 설치됩니다. 원하는 방법을 선택하세요: ### macOS (Homebrew)
 
 ```bash
 # Homebrew를 통해 act 설치
@@ -131,20 +117,15 @@ sudo make install
 
 ### 설치 후 설정
 
-첫 실행 시 act는 기본 이미지 크기 선택을 요청합니다:
-
-```bash
+첫 실행 시 act는 기본 이미지 크기 선택을 요청합니다: ```bash
 # 첫 실행 — 기본 runner 이미지 선택
 act
-? Please choose the default image you want to use with act:
-  - Large size image: ~17GB download, ~75GB disk space, closest to GitHub runners
+? Please choose the default image you want to use with act: - Large size image: ~17GB download, ~75GB disk space, closest to GitHub runners
   - Medium size image: ~500MB, includes essential tools (RECOMMENDED)
   - Micro size image: <200MB, Node.js only
 ```
 
-이렇게 하면 `~/.actrc`에 기본 설정이 생성됩니다:
-
-```bash
+이렇게 하면 `~/.actrc`에 기본 설정이 생성됩니다: ```bash
 # ~/.actrc — 기본 설정
 cat ~/.actrc
 -P ubuntu-latest=catthehacker/ubuntu:act-latest
@@ -152,9 +133,7 @@ cat ~/.actrc
 
 ### Docker 사전 요구사항
 
-act는 Docker Engine API가 필요합니다. 실행 전 확인:
-
-```bash
+act는 Docker Engine API가 필요합니다. 실행 전 확인: ```bash
 # Docker가 실행 중인지 확인
 docker info
 
@@ -168,9 +147,7 @@ docker version
 
 ### Docker 통합
 
-act는 실행 엔진으로 Docker를 사용합니다. 모든 워크플로우 작업은 격리된 컨테이너에서 실행됩니다:
-
-```bash
+act는 실행 엔진으로 Docker를 사용합니다. 모든 워크플로우 작업은 격리된 컨테이너에서 실행됩니다: ```bash
 # 사용자 지정 runner 이미지로 실행
 act -P ubuntu-latest=node:20-slim
 
@@ -182,32 +159,24 @@ act
 act --container-architecture linux/amd64
 ```
 
-Docker-in-Docker (DinD) 워크플로우는 호스트 Docker 소켓 마운트를 통해 지원됩니다:
-
-```yaml
+Docker-in-Docker (DinD) 워크플로우는 호스트 Docker 소켓 마운트를 통해 지원됩니다: ```yaml
 # .github/workflows/dind-test.yml
 name: Docker Build Test
 on: push
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: build: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - name: Build Docker image
         run: docker build -t myapp:latest .
 ```
 
 ### VS Code 확장 (GitHub Local Actions)
 
-[GitHub Local Actions](https://marketplace.visualstudio.com/items?itemName=SanjulaGanepola.github-local-actions) VS Code 확장은 act를 위한 GUI를 제공합니다:
-
-```bash
+[GitHub Local Actions](https://marketplace.visualstudio.com/items?itemName=SanjulaGanepola.github-local-actions) VS Code 확장은 act를 위한 GUI를 제공합니다: ```bash
 # VS Code 마켓플레이스에서 확장 설치
 # Cmd+Shift+P → "Extensions: Install Extensions" → "GitHub Local Actions" 검색
 ```
 
-확장 설치 후:
-- 사이드바에서 Act 패널 열기
+확장 설치 후: - 사이드바에서 Act 패널 열기
 - `.github/workflows/`의 모든 워크플로우 보기
 - 임의의 워크플로우를 클릭하여 로컬로 실행
 - 통합 터미널에서 실시간 로그 보기
@@ -216,9 +185,7 @@ jobs:
 
 ### GitHub Enterprise 지원
 
-act는 프라이빗 GitHub Enterprise Server 인스턴스를 지원합니다:
-
-```bash
+act는 프라이빗 GitHub Enterprise Server 인스턴스를 지원합니다: ```bash
 # GitHub Enterprise Server 대상 실행
 act --github-instance github.company.com
 
@@ -228,29 +195,20 @@ act --github-instance github.company.com -s GITHUB_TOKEN=ghp_xxxxxxxx
 
 ### Make 대체로 act 사용하기
 
-많은 팀이 act를 로컬 태스크 러너로 사용하며, Makefile을 GitHub Actions 워크플로우로 대체합니다:
-
-```yaml
+많은 팀이 act를 로컬 태스크 러너로 사용하며, Makefile을 GitHub Actions 워크플로우로 대체합니다: ```yaml
 # .github/workflows/tasks.yml
 name: Local Tasks
 on: workflow_dispatch
-jobs:
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: lint: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - name: Run linter
         run: npm run lint
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+  test: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - name: Run tests
         run: npm test
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+  build: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - name: Build
         run: npm run build
 ```
@@ -276,9 +234,7 @@ act -j build
 
 ### 사례 연구: CI 분 감소
 
-중간 규모 엔지니어링 팀(25명 개발자)이 하루에 200번 워크플로우 푸시를 실행:
-
-- **act 이전**: 하루 약 600번의 실패한 CI 실행으로 약 3,000 GitHub Actions 분 소모
+중간 규모 엔지니어링 팀(25명 개발자)이 하루에 200번 워크플로우 푸시를 실행: - **act 이전**: 하루 약 600번의 실패한 CI 실행으로 약 3,000 GitHub Actions 분 소모
 - **act 이후**: 개발자가 먼저 로컬로 검증; 실패한 CI 실행이 하루 약 80건으로 감소
 - **월간 절약**: 약 66,000 GitHub Actions 분 = runner 유형에 따라 약 $400-1,300/월
 
@@ -294,9 +250,7 @@ act -j build
 
 ### 시크릿 관리
 
-시크릿을 커밋하여 테스트하지 마세요. act는 여러 가지 안전한 패턴을 제공합니다:
-
-```bash
+시크릿을 커밋하여 테스트하지 마세요. act는 여러 가지 안전한 패턴을 제공합니다: ```bash
 # 옵션 1: 대화형 프롬프트 (수동 실행에 권장)
 act -s MY_SECRET
 
@@ -316,18 +270,14 @@ act --secret-file .secrets
 act -s GITHUB_TOKEN=ghp_xxxxxxxxxxxx
 ```
 
-`.secrets`를 즉시 `.gitignore`에 추가:
-
-```bash
+`.secrets`를 즉시 `.gitignore`에 추가: ```bash
 echo ".secrets" >> .gitignore
 echo "*.secrets" >> .gitignore
 ```
 
 ### 저장소 변수 (vars 컨텍스트)
 
-GitHub의 `vars` 컨텍스트가 저장소 수준 설정을 위해 지원됩니다:
-
-```bash
+GitHub의 `vars` 컨텍스트가 저장소 수준 설정을 위해 지원됩니다: ```bash
 # 변수 설정
 act --var DEPLOY_ENV=staging --var API_VERSION=v2
 
@@ -341,9 +291,7 @@ act --var-file .variables
 
 ### 페이로드 파일로 이벤트 시뮬레이션
 
-이벤트 데이터에 의존하는 워크플로우를 JSON 페이로드 파일로 테스트:
-
-```bash
+이벤트 데이터에 의존하는 워크플로우를 JSON 페이로드 파일로 테스트: ```bash
 # pull_request 이벤트 시뮬레이션
 cat > pull-request.json << EOF
 {
@@ -380,9 +328,7 @@ act workflow_dispatch -e workflow-inputs.json
 
 ### 드라이-런 모드
 
-실제 실행 없이 워크플로우 구문을 검증하고 실행 계획을 확인:
-
-```bash
+실제 실행 없이 워크플로우 구문을 검증하고 실행 계획을 확인: ```bash
 # 실행할 모든 작업 나열
 act -l
 
@@ -395,9 +341,7 @@ act -n -v
 
 ### 설정 파일 (.actrc)
 
-`.actrc`를 통한 프로젝트별 설정:
-
-```bash
+`.actrc`를 통한 프로젝트별 설정: ```bash
 # 프로젝트 루트의 .actrc
 cat > .actrc << EOF
 --container-architecture linux/amd64
@@ -408,38 +352,28 @@ cat > .actrc << EOF
 EOF
 ```
 
-설정 우선순위 (높음에서 낮음):
-1. CLI 인자
+설정 우선순위 (높음에서 낮음): 1. CLI 인자
 2. `./.actrc` (프로젝트 루트)
 3. `~/.actrc` (홈 디렉토리)
 4. `$XDG_CONFIG_HOME/act/actrc`
 
 ### 로컬 실행을 위한 작업/단계 건 skipped
 
-로컬에서 실행하지 않을 단계 표시:
-
-```yaml
+로컬에서 실행하지 않을 단계 표시: ```yaml
 # 워크플로우 파일에서
-jobs:
-  deploy:
-    if: ${{ !github.event.act }}  # 로컬 실행 시 배포 작업 건 skipped
+jobs: deploy: if: ${{ !github.event.act }}  # 로컬 실행 시 배포 작업 건 skipped
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+    steps: - uses: actions/checkout@v4
 
-  notify:
-    runs-on: ubuntu-latest
-    steps:
-      - name: 로컬에서 Slack 알림 건 skipped
+  notify: runs-on: ubuntu-latest
+    steps: - name: 로컬에서 Slack 알림 건 skipped
         if: ${{ !env.ACT }}
         run: |
           curl -X POST -H 'Content-type: application/json' \
             --data '{"text":"Deployment complete"}' ${{ secrets.SLACK_WEBHOOK }}
 ```
 
-이벤트를 통해 act 플래그 전달:
-
-```bash
+이벤트를 통해 act 플래그 전달: ```bash
 cat > event.json << EOF
 { "act": true }
 EOF
@@ -448,9 +382,7 @@ act -e event.json
 
 ### 아티팩트 수집
 
-로컬에서 워크플로우 아티팩트 수집:
-
-```bash
+로컬에서 워크플로우 아티팩트 수집: ```bash
 # 아티팩트 서버 경로 지정
 act --artifact-server-path /tmp/artifacts
 
@@ -460,9 +392,7 @@ ls -la /tmp/artifacts/
 
 ### 오프라인 모드
 
-격리 또는 저대역폭 환경용:
-
-```bash
+격리 또는 저대역폭 환경용: ```bash
 # 사전 풀링 이미지
 act --action-offline-mode
 
@@ -493,9 +423,7 @@ act --action-offline-mode
 
 ## 한계 / 객관적 평가
 
-act는 개발 및 디버깅 도구이며, 프로덕션 CI/CD의 대체재가 아닙니다. 도입 전 다음 제약사항을 이해하세요:
-
-1. **Linux runner만 지원**: Windows (`windows-latest`) 및 macOS (`macos-latest`) runner는 컨테이너화된 실행을 지원하지 않습니다. `-self-hosted` 플래그는 macOS/Windows 호스트에서 직접 작업을 실행할 수 있지만, 이는 컨테이너 격리를 우회하고 GitHub의 runner 환경과 일치하지 않습니다.
+act는 개발 및 디버깅 도구이며, 프로덕션 CI/CD의 대체재가 아닙니다. 도입 전 다음 제약사항을 이해하세요: 1. **Linux runner만 지원**: Windows (`windows-latest`) 및 macOS (`macos-latest`) runner는 컨테이너화된 실행을 지원하지 않습니다. `-self-hosted` 플래그는 macOS/Windows 호스트에서 직접 작업을 실행할 수 있지만, 이는 컨테이너 격리를 우회하고 GitHub의 runner 환경과 일치하지 않습니다.
 
 2. **기본 이미지 불완전**: Medium runner 이미지에는 GitHub 호스팅 runner에 사전 설치된 모든 도구가 포함되어 있지 않습니다. `swift`, `gcloud` 또는 특정 Android SDK 구성 요소와 같은 소프트웨어는 워크플로우에서 수동 설치 단계가 필요할 수 있습니다.
 
@@ -517,9 +445,7 @@ act는 개발 및 디버깅 도구이며, 프로덕션 CI/CD의 대체재가 아
 
 ### Q2: 워크플로우에서 특정 작업만 실행하려면 어떻게 합니까?
 
-워크플로우 YAML에 정의된 작업 ID 뒤에 `-j` 플래그를 사용합니다:
-
-```bash
+워크플로우 YAML에 정의된 작업 ID 뒤에 `-j` 플래그를 사용합니다: ```bash
 # "test" 작업만 실행
 act -j test
 
@@ -529,9 +455,7 @@ act -j lint -W .github/workflows/checks.yml
 
 ### Q3: act를 프라이빗 GitHub 저장소나 GitHub Enterprise와 함께 사용할 수 있습니까?
 
-예. 프라이빗 저장소의 경우 `-s GITHUB_TOKEN`을 통해 개인 액세스 토큰을 제공합니다. GitHub Enterprise Server의 경우 `--github-instance`를 사용합니다:
-
-```bash
+예. 프라이빗 저장소의 경우 `-s GITHUB_TOKEN`을 통해 개인 액세스 토큰을 제공합니다. GitHub Enterprise Server의 경우 `--github-instance`를 사용합니다: ```bash
 act --github-instance github.mycompany.com -s GITHUB_TOKEN=ghp_xxx
 ```
 
@@ -541,9 +465,7 @@ act --github-instance github.mycompany.com -s GITHUB_TOKEN=ghp_xxx
 
 ### Q5: 실패한 단계를 어떻게 디버깅합니까?
 
-상세 로깅(`-v`)으로 act를 실행하고 컨테이너를 보존하여 검사합니다:
-
-```bash
+상세 로깅(`-v`)으로 act를 실행하고 컨테이너를 보존하여 검사합니다: ```bash
 # 상세 출력
 act -v
 
@@ -560,9 +482,7 @@ docker exec -it <container-name> /bin/bash
 
 ### Q7: act를 최신 버전으로 업데이트하려면 어떻게 합니까?
 
-설치에 사용한 것과 동일한 패키지 관리자를 사용합니다:
-
-```bash
+설치에 사용한 것과 동일한 패키지 관리자를 사용합니다: ```bash
 # Homebrew
 brew upgrade act
 
@@ -593,9 +513,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/nektos/ac
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -612,7 +530,6 @@ curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/nektos/ac
 - [catthehacker/docker_images](https://github.com/catthehacker/docker_images) — act가 사용하는 커뮤니티 runner 이미지
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

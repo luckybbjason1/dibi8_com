@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/voicecraft" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/voicecraft" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/voicecraft" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/voicecraft" />
 title: 'VoiceCraft: 8.5K+ Stars — Zero-Shot Speech Editing so vớ...
 description: 'VoiceCraft là mô hình ngôn ngữ codec thần kinh zero-shot speech editing và TTS, tương thích với GPT-SoVITS, Coqui TTS, RVC. Hướng dẫn cài đặt, benchmark, triển khai Docker và bảng so sánh.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [voicecraft, 'zero-shot-tts', 'chinh-sua-giong-noi', 'neural-codec', 'voice-cloning', 'ai-audio', docker, python]
-aliases:
-- /vi/posts/voicecraft/
+aliases: - /vi/posts/voicecraft/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/voicecraft/ -->
 
 {{</* resource-info */>}}
 
@@ -48,12 +40,9 @@ Chỉnh sửa âm thanh lồng tiếng từng đồng nghĩa với việc thu â
 
 ### Tổng quan kiến trúc
 
-Pipeline mô hình gồm ba giai đoạn:
+Pipeline mô hình gồm ba giai đoạn: 1. **EnCodec Quantization**: Sóng âm thanh thô được lượng tử hóa thành token rờii rạc bằng codec thần kinh EnCodec của Meta. Mỗi khung âm thanh được biểu diễn bằng vector K chỉ mục codebook (lượng tử hóa vector residual, RVQ).
 
-1. **EnCodec Quantization**: Sóng âm thanh thô được lượng tử hóa thành token rờii rạc bằng codec thần kinh EnCodec của Meta. Mỗi khung âm thanh được biểu diễn bằng vector K chỉ mục codebook (lượng tử hóa vector residual, RVQ).
-
-2. **Token Rearrangement**: Đây là sáng kiến cốt lõi của VoiceCraft. Thủ tục hai bước biến đổi bài toán chỉnh sửa/infilling thành bài toán mô hình hóa ngôn ngữ từ trái sang phải:
-   - **Causal Masking**: Các đoạn token ngẫu nhiên bị che và chuyển về cuối chuỗi, cho phép mô hình chú ý đến ngữ cảnh hai chiều trong quá trình sinh tự hồi quy.
+2. **Token Rearrangement**: Đây là sáng kiến cốt lõi của VoiceCraft. Thủ tục hai bước biến đổi bài toán chỉnh sửa/infilling thành bài toán mô hình hóa ngôn ngữ từ trái sang phải: - **Causal Masking**: Các đoạn token ngẫu nhiên bị che và chuyển về cuối chuỗi, cho phép mô hình chú ý đến ngữ cảnh hai chiều trong quá trình sinh tự hồi quy.
    - **Delayed Stacking**: Các vector được dịch chéo để dự đoán codebook k tại thờii điểm t có điều kiện từ codebook k-1, cho phép mô hình hóa multi-codebook hiệu quả.
 
 3. **Transformer Decoder**: Chuỗi token đã sắp xếp lại được mô hình hóa tự hồi quy bởi Transformer decoder. Các âm vị văn bản và token âm thanh được nối làm đầu vào điều kiện.
@@ -89,8 +78,7 @@ docker build --tag "voicecraft" .
 
 # 3. Khởi động container (Linux)
 ./start-jupyter.sh
-# Windows:
-# start-jupyter.bat
+# Windows: # start-jupyter.bat
 
 # 4. Lấy link Jupyter từ logs
 docker logs jupyter | grep "127.0.0.1:8888"
@@ -142,9 +130,7 @@ conda install -n voicecraft ipykernel --no-deps --force-reinstall
 
 ### Tùy chọn 3: Gradio Local UI
 
-Để có giao diện trình duyệt mà không cần notebook:
-
-```bash
+Để có giao diện trình duyệt mà không cần notebook: ```bash
 # Phụ thuộc hệ thống bổ sung cho Gradio
 apt-get install -y espeak espeak-data libespeak1 libespeak-dev
 apt-get install -y festival build-essential flac libasound2-dev libsndfile1-dev
@@ -172,9 +158,7 @@ Tối ưu hóa `kvcache` đánh đổi một chút chất lượng để giảm 
 
 ### VoiceCraft + Gradio Web UI
 
-Giao diện Gradio tích hợp cung cấp cách dễ nhất để thử nghiệm:
-
-```bash
+Giao diện Gradio tích hợp cung cấp cách dễ nhất để thử nghiệm: ```bash
 # Khởi động Gradio với cài đặt mặc định
 python gradio_app.py --model-name "giga330M" --device "cuda"
 
@@ -189,9 +173,7 @@ Gradio UI hỗ trợ ba chế độ: **Chế độ TTS** (nhân bản giọng ze
 
 ### VoiceCraft + Jupyter Notebook
 
-Để truy cập lập trình, sử dụng Jupyter notebook:
-
-```python
+Để truy cập lập trình, sử dụng Jupyter notebook: ```python
 # inference_tts.ipynb — Ví dụ zero-shot TTS
 from voicecraft import VoiceCraft
 
@@ -218,9 +200,7 @@ output.save("output_tts.wav")
 
 ### VoiceCraft + Dòng lệnh
 
-Cho xử lý hàng loạt và scripting:
-
-```bash
+Cho xử lý hàng loạt và scripting: ```bash
 # TTS inference qua CLI
 python tts_demo.py \
   --audio_path "demo/pam.wav" \
@@ -241,9 +221,7 @@ python speech_editing_demo.py \
 
 ### VoiceCraft + Docker API
 
-Để triển khai production, gói VoiceCraft trong REST API:
-
-```dockerfile
+Để triển khai production, gói VoiceCraft trong REST API: ```dockerfile
 # Dockerfile.api — Wrapper API production
 FROM voicecraft:latest
 
@@ -272,8 +250,7 @@ async def tts(
     audio: UploadFile = File(...),
     reference_text: str = "",
     target_text: str = ""
-):
-    """Endpoint zero-shot TTS."""
+): """Endpoint zero-shot TTS."""
     ref_audio, sr = torchaudio.load(audio.file)
     output = model.tts(
         target_text=target_text,
@@ -286,9 +263,7 @@ async def tts(
 
 ### VoiceCraft + HuggingFace Hub
 
-Tải trực tiếp mô hình pretrained từ HuggingFace:
-
-```python
+Tải trực tiếp mô hình pretrained từ HuggingFace: ```python
 from huggingface_hub import hf_hub_download
 
 # Tải trọng số mô hình
@@ -308,9 +283,7 @@ model_dir = snapshot_download('AI-ModelScope/VoiceCraft')
 
 ### Benchmark Zero-shot TTS
 
-Kết quả đánh giá con ngườii từ bài báo ACL 2024 so sánh VoiceCraft với VALL-E, XTTS v2, FluentSpeech và YourTTS trên 250 câu kiểm tra (LibriTTS + YouTube):
-
-| Mô hình | WER | SIM | Intelligibility MOS | Naturalness MOS | Speaker Similarity MOS |
+Kết quả đánh giá con ngườii từ bài báo ACL 2024 so sánh VoiceCraft với VALL-E, XTTS v2, FluentSpeech và YourTTS trên 250 câu kiểm tra (LibriTTS + YouTube): | Mô hình | WER | SIM | Intelligibility MOS | Naturalness MOS | Speaker Similarity MOS |
 |---------|-----|-----|---------------------|-----------------|----------------------|
 | **VoiceCraft** | **4.5** | **0.55** | **4.23** | **4.17** | **4.34** |
 | XTTS v2 | 3.6 | 0.47 | 4.13 | 3.96 | 3.44 |
@@ -323,9 +296,7 @@ VoiceCraft đạt độ tương đồng giọng nói cao nhất (SIM 0.55) và �
 
 ### Benchmark Chỉnh sửa giọng nói
 
-Trên bộ dữ liệu RealEdit (310 ví dụ chỉnh sửa thực tế), VoiceCraft vượt trội hơn FluentSpeech:
-
-| Mô hình | WER | Intelligibility MOS | Naturalness MOS |
+Trên bộ dữ liệu RealEdit (310 ví dụ chỉnh sửa thực tế), VoiceCraft vượt trội hơn FluentSpeech: | Mô hình | WER | Intelligibility MOS | Naturalness MOS |
 |---------|-----|---------------------|-----------------|
 | **VoiceCraft** | 6.1 | **4.11** | **4.03** |
 | FluentSpeech | 4.5 | 3.97 | 3.81 |
@@ -349,9 +320,7 @@ Trên bộ dữ liệu RealEdit (310 ví dụ chỉnh sửa thực tế), VoiceC
 
 ### Tối ưu bộ nhớ với KV Cache
 
-Cho GPU VRAM hạn chế, bật key-value cache:
-
-```python
+Cho GPU VRAM hạn chế, bật key-value cache: ```python
 # Bật kvcache cho GPU 8GB
 output = model.tts(
     target_text=target_text,
@@ -365,9 +334,7 @@ output = model.tts(
 
 ### Top-k Sampling (Cập nhật tháng 3/2025)
 
-Chiến lược lấy mẫu mặc định được cập nhật từ top-p=1.0 sang top-k=40, cải thiện đáng kể chất lượng đầu ra:
-
-```python
+Chiến lược lấy mẫu mặc định được cập nhật từ top-p=1.0 sang top-k=40, cải thiện đáng kể chất lượng đầu ra: ```python
 # Khuyến nghị: top-k=40 cho chất lượng tốt nhất
 output = model.tts(
     target_text=target_text,
@@ -380,9 +347,7 @@ output = model.tts(
 
 ### Fine-tune trên dữ liệu tùy chỉnh
 
-Cho giọng vùng miền cụ thể, fine-tune mô hình pretrained:
-
-```bash
+Cho giọng vùng miền cụ thể, fine-tune mô hình pretrained: ```bash
 # Chuẩn bị bộ dữ liệu
 conda activate voicecraft
 cd ./data
@@ -418,9 +383,7 @@ writer.add_scalar("mos/validation", val_mos, global_step)
 
 ### Bảo mật và an toàn
 
-Giấy phép VoiceCraft (CC BY-NC-SA 4.0 cho code, Coqui Public Model License cho trọng số) có điều khoản đạo đức cấm sử dụng để tạo hoặc chỉnh sửa giọng nói của ngườii khác mà không có sự đồng ý. Cho triển khai production:
-
-- Xác minh ngườii nói trước khi nhân bản
+Giấy phép VoiceCraft (CC BY-NC-SA 4.0 cho code, Coqui Public Model License cho trọng số) có điều khoản đạo đức cấm sử dụng để tạo hoặc chỉnh sửa giọng nói của ngườii khác mà không có sự đồng ý. Cho triển khai production: - Xác minh ngườii nói trước khi nhân bản
 - Ghi log mọi yêu cầu tổng hợp để kiểm tra
 - Thêm watermarking cho giọng tổng hợp
 - Giới hạn tốc độ API để ngăn lạm dụng
@@ -463,9 +426,7 @@ Giấy phép VoiceCraft (CC BY-NC-SA 4.0 cho code, Coqui Public Model License ch
 
 ## Hạn chế / Đánh giá trung thực
 
-VoiceCraft không phải công cụ phù hợp cho mọi tác vụ âm thanh. Đây là những gì nhóm bảo trì và bài báo thừa nhận:
-
-1. **Chỉ tiếng Anh**: Mô hình phát hành chỉ hỗ trợ âm vị tiếng Anh. VoiceCraft-X (tháng 11/2024) mở rộng sang 11 ngôn ngữ nhưng là một mô hình riêng biệt.
+VoiceCraft không phải công cụ phù hợp cho mọi tác vụ âm thanh. Đây là những gì nhóm bảo trì và bài báo thừa nhận: 1. **Chỉ tiếng Anh**: Mô hình phát hành chỉ hỗ trợ âm vị tiếng Anh. VoiceCraft-X (tháng 11/2024) mở rộng sang 11 ngôn ngữ nhưng là một mô hình riêng biệt.
 
 2. **Giấy phép phi thương mại**: Cả code (CC BY-NC-SA 4.0) và trọng số mô hình (Coqui Public Model License) đều hạn chế sử dụng thương mại nếu không có thỏa thuận bổ sung.
 
@@ -519,9 +480,7 @@ Tham gia [nhóm Telegram](https://t.me/dibi8opensource) của chúng tôi để 
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -544,7 +503,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 *Hướng dẫn này được nhóm kỹ thuật dibi8 viết độc lập. VoiceCraft được phát triển bởi Puyuan Peng, Po-Yao Huang, Shang-Wen Li, Abdelrahman Mohamed và David Harwath. Không có mối quan hệ thương mại nào giữa dibi8 và dự án VoiceCraft.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/video-retalking" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/video-retalking" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/video-retalking" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/video-retalking" />
 title: 'VideoReTalking: 7.2K+ Stars — AI 입술 동기화 영상 편집 완벽 설치 가이드 ...
 description: 'VideoReTalking (VRT)은 말하는 얼굴 영상 편집을 위한 오디오 기반 입술 동기화 시스템이다. RVC, GPT-SoVITS, Coqui TTS와 호환. 설치, 추론, Gradio WebUI, 프로덕션 배포, Wav2Lip 및 SadTalker와의 벤치마크 포함.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [립싱크, 영상편집, 토킹헤드, 딥페이크, ffmpeg, pytorch, gradio, ai영상]
-aliases:
-- /kr/posts/video-retalking/
+aliases: - /kr/posts/video-retalking/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/video-retalking/ -->
 
 {{</* resource-info */>}}
 
@@ -43,9 +35,7 @@ VideoReTalking은 PyTorch 기반의 추론 파이프라인으로 말하는 얼�
 
 ## VideoReTalking의 작동 원리
 
-VideoReTalking은 표정, 립싱크, 강화를 별도의 모듈로 분리한 3단계 아키텍처를 사용한다:
-
-### 1단계: D-Net — 표정 정규화
+VideoReTalking은 표정, 립싱크, 강화를 별도의 모듈로 분리한 3단계 아키텍처를 사용한다: ### 1단계: D-Net — 표정 정규화
 
 **D-Net**(표정 편집 네트워크)은 입력 영상을 받아 모든 프레임의 표정을 중성 템플릿으로 표준화한다. DECA 기반 얼굴 재구성을 사용해 각 프레임에서 3DMM 계수를 추출하고, 미리 정의된 중성 템플릿으로 표정 파라미터를 교체한 뒤 안정화된 영상을 합성한다. 이 단계는 립싱크 네트워크가 원래 입술 움직임에 영향받지 않도록 방지한다.
 
@@ -107,9 +97,7 @@ pip install torch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 --index-url https
 pip install -r requirements.txt
 ```
 
-requirements.txt가 설치하는 주요 패키지:
-
-```
+requirements.txt가 설치하는 주요 패키지: ```
 basicsr==1.4.2
 kornia==0.5.1
 face-alignment==1.3.4
@@ -124,11 +112,8 @@ numpy==1.23.4
 
 ### 5단계: 사전학습 모델 다운로드
 
-[Google Drive](https://drive.google.com/drive/folders/18rhjMpxK8LVVxf7PI6XwOidt8Vouv_H0)에서 사전학습 가중치를 다운로드하여 `./checkpoints/`에 압축 해제한다:
-
-```bash
-# 디렉터리 구조는 다음과 같아야 한다:
-# ./checkpoints/
+[Google Drive](https://drive.google.com/drive/folders/18rhjMpxK8LVVxf7PI6XwOidt8Vouv_H0)에서 사전학습 가중치를 다운로드하여 `./checkpoints/`에 압축 해제한다: ```bash
+# 디렉터리 구조는 다음과 같아야 한다: # ./checkpoints/
 #   ├── 244000.pth          (D-Net 표정 편집)
 #   ├── wav2lip.pth         (L-Net 립싱크)
 #   ├── GFPGANv1.3.pth      (GFPGAN 강화)
@@ -142,9 +127,7 @@ numpy==1.23.4
 python -c "import torch; print('CUDA available:', torch.cuda.is_available()); print('Device:', torch.cuda.get_device_name(0) if torch.cuda.is_available() else CPU)"
 ```
 
-GPU 시스템의 예상 출력:
-
-```
+GPU 시스템의 예상 출력: ```
 CUDA available: True
 Device: NVIDIA GeForce RTX 4090
 ```
@@ -153,9 +136,7 @@ Device: NVIDIA GeForce RTX 4090
 
 ### RVC(검색 기반 보이스 변환) 통합
 
-RVC는 운율을 보존하며 한 목소리를 다른 목소리로 변환한다. VideoReTalking과 연결하여 음성 교체 립싱크 출력을 만들 수 있다:
-
-```bash
+RVC는 운율을 보존하며 한 목소리를 다른 목소리로 변환한다. VideoReTalking과 연결하여 음성 교체 립싱크 출력을 만들 수 있다: ```bash
 # 1단계: RVC로 오디오 생성 또는 변환
 python rvc/infer.py --input input.wav --model weights/model.pth --output rvc_output.wav
 
@@ -168,9 +149,7 @@ python inference.py \
 
 ### GPT-SoVITS 통합
 
-GPT-SoVITS는 소수 샘플 보이스 클로닝 TTS를 생성한다. 워크플로우는 다음과 같다:
-
-```python
+GPT-SoVITS는 소수 샘플 보이스 클로닝 TTS를 생성한다. 워크플로우는 다음과 같다: ```python
 # gpt_sovits_videoretalking.py
 import subprocess
 import os
@@ -218,9 +197,7 @@ python inference.py \
 
 ### 추론 속도 벤치마크
 
-NVIDIA RTX 4090에서 10초짜리 512x512 입력 영상으로 테스트:
-
-| 단계 | 소요 시간 | VRAM 피크 |
+NVIDIA RTX 4090에서 10초짜리 512x512 입력 영상으로 테스트: | 단계 | 소요 시간 | VRAM 피크 |
 |---|---|---|
 | D-Net (표정 정규화) | 2.1초 | 4.2 GB |
 | L-Net (립싱크) | 3.8초 | 3.8 GB |
@@ -256,23 +233,17 @@ VideoReTalking은 최신 GPU에서 512x512 해상도에서 대략 **1초 영상�
 
 ### Gradio WebUI 설정
 
-VideoReTalking에는 브라우저 기반 사용을 위한 Gradio 인터페이스가 내장되어 있다:
-
-```bash
+VideoReTalking에는 브라우저 기반 사용을 위한 Gradio 인터페이스가 내장되어 있다: ```bash
 # WebUI 실행
 python webUI.py
 ```
 
-WebUI는 기본적으로 `http://localhost:7860`에서 시작된다. 지원 기능:
-
-- 드래그 앤 드롭 영상 및 오디오 업로드
+WebUI는 기본적으로 `http://localhost:7860`에서 시작된다. 지원 기능: - 드래그 앤 드롭 영상 및 오디오 업로드
 - 표정 템플릿 선택 (neutral, smile)
 - 상반부 얼굴 감정 제어 (surprise, angry)
 - 긴 영상에 대한 배치 세그먼트 처리
 
-리버스 프록시 뒤 원격 접근:
-
-```bash
+리버스 프록시 뒤 원격 접근: ```bash
 python webUI.py --server-name 0.0.0.0 --server-port 7860 --share
 ```
 
@@ -298,9 +269,7 @@ EXPOSE 7860
 CMD ["python3", "webUI.py", "--server-name", "0.0.0.0"]
 ```
 
-빌드 및 실행:
-
-```bash
+빌드 및 실행: ```bash
 docker build -t video-retalking .
 docker run --gpus all -p 7860:7860 -v $(pwd)/checkpoints:/app/checkpoints video-retalking
 ```
@@ -322,8 +291,7 @@ os.makedirs(OUTPUT_DIR, exist_ok=True)
 video_files = sorted(Path(INPUT_DIR).glob("*.mp4"))
 audio_files = sorted(Path(AUDIO_DIR).glob("*.wav"))
 
-for vid, aud in zip(video_files, audio_files):
-    outname = f"{OUTPUT_DIR}/{vid.stem}_synced.mp4"
+for vid, aud in zip(video_files, audio_files): outname = f"{OUTPUT_DIR}/{vid.stem}_synced.mp4"
     print(f"Processing: {vid.name} + {aud.name}")
     subprocess.run([
         "python", "inference.py",
@@ -351,8 +319,7 @@ logging.basicConfig(
     ]
 )
 
-def inference_with_monitoring(face_path, audio_path, output_path):
-    start = time.time()
+def inference_with_monitoring(face_path, audio_path, output_path): start = time.time()
     vram_before = torch.cuda.memory_allocated() / 1e9
     
     # 추론 실행
@@ -392,9 +359,7 @@ VideoReTalking은 속도와 품질 사이의 최적점에 있다. Wav2Lip은 더
 
 ## 한계 / 정직한 평가
 
-VideoReTalking은 모든 시나리오에 적합한 도구는 아니다:
-
-1. **극단적인 머리 자세 실패**: D-Net은 극단적인 측면 시점이나 심하게 가려진 얼굴을 처리할 수 없다. 요(yaw) 각도가 ±45°를 넘어가는 측면 시점 영상은 아티팩트를 생성한다.
+VideoReTalking은 모든 시나리오에 적합한 도구는 아니다: 1. **극단적인 머리 자세 실패**: D-Net은 극단적인 측면 시점이나 심하게 가려진 얼굴을 처리할 수 없다. 요(yaw) 각도가 ±45°를 넘어가는 측면 시점 영상은 아티팩트를 생성한다.
 2. **실시간 기능 없음**: 3단계 파이프라인은 전체 영상을 순차적으로 처리해야 한다. 최선의 경우 약 1x 실시간 —— 사전 버퍼링 없이 라이브 스트리밍에는 적합하지 않다.
 3. **해상도 상한**: 강화 네트워크는 512x512 얼굴 크롭에서 학습된다. 이를 초과하는 업스케일은 수확 체감이 발생한다.
 4. **표정 일관성**: 표정 템플릿이 잘 작동하지만 원래 영상의 미세 표정은 D-Net 정규화 과정에서 손실된다.
@@ -445,9 +410,7 @@ VideoReTalking은 프로덕션급 출력 품질로 오디오 기반 립싱크를
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -465,7 +428,6 @@ VideoReTalking은 프로덕션급 출력 품질로 오디오 기반 립싱크를
 - [사전학습 모델 (Google Drive)](https://drive.google.com/drive/folders/18rhjMpxK8LVVxf7PI6XwOidt8Vouv_H0)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

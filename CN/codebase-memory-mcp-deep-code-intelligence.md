@@ -1,7 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/codebase-memory-mcp-deep-code-intelligence" />
-lang: en
 title: 'Codebase Memory MCP: 24K+ Star AI Code Intelligence Server'
 description: 'Codebase Memory MCP is a high-performance code intelligence server that indexes entire codebases into persistent memory for AI agents. Transform any LLM into a codebase-aware assistant.'
 date: 2026-07-03 09:00:00+09:00
@@ -11,15 +8,11 @@ category: llm-frameworks
 tags: ['mcp', 'code-intelligence', 'ai-agents', 'vector-search', 'open-source']
 github_repo: 'https://github.com/DeusData/codebase-memory-mcp'
 license: 'MIT'
-tech_stack:
-  - C
+tech_stack: - C
   - Rust
   - Python
 featureImage: /images/articles/free-llm-api-resources-ai-development.png
-stars: 27851
-
----
-
+stars: 27851---
 > **Editor's Disclosure:** This analysis uses publicly available GitHub data (star counts, commit frequency, fork counts) as of June 30, 2026. All code examples are tested and verified. We may earn a commission from affiliate links.
 
 {{< aff "digitalocean" "setup" "Get a DigitalOcean account for running this at scale" >}}
@@ -56,8 +49,7 @@ The MCP protocol means Codebase Memory works with ANY LLM that supports MCP — 
 
 ### 3. Performance-First Design
 
-The C/Rust indexing engine processes code 10-50x faster than pure Python alternatives. For a 100K line codebase:
-- **Codebase Memory MCP:** ~15 seconds to index
+The C/Rust indexing engine processes code 10-50x faster than pure Python alternatives. For a 100K line codebase: - **Codebase Memory MCP:** ~15 seconds to index
 - **Python-only alternatives:** ~5-10 minutes to index
 - **Full context injection:** Not feasible (token limits exceeded)
 
@@ -106,8 +98,7 @@ print(f"Indexed {results['files']} files, {results['tokens']} tokens")
 # Get semantic similarity for a query
 query = "How does the authentication flow work?"
 similar = indexer.search(query, top_k=5)
-for doc in similar:
-    print(f"[{doc['score']:.2f}] {doc['path']}: {doc['snippet'][:100]}")
+for doc in similar: print(f"[{doc['score']:.2f}] {doc['path']}: {doc['snippet'][:100]}")
 ```
 
 ### MCP Server Configuration
@@ -152,9 +143,7 @@ for doc in similar:
 
 ### Hybrid C/Rust + Python Design
 
-The architecture separates compute-intensive indexing from protocol handling:
-
-```
+The architecture separates compute-intensive indexing from protocol handling: ```
 ┌─────────────────────────────────────────────┐
 │              MCP Client (Claude, etc.)        │
 └──────────────────┬──────────────────────────┘
@@ -221,13 +210,10 @@ impl IncrementalIndexer {
 ### Vector Search Pipeline
 
 ```python
-class SearchPipeline:
-    def __init__(self, vector_store, reranker=None):
-        self.store = vector_store
+class SearchPipeline: def __init__(self, vector_store, reranker=None): self.store = vector_store
         self.reranker = reranker
     
-    def search(self, query: str, top_k: int = 10) -> List[Document]:
-        # Step 1: Embed the query
+    def search(self, query: str, top_k: int = 10) -> List[Document]: # Step 1: Embed the query
         query_embedding = self._embed(query)
         
         # Step 2: Retrieve candidate documents
@@ -236,13 +222,11 @@ class SearchPipeline:
         )
         
         # Step 3: Rerank if a reranker is available
-        if self.reranker:
-            candidates = self.reranker.rank(query, candidates)
+        if self.reranker: candidates = self.reranker.rank(query, candidates)
         
         # Step 4: Return top-k with code context
         results = []
-        for doc in candidates[:top_k]:
-            results.append({
+        for doc in candidates[:top_k]: results.append({
                 'path': doc.path,
                 'snippet': doc.extract_context(window=5),
                 'score': doc.score,
@@ -259,19 +243,13 @@ For specialized codebases, you can define custom indexing rules to improve relev
 
 ### Custom Language Parsers
 
-You can extend the indexer with custom parsers for domain-specific languages:
-
-```python
+You can extend the indexer with custom parsers for domain-specific languages: ```python
 from codebase_memory.parsers import BaseParser, register_parser
 
 @register_parser("mylang")
-class MyLangParser(BaseParser):
-    def parse(self, file_path):
-        with open(file_path) as f:
-            content = f.read()
+class MyLangParser(BaseParser): def parse(self, file_path): with open(file_path) as f: content = f.read()
         segments = []
-        for match in re.finditer(r"(def|class|module)\s+(\w+)", content):
-            segments.append({
+        for match in re.finditer(r"(def|class|module)\s+(\w+)", content): segments.append({
                 "type": match.group(1),
                 "name": match.group(2),
                 "content": content[match.start():match.end()+200],
@@ -282,9 +260,7 @@ class MyLangParser(BaseParser):
 
 ### Semantic Filtering
 
-Exclude unnecessary files and focus on relevant code:
-
-```python
+Exclude unnecessary files and focus on relevant code: ```python
 indexer = Indexer(
     codebase_path="./project",
     exclude_patterns=[
@@ -304,9 +280,7 @@ indexer = Indexer(
 
 ### Custom Embedding Models
 
-Use domain-specific embedding models for better semantic understanding:
-
-```python
+Use domain-specific embedding models for better semantic understanding: ```python
 from sentence_transformers import SentenceTransformer
 
 code_model = SentenceTransformer("Salesforce/codet5p-220m-paraphrase")
@@ -320,9 +294,7 @@ indexer = Indexer(
 
 ### Multi-Repository Indexing
 
-Index multiple repositories into a single knowledge base:
-
-```python
+Index multiple repositories into a single knowledge base: ```python
 repositories = [
     "/home/user/project-alpha",
     "/home/user/project-beta",
@@ -342,21 +314,16 @@ results = multi_indexer.search("authentication flow")
 
 ### Onboarding New Developers
 
-New team members can ask natural language questions about the codebase:
-
-```
+New team members can ask natural language questions about the codebase: ```
 Q: How does the user authentication flow work?
-A: Authentication flows through:
-   1. JWT token generation in auth/middleware.ts (line 45-89)
+A: Authentication flows through: 1. JWT token generation in auth/middleware.ts (line 45-89)
    2. Token validation in api/routes/login.ts (line 12-34)
    3. Session storage in redis/session.ts (line 78-102)
 ```
 
 ### Code Review Assistance
 
-Check for potential issues before merging pull requests:
-
-```bash
+Check for potential issues before merging pull requests: ```bash
 mcp call codebase-memory security-audit --path ./src/api
 mcp call codebase-memory api-review --diff ./pr-123.diff
 mcp call codebase-memory changelog --since v2.0.0
@@ -376,7 +343,17 @@ docs = indexer.generate_documentation(
 ## Comparison with Alternatives
 
 | Feature | Codebase Memory MCP | Sourcegraph Cody | GitHub Copilot | Continue.dev |
-|---------|---------------------|------------------|----------------|--------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Protocol | MCP | Proprietary | Proprietary | LSP |
 | Indexing Speed | ~15s/100K lines | ~2min/100K lines | N/A (cloud) | ~30s/100K lines |
 | Local Processing | Yes | Partial | No | Yes |
@@ -451,12 +428,11 @@ A: Codebase Memory MCP is released under the MIT License, making it free for com
 - [GitHub API — Star Count Verification](https://api.github.com/repos/DeusData/codebase-memory-mcp)
 - [Codebase Memory MCP README](https://github.com/DeusData/codebase-memory-mcp/blob/main/README.md)
 
----
 
+---
 *This article was independently researched and written by the Dibi8 editorial team. We may earn commissions from affiliate links, but this does not affect our editorial independence.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -485,7 +461,6 @@ A: Codebase Memory MCP is released under the MIT License, making it free for com
 }
 </script>
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -511,8 +486,8 @@ A: Codebase Memory MCP is released under the MIT License, making it free for com
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [free-mcp-tools-top10-2026](codebase-memory-mcp-deep-code-intelligence)

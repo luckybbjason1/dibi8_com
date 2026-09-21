@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mempalace-open-source-ai-memory-system" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mempalace-open-source-ai-memory-system" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mempalace-open-source-ai-memory-system" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mempalace-open-source-ai-memory-system" />
 title: 'MemPalace: Hệ thống bộ nhớ AI mã nguồn mở được benchmark...
 description: 'MemPalace là hệ thống bộ nhớ AI ưu tiên cục bộ, lưu trữ lịch sử cuộc trò chuyện dưới dạng văn bản nguyên bản và truy xuất bằng tìm kiếm ngữ nghĩa. Tích hợp với Claude Code, Cursor, Windsurf và bất kỳ agent tương thích MCP. Backend ChromaDB, lưu trữ có thể tháo rời, không gọi API ngoài. Bao gồm hướng dẫn cài đặt, benchmark và phân tích kiến trúc.'
 date: 2026-06-10
-lastmod:  2026-06-10slug: 'mempalace-open-source-ai-memory-system'
+lastmod: 2026-06-10
+slug: 'mempalace-open-source-ai-memory-system'
 category: 'llm-frameworks'
 tags: ['ai-memory', 'local-first', 'mempalace', 'semantic-search', 'chromadb', 'long-term-memory', 'mcp-agent', 'verbatim-storage']
 github_repo: 'https://github.com/MemPalace/mempalace'
@@ -17,8 +13,6 @@ license: MIT
 featureImage: 'https://opengraph.github.com/github/MemPalace/mempalace'
 lang: vi
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/mempalace-open-source-ai-memory-system/ -->
 
 # MemPalace: Hệ thống bộ nhớ AI mã nguồn mở được benchmark tốt nhất, tiết kiệm 96.6% R@5 trên LongMemEval — Không gọi API
 
@@ -67,17 +61,13 @@ Cuộc trò chuyện của bạn → Index MemPalace (Local)
               Agent nhận được Bộ nhớ Cấu trúc
 ```
 
-MemPalace hoạt động trên ba lớp:
-
-**Lớp 1 — Lưu trữ:** Mọi cuộc trò chuyện được lưu trữ nguyên bản. Không xử lý AI, không tóm tắt. Văn bản gốc được giữ nguyên chính xác như khi viết.
+MemPalace hoạt động trên ba lớp: **Lớp 1 — Lưu trữ:** Mọi cuộc trò chuyện được lưu trữ nguyên bản. Không xử lý AI, không tóm tắt. Văn bản gốc được giữ nguyên chính xác như khi viết.
 
 **Lớp 2 — Index:** Cuộc trò chuyện được cấu trúc thành một knowledge graph. Người và dự án trở thành *cánh*, chủ đề trở thành *phòng*, và nội dung gốc sống trong *ngăn kéo*. Index cấu trúc này cho phép tìm kiếm theo phạm vi thay vì tìm kiếm trên corpus phẳng.
 
 **Lớp 3 — Truy xuất:** Khi agent cần ngữ cảnh, nó truy vấn lớp truy xuất có thể thay thế (mặc định: ChromaDB). Kết quả được trả về dưới dạng ngữ cảnh cấu trúc, không phải văn bản thô.
 
-Lớp truy xuất sử dụng tìm kiếm ngữ nghĩa với hybrid keyword boosting. Mặc định, MemPalace sử dụng ChromaDB với mô hình embedding `all-MiniLM-L6-v2`, nhưng bạn có thể thay thế bất kỳ backend nào triển khai giao diện `mempalace/backends/base.py`. Điều này bao gồm:
-
-- `chromadb`: Backend mặc định, tốt cho hầu hết các trường hợp sử dụng
+Lớp truy xuất sử dụng tìm kiếm ngữ nghĩa với hybrid keyword boosting. Mặc định, MemPalace sử dụng ChromaDB với mô hình embedding `all-MiniLM-L6-v2`, nhưng bạn có thể thay thế bất kỳ backend nào triển khai giao diện `mempalace/backends/base.py`. Điều này bao gồm: - `chromadb`: Backend mặc định, tốt cho hầu hết các trường hợp sử dụng
 - `qdrant`: Nhanh hơn cho tập dữ liệu lớn, hỗ trợ lọc
 - `weaviate`: Sẵn sàng sản xuất, hỗ trợ truy vấn GraphQL
 - Backend tùy chỉnh: Triển khai giao diện cơ sở cho bất kỳ vector database nào
@@ -86,9 +76,7 @@ Lớp truy xuất sử dụng tìm kiếm ngữ nghĩa với hybrid keyword boos
 
 ## Auto-Save Hooks
 
-MemPalace có thể tự động lưu các cuộc trò chuyện từ các agent được hỗ trợ. Đối với Claude Code, bạn cần cấu hình auto-save hooks:
-
-```bash
+MemPalace có thể tự động lưu các cuộc trò chuyện từ các agent được hỗ trợ. Đối với Claude Code, bạn cần cấu hình auto-save hooks: ```bash
 # Bật auto-save cho Claude Code
 mempalace hooks enable claude-code
 
@@ -114,9 +102,7 @@ Các hooks hoạt động bằng cách intercept các session của agent và t�
 
 ## Quickstart (60 giây)
 
-Cài đặt MemPalace trong môi trường biệt lập để tránh lỗi PEP 668:
-
-```bash
+Cài đặt MemPalace trong môi trường biệt lập để tránh lỗi PEP 668: ```bash
 # Khuyến nghị: uv tool install (biệt lập trên PATH của bạn)
 uv tool install mempalace
 
@@ -127,16 +113,12 @@ mempalace init ~/projects/myapp
 claude
 ```
 
-Hoặc sử dụng pipx:
-
-```bash
+Hoặc sử dụng pipx: ```bash
 pipx install mempalace
 mempalace init ~/projects/myapp
 ```
 
-Hoặc trong virtualenv (nếu bạn muốn `import mempalace` khả dụng):
-
-```bash
+Hoặc trong virtualenv (nếu bạn muốn `import mempalace` khả dụng): ```bash
 python -m venv .venv && source .venv/bin/activate
 pip install mempalace
 mempalace init ~/projects/myapp
@@ -203,9 +185,7 @@ Structured memory graph là bí mật của MemPalace.
 2. **Rooms** = Chủ đề, tính năng, hoặc workstreams trong một wing
 3. **Drawers** = Đoạn hội thoại gốc
 
-Cấu trúc này cho phép tìm kiếm theo phạm vi:
-
-```bash
+Cấu trúc này cho phép tìm kiếm theo phạm vi: ```bash
 # Tìm kiếm trên tất cả wings
 mempalace search "auth implementation"
 
@@ -218,9 +198,7 @@ mempalace search "auth" --wing "Person-A" --room "Project-A"
 
 ### Backup và Restore
 
-Vì MemPalace lưu trữ dữ liệu cục bộ, bạn nên backup memory thường xuyên:
-
-```bash
+Vì MemPalace lưu trữ dữ liệu cục bộ, bạn nên backup memory thường xuyên: ```bash
 # Backup memory palace của bạn
 mempalace backup ~/backups/mempalace-$(date +%Y-%m-%d).tar.gz
 
@@ -243,8 +221,7 @@ MemPalace bao gồm một MCP server tích hợp để sử dụng với Claude 
 # Bắt đầu MCP server
 mempalace mcp --port 8765
 
-# Trong Claude Code config (~/.claude/settings.json):
-{
+# Trong Claude Code config (~/.claude/settings.json): {
   "mcpServers": {
     "mempalace": {
       "command": "mempalace",
@@ -254,8 +231,7 @@ mempalace mcp --port 8765
 }
 ```
 
-MCP server expose:
-- `mempalace_store`: Lưu segment hội thoại
+MCP server expose: - `mempalace_store`: Lưu segment hội thoại
 - `mempalace_query`: Truy xuất ngữ cảnh qua tìm kiếm ngữ nghĩa
 - `mempalace_list_wings`: Liệt kê các wing khả dụng
 - `mempalace_list_rooms`: Liệt kê các room trong một wing
@@ -264,9 +240,7 @@ MCP server expose:
 
 ## Sâu hơn: Python API
 
-Nếu bạn không sử dụng các agent tương thích MCP, bạn có thể sử dụng Python API của MemPalace trực tiếp:
-
-```python
+Nếu bạn không sử dụng các agent tương thích MCP, bạn có thể sử dụng Python API của MemPalace trực tiếp: ```python
 import mempalace
 
 # Initialize memory store
@@ -284,16 +258,13 @@ memory.store({
 
 # Query for relevant context
 results = memory.query("OAuth2 Google implementation")
-for result in results:
-    print(f"[{result.wing}/{result.room}]: {result.content[:200]}")
+for result in results: print(f"[{result.wing}/{result.room}]: {result.content[:200]}")
 
 # List all wings
-for wing in memory.list_wings():
-    print(f"Wing: {wing.name} ({len(wing.rooms)} rooms)")
+for wing in memory.list_wings(): print(f"Wing: {wing.name} ({len(wing.rooms)} rooms)")
 ```
 
-Python API mirror CLI nhưng cho bạn access lập trình đến memory graph. Điều này hữu ích cho:
-- Tích hợp agent tùy chỉnh
+Python API mirror CLI nhưng cho bạn access lập trình đến memory graph. Điều này hữu ích cho: - Tích hợp agent tùy chỉnh
 - Batch processing lịch sử hội thoại
 - Xây dựng dashboards trên memory của bạn
 - Auto backup workflows
@@ -302,9 +273,7 @@ Python API mirror CLI nhưng cho bạn access lập trình đến memory graph. 
 
 ## Docker Deployment
 
-Cho server-side hoặc containerized deployments:
-
-```bash
+Cho server-side hoặc containerized deployments: ```bash
 # Build Docker image
 docker build -t mempalace-server .
 
@@ -317,8 +286,7 @@ docker run -d \
   mcp --port 8765
 ```
 
-Mọi thứ persist dưới `/data` (palace, config, và cached embedding model), vì vậy mount một volume ở đó. Setup này hoạt động tốt cho:
-- Chia sẻ bộ nhớ team (nhiều machine truy cập cùng database)
+Mọi thứ persist dưới `/data` (palace, config, và cached embedding model), vì vậy mount một volume ở đó. Setup này hoạt động tốt cho: - Chia sẻ bộ nhớ team (nhiều machine truy cập cùng database)
 - CI/CD pipelines cần agent memory
 - Môi trường production với Docker orchestration
 
@@ -340,9 +308,7 @@ Cách tiếp cận có cấu trúc của MemPalace (wings → rooms → drawers)
 
 ## Giới hạn / Đánh giá trung thực
 
-MemPalace không phải dành cho mọi người:
-
-- **Không dành cho cloud teams**: Nếu bạn cần chia sẻ bộ nhớ giữa các thành viên team làm việc trên các máy khác nhau, thiết kế local-first của MemPalace không giúp được
+MemPalace không phải dành cho mọi người: - **Không dành cho cloud teams**: Nếu bạn cần chia sẻ bộ nhớ giữa các thành viên team làm việc trên các máy khác nhau, thiết kế local-first của MemPalace không giúp được
 - **Yêu cầu môi trường Python**: Cài đặt cần `uv` hoặc `pip` với phiên bản Python tương thích
 - **ChromaDB mặc định**: Mặc dù có thể thay thế, nhưng hầu hết người dùng sẽ dùng ChromaDB yêu cầu ~500MB RAM cho embedding model
 - **Không backup cloud**: Memory của bạn ở lại local. Nếu disk hỏng, memory của bạn mất (trừ khi bạn đã backup)
@@ -442,14 +408,12 @@ Cho self-hosted memory trên VPS hoặc dedicated server, hãy xem xét sử d�
 
 Tham gia **nhóm Telegram tiếng Việt dibi8** https://t.me/DIBI8_Group/18 để thảo luận về các hệ thống bộ nhớ AI, kiến trúc agent, và các công cụ mã nguồn mở.
 
-Các bài viết liên quan:
-- [LangChain Complete Guide](dibi8-internal-link/llm-frameworks/langchain-complete-guide)
+Các bài viết liên quan: - [LangChain Complete Guide](dibi8-internal-link/llm-frameworks/langchain-complete-guide)
 - [Vector Database Comparison](dibi8-internal-link/data-science/vector-database-comparison)
 - [MCP Deep Dive](dibi8-internal-link/llm-frameworks/mcp-deep-dive)
 
 *Một số liên kết trên là affiliate links. dibi8.com có thể nhận hoa hồng nếu bạn đăng ký, không tốn thêm chi phí cho bạn. Điều này giúp duy trì website và nội dung miễn phí.*
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

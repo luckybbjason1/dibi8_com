@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/scrapy" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/scrapy" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/scrapy" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/scrapy" />
 title: 'Scrapy: Benchmark 61K+ Star Web Crawler — Performance vs...
 description: 'Scrapy 是一个基于 Python 的快速高级网络爬虫和抓取框架。兼容 Python、Docker、Redis、PostgreSQL。涵盖基准测试、架构、生产部署以及与 BeautifulSoup、Selenium 和 Playwright 的对比。'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: ['web-scraping', python, crawler, async, docker, scrapy教程, benchmark, 数据管道]
-aliases:
-- /zh/posts/scrapy/
+aliases: - /zh/posts/scrapy/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/scrapy/ -->
 
 {{</* resource-info */>}}
 
@@ -132,8 +124,7 @@ price_monitor/
 # price_monitor/spiders/products.py
 import scrapy
 
-class ProductsSpider(scrapy.Spider):
-    name = products
+class ProductsSpider(scrapy.Spider): name = products
     allowed_domains = ['example.com']
     start_urls = ['https://example.com/products']
     
@@ -143,10 +134,8 @@ class ProductsSpider(scrapy.Spider):
         AUTOTHROTTLE_ENABLED: True,
     }
 
-    def parse(self, response):
-        """提取商品数据并跟踪分页。"""
-        for product in response.css('.product-card'):
-            yield {
+    def parse(self, response): """提取商品数据并跟踪分页。"""
+        for product in response.css('.product-card'): yield {
                 name: product.css('.title::text').get(),
                 price: product.css('.price::text').get(),
                 url: product.css('a::attr(href)').get(),
@@ -155,8 +144,7 @@ class ProductsSpider(scrapy.Spider):
         
         # 跟踪分页
         next_page = response.css('.next-page::attr(href)').get()
-        if next_page:
-            yield response.follow(next_page, self.parse)
+        if next_page: yield response.follow(next_page, self.parse)
 ```
 
 ### 运行爬虫
@@ -189,34 +177,22 @@ CMD ["scrapy", "crawl", "products"]
 ```yaml
 # docker-compose.yml
 version: '3.8'
-services:
-  scrapy:
-    build: .
-    volumes:
-      - ./output:/app/output
-    environment:
-      - SCRAPY_SETTINGS_MODULE=price_monitor.settings
-    depends_on:
-      - redis
+services: scrapy: build: .
+    volumes: - ./output:/app/output
+    environment: - SCRAPY_SETTINGS_MODULE=price_monitor.settings
+    depends_on: - redis
       - postgres
   
-  redis:
-    image: redis:7-alpine
-    ports:
-      - "6379:6379"
+  redis: image: redis:7-alpine
+    ports: - "6379:6379"
   
-  postgres:
-    image: postgres:16-alpine
-    environment:
-      POSTGRES_DB: scrapy_data
+  postgres: image: postgres:16-alpine
+    environment: POSTGRES_DB: scrapy_data
       POSTGRES_USER: scraper
       POSTGRES_PASSWORD: scraper_pass
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+    volumes: - pgdata:/var/lib/postgresql/data
 
-volumes:
-  pgdata:
-```
+volumes: pgdata: ```
 
 ## 与流行工具的集成
 
@@ -243,9 +219,7 @@ SCHEDULER_PERSIST = True  # 在运行之间保留队列
 import psycopg2
 from scrapy.exceptions import DropItem
 
-class PostgresPipeline:
-    def open_spider(self, spider):
-        self.conn = psycopg2.connect(
+class PostgresPipeline: def open_spider(self, spider): self.conn = psycopg2.connect(
             host=postgres, dbname=scrapy_data,
             user=scraper, password=scraper_pass
         )
@@ -262,21 +236,17 @@ class PostgresPipeline:
         ''')
         self.conn.commit()
 
-    def process_item(self, item, spider):
-        try:
-            self.cur.execute('''
+    def process_item(self, item, spider): try: self.cur.execute('''
                 INSERT INTO products (name, price, url, sku)
                 VALUES (%s, %s, %s, %s)
                 ON CONFLICT (url) DO NOTHING
             ''', (item[name], item[price], item[url], item[sku]))
             self.conn.commit()
-        except psycopg2.Error as e:
-            spider.logger.error(f"数据库错误: {e}")
+        except psycopg2.Error as e: spider.logger.error(f"数据库错误: {e}")
             raise DropItem(f"插入失败: {e}")
         return item
 
-    def close_spider(self, spider):
-        self.cur.close()
+    def close_spider(self, spider): self.cur.close()
         self.conn.close()
 ```
 
@@ -300,11 +270,9 @@ TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 import scrapy
 from scrapy_playwright.page import PageMethod
 
-class JSSpider(scrapy.Spider):
-    name = js_site
+class JSSpider(scrapy.Spider): name = js_site
     
-    def start_requests(self):
-        yield scrapy.Request(
+    def start_requests(self): yield scrapy.Request(
             'https://spa-example.com/products',
             meta={
                 playwright: True,
@@ -316,9 +284,7 @@ class JSSpider(scrapy.Spider):
             }
         )
 
-    def parse(self, response):
-        for item in response.css('.product-item'):
-            yield {
+    def parse(self, response): for item in response.css('.product-item'): yield {
                 name: item.css('.name::text').get(),
                 price: item.css('.price::text').get(),
             }
@@ -332,16 +298,12 @@ class JSSpider(scrapy.Spider):
 # middlewares.py
 import base64
 
-class ProxyMiddleware:
-    def __init__(self, proxy_url):
-        self.proxy_url = proxy_url
+class ProxyMiddleware: def __init__(self, proxy_url): self.proxy_url = proxy_url
 
     @classmethod
-    def from_crawler(cls, crawler):
-        return cls(proxy_url=crawler.settings.get(WEBSHARE_PROXY_URL))
+    def from_crawler(cls, crawler): return cls(proxy_url=crawler.settings.get(WEBSHARE_PROXY_URL))
 
-    def process_request(self, request, spider):
-        request.meta[proxy] = self.proxy_url
+    def process_request(self, request, spider): request.meta[proxy] = self.proxy_url
         spider.logger.debug(f'使用代理访问 {request.url}')
 ```
 
@@ -365,7 +327,17 @@ WEBSHARE_PROXY_URL = 'http://proxy.webshare.io:80'
 2026 年初在 4 核 VPS（8GB RAM）上对 50 多个站点进行的基准测试揭示了工具之间的显著差异：
 
 | 指标 | Scrapy | BeautifulSoup + requests | Selenium | Playwright |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **吞吐量（页面/秒）** | 100+ | 1–3 | 2–4 | 3–5 |
 | **单实例内存** | ~150 MB | ~80 MB | ~500 MB | ~400 MB |
 | **启动时间** | <1s | <1s | 3–5s | 2–3s |
@@ -434,9 +406,7 @@ USER_AGENTS = [
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0',
 ]
 
-class RotateUserAgentMiddleware:
-    def process_request(self, request, spider):
-        request.headers['User-Agent'] = random.choice(USER_AGENTS)
+class RotateUserAgentMiddleware: def process_request(self, request, spider): request.headers['User-Agent'] = random.choice(USER_AGENTS)
 ```
 
 ### 使用统计收集进行监控
@@ -445,29 +415,22 @@ class RotateUserAgentMiddleware:
 # extensions.py
 from scrapy import signals
 
-class StatsCollector:
-    def __init__(self):
-        self.requests_count = 0
+class StatsCollector: def __init__(self): self.requests_count = 0
         self.items_count = 0
 
     @classmethod
-    def from_crawler(cls, crawler):
-        ext = cls()
+    def from_crawler(cls, crawler): ext = cls()
         crawler.signals.connect(ext.spider_opened, signal=signals.spider_opened)
         crawler.signals.connect(ext.request_scheduled, signal=signals.request_scheduled)
         crawler.signals.connect(ext.item_scraped, signal=signals.item_scraped)
         return ext
 
-    def spider_opened(self, spider):
-        spider.logger.info(f'爬虫已启动: {spider.name}')
+    def spider_opened(self, spider): spider.logger.info(f'爬虫已启动: {spider.name}')
 
-    def request_scheduled(self, request, spider):
-        self.requests_count += 1
+    def request_scheduled(self, request, spider): self.requests_count += 1
 
-    def item_scraped(self, item, spider):
-        self.items_count += 1
-        if self.items_count % 1000 == 0:
-            spider.logger.info(f'已抓取 {self.items_count} 个项目, {self.requests_count} 个请求')
+    def item_scraped(self, item, spider): self.items_count += 1
+        if self.items_count % 1000 == 0: spider.logger.info(f'已抓取 {self.items_count} 个项目, {self.requests_count} 个请求')
 ```
 
 ### 日志轮转和结构化日志
@@ -496,7 +459,17 @@ curl http://localhost:6800/listjobs.json -d project=price_monitor
 ## 与替代方案对比
 
 | 特性 | Scrapy | BeautifulSoup | Selenium | Playwright |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **许可证** | BSD-3-Clause | MIT | Apache-2.0 | Apache-2.0 |
 | **语言** | Python | Python | 多语言 | 多语言 |
 | **异步/并发** | 内置（Twisted） | 手动 | 有限 | 内置 |
@@ -586,12 +559,11 @@ Scrapy 仍然是 Python 中大规模、生产级网络爬取的最有效选择�
 - 性能基准测试（NextGrowth.ai）：https://nextgrowth.ai/best-tools-for-web-scraping/
 - Scrapy vs BeautifulSoup 分析（HasData）：https://hasdata.com/blog/scrapy-vs-beautifulsoup
 
----
 
+---
 *本文包含联盟链接。通过本文中的 WebShare 链接购买代理服务时，我们可能会获得佣金，不会向你收取额外费用。所有基准测试数据和推荐均基于独立测试和社区验证的来源。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -617,8 +589,8 @@ Scrapy 仍然是 Python 中大规模、生产级网络爬取的最有效选择�
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [ray-distributed-ai-framework-complete-guide](scrapy)

@@ -1,14 +1,11 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/scanners-box-cybersecurity-tools-collection" />
 title: 'Scanners-Box: 200+ Cybersecurity Tools Collection for Se...
 description: Discover Scanners-Box - a comprehensive collection of 200+ open-source. Comprehensive guide covering features, pricing, and best practices for 2026.
   cybersecurity tools for penetration testing, vulnerability scanning, and security
   research.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
-tech_stack:
-- Docker
+tech_stack: - Docker
 - Go
 - JavaScript
 - Python
@@ -27,11 +24,9 @@ maintainer: "luckybbjason1"
 last_maintained: "2023-09-21"
 featureImage: ''
 draft: false
-aliases:
-- /en/posts/scanners-box-cybersecurity-tools-collection/
+aliases: - /en/posts/scanners-box-cybersecurity-tools-collection/
 - /posts/scanners-box-cybersecurity-tools-collection/
-faqs:
-  - q: 'What is Scanners-Box?'
+faqs: - q: 'What is Scanners-Box?'
     a: 'Scanners-Box is a curated collection of 200+ open-source cybersecurity tools across 15+ categories, covering subdomain enumeration, SQL injection, fuzzing, port scanning, social engineering, and more. It was originally created for the Chinese security community (t00ls) and is aimed at penetration testers and security researchers.'
   - q: 'Which tools does Scanners-Box recommend for SQL injection testing?'
     a: 'Its main recommendation is sqlmap, which automatically detects and exploits SQL injection, supports 6 database types, and includes tamper scripts for WAF bypass. The collection also lists jsql-injection, SQLiScanner, and NoSQLAttack.'
@@ -53,12 +48,18 @@ faqs:
 **Tools Count**: 200+  
 **Categories**: 15+
 
----
 
+---
 ## Tool Categories Overview
 
 | Category | Tool Count | Examples |
-|----------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
 | **Subdomain Enumeration** | 15+ | subDomainsBrute, amass, subfinder, OneForAll |
 | **Database & SQL Injection** | 10+ | sqlmap, jsql-injection, SQLiScanner, NoSQLAttack |
 | **Fuzzing Tools** | 20+ | AFL, honggfuzz, syzkaller, libFuzzer |
@@ -75,8 +76,8 @@ faqs:
 | **Threat Intelligence** | 3+ | threat-intelligence, VirusTotal, ThreatBook |
 | **Learning Resources** | 20+ | sec-wiki, FreeBuf, Web Hacking 101 |
 
----
 
+---
 ## Featured Tools Deep Dive
 
 ### 1. Subdomain Enumeration
@@ -177,7 +178,13 @@ nmap -A target.com
 ## Vulnerable Targets for Practice
 
 | Platform | Description | Link |
-|----------|-------------|------|
+|
+---
+|
+---
+|
+---
+|
 | **vulfocus** | Docker-based vulnerability platform | GitHub |
 | **vulhub** | Pre-built vulnerable environments | GitHub |
 | **VulApps** | Vulnerable application collection | GitHub |
@@ -251,14 +258,11 @@ Exfiltration: DNS tunneling, HTTPS C2
 
 ## Recommended Tools
 
-For developers building or deploying open-source AI tools, we recommend:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
+For developers building or deploying open-source AI tools, we recommend: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
 - **{{< aff "htstack" "category-footer" "HTStack" >}}** — Hong Kong VPS, same IDC that hosts dibi8.com. Self-host security scanners on dedicated VPS for low-latency Asia coverage and no shared-tenant noise.
 
 *Affiliate link — supports dibi8.com at no cost to you.*
 
-<!--auto-references-->
 ## References & Sources
 
 - [sqlmap](https://github.com/sqlmapproject/sqlmap)
@@ -284,7 +288,6 @@ For developers building or deploying open-source AI tools, we recommend:
 - [API-Security-Checklist](https://github.com/shieldfy/API-Security-Checklist)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -312,25 +315,20 @@ For developers building or deploying open-source AI tools, we recommend:
 
 ## Why This Matters
 
-Understanding scanners-box: 200+ cybersecurity tools collection for security professionals is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding scanners-box: 200+ cybersecurity tools collection for security professionals is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

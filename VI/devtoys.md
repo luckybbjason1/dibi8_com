@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/devtoys" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/devtoys" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/devtoys" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/devtoys" />
 title: 'DevToys: 31,533 GitHub Stars — Hướng Dẫn Cài Đặt Đầy Đủ ...
 description: 'DevToys là bộ công cụ đa năng miễn phí, nguồn mở, ngoại tuyến dành cho nhà phát triển. Tiện ích đa nền tảng cho JSON, Base64, JWT, regex và hơn 30 công cụ trên Windows, macOS và Linux với Smart Detection và hỗ trợ CLI.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [devtoys, 'công-cụ-phát-triển', 'tiện-ích-ngoại-tuyến', 'định-dạng-json', 'mã-hóa-base64', 'giải-mã-jwt', 'kiểm-tra-regex', 'đa-nền-tảng', 'nguồn-mở']
-aliases:
-- /vi/posts/devtoys/
+aliases: - /vi/posts/devtoys/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/devtoys/ -->
 
 {{</* resource-info */>}}
 
@@ -49,9 +41,7 @@ Mọi lập trình viên đều đã trải qua tình huống này: bạn cần 
 
 ### Tổng Quan Kiến Trúc
 
-DevToys theo kiến trúc modular dựa trên plugin. Ứng dụng core cung cấp shell, UI framework và engine Smart Detection. Các công cụ riêng lẻ được đóng gói dưới dạng extension đăng ký với host:
-
-```
+DevToys theo kiến trúc modular dựa trên plugin. Ứng dụng core cung cấp shell, UI framework và engine Smart Detection. Các công cụ riêng lẻ được đóng gói dưới dạng extension đăng ký với host: ```
 ┌─────────────────────────────────────────┐
 │           DevToys Shell (C#)            │
 │  ┌─────────┐  ┌─────────┐  ┌──────────┐ │
@@ -131,9 +121,7 @@ cp -R "/Volumes/DevToys/DevToys.app" /Applications
 hdiutil detach "/Volumes/DevToys"
 ```
 
-Hoặc cài đặt qua Homebrew (nếu có trong tap):
-
-```bash
+Hoặc cài đặt qua Homebrew (nếu có trong tap): ```bash
 brew install --cask devtoys
 ```
 
@@ -160,9 +148,7 @@ unzip devtoys_linux_x64_portable.zip -d ~/devtoys
 
 ### Cài Đặt DevToys CLI
 
-CLI được phân phối riêng biệt và hữu ích cho môi trường headless và CI pipeline:
-
-```bash
+CLI được phân phối riêng biệt và hữu ích cho môi trường headless và CI pipeline: ```bash
 # Windows
 wget https://github.com/DevToys-app/DevToys/releases/download/v2.0.9.0/devtoys.cli_win_x64_portable.zip
 
@@ -173,18 +159,14 @@ wget https://github.com/DevToys-app/DevToys/releases/download/v2.0.9.0/devtoys.c
 wget https://github.com/DevToys-app/DevToys/releases/download/v2.0.9.0/devtoys.cli_linux_x64_portable.zip
 ```
 
-Sau khi cài đặt, xác minh CLI hoạt động:
-
-```bash
+Sau khi cài đặt, xác minh CLI hoạt động: ```bash
 devtoys --version
 # Output: DevToys CLI 2.0.9.0
 ```
 
 ### Khởi Chạy Đầu Tiên & Cấu Hình
 
-Khi khởi chạy lần đầu, DevToys mở ra với sidebar chủ đề tối liệt kê tất cả 30+ công cụ. Mở **Settings** để cấu hình:
-
-```yaml
+Khi khởi chạy lần đầu, DevToys mở ra với sidebar chủ đề tối liệt kê tất cả 30+ công cụ. Mở **Settings** để cấu hình: ```yaml
 # Cài đặt khuyến nghị cho production workflow
 Smart Detection: Enabled      # Tự động gợi ý công cụ từ clipboard
 Theme: System default        # Hoặc ép Dark/Light
@@ -197,9 +179,7 @@ Telemetry: Disabled          # DevToys mặc định không có telemetry
 
 ### VS Code
 
-Mặc dù DevToys chạy như một ứng dụng độc lập, bạn có thể khởi chạy nó trực tiếp từ VS Code bằng keybinding. Thêm đoạn này vào `keybindings.json`:
-
-```json
+Mặc dù DevToys chạy như một ứng dụng độc lập, bạn có thể khởi chạy nó trực tiếp từ VS Code bằng keybinding. Thêm đoạn này vào `keybindings.json`: ```json
 [
   {
     "key": "ctrl+alt+d",
@@ -214,9 +194,7 @@ Mặc dù DevToys chạy như một ứng dụng độc lập, bạn có thể k
 
 ### PowerShell / Terminal
 
-DevToys hỗ trợ deep link đến từng công cụ thông qua tham số dòng lệnh. Điều này hữu ích cho scripting và alias:
-
-```powershell
+DevToys hỗ trợ deep link đến từng công cụ thông qua tham số dòng lệnh. Điều này hữu ích cho scripting và alias: ```powershell
 # Mở trực tiếp các công cụ cụ thể
 start devtoys:?tool=jsonformat     # JSON Formatter
 start devtoys:?tool=jsonyaml       # JSON <> YAML Converter
@@ -232,16 +210,11 @@ start devtoys:?tool=diff           # Text Comparer
 
 ### CI/CD Pipelines (GitHub Actions)
 
-DevToys CLI tích hợp sạch sẽ vào CI workflow. Dưới đây là ví dụ GitHub Actions để validate file JSON trong repository:
-
-```yaml
+DevToys CLI tích hợp sạch sẽ vào CI workflow. Dưới đây là ví dụ GitHub Actions để validate file JSON trong repository: ```yaml
 name: Validate JSON
 on: [push, pull_request]
-jobs:
-  validate:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: validate: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       
       - name: Install DevToys CLI
         run: |
@@ -256,9 +229,7 @@ jobs:
 
 ### Docker (Không Chính Thức)
 
-Cho workflow containerized, bạn có thể wrap DevToys CLI trong một image nhẹ:
-
-```dockerfile
+Cho workflow containerized, bạn có thể wrap DevToys CLI trong một image nhẹ: ```dockerfile
 FROM mcr.microsoft.com/dotnet/runtime:8.0
 
 RUN apt-get update && apt-get install -y wget unzip \
@@ -270,9 +241,7 @@ RUN apt-get update && apt-get install -y wget unzip \
 ENTRYPOINT ["/app/devtoys"]
 ```
 
-Build và chạy:
-
-```bash
+Build và chạy: ```bash
 docker build -t devtoys-cli .
 echo '{"key":"value"}' | docker run -i devtoys-cli json format
 ```
@@ -281,9 +250,7 @@ echo '{"key":"value"}' | docker run -i devtoys-cli json format
 
 ### Benchmarks Hiệu Năng
 
-DevToys xử lý dữ liệu hoàn toàn trong bộ nhớ trên máy local. Dưới đây là số liệu hiệu năng được đo trên một laptop phát triển tiêu chuẩn (AMD Ryzen 7, 16 GB RAM):
-
-| Thao tác | Kích thước dữ liệu | DevToys (Desktop) | DevToys CLI | Giải pháp Online |
+DevToys xử lý dữ liệu hoàn toàn trong bộ nhớ trên máy local. Dưới đây là số liệu hiệu năng được đo trên một laptop phát triển tiêu chuẩn (AMD Ryzen 7, 16 GB RAM): | Thao tác | Kích thước dữ liệu | DevToys (Desktop) | DevToys CLI | Giải pháp Online |
 |----------|-------------------|-------------------|-------------|-------------------|
 | Định dạng JSON | 1 MB | ~45 ms | ~38 ms | ~200-500 ms* |
 | Định dạng JSON | 10 MB | ~320 ms | ~280 ms | ~2-5 s* |
@@ -312,36 +279,28 @@ Trước khi deploy ứng dụng web, sử dụng PNG/JPEG Compressor để thu 
 
 ### Chạy Trong Môi Trường Air-Gapped
 
-DevToys hoạt động hoàn toàn ngoại tuyến — không bao giờ cần kết nối mạng cho các công cụ core. Cho các tổ chức có chính sách bảo mật nghiêm ngặt:
-
-1. Tải xuống ZIP portable từ trang GitHub releases trên máy có kết nối internet
+DevToys hoạt động hoàn toàn ngoại tuyến — không bao giờ cần kết nối mạng cho các công cụ core. Cho các tổ chức có chính sách bảo mật nghiêm ngặt: 1. Tải xuống ZIP portable từ trang GitHub releases trên máy có kết nối internet
 2. Chuyển archive qua phương tiện được phê duyệt đến mạng air-gapped
 3. Giải nén và chạy mà không cần cài đặt hay phụ thuộc mạng
 
 ### Cấu Hình Smart Detection
 
-Tinh chỉnh Smart Detection để tránh false positives:
-
-```yaml
+Tinh chỉnh Smart Detection để tránh false positives: ```yaml
 # Settings > Smart Detection
 Behavior: "Always ask"        # Tùy chọn: Auto-open, Always ask, Disabled
 Minimum confidence: 85%       # Điều chỉnh ngưỡng phát hiện
-Excluded tools:               # Vô hiệu hóa phát hiện cho công cụ cụ thể
+Excluded tools: # Vô hiệu hóa phát hiện cho công cụ cụ thể
   - "Lorem Ipsum Generator"
   - "Password Generator"
 ```
 
 ### Phát Triển Extension
 
-Tạo công cụ tùy chỉnh bằng DevToys SDK. Cài đặt gói NuGet SDK:
-
-```bash
+Tạo công cụ tùy chỉnh bằng DevToys SDK. Cài đặt gói NuGet SDK: ```bash
 dotnet add package DevToys.Sdk --version 2.0.0
 ```
 
-Một extension tối thiểu implement interface `IGuiTool`:
-
-```csharp
+Một extension tối thiểu implement interface `IGuiTool`: ```csharp
 using DevToys.Api;
 using System.ComponentModel.Composition;
 
@@ -377,9 +336,7 @@ internal sealed class MyCustomTool : IGuiTool
 
 ### Giám Sát Sử Dụng Trong Nhóm
 
-Mặc dù DevToys không có telemetry tích hợp, bạn có thể theo dõi công cụ nào nhóm sử dụng nhiều nhất bằng cách wrap CLI với một script logging:
-
-```bash
+Mặc dù DevToys không có telemetry tích hợp, bạn có thể theo dõi công cụ nào nhóm sử dụng nhiều nhất bằng cách wrap CLI với một script logging: ```bash
 #!/bin/bash
 # /usr/local/bin/devtoys-wrapped
 LOGFILE="/var/log/devtoys/usage.log"
@@ -419,9 +376,7 @@ Khi đánh giá **devtoys vs cyberchef** và các giải pháp thay thế khác,
 
 ## Hạn Chế / Đánh Giá Trung Thực
 
-DevToys không phải công cụ phù hợp mọi tình huống. Dưới đây là những gì nó không làm tốt:
-
-**Không có pipeline dữ liệu phức tạp.** Hệ thống "recipe" của CyberChef cho phép bạn chuỗi các thao tác (Base64 decode → GZip decompress → JSON parse) trong một workflow duy nhất. DevToys yêu cầu copy-paste thủ công giữa các công cụ.
+DevToys không phải công cụ phù hợp mọi tình huống. Dưới đây là những gì nó không làm tốt: **Không có pipeline dữ liệu phức tạp.** Hệ thống "recipe" của CyberChef cho phép bạn chuỗi các thao tác (Base64 decode → GZip decompress → JSON parse) trong một workflow duy nhất. DevToys yêu cầu copy-paste thủ công giữa các công cụ.
 
 **Không hỗ trợ mobile.** Không có phiên bản iOS hay Android. Developer làm việc chủ yếu trên tablet sẽ cần tìm nơi khác.
 
@@ -484,9 +439,7 @@ Tham gia [nhóm Telegram dibi8](https://t.me/dibi8channel) để có thêm đán
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -504,7 +457,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - DevToys SDK NuGet: https://www.nuget.org/packages/DevToys.Sdk
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

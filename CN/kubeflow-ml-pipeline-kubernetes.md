@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/kubeflow-ml-pipeline-kubernetes" />
 title: 'Kubeflow 2026: Run Complete ML Pipelines on Kubernetes —...
 description: 'A complete guide to deploying Kubeflow on Kubernetes for ML pipelines. Covers installation, components, benchmarks, production hardening, and real-world deployment patterns.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: [kubeflow, kubernetes, 'machine learning', 'ml pipeline', mlops, 'kubeflow pipelines', kserve, katib, 'data science']
-aliases:
-- /posts/kubeflow-ml-pipeline-kubernetes/
+aliases: - /posts/kubeflow-ml-pipeline-kubernetes/-
 ---
-
 {{</* resource-info */>}}
 
 ## Introduction: Why Kubernetes-Native ML Matters
@@ -46,9 +42,7 @@ Instead of managing separate tools for notebooks, training jobs, hyperparameter 
 
 ## How Kubeflow Works: Architecture Overview
 
-Kubeflow's architecture centers on the principle: **everything runs on Kubernetes**. The platform comprises several core components, each addressing a specific stage of the ML lifecycle:
-
-**Kubeflow Pipelines (KFP)** orchestrates ML workflows as container-based DAGs. Each step in a pipeline is a Docker image; inputs and outputs pass through S3/MinIO/GCS artifact stores. KFP uses Argo Workflows as the underlying execution engine (though Tekton is supported as an alternative).
+Kubeflow's architecture centers on the principle: **everything runs on Kubernetes**. The platform comprises several core components, each addressing a specific stage of the ML lifecycle: **Kubeflow Pipelines (KFP)** orchestrates ML workflows as container-based DAGs. Each step in a pipeline is a Docker image; inputs and outputs pass through S3/MinIO/GCS artifact stores. KFP uses Argo Workflows as the underlying execution engine (though Tekton is supported as an alternative).
 
 **Kubeflow Notebooks** provides managed Jupyter, VS Code, and RStudio instances running as StatefulSets. Each notebook server mounts persistent volumes for datasets and models, and can be provisioned with specific CPU/GPU resource quotas.
 
@@ -63,8 +57,7 @@ The control plane includes Istio for service mesh, Dex or OIDC for authenticatio
 ```bash
 # High-level component view
 kubectl get pods -n kubeflow
-# Expected output shows pods for:
-# - ml-pipeline (KFP API server)
+# Expected output shows pods for: # - ml-pipeline (KFP API server)
 # - katib-controller, katib-db-manager
 # - kserve-controller-manager
 # - training-operator
@@ -130,9 +123,7 @@ helm install kubeflow kubeflow/kubeflow \
 
 ### Option C: DigitalOcean Kubernetes (Production-Ready)
 
-For a production-grade cluster without managing the control plane:
-
-```bash
+For a production-grade cluster without managing the control plane: ```bash
 # Install doctl and authenticate
 doctl kubernetes cluster create kubeflow-ml \
   --region nyc3 \
@@ -153,9 +144,7 @@ kubectl get namespaces | grep kubeflow
 
 ## Building Your First ML Pipeline
 
-Kubeflow Pipelines (KFP) is where Kubeflow delivers the most value. Here's a complete pipeline that downloads data, trains a model, and evaluates it:
-
-```python
+Kubeflow Pipelines (KFP) is where Kubeflow delivers the most value. Here's a complete pipeline that downloads data, trains a model, and evaluates it: ```python
 # pipeline.py — A complete ML pipeline using KFP SDK v2
 import kfp
 from kfp import dsl
@@ -165,8 +154,7 @@ from kfp.dsl import component, Input, Output, Dataset, Model, Metrics
     base_image="python:3.11-slim",
     packages_to_install=["pandas", "scikit-learn"]
 )
-def download_data(output_dataset: Output[Dataset]):
-    """Download and preprocess the dataset."""
+def download_data(output_dataset: Output[Dataset]): """Download and preprocess the dataset."""
     import pandas as pd
     from sklearn.datasets import load_iris
     from sklearn.model_selection import train_test_split
@@ -184,8 +172,7 @@ def train_model(
     input_dataset: Input[Dataset],
     output_model: Output[Model],
     n_estimators: int = 100
-):
-    """Train a Random Forest classifier."""
+): """Train a Random Forest classifier."""
     import pandas as pd
     import joblib
     from sklearn.ensemble import RandomForestClassifier
@@ -209,8 +196,7 @@ def evaluate_model(
     input_model: Input[Model],
     input_dataset: Input[Dataset],
     metrics: Output[Metrics]
-) -> str:
-    """Evaluate the trained model and log metrics."""
+) -> str: """Evaluate the trained model and log metrics."""
     import pandas as pd
     import joblib
     from sklearn.metrics import accuracy_score, f1_score
@@ -234,8 +220,7 @@ def evaluate_model(
     name="iris-training-pipeline",
     description="End-to-end iris classification pipeline"
 )
-def iris_pipeline(n_estimators: int = 100):
-    download = download_data()
+def iris_pipeline(n_estimators: int = 100): download = download_data()
     train = train_model(
         input_dataset=download.outputs["output_dataset"],
         n_estimators=n_estimators
@@ -246,8 +231,7 @@ def iris_pipeline(n_estimators: int = 100):
     )
 
 # Compile the pipeline
-if __name__ == "__main__":
-    kfp.compiler.Compiler().compile(
+if __name__ == "__main__": kfp.compiler.Compiler().compile(
         iris_pipeline,
         "iris_pipeline.yaml"
     )
@@ -277,45 +261,28 @@ The pipeline appears in the KFP UI with full lineage tracking — every artifact
 
 ## Distributed Training with the Training Operator
 
-For workloads that don't fit on a single GPU, Kubeflow's Training Operator manages distributed training jobs:
-
-```yaml
+For workloads that don't fit on a single GPU, Kubeflow's Training Operator manages distributed training jobs: ```yaml
 # pytorch-job.yaml — Distributed PyTorch training
 apiVersion: kubeflow.org/v1
 kind: PyTorchJob
-metadata:
-  name: cifar10-distributed
+metadata: name: cifar10-distributed
   namespace: kubeflow-user-example-com
-spec:
-  pytorchReplicaSpecs:
-    Master:
-      replicas: 1
+spec: pytorchReplicaSpecs: Master: replicas: 1
       restartPolicy: OnFailure
-      template:
-        spec:
-          containers:
-          - name: pytorch
+      template: spec: containers: - name: pytorch
             image: my-registry/cifar10-training:v1.2
             command: ["python", "-m", "torch.distributed.launch",
                       "--nproc_per_node=1", "train.py"]
-            resources:
-              limits:
-                nvidia.com/gpu: 1
+            resources: limits: nvidia.com/gpu: 1
                 memory: "16Gi"
                 cpu: "8"
-    Worker:
-      replicas: 3
+    Worker: replicas: 3
       restartPolicy: OnFailure
-      template:
-        spec:
-          containers:
-          - name: pytorch
+      template: spec: containers: - name: pytorch
             image: my-registry/cifar10-training:v1.2
             command: ["python", "-m", "torch.distributed.launch",
                       "--nproc_per_node=1", "train.py"]
-            resources:
-              limits:
-                nvidia.com/gpu: 1
+            resources: limits: nvidia.com/gpu: 1
                 memory: "16Gi"
                 cpu: "8"
 ```
@@ -338,28 +305,18 @@ nvidia-smi  # Run inside any GPU pod
 
 ## Model Serving with KServe
 
-KServe provides production-grade model serving with autoscaling, traffic splitting, and standardized inference protocols:
-
-```yaml
+KServe provides production-grade model serving with autoscaling, traffic splitting, and standardized inference protocols: ```yaml
 # inference-service.yaml — Deploy a trained model
 apiVersion: serving.kserve.io/v1beta1
 kind: InferenceService
-metadata:
-  name: iris-classifier
+metadata: name: iris-classifier
   namespace: kubeflow-user-example-com
-  annotations:
-    serving.kserve.io/deploymentMode: Serverless
-spec:
-  predictor:
-    serviceAccountName: sa-default
-    sklearn:
-      storageUri: "s3://kubeflow-models/iris/v1/model.joblib"
-      resources:
-        limits:
-          cpu: "1"
+  annotations: serving.kserve.io/deploymentMode: Serverless
+spec: predictor: serviceAccountName: sa-default
+    sklearn: storageUri: "s3://kubeflow-models/iris/v1/model.joblib"
+      resources: limits: cpu: "1"
           memory: 2Gi
-        requests:
-          cpu: "100m"
+        requests: cpu: "100m"
           memory: 256Mi
 ```
 
@@ -382,81 +339,56 @@ curl -X POST http://iris-classifier.kubeflow-user-example-com.example.com/v1/mod
 # Response: {"predictions": [0]}
 ```
 
-For canary deployments, KServe supports traffic splitting:
-
-```yaml
+For canary deployments, KServe supports traffic splitting: ```yaml
 # canary-rollout.yaml — Gradual rollout of v2
 apiVersion: serving.kserve.io/v1beta1
 kind: InferenceService
-metadata:
-  name: iris-classifier
+metadata: name: iris-classifier
   namespace: kubeflow-user-example-com
-spec:
-  predictor:
-    canaryTrafficPercent: 20
-    sklearn:
-      storageUri: "s3://kubeflow-models/iris/v2/model.joblib"
+spec: predictor: canaryTrafficPercent: 20
+    sklearn: storageUri: "s3://kubeflow-models/iris/v2/model.joblib"
 ```
 
 ## Hyperparameter Tuning with Katib
 
-Katib automates the search for optimal hyperparameters using Kubernetes-native experiments:
-
-```yaml
+Katib automates the search for optimal hyperparameters using Kubernetes-native experiments: ```yaml
 # katib-experiment.yaml — Optimize Random Forest hyperparameters
 apiVersion: kubeflow.org/v1beta1
 kind: Experiment
-metadata:
-  namespace: kubeflow-user-example-com
+metadata: namespace: kubeflow-user-example-com
   name: iris-hp-tuning
-spec:
-  objective:
-    type: maximize
+spec: objective: type: maximize
     goal: 0.99
     objectiveMetricName: accuracy
-  algorithm:
-    algorithmName: bayesianoptimization
+  algorithm: algorithmName: bayesianoptimization
   parallelTrialCount: 3
   maxTrialCount: 12
   maxFailedTrialCount: 3
-  parameters:
-    - name: n_estimators
+  parameters: - name: n_estimators
       parameterType: int
-      feasibleSpace:
-        min: "50"
+      feasibleSpace: min: "50"
         max: "500"
     - name: max_depth
       parameterType: int
-      feasibleSpace:
-        min: "3"
+      feasibleSpace: min: "3"
         max: "20"
     - name: min_samples_split
       parameterType: double
-      feasibleSpace:
-        min: "0.01"
+      feasibleSpace: min: "0.01"
         max: "0.3"
-  trialTemplate:
-    primaryContainerName: training-container
-    trialParameters:
-      - name: nEstimators
+  trialTemplate: primaryContainerName: training-container
+    trialParameters: - name: nEstimators
         reference: n_estimators
       - name: maxDepth
         reference: max_depth
       - name: minSamplesSplit
         reference: min_samples_split
-    trialSpec:
-      apiVersion: batch/v1
+    trialSpec: apiVersion: batch/v1
       kind: Job
-      spec:
-        template:
-          spec:
-            containers:
-              - name: training-container
+      spec: template: spec: containers: - name: training-container
                 image: my-registry/iris-train:v1
                 command: ["python", "train.py"]
-                resources:
-                  limits:
-                    memory: "4Gi"
+                resources: limits: memory: "4Gi"
                     cpu: "2"
             restartPolicy: Never
 ```
@@ -480,7 +412,15 @@ kubectl get experiment iris-hp-tuning \
 ### Training Throughput Comparison
 
 | Configuration | Time per Epoch (CIFAR-10 ResNet-50) | GPUs | Cost/hr* |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Single GPU (NVIDIA A100) | 4 min 12 sec | 1 | $2.50 |
 | Kubeflow PyTorchJob (4x A100) | 1 min 05 sec | 4 | $10.00 |
 | Kubeflow PyTorchJob (8x A100) | 35 sec | 8 | $20.00 |
@@ -491,7 +431,13 @@ kubectl get experiment iris-hp-tuning \
 ### Pipeline Execution Overhead
 
 | Scenario | Total Runtime | Overhead from KFP |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | 5-step pipeline, small data (< 1 GB) | 3 min 45 sec | ~18 sec |
 | 12-step pipeline, medium data (10 GB) | 22 min 10 sec | ~45 sec |
 | 20-step pipeline, large data (100 GB) | 2 hr 15 min | ~2 min |
@@ -512,12 +458,9 @@ The KFP orchestration overhead is consistently **under 3%** of total pipeline ru
 # gpu-quota.yaml — Enforce GPU limits per namespace
 apiVersion: v1
 kind: ResourceQuota
-metadata:
-  name: gpu-quota
+metadata: name: gpu-quota
   namespace: data-science-team
-spec:
-  hard:
-    requests.nvidia.com/gpu: 8
+spec: hard: requests.nvidia.com/gpu: 8
     limits.nvidia.com/gpu: 16
 ```
 
@@ -535,22 +478,16 @@ kubectl describe resourcequota gpu-quota -n data-science-team
 # dataset-pvc.yaml
 apiVersion: v1
 kind: PersistentVolumeClaim
-metadata:
-  name: training-datasets
+metadata: name: training-datasets
   namespace: kubeflow-user-example-com
-spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 500Gi
+spec: accessModes: - ReadWriteMany
+  resources: requests: storage: 500Gi
   storageClassName: nfs-client  # Or efs-sc on AWS
 ```
 
 ```bash
 # Mount in notebook server via the Kubeflow UI
-# Or reference in pipeline components:
-# dsl.VolumeOp(name="create-dataset-volume",
+# Or reference in pipeline components: # dsl.VolumeOp(name="create-dataset-volume",
 #              resource_name="training-datasets",
 #              size="500Gi",
 #              modes=dsl.VOLUME_MODE_RWM)
@@ -563,15 +500,10 @@ spec:
 kubectl apply -f - <<EOF
 apiVersion: kubeflow.org/v1
 kind: Profile
-metadata:
-  name: team-ml-platform
-spec:
-  owner:
-    kind: User
+metadata: name: team-ml-platform
+spec: owner: kind: User
     name: ml-engineer@company.com
-  resourceQuotaSpec:
-    hard:
-      cpu: "64"
+  resourceQuotaSpec: hard: cpu: "64"
       memory: 256Gi
       nvidia.com/gpu: "8"
       pods: "50"
@@ -598,8 +530,7 @@ mc mirror myminio/kubeflow-pipelines/ \
 kubectl apply -f \
   https://raw.githubusercontent.com/kubeflow/manifests/v1.10.0/contrib/prometheus/kustomization.yaml
 
-# Key metrics to alert on:
-# - kubeflow_pipelines_run_count (total pipeline runs)
+# Key metrics to alert on: # - kubeflow_pipelines_run_count (total pipeline runs)
 # - kubeflow_pipelines_run_latency_seconds (pipeline execution time)
 # - nvidia_gpu_utilization_gpu (GPU utilization per pod)
 # - container_memory_working_set_bytes (OOM detection)
@@ -608,7 +539,17 @@ kubectl apply -f \
 ## Comparison with Alternatives
 
 | Feature | Kubeflow | MLflow | Airflow | SageMaker |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Kubernetes-native | **Yes (core design)** | No (can deploy on K8s) | Optional (via Helm) | N/A (managed AWS) |
 | Pipeline orchestration | **Yes (KFP DAGs)** | Limited (MLflow Pipelines) | Yes (general purpose) | Yes (Step Functions) |
 | Distributed training | **Yes (Training Operator)** | No | No | Yes |
@@ -630,9 +571,7 @@ kubectl apply -f \
 
 ## Limitations / Honest Assessment
 
-Kubeflow is powerful but not without challenges:
-
-**Setup complexity**: A full Kubeflow installation requires 30+ microservices. Even experienced Kubernetes operators need **2-4 hours** for the first production deployment. Tools like Kubeflow on GCP (Vertex AI) or AWS simplify this but introduce vendor lock-in.
+Kubeflow is powerful but not without challenges: **Setup complexity**: A full Kubeflow installation requires 30+ microservices. Even experienced Kubernetes operators need **2-4 hours** for the first production deployment. Tools like Kubeflow on GCP (Vertex AI) or AWS simplify this but introduce vendor lock-in.
 
 **Documentation fragmentation**: Different components (KFP, KServe, Katib) maintain separate documentation sites. Cross-component integration examples are sometimes outdated. Always verify against the **v1.10.0 docs** or newer.
 
@@ -674,9 +613,7 @@ Ready to deploy? [Get $200 credit on DigitalOcean](https://m.do.co/c/eca87ac14ee
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -697,7 +634,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 *Affiliate Disclosure: This article contains affiliate links to DigitalOcean and 虎网云. If you sign up through these links, dibi8.com receives a commission at no additional cost to you. We only recommend services we use for our own infrastructure.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -723,8 +659,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [trivy-production-security-scanner-2026](kubeflow-ml-pipeline-kubernetes)
@@ -732,6 +668,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [wandb-ml-experiment-tracking-platform-2026](kubeflow-ml-pipeline-kubernetes)
 - [wandb-ml-experiment-tracking-platform-2026](kubeflow-ml-pipeline-kubernetes)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

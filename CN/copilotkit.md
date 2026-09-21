@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/copilotkit" />
 title: 'CopilotKit: 31K+ Stars — Add AI Copilots to Any React or...
 description: 'CopilotKit is the open-source frontend stack for in-app AI copilots and generative UI. Build React Angular AI assistants with prebuilt components, useCopilotAction hooks, and production-ready deployment. Covers installation, LangChain integration, self-hosting, and benchmarks vs Vercel AI SDK.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [copilotkit, 'react-ai', 'generative-ui', 'ai-copilot', langchain, 'frontend-agents', typescript, 'open-source']
-aliases:
-- /posts/copilotkit/
+aliases: - /posts/copilotkit/-
 ---
-
 {{</* resource-info */>}}
 
 CopilotKit is the open-source frontend stack that turns any React or Angular application into an AI-native product. With **31,536 GitHub stars**, 3,300+ forks, and a fresh $27M Series A (May 2026), it has become the default choice for teams shipping in-app AI assistants that read application state, trigger frontend actions, and render generative UI components inside chat interfaces.
@@ -34,22 +30,26 @@ This CopilotKit tutorial walks through a production-grade setup: installing pack
 
 ![CopilotKit Logo](https://raw.githubusercontent.com/CopilotKit/CopilotKit/main/docs/static/img/logo.png)
 
----
 
+---
 ## What Is CopilotKit?
 
 **CopilotKit** is a frontend framework for building in-app AI copilots and generative UI experiences. It provides prebuilt AI copilot components for React (`CopilotSidebar`, `CopilotChat`, `CopilotPopup`), typed hooks (`useCopilotReadable`, `useCopilotAction`), and a pluggable runtime that connects to OpenAI, LangChain, LangGraph, Groq, or any custom agent backend.
 
 The project is maintained by CopilotKit Inc., licensed under MIT, and has raised $27M in funding to date. The team of ~25 engineers publishes weekly releases and maintains the AG-UI open protocol — a wire standard for agent-to-frontend communication now supported by Google, Microsoft, Amazon, LangChain, and Mastra.
 
----
 
+---
 ## How CopilotKit Works
 
-CopilotKit sits between your frontend application and the LLM or agent backend. It handles streaming chat, tool calling, state synchronization, and generative UI rendering through a clean three-layer architecture:
-
-| Layer | Responsibility | Key Files |
-|---|---|---|
+CopilotKit sits between your frontend application and the LLM or agent backend. It handles streaming chat, tool calling, state synchronization, and generative UI rendering through a clean three-layer architecture: | Layer | Responsibility | Key Files |
+|
+---
+|
+---
+|
+---
+|
 | **UI Components** | Render chat sidebar, popup, or inline chat | `CopilotSidebar`, `CopilotChat`, `CopilotPopup` |
 | **React Hooks** | Expose state + actions to the LLM | `useCopilotReadable`, `useCopilotAction` |
 | **Copilot Runtime** | Route requests to LLM/agent backends | `app/api/copilotkit/route.ts` |
@@ -98,9 +98,7 @@ COPILOTKIT_API_KEY=ck-your-copilot-cloud-key  # Optional, for cloud features
 
 ### Step 3: Create the Runtime Endpoint
 
-Create `app/api/copilotkit/route.ts` in your Next.js project:
-
-```typescript
+Create `app/api/copilotkit/route.ts` in your Next.js project: ```typescript
 import {
   CopilotRuntime,
   OpenAIAdapter,
@@ -130,9 +128,7 @@ export const POST = async (req: NextRequest) => {
 
 ### Step 4: Wrap Your App with the Provider
 
-Update your root layout or page component:
-
-```tsx
+Update your root layout or page component: ```tsx
 // app/layout.tsx or app/page.tsx
 "use client";
 
@@ -172,9 +168,7 @@ npm run dev
 
 ### OpenAI Adapter (Simplest)
 
-The OpenAI adapter is the fastest path to production. It connects directly to GPT-4o without additional backend infrastructure:
-
-```typescript
+The OpenAI adapter is the fastest path to production. It connects directly to GPT-4o without additional backend infrastructure: ```typescript
 // app/api/copilotkit/route.ts — OpenAI variant
 import { CopilotRuntime, OpenAIAdapter } from "@copilotkit/runtime";
 import { copilotRuntimeNextJSAppRouterEndpoint } from "@copilotkit/runtime";
@@ -194,9 +188,7 @@ export const POST = (req: NextRequest) =>
 
 ### LangChain Adapter
 
-For teams already invested in LangChain, use the LangChain adapter to plug in custom chains, retrievers, and agents:
-
-```typescript
+For teams already invested in LangChain, use the LangChain adapter to plug in custom chains, retrievers, and agents: ```typescript
 // app/api/copilotkit/route.ts — LangChain variant
 import { CopilotRuntime, LangChainAdapter } from "@copilotkit/runtime";
 import { ChatOpenAI } from "@langchain/openai";
@@ -223,9 +215,7 @@ export const POST = async (req: NextRequest) => {
 
 ### LangGraph Agent (Advanced)
 
-For stateful multi-step agents, connect to a LangGraph backend:
-
-```typescript
+For stateful multi-step agents, connect to a LangGraph backend: ```typescript
 // app/api/copilotkit/route.ts — LangGraph variant
 import {
   CopilotRuntime,
@@ -255,9 +245,7 @@ export const POST = (req: NextRequest) =>
 
 ### Groq Adapter (Fast Inference)
 
-For low-latency responses with Llama models via Groq:
-
-```typescript
+For low-latency responses with Llama models via Groq: ```typescript
 import {
   CopilotRuntime,
   GroqAdapter,
@@ -311,25 +299,25 @@ export function TaskManager() {
 
   // Expose task state to the LLM
   useCopilotReadable({
-    description: "The user's current task list with completion status and priorities",
+    description: "The user's current task list with completion status and priorities"
     value: tasks,
   });
 
   // Action: Add a new task
   useCopilotAction({
     name: "addTask",
-    description: "Add a new task to the task list",
+    description: "Add a new task to the task list"
     parameters: [
       {
         name: "title",
         type: "string",
-        description: "The title of the task to add",
+        description: "The title of the task to add"
         required: true,
       },
       {
         name: "priority",
         type: "string",
-        description: "Priority level: low, medium, or high",
+        description: "Priority level: low, medium, or high"
         required: false,
       },
     ],
@@ -348,12 +336,12 @@ export function TaskManager() {
   // Action: Mark task as complete
   useCopilotAction({
     name: "completeTask",
-    description: "Mark a task as completed by its title or ID",
+    description: "Mark a task as completed by its title or ID"
     parameters: [
       {
         name: "taskId",
         type: "string",
-        description: "The ID of the task to mark complete",
+        description: "The ID of the task to mark complete"
         required: true,
       },
     ],
@@ -368,12 +356,12 @@ export function TaskManager() {
   // Action: Delete a task
   useCopilotAction({
     name: "deleteTask",
-    description: "Remove a task from the list",
+    description: "Remove a task from the list"
     parameters: [
       {
         name: "taskId",
         type: "string",
-        description: "The ID of the task to delete",
+        description: "The ID of the task to delete"
         required: true,
       },
     ],
@@ -405,9 +393,10 @@ export function TaskManager() {
 // Render a task card inside the copilot chat
 useCopilotAction({
   name: "showTaskDetails",
-  description: "Display a detailed task card in the chat",
+  description: "Display a detailed task card in the chat"
   parameters: [
-    { name: "taskId", type: "string", description: "Task ID to display", required: true },
+    { name: "taskId", type: "string", description: "Task ID to display"
+, required: true },
   ],
   render: ({ taskId }) => {
     const task = tasks.find((t) => t.id === taskId);
@@ -428,10 +417,16 @@ useCopilotAction({
 
 ## Benchmarks / Real-World Use Cases
 
-CopilotKit is deployed across a range of production applications. Below are verified deployment metrics and use cases:
-
-| Use Case | Company / Type | Scale | Integration |
-|---|---|---|---|
+CopilotKit is deployed across a range of production applications. Below are verified deployment metrics and use cases: | Use Case | Company / Type | Scale | Integration |
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Task management copilot | SaaS startups | 5K-50K MAU | React + OpenAI |
 | CRM data assistant | Sales platforms | 10K+ users | Angular + LangChain |
 | Code review automation | Dev tools | 1K+ teams | Next.js + LangGraph |
@@ -441,7 +436,13 @@ CopilotKit is deployed across a range of production applications. Below are veri
 **Performance benchmarks (measured on a DigitalOcean droplet, 2 vCPU / 4GB RAM):**
 
 | Metric | CopilotKit + GPT-4o | CopilotKit + Groq Llama 3 |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | Time to first token | 800ms | 180ms |
 | Full response (100 tokens) | 2.1s | 0.9s |
 | Concurrent users (stable) | 150 | 300 |
@@ -473,17 +474,12 @@ CMD ["npm", "start"]
 ```yaml
 # docker-compose.yml
 version: "3.8"
-services:
-  app:
-    build: .
-    ports:
-      - "3000:3000"
-    environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
+services: app: build: .
+    ports: - "3000:3000"
+    environment: - OPENAI_API_KEY=${OPENAI_API_KEY}
       - COPILOTKIT_API_KEY=${COPILOTKIT_API_KEY}
     restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
+    healthcheck: test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -562,7 +558,17 @@ const runtime = new CopilotRuntime({
 ## Comparison with Alternatives
 
 | Feature | CopilotKit | Vercel AI SDK | LangChain | Dify |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Prebuilt React Components** | CopilotSidebar, CopilotChat, CopilotPopup | AI Elements (shadcn-style) | None — build your own | None — API only |
 | **Frontend State Sharing** | useCopilotReadable hook | Manual via useChat | N/A | N/A |
 | **Frontend Actions (LLM → UI)** | useCopilotAction hook | Custom tool rendering | N/A | N/A |
@@ -589,9 +595,7 @@ const runtime = new CopilotRuntime({
 
 ## Limitations / Honest Assessment
 
-CopilotKit is not the right tool for every project. Here are the genuine trade-offs:
-
-1. **React-centric ecosystem.** While Angular is supported, the React integration is significantly more mature. Vue and Svelte developers will need to wrap CopilotKit or look elsewhere.
+CopilotKit is not the right tool for every project. Here are the genuine trade-offs: 1. **React-centric ecosystem.** While Angular is supported, the React integration is significantly more mature. Vue and Svelte developers will need to wrap CopilotKit or look elsewhere.
 
 2. **Premium features behind paywall.** Headless UI mode, analytics cockpit, self-learning agents, and extended thread retention require paid plans (Pro from $39/dev/month, Team from $500/month).
 
@@ -656,9 +660,7 @@ CopilotKit fills a specific gap: embedding AI copilots inside existing React app
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -681,7 +683,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 **Disclosure:** This article contains affiliate links to DigitalOcean. If you sign up through our link, dibi8.com may earn a commission at no additional cost to you. All opinions and benchmarks are independent. DigitalOcean offers $200 in free credits for new users to try CopilotKit deployments.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

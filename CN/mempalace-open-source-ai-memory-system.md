@@ -1,10 +1,9 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/mempalace-open-source-ai-memory-system" />
 title: 'MemPalace: The Best-Benchmarked Open-Source AI Memory Sy...
 description: 'MemPalace is a local-first AI memory system that stores verbatim conversation history and retrieves it with semantic search. Integrates with Claude Code, Cursor, Windsurf, and any MCP-compatible agent. ChromaDB backend, pluggable storage, 0 external API calls. Includes setup guide, benchmarks, and architecture breakdown.'
 date: 2026-06-10
-lastmod:  2026-06-10slug: 'mempalace-open-source-ai-memory-system'
+lastmod: 2026-06-10
+slug: 'mempalace-open-source-ai-memory-system'
 category: 'llm-frameworks'
 tags: ['ai-memory', 'local-first', 'mempalace', 'semantic-search', 'chromadb', 'long-term-memory', 'mcp-agent', 'verbatim-storage']
 github_repo: 'https://github.com/MemPalace/mempalace'
@@ -12,26 +11,32 @@ stars: 55206
 maintainer: 'MemPalace'
 license: MIT
 featureImage: 'https://opengraph.github.com/github/MemPalace/mempalace'
-lang: en
 ---
-
 # MemPalace: The Best-Benchmarked Open-Source AI Memory System Saves 96.6% of R@5 on LongMemEval — Zero API Calls
 
----
 
+---
 ## TL;DR
 
 MemPalace is a local-first AI memory system that stores conversation history as **verbatim text** and retrieves it with semantic search. It achieves **96.6% R@5 raw** on LongMemEval — the best benchmarked score for any open-source memory system — with **zero API calls**. It's built for developers who want their AI agents to remember everything without sending data to any external service.
 
 | Metric | MemPalace | Mem0 | Memory Bank |
-|--------|-----------|------|-------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Benchmark | 96.6% R@5 raw | 78.2% R@5 | 71.4% R@5 |
 | API Calls | 0 | 1-3 per session | 5-8 per session |
 | Storage | Local-first | Cloud-dependent | Hybrid |
 | Install | `uv tool install mempalace` | `pip install mem0` | Docker only |
 
----
 
+---
 ## What It Is
 
 MemPalace solves one problem: **AI agents forget what you told them last week.**
@@ -62,17 +67,13 @@ Your Conversation → MemPalace Index (Local)
               Agent Gets Structured Memory
 ```
 
-MemPalace works in three layers:
-
-**Layer 1 — Storage:** Every conversation is stored verbatim. No AI processing, no summarization. The original text is preserved exactly as written.
+MemPalace works in three layers: **Layer 1 — Storage:** Every conversation is stored verbatim. No AI processing, no summarization. The original text is preserved exactly as written.
 
 **Layer 2 — Index:** Conversations are structured into a knowledge graph. People and projects become *wings*, topics become *rooms*, and original content lives in *drawers*. This structured index enables scoped searches instead of flat corpus searches.
 
 **Layer 3 — Retrieval:** When an agent needs context, it queries the pluggable retrieval layer (default: ChromaDB). Results are returned as structured context, not raw text.
 
-The retrieval layer uses semantic search with hybrid keyword boosting. By default, MemPalace uses ChromaDB with the `all-MiniLM-L6-v2` embedding model, but you can swap in any backend that implements the `mempalace/backends/base.py` interface. This includes:
-
-- `chromadb`: Default backend, good for most use cases
+The retrieval layer uses semantic search with hybrid keyword boosting. By default, MemPalace uses ChromaDB with the `all-MiniLM-L6-v2` embedding model, but you can swap in any backend that implements the `mempalace/backends/base.py` interface. This includes: - `chromadb`: Default backend, good for most use cases
 - `qdrant`: Faster for large datasets, supports filtering
 - `weaviate`: Production-ready, supports GraphQL queries
 - Custom backends: Implement the base interface for any vector database
@@ -81,9 +82,7 @@ The retrieval layer uses semantic search with hybrid keyword boosting. By defaul
 
 ## Auto-Save Hooks
 
-MemPalace can automatically save conversations from supported agents. For Claude Code, you need to configure auto-save hooks:
-
-```bash
+MemPalace can automatically save conversations from supported agents. For Claude Code, you need to configure auto-save hooks: ```bash
 # Enable auto-save for Claude Code
 mempalace hooks enable claude-code
 
@@ -109,9 +108,7 @@ The hooks work by intercepting agent sessions and automatically storing them to 
 
 ## Quickstart (60 Seconds)
 
-Install MemPalace in an isolated environment to avoid PEP 668 errors:
-
-```bash
+Install MemPalace in an isolated environment to avoid PEP 668 errors: ```bash
 # Recommended: uv tool install (isolated on your PATH)
 uv tool install mempalace
 
@@ -122,16 +119,12 @@ mempalace init ~/projects/myapp
 claude
 ```
 
-Or using pipx:
-
-```bash
+Or using pipx: ```bash
 pipx install mempalace
 mempalace init ~/projects/myapp
 ```
 
-Or inside a virtualenv (if you want `import mempalace` available):
-
-```bash
+Or inside a virtualenv (if you want `import mempalace` available): ```bash
 python -m venv .venv && source .venv/bin/activate
 pip install mempalace
 mempalace init ~/projects/myapp
@@ -161,7 +154,15 @@ MemPalace achieved **96.6% R@5 raw** on LongMemEval — the best benchmarked sco
 ### LongMemEval Results
 
 | Mode | R@5 | LLM Required | API Calls |
-|------|-----|--------------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **MemPalace (Raw)** | **96.6%** | None | 0 |
 | MemPalace (Hybrid v4) | 98.4% | None | 0 |
 | MemPalace (Hybrid + LLM Rerank) | ≥99% | Any capable model | 1 |
@@ -198,9 +199,7 @@ The structured memory graph is MemPalace's secret sauce.
 2. **Rooms** = Topics, features, or workstreams within a wing
 3. **Drawers** = Original conversation segments
 
-This structure enables scoped searches:
-
-```bash
+This structure enables scoped searches: ```bash
 # Search across all wings
 mempalace search "auth implementation"
 
@@ -213,9 +212,7 @@ mempalace search "auth" --wing "Person-A" --room "Project-A"
 
 ### Backup and Restore
 
-Since MemPalace stores data locally, you should back up your memory regularly:
-
-```bash
+Since MemPalace stores data locally, you should back up your memory regularly: ```bash
 # Backup your memory palace
 mempalace backup ~/backups/mempalace-$(date +%Y-%m-%d).tar.gz
 
@@ -238,8 +235,7 @@ MemPalace includes a built-in MCP server for use with Claude Code, Cursor, and o
 # Start the MCP server
 mempalace mcp --port 8765
 
-# In Claude Code config (~/.claude/settings.json):
-{
+# In Claude Code config (~/.claude/settings.json): {
   "mcpServers": {
     "mempalace": {
       "command": "mempalace",
@@ -249,8 +245,7 @@ mempalace mcp --port 8765
 }
 ```
 
-The MCP server exposes:
-- `mempalace_store`: Store conversation segment
+The MCP server exposes: - `mempalace_store`: Store conversation segment
 - `mempalace_query`: Retrieve context via semantic search
 - `mempalace_list_wings`: List available wings
 - `mempalace_list_rooms`: List rooms within a wing
@@ -259,9 +254,7 @@ The MCP server exposes:
 
 ## In Depth: Python API
 
-If you're not using MCP-compatible agents, you can use MemPalace's Python API directly:
-
-```python
+If you're not using MCP-compatible agents, you can use MemPalace's Python API directly: ```python
 import mempalace
 
 # Initialize memory store
@@ -279,16 +272,13 @@ memory.store({
 
 # Query for relevant context
 results = memory.query("OAuth2 Google implementation")
-for result in results:
-    print(f"[{result.wing}/{result.room}]: {result.content[:200]}")
+for result in results: print(f"[{result.wing}/{result.room}]: {result.content[:200]}")
 
 # List all wings
-for wing in memory.list_wings():
-    print(f"Wing: {wing.name} ({len(wing.rooms)} rooms)")
+for wing in memory.list_wings(): print(f"Wing: {wing.name} ({len(wing.rooms)} rooms)")
 ```
 
-The Python API mirrors the CLI but gives you programmatic access to the memory graph. This is useful for:
-- Custom agent integrations
+The Python API mirrors the CLI but gives you programmatic access to the memory graph. This is useful for: - Custom agent integrations
 - Batch processing conversation history
 - Building dashboards over your memory
 - Automated backup workflows
@@ -297,9 +287,7 @@ The Python API mirrors the CLI but gives you programmatic access to the memory g
 
 ## Docker Deployment
 
-For server-side or containerized deployments:
-
-```bash
+For server-side or containerized deployments: ```bash
 # Build the Docker image
 docker build -t mempalace-server .
 
@@ -312,8 +300,7 @@ docker run -d \
   mcp --port 8765
 ```
 
-Everything persists under `/data` (palace, config, and the cached embedding model), so mount a volume there. This setup works well for:
-- Shared team memory (multiple machines accessing same database)
+Everything persists under `/data` (palace, config, and the cached embedding model), so mount a volume there. This setup works well for: - Shared team memory (multiple machines accessing same database)
 - CI/CD pipelines that need agent memory
 - Production environments with Docker orchestration
 
@@ -322,7 +309,17 @@ Everything persists under `/data` (palace, config, and the cached embedding mode
 ## Compared to Alternatives
 
 | Feature | MemPalace | Mem0 | Memory Bank | Local RAG |
-|---------|-----------|------|-------------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Verbatim Storage | ✓ | ✗ | ✗ | ✗ |
 | Structured Index | Wings/Rooms/Drawers | Flat vector | Chat history | Embeddings |
 | API Required | 0 | 1-3 | 5-8 | 0 |
@@ -335,9 +332,7 @@ MemPalace's structured approach (wings → rooms → drawers) is what drives the
 
 ## Limitations / Honest Assessment
 
-MemPalace is not for everyone:
-
-- **Not for cloud teams**: If you need shared memory across team members working on different machines, MemPalace's local-first design doesn't help
+MemPalace is not for everyone: - **Not for cloud teams**: If you need shared memory across team members working on different machines, MemPalace's local-first design doesn't help
 - **Requires Python environment**: Installation needs `uv` or `pip` with a compatible Python version
 - **ChromaDB by default**: While pluggable, most users will use ChromaDB which requires ~500MB RAM for the embedding model
 - **No cloud backup**: Your memory stays local. If your disk fails, your memory is gone (unless you back it up)
@@ -437,14 +432,12 @@ For self-hosted memory on a VPS or dedicated server, consider using [HTStack](ht
 
 Join the **dibi8 [English Telegram group](https://t.me/DIBI8_Group/2)** for discussions on AI memory systems, agent architecture, and open-source tools.
 
-Related articles:
-- [LangChain Complete Guide](dibi8-internal-link/llm-frameworks/langchain-complete-guide)
+Related articles: - [LangChain Complete Guide](dibi8-internal-link/llm-frameworks/langchain-complete-guide)
 - [Vector Database Comparison](dibi8-internal-link/data-science/vector-database-comparison)
 - [MCP Deep Dive](dibi8-internal-link/llm-frameworks/mcp-deep-dive)
 
 *Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.*
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

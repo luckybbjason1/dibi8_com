@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/puppeteer" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/puppeteer" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/puppeteer" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/puppeteer" />
 title: 'Puppeteer: 94,300 GitHub Stars — 프로덕션 브라우저 자동화 Docker 가이...
 description: 'Puppeteer는 Chrome 및 Firefox용 헤드리스 브라우저 자동화 Node.js 라이브러리입니다. Docker, GitHub Actions, Jest, Mocha, TypeScript를 지원합니다. puppeteer docker 설정, 프로덕션 배포, 브라우저 자동화 튜토리얼, CI/CD 통합을 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [puppeteer, '브라우저-자동화', '헤드리스-크롬', '웹-스크래핑', docker, 테스팅, typescript]
-aliases:
-- /kr/posts/puppeteer/
+aliases: - /kr/posts/puppeteer/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/puppeteer/ -->
 
 {{</* resource-info */>}}
 
@@ -53,9 +45,7 @@ Puppeteer는 Chrome DevTools Protocol (CDP)과 WebDriver BiDi를 통해 Chrome, 
 
 Puppeteer는 WebSocket 연결을 통해 브라우저와 통신한다. `puppeteer.launch()`를 호출하면 라이브러리가 로컬 포트에서 원격 디버깅이 활성화된 Chrome 또는 Firefox 프로세스를 시작하고, DevTools Protocol을 통해 연결한다. 이 직접 연결은 이전 WebDriver 기반 도구에서 발생하는 HTTP 왕복을 피한다.
 
-**핵심 아키텍처 개념:
-
-- **Browser**: 단일 실행 중인 브라우저 인스턴스. 격리를 위해 여러 개를 병렬로 실행할 수 있다.
+**핵심 아키텍처 개념: - **Browser**: 단일 실행 중인 브라우저 인스턴스. 격리를 위해 여러 개를 병렬로 실행할 수 있다.
 - **Page**: 브라우저 탭에 해당한다. 대부분의 자동화 코드는 Page 객체와 상호작용한다.
 - **Context**: 브라우저 컨텍스트는 별도의 쿠키, localStorage, 캐시를 제공하는 독립 세션이다. 시크릿 모드 창으로 생각하면 된다.
 - **CDP Session**: 네트워크 가로채기, 성능 추적, 커버리지 보고와 같은 고급 사용 사례를 위해 Chrome DevTools Protocol에 대한 로우레벨 접근을 제공한다.
@@ -74,9 +64,7 @@ npm install puppeteer
 npm install puppeteer-core
 ```
 
-**최소 스크립트로 설치 확인:
-
-```javascript
+**최소 스크립트로 설치 확인: ```javascript
 // quickstart.mjs — Puppeteer가 올바르게 실행되는지 확인
 import puppeteer from puppeteer;
 
@@ -88,16 +76,12 @@ console.log(`Page title: ${title}`);
 await browser.close();
 ```
 
-실행:
-
-```bash
+실행: ```bash
 node quickstart.mjs
 # 예상 출력: Page title: Example Domain
 ```
 
-Chrome을 독립적으로 관리하는 환경 — Docker, AWS Lambda, 또는 Chromium이 사전 설치된 시스템 — 에서는 `puppeteer-core`를 사용하고 `executablePath`를 설정한다:
-
-```javascript
+Chrome을 독립적으로 관리하는 환경 — Docker, AWS Lambda, 또는 Chromium이 사전 설치된 시스템 — 에서는 `puppeteer-core`를 사용하고 `executablePath`를 설정한다: ```javascript
 import puppeteer from 'puppeteer-core';
 
 const browser = await puppeteer.launch({
@@ -111,9 +95,7 @@ const browser = await puppeteer.launch({
 
 Docker에서 Puppeteer를 실행하면 "내 머신에서는 되는데" 문제를 제거하고 개발, 스테이징, 프로덕션 환경 전반에 걸쳐 결정론적 배포를 보장한다. 도전 과제는 Chromium이 특정 시스템 라이브러리를 필요로 한다는 것 — 하나라도 누락하면 브라우저가 불명확한 시작 오류로 실패한다.
 
-**프로덕션 Dockerfile:
-
-```dockerfile
+**프로덕션 Dockerfile: ```dockerfile
 # Dockerfile — Puppeteer용 Node.js 22 + Chromium 환경
 FROM node:22-slim
 
@@ -162,33 +144,21 @@ USER pptruser
 CMD ["node", "src/index.mjs"]
 ```
 
-**빌드 및 실행:
-
-```bash
+**빌드 및 실행: ```bash
 docker build -t puppeteer-app .
 docker run --rm -v $(pwd)/output:/home/pptruser/app/output puppeteer-app
 ```
 
-**로컬 개발용 docker-compose.yml:
-
-```yaml
+**로컬 개발용 docker-compose.yml: ```yaml
 version: '3.8'
-services:
-  puppeteer:
-    build: .
-    volumes:
-      - ./src:/home/pptruser/app/src
+services: puppeteer: build: .
+    volumes: - ./src:/home/pptruser/app/src
       - ./output:/home/pptruser/app/output
-    environment:
-      - NODE_ENV=production
+    environment: - NODE_ENV=production
       - PUPPETEER_ARGS=--no-sandbox --disable-setuid-sandbox --disable-dev-shm-usage
     shm_size: 2gb
-    deploy:
-      resources:
-        limits:
-          memory: 4G
-        reservations:
-          memory: 1G
+    deploy: resources: limits: memory: 4G
+        reservations: memory: 1G
 ```
 
 `shm_size` 설정은 중요하다. Chrome은 공유 메모리로 `/dev/shm`을 사용하고, Docker 컨테이너의 기본값 64MB는 대형 페이지에서 충돌을 일으킨다. 2GB로 설정하면 헤드리스 모드에서 "Aw, snap" 오류를 방지한다.
@@ -201,9 +171,7 @@ services:
 
 ### 동적 콘텐츠 웹 스크래핑
 
-현대의 SPA는 초기 HTML 응답 이후에 콘텐츠를 로드한다. Puppeteer는 데이터 추출 전 선택자가 나타날 때까지 대기한다:
-
-```javascript
+현대의 SPA는 초기 HTML 응답 이후에 콘텐츠를 로드한다. Puppeteer는 데이터 추출 전 선택자가 나타날 때까지 대기한다: ```javascript
 // scraper.mjs — JavaScript 렌더링된 페이지에서 데이터 추출
 import puppeteer from puppeteer;
 
@@ -237,9 +205,7 @@ await browser.close();
 
 ### 스크린샷 및 PDF 생성
 
-Puppeteer는 HTML에서 시각적 산출물을 렌더링하는 데 탁월하다 — 인보이스, 보고서, Open Graph 이미지 생성의 일반적인 요구사항이다:
-
-```javascript
+Puppeteer는 HTML에서 시각적 산출물을 렌더링하는 데 탁월하다 — 인보이스, 보고서, Open Graph 이미지 생성의 일반적인 요구사항이다: ```javascript
 // screenshot.mjs — 전체 페이지 캡처 및 PDF 낸보 내기
 import puppeteer from puppeteer;
 import fs from fs;
@@ -274,9 +240,7 @@ await browser.close();
 
 ### 네트워크 가로채기 및 요청 차단
 
-불필요한 리소스를 차단하면 스크래핑 시나리오에서 페이지 로드 시간을 40–60% 줄인다:
-
-```javascript
+불필요한 리소스를 차단하면 스크래핑 시나리오에서 페이지 로드 시간을 40–60% 줄인다: ```javascript
 // blocker.mjs — 더 빠른 스크래핑을 위해 이미지와 CSS 차단
 import puppeteer from puppeteer;
 
@@ -305,27 +269,18 @@ await browser.close();
 
 ### GitHub Actions
 
-모든 푸시에서 스크린샷 캡처나 회귀 테스트를 자동화한다:
-
-```yaml
+모든 푸시에서 스크린샷 캡처나 회귀 테스트를 자동화한다: ```yaml
 # .github/workflows/puppeteer.yml
 name: Puppeteer CI
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+on: push: branches: [main]
+  pull_request: branches: [main]
 
-jobs:
-  puppeteer:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: puppeteer: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
-        with:
-          node-version: 22
+        with: node-version: 22
           cache: npm
 
       - name: 의존성 설치
@@ -333,14 +288,12 @@ jobs:
 
       - name: Puppeteer 테스트 실행
         run: npm test
-        env:
-          CI: true
+        env: CI: true
           PUPPETEER_ARGS: '--no-sandbox --disable-setuid-sandbox'
 
       - name: 아티팩트 업로드
         uses: actions/upload-artifact@v4
-        with:
-          name: screenshots
+        with: name: screenshots
           path: output/*.png
 ```
 
@@ -484,9 +437,7 @@ describe('Scraper Suite', function() {
 
 ## 벤치마크 / 실제 사용 사례
 
-독립 벤치마크는 Puppeteer가 Chrome 중심 워크로드에서 강력한 위치를 유지하고 있음을 보여준다:
-
-| 메트릭 | Puppeteer | Selenium | Playwright | Cypress |
+독립 벤치마크는 Puppeteer가 Chrome 중심 워크로드에서 강력한 위치를 유지하고 있음을 보여준다: | 메트릭 | Puppeteer | Selenium | Playwright | Cypress |
 |--------|-----------|----------|------------|---------|
 | 평균 작업 대기 시간 | < 1초 | 3–5초 | 1–2초 | 1–2초 |
 | 설정 시간 | 10–15분 | 2–4시간 | 15–30분 | 15–30분 |
@@ -495,9 +446,7 @@ describe('Scraper Suite', function() {
 | 테스트 스위트 (50개 테스트) | 순차 2분55초 / 병렬 48초 | 순차 8분45초 / 병렬 2분50초 | 순차 3분20초 / 병렬 52초 | 순차 3분45초 / 병렬 1분10초 |
 | 월간 유지보수 시간 | 약 11시간 | 약 16.5시간 | 약 12시간 | 약 10.5시간 |
 
-**대안 대신 Puppeteer를 선택해야 할 때:
-
-- **PDF 생성 및 스크린샷 파이프라인**: Puppeteer의 `page.pdf()`와 `page.screenshot()`은 브라우저 자동화 분야에서 가장 성숙한 API다.
+**대안 대신 Puppeteer를 선택해야 할 때: - **PDF 생성 및 스크린샷 파이프라인**: Puppeteer의 `page.pdf()`와 `page.screenshot()`은 브라우저 자동화 분야에서 가장 성숙한 API다.
 - **Chrome DevTools Protocol 접근**: 개발자 도구, 성능 프로파일러, 커버리지 리포터를 빌드하는 팀에게 직접 CDP 접근은 Puppeteer만이 네이티브로 충족하는 요구사항이다.
 - **대규모 웹 스크래핑**: Bull이나 RabbitMQ 같은 워커 큐와 결합하면 Puppeteer는 최소한의 오버헤드로 시간당 수천 개의 URL을 처리한다.
 - **기존 Node.js 인프라**: 백엔드가 이미 TypeScript/JavaScript라면 Puppeteer를 추가핸도 새로운 런타임이나 언어가 도입되지 않는다.
@@ -506,9 +455,7 @@ describe('Scraper Suite', function() {
 
 ### 브라우저 풀 관리
 
-요청마다 브라우저를 하나씩 시작하는 것은 비효율적이다. 연결 풀은 브라우저 인스턴스를 재사용한다:
-
-```javascript
+요청마다 브라우저를 하나씩 시작하는 것은 비효율적이다. 연결 풀은 브라우저 인스턴스를 재사용한다: ```javascript
 // pool.mjs — 최대 동시성이 있는 재사용 가능한 브라우저 풀
 import puppeteer from puppeteer;
 
@@ -568,9 +515,7 @@ pool.release(browser);
 
 ### 우아한 오류 처리 및 재시도
 
-프로덕션 스크래핑은 네트워크 타임아웃, 봇 감지, 일시적 장애를 만난다. 페이지 네비게이션을 지수 백오프로 감싼다:
-
-```javascript
+프로덕션 스크래핑은 네트워크 타임아웃, 봇 감지, 일시적 장애를 만난다. 페이지 네비게이션을 지수 백오프로 감싼다: ```javascript
 // retry.mjs — 지수 백오프가 있는 복원력 있는 네비게이션
 async function gotoWithRetry(page, url, maxRetries = 3) {
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
@@ -592,9 +537,7 @@ async function gotoWithRetry(page, url, maxRetries = 3) {
 
 ### 상태 모니터링
 
-장기 실행 서비스에서 브라우저 프로세스 상태를 모니터링하고 충돌한 인스턴스를 재시작한다:
-
-```javascript
+장기 실행 서비스에서 브라우저 프로세스 상태를 모니터링하고 충돌한 인스턴스를 재시작한다: ```javascript
 // health.mjs — 브라우저 프로세스에 대한 기본 상태 확인
 async function isBrowserHealthy(browser) {
   try {
@@ -639,9 +582,7 @@ setInterval(async () => {
 
 ## 한계 / 정직한 평가
 
-Puppeteer는 모든 브라우저 자동화 작업에 적합한 도구가 아니다. 커밋하기 전에 다음 제약 사항을 고려하라:
-
-- **JavaScript 전용**: Puppeteer는 Node.js 라이브러리다. Python, Java, Go를 사용하는 팀은 `pyppeteer`(비공식, 지연)를 사용하거나 Selenium/Playwright로 전환해야 한다.
+Puppeteer는 모든 브라우저 자동화 작업에 적합한 도구가 아니다. 커밋하기 전에 다음 제약 사항을 고려하라: - **JavaScript 전용**: Puppeteer는 Node.js 라이브러리다. Python, Java, Go를 사용하는 팀은 `pyppeteer`(비공식, 지연)를 사용하거나 Selenium/Playwright로 전환해야 한다.
 - **제한된 크로스브라우저 지원**: WebDriver BiDi를 통해 Firefox 지원이 있지만, Chrome 자동화만큼 성숙하지 않다. Safari와 WebKit은 지원되지 않는다. 크로스브라우저 테스트가 하드 요구사항이라면 Playwright가 세 가지 렌더링 엔진을 모두 네이티브로 커버한다.
 - **내장 테스트 러너 없음**: Cypress나 Playwright와 달리 Puppeteer는 어서션, 테스트 조직, 또는 리포터를 제공하지 않는다. 직접 Jest, Mocha, Vitest 설정을 가져와야 한다.
 - **수동 병렬화**: 병렬 테스트 실행은 수동 브라우저 풀 관리나 외부 오케스트레이션이 필요하다. Playwright의 내장 worker 모델이 대형 테스트 스위트에 더 간단하다.
@@ -682,9 +623,7 @@ Puppeteer와 Playwright는 같은 기원을 공유한다 — Playwright 팀은 G
 
 Puppeteer는 프로그래밍 방식의 Chrome 제어가 필요한 팀에게 여전히 탄탄한 선택이다. 94,300개의 GitHub Star와 Chrome DevTools 팀의 활발한 유지보수는 장기적인 안정성을 시사한다. PDF 생성, 스크린샷 파이프라인, Chrome 기반 스크래핑을 위해 이 라이브러리의 API 표면은 타의 추종을 불허한다. 이 가이드의 Docker 패턴, 브라우저 풀 관리, 재시도 로직은 프로덕션 준비가 된 기반을 제공한다.
 
-**액션 아이템:
-
-1. [공식 Puppeteer 예제](https://github.com/puppeteer/puppeteer/tree/main/examples)를 클론하고 스크래퍼 패턴을 대상 사이트에 맞게 조정하라.
+**액션 아이템: 1. [공식 Puppeteer 예제](https://github.com/puppeteer/puppeteer/tree/main/examples)를 클론하고 스크래퍼 패턴을 대상 사이트에 맞게 조정하라.
 2. 이 가이드의 Dockerfile에서 Docker 이미지를 빌드하고 스테이징 환경에서 실행하라.
 3. GitHub Actions 워크플로를 설정하여 모든 PR에서 스크린샷을 캡처하거나 회귀 테스트를 실행하라.
 4. [dibi8 Telegram 그룹](https://t.me/dibi8tech)에 가입하여 Puppeteer 배포 패턴을 공유하고 규모로 브라우저 자동화를 실행하는 다른 개발자로부터 도움을 받으라.
@@ -693,9 +632,7 @@ Puppeteer는 프로그래밍 방식의 Chrome 제어가 필요한 팀에게 여�
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -712,7 +649,6 @@ Puppeteer는 프로그래밍 방식의 Chrome 제어가 필요한 팀에게 여�
 - [Browserless.io Puppeteer 호스팅](https://www.browserless.io/) — 관리형 Puppeteer 인프라
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

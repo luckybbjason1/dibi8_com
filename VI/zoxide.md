@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/zoxide" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/zoxide" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/zoxide" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/zoxide" />
 title: 'Zoxide: 36,752 GitHub Stars — Hướng Dẫn Cài Đặt Đầy Đủ 2...
 description: 'Zoxide là lệnh cd thông minh học thói quen thư mục của bạn. Hỗ trợ Bash, Zsh, Fish, Nushell, PowerShell. Bao gồm cài đặt, tích hợp shell, cấu hình fzf, thuật toán bên trong, và chuyển đổi từ autojump/fasd.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [zoxide, cli, shell, 'cd-thay-the', rust, terminal, 'năng-suất', fzf]
-aliases:
-- /vi/posts/zoxide/
+aliases: - /vi/posts/zoxide/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/zoxide/ -->
 
 {{</* resource-info */>}}
 
@@ -49,9 +41,7 @@ Nếu hôm nay bạn đã truy cập `~/projects/mycompany/frontend/src/componen
 
 ### Thuật Toán Frecency
 
-Zoxide xếp hạng thư mục bằng **frecency** — sự kết hợp của **freq**uency (tần suất) và re**cency** (mức độ gần đây). Mỗi thư mục bắt đầu với điểm số 1 khi truy cập lần đầu. Mỗi lần truy cập tiếp theo tăng điểm thêm 1. Khi bạn truy vấn, điểm số được tính theo thờ gian truy cập gần nhất:
-
-| Thờ Gian Truy Cập Gần Nhất | Hệ Số Frecency |
+Zoxide xếp hạng thư mục bằng **frecency** — sự kết hợp của **freq**uency (tần suất) và re**cency** (mức độ gần đây). Mỗi thư mục bắt đầu với điểm số 1 khi truy cập lần đầu. Mỗi lần truy cập tiếp theo tăng điểm thêm 1. Khi bạn truy vấn, điểm số được tính theo thờ gian truy cập gần nhất: | Thờ Gian Truy Cập Gần Nhất | Hệ Số Frecency |
 |---------------------------|---------------|
 | Trong 1 giờ               | score × 4     |
 | Trong 1 ngày              | score × 2     |
@@ -62,9 +52,7 @@ Zoxide xếp hạng thư mục bằng **frecency** — sự kết hợp của **
 
 ### Quy Tắc Khớp
 
-Zoxide sử dụng khớp mờ không phân biệt chữ hoa chữ thường:
-
-- Tất cả các từ truy vấn phải xuất hiện trong đường dẫn **theo thứ tự**.
+Zoxide sử dụng khớp mờ không phân biệt chữ hoa chữ thường: - Tất cả các từ truy vấn phải xuất hiện trong đường dẫn **theo thứ tự**.
 - `z fo ba` khớp với `/foo/bar` nhưng không khớp `/bar/foo`.
 - Từ cuối cùng phải khớp với thành phần cuối của đường dẫn.
 - `z bar` khớp với `/foo/bar` nhưng không khớp `/bar/foo`.
@@ -72,9 +60,7 @@ Zoxide sử dụng khớp mờ không phân biệt chữ hoa chữ thường:
 
 ### Quản Lý Cơ Sở Dữ Liệu
 
-Zoxide lưu trữ cơ sở dữ liệu tại các đường dẫn theo từng nền tảng:
-
-| Hệ Điều Hành | Đường Dẫn Cơ Sở Dữ Liệu Mặc Định                    |
+Zoxide lưu trữ cơ sở dữ liệu tại các đường dẫn theo từng nền tảng: | Hệ Điều Hành | Đường Dẫn Cơ Sở Dữ Liệu Mặc Định                    |
 |-------------|-----------------------------------------------------|
 | Linux       | `$XDG_DATA_HOME/zoxide/db.sqlite` hoặc `~/.local/share/zoxide/db.sqlite` |
 | macOS       | `~/Library/Application Support/zoxide/db.sqlite`    |
@@ -134,9 +120,7 @@ scoop install zoxide
 cargo install zoxide --locked
 ```
 
-Kiểm tra cài đặt:
-
-```bash
+Kiểm tra cài đặt: ```bash
 zoxide --version
 # zoxide 0.9.7
 ```
@@ -145,53 +129,37 @@ zoxide --version
 
 Zoxide yêu cầu khởi tạo một lần trong cấu hình shell. Điều này kích hoạt các lệnh `z` và `zi` và móc vào thay đổi thư mục để cập nhật cơ sở dữ liệu.
 
-**Bash** — thêm vào `~/.bashrc`:
-
-```bash
+**Bash** — thêm vào `~/.bashrc`: ```bash
 eval "$(zoxide init bash)"
 ```
 
-**Zsh** — thêm vào `~/.zshrc` (sau `compinit`):
-
-```zsh
+**Zsh** — thêm vào `~/.zshrc` (sau `compinit`): ```zsh
 eval "$(zoxide init zsh)"
 ```
 
-**Fish** — thêm vào `~/.config/fish/config.fish`:
-
-```fish
+**Fish** — thêm vào `~/.config/fish/config.fish`: ```fish
 zoxide init fish | source
 ```
 
-**Nushell** — thêm vào file môi trường (`$nu.env-path`):
-
-```nu
+**Nushell** — thêm vào file môi trường (`$nu.env-path`): ```nu
 zoxide init nushell | save -f ~/.zoxide.nu
 ```
 
-Sau đó nạp nó trong file cấu hình (`$nu.config-path`):
-
-```nu
+Sau đó nạp nó trong file cấu hình (`$nu.config-path`): ```nu
 source ~/.zoxide.nu
 ```
 
-**PowerShell** — thêm vào profile (tìm bằng `echo $profile`):
-
-```powershell
+**PowerShell** — thêm vào profile (tìm bằng `echo $profile`): ```powershell
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
 ```
 
-Tải lại shell hoặc nạp cấu hình:
-
-```bash
+Tải lại shell hoặc nạp cấu hình: ```bash
 source ~/.bashrc   # hoặc ~/.zshrc, v.v.
 ```
 
 ### Bước 3: Cài Đặt fzf (Tùy Chọn Nhưng Khuyến Nghị)
 
-Lệnh `zi` cung cấp khung chọn mờ tương tác được cung cấp bởi fzf:
-
-```bash
+Lệnh `zi` cung cấp khung chọn mờ tương tác được cung cấp bởi fzf: ```bash
 # macOS
 brew install fzf
 
@@ -208,9 +176,7 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 
 ### Bước 4: Nhập Dữ Liệu Hiện Có (Tùy Chọn)
 
-Nếu bạn đang chuyển đổi từ công cụ nhảy thư mục khác, hãy nhập lịch sử:
-
-```bash
+Nếu bạn đang chuyển đổi từ công cụ nhảy thư mục khác, hãy nhập lịch sử: ```bash
 # Từ autojump
 zoxide import autojump
 
@@ -228,24 +194,18 @@ zoxide import atuin
 
 ### fzf Chọn Tương Tác
 
-Với fzf đã cài đặt, `zi` mở bộ tìm mờ tương tác trên lịch sử thư mục:
-
-```bash
+Với fzf đã cài đặt, `zi` mở bộ tìm mờ tương tác trên lịch sử thư mục: ```bash
 zi frontend        # tìm mờ mọi thư mục khớp "frontend"
 zi                 # duyệt toàn bộ lịch sử thư mục
 ```
 
-Tùy chỉnh hành vi fzf cho zoxide:
-
-```bash
+Tùy chỉnh hành vi fzf cho zoxide: ```bash
 export _ZO_FZF_OPTS="--height 40% --reverse --preview 'ls -la {}'"
 ```
 
 ### Trình Quản Lý File nnn
 
-Zoxide tích hợp native với nnn qua plugin `nnn-autojump`. Thêm vào cấu hình nnn:
-
-```bash
+Zoxide tích hợp native với nnn qua plugin `nnn-autojump`. Thêm vào cấu hình nnn: ```bash
 export NNN_PLUG="z:zoxide"
 ```
 
@@ -253,9 +213,7 @@ Sau đó nhấn `;z` trong nnn để nhảy bằng zoxide.
 
 ### Trình Quản Lý Session tmux
 
-Các công cụ như `sesh`, `tmux-session-wizard`, và `tmux-sessionx` hỗ trợ zoxide native để khởi chạy session tmux từ các thư mục bạn dùng nhiều nhất:
-
-```bash
+Các công cụ như `sesh`, `tmux-session-wizard`, và `tmux-sessionx` hỗ trợ zoxide native để khởi chạy session tmux từ các thư mục bạn dùng nhiều nhất: ```bash
 # Với sesh đã cài
 sesh list          # hiển thị thư mục được xếp hạng bởi zoxide
 sesh connect       # session tmux tương tác từ danh sách zoxide
@@ -263,9 +221,7 @@ sesh connect       # session tmux tương tác từ danh sách zoxide
 
 ### Neovim / Vim
 
-Sử dụng `telescope-zoxide` để điều hướng thư mục mờ trong Neovim:
-
-```lua
+Sử dụng `telescope-zoxide` để điều hướng thư mục mờ trong Neovim: ```lua
 -- Trong cấu hình Neovim (Lazy.nvim)
 {
   "jvgrootvelte/telescope-zoxide",
@@ -284,9 +240,7 @@ Yazi hỗ trợ zoxide native. Nhấn `Z` trong Yazi để kích hoạt nhảy t
 
 ### Emacs
 
-Cài đặt `zoxide.el` từ MELPA:
-
-```elisp
+Cài đặt `zoxide.el` từ MELPA: ```elisp
 (use-package zoxide
   :ensure t
   :bind (("C-c z" . zoxide-find-file)))
@@ -322,9 +276,7 @@ Một team 50 kỹ sư áp dụng Zoxide có thể tiết kiệm ước tính h�
 
 ### Thay Thế cd Hoàn Toàn
 
-Để `cd` tự sử dụng zoxide, khởi tạo với `--cmd cd`:
-
-```bash
+Để `cd` tự sử dụng zoxide, khởi tạo với `--cmd cd`: ```bash
 eval "$(zoxide init bash --cmd cd)"
 ```
 
@@ -338,15 +290,11 @@ eval "$(zoxide init bash --cmd j)"    # dùng j/ji thay vì z/zi
 
 ### Loại Trừ Thư Mục
 
-Ngăn zoxide theo dõi các thư mục nhạy cảm hoặc tạm thờ:
-
-```bash
+Ngăn zoxide theo dõi các thư mục nhạy cảm hoặc tạm thờ: ```bash
 export _ZO_EXCLUDE_DIRS="$HOME:$HOME/private/*:/tmp:/var/tmp"
 ```
 
-Trên Windows, dùng dấu chấm phẩy làm dấu phân cách:
-
-```powershell
+Trên Windows, dùng dấu chấm phẩy làm dấu phân cách: ```powershell
 $env:_ZO_EXCLUDE_DIRS = "$HOME;$HOME\private\*;C:\Temp"
 ```
 
@@ -358,25 +306,19 @@ export _ZO_DATA_DIR="/mnt/fast-ssd/zoxide-data"
 
 ### Bật Chế Độ Echo
 
-In thư mục được khớp trước khi điều hướng (hữu ích cho scripting):
-
-```bash
+In thư mục được khớp trước khi điều hướng (hữu ích cho scripting): ```bash
 export _ZO_ECHO=1
 ```
 
 ### Phân Giải Symbolic Link
 
-Nếu bạn làm việc trong môi trường symbolic link, buộc phân giải symlink trước khi ghi cơ sở dữ liệu:
-
-```bash
+Nếu bạn làm việc trong môi trường symbolic link, buộc phân giải symlink trước khi ghi cơ sở dữ liệu: ```bash
 export _ZO_RESOLVE_SYMLINKS=1
 ```
 
 ### Cấu Hình Hook
 
-Kiểm soát khi nào zoxide cập nhật điểm thư mục:
-
-```bash
+Kiểm soát khi nào zoxide cập nhật điểm thư mục: ```bash
 eval "$(zoxide init bash --hook prompt)"   # cập nhật mỗi lần hiển thị prompt
 eval "$(zoxide init bash --hook pwd)"      # chỉ cập nhật khi cd (mặc định)
 eval "$(zoxide init bash --hook none)"     # không tự động cập nhật; dùng zoxide add thủ công
@@ -397,9 +339,7 @@ zoxide edit                    # mở cơ sở dữ liệu trong $EDITOR
 
 ### Thiết Lập Tab Completion
 
-**Zsh** — đảm bảo dòng init đặt sau `compinit`:
-
-```zsh
+**Zsh** — đảm bảo dòng init đặt sau `compinit`: ```zsh
 autoload -Uz compinit; compinit
 eval "$(zoxide init zsh)"      # phải đặt SAU compinit
 rm ~/.zcompdump*; compinit     # xây dựng lại cache completion nếu cần
@@ -428,9 +368,7 @@ Zoxide thắng ở mọi chỉ số trừ thờ gian khởi động thuần túy
 
 ## Hạn Chế và Đánh Giá Trung Thực
 
-**Zoxide không phải là sự thay thế `cd` universal.** Có những tình huống cụ thể mà nó không tạo thêm giá trị:
-
-- **CI/CD pipeline:** Script nên dùng đường dẫn tuyệt đối hoặc `cd` để đảm bảo tính xác định. Hành vi phụ thuộc cơ sở dữ liệu của Zoxide gây ra tính không tái tạo.
+**Zoxide không phải là sự thay thế `cd` universal.** Có những tình huống cụ thể mà nó không tạo thêm giá trị: - **CI/CD pipeline:** Script nên dùng đường dẫn tuyệt đối hoặc `cd` để đảm bảo tính xác định. Hành vi phụ thuộc cơ sở dữ liệu của Zoxide gây ra tính không tái tạo.
 - **Hệ thống chia sẻ / server đa ngườ dùng:** Cơ sở dữ liệu được thiết kế theo ngườ dùng. Nó không giúp khám phá các thư mục bạn chưa từng truy cập.
 - **Đường dẫn rất ngắn:** Gõ `z d` để đến `/home/user/Downloads` không tiết kiệm phím nào hơn `cd ~/D` + Tab.
 - **Điều hướng lần đầu:** Zoxide chỉ biết các thư mục bạn đã truy cập ít nhất một lần. Lần truy cập đầu tiên cần `cd` bình thường hoặc đường dẫn tuyệt đối.
@@ -491,9 +429,7 @@ Zoxide là công cụ nhảy thư mục trưởng thành nhất, hiệu năng ca
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -509,7 +445,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [navi Cheat Sheets với Zoxide](https://github.com/denisidoro/navi)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

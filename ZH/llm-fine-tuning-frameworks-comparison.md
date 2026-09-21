@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/llm-fine-tuning-frameworks-comparison" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/llm-fine-tuning-frameworks-comparison" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llm-fine-tuning-frameworks-comparison" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/llm-fine-tuning-frameworks-comparison" />
 title: 'LLM微调框架对比2025：LoRA、QLoRA、PEFT与Unsloth深度解析'
 description: '2025年LLM微调技术全面对比：LoRA、QLoRA、PEFT和Unsloth框架的原理、性能、显存占用与实战指南，助你高效微调大语言模型。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/llm-fine-tuning-frameworks-comparison/
+aliases: - /posts/llm-fine-tuning-frameworks-comparison/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/llm-fine-tuning-frameworks-comparison/ -->
 
 {</* resource-info */>}
 
@@ -47,7 +39,13 @@ aliases:
 ### 全参数微调 vs 参数高效微调
 
 | 维度 | 全参数微调 | PEFT（LoRA/QLoRA） |
-|------|-----------|-------------------|
+|
+---
+|
+---
+|
+---
+|
 | 可训练参数量 | 100% | 0.1% - 1% |
 | 显存需求（7B模型） | 80-150GB | 8-20GB |
 | 训练时间 | 长 | 短（3-10x 提速） |
@@ -79,7 +77,13 @@ BA 的乘积模拟了权重的变化量 ΔW，但由于 rank r 很小，参数�
 ### LoRA 关键超参数
 
 | 超参数 | 推荐值 | 作用 |
-|--------|--------|------|
+|
+---
+|
+---
+|
+---
+|
 | rank (r) | 8, 16, 32, 64 | 秩越高，表达能力越强，但参数量也越大 |
 | alpha | 2×rank | 缩放系数，控制 LoRA 层输出幅度 |
 | dropout | 0.0 - 0.1 | 防止过拟合 |
@@ -113,7 +117,15 @@ QLoRA 由 Tim Dettmers 于 2023 年提出，在 LoRA 基础上引入 **4-bit 量
 ### QLoRA vs LoRA：性能对比
 
 | 指标 | LoRA (FP16) | QLoRA (4-bit) | 差距 |
-|------|------------|--------------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 7B 模型显存占用 | ~18GB | ~6GB | **3x 降低** |
 | 13B 模型显存占用 | ~32GB | ~10GB | **3.2x 降低** |
 | 70B 模型显存占用 | ~160GB | ~43GB | **3.7x 降低** |
@@ -130,7 +142,13 @@ QLoRA 的精度损失在实际任务中几乎可以忽略，这使得它成为 2
 ### PEFT 支持的方法
 
 | 方法 | 原理 | 适用场景 |
-|------|------|----------|
+|
+---
+|
+---
+|
+---
+|
 | LoRA | 低秩分解 | 通用微调，最常用 |
 | QLoRA | 4-bit 量化 + LoRA | 显存受限环境 |
 | IA³ | 学习缩放向量 | 与 LoRA 精度相当 |
@@ -185,7 +203,13 @@ PEFT 的核心价值在于**统一接口**：无论底层用 LoRA 还是 IA³，
 ### Unsloth 免费版 vs Pro 版
 
 | 特性 | Unsloth 免费版 | Unsloth Pro |
-|------|--------------|-------------|
+|
+---
+|
+---
+|
+---
+|
 | 支持的模型 | Llama、Mistral、Gemma、Qwen 等 | 全部 + 优先支持新模型 |
 | 最大上下文 | 4K | 128K+ |
 | 导出格式 | GGUF、Ollama、vLLM | 额外支持合并和量化选项 |
@@ -231,7 +255,17 @@ model.save_pretrained_gguf("output", tokenizer, quantization_method="q4_k_m")
 ## 四者横向对比
 
 | 维度 | LoRA | QLoRA | PEFT (库) | Unsloth |
-|------|------|-------|-----------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **类型** | 算法方法 | 算法方法 | 框架/库 | 框架 |
 | **显存优化** | 中 | 极强 | 依赖底层方法 | 极强 |
 | **训练速度** | 基准 | 略慢于 LoRA | 基准 | **2-5x 加速** |
@@ -249,7 +283,13 @@ model.save_pretrained_gguf("output", tokenizer, quantization_method="q4_k_m")
 推荐使用以下硬件/平台：
 
 | GPU | 可用方法 | 最大模型 |
-|-----|----------|----------|
+|
+---
+|
+---
+|
+---
+|
 | Colab T4 (16GB) | QLoRA | 7B-13B |
 | RTX 4090 (24GB) | QLoRA | 70B |
 | A100 40GB | LoRA/QLoRA | 70B |
@@ -357,7 +397,13 @@ python -m vllm.entrypoints.openai.api_server \
 ## 其他值得关注的微调工具
 
 | 工具 | 特点 | 适用场景 |
-|------|------|----------|
+|
+---
+|
+---
+|
+---
+|
 | **Axolotl** | YAML 配置驱动，一行命令训练 | 偏好配置文件的团队 |
 | **LLaMA-Factory** | Web UI + 多种训练方法 | 可视化操作偏好者 |
 | **Torchtune** | Meta 官方 PyTorch 原生库 | 深度定制需求 |
@@ -376,7 +422,13 @@ python -m vllm.entrypoints.openai.api_server \
 **微调需要多少显存？**
 
 | 模型 | LoRA (FP16) | QLoRA (4-bit) |
-|------|------------|--------------|
+|
+---
+|
+---
+|
+---
+|
 | 7B | ~18GB | ~6GB |
 | 13B | ~32GB | ~10GB |
 | 70B | ~160GB | ~43GB |
@@ -391,12 +443,12 @@ python -m vllm.entrypoints.openai.api_server \
 
 PEFT 只训练少量参数（通常 < 1%），显存需求低、训练快、可多任务切换；全参数微调更新所有参数，通常精度略高但需要大量 GPU。对于大多数应用场景，PEFT 的精度已经足够，且成本优势巨大。
 
----
 
+---
 更多技术细节可参考 [PEFT 官方文档](https://huggingface.co/docs/peft)、[Unsloth GitHub](https://github.com/unslothai/unsloth)、[bitsandbytes](https://github.com/TimDettmers/bitsandbytes) 及 [QLoRA 论文](https://arxiv.org/abs/2305.14314)。
 
----
 
+---
 ## 推荐基础设施
 
 要 7×24 稳跑上述工具，服务器选择关键：
@@ -408,7 +460,6 @@ PEFT 只训练少量参数（通常 < 1%），显存需求低、训练快、可�
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -436,25 +487,20 @@ PEFT 只训练少量参数（通常 < 1%），显存需求低、训练快、可�
 
 ## Why This Matters
 
-Understanding llm微调框架对比2025：lora、qlora、peft与unsloth深度解析 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding llm微调框架对比2025：lora、qlora、peft与unsloth深度解析 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -506,7 +552,17 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 ## Framework Comparison
 
 | Framework | Primary Use | Learning Curve | Community | Production Ready |
-|-----------|-------------|----------------|-----------|------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **LangChain** | General-purpose | Medium | Large | ✅ Yes |
 | **LlamaIndex** | RAG/Retrieval | Low | Growing | ✅ Yes |
 | **Haystack** | Document processing | Medium | Medium | ✅ Yes |

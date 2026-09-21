@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/browser-use" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/browser-use" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/browser-use" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/browser-use" />
 title: 'Browser Use: 94K+ Stars — 2026年 AI 浏览器自动化基准测试与实战'
 description: 'Browser Use 是一款开源 Python 框架，通过 Playwright 连接 LLM 与真实浏览器。支持 OpenAI、Anthropic、Gemini 及本地模型。涵盖安装配置、WebVoyager 基准测试、Selenium 对比、生产环境加固与 Docker 部署。'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['browser-use', ai智能体, playwright, 浏览器自动化, 网络爬虫, 大语言模型, python, 开源]
-aliases:
-- /zh/posts/browser-use/
+aliases: - /zh/posts/browser-use/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/browser-use/ -->
 
 {{</* resource-info */>}}
 
@@ -37,14 +29,14 @@ aliases:
 
 > **GitHub**: [browser-use/browser-use](https://github.com/browser-use/browser-use) | **Stars**: 94,731 | **License**: MIT | **Version**: 0.12.7
 
----
 
+---
 ## 引言
 
 用 Selenium 编写和维护现代网页自动化脚本，无异于被一千个选择器凌迟处死。一个 class 名变了，一个按钮挪了位置，你的整个流水线就在凌晨 3 点崩掉。Browser Use 是 Magnus Müller 和 Gregor Žunič 于 2024 年底发布的开源 Python 框架，它走了一条截然不同的路：把浏览器控制权交给大语言模型，让 AI 自己决定点什么、填什么、读什么。凭借 94,731 个 GitHub Star、319 位贡献者以及 WebVoyager 基准测试 89.1% 的成功率，Browser Use 已成为 AI 驱动浏览器自动化的事实开源标准。本教程涵盖安装配置、真实基准数据、与主流 LLM 的集成，以及与 Selenium、Puppeteer、Scrapy 的正面对比。
 
----
 
+---
 ## Browser Use 是什么？
 
 Browser Use 是一个 Python 库（要求 ≥3.11），通过 Playwright 将任何兼容 LangChain 的 LLM 连接到真实浏览器。你无需硬编码 CSS 选择器或 XPath 表达式，只需用自然语言描述任务 —— "找到下周从纽约到旧金山最便宜的航班" —— 智能体便会自主完成导航、填表、点击和数据提取。
@@ -90,8 +82,7 @@ from browser_use import Agent, Browser
 from langchain_openai import ChatOpenAI
 import asyncio
 
-async def main():
-    browser = Browser()
+async def main(): browser = Browser()
     agent = Agent(
         task="Find the number of stars of the browser-use repo",
         llm=ChatOpenAI(model="gpt-4.1"),
@@ -100,8 +91,7 @@ async def main():
     result = await agent.run()
     print(result)
 
-if __name__ == "__main__":
-    asyncio.run(main())
+if __name__ == "__main__": asyncio.run(main())
 ```
 
 ---
@@ -147,8 +137,7 @@ BROWSER_USE_API_KEY=your-cloud-key
 import asyncio
 from browser_use import Agent, Browser, ChatBrowserUse
 
-async def main():
-    browser = Browser()
+async def main(): browser = Browser()
     agent = Agent(
         task="List the top 20 posts on Hacker News today with their points",
         llm=ChatBrowserUse(),
@@ -157,8 +146,7 @@ async def main():
     result = await agent.run()
     print(result.output)
 
-if __name__ == "__main__":
-    asyncio.run(main())
+if __name__ == "__main__": asyncio.run(main())
 ```
 
 ![Browser Use Quick Start Interface](https://docs.browser-use.com/assets/images/quickstart-browser-use-cloud.png)
@@ -181,14 +169,10 @@ CMD ["python", "agent.py"]
 ```yaml
 # docker-compose.yml
 version: '3.8'
-services:
-  browser-use:
-    build: .
-    environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
+services: browser-use: build: .
+    environment: - OPENAI_API_KEY=${OPENAI_API_KEY}
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
-    volumes:
-      - ./scripts:/app
+    volumes: - ./scripts:/app
     command: python agent.py
 ```
 
@@ -203,8 +187,7 @@ from browser_use import Agent, Browser
 from langchain_openai import ChatOpenAI
 import asyncio
 
-async def search_flights():
-    agent = Agent(
+async def search_flights(): agent = Agent(
         task="Find the cheapest flight from NYC to London next week",
         llm=ChatOpenAI(model="gpt-4o", temperature=0),
         browser=Browser(),
@@ -221,8 +204,7 @@ from browser_use import Agent, Browser
 from langchain_anthropic import ChatAnthropic
 import asyncio
 
-async def extract_data():
-    agent = Agent(
+async def extract_data(): agent = Agent(
         task="Extract all pricing plans from example.com/pricing",
         llm=ChatAnthropic(model="claude-sonnet-4-6"),
         browser=Browser(),
@@ -240,8 +222,7 @@ from browser_use import Agent, Browser
 from langchain_google_genai import ChatGoogleGenerativeAI
 import asyncio
 
-async def research_topic():
-    agent = Agent(
+async def research_topic(): agent = Agent(
         task="Research the latest AI news and summarize top 5 stories",
         llm=ChatGoogleGenerativeAI(model="gemini-3-flash-preview"),
         browser=Browser(),
@@ -258,8 +239,7 @@ from browser_use import Agent, Browser
 from langchain_ollama import ChatOllama
 import asyncio
 
-async def local_automation():
-    agent = Agent(
+async def local_automation(): agent = Agent(
         task="Fill out the contact form on example.com/contact",
         llm=ChatOllama(model="qwen2.5:72b"),
         browser=Browser(),
@@ -276,9 +256,7 @@ from playwright.async_api import async_playwright
 from browser_use import Agent
 from langchain_openai import ChatOpenAI
 
-async def hybrid_automation():
-    async with async_playwright() as p:
-        browser = await p.chromium.launch(headless=True)
+async def hybrid_automation(): async with async_playwright() as p: browser = await p.chromium.launch(headless=True)
         page = await browser.new_page()
         
         # 确定性 Playwright 步骤
@@ -306,7 +284,15 @@ WebVoyager 基准测试基于 586 个真实网页任务评估浏览器智能体�
 ![WebVoyager Leaderboard showing Browser Use at 89.1%](https://docs.browser-use.com/assets/images/webvoyager-benchmark-2026.png)
 
 | 排名 | 系统 | 得分 | 组织 |
-|------|------|------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 1 | Alumnium | 98.6% | Alumnium |
 | 2 | Surfer 2 | 97.1% | H Company |
 | 3 | Magnitude | 93.9% | Magnitude |
@@ -322,7 +308,17 @@ WebVoyager 基准测试基于 586 个真实网页任务评估浏览器智能体�
 ### 性能指标（对比传统工具）
 
 | 指标 | Browser Use (AI) | Playwright | Puppeteer | Selenium |
-|------|-----------------|-----------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 冷启动到首次导航 | ~0.5–0.8s | ~0.4–0.7s | ~0.3–0.5s | ~1.2–2.5s |
 | 空闲内存（每实例） | ~100–150MB | ~90–130MB | ~60–100MB | ~180–280MB |
 | 静态页面/分钟 | ~8–15（AI 循环） | ~35–55 | ~40–60 | ~18–35 |
@@ -333,7 +329,13 @@ WebVoyager 基准测试基于 586 个真实网页任务评估浏览器智能体�
 ### 真实成本分析
 
 | LLM 提供商 | 每任务成本（平均 10 步） | 适用场景 |
-|-----------|------------------------|----------|
+|
+---
+|
+---
+|
+---
+|
 | GPT-4o | ~$0.15–$0.30 | 复杂推理任务 |
 | Claude Sonnet 4 | ~$0.10–$0.20 | 生产环境可靠性 |
 | Gemini 3 Flash | ~$0.02–$0.05 | 成本敏感的批量任务 |
@@ -346,16 +348,14 @@ import asyncio
 from browser_use import Agent, Browser
 from langchain_openai import ChatOpenAI
 
-async def monitor_prices():
-    urls = [
+async def monitor_prices(): urls = [
         "https://amazon.com/dp/B0DHTYW7P5",
         "https://bestbuy.com/site/xyz",
         "https://newegg.com/product/abc",
     ]
     
     results = []
-    for url in urls:
-        agent = Agent(
+    for url in urls: agent = Agent(
             task=f"Go to {url} and extract the current price, availability, and seller name",
             llm=ChatOpenAI(model="gpt-4o-mini"),
             browser=Browser(),
@@ -380,8 +380,7 @@ import asyncio
 from browser_use import Agent, Browser
 from langchain_openai import ChatOpenAI
 
-async def run_parallel_agents(tasks):
-    browser = Browser()
+async def run_parallel_agents(tasks): browser = Browser()
     agents = [
         Agent(task=task, llm=ChatOpenAI(model="gpt-4o-mini"), browser=browser)
         for task in tasks
@@ -434,8 +433,7 @@ config = BrowserConfig(
     headless=False,  # 初始登录使用有头模式
 )
 
-async def authenticated_task():
-    browser = Browser(config=config)
+async def authenticated_task(): browser = Browser(config=config)
     agent = Agent(
         task="Download my monthly invoice from the billing page",
         llm=ChatOpenAI(model="gpt-4o"),
@@ -451,20 +449,15 @@ import asyncio
 from browser_use import Agent, Browser
 from langchain_openai import ChatOpenAI
 
-async def robust_agent(task, max_retries=3):
-    for attempt in range(max_retries):
-        try:
-            agent = Agent(
+async def robust_agent(task, max_retries=3): for attempt in range(max_retries): try: agent = Agent(
                 task=task,
                 llm=ChatOpenAI(model="gpt-4o"),
                 browser=Browser(),
                 max_steps=25,  # 限制步数防止无限循环
             )
             result = await agent.run()
-            if result.success:
-                return result
-        except Exception as e:
-            print(f"Attempt {attempt + 1} failed: {e}")
+            if result.success: return result
+        except Exception as e: print(f"Attempt {attempt + 1} failed: {e}")
             await asyncio.sleep(2 ** attempt)  # 指数退避
     raise Exception(f"Task failed after {max_retries} attempts")
 ```
@@ -481,15 +474,11 @@ agent_duration = Histogram("browseruse_agent_duration_seconds", "Agent run durat
 
 start_http_server(8000)
 
-async def monitored_agent(task):
-    agent_runs.inc()
-    with agent_duration.time():
-        try:
-            agent = Agent(task=task, llm=llm, browser=Browser())
+async def monitored_agent(task): agent_runs.inc()
+    with agent_duration.time(): try: agent = Agent(task=task, llm=llm, browser=Browser())
             result = await agent.run()
             return result
-        except Exception:
-            agent_failures.inc()
+        except Exception: agent_failures.inc()
             raise
 ```
 
@@ -498,7 +487,17 @@ async def monitored_agent(task):
 ## 与替代方案对比
 
 | 特性 | Browser Use | Scrapy | Puppeteer | Selenium |
-|------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **编程语言** | Python | Python | JavaScript/TypeScript | Python, Java, C#, JS |
 | **AI 原生** | 是（LLM 驱动） | 否 | 否 | 否 |
 | **JavaScript 渲染** | 是（通过 Playwright） | 否（需 Splash/Playwright） | 是（Chromium） | 是（所有浏览器） |
@@ -607,7 +606,6 @@ Browser Use 凭借 94,731 个 GitHub Star，解决了真实痛点：在现代、
 *本文面向需要生产级浏览器自动化的开发者。所有基准数据来源于公开排行榜和 2026 年 5 月的独立测试。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

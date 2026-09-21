@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/autogen-multi-agent-framework" />
 title: 'AutoGen Tutorial 2025: Building Multi-Agent AI Systems M...
 description: 'Learn Microsoft AutoGen in 2025. Build multi-agent AI systems, create conversational agents, and deploy autonomous workflows with code examples.'
 date: 2026-05-18 00:00:00+08:00
@@ -20,10 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/autogen-multi-agent-framework/
+aliases: - /posts/autogen-multi-agent-framework/-
 ---
-
 {</* resource-info */>}
 
 Single LLM calls can write emails and summarize articles. But real-world problems require collaboration: a researcher gathers data, an analyst crunches numbers, a writer drafts a report, and an editor polishes the output. AutoGen, Microsoft's open-source multi-agent framework, automates this kind of teamwork with AI agents.
@@ -51,7 +47,15 @@ Every AutoGen agent is "conversable" — it participates in structured conversat
 ### AutoGen vs Other Agent Frameworks
 
 | Framework | Agent Model | Best For | Learning Curve |
-|-----------|-------------|----------|----------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **AutoGen** | Conversational collaboration | Code generation, data analysis, research | Moderate |
 | **CrewAI** | Role-based teams | Business workflows, content creation | Low |
 | **LangGraph** | Stateful DAG graphs | Deterministic workflows, human-in-the-loop | High |
@@ -63,9 +67,7 @@ AutoGen differentiates itself through native code execution and deep multi-agent
 
 ### ConversableAgent: The Base Agent Class
 
-Every agent in AutoGen extends `ConversableAgent`. This base class provides:
-
-- **LLM backend configuration**: Connect to OpenAI, Azure, or local models
+Every agent in AutoGen extends `ConversableAgent`. This base class provides: - **LLM backend configuration**: Connect to OpenAI, Azure, or local models
 - **System messages**: Define agent personality and role
 - **Code execution**: Run Python code in Docker or local environments
 - **Tool registration**: Attach callable functions to the agent
@@ -95,17 +97,13 @@ AutoGen maintains full conversation history automatically. Agents can reference 
 pip install pyautogen
 ```
 
-For the latest development features:
-
-```bash
+For the latest development features: ```bash
 pip install pyautogen --pre
 ```
 
 ### Configuring LLM Endpoints
 
-AutoGen supports multiple LLM backends through a configuration list:
-
-```python
+AutoGen supports multiple LLM backends through a configuration list: ```python
 import autogen
 
 config_list = [
@@ -147,9 +145,7 @@ user_proxy = UserProxyAgent(
 
 ### Creating a Simple Two-Agent Conversation
 
-The simplest AutoGen application pairs an assistant with a user proxy:
-
-```python
+The simplest AutoGen application pairs an assistant with a user proxy: ```python
 # Initiate the conversation
 user_proxy.initiate_chat(
     assistant,
@@ -161,9 +157,7 @@ The assistant writes the code. The user proxy executes it. If the output is wron
 
 ### Enabling Code Execution
 
-Code execution is AutoGen's killer feature. Configure it carefully:
-
-```python
+Code execution is AutoGen's killer feature. Configure it carefully: ```python
 code_execution_config = {
     "work_dir": "coding_workspace",  # Where code files are saved
     "use_docker": True,  # Isolate execution in Docker (recommended)
@@ -176,9 +170,7 @@ Always use Docker for untrusted code. The container isolation prevents agents fr
 
 ### Setting Termination Conditions
 
-Prevent infinite conversations with termination conditions:
-
-```python
+Prevent infinite conversations with termination conditions: ```python
 user_proxy = UserProxyAgent(
     name="user_proxy",
     is_termination_msg=lambda msg: "TERMINATE" in msg.get("content", ""),
@@ -190,9 +182,7 @@ The assistant is instructed to include "TERMINATE" in its final message when the
 
 ### Running and Observing Agent Interactions
 
-When you run the conversation, AutoGen prints each exchange with clear role indicators. The conversation typically follows this pattern:
-
-1. **Human** sends the task
+When you run the conversation, AutoGen prints each exchange with clear role indicators. The conversation typically follows this pattern: 1. **Human** sends the task
 2. **Assistant** writes code
 3. **UserProxy** executes code, returns output
 4. **Assistant** reviews output, fixes if needed
@@ -203,9 +193,7 @@ When you run the conversation, AutoGen prints each exchange with clear role indi
 
 ### GroupChat with Multiple Agents
 
-GroupChat extends beyond two-agent collaboration:
-
-```python
+GroupChat extends beyond two-agent collaboration: ```python
 from autogen import GroupChat, GroupChatManager
 
 # Define specialized agents
@@ -228,9 +216,7 @@ user_proxy.initiate_chat(manager, message="Build a web scraper that extracts tit
 
 ### Sequential Chat Workflows
 
-For deterministic multi-step processes, use sequential chats:
-
-```python
+For deterministic multi-step processes, use sequential chats: ```python
 # Step 1: Planning
 chat_result1 = user_proxy.initiate_chat(planner, message="Plan a data analysis of sales.csv", clear_history=True)
 
@@ -245,9 +231,7 @@ Nested chats let agents delegate subtasks to other agents internally. A manager 
 
 ### Human-in-the-Loop and Approval Modes
 
-For sensitive operations, require human approval:
-
-```python
+For sensitive operations, require human approval: ```python
 user_proxy = UserProxyAgent(
     name="user_proxy",
     human_input_mode="ALWAYS"  # Prompt for every message
@@ -258,19 +242,14 @@ user_proxy = UserProxyAgent(
 
 ### Custom Agent Classes and Behaviors
 
-Extend `ConversableAgent` for custom behaviors:
-
-```python
-class DataAnalystAgent(AssistantAgent):
-    def __init__(self, **kwargs):
-        super().__init__(
+Extend `ConversableAgent` for custom behaviors: ```python
+class DataAnalystAgent(AssistantAgent): def __init__(self, **kwargs): super().__init__(
             name="data_analyst",
             system_prompt="You are an expert data analyst. Always validate data before analysis.",
             **kwargs
         )
 
-    def generate_reply(self, messages, sender, config):
-        # Custom logic before generating reply
+    def generate_reply(self, messages, sender, config): # Custom logic before generating reply
         return super().generate_reply(messages, sender, config)
 ```
 
@@ -278,9 +257,7 @@ class DataAnalystAgent(AssistantAgent):
 
 ### Using Ollama with AutoGen
 
-AutoGen works with any OpenAI-compatible API, including Ollama:
-
-```python
+AutoGen works with any OpenAI-compatible API, including Ollama: ```python
 config_list = [{
     "model": "llama3.1:8b",
     "base_url": "http://localhost:11434/v1",
@@ -293,9 +270,7 @@ Note that smaller models struggle with complex multi-agent coordination. For rel
 
 ### Integrating vLLM and LM Studio
 
-vLLM provides high-throughput local serving for open-source models. Configure AutoGen to point at your vLLM endpoint:
-
-```python
+vLLM provides high-throughput local serving for open-source models. Configure AutoGen to point at your vLLM endpoint: ```python
 vllm_config = [{
     "model": "mistralai/Mistral-7B-Instruct-v0.3",
     "base_url": "http://localhost:8000/v1",
@@ -305,9 +280,7 @@ vllm_config = [{
 
 ### Cost Optimization Strategies
 
-Multi-agent systems consume significant API tokens. Optimize costs:
-
-- **Use cheaper models for simple tasks**: GPT-4o-mini for planning, GPT-4o only for complex reasoning
+Multi-agent systems consume significant API tokens. Optimize costs: - **Use cheaper models for simple tasks**: GPT-4o-mini for planning, GPT-4o only for complex reasoning
 - **Limit max_round**: Prevent runaway conversations
 - **Cache LLM responses**: AutoGen supports caching to avoid redundant API calls
 - **Use local models for code execution feedback**: You do not need GPT-4 to tell you a script ran successfully
@@ -316,9 +289,7 @@ Multi-agent systems consume significant API tokens. Optimize costs:
 
 ### Automated Data Analysis Pipeline
 
-A three-agent system can automate exploratory data analysis:
-
-1. **Planner** agent outlines analysis steps
+A three-agent system can automate exploratory data analysis: 1. **Planner** agent outlines analysis steps
 2. **Coder** agent writes pandas and matplotlib code
 3. **Reporter** agent summarizes findings in natural language
 
@@ -326,9 +297,7 @@ This pipeline turns raw CSV files into documented insights without human interve
 
 ### Multi-Agent Code Review System
 
-Simulate a development team:
-
-1. **Developer** writes the initial implementation
+Simulate a development team: 1. **Developer** writes the initial implementation
 2. **Reviewer** checks for bugs, performance issues, and style violations
 3. **Tester** writes and runs unit tests
 4. **Architect** verifies design patterns and consistency
@@ -337,13 +306,10 @@ The system iterates until all agents approve or max rounds are reached.
 
 ### Research Assistant with Web Search
 
-Combine AutoGen with search tools:
-
-```python
+Combine AutoGen with search tools: ```python
 from autogen.register_function import register_function
 
-def web_search(query: str) -> str:
-    """Search the web for information."""
+def web_search(query: str) -> str: """Search the web for information."""
     # Implementation using DuckDuckGo or similar
     return results
 
@@ -354,9 +320,7 @@ The research agent searches, synthesizes, and cites sources — useful for liter
 
 ### Content Creation Workflow
 
-A content team simulation:
-
-1. **Strategist** defines topic and angle
+A content team simulation: 1. **Strategist** defines topic and angle
 2. **Writer** produces the draft
 3. **Editor** improves clarity and grammar
 4. **SEO specialist** optimizes keywords and structure
@@ -379,36 +343,28 @@ You can combine both frameworks. Use LangGraph to define the high-level workflow
 
 ### Managing Token Costs
 
-Multi-agent conversations multiply token usage. A single task might involve 20+ LLM calls across multiple agents. Strategies to control costs:
-
-- Set `max_consecutive_auto_reply` low (5-10)
+Multi-agent conversations multiply token usage. A single task might involve 20+ LLM calls across multiple agents. Strategies to control costs: - Set `max_consecutive_auto_reply` low (5-10)
 - Use the cheapest model that handles the task
 - Enable the built-in cache: `autogen.Cache.disk_cache_root = "./cache"`
 - Monitor usage with `ChatResult.cost` after each conversation
 
 ### Error Handling and Retries
 
-Agent conversations can derail. Implement safeguards:
-
-- Set `max_round` on GroupChat to prevent infinite loops
+Agent conversations can derail. Implement safeguards: - Set `max_round` on GroupChat to prevent infinite loops
 - Use `is_termination_msg` to detect natural conversation endings
 - Wrap agent calls in try-except blocks for production applications
 - Log all conversations for debugging
 
 ### Security Considerations for Code Execution
 
-**Never** enable code execution without Docker isolation on production systems. Even benign-looking code can access environment variables, network resources, and the file system. Best practices:
-
-- Always set `use_docker: True`
+**Never** enable code execution without Docker isolation on production systems. Even benign-looking code can access environment variables, network resources, and the file system. Best practices: - Always set `use_docker: True`
 - Mount only necessary directories as volumes
 - Set reasonable timeouts (30-60 seconds)
 - Review and whitelist allowed Python packages
 
 ### Debugging Agent Conversations
 
-When agents fail to cooperate:
-
-1. Check the system prompt — unclear roles cause confusion
+When agents fail to cooperate: 1. Check the system prompt — unclear roles cause confusion
 2. Reduce agent count — start with two agents, add more gradually
 3. Review the conversation log — identify where it derailed
 4. Adjust the GroupChat speaker selection strategy
@@ -448,20 +404,17 @@ The future of AI is multi-agent. AutoGen gives you the tools to build that futur
 
 For more resources, visit the [official AutoGen documentation](https://microsoft.github.io/autogen/) and explore examples in the [GitHub repository](https://github.com/microsoft/autogen).
 
----
 
+---
 ## Recommended Infrastructure
 
-To run any of the tools above reliably 24/7, infrastructure matters:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.
+To run any of the tools above reliably 24/7, infrastructure matters: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low latency for mainland China access. This is the same IDC hosting dibi8.com — production-proven.
 
 *Affiliate links — no extra cost to you, helps keep dibi8.com running.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -508,3 +461,5 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
 
+
+---

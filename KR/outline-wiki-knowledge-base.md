@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/outline-wiki-knowledge-base" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/outline-wiki-knowledge-base" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/outline-wiki-knowledge-base" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/outline-wiki-knowledge-base" />
 title: 'Outline 완벽 가이드: 엔지니어링 팀을 위한 오픈소스 Wiki 및 지식 베이스 — 2026 셀프...
 description: 'Docker로 10분 만에 Outline 배포. Markdown 편집기, Slack 통합, 전문 검색, 세분화된 권한 제어로 팀을 위한 실시간 협업 Wiki를 구축하세요.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [outline, wiki, 지식베이스, 팀문서, 오픈소스, 셀프호스팅, docker, 협업, markdown]
-aliases:
-- /kr/posts/outline-wiki-knowledge-base/
+aliases: - /kr/posts/outline-wiki-knowledge-base/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/outline-wiki-knowledge-base/ -->
 
 {{</* resource-info */>}}
 
@@ -51,9 +43,7 @@ aliases:
 
 ## Outline 작동 방식: 아키텍처 개요
 
-Outline의 스택은 현대적이고 잘 설계된 아키텍처를 가집니다:
-
-- **Node.js/TypeScript 백엔드** —— 인증, 문서, 컬렉션 및 실시간 협업을 처리하는 Express 기반 API 서버
+Outline의 스택은 현대적이고 잘 설계된 아키텍처를 가집니다: - **Node.js/TypeScript 백엔드** —— 인증, 문서, 컬렉션 및 실시간 협업을 처리하는 Express 기반 API 서버
 - **React 프론트엔드** —— ProseMirror 기반의 리치 텍스트 편집기가 있는 클라이언트 사이드 렌더링 SPA
 - **PostgreSQL** —— 문서, 사용자 계정, 권한 및 메타데이터 저장
 - **Redis** —— 캐싱, 세션 저장소, WebSocket을 통한 실시간 협업 상태
@@ -62,8 +52,7 @@ Outline의 스택은 현대적이고 잘 설계된 아키텍처를 가집니다:
 
 **실시간 협업**은 WebSocket 연결을 통해 Operational Transforms (OT)를 사용합니다. 두 사용자가 동일한 문서를 편집할 때 변경사항이 밀리초 내에 전파되며 실제로 작동하는 충돌 해결이 수행됩니다 —— last-write-wins 골치 아픈 문제가 없습니다.
 
-권한 시스템은 가장 뛰어난 기능입니다. 컬렉션은 다음과 같을 수 있습니다:
-- **Public to team** —— 계정이 있는 누구나 읽을 수 있음
+권한 시스템은 가장 뛰어난 기능입니다. 컬렉션은 다음과 같을 수 있습니다: - **Public to team** —— 계정이 있는 누구나 읽을 수 있음
 - **Private** —— 초대받은 사용자만 접근 가능
 - **Read-only** —— 팀이 볼 수 있지만 편집할 수 없음
 - **Editor access** —— 특정 사용자나 그룹이 수정 가능
@@ -72,19 +61,13 @@ Outline의 스택은 현대적이고 잘 설계된 아키텍처를 가집니다:
 
 ## 설치 및 설정: 프로덕션 Docker 배포
 
-Outline은 세 가지 서비스가 필요합니다: 앱, PostgreSQL, Redis. 프로덕션용 Docker Compose 설정:
-
-```yaml
+Outline은 세 가지 서비스가 필요합니다: 앱, PostgreSQL, Redis. 프로덕션용 Docker Compose 설정: ```yaml
 # docker-compose.yml
 version: "3.8"
 
-services:
-  outline:
-    image: outlinewiki/outline:0.83.0
-    ports:
-      - "3000:3000"
-    environment:
-      - DATABASE_URL=postgres://outline:outline_password@postgres:5432/outline
+services: outline: image: outlinewiki/outline:0.83.0
+    ports: - "3000:3000"
+    environment: - DATABASE_URL=postgres://outline:outline_password@postgres:5432/outline
       - DATABASE_URL_TEST=postgres://outline:outline_password@postgres:5432/outline-test
       - REDIS_URL=redis://redis:6379
       - SECRET_KEY=${SECRET_KEY}
@@ -109,42 +92,31 @@ services:
       - SLACK_CLIENT_ID=${SLACK_CLIENT_ID}
       - SLACK_CLIENT_SECRET=${SLACK_CLIENT_SECRET}
       - SLACK_VERIFICATION_TOKEN=${SLACK_VERIFICATION_TOKEN}
-    depends_on:
-      - postgres
+    depends_on: - postgres
       - redis
       - minio
     restart: unless-stopped
 
-  postgres:
-    image: postgres:16-alpine
-    environment:
-      - POSTGRES_USER=outline
+  postgres: image: postgres:16-alpine
+    environment: - POSTGRES_USER=outline
       - POSTGRES_PASSWORD=outline_password
       - POSTGRES_DB=outline
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
+    volumes: - postgres-data:/var/lib/postgresql/data
     restart: unless-stopped
 
-  redis:
-    image: redis:7-alpine
-    volumes:
-      - redis-data:/data
+  redis: image: redis:7-alpine
+    volumes: - redis-data:/data
     restart: unless-stopped
 
-  minio:
-    image: minio/minio:RELEASE.2026-04-01T00-00-00Z
+  minio: image: minio/minio:RELEASE.2026-04-01T00-00-00Z
     command: server /data --console-address ":9001"
-    environment:
-      - MINIO_ROOT_USER=minio
+    environment: - MINIO_ROOT_USER=minio
       - MINIO_ROOT_PASSWORD=minio123
-    volumes:
-      - minio-data:/data
+    volumes: - minio-data:/data
     restart: unless-stopped
 
-  minio-createbucket:
-    image: minio/mc:latest
-    depends_on:
-      - minio
+  minio-createbucket: image: minio/mc:latest
+    depends_on: - minio
     entrypoint: >
       /bin/sh -c "
       sleep 10;
@@ -154,17 +126,11 @@ services:
       exit 0;
       "
 
-volumes:
-  postgres-data:
-  redis-data:
-  minio-data:
-```
+volumes: postgres-data: redis-data: minio-data: ```
 
 ### 비밀 키 생성
 
-시작하기 전에 필요한 비밀 키를 생성합니다:
-
-```bash
+시작하기 전에 필요한 비밀 키를 생성합니다: ```bash
 # 256비트 비밀 키 생성
 export SECRET_KEY=$(openssl rand -hex 32)
 
@@ -175,9 +141,7 @@ echo "SECRET_KEY=$SECRET_KEY"
 echo "UTILS_SECRET=$UTILS_SECRET"
 ```
 
-`.env` 파일에 추가:
-
-```bash
+`.env` 파일에 추가: ```bash
 cat << EOF > .env
 SECRET_KEY=REPLACE_WITH_GENERATED_SECRET
 UTILS_SECRET=REPLACE_WITH_GENERATED_SECRET
@@ -206,14 +170,10 @@ docker-compose logs -f outline
 
 ### 인증 설정
 
-Outline은 외부 인증 제공자가 필요합니다. 가장 간단한 프로덕션 설정은 Google Workspace OIDC입니다:
-
-1. [Google Cloud Console](https://console.cloud.google.com/) → APIs & Services → Credentials로 이동
+Outline은 외부 인증 제공자가 필요합니다. 가장 간단한 프로덕션 설정은 Google Workspace OIDC입니다: 1. [Google Cloud Console](https://console.cloud.google.com/) → APIs & Services → Credentials로 이동
 2. **OAuth 2.0 Client ID** (Web application) 생성
 3. 승인된 리다이렉트 URI 추가: `https://wiki.yourcompany.com/auth/oidc.callback`
-4. client ID와 secret을 `.env` 파일에 추가:
-
-```bash
+4. client ID와 secret을 `.env` 파일에 추가: ```bash
 OIDC_CLIENT_ID=xxx.apps.googleusercontent.com
 OIDC_CLIENT_SECRET=GOCSPX-xxx
 OIDC_AUTH_URI=https://accounts.google.com/o/oauth2/v2/auth
@@ -222,25 +182,20 @@ OIDC_USERINFO_URI=https://openidconnect.googleapis.com/v1/userinfo
 OIDC_LOGOUT_URI=https://accounts.google.com/logout
 ```
 
-Outline 재시작:
-
-```bash
+Outline 재시작: ```bash
 docker-compose restart outline
 ```
 
 ### DigitalOcean에서 빠른 배포
 
-기존 Docker 설정이 없는 팀을 위해, [DigitalOcean에 배포](https://m.do.co/c/eca87ac14ee0):
-
-```bash
+기존 Docker 설정이 없는 팀을 위해, [DigitalOcean에 배포](https://m.do.co/c/eca87ac14ee0): ```bash
 # 새 Ubuntu 24.04 Droplet ($6/월)에서
 sudo apt update && sudo apt install -y docker.io docker-compose-plugin
 
 # 클론 및 시작
 git clone https://github.com/outline/outline.git
 cd outline
-# 위의 docker-compose.yml을 복사하고 .env를 구성한 후:
-docker compose up -d
+# 위의 docker-compose.yml을 복사하고 .env를 구성한 후: docker compose up -d
 ```
 
 또는 SSL과 자동 백업이 포함된 관리형 Outline 배포를 위해 [HTStack](https://my.htstack.com/aff.php?aff=27187)을 사용하세요.
@@ -249,36 +204,22 @@ docker compose up -d
 
 ### Slack 통합 (딥 링크)
 
-Outline의 Slack 통합은 가장 강력한 기능 중 하나입니다:
-
-1. [Slack API Apps](https://api.slack.com/apps) → Create New App → From Manifest로 이동
-2. 이 매니페스트를 붙여넣기:
-
-```yaml
+Outline의 Slack 통합은 가장 강력한 기능 중 하나입니다: 1. [Slack API Apps](https://api.slack.com/apps) → Create New App → From Manifest로 이동
+2. 이 매니페스트를 붙여넣기: ```yaml
 _display_name: Outline Wiki
-features:
-  bot_user:
-    display_name: Outline
+features: bot_user: display_name: Outline
     always_online: true
-  slash_commands:
-    - command: /outline
+  slash_commands: - command: /outline
       url: https://wiki.yourcompany.com/api/hooks.slack
       description: 지식 베이스 검색
       usage_hint: "[검색어]"
       should_escape: false
-oauth_config:
-  redirect_urls:
-    - https://wiki.yourcompany.com/auth/slack.callback
-  scopes:
-    bot:
-      - commands
+oauth_config: redirect_urls: - https://wiki.yourcompany.com/auth/slack.callback
+  scopes: bot: - commands
       - links:read
       - links:write
-settings:
-  event_subscriptions:
-    request_url: https://wiki.yourcompany.com/api/hooks.slack
-    bot_events:
-      - link_shared
+settings: event_subscriptions: request_url: https://wiki.yourcompany.com/api/hooks.slack
+    bot_events: - link_shared
   org_deploy_enabled: true
   socket_mode_enabled: false
 ```
@@ -291,9 +232,7 @@ settings:
 
 ### API 및 Webhooks
 
-지식 베이스에 대한 프로그래밍 방식 접근:
-
-```bash
+지식 베이스에 대한 프로그래밍 방식 접근: ```bash
 # 모든 컬렉션 나열
 curl -X GET "https://wiki.yourcompany.com/api/collections" \
   -H "Authorization: Bearer YOUR_API_TOKEN"
@@ -320,24 +259,16 @@ Outline UI의 **Settings** → **API**에서 API Token을 생성합니다.
 
 ### CI/CD 문서 자동화
 
-Git 저장소에서 자동 문서 게시:
-
-```bash
+Git 저장소에서 자동 문서 게시: ```bash
 #!/bin/bash
 # .github/workflows/publish-docs.yml
 name: Publish API Docs to Outline
 
-on:
-  push:
-    branches: [main]
-    paths:
-      - 'docs/**'
+on: push: branches: [main]
+    paths: - 'docs/**'
 
-jobs:
-  publish:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: publish: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
 
       - name: Publish to Outline
         run: |
@@ -354,17 +285,12 @@ jobs:
 
 ### Notion 또는 Confluence에서 가져오기
 
-기존 문서 마이그레이션:
+기존 문서 마이그레이션: ```bash
+# Notion에서 납품: # Settings & Members → Settings → Export All Workspace Content → Export as Markdown
 
-```bash
-# Notion에서 납품:
-# Settings & Members → Settings → Export All Workspace Content → Export as Markdown
+# Confluence에서 납품: # Space Tools → Content Tools → Export → XML format
 
-# Confluence에서 납품:
-# Space Tools → Content Tools → Export → XML format
-
-# Outline로 가져오기:
-# Collection → Import → Markdown/ZIP 파일 업로드
+# Outline로 가져오기: # Collection → Import → Markdown/ZIP 파일 업로드
 # Outline은 제목 구조와 코드 블록, 이미지를 보존하고 Notion 데이터베이스를 테이블로 변환
 ```
 
@@ -372,9 +298,7 @@ jobs:
 
 ### 성능 벤치마크
 
-월 $6 DigitalOcean Droplet (1 vCPU, 1GB RAM)에서 테스트:
-
-| 지표 | 결과 |
+월 $6 DigitalOcean Droplet (1 vCPU, 1GB RAM)에서 테스트: | 지표 | 결과 |
 |---|---|
 | 첫 문서 로드 시간 | **~180ms** |
 | 실시간 동기화 지연 (2명 편집자) | **~45ms** |
@@ -482,47 +406,32 @@ echo "Backup completed: outline_full_$TIMESTAMP.zip"
 
 ```yaml
 # docker-compose.monitoring.yml
-services:
-  prometheus:
-    image: prom/prometheus:v2.51.0
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+services: prometheus: image: prom/prometheus:v2.51.0
+    volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus-data:/prometheus
-    ports:
-      - "9090:9090"
+    ports: - "9090:9090"
     restart: unless-stopped
 
-  grafana:
-    image: grafana/grafana:10.4.0
-    volumes:
-      - grafana-data:/var/lib/grafana
+  grafana: image: grafana/grafana:10.4.0
+    volumes: - grafana-data:/var/lib/grafana
       - ./grafana-dashboards:/etc/grafana/provisioning/dashboards
-    ports:
-      - "3001:3000"
+    ports: - "3001:3000"
     restart: unless-stopped
 
-  node-exporter:
-    image: prom/node-exporter:v1.7.0
-    volumes:
-      - /proc:/host/proc:ro
+  node-exporter: image: prom/node-exporter:v1.7.0
+    volumes: - /proc:/host/proc:ro
       - /sys:/host/sys:ro
       - /:/rootfs:ro
-    command:
-      - '--path.procfs=/host/proc'
+    command: - '--path.procfs=/host/proc'
       - '--path.rootfs=/rootfs'
       - '--path.sysfs=/host/sys'
     restart: unless-stopped
 
-volumes:
-  prometheus-data:
-  grafana-data:
-```
+volumes: prometheus-data: grafana-data: ```
 
 ### 4. Backblaze B2를 사용한 S3 호환 스토리지
 
-프로덕션 파일 스토리지를 위해 MinIO를 Backblaze B2 (또는 AWS S3)로 교체:
-
-```bash
+프로덕션 파일 스토리지를 위해 MinIO를 Backblaze B2 (또는 AWS S3)로 교체: ```bash
 # Backblaze B2용 .env 추가
 AWS_ACCESS_KEY_ID=YOUR_B2_KEY_ID
 AWS_SECRET_ACCESS_KEY=YOUR_B2_APPLICATION_KEY
@@ -536,24 +445,16 @@ AWS_S3_FORCE_PATH_STYLE=false
 
 ```yaml
 # docker-compose.prod.yml — 프로덕션 구성으로 기본 확장
-services:
-  outline:
-    image: outlinewiki/outline:0.83.0
-    environment:
-      - NODE_ENV=production
+services: outline: image: outlinewiki/outline:0.83.0
+    environment: - NODE_ENV=production
       - FORCE_HTTPS=true
       - RATE_LIMITER_ENABLED=true
       - DEFAULT_LANGUAGE=en_US
       - WEB_CONCURRENCY=2
-    deploy:
-      replicas: 2
-      resources:
-        limits:
-          memory: 1G
-        reservations:
-          memory: 512M
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000/api/utils.health"]
+    deploy: replicas: 2
+      resources: limits: memory: 1G
+        reservations: memory: 512M
+    healthcheck: test: ["CMD", "curl", "-f", "http://localhost:3000/api/utils.health"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -585,9 +486,7 @@ services:
 
 ## 한계: 정직한 평가
 
-**Outline은 단점이 없는 것은 아닙니다.** 전체 팀 문서를 마이그레이션하기 전에:
-
-1. **BSL-1.1 라이선스**: Outline은 전통적인 오픈소스 라이선스가 아닌 Business Source License를 사용합니다. 낮부 사용은 묣입니다. Outline을 경쟁 클라우드 서비스로 제공하려면 상업용 라이선스가 필요합니다. 99%의 엔지니어링 팀에게는 관련 없지만 —— 호스팅 제공업첸 경우 법무팀에 확인하세요.
+**Outline은 단점이 없는 것은 아닙니다.** 전체 팀 문서를 마이그레이션하기 전에: 1. **BSL-1.1 라이선스**: Outline은 전통적인 오픈소스 라이선스가 아닌 Business Source License를 사용합니다. 낮부 사용은 묣입니다. Outline을 경쟁 클라우드 서비스로 제공하려면 상업용 라이선스가 필요합니다. 99%의 엔지니어링 팀에게는 관련 없지만 —— 호스팅 제공업첸 경우 법무팀에 확인하세요.
 
 2. **게스트 접근 없음**: 전체 팀 계정을 제공하지 않고는 외부 협업자를 초대할 수 없습니다. 공유 링크는 개별 문서에 작동하지만 게스트/협업자 계층은 없습니다.
 
@@ -649,9 +548,7 @@ Outline은 엔지니어링 팀에 **셀프호스팅, 실시간 협업 Wiki**를 
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -671,7 +568,6 @@ Outline은 엔지니어링 팀에 **셀프호스팅, 실시간 협업 Wiki**를 
 *본 문서에는 제휴 링크가 포함될 수 있습니다. 당사의 추천 링크를 통해 DigitalOcean이나 HTStack에 가입하시면 추가 비용 없이 커미션을 받습니다. 당사는 직접 사용하는 서비스만을 추천합니다.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

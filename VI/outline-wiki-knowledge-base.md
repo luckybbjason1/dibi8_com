@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/outline-wiki-knowledge-base" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/outline-wiki-knowledge-base" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/outline-wiki-knowledge-base" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/outline-wiki-knowledge-base" />
 title: 'Outline Hướng Dẫn Đầy Đủ: Wiki & Knowledge Base Mã Nguồn...
 description: 'Triển khai Outline với Docker trong 10 phút. Xây dựng wiki cộng tác real-time cho team kỹ sư với Markdown editor, Slack integration, full-text search và phân quyền chi tiết.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [outline, wiki, 'knowledge-base', 'team-docs', 'ma-nguon-mo', 'tu-luu-tru', docker, 'cong-tac', markdown]
-aliases:
-- /vi/posts/outline-wiki-knowledge-base/
+aliases: - /vi/posts/outline-wiki-knowledge-base/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/outline-wiki-knowledge-base/ -->
 
 {{</* resource-info */>}}
 
@@ -51,9 +43,7 @@ Tài liệu được tổ chức thành **collections** —— tương đương 
 
 ## Outline Hoạt Động Như Thế Nào: Tổng Quan Kiến Trúc
 
-Stack của Outline hiện đại và kiến trúc tốt:
-
-- **Node.js/TypeScript Backend** —— Server API dựa trên Express xử lý auth, tài liệu, collection, và cộng tác real-time
+Stack của Outline hiện đại và kiến trúc tốt: - **Node.js/TypeScript Backend** —— Server API dựa trên Express xử lý auth, tài liệu, collection, và cộng tác real-time
 - **React Frontend** —— SPA render phía client với trình soạn thảo rich text dựa trên ProseMirror
 - **PostgreSQL** —— Lưu trữ tài liệu, tài khoản ngườidùng, quyền, và metadata
 - **Redis** —— Cache, session store, và trạng thái cộng tác real-time qua WebSocket
@@ -62,8 +52,7 @@ Stack của Outline hiện đại và kiến trúc tốt:
 
 **Cộng tác real-time** sử dụng Operational Transforms (OT) qua kết nối WebSocket. Khi hai ngườidùng chỉnh sửa cùng một tài liệu, thay đổi lan truyền trong vòng mili giây với giải quyết xung đột thực sự hoạt động —— không còn vấn đề đau đầu last-write-wins.
 
-Hệ thống quyền là tính năng nổi bật. Collection có thể:
-- **Public to team** —— bất kỳ ai có tài khoản đều có thể đọc
+Hệ thống quyền là tính năng nổi bật. Collection có thể: - **Public to team** —— bất kỳ ai có tài khoản đều có thể đọc
 - **Private** —— chỉ ngườidùng được mờitruy cập
 - **Read-only** —— team có thể xem nhưng không chỉnh sửa
 - **Editor access** —— ngườidùng hoặc nhóm cụ thể có thể sửa đổi
@@ -72,19 +61,13 @@ Tài liệu kế thừa quyền collection nhưng có thể ghi đè riêng lẻ
 
 ## Cài Đặt & Thiết Lập: Production Docker Deploy
 
-Outline yêu cầu ba dịch vụ: app, PostgreSQL, và Redis. Thiết lập Docker Compose production-ready:
-
-```yaml
+Outline yêu cầu ba dịch vụ: app, PostgreSQL, và Redis. Thiết lập Docker Compose production-ready: ```yaml
 # docker-compose.yml
 version: "3.8"
 
-services:
-  outline:
-    image: outlinewiki/outline:0.83.0
-    ports:
-      - "3000:3000"
-    environment:
-      - DATABASE_URL=postgres://outline:outline_password@postgres:5432/outline
+services: outline: image: outlinewiki/outline:0.83.0
+    ports: - "3000:3000"
+    environment: - DATABASE_URL=postgres://outline:outline_password@postgres:5432/outline
       - DATABASE_URL_TEST=postgres://outline:outline_password@postgres:5432/outline-test
       - REDIS_URL=redis://redis:6379
       - SECRET_KEY=${SECRET_KEY}
@@ -109,42 +92,31 @@ services:
       - SLACK_CLIENT_ID=${SLACK_CLIENT_ID}
       - SLACK_CLIENT_SECRET=${SLACK_CLIENT_SECRET}
       - SLACK_VERIFICATION_TOKEN=${SLACK_VERIFICATION_TOKEN}
-    depends_on:
-      - postgres
+    depends_on: - postgres
       - redis
       - minio
     restart: unless-stopped
 
-  postgres:
-    image: postgres:16-alpine
-    environment:
-      - POSTGRES_USER=outline
+  postgres: image: postgres:16-alpine
+    environment: - POSTGRES_USER=outline
       - POSTGRES_PASSWORD=outline_password
       - POSTGRES_DB=outline
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
+    volumes: - postgres-data:/var/lib/postgresql/data
     restart: unless-stopped
 
-  redis:
-    image: redis:7-alpine
-    volumes:
-      - redis-data:/data
+  redis: image: redis:7-alpine
+    volumes: - redis-data:/data
     restart: unless-stopped
 
-  minio:
-    image: minio/minio:RELEASE.2026-04-01T00-00-00Z
+  minio: image: minio/minio:RELEASE.2026-04-01T00-00-00Z
     command: server /data --console-address ":9001"
-    environment:
-      - MINIO_ROOT_USER=minio
+    environment: - MINIO_ROOT_USER=minio
       - MINIO_ROOT_PASSWORD=minio123
-    volumes:
-      - minio-data:/data
+    volumes: - minio-data:/data
     restart: unless-stopped
 
-  minio-createbucket:
-    image: minio/mc:latest
-    depends_on:
-      - minio
+  minio-createbucket: image: minio/mc:latest
+    depends_on: - minio
     entrypoint: >
       /bin/sh -c "
       sleep 10;
@@ -154,17 +126,11 @@ services:
       exit 0;
       "
 
-volumes:
-  postgres-data:
-  redis-data:
-  minio-data:
-```
+volumes: postgres-data: redis-data: minio-data: ```
 
 ### Tạo Secrets
 
-Trước khi khởi động, tạo các secret cần thiết:
-
-```bash
+Trước khi khởi động, tạo các secret cần thiết: ```bash
 # Tạo secret key 256-bit
 export SECRET_KEY=$(openssl rand -hex 32)
 
@@ -175,9 +141,7 @@ echo "SECRET_KEY=$SECRET_KEY"
 echo "UTILS_SECRET=$UTILS_SECRET"
 ```
 
-Thêm vào file `.env`:
-
-```bash
+Thêm vào file `.env`: ```bash
 cat << EOF > .env
 SECRET_KEY=REPLACE_WITH_GENERATED_SECRET
 UTILS_SECRET=REPLACE_WITH_GENERATED_SECRET
@@ -206,14 +170,10 @@ Sau ~30 giây, Outline có thể truy cập tại `http://localhost:3000`.
 
 ### Thiết Lập Xác Thực
 
-Outline yêu cầu nhà cung cấp xác thực bên ngoài. Cách đơn giản nhất cho production là Google Workspace OIDC:
-
-1. Vào [Google Cloud Console](https://console.cloud.google.com/) → APIs & Services → Credentials
+Outline yêu cầu nhà cung cấp xác thực bên ngoài. Cách đơn giản nhất cho production là Google Workspace OIDC: 1. Vào [Google Cloud Console](https://console.cloud.google.com/) → APIs & Services → Credentials
 2. Tạo **OAuth 2.0 Client ID** (Web application)
 3. Thêm authorized redirect URI: `https://wiki.yourcompany.com/auth/oidc.callback`
-4. Thêm client ID và secret vào `.env`:
-
-```bash
+4. Thêm client ID và secret vào `.env`: ```bash
 OIDC_CLIENT_ID=xxx.apps.googleusercontent.com
 OIDC_CLIENT_SECRET=GOCSPX-xxx
 OIDC_AUTH_URI=https://accounts.google.com/o/oauth2/v2/auth
@@ -222,25 +182,20 @@ OIDC_USERINFO_URI=https://openidconnect.googleapis.com/v1/userinfo
 OIDC_LOGOUT_URI=https://accounts.google.com/logout
 ```
 
-Khởi động lại Outline:
-
-```bash
+Khởi động lại Outline: ```bash
 docker-compose restart outline
 ```
 
 ### Triển Khai Nhanh Trên DigitalOcean
 
-Cho team chưa có sẵn Docker setup, [triển khai trên DigitalOcean](https://m.do.co/c/eca87ac14ee0):
-
-```bash
+Cho team chưa có sẵn Docker setup, [triển khai trên DigitalOcean](https://m.do.co/c/eca87ac14ee0): ```bash
 # Trên Ubuntu 24.04 Droplet mới ($6/tháng)
 sudo apt update && sudo apt install -y docker.io docker-compose-plugin
 
 # Clone và start
 git clone https://github.com/outline/outline.git
 cd outline
-# Copy docker-compose.yml ở trên, cấu hình .env, rồi:
-docker compose up -d
+# Copy docker-compose.yml ở trên, cấu hình .env, rồi: docker compose up -d
 ```
 
 Hoặc dùng [HTStack](https://my.htstack.com/aff.php?aff=27187) cho deployment Outline được quản lý với SSL và backup tích hợp.
@@ -249,36 +204,22 @@ Hoặc dùng [HTStack](https://my.htstack.com/aff.php?aff=27187) cho deployment 
 
 ### Tích Hợp Slack (Deep Link)
 
-Tích hợp Slack của Outline là một trong những tính năng mạnh nhất:
-
-1. Vào [Slack API Apps](https://api.slack.com/apps) → Create New App → From Manifest
-2. Dán manifest này:
-
-```yaml
+Tích hợp Slack của Outline là một trong những tính năng mạnh nhất: 1. Vào [Slack API Apps](https://api.slack.com/apps) → Create New App → From Manifest
+2. Dán manifest này: ```yaml
 _display_name: Outline Wiki
-features:
-  bot_user:
-    display_name: Outline
+features: bot_user: display_name: Outline
     always_online: true
-  slash_commands:
-    - command: /outline
+  slash_commands: - command: /outline
       url: https://wiki.yourcompany.com/api/hooks.slack
       description: Tìm kiếm knowledge base
       usage_hint: "[từ khóa tìm kiếm]"
       should_escape: false
-oauth_config:
-  redirect_urls:
-    - https://wiki.yourcompany.com/auth/slack.callback
-  scopes:
-    bot:
-      - commands
+oauth_config: redirect_urls: - https://wiki.yourcompany.com/auth/slack.callback
+  scopes: bot: - commands
       - links:read
       - links:write
-settings:
-  event_subscriptions:
-    request_url: https://wiki.yourcompany.com/api/hooks.slack
-    bot_events:
-      - link_shared
+settings: event_subscriptions: request_url: https://wiki.yourcompany.com/api/hooks.slack
+    bot_events: - link_shared
   org_deploy_enabled: true
   socket_mode_enabled: false
 ```
@@ -291,9 +232,7 @@ Sau khi kết nối, gõ `/outline deploy rollback` trong Slack để tìm kiế
 
 ### API và Webhooks
 
-Truy cập lập trình vào knowledge base:
-
-```bash
+Truy cập lập trình vào knowledge base: ```bash
 # Liệt kê tất cả collection
 curl -X GET "https://wiki.yourcompany.com/api/collections" \
   -H "Authorization: Bearer YOUR_API_TOKEN"
@@ -320,24 +259,16 @@ Tạo API token từ **Settings** → **API** trong UI Outline.
 
 ### CI/CD Documentation Automation
 
-Tự động publish tài liệu từ Git repository:
-
-```bash
+Tự động publish tài liệu từ Git repository: ```bash
 #!/bin/bash
 # .github/workflows/publish-docs.yml
 name: Publish API Docs to Outline
 
-on:
-  push:
-    branches: [main]
-    paths:
-      - 'docs/**'
+on: push: branches: [main]
+    paths: - 'docs/**'
 
-jobs:
-  publish:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: publish: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
 
       - name: Publish to Outline
         run: |
@@ -354,17 +285,12 @@ jobs:
 
 ### Import Từ Notion Hoặc Confluence
 
-Di chuyển tài liệu hiện có:
+Di chuyển tài liệu hiện có: ```bash
+# Export từ Notion: # Settings & Members → Settings → Export All Workspace Content → Export as Markdown
 
-```bash
-# Export từ Notion:
-# Settings & Members → Settings → Export All Workspace Content → Export as Markdown
+# Export từ Confluence: # Space Tools → Content Tools → Export → XML format
 
-# Export từ Confluence:
-# Space Tools → Content Tools → Export → XML format
-
-# Import vào Outline:
-# Collection → Import → Upload Markdown/ZIP file
+# Import vào Outline: # Collection → Import → Upload Markdown/ZIP file
 # Outline giữ cấu trúc heading và chuyển database Notion thành bảng
 ```
 
@@ -372,9 +298,7 @@ Di chuyển tài liệu hiện có:
 
 ### Benchmark Hiệu Năng
 
-Tested trên DigitalOcean Droplet $6/tháng (1 vCPU, 1GB RAM):
-
-| Chỉ Số | Kết Quả |
+Tested trên DigitalOcean Droplet $6/tháng (1 vCPU, 1GB RAM): | Chỉ Số | Kết Quả |
 |---|---|
 | Thờigian tải tài liệu đầu tiên | **~180ms** |
 | Độ trễ đồng bộ real-time (2 editors) | **~45ms** |
@@ -482,47 +406,32 @@ echo "Backup completed: outline_full_$TIMESTAMP.zip"
 
 ```yaml
 # docker-compose.monitoring.yml
-services:
-  prometheus:
-    image: prom/prometheus:v2.51.0
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+services: prometheus: image: prom/prometheus:v2.51.0
+    volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus-data:/prometheus
-    ports:
-      - "9090:9090"
+    ports: - "9090:9090"
     restart: unless-stopped
 
-  grafana:
-    image: grafana/grafana:10.4.0
-    volumes:
-      - grafana-data:/var/lib/grafana
+  grafana: image: grafana/grafana:10.4.0
+    volumes: - grafana-data:/var/lib/grafana
       - ./grafana-dashboards:/etc/grafana/provisioning/dashboards
-    ports:
-      - "3001:3000"
+    ports: - "3001:3000"
     restart: unless-stopped
 
-  node-exporter:
-    image: prom/node-exporter:v1.7.0
-    volumes:
-      - /proc:/host/proc:ro
+  node-exporter: image: prom/node-exporter:v1.7.0
+    volumes: - /proc:/host/proc:ro
       - /sys:/host/sys:ro
       - /:/rootfs:ro
-    command:
-      - '--path.procfs=/host/proc'
+    command: - '--path.procfs=/host/proc'
       - '--path.rootfs=/rootfs'
       - '--path.sysfs=/host/sys'
     restart: unless-stopped
 
-volumes:
-  prometheus-data:
-  grafana-data:
-```
+volumes: prometheus-data: grafana-data: ```
 
 ### 4. Lưu Trữ Tương Thích S3 với Backblaze B2
 
-Cho production file storage, thay MinIO bằng Backblaze B2 (hoặc AWS S3):
-
-```bash
+Cho production file storage, thay MinIO bằng Backblaze B2 (hoặc AWS S3): ```bash
 # Thêm vào .env cho Backblaze B2
 AWS_ACCESS_KEY_ID=YOUR_B2_KEY_ID
 AWS_SECRET_ACCESS_KEY=YOUR_B2_APPLICATION_KEY
@@ -536,24 +445,16 @@ AWS_S3_FORCE_PATH_STYLE=false
 
 ```yaml
 # docker-compose.prod.yml — extends base với production config
-services:
-  outline:
-    image: outlinewiki/outline:0.83.0
-    environment:
-      - NODE_ENV=production
+services: outline: image: outlinewiki/outline:0.83.0
+    environment: - NODE_ENV=production
       - FORCE_HTTPS=true
       - RATE_LIMITER_ENABLED=true
       - DEFAULT_LANGUAGE=en_US
       - WEB_CONCURRENCY=2
-    deploy:
-      replicas: 2
-      resources:
-        limits:
-          memory: 1G
-        reservations:
-          memory: 512M
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000/api/utils.health"]
+    deploy: replicas: 2
+      resources: limits: memory: 1G
+        reservations: memory: 512M
+    healthcheck: test: ["CMD", "curl", "-f", "http://localhost:3000/api/utils.health"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -585,9 +486,7 @@ services:
 
 ## Hạn Chế: Đánh Giá Trung Thực
 
-**Outline không phải không có nhược điểm.** Trước khi di chuyển toàn bộ tài liệu của team:
-
-1. **Giấy phép BSL-1.1**: Outline sử dụng Business Source License, không phải giấy phép open-source truyền thống. Sử dụng nội bộ miễn phí. Cung cấp Outline như một dịch vụ cloud cạnh tranh yêu cầu giấy phép thương mại. Với 99% team kỹ sư, điều này không liên quan —— nhưng xác nhận với pháp lý nếu bạn là nhà cung cấp hosting.
+**Outline không phải không có nhược điểm.** Trước khi di chuyển toàn bộ tài liệu của team: 1. **Giấy phép BSL-1.1**: Outline sử dụng Business Source License, không phải giấy phép open-source truyền thống. Sử dụng nội bộ miễn phí. Cung cấp Outline như một dịch vụ cloud cạnh tranh yêu cầu giấy phép thương mại. Với 99% team kỹ sư, điều này không liên quan —— nhưng xác nhận với pháp lý nếu bạn là nhà cung cấp hosting.
 
 2. **Không có guest access**: Bạn không thể mờicộng tác viên bên ngoài mà không cho họ tài khoản team đầy đủ. Link chia sẻ công khai hoạt động cho từng tài liệu, nhưng không có tier guest/collaborator.
 
@@ -649,9 +548,7 @@ Nếu team bạn hiện đang trả phí Notion hoặc Confluence, Outline hoàn
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -672,7 +569,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 *Bài viết này có thể chứa liên kết tiếp thị. Nếu bạn đăng ký DigitalOcean hoặc HTStack qua liên kết giới thiệu, chúng tôi nhận được hoa hồng mà không phát sinh chi phí thêm cho bạn. Chúng tôi chỉ giới thiệu các dịch vụ mà chính chúng tôi sử dụng.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

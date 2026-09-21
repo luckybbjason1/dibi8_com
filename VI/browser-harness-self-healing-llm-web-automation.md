@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/browser-harness-self-healing-llm-web-automation" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/browser-harness-self-healing-llm-web-automation" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/browser-harness-self-healing-llm-web-automation" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/browser-harness-self-healing-llm-web-automation" />
 title: "Browser Harness：让 LLM 自主操控浏览器的自愈型神器"
 description: "Browser Harness là framework điều khiển trình duyệt tự phục hồi, cho phép LLM tự động hoàn thành mọi tác vụ web. 11K+ Stars, viết bằng Python, hỗ trợ Playwright và Selenium."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Go
+tech_stack: - Go
   - Python
 application_domain: "Llm Frameworks"
 source_version: ""
@@ -25,8 +19,7 @@ maintainer: "browser-use"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-faqs:
-  - q: 'Browser Harness là gì?'
+faqs: - q: 'Browser Harness là gì?'
     a: 'Browser Harness là một framework điều khiển trình duyệt tự phục hồi (self-healing), cho phép các mô hình ngôn ngữ lớn tự động hoàn thành các tác vụ web theo cách giống như con người. Nó được viết bằng Python, hỗ trợ cả Playwright lẫn Selenium, và do nhóm browser-use duy trì.'
   - q: 'Cơ chế tự phục hồi của Browser Harness hoạt động như thế nào?'
     a: 'Khi một thao tác thất bại, Browser Harness sẽ chụp ảnh màn hình, để LLM chẩn đoán vấn đề, tạo ra chiến lược mới và thử lại. Nó lặp lại chu trình phát hiện - phân tích - tạo lại - thử lại này cho đến khi tác vụ thành công hoặc xác nhận rằng tác vụ không thể hoàn thành.'
@@ -38,7 +31,6 @@ faqs:
     a: 'Các hạn chế của nó là chi phí (các lệnh gọi LLM API phát sinh phí, mặc dù có thể dùng các mô hình cục bộ), tốc độ (nó chậm hơn so với tự động hóa truyền thống vì mô hình cần thời gian để suy luận), độ an toàn (cần có các rào chắn nghiêm ngặt để ngăn thao tác sai), và những CAPTCHA phức tạp mà vẫn có thể cần đến con người.'
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/browser-harness-self-healing-llm-web-automation/ -->
 {</* resource-info */>}
 
 ## Vấn đề: Web crawler truyền thống đã chết, kỷ nguyên AI cần mô hình mới
@@ -69,35 +61,29 @@ Slogan cốt lõi: **"Self-healing harness that enables LLMs to complete any tas
 
 ### 1. Tự phục hồi (Self-Healing)
 
-Tự động hóa truyền thống:
-```python
+Tự động hóa truyền thống: ```python
 # Selector mong manh, trang thay đổi là die
 button = driver.find_element(By.CSS_SELECTOR, "#submit-btn")
 button.click()
 ```
 
-Browser Harness:
-```python
+Browser Harness: ```python
 # LLM hiểu ngữ nghĩa trang, tự tìm nút đúng
 # Dù id thay đổi cũng hiểu qua ngữ cảnh
 result = harness.execute("Nhấn nút gửi")
 # Nếu không tìm thấy nút, LLM phân tích trang và đề xuất phương án thay thế
 ```
 
-**Cơ chế tự phục hồi**:
-- Thao tác thất bại → Chụp màn hình phân tích → LLM chẩn đoán → Tạo chiến lược mới → Thử lại
+**Cơ chế tự phục hồi**: - Thao tác thất bại → Chụp màn hình phân tích → LLM chẩn đoán → Tạo chiến lược mới → Thử lại
 - Lặp cho đến khi thành công hoặc xác nhận không thể hoàn thành
 
 ### 2. Hiểu ngữ nghĩa (Semantic Understanding)
 
-Browser Harness không phụ thuộc CSS selector mà để LLM **hiểu nội dung trang**:
-
-```python
+Browser Harness không phụ thuộc CSS selector mà để LLM **hiểu nội dung trang**: ```python
 # Nói LLM mục tiêu, không phải bước
 harness.execute("Tìm tai nghe không dây trên Amazon, sắp xếp theo đánh giá, chọn kết quả đầu tiên thêm vào giỏ")
 
-# LLM tự động:
-# 1. Tìm ô tìm kiếm
+# LLM tự động: # 1. Tìm ô tìm kiếm
 # 2. Nhập "wireless headphones"
 # 3. Tìm menu sắp xếp
 # 4. Chọn "Customer Reviews"
@@ -115,16 +101,14 @@ harness = Harness(model="gpt-4o")
 # Tác vụ phức tạp đa bước
 task = """
 Đặt vé máy bay từ Bắc Kinh đến Thượng Hải thứ Tư tuần sau,
-yêu cầu:
-- Khởi hành buổi sáng
+yêu cầu: - Khởi hành buổi sáng
 - Giá dưới 1000 tệ
 - China Eastern hoặc Air China
 - Không cần hành lý ký gửi
 """
 
 result = harness.execute(task)
-# LLM lập kế hoạch:
-# 1. Mở Ctrip/Qu哪儿
+# LLM lập kế hoạch: # 1. Mở Ctrip/Qu哪儿
 # 2. Chọn một chiều
 # 3. Nhập Bắc Kinh → Thượng Hải
 # 4. Chọn ngày thứ Tư tuần sau
@@ -138,17 +122,13 @@ result = harness.execute(task)
 
 ### 4. Nhận thức thị giác (Visual Perception)
 
-Browser Harness gửi ảnh chụp màn hình cho LLM, cho phép mô hình "nhìn thấy" web:
-
-```python
+Browser Harness gửi ảnh chụp màn hình cho LLM, cho phép mô hình "nhìn thấy" web: ```python
 # Phân tích ảnh chụp màn hình
 screenshot = harness.screenshot()
 analysis = harness.llm.analyze_image(screenshot, 
     "Trang này có biểu mẫu gì? Hãy mô tả nhãn và loại của mỗi ô nhập")
 
-# LLM trả về:
-# "Trang có biểu mẫu đăng nhập:
-#  - Ô nhập tên người dùng (type=text)
+# LLM trả về: # "Trang có biểu mẫu đăng nhập: #  - Ô nhập tên người dùng (type=text)
 #  - Ô nhập mật khẩu (type=password)
 #  - Hộp kiểm Ghi nhớ tôi
 #  - Nút đăng nhập"
@@ -254,8 +234,7 @@ test_cases = [
     "Gửi biểu mẫu để trống trường bắt buộc, xác minh thông báo lỗi"
 ]
 
-for test in test_cases:
-    result = harness.execute(test)
+for test in test_cases: result = harness.execute(test)
     assert result.success, f"Kiểm thử thất bại: {test}"
 ```
 
@@ -265,8 +244,7 @@ for test in test_cases:
 # Crawler thông minh, tự thích ứng thay đổi website
 data = harness.execute("""
 Truy cập example.com/products,
-trích xuất tất cả sản phẩm:
-- Tên
+trích xuất tất cả sản phẩm: - Tên
 - Giá
 - Đánh giá
 - Tình trạng tồn kho
@@ -338,9 +316,7 @@ Nếu bạn đã chán việc sửa script crawler bị crash hàng tuần, Brow
 
 ## Công Cụ Đề Xuất
 
-Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
+Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
 - **{{< aff "hostinger" "footer-cta-legacy" "Hostinger" >}}** — Lựa chọn VPS giá tốt cho thị trường Việt Nam.
 
 *Affiliate link — không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.*
@@ -355,7 +331,6 @@ Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

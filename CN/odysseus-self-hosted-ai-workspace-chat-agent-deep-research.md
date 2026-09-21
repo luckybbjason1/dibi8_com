@@ -1,10 +1,9 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/odysseus-self-hosted-ai-workspace-chat-agent-deep-research" />
 title: 'Odysseus: Self-Hosted AI Workspace with 10+ Built-in Too...
 description: 'Odysseus (65,243 GitHub stars) is a self-hosted AI workspace combining chat, agent automation, deep research, document editing, email triage, calendar, and more. Supports vLLM, llama.cpp, Ollama, OpenRouter, OpenAI, and GitHub Copilot. Docker and native Linux/macOS installs available.'
 date: 2026-06-09
-lastmod:  2026-06-09slug: 'odysseus-self-hosted-ai-workspace-chat-agent-deep-research'
+lastmod: 2026-06-09
+slug: 'odysseus-self-hosted-ai-workspace-chat-agent-deep-research'
 category: 'ai-tools'
 tags: ['odysseus', 'self-hosted AI', 'AI workspace', 'local AI', 'deep research', 'AI agent', 'chat interface', 'open-source AI', 'home lab AI']
 github_repo: 'https://github.com/pewdiepie-archdaemon/odysseus'
@@ -12,9 +11,7 @@ stars: 65243
 maintainer: 'pewdiepie-archdaemon'
 license: MIT
 featureImage: 'https://raw.githubusercontent.com/pewdiepie-archdaemon/odysseus/dev/docs/odysseus.jpg'
-lang: en
 ---
-
 # Odysseus: Self-Hosted AI Workspace with 10+ Built-in Tools — 65,000 Stars — Full Setup Guide 2026
 
 ```
@@ -55,10 +52,14 @@ This guide covers everything: architecture breakdown, Docker and native installa
 
 Odysseus is a full-stack AI workspace built on Python (FastAPI backend, responsive web frontend). It is designed for users who want the convenience of a unified AI interface — like ChatGPT's multi-model chat — while maintaining complete data sovereignty.
 
-The project integrates the following capabilities in a single web application:
-
-| Feature | Description | Built On |
-|---------|-------------|----------|
+The project integrates the following capabilities in a single web application: | Feature | Description | Built On |
+|
+---
+|
+---
+|
+---
+|
 | Chat | Multi-model conversations | vLLM, llama.cpp, Ollama, OpenRouter, OpenAI, GitHub Copilot |
 | Agent | Tool-using autonomous agent | OpenCode, MCP, web, files, shell, skills, memory |
 | Cookbook | Hardware-aware model downloader and server | llmfit, VRAM-aware, GGUF/FP8/AWQ |
@@ -135,16 +136,12 @@ docker compose up -d --build
 
 After starting, open `http://localhost:7000`. On first setup, Odysseus creates an admin account (`admin` unless `ODYSSEUS_ADMIN_USER` is set) and prints a temporary password in the terminal.
 
-To include optional extras (PDF viewer, Office extraction with AGPL PyMuPDF):
-
-```bash
+To include optional extras (PDF viewer, Office extraction with AGPL PyMuPDF): ```bash
 docker compose build --build-arg INSTALL_OPTIONAL=true
 docker compose up -d --build
 ```
 
-To enable GPU passthrough for NVIDIA GPUs:
-
-```bash
+To enable GPU passthrough for NVIDIA GPUs: ```bash
 # Diagnose GPU passthrough
 scripts/check-docker-gpu.sh
 
@@ -155,9 +152,7 @@ scripts/check-docker-gpu.sh --install-nvidia-toolkit
 scripts.check-docker-gpu.sh --enable-nvidia-overlay
 ```
 
-For AMD/ROCm:
-
-```bash
+For AMD/ROCm: ```bash
 scripts/check-docker-amd-gpu.sh
 ```
 
@@ -165,9 +160,7 @@ Then edit `.env` to add the overlay and your host's render group ID.
 
 ### Native Linux/macOS Installation
 
-If you prefer not to use Docker:
-
-```bash
+If you prefer not to use Docker: ```bash
 git clone https://github.com/pewdiepie-archdaemon/odysseus.git
 cd odysseus
 
@@ -189,9 +182,7 @@ Requirements: Python 3.11+. The app itself is lightweight; local model serving i
 
 ### Apple Silicon (macOS with GPU)
 
-Docker on macOS cannot use Metal GPU. For GPU-accelerated local model serving on M-series Macs:
-
-```bash
+Docker on macOS cannot use Metal GPU. For GPU-accelerated local model serving on M-series Macs: ```bash
 git clone https://github.com/pewdiepie-archdaemon/odysseus.git
 cd odysseus
 
@@ -199,25 +190,19 @@ cd odysseus
 ./start-macos.sh
 ```
 
-This launches at `http://127.0.0.1:7860`. To expose to phone over Tailscale:
-
-```bash
+This launches at `http://127.0.0.1:7860`. To expose to phone over Tailscale: ```bash
 ODYSSEUS_HOST=0.0.0.0 ./start-macos.sh
 ```
 
 ### Building a Desktop App
 
-You can package Odysseus as a native desktop app wrapper:
-
-```bash
+You can package Odysseus as a native desktop app wrapper: ```bash
 ./build-macos-app.sh
 ```
 
 ## Configuration & Model Setup
 
-After installation, configure your AI models through the web UI's **Settings** panel. You can add any of these providers:
-
-```yaml
+After installation, configure your AI models through the web UI's **Settings** panel. You can add any of these providers: ```yaml
 # Example .env configuration for multi-provider setup
 APP_BIND=127.0.0.1
 APP_PORT=7000
@@ -257,14 +242,11 @@ odysseus cookbook serve llama-3.1-8b
 
 ### OpenCode Agent Framework
 
-Odysseus agents are built on [OpenCode](https://github.com/anomalyco/opencode), giving them the ability to use tools autonomously. You can configure MCP servers to connect external tools:
-
-```bash
+Odysseus agents are built on [OpenCode](https://github.com/anomalyco/opencode), giving them the ability to use tools autonomously. You can configure MCP servers to connect external tools: ```bash
 # Configure MCP in .env
 MCP_SERVERS=http://localhost:3000,mcp://your-server
 
-# Your agent can then use:
-# - File tools (read/write/search)
+# Your agent can then use: # - File tools (read/write/search)
 # - Shell execution
 # - Web search
 # - Custom skills
@@ -272,24 +254,19 @@ MCP_SERVERS=http://localhost:3000,mcp://your-server
 
 ### ChromaDB for Persistent Memory
 
-Odysseus includes ChromaDB for vector-based persistent memory. Your agent remembers previous conversations and can retrieve context using both vector similarity and keyword search:
-
-```bash
+Odysseus includes ChromaDB for vector-based persistent memory. Your agent remembers previous conversations and can retrieve context using both vector similarity and keyword search: ```bash
 # Memory import/export
 odysseus memory export --output memory.json
 odysseus memory import --input memory.json
 
-# The memory system uses:
-# - ChromaDB for vector storage
+# The memory system uses: # - ChromaDB for vector storage
 # - fastembed (ONNX) for embeddings
 # - Combined vector + keyword retrieval
 ```
 
 ### SearXNG Web Search
 
-For agents that need web research, Odysseus bundles SearXNG (a privacy-respecting metasearch engine). This means AI agents can search the web without exposing your queries to Google or Bing:
-
-```bash
+For agents that need web research, Odysseus bundles SearXNG (a privacy-respecting metasearch engine). This means AI agents can search the web without exposing your queries to Google or Bing: ```bash
 # SearXNG is included in the Docker stack
 # Access it at: http://localhost:8888 (inside Docker network)
 # Agent web search uses it automatically
@@ -297,9 +274,7 @@ For agents that need web research, Odysseus bundles SearXNG (a privacy-respectin
 
 ### Email Integration
 
-Odysseus includes a full IMAP/SMTP inbox with AI-powered triage:
-
-```yaml
+Odysseus includes a full IMAP/SMTP inbox with AI-powered triage: ```yaml
 # Email config in .env
 EMAIL_IMAP_SERVER=imap.gmail.com
 EMAIL_IMAP_PORT=993
@@ -316,7 +291,13 @@ The AI can automatically: summarize emails, flag urgency, draft replies, auto-ta
 ### Resource Usage Comparison
 
 | Component | Docker | Native (no models) |
-|-----------|--------|---------------------|
+|
+---
+|
+---
+|
+---
+|
 | RAM | ~200 MB | ~50 MB |
 | Disk | ~500 MB (base) | ~100 MB |
 | Startup | ~5 sec | ~1 sec |
@@ -324,9 +305,7 @@ The AI can automatically: summarize emails, flag urgency, draft replies, auto-ta
 
 ### Deep Research Performance
 
-Odysseus's deep research feature (adapted from Alibaba's Tongyi DeepResearch) performs multi-step research workflows:
-
-```
+Odysseus's deep research feature (adapted from Alibaba's Tongyi DeepResearch) performs multi-step research workflows: ```
 Research Task: "Compare RAG vs. fine-tuning for enterprise QA"
 
 Step 1: Web search (SearXNG) → 15 sources
@@ -339,9 +318,7 @@ This is particularly useful for researchers, analysts, and anyone who needs to s
 
 ### Model Comparison Mode
 
-The Compare feature allows blind A/B testing of different models side by side:
-
-```
+The Compare feature allows blind A/B testing of different models side by side: ```
 Prompt: "Write a Python binary search implementation"
 
 Model A: [hidden] → Response
@@ -372,9 +349,7 @@ ODYSSEUS_ADMIN_PASSWORD=secure-password
 
 ### Reverse Proxy Configuration
 
-For production deployment behind a reverse proxy:
-
-```nginx
+For production deployment behind a reverse proxy: ```nginx
 server {
     listen 443 ssl;
     server_name ai.yourdomain.com;
@@ -399,21 +374,13 @@ server {
 
 ```yaml
 # docker-compose.prod.yml
-services:
-  odysseus:
-    image: pewdiepie-archdaemon/odysseus:latest
+services: odysseus: image: pewdiepie-archdaemon/odysseus:latest
     restart: unless-stopped
-    ports:
-      - "127.0.0.1:7000:7000"
-    volumes:
-      - ./data:/app/data
+    ports: - "127.0.0.1:7000:7000"
+    volumes: - ./data:/app/data
       - ./config:/app/config
     env_file: .env
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+    deploy: resources: reservations: devices: - driver: nvidia
               count: 1
               capabilities: [gpu]
 ```
@@ -434,7 +401,19 @@ tar czf odysseus-backup-$(date +%Y%m%d).tar.gz \
 ## Comparison with Alternatives
 
 | Feature | Odysseus | ChatGPT | Claude | NotebookLM | Open WebUI |
-|---------|----------|---------|--------|------------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Self-hosted | ✅ Full | ❌ Cloud only | ❌ Cloud only | ❌ Cloud only | ✅ Partial |
 | Built-in agent | ✅ OpenCode/MCP | ✅ GPTs | ✅ Computer Use | ❌ No | ✅ Limited |
 | Deep research | ✅ Built-in | ✅ Plus only | ✅ | ✅ Built-in | ❌ No |
@@ -447,9 +426,7 @@ tar czf odysseus-backup-$(date +%Y%m%d).tar.gz \
 
 ## Limitations / Honest Assessment
 
-While Odysseus is impressive, it has some limitations to be aware of:
-
-1. **New project (created May 31, 2026)** — Despite 65,000+ stars, Odysseus is extremely young. Expect bugs, breaking changes, and incomplete documentation. The `dev` branch is the default but "may be unstable."
+While Odysseus is impressive, it has some limitations to be aware of: 1. **New project (created May 31, 2026)** — Despite 65,000+ stars, Odysseus is extremely young. Expect bugs, breaking changes, and incomplete documentation. The `dev` branch is the default but "may be unstable."
 
 2. **GPU support is Docker/NVIDIA-focused** — AMD ROCm support exists but requires manual `.env` configuration. Apple Silicon requires native install (no Docker GPU).
 
@@ -506,14 +483,13 @@ The Docker-based installation makes it accessible even to users without deep Lin
 - Deep Research (adapted from): https://github.com/Alibaba-NLP/DeepResearch
 - Agent framework (OpenCode): https://github.com/anomalyco/opencode
 
----
 
+---
 Join our community for more AI tool deep-dives: [t.me/DIBI8_Group](https://t.me/DIBI8_Group)
 
 **Disclaimer:** This article is for informational purposes only. Always review source code before running third-party software in production. Affiliate disclosure: Some links above may contain affiliate codes. We may earn a commission at no extra cost to you.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -539,8 +515,8 @@ Join our community for more AI tool deep-dives: [t.me/DIBI8_Group](https://t.me/
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [odysseus-self-hosted-ai-workspace-chat-agent-deep-research](odysseus-self-hosted-ai-workspace-chat-agent-deep-research)

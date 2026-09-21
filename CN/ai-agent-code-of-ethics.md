@@ -1,12 +1,9 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/ai-agent-code-of-ethics" />
 title: 'The AI Agent Code of Ethics (2026): A Practical Governan...
 description: 'A working code of ethics for autonomous AI agents — not abstract principles, but seven enforceable rules with engineering controls: least-privilege authorization, full auditability, human-in-the-loop reversibility, bounded autonomy, an unbroken accountability chain, fail-safe defaults, and privacy by design. Includes a pre-deployment checklist for developers shipping agents in 2026.'
 date: 2026-06-04 00:00:00+08:00
 lastmod: 2026-06-04 00:00:00+08:00
-tech_stack:
-  - AI Agents
+tech_stack: - AI Agents
   - LLM
   - Governance
   - Security
@@ -26,10 +23,8 @@ featureImage: ''
 draft: false
 categories: [collections]
 tags: ['ai agent', 'ai ethics', 'responsible ai', 'ai governance', 'agent safety', alignment, 'code of ethics']
-aliases:
-  - /posts/ai-agent-code-of-ethics/
-faqs:
-  - q: 'How is AI agent ethics different from chatbot ethics?'
+aliases: - /posts/ai-agent-code-of-ethics/
+faqs: - q: 'How is AI agent ethics different from chatbot ethics?'
     a: 'A chatbot produces text; an agent takes actions — it calls tools, moves money, sends emails, edits files, and triggers real-world effects. Chatbot ethics is mostly about what is said (bias, toxicity, misinformation). Agent ethics is about what is done: authorization, reversibility, and accountability for irreversible actions. The harm surface is operational, not just informational, so the controls must be engineering controls, not content filters.'
   - q: 'What is least-privilege authorization for an AI agent?'
     a: 'Least privilege means an agent is granted only the narrowest permissions needed for its current task, scoped in time and blast radius, rather than broad standing access. In practice: per-task credentials over long-lived API keys, read-only by default with explicit elevation for writes, hard spending caps, allowlisted tools and domains, and automatic expiry. If an agent is compromised or misaligned, least privilege bounds the damage.'
@@ -54,7 +49,15 @@ This is that discipline, in seven rules. Each one states a principle, explains w
 ## TL;DR — The Seven Rules
 
 | # | Principle | The one-line rule | Enforced by |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 1 | **Authorization** | An agent acts only within explicitly granted, least-privilege scope | Per-task credentials, allowlists, spend caps |
 | 2 | **Transparency** | Every action is logged, attributable, and explainable after the fact | Structured audit log of all tool calls |
 | 3 | **Reversibility** | High-risk and irreversible actions require human confirmation | Risk-tiered approval gates + undo |
@@ -140,9 +143,7 @@ If you cannot answer "what is the maximum damage this agent can do right now?", 
 
 ## The Pre-Deployment Checklist
 
-Before an autonomous agent goes live, you should be able to check every box:
-
-- [ ] **Scope** — Can I state the maximum damage this agent can do right now, in one sentence?
+Before an autonomous agent goes live, you should be able to check every box: - [ ] **Scope** — Can I state the maximum damage this agent can do right now, in one sentence?
 - [ ] **Credentials** — Is it running on least-privilege, time-scoped access rather than broad standing keys?
 - [ ] **Audit** — Is every tool call logged, attributable, and reviewable after the fact?
 - [ ] **Gates** — Are irreversible and high-risk actions behind explicit human confirmation?
@@ -158,20 +159,17 @@ If any box is unchecked, the agent is not ready — not because it lacks capabil
 
 These rules are deliberately framework-agnostic. Whether you build on a managed agent SDK, an open-source orchestration framework, or your own loop, the seven controls map onto the same places: the credential layer, the tool-call boundary, the logging pipeline, and the human-approval step.
 
-A few practical anchors:
-
-- **Run agents in isolated, disposable infrastructure** so a misbehaving run is contained and a kill switch actually kills it. A cheap, segregated cloud instance — [DigitalOcean](https://m.do.co/c/eca87ac14ee0) for a quick sandbox, or a segregated VPS such as [HTStack](https://my.htstack.com/aff.php?aff=27187) — beats running an autonomous agent on the same box as everything else you care about.
+A few practical anchors: - **Run agents in isolated, disposable infrastructure** so a misbehaving run is contained and a kill switch actually kills it. A cheap, segregated cloud instance — [DigitalOcean](https://m.do.co/c/eca87ac14ee0) for a quick sandbox, or a segregated VPS such as [HTStack](https://my.htstack.com/aff.php?aff=27187) — beats running an autonomous agent on the same box as everything else you care about.
 - **Treat the audit log as production data**, not a debug afterthought — structured, durable, and queryable from day one.
 - **Make the kill switch real and tested.** A kill switch you have never triggered is a hope, not a control.
 
 Ethics for autonomous agents is not a statement you publish. It is a set of controls you ship. The agent that follows these seven rules is not less capable — it is the only kind of capable agent that an organization can responsibly put its name behind.
 
----
 
+---
 *This code of ethics is released under CC-BY-4.0 — adapt it into your own agent governance docs freely. If your team is shipping autonomous agents in 2026, the right time to wire in these controls is before the first production run, not after the first incident.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -197,8 +195,8 @@ Ethics for autonomous agents is not a statement you publish. It is a set of cont
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [12-factor-agents](ai-agent-code-of-ethics)

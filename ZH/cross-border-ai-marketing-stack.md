@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/cross-border-ai-marketing-stack" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cross-border-ai-marketing-stack" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cross-border-ai-marketing-stack" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cross-border-ai-marketing-stack" />
 title: '跨境出海 AI 营销 Stack 2026：中国团队做海外业务的 7 工具完整方案'
 description: '专为跨境业务设计的 7 组件 AI stack —— 多语言内容自动化、海外市场情报抓取、GDPR 合规分析、绕开付费摩擦、整套跑在香港 VPS 上。月成本 $35-80，全开源或 aff 友好。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
-tech_stack:
-  - Docker
+tech_stack: - Docker
   - Python
   - TypeScript
   - PostgreSQL
@@ -29,11 +23,8 @@ featureImage: ''
 draft: false
 categories: [collections]
 tags: [跨境, 出海, 'ai 营销', stack, 合集]
-aliases:
-  - /posts/cross-border-ai-marketing-stack/
+aliases: - /posts/cross-border-ai-marketing-stack/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/cross-border-ai-marketing-stack/ -->
 # 跨境出海 AI 营销 Stack 2026：中国团队做海外业务的 7 工具完整方案
 
 
@@ -44,7 +35,17 @@ aliases:
 ## TL;DR —— Stack 全貌
 
 | # | 组件 | 角色 | 为什么选 | 深度指南 |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 1 | **n8n** | 多语言内容分发到 Reddit/X/HN/Discord 自动化 | 自托管 = 没按任务计费，JSON workflow 可移植 | [n8n 自托管](/zh/resources/llm-frameworks/n8n/) |
 | 2 | **LangChain** | 多语言 agent 工作流（中→英/日/韩/越 内容生成）| i18n 原语成熟 + 100+ LLM provider 集成 | [LangChain 指南](/zh/resources/llm-frameworks/langchain/) |
 | 3 | **AI 搜索工具**（Perplexity / Gemini / ChatGPT）| 抓海外市场情报 + 竞品动态 | 三档：Gemini 免费跑量，Perplexity Pro 做有依据的调研 | [AI 搜索对比](/zh/resources/ai-tools/ai-search-tools-perplexity-gemini-chatgpt/) |
@@ -229,7 +230,15 @@ OpenRouter 完整指南 + 什么时候直连胜出：[OpenRouter 统一 LLM API 
 ## 11. 月成本拆解
 
 | 项 | 单干 founder | 3 人团 | 10 人团 |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | HTStack VPS | $10 | $20（8 GB）| $50（16 GB + 副本）|
 | n8n | $0（自托管）| $0 | $0 |
 | LangChain | $0（OSS）| $0 | $0 |
@@ -265,12 +274,11 @@ OpenRouter 完整指南 + 什么时候直连胜出：[OpenRouter 统一 LLM API 
 
 跨境专属胜利：无支付摩擦、无 GDPR / 中国数据法违规、不用 $80/座 USD Cursor、GA 不被挡、Cloudflare-vs-中国问题不存在。开一个 {{< aff "htstack" "footer-cta" "HTStack HK VPS" >}}，第 1 周先搭组件 1-4，第 2 周加 5-7。
 
----
 
+---
 *配套合集：[自托管 AI 编程工作流](/zh/collections/self-hosted-ai-coding-workflow/) 给 dev 侧，[便宜 LLM Stack](/zh/collections/cheap-llm-stack/) 给极致成本推理。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -298,25 +306,20 @@ OpenRouter 完整指南 + 什么时候直连胜出：[OpenRouter 统一 LLM API 
 
 ## Why This Matters
 
-Understanding 跨境出海 ai 营销 stack 2026：中国团队做海外业务的 7 工具完整方案 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding 跨境出海 ai 营销 stack 2026：中国团队做海外业务的 7 工具完整方案 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -337,8 +340,8 @@ To implement this in your workflow:
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 

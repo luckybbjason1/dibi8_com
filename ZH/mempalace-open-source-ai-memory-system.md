@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mempalace-open-source-ai-memory-system" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mempalace-open-source-ai-memory-system" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mempalace-open-source-ai-memory-system" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mempalace-open-source-ai-memory-system" />
 title: 'MemPalace：基准测试表现最佳的开源AI记忆系统，在LongMemEval上节省96.6%的R@5——零A...
 description: 'MemPalace是一个本地优先的AI记忆系统，以逐字形式存储对话历史，并通过语义搜索进行检索。与Claude Code、Cursor、Windsurf及任何MCP兼容的智能体集成。基于ChromaDB后端，支持可插拔存储，零外部API调用。包含设置指南、基准测试和架构解析。'
 date: 2026-06-10
-lastmod:  2026-06-10slug: 'mempalace-open-source-ai-memory-system'
+lastmod: 2026-06-10
+slug: 'mempalace-open-source-ai-memory-system'
 category: 'llm-frameworks'
 tags: ['ai-memory', 'local-first', 'mempalace', 'semantic-search', 'chromadb', 'long-term-memory', 'mcp-agent', 'verbatim-storage']
 github_repo: 'https://github.com/MemPalace/mempalace'
@@ -15,28 +11,33 @@ stars: 55206
 maintainer: 'MemPalace'
 license: MIT
 featureImage: 'https://opengraph.github.com/github/MemPalace/mempalace'
-lang: zh
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/mempalace-open-source-ai-memory-system/ -->
 
 # MemPalace：基准测试表现最佳的开源AI记忆系统，在LongMemEval上节省96.6%的R@5——零API调用
 
----
 
+---
 ## 摘要
 
 MemPalace是一个本地优先的AI记忆系统，它将对话历史以**逐字文本**形式存储，并通过语义搜索进行检索。它在LongMemEval上实现了**96.6%的原始R@5**成绩——这是任何开源记忆系统的最佳基准成绩，且**零API调用**。它专为希望AI智能体记住一切而不向任何外部服务发送数据的开发者设计。
 
 || 指标 | MemPalace | Mem0 | Memory Bank |
-|--------|-----------|------|-------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 || 基准测试 | 96.6% 原始R@5 | 78.2% R@5 | 71.4% R@5 |
 || API调用 | 0 | 每次会话1-3次 | 每次会话5-8次 |
 || 存储方式 | 本地优先 | 依赖云端 | 混合 |
 || 安装方式 | `uv tool install mempalace` | `pip install mem0` | 仅Docker |
 
----
 
+---
 ## 它是什么
 
 MemPalace解决一个问题：**AI智能体会忘记你上周告诉它的内容。**
@@ -166,7 +167,15 @@ MemPalace在LongMemEval上实现了**96.6%的原始R@5**——这是任何开源
 ### LongMemEval结果
 
 || 模式 | R@5 | 需要的LLM | API调用 |
-|------|-----|--------------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 || **MemPalace（原始）** | **96.6%** | 无 | 0 |
 || MemPalace（混合v4） | 98.4% | 无 | 0 |
 || MemPalace（混合 + LLM重排） | ≥99% | 任何可用模型 | 1 |
@@ -243,8 +252,7 @@ MemPalace内置MCP服务器，用于与Claude Code、Cursor和其他MCP兼容的
 # Start the MCP server
 mempalace mcp --port 8765
 
-# In Claude Code config (~/.claude/settings.json):
-{
+# In Claude Code config (~/.claude/settings.json): {
   "mcpServers": {
     "mempalace": {
       "command": "mempalace",
@@ -284,12 +292,10 @@ memory.store({
 
 # Query for relevant context
 results = memory.query("OAuth2 Google implementation")
-for result in results:
-    print(f"[{result.wing}/{result.room}]: {result.content[:200]}")
+for result in results: print(f"[{result.wing}/{result.room}]: {result.content[:200]}")
 
 # List all wings
-for wing in memory.list_wings():
-    print(f"Wing: {wing.name} ({len(wing.rooms)} rooms)")
+for wing in memory.list_wings(): print(f"Wing: {wing.name} ({len(wing.rooms)} rooms)")
 ```
 
 Python API与CLI类似，但提供了对记忆图谱的程序化访问。这适用于：
@@ -327,7 +333,17 @@ docker run -d \
 ## 与替代方案对比
 
 || 功能 | MemPalace | Mem0 | Memory Bank | 本地RAG |
-|---------|-----------|------|-------------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 || 逐字存储 | ✓ | ✗ | ✗ | ✗ |
 || 结构化索引 | 翼/房间/抽屉 | 扁平向量 | 聊天历史 | 嵌入 |
 || 需要API | 0 | 1-3 | 5-8 | 0 |
@@ -449,7 +465,6 @@ mempalace init ~/projects/myapp
 
 *以上部分链接为联盟链接。如果你通过链接注册，dibi8.com可能会获得佣金，而你无需支付额外费用。这有助于维持网站运行和内容免费。*
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -477,25 +492,20 @@ mempalace init ~/projects/myapp
 
 ## Why This Matters
 
-Understanding mempalace：基准测试表现最佳的开源ai记忆系统，在longmemeval上节省96.6%的r@5——零api调用 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding mempalace：基准测试表现最佳的开源ai记忆系统，在longmemeval上节省96.6%的r@5——零api调用 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -560,7 +570,17 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

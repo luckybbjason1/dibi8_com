@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/baetyl-edge-ai-computing-platform" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/baetyl-edge-ai-computing-platform" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/baetyl-edge-ai-computing-platform" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/baetyl-edge-ai-computing-platform" />
 title: 'Baetyl: Nền tảng điện toán AI biên cloud-native triển kh...
 description: 'Triển khai Baetyl v2.4 để mang điện toán biên Kubernetes-native đến thiết bị IoT. Suy luận mô hình AI, hỗ trợ MQTT/BACnet, cập nhật OTA, runtime K3s, đồng bộ cloud-biên.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [baetyl, 'điện-toán-biên', iot, kubernetes, k3s, 'suy-luận-ai', mqtt, 'ai-biên', 'cập-nhật-ota', 'lf-edge']
-aliases:
-- /vi/posts/baetyl-edge-ai-computing-platform/
+aliases: - /vi/posts/baetyl-edge-ai-computing-platform/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/baetyl-edge-ai-computing-platform/ -->
 
 {{</* resource-info */>}}
 
@@ -45,18 +37,14 @@ Trong hướng dẫn này, bạn sẽ cài đặt khung biên Baetyl trên nút 
 
 Baetyl là khung điện toán biên mã nguồn mở thuộc LF Edge, mở rộng điện toán đám mây, dữ liệu và dịch vụ một cách liền mạch đến các thiết bị biên. Ban đầu được phát triển bởi nhóm Baidu Intelligent Edge (BIE), cung cấp các dịch vụ điện toán tạm thờ ngoại tuyến, độ trễ thấp bao gồm kết nối thiết bị, định tuyến tin nhắn, đồng bộ từ xa, điện toán chức năng, chụp video, suy luận AI, báo cáo trạng thái và cấu hình OTA.
 
-Baetyl v2 (phiên bản ổn định hiện tại: v2.4.3, phát hành tháng 10/2024) được thiết kế thành hai hệ thống bổ sung cho nhau:
-
-- **Khung điện toán biên** (`baetyl/baetyl`): Chạy trên Kubernetes/K3s tại nút biên. Quản lý và triển khai tất cả ứng dụng thông qua các dịch vụ hệ thống (baetyl-init, baetyl-core, baetyl-function).
+Baetyl v2 (phiên bản ổn định hiện tại: v2.4.3, phát hành tháng 10/2024) được thiết kế thành hai hệ thống bổ sung cho nhau: - **Khung điện toán biên** (`baetyl/baetyl`): Chạy trên Kubernetes/K3s tại nút biên. Quản lý và triển khai tất cả ứng dụng thông qua các dịch vụ hệ thống (baetyl-init, baetyl-core, baetyl-function).
 - **Bộ quản lý đám mây** (`baetyl/baetyl-cloud`): Triển khai trên Kubernetes trong đám mây. Cung cấp API RESTful cho quản lý nút, triển khai ứng dụng, cấu hình và cấp phát hàng loạt.
 
 Khung biên hỗ trợ Linux/amd64, Linux/arm64 và Linux/armv7. Đối với thiết bị hạn chế tài nguyên, K3s (Kubernetes nhẹ) được khuyến nghị với tối thiểu **1GB RAM và 1 lõi CPU**.
 
 ## Baetyl hoạt động như thế nào: Kiến trúc Cloud-Biên
 
-Kiến trúc v2 của Baetyl sử dụng mô hình đồng bộ hóa khai báo dựa trên shadow, lấy cảm hứng từ các controller Kubernetes và shadow thiết bị IoT:
-
-```
+Kiến trúc v2 của Baetyl sử dụng mô hình đồng bộ hóa khai báo dựa trên shadow, lấy cảm hứng từ các controller Kubernetes và shadow thiết bị IoT: ```
 Phía Cloud (Kubernetes)              Phía Biên (K3s/Kubernetes)
 +---------------------+              +---------------------+
 |  baetyl-cloud       |  Report    |  baetyl-init        |
@@ -130,8 +118,7 @@ mysql -u root -p < scripts/sql/data.sql
 
 # Cấu hình kết nối cơ sở dữ liệu
 cat > scripts/charts/baetyl-cloud/conf/cloud.yml << EOF
-database:
-  type: "mysql"
+database: type: "mysql"
   url: "baetyl:password@tcp(localhost:3306)/baetyl_cloud?charset=utf8&parseTime=true"
 EOF
 
@@ -179,34 +166,24 @@ curl http://localhost:30004/v1/nodes/edge-prod-01
 
 ## Tích hợp với 4 giao thức chính
 
-Baetyl kết nối với các hệ sinh thái IoT đa dạng thông qua bộ chuyển đổi giao thức tích hợp:
+Baetyl kết nối với các hệ sinh thái IoT đa dạng thông qua bộ chuyển đổi giao thức tích hợp: **1. MQTT Message Broker**
 
-**1. MQTT Message Broker**
-
-Mô-đun baetyl-broker cung cấp broker MQTT phía biên định tuyến tin nhắn giữa thiết bị, đám mây và ứng dụng cục bộ:
-
-```yaml
+Mô-đun baetyl-broker cung cấp broker MQTT phía biên định tuyến tin nhắn giữa thiết bị, đám mây và ứng dụng cục bộ: ```yaml
 # Cấu hình ứng dụng MQTT broker
 name: mqtt-app
 version: v1
-services:
-  - name: broker
+services: - name: broker
     image: baetyl-broker:v2.4.3
-    ports:
-      - "1883:1883"
+    ports: - "1883:1883"
       - "8883:8883"
-    volumeMounts:
-      - name: broker-conf
+    volumeMounts: - name: broker-conf
         mountPath: /etc/baetyl
-volumes:
-  - name: broker-conf
-    config:
-      name: broker-conf
+volumes: - name: broker-conf
+    config: name: broker-conf
       version: v1
 ```
 
-Kiểm tra kết nối:
-```bash
+Kiểm tra kết nối: ```bash
 mosquitto_pub -h localhost -p 1883 -t "devices/sensor01/temp" -m "23.5"
 mosquitto_sub -h localhost -p 1883 -t "devices/+/temp"
 ```
@@ -216,18 +193,14 @@ mosquitto_sub -h localhost -p 1883 -t "devices/+/temp"
 ```yaml
 # Cấu hình trình kết nối thiết bị Modbus
 name: modbus-app
-services:
-  - name: modbus-connector
+services: - name: modbus-connector
     image: baetyl-modbus:v2.4.3
-    devices:
-      - name: temperature-sensor
-        modbus:
-          mode: tcp
+    devices: - name: temperature-sensor
+        modbus: mode: tcp
           address: 192.168.1.100:502
           slaveid: 1
           interval: 5s
-          read:
-            - function: 3
+          read: - function: 3
               address: 0
               quantity: 2
               type: float
@@ -238,24 +211,18 @@ services:
 ```yaml
 # Trình kết nối BACnet cho hệ thống HVAC
 name: bacnet-app
-services:
-  - name: bacnet-connector
+services: - name: bacnet-connector
     image: baetyl-bacnet:v2.4.3
-    config:
-      devices:
-        - device_id: 1234
+    config: devices: - device_id: 1234
           address: 192.168.10.50
-          objects:
-            - type: analog-input
+          objects: - type: analog-input
               instance: 0
               property: present-value
 ```
 
 **4. Tích hợp xử lý luồng eKuiper**
 
-Baetyl v2.4.3+ tích hợp eKuiper làm ứng dụng hệ thống tùy chọn để xử lý luồng biên:
-
-```bash
+Baetyl v2.4.3+ tích hợp eKuiper làm ứng dụng hệ thống tùy chọn để xử lý luồng biên: ```bash
 # Bật eKuiper khi tạo/cập nhật nút
 curl -X PUT http://localhost:30004/v1/nodes/edge-prod-01 \
   -H "Content-Type: application/json" \
@@ -270,9 +237,7 @@ curl -X PUT http://localhost:30004/v1/nodes/edge-prod-01 \
 
 ## Đánh giá hiệu suất / Triển khai Edge AI thực tế
 
-So sánh hiệu suất: suy luận cloud vs. suy luận biên Baetyl trên NVIDIA Jetson Nano:
-
-| Chỉ số | Cloud (AWS g4dn) | Baetyl Biên (Jetson Nano) |
+So sánh hiệu suất: suy luận cloud vs. suy luận biên Baetyl trên NVIDIA Jetson Nano: | Chỉ số | Cloud (AWS g4dn) | Baetyl Biên (Jetson Nano) |
 |--------|-----------------|---------------------------|
 | Vòng lặp mạng | 120-280ms | **0ms** (cục bộ) |
 | Thờ gian tải mô hình | 1.2s (cold) | **800ms** (đệm) |
@@ -292,35 +257,24 @@ So sánh hiệu suất: suy luận cloud vs. suy luận biên Baetyl trên NVIDI
 # Mô hình phân loại hình ảnh PyTorch trên biên
 name: ai-inference-app
 version: v1
-services:
-  - name: defect-detector
+services: - name: defect-detector
     image: myregistry/defect-model:trt-v3.2
     runtime: nvidia
-    resources:
-      limits:
-        nvidia.com/gpu: 1
+    resources: limits: nvidia.com/gpu: 1
         memory: "2Gi"
         cpu: "1000m"
-    ports:
-      - "8080:8080"
-    volumeMounts:
-      - name: model-cache
+    ports: - "8080:8080"
+    volumeMounts: - name: model-cache
         mountPath: /models
-volumes:
-  - name: model-cache
-    hostPath:
-      path: /opt/baetyl/models
+volumes: - name: model-cache
+    hostPath: path: /opt/baetyl/models
 ```
 
 **Giám sát và chia sẻ GPU:**
 
-baetyl-core có thể giám sát mức sử dụng bộ nhớ GPU, nhiệt độ và mức tiêu thụ năng lượng thờ gian thực. Nhiều ứng dụng có thể chia sẻ tài nguyên GPU:
-
-```yaml
+baetyl-core có thể giám sát mức sử dụng bộ nhớ GPU, nhiệt độ và mức tiêu thụ năng lượng thờ gian thực. Nhiều ứng dụng có thể chia sẻ tài nguyên GPU: ```yaml
 # Cấu hình tài nguyên GPU
-resources:
-  limits:
-    nvidia.com/gpu.shared: 0.5  # Chia sẻ GPU giữa các ứng dụng
+resources: limits: nvidia.com/gpu.shared: 0.5  # Chia sẻ GPU giữa các ứng dụng
 ```
 
 **Chiến lược triển khai cập nhật OTA:**
@@ -351,16 +305,12 @@ curl -X PUT http://cloud:30004/v1/apps/defect-model-v4 \
 # Triển khai SQLite để lưu trữ dữ liệu cục bộ tại biên
 cat > sqlite-app.yml << EOF
 name: local-cache
-services:
-  - name: sqlite
+services: - name: sqlite
     image: baetyl-sqlite:v2.4.3
-    volumeMounts:
-      - name: data
+    volumeMounts: - name: data
         mountPath: /data
-volumes:
-  - name: data
-    hostPath:
-      path: /opt/baetyl/sqlite
+volumes: - name: data
+    hostPath: path: /opt/baetyl/sqlite
 EOF
 
 baetyl apply -f sqlite-app.yml
@@ -464,9 +414,7 @@ Khung này đã được chứng minh trong môi trường sản xuất từ nh�
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -476,7 +424,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 Bài viết này chứa liên kết liên kết cho DigitalOcean. Nếu bạn đăng ký qua liên kết của chúng tôi, chúng tôi nhận được hoa hồng mà không tốn thêm chi phí cho bạn. Tất cả đề xuất đều dựa trên thử nghiệm thực tế và không bị ảnh hưởng bởi chương trình liên kết. Baetyl hoàn toàn mã nguồn mở và miễn phí sử dụng theo giấy phép Apache-2.0.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,14 +1,11 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/gemini-cli-vs-claude-code" />
 title: 'Gemini CLI vs Claude Code in 2026: Which AI Coding Agent...
 description: 'Side-by-side breakdown of Google Gemini CLI and Anthropic Claude Code — free tier, context window, agent style, multi-modal, tool use, migration tips. Updated 2026.'
 date: 2026-05-22 00:00:00+08:00
-lastmod:  2026-05-22 00:00:00+08:00draft: false
+lastmod: 2026-05-22 00:00:00+08:00draft: false
 tags: [gemini-cli, claude-code, google, anthropic, ai-coding, comparison, dev-tools]
 categories: [vs]
-faqs:
-  - q: 'Is Gemini CLI really free?'
+faqs: - q: 'Is Gemini CLI really free?'
     a: 'Yes — Gemini CLI ships with the most generous free tier in any AI coding agent today: 60 model requests per minute and 1,000 requests per day using gemini-2.0-flash-thinking, no credit card required, just a Google account. Claude Code has no free tier — you pay per token via the Anthropic API or via the $20/month Claude Pro plan with limited Claude Code usage.'
   - q: 'Which has a larger context window?'
     a: 'Gemini CLI uses gemini-2.0-flash-thinking with up to 1M tokens of context in free tier, scaling to 2M on paid Vertex AI. Claude Code uses claude-opus-4.7 with 200K standard or 1M context (1M is in beta, pay-as-you-go). For raw context size on the free tier Gemini CLI wins; for quality of long-context reasoning the two are close at 1M.'
@@ -30,12 +27,18 @@ Use **Gemini CLI** if: You want zero-cost AI coding (1,000 requests/day free), y
 
 Use **Claude Code** if: You want the most refined agentic experience, you need top-tier multi-file refactor quality, you're shipping production code where every edit counts, and you're OK paying $20-$200/month for Anthropic-grade output.
 
----
 
+---
 ## Side-by-Side Comparison
 
 | Feature | Gemini CLI | Claude Code |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | **Vendor** | Google | Anthropic |
 | **Launched** | 2025 (open source) | 2025 (closed source) |
 | **License** | Apache 2.0 (CLI), proprietary models | Proprietary |
@@ -55,8 +58,8 @@ Use **Claude Code** if: You want the most refined agentic experience, you need t
 | **Best codebase size** | < 500K LOC (1M context) | < 500K LOC (1M context) |
 | **Install** | `npm i -g @google/gemini-cli` | `npm i -g @anthropic-ai/claude-code` |
 
----
 
+---
 ## When to Choose Gemini CLI
 
 ### Use case 1: Zero-budget AI coding
@@ -112,7 +115,13 @@ For full-time builders: **Claude Max 5x $100 + Gemini CLI free** — Claude as p
 ## Performance Benchmarks (Subjective, From My Daily Use)
 
 | Task | Gemini CLI | Claude Code |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | Single-file bug fix | 7/10 | 9/10 |
 | Multi-file refactor | 7/10 | 9/10 |
 | New feature from spec | 8/10 | 9/10 |
@@ -153,9 +162,7 @@ Want a cloud sandbox to run both agents against a real codebase without burning 
 
 ## Alternatives Worth Trying
 
-If neither Gemini CLI nor Claude Code fits, consider:
-
-- **[Cursor](https://dibi8.com/vs/cursor-vs-claude-code/)** — VS Code fork, best inline autocomplete, $20/month
+If neither Gemini CLI nor Claude Code fits, consider: - **[Cursor](https://dibi8.com/vs/cursor-vs-claude-code/)** — VS Code fork, best inline autocomplete, $20/month
 - **[Aider](https://dibi8.com/resources/llm-frameworks/aider/)** — Open-source, terminal-based, BYO API key (works with Gemini, Claude, OpenAI)
 - **[Continue.dev](https://dibi8.com/resources/llm-frameworks/continue/)** — Free VS Code extension, BYO model
 - **[cc-switch](https://dibi8.com/resources/dev-utils/cc-switch-claude-code-api-router/)** — Route Claude Code through cheaper providers, cut costs 60-80%
@@ -197,7 +204,6 @@ For an indie dev shipping a SaaS solo on the **last-bet budget**? **Gemini CLI f
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

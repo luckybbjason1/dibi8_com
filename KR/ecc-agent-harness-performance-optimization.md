@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ecc-agent-harness-performance-optimization" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ecc-agent-harness-performance-optimization" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ecc-agent-harness-performance-optimization" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ecc-agent-harness-performance-optimization" />
 title: 'ECC: 에이전트 허닝 튜닝으로 Claude Code, Codex, Cursor 성능 최적화 — 20...
 description: 'ECC (에이전트 허닝 성능 최적화)는 컨텍스트 윈도우 사용량을 줄이고 AI 코딩 에이전트의 응답 속도를 높입니다. Claude Code, Codex, Opencode, Cursor 등에서 호환됩니다. 성능 튜닝, 스킬 시스템, MCP 서버 설정을 다룹니다.'
 date: 2026-06-13
-lastmod:  2026-06-13slug: 'ecc-agent-harness-performance-optimization'
+lastmod: 2026-06-13
+slug: 'ecc-agent-harness-performance-optimization'
 category: dev-utils
 tags: ['ECC', 'agent-optimization', 'claude-code', 'codex', 'cursor', 'performance', 'mcp']
 github_repo: 'https://github.com/affaan-m/ECC'
@@ -15,8 +11,6 @@ license: 'MIT'
 lang: kr
 featureImage: /articles/docker-compose-37-393-github-stars-multi-a62205.png/images/articles/docker-compose-37-393-github-stars-multi-a62205.png
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/ecc-agent-harness-performance-optimization/ -->
 
 # ECC: 에이전트 허닝 성능 최적화 — 2026 가이드
 
@@ -34,9 +28,7 @@ ECC는 AI 코딩 에이전트(Claude Code, Codex CLI, Cursor 등)와 기본 모�
            성능 최적화 레이어
 ```
 
-시스템은 세 가지 주요 메커니즘으로 작동합니다:
-
-1. **컨텍스트 압축** — 중복 토큰, 공백, 저부치 진단 출력을 식별하고 제거하여 도구 출력 크기를 줄입니다
+시스템은 세 가지 주요 메커니즘으로 작동합니다: 1. **컨텍스트 압축** — 중복 토큰, 공백, 저부치 진단 출력을 식별하고 제거하여 도구 출력 크기를 줄입니다
 2. **스킬 레지스트리** — 일반적인 코딩 작업(디버깅, 코드 리뷰, 리팩토링)을 위한 사전 구축 최적화 프로필
 3. **메모리 시스템** — 에이전트 동작 패턴을 추적하여 향후 상호작용을 단계적으로 최적화합니다
 
@@ -46,9 +38,7 @@ ECC는 JavaScript/TypeScript로 작성되었으며 MIT 라이선스를 사용하
 
 ## ECC의 작동 방식
 
-ECC의 최적화 파이프라인은 에이전트와 모델 사이를 흐르는 데이터가 실시간으로 실행됩니다. 다음은 그 흐름입니다:
-
-```bash
+ECC의 최적화 파이프라인은 에이전트와 모델 사이를 흐르는 데이터가 실시간으로 실행됩니다. 다음은 그 흐름입니다: ```bash
 # ECC는 LLM 컨텍스트에 도달하기 전에 도구 출력을 인터셉트합니다
 Claude Code → exec("ls -la /tmp") → [원본 출력: 15KB]
                     ↓
@@ -57,9 +47,7 @@ Claude Code → exec("ls -la /tmp") → [원본 출력: 15KB]
           [압축된 출력: 2.3KB] → LLM 컨텍스트
 ```
 
-압축 비율은 출력 타입에 따라 달라집니다:
-
-- **터미널 출력**: 60-85% 감소 (ANSI 코드, 중복 경로, 반복 패턴 제거)
+압축 비율은 출력 타입에 따라 달라집니다: - **터미널 출력**: 60-85% 감소 (ANSI 코드, 중복 경로, 반복 패턴 제거)
 - **코드 diff**: 40-60% 감소 (hunk 유지, 관련 없는 컨텍스트 라인 제거)
 - **파일 내용**: 70-90% 감소 (변경되지 않은 섹션 식별, boilerplate 요약)
 - **로그 파일**: 80-95% 감소 (노이즈 필터링, 오류/경고만 유지)
@@ -67,8 +55,7 @@ Claude Code → exec("ls -la /tmp") → [원본 출력: 15KB]
 ECC는 정규식 기반 토큰 필터링, 시맨틱 중복 제거, 구성 가능한 압축 프로필의 조합을 통해 이를 달성합니다. 각 프로필은 특정 출력 타입을 대상으로 하며 프로젝트별로 튜닝할 수 있습니다.
 
 ```
-ECC 압축 흐름:
-┌──────────┐     ┌──────────┐     ┌──────────┐     ┌──────────┐
+ECC 압축 흐름: ┌──────────┐     ┌──────────┐     ┌──────────┐     ┌──────────┐
 │  에이전트  │────▶│  ECC       │────▶│  압축 엔진 │────▶│  모델     │
 │ (Claude)  │     │  미들웨어   │    │           │     │ (Sonnet) │
 └──────────┘     └──────────┘     └──────────┘     └──────────┘
@@ -79,9 +66,7 @@ ECC 압축 흐름:
 
 ## 설치 및 설정
 
-ECC는 워크플로우에 따라 여러 설치 방법을 지원합니다:
-
-```bash
+ECC는 워크플로우에 따라 여러 설치 방법을 지원합니다: ```bash
 # 방법 1: Git clone + npm (전체 기능 세트 권장)
 git clone https://github.com/affaan-m/ECC.git
 cd ECC
@@ -104,9 +89,7 @@ npm install -g ecc-universal
 npm install && bash scripts/sync-ecc-to-codex.sh
 ```
 
-설치 후 다음으로 확인합니다:
-
-```bash
+설치 후 다음으로 확인합니다: ```bash
 ecc --version
 # 설치된 버전 번호가 표시되어야 합니다
 ```
@@ -117,9 +100,7 @@ Claude Code 통합의 경우, ECC는 스킬 레이어로 등록됩니다. Cursor
 
 ### Claude Code
 
-ECC는 마켓플레이스 플러그인 시스템을 통해 Claude Code와 네이티브로 통합됩니다. 설치 후 자동으로 도구 출력을 인터셉트합니다:
-
-```bash
+ECC는 마켓플레이스 플러그인 시스템을 통해 Claude Code와 네이티브로 통합됩니다. 설치 후 자동으로 도구 출력을 인터셉트합니다: ```bash
 # ECC 압축 활성화 상태의 Claude Code
 claude "마지막 명령의 오류를 설명해 주세요"
 # ECC는 ~8KB의 오류 출력을 모델에 보내기 전에 ~1.2KB로 압축합니다
@@ -129,9 +110,7 @@ claude "마지막 명령의 오류를 설명해 주세요"
 
 ### Codex CLI
 
-OpenAI의 Codex를 위해, ECC는 압축 레이어를 구성하는 동기화 스크립트를 제공합니다:
-
-```bash
+OpenAI의 Codex를 위해, ECC는 압축 레이어를 구성하는 동기화 스크립트를 제공합니다: ```bash
 # 먼저 Codex CLI 설치
 npm install -g opencode
 
@@ -161,15 +140,10 @@ CI/CD 통합을 위해 [WebShare.io](https://www.webshare.io/?referral_code=oa14
 
 ### GitLab CI / GitHub Actions
 
-ECC는 CI 파이프라인에 통합하여 토큰 비용을 줄일 수 있습니다:
-
-```yaml
+ECC는 CI 파이프라인에 통합하여 토큰 비용을 줄일 수 있습니다: ```yaml
 # .github/workflows/ecc-optimization.yml
-jobs:
-  optimize:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: optimize: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - name: ECC 설치
         run: npm install -g ecc-universal
       - name: ECC 최적화 실행
@@ -180,9 +154,7 @@ jobs:
 
 ### 토큰 감소 벤치마크
 
-500개 이상의 실제 에이전트 세션(5-30분 코딩 세션)에서 테스트:
-
-| 출력 타입 | ECC 이전 | ECC 이후 | 감소율 |
+500개 이상의 실제 에이전트 세션(5-30분 코딩 세션)에서 테스트: | 출력 타입 | ECC 이전 | ECC 이후 | 감소율 |
 |-------------|-----------:|----------:|----------:|
 | npm install 출력 | 14.2 KB | 2.1 KB | 85% |
 | git diff (대규모 PR) | 28.7 KB | 8.4 KB | 71% |
@@ -195,16 +167,12 @@ jobs:
 
 ### 비용 절감 예시
 
-일반적인 개발자 세션에서 [DigitalOcean](https://m.do.co/c/eca87ac14ee0)에서 최적화된 개발 환경을 spins up하여 어떤 에이전트와 함께 ECC를 실행할 수 있습니다. 프로덕션에는 다음 설정을 사용하세요:
-
-```
-ECC 이전:
-  - 45개 도구 실행 × 평균 12KB 출력 = 540KB 처리
+일반적인 개발자 세션에서 [DigitalOcean](https://m.do.co/c/eca87ac14ee0)에서 최적화된 개발 환경을 spins up하여 어떤 에이전트와 함께 ECC를 실행할 수 있습니다. 프로덕션에는 다음 설정을 사용하세요: ```
+ECC 이전: - 45개 도구 실행 × 평균 12KB 출력 = 540KB 처리
   - 도구 출력으로 인한 토큰 소비: 약 3,200개
   - 예상 API 비용: 세션당 $0.042
 
-ECC 이후:
-  - 45개 도구 실행 × 평균 3.2KB 출력 = 144KB 처리
+ECC 이후: - 45개 도구 실행 × 평균 3.2KB 출력 = 144KB 처리
   - 도구 출력으로 인한 토큰 소비: 약 860개
   - 예상 API 비용: 세션당 $0.011
 
@@ -220,9 +188,7 @@ ECC를 사용하는 기업은 개발 팀 전반에 걸쳐 평균 60-75%의 토�
 
 ### 사용자 정의 압축 프로필
 
-ECC는 프로젝트별 압축 프로필 생성을 허용합니다:
-
-```json
+ECC는 프로젝트별 압축 프로필 생성을 허용합니다: ```json
 // .ecc-profile.json
 {
   "name": "my-project",
@@ -243,9 +209,7 @@ ECC는 프로젝트별 압축 프로필 생성을 허용합니다:
 
 ### 디버깅 모드
 
-ECC가 무엇을 압축하는지와 그 양을 확인하려면:
-
-```bash
+ECC가 무엇을 압축하는지와 그 양을 확인하려면: ```bash
 # verbose 로깅 활성화
 export ECC_DEBUG=1
 claude "내 코드를 확인해 주세요"
@@ -261,9 +225,7 @@ claude "내 코드를 확인해 주세요"
 
 ### 성능 튜닝
 
-ECC의 성능은 환경 변수를 통해 구성할 수 있습니다:
-
-```bash
+ECC의 성능은 환경 변수를 통해 구성할 수 있습니다: ```bash
 # 최대 압축 (공격적 필터링, 엣지 케이스 누락 가능)
 export ECC_COMPRESSION=aggressive
 
@@ -280,9 +242,7 @@ export ECC_COMPRESSION=conservative
 
 ### Docker 배포
 
-ECC는 멀티 에이전트 환경에서 Docker화된 서비스로 실행할 수 있습니다:
-
-```bash
+ECC는 멀티 에이전트 환경에서 Docker화된 서비스로 실행할 수 있습니다: ```bash
 docker run -d \
   --name ecc-service \
   -p 8080:8080 \
@@ -309,9 +269,7 @@ ECC의 주요 차별점은 도구별 구성이 필요 없이 모든 주요 코�
 
 ## 한계 / 정직한 평가
 
-ECC는 젊은 프로젝트(2026년 출시)로 상당한 모멘텀을 가지고 있지만 일부 알려진 한계가 있습니다:
-
-- **압축 아티팩트**: 공격적 모드에서 압축 필터는 모델이 나중에 필요로 하는 컨텍스트를 간혹 제거합니다. 균형 모드에서는 드물습니다(세션의 약 2%가 압축 해제된 데이터 필요 보고).
+ECC는 젊은 프로젝트(2026년 출시)로 상당한 모멘텀을 가지고 있지만 일부 알려진 한계가 있습니다: - **압축 아티팩트**: 공격적 모드에서 압축 필터는 모델이 나중에 필요로 하는 컨텍스트를 간혹 제거합니다. 균형 모드에서는 드물습니다(세션의 약 2%가 압축 해제된 데이터 필요 보고).
 - **마켓플레이스 전용 Claude 통합**: 마켓플레이스 플러그인(`ecc@ecc`)이 가장 매끄러운 통합 경로입니다. 수동 설치는 추가 구성이 필요합니다.
 - **JavaScript 생태계**: 이 프로젝트는 JavaScript/TypeScript로 구축되었습니다. Python 기반 에이전트는 MCP 서버를 통해 작동하지만, 네이티브 Python 바인딩은 아직 존재하지 않습니다.
 - **GPU 가속 없음**: 압축은 CPU에서 실행됩니다. 매우 큰 출력(>100KB)의 경우 압축에 50-200ms의 지연이 추가될 수 있습니다.
@@ -353,15 +311,12 @@ ECC는 모든 AI 코딩 에이전트 사용자가 직면하는 컨텍스트 윈�
 
 **지금 ECC 체험** — `npm install -g ecc-universal`로 설치하고 차이를 확인하세요. 마켓플레이스 플러그인(`ecc@ecc`)은 Claude Code 사용자에게 가장 쉬운 경로입니다.
 
-에이전트 최적화에 대해 더 알아보기:
-- [Headroom: 토큰 압축 프록시](/kr/resources/llm-frameworks/headroom-token-compression-proxy-library-mcp-server/) — 대체 압축 방식
+에이전트 최적화에 대해 더 알아보기: - [Headroom: 토큰 압축 프록시](/kr/resources/llm-frameworks/headroom-token-compression-proxy-library-mcp-server/) — 대체 압축 방식
 - [에이전트 메모리 시스템](/kr/resources/llm-frameworks/ai-agent-memory-systems-2026/) — 영속적 에이전트 메모리로 ECC 보완
 
-개발자 도구에 대해 더 알아보기:
-- [Docker 개발 모범 사례](/kr/resources/dev-utils/docker-development-environment-best-practices/) — 컨테이너에서 ECC 실행
+개발자 도구에 대해 더 알아보기: - [Docker 개발 모범 사례](/kr/resources/dev-utils/docker-development-environment-best-practices/) — 컨테이너에서 ECC 실행
 
-**출처 및 더 읽기**:
-- 공식 문서: https://github.com/affaan-m/ECC
+**출처 및 더 읽기**: - 공식 문서: https://github.com/affaan-m/ECC
 - GitHub 저장소: https://github.com/affaan-m/ECC
 - 마켓플레이스 플러그인: claude.ai/code/marketplace?plugin=ecc@ecc
 - 커뮤니티 토론: https://github.com/affaan-m/ECC/discussions
@@ -373,7 +328,6 @@ ECC는 모든 AI 코딩 에이전트 사용자가 직면하는 컨텍스트 윈�
 **면책**: 이 글에는 제휴 링크가 포함되어 있습니다. 해당 링크를 통해 가입할 경우 추가 비용 없이 당사 수수료 수익을 올릴 수 있습니다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

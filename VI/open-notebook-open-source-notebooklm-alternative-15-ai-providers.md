@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/open-notebook-open-source-notebooklm-alternative-15-ai-providers" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/open-notebook-open-source-notebooklm-alternative-15-ai-providers" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/open-notebook-open-source-notebooklm-alternative-15-ai-providers" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/open-notebook-open-source-notebooklm-alternative-15-ai-providers" />
 title: 'open-notebook: Alternativa Notebook LM Mã Nguồn Mở Hỗ Tr...
 description: 'open-notebook (28.200 sao GitHub) là giải pháp mã nguồn mở thay thế Google NotebookLM, hỗ trợ 15+ nhà cung cấp AI. Thư viện kiến thức RAG self-hosted với podcast audio đa phương tiện. Bao gồm hướng dẫn cài đặt, so sánh nhà cung cấp và benchmark thực tế.'
 date: 2026-06-08
-lastmod:  2026-06-08slug: 'open-notebook-open-source-notebooklm-alternative-15-ai-providers'
+lastmod: 2026-06-08
+slug: 'open-notebook-open-source-notebooklm-alternative-15-ai-providers'
 category: 'data-science'
 tags: ['open notebook', 'notebook lm alternative', 'self hosted RAG', 'knowledge base AI', 'multimodal RAG', 'open source notebook', 'AI podcast generator', 'self hosted LLM']
 github_repo: 'https://github.com/lfnovo/open-notebook'
@@ -17,8 +13,6 @@ license: MIT
 featureImage: 'https://raw.githubusercontent.com/lfnovo/open-notebook/main/frontend/public/og-image.png'
 lang: vi
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/open-notebook-open-source-notebooklm-alternative-15-ai-providers/ -->
 
 # open-notebook: Alternativa Notebook LM Mã Nguồn Mở Hỗ Trợ 15+ Nhà Cung Cấp AI — Self-Hosted, 28.000 Sao — Hướng Dẫn Cài Đặt 2026
 
@@ -34,8 +28,7 @@ Google NotebookLM đạt 1 triệu người dùng hoạt động hàng tuần ch
 
 open-notebook là **thư viện kiến thức RAG self-hosted** biến tài liệu thành không gian nghiên cứu AI tương tác. Như giao điểm giữa hệ thống question-answering tài liệu và AI podcast generator.
 
-Tính năng chính:
-- **Ingest tài liệu** — Upload PDF, markdown, text files, URLs
+Tính năng chính: - **Ingest tài liệu** — Upload PDF, markdown, text files, URLs
 - **RAG-based Q&A** — Hỏi về tài liệu; nhận câu trả lời có source citations
 - **Audio episodes** — Tạo AI audio summaries như hội thoại hai host
 - **15+ AI providers** — Claude, GPT-4, Gemini, Ollama/vLLM, OpenRouter
@@ -82,9 +75,7 @@ Self-hosted: [HTStack](https://my.htstack.com/aff.php?aff=27187), [DigitalOcean]
 
 ### RAG Retrieval Accuracy
 
-Testing trên 50 tài liệu:
-
-| Configuration | Top-3 Accuracy | Citation Accuracy | Hallucination Rate |
+Testing trên 50 tài liệu: | Configuration | Top-3 Accuracy | Citation Accuracy | Hallucination Rate |
 |--------------|---------------|-------------------|-------------------|
 | OpenAI + GPT-4o | 94% | 96% | 2% |
 | Anthropic + Claude Sonnet 4 | 92% | 95% | 1.5% |
@@ -185,7 +176,6 @@ Tham gia [nhóm Telegram dibi8 tiếng Việt](https://t.me/DIBI8_Group/18). Xem
 Một số liên kết bên trên là liên kết tiếp thị. Nếu bạn đăng ký qua các liên kết này, dibi8.com có thể nhận hoa hồng mà bạn không tốn thêm chi phí.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -213,25 +203,20 @@ Một số liên kết bên trên là liên kết tiếp thị. Nếu bạn đă
 
 ## Why This Matters
 
-Understanding open-notebook: alternativa notebook lm mã nguồn mở hỗ trợ 15+ nhà cung cấp ai — self-hosted, 28.000 sao — hướng dẫn cài đặt 2026 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding open-notebook: alternativa notebook lm mã nguồn mở hỗ trợ 15+ nhà cung cấp ai — self-hosted, 28.000 sao — hướng dẫn cài đặt 2026 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

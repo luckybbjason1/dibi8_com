@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/typesense-instant-search-api" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/typesense-instant-search-api" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/typesense-instant-search-api" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/typesense-instant-search-api" />
 title: 'Typesense 2026: 开源即时搜索 API 日处理 100 万次查询 — 自托管部署指南'
 description: '使用 Typesense 27.1 搭建容错型即时搜索，响应时间低于 50 毫秒。包含 Docker 部署、SDK 集成和生产环境基准测试的完整步骤指南。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: []
-aliases:
-- /zh/posts/typesense-instant-search-api/
+aliases: - /zh/posts/typesense-instant-search-api/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/typesense-instant-search-api/ -->
 
 {{</* resource-info */>}}
 
@@ -48,7 +40,11 @@ aliases:
 核心数据：
 
 | 属性 | 详情 |
-|---|---|
+|
+---
+|
+---
+|
 | **最新版本** | 27.1（2026 年 4 月） |
 | **GitHub Stars** | 23,200+ |
 | **许可证** | GPL-3.0 |
@@ -240,8 +236,7 @@ results = client.collections[products].documents.search({
 })
 
 print(f"Total: {results[found]}")
-for hit in results[hits]:
-    print(f"  {hit[document][name]} - ${hit[document][price]}")
+for hit in results[hits]: print(f"  {hit[document][name]} - ${hit[document][price]}")
 ```
 
 ### React InstantSearch 集成
@@ -334,10 +329,10 @@ func main() {
     )
 
     searchParams := &api.SearchCollectionParams{
-        Q:        "keyboard",
-        QueryBy:  "name,description",
+        Q: "keyboard",
+        QueryBy: "name,description",
         FilterBy: "in_stock:true",
-        SortBy:   "rating:desc",
+        SortBy: "rating:desc",
     }
 
     results, err := client.Collection("products").Documents().Search(searchParams)
@@ -360,7 +355,11 @@ func main() {
 我们在一台 **DigitalOcean 云服务器**（2 vCPU + 4GB RAM，月费约 **$24**）上测试了 Typesense 27.1。数据集：**120 万件电商商品**，每个文档 12 个字段。
 
 | 指标 | 结果 |
-|---|---|
+|
+---
+|
+---
+|
 | **索引构建时间** | 38 秒（120 万文档） |
 | **平均查询延迟（p50）** | **12 毫秒** |
 | **p95 查询延迟** | **28 毫秒** |
@@ -375,7 +374,13 @@ func main() {
 ### 实际应用案例
 
 | 公司 | 规模 | 使用场景 |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | **Grammarly** | 3000 万+ 用户 | 带容错功能的文档搜索 |
 | **Dovetail** | 企业级 | 客户研究数据搜索 |
 | **PartsBase** | 1 亿+ 零件 | 航空零件分面搜索 |
@@ -422,43 +427,28 @@ server {
 # docker-compose.yml
 version: '3.8'
 
-services:
-  typesense:
-    image: typesense/typesense:27.1
+services: typesense: image: typesense/typesense:27.1
     restart: unless-stopped
-    ports:
-      - "127.0.0.1:8108:8108"
-    volumes:
-      - typesense-data:/data
-    environment:
-      TYPESENSE_API_KEY: ${TYPESENSE_API_KEY}
+    ports: - "127.0.0.1:8108:8108"
+    volumes: - typesense-data:/data
+    environment: TYPESENSE_API_KEY: ${TYPESENSE_API_KEY}
     command: >
       --data-dir /data
       --api-key ${TYPESENSE_API_KEY}
       --enable-cors
       --ssl-refresh-interval-seconds 86400
-    deploy:
-      resources:
-        limits:
-          memory: 4G
-        reservations:
-          memory: 1G
+    deploy: resources: limits: memory: 4G
+        reservations: memory: 1G
 
   # 可选: Caddy 自动 HTTPS
-  caddy:
-    image: caddy:2-alpine
+  caddy: image: caddy:2-alpine
     restart: unless-stopped
-    ports:
-      - "80:80"
+    ports: - "80:80"
       - "443:443"
-    volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile
+    volumes: - ./Caddyfile:/etc/caddy/Caddyfile
       - caddy-data:/data
 
-volumes:
-  typesense-data:
-  caddy-data:
-```
+volumes: typesense-data: caddy-data: ```
 
 在任何 VPS 上部署。需要可靠的主机？通过 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 注册可获得 **$200 免费额度** —— 足够在 4GB 云服务器上运行 Typesense 8 个月。
 
@@ -526,7 +516,17 @@ curl -s "http://localhost:8108/collections/products/overrides" \
 ## 与替代方案的对比
 
 | 特性 | **Typesense** | Elasticsearch | Meilisearch | Algolia |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **许可证** | GPL-3.0 | SSPL/Elastic | MIT | 专有 |
 | **GitHub Stars** | **23,200+** | 72,000+ | **51,000+** | N/A（闭源） |
 | **查询延迟（p95）** | **<30 毫秒** | 50-200 毫秒 | **<30 毫秒** | <20 毫秒 |
@@ -618,12 +618,11 @@ Typesense 27.1 是构建生产级即时搜索的最快路径。从 Docker 启动
 - [对比：Typesense vs Meilisearch (2026)](dibi8-internal-link)
 - [搜索引擎 Docker 最佳实践](dibi8-internal-link)
 
----
 
+---
 *联盟披露：本文包含 DigitalOcean 的联盟链接。如果你通过我们的链接注册，我们会获得佣金，不会增加你的额外费用。我们基于真实测试独立推荐服务。Typesense 是免费开源软件 —— 唯一的费用是托管成本。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -648,3 +647,4 @@ Typesense 27.1 是构建生产级即时搜索的最快路径。从 Docker 启动
   }
 }
 </script>
+---

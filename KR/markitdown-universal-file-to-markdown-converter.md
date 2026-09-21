@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/markitdown-universal-file-to-markdown-converter" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/markitdown-universal-file-to-markdown-converter" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/markitdown-universal-file-to-markdown-converter" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/markitdown-universal-file-to-markdown-converter" />
 title: "MarkItDown: 유니버설 파일-투-마크다운 변환기 — LLM 파이프라인을 위한 마이크로소프트의 ...
 description: "Microsoft AutoGen 팀의 MarkItDown은 20개 이상의 파일 유형을 LLM 소비를 위해 Markdown으로 변환합니다. pip install markitdown[all], Python API, LangChain 통합, RAG 파이프라인 및 배치 처리."
 date: 2026-06-15
-lastmod:  2026-06-15slug: markitdown-universal-file-to-markdown-converter
+lastmod: 2026-06-15
+slug: markitdown-universal-file-to-markdown-converter
 category: ai-tools
 tags: ['markitdown', 'file-to-markdown', 'microsoft', 'llm-pipelines', 'rag', 'langchain', 'document-processing', 'pdf-to-markdown', 'office-conversion']
 github_repo: "https://github.com/microsoft/markitdown"
@@ -15,9 +11,6 @@ license: MIT
 lang: kr
 featureImage: /images/articles/ai-trading-stack-2026--7-th-nh-ph-n-workflow-quant-m--ngu-n-m--cho-crypto---th--.png
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/markitdown-universal-file-to-markdown-converter/ -->
-
 
 ## Introduction
 
@@ -41,9 +34,7 @@ MarkItDown은 마이크로소프트의 AutoGen 팀에서 개발한 파이썬 유
 pip install 'markitdown[all]'
 ```
 
-설치는 이것으로 전부입니다. `[all]` 추가 번들은 지원되는 모든 파일 형식을 포함합니다. 개별 형식 추가도 이용할 수 있습니다:
-
-```bash
+설치는 이것으로 전부입니다. `[all]` 추가 번들은 지원되는 모든 파일 형식을 포함합니다. 개별 형식 추가도 이용할 수 있습니다: ```bash
 pip install 'markitdown[pdf,docx,pptx]'
 ```
 
@@ -51,9 +42,7 @@ pip install 'markitdown[pdf,docx,pptx]'
 
 ## How MarkItDown Works
 
-MarkItDown은 플러그인 기반 아키텍처를 사용합니다. 각 파일 형식에는 형식별 파싱을 처리하는 전용 추출기가 있습니다:
-
-```
+MarkItDown은 플러그인 기반 아키텍처를 사용합니다. 각 파일 형식에는 형식별 파싱을 처리하는 전용 추출기가 있습니다: ```
 Input File ──► Format Detector ──► Format-Specific Parser ──► Markdown Output
                 │                      │
                 │                  PDF → PyMuPDF
@@ -102,9 +91,7 @@ pip install -e 'packages/markitdown[all]'
 
 ### Optional Dependencies
 
-의존성을 줄이기 위해 특정 형식 지원을 설치하십시오:
-
-```bash
+의존성을 줄이기 위해 특정 형식 지원을 설치하십시오: ```bash
 # PDF support only
 pip install 'markitdown[pdf]'
 
@@ -132,8 +119,7 @@ from langchain_community.document_loaders import MarkItDownLoader
 loader = MarkItDownLoader("report.pdf")
 documents = loader.load()
 
-for doc in documents:
-    print(doc.page_content[:500])
+for doc in documents: print(doc.page_content[:500])
 ```
 
 ### LlamaIndex Integration
@@ -227,17 +213,14 @@ PDF의 처리 시간은 파일 크기에 따라 대략 선형적으로 증가합
 
 ### Real-World Use Case: Legal Document Analysis
 
-한 법률 사무소는 매달 200건 이상의 계약서를 처리합니다. MarkItDown을 사용하기 전에는 문서당 $0.05가 드는 상업용 API를 조합하여 사용했습니다. 전환 후:
-
-```python
+한 법률 사무소는 매달 200건 이상의 계약서를 처리합니다. MarkItDown을 사용하기 전에는 문서당 $0.05가 드는 상업용 API를 조합하여 사용했습니다. 전환 후: ```python
 import glob
 from markitdown import MarkItDown
 
 md = MarkItDown()
 contract_dir = "/contracts/2026/"
 
-for filepath in glob.glob(f"{contract_dir}*.pdf"):
-    result = md.convert(filepath)
+for filepath in glob.glob(f"{contract_dir}*.pdf"): result = md.convert(filepath)
     # 계약 조항 검색을 위해 벡터 DB에 저장
     store_contracts_in_vector_db(result.text_content, filepath)
 ```
@@ -246,18 +229,14 @@ for filepath in glob.glob(f"{contract_dir}*.pdf"):
 
 ### Real-World Use Case: Research Paper Collection
 
-학술 연구자들은 arXiv, 학회 자료집, 기관 저장소 등 다양한 형식으로 된 논문들을 수집합니다. MarkItDown은 모든 것을 표준화합니다:
-
-```python
+학술 연구자들은 arXiv, 학회 자료집, 기관 저장소 등 다양한 형식으로 된 논문들을 수집합니다. MarkItDown은 모든 것을 표준화합니다: ```python
 from markitdown import MarkItDown
 from pathlib import Path
 
 papers_dir = Path("/research/papers/")
 md = MarkItDown()
 
-for paper in papers_dir.rglob("*"):
-    if paper.suffix in ['.pdf', '.docx', '.pptx']:
-        converted = md.convert(str(paper))
+for paper in papers_dir.rglob("*"): if paper.suffix in ['.pdf', '.docx', '.pptx']: converted = md.convert(str(paper))
         # 모든 논문에 대한 의미 기반 검색을 위해 인덱스 생성
         index_for_semantic_search(converted.text_content, paper.stem)
 ```
@@ -266,20 +245,15 @@ for paper in papers_dir.rglob("*"):
 
 ### Custom Format Handlers
 
-MarkItDown을(를) 맞춤형 구문 분석기로 독점 형식에 맞게 확장하세요:
-
-```python
+MarkItDown을(를) 맞춤형 구문 분석기로 독점 형식에 맞게 확장하세요: ```python
 from markitdown import MarkItDown
 from markitdown.perceptual import PerceptualMarkdownConverter
 
-class CustomFormatConverter(PerceptualMarkdownConverter):
-    """`.xyz` 독점 형식에 대한 사용자 정의 핸들러."""
+class CustomFormatConverter(PerceptualMarkdownConverter): """`.xyz` 독점 형식에 대한 사용자 정의 핸들러."""
     
-    def accepts_file(self, filepath: str) -> bool:
-        return filepath.endswith(".xyz")
+    def accepts_file(self, filepath: str) -> bool: return filepath.endswith(".xyz")
     
-    def convert(self, filepath: str) -> str:
-        # 사용자 정의 파싱 로직
+    def convert(self, filepath: str) -> str: # 사용자 정의 파싱 로직
         content = parse_xyz_file(filepath)
         return format_as_markdown(content)
 
@@ -290,9 +264,7 @@ md.register_converter(CustomFormatConverter())
 
 ### Azure Content Understanding Integration
 
-MarkItDown은 AI 기반 추출을 위해 Azure 콘텐츠 이해와 통합됩니다:
-
-```python
+MarkItDown은 AI 기반 추출을 위해 Azure 콘텐츠 이해와 통합됩니다: ```python
 from azure.ai.contentsynthesis import ContentUnderstandingClient
 from azure.identity import DefaultAzureCredential
 
@@ -312,8 +284,7 @@ import concurrent.futures
 from markitdown import MarkItDown
 from pathlib import Path
 
-def convert_single_file(filepath):
-    md = MarkItDown()
+def convert_single_file(filepath): md = MarkItDown()
     result = md.convert(str(filepath))
     output_path = Path("output") / f"{filepath.stem}.md"
     output_path.parent.mkdir(exist_ok=True)
@@ -322,15 +293,12 @@ def convert_single_file(filepath):
 
 # Process 1000 files in parallel
 files = list(Path("/documents").rglob("*"))
-with concurrent.futures.ThreadPoolExecutor(max_workers=8) as executor:
-    results = list(executor.map(convert_single_file, files))
+with concurrent.futures.ThreadPoolExecutor(max_workers=8) as executor: results = list(executor.map(convert_single_file, files))
 ```
 
 ### Metadata Extraction
 
-MarkItDown은 문서 메타데이터를 보존합니다:
-
-```python
+MarkItDown은 문서 메타데이터를 보존합니다: ```python
 from markitdown import MarkItDown
 
 md = MarkItDown()
@@ -345,16 +313,12 @@ print("페이지 수:", result.metadata.get("page_count"))
 
 ### Streaming Large Files
 
-사용 가능한 메모리보다 큰 파일의 경우 스트리밍 모드를 사용하세요:
-
-```python
+사용 가능한 메모리보다 큰 파일의 경우 스트리밍 모드를 사용하세요: ```python
 from markitdown import MarkItDown
 
 md = MarkItDown()
 # 전체 파일을 메모리에 로드하지 않기 위해 스트림 출력
-with open("output.md", "w") as f:
-    for chunk in md.convert_stream("large_document.pdf"):
-        f.write(chunk)
+with open("output.md", "w") as f: for chunk in md.convert_stream("large_document.pdf"): f.write(chunk)
 ```
 
 ## Comparison with Alternatives
@@ -378,9 +342,7 @@ MarkItDown는 단순성, 비용(무료/무제한), 그리고 LLM에 특화된 �
 
 ## Limitations / Honest Assessment
 
-MarkItDown은 자신이 하는 일에 뛰어나지만 — 솔직한 한계가 있습니다:
-
-1. **스캔된 PDF는 Tesseract 품질에 의존합니다.** 손으로 쓴 텍스트, 품질이 낮은 스캔본, 라틴 문자가 아닌 스크립트는 부정확한 OCR을 생성할 수 있습니다. 중요한 문서의 경우, OCR 결과를 반드시 확인하세요.
+MarkItDown은 자신이 하는 일에 뛰어나지만 — 솔직한 한계가 있습니다: 1. **스캔된 PDF는 Tesseract 품질에 의존합니다.** 손으로 쓴 텍스트, 품질이 낮은 스캔본, 라틴 문자가 아닌 스크립트는 부정확한 OCR을 생성할 수 있습니다. 중요한 문서의 경우, OCR 결과를 반드시 확인하세요.
 
 2. **복잡한 레이아웃은 구조를 잃습니다.** 여러 열에 걸친 표, 떠다니는 이미지, PDF의 중첩된 레이아웃은 완벽하게 변환되지 않을 수 있습니다. 출력물은 'LLM에는 충분히 좋음'이지 '픽셀 완벽'은 아닙니다.
 
@@ -444,8 +406,7 @@ RAG 파이프라인, 문서 처리 시스템 또는 AI 기반 지식 기반을 �
 
 ---
 
-**출처 및 추가 읽기 자료**:
-- 공식 문서: https://github.com/microsoft/markitdown
+**출처 및 추가 읽기 자료**: - 공식 문서: https://github.com/microsoft/markitdown
 - GitHub 저장소: https://github.com/microsoft/markitdown
 - AutoGen 팀: https://github.com/microsoft/autogen
 - LangChain MarkItDown 로더: https://python.langchain.com/docs/integrations/document_loaders/markitdown
@@ -458,7 +419,6 @@ RAG 파이프라인, 문서 처리 시스템 또는 AI 기반 지식 기반을 �
 - Proxy for web scraping: [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

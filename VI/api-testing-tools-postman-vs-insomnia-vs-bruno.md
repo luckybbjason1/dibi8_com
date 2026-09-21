@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/api-testing-tools-postman-vs-insomnia-vs-bruno" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/api-testing-tools-postman-vs-insomnia-vs-bruno" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/api-testing-tools-postman-vs-insomnia-vs-bruno" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/api-testing-tools-postman-vs-insomnia-vs-bruno" />
 title: 'Postman vs Insomnia vs Bruno: Công Cụ Kiểm Thử API Tốt N...
 description: 'So sánh chi tiết Postman, Insomnia và Bruno — 3 công cụ kiểm thử API hàng đầu 2025. Tìm hiểu tính năng, giá cả, và công cụ phù hợp với workflow của bạn.'
 date: 2026-05-18 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/api-testing-tools-postman-vs-insomnia-vs-bruno/
+aliases: - /posts/api-testing-tools-postman-vs-insomnia-vs-bruno/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/api-testing-tools-postman-vs-insomnia-vs-bruno/ -->
 
 {</* resource-info */>}
 
@@ -51,9 +43,7 @@ Theo khảo sát của Stack Overflow 2024, các yêu cầu hàng đầu bao g�
 
 ### Các Tính Năng Cốt Lõi
 
-Postman vẫn là nền tảng kiểm thử API toàn diện nhất với hơn 25 triệu ngườidùng. Các tính năng nổi bật:
-
-- **Collections**: Tổ chức request thành collection có thể chia sẻ
+Postman vẫn là nền tảng kiểm thử API toàn diện nhất với hơn 25 triệu ngườidùng. Các tính năng nổi bật: - **Collections**: Tổ chức request thành collection có thể chia sẻ
 - **Environments**: Quản lý biến môi trường (dev, staging, production)
 - **Tests**: Viết test script bằng JavaScript
 - **Postman Flows**: Tạo workflow kiểm thử trực quan
@@ -84,9 +74,7 @@ Insomnia nổi tiếng với giao diện tối giản, tập trung vào trải n
 
 ### Hỗ Trợ Đa Giao Thức
 
-Insomnia hỗ trợ đầy đủ các giao thức phổ biến:
-
-- **REST/HTTP**: Đầy đủ methods, headers, authentication
+Insomnia hỗ trợ đầy đủ các giao thức phổ biến: - **REST/HTTP**: Đầy đủ methods, headers, authentication
 - **GraphQL**: Explorer tích hợp, tự động introspection
 - **gRPC**: Hỗ trợ protobuf, server streaming
 - **WebSocket**: Real-time testing với GUI
@@ -110,9 +98,7 @@ Bruno là API client mới nhất trong ba công cụ, nhưng đang tạo nên l
 
 ### Định Dạng Collection Thân Thiện với Git (Bru Files)
 
-Điểm độc đáo cốt lõi của Bruno là lưu collection dưới dạng plain text files có đuôi `.bru`. Mỗi request là một file riêng biệt, dễ dàng diff, review, và merge trong Git:
-
-```
+Điểm độc đáo cốt lõi của Bruno là lưu collection dưới dạng plain text files có đuôi `.bru`. Mỗi request là một file riêng biệt, dễ dàng diff, review, và merge trong Git: ```
 collections/
 ├── Get Users.bru
 ├── Create User.bru
@@ -124,9 +110,7 @@ collections/
     └── production.bru
 ```
 
-Khác với Postman export JSON khổng lồ khó review, mỗi file `.bru` đơn giản và readable:
-
-```bru
+Khác với Postman export JSON khổng lồ khó review, mỗi file `.bru` đơn giản và readable: ```bru
 meta {
   name: Get Users
   type: http
@@ -154,9 +138,7 @@ Bruno hoạt động hoàn toàn offline. Không cần tài khoản, không đ�
 
 ### Mã Nguồn Mở và CLI Support
 
-Bruno là open-source (MIT license) và cung cấp CLI (`bru run`) cho CI/CD. Bạn có thể chạy collection trong GitHub Actions, GitLab CI, hay bất kỳ pipeline nào:
-
-```yaml
+Bruno là open-source (MIT license) và cung cấp CLI (`bru run`) cho CI/CD. Bạn có thể chạy collection trong GitHub Actions, GitLab CI, hay bất kỳ pipeline nào: ```yaml
 # .github/workflows/api-tests.yml
 - name: Run API Tests
   run: npx @usebruno/cli run --env local
@@ -164,9 +146,7 @@ Bruno là open-source (MIT license) và cung cấp CLI (`bru run`) cho CI/CD. B�
 
 ### Scripting với JavaScript
 
-Bruno hỗ trợ pre-request và post-response scripts bằng JavaScript, tương tự Postman nhưng với cú pháp đơn giản hơn:
-
-```javascript
+Bruno hỗ trợ pre-request và post-response scripts bằng JavaScript, tương tự Postman nhưng với cú pháp đơn giản hơn: ```javascript
 // Pre-request script
 const token = bru.getEnvVar("authToken");
 req.setHeader("Authorization", `Bearer ${token}`);
@@ -223,9 +203,7 @@ Paw (nay là RapidAPI for Mac) là API client native cho macOS với giao diện
 
 ### Tại Sao Collection Thân Thiện với Git Lại Quan Trọng?
 
-Trong phát triển phần mềm hiện đại, "everything as code" là xu hướng chính. API collections không ngoại lệ. Khi collection được lưu dưới dạng code, bạn có thể:
-
-- **Code review**: Review thay đổi API qua pull request
+Trong phát triển phần mềm hiện đại, "everything as code" là xu hướng chính. API collections không ngoại lệ. Khi collection được lưu dưới dạng code, bạn có thể: - **Code review**: Review thay đổi API qua pull request
 - **Version control**: Theo dõi lịch sử thay đổi API
 - **CI/CD**: Chạy kiểm thử API tự động trong pipeline
 - **Collaboration**: Nhiều ngườicùng chỉnh sửa không conflict
@@ -253,11 +231,8 @@ Newman là CLI của Postman, đã có từ lâu và rất ổn định. Hỗ tr
 ```yaml
 name: API Tests
 on: [push, pull_request]
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: test: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - name: Setup Bruno CLI
         run: npm install -g @usebruno/cli
       - name: Run API Tests
@@ -296,9 +271,7 @@ jobs:
 
 ### Export từ Postman sang Bruno
 
-Bruno hỗ trợ import trực tiếp Postman collection (JSON format). Quy trình:
-
-1. Export collection từ Postman: Collection → Export → Collection v2.1
+Bruno hỗ trợ import trực tiếp Postman collection (JSON format). Quy trình: 1. Export collection từ Postman: Collection → Export → Collection v2.1
 2. Trong Bruno: Create Collection → Import → Chọn file JSON
 3. Review và điều chỉnh các script nếu cần
 
@@ -326,8 +299,7 @@ Cho cá nhân: **Bruno** (miễn phí hoàn toàn, không giới hạn) và **Ho
 
 ### Làm Thế Nào Để Chuyển từ Postman sang Bruno?
 
-Quy trình đơn giản:
-1. Trong Postman, export collection (Collection → Export → v2.1)
+Quy trình đơn giản: 1. Trong Postman, export collection (Collection → Export → v2.1)
 2. Trong Bruno, click "Create Collection" → "Import Collection"
 3. Chọn file JSON đã export
 4. Kiểm tra lại các variables và scripts
@@ -351,9 +323,7 @@ Tìm hiểu thêm tại [postman.com](https://www.postman.com), [insomnia.rest](
 
 ## Hạ Tầng Đề Xuất
 
-Để chạy các công cụ trên 24/7 ổn định, lựa chọn hạ tầng rất quan trọng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu.
+Để chạy các công cụ trên 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp. dibi8.com cũng host ở đây.
 - **[Hostinger](https://www.hostinger.com/vn?REFERRALCODE=22RPIAOJIYJN)** — VPS giá tốt cho thị trường Việt Nam.
 
@@ -361,7 +331,6 @@ Tìm hiểu thêm tại [postman.com](https://www.postman.com), [insomnia.rest](
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

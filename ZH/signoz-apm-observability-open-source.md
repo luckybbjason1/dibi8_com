@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/signoz-apm-observability-open-source" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/signoz-apm-observability-open-source" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/signoz-apm-observability-open-source" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/signoz-apm-observability-open-source" />
 title: 'SigNoz：以Datadog 10%成本替代的开源APM —— 分布式追踪设置指南2026'
 description: '5分钟内部署SigNoz。基于OpenTelemetry构建的开源APM，提供分布式追踪、指标和日志管理——成本仅为Datadog的10%。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [signoz, apm, 可观测性, 分布式追踪, opentelemetry, datadog替代品, 自托管, docker, kubernetes, 指标, 日志, 监控]
-aliases:
-- /zh/posts/signoz-apm-observability-open-source/
+aliases: - /zh/posts/signoz-apm-observability-open-source/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/signoz-apm-observability-open-source/ -->
 
 {{</* resource-info */>}}
 
@@ -177,75 +169,49 @@ kubectl port-forward svc/signoz-frontend 3301:3301 -n signoz
 ```bash
 # docker-compose.production.yml
 version: "3.8"
-services:
-  signoz-frontend:
-    image: signoz/frontend:0.76.0
+services: signoz-frontend: image: signoz/frontend:0.76.0
     restart: unless-stopped
-    ports:
-      - "3301:3301"
-    depends_on:
-      - signoz-query-service
+    ports: - "3301:3301"
+    depends_on: - signoz-query-service
 
-  signoz-query-service:
-    image: signoz/query-service:0.76.0
+  signoz-query-service: image: signoz/query-service:0.76.0
     restart: unless-stopped
-    environment:
-      - ClickHouseUrl=tcp://clickhouse:9000
+    environment: - ClickHouseUrl=tcp://clickhouse:9000
       - DruidUrl=http://druid-router:8888
       - STORAGE=clickhouse
-    depends_on:
-      - clickhouse
+    depends_on: - clickhouse
       - druid
 
-  signoz-otel-collector:
-    image: signoz/signoz-otel-collector:0.76.0
+  signoz-otel-collector: image: signoz/signoz-otel-collector:0.76.0
     restart: unless-stopped
-    ports:
-      - "4317:4317"    # OTLP gRPC
+    ports: - "4317:4317"    # OTLP gRPC
       - "4318:4318"    # OTLP HTTP
       - "8889:8889"    # Prometheus指标
-    volumes:
-      - ./otel-collector-config.yaml:/etc/otel-collector-config.yaml
+    volumes: - ./otel-collector-config.yaml:/etc/otel-collector-config.yaml
     command: ["--config", "/etc/otel-collector-config.yaml"]
 
-  clickhouse:
-    image: clickhouse/clickhouse-server:24.3-alpine
+  clickhouse: image: clickhouse/clickhouse-server:24.3-alpine
     restart: unless-stopped
-    ulimits:
-      nofile:
-        soft: 262144
+    ulimits: nofile: soft: 262144
         hard: 262144
-    volumes:
-      - clickhouse-data:/var/lib/clickhouse
-    environment:
-      - CLICKHOUSE_DB=signoz_metrics
+    volumes: - clickhouse-data:/var/lib/clickhouse
+    environment: - CLICKHOUSE_DB=signoz_metrics
       - CLICKHOUSE_USER=admin
       - CLICKHOUSE_PASSWORD=${CLICKHOUSE_PASSWORD}
 
-  zookeeper:
-    image: zookeeper:3.9
+  zookeeper: image: zookeeper:3.9
     restart: unless-stopped
-    volumes:
-      - zookeeper-data:/data
+    volumes: - zookeeper-data:/data
       - zookeeper-logs:/datalog
 
-  kafka:
-    image: bitnami/kafka:3.7
+  kafka: image: bitnami/kafka:3.7
     restart: unless-stopped
-    environment:
-      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+    environment: - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
       - ALLOW_PLAINTEXT_LISTENER=yes
-    volumes:
-      - kafka-data:/bitnami/kafka
-    depends_on:
-      - zookeeper
+    volumes: - kafka-data:/bitnami/kafka
+    depends_on: - zookeeper
 
-volumes:
-  clickhouse-data:
-  kafka-data:
-  zookeeper-data:
-  zookeeper-logs:
-```
+volumes: clickhouse-data: kafka-data: zookeeper-data: zookeeper-logs: ```
 
 使用`docker compose -f docker-compose.production.yml up -d`部署。
 
@@ -323,17 +289,13 @@ app = Flask(__name__)
 tracer = trace.get_tracer(__name__)
 
 @app.route("/process-payment", methods=["POST"])
-def process_payment():
-    with tracer.start_as_current_span("process_payment") as span:
-        span.set_attribute("payment.amount", 149.00)
+def process_payment(): with tracer.start_as_current_span("process_payment") as span: span.set_attribute("payment.amount", 149.00)
         span.set_attribute("payment.currency", "USD")
 
-        with tracer.start_as_current_span("validate_card"):
-            # 卡验证逻辑
+        with tracer.start_as_current_span("validate_card"): # 卡验证逻辑
             pass
 
-        with tracer.start_as_current_span("charge_stripe"):
-            # Stripe API调用
+        with tracer.start_as_current_span("charge_stripe"): # Stripe API调用
             pass
 
         return {"status": "success"}
@@ -377,7 +339,15 @@ curl -X POST http://localhost:3301/api/v1/dashboards \
 ### 成本对比：SigNoz vs. Datadog vs. New Relic
 
 | 指标 | SigNoz（自托管） | Datadog | New Relic |
-|------|----------------|---------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 50主机APM | $40–$120/月（VPS） | $2,040/月 | $1,470/月 |
 | 追踪（100万span/天） | 包含 | ~$180/月 | ~$150/月 |
 | 日志（100GB/月） | 包含（存储成本） | $900/月 | $600/月 |
@@ -394,7 +364,11 @@ curl -X POST http://localhost:3301/api/v1/dashboards \
 在4 vCPU / 8 GB RAM VPS上测试，每天摄取100万span：
 
 | 指标 | 结果 |
-|------|------|
+|
+---
+|
+---
+|
 | Span摄取速率 | 持续12,000 span/秒 |
 | 查询延迟（最近1小时） | p95 45ms |
 | 查询延迟（最近24小时） | p95 180ms |
@@ -415,41 +389,28 @@ curl -X POST http://localhost:3301/api/v1/dashboards \
 
 ```yaml
 # docker-compose.ha.yml —— 带ZooKeeper的多节点ClickHouse
-services:
-  clickhouse-1:
-    image: clickhouse/clickhouse-server:24.3-alpine
-    volumes:
-      - clickhouse1-data:/var/lib/clickhouse
+services: clickhouse-1: image: clickhouse/clickhouse-server:24.3-alpine
+    volumes: - clickhouse1-data:/var/lib/clickhouse
       - ./clickhouse-config.xml:/etc/clickhouse-server/config.d/cluster.xml
-    environment:
-      - CLICKHOUSE_USER=admin
+    environment: - CLICKHOUSE_USER=admin
       - CLICKHOUSE_PASSWORD=${CLICKHOUSE_PASSWORD}
 
-  clickhouse-2:
-    image: clickhouse/clickhouse-server:24.3-alpine
-    volumes:
-      - clickhouse2-data:/var/lib/clickhouse
+  clickhouse-2: image: clickhouse/clickhouse-server:24.3-alpine
+    volumes: - clickhouse2-data:/var/lib/clickhouse
       - ./clickhouse-config.xml:/etc/clickhouse-server/config.d/cluster.xml
-    environment:
-      - CLICKHOUSE_USER=admin
+    environment: - CLICKHOUSE_USER=admin
       - CLICKHOUSE_PASSWORD=${CLICKHOUSE_PASSWORD}
 
-  clickhouse-3:
-    image: clickhouse/clickhouse-server:24.3-alpine
-    volumes:
-      - clickhouse3-data:/var/lib/clickhouse
+  clickhouse-3: image: clickhouse/clickhouse-server:24.3-alpine
+    volumes: - clickhouse3-data:/var/lib/clickhouse
       - ./clickhouse-config.xml:/etc/clickhouse-server/config.d/cluster.xml
-    environment:
-      - CLICKHOUSE_USER=admin
+    environment: - CLICKHOUSE_USER=admin
       - CLICKHOUSE_PASSWORD=${CLICKHOUSE_PASSWORD}
 
   # ClickHouse的Nginx负载均衡器
-  clickhouse-lb:
-    image: nginx:alpine
-    volumes:
-      - ./nginx-clickhouse.conf:/etc/nginx/nginx.conf
-    ports:
-      - "8123:8123"
+  clickhouse-lb: image: nginx:alpine
+    volumes: - ./nginx-clickhouse.conf:/etc/nginx/nginx.conf
+    ports: - "8123:8123"
       - "9000:9000"
 ```
 
@@ -488,10 +449,8 @@ services:
 
 ```yaml
 # alert-rules.yml —— SigNoz告警管理器规则
-groups:
-  - name: payment_service_alerts
-    rules:
-      - alert: HighErrorRate
+groups: - name: payment_service_alerts
+    rules: - alert: HighErrorRate
         expr: |
           (
             sum(rate(signoz_calls_total{service_name="payment-service",status_code="STATUS_CODE_ERROR"}[5m]))
@@ -499,30 +458,21 @@ groups:
             sum(rate(signoz_calls_total{service_name="payment-service"}[5m]))
           ) > 0.05
         for: 2m
-        labels:
-          severity: critical
-        annotations:
-          summary: "支付服务错误率 > 5%"
+        labels: severity: critical
+        annotations: summary: "支付服务错误率 > 5%"
           description: "错误率为 {{ $value }}"
-
       - alert: HighP95Latency
         expr: histogramQuantile(0.95)(rate(signoz_latency_bucket{service_name="payment-service"}[5m])) > 500000000
         for: 5m
-        labels:
-          severity: warning
-        annotations:
-          summary: "支付服务P95延迟 > 500ms"
+        labels: severity: warning
+        annotations: summary: "支付服务P95延迟 > 500ms"
           description: "P95延迟为 {{ $value }}ns"
-
       - alert: LogErrorSpike
         expr: rate(signoz_logs_total{severity="ERROR"}[5m]) > 100
         for: 2m
-        labels:
-          severity: warning
-        annotations:
-          summary: "检测到日志错误峰值"
+        labels: severity: warning
+        annotations: summary: "检测到日志错误峰值"
           description: "{{ $value }} 错误/分钟"
-```
 
 在SigNoz UI的设置 → 告警通道中配置告警通道（Slack、PagerDuty、邮件）。
 
@@ -532,34 +482,25 @@ groups:
 # signoz-otel-collector-service.yaml
 apiVersion: v1
 kind: Service
-metadata:
-  name: signoz-otel-collector
+metadata: name: signoz-otel-collector
   namespace: signoz
-spec:
-  ports:
-    - name: otlp-grpc
+spec: ports: - name: otlp-grpc
       port: 4317
       protocol: TCP
     - name: otlp-http
       port: 4318
       protocol: TCP
-  selector:
-    app.kubernetes.io/name: otel-collector
+  selector: app.kubernetes.io/name: otel-collector
+
 
 ---
 # 通过添加OTel环境变量为Deployment埋点
 apiVersion: apps/v1
 kind: Deployment
-metadata:
-  name: payment-service
-spec:
-  template:
-    spec:
-      containers:
-        - name: payment-service
+metadata: name: payment-service
+spec: template: spec: containers: - name: payment-service
           image: payment-service:1.2.3
-          env:
-            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+          env: - name: OTEL_EXPORTER_OTLP_ENDPOINT
               value: "http://signoz-otel-collector.signoz.svc.cluster.local:4317"
             - name: OTEL_RESOURCE_ATTRIBUTES
               value: "service.name=payment-service,service.namespace=production"
@@ -575,21 +516,13 @@ spec:
 
 ```yaml
 # otel-collector-config.yaml
-receivers:
-  otlp:
-    protocols:
-      grpc:
-        endpoint: 0.0.0.0:4317
-      http:
-        endpoint: 0.0.0.0:4318
+receivers: otlp: protocols: grpc: endpoint: 0.0.0.0:4317
+      http: endpoint: 0.0.0.0:4318
 
-processors:
-  tail_sampling:
-    decision_wait: 10s
+processors: tail_sampling: decision_wait: 10s
     num_traces: 100000
     expected_new_traces_per_sec: 1000
-    policies:
-      - name: errors
+    policies: - name: errors
         type: status_code
         status_code: {status_codes: [ERROR]}
       - name: slow_requests
@@ -599,15 +532,10 @@ processors:
         type: probabilistic
         probabilistic: {sampling_percentage: 10}
 
-exporters:
-  clickhousetraces:
-    datasource: tcp://clickhouse:9000
+exporters: clickhousetraces: datasource: tcp://clickhouse:9000
     database: signoz_traces
 
-service:
-  pipelines:
-    traces:
-      receivers: [otlp]
+service: pipelines: traces: receivers: [otlp]
       processors: [tail_sampling]
       exporters: [clickhousetraces]
 ```
@@ -617,7 +545,17 @@ service:
 ## 与替代方案对比
 
 | 功能 | SigNoz | Datadog | New Relic | Grafana Stack |
-|------|--------|---------|-----------|---------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 开源 | MIT许可证 | 专有 | 专有 | AGPL（部分） |
 | 自托管 | 完整Docker/K8s | 否 | 否 | 是 |
 | GitHub星标 | 22,000+ | 不适用 | 不适用 | 不适用（Loki: 25K） |
@@ -664,13 +602,8 @@ SigNoz提供统一体验：一个二进制文件、一个UI、一个追踪/指�
 可以。SigNoz的OTel Collector包含Prometheus接收器。在`otel-collector-config.yaml`中配置：
 
 ```yaml
-receivers:
-  prometheus:
-    config:
-      scrape_configs:
-        - job_name: 'my-app'
-          static_configs:
-            - targets: ['my-app:9090']
+receivers: prometheus: config: scrape_configs: - job_name: 'my-app'
+          static_configs: - targets: ['my-app:9090']
 ```
 
 现有的Prometheus scrape配置可以直接导入。SigNoz将在Druid中存储指标以供长期查询。
@@ -718,12 +651,11 @@ SigNoz提供了规模化工程团队真正需要的东西：**一个生产级APM
 - [Grafana Stack](dibi8-internal-link) — 替代开源可观测性栈
 - [自托管指南](dibi8-internal-link) — dibi8.com上的通用自托管最佳实践
 
----
 
+---
 *联盟营销披露：本文包含DigitalOcean和HTStack的联盟链接。如果你通过这些链接购买服务，dibi8.com将获得佣金，不会额外增加你的成本。所有推荐均基于实践测试，而非联盟可用性。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -751,25 +683,20 @@ SigNoz提供了规模化工程团队真正需要的东西：**一个生产级APM
 
 ## Why This Matters
 
-Understanding signoz：以datadog 10%成本替代的开源apm —— 分布式追踪设置指南2026 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding signoz：以datadog 10%成本替代的开源apm —— 分布式追踪设置指南2026 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -791,7 +718,6 @@ SigNoz：以Datadog 10%成本替代的开源APM —— 分布式追踪设置指�
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 ---
-
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*
 

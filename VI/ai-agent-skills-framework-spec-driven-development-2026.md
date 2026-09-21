@@ -1,10 +1,4 @@
 # Kỹ Năng AI Agent: Hướng Dẫn Toàn Diện Về Claude Code Skills Framework và Phát Triển Dựa Trên Spec Năm 2026
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-agent-skills-framework-spec-driven-development-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-agent-skills-framework-spec-driven-development-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-agent-skills-framework-spec-driven-development-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-agent-skills-framework-spec-driven-development-2026" />
-
 **Ngày xuất bản:** 20 tháng 5 năm 2026  
 **Thời gian đọc:** 15 phút  
 **Đối tượng độc giả:** Lập trình viên full-stack, tech lead, người đam mê công cụ AI
@@ -43,7 +37,7 @@ Vấn đề cơ bản của các trợ lý lập trình AI truyền thống là 
 │   │  Codex)      │     │              │     │  đáng tin cậy│   │
 │   └──────────────┘     └──────────────┘     └──────────────┘   │
 │                                                                 │
-│   Ví dụ về Skills:                                             │
+│   Ví dụ về Skills: │
 │   ├─ Guardrails: Chặn git push --force / rm -rf               │
 │   ├─ Pattern TDD: Yêu cầu viết test trước khi implement       │
 │   ├─ Workflow gỡ lỗi: Điều tra lỗi có cấu trúc                │
@@ -63,9 +57,7 @@ Vấn đề cơ bản của các trợ lý lập trình AI truyền thống là 
 | Khả năng bảo trì | Phân tán trong lịch sử chat | SKILL.md có cấu trúc + script |
 | Cơ chế kích hoạt | Dán thủ công | Tự động phát hiện ngữ cảnh, kích hoạt có điều kiện |
 
-Kho lưu trữ [mattpocock/skills](https://github.com/mattpocock/skills) của Matt Pocock là ngòi nổ của phong trào này. Anh ấy open-source thư mục `.claude` cá nhân, bao gồm:
-
-- **Skill TDD**: Thực thi chu trình RED-GREEN-REFACTOR
+Kho lưu trữ [mattpocock/skills](https://github.com/mattpocock/skills) của Matt Pocock là ngòi nổ của phong trào này. Anh ấy open-source thư mục `.claude` cá nhân, bao gồm: - **Skill TDD**: Thực thi chu trình RED-GREEN-REFACTOR
 - **Skill Guardrail**: Chặn `git push --force`, yêu cầu xác nhận
 - **Skill Debug**: Điều tra có cấu trúc — tái hiện → log → nguyên nhân gốc rễ → sửa → test hồi quy
 - **Pattern TypeScript chuyên sâu**: Tối ưu đầu ra AI cho hệ thống kiểu dữ liệu
@@ -117,18 +109,14 @@ Kho lưu trữ [mattpocock/skills](https://github.com/mattpocock/skills) của M
 
 ### Tại sao Vibe Coding đang giết chất lượng code
 
-"Vibe coding" là từ khóa hot của 2025–2026: một phương pháp phát triển dựa trên trực giác và prompt ngẫu hứng. Vấn đề là mang tính cấu trúc:
-
-1. **Không truy vết được**: Tại sao code được viết kiểu này? "Lúc đó thấy ổn."
+"Vibe coding" là từ khóa hot của 2025–2026: một phương pháp phát triển dựa trên trực giác và prompt ngẫu hứng. Vấn đề là mang tính cấu trúc: 1. **Không truy vết được**: Tại sao code được viết kiểu này? "Lúc đó thấy ổn."
 2. **Không review được**: Không có tài liệu thiết kế thì code review chỉ chạm bề mặt.
 3. **Không bảo trì được**: 3 tháng sau, ngay cả AI cũng quên logic ban đầu.
 4. **Không cộng tác được**: "Vibe" của mỗi thành viên team đều khác nhau.
 
 ### Quy trình 4 bước của Spec-Kit
 
-[spec-kit](https://github.com/github/spec-kit) của GitHub biến hỗn loạn thành kỷ luật qua 4 bước đơn giản:
-
-```
+[spec-kit](https://github.com/github/spec-kit) của GitHub biến hỗn loạn thành kỷ luật qua 4 bước đơn giản: ```
 ┌──────────────────────────────────────────────────────────────┐
 │           Quy trình Phát Triển Dựa Trên Spec                  │
 ├──────────────────────────────────────────────────────────────┤
@@ -151,9 +139,7 @@ Kho lưu trữ [mattpocock/skills](https://github.com/mattpocock/skills) của M
 └──────────────────────────────────────────────────────────────┘
 ```
 
-**Ví dụ thực tế**:
-
-```markdown
+**Ví dụ thực tế**: ```markdown
 ## ĐỊNH NGHĨA SPEC (SPECIFICATION)
 Thêm tính năng lưu giỏ hàng cho ứng dụng thương mại điện tử.
 Tại sao: Người dùng không nên mất giỏ hàng khi refresh trang.
@@ -183,9 +169,7 @@ AI thực hiện từng tác vụ dựa trên kế hoạch trên, đánh dấu h
 
 ### Bước 1: Tạo cấu trúc thư mục skill
 
-Trong dự án hoặc cấu hình global:
-
-```
+Trong dự án hoặc cấu hình global: ```
 .claude/
 └── skills/
     └── safe-git/
@@ -214,15 +198,13 @@ priority: high
 
 ## Workflows
 ### Bảo vệ Force Push
-Khi phát hiện ý định force push:
-1. Tạm dừng thao tác
+Khi phát hiện ý định force push: 1. Tạm dừng thao tác
 2. Hiển thị nhánh và commit bị ảnh hưởng
 3. Yêu cầu user nhập "I understand the risks" để xác nhận
 4. Ghi log vào .claude/safe-git.log
 
 ### Pre-commit Lint
-Tự động chạy trước commit:
-```bash
+Tự động chạy trước commit: ```bash
 npm run lint && npm run typecheck
 ```
 Chặn commit và hiển thị lỗi nếu thất bại.
@@ -292,9 +274,7 @@ Claude Code tự động phát hiện `.claude/skills/` và tải các skill ph�
 
 ## Dự báo: Skills sẽ đi về đâu trong nửa cuối 2026
 
-Dựa trên quỹ đạo hiện tại, ba hướng đi là không thể tránh khỏi:
-
-1. **Thị trường Skills**: Các nền tảng phân phối skill chuyên dụng sẽ xuất hiện (ClawHub đang tiên phong). Hãy tưởng tượng marketplace VS Code Extensions, nhưng dành cho hành vi AI agent.
+Dựa trên quỹ đạo hiện tại, ba hướng đi là không thể tránh khỏi: 1. **Thị trường Skills**: Các nền tảng phân phối skill chuyên dụng sẽ xuất hiện (ClawHub đang tiên phong). Hãy tưởng tượng marketplace VS Code Extensions, nhưng dành cho hành vi AI agent.
 
 2. **Bùng nổ skill theo lĩnh vực**: Tuân thủ tài chính, quyền riêng tư y tế, rà soát pháp lý — các skill theo chiều dọc sẽ trở thành bắt buộc (tham khảo `anthropics/financial-services` với +1.075 stars).
 

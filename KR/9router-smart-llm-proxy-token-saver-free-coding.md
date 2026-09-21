@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/9router-smart-llm-proxy-token-saver-free-coding" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/9router-smart-llm-proxy-token-saver-free-coding" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/9router-smart-llm-proxy-token-saver-free-coding" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/9router-smart-llm-proxy-token-saver-free-coding" />
 title: "9Router: 스마트 LLM 프록시 — 토큰 60% 절약, API 제한 다시는 겪지 않기"
 description: "9Router 발견하기 — RTK 무손실 압축 엔진으로 토큰을 20-40% 절약하고, 3단계 스마트 폴백 시스템으로 40개 이상의 AI 모델 공급자를 자동 라우팅하며, 무료로 world-class의 AI 코딩 경험을 실현하는 최신 오픈소스 프록시 인프라."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Docker
+tech_stack: - Docker
   - Go
   - Java
   - JavaScript
@@ -28,10 +22,8 @@ maintainer: "rtk-ai"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases:
-- /kr/posts/9router-smart-llm-proxy-token-saver-free-coding/
-faqs:
-  - q: '9Router란 무엇이며 어떻게 작동하나요?'
+aliases: - /kr/posts/9router-smart-llm-proxy-token-saver-free-coding/
+faqs: - q: '9Router란 무엇이며 어떻게 작동하나요?'
     a: '9Router는 AI 코딩 도구와 모델 제공업체 사이에 위치하는 오픈소스 셀프 호스팅 스마트 프록시로, 기본적으로 localhost:20128에서 실행됩니다. Claude나 OpenAI를 직접 호출하는 대신, 도구가 9Router로 요청을 보내면 9Router가 지능형 폴백 로직과 토큰 압축을 사용해 40개 이상의 제공업체로 요청을 라우팅합니다.'
   - q: '9Router를 사용하는 데 비용이 드나요?'
     a: '아니요. 9Router 소프트웨어는 오픈소스 MIT 라이선스로 영구 무료이며 사용자 본인의 하드웨어에서 셀프 호스팅됩니다. 결제 인프라가 전혀 없어 절대 요금을 청구하지 않습니다. 사용자는 본인이 설정한 구독이나 API key에 대해서만 제공업체에 직접 비용을 지불하며, 무료 제공업체는 계속 무료로 유지됩니다. 대시보드의 비용 수치는 동등한 유료 API 사용 시 들었을 비용을 보여주는 절감 추적기입니다.'
@@ -43,7 +35,6 @@ faqs:
     a: '네. Kiro AI(AWS Builder ID, Google, GitHub OAuth를 통한 무료 무제한, API key 불필요), OpenCode Free(인증 없는 패스스루), Vertex AI($300 무료 Google Cloud 크레딧) 같은 무료 제공업체만으로 조합을 구성할 수 있습니다. RTK 압축과 결합하면 말 그대로 월 $0로 프로덕션 품질의 응답을 제공합니다.'
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/9router-smart-llm-proxy-token-saver-free-coding/ -->
 {</* resource-info */>}
 
 AI 코딩 어시스턴트 혁명은 개발자들에게 역설적인 딜레마를 안겨주었습니다. Claude Code, OpenAI Codex, Cursor, GitHub Copilot과 같은 도구를 통해 세계적 수준의 언어 모델에前所未有的 접근 권한을 얻었지만, 여러 플랫폼에서 구독, 할당량, 속도 제한을 관리하는 것이 점점 더 비싸고 짜증나는 일이 되었습니다. 많은 개발자들이 Claude Pro 월간 할당량을 2주 만에 소진한 뒤, 스프린트 마감일에 직면하여 속도 제한 벽과 마주하는 경험을 합니다.
@@ -54,9 +45,7 @@ AI 코딩 어시스턴트 혁명은 개발자들에게 역설적인 딜레마를
 
 9Router는 로컬 호스트 서비스(기본적으로 `localhost:20128`에서 실행)로, AI 코딩 도구와 백엔드 모델 공급자 사이에 중간 계층으로 동작합니다. 클라우드 코드나 Claude, OpenAI 등 단일 공급자에게 직접 API 요청을 보내는 대신, 모든 요청은 9Router를 통과합니다 — 그러면 9Router가 어느 백엔드 공급자로 요청을 보낼지 지능적으로 결정합니다.
 
-이 아키텍처는 세 가지 주요 장점을 제공합니다:
-
-1. **한 곳에서 다중 공급자 접근**: 대시보드 하나에 Claude, Gemini, GLM, MiniMax, Kiro, OpenCode, Vertex AI 및 40개 이상의 기타 공급자를 구성하세요. CLI 도구는 localhost로 요청을 보내고, 9Router가 나머지를 처리합니다.
+이 아키텍처는 세 가지 주요 장점을 제공합니다: 1. **한 곳에서 다중 공급자 접근**: 대시보드 하나에 Claude, Gemini, GLM, MiniMax, Kiro, OpenCode, Vertex AI 및 40개 이상의 기타 공급자를 구성하세요. CLI 도구는 localhost로 요청을 보내고, 9Router가 나머지를 처리합니다.
 2. **자동 폴백**: 주요 공급자가 할당량 한계에 도달하거나 다운되면, 9Router는 두 번째 레이어로 즉시 전환합니다 — 싸운 백업 공급자든 완전 무료 옵션이든. 워크플로우 중단 없이 연속 작업 가능합니다.
 3. **머신 외부 전송 전 토큰 압축**: [RTK](https://github.com/rtk-ai/rtk) (~40K 스타)와 통합된 9Router는 도구 출력(`git diff`, `grep` 결과, 디렉토리 목록, 로그 덤프 등)이 LLM에 도달하기 전에 자동으로 압축합니다. 이것만으로도 요청당 입력 토큰을 20-40% 절약할 수 있습니다.
 
@@ -66,9 +55,7 @@ AI 코딩 어시스턴트 혁명은 개발자들에게 역설적인 딜레마를
 
 도구 출력은 전체 프롬프트 예산의 30-50%를 차지하기도 합니다. Claude Code가 대규모 코드베이스에서 `git diff`, `ls -R`, `grep`을 실행하면 수백만 바이트의 텍스트가 모델로 전송됩니다 — 그중 대부분이 관련 없는 노이즈일 뿐입니다.
 
-9Router의 내장 RTK 기능은 이러한 도구 출력을 자동으로 감지하고 스마트한 무손실 압축 필터를 적용합니다:
-
-- **git-diff**: diff 출력을 변경된 필수 줄로 축소
+9Router의 내장 RTK 기능은 이러한 도구 출력을 자동으로 감지하고 스마트한 무손실 압축 필터를 적용합니다: - **git-diff**: diff 출력을 변경된 필수 줄로 축소
 - **git-status**: 상태 정보를 요약 형식으로 압축
 - **grep / find**: 관련 없는 매atches 제거, 컨텍스트 풍부한 행만 유지
 - **tree / ls**: 디렉토리 구조를 의미 있게 정리
@@ -79,7 +66,7 @@ AI 코딩 어시스턴트 혁명은 개발자들에게 역설적인 딜레마를
 
 ```
 RTK 미사용: LLM에게 47K 토큰 전송
-RTK 사용:   LLM에게 28K 토큰 전송 (40% 절약 · 동일한 답변 품질)
+RTK 사용: LLM에게 28K 토큰 전송 (40% 절약 · 동일한 답변 품질)
 ```
 
 실제로 많은 개발자가 매 요청마다 20-40%의 토큰 절약을 보고하며 — 이것은 모든 구독의 수명을 며칠 또는几周 연장시키는 효과를 가져옵니다.
@@ -92,9 +79,7 @@ RTK 사용:   LLM에게 28K 토큰 전송 (40% 절약 · 동일한 답변 품질
 
 ### 🎯 스마트 3단계 폴백 시스템
 
-이것이 바로 9Router의 가장 큰 강점입니다. 다른 가격 레이어에 걸친 정렬된 모델 목록인 "콤보"를 정의하면, 9Router는 자동으로 해당 요청을 라우팅합니다:
-
-```
+이것이 바로 9Router의 가장 큰 강점입니다. 다른 가격 레이어에 걸친 정렬된 모델 목록인 "콤보"를 정의하면, 9Router는 자동으로 해당 요청을 라우팅합니다: ```
 콤보: "my-coding-stack"
   1. cc/claude-opus-4-6        → Claude Code Pro 구독
   2. glm/glm-4.7               → 저가 백업 ($0.6 per 1M 토큰)
@@ -103,9 +88,7 @@ RTK 사용:   LLM에게 28K 토큰 전송 (40% 절약 · 동일한 답변 품질
 
 Opus 할당량이 고갈되면(또는 에러 발생 시), 9Router는 즉시 GLM으로 전환합니다. GLM도 고갈되면 Kiro의 무료 무제한 레벨로 내려갑니다. 벽에 부딪히는 일이 없습니다.
 
-시스템은 다섯 가지 다른 가격 레이어를 지원합니다:
-
-| 레벨 | 공급자 | typical 비용 | 재설정 패턴 |
+시스템은 다섯 가지 다른 가격 레이어를 지원합니다: | 레벨 | 공급자 | typical 비용 | 재설정 패턴 |
 |------|--------|-------------|-------------|
 | 구독 | Claude Code, Codex, Copilot, Cursor | $10-$200/월 | 5시간 롤링 + 주간/월간 |
 | 저가 | GLM-5.1, MiniMax M2.7, Kimi K2.5 | $0.2-$0.6/M 토큰 | 일일/롤링/고정 월간 |
@@ -131,9 +114,7 @@ Kiro 무료 레벨 사용 중에 대시보드가 "$290 총 비용"을 표시한�
 
 ## 지원되는 코딩 도구 및 IDE
 
-9Router는 범용 어댑터로서 거의 모든 인기 AI 코딩 도구를 지원합니다:
-
-- **Claude Code** (`~/.claude/config.json`에 사용자 정의 API 기본 주소 사용)
+9Router는 범용 어댑터로서 거의 모든 인기 AI 코딩 도구를 지원합니다: - **Claude Code** (`~/.claude/config.json`에 사용자 정의 API 기본 주소 사용)
 - **OpenAI Codex CLI** (환경 변수 오버라이드)
 - **Cursor IDE** (사용자 정의 OpenAI 엔드포인트 설정)
 - **GitHub Copilot**
@@ -173,9 +154,7 @@ npm run start
 
 ### Docker 배포
 
-프로덕션 또는 다중 장치 설정의 경우 Docker가 설치를 간단하게 만듭니다:
-
-```bash
+프로덕션 또는 다중 장치 설정의 경우 Docker가 설치를 간단하게 만듭니다: ```bash
 docker build -t 9router .
 
 docker run -d \
@@ -189,18 +168,13 @@ docker run -d \
 
 ### 첫 번째 공급자 연결
 
-결제 수단 없이 완전한 무료 레벨 조합을 설정해 봅시다:
-
-1. **대시보드에서 Kiro AI 연결** (AWS Builder ID, Google 또는 GitHub OAuth 사용 — API 키 필요 없음)
+결제 수단 없이 완전한 무료 레벨 조합을 설정해 봅시다: 1. **대시보드에서 Kiro AI 연결** (AWS Builder ID, Google 또는 GitHub OAuth 사용 — API 키 필요 없음)
 2. **OpenCode Free 연결** (제로 인증, 패스루프 프록시, 모델 자동 검색)
-3. **`free-dev`라는 콤보 생성** 포함 모델:
-   - `kr/claude-sonnet-4.5` (Kiro를 통한 Claude Sonnet 4.5 — 무료 무제한)
+3. **`free-dev`라는 콤보 생성** 포함 모델: - `kr/claude-sonnet-4.5` (Kiro를 통한 Claude Sonnet 4.5 — 무료 무제한)
    - `kr/glm-5` (Kiro를 통한 GLM-5 — 무료 무제한)
    - `vertex/gemini-3.1-pro-preview` (Google Cloud — $300 무료 크레딧)
 
-그런 다음 선호하는 도구를 `http://localhost:20128/v1`로 향하도록 구성하고 대시보드 API 키를 사용합니다:
-
-```json
+그런 다음 선호하는 도구를 `http://localhost:20128/v1`로 향하도록 구성하고 대시보드 API 키를 사용합니다: ```json
 {
   "anthropic_api_base": "http://localhost:20128/v1",
   "anthropic_api_key": "your-9router-api-key"
@@ -209,9 +183,7 @@ docker run -d \
 
 ### Cursor IDE 구성
 
-Cursor 설정 → 모델 → 고급에서:
-
-```
+Cursor 설정 → 모델 → 고급에서: ```
 OpenAI API 기본 주소: http://localhost:20128/v1
 OpenAI API 키: [9Router 대시보드에서 복사]
 모델: cc/claude-opus-4-7
@@ -225,8 +197,7 @@ OpenAI API 키: [9Router 대시보드에서 복사]
 
 Claude Pro 월 $20을 지불합니다. 9Router 없이 할당량이 고갈되면 코딩이 재설정 때까지 중단됩니다.
 
-9Router의 "maximize-claude" 콤보 사용:
-- 기본: `cc/claude-opus-4-7` (구독 활용)
+9Router의 "maximize-claude" 콤보 사용: - 기본: `cc/claude-opus-4-7` (구독 활용)
 - 백업: `glm/glm-5.1` ($0.6/M 토큰, 매일 오전 10시 재설정)
 - 비상: `kr/claude-sonnet-4.5` (Kiro 무료 폴백)
 
@@ -234,8 +205,7 @@ Claude Pro 월 $20을 지불합니다. 9Router 없이 할당량이 고갈되면 
 
 ### 시나리오 B: 완전 제로 예산
 
-100% 무료 모델로 시작:
-- `gc/gemini-3-flash` (Google 월 180K 무료 쿼리)
+100% 무료 모델로 시작: - `gc/gemini-3-flash` (Google 월 180K 무료 쿼리)
 - `kr/claude-sonnet-4.5` (Kiro 무료 무제한)
 - `oc/<auto>` (OpenCode Free, 인증 불필요)
 
@@ -243,8 +213,7 @@ RTK 압축과 결합하여 이 설정은 실제로 월 비용 $0로 프로덕션
 
 ### 시나리오 C: 24/7 중단 없는 개발
 
-마감일에 일하는 팀과 프리랜서를 위해 다섯 가지 폴백 레이어 구성:
-1. Claude Opus (프리미엄 품질)
+마감일에 일하는 팀과 프리랜서를 위해 다섯 가지 폴백 레이어 구성: 1. Claude Opus (프리미엄 품질)
 2. GPT-5.5 via Codex (두 번째 구독)
 3. GLM-5.1 (저렴한 일일 재설정)
 4. MiniMax M2.7 (가장 저렴 $0.2/M 토큰, 5시간 롤링 재설정)
@@ -256,9 +225,7 @@ RTK 압축과 결합하여 이 설정은 실제로 월 비용 $0로 프로덕션
 
 9Router를 평가할 때 핵심 질문: **9Router가 요금을 청구합니까?** 아니오. 영원히 아닙니다.
 
-경제적運作 방식은 다음과 같습니다:
-
-- **9Router 소프트웨어 = 평생 무료** (MIT 오픈소스 라이선스, 자체 호스팅)
+경제적運作 방식은 다음과 같습니다: - **9Router 소프트웨어 = 평생 무료** (MIT 오픈소스 라이선스, 자체 호스팅)
 - **대시보드 비용 = 표시/추적 전용** (실제 청구서가 아님)
 - **공급자에게 직접 지불** (구독, API 키, 구성한 것)
 - **무료 공급자는 무료 유지** (Kiro AI, OpenCode Free, Vertex AI 크레딧)
@@ -294,17 +261,14 @@ RTK 토큰 압축(~20-40% 절약), 케뱅 모드 출력 감소(~65% 절약), 스
 
 ## 기술 아키텍처 하이라이트
 
-9Router는 신뢰성에 최적화된 현대 JavaScript 스택으로 구축되었습니다:
-
-- **런타임**: Node.js 20+ — 일관되고 고성능의 비동기 I/O
+9Router는 신뢰성에 최적화된 현대 JavaScript 스택으로 구축되었습니다: - **런타임**: Node.js 20+ — 일관되고 고성능의 비동기 I/O
 - **프레임워크**: Next.js 16 + React 19 — 웹 대시보드용
 - **데이터베이스**: LowDB (JSON 파일 기반) — 단순하고 이식 가능하며 버전 관리 가능한 설정
 - **스트리밍**: Server-Sent Events (SSE) — 실시간 진행 피드백용
 - **인증**: OAuth 2.0 + PKCE, JWT 세션 쿠키, HMAC 서명 API 키
 - **프록시**: 전체 HTTP 투과성과 구성 가능한 상위 프록시
 
-환경 변수는 배포에 대한 세밀한 통제를 제공합니다:
-- `JWT_SECRET`: 프로덕션에서 변경 권장
+환경 변수는 배포에 대한 세밀한 통제를 제공합니다: - `JWT_SECRET`: 프로덕션에서 변경 권장
 - `REQUIRE_API_KEY`: `/v1/*` 경로에 bearer token 인증 강제
 - `ENABLE_REQUEST_LOGS`: 디버그 수준 요청/응답 로그 기록 활성화
 - `AUTH_COOKIE_SECURE`: HTTPS 리버스 프록시 뒤에서 Secure 쿠키 플래그 강제
@@ -337,16 +301,13 @@ RTK 토큰 압축(~20-40% 절약), 케뱅 모드 출력 감소(~65% 절약), 스
 
 ## 추천 도구
 
-오픈소스 AI 도구 개발/배포 시 권장:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
+오픈소스 AI 도구 개발/배포 시 권장: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
 - **{{< aff "shiyunapi" "footer-cta-legacy" "Shiyunapi Claude API" >}}** — Claude / OpenAI / DeepSeek API 프록시. 키 하나로 여러 최상위 모델 액세스, 공식 가격의 ~30%; 모델 비교나 직접 API 액세스가 제한된 지역에서 특히 유용.
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

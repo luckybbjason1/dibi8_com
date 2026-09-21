@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/2026-local-first-ai-stack-production-architecture" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/2026-local-first-ai-stack-production-architecture" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/2026-local-first-ai-stack-production-architecture" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/2026-local-first-ai-stack-production-architecture" />
 title: '2026 本地优先 AI 栈：生产级架构参考（14 个开源工具拆解）'
 description: '2026 年构建生产级 AI 应用、避开云锁定的完整参考架构——7 层结构、14 个开源工具、真实性能数字。覆盖本地 LLM 运行时、符号级代码智能（CodeGraph）、统一 CLI 控制中心（CC Switch）、成本感知代理（rtk）、持久化代理记忆（agentmemory / MemPalace）、设备端 TTS（Supertonic），以及 12-Factor Agents 方法论。能让 LLM 功能在经济上可持续扩张的完整栈。'
 date: 2026-05-23 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['hub article', 'local-first-ai', 'production-ai', 'self-hosted-ai', 'ai-architecture', 'ai-stack-2026', 'agent-infrastructure', codegraph, '12-factor-agents', supertonic, 'cc-switch', rtk, agentmemory, mempalace, mcp, ds4, opencode, 'hermes-agent']
-aliases:
-- /zh/posts/2026-local-first-ai-stack-production-architecture/
+aliases: - /zh/posts/2026-local-first-ai-stack-production-architecture/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/2026-local-first-ai-stack-production-architecture/ -->
 # 2026 本地优先 AI 栈：生产级架构参考（14 个开源工具拆解）
 
 
@@ -46,8 +38,8 @@ aliases:
 
 2026 年真正变了的不是本地 AI 突然变得多强——它一直在稳步进步。真正变了的，是**那一套"把本地 AI 真正交付给付费用户"所需要的开源拼图**终于咬合到位。本文就是这套栈的参考架构：7 层结构、14 个具体开源工具，以及它们如何组装。
 
----
 
+---
 ## 信条
 
 本地优先 AI 栈围绕三条承诺构建：
@@ -59,7 +51,13 @@ aliases:
 七层架构，自顶向下，附上我们推荐的开源代表：
 
 | 层级 | 功能 | 参考工具 |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | 7 — 方法论 | 如何思考代理本身 | [12-Factor Agents](https://dibi8.com/zh/resources/llm-frameworks/12-factor-agents-production-llm-software-2026/) |
 | 6 — 语音 / 音频 I/O | 无云的语音输入输出 | [Supertonic](https://dibi8.com/zh/resources/ai-tools/supertonic-on-device-multilingual-tts-2026/) |
 | 5 — 记忆 / 状态 | 持久化的代理状态 | [agentmemory](https://dibi8.com/zh/resources/llm-frameworks/agentmemory-mcp-persistent-memory-2026/) + [MemPalace](https://dibi8.com/zh/resources/ai-tools/mempalace/) |
@@ -70,8 +68,8 @@ aliases:
 
 再加上贯穿所有层级的**连接组织**：**[MCP — Model Context Protocol](https://dibi8.com/zh/resources/llm-frameworks/mcp-deep-dive-definitive-2026-guide/)**——每一层之间彼此对话的标准协议。
 
----
 
+---
 ## 第 1 层 — 本地 LLM 运行时
 
 地基。没有可用的本地模型，其它所有层都会退化成云代理。
@@ -241,7 +239,17 @@ CodeGraph 的架构洞察可以泛化：**任何代理会反复查询的领域�
 **全栈速览** — 收藏这张表：
 
 | # | 层级 | 工具 | Stars | 协议 |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 1 | LLM 运行时 | [本地 LLM Runner 横评](https://dibi8.com/zh/resources/llm-frameworks/local-llm-runner-comparison-2026/) / [ds4](https://dibi8.com/zh/resources/llm-frameworks/ds4-open-source-deepseek-alternative-2026/) | 各异 | Mixed OSS |
 | 2 | 代理运行时 | [OpenCode](https://dibi8.com/zh/resources/llm-frameworks/opencode-open-source-claude-code-alternative-2026/) / [Hermes](https://dibi8.com/zh/resources/llm-frameworks/hermes-agent-self-improving-ai-agent/) / [Codex CLI](https://dibi8.com/zh/resources/llm-frameworks/openai-codex-cli-terminal-ai-coding-agent-2026/) | 各 100K+ | OSS |
 | 2.5 | CLI 统一 | [CC Switch](https://dibi8.com/zh/resources/dev-utils/cc-switch-unified-ai-cli-control-center-2026/) | 74K+ | OSS |
@@ -253,7 +261,6 @@ CodeGraph 的架构洞察可以泛化：**任何代理会反复查询的领域�
 | ∗ | 连接组织 | [MCP — Model Context Protocol](https://dibi8.com/zh/resources/llm-frameworks/mcp-deep-dive-definitive-2026-guide/) | n/a | Anthropic OSS |
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -281,25 +288,20 @@ CodeGraph 的架构洞察可以泛化：**任何代理会反复查询的领域�
 
 ## Why This Matters
 
-Understanding 2026 本地优先 ai 栈：生产级架构参考（14 个开源工具拆解） is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding 2026 本地优先 ai 栈：生产级架构参考（14 个开源工具拆解） is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

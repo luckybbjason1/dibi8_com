@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/claude-code-subagents-vs-langgraph-crewai-autogen-2026" />
 title: 'Claude Code Subagents vs LangGraph vs CrewAI vs AutoGen ...
 description: 'You already orchestrate subagents inside Claude Code. Do you actually need LangGraph, CrewAI, or AutoGen? A 2026 decision guide with real benchmarks, GitHub-star reality, and the honest line between "built-in is enough" and "time to graduate."'
 date: 2026-05-29 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['claude-code', langgraph, crewai, autogen, 'multi-agent', 'agent-sdk', 'llm-frameworks', orchestration]
-aliases:
-- /posts/claude-subagents-vs-langgraph-crewai-autogen/
-faq:
-  - q: "Do I need LangGraph or CrewAI if I'm already using Claude Code subagents?"
+aliases: - /posts/claude-subagents-vs-langgraph-crewai-autogen/
+faq: - q: "Do I need LangGraph or CrewAI if I'm already using Claude Code subagents?"
     a: "Probably not yet. Claude Code subagents already give you parallel fan-out, isolated context windows, and specialist delegation — which covers the majority of real multi-agent work. You graduate to a standalone framework like LangGraph or CrewAI when you need things subagents don't natively provide: durable state checkpointing across runs, human-in-the-loop approval gates, mixing multiple model vendors in one pipeline, or audit trails for compliance. If your need is 'run five researchers in parallel and merge the results,' built-in subagents ship that today with zero new infrastructure."
   - q: "Which multi-agent framework has the most GitHub stars in 2026?"
     a: "As of April 2026, AutoGen leads at roughly 42,000 stars, CrewAI sits around 31,200, and LangGraph is near 12,800 — but stars are a lagging vanity metric. LangGraph overtook CrewAI in enterprise adoption in early 2026 on the strength of its graph-based control and LangSmith observability, despite having fewer stars. Star count tells you historical mindshare; production-readiness and the shape of your workflow should drive the actual choice."
@@ -64,7 +60,21 @@ The real decision isn't "which is best." It's **"has my problem outgrown the bui
 ## The Comparison at a Glance
 
 | | Orchestration model | Learning curve | Production readiness | Model lock-in | Stars (Apr 2026) | Best for |
-|---|---|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Claude Code subagents** | Parent-spawns-workers, built-in | None (it's in the CLI) | High for dev/CI work | Claude-only | — | Coding, research fan-out, pipelines |
 | **Claude Agent SDK** | Tool-use chain + subagents | Low | High (safety-first) | Claude-only | — | Anthropic-native production apps |
 | **LangGraph** | Directed graph + conditional edges | Steep | Highest (checkpoint/observability) | Agnostic | ~12.8k | Complex, auditable, stateful workflows |
@@ -75,9 +85,7 @@ Benchmark color: in 2026 testing, LangGraph led complex tasks at ~62% success vs
 
 ## When Claude Code Subagents Are Already Enough
 
-Don't graduate if your need is any of these. Built-in subagents cover them today, with no new infrastructure:
-
-- **Parallel research fan-out.** Five agents each reading a different subsystem, results merged. This is the highest-ROI subagent pattern and it's free.
+Don't graduate if your need is any of these. Built-in subagents cover them today, with no new infrastructure: - **Parallel research fan-out.** Five agents each reading a different subsystem, results merged. This is the highest-ROI subagent pattern and it's free.
 - **Specialist delegation.** A `security-auditor` or `code-reviewer` custom agent with its own tool allowlist and system prompt.
 - **Context protection.** Offloading a 30-file exploration so it doesn't crowd your parent conversation's working memory.
 - **Pipeline orchestration for dev tasks.** Find → verify → synthesize, where each stage is a delegated worker.
@@ -86,9 +94,7 @@ Concrete proof: **dibi8's own multilingual pipeline.** Every article you read he
 
 ## When to Graduate to a Standalone Framework
 
-Reach for LangGraph / CrewAI / AutoGen when you hit one of these walls — things built-in subagents don't natively provide:
-
-1. **Durable state across runs.** You need a workflow that pauses, persists, and resumes hours or days later — survive a crash, pick up where it stopped. → **LangGraph checkpointing.**
+Reach for LangGraph / CrewAI / AutoGen when you hit one of these walls — things built-in subagents don't natively provide: 1. **Durable state across runs.** You need a workflow that pauses, persists, and resumes hours or days later — survive a crash, pick up where it stopped. → **LangGraph checkpointing.**
 2. **Human-in-the-loop approval gates.** A human must review and approve before the pipeline proceeds (refunds, deployments, content publishing). → **LangGraph** (explicit interrupt nodes).
 3. **Multi-vendor model mixing.** GPT for one step, Claude for another, a local model for a third — in one pipeline. → any **agnostic framework**.
 4. **Audit trails for compliance.** Every agent decision logged, replayable, attributable. → **LangGraph + LangSmith.**
@@ -112,9 +118,7 @@ The line is clean: **subagents are for getting work done inside Claude Code; fra
 
 ## Setting Up Production-Ready Agent Infrastructure
 
-Whether you stay on Claude Code subagents or graduate to a framework, multi-agent work wants stable infrastructure underneath:
-
-1. **A reliable host for long-running agent processes and CI.** Frameworks deploy as services; even subagent pipelines want a box that stays up for unattended runs. **{{< aff "htstack" "footer-cta" "HTStack" >}}** — Hong Kong VPS with low-latency mainland-China access and stable BGP. Same IDC that hosts dibi8.com, where we run our own agent pipelines. $5-12/month value tier.
+Whether you stay on Claude Code subagents or graduate to a framework, multi-agent work wants stable infrastructure underneath: 1. **A reliable host for long-running agent processes and CI.** Frameworks deploy as services; even subagent pipelines want a box that stays up for unattended runs. **{{< aff "htstack" "footer-cta" "HTStack" >}}** — Hong Kong VPS with low-latency mainland-China access and stable BGP. Same IDC that hosts dibi8.com, where we run our own agent pipelines. $5-12/month value tier.
 
 2. **Cloud headroom for parallel fan-out.** When agents fan out wide — or a LangGraph app runs alongside its observability stack — you want spare CPU. **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 free credit for 60 days across 14+ regions.
 
@@ -132,7 +136,6 @@ Whether you stay on Claude Code subagents or graduate to a framework, multi-agen
 Stop framing it as "Claude Code vs LangGraph." Built-in subagents and standalone frameworks live in different worlds: one gets work done inside your agent, the other ships a multi-agent application. **Stay on subagents** for parallel research, specialist delegation, context protection, and dev pipelines — they cover most real work with zero infrastructure, exactly as dibi8's own multilingual pipeline proves. **Graduate to a framework** the moment you need durable state, human-in-the-loop, multi-vendor models, or audit trails — and when you do, default to **LangGraph** for control, **CrewAI** for speed, the **Claude Agent SDK** for Anthropic-native production. The cheapest layer that solves your problem wins every time.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -158,8 +161,8 @@ Stop framing it as "Claude Code vs LangGraph." Built-in subagents and standalone
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [claude-code-vs-cline](claude-code-subagents-vs-langgraph-crewai-autogen-2026)
@@ -168,8 +171,8 @@ Stop framing it as "Claude Code vs LangGraph." Built-in subagents and standalone
 - [claude-code-vs-aider](claude-code-subagents-vs-langgraph-crewai-autogen-2026)
 - [cursor-vs-claude-code](claude-code-subagents-vs-langgraph-crewai-autogen-2026)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/whisperx" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/whisperx" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/whisperx" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/whisperx" />
 title: 'WhisperX: 22K+ Stars — 生产级ASR部署指南 2026'
 description: 'WhisperX 是一个开源ASR工具包，支持词级时间戳和说话人分割。兼容faster-whisper、pyannote.audio和OpenAI Whisper模型。涵盖Docker部署、Python API、基准测试和生产加固。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [whisperx, 自动语音识别, 语音识别, 说话人分割, 词级时间戳, 'faster-whisper', pyannote, docker]
-aliases:
-- /zh/posts/whisperx/
+aliases: - /zh/posts/whisperx/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/whisperx/ -->
 
 {{</* resource-info */>}}
 
@@ -78,7 +70,17 @@ WhisperX 需要 Python 3.10+、PyTorch 2.7.1+ 配合 CUDA 12.8 以及 ffmpeg。�
 **硬件需求：**
 
 | 硬件 | 转录 | + 对齐 | + 分割 | 显存 |
-|------|------|--------|--------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | RTX 4090 (FP16) | 72x RTF | 60x | 30x | 24 GB |
 | RTX 4070 (FP16) | 50x | 40x | 22x | 12 GB |
 | RTX 3060 (INT8) | 35x | 28x | 12x | 8 GB |
@@ -219,18 +221,13 @@ whisperx audio.wav --model large-v2 --compute_type int8
 # docker-compose.yml
 version: "3.8"
 
-services:
-  whisperx:
-    build:
-      context: .
+services: whisperx: build: context: .
       dockerfile: Dockerfile.whisperx
     runtime: nvidia
-    environment:
-      - NVIDIA_VISIBLE_DEVICES=all
+    environment: - NVIDIA_VISIBLE_DEVICES=all
       - HF_TOKEN=${HF_TOKEN}
       - CUDA_VISIBLE_DEVICES=0
-    volumes:
-      - ./audio:/workspace/audio:ro
+    volumes: - ./audio:/workspace/audio:ro
       - ./output:/workspace/output
       - ./models:/root/.cache:rw
     command: >
@@ -242,19 +239,13 @@ services:
       --output_format json
       --batch_size 16
       --compute_type float16
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+    deploy: resources: reservations: devices: - driver: nvidia
               count: 1
               capabilities: [gpu]
 
   # 可选: Redis 队列用于批处理任务
-  redis:
-    image: redis:7-alpine
-    ports:
-      - "6379:6379"
+  redis: image: redis:7-alpine
+    ports: - "6379:6379"
 ```
 
 ### FastAPI 服务封装
@@ -285,14 +276,11 @@ async def transcribe(
     file: UploadFile = File(...),
     diarize: bool = True,
     language: str = "en"
-):
-    """使用词级时间戳和说话人标签转录音频。"""
-    with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as tmp:
-        tmp.write(await file.read())
+): """使用词级时间戳和说话人标签转录音频。"""
+    with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as tmp: tmp.write(await file.read())
         tmp_path = tmp.name
 
-    try:
-        # 加载音频
+    try: # 加载音频
         audio = whisperx.load_audio(tmp_path)
 
         # 阶段 1: 转录
@@ -305,8 +293,7 @@ async def transcribe(
         )
 
         # 阶段 3: 分割 (可选)
-        if diarize:
-            diarize_segments = DIARIZE_MODEL(audio)
+        if diarize: diarize_segments = DIARIZE_MODEL(audio)
             result = whisperx.assign_word_speakers(diarize_segments, result)
 
         return {
@@ -319,12 +306,10 @@ async def transcribe(
                 for w in s.get("words", [])
             )) if diarize else []
         }
-    finally:
-        os.unlink(tmp_path)
+    finally: os.unlink(tmp_path)
 
 @app.get("/health")
-async def health():
-    return {"status": "ok", "device": DEVICE, "model": "large-v2"}
+async def health(): return {"status": "ok", "device": DEVICE, "model": "large-v2"}
 ```
 
 启动 API：
@@ -348,7 +333,17 @@ curl -X POST "http://localhost:8000/transcribe?diarize=true" \
 在 AMD RX 7700 XT 配合 CUDA 12.8 上测试：
 
 | 模型 | OpenAI Whisper | faster-whisper | WhisperX (完整) | 相对 Whisper 加速 |
-|------|---------------|----------------|-----------------|-------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | tiny | ~12 分钟 | ~1.5 分钟 | ~2 分钟 | 6x |
 | base | ~20 分钟 | ~2.5 分钟 | ~3.5 分钟 | 5.7x |
 | small | ~35 分钟 | ~5 分钟 | ~7 分钟 | 5x |
@@ -362,7 +357,17 @@ curl -X POST "http://localhost:8000/transcribe?diarize=true" \
 来自 WhisperX 论文 (Bain 等人, INTERSPEECH 2023)，在 TEDLIUM、AMI 和 Switchboard 语料库上测试：
 
 | 指标 | Whisper | wav2vec2 | WhisperX | 改进 |
-|------|---------|----------|----------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | WER (TEDLIUM) | 4.2% | 6.8% | **3.9%** | 比 Whisper 低7% |
 | 词分割精度 | 62% | 71% | **89%** | 比 wav2vec2 高18% |
 | 词分割召回率 | 58% | 68% | **86%** | 比 wav2vec2 高18% |
@@ -371,7 +376,15 @@ curl -X POST "http://localhost:8000/transcribe?diarize=true" \
 独立研究中的实际 WER (2024-2025)：
 
 | 场景 | Whisper WER | WhisperX WER | 说明 |
-|------|-------------|--------------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 录音棚质量, 1个说话人 | 5.2% | **4.8%** | 干净播客音频 |
 | 多说话人会议 (AMI) | 12.1% | **8.8%** | 3-4个说话人 |
 | 带口音英语 | 21.3% | **14.5%** | 减少幻觉 |
@@ -454,8 +467,7 @@ REQUEST_COUNT = Counter(
     ["model", "status"]
 )
 
-def transcribe_with_metrics(audio_path, model_name="large-v2"):
-    start = time.time()
+def transcribe_with_metrics(audio_path, model_name="large-v2"): start = time.time()
     audio = whisperx.load_audio(audio_path)
 
     # 阶段 1
@@ -506,55 +518,46 @@ docker run --gpus all \
 # k8s-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
-metadata:
-  name: whisperx-asr
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: whisperx
-  template:
-    metadata:
-      labels:
-        app: whisperx
-    spec:
-      runtimeClassName: nvidia
-      containers:
-      - name: whisperx
+metadata: name: whisperx-asr
+spec: replicas: 2
+  selector: matchLabels: app: whisperx
+  template: metadata: labels: app: whisperx
+    spec: runtimeClassName: nvidia
+      containers: - name: whisperx
         image: whisperx:latest
-        resources:
-          limits:
-            nvidia.com/gpu: 1
+        resources: limits: nvidia.com/gpu: 1
             memory: "16Gi"
-          requests:
-            nvidia.com/gpu: 1
+          requests: nvidia.com/gpu: 1
             memory: "8Gi"
-        env:
-        - name: HF_TOKEN
-          valueFrom:
-            secretKeyRef:
-              name: hf-token-secret
+        env: - name: HF_TOKEN
+          valueFrom: secretKeyRef: name: hf-token-secret
               key: token
-        volumeMounts:
-        - name: model-cache
+        volumeMounts: - name: model-cache
           mountPath: /root/.cache
         - name: audio-input
           mountPath: /workspace/audio
           readOnly: true
-      volumes:
-      - name: model-cache
-        persistentVolumeClaim:
-          claimName: whisperx-model-cache
+      volumes: - name: model-cache
+        persistentVolumeClaim: claimName: whisperx-model-cache
       - name: audio-input
-        nfs:
-          server: 10.0.0.5
+        nfs: server: 10.0.0.5
           path: /shared/audio
 ```
 
 ## 与替代方案对比
 
 | 功能 | WhisperX | OpenAI Whisper | faster-whisper | DeepSpeech |
-|------|----------|---------------|----------------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **词级时间戳** | 是 (<80ms) | 否 (仅段落) | 否 (仅段落) | 否 |
 | **说话人分割** | 是 (按词) | 否 | 否 | 否 |
 | **最大推理速度** | 70x RTF | 10x RTF | 70x RTF | 15x RTF |
@@ -650,7 +653,6 @@ WhisperX 填补了开源 ASR 栈中的一个关键空白：以70倍实时速度�
 - [WhisperX 示例](https://github.com/m-bain/whisperX/blob/main/EXAMPLES.md) — 多语言使用示例
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -676,8 +678,8 @@ WhisperX 填补了开源 ASR 栈中的一个关键空白：以70倍实时速度�
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [apple-container](whisperx)
@@ -686,6 +688,6 @@ WhisperX 填补了开源 ASR 栈中的一个关键空白：以70倍实时速度�
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](whisperx)
 - [moneyprinterturbo-one-click-ai-video-generator](whisperx)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

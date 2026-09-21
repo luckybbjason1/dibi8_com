@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mcp-deep-dive-definitive-2026-guide" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mcp-deep-dive-definitive-2026-guide" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mcp-deep-dive-definitive-2026-guide" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mcp-deep-dive-definitive-2026-guide" />
 title: 'MCP(Model Context Protocol) 완벽 실전 가이드: 2026년 개발자가 반드시 익혀...
 description: '제로부터 MCP 서버를 구축하는 완벽 튜토리얼. Anthropic의 Model Context Protocol을 마스터하여 AI 에이전트가 데이터베이스, GitHub, Slack 등 수천 개의 도구와 원클릭 연결되도록 만들어보세요. 반복적인 통합 코드는 이제 그만.'
 date: 2026-05-15 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: ''
 last_maintained: '2026-05-15'
 featureImage: ''
 draft: false
-aliases:
-- /kr/posts/mcp-deep-dive-definitive-2026-guide/
+aliases: - /kr/posts/mcp-deep-dive-definitive-2026-guide/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/mcp-deep-dive-definitive-2026-guide/ -->
 
 {</* resource-info */>}
 
@@ -180,16 +172,12 @@ mcp = FastMCP("SiteMonitor")
 
 
 @mcp.tool()
-async def check_site_status(url: str, timeout: int = 10) -> str:
-    """지정된 URL의 웹사이트 가용성을 확인합니다.
+async def check_site_status(url: str, timeout: int = 10) -> str: """지정된 URL의 웹사이트 가용성을 확인합니다.
 
-    Args:
-        url: 확인할 웹사이트 주소, 예: https://example.com
+    Args: url: 확인할 웹사이트 주소, 예: https://example.com
         timeout: 요청 타임아웃(초), 기본값 10초
     """
-    try:
-        async with httpx.AsyncClient(follow_redirects=True, timeout=timeout) as client:
-            start = asyncio.get_event_loop().time()
+    try: async with httpx.AsyncClient(follow_redirects=True, timeout=timeout) as client: start = asyncio.get_event_loop().time()
             response = await client.get(url)
             elapsed = asyncio.get_event_loop().time() - start
 
@@ -201,25 +189,18 @@ async def check_site_status(url: str, timeout: int = 10) -> str:
                 f"• 응답 시간: {elapsed:.2f}초\n"
                 f"• 서버: {response.headers.get('server', '알 수 없음')}\n"
             )
-    except httpx.TimeoutException:
-        return f"❌ 타임아웃: {url}이 {timeout}초 내에 응답하지 않음"
-    except Exception as e:
-        return f"❌ 오류: {type(e).__name__}: {str(e)}"
+    except httpx.TimeoutException: return f"❌ 타임아웃: {url}이 {timeout}초 내에 응답하지 않음"
+    except Exception as e: return f"❌ 오류: {type(e).__name__}: {str(e)}"
 
 
 @mcp.tool()
-async def check_ssl_expiry(hostname: str, port: int = 443) -> str:
-    """도메인 SSL 인증서의 잔여 유효기간을 확인합니다.
+async def check_ssl_expiry(hostname: str, port: int = 443) -> str: """도메인 SSL 인증서의 잔여 유효기간을 확인합니다.
 
-    Args:
-        hostname: 도메인 이름, 예: example.com
+    Args: hostname: 도메인 이름, 예: example.com
         port: HTTPS 포트, 기본값 443
     """
-    try:
-        context = ssl.create_default_context()
-        with socket.create_connection((hostname, port), timeout=10) as sock:
-            with context.wrap_socket(sock, server_hostname=hostname) as ssock:
-                cert = ssock.getpeercert()
+    try: context = ssl.create_default_context()
+        with socket.create_connection((hostname, port), timeout=10) as sock: with context.wrap_socket(sock, server_hostname=hostname) as ssock: cert = ssock.getpeercert()
                 expiry = datetime.strptime(cert["notAfter"], "%b %d %H:%M:%S %Y %Z")
                 days_left = (expiry - datetime.utcnow()).days
 
@@ -231,12 +212,10 @@ async def check_ssl_expiry(hostname: str, port: int = 443) -> str:
                     f"• 만료 시간: {expiry.strftime('%Y-%m-%d %H:%M UTC')}\n"
                     f"• 잔여 일수: {days_left}일\n"
                 )
-    except Exception as e:
-        return f"❌ SSL 확인 실패: {type(e).__name__}: {str(e)}"
+    except Exception as e: return f"❌ SSL 확인 실패: {type(e).__name__}: {str(e)}"
 
 
-if __name__ == "__main__":
-    mcp.run(transport="stdio")
+if __name__ == "__main__": mcp.run(transport="stdio")
 ```
 
 ### 코드 핵심 해설
@@ -337,14 +316,12 @@ AI가 서버의 설정 파일이나 로그를 읽을 수 있도록 합니다.
 
 ```python
 @mcp.resource("config://app")
-def get_app_config() -> str:
-    """현재 애플리케이션 설정을 가져옵니다."""
+def get_app_config() -> str: """현재 애플리케이션 설정을 가져옵니다."""
     import json
     return json.dumps({"version": "1.0.0", "check_interval": 300})
 
 @mcp.resource("log://latest")
-def get_latest_log() -> str:
-    """최신 모니터링 로그를 읽습니다."""
+def get_latest_log() -> str: """최신 모니터링 로그를 읽습니다."""
     return "[2026-05-15 08:00:00] github.com: OK (23ms)"
 ```
 
@@ -352,10 +329,8 @@ def get_latest_log() -> str:
 
 ```python
 @mcp.prompt()
-def debug_site_issue(url: str, error_code: int) -> str:
-    """사이트 장애 진단 프롬프트를 생성합니다."""
-    return f"""웹사이트 {url}이 HTTP {error_code}를 반환합니다. 다음 단계로 조사하세요:
-1. DNS 해결이 정상인지 확인
+def debug_site_issue(url: str, error_code: int) -> str: """사이트 장애 진단 프롬프트를 생성합니다."""
+    return f"""웹사이트 {url}이 HTTP {error_code}를 반환합니다. 다음 단계로 조사하세요: 1. DNS 해결이 정상인지 확인
 2. 서버 프로세스가 살아있는지 확인
 3. 최근 10분간의 애플리케이션 로그 확인
 4. CDN 대시보드에서 트래픽 급증 패턴 분석
@@ -371,9 +346,7 @@ from starlette.routing import Route
 
 sse = SseServerTransport("/messages/")
 
-async def handle_sse(request):
-    async with sse.connect_sse(request.scope, request.receive, request._send) as streams:
-        await mcp.run(streams[0], streams[1], mcp.create_initialization_options())
+async def handle_sse(request): async with sse.connect_sse(request.scope, request.receive, request._send) as streams: await mcp.run(streams[0], streams[1], mcp.create_initialization_options())
 
 app = Starlette(routes=[Route("/sse", endpoint=handle_sse)])
 ```
@@ -483,16 +456,13 @@ MCP는 미래 기술이 아닙니다. **2026년에 이미 활발히 사용되는
 
 ## 자체 호스팅 추천 인프라
 
-24/7 안정 운영을 위해 인프라 선택이 중요하다:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 신규 가입 시 60일 $200 크레딧, 글로벌 14+ 리전. 오픈소스 AI 도구 자체 호스팅에 적합.
+24/7 안정 운영을 위해 인프라 선택이 중요하다: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 신규 가입 시 60일 $200 크레딧, 글로벌 14+ 리전. 오픈소스 AI 도구 자체 호스팅에 적합.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 접근 시 저지연. dibi8.com 자체가 호스팅된 검증된 IDC.
 
 *추천 링크입니다. 추가 비용 없이 dibi8.com 운영에 도움이 됩니다.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

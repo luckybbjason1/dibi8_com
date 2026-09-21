@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/gpt-researcher-llm-frameworks-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/gpt-researcher-llm-frameworks-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/gpt-researcher-llm-frameworks-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/gpt-researcher-llm-frameworks-2026" />
 title: 'GPT Researcher: 심층 리서치 보고서를 만드는 자율 에이전트 — 2026 실전 가이드'
 description: 'GPT Researcher는 어떤 작업이든 웹·로컬 리서치를 수행해 인용이 포함된 보고서를 작성하는 오픈소스 심층 리서치 에이전트입니다. GitHub 스타 27,473개, Apache-2.0 라이선스. 설치, 비동기 Python API, Docker, 실제 코드 예제를 다룹니다.'
 date: 2026-06-02 00:00:00+08:00
@@ -25,10 +20,8 @@ featureImage: 'https://contrib.rocks/image?repo=assafelovic/gpt-researcher&max=1
 draft: false
 categories: ['llm-frameworks']
 tags: []
-aliases:
-- /posts/gpt-researcher-llm-frameworks-2026/
-faqs:
-  - q: 'gpt-researcher는 어떻게 설치하나요?'
+aliases: - /posts/gpt-researcher-llm-frameworks-2026/
+faqs: - q: 'gpt-researcher는 어떻게 설치하나요?'
     a: 'pip로 Python 패키지를 설치합니다. ```bash pip install gpt-researcher ```'
   - q: '어떤 LLM 제공자와 검색 엔진을 쓸 수 있나요?'
     a: '기본 LLM은 OpenAI, 기본 리트리버는 Tavily이지만, 둘 다 환경 변수와 설정 파일로 교체할 수 있으며, 에이전트는 MCP 기반 출처를 포함한 추가 리트리버도 지원합니다.'
@@ -40,7 +33,6 @@ faqs:
     a: '아니요. 둘 다 비동기 메서드입니다. async 함수 안에서 `await`로 호출하고, 그 함수를 `asyncio.run()`으로 실행하세요.'
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/gpt-researcher-llm-frameworks-2026/ -->
 # GPT Researcher: 심층 리서치 보고서를 만드는 자율 에이전트 — 2026 실전 가이드
 
 
@@ -139,8 +131,7 @@ Python API는 `GPTResearcher` 클래스를 중심으로 구성됩니다. 리서�
 import asyncio
 from gpt_researcher import GPTResearcher
 
-async def main():
-    query = "why is Nvidia stock going up?"
+async def main(): query = "why is Nvidia stock going up?"
     researcher = GPTResearcher(query=query)
     # Conduct research: plan, search, scrape, and gather context
     research_result = await researcher.conduct_research()
@@ -159,8 +150,7 @@ asyncio.run(main())
 import asyncio
 from gpt_researcher import GPTResearcher
 
-async def main():
-    researcher = GPTResearcher(
+async def main(): researcher = GPTResearcher(
         query="What are the latest advancements in natural language processing?",
         report_type="detailed_report",
     )
@@ -179,8 +169,7 @@ asyncio.run(main())
 import asyncio
 from gpt_researcher import GPTResearcher
 
-async def main():
-    researcher = GPTResearcher(query="How does AI impact society?")
+async def main(): researcher = GPTResearcher(query="How does AI impact society?")
     await researcher.conduct_research()
     report = await researcher.write_report()
 
@@ -217,8 +206,7 @@ API가 await 두 번 호출로 끝나기 때문에, GPT Researcher를 Jupyter �
 import asyncio
 from gpt_researcher import GPTResearcher
 
-async def research(topic: str) -> str:
-    researcher = GPTResearcher(query=topic)
+async def research(topic: str) -> str: researcher = GPTResearcher(query=topic)
     await researcher.conduct_research()
     return await researcher.write_report()
 
@@ -292,19 +280,11 @@ GPT Researcher는 유능하지만, 다음 트레이드오프를 알아 두어야
 
 ---
 
-**출처 및 더 읽어보기**:
-- GitHub 저장소: https://github.com/assafelovic/gpt-researcher
+**출처 및 더 읽어보기**: - GitHub 저장소: https://github.com/assafelovic/gpt-researcher
 - 공식 문서 / README: https://github.com/assafelovic/gpt-researcher#readme
 
 *위 링크 중 일부는 제휴 링크입니다. 가입하시면 dibi8.com이 수수료를 받을 수 있으며, 추가 비용은 발생하지 않습니다. 사이트 운영과 무료 콘텐츠 유지에 도움이 됩니다.*
 
-<!-- internal-link-candidates:
-  related open-source tools -> ai-tools-directory
-  related guides on dibi8 -> ai-coding-agent-landscape-2026-skills-mcp-opensource
--->
-
-
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -332,25 +312,20 @@ GPT Researcher는 유능하지만, 다음 트레이드오프를 알아 두어야
 
 ## Why This Matters
 
-Understanding gpt researcher: 심층 리서치 보고서를 만드는 자율 에이전트 — 2026 실전 가이드 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding gpt researcher: 심층 리서치 보고서를 만드는 자율 에이전트 — 2026 실전 가이드 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/bytedance-ui-tars-desktop-ai-agent-guide" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/bytedance-ui-tars-desktop-ai-agent-guide" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/bytedance-ui-tars-desktop-ai-agent-guide" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/bytedance-ui-tars-desktop-ai-agent-guide" />
 title: "ByteDance UI-TARS Desktop: 화면을 보고 컴퓨터를 제어하는 비전-언어 AI 에이전...
 description: "화면을 보고 자연어로 애플리케이션을 제어하는 비전-언어 AI 에이전트인 ByteDance의 UI-TARS Desktop 배포 방법을 배워보세요. 단계별 설치, 실제 벤치마크 및 대안과 비교.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-10
-lastmod:  2026-06-10slug: "bytedance-ui-tars-desktop-ai-agent-guide"
+lastmod: 2026-06-10
+slug: "bytedance-ui-tars-desktop-ai-agent-guide"
 category: ai-tools
 tags: [바이트댄스, ui-tars, 비전-언어모델, AI에이전트, 데스크톱자동화, GUI에이전트, 오픈소스, 멀티모달AI]
 github_repo: "https://github.com/bytedance/UI-TARS-desktop"
@@ -17,8 +13,6 @@ license: Apache-2.0
 featureImage: "https://raw.githubusercontent.com/bytedance/UI-TARS-desktop/main/images/tars.png"
 lang: ko
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/bytedance-ui-tars-desktop-ai-agent-guide/ -->
 
 ## 소개
 
@@ -32,9 +26,7 @@ UI-TARS(User Interface TARS)는 ByteDance에서 개발한 데스크톱 AI 에이
 
 UI-TARS Desktop은 **화면을 관찰하여 컴퓨터를 제어하는 비전-언어 AI 에이전트**입니다. 데스크톱 인터페이스를 이해하도록 훈련된 전용 비전-언어 모델을 사용하여 — 버튼, 메뉴, 폼, 텍스트 필드 인식 — 그리고 상호작용하기 위한 실행 가능한 명령을 생성합니다.
 
-주요 기능:
-
-- **시각적 이해** — VLM 기반 인식을 통해 스크린샷을 분석하여 UI 요소, 텍스트, 레이아웃 식별
+주요 기능: - **시각적 이해** — VLM 기반 인식을 통해 스크린샷을 분석하여 UI 요소, 텍스트, 레이아웃 식별
 - **동작 생성** — 마우스 클릭, 키보드 입력, 스크롤 명령, 드래그 작업 생성
 - **자연어 인터페이스** — 일반 영어 지침으로 모든 데스크톱 애플리케이션 제어
 - **다중 애플리케이션 지원** — 통합이나 API 키 없이 모든 GUI 애플리케이션에서 작동
@@ -45,9 +37,7 @@ UI-TARS Desktop은 **화면을 관찰하여 컴퓨터를 제어하는 비전-언
 
 ## UI-TARS의 작동 방식
 
-UI-TARS는 지각-행동 사이클을 통해 작동합니다:
-
-1. **지각** — 에이전트가 플랫폼의 네이티브 스크린 캡처 API를 사용하여 현재 데스크톱 상태의 스크린샷을 캡처
+UI-TARS는 지각-행동 사이클을 통해 작동합니다: 1. **지각** — 에이전트가 플랫폼의 네이티브 스크린 캡처 API를 사용하여 현재 데스크톱 상태의 스크린샷을 캡처
 2. **이해** — 비전-언어 모델이 스크린샷을 분석하여 UI 요소, 레이블, 화면상의 픽셀 위치 식별
 3. **계획** — 에이전트가 사용자 지침과 현재 화면 상태를 기반으로 수행할 동작 결정
 4. **실행** — 에이전트가 플랫폼의 입력 자동화 API를 통해 동작 실행(클릭, 입력, 스크롤 등)
@@ -151,11 +141,8 @@ agent-tars run --task "브라우저를 열고 '머신러닝 튜토리얼'을 검
 agent-tars run --task-file tasks.yaml --model ui-tars-7b
 ```
 
-여기서 `tasks.yaml`은 다음을 포함합니다:
-
-```yaml
-tasks:
-  - "파일 탐색기 열기"
+여기서 `tasks.yaml`은 다음을 포함합니다: ```yaml
+tasks: - "파일 탐색기 열기"
   - "데스크톱으로 이동"
   - "오른쪽 클릭하고 새 폴더 만들기"
   - "폴더 이름을 '내 프로젝트'로 지정"
@@ -210,9 +197,7 @@ agent-tars export-logs --output uitars-logs.json
 
 ### 모델 선택
 
-UI-TARS는 다양한 성능 절충안을 위해 여러 모델 크기를 지원합니다:
-
-```bash
+UI-TARS는 다양한 성능 절충안을 위해 여러 모델 크기를 지원합니다: ```bash
 # 7B 파라미터 모델 (대부분의 사용 사례에 권장)
 agent-tars --model ui-tars-7b
 
@@ -227,24 +212,18 @@ agent-tars --model ui-tars-72b
 
 ```yaml
 # uitars-config.yaml
-agent:
-  model: ui-tars-7b
+agent: model: ui-tars-7b
   max_steps: 30
   confidence_threshold: 0.85
   screenshot_interval: 1.0
   action_delay: 0.5
 
-actions:
-  click:
-    method: mouse
+actions: click: method: mouse
     move_to_center: true
-  type:
-    delay_between_keys: 0.02
-  scroll:
-    pixels_per_step: 120
+  type: delay_between_keys: 0.02
+  scroll: pixels_per_step: 120
 
-environment:
-  resolution: 1920x1080
+environment: resolution: 1920x1080
   scale_factor: 1.0
   language: en
 ```
@@ -331,8 +310,7 @@ result = agent.run(task)
 
 # 결과 받기
 print(f"실행된 동작: {len(result.actions)}")
-for action in result.actions:
-    print(f"  {action.type}: {action.target}")
+for action in result.actions: print(f"  {action.type}: {action.target}")
 
 print(f"성공: {result.success}")
 print(f"이유: {result.explanation}")
@@ -372,9 +350,7 @@ print(f"이유: {result.explanation}")
 
 ### 실제 사례: QA 테스트 팀
 
-8명의 엔지니어로 구성된 QA 팀은 웹 및 데스크톱 애플리케이션 전체의 GUI 테스트 자동화를 위해 UI-TARS를 사용합니다:
-
-```bash
+8명의 엔지니어로 구성된 QA 팀은 웹 및 데스크톱 애플리케이션 전체의 GUI 테스트 자동화를 위해 UI-TARS를 사용합니다: ```bash
 #!/bin/bash
 # 자동화Regression 테스트 스위트
 agent-tars batch --task-file regression-tests.yaml \
@@ -385,9 +361,7 @@ agent-tars batch --task-file regression-tests.yaml \
 
 ### 실제 사례: 접근성 자동화
 
-어느 회사는 애플리케이션 전체의 접근성 테스트 자동화에 UI-TARS를 사용합니다:
-
-```bash
+어느 회사는 애플리케이션 전체의 접근성 테스트 자동화에 UI-TARS를 사용합니다: ```bash
 # 다양한 UI 상태 테스트
 agent-tars run --task "모든 메뉴로 이동하고 키보드 단축키가 작동하는지 확인" \
   --model ui-tars-7b --max-steps 50
@@ -460,9 +434,7 @@ UI-TARS Desktop은 시각적 이해 기능으로 두각을 나타냅니다. 하�
 
 ## 한계 / 솔직한 평가
 
-UI-TARS Desktop은 강력하지만 다음 한계를 인지하세요:
-
-1. **GPU 요구사항** — 7B 모델을 실행하려면 최소 8GB의 GPU VRAM이 필요합니다. 72B 모델은 40GB+가 필요합니다. 1B 모델은 CPU에서 실행할 수 있지만 정확도가 낮아집니다.
+UI-TARS Desktop은 강력하지만 다음 한계를 인지하세요: 1. **GPU 요구사항** — 7B 모델을 실행하려면 최소 8GB의 GPU VRAM이 필요합니다. 72B 모델은 40GB+가 필요합니다. 1B 모델은 CPU에서 실행할 수 있지만 정확도가 낮아집니다.
 2. **지연시간** — 각 동작에는 스크린샷 및 모델 추론이 필요하므로 각 단계마다 지연시간이 추가됩니다. 다단계 작업에는 몇 분 정도 걸릴 수 있습니다.
 3. **보안 고려사항** — 에이전트는 데스크톱에 대한 전체 제어권을 가집니다. 신뢰할 수 있는 환경에서만 사용하고 적절한 인증으로 액세스를 제한하세요.
 4. **복잡한 텍스트 입력** — 긴 텍스트나 복잡한 텍스트 입력 시 Occasionally 글자 인식 또는 입력 시뮬레이션 오류가 발생할 수 있습니다.
@@ -522,7 +494,6 @@ AI 에이전트 인프라와 GPU 워크로드를 호스팅하려면, 저렴한 G
 위의 링크에는 제휴 링크가 포함되어 있습니다. dibi8.com은 가입 시 수수료 수익을 얻을 수 있으며, 이는 이용자에게 추가 비용이 없습니다. 사이트 운영과 콘텐츠提供免费를 유지하는 데 도움이 됩니다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

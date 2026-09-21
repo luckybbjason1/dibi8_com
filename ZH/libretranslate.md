@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/libretranslate" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/libretranslate" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/libretranslate" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/libretranslate" />
 title: 'LibreTranslate: 14.4K+ Stars 的自托管翻译 API — 2026 生产部署指南'
 description: 'LibreTranslate (LT) 是一个基于 Argos Translate 的免费开源机器翻译 API。支持 Docker、CUDA GPU、30+ 种语言及离线部署。涵盖安装配置、性能基准测试、监控以及与 OpenAI Whisper、Coqui TTS、Argos Translate 的集成。'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [libretranslate, 机器翻译, 自托管, docker, api, 开源, 'argos translate', 自然语言处理]
-aliases:
-- /zh/posts/libretranslate/
+aliases: - /zh/posts/libretranslate/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/libretranslate/ -->
 
 {{</* resource-info */>}}
 
@@ -81,7 +73,17 @@ LibreTranslate 提供多种部署路径。由于隔离性、可重复性和易�
 ### 系统要求
 
 | 配置 | CPU | 内存 | 存储 | 启动时间 |
-|------|-----|------|------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 最低 (3 种语言) | 1 vCPU | 2 GB | 1 GB | ~60s |
 | 推荐 (11 种语言) | 2 vCPU | 4 GB | 3 GB | ~90s |
 | 完整负载 (30+ 种语言) | 4 vCPU | 8 GB | 10 GB | ~120s |
@@ -108,39 +110,26 @@ docker run -ti --rm -p 5000:5000 \
 # docker-compose.yml - 生产环境配置
 version: '3.8'
 
-services:
-  libretranslate:
-    container_name: libretranslate
+services: libretranslate: container_name: libretranslate
     image: libretranslate/libretranslate:v1.9.5
     restart: unless-stopped
-    ports:
-      - "5000:5000"
-    environment:
-      - LT_LOAD_ONLY=en,es,fr,de,it,zh,ja,ru,pt,pl,nl
+    ports: - "5000:5000"
+    environment: - LT_LOAD_ONLY=en,es,fr,de,it,zh,ja,ru,pt,pl,nl
       - LT_API_KEYS=true
       - LT_REQ_LIMIT=60
       - LT_THREADS=4
       - LT_UPDATE_MODELS=true
-    volumes:
-      - lt-models:/home/libretranslate/.local
+    volumes: - lt-models:/home/libretranslate/.local
       - lt-db:/app/db
-    healthcheck:
-      test: ['CMD-SHELL', './venv/bin/python scripts/healthcheck.py']
+    healthcheck: test: ['CMD-SHELL', './venv/bin/python scripts/healthcheck.py']
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 60s
-    deploy:
-      resources:
-        limits:
-          memory: 4G
-        reservations:
-          memory: 2G
+    deploy: resources: limits: memory: 4G
+        reservations: memory: 2G
 
-volumes:
-  lt-models:
-  lt-db:
-```
+volumes: lt-models: lt-db: ```
 
 部署：
 
@@ -203,19 +192,14 @@ mkdir -p ~/libretranslate && cd ~/libretranslate
 # 创建生产 compose 文件
 cat > docker-compose.yml << EOF
 version: '3.8'
-services:
-  libretranslate:
-    image: libretranslate/libretranslate:v1.9.5
+services: libretranslate: image: libretranslate/libretranslate:v1.9.5
     restart: always
-    ports:
-      - "5000:5000"
-    environment:
-      - LT_LOAD_ONLY=en,es,fr,de,it,zh,ja,ru,pt
+    ports: - "5000:5000"
+    environment: - LT_LOAD_ONLY=en,es,fr,de,it,zh,ja,ru,pt
       - LT_API_KEYS=true
       - LT_REQ_LIMIT=120
       - LT_THREADS=4
-    volumes:
-      - ./models:/home/libretranslate/.local
+    volumes: - ./models:/home/libretranslate/.local
       - ./db:/app/db
 EOF
 
@@ -236,8 +220,7 @@ import requests
 
 LIBRETRANSLATE_URL = "http://localhost:5000/translate"
 
-def translate_text(text: str, source: str = "en", target: str = "es") -> str:
-    payload = {
+def translate_text(text: str, source: str = "en", target: str = "es") -> str: payload = {
         "q": text,
         "source": source,
         "target": target,
@@ -251,8 +234,7 @@ def translate_text(text: str, source: str = "en", target: str = "es") -> str:
     return response.json()["translatedText"]
 
 # 示例用法
-if __name__ == "__main__":
-    result = translate_text("Hello, production deployment!", "en", "de")
+if __name__ == "__main__": result = translate_text("Hello, production deployment!", "en", "de")
     print(f"翻译结果: {result}")
 ```
 
@@ -317,8 +299,7 @@ import requests
 WHISPER_MODEL = whisper.load_model("base")
 LIBRE_URL = "http://localhost:5000/translate"
 
-def transcribe_and_translate(audio_path: str, target_lang: str = "en") -> dict:
-    # 步骤 1: 使用 Whisper 转录音频
+def transcribe_and_translate(audio_path: str, target_lang: str = "en") -> dict: # 步骤 1: 使用 Whisper 转录音频
     result = WHISPER_MODEL.transcribe(audio_path)
     source_text = result["text"]
     detected_lang = result.get("language", "auto")
@@ -357,8 +338,7 @@ from TTS.api import TTS
 # 初始化 TTS
 tts = TTS("tts_models/multilingual/multi-dataset/xtts_v2", gpu=False)
 
-def translate_and_speak(text: str, target_lang: str, speaker_wav: str):
-    # 翻译
+def translate_and_speak(text: str, target_lang: str, speaker_wav: str): # 翻译
     payload = {"q": text, "source": "en", "target": target_lang, "format": "text"}
     response = requests.post("http://localhost:5000/translate", json=payload)
     translated = response.json()["translatedText"]
@@ -374,8 +354,7 @@ def translate_and_speak(text: str, target_lang: str, speaker_wav: str):
     return output_path
 
 # 生成多语言音频
-for lang in ["es", "fr", "de"]:
-    translate_and_speak("Welcome to our service", lang, "reference.wav")
+for lang in ["es", "fr", "de"]: translate_and_speak("Welcome to our service", lang, "reference.wav")
 ```
 
 ### cURL API 示例
@@ -462,7 +441,17 @@ LibreTranslate 的性能因硬件配置、加载的语言和文本长度而有�
 ### 翻译速度基准
 
 | 硬件 | 加载语言 | 平均延迟 (50 词) | 吞吐量 (请求/秒) | 备注 |
-|------|---------|-----------------|-----------------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 2 vCPU, 4GB 内存 | 5 | 180ms | 12 | 仅 CPU, Docker |
 | 4 vCPU, 8GB 内存 | 11 | 120ms | 28 | 仅 CPU, Docker |
 | 4 vCPU, 16GB 内存 | 30 | 200ms | 18 | 仅 CPU, 全语言 |
@@ -474,7 +463,15 @@ LibreTranslate 的性能因硬件配置、加载的语言和文本长度而有�
 WMT14 英德测试集的 BLEU 分数对比（越高越好）：
 
 | 系统 | BLEU 分数 | 词错误率 | 推理时间 |
-|------|----------|---------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | LibreTranslate (Argos) | 22.4 | 62% | 120ms |
 | Google Translate API | 26.8 | 51% | 85ms |
 | DeepL API | 28.1 | 48% | 90ms |
@@ -485,7 +482,15 @@ LibreTranslate 与 Argos Translate CLI 性能完全一致，因为它们共享�
 ### 大规模成本分析
 
 | 每月翻译量 | LibreTranslate (自托管) | Google Translate | DeepL API |
-|-----------|--------------------------|------------------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 100万字符 | $10 (VPS 费用) | $20 | $6.99 (免费额度) |
 | 1000万字符 | $10 (VPS 费用) | $200 | $20 |
 | 1亿字符 | $40 (独立服务器) | $2,000 | $125 |
@@ -512,15 +517,11 @@ LibreTranslate 与 Argos Translate CLI 性能完全一致，因为它们共享�
 
 ```yaml
 # 启用 API 密钥的 docker-compose.yml
-services:
-  libretranslate:
-    image: libretranslate/libretranslate:v1.9.5
-    environment:
-      - LT_API_KEYS=true
+services: libretranslate: image: libretranslate/libretranslate:v1.9.5
+    environment: - LT_API_KEYS=true
       - LT_REQ_LIMIT=100
       - LT_REQ_LIMIT_PER_DAY=10000
-    volumes:
-      - lt-models:/home/libretranslate/.local
+    volumes: - lt-models:/home/libretranslate/.local
       - lt-db:/app/db
 ```
 
@@ -560,18 +561,15 @@ import time
 TRANSLATION_COUNTER = Counter(libretranslate_requests_total, 总翻译次数)
 LATENCY_HISTOGRAM = Histogram(libretranslate_latency_seconds, 翻译延迟)
 
-def monitor():
-    start_http_server(9090)
-    while True:
-        start = time.time()
+def monitor(): start_http_server(9090)
+    while True: start = time.time()
         requests.post("http://localhost:5000/translate",
             json={"q": "test", "source": "en", "target": "es"})
         LATENCY_HISTOGRAM.observe(time.time() - start)
         TRANSLATION_COUNTER.inc()
         time.sleep(30)
 
-if __name__ == "__main__":
-    monitor()
+if __name__ == "__main__": monitor()
 ```
 
 ### 使用 Kubernetes 自动扩缩容
@@ -582,59 +580,38 @@ if __name__ == "__main__":
 # libretranslate-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
-metadata:
-  name: libretranslate
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: libretranslate
-  template:
-    metadata:
-      labels:
-        app: libretranslate
-    spec:
-      containers:
-      - name: libretranslate
+metadata: name: libretranslate
+spec: replicas: 2
+  selector: matchLabels: app: libretranslate
+  template: metadata: labels: app: libretranslate
+    spec: containers: - name: libretranslate
         image: libretranslate/libretranslate:v1.9.5
-        ports:
-        - containerPort: 5000
-        env:
-        - name: LT_LOAD_ONLY
+        ports: - containerPort: 5000
+        env: - name: LT_LOAD_ONLY
           value: "en,es,fr,de,it"
         - name: LT_THREADS
           value: "4"
-        resources:
-          requests:
-            memory: "2Gi"
+        resources: requests: memory: "2Gi"
             cpu: "1000m"
-          limits:
-            memory: "4Gi"
+          limits: memory: "4Gi"
             cpu: "2000m"
-        livenessProbe:
-          httpGet:
-            path: /health
+        livenessProbe: httpGet: path: /health
             port: 5000
           initialDelaySeconds: 60
           periodSeconds: 30
+
 ---
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
-metadata:
-  name: libretranslate-hpa
-spec:
-  scaleTargetRef:
-    apiVersion: apps/v1
+metadata: name: libretranslate-hpa
+spec: scaleTargetRef: apiVersion: apps/v1
     kind: Deployment
     name: libretranslate
   minReplicas: 2
   maxReplicas: 10
-  metrics:
-  - type: Resource
-    resource:
-      name: cpu
-      target:
-        type: Utilization
+  metrics: - type: Resource
+    resource: name: cpu
+      target: type: Utilization
         averageUtilization: 70
 ```
 
@@ -673,7 +650,17 @@ find "$BACKUP_DIR" -name "db_*.sqlite" -mtime +7 -delete
 ## 与替代方案对比
 
 | 功能 | LibreTranslate | Argos Translate | Google Translate API | DeepL API |
-|------|---------------|-----------------|---------------------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **许可证** | AGPL-3.0 | MIT | 专有 | 专有 |
 | **自托管** | 是 | 是 (CLI) | 否 | 否 |
 | **离线能力** | 是 | 是 | 否 | 否 |
@@ -800,12 +787,11 @@ LibreTranslate 兑现了其核心承诺：一个具有零每次请求成本和�
 - [NVIDIA CUDA Docker 设置](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html)
 - [LibreTranslate Kubernetes 示例](https://github.com/LibreTranslate/LibreTranslate/tree/main/kubernetes)
 
----
 
+---
 > **披露**：本文包含联盟链接。如果你使用本指南中的推荐链接注册 DigitalOcean，我们可能会收到佣金，而你无需支付额外费用。联盟链接有助于支持此类开源文档项目的持续维护。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -832,7 +818,6 @@ LibreTranslate 兑现了其核心承诺：一个具有零每次请求成本和�
 </script>
 
 ---
-
 ## Related Articles
 
 - [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](libretranslate)

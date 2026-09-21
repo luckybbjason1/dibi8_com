@@ -1,21 +1,28 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/ai-seo-geo-dibi8-methodology-google-sge-perplexity" />
 title: 'AI SEO & GEO: How dibi8 Learned to Stop Chasing Clicks —...
 description: 'We stopped writing for clicks. Started writing for citations. After 72 articles across 4 languages, here is the 5-layer method that got us cited by Google SGE, Perplexity, and ChatGPT.'
 tags: ["open-source"]
 date: 2026-06-15
-lastmod:  2026-06-15slug: ai-seo-geo-dibi8-methodology-google-sge-perplexity
+lastmod: 2026-06-15
+slug: ai-seo-geo-dibi8-methodology-google-sge-perplexity
 category: dev-utils
 github_repo: 'https://github.com/dibi8-com/dibi8'
 license: 'MIT'
-lang: en
-featureImage: /images/articles/ai-seo---geo-------2026-----seo------------------------6-.png
+featureImage: /images/articles/ai-seo
+---
+geo
+---
+2026
+---
+seo
+---
+6-.png
+
 ---
 **TL;DR** — Three years ago we optimized for clicks. Last year we started optimizing for citations. This article is what we learned in between.
 
----
 
+---
 You know that feeling when you write something — really write it, not churn it out — and then check the analytics a week later and see exactly zero organic traffic?
 
 That used to be us. Every. Single. Article.
@@ -28,8 +35,8 @@ Then something shifted. Not in Google. In how we thought about writing.
 
 We stopped writing for search engines. We started writing for the machines that *read* search engines.
 
----
 
+---
 ## What We Got Wrong (And Still Get Wrong)
 
 The first mistake was thinking SEO was a ranking problem. It isn't. It's a *recognition* problem.
@@ -46,12 +53,10 @@ New thinking: "Why would an AI want to cite this?"
 I used to check Google Search Console every morning. Coffee, phone, refresh. Three times. Same number: 2. Three times. Two organic clicks. From someone searching for our exact product name. Not from anyone searching for help.
 
 ```python
-# What we measured before vs what we should have measured:
-# Before: organic_sessions, bounce_rate, pages_per_session
-# After:  citation_count, quote_accuracy, cross_lingual_citations
+# What we measured before vs what we should have measured: # Before: organic_sessions, bounce_rate, pages_per_session
+# After: citation_count, quote_accuracy, cross_lingual_citations
 
-# The shift in metrics:
-metrics_2025 = {
+# The shift in metrics: metrics_2025 = {
     "organic_sessions": "we cared about this",
     "bounce_rate": "we cared about this",
     "pages_per_session": "we cared about this",
@@ -65,20 +70,16 @@ metrics_2026 = {
 
 The second mistake was thinking more content was the answer. We had the opposite problem: we had too much content, and none of it was *recognized*. A single article that an AI model trusts is worth more than 100 that it ignores.
 
-Here's what actually changed our citation rate:
-
-```python
+Here's what actually changed our citation rate: ```python
 # What we thought worked vs what worked
-# Day 1 approach (72 articles):
-approach_1 = {
+# Day 1 approach (72 articles): approach_1 = {
     "article_count": 72,
     "target": "organic_traffic",
     "metrics": ["word_count", "h2_count", "code_blocks"],
     "result": "silence"
 }
 
-# What actually moved the needle:
-approach_2 = {
+# What actually moved the needle: approach_2 = {
     "article_count": 1,
     "target": "citation",
     "metrics": ["structure", "specificity", "honesty"],
@@ -99,14 +100,12 @@ When you open Google, you see a page. You scan it. You click something. You come
 When an AI model processes a page, it's doing something entirely different. It's looking for *patterns of authority*. Not keywords. Not meta tags. Patterns.
 
 ```
-A human reader sees:
-  ├── H2 heading
+A human reader sees: ├── H2 heading
   ├── Code example
   ├── Comparison table
   └── FAQ
 
-An AI model sees:
-  ├── "This author uses structured H2 hierarchy"
+An AI model sees: ├── "This author uses structured H2 hierarchy"
   ├── "This code block has language tags"
   ├── "This author included a comparison table with NUMBERS, not checkmarks"
   ├── "This author has a Sources section — they cite their work"
@@ -126,10 +125,9 @@ Paragraph citation probability: ███  low
 And here's the part nobody talks about: **code blocks are the highest-cited content type of all**. But only if they're *real code*. Not placeholder snippets. Not "hello world" examples. Actual, working code that someone could copy-paste and use.
 
 ```python
-# How AI models evaluate code blocks:
-# Real code (copied from actual usage): citation_weight = 1.0
-# Placeholder code (obviously fake):   citation_weight = 0.1
-# Tutorial code (working but basic):   citation_weight = 0.6
+# How AI models evaluate code blocks: # Real code (copied from actual usage): citation_weight = 1.0
+# Placeholder code (obviously fake): citation_weight = 0.1
+# Tutorial code (working but basic): citation_weight = 0.6
 # Advanced code (production patterns): citation_weight = 0.8
 ```
 
@@ -147,25 +145,17 @@ Here's the pattern we found: articles that got cited had a specific "DNA" that a
 # Citation DNA detector
 # Pattern found across 72 articles
 
-def citation_probability_score(article):
-    score = 0
-    if len(article.get('comparison_tables', 0)) > 0:
-        score += 0.25
-    if article.get('code_blocks', 0) >= 15:
-        score += 0.15
-    if article.get('faq_count', 0) >= 5:
-        score += 0.15
-    if article.get('limitations_section'):
-        score += 0.15
-    if article.get('sources_section'):
-        score += 0.10
-    if article.get('specific_numbers', 0) > 10:
-        score += 0.15
+def citation_probability_score(article): score = 0
+    if len(article.get('comparison_tables', 0)) > 0: score += 0.25
+    if article.get('code_blocks', 0) >= 15: score += 0.15
+    if article.get('faq_count', 0) >= 5: score += 0.15
+    if article.get('limitations_section'): score += 0.15
+    if article.get('sources_section'): score += 0.10
+    if article.get('specific_numbers', 0) > 10: score += 0.15
     # Multi-language bonus: applies when deployed, not in scoring
     return score
 
-# Article that was cited:
-cited = citation_probability_score({
+# Article that was cited: cited = citation_probability_score({
     'comparison_tables': 3,
     'code_blocks': 18,
     'faq_count': 5,
@@ -175,8 +165,7 @@ cited = citation_probability_score({
 })
 print(f"Cited article score: {cited}")  # 0.95
 
-# Article that wasn't cited:
-uncited = citation_probability_score({
+# Article that wasn't cited: uncited = citation_probability_score({
     'comparison_tables': 0,
     'code_blocks': 4,
     'faq_count': 2,
@@ -196,8 +185,7 @@ An AI model reads your article the same way it reads any document: top to bottom
 ```markdown
 # The difference between "good structure" and "random structure"
 
-## Good:
-## TL;DR — Definition + Number + Context
+## Good: ## TL;DR — Definition + Number + Context
 ## What It Is
 ## How It Works
 ## When to Use It
@@ -205,8 +193,7 @@ An AI model reads your article the same way it reads any document: top to bottom
 ## FAQs
 ## Sources
 
-## Random:
-## Introduction
+## Random: ## Introduction
 ## Quick Start
 ## Features
 ## What Is It (wait, should this come after Quick Start?)
@@ -245,7 +232,7 @@ We publish every article in 4 languages. Not because Google tells us to. Because
 
 ```
 Single language: 1 signal
-4 languages:      4 signals
+4 languages: 4 signals
 ```
 
 That's not SEO. That's basic math.
@@ -254,9 +241,7 @@ But multi-language isn't just about publishing the same text 4 ways. It's about 
 
 ```python
 # Cross-lingual citation tracking
-# What we measured after publishing the same article in 4 languages:
-
-citation_sources = {
+# What we measured after publishing the same article in 4 languages: citation_sources = {
     "en_only": {
         "english_queries": 0,
         "chinese_queries": 0,
@@ -288,14 +273,13 @@ What does it feel like to read a source that has E-E-A-T?
 It feels like someone who *knows* what they're talking about but isn't trying to impress you. It's the difference between a senior engineer explaining something over coffee and a junior engineer trying to prove they read the documentation.
 
 ```yaml
-# What E-E-A-T looks like in practice:
-stars: 46683              # real number — fetched from API
+# What E-E-A-T looks like in practice: stars: 46683              # real number — fetched from API
 date: 2026-06-15           # specific version, specific date
 maintainer: 'real-name'    # real human, not an organization
-limitations:              # honest, specific, not generic
+limitations: # honest, specific, not generic
   - "Feature X doesn't work with Y"
   - "Known issue: Z under conditions A"
-sources:                  # real links, not placeholder URLs
+sources: # real links, not placeholder URLs
   - https://docs.example.com
   - https://github.com/example/repo
 ```
@@ -307,20 +291,12 @@ Real E-E-A-T: "The GitHub issues tracker shows 12 open bugs. Here are the top 3.
 
 You can write the perfect article and still get zero citations if nobody can find it.
 
-Distribution at dibi8 works at two levels:
-
-1. **Internal linking** — each article links to 2-3 others. Not navigation links. *Content-relevant* links. When an AI model crawls one article, it finds related articles. This creates a content graph that signals topical authority.
+Distribution at dibi8 works at two levels: 1. **Internal linking** — each article links to 2-3 others. Not navigation links. *Content-relevant* links. When an AI model crawls one article, it finds related articles. This creates a content graph that signals topical authority.
 
 ```python
-# Internal linking strategy at dibi8:
-def build_link_graph(articles):
-    links = []
-    for a1 in articles:
-        for a2 in articles:
-            if a1["category"] != a2["category"]:
-                links.append((a1, a2))  # Cross-category = always link
-            elif a1["slug"] != a2["slug"]:
-                links.append((a1, a2))  # Same category, diff angle
+# Internal linking strategy at dibi8: def build_link_graph(articles): links = []
+    for a1 in articles: for a2 in articles: if a1["category"] != a2["category"]: links.append((a1, a2))  # Cross-category = always link
+            elif a1["slug"] != a2["slug"]: links.append((a1, a2))  # Same category, diff angle
     return links
 ```
 
@@ -330,8 +306,7 @@ def build_link_graph(articles):
 # dibi8 distribution surface map
 # Each platform = different crawl path to your content
 
-Platforms:
-  ├── GitHub (repository page)
+Platforms: ├── GitHub (repository page)
   │   └── Crawl path: GitHub crawler → AI training data
   ├── dibi8.com (Hugo site)
   │   └── Crawl path: Google bot → Google SGE → Citation
@@ -354,7 +329,15 @@ We're going to be honest about something: this article won't get many citations 
 But the benchmarks below are real. They're from the 72 articles we've already published. And they tell a story.
 
 | Metric | Industry Standard | dibi8 Actual | Delta |
-|--------|------------------|-------------|-------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Word count | 800-1500 | 2228 | +48% |
 | H2 sections | 4-8 | 11 | +38% |
 | Code blocks | 3-8 | 18 | +125% |
@@ -369,8 +352,7 @@ An AI model scanning thousands of articles for relevant content will notice the 
 That's not about quality. That's about *signal-to-noise ratio.*
 
 ```
-What to do when your article gets zero citations:
-1. Check if it has comparison tables with real numbers → if no, rewrite
+What to do when your article gets zero citations: 1. Check if it has comparison tables with real numbers → if no, rewrite
 2. Check if it has ≥15 code blocks with language tags → if no, add
 3. Check if it has a "Limitations" section → if no, add one
 4. Check if it has ≥5 FAQ questions → if no, add
@@ -384,9 +366,7 @@ The checklist above is what we learned. Not from theory. From watching our own a
 
 ## When This Doesn't Work (Be Honest About This)
 
-No method is universal. Here's when AI SEO won't help you:
-
-1. **Real-time content** — If your article is about today's news, AI SEO is the wrong tool. AI models that rely on training data won't see it. Real-time browsing AIs might, but they prefer sources that are already indexed and established.
+No method is universal. Here's when AI SEO won't help you: 1. **Real-time content** — If your article is about today's news, AI SEO is the wrong tool. AI models that rely on training data won't see it. Real-time browsing AIs might, but they prefer sources that are already indexed and established.
 
 2. **Opinion pieces** — AI models cite factual, structured content more than opinion. A tutorial on how to do X will get cited more than an analysis of why X matters.
 
@@ -422,9 +402,7 @@ A: Direct measurement is hard. You can monitor Perplexity.com for domain mention
 
 ## The Thing Nobody Tells You
 
-Here's what writing 72 articles taught me that no blog post or course or guide told me:
-
-**Writing for AI isn't about gaming a system. It's about writing better.**
+Here's what writing 72 articles taught me that no blog post or course or guide told me: **Writing for AI isn't about gaming a system. It's about writing better.**
 
 When you force yourself to include comparison tables with real numbers, you're forced to actually compare things instead of hand-waving. When you force yourself to write honest limitations, you're forced to actually *think* about what your content doesn't cover. When you force yourself to structure your article with clear H2 sections, you're forced to actually *organize your thoughts.*
 
@@ -436,8 +414,7 @@ We got good at AI SEO because we got good at writing. The AI part was just the l
 
 ## Where to Go From Here
 
-For more on AI SEO:
-- AI Engineering From Scratch — Learn AI engineering principles
+For more on AI SEO: - AI Engineering From Scratch — Learn AI engineering principles
 - Hermes Agent — Autonomous AI agent framework
 - AI SEO & GEO Tools — Tools specifically for AI search optimization
 
@@ -445,8 +422,7 @@ Join our community: [Telegram Group](https://t.me/DIBI8_Group)
 
 ---
 
-**Sources & Further Reading**:
-- Google SGE documentation: https://developers.google.com/search/docs/appearance/overview-sge
+**Sources & Further Reading**: - Google SGE documentation: https://developers.google.com/search/docs/appearance/overview-sge
 - Schema.org Article type: https://schema.org/Article
 - Schema.org FAQPage type: https://schema.org/FAQPage
 - Perplexity AI research: https://docs.perplexity.ai/
@@ -455,7 +431,6 @@ Join our community: [Telegram Group](https://t.me/DIBI8_Group)
 *Disclosure: This article may contain affiliate links. If you register through our links, we may receive a small commission at no additional cost to you. This helps support independent tech journalism and keeps resources like dibi8.com free and ad-free.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

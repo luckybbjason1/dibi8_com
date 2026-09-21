@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/self-hosted-ai-coding-workflow" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/self-hosted-ai-coding-workflow" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/self-hosted-ai-coding-workflow" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/self-hosted-ai-coding-workflow" />
 title: '셀프호스트 AI 코딩 워크플로우: 2026년 $6/월 완전 스택'
 description: '7개 컴포넌트 셀프호스트 AI 코딩 스택 — $290/월 SaaS 구독(Cursor + Claude Code Pro + Copilot + Replit)을 $6/월 인프라로 대체. 실제 수치, 실제 config, 전체 단계별 조립 가이드.'
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
-tech_stack:
-  - Docker
+tech_stack: - Docker
   - Python
   - TypeScript
   - PostgreSQL
@@ -29,11 +23,8 @@ featureImage: ''
 draft: false
 categories: [collections]
 tags: [셀프호스트, 'ai 코딩', 스택, 워크플로우, 컬렉션]
-aliases:
-  - /posts/self-hosted-ai-coding-workflow/
+aliases: - /posts/self-hosted-ai-coding-workflow/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/self-hosted-ai-coding-workflow/ -->
 
 Cursor $20/월 + Claude Code Pro $80/월 + Copilot $19/월 + Replit credit $50/월 + OpenAI API 충전 $120/월 내고 있다면 AI 코딩 월 지출이 **$289/월**입니다. 12개월이면 **$3,468** — 소유하지도, 감사하지도 못하고, 예고 없이 rate-limit 되거나 끊길 수 있는 도구들에 들어가는 돈.
 
@@ -55,9 +46,7 @@ Cursor $20/월 + Claude Code Pro $80/월 + Copilot $19/월 + Replit credit $50/�
 
 ## 1. 왜 이 스택이 2026년에야 가능해졌나
 
-2024~2026 사이 셀프호스트 AI 코딩이 드디어 viable해진 세 가지:
-
-1. **오픈 웨이트 모델이 따라잡음**: DeepSeek-V4, Qwen 3 Coder, GLM-4.6 Coder가 코딩 벤치마크에서 Claude/GPT-5와 5% 차이, 무료 또는 거의 무료
+2024~2026 사이 셀프호스트 AI 코딩이 드디어 viable해진 세 가지: 1. **오픈 웨이트 모델이 따라잡음**: DeepSeek-V4, Qwen 3 Coder, GLM-4.6 Coder가 코딩 벤치마크에서 Claude/GPT-5와 5% 차이, 무료 또는 거의 무료
 2. **MCP가 도구 통합 표준화**: 에디터마다 파일/git/검색 도구 호출법 재발명 안 함, 프로토콜이 USB-C 포트화 — 19,700+ server 가능 → [MCP server 레지스트리 가이드](/kr/resources/llm-frameworks/mcp-server-registry-comprehensive-guide-2026/) 참조
 3. **로컬 LLM 러너 프로덕션 등급**: Ollama, vLLM, llama.cpp가 소비자 하드웨어에서 수용 가능 속도
 
@@ -102,8 +91,7 @@ Cursor $20/월 + Claude Code Pro $80/월 + Copilot $19/월 + Replit credit $50/�
 
 **왜 이거**: MCP 네이티브 지원하는 오픈소스 에이전트. 동일 리팩토링 작업(400줄 React 컴포넌트)에서 OpenCode + DeepSeek-V4 = 18초 $0.007. Claude Code (Sonnet) = 12초 $0.14. 20배 저렴, 5% 느림.
 
-**빠른 설치**:
-```bash
+**빠른 설치**: ```bash
 npm install -g @opencode-ai/opencode
 opencode --version  # 1.x
 ```
@@ -118,8 +106,7 @@ LiteLLM 게이트웨이(다음 컴포넌트) 가리키도록 config 설정, 끝.
 
 **왜 이거**: 137k star. 싱글 바이너리 설치. Llama 3.2 3B가 5년 된 M1 MacBook 8GB RAM에서 22 tok/sec. Qwen 3 Coder 14B는 16GB M 시리즈 Mac 또는 32GB Linux에서 편하게.
 
-**빠른 설치**:
-```bash
+**빠른 설치**: ```bash
 curl -fsSL https://ollama.com/install.sh | sh
 ollama pull qwen3-coder:14b
 ollama serve  # :11434 OpenAI 호환 API 노출
@@ -135,9 +122,7 @@ LiteLLM이 Ollama를 provider로 자동 인식.
 
 **왜 이거**: 47.8k star, LLM 게이트웨이 중 star 1위. 1k RPS에서 P95 8ms. 셀프호스트 무료. 상세 비교는 [Portkey vs LiteLLM vs OpenRouter 2026 가이드](/kr/resources/llm-frameworks/llm-gateway-portkey-litellm-openrouter-comparison-2026/) 참조.
 
-**4GB VPS에 빠른 배포** (중국 본토 sub-30ms는 {{< aff "htstack" "stack-vps" "HTStack 홍콩 VPS" >}}, 그 외엔 {{< aff "digitalocean" "stack-droplet" "DigitalOcean $6 droplet" >}}):
-
-```bash
+**4GB VPS에 빠른 배포** (중국 본토 sub-30ms는 {{< aff "htstack" "stack-vps" "HTStack 홍콩 VPS" >}}, 그 외엔 {{< aff "digitalocean" "stack-droplet" "DigitalOcean $6 droplet" >}}): ```bash
 docker run -d --name litellm -p 4000:4000 \
   -e LITELLM_MASTER_KEY=sk-your-secret \
   -e OLLAMA_API_BASE=http://host.docker.internal:11434 \
@@ -154,8 +139,7 @@ docker run -d --name litellm -p 4000:4000 \
 
 **왜 중요한가**: 코딩 에이전트는 병적인 토큰 소비자 — 매 턴 전체 코드베이스 컨텍스트 전송. Claude Sonnet 입력 $3/M token, 빠르게 쌓임. 9Router의 RTK(Repetition-Token Compression)는 이 워크로드 전용으로 설계된 유일한 프록시.
 
-**빠른 설치**:
-```bash
+**빠른 설치**: ```bash
 docker run -d --name 9router -p 9999:9999 \
   -e PROVIDERS=anthropic,openai,gemini,deepseek \
   ghcr.io/rtk-ai/9router:latest
@@ -171,11 +155,9 @@ LiteLLM의 premium provider 엔드포인트를 직접 대신 `localhost:9999`로
 
 **왜 이거**: mem0는 30k+ star의 오픈소스 시맨틱 메모리 레이어. AgentMemory는 그걸 임의의 MCP host(OpenCode / Claude Desktop / Cursor)에 노출하는 MCP server.
 
-**빠른 설치**:
-```bash
+**빠른 설치**: ```bash
 npm install -g @mem0/mem0-mcp
-# OpenCode MCP config에 추가:
-# { "agentmemory": { "command": "mem0-mcp", "args": [] } }
+# OpenCode MCP config에 추가: # { "agentmemory": { "command": "mem0-mcp", "args": [] } }
 ```
 
 **전체 셋업** (임베딩 모델 선택 + 벡터 DB 고르기) — [AgentMemory MCP 가이드](/kr/resources/llm-frameworks/agentmemory-mcp-persistent-memory-2026/) 참조.
@@ -184,13 +166,11 @@ npm install -g @mem0/mem0-mcp
 
 **역할**: 에이전트에 눈과 손 주기. 프로젝트 파일 읽기, git 히스토리 확인, 웹 검색 — 모두 MCP 프로토콜 경유.
 
-**최소 세트**:
-- `modelcontextprotocol/server-filesystem` (Anthropic reference)
+**최소 세트**: - `modelcontextprotocol/server-filesystem` (Anthropic reference)
 - `modelcontextprotocol/server-git` (Anthropic reference)
 - `tavily-mcp` (LLM 포맷된 웹 검색 결과)
 
-**빠른 설치** (3개 모두 OpenCode `claude_desktop_config.json`에 추가):
-```json
+**빠른 설치** (3개 모두 OpenCode `claude_desktop_config.json`에 추가): ```json
 {
   "mcpServers": {
     "filesystem": {
@@ -226,9 +206,7 @@ Tavily는 월 1,000 검색 무료 tier로 $6 예산 안에 충분.
 
 ## 10. 조립 순서 — Day 1 셋업 (90분)
 
-처음부터 시작한다면 이 순서로:
-
-1. **인프라 띄우기** (15분) — {{< aff "digitalocean" "assembly-vps" "DigitalOcean $6 droplet" >}} 주문, Docker 설치, 포트 4000 (LiteLLM) + 9999 (9Router) + 11434 (Ollama) 열기
+처음부터 시작한다면 이 순서로: 1. **인프라 띄우기** (15분) — {{< aff "digitalocean" "assembly-vps" "DigitalOcean $6 droplet" >}} 주문, Docker 설치, 포트 4000 (LiteLLM) + 9999 (9Router) + 11434 (Ollama) 열기
 2. **Ollama 먼저** (10분) — 설치 + `qwen3-coder:14b` 풀 (~9 GB). `curl localhost:11434/api/tags` 동작 확인
 3. **LiteLLM 두 번째** (15분) — 5절 env vars로 docker run. `curl localhost:4000/v1/models -H "Authorization: Bearer sk-your-secret"`로 Ollama 모델 나열 확인
 4. **9Router 세 번째** (10분) — 옵션이지만 추천. LiteLLM premium provider config에 추가
@@ -257,9 +235,7 @@ Cursor + Claude Code Pro + Copilot + Replit + OpenAI 충전 $289/월과 비교.
 
 ## 12. 업그레이드 경로
 
-$6 tier를 벗어날 때 (1명 이상 dev / 1개 이상 프로젝트 / 영구 상태 중요):
-
-- **Postgres 추가** LiteLLM 지출 추적 + 프로젝트별 가상 키 ({{< aff "digitalocean" "upgrade-postgres" "DigitalOcean Managed Postgres" >}} $15/월)
+$6 tier를 벗어날 때 (1명 이상 dev / 1개 이상 프로젝트 / 영구 상태 중요): - **Postgres 추가** LiteLLM 지출 추적 + 프로젝트별 가상 키 ({{< aff "digitalocean" "upgrade-postgres" "DigitalOcean Managed Postgres" >}} $15/월)
 - **Redis 추가** LiteLLM 캐싱용 (1 GB managed Redis $10/월)
 - **LiteLLM을 LB + 3 레플리카 뒤로** — [Portkey vs LiteLLM 2026 가이드](/kr/resources/llm-frameworks/llm-gateway-portkey-litellm-openrouter-comparison-2026/) 4절의 Kubernetes 패턴 참조
 - **Grafana + Loki 추가** 완전 가시성 — 모든 prompt, 모든 페일오버, 모든 비용 스파이크 로그
@@ -286,7 +262,6 @@ AI 코딩 SaaS에 $200+/월 쓰고 있다면 이 스택은 1주차에 본전. {{
 *이 페이지 북마크 — 새 오픈소스 릴리스 따라 분기별 컴포넌트 선택 업데이트. 마지막 업데이트: 2026-05-21.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

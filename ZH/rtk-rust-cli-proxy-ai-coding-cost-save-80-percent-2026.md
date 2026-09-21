@@ -1,25 +1,18 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026" />
-title: "rtk 实测：这款 Rust 写的 CLI 代理，让我的 Claude Code 月账单从 1200 元砍到 2...
+title: "rtk 实测：这款 Rust 写的 CLI 代理，让我的 Claude Code 月账单从 1200 元砍到 2..."
 description: "2026 年开发者最头疼的问题：AI 编程工具账单暴涨。rtk 用 Rust 单二进制实现 CLI 代理，自动过滤压缩命令输出，降低 60-90% token 消耗。支持 Claude Code、Cursor、GitHub Copilot 等 13 款工具，零配置即插即用。"
 keywords: ["rtk", "Claude Code 省钱", "LLM token 优化", "AI 编程成本", "Rust CLI 工具", "开发者降本", "token 压缩", "AI 代理工具"]
 author: "Home Hermes"
 date: "2026-05-20"
-lastmod:  "2026-05-20"lang: "zh-CN"
+lastmod: "2026-05-20"lang: "zh-CN"
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/ -->
 
 # rtk 实测：这款 Rust 写的 CLI 代理，让我的 Claude Code 月账单从 1200 元砍到 240 元
 
 > **一句话总结**：rtk 是一个用 Rust 编写的单文件 CLI 代理，通过智能过滤和压缩命令输出，帮你在使用 Claude Code、Cursor、Codex 等 AI 编程工具时减少 **60%-90% 的 token 消耗**。支持 100+ 命令，覆盖 git、测试、构建、Docker 等全开发流程，安装只需一条命令，零依赖、零配置。
 
----
 
+---
 ## 目录
 
 1. [为什么 2026 年每个开发者都在为 token 账单焦虑](#为什么-2026-年每个开发者都在为-token-账单焦虑)
@@ -33,8 +26,8 @@ lastmod:  "2026-05-20"lang: "zh-CN"
 9. [同类工具对比：为什么选 rtk](#同类工具对比为什么选-rtk)
 10. [总结：这是一个"不买就亏"的工具](#总结这是一个不买就亏的工具)
 
----
 
+---
 ## 为什么 2026 年每个开发者都在为 token 账单焦虑
 
 2025 到 2026 年，AI 辅助编程从"尝鲜"变成了"刚需"。Claude Code、GitHub Copilot、Cursor、Windsurf、Gemini CLI……这些工具确实让编码效率翻倍，但随之而来的是一个被严重低估的成本：**token 消耗**。
@@ -76,7 +69,11 @@ Claude Code --git status--> RTK --> git --> 过滤压缩 --> 返回 200 token �
 **关键特性一览**：
 
 | 特性 | 说明 |
-|------|------|
+|
+---
+|
+---
+|
 | **单二进制文件** | Rust 编译，零依赖，体积小巧 |
 | **100+ 命令支持** | git、测试、构建、Docker、AWS、Kubernetes 全覆盖 |
 | **<10ms 开销** | 过滤耗时几乎无感知 |
@@ -90,7 +87,17 @@ Claude Code --git status--> RTK --> git --> 过滤压缩 --> 返回 200 token �
 这是 rtk 官方文档中给出的基准测试，也是我在自己项目（一个中型 TypeScript 全栈应用）上复现后确认的数据：
 
 | 操作 | 频次 | 原始 token | rtk 后 token | 节省 |
-|------|------|-----------|-------------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | `ls` / `tree` | 10 次 | 2,000 | 400 | **-80%** |
 | `cat` / 文件读取 | 20 次 | 40,000 | 12,000 | **-70%** |
 | `grep` / `rg` | 8 次 | 16,000 | 3,200 | **-80%** |
@@ -135,7 +142,13 @@ Docker 日志、测试输出里常见的重复行，rtk 会折叠成 `... (repea
 rtk 最让我惊喜的是它的生态兼容性。它不是只给 Claude Code 用的私货，而是覆盖了当下几乎所有主流 AI 编程工具：
 
 | AI 工具 | 安装命令 | 拦截方式 |
-|---------|---------|---------|
+|
+---
+|
+---
+|
+---
+|
 | **Claude Code** | `rtk init -g` | PreToolUse hook |
 | **GitHub Copilot (VS Code)** | `rtk init -g --copilot` | PreToolUse hook |
 | **Cursor** | `rtk init -g --agent cursor` | hooks.json |
@@ -256,7 +269,17 @@ rtk summary <long cmd>  # 启发式总结长输出
 ## 同类工具对比：为什么选 rtk
 
 | 工具 | 定位 | 节省方式 | 覆盖范围 | 易用性 |
-|------|------|---------|---------|--------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **rtk** | CLI 输出过滤 | 智能压缩 | 100+ 命令，13 款 AI 工具 | 一键安装，零配置 |
 | **Morph** | API 代理层 | 模型路由 + 上下文压缩 | 通用 API 调用 | 需改集成代码 |
 | **LiteLLM** | LLM 网关 | 缓存 + 路由 + 监控 | 多模型 API | 需部署服务 |
@@ -295,7 +318,6 @@ rtk init -g
 *本文基于 rtk v0.28.2 实测撰写。工具持续迭代，具体功能请以最新版本为准。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -323,25 +345,20 @@ rtk init -g
 
 ## Why This Matters
 
-Understanding rtk 实测：这款 rust 写的 cli 代理，让我的 claude code 月账单从 1200 元砍到 240 元｜llm token 优化终极指南 2026 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding rtk 实测：这款 rust 写的 cli 代理，让我的 claude code 月账单从 1200 元砍到 240 元｜llm token 优化终极指南 2026 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -393,7 +410,17 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

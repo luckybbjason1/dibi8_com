@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/affine-knowledge-base-whiteboard" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/affine-knowledge-base-whiteboard" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/affine-knowledge-base-whiteboard" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/affine-knowledge-base-whiteboard" />
 title: 'AFFiNE 2026: AI 기반 지식 관리를 위한 오픈소스 Notion+Miro 하이브리드 — 설치...
 description: 'Docker로 AFFiNE v0.26.3을 Notion+Miro 대체제로 자체 호스팅하세요. 로컬 우선 CRDT 협업, 에지리스 화이트보드, AI 글쓰기 도우미, 5분 Docker 설치.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [affine, '지식-베이스', 화이트보드, '자체-호스팅', docker, 'notion-대체', 'miro-대체', crdt, '로컬-우선', 'ai-글쓰기']
-aliases:
-- /kr/posts/affine-knowledge-base-whiteboard/
+aliases: - /kr/posts/affine-knowledge-base-whiteboard/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/affine-knowledge-base-whiteboard/ -->
 
 {{</* resource-info */>}}
 
@@ -51,9 +43,7 @@ AFFiNE은 TOEVERYTHING PTE. LTD.가 개발한 오픈소스 올인원 지식 운�
 
 ## AFFiNE의 작동 방식: 납부 아키텍처
 
-AFFiNE의 아키텍처는 세 개의 레이어로 구성됩니다:
-
-**레이어 1: OctoBase (Rust CRDT 엔진)** — 충돌 해결, 실시간 동기화, 영구 저장을 처리합니다. 데이터는 서버 조정 없이 모든 클라이언트의 변경 사항을 병합할 수 있는 플랫 작업 로그로 저장됩니다. 이를 통해 오프라인 우선 편집이 가능합니다: 비행기에서 작업하고 재연결 시 모든 변경 사항이 동기화됩니다.
+AFFiNE의 아키텍처는 세 개의 레이어로 구성됩니다: **레이어 1: OctoBase (Rust CRDT 엔진)** — 충돌 해결, 실시간 동기화, 영구 저장을 처리합니다. 데이터는 서버 조정 없이 모든 클라이언트의 변경 사항을 병합할 수 있는 플랫 작업 로그로 저장됩니다. 이를 통해 오프라인 우선 편집이 가능합니다: 비행기에서 작업하고 재연결 시 모든 변경 사항이 동기화됩니다.
 
 **레이어 2: BlockSuite (TypeScript 에디터 프레임워크)** — 동일한 데이터 모델에서 문서 뷰와 화이트보드 뷰를 모두 렌더링하는 블록 기반 에디터 프레임워크입니다. 모든 단락, 이미지, 모양 또는 데이터베이스 테이블은 고유 ID와 유형화된 스키마를 가진 "블록"입니다.
 
@@ -74,17 +64,13 @@ AFFiNE의 아키텍처는 세 개의 레이어로 구성됩니다:
 
 AFFiNE의 공식 Docker Compose 설정이 권장 배포 방법입니다. 데이터베이스 마이그레이션, 영구 저장소 및 서비스 종속성을 자동으로 처리합니다.
 
-**1단계:** 디렉터리를 만들고 공식 compose 파일을 다운로드합니다:
-
-```bash
+**1단계:** 디렉터리를 만들고 공식 compose 파일을 다운로드합니다: ```bash
 mkdir -p ~/affine-selfhost && cd ~/affine-selfhost
 wget -O docker-compose.yml https://github.com/toeverything/affine/releases/latest/download/docker-compose.yml
 wget -O .env https://github.com/toeverything/affine/releases/latest/download/.env.example
 ```
 
-**2단계:** 환경 파일을 자격 증명으로 편집합니다:
-
-```bash
+**2단계:** 환경 파일을 자격 증명으로 편집합니다: ```bash
 # .env 파일 편집
 cat > .env << EOF
 AFFINE_ADMIN_EMAIL=admin@yourdomain.com
@@ -99,18 +85,14 @@ CONFIG_LOCATION=./config
 EOF
 ```
 
-**3단계:** 스택을 시작합니다:
-
-```bash
+**3단계:** 스택을 시작합니다: ```bash
 docker compose up -d
 # 가져오기: affineteams/affine-graphql, postgres:16, redis:7.2
 # 자동 DB 마이그레이션 실행
 # 첫 부팅 시 .env에서 관리자 계정 생성
 ```
 
-**4단계:** 모든 컨테이너가 정상 상태인지 확인합니다:
-
-```bash
+**4단계:** 모든 컨테이너가 정상 상태인지 확인합니다: ```bash
 $ docker compose ps
 NAME            STATUS          PORTS
 affine-server   Up 10 seconds   0.0.0.0:3010->3010/tcp
@@ -156,13 +138,9 @@ server {
 
 ## 4가지 주요 도구와 통합
 
-AFFiNE은 플러그인 시스템과 API를 통해 기존 도구 체인에 연결됩니다:
+AFFiNE은 플러그인 시스템과 API를 통해 기존 도구 체인에 연결됩니다: **1. CalDAV 캘린더 통합**
 
-**1. CalDAV 캘린더 통합**
-
-AFFiNE v0.26+는 CalDAV를 지원하여 외부 캘린더와 작업 및 마감일을 동기화합니다. **설정 > 통합 > CalDAV**에서 구성합니다:
-
-```bash
+AFFiNE v0.26+는 CalDAV를 지원하여 외부 캘린더와 작업 및 마감일을 동기화합니다. **설정 > 통합 > CalDAV**에서 구성합니다: ```bash
 # CalDAV 연결 테스트
 curl -X PROPFIND https://your-nextcloud.com/remote.php/dav/calendars/admin/personal/ \
   -u admin:password \
@@ -172,9 +150,7 @@ curl -X PROPFIND https://your-nextcloud.com/remote.php/dav/calendars/admin/perso
 
 **2. AI 어시스턴트 구성 (OpenAI API)**
 
-AI 어시스턴트는 Ollama 또는 LiteLLM을 통한 로컬 모델을 포함하여 모든 OpenAI 호환 엔드포인트를 가리킬 수 있습니다:
-
-```bash
+AI 어시스턴트는 Ollama 또는 LiteLLM을 통한 로컬 모델을 포함하여 모든 OpenAI 호환 엔드포인트를 가리킬 수 있습니다: ```bash
 # AFFiNE 관리 패널 > 설정 > AI
 # 제공자 URL: http://your-ollama:11434/v1
 # API 키: sk-ollama (또는 사용자 키)
@@ -201,9 +177,7 @@ curl -X POST http://localhost:3010/api/docs \
 
 **4. 개발자 워크플로용 Git 동기화**
 
-AFFiNE의 낳출 기능과 `git`을 결합하여 버전 제어 문서를 만듭니다:
-
-```bash
+AFFiNE의 낳출 기능과 `git`을 결합하여 버전 제어 문서를 만듭니다: ```bash
 #!/bin/bash
 # daily-backup.sh - cron으로 매일 밤 실행
 docker exec affine-postgres pg_dump -U affine affine > backup-$(date +%Y%m%d).sql
@@ -212,9 +186,7 @@ git add backup-*.sql && git commit -m "docs: daily AFFiNE backup $(date +%Y-%m-%
 
 ## 벤치마크 / 실제 사용 사례
 
-AFFiNE의 성능 특성은 프로덕션 배포에 중요합니다:
-
-| 메트릭 | AFFiNE 자체 호스팅 | Notion 클라우드 | Miro 클라우드 |
+AFFiNE의 성능 특성은 프로덕션 배포에 중요합니다: | 메트릭 | AFFiNE 자체 호스팅 | Notion 클라우드 | Miro 클라우드 |
 |--------|-------------------|--------------|------------|
 | 첫 콘텐츠 렌더링 | **1.2초** (로컬) | 2.8초 | 3.1초 |
 | 동기화 지연 (같은 LAN) | **<50ms** | 180-400ms | 200-500ms |
@@ -303,8 +275,7 @@ echo "0 2 * * * /root/backup-affine.sh" | crontab -
 
 ```yaml
 # 높은 부하 시나리오를 위해 docker-compose.yml에 추가
-environment:
-  - DATABASE_URL=postgresql://affine:${DB_PASSWORD}@postgres:5432/affine
+environment: - DATABASE_URL=postgresql://affine:${DB_PASSWORD}@postgres:5432/affine
   - DATABASE_POOL_SIZE=20
   - DATABASE_POOL_MAX=50
   - DATABASE_TIMEOUT=30000
@@ -333,9 +304,7 @@ environment:
 
 ## 한계: 정직한 평가
 
-AFFiNE은 완벽하지 않습니다. 약속하기 전에 알아야 할 사항:
-
-1. **데이터베이스 공식은 Notion에 비해 제한적입니다.** 복잡한 롤업 및 교차 데이터베이스 쿼리는 계획 중이지만 아직 구현되지 않았습니다(목표: 2026년 3분기).
+AFFiNE은 완벽하지 않습니다. 약속하기 전에 알아야 할 사항: 1. **데이터베이스 공식은 Notion에 비해 제한적입니다.** 복잡한 롤업 및 교차 데이터베이스 쿼리는 계획 중이지만 아직 구현되지 않았습니다(목표: 2026년 3분기).
 
 2. **v0.26 기준 네이티브 모바일 앱이 없습니다.** PWA는 모바일 브라우저에서 작동하지만, 네이티브 Notion 또는 Obsidian 앱만큼 부드럽지 않습니다.
 
@@ -388,9 +357,7 @@ Docker로 오늘 5분 만에 배포하고, 선택한 AI 모델을 연결하고, 
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -400,7 +367,6 @@ Docker로 오늘 5분 만에 배포하고, 선택한 AI 모델을 연결하고, 
 본 기사에는 DigitalOcean의 제휴 링크가 포함되어 있습니다. 당사 링크를 통해 가입하면 추가 비용 없이 커미션을 받습니다. 모든 권장 사항은 실제 테스트를 기반으로 하며 제휴 프로그램의 영향을 받지 않습니다. AFFiNE은 완전히 오픈소스이며 자체 호스팅을 위해 어떤 유료 요구 사항도 필요 없습니다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

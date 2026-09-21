@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/local-deep-research-local-first-ai-deep-research-tool" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/local-deep-research-local-first-ai-deep-research-tool" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/local-deep-research-local-first-ai-deep-research-tool" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/local-deep-research-local-first-ai-deep-research-tool" />
 title: "Local Deep Research: Công Cụ Nghiên Cứu Sâu AI Ưu Tiên L...
 description: "Làm chủ Local Deep Research (LDR) — trợ lý nghiên cứu AI ưu tiên local. Tìm hiểu cách thực hiện nghiên cứu sâu, lặp lại với Ollama và SearXNG trong khi duy trì quyền riêng tư 100%."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Docker
+tech_stack: - Docker
   - Python
 application_domain: "Llm Frameworks"
 source_version: ""
@@ -25,10 +19,8 @@ maintainer: "searxng"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases:
-- /vi/posts/local-deep-research-local-first-ai-deep-research-tool/
-faqs:
-  - q: 'Local Deep Research (LDR) là gì?'
+aliases: - /vi/posts/local-deep-research-local-first-ai-deep-research-tool/
+faqs: - q: 'Local Deep Research (LDR) là gì?'
     a: 'Local Deep Research (LDR) là một trợ lý nghiên cứu AI mã nguồn mở, thực hiện nghiên cứu có hệ thống và lặp đi lặp lại thay vì đưa ra câu trả lời nhanh kiểu trò chuyện. Nó phân rã một truy vấn thành các truy vấn con, tìm kiếm song song trên web, cơ sở dữ liệu học thuật và các tệp cục bộ, rồi tổng hợp thành một báo cáo có trích dẫn.'
   - q: 'Local Deep Research có thể chạy hoàn toàn ngoại tuyến để đảm bảo quyền riêng tư không?'
     a: 'Có. Bằng cách tích hợp với Ollama, LDR có thể chạy hoàn toàn trên phần cứng cục bộ, nhờ đó các truy vấn nghiên cứu, tài liệu độc quyền và báo cáo cuối cùng không bao giờ rời khỏi máy của bạn. Thiết kế ưu tiên cục bộ này khiến nó phù hợp cho nghiên cứu kỹ thuật cấp doanh nghiệp hoặc nhạy cảm.'
@@ -40,7 +32,6 @@ faqs:
     a: 'LDR cung cấp các trích dẫn có độ trung thực cao, đính kèm danh mục tài liệu tham khảo cho mọi khẳng định mà nó đưa ra để bạn có thể kiểm chứng nguồn tài liệu ngay lập tức. Nó cũng thực hiện tổng hợp lặp đi lặp lại, xác định các khoảng trống và chạy các tìm kiếm tiếp theo thay vì dựa vào một câu trả lời hời hợt duy nhất.'
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/local-deep-research-local-first-ai-deep-research-tool/ -->
 {</* resource-info */>}
 
 Hầu hết các trợ lý AI đều ưu tiên "chat", nghĩa là chúng đưa ra câu trả lời nhanh dựa trên dữ liệu đã được huấn luyện trước. Nhưng nếu bạn cần một phương pháp **ưu tiên nghiên cứu (research-first)** có khả năng quét web, các bài báo học thuật và tài liệu địa phương của bạn để tổng hợp thành một báo cáo chuyên sâu thì sao? Và nếu bạn muốn thực hiện việc đó với **quyền riêng tư 100%** thì sao?
@@ -49,23 +40,18 @@ Hãy làm quen với **Local Deep Research (LDR)**.
 
 ## 🚀 Local Deep Research là gì?
 
-LDR là một trợ lý nghiên cứu AI mã nguồn mở mạnh mẽ, được thiết kế để thực hiện nghiên cứu hệ thống và lặp lại. Không giống như các LLM tiêu chuẩn có thể gây ra hiện tượng "ảo giác" hoặc cung cấp thông tin bề mặt, LDR tuân theo một quy trình nghiêm ngặt:
-
-1.  **Phân tách truy vấn**: Chia nhỏ câu hỏi phức tạp của bạn thành các truy vấn phụ tập trung.
+LDR là một trợ lý nghiên cứu AI mã nguồn mở mạnh mẽ, được thiết kế để thực hiện nghiên cứu hệ thống và lặp lại. Không giống như các LLM tiêu chuẩn có thể gây ra hiện tượng "ảo giác" hoặc cung cấp thông tin bề mặt, LDR tuân theo một quy trình nghiêm ngặt: 1.  **Phân tách truy vấn**: Chia nhỏ câu hỏi phức tạp của bạn thành các truy vấn phụ tập trung.
 2.  **Tìm kiếm song song**: Truy vấn đồng thời trên web (qua SearXNG), các cơ sở dữ liệu học thuật (arXiv, PubMed) và các tệp tin địa phương.
 3.  **Tổng hợp lặp lại**: Phân tích các phát hiện, xác định các lỗ hổng kiến thức và thực hiện các tìm kiếm tiếp theo để "đào sâu" kiến thức.
 4.  **Báo cáo có cấu trúc**: Tạo ra một báo cáo toàn diện với các trích dẫn nguồn đầy đủ.
 
 ## 🎯 Tại sao đây là bước ngoặt cho các nhà phát triển?
 
-Đối với những người đang xây dựng thế hệ công cụ AI tiếp theo, LDR mang lại ba lợi thế quan trọng:
-
-### 1. Quyền riêng tư ngay từ khâu thiết kế
+Đối với những người đang xây dựng thế hệ công cụ AI tiếp theo, LDR mang lại ba lợi thế quan trọng: ### 1. Quyền riêng tư ngay từ khâu thiết kế
 Bằng cách tích hợp với **Ollama**, LDR có thể chạy hoàn toàn trên phần cứng địa phương của bạn. Các truy vấn nghiên cứu, tài liệu độc quyền và báo cáo cuối cùng của bạn không bao giờ rời khỏi máy tính. Đây là điều kiện bắt buộc đối với các nghiên cứu kỹ thuật nhạy cảm hoặc cấp doanh nghiệp.
 
 ### 2. Trí tuệ đa nguồn
-LDR không chỉ đơn thuần là "google". Nó có thể được cấu hình để định tuyến các truy vấn một cách thông minh:
-- **Câu hỏi khoa học** sẽ được chuyển đến các công cụ học thuật.
+LDR không chỉ đơn thuần là "google". Nó có thể được cấu hình để định tuyến các truy vấn một cách thông minh: - **Câu hỏi khoa học** sẽ được chuyển đến các công cụ học thuật.
 - **Câu hỏi về mã lệnh** sẽ được chuyển đến GitHub và các nguồn kỹ thuật.
 - **Thông tin chung** sẽ được chuyển đến Wikipedia và tìm kiếm web.
 
@@ -74,9 +60,7 @@ Một trong những điểm yếu lớn nhất của AI là sự tin cậy. LDR 
 
 ## 🛠️ Hướng dẫn của "Sư phụ": Thiết lập ưu tiên Local
 
-Để khai thác tối đa LDR, tôi khuyên bạn nên sử dụng **Local-First Stack**:
-
-- **Công cụ LLM**: [Ollama](https://ollama.com/) (chạy Llama 3 hoặc Mistral).
+Để khai thác tối đa LDR, tôi khuyên bạn nên sử dụng **Local-First Stack**: - **Công cụ LLM**: [Ollama](https://ollama.com/) (chạy Llama 3 hoặc Mistral).
 - **Công cụ tìm kiếm**: [SearXNG](https://github.com/searxng/searxng) (một công cụ tìm kiếm meta tôn trọng quyền riêng tư).
 - **Môi trường**: Docker (để triển khai dễ dàng).
 
@@ -107,9 +91,7 @@ Local Deep Research không chỉ là một công cụ; đó là một sự thay 
 
 ## Hạ Tầng Đề Xuất Cho Tự Lưu Trữ
 
-Để chạy stack này 24/7 ổn định, lựa chọn hạ tầng rất quan trọng:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu. Lựa chọn mặc định cho developer độc lập.
+Để chạy stack này 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu. Lựa chọn mặc định cho developer độc lập.
 - **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — VPS Hong Kong, độ trễ thấp với người dùng Việt Nam. dibi8.com cũng được host ở đây.
 - **{{< aff "hostinger" "footer-cta-legacy" "Hostinger" >}}** — Lựa chọn VPS giá tốt cho thị trường Việt Nam, giảm 60% gói đầu tiên.
 
@@ -117,7 +99,6 @@ Local Deep Research không chỉ là một công cụ; đó là một sự thay 
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -145,25 +126,20 @@ Local Deep Research không chỉ là một công cụ; đó là một sự thay 
 
 ## Why This Matters
 
-Understanding local deep research: công cụ nghiên cứu sâu ai ưu tiên local tối thượng is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding local deep research: công cụ nghiên cứu sâu ai ưu tiên local tối thượng is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/ds4-deepseek-flash-local-inference" />
 title: 'DS4 vs Ollama vs llama.cpp: DeepSeek V4 Flash Local Infe...
   128GB Mac'
 description: Discover DS4 by antirez (Redis creator) — a native inference engine for. Comprehensive guide covering features, pricing, and best practices for 2026.
@@ -8,8 +6,7 @@ description: Discover DS4 by antirez (Redis creator) — a native inference engi
   and how to run a 1M-context LLM locally on macOS and Linux.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
-tech_stack:
-- C++
+tech_stack: - C++
 - Go
 - Python
 application_domain: Ai Tools
@@ -26,11 +23,9 @@ maintainer: ''
 last_maintained: '2026-05-15'
 featureImage: ''
 draft: false
-aliases:
-- /posts/ds4-deepseek-flash-local-inference/
+aliases: - /posts/ds4-deepseek-flash-local-inference/
 - /posts/ds4-open-source-deepseek-alternative-2026/
-faqs:
-  - q: 'What is DS4 (DwarfStar 4) and who created it?'
+faqs: - q: 'What is DS4 (DwarfStar 4) and who created it?'
     a: 'DS4 (DwarfStar 4) is a small, native inference engine purpose-built to run the DeepSeek V4 Flash model locally on Apple Metal and NVIDIA CUDA hardware. It was created by Salvatore Sanfilippo (antirez), the Italian programmer who created Redis.'
   - q: 'How much RAM do you need to run DeepSeek V4 Flash with DS4?'
     a: 'For the 2-bit (q2) weights you need a minimum of 96GB RAM, with 128GB recommended. The 4-bit (q4) weights require 256GB or more, which excludes most consumer laptops.'
@@ -39,9 +34,7 @@ faqs:
   - q: 'What is DS4''s disk KV cache and why does it matter?'
     a: 'DS4 treats the KV cache as a first-class disk citizen, writing checkpoints to fast SSDs instead of keeping all state in RAM. This enables 100K-1M token context windows on RAM-limited machines and lets agent workflows resume a long conversation instantly without reprocessing the prompt.'
   - q: 'Does DS4 provide an OpenAI-compatible API server?'
-    a: 'Yes. Building DS4 produces a ds4-server binary that exposes an OpenAI- and Anthropic-compatible HTTP API on http://127.0.0.1:8000, with endpoints including /v1/chat/completions, /v1/completions, and /v1/messages. It supports OpenAI-style function calling and works with agent frameworks like OpenCode, Pi, and Claude Code.'
----
-
+    a: 'Yes. Building DS4 produces a ds4-server binary that exposes an OpenAI- and Anthropic-compatible HTTP API on http://127.0.0.1:8000, with endpoints including /v1/chat/completions, /v1/completions, and /v1/messages. It supports OpenAI-style function calling and works with agent frameworks like OpenCode, Pi, and Claude Code.'---
 {</* resource-info */>}
 
 # DS4 (DwarfStar 4): Running DeepSeek V4 Flash Locally with Metal & CUDA — The Complete Guide
@@ -52,12 +45,10 @@ Unlike generic GGUF runners or wrappers around other runtimes, DS4 takes a delib
 
 In this comprehensive guide, we explore what makes DS4 special, how its technical architecture differs from alternatives like Ollama and llama.cpp, and provide step-by-step installation instructions, performance benchmarks, code examples, and real-world use cases.
 
+
 ---
-
 ## DeepSeek V4 Flash Local Inference: DS4 vs Ollama vs llama.cpp
-Running a massive model like DeepSeek V4 Flash requires hardcore optimization. Here is how DS4 obliterates the competition on an M-series Mac:
-
-| Framework | 2-bit Quantization Speed | KV Cache Persistence | Hardware Optimization | Setup Difficulty |
+Running a massive model like DeepSeek V4 Flash requires hardcore optimization. Here is how DS4 obliterates the competition on an M-series Mac: | Framework | 2-bit Quantization Speed | KV Cache Persistence | Hardware Optimization | Setup Difficulty |
 | :--- | :--- | :--- | :--- | :--- |
 | **DwarfStar 4 (DS4)** | **Ultra-Fast (35+ t/s)** | **Yes (Disk-backed)** | Native Metal / CUDA | Moderate |
 | **Ollama** | Slow | No (RAM wipe on exit)| Generic cross-platform | Very Easy |
@@ -74,9 +65,7 @@ Sanfilippo's approach with DS4 is characteristically opinionated: instead of bui
 
 ### Why DeepSeek V4 Flash?
 
-Sanfilippo believes DeepSeek V4 Flash is a uniquely compelling model for local deployment. Here is why:
-
-1. **Speed through efficiency**: With fewer active parameters during inference, it outperforms many smaller dense models in raw throughput.
+Sanfilippo believes DeepSeek V4 Flash is a uniquely compelling model for local deployment. Here is why: 1. **Speed through efficiency**: With fewer active parameters during inference, it outperforms many smaller dense models in raw throughput.
 2. **Proportional thinking**: In thinking mode, its reasoning section length adapts to problem complexity — often using only 1/5 the thinking tokens of comparable models. This makes it practical for real-world agent workflows where other models would stall.
 3. **1 million token context window**: One of the largest context windows available in any open-weights model, enabling entire codebases, books, or long conversation histories to fit in a single prompt.
 4. **Knowledge depth**: At 284B parameters, it knows significantly more than 27B or 35B models at the edges of knowledge.
@@ -84,14 +73,18 @@ Sanfilippo believes DeepSeek V4 Flash is a uniquely compelling model for local d
 6. **Compressed KV cache**: Enables long-context inference on local machines and supports **on-disk KV cache persistence** — a game-changer for agent workflows.
 7. **2-bit quantization viability**: When quantized asymmetrically (routed experts only), 2-bit weights run surprisingly well, fitting into 96-128GB MacBooks.
 
----
 
+---
 ## Technical Architecture: Metal vs. CUDA Optimizations
 
-DS4's architecture reflects a clear design philosophy: **maximize performance for the target hardware**, even if that means sacrificing generality. The project maintains three build targets:
-
-| Build Target | Platform | Use Case |
-|-------------|----------|----------|
+DS4's architecture reflects a clear design philosophy: **maximize performance for the target hardware**, even if that means sacrificing generality. The project maintains three build targets: | Build Target | Platform | Use Case |
+|
+---
+|
+---
+|
+---
+|
 | `make` | macOS | Metal-optimized production build |
 | `make cuda-spark` | Linux (DGX Spark / GB10) | CUDA for NVIDIA GB10 systems |
 | `make cuda-generic` | Linux (other CUDA GPUs) | General CUDA GPU support |
@@ -99,9 +92,7 @@ DS4's architecture reflects a clear design philosophy: **maximize performance fo
 
 ### Metal on macOS
 
-The Metal backend is DS4's **primary optimization target** for macOS. It leverages Apple's unified memory architecture to eliminate the PCIe transfer bottleneck that plagues discrete GPU setups. On a Mac Studio M3 Ultra with 512GB RAM, DS4 achieves:
-
-- **468 tokens/second prefill** on long prompts (11,709 tokens)
+The Metal backend is DS4's **primary optimization target** for macOS. It leverages Apple's unified memory architecture to eliminate the PCIe transfer bottleneck that plagues discrete GPU setups. On a Mac Studio M3 Ultra with 512GB RAM, DS4 achieves: - **468 tokens/second prefill** on long prompts (11,709 tokens)
 - **36.86 tokens/second generation** with q2 quantization
 - **448 tokens/second prefill** and **35.5 tokens/second generation** with q4
 
@@ -156,9 +147,7 @@ cd ds4
 
 ### Step 2: Download Model Weights
 
-DS4 only works with its own specially-crafted GGUF files. Use the provided download script:
-
-```bash
+DS4 only works with its own specially-crafted GGUF files. Use the provided download script: ```bash
 # For 96-128GB RAM machines (recommended)
 ./download_model.sh q2-imatrix
 
@@ -193,8 +182,7 @@ make cuda-generic
 make cpu
 ```
 
-This produces two binaries:
-- `./ds4` — Interactive CLI
+This produces two binaries: - `./ds4` — Interactive CLI
 - `./ds4-server` — OpenAI/Anthropic-compatible HTTP API server
 
 ### Step 4: Verify Installation
@@ -217,7 +205,17 @@ Benchmarking LLM inference is notoriously tricky — numbers vary by prompt leng
 ### DS4 Official Benchmarks (Metal, `--ctx 32768`, greedy decoding, `-n 256`)
 
 | Machine | Quant | Prompt | Prefill | Generation |
-|---------|-------|--------|---------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | MacBook Pro M3 Max, 128GB | q2 | short | 58.52 t/s | 26.68 t/s |
 | MacBook Pro M3 Max, 128GB | q2 | 11,709 tokens | **250.11 t/s** | 21.47 t/s |
 | Mac Studio M3 Ultra, 512GB | q2 | short | 84.43 t/s | 36.86 t/s |
@@ -251,8 +249,7 @@ llama.cpp is the foundational project that made local LLM inference possible. DS
 ./ds4
 ```
 
-This starts a multi-turn chat with persistent KV state. Useful commands:
-- `/help` — Show available commands
+This starts a multi-turn chat with persistent KV state. Useful commands: - `/help` — Show available commands
 - `/think` — Enable thinking mode (default)
 - `/think-max` — Maximum reasoning effort
 - `/nothink` — Disable thinking for faster responses
@@ -269,8 +266,7 @@ This starts a multi-turn chat with persistent KV state. Useful commands:
   --kv-disk-space-mb 8192
 ```
 
-The server starts on `http://127.0.0.1:8000` with these endpoints:
-- `GET /v1/models`
+The server starts on `http://127.0.0.1:8000` with these endpoints: - `GET /v1/models`
 - `POST /v1/chat/completions`
 - `POST /v1/completions`
 - `POST /v1/messages` (Anthropic-compatible)
@@ -309,16 +305,12 @@ response = client.chat.completions.create(
     temperature=0.7
 )
 
-for chunk in response:
-    if chunk.choices[0].delta.content:
-        print(chunk.choices[0].delta.content, end="")
+for chunk in response: if chunk.choices[0].delta.content: print(chunk.choices[0].delta.content, end="")
 ```
 
 ### Tool Use Example
 
-DS4 supports OpenAI-style function calling. The server converts tool schemas to DeepSeek's DSML format and maps results back automatically:
-
-```bash
+DS4 supports OpenAI-style function calling. The server converts tool schemas to DeepSeek's DSML format and maps results back automatically: ```bash
 curl http://127.0.0.1:8000/v1/chat/completions \
   -H 'Content-Type: application/json' \
   -d '{
@@ -359,8 +351,7 @@ With 2-bit quantization enabling operation on 96GB systems and compressed KV cac
 
 ### 4. Long-Context Research & Analysis
 
-The 1 million token context window opens possibilities that were impractical before:
-- Analyze entire legal case files in a single pass
+The 1 million token context window opens possibilities that were impractical before: - Analyze entire legal case files in a single pass
 - Review complete git repository histories with full diff context
 - Process books, research papers, and multi-document corpora
 - Maintain months-long conversation histories without truncation
@@ -373,9 +364,7 @@ At zero dollars per token, local inference with DS4 eliminates API costs for hig
 
 ## Limitations You Should Know
 
-DS4 is powerful, but it is important to understand its constraints:
-
-1. **Alpha quality**: Sanfilippo is explicit that the code is alpha quality. It has existed for only a short time and will take months to mature. Expect bugs and rough edges.
+DS4 is powerful, but it is important to understand its constraints: 1. **Alpha quality**: Sanfilippo is explicit that the code is alpha quality. It has existed for only a short time and will take months to mature. Expect bugs and rough edges.
 
 2. **Single model support**: DS4 only runs DeepSeek V4 Flash GGUFs created specifically for this project. You cannot load arbitrary GGUF files or other models.
 
@@ -394,6 +383,7 @@ DS4 is powerful, but it is important to understand its constraints:
 ---
 
 
+-
 ---
 
 ## Related Articles
@@ -419,13 +409,12 @@ As the project matures from alpha to stable, DS4 could become the definitive way
 ---
 
 
+-
 ---
 
 ## Recommended Infrastructure for Self-Hosting
 
-If you want to run this stack reliably 24/7, infrastructure choice matters:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+If you want to run this stack reliably 24/7, infrastructure choice matters: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -443,7 +432,6 @@ A: If you are running coding agents 24/7, API costs can exceed $1,000/month. Loc
 **Q: How does disk KV cache work in DS4?**
 A: Unlike Ollama which dumps context, DS4 saves the KV cache to your SSD. You can resume a 100K token conversation instantly without waiting for prompt reprocessing!
 
-<!--auto-references-->
 ## References & Sources
 
 - [DS4 (DwarfStar 4)](https://github.com/antirez/ds4)
@@ -455,7 +443,6 @@ A: Unlike Ollama which dumps context, DS4 saves the KV cache to your SSD. You ca
 - [Claude Code](https://github.com/anthropics/claude-code)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

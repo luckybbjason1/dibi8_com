@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/demucs" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/demucs" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/demucs" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/demucs" />
 title: 'Demucs: 10K+ Stars 음악 소스 분리 — UVR, Spleeter 2026 비교'
 description: 'Demucs는 Meta AI가 개발한 하이브리드 스펙트로그램 및 파형 소스 분리 모델입니다. Ultimate Vocal Remover, RVC, GPT-SoVITS와 호환됩니다. demucs 튜토리얼, demucs vs uvr, demucs Docker 설치, 프로덕션 벤치마크를 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [demucs, 음악소스분리, ai오디오, 스템분리, pytorch, docker, 오픈소스]
-aliases:
-- /kr/posts/demucs/
+aliases: - /kr/posts/demucs/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/demucs/ -->
 
 {{</* resource-info */>}}
 
@@ -49,9 +41,7 @@ Demucs를 이전 도구와 차별화하는 핵심은 **하이브리드 접근 �
 
 ### 아키텍처 개요
 
-Demucs의 현재 세대 — 공식명 **Hybrid Transformer Demucs (HTDemucs)** — 트랜스포머 레이어가 추가된 U-Net 컨볼루션 백본을 기반으로 한다. 아키텍처는 개념적으로 세 단계로 구성된다:
-
-1. **인코더**: 입력 파형이 시간 영역 인코더(1D 컨볼루션)와 주파수 영역 인코더(STFT 후 2D 컨볼루션)를 동시에 통과한다. 이러한 이중 인코딩은 미세한 시간적 세부 정보와 고조파 주파수 구조를 모두 포착한다.
+Demucs의 현재 세대 — 공식명 **Hybrid Transformer Demucs (HTDemucs)** — 트랜스포머 레이어가 추가된 U-Net 컨볼루션 백본을 기반으로 한다. 아키텍처는 개념적으로 세 단계로 구성된다: 1. **인코더**: 입력 파형이 시간 영역 인코더(1D 컨볼루션)와 주파수 영역 인코더(STFT 후 2D 컨볼루션)를 동시에 통과한다. 이러한 이중 인코딩은 미세한 시간적 세부 정보와 고조파 주파수 구조를 모두 포착한다.
 
 2. **트랜스포머 병목**: U-Net의 가장 깊은 레이어는 각 영역 내에서 자기 주의를, 영역 간에는 교차 주의를 수행하는 교차 영역 트랜스포머 인코더를 사용한다. 이 메커니즘은 장거리 종속성을 모델링한다 — 예를 들어 유사한 음역의 기타 선율과 여러 마디에 걸친 보컬 멜로디를 분리하는 데 매우 중요하다.
 
@@ -61,9 +51,7 @@ Demucs의 현재 세대 — 공식명 **Hybrid Transformer Demucs (HTDemucs)** �
 
 ### 사용 가능한 모델
 
-Demucs는 다양한 속도/품질 트레이드오프에 최적화된 여러 사전 학습 모델을 제공한다:
-
-| 모델 | 스템 수 | VRAM | SDR (MUSDB) | 사용 사례 |
+Demucs는 다양한 속도/품질 트레이드오프에 최적화된 여러 사전 학습 모델을 제공한다: | 모델 | 스템 수 | VRAM | SDR (MUSDB) | 사용 사례 |
 |------|---------|------|-------------|-----------|
 | `htdemucs` | 4 | ~5.2 GB | 7.1 dB | 기본값, 속도/품질 최적 균형 |
 | `htdemucs_ft` | 4 | ~7.8 GB | 7.8 dB | 최대 품질, ~4배 느림 |
@@ -76,9 +64,7 @@ Demucs는 다양한 속도/품질 트레이드오프에 최적화된 여러 사�
 
 ### 사전 요구사항
 
-Demucs를 설치하기 전에 환경을 확인한다:
-
-```bash
+Demucs를 설치하기 전에 환경을 확인한다: ```bash
 # Python 3.8+ 필수
 python --version
 
@@ -91,9 +77,7 @@ nvidia-smi
 
 ### 옵션 1: pip 설치 (가장 빠름)
 
-Demucs를 실행하는 가장 간단한 방법:
-
-```bash
+Demucs를 실행하는 가장 간단한 방법: ```bash
 # 가상 환경 생성
 python -m venv demucs-env
 source demucs-env/bin/activate  # Linux/macOS
@@ -108,9 +92,7 @@ demucs --help
 
 ### 옵션 2: Conda + GPU 지원 (권장)
 
-GPU 가속 추론 및 훈련을 위해:
-
-```bash
+GPU 가속 추론 및 훈련을 위해: ```bash
 # 저장소 클론
 git clone https://github.com/adefossez/demucs.git
 cd demucs
@@ -128,9 +110,7 @@ python -c "import torch; print(f'CUDA available: {torch.cuda.is_available()}')"
 
 ### 옵션 3: Docker (가장 깔끔한 격리)
 
-재현 가능한, 의존성 없는 배포를 위해:
-
-```bash
+재현 가능한, 의존성 없는 배포를 위해: ```bash
 # Dockerfile
 FROM pytorch/pytorch:2.5.1-cuda12.4-cudnn9-runtime
 
@@ -140,9 +120,7 @@ WORKDIR /audio
 ENTRYPOINT ["demucs"]
 ```
 
-빌드 및 실행:
-
-```bash
+빌드 및 실행: ```bash
 docker build -t demucs .
 docker run --gpus all -v $(pwd):/audio demucs song.mp3
 ```
@@ -152,23 +130,17 @@ docker run --gpus all -v $(pwd):/audio demucs song.mp3
 ```yaml
 version: '3.8'
 
-services:
-  demucs:
-    build: .
+services: demucs: build: .
     runtime: nvidia
-    environment:
-      - NVIDIA_VISIBLE_DEVICES=all
-    volumes:
-      - ./input:/audio/input:ro
+    environment: - NVIDIA_VISIBLE_DEVICES=all
+    volumes: - ./input:/audio/input:ro
       - ./output:/audio/output
     command: ["-n", "htdemucs_ft", "--mp3", "-o", "/audio/output", "/audio/input"]
 ```
 
 ### 첫 번째 분리 실행
 
-설치 후 첫 번째 트랙을 분리한다:
-
-```bash
+설치 후 첫 번째 트랙을 분리한다: ```bash
 # 기본 모델로 4스템 분리
 demucs song.mp3
 
@@ -187,14 +159,11 @@ demucs --mp3 --mp3-bitrate 320 song.mp3
 
 ### 모델 다운로드 및 캐시 확인
 
-모델은 처음 사용 시 자동으로 다운로드된다. 캐시를 확인하려면:
-
-```bash
+모델은 처음 사용 시 자동으로 다운로드된다. 캐시를 확인하려면: ```bash
 # 다운로드된 모델 목록
 ls ~/.cache/torch/hub/checkpoints/
 
-# 예상 출력:
-# htdemucs-*.th, htdemucs_ft-*.th
+# 예상 출력: # htdemucs-*.th, htdemucs_ft-*.th
 
 # 어떤 모델이 사용될지 확인
 demucs -n htdemucs_ft --help | grep "name"
@@ -210,9 +179,7 @@ demucs -n htdemucs test_tone.wav
 
 Ultimate Vocal Remover는 Demucs의 가장 인기 있는 GUI 프론트엔드이다. 대부분의 프로듀서는 Demucs를 명령줄이 아닌 UVR을 통해 사용하는데, UVR은 Demucs 모델을 다른 아키텍처와 번들링하고 앙상블 처리를 추가하기 때문이다.
 
-UVR에서의 구성:
-
-1. [공식 GitHub Releases](https://github.com/Anjok07/ultimatevocalremovergui/releases)에서 UVR5 다운로드
+UVR에서의 구성: 1. [공식 GitHub Releases](https://github.com/Anjok07/ultimatevocalremovergui/releases)에서 UVR5 다운로드
 2. UI에서 **Process Method: "Demucs"** 선택
 3. 모델 선택: `V4 | htdemucs_ft`
 4. 가능한 경우 **GPU Conversion** 활성화
@@ -222,14 +189,11 @@ UVR의 앙상블 모드는 여러 모델을 병렬로 실행하고 출력을 혼
 
 ### RVC (Retrieval-based Voice Conversion)
 
-RVC 파이프라인은 보이스 추출 전 보컬을 분리하는 전처리 단계로 일반적으로 Demucs를 사용한다:
-
-```python
+RVC 파이프라인은 보이스 추출 전 보컬을 분리하는 전처리 단계로 일반적으로 Demucs를 사용한다: ```python
 import subprocess
 import os
 
-def preprocess_for_rvc(input_song, output_dir):
-    """RVC 보이스 컨버전을 위해 깨끗한 보컬 추출."""
+def preprocess_for_rvc(input_song, output_dir): """RVC 보이스 컨버전을 위해 깨끗한 보컬 추출."""
     os.makedirs(output_dir, exist_ok=True)
 
     # 단계 1: Demucs로 분리
@@ -254,9 +218,7 @@ vocals = preprocess_for_rvc('input.mp3', './separated')
 
 ### GPT-SoVITS
 
-GPT-SoVITS 보이스 클로닝에는 깨끗한 레퍼런스 오디오가 필요하다. Demucs는 샘플을 TTS 파이프라인에 입력하기 전에 배경 음악을 제거한다:
-
-```python
+GPT-SoVITS 보이스 클로닝에는 깨끗한 레퍼런스 오디오가 필요하다. Demucs는 샘플을 TTS 파이프라인에 입력하기 전에 배경 음악을 제거한다: ```python
 from demucs.api import Separator
 import torchaudio
 
@@ -272,16 +234,13 @@ torchaudio.save("clean_reference.wav", vocals, 24000)
 
 ### Gradio 웹 인터페이스
 
-자체 호스팅 분리 서비스를 위해:
-
-```python
+자체 호스팅 분리 서비스를 위해: ```python
 import gradio as gr
 from demucs.api import Separator
 
 separator = Separator(model="htdemucs_ft")
 
-def separate(audio_file, stem):
-    origin, separated = separator.separate_audio_file(audio_file)
+def separate(audio_file, stem): origin, separated = separator.separate_audio_file(audio_file)
     output_path = f"{stem}.wav"
     separator.save_audio(separated[stem], output_path, samplerate=44100)
     return output_path
@@ -330,9 +289,7 @@ MUSDB18-HQ는 150개의 전체 길이 곡과 분리된 스템 정답을 포함�
 
 ### 처리 시간 참고
 
-44.1kHz 스테레오 4분 트랙 기준:
-
-| 하드웨어 | htdemucs | htdemucs_ft | htdemucs_6s |
+44.1kHz 스테레오 4분 트랙 기준: | 하드웨어 | htdemucs | htdemucs_ft | htdemucs_6s |
 |----------|----------|-------------|-------------|
 | RTX 4080 GPU | ~15초 | ~55초 | ~25초 |
 | RTX 3080 GPU | ~20초 | ~75초 | ~35초 |
@@ -343,9 +300,7 @@ MUSDB18-HQ는 150개의 전체 길이 곡과 분리된 스템 정답을 포함�
 
 ### 커스텀 파이프라인을 위한 Python API
 
-프로그래밍 제어를 위해 CLI를 우회하고 Python API를 직접 사용한다:
-
-```python
+프로그래밍 제어를 위해 CLI를 우회하고 Python API를 직접 사용한다: ```python
 import torch
 import torchaudio
 from demucs.pretrained import get_model
@@ -361,15 +316,13 @@ model.eval()
 wav, sr = torchaudio.load("input.mp3")
 
 # 스테레오 확인
-if wav.shape[0] == 1:
-    wav = wav.repeat(2, 1)
+if wav.shape[0] == 1: wav = wav.repeat(2, 1)
 
 # 배치 차원 추가
 mix = wav.unsqueeze(0).to(device)
 
 # 최적화된 설정으로 분리
-with torch.no_grad():
-    sources = apply_model(
+with torch.no_grad(): sources = apply_model(
         model,
         mix,
         shifts=1,       # Shift trick: 높을수록 품질 ↑, 속도 ↓
@@ -384,8 +337,7 @@ with torch.no_grad():
 source_names = model.sources  # [drums, bass, other, vocals]
 
 # 개별 스템 저장
-for i, name in enumerate(source_names):
-    torchaudio.save(f"{name}.wav", sources[i].cpu(), sr)
+for i, name in enumerate(source_names): torchaudio.save(f"{name}.wav", sources[i].cpu(), sr)
 ```
 
 ### 배치 처리 파이프라인
@@ -395,8 +347,7 @@ from pathlib import Path
 import subprocess
 import json
 
-def batch_separate(input_dir, output_dir, model="htdemucs"):
-    """디렉토리의 모든 오디오 파일 처리."""
+def batch_separate(input_dir, output_dir, model="htdemucs"): """디렉토리의 모든 오디오 파일 처리."""
     input_dir = Path(input_dir)
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -415,8 +366,7 @@ def batch_separate(input_dir, output_dir, model="htdemucs"):
 
     # 메타데이터 매니페스트 생성
     manifest = {}
-    for f in files:
-        base = f.stem
+    for f in files: base = f.stem
         stem_dir = output_dir / model / base
         manifest[base] = {
             drums: str(stem_dir / 'drums.mp3'),
@@ -425,8 +375,7 @@ def batch_separate(input_dir, output_dir, model="htdemucs"):
             vocals: str(stem_dir / 'vocals.mp3'),
         }
 
-    with open(output_dir / 'manifest.json', w) as fp:
-        json.dump(manifest, fp, indent=2)
+    with open(output_dir / 'manifest.json', w) as fp: json.dump(manifest, fp, indent=2)
 
     return manifest
 
@@ -436,9 +385,7 @@ batch_separate('./raw_songs/', './stems/', model=htdemucs_ft)
 
 ### 긴 파일의 메모리 최적화
 
-Demucs는 전체 오디오 파일을 GPU 메모리에 로드한다. 긴 트랙이나 제한된 VRAM의 경우:
-
-```python
+Demucs는 전체 오디오 파일을 GPU 메모리에 로드한다. 긴 트랙이나 제한된 VRAM의 경우: ```python
 # 대용량 파일을 위한 CPU 오프로드 강제
 import os
 os.environ[PYTORCH_CUDA_ALLOC_CONF] = 'max_split_size_mb:128'
@@ -463,8 +410,7 @@ import time
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(demucs)
 
-def separate_with_metrics(input_path, output_dir):
-    start = time.time()
+def separate_with_metrics(input_path, output_dir): start = time.time()
 
     separator = Separator(model="htdemucs_ft", device="cuda")
     origin, separated = separator.separate_audio_file(input_path)
@@ -473,8 +419,7 @@ def separate_with_metrics(input_path, output_dir):
     logger.info(f"{input_path} 분리 완료: {duration:.1f}초")
 
     # 스템별 레벨 로깅
-    for name, audio in separated.items():
-        rms = torch.sqrt(torch.mean(audio ** 2)).item()
+    for name, audio in separated.items(): rms = torch.sqrt(torch.mean(audio ** 2)).item()
         logger.info(f"  {name}: RMS={rms:.4f}")
 
     return separated
@@ -498,9 +443,7 @@ def separate_with_metrics(input_path, output_dir):
 
 ## 한계 / 정직한 평가
 
-Demucs는 모든 오디오 작업에 적합한 도구가 아니다. 다음은 잘 수행하지 못하는 영역이다:
-
-**실시간 분리**: 가장 빠른 Demucs 모델(`htdemucs`)도 RTX 4080에서 약 16배 실시간으로 처리한다. 이는 라이브 공연이나 실시간 스트리밍 애플리케이션에는 너무 느리다. Spleeter나 전문화된 ONNX 익스포트와 같은 지연 시간에 민감한 사용 사례에 더 적합하다.
+Demucs는 모든 오디오 작업에 적합한 도구가 아니다. 다음은 잘 수행하지 못하는 영역이다: **실시간 분리**: 가장 빠른 Demucs 모델(`htdemucs`)도 RTX 4080에서 약 16배 실시간으로 처리한다. 이는 라이브 공연이나 실시간 스트리밍 애플리케이션에는 너무 느리다. Spleeter나 전문화된 ONNX 익스포트와 같은 지연 시간에 민감한 사용 사례에 더 적합하다.
 
 **기타 및 피아노 분리**: `htdemucs_6s` 모델은 기타와 피아노를 별도의 스템으로 분리하려 시도하지만, 이러한 소스의 SDR은 주요 4스템보다 현저히 낮다. 특정 기타 트랙 분리가 주요 필요라면 Basic Pitch와 같은 전문화된 전사 도구가 더 적합할 수 있다.
 
@@ -547,9 +490,7 @@ Demucs는 2026년 현재 오픈 소스 음악 소스 분리의 기준 구현체�
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -567,7 +508,6 @@ Demucs는 2026년 현재 오픈 소스 음악 소스 분리의 기준 구현체�
 - [Audio Developers Conference 2025 — Demucs ONNX 익스포트 발표](https://mixxx.discourse.group/t/gsoc-2025-converting-demucs-v4-hybrid-transformer-ai-model-to-onnx-format/32874)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

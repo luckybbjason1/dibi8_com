@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/langchain" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/langchain" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/langchain" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/langchain" />
 title: 'LangChain: 137K+ 스타로 프로덕션 준비된 AI 에이전트를 배포하는 3가지 방법 — 202...
 description: 'LangChain (LC)는 700개 이상의 통합을 갖춘 LLM 기반 애플리케이션 구축을 위한 Python/JS 프레임워크입니다. LangChain 설치 방법, Docker를 사용한 배포, OpenAI, Anthropic, Ollama와의 통합, LangSmith 관찰 가능성, LangGraph 에이전트 및 Kubernetes를 통한 프로덕션 확장에 대해 알아보세요.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,12 +20,9 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [langchain, llm, 'ai-에이전트', rag, '프로덕션-배포', docker, python, openai, langsmith, langgraph]
-aliases:
-- /kr/posts/langchain/
+aliases: - /kr/posts/langchain/
 - /kr/resources/llm-frameworks/langchain-complete-guide/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/langchain/ -->
 
 {{</* resource-info */>}}
 
@@ -50,9 +42,7 @@ LangChain은 대규모 언어 모델로 구동되는 애플리케이션을 구�
 
 ### 아키텍처 개요
 
-LangChain의 아키텍처는 다섯 개 계층으로 관심사를 분리한다:
-
-1. **모델 I/O** — 채팅 모델, LLM, 임베딩을 위한 표준화된 인터페이스. 한 줄의 임포트 변경으로 OpenAI GPT-4o에서 Anthropic Claude 3.5 Sonnet으로 전환한다.
+LangChain의 아키텍처는 다섯 개 계층으로 관심사를 분리한다: 1. **모델 I/O** — 채팅 모델, LLM, 임베딩을 위한 표준화된 인터페이스. 한 줄의 임포트 변경으로 OpenAI GPT-4o에서 Anthropic Claude 3.5 Sonnet으로 전환한다.
 2. **검색(Retrieval)** — 문서 로더, 텍스트 분할기, 임베딩 모델, 벡터 스토어가 RAG 파이프라인을 구성한다. PDF, HTML, Notion 페이지를 로드하고, 청크로 분할하고, 임베딩하고, 의미론적으로 쿼리한다.
 3. **에이전트** — `create_agent` API(LangChain 1.0+)는 도구 선택, 추론 루프, 인간 개입 승인을 오케스트레이션한다. 에이전트는 어떤 도구를 호출하고, 어떤 순서로, 언제 멈출지 결정한다.
 4. **체인(Chains)** — 컴포넌트를 순차적으로 연결하는 구성 가능한 워크플로우. RetrievalQA 체인은 검색기를 LLM에 연결하여 문서 기반 질문 응답을 수행한다.
@@ -181,38 +171,26 @@ httpx==0.28.0
 # docker-compose.yml
 version: '3.8'
 
-services:
-  app:
-    build: .
-    ports:
-      - "8000:8000"
-    environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
+services: app: build: .
+    ports: - "8000:8000"
+    environment: - OPENAI_API_KEY=${OPENAI_API_KEY}
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
       - LANGSMITH_API_KEY=${LANGSMITH_API_KEY}
       - LANGSMITH_TRACING=true
       - REDIS_URL=redis://redis:6379
-    depends_on:
-      - redis
+    depends_on: - redis
       - chroma
     restart: unless-stopped
 
-  redis:
-    image: redis:7-alpine
-    volumes:
-      - redis_data:/data
+  redis: image: redis:7-alpine
+    volumes: - redis_data:/data
     restart: unless-stopped
 
-  chroma:
-    image: chromadb/chroma:latest
-    volumes:
-      - chroma_data:/chroma/chroma
+  chroma: image: chromadb/chroma:latest
+    volumes: - chroma_data:/chroma/chroma
     restart: unless-stopped
 
-volumes:
-  redis_data:
-  chroma_data:
-```
+volumes: redis_data: chroma_data: ```
 
 ### 빌드 및 실행
 
@@ -347,18 +325,14 @@ from langchain_openai import ChatOpenAI
 
 # 사용자 정의 도구 정의
 @tool
-def search_knowledge_base(query: str) -> str:
-    """Search internal knowledge base for technical documentation."""
+def search_knowledge_base(query: str) -> str: """Search internal knowledge base for technical documentation."""
     return f"Results for '{query}': Found 3 relevant documents."
 
 @tool
-def calculate(expression: str) -> str:
-    """Evaluate a mathematical expression."""
-    try:
-        result = eval(expression)
+def calculate(expression: str) -> str: """Evaluate a mathematical expression."""
+    try: result = eval(expression)
         return str(result)
-    except Exception as e:
-        return f"Error: {str(e)}"
+    except Exception as e: return f"Error: {str(e)}"
 
 # 에이전트 생성
 tools = [search_knowledge_base, calculate]
@@ -378,9 +352,7 @@ print(result["output"])
 
 ### 성능 벤치마크
 
-AWS c5.4xlarge(16 vCPU, 32GB RAM)에서 gpt-3.5-turbo와 sentence-transformers/all-mpnet-base-v2로 수집한 벤치마크 데이터:
-
-| 메트릭 | LangChain | LlamaIndex | Haystack | Semantic Kernel |
+AWS c5.4xlarge(16 vCPU, 32GB RAM)에서 gpt-3.5-turbo와 sentence-transformers/all-mpnet-base-v2로 수집한 벤치마크 데이터: | 메트릭 | LangChain | LlamaIndex | Haystack | Semantic Kernel |
 |--------|-----------|------------|----------|-----------------|
 | QPS (쿼리/초) | 78.2 | 85.4 | 102.5 | 65.4 |
 | 메모리 피크 (MB) | 1,203 | 980 | 856 | 987 |
@@ -414,28 +386,22 @@ from langchain_openai import ChatOpenAI
 import operator
 
 # 상태 정의
-class AgentState(TypedDict):
-    messages: Annotated[Sequence[BaseMessage], operator.add]
+class AgentState(TypedDict): messages: Annotated[Sequence[BaseMessage], operator.add]
     next_step: str
 
 # 노드 정의
-def agent_node(state: AgentState):
-    model = ChatOpenAI(model="gpt-4o")
+def agent_node(state: AgentState): model = ChatOpenAI(model="gpt-4o")
     response = model.invoke(state["messages"])
     return {"messages": [response], "next_step": "human_review"}
 
-def human_review(state: AgentState):
-    # 프로덕션에서는 인간 승인을 위해 일시 중지한다
+def human_review(state: AgentState): # 프로덕션에서는 인간 승인을 위해 일시 중지한다
     last_msg = state["messages"][-1].content
-    if "DELETE" in last_msg.upper() or "DROP" in last_msg.upper():
-        return {"next_step": "reject"}
+    if "DELETE" in last_msg.upper() or "DROP" in last_msg.upper(): return {"next_step": "reject"}
     return {"next_step": "execute"}
 
-def execute_tool(state: AgentState):
-    return {"messages": [AIMessage(content="Action executed successfully.")], "next_step": END}
+def execute_tool(state: AgentState): return {"messages": [AIMessage(content="Action executed successfully.")], "next_step": END}
 
-def reject_action(state: AgentState):
-    return {"messages": [AIMessage(content="Action rejected by policy.")], "next_step": END}
+def reject_action(state: AgentState): return {"messages": [AIMessage(content="Action rejected by policy.")], "next_step": END}
 
 # 그래프 빌드
 workflow = StateGraph(AgentState)
@@ -473,11 +439,8 @@ from tenacity import retry, stop_after_attempt, wait_exponential
     wait=wait_exponential(multiplier=1, min=2, max=10),
     reraise=True
 )
-def invoke_with_retry(chain, inputs, config: RunnableConfig = None):
-    try:
-        return chain.invoke(inputs, config=config)
-    except Exception as e:
-        # LangSmith에 기록하여 분석
+def invoke_with_retry(chain, inputs, config: RunnableConfig = None): try: return chain.invoke(inputs, config=config)
+    except Exception as e: # LangSmith에 기록하여 분석
         print(f"Invocation failed: {e}. Retrying...")
         raise
 
@@ -508,8 +471,7 @@ model = ChatOpenAI(
 # 요청당 비용 추적
 from langchain.callbacks import get_openai_callback
 
-with get_openai_callback() as cb:
-    response = model.invoke("Summarize this 50-page report.")
+with get_openai_callback() as cb: response = model.invoke("Summarize this 50-page report.")
     print(f"Tokens: {cb.total_tokens}, Cost: ${cb.total_cost:.4f}")
 ```
 
@@ -529,8 +491,7 @@ client = Client()
 # 프로그래매틱 평가
 from langsmith.evaluation import evaluate
 
-def accuracy_evaluator(run, example):
-    prediction = run.outputs["output"]
+def accuracy_evaluator(run, example): prediction = run.outputs["output"]
     expected = example.outputs["expected_answer"]
     score = 1.0 if expected.lower() in prediction.lower() else 0.0
     return {"key": "accuracy", "score": score}
@@ -548,65 +509,38 @@ results = evaluate(
 # k8s-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
-metadata:
-  name: langchain-app
-  labels:
-    app: langchain-app
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: langchain-app
-  template:
-    metadata:
-      labels:
-        app: langchain-app
-    spec:
-      containers:
-      - name: app
+metadata: name: langchain-app
+  labels: app: langchain-app
+spec: replicas: 3
+  selector: matchLabels: app: langchain-app
+  template: metadata: labels: app: langchain-app
+    spec: containers: - name: app
         image: langchain-production-app:latest
-        ports:
-        - containerPort: 8000
-        env:
-        - name: OPENAI_API_KEY
-          valueFrom:
-            secretKeyRef:
-              name: api-secrets
+        ports: - containerPort: 8000
+        env: - name: OPENAI_API_KEY
+          valueFrom: secretKeyRef: name: api-secrets
               key: openai-key
         - name: LANGSMITH_API_KEY
-          valueFrom:
-            secretKeyRef:
-              name: api-secrets
+          valueFrom: secretKeyRef: name: api-secrets
               key: langsmith-key
-        resources:
-          requests:
-            memory: "512Mi"
+        resources: requests: memory: "512Mi"
             cpu: "500m"
-          limits:
-            memory: "2Gi"
+          limits: memory: "2Gi"
             cpu: "2000m"
-        livenessProbe:
-          httpGet:
-            path: /health
+        livenessProbe: httpGet: path: /health
             port: 8000
           initialDelaySeconds: 10
           periodSeconds: 30
-        readinessProbe:
-          httpGet:
-            path: /ready
+        readinessProbe: httpGet: path: /ready
             port: 8000
           initialDelaySeconds: 5
           periodSeconds: 10
 ---
 apiVersion: v1
 kind: Service
-metadata:
-  name: langchain-service
-spec:
-  selector:
-    app: langchain-app
-  ports:
-    - protocol: TCP
+metadata: name: langchain-service
+spec: selector: app: langchain-app
+  ports: - protocol: TCP
       port: 80
       targetPort: 8000
   type: ClusterIP
@@ -633,16 +567,13 @@ redis_client = redis.Redis.from_url("redis://localhost:6379")
 set_llm_cache(RedisCache(redis_client=redis_client))
 
 # 입력 해시 기반 캐시 키
-def get_cache_key(prefix: str, text: str) -> str:
-    hash_val = hashlib.md5(text.encode()).hexdigest()
+def get_cache_key(prefix: str, text: str) -> str: hash_val = hashlib.md5(text.encode()).hexdigest()
     return f"{prefix}:{hash_val}"
 
 # 비용이 많이 드는 LLM 호출 전 캐시 확인
-def cached_invoke(chain, inputs: dict, ttl: int = 3600):
-    cache_key = get_cache_key("llm", json.dumps(inputs, sort_keys=True))
+def cached_invoke(chain, inputs: dict, ttl: int = 3600): cache_key = get_cache_key("llm", json.dumps(inputs, sort_keys=True))
     cached = redis_client.get(cache_key)
-    if cached:
-        return json.loads(cached)
+    if cached: return json.loads(cached)
 
     result = chain.invoke(inputs)
     redis_client.setex(cache_key, ttl, json.dumps({"output": result.content}))
@@ -729,9 +660,7 @@ LangChain의 137,000개 GitHub 스타는 프로덕션 LLM 애플리케이션의 
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -751,7 +680,6 @@ LangChain의 137,000개 GitHub 스타는 프로덕션 LLM 애플리케이션의 
 - [LangChain 가격 — CheckThat.ai](https://checkthat.ai/brands/langchain/pricing)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

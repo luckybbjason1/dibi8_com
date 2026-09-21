@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/opensea-nft-marketplace-api" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/opensea-nft-marketplace-api" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/opensea-nft-marketplace-api" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/opensea-nft-marketplace-api" />
 title: 'opensea-nft-marketplace-api'
 description: '{'en': ''Complete guide to the OpenSea NFT marketplace API covering API key setup, Python SDK integration, programmatic listing/buying/selling of NFTs, real-time WebSocket event streaming, rate limiting strategies, and building a production trading bot.'', 'zh': ''OpenSea NFT市场API完整指南，涵盖API密钥设置、Python SDK集成、NFT程序化上架/购买/出售、实时WebSocket事件流、速率限制策略以及构建生产级交易机器人。'', 'ko': ''OpenSea NFT 마켓플레이스 API의 완전한 가이드로 API 키 설정, Python SDK 통합, NFT 프로그래밍 방식 상장/구매/판매, 실시간 WebSocket 이벤트 스트리밍, 속도 제한 전략 및 프로덕션 트레이딩 봇 구축을 다룹니다.'', 'vi': ''Hướng dẫn đầy đủ về API thị trường NFT OpenSea bao gồm thiết lập khóa API, tích hợp Python SDK, niêm yết/mua/bán NFT lập trình, phát trực tuyến sự kiện WebSocket thở gian thực, chiến lược giới hạn tốc độ và xây dựng bot giao dịch sản xuất.''}'
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: [en, zh, ko, vi]
-aliases:
-- /zh/posts/opensea-nft-marketplace-api/
+aliases: - /zh/posts/opensea-nft-marketplace-api/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/opensea-nft-marketplace-api/ -->
 
 {{</* resource-info */>}}
 
@@ -37,8 +29,8 @@ aliases:
 
 在这份2026年综合指南中，我们将探索关于OpenSea API的所有内容：从获取API密钥和设置Python SDK，到上架NFT、执行交易、通过WebSocket进行实时事件流，以及在生产环境中处理速率限制。无论您是在构建交易机器人、投资组合追踪器还是市场聚合器，本指南都提供了完整的技术基础。
 
----
 
+---
 ## 什么是OpenSea API？
 
 OpenSea API是一个基于REST和WebSocket的编程接口，提供对OpenSea NFT市场的完整访问。它允许开发者查询NFT藏品、检索资产元数据、上架销售物品、完成订单、追踪账户活动，以及订阅实时事件流——所有这些都无需手动与OpenSea网站交互。
@@ -47,8 +39,8 @@ OpenSea API是一个基于REST和WebSocket的编程接口，提供对OpenSea NFT
 
 该API遵循现代REST约定，使用JSON请求/响应格式，采用基于API密钥的身份验证，并使用标准HTTP状态码进行错误处理。对于实时应用，WebSocket API提供交易、上架、转账和藏品更新的事件流，延迟低于一秒。
 
----
 
+---
 ## 快速入门：API密钥设置与身份验证
 
 在进行任何API调用之前，您需要通过OpenSea开发者门户注册API密钥。所有认证端点都需要API密钥，它决定了您的速率限制等级。
@@ -128,8 +120,7 @@ OpenSea API按逻辑端点组组织，涵盖NFT市场的每个方面。理解这
 藏品端点提供关于NFT藏品的全面元数据，包括地板价、交易量统计、特征分布和社交链接。
 
 ```python
-def get_collection_details(collection_slug: str):
-    """获取NFT藏品的详细信息。"""
+def get_collection_details(collection_slug: str): """获取NFT藏品的详细信息。"""
     endpoint = f"{BASE_URL}/collections/{collection_slug}"
     response = requests.get(endpoint, headers=headers)
     
@@ -154,8 +145,7 @@ print(f"CryptoPunks地板价: {crypto_punks[floor_price]} ETH")
 资产端点允许您检索单个NFT的元数据、所有权信息和上架状态。
 
 ```python
-def get_asset_details(chain: str, address: str, token_id: str):
-    """检索特定NFT资产的元数据。"""
+def get_asset_details(chain: str, address: str, token_id: str): """检索特定NFT资产的元数据。"""
     endpoint = f"{BASE_URL}/chain/{chain}/contract/{address}/nfts/{token_id}"
     response = requests.get(endpoint, headers=headers)
     
@@ -186,8 +176,7 @@ print(f"特征数量: {len(bored_ape[traits])}")
 上架端点管理NFT销售订单的创建、检索和取消。这些是程序化交易的核心端点。
 
 ```python
-def get_listings_by_collection(collection_slug: str, limit: int = 20):
-    """获取特定藏品的活跃上架。"""
+def get_listings_by_collection(collection_slug: str, limit: int = 20): """获取特定藏品的活跃上架。"""
     endpoint = f"{BASE_URL}/listings/collection/{collection_slug}/all"
     params = {"limit": limit}
     
@@ -208,8 +197,7 @@ def get_listings_by_collection(collection_slug: str, limit: int = 20):
 
 # 获取最便宜的上架
 listings = get_listings_by_collection("boredapeyachtclub", limit=10)
-for listing in sorted(listings, key=lambda x: float(x["price"])):
-    print(f"价格: {listing[price]} | 代币: {listing[token][identifier]}")
+for listing in sorted(listings, key=lambda x: float(x["price"])): print(f"价格: {listing[price]} | 代币: {listing[token][identifier]}")
 ```
 
 ### 账户与活动端点
@@ -217,8 +205,7 @@ for listing in sorted(listings, key=lambda x: float(x["price"])):
 追踪任何以太坊地址的钱包活动、持有资产和历史事件。
 
 ```python
-def get_account_events(account_address: str, event_type: str = "order", limit: int = 50):
-    """检索特定账户的活动事件。"""
+def get_account_events(account_address: str, event_type: str = "order", limit: int = 50): """检索特定账户的活动事件。"""
     endpoint = f"{BASE_URL}/events/accounts/{account_address}"
     params = {
         "event_type": event_type,
@@ -240,8 +227,7 @@ def get_account_events(account_address: str, event_type: str = "order", limit: i
 # 监控鲸鱼钱包活动
 whale_address = "0x3b417faee9d1458e"
 events = get_account_events(whale_address, event_type="sale", limit=20)
-for event in events:
-    print(f"{event[timestamp]}: {event[asset]} 以 {event[payment]} 售出")
+for event in events: print(f"{event[timestamp]}: {event[asset]} 以 {event[payment]} 售出")
 ```
 
 ---
@@ -267,15 +253,12 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-class OpenSeaAPI:
-    """用于OpenSea API的生产就绪Python SDK。"""
+class OpenSeaAPI: """用于OpenSea API的生产就绪Python SDK。"""
     
     BASE_URL = "https://api.opensea.io/api/v2"
     
-    def __init__(self, api_key: Optional[str] = None, max_retries: int = 3):
-        self.api_key = api_key or os.getenv("OPENSEA_API_KEY")
-        if not self.api_key:
-            raise ValueError("需要API密钥。请设置OPENSEA_API_KEY环境变量。")
+    def __init__(self, api_key: Optional[str] = None, max_retries: int = 3): self.api_key = api_key or os.getenv("OPENSEA_API_KEY")
+        if not self.api_key: raise ValueError("需要API密钥。请设置OPENSEA_API_KEY环境变量。")
         
         self.session = requests.Session()
         self.session.headers.update({
@@ -293,16 +276,13 @@ class OpenSeaAPI:
         adapter = HTTPAdapter(max_retries=retry_strategy)
         self.session.mount("https://", adapter)
     
-    def _request(self, method: str, endpoint: str, **kwargs) -> Dict[str, Any]:
-        """发起带速率限制处理的认证请求。"""
+    def _request(self, method: str, endpoint: str, **kwargs) -> Dict[str, Any]: """发起带速率限制处理的认证请求。"""
         url = urljoin(self.BASE_URL, endpoint)
         
-        try:
-            response = self.session.request(method, url, **kwargs)
+        try: response = self.session.request(method, url, **kwargs)
             
             # 处理速率限制
-            if response.status_code == 429:
-                reset_time = int(response.headers.get("X-RateLimit-Reset", 60))
+            if response.status_code == 429: reset_time = int(response.headers.get("X-RateLimit-Reset", 60))
                 logger.warning(f"速率受限。等待 {reset_time} 秒...")
                 time.sleep(reset_time)
                 response = self.session.request(method, url, **kwargs)
@@ -310,8 +290,7 @@ class OpenSeaAPI:
             response.raise_for_status()
             return response.json()
             
-        except requests.exceptions.RequestException as e:
-            logger.error(f"请求失败: {e}")
+        except requests.exceptions.RequestException as e: logger.error(f"请求失败: {e}")
             raise
     
     def get_collections(
@@ -319,16 +298,13 @@ class OpenSeaAPI:
         chain: str = "ethereum", 
         limit: int = 100,
         next_cursor: Optional[str] = None
-    ) -> Dict[str, Any]:
-        """检索带分页的NFT藏品。"""
+    ) -> Dict[str, Any]: """检索带分页的NFT藏品。"""
         params = {"chain": chain, "limit": min(limit, 100)}
-        if next_cursor:
-            params["next"] = next_cursor
+        if next_cursor: params["next"] = next_cursor
         
         return self._request("GET", "/collections", params=params)
     
-    def get_collection_stats(self, collection_slug: str) -> Dict[str, Any]:
-        """获取地板价、交易量和供应量统计。"""
+    def get_collection_stats(self, collection_slug: str) -> Dict[str, Any]: """获取地板价、交易量和供应量统计。"""
         return self._request("GET", f"/collections/{collection_slug}/stats")
     
     def get_nft(
@@ -336,8 +312,7 @@ class OpenSeaAPI:
         chain: str, 
         contract_address: str, 
         token_id: str
-    ) -> Dict[str, Any]:
-        """获取特定NFT的详细信息。"""
+    ) -> Dict[str, Any]: """获取特定NFT的详细信息。"""
         endpoint = f"/chain/{chain}/contract/{contract_address}/nfts/{token_id}"
         return self._request("GET", endpoint)
     
@@ -347,8 +322,7 @@ class OpenSeaAPI:
         contract_address: str, 
         token_id: str,
         limit: int = 50
-    ) -> List[Dict[str, Any]]:
-        """获取特定NFT的活跃上架。"""
+    ) -> List[Dict[str, Any]]: """获取特定NFT的活跃上架。"""
         endpoint = f"/orders/{chain}/seaport/listings"
         params = {
             "asset_contract_address": contract_address,
@@ -362,8 +336,7 @@ class OpenSeaAPI:
         chain: str, 
         contract_address: str, 
         token_id: str
-    ) -> Optional[Dict[str, Any]]:
-        """获取价格最低的活跃上架。"""
+    ) -> Optional[Dict[str, Any]]: """获取价格最低的活跃上架。"""
         listings = self.get_listings(chain, contract_address, token_id, limit=1)
         return listings[0] if listings else None
 
@@ -448,8 +421,7 @@ print(f"上架创建: {response.status_code}")
 要购买已上架的NFT，检索订单并提交完成交易：
 
 ```python
-def fulfill_order(order_hash: str, buyer_address: str):
-    """完成现有订单以购买NFT。"""
+def fulfill_order(order_hash: str, buyer_address: str): """完成现有订单以购买NFT。"""
     # 获取订单详情
     order_response = requests.get(
         f"{BASE_URL}/orders/ethereum/seaport/{order_hash}",
@@ -493,8 +465,7 @@ tx = fulfill_order(cheapest["order_hash"], "0xBuyerWalletAddress")
 对于高频交易，使用批量端点处理多个操作：
 
 ```python
-def batch_get_listings(requests_list: List[Dict]) -> List[Dict]:
-    """在单个请求中获取多个上架。"""
+def batch_get_listings(requests_list: List[Dict]) -> List[Dict]: """在单个请求中获取多个上架。"""
     response = requests.post(
         f"{BASE_URL}/listings/batch",
         headers=headers,
@@ -521,26 +492,22 @@ import json
 import asyncio
 import websockets
 
-class OpenSeaStreamClient:
-    """用于实时OpenSea事件流的WebSocket客户端。"""
+class OpenSeaStreamClient: """用于实时OpenSea事件流的WebSocket客户端。"""
     
     WS_URL = "wss://stream.opensea.io/socket"
     
-    def __init__(self, api_key: str):
-        self.api_key = api_key
+    def __init__(self, api_key: str): self.api_key = api_key
         self.subscriptions = []
         self.running = False
     
-    async def connect(self):
-        """建立带身份验证的WebSocket连接。"""
+    async def connect(self): """建立带身份验证的WebSocket连接。"""
         self.ws = await websockets.connect(
             self.WS_URL,
             extra_headers={"X-API-KEY": self.api_key}
         )
         logger.info("WebSocket已连接")
     
-    async def subscribe(self, event_type: str, filters: dict = None):
-        """订阅特定事件流。"""
+    async def subscribe(self, event_type: str, filters: dict = None): """订阅特定事件流。"""
         payload = {
             "topic": event_type,
             "filters": filters or {}
@@ -551,45 +518,33 @@ class OpenSeaStreamClient:
         }))
         logger.info(f"已订阅: {event_type}")
     
-    async def listen(self, callback):
-        """监听传入事件。"""
+    async def listen(self, callback): """监听传入事件。"""
         self.running = True
-        while self.running:
-            try:
-                message = await self.ws.recv()
+        while self.running: try: message = await self.ws.recv()
                 data = json.loads(message)
                 await callback(data)
-            except websockets.exceptions.ConnectionClosed:
-                logger.warning("连接关闭，重新连接...")
+            except websockets.exceptions.ConnectionClosed: logger.warning("连接关闭，重新连接...")
                 await self.connect()
-                for sub in self.subscriptions:
-                    await self.subscribe(sub["type"], sub.get("filters"))
+                for sub in self.subscriptions: await self.subscribe(sub["type"], sub.get("filters"))
     
-    async def disconnect(self):
-        """关闭WebSocket连接。"""
+    async def disconnect(self): """关闭WebSocket连接。"""
         self.running = False
         await self.ws.close()
 
 
 # 事件处理器
-async def handle_event(event: dict):
-    """处理传入的市场事件。"""
+async def handle_event(event: dict): """处理传入的市场事件。"""
     event_type = event.get("event_type")
     payload = event.get("payload", {})
     
-    if event_type == "item_listed":
-        print(f"[上架] {payload[name]} 价格 {payload[base_price]} ETH")
-    elif event_type == "item_sold":
-        print(f"[售出] {payload[name]} 以 {payload[sale_price]} ETH")
-    elif event_type == "item_cancelled":
-        print(f"[取消] {payload[name]}")
-    elif event_type == "collection_offer":
-        print(f"[报价] {payload[collection_slug]} 的藏品报价")
+    if event_type == "item_listed": print(f"[上架] {payload[name]} 价格 {payload[base_price]} ETH")
+    elif event_type == "item_sold": print(f"[售出] {payload[name]} 以 {payload[sale_price]} ETH")
+    elif event_type == "item_cancelled": print(f"[取消] {payload[name]}")
+    elif event_type == "collection_offer": print(f"[报价] {payload[collection_slug]} 的藏品报价")
 
 
 # 运行事件流
-async def main():
-    client = OpenSeaStreamClient(api_key=API_KEY)
+async def main(): client = OpenSeaStreamClient(api_key=API_KEY)
     await client.connect()
     
     # 订阅事件
@@ -630,7 +585,15 @@ EVENT_TYPES = {
 ### 速率限制等级
 
 | 等级 | 每秒请求数 | 突发限制 | 使用场景 |
-|------|-----------|---------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 免费 | 1 | 5 | 开发、测试 |
 | 开发者 | 10 | 50 | 小型应用 |
 | 专业版 | 40 | 200 | 交易机器人、分析 |
@@ -641,8 +604,7 @@ EVENT_TYPES = {
 每个API响应都包含速率限制头：
 
 ```python
-def check_rate_limits(response: requests.Response):
-    """提取和监控速率限制状态。"""
+def check_rate_limits(response: requests.Response): """提取和监控速率限制状态。"""
     limit = response.headers.get("X-RateLimit-Limit")
     remaining = response.headers.get("X-RateLimit-Remaining")
     reset = response.headers.get("X-RateLimit-Reset")
@@ -651,8 +613,7 @@ def check_rate_limits(response: requests.Response):
     print(f"重置时间: {reset} 秒")
     
     # 如果接近限制则警告
-    if int(remaining) < 10:
-        logger.warning(f"接近速率限制！剩余 {remaining} 次请求")
+    if int(remaining) < 10: logger.warning(f"接近速率限制！剩余 {remaining} 次请求")
     
     return {
         "limit": int(limit) if limit else None,
@@ -670,30 +631,24 @@ limits = check_rate_limits(response)
 ```python
 import random
 
-class AdaptiveRateLimiter:
-    """带指数退避的自适应速率限制器。"""
+class AdaptiveRateLimiter: """带指数退避的自适应速率限制器。"""
     
-    def __init__(self, base_delay: float = 1.0, max_delay: float = 60.0):
-        self.base_delay = base_delay
+    def __init__(self, base_delay: float = 1.0, max_delay: float = 60.0): self.base_delay = base_delay
         self.max_delay = max_delay
         self.current_delay = base_delay
         self.consecutive_errors = 0
     
-    def wait(self):
-        """使用自适应延迟等待。"""
+    def wait(self): """使用自适应延迟等待。"""
         jitter = random.uniform(0, 0.5)
         time.sleep(self.current_delay + jitter)
     
-    def on_success(self):
-        """成功请求后减少延迟。"""
+    def on_success(self): """成功请求后减少延迟。"""
         self.consecutive_errors = 0
         self.current_delay = max(self.base_delay, self.current_delay * 0.8)
     
-    def on_error(self, status_code: int):
-        """错误后增加延迟。"""
+    def on_error(self, status_code: int): """错误后增加延迟。"""
         self.consecutive_errors += 1
-        if status_code == 429:
-            self.current_delay = min(
+        if status_code == 429: self.current_delay = min(
                 self.max_delay,
                 self.current_delay * 2 ** self.consecutive_errors
             )
@@ -703,15 +658,12 @@ class AdaptiveRateLimiter:
 # 在请求循环中使用
 limiter = AdaptiveRateLimiter(base_delay=0.5)
 
-for page in range(100):
-    limiter.wait()
-    try:
-        response = requests.get(f"{BASE_URL}/assets", headers=headers, params={"offset": page * 50})
+for page in range(100): limiter.wait()
+    try: response = requests.get(f"{BASE_URL}/assets", headers=headers, params={"offset": page * 50})
         response.raise_for_status()
         limiter.on_success()
         process_assets(response.json())
-    except requests.exceptions.HTTPError as e:
-        limiter.on_error(e.response.status_code)
+    except requests.exceptions.HTTPError as e: limiter.on_error(e.response.status_code)
 ```
 
 ### 缓存策略
@@ -720,32 +672,24 @@ for page in range(100):
 from functools import lru_cache
 from datetime import datetime, timedelta
 
-class OpenSeaCache:
-    """用于API响应的简单TTL缓存。"""
+class OpenSeaCache: """用于API响应的简单TTL缓存。"""
     
-    def __init__(self, ttl_seconds: int = 60):
-        self.cache = {}
+    def __init__(self, ttl_seconds: int = 60): self.cache = {}
         self.ttl = ttl_seconds
     
-    def get(self, key: str):
-        if key in self.cache:
-            value, expiry = self.cache[key]
-            if datetime.now() < expiry:
-                return value
+    def get(self, key: str): if key in self.cache: value, expiry = self.cache[key]
+            if datetime.now() < expiry: return value
             del self.cache[key]
         return None
     
-    def set(self, key: str, value):
-        expiry = datetime.now() + timedelta(seconds=self.ttl)
+    def set(self, key: str, value): expiry = datetime.now() + timedelta(seconds=self.ttl)
         self.cache[key] = (value, expiry)
 
 # 缓存藏品元数据（很少变化）
 collection_cache = OpenSeaCache(ttl_seconds=300)
 
-def get_cached_collection(slug: str):
-    cached = collection_cache.get(slug)
-    if cached:
-        return cached
+def get_cached_collection(slug: str): cached = collection_cache.get(slug)
+    if cached: return cached
     
     data = sdk.get_collection_stats(slug)
     collection_cache.set(slug, data)
@@ -764,8 +708,7 @@ from dataclasses import dataclass
 from typing import Callable
 
 @dataclass
-class ArbitrageOpportunity:
-    collection: str
+class ArbitrageOpportunity: collection: str
     token_id: str
     listed_price: float
     estimated_value: float
@@ -773,28 +716,23 @@ class ArbitrageOpportunity:
     listing_url: str
 
 
-class NFTArbitrageBot:
-    """使用OpenSea API的简单套利检测机器人。"""
+class NFTArbitrageBot: """使用OpenSea API的简单套利检测机器人。"""
     
-    def __init__(self, api: OpenSeaAPI, min_profit_pct: float = 15.0):
-        self.api = api
+    def __init__(self, api: OpenSeaAPI, min_profit_pct: float = 15.0): self.api = api
         self.min_profit_pct = min_profit_pct
         self.watchlist = []
         self.callbacks: List[Callable] = []
     
-    def add_collection(self, collection_slug: str, floor_threshold: float):
-        """添加藏品的观察列表。"""
+    def add_collection(self, collection_slug: str, floor_threshold: float): """添加藏品的观察列表。"""
         self.watchlist.append({
             "slug": collection_slug,
             "threshold": floor_threshold
         })
     
-    def on_opportunity(self, callback: Callable):
-        """注册套利机会的回调。"""
+    def on_opportunity(self, callback: Callable): """注册套利机会的回调。"""
         self.callbacks.append(callback)
     
-    def analyze_collection(self, collection: dict) -> List[ArbitrageOpportunity]:
-        """扫描藏品中的低价上架。"""
+    def analyze_collection(self, collection: dict) -> List[ArbitrageOpportunity]: """扫描藏品中的低价上架。"""
         slug = collection["slug"]
         
         # 获取地板价和活跃上架
@@ -808,12 +746,10 @@ class NFTArbitrageBot:
         )
         
         opportunities = []
-        for listing in listings:
-            price = float(listing["price"])
+        for listing in listings: price = float(listing["price"])
             
             # 检查是否显著低于地板价
-            if price < floor_price * (1 - self.min_profit_pct / 100):
-                opp = ArbitrageOpportunity(
+            if price < floor_price * (1 - self.min_profit_pct / 100): opp = ArbitrageOpportunity(
                     collection=slug,
                     token_id=listing["token_id"],
                     listed_price=price,
@@ -824,33 +760,23 @@ class NFTArbitrageBot:
                 opportunities.append(opp)
                 
                 # 通知回调
-                for cb in self.callbacks:
-                    cb(opp)
+                for cb in self.callbacks: cb(opp)
         
         return opportunities
     
-    def run(self, interval: int = 30):
-        """以指定检查间隔运行机器人。"""
+    def run(self, interval: int = 30): """以指定检查间隔运行机器人。"""
         logger.info(f"启动机器人，监控 {len(self.watchlist)} 个藏品")
         
-        try:
-            while True:
-                for collection in self.watchlist:
-                    try:
-                        opps = self.analyze_collection(collection)
-                        if opps:
-                            logger.info(f"在 {collection[slug]} 中发现 {len(opps)} 个机会")
-                    except Exception as e:
-                        logger.error(f"分析 {collection[slug]} 时出错: {e}")
+        try: while True: for collection in self.watchlist: try: opps = self.analyze_collection(collection)
+                        if opps: logger.info(f"在 {collection[slug]} 中发现 {len(opps)} 个机会")
+                    except Exception as e: logger.error(f"分析 {collection[slug]} 时出错: {e}")
                 
                 time.sleep(interval)
-        except KeyboardInterrupt:
-            logger.info("用户停止机器人")
+        except KeyboardInterrupt: logger.info("用户停止机器人")
 
 
 # 使用示例
-def notify_discord(opp: ArbitrageOpportunity):
-    """发送Discord通知。"""
+def notify_discord(opp: ArbitrageOpportunity): """发送Discord通知。"""
     message = f"""
     **套利警报！**
     藏品: {opp.collection}
@@ -876,20 +802,15 @@ bot.on_opportunity(notify_discord)
 生产应用需要强大的错误处理。OpenSea API返回结构化的错误响应：
 
 ```python
-class OpenSeaAPIError(Exception):
-    """OpenSea API错误的自定义异常。"""
+class OpenSeaAPIError(Exception): """OpenSea API错误的自定义异常。"""
     
-    def __init__(self, message: str, status_code: int = None, response_data: dict = None):
-        super().__init__(message)
+    def __init__(self, message: str, status_code: int = None, response_data: dict = None): super().__init__(message)
         self.status_code = status_code
         self.response_data = response_data or {}
 
-def handle_api_error(response: requests.Response):
-    """解析并引发适当的异常。"""
-    try:
-        error_data = response.json()
-    except ValueError:
-        error_data = {"message": response.text}
+def handle_api_error(response: requests.Response): """解析并引发适当的异常。"""
+    try: error_data = response.json()
+    except ValueError: error_data = {"message": response.text}
     
     error_map = {
         400: ("错误请求", ValueError),
@@ -910,11 +831,8 @@ def handle_api_error(response: requests.Response):
     raise error_class(f"{error_msg}: {detail}")
 
 # 在SDK中应用
-class RobustOpenSeaAPI(OpenSeaAPI):
-    def _request(self, method: str, endpoint: str, **kwargs):
-        response = self.session.request(method, self.BASE_URL + endpoint, **kwargs)
-        if not response.ok:
-            handle_api_error(response)
+class RobustOpenSeaAPI(OpenSeaAPI): def _request(self, method: str, endpoint: str, **kwargs): response = self.session.request(method, self.BASE_URL + endpoint, **kwargs)
+        if not response.ok: handle_api_error(response)
         return response.json()
 ```
 
@@ -983,7 +901,6 @@ OpenSea API是2026年最全面且经过实战检验的NFT市场API。凭借对�
 *本文撰写于2026-05-19。API规范和速率限制可能会发生变化。请参阅[官方OpenSea文档](https://docs.opensea.io/)获取最新更新。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

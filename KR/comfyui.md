@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/comfyui" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/comfyui" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/comfyui" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/comfyui" />
 title: 'ComfyUI: 87K+ Stars — 노드 기반 Stable Diffusion 설정 가이드 2026'
 description: 'ComfyUI (COMFY)는 가장 강력한 노드 기반 Stable Diffusion GUI입니다. SD 1.5, SDXL, Flux, Wan, LTXV를 지원합니다. Docker 프로덕션 배포, 커스텀 노드, API 통합, AUTOMATIC1111 및 InvokeAI와의 성능 비교.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,12 +20,9 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [comfyui, 'stable diffusion', 'ai 이미지 생성', '노드 기반 ui', docker, flux, sdxl, 머신러닝]
-aliases:
-- /kr/posts/comfyui/
+aliases: - /kr/posts/comfyui/
 - /kr/resources/ai-tools/comfyui-architecture-node-based-ai-image/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/comfyui/ -->
 
 {{</* resource-info */>}}
 
@@ -53,9 +45,7 @@ ComfyUI는 확산 모델을 위한 노드 기반 그래픽 인터페이스 및 �
 
 ### 아키텍처 개요
 
-ComfyUI의 아키텍처는 세 개의 계층으로 구분됩니다:
-
-1. **프론트엔드** — 노드를 렌더링하고 사용자 상호작용을 처리하며 워크플로우를 JSON으로 직렬화하는 React/LiteGraph.js 기반 캔버스
+ComfyUI의 아키텍처는 세 개의 계층으로 구분됩니다: 1. **프론트엔드** — 노드를 렌더링하고 사용자 상호작용을 처리하며 워크플로우를 JSON으로 직렬화하는 React/LiteGraph.js 기반 캔버스
 2. **실행 엔진** — 워크플로우 그래프를 검증하고 위상 정렬로 실행을 예약하며 각 노드를 실행하는 Python 백엔드
 3. **모델 레이어** — 체크포인트 파일, LoRA, ControlNet 및 커스텀 모델 아키텍처와 상호작용하는 PyTorch 기반 추론 코드
 
@@ -79,9 +69,7 @@ ComfyUI의 아키텍처는 세 개의 계층으로 구분됩니다:
 
 ### 워크플로우 직렬화
 
-모든 워크플로우는 JSON 파일입니다. 팀원과 공유하거나 Git으로 버전 관리하거나 API 서버로 POST 요청을 복 볼 수 있습니다:
-
-```json
+모든 워크플로우는 JSON 파일입니다. 팀원과 공유하거나 Git으로 버전 관리하거나 API 서버로 POST 요청을 복 볼 수 있습니다: ```json
 {
   "1": {
     "inputs": {
@@ -138,11 +126,8 @@ python main.py --listen 0.0.0.0 --port 8188
 
 ### 방법 2: ComfyUI 데스크톱
 
-터미널 대신 설치 프로그램을 선호하는 사용자를 위해:
-
-```bash
-# 다음에서 최신 데스크톱 릴리스를 다운로드합니다:
-# https://github.com/Comfy-Org/ComfyUI-Desktop/releases
+터미널 대신 설치 프로그램을 선호하는 사용자를 위해: ```bash
+# 다음에서 최신 데스크톱 릴리스를 다운로드합니다: # https://github.com/Comfy-Org/ComfyUI-Desktop/releases
 
 # 데스크톱 앱은 Python, CUDA, 의존성 관리를 자동으로 처리합니다.
 # 첫 실행에 약 15분이 소요됩니다 (모델 다운로드 및 환경 설정).
@@ -150,9 +135,7 @@ python main.py --listen 0.0.0.0 --port 8188
 
 ### 방법 3: Docker (프로덕션 권장)
 
-Docker 방식은 호스트 시스템을 깔끔하게 유지하고 배포를 재현 가능하게 만듭니다:
-
-```bash
+Docker 방식은 호스트 시스템을 깔끔하게 유지하고 배포를 재현 가능하게 만듭니다: ```bash
 # GPU 패스스루 확인
 nvidia-smi
 docker run --rm --gpus all nvidia/cuda:12.0-base nvidia-smi
@@ -166,24 +149,15 @@ cd comfyui-deploy
 # docker-compose.yml
 version: "3.8"
 
-services:
-  comfyui:
-    image: ghcr.io/ai-dock/comfyui:latest-cuda
+services: comfyui: image: ghcr.io/ai-dock/comfyui:latest-cuda
     container_name: comfyui
-    ports:
-      - "8188:8188"
-    volumes:
-      - ./models:/workspace/ComfyUI/models
+    ports: - "8188:8188"
+    volumes: - ./models:/workspace/ComfyUI/models
       - ./output:/workspace/ComfyUI/output
       - ./custom_nodes:/workspace/ComfyUI/custom_nodes
       - ./workflows:/workspace/ComfyUI/user
-    environment:
-      - CLI_ARGS=--listen 0.0.0.0 --preview-method auto
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+    environment: - CLI_ARGS=--listen 0.0.0.0 --preview-method auto
+    deploy: resources: reservations: devices: - driver: nvidia
               count: 1
               capabilities: [gpu]
     restart: unless-stopped
@@ -202,9 +176,7 @@ docker exec comfyui nvidia-smi
 
 ### 모델 설정
 
-모델을 적절한 디렉토리에 다운로드합니다:
-
-```bash
+모델을 적절한 디렉토리에 다운로드합니다: ```bash
 # SDXL Base (6.9 GB)
 wget -P models/checkpoints \
   "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors"
@@ -230,11 +202,9 @@ ComfyUI는 모든 주요 Stable Diffusion 변형을 기본적으로 지원합니
 
 ```python
 # refiner 파이프라인이 있는 SDXL 로딩 구성
-CheckpointLoaderSimple:
-  ckpt_name: "sd_xl_base_1.0.safetensors"
+CheckpointLoaderSimple: ckpt_name: "sd_xl_base_1.0.safetensors"
 
-KSampler:
-  seed: 42
+KSampler: seed: 42
   steps: 30
   cfg: 7.0
   sampler_name: "dpmpp_2m"
@@ -244,21 +214,16 @@ KSampler:
 
 ### Flux
 
-Flux 모델은 최적화된 어텐션 구현을 통해 전용 노드로 통합됩니다:
-
-```python
+Flux 모델은 최적화된 어텐션 구현을 통해 전용 노드로 통합됩니다: ```python
 # Flux 워크플로우 노드
-UNETLoader:
-  unet_name: "flux1-dev.safetensors"
+UNETLoader: unet_name: "flux1-dev.safetensors"
   weight_dtype: "fp8_e4m3fn"  # VRAM을 24GB에서 12GB로 감소
 
-DualCLIPLoader:
-  clip_name1: "t5xxl_fp8_e4m3fn.safetensors"
+DualCLIPLoader: clip_name1: "t5xxl_fp8_e4m3fn.safetensors"
   clip_name2: "clip_l.safetensors"
   type: "flux"
 
-EmptySD3LatentImage:
-  width: 1024
+EmptySD3LatentImage: width: 1024
   height: 1024
   batch_size: 1
 ```
@@ -267,9 +232,7 @@ Flux 지원에는 Dev, Schnell 및 커뮤니티 파인튜닝이 포함됩니다.
 
 ### Wan 비디오 모델
 
-Wan 2.1/2.2 통합은 텍스트-투-비디오 및 이미지-투-비디오를 지원합니다:
-
-```bash
+Wan 2.1/2.2 통합은 텍스트-투-비디오 및 이미지-투-비디오를 지원합니다: ```bash
 # Wan 커스텀 노드 설치
 cd custom_nodes
 git clone https://github.com/kijai/ComfyUI-WanVideoWrapper.git
@@ -278,8 +241,7 @@ pip install -r ComfyUI-WanVideoWrapper/requirements.txt
 
 ```python
 # Wan 텍스트-투-비디오 워크플로우
-WanVideoSampler:
-  model: "wan_2.1_14b_fp8.safetensors"
+WanVideoSampler: model: "wan_2.1_14b_fp8.safetensors"
   positive: "slow motion aerial shot of ocean waves"
   width: 1280
   height: 720
@@ -289,17 +251,13 @@ WanVideoSampler:
 
 ### ControlNet & LoRA
 
-ControlNet 및 LoRA 노드는 모델 레벨에서 통합되어 조합 가능한 조건 제어를 허용합니다:
-
-```python
+ControlNet 및 LoRA 노드는 모델 레벨에서 통합되어 조합 가능한 조건 제어를 허용합니다: ```python
 # 강도 제어가 있는 다중 LoRA 적용
-LoraLoaderModelOnly:
-  model: ["CheckpointLoader", 0]
+LoraLoaderModelOnly: model: ["CheckpointLoader", 0]
   lora_name: "add_detail.safetensors"
   strength_model: 0.8
 
-ControlNetApplyAdvanced:
-  positive: ["CLIPTextEncode", 0]
+ControlNetApplyAdvanced: positive: ["CLIPTextEncode", 0]
   control_net: ["ControlNetLoader", 0]
   image: ["LoadImage", 0]
   strength: 1.0
@@ -309,9 +267,7 @@ ControlNetApplyAdvanced:
 
 ### API 통합
 
-모든 워크플로우는 REST API를 통해 실행할 수 있습니다:
-
-```bash
+모든 워크플로우는 REST API를 통해 실행할 수 있습니다: ```bash
 # API를 통한 워크플로우 제출
 curl -X POST http://localhost:8188/prompt \
   -H "Content-Type: application/json" \
@@ -333,9 +289,7 @@ curl http://localhost:8188/view?filename=ComfyUI_00001_.png&subfolder=output&typ
 
 ### 생성 속도 비교
 
-동일한 하드웨어에서 테스트 (RTX 4090, CUDA 12.4, 64 GB RAM):
-
-| 테스트 항목 | ComfyUI | AUTOMATIC1111 | InvokeAI | Fooocus |
+동일한 하드웨어에서 테스트 (RTX 4090, CUDA 12.4, 64 GB RAM): | 테스트 항목 | ComfyUI | AUTOMATIC1111 | InvokeAI | Fooocus |
 |------------|---------|---------------|----------|---------|
 | SD 1.5 512x512 | 2.1초 | 2.4초 | 2.3초 | 2.3초 |
 | SDXL 1024x1024 | 7.8초 | 9.2초 | 8.5초 | 8.5초 |
@@ -350,9 +304,7 @@ curl http://localhost:8188/view?filename=ComfyUI_00001_.png&subfolder=output&typ
 
 ### 사례: 제품 사진 파이프라인
 
-전자상거래 팀이 매일 50장의 일관된 조명을 가진 제품 이미지를 생성합니다:
-
-```python
+전자상거래 팀이 매일 50장의 일관된 조명을 가진 제품 이미지를 생성합니다: ```python
 # 공유 스타일 LoRA가 있는 배치 워크플로우
 LoadCheckpoint → LoadLoRA → CLIPTextEncode → KSampler → VAE Decode
                     ↓
@@ -365,9 +317,7 @@ LoadCheckpoint → LoadLoRA → CLIPTextEncode → KSampler → VAE Decode
 
 ### 사례: 비디오 생성 스튜디오
 
-콘텐츠 스튜디오가 숏폼 비디오 클립을 제작합니다:
-
-```
+콘텐츠 스튜디오가 숏폼 비디오 클립을 제작합니다: ```
 텍스트 프롬프트 → WanVideoSampler → 프레임 보간 (RIFE) → 비디오 합성
                         ↓
             이미지 조건 제어 (선택적 이미지-투-비디오)
@@ -419,12 +369,10 @@ python main.py --listen 0.0.0.0 --port 8188 \
 
 ```python
 # custom_nodes/my_custom_node/nodes.py
-class MyUpscaleNode:
-    """Real-ESRGAN을 사용한 간단한 4x 업스케일 노드."""
+class MyUpscaleNode: """Real-ESRGAN을 사용한 간단한 4x 업스케일 노드."""
 
     @classmethod
-    def INPUT_TYPES(cls):
-        return {
+    def INPUT_TYPES(cls): return {
             "required": {
                 "image": ("IMAGE",),
                 "model": (["RealESRGAN_x4plus", "RealESRGAN_x2plus"],),
@@ -435,8 +383,7 @@ class MyUpscaleNode:
     FUNCTION = "upscale"
     CATEGORY = "image/upscaling"
 
-    def upscale(self, image, model):
-        # 구현 코드
+    def upscale(self, image, model): # 구현 코드
         return (upscaled_image,)
 
 NODE_CLASS_MAPPINGS = {"MyUpscaleNode": MyUpscaleNode}
@@ -507,9 +454,7 @@ echo "백업 완료: $BACKUP_DIR"
 
 ## Limitations / Honest Assessment
 
-ComfyUI는 모든 상황에 맞는 도구가 아닙니다. 다음은 약점입니다:
-
-**가파른 학습 곡선.** 노드 기반 인터페이스는 확산 메커니즘에 대한 이해가 필요합니다 — 잠재 공간이 무엇인지, VAE가 왜 중요한지, 샘플링 스케줄이 어떻게 작동하는지. 빈 캔버스를 마주한 새 사용자는 압도감을 느낍니다. 숙달되기까지 10-20시간의 연습이 필요합니다.
+ComfyUI는 모든 상황에 맞는 도구가 아닙니다. 다음은 약점입니다: **가파른 학습 곡선.** 노드 기반 인터페이스는 확산 메커니즘에 대한 이해가 필요합니다 — 잠재 공간이 무엇인지, VAE가 왜 중요한지, 샘플링 스케줄이 어떻게 작동하는지. 빈 캔버스를 마주한 새 사용자는 압도감을 느낍니다. 숙달되기까지 10-20시간의 연습이 필요합니다.
 
 **내장 캔버스 인페인팅 부재.** InvokeAI의 캔버스 기반 인페인팅은 예술적 워크플로우에서 객관적으로 더 우수합니다. ComfyUI의 마스크 편집기는 기능적이지만 비교하면 기본적입니다.
 
@@ -570,9 +515,7 @@ Telegram 커뮤니티에 참여하세요: **t.me/dibi8_comfyui** — 워크플�
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -591,7 +534,6 @@ Telegram 커뮤니티에 참여하세요: **t.me/dibi8_comfyui** — 워크플�
 - 양자화 가이드: https://github.com/comfyanonymous/ComfyUI/blob/master/QUANTIZATION.md
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

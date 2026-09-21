@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/open-design-local-first-ai-design-tool" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/open-design-local-first-ai-design-tool" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/open-design-local-first-ai-design-tool" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/open-design-local-first-ai-design-tool" />
 title: "Open Design: Claude Design을 대체하는 궁극의 로컬 우선 AI 디자인 도구"
 description: "39K+ Star를 보유한 오픈소스 로컬 우선 Claude Design 대안 Open Design을 알아보세요. 19가지 AI 스킬, 71개 디자인 시스템, 프로토타입/슬라이드/영상 생성 및 다중 포맷 내보내기를 지원합니다."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Go
+tech_stack: - Go
   - JavaScript
   - TypeScript
 application_domain: "Dev Utils"
@@ -26,10 +20,8 @@ maintainer: ""
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases:
-- /kr/posts/open-design-local-first-ai-design-tool/
-faqs:
-  - q: 'Open Design이란 무엇이며 Claude Design과 어떻게 다른가요?'
+aliases: - /kr/posts/open-design-local-first-ai-design-tool/
+faqs: - q: 'Open Design이란 무엇이며 Claude Design과 어떻게 다른가요?'
     a: 'Open Design은 Anthropic의 Claude Design에 대한 오픈소스/로컬 우선 대안으로, 웹 프로토타입, 모바일 및 데스크톱 인터페이스, 슬라이드, 이미지, 동영상, 그리고 인터랙티브 HyperFrame을 생성할 수 있습니다. 클라우드 전용의 Claude Design과 달리, 초기 설정 후 완전히 오프라인으로 실행되며 MIT 라이선스로 무료 제공됩니다.'
   - q: 'Open Design은 어떤 AI 코딩 어시스턴트와 함께 사용할 수 있나요?'
     a: 'Open Design은 9개 이상의 어시스턴트와 통합됩니다: Claude Code, GitHub Copilot, Cursor, Gemini, Codex, OpenCode, Qwen, Hermes, 그리고 Kimi CLI. 실제로 사용할 제공업체에 대해서만 API 키를 설정하면 됩니다.'
@@ -40,8 +32,6 @@ faqs:
   - q: 'Open Design을 사용하는 데 비용이 드나요?'
     a: '이 도구 자체는 MIT 라이선스 하에 무료 오픈소스로 제공되며, 구독료나 사용자 수에 따른 요금이 없습니다. 유일한 비용은 실제로 소비하는 AI 제공업체의 API 사용량으로, Anthropic, OpenAI, Google 등의 제공업체에 실제로 발생한 호출에 대해서만 비용을 지불합니다.'
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/open-design-local-first-ai-design-tool/ -->
 
 {</* resource-info */>}
 
@@ -63,9 +53,7 @@ GitHub 저장소 [https://github.com/nexu-io/open-design](https://github.com/nex
 
 ### 19개의 전문 AI 스킬
 
-Open Design은 디자인 및 프로토타이핑 전 스펙트럼을 커버하는 **19개의 내장 AI 스킬**과 함께 제공됩니다. 이것들은 일반적인 텍스트 생성 기능이 아니라 디자인 작업을 위해 세밀하게 튜닝된 모델과 워크플로우입니다:
-
-- **웹 프로토타이핑** — 자연어 설명에서 반응형 HTML/CSS/JavaScript 프로토타입 생성
+Open Design은 디자인 및 프로토타이핑 전 스펙트럼을 커버하는 **19개의 내장 AI 스킬**과 함께 제공됩니다. 이것들은 일반적인 텍스트 생성 기능이 아니라 디자인 작업을 위해 세밀하게 튜닝된 모델과 워크플로우입니다: - **웹 프로토타이핑** — 자연어 설명에서 반응형 HTML/CSS/JavaScript 프로토타입 생성
 - **모바일 UI 디자인** — 플랫폼별 규칙을 갖춘 네이티브한 모바일 인터페이스 생성
 - **데스크톱 애플리케이션 목업** — 크로스 플랫폼 데스크톱 애플리케이션 프로토타입 구축
 - **슬라이드 덱 생성** — PPTX 형식의 프레젠테이션 준비 슬라이드 제작
@@ -87,9 +75,7 @@ Open Design은 디자인 및 프로토타이핑 전 스펙트럼을 커버하는
 
 ### 71개의 브랜드급 디자인 시스템
 
-Open Design의 눈에 띄는 기능 중 하나는 **71개의 사전 구성된 프로덕션급 디자인 시스템** 라이브러리입니다. 이것들은 기본 템플릿이 아니라 주요 브랜드에서 사용하는 AI 기반 생성을 위해 세심하게 재구성된 포괄적인 디자인 언어입니다:
-
-| 디자인 시스템 | 카테고리 | 최적 사용처 |
+Open Design의 눈에 띄는 기능 중 하나는 **71개의 사전 구성된 프로덕션급 디자인 시스템** 라이브러리입니다. 이것들은 기본 템플릿이 아니라 주요 브랜드에서 사용하는 AI 기반 생성을 위해 세심하게 재구성된 포괄적인 디자인 언어입니다: | 디자인 시스템 | 카테고리 | 최적 사용처 |
 |-------------|----------|-------------|
 | Material Design 3 | 모바일/웹 | Android 애플리케이션, 크로스 플랫폼 UI |
 | Apple Human Interface | iOS/macOS | Apple 생태계 네이티브 애플리케이션 |
@@ -106,9 +92,7 @@ Open Design의 눈에 띄는 기능 중 하나는 **71개의 사전 구성된 �
 
 ### 다중 포맷 내보내기 엔진
 
-Open Design의 내보내기 기능은 정말 인상적입니다. 단일 디자인을 동시에 여러 형식으로 렌더링할 수 있습니다:
-
-- **HTML/CSS/JS** — 완전히 기능하는 표준 준수 웹 페이지
+Open Design의 내보내기 기능은 정말 인상적입니다. 단일 디자인을 동시에 여러 형식으로 렌더링할 수 있습니다: - **HTML/CSS/JS** — 완전히 기능하는 표준 준수 웹 페이지
 - **PDF** — 임베디드 글꼴 및 벡터 그래픽이 포함된 인쇄 준비 문서
 - **PPTX** — 편집 가능한 요소가 있는 네이티브 PowerPoint 프레젠테이션
 - **MP4** — 데모 및 소셜 미디어용 고화질 비디오 렌더링
@@ -124,9 +108,7 @@ AI가 생성한 코드를 실행할 때 보안이 가장 중요합니다. Open D
 
 ### 보편적 AI 어시스턴트 호환성
 
-Open Design은 단일 AI 제공업체에 묶여 있지 않습니다. 다음과 함께 작동합니다:
-
-- **Claude Code** — Anthropic의 공식 CLI 도구
+Open Design은 단일 AI 제공업체에 묶여 있지 않습니다. 다음과 함께 작동합니다: - **Claude Code** — Anthropic의 공식 CLI 도구
 - **GitHub Copilot** — Microsoft의 AI 페어 프로그래머
 - **Cursor** — AI 네이티브 코드 에디터
 - **Gemini** — Google의 멀티모달 AI 시스템
@@ -144,9 +126,7 @@ Open Design을 머신에서 실행하는 것은 간단합니다. 완전한 설�
 
 ### 사전 요구사항
 
-설치 전 시스템이 다음 요구사항을 충족하는지 확인하세요:
-
-- **Node.js** 18.0 이상
+설치 전 시스템이 다음 요구사항을 충족하는지 확인하세요: - **Node.js** 18.0 이상
 - **npm** 9.0 이상 (또는 pnpm/yarn)
 - 저장소 클론을 위한 **Git**
 - AI 모델 작업을 위한 최소 **4GB RAM**
@@ -161,9 +141,7 @@ cd open-design
 
 ### 2단계: 의존성 설치
 
-Open Design은 모노레포 구조를 사용합니다. 다음으로 모든 패키지를 설치하세요:
-
-```bash
+Open Design은 모노레포 구조를 사용합니다. 다음으로 모든 패키지를 설치하세요: ```bash
 npm install
 # 또는
 pnpm install
@@ -173,15 +151,11 @@ yarn install
 
 ### 3단계: 환경 변수 구성
 
-예제 환경 파일을 복사하고 사용자화하세요:
-
-```bash
+예제 환경 파일을 복사하고 사용자화하세요: ```bash
 cp .env.example .env
 ```
 
-사용할 AI 제공업체 API 키를 추가하기 위해 `.env`를 편집하세요. 사용할 제공업체만 구성하면 됩니다:
-
-```env
+사용할 AI 제공업체 API 키를 추가하기 위해 `.env`를 편집하세요. 사용할 제공업체만 구성하면 됩니다: ```env
 # Anthropic Claude
 ANTHROPIC_API_KEY=sk-ant-your-key-here
 
@@ -206,9 +180,7 @@ npm run build
 
 ### 5단계: 디자인 시스템 초기화
 
-71개의 브랜드급 디자인 시스템을 다운로드하세요:
-
-```bash
+71개의 브랜드급 디자인 시스템을 다운로드하세요: ```bash
 npm run init:design-systems
 ```
 
@@ -216,9 +188,7 @@ npm run init:design-systems
 
 ### 6단계: Open Design 실행
 
-로컬 개발 서버를 시작하세요:
-
-```bash
+로컬 개발 서버를 시작하세요: ```bash
 npm run dev
 ```
 
@@ -226,9 +196,7 @@ npm run dev
 
 ### 7단계: AI 어시스턴트 구성 (선택사항)
 
-Claude Code 또는 Cursor와 같은 외부 AI 어시스턴트와 함께 Open Design을 사용하는 경우 동반 플러그인을 설치하세요:
-
-```bash
+Claude Code 또는 Cursor와 같은 외부 AI 어시스턴트와 함께 Open Design을 사용하는 경우 동반 플러그인을 설치하세요: ```bash
 npm run install:cursor-plugin
 # 또는
 npm run install:claude-plugin
@@ -322,16 +290,13 @@ AI 기반 개발 도구에 대한 더 많은 인사이트를 위해 dibi8의 관
 
 ## 자체 호스팅 추천 인프라
 
-24/7 안정 운영을 위해 인프라 선택이 중요하다:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 60일 $200 크레딧, 글로벌 14+ 리전. 오픈소스 AI 도구 자체 호스팅에 적합.
+24/7 안정 운영을 위해 인프라 선택이 중요하다: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 60일 $200 크레딧, 글로벌 14+ 리전. 오픈소스 AI 도구 자체 호스팅에 적합.
 - **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — 홍콩 VPS, 중국 본토 접근 시 저지연. dibi8.com 자체가 호스팅된 검증된 IDC.
 
 *추천 링크입니다. 추가 비용 없이 dibi8.com 운영에 도움이 됩니다.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

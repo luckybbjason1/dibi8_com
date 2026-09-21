@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/data-version-control-dvc-lakefs-delta-lake" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/data-version-control-dvc-lakefs-delta-lake" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/data-version-control-dvc-lakefs-delta-lake" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/data-version-control-dvc-lakefs-delta-lake" />
 title: 'DVC vs LakeFS vs Delta Lake: Hướng Dẫn Chọn Công Cụ Quản...
 description: 'So sánh chi tiết DVC, LakeFS và Delta Lake - 3 công cụ quản lý phiên bản dữ liệu hàng đầu cho ML. Tìm hiểu tính năng, kiến trúc và cách chọn công cụ phù hợp.'
 date: 2026-05-18 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/data-version-control-dvc-lakefs-delta-lake/
+aliases: - /posts/data-version-control-dvc-lakefs-delta-lake/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/data-version-control-dvc-lakefs-delta-lake/ -->
 
 {</* resource-info */>}
 
@@ -39,9 +31,7 @@ Bài viết này so sánh chi tiết cả ba công cụ, giúp bạn đưa ra qu
 
 Git đã trở thành tiêu chuẩn vàng cho quản lý phiên bản mã nguồn. Tuy nhiên, khi áp dụng Git cho Machine Learning, chúng ta đối mặt với một thách thức cơ bản: **bài toán ba trụ cột (three-pillar problem)**.
 
-Trong ML, code, dữ liệu, và mô hình artifact thay đổi độc lập với nhau. Một thí nghiệm ML có thể sử dụng cùng một đoạn code nhưng với hai phiên bản dữ liệu khác nhau, cho ra kết quả hoàn toàn khác biệt. Git xử lý mã nguồn tuyệt vờI, nhưng gặp phải các hạn chế nghiêm trọng khi làm việc với dữ liệu:
-
-- **Xử lý file lớn**: Git không được thiết kế để quản lý file có kích thước gigabyte hoặc terabyte. Git LFS (Large File Storage) cải thiện vấn đề này nhưng vẫn còn nhiều hạn chế.
+Trong ML, code, dữ liệu, và mô hình artifact thay đổi độc lập với nhau. Một thí nghiệm ML có thể sử dụng cùng một đoạn code nhưng với hai phiên bản dữ liệu khác nhau, cho ra kết quả hoàn toàn khác biệt. Git xử lý mã nguồn tuyệt vờI, nhưng gặp phải các hạn chế nghiêm trọng khi làm việc với dữ liệu: - **Xử lý file lớn**: Git không được thiết kế để quản lý file có kích thước gigabyte hoặc terabyte. Git LFS (Large File Storage) cải thiện vấn đề này nhưng vẫn còn nhiều hạn chế.
 - **Dữ liệu nhị phân**: Git không thể tạo diff hiệu quả cho các file nhị phân như Parquet, HDF5, hoặc các file checkpoint mô hình.
 - **Không theo dõi pipeline**: Git không hiểu về luồng dữ liệu từ tiền xử lý đến huấn luyện và đánh giá.
 - **Tách biệt code và dữ liệu**: Git theo dõi code trong repository, nhưng dữ liệu thường nằm ở hệ thống lưu trữ bên ngoài, tạo ra sự không liên tục trong quản lý phiên bản.
@@ -56,9 +46,7 @@ DVC là công cụ mã nguồn mở hoạt động như một "Git cho dữ li�
 
 DVC sử dụng **content-addressable storage** — mỗi file dữ liệu được xác định bởi hash MD5 của nội dung thay vì tên file. Các file `.dvc` nhỏ được lưu trong Git repository, chứa metadata và hash của dữ liệu thực tế, trong khi dữ liệu lớn được lưu trữ tách biệt (S3, GCS, Azure Blob, NAS, hoặc local cache).
 
-DVC cung cấp CLI commands quen thuộc với ngườI dùng Git:
-
-```bash
+DVC cung cấp CLI commands quen thuộc với ngườI dùng Git: ```bash
 # Theo dõi dữ liệu
 dvc add data/training.csv
 git add data/training.csv.dvc
@@ -73,24 +61,15 @@ dvc checkout
 
 ### Pipeline Và Khả Năng Tái Tạo
 
-Một trong những tính năng mạnh nhất của DVC là **pipeline as code**. Bạn định nghĩa các stage trong file `dvc.yaml`:
-
-```yaml
-stages:
-  preprocess:
-    cmd: python src/preprocess.py
-    deps:
-      - src/preprocess.py
+Một trong những tính năng mạnh nhất của DVC là **pipeline as code**. Bạn định nghĩa các stage trong file `dvc.yaml`: ```yaml
+stages: preprocess: cmd: python src/preprocess.py
+    deps: - src/preprocess.py
       - data/raw.csv
-    outs:
+    outs: - data/processed.csv
+  train: cmd: python src/train.py
+    deps: - src/train.py
       - data/processed.csv
-  train:
-    cmd: python src/train.py
-    deps:
-      - src/train.py
-      - data/processed.csv
-    outs:
-      - model.pkl
+    outs: - model.pkl
 ```
 
 Với cấu hình này, DVC tự động theo dõi dependencies, caching kết quả trung gian, và chỉ chạy lại các stage cần thiết khi có thay đổi. Lệnh `dvc repro` đảm bảo pipeline tái tạo hoàn toàn từ bất kỳ phiên bản nào.
@@ -125,9 +104,7 @@ spark.read.parquet("s3a://my-repo/experiment-2024/data/transactions/")
 
 ### Branching Và Merging Cho Dữ Liệu
 
-LakeFS mang đến các khái niệm quen thuộc từ Git:
-
-- **Branch**: Tạo nhánh dữ liệu độc lập cho thí nghiệm hoặc team khác nhau
+LakeFS mang đến các khái niệm quen thuộc từ Git: - **Branch**: Tạo nhánh dữ liệu độc lập cho thí nghiệm hoặc team khác nhau
 - **Commit**: Lưu snapshot dữ liệu tại một thờI điểm
 - **Merge**: Kết hợp thay đổi từ một nhánh sang nhánh khác
 - **Pre-commit hooks**: Kiểm tra chất lượng dữ liệu trước khi merge
@@ -158,9 +135,7 @@ LakeFS còn hỗ trợ **ACID guarantees** ở cấp độ object storage, đả
 
 ### Time Travel Và Schema Enforcement
 
-Delta Lake lưu trữ dữ liệu dưới dạng **Parquet files** cùng với **transaction log** (delta log). Mỗi thao tác ghi tạo ra một "version" mới trong log, cho phép:
-
-- **Time travel queries**: Truy vấn dữ liệu tại bất kỳ thờI điểm trong quá khứ
+Delta Lake lưu trữ dữ liệu dưới dạng **Parquet files** cùng với **transaction log** (delta log). Mỗi thao tác ghi tạo ra một "version" mới trong log, cho phép: - **Time travel queries**: Truy vấn dữ liệu tại bất kỳ thờI điểm trong quá khứ
 - **Schema enforcement**: Ngăn chặn ghi dữ liệu không tuân thủ schema
 - **Schema evolution**: Hỗ trợ thay đổi schema một cách có kiểm soát
 - **Z-ordering**: Tối ưu hóa layout dữ liệu để truy vấn nhanh hơn
@@ -207,25 +182,19 @@ Delta Lake hỗ trợ cả **batch processing** và **streaming** thông qua Apa
 
 ## Framework Quyết Định: Công Cụ Nào Phù Hợp Với Stack CủA Bạn?
 
-### Chọn DVC Nếu:
-
-- Team sử dụng Git hàng ngày và muốn mở rộng workflow đó sang dữ liệu
+### Chọn DVC Nếu: - Team sử dụng Git hàng ngày và muốn mở rộng workflow đó sang dữ liệu
 - Tập trung vào thí nghiệm ML, cần tái tạo kết quả nhanh chóng
 - Làm việc với dữ liệu dạng file (ảnh, CSV, audio, video)
 - Cần thiết lập nhẹ, không muốn duy trì thêm server
 - Team nhỏ đến trung bình (2-20 ngườI)
 
-### Chọn LakeFS Nếu:
-
-- Đang quản lý data lake trên S3/GCS/Azure
+### Chọn LakeFS Nếu: - Đang quản lý data lake trên S3/GCS/Azure
 - Nhiều team cùng đọc/ghi dữ liệu
 - Cần khả năng branch/merge/isolation giống Git
 - Muốn CI/CD cho data pipelines
 - Dữ liệu quy mô lớn (terabyte trở lên)
 
-### Chọn Delta Lake Nếu:
-
-- Đang sử dụng Apache Spark hoặc Databricks
+### Chọn Delta Lake Nếu: - Đang sử dụng Apache Spark hoặc Databricks
 - Cần ACID transactions và time travel queries
 - Xây dựng kiến trúc Lakehouse
 - Kết hợp batch processing và streaming
@@ -233,9 +202,7 @@ Delta Lake hỗ trợ cả **batch processing** và **streaming** thông qua Apa
 
 ### Có Thể Sử Dụng Kết Hợp
 
-Trong một số kiến trúc hiện đại, cả ba công cụ có thể hoạt động cùng nhau:
-
-- **LakeFS** quản lý versioning ở cấp độ data lake (object storage)
+Trong một số kiến trúc hiện đại, cả ba công cụ có thể hoạt động cùng nhau: - **LakeFS** quản lý versioning ở cấp độ data lake (object storage)
 - **Delta Lake** lưu trữ dữ liệu dưới dạng ACID tables bên trong LakeFS
 - **DVC** quản lý pipeline ML, code, và model artifacts liên kết với dữ liệu
 
@@ -255,26 +222,17 @@ Khả năng tích hợp với các công cụ MLOps khác là yếu tố quan tr
 
 ### Three-Way Version Lock
 
-Một best practice trong MLOps là **three-way version lock** — khóa đồng thờI phiên bản của code, dữ liệu, và mô hình. Ví dụ với DVC + MLflow:
-
-```yaml
+Một best practice trong MLOps là **three-way version lock** — khóa đồng thờI phiên bản của code, dữ liệu, và mô hình. Ví dụ với DVC + MLflow: ```yaml
 # dvc.yaml với MLflow integration
-stages:
-  train:
-    cmd: python train.py --data-version $(dvc data version)
-    outs:
-      - model.pkl:
-          meta:
-            mlflow.model: true
+stages: train: cmd: python train.py --data-version $(dvc data version)
+    outs: - model.pkl: meta: mlflow.model: true
 ```
 
 Điều này đảm bảo rằng bất kỳ lúc nào bạn cũng có thể tái tạo chính xác một thí nghiệm từ bất kỳ thờI điểm nào trong quá khứ.
 
 ## Thiết Lập Pipeline ML Tái Tạo Được
 
-Hãy xem một ví dụ end-to-end sử dụng DVC để xây dựng pipeline tái tạo:
-
-```bash
+Hãy xem một ví dụ end-to-end sử dụng DVC để xây dựng pipeline tái tạo: ```bash
 # 1. Khởi tạo DVC
 git init
 dvc init
@@ -285,29 +243,18 @@ git add data/raw_dataset.csv.dvc .gitignore
 
 # 3. Định nghĩa pipeline trong dvc.yaml
 cat > dvc.yaml << EOF
-stages:
-  preprocess:
-    cmd: python src/preprocess.py data/raw_dataset.csv data/processed.csv
-    deps:
-      - src/preprocess.py
+stages: preprocess: cmd: python src/preprocess.py data/raw_dataset.csv data/processed.csv
+    deps: - src/preprocess.py
       - data/raw_dataset.csv
-    outs:
-      - data/processed.csv
+    outs: - data/processed.csv
   
-  train:
-    cmd: python src/train.py data/processed.csv model.pkl
-    deps:
-      - src/train.py
+  train: cmd: python src/train.py data/processed.csv model.pkl
+    deps: - src/train.py
       - data/processed.csv
-    outs:
-      - model.pkl:
-          cache: true
-    params:
-      - train.epochs
+    outs: - model.pkl: cache: true
+    params: - train.epochs
       - train.learning_rate
-    metrics:
-      - metrics.json:
-          cache: false
+    metrics: - metrics.json: cache: false
 EOF
 
 # 4. Cấu hình remote storage
@@ -321,9 +268,7 @@ dvc push
 git add . && git commit -m "Pipeline tái tạo được"
 ```
 
-Từ bất kỳ máy nào, bạn có thể khôi phục toàn bộ pipeline:
-
-```bash
+Từ bất kỳ máy nào, bạn có thể khôi phục toàn bộ pipeline: ```bash
 git clone <repo>
 dvc pull
 dvc repro  # Chỉ chạy lại các stage cần thiết
@@ -341,9 +286,7 @@ Delta Lake ban đầu được thiết kế cho Spark, nhưng từ năm 2023 đ�
 
 ### Data Versioning Tốn Thêm Bao Nhiêu Dung Lượng Lưu Trữ?
 
-Mức độ tăng dung lượng phụ thuộc vào công cụ:
-
-- **DVC**: Chỉ lưu các version khác biệt (deduplication), overhead khoảng 10-30% cho metadata
+Mức độ tăng dung lượng phụ thuộc vào công cụ: - **DVC**: Chỉ lưu các version khác biệt (deduplication), overhead khoảng 10-30% cho metadata
 - **LakeFS**: Zero-copy branching nên overhead rất thấp (chỉ metadata)
 - **Delta Lake**: Lưu các file Parquet mới cho mỗi version, nhưng VACUUM có thể dọn dẹp các version cũ
 
@@ -377,9 +320,7 @@ Lựa chọn đúng phụ thuộc vào ngăn xếp công nghệ hiện có, quy 
 
 ## Hạ Tầng Đề Xuất
 
-Để chạy các công cụ trên 24/7 ổn định, lựa chọn hạ tầng rất quan trọng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu.
+Để chạy các công cụ trên 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp. dibi8.com cũng host ở đây.
 - **[Hostinger](https://www.hostinger.com/vn?REFERRALCODE=22RPIAOJIYJN)** — VPS giá tốt cho thị trường Việt Nam.
 
@@ -387,7 +328,6 @@ Lựa chọn đúng phụ thuộc vào ngăn xếp công nghệ hiện có, quy 
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

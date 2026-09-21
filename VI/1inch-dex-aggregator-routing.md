@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/1inch-dex-aggregator-routing" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/1inch-dex-aggregator-routing" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/1inch-dex-aggregator-routing" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/1inch-dex-aggregator-routing" />
 title: '1inch-dex-aggregator-routing'
 description: '{'en': ''Master 1inch DEX aggregator in 2026. Learn how Pathfinder routes trades across 300+ liquidity sources, implement Fusion+ gasless swaps, limit orders, and portfolio tracking with the TypeScript SDK.'', 'zh': ''掌握 2026 年 1inch DEX 聚合器。了解 Pathfinder 如何跨 300+ 流动性来源路由交易，使用 TypeScript SDK 实现 Fusion+ 无 Gas 兑换、限价单和 portfolio 追踪。'', 'ko': ''2026년 1inch DEX 집계기를 마스터하세요. Pathfinder가 300개 이상의 유동성 소스에서 거래를 라우팅하는 방법, Fusion+ 가스 없는 스왑, 한도 주문 및 TypeScript SDK를 사용한 포트폴리오 추적을 구현하세요.'', 'vi': ''Làm chủ trình tổng hợp DEX 1inch năm 2026. Tìm hiểu cách Pathfinder định tuyến giao dịch qua 300+ nguồn thanh khoản, triển khai hoán đổi không gas Fusion+, lệnh giới hạn và theo dõi danh mục với SDK TypeScript.''}'
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: [1inch]
-aliases:
-- /vi/posts/1inch-dex-aggregator-routing/
+aliases: - /vi/posts/1inch-dex-aggregator-routing/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/1inch-dex-aggregator-routing/ -->
 
 {{</* resource-info */>}}
 
@@ -43,9 +35,7 @@ Hướng dẫn này cung cấp phân tích chuyên sâu kỹ thuật về kiến
 
 Các DEX aggregator giải quyết một trong những thách thức dai dẳng nhất của DeFi: **phân mảnh thanh khoản**. Với hàng trăm sàn giao dịch phi tập trung hoạt động trên nhiều chuỗi — Uniswap, Curve, Balancer, PancakeSwap, SushiSwap và vô số sàn khác — thanh khoản tồn tại trong các silo. Một cặp token có thể có pool sâu trên một DEX và pool nông trên DEX khác. Không có tổng hợp, các trader phải đối mặt với giá không tối ưu, trượt giá quá mức và cơ hội bị bỏ lỡ.
 
-1inch giải quyết vấn đề này bằng cách hoạt động như một **meta-layer** phía trên các DEX riêng lẻ. Thay vì thực thi hoán đổi trên một sàn duy nhất, thuật toán Pathfinder của 1inch kiểm tra đồng thở tất cả các nguồn thanh khoản có sẵn, xây dựng các tuyến đường multi-hop phức tạp có thể chia một giao dịch qua nhiều giao thức và thậm chí nhiều blockchain. Năm 2026, mạng lưới này trải rộng:
-
-| Chuỗi | Các DEX chính | Thanh khoản xấp xỉ |
+1inch giải quyết vấn đề này bằng cách hoạt động như một **meta-layer** phía trên các DEX riêng lẻ. Thay vì thực thi hoán đổi trên một sàn duy nhất, thuật toán Pathfinder của 1inch kiểm tra đồng thở tất cả các nguồn thanh khoản có sẵn, xây dựng các tuyến đường multi-hop phức tạp có thể chia một giao dịch qua nhiều giao thức và thậm chí nhiều blockchain. Năm 2026, mạng lưới này trải rộng: | Chuỗi | Các DEX chính | Thanh khoản xấp xỉ |
 |-------|-------------------|----------------------|
 | Ethereum | Uniswap v3, Curve, Balancer, SushiSwap | $2.8B+ |
 | Arbitrum | Camelot, Uniswap v3, SushiSwap | $890M+ |
@@ -64,8 +54,7 @@ Trái tim của khả năng tổng hợp 1inch là **Pathfinder** — một engi
 
 Khi bạn yêu cầu báo giá để hoán đổi Token A sang Token B, Pathfinder phải giải: *Với N nguồn thanh khoản có độ sâu, phí và giá khác nhau, chuỗi hop và split nào tối thiểu hoá tổng chi phí khớp lệnh?*
 
-Đây là bài toán tính toán cường độ cao vì:
-- Phải truy vấn **300+ nguồn** về dự trữ và phí hiện tại
+Đây là bài toán tính toán cường độ cao vì: - Phải truy vấn **300+ nguồn** về dự trữ và phí hiện tại
 - **Đường đi multi-hop** (A → C → D → B) thường cho giá tốt hơn cặp trực tiếp
 - **Chia tách định tuyến** — chia một lệnh qua nhiều đường — giảm trượt giá
 - Chi phí gas thay đổi theo độ phức tạp đường đi; nhiều hop hơn nghĩa là chi phí thực thi cao hơn
@@ -73,12 +62,9 @@ Khi bạn yêu cầu báo giá để hoán đổi Token A sang Token B, Pathfind
 
 ### 2.2 Các Phát Khám phá và Tập hợp
 
-Pathfinder hoạt động trong hai pha riêng biệt:
+Pathfinder hoạt động trong hai pha riêng biệt: **Pha 1 — Khám phá Tuyến đường**: Thuật toán khám phá tất cả các đường đi có thể giữa token nguồn và đích lên đến độ sâu có thể cấu hình (thường 4-6 hop). Nó sử dụng phương pháp Bellman-Ford được cải tiến để khám phá các chu kỳ âm trong không gian giá, hiệu quả tìm ra các đường liền kề arbitrage chỉ ra sự không hiệu quả về giá.
 
-**Pha 1 — Khám phá Tuyến đường**: Thuật toán khám phá tất cả các đường đi có thể giữa token nguồn và đích lên đến độ sâu có thể cấu hình (thường 4-6 hop). Nó sử dụng phương pháp Bellman-Ford được cải tiến để khám phá các chu kỳ âm trong không gian giá, hiệu quả tìm ra các đường liền kề arbitrage chỉ ra sự không hiệu quả về giá.
-
-**Pha 2 — Tập hợp Tuyến đường**: Các đường đi được khám phá được chấm điểm bằng hàm đa mục tiêu cân bằng:
-- Số lượng đầu ra dự kiến (mục tiêu chính)
+**Pha 2 — Tập hợp Tuyến đường**: Các đường đi được khám phá được chấm điểm bằng hàm đa mục tiêu cân bằng: - Số lượng đầu ra dự kiến (mục tiêu chính)
 - Ước tính chi phí gas (thứ cấp)
 - Xác suất thành công dựa trên tỷ lệ fill lịch sử
 - Yêu cầu bảo vệ MEV
@@ -126,17 +112,13 @@ yarn add @1inch/sdk
 npm install ethers axios dotenv
 ```
 
-Tạo file `.env` cho thông tin xác thực API:
-
-```bash
+Tạo file `.env` cho thông tin xác thực API: ```bash
 ONEINCH_API_KEY=your_api_key_here
 PRIVATE_KEY=your_wallet_private_key
 RPC_URL=https://mainnet.infura.io/v3/your_project_id
 ```
 
-Khởi tạo SDK với cấu hình của bạn:
-
-```typescript
+Khởi tạo SDK với cấu hình của bạn: ```typescript
 import { OneInchSdk } from '@1inch/sdk';
 import { ethers } from ethers;
 import * as dotenv from dotenv;
@@ -159,9 +141,7 @@ console.log('SDK 1inch đã khởi tạo cho', wallet.address);
 
 ### 3.2 Tổng quan Kiến trúc SDK
 
-SDK được tổ chức thành các namespace phản ánh cấu trúc API của 1inch:
-
-```typescript
+SDK được tổ chức thành các namespace phản ánh cấu trúc API của 1inch: ```typescript
 // Cấu trúc module SDK
 import {
   SwapApi,        // Hoán đổi token và báo giá
@@ -241,9 +221,7 @@ executeSwap().catch(console.error);
 
 ### 4.2 Xử lý Trượt giá và Fill Một phần
 
-Dung sai trượt giá là quan trọng trong thị trường biến động. SDK cung cấp kiểm soát chi tiết:
-
-```typescript
+Dung sai trượt giá là quan trọng trong thị trường biến động. SDK cung cấp kiểm soát chi tiết: ```typescript
 // Cài đặt bảo thủ cho giao dịch lớn
 const largeTradeParams = {
   src: 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE,
@@ -270,9 +248,7 @@ const quickTradeParams = {
 
 ### 4.3 Hoán đổi Cross-Chain qua Bridge API
 
-Khả năng tổng hợp của 1inch mở rộng vượt ra ngoài single chain. Bridge API tìm các tuyến đường tối ưu xuyên chuỗi:
-
-```typescript
+Khả năng tổng hợp của 1inch mở rộng vượt ra ngoài single chain. Bridge API tìm các tuyến đường tối ưu xuyên chuỗi: ```typescript
 // Bridge từ Ethereum USDC sang Arbitrum ETH
 const bridgeQuote = await sdk.crossChain.getQuote({
   srcChain: 1,        // Ethereum
@@ -307,9 +283,7 @@ Một trong những tính năng sáng tạo nhất của 1inch là **Fusion+** �
 
 ### 5.1 Fusion+ Hoạt động Như thế nào
 
-Các hoán đổi truyền thống yêu cầu ngườ dùng trả phí gas bằng token gốc (ETH trên Ethereum). Fusion+ loại bỏ rào cản này:
-
-1. **Ngườ dùng ký ý định** hoán đổi ở mức giá chấp nhận tối thiểu
+Các hoán đổi truyền thống yêu cầu ngườ dùng trả phí gas bằng token gốc (ETH trên Ethereum). Fusion+ loại bỏ rào cản này: 1. **Ngườ dùng ký ý định** hoán đổi ở mức giá chấp nhận tối thiểu
 2. **Các resolver cạnh tranh** trong một cuộc đấu giá Hà Lan để khớp lệnh
 3. **Resolver chiến thắng** thực thi giao dịch, trả gas thay mặt ngườ dùng
 4. **Phí của resolver** được nhúng trong tỷ giá hoán đổi, vô hình với ngườ dùng
@@ -751,7 +725,6 @@ Có — SDK được cấp phép MIT cho phép điều này một cách rõ ràn
 Bắt đầu xây dựng với 1inch ngay hôm nay và mang đến cho ngườ dùng của bạn khả năng thực thi giá tốt nhất mà DeFi có thể cung cấp.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

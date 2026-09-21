@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/llm-cost-calculator" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/llm-cost-calculator" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llm-cost-calculator" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/llm-cost-calculator" />
 title: "LLM API 비용 계산기 — GPT-4 / Claude / Gemini"
 description: "LLM API 월간 비용 계산. 입력/출력 토큰 수, 일일 요청 수, 모델을 입력하면 OpenAI / Anthropic / Google 비용을 즉시 예측합니다.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18
@@ -11,7 +6,6 @@ lastmod: 2026-05-19
 layout: "tool-llm-cost-calculator"
 tool_id: "llm-cost-calculator"
 ---
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -43,7 +37,6 @@ tool_id: "llm-cost-calculator"
 </script>
 
 
-<!-- canonical: https://dibi8.com/kr/tools/llm-cost-calculator/ -->
 # LLM API 비용 계산기 — GPT-4 / Claude / Gemini
 
 
@@ -51,9 +44,7 @@ This guide will help you get started with the topic. Whether you're a beginner o
 
 ### Prerequisites
 
-Before diving in, make sure you have:
-
-```bash
+Before diving in, make sure you have: ```bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
@@ -78,9 +69,7 @@ This guide will help you get started with the topic. Whether you're a beginner o
 
 ### Prerequisites
 
-Before diving in, make sure you have:
-
-```bash
+Before diving in, make sure you have: ```bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
@@ -105,9 +94,7 @@ This guide will help you get started with the topic. Whether you're a beginner o
 
 ### Prerequisites
 
-Before diving in, make sure you have:
-
-```bash
+Before diving in, make sure you have: ```bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
@@ -132,9 +119,7 @@ This guide will help you get started with the topic. Whether you're a beginner o
 
 ### Prerequisites
 
-Before diving in, make sure you have:
-
-```bash
+Before diving in, make sure you have: ```bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
@@ -159,9 +144,7 @@ This guide will help you get started with the topic. Whether you're a beginner o
 
 ### Prerequisites
 
-Before diving in, make sure you have:
-
-```bash
+Before diving in, make sure you have: ```bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
@@ -186,9 +169,7 @@ This guide will help you get started with the topic. Whether you're a beginner o
 
 ### Prerequisites
 
-Before diving in, make sure you have:
-
-```bash
+Before diving in, make sure you have: ```bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9

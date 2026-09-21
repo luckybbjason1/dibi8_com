@@ -1,7 +1,5 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/daily-stock-analysis-llm-powered-multi-market-stock-intelligence" />
-  title: 'Daily Stock Analysis: LLM-Powered Multi-Market Stock Int...
+title: 'Daily Stock Analysis: LLM-Powered Multi-Market Stock Int...
   description: 'An LLM-driven multi-market stock analysis system with real-time news, decision dashboards, and automated notifications. 48K stars. Supports zero-cost scheduled runs.'
   date: 2026-06-25
   lastmod: 2026-06-25
@@ -12,9 +10,7 @@
   tags: ['stock-analysis', 'llm', 'quantitative-trading', 'ai-agent', 'multi-market', 'a-stock', 'sentiment-analysis', 'automated-trading']
   slug: daily-stock-analysis-llm-powered-multi-market-stock-intelligence
   featureImage: /images/articles/daily-stock-analysis-llm-powered-multi-market-stock-intelligence-system.png
-  license: MIT
----
-
+  license: MIT---
 
 
 # Daily Stock Analysis: LLM-Powered Multi-Market Stock Intelligence
@@ -31,9 +27,7 @@ Daily Stock Analysis combines real-time market data, news sentiment analysis, an
 
 Daily Stock Analysis is a comprehensive stock intelligence platform that leverages large language models to analyze market data, news sentiment, and technical indicators. Unlike traditional charting tools that only show price movements, this system provides contextual analysis that explains WHY markets are moving and WHAT might happen next.
 
-The platform supports multiple markets and data sources:
-
-- **US Markets**: NYSE, NASDAQ, with real-time and delayed data
+The platform supports multiple markets and data sources: - **US Markets**: NYSE, NASDAQ, with real-time and delayed data
 - **A-Shares**: Shanghai and Shenzhen exchanges with comprehensive coverage
 - **Cryptocurrency**: Major exchanges including Binance, Coinbase, and Kraken
 - **Futures & Commodities**: Oil, gold, agricultural products, and indices
@@ -96,9 +90,7 @@ python main.py --market us --date $(date +%Y-%m-%d)
 
 ### Option 3: Local LLM Setup (Free)
 
-For users who want to avoid API costs entirely:
-
-```bash
+For users who want to avoid API costs entirely: ```bash
 # Install Ollama for local LLM inference
 curl -fsSL https://ollama.ai/install.sh | sh
 
@@ -107,8 +99,7 @@ ollama pull qwen2.5:14b
 
 # Update config.yaml to use local model
 cat >> config.yaml << EOF
-llm:
-  provider: ollama
+llm: provider: ollama
   model: qwen2.5:14b
   base_url: http://localhost:11434
 EOF
@@ -121,9 +112,7 @@ python main.py --market a_shares --date $(date +%Y-%m-%d)
 
 ### AKShare Integration (Free A-Share Data)
 
-AKShare provides free access to Chinese market data without any API key:
-
-```python
+AKShare provides free access to Chinese market data without any API key: ```python
 import akshare as ak
 
 # Get daily A-share market data
@@ -146,9 +135,7 @@ print(sector_df)
 
 ### Tushare Integration (Premium A-Share Data)
 
-For more comprehensive A-share data including fundamentals:
-
-```python
+For more comprehensive A-share data including fundamentals: ```python
 import tushare as ts
 
 # Initialize with your API token
@@ -192,8 +179,7 @@ recommendations = ticker.recommendations
 
 # Get news sentiment
 news = ticker.news
-for item in news:
-    print(f"{item['title']}: {item['providerPublishTime']}")
+for item in news: print(f"{item['title']}: {item['providerPublishTime']}")
 ```
 
 ### Cryptocurrency Data
@@ -222,9 +208,7 @@ print(f"Ask: {order_book['asks'][0][0]}")
 
 ### Sentiment Analysis Pipeline
 
-The core of Daily Stock Analysis is its LLM-powered sentiment analysis pipeline:
-
-```python
+The core of Daily Stock Analysis is its LLM-powered sentiment analysis pipeline: ```python
 from daily_stock_analysis.llm import LLMAnalyzer
 from daily_stock_analysis.data import MarketDataProvider
 
@@ -260,13 +244,10 @@ print(f"Risk Level: {analysis.risk_level}")
 
 ### Custom Analysis Prompts
 
-You can customize the LLM analysis prompts for different use cases:
-
-```python
+You can customize the LLM analysis prompts for different use cases: ```python
 # Technical analysis prompt
 tech_prompt = """
-Analyze the following stock technical indicators and provide:
-1. Trend direction (bullish/bearish/neutral)
+Analyze the following stock technical indicators and provide: 1. Trend direction (bullish/bearish/neutral)
 2. Key support and resistance levels
 3. Momentum assessment
 4. Volume analysis interpretation
@@ -277,8 +258,7 @@ Data: {market_data}
 
 # Fundamental analysis prompt
 fund_prompt = """
-Analyze the following fundamental data and provide:
-1. Revenue growth assessment
+Analyze the following fundamental data and provide: 1. Revenue growth assessment
 2. Profitability evaluation
 3. Debt sustainability
 4. Valuation comparison
@@ -298,9 +278,7 @@ combined = llm.analyze(
 
 ### Multi-Market Comparative Analysis
 
-Compare stocks across different markets simultaneously:
-
-```python
+Compare stocks across different markets simultaneously: ```python
 # Compare US tech stocks
 us_techs = llm.compare_stocks(
     symbols=["AAPL", "MSFT", "GOOGL", "AMZN", "META"],
@@ -320,18 +298,14 @@ a_share_sectors = llm.compare_sectors(
 
 ### Web Dashboard Setup
 
-Daily Stock Analysis includes a built-in web dashboard:
-
-```bash
+Daily Stock Analysis includes a built-in web dashboard: ```bash
 # Start the dashboard server
 python dashboard.py --host 0.0.0.0 --port 8080
 
 # Access at http://localhost:8080
 ```
 
-The dashboard provides:
-
-- Real-time market overview with heat maps
+The dashboard provides: - Real-time market overview with heat maps
 - Individual stock analysis with interactive charts
 - Sector performance comparisons
 - News sentiment timeline
@@ -341,11 +315,9 @@ The dashboard provides:
 
 ```yaml
 # dashboard_config.yaml
-dashboard:
-  refresh_interval: 300  # 5 minutes
+dashboard: refresh_interval: 300  # 5 minutes
   default_market: "a_shares"
-  charts:
-    - type: "heatmap"
+  charts: - type: "heatmap"
       title: "Market Heatmap"
       data_source: "sector_performance"
     - type: "line"
@@ -354,8 +326,7 @@ dashboard:
     - type: "sentiment"
       title: "News Sentiment"
       data_source: "llm_sentiment"
-  alerts:
-    - threshold: 0.8
+  alerts: - threshold: 0.8
       action: "notification"
       channels: ["email", "telegram"]
 ```
@@ -377,9 +348,7 @@ python report_generator.py --format csv --output analysis_data.csv
 
 ### Cron Job Setup
 
-Schedule automatic analysis runs:
-
-```bash
+Schedule automatic analysis runs: ```bash
 # Edit crontab
 crontab -e
 
@@ -395,9 +364,7 @@ crontab -e
 
 ### Systemd Service
 
-For persistent background operation:
-
-```ini
+For persistent background operation: ```ini
 # /etc/systemd/system/daily-stock-analysis.service
 [Unit]
 Description=Daily Stock Analysis Service
@@ -492,7 +459,6 @@ Internal links: [nvidia-cosmos-world-models-platform-2026](https://dibi8.com/en/
 **Disclosure**: This article mentions tools that may have affiliate relationships. We do not accept payment for reviews. All opinions are our own.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -520,25 +486,20 @@ Internal links: [nvidia-cosmos-world-models-platform-2026](https://dibi8.com/en/
 
 ## Why This Matters
 
-Understanding daily stock analysis: llm-powered multi-market stock intelligence system is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding daily stock analysis: llm-powered multi-market stock intelligence system is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -559,13 +520,13 @@ Daily Stock Analysis: LLM-Powered Multi-Market Stock Intelligence System represe
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*
 
----
 
+---
 ## Related Articles
 
 - [12-factor-agents-production-llm-software-2026](daily-stock-analysis-llm-powered-multi-market-stock-intelligence)

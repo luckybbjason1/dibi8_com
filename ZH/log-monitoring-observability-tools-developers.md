@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/log-monitoring-observability-tools-developers" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/log-monitoring-observability-tools-developers" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/log-monitoring-observability-tools-developers" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/log-monitoring-observability-tools-developers" />
 title: '日志监控与可观测性工具：2025年开发者完整指南'
 description: '从Grafana Loki到ELK Stack，从Datadog到开源SigNoz，全面对比日志监控与可观测性工具，覆盖三大支柱与部署方案。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/log-monitoring-observability-tools-developers/
+aliases: - /posts/log-monitoring-observability-tools-developers/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/log-monitoring-observability-tools-developers/ -->
 
 {</* resource-info */>}
 
@@ -86,15 +78,11 @@ Docker一键启动Loki + Grafana + Promtail：
 
 ```yaml
 # docker-compose.yml 简化版
-services:
-  loki:
-    image: grafana/loki:latest
+services: loki: image: grafana/loki:latest
     ports: ["3100:3100"]
-  promtail:
-    image: grafana/promtail:latest
+  promtail: image: grafana/promtail:latest
     volumes: ["/var/log:/var/log:ro", "./promtail.yml:/etc/promtail/config.yml"]
-  grafana:
-    image: grafana/grafana:latest
+  grafana: image: grafana/grafana:latest
     ports: ["3000:3000"]
 ```
 
@@ -147,7 +135,13 @@ New Relic的界面以开发者为中心设计，学习曲线比Datadog更平缓�
 如果不想被商业SaaS锁定，以下开源组合能构建完整的可观测性平台：
 
 | 数据类型 | 工具 | 功能 |
-|----------|------|------|
+|
+---
+|
+---
+|
+---
+|
 | 指标 | **Prometheus** | 时序数据库 + 抓取器 + 告警规则 |
 | 仪表盘 | **Grafana** | 可视化 + 告警通知 |
 | 日志 | **Loki** 或 **Vector** | 日志聚合与查询 |
@@ -159,19 +153,14 @@ New Relic的界面以开发者为中心设计，学习曲线比Datadog更平缓�
 用Docker Compose部署完整开源栈：
 
 ```yaml
-services:
-  prometheus:
-    image: prom/prometheus
+services: prometheus: image: prom/prometheus
     volumes: ["./prometheus.yml:/etc/prometheus/prometheus.yml"]
     ports: ["9090:9090"]
-  grafana:
-    image: grafana/grafana
+  grafana: image: grafana/grafana
     ports: ["3000:3000"]
-  loki:
-    image: grafana/loki
+  loki: image: grafana/loki
     ports: ["3100:3100"]
-  jaeger:
-    image: jaegertracing/all-in-one
+  jaeger: image: jaegertracing/all-in-one
     ports: ["16686:16686", "14268:14268"]
 ```
 
@@ -213,7 +202,19 @@ services:
 ## 工具选型对比矩阵
 
 | 工具 | 开源 | 自托管 | SaaS | 最佳场景 | 月费参考 |
-|------|------|--------|------|----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Grafana Loki | 是 | 是 | Grafana Cloud | 已有Grafana生态，预算有限 | 免费起 |
 | Elastic Stack | 是（SSPL） | 是 | Elastic Cloud | 全文搜索、复杂查询 | $95/月起 |
 | Datadog | 否 | 否 | 是 | 企业全栈可观测 | 按量计费 |
@@ -244,8 +245,8 @@ OpenTelemetry是CNCF的开放标准，提供统一的API和SDK来采集指标、
 
 自托管的优势是数据完全可控、长期成本可能更低、无供应商锁定；劣势是需要运维人力和基础设施。SaaS的优势是零运维、快速启动、自动扩容；劣势是数据出境合规风险和持续订阅费用。建议：数据敏感行业（金融、政务）选自托管；初创团队和追求速度的团队选SaaS；可以先从SaaS开始，规模扩大后再评估自托管。
 
----
 
+---
 ## 推荐基础设施
 
 要 7×24 稳跑上述工具，服务器选择关键：
@@ -257,7 +258,6 @@ OpenTelemetry是CNCF的开放标准，提供统一的API和SDK来采集指标、
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -285,25 +285,20 @@ OpenTelemetry是CNCF的开放标准，提供统一的API和SDK来采集指标、
 
 ## Why This Matters
 
-Understanding 日志监控与可观测性工具：2025年开发者完整指南 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding 日志监控与可观测性工具：2025年开发者完整指南 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -324,14 +319,12 @@ To implement this in your workflow:
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
-Understanding these core concepts will help you master the topic:
-
-1. **Abstraction**: Hide complexity behind simple interfaces
+Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces
 2. **Composition**: Build complex systems from simple parts
 3. **Immutability**: Prefer immutable data structures
 4. **Error Handling**: Handle failures gracefully

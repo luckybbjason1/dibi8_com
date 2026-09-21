@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/claude-code-subagent-vs-mcp-server-skill-agent-2026" />
 title: 'Subagent vs MCP Server vs Skill: When to Build Each Clau...
 description: 'Claude Code has three extension points — skills, subagents, and MCP servers — and they solve different problems. A decision framework for choosing the right one, with worked scenarios and the anti-patterns that waste your time.'
 date: 2026-05-28 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['claude-code', mcp, subagents, skills, 'agent-sdk', 'llm-frameworks', 'developer-tools']
-aliases:
-- /posts/claude-code-subagent-vs-mcp-vs-skill/
-faq:
-  - q: "What's the one-sentence difference between a skill, a subagent, and an MCP server?"
+aliases: - /posts/claude-code-subagent-vs-mcp-vs-skill/
+faq: - q: "What's the one-sentence difference between a skill, a subagent, and an MCP server?"
     a: "A skill teaches Claude HOW to do something (packaged instructions and knowledge loaded into context), a subagent is WHO does it (a delegated worker with its own context window), and an MCP server is WHAT it can reach (a connection to external tools and data). Skills change behavior, subagents protect context, MCP servers add capabilities — three different axes, not three competing options."
   - q: "If I need Claude to query our internal database, is that a skill, a subagent, or an MCP server?"
     a: "An MCP server. Anything that connects Claude to an external system — a database, an internal API, a SaaS platform, a ticketing system — is an integration, and integrations are exactly what MCP servers exist for. A skill can document HOW to phrase good queries, and a subagent can be the worker that runs the analysis in isolation, but the actual connection to the database is the MCP server's job. You often end up using all three together."
@@ -71,9 +67,7 @@ An MCP server is the answer to *"Claude literally cannot reach this system."* Yo
 
 ## A Decision Framework
 
-Ask these in order:
-
-1. **"Does Claude need to reach a system it currently can't?"** → **MCP server.** (Database, API, SaaS, external data.)
+Ask these in order: 1. **"Does Claude need to reach a system it currently can't?"** → **MCP server.** (Database, API, SaaS, external data.)
 2. **"Does Claude already have the capability, but the work would bloat my context?"** → **Subagent.** (Big exploration, parallel research, isolated experiments.)
 3. **"Does Claude have the capability and the context, but doesn't know our specific way of doing it?"** → **Skill.** (Playbook, checklist, procedure.)
 
@@ -123,9 +117,7 @@ The three extension points map to three resources: **knowledge** (skills), **con
 
 ## Setting Up Production-Ready Claude Code
 
-Running all three layers — especially MCP servers — at scale wants stable infrastructure:
-
-1. **A reliable host for MCP servers and CI.** MCP servers are long-running processes; you need a box that stays up. **{{< aff "htstack" "footer-cta" "HTStack" >}}** — Hong Kong VPS with low-latency mainland-China access and stable BGP. Same IDC that hosts dibi8.com, where we run our own MCP servers and agent pipelines. $5-12/month value tier.
+Running all three layers — especially MCP servers — at scale wants stable infrastructure: 1. **A reliable host for MCP servers and CI.** MCP servers are long-running processes; you need a box that stays up. **{{< aff "htstack" "footer-cta" "HTStack" >}}** — Hong Kong VPS with low-latency mainland-China access and stable BGP. Same IDC that hosts dibi8.com, where we run our own MCP servers and agent pipelines. $5-12/month value tier.
 
 2. **Cloud headroom for parallel layers.** When subagents fan out and MCP servers run alongside, you want spare CPU. **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 free credit for 60 days across 14+ regions.
 
@@ -143,7 +135,6 @@ Running all three layers — especially MCP servers — at scale wants stable in
 Stop asking "skill, subagent, or MCP server?" as if they compete. Ask instead: am I short on **knowledge**, **context**, or **capability**? Knowledge → skill. Context → subagent. Capability → MCP server. The full-stack cases use all three, layered. And when in doubt, build the cheapest artifact that moves your axis — a markdown file beats a deployed service every time it can.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -171,25 +162,20 @@ Stop asking "skill, subagent, or MCP server?" as if they compete. Ask instead: a
 
 ## Why This Matters
 
-Understanding subagent vs mcp server vs skill: when to build each claude code extension (2026) is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding subagent vs mcp server vs skill: when to build each claude code extension (2026) is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -210,13 +196,13 @@ Subagent vs MCP Server vs Skill: When to Build Each Claude Code Extension (2026)
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*
 
----
 
+---
 ## Related Articles
 
 - [claude-code-vs-cline](claude-code-subagent-vs-mcp-server-skill-agent-2026)

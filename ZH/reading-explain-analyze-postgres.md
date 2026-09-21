@@ -1,16 +1,10 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/reading-explain-analyze-postgres" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/reading-explain-analyze-postgres" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/reading-explain-analyze-postgres" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/reading-explain-analyze-postgres" />
 title: 阅读 PostgreSQL 中的 EXPLAIN ANALYZE 输出而不迷失
 description: PostgreSQL EXPLAIN ANALYZE tutorial. Learn query plan interpretation,. Comprehensive guide covering features, pricing, and best practices for 2026.
   bottleneck detection, and database performance optimization.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
-tech_stack:
-- AI
+tech_stack: - AI
 application_domain: Ai Tools
 source_version: ''
 licensing_model: Open Source
@@ -25,10 +19,8 @@ maintainer: ''
 last_maintained: '2026-05-15'
 featureImage: ''
 draft: false
-aliases:
-- /zh/posts/reading-explain-analyze-postgres/
-faqs:
-  - q: 'EXPLAIN ANALYZE 输出中，顶行的 actual time 代表什么意思？'
+aliases: - /zh/posts/reading-explain-analyze-postgres/
+faqs: - q: 'EXPLAIN ANALYZE 输出中，顶行的 actual time 代表什么意思？'
     a: '最外层节点的第二个 actual time 值，是整条查询在毫秒级别的实际挂钟耗时（该节点执行一次的时间）。它下面的每个节点则进一步拆解了这段总耗时花在了哪里。'
   - q: '如何通过 EXPLAIN ANALYZE 的行数判断查询计划有问题？'
     a: '对比 cost= 部分的 rows=（规划器估算值）和 actual time= 部分的 rows=（实际值）。如果两者相差 10 倍或以上，说明规划器使用了过时的统计信息，而它之上的每一个节点都是基于错误假设选出来的——这几乎必然就是问题所在。'
@@ -37,10 +29,7 @@ faqs:
   - q: 'EXPLAIN (ANALYZE, BUFFERS) 中，shared hit 和 shared read 有什么区别？'
     a: 'shared hit 统计的是已在 Postgres 缓冲区缓存中的页面，读取代价低；shared read 统计的是从操作系统或磁盘获取的页面，代价高昂。如果 read 占主导，说明数据根本没有被缓存——运行两次查询，第二次的结果才能反映稳定状态。'
   - q: '查询计划中 Sort 或 Hash 节点上出现 temp written 是什么意思？'
-    a: '这意味着排序或哈希操作超出了 work_mem 的限制，数据溢出到了磁盘，这很容易让该节点的耗时增加 10 倍。解决方法是为该会话调大 work_mem，然后重新运行 EXPLAIN。'
----
-
-<!-- canonical: https://dibi8.com/zh/tools/reading-explain-analyze-postgres/ -->
+    a: '这意味着排序或哈希操作超出了 work_mem 的限制，数据溢出到了磁盘，这很容易让该节点的耗时增加 10 倍。解决方法是为该会话调大 work_mem，然后重新运行 EXPLAIN。'---
 # 阅读 PostgreSQL 中的 EXPLAIN ANALYZE 输出而不迷失
 
 
@@ -113,8 +102,8 @@ Sort Method: external merge  Disk: 16384kB
 
 记住：EXPLAIN ANALYZE 是您的查询性能调试器。学习阅读它将节省您无数小时的猜测。
 
----
 
+---
 ## 推荐工具
 
 跑或部署开源 AI 工具时，推荐：
@@ -126,7 +115,6 @@ Sort Method: external merge  Disk: 16384kB
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -154,25 +142,20 @@ Sort Method: external merge  Disk: 16384kB
 
 ## Why This Matters
 
-Understanding 阅读 postgresql 中的 explain analyze 输出而不迷失 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding 阅读 postgresql 中的 explain analyze 输出而不迷失 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -193,14 +176,12 @@ To implement this in your workflow:
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
-Understanding these core concepts will help you master the topic:
-
-1. **Abstraction**: Hide complexity behind simple interfaces
+Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces
 2. **Composition**: Build complex systems from simple parts
 3. **Immutability**: Prefer immutable data structures
 4. **Error Handling**: Handle failures gracefully
@@ -221,9 +202,7 @@ Understanding these core concepts will help you master the topic:
                      └─────────────┘
 ```
 
-Understanding these core concepts will help you master the topic:
-
-1. **Abstraction**: Hide complexity behind simple interfaces
+Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces
 2. **Composition**: Build complex systems from simple parts
 3. **Immutability**: Prefer immutable data structures
 4. **Error Handling**: Handle failures gracefully
@@ -244,9 +223,7 @@ Understanding these core concepts will help you master the topic:
                      └─────────────┘
 ```
 
-Understanding these core concepts will help you master the topic:
-
-1. **Abstraction**: Hide complexity behind simple interfaces
+Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces
 2. **Composition**: Build complex systems from simple parts
 3. **Immutability**: Prefer immutable data structures
 4. **Error Handling**: Handle failures gracefully
@@ -270,7 +247,17 @@ Understanding these core concepts will help you master the topic:
 ## Trading Bot Comparison
 
 | Bot | Exchange | Strategy | Cost | Difficulty |
-|-----|----------|----------|------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Freqtrade** | Multi | Custom | Free | Medium |
 | **Hummingbot** | DEX/CEX | Market making | Free | Hard |
 | **Jesse** | Crypto | Backtesting | Free | Medium |

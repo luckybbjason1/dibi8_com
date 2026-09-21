@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/git-workflow-team-collaboration-tools" />
 title: 'Git Workflow & Team Collaboration Tools: A Developer''s ...
 description: 'Master Git workflow best practices for teams. Compare GitHub Flow, GitFlow, and trunk-based development with code review tools and collaboration platforms.'
 date: 2026-05-18 00:00:00+08:00
@@ -20,8 +18,7 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/git-workflow-team-collaboration-tools/
+aliases: - /posts/git-workflow-team-collaboration-tools/
 ---
 # Git Workflow & Team Collaboration Tools: A Developer''s Complete Guide
 
@@ -54,9 +51,7 @@ Small teams (2-5 developers) need simplicity. Medium teams (5-20) need structure
 
 ### GitFlow: Feature, Develop, Release, and Hotfix Branches
 
-[GitFlow](https://nvie.com/posts/a-successful-git-branching-model/), introduced by Vincent Driessen in 2010, organizes work into five branch types:
-
-- **`main`** — Production code only
+[GitFlow](https://nvie.com/posts/a-successful-git-branching-model/), introduced by Vincent Driessen in 2010, organizes work into five branch types: - **`main`** — Production code only
 - **`develop`** — Integration branch for the next release
 - **`feature/*`** — Individual features branched from `develop`
 - **`release/*`** — Release preparation branched from `develop`
@@ -68,9 +63,7 @@ This model excels for versioned software like libraries, mobile apps, and deskto
 
 ### GitHub Flow: Simple Branch-per-Feature
 
-GitHub Flow is intentionally minimal:
-
-1. Create a feature branch from `main`
+GitHub Flow is intentionally minimal: 1. Create a feature branch from `main`
 2. Make commits
 3. Open a pull request
 4. Review and discuss
@@ -86,9 +79,7 @@ GitLab Flow adds environment branches to GitHub Flow's simplicity. You might hav
 
 [Trunk-Based Development](https://trunkbaseddevelopment.com/) takes a radical approach: all developers commit directly to `main` or use branches that live for less than 24 hours. Long-lived feature branches are forbidden. Incomplete features are hidden behind feature flags rather than kept in separate branches.
 
-This requires:
-
-- Comprehensive automated testing
+This requires: - Comprehensive automated testing
 - Feature flag infrastructure
 - Developer discipline to commit small, complete changes
 - Fast CI pipelines (ideally under 10 minutes)
@@ -98,7 +89,15 @@ Google, Facebook, and Amazon practice variants of trunk-based development at mas
 ### Which Strategy for Which Team Size
 
 | Strategy | Best For | Deployment Frequency | Complexity |
-|----------|----------|---------------------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | GitFlow | Versioned software, libraries, mobile apps | Weekly to monthly | High |
 | GitHub Flow | SaaS products, web applications | Daily to multiple times daily | Low |
 | GitLab Flow | Multi-environment pipelines | Daily with staging gates | Medium |
@@ -108,9 +107,7 @@ Google, Facebook, and Amazon practice variants of trunk-based development at mas
 
 ### Branch Naming Conventions
 
-Consistent branch naming makes it easy to identify work in progress:
-
-```
+Consistent branch naming makes it easy to identify work in progress: ```
 feature/user-authentication
 bugfix/login-redirect-loop
 hotfix/critical-payment-bug
@@ -122,9 +119,7 @@ Include the issue or ticket number when applicable: `feature/PROJ-123-user-authe
 
 ### Pull Request Workflow
 
-A proper pull request workflow includes:
-
-1. **Descriptive title** — "Add OAuth2 login with Google and GitHub" not "Login stuff"
+A proper pull request workflow includes: 1. **Descriptive title** — "Add OAuth2 login with Google and GitHub" not "Login stuff"
 2. **Detailed description** — What changed, why it changed, and how to test it
 3. **Linked issues** — Reference `Closes #456` to auto-close related issues
 4. **Screenshots or recordings** — For UI changes, visual evidence is essential
@@ -132,9 +127,7 @@ A proper pull request workflow includes:
 
 ### Required Reviews and Branch Protection
 
-Configure branch protection rules in your Git platform:
-
-- Require at least one code review approval before merging
+Configure branch protection rules in your Git platform: - Require at least one code review approval before merging
 - Require status checks (CI tests, linting) to pass
 - Require branches to be up to date before merging
 - Restrict push access to `main` — all changes go through pull requests
@@ -142,19 +135,13 @@ Configure branch protection rules in your Git platform:
 
 ### CI/CD Integration With GitHub Actions
 
-GitHub Actions runs your test suite on every pull request. A minimal workflow:
-
-```yaml
+GitHub Actions runs your test suite on every pull request. A minimal workflow: ```yaml
 name: CI
 on: [pull_request]
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: test: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
+        with: node-version: '20'
           cache: 'npm'
       - run: npm ci
       - run: npm run lint
@@ -198,11 +185,8 @@ If branches are used at all, they should be merged within hours. Google's intern
 
 ### Pull Request Templates and Checklists
 
-A pull request template standardizes what reviewers see:
-
-```markdown
+A pull request template standardizes what reviewers see: ```markdown
 ## Description
-<!-- What changed and why -->
 
 ## Type of Change
 - [ ] Bug fix
@@ -224,18 +208,14 @@ A pull request template standardizes what reviewers see:
 
 ### Review Assignment Strategies
 
-Assign reviewers based on code ownership and expertise:
-
-- **Round-robin** — Distribute reviews evenly across the team
+Assign reviewers based on code ownership and expertise: - **Round-robin** — Distribute reviews evenly across the team
 - **Code owners** — Use a `CODEOWNERS` file to auto-assign based on file paths
 - **Domain experts** — Tag team members with specific expertise for complex changes
 - **Pair programming** — Skip formal review for changes written in pairs
 
 ### Automated Checks: Linting, Tests, Security
 
-Automate everything that can be automated. Human reviewers should focus on architecture, logic, and design — not formatting or whether tests pass. Pre-commit hooks and CI pipelines handle:
-
-- Code formatting (Prettier, Black, gofmt)
+Automate everything that can be automated. Human reviewers should focus on architecture, logic, and design — not formatting or whether tests pass. Pre-commit hooks and CI pipelines handle: - Code formatting (Prettier, Black, gofmt)
 - Linting (ESLint, Ruff, golangci-lint)
 - Unit and integration tests
 - Security scanning (Dependabot, Snyk, CodeQL)
@@ -244,7 +224,13 @@ Automate everything that can be automated. Human reviewers should focus on archi
 ### Tools: GitHub PRs, GitLab MRs, Bitbucket, Gerrit
 
 | Platform | Code Review Features | CI Integration |
-|----------|---------------------|----------------|
+|
+---
+|
+---
+|
+---
+|
 | GitHub | Inline comments, suggestions, required reviews | GitHub Actions |
 | GitLab | Threaded discussions, code intelligence, approvals | GitLab CI |
 | Bitbucket | Pull requests, Jira integration | Bitbucket Pipelines |
@@ -280,9 +266,7 @@ Azure DevOps (formerly VSTS) integrates with Microsoft Entra ID (formerly Azure 
 
 ### Conventional Commits Specification
 
-The [Conventional Commits](https://www.conventionalcommits.org) specification standardizes commit messages with a structured format:
-
-```
+The [Conventional Commits](https://www.conventionalcommits.org) specification standardizes commit messages with a structured format: ```
 <type>(<scope>): <description>
 
 [optional body]
@@ -294,9 +278,7 @@ Types include `feat`, `fix`, `docs`, `style`, `refactor`, `test`, and `chore`. T
 
 ### Pre-Commit Hooks (Husky, lint-staged)
 
-Pre-commit hooks run checks before each commit. For JavaScript projects, [Husky](https://github.com/typicode/husky) and [lint-staged](https://github.com/lint-staged/lint-staged) provide a popular combination:
-
-```json
+Pre-commit hooks run checks before each commit. For JavaScript projects, [Husky](https://github.com/typicode/husky) and [lint-staged](https://github.com/lint-staged/lint-staged) provide a popular combination: ```json
 {
   "lint-staged": {
     "*.{js,ts}": ["eslint --fix", "prettier --write"],
@@ -320,7 +302,13 @@ Tools like [semantic-release](https://github.com/semantic-release/semantic-relea
 ### When to Merge vs Rebase vs Squash
 
 | Strategy | When to Use | Result |
-|----------|-------------|--------|
+|
+---
+|
+---
+|
+---
+|
 | Merge | Preserving branch history, team collaboration | Full history preserved, merge commit created |
 | Rebase | Clean linear history before merging | Linear history, no merge commits |
 | Squash | Feature branches with many small commits | Single commit per feature, clean main history |
@@ -329,9 +317,7 @@ Many teams use squash merging as their default. It keeps `main` clean with one c
 
 ### Interactive Rebase Workflow
 
-Use interactive rebase to clean up commits before merging:
-
-```bash
+Use interactive rebase to clean up commits before merging: ```bash
 git rebase -i HEAD~5
 ```
 
@@ -339,9 +325,7 @@ This opens an editor where you can squash, reorder, edit, or drop commits. It is
 
 ### Conflict Resolution Best Practices
 
-When conflicts occur:
-
-1. Pull the latest target branch before starting conflict resolution
+When conflicts occur: 1. Pull the latest target branch before starting conflict resolution
 2. Understand both changes — do not just pick yours
 3. Test the resolved code before committing
 4. Ask the author of the conflicting change if the resolution is unclear
@@ -373,17 +357,13 @@ Tower is a premium Git client ($69/year) with advanced features like pull reques
 
 ### Tools: Nx, Turborepo, Bazel
 
-Monorepos — repositories containing multiple related projects — require specialized tooling:
-
-- **Nx** — Popular for TypeScript monorepos with built-in caching and code generation
+Monorepos — repositories containing multiple related projects — require specialized tooling: - **Nx** — Popular for TypeScript monorepos with built-in caching and code generation
 - **Turborepo** — Vercel's monorepo task runner with remote caching
 - **Bazel** — Google's build system, powerful but complex, used by large enterprises
 
 ### Sparse Checkout for Large Repos
 
-Git's sparse checkout feature lets you work with only a subset of a large repository:
-
-```bash
+Git's sparse checkout feature lets you work with only a subset of a large repository: ```bash
 git sparse-checkout init --cone
 git sparse-checkout set packages/frontend packages/shared
 ```
@@ -393,7 +373,13 @@ This dramatically reduces clone time and working directory size for large monore
 ### When to Choose Monorepo vs Polyrepo
 
 | Factor | Monorepo | Polyrepo |
-|--------|----------|----------|
+|
+---
+|
+---
+|
+---
+|
 | Code sharing | Easy (shared packages) | Harder (published packages) |
 | Atomic changes | Easy (single PR) | Harder (multiple PRs) |
 | CI complexity | Higher | Lower |
@@ -410,17 +396,13 @@ Before changing anything, document how your team currently works. How long do br
 
 ### Step 2: Choose a Branching Strategy
 
-Match your strategy to your deployment frequency:
-
-- Deploy multiple times daily → GitHub Flow or trunk-based
+Match your strategy to your deployment frequency: - Deploy multiple times daily → GitHub Flow or trunk-based
 - Deploy weekly with staging → GitLab Flow
 - Deploy on scheduled releases → GitFlow
 
 ### Step 3: Set Up Branch Protection Rules
 
-Configure branch protection on your main branch:
-
-- Require pull request reviews (minimum 1)
+Configure branch protection on your main branch: - Require pull request reviews (minimum 1)
 - Require status checks to pass
 - Require branches to be up to date
 - Restrict direct pushes to maintainers only
@@ -432,9 +414,7 @@ Set up automated testing, linting, and deployment. Start with a minimal pipeline
 
 ### Step 5: Document and Onboard the Team
 
-Write a `CONTRIBUTING.md` file that documents:
-
-- Branch naming conventions
+Write a `CONTRIBUTING.md` file that documents: - Branch naming conventions
 - Commit message format
 - Review requirements and expectations
 - How to run tests locally
@@ -464,20 +444,17 @@ The best code review practices include: using pull request templates, keeping re
 
 Trunk-based development is better for teams with mature CI/CD pipelines, comprehensive test coverage, and feature flag infrastructure. It eliminates merge conflicts entirely and enables true continuous deployment. However, it requires significant engineering discipline and infrastructure investment. For teams without these foundations, GitHub Flow with short-lived branches is a more practical stepping stone.
 
----
 
+---
 ## Recommended Infrastructure
 
-To run any of the tools above reliably 24/7, infrastructure matters:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.
+To run any of the tools above reliably 24/7, infrastructure matters: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low latency for mainland China access. This is the same IDC hosting dibi8.com — production-proven.
 
 *Affiliate links — no extra cost to you, helps keep dibi8.com running.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -502,3 +479,4 @@ To run any of the tools above reliably 24/7, infrastructure matters:
   }
 }
 </script>
+---

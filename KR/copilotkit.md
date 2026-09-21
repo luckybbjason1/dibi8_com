@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/copilotkit" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/copilotkit" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/copilotkit" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/copilotkit" />
 title: 'CopilotKit: 31K+ Stars — React 또는 Angular 앱에 AI Copilot ...
 description: 'CopilotKit은 인앱 AI Copilot과 생성형 UI를 위한 오픈소스 프론트엔드 스택입니다. 사전 제작 컴포넌트, useCopilotAction Hooks, 프로덕션 배포로 React Angular AI 어시스턴트를 구축하세요. 설치, LangChain 통합, 셀프 호스팅, Vercel AI SDK와의 성능 비교를 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [copilotkit, 'react-ai', 생성형ui, 'ai-copilot', langchain, '프론트엔드-에이전트', typescript, 오픈소스]
-aliases:
-- /kr/posts/copilotkit/
+aliases: - /kr/posts/copilotkit/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/copilotkit/ -->
 
 {{</* resource-info */>}}
 
@@ -51,9 +43,7 @@ CopilotKit은 모든 React 또는 Angular 애플리케이션을 AI 네이티브 
 
 ## CopilotKit 작동 방식
 
-CopilotKit은 프론트엔드 애플리케이션과 LLM 또는 에이전트 백엔드 사이에 위치합니다. 깔끔한 3계층 아키텍처를 통해 스트리밍 채팅, 도구 호출, 상태 동기화 및 생성형 UI 렌더링을 처리합니다:
-
-| 계층 | 책임 | 주요 파일 |
+CopilotKit은 프론트엔드 애플리케이션과 LLM 또는 에이전트 백엔드 사이에 위치합니다. 깔끔한 3계층 아키텍처를 통해 스트리밍 채팅, 도구 호출, 상태 동기화 및 생성형 UI 렌더링을 처리합니다: | 계층 | 책임 | 주요 파일 |
 |---|---|---|
 | **UI 컴포넌트** | 채팅 사이드바, 팝업 또는 인라인 채팅 렌더링 | `CopilotSidebar`, `CopilotChat`, `CopilotPopup` |
 | **React Hooks** | 상태와 작업을 LLM에 노출 | `useCopilotReadable`, `useCopilotAction` |
@@ -103,9 +93,7 @@ COPILOTKIT_API_KEY=ck-your-copilot-cloud-key  # 선택 사항, 클라우드 기�
 
 ### 3단계: 런타임 엔드포인트 생성
 
-Next.js 프로젝트에서 `app/api/copilotkit/route.ts`를 생성합니다:
-
-```typescript
+Next.js 프로젝트에서 `app/api/copilotkit/route.ts`를 생성합니다: ```typescript
 import {
   CopilotRuntime,
   OpenAIAdapter,
@@ -135,9 +123,7 @@ export const POST = async (req: NextRequest) => {
 
 ### 4단계: Provider로 앱 감싸기
 
-루트 레이아웃 또는 페이지 컴포넌트를 업데이트합니다:
-
-```tsx
+루트 레이아웃 또는 페이지 컴포넌트를 업데이트합니다: ```tsx
 // app/layout.tsx 또는 app/page.tsx
 "use client";
 
@@ -177,9 +163,7 @@ npm run dev
 
 ### OpenAI 어댑터 (가장 간단함)
 
-OpenAI 어댑터는 프로덕션으로 가장 빠른 경로입니다. 추가 백엔드 인프라 없이 GPT-4o에 직접 연결합니다:
-
-```typescript
+OpenAI 어댑터는 프로덕션으로 가장 빠른 경로입니다. 추가 백엔드 인프라 없이 GPT-4o에 직접 연결합니다: ```typescript
 // app/api/copilotkit/route.ts — OpenAI 버전
 import { CopilotRuntime, OpenAIAdapter } from "@copilotkit/runtime";
 import { copilotRuntimeNextJSAppRouterEndpoint } from "@copilotkit/runtime";
@@ -199,9 +183,7 @@ export const POST = (req: NextRequest) =>
 
 ### LangChain 어댑터
 
-이미 LangChain에 투자한 팀을 위해 LangChain 어댑터를 사용하여 사용자 정의 체인, 검색기 및 에이전트를 연결합니다:
-
-```typescript
+이미 LangChain에 투자한 팀을 위해 LangChain 어댑터를 사용하여 사용자 정의 체인, 검색기 및 에이전트를 연결합니다: ```typescript
 // app/api/copilotkit/route.ts — LangChain 버전
 import { CopilotRuntime, LangChainAdapter } from "@copilotkit/runtime";
 import { ChatOpenAI } from "@langchain/openai";
@@ -228,9 +210,7 @@ export const POST = async (req: NextRequest) => {
 
 ### LangGraph 에이전트 (고급)
 
-상태를 유지하는 다단계 에이전트를 위해 LangGraph 백엔드에 연결합니다:
-
-```typescript
+상태를 유지하는 다단계 에이전트를 위해 LangGraph 백엔드에 연결합니다: ```typescript
 // app/api/copilotkit/route.ts — LangGraph 버전
 import {
   CopilotRuntime,
@@ -260,9 +240,7 @@ export const POST = (req: NextRequest) =>
 
 ### Groq 어댑터 (빠른 추론)
 
-Groq를 통해 Llama 모델로 낮은 지연 시간 응답을 얻습니다:
-
-```typescript
+Groq를 통해 Llama 모델로 낮은 지연 시간 응답을 얻습니다: ```typescript
 import {
   CopilotRuntime,
   GroqAdapter,
@@ -433,9 +411,7 @@ useCopilotAction({
 
 ## 벤치마크 / 실제 사용 사례
 
-CopilotKit은 다양한 프로덕션 애플리케이션에 배포되었습니다. 아래는 검증된 배포 지표와 사용 사례입니다:
-
-| 사용 사례 | 회사 / 유형 | 규모 | 통합 |
+CopilotKit은 다양한 프로덕션 애플리케이션에 배포되었습니다. 아래는 검증된 배포 지표와 사용 사례입니다: | 사용 사례 | 회사 / 유형 | 규모 | 통합 |
 |---|---|---|---|
 | 작업 관리 Copilot | SaaS 스타트업 | 5K-50K MAU | React + OpenAI |
 | CRM 데이터 어시스턴트 | 영업 플랫폼 | 10K+ 사용자 | Angular + LangChain |
@@ -478,17 +454,12 @@ CMD ["npm", "start"]
 ```yaml
 # docker-compose.yml
 version: "3.8"
-services:
-  app:
-    build: .
-    ports:
-      - "3000:3000"
-    environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
+services: app: build: .
+    ports: - "3000:3000"
+    environment: - OPENAI_API_KEY=${OPENAI_API_KEY}
       - COPILOTKIT_API_KEY=${COPILOTKIT_API_KEY}
     restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
+    healthcheck: test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -594,9 +565,7 @@ const runtime = new CopilotRuntime({
 
 ## 한계 / 솔직한 평가
 
-CopilotKit이 모든 프로젝트에 적합한 것은 아닙니다. 다음은 진정한 트레이드오프입니다:
-
-1. **React 중심 생태계.** Angular가 지원되지만 React 통합이 훨씬 더 성숙합니다. Vue 및 Svelte 개발자는 CopilotKit을 래핑하거나 다른 곳을 찾아야 합니다.
+CopilotKit이 모든 프로젝트에 적합한 것은 아닙니다. 다음은 진정한 트레이드오프입니다: 1. **React 중심 생태계.** Angular가 지원되지만 React 통합이 훨씬 더 성숙합니다. Vue 및 Svelte 개발자는 CopilotKit을 래핑하거나 다른 곳을 찾아야 합니다.
 
 2. **프리미엄 기능은 유료.** Headless UI 모드, 분석 코넙트, 자기 학습 에이전트, 확장된 스레드 보관은 유료 플랜이 필요합니다(Pro $39/개발자/월, Team $500/월).
 
@@ -661,9 +630,7 @@ CopilotKit은 특정한 격차를 메웁니다: 기존 React 애플리케이션 
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -686,7 +653,6 @@ CopilotKit은 특정한 격차를 메웁니다: 기존 React 애플리케이션 
 **고지 사항:** 이 기사에는 DigitalOcean의 제휴 링크가 포함되어 있습니다. 당사 링크를 통해 가입하면 dibi8.com에서 추가 비용 없이 커미션을 받을 수 있습니다. 모든 의견과 벤치마크는 독립적으로 수행되었습니다. DigitalOcean은 신규 사용자가 CopilotKit 배포를 시도할 수 있도록 $200의 묶은 크레딧을 제공합니다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

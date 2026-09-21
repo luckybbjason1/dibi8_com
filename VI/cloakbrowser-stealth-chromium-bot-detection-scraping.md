@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/cloakbrowser-stealth-chromium-bot-detection-scraping" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cloakbrowser-stealth-chromium-bot-detection-scraping" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cloakbrowser-stealth-chromium-bot-detection-scraping" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cloakbrowser-stealth-chromium-bot-detection-scraping" />
 title: 'CloakBrowser: Chromium Ẩn Danh Vượt Qua Mọi Bài Kiểm Tra...
 description: 'CloakBrowser (25.077 sao GitHub) là Chromium ẩn danh vượt qua mọi bài kiểm tra bot. Thay thế Playwright trực tiếp với vá cấp nguồn gốc. 30/30 bài kiểm tra vượt qua. Bao gồm hướng dẫn cài đặt, phân tích chống phát hiện và benchmark.'
 date: 2026-06-08
-lastmod:  2026-06-08slug: 'cloakbrowser-stealth-chromium-bot-detection-scraping'
+lastmod: 2026-06-08
+slug: 'cloakbrowser-stealth-chromium-bot-detection-scraping'
 category: 'ai-trading'
 tags: ['stealth browser', cloakbrowser, 'bot detection', 'web scraping', 'fingerprint spoofing', 'playwright replacement', 'anti-detection', 'scraping tool']
 github_repo: 'https://github.com/CloakHQ/CloakBrowser'
@@ -17,8 +13,6 @@ license: MIT
 featureImage: 'https://avatars.githubusercontent.com/u/17126204'
 lang: vi
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/cloakbrowser-stealth-chromium-bot-detection-scraping/ -->
 
 # CloakBrowser: Chromium Ẩn Danh Vượt Qua Mọi Bài Kiểm Tra Bot — 25.000 Sao cho Scraping — Hướng Dẫn Thực Tế 2026
 
@@ -57,8 +51,7 @@ Nếu bạn đang scrape websites trong 2026, bạn chắc chắn đang chiến 
 
 CloakBrowser là **a stealth Chromium browser engine** patched at the source level để vượt qua mọi known bot detection test. Không giống như extensions hay runtime hacks để lại detectable traces, CloakBrowser modifies Chromium's source code to eliminate fingerprint inconsistencies — the same way a real Chrome browser would have them.
 
-Key capabilities:
-- **Source-level patches** — Modify Chromium at build time, not runtime hacks
+Key capabilities: - **Source-level patches** — Modify Chromium at build time, not runtime hacks
 - **30/30 detection tests passed** — Vượt qua major bot detection systems (Cloudflare, Datadome, PerimeterX, etc.)
 - **Drop-in Playwright replacement** — Replace `playwright.chromium.launch()` với one line
 - **TLS fingerprint randomization** — Rotate TLS fingerprints like real browsers
@@ -72,9 +65,7 @@ Key capabilities:
 
 ### Giai đoạn 1: Source-Level Patches
 
-CloakBrowser applies patches at Chromium build time:
-
-```bash
+CloakBrowser applies patches at Chromium build time: ```bash
 # Build CloakBrowser from source
 git clone https://github.com/CloakHQ/CloakBrowser.git
 cd CloakBrowser
@@ -83,8 +74,7 @@ cd CloakBrowser
 ./build.sh --target chromium-125
 
 # Output: cloak-browser binary (~200 source patches applied)
-# Patch categories:
-# - navigator.webdriver = false (C++ level)
+# Patch categories: # - navigator.webdriver = false (C++ level)
 # - chrome.runtime spoofing
 # - WebGL renderer fingerprinting
 # - TLS fingerprint randomization
@@ -102,8 +92,7 @@ cd CloakBrowser
 # Replace Playwright's Chromium with CloakBrowser
 from playwright.sync_api import sync_playwright
 
-with sync_playwright() as p:
-    browser = p.chromium.launch(
+with sync_playwright() as p: browser = p.chromium.launch(
         executable_path="./cloak-browser/chrome",  # Drop-in replacement!
         headless=False,  # Or headless=True — still works
     )
@@ -162,8 +151,7 @@ cd CloakBrowser && ./build.sh
 npm install playwright
 npx playwright install chromium
 
-# In your script:
-const { chromium } = require(playwright);
+# In your script: const { chromium } = require(playwright);
 const browser = await chromium.launch({
   executablePath: './cloak-browser/chrome',
 });
@@ -200,12 +188,10 @@ browser = p.chromium.launch(
 # Or use residential proxy pool
 import requests
 
-def get_proxy():
-    return requests.get("http://proxy-pool:8080/next").json()
+def get_proxy(): return requests.get("http://proxy-pool:8080/next").json()
 
 # Rotate proxy per request
-for url in urls:
-    proxy = get_proxy()
+for url in urls: proxy = get_proxy()
     page = browser.new_page(proxy=proxy)
     page.goto(url)
     # scrape...
@@ -251,21 +237,17 @@ for url in urls:
 from playwright.sync_api import sync_playwright
 import time
 
-with sync_playwright() as p:
-    browser = p.chromium.launch(
+with sync_playwright() as p: browser = p.chromium.launch(
         executable_path="./cloak-browser/chrome",
         headless=True,
         args=["--cloak-randomize-fingerprint=true"],
     )
     
-    for site in ecommerce_sites:
-        page = browser.new_page()
-        try:
-            page.goto(site.url)
+    for site in ecommerce_sites: page = browser.new_page()
+        try: page.goto(site.url)
             price = page.locator(".price").text_content()
             print(f"{site.name}: ${price}")
-        except:
-            print(f"{site.name}: BLOCKED")
+        except: print(f"{site.name}: BLOCKED")
         page.close()
         time.sleep(2)  # Delay between requests
     
@@ -286,8 +268,7 @@ user_agents = [
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) Safari/605.1",
 ]
 
-for query in seo_queries:
-    ua = random.choice(user_agents)
+for query in seo_queries: ua = random.choice(user_agents)
     page.set_user_agent(ua)
     page.goto(f"https://google.com/search?q={query}")
     results = page.locator(".g").all()
@@ -384,9 +365,7 @@ browser = p.chromium.launch(
 
 ## Hạn chế / Đánh giá Trung thực
 
-CloakBrowser is not a silver bullet:
-
-1. **Detection evolves** — Bot detection systems update constantly. What passes today may fail tomorrow. Monitor detection test results and update CloakBrowser regularly.
+CloakBrowser is not a silver bullet: 1. **Detection evolves** — Bot detection systems update constantly. What passes today may fail tomorrow. Monitor detection test results and update CloakBrowser regularly.
 2. **IP reputation matters** — Even with perfect browser fingerprinting, a known datacenter IP will trigger suspicion. Use residential proxies or rotate IPs.
 3. **Behavioral analysis** — Bot detection isn't just fingerprinting. Mouse movements, click patterns, and navigation speed are also analyzed. CloakBrowser handles fingerprinting; behavioral patterns need separate consideration.
 4. **Build complexity** — Building from source takes ~30 minutes and requires a Linux build environment. Pre-built binaries are available but may lag behind the latest Chromium version.
@@ -441,7 +420,6 @@ Tham gia [nhóm Telegram tiếng Việt dibi8](https://t.me/DIBI8_Group/18) đ�
 Một số liên kết trên là affiliate links. dibi8.com có thể nhận hoa hồng nếu bạn đăng ký, không tốn thêm chi phí cho bạn. Điều này giúp duy trì trang web và nội dung miễn phí.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

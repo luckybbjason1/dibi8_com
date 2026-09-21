@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/meilisearch-fast-search-engine" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/meilisearch-fast-search-engine" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/meilisearch-fast-search-engine" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/meilisearch-fast-search-engine" />
 title: 'Meilisearch: 快如闪电的开源容错搜索引擎 — 2026 年部署与基准测试'
 description: '部署 Meilisearch 1.12，实现 50 毫秒以内的容错快速搜索。包含 Docker 设置、SDK 集成、生产环境基准测试和与替代方案的诚实对比。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: []
-aliases:
-- /zh/posts/meilisearch-fast-search-engine/
+aliases: - /zh/posts/meilisearch-fast-search-engine/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/meilisearch-fast-search-engine/ -->
 
 {{</* resource-info */>}}
 
@@ -48,7 +40,11 @@ aliases:
 核心数据：
 
 | 属性 | 详情 |
-|---|---|
+|
+---
+|
+---
+|
 | **最新版本** | 1.12（2026 年 3 月） |
 | **GitHub Stars** | 51,300+ |
 | **许可证** | MIT |
@@ -300,8 +296,7 @@ results = index.search(
 
 print(f"Hits: {results[estimatedTotalHits]}")
 print(f"Facets: {results.get(facetDistribution, {})}")
-for hit in results[hits]:
-    print(f"  {hit[name]} - ${hit[price]} (rating: {hit[rating]})")
+for hit in results[hits]: print(f"  {hit[name]} - ${hit[price]} (rating: {hit[rating]})")
 ```
 
 ### React InstantSearch 集成
@@ -404,16 +399,16 @@ import (
 func main() {
     client := meilisearch.NewClient(
         meilisearch.ClientConfig{
-            Host:   "http://localhost:7700",
+            Host: "http://localhost:7700",
             APIKey: os.Getenv("MEILI_MASTER_KEY"),
         },
     )
 
     resp, err := client.Index("products").Search("headphons", &meilisearch.SearchRequest{
         Filter: "price >= 50 AND in_stock = true",
-        Sort:   []string{"rating:desc"},
+        Sort: []string{"rating:desc"},
         Facets: []string{"category"},
-        Limit:  10,
+        Limit: 10,
     })
     if err != nil {
         panic(err)
@@ -435,7 +430,11 @@ func main() {
 我们在一台 **DigitalOcean 云服务器**（2 vCPU + 2GB RAM，月费约 **$18**）上测试了 Meilisearch 1.12。数据集：**250 万电商商品**，每个文档 10 个字段。
 
 | 指标 | 结果 |
-|---|---|
+|
+---
+|
+---
+|
 | **索引构建时间** | 52 秒（250 万文档） |
 | **平均查询延迟（p50）** | **9 毫秒** |
 | **p95 查询延迟** | **22 毫秒** |
@@ -483,7 +482,13 @@ curl -s -X POST 'http://localhost:7700/indexes/products/search' \
 ### 实际应用案例
 
 | 公司 | 规模 | 使用场景 |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | **Louis Vuitton** | 奢侈品零售 | 带容错的产品搜索 |
 | **Elementary OS** | 开源 | AppCenter 包搜索 |
 | **Frappe Framework** | ERP 平台 | 文档和记录搜索 |
@@ -498,42 +503,27 @@ curl -s -X POST 'http://localhost:7700/indexes/products/search' \
 # docker-compose.yml
 version: '3.8'
 
-services:
-  meilisearch:
-    image: getmeili/meilisearch:v1.12
+services: meilisearch: image: getmeili/meilisearch:v1.12
     restart: unless-stopped
-    ports:
-      - "127.0.0.1:7700:7700"
-    volumes:
-      - meilisearch-data:/meili_data
-    environment:
-      MEILI_MASTER_KEY: ${MEILI_MASTER_KEY}
+    ports: - "127.0.0.1:7700:7700"
+    volumes: - meilisearch-data:/meili_data
+    environment: MEILI_MASTER_KEY: ${MEILI_MASTER_KEY}
       MEILI_ENV: production
       MEILI_DB_PATH: /meili_data
       MEILI_HTTP_ADDR: 0.0.0.0:7700
       MEILI_DUMP_DIR: /meili_data/dumps
-    deploy:
-      resources:
-        limits:
-          memory: 3G
-        reservations:
-          memory: 512M
+    deploy: resources: limits: memory: 3G
+        reservations: memory: 512M
 
   # Caddy 反向代理 HTTPS
-  caddy:
-    image: caddy:2-alpine
+  caddy: image: caddy:2-alpine
     restart: unless-stopped
-    ports:
-      - "80:80"
+    ports: - "80:80"
       - "443:443"
-    volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile
+    volumes: - ./Caddyfile:/etc/caddy/Caddyfile
       - caddy-data:/data
 
-volumes:
-  meilisearch-data:
-  caddy-data:
-```
+volumes: meilisearch-data: caddy-data: ```
 
 在任何 VPS 上部署。需要可靠的主机？[DigitalOcean](https://m.do.co/c/eca87ac14ee0) 提供 **$200 免费额度** —— 足够在 2GB 云服务器上运行 Meilisearch 11 个月。
 
@@ -577,8 +567,7 @@ curl -s -X POST 'http://localhost:7700/dumps' \
 # 响应: { "taskUid": 42, ... }
 # 任务完成后从 /dumps/ 下载
 
-# 自动备份，添加到 crontab:
-# 0 2 * * * curl -s -X POST 'http://localhost:7700/dumps' -H 'Authorization: Bearer YOUR_KEY' > /dev/null
+# 自动备份，添加到 crontab: # 0 2 * * * curl -s -X POST 'http://localhost:7700/dumps' -H 'Authorization: Bearer YOUR_KEY' > /dev/null
 ```
 
 ### 4. 同义词和停用词
@@ -621,7 +610,17 @@ curl -s http://localhost:7700/metrics
 ## 与替代方案的对比
 
 | 特性 | **Meilisearch** | Typesense | Elasticsearch | Algolia |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **许可证** | MIT | GPL-3.0 | SSPL/Elastic | 专有 |
 | **GitHub Stars** | **51,300+** | 23,200+ | 72,000+ | N/A（闭源） |
 | **查询延迟（p95）** | **<25 毫秒** | <30 毫秒 | 50-200 毫秒 | <20 毫秒 |
@@ -718,12 +717,11 @@ Meilisearch 1.12 是 2026 年最容易部署的生产级搜索引擎。从 `dock
 - [对比：Meilisearch vs Typesense vs Elasticsearch](dibi8-internal-link)
 - [搜索引擎 Docker 最佳实践](dibi8-internal-link)
 
----
 
+---
 *联盟披露：本文包含 DigitalOcean 的联盟链接。如果你通过我们的链接注册，我们会获得佣金，不会增加你的额外费用。我们基于真实测试独立推荐服务。Meilisearch 是免费开源软件 —— 唯一的费用是托管成本。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -748,3 +746,4 @@ Meilisearch 1.12 是 2026 年最容易部署的生产级搜索引擎。从 `dock
   }
 }
 </script>
+---

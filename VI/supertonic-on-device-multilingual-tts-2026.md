@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/supertonic-on-device-multilingual-tts-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/supertonic-on-device-multilingual-tts-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/supertonic-on-device-multilingual-tts-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/supertonic-on-device-multilingual-tts-2026" />
 title: 'Đánh giá Supertonic: TTS đa ngôn ngữ chạy on-device 99M ...
 description: 'Supertonic (9.9K+ stars trên GitHub) của Supertone Inc. là model text-to-speech đa ngôn ngữ siêu nhanh chạy local trên CPU qua ONNX Runtime — không cloud, không API, không cần GPU. 99M tham số, 31 ngôn ngữ bao gồm tiếng Hàn/Nhật/Việt/Trung, audio chất lượng studio 44.1kHz, 10 expression tag, runtime cho Python, Node.js, browser (WebGPU/WASM), iOS, Android, Rust, Flutter. Phân tích đầy đủ tính năng, hướng dẫn cài đặt, ví dụ code và so sánh bối cảnh TTS on-device 2026.'
 date: 2026-05-23 00:00:00+08:00
@@ -25,11 +20,9 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [supertonic, 'text-to-speech', tts, 'on-device-ai', onnx, multilingual, 'open-source-tts', 'edge-ai', 'korean-tts', 'japanese-tts']
-aliases:
-- /vi/posts/supertonic-on-device-multilingual-tts-2026/
+aliases: - /vi/posts/supertonic-on-device-multilingual-tts-2026/
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/supertonic-on-device-multilingual-tts-2026/ -->
 # Đánh giá Supertonic: TTS đa ngôn ngữ chạy on-device 99M tham số qua ONNX, hỗ trợ 31 ngôn ngữ (2026)
 
 
@@ -47,9 +40,7 @@ TTS on-device open-source đang đuổi kịp, nhưng đánh đổi rất gắt:
 
 ## Supertonic là gì
 
-Một module flow-matching text-to-latent kết hợp với speech autoencoder, được export sang ONNX. Cụ thể:
-
-- **99M tham số tổng cộng** — đủ nhỏ để load trong vài giây và chạy real-time trên một CPU bình thường. Để so sánh, XTTS-v2 khoảng ~1.5B và Bark ~900M.
+Một module flow-matching text-to-latent kết hợp với speech autoencoder, được export sang ONNX. Cụ thể: - **99M tham số tổng cộng** — đủ nhỏ để load trong vài giây và chạy real-time trên một CPU bình thường. Để so sánh, XTTS-v2 khoảng ~1.5B và Bark ~900M.
 - **31 ngôn ngữ sẵn dùng**: Ả Rập, Bulgaria, Croatia, Séc, Đan Mạch, Hà Lan, Anh, Estonia, Phần Lan, Pháp, Đức, Hy Lạp, Hindi, Hungary, Indonesia, Ý, **Nhật**, **Hàn**, Latvia, Litva, Ba Lan, Bồ Đào Nha, Romania, Nga, Slovakia, Slovenia, Tây Ban Nha, Thụy Điển, Thổ Nhĩ Kỳ, Ukraine, **Việt**.
 - **Output audio 44.1kHz** — sample rate chuẩn studio thực sự, không phải mức 22kHz mà đa số TTS "đủ dùng" đành chấp nhận.
 - **10 expression tag** — `<laugh>`, `<breath>`, `<sigh>`, v.v. Nhúng inline trong text để dẫn dụ kiểu đọc tự nhiên hơn mà không cần retrain voice clone.
@@ -61,9 +52,7 @@ License: **MIT cho code, OpenRAIL-M cho weight model**. Sự phân tách này qu
 
 ## Số liệu hiệu năng công bố
 
-Các con số Supertone Inc. trích trong benchmark và README:
-
-| Chỉ số | Supertonic | Baseline thông thường |
+Các con số Supertone Inc. trích trong benchmark và README: | Chỉ số | Supertonic | Baseline thông thường |
 |---|---|---|
 | Số tham số | 99M | 0.7B–2B |
 | Độ chính xác đọc (WER/CER trên Minimax-MLS-test) | Cạnh tranh với model lớn hơn nhiều | — |
@@ -77,9 +66,7 @@ Benchmark trên e-reader là con số headline — kiểu số liệu báo hiệ
 
 ## Phạm vi runtime
 
-Supertonic là một trong số ít dự án TTS open ship SDK binding thật chứ không chỉ "chắc bạn có thể tự wrap được". Tính đến v2.0.0:
-
-- **Python** (`pip install supertonic`) — tích hợp chính
+Supertonic là một trong số ít dự án TTS open ship SDK binding thật chứ không chỉ "chắc bạn có thể tự wrap được". Tính đến v2.0.0: - **Python** (`pip install supertonic`) — tích hợp chính
 - **Node.js** — cho server và app Electron
 - **Browser** — WebGPU khi có sẵn, WebAssembly làm fallback
 - **Java** — backend Android và JVM
@@ -97,9 +84,7 @@ Phủ gần hết mọi chỗ mà một developer ứng dụng năm 2026 có th�
 pip install supertonic
 ```
 
-Chỉ vậy là xong phần dependency. Model tự download lần đầu gọi:
-
-```python
+Chỉ vậy là xong phần dependency. Model tự download lần đầu gọi: ```python
 from supertonic import TTS
 
 tts = TTS(auto_download=True)
@@ -119,9 +104,7 @@ tts.save_audio(wav, "output.wav")
 
 Với tiếng Hàn, đổi `lang="en"` → `lang="ko"`. Tương tự với `ja`, `vi`, `zh`. Voice style (`M1` ở đây) nhất quán giữa các ngôn ngữ — hữu ích nếu bạn đang xây giọng nhân vật đa ngôn ngữ.
 
-Với expression tag:
-
-```python
+Với expression tag: ```python
 text = "I can't believe it. <laugh> That's incredible. <breath> Let me explain."
 ```
 
@@ -131,9 +114,7 @@ Model diễn giải tag inline và tạo biểu cảm tương ứng trong audio.
 
 ## So sánh
 
-Bối cảnh TTS on-device 2026, xếp hạng theo những gì thực sự mang lại:
-
-### So với Piper (40K+ stars)
+Bối cảnh TTS on-device 2026, xếp hạng theo những gì thực sự mang lại: ### So với Piper (40K+ stars)
 Piper là cái tên kỳ cựu được ưa chuộng cho on-device. **Piper thắng**: model nhỏ hơn cho mỗi giọng (vài MB), deploy đơn giản hơn cho use case chỉ tiếng Anh. **Supertonic thắng**: nhiều ngôn ngữ hơn hẳn, kiểm soát biểu cảm tốt hơn nhiều, sample rate cao hơn, một model duy nhất xử lý mọi ngôn ngữ thay vì một model một ngôn ngữ.
 
 ### So với XTTS-v2 (Coqui)
@@ -149,9 +130,7 @@ Cloud TTS vẫn thắng về độ trung thực của voice cloning và độ t�
 
 ## Điều Supertonic không làm
 
-Để đặt kỳ vọng đúng:
-
-- **Không voice cloning từ một mẫu giọng.** Bạn chọn từ các voice style có sẵn. Nếu cần cloning, xem XTTS-v2 hoặc API thương mại.
+Để đặt kỳ vọng đúng: - **Không voice cloning từ một mẫu giọng.** Bạn chọn từ các voice style có sẵn. Nếu cần cloning, xem XTTS-v2 hoặc API thương mại.
 - **Không streaming synthesis từng token** ở bản release public — synthesis ở mức segment.
 - **Tooling fine-tuning hạn chế.** Model weight open theo OpenRAIL-M, nhưng pipeline training chưa public hoàn toàn.
 - **Không có fallback 22kHz.** Luôn output 44.1kHz. Cần bandwidth thấp hơn thì tự resample.
@@ -196,7 +175,6 @@ Ghép nó với [một runtime LLM on-device](https://dibi8.com/vi/resources/llm
 **GitHub**: [supertone-inc/supertonic](https://github.com/supertone-inc/supertonic) · **License**: MIT (code) / OpenRAIL-M (weight) · **Mới nhất**: v2.0.0 (6/1/2026) · **Stars**: 9.9K+ · **Maintainer**: Supertone Inc.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

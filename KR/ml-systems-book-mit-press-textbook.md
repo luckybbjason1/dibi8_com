@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ml-systems-book-mit-press-textbook" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ml-systems-book-mit-press-textbook" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ml-systems-book-mit-press-textbook" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ml-systems-book-mit-press-textbook" />
 title: "ML Systems Book：MIT 무료 머신러닝 시스템 교과서"
 description: "Machine Learning Systems는 MIT Press에서 출판한 무료 오픈소스 교재로, 데이터 엔지니어링, 모델 최적화, 하드웨어 인식 훈련, 추론 가속 등 ML 시스템 엔지니어링 핵심 지식을 다룹니다."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - C++
+tech_stack: - C++
   - Docker
   - Go
   - Python
@@ -27,10 +21,8 @@ maintainer: ""
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases:
-- /kr/posts/ml-systems-book-mit-press-textbook/
-faqs:
-  - q: 'ML Systems Book은 어떤 주제를 다루나요?'
+aliases: - /kr/posts/ml-systems-book-mit-press-textbook/
+faqs: - q: 'ML Systems Book은 어떤 주제를 다루나요?'
     a: 'ML Systems Book은 분산 학습(데이터 병렬처리, 모델 병렬처리, 파이프라인 병렬처리 및 내결함성), 모델 서빙(배치 및 실시간 추론, 버전 관리, 자동 스케일링), 하드웨어 가속(GPU, TPU, ASIC, 양자화, 가지치기), ML 인프라(피처 스토어, 실험 추적, CI/CD, 모니터링), 그리고 비용 최적화(스팟 인스턴스, 모델 압축, 동적 배치)를 다룹니다.'
   - q: 'ML Systems Book은 몇 개의 챕터로 구성되어 있으며 어떻게 편성되어 있나요?'
     a: '이 책은 12개의 챕터로 구성되어 있으며, ML 시스템 소개와 ML 워크로드를 시작으로 분산 학습, 모델 서빙, 하드웨어 가속기, ML 운영, 데이터 관리, 최적화, 신뢰성, 보안, 지속 가능성을 거쳐 미래 방향성으로 마무리됩니다.'
@@ -42,15 +34,11 @@ faqs:
     a: '이 책은 프로덕션 환경에서 대규모 학습 및 저지연 모델 서빙이 필요한 ML 엔지니어, ML로 전환을 준비 중인 소프트웨어 엔지니어, 실험 속도를 높이고 싶은 연구자, 그리고 ML 인프라 투자와 팀 구조를 계획하는 엔지니어링 매니저를 대상으로 합니다.'
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/ml-systems-book-mit-press-textbook/ -->
-
 {</* resource-info */>}
 
 ## 문제: 알고리즘 이외에 ML 엔지니어에게 무엇이 필요한가?
 
-당신은 Transformer 아키텍처를 숙달하고 BERT를 처음부터 구현할 수 있지만, 실제 작업에서는 계속 벽에 부딪힙니다:
-
-- 모델 훈련 속도가 너무 느려서 병목이 데이터 로딩에 있는지 GPU 계산에 있는지 모릅니다
+당신은 Transformer 아키텍처를 숙달하고 BERT를 처음부터 구현할 수 있지만, 실제 작업에서는 계속 벽에 부딪힙니다: - 모델 훈련 속도가 너무 느려서 병목이 데이터 로딩에 있는지 GPU 계산에 있는지 모릅니다
 - 엣지 장치에 배포 후 정확도가 급락하는데 양자화 최적화 방법을 모릅니다
 - 서비스 QPS가 안 올라가서 추론 지연으로 사용자가 불만입니다
 - 데이터 파이프라인이 매일 밤 중에 붕괴되는데 아무도 이유를 모릅니다
@@ -63,9 +51,7 @@ faqs:
 
 [Machine Learning Systems](https://mlsysbook.ai/)는 **MIT Press**에서 출판한 머신러닝 시스템 교재로, 2026년에 정식 발행됩니다. 이 책은 GitHub에서 **24,113+ Stars**를 보유하고 있으며, 2030년까지 **100만 학습자**가 ML 시스템 엔지니어링을 마스터하도록 돕는 것을 목표로 합니다.
 
-알고리즘과 모델 아키텍처만 다루는 리소스와 달리, 이 책은 **시스템 관점**을 강조합니다:
-
-- 데이터 엔지니어링이 훈련 효율에 어떤 영향을 미치는지
+알고리즘과 모델 아키텍처만 다루는 리소스와 달리, 이 책은 **시스템 관점**을 강조합니다: - 데이터 엔지니어링이 훈련 효율에 어떤 영향을 미치는지
 - 하드웨어 특성이 모델 설계를 어떻게 결정하는지
 - 추론 가속의 엔지니어링 트레이드오프
 - 연구실부터 프로덕션 환경까지의 완전한 체인
@@ -90,8 +76,7 @@ dataset = (tf.data.Dataset.from_tensor_slices(data)
            .prefetch(tf.data.AUTOTUNE))
 ```
 
-다루는 주제:
-- 데이터 형식(TFRecord, Parquet, Arrow)
+다루는 주제: - 데이터 형식(TFRecord, Parquet, Arrow)
 - ETL 파이프라인 설계
 - 데이터 버전 관리
 - 품질 모니터링 및 클리닝
@@ -265,16 +250,13 @@ ML Systems Book은 **현재 가장 포괄적인 ML 시스템 엔지니어링 교
 
 ## 추천 도구
 
-오픈소스 AI 도구 개발/배포 시 권장:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
+오픈소스 AI 도구 개발/배포 시 권장: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
 - **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Anthropic Claude / OpenAI / DeepSeek API 프록시. 위의 AI 도구 대부분 (챗봇, 코드 생성, 번역, 검색 등) LLM API 키 필요 — 이 프록시로 안정적인 톱 모델 액세스, 공식 가격의 ~30%.
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -302,25 +284,20 @@ ML Systems Book은 **현재 가장 포괄적인 ML 시스템 엔지니어링 교
 
 ## Why This Matters
 
-Understanding ml systems book：mit 무료 머신러닝 시스템 교과서 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding ml systems book：mit 무료 머신러닝 시스템 교과서 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-code" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code" />
 title: 'Claude Code: 125K+ Stars — Tác Nhân Lập Trình AI Trong T...
 description: 'Claude Code là công cụ tác nhân lập trình trong terminal của Anthropic, hỗ trợ VS Code, Cursor, GitHub, GitLab. Bao gồm hướng dẫn cài đặt, benchmark, và so sánh với Aider, OpenHands, Codex CLI.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['claude-code', 'ai-coding-agent', 'terminal-coding', anthropic, 'claude-tutorial', 'claude-code-vs-aider', 'claude-code-setup']
-aliases:
-- /vi/posts/claude-code/
+aliases: - /vi/posts/claude-code/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/claude-code/ -->
 
 {{</* resource-info */>}}
 
@@ -51,9 +43,7 @@ Claude Code chạy như một tiến trình CLI Node.js bao bọc API Claude. N�
 
 ![Giao diện Desktop Claude Code](https://cdn.prod.website-files.com/67ed58c92cfedc451ebbbca1/699cc378d1f485eb812d5db2_Screenshot%202026-02-23%20at%202.15.32%E2%80%AFPM.png)
 
-Các thành phần kiến trúc chính:
-
-- **Công cụ Ngữ cảnh**: Thu thập tối đa 1 triệu token ngữ cảnh dự án, cho phép Claude Code suy luận trên toàn bộ repository mà không bị cắt xén
+Các thành phần kiến trúc chính: - **Công cụ Ngữ cảnh**: Thu thập tối đa 1 triệu token ngữ cảnh dự án, cho phép Claude Code suy luận trên toàn bộ repository mà không bị cắt xén
 - **Vòng lặp Sử dụng Công cụ**: Chu kỳ thực thi tích hợp nơi tác nhân đọc file, chạy lệnh, quan sát đầu ra và tự động quyết định hành động tiếp theo
 - **Điều phối Tác nhân Con**: Thực thi tác nhân song song cho các tác vụ độc lập, ví dụ như tái cấu trúc một module trong khi viết kiểm thử cho module khác
 - **Móc Vòng đởi**: Sự kiện PreToolUse và PostToolUse cho phép bạn chặn và kiểm soát thực thi công cụ để đảm bảo hành vi tất định
@@ -119,8 +109,7 @@ brew upgrade claude-code
 # Đăng nhập bằng tài khoản Anthropic
 claude auth login
 
-# Cửa sổ trình duyệt mở ra. Claude Code yêu cầu đăng ký trả phí:
-# - Claude Pro: $20/tháng
+# Cửa sổ trình duyệt mở ra. Claude Code yêu cầu đăng ký trả phí: # - Claude Pro: $20/tháng
 # - Claude Max: $100/tháng (5x lượng sử dụng)
 # - Claude Max 20x: $200/tháng (20x lượng sử dụng)
 ```
@@ -158,8 +147,7 @@ Tiện ích Claude Code nhúng phiên CLI vào thanh bên trình biên tập. C�
 Vì Cursor là bản phân nhánh VS Code, Claude Code chạy trong terminal tích hợp của Cursor. Hai công cụ bổ sung cho nhau: Cursor xử lý tự động hoàn thành nội dòng và diff trực quan, Claude Code quản lý tái cấu trúc đa file và thực thi tác vụ tự động.
 
 ```bash
-# Trong terminal tích hợp của Cursor, đơn giản chạy:
-cd your-project
+# Trong terminal tích hợp của Cursor, đơn giản chạy: cd your-project
 claude
 
 # Cả hai công cụ hoạt động trên cùng hệ thống file mà không xung đột
@@ -173,29 +161,22 @@ Gắn thẻ `@claude` trên pull request hoặc issue GitHub để kích hoạt 
 # Kích hoạt tích hợp GitHub
 claude auth login --github
 
-# Trong bình luận PR, gắn thẻ:
-@claude please review this change for security issues
+# Trong bình luận PR, gắn thẻ: @claude please review this change for security issues
 ```
 
 ### Pipeline GitLab CI/CD
 
 ```yaml
 # .gitlab-ci.yml — Chạy Claude Code để xem xét code tự động
-stages:
-  - review
+stages: - review
 
-claude_review:
-  stage: review
+claude_review: stage: review
   image: node:22
-  before_script:
-    - curl -fsSL https://claude.ai/install.sh | bash
+  before_script: - curl -fsSL https://claude.ai/install.sh | bash
     - export PATH="$HOME/.local/bin:$PATH"
     - claude auth login --token $CLAUDE_API_TOKEN
-  script:
-    - claude review --diff HEAD~1 --output review.json
-  artifacts:
-    reports:
-      codequality: review.json
+  script: - claude review --diff HEAD~1 --output review.json
+  artifacts: reports: codequality: review.json
 ```
 
 ### JetBrains IDE
@@ -203,17 +184,14 @@ claude_review:
 Cài đặt plugin Claude Code từ JetBrains Marketplace. Hoạt động với WebStorm, IntelliJ, PyCharm, GoLand, và tất cả sản phẩm JetBrains khác.
 
 ```bash
-# Bên trong bất kỳ JetBrains IDE:
-# Cài đặt → Plugins → Marketplace → Tìm "Claude Code" → Cài đặt → Khởi động lại
+# Bên trong bất kỳ JetBrains IDE: # Cài đặt → Plugins → Marketplace → Tìm "Claude Code" → Cài đặt → Khởi động lại
 ```
 
 ## Benchmark / Trường Hợp Sử Dụng Thực Tế
 
 ### SWE-bench Verified
 
-SWE-bench Verified là benchmark chuẩn vàng cho tác nhân lập trình AI, đo khả năng giải quyết issue GitHub thực. Tính đến tháng 3 năm 2026:
-
-![Claude Code Demo Thực Tế](https://img.youtube.com/vi/iI_zWNunkc4/maxresdefault.jpg)
+SWE-bench Verified là benchmark chuẩn vàng cho tác nhân lập trình AI, đo khả năng giải quyết issue GitHub thực. Tính đến tháng 3 năm 2026: ![Claude Code Demo Thực Tế](https://img.youtube.com/vi/iI_zWNunkc4/maxresdefault.jpg)
 
 | Tác Nhân / Mô Hình | SWE-bench Verified | Ngày | Nguồn |
 |---------------|-------------------|------|--------|
@@ -225,9 +203,7 @@ SWE-bench Verified là benchmark chuẩn vàng cho tác nhân lập trình AI, �
 
 ### Terminal-Bench 2.0
 
-Terminal-Bench đo độ chính xác hoàn thành tác vụ terminal thực tế:
-
-| Tác Nhân | Mô Hình | Độ Chính Xác | Xếp Hạng |
+Terminal-Bench đo độ chính xác hoàn thành tác vụ terminal thực tế: | Tác Nhân | Mô Hình | Độ Chính Xác | Xếp Hạng |
 |-------|-------|----------|------|
 | Codex CLI | GPT-5.5 | **82.0%** | #7 |
 | Claude Code | Opus 4.6 | **58.0%** | #51 |
@@ -236,9 +212,7 @@ Terminal-Bench đo độ chính xác hoàn thành tác vụ terminal thực tế
 
 ### Chỉ Số Năng Suất Thực Tế
 
-Dựa trên báo cáo nhà phát triển tổng hợp từ Q1 2026:
-
-| Chỉ Số | Claude Code | Aider | Codex CLI |
+Dựa trên báo cáo nhà phát triển tổng hợp từ Q1 2026: | Chỉ Số | Claude Code | Aider | Codex CLI |
 |--------|-------------|-------|-----------|
 | Thờ gian đến Commit đầu (TB) | 4.2 phút | 6.1 phút | 3.8 phút |
 | Tỷ lệ thành công tái cấu trúc đa file | 78% | 62% | 71% |
@@ -279,9 +253,7 @@ File `CLAUDE.md` là sách hướng dẫn dự án cho Claude Code. Đặt nó �
 
 ### Sandbox Bảo Mật
 
-Claude Code thực thi lệnh shell với quyền ngườ dùng của bạn, mang rủi ro tiềm ẩn. Với môi trường production, sử dụng sandbox:
-
-```bash
+Claude Code thực thi lệnh shell với quyền ngườ dùng của bạn, mang rủi ro tiềm ẩn. Với môi trường production, sử dụng sandbox: ```bash
 # Chạy Claude Code trong Docker sandbox
 docker run -it --rm \
   -v $(pwd):/workspace \
@@ -342,8 +314,7 @@ docker run -it --rm \
 # Kiểm tra tiêu thụ token phiên hiện tại
 claude status
 
-# Đầu ra:
-# Session: 42m 12s
+# Đầu ra: # Session: 42m 12s
 # Input tokens: 145,230 (cache hit: 67%)
 # Output tokens: 28,441
 # Estimated cost: $0.42
@@ -404,9 +375,7 @@ claude status
 
 ## Hạn Chế / Đánh Giá Trung Thực
 
-Claude Code là công cụ mạnh mẽ, nhưng không phải lựa chọn đúng cho mọi nhà phát triển hay nhóm. Đây là những gì tài liệu tiếp thị không nói cho bạn biết:
-
-1. **Khóa Đăng Ký**: Claude Code yêu cầu đăng ký Anthropic trả phí. Gói Pro $20/tháng là điểm vào, và ngườ dùng nặng cần gói Max $100 hoặc $200. Khác với Aider hay OpenHands, bạn không thể mang API key riêng và chỉ trả cho những gì bạn sử dụng.
+Claude Code là công cụ mạnh mẽ, nhưng không phải lựa chọn đúng cho mọi nhà phát triển hay nhóm. Đây là những gì tài liệu tiếp thị không nói cho bạn biết: 1. **Khóa Đăng Ký**: Claude Code yêu cầu đăng ký Anthropic trả phí. Gói Pro $20/tháng là điểm vào, và ngườ dùng nặng cần gói Max $100 hoặc $200. Khác với Aider hay OpenHands, bạn không thể mang API key riêng và chỉ trả cho những gì bạn sử dụng.
 
 2. **Chỉ Mô Hình Claude**: Bạn không thể chuyển sang GPT-5, Gemini, hay mô hình cục bộ. Nếu Claude Opus 4.6 gặp khó khăn với tác vụ cụ thể, bạn không có phương án dự phòng trong cùng công cụ.
 
@@ -460,9 +429,7 @@ Với các nhóm đã chuẩn hóa mô hình Anthropic, Claude Code là lựa ch
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -486,7 +453,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 *Tuyên bố miễn trừ: Bài viết này không chứa liên kết liên kết. Mọi dữ liệu giá và benchmark phản ánh thông tin công khai tính đến tháng 5 năm 2026. Xác minh giá hiện tại trên trang web nhà cung cấp chính thức trước khi đưa ra quyết định mua hàng.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

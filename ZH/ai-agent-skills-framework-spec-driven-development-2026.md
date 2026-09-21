@@ -1,16 +1,9 @@
+---
 # AI Agent Skills 模式爆发：2026年开发者必须掌握的 Claude Code 技能框架与规范驱动开发实战指南
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-agent-skills-framework-spec-driven-development-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-agent-skills-framework-spec-driven-development-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-agent-skills-framework-spec-driven-development-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-agent-skills-framework-spec-driven-development-2026" />
 
 **发布时间：** 2026年5月20日  
 **阅读时间：** 15 分钟  
-**目标读者：** 全栈开发者、技术负责人、AI 工具爱好者
-
----
-
+**目标读者：** 全栈开发者、技术负责人、AI 工具爱好者---
 ## 写在前面：为什么你的 Claude Code 还不够聪明
 
 2026 年 5 月的 GitHub Trending 榜单出现了一个前所未有的现象：前 20 个增长最快的仓库中，**超过 5 个名字里带着 "skills"**。 Matt Pocock 的个人 `.claude` 目录开源后一周内斩获 +1,618 stars，NousResearch 的 Hermes Agent 紧随其后拿到 +1,332 stars，就连 Andrej Karpathy 的工作流都被打包成了可复用的 agent skills。
@@ -21,8 +14,8 @@
 
 如果你还在用 "帮我写个登录页" 这样的提示词驱动 AI，你已经落后了。
 
----
 
+---
 ## 什么是 AI Agent Skills？从黑箱到可组合的行为乐高
 
 ### 核心概念：把专家直觉编码为 Agent 的行为约束
@@ -56,7 +49,13 @@
 ### 为什么 Skills 比 Prompt 更强大
 
 | 维度 | 传统 Prompt | AI Agent Skills |
-|------|------------|-----------------|
+|
+---
+|
+---
+|
+---
+|
 | 复用性 | 每次重写 | 一次编写，全项目复用 |
 | 一致性 | 依赖记忆 | 文件化、版本化 |
 | 团队协作 | 口口相传 | 随仓库共享，新人 onboarding 即生效 |
@@ -72,8 +71,8 @@ Matt Pocock 的 [mattpocock/skills](https://github.com/mattpocock/skills) 仓库
 
 这些不是 "提示词技巧"，而是**可执行的工程纪律**。
 
----
 
+---
 ## 2026年五大热门 Skills 仓库深度解析
 
 ### 1. mattpocock/skills — 真实工程师的技能库
@@ -331,25 +330,20 @@ AI Agent Skills 模式和 Spec-Driven Development 不是在增加复杂度，而
 
 ## Why This Matters
 
-Understanding article is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding article is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -401,7 +395,17 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

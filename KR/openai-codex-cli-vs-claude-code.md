@@ -1,17 +1,11 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/openai-codex-cli-vs-claude-code" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/openai-codex-cli-vs-claude-code" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/openai-codex-cli-vs-claude-code" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/openai-codex-cli-vs-claude-code" />
 title: 'OpenAI Codex CLI vs Claude Code 2026: 어떤 에이전트가 더 좋은가?'
 description: 'OpenAI Codex CLI(gpt-5-codex)와 Anthropic Claude Code(Sonnet 4.6, 1M 컨텍스트)의 정면 비교 — 가격, 샌드박스, 엔터프라이즈, 도구 통합. 2026년 업데이트.'
 date: 2026-05-22 00:00:00+08:00
-lastmod:  2026-05-22 00:00:00+08:00draft: false
+lastmod: 2026-05-22 00:00:00+08:00draft: false
 tags: [openai-codex-cli, claude-code, gpt-5-codex, sonnet-4-6, ai-coding, comparison, agent-cli]
 categories: [vs]
-faqs:
-  - q: 'OpenAI Codex CLI는 무료인가요?'
+faqs: - q: 'OpenAI Codex CLI는 무료인가요?'
     a: 'CLI 자체는 오픈소스(Apache 2.0, 2025년 11월 출시)로 무료 설치입니다. 모델 API 호출에만 비용을 지불합니다 — gpt-5-codex 사용은 OpenAI API 키를 통해 청구됩니다(2026년 기준 입력 약 $1.50/1M, 출력 약 $10/1M). Claude Code도 설치는 무료지만 Pro/Max 구독($20-$200/월) 또는 Sonnet 4.6을 통한 종량제 결제가 필요합니다.'
   - q: '컨텍스트 윈도우는 어느 쪽이 더 큰가요?'
     a: 'Claude Code(Sonnet 4.6)가 압도적입니다 — 1M 토큰 컨텍스트 윈도우, gpt-5-codex는 400K입니다. 200K+ LOC 모노레포, 전체 코드베이스 추론, 긴 마이그레이션 작업에서는 Claude Code가 전체 저장소를 머리에 담을 수 있습니다. Codex CLI의 400K도 중형 프로젝트(8만 LOC 이하)에는 충분하지만, 대형 저장소에서는 파일 로딩을 더 선별적으로 해야 합니다.'
@@ -23,7 +17,6 @@ faqs:
     a: '2026년에는 Claude Code의 엔터프라이즈 스토리가 더 성숙합니다 — Anthropic은 SOC 2 Type II, API 레이어 HIPAA, Claude Enterprise 프라이빗 VPC 배포를 제공합니다. OpenAI Codex CLI는 더 새롭고(2025년 11월 오픈소스화), 표준 OpenAI 엔터프라이즈 플랜에 통합되지만 CLI 자체에는 전용 엔터프라이즈 티어가 아직 없습니다. 규제 산업에서는 오늘 Claude Code가 이깁니다. OpenAI가 빠르게 따라잡고 있습니다.'
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/openai-codex-cli-vs-claude-code/ -->
 # OpenAI Codex CLI vs Claude Code 2026: 어떤 에이전트가 더 좋은가?
 
 
@@ -99,12 +92,10 @@ Claude Enterprise는 SOC 2 Type II, HIPAA 적합 배포, 프라이빗 VPC 거주
 
 ### Claude Code
 - **CLI 바이너리**: 무료
-- **구독 티어**:
-  - Claude Pro: $20/월 — Claude Code 사용량 포함(한도 적용)
+- **구독 티어**: - Claude Pro: $20/월 — Claude Code 사용량 포함(한도 적용)
   - Claude Max 5x: $100/월 — Pro 한도의 5배
   - Claude Max 20x: $200/월 — Pro 한도의 20배
-- **종량제**(Anthropic API 키 사용):
-  - Sonnet 4.6: 약 $3/1M 입력, 약 $15/1M 출력
+- **종량제**(Anthropic API 키 사용): - Sonnet 4.6: 약 $3/1M 입력, 약 $15/1M 출력
   - Prompt caching: 약 $0.30/1M 캐시 읽기 (90% 할인)
 
 → **파워 유저 월 비용**: **$20-$200** 정액(Pro/Max) 또는 토큰량에 따라 PAYG 약 $50-$150.
@@ -160,9 +151,7 @@ $20 이하 일일 헤비 사용: **월 $20 정액 Claude Pro**가 이기기 어�
 
 ## 시도해 볼 만한 대안
 
-Codex CLI도 Claude Code도 맞지 않다면:
-
-- **[Cursor vs Claude Code](https://dibi8.com/kr/vs/cursor-vs-claude-code/)** — IDE vs CLI 에이전트 분석
+Codex CLI도 Claude Code도 맞지 않다면: - **[Cursor vs Claude Code](https://dibi8.com/kr/vs/cursor-vs-claude-code/)** — IDE vs CLI 에이전트 분석
 - **[Gemini CLI vs Claude Code](https://dibi8.com/kr/vs/gemini-cli-vs-claude-code/)** — Google의 무료 1M 컨텍스트 대안
 - **[Claude Code vs Aider](https://dibi8.com/kr/vs/claude-code-vs-aider/)** — 오픈소스 CLI 에이전트 비교
 - **[cc-switch](https://dibi8.com/kr/resources/dev-utils/cc-switch-claude-code-api-router/)** — Claude Code를 더 저렴한 프로바이더로 라우팅, 60-80% 비용 절감
@@ -207,7 +196,6 @@ Codex CLI도 Claude Code도 맞지 않다면:
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

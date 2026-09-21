@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/colly" />
 title: 'Colly: 25,302 GitHub Stars — Benchmark Go Web Scraping F...
 description: 'Colly is a fast, elegant scraping framework for Go with 1k+ req/sec throughput. Covers colly tutorial, colly vs scrapy benchmarks, Docker setup, Redis caching, proxy rotation, and production deployment patterns for large-scale data extraction.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [colly, go, 'web-scraping', crawler, golang, scrapy, benchmark, proxy]
-aliases:
-- /posts/colly/
+aliases: - /posts/colly/-
 ---
-
 {{</* resource-info */>}}
 
 ## Introduction
@@ -42,9 +38,7 @@ Python has dominated web scraping for over a decade. Scrapy, BeautifulSoup, and 
 
 ![Colly gopher mascot](https://go-colly.org/img/colly_gopher.png)
 
-Colly's architecture revolves around the **Collector** — a stateful orchestrator that manages the entire scraping lifecycle. Here's how data flows:
-
-1. **Collector** receives a starting URL via `Visit()`
+Colly's architecture revolves around the **Collector** — a stateful orchestrator that manages the entire scraping lifecycle. Here's how data flows: 1. **Collector** receives a starting URL via `Visit()`
 2. **HTTP Backend** fires the request with configured timeouts, proxies, and headers
 3. **Response** triggers registered callbacks (`OnHTML`, `OnResponse`, `OnError`)
 4. **HTMLElement** parses the DOM using goquery-inspired selectors
@@ -124,9 +118,7 @@ func main() {
 }
 ```
 
-Run it:
-
-```bash
+Run it: ```bash
 go run main.go
 ```
 
@@ -157,28 +149,18 @@ docker run --rm colly-scraper
 
 ```yaml
 version: '3.8'
-services:
-  scraper:
-    build: .
-    depends_on:
-      - redis
-    environment:
-      - REDIS_URL=redis:6379
-  redis:
-    image: redis:7-alpine
-    volumes:
-      - redis-data:/data
-  volumes:
-    redis-data:
-```
+services: scraper: build: .
+    depends_on: - redis
+    environment: - REDIS_URL=redis:6379
+  redis: image: redis:7-alpine
+    volumes: - redis-data:/data
+  volumes: redis-data: ```
 
 ## Integration with Popular Tools
 
 ### Redis Caching Backend
 
-For large-scale crawling, avoid redundant requests with Redis-backed caching:
-
-```go
+For large-scale crawling, avoid redundant requests with Redis-backed caching: ```go
 package main
 
 import (
@@ -191,10 +173,10 @@ func main() {
 
 	// Use Redis for persistent storage
 	redisStore := &storage.RedisStorage{
-		Address:  "redis:6379",
+		Address: "redis:6379",
 		Password: "",
-		DB:       0,
-		Prefix:   "colly",
+		DB: 0,
+		Prefix: "colly",
 	}
 
 	if err := redisStore.Open(); err != nil {
@@ -240,9 +222,9 @@ func main() {
 
 	// Respect target servers
 	c.Limit(&colly.LimitRule{
-		DomainGlob:  "*",
+		DomainGlob: "*",
 		Parallelism: 10,
-		Delay:       1 * time.Second,
+		Delay: 1 * time.Second,
 	})
 
 	c.Visit("https://example.com")
@@ -251,9 +233,7 @@ func main() {
 
 ### goquery for Advanced DOM Traversal
 
-Colly's built-in `HTMLElement` covers most cases, but goquery unlocks complex DOM navigation:
-
-```go
+Colly's built-in `HTMLElement` covers most cases, but goquery unlocks complex DOM navigation: ```go
 package main
 
 import (
@@ -288,9 +268,7 @@ func main() {
 
 ### chromedp for JavaScript-Rendered Pages
 
-Colly does not execute JavaScript. For SPAs, pair it with chromedp:
-
-```go
+Colly does not execute JavaScript. For SPAs, pair it with chromedp: ```go
 package main
 
 import (
@@ -335,10 +313,18 @@ func main() {
 
 ### Throughput Benchmarks
 
-We ran controlled benchmarks scraping 1,000 static HTML pages across four tools on an AWS `c6i.xlarge` (4 vCPU, 8GB RAM):
-
-| Tool | Time (1000 pages) | Memory Used | Requests/sec | Binary Size |
-|------|-------------------|-------------|--------------|-------------|
+We ran controlled benchmarks scraping 1,000 static HTML pages across four tools on an AWS `c6i.xlarge` (4 vCPU, 8GB RAM): | Tool | Time (1000 pages) | Memory Used | Requests/sec | Binary Size |
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Colly** (parallel) | ~7s | 25 MB | ~1,200 | 12 MB |
 | **Colly** (sync) | ~52s | 20 MB | ~19 | 12 MB |
 | Scrapy (Python) | ~18s | 180 MB | ~280 | N/A |
@@ -347,9 +333,7 @@ We ran controlled benchmarks scraping 1,000 static HTML pages across four tools 
 
 *Puppeteer requires Chromium download (~150 MB)
 
-Key observations from the colly benchmark:
-
-1. **Colly parallel mode** achieves a **7x speedup** over synchronous execution by leveraging goroutines
+Key observations from the colly benchmark: 1. **Colly parallel mode** achieves a **7x speedup** over synchronous execution by leveraging goroutines
 2. **Memory footprint** is 7x smaller than Scrapy and 20x smaller than Puppeteer
 3. **Single binary deployment** at 12 MB vs Scrapy's virtualenv + dependency hell
 4. **Startup time** is near-instant compared to Puppeteer's Chromium spin-up
@@ -383,9 +367,9 @@ func main() {
 
 	// Strict per-domain rate limiting
 	c.Limit(&colly.LimitRule{
-		DomainGlob:  "*example.com",
+		DomainGlob: "*example.com",
 		Parallelism: 5,
-		Delay:       2 * time.Second,
+		Delay: 2 * time.Second,
 		RandomDelay: 500 * time.Millisecond,
 	})
 
@@ -412,7 +396,7 @@ func main() {
 	// Create Redis-backed queue
 	q, _ := queue.New(100, &queue.RedisStorage{
 		Address: "redis:6379",
-		DB:      0,
+		DB: 0,
 	})
 
 	c.OnHTML("a[href]", func(e *colly.HTMLElement) {
@@ -449,10 +433,10 @@ func main() {
 
 	// Replace default HTTP client
 	c.WithTransport(&http.Transport{
-		MaxIdleConns:        100,
+		MaxIdleConns: 100,
 		MaxIdleConnsPerHost: 10,
-		IdleConnTimeout:     30 * time.Second,
-		DisableCompression:  false,
+		IdleConnTimeout: 30 * time.Second,
+		DisableCompression: false,
 	})
 
 	c.SetRequestTimeout(15 * time.Second)
@@ -504,7 +488,17 @@ func main() {
 ## Comparison with Alternatives
 
 | Feature | Colly | Scrapy | Puppeteer | goquery |
-|---------|-------|--------|-----------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Language** | Go | Python | Node.js | Go |
 | **Requests/sec** (single core) | 1,000+ | ~300 | ~3 | ~20 |
 | **Memory per 1K pages** | 15-25 MB | 150-200 MB | 400-600 MB | 35-50 MB |
@@ -528,9 +522,7 @@ func main() {
 
 ## Limitations / Honest Assessment
 
-Colly is not the right tool for every scraping job. Here are the hard limits:
-
-1. **No JavaScript execution**: Colly parses raw HTML only. Single-page applications (SPAs), infinite scroll, and dynamic content require chromedp or Rod as a companion tool.
+Colly is not the right tool for every scraping job. Here are the hard limits: 1. **No JavaScript execution**: Colly parses raw HTML only. Single-page applications (SPAs), infinite scroll, and dynamic content require chromedp or Rod as a companion tool.
 
 2. **Smaller ecosystem than Scrapy**: You won't find a plugin for every edge case. Custom middleware requires writing Go code, not just pip-installing a package.
 
@@ -588,9 +580,7 @@ Colly delivers exactly what Go developers need from a scraping framework: speed,
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -608,7 +598,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [Colly Benchmarks](https://webscraping.ai/faq/colly/what-are-the-performance-benchmarks-for-colly-compared-to-other-go-scrapers) — Performance numbers
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -634,8 +623,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [juicefs-distributed-posix-file-system-redis-s3-cloud-storage](colly)
@@ -643,6 +632,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](colly)
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](colly)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

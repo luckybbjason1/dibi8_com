@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/hello-agents-ai-agent-building-tutorial" />
 title: 'Hello-Agents: How Datawhale''s Open-Source AI Agent Tuto...
   Production-Grade Agents from Scratch'
 description: Datawhale Hello-Agents is the top open-source AI agent tutorial covering. Comprehensive guide covering features, pricing, and best practices for 2026.
@@ -8,8 +6,7 @@ description: Datawhale Hello-Agents is the top open-source AI agent tutorial cov
   GitHub stars.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
-tech_stack:
-- Go
+tech_stack: - Go
 - JavaScript
 - Python
 application_domain: Llm Frameworks
@@ -26,10 +23,8 @@ maintainer: "datawhalechina"
 last_maintained: "2026-05-14"
 featureImage: ''
 draft: false
-aliases:
-- /posts/building-persistent-ai-agent/
-faqs:
-  - q: 'What is Datawhale Hello-Agents?'
+aliases: - /posts/building-persistent-ai-agent/
+faqs: - q: 'What is Datawhale Hello-Agents?'
     a: 'Hello-Agents is a free, open-source tutorial from China''s Datawhale community that teaches building AI agents from scratch. It offers a 16-chapter curriculum with runnable code and is available as an online book, local docs, and a downloadable PDF.'
   - q: 'What topics does the Hello-Agents 16-chapter curriculum cover?'
     a: 'It spans agent and LLM foundations, classic paradigms (ReAct, Plan-and-Solve, Reflection), low-code platforms (Coze, Dify, n8n), professional frameworks (AutoGen, AgentScope, LangGraph), memory and RAG, context engineering, communication protocols (MCP, A2A, ANP), Agentic RL (SFT, RLHF, GRPO), evaluation, and three capstone case studies.'
@@ -52,24 +47,22 @@ Unlike scattered blog posts or framework documentation that assumes prior knowle
 
 In this deep-dive review, we explore what makes Hello-Agents the most valuable agent education resource on GitHub today, how its structured curriculum accelerates your path from beginner to production-ready agent developer, and why its combination of theory, hands-on coding, and real-world projects creates a learning experience that no paid bootcamp can match.
 
----
 
+---
 ## What Is Hello-Agents?
 
 Hello-Agents is a **systematic, open-source tutorial for building AI agents from scratch**, created by the Datawhale community — one of China's most influential open-source AI education organizations. The project is published under the Apache 2.0 license and hosted on GitHub at `datawhalechina/hello-agents`.
 
 The tutorial addresses a critical market gap: while there are countless introductions to ChatGPT prompting and plenty of framework README files, there is almost no resource that systematically teaches **how agents actually work under the hood** — from the Transformer architecture that powers them, to the reasoning patterns that guide them, to the communication protocols that connect them, to the reinforcement learning that trains them.
 
-Hello-Agents fills this gap with five major parts:
-
-1. **Agent & LLM Foundations** — Understanding what agents are, their history, and the language models that drive them
+Hello-Agents fills this gap with five major parts: 1. **Agent & LLM Foundations** — Understanding what agents are, their history, and the language models that drive them
 2. **Building Your First LLM Agent** — Implementing classic patterns, using low-code platforms, and working with professional frameworks
 3. **Advanced Knowledge Expansion** — Memory systems, context engineering, agent protocols, Agentic RL, and evaluation
 4. **Comprehensive Case Studies** — Travel assistant, DeepResearch agent, and cyber town simulation
 5. **Capstone Project & Future Outlook** — Building a complete intelligent application from end to end
 
----
 
+---
 ## Core Curriculum: The 16-Chapter Learning Path
 
 The heart of Hello-Agents is its meticulously structured 16-chapter curriculum, designed to take a developer from zero knowledge to the ability to build and deploy production-grade agent systems.
@@ -88,27 +81,21 @@ Before you can build an agent, you need to understand the engine. This chapter c
 ### Part 2: Building Your LLM Agent
 
 **Chapter 4: Classic Agent Paradigms**
-This is where coding begins in earnest. You implement three foundational agent patterns from scratch:
-
-- **ReAct (Reasoning + Acting)** — The pattern that powers many modern agents, where the model interleaves thought traces with tool calls in a continuous loop until the task is complete.
+This is where coding begins in earnest. You implement three foundational agent patterns from scratch: - **ReAct (Reasoning + Acting)** — The pattern that powers many modern agents, where the model interleaves thought traces with tool calls in a continuous loop until the task is complete.
 - **Plan-and-Solve** — A two-phase approach where the agent first generates a step-by-step plan, then executes each step systematically.
 - **Reflection** — A self-improvement pattern where the agent evaluates its own output, identifies errors, and iteratively refines its response.
 
 Each pattern is implemented with clean Python code using the OpenAI API, so you see exactly how the loop works without framework magic obscuring the mechanics.
 
 **Chapter 5: Low-Code Platform Agents**
-Not every agent needs custom code. This chapter teaches you to build functional agents using three major low-code platforms:
-
-- **Coze** (ByteDance) — A visual agent builder with rich plugin ecosystem
+Not every agent needs custom code. This chapter teaches you to build functional agents using three major low-code platforms: - **Coze** (ByteDance) — A visual agent builder with rich plugin ecosystem
 - **Dify** — An open-source LLM application development platform
 - **n8n** — A workflow automation tool that can be extended with AI capabilities
 
 You learn when to choose low-code (rapid prototyping, non-technical teams) versus code-native approaches (custom logic, scale, integration).
 
 **Chapter 6: Framework Development Practice**
-When you outgrow low-code platforms, you need professional frameworks. This chapter provides hands-on experience with:
-
-- **AutoGen** (Microsoft) — A multi-agent conversation framework where agents can chat with each other to solve problems
+When you outgrow low-code platforms, you need professional frameworks. This chapter provides hands-on experience with: - **AutoGen** (Microsoft) — A multi-agent conversation framework where agents can chat with each other to solve problems
 - **AgentScope** — A flexible agent platform with strong support for heterogeneous agents
 - **LangGraph** (LangChain) — A library for building stateful, multi-actor applications with LLMs, modeled as graphs
 
@@ -120,9 +107,7 @@ The capstone of Part 2. Using only the OpenAI API and standard Python libraries,
 ### Part 3: Advanced Knowledge Expansion
 
 **Chapter 8: Memory & Retrieval**
-A stateless LLM cannot maintain context across long conversations or recall information from previous sessions. This chapter teaches you to build memory systems:
-
-- **Short-term memory** — Managing conversation context within token limits
+A stateless LLM cannot maintain context across long conversations or recall information from previous sessions. This chapter teaches you to build memory systems: - **Short-term memory** — Managing conversation context within token limits
 - **Long-term memory** — Persistent storage of user preferences, facts, and conversation history
 - **RAG (Retrieval-Augmented Generation)** — Connecting agents to external knowledge bases via vector databases and embedding search
 
@@ -132,18 +117,14 @@ You implement a RAG pipeline using open-source embedding models and vector store
 Context is the most precious resource in agent systems — every token spent on irrelevant information is a token not available for reasoning. This chapter teaches advanced context management: windowing strategies, summarization techniques, hierarchical context structures, and the "context engineering" mindset that separates amateur agents from professional ones.
 
 **Chapter 10: Agent Communication Protocols**
-As the agent ecosystem matures, standardized protocols are emerging. This chapter provides deep technical analysis of:
-
-- **MCP (Model Context Protocol)** — Anthropic's open standard for connecting AI systems to external data sources and tools
+As the agent ecosystem matures, standardized protocols are emerging. This chapter provides deep technical analysis of: - **MCP (Model Context Protocol)** — Anthropic's open standard for connecting AI systems to external data sources and tools
 - **A2A (Agent-to-Agent)** — Google's protocol for agent interoperability
 - **ANP (Agent Network Protocol)** — A community-driven protocol for agent discovery and communication
 
 You implement basic MCP servers and clients, giving your agents the ability to call external tools in a standardized way.
 
 **Chapter 11: Agentic RL**
-This is one of the most advanced chapters in any agent tutorial available today. It teaches you to train language models for agentic behavior using reinforcement learning:
-
-- **SFT (Supervised Fine-Tuning)** — The starting point for any custom model
+This is one of the most advanced chapters in any agent tutorial available today. It teaches you to train language models for agentic behavior using reinforcement learning: - **SFT (Supervised Fine-Tuning)** — The starting point for any custom model
 - **RLHF (Reinforcement Learning from Human Feedback)** — The technique behind ChatGPT's alignment
 - **GRPO (Group Relative Policy Optimization)** — The efficient RL method popularized by DeepSeek
 
@@ -172,9 +153,7 @@ The final chapter challenges you to design and build a complete intelligent agen
 
 ## Community Contributions and Extra Content
 
-Beyond the core 16 chapters, Hello-Agents maintains an active community contribution system through its **Extra-Chapter** and **Co-creation-projects** directories. Notable community content includes:
-
-- **Agent Interview Questions** — A curated set of technical interview questions and detailed answers for agent-related positions
+Beyond the core 16 chapters, Hello-Agents maintains an active community contribution system through its **Extra-Chapter** and **Co-creation-projects** directories. Notable community content includes: - **Agent Interview Questions** — A curated set of technical interview questions and detailed answers for agent-related positions
 - **Dify Agent Creation Tutorial** — A beginner-friendly, step-by-step guide to building your first agent in Dify
 - **Agent Skills vs MCP Comparison** — A technical deep-dive comparing two major approaches to agent tool integration
 - **GUI Agent Introduction and Practice** — Exploring agents that interact with graphical user interfaces
@@ -186,15 +165,11 @@ With **71 contributors** and continuous pull request activity, the project benef
 
 ## Installation and Learning Setup
 
-Hello-Agents is designed to be accessible through multiple formats:
-
-### Online Reading
+Hello-Agents is designed to be accessible through multiple formats: ### Online Reading
 Visit the official documentation site at `https://datawhalechina.github.io/hello-agents/` for the complete web-based tutorial. An optimized mirror is available for users in China.
 
 ### Local Setup
-Clone the repository and serve the documentation locally:
-
-```bash
+Clone the repository and serve the documentation locally: ```bash
 git clone https://github.com/datawhalechina/hello-agents.git
 cd hello-agents
 # Follow the environment setup guide in Extra-Chapter/07
@@ -204,9 +179,7 @@ cd hello-agents
 A complete PDF version is available free of charge via GitHub releases or the Datawhale website. The PDF includes a Datawhale watermark to prevent commercial resale while remaining fully usable for personal learning.
 
 ### Code Environment
-The `/code` directory contains runnable implementations for every chapter. The primary language is Python (72.5%), with Jupyter notebooks for interactive exploration. Recommended environment:
-
-- Python 3.9+
+The `/code` directory contains runnable implementations for every chapter. The primary language is Python (72.5%), with Jupyter notebooks for interactive exploration. Recommended environment: - Python 3.9+
 - OpenAI API key or access to GitHub Models
 - Optional: Ollama for local model execution
 - Optional: Vector database (Chroma or Weaviate) for RAG chapters
@@ -215,9 +188,7 @@ The `/code` directory contains runnable implementations for every chapter. The p
 
 ## Code Example: Building a ReAct Agent from Scratch
 
-To illustrate the hands-on nature of the tutorial, here is a simplified version of the ReAct agent you build in Chapter 4:
-
-```python
+To illustrate the hands-on nature of the tutorial, here is a simplified version of the ReAct agent you build in Chapter 4: ```python
 import openai
 import json
 
@@ -254,11 +225,9 @@ import json
 ]
 
 # Simple tool implementations
-def search_web(query):
-    return f"Results for: {query}"
+def search_web(query): return f"Results for: {query}"
 
-def calculate(expression):
-    return str(eval(expression))
+def calculate(expression): return str(eval(expression))
 
 # ReAct loop
 messages = [
@@ -266,7 +235,7 @@ messages = [
     {"role": "user", "content": "What is the population of Tokyo divided by 1000?"}
 ]
 
-for step in range(5):  # Max 5 reasoning steps
+for step in range(5): # Max 5 reasoning steps
     response = openai.chat.completions.create(
         model="gpt-4",
         messages=messages,
@@ -277,23 +246,18 @@ for step in range(5):  # Max 5 reasoning steps
     message = response.choices[0].message
     messages.append(message)
     
-    if message.tool_calls:
-        for tool_call in message.tool_calls:
-            function_name = tool_call.function.name
+    if message.tool_calls: for tool_call in message.tool_calls: function_name = tool_call.function.name
             arguments = json.loads(tool_call.function.arguments)
             
-            if function_name == "search_web":
-                result = search_web(**arguments)
-            elif function_name == "calculate":
-                result = calculate(**arguments)
+            if function_name == "search_web": result = search_web(**arguments)
+            elif function_name == "calculate": result = calculate(**arguments)
             
             messages.append({
                 "role": "tool",
                 "tool_call_id": tool_call.id,
                 "content": result
             })
-    else:
-        print("Final answer:", message.content)
+    else: print("Final answer:", message.content)
         break
 ```
 
@@ -320,7 +284,17 @@ The capstone project structure and the community-contributed project gallery pro
 ## Comparison with Alternatives
 
 | Capability | Hello-Agents | Framework Docs (AutoGen, etc.) | Paid Bootcamps | YouTube Tutorials |
-|------------|--------------|--------------------------------|----------------|-------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Structured curriculum | 16 chapters, progressive | Fragmented, assumes knowledge | Varies widely | Unstructured, random |
 | Theory depth | Transformer to RL | Framework-specific only | Often shallow | Usually shallow |
 | Hands-on coding | Every chapter | Examples only | Limited by cost | Rarely complete |
@@ -339,8 +313,7 @@ Hello-Agents occupies a unique position: it has the depth of a university course
 
 Hello-Agents is not an isolated project. It is produced by **Datawhale**, a community with deep roots in Chinese open-source AI education. Datawhale has produced multiple starred repositories and runs active learning groups, hackathons, and mentorship programs.
 
-This community backing means:
-- **Sustained maintenance** — The project receives regular updates as the agent landscape evolves
+This community backing means: - **Sustained maintenance** — The project receives regular updates as the agent landscape evolves
 - **Quality control** — Content is peer-reviewed by practitioners before merge
 - **Network effects** — Learners join a community of thousands, not just read documentation in isolation
 - **Career connections** — Datawhale's industry partnerships create pathways from learning to employment
@@ -349,9 +322,7 @@ This community backing means:
 
 ## Limitations and Considerations
 
-While Hello-Agents is exceptional, learners should be aware of a few constraints:
-
-- **Chinese-language primary** — The main content is in Chinese, though an English README exists and community translations are ongoing
+While Hello-Agents is exceptional, learners should be aware of a few constraints: - **Chinese-language primary** — The main content is in Chinese, though an English README exists and community translations are ongoing
 - **Rapid ecosystem change** — Some specific platform instructions (Coze, Dify) may become outdated as those products evolve; the core principles remain valid
 - **Hardware requirements** — The Agentic RL chapter benefits from GPU access for training; CPU execution is possible but slow
 - **API costs** — Hands-on practice requires OpenAI API or equivalent access; costs can accumulate during intensive experimentation
@@ -384,14 +355,11 @@ The agent revolution is not coming — it is here. Hello-Agents ensures you do n
 
 ## Recommended Infrastructure for Self-Hosting
 
-If you want to run this stack reliably 24/7, infrastructure choice matters:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+If you want to run this stack reliably 24/7, infrastructure choice matters: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
 
-<!--auto-references-->
 ## References & Sources
 
 - [Hello-Agents (datawhalechina/hello-agents)](https://github.com/datawhalechina/hello-agents)
@@ -409,7 +377,6 @@ If you want to run this stack reliably 24/7, infrastructure choice matters:
 - [AgentBench](https://github.com/THUDM/AgentBench)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

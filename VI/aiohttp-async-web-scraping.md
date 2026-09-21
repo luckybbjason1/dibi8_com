@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/aiohttp-async-web-scraping" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/aiohttp-async-web-scraping" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/aiohttp-async-web-scraping" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/aiohttp-async-web-scraping" />
 title: 'aiohttp 2026: Xây dựng Web Scraper Bất đồng bộ Hiệu suất...
 description: 'Làm chủ aiohttp 3.11 để xây dựng web scraper bất đồng bộ hiệu suất cao trong Python. Hỗ trợ connection pooling, session management, rate limiting và triển khai production.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [aiohttp, 'bất đồng bộ', 'web scraping', python, 'http client', asyncio]
-aliases:
-- /vi/posts/aiohttp-async-web-scraping/
+aliases: - /vi/posts/aiohttp-async-web-scraping/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/aiohttp-async-web-scraping/ -->
 
 {{</* resource-info */>}}
 
@@ -47,9 +39,7 @@ Khác với các thư viện đồng bộ như `requests` hay `urllib3`, aiohttp
 
 ## aiohttp Hoạt động Như thế nào: Kiến trúc và Khái niệm Cốt lõi
 
-Hiểu kiến trúc của aiohttp là rất quan trọng để viết scraper hiệu quả. Framework được xây dựng trên một số khái niệm chính:
-
-### Event Loop và Tích hợp Asyncio
+Hiểu kiến trúc của aiohttp là rất quan trọng để viết scraper hiệu quả. Framework được xây dựng trên một số khái niệm chính: ### Event Loop và Tích hợp Asyncio
 
 aiohttp chạy trên event loop `asyncio` của Python. Khi bạn thực hiện HTTP request, aiohttp đăng ký callback với event loop và từ bỏ quyền kiểm soát. Loop sau đó xử lý các tác vụ khác cho đến khi phản hồi mạng đến. Multitasking hợp tác này tránh overhead của việc chuyển đổi thread ở cấp hệ điều hành.
 
@@ -91,10 +81,7 @@ import sys
 print(f"aiohttp version: {aiohttp.__version__}")
 print(f"Python version: {sys.version}")
 
-async def check():
-    async with aiohttp.ClientSession() as session:
-        async with session.get("https://httpbin.org/get") as resp:
-            data = await resp.json()
+async def check(): async with aiohttp.ClientSession() as session: async with session.get("https://httpbin.org/get") as resp: data = await resp.json()
             print(f"Status: {resp.status}")
             print(f"Response keys: {list(data.keys())}")
 
@@ -113,16 +100,11 @@ urls = [
     "https://httpbin.org/get?param=3",
 ]
 
-async def fetch(session, url):
-    async with session.get(url) as response:
-        return await response.json()
+async def fetch(session, url): async with session.get(url) as response: return await response.json()
 
-async def main():
-    async with aiohttp.ClientSession() as session:
-        tasks = [fetch(session, url) for url in urls]
+async def main(): async with aiohttp.ClientSession() as session: tasks = [fetch(session, url) for url in urls]
         results = await asyncio.gather(*tasks)
-        for r in results:
-            print(r["args"])
+        for r in results: print(r["args"])
 
 asyncio.run(main())
 ```
@@ -138,26 +120,18 @@ import aiohttp
 import asyncio
 from bs4 import BeautifulSoup
 
-async def scrape_titles(session, urls):
-    """Trích xuất tiêu đề trang từ nhiều URL đồng thờ."""
+async def scrape_titles(session, urls): """Trích xuất tiêu đề trang từ nhiều URL đồng thờ."""
     titles = []
-    for url in urls:
-        try:
-            async with session.get(url, timeout=aiohttp.ClientTimeout(total=10)) as resp:
-                html = await resp.text()
+    for url in urls: try: async with session.get(url, timeout=aiohttp.ClientTimeout(total=10)) as resp: html = await resp.text()
                 soup = BeautifulSoup(html, "lxml")
                 title = soup.find("title")
                 titles.append({"url": url, "title": title.text if title else "N/A"})
-        except Exception as e:
-            titles.append({"url": url, "title": f"Error: {e}"})
+        except Exception as e: titles.append({"url": url, "title": f"Error: {e}"})
     return titles
 
-async def main():
-    urls = ["https://example.com", "https://httpbin.org/html"]
-    async with aiohttp.ClientSession() as session:
-        results = await scrape_titles(session, urls)
-        for r in results:
-            print(f"{r[url]}: {r[title]}")
+async def main(): urls = ["https://example.com", "https://httpbin.org/html"]
+    async with aiohttp.ClientSession() as session: results = await scrape_titles(session, urls)
+        for r in results: print(f"{r[url]}: {r[title]}")
 
 asyncio.run(main())
 ```
@@ -169,17 +143,13 @@ import aiohttp
 import asyncio
 from lxml import html as lh
 
-async def extract_links(session, url):
-    """Trích xuất tất cả link href từ trang bằng lxml."""
-    async with session.get(url) as resp:
-        text = await resp.text()
+async def extract_links(session, url): """Trích xuất tất cả link href từ trang bằng lxml."""
+    async with session.get(url) as resp: text = await resp.text()
         tree = lh.fromstring(text)
         links = tree.xpath("//a/@href")
         return [l for l in links if l.startswith("http")]
 
-async def main():
-    async with aiohttp.ClientSession() as session:
-        links = await extract_links(session, "https://example.com")
+async def main(): async with aiohttp.ClientSession() as session: links = await extract_links(session, "https://example.com")
         print(f"Found {len(links)} external links")
 
 asyncio.run(main())
@@ -195,16 +165,11 @@ import aiofiles
 import asyncio
 import json
 
-async def scrape_and_save(session, url, filepath):
-    """Scrape dữ liệu và ghi bất đồng bộ lên đĩa."""
-    async with session.get(url) as resp:
-        data = await resp.json()
-        async with aiofiles.open(filepath, "w") as f:
-            await f.write(json.dumps(data, indent=2))
+async def scrape_and_save(session, url, filepath): """Scrape dữ liệu và ghi bất đồng bộ lên đĩa."""
+    async with session.get(url) as resp: data = await resp.json()
+        async with aiofiles.open(filepath, "w") as f: await f.write(json.dumps(data, indent=2))
 
-async def main():
-    async with aiohttp.ClientSession() as session:
-        await scrape_and_save(
+async def main(): async with aiohttp.ClientSession() as session: await scrape_and_save(
             session,
             "https://httpbin.org/json",
             "/tmp/scraped_data.json"
@@ -222,44 +187,33 @@ import aiohttp
 import aiosqlite
 import asyncio
 
-async def scrape_to_db(session, db, url):
-    """Lưu dữ liệu đã scrape vào SQLite bất đồng bộ."""
-    async with session.get(url) as resp:
-        data = await resp.json()
+async def scrape_to_db(session, db, url): """Lưu dữ liệu đã scrape vào SQLite bất đồng bộ."""
+    async with session.get(url) as resp: data = await resp.json()
         await db.execute(
             "INSERT INTO scraped (url, data) VALUES (?, ?)",
             (url, json.dumps(data))
         )
         await db.commit()
 
-async def main():
-    async with aiosqlite.connect("scraped.db") as db:
-        await db.execute("CREATE TABLE IF NOT EXISTS scraped (url TEXT, data TEXT)")
-        async with aiohttp.ClientSession() as session:
-            await scrape_to_db(session, db, "https://httpbin.org/json")
+async def main(): async with aiosqlite.connect("scraped.db") as db: await db.execute("CREATE TABLE IF NOT EXISTS scraped (url TEXT, data TEXT)")
+        async with aiohttp.ClientSession() as session: await scrape_to_db(session, db, "https://httpbin.org/json")
 
 asyncio.run(main())
 ```
 
 ### Tích hợp Xoay vòng Proxy qua WebShare
 
-Đối với scraping production ở quy mô lớn, xoay vòng proxy là thiết yếu. WebShare cung cấp proxy xoay vòng đáng tin cậy tích hợp liền mạch với aiohttp:
-
-```python
+Đối với scraping production ở quy mô lớn, xoay vòng proxy là thiết yếu. WebShare cung cấp proxy xoay vòng đáng tin cậy tích hợp liền mạch với aiohttp: ```python
 import aiohttp
 import asyncio
 
 PROXY_URL = "http://username:password@proxy.webshare.io:80"
 
-async def fetch_with_proxy(session, url):
-    """Định tuyến request qua proxy xoay vòng WebShare."""
-    async with session.get(url, proxy=PROXY_URL) as resp:
-        return await resp.text()
+async def fetch_with_proxy(session, url): """Định tuyến request qua proxy xoay vòng WebShare."""
+    async with session.get(url, proxy=PROXY_URL) as resp: return await resp.text()
 
-async def main():
-    connector = aiohttp.TCPConnector(limit=100, limit_per_host=10)
-    async with aiohttp.ClientSession(connector=connector) as session:
-        html = await fetch_with_proxy(session, "https://httpbin.org/ip")
+async def main(): connector = aiohttp.TCPConnector(limit=100, limit_per_host=10)
+    async with aiohttp.ClientSession(connector=connector) as session: html = await fetch_with_proxy(session, "https://httpbin.org/ip")
         print(html[:200])
 
 asyncio.run(main())
@@ -329,19 +283,14 @@ session = aiohttp.ClientSession(
 import aiohttp
 import asyncio
 
-async def bounded_fetch(session, url, semaphore):
-    """Giới hạn request đồng thờ bằng semaphore."""
-    async with semaphore:
-        async with session.get(url) as resp:
-            return await resp.text()
+async def bounded_fetch(session, url, semaphore): """Giới hạn request đồng thờ bằng semaphore."""
+    async with semaphore: async with session.get(url) as resp: return await resp.text()
 
-async def main():
-    semaphore = asyncio.Semaphore(50)  # Tối đa 50 request đồng thờ
+async def main(): semaphore = asyncio.Semaphore(50)  # Tối đa 50 request đồng thờ
     urls = [f"https://httpbin.org/get?i={i}" for i in range(500)]
     
     connector = aiohttp.TCPConnector(limit=100)
-    async with aiohttp.ClientSession(connector=connector) as session:
-        tasks = [bounded_fetch(session, url, semaphore) for url in urls]
+    async with aiohttp.ClientSession(connector=connector) as session: tasks = [bounded_fetch(session, url, semaphore) for url in urls]
         results = await asyncio.gather(*tasks, return_exceptions=True)
         successes = sum(1 for r in results if not isinstance(r, Exception))
         print(f"Successful: {successes}/500")
@@ -356,27 +305,16 @@ import aiohttp
 import asyncio
 import random
 
-async def fetch_with_retry(session, url, max_retries=3):
-    """Retry request thất bại với exponential backoff."""
-    for attempt in range(max_retries):
-        try:
-            async with session.get(url) as resp:
-                if resp.status == 200:
-                    return await resp.json()
-                elif resp.status in (429, 503, 502):
-                    wait = (2 ** attempt) + random.uniform(0, 1)
+async def fetch_with_retry(session, url, max_retries=3): """Retry request thất bại với exponential backoff."""
+    for attempt in range(max_retries): try: async with session.get(url) as resp: if resp.status == 200: return await resp.json()
+                elif resp.status in (429, 503, 502): wait = (2 ** attempt) + random.uniform(0, 1)
                     await asyncio.sleep(wait)
-                else:
-                    resp.raise_for_status()
-        except (aiohttp.ClientError, asyncio.TimeoutError) as e:
-            if attempt == max_retries - 1:
-                raise
+                else: resp.raise_for_status()
+        except (aiohttp.ClientError, asyncio.TimeoutError) as e: if attempt == max_retries - 1: raise
             await asyncio.sleep(2 ** attempt)
     return None
 
-async def main():
-    async with aiohttp.ClientSession() as session:
-        data = await fetch_with_retry(session, "https://httpbin.org/json")
+async def main(): async with aiohttp.ClientSession() as session: data = await fetch_with_retry(session, "https://httpbin.org/json")
         print(data)
 
 asyncio.run(main())
@@ -388,20 +326,13 @@ asyncio.run(main())
 import aiohttp
 import asyncio
 
-async def websocket_scraper():
-    """Scrape dữ liệu thờ gian thực từ endpoint WebSocket."""
-    async with aiohttp.ClientSession() as session:
-        async with session.ws_connect("wss://echo.websocket.org") as ws:
-            await ws.send_str("Hello Server")
+async def websocket_scraper(): """Scrape dữ liệu thờ gian thực từ endpoint WebSocket."""
+    async with aiohttp.ClientSession() as session: async with session.ws_connect("wss://echo.websocket.org") as ws: await ws.send_str("Hello Server")
             
-            async for msg in ws:
-                if msg.type == aiohttp.WSMsgType.TEXT:
-                    print(f"Received: {msg.data}")
-                    if "done" in msg.data.lower():
-                        await ws.close()
+            async for msg in ws: if msg.type == aiohttp.WSMsgType.TEXT: print(f"Received: {msg.data}")
+                    if "done" in msg.data.lower(): await ws.close()
                         break
-                elif msg.type == aiohttp.WSMsgType.ERROR:
-                    print(f"WebSocket error: {ws.exception()}")
+                elif msg.type == aiohttp.WSMsgType.ERROR: print(f"WebSocket error: {ws.exception()}")
                     break
 
 asyncio.run(websocket_scraper())
@@ -424,20 +355,12 @@ CMD ["python", "scraper.py"]
 ```yaml
 # docker-compose.yml
 version: "3.8"
-services:
-  scraper:
-    build: .
+services: scraper: build: .
     restart: unless-stopped
-    environment:
-      - PYTHONUNBUFFERED=1
-    deploy:
-      resources:
-        limits:
-          memory: 2G
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "100m"
+    environment: - PYTHONUNBUFFERED=1
+    deploy: resources: limits: memory: 2G
+    logging: driver: "json-file"
+      options: max-size: "100m"
         max-file: "3"
 ```
 
@@ -453,14 +376,9 @@ from prometheus_client import Counter, Histogram, start_http_server
 REQUEST_COUNT = Counter("scraper_requests_total", "Tổng số request", ["status"])
 REQUEST_DURATION = Histogram("scraper_request_duration_seconds", "Thờ gian request")
 
-async def monitored_fetch(session, url):
-    with REQUEST_DURATION.time():
-        try:
-            async with session.get(url) as resp:
-                REQUEST_COUNT.labels(status=str(resp.status)).inc()
+async def monitored_fetch(session, url): with REQUEST_DURATION.time(): try: async with session.get(url) as resp: REQUEST_COUNT.labels(status=str(resp.status)).inc()
                 return await resp.text()
-        except Exception as e:
-            REQUEST_COUNT.labels(status="error").inc()
+        except Exception as e: REQUEST_COUNT.labels(status="error").inc()
             raise
 
 # Khởi động metrics server trên port 9090
@@ -492,9 +410,7 @@ start_http_server(9090)
 
 ## Hạn chế: Đánh giá Trung thực
 
-Không công cụ nào là hoàn hảo. aiohttp có những hạn chế cụ thể cần hiểu rõ:
-
-**Không hỗ trợ HTTP/2.** Tính đến v3.11, aiohttp chỉ hỗ trợ HTTP/1.1. Nếu target của bạn yêu cầu HTTP/2, hãy dùng `httpx`. Có một issue mở (#2217) theo dõi triển khai HTTP/2 nhưng không có lộ trình cụ thể.
+Không công cụ nào là hoàn hảo. aiohttp có những hạn chế cụ thể cần hiểu rõ: **Không hỗ trợ HTTP/2.** Tính đến v3.11, aiohttp chỉ hỗ trợ HTTP/1.1. Nếu target của bạn yêu cầu HTTP/2, hãy dùng `httpx`. Có một issue mở (#2217) theo dõi triển khai HTTP/2 nhưng không có lộ trình cụ thể.
 
 **Đường cong học tập asyncio.** Developer mới với `async`/`await` sẽ gặp đường cong học tập đáng kể. Các lỗi phổ biến bao gồm quên `await`, trộn code đồng bộ và bất đồng bộ, debug event loop bị treo. Lỗi `RuntimeError: Event loop is closed` là nghi lễ trưởng thành của mọi asyncio developer.
 
@@ -553,9 +469,7 @@ Bắt đầu với phần thiết lập 5 phút trong hướng dẫn này, tri�
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -565,7 +479,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 Bài viết này chứa các liên kết liên kết đến DigitalOcean và WebShare. Nếu bạn mua dịch vụ qua các liên kết này, chúng tôi có thể nhận hoa hồng mà không có chi phí bổ sung. Các khuyến nghị dựa trên tính hữu ích thực tế cho các workflow scraping production. Mọi benchmark đều được thực hiện độc lập.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

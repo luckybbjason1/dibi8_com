@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ollama-local-llm-guide" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ollama-local-llm-guide" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ollama-local-llm-guide" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ollama-local-llm-guide" />
 title: 'Hướng Dẫn Toàn Diện Ollama 2025: Chạy LLM Local Trên Mọi...
 description: 'Hướng dẫn chi tiết Ollama 2025: cài đặt trên macOS/Windows/Linux/Docker, chạy Llama 3 và Mistral local, REST API, tích hợp LangChain, và tối ưu phần cứng.'
 date: 2026-05-18 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/ollama-local-llm-guide/
+aliases: - /posts/ollama-local-llm-guide/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/ollama-local-llm-guide/ -->
 
 {</* resource-info */>}
 
@@ -37,9 +29,7 @@ Khi các công ty ngày càng lo ngại về bảo mật dữ liệu và chi ph�
 
 ### Giới Thiệu Ollama
 
-Ollama là một công cụ mã nguồn mở cho phép chạy các large language models trực tiếp trên máy tính cá nhân hoặc server riêng. Được phát triển bởi Jeffrey Morgan và team, Ollama cung cấp:
-
-- **One-command model deployment**: tải và chạy models chỉ với `ollama run`
+Ollama là một công cụ mã nguồn mở cho phép chạy các large language models trực tiếp trên máy tính cá nhân hoặc server riêng. Được phát triển bởi Jeffrey Morgan và team, Ollama cung cấp: - **One-command model deployment**: tải và chạy models chỉ với `ollama run`
 - **Cross-platform**: hỗ trợ macOS, Windows, Linux và Docker
 - **REST API**: tương thích OpenAI API cho dễ dàng tích hợp
 - **Model library**: hàng trăm models có sẵn, từ 1B đến 70B+ parameters
@@ -222,9 +212,7 @@ Llama 3.1 hỗ trợ context window 128K tokens — gấp 8 lần Llama 2 — v�
 
 ### Qwen 2.5 (Alibaba)
 
-Qwen 2.5 là một trong những model mã nguồn mở mạnh nhất 2025, đặc biệt trong coding và math reasoning:
-
-- **qwen2.5:7b**: vượt trội trong code generation và toán học
+Qwen 2.5 là một trong những model mã nguồn mở mạnh nhất 2025, đặc biệt trong coding và math reasoning: - **qwen2.5:7b**: vượt trội trong code generation và toán học
 - **qwen2.5:14b**: balance tốt giữa speed và quality
 - **qwen2.5:72b**: gần GPT-4 quality cho nhiều tasks
 
@@ -272,9 +260,7 @@ ollama ps
 
 ### Performance Chỉ Dùng CPU
 
-Nếu không có GPU, Ollama vẫn hoạt động bằng CPU với AVX/AVX2 instructions:
-
-- **Mẹo tối ưu CPU**: dùng models nhỏ hơn (3B-7B), quantization Q4 hoặc Q3
+Nếu không có GPU, Ollama vẫn hoạt động bằng CPU với AVX/AVX2 instructions: - **Mẹo tối ưu CPU**: dùng models nhỏ hơn (3B-7B), quantization Q4 hoặc Q3
 - **Enable thread pooling**: Ollama tự động dùng tất cả CPU cores
 - **Dùng mmap**: load model vào RAM thay vì VRAM
 
@@ -324,8 +310,7 @@ for chunk in ollama.chat(
     model="llama3.1:8b",
     messages=[{"role": "user", "content": "Kể một câu chuyện"}],
     stream=True
-):
-    print(chunk["message"]["content"], end="", flush=True)
+): print(chunk["message"]["content"], end="", flush=True)
 ```
 
 ### JavaScript/TypeScript Integration
@@ -368,9 +353,7 @@ response = chain.invoke({"question": "Giải thích RAG"})
 
 ### OpenAI-Compatible API Endpoint
 
-Ollama cung cấp endpoint `/v1/chat/completions` tương thích hoàn toàn với OpenAI API:
-
-```python
+Ollama cung cấp endpoint `/v1/chat/completions` tương thích hoàn toàn với OpenAI API: ```python
 from openai import OpenAI
 
 client = OpenAI(
@@ -394,9 +377,7 @@ Tính năng này cho phép bạn thay thế OpenAI API bằng Ollama mà không 
 
 ### Tạo Custom Modelfile
 
-Modelfile là Dockerfile cho Ollama — định nghĩa model, system prompt và parameters:
-
-```dockerfile
+Modelfile là Dockerfile cho Ollama — định nghĩa model, system prompt và parameters: ```dockerfile
 FROM llama3.1:8b
 
 SYSTEM """Bạn là một lập trình viên Python senior với 10 năm kinh nghiệm.
@@ -445,9 +426,7 @@ ollama ps
 
 ### Xử Lý Requests Đồng Thờivà Bộ Nhớ
 
-Ollama tự động quản lý:
-
-- **Concurrent requests**: xử lý nhiều requests đồng thờibằng batching
+Ollama tự động quản lý: - **Concurrent requests**: xử lý nhiều requests đồng thờibằng batching
 - **Keep-alive**: giữ model trong memory để giảm thờigian khởi động
 - **Context persistence**: duy trì ngữ cảnh qua nhiều API calls
 
@@ -466,31 +445,18 @@ ollama.generate(
 
 ```yaml
 version: '3.8'
-services:
-  ollama:
-    image: ollama/ollama:latest
-    volumes:
-      - ollama-data:/root/.ollama
-    ports:
-      - "11434:11434"
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+services: ollama: image: ollama/ollama:latest
+    volumes: - ollama-data:/root/.ollama
+    ports: - "11434:11434"
+    deploy: resources: reservations: devices: - driver: nvidia
               count: 1
               capabilities: [gpu]
 
-  app:
-    build: ./app
-    environment:
-      - OLLAMA_HOST=http://ollama:11434
-    depends_on:
-      - ollama
+  app: build: ./app
+    environment: - OLLAMA_HOST=http://ollama:11434
+    depends_on: - ollama
 
-volumes:
-  ollama-data:
-```
+volumes: ollama-data: ```
 
 ### Load Balancing Nhiều Instances
 
@@ -612,9 +578,7 @@ OLLAMA_HOST=0.0.0.0:8080 ollama serve
 
 ### Phần cứng nào cần thiết để chạy Ollama?
 
-Yêu cầu tối thiểu: **4GB RAM** cho models 1B-3B parameters. Để có trải nghiệm tốt:
-
-- **Basic**: 8GB RAM, CPU 4 cores — chạy models 3B-7B chậm
+Yêu cầu tối thiểu: **4GB RAM** cho models 1B-3B parameters. Để có trải nghiệm tốt: - **Basic**: 8GB RAM, CPU 4 cores — chạy models 3B-7B chậm
 - **Recommended**: 16GB RAM, GPU 8GB VRAM — chạy models 7B-13B tốt
 - **Optimal**: 32GB RAM, GPU 24GB VRAM (RTX 3090/4090) — chạy models 30B+
 
@@ -626,9 +590,7 @@ Ollama chạy trên cả Apple Silicon M1-M3 với hiệu suất rất tốt nh�
 
 ### Làm thế nào tích hợp Ollama với LangChain?
 
-LangChain có integration native với Ollama qua `langchain-ollama` package:
-
-```python
+LangChain có integration native với Ollama qua `langchain-ollama` package: ```python
 from langchain_ollama import ChatOllama
 llm = ChatOllama(model="llama3.1:8b")
 ```
@@ -637,9 +599,7 @@ Hoặc sử dụng OpenAI-compatible endpoint với base URL `http://localhost:1
 
 ### Model Ollama nào tốt nhất cho coding?
 
-Theo benchmarks và trải nghiệm thực tế đến tháng 5/2025:
-
-1. **deepseek-coder:6.7b** — chuyên coding, hỗ trợ 80+ ngôn ngữ lập trình
+Theo benchmarks và trải nghiệm thực tế đến tháng 5/2025: 1. **deepseek-coder:6.7b** — chuyên coding, hỗ trợ 80+ ngôn ngữ lập trình
 2. **codellama:7b** — code infill và completion xuất sắc
 3. **qwen2.5:7b** — balance tốt giữa coding và general tasks
 4. **mistral:7b** — reasoning tốt, phù hợp debugging
@@ -675,9 +635,7 @@ Chạy LLM local không chỉ là về bảo mật và chi phí — đó là v�
 
 ## Hạ Tầng Đề Xuất
 
-Để chạy các công cụ trên 24/7 ổn định, lựa chọn hạ tầng rất quan trọng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu.
+Để chạy các công cụ trên 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp. dibi8.com cũng host ở đây.
 - **[Hostinger](https://www.hostinger.com/vn?REFERRALCODE=22RPIAOJIYJN)** — VPS giá tốt cho thị trường Việt Nam.
 
@@ -685,7 +643,6 @@ Chạy LLM local không chỉ là về bảo mật và chi phí — đó là v�
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

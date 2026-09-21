@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/cc-switch-unified-ai-cli-control-center" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cc-switch-unified-ai-cli-control-center" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cc-switch-unified-ai-cli-control-center" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cc-switch-unified-ai-cli-control-center" />
 title: 'cc-switch: Trung tâm CLI Desktop đa nền tảng thống nhất ...
 description: 'cc-switch (95.900 sao GitHub) là công cụ desktop đa nền tảng thống nhất Claude Code, Codex, OpenCode, Gemini CLI, OpenClaw và Hermes Agent vào một trung tâm điều khiển. Một binary duy nhất, không phụ thuộc. Bao gồm hướng dẫn cài đặt, phân tích kiến trúc và benchmark thực tế.'
 date: 2026-06-08
-lastmod:  2026-06-08slug: 'cc-switch-unified-ai-cli-control-center'
+lastmod: 2026-06-08
+slug: 'cc-switch-unified-ai-cli-control-center'
 category: 'dev-utils'
 tags: ['quản lý AI CLI', 'thay thế Claude Code', 'công cụ AI mã hóa', 'năng suất nhà phát triển', 'CLI đa agent', 'cc-switch', 'agent AI mã hóa', 'proxy CLI']
 github_repo: 'https://github.com/farion1231/cc-switch'
@@ -17,8 +13,6 @@ license: MIT
 featureImage: 'https://raw.githubusercontent.com/farion1231/cc-switch/main/assets/screenshots/main-en.png'
 lang: vi
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/cc-switch-unified-ai-cli-control-center/ -->
 
 # cc-switch: Trung tâm CLI Desktop đa nền tảng thống nhất 6+ công cụ AI mã hóa — Hướng dẫn thực tế 2026
 
@@ -38,9 +32,7 @@ Khác biệt cốt lõi: cc-switch không thay thế công cụ AI mã hóa củ
 
 ## How cc-switch Works
 
-cc-switch hoạt động trên ba lớp kiến trúc:
-
-1. **Lớp Registry Agent** — Duy trì registry các công cụ AI mã hóa đã cài đặt, bao gồm lệnh CLI, biến môi trường và thư mục làm việc. Khi bạn chọn một agent, cc-switch đọc đường dẫn executable và định cấu hình môi trường tương ứng.
+cc-switch hoạt động trên ba lớp kiến trúc: 1. **Lớp Registry Agent** — Duy trì registry các công cụ AI mã hóa đã cài đặt, bao gồm lệnh CLI, biến môi trường và thư mục làm việc. Khi bạn chọn một agent, cc-switch đọc đường dẫn executable và định cấu hình môi trường tương ứng.
 
 2. **Session Manager** — Theo dõi các phiên hoạt động trên tất cả agent. Khi chuyển từ Claude Code sang Codex CLI, cc-switch lưu thư mục làm việc hiện tại, git branch và lịch sử prompt của Claude Code, sau đó khôi phục trạng thái cuối cùng đã biết của Codex CLI.
 
@@ -106,29 +98,23 @@ cargo tauri build
 
 ### Thiết lập lần đầu
 
-Sau khi khởi chạy, cc-switch quét hệ thống để tìm công cụ AI mã hóa đã cài đặt:
-
-```bash
+Sau khi khởi chạy, cc-switch quét hệ thống để tìm công cụ AI mã hóa đã cài đặt: ```bash
 $ cc-switch --scan-agents
-Found agents:
-  [✓] Claude Code    v1.4.2    /usr/local/bin/claude
+Found agents: [✓] Claude Code    v1.4.2    /usr/local/bin/claude
   [✓] OpenCode       v0.8.1    ~/.local/bin/opencode
   [✓] Codex CLI      v0.3.7    ~/.codex/bin/codex
   [ ] Gemini CLI     Not found
   [✓] Hermes Agent   v0.5.0    ~/.hermes/bin/hermes
 ```
 
-Nhấn "Add Agent" để chỉ định thủ công đường dẫn nếu auto-detection bỏ sót. Hộp thoại "Add Agent" chấp nhận:
-- Tên agent (text tự do)
+Nhấn "Add Agent" để chỉ định thủ công đường dẫn nếu auto-detection bỏ sót. Hộp thoại "Add Agent" chấp nhận: - Tên agent (text tự do)
 - Đường dẫn executable
 - Thư mục làm việc mặc định
 - Template biến môi trường
 
 ## Integration with Claude Code, Codex, OpenCode, Gemini CLI, OpenClaw, Hermes Agent
 
-cc-switch tích hợp với mỗi agent qua kết hợp CLI command interception và environment variable injection. Khi bạn click "Switch to Claude Code", cc-switch thực hiện:
-
-1. Đặt biến môi trường `CLAUDE_CODE_SESSION=cc-switch-active`
+cc-switch tích hợp với mỗi agent qua kết hợp CLI command interception và environment variable injection. Khi bạn click "Switch to Claude Code", cc-switch thực hiện: 1. Đặt biến môi trường `CLAUDE_CODE_SESSION=cc-switch-active`
 2. Áp dụng model configuration từ preset đã chọn (vd: `claude-sonnet-4-20250514`, token limit 128K)
 3. Mở cửa sổ hoặc tab terminal mới với agent CLI đã pre-launch
 4. Log session metadata để so sánh cross-agent
@@ -144,8 +130,7 @@ max_tokens: 128000
 temperature: 0.2
 system_prompt: "You are an expert Python developer focused on clean, tested code."
 proxy: "http://localhost:8080"  # Dùng WebShare cho proxy ổn định
-env:
-  ANTHROPIC_API_KEY: "${env.ANTHROPIC_API_KEY}"
+env: ANTHROPIC_API_KEY: "${env.ANTHROPIC_API_KEY}"
   CLAUDE_CODE_TELEMETRY: "disabled"
 ```
 
@@ -160,8 +145,7 @@ env:
 # ⌘+5 → OpenClaw
 # ⌘+6 → Hermes Agent
 
-# Từ CLI, chuyển đổi agent trực tiếp:
-cc-switch switch claude-code
+# Từ CLI, chuyển đổi agent trực tiếp: cc-switch switch claude-code
 cc-switch switch opencode --preset claude-pro
 ```
 
@@ -182,9 +166,7 @@ Performance không phải là selling point chính của cc-switch — nó là w
 
 ### Use Case thực tế 1: A/B Testing đa agent
 
-Một developer tại startup cỡ trung dùng cc-switch để chạy A/B testing hàng ngày giữa Claude Code và Codex CLI trên cùng codebase:
-
-```bash
+Một developer tại startup cỡ trung dùng cc-switch để chạy A/B testing hàng ngày giữa Claude Code và Codex CLI trên cùng codebase: ```bash
 # Thiết lập workflow A/B testing
 mkdir ab-test-repo && cd ab-test-repo
 git init
@@ -219,9 +201,7 @@ Session manager giữ nguyên trạng thái cả hai agent. Khi chuyển lại, 
 
 ### Custom Provider Presets
 
-cc-switch v3.16+ thêm custom provider support. Bạn có thể định nghĩa custom AI provider (beyond Claude, OpenAI, Google built-in) trong preset files:
-
-```yaml
+cc-switch v3.16+ thêm custom provider support. Bạn có thể định nghĩa custom AI provider (beyond Claude, OpenAI, Google built-in) trong preset files: ```yaml
 # presets/custom-llm.yaml
 agent: open-code
 provider: "custom-llm"
@@ -246,9 +226,7 @@ cc-switch preset sync --remote github --repo my-org/cc-switch-presets
 
 ### Agent Environment dựa trên Docker
 
-Đối với production consistency, cc-switch hỗ trợ launch agent trong Docker container:
-
-```bash
+Đối với production consistency, cc-switch hỗ trợ launch agent trong Docker container: ```bash
 # Tạo Docker agent environment
 cc-switch docker create --name claude-pro --image python:3.12-slim
 # Cài đặt Claude Code trong container
@@ -277,9 +255,7 @@ cc-switch switch claude-code --docker claude-pro
 
 ## Limitations / Honest Assessment
 
-cc-switch không dành cho mọi người. Đây là lúc nó **không phù hợp**:
-
-1. **Single-agent workflow** — Nếu bạn chỉ dùng Claude Code hoặc chỉ một công cụ AI mã hóa, cc-switch thêm phức tạp không cần thiết. Dùng luôn CLI native của agent.
+cc-switch không dành cho mọi người. Đây là lúc nó **không phù hợp**: 1. **Single-agent workflow** — Nếu bạn chỉ dùng Claude Code hoặc chỉ một công cụ AI mã hóa, cc-switch thêm phức tạp không cần thiết. Dùng luôn CLI native của agent.
 
 2. **CI/CD environment** — cc-switch là ứng dụng desktop. Không thiết kế cho headless CI pipeline. Dùng raw CLI command hoặc shell script cho việc đó.
 
@@ -330,7 +306,6 @@ Tham gia [nhóm Telegram dibi8 tiếng Việt](https://t.me/DIBI8_Group/18) đ�
 Một số liên kết bên trên là liên kết tiếp thị. Nếu bạn đăng ký qua các liên kết này, dibi8.com có thể nhận hoa hồng mà bạn không tốn thêm chi phí.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

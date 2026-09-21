@@ -1,20 +1,17 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026" />
-title: "I Cut My AI Coding Bill by 80% With This Rust CLI Proxy ...
+title: "I Cut My AI Coding Bill by 80% With This Rust CLI Proxy ..."
 description: "Developers are burning $500–2000/month on AI coding tools. rtk is a zero-dependency Rust binary that intercepts and compresses CLI output before it hits your LLM context, slashing token consumption by 60–90% across Claude Code, Cursor, Copilot, Codex, and 8 other agents."
 keywords: ["rtk", "LLM token optimization", "reduce Claude Code costs", "AI coding cost reduction", "Rust CLI proxy", "developer productivity 2026", "token compression tool", "AI agent efficiency"]
 author: "Home Hermes"
 date: "2026-05-20"
-lastmod:  "2026-05-20"lang: "en"
+lastmod: "2026-05-20"lang: "en"
 ---
-
 # I Cut My AI Coding Bill by 80% With This Rust CLI Proxy — Here's the Exact Setup (rtk Guide 2026)
 
 > **TL;DR**: rtk is a single Rust binary, zero-dependency CLI proxy that filters and compresses command output before it reaches your AI agent's context window. It reduces LLM token consumption by **60–90%** across **100+ dev commands** and **13 AI coding tools**, with **<10ms overhead**. Install in 30 seconds, forget it's there, watch your API bill drop.
 
----
 
+---
 ## Table of Contents
 
 1. [The Silent Cost Crisis Hitting AI-Powered Developers in 2026](#the-silent-cost-crisis-hitting-ai-powered-developers-in-2026)
@@ -28,16 +25,20 @@ lastmod:  "2026-05-20"lang: "en"
 9. [How rtk Compares to Alternatives](#how-rtk-compares-to-alternatives)
 10. [Bottom Line: The Highest-ROI Tool You'll Install This Year](#bottom-line-the-highest-roi-tool-youll-install-this-year)
 
----
 
+---
 ## The Silent Cost Crisis Hitting AI-Powered Developers in 2026
 
 If you're using Claude Code, Cursor, GitHub Copilot, Gemini CLI, or any AI coding agent daily, you already know the productivity gains are real. What fewer developers talk about is the **cost curve**.
 
-Here's what typical AI tooling spend looks like for a professional developer in mid-2026:
-
-| Usage Pattern | Monthly API Cost | Stack Context |
-|-------------|----------------|---------------|
+Here's what typical AI tooling spend looks like for a professional developer in mid-2026: | Usage Pattern | Monthly API Cost | Stack Context |
+|
+---
+|
+---
+|
+---
+|
 | Light (1–2 hrs/day) | $50–100 | Side projects, occasional agent help |
 | Moderate (3–4 hrs/day) | $150–400 | Full-time development with agent assistance |
 | Heavy / Team lead | $500–2,000+ | Agent-driven workflows, multi-file refactoring |
@@ -54,24 +55,22 @@ Every time your AI agent runs `git status`, `cat package.json`, `cargo test`, `d
 
 ## What rtk Actually Does (And What It Doesn't)
 
-rtk (GitHub: [rtk-ai/rtk](https://github.com/rtk-ai/rtk)) is not another AI model, not a chat interface, and not a Copilot replacement. Its job is singular and precise:
+rtk (GitHub: [rtk-ai/rtk](https://github.com/rtk-ai/rtk)) is not another AI model, not a chat interface, and not a Copilot replacement. Its job is singular and precise: > "rtk filters and compresses command outputs before they reach your LLM context."
 
-> "rtk filters and compresses command outputs before they reach your LLM context."
+It sits as a transparent proxy layer between your AI agent and the shell: ```
+Without rtk: Claude Code --git status--> shell --> git --> raw 2,000-token output
 
-It sits as a transparent proxy layer between your AI agent and the shell:
-
-```
-Without rtk:
-Claude Code --git status--> shell --> git --> raw 2,000-token output
-
-With rtk:
-Claude Code --git status--> RTK --> git --> filtered 200-token output
+With rtk: Claude Code --git status--> RTK --> git --> filtered 200-token output
 ```
 
 **Core specs at a glance:**
 
 | Feature | Detail |
-|---------|--------|
+|
+---
+|
+---
+|
 | **Binary** | Single Rust binary, zero runtime dependencies |
 | **Coverage** | 100+ commands across git, testing, builds, Docker, AWS, K8s |
 | **Latency** | <10ms filtering overhead |
@@ -82,10 +81,18 @@ Claude Code --git status--> RTK --> git --> filtered 200-token output
 
 ## Real Numbers: 80% Token Reduction in a 30-Minute Claude Code Session
 
-The rtk documentation provides a detailed benchmark. I reproduced it on a mid-sized TypeScript fullstack project and confirmed the savings are accurate:
-
-| Operation | Frequency | Raw Tokens | rtk Tokens | Savings |
-|-----------|-----------|------------|------------|---------|
+The rtk documentation provides a detailed benchmark. I reproduced it on a mid-sized TypeScript fullstack project and confirmed the savings are accurate: | Operation | Frequency | Raw Tokens | rtk Tokens | Savings |
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | `ls` / `tree` | 10× | 2,000 | 400 | **-80%** |
 | `cat` / file reads | 20× | 40,000 | 12,000 | **-70%** |
 | `grep` / `rg` | 8× | 16,000 | 3,200 | **-80%** |
@@ -105,9 +112,7 @@ If your Claude Code API bill runs $400/month, rtk drops it to ~$80. The agent re
 
 ## The Four Compression Strategies Behind rtk
 
-rtk doesn't blindly truncate output. It applies command-specific strategies:
-
-### 1. Smart Filtering
+rtk doesn't blindly truncate output. It applies command-specific strategies: ### 1. Smart Filtering
 
 Removes LLM-irrelevant noise: comments, whitespace, boilerplate, progress bars, ASCII decorations. `git push` with rtk returns `ok main` instead of 15 lines of enumeration and compression stats.
 
@@ -127,10 +132,14 @@ Collapses repeated lines — common in Docker logs and test output — into `...
 
 ## Universal Compatibility: 13 AI Tools, One Install
 
-rtk's ecosystem coverage is exceptional. It doesn't lock you into one agent:
-
-| AI Tool | Install Command | Interception Method |
-|---------|-----------------|---------------------|
+rtk's ecosystem coverage is exceptional. It doesn't lock you into one agent: | AI Tool | Install Command | Interception Method |
+|
+---
+|
+---
+|
+---
+|
 | **Claude Code** | `rtk init -g` | PreToolUse hook (bash) |
 | **GitHub Copilot (VS Code)** | `rtk init -g --copilot` | PreToolUse hook |
 | **Cursor** | `rtk init -g --agent cursor` | hooks.json |
@@ -259,7 +268,17 @@ rtk summary <long cmd>  # Heuristic summary
 ## How rtk Compares to Alternatives
 
 | Tool | Layer | Approach | Scope | Setup Friction |
-|------|-------|----------|-------|----------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **rtk** | CLI proxy | Output filtering/compression | 100+ commands, 13 agents | 30s, zero config |
 | **Morph** | API gateway | Model routing + context compaction | Generic API calls | Requires code changes |
 | **LiteLLM** | LLM proxy | Caching + routing + observability | Multi-model APIs | Service deployment |
@@ -302,7 +321,6 @@ rtk init -g
 *Reviewed against rtk v0.28.2. Features evolve rapidly; consult the latest release notes for updates.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

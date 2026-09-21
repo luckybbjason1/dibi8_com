@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/minara-ai-trading-hyperliquid-review-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/minara-ai-trading-hyperliquid-review-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/minara-ai-trading-hyperliquid-review-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/minara-ai-trading-hyperliquid-review-2026" />
 title: 'Minara Đánh Giá 2026: Nền Tảng Giao Dịch AI trên Hyperli...
 description: 'Minara là nền tảng giao dịch AI-native được xây dựng trên Hyperliquid, cho phép bạn đặt câu hỏi, nhận phân tích thị trường thời gian thực và thực hiện giao dịch crypto / cổ phiếu / hàng hóa trong một giao diện chat duy nhất. Đánh giá thực tế 2 tuần: hướng dẫn đăng ký, năm trường hợp sử dụng thực, phân tích giá, và mô hình kinh tế 10% hoa hồng giới thiệu + 20% Spark token rebate.'
 date: 2026-05-17 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: 'Minara'
 last_maintained: '2026-05-17'
 featureImage: ''
 draft: false
-aliases:
-- /posts/minara-ai-trading-hyperliquid-review-2026/
+aliases: - /posts/minara-ai-trading-hyperliquid-review-2026/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/minara-ai-trading-hyperliquid-review-2026/ -->
 
 {{</* resource-info */>}}
 
@@ -59,18 +51,14 @@ Bài đánh giá này dựa trên 2 tuần sử dụng thực tế: nó làm gì
 
 ## Minara Thực Sự Là Gì
 
-Bỏ qua marketing copy, Minara là **một giao diện chat làm bốn việc cùng lúc**:
-
-- **Đặt câu hỏi** về bất kỳ thị trường nào bằng ngôn ngữ tự nhiên (tiếng Việt, Anh, Trung, Hàn — model xử lý hết)
+Bỏ qua marketing copy, Minara là **một giao diện chat làm bốn việc cùng lúc**: - **Đặt câu hỏi** về bất kỳ thị trường nào bằng ngôn ngữ tự nhiên (tiếng Việt, Anh, Trung, Hàn — model xử lý hết)
 - **Trả về phân tích thời gian thực** dựa trên orderbook, dữ liệu on-chain và tin tức hiện tại
 - **Thực hiện giao dịch** crypto, cổ phiếu, hàng hóa — tất cả qua cùng một prompt
 - **Quản lý rủi ro** bằng đối thoại định lượng vị thế và điều kiện thoát
 
 Hãy hình dung: ChatGPT có giấy phép môi giới và một ví Hyperliquid gắn vào.
 
-Danh mục "AI trading platform" giờ đông đúc — TradeGPT, Numerai, Composer, Stoic — nhưng Minara khác biệt ở hai điểm:
-
-1. **Ưu tiên chat, không phải dashboard.** Mọi thao tác qua ngôn ngữ tự nhiên. Không cấu hình biểu đồ, không viết chiến lược JSON.
+Danh mục "AI trading platform" giờ đông đúc — TradeGPT, Numerai, Composer, Stoic — nhưng Minara khác biệt ở hai điểm: 1. **Ưu tiên chat, không phải dashboard.** Mọi thao tác qua ngôn ngữ tự nhiên. Không cấu hình biểu đồ, không viết chiến lược JSON.
 2. **Chạy trên Hyperliquid.** Có nghĩa là thực thi on-chain, minh bạch, finality dưới giây.
 
 Nếu chưa giao dịch perpetual crypto bao giờ, điểm thứ hai chưa có ý nghĩa. Đọc tiếp.
@@ -79,9 +67,7 @@ Nếu chưa giao dịch perpetual crypto bao giờ, điểm thứ hai chưa có 
 
 Bạn có thể có AI thông minh nhất thế giới kết nối với một lớp thực thi tệ và vẫn mất tiền vì slippage, downtime, phí ẩn. Hyperliquid là phần làm cho AI của Minara thực sự đáng dùng.
 
-Tóm tắt 30 giây cho người chưa biết DeFi:
-
-| Tính năng | CEX (Binance, OKX) | Hyperliquid |
+Tóm tắt 30 giây cho người chưa biết DeFi: | Tính năng | CEX (Binance, OKX) | Hyperliquid |
 |---|---|---|
 | Lưu giữ tài sản | Sàn giữ | Bạn giữ private key |
 | Orderbook | Ẩn, off-chain | Hoàn toàn on-chain, công khai |
@@ -96,9 +82,7 @@ Hyperliquid xử lý **$1B+ volume hàng ngày hoàn toàn on-chain** năm 2026 
 
 ## Từ 0 Đến Giao Dịch Đầu Tiên Trong 3 Phút
 
-Quy trình thực tế:
-
-### Bước 1: Tạo tài khoản Minara
+Quy trình thực tế: ### Bước 1: Tạo tài khoản Minara
 
 Vào [minara.ai](https://minara.ai/r/OSXG4X) (link này cho bạn 10% bonus phí ngày đầu và cho tôi 10% hoa hồng + 20% Spark rebate — tiết lộ công bằng).
 
@@ -122,9 +106,7 @@ Ví là **non-custodial**. Minara không bao giờ giữ tiền của bạn — 
 
 ### Bước 3: Đặt câu hỏi đầu tiên
 
-Mở chat, gõ:
-
-```
+Mở chat, gõ: ```
 Open interest của HYPE bây giờ bao nhiêu? So với tuần trước?
 ```
 
@@ -144,13 +126,9 @@ Từ đăng ký đến lệnh đầu tiên: **khoảng 3 phút** nếu đã có 
 
 ### Thực Thi Giao Dịch Bằng Ngôn Ngữ Tự Nhiên
 
-Đây là tính năng đầu bảng và thực sự thay đổi hành vi. Thay vì:
+Đây là tính năng đầu bảng và thực sự thay đổi hành vi. Thay vì: > Mở Hyperliquid → tìm HYPE → click perp → set đòn bẩy → tính position size → set stop loss → set take profit → review → confirm
 
-> Mở Hyperliquid → tìm HYPE → click perp → set đòn bẩy → tính position size → set stop loss → set take profit → review → confirm
-
-Bạn gõ:
-
-```
+Bạn gõ: ```
 Long HYPE 3x, $500 position, stop 40, take profit 55
 ```
 
@@ -158,9 +136,7 @@ Xong. Minara parse intent → tính số hợp đồng → set conditional order
 
 ### Phân Tích AI Thời Gian Thực
 
-AI dựa trên dữ liệu live, không phải kiến thức huấn luyện 2024. Hỏi:
-
-```
+AI dựa trên dữ liệu live, không phải kiến thức huấn luyện 2024. Hỏi: ```
 Sao BTC vừa pump 3% trong 10 phút qua?
 ```
 
@@ -182,9 +158,7 @@ Lưu ý: cổ phiếu và hàng hóa thực thi qua broker đối tác, không p
 
 ### Kinh Tế Spark Token
 
-Mọi giao dịch đều earn Spark token (token thưởng của platform). Spark có thể:
-
-- Đổi giảm phí (lên 50% off)
+Mọi giao dịch đều earn Spark token (token thưởng của platform). Spark có thể: - Đổi giảm phí (lên 50% off)
 - Stake để giảm thêm + governance
 - Bán market (có giá thị trường)
 
@@ -207,9 +181,7 @@ Minara pull data → biểu đồ → đề xuất pair trade (long đồng / sh
 
 ### Use case 2: "Telegram-bot style nhưng on-chain"
 
-Nếu dùng Maestro, BananaGun, Trojan, bạn biết flow: thấy token → click button → khớp. Minara làm tương tự nhưng trên Hyperliquid (on-chain, có limit order, không honeypot):
-
-```
+Nếu dùng Maestro, BananaGun, Trojan, bạn biết flow: thấy token → click button → khớp. Minara làm tương tự nhưng trên Hyperliquid (on-chain, có limit order, không honeypot): ```
 Mua 100 USDC $TOKEN_TICKER ở giá market
 ```
 
@@ -225,9 +197,7 @@ Minara đề xuất: OTM put trên asset tương quan có thanh khoản options 
 
 ### Use case 4: "Tin tức nào ảnh hưởng position của tôi?"
 
-Bạn long ETH. ETH bất ngờ -4%. Hỏi:
-
-```
+Bạn long ETH. ETH bất ngờ -4%. Hỏi: ```
 ETH vừa dump tại sao?
 ```
 
@@ -235,9 +205,7 @@ Minara check đồng thời: news, sentiment Twitter, on-chain flow, ETF in/outf
 
 ### Use case 5: "Review portfolio hàng ngày"
 
-Mỗi sáng 9h:
-
-```
+Mỗi sáng 9h: ```
 Show P&L qua đêm, macro events ảnh hưởng position, và position chạm risk threshold đã set.
 ```
 
@@ -266,9 +234,7 @@ Minara không cố thay tất cả — nó **nén vòng phân tích + quyết đ
 
 Có tier miễn phí (~50 message/ngày, không advanced features). Tier trả phí từ giá Spotify subscription, tier enterprise "main trading desk" tính riêng.
 
-Cách tính chi phí thông minh:
-
-1. **Không markup execution**: Minara không cộng phí trên Hyperliquid
+Cách tính chi phí thông minh: 1. **Không markup execution**: Minara không cộng phí trên Hyperliquid
 2. **Spark earn từ trade offset subscription**: heavy user thực tế trade miễn phí
 3. **Referral compound**: bạn giới thiệu, nhận 20% Spark earnings của họ vĩnh viễn
 
@@ -278,17 +244,13 @@ Hợp lý kinh tế nếu trade thường xuyên. Không hợp lý nếu 2 trade
 
 Bỏ mũ reviewer nói thẳng.
 
-**AI trading platform không có siêu năng lực.** Nó có:
-
-- Tổng hợp data nhanh hơn bạn
+**AI trading platform không có siêu năng lực.** Nó có: - Tổng hợp data nhanh hơn bạn
 - Recall historical comparisons tốt hơn bạn
 - Không có edge trung bình so với market
 
 Nếu model bullish coin và bảo bạn long, **không có nghĩa trade đó positive expected value**. Chỉ có nghĩa model đọc data lúc bạn hỏi là bullish. Market price thông tin real-time. Lúc execute, edge gần như biến mất.
 
-**Quy tắc rủi ro thực dụng khi dùng Minara (hay bất kỳ AI trading tool nào)**:
-
-1. **Không tăng size vì AI nghe có vẻ tự tin.** Tự tin là UI feature, không phải probability.
+**Quy tắc rủi ro thực dụng khi dùng Minara (hay bất kỳ AI trading tool nào)**: 1. **Không tăng size vì AI nghe có vẻ tự tin.** Tự tin là UI feature, không phải probability.
 2. **Luôn dùng stop loss.** Nếu không set 5% stop cho discretionary trade, hỏi sao còn dùng leverage.
 3. **Không trade chỉ dựa news AI diễn giải.** Model đôi khi hallucinate news context. Verify headline trước khi sizing up.
 4. **Set daily loss limit và để Minara tự enforce** — "nếu P&L hôm nay dưới -$500, close all, không mở new". Dùng feature này.
@@ -328,9 +290,7 @@ Trung thực: lớp execution là wrapper mỏng, lớp phân tích là wrapper 
 
 ### Hệ thống Spark referral cho content creator hoạt động sao?
 
-Nếu viết content, làm YouTube, có trading community, [link referral Minara](https://minara.ai/r/OSXG4X) cho bạn:
-
-- **10% hoa hồng**: 10% phí trade của referral bạn giới thiệu (USDC)
+Nếu viết content, làm YouTube, có trading community, [link referral Minara](https://minara.ai/r/OSXG4X) cho bạn: - **10% hoa hồng**: 10% phí trade của referral bạn giới thiệu (USDC)
 - **20% Spark rebate**: 20% Spark earnings của họ (trong thời gian set)
 
 Spark có giá thị trường, tradable, nên rebate có giá trị cash thực tế ngoài fee discount. Tốt hơn referral exchange thông thường (Binance cho ~20% fee, không token rebate).
@@ -341,17 +301,13 @@ Bẫy là: platform còn non. Spark token economy có thể đổi. Lập trư�
 
 ## Đánh Giá Cuối: Ai Nên Dùng Minara
 
-**Dùng Minara nếu bạn**:
-
-- Đã trade active (5+ position/tuần), muốn nén tooling
+**Dùng Minara nếu bạn**: - Đã trade active (5+ position/tuần), muốn nén tooling
 - Quan tâm non-custodial execution, không muốn rủi ro "Binance-style mất tiền"
 - Muốn cross-asset trong 1 interface
 - Discretionary hoặc semi-discretionary strategy
 - OK học Hyperliquid ecosystem (không khó)
 
-**Không dùng nếu**:
-
-- Hoàn toàn mới (học cơ bản trên paper trade trước)
+**Không dùng nếu**: - Hoàn toàn mới (học cơ bản trên paper trade trước)
 - Cần millisecond execution (dùng API client trực tiếp)
 - Muốn passive grid/DCA bot (3Commas tương đương)
 - Từ chối touch on-chain bất kỳ thứ gì
@@ -362,16 +318,13 @@ Nếu ignore phần còn lại của review, ít nhất nhớ điều này: **AI
 
 ---
 
-**Bài đọc liên quan trên dibi8**:
-
-- [MCP Deep Dive — Hướng Dẫn 2026 Toàn Diện](/vi/resources/llm-frameworks/mcp-deep-dive-definitive-2026-guide/)
+**Bài đọc liên quan trên dibi8**: - [MCP Deep Dive — Hướng Dẫn 2026 Toàn Diện](/vi/resources/llm-frameworks/mcp-deep-dive-definitive-2026-guide/)
 - [AI Agent Skills Giải Thích — Hướng Dẫn Developer 2026](/vi/resources/llm-frameworks/ai-agent-skills-2026-developer-guide/)
 - [RTK — Proxy CLI Rust Mã Nguồn Mở Giảm Token Cho AI Coding](/vi/resources/dev-utils/rtk-rust-cli-proxy-ai-token-saver/)
 
 *Cập nhật lần cuối: 2026-05-17. Tiết lộ affiliate: bài viết có link giới thiệu Minara. Khi đăng ký qua link này, dibi8 nhận hoa hồng (bạn không trả thêm). Chúng tôi chỉ review công cụ chúng tôi sẽ giới thiệu bất kể hoa hồng.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

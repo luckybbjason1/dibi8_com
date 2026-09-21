@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/rag-architecture-implementation-guide" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/rag-architecture-implementation-guide" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/rag-architecture-implementation-guide" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/rag-architecture-implementation-guide" />
 title: 'Hướng Dẫn Triển Khai Kiến Trúc RAG 2025: Xây Dựng Hệ Thố...
 description: 'Hướng dẫn triển khai kiến trúc RAG production 2025: từ Naive RAG đến Agentic RAG. So sánh framework, chiến lược chunking và đánh giá hiệu suất.'
 date: 2026-05-18 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/rag-architecture-implementation-guide/
+aliases: - /posts/rag-architecture-implementation-guide/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/rag-architecture-implementation-guide/ -->
 
 {</* resource-info */>}
 
@@ -37,9 +29,7 @@ Retrieval-Augmented Generation (RAG) đã trở thành kiến trúc tiêu chuẩ
 
 ### Luồng Hoạt Động Cơ Bản Củaa RAG
 
-Kiến trúc RAG gồm hai giai đoạn chính:
-
-1. **Indexing**: Dữ liệu được chia nhỏ, chuyển thành vector embedding, và lưu vào vector database
+Kiến trúc RAG gồm hai giai đoạn chính: 1. **Indexing**: Dữ liệu được chia nhỏ, chuyển thành vector embedding, và lưu vào vector database
 2. **Retrieval + Generation**: Khi ngườii dùng đặt câu hỏi, hệ thống tìm các đoạn văn bản liên quan nhất từ vector DB, sau đó đưa vào LLM để tạo câu trả lờii có căn cứ
 
 Luồng này giúp LLM trả lờii dựa trên thông tin thực tế thay vì "halucinate" (bịa ra câu trả lờii).
@@ -65,9 +55,7 @@ Trong thực tế, 80% các ứng dụng bắt đầu với RAG vì triển khai
 
 ### Pipeline Ingestion Tài Liệu
 
-Dữ liệu thô cần qua nhiều bước xử lý trước khi có thể truy vấn:
-
-```
+Dữ liệu thô cần qua nhiều bước xử lý trước khi có thể truy vấn: ```
 [Documents] → [Parser] → [Splitter] → [Embedder] → [Vector DB]
    PDF       Extract     Chunking     Embedding     Storage
    Word      Text        Splitting    Model         Index
@@ -76,9 +64,7 @@ Dữ liệu thô cần qua nhiều bước xử lý trước khi có thể truy 
 
 ### Chiến Lược Chia Văn Bản (Chunking)
 
-Chunking là một trong những yếu tố quan trọng nhất ảnh hưởng đến chất lượng RAG. Các phương pháp phổ biến:
-
-| Phương Pháp | Mô Tả | Ưu Điểm | Nhược Điểm |
+Chunking là một trong những yếu tố quan trọng nhất ảnh hưởng đến chất lượng RAG. Các phương pháp phổ biến: | Phương Pháp | Mô Tả | Ưu Điểm | Nhược Điểm |
 |-------------|-------|---------|------------|
 | **Fixed size** | Chia theo số token cố định | Đơn giản, nhanh | Cắt ngang câu, ngữ cảnh |
 | **Recursive** | Chia theo hierarchy (paragraph → sentence) | Giữ cấu trúc văn bản | Phức tạp hơn |
@@ -89,25 +75,19 @@ Kích thước chunk tối ưu thường từ 256 đến 1024 tokens, tùy thu�
 
 ### Lựa Chọn Model Embedding
 
-Model embedding chuyển văn bản thành vector. Các lựa chọn phổ biến [^2^](https://huggingface.co/spaces/mteb/leaderboard):
-
-- **OpenAI text-embedding-3-large**: 3072 chiều, hiệu suất cao, tính phí
+Model embedding chuyển văn bản thành vector. Các lựa chọn phổ biến [^2^](https://huggingface.co/spaces/mteb/leaderboard): - **OpenAI text-embedding-3-large**: 3072 chiều, hiệu suất cao, tính phí
 - **BGE-M3 (BAAI)**: Mã nguồn mở, hỗ trợ đa ngôn ngữ, miễn phí
 - **E5-Mistral**: Hiệu suất top-tier, miễn phí qua Hugging Face
 - **Voyage AI**: Chuyên embedding cho RAG, chất lượng rất cao
 
 ### Cơ Chế Truy Xuất (Retrieval)
 
-Có hai loại retrieval chính:
-
-- **Dense retrieval**: Dùng embedding vector để tìm đoạn văn bản tương tự về ngữ nghĩa
+Có hai loại retrieval chính: - **Dense retrieval**: Dùng embedding vector để tìm đoạn văn bản tương tự về ngữ nghĩa
 - **Sparse retrieval**: Dùng keyword matching (BM25) để tìm chính xác từ khóa
 
 ### Re-ranking Và Context Compression
 
-Sau khi truy xuất kết quả, re-ranking model đánh giá lại độ liên quan để sắp xếp tốt hơn:
-
-- **Cohere Rerank**: API đơn giản, hiệu quả cao
+Sau khi truy xuất kết quả, re-ranking model đánh giá lại độ liên quan để sắp xếp tốt hơn: - **Cohere Rerank**: API đơn giản, hiệu quả cao
 - **BGE Reranker**: Mã nguồn mở, chạy local
 - **Cross-encoder**: Tối ưu nhất nhưng chậm hơn
 
@@ -158,9 +138,7 @@ response = query_engine.query("Câu hỏi của bạn")
 
 ### Hạn Chế Củaa Naive RAG
 
-Naive RAG hoạt động tốt cho prototype nhưng gặp nhiều vấn đề ở quy mô production:
-
-- **Chunk boundary problem**: Thông tin bị cắt ngang qua chunk boundary
+Naive RAG hoạt động tốt cho prototype nhưng gặp nhiều vấn đề ở quy mô production: - **Chunk boundary problem**: Thông tin bị cắt ngang qua chunk boundary
 - **Query-document mismatch**: Cách diễn đạt trong query khác với trong document
 - **Lost in the middle**: LLM tập trung vào thông tin ở đầu và cuối context
 - **No source verification**: Không kiểm tra tính chính xác của retrieved information
@@ -169,17 +147,13 @@ Naive RAG hoạt động tốt cho prototype nhưng gặp nhiều vấn đề �
 
 ### Query Rewriting Và Expansion
 
-Thay vì trực tiếp dùng query của ngườii dùng để tìm kiếm, hệ thống có thể:
-
-- **Rewrite query**: Dùng LLM viết lại query rõ ràng hơn
+Thay vì trực tiếp dùng query của ngườii dùng để tìm kiếm, hệ thống có thể: - **Rewrite query**: Dùng LLM viết lại query rõ ràng hơn
 - **HyDE (Hypothetical Document Embedding)**: Tạo ra một "tài liệu lý tưởng" cho truy vấn rồi dùng embedding của tài liệu đó để tìm kiếm
 - **Query expansion**: Thêm các từ đồng nghĩa hoặc cách diễn đạt khác
 
 ### Hybrid Search (Dense + Sparse)
 
-Kết hợp cả vector search và keyword search để tận dụng ưu điểm của cả hai:
-
-```python
+Kết hợp cả vector search và keyword search để tận dụng ưu điểm của cả hai: ```python
 # Kết hợp BM25 và vector search
 from langchain.retrievers import BM25Retriever, EnsembleRetriever
 
@@ -207,9 +181,7 @@ compression_retriever = ContextualCompressionRetriever(
 
 ### Multi-Query Retrieval
 
-Tạo nhiều biến thể của câu hỏi gốc và truy xuất cho mỗi biến thể, sau đó gộp kết quả:
-
-```python
+Tạo nhiều biến thể của câu hỏi gốc và truy xuất cho mỗi biến thể, sau đó gộp kết quả: ```python
 from langchain.retrievers.multi_query import MultiQueryRetriever
 
 multi_retriever = MultiQueryRetriever.from_llm(
@@ -230,35 +202,27 @@ Tương tự parent document retrieval nhưng ở cấp độ câu: lưu embeddi
 
 ### Self-RAG: Truy Xuất Có Phản Xạ
 
-Self-RAG (bài báo tháng 10/2023) dạy LLM tự quyết định khi nào cần truy xuất thông tin thêm. Model sẽ:
-
-1. Tạo câu trả lờii sơ bộ
+Self-RAG (bài báo tháng 10/2023) dạy LLM tự quyết định khi nào cần truy xuất thông tin thêm. Model sẽ: 1. Tạo câu trả lờii sơ bộ
 2. Đánh giá xem câu trả lờii đã đủ chính xác chưa
 3. Nếu chưa, truy xuất thêm thông tin
 4. Lặp lại cho đến khi hài lòng
 
 ### Corrective RAG (CRAG)
 
-CRAG thêm bước kiểm tra chất lượng retrieved documents:
-
-- Nếu documents kém chất lượng → tìm kiếm thêm trên web
+CRAG thêm bước kiểm tra chất lượng retrieved documents: - Nếu documents kém chất lượng → tìm kiếm thêm trên web
 - Nếu documents tốt → sử dụng để trả lờii
 - Nếu trung bình → kết hợp cả hai nguồn
 
 ### Agentic RAG Với Tool Use
 
-Agentic RAG sử dụng LLM như một agent có khả năng:
-
-- Quyết định cần truy xuất từ nguồn nào
+Agentic RAG sử dụng LLM như một agent có khả năng: - Quyết định cần truy xuất từ nguồn nào
 - Gọi các công cụ khác nhau (calculator, search engine)
 - Thực hiện nhiều bước suy luận phức tạp
 - Tự đánh giá và sửa lỗi
 
 ### Multi-Modal RAG (Text + Images)
 
-RAG không giới hạn ở văn bản. Với multi-modal embedding models (như CLIP), bạn có thể:
-
-- Truy xuất hình ảnh liên quan đến câu hỏi văn bản
+RAG không giới hạn ở văn bản. Với multi-modal embedding models (như CLIP), bạn có thể: - Truy xuất hình ảnh liên quan đến câu hỏi văn bản
 - Hỏi về nội dung hình ảnh trong tài liệu
 - Kết hợp thông tin từ cả text và image trong cùng một response
 
@@ -272,9 +236,7 @@ RAG không giới hạn ở văn bản. Với multi-modal embedding models (như
 
 ### Bước 2: Chọn Model Embedding
 
-Chọn embedding model dựa trên:
-
-| Use Case | Model Đề Xuất | Chi Phí |
+Chọn embedding model dựa trên: | Use Case | Model Đề Xuất | Chi Phí |
 |----------|--------------|---------|
 | Tiếng Anh, ngân sách cao | OpenAI text-embedding-3-large | $0.13/1M tokens |
 | Đa ngôn ngữ, miễn phí | BGE-M3 | Miễn phí |
@@ -283,9 +245,7 @@ Chọn embedding model dựa trên:
 
 ### Bước 3: Tối Ưu Chiến Lược Chunking
 
-Thử nghiệm nhiều kích thước chunk và đánh giá:
-
-```
+Thử nghiệm nhiều kích thước chunk và đánh giá: ```
 Kích thước chunk: 256, 512, 1024, 2048
 Overlap: 10%, 20%, 50%
 Phương pháp: fixed, recursive, semantic
@@ -295,17 +255,13 @@ Tổng cộng có thể có 36+ tổ hợp. Dùng RAGAS framework để tự đ�
 
 ### Bước 4: Thiết Lập Vector Database
 
-Xem phần so sánh vector database để chọn giải pháp phù hợp. Đối với RAG production, khuyến nghị:
-
-- **Pinecone**: Cloud-managed, dễ scaling
+Xem phần so sánh vector database để chọn giải pháp phù hợp. Đối với RAG production, khuyến nghị: - **Pinecone**: Cloud-managed, dễ scaling
 - **Milvus**: Hiệu suất cao, self-hosted
 - **pgvector**: Nếu đã dùng PostgreSQL
 
 ### Bước 5: Tuning Và Đánh Giá Retrieval
 
-Các tham số cần tune:
-
-- **Top-k**: Số documents truy xuất (thường 3-10)
+Các tham số cần tune: - **Top-k**: Số documents truy xuất (thường 3-10)
 - **Similarity threshold**: Ngưỡng tối thiểu để coi là liên quan
 - **Reranking**: Có nên dùng re-ranker không?
 
@@ -343,9 +299,7 @@ Prompt engineering cho RAG thường bao gồm system prompt hướng dẫn mode
 
 ### RAGAS Framework
 
-RAGAS là framework tự động hóa việc đánh giá RAG [^4^](https://docs.ragas.io):
-
-```python
+RAGAS là framework tự động hóa việc đánh giá RAG [^4^](https://docs.ragas.io): ```python
 from ragas import evaluate
 from ragas.metrics import faithfulness, answer_relevancy, context_precision
 
@@ -363,9 +317,7 @@ Ngoài metrics tự động, cần có đánh giá thủ công trên mẫu đạ
 
 ### Tối Ưu Kích Thước Chunk
 
-Thử nghiệm A/B với các kích thước chunk khác nhau. Kết quả thường thấy:
-
-- **Chunks nhỏ (256-512 tokens)**: Phù hợp cho factual QA, precise retrieval
+Thử nghiệm A/B với các kích thước chunk khác nhau. Kết quả thường thấy: - **Chunks nhỏ (256-512 tokens)**: Phù hợp cho factual QA, precise retrieval
 - **Chunks lớn (1024-2048 tokens)**: Phù hợp cho summarization, complex reasoning
 
 ### Tuning Top-K Và Ngưỡng Similarity
@@ -411,9 +363,7 @@ llm = Ollama(model="llama3.1:8b")
 
 ### BGE Embeddings (Mã Nguồn Mở)
 
-BGE-M3 là một trong những model embedding mã nguồn mở tốt nhất, hỗ trợ hơn 100 ngôn ngữ:
-
-```python
+BGE-M3 là một trong những model embedding mã nguồn mở tốt nhất, hỗ trợ hơn 100 ngôn ngữ: ```python
 from sentence_transformers import SentenceTransformer
 model = SentenceTransformer('BAAI/bge-m3')
 embeddings = model.encode(sentences)
@@ -421,9 +371,7 @@ embeddings = model.encode(sentences)
 
 ### Triển Khai RAG Hoàn Toàn Private
 
-Với các tổ chức có yêu cầu bảo mật dữ liệu nghiêm ngặt (y tế, tài chính, chính phủ), RAG có thể triển khai hoàn toàn on-premises:
-
-- **Embedding model**: BGE-M3 hoặc E5 chạy local
+Với các tổ chức có yêu cầu bảo mật dữ liệu nghiêm ngặt (y tế, tài chính, chính phủ), RAG có thể triển khai hoàn toàn on-premises: - **Embedding model**: BGE-M3 hoặc E5 chạy local
 - **LLM**: Llama 3.1, Qwen2.5 chạy qua vLLM hoặc Ollama
 - **Vector database**: Milvus hoặc pgvector self-hosted
 - **Tất cả dữ liệu**: Không rờii khỏi mạng nội bộ
@@ -432,30 +380,22 @@ Với các tổ chức có yêu cầu bảo mật dữ liệu nghiêm ngặt (y 
 
 ### LangChain RAG
 
-LangChain [^1^](https://github.com/langchain-ai/langchain) là framework phổ biến nhất với ecosystem rộng nhất:
-
-- **Ưu điểm**: Nhiều integration nhất, community lớn, tài liệu phong phú
+LangChain [^1^](https://github.com/langchain-ai/langchain) là framework phổ biến nhất với ecosystem rộng nhất: - **Ưu điểm**: Nhiều integration nhất, community lớn, tài liệu phong phú
 - **Nhược điểm**: API thay đổi thường xuyên, learning curve dốc
 
 ### LlamaIndex RAG
 
-LlamaIndex [^3^](https://docs.llamaindex.ai) tập trung vào data ingestion và retrieval:
-
-- **Ưu điểm**: Tốt nhất cho complex data, agents, structured data
+LlamaIndex [^3^](https://docs.llamaindex.ai) tập trung vào data ingestion và retrieval: - **Ưu điểm**: Tốt nhất cho complex data, agents, structured data
 - **Nhược điểm**: Ít integration hơn LangChain
 
 ### Haystack Cho Enterprise RAG
 
-Haystack (deepset) là framework RAG thiết kế cho enterprise:
-
-- **Ưu điểm**: Pipeline rõ ràng, dễ debug, production-ready
+Haystack (deepset) là framework RAG thiết kế cho enterprise: - **Ưu điểm**: Pipeline rõ ràng, dễ debug, production-ready
 - **Nhược điểm**: Community nhỏ hơn
 
 ### RAGFlow Cho Hiểu Sâu Tài Liệu
 
-RAGFlow là giải pháp RAG end-to-end mới nhất, tập trung vào "deep document understanding":
-
-- **Ưu điểm**: Template-based RAG, UI trực quan, xử lý tài liệu phức tạp tốt
+RAGFlow là giải pháp RAG end-to-end mới nhất, tập trung vào "deep document understanding": - **Ưu điểm**: Template-based RAG, UI trực quan, xử lý tài liệu phức tạp tốt
 - **Nhược điểm**: Còn mới, ecosystem chưa lớn
 
 | Framework | Điểm Mạnh | Phù Hợp Cho |
@@ -475,9 +415,7 @@ RAGFlow là giải pháp RAG end-to-end mới nhất, tập trung vào "deep doc
 
 ### Xử Lý Bộ Sưu Tập Tài Liệu Lớn
 
-Với hàng triệu documents:
-
-- Dùng vector database phân tán (Milvus cluster)
+Với hàng triệu documents: - Dùng vector database phân tán (Milvus cluster)
 - Implement sharding theo domain hoặc thờii gian
 - Pre-filter trước khi vector search (metadata filtering)
 - Dùng approximate nearest neighbor thay vì exact search
@@ -527,9 +465,7 @@ Agentic RAG sử dụng LLM như một "agent" thông minh có khả năng tự 
 
 ## Hạ Tầng Đề Xuất
 
-Để chạy các công cụ trên 24/7 ổn định, lựa chọn hạ tầng rất quan trọng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu.
+Để chạy các công cụ trên 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp. dibi8.com cũng host ở đây.
 - **[Hostinger](https://www.hostinger.com/vn?REFERRALCODE=22RPIAOJIYJN)** — VPS giá tốt cho thị trường Việt Nam.
 
@@ -537,7 +473,6 @@ Agentic RAG sử dụng LLM như một "agent" thông minh có khả năng tự 
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

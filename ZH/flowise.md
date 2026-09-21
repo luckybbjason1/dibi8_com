@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/flowise" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/flowise" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/flowise" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/flowise" />
 title: 'Flowise: 52K+ Stars 可视化拖拽构建 AI Agent — 2026 5分钟快速上手指南'
 description: 'Flowise 是一个开源可视化 LLM 工作流与 AI Agent 构建工具。支持 LangChain、Ollama、OpenAI、Qdrant、Weaviate、Chroma 等 200+ 集成。本文涵盖 Docker 安装、生产环境加固、API 部署及客观局限性分析。'
 date: 2026-05-19 00:00:00+08:00
@@ -25,12 +20,9 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [flowise, langchain, 'ai agent', rag, docker, 大语言模型, 开源, 无代码]
-aliases:
-- /zh/posts/flowise/
-- /zh/resources/ai-tools/flowise-ai-workflow-builder-lowcode/
+aliases: - /zh/posts/flowise/
+- /zh/resources/ai-tools/flowise-ai-workflow-builder-lowcode/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/flowise/ -->
 
 {{</* resource-info */>}}
 
@@ -115,13 +107,9 @@ docker run -d -p 3000:3000 \
 ```yaml
 # docker-compose.yml
 version: '3.8'
-services:
-  flowise:
-    image: flowiseai/flowise:latest
-    ports:
-      - "3000:3000"
-    environment:
-      - PORT=3000
+services: flowise: image: flowiseai/flowise:latest
+    ports: - "3000:3000"
+    environment: - PORT=3000
       - DATABASE_TYPE=postgres
       - DATABASE_HOST=postgres
       - DATABASE_PORT=5432
@@ -133,26 +121,18 @@ services:
       - SECRETKEY_PATH=/root/.flowise
       - JWT_AUTH_TOKEN_SECRET=${JWT_SECRET:-random-secret-change-in-prod}
       - JWT_REFRESH_TOKEN_SECRET=${JWT_REFRESH:-another-random-secret}
-    volumes:
-      - flowise_data:/root/.flowise
-    depends_on:
-      - postgres
+    volumes: - flowise_data:/root/.flowise
+    depends_on: - postgres
     restart: unless-stopped
 
-  postgres:
-    image: postgres:16-alpine
-    environment:
-      - POSTGRES_USER=flowise
+  postgres: image: postgres:16-alpine
+    environment: - POSTGRES_USER=flowise
       - POSTGRES_PASSWORD=${DB_PASSWORD:-changeme}
       - POSTGRES_DB=flowise
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+    volumes: - postgres_data:/var/lib/postgresql/data
     restart: unless-stopped
 
-volumes:
-  flowise_data:
-  postgres_data:
-```
+volumes: flowise_data: postgres_data: ```
 
 启动命令：
 
@@ -203,7 +183,13 @@ docker compose up -d
 ### 环境变量参考表
 
 | 变量 | 说明 | 默认值 |
-|------|------|--------|
+|
+---
+|
+---
+|
+---
+|
 | `PORT` | HTTP 服务端口 | 3000 |
 | `DATABASE_TYPE` | 数据库引擎（sqlite, postgres） | sqlite |
 | `DATABASE_PATH` | SQLite 文件路径 | ~/.flowise |
@@ -232,29 +218,19 @@ export OPENAI_API_KEY=sk-your-key-here
 ```yaml
 # docker-compose-ollama.yml
 version: '3.8'
-services:
-  ollama:
-    image: ollama/ollama:latest
-    ports:
-      - "11434:11434"
-    volumes:
-      - ollama_data:/root/.ollama
+services: ollama: image: ollama/ollama:latest
+    ports: - "11434:11434"
+    volumes: - ollama_data:/root/.ollama
     restart: unless-stopped
 
-  flowise:
-    image: flowiseai/flowise:latest
-    ports:
-      - "3000:3000"
-    environment:
-      - PORT=3000
+  flowise: image: flowiseai/flowise:latest
+    ports: - "3000:3000"
+    environment: - PORT=3000
       - OLLAMA_BASE_URL=http://ollama:11434
-    depends_on:
-      - ollama
+    depends_on: - ollama
     restart: unless-stopped
 
-volumes:
-  ollama_data:
-```
+volumes: ollama_data: ```
 
 拉取模型并开始使用：
 
@@ -274,12 +250,9 @@ docker exec -it ollama ollama pull llama3.1:8b
 
 ```yaml
 # 添加到 docker-compose.yml
-  chroma:
-    image: chromadb/chroma:latest
-    ports:
-      - "8000:8000"
-    volumes:
-      - chroma_data:/chroma/chroma
+  chroma: image: chromadb/chroma:latest
+    ports: - "8000:8000"
+    volumes: - chroma_data:/chroma/chroma
     restart: unless-stopped
 ```
 
@@ -299,13 +272,10 @@ docker exec -it ollama ollama pull llama3.1:8b
 
 ```yaml
 # 在 compose 文件中添加 Qdrant
-  qdrant:
-    image: qdrant/qdrant:latest
-    ports:
-      - "6333:6333"
+  qdrant: image: qdrant/qdrant:latest
+    ports: - "6333:6333"
       - "6334:6334"
-    volumes:
-      - qdrant_data:/qdrant/storage
+    volumes: - qdrant_data:/qdrant/storage
     restart: unless-stopped
 ```
 
@@ -314,16 +284,12 @@ docker exec -it ollama ollama pull llama3.1:8b
 ### Weaviate（企业级向量数据库）
 
 ```yaml
-  weaviate:
-    image: semitechnologies/weaviate:latest
-    ports:
-      - "8080:8080"
-    environment:
-      QUERY_DEFAULTS_LIMIT: 25
+  weaviate: image: semitechnologies/weaviate:latest
+    ports: - "8080:8080"
+    environment: QUERY_DEFAULTS_LIMIT: 25
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: true
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
-    volumes:
-      - weaviate_data:/var/lib/weaviate
+    volumes: - weaviate_data:/var/lib/weaviate
     restart: unless-stopped
 ```
 
@@ -364,8 +330,7 @@ import requests
 
 FLOWISE_API = "http://localhost:3000/api/v1/prediction/your-chatflow-id"
 
-def ask(question, session_id="user_001"):
-    resp = requests.post(FLOWISE_API, json={
+def ask(question, session_id="user_001"): resp = requests.post(FLOWISE_API, json={
         "question": question,
         "overrideConfig": {"sessionId": session_id}
     })
@@ -383,8 +348,7 @@ Flowise 为任意 Chatflow 生成 JavaScript 嵌入代码。将其粘贴到任�
 *可自定义主题的嵌入聊天组件 —— 一个 script 标签即可部署到任意网站*
 
 ```html
-<script type="module">
-  import Chatbot from 'https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js';
+import Chatbot from 'https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js';
   Chatbot.init({
     chatflowid: 'your-chatflow-id',
     apiHost: 'https://your-flowise-server.com',
@@ -412,7 +376,13 @@ Flowise 为任意 Chatflow 生成 JavaScript 嵌入代码。将其粘贴到任�
 根据社区报告和我们的实际测试，Flowise 的性能表现如下：
 
 | 指标 | 数值 | 说明 |
-|------|------|------|
+|
+---
+|
+---
+|
+---
+|
 | Docker 冷启动时间 | 3-5 秒 | 在 2 vCPU VPS 上 |
 | 首响延迟 | 1.5-3 秒 | 使用 GPT-4o，取决于 prompt |
 | RAG 查询端到端延迟 | 2-4 秒 | Chroma 向量库，1K chunks |
@@ -426,7 +396,17 @@ Flowise 为任意 Chatflow 生成 JavaScript 嵌入代码。将其粘贴到任�
 ### 对比：Flowise vs 替代方案
 
 | 特性 | Flowise | Dify | n8n | LangChain |
-|------|---------|------|-----|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | GitHub Stars | 52,948 | 50,000+ | 49,500 | 110,000+ |
 | 许可证 | MIT | Apache-2.0 | Fair-code | MIT |
 | 可视化构建器 | 拖拽画布 | 应用中心式 UI | 工作流编辑器 | 纯代码 |
@@ -499,25 +479,18 @@ CORS_ORIGINS=https://yourdomain.com,https://app.yourdomain.com
 ```yaml
 # docker-compose-queue.yml
 version: '3.8'
-services:
-  redis:
-    image: redis:alpine
+services: redis: image: redis:alpine
     restart: unless-stopped
 
-  flowise:
-    image: flowiseai/flowise:latest
-    ports:
-      - "3000:3000"
-    environment:
-      - PORT=3000
+  flowise: image: flowiseai/flowise:latest
+    ports: - "3000:3000"
+    environment: - PORT=3000
       - QUEUE_NAME=flowise-queue
       - QUEUE_REDIS_URL=redis://redis:6379
     restart: unless-stopped
 
-  flowise-worker:
-    image: flowiseai/flowise-worker:latest
-    environment:
-      - QUEUE_NAME=flowise-queue
+  flowise-worker: image: flowiseai/flowise-worker:latest
+    environment: - QUEUE_NAME=flowise-queue
       - QUEUE_REDIS_URL=redis://redis:6379
     restart: unless-stopped
 ```
@@ -647,7 +620,6 @@ Flowise 消除了从想法到部署 AI Agent 之间的障碍。凭借 52,948 个
 10. [DigitalOcean Docker 部署指南](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-24-04) —— Ubuntu 服务器 Docker 安装教程
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -673,8 +645,8 @@ Flowise 消除了从想法到部署 AI Agent 之间的障碍。凭借 52,948 个
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [12-factor-agents](flowise)
@@ -683,8 +655,8 @@ Flowise 消除了从想法到部署 AI Agent 之间的障碍。凭借 52,948 个
 - [2026-06-08-trending-ai-agents](flowise)
 - [2026-06-15-trending-ai-agents](flowise)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

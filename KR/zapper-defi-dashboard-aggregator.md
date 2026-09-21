@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/zapper-defi-dashboard-aggregator" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/zapper-defi-dashboard-aggregator" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/zapper-defi-dashboard-aggregator" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/zapper-defi-dashboard-aggregator" />
 title: 'zapper-defi-dashboard-aggregator'
 description: '{'en': ''Comprehensive guide to Zapper, the DeFi dashboard aggregator tracking 500+ protocols. Learn portfolio tracking, yield farming analytics, Zap In/Out transactions, API integration, and custom dashboard building.'', 'zh': ''Zapper综合指南，这个追踪500+协议的DeFi仪表盘聚合器。了解投资组合追踪、收益耕作分析、Zap In/Out交易、API集成和自定义仪表盘构建。'', 'ko': ''500개 이상의 프로토콜을 추적하는 DeFi 대시보드 애그리게이터 Zapper에 대한 종합 가이드. 포트폴리오 추적, 이자 농사 분석, Zap In/Out 트랜잭션, API 통합, 커스텀 대시보드 구축을 알아보세요.'', 'vi': ''Hướng dẫn toàn diện về Zapper, bảng điều khiển DeFi tổng hợp theo dõi 500+ giao thức. Tìm hiểu theo dõi danh mục, phân tích yield farming, giao dịch Zap In/Out, tích hợp API, và xây dựng bảng điều khiển tùy chỉnh.''}'
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: [zapper, defi, dashboard, portfolio, 'yield-farming', nft, api, 'zap-in', 'zap-out', aggregator]
-aliases:
-- /kr/posts/zapper-defi-dashboard-aggregator/
+aliases: - /kr/posts/zapper-defi-dashboard-aggregator/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/zapper-defi-dashboard-aggregator/ -->
 
 {{</* resource-info */>}}
 
@@ -61,9 +53,7 @@ aliases:
 
 ### 2.1 멀티 프로토콜 데이터 애그리게이션 레이어
 
-Zapper의 백엔드 인프라는 모듈형 통합 시스템을 통해 수백 개의 DeFi 프로토콜에 연결됩니다. 각 프로토콜 통합은 스마트 컨트랙트 상호작용의 복잡성을 표준화된 데이터 모델로 추상화합니다:
-
-```typescript
+Zapper의 백엔드 인프라는 모듈형 통합 시스템을 통해 수백 개의 DeFi 프로토콜에 연결됩니다. 각 프로토콜 통합은 스마트 컨트랙트 상호작용의 복잡성을 표준화된 데이터 모델로 추상화합니다: ```typescript
 // Zapper 프로토콜 통합 아키텍처
 interface ProtocolPosition {
   // 고유 식별자
@@ -144,21 +134,13 @@ async function getPortfolio(address: string): Promise<PortfolioSummary> {
     
     // 포지션 카테고리화
     switch (position.appId) {
-      case tokens:
-        portfolio.categories.wallet.push(position);
+      case tokens: portfolio.categories.wallet.push(position);
         break;
-      case 'aave-v3':
-      case compound:
-      case morpho:
-        portfolio.categories.lending.push(position);
+      case 'aave-v3': case compound: case morpho: portfolio.categories.lending.push(position);
         break;
-      case 'uniswap-v3':
-      case 'balancer-v2':
-      case curve:
-        portfolio.categories.liquidity.push(position);
+      case 'uniswap-v3': case 'balancer-v2': case curve: portfolio.categories.liquidity.push(position);
         break;
-      default:
-        if (position.positionType === staking) {
+      default: if (position.positionType === staking) {
           portfolio.categories.staking.push(position);
         }
     }
@@ -302,8 +284,7 @@ async function getFullPortfolio(address: string) {
     const category = categorizePosition(position);
     
     switch (category) {
-      case wallet:
-        breakdown.wallet.value += position.balanceUSD;
+      case wallet: breakdown.wallet.value += position.balanceUSD;
         breakdown.wallet.tokens.push({
           symbol: position.symbol,
           balance: formatUnits(position.balance, position.decimals),
@@ -311,8 +292,7 @@ async function getFullPortfolio(address: string) {
         });
         break;
         
-      case lending:
-        const supplied = position.balances?.supplied?.balanceUSD || 0;
+      case lending: const supplied = position.balances?.supplied?.balanceUSD || 0;
         const borrowed = position.balances?.borrowed?.balanceUSD || 0;
         breakdown.lending.supplied += supplied;
         breakdown.lending.borrowed += borrowed;
@@ -320,8 +300,7 @@ async function getFullPortfolio(address: string) {
         breakdown.lending.protocols.push(position.appName);
         break;
         
-      case liquidity:
-        breakdown.liquidityPools.value += position.balanceUSD;
+      case liquidity: breakdown.liquidityPools.value += position.balanceUSD;
         breakdown.liquidityPools.pools.push({
           protocol: position.appName,
           tokens: position.tokens.map((t: any) => t.symbol),
@@ -330,8 +309,7 @@ async function getFullPortfolio(address: string) {
         });
         break;
         
-      case staking:
-        breakdown.staking.value += position.balanceUSD;
+      case staking: breakdown.staking.value += position.balanceUSD;
         breakdown.staking.positions.push(position);
         break;
     }
@@ -566,9 +544,7 @@ bestYields.slice(0, 10).forEach((opp, i) => {
 
 ### 6.1 간소화된 유동성 공급 (Zap In)
 
-Zapper의 가장 강력한 기능 중 하나는 **트랜잭션 빌더**로, 사용자가 단일 트랜잭션으로 복잡한 유동성 포지션에 진입할 수 있게 합니다. 수동으로 스왑, 승인, 예치하는 대신 Zapper의 "Zap In" 기능이 모든 것을 처리합니다:
-
-```typescript
+Zapper의 가장 강력한 기능 중 하나는 **트랜잭션 빌더**로, 사용자가 단일 트랜잭션으로 복잡한 유동성 포지션에 진입할 수 있게 합니다. 수동으로 스왑, 승인, 예치하는 대신 Zapper의 "Zap In" 기능이 모든 것을 처리합니다: ```typescript
 // Uniswap V3 포지션에 Zap In
 async function zapInUniswapV3(
   fromToken: string,        // Zap할 토큰 주소
@@ -735,17 +711,13 @@ const ws = new ZapperWebSocket({
 // 주소 업데이트 구독
 ws.subscribe('address:0xMyAddress...', (update: any) => {
   switch (update.type) {
-    case balance_change:
-      console.log(`💰 잔액 업데이트: ${update.token} = ${update.newBalance}`);
+    case balance_change: console.log(`💰 잔액 업데이트: ${update.token} = ${update.newBalance}`);
       break;
-    case new_position:
-      console.log(`📈 새 포지션 감지: ${update.protocol} — ${update.valueUSD}`);
+    case new_position: console.log(`📈 새 포지션 감지: ${update.protocol} — ${update.valueUSD}`);
       break;
-    case yield_claimed:
-      console.log(`🎁 보상 청구: ${update.amount} ${update.token}`);
+    case yield_claimed: console.log(`🎁 보상 청구: ${update.amount} ${update.token}`);
       break;
-    case nft_transfer:
-      console.log(`🖼️ NFT 전송: ${update.collection} #${update.tokenId}`);
+    case nft_transfer: console.log(`🖼️ NFT 전송: ${update.collection} #${update.tokenId}`);
       break;
   }
 });
@@ -1021,20 +993,17 @@ class YieldMonitor {
         if (alert.protocol && alert.protocol !== position.protocol) continue;
 
         switch (alert.condition) {
-          case apy_drop:
-            if (prev && (position.apy.total / prev.apy - 1) * 100 < -alert.threshold) {
+          case apy_drop: if (prev && (position.apy.total / prev.apy - 1) * 100 < -alert.threshold) {
               await this.sendAlert(`🚨 ${position.poolName}의 APY가 ${alert.threshold}% 하락: ${position.apy.total.toFixed(2)}%`);
             }
             break;
 
-          case il_warning:
-            if (position.impermanentLoss && position.impermanentLoss > alert.threshold) {
+          case il_warning: if (position.impermanentLoss && position.impermanentLoss > alert.threshold) {
               await this.sendAlert(`⚠️ ${position.poolName}의 IL 경고: ${position.impermanentLoss.toFixed(2)}%`);
             }
             break;
 
-          case reward_change:
-            const rewardChange = position.rewardTokens.reduce(
+          case reward_change: const rewardChange = position.rewardTokens.reduce(
               (sum, r) => sum + r.dailyValueUSD, 0
             );
             if (prev && Math.abs(rewardChange - prev.dailyRewards) > alert.threshold) {
@@ -1140,7 +1109,6 @@ Zapper는 [docs.zapper.xyz](https://docs.zapper.xyz)에서 포괄적인 문서�
 **웹사이트:** [zapper.xyz](https://zapper.xyz)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

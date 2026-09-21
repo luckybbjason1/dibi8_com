@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/bookstack-documentation-wiki" />
 title: 'BookStack: The Developer-Friendly Documentation Wiki wit...
 description: 'A complete guide to installing and running BookStack, the open-source documentation wiki with WYSIWYG + Markdown editing, book/chapter/page structure, and LDAP/SSO support. Self-hosted in under 5 minutes.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [bookstack, documentation, wiki, 'self-hosted', php, laravel, 'knowledge base', markdown, docker, 'open source']
-aliases:
-- /posts/bookstack-documentation-wiki/
+aliases: - /posts/bookstack-documentation-wiki/-
 ---
-
 {{</* resource-info */>}}
 
 ## Introduction: The Documentation Mess Every Team Faces
@@ -44,10 +40,12 @@ BookStack is a free, open-source, MIT-licensed documentation wiki built with PHP
 
 ## How BookStack Works: Architecture & Core Concepts
 
-BookStack runs on a classic PHP/LAMP stack, which makes it predictable for anyone who has deployed a PHP application before. The architecture is straightforward:
-
-| Layer | Technology |
-|---|---|
+BookStack runs on a classic PHP/LAMP stack, which makes it predictable for anyone who has deployed a PHP application before. The architecture is straightforward: | Layer | Technology |
+|
+---
+|
+---
+|
 | **Backend** | PHP 8.2+ on Laravel 11.x |
 | **Database** | MySQL 8.0+ or MariaDB 10.6+ |
 | **Frontend** | Vue.js components, WYSIWYG editor (TinyMCE), Markdown editor |
@@ -73,12 +71,9 @@ The fastest way to run BookStack is with Docker Compose. You need a server with 
 ```yaml
 version: '3.8'
 
-services:
-  bookstack:
-    image: lscr.io/linuxserver/bookstack:v26.03.4
+services: bookstack: image: lscr.io/linuxserver/bookstack:v26.03.4
     container_name: bookstack
-    environment:
-      - PUID=1000
+    environment: - PUID=1000
       - PGID=1000
       - APP_URL=https://docs.yourdomain.com
       - DB_HOST=bookstack_db
@@ -86,27 +81,21 @@ services:
       - DB_USER=bookstack
       - DB_PASS=your_secure_db_password
       - DB_DATABASE=bookstackdb
-    volumes:
-      - ./bookstack_app_data:/config
-    ports:
-      - 6875:80
+    volumes: - ./bookstack_app_data:/config
+    ports: - 6875:80
     restart: unless-stopped
-    depends_on:
-      - bookstack_db
+    depends_on: - bookstack_db
 
-  bookstack_db:
-    image: lscr.io/linuxserver/mariadb:10.11
+  bookstack_db: image: lscr.io/linuxserver/mariadb:10.11
     container_name: bookstack_db
-    environment:
-      - PUID=1000
+    environment: - PUID=1000
       - PGID=1000
       - MYSQL_ROOT_PASSWORD=your_secure_root_password
       - TZ=UTC
       - MYSQL_DATABASE=bookstackdb
       - MYSQL_USER=bookstack
       - MYSQL_PASSWORD=your_secure_db_password
-    volumes:
-      - ./bookstack_db_data:/config
+    volumes: - ./bookstack_db_data:/config
     restart: unless-stopped
 ```
 
@@ -171,9 +160,7 @@ After enabling the site and obtaining certificates with Certbot, update the `APP
 
 ### Manual installation (Ubuntu 24.04 LTS)
 
-If you prefer bare-metal deployment:
-
-```bash
+If you prefer bare-metal deployment: ```bash
 # Install dependencies
 sudo apt update
 sudo apt install -y apache2 php8.3 php8.3-curl php8.3-mbstring php8.3-ldap \
@@ -246,9 +233,7 @@ SAML2_IDP_x509="MIIDXTCCAkWgAwIBAgIJAJC1HiIA..."
 
 BookStack ships with two editors. The **WYSIWYG editor** (TinyMCE-based) is the default — it handles images via drag-and-drop upload, supports tables, code blocks with syntax highlighting, and callout blocks for tips and warnings. The **Markdown editor** offers a split-screen experience with live preview, ideal for developers who prefer writing in Markdown.
 
-Uploading images is straightforward:
-
-```markdown
+Uploading images is straightforward: ```markdown
 # In Markdown mode - images are uploaded to BookStack's gallery
 ![Alt text](uploaded-image-name.png)
 
@@ -260,10 +245,12 @@ BookStack also supports embedded diagrams via Draw.io integration. When you inse
 
 ## Benchmarks & Real-World Performance
 
-I ran BookStack on a 2 vCPU / 4GB RAM VPS with 50 concurrent simulated users reading and editing pages. The results:
-
-| Metric | Value |
-|---|---|
+I ran BookStack on a 2 vCPU / 4GB RAM VPS with 50 concurrent simulated users reading and editing pages. The results: | Metric | Value |
+|
+---
+|
+---
+|
 | Cold start time | 3.2 seconds |
 | Page load (average) | 180ms |
 | Page load (95th percentile) | 340ms |
@@ -286,16 +273,11 @@ For context: Confluence Cloud charges $6.05/user/month. At 50 users, that is $30
 # .github/workflows/publish-docs.yml
 name: Publish API Docs to BookStack
 
-on:
-  push:
-    branches: [main]
+on: push: branches: [main]
     paths: ['docs/**']
 
-jobs:
-  publish:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: publish: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       
       - name: Upload to BookStack via API
         run: |
@@ -334,13 +316,10 @@ Add this to cron for daily backups: `0 3 * * * /opt/scripts/backup-bookstack.sh`
 
 ```yaml
 # Add to docker-compose.yml for monitoring
-  node-exporter:
-    image: prom/node-exporter:v1.7.0
-    volumes:
-      - /proc:/host/proc:ro
+  node-exporter: image: prom/node-exporter:v1.7.0
+    volumes: - /proc:/host/proc:ro
       - /sys:/host/sys:ro
-    command:
-      - '--path.procfs=/host/proc'
+    command: - '--path.procfs=/host/proc'
       - '--path.sysfs=/host/sys'
 ```
 
@@ -399,8 +378,7 @@ Theme::listen(ThemeEvents::THEME_REGISTER_VIEWS, function (ThemeViews $themeView
 });
 
 # views/welcome.blade.php
-<div class="welcome-banner">
-    Welcome, {{ user()->name }}! Check out the onboarding docs.
+Welcome, {{ user()->name }}! Check out the onboarding docs.
 </div>
 ```
 
@@ -414,14 +392,25 @@ Install the module with: `php artisan bookstack:install-module /path/to/module.z
 APP_CONTENT_FILTERING=default
 
 # Available filters: script, form, iframe, object, embed, style, css_expression
-# To disable style filtering (useful if you need inline styles):
-APP_CONTENT_FILTERING=script,form,iframe,object,embed,css_expression
+# To disable style filtering (useful if you need inline styles): APP_CONTENT_FILTERING=script,form,iframe,object,embed,css_expression
 ```
 
 ## Comparison: BookStack vs. Alternatives
 
 | Feature | BookStack | Wiki.js | DokuWiki | MediaWiki | Outline |
-|---|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **License** | MIT | AGPL-3.0 | GPL-2.0 | GPL-2.0+ | BSL 1.1 |
 | **Stack** | PHP / Laravel | Node.js | PHP (no DB) | PHP | Node.js |
 | **Editor** | WYSIWYG + Markdown | Markdown + Visual | Wiki syntax | Wikitext | Block-based |
@@ -447,9 +436,7 @@ APP_CONTENT_FILTERING=script,form,iframe,object,embed,css_expression
 
 ## Limitations: An Honest Assessment
 
-BookStack is not the right tool for every documentation use case. Here is what it does not do well:
-
-**No real-time collaboration.** Two users editing the same page simultaneously will overwrite each other. BookStack warns about stale edits but does not offer Google Docs-style real-time collaboration. If your workflow depends on simultaneous editing, use Outline or Wiki.js instead.
+BookStack is not the right tool for every documentation use case. Here is what it does not do well: **No real-time collaboration.** Two users editing the same page simultaneously will overwrite each other. BookStack warns about stale edits but does not offer Google Docs-style real-time collaboration. If your workflow depends on simultaneous editing, use Outline or Wiki.js instead.
 
 **Opinionated hierarchy can feel restrictive.** The shelf/book/chapter/page model is great for structured documentation but awkward for fluid, constantly-restructured knowledge bases. If your docs are more like a living knowledge graph than a reference library, Notion or Obsidian may fit better.
 
@@ -493,8 +480,8 @@ For teams of 5 to 50 people who want internal documentation without vendor lock-
 
 Join the dibi8.com community: [Telegram group](https://t.me/dibi8opensource) for daily open-source tool discussions, deployment tips, and troubleshooting help from 5,000+ developers.
 
----
 
+---
 ## Sources & Further Reading
 
 - [BookStack Official Documentation](https://www.bookstackapp.com/docs/)
@@ -506,13 +493,9 @@ Join the dibi8.com community: [Telegram group](https://t.me/dibi8opensource) for
 
 ---
 
-
-
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -522,7 +505,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 This article contains affiliate links to [DigitalOcean](https://m.do.co/c/eca87ac14ee0). If you sign up through our link, we receive a referral credit at no additional cost to you. We only recommend infrastructure we use ourselves. The BookStack project is free and open-source — no affiliate relationship exists with the BookStack maintainers.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/rag-vs-fine-tuning-2026-decision-framework" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/rag-vs-fine-tuning-2026-decision-framework" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/rag-vs-fine-tuning-2026-decision-framework" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/rag-vs-fine-tuning-2026-decision-framework" />
 title: 'RAG vs Fine-Tuning 2026: Khung Quyết Định Dựa Trên Dữ Li...
 description: 'Khi nào dùng RAG, khi nào fine-tune, khi nào kết hợp cả hai. Thực tế 2026 với giá mô hình hiện tại: chi phí mỗi tác vụ, độ trễ, độ tươi của dữ liệu, và cây quyết định rõ ràng dựa trên khối lượng dữ liệu, ngân sách độ trễ truy vấn và tần suất cập nhật.'
 date: 2026-05-25 00:00:00+08:00
@@ -21,10 +16,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [rag, 'fine-tuning', llm, 'cost-optimization', 'decision-framework', 2026]
-aliases:
-- /vi/posts/rag-vs-fine-tuning-2026-decision-framework/
-faq:
-  - q: "Khi nào RAG thắng fine-tuning trong năm 2026?"
+aliases: - /vi/posts/rag-vs-fine-tuning-2026-decision-framework/
+faq: - q: "Khi nào RAG thắng fine-tuning trong năm 2026?"
     a: "RAG thắng khi (a) cơ sở tri thức của bạn cập nhật hơn một lần mỗi tuần, (b) bạn cần trích dẫn/nguồn gốc, (c) kho tài liệu < 100K chunks, (d) ngân sách độ trễ cho phép truy xuất ~200-400ms. Fine-tuning thắng khi bạn cần tính nhất quán về phong cách/định dạng, khi tri thức ổn định, và khi bạn có thể chi trả chi phí huấn luyện ban đầu."
   - q: "RAG thực sự tốn bao nhiêu khi đưa vào sản xuất?"
     a: "Chi phí mỗi truy vấn năm 2026: tra cứu embedding ~$0.0001, truy xuất+rerank ~$0.0003, sinh LLM ~$0.003-0.015 tùy mô hình. Tổng cộng ~$0.005/truy vấn với Claude Sonnet, ~$0.001 với GPT-4o-mini. Ở mức 100K truy vấn/tháng: $100-500 cho compute, $20-100 cho hosting vector DB."
@@ -37,8 +30,6 @@ faq:
   - q: "Tôi nên dùng Vector DB hay chỉ cần SQLite với full-text search?"
     a: "Dưới 10K chunks: full-text search (FTS5, MeiliSearch) thường đã đủ và đơn giản hơn 10 lần. Trên 50K chunks: vector DB xứng đáng với độ phức tạp. Vùng xám 10K-50K — thử FTS trước, chỉ chuyển sang vector khi chất lượng truy xuất giảm dưới precision@5 80%."
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/rag-vs-fine-tuning-2026-decision-framework/ -->
 
 {{</* resource-info */>}}
 
@@ -64,9 +55,7 @@ Cuộc tranh luận RAG-vs-fine-tuning đã tích lũy ba năm lời khuyên tr�
 
 ## Điều Gì Đã Thay Đổi Kể Từ 2024
 
-Ba lực lượng đã thay đổi phép tính:
-
-1. **Cửa sổ context lớn lên**: Gemini 2.5 Pro và Claude Sonnet 4.6 chạm 1M token. Với kho < 200K token, bạn có thể nhét hết context và bỏ qua RAG hoàn toàn. Điều này không tưởng vào năm 2024.
+Ba lực lượng đã thay đổi phép tính: 1. **Cửa sổ context lớn lên**: Gemini 2.5 Pro và Claude Sonnet 4.6 chạm 1M token. Với kho < 200K token, bạn có thể nhét hết context và bỏ qua RAG hoàn toàn. Điều này không tưởng vào năm 2024.
 
 2. **Embedding cải thiện đáng kể**: `text-embedding-3-large` (OpenAI), Voyage-3, BGE-M3 — precision@5 truy xuất đạt 80%+ trên các kho doanh nghiệp lộn xộn mà embedding 2024 không xử lý nổi.
 
@@ -74,28 +63,24 @@ Ba lực lượng đã thay đổi phép tính:
 
 ## RAG: Khi Nào Vẫn Là Câu Trả Lời Đúng
 
-### Dùng RAG khi:
-- Cơ sở tri thức cập nhật hơn một lần mỗi tuần
+### Dùng RAG khi: - Cơ sở tri thức cập nhật hơn một lần mỗi tuần
 - Yêu cầu trích dẫn/nguồn gốc (pháp lý, y tế, tuân thủ)
 - Kho < 100K chunks (trên đó, chất lượng truy xuất giảm)
 - Ngân sách độ trễ cho phép 200-400ms truy xuất + LLM
 - Bạn cần cập nhật sự kiện mà không huấn luyện lại
 
-### Chi phí thực tế của RAG (giá Q2 2026):
-```
-Tra cứu embedding:    $0.0001/truy vấn
-Truy xuất + rerank:   $0.0003/truy vấn
-Sinh LLM:             $0.003-0.015/truy vấn (tùy mô hình)
+### Chi phí thực tế của RAG (giá Q2 2026): ```
+Tra cứu embedding: $0.0001/truy vấn
+Truy xuất + rerank: $0.0003/truy vấn
+Sinh LLM: $0.003-0.015/truy vấn (tùy mô hình)
                       ─────────
-Tổng:                 ~$0.005/truy vấn (Claude Sonnet)
+Tổng: ~$0.005/truy vấn (Claude Sonnet)
                       ~$0.001/truy vấn (GPT-4o-mini)
 ```
 
 Ở mức 100K truy vấn/tháng: $100-500 compute + $20-100 hosting vector DB.
 
-### Lựa chọn hạ tầng RAG năm 2026:
-
-| Tầng | Ngăn xếp | Phù hợp |
+### Lựa chọn hạ tầng RAG năm 2026: | Tầng | Ngăn xếp | Phù hợp |
 |---|---|---|
 | Nhẹ | SQLite FTS5 / MeiliSearch | < 10K tài liệu |
 | Trung | pgvector / Weaviate (tự host) | 10K-1M tài liệu |
@@ -103,24 +88,20 @@ Tổng:                 ~$0.005/truy vấn (Claude Sonnet)
 
 ## Fine-Tuning: Khi Nào Vẫn Là Câu Trả Lời Đúng
 
-### Dùng fine-tuning khi:
-- Tính nhất quán phong cách/định dạng/giọng văn quan trọng hơn độ chính xác tri thức
+### Dùng fine-tuning khi: - Tính nhất quán phong cách/định dạng/giọng văn quan trọng hơn độ chính xác tri thức
 - Tri thức ổn định (cập nhật hàng tháng hoặc ít hơn)
 - Bạn cần đầu ra có cấu trúc dự đoán được (ví dụ schema JSON cụ thể)
 - Khối lượng > 1M truy vấn/tháng biện minh được chi phí ban đầu
 - Bạn muốn cố định đặc tính hiệu năng (không bị bất ngờ thay đổi API)
 
-### Chi phí thực tế của fine-tuning (2026):
-```
-LoRA fine-tune (Llama 3.3 70B):
-  Phần cứng:      H100 đơn ($2/giờ × ~10 giờ)        = $20
+### Chi phí thực tế của fine-tuning (2026): ```
+LoRA fine-tune (Llama 3.3 70B): Phần cứng: H100 đơn ($2/giờ × ~10 giờ)        = $20
   Chuẩn bị dữ liệu: 1-2 ngày công kỹ sư              = ~$1K nhân công
-  Lưu trữ:        LoRA adapter ~100MB                = không đáng kể
+  Lưu trữ: LoRA adapter ~100MB                = không đáng kể
                                                        ─────
-  Ban đầu:        ~$50 compute + nhân công
+  Ban đầu: ~$50 compute + nhân công
 
-Suy luận (tự host):
-  Mỗi 1K token sinh ra: ~$0.0001 (GPU sở hữu đã khấu hao)
+Suy luận (tự host): Mỗi 1K token sinh ra: ~$0.0001 (GPU sở hữu đã khấu hao)
 ```
 
 So với API: $0.003-0.015/1K token. Hòa vốn ở khối lượng cao.
@@ -153,13 +134,11 @@ BẮT ĐẦU
 
 ## Hybrid: Fine-Tune + RAG
 
-Ngày càng là câu trả lời sản xuất. Fine-tune mô hình cho:
-- Giọng thương hiệu / phong cách viết
+Ngày càng là câu trả lời sản xuất. Fine-tune mô hình cho: - Giọng thương hiệu / phong cách viết
 - Tính nhất quán định dạng đầu ra (luôn JSON / luôn markdown)
 - Lưu loát ngôn ngữ chuyên ngành (thuật ngữ y tế, pháp lý, tài chính)
 
-Thêm RAG cho:
-- Sự kiện hiện tại
+Thêm RAG cho: - Sự kiện hiện tại
 - Dữ liệu riêng của khách hàng
 - Trích dẫn
 
@@ -195,8 +174,7 @@ Khắc phục: thử nghiệm kích thước chunk (256-1024 token), overlap (10
 
 ## Hạ Tầng Đề Xuất
 
-Cho hosting RAG / fine-tuning:
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit, GPU droplets cho fine-tuning
+Cho hosting RAG / fine-tuning: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit, GPU droplets cho fine-tuning
 - **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hong Kong, hosting vector DB độ trễ thấp
 
 *Liên kết affiliate — cùng giá, hỗ trợ dibi8.com.*
@@ -212,7 +190,6 @@ Với hầu hết hệ thống sản xuất năm 2026: bắt đầu với RAG, t
 **Liên quan**: [Xếp hạng MCP Servers 2026](https://dibi8.com/vi/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/) · [Hệ Thống Trí Nhớ AI Agent 2026](https://dibi8.com/vi/resources/llm-frameworks/ai-agent-memory-systems-open-source-infrastructure-2026/) · [Hướng dẫn 12-Factor Agents](https://dibi8.com/vi/resources/llm-frameworks/12-factor-agents-production-llm-software-2026/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -240,25 +217,20 @@ Với hầu hết hệ thống sản xuất năm 2026: bắt đầu với RAG, t
 
 ## Why This Matters
 
-Understanding rag vs fine-tuning 2026: khung quyết định dựa trên dữ liệu với con số chi phí thực tế is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding rag vs fine-tuning 2026: khung quyết định dựa trên dữ liệu với con số chi phí thực tế is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

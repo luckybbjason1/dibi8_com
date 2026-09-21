@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/kubeflow-ml-pipeline-kubernetes" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/kubeflow-ml-pipeline-kubernetes" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/kubeflow-ml-pipeline-kubernetes" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/kubeflow-ml-pipeline-kubernetes" />
 title: 'Kubeflow 2026: Kubernetes에서 완전한 ML 파이프라인 실행 — 훈련부터 프로덕션 ...
 description: 'Kubernetes에 Kubeflow를 배포하여 ML 파이프라인을 구축하는 완전한 가이드. 설치, 컴포넌트, 벤치마크, 프로덕션 강화 및 실제 배포 패턴을 다룹니다.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: [kubeflow, kubernetes, 머신러닝, 'ml 파이프라인', mlops, 'kubeflow pipelines', kserve, katib, 데이터과학]
-aliases:
-- /kr/posts/kubeflow-ml-pipeline-kubernetes/
+aliases: - /kr/posts/kubeflow-ml-pipeline-kubernetes/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/kubeflow-ml-pipeline-kubernetes/ -->
 
 {{</* resource-info */>}}
 
@@ -51,9 +43,7 @@ Notebook, 훈련 작업, 하이퍼파라미터 튜닝, 모델 배포를 위한 �
 
 ## Kubeflow 작동 방식: 아키텍처 개요
 
-Kubeflow의 아키텍처는 핵심 원칙을 중심으로 구성된다: **모든 것은 Kubernetes에서 실행된다**. 플랫폼은 ML 수명주기의 특정 단계를 다루는 여러 핵심 컴포넌트를 포함한다:
-
-**Kubeflow Pipelines (KFP)**는 ML 워크플로우를 컨테이너 기반 DAG로 오케스트레이션한다. 파이프라인의 각 단계는 Docker 이미지이며, 입력과 출력은 S3/MinIO/GCS 아티팩트 저장소를 통해 전달된다. KFP는 기본 실행 엔진으로 Argo Workflows를 사용한다(Tekton도 대안으로 지원).
+Kubeflow의 아키텍처는 핵심 원칙을 중심으로 구성된다: **모든 것은 Kubernetes에서 실행된다**. 플랫폼은 ML 수명주기의 특정 단계를 다루는 여러 핵심 컴포넌트를 포함한다: **Kubeflow Pipelines (KFP)**는 ML 워크플로우를 컨테이너 기반 DAG로 오케스트레이션한다. 파이프라인의 각 단계는 Docker 이미지이며, 입력과 출력은 S3/MinIO/GCS 아티팩트 저장소를 통해 전달된다. KFP는 기본 실행 엔진으로 Argo Workflows를 사용한다(Tekton도 대안으로 지원).
 
 **Kubeflow Notebooks**는 StatefulSet으로 실행되는 관리형 Jupyter, VS Code, RStudio 인스턴스를 제공한다. 각 노트북 서버는 데이터셋과 모델을 위한 영구 볼륨을 마운트하며, 특정 CPU/GPU 리소스 쿼터로 프로비저닝할 수 있다.
 
@@ -68,8 +58,7 @@ Kubeflow의 아키텍처는 핵심 원칙을 중심으로 구성된다: **모든
 ```bash
 # 상위 수준 컴포넌트 뷰
 kubectl get pods -n kubeflow
-# 예상 출력 표시:
-# - ml-pipeline (KFP API 서버)
+# 예상 출력 표시: # - ml-pipeline (KFP API 서버)
 # - katib-controller, katib-db-manager
 # - kserve-controller-manager
 # - training-operator
@@ -135,9 +124,7 @@ helm install kubeflow kubeflow/kubeflow \
 
 ### 옵션 C: DigitalOcean Kubernetes (프로덕션 준비 완료)
 
-제어 플레인 관리 없이 프로덕션급 클러스터를 구성하려면:
-
-```bash
+제어 플레인 관리 없이 프로덕션급 클러스터를 구성하려면: ```bash
 # doctl 설치 및 인증
 doctl kubernetes cluster create kubeflow-ml \
   --region nyc3 \
@@ -158,9 +145,7 @@ kubectl get namespaces | grep kubeflow
 
 ## 첫 번째 ML 파이프라인 구축하기
 
-Kubeflow Pipelines (KFP)는 Kubeflow가 가장 큰 가치를 제공하는 곳이다. 데이터를 다운로드하고, 모델을 훈련하고, 평가하는 완전한 파이프라인이다:
-
-```python
+Kubeflow Pipelines (KFP)는 Kubeflow가 가장 큰 가치를 제공하는 곳이다. 데이터를 다운로드하고, 모델을 훈련하고, 평가하는 완전한 파이프라인이다: ```python
 # pipeline.py — KFP SDK v2를 사용한 완전한 ML 파이프라인
 import kfp
 from kfp import dsl
@@ -170,8 +155,7 @@ from kfp.dsl import component, Input, Output, Dataset, Model, Metrics
     base_image="python:3.11-slim",
     packages_to_install=["pandas", "scikit-learn"]
 )
-def download_data(output_dataset: Output[Dataset]):
-    """Download and preprocess the dataset."""
+def download_data(output_dataset: Output[Dataset]): """Download and preprocess the dataset."""
     import pandas as pd
     from sklearn.datasets import load_iris
     from sklearn.model_selection import train_test_split
@@ -189,8 +173,7 @@ def train_model(
     input_dataset: Input[Dataset],
     output_model: Output[Model],
     n_estimators: int = 100
-):
-    """Train a Random Forest classifier."""
+): """Train a Random Forest classifier."""
     import pandas as pd
     import joblib
     from sklearn.ensemble import RandomForestClassifier
@@ -214,8 +197,7 @@ def evaluate_model(
     input_model: Input[Model],
     input_dataset: Input[Dataset],
     metrics: Output[Metrics]
-) -> str:
-    """Evaluate the trained model and log metrics."""
+) -> str: """Evaluate the trained model and log metrics."""
     import pandas as pd
     import joblib
     from sklearn.metrics import accuracy_score, f1_score
@@ -239,8 +221,7 @@ def evaluate_model(
     name="iris-training-pipeline",
     description="End-to-end iris classification pipeline"
 )
-def iris_pipeline(n_estimators: int = 100):
-    download = download_data()
+def iris_pipeline(n_estimators: int = 100): download = download_data()
     train = train_model(
         input_dataset=download.outputs["output_dataset"],
         n_estimators=n_estimators
@@ -251,8 +232,7 @@ def iris_pipeline(n_estimators: int = 100):
     )
 
 # 파이프라인 컴파일
-if __name__ == "__main__":
-    kfp.compiler.Compiler().compile(
+if __name__ == "__main__": kfp.compiler.Compiler().compile(
         iris_pipeline,
         "iris_pipeline.yaml"
     )
@@ -282,45 +262,28 @@ kfp run create \
 
 ## Training Operator로 분산 훈련하기
 
-단일 GPU에 맞지 않는 워크로드의 경우, Kubeflow의 Training Operator가 분산 훈련 작업을 관리한다:
-
-```yaml
+단일 GPU에 맞지 않는 워크로드의 경우, Kubeflow의 Training Operator가 분산 훈련 작업을 관리한다: ```yaml
 # pytorch-job.yaml — 분산 PyTorch 훈련
 apiVersion: kubeflow.org/v1
 kind: PyTorchJob
-metadata:
-  name: cifar10-distributed
+metadata: name: cifar10-distributed
   namespace: kubeflow-user-example-com
-spec:
-  pytorchReplicaSpecs:
-    Master:
-      replicas: 1
+spec: pytorchReplicaSpecs: Master: replicas: 1
       restartPolicy: OnFailure
-      template:
-        spec:
-          containers:
-          - name: pytorch
+      template: spec: containers: - name: pytorch
             image: my-registry/cifar10-training:v1.2
             command: ["python", "-m", "torch.distributed.launch",
                       "--nproc_per_node=1", "train.py"]
-            resources:
-              limits:
-                nvidia.com/gpu: 1
+            resources: limits: nvidia.com/gpu: 1
                 memory: "16Gi"
                 cpu: "8"
-    Worker:
-      replicas: 3
+    Worker: replicas: 3
       restartPolicy: OnFailure
-      template:
-        spec:
-          containers:
-          - name: pytorch
+      template: spec: containers: - name: pytorch
             image: my-registry/cifar10-training:v1.2
             command: ["python", "-m", "torch.distributed.launch",
                       "--nproc_per_node=1", "train.py"]
-            resources:
-              limits:
-                nvidia.com/gpu: 1
+            resources: limits: nvidia.com/gpu: 1
                 memory: "16Gi"
                 cpu: "8"
 ```
@@ -343,28 +306,18 @@ nvidia-smi  # 모든 GPU Pod 낶부에서 실행
 
 ## KServe로 모델 서빙하기
 
-KServe는 오토스케일링, 트래픽 분할 및 표준화된 추론 프로토콜을 갖춘 프로덕션급 모델 서빙을 제공한다:
-
-```yaml
+KServe는 오토스케일링, 트래픽 분할 및 표준화된 추론 프로토콜을 갖춘 프로덕션급 모델 서빙을 제공한다: ```yaml
 # inference-service.yaml — 훈련된 모델 배포
 apiVersion: serving.kserve.io/v1beta1
 kind: InferenceService
-metadata:
-  name: iris-classifier
+metadata: name: iris-classifier
   namespace: kubeflow-user-example-com
-  annotations:
-    serving.kserve.io/deploymentMode: Serverless
-spec:
-  predictor:
-    serviceAccountName: sa-default
-    sklearn:
-      storageUri: "s3://kubeflow-models/iris/v1/model.joblib"
-      resources:
-        limits:
-          cpu: "1"
+  annotations: serving.kserve.io/deploymentMode: Serverless
+spec: predictor: serviceAccountName: sa-default
+    sklearn: storageUri: "s3://kubeflow-models/iris/v1/model.joblib"
+      resources: limits: cpu: "1"
           memory: 2Gi
-        requests:
-          cpu: "100m"
+        requests: cpu: "100m"
           memory: 256Mi
 ```
 
@@ -387,81 +340,56 @@ curl -X POST http://iris-classifier.kubeflow-user-example-com.example.com/v1/mod
 # 응답: {"predictions": [0]}
 ```
 
-칠리 배포의 경우 KServe는 트래픽 분할을 지원한다:
-
-```yaml
+칠리 배포의 경우 KServe는 트래픽 분할을 지원한다: ```yaml
 # canary-rollout.yaml — v2의 점진적 롤아웃
 apiVersion: serving.kserve.io/v1beta1
 kind: InferenceService
-metadata:
-  name: iris-classifier
+metadata: name: iris-classifier
   namespace: kubeflow-user-example-com
-spec:
-  predictor:
-    canaryTrafficPercent: 20
-    sklearn:
-      storageUri: "s3://kubeflow-models/iris/v2/model.joblib"
+spec: predictor: canaryTrafficPercent: 20
+    sklearn: storageUri: "s3://kubeflow-models/iris/v2/model.joblib"
 ```
 
 ## Katib로 하이퍼파라미터 튜닝하기
 
-Katib는 Kubernetes 네이티브 실험을 사용하여 최적의 하이퍼파라미터 탐색을 자동화한다:
-
-```yaml
+Katib는 Kubernetes 네이티브 실험을 사용하여 최적의 하이퍼파라미터 탐색을 자동화한다: ```yaml
 # katib-experiment.yaml — Random Forest 하이퍼파라미터 최적화
 apiVersion: kubeflow.org/v1beta1
 kind: Experiment
-metadata:
-  namespace: kubeflow-user-example-com
+metadata: namespace: kubeflow-user-example-com
   name: iris-hp-tuning
-spec:
-  objective:
-    type: maximize
+spec: objective: type: maximize
     goal: 0.99
     objectiveMetricName: accuracy
-  algorithm:
-    algorithmName: bayesianoptimization
+  algorithm: algorithmName: bayesianoptimization
   parallelTrialCount: 3
   maxTrialCount: 12
   maxFailedTrialCount: 3
-  parameters:
-    - name: n_estimators
+  parameters: - name: n_estimators
       parameterType: int
-      feasibleSpace:
-        min: "50"
+      feasibleSpace: min: "50"
         max: "500"
     - name: max_depth
       parameterType: int
-      feasibleSpace:
-        min: "3"
+      feasibleSpace: min: "3"
         max: "20"
     - name: min_samples_split
       parameterType: double
-      feasibleSpace:
-        min: "0.01"
+      feasibleSpace: min: "0.01"
         max: "0.3"
-  trialTemplate:
-    primaryContainerName: training-container
-    trialParameters:
-      - name: nEstimators
+  trialTemplate: primaryContainerName: training-container
+    trialParameters: - name: nEstimators
         reference: n_estimators
       - name: maxDepth
         reference: max_depth
       - name: minSamplesSplit
         reference: min_samples_split
-    trialSpec:
-      apiVersion: batch/v1
+    trialSpec: apiVersion: batch/v1
       kind: Job
-      spec:
-        template:
-          spec:
-            containers:
-              - name: training-container
+      spec: template: spec: containers: - name: training-container
                 image: my-registry/iris-train:v1
                 command: ["python", "train.py"]
-                resources:
-                  limits:
-                    memory: "4Gi"
+                resources: limits: memory: "4Gi"
                     cpu: "2"
             restartPolicy: Never
 ```
@@ -517,12 +445,9 @@ KFP 오케스트레이션 오버헤드는 복잡한 다중 단계 워크플로�
 # gpu-quota.yaml — 네임스페이스별 GPU 제한 강제
 apiVersion: v1
 kind: ResourceQuota
-metadata:
-  name: gpu-quota
+metadata: name: gpu-quota
   namespace: data-science-team
-spec:
-  hard:
-    requests.nvidia.com/gpu: 8
+spec: hard: requests.nvidia.com/gpu: 8
     limits.nvidia.com/gpu: 16
 ```
 
@@ -540,22 +465,16 @@ kubectl describe resourcequota gpu-quota -n data-science-team
 # dataset-pvc.yaml
 apiVersion: v1
 kind: PersistentVolumeClaim
-metadata:
-  name: training-datasets
+metadata: name: training-datasets
   namespace: kubeflow-user-example-com
-spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 500Gi
+spec: accessModes: - ReadWriteMany
+  resources: requests: storage: 500Gi
   storageClassName: nfs-client  # 또는 AWS에서 efs-sc
 ```
 
 ```bash
 # Kubeflow UI를 통해 노트북 서버에 마운트
-# 또는 파이프라인 컴포넌트에서 참조:
-# dsl.VolumeOp(name="create-dataset-volume",
+# 또는 파이프라인 컴포넌트에서 참조: # dsl.VolumeOp(name="create-dataset-volume",
 #              resource_name="training-datasets",
 #              size="500Gi",
 #              modes=dsl.VOLUME_MODE_RWM)
@@ -568,15 +487,10 @@ spec:
 kubectl apply -f - <<EOF
 apiVersion: kubeflow.org/v1
 kind: Profile
-metadata:
-  name: team-ml-platform
-spec:
-  owner:
-    kind: User
+metadata: name: team-ml-platform
+spec: owner: kind: User
     name: ml-engineer@company.com
-  resourceQuotaSpec:
-    hard:
-      cpu: "64"
+  resourceQuotaSpec: hard: cpu: "64"
       memory: 256Gi
       nvidia.com/gpu: "8"
       pods: "50"
@@ -603,8 +517,7 @@ mc mirror myminio/kubeflow-pipelines/ \
 kubectl apply -f \
   https://raw.githubusercontent.com/kubeflow/manifests/v1.10.0/contrib/prometheus/kustomization.yaml
 
-# 알림을 설정해야 할 핵심 메트릭:
-# - kubeflow_pipelines_run_count (총 파이프라인 실행 수)
+# 알림을 설정해야 할 핵심 메트릭: # - kubeflow_pipelines_run_count (총 파이프라인 실행 수)
 # - kubeflow_pipelines_run_latency_seconds (파이프라인 실행 시간)
 # - nvidia_gpu_utilization_gpu (Pod별 GPU 활용도)
 # - container_memory_working_set_bytes (OOM 감지)
@@ -635,9 +548,7 @@ kubectl apply -f \
 
 ## 한계 / 정직한 평가
 
-Kubeflow는 강력하지만 도전 과제가 없는 것은 아니다:
-
-**설정 복잡성**: 완전한 Kubeflow 설치에는 30개 이상의 마이크로서비스가 필요하다. 숙련된 Kubernetes 운영자조차 첫 번째 프로덕션 배포에 **2-4시간**이 소요될 수 있다. GCP의 Kubeflow (Vertex AI) 또는 AWS의 도구는 이를 간소화하지만 공급업체 종속성을 초래한다.
+Kubeflow는 강력하지만 도전 과제가 없는 것은 아니다: **설정 복잡성**: 완전한 Kubeflow 설치에는 30개 이상의 마이크로서비스가 필요하다. 숙련된 Kubernetes 운영자조차 첫 번째 프로덕션 배포에 **2-4시간**이 소요될 수 있다. GCP의 Kubeflow (Vertex AI) 또는 AWS의 도구는 이를 간소화하지만 공급업체 종속성을 초래한다.
 
 **문서 분산**: 서로 다른 컴포넌트(KFP, KServe, Katib)가 별도의 문서 사이트를 유지한다. 크로스 컴포넌트 통합 예제는 때로 오래되었다. 항상 **v1.10.0 문서** 또는 최신 버전과 대조하여 확인하라.
 
@@ -679,9 +590,7 @@ Kubeflow는 여전히 Kubernetes에서 ML 워크로드를 실행하기 위한 �
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -702,7 +611,6 @@ Kubeflow는 여전히 Kubernetes에서 ML 워크로드를 실행하기 위한 �
 *제휴 공개: 이 기사에는 DigitalOcean 제휴 링크가 포함되어 있다. 해당 링크를 통해 가입하면 추가 비용 없이 dibi8.com에 수수료가 지급된다. 우리는 자체 인프라에 사용하는 서비스만 추천한다.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

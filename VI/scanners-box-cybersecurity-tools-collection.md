@@ -1,17 +1,11 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/scanners-box-cybersecurity-tools-collection" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/scanners-box-cybersecurity-tools-collection" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/scanners-box-cybersecurity-tools-collection" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/scanners-box-cybersecurity-tools-collection" />
 title: 'Scanners-Box: Bộ Sưu Tập 200+ Công Cụ An Ninh Mạng — Dàn...
   Mật'
 description: Khám phá Scanners-Box — bộ sưu tập 200+ công cụ an ninh mạng mã nguồn. Comprehensive guide covering features, pricing, and best practices for 2026.
   mở, bao gồm kiểm thử xâm nhập, quét lỗ hổng và nghiên cứu bảo mật.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
-tech_stack:
-- Docker
+tech_stack: - Docker
 - Go
 - JavaScript
 - Python
@@ -30,10 +24,8 @@ maintainer: "luckybbjason1"
 last_maintained: "2023-09-21"
 featureImage: ''
 draft: false
-aliases:
-- /vi/posts/scanners-box-cybersecurity-tools-collection/
-faqs:
-  - q: 'Scanners-Box là gì?'
+aliases: - /vi/posts/scanners-box-cybersecurity-tools-collection/
+faqs: - q: 'Scanners-Box là gì?'
     a: 'Scanners-Box là một bộ sưu tập được tuyển chọn gồm hơn 200 công cụ an ninh mạng mã nguồn mở thuộc hơn 15 danh mục, bao gồm liệt kê tên miền phụ, SQL injection, fuzzing, quét cổng, social engineering và nhiều lĩnh vực khác. Ban đầu nó được tạo ra cho cộng đồng bảo mật Trung Quốc (t00ls) và hướng đến các kiểm thử viên thâm nhập cũng như nhà nghiên cứu bảo mật.'
   - q: 'Scanners-Box khuyến nghị những công cụ nào để kiểm thử SQL injection?'
     a: 'Khuyến nghị chính của nó là sqlmap, công cụ tự động phát hiện và khai thác SQL injection, hỗ trợ 6 loại cơ sở dữ liệu và bao gồm các tamper script để vượt qua WAF. Bộ sưu tập cũng liệt kê jsql-injection, SQLiScanner và NoSQLAttack.'
@@ -45,7 +37,6 @@ faqs:
     a: 'Những công cụ này chỉ hợp pháp khi dùng cho kiểm thử bảo mật được cấp phép; sử dụng chúng nhắm vào các hệ thống mà không có sự cho phép bằng văn bản rõ ràng là bất hợp pháp và phi đạo đức. Các luật liên quan bao gồm Đạo luật Gian lận và Lạm dụng Máy tính của Hoa Kỳ (CFAA), Đạo luật Lạm dụng Máy tính của Anh, Luật An ninh mạng của Trung Quốc và GDPR của EU, vì vậy hãy luôn xin ủy quyền bằng văn bản và xác định phạm vi trước khi kiểm thử.'
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/scanners-box-cybersecurity-tools-collection/ -->
 {</* resource-info */>}
 
 ## Scanners-Box là gì?
@@ -255,9 +246,7 @@ Rò rỉ dữ liệu: Đường hầm DNS, HTTPS C2
 
 ## Công Cụ Đề Xuất
 
-Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
+Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
 - **{{< aff "htstack" "category-footer" "HTStack" >}}** — Hong Kong VPS, cùng IDC host dibi8.com. Self-host security scanner trên VPS riêng, low-latency Asia coverage, không shared-tenant noise.
 - **{{< aff "hostinger" "footer-cta-legacy" "Hostinger" >}}** — Lựa chọn VPS giá tốt cho thị trường Việt Nam.
 
@@ -265,7 +254,6 @@ Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -293,25 +281,20 @@ Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
 
 ## Why This Matters
 
-Understanding scanners-box: bộ sưu tập 200+ công cụ an ninh mạng — dành cho chuyên gia bảo is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding scanners-box: bộ sưu tập 200+ công cụ an ninh mạng — dành cho chuyên gia bảo is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

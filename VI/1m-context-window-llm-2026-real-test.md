@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/1m-context-window-llm-2026-real-test" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/1m-context-window-llm-2026-real-test" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/1m-context-window-llm-2026-real-test" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/1m-context-window-llm-2026-real-test" />
 title: 'LLM Cửa sổ Ngữ cảnh 1M 2026: Gemini 2.5 Pro vs Claude So...
 description: 'Cả hai đều tuyên bố ngữ cảnh 1M token. Chúng tôi nạp một codebase 950K token vào mỗi mô hình và đo: chất lượng truy xuất, độ trễ, chi phí, và bên nào thực sự giữ lời hứa 1M so với bên nào sụp đổ ở đuôi dài.'
 date: 2026-05-25 00:00:00+08:00
@@ -21,10 +16,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [gemini, claude, 'long-context', llm, 2026]
-aliases:
-- /vi/posts/1m-context-window-llm-2026-real-test/
-faq:
-  - q: "Gemini 2.5 Pro và Claude Sonnet 4.6 có thực sự xử lý được 1M token không?"
+aliases: - /vi/posts/1m-context-window-llm-2026-real-test/
+faq: - q: "Gemini 2.5 Pro và Claude Sonnet 4.6 có thực sự xử lý được 1M token không?"
     a: "Cả hai về mặt kỹ thuật đều chấp nhận đầu vào 1M+ token. Chất lượng ở đuôi dài thì khác nhau: Gemini duy trì sự nhất quán trong toàn bộ cửa sổ; Claude bị suy giảm trên các tác vụ truy xuất khi vượt quá ~700K token. Về mặt thực tiễn, cả hai thắng ở các kịch bản khác nhau — Gemini cho việc nhớ lại thô trên ngữ cảnh khổng lồ, Claude cho chất lượng lập luận ở ngữ cảnh vừa đến lớn."
   - q: "Chênh lệch chi phí ở 1M token là bao nhiêu?"
     a: "Gemini 2.5 Pro: ~$1.25 mỗi 1M token đầu vào. Claude Sonnet 4.6 ở tier 1M: ~$3.50 mỗi 1M token đầu vào (giá cao cấp). Đầu ra tương đương. Với khối lượng công việc thuần nhồi ngữ cảnh, Gemini rẻ hơn ~3 lần."
@@ -33,8 +26,6 @@ faq:
   - q: "Cái nào tốt hơn để đọc toàn bộ codebase?"
     a: "Để nạp + tóm tắt: cả hai đều ổn. Để tìm bug cụ thể giữa các file: hiệu năng 'kim trong đống cỏ khô' của Gemini nhất quán hơn. Để lập luận đa bước giữa các file: Claude thắng dù ngữ cảnh hiệu dụng ngắn hơn."
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/1m-context-window-llm-2026-real-test/ -->
 
 {{</* resource-info */>}}
 
@@ -58,8 +49,7 @@ Tuyên bố cửa sổ ngữ cảnh 1M token có ở khắp mọi nơi vào năm
 
 ## Thiết lập Thử nghiệm
 
-Nạp một codebase TypeScript mã nguồn mở 950K token (kích thước tương tự ứng dụng SaaS cỡ vừa) vào cả hai mô hình. Chạy 30 câu hỏi truy xuất:
-- 10 câu về code trong 100K token đầu
+Nạp một codebase TypeScript mã nguồn mở 950K token (kích thước tương tự ứng dụng SaaS cỡ vừa) vào cả hai mô hình. Chạy 30 câu hỏi truy xuất: - 10 câu về code trong 100K token đầu
 - 10 câu về code trong token 400K-600K (giữa)
 - 10 câu về code trong token 800K-950K (sâu)
 
@@ -82,21 +72,18 @@ Cả hai đều chậm ở ngữ cảnh đầy. Đừng dùng ngữ cảnh 1M ch
 
 ## Thực tế Chi phí
 
-Ở 50 truy vấn/ngày với trung bình 950K token:
-- Gemini: 50 × 0.95M × $1.25/1M = $59/ngày = $1770/tháng
+Ở 50 truy vấn/ngày với trung bình 950K token: - Gemini: 50 × 0.95M × $1.25/1M = $59/ngày = $1770/tháng
 - Claude (tier 1M): 50 × 0.95M × $3.50/1M = $166/ngày = $4980/tháng
 
 Với công việc ngữ cảnh dài khối lượng lớn, Gemini rẻ hơn 3 lần. Cả hai đều đốt ngân sách — ở ngữ cảnh 1M, $0.001/truy vấn trở thành $1/truy vấn.
 
 ## Khi nào thực sự nên dùng Ngữ cảnh 1M
 
-**Có, dùng 1M khi**:
-- Phân tích một lần một codebase/tài liệu lớn
+**Có, dùng 1M khi**: - Phân tích một lần một codebase/tài liệu lớn
 - Q&A ngữ cảnh dài mà truy xuất RAG có thể bỏ sót liên kết
 - Lập luận giữa nhiều file nơi trích dẫn quan trọng
 
-**Không, đừng dùng 1M khi**:
-- Truy vấn lặp lại (RAG khấu hao chi phí embedding)
+**Không, đừng dùng 1M khi**: - Truy vấn lặp lại (RAG khấu hao chi phí embedding)
 - Độ trễ quan trọng (1M chậm)
 - Corpus cập nhật thường xuyên (RAG xử lý cập nhật dễ dàng)
 
@@ -112,8 +99,7 @@ Corpus size?
 
 ## Hạ tầng Khuyến nghị
 
-Để host RAG khi 1M không đủ:
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — Credit $200 đủ để dựng vector DB
+Để host RAG khi 1M không đủ: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — Credit $200 đủ để dựng vector DB
 - **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hồng Kông cho truy xuất độ trễ thấp
 
 *Liên kết affiliate — cùng giá, hỗ trợ dibi8.com.*
@@ -129,7 +115,6 @@ Với hầu hết công việc sản xuất năm 2026: đừng dùng cái nào �
 **Liên quan**: [RAG vs Fine-Tuning 2026](https://dibi8.com/vi/resources/llm-frameworks/rag-vs-fine-tuning-2026-decision-framework/) · [Đối đầu AI Coding 2026 Q2](https://dibi8.com/vi/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) · [Xếp hạng MCP Servers 2026](https://dibi8.com/vi/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -157,25 +142,20 @@ Với hầu hết công việc sản xuất năm 2026: đừng dùng cái nào �
 
 ## Why This Matters
 
-Understanding llm cửa sổ ngữ cảnh 1m 2026: gemini 2.5 pro vs claude sonnet 4.6 thử nghiệm thực tế is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding llm cửa sổ ngữ cảnh 1m 2026: gemini 2.5 pro vs claude sonnet 4.6 thử nghiệm thực tế is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

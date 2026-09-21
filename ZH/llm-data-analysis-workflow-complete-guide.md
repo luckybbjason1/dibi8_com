@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/llm-data-analysis-workflow-complete-guide" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/llm-data-analysis-workflow-complete-guide" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llm-data-analysis-workflow-complete-guide" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/llm-data-analysis-workflow-complete-guide" />
 title: '使用大语言模型进行数据分析的完整工作流：PandasAI、Code Interpreter与OpenAI实战指南'
 description: '全面解析LLM数据分析工作流，深度对比PandasAI、ChatGPT Code Interpreter与OpenAI API三种方案，含实战代码与安全最佳实践。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/llm-data-analysis-workflow-complete-guide/
+aliases: - /posts/llm-data-analysis-workflow-complete-guide/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/llm-data-analysis-workflow-complete-guide/ -->
 
 {</* resource-info */>}
 
@@ -35,8 +27,8 @@ aliases:
 
 本文系统梳理 LLM 驱动数据分析的完整技术栈，重点拆解三种主流方案——**PandasAI、ChatGPT Code Interpreter 和 OpenAI API**——的适用边界、实操技巧与安全注意事项。
 
----
 
+---
 ## LLM 如何重塑数据分析工作流？
 
 LLM 为数据分析带来的变革可以归纳为四个维度：
@@ -48,8 +40,8 @@ LLM 为数据分析带来的变革可以归纳为四个维度：
 
 但这并不意味着数据分析师即将失业。LLM 在数值计算上存在**幻觉风险**——可能编造统计结果、误解数据类型或生成无法运行的代码。2024 年的一项研究表明，ChatGPT-4 在处理包含 10 万行以上数据的分析任务时，**约 15% 的代码输出存在逻辑错误**。理解这些边界，是安全使用 LLM 进行数据分析的前提。
 
----
 
+---
 ## PandasAI：让 DataFrame 听懂自然语言
 
 [PandasAI](https://pandas-ai.com) 是一个开源 Python 库，它为 Pandas DataFrame 添加了生成式 AI 的能力。用户可以用自然语言提问，PandasAI 会在后台生成并执行对应的 Python 代码，然后返回答案。
@@ -198,7 +190,15 @@ run = client.beta.threads.runs.create(
 ## 三种方案如何选择？场景化对比
 
 | 维度 | PandasAI | Code Interpreter | OpenAI API |
-|------|----------|------------------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **使用方式** | Python 库（代码内调用） | Web 聊天界面 | REST API 调用 |
 | **目标用户** | Python 开发者 | 非技术用户 | 工程师/开发者 |
 | **数据隐私** | 可控（可用本地模型） | 数据上传至 OpenAI | 数据上传至 OpenAI |
@@ -297,7 +297,6 @@ LLM 正在从根本上改变数据分析的工作模式。PandasAI 让 Python �
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -325,25 +324,20 @@ LLM 正在从根本上改变数据分析的工作模式。PandasAI 让 Python �
 
 ## Why This Matters
 
-Understanding 使用大语言模型进行数据分析的完整工作流：pandasai、code interpreter与openai实战指南 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding 使用大语言模型进行数据分析的完整工作流：pandasai、code interpreter与openai实战指南 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

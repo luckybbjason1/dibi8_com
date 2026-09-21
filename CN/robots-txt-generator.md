@@ -1,14 +1,11 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/robots-txt-generator" />
-title: "robots.txt Generator — With AI Crawler Controls (GPTBot,...
+title: "robots.txt Generator — With AI Crawler Controls (GPTBot,..."
 description: "Generate a clean robots.txt with one click — set sitemap, disallow paths, and block AI crawlers like GPTBot, ChatGPT-User, ClaudeBot, PerplexityBot, CCBot, and Google-Extended. Copy-paste ready for your site root."
 date: 2026-05-18
 lastmod: 2026-05-19
 layout: "tool-robots-txt-generator"
 tool_id: "robots-txt-generator"
 ---
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -46,9 +43,7 @@ This guide will help you get started with the topic. Whether you're a beginner o
 
 ### Prerequisites
 
-Before diving in, make sure you have:
-
-```bash
+Before diving in, make sure you have: ```bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
@@ -73,9 +68,7 @@ This guide will help you get started with the topic. Whether you're a beginner o
 
 ### Prerequisites
 
-Before diving in, make sure you have:
-
-```bash
+Before diving in, make sure you have: ```bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
@@ -100,9 +93,7 @@ This guide will help you get started with the topic. Whether you're a beginner o
 
 ### Prerequisites
 
-Before diving in, make sure you have:
-
-```bash
+Before diving in, make sure you have: ```bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
@@ -127,9 +118,7 @@ This guide will help you get started with the topic. Whether you're a beginner o
 
 ### Prerequisites
 
-Before diving in, make sure you have:
-
-```bash
+Before diving in, make sure you have: ```bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
@@ -154,9 +143,7 @@ This guide will help you get started with the topic. Whether you're a beginner o
 
 ### Prerequisites
 
-Before diving in, make sure you have:
-
-```bash
+Before diving in, make sure you have: ```bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
@@ -181,9 +168,7 @@ This guide will help you get started with the topic. Whether you're a beginner o
 
 ### Prerequisites
 
-Before diving in, make sure you have:
-
-```bash
+Before diving in, make sure you have: ```bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
@@ -207,9 +192,21 @@ npm run dev
 ## Trading Bot Comparison
 
 | Bot | Exchange | Strategy | Cost | Difficulty |
-|-----|----------|----------|------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Freqtrade** | Multi | Custom | Free | Medium |
 | **Hummingbot** | DEX/CEX | Market making | Free | Hard |
 | **Jesse** | Crypto | Backtesting | Free | Medium |
 | **Velocimeter** | Hyperliquid | Perps | Free | Easy |
 
+
+---

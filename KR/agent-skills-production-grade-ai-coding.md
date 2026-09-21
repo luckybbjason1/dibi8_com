@@ -1,16 +1,10 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/agent-skills-production-grade-ai-coding" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/agent-skills-production-grade-ai-coding" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/agent-skills-production-grade-ai-coding" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/agent-skills-production-grade-ai-coding" />
 title: Agent Skills：개발팀이 프로덕션급 코드를 5배 빠르게 출시하는 방법
 description: Addy Osmani의 Agent Skills는 20개의 프로덕션급 엔지니어링 스킬과 7개의 슬래시 명령을 제공하여 AI 코딩. Comprehensive guide covering features, pricing, and best practices for 2026.
   에이전트를 시니어 소프트웨어 엔지니어로 변환합니다.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
-tech_stack:
-- Go
+tech_stack: - Go
 - JavaScript
 - TypeScript
 application_domain: Llm Frameworks
@@ -27,11 +21,9 @@ maintainer: ''
 last_maintained: '2026-05-15'
 featureImage: ''
 draft: false
-aliases:
-- /ko/posts/agent-skills-production-grade-ai-coding/
+aliases: - /ko/posts/agent-skills-production-grade-ai-coding/
 - /posts/addy-osmani-agent-skills-production-grade-ai-coding-agents.ko/
-faqs:
-  - q: 'Addy Osmani가 만든 Agent Skills란 무엇인가요?'
+faqs: - q: 'Addy Osmani가 만든 Agent Skills란 무엇인가요?'
     a: 'Agent Skills는 20개의 프로덕션급 엔지니어링 스킬과 7개의 슬래시 명령으로 구성된 오픈소스 모음으로, 시니어 엔지니어의 워크플로, 품질 게이트, 모범 사례를 AI 코딩 에이전트용으로 코드화한 것입니다. Addy Osmani가 만들었으며 전체 소프트웨어 개발 생명주기인 DEFINE, PLAN, BUILD, VERIFY, REVIEW, SHIP에 매핑됩니다.'
   - q: 'Agent Skills는 어떤 AI 코딩 에이전트와 함께 작동하나요?'
     a: 'Agent Skills는 Claude Code, Cursor, Gemini CLI, Windsurf, OpenCode, GitHub Copilot, Kiro, Codex와 함께 작동합니다. 각 에이전트마다 스킬 매니페스트를 담은 전용 디렉터리가 있으며, 스킬은 파일 유형과 컨텍스트에 따라 자동으로 활성화됩니다.'
@@ -43,8 +35,6 @@ faqs:
     a: '안티-합리화 표는 각 스킬에 내장된 기능으로, 개발자와 AI 에이전트가 대충 넘어가려 할 때 흔히 쓰는 변명(예: "테스트는 나중에 추가하지")을 미리 짚어내고 그에 대한 반박 근거를 제공합니다. 이 표들은 Google 규모 조직의 실제 사후 분석(post-mortem)과 코드 리뷰 피드백에서 도출되었습니다.'
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/agent-skills-production-grade-ai-coding/ -->
-
 {</* resource-info */>}
 
 # Agent Skills：개발팀이 프로덕션급 코드를 5배 빠르게 출시하는 방법
@@ -55,9 +45,7 @@ AI 코딩 에이전트는 어디에나 있습니다 — 하지만 대부분은 �
 
 Agent Skills는 **20개의 프로덕션급 엔지니어링 스킬**과 **7개의 슬래시 명령** 모음으로, Google 규모 회사의 시니어 엔지니어가 사용하는 워크플로우, 품질 게이트 및 모범 사례를 인코딩합니다. Claude Code, Cursor, Gemini CLI, Windsurf, OpenCode, GitHub Copilot, Kiro 및 Codex와 함께 작동합니다.
 
-이 시스템은 전체 소프트웨어 개발 수명 주기에 매핑됩니다:
-
-```
+이 시스템은 전체 소프트웨어 개발 수명 주기에 매핑됩니다: ```
 정의 → 계획 → 구축 → 검증 → 검토 → 출시
   /spec   /plan  /build  /test   /review  /ship
 ```
@@ -202,8 +190,7 @@ JWT 토큰을 사용한 사용자 인증 REST API 구축.
 
 ## SEO 및 개발자 채택
 
-Agent Skills는 높은 의도의 개발자 키워드에서 순위됩니다:
-- "AI coding agent best practices"
+Agent Skills는 높은 의도의 개발자 키워드에서 순위됩니다: - "AI coding agent best practices"
 - "production-grade AI software development"
 - "Claude Code skills system"
 - "spec-driven development with AI"
@@ -220,9 +207,7 @@ Agent Skills는 높은 의도의 개발자 키워드에서 순위됩니다:
 
 ## 심층 분석: 스킬 활성화 엔진
 
-Agent Skills는 여러 신호를 기반으로 어떤 스킬을 로드할지 결정하는 컨텍스트 인식 활성화 엔진을 사용합니다:
-
-### 신호 소스
+Agent Skills는 여러 신호를 기반으로 어떤 스킬을 로드할지 결정하는 컨텍스트 인식 활성화 엔진을 사용합니다: ### 신호 소스
 
 1. **명시적 명령**: `/build`, `/test`, `/review`는 매핑된 스킬 번들을 직접 로드합니다.
 2. **파일 유형 감지**: `.tsx` 파일 편집은 자동으로 `frontend-ui-engineering`을 로드하고, `.proto` 파일은 `api-and-interface-design`을 트리거합니다.
@@ -231,8 +216,7 @@ Agent Skills는 여러 신호를 기반으로 어떤 스킬을 로드할지 결�
 
 ### 스킬 구성
 
-스킬은 구성 가능합니다. 새로운 API 엔드포인트에서 데이터를 가져오는 React 컴포넌트에서 `/build`를 실행할 때 엔진은 다음을 로드합니다:
-- `incremental-implementation` (기본)
+스킬은 구성 가능합니다. 새로운 API 엔드포인트에서 데이터를 가져오는 React 컴포넌트에서 `/build`를 실행할 때 엔진은 다음을 로드합니다: - `incremental-implementation` (기본)
 - `frontend-ui-engineering` (UI 계층)
 - `api-and-interface-design` (데이터 계약)
 - `test-driven-development` (검증)
@@ -241,9 +225,7 @@ Agent Skills는 여러 신호를 기반으로 어떤 스킬을 로드할지 결�
 
 ## 반합리화 테이블
 
-Agent Skills의 가장 혁신적인 기능 중 하나는 각 스킬에 내장된 **반합리화 테이블**입니다. 시니어 엔지니어는 주니어 개발자(및 AI 에이전트)가 종종 지름길을 정당화한다는 것을 알고 있습니다. 이러한 테이블은 일반적인 합리화를 선제적으로 플래그하고 반론을 제공합니다:
-
-| 일반적인 합리화 | 반론 | 스킬 |
+Agent Skills의 가장 혁신적인 기능 중 하나는 각 스킬에 내장된 **반합리화 테이블**입니다. 시니어 엔지니어는 주니어 개발자(및 AI 에이전트)가 종종 지름길을 정당화한다는 것을 알고 있습니다. 이러한 테이블은 일반적인 합리화를 선제적으로 플래그하고 반론을 제공합니다: | 일반적인 합리화 | 반론 | 스킬 |
 |--------------|------|------|
 | "나중에 테스트를 추가하겠습니다" | "나중은 결코 오지 않습니다. 테스트되지 않은 코드는 프로덕션으로 배포됩니다." | test-driven-development |
 | "API는 내부용입니다" | "내부 API는 공개됩니다. 첫날부터 외부 소비자를 위해 설계하세요." | api-and-interface-design |
@@ -254,36 +236,29 @@ Agent Skills의 가장 혁신적인 기능 중 하나는 각 스킬에 내장된
 
 ## 컨텍스트 엔지니어링: 비법
 
-`context-engineering` 스킬은 아마도 가장 변혁적인 스킬입니다. AI 에이전트가 자체 컨텍스트 창을 효과적으로 관리하는 방법을 가르칩니다:
+`context-engineering` 스킬은 아마도 가장 변혁적인 스킬입니다. AI 에이전트가 자체 컨텍스트 창을 효과적으로 관리하는 방법을 가르칩니다: ### 규칙 파일
 
-### 규칙 파일
-
-프로젝트 루트에 `.cursorrules`, `.claude.md` 또는 `.kiro.md` 파일을 배치하여 다음을 정의합니다:
-- 아키텍처 결정 및 그 근거
+프로젝트 루트에 `.cursorrules`, `.claude.md` 또는 `.kiro.md` 파일을 배치하여 다음을 정의합니다: - 아키텍처 결정 및 그 근거
 - 금지 패턴 (예: "TypeScript에서 `any`를 절대 사용하지 마세요")
 - 선호하는 라이브러리 및 버전 제약
 - 테스트 규칙 (jest 대 vitest, 커버리지 임계값)
 
 ### 컨텍스트 패킹
 
-대형 코드베이스의 경우 이 스킬은 에이전트에게 다음을 가르칩니다:
-1. **요약**: 전체 콘텐츠를 로드하기 전에 500줄이 넘는 파일을 인터페이스 설명으로 요약
+대형 코드베이스의 경우 이 스킬은 에이전트에게 다음을 가르칩니다: 1. **요약**: 전체 콘텐츠를 로드하기 전에 500줄이 넘는 파일을 인터페이스 설명으로 요약
 2. **우선순위**: 오래된 코드보다 최근 git 활동이 있는 파일 우선 로드
 3. **제외**: 생성된 파일(잠금 파일, 빌드 출력)을 컨텍스트에서 제외
 4. **체인 참조**: 파일 A가 B를 가져올 때 A의 인터페이스와 B의 구현을 로드
 
 ### MCP 통합
 
-이 스킬에는 다음을 위한 모델 컨텍스트 프로토콜(MCP) 구성이 포함됩니다:
-- **브라우저 DevTools**: 라이브 DOM 검사, 네트워크 추적 분석
+이 스킬에는 다음을 위한 모델 컨텍스트 프로토콜(MCP) 구성이 포함됩니다: - **브라우저 DevTools**: 라이브 DOM 검사, 네트워크 추적 분석
 - **데이터베이스 스키마**: API 설계 검증을 위한 SQL 인트로스펙션
 - **문서 서버**: 실시간 프레임워크 문서 조회
 
 ## 에이전트 스킬 영향 측정
 
-Agent Skills를 사용하는 팀은 다음 지표를 추적해야 합니다:
-
-| 지표 | 기준선 (스킬 없음) | Agent Skills 사용 | 변화 |
+Agent Skills를 사용하는 팀은 다음 지표를 추적해야 합니다: | 지표 | 기준선 (스킬 없음) | Agent Skills 사용 | 변화 |
 |------|-------------------|-------------------|------|
 | 스펙부터 첫 커밋까지 시간 | 4시간 | 45분 | -81% |
 | PR 검토 라운드 | 평균 3.2 | 평균 1.4 | -56% |
@@ -305,16 +280,13 @@ Agent Skills를 사용하는 팀은 다음 지표를 추적해야 합니다:
 
 ### 전략 3: 게이트키핑 통합
 
-Agent Skills를 CI/CD에 통합합니다:
-- 기능이 100줄 이상인 경우 스펙 파일이 포함되지 않은 PR 차단
+Agent Skills를 CI/CD에 통합합니다: - 기능이 100줄 이상인 경우 스펙 파일이 포함되지 않은 PR 차단
 - PR에 자동으로 `/review`를 실행하고 결과를 코멘트로 게시
 - 모든 버그 수정 PR에 `/test` 출력(테스트 계획) 필요
 
 ## 비교: Agent Skills vs 엔지니어링 사다리
 
-Agent Skills는 시니어 엔지니어링 관행의 학습 곡선을 효과적으로 압축합니다:
-
-| 시니어 엔지니어링 관행 | 숙달에 필요한 년수 | Agent Skills 등가물 |
+Agent Skills는 시니어 엔지니어링 관행의 학습 곡선을 효과적으로 압축합니다: | 시니어 엔지니어링 관행 | 숙달에 필요한 년수 | Agent Skills 등가물 |
 |----------------------|-------------------|---------------------|
 | 포괄적인 스펙 작성 | 2-3년 | `/spec` 명령 |
 | 복잡한 프로젝트 분해 | 1-2년 | `/plan` 명령 |
@@ -343,16 +315,13 @@ Agent Skills는 "AI가 코드를 작성할 수 있다"와 "AI가 프로덕션 �
 
 ## 자체 호스팅 추천 인프라
 
-24/7 안정 운영을 위해 인프라 선택이 중요하다:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 60일 $200 크레딧, 글로벌 14+ 리전. 오픈소스 AI 도구 자체 호스팅에 적합.
+24/7 안정 운영을 위해 인프라 선택이 중요하다: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 60일 $200 크레딧, 글로벌 14+ 리전. 오픈소스 AI 도구 자체 호스팅에 적합.
 - **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — 홍콩 VPS, 중국 본토 접근 시 저지연. dibi8.com 자체가 호스팅된 검증된 IDC.
 
 *추천 링크입니다. 추가 비용 없이 dibi8.com 운영에 도움이 됩니다.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

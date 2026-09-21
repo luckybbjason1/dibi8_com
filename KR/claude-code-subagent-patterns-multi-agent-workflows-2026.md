@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-code-subagent-patterns-multi-agent-workflows-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-subagent-patterns-multi-agent-workflows-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-subagent-patterns-multi-agent-workflows-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-subagent-patterns-multi-agent-workflows-2026" />
 title: 'Claude Code 서브에이전트(Subagent) 실전: 매일 몇 시간을 아껴주는 5가지 멀티에이전...
 description: '프로덕션에서 검증된 5가지 Claude Code subagent 패턴 — 병렬 리서치, worktree 격리, 전문가 위임, 컨텍스트 보호, 파이프라인 오케스트레이션. 실제 프롬프트와 트레이드오프 포함.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-28 00:00:00+08:00
@@ -25,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['claude-code', subagents, 'multi-agent', 'ai-coding-agents', 'llm-frameworks', 'developer-tools', 'agent-sdk']
-aliases:
-- /posts/claude-code-subagent-patterns/
-faq:
-  - q: "Claude Code의 subagent란 정확히 무엇이며, CLI를 한 번 더 실행하는 것과 어떻게 다른가요?"
+aliases: - /posts/claude-code-subagent-patterns/
+faq: - q: "Claude Code의 subagent란 정확히 무엇이며, CLI를 한 번 더 실행하는 것과 어떻게 다른가요?"
     a: "Subagent는 활성 Claude 세션 내부에서 Agent(Task) 도구를 통해 생성되는 샌드박스화된 Claude 대화입니다. 부모 세션은 subagent의 최종 보고서만 보고 — 중간 도구 호출, 파일 읽기, 사고 과정은 보지 못합니다. 이것이 두 번째 CLI를 실행하는 것과의 핵심 차이입니다: 부모의 컨텍스트 윈도우가 subagent의 탐색 노이즈로부터 보호됩니다. Subagent는 병렬 리서치, 깊은 코드 탐색, 격리된 실험에 적합합니다 — 부모의 작업 기억이 오염되지 않아야 하는 상황입니다."
   - q: "Subagent를 사용하지 말고 부모 세션에서 계속 작업해야 할 때는 언제인가요?"
     a: "부모가 이미 파일을 열어두었거나 컨텍스트를 로드한 사소한 조회, 각 중간 상태를 봐야 하는 순차 편집, 그리고 subagent가 양방향 통신을 해야 하는 긴밀하게 결합된 변경 (subagent는 일회성입니다 — 단일 보고서만 반환합니다)에는 subagent를 건너뛰세요. 경험 법칙: 현재 상태에서 3번 이하의 도구 호출로 답할 수 있다면, 인라인으로 처리하세요."
@@ -42,7 +35,6 @@ faq:
     a: "각 subagent 호출은 다른 Claude 대화처럼 토큰을 소비합니다. 비용은 대략 subagent의 전체 컨텍스트입니다 (시스템 프롬프트 + 도구 스키마 + 작업 프롬프트 + 사고 + 최종 보고서). Pro와 Max 플랜에서 subagent 사용은 부모 세션과 같은 사용 한도에 산입됩니다. API 사용자의 경우 토큰당 직접 청구됩니다. 절약은 부모 컨텍스트를 부풀릴 탐색을 분담함으로써 발생합니다 — subagent에 비용을 지불하지만, 메인 세션은 빠르고 집중된 상태로 유지됩니다."
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/claude-code-subagent-patterns-multi-agent-workflows-2026/ -->
 # Claude Code 서브에이전트(Subagent) 실전: 매일 몇 시간을 아껴주는 5가지 멀티에이전트 워크플로 (2026)
 
 
@@ -61,8 +53,7 @@ faq:
 **패턴.** 세 개의 Explore subagent를 병렬로 생성합니다. 각각 질문 하나씩. 각각 자체 샌드박스 컨텍스트에서 실행됩니다. 각각 짧은 보고서를 반환합니다. 부모는 세 개의 grep dump 대신 세 개의 간결한 문단을 봅니다.
 
 ```
-단일 메시지 → 3개의 Agent 도구 호출:
-  - Agent("auth 핸들러 찾기", subagent_type="Explore", prompt="...")
+단일 메시지 → 3개의 Agent 도구 호출: - Agent("auth 핸들러 찾기", subagent_type="Explore", prompt="...")
   - Agent("상태 관리 매핑", subagent_type="Explore", prompt="...")
   - Agent("폐기된 fn Z 사용처 찾기", subagent_type="Explore", prompt="...")
 ```
@@ -147,9 +138,7 @@ Agent({
 
 ## 프로덕션 준비된 Claude Code 구축하기
 
-스케일로 멀티에이전트 워크플로를 실행하려면 세 가지 인프라 조각이 필요합니다:
-
-1. **장기 세션을 위한 신뢰할 수 있는 호스트.** CI에서 또는 서버 측 코드베이스에 대해 Claude Code를 실행한다면, SSH 세션이 끊기거나 스로틀링되지 않는 VPS가 필요합니다. **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 중국 본토에서 저지연 액세스가 가능한 홍콩 VPS, 안정적인 BGP 라우팅. dibi8.com을 호스트하는 동일한 IDC이므로, 우리는 자체 멀티에이전트 파이프라인을 그 위에서 실행합니다. 견고한 가치 등급 $5-12/월.
+스케일로 멀티에이전트 워크플로를 실행하려면 세 가지 인프라 조각이 필요합니다: 1. **장기 세션을 위한 신뢰할 수 있는 호스트.** CI에서 또는 서버 측 코드베이스에 대해 Claude Code를 실행한다면, SSH 세션이 끊기거나 스로틀링되지 않는 VPS가 필요합니다. **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 중국 본토에서 저지연 액세스가 가능한 홍콩 VPS, 안정적인 BGP 라우팅. dibi8.com을 호스트하는 동일한 IDC이므로, 우리는 자체 멀티에이전트 파이프라인을 그 위에서 실행합니다. 견고한 가치 등급 $5-12/월.
 
 2. **병렬 실험을 위한 클라우드 플레이그라운드.** 각자 자체 worktree가 필요한 6+ subagent를 fan out 할 때, 여분의 CPU가 필요합니다. **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — 60일 동안 $200 무료 크레딧, 14+ 글로벌 리전. 인디 개발자들은 이것을 사용해 메인 앱과 함께 Claude Code 오케스트레이터를 호스트하고 리소스 경합 없이 실행합니다.
 
@@ -172,7 +161,6 @@ Agent({
 "메인 세션에 계속 타이핑하라"는 본능은 죽기 어렵습니다. 무시하세요. Subagent를 생성하세요.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -200,25 +188,20 @@ Agent({
 
 ## Why This Matters
 
-Understanding claude code 서브에이전트(subagent) 실전: 매일 몇 시간을 아껴주는 5가지 멀티에이전트 워크플로 (2026) is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding claude code 서브에이전트(subagent) 실전: 매일 몇 시간을 아껴주는 5가지 멀티에이전트 워크플로 (2026) is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

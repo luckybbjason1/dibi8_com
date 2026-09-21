@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/odysseus-self-hosted-ai-workspace-chat-agent-deep-research" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/odysseus-self-hosted-ai-workspace-chat-agent-deep-research" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/odysseus-self-hosted-ai-workspace-chat-agent-deep-research" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/odysseus-self-hosted-ai-workspace-chat-agent-deep-research" />
 title: '奥德赛：自我托管AI工作站，内置10余种工具——6.5万颗星——完整安装指南2026'
 description: '奥德赛（65,243个GitHub星标）是一个自助托管的AI工作站，结合了聊天、代理自动化、深度研究、文档编辑、邮件筛选、日历等功能。支持vLLM、llama.cpp、Ollama、OpenRouter、OpenAI和GitHub Copilot。提供Docker和原生Linux/macOS安装方式。'
 date: 2026-06-09
-lastmod:  2026-06-09slug: 'odysseus-self-hosted-ai-workspace-chat-agent-deep-research'
+lastmod: 2026-06-09
+slug: 'odysseus-self-hosted-ai-workspace-chat-agent-deep-research'
 category: 'ai-tools'
 tags: ['odysseus', 'self-hosted AI', 'AI workspace', 'local AI', 'deep research', 'AI agent', 'chat interface', 'open-source AI', 'home lab AI']
 github_repo: 'https://github.com/pewdiepie-archdaemon/odysseus'
@@ -15,10 +11,7 @@ stars: 65243
 maintainer: 'pewdiepie-archdaemon'
 license: MIT
 featureImage: 'https://raw.githubusercontent.com/pewdiepie-archdaemon/odysseus/dev/docs/odysseus.jpg'
-lang: zh
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/odysseus-self-hosted-ai-workspace-chat-agent-deep-research/ -->
 # Odysseus：自带AI工作站，内置10多种工具——GitHub星标65,000+——完整安装指南2026
 
 ```
@@ -62,7 +55,13 @@ Odysseus 是一个基于Python（FastAPI后端，响应式Web前端）的全栈A
 该项目在单个网络应用程序中集成了以下功能：
 
 | 功能 | 描述 | 基于 |
-|---------|-------------|----------|
+|
+---
+|
+---
+|
+---
+|
 | 聊天 | 多模型对话 | vLLM, llama.cpp, Ollama, OpenRouter, OpenAI, GitHub Copilot |
 | 代理 | 自主智能代理 | OpenCode, MCP, web, files, shell, skills, memory |
 | 烹饪书 | 意识到硬件的模型下载器和服务端 | llmfit, VRAM意识，GGUF/FP8/AWQ |
@@ -266,8 +265,7 @@ Odysseus 剂量基于 [OpenCode](https://github.com/anomalyco/opencode)，使其
 # Configure MCP in .env
 MCP_SERVERS=http://localhost:3000,mcp://your-server
 
-# Your agent can then use:
-# - File tools (read/write/search)
+# Your agent can then use: # - File tools (read/write/search)
 # - Shell execution
 # - Web search
 # - Custom skills
@@ -282,8 +280,7 @@ Odysseus 包含了 ChromaDB，用于向量基础的持久内存。您的剂量�
 odysseus memory export --output memory.json
 odysseus memory import --input memory.json
 
-# The memory system uses:
-# - ChromaDB for vector storage
+# The memory system uses: # - ChromaDB for vector storage
 # - fastembed (ONNX) for embeddings
 # - Combined vector + keyword retrieval
 ```
@@ -319,7 +316,13 @@ AI 可以自动：总结邮件、标记紧急程度、起草回复、自动分�
 ### 资源使用比较
 
 | 组件 | Docker | 原生（无模型） |
-|-----------|--------|---------------------|
+|
+---
+|
+---
+|
+---
+|
 | 内存 (RAM) | ~200 MB | ~50 MB |
 | 磁盘空间 (Disk) | ~500 MB（基础） | ~100 MB |
 | 启动时间 (Startup) | ~5 秒 | ~1 秒 |
@@ -401,21 +404,13 @@ server {
 
 ```yaml
 # docker-compose.prod.yml
-services:
-  odysseus:
-    image: pewdiepie-archdaemon/odysseus:latest
+services: odysseus: image: pewdiepie-archdaemon/odysseus:latest
     restart: unless-stopped
-    ports:
-      - "127.0.0.1:7000:7000"
-    volumes:
-      - ./data:/app/data
+    ports: - "127.0.0.1:7000:7000"
+    volumes: - ./data:/app/data
       - ./config:/app/config
     env_file: .env
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+    deploy: resources: reservations: devices: - driver: nvidia
               count: 1
               capabilities: [gpu]
 ```
@@ -436,7 +431,19 @@ tar czf odysseus-backup-$(date +%Y%m%d).tar.gz \
 ### 与其他替代方案的比较
 
 | 特性 | Odysseus | ChatGPT | Claude | NotebookLM | Open WebUI |
-|------|----------|---------|--------|------------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 自托管 | ✅ 完全 | ❌ 只限云端 | ❌ 只限云端 | ❌ 只限云端 | ✅ 部分 |
 | 内置代理 | ✅ OpenCode/MCP | ✅ GPTs | ✅ Computer Use | ❌ 无 | ✅ 局部 |
 | 深度研究 | ✅ 内置 | ✅ Plus 版本仅限 | ✅ | ✅ 内置 | ❌ 无 |
@@ -505,13 +512,12 @@ Odysseus 是 GitHub 上最具雄心的自托管 AI 项目之一——它将聊�
 - 深度研究（改编自）: https://github.com/Alibaba-NLP/DeepResearch
 - 代理框架（OpenCode）: https://github.com/anomalyco/opencode
 
----
 
+---
 加入我们的社区，了解更多 AI 工具深度解析：[t.me/DIBI8_Group](https://t.me/DIBI8_Group)
 
 **免责声明：** 本文仅作参考之用。在生产环境中运行第三方软件之前，请务必审查源代码。关联声明：上述某些链接可能包含关联代码。我们可能会在不增加您额外成本的情况下获得佣金。
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -537,8 +543,8 @@ Odysseus 是 GitHub 上最具雄心的自托管 AI 项目之一——它将聊�
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [oh-my-pi](odysseus-self-hosted-ai-workspace-chat-agent-deep-research)

@@ -1,19 +1,14 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/academic-research-skills" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/academic-research-skills" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/academic-research-skills" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/academic-research-skills" />
 title: "学术研究技能：用 AI 自动化文献综述——31K 星框架 2026"
-description: "Academic Research Skills（31,628 颗星）自动化研究流水线：搜索论文、提取洞察、综合发现并撰写文献综述。专为 Claude Code 构建，采用模块化技能架构。". Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "Academic Research Skills（31,628 颗星）自动化研究流水线：搜索论文、提取洞察、综合发现并撰写文献综述。专为 Claude Code 构建，采用模块化技能架构。"
 date: 2026-06-15
-lastmod:  2026-06-15slug: academic-research-skills
+lastmod: 2026-06-15
+slug: academic-research-skills
 category: dev-utils
 tags: ['学术研究', '文献综述', 'AI 研究', '论文分析', '综合', 'claude code', '研究自动化']
 github_repo: "https://github.com/Imbad0202/academic-research-skills"
 license: Other
-images:
-  - url: "https://opengraph.github.com/github/Imbad0202/academic-research-skills"
+images: - url: "https://opengraph.github.com/github/Imbad0202/academic-research-skills"
     alt: "Academic Research Skills GitHub OG"
     role: reference
   - url: "https://raw.githubusercontent.com/Imbad0202/academic-research-skills/main/assets/research-pipeline.png"
@@ -22,11 +17,7 @@ images:
   - url: "https://raw.githubusercontent.com/Imbad0202/academic-research-skills/main/assets/skill-architecture.png"
     alt: "技能架构"
     role: architecture
-lang: zh
-featureImage: /images/articles/academic-research-skills-automate-literature-reviews-with-ai.jpg
----
-
-<!-- canonical: https://dibi8.com/zh/tools/academic-research-skills/ -->
+featureImage: /images/articles/academic-research-skills-automate-literature-reviews-with-ai.jpg---
 
 ## 快速概览
 
@@ -106,7 +97,13 @@ cp config.example.yaml config.yaml
 ### 必需的 API 密钥
 
 | 服务 | 用途 | 免费额度 |
-|------|------|---------|
+|
+---
+|
+---
+|
+---
+|
 | **Semantic Scholar** | 论文搜索和引文数据 | 100 次/分钟 |
 | **arXiv** | 预印本论文访问 | 无限 |
 | **PubMed/PMC** | 生物医学文献 | 10 次/秒 |
@@ -154,7 +151,13 @@ Docker 镜像包含了 tesseract-ocr 用于扫描文档处理和 poppler-utils �
 Academic Research Skills 与流行的研究和写作工具集成：
 
 | 工具 | 集成方式 | 用例 |
-|------|---------|------|
+|
+---
+|
+---
+|
+---
+|
 | **Zotero** | CSV 导出/导入 | 参考文献管理 |
 | **Notion** | Markdown 导入 | 研究笔记 |
 | **Overleaf** | LaTeX 导出 | 论文写作 |
@@ -175,7 +178,13 @@ python3 scripts/export.py --format latex --input synthesis.json --output bibliog
 
 ```
 研究任务                    | 手动     | 自动化    | 加速比
----------------------------|---------|----------|--------
+
+---
+|
+---
+|
+---
+|---
 搜索 50 篇相关论文          | 8 小时   | 15 分钟   | 32 倍
 从 20 篇论文中提取关键发现  | 16 小时  | 45 分钟   | 21 倍
 综合为综述                 | 12 小时  | 2 小时    | 6 倍
@@ -229,8 +238,7 @@ graph.compute_centrality()  # PageRank、H指数、引用次数
 
 # 识别开创性论文
 seminal = graph.get_top_cited(k=10)
-for paper in seminal:
-    print(f"{paper.title} — {paper.citation_count} 次引用")
+for paper in seminal: print(f"{paper.title} — {paper.citation_count} 次引用")
 ```
 
 ### 自定义综合模板
@@ -277,7 +285,19 @@ formatted.export("references_ris.ris")
 有多种工具可以自动化研究的某些环节，但 Academic Research Skills 以其端到端的方式独树一帜：
 
 | 特性 | Academic Research Skills | ResearchRabbit | Elicit | Consensus | Litmaps |
-|------|-------------------------|----------------|--------|-----------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 星标数 | 31,628 | 5,200 | 12,000 | 3,800 | 2,100 |
 | 多数据库搜索 | 4 个数据库 | 仅 Semantic Scholar | 仅 Semantic Scholar | 仅 Semantic Scholar | 仅 Crossref |
 | PDF 提取 | 完整（文本+图表） | 无 | 仅摘要 | 仅摘要 | 无 |
@@ -354,8 +374,8 @@ npx skills add https://github.com/Imbad0202/academic-research-skills
 
 **相关文章**：[比较 AI 编程 Agent](https://dibi8.com/ai-tools/oh-my-pi) · [构建生产级 AI 系统](https://dibi8.com/llm-frameworks/ai-engineering-from-scratch)
 
----
 
+---
 **来源与延伸阅读**：
 - GitHub 仓库：https://github.com/Imbad0202/academic-research-skills
 - Semantic Scholar API：https://api.semanticscholar.org/
@@ -363,8 +383,7 @@ npx skills add https://github.com/Imbad0202/academic-research-skills
 - PubMed API：https://www.ncbi.nlm.nih.gov/books/NBK25500/
 
 
-**Sources & Further Reading**:
-- GitHub仓库: https://github.com/Imbad0202/academic-research-skills
+**Sources & Further Reading**: - GitHub仓库: https://github.com/Imbad0202/academic-research-skills
 - Semantic Scholar API: https://api.semanticscholar.org/
 - arXiv API: https://info.arxiv.org/help/api/index.html
 - PubMed API: https://www.ncbi.nlm.nih.gov/books/NBK25500/
@@ -373,7 +392,6 @@ npx skills add https://github.com/Imbad0202/academic-research-skills
 **披露**：本文包含联盟链接。如果你通过我们的链接注册，我们可能会获得佣金，这不会给你增加额外费用。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -401,25 +419,20 @@ npx skills add https://github.com/Imbad0202/academic-research-skills
 
 ## Why This Matters
 
-Understanding 学术研究技能：用 ai 自动化文献综述——31k 星框架 2026 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding 学术研究技能：用 ai 自动化文献综述——31k 星框架 2026 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -440,8 +453,8 @@ To implement this in your workflow:
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -485,7 +498,17 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

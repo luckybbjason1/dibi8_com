@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/docker-compose" />
 title: 'Docker Compose: 37,393 GitHub Stars — Multi-Container Se...
 description: 'Define and run multi-container applications with Docker using declarative YAML configuration.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: ['docker-compose', 'container-orchestration', devops, docker, microservices, deployment, yaml, 'multi-container']
-aliases:
-- /posts/docker-compose/
+aliases: - /posts/docker-compose/-
 ---
-
 {{</* resource-info */>}}
 
 ![Docker Compose Logo](https://raw.githubusercontent.com/docker/compose/main/logo.png)
@@ -42,9 +38,7 @@ Docker Compose is a tool that defines and runs multi-container Docker applicatio
 
 ![Docker Compose Architecture](https://docs.docker.com/get-started/docker-concepts/running-containers/images/multi-container-apps-compose.png)
 
-The architecture is straightforward. You write a `compose.yaml` file describing your services, networks, and volumes. The `docker compose` CLI plugin reads this file and translates it into Docker Engine API calls. Here's what happens under the hood:
-
-1. **Project isolation**: Compose creates a dedicated Docker network named `<project>_<network>` (default: directory name + `_default`). All services in the project communicate over this isolated bridge network.
+The architecture is straightforward. You write a `compose.yaml` file describing your services, networks, and volumes. The `docker compose` CLI plugin reads this file and translates it into Docker Engine API calls. Here's what happens under the hood: 1. **Project isolation**: Compose creates a dedicated Docker network named `<project>_<network>` (default: directory name + `_default`). All services in the project communicate over this isolated bridge network.
 2. **Service discovery**: Containers reach each other by service name. If you have a `db` service, your `api` container connects to `db:5432` without any DNS configuration.
 3. **Volume management**: Named volumes persist data across container restarts. Compose prefixes volume names with the project name to avoid collisions.
 4. **Dependency ordering**: The `depends_on` directive controls startup sequence. Combined with `condition: service_healthy`, it ensures your database is ready before the application starts.
@@ -123,9 +117,7 @@ docker compose version
 
 ### Manual Binary Install
 
-For environments without package managers:
-
-```bash
+For environments without package managers: ```bash
 DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
 mkdir -p $DOCKER_CONFIG/cli-plugins
 curl -SL https://github.com/docker/compose/releases/download/v2.36.0/docker-compose-linux-x86_64 \
@@ -138,30 +130,21 @@ docker compose version
 
 ### Traefik (Reverse Proxy & Load Balancer)
 
-Traefik automatically discovers Docker containers and routes traffic based on labels. This eliminates manual nginx configuration:
-
-```yaml
+Traefik automatically discovers Docker containers and routes traffic based on labels. This eliminates manual nginx configuration: ```yaml
 # compose.yaml — Traefik + Whoami example
 name: proxy-demo
 
-services:
-  traefik:
-    image: traefik:v3.3
-    command:
-      - "--api.insecure=true"
+services: traefik: image: traefik:v3.3
+    command: - "--api.insecure=true"
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
       - "--entrypoints.web.address=:80"
-    ports:
-      - "80:80"
+    ports: - "80:80"
       - "8080:8080"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+    volumes: - /var/run/docker.sock:/var/run/docker.sock:ro
 
-  whoami:
-    image: traefik/whoami
-    labels:
-      - "traefik.enable=true"
+  whoami: image: traefik/whoami
+    labels: - "traefik.enable=true"
       - "traefik.http.routers.whoami.rule=Host(`whoami.localhost`)"
       - "traefik.http.routers.whoami.entrypoints=web"
 ```
@@ -174,33 +157,20 @@ Start with `docker compose up -d` and visit `http://whoami.localhost`.
 # compose.yaml — Monitoring stack
 name: monitoring
 
-services:
-  prometheus:
-    image: prom/prometheus:v3.2.0
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+services: prometheus: image: prom/prometheus:v3.2.0
+    volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
       - prometheus_data:/prometheus
-    ports:
-      - "9090:9090"
-    command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports: - "9090:9090"
+    command: - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
 
-  grafana:
-    image: grafana/grafana:11.5.0
-    ports:
-      - "3000:3000"
-    volumes:
-      - grafana_data:/var/lib/grafana
-    environment:
-      - GF_SECURITY_ADMIN_PASSWORD=admin
-    depends_on:
-      - prometheus
+  grafana: image: grafana/grafana:11.5.0
+    ports: - "3000:3000"
+    volumes: - grafana_data:/var/lib/grafana
+    environment: - GF_SECURITY_ADMIN_PASSWORD=admin
+    depends_on: - prometheus
 
-volumes:
-  prometheus_data:
-  grafana_data:
-```
+volumes: prometheus_data: grafana_data: ```
 
 Prometheus scrapes container metrics; Grafana visualizes them. Add the Prometheus data source at `http://prometheus:9090` after login.
 
@@ -210,78 +180,63 @@ Prometheus scrapes container metrics; Grafana visualizes them. Add the Prometheu
 # compose.yaml — Production-ready 3-tier app
 name: myapp
 
-services:
-  db:
-    image: postgres:16-alpine
-    environment:
-      POSTGRES_USER: appuser
+services: db: image: postgres:16-alpine
+    environment: POSTGRES_USER: appuser
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: appdb
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U appuser -d appdb"]
+    volumes: - postgres_data:/var/lib/postgresql/data
+    healthcheck: test: ["CMD-SHELL", "pg_isready -U appuser -d appdb"]
       interval: 10s
       timeout: 5s
       retries: 5
       start_period: 30s
     restart: unless-stopped
 
-  redis:
-    image: redis:7-alpine
-    volumes:
-      - redis_data:/data
-    healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
+  redis: image: redis:7-alpine
+    volumes: - redis_data:/data
+    healthcheck: test: ["CMD", "redis-cli", "ping"]
       interval: 10s
       timeout: 3s
       retries: 3
     restart: unless-stopped
 
-  api:
-    build:
-      context: ./api
+  api: build: context: ./api
       dockerfile: Dockerfile
-    environment:
-      DATABASE_URL: postgresql://appuser:${DB_PASSWORD}@db:5432/appdb
+    environment: DATABASE_URL: postgresql://appuser:${DB_PASSWORD}@db:5432/appdb
       REDIS_URL: redis://redis:6379/0
-    depends_on:
-      db:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+    depends_on: db: condition: service_healthy
+      redis: condition: service_healthy
+    healthcheck: test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 20s
     restart: unless-stopped
 
-  nginx:
-    image: nginx:1.27-alpine
-    ports:
-      - "80:80"
-    volumes:
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
-    depends_on:
-      api:
-        condition: service_healthy
+  nginx: image: nginx:1.27-alpine
+    ports: - "80:80"
+    volumes: - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on: api: condition: service_healthy
     restart: unless-stopped
 
-volumes:
-  postgres_data:
-  redis_data:
-```
+volumes: postgres_data: redis_data: ```
 
 Key patterns demonstrated: health-checked dependencies, named volumes for persistence, build contexts for custom images, and `restart: unless-stopped` for resilience.
 
 ## Benchmarks / Real-World Use Cases
 
-Docker Compose excels in specific scenarios. Here are numbers from production deployments and comparisons:
-
-| Metric | Docker Compose | Kubernetes | Podman Compose | Nomad |
-|--------|---------------|------------|----------------|-------|
+Docker Compose excels in specific scenarios. Here are numbers from production deployments and comparisons: | Metric | Docker Compose | Kubernetes | Podman Compose | Nomad |
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Control Plane RAM** | ~50 MB | ~2 GB | 0 MB (daemonless) | ~100 MB |
 | **Nodes Supported** | Single node | Unlimited | Single node | Unlimited |
 | **Services per Project** | 1-50 typical | 1-10,000+ | 1-50 typical | 1-1,000+ |
@@ -300,81 +255,50 @@ Docker Compose excels in specific scenarios. Here are numbers from production de
 
 ### Health Checks and Startup Ordering
 
-Never deploy to production without health checks. A container showing `Up` status only means the process started — not that your application works:
-
-```yaml
-services:
-  api:
-    image: myapp:v1.2.3
-    healthcheck:
-      test: ["CMD", "curl", "-fsS", "http://localhost:8080/ready"]
+Never deploy to production without health checks. A container showing `Up` status only means the process started — not that your application works: ```yaml
+services: api: image: myapp:v1.2.3
+    healthcheck: test: ["CMD", "curl", "-fsS", "http://localhost:8080/ready"]
       interval: 15s
       timeout: 5s
       retries: 3
       start_period: 30s
-    depends_on:
-      db:
-        condition: service_healthy
+    depends_on: db: condition: service_healthy
     restart: unless-stopped
 ```
 
 ### Log Rotation
 
-Unlimited JSON logs fill disks. Configure the local logging driver with rotation:
-
-```yaml
-services:
-  api:
-    image: myapp:v1.2.3
-    logging:
-      driver: "local"
-      options:
-        max-size: "10m"
+Unlimited JSON logs fill disks. Configure the local logging driver with rotation: ```yaml
+services: api: image: myapp:v1.2.3
+    logging: driver: "local"
+      options: max-size: "10m"
         max-file: "3"
         compress: "true"
 ```
 
 ### Resource Limits
 
-Prevent one runaway container from starving others:
-
-```yaml
-services:
-  worker:
-    image: myapp-worker:v1.2.3
-    deploy:
-      resources:
-        limits:
-          cpus: '1.0'
+Prevent one runaway container from starving others: ```yaml
+services: worker: image: myapp-worker:v1.2.3
+    deploy: resources: limits: cpus: '1.0'
           memory: 512M
-        reservations:
-          cpus: '0.25'
+        reservations: cpus: '0.25'
           memory: 128M
 ```
 
 ### Profiles for Environment Separation
 
-Use profiles to define dev-only services without maintaining multiple files:
+Use profiles to define dev-only services without maintaining multiple files: ```yaml
+services: api: image: myapp:latest
+    ports: - "8080:8080"
 
-```yaml
-services:
-  api:
-    image: myapp:latest
-    ports:
-      - "8080:8080"
+  db: image: postgres:16
+    environment: POSTGRES_PASSWORD: devpass
 
-  db:
-    image: postgres:16
-    environment:
-      POSTGRES_PASSWORD: devpass
-
-  pgadmin:
-    image: dpage/pgadmin4:latest
+  pgadmin: image: dpage/pgadmin4:latest
     profiles: ["debug"]
-    ports:
-      - "5050:80"
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin@local.dev
+    ports: - "5050:80"
+    environment: PGADMIN_DEFAULT_EMAIL: admin@local.dev
       PGADMIN_DEFAULT_PASSWORD: admin
 ```
 
@@ -382,32 +306,21 @@ Run debug tools only when needed: `docker compose --profile debug up -d`. Withou
 
 ### Secrets Management
 
-Never commit passwords to your compose file. Use Docker secrets or environment files:
+Never commit passwords to your compose file. Use Docker secrets or environment files: ```yaml
+services: api: image: myapp:latest
+    secrets: - db_password
+    environment: DB_PASSWORD_FILE: /run/secrets/db_password
 
-```yaml
-services:
-  api:
-    image: myapp:latest
-    secrets:
-      - db_password
-    environment:
-      DB_PASSWORD_FILE: /run/secrets/db_password
-
-secrets:
-  db_password:
-    file: ./secrets/db_password.txt
+secrets: db_password: file: ./secrets/db_password.txt
 ```
 
 ### The `include` Directive (Compose v2.20+)
 
-Split large projects into modular compose files:
-
-```yaml
+Split large projects into modular compose files: ```yaml
 # compose.yaml — root file
 name: platform
 
-include:
-  - path: ./infra/postgres.yaml
+include: - path: ./infra/postgres.yaml
   - path: ./infra/redis.yaml
   - path: ./apps/api.yaml
   - path: ./apps/worker.yaml
@@ -418,9 +331,7 @@ Each included file is a valid compose file with its own services, networks, and 
 
 ### Blue/Green Deployments
 
-For zero-downtime updates without Kubernetes, use two compose projects and a reverse proxy:
-
-```bash
+For zero-downtime updates without Kubernetes, use two compose projects and a reverse proxy: ```bash
 #!/bin/bash
 # deploy.sh
 CURRENT=$(cat /tmp/current_slot 2>/dev/null || echo "blue")
@@ -443,7 +354,17 @@ echo "$NEW" > /tmp/current_slot
 ## Comparison with Alternatives
 
 | Feature | Docker Compose | Kubernetes | Podman + Compose | Nomad |
-|---------|---------------|------------|------------------|-------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Learning Curve** | Low (single YAML) | High (many resources) | Low (Docker CLI compatible) | Medium (HCL configs) |
 | **Multi-Node** | No (single host) | Yes | No (single host) | Yes |
 | **Daemon Required** | Yes (dockerd) | Yes (kubelet + control plane) | No (daemonless) | Yes (Nomad agent) |
@@ -457,9 +378,7 @@ echo "$NEW" > /tmp/current_slot
 
 ## Limitations / Honest Assessment
 
-Docker Compose is not a universal solution. Here is where it falls short:
-
-**Single-node constraint**: Compose runs on one host. If that host fails, your entire stack goes down. For high-availability requirements, you need Kubernetes, Nomad, or Docker Swarm.
+Docker Compose is not a universal solution. Here is where it falls short: **Single-node constraint**: Compose runs on one host. If that host fails, your entire stack goes down. For high-availability requirements, you need Kubernetes, Nomad, or Docker Swarm.
 
 **No native auto-scaling**: `docker compose up --scale api=3` works, but it is manual. There is no CPU-based or memory-based horizontal pod autoscaling like Kubernetes HPA.
 
@@ -516,9 +435,7 @@ Join our [Telegram group](https://t.me/dibi8dev) to share your Docker Compose co
 
 ## Recommended Tools
 
-Products we recommend that complement this guide:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — DigitalOcean
+Products we recommend that complement this guide: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — DigitalOcean
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — HTStack
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -537,7 +454,6 @@ Products we recommend that complement this guide:
 - [Docker Desktop Pricing and Licensing](https://www.docker.com/pricing/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -563,8 +479,8 @@ Products we recommend that complement this guide:
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [apple-container](docker-compose)
@@ -573,6 +489,6 @@ Products we recommend that complement this guide:
 - [lightning-ai-lightning-complete-guide](docker-compose)
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](docker-compose)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

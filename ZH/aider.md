@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/aider" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/aider" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/aider" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/aider" />
 title: 'Aider: 45K+ Stars — 终端AI结对编程 vs Claude Code、Cursor 2026完...
 description: 'Aider 是终端中的 AI 结对编程工具，在本地 git 仓库中编辑代码。支持 OpenAI、Claude、DeepSeek、Gemini。学习 Aider 安装、使用教程、Git 集成、基准测试，以及与 Claude Code、Cursor、Codex CLI 的对比。'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [aider, ai结对编程, 终端ai, cli编程, 'git-ai', llm工具, 开源]
-aliases:
-- /zh/posts/aider/
+aliases: - /zh/posts/aider/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/aider/ -->
 
 {{</* resource-info */>}}
 
@@ -179,24 +171,18 @@ git push origin main
 
 ```yaml
 # .gitlab-ci.yml - AI代码审查流水线
-ai-review:
-  image: python:3.12
-  before_script:
-    - pip install aider-chat
-  script:
-    - aider --model sonnet --message "审查此MR的安全问题" --no-auto-commits
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+ai-review: image: python:3.12
+  before_script: - pip install aider-chat
+  script: - aider --model sonnet --message "审查此MR的安全问题" --no-auto-commits
+  rules: - if: $CI_PIPELINE_SOURCE == "merge_request_event"
 ```
 
 ### Pre-commit 钩子
 
 ```yaml
 # .pre-commit-config.yaml
-repos:
-  - repo: local
-    hooks:
-      - id: aider-lint
+repos: - repo: local
+    hooks: - id: aider-lint
         name: 运行 aider lint 修复
         entry: aider --lint-cmd "npm run lint" --lint
         language: system
@@ -210,7 +196,15 @@ Aider 维护着业界最广泛引用的 LLM 编程基准测试。多语言基准
 ### 多语言排行榜（2026年5月顶级模型）
 
 | 模型 | 得分 | 每次运行成本 | 编辑格式 |
-|------|------|-------------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | GPT-5 (high) | 88.0% | $29.08 | diff |
 | GPT-5 (medium) | 86.7% | $17.69 | diff |
 | o3-pro (high) | 84.9% | $146.32 | diff |
@@ -226,7 +220,15 @@ Aider 维护着业界最广泛引用的 LLM 编程基准测试。多语言基准
 Aider 还在实际编程任务上对自身进行基准测试：
 
 | 模型 | 通过率 | 平均Token数 | 延迟 |
-|------|--------|------------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Claude Sonnet 4 | 72% | 18,400 | 45s |
 | GPT-4.1 | 68% | 22,100 | 38s |
 | DeepSeek V3.2 | 61% | 25,600 | 52s |
@@ -270,8 +272,7 @@ aider --model sonnet --cache-prompts
 
 ```bash
 # ~/.aider.conf.yml
-model-alias:
-  - fast: gpt-4.1
+model-alias: - fast: gpt-4.1
   - smart: claude-sonnet-4
   - cheap: deepseek/deepseek-chat
   - local: ollama/qwen2.5-coder:32b
@@ -325,7 +326,17 @@ aider --model sonnet --analytics-log ./logs/aider.jsonl
 ## 与替代方案对比
 
 | 特性 | Aider | Claude Code | Cursor | Codex CLI |
-|------|-------|-------------|--------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **价格** | 免费 + API密钥 | $20+/月 Pro | $20/月 Pro | ChatGPT Plus $20/月 |
 | **开源** | Apache-2.0 | 专有 | 专有 | 专有 |
 | **模型选择** | 任意提供商 | 仅Claude | 有限 | 仅OpenAI |
@@ -445,7 +456,6 @@ Aider 是2026年最灵活、最具成本效益的AI结对编程工具。凭借45
 *本文仅供信息参考。Aider 是 Apache-2.0 许可下的开源软件。在部署到生产环境之前，请始终审查AI生成的代码。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -473,25 +483,20 @@ Aider 是2026年最灵活、最具成本效益的AI结对编程工具。凭借45
 
 ## Why This Matters
 
-Understanding aider: 45k+ stars — 终端ai结对编程 vs claude code、cursor 2026完整对比 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding aider: 45k+ stars — 终端ai结对编程 vs claude code、cursor 2026完整对比 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -512,13 +517,13 @@ Aider: 45K+ Stars — 终端AI结对编程 vs Claude Code、Cursor 2026完整对
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
 
+---
 ## Related Articles
 
 - [claude-code-vs-aider](aider)

@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/meilisearch-fast-search-engine" />
 title: 'Meilisearch: The Lightning-Fast Open-Source Search Engin...
 description: 'Deploy Meilisearch 1.12 for lightning-fast typo-tolerant search with sub-50ms latency. Docker setup, SDK integrations, production benchmarks, and honest comparison.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: []
-aliases:
-- /posts/meilisearch-fast-search-engine/
+aliases: - /posts/meilisearch-fast-search-engine/-
 ---
-
 {{</* resource-info */>}}
 
 ## Introduction: Your Database's `LIKE` Query Is Killing Your UX
@@ -40,10 +36,12 @@ Enter **Meilisearch** — an open-source search engine written in Rust, with **5
 
 **Meilisearch** is an open-source, lightning-fast search engine optimized for building delightful search experiences. Written in Rust for memory safety and speed, it focuses on **developer ergonomics** — minimal setup, intuitive API, and relevance that works out of the box. Unlike Elasticsearch's complex query DSL, Meilisearch's API feels like talking to a modern REST service.
 
-Key facts:
-
-| Attribute | Detail |
-|---|---|
+Key facts: | Attribute | Detail |
+|
+---
+|
+---
+|
 | **Latest Version** | 1.12 (March 2026) |
 | **GitHub Stars** | 51,300+ |
 | **License** | MIT |
@@ -60,17 +58,13 @@ Meilisearch's architecture is purpose-built for low-latency full-text search. Un
 
 ### Inverted Index with LMDB Storage
 
-Meilisearch uses an **inverted index** stored via LMDB (Lightning Memory-Mapped Database). Unlike Typesense's pure in-memory approach, Meilisearch memory-maps index segments from disk. This means:
-
-- **Lower RAM requirements**: The index does not need to fit entirely in RAM
+Meilisearch uses an **inverted index** stored via LMDB (Lightning Memory-Mapped Database). Unlike Typesense's pure in-memory approach, Meilisearch memory-maps index segments from disk. This means: - **Lower RAM requirements**: The index does not need to fit entirely in RAM
 - **Fast cold starts**: Memory-mapped pages load on demand
 - **Predictable performance**: OS page cache handles hot segments automatically
 
 ### Typo Tolerance by Default
 
-Meilisearch applies typo tolerance automatically using a **prefix Levenshtein automaton**. By default:
-
-- Words with **1–4 characters**: no typo tolerance
+Meilisearch applies typo tolerance automatically using a **prefix Levenshtein automaton**. By default: - Words with **1–4 characters**: no typo tolerance
 - Words with **5–8 characters**: 1 typo allowed
 - Words with **9+ characters**: 2 typos allowed
 
@@ -78,9 +72,7 @@ This is configurable per-index. You can disable it entirely for fields like SKUs
 
 ### Relevance Engine
 
-Meilisearch uses a custom ranking rule system. Default ranking rules (applied in order):
-
-1. **Words** — number of query words found in the document
+Meilisearch uses a custom ranking rule system. Default ranking rules (applied in order): 1. **Words** — number of query words found in the document
 2. **Typo** — fewer typos rank higher
 3. **Proximity** — words closer together rank higher
 4. **Attribute** — matches in more important fields rank higher
@@ -91,9 +83,7 @@ You can customize, add, or remove ranking rules via the settings API.
 
 ### Faceting, Filtering, and Sorting
 
-Meilisearch supports:
-
-- **Dynamic faceting** — request facet counts for any filterable attribute
+Meilisearch supports: - **Dynamic faceting** — request facet counts for any filterable attribute
 - **Complex filters** — `price >= 10 AND (category = "shoes" OR in_stock = true)`
 - **Sort at query time** — sort by any sortable attribute
 - **Geo-search** — filter and sort by distance from lat/lng
@@ -174,9 +164,7 @@ curl -s -X POST 'http://localhost:7700/indexes/products/documents' \
 
 ### Step 3: Configure Searchable and Filterable Fields
 
-Tell Meilisearch which fields to search and which to use for filtering:
-
-```bash
+Tell Meilisearch which fields to search and which to use for filtering: ```bash
 # Update index settings
 curl -s -X PATCH 'http://localhost:7700/indexes/products/settings' \
   -H 'Content-Type: application/json' \
@@ -216,9 +204,7 @@ Response includes matching documents, facet counts per category, and highlighted
 
 ### Step 5: Wait for Indexing Task
 
-Meilisearch processes document additions asynchronously. Check task status:
-
-```bash
+Meilisearch processes document additions asynchronously. Check task status: ```bash
 # Check latest task
 curl -s 'http://localhost:7700/tasks?limit=1' \
   -H 'Authorization: Bearer your-secure-master-key-32-chars-long!!' | jq '.results[0] | {uid, status, type, duration}'
@@ -295,15 +281,12 @@ results = index.search(
 
 print(f"Hits: {results[estimatedTotalHits]}")
 print(f"Facets: {results.get(facetDistribution, {})}")
-for hit in results[hits]:
-    print(f"  {hit[name]} - ${hit[price]} (rating: {hit[rating]})")
+for hit in results[hits]: print(f"  {hit[name]} - ${hit[price]} (rating: {hit[rating]})")
 ```
 
 ### React InstantSearch Integration
 
-Meilisearch provides `meilisearch/instant-meilisearch` for React InstantSearch compatibility:
-
-```bash
+Meilisearch provides `meilisearch/instant-meilisearch` for React InstantSearch compatibility: ```bash
 npm install @meilisearch/instant-meilisearch react-instantsearch-dom
 ```
 
@@ -399,16 +382,16 @@ import (
 func main() {
     client := meilisearch.NewClient(
         meilisearch.ClientConfig{
-            Host:   "http://localhost:7700",
+            Host: "http://localhost:7700",
             APIKey: os.Getenv("MEILI_MASTER_KEY"),
         },
     )
 
     resp, err := client.Index("products").Search("headphons", &meilisearch.SearchRequest{
         Filter: "price >= 50 AND in_stock = true",
-        Sort:   []string{"rating:desc"},
+        Sort: []string{"rating:desc"},
         Facets: []string{"category"},
-        Limit:  10,
+        Limit: 10,
     })
     if err != nil {
         panic(err)
@@ -430,7 +413,11 @@ func main() {
 We benchmarked Meilisearch 1.12 on a **DigitalOcean droplet** with 2 vCPUs and 2GB RAM — costing roughly **$18/month**. Dataset: **2.5 million e-commerce products** with 10 fields each.
 
 | Metric | Result |
-|---|---|
+|
+---
+|
+---
+|
 | **Index Build Time** | 52 seconds (2.5M docs) |
 | **Average Query Latency (p50)** | **9ms** |
 | **p95 Query Latency** | **22ms** |
@@ -445,9 +432,7 @@ These numbers are on an **$18/month VPS**. Meilisearch's memory-mapped approach 
 
 ### AI-Powered Search (Meilisearch AI)
 
-Since v1.10, Meilisearch supports **vector search and hybrid search** via the `embedders` configuration:
-
-```bash
+Since v1.10, Meilisearch supports **vector search and hybrid search** via the `embedders` configuration: ```bash
 # Configure an embedder for semantic search
 curl -s -X PATCH 'http://localhost:7700/indexes/products/settings' \
   -H 'Content-Type: application/json' \
@@ -478,7 +463,13 @@ This enables **semantic search** — finding "headphones" when the user searches
 ### Real-World Use Cases
 
 | Company | Scale | Use Case |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | **Louis Vuitton** | Luxury retail | Product search with typo tolerance |
 | **Elementary OS** | Open source | AppCenter package search |
 | **Frappe Framework** | ERP platform | Document and record search |
@@ -493,50 +484,33 @@ This enables **semantic search** — finding "headphones" when the user searches
 # docker-compose.yml
 version: '3.8'
 
-services:
-  meilisearch:
-    image: getmeili/meilisearch:v1.12
+services: meilisearch: image: getmeili/meilisearch:v1.12
     restart: unless-stopped
-    ports:
-      - "127.0.0.1:7700:7700"
-    volumes:
-      - meilisearch-data:/meili_data
-    environment:
-      MEILI_MASTER_KEY: ${MEILI_MASTER_KEY}
+    ports: - "127.0.0.1:7700:7700"
+    volumes: - meilisearch-data:/meili_data
+    environment: MEILI_MASTER_KEY: ${MEILI_MASTER_KEY}
       MEILI_ENV: production
       MEILI_DB_PATH: /meili_data
       MEILI_HTTP_ADDR: 0.0.0.0:7700
       MEILI_DUMP_DIR: /meili_data/dumps
-    deploy:
-      resources:
-        limits:
-          memory: 3G
-        reservations:
-          memory: 512M
+    deploy: resources: limits: memory: 3G
+        reservations: memory: 512M
 
   # Caddy reverse proxy for HTTPS
-  caddy:
-    image: caddy:2-alpine
+  caddy: image: caddy:2-alpine
     restart: unless-stopped
-    ports:
-      - "80:80"
+    ports: - "80:80"
       - "443:443"
-    volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile
+    volumes: - ./Caddyfile:/etc/caddy/Caddyfile
       - caddy-data:/data
 
-volumes:
-  meilisearch-data:
-  caddy-data:
-```
+volumes: meilisearch-data: caddy-data: ```
 
 Deploy this on any VPS. For a reliable host, [DigitalOcean](https://m.do.co/c/eca87ac14ee0) gives you **$200 free credit** — enough to run Meilisearch for 11 months on a 2GB droplet.
 
 ### 2. Multi-Tenancy with Tenant Tokens
 
-Meilisearch 1.12 supports secure multi-tenancy via tenant tokens:
-
-```javascript
+Meilisearch 1.12 supports secure multi-tenancy via tenant tokens: ```javascript
 const { MeiliSearch } = require(meilisearch);
 const crypto = require(crypto);
 
@@ -572,8 +546,7 @@ curl -s -X POST 'http://localhost:7700/dumps' \
 # Response: { "taskUid": 42, ... }
 # Download from /dumps/ after task completes
 
-# For automated backups, add to crontab:
-# 0 2 * * * curl -s -X POST 'http://localhost:7700/dumps' -H 'Authorization: Bearer YOUR_KEY' > /dev/null
+# For automated backups, add to crontab: # 0 2 * * * curl -s -X POST 'http://localhost:7700/dumps' -H 'Authorization: Bearer YOUR_KEY' > /dev/null
 ```
 
 ### 4. Synonyms and Stop Words
@@ -598,9 +571,7 @@ curl -s -X PUT 'http://localhost:7700/indexes/products/settings/stop-words' \
 
 ### 5. Monitoring with Prometheus (Official Integration)
 
-Meilisearch exposes Prometheus metrics natively:
-
-```bash
+Meilisearch exposes Prometheus metrics natively: ```bash
 # Enable metrics endpoint
 curl -s -X PATCH 'http://localhost:7700/experimental-features' \
   -H 'Content-Type: application/json' \
@@ -616,7 +587,17 @@ curl -s http://localhost:7700/metrics
 ## Comparison with Alternatives
 
 | Feature | **Meilisearch** | Typesense | Elasticsearch | Algolia |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **License** | MIT | GPL-3.0 | SSPL/Elastic | Proprietary |
 | **GitHub Stars** | **51,300+** | 23,200+ | 72,000+ | N/A (closed) |
 | **Query Latency (p95)** | **<25ms** | <30ms | 50-200ms | <20ms |
@@ -642,9 +623,7 @@ curl -s http://localhost:7700/metrics
 
 ## Limitations / Honest Assessment
 
-Meilisearch is not perfect. Here are its real limitations:
-
-1. **No distributed clustering (yet)**: As of v1.12, Meilisearch does not support multi-node clustering for horizontal scaling. You can only scale vertically (more RAM/CPU). Clustering is on the roadmap for late 2026. For now, if you need >100M documents or multi-node HA, use Typesense or Elasticsearch.
+Meilisearch is not perfect. Here are its real limitations: 1. **No distributed clustering (yet)**: As of v1.12, Meilisearch does not support multi-node clustering for horizontal scaling. You can only scale vertically (more RAM/CPU). Clustering is on the roadmap for late 2026. For now, if you need >100M documents or multi-node HA, use Typesense or Elasticsearch.
 
 2. **Single-master architecture**: Write operations go through a single process. High-volume write workloads (10K+ docs/sec sustained) may bottleneck. Bulk import mitigates this, but it is not a real-time ingestion engine like Kafka-connected Elasticsearch.
 
@@ -696,9 +675,7 @@ Join our developer community on **Telegram: [dibi8dev_en](https://t.me/dibi8dev_
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -713,12 +690,11 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [Comparison: Meilisearch vs Typesense vs Elasticsearch](dibi8-internal-link)
 - [Docker Best Practices for Search Engines](dibi8-internal-link)
 
----
 
+---
 *Affiliate Disclosure: This article contains affiliate links to DigitalOcean. If you sign up through our link, we receive a commission at no extra cost to you. We independently recommend services based on real testing. Meilisearch is free, open-source software — hosting costs are the only expense.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -743,3 +719,4 @@ Before you deploy any of the tools above into production, you'll need solid infr
   }
 }
 </script>
+---

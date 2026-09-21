@@ -1,28 +1,20 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/comfyui-workflows-complete-guide" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/comfyui-workflows-complete-guide" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/comfyui-workflows-complete-guide" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/comfyui-workflows-complete-guide" />
 title: ComfyUI 工作流 — AI 图像生成的可视化编程语言
 description: ComfyUI 完全指南：用于专业 AI 图像生成的节点式工作流。构建复杂管线、管理依赖关系并创建可共享的工作流模板。. Comprehensive guide covering features, pricing, and best practices for 2026.
 tags: ['comfyui', 'ai-image-generation', 'workflow', 'nodes', 'stable-diffusion', 'visual-programming']
 category: ai-tools
 featureImage: /images/articles/comfyui-workflows.jpg
 date: 2026-07-16T00:00:00+00:00
-lastmod:  2026-07-16T00:00:00+00:00draft: false
+lastmod: 2026-07-16T00:00:00+00:00draft: false
 slug: comfyui-workflows-complete-guide
-lang: zh-CN
----
-
-<!-- canonical: https://dibi8.com/zh/tools/comfyui-workflows-complete-guide/ -->
+-CN---
 
 ## TL;DR
 
 ComfyUI 是一个强大的节点式图形界面，用于运行 AI 图像生成模型。它让你通过连接节点而不是编写代码来构建自定义管线。支持 Stable Diffusion、Flux、SDXL 和数十种其他模型。本指南涵盖工作流设计模式、节点管理、性能优化以及如何创建专业级图像生成管线。
 
----
 
+---
 ## ComfyUI 是什么？
 
 ComfyUI 是一个用于运行 AI 图像生成模型的节点式图形界面。与传统的 UI（你调整滑块然后点击"生成"）不同，ComfyUI 让你通过连接处理节点来**构建自定义管线**——类似于 Blender 的节点系统或 TouchDesigner。
@@ -46,8 +38,8 @@ ComfyUI 是一个用于运行 AI 图像生成模型的节点式图形界面。�
 
 基于节点的工作流原生处理所有这些。
 
----
 
+---
 ## 核心概念
 
 ### 节点和连接
@@ -99,7 +91,13 @@ workflow = {
 ### 关键节点类别
 
 | 类别 | 用途 | 示例 |
-|------|------|------|
+|
+---
+|
+---
+|
+---
+|
 | 模型加载 | 加载基础模型和扩展 | CheckpointLoader, LoraLoader |
 | 条件处理 | 处理文本提示 | CLIPTextEncode, Condition |
 | 采样 | 生成图像 | KSampler, Euler, DPM++ |
@@ -223,7 +221,13 @@ Canny 边缘检测 → ControlNet（边缘引导）
 ComfyUI 支持广泛的模型：
 
 | 模型类型 | 示例 | 最佳用途 |
-|---------|------|----------|
+|
+---
+|
+---
+|
+---
+|
 | Stable Diffusion 1.5 | sd-v1-5, dreamshaper | 快速原型设计 |
 | SDXL | sdxl_v1.0, juggernaut | 高质量基础 |
 | Flux | flux-dev, flux-schnell | 照片真实感 |
@@ -291,7 +295,13 @@ optimization_config = {
 ### 批量处理速度
 
 | 配置 | 每分钟图像数 | 质量 |
-|------|-------------|------|
+|
+---
+|
+---
+|
+---
+|
 | 单张，SDXL，30 步 | 2-3 | 高 |
 | 批量 4，SDXL，30 步 | 8-12 | 高 |
 | 批量 8，SD 1.5，20 步 | 16-24 | 中 |
@@ -397,7 +407,17 @@ optimization_config = {
 ## 对比：ComfyUI vs 替代方案
 
 | 功能 | ComfyUI | Automatic1111 | Fooocus | SD WebUI Forge |
-|------|---------|---------------|---------|----------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 基于节点的 UI | ✅ | ❌ | ❌ | ❌ |
 | 自定义管线 | ✅ | 有限 | ❌ | 有限 |
 | 性能 | 优秀 | 良好 | 良好 | 优秀 |
@@ -508,7 +528,6 @@ ComfyUI 是核心应用程序。ComfyUI Manager 是一个扩展，使安装模�
 *加入我们的 Telegram 群组获取实时 AI 工具讨论和部署技巧：[t.me/dibi8](https://t.me/dibi8)*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -536,25 +555,20 @@ ComfyUI 是核心应用程序。ComfyUI Manager 是一个扩展，使安装模�
 
 ## Why This Matters
 
-Understanding comfyui 工作流 — ai 图像生成的可视化编程语言 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding comfyui 工作流 — ai 图像生成的可视化编程语言 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

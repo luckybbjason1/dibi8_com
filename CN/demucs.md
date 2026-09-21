@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/demucs" />
 title: 'Demucs: Music Source Separation with 10K+ Stars — Compar...
 description: 'Demucs is a hybrid spectrogram and waveform source separation model by Meta AI. Compatible with Ultimate Vocal Remover, RVC, GPT-SoVITS. Covers demucs tutorial, demucs vs uvr, demucs docker setup, and production benchmarks.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [demucs, 'music-source-separation', 'ai-audio', 'stem-separation', pytorch, docker, 'open-source']
-aliases:
-- /posts/demucs/
+aliases: - /posts/demucs/-
 ---
-
 {{</* resource-info */>}}
 
 Separating a mixed song into individual instrument tracks — vocals, drums, bass, and others — used to require the original multitrack studio files. That changed when deep learning models learned to "unmix" finished audio. Today, musicians, producers, and developers use these tools for karaoke creation, sample isolation, remix preparation, and voice conversion pipelines. Among the open-source options, one model dominates the conversation: **Demucs**, Meta's hybrid transformer architecture with over 10,000 GitHub stars and top-ranked benchmarks on the MUSDB18-HQ dataset.
@@ -44,9 +40,7 @@ What sets Demucs apart from earlier tools is its **hybrid approach**: it process
 
 ### Architecture Overview
 
-The current generation of Demucs — officially called **Hybrid Transformer Demucs (HTDemucs)** — builds on a U-Net convolutional backbone augmented with transformer layers. The architecture operates in three conceptual stages:
-
-1. **Encoder**: The input waveform passes through both a time-domain encoder (1D convolutions) and a frequency-domain encoder (STFT followed by 2D convolutions). This dual encoding captures both fine-grained temporal details and harmonic frequency structures.
+The current generation of Demucs — officially called **Hybrid Transformer Demucs (HTDemucs)** — builds on a U-Net convolutional backbone augmented with transformer layers. The architecture operates in three conceptual stages: 1. **Encoder**: The input waveform passes through both a time-domain encoder (1D convolutions) and a frequency-domain encoder (STFT followed by 2D convolutions). This dual encoding captures both fine-grained temporal details and harmonic frequency structures.
 
 2. **Transformer bottleneck**: The deepest layers of the U-Net use a cross-domain transformer encoder with self-attention within each domain and cross-attention across domains. This mechanism models long-range dependencies — critical for separating, say, a vocal melody that spans multiple bars from a similarly pitched guitar line.
 
@@ -56,10 +50,18 @@ The current generation of Demucs — officially called **Hybrid Transformer Demu
 
 ### Available Models
 
-Demucs ships with multiple pretrained models optimized for different speed/quality tradeoffs:
-
-| Model | Stems | VRAM | SDR (MUSDB) | Use Case |
-|-------|-------|------|-------------|----------|
+Demucs ships with multiple pretrained models optimized for different speed/quality tradeoffs: | Model | Stems | VRAM | SDR (MUSDB) | Use Case |
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | `htdemucs` | 4 | ~5.2 GB | 7.1 dB | Default, best speed/quality balance |
 | `htdemucs_ft` | 4 | ~7.8 GB | 7.8 dB | Maximum quality, ~4x slower |
 | `htdemucs_6s` | 6 | ~6.5 GB | 6.8 dB | Guitar + piano isolation |
@@ -71,9 +73,7 @@ The `htdemucs_ft` model achieves an overall SDR of 7.8 dB on MUSDB18-HQ, with pe
 
 ### Prerequisites
 
-Before installing Demucs, verify your environment:
-
-```bash
+Before installing Demucs, verify your environment: ```bash
 # Python 3.8+ required
 python --version
 
@@ -86,9 +86,7 @@ nvidia-smi
 
 ### Option 1: pip Install (Fastest)
 
-The simplest way to get Demucs running:
-
-```bash
+The simplest way to get Demucs running: ```bash
 # Create a virtual environment
 python -m venv demucs-env
 source demucs-env/bin/activate  # Linux/macOS
@@ -103,9 +101,7 @@ demucs --help
 
 ### Option 2: Conda with GPU Support (Recommended)
 
-For GPU-accelerated inference and training:
-
-```bash
+For GPU-accelerated inference and training: ```bash
 # Clone the repository
 git clone https://github.com/adefossez/demucs.git
 cd demucs
@@ -123,9 +119,7 @@ python -c "import torch; print(f'CUDA available: {torch.cuda.is_available()}')"
 
 ### Option 3: Docker (Cleanest Isolation)
 
-For reproducible, dependency-free deployment:
-
-```bash
+For reproducible, dependency-free deployment: ```bash
 # Dockerfile
 FROM pytorch/pytorch:2.5.1-cuda12.4-cudnn9-runtime
 
@@ -135,9 +129,7 @@ WORKDIR /audio
 ENTRYPOINT ["demucs"]
 ```
 
-Build and run:
-
-```bash
+Build and run: ```bash
 docker build -t demucs .
 docker run --gpus all -v $(pwd):/audio demucs song.mp3
 ```
@@ -147,23 +139,17 @@ docker run --gpus all -v $(pwd):/audio demucs song.mp3
 ```yaml
 version: '3.8'
 
-services:
-  demucs:
-    build: .
+services: demucs: build: .
     runtime: nvidia
-    environment:
-      - NVIDIA_VISIBLE_DEVICES=all
-    volumes:
-      - ./input:/audio/input:ro
+    environment: - NVIDIA_VISIBLE_DEVICES=all
+    volumes: - ./input:/audio/input:ro
       - ./output:/audio/output
     command: ["-n", "htdemucs_ft", "--mp3", "-o", "/audio/output", "/audio/input"]
 ```
 
 ### First Separation Run
 
-After installation, separate your first track:
-
-```bash
+After installation, separate your first track: ```bash
 # Basic 4-stem separation with default model
 demucs song.mp3
 
@@ -182,14 +168,11 @@ demucs --mp3 --mp3-bitrate 320 song.mp3
 
 ### Verify Model Download and Cache
 
-Models download automatically on first use. Verify the cache:
-
-```bash
+Models download automatically on first use. Verify the cache: ```bash
 # List downloaded models
 ls ~/.cache/torch/hub/checkpoints/
 
-# Expected output includes:
-# htdemucs-*.th, htdemucs_ft-*.th
+# Expected output includes: # htdemucs-*.th, htdemucs_ft-*.th
 
 # Check which model will be used
 demucs -n htdemucs_ft --help | grep "name"
@@ -205,9 +188,7 @@ demucs -n htdemucs test_tone.wav
 
 Ultimate Vocal Remover is the most popular GUI frontend for Demucs. Rather than using Demucs directly through the command line, most producers use UVR because it bundles Demucs models with other architectures and adds ensemble processing.
 
-Configuration in UVR:
-
-1. Download UVR5 from the [official GitHub releases](https://github.com/Anjok07/ultimatevocalremovergui/releases)
+Configuration in UVR: 1. Download UVR5 from the [official GitHub releases](https://github.com/Anjok07/ultimatevocalremovergui/releases)
 2. In the UI, select **Process Method: "Demucs"**
 3. Choose model: `V4 | htdemucs_ft`
 4. Enable **GPU Conversion** if available
@@ -217,14 +198,11 @@ UVR ensemble mode runs multiple models in parallel and blends their outputs, con
 
 ### RVC (Retrieval-based Voice Conversion)
 
-RVC pipelines commonly use Demucs as a preprocessing step to isolate vocals before voice extraction:
-
-```python
+RVC pipelines commonly use Demucs as a preprocessing step to isolate vocals before voice extraction: ```python
 import subprocess
 import os
 
-def preprocess_for_rvc(input_song, output_dir):
-    """Extract clean vocals for RVC voice conversion."""
+def preprocess_for_rvc(input_song, output_dir): """Extract clean vocals for RVC voice conversion."""
     os.makedirs(output_dir, exist_ok=True)
 
     # Step 1: Separate with Demucs
@@ -249,9 +227,7 @@ vocals = preprocess_for_rvc('input.mp3', './separated')
 
 ### GPT-SoVITS
 
-GPT-SoVITS voice cloning requires clean reference audio. Demucs removes background music before feeding samples into the TTS pipeline:
-
-```python
+GPT-SoVITS voice cloning requires clean reference audio. Demucs removes background music before feeding samples into the TTS pipeline: ```python
 from demucs.api import Separator
 import torchaudio
 
@@ -267,16 +243,13 @@ torchaudio.save("clean_reference.wav", vocals, 24000)
 
 ### Gradio Web Interface
 
-For a self-hosted separation service:
-
-```python
+For a self-hosted separation service: ```python
 import gradio as gr
 from demucs.api import Separator
 
 separator = Separator(model="htdemucs_ft")
 
-def separate(audio_file, stem):
-    origin, separated = separator.separate_audio_file(audio_file)
+def separate(audio_file, stem): origin, separated = separator.separate_audio_file(audio_file)
     output_path = f"{stem}.wav"
     separator.save_audio(separated[stem], output_path, samplerate=44100)
     return output_path
@@ -306,7 +279,21 @@ demo.launch(server_name="0.0.0.0", server_port=7860)
 MUSDB18-HQ is the standard benchmark for music source separation, containing 150 full-length songs with ground-truth isolated stems. Higher SDR (Signal-to-Distortion Ratio) means cleaner separation.
 
 | Model | Overall SDR | Vocals | Drums | Bass | Other | Speed (RTX 3090) |
-|-------|-------------|--------|-------|------|-------|-------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **HTDemucs FT (v4)** | **7.8 dB** | **8.5 dB** | **8.9 dB** | **7.5 dB** | **6.2 dB** | ~4x real-time |
 | HTDemucs (v4) | 7.1 dB | 7.8 dB | 8.2 dB | 6.9 dB | 5.6 dB | ~16x real-time |
 | Hybrid Demucs (v3) | 7.7 dB | 8.1 dB | 8.5 dB | 7.2 dB | 5.9 dB | ~12x real-time |
@@ -325,10 +312,16 @@ MUSDB18-HQ is the standard benchmark for music source separation, containing 150
 
 ### Processing Time Reference
 
-For a 4-minute stereo track at 44.1 kHz:
-
-| Hardware | htdemucs | htdemucs_ft | htdemucs_6s |
-|----------|----------|-------------|-------------|
+For a 4-minute stereo track at 44.1 kHz: | Hardware | htdemucs | htdemucs_ft | htdemucs_6s |
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | RTX 4080 GPU | ~15s | ~55s | ~25s |
 | RTX 3080 GPU | ~20s | ~75s | ~35s |
 | Apple M3 (MPS) | ~45s | ~3min | ~70s |
@@ -338,9 +331,7 @@ For a 4-minute stereo track at 44.1 kHz:
 
 ### Python API for Custom Pipelines
 
-For programmatic control, bypass the CLI and use the Python API directly:
-
-```python
+For programmatic control, bypass the CLI and use the Python API directly: ```python
 import torch
 import torchaudio
 from demucs.pretrained import get_model
@@ -356,15 +347,13 @@ model.eval()
 wav, sr = torchaudio.load("input.mp3")
 
 # Ensure stereo
-if wav.shape[0] == 1:
-    wav = wav.repeat(2, 1)
+if wav.shape[0] == 1: wav = wav.repeat(2, 1)
 
 # Add batch dimension
 mix = wav.unsqueeze(0).to(device)
 
 # Separate with optimized settings
-with torch.no_grad():
-    sources = apply_model(
+with torch.no_grad(): sources = apply_model(
         model,
         mix,
         shifts=1,       # Shift trick: higher = better, slower
@@ -379,8 +368,7 @@ with torch.no_grad():
 source_names = model.sources  # [drums, bass, other, vocals]
 
 # Save individual stems
-for i, name in enumerate(source_names):
-    torchaudio.save(f"{name}.wav", sources[i].cpu(), sr)
+for i, name in enumerate(source_names): torchaudio.save(f"{name}.wav", sources[i].cpu(), sr)
 ```
 
 ### Batch Processing Pipeline
@@ -390,8 +378,7 @@ from pathlib import Path
 import subprocess
 import json
 
-def batch_separate(input_dir, output_dir, model="htdemucs"):
-    """Process all audio files in a directory."""
+def batch_separate(input_dir, output_dir, model="htdemucs"): """Process all audio files in a directory."""
     input_dir = Path(input_dir)
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -410,8 +397,7 @@ def batch_separate(input_dir, output_dir, model="htdemucs"):
 
     # Generate metadata manifest
     manifest = {}
-    for f in files:
-        base = f.stem
+    for f in files: base = f.stem
         stem_dir = output_dir / model / base
         manifest[base] = {
             drums: str(stem_dir / 'drums.mp3'),
@@ -420,8 +406,7 @@ def batch_separate(input_dir, output_dir, model="htdemucs"):
             vocals: str(stem_dir / 'vocals.mp3'),
         }
 
-    with open(output_dir / 'manifest.json', w) as fp:
-        json.dump(manifest, fp, indent=2)
+    with open(output_dir / 'manifest.json', w) as fp: json.dump(manifest, fp, indent=2)
 
     return manifest
 
@@ -431,9 +416,7 @@ batch_separate('./raw_songs/', './stems/', model=htdemucs_ft)
 
 ### Memory Optimization for Long Files
 
-Demucs loads the entire audio file into GPU memory. For long tracks or limited VRAM:
-
-```python
+Demucs loads the entire audio file into GPU memory. For long tracks or limited VRAM: ```python
 # Force CPU offloading for large files
 import os
 os.environ[PYTORCH_CUDA_ALLOC_CONF] = 'max_split_size_mb:128'
@@ -458,8 +441,7 @@ import time
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(demucs)
 
-def separate_with_metrics(input_path, output_dir):
-    start = time.time()
+def separate_with_metrics(input_path, output_dir): start = time.time()
 
     separator = Separator(model="htdemucs_ft", device="cuda")
     origin, separated = separator.separate_audio_file(input_path)
@@ -468,8 +450,7 @@ def separate_with_metrics(input_path, output_dir):
     logger.info(f"Separated {input_path} in {duration:.1f}s")
 
     # Log per-stem levels
-    for name, audio in separated.items():
-        rms = torch.sqrt(torch.mean(audio ** 2)).item()
+    for name, audio in separated.items(): rms = torch.sqrt(torch.mean(audio ** 2)).item()
         logger.info(f"  {name}: RMS={rms:.4f}")
 
     return separated
@@ -478,7 +459,17 @@ def separate_with_metrics(input_path, output_dir):
 ## Comparison with Alternatives
 
 | Feature | Demucs (v4) | Ultimate Vocal Remover | Spleeter | Open-Unmix |
-|---------|-------------|------------------------|----------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Architecture** | Hybrid waveform + spectrogram + Transformer | GUI wrapper (multiple backends) | Spectrogram U-Net | Spectrogram LSTM |
 | **MUSDB SDR** | 7.8 dB (htdemucs_ft) | N/A (uses Demucs/MDX) | 5.9 dB | 5.3 dB |
 | **Max Stems** | 6 (vocals, drums, bass, guitar, piano, other) | 4 (depends on model) | 5 (sides included) | 4 |
@@ -493,9 +484,7 @@ def separate_with_metrics(input_path, output_dir):
 
 ## Limitations / Honest Assessment
 
-Demucs is not the right tool for every audio task. Here is what it does not do well:
-
-**Real-time separation**: Even the fastest Demucs model (`htdemucs`) processes at roughly 16x real-time on an RTX 4080. This is far too slow for live performance or real-time streaming applications. Tools like Spleeter or specialized ONNX exports are better suited for latency-sensitive use cases.
+Demucs is not the right tool for every audio task. Here is what it does not do well: **Real-time separation**: Even the fastest Demucs model (`htdemucs`) processes at roughly 16x real-time on an RTX 4080. This is far too slow for live performance or real-time streaming applications. Tools like Spleeter or specialized ONNX exports are better suited for latency-sensitive use cases.
 
 **Guitar and piano isolation**: The `htdemucs_6s` model attempts to separate guitar and piano as distinct stems, but SDR on these sources is significantly lower than the main four stems. If your primary need is isolating a specific guitar track, specialized transcription tools like Basic Pitch may be more appropriate.
 
@@ -542,9 +531,7 @@ For developers building audio pipelines, Demucs offers a well-documented Python 
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -562,7 +549,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [Audio Developers Conference 2025 — Demucs ONNX Export Talk](https://mixxx.discourse.group/t/gsoc-2025-converting-demucs-v4-hybrid-transformer-ai-model-to-onnx-format/32874)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -588,8 +574,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [wandb-ml-experiment-tracking-platform-2026](demucs)
@@ -598,6 +584,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [2026-06-01-trending-ai-agents](demucs)
 - [2026-06-08-trending-ai-agents](demucs)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

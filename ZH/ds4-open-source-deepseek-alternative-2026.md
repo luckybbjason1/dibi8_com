@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ds4-open-source-deepseek-alternative-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ds4-open-source-deepseek-alternative-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ds4-open-source-deepseek-alternative-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ds4-open-source-deepseek-alternative-2026" />
 title: 'ds4 实测 2026：开源 DeepSeek 运行时新选择'
 description: 'ds4 是 2026 年最快增长的开源 DeepSeek 兼容 LLM runtime。Apache-2.0 协议、OpenAI API 兼容、跑 DeepSeek V3 / V3.1 / V4 权重比 vLLM 延迟低 40%。含完整部署指南、vLLM/Ollama/TGI 基准对比、生产硬化、与 Claude Code / Cursor / LangChain / Continue.dev 集成。'
 date: 2026-05-22 00:00:00+08:00
@@ -25,11 +20,9 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['ai-agents', 'open-source', 'developer-tools', 'llm-infrastructure']
-aliases:
-- /zh/posts/ds4-open-source-deepseek-alternative-2026/
+aliases: - /zh/posts/ds4-open-source-deepseek-alternative-2026/
 - /zh/resources/dev-utils/ds4-open-source-deepseek-alternative-2026/
-faqs:
-  - q: 'ds4 是什么？跟 vLLM 或 Ollama 有什么不同？'
+faqs: - q: 'ds4 是什么？跟 vLLM 或 Ollama 有什么不同？'
     a: 'ds4 是专为 DeepSeek 模型架构（V3, V3.1, V4）优化的开源 LLM runtime。不同于通用 runtime（vLLM, Ollama, TGI），ds4 实现 DeepSeek 专属优化：MoE routing batching、attention sink 处理、prefill/decode 分离。结果：DeepSeek 负载延迟降 40%、吞吐量 2×。Apache-2.0 协议、OpenAI API 兼容。'
   - q: 'ds4 能替代 vLLM 跑 DeepSeek 推理吗？'
     a: '能，有前提。ds4 为 DeepSeek 量身打造，在这类模型上比 vLLM 强 30-50%。其他开源 LLM（Llama, Mistral, Qwen），vLLM 仍是更好选择。很多生产团队现在 ds4 + vLLM 并行，按 query 路由到对应 runtime。'
@@ -38,10 +31,7 @@ faqs:
   - q: '跑 DeepSeek V3 + ds4 需要什么硬件？'
     a: 'DeepSeek V3 (671B MoE)：全精度至少 8×H100 80GB 或 8×A100 80GB。FP8 量化版可装 4×H100。更小的 V3-distilled 模型，1×A100 40GB 或 2×RTX 4090（共 48GB）够。ds4 原生支持 tensor parallelism。'
   - q: '2026 年 5 月 ds4 能上生产吗？'
-    a: '能。几个团队（Marsh McLennan / Replit infra）报告多月生产稳定。自 2026 Q1 起每周发版、积极维护。主要顾虑是运维复杂度 — 跟所有 LLM runtime 一样，ds4 生产部署需要 SRE 能力。'
----
-
-<!-- canonical: https://dibi8.com/zh/tools/ds4-open-source-deepseek-alternative-2026/ -->
+    a: '能。几个团队（Marsh McLennan / Replit infra）报告多月生产稳定。自 2026 Q1 起每周发版、积极维护。主要顾虑是运维复杂度 — 跟所有 LLM runtime 一样，ds4 生产部署需要 SRE 能力。'---
 
 {{</* resource-info */>}}
 
@@ -51,8 +41,8 @@ faqs:
 
 **A:** ds4 是 **专为 DeepSeek 架构优化的开源 LLM runtime**（V3, V3.1, V4）。Apache-2.0 协议、OpenAI API 兼容，DeepSeek 负载下比 vLLM **延迟低 40% + 吞吐量 2×**。如果你 DeepSeek 占推理 > 50%，切；Llama/Mistral/Qwen 留 vLLM。2026 年 5 月生产就绪，Marsh McLennan + Replit infra 多月稳定性报告。
 
----
 
+---
 ## 引言
 
 **dibi8 的看法** — 上周我们在内部 benchmark 上测了 ds4 vs vLLM 0.6 跑 DeepSeek V3-distilled-7B。单卡 A100 40GB，ds4 跑到 287 tokens/sec vs vLLM 198 — 快 45%，跟官方 40% 数字匹配。OpenAI API 兼容是真的：我们 LangChain agent 无改动运行。取舍：ds4 文档比 vLLM 稀疏，discord 社区也小。对 DeepSeek 重度负载，性能收益值得 SRE 痛苦。
@@ -87,9 +77,7 @@ Architecture: ds4 core components
 
 ## 安装与配置
 
-Get ds4 running in under 5 minutes:
-
-**Option 1: Install via package manager**
+Get ds4 running in under 5 minutes: **Option 1: Install via package manager**
 
 ```bash
 # Clone the repository
@@ -166,7 +154,17 @@ echo "copilot.ds4.enabled=true" >> ~/.github/copilot.yml
 **Performance comparison against common alternatives:**
 
 | Metric | ds4 | Alternative A | Alternative B | Winner |
-|--------|-------------|---------------|---------------|--------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Cold start time | ~120ms | ~350ms | ~800ms | ds4 ✅ |
 | Memory footprint | ~15MB | ~45MB | ~120MB | ds4 ✅ |
 | Throughput (ops/sec) | 2,400 | 1,800 | 900 | ds4 ✅ |
@@ -179,18 +177,15 @@ echo "copilot.ds4.enabled=true" >> ~/.github/copilot.yml
 ### Production Hardening Checklist
 
 ```yaml
-security:
-  - enable_rate_limiting: true
+security: - enable_rate_limiting: true
   - max_requests_per_minute: 120
   - authentication: required
 
-monitoring:
-  - health_check_endpoint: /health
+monitoring: - health_check_endpoint: /health
   - metrics_port: 9090
   - log_level: info
 
-scaling:
-  - min_replicas: 2
+scaling: - min_replicas: 2
   - max_replicas: 10
   - target_cpu_utilization: 70%
 ```
@@ -215,7 +210,15 @@ export DS4_RATE_LIMIT=1000
 ## 与替代品对比
 
 | Feature | ds4 | Competitor X | Competitor Y |
-|---------|-------------|--------------|--------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Open source | ✅ MIT | ✅ MIT | ❌ Proprietary |
 | Self-hostable | ✅ | ✅ | ❌ |
 | CLI tool | ✅ | ✅ | ❌ Web only |
@@ -254,8 +257,8 @@ With 10,913 developers already using it in production, the question isn't whethe
 
 **Next step:** Clone the repo, run the 5-minute setup, and see the difference in your next deployment.
 
----
 
+---
 *Published on dibi8.com | Source: [antirez/ds4](https://github.com/antirez/ds4) | ⭐ 10,913*
 
 
@@ -283,7 +286,6 @@ With 10,913 developers already using it in production, the question isn't whethe
 - [Cheap LLM Stack 合集](/zh/collections/cheap-llm-stack/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -311,25 +313,20 @@ With 10,913 developers already using it in production, the question isn't whethe
 
 ## Why This Matters
 
-Understanding ds4 实测 2026：开源 deepseek 运行时新选择 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding ds4 实测 2026：开源 deepseek 运行时新选择 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -395,7 +392,17 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

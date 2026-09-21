@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/rtk-rust-cli-proxy-llm-token-savings-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/rtk-rust-cli-proxy-llm-token-savings-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/rtk-rust-cli-proxy-llm-token-savings-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/rtk-rust-cli-proxy-llm-token-savings-2026" />
 title: 'rtk Review: Công cụ Rust giúp giảm 80% chi phí AI Coding...
 description: 'rtk là proxy CLI viết bằng Rust, single binary không phụ thuộc, giảm 60-90% token tiêu thụ cho Claude Code / Cursor / Copilot / Codex / Gemini CLI và 9 công cụ AI khác. <10ms overhead, MIT open source, cài đặt 30 giây không cấu hình.'
 date: 2026-05-22 00:00:00+08:00
@@ -25,11 +20,9 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [rtk, rust, cli, llm, 'token-optimization', 'ai-coding', 'claude-code', cursor, copilot, 'cost-optimization', 'open-source', 'developer-tools']
-aliases:
-- /vi/posts/rtk/
+aliases: - /vi/posts/rtk/
 - /vi/resources/dev-utils/rtk-rust-cli-proxy-llm-token-savings-2026/
-faqs:
-  - q: 'rtk là gì và tiết kiệm bao nhiêu chi phí AI coding?'
+faqs: - q: 'rtk là gì và tiết kiệm bao nhiêu chi phí AI coding?'
     a: 'rtk là proxy CLI Rust mã nguồn mở, tự động nén output lệnh terminal trước khi đến context window của AI agent. Giảm 60-90% token tiêu thụ cho 13 công cụ AI coding (Claude Code, Cursor, GitHub Copilot, Codex, Gemini CLI). Thực tế: hóa đơn Claude API $400/tháng giảm còn ~$80, độ trễ <10ms, mã nguồn mở MIT, cài đặt 30 giây.'
   - q: 'rtk có gửi code của tôi đến bên thứ ba không?'
     a: 'Không. rtk là binary chỉ chạy local, chỉ lọc output giữa shell và context window của AI. Không gửi qua mạng.'
@@ -40,8 +33,6 @@ faqs:
   - q: 'rtk có an toàn cho production CI/CD không?'
     a: 'An toàn trong agent workflow. Không dùng trong pipeline set -e nghiêm ngặt phụ thuộc văn bản output chính xác. Nhưng trong vòng lặp AI agent đọc output để quyết định bước tiếp theo, output nén của rtk chính là cái agent cần.'
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/rtk-rust-cli-proxy-llm-token-savings-2026/ -->
 
 {{</* resource-info */>}}
 
@@ -74,9 +65,7 @@ faqs:
 
 Từ 2025 đến 2026, lập trình có trợ giúp AI đã chuyển từ "thử cho vui" sang "không thể thiếu". Claude Code, GitHub Copilot, Cursor, Windsurf, Gemini CLI——những công cụ này thực sự tăng gấp đôi hiệu suất, nhưng đi kèm một chi phí bị đánh giá thấp: **token**.
 
-Một lập trình viên Việt Nam sử dụng Claude Code hàng ngày, hóa đơn thực tế khoảng:
-
-| Mức Độ Sử Dụng | Chi Phí API/Tháng | Tổng Chi Phí (Kèm Gói Cước) | Bối Cảnh |
+Một lập trình viên Việt Nam sử dụng Claude Code hàng ngày, hóa đơn thực tế khoảng: | Mức Độ Sử Dụng | Chi Phí API/Tháng | Tổng Chi Phí (Kèm Gói Cước) | Bối Cảnh |
 |----------------|-------------------|----------------------------|----------|
 | **Nhẹ** (1-2 giờ/ngày) | 350.000 - 700.000đ | 700.000 - 1.400.000đ | Dự án cá nhân, thỉnh thoảng dùng AI |
 | **Trung Bình** (3-4 giờ/ngày) | 1.000.000 - 2.800.000đ | 2.100.000 - 3.500.000đ | Lập trình toàn thời gian với AI |
@@ -96,18 +85,12 @@ Mỗi khi AI agent chạy `git status`, `cat package.json`, `cargo test`, `docke
 
 ## rtk Là Gì: Không Phải Công Cụ AI Mới, Mà Là "Van Tiết Kiệm"
 
-rtk (GitHub: [rtk-ai/rtk](https://github.com/rtk-ai/rtk)) không phải model AI, không phải giao diện chat, không phải thay thế Copilot. Nhiệm vụ của nó đơn giản và chính xác:
+rtk (GitHub: [rtk-ai/rtk](https://github.com/rtk-ai/rtk)) không phải model AI, không phải giao diện chat, không phải thay thế Copilot. Nhiệm vụ của nó đơn giản và chính xác: > "rtk lọc và nén đầu ra lệnh trước khi chúng đến cửa sổ ngữ cảnh LLM."
 
-> "rtk lọc và nén đầu ra lệnh trước khi chúng đến cửa sổ ngữ cảnh LLM."
+Nó hoạt động như một lớp proxy trong suốt giữa AI agent và shell: ```
+Không có rtk: Claude Code --git status--> shell --> git --> đầu ra gốc 2.000 token
 
-Nó hoạt động như một lớp proxy trong suốt giữa AI agent và shell:
-
-```
-Không có rtk:
-Claude Code --git status--> shell --> git --> đầu ra gốc 2.000 token
-
-Có rtk:
-Claude Code --git status--> RTK --> git --> lọc/nén --> đầu ra tinh giản 200 token
+Có rtk: Claude Code --git status--> RTK --> git --> lọc/nén --> đầu ra tinh giản 200 token
 ```
 
 **Tóm tắt đặc điểm cốt lõi:**
@@ -124,9 +107,7 @@ Claude Code --git status--> RTK --> git --> lọc/nén --> đầu ra tinh giản
 
 ## Số Liệu Thực Tế: Giảm 80% Token Chỉ Trong 30 Phút Dùng Claude Code
 
-Đây là benchmark chính thức từ tài liệu rtk, được tái hiện trên dự án fullstack TypeScript cỡ trung bình tại Việt Nam:
-
-| Thao Tác | Tần Suất | Token Gốc | Token rtk | Tiết Kiệm |
+Đây là benchmark chính thức từ tài liệu rtk, được tái hiện trên dự án fullstack TypeScript cỡ trung bình tại Việt Nam: | Thao Tác | Tần Suất | Token Gốc | Token rtk | Tiết Kiệm |
 |----------|----------|-----------|-----------|-----------|
 | `ls` / `tree` | 10 lần | 2.000 | 400 | **-80%** |
 | `cat` / đọc file | 20 lần | 40.000 | 12.000 | **-70%** |
@@ -147,9 +128,7 @@ Nếu hóa đơn Claude Code hàng tháng của bạn là 3 triệu đồng, rtk
 
 ## 4 Chiến Lược Nén Cốt Lõi Của rtk
 
-rtk không cắt xén mù quáng. Nó áp dụng chiến lược tối ưu theo từng loại lệnh:
-
-### 1. Smart Filtering (Lọc Thông Minh)
+rtk không cắt xén mù quáng. Nó áp dụng chiến lược tối ưu theo từng loại lệnh: ### 1. Smart Filtering (Lọc Thông Minh)
 
 Loại bỏ nhiễu không có ý nghĩa với LLM: comment, dòng trống, boilerplate, thanh tiến trình, trang trí ASCII. `git push` với rtk trả về `ok main` thay vì 15 dòng đếm đối tượng và nén delta.
 
@@ -169,9 +148,7 @@ Gấp các dòng lặp lại——phổ biến trong log Docker và test output�
 
 ## Tương Thích 13 Công Cụ AI, Cài Một Lần Dùng Mọi Nơi
 
-rtk không khóa bạn vào một agent duy nhất:
-
-| Công Cụ AI | Lệnh Cài Đặt | Phương Thức Chặn |
+rtk không khóa bạn vào một agent duy nhất: | Công Cụ AI | Lệnh Cài Đặt | Phương Thức Chặn |
 |------------|-------------|-----------------|
 | **Claude Code** | `rtk init -g` | PreToolUse hook (bash) |
 | **GitHub Copilot (VS Code)** | `rtk init -g --copilot` | PreToolUse hook |
@@ -353,9 +330,7 @@ Nếu bạn dùng nhiều AI CLI cùng lúc, kết hợp với [CC Switch để 
 
 ## Hosting được đề xuất cho AI Coding setup
 
-Nếu bạn cần chạy AI agent từ xa bền bỉ (CI runner / self-hosted Claude Code server / remote devbox), đây là các nhà cung cấp VPS đã được kiểm nghiệm:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — droplet $5/tháng đủ cho 1 dev workload, $200 credit miễn phí cho user mới
+Nếu bạn cần chạy AI agent từ xa bền bỉ (CI runner / self-hosted Claude Code server / remote devbox), đây là các nhà cung cấp VPS đã được kiểm nghiệm: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — droplet $5/tháng đủ cho 1 dev workload, $200 credit miễn phí cho user mới
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong / Singapore độ trễ thấp cho APAC, từ $4/tháng
 
 Stack LLM giá rẻ hoàn chỉnh xem tại [Cheap LLM Stack collection](/vi/collections/cheap-llm-stack/).
@@ -373,7 +348,6 @@ Stack LLM giá rẻ hoàn chỉnh xem tại [Cheap LLM Stack collection](/vi/col
 - [n8n AI Workflow Automation](/vi/resources/llm-frameworks/n8n-ai-workflow-automation-self-hosted-2026/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

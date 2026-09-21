@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/open-source-ai-agent-framework-top-10-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/open-source-ai-agent-framework-top-10-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/open-source-ai-agent-framework-top-10-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/open-source-ai-agent-framework-top-10-2026" />
 title: '오픈소스 AI 에이전트 프레임워크 Top 10 (2026): 프로덕션 채택률 기준 랭킹'
 description: '2026년 프로덕션 채택률 기준 10대 오픈소스 AI 에이전트 프레임워크: LangGraph, CrewAI, AutoGen, Mastra, Agno, Superagent, OpenHands, Smol Agents, Phidata, OpenAI Swarm. 강점, 함정, 그리고 용도별 선택 가이드.'
 date: 2026-05-25 00:00:00+08:00
@@ -21,10 +16,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['ai-agent', framework, langgraph, crewai, autogen, 2026]
-aliases:
-- /kr/posts/open-source-ai-agent-framework-top-10-2026/
-faq:
-  - q: "2026년에는 어떤 AI 에이전트 프레임워크를 선택해야 할까요?"
+aliases: - /kr/posts/open-source-ai-agent-framework-top-10-2026/
+faq: - q: "2026년에는 어떤 AI 에이전트 프레임워크를 선택해야 할까요?"
     a: "상태 기반의 프로덕션 그래프 워크플로우에는 LangGraph. 다중 에이전트 역할 기반 협업에는 CrewAI. 연구 및 Microsoft 생태계에는 AutoGen. TypeScript 우선 팀에는 Mastra. 언어 선호와 아키텍처 스타일로 선택하세요 — 마케팅이 말하는 것보다 서로 더 비슷합니다."
   - q: "에이전트 프레임워크의 종속성은 감수할 가치가 있나요?"
     a: "프로덕션 다단계 워크플로우라면 그렇습니다. 프레임워크가 제공하는 상태 관리, 재시도, 관측성, 도구 호출 글루 코드는 직접 작성해야 할 실제 엔지니어링입니다. 단순한 일회성 작업은 원시 API 호출로 충분합니다."
@@ -33,8 +26,6 @@ faq:
   - q: "프로젝트 중간에 프레임워크를 바꿀 수 있나요?"
     a: "가능하지만 고통스럽습니다. 각 프레임워크는 자체 도구 호출 API, 상태 모델, 관측성 훅을 가지고 있습니다. 한번 선택하면 6개월 이상 고수할 계획을 세우세요. 전환 비용은 새 에이전트 워크플로우 1-2개를 구축하는 비용과 거의 같습니다."
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/open-source-ai-agent-framework-top-10-2026/ -->
 
 {{</* resource-info */>}}
 
@@ -125,8 +116,7 @@ AI 에이전트 프레임워크 지형은 2026년에 통합되었습니다. 2년
 
 ## 권장 인프라
 
-에이전트 프레임워크 배포용:
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 크레딧, 자체 호스팅 플랫폼용 droplet
+에이전트 프레임워크 배포용: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 크레딧, 자체 호스팅 플랫폼용 droplet
 - **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 홍콩 VPS, 에이전트 워크로드 호스팅
 
 *제휴 링크 — 동일한 가격, dibi8.com을 후원합니다.*
@@ -140,7 +130,6 @@ AI 에이전트 프레임워크 지형은 2026년에 통합되었습니다. 2년
 **관련 글**: [12-Factor Agents 프로덕션 가이드](https://dibi8.com/kr/resources/llm-frameworks/12-factor-agents-production-llm-software-2026/) · [AI 에이전트 메모리 시스템](https://dibi8.com/kr/resources/llm-frameworks/ai-agent-memory-systems-open-source-infrastructure-2026/) · [MCP 서버 2026](https://dibi8.com/kr/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -168,25 +157,20 @@ AI 에이전트 프레임워크 지형은 2026년에 통합되었습니다. 2년
 
 ## Why This Matters
 
-Understanding 오픈소스 ai 에이전트 프레임워크 top 10 (2026): 프로덕션 채택률 기준 랭킹 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding 오픈소스 ai 에이전트 프레임워크 top 10 (2026): 프로덕션 채택률 기준 랭킹 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

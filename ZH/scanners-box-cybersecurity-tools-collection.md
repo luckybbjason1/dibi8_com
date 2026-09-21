@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/scanners-box-cybersecurity-tools-collection" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/scanners-box-cybersecurity-tools-collection" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/scanners-box-cybersecurity-tools-collection" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/scanners-box-cybersecurity-tools-collection" />
 title: Scanners-Box：200+ 网络安全工具合集 — 安全从业人员必备
 description: 探索 Scanners-Box — 200+ 开源网络安全工具合集，涵盖渗透测试、漏洞扫描、安全研究等领域。. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
-tech_stack:
-- Docker
+tech_stack: - Docker
 - Go
 - JavaScript
 - Python
@@ -28,10 +22,8 @@ maintainer: "luckybbjason1"
 last_maintained: "2023-09-21"
 featureImage: ''
 draft: false
-aliases:
-- /zh/posts/scanners-box-cybersecurity-tools-collection/
-faqs:
-  - q: '什么是 Scanners-Box?'
+aliases: - /zh/posts/scanners-box-cybersecurity-tools-collection/
+faqs: - q: '什么是 Scanners-Box?'
     a: 'Scanners-Box 是一个精选的开源网络安全工具集合，收录了 200+ 款工具，覆盖 15+ 个类别，涵盖子域名枚举、SQL 注入、模糊测试、端口扫描、社会工程等多个方面。它最初是为中国安全社区（t00ls）打造的，主要面向渗透测试人员和安全研究人员。'
   - q: 'Scanners-Box 推荐哪些工具用于 SQL 注入测试?'
     a: '它首推 sqlmap，能够自动检测并利用 SQL 注入，支持 6 种数据库类型，并内置用于绕过 WAF 的 tamper 脚本。该集合还列出了 jsql-injection、SQLiScanner 和 NoSQLAttack。'
@@ -40,10 +32,7 @@ faqs:
   - q: 'Scanners-Box 包含哪些模糊测试工具?'
     a: '它列出了 20+ 款 fuzzer，包括 AFL（American Fuzzy Lop）、honggfuzz、syzkaller 和 libFuzzer。AFL 是覆盖率引导的，已在真实软件中发现了数千个 bug；而 syzkaller 是 Linux 内核 fuzzer，已发现 3000 多个内核 bug，被 Google 和 Microsoft 使用。'
   - q: '像 Scanners-Box 里这样的渗透测试工具，使用是否合法?'
-    a: '这些工具仅在获得授权的安全测试中才合法；在没有明确书面许可的情况下对系统使用它们是违法且不道德的。相关法律包括美国《计算机欺诈和滥用法》（CFAA）、英国《计算机滥用法》、中国《网络安全法》以及欧盟 GDPR，因此在测试前务必取得书面授权并界定测试范围。'
----
-
-<!-- canonical: https://dibi8.com/zh/tools/scanners-box-cybersecurity-tools-collection/ -->
+    a: '这些工具仅在获得授权的安全测试中才合法；在没有明确书面许可的情况下对系统使用它们是违法且不道德的。相关法律包括美国《计算机欺诈和滥用法》（CFAA）、英国《计算机滥用法》、中国《网络安全法》以及欧盟 GDPR，因此在测试前务必取得书面授权并界定测试范围。'---
 {</* resource-info */>}
 
 ## Scanners-Box 是什么？
@@ -55,12 +44,18 @@ faqs:
 **工具数量**: 200+  
 **分类**: 15+
 
----
 
+---
 ## 工具分类概览
 
 | 分类 | 工具数量 | 示例 |
-|------|---------|------|
+|
+---
+|
+---
+|
+---
+|
 | **子域名枚举** | 15+ | subDomainsBrute, amass, subfinder, OneForAll |
 | **数据库 & SQL注入** | 10+ | sqlmap, jsql-injection, SQLiScanner, NoSQLAttack |
 | **模糊测试工具** | 20+ | AFL, honggfuzz, syzkaller, libFuzzer |
@@ -77,8 +72,8 @@ faqs:
 | **威胁情报** | 3+ | threat-intelligence, VirusTotal, ThreatBook |
 | **学习资源** | 20+ | sec-wiki, FreeBuf, Web Hacking 101 |
 
----
 
+---
 ## 精选工具深度解析
 
 ### 1. 子域名枚举
@@ -179,7 +174,13 @@ nmap -A target.com
 ## 漏洞靶场练习
 
 | 平台 | 描述 | 链接 |
-|------|------|------|
+|
+---
+|
+---
+|
+---
+|
 | **vulfocus** | Docker 漏洞平台 | GitHub |
 | **vulhub** | 预构建漏洞环境 | GitHub |
 | **VulApps** | 漏洞应用合集 | GitHub |
@@ -262,7 +263,6 @@ nmap -A target.com
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -290,25 +290,20 @@ nmap -A target.com
 
 ## Why This Matters
 
-Understanding scanners-box：200+ 网络安全工具合集 — 安全从业人员必备 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding scanners-box：200+ 网络安全工具合集 — 安全从业人员必备 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -360,7 +355,17 @@ For the latest updates and community discussions, join our Telegram channel: htt
 ## Security Tools Comparison
 
 | Tool | Type | Stars | License | Best For |
-|------|------|-------|---------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Semgrep** | SAST | 15K+ | LGPL | Code scanning |
 | **Trivy** | Container | 10K+ | Apache 2.0 | Container security |
 | **Skipper** | Kubernetes | 5K+ | Apache 2.0 | K8s policies |

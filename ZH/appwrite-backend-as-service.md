@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/appwrite-backend-as-service" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/appwrite-backend-as-service" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/appwrite-backend-as-service" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/appwrite-backend-as-service" />
 title: 'Appwrite 2026：开源 Firebase 替代方案 — 认证、数据库与存储自托管后端完整指南'
 description: 'Appwrite 1.6 完整指南 — 自托管开源后端，包含认证、数据库、存储、云函数和实时订阅功能。Docker 部署、SDK 集成、基准测试和生产环境加固。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [appwrite, 后端即服务, 'firebase 替代', docker, 开源, 认证, 数据库, 云函数, 自托管]
-aliases:
-- /zh/posts/appwrite-backend-as-service/
+aliases: - /zh/posts/appwrite-backend-as-service/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/appwrite-backend-as-service/ -->
 
 {{</* resource-info */>}}
 
@@ -218,8 +210,7 @@ print(f"Found {results[total]} matching documents")
 
 ```yaml
 # pubspec.yaml
-dependencies:
-  appwrite: ^15.0.0
+dependencies: appwrite: ^15.0.0
 ```
 
 ```dart
@@ -351,7 +342,15 @@ appwrite push function --id order-processor --source ./order-processor
 我在 [DigitalOcean 云服务器](https://m.do.co/c/eca87ac14ee0)（4 vCPU / 8GB RAM / $48/月）上测试了 Appwrite 1.6.1 的常见后端操作：
 
 | 操作 | Appwrite 1.6.1 | Firebase (US-Central) | Supabase (Small) |
-|------|---------------|----------------------|------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 认证注册 (邮箱) | **~45ms** | ~120ms | ~80ms |
 | 数据库创建文档 | **~18ms** | ~35ms | ~25ms |
 | 数据库查询 (索引, 10K 文档) | **~12ms** | ~28ms | ~20ms |
@@ -370,11 +369,9 @@ appwrite push function --id order-processor --source ./order-processor
 
 ```bash
 # 在 docker-compose.yml 的 services 下添加
-redis:
-  image: redis:7-alpine
+redis: image: redis:7-alpine
   restart: unless-stopped
-  volumes:
-    - redis-data:/data
+  volumes: - redis-data:/data
 
 # 添加到 .env
 _APP_REDIS_HOST=redis
@@ -428,10 +425,8 @@ Appwrite 在 `/_metrics` 端点暴露 Prometheus 可抓取的指标：
 
 ```yaml
 # prometheus.yml
-scrape_configs:
-  - job_name: appwrite
-    static_configs:
-      - targets: ['appwrite:80']
+scrape_configs: - job_name: appwrite
+    static_configs: - targets: ['appwrite:80']
     metrics_path: '/_metrics'
 ```
 
@@ -451,7 +446,19 @@ docker service scale appwrite_appwrite-executor=5
 ## 与替代方案对比
 
 | 功能 | Appwrite 1.6 | Firebase | Supabase | Nhost | PocketBase |
-|------|-------------|----------|----------|-------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 自托管 | **Yes (Docker)** | No | Yes | Yes (K8s) | Yes (单二进制) |
 | 开源协议 | **BSD-3-Clause** | 商业专有 | Apache-2.0 | Apache-2.0 | MIT |
 | 认证提供商 | **50+ OAuth** | 10+ | 20+ | 10+ | 5+ |
@@ -525,12 +532,12 @@ Appwrite 1.6 是 2026 年最成熟的 Firebase 开源替代方案。它在一个
 **联盟披露**
 本文包含指向 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 和 [HTStack](https://my.htstack.com/aff.php?aff=27187) 的联盟链接。如果你通过这些链接购买托管服务，dibi8.com 将获得佣金，不会增加你的额外费用。我们只推荐用于自己基础设施的服务。所有基准测试均在付费实例上独立进行。
 
+
 ---
 *文章发布：2026-05-19 | 分类：dev-utils | 工具：Appwrite 1.6.1*
 *加入 dibi8 开发者社区：[English](https://t.me/dibi8en) | [Chinese](https://t.me/dibi8zh) | [Korean](https://t.me/dibi8ko) | [Vietnamese](https://t.me/dibi8vn)*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -556,8 +563,8 @@ Appwrite 1.6 是 2026 年最成熟的 Firebase 开源替代方案。它在一个
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [2026-06-22-trending-ai-agents](appwrite-backend-as-service)
@@ -567,5 +574,4 @@ Appwrite 1.6 是 2026 年最成熟的 Firebase 开源替代方案。它在一个
 - [nanochat-karpathy-100-chatgpt-single-gpu](appwrite-backend-as-service)
 
 ---
-
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

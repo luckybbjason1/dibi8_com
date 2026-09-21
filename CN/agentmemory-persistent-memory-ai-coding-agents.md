@@ -1,10 +1,9 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/agentmemory-persistent-memory-ai-coding-agents" />
 title: 'AgentMemory: The #1 Persistent Memory System for AI Codi...
 description: 'AgentMemory (22,038 GitHub stars) provides persistent memory for AI coding agents based on real-world benchmarks. Remember past sessions, maintain context across days, learn from previous interactions. Works with Claude Code, Codex CLI, OpenCode, and more. Includes setup tutorial, architecture breakdown, and benchmarks.'
 date: 2026-06-08
-lastmod:  2026-06-08slug: 'agentmemory-persistent-memory-ai-coding-agents'
+lastmod: 2026-06-08
+slug: 'agentmemory-persistent-memory-ai-coding-agents'
 category: 'data-science'
 tags: ['agent memory', 'persistent memory', 'AI coding agents', 'context continuity', 'AgentMemory', 'session memory', 'agent framework', 'AI benchmark']
 github_repo: 'https://github.com/rohitg00/agentmemory'
@@ -12,9 +11,7 @@ stars: 22038
 maintainer: 'rohitg00'
 license: MIT
 featureImage: 'https://avatars.githubusercontent.com/u/33592279'
-lang: en
 ---
-
 # AgentMemory: The #1 Persistent Memory System for AI Coding Agents — 22,000 Stars for Real-World Benchmarks — A Practical Guide 2026
 
 ```
@@ -51,8 +48,7 @@ AI coding agents forget everything between sessions. You fix a bug on Tuesday, c
 
 AgentMemory is **a persistent memory system for AI coding agents** that enables agents to remember and retrieve information across sessions. It uses a combination of vector embeddings, knowledge graphs, and structured fact storage to create a searchable memory that agents can query at the start of each session.
 
-Key capabilities:
-- **Cross-session memory** — Remember what happened in previous sessions, days, or weeks
+Key capabilities: - **Cross-session memory** — Remember what happened in previous sessions, days, or weeks
 - **Multi-agent support** — Share memory across Claude Code, Codex, OpenCode, and more
 - **Structured facts** — Store decisions, bug fixes, architecture patterns as structured data
 - **Semantic search** — Find relevant past context using embedding-based retrieval
@@ -76,8 +72,7 @@ npm install -g @agentmemory/agentmemory
 
 Memory is extracted from agent sessions through the MCP protocol. Agents query the memory server to store and retrieve facts about code decisions, bug fixes, and architectural patterns. The system processes tool calls, code changes, and conversation context automatically.
 
-Key extraction types include:
-- **Decisions** — Architecture choices, library selections, design patterns
+Key extraction types include: - **Decisions** — Architecture choices, library selections, design patterns
 - **Fixes** — Bug fixes applied, root causes, solutions implemented
 - **Patterns** — Coding patterns, conventions, style choices used
 - **Config** — Build configurations, environment settings, dependencies
@@ -104,8 +99,7 @@ AgentMemory works through the MCP protocol, which is supported by Claude Code, C
 
 ### Memory Storage Options
 
-AgentMemory supports multiple storage backends out of the box:
-- **ChromaDB** — Default local vector store, zero configuration required
+AgentMemory supports multiple storage backends out of the box: - **ChromaDB** — Default local vector store, zero configuration required
 - **Qdrant** — Distributed vector store for production deployments
 - **Weaviate** — Cloud-native vector search with GPU acceleration
 - **SQLite** — Lightweight embedded database for simple setups
@@ -114,9 +108,7 @@ AgentMemory supports multiple storage backends out of the box:
 
 ### Storage Backend Configuration
 
-Select a storage backend by setting the environment variable before starting the AgentMemory server:
-
-```bash
+Select a storage backend by setting the environment variable before starting the AgentMemory server: ```bash
 # Use Qdrant as vector store
 export AGENTMEMORY_VECTOR_STORE=qdrant
 export QDRANT_HOST=localhost
@@ -150,9 +142,7 @@ agentmemory status
 
 ### Memory Fact Schema
 
-Each memory fact has a structured schema with metadata:
-
-```json
+Each memory fact has a structured schema with metadata: ```json
 {
   "fact_id": "f7a3b2c1",
   "type": "decision",
@@ -169,9 +159,7 @@ Each memory fact has a structured schema with metadata:
 
 ### Memory Query Examples
 
-Retrieve memory using natural language queries or structured filters:
-
-```bash
+Retrieve memory using natural language queries or structured filters: ```bash
 # Natural language search
 agentmemory search "what architecture decisions were made?"
 
@@ -187,9 +175,7 @@ agentmemory get-related --fact-id f7a3b2c1 --max-depth 3
 
 ### Memory Pruning Operations
 
-Manage memory growth with built-in pruning tools:
-
-```bash
+Manage memory growth with built-in pruning tools: ```bash
 # Prune facts older than 90 days
 agentmemory prune --older-than 90d
 
@@ -213,9 +199,7 @@ Supported agents include Claude Code, Codex CLI, OpenCode, Gemini CLI, Cursor, a
 
 ### Configuring Claude Code for AgentMemory
 
-Set up AgentMemory as a persistent memory tool for Claude Code:
-
-```bash
+Set up AgentMemory as a persistent memory tool for Claude Code: ```bash
 # Set up Claude Code to use AgentMemory MCP server
 claude code --mcp-config ~/.claude/mcp-config.json
 
@@ -249,9 +233,7 @@ codex test memory
 
 ### Multi-Session Memory Workflow
 
-Demonstrate how memory persists across sessions:
-
-```bash
+Demonstrate how memory persists across sessions: ```bash
 # Session 1: Start working on a project
 agentmemory start --port 8080
 # Agent extracts: "Project uses PostgreSQL with Prisma ORM"
@@ -268,9 +250,7 @@ agentmemory stats
 
 ### Export and Import Memory
 
-Transfer memory between machines or share with team members:
-
-```bash
+Transfer memory between machines or share with team members: ```bash
 # Export memory as JSON
 agentmemory export --format json --output /tmp/agentmemory-backup.json
 
@@ -283,12 +263,9 @@ agentmemory import --source /tmp/agentmemory-backup.json --target my-project
 
 ### Custom Fact Extraction Rules
 
-Define custom extraction rules for domain-specific facts:
-
-```yaml
+Define custom extraction rules for domain-specific facts: ```yaml
 # ~/.agentmemory/rules.yaml
-extraction_rules:
-  - name: security_fixes
+extraction_rules: - name: security_fixes
     pattern: ".*(fix|patch|resolve).*security.*"
     type: fix
     category: security
@@ -309,13 +286,10 @@ extraction_rules:
 
 ### Memory Conflict Resolution
 
-When multiple agents record conflicting facts, AgentMemory uses confidence scoring:
-
-```bash
+When multiple agents record conflicting facts, AgentMemory uses confidence scoring: ```bash
 # Detect conflicting facts
 agentmemory conflicts --type decision --category framework
-# Output:
-# CONFLICT: framework selection
+# Output: # CONFLICT: framework selection
 #   fact_a: "Used React for frontend" (confidence: 0.92, session: 42)
 #   fact_b: "Used Vue for frontend" (confidence: 0.88, session: 55)
 # Recommended: fact_a (higher confidence, more recent)
@@ -332,8 +306,7 @@ For reliable hosting, deploy on [WebShare](https://www.webshare.io/?referral_cod
 
 AgentMemory stores facts, decisions, and patterns from each session. Over time, the knowledge base grows, and agents become more productive as they retain more context. The system handles varying time gaps between sessions with high accuracy.
 
-Memory accuracy over time:
-- **Same day** — 96% accuracy (fresh memory still cached)
+Memory accuracy over time: - **Same day** — 96% accuracy (fresh memory still cached)
 - **1 week** — 91% accuracy (vector search retrieves relevant context)
 - **1 month** — 84% accuracy (semantic search maintains relevance)
 - **3 months** — 72% accuracy (long-tail facts still retrievable)
@@ -351,8 +324,7 @@ Multiple agents can share the same memory store. This is useful for teams runnin
 
 ### Storage Backend Selection
 
-Choosing the right storage backend depends on your scale and requirements:
-- Start with **ChromaDB** for local development — it requires no external services
+Choosing the right storage backend depends on your scale and requirements: - Start with **ChromaDB** for local development — it requires no external services
 - Move to **Qdrant** when you need distributed vector search across team members
 - Use **Neo4j** when graph relationships between facts matter most
 - Use **SQLite** for minimal overhead on small projects
@@ -368,7 +340,17 @@ Over time, you may want to prune older facts to reduce storage and improve retri
 ## Comparison with Alternatives
 
 | Feature | AgentMemory | Cursor Memories | GitHub Copilot Chat | Custom RAG |
-|---------|------------|-----------------|---------------------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Persistent memory | Yes | Yes (local only) | No | Yes |
 | Cross-session | Yes | No | No | Yes |
 | Multi-agent | 6+ agents | Cursor only | Copilot only | Custom |
@@ -381,9 +363,7 @@ Over time, you may want to prune older facts to reduce storage and improve retri
 
 ## Limitations / Honest Assessment
 
-AgentMemory is not for everyone:
-
-1. **Small solo projects** — If you're the only developer and work in single sessions, memory provides limited value. The agent is fast enough to handle small codebases without memory.
+AgentMemory is not for everyone: 1. **Small solo projects** — If you're the only developer and work in single sessions, memory provides limited value. The agent is fast enough to handle small codebases without memory.
 2. **Privacy-sensitive code** — Memory stores code patterns and decisions locally. For enterprise codebases, you need to audit what facts are extracted and stored.
 3. **Cold start period** — Memory takes time to build. A new project starts with empty memory and needs 10-20 sessions before the system becomes useful.
 4. **Memory drift** — Over time, outdated facts can confuse agents. Regular pruning keeps the store clean and relevant.
@@ -403,17 +383,14 @@ Memory retrieval speed depends on your storage backend. ChromaDB offers fast loc
 
 ### Monitoring Memory Health
 
-Monitor your memory store for health metrics and potential issues:
-
-```bash
+Monitor your memory store for health metrics and potential issues: ```bash
 # Check memory store health
 agentmemory health
 # Output: OK, 1247 facts, 48MB, last_pruned: 2024-06-01
 
 # View top retrieval queries for optimization
 agentmemory analytics --queries --top 10
-# Output:
-# 1. "authentication flow" - 342 queries
+# Output: # 1. "authentication flow" - 342 queries
 # 2. "database migration" - 218 queries
 # 3. "error handling patterns" - 156 queries
 
@@ -463,7 +440,6 @@ Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss A
 Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -489,8 +465,8 @@ Some links above are affiliate links. dibi8.com may earn a commission if you sig
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [codebase-memory-mcp-high-performance-code-intelligence](agentmemory-persistent-memory-ai-coding-agents)
@@ -499,8 +475,8 @@ Some links above are affiliate links. dibi8.com may earn a commission if you sig
 - [2026-06-01-trending-ai-agents](agentmemory-persistent-memory-ai-coding-agents)
 - [2026-06-08-trending-ai-agents](agentmemory-persistent-memory-ai-coding-agents)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

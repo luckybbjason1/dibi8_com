@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/skyvern-dev-utils-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/skyvern-dev-utils-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/skyvern-dev-utils-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/skyvern-dev-utils-2026" />
 title: 'Skyvern: AI 에이전트로 브라우저 워크플로 자동화 (21K 스타) — 2026 실전 가이드'
 description: 'Skyvern은 대규모 언어 모델과 컴퓨터 비전으로 브라우저 기반 워크플로를 자동화합니다 (GitHub 스타 21,803개, AGPL-3.0). 설치, 실제 Python API, 동작하는 코드 예제, 그리고 Selenium·Playwright와의 솔직한 비교를 다룹니다.'
 date: 2026-06-02 00:00:00+08:00
@@ -25,10 +20,8 @@ featureImage: 'https://raw.githubusercontent.com/Skyvern-AI/skyvern/main/fern/im
 draft: false
 categories: ['dev-utils']
 tags: []
-aliases:
-- /posts/skyvern-dev-utils-2026/
-faqs:
-  - q: 'Skyvern-AI/skyvern은 어떻게 설치하나요?'
+aliases: - /posts/skyvern-dev-utils-2026/
+faqs: - q: 'Skyvern-AI/skyvern은 어떻게 설치하나요?'
     a: 'pip로 설치한 뒤 quickstart를 실행하세요. ```bash pip install "skyvern[all]" skyvern quickstart ``` quickstart가 LLM 제공자 설정을 돕고 로컬 서버와 UI를 실행합니다.'
   - q: 'Skyvern-AI/skyvern 실행에 필요한 시스템 요구 사항은 무엇인가요?'
     a: 'Skyvern은 Python 3.11 이상과 최소 하나의 LLM API 키(OpenAI, Anthropic, Gemini, Bedrock, 또는 Ollama를 통한 로컬 모델)가 필요합니다. 몇 GB의 RAM을 갖춘 현대적인 머신이면 로컬 사용에 충분하며, 프로덕션 예약 작업은 항상 켜져 있는 서버에서 돌리는 것이 가장 좋습니다.'
@@ -39,8 +32,6 @@ faqs:
   - q: 'Skyvern-AI/skyvern 사용에 관한 더 많은 정보는 어디에서 찾을 수 있나요?'
     a: '공식 사이트 <https://www.skyvern.com> 와 GitHub README를 참고하세요. 두 곳 모두 설치, API, 예제 워크플로를 깊이 있게 다룹니다.'
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/skyvern-dev-utils-2026/ -->
 
 {{< resource-info >}}
 
@@ -150,8 +141,7 @@ Skyvern은 "자연어 프롬프트로 에이전트 작업 실행"을 중심으�
 import asyncio
 from skyvern import Skyvern
 
-async def main():
-    skyvern = Skyvern.local()
+async def main(): skyvern = Skyvern.local()
     task = await skyvern.run_task(
         prompt="Go to news.ycombinator.com and find the title of the top post today",
     )
@@ -168,8 +158,7 @@ asyncio.run(main())
 import asyncio
 from skyvern import Skyvern
 
-async def main():
-    skyvern = Skyvern.local()
+async def main(): skyvern = Skyvern.local()
     task = await skyvern.run_task(
         prompt="Extract the top 3 posts on Hacker News",
         data_extraction_schema={
@@ -201,8 +190,7 @@ asyncio.run(main())
 import asyncio
 from skyvern import Skyvern
 
-async def main():
-    skyvern = Skyvern.local()
+async def main(): skyvern = Skyvern.local()
     browser = await skyvern.launch_cloud_browser()
     page = await browser.get_working_page()
 
@@ -239,8 +227,7 @@ app = FastAPI()
 skyvern = Skyvern.local()
 
 @app.get("/automate")
-async def automate():
-    task = await skyvern.run_task(
+async def automate(): task = await skyvern.run_task(
         prompt="Go to example.com and click the Submit button",
     )
     return {"result": task}
@@ -340,19 +327,11 @@ Skyvern-AI/skyvern은 AI로 브라우저 워크플로를 자동화하는 유능�
 
 ---
 
-**출처 및 더 읽을거리**:
-- GitHub 저장소: https://github.com/Skyvern-AI/skyvern
+**출처 및 더 읽을거리**: - GitHub 저장소: https://github.com/Skyvern-AI/skyvern
 - 공식 문서 / README: https://github.com/Skyvern-AI/skyvern#readme
 
 *위 링크 중 일부는 제휴 링크입니다. 가입하시면 dibi8.com이 수수료를 받을 수 있으며, 추가 비용은 들지 않습니다. 사이트 운영과 무료 콘텐츠 유지에 도움이 됩니다.*
 
-<!-- internal-link-candidates:
-  related open-source tools -> ai-tools-directory
-  related guides on dibi8 -> ai-coding-agent-landscape-2026-skills-mcp-opensource
--->
-
-
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

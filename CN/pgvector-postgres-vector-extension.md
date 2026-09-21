@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/pgvector-postgres-vector-extension" />
 title: 'pgvector 2026: Turn PostgreSQL into a High-Performance V...
 description: 'Production guide for pgvector 0.8.2: HNSW/IVFFlat indexes, vector similarity search, performance tuning, and RAG integration with LangChain and LlamaIndex.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: [pgvector, postgresql, 'vector-database', hnsw, ann, rag, 'similarity-search', 'full-text-search']
-aliases:
-- /posts/pgvector-postgres-vector-extension/
+aliases: - /posts/pgvector-postgres-vector-extension/-
 ---
-
 {{</* resource-info */>}}
 
 ## Introduction: The 47-Second Query That Killed a Demo
@@ -45,7 +41,11 @@ This guide covers everything: installation on PostgreSQL 18, HNSW tuning, `halfv
 **Key stats (May 2026):**
 
 | Metric | Value |
-|--------|-------|
+|
+---
+|
+---
+|
 | Current version | **0.8.2** |
 | PostgreSQL compatibility | **14 through 18** |
 | GitHub stars | **15,000+** |
@@ -58,9 +58,7 @@ Unlike standalone vector databases, pgvector inherits everything PostgreSQL offe
 
 ## How pgvector Works: Index Types and Query Planning
 
-pgvector supports two ANN index types, each with distinct trade-offs:
-
-### HNSW (Hierarchical Navigable Small World)
+pgvector supports two ANN index types, each with distinct trade-offs: ### HNSW (Hierarchical Navigable Small World)
 
 The default choice for most workloads. HNSW builds a multi-layer graph where each layer is a subset of the previous one. Query traversal starts at the top layer and greedily navigates down until reaching the densest graph at the bottom.
 
@@ -90,10 +88,14 @@ CREATE INDEX ON documents
 
 ### Distance Operators
 
-pgvector provides three distance operators:
-
-| Operator | Description | Use case |
-|----------|-------------|----------|
+pgvector provides three distance operators: | Operator | Description | Use case |
+|
+---
+|
+---
+|
+---
+|
 | `<->` | Euclidean (L2) distance | General similarity (default) |
 | `<#>` | Negative inner product | OpenAI embeddings |
 | `<=>` | Cosine distance | Semantic similarity (normalized vectors) |
@@ -143,8 +145,7 @@ psql -U postgres -d mydb -c "CREATE EXTENSION IF NOT EXISTS vector;"
 ### Option C: Supabase (Managed)
 
 ```sql
--- pgvector is pre-installed on Supabase. Just enable it:
-CREATE EXTENSION IF NOT EXISTS vector;
+-- pgvector is pre-installed on Supabase. Just enable it: CREATE EXTENSION IF NOT EXISTS vector;
 
 -- Verify version
 SELECT extversion FROM pg_extension WHERE extname = vector;
@@ -316,9 +317,7 @@ LIMIT 10;
 
 ### Half-Precision Quantization (halfvec)
 
-pgvector 0.8.2 supports `halfvec` type for **50% storage reduction** with minimal recall loss:
-
-```sql
+pgvector 0.8.2 supports `halfvec` type for **50% storage reduction** with minimal recall loss: ```sql
 -- Add halfvec column for quantized storage
 ALTER TABLE documents ADD COLUMN embedding_half halfvec(1536);
 
@@ -359,7 +358,17 @@ reserve_pool_size = 10
 ### Benchmark Comparison: Before and After Tuning
 
 | Configuration | Query Latency (p99) | Recall@10 | Index Size | Build Time |
-|-------------|-------------------|-----------|------------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | No index (seq scan) | 47,000 ms | 1.00 | N/A | N/A |
 | HNSW defaults (m=16, ef_construction=64) | 4.2 ms | 0.91 | 450 MB | 45s |
 | HNSW tuned (m=24, ef_construction=128) | 3.8 ms | 0.95 | 680 MB | 82s |
@@ -401,8 +410,7 @@ results = vector_store.similarity_search(
     k=5,
     filter={"source": "blog"}
 )
-for doc in results:
-    print(f"Content: {doc.page_content}")
+for doc in results: print(f"Content: {doc.page_content}")
 ```
 
 ### LlamaIndex + pgvector
@@ -452,14 +460,12 @@ import numpy as np
 client = OpenAI()
 conn = psycopg2.connect("dbname=vectordb user=postgres password=mysecretpassword host=localhost")
 
-def get_embedding(text: str) -> list[float]:
-    resp = client.embeddings.create(
+def get_embedding(text: str) -> list[float]: resp = client.embeddings.create(
         model="text-embedding-3-large", input=text, dimensions=1536
     )
     return resp.data[0].embedding
 
-def retrieve_documents(query: str, top_k: int = 5, tenant_id: int = 1):
-    query_vec = get_embedding(query)
+def retrieve_documents(query: str, top_k: int = 5, tenant_id: int = 1): query_vec = get_embedding(query)
     cur = conn.cursor()
     cur.execute("""
         SELECT title, content, embedding <=> %s::vector AS distance
@@ -471,8 +477,7 @@ def retrieve_documents(query: str, top_k: int = 5, tenant_id: int = 1):
     return cur.fetchall()
 
 # Full RAG pipeline
-def rag_query(user_question: str) -> str:
-    docs = retrieve_documents(user_question, top_k=5)
+def rag_query(user_question: str) -> str: docs = retrieve_documents(user_question, top_k=5)
     context = "\n\n".join([f"Title: {d[0]}\n{d[1]}" for d in docs])
     
     response = client.chat.completions.create(
@@ -554,23 +559,32 @@ conn_pool = pool.ThreadedConnectionPool(
     password="mysecretpassword"
 )
 
-def search_with_pool(query_vec, limit=10):
-    conn = conn_pool.getconn()
-    try:
-        cur = conn.cursor()
+def search_with_pool(query_vec, limit=10): conn = conn_pool.getconn()
+    try: cur = conn.cursor()
         cur.execute(
             "SELECT id, title FROM documents ORDER BY embedding <-> %s::vector LIMIT %s",
             (query_vec, limit)
         )
         return cur.fetchall()
-    finally:
-        conn_pool.putconn(conn)
+    finally: conn_pool.putconn(conn)
 ```
 
 ## Comparison with Alternatives
 
 | Feature | pgvector 0.8.2 | Pinecone | Weaviate 1.25 | Qdrant 1.11 | Milvus 2.5 |
-|---------|---------------|----------|---------------|-------------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Open Source** | PostgreSQL License | No | BSD-3 | Apache-2.0 | Apache-2.0 |
 | **Max Scale** | ~50M vectors | Unlimited | 200M/node | 500M/node | **10B+** |
 | **p99 Latency** | 25-40 ms | 28 ms | 19 ms | **12 ms** | 8 ms (GPU) |
@@ -625,9 +639,7 @@ Use **HNSW** as the default. It provides better recall (~95%) and lower query la
 
 ### Can I use pgvector with managed PostgreSQL services?
 
-Yes. pgvector is available on:
-
-- **Supabase** — pre-installed, just run `CREATE EXTENSION vector;`
+Yes. pgvector is available on: - **Supabase** — pre-installed, just run `CREATE EXTENSION vector;`
 - **Neon** — supported on all plans, including free tier
 - **AWS RDS** — available on PostgreSQL 15+
 - **Google Cloud SQL** — available on PostgreSQL 15+
@@ -637,9 +649,7 @@ No infrastructure changes are needed — it is a standard PostgreSQL extension.
 
 ### Does pgvector support filtered vector search?
 
-Yes, and this is where pgvector excels over dedicated vector databases. Because vector data lives in PostgreSQL, you can apply any SQL `WHERE` clause alongside vector similarity:
-
-```sql
+Yes, and this is where pgvector excels over dedicated vector databases. Because vector data lives in PostgreSQL, you can apply any SQL `WHERE` clause alongside vector similarity: ```sql
 SELECT title, embedding <-> $1::vector AS distance
 FROM documents
 WHERE tenant_id = 42
@@ -653,9 +663,7 @@ PostgreSQL's planner optimizes this by pushing down the `WHERE` predicates durin
 
 ### How do I tune HNSW for my workload?
 
-The two key parameters are:
-
-- `ef_construction` (default 64): Higher = better index quality, slower builds. For production RAG, use **128-256**.
+The two key parameters are: - `ef_construction` (default 64): Higher = better index quality, slower builds. For production RAG, use **128-256**.
 - `ef_search` (default 40): Higher = better recall, slower queries. Benchmark your recall and set to **64-100**.
 
 ```sql
@@ -694,9 +702,7 @@ Join our [Telegram community](https://t.me/dibi8en) to share your pgvector perfo
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -706,7 +712,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 This article contains affiliate links to [DigitalOcean](https://m.do.co/c/eca87ac14ee0) for cloud hosting and [Supabase](https://supabase.com) for managed PostgreSQL. If you sign up through our links, we receive a commission at no extra cost to you. We only recommend services we use in our own production environments.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -732,8 +737,8 @@ This article contains affiliate links to [DigitalOcean](https://m.do.co/c/eca87a
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [alpaca-trading-api-stock-broker](pgvector-postgres-vector-extension)
@@ -742,8 +747,8 @@ This article contains affiliate links to [DigitalOcean](https://m.do.co/c/eca87a
 - [cognee-ai-memory-platform](pgvector-postgres-vector-extension)
 - [flowise](pgvector-postgres-vector-extension)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

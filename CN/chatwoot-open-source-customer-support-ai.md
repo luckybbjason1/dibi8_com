@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/chatwoot-open-source-customer-support-ai" />
 title: 'Chatwoot 2026: The Open-Source Customer Support Platform...
 description: 'Complete guide to Chatwoot v4 — open-source customer support platform. Self-host with Docker, integrate AI agents, connect multi-channels. Real benchmarks and production setup.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [chatwoot, 'customer-support', 'open-source', 'ai-chatbot', 'self-hosted', docker, 'ruby-on-rails', 'live-chat']
-aliases:
-- /posts/chatwoot-open-source-customer-support-ai/
+aliases: - /posts/chatwoot-open-source-customer-support-ai/-
 ---
-
 {{</* resource-info */>}}
 
 ## Introduction: Why Your Support Stack Needs a Reset
@@ -68,7 +64,13 @@ Chatwoot follows a classic monolithic Rails architecture with a Vue.js SPA front
 ### Core Components
 
 | Component | Purpose | Production Notes |
-|-----------|---------|-----------------|
+|
+---
+|
+---
+|
+---
+|
 | Rails API | Core business logic, REST API, ActionCable | Scale horizontally with multiple Puma workers |
 | Vue.js Dashboard | Agent-facing SPA for ticket management | Static assets served via CDN in production |
 | PostgreSQL | Primary database, stores conversations, contacts | Enable streaming replication for read replicas |
@@ -152,8 +154,7 @@ docker compose -f docker-compose.production.yaml up -d
 # Verify all services are running
 docker compose ps
 
-# Expected output:
-# NAME                STATUS         PORTS
+# Expected output: # NAME                STATUS         PORTS
 # chatwoot_app        Up 30 seconds  0.0.0.0:3000->3000/tcp
 # chatwoot_worker     Up 30 seconds
 # chatwoot_postgres   Up 30 seconds  5432/tcp
@@ -229,13 +230,11 @@ AI_AUTO_REPLY_THRESHOLD=0.85  # Confidence score for auto-response
 
 ```ruby
 # config/ai_assistants.yml — Define assistant behavior
-support_bot:
-  name: "Support Assistant"
+support_bot: name: "Support Assistant"
   model: gpt-4.1-mini
   system_prompt: |
     You are a helpful support assistant for Acme Inc.
-    Follow these rules:
-    1. Answer only questions in the knowledge base
+    Follow these rules: 1. Answer only questions in the knowledge base
     2. For billing issues, always offer to connect a human
     3. Keep responses under 150 words
   handoff_keywords: ["refund", "chargeback", "legal", "complaint"]
@@ -267,8 +266,7 @@ app = Flask(__name__)
 llm = ChatOpenAI(model="gpt-4.1-mini", temperature=0.3)
 
 @app.route("/chatwoot/webhook", methods=["POST"])
-def handle_chatwoot():
-    data = request.json
+def handle_chatwoot(): data = request.json
     message = data.get("content", "")
     conversation_id = data["conversation"]["id"]
 
@@ -290,9 +288,7 @@ def handle_chatwoot():
 ```bash
 # HubSpot CRM — Install via Chatwoot app marketplace
 # Navigate to: Settings > Applications > HubSpot
-# Or configure via API:
-
-curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/integrations/hubspot" \
+# Or configure via API: curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/integrations/hubspot" \
   -H "Content-Type: application/json" \
   -H "Api-Access-Token: YOUR_API_TOKEN" \
   -d '{
@@ -346,8 +342,7 @@ curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/inboxes" \
 # In Chatwoot dashboard: Settings > Integrations > Slack
 # Authorize and select the channel for support alerts
 
-# The bot will post:
-# - New conversation notifications
+# The bot will post: # - New conversation notifications
 # - Agent mention alerts
 # - Escalation reminders
 ```
@@ -357,7 +352,13 @@ curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/inboxes" \
 ### Performance Benchmarks (v4.0.1 on 4GB DigitalOcean Droplet)
 
 | Metric | Value | Notes |
-|--------|-------|-------|
+|
+---
+|
+---
+|
+---
+|
 | Cold start time | 3.2s | Docker container startup |
 | Message delivery latency | 95ms | P95, same-region client |
 | Concurrent agent sessions | 85 | Before memory pressure |
@@ -369,7 +370,17 @@ curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/inboxes" \
 ### Real-World Deployment Profiles
 
 | Company Type | Agents | Channels | Monthly Cost (Self-Hosted) | Cloud Equivalent |
-|-------------|--------|----------|---------------------------|-----------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | SaaS Startup | 3 | Chat + Email | **$24** (VPS) | $360 (Intercom) |
 | E-commerce | 12 | Chat + Email + WhatsApp + FB | **$64** (VPS + backups) | $1,200 (Zendesk) |
 | Digital Agency | 25 | All channels | **$128** (HA setup) | $2,900 (Freshdesk) |
@@ -377,9 +388,7 @@ curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/inboxes" \
 
 ### Case Study: 8× Cost Reduction for a 15-Agent E-commerce Team
 
-A mid-size e-commerce company in Southeast Asia migrated from Zendesk Suite to self-hosted Chatwoot in January 2026. The results after 4 months:
-
-- **Support tooling cost**: $2,160/month → $64/month (**97% reduction**)
+A mid-size e-commerce company in Southeast Asia migrated from Zendesk Suite to self-hosted Chatwoot in January 2026. The results after 4 months: - **Support tooling cost**: $2,160/month → $64/month (**97% reduction**)
 - **AI auto-resolution rate**: 34% of L1 queries resolved without human intervention
 - **Average response time**: 4.2 hours → 28 minutes
 - **Agent satisfaction score**: 6.8/10 → 8.4/10 (better UI, fewer context switches)
@@ -390,32 +399,23 @@ A mid-size e-commerce company in Southeast Asia migrated from Zendesk Suite to s
 
 ```yaml
 # docker-compose.scale.yaml — Add more Sidekiq workers
-services:
-  worker_default:
-    image: chatwoot/chatwoot:v4.0.1
+services: worker_default: image: chatwoot/chatwoot:v4.0.1
     command: bundle exec sidekiq -C config/sidekiq.yml
-    deploy:
-      replicas: 3  # Scale based on queue depth
-    environment:
-      - REDIS_URL=redis://redis:6379/0
+    deploy: replicas: 3  # Scale based on queue depth
+    environment: - REDIS_URL=redis://redis:6379/0
 
-  worker_high_priority:
-    image: chatwoot/chatwoot:v4.0.1
+  worker_high_priority: image: chatwoot/chatwoot:v4.0.1
     command: bundle exec sidekiq -q high -q default -q low
-    deploy:
-      replicas: 2
+    deploy: replicas: 2
 ```
 
 ### Database Read Replicas
 
 ```ruby
 # config/database.yml — Add read replica
-production:
-  primary:
-    <<: *default
+production: primary: <<: *default
     host: <%= ENV[POSTGRES_HOST] %>
-  primary_replica:
-    <<: *default
+  primary_replica: <<: *default
     host: <%= ENV[POSTGRES_REPLICA_HOST] %>
     replica: true
 ```
@@ -460,10 +460,8 @@ find /backup/chatwoot -maxdepth 1 -type d -mtime +14 -exec rm -rf {} \;
 # Chatwoot exposes a /metrics endpoint
 # Add to your prometheus.yml
 
-scrape_configs:
-  - job_name: chatwoot
-    static_configs:
-      - targets: ['support.yourdomain.com:3000']
+scrape_configs: - job_name: chatwoot
+    static_configs: - targets: ['support.yourdomain.com:3000']
     metrics_path: '/metrics'
     scrape_interval: 30s
 ```
@@ -486,7 +484,19 @@ add_header Content-Security-Policy "default-src self" always;
 ## Comparison with Alternatives
 
 | Feature | Chatwoot (Open) | Zendesk Suite | Intercom | Freshdesk | Help Scout |
-|---------|-----------------|---------------|----------|-----------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **License** | MIT (Open) | Proprietary | Proprietary | Proprietary | Proprietary |
 | **Self-hosted option** | Yes (Docker) | No | No | No | No |
 | **Monthly cost (5 agents)** | **$0-24** | $495 | $325 | $75 | $125 |
@@ -502,9 +512,7 @@ add_header Content-Security-Policy "default-src self" always;
 
 ## Limitations: Honest Assessment
 
-Chatwoot is not the right choice for every organization. Here is what you should know:
-
-**Mobile SDK maturity** — The iOS and Android SDKs exist but lag behind the web dashboard in feature parity. If mobile-first support is critical, test thoroughly before committing.
+Chatwoot is not the right choice for every organization. Here is what you should know: **Mobile SDK maturity** — The iOS and Android SDKs exist but lag behind the web dashboard in feature parity. If mobile-first support is critical, test thoroughly before committing.
 
 **Reporting depth** — The built-in reporting covers basics (response time, resolution time, CSAT) but lacks advanced analytics like sentiment trend analysis or predictive workload forecasting. You may need to export to BI tools.
 
@@ -530,9 +538,7 @@ Use the webhook-based integration. Any LLM service that exposes an HTTP API can 
 
 **What is the upgrade process between versions?**
 
-Chatwoot follows semantic versioning. Minor updates (v4.0.0 → v4.0.1) are typically database-migration-free. Major updates (v3.x → v4.x) require running migrations. The standard process:
-
-```bash
+Chatwoot follows semantic versioning. Minor updates (v4.0.0 → v4.0.1) are typically database-migration-free. Major updates (v3.x → v4.x) require running migrations. The standard process: ```bash
 # Backup first
 /opt/scripts/chatwoot-backup.sh
 
@@ -562,15 +568,11 @@ Deploy your instance this week. Start with the Docker Compose setup, connect you
 
 **Join our Telegram group for open-source tooling discussions**: [t.me/dibi8opensource](https://t.me/dibi8opensource)
 
+
 ---
-
-
-
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -591,7 +593,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 *This article contains affiliate links to DigitalOcean and HTStack. If you purchase services through these links, dibi8.com may receive a commission at no additional cost to you. All recommendations are based on hands-on testing and real deployment experience.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

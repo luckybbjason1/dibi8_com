@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/hermes-agent-self-improving-ai-agent" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hermes-agent-self-improving-ai-agent" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hermes-agent-self-improving-ai-agent" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hermes-agent-self-improving-ai-agent" />
 title: Hermes Agent：一个会自我进化的 AI 代理，越用越懂你
 description: Hermes Agent 是 Nous Research 打造的Open Source AI 代理，拥有自我学习循环——从经验中创建技能、持续改进、记住你的偏好，越用越懂你。. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
-tech_stack:
-- Go
+tech_stack: - Go
 - Python
 - TypeScript
 application_domain: Llm Frameworks
@@ -26,11 +20,9 @@ maintainer: "NousResearch"
 last_maintained: "2026-05-16"
 featureImage: ''
 draft: false
-aliases:
-- /zh/posts/genericagent-self-evolving-ai-agent.zh/
+aliases: - /zh/posts/genericagent-self-evolving-ai-agent.zh/
 - /zh/posts/hermes-agent-self-improving-ai-agent/
-faqs:
-  - q: 'Hermes Agent 与 Claude Code、Cursor 或 GitHub Copilot 这类工具有什么不同？'
+faqs: - q: 'Hermes Agent 与 Claude Code、Cursor 或 GitHub Copilot 这类工具有什么不同？'
     a: 'Hermes Agent 内置了自学习循环、跨会话的持久记忆，以及一套技能系统，这些都是那些工具所不具备的。它还能在 6 个消息平台上运行，支持 cron 定时调度和 MCP，并且开源、可自托管；而其他工具只局限于 CLI、桌面端或 IDE，且要收取订阅费或 API 费用。'
   - q: 'Hermes Agent 的自我提升循环是如何运作的？'
     a: '完成一项任务后，Hermes 会分析哪些做法有效、哪些无效，提取出可复用的模式，创建一个记录该方法的技能文件，在类似任务上测试这个技能，再根据结果加以优化。随着时间推移，这会构建出一个专属于该用户的个人技能库。'
@@ -39,10 +31,7 @@ faqs:
   - q: 'Hermes Agent 可以在哪些消息平台上运行？'
     a: 'Hermes Agent 可作为多平台消息机器人运行于 Telegram、Discord、Slack、WhatsApp、Signal 和 Email，全部通过 `hermes gateway setup` 命令进行配置。同一套命令和技能在每个平台上都能通用。'
   - q: '如何安装 Hermes Agent 并配置 LLM 提供商？'
-    a: '在 Linux、macOS 或 WSL2 上，你可以用一行 curl 脚本管道传给 bash 来安装，或者克隆代码仓库后运行 `./setup-hermes.sh`。随后你可以用类似 `hermes config set provider openai` 和 `hermes config set model gpt-4o` 的命令来设置提供商，或通过 `hermes config set provider ollama` 使用本地模型。'
----
-
-<!-- canonical: https://dibi8.com/zh/tools/hermes-agent-self-improving-ai-agent/ -->
+    a: '在 Linux、macOS 或 WSL2 上，你可以用一行 curl 脚本管道传给 bash 来安装，或者克隆代码仓库后运行 `./setup-hermes.sh`。随后你可以用类似 `hermes config set provider openai` 和 `hermes config set model gpt-4o` 的命令来设置提供商，或通过 `hermes config set provider ollama` 使用本地模型。'---
 {</* resource-info */>}
 
 ## 问题：大多数 AI 代理都把你忘了
@@ -89,7 +78,11 @@ Hermes Agent 的核心创新是其**自我改进循环**：
 Hermes Agent 配备了全面的工具集：
 
 | 工具类别 | 示例 |
-|-------------|---------|
+|
+---
+|
+---
+|
 | **文件操作** | 读取、写入、搜索、差异对比、补丁 |
 | **终端** | 执行命令、Shell 会话、后台作业 |
 | **网页** | 浏览、抓取、下载、API 调用 |
@@ -110,19 +103,17 @@ Hermes Agent 配备了全面的工具集：
 
 示例技能结构：
 ```yaml
+
 ---
 name: "hugo-blog-deploy"
 trigger: "deploy hugo blog"
-steps:
-  1. "Run hugo --minify --cleanDestinationDir"
+steps: 1. "Run hugo --minify --cleanDestinationDir"
   2. "Verify build succeeded"
   3. "Run deploy.sh"
   4. "Check live site with curl"
-pitfalls:
-  - "Future dates prevent building"
+pitfalls: - "Future dates prevent building"
   - "Cloudflare cache may show stale content"
-verification:
-  - "curl -s https://site.com | grep title"
+verification: - "curl -s https://site.com | grep title"
 ```
 
 技能可以：
@@ -155,7 +146,13 @@ Hermes Agent 维护**两种类型的记忆**：
 Hermes Agent 不仅仅是一个 CLI 工具——它是一个**多平台消息机器人**：
 
 | 平台 | 设置 | 使用场景 |
-|---------|-------|---------|
+|
+---
+|
+---
+|
+---
+|
 | **Telegram** | `hermes gateway setup` | 移动 AI 助手 |
 | **Discord** | `hermes gateway setup` | 团队协作 |
 | **Slack** | `hermes gateway setup` | 工作场所集成 |
@@ -302,7 +299,17 @@ Hermes Agent
 ## 性能对比
 
 | 功能 | Hermes Agent | Claude Code | Cursor | GitHub Copilot |
-|---------|-------------|-----------|--------|----------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **自我学习** | ✅ 是 | ❌ 否 | ❌ 否 | ❌ 否 |
 | **持久记忆** | ✅ 是 | ❌ 否 | ❌ 否 | ❌ 否 |
 | **技能系统** | ✅ 是 | ❌ 否 | ❌ 否 | ❌ 否 |
@@ -339,8 +346,8 @@ Hermes Agent 代表了我们对 AI 助手认知的**根本性转变**。它不�
 - [Free Claude Code：不花一分钱，让顶级 AI 帮你写代码](/zh/resources/ai-tools/free-claude-code-open-source-proxy/)
 - [OpenClaw 42 个真实用例：AI 代理已经这样改变我们的生活](/zh/resources/llm-frameworks/awesome-openclaw-usecases-ai-agent-daily-life/)
 
----
 
+---
 ## 推荐自托管基础设施
 
 要 7×24 稳定跑这套，服务器选择很关键：
@@ -352,7 +359,6 @@ Hermes Agent 代表了我们对 AI 助手认知的**根本性转变**。它不�
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -380,25 +386,20 @@ Hermes Agent 代表了我们对 AI 助手认知的**根本性转变**。它不�
 
 ## Why This Matters
 
-Understanding hermes agent：一个会自我进化的 ai 代理，越用越懂你 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding hermes agent：一个会自我进化的 ai 代理，越用越懂你 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -420,7 +421,6 @@ Hermes Agent：一个会自我进化的 AI 代理，越用越懂你 represents a
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 ---
-
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -450,7 +450,17 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

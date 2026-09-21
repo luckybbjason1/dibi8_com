@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ccxt-crypto-exchange-api-unified" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ccxt-crypto-exchange-api-unified" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ccxt-crypto-exchange-api-unified" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ccxt-crypto-exchange-api-unified" />
 # CCXT 2026: API Giao Dịch Tiền Điện Tử Thống Nhất Hơn 100 Sàn — Hướng Dẫn 2026
 
 *Cuối cùng được cập nhật: 19 tháng 5, 2026*
@@ -35,9 +30,7 @@ composer require ccxt/ccxt
 ---
 ## Các Sàn Giao Dịch và Đơn Vị Giao Dịch Hỗ Trợ
 
-Đặc điểm ấn tượng nhất của CCXT là sự đa dạng về hỗ trợ sàn giao dịch. Thư viện này hiện đang hỗ trợ **100+ sàn giao dịch** bao gồm:
-
-| Cấp độ | Sàn giao dịch |
+Đặc điểm ấn tượng nhất của CCXT là sự đa dạng về hỗ trợ sàn giao dịch. Thư viện này hiện đang hỗ trợ **100+ sàn giao dịch** bao gồm: | Cấp độ | Sàn giao dịch |
 |--------|--------------|
 | Cấp độ-1 (Volumen cao) | Binance, Coinbase, Kraken, OKX, Bybit, Bitfinex, KuCoin |
 | Cấp độ-2 (Volumen cao) | Gate.io, MEXC, HTX (Huobi), Bitget, Crypto.com |
@@ -76,9 +69,7 @@ Giá trị cốt lõi của CCXT nằm ở giao diện API hợp tác. Thư vi�
 
 ### Phương Thức Dữ Liệu Thị Trường
 
-API dữ liệu thị trường cung cấp tất cả những gì trader định lượng cần:
-
-```python
+API dữ liệu thị trường cung cấp tất cả những gì trader định lượng cần: ```python
 import ccxt
 
 # Khởi tạo sàn giao dịch
@@ -107,9 +98,7 @@ print(f"Điểm dữ liệu OHLCV: {len(ohlcv)}")
 
 ### Giao Dịch và Quản Lý Lệnh
 
-CCXT thống nhất việc tạo lệnh, theo dõi và hủy bỏ lệnh trên tất cả các sàn giao dịch:
-
-```python
+CCXT thống nhất việc tạo lệnh, theo dõi và hủy bỏ lệnh trên tất cả các sàn giao dịch: ```python
 import ccxt
 
 # Khởi tạo với thông tin API để giao dịch
@@ -144,9 +133,7 @@ print(f"Hủy bỏ: {canceled}")
 
 ### Quản Lý Tài Khoản
 
-Theo dõi danh mục và tra cứu số dư hoạt động giống nhau trên tất cả các sàn giao dịch:
-
-```python
+Theo dõi danh mục và tra cứu số dư hoạt động giống nhau trên tất cả các sàn giao dịch: ```python
 # Lấy tất cả các khoản cân bằng
 balances = exchange.fetch_balance()
 print(f"USDT Free: {balances['USDT']['free']}")
@@ -193,9 +180,7 @@ exchange = ccxt.binance({
 
 ### Cài Đặt Testnet / Giao Dịch Giấy
 
-Không bao giờ thử nghiệm bot giao dịch trên thị trường thực. CCXT làm cho việc tích hợp testnet trở nên mượt mà:
-
-```python
+Không bao giờ thử nghiệm bot giao dịch trên thị trường thực. CCXT làm cho việc tích hợp testnet trở nên mượt mà: ```python
 # Binance Testnet (giao dịch giấy miễn phí)
 binance_testnet = ccxt.binance({
     'apiKey': 'TESTNET_API_KEY',
@@ -257,37 +242,27 @@ Phát sóng REST không đủ cho các chiến lược yêu cầu dữ liệu th
 import ccxt.pro as ccxtpro
 import asyncio
 
-async def websocket_orderbook():
-    exchange = ccxtpro.binance({'enableRateLimit': True})
+async def websocket_orderbook(): exchange = ccxtpro.binance({'enableRateLimit': True})
     
-    while True:
-        try:
-            # Theo dõi cập nhật bảng đặt lệnh thực tế
+    while True: try: # Theo dõi cập nhật bảng đặt lệnh thực tế
             orderbook = await exchange.watch_order_book('BTC/USDT')
             bid = orderbook['bids'][0][0]
             ask = orderbook['asks'][0][0]
             spread = ask - bid
             print(f"Bid: {bid:.2f} | Ask: {ask:.2f} | Spread: {spread:.2f}")
-        except Exception as e:
-            print(f"Lỗi WebSocket: {e}")
+        except Exception as e: print(f"Lỗi WebSocket: {e}")
             await asyncio.sleep(1)
 
-async def websocket_trades():
-    exchange = ccxtpro.binance({'enableRateLimit': True})
+async def websocket_trades(): exchange = ccxtpro.binance({'enableRateLimit': True})
     
-    while True:
-        try:
-            # Theo dõi giao dịch sống
+    while True: try: # Theo dõi giao dịch sống
             trades = await exchange.watch_trades('BTC/USDT')
-            for trade in trades[-5:]:
-                side = 'MUA' if trade['side'] == 'buy' else 'BÁN'
+            for trade in trades[-5:]: side = 'MUA' if trade['side'] == 'buy' else 'BÁN'
                 print(f"{side} {trade['amount']} BTC @ {trade['price']}")
-        except Exception as e:
-            print(f"Lỗi luồng giao dịch: {e}")
+        except Exception as e: print(f"Lỗi luồng giao dịch: {e}")
 
 # Chạy nhiều luồng WebSocket đồng thời
-async def main():
-    await asyncio.gather(
+async def main(): await asyncio.gather(
         websocket_orderbook(),
         websocket_trades()
     )
@@ -299,17 +274,13 @@ async def main():
 ---
 ## Xây Dựng Một Trading Bot Hoàn Chỉnh với CCXT
 
-Dưới đây là mẫu trading bot sản xuất để minh họa kiến trúc hợp lệ:
-
-```python
+Dưới đây là mẫu trading bot sản xuất để minh họa kiến trúc hợp lệ: ```python
 import ccxt
 import pandas as pd
 import time
 from datetime import datetime
 
-class CCXTTradingBot:
-    def __init__(self, exchange_id, api_key, secret, symbol='BTC/USDT'):
-        exchange_class = getattr(ccxt, exchange_id)
+class CCXTTradingBot: def __init__(self, exchange_id, api_key, secret, symbol='BTC/USDT'): exchange_class = getattr(ccxt, exchange_id)
         self.exchange = exchange_class({
             'apiKey': api_key,
             'secret': secret,
@@ -319,8 +290,7 @@ class CCXTTradingBot:
         self.symbol = symbol
         self.position = None
         
-    def fetch_ohlcv_dataframe(self, timeframe='1h', limit=100):
-        """Lấy dữ liệu OHLCV dưới dạng DataFrame pandas để phân tích."""
+    def fetch_ohlcv_dataframe(self, timeframe='1h', limit=100): """Lấy dữ liệu OHLCV dưới dạng DataFrame pandas để phân tích."""
         ohlcv = self.exchange.fetch_ohlcv(self.symbol, timeframe, limit=limit)
         df = pd.DataFrame(
             ohlcv, 
@@ -329,63 +299,50 @@ class CCXTTradingBot:
         df['timestamp'] = pd.to_datetime(df['timestamp'], unit='ms')
         return df
     
-    def calculate_sma(self, df, period=20):
-        """Trung bình động đơn giản để phát hiện xu hướng."""
+    def calculate_sma(self, df, period=20): """Trung bình động đơn giản để phát hiện xu hướng."""
         return df['close'].rolling(window=period).mean()
     
-    def generate_signal(self, df):
-        """Tạo tín hiệu mua/bán dựa trên giao nhau SMA."""
+    def generate_signal(self, df): """Tạo tín hiệu mua/bán dựa trên giao nhau SMA."""
         sma_short = self.calculate_sma(df, period=10)
         sma_long = self.calculate_sma(df, period=30)
         
         if sma_short.iloc[-1] > sma_long.iloc[-1] and \
-           sma_short.iloc[-2] <= sma_long.iloc[-2]:
-            return 'buy'
+           sma_short.iloc[-2] <= sma_long.iloc[-2]: return 'buy'
         elif sma_short.iloc[-1] < sma_long.iloc[-1] and \
-             sma_short.iloc[-2] >= sma_long.iloc[-2]:
-            return 'sell'
+             sma_short.iloc[-2] >= sma_long.iloc[-2]: return 'sell'
         return 'hold'
     
-    def execute_trade(self, signal, amount=0.001):
-        """Thực hiện giao dịch dựa trên tín hiệu."""
-        if signal == 'buy' and self.position != 'long':
-            order = self.exchange.create_market_buy_order(self.symbol, amount)
+    def execute_trade(self, signal, amount=0.001): """Thực hiện giao dịch dựa trên tín hiệu."""
+        if signal == 'buy' and self.position != 'long': order = self.exchange.create_market_buy_order(self.symbol, amount)
             self.position = 'long'
             print(f"[{datetime.now()}] MUA đã thực hiện: {order['id']}")
             return order
             
-        elif signal == 'sell' and self.position == 'long':
-            order = self.exchange.create_market_sell_order(self.symbol, amount)
+        elif signal == 'sell' and self.position == 'long': order = self.exchange.create_market_sell_order(self.symbol, amount)
             self.position = None
             print(f"[{datetime.now()}] BÁN đã thực hiện: {order['id']}")
             return order
             
         return None
     
-    def run(self, interval=60):
-        """Lồng giao dịch chính."""
+    def run(self, interval=60): """Lồng giao dịch chính."""
         print(f"Khởi động bot cho {self.symbol}")
         print(f"Kiểm tra mỗi {interval} giây")
         
-        while True:
-            try:
-                df = self.fetch_ohlcv_dataframe()
+        while True: try: df = self.fetch_ohlcv_dataframe()
                 signal = self.generate_signal(df)
                 print(f"[{datetime.now()}] Tín hiệu: {signal.upper()}")
                 
                 self.execute_trade(signal)
                 time.sleep(interval)
                 
-            except ccxt.NetworkError as e:
-                print(f"Lỗi mạng: {e}. Đang thử lại sau 10s...")
+            except ccxt.NetworkError as e: print(f"Lỗi mạng: {e}. Đang thử lại sau 10s...")
                 time.sleep(10)
-            except ccxt.ExchangeError as e:
-                print(f"Lỗi giao dịch: {e}. Dừng lại.")
+            except ccxt.ExchangeError as e: print(f"Lỗi giao dịch: {e}. Dừng lại.")
                 break
 
 # Sử dụng
-if __name__ == "__main__":
-    bot = CCXTTradingBot(
+if __name__ == "__main__": bot = CCXTTradingBot(
         exchange_id='binance',
         api_key='YOUR_API_KEY',
         secret='YOUR_SECRET',
@@ -398,14 +355,11 @@ if __name__ == "__main__":
 ---
 ## Phát Hiện Lợi Nhuận Từ Nhiều Sàn Giao Dịch
 
-Một trong những ứng dụng mạnh mẽ nhất của CCXT là phát hiện lợi nhuận từ nhiều sàn giao dịch (cross-exchange arbitrage). Dưới đây là cách phát hiện sự khác biệt về giá:
-
-```python
+Một trong những ứng dụng mạnh mẽ nhất của CCXT là phát hiện lợi nhuận từ nhiều sàn giao dịch (cross-exchange arbitrage). Dưới đây là cách phát hiện sự khác biệt về giá: ```python
 import ccxt
 import asyncio
 
-async def tìm_lợi_nhuận_từ_nhật_không():
-    """Phát hiện sự khác biệt về giá trên các sàn giao dịch."""
+async def tìm_lợi_nhuận_từ_nhật_không(): """Phát hiện sự khác biệt về giá trên các sàn giao dịch."""
     exchanges = {
         'binance': ccxt.binance({'enableRateLimit': True}),
         'kraken': ccxt.kraken({'enableRateLimit': True}),
@@ -415,29 +369,24 @@ async def tìm_lợi_nhuận_từ_nhật_không():
     
     symbol = 'BTC/USDT'
     
-    while True:
-        prices = {}
+    while True: prices = {}
         
-        for name, exchange in exchanges.items():
-            try:
-                ticker = await exchange.fetch_ticker(symbol)
+        for name, exchange in exchanges.items(): try: ticker = await exchange.fetch_ticker(symbol)
                 prices[name] = {
                     'bid': ticker['bid'],
                     'ask': ticker['ask'],
                     'last': ticker['last']
                 }
-            except Exception as e:
-                print(f"{name} lỗi: {e}")
+            except Exception as e: print(f"{name} lỗi: {e}")
         
         # Tìm cơ hội lợi nhuận tốt nhất
-        if len(prices) >= 2:
-            best_bid = max(prices.items(), key=lambda x: x[1]['bid'])
+        if len(prices) >= 2: best_bid = max(prices.items(), key=lambda x: x[1]['bid'])
             best_ask = min(prices.items(), key=lambda x: x[1]['ask'])
             
             spread = best_bid[1]['bid'] - best_ask[1]['ask']
             spread_pct = (spread / best_ask[1]['ask']) * 100
             
-            if spread_pct > 0.1:  # > 0.1% tiềm năng lợi nhuận
+            if spread_pct > 0.1: # > 0.1% tiềm năng lợi nhuận
                 print(f"LỢI NHUẬN TỪ NHẬT KHIẾN: Mua trên {best_ask[0]} @ {best_ask[1]['ask']:.2f}")
                 print(f"           Bán trên {best_bid[0]} @ {best_bid[1]['bid']:.2f}")
         
@@ -468,34 +417,26 @@ print(f"Lợi nhuận ròng sau phí: ${net_profit:.2f}")
 ---
 ## Kết nối Kiểm thử Lại
 
-Phương pháp lấy dữ liệu lịch sử của CCXT tích hợp dễ dàng với các khung kiểm thử lại:
-
-```python
+Phương pháp lấy dữ liệu lịch sử của CCXT tích hợp dễ dàng với các khung kiểm thử lại: ```python
 import ccxt
 import pandas as pd
 import pandas_ta as ta
 
-class CCXTDataProvider:
-    """CCXT-based data provider cho các khung kiểm thử lại."""
+class CCXTDataProvider: """CCXT-based data provider cho các khung kiểm thử lại."""
     
-    def __init__(self, exchange_id='binance'):
-        self.exchange = getattr(ccxt, exchange_id)({
+    def __init__(self, exchange_id='binance'): self.exchange = getattr(ccxt, exchange_id)({
             'enableRateLimit': True
         })
     
     def fetch_historical_data(self, symbol, timeframe='1d', 
-                               since=None, limit=1000):
-        """Lấy dữ liệu OHLCV lịch sử cho kiểm thử lại."""
-        if since is None:
-            since = self.exchange.parse8601('2024-01-01T00:00:00Z')
+                               since=None, limit=1000): """Lấy dữ liệu OHLCV lịch sử cho kiểm thử lại."""
+        if since is None: since = self.exchange.parse8601('2024-01-01T00:00:00Z')
         
         all_ohlcv = []
-        while len(all_ohlcv) < limit:
-            ohlcv = self.exchange.fetch_ohlcv(
+        while len(all_ohlcv) < limit: ohlcv = self.exchange.fetch_ohlcv(
                 symbol, timeframe, since=since, limit=min(1000, limit)
             )
-            if not ohlcv:
-                break
+            if not ohlcv: break
             all_ohlcv.extend(ohlcv)
             since = ohlcv[-1][0] + 1
             
@@ -507,8 +448,7 @@ class CCXTDataProvider:
         df.set_index('timestamp', inplace=True)
         return df
     
-    def add_technical_indicators(self, df):
-        """Thêm các chỉ số kỹ thuật cho tín hiệu chiến lược."""
+    def add_technical_indicators(self, df): """Thêm các chỉ số kỹ thuật cho tín hiệu chiến lược."""
         df['sma_20'] = ta.sma(df['close'], length=20)
         df['sma_50'] = ta.sma(df['close'], length=50)
         df['rsi'] = ta.rsi(df['close'], length=14)
@@ -535,48 +475,33 @@ import ccxt
 import time
 from tenacity import retry, stop_after_attempt, wait_exponential
 
-class RobustCCXTTrader:
-    def __init__(self, exchange_id, config):
-        exchange_class = getattr(ccxt, exchange_id)
+class RobustCCXTTrader: def __init__(self, exchange_id, config): exchange_class = getattr(ccxt, exchange_id)
         self.exchange = exchange_class(config)
         
     @retry(stop=stop_after_attempt(3), 
            wait=wait_exponential(multiplier=1, min=2, max=10))
-    def fetch_ticker_safe(self, symbol):
-        """Lấy thông tin ticker với việc thử lại tự động khi thất bại."""
+    def fetch_ticker_safe(self, symbol): """Lấy thông tin ticker với việc thử lại tự động khi thất bại."""
         return self.exchange.fetch_ticker(symbol)
     
     @retry(stop=stop_after_attempt(3),
            wait=wait_exponential(multiplier=1, min=2, max=10))
     def create_order_safe(self, symbol, side, amount, price=None, 
-                          order_type='market'):
-        """Tạo lệnh với thử lại và phân loại lỗi."""
-        try:
-            if order_type == 'market':
-                if side == 'buy':
-                    return self.exchange.create_market_buy_order(symbol, amount)
+                          order_type='market'): """Tạo lệnh với thử lại và phân loại lỗi."""
+        try: if order_type == 'market': if side == 'buy': return self.exchange.create_market_buy_order(symbol, amount)
                 return self.exchange.create_market_sell_order(symbol, amount)
-            else:
-                if side == 'buy':
-                    return self.exchange.create_limit_buy_order(symbol, amount, price)
+            else: if side == 'buy': return self.exchange.create_limit_buy_order(symbol, amount, price)
                 return self.exchange.create_limit_sell_order(symbol, amount, price)
-        except ccxt.InsufficientFunds as e:
-            print(f"Khoản tiền không đủ: {e}")
+        except ccxt.InsufficientFunds as e: print(f"Khoản tiền không đủ: {e}")
             raise
-        except ccxt.InvalidOrder as e:
-            print(f"Lệnh không hợp lệ: {e}")
+        except ccxt.InvalidOrder as e: print(f"Lệnh không hợp lệ: {e}")
             raise
-        except ccxt.NetworkError as e:
-            print(f"Lỗi mạng, sẽ thử lại: {e}")
+        except ccxt.NetworkError as e: print(f"Lỗi mạng, sẽ thử lại: {e}")
             raise  # Triggers retry
     
-    def check_exchange_health(self):
-        """Kiểm tra sàn giao dịch hoạt động hay không."""
-        try:
-            status = self.exchange.fetch_status()
+    def check_exchange_health(self): """Kiểm tra sàn giao dịch hoạt động hay không."""
+        try: status = self.exchange.fetch_status()
             return status.get('status') == 'ok'
-        except Exception:
-            return False
+        except Exception: return False
 ```
 
 ---
@@ -623,7 +548,6 @@ Với hơn 35.000 ngôi sao trên GitHub, giấy phép MIT và việc bảo trì
 
 ---
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

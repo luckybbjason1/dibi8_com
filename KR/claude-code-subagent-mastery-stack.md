@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-code-subagent-mastery-stack" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-subagent-mastery-stack" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-subagent-mastery-stack" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-subagent-mastery-stack" />
 title: 'Claude Code 서브에이전트 마스터리 스택 2026: 하나의 대화에서 협업하는 에이전트 협의회로'
 description: 'Claude Code 멀티 에이전트 워크플로를 마스터하기 위한 완전한 학습 + 도구 스택: 5가지 서브에이전트 패턴 + 커스텀 에이전트 작성 + 스킬/서브에이전트/MCP 의사결정 프레임워크 + 오케스트레이션 실패 모드 + 스킬 작성. 단일 스레드 코딩에서 신뢰할 수 있는 에이전트 파이프라인으로 가는 전체 경로.'
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-30 00:00:00+08:00
-tech_stack:
-  - Claude Code
+tech_stack: - Claude Code
   - Agent SDK
   - MCP
   - Bash
@@ -30,10 +24,8 @@ featureImage: ''
 draft: false
 categories: [collections]
 tags: ['claude code', subagents, 'multi-agent', 'agent sdk', mcp, stack, collection]
-aliases:
-  - /posts/claude-code-subagent-mastery-stack/
-faqs:
-  - q: 'Claude Code의 다섯 가지 서브에이전트 패턴은 무엇인가요?'
+aliases: - /posts/claude-code-subagent-mastery-stack/
+faqs: - q: 'Claude Code의 다섯 가지 서브에이전트 패턴은 무엇인가요?'
     a: '다섯 가지 패턴은 병렬 리서치 팬아웃, worktree 격리, 전문가 위임, 컨텍스트 보호, 파이프라인 오케스트레이션입니다. 이들은 다중 에이전트 워크플로의 기반 레이어를 구성하며, 병렬 팬아웃이 가장 마찰이 적은 시작점입니다.'
   - q: 'Claude Code에서 skill, subagent, MCP server 중 무엇을 선택해야 할까요?'
     a: '부족한 것이 무엇인지를 기준으로 하는 3축 프레임워크를 사용하세요. 지식이 부족하면 skill을 작성하고, 컨텍스트가 부족하면 subagent를 생성하며, 기능이 부족하면 MCP server를 구축하세요. 대부분의 팀은 markdown 파일로도 동일한 결과를 낼 수 있음에도 MCP server에 과도하게 의존합니다.'
@@ -45,7 +37,6 @@ faqs:
     a: '다섯 가지 문서화된 장애 유형은 신뢰 함정, 컨텍스트 누출, 통제 불능 팬아웃, 자동 절단, 고아 worktree입니다. 이것들을 학습하는 것이 작동하는 데모와 프로덕션 준비 파이프라인을 구분 짓는 핵심입니다.'
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/claude-code-subagent-mastery-stack/ -->
 # Claude Code 서브에이전트 마스터리 스택 2026: 하나의 대화에서 협업하는 에이전트 협의회로
 
 
@@ -86,9 +77,7 @@ faqs:
 
 ## 마스터리를 넘어서: 무엇 위에 쌓을지 선택하기
 
-위의 패턴들을 체화하고 나면, 다음 질문은 *어떤* 도구에 베팅할 것인가입니다. 우리는 바로 그 질문에 답하기 위해 의사결정 3부작을 썼습니다:
-
-- **[Subagents vs LangGraph/CrewAI/AutoGen](/kr/resources/llm-frameworks/claude-code-subagents-vs-langgraph-crewai-autogen-2026/)** — 내장 subagents만으로 충분한 경우, 그리고 독립형 프레임워크로 졸업해야 하는 경우.
+위의 패턴들을 체화하고 나면, 다음 질문은 *어떤* 도구에 베팅할 것인가입니다. 우리는 바로 그 질문에 답하기 위해 의사결정 3부작을 썼습니다: - **[Subagents vs LangGraph/CrewAI/AutoGen](/kr/resources/llm-frameworks/claude-code-subagents-vs-langgraph-crewai-autogen-2026/)** — 내장 subagents만으로 충분한 경우, 그리고 독립형 프레임워크로 졸업해야 하는 경우.
 - **[Claude Agent SDK vs OpenAI Agents SDK](/kr/vs/claude-agent-sdk-vs-openai-agents-sdk/)** — 두 선도적인 에이전트 SDK의 정면 대결: hooks+subagents 대 handoffs+guardrails.
 - **[Claude Code vs Cline](/kr/vs/claude-code-vs-cline/)** — 에이전틱 코딩 도구 그 자체에 대한, 자율성 대 통제.
 
@@ -99,7 +88,6 @@ faqs:
 서브에이전트를 다섯 개의 단절된 트릭으로 배우지 마세요. 스택을 순서대로 밟으세요 — 패턴 → 작성 → 의사결정 프레임워크 → 스킬 → 실패 모드 — 그러면 "하나의 거대한 대화"에서 프로덕션에서 실제로 신뢰할 수 있는, 협업하는 에이전트 협의회로 졸업하게 됩니다. 오늘 패턴 1부터 시작하세요. 세션이 길어지고 작업이 무거워질수록 나머지를 한 층씩 쌓아 올리면 됩니다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -127,25 +115,20 @@ faqs:
 
 ## Why This Matters
 
-Understanding claude code 서브에이전트 마스터리 스택 2026: 하나의 대화에서 협업하는 에이전트 협의회로 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding claude code 서브에이전트 마스터리 스택 2026: 하나의 대화에서 협업하는 에이전트 협의회로 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

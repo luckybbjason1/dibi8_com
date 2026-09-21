@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/crewai" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/crewai" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/crewai" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/crewai" />
 title: 'CrewAI: 51K+ Star로 멀티 에이전트 AI 팀 구축 — 2026 완전 설정 가이드'
 description: 'CrewAI(crewAIInc/crewAI)는 역할 기반의 자율 AI 에이전트를 오케스트레이션하는 Python 프레임워크입니다. OpenAI, Anthropic, Ollama, LangChain, LlamaIndex와 호환됩니다. 설치, 에이전트 역할, 태스크 워크플로우, 프로덕션 배포 및 벤치마크를 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,12 +20,9 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [crewai, 멀티에이전트, 'ai-에이전트', python, 'llm-오케스트레이션', 자동화, 오픈소스, 머신러닝]
-aliases:
-- /kr/posts/crewai/
+aliases: - /kr/posts/crewai/
 - /kr/resources/llm-frameworks/crewai-multi-agent-orchestration/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/crewai/ -->
 
 {{</* resource-info */>}}
 
@@ -46,9 +38,7 @@ CrewAI는 복잡한 태스크에서 협업하는 역할 기반의 자율 AI 에�
 
 ## CrewAI의 작동 방식
 
-CrewAI의 아키텍처는 에이전트 정의와 오케스트레이션 로직을 분리합니다:
-
-![CrewAI Logo](https://raw.githubusercontent.com/crewAIInc/crewAI/main/docs/images/crewai_logo.png)
+CrewAI의 아키텍처는 에이전트 정의와 오케스트레이션 로직을 분리합니다: ![CrewAI Logo](https://raw.githubusercontent.com/crewAIInc/crewAI/main/docs/images/crewai_logo.png)
 
 **핵심 컴포넌트:**
 
@@ -113,9 +103,7 @@ cd research_crew
 crewai install
 ```
 
-생성된 프로젝트 구조:
-
-```
+생성된 프로젝트 구조: ```
 research_crew/
 ├── .gitignore
 ├── pyproject.toml
@@ -142,9 +130,7 @@ OPENAI_API_KEY=sk-your-openai-key-here
 SERPER_API_KEY=your-serper-api-key
 ```
 
-Ollama를 통한 로컬 LLM(API 키 불필요):
-
-```bash
+Ollama를 통한 로컬 LLM(API 키 불필요): ```bash
 # 로컬 모델 다운로드
 ollama pull llama3.1
 
@@ -153,13 +139,10 @@ ollama pull llama3.1
 
 ## 첫 번째 에이전트 정의하기
 
-`src/research_crew/config/agents.yaml`을 편집하여 역할 기반 에이전트를 정의합니다:
-
-```yaml
+`src/research_crew/config/agents.yaml`을 편집하여 역할 기반 에이전트를 정의합니다: ```yaml
 # src/research_crew/config/agents.yaml
 
-researcher:
-  role: >
+researcher: role: >
     Senior Research Analyst
   goal: >
     Conduct thorough research on {topic} and gather
@@ -172,8 +155,7 @@ researcher:
   max_iter: 15
   verbose: true
 
-writer:
-  role: >
+writer: role: >
     Technical Content Writer
   goal: >
     Transform research findings on {topic} into a
@@ -185,8 +167,7 @@ writer:
   max_iter: 10
   verbose: true
 
-editor:
-  role: >
+editor: role: >
     Senior Content Editor
   goal: >
     Review and polish the article about {topic} to ensure
@@ -199,9 +180,7 @@ editor:
   verbose: true
 ```
 
-에이전트별 주요 구성 옵션:
-
-| 파라미터 | 설명 | 예시 |
+에이전트별 주요 구성 옵션: | 파라미터 | 설명 | 예시 |
 |----------|------|------|
 | `role` | 에이전트의 직무 및 기능 | `Senior Research Analyst` |
 | `goal` | 에이전트가 달성하려는 목표 | `{topic}` 연구 |
@@ -215,13 +194,10 @@ editor:
 
 ### 태스크 구성
 
-`src/research_crew/config/tasks.yaml` 편집:
-
-```yaml
+`src/research_crew/config/tasks.yaml` 편집: ```yaml
 # src/research_crew/config/tasks.yaml
 
-research_task:
-  description: >
+research_task: description: >
     Research the topic: {topic}. Gather at least 10 key data points
     from multiple authoritative sources. Include statistics,
     expert opinions, and recent developments.
@@ -230,8 +206,7 @@ research_task:
     citations, and a summary of key findings.
   agent: researcher
 
-writing_task:
-  description: >
+writing_task: description: >
     Using the research brief provided, write a comprehensive
     technical article about {topic}. Target 1500 words.
     Use clear headings, examples, and engaging prose.
@@ -241,8 +216,7 @@ writing_task:
   agent: writer
   context: [research_task]
 
-editing_task:
-  description: >
+editing_task: description: >
     Edit the article for clarity, grammar, factual accuracy,
     and readability. Ensure all claims are supported by the
     research brief.
@@ -256,62 +230,52 @@ editing_task:
 
 ### Crew 정의
 
-`src/research_crew/crew.py`에서 에이전트와 태스크를 연결합니다:
-
-```python
+`src/research_crew/crew.py`에서 에이전트와 태스크를 연결합니다: ```python
 # src/research_crew/crew.py
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 
 @CrewBase
-class ResearchCrew:
-    """Research crew for producing high-quality articles."""
+class ResearchCrew: """Research crew for producing high-quality articles."""
 
     agents_config = "config/agents.yaml"
     tasks_config = "config/tasks.yaml"
 
     @agent
-    def researcher(self) -> Agent:
-        return Agent(
+    def researcher(self) -> Agent: return Agent(
             config=self.agents_config["researcher"],
             tools=[],
             allow_delegation=False,
         )
 
     @agent
-    def writer(self) -> Agent:
-        return Agent(
+    def writer(self) -> Agent: return Agent(
             config=self.agents_config["writer"],
             tools=[],
             allow_delegation=False,
         )
 
     @agent
-    def editor(self) -> Agent:
-        return Agent(
+    def editor(self) -> Agent: return Agent(
             config=self.agents_config["editor"],
             tools=[],
             allow_delegation=False,
         )
 
     @task
-    def research_task(self) -> Task:
-        return Task(config=self.tasks_config["research_task"])
+    def research_task(self) -> Task: return Task(config=self.tasks_config["research_task"])
 
     @task
-    def writing_task(self) -> Task:
-        return Task(config=self.tasks_config["writing_task"])
+    def writing_task(self) -> Task: return Task(config=self.tasks_config["writing_task"])
 
     @task
-    def editing_task(self) -> Task:
-        return Task(
+    def editing_task(self) -> Task: return Task(
             config=self.tasks_config["editing_task"],
             output_file="output/final_article.md",
         )
 
     @crew
-    def crew(self) -> Crew:
-        return Crew(
+    def crew(self) -> Crew: return Crew(
             agents=self.agents,
             tasks=self.tasks,
             process=Process.sequential,
@@ -326,8 +290,7 @@ class ResearchCrew:
 #!/usr/bin/env python
 from research_crew.crew import ResearchCrew
 
-def run():
-    """Run the research crew."""
+def run(): """Run the research crew."""
     inputs = {
         "topic": "AI coding assistants in 2026"
     }
@@ -336,13 +299,10 @@ def run():
     print(result.raw)
     print(f"\nToken usage: {result.token_usage}")
 
-if __name__ == "__main__":
-    run()
+if __name__ == "__main__": run()
 ```
 
-crew 실행:
-
-```bash
+crew 실행: ```bash
 # CLI를 통해 실행
 crewai run
 
@@ -350,9 +310,7 @@ crewai run
 python -m research_crew.main
 ```
 
-예상 출력:
-
-```
+예상 출력: ```
 [2026-05-20 10:23:15] Working Agent: Senior Research Analyst
 [2026-05-20 10:23:15] Starting Task: Research the topic: AI coding assistants in 2026...
 ...
@@ -370,45 +328,33 @@ Token usage: UsageMetrics(total_tokens=18432, prompt_tokens=14201, ...)
 
 ### 복잡한 오케스트레이션을 위한 CrewAI Flows
 
-Flows는 상태 관리가 포함된 이벤트 기반 오케스트레이션을 제공합니다:
-
-```python
+Flows는 상태 관리가 포함된 이벤트 기반 오케스트레이션을 제공합니다: ```python
 # src/research_crew/flow.py
 from crewai.flow.flow import Flow, listen, start
 from pydantic import BaseModel
 from research_crew.crew import ResearchCrew
 
-class ArticleState(BaseModel):
-    topic: str = ""
+class ArticleState(BaseModel): topic: str = ""
     word_count: int = 0
     final_article: str = ""
 
-class ArticleFlow(Flow[ArticleState]):
-
-    @start()
-    def get_topic(self):
-        self.state.topic = "Multi-agent AI frameworks in 2026"
+class ArticleFlow(Flow[ArticleState]): @start()
+    def get_topic(self): self.state.topic = "Multi-agent AI frameworks in 2026"
         print(f"Starting flow for topic: {self.state.topic}")
 
     @listen(get_topic)
-    def run_research_crew(self):
-        result = ResearchCrew().crew().kickoff(
+    def run_research_crew(self): result = ResearchCrew().crew().kickoff(
             inputs={"topic": self.state.topic}
         )
         self.state.final_article = result.raw
         self.state.word_count = len(result.raw.split())
 
     @listen(run_research_crew)
-    def validate_output(self):
-        if self.state.word_count < 1000:
-            print("WARNING: Article too short, triggering revision")
-        else:
-            print(f"Article validated: {self.state.word_count} words")
-            with open("output/article.md", "w") as f:
-                f.write(self.state.final_article)
+    def validate_output(self): if self.state.word_count < 1000: print("WARNING: Article too short, triggering revision")
+        else: print(f"Article validated: {self.state.word_count} words")
+            with open("output/article.md", "w") as f: f.write(self.state.final_article)
 
-if __name__ == "__main__":
-    ArticleFlow().kickoff()
+if __name__ == "__main__": ArticleFlow().kickoff()
 ```
 
 ### 커스텀 도구 생성
@@ -419,8 +365,7 @@ from crewai.tools import tool
 import requests
 
 @tool("Web Search")
-def web_search(query: str) -> str:
-    """Search the web for information on a given query."""
+def web_search(query: str) -> str: """Search the web for information on a given query."""
     response = requests.get(
         "https://serpapi.com/search",
         params={"q": query, "api_key": "${SERPER_API_KEY}"}
@@ -428,15 +373,12 @@ def web_search(query: str) -> str:
     return response.json()["organic_results"][0]["snippet"]
 ```
 
-crew에 도구 등록:
-
-```python
+crew에 도구 등록: ```python
 # crew.py에서 도구 임포트 및 연결
 from research_crew.tools.custom_tool import web_search
 
 @agent
-def researcher(self) -> Agent:
-    return Agent(
+def researcher(self) -> Agent: return Agent(
         config=self.agents_config["researcher"],
         tools=[web_search],  # 커스텀 도구 연결
         allow_delegation=False,
@@ -447,8 +389,7 @@ def researcher(self) -> Agent:
 
 ```python
 @crew
-def crew(self) -> Crew:
-    return Crew(
+def crew(self) -> Crew: return Crew(
         agents=self.agents,
         tasks=self.tasks,
         process=Process.hierarchical,
@@ -469,12 +410,10 @@ import uuid
 app = FastAPI(title="CrewAI Research API")
 jobs: dict = {}
 
-class CrewRequest(BaseModel):
-    topic: str
+class CrewRequest(BaseModel): topic: str
 
 @app.post("/research")
-async def start_research(request: CrewRequest, background: BackgroundTasks):
-    job_id = str(uuid.uuid4())
+async def start_research(request: CrewRequest, background: BackgroundTasks): job_id = str(uuid.uuid4())
     jobs[job_id] = {"status": "queued", "topic": request.topic}
     background.add_task(
         lambda: run_crew(job_id, request.topic)
@@ -482,11 +421,9 @@ async def start_research(request: CrewRequest, background: BackgroundTasks):
     return {"job_id": job_id, "status": "queued"}
 
 @app.get("/status/{job_id}")
-async def get_status(job_id: str):
-    return jobs.get(job_id, {"error": "Job not found"})
+async def get_status(job_id: str): return jobs.get(job_id, {"error": "Job not found"})
 
-def run_crew(job_id: str, topic: str):
-    jobs[job_id]["status"] = "running"
+def run_crew(job_id: str, topic: str): jobs[job_id]["status"] = "running"
     result = ResearchCrew().crew().kickoff(inputs={"topic": topic})
     jobs[job_id]["status"] = "completed"
     jobs[job_id]["result"] = result.raw
@@ -500,9 +437,7 @@ def run_crew(job_id: str, topic: str):
 
 ![CrewAI 벤치마크 차트 — 2026년 5월 커뮤니티 벤치마크 데이터 기준 멀티 에이전트 프레임워크 간 토큰 효율성 비교](https://docs.crewai.com/images/crewai-performance-chart.png)
 
-표준 멀티 에이전트 연구 태스크에서 CrewAI와 다른 프레임워크 비교:
-
-| 메트릭 | CrewAI | AutoGen | LangGraph | Agno |
+표준 멀티 에이전트 연구 태스크에서 CrewAI와 다른 프레임워크 비교: | 메트릭 | CrewAI | AutoGen | LangGraph | Agno |
 |--------|--------|---------|-----------|------|
 | 첫 성공 실행까지 소요 시간 | ~15분 | ~30분 | ~60분 | ~20분 |
 | 토큰 비용 (정규화) | 1.5–2x | 5–6x | 1x 기준 | 1.2x |
@@ -524,12 +459,9 @@ def run_crew(job_id: str, topic: str):
 
 ### OpenAI / Anthropic / Google Gemini
 
-CrewAI는 LiteLLM을 사용하여 제공업체에 구애받지 않는 모델 라우팅을 제공합니다:
-
-```yaml
+CrewAI는 LiteLLM을 사용하여 제공업체에 구애받지 않는 모델 라우팅을 제공합니다: ```yaml
 # agents.yaml — 에이전트별 모델 선택
-researcher:
-  role: Research Analyst
+researcher: role: Research Analyst
   llm: anthropic/claude-sonnet-4-20250514
   # 또는: openai/gpt-4o
   # 또는: gemini/gemini-2.0-flash
@@ -538,8 +470,7 @@ researcher:
 ### Ollama (로컬 LLM)
 
 ```yaml
-researcher:
-  role: Research Analyst
+researcher: role: Research Analyst
   llm: ollama/llama3.1
   # 필요: ollama pull llama3.1
 ```
@@ -569,8 +500,7 @@ from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
 from crewai.tools import tool
 
 @tool("Document Search")
-def document_search(query: str) -> str:
-    """Search internal documents for relevant information."""
+def document_search(query: str) -> str: """Search internal documents for relevant information."""
     documents = SimpleDirectoryReader("./docs").load_data()
     index = VectorStoreIndex.from_documents(documents)
     query_engine = index.as_query_engine()
@@ -598,14 +528,10 @@ CMD ["crewai", "run"]
 ```yaml
 # docker-compose.yml
 version: "3.8"
-services:
-  crewai:
-    build: .
+services: crewai: build: .
     env_file: .env
-    volumes:
-      - ./output:/app/output
-    ports:
-      - "8000:8000"
+    volumes: - ./output:/app/output
+    ports: - "8000:8000"
 ```
 
 ## 대안과의 비교
@@ -676,9 +602,7 @@ Telegram에서 토론에 참여하세요: [dibi8.com 커뮤니티 가입](https:
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -697,7 +621,6 @@ Telegram에서 토론에 참여하세요: [dibi8.com 커뮤니티 가입](https:
 *공개: 이 기사에는 제휴 링크가 포함되어 있습니다. 링크를 클릭하고 구매하면 추가 비용 없이 수수료를 받을 수 있습니다. 이는 우리의 독립적인 기술 연구, 테스트 및 물론 교육 콘텐츠 작성을 지원하는 데 도움이 됩니다. 모든 추천은 도구에 대한 우리 자체 평가를 기반으로 합니다.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

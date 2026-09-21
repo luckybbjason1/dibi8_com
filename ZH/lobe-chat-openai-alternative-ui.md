@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/lobe-chat-openai-alternative-ui" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/lobe-chat-openai-alternative-ui" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/lobe-chat-openai-alternative-ui" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/lobe-chat-openai-alternative-ui" />
 title: 'Lobe Chat: 支持 20+ LLM 提供商与插件系统的开源 ChatGPT UI 替代品 —— 2026...
 description: '将 Lobe Chat 部署为自托管的 ChatGPT 替代品。支持 20+ LLM 提供商、插件系统、PWA、多语言 UI。包含基准测试和对比的完整 Docker 部署指南。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: ['lobe chat', chatgpt, 'openai 替代品', llm, 自托管, docker, pwa, 插件系统, ai, '聊天 ui']
-aliases:
-- /zh/posts/lobe-chat-openai-alternative-ui/
+aliases: - /zh/posts/lobe-chat-openai-alternative-ui/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/lobe-chat-openai-alternative-ui/ -->
 
 {{</* resource-info */>}}
 
@@ -122,35 +114,23 @@ docker run -d -p 3210:3210 \
 
 ```yaml
 # docker-compose.yml
-services:
-  lobe-chat:
-    image: lobehub/lobe-chat:latest
-    ports:
-      - "3210:3210"
-    environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
+services: lobe-chat: image: lobehub/lobe-chat:latest
+    ports: - "3210:3210"
+    environment: - OPENAI_API_KEY=${OPENAI_API_KEY}
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
       - ACCESS_CODE=${ACCESS_CODE}
       - DATABASE_URL=postgresql://postgres:password@db:5432/lobe
-    volumes:
-      - lobe-data:/app/.config/lobe-chat
-    depends_on:
-      - db
+    volumes: - lobe-data:/app/.config/lobe-chat
+    depends_on: - db
     restart: unless-stopped
 
-  db:
-    image: postgres:16-alpine
-    environment:
-      - POSTGRES_PASSWORD=password
+  db: image: postgres:16-alpine
+    environment: - POSTGRES_PASSWORD=password
       - POSTGRES_DB=lobe
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+    volumes: - pgdata:/var/lib/postgresql/data
     restart: unless-stopped
 
-volumes:
-  lobe-data:
-  pgdata:
-```
+volumes: lobe-data: pgdata: ```
 
 ```bash
 # 带持久化的启动方式
@@ -354,7 +334,15 @@ Service worker 缓存应用外壳和最近对话。没有网络时：
 ### 响应延迟（从美国东部测量）
 
 | 提供商 | 首个 Token 时间 | 完整响应（100 tokens） | 备注 |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | OpenAI GPT-4o | **0.8秒** | **2.1秒** | 总体最快 |
 | Claude 3.5 Sonnet | 1.1秒 | 2.8秒 | 推理质量更高 |
 | Gemini 1.5 Pro | 1.3秒 | 3.0秒 | 大上下文窗口 |
@@ -365,7 +353,17 @@ Service worker 缓存应用外壳和最近对话。没有网络时：
 ### 资源占用
 
 | 部署方式 | 内存 | CPU | 用户数 | 月费用 |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Docker 单实例 | **350MB** | **0.2 核** | 1–5 | $0（自托管） |
 | Docker + 5 个提供商 | 400MB | 0.3 核 | 1–10 | 仅 API 费用 |
 | 带 PostgreSQL 后端 | 650MB | 0.4 核 | 10–50 | ~$24 VPS |
@@ -434,27 +432,18 @@ SSO 集成，配置 OAuth：
 
 ```yaml
 # docker-compose.prod.yml
-services:
-  lobe-chat:
-    image: lobehub/lobe-chat:latest
-    environment:
-      - DATABASE_URL=postgresql://user:pass@db:5432/lobechat
+services: lobe-chat: image: lobehub/lobe-chat:latest
+    environment: - DATABASE_URL=postgresql://user:pass@db:5432/lobechat
       - APP_URL=https://chat.yourdomain.com
-    ports:
-      - "3210:3210"
+    ports: - "3210:3210"
 
-  db:
-    image: postgres:16-alpine
-    environment:
-      POSTGRES_USER: user
+  db: image: postgres:16-alpine
+    environment: POSTGRES_USER: user
       POSTGRES_PASSWORD: pass
       POSTGRES_DB: lobechat
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+    volumes: - pgdata:/var/lib/postgresql/data
 
-volumes:
-  pgdata:
-```
+volumes: pgdata: ```
 
 ### 使用 Caddy 反向代理
 
@@ -480,24 +469,28 @@ Lobe Chat 在 `/api/metrics` 暴露指标：
 
 ```yaml
 # docker-compose.monitoring.yml
-services:
-  prometheus:
-    image: prom/prometheus
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
-    ports:
-      - "9090:9090"
+services: prometheus: image: prom/prometheus
+    volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports: - "9090:9090"
 
-  grafana:
-    image: grafana/grafana
-    ports:
-      - "3000:3000"
+  grafana: image: grafana/grafana
+    ports: - "3000:3000"
 ```
 
 ## 与替代方案对比
 
 | 特性 | Lobe Chat | LibreChat | ChatGPT Web | HuggingChat |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **GitHub Stars** | **~60,000** | ~20,000 | ~30,000 | N/A（产品） |
 | **LLM 提供商** | **20+** | 10+ | 仅 OpenAI | 仅 HF 模型 |
 | **插件系统** | **基于清单** | 基础工具 | 无 | 无 |
@@ -587,8 +580,8 @@ Lobe Chat 提供了 ChatGPT 不会给的东西：对数据的完全控制、对�
 
 加入 AI 开发者 Telegram 社区：**@dibi8dev** —— 分享你的 Lobe Chat 配置，从 5,000+ 开发者那里获取帮助。
 
----
 
+---
 ## 来源与延伸阅读
 
 1. [Lobe Chat GitHub 仓库](https://github.com/lobehub/lobe-chat) — 官方源码、发布和文档
@@ -599,8 +592,6 @@ Lobe Chat 提供了 ChatGPT 不会给的东西：对数据的完全控制、对�
 6. [Next.js 文档](https://nextjs.org/docs) — 底层框架文档
 
 ---
-
-
 
 ## 推荐部署与基础设施
 
@@ -616,7 +607,6 @@ Lobe Chat 提供了 ChatGPT 不会给的东西：对数据的完全控制、对�
 本文包含联盟营销链接。如果你通过我们的推荐链接注册 DigitalOcean，我们会获得佣金，不会对你产生额外费用。我们只推荐自己也在用的服务。Lobe Chat 是开源软件（MIT 许可证），免费使用 —— 无需购买。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

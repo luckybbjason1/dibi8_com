@@ -1,12 +1,9 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/bitcoin-classic-btcc-cpu-mining-bitcoin-fork" />
-title: "Bitcoin-Classic (BTCC): A Bitcoin Fork That Lets Ordinar...
+title: "Bitcoin-Classic (BTCC): A Bitcoin Fork That Lets Ordinar..."
 description: "Bitcoin-Classic (BTCC) is a decentralized digital currency rebuilt from Bitcoin Core v28.1. It supports CPU mining with a built-in graphical miner, letting ordinary users experience early Bitcoin mining."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - C++
+tech_stack: - C++
 application_domain: "Ai Tools"
 source_version: ""
 licensing_model: "Open Source"
@@ -21,10 +18,8 @@ maintainer: "Marcus-Vane"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases:
-- /posts/bitcoin-classic-btcc-cpu-mining-bitcoin-fork/
-faqs:
-  - q: 'Can you mine Bitcoin-Classic (BTCC) with a regular CPU?'
+aliases: - /posts/bitcoin-classic-btcc-cpu-mining-bitcoin-fork/
+faqs: - q: 'Can you mine Bitcoin-Classic (BTCC) with a regular CPU?'
     a: 'Yes. BTCC is designed so that a regular home computer CPU can participate in mining, with no ASIC rig or dedicated GPU required. Its very low network hashrate means ordinary CPUs can actually earn block rewards.'
   - q: 'What is the total supply and block reward of Bitcoin-Classic (BTCC)?'
     a: 'BTCC has a total supply of 21,000,000 coins, identical to Bitcoin. The initial block reward is 50 BTCC, halving every 210,000 blocks (about 4 years), with a 10-minute block time.'
@@ -49,8 +44,8 @@ faqs:
 **License**: MIT
 **Explorer**: https://explorer.bitcoin-classic.net/
 
----
 
+---
 ## Vision: Let Everyone Mine
 
 > "Today almost everyone has heard of Bitcoin, but very few have actually obtained Bitcoin through mining."
@@ -59,14 +54,18 @@ Bitcoin-Classic's core idea is to **restore the early Bitcoin mining experience*
 
 BTCC tries to bring back that experience through **lower difficulty, CPU-friendly mining, and a graphical interface**.
 
----
 
+---
 ## Core Technical Parameters
 
 ### Consensus
 
 | Parameter | Description |
-|-----------|-------------|
+|
+---
+|
+---
+|
 | **Consensus** | SHA-256 Proof-of-Work (PoW) |
 | **Mining** | CPU / GPU (low-difficulty friendly) |
 | **Security** | Longest chain rule |
@@ -75,7 +74,11 @@ BTCC tries to bring back that experience through **lower difficulty, CPU-friendl
 ### Block & Economics
 
 | Parameter | Value |
-|-----------|-------|
+|
+---
+|
+---
+|
 | **Total Supply** | 21,000,000 BTCC |
 | **Block Time** | 10 minutes |
 | **Difficulty Adjustment** | Every 2,016 blocks (~14 days) |
@@ -86,7 +89,11 @@ BTCC tries to bring back that experience through **lower difficulty, CPU-friendl
 ### Halving Schedule
 
 | Block Height | Reward |
-|--------------|--------|
+|
+---
+|
+---
+|
 | 0 ~ 209,999 | 50 BTCC |
 | 210,000 ~ 419,999 | 25 BTCC |
 | 420,000 ~ 629,999 | 12.5 BTCC |
@@ -134,7 +141,13 @@ BTCC tries to bring back that experience through **lower difficulty, CPU-friendl
 ## Comparison with Bitcoin
 
 | Dimension | Bitcoin (BTC) | Bitcoin-Classic (BTCC) |
-|-----------|--------------|------------------------|
+|
+---
+|
+---
+|
+---
+|
 | Launch | 2009 | 2026 |
 | Consensus | SHA-256 PoW | SHA-256 PoW |
 | Supply | 21M | 21M |
@@ -150,8 +163,7 @@ BTCC tries to bring back that experience through **lower difficulty, CPU-friendl
 
 Bitcoin-Classic is a **highly educational and experiential** project. It lets users with zero technical background actually "mine a block" and feel the achievement.
 
-But it faces real challenges:
-- Only 18 GitHub Stars (tiny community)
+But it faces real challenges: - Only 18 GitHub Stars (tiny community)
 - No major exchange support
 - Long-term sustainability uncertain
 
@@ -168,21 +180,17 @@ But it faces real challenges:
 
 ## Recommended Tools
 
-For developers building or deploying open-source AI tools, we recommend:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
+For developers building or deploying open-source AI tools, we recommend: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
 - **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Anthropic Claude / OpenAI / DeepSeek API proxy. Most AI tools above (chatbots, code gen, translation, search, etc) need an LLM API key — this proxy delivers stable access to top models at ~30% of official pricing.
 
 *Affiliate link — supports dibi8.com at no cost to you.*
 
-<!--auto-references-->
 ## References & Sources
 
 - [Bitcoin-Classic](https://github.com/Marcus-Vane/Bitcoin-Classic)
 - [Bitcoin Core](https://github.com/bitcoin/bitcoin)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -210,25 +218,20 @@ For developers building or deploying open-source AI tools, we recommend:
 
 ## Why This Matters
 
-Understanding bitcoin-classic (btcc): a bitcoin fork that lets ordinary people mine with cpu is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding bitcoin-classic (btcc): a bitcoin fork that lets ordinary people mine with cpu is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

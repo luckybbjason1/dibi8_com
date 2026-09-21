@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/shellcheck" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/shellcheck" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/shellcheck" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/shellcheck" />
 title: 'ShellCheck: 39,456 GitHub Stars — ShellCheck 完整安装配置教程与 C...
 description: 'ShellCheck (SC) 是一款针对 bash/sh 的静态分析工具。支持 Docker、GitHub Actions、VS Code 集成，涵盖安装配置、CI/CD 流水线集成和生产环境加固。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [shellcheck, bash, 静态分析, 代码检查, shell脚本, devops, 'ci-cd', docker]
-aliases:
-- /zh/posts/shellcheck/
+aliases: - /zh/posts/shellcheck/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/shellcheck/ -->
 
 {{</* resource-info */>}}
 
@@ -81,7 +73,13 @@ ShellCheck 作为多阶段分析流水线运行。理解其架构有助于在调
 每条 ShellCheck 发现都带有以下四种严重级别之一：
 
 | 级别 | 退出码影响 | 示例 |
-|------|-----------|------|
+|
+---
+|
+---
+|
+---
+|
 | 错误 | 非零退出 | 语法错误，未定义变量 |
 | 警告 | 非零退出 | 未引用变量 (SC2086) |
 | 信息 | 零退出 | 风格建议 |
@@ -180,11 +178,9 @@ cabal install
 
 ```bash
 # 添加到 .pre-commit-config.yaml
-repos:
-  - repo: https://github.com/koalaman/shellcheck-precommit
+repos: - repo: https://github.com/koalaman/shellcheck-precommit
     rev: v0.11.0
-    hooks:
-      - id: shellcheck
+    hooks: - id: shellcheck
         args: ["--severity=warning"]
 ```
 
@@ -270,19 +266,14 @@ name: ShellCheck
 
 on: [push, pull_request]
 
-jobs:
-  shellcheck:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
+jobs: shellcheck: runs-on: ubuntu-latest
+    steps: - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Run ShellCheck
         uses: ludeeus/action-shellcheck@master
-        env:
-          SEVERITY: warning
-        with:
-          ignore_paths: >-
+        env: SEVERITY: warning
+        with: ignore_paths: >-
             ./vendor
             ./third_party
 ```
@@ -295,11 +286,8 @@ name: ShellCheck Manual
 
 on: [push, pull_request]
 
-jobs:
-  shellcheck:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: shellcheck: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
 
       - name: Install ShellCheck
         run: |
@@ -316,16 +304,12 @@ jobs:
 
 ```yaml
 # .gitlab-ci.yml
-stages:
-  - lint
+stages: - lint
 
-shellcheck:
-  stage: lint
+shellcheck: stage: lint
   image: koalaman/shellcheck-alpine:stable
-  script:
-    - find . -name "*.sh" -type f -exec shellcheck --severity=warning {} +
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  script: - find . -name "*.sh" -type f -exec shellcheck --severity=warning {} +
+  rules: - if: $CI_PIPELINE_SOURCE == "merge_request_event"
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 ```
 
@@ -368,14 +352,9 @@ pipeline {
 ```yaml
 # .circleci/config.yml
 version: 2.1
-orbs:
-  shellcheck: circleci/shellcheck@3.2.0
+orbs: shellcheck: circleci/shellcheck@3.2.0
 
-workflows:
-  lint:
-    jobs:
-      - shellcheck/check:
-          severity: "warning"
+workflows: lint: jobs: - shellcheck/check: severity: "warning"
           exclude: "SC1090,SC1091"
 ```
 
@@ -458,7 +437,15 @@ ShellCheck 的采用范围从个人开发者到企业 CI/CD 流水线。以下�
 在 2024 标准 CI 运行器上测试（Ubuntu 24.04, 2 vCPU, 4 GB 内存）：
 
 | 脚本规模 | 行数 | 分析时间 | 内存占用 |
-|---------|------|---------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 小型 | 50 | 0.05秒 | 12 MB |
 | 中型 | 500 | 0.3秒 | 28 MB |
 | 大型 | 2,000 | 1.1秒 | 67 MB |
@@ -475,7 +462,13 @@ ShellCheck 的采用范围从个人开发者到企业 CI/CD 流水线。以下�
 ### 检测到的 Bug 类别（1,000 个开源脚本样本分析）
 
 | 检查编号 | 描述 | 检出率 |
-|---------|------|--------|
+|
+---
+|
+---
+|
+---
+|
 | SC2086 | 未引用变量 | 34.2% |
 | SC2164 | cd 未检查返回值 | 18.7% |
 | SC1090 | 无法跟踪被 source 的文件 | 22.1% |
@@ -515,14 +508,10 @@ echo "所有脚本通过 ShellCheck 检查，严重程度: $SEVERITY"
 name: Security Scan
 on: [push, pull_request]
 
-jobs:
-  scan:
-    runs-on: ubuntu-latest
-    permissions:
-      security-events: write
+jobs: scan: runs-on: ubuntu-latest
+    permissions: security-events: write
       contents: read
-    steps:
-      - uses: actions/checkout@v4
+    steps: - uses: actions/checkout@v4
 
       - name: 运行 ShellCheck SARIF
         run: |
@@ -532,8 +521,7 @@ jobs:
       - name: 上传到 GitHub Security
         uses: github/codeql-action/upload-sarif@v3
         if: always()
-        with:
-          sarif_file: shellcheck.sarif
+        with: sarif_file: shellcheck.sarif
 ```
 
 ### Dockerfile 检查阶段
@@ -567,7 +555,17 @@ echo "shellcheck_warnings $WARNINGS" >> metrics.txt
 ## 与替代工具对比
 
 | 功能 | ShellCheck | `bash -n` | shfmt | checkbashisms |
-|---------|-----------|-----------|-------|---------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 静态分析深度 | 语义（基于 AST） | 仅语法 | 解析器/格式化器 | 模式匹配 |
 | 错误数量 | ~280+ 检查 | ~20 个错误 | 0（格式化器） | ~40 个模式 |
 | Bash/sh/dash/ksh 支持 | 全部方言 | 仅 Bash | POSIX + Bash | 仅 sh |
@@ -677,7 +675,6 @@ ShellCheck 是最成熟、应用最广泛的 shell 脚本静态分析工具。�
 - [POSIX.1-2017 Shell 命令语言](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -703,8 +700,8 @@ ShellCheck 是最成熟、应用最广泛的 shell 脚本静态分析工具。�
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [apple-container](shellcheck)
@@ -713,6 +710,6 @@ ShellCheck 是最成熟、应用最广泛的 shell 脚本静态分析工具。�
 - [2026-06-15-trending-ai-agents](shellcheck)
 - [2026-06-22-trending-ai-agents](shellcheck)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

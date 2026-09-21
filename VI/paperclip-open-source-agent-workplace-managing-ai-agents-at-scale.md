@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale" />
 title: 'paperclip: 69.700 sao GitHub nơi làm việc AI agent mã ng...
 description: 'paperclip (69.700 sao GitHub) là ứng dụng nơi làm việc AI agent mã nguồn mở. Phối hợp nhiều agent, quản lý task, triển khai workflow tự host. Bao gồm hướng dẫn cài đặt, phân tích kiến trúc và benchmark thực tế.'
 date: 2026-06-08
-lastmod:  2026-06-08slug: 'paperclip-open-source-agent-workplace-managing-ai-agents-at-scale'
+lastmod: 2026-06-08
+slug: 'paperclip-open-source-agent-workplace-managing-ai-agents-at-scale'
 category: 'llm-frameworks'
 tags: ['quản lý AI agent', 'phối hợp multi-agent', 'paperclip', 'agent mã nguồn mở', 'workflow agent', 'agent tự host', 'nơi làm việc AI agent', 'orchestration agent']
 github_repo: 'https://github.com/paperclipai/paperclip'
@@ -17,8 +13,6 @@ license: MIT
 featureImage: 'https://raw.githubusercontent.com/paperclipai/paperclip/master/doc/screenshots/main.png'
 lang: vi
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale/ -->
 
 # paperclip: 69.700 sao GitHub nơi làm việc AI agent mã nguồn mở — Quản lý AI Agent quy mô lớn — Hướng dẫn thực tế 2026
 
@@ -48,8 +42,7 @@ Tuần trước tôi cố gắng migrate codebase 50K dòng với 5 AI CLI. Ba c
 
 paperclip là **nền tảng nơi làm việc AI agent mã nguồn mở** được thiết kế cho các team và independent developer cần orchestrate nhiều AI agent đồng thời. Hãy xem nó như Jira cho AI agent — một môi trường có cấu trúc nơi agent được gán task, tiến độ được theo dõi real-time, và output của agent này trở thành input của agent khác.
 
-Tính năng chính:
-- **Gán task multi-agent** — Gán task khác nhau cho agent khác nhau với prompt chuyên dụng
+Tính năng chính: - **Gán task multi-agent** — Gán task khác nhau cho agent khác nhau với prompt chuyên dụng
 - **Lịch sử hội thoại** — Mọi tương tác agent đều được log, searchable và replayable
 - **Triển khai self-hosted** — Chạy mọi thứ trên infrastructure của riêng bạn (Docker, Kubernetes, bare metal)
 - **Agent marketplace** — Import template agent sẵn có hoặc tạo của riêng
@@ -82,23 +75,17 @@ npm run dev --prefix frontend
 
 ```yaml
 # Template agent sẵn có
-templates:
-  coder:
-    model: claude-sonnet-4-20250514
+templates: coder: model: claude-sonnet-4-20250514
     tools: [fs, terminal, git]
-  reviewer:
-    model: claude-sonnet-4-20250514
+  reviewer: model: claude-sonnet-4-20250514
     tools: [fs, diff]
-  researcher:
-    model: claude-opus-4-20250514
+  researcher: model: claude-opus-4-20250514
     tools: [web_search, file_read]
-  deployer:
-    model: claude-haiku-4-20250514
+  deployer: model: claude-haiku-4-20250514
     tools: [fs, terminal]
 ```
 
-Kết nối external agent:
-```bash
+Kết nối external agent: ```bash
 paperclip agent register \
   --name "my-codex" \
   --type "openai-compatible" \
@@ -133,10 +120,8 @@ paperclip run pipeline
 
 ```yaml
 # workflows/code-review.yaml
-workflow:
-  name: "full-code-review"
-  steps:
-    - agent: linter
+workflow: name: "full-code-review"
+  steps: - agent: linter
       task: "Chạy linting"
       output: "lint_results"
     - agent: reviewer
@@ -217,7 +202,6 @@ Tham gia [nhóm Telegram dibi8 tiếng Việt](https://t.me/DIBI8_Group/18) đ�
 Một số liên kết bên trên là liên kết tiếp thị. Nếu bạn đăng ký qua các liên kết này, dibi8.com có thể nhận hoa hồng mà bạn không tốn thêm chi phí.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -245,25 +229,20 @@ Một số liên kết bên trên là liên kết tiếp thị. Nếu bạn đă
 
 ## Why This Matters
 
-Understanding paperclip: 69.700 sao github nơi làm việc ai agent mã nguồn mở — quản lý ai agent quy mô lớn — hướng dẫn thực tế 2026 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding paperclip: 69.700 sao github nơi làm việc ai agent mã nguồn mở — quản lý ai agent quy mô lớn — hướng dẫn thực tế 2026 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

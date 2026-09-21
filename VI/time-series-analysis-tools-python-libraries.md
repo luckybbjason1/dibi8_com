@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/time-series-analysis-tools-python-libraries" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/time-series-analysis-tools-python-libraries" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/time-series-analysis-tools-python-libraries" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/time-series-analysis-tools-python-libraries" />
 title: 'Phân Tích Chuỗi ThờI Gian Trong Python: Bộ Công Cụ Đầy Đ...
 description: 'Hướng dẫn sử dụng Prophet, sktime, statsmodels ARIMA và Darts để phân tích chuỗI thờI gian trong Python. So sánh thư viện và xây dựng pipeline dự báo.'
 date: 2026-05-18 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/time-series-analysis-tools-python-libraries/
+aliases: - /posts/time-series-analysis-tools-python-libraries/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/time-series-analysis-tools-python-libraries/ -->
 
 {</* resource-info */>}
 
@@ -37,27 +29,21 @@ Bài viết này cung cấp hướng dẫn toàn diện về các công cụ ph�
 
 ## Bức Tranh Toàn Cảnh Phân Tích ChuỗI ThờI Gian Năm 2024
 
-Phân tích chuỗI thờI gian có thể được chia thành ba trường phái chính:
-
-1. **Phương pháp thống kê cổ điển**: ARIMA, Exponential Smoothing, State Space Models — dựa trên lý thuyết thống kê vững chắc, dễ diễn giải
+Phân tích chuỗI thờI gian có thể được chia thành ba trường phái chính: 1. **Phương pháp thống kê cổ điển**: ARIMA, Exponential Smoothing, State Space Models — dựa trên lý thuyết thống kê vững chắc, dễ diễn giải
 2. **Machine Learning**: Random Forest, Gradient Boosting, SVM áp dụng cho chuỗI thờI gian — linh hoạt, xử lý được nhiều đặc trưng
 3. **Deep Learning**: LSTM, Transformer, N-BEATS, N-HiTS — mạnh mẽ với patterns phức tạp, cần nhiều dữ liệu
 
-Các tác vụ chính trong phân tích chuỗI thờI gian bao gồm:
-- **Forecasting** (dự báo): Dự đoán giá trị tương lai
+Các tác vụ chính trong phân tích chuỗI thờI gian bao gồm: - **Forecasting** (dự báo): Dự đoán giá trị tương lai
 - **Classification** (phân loại): Gán nhãn cho toàn bộ chuỗI
 - **Anomaly detection** (phát hiện bất thường): Tìm điểm khác biệt trong chuỗI
 - **Clustering** (phân nhóm): Nhóm các chuỗI tương tự nhau
 
 ## Prophet: Công Cụ Dự Báo CủA Facebook
 
-**Prophet** là thư viện dự báo chuỗI thờI gian mã nguồn mở do Facebook (Meta) phát triển, ra mắt năm 2017. Prophet sử dụng **mô hình hồi quy cộng dồn (additive regression model)** với ba thành phần chính:
-
-```
+**Prophet** là thư viện dự báo chuỗI thờI gian mã nguồn mở do Facebook (Meta) phát triển, ra mắt năm 2017. Prophet sử dụng **mô hình hồi quy cộng dồn (additive regression model)** với ba thành phần chính: ```
 y(t) = g(t) + s(t) + h(t) + ε(t)
 
-Trong đó:
-- g(t): Trend (xu hướng tuyến tính hoặc logistic)
+Trong đó: - g(t): Trend (xu hướng tuyến tính hoặc logistic)
 - s(t): Seasonality (tính mùa vụ hàng năm, hàng tuần, hàng ngày)
 - h(t): Holidays (tác động của các ngày lễ)
 - ε(t): Nhiễu (error term)
@@ -93,9 +79,7 @@ fig_components = model.plot_components(forecast)
 
 ### Cấu Hình Nâng Cao
 
-Prophet cho phép tùy chỉnh sâu:
-
-- **Custom seasonality**: Thêm tính mùa vụ tùy chỉnh (ví dụ: mùa vụ hàng quý)
+Prophet cho phép tùy chỉnh sâu: - **Custom seasonality**: Thêm tính mùa vụ tùy chỉnh (ví dụ: mùa vụ hàng quý)
 - **Holiday effects**: Định nghĩa các ngày lễ đặc biệt ảnh hưởng đến dữ liệu
 - **Changepoint detection**: Tự động phát hiện các điểm thay đổi xu hướng
 - **Multiplicative mode**: Chuyển sang mô hình nhân thay vì cộng khi tính mùa vụ tăng theo trend
@@ -156,9 +140,7 @@ y_pred = forecaster.predict(fh)
 
 ### sktime Pipelines Và Model Composition
 
-sktime cung cấp nhiều strategies để biến đổi bài toán forecasting:
-
-- **Direct reduction**: Huấn luyện một mô hình riêng cho mỗi forecasting horizon
+sktime cung cấp nhiều strategies để biến đổi bài toán forecasting: - **Direct reduction**: Huấn luyện một mô hình riêng cho mỗi forecasting horizon
 - **Recursive reduction**: Dùng dự báo tại t-1 làm input cho t
 - **Multioutput reduction**: Huấn luyện một mô hình dự báo nhiều bước cùng lúc
 
@@ -307,9 +289,7 @@ print(f"RMSE: {error:.2f}")
 
 ## Feature Engineering Cho ChuỗI ThờI Gian
 
-Feature engineering là bước quan trọng nhất trong phân tích chuỗI thờI gian. Các đặc trưng phổ biến bao gồm:
-
-### Các Loại Features
+Feature engineering là bước quan trọng nhất trong phân tích chuỗI thờI gian. Các đặc trưng phổ biến bao gồm: ### Các Loại Features
 
 1. **Lag features**: Giá trị tại các thờI điểm trước đó (t-1, t-7, t-30)
 2. **Rolling statistics**: Mean, std, min, max trong cửa sổ trượt
@@ -320,17 +300,14 @@ Feature engineering là bước quan trọng nhất trong phân tích chuỗI th
 import pandas as pd
 import numpy as np
 
-def create_time_features(df, target_col):
-    """Tạo features cho time series"""
+def create_time_features(df, target_col): """Tạo features cho time series"""
     df = df.copy()
     
     # Lag features
-    for lag in [1, 7, 14, 30]:
-        df[f'lag_{lag}'] = df[target_col].shift(lag)
+    for lag in [1, 7, 14, 30]: df[f'lag_{lag}'] = df[target_col].shift(lag)
     
     # Rolling statistics
-    for window in [7, 14, 30]:
-        df[f'rolling_mean_{window}'] = df[target_col].shift(1).rolling(window).mean()
+    for window in [7, 14, 30]: df[f'rolling_mean_{window}'] = df[target_col].shift(1).rolling(window).mean()
         df[f'rolling_std_{window}'] = df[target_col].shift(1).rolling(window).std()
     
     # Datetime features
@@ -349,9 +326,7 @@ def create_time_features(df, target_col):
 
 ### Tích Hợp tsfresh
 
-**tsfresh** là thư viện tự động trích xuất hàng trăm features từ chuỗI thờI gian:
-
-```python
+**tsfresh** là thư viện tự động trích xuất hàng trăm features từ chuỗI thờI gian: ```python
 from tsfresh import extract_features
 from tsfresh.utilities.dataframe_functions import impute
 
@@ -367,9 +342,7 @@ features = impute(features)  # Xử lý NaN
 
 ### Tránh Data Leakage
 
-Điểm quan trọng nhất trong feature engineering chuỗI thờI gian là **không sử dụng future information** để tạo features. Luôn đảm bảo:
-
-- Chỉ sử dụng dữ liệu quá khứ để tạo features cho dự báo hiện tại
+Điểm quan trọng nhất trong feature engineering chuỗI thờI gian là **không sử dụng future information** để tạo features. Luôn đảm bảo: - Chỉ sử dụng dữ liệu quá khứ để tạo features cho dự báo hiện tại
 - Sử dụng `shift(1)` trước khi tính rolling statistics
 - Chia train/test theo thờI gian, **không bao giờ shuffle**
 
@@ -462,8 +435,7 @@ print(df_p.head())
 
 ### Tránh Data Leakage
 
-Sai lầm phổ biến nhất là sử dụng future information trong features. Các dấu hiệu:
-- Train score cao bất thường so với test score
+Sai lầm phổ biến nhất là sử dụng future information trong features. Các dấu hiệu: - Train score cao bất thường so với test score
 - Sử dụng `StandardScaler.fit_transform()` trên toàn bộ dữ liệu trước khi chia train/test
 - Shuffling dữ liệu chuỗI thờI gian
 
@@ -482,14 +454,11 @@ test_scaled = scaler.transform(test)  # Chỉ transform, không fit
 
 ### Cross-Validation Cho ChuỗI ThờI Gian
 
-Không sử dụng K-fold cross-validation thông thường. Sử dụng **walk-forward validation** hoặc **expanding window**:
-
-```python
+Không sử dụng K-fold cross-validation thông thường. Sử dụng **walk-forward validation** hoặc **expanding window**: ```python
 from sklearn.model_selection import TimeSeriesSplit
 
 tscv = TimeSeriesSplit(n_splits=5)
-for train_idx, test_idx in tscv.split(X):
-    X_train, X_test = X[train_idx], X[test_idx]
+for train_idx, test_idx in tscv.split(X): X_train, X_test = X[train_idx], X[test_idx]
     # Huấn luyện và đánh giá
 ```
 
@@ -509,36 +478,31 @@ for train_idx, test_idx in tscv.split(X):
 
 ### Nên Dùng Prophet Hay ARIMA Cho Dự Báo?
 
-**Prophet** phù hợp hơn cho hầu hết các trường hợp thực tế vì:
-- Không cần kiểm tra stationarity
+**Prophet** phù hợp hơn cho hầu hết các trường hợp thực tế vì: - Không cần kiểm tra stationarity
 - Xử lý tự động missing values và outliers
 - Dễ dàng thêm holidays và custom seasonality
 - API đơn giản, ít parameter tuning
 
-**ARIMA** phù hợp khi:
-- Cần nền tảng lý thuyết vững chắc để diễn giải
+**ARIMA** phù hợp khi: - Cần nền tảng lý thuyết vững chắc để diễn giải
 - Dữ liệu đã stationary hoặc dễ dàng làm stationary
 - Cần mô hình lightweight, chạy nhanh
 
 ### sktime Có Xử Lý Multivariate Time Series Không?
 
-**Có.** sktime hỗ trợ multivariate forecasting thông qua:
-- **VAR (Vector Autoregression)**: Mô hình thống kê cho multivariate
+**Có.** sktime hỗ trợ multivariate forecasting thông qua: - **VAR (Vector Autoregression)**: Mô hình thống kê cho multivariate
 - **DirectMultiVariateForecaster**: Wrapper cho scikit-learn estimators
 - **Hierarchical forecasting**: Dự báo theo cấu trúc phân cấp
 
 ### Darts Có Tốt Hơn Prophet Cho Deep Learning?
 
-**Darts** và **Prophet** phục vụ mục đích khác nhau:
-- Prophet là mô hình statistical cho dữ liệu có tính mùa vụ rõ ràng
+**Darts** và **Prophet** phục vụ mục đích khác nhau: - Prophet là mô hình statistical cho dữ liệu có tính mùa vụ rõ ràng
 - Darts là framework deep learning cho patterns phức tạp
 
 Nếu dữ liệu có nhiều covariates, patterns phi tuyến phức tạp, và đủ lớn — **Darts với TFT hoặc N-HiTS** thường cho kết quả tốt hơn. Nếu dữ liệu có tính mùa vụ rõ ràng, ít noise — **Prophet** có thể đủ tốt với ít effort hơn.
 
 ### Làm Thế Nào Tránh Data Leakage Trong Time Series?
 
-Ba nguyên tắc vàng:
-1. **Không bao giờ shuffle** — Luôn chia theo thờI gian
+Ba nguyên tắc vàng: 1. **Không bao giờ shuffle** — Luôn chia theo thờI gian
 2. **Fit transformers trên train only** — StandardScaler, PCA, v.v.
 3. **Lag features phải shift đủ** — Đảm bảo không dùng future information
 
@@ -558,9 +522,7 @@ print(correlation[correlation.abs() > 0.95])
 
 ## Kết Luận
 
-Hệ sinh thái Python cho phân tích chuỗI thờI gian cung cấp đầy đủ công cụ cho mọi nhu cầu:
-
-- **Prophet**: Bắt đầu với dự báo kinh doanh, tính mùa vụ, holidays
+Hệ sinh thái Python cho phân tích chuỗI thờI gian cung cấp đầy đủ công cụ cho mọi nhu cầu: - **Prophet**: Bắt đầu với dự báo kinh doanh, tính mùa vụ, holidays
 - **sktime**: Xây dựng pipelines phức tạp, tương thích scikit-learn
 - **statsmodels**: Nền tảng thống kê vững chắc, interpretable
 - **Darts**: Deep learning cho patterns phức tạp, probabilistic forecasting
@@ -579,9 +541,7 @@ Chiến lược phù hợp nhất là **bắt đầu đơn giản** — Prophet 
 
 ## Hạ Tầng Đề Xuất
 
-Để chạy các công cụ trên 24/7 ổn định, lựa chọn hạ tầng rất quan trọng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu.
+Để chạy các công cụ trên 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp. dibi8.com cũng host ở đây.
 - **[Hostinger](https://www.hostinger.com/vn?REFERRALCODE=22RPIAOJIYJN)** — VPS giá tốt cho thị trường Việt Nam.
 
@@ -589,7 +549,6 @@ Chiến lược phù hợp nhất là **bắt đầu đơn giản** — Prophet 
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

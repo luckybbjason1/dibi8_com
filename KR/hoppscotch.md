@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/hoppscotch" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hoppscotch" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hoppscotch" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hoppscotch" />
 title: 'Hoppscotch: 79,200 GitHub Stars — Postman, Insomnia, Bru...
 description: 'Hoppscotch (HOPP)는 오픈소스 API 개발 생태계입니다. Docker, GitHub Actions, Node.js, Vue.js와 호환됩니다. hoppscotch 튜토리얼, 셀프호스팅, CLI 자동화, 대안과의 비교를 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [hoppscotch, api테스트, postman대체, 오픈소스, docker, cli, 'rest-api', graphql]
-aliases:
-- /kr/posts/hoppscotch/
+aliases: - /kr/posts/hoppscotch/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/hoppscotch/ -->
 
 {{</* resource-info */>}}
 
@@ -136,51 +128,34 @@ docker run -d \
 # docker-compose.yml
 version: "3.8"
 
-services:
-  hoppscotch:
-    image: hoppscotch/hoppscotch:2026.4.1
+services: hoppscotch: image: hoppscotch/hoppscotch:2026.4.1
     container_name: hoppscotch-app
-    ports:
-      - "3000:3000"   # 메인 앱
+    ports: - "3000:3000"   # 메인 앱
       - "3100:3100"   # 관리 대시보드
       - "3170:3170"   # 백엔드 API
     env_file: .env
     restart: unless-stopped
-    depends_on:
-      postgres:
-        condition: service_healthy
-    networks:
-      - hoppscotch-net
+    depends_on: postgres: condition: service_healthy
+    networks: - hoppscotch-net
 
-  postgres:
-    image: postgres:16-alpine
+  postgres: image: postgres:16-alpine
     container_name: hoppscotch-db
-    environment:
-      POSTGRES_DB: hoppscotch
+    environment: POSTGRES_DB: hoppscotch
       POSTGRES_USER: hoppscotch
       POSTGRES_PASSWORD: ${DB_PASSWORD:-changeme}
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U hoppscotch"]
+    volumes: - postgres_data:/var/lib/postgresql/data
+    healthcheck: test: ["CMD-SHELL", "pg_isready -U hoppscotch"]
       interval: 10s
       timeout: 5s
       retries: 5
-    networks:
-      - hoppscotch-net
+    networks: - hoppscotch-net
 
-volumes:
-  postgres_data:
-    driver: local
+volumes: postgres_data: driver: local
 
-networks:
-  hoppscotch-net:
-    driver: bridge
+networks: hoppscotch-net: driver: bridge
 ```
 
-스택 시작:
-
-```bash
+스택 시작: ```bash
 docker compose up -d
 
 # 모든 서비스 상태 확인
@@ -200,23 +175,16 @@ VPS에 배포할 준비가 된 팀을 위해, [DigitalOcean](https://m.do.co/c/d
 # .github/workflows/api-tests.yml
 name: Hoppscotch CLI로 API 테스트
 
-on:
-  push:
-    branches: [main, develop]
-  pull_request:
-    branches: [main]
+on: push: branches: [main, develop]
+  pull_request: branches: [main]
 
-jobs:
-  api-test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: 코드 체크아웃
+jobs: api-test: runs-on: ubuntu-latest
+    steps: - name: 코드 체크아웃
         uses: actions/checkout@v4
 
       - name: Node.js 설정
         uses: actions/setup-node@v4
-        with:
-          node-version: "20"
+        with: node-version: "20"
           cache: "npm"
 
       - name: Hoppscotch CLI 설치
@@ -236,14 +204,12 @@ jobs:
             -e environments/test.json \
             --reporter-junit test-results.xml \
             --delay 500
-        env:
-          API_BASE_URL: http://localhost:8080
+        env: API_BASE_URL: http://localhost:8080
 
       - name: 테스트 결과 업로드
         uses: actions/upload-artifact@v4
         if: always()
-        with:
-          name: api-test-results
+        with: name: api-test-results
           path: test-results.xml
 ```
 
@@ -456,33 +422,18 @@ server {
 # docker-compose.monitoring.yml
 version: "3.8"
 
-services:
-  prometheus:
-    image: prom/prometheus:latest
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+services: prometheus: image: prom/prometheus:latest
+    volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus_data:/prometheus
-    ports:
-      - "9090:9090"
-    networks:
-      - hoppscotch-net
+    ports: - "9090:9090"
+    networks: - hoppscotch-net
 
-  grafana:
-    image: grafana/grafana:latest
-    ports:
-      - "3001:3000"
-    volumes:
-      - grafana_data:/var/lib/grafana
-    networks:
-      - hoppscotch-net
+  grafana: image: grafana/grafana:latest
+    ports: - "3001:3000"
+    volumes: - grafana_data:/var/lib/grafana
+    networks: - hoppscotch-net
 
-volumes:
-  prometheus_data:
-  grafana_data:
-
-networks:
-  hoppscotch-net:
-    external: true
+volumes: prometheus_data: grafana_data: networks: hoppscotch-net: external: true
 ```
 
 ### 데이터베이스 백업 전략
@@ -598,9 +549,7 @@ Hoppscotch는 개발자들이 진정으로 원하는 것을 구축하여 79,200�
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -620,7 +569,6 @@ Hoppscotch는 개발자들이 진정으로 원하는 것을 구축하여 79,200�
 - [Insomnia 웹사이트](https://insomnia.rest)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

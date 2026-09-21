@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/apple-container" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/apple-container" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/apple-container" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/apple-container" />
 title: "Apple Container: macOS 용 Docker — 애플이 컨테이너 대신 VM을 선택한 이유...
 description: "Apple Container는 경량 VM을 사용해 Mac에서 Linux 컨테이너를 실행하는 오픈소스 도구입니다. 표준 OCI 이미지를 생성하고 macOS 프레임워크와 통합되며, Linux 컨테이너화 분야의 첫 공식 Apple 개발 도구입니다. 별 36K개."
 date: 2026-06-13
-lastmod:  2026-06-13slug: apple-container-mac-vm-tool-2026
+lastmod: 2026-06-13
+slug: apple-container-mac-vm-tool-2026
 category: dev-utils
 tags: ['apple-container', 'macos-dev', 'linux-containers', 'vm-vs-docker', 'oci', 'apple-silicon', 'swift', 'virtualization', 'devtools']
 github_repo: 'https://github.com/apple/container'
@@ -15,8 +11,6 @@ license: 'Apache-2.0'
 lang: kr
 featureImage: /articles/ai-trading-stack.png/images/articles/ai-trading-stack.png
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/apple-container/ -->
 
 ![Apple Container logo](https://raw.githubusercontent.com/apple/container/main/assets/Containerization-Logo.png)
 
@@ -42,9 +36,7 @@ Apple Container는 Mac 위에서 경량 가상머신 형태로 Linux 컨테이�
 // Apple의 Virtualization 프레임워크를 네이티브로 사용합니다
 ```
 
-Docker와 차별화되는 주요 특성:
-
-- **컨테이너별 VM**: 각 컨테이너가 공유 런타임이 아닌 자체 격리된 VM에서 실행됩니다. 이는 더 나은 보안 격리(각 VM이 자체 커널을 가짐)와 더 나은 프라이버시(명확히 마운트한 데이터만 공유됨)를 의미합니다.
+Docker와 차별화되는 주요 특성: - **컨테이너별 VM**: 각 컨테이너가 공유 런타임이 아닌 자체 격리된 VM에서 실행됩니다. 이는 더 나은 보안 격리(각 VM이 자체 커널을 가짐)와 더 나은 프라이버시(명확히 마운트한 데이터만 공유됨)를 의미합니다.
 - **OCI 호환**: 이 도구는 표준 OCI 컨테이너 이미지를 생성하고 소비합니다. `container`로 빌드한 모든 것은 Docker, Kubernetes, 또는 모든 OCI 호환 런타임에서 동작합니다. 락인 현상은 전혀 없습니다.
 - **macOS 네이티브**: Virtualization 프레임워크(VM용), vmnet(네트워킹용), Launchd(서비스 관리용), Keychain(레지스트리 인증용), 통합 로깅 시스템 등 macOS 프레임워크와 심층 통합됩니다.
 - **Swift 우선**: Swift로 작성되었으며 Apple Silicon을 위해 특별히 빌드되었습니다. 패키지 관리자(Containerization) 또한 Swift 패키지입니다.
@@ -52,25 +44,21 @@ Docker와 차별화되는 주요 특성:
 ```yaml
 # 비교: Docker vs Apple Container
 
-# Mac에서의 Docker:
-#   host (macOS) → docker-desktop (Linux VM) → 컨테이너들 (공유 런타임)
+# Mac에서의 Docker: #   host (macOS) → docker-desktop (Linux VM) → 컨테이너들 (공유 런타임)
 #   1개의 공유 Linux 커널, 여러 컨테이너
 
-# Apple Container:
-#   host (macOS) → container (컨테이너별 격리) → 컨테이너 (자체 커널)
+# Apple Container: #   host (macOS) → container (컨테이너별 격리) → 컨테이너 (자체 커널)
 #   컨테이너별 1개의 Linux 커널, 완전한 격리
 ```
 
 ## 아키텍처: 왜 컨테이너 대신 VM인가?
 
-공유 컨테이너가 아닌 컨테이너별 VM을 사용하는 Apple의 선택은 이 프로젝트에서 가장 기술적으로 흥미로운 부분입니다. 배경 논리는 다음과 같습니다:
-
-```
+공유 컨테이너가 아닌 컨테이너별 VM을 사용하는 Apple의 선택은 이 프로젝트에서 가장 기술적으로 흥미로운 부분입니다. 배경 논리는 다음과 같습니다: ```
 ┌─────────────────────────────────────────────────────┐
 │                    macOS 호스트                        │
 ├─────────────────────────────────────────────────────┤
 │                                                      │
-│  Mac에서의 Docker:                                   │
+│  Mac에서의 Docker: │
 │  ┌───────────────────────────────────────────┐      │
 │  │              Docker Desktop VM             │      │
 │  │  ┌────────┐  ┌────────┐  ┌────────┐      │      │
@@ -80,7 +68,7 @@ Docker와 차별화되는 주요 특성:
 │  │  └────────┘  └────────┘  └────────┘      │      │
 │  └───────────────────────────────────────────┘      │
 │                                                      │
-│  Apple Container:                                    │
+│  Apple Container: │
 │  ┌────────┐  ┌────────┐  ┌────────┐                │
 │  │VM-A    │  │VM-B    │  │VM-C    │                │
 │  │컨 A    │  │컨 B    │  │컨 C    │                │
@@ -105,11 +93,8 @@ Apple Container는 **Apple Silicon Mac**과 **macOS 26**(최신 릴리스)가 �
 
 ### 공식 설치
 
-[GitHub 릴리스 페이지](https://github.com/apple/container/releases)에서 서명된 `.pkg` 인스톨러를 다운로드하세요:
-
-```bash
-# .pkg를 다운로드한 후 설치:
-sudo installer -pkg Container-0.4.1.pkg -target /
+[GitHub 릴리스 페이지](https://github.com/apple/container/releases)에서 서명된 `.pkg` 인스톨러를 다운로드하세요: ```bash
+# .pkg를 다운로드한 후 설치: sudo installer -pkg Container-0.4.1.pkg -target /
 
 # 설치 확인
 container --version
@@ -162,8 +147,7 @@ container build --arch arm64 --arch amd64 --tag registry.example.com/myapp:lates
 
 # 이미지 검증
 container image list
-# 출력:
-#   REPOSITORY                          TAG       SIZE
+# 출력: #   REPOSITORY                          TAG       SIZE
 #   myapp                               latest    125MB
 ```
 
@@ -205,9 +189,7 @@ container run --rm docker.io/nginx:latest
 
 ## macOS 통합
 
-`container`는 macOS 시스템 프레임워크와 심층 통합됩니다 — Docker는 Linux 기반으로 작성되었고 공유 VM 추상화에 의존하기 때문에 절대 달성할 수 없는 것입니다:
-
-| macOS 프레임워크 | 기능 | 중요성 |
+`container`는 macOS 시스템 프레임워크와 심층 통합됩니다 — Docker는 Linux 기반으로 작성되었고 공유 VM 추상화에 의존하기 때문에 절대 달성할 수 없는 것입니다: | macOS 프레임워크 | 기능 | 중요성 |
 |------------------------|------------|------------|
 | Virtualization | 컨테이너별 VM 관리 | 베어메탈 성능, 에뮬레이션 레이어 없음 |
 | vmnet | 가상 네트워크 관리 | NAT 우회 없이 컨테이너에 적절한 네트워킹 제공 |
@@ -293,9 +275,7 @@ container list
 
 ### Mac에서의 CI/CD
 
-애플의 컨테이너별 VM 모델은 실제로 CI/CD에 잘 맞습니다:
-
-```bash
+애플의 컨테이너별 VM 모델은 실제로 CI/CD에 잘 맞습니다: ```bash
 # 각 CI 작업이 자체 격리된 VM을 갖습니다 — 컨테이너 충돌 없음
 # 빌드 및 푸시
 container build --tag registry.example.com/myapp:${GITHUB_SHA} .
@@ -351,9 +331,7 @@ container create --name test-apple myapp
 
 ## 제한사항과 솔직한 평가
 
-Apple Container는 놀라워 보이지만, 아직 Docker를 완전히 대체하기에는 부족합니다. 현실은 다음과 같습니다:
-
-1. **macOS 26 필요** — 구형 macOS에서는 실행할 수 없습니다. 이는 타겟 사용자가 크게 제한됨을 의미합니다. macOS 15 또는 그 이전 버전을 사용한다면 이 도구는 아직 귀하에게 적합하지 않습니다.
+Apple Container는 놀라워 보이지만, 아직 Docker를 완전히 대체하기에는 부족합니다. 현실은 다음과 같습니다: 1. **macOS 26 필요** — 구형 macOS에서는 실행할 수 없습니다. 이는 타겟 사용자가 크게 제한됨을 의미합니다. macOS 15 또는 그 이전 버전을 사용한다면 이 도구는 아직 귀하에게 적합하지 않습니다.
 
 2. **Apple Silicon 전용** — 이 도구는 Apple Silicon만 지원하는 Apple의 Virtualization 프레임워크를 사용합니다. Intel Mac은 지원되지 않습니다 (애플이 이미 Intel을 포기했으므로 문제는 적습니다).
 
@@ -418,8 +396,7 @@ Apple Container는 Docker의 macOS 컨테이너 접근 방식이 충분하지 �
 
 ---
 
-**소스 및 추가 읽을거리**:
-- 공식 문서: https://github.com/apple/container
+**소스 및 추가 읽을거리**: - 공식 문서: https://github.com/apple/container
 - API 문서: https://apple.github.io/container/documentation/
 - GitHub 저장소: https://github.com/apple/container
 - 튜토리얼: https://github.com/apple/container/blob/main/docs/tutorials/start-here.md
@@ -435,7 +412,6 @@ Apple Container는 Docker의 macOS 컨테이너 접근 방식이 충분하지 �
 **면책**: 본 글은 제휴 관계를 가질 수 있는 도구를 언급합니다. 저희는 긍정적인 리뷰를 위해 대금을 받지 않습니다. 모든 벤치마크는 자체적으로 수행하거나 공식 문서에서 가져온 것입니다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/plausible-analytics-privacy-google" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/plausible-analytics-privacy-google" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/plausible-analytics-privacy-google" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/plausible-analytics-privacy-google" />
 title: 'Plausible Analytics: Google Analytics보다 45배 빠른 프라이버시 우선 ...
 description: 'Plausible Analytics 셀프 호스팅 설정 완벽 가이드. 프라이버시 우선, GDPR 준수, 1KB 미만 추적 스크립트. Google Analytics보다 45배 빠름. 실제 벤치마크와 Docker 배포.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [plausible, analytics, 프라이버시, gdpr, 'google-analytics-대안', 셀프호스팅, docker, elixir, 경량]
-aliases:
-- /kr/posts/plausible-analytics-privacy-google/
+aliases: - /kr/posts/plausible-analytics-privacy-google/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/plausible-analytics-privacy-google/ -->
 
 {{</* resource-info */>}}
 
@@ -76,9 +68,7 @@ Plausible은 기존 분석 도구와 근본적으로 다른 접근 방식을 취
 
 ### 이벤트 저장소로 ClickHouse를 선택한 이유
 
-Plausible은 **ClickHouse**를 분석 데이터베이스로 사용한다 — Yandex와 Cloudflare 분석을 구동하는 동일한 컬럼형 DBMS이다. 이 선택은 의도적인 것이다:
-
-| 특성 | PostgreSQL | ClickHouse | 영향 |
+Plausible은 **ClickHouse**를 분석 데이터베이스로 사용한다 — Yandex와 Cloudflare 분석을 구동하는 동일한 컬럼형 DBMS이다. 이 선택은 의도적인 것이다: | 특성 | PostgreSQL | ClickHouse | 영향 |
 |------|-----------|------------|------|
 | 삽입 처리량 | ~2만 행/초 | **100만+ 행/초** | 트래픽 스파이크 처리 |
 | 집계 쿼리 속도 | 수초 | **밀리초** | 대시보드 즉각 로드 |
@@ -97,9 +87,7 @@ Plausible은 **ClickHouse**를 분석 데이터베이스로 사용한다 — Yan
 ### 1KB 스크립트: 실제로 하는 일
 
 ```html
-<!-- 표준 Plausible 추적 스크립트 -->
-<script defer data-domain="yourdomain.com"
-  src="https://plausible.yourdomain.com/js/script.js"></script>
+</script>
 ```
 
 이 스크립트는 정확히 세 가지만 수행한다: (1) 현재 페이지 URL과 리퍼러를 전송하고, (2) 브라우저 뷰포트 크기를 전송하여 데스크톱/모바일을 분류하고, (3) SPA 낵게이션 이벤트를 수신한다. 이 스크립트는 다음을 수행하지 **않는다**: 쿠키 설정, localStorage 사용, 핑거프린트 해시 생성, 서드파티 요청 실행. 결과는 gzip 압축 시 1KB 미만의 페이로드와 4G 네트워크에서 10ms 미만의 실행 시간이다.
@@ -165,8 +153,7 @@ docker compose up -d
 # 서비스 확인
 docker compose ps
 
-# 예상 출력:
-# NAME                    STATUS          PORTS
+# 예상 출력: # NAME                    STATUS          PORTS
 # plausible               Up 10 seconds   0.0.0.0:8000->8000/tcp
 # plausible_db            Up 10 seconds   5432/tcp
 # plausible_events_db     Up 10 seconds   8123/tcp
@@ -220,13 +207,9 @@ Plausible.Release.created_admin_user("admin@yourdomain.com", "YourSecurePassword
 ### 웹사이트에 추적 추가
 
 ```html
-<!-- 웹사이트 <head>에 추가 -->
-<script defer data-domain="yourdomain.com"
-  src="https://analytics.yourdomain.com/js/script.js"></script>
+</script>
 
-<!-- SPA (React, Vue, Angular) — 페이지뷰 트리거 추가 -->
-<script defer data-domain="yourdomain.com"
-  src="https://analytics.yourdomain.com/js/script.pageview-props.js"></script>
+</script>
 ```
 
 ## 프레임워크, CMS 및 빌드 도구와의 통합
@@ -301,7 +284,7 @@ export default defineNuxtPlugin(() => {
 
 # 옵션 2: 수동 — 테마의 header.php에 추가
 <?php if (!is_user_logged_in()): ?>
-<script defer data-domain="<?php echo $_SERVER[HTTP_HOST]; ?>"
+"
   src="https://analytics.yourdomain.com/js/script.js"></script>
 <?php endif; ?>
 ```
@@ -309,10 +292,8 @@ export default defineNuxtPlugin(() => {
 ### 정적 사이트 생성기 (Hugo, Jekyll, Astro)
 
 ```html
-<!-- layouts/partials/analytics.html (Hugo) -->
 {{ if not hugo.IsServer }}
-<script defer data-domain="{{ .Site.Params.plausibleDomain }}"
-  src="{{ .Site.Params.plausibleHost }}/js/script.js"></script>
+</script>
 {{ end }}
 ```
 
@@ -411,9 +392,7 @@ plausible(Purchase, {
 
 ### 사례 연구: GA4 교체 후 페이지 로드 50% 빨라짐
 
-월 방문자 20만 명의 유럽 SaaS 회사가 2025년 11월 Google Analytics에서 셀프 호스팅 Plausible로 마이그레이션했다. 6개월 후 결과:
-
-- **Lighthouse 성능 점수**: 72 → **91** (+19점)
+월 방문자 20만 명의 유럽 SaaS 회사가 2025년 11월 Google Analytics에서 셀프 호스팅 Plausible로 마이그레이션했다. 6개월 후 결과: - **Lighthouse 성능 점수**: 72 → **91** (+19점)
 - **Largest Contentful Paint**: 2.8초 → **1.9초**
 - **쿠키 동의 배너**: 완전히 제거됨
 - **분석 호스팅 비용**: $0 → **$12/월**
@@ -439,9 +418,7 @@ SCRIPT_NAME=script.outbound-links.file-downloads.hash.js
 ```
 
 ```html
-<!-- 향상된 스크립트 사용 -->
-<script defer data-domain="yourdomain.com"
-  src="https://analytics.yourdomain.com/js/script.outbound-links.file-downloads.js"></script>
+</script>
 ```
 
 ### 커스텀 대시보드를 위한 API 통합
@@ -451,8 +428,7 @@ SCRIPT_NAME=script.outbound-links.file-downloads.hash.js
 curl -X GET "https://analytics.yourdomain.com/api/v1/stats/aggregate?site_id=yourdomain.com&period=30d&metrics=visitors,pageviews,bounce_rate" \
   -H "Authorization: Bearer YOUR_API_KEY"
 
-# 응답:
-# {
+# 응답: # {
 #   "results": {
 #     "visitors": {"value": 45230},
 #     "pageviews": {"value": 128900},
@@ -486,8 +462,7 @@ response = requests.get(
 )
 
 data = response.json()
-for entry in data["results"]:
-    print(f"{entry[date]}: {entry[visitors]} 방문자, {entry[pageviews]} 페이지뷰")
+for entry in data["results"]: print(f"{entry[date]}: {entry[visitors]} 방문자, {entry[pageviews]} 페이지뷰")
 ```
 
 ### 백업 전략
@@ -524,34 +499,24 @@ find /backup/plausible -maxdepth 1 -type d -mtime +30 -exec rm -rf {} \;
 ```yaml
 # docker-compose.ha.yaml — 복제가 있는 다중 노드 ClickHouse
 version: '3.8'
-services:
-  plausible:
-    image: plausible/analytics:v3.0
-    deploy:
-      replicas: 2
-    environment:
-      - DATABASE_URL=postgres://postgres:postgres@plausible_db:5432/plausible_db
+services: plausible: image: plausible/analytics:v3.0
+    deploy: replicas: 2
+    environment: - DATABASE_URL=postgres://postgres:postgres@plausible_db:5432/plausible_db
       - CLICKHOUSE_DATABASE_URL=http://clickhouse-1:8123/plausible_events_db;http://clickhouse-2:8123/plausible_events_db
 
-  clickhouse-1:
-    image: clickhouse/clickhouse-server:24.3
-    volumes:
-      - clickhouse_data_1:/var/lib/clickhouse
+  clickhouse-1: image: clickhouse/clickhouse-server:24.3
+    volumes: - clickhouse_data_1:/var/lib/clickhouse
 
-  clickhouse-2:
-    image: clickhouse/clickhouse-server:24.3
-    volumes:
-      - clickhouse_data_2:/var/lib/clickhouse
+  clickhouse-2: image: clickhouse/clickhouse-server:24.3
+    volumes: - clickhouse_data_2:/var/lib/clickhouse
 ```
 
 ### Prometheus를 이용한 모니터링
 
 ```yaml
 # prometheus.yml에 추가
-scrape_configs:
-  - job_name: plausible
-    static_configs:
-      - targets: ['analytics.yourdomain.com:8000']
+scrape_configs: - job_name: plausible
+    static_configs: - targets: ['analytics.yourdomain.com:8000']
     metrics_path: '/metrics'
     scrape_interval: 30s
 ```
@@ -570,11 +535,9 @@ wget "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&l
 tar -xzf GeoLite2-City.tar.gz --strip-components=1
 
 # docker-compose.yml에 마운트
-# volumes:
-#   - ./geoip/GeoLite2-City.mmdb:/geoip/GeoLite2-City.mmdb:ro
+# volumes: #   - ./geoip/GeoLite2-City.mmdb:/geoip/GeoLite2-City.mmdb:ro
 
-# plausible-conf.env에 추가:
-# GEOLITE2_COUNTRY_DB=/geoip/GeoLite2-Country.mmdb
+# plausible-conf.env에 추가: # GEOLITE2_COUNTRY_DB=/geoip/GeoLite2-Country.mmdb
 # GEOLITE2_CITY_DB=/geoip/GeoLite2-City.mmdb
 ```
 
@@ -599,9 +562,7 @@ tar -xzf GeoLite2-City.tar.gz --strip-components=1
 
 ## 한계점: 솔직한 평가
 
-Plausible은 의도적으로 깊이를 단순성과 프라이버시와 교환한다. 다음은 제공되지 않는 것이다:
-
-**사용자 수준 추적 없음** — 설계상 Plausible은 개별 사용자의 세션 간 여정을 추적하지 않는다. "사용자 X가 A 페이지를 방문한 다음 B, 그 다음 C"를 볼 수 없다. 멀티터치 어트리뷰션이나 사용자 수준 퍼널 분석이 중요하다면 다른 도구가 필요하다.
+Plausible은 의도적으로 깊이를 단순성과 프라이버시와 교환한다. 다음은 제공되지 않는 것이다: **사용자 수준 추적 없음** — 설계상 Plausible은 개별 사용자의 세션 간 여정을 추적하지 않는다. "사용자 X가 A 페이지를 방문한 다음 B, 그 다음 C"를 볼 수 없다. 멀티터치 어트리뷰션이나 사용자 수준 퍼널 분석이 중요하다면 다른 도구가 필요하다.
 
 **제한된 세그먼테이션** — 내장 필터링은 국가, 페이지, 리퍼러, 디바이스 유형, 브라우저를 지원한다. 고급 코호트 분석이나 커스텀 디멘전 분석은 API를 통한 외부 BI 도구 낼이 필요하다.
 
@@ -642,10 +603,7 @@ Plausible은 예측 가능하게 확장된다. **2GB VPS는 월 약 50만 PV**�
 각 도메인은 Plausible에서 별도의 "사이트"이지만 공유 로그인으로 구성할 수 있다. 서브도메인 추적의 경우 두 가지 옵션이 있다: 세부 보고를 위해 별도로 추적하거나, `data-api-host` 속성을 사용하여 동일한 사이트 ID로 롤업한다. 서브도메인 간 추적은 Plausible이 쿠키나 세션 저장소를 사용하지 않으므로 특별한 구성 없이 작동한다.
 
 ```html
-<!-- 서브도메인을 하나의 보고서로 롤업 -->
-<script defer data-domain="yourdomain.com"
-  data-api="https://analytics.yourdomain.com/api/event"
-  src="https://analytics.yourdomain.com/js/script.js"></script>
+</script>
 ```
 
 **셀프 호스팅 Plausible은 정말 영구적으로 묣인가요?**
@@ -668,9 +626,7 @@ Plausible Analytics는 인사이트를 위해 프라이버시를 거래할 필�
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -692,7 +648,6 @@ Plausible Analytics는 인사이트를 위해 프라이버시를 거래할 필�
 *본 문서에는 DigitalOcean의 제휴 링크가 포함되어 있습니다. 이 링크를 통해 VPS 서비스를 구매할 경우 dibi8.com에 추가 비용 없이 커미션이 지급될 수 있습니다. 모든 추천은 실제 테스트와 실제 배포 경험에 기반합니다.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

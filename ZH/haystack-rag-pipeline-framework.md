@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/haystack-rag-pipeline-framework" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/haystack-rag-pipeline-framework" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/haystack-rag-pipeline-framework" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/haystack-rag-pipeline-framework" />
 title: 'Haystack 2026: 面向生产级 RAG 与 Agent 流水线的端到端 NLP 框架 —— 配置指南'
 description: '2026年 Haystack 完整指南：用于生产级 RAG 流水线、文档存储、检索器、Agent、评估工具和 Docker 部署的开源 NLP 框架。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: [haystack, nlp, rag, python, llm, 文档存储, 检索器, agent, openai, docker, 流水线]
-aliases:
-- /zh/posts/haystack-rag-pipeline-framework/
+aliases: - /zh/posts/haystack-rag-pipeline-framework/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/haystack-rag-pipeline-framework/ -->
 
 {{</* resource-info */>}}
 
@@ -62,7 +54,13 @@ Haystack 2.x 围绕**有向无环图（DAG）**构建，其中节点是组件，
 ### 核心组件类型
 
 | 组件 | 角色 | 示例 |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | **嵌入器 (Embedder)** | 将文本/文档转换为向量 | `OpenAIDocumentEmbedder` |
 | **文档存储** | 持久化文档并处理向量搜索 | `InMemoryDocumentStore`、`OpenSearchDocumentStore` |
 | **检索器 (Retriever)** | 通过向量相似度查找相关文档 | `InMemoryEmbeddingRetriever` |
@@ -364,12 +362,10 @@ from haystack import component
 from typing import Any, Dict, List
 
 @component
-class TokenCounter:
-    """统计输入文本中 token 数量的自定义组件。"""
+class TokenCounter: """统计输入文本中 token 数量的自定义组件。"""
 
     @component.output_types(token_count=int, text=str)
-    def run(self, text: str) -> Dict[str, Any]:
-        # 简单空格分词（生产环境使用 tiktoken）
+    def run(self, text: str) -> Dict[str, Any]: # 简单空格分词（生产环境使用 tiktoken）
         token_count = len(text.split())
         return {"token_count": token_count, "text": text}
 
@@ -426,7 +422,15 @@ print(result["generator"]["replies"][0])
 在 4 核 VPS 上使用 Python 3.11 测量：
 
 | 流水线类型 | 平均延迟 | P95 延迟 | 吞吐量 (请求/秒) |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 基础 RAG (InMemory, GPT-4o-mini) | **1,240 ms** | **1,890 ms** | **0.8** |
 | RAG + 重排序器 (cross-encoder) | **1,580 ms** | **2,340 ms** | **0.6** |
 | RAG (OpenSearch, GPT-4o-mini) | **1,420 ms** | **2,100 ms** | **0.7** |
@@ -464,8 +468,7 @@ from haystack import Pipeline
 from haystack.components.generators import OpenAIGenerator
 from haystack.components.builders import PromptBuilder
 
-async def run_queries(queries: list):
-    pipeline = Pipeline()
+async def run_queries(queries: list): pipeline = Pipeline()
     pipeline.add_component("builder", PromptBuilder(
         template="Answer concisely: {{ query }}"
     ))
@@ -517,8 +520,7 @@ ground_truth = [
 
 # 运行流水线并收集预测
 predictions = []
-for item in ground_truth:
-    result = rag_pipeline.run({
+for item in ground_truth: result = rag_pipeline.run({
         "embedder": {"text": item["query"]},
         "prompt_builder": {"query": item["query"]},
     })
@@ -557,12 +559,10 @@ import yaml
 app = FastAPI()
 
 # 启动时加载流水线
-with open("rag_pipeline.yaml") as f:
-    pipeline = Pipeline.loads(f.read())
+with open("rag_pipeline.yaml") as f: pipeline = Pipeline.loads(f.read())
 
 @app.post("/query")
-async def query(question: str):
-    result = pipeline.run({
+async def query(question: str): result = pipeline.run({
         "embedder": {"text": question},
         "prompt_builder": {"query": question},
     })
@@ -575,36 +575,35 @@ async def query(question: str):
 ```yaml
 # docker-compose.yml
 version: "3.8"
-services:
-  haystack-api:
-    build: .
-    ports:
-      - "8000:8000"
-    environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
-    depends_on:
-      - opensearch
+services: haystack-api: build: .
+    ports: - "8000:8000"
+    environment: - OPENAI_API_KEY=${OPENAI_API_KEY}
+    depends_on: - opensearch
 
-  opensearch:
-    image: opensearchproject/opensearch:2.14.0
-    environment:
-      - discovery.type=single-node
+  opensearch: image: opensearchproject/opensearch:2.14.0
+    environment: - discovery.type=single-node
       - DISABLE_SECURITY_PLUGIN=true
-    ports:
-      - "9200:9200"
-    volumes:
-      - osdata:/usr/share/opensearch/data
+    ports: - "9200:9200"
+    volumes: - osdata:/usr/share/opensearch/data
 
-volumes:
-  osdata:
-```
+volumes: osdata: ```
 
 对于云 VPS 部署，[DigitalOcean](https://m.do.co/c/eca87ac14ee0) App Platform 支持从 Git 直接部署 Docker。推送你的 `Dockerfile`，连接你的仓库，平台将零配置地构建和托管你的 Haystack API。
 
 ## 与替代方案对比
 
 | 功能 | Haystack 2.x | LangChain | LlamaIndex | Semantic Kernel |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **许可证** | **Apache-2.0** | MIT | MIT | MIT |
 | **GitHub Stars** | **21,000+** | 98,000+ | 41,000+ | 22,000+ |
 | **主要焦点** | **生产级 RAG/搜索** | 通用 LLM 编排 | 索引与检索 | 多 Agent (Microsoft) |
@@ -690,12 +689,11 @@ Haystack 2.x（2024 年 1 月发布）是截至 2026 年 5 月唯一积极维护
 - OpenSearch 文档存储指南：https://docs.haystack.deepset.ai/docs/opensearch-document-store
 - 自定义组件教程：https://docs.haystack.deepset.ai/docs/custom-components
 
----
 
+---
 **联盟披露：** 本文中的部分链接是联盟链接。如果你使用我们的 [DigitalOcean 推荐链接](https://m.do.co/c/eca87ac14ee0) 注册，你将获得 $200 信用额度，我们也会获得推荐奖励——不会增加你的额外成本。这支持我们的独立研究并保持内容免费。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -721,8 +719,8 @@ Haystack 2.x（2024 年 1 月发布）是截至 2026 年 5 月唯一积极维护
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [apple-container](haystack-rag-pipeline-framework)

@@ -1,12 +1,9 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/ai-agent-tool-chain" />
 title: 'AI Agent Tool Chain 2026: The 6-Component Stack for Buil...
 description: 'Complete production AI agent stack: LangGraph for stateful orchestration + MCP servers for tools + mem0 for memory + OpenClaw for multi-agent coordination + Hermes Agent for self-improvement + e2b for sandboxed code execution. $20-60/mo self-hosted. Real assembly with internal-linked deep dives.'
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
-tech_stack:
-  - Python
+tech_stack: - Python
   - TypeScript
   - Docker
   - PostgreSQL
@@ -26,10 +23,8 @@ featureImage: ''
 draft: false
 categories: [collections]
 tags: ['ai agent', 'tool chain', langgraph, mcp, stack, collection]
-aliases:
-  - /posts/ai-agent-tool-chain/
+aliases: - /posts/ai-agent-tool-chain/-
 ---
-
 "AI agent" stopped being a research topic in 2025 and became a production engineering category in 2026. The teams shipping real autonomous agents — customer support bots that survive restarts, coding agents that refactor across a hundred files, research agents that run for hours — converged on a remarkably consistent stack. This collection assembles it.
 
 **6 components, $20-60/month self-hosted.** Pair this with our [Self-Hosted AI Coding Workflow](/collections/self-hosted-ai-coding-workflow/) if you're building coding agents specifically; this collection focuses on the autonomous agent pattern (long-running, multi-step, with tools).
@@ -37,7 +32,17 @@ aliases:
 ## TL;DR — The Stack at a Glance
 
 | # | Component | Role | Why | Deep dive |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 1 | **LangGraph** | Stateful agent orchestration (the brain) | Durable execution, human-in-loop, survives crashes | [LangGraph production 2026](/resources/llm-frameworks/langgraph-stateful-agent-orchestration-2026/) |
 | 2 | **MCP servers** (filesystem / git / search / domain-specific) | Tool & context layer (the hands and eyes) | Standardized agent-to-world protocol, 19,700+ available | [MCP Server Registry 2026](/resources/llm-frameworks/mcp-server-registry-comprehensive-guide-2026/) |
 | 3 | **mem0 + AgentMemory MCP** | Persistent semantic memory (the long-term memory) | Cross-session recall, fact extraction, decay | [AgentMemory MCP](/resources/llm-frameworks/agentmemory-mcp-persistent-memory-2026/) |
@@ -51,9 +56,7 @@ Compare against pure-SaaS: each agent platform (LangChain Cloud, Vellum, etc.) s
 
 ## 1. Why Build Your Own Agent Stack in 2026
 
-Three forces converged this year:
-
-1. **LangGraph hit 1.x and proved durable execution at scale** — the "agent forgot everything after restart" bug is solved
+Three forces converged this year: 1. **LangGraph hit 1.x and proved durable execution at scale** — the "agent forgot everything after restart" bug is solved
 2. **MCP standardized tool integration** — write a tool once as an MCP server, use it in Claude / OpenCode / Cursor / your custom agent
 3. **Self-improving loops became reproducible** — Hermes Agent and similar projects showed agents can iteratively improve their own prompts based on outcome data
 
@@ -87,8 +90,7 @@ The combination means a small team can build agents that previously required a $
                 │  - domain-specific   │
                 └──────────────────────┘
 
-   Optional layers:
-   - OpenClaw orchestrates multiple LangGraph agents in parallel
+   Optional layers: - OpenClaw orchestrates multiple LangGraph agents in parallel
    - Hermes Agent observes outcomes and rewrites prompts over time
 ```
 
@@ -100,8 +102,7 @@ Mental model: **LangGraph is the brain that decides what to do next. MCP servers
 
 **Why this pick**: 32.6k stars, v1.2.1, built by the LangChain team. The only widely-adopted framework where "agent survives a deploy" is a default rather than something you bolt on.
 
-**Quick install**:
-```bash
+**Quick install**: ```bash
 pip install -U langgraph langgraph-checkpoint-postgres
 ```
 
@@ -115,8 +116,7 @@ Define your agent as a graph (planning → tool → critique → loop). Compile 
 
 **Why this matters**: Before MCP (early 2025), every agent framework re-implemented the same 20 tools (filesystem, web search, code execution) and they didn't interop. Today you wire up the Anthropic 7 reference servers + 3-5 specialized ones and you have agent superpowers without writing tool code.
 
-**Minimum MCP set for autonomous agents**:
-- `modelcontextprotocol/server-filesystem` (read project files)
+**Minimum MCP set for autonomous agents**: - `modelcontextprotocol/server-filesystem` (read project files)
 - `modelcontextprotocol/server-git` (inspect git state)
 - `tavily-mcp` or `brave-search-mcp-server` (web search)
 - `e2b-sandbox-mcp` (sandboxed code exec — see component 6)
@@ -128,12 +128,10 @@ Define your agent as a graph (planning → tool → critique → loop). Compile 
 
 **The role**: What the agent remembers across runs. Without this, every agent invocation starts from zero context. With this, the agent remembers facts about the user, project, prior decisions, and prior failures.
 
-**The two-tier pattern**:
-- **mem0** stores the semantic memory (Python service backed by a vector DB)
+**The two-tier pattern**: - **mem0** stores the semantic memory (Python service backed by a vector DB)
 - **AgentMemory MCP** exposes mem0 to any MCP-aware host (your LangGraph nodes, Claude Desktop, OpenCode)
 
-**Quick install**:
-```bash
+**Quick install**: ```bash
 docker run -d --name mem0 -p 8765:8765 mem0ai/mem0-server:latest
 npm install -g @mem0/mem0-mcp
 # Then add agentmemory to your LangGraph MCP toolset
@@ -147,8 +145,7 @@ npm install -g @mem0/mem0-mcp
 
 **Why this pick over CrewAI**: OpenClaw is self-hostable, MCP-native, and integrates cleanly with LangGraph (each "specialist agent" can itself be a LangGraph). CrewAI is great but cloud-first and harder to compose with custom state machines.
 
-**Quick install**:
-```bash
+**Quick install**: ```bash
 docker run -d --name openclaw \
   -p 7050:7050 \
   -v ~/.openclaw:/data \
@@ -163,8 +160,7 @@ docker run -d --name openclaw \
 
 **Why this matters**: Static agent prompts decay — what worked in v1 stops working as your codebase evolves, your domain shifts, new tools appear. Hermes Agent is the only widely-adopted open-source framework specifically for self-improving agent loops.
 
-**Quick install**:
-```bash
+**Quick install**: ```bash
 pip install hermes-agent
 # Wire it as a "post-run observer" on your LangGraph workflow
 ```
@@ -179,8 +175,7 @@ The pattern: Hermes watches LangGraph trace logs (via LangSmith export), correla
 
 **Why MCP-exposed e2b beats raw e2b SDK**: The `e2b-sandbox-mcp` server makes "run code in sandbox" a single tool call your LangGraph agent makes — same interface as filesystem read or web search.
 
-**Quick install** (add to your MCP config alongside the others):
-```json
+**Quick install** (add to your MCP config alongside the others): ```json
 {
   "mcpServers": {
     "e2b-sandbox": {
@@ -211,7 +206,15 @@ The pattern: Hermes watches LangGraph trace logs (via LangSmith export), correla
 ## 10. Cost Breakdown
 
 | Item | Solo agent dev | Team prototype | Production (3 agents concurrent) |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | VPS | $24 (8 GB) | $48 (16 GB) | $120 (32 GB + replica) |
 | Managed Postgres | $15 | $30 | $60 |
 | LangGraph | $0 (OSS) | $0 | $0 |
@@ -228,9 +231,7 @@ Compare against managed agent platforms: $99/user/mo for LangChain Cloud, $299/m
 
 ## 11. Upgrade Path
 
-When you outgrow this stack:
-
-- **More than 10 concurrent agents** — Move LangGraph to dedicated Kubernetes cluster with autoscaling
+When you outgrow this stack: - **More than 10 concurrent agents** — Move LangGraph to dedicated Kubernetes cluster with autoscaling
 - **Need audit-grade trace retention** — LangSmith Enterprise or self-hosted observability (Grafana + Loki + Tempo)
 - **Multi-tenant agent SaaS** — Add LiteLLM for virtual-key-per-customer ([LiteLLM guide](/resources/llm-frameworks/litellm/))
 - **Sub-second latency requirement** — Move e2b workloads to dedicated Firecracker VMs you control
@@ -238,8 +239,7 @@ When you outgrow this stack:
 
 ## TL;DR — The Recipe
 
-**6 components for production-grade autonomous agents, $20-60/mo solo or team prototype**:
-1. **LangGraph** — stateful orchestration brain
+**6 components for production-grade autonomous agents, $20-60/mo solo or team prototype**: 1. **LangGraph** — stateful orchestration brain
 2. **MCP servers** — tools & context (filesystem + git + search + sandbox)
 3. **mem0 + AgentMemory MCP** — long-term memory
 4. **OpenClaw** — multi-agent coordination
@@ -248,12 +248,11 @@ When you outgrow this stack:
 
 Spin up a {{< aff "digitalocean" "footer-cta" "DigitalOcean $24/mo droplet" >}}, follow section 9, and you have agents that survive restarts, remember context, run code safely, and improve themselves over time — on infrastructure you own for less than the cost of a single Cursor seat.
 
----
 
+---
 *Companion collections: [Self-Hosted AI Coding Workflow](/collections/self-hosted-ai-coding-workflow/) for coding-agent-specific stack. [Knowledge Base Stack](/collections/knowledge-base-stack/) gives your agents a Glean-equivalent RAG backend. [Cheap LLM Stack](/collections/cheap-llm-stack/) covers the cost side.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -279,8 +278,8 @@ Spin up a {{< aff "digitalocean" "footer-cta" "DigitalOcean $24/mo droplet" >}},
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [free-mcp-tools-top10-2026](ai-agent-tool-chain)

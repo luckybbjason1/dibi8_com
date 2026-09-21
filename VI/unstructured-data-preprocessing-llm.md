@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/unstructured-data-preprocessing-llm" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/unstructured-data-preprocessing-llm" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/unstructured-data-preprocessing-llm" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/unstructured-data-preprocessing-llm" />
 title: 'Unstructured.io: Pipeline Tiền Xử Lý Dữ Liệu Chuyển Đổi ...
 description: 'Hướng dẫn thực tiễn 2026 về Unstructured.io — thư viện tiền xử lý tài liệu mã nguồn mở chuyển đổi PDF, DOCX, PPTX và hình ảnh thành các đoạn văn bản sạch, có cấu trúc sẵn sàng cho pipeline LLM và RAG.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: [unstructured, 'phân-tích-tài-liệu', llm, rag, 'tiền-xử-lý-dữ-liệu', pdf, chunking, 'mã-nguồn-mở']
-aliases:
-- /vi/posts/unstructured-data-preprocessing-llm/
+aliases: - /vi/posts/unstructured-data-preprocessing-llm/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/unstructured-data-preprocessing-llm/ -->
 
 {{</* resource-info */>}}
 
@@ -53,9 +45,7 @@ Pipeline của Unstructured gồm ba giai đoạn riêng biệt: **Partitioning 
 
 ### Partitioning: Chia Tài Liệu Thành Các Phần Tử
 
-Hàm `partition` là lõi của Unstructured. Nó tự động phát hiện loại file và định tuyến đến các bộ phân tích chuyên biệt:
-
-| Chiến lược Partition | Tốc độ | Độ chính xác | Phù hợp cho |
+Hàm `partition` là lõi của Unstructured. Nó tự động phát hiện loại file và định tuyến đến các bộ phân tích chuyên biệt: | Chiến lược Partition | Tốc độ | Độ chính xác | Phù hợp cho |
 |---------------------|--------|-------------|-------------|
 | `auto` | Trung bình | Cao | Sử dụng chung, nhiều loại tài liệu |
 | `fast` | Nhanh | Trung bình | PDF văn bản đơn giản, xử lý hàng loạt |
@@ -66,9 +56,7 @@ Chiến lược `hi_res` sử dụng **mô hình transformer hiểu tài liệu*
 
 ### Các Loại Phần Tử: Bảo Toàn Cấu Trúc
 
-Unstructured xuất 20+ loại phần tử. Quan trọng nhất cho công việc LLM:
-
-- `NarrativeText` — đoạn văn bản chính
+Unstructured xuất 20+ loại phần tử. Quan trọng nhất cho công việc LLM: - `NarrativeText` — đoạn văn bản chính
 - `Title` — tiêu đề tài liệu và phần
 - `ListItem` — danh sách gạch đầu dòng và đánh số
 - `Table` — dữ liệu bảng (có thể xuất ra HTML)
@@ -80,9 +68,7 @@ Mỗi phần tử mang metadata: số trang, tọa độ, loại file, ngôn ng�
 
 ### Chunking: Từ Phần Tử Đến Các Chunk Sẵn Sàng Cho LLM
 
-Các phần tử thô quá nhỏ (từ đơn) hoặc quá lớn (cả trang). Các chiến lược chunking của Unstructured kết hợp và chia các phần tử một cách thông minh:
-
-| Chiến lược Chunking | Hành vi | Phù hợp cho |
+Các phần tử thô quá nhỏ (từ đơn) hoặc quá lớn (cả trang). Các chiến lược chunking của Unstructured kết hợp và chia các phần tử một cách thông minh: | Chiến lược Chunking | Hành vi | Phù hợp cho |
 |-------------------|---------|-------------|
 | `basic` | Kích thước cố định với overlap | Pipeline đơn giản, số token dự đoán được |
 | `by_title` | Tôn trọng ranh giới phần | Giữ tính liên kết ngữ nghĩa |
@@ -107,15 +93,12 @@ pip install "unstructured[all-docs]==0.17.0"
 
 Tùy chọn `[pdf]` cài `pdf2image`, `pdfplumber`, và `pikepdf`. Tùy chọn `[all-docs]` thêm DOCX, PPTX, XLSX, MSG, EML, EPUB, và các phụ thuộc OCR bao gồm `tesseract`.
 
-Xác minh cài đặt:
-
-```python
+Xác minh cài đặt: ```python
 from unstructured.partition.auto import partition
 
 elements = partition(filename="test.pdf")
 print(f"Đã trích xuất {len(elements)} phần tử")
-for el in elements[:5]:
-    print(f"  {el.category}: {str(el)[:60]}...")
+for el in elements[:5]: print(f"  {el.category}: {str(el)[:60]}...")
 ```
 
 ### Tùy Chọn B: API Tự Host Qua Docker (Production)
@@ -135,9 +118,7 @@ docker run -d \
 curl http://localhost:8000/healthcheck
 ```
 
-Môi trường chỉ CPU (rẻ hơn, chậm hơn với PDF phức tạp):
-
-```bash
+Môi trường chỉ CPU (rẻ hơn, chậm hơn với PDF phức tạp): ```bash
 docker run -d \
   --name unstructured-api-cpu \
   -p 8000:8000 \
@@ -151,8 +132,7 @@ Nếu bạn cần máy chủ cloud đáng tin cậy để host, [GPU droplets c�
 ```python
 import requests
 
-with open("annual_report.pdf", "rb") as f:
-    response = requests.post(
+with open("annual_report.pdf", "rb") as f: response = requests.post(
         "http://localhost:8000/general/v0/general",
         files={"files": ("annual_report.pdf", f)},
         data={
@@ -250,8 +230,7 @@ client = chromadb.PersistentClient(path="./chroma_db")
 collection = client.get_or_create_collection("contracts")
 
 model = SentenceTransformer("all-MiniLM-L6-v2")
-for i, chunk in enumerate(chunks):
-    embedding = model.encode(str(chunk)).tolist()
+for i, chunk in enumerate(chunks): embedding = model.encode(str(chunk)).tolist()
     collection.add(
         ids=[f"chunk_{i}"],
         embeddings=[embedding],
@@ -268,9 +247,7 @@ for i, chunk in enumerate(chunks):
 
 ### Phủ Sóng Các Loại Tài Liệu
 
-Unstructured hỗ trợ **25+ định dạng file** tính đến v0.17.0:
-
-| Định dạng | Đọc | Bảng | OCR | Ghi chú |
+Unstructured hỗ trợ **25+ định dạng file** tính đến v0.17.0: | Định dạng | Đọc | Bảng | OCR | Ghi chú |
 |-----------|-----|------|-----|---------|
 | PDF (dạng văn bản) | Có | Có | N/A | Định dạng được hỗ trợ tốt nhất |
 | PDF (scan/hình ảnh) | Có | Một phần | Có | Yêu cầu tesseract |
@@ -285,9 +262,7 @@ Unstructured hỗ trợ **25+ định dạng file** tính đến v0.17.0:
 
 ### Hiệu Suất Xử Lý
 
-Benchmarks trên **Intel i7 8-core, 32GB RAM, không GPU**:
-
-| Tài liệu | Kích thước | Chiến lược | Thờigian | Số phần tử |
+Benchmarks trên **Intel i7 8-core, 32GB RAM, không GPU**: | Tài liệu | Kích thước | Chiến lược | Thờigian | Số phần tử |
 |----------|-----------|-----------|---------|-----------|
 | PDF văn bản 10 trang | 2.1 MB | fast | 1.2s | 47 |
 | PDF văn bản 10 trang | 2.1 MB | hi_res | 8.4s | 52 |
@@ -299,9 +274,7 @@ Với **GPU acceleration** (NVIDIA T4 qua Docker API), partitioning `hi_res` cho
 
 ### Tác Động Chất Lượng Chunking Lên RAG
 
-Tôi chạy thử nghiệm kiểm soát trên 50 hợp đồng pháp lý (trung bình 15 trang mỗi hợp đồng), đo độ chính xác truy xuất top-3:
-
-| Phương pháp tiền xử lý | Chất lượng chunk TB | RAG Top-3 Accuracy |
+Tôi chạy thử nghiệm kiểm soát trên 50 hợp đồng pháp lý (trung bình 15 trang mỗi hợp đồng), đo độ chính xác truy xuất top-3: | Phương pháp tiền xử lý | Chất lượng chunk TB | RAG Top-3 Accuracy |
 |-----------------------|-------------------|-------------------|
 | `pdftotext` thô + split | 0.31 | 34% |
 | PyPDF2 + character split | 0.38 | 41% |
@@ -341,8 +314,7 @@ filtered = [
 ]
 
 # Bước 3: Làm sạch nội dung văn bản
-for el in filtered:
-    el.text = clean(
+for el in filtered: el.text = clean(
         el.text,
         extra_whitespace=True,
         dashes=True,           # chuẩn hóa em-dashes
@@ -368,9 +340,7 @@ import concurrent.futures
 from pathlib import Path
 from unstructured.partition.auto import partition
 
-def process_file(path: Path) -> dict:
-    try:
-        elements = partition(
+def process_file(path: Path) -> dict: try: elements = partition(
             filename=str(path),
             strategy="fast",
         )
@@ -379,8 +349,7 @@ def process_file(path: Path) -> dict:
             "elements": len(elements),
             "status": "success",
         }
-    except Exception as e:
-        return {
+    except Exception as e: return {
             "file": path.name,
             "elements": 0,
             "status": "error",
@@ -391,8 +360,7 @@ def process_file(path: Path) -> dict:
 pdf_dir = Path("./documents")
 pdf_files = list(pdf_dir.glob("*.pdf"))
 
-with concurrent.futures.ThreadPoolExecutor(max_workers=8) as executor:
-    results = list(executor.map(process_file, pdf_files))
+with concurrent.futures.ThreadPoolExecutor(max_workers=8) as executor: results = list(executor.map(process_file, pdf_files))
 
 success = sum(1 for r in results if r["status"] == "success")
 print(f"Đã xử lý thành công: {success}/{len(results)} file")
@@ -400,21 +368,17 @@ print(f"Đã xử lý thành công: {success}/{len(results)} file")
 
 ### Chiến Lược Cache Cho Xử Lý Lặp Lại
 
-Cho phát triển RAG lặp lại, partition một lần và cache:
-
-```python
+Cho phát triển RAG lặp lại, partition một lần và cache: ```python
 import json
 import hashlib
 from pathlib import Path
 from unstructured.staging.base import elements_to_dicts, dicts_to_elements
 
-def partition_with_cache(file_path: str, strategy: str = "hi_res"):
-    file_hash = hashlib.md5(open(file_path, "rb").read()).hexdigest()
+def partition_with_cache(file_path: str, strategy: str = "hi_res"): file_hash = hashlib.md5(open(file_path, "rb").read()).hexdigest()
     cache_path = Path(f"./cache/{file_hash}_{strategy}.json")
     cache_path.parent.mkdir(exist_ok=True)
 
-    if cache_path.exists():
-        return dicts_to_elements(json.load(open(cache_path)))
+    if cache_path.exists(): return dicts_to_elements(json.load(open(cache_path)))
 
     elements = partition_pdf(file_path, strategy=strategy)
     cache_path.write_text(json.dumps(elements_to_dicts(elements), indent=2))
@@ -427,39 +391,22 @@ def partition_with_cache(file_path: str, strategy: str = "hi_res"):
 # unstructured-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
-metadata:
-  name: unstructured-api
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: unstructured-api
-  template:
-    metadata:
-      labels:
-        app: unstructured-api
-    spec:
-      containers:
-      - name: api
+metadata: name: unstructured-api
+spec: replicas: 3
+  selector: matchLabels: app: unstructured-api
+  template: metadata: labels: app: unstructured-api
+    spec: containers: - name: api
         image: downloads.unstructured.io/unstructured-io/unstructured-api:latest
-        ports:
-        - containerPort: 8000
-        resources:
-          limits:
-            nvidia.com/gpu: 1
+        ports: - containerPort: 8000
+        resources: limits: nvidia.com/gpu: 1
             memory: "8Gi"
-          requests:
-            memory: "4Gi"
+          requests: memory: "4Gi"
 ---
 apiVersion: v1
 kind: Service
-metadata:
-  name: unstructured-api
-spec:
-  selector:
-    app: unstructured-api
-  ports:
-  - port: 80
+metadata: name: unstructured-api
+spec: selector: app: unstructured-api
+  ports: - port: 80
     targetPort: 8000
 ```
 
@@ -494,9 +441,7 @@ Nếu bạn tự host, [Kubernetes cluster của DigitalOcean](https://m.do.co/c
 
 ## Hạn Chế: Đánh Giá Trung Thực
 
-Unstructured không phải phép màu. Đây là những gì sẽ làm bạn vướng mắc trong production:
-
-**1. Chất lượng OCR phụ thuộc vào chất lượng đầu vào.** Tài liệu scan độ phân giải thấp (dưới 150 DPI) tạo ra văn bản hỏng bất kể pipeline nào. Tiền xử lý với tăng cường hình ảnh nếu nguồn liệu của bạn kém.
+Unstructured không phải phép màu. Đây là những gì sẽ làm bạn vướng mắc trong production: **1. Chất lượng OCR phụ thuộc vào chất lượng đầu vào.** Tài liệu scan độ phân giải thấp (dưới 150 DPI) tạo ra văn bản hỏng bất kể pipeline nào. Tiền xử lý với tăng cường hình ảnh nếu nguồn liệu của bạn kém.
 
 **2. `hi_res` chậm nếu không có GPU.** Mô hình `detectron2` mặc định chạy trên CPU ở 3-5 trang/phút cho layout phức tạp. Dự trù GPU acceleration hoặc dùng chiến lược `fast` cho PDF văn bản hàng loạt.
 
@@ -552,9 +497,7 @@ Tham gia cộng đồng developer trên Telegram: **t.me/dibi8en** — chia sẻ
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -576,7 +519,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 *Tuyên bố tiếp thị liên kết: Bài viết này chứa liên kết tiếp thị của DigitalOcean. Nếu bạn đăng ký qua các liên kết này, chúng tôi nhận được hoa hồng không phát sinh chi phí thêm cho bạn. Unstructured.io là mã nguồn mở và miễn phí sử dụng; chúng tôi không có quan hệ thương mại với Unstructured-IO. Các ý kiến dựa trên thử nghiệm thực tế.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

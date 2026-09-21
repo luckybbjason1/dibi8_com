@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-code-custom-agent-authoring-guide-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-custom-agent-authoring-guide-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-custom-agent-authoring-guide-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-custom-agent-authoring-guide-2026" />
 title: 'Claude Code 自定义 Agent 编写指南：打造强制执行团队规范的可复用子智能体（2026）'
 description: '完整的 Claude Code 自定义子智能体编写指南——frontmatter 字段、系统提示词设计、工具白名单，以及两个可直接投产的范例（迁移审查器、安全闸门），附带要避开的坑。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-28 00:00:00+08:00
@@ -25,11 +20,9 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['claude-code', subagents, 'custom-agents', 'agent-sdk', 'ai-coding-agents', 'llm-frameworks', 'developer-tools']
-aliases:
-- /posts/claude-code-custom-agent-authoring/
-faq:
-  - q: "自定义 agent 的定义文件放在哪里？是什么格式？"
-    a: "自定义 agent 是带 YAML frontmatter 的 Markdown 文件，存放在项目里的 .claude/agents/ 目录（或 ~/.claude/agents/ 用于希望在所有项目中都可用的 agent）。文件名去掉 .md 后缀并不是 agent 的身份——frontmatter 里的 name 字段才是。frontmatter 声明 name、description、可选的 tools 白名单和可选的 model；结尾 --- 之下的全部内容就是 agent 的系统提示词。"
+aliases: - /posts/claude-code-custom-agent-authoring/
+faq: - q: "自定义 agent 的定义文件放在哪里？是什么格式？"
+    a: "自定义 agent 是带 YAML frontmatter 的 Markdown 文件，存放在项目里的 .claude/agents/ 目录（或 ~/.claude/agents/ 用于希望在所有项目中都可用的 agent）。文件名去掉 .md 后缀并不是 agent 的身份——frontmatter 里的 name 字段才是。frontmatter 声明 name、description、可选的 tools 白名单和可选的 model；结尾--- 之下的全部内容就是 agent 的系统提示词。"
   - q: "description 字段和系统提示词正文有什么区别？"
     a: "description 是路由信号：父 agent 在决定是否委派时读的就是它，所以它必须说清楚『何时』使用该 agent，而不只是它是什么。系统提示词正文则是 agent 被调用后运行的指令集——它的角色、方法、输出契约。description 出色但正文含糊，会在对的时机被触发却干出平庸的活；正文出色但 description 含糊，会干出色的活却永远不被触发。"
   - q: "我该给自定义 agent 开放所有工具，还是限制它们？"
@@ -40,9 +33,8 @@ faq:
     a: "不能。子智能体只有一层深——子智能体无法再派生更深的子智能体。这是防止失控扇出的刻意护栏。如果你需要多阶段编排，由父（顶层）agent 协调：它调用 agent A、读取结果、再调用 agent B。把你的自定义 agent 设计成单一职责的工作者、返回结构化报告，让顶层的编排者去给它们排序。"
   - q: "自定义 agent 在 CI 和无头运行里能用吗，还是只能交互式？"
     a: "两者都能用。同一份 .claude/agents/ 定义在你非交互运行 Claude Code 时（CI 里用的 -p / print 模式）也会被识别。因为它们是仓库里受版本控制的文件，每个队友、每个 CI 任务看到的都是完全相同的 agent 定义——这正是把审查清单编码成 agent、而不是写成一个没人会打开的 wiki 页面的全部意义。"
----
 
-<!-- canonical: https://dibi8.com/zh/tools/claude-code-custom-agent-authoring-guide-2026/ -->
+---
 # Claude Code 自定义 Agent 编写指南：打造强制执行团队规范的可复用子智能体（2026）
 
 
@@ -64,18 +56,21 @@ faq:
 结构极其简单：
 
 ```markdown
+
 ---
 name: migration-reviewer
 description: Reviews database migrations for safety. Use when a PR touches db/migrate/, schema files, or any SQL DDL.
 tools: Read, Grep, Glob
 model: sonnet
----
 
+---
 You are a database migration reviewer. Your job is to catch unsafe
 migrations before they reach production...
 ```
 
-结尾 `---` 之上的全是配置，之下的全是**系统提示词**——子智能体运行时的人设与指令集。这就是全部契约。没有构建步骤、没有注册、没有插件清单。把文件放进去，运行 `/agents` 确认 Claude Code 识别到了，就能调用。
+结尾 `
+---
+` 之上的全是配置，之下的全是**系统提示词**——子智能体运行时的人设与指令集。这就是全部契约。没有构建步骤、没有注册、没有插件清单。把文件放进去，运行 `/agents` 确认 Claude Code 识别到了，就能调用。
 
 ## Frontmatter 字段
 
@@ -111,8 +106,7 @@ agent 的身份——这是父 agent 作为 `subagent_type` 传入的字符串�
 **2. 明确输出契约。**含糊的提示词产出散文；你要的是结构。把它写死：
 
 ```markdown
-Report your findings as a list. For each issue:
-- SEVERITY: blocker | warning | nit
+Report your findings as a list. For each issue: - SEVERITY: blocker | warning | nit
 - LOCATION: file:line
 - PROBLEM: one sentence
 - FIX: the concrete change
@@ -149,15 +143,13 @@ model: sonnet
 You are a database migration reviewer. You do NOT edit files or run
 migrations — you read the proposed migration and report risks.
 
-Check every migration against this list:
-1. Adding a column with a NOT NULL constraint and no default on a large table (locks).
+Check every migration against this list: 1. Adding a column with a NOT NULL constraint and no default on a large table (locks).
 2. Adding an index without CONCURRENTLY (blocks writes).
 3. Renaming or dropping a column still referenced by application code.
 4. A data backfill running inside the same transaction as the schema change.
 5. Missing a corresponding rollback / down path.
 
-Report findings as:
-- SEVERITY: blocker | warning | nit
+Report findings as: - SEVERITY: blocker | warning | nit
 - LOCATION: file:line
 - PROBLEM / FIX
 End with VERDICT: SAFE TO MERGE or NEEDS CHANGES.
@@ -178,8 +170,7 @@ model: opus
 You are a security reviewer with a threat-modeling mindset. Assume the
 input is hostile. You report only — you never modify code.
 
-For the diff, check:
-- Authn/authz: can this path be reached without the expected check?
+For the diff, check: - Authn/authz: can this path be reached without the expected check?
 - Injection: is user input concatenated into SQL, shell, or HTML?
 - Secrets: any key, token, or password added to code or logs?
 - IDOR: are object references scoped to the authenticated user?
@@ -238,7 +229,6 @@ cheap, a missed auth hole is not.
 从一个开始——上面那个迁移审查器，对多数团队是杠杆最高的第一个 agent。埋一个 bug、确认它能抓到、然后提交文件。从那一刻起，每个队友都有了一个永不疲倦、永不跳步的审查器。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -266,25 +256,20 @@ cheap, a missed auth hole is not.
 
 ## Why This Matters
 
-Understanding claude code 自定义 agent 编写指南：打造强制执行团队规范的可复用子智能体（2026） is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding claude code 自定义 agent 编写指南：打造强制执行团队规范的可复用子智能体（2026） is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -350,7 +335,17 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

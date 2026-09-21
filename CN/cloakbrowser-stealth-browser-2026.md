@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/cloakbrowser-stealth-browser-2026" />
 title: 'CloakBrowser Review 2026: The Open-Source Stealth Browse...
 description: 'CloakBrowser is the fastest-growing GitHub repo of May 2026: 49 C++ source-level patches, reCAPTCHA v3 score 0.9, passes 30+ detection services. Free, open-source replacement for $299/month anti-detect browsers.'
 date: 2026-05-14 00:00:00+08:00
@@ -20,21 +18,17 @@ maintainer: ''
 last_maintained: '2026-05-14'
 featureImage: ''
 draft: false
-aliases:
-- /posts/cloakbrowser-stealth-browser-2026/
+aliases: - /posts/cloakbrowser-stealth-browser-2026/-
 ---
-
 {</* resource-info */>}
 
 > **TL;DR**: In May 2026, a new open-source project hit GitHub Trending #2 with 1,300+ stars in 24 hours. It applies 49 C++ source-level patches to Chromium, scores 0.9 on reCAPTCHA v3 (vs. 0.1 for stock Playwright), passes 30+ bot detection suites, and costs **absolutely nothing**. Here's the complete technical breakdown.
 
----
 
+---
 ## The Problem Every Automation Engineer Faces
 
-If you've built web scrapers, browser automations, or AI agents that interact with websites, you know the drill:
-
-- You write clean Playwright code. It works locally. You deploy it — **Cloudflare Turnstile** blocks it.
+If you've built web scrapers, browser automations, or AI agents that interact with websites, you know the drill: - You write clean Playwright code. It works locally. You deploy it — **Cloudflare Turnstile** blocks it.
 - reCAPTCHA v3 gives your script a 0.1 score. The site silently rejects every request.
 - You add `playwright-stealth`. It helps for a week. Chrome updates. It breaks again.
 - You try `undetected-chromedriver`. Cloudflare has literally studied its source code and built countermeasures against every patch it applies.
@@ -42,16 +36,22 @@ If you've built web scrapers, browser automations, or AI agents that interact wi
 
 On May 8, 2026, **CloakBrowser** (CloakHQ/CloakBrowser) appeared on GitHub Trending. Within 78 days, it accumulated 5,700+ stars. The community's response was immediate and intense because it solves this problem with an approach nobody had taken at scale before: **modifying Chromium's C++ source code, compiling a real browser binary, and distributing it as a drop-in Playwright replacement**.
 
----
 
+---
 ## How CloakBrowser Works: Source-Level vs. Runtime Patching
 
 ### Why JavaScript Injection Is Fundamentally Broken
 
-Modern bot detection doesn't just check your User-Agent string. It analyzes dozens of subtle signals across the browser fingerprint surface:
-
-| Detection Vector | What It Checks | How Old Tools "Fix" It | Why That Fails |
-|---|---|---|---|
+Modern bot detection doesn't just check your User-Agent string. It analyzes dozens of subtle signals across the browser fingerprint surface: | Detection Vector | What It Checks | How Old Tools "Fix" It | Why That Fails |
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Canvas fingerprinting** | Subtle rendering differences in `toDataURL` | JS override of canvas methods | The override itself is detectable via timing and prototype analysis |
 | **WebGL vendor/renderer** | GPU info exposed via WebGL context | JS string replacement | WebGL contexts are sealed; replacement leaves traces |
 | **AudioContext** | Audio signal processing artifacts | JS AudioContext wrapper | The wrapper's constructor signature differs from native |
@@ -67,9 +67,7 @@ Tools like `playwright-stealth` and `undetected-chromedriver` operate at the **J
 
 CloakBrowser takes a radically different path. It maintains a **fork of Chromium** with 49 C++ patches applied directly to the engine source code. These patches are compiled into the browser binary. When a detection system queries `navigator.webdriver`, the engine's native implementation returns `false` — not because a JS script overrode it, but because the C++ code that implements `navigator.webdriver` was modified at compile time.
 
-The 49 patches cover:
-
-- **Canvas 2D & WebGL rendering pipelines** — pixel-perfect output matching real Chrome
+The 49 patches cover: - **Canvas 2D & WebGL rendering pipelines** — pixel-perfect output matching real Chrome
 - **AudioContext DSP** — signal processing chain modified to match real hardware
 - **Font subsystem** — enumeration returns realistic system font lists per platform
 - **GPU reporting** — WebGL vendor/renderer strings match real NVIDIA/Intel/AMD hardware
@@ -85,10 +83,18 @@ The 49 patches cover:
 
 ## Benchmark Results: 30/30 Detection Services Passed
 
-Independent testing in April 2026 produced the following results:
-
-| Detection Service | Stock Playwright | playwright-stealth | undetected-chromedriver | **CloakBrowser** |
-|---|---|---|---|---|
+Independent testing in April 2026 produced the following results: | Detection Service | Stock Playwright | playwright-stealth | undetected-chromedriver | **CloakBrowser** |
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | reCAPTCHA v3 (server-verified) | 0.1 (bot) | 0.3–0.5 | 0.3–0.7 | **0.9 (human)** |
 | Cloudflare Turnstile (non-interactive) | Fail | Sometimes | Sometimes | **Pass** |
 | Cloudflare Turnstile (managed) | Fail | Fail | Intermittent | **Single-click pass** |
@@ -140,17 +146,13 @@ await browser.close();
 
 ### Docker (No Install Required)
 
-Test stealth capabilities instantly:
-
-```bash
+Test stealth capabilities instantly: ```bash
 docker run --rm cloakhq/cloakbrowser cloaktest
 ```
 
 ### Migrating from Playwright
 
-**One-line change**:
-
-```python
+**One-line change**: ```python
 # Before
 from playwright.sync_api import sync_playwright
 pw = sync_playwright().start()
@@ -169,10 +171,16 @@ page.goto("https://example.com")
 
 ## Framework Integrations
 
-CloakBrowser works with any automation framework that uses Playwright or Chromium:
-
-| Framework | Language | Stars | Integration Method |
-|---|---|---|---|
+CloakBrowser works with any automation framework that uses Playwright or Chromium: | Framework | Language | Stars | Integration Method |
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | browser-use | Python | 70K | Direct binary launch |
 | Crawl4AI | Python | 58K | CDP connection |
 | Scrapling | Python | 21K | CDP connection |
@@ -195,7 +203,17 @@ browser = await launch_async(args=["--remote-debugging-port=9242"])
 ## Cost Comparison: Free vs. Commercial
 
 | Tool | Monthly Cost | Open Source | Chromium Native | Source-Level Patches |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Multilogin | €99–€399 | ❌ | ✅ | ❌ |
 | AdsPower | $9–$50 | ❌ | ✅ | ❌ |
 | GoLogin | $49–$149 | ❌ | ✅ | ❌ |
@@ -260,7 +278,6 @@ If you're still fighting with `playwright-stealth` or paying monthly subscriptio
 *Published May 14, 2026. Benchmarks based on CloakBrowser v0.3.26 (Chromium 146) and independent third-party testing data.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

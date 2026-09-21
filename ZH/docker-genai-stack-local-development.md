@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/docker-genai-stack-local-development" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/docker-genai-stack-local-development" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/docker-genai-stack-local-development" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/docker-genai-stack-local-development" />
 title: 'Docker GenAI Stack: 一键 Docker Compose 启动 LangChain、向量数据库...
 description: '使用 Docker GenAI Stack 搭建完整的本地 GenAI 开发环境。包含 LangChain、Neo4j、Ollama 和向量数据库的单一 docker-compose 配置。2026 年生产级教程。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: ['docker genai stack']
-aliases:
-- /zh/posts/docker-genai-stack-local-development/
+aliases: - /zh/posts/docker-genai-stack-local-development/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/docker-genai-stack-local-development/ -->
 
 {{</* resource-info */>}}
 
@@ -50,11 +42,10 @@ Docker 看到了这个痛点。在 DockerCon 2024 上，他们发布了 **Docker
 架构遵循模块化流水线模式。每个服务是独立容器，通过 Docker 内部网络通信：
 
 ```yaml
-services:
-  llm:          # Ollama — 本地 LLM 推理
-  database:     # Neo4j — 知识图谱 + 向量搜索
-  loader:       # 文档摄入流水线
-  bot:          # LangChain 驱动的聊天界面
+services: llm: # Ollama — 本地 LLM 推理
+  database: # Neo4j — 知识图谱 + 向量搜索
+  loader: # 文档摄入流水线
+  bot: # LangChain 驱动的聊天界面
   pdf-frontend: # 可选的 PDF 交互 UI
 ```
 
@@ -224,7 +215,15 @@ vectorstore = PineconeVectorStore.from_documents(
 ### 启动时间对比
 
 | 搭建方式 | 首次启动 | 重新构建 | 磁盘占用 |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Docker GenAI Stack | **3–5 分钟** | **45 秒** | **约 8 GB** |
 | 手动 pip 安装 | 45–90 分钟 | 10–20 分钟 | 约 12 GB |
 | Conda env + 服务 | 30–60 分钟 | 5–10 分钟 | 约 15 GB |
@@ -233,7 +232,15 @@ vectorstore = PineconeVectorStore.from_documents(
 ### 资源占用（实测：Ubuntu 24.04, 16GB 内存, 6 核 CPU）
 
 | 服务 | 内存 | CPU | 说明 |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Ollama (llama3.2 7B) | **3.2 GB** | 0.8 核 | GPU 卸载后降至 800MB |
 | Neo4j Community | **1.8 GB** | 0.3 核 | 向量索引加载到内存 |
 | LangChain Bot | **400 MB** | 0.2 核 | 单请求峰值达 1GB |
@@ -264,13 +271,7 @@ vectorstore = PineconeVectorStore.from_documents(
 
 ```yaml
 # docker-compose.override.yml
-services:
-  llm:
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+services: llm: deploy: resources: reservations: devices: - driver: nvidia
               count: 1
               capabilities: [gpu]
 ```
@@ -286,10 +287,7 @@ nvidia-smi
 默认情况下，Neo4j 数据存储在 Docker volume 中。生产级持久化配置：
 
 ```yaml
-services:
-  database:
-    volumes:
-      - ./neo4j-data:/data
+services: database: volumes: - ./neo4j-data:/data
       - ./neo4j-logs:/logs
       - ./neo4j-plugins:/plugins
 ```
@@ -302,8 +300,7 @@ services:
 # loader/custom_loader.py
 from langchain_community.document_loaders import ConfluenceLoader
 
-def load_confluence():
-    loader = ConfluenceLoader(
+def load_confluence(): loader = ConfluenceLoader(
         url="https://your-domain.atlassian.net",
         username="email@example.com",
         api_key="your-api-key"
@@ -359,7 +356,17 @@ server {
 ## 与替代方案对比
 
 | 特性 | Docker GenAI Stack | LangChain Docker 模板 | Haystack Docker | LocalAI All-in-One |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **官方维护者** | Docker（已认证） | 社区 | deepset | LocalAI 社区 |
 | **知识图谱** | 内置 Neo4j | 手动配置 | 自定义 | 不包含 |
 | **向量数据库** | Neo4j（可替换） | Chroma/Pinecone | OpenSearch | FAISS |
@@ -429,8 +436,8 @@ Docker GenAI Stack 消除了 GenAI 开发中最大的阻力：环境搭建。一
 
 加入我们的开发者社区 Telegram：**@dibi8dev** —— 分享你的 GenAI Stack 配置，与 5000+ 开发者一起交流。
 
----
 
+---
 ## 来源与延伸阅读
 
 1. [Docker GenAI Stack GitHub 仓库](https://github.com/docker/genai-stack) — 官方源码与最新发布
@@ -441,8 +448,6 @@ Docker GenAI Stack 消除了 GenAI 开发中最大的阻力：环境搭建。一
 6. [Docker Compose 规范](https://docs.docker.com/compose/compose-file/) — 自定义 Stack 配置
 
 ---
-
-
 
 ## 推荐部署与基础设施
 
@@ -458,7 +463,6 @@ Docker GenAI Stack 消除了 GenAI 开发中最大的阻力：环境搭建。一
 本文包含联盟营销链接。如果你通过我们的推荐链接注册 DigitalOcean，我们会获得佣金，不会对你产生额外费用。我们只推荐自己也在用的服务。Docker GenAI Stack 是开源软件（MIT 许可证），免费使用 —— 无需购买。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -486,25 +490,20 @@ Docker GenAI Stack 消除了 GenAI 开发中最大的阻力：环境搭建。一
 
 ## Why This Matters
 
-Understanding docker genai stack: 一键 docker compose 启动 langchain、向量数据库与 llm —— 2026 本地开发完整指南 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding docker genai stack: 一键 docker compose 启动 langchain、向量数据库与 llm —— 2026 本地开发完整指南 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

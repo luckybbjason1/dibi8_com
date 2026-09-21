@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/snapshot-dao-governance-voting" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/snapshot-dao-governance-voting" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/snapshot-dao-governance-voting" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/snapshot-dao-governance-voting" />
 title: 'snapshot-dao-governance-voting'
 description: '{'en': ''Comprehensive guide to Snapshot, the open-source off-chain DAO voting platform with 10M+ votes processed. Learn gas-free governance, voting strategies, delegation, SDK integration, and IPFS storage.'', 'zh': ''Snapshot综合指南，这个开源链下DAO投票平台已处理超过1000万张选票。了解无Gas治理、投票策略、委托、SDK集成和IPFS存储。'', 'ko': ''1,000만 개 이상의 투표를 처리한 오픈소스 오프체인 DAO 투표 플랫폼 Snapshot에 대한 종합 가이드. 가스 없는 거버넌스, 투표 전략, 위임, SDK 통합, IPFS 저장소를 알아보세요.'', 'vi': ''Hướng dẫn toàn diện về Snapshot, nền tảng bỏ phiếu DAO off-chain mã nguồn mở đã xử lý 10M+ phiếu bầu. Tìm hiểu quản trị không tốn gas, chiến lược bỏ phiếu, ủy quyền, tích hợp SDK, và lưu trữ IPFS.''}'
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: [snapshot, dao, governance, voting, 'off-chain', 'eip-712', ipfs, delegation, defi, web3]
-aliases:
-- /kr/posts/snapshot-dao-governance-voting/
+aliases: - /kr/posts/snapshot-dao-governance-voting/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/snapshot-dao-governance-voting/ -->
 
 {{</* resource-info */>}}
 
@@ -61,9 +53,7 @@ aliases:
 
 ### 2.1 오프체인 투표 패러다임
 
-Snapshot의 혁명적인 접근 방식은 **투표 신호**와 **투표 실행**을 분리하는 것에 기반합니다. 기존 온체인 거버넌스는 모든 참가자가 네트워크 혼잡에 비례하는 가스비를 지불하는 트랜잭션을 제출해야 합니다. Snapshot은 이 모델을 뒤집습니다:
-
-```typescript
+Snapshot의 혁명적인 접근 방식은 **투표 신호**와 **투표 실행**을 분리하는 것에 기반합니다. 기존 온체인 거버넌스는 모든 참가자가 네트워크 혼잡에 비례하는 가스비를 지불하는 트랜잭션을 제출해야 합니다. Snapshot은 이 모델을 뒤집습니다: ```typescript
 // 기존 온체인 투표 (비쌈)
 // 각 투표자가 이 트랜잭션에 대해 가스비를 지불
 await governorContract.castVote(
@@ -98,9 +88,7 @@ const signature = await signer.signTypedData(
 
 ### 2.2 IPFS 기반 데이터 저장소
 
-모든 Snapshot 데이터 — 제안, 투표, 스페이스 —는 **IPFS(성간 파일 시스템)**에 저장되어 검열 저항성과 영구성을 보장합니다:
-
-```json
+모든 Snapshot 데이터 — 제안, 투표, 스페이스 —는 **IPFS(성간 파일 시스템)**에 저장되어 검열 저항성과 영구성을 보장합니다: ```json
 {
   "proposal": {
     "id": "QmYwAPJzv5CZsnAzt8auVK914vhC2pW9e4iPApvb1xUcGz",
@@ -134,9 +122,7 @@ const signature = await signer.signTypedData(
 
 ### 3.1 스페이스 생성
 
-모든 프로젝트는 Snapshot에서 거버넌스 스페이스를 만들 수 있습니다. 이 과정에는 ENS 도메인 구성과 전략 선택이 포함됩니다:
-
-```bash
+모든 프로젝트는 Snapshot에서 거버넌스 스페이스를 만들 수 있습니다. 이 과정에는 ENS 도메인 구성과 전략 선택이 포함됩니다: ```bash
 # 1단계: ENS 도메인 소유 확인
 # 스페이스 ID는 ENS 이름이 됩니다 (예: mydao.eth)
 
@@ -200,9 +186,7 @@ await snapshot.utils.subgraphRequest(
 
 ### 3.2 스페이스 검증
 
-구성 후 스페이스에 접근 가능한지 확인합니다:
-
-```bash
+구성 후 스페이스에 접근 가능한지 확인합니다: ```bash
 # GraphQL을 통해 스페이스 조회
 curl -X POST https://hub.snapshot.org/graphql \
   -H "Content-Type: application/json" \
@@ -215,8 +199,7 @@ curl -X POST https://hub.snapshot.org/graphql \
 # Python 검증 스크립트
 import requests
 
-def verify_snapshot_space(space_id: str) -> dict:
-    """Snapshot 스페이스 구성을 검증합니다."""
+def verify_snapshot_space(space_id: str) -> dict: """Snapshot 스페이스 구성을 검증합니다."""
     query = """
     query GetSpace($id: String!) {
       space(id: $id) {
@@ -254,15 +237,13 @@ def verify_snapshot_space(space_id: str) -> dict:
 
     data = response.json()
 
-    if data.get("data", {}).get("space"):
-        space = data["data"]["space"]
+    if data.get("data", {}).get("space"): space = data["data"]["space"]
         print(f"스페이스 '{space[name]}' 검증 성공!")
         print(f"네트워크: {space[network]}")
         print(f"전략: {[s[name] for s in space[strategies]]}")
         print(f"최소 점수: {space[filters][minScore]}")
         return space
-    else:
-        raise ValueError(f"스페이스 '{space_id}'를 찾을 수 없음")
+    else: raise ValueError(f"스페이스 '{space_id}'를 찾을 수 없음")
 
 # 검증
 space = verify_snapshot_space("mydao.eth")
@@ -274,9 +255,7 @@ space = verify_snapshot_space("mydao.eth")
 
 ### 4.1 내장 전략 라이브러리
 
-Snapshot은 투표권 계산 방법을 결정하는 50개 이상의 투표 전략을 지원합니다. 가장 일반적으로 사용되는 전략은 다음과 같습니다:
-
-| 전략 | 사용 사례 | 예시 DAO |
+Snapshot은 투표권 계산 방법을 결정하는 50개 이상의 투표 전략을 지원합니다. 가장 일반적으로 사용되는 전략은 다음과 같습니다: | 전략 | 사용 사례 | 예시 DAO |
 |------|----------|----------|
 | `erc20-balance-of` | 단순 토큰 잔액 | Uniswap, Aave |
 | `erc721` | NFT 소유권 | Bored Ape Yacht Club |
@@ -362,9 +341,7 @@ console.log(`투표권: ${votingPower} 토큰`);
 
 ### 4.3 이차 투표 전략
 
-더 민주적인 결과를 원하는 DAO를 위해 Snapshot은 이차 투표를 지원합니다:
-
-```json
+더 민주적인 결과를 원하는 DAO를 위해 Snapshot은 이차 투표를 지원합니다: ```json
 {
   "strategy": {
     "name": "quadratic-balance-of",
@@ -386,9 +363,7 @@ console.log(`투표권: ${votingPower} 토큰`);
 
 ### 5.1 위임의 작동 방식
 
-위임을 통해 토큰 보유자는 신뢰할 수 있는 대표자에게 투표권을 할당하여 참여율을 높이고 거버넌스 전문화를 가능하게 합니다:
-
-```solidity
+위임을 통해 토큰 보유자는 신뢰할 수 있는 대표자에게 투표권을 할당하여 참여율을 높이고 거버넌스 전문화를 가능하게 합니다: ```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
@@ -690,9 +665,7 @@ console.log("결과:", stats.results);
 
 ### 7.1 멀티체인 투표 전략
 
-Snapshot은 동시에 여러 블록체인에서 투표를 지원합니다:
-
-```typescript
+Snapshot은 동시에 여러 블록체인에서 투표를 지원합니다: ```typescript
 // 멀티체인 전략: 네트워크 전반에 걸쳐 토큰 집계
 const multichainStrategies = [
   {
@@ -750,16 +723,13 @@ app.post('/webhooks/snapshot', (req, res) => {
   const event = req.body;
 
   switch (event.event) {
-    case 'proposal/created':
-      console.log(`새 제안: ${event.id}`);
+    case 'proposal/created': console.log(`새 제안: ${event.id}`);
       notifyDiscord(event);
       break;
-    case 'proposal/end':
-      console.log(`투표 종료: ${event.id}`);
+    case 'proposal/end': console.log(`투표 종료: ${event.id}`);
       tallyResults(event);
       break;
-    case vote:
-      console.log(`${event.proposal.id}의 새 투표`);
+    case vote: console.log(`${event.proposal.id}의 새 투표`);
       updateLeaderboard(event);
       break;
   }
@@ -799,9 +769,7 @@ app.listen(3000, () => console.log('Webhook 서버가 3000 포트에서 대기 �
 
 ### 8.1 프로토콜 파라미터 변경
 
-DeFi 프로토콜은 Snapshot을 사용하여 중요한 파라미터에 대해 투표합니다:
-
-```typescript
+DeFi 프로토콜은 Snapshot을 사용하여 중요한 파라미터에 대해 투표합니다: ```typescript
 // Aave 스타일의 리스크 파라미터 제안
 interface RiskParameterProposal {
   asset: string;              // 토큰 주소
@@ -860,25 +828,20 @@ const treasuryVote: TreasuryProposal = {
 
 ```yaml
 # snapshot-security-checklist.yml
-space_security:
-  admin_keys:
-    - use_multisig: true
+space_security: admin_keys: - use_multisig: true
     - minimum_signers: 3
     - hardware_wallets_required: true
 
-  proposal_validation:
-    - min_score_threshold: 10000
+  proposal_validation: - min_score_threshold: 10000
     - require_forum_discussion: true
     - discussion_min_duration: "7일"
 
-  voting_security:
-    - snapshot_block: "제안 생성 블록 사용"
+  voting_security: - snapshot_block: "제안 생성 블록 사용"
     - voting_delay: "최소 24시간"
     - voting_period: "최소 3일"
     - quorum_required: true
 
-  monitoring:
-    - enable_webhooks: true
+  monitoring: - enable_webhooks: true
     - discord_notifications: true
     - unusual_activity_alerts: true
     - delegate_change_alerts: true
@@ -898,8 +861,7 @@ Snapshot 투표는 암호화학적으로 안전합니다. 각 투표는 EIP-712 
 
 ### 9.3 투표권과 토큰 잔액은 어떻게 계산되나요?
 
-투표권은 각 스페이스에 대해 구성된 **전략**에 의해 결정됩니다. 가장 일반적인 전략은 `erc20-balance-of`로, 특정 블록 번호(`snapshot` 블록)에서 투표자의 토큰 잔액을 확인합니다. 이는 다음을 방지합니다:
-- **플래시론 공격**: 동일한 트랜잭션에서 빌린 토큰을 투표에 사용할 수 없음
+투표권은 각 스페이스에 대해 구성된 **전략**에 의해 결정됩니다. 가장 일반적인 전략은 `erc20-balance-of`로, 특정 블록 번호(`snapshot` 블록)에서 투표자의 토큰 잔액을 확인합니다. 이는 다음을 방지합니다: - **플래시론 공격**: 동일한 트랜잭션에서 빌린 토큰을 투표에 사용할 수 없음
 - **이중 투표**: 동일한 토큰을 이동하고 다시 투표할 수 없음
 - **마지막 순간 축적**: 사용자가 제안 생성 후 토큰을 구매하여 투표에 영향을 줄 수 없음
 
@@ -907,8 +869,7 @@ Snapshot 투표는 암호화학적으로 안전합니다. 각 투표는 EIP-712 
 
 ### 9.4 투표권을 다른 사람에게 위임할 수 있나요?
 
-네, **위임**은 Snapshot 거버넌스의 핵심 기능입니다. 토큰 보유자는 신뢰할 수 있는 대표자 — 종종 거버넌스 전문가, 핵심 기여자, 활발한 커뮤니티 구성원 — 에게 투표권을 위임할 수 있습니다. 이는 특히 다음에 가치가 있습니다:
-- 제안을 연구할 시간이 부족한 **소규모 보유자**
+네, **위임**은 Snapshot 거버넌스의 핵심 기능입니다. 토큰 보유자는 신뢰할 수 있는 대표자 — 종종 거버넌스 전문가, 핵심 기여자, 활발한 커뮤니티 구성원 — 에게 투표권을 위임할 수 있습니다. 이는 특히 다음에 가치가 있습니다: - 제안을 연구할 시간이 부족한 **소규모 보유자**
 - 전문 거버넌스 참여를 선호하는 **기관 보유자**
 - 그렇지 않으면 비활성한 투표를 집계하여 **정족수 증가**
 
@@ -916,8 +877,7 @@ Snapshot 투표는 암호화학적으로 안전합니다. 각 투표는 EIP-712 
 
 ### 9.5 Snapshot을 내 애플리케이션에 어떻게 통합하나요?
 
-Snapshot은 여러 통합 옵션을 제공합니다:
-- **Snapshot.js SDK**: 제안 생성, 투표, 위임을 위한 풀기능 JavaScript SDK
+Snapshot은 여러 통합 옵션을 제공합니다: - **Snapshot.js SDK**: 제안 생성, 투표, 위임을 위한 풀기능 JavaScript SDK
 - **GraphQL API**: 공개 GraphQL 엔드포인트를 통해 제안, 투표, 스페이스, 투표권 조회
 - **Webhook**: 제안 이벤트에 대한 실시간 알림
 - **Embed**: dApp에 투표 인터페이스를 임베드하기 위한 iframe 통합
@@ -955,7 +915,6 @@ DAO가 더 큰 자동화를 향해 발전함에 따라, **Safe{Core}**, **Zodiac
 **웹사이트:** [snapshot.org](https://snapshot.org)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

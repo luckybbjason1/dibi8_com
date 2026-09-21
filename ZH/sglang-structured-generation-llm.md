@@ -1,28 +1,20 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/sglang-structured-generation-llm" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/sglang-structured-generation-llm" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/sglang-structured-generation-llm" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/sglang-structured-generation-llm" />
 title: SGLang — 结构化生成和高速 LLM 推理引擎
 description: SGLang（结构化生成语言）完全指南。高性能 LLM 推理引擎，支持约束解码、JSON 模式强制、并行执行，结构化输出比 vLLM 快 25 倍。. Comprehensive guide covering features, pricing, and best practices for 2026.
 tags: ['llm-serving', 'structured-generation', 'constrained-decoding', 'inference', 'performance']
 category: llm-frameworks
 featureImage: /images/articles/sglang-structured-generation-llm.jpg
 date: 2026-07-15T00:00:00+00:00
-lastmod:  2026-07-15T00:00:00+00:00draft: false
+lastmod: 2026-07-15T00:00:00+00:00draft: false
 slug: sglang-structured-generation-llm
-lang: zh-CN
----
-
-<!-- canonical: https://dibi8.com/zh/tools/sglang-structured-generation-llm/ -->
+-CN---
 
 ## TL;DR
 
 SGLang（结构化生成语言）是一个用于部署和服务大型语言模型的开源全栈库。它引入了 RadixAttention 系统以实现请求间的前缀缓存、通过语法约束解码实现结构化生成，以及对 ReAct 和工具调用等复杂推理模式的原生支持。它在结构化输出任务上比 vLLM 提供 25 倍吞吐提升，并支持在单卡或多 GPU 设置上服务 1B 到 700 亿参数的模型。
 
----
 
+---
 ## SGLang 是什么？
 
 SGLang（Structured Generation Language）是部署和服务大型语言模型的完整栈库。由两个主要组件组成：
@@ -72,8 +64,8 @@ SGLang 原生解决所有三个问题。其 RadixAttention 系统在请求间构
 └─────────────────────────────────────────────┘
 ```
 
----
 
+---
 ## 快速开始
 
 ### 第一步：安装 SGLang
@@ -145,8 +137,7 @@ import sglang as sgl
 from pydantic import BaseModel, Field
 from typing import List, Optional
 
-class ProductReview(BaseModel):
-    product_name: str = Field(description="产品名称")
+class ProductReview(BaseModel): product_name: str = Field(description="产品名称")
     rating: int = Field(ge=1, le=5, description="1 到 5 的评分")
     pros: List[str] = Field(max_length=5, description="主要优点")
     cons: List[str] = Field(max_length=5, description="主要缺点")
@@ -156,8 +147,7 @@ class ProductReview(BaseModel):
 backend = sgl.Runtime(host="localhost", port=30000)
 
 @sgl.program
-def review_analyzer(state, review_text: str):
-    state += sgl.user("分析此产品评论并提取结构化数据:")
+def review_analyzer(state, review_text: str): state += sgl.user("分析此产品评论并提取结构化数据:")
     state += sgl.assistant(sgl.gen("json_output", max_tokens=512))
 
 program = review_analyzer()
@@ -181,8 +171,7 @@ print(f"产品: {review.product_name}, 评分: {review.rating}/5")
 
 ```python
 @sgl.program
-def email_extractor(state, text: str):
-    state += sgl.user("从此文本中提取所有电子邮件地址:")
+def email_extractor(state, text: str): state += sgl.user("从此文本中提取所有电子邮件地址:")
     state += sgl.assistant(
         sgl.gen(
             "emails",
@@ -207,8 +196,7 @@ print(result["emails"])
 ```python
 from pydantic import BaseModel
 
-class SQLQuery(BaseModel):
-    query: str = Field(description="有效的 SQL SELECT 语句")
+class SQLQuery(BaseModel): query: str = Field(description="有效的 SQL SELECT 语句")
     explanation: str = Field(description="此查询的作用")
     estimated_rows: Optional[int] = Field(description="预期行数")
 ```
@@ -225,8 +213,7 @@ SGLang 的标志功能：自动在具有公共前缀的请求间共享计算。
 import sglang as sgl
 
 @sgl.program
-def chatbot(state, user_message: str):
-    state += sgl.system("你是一个有帮助的助手。")  # 此前缀被缓存!
+def chatbot(state, user_message: str): state += sgl.system("你是一个有帮助的助手。")  # 此前缀被缓存!
     state += sgl.conversation(
         [{"role": "user", "content": "你好"}, {"role": "assistant", "content": "你好!"}],
     )  # 已缓存!
@@ -284,10 +271,9 @@ nvidia-smi
 
 ```python
 @sgl.program
-def react_agent(state, question: str):
-    state += sgl.user(f"使用工具逐步回答这个问题:\n{question}")
+def react_agent(state, question: str): state += sgl.user(f"使用工具逐步回答这个问题:\n{question}")
     
-    for i in range(5):  # 最多 5 步推理
+    for i in range(5): # 最多 5 步推理
         state += sgl.assistant(
             f"思考 {i+1}: " + sgl.gen("thought", stop="\n操作:", max_tokens=200)
         )
@@ -307,8 +293,7 @@ def react_agent(state, question: str):
 
 ```python
 @sgl.program
-def document_summarizer(state, doc: str):
-    state += sgl.user(f"用 3 个要点总结此文档:\n{doc}")
+def document_summarizer(state, doc: str): state += sgl.user(f"用 3 个要点总结此文档:\n{doc}")
     state += sgl.assistant(sgl.gen("summary", max_tokens=256))
 
 documents = load_documents("path/to/docs/")
@@ -339,9 +324,7 @@ stream = client.generate({
     }
 })
 
-for chunk in stream:
-    if chunk["event_type"] == "text":
-        print(chunk["text"], end="", flush=True)
+for chunk in stream: if chunk["event_type"] == "text": print(chunk["text"], end="", flush=True)
 ```
 
 ### 模式四：函数调用流水线
@@ -352,13 +335,11 @@ for chunk in stream:
 from pydantic import BaseModel
 from typing import Literal
 
-class WeatherRequest(BaseModel):
-    city: str
+class WeatherRequest(BaseModel): city: str
     units: Literal["celsius", "fahrenheit"] = "celsius"
 
 @sgl.program
-def function_caller(state, user_input: str):
-    state += sgl.user(user_input)
+def function_caller(state, user_input: str): state += sgl.user(user_input)
     state += sgl.assistant(sgl.gen("function_call", max_tokens=256))
 ```
 
@@ -369,7 +350,19 @@ def function_caller(state, user_input: str):
 ### 吞吐量基准测试
 
 | 模型 | 批处理大小 | SGLang | vLLM | TGI | 相比 vLLM 加速 |
-|-------|-----------|--------|------|-----|----------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Llama 3.2 8B | 1 | 1,240 tok/s | 890 tok/s | 620 tok/s | 1.39x |
 | Llama 3.2 8B | 64 | 48,200 tok/s | 35,100 tok/s | 28,400 tok/s | 1.37x |
 | Llama 3.2 70B | 1 | 312 tok/s | 245 tok/s | 198 tok/s | 1.27x |
@@ -378,7 +371,15 @@ def function_caller(state, user_input: str):
 ### 结构化输出准确性
 
 | 方法 | JSON 有效性 | 模式合规性 | 延迟开销 |
-|------|------------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 后处理（正则） | 78% | N/A | +2ms |
 | LMFormatEnforcer | 99.2% | 96.8% | +15ms/token |
 | SGLang 约束 | 100% | 100% | +3ms/token |
@@ -517,8 +518,7 @@ python -m sglang.launch_server \
 支持。在采样参数中使用 `"stream": true` 启用流式传输。token 作为 Server-Sent Events（SSE）发送到客户端。Python SDK 也提供流式传输的异步生成器：
 
 ```python
-async for event in program.run_async(stream=True):
-    print(event.delta, end="", flush=True)
+async for event in program.run_async(stream=True): print(event.delta, end="", flush=True)
 ```
 
 ### Q: SGLang 能服务的最大模型尺寸是多少？
@@ -554,7 +554,6 @@ python -m sglang.launch_server \
 *加入我们的 Telegram 群组获取实时 AI 工具讨论和部署技巧：[t.me/dibi8](https://t.me/dibi8)*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -582,25 +581,20 @@ python -m sglang.launch_server \
 
 ## Why This Matters
 
-Understanding sglang — 结构化生成和高速 llm 推理引擎 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding sglang — 结构化生成和高速 llm 推理引擎 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

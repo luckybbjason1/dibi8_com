@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/preset-superset-data-exploration" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/preset-superset-data-exploration" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/preset-superset-data-exploration" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/preset-superset-data-exploration" />
 title: 'Apache Superset 2026: Nền tảng khám phá dữ liệu mã nguồn...
 description: 'Hướng dẫn đầy đủ Apache Superset 2026 — cài đặt qua Docker trong 5 phút, kết nối 30+ nguồn dữ liệu, xây dựng 50+ loại biểu đồ, và triển khai dashboard sẵn sàng production với phân quyền theo vai trò.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: ['apache superset', 'trực quan hóa dữ liệu', bi, dashboard, 'mã nguồn mở', docker, sql, 'phân tích']
-aliases:
-- /vi/posts/preset-superset-data-exploration/
+aliases: - /vi/posts/preset-superset-data-exploration/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/preset-superset-data-exploration/ -->
 
 {{</* resource-info */>}}
 
@@ -49,9 +41,7 @@ Khác với công cụ BI độc quyền, Superset không lưu trữ dữ liệu
 
 ## Apache Superset hoạt động như thế nào
 
-Kiến trúc của Superset tuân theo sự phân tách rõ ràng giữa presentation, metadata, và query execution:
-
-| Thành phần | Mục đích | Công nghệ |
+Kiến trúc của Superset tuân theo sự phân tách rõ ràng giữa presentation, metadata, và query execution: | Thành phần | Mục đích | Công nghệ |
 |---|---|---|
 | Superset App Server | UI, API, điều phối truy vấn | Flask + React |
 | Metadata Database | Lưu dashboard, biểu đồ, ngườ dùng | PostgreSQL / MySQL |
@@ -116,15 +106,10 @@ Truy cập `http://localhost:8088` và đăng nhập bằng thông tin đăng nh
 
 ### Triển khai Production với Docker
 
-Cho production, hãy sử dụng managed database và Redis bên ngoài:
-
-```yaml
+Cho production, hãy sử dụng managed database và Redis bên ngoài: ```yaml
 # docker-compose.prod.yml
-services:
-  superset:
-    image: apache/superset:5.0.0
-    environment:
-      - DATABASE_DB=superset
+services: superset: image: apache/superset:5.0.0
+    environment: - DATABASE_DB=superset
       - DATABASE_HOST=your-postgres-host.internal
       - DATABASE_PASSWORD=${DB_PASSWORD}
       - DATABASE_USER=superset
@@ -132,13 +117,9 @@ services:
       - REDIS_PORT=6379
       - SUPERSET_SECRET_KEY=${SUPERSET_SECRET_KEY}
       - SQLALCHEMY_DATABASE_URI=postgresql://superset:${DB_PASSWORD}@your-postgres-host.internal:5432/superset
-    ports:
-      - "8088:8088"
-    deploy:
-      replicas: 2
-      resources:
-        limits:
-          memory: 2G
+    ports: - "8088:8088"
+    deploy: replicas: 2
+      resources: limits: memory: 2G
 ```
 
 **Mẹo tự host**: Để có VPS đáng tin cậy chạy Superset, [DigitalOcean](https://m.do.co/c/eca87ac14ee0) cung cấp droplet 2 GB RAM từ $12/tháng với triển khai Docker chỉ một click. Sử dụng link giới thiệu của chúng tôi để nhận $200 credit trong 60 ngày.
@@ -147,9 +128,7 @@ services:
 
 ### PostgreSQL / MySQL
 
-Thiết lập phổ biến nhất là kết nối Superset với cơ sở dữ liệu ứng dụng hoặc data warehouse hiện có:
-
-```python
+Thiết lập phổ biến nhất là kết nối Superset với cơ sở dữ liệu ứng dụng hoặc data warehouse hiện có: ```python
 # Định dạng connection string cho PostgreSQL
 postgresql://username:password@host:port/database?sslmode=require
 
@@ -178,9 +157,7 @@ Upload service account JSON trong trường **Secure Extra** dưới cài đặt
 snowflake://user:password@account/warehouse/database?role=SUPERSET_ROLE
 ```
 
-Bật Snowflake SQL dialect trong `superset_config.py` để có autocomplete tốt hơn:
-
-```python
+Bật Snowflake SQL dialect trong `superset_config.py` để có autocomplete tốt hơn: ```python
 # superset_config.py
 EXTRA_ALLOWED_DOMAIN_SHARDES = []
 DEFAULT_SQLLAB_LIMIT = 10000
@@ -188,9 +165,7 @@ DEFAULT_SQLLAB_LIMIT = 10000
 
 ### Apache Druid
 
-Superset ban đầu được xây dựng tại Airbnb để truy vấn Druid. Tích hợp này vẫn là first-class:
-
-```python
+Superset ban đầu được xây dựng tại Airbnb để truy vấn Druid. Tích hợp này vẫn là first-class: ```python
 # Kết nối Druid qua native JSON API
 druid://broker-host:8082/datasource/v2
 
@@ -200,9 +175,7 @@ druid://broker-host:8082/druid/v2/sql
 
 ### DuckDB (Mới trong v5.0)
 
-Hỗ trợ DuckDB đã đến trong Superset 5.0.0, cho phép workload phân tích local mà không cần server riêng:
-
-```python
+Hỗ trợ DuckDB đã đến trong Superset 5.0.0, cho phép workload phân tích local mà không cần server riêng: ```python
 # DuckDB in-memory hoặc file-based
 duckdb:///path/to/local/database.db
 ```
@@ -224,9 +197,7 @@ duckdb:///path/to/local/database.db
 
 ### Case study: Shopify
 
-Shopify chạy Superset cho phân tích nội bộ với **hơn 500 dashboard** phục vụ **hơn 2,000 nhân viên**. Họ báo cáo **giảm 60%** chi phí công cụ BI sau khi di chuyển từ nhà cung cấp thương mại. Thiết lập của họ sử dụng:
-
-- 6 Superset app server phía sau load balancer
+Shopify chạy Superset cho phân tích nội bộ với **hơn 500 dashboard** phục vụ **hơn 2,000 nhân viên**. Họ báo cáo **giảm 60%** chi phí công cụ BI sau khi di chuyển từ nhà cung cấp thương mại. Thiết lập của họ sử dụng: - 6 Superset app server phía sau load balancer
 - Cluster PostgreSQL metadata chuyên dụng
 - Redis cho caching với TTL 1 giờ
 - Trino làm query engine trên data lake S3
@@ -239,14 +210,11 @@ Một công ty fintech được YC hỗ trợ mà chúng tôi phỏng vấn ch�
 
 ### Row-Level Security (RLS)
 
-Superset hỗ trợ chính sách row-level security lọc dữ liệu dựa trên thuộc tính ngườ dùng:
-
-```python
+Superset hỗ trợ chính sách row-level security lọc dữ liệu dựa trên thuộc tính ngườ dùng: ```python
 # superset_config.py
 ROW_LEVEL_SECURITY_FILTERING = True
 
-# Định nghĩa filter trong UI:
-# Table: orders
+# Định nghĩa filter trong UI: # Table: orders
 # Filter clause: region = '{{ current_username() }}'
 # Group: Sales Team
 ```
@@ -255,9 +223,7 @@ ROW_LEVEL_SECURITY_FILTERING = True
 
 ### Embedding Dashboard
 
-Superset 5.0.0 bao gồm SDK embedding ổn định cho ứng dụng React:
-
-```bash
+Superset 5.0.0 bao gồm SDK embedding ổn định cho ứng dụng React: ```bash
 # Cài đặt embedding SDK
 npm install @superset-ui/embedded-sdk
 ```
@@ -281,9 +247,7 @@ embedDashboard({
 
 ### Cảnh báo và Báo cáo
 
-Cấu hình email hoặc Slack alerts cho điều kiện dashboard:
-
-```python
+Cấu hình email hoặc Slack alerts cho điều kiện dashboard: ```python
 # superset_config.py
 ALERT_REPORTS_NOTIFICATION_METHODS = ["email", "slack"]
 SLACK_API_TOKEN = "xoxb-your-slack-bot-token"
@@ -295,9 +259,7 @@ SMTP_PASSWORD = os.environ.get("SMTP_PASSWORD")
 
 ### Custom Chart Plugins
 
-Xây dựng loại biểu đồ độc quyền cho sử dụng nội bộ:
-
-```bash
+Xây dựng loại biểu đồ độc quyền cho sử dụng nội bộ: ```bash
 # Tạo khung chart plugin mới
 npx @superset-ui/cli create-chart-plugin my-company-charts
 
@@ -309,17 +271,13 @@ npm run build
 cp -r dist/* /app/superset/static/assets/my-company-charts/
 ```
 
-Đăng ký trong `superset_config.py`:
-
-```python
+Đăng ký trong `superset_config.py`: ```python
 EXTRA_PLUGINS = ["my_company_charts"]
 ```
 
 ### Chiến lược Backup
 
-Cơ sở dữ liệu metadata của bạn chứa tất cả dashboard, biểu đồ, và định nghĩa ngườ dùng. Sao lưu hàng ngày:
-
-```bash
+Cơ sở dữ liệu metadata của bạn chứa tất cả dashboard, biểu đồ, và định nghĩa ngườ dùng. Sao lưu hàng ngày: ```bash
 # Backup hàng ngày tự động qua cron
 0 2 * * * pg_dump -h postgres-host -U superset superset > /backups/superset-$(date +\%Y\%m\%d).sql
 
@@ -350,9 +308,7 @@ find /backups -name "superset-*.sql" -mtime +7 -delete
 
 ## Hạn chế / Đánh giá trung thực
 
-Apache Superset không phải công cụ phù hợp cho mọi tình huống. Đây là những gì bạn nên biết trước khi cam kết:
-
-1. **Không có chuyển đổi dữ liệu native**: Superset không phải công cụ ETL. Bạn cần dbt, Airflow, hoặc công cụ pipeline khác để chuẩn bị dữ liệu. Trình soạn thảo SQL Lab có thể chạy truy vấn ad-hoc, nhưng dataset production nên được pre-model.
+Apache Superset không phải công cụ phù hợp cho mọi tình huống. Đây là những gì bạn nên biết trước khi cam kết: 1. **Không có chuyển đổi dữ liệu native**: Superset không phải công cụ ETL. Bạn cần dbt, Airflow, hoặc công cụ pipeline khác để chuẩn bị dữ liệu. Trình soạn thảo SQL Lab có thể chạy truy vấn ad-hoc, nhưng dataset production nên được pre-model.
 
 2. **Đường cong học tập dốc cho ngườ dùng không biết SQL**: Ngườ dùng doanh nghiệp quen với drag-and-drop của Tableau có thể thấy Superset kém trực quan hơn. Semantic layer có giúp đỡ, nhưng ai đó trong team bạn cần biết SQL để thiết lập.
 
@@ -392,9 +348,7 @@ Một phần. Chế độ xem Explore cho phép ngườ dùng không kỹ thuậ
 
 Apache Superset là nền tảng BI mã nguồn mở có khả năng nhất hiện có năm 2026. Với 50+ loại biểu đồ, hỗ trợ native cho 30+ cơ sở dữ liệu, và hệ thống phân quyền production-grade, nó thay thế công cụ độc quyền cho hầu hết các team — với một phần nhỏ chi phí.
 
-Các bước tiếp theo của bạn:
-
-1. Triển khai Superset local với Docker Compose (5 phút)
+Các bước tiếp theo của bạn: 1. Triển khai Superset local với Docker Compose (5 phút)
 2. Kết nối PostgreSQL hoặc data warehouse của bạn
 3. Xây dựng dashboard đầu tiên bằng chế độ xem Explore
 4. Triển khai production trên [DigitalOcean](https://m.do.co/c/eca87ac14ee0) droplet hoặc Kubernetes cluster
@@ -407,9 +361,7 @@ Tham gia nhóm Telegram cho data engineers: **t.me/dibi8** — chia sẻ dashboa
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -429,7 +381,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 *Công bố liên kết liên kết: Bài viết này chứa liên kết liên kết đến DigitalOcean. Nếu bạn đăng ký bằng liên kết của chúng tôi, chúng tôi nhận được hoa hồng mà không có chi phí phát sinh cho bạn. Chúng tôi chỉ giới thiệu các dịch vụ mà chính chúng tôi sử dụng.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/aiwind-ai-prompt-library-generator" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/aiwind-ai-prompt-library-generator" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/aiwind-ai-prompt-library-generator" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/aiwind-ai-prompt-library-generator" />
 title: "AiWind：1000+ AI 绘画提示词宝库，让 GPT-Image 2 和 Nanobanana 产出惊艳作品"
 description: "AiWind 是一个免费 AI 提示词库，收录 1000+ 针对 GPT-Image 2、Nanobanana、Stable Diffusion、Midjourney 等主流模型的专业提示词，覆盖写实肖像、赛博朋克、3D 渲染等多种风格。"
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Go
+tech_stack: - Go
 application_domain: "Ai Tools"
 source_version: ""
 licensing_model: "Open Source"
@@ -24,8 +18,7 @@ maintainer: ""
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-faqs:
-  - q: 'AiWind 是免费使用的吗？'
+faqs: - q: 'AiWind 是免费使用的吗？'
     a: '是的，AiWind 是完全免费的 AI 提示词库，网址为 aiwind.org，没有付费等级。它提供 1000 多条专业提示词，并持续更新。'
   - q: 'AiWind 支持哪些 AI 图像模型的提示词？'
     a: 'AiWind 涵盖 10+ 个模型，包括 GPT-Image 2、Nanobanana、Stable Diffusion、Midjourney、Flux-Kontext、腾讯混元、Google Imagen 和字节跳动 Seedream。每条提示词都会推荐最适合使用的模型。'
@@ -36,7 +29,6 @@ faqs:
   - q: 'AiWind 与 PromptHero、Lexica 和 Civitai 相比如何？'
     a: 'AiWind 的突出优势在于完全免费、强大的中文支持以及覆盖 10+ 个模型，而 Lexica 仅覆盖约 3 个模型，Civitai 则主要专注于 Stable Diffusion。AiWind、PromptHero 和 Civitai 均支持社区提示词投稿，而 Lexica 不支持。'
 ---
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -68,7 +60,6 @@ faqs:
 </script>
 
 
-<!-- canonical: https://dibi8.com/zh/tools/aiwind-ai-prompt-library-generator/ -->
 
 {</* resource-info */>}
 
@@ -92,7 +83,13 @@ faqs:
 ### 支持的模型
 
 | 模型 | 类型 | 特点 |
-|------|------|------|
+|
+---
+|
+---
+|
+---
+|
 | **GPT-Image 2** | OpenAI | 语义理解强，文字渲染好 |
 | **Nanobanana** | 国产 | 中文支持优秀，速度快 |
 | **Stable Diffusion** | 开源 | 可定制性强，生态丰富 |
@@ -225,8 +222,7 @@ best quality, masterpiece
 ```
 [主体] + [风格] + [光线] + [构图] + [质量词]
 
-示例:
-主体: 金发超模站在迪拜夜景前
+示例: 主体: 金发超模站在迪拜夜景前
 风格: 时尚摄影，Vogue 编辑风格
 光线: 金色时刻，城市灯光背景光
 构图: 中景，三分法
@@ -252,7 +248,13 @@ best quality, masterpiece
 ### 4. 参数调优
 
 | 参数 | 作用 | 推荐值 |
-|------|------|--------|
+|
+---
+|
+---
+|
+---
+|
 | **CFG Scale** | 提示词遵循度 | 7-12 |
 | **Steps** | 迭代步数 | 20-50 |
 | **Sampler** | 采样器 | DPM++ 2M Karras |
@@ -261,7 +263,17 @@ best quality, masterpiece
 ## 与同类工具对比
 
 | 特性 | AiWind | PromptHero | Lexica | Civitai |
-|------|--------|-----------|--------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **免费** | ✅ 完全 | ⚠️ 部分 | ✅ 是 | ✅ 是 |
 | **中文支持** | ✅ 优秀 | ❌ 弱 | ❌ 弱 | ⚠️ 一般 |
 | **模型覆盖** | 10+ 模型 | 5+ 模型 | 3 模型 | 主要是 SD |
@@ -290,8 +302,8 @@ AiWind 是**中文用户最好的 AI 绘画提示词库**。
 - [TabPFN: Foundation Model for Tabular Data](/zh/resources/ai-tools/tabpfn-foundation-model-tabular-data/)
 - [Hermes Agent: Self-Improving AI Agent](/zh/resources/llm-frameworks/hermes-agent-self-improving-ai-agent/)
 
----
 
+---
 ## 推荐工具
 
 跑或部署开源 AI 工具时，推荐：
@@ -301,3 +313,5 @@ AiWind 是**中文用户最好的 AI 绘画提示词库**。
 
 *推广链接 — 不增加你的成本，能支持 dibi8.com 持续运营。*
 
+
+---

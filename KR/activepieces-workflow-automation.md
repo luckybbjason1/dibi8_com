@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/activepieces-workflow-automation" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/activepieces-workflow-automation" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/activepieces-workflow-automation" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/activepieces-workflow-automation" />
 title: 'Activepieces: 200+ 앱과 AI 액션을 갖춘 오픈소스 Zapier 대안 — 2026년 셀...
 description: '5분 만에 Activepieces를 배포하세요. 200+ 앱 통합, AI 액션, 비주얼 빌더를 갖춘 오픈소스 워크플로우 자동화 플랫폼으로 Zapier 비용의 일부만으로 운영할 수 있습니다.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [activepieces, '워크플로우 자동화', 'zapier 대안', 셀프호스팅, docker, 노코드, 오픈소스, typescript, 'ai 액션', 웹훅]
-aliases:
-- /kr/posts/activepieces-workflow-automation/
+aliases: - /kr/posts/activepieces-workflow-automation/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/activepieces-workflow-automation/ -->
 
 {{</* resource-info */>}}
 
@@ -47,8 +39,7 @@ TypeScript로 빌드된 MIT 라이선스 오픈소스 워크플로우 자동화 
 
 2022년에 출시되었고 TypeScript(Node.js 백엔드 + Angular 프론트엔드)로 작성된 Activepieces는 Zapier, Make(Integromat), n8n에 대한 개발자 친화적 대안으로 자리매김했습니다. Webhook 트리거, 예약 플로우, 분기 로직, 루프는 물론 이제 워크플로우 내에서 콘텐츠를 생성하고 데이터를 요약하고 의사결정을 내릴 수 있는 AI 기반 액션도 지원합니다.
 
-2026년 5월 기준 주요 사실:
-- **GitHub 스타**: 13,000+
+2026년 5월 기준 주요 사실: - **GitHub 스타**: 13,000+
 - **라이선스**: MIT
 - **최신 안정 버전**: v0.46.0(2026-04-28 릴리스)
 - **앱 통합**: 200+ 공식 "Pieces"
@@ -59,17 +50,13 @@ TypeScript로 빌드된 MIT 라이선스 오픈소스 워크플로우 자동화 
 
 ### 아키텍처 개요
 
-Activepieces는 모듈형 3계층 아키텍처를 따릅니다:
-
-1. **프론트엔드(Angular)**: 드래그앤드롭 캔버스, Piece 구성 패널, 실행 로그가 있는 비주얼 플로우 빌더
+Activepieces는 모듈형 3계층 아키텍처를 따릅니다: 1. **프론트엔드(Angular)**: 드래그앤드롭 캔버스, Piece 구성 패널, 실행 로그가 있는 비주얼 플로우 빌더
 2. **백엔드(Node.js/TypeScript)**: REST API, 플로우 엔진, 인증, Webhook 처리, 스케줄링
 3. **Pieces 시스템**: 각 앱 통합("Piece")은 액션, 트리거, 인증 설정을 노출하는 독립형 TypeScript 모듈입니다
 
 ### 플로우 엔진
 
-플로우가 실행되면 엔진이 순차적으로 단계를 처리합니다:
-
-```typescript
+플로우가 실행되면 엔진이 순차적으로 단계를 처리합니다: ```typescript
 // 개념적 플로우 실행 모델
 interface FlowRun {
   id: string;
@@ -86,9 +73,7 @@ interface FlowRun {
 
 ### Pieces: 플러그인 시스템
 
-Activepieces의 모든 통합은 "Piece"입니다. Piece는 다음을 정의하는 TypeScript 패키지입니다:
-
-- **액션**: Piece가 수행할 수 있는 작업(예: "이메일 전송", "행 생성")
+Activepieces의 모든 통합은 "Piece"입니다. Piece는 다음을 정의하는 TypeScript 패키지입니다: - **액션**: Piece가 수행할 수 있는 작업(예: "이메일 전송", "행 생성")
 - **트리거**: 플로우를 시작하는 이벤트(예: "새 행 추가", "Webhook 수신")
 - **인증**: 연결 구성(OAuth 2.0, API 키, Basic 인증)
 
@@ -119,14 +104,11 @@ docker compose -f docker-compose.yml up -d
 
 ### 옵션 B: 신규 VPS에서 원라인 설치
 
-[DigitalOcean](https://m.do.co/c/eca87ac14ee0) 또는 [HTStack](https://my.htstack.com/aff.php?aff=27187)에서의 프로덕션 배포를 위해 자동 설치 스크립트를 사용합니다:
-
-```bash
+[DigitalOcean](https://m.do.co/c/eca87ac14ee0) 또는 [HTStack](https://my.htstack.com/aff.php?aff=27187)에서의 프로덕션 배포를 위해 자동 설치 스크립트를 사용합니다: ```bash
 # 설치 스크립트 다운로드 및 실행
 curl -sSL https://cdn.activepieces.com/install.sh | bash
 
-# 스크립트가 다음을 묻습니다:
-# - 도메인 이름(선택사항, HTTPS용)
+# 스크립트가 다음을 묻습니다: # - 도메인 이름(선택사항, HTTPS용)
 # - 이메일(Let's Encrypt를 통한 SSL 인증서용)
 # - 관리자 이메일 및 비밀번호
 ```
@@ -138,15 +120,11 @@ curl -sSL https://cdn.activepieces.com/install.sh | bash
 ```bash
 # 프로덕션용 docker-compose.yml
 version: "3.8"
-services:
-  activepieces:
-    image: activepieces/activepieces:0.46.0
+services: activepieces: image: activepieces/activepieces:0.46.0
     container_name: activepieces
     restart: unless-stopped
-    ports:
-      - "8080:80"
-    environment:
-      - AP_API_KEY=${AP_API_KEY}
+    ports: - "8080:80"
+    environment: - AP_API_KEY=${AP_API_KEY}
       - AP_ENCRYPTION_KEY=${AP_ENCRYPTION_KEY}
       - AP_JWT_SECRET=${AP_JWT_SECRET}
       - AP_FRONTEND_URL=https://automation.yourdomain.com
@@ -157,30 +135,21 @@ services:
       - AP_POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - AP_REDIS_URL=redis://redis:6379
       - AP_TELEMETRY=false
-    depends_on:
-      - postgres
+    depends_on: - postgres
       - redis
 
-  postgres:
-    image: postgres:15-alpine
+  postgres: image: postgres:15-alpine
     restart: unless-stopped
-    environment:
-      POSTGRES_USER: postgres
+    environment: POSTGRES_USER: postgres
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: activepieces
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+    volumes: - pgdata:/var/lib/postgresql/data
 
-  redis:
-    image: redis:7-alpine
+  redis: image: redis:7-alpine
     restart: unless-stopped
-    volumes:
-      - redisdata:/data
+    volumes: - redisdata:/data
 
-volumes:
-  pgdata:
-  redisdata:
-```
+volumes: pgdata: redisdata: ```
 
 `docker compose up -d`로 배포합니다. 플랫폼은 약 60초 후 준비됩니다.
 
@@ -210,9 +179,7 @@ docker logs activepieces 2>&1 | grep "first sign up"
 
 ### 공식 Pieces(200+)
 
-Activepieces는 가장 인기 있는 서비스에 대한 공식 통합을 관리합니다:
-
-- **커뮤니케이션**: Slack, Discord, Microsoft Teams, Telegram, 이메일(SMTP/SendGrid)
+Activepieces는 가장 인기 있는 서비스에 대한 공식 통합을 관리합니다: - **커뮤니케이션**: Slack, Discord, Microsoft Teams, Telegram, 이메일(SMTP/SendGrid)
 - **CRM**: HubSpot, Salesforce, Pipedrive, Zoho CRM
 - **데이터베이스**: PostgreSQL, MySQL, MongoDB, Airtable, Google Sheets
 - **생산성**: Notion, Trello, Asana, Google Drive, Dropbox
@@ -237,9 +204,7 @@ Activepieces는 가장 인기 있는 서비스에 대한 공식 통합을 관리
 
 ### OpenAI를 사용한 AI 액션
 
-Activepieces v0.46.0은 GPT-4o, GPT-4.1, GPT-4.1-mini를 지원하는 네이티브 OpenAI Piece를 포함합니다:
-
-```yaml
+Activepieces v0.46.0은 GPT-4o, GPT-4.1, GPT-4.1-mini를 지원하는 네이티브 OpenAI Piece를 포함합니다: ```yaml
 # 예시: AI 기반 리드 자격 평가 플로우
 트리거: Webhook("새 리드 폼 제출")
   → 단계 1: 폼 데이터 추출(이름, 이메일, 회사, 메시지)
@@ -301,9 +266,7 @@ Activepieces는 Redis 기반의 BullMQ 작업 스케줄러를 사용하여 컨�
 
 ### 성능 벤치마크
 
-4 vCPU / 8 GB RAM VPS(Ubuntu 24.04)에서 테스트:
-
-| 워크로드 | 플로우 수 | 실행 시간 | 처리량 |
+4 vCPU / 8 GB RAM VPS(Ubuntu 24.04)에서 테스트: | 워크로드 | 플로우 수 | 실행 시간 | 처리량 |
 |----------|----------|----------|--------|
 | 단순 HTTP → Slack | 1,000 | 평균 245ms | ~240플로우/분 |
 | GPT-4.1-mini 텍스트 생성 | 500 | 평균 1,800ms | ~33플로우/분 |
@@ -367,9 +330,7 @@ find "$BACKUP_DIR" -name "*.rdb" -mtime +14 -delete
 
 ```bash
 # docker-compose.yml에 추가
-  activepieces:
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:80/api/v1/health"]
+  activepieces: healthcheck: test: ["CMD", "curl", "-f", "http://localhost:80/api/v1/health"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -400,11 +361,8 @@ export const myApiPiece = createPiece({
 
 ### 샌드박스 모드 보안
 
-기본적으로 플로우 실행은 격리된 샌드박스 컨테이너 낶에서 실행됩니다. 프로덕션의 최대 보안을 위해:
-
-```yaml
-environment:
-  - AP_EXECUTION_MODE=SANDBOXED
+기본적으로 플로우 실행은 격리된 샌드박스 컨테이너 낶에서 실행됩니다. 프로덕션의 최대 보안을 위해: ```yaml
+environment: - AP_EXECUTION_MODE=SANDBOXED
   - AP_SANDBOX_MEMORY_LIMIT=256  # 실행당 MB 제한
   - AP_SANDBOX_TIMEOUT_SECONDS=120
 ```
@@ -493,9 +451,7 @@ Activepieces는 엔지니어링 팀이 실제로 필요로 하는 것을 제공�
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -515,7 +471,6 @@ Activepieces는 엔지니어링 팀이 실제로 필요로 하는 것을 제공�
 *제휴 공개: 본 문서에는 DigitalOcean, HTStack, AppSumo의 제휴 링크가 포함되어 있습니다. 이 링크를 통해 서비스를 구매하면 dibi8.com에 수수료가 지급되며, 추가 비용은 발생하지 않습니다. 모든 추천은 실제 테스트를 기반으로 하며, 제휴 가용성이 아닌 실제 성능에 근거합니다.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/aider" />
 title: 'Aider: 45K+ Stars — Terminal AI Pair Programming vs Clau...
 description: 'Aider is AI pair programming in your terminal that edits code in your local git repository. Supports OpenAI, Claude, DeepSeek, Gemini, Ollama. Learn aider setup, aider tutorial, git integration, benchmarks, and comparison with Claude Code, Cursor, Codex CLI.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [aider, 'ai-pair-programming', 'terminal-ai', 'cli-coding', 'git-ai', 'llm-tools', 'open-source']
-aliases:
-- /posts/aider/
+aliases: - /posts/aider/-
 ---
-
 {{</* resource-info */>}}
 
 ## Introduction
@@ -126,9 +122,7 @@ docker run -it --rm \
 
 ### VS Code
 
-Aider does not require a VS Code extension. Start Aider in your project terminal, then edit files in VS Code as usual. Aider watches the git repository and commits changes automatically. For a tighter workflow, use the `--watch-files` flag:
-
-```bash
+Aider does not require a VS Code extension. Start Aider in your project terminal, then edit files in VS Code as usual. Aider watches the git repository and commits changes automatically. For a tighter workflow, use the `--watch-files` flag: ```bash
 # In terminal 1: start aider
 aider --model sonnet --watch-files
 
@@ -138,9 +132,7 @@ aider --model sonnet --watch-files
 
 ### Vim / Neovim
 
-Aider fits naturally into a Vim workflow. Run it in a tmux split alongside your editor:
-
-```bash
+Aider fits naturally into a Vim workflow. Run it in a tmux split alongside your editor: ```bash
 # tmux config for aider + vim
 tmux new-session -d -s aider-vim
 tmux split-window -h -t aider-vim
@@ -151,15 +143,12 @@ tmux attach -t aider-vim
 
 ### Git & GitHub
 
-Aider's git integration is its standout feature. Every AI-assisted edit becomes a discrete commit:
-
-```bash
+Aider's git integration is its standout feature. Every AI-assisted edit becomes a discrete commit: ```bash
 # Inside an aider session
 > /add src/auth.js src/middleware.js
 > Add JWT token validation to the auth middleware
 
-# Aider makes the change and commits:
-# [main a1b2c3d] feat: Add JWT token validation to auth middleware
+# Aider makes the change and commits: # [main a1b2c3d] feat: Add JWT token validation to auth middleware
 #  2 files changed, 45 insertions(+), 12 deletions(-)
 
 # Review commits before pushing
@@ -174,24 +163,18 @@ git push origin main
 
 ```yaml
 # .gitlab-ci.yml - AI code review pipeline
-ai-review:
-  image: python:3.12
-  before_script:
-    - pip install aider-chat
-  script:
-    - aider --model sonnet --message "Review this MR for security issues" --no-auto-commits
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+ai-review: image: python:3.12
+  before_script: - pip install aider-chat
+  script: - aider --model sonnet --message "Review this MR for security issues" --no-auto-commits
+  rules: - if: $CI_PIPELINE_SOURCE == "merge_request_event"
 ```
 
 ### Pre-commit Hooks
 
 ```yaml
 # .pre-commit-config.yaml
-repos:
-  - repo: local
-    hooks:
-      - id: aider-lint
+repos: - repo: local
+    hooks: - id: aider-lint
         name: Run aider lint fixes
         entry: aider --lint-cmd "npm run lint" --lint
         language: system
@@ -205,7 +188,15 @@ Aider maintains the most widely cited LLM coding benchmark in the industry. The 
 ### Polyglot Leaderboard (Top Models, May 2026)
 
 | Model | Score | Cost/Run | Edit Format |
-|-------|-------|----------|-------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | GPT-5 (high) | 88.0% | $29.08 | diff |
 | GPT-5 (medium) | 86.7% | $17.69 | diff |
 | o3-pro (high) | 84.9% | $146.32 | diff |
@@ -218,10 +209,16 @@ The cost gap is staggering: DeepSeek V3.2 Reasoner scores 74.2% at $1.30 per ben
 
 ### Aider's Own Benchmarks (aider coding)
 
-Aider also benchmarks itself on real-world coding tasks using the aider coding benchmark:
-
-| Model | Pass Rate | Avg Tokens | Latency |
-|-------|-----------|------------|---------|
+Aider also benchmarks itself on real-world coding tasks using the aider coding benchmark: | Model | Pass Rate | Avg Tokens | Latency |
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Claude Sonnet 4 | 72% | 18,400 | 45s |
 | GPT-4.1 | 68% | 22,100 | 38s |
 | DeepSeek V3.2 | 61% | 25,600 | 52s |
@@ -229,9 +226,7 @@ Aider also benchmarks itself on real-world coding tasks using the aider coding b
 
 ### Real-World Productivity Data
 
-Based on community reports and developer surveys in 2026:
-
-- **Solo developers:** Average 35-45% reduction in boilerplate coding time when using Aider with Sonnet or GPT-5
+Based on community reports and developer surveys in 2026: - **Solo developers:** Average 35-45% reduction in boilerplate coding time when using Aider with Sonnet or GPT-5
 - **Refactoring tasks:** Multi-file refactors that took 4-6 hours manually complete in 45-90 minutes with Aider
 - **Test generation:** Line coverage increases from 60% to 85% on average when using Aider to write tests for existing code
 - **Git history:** Aider users report 3-5x more commits per day due to automatic commit granularity, making code review easier
@@ -251,9 +246,7 @@ echo "config/prod.yml" >> .aiderignore
 
 ### Prompt Caching for Cost Reduction
 
-Aider supports prompt caching for Anthropic Claude and OpenAI models, reducing API costs by 40-60% on multi-turn conversations:
-
-```bash
+Aider supports prompt caching for Anthropic Claude and OpenAI models, reducing API costs by 40-60% on multi-turn conversations: ```bash
 # Prompt caching is automatic for supported models
 aider --model sonnet --cache-prompts
 
@@ -265,16 +258,13 @@ aider --model sonnet --cache-prompts
 
 ```bash
 # ~/.aider.conf.yml
-model-alias:
-  - fast: gpt-4.1
+model-alias: - fast: gpt-4.1
   - smart: claude-sonnet-4
   - cheap: deepseek/deepseek-chat
   - local: ollama/qwen2.5-coder:32b
 ```
 
-Usage:
-
-```bash
+Usage: ```bash
 aider --model fast    # uses gpt-4.1
 aider --model smart   # uses claude-sonnet-4
 aider --model cheap   # uses DeepSeek
@@ -320,7 +310,17 @@ aider --model sonnet --analytics-log ./logs/aider.jsonl
 ## Comparison with Alternatives
 
 | Feature | Aider | Claude Code | Cursor | Codex CLI |
-|---------|-------|-------------|--------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | Free + API keys | $20+/mo Pro | $20/mo Pro | ChatGPT Plus $20/mo |
 | **Open Source** | Apache-2.0 | Proprietary | Proprietary | Proprietary |
 | **Model Choice** | Any provider | Claude only | Limited | OpenAI only |
@@ -361,9 +361,7 @@ aider --model sonnet --analytics-log ./logs/aider.jsonl
 
 ## Limitations / Honest Assessment
 
-Aider is not the right tool for every developer or every situation. Here is what it is NOT good for:
-
-**GUI-dependent workflows:** If you need to see rendered UI, drag-and-drop file management, or visual diff review, Aider's terminal interface will frustrate you. Cursor or Windsurf are better fits.
+Aider is not the right tool for every developer or every situation. Here is what it is NOT good for: **GUI-dependent workflows:** If you need to see rendered UI, drag-and-drop file management, or visual diff review, Aider's terminal interface will frustrate you. Cursor or Windsurf are better fits.
 
 **Non-developers:** Aider assumes git fluency, terminal comfort, and API key management. A developer who does not know how to set environment variables will struggle. Cursor's one-click installer is a better on-ramp.
 
@@ -416,9 +414,7 @@ Join the Aider community on [Discord](https://discord.gg/Y7X7bhMQFV) or [Telegra
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -440,7 +436,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 *This article is for informational purposes. Aider is open-source software under the Apache-2.0 license. Always review AI-generated code before deploying to production.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -466,8 +461,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [prompts-chat](aider)
@@ -476,8 +471,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [claude-code-vs-aider](aider)
 - [claude-code-vs-aider](aider)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

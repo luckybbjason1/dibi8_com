@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/local-deep-research-local-first-ai-deep-research-tool" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/local-deep-research-local-first-ai-deep-research-tool" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/local-deep-research-local-first-ai-deep-research-tool" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/local-deep-research-local-first-ai-deep-research-tool" />
 title: "Local Deep Research: 궁극의 로컬 우선 AI 딥 리서치 도구"
 description: "로컬 우선 AI 리서치 어시스턴트인 Local Deep Research(LDR)를 마스터하세요. 100% 개인정보 보호를 유지하면서 Ollama 및 SearXNG를 사용하여 심층적인 반복 연구를 수행하는 방법을 배웁니다."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Docker
+tech_stack: - Docker
   - Python
 application_domain: "Llm Frameworks"
 source_version: ""
@@ -25,10 +19,8 @@ maintainer: "searxng"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases:
-- /kr/posts/local-deep-research-local-first-ai-deep-research-tool/
-faqs:
-  - q: 'Local Deep Research (LDR)란 무엇인가요?'
+aliases: - /kr/posts/local-deep-research-local-first-ai-deep-research-tool/
+faqs: - q: 'Local Deep Research (LDR)란 무엇인가요?'
     a: 'Local Deep Research (LDR)는 빠른 채팅형 답변을 제공하는 대신 체계적이고 반복적인 연구를 수행하는 오픈소스 AI 연구 어시스턴트입니다. 질의를 하위 질의로 분해하여 웹, 학술 데이터베이스, 로컬 파일을 병렬로 검색한 다음, 인용이 포함된 보고서로 종합합니다.'
   - q: 'Local Deep Research를 프라이버시를 위해 완전히 오프라인으로 실행할 수 있나요?'
     a: '네. Ollama와 통합하면 LDR은 로컬 하드웨어에서 완전히 실행될 수 있어, 연구 질의·독점 문서·최종 보고서가 절대 기기 밖으로 나가지 않습니다. 이러한 로컬 우선 설계는 기업용 또는 민감한 기술 연구에 적합합니다.'
@@ -40,7 +32,6 @@ faqs:
     a: 'LDR은 고충실도 인용을 제공하여, 제시하는 모든 주장에 참고 문헌을 첨부하므로 출처 자료를 즉시 확인할 수 있습니다. 또한 단일한 표면적 답변에 의존하는 대신, 공백을 식별하고 후속 검색을 수행하는 반복적 종합을 진행합니다.'
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/local-deep-research-local-first-ai-deep-research-tool/ -->
 {</* resource-info */>}
 
 대부분의 AI 어시스턴트는 '대화 우선' 방식입니다. 즉, 사전 학습된 데이터를 바탕으로 빠른 답변을 제공하는 데 중점을 둡니다. 하지만 웹, 학술 논문, 로컬 문서를 샅샅이 뒤져 심층적인 보고서를 작성하는 **'연구 우선(Research-first)'** 접근 방식이 필요하다면 어떨까요? 그리고 이 모든 과정을 **100% 개인정보 보호** 하에 수행하고 싶다면요?
@@ -107,16 +98,13 @@ Local Deep Research는 단순한 도구 그 이상입니다. AI 시대에 우리
 
 ## 자체 호스팅 추천 인프라
 
-24/7 안정 운영을 위해 인프라 선택이 중요하다:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 60일 $200 크레딧, 글로벌 14+ 리전. 오픈소스 AI 도구 자체 호스팅에 적합.
+24/7 안정 운영을 위해 인프라 선택이 중요하다: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 60일 $200 크레딧, 글로벌 14+ 리전. 오픈소스 AI 도구 자체 호스팅에 적합.
 - **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — 홍콩 VPS, 중국 본토 접근 시 저지연. dibi8.com 자체가 호스팅된 검증된 IDC.
 
 *추천 링크입니다. 추가 비용 없이 dibi8.com 운영에 도움이 됩니다.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -144,25 +132,20 @@ Local Deep Research는 단순한 도구 그 이상입니다. AI 시대에 우리
 
 ## Why This Matters
 
-Understanding local deep research: 궁극의 로컬 우선 ai 딥 리서치 도구 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding local deep research: 궁극의 로컬 우선 ai 딥 리서치 도구 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

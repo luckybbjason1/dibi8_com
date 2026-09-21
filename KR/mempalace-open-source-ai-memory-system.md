@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mempalace-open-source-ai-memory-system" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mempalace-open-source-ai-memory-system" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mempalace-open-source-ai-memory-system" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mempalace-open-source-ai-memory-system" />
 title: 'MemPalace: 최고의 벤치마크를 갖춘 오픈소스 AI 메모리 시스템, LongMemEval에서 R...
 description: 'MemPalace는 대화 기록을 그대로 저장하고 의미 기반 검색으로 검색하는 로컬 우선 AI 메모리 시스템입니다. Claude Code, Cursor, Windsurf 및 모든 MCP 호환 에이전트와 통합됩니다. ChromaDB 백엔드, 플러그인 가능 저장소, 외부 API 호출 제로. 설정 가이드, 벤치마크, 아키텍처 분석 포함.'
 date: 2026-06-10
-lastmod:  2026-06-10slug: 'mempalace-open-source-ai-memory-system'
+lastmod: 2026-06-10
+slug: 'mempalace-open-source-ai-memory-system'
 category: 'llm-frameworks'
 tags: ['ai-memory', 'local-first', 'mempalace', 'semantic-search', 'chromadb', 'long-term-memory', 'mcp-agent', 'verbatim-storage']
 github_repo: 'https://github.com/MemPalace/mempalace'
@@ -17,8 +13,6 @@ license: MIT
 featureImage: 'https://opengraph.github.com/github/MemPalace/mempalace'
 lang: ko
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/mempalace-open-source-ai-memory-system/ -->
 
 # MemPalace: 최고의 벤치마크를 갖춘 오픈소스 AI 메모리 시스템, LongMemEval에서 R@5 96.6% 절약 — API 호출 제로
 
@@ -67,17 +61,13 @@ MemPalace는 하나의 문제를 해결합니다: **AI 에이전트는 당신이
               에이전트가 구조화된 메모리를 받음
 ```
 
-MemPalace는 세 가지 계층으로 작동합니다:
-
-**계층 1 — 저장:** 모든 대화는 원문 그대로 저장됩니다. AI 처리 없음, 요약 없음. 원본 텍스트는 작성된 그대로 정확하게 보존됩니다.
+MemPalace는 세 가지 계층으로 작동합니다: **계층 1 — 저장:** 모든 대화는 원문 그대로 저장됩니다. AI 처리 없음, 요약 없음. 원본 텍스트는 작성된 그대로 정확하게 보존됩니다.
 
 **계층 2 — 인덱싱:** 대화는 지식 그래프로 구조화됩니다. 사람과 프로젝트는 *날개*가 되고, 주제는 *방*이 되며, 원본 내용은 *서랍*에 저장됩니다. 이 구조화된 인덱스는 평평한 코퍼스 검색이 아닌 범위 검색을 가능하게 합니다.
 
 **계층 3 — 검색:** 에이전트가 컨텍스트가 필요할 때 플러그인 가능 검색 계층(기본: ChromaDB)에 쿼리합니다. 결과가 원본 텍스트가 아닌 구조화된 컨텍스트로 반환됩니다.
 
-검색 계층은 하이브리드 키워드 부스트와 함께 의미 기반 검색을 사용합니다. 기본적으로 MemPalace는 `all-MiniLM-L6-v2` 임베딩 모델과 함께 ChromaDB를 사용하지만, `mempalace/backends/base.py` 인터페이스를 구현하는 모든 백엔드로 교체할 수 있습니다. 여기에는 다음이 포함됩니다:
-
-- `chromadb`: 기본 백엔드, 대부분의 사용 사례에 적합
+검색 계층은 하이브리드 키워드 부스트와 함께 의미 기반 검색을 사용합니다. 기본적으로 MemPalace는 `all-MiniLM-L6-v2` 임베딩 모델과 함께 ChromaDB를 사용하지만, `mempalace/backends/base.py` 인터페이스를 구현하는 모든 백엔드로 교체할 수 있습니다. 여기에는 다음이 포함됩니다: - `chromadb`: 기본 백엔드, 대부분의 사용 사례에 적합
 - `qdrant`: 대규모 데이터셋에 더 빠르고, 필터링 지원
 - `weaviate`: 프로덕션 준비 완료, GraphQL 쿼리 지원
 - 커스텀 백엔드: 모든 벡터 데이터베이스를 위해 기본 인터페이스 구현
@@ -86,9 +76,7 @@ MemPalace는 세 가지 계층으로 작동합니다:
 
 ## 자동 저장 훅
 
-MemPalace는 지원되는 에이전트의 대화를 자동으로 저장할 수 있습니다. Claude Code의 경우 자동 저장 훅을 구성해야 합니다:
-
-```bash
+MemPalace는 지원되는 에이전트의 대화를 자동으로 저장할 수 있습니다. Claude Code의 경우 자동 저장 훅을 구성해야 합니다: ```bash
 # Claude Code에 자동 저장 활성화
 mempalace hooks enable claude-code
 
@@ -114,9 +102,7 @@ mempalace hooks test
 
 ## 빠른 시작 (60초)
 
-PEP 668 오류를 피하기 위해 격리된 환경에 MemPalace를 설치하세요:
-
-```bash
+PEP 668 오류를 피하기 위해 격리된 환경에 MemPalace를 설치하세요: ```bash
 # 권장: uv tool install (PATH에 격리)
 uv tool install mempalace
 
@@ -127,16 +113,12 @@ mempalace init ~/projects/myapp
 claude
 ```
 
-또는 pipx 사용:
-
-```bash
+또는 pipx 사용: ```bash
 pipx install mempalace
 mempalace init ~/projects/myapp
 ```
 
-또는 가상 환경 내에서 설치 (if `import mempalace`를 사용하고 싶다면):
-
-```bash
+또는 가상 환경 내에서 설치 (if `import mempalace`를 사용하고 싶다면): ```bash
 python -m venv .venv && source .venv/bin/activate
 pip install mempalace
 mempalace init ~/projects/myapp
@@ -203,9 +185,7 @@ MemPalace는 LongMemEval에서 **96.6%의 원시 R@5**를 달성했습니다 —
 2. **방** = 날개 내의 주제, 기능 또는 워크스트림
 3. **서랍** = 원본 대화 세그먼트
 
-이 구조는 범위 검색을 가능하게 합니다:
-
-```bash
+이 구조는 범위 검색을 가능하게 합니다: ```bash
 # 모든 날개에서 검색
 mempalace search "auth 구현"
 
@@ -218,9 +198,7 @@ mempalace search "auth" --wing "인물-A" --room "프로젝트-A"
 
 ### 백업 및 복원
 
-MemPalace는 로컬에 데이터를 저장하므로 메모리를 정기적으로 백업해야 합니다:
-
-```bash
+MemPalace는 로컬에 데이터를 저장하므로 메모리를 정기적으로 백업해야 합니다: ```bash
 # 메모리 팰리스 백업
 mempalace backup ~/backups/mempalace-$(date +%Y-%m-%d).tar.gz
 
@@ -243,8 +221,7 @@ MemPalace는 Claude Code, Cursor 및 기타 MCP 호환 에이전트와 함께 �
 # MCP 서버 시작
 mempalace mcp --port 8765
 
-# Claude Code 구성에서 (~/.claude/settings.json):
-{
+# Claude Code 구성에서 (~/.claude/settings.json): {
   "mcpServers": {
     "mempalace": {
       "command": "mempalace",
@@ -254,8 +231,7 @@ mempalace mcp --port 8765
 }
 ```
 
-MCP 서버는 다음을 노출합니다:
-- `mempalace_store`: 대화 세그먼트 저장
+MCP 서버는 다음을 노출합니다: - `mempalace_store`: 대화 세그먼트 저장
 - `mempalace_query`: 의미 기반 검색을 통해 컨텍스트 검색
 - `mempalace_list_wings`: 사용 가능한 날개 나열
 - `mempalace_list_rooms`: 날개 내의 방 나열
@@ -264,9 +240,7 @@ MCP 서버는 다음을 노출합니다:
 
 ## 심층 분석: Python API
 
-MCP 호환 에이전트를 사용하지 않는 경우 MemPalace의 Python API를 직접 사용할 수 있습니다:
-
-```python
+MCP 호환 에이전트를 사용하지 않는 경우 MemPalace의 Python API를 직접 사용할 수 있습니다: ```python
 import mempalace
 
 # Initialize memory store
@@ -284,16 +258,13 @@ memory.store({
 
 # Query for relevant context
 results = memory.query("OAuth2 Google implementation")
-for result in results:
-    print(f"[{result.wing}/{result.room}]: {result.content[:200]}")
+for result in results: print(f"[{result.wing}/{result.room}]: {result.content[:200]}")
 
 # List all wings
-for wing in memory.list_wings():
-    print(f"Wing: {wing.name} ({len(wing.rooms)} rooms)")
+for wing in memory.list_wings(): print(f"Wing: {wing.name} ({len(wing.rooms)} rooms)")
 ```
 
-Python API는 CLI를镜像하지만 메모리 그래프에 프로그래밍 방식 접근을 제공합니다. 이는 다음에 유용합니다:
-- 커스텀 에이전트 통합
+Python API는 CLI를镜像하지만 메모리 그래프에 프로그래밍 방식 접근을 제공합니다. 이는 다음에 유용합니다: - 커스텀 에이전트 통합
 - 대화 기록 배치 처리
 - 메모리 대시보드 구축
 - 자동화된 백업 워크플로우
@@ -302,9 +273,7 @@ Python API는 CLI를镜像하지만 메모리 그래프에 프로그래밍 방�
 
 ## Docker 배포
 
-서버 사이드 또는 컨테이너화된 배포를 위해:
-
-```bash
+서버 사이드 또는 컨테이너화된 배포를 위해: ```bash
 # Docker 이미지 빌드
 docker build -t mempalace-server .
 
@@ -317,8 +286,7 @@ docker run -d \
   mcp --port 8765
 ```
 
-모든 내용은 `/data` 아래에 영구 저장됩니다(팰리스, 구성 및 캐시된 임베딩 모델), 따라서 거기에 볼륨을 마운트하세요. 이 설정은 다음과 잘 작동합니다:
-- 공유 팀 메모리 (여러 기계가 동일한 데이터베이스에 접근)
+모든 내용은 `/data` 아래에 영구 저장됩니다(팰리스, 구성 및 캐시된 임베딩 모델), 따라서 거기에 볼륨을 마운트하세요. 이 설정은 다음과 잘 작동합니다: - 공유 팀 메모리 (여러 기계가 동일한 데이터베이스에 접근)
 - 에이전트 메모리가 필요한 CI/CD 파이프라인
 - Docker 오케스트레이션이 있는 프로덕션 환경
 
@@ -340,9 +308,7 @@ MemPalace의 구조화된 접근 방식(날개 → 방 → 서랍)이 96.6% 벤�
 
 ## 한계 / 정직한 평가
 
-MemPalace는 모든 사람을 위한 것은 아닙니다:
-
-- **클라우드 팀에게는 부적합**: 다른 기계에서 작업하는 팀원 간에 공유 메모리가 필요하다면, MemPalace의 로컬 우선 디자인은 도움이 되지 않습니다
+MemPalace는 모든 사람을 위한 것은 아닙니다: - **클라우드 팀에게는 부적합**: 다른 기계에서 작업하는 팀원 간에 공유 메모리가 필요하다면, MemPalace의 로컬 우선 디자인은 도움이 되지 않습니다
 - **Python 환경 필요**: 설치를 위해 호환되는 Python 버전과 함께 `uv` 또는 `pip`가 필요합니다
 - **기본 ChromaDB**: 플러그인 가능하지만, 대부분의 사용자는 약 500MB RAM이 필요한 임베딩 모델인 ChromaDB를 사용할 것입니다
 - **클라우드 백업 없음**: 메모리는 로컬에 stay합니다. 디스크가 고장 나면 메모리가 사라집니다(백업하지 않는 한)
@@ -442,14 +408,12 @@ VPS 또는 전용 서버에서 자체 호스팅 메모리를 원한다면, 합�
 
 dibi8 **한국어 Telegram 그룹** https://t.me/DIBI8_Group/9에 참여하여 AI 메모리 시스템, 에이전트 아키텍처 및 오픈소스 도구에 대해 논의하세요.
 
-관련 기사:
-- [LangChain 완전 가이드](dibi8-internal-link/llm-frameworks/langchain-complete-guide)
+관련 기사: - [LangChain 완전 가이드](dibi8-internal-link/llm-frameworks/langchain-complete-guide)
 - [벡터 데이터베이스 비교](dibi8-internal-link/data-science/vector-database-comparison)
 - [MCP 심층 분석](dibi8-internal-link/llm-frameworks/mcp-deep-dive)
 
 *위의 일부 링크는 제휴 링크입니다. dibi8.com은 추가 비용 없이 가입할 경우 커미션을 받을 수 있습니다. 이는 사이트 운영과 콘텐츠를 무료로 유지하는 데 도움이 됩니다.*
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

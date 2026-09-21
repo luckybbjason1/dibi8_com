@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mcp-tool-builder" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mcp-tool-builder" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mcp-tool-builder" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mcp-tool-builder" />
 title: "MCP Tool Builder — Python / TypeScript 함수에서 Model Contex...
 description: "무료 온라인 MCP Tool 정의 생성기. Python 또는 TypeScript 함수 시그니처를 붙여넣으면 MCP 표준 tool JSON, 완전한 Python (FastMCP) 및 TypeScript (@modelcontextprotocol/sdk) 서버 보일러플레이트, 그리고 바로 쓸 수 있는 cURL 테스트 명령을 생성합니다. 완전 클라이언트 사이드."
 date: 2026-05-19
@@ -12,12 +7,10 @@ layout: "tool-mcp-tool-builder"
 tool_id: "mcp-tool-builder"
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/mcp-tool-builder/ -->
 # MCP Tool Builder — Python / TypeScript 함수에서 Model Context Protocol 도구 정의 자동 생성
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -45,25 +38,20 @@ tool_id: "mcp-tool-builder"
 
 ## Why This Matters
 
-Understanding mcp tool builder — python / typescript 함수에서 model context protocol 도구 정의 자동 생성 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding mcp tool builder — python / typescript 함수에서 model context protocol 도구 정의 자동 생성 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -89,9 +77,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
-Understanding these core concepts will help you master the topic:
-
-1. **Abstraction**: Hide complexity behind simple interfaces
+Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces
 2. **Composition**: Build complex systems from simple parts
 3. **Immutability**: Prefer immutable data structures
 4. **Error Handling**: Handle failures gracefully
@@ -112,9 +98,7 @@ Understanding these core concepts will help you master the topic:
                      └─────────────┘
 ```
 
-Understanding these core concepts will help you master the topic:
-
-1. **Abstraction**: Hide complexity behind simple interfaces
+Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces
 2. **Composition**: Build complex systems from simple parts
 3. **Immutability**: Prefer immutable data structures
 4. **Error Handling**: Handle failures gracefully
@@ -135,9 +119,7 @@ Understanding these core concepts will help you master the topic:
                      └─────────────┘
 ```
 
-Understanding these core concepts will help you master the topic:
-
-1. **Abstraction**: Hide complexity behind simple interfaces
+Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces
 2. **Composition**: Build complex systems from simple parts
 3. **Immutability**: Prefer immutable data structures
 4. **Error Handling**: Handle failures gracefully
@@ -158,9 +140,7 @@ Understanding these core concepts will help you master the topic:
                      └─────────────┘
 ```
 
-Understanding these core concepts will help you master the topic:
-
-1. **Abstraction**: Hide complexity behind simple interfaces
+Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces
 2. **Composition**: Build complex systems from simple parts
 3. **Immutability**: Prefer immutable data structures
 4. **Error Handling**: Handle failures gracefully
@@ -181,9 +161,7 @@ Understanding these core concepts will help you master the topic:
                      └─────────────┘
 ```
 
-Understanding these core concepts will help you master the topic:
-
-1. **Abstraction**: Hide complexity behind simple interfaces
+Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces
 2. **Composition**: Build complex systems from simple parts
 3. **Immutability**: Prefer immutable data structures
 4. **Error Handling**: Handle failures gracefully
@@ -204,9 +182,7 @@ Understanding these core concepts will help you master the topic:
                      └─────────────┘
 ```
 
-Understanding these core concepts will help you master the topic:
-
-1. **Abstraction**: Hide complexity behind simple interfaces
+Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces
 2. **Composition**: Build complex systems from simple parts
 3. **Immutability**: Prefer immutable data structures
 4. **Error Handling**: Handle failures gracefully

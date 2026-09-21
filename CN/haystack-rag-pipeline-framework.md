@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/haystack-rag-pipeline-framework" />
 title: 'Haystack 2026: The End-to-End NLP Framework for Producti...
 description: 'Complete 2026 guide to Haystack: open-source NLP framework for production RAG pipelines, document stores, retrievers, agents, evaluation tools, and Docker deployment.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: [haystack, nlp, rag, python, llm, 'document store', retriever, agent, openai, docker, pipeline]
-aliases:
-- /posts/haystack-rag-pipeline-framework/
+aliases: - /posts/haystack-rag-pipeline-framework/-
 ---
-
 {{</* resource-info */>}}
 
 ## Introduction: Why Another RAG Framework?
@@ -42,9 +38,7 @@ Haystack is an **open-source NLP framework** that enables you to build productio
 
 Originally focused on extractive QA (pre-LLM era), Haystack pivoted to embrace generative AI with the 2.0 release. As of v2.12 (May 2026), it supports **30+ document stores** (OpenSearch, Weaviate, Qdrant, PostgreSQL, etc.), **multi-modal retrieval**, **agentic pipelines with tool calling**, built-in evaluation, and native async execution. The framework is licensed under Apache-2.0 and maintained by deepset with **21000+ stars**.
 
-Unlike monolithic frameworks, Haystack separates concerns cleanly:
-
-- **Components** are self-contained units (e.g., `OpenAIDocumentEmbedder`, `InMemoryEmbeddingRetriever`)
+Unlike monolithic frameworks, Haystack separates concerns cleanly: - **Components** are self-contained units (e.g., `OpenAIDocumentEmbedder`, `InMemoryEmbeddingRetriever`)
 - **Pipelines** wire components into directed graphs
 - **Document Stores** handle persistence and vector search
 - **Agents** add reasoning loops with tool access
@@ -57,7 +51,13 @@ Haystack 2.x is built around a **directed acyclic graph (DAG)** where nodes are 
 ### Core Component Types
 
 | Component | Role | Example |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | **Embedder** | Converts text/documents into vectors | `OpenAIDocumentEmbedder` |
 | **Document Store** | Persists documents and handles vector search | `InMemoryDocumentStore`, `OpenSearchDocumentStore` |
 | **Retriever** | Finds relevant documents by vector similarity | `InMemoryEmbeddingRetriever` |
@@ -116,9 +116,7 @@ export OPENAI_API_KEY="sk-your-key-here"
 pip install transformers torch sentence-transformers
 ```
 
-Verify the full stack:
-
-```python
+Verify the full stack: ```python
 # verify_setup.py
 from haystack import Pipeline
 from haystack.components.embedders import SentenceTransformersDocumentEmbedder
@@ -195,9 +193,7 @@ result = rag.run({
 print(result["generator"]["replies"][0])
 ```
 
-Save and run:
-
-```bash
+Save and run: ```bash
 python basic_rag.py
 ```
 
@@ -359,12 +355,10 @@ from haystack import component
 from typing import Any, Dict, List
 
 @component
-class TokenCounter:
-    """Custom component that counts tokens in input text."""
+class TokenCounter: """Custom component that counts tokens in input text."""
 
     @component.output_types(token_count=int, text=str)
-    def run(self, text: str) -> Dict[str, Any]:
-        # Simple whitespace tokenization (use tiktoken for production)
+    def run(self, text: str) -> Dict[str, Any]: # Simple whitespace tokenization (use tiktoken for production)
         token_count = len(text.split())
         return {"token_count": token_count, "text": text}
 
@@ -418,10 +412,16 @@ print(result["generator"]["replies"][0])
 
 ### Pipeline Latency Benchmarks
 
-Measured on a 4-core VPS with Python 3.11:
-
-| Pipeline Type | Avg. Latency | P95 Latency | Throughput (req/s) |
-|---|---|---|---|
+Measured on a 4-core VPS with Python 3.11: | Pipeline Type | Avg. Latency | P95 Latency | Throughput (req/s) |
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Basic RAG (InMemory, GPT-4o-mini) | **1,240 ms** | **1,890 ms** | **0.8** |
 | RAG + Reranker (cross-encoder) | **1,580 ms** | **2,340 ms** | **0.6** |
 | RAG (OpenSearch, GPT-4o-mini) | **1,420 ms** | **2,100 ms** | **0.7** |
@@ -432,18 +432,14 @@ These numbers are for cold starts. With warm components and async execution, thr
 
 ### Case Study: Legal Document Search
 
-A legal-tech company deployed Haystack for searching across **2.4 million court documents**. Results after 6 months:
-
-- **94.2% accuracy** on internal QA benchmark (up from 78% with keyword search)
+A legal-tech company deployed Haystack for searching across **2.4 million court documents**. Results after 6 months: - **94.2% accuracy** on internal QA benchmark (up from 78% with keyword search)
 - Average response time **<2 seconds** for top-5 document retrieval
 - Reduced developer iteration time by **60%** thanks to pipeline serialization and hot-swapping
 - Migrated from Elasticsearch to Qdrant for vector search without rewriting pipeline logic — only swapped the document store component
 
 ### Case Study: Multi-lingual Customer Support
 
-An e-commerce platform used Haystack for **7-language customer support QA**:
-
-- Single pipeline serves all languages via a language router component
+An e-commerce platform used Haystack for **7-language customer support QA**: - Single pipeline serves all languages via a language router component
 - Shared OpenSearch backend with **340,000** product documentation chunks
 - **23% reduction** in support ticket escalation after deployment
 - Evaluation loop using Haystack's `SASEvaluator` runs weekly to detect pipeline drift
@@ -459,8 +455,7 @@ from haystack import Pipeline
 from haystack.components.generators import OpenAIGenerator
 from haystack.components.builders import PromptBuilder
 
-async def run_queries(queries: list):
-    pipeline = Pipeline()
+async def run_queries(queries: list): pipeline = Pipeline()
     pipeline.add_component("builder", PromptBuilder(
         template="Answer concisely: {{ query }}"
     ))
@@ -512,8 +507,7 @@ ground_truth = [
 
 # Run pipeline and collect predictions
 predictions = []
-for item in ground_truth:
-    result = rag_pipeline.run({
+for item in ground_truth: result = rag_pipeline.run({
         "embedder": {"text": item["query"]},
         "prompt_builder": {"query": item["query"]},
     })
@@ -552,12 +546,10 @@ import yaml
 app = FastAPI()
 
 # Load pipeline once at startup
-with open("rag_pipeline.yaml") as f:
-    pipeline = Pipeline.loads(f.read())
+with open("rag_pipeline.yaml") as f: pipeline = Pipeline.loads(f.read())
 
 @app.post("/query")
-async def query(question: str):
-    result = pipeline.run({
+async def query(question: str): result = pipeline.run({
         "embedder": {"text": question},
         "prompt_builder": {"query": question},
     })
@@ -570,36 +562,35 @@ async def query(question: str):
 ```yaml
 # docker-compose.yml
 version: "3.8"
-services:
-  haystack-api:
-    build: .
-    ports:
-      - "8000:8000"
-    environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
-    depends_on:
-      - opensearch
+services: haystack-api: build: .
+    ports: - "8000:8000"
+    environment: - OPENAI_API_KEY=${OPENAI_API_KEY}
+    depends_on: - opensearch
 
-  opensearch:
-    image: opensearchproject/opensearch:2.14.0
-    environment:
-      - discovery.type=single-node
+  opensearch: image: opensearchproject/opensearch:2.14.0
+    environment: - discovery.type=single-node
       - DISABLE_SECURITY_PLUGIN=true
-    ports:
-      - "9200:9200"
-    volumes:
-      - osdata:/usr/share/opensearch/data
+    ports: - "9200:9200"
+    volumes: - osdata:/usr/share/opensearch/data
 
-volumes:
-  osdata:
-```
+volumes: osdata: ```
 
 For a cloud VPS deployment, [DigitalOcean](https://m.do.co/c/eca87ac14ee0) App Platform supports direct Docker deployments from Git. Push your `Dockerfile`, connect your repo, and the platform builds and hosts your Haystack API with zero configuration.
 
 ## Comparison with Alternatives
 
 | Feature | Haystack 2.x | LangChain | LlamaIndex | Semantic Kernel |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **License** | **Apache-2.0** | MIT | MIT | MIT |
 | **GitHub Stars** | **21,000+** | 98,000+ | 41,000+ | 22,000+ |
 | **Primary Focus** | **Production RAG/Search** | General LLM orchestration | Indexing & retrieval | Multi-agent (Microsoft) |
@@ -638,8 +629,7 @@ Absolutely. Haystack supports **any generator** that implements the component in
 
 ### How do I choose a document store?
 
-For prototyping, use `InMemoryDocumentStore`. For production:
-- **OpenSearch:** Best if you already run an Elasticsearch/OpenSearch cluster
+For prototyping, use `InMemoryDocumentStore`. For production: - **OpenSearch:** Best if you already run an Elasticsearch/OpenSearch cluster
 - **Qdrant:** Excellent for pure vector search, low resource usage
 - **Weaviate:** Good built-in hybrid search (BM25 + vectors)
 - **PostgreSQL + pgvector:** Best if you want a single database for everything
@@ -668,9 +658,7 @@ For teams scaling document search to production, Haystack is the framework that 
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -685,12 +673,11 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - OpenSearch Document Store Guide: https://docs.haystack.deepset.ai/docs/opensearch-document-store
 - Custom Components Tutorial: https://docs.haystack.deepset.ai/docs/custom-components
 
----
 
+---
 **Affiliate Disclosure:** Some links in this article are affiliate links. If you use our [DigitalOcean referral link](https://m.do.co/c/eca87ac14ee0) to sign up, you receive $200 in credits and we earn a referral bonus — at no extra cost to you. This supports our independent research and keeps the content free.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -716,8 +703,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [12-factor-agents-production-llm-software-2026](haystack-rag-pipeline-framework)

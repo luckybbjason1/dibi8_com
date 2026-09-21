@@ -1,12 +1,9 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/open-design-local-first-ai-design-tool" />
-title: "Open Design: The Ultimate Local-First AI Design Tool Rep...
+title: "Open Design: The Ultimate Local-First AI Design Tool Rep..."
 description: "Discover Open Design, the open-source local-first alternative to Claude Design with 19 AI skills, 71 design systems, and multi-format export. Build prototypes, slides, videos & more."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Go
+tech_stack: - Go
   - JavaScript
   - TypeScript
 application_domain: "Dev Utils"
@@ -23,10 +20,8 @@ maintainer: ""
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases:
-- /posts/open-design-local-first-ai-design-tool/
-faqs:
-  - q: 'What is Open Design and how is it different from Claude Design?'
+aliases: - /posts/open-design-local-first-ai-design-tool/
+faqs: - q: 'What is Open Design and how is it different from Claude Design?'
     a: 'Open Design is an open-source, local-first alternative to Anthropic''s Claude Design that generates web prototypes, mobile and desktop interfaces, slides, images, videos, and interactive HyperFrames. Unlike the cloud-only, proprietary Claude Design, it runs entirely offline after setup, is MIT licensed and free, and keeps all data on your own machine.'
   - q: 'Which AI coding assistants does Open Design work with?'
     a: 'Open Design integrates with nine-plus assistants rather than locking you to one provider: Claude Code, GitHub Copilot, Cursor, Gemini, Codex, OpenCode, Qwen, Hermes, and Kimi CLI. You configure API keys only for the providers you actually plan to use.'
@@ -35,9 +30,7 @@ faqs:
   - q: 'What are the system requirements to install Open Design?'
     a: 'You need Node.js 18.0 or higher, npm 9.0 or higher (or pnpm/yarn), and Git, plus at least 4GB of available RAM for AI model operations and 2GB of disk space for dependencies and cached models.'
   - q: 'Does Open Design cost anything to use?'
-    a: 'The tool itself is free and open-source under the MIT license, with no subscription or per-seat fees. The only cost is the AI provider API usage you consume, so you pay only for the actual calls you make to providers like Anthropic, OpenAI, or Google.'
----
-
+    a: 'The tool itself is free and open-source under the MIT license, with no subscription or per-seat fees. The only cost is the AI provider API usage you consume, so you pay only for the actual calls you make to providers like Anthropic, OpenAI, or Google.'---
 {</* resource-info */>}
 
 # Open Design: The Ultimate Local-First AI Design Tool Replacing Claude Design
@@ -58,9 +51,7 @@ The GitHub repository at [https://github.com/nexu-io/open-design](https://github
 
 ### 19 Specialized AI Skills
 
-Open Design ships with **19 built-in AI skills** that cover the entire design and prototyping spectrum. These aren't generic text-generation capabilities — they're finely tuned models and workflows designed specifically for design tasks:
-
-- **Web Prototyping** — Generate responsive HTML/CSS/JavaScript prototypes from natural language descriptions
+Open Design ships with **19 built-in AI skills** that cover the entire design and prototyping spectrum. These aren't generic text-generation capabilities — they're finely tuned models and workflows designed specifically for design tasks: - **Web Prototyping** — Generate responsive HTML/CSS/JavaScript prototypes from natural language descriptions
 - **Mobile UI Design** — Create native-feeling mobile interfaces with platform-specific conventions
 - **Desktop Application Mockups** — Build cross-platform desktop application prototypes
 - **Slide Deck Generation** — Produce presentation-ready slides in PPTX format
@@ -82,10 +73,14 @@ Open Design ships with **19 built-in AI skills** that cover the entire design an
 
 ### 71 Brand-Grade Design Systems
 
-One of Open Design's standout features is its library of **71 pre-configured, production-grade design systems**. These aren't basic templates — they're comprehensive design languages used by major brands, meticulously recreated for AI-driven generation:
-
-| Design System | Category | Best For |
-|---------------|----------|----------|
+One of Open Design's standout features is its library of **71 pre-configured, production-grade design systems**. These aren't basic templates — they're comprehensive design languages used by major brands, meticulously recreated for AI-driven generation: | Design System | Category | Best For |
+|
+---
+|
+---
+|
+---
+|
 | Material Design 3 | Mobile/Web | Android applications, cross-platform UI |
 | Apple Human Interface | iOS/macOS | Native Apple ecosystem applications |
 | Fluent UI | Desktop/Web | Microsoft-compatible enterprise tools |
@@ -101,9 +96,7 @@ Each design system includes complete typography scales, color palettes, spacing 
 
 ### Multi-Format Export Engine
 
-Open Design's export capabilities are genuinely impressive. A single design can be rendered into multiple formats simultaneously:
-
-- **HTML/CSS/JS** — Fully functional, standards-compliant web pages
+Open Design's export capabilities are genuinely impressive. A single design can be rendered into multiple formats simultaneously: - **HTML/CSS/JS** — Fully functional, standards-compliant web pages
 - **PDF** — Print-ready documents with embedded fonts and vector graphics
 - **PPTX** — Native PowerPoint presentations with editable elements
 - **MP4** — High-definition video renders for demos and social media
@@ -119,9 +112,7 @@ Security is paramount when executing AI-generated code. Open Design runs all pre
 
 ### Universal AI Assistant Compatibility
 
-Open Design isn't locked to a single AI provider. It works with:
-
-- **Claude Code** — Anthropic's official CLI tool
+Open Design isn't locked to a single AI provider. It works with: - **Claude Code** — Anthropic's official CLI tool
 - **GitHub Copilot** — Microsoft's AI pair programmer
 - **Cursor** — The AI-native code editor
 - **Gemini** — Google's multimodal AI system
@@ -139,9 +130,7 @@ Getting Open Design running on your machine is straightforward. Follow these ste
 
 ### Prerequisites
 
-Before installing, ensure your system meets these requirements:
-
-- **Node.js** 18.0 or higher
+Before installing, ensure your system meets these requirements: - **Node.js** 18.0 or higher
 - **npm** 9.0 or higher (or pnpm/yarn)
 - **Git** for cloning the repository
 - At least **4GB RAM** available for AI model operations
@@ -156,9 +145,7 @@ cd open-design
 
 ### Step 2: Install Dependencies
 
-Open Design uses a monorepo structure. Install all packages with:
-
-```bash
+Open Design uses a monorepo structure. Install all packages with: ```bash
 npm install
 # or
 pnpm install
@@ -168,15 +155,11 @@ yarn install
 
 ### Step 3: Configure Environment Variables
 
-Copy the example environment file and customize it:
-
-```bash
+Copy the example environment file and customize it: ```bash
 cp .env.example .env
 ```
 
-Edit `.env` to add your AI provider API keys. You only need to configure the providers you plan to use:
-
-```env
+Edit `.env` to add your AI provider API keys. You only need to configure the providers you plan to use: ```env
 # Anthropic Claude
 ANTHROPIC_API_KEY=sk-ant-your-key-here
 
@@ -201,9 +184,7 @@ This compiles the TypeScript sources and bundles the design system assets.
 
 ### Step 5: Initialize Design Systems
 
-Download the 71 brand-grade design systems:
-
-```bash
+Download the 71 brand-grade design systems: ```bash
 npm run init:design-systems
 ```
 
@@ -211,9 +192,7 @@ This command fetches and caches all design system definitions locally, enabling 
 
 ### Step 6: Launch Open Design
 
-Start the local development server:
-
-```bash
+Start the local development server: ```bash
 npm run dev
 ```
 
@@ -221,9 +200,7 @@ The interface will be available at `http://localhost:3000`. Open your browser an
 
 ### Step 7: Configure Your AI Assistant (Optional)
 
-If you're using Open Design with an external AI assistant like Claude Code or Cursor, install the companion plugin:
-
-```bash
+If you're using Open Design with an external AI assistant like Claude Code or Cursor, install the companion plugin: ```bash
 npm run install:cursor-plugin
 # or
 npm run install:claude-plugin
@@ -234,7 +211,13 @@ These plugins add Open Design commands directly to your editor's command palette
 ## Open Design vs. Claude Design: A Detailed Comparison
 
 | Feature | Open Design | Claude Design |
-|---------|-------------|---------------|
+|
+---
+|
+---
+|
+---
+|
 | **Pricing** | Free, open-source | Paid subscription |
 | **Deployment** | Local-first, offline capable | Cloud-only |
 | **Data Privacy** | All data stays on your machine | Data processed on Anthropic servers |
@@ -309,24 +292,21 @@ With **39,107 stars** and growing, the project has clearly resonated with develo
 
 For more insights on AI-powered development tools, check out our related articles on [dibi8.com](/resources/llm-frameworks/agent-skills-production-grade-ai-coding/), [local-first development workflows](/resources/llm-frameworks/anythingllm-architecture-local-rag/), and [open-source alternatives to proprietary AI tools](/resources/llm-frameworks/top-10-open-source-ai-tools-2026/).
 
----
 
+---
 *Have you used Open Design in your projects? Share your experience in the comments below or reach out to the dibi8 Tech Team for collaboration opportunities.*
 
----
 
+---
 ## Recommended Infrastructure for Self-Hosting
 
-If you want to run this stack reliably 24/7, infrastructure choice matters:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+If you want to run this stack reliably 24/7, infrastructure choice matters: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

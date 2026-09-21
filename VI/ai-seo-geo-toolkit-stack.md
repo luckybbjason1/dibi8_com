@@ -3,8 +3,7 @@ title: 'Bộ công cụ AI-SEO & GEO 2026: 6 công cụ miễn phí cho SEO...
 description: 'Bộ công cụ miễn phí hoàn chỉnh cho SEO trong kỷ nguyên AI: trình tạo llms.txt + robots.txt cho AI-crawler + meta tags + Schema.org JSON-LD + hreflang + xem trước OG card. Bao quát cả tìm kiếm cổ điển (Google/Bing) lẫn các công cụ tạo sinh (ChatGPT, Claude, Perplexity). Tất cả chạy trên trình duyệt, không cần đăng ký.'
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-30 00:00:00+08:00
-tech_stack:
-  - HTML
+tech_stack: - HTML
   - JavaScript
   - JSON-LD
   - SEO
@@ -25,10 +24,8 @@ featureImage: ''
 draft: false
 categories: [collections]
 tags: [seo, geo, 'llms.txt', schema, 'meta tags', stack, collection]
-aliases:
-  - /posts/ai-seo-geo-toolkit-stack/
-faqs:
-  - q: 'llms.txt là gì và tại sao nó quan trọng với SEO năm 2026?'
+aliases: - /posts/ai-seo-geo-toolkit-stack/
+faqs: - q: 'llms.txt là gì và tại sao nó quan trọng với SEO năm 2026?'
     a: 'llms.txt là "robots.txt dành cho AI" — một file cho các crawler của công cụ tạo sinh như ChatGPT, Claude và Perplexity biết cách đọc cấu trúc website của bạn. Nó quan trọng vì các công cụ tạo sinh là kênh khám phá nội dung hoàn toàn mới, và được AI search trích dẫn chính là phiên bản 2026 của việc lên trang 1 Google.'
   - q: 'Làm thế nào để kiểm soát các AI crawler nào được phép truy cập website của tôi?'
     a: 'Sử dụng file robots.txt với các quy tắc dành riêng cho AI crawler để cho phép hoặc chặn rõ ràng các bot như GPTBot, ClaudeBot, PerplexityBot, CCBot và Google-Extended. Cách này giúp bạn kiểm soát trực tiếp công cụ tạo sinh nào được phép crawl và trích dẫn nội dung của bạn.'
@@ -40,7 +37,6 @@ faqs:
     a: 'Bắt đầu với lớp GEO — tạo llms.txt và robots.txt có ý thức về AI crawler — vì hầu hết các site chưa làm bước này. Sau đó thêm lớp on-page truyền thống: meta tag, Schema.org JSON-LD và hreflang cho các site đa ngôn ngữ. Kết thúc bằng lớp chia sẻ, xem trước Open Graph card của bạn.'
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/ai-seo-geo-toolkit-stack/ -->
 # Bộ công cụ AI-SEO & GEO 2026: 6 công cụ miễn phí cho SEO truyền thống + Tối ưu hóa cho công cụ tạo sinh
 
 
@@ -78,7 +74,6 @@ Các công cụ này tạo ra mã; bạn vẫn cần một site để đặt ch�
 SEO năm 2026 = on-page cổ điển **cộng với** tối ưu hóa cho công cụ tạo sinh. Hầu hết các trang làm nửa đầu và bỏ qua nửa sau — và đó chính là khoảng trống để khai thác. Chạy cả 6 công cụ theo thứ tự: kiểm soát chặt chẽ cách các AI crawler nhìn thấy bạn (llms.txt + robots), làm chuẩn các nền tảng on-page (meta + schema + hreflang), trau chuốt thẻ chia sẻ. Miễn phí, chạy trên trình duyệt, mười phút. Rồi đi giành lấy sự trích dẫn từ những công cụ AI mà đối thủ của bạn quên tối ưu hóa.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -106,25 +101,20 @@ SEO năm 2026 = on-page cổ điển **cộng với** tối ưu hóa cho công c
 
 ## Why This Matters
 
-Understanding bộ công cụ ai-seo & geo 2026: 6 công cụ miễn phí cho seo truyền thống + tối ưu hóa cho công cụ tạo sinh is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding bộ công cụ ai-seo & geo 2026: 6 công cụ miễn phí cho seo truyền thống + tối ưu hóa cho công cụ tạo sinh is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

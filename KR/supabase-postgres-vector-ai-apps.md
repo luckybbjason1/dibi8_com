@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/supabase-postgres-vector-ai-apps" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/supabase-postgres-vector-ai-apps" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/supabase-postgres-vector-ai-apps" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/supabase-postgres-vector-ai-apps" />
 title: 'Supabase 2026: Postgres 벡터 검색으로 100만+ AI 앱을 구동하는 오픈소스 Fi...
 description: 'Supabase 완벽 가이드: Postgres + pgvector를 갖춘 오픈소스 Firebase 대안. 인증, 스토리지, 실시간, Edge 함수, RAG 파이프라인 통합, 자체 호스팅 Docker 배포, 행 수준 보안.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [supabase, postgres, '벡터 검색', 'firebase 대안', pgvector, 'ai 앱', rag, 오픈소스, docker, 'edge 함수']
-aliases:
-- /kr/posts/supabase-postgres-vector-ai-apps/
+aliases: - /kr/posts/supabase-postgres-vector-ai-apps/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/supabase-postgres-vector-ai-apps/ -->
 
 {{</* resource-info */>}}
 
@@ -68,8 +60,7 @@ Supabase는 단순한 데이터베이스 래퍼가 아니다. 아키텍처는 �
 ### 호스팅 클라우드 (가장 빠른 경로)
 
 ```bash
-# 프로젝트에는 다음이 포함된다:
-# - PostgreSQL 16 데이터베이스
+# 프로젝트에는 다음이 포함된다: # - PostgreSQL 16 데이터베이스
 # - 자동 생성 REST API
 # - 내장 인증
 # - 500 MB 데이터베이스 저장소 (묶제 계층)
@@ -111,9 +102,7 @@ supabase start
 
 ### Docker Compose를 통한 자체 호스팅
 
-자체 인프라에서 프로덕션 자체 호스팅을 위해서([DigitalOcean](https://m.do.co/c/eca87ac14ee0) 또는 [HTStack](https://my.htstack.com/aff.php?aff=27187) 등):
-
-```bash
+자체 인프라에서 프로덕션 자체 호스팅을 위해서([DigitalOcean](https://m.do.co/c/eca87ac14ee0) 또는 [HTStack](https://my.htstack.com/aff.php?aff=27187) 등): ```bash
 # 공식 자체 호스팅 저장소 클론
 git clone https://github.com/supabase/supabase.git
 cd supabase/docker
@@ -134,8 +123,7 @@ docker compose up -d
 # 모든 서비스가 정상인지 확인
 docker compose ps
 
-# 예상 출력:
-# NAME                STATUS
+# 예상 출력: # NAME                STATUS
 # supabase-db         healthy
 # supabase-kong       healthy
 # supabase-auth       healthy
@@ -235,8 +223,7 @@ import openai
 supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 client = openai.OpenAI(api_key=OPENAI_API_KEY)
 
-def insert_document(title: str, content: str, source_url: str = None):
-    # 임베딩 생성
+def insert_document(title: str, content: str, source_url: str = None): # 임베딩 생성
     response = client.embeddings.create(
         input=content,
         model="text-embedding-3-large"
@@ -277,8 +264,7 @@ LIMIT 5;
 
 ```python
 # Python: RAG 검색 함수
-async def search_similar_documents(query: str, top_k: int = 5):
-    # 쿼리 임베딩 생성
+async def search_similar_documents(query: str, top_k: int = 5): # 쿼리 임베딩 생성
     response = client.embeddings.create(
         input=query,
         model="text-embedding-3-large"
@@ -333,9 +319,7 @@ $$;
 
 ### 아키텍처 개요
 
-Supabase를 사용한 일반적인 RAG 파이프라인은 네 단계로 구성된다:
-
-1. **수집** — 문서가 청킹되고 임베딩되며 `documents` 테이블에 저장된다.
+Supabase를 사용한 일반적인 RAG 파이프라인은 네 단계로 구성된다: 1. **수집** — 문서가 청킹되고 임베딩되며 `documents` 테이블에 저장된다.
 2. **검색** — 사용자 쿼리가 임베딩되고 `pgvector`를 통해 저장된 벡터와 일치된다.
 3. **생성** — 검색된 청크가 LLM(OpenAI, [Ollama](dibi8-internal-link) 또는 Claude)에 컨텍스트로 제공된다.
 4. **저장** — 대화가 지속성을 위해 `conversations` 테이블에 저장된다.
@@ -348,15 +332,11 @@ from supabase import create_client
 from openai import OpenAI
 import json
 
-class SupabaseRAG:
-    def __init__(self, supabase_url: str, supabase_key: str, openai_key: str):
-        self.supabase = create_client(supabase_url, supabase_key)
+class SupabaseRAG: def __init__(self, supabase_url: str, supabase_key: str, openai_key: str): self.supabase = create_client(supabase_url, supabase_key)
         self.openai = OpenAI(api_key=openai_key)
 
-    def embed_and_store(self, chunks: list[dict]):
-        """임베딩이 있는 문서 청크를 저장한다."""
-        for chunk in chunks:
-            embedding = self.openai.embeddings.create(
+    def embed_and_store(self, chunks: list[dict]): """임베딩이 있는 문서 청크를 저장한다."""
+        for chunk in chunks: embedding = self.openai.embeddings.create(
                 input=chunk[text],
                 model="text-embedding-3-large"
             ).data[0].embedding
@@ -368,8 +348,7 @@ class SupabaseRAG:
                 metadata: chunk.get(metadata, {})
             }).execute()
 
-    def retrieve(self, query: str, top_k: int = 5) -> list[dict]:
-        """벡터 검색을 사용하여 관련 문서를 검색한다."""
+    def retrieve(self, query: str, top_k: int = 5) -> list[dict]: """벡터 검색을 사용하여 관련 문서를 검색한다."""
         query_embedding = self.openai.embeddings.create(
             input=query,
             model="text-embedding-3-large"
@@ -385,8 +364,7 @@ class SupabaseRAG:
         ).execute()
         return results.data
 
-    def generate(self, query: str, context: list[dict]) -> str:
-        """검색된 컨텍스트를 사용하여 응답을 생성한다."""
+    def generate(self, query: str, context: list[dict]) -> str: """검색된 컨텍스트를 사용하여 응답을 생성한다."""
         context_text = "\n\n".join([
             f"[출처: {doc[title]}]\n{doc[content]}"
             for doc in context
@@ -409,8 +387,7 @@ class SupabaseRAG:
         )
         return response.choices[0].message.content
 
-    def chat(self, query: str) -> dict:
-        """엔드투엔드 RAG 파이프라인."""
+    def chat(self, query: str) -> dict: """엔드투엔드 RAG 파이프라인."""
         context = self.retrieve(query)
         answer = self.generate(query, context)
         return {
@@ -501,11 +478,9 @@ supabase.removeChannel(channel)
 # Python asyncio 버전
 import asyncio
 
-async def subscribe_to_changes():
-    channel = supabase.channel('documents-changes')
+async def subscribe_to_changes(): channel = supabase.channel('documents-changes')
     
-    def handle_insert(payload):
-        print(f"새 문서: {payload[new][title]}")
+    def handle_insert(payload): print(f"새 문서: {payload[new][title]}")
     
     channel.on(
         postgres_changes,
@@ -595,41 +570,30 @@ supabase functions invoke ai-completion --data '{"prompt": "Explain RAG"}'
 
 ```yaml
 # docker-compose.prod.yml (발췌)
-services:
-  db:
-    image: supabase/postgres:15.8.1.040
-    environment:
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+services: db: image: supabase/postgres:15.8.1.040
+    environment: POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       PGVECTOR_HNSW_EF_SEARCH: 64
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+    volumes: - pgdata:/var/lib/postgresql/data
     command: >
       postgres
         -c shared_preload_libraries='pg_stat_statements,pgvector'
         -c max_connections=200
         -c shared_buffers=2GB
         -c effective_cache_size=6GB
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
+    healthcheck: test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s
       timeout: 5s
       retries: 5
 
-  kong:
-    image: kong:3.7
-    environment:
-      KONG_DATABASE: "off"
+  kong: image: kong:3.7
+    environment: KONG_DATABASE: "off"
       KONG_DECLARATIVE_CONFIG: /var/lib/kong/kong.yml
-    ports:
-      - "8000:8000"
-    depends_on:
-      - auth
+    ports: - "8000:8000"
+    depends_on: - auth
       - rest
       - realtime
 
-volumes:
-  pgdata:
-```
+volumes: pgdata: ```
 
 ### 환경 변수
 
@@ -720,9 +684,7 @@ STORAGE_S3_SECRET_KEY=...
 
 ### Supabase에서 스키마 마이그레이션을 어떻게 처리하는가?
 
-Supabase CLI 마이그레이션 시스템을 사용하라:
-
-```bash
+Supabase CLI 마이그레이션 시스템을 사용하라: ```bash
 # 새 마이그레이션 생성
 supabase migration new add_documents_table
 
@@ -766,9 +728,7 @@ Supabase는 프로덕션 AI 애플리케이션을 구축하는 데 필요한 모
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -778,7 +738,6 @@ Supabase는 프로덕션 AI 애플리케이션을 구축하는 데 필요한 모
 본 문서에는 제휴 링크가 포함되어 있다. 제휴 ID가 표시된 링크(DigitalOcean, HTStack 등)를 통해 서비스를 구매하면 추가 비용 없이 커미션을 받을 수 있다. 이는 오픈소스 문서 작업에 자금을 지원하는 데 도움이 된다. 모든 권장 사항은 제휴 가용성이 아닌 진정한 기술적 장점을 기반으로 한다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

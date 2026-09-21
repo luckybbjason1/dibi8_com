@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/repomix-pack-repo-for-llm-context-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/repomix-pack-repo-for-llm-context-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/repomix-pack-repo-for-llm-context-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/repomix-pack-repo-for-llm-context-2026" />
 title: 'repomix 2026: 전체 코드베이스를 LLM 컨텍스트용 단일 파일로 패킹 — 제로 설정'
 description: 'repomix(구 repopack)는 Git 저장소 전체를 Claude, ChatGPT, Gemini의 컨텍스트 창에 최적화된 단일 구조화 텍스트 파일로 변환합니다. 14k+ 스타, 제로 설정, npx로 즉시 실행.'
 date: 2026-06-09 00:00:00+08:00
@@ -25,10 +20,8 @@ featureImage: '/images/articles/repomix-pack-repo-for-llm-context-2026/cover.jpg
 draft: false
 categories: ['dev-utils']
 tags: [repomix, repopack, ai코딩, llm컨텍스트, 코드베이스패킹, claude, chatgpt, 개발자도구, 오픈소스]
-aliases:
-- /kr/posts/repomix-pack-repo-for-llm-context-2026/
-faqs:
-  - q: 'repomix란 무엇이며 이전 이름은 무엇이었습니까?'
+aliases: - /kr/posts/repomix-pack-repo-for-llm-context-2026/
+faqs: - q: 'repomix란 무엇이며 이전 이름은 무엇이었습니까?'
     a: 'repomix(구 repopack)는 전체 Git 저장소를 LLM 컨텍스트 창에 최적화된 단일 구조화 텍스트 파일로 패킹하는 오픈소스 CLI 도구입니다. npm의 기존 "repack" 명령과의 혼동을 피하기 위해 2025년에 "repopack"에서 "repomix"로 이름이 변경되었습니다. yamadashy가 개발했으며 MIT 라이선스입니다.'
   - q: 'repomix가 지원하는 출력 형식은 무엇입니까?'
     a: 'repomix는 세 가지 출력 형식을 지원합니다: 일반 텍스트(기본값, ChatGPT 등 일반 LLM에 적합), XML(Claude에 최적 — Claude는 XML을 기본으로 사용), 마크다운(Copilot, 문서 워크플로에 적합). --style plain|xml|markdown으로 선택합니다.'
@@ -36,17 +29,13 @@ faqs:
     a: 'repomix는 약 100,000–200,000 토큰(대략 5,000–10,000개 파일 프로젝트)까지 잘 작동합니다. 더 큰 저장소의 경우 --include 패턴을 사용하여 관련 서브시스템만 전송하세요. --output-show-line-numbers 플래그는 LLM이 정확한 줄 참조로 편집 제안을 하는 데 도움이 됩니다.'
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/repomix-pack-repo-for-llm-context-2026/ -->
-
 ![repomix 2026: 코드베이스를 LLM 컨텍스트로 패킹 — dibi8.com](/images/articles/repomix-pack-repo-for-llm-context-2026/cover.jpg)
 
 Claude나 ChatGPT에게 멀티파일 이슈를 디버깅해달라고 할 때, 코드 스니펫을 하나씩 붙여넣으면 금방 컨텍스트를 잃게 됩니다. [repomix](https://github.com/yamadashy/repomix)는 전체 저장소를 하나의 구조화된 파일로 변환해 이 문제를 해결합니다.
 
 ## repomix가 하는 일
 
-repomix는 저장소를 스캔하고, `.gitignore`의 파일을 제외한 후, 다음을 포함하는 단일 텍스트 파일을 출력합니다:
-
-1. **저장소 요약** — 전체 파일 수, 토큰 추정치, 언어 분포
+repomix는 저장소를 스캔하고, `.gitignore`의 파일을 제외한 후, 다음을 포함하는 단일 텍스트 파일을 출력합니다: 1. **저장소 요약** — 전체 파일 수, 토큰 추정치, 언어 분포
 2. **디렉토리 트리** — 전체 폴더 구조
 3. **모든 소스 파일** — 각 파일 앞에 경로 헤더와 선택적 줄 번호
 
@@ -102,9 +91,7 @@ npx repomix --remote https://github.com/some-org/some-project
 
 ## 보안: `.repomixignore`
 
-repomix는 기본적으로 `.gitignore`를 존중하지만, gitignore되지 않은 민감한 파일(로컬 `.env` 파일 등)이 출력에 포함될 수 있습니다. 프로젝트 루트에 `.repomixignore` 파일을 생성하여 민감한 파일을 명시적으로 제외하세요:
-
-```
+repomix는 기본적으로 `.gitignore`를 존중하지만, gitignore되지 않은 민감한 파일(로컬 `.env` 파일 등)이 출력에 포함될 수 있습니다. 프로젝트 루트에 `.repomixignore` 파일을 생성하여 민감한 파일을 명시적으로 제외하세요: ```
 .env
 .env.local
 config/credentials.json
@@ -115,7 +102,6 @@ config/credentials.json
 **GitHub:** [yamadashy/repomix](https://github.com/yamadashy/repomix) · 14.2k ⭐ · MIT
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -143,25 +129,20 @@ config/credentials.json
 
 ## Why This Matters
 
-Understanding repomix 2026: 전체 코드베이스를 llm 컨텍스트용 단일 파일로 패킹 — 제로 설정 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding repomix 2026: 전체 코드베이스를 llm 컨텍스트용 단일 파일로 패킹 — 제로 설정 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -201,9 +182,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
-Understanding these core concepts will help you master the topic:
-
-1. **Abstraction**: Hide complexity behind simple interfaces
+Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces
 2. **Composition**: Build complex systems from simple parts
 3. **Immutability**: Prefer immutable data structures
 4. **Error Handling**: Handle failures gracefully

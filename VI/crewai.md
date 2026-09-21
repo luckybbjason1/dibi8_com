@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/crewai" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/crewai" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/crewai" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/crewai" />
 title: 'CrewAI: Xây dựng đội AI Multi-Agent với 51K+ Star — Hướn...
 description: 'CrewAI (crewAIInc/crewAI) là framework Python để điều phối các AI agent tự chủ dựa trên vai trò. Tương thích với OpenAI, Anthropic, Ollama, LangChain và LlamaIndex. Bao gồm cài đặt, vai trò agent, luồng công việc, triển khai production và benchmark.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,12 +20,9 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [crewai, 'multi-agent', 'ai-agent', python, 'llm-orchestration', automation, 'open-source', 'machine-learning']
-aliases:
-- /vi/posts/crewai/
+aliases: - /vi/posts/crewai/
 - /vi/resources/llm-frameworks/crewai-multi-agent-orchestration/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/crewai/ -->
 
 {{</* resource-info */>}}
 
@@ -46,9 +38,7 @@ CrewAI là framework Python mã nguồn mở để điều phối các AI agent 
 
 ## CrewAI hoạt động như thế nào
 
-Kiến trúc của CrewAI tách biệt định nghĩa agent khỏi logic điều phối:
-
-![CrewAI Logo](https://raw.githubusercontent.com/crewAIInc/crewAI/main/docs/images/crewai_logo.png)
+Kiến trúc của CrewAI tách biệt định nghĩa agent khỏi logic điều phối: ![CrewAI Logo](https://raw.githubusercontent.com/crewAIInc/crewAI/main/docs/images/crewai_logo.png)
 
 **Các thành phần cốt lõi:**
 
@@ -113,9 +103,7 @@ cd research_crew
 crewai install
 ```
 
-Cấu trúc dự án được tạo:
-
-```
+Cấu trúc dự án được tạo: ```
 research_crew/
 ├── .gitignore
 ├── pyproject.toml
@@ -142,9 +130,7 @@ OPENAI_API_KEY=sk-your-openai-key-here
 SERPER_API_KEY=your-serper-api-key
 ```
 
-Với LLM cục bộ qua Ollama (không cần API key):
-
-```bash
+Với LLM cục bộ qua Ollama (không cần API key): ```bash
 # Tải model cục bộ
 ollama pull llama3.1
 
@@ -153,13 +139,10 @@ ollama pull llama3.1
 
 ## Xác định Agent đầu tiên của bạn
 
-Chỉnh sửa `src/research_crew/config/agents.yaml` để xác định các agent dựa trên vai trò:
-
-```yaml
+Chỉnh sửa `src/research_crew/config/agents.yaml` để xác định các agent dựa trên vai trò: ```yaml
 # src/research_crew/config/agents.yaml
 
-researcher:
-  role: >
+researcher: role: >
     Senior Research Analyst
   goal: >
     Conduct thorough research on {topic} and gather
@@ -172,8 +155,7 @@ researcher:
   max_iter: 15
   verbose: true
 
-writer:
-  role: >
+writer: role: >
     Technical Content Writer
   goal: >
     Transform research findings on {topic} into a
@@ -185,8 +167,7 @@ writer:
   max_iter: 10
   verbose: true
 
-editor:
-  role: >
+editor: role: >
     Senior Content Editor
   goal: >
     Review and polish the article about {topic} to ensure
@@ -199,9 +180,7 @@ editor:
   verbose: true
 ```
 
-Các tùy chọn cấu hình chính cho mỗi agent:
-
-| Tham số | Mô tả | Ví dụ |
+Các tùy chọn cấu hình chính cho mỗi agent: | Tham số | Mô tả | Ví dụ |
 |---------|-------|-------|
 | `role` | Chức danh và chức năng của agent | `Senior Research Analyst` |
 | `goal` | Mục tiêu agent cần đạt được | Nghiên cứu `{topic}` |
@@ -215,13 +194,10 @@ Các tùy chọn cấu hình chính cho mỗi agent:
 
 ### Cấu hình tác vụ
 
-Chỉnh sửa `src/research_crew/config/tasks.yaml`:
-
-```yaml
+Chỉnh sửa `src/research_crew/config/tasks.yaml`: ```yaml
 # src/research_crew/config/tasks.yaml
 
-research_task:
-  description: >
+research_task: description: >
     Research the topic: {topic}. Gather at least 10 key data points
     from multiple authoritative sources. Include statistics,
     expert opinions, and recent developments.
@@ -230,8 +206,7 @@ research_task:
     citations, and a summary of key findings.
   agent: researcher
 
-writing_task:
-  description: >
+writing_task: description: >
     Using the research brief provided, write a comprehensive
     technical article about {topic}. Target 1500 words.
     Use clear headings, examples, and engaging prose.
@@ -241,8 +216,7 @@ writing_task:
   agent: writer
   context: [research_task]
 
-editing_task:
-  description: >
+editing_task: description: >
     Edit the article for clarity, grammar, factual accuracy,
     and readability. Ensure all claims are supported by the
     research brief.
@@ -256,62 +230,52 @@ editing_task:
 
 ### Định nghĩa Crew
 
-Kết nối agent và tác vụ trong `src/research_crew/crew.py`:
-
-```python
+Kết nối agent và tác vụ trong `src/research_crew/crew.py`: ```python
 # src/research_crew/crew.py
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 
 @CrewBase
-class ResearchCrew:
-    """Research crew for producing high-quality articles."""
+class ResearchCrew: """Research crew for producing high-quality articles."""
 
     agents_config = "config/agents.yaml"
     tasks_config = "config/tasks.yaml"
 
     @agent
-    def researcher(self) -> Agent:
-        return Agent(
+    def researcher(self) -> Agent: return Agent(
             config=self.agents_config["researcher"],
             tools=[],
             allow_delegation=False,
         )
 
     @agent
-    def writer(self) -> Agent:
-        return Agent(
+    def writer(self) -> Agent: return Agent(
             config=self.agents_config["writer"],
             tools=[],
             allow_delegation=False,
         )
 
     @agent
-    def editor(self) -> Agent:
-        return Agent(
+    def editor(self) -> Agent: return Agent(
             config=self.agents_config["editor"],
             tools=[],
             allow_delegation=False,
         )
 
     @task
-    def research_task(self) -> Task:
-        return Task(config=self.tasks_config["research_task"])
+    def research_task(self) -> Task: return Task(config=self.tasks_config["research_task"])
 
     @task
-    def writing_task(self) -> Task:
-        return Task(config=self.tasks_config["writing_task"])
+    def writing_task(self) -> Task: return Task(config=self.tasks_config["writing_task"])
 
     @task
-    def editing_task(self) -> Task:
-        return Task(
+    def editing_task(self) -> Task: return Task(
             config=self.tasks_config["editing_task"],
             output_file="output/final_article.md",
         )
 
     @crew
-    def crew(self) -> Crew:
-        return Crew(
+    def crew(self) -> Crew: return Crew(
             agents=self.agents,
             tasks=self.tasks,
             process=Process.sequential,
@@ -326,8 +290,7 @@ class ResearchCrew:
 #!/usr/bin/env python
 from research_crew.crew import ResearchCrew
 
-def run():
-    """Run the research crew."""
+def run(): """Run the research crew."""
     inputs = {
         "topic": "AI coding assistants in 2026"
     }
@@ -336,13 +299,10 @@ def run():
     print(result.raw)
     print(f"\nToken usage: {result.token_usage}")
 
-if __name__ == "__main__":
-    run()
+if __name__ == "__main__": run()
 ```
 
-Chạy crew:
-
-```bash
+Chạy crew: ```bash
 # Thực thi qua CLI
 crewai run
 
@@ -350,9 +310,7 @@ crewai run
 python -m research_crew.main
 ```
 
-Đầu ra mong đợi:
-
-```
+Đầu ra mong đợi: ```
 [2026-05-20 10:23:15] Working Agent: Senior Research Analyst
 [2026-05-20 10:23:15] Starting Task: Research the topic: AI coding assistants in 2026...
 ...
@@ -370,45 +328,33 @@ Token usage: UsageMetrics(total_tokens=18432, prompt_tokens=14201, ...)
 
 ### Sử dụng CrewAI Flows cho điều phối phức tạp
 
-Flows cung cấp điều phối dựa trên sự kiện với quản lý trạng thái:
-
-```python
+Flows cung cấp điều phối dựa trên sự kiện với quản lý trạng thái: ```python
 # src/research_crew/flow.py
 from crewai.flow.flow import Flow, listen, start
 from pydantic import BaseModel
 from research_crew.crew import ResearchCrew
 
-class ArticleState(BaseModel):
-    topic: str = ""
+class ArticleState(BaseModel): topic: str = ""
     word_count: int = 0
     final_article: str = ""
 
-class ArticleFlow(Flow[ArticleState]):
-
-    @start()
-    def get_topic(self):
-        self.state.topic = "Multi-agent AI frameworks in 2026"
+class ArticleFlow(Flow[ArticleState]): @start()
+    def get_topic(self): self.state.topic = "Multi-agent AI frameworks in 2026"
         print(f"Starting flow for topic: {self.state.topic}")
 
     @listen(get_topic)
-    def run_research_crew(self):
-        result = ResearchCrew().crew().kickoff(
+    def run_research_crew(self): result = ResearchCrew().crew().kickoff(
             inputs={"topic": self.state.topic}
         )
         self.state.final_article = result.raw
         self.state.word_count = len(result.raw.split())
 
     @listen(run_research_crew)
-    def validate_output(self):
-        if self.state.word_count < 1000:
-            print("WARNING: Article too short, triggering revision")
-        else:
-            print(f"Article validated: {self.state.word_count} words")
-            with open("output/article.md", "w") as f:
-                f.write(self.state.final_article)
+    def validate_output(self): if self.state.word_count < 1000: print("WARNING: Article too short, triggering revision")
+        else: print(f"Article validated: {self.state.word_count} words")
+            with open("output/article.md", "w") as f: f.write(self.state.final_article)
 
-if __name__ == "__main__":
-    ArticleFlow().kickoff()
+if __name__ == "__main__": ArticleFlow().kickoff()
 ```
 
 ### Tạo công cụ tùy chỉnh
@@ -419,8 +365,7 @@ from crewai.tools import tool
 import requests
 
 @tool("Web Search")
-def web_search(query: str) -> str:
-    """Search the web for information on a given query."""
+def web_search(query: str) -> str: """Search the web for information on a given query."""
     response = requests.get(
         "https://serpapi.com/search",
         params={"q": query, "api_key": "${SERPER_API_KEY}"}
@@ -428,15 +373,12 @@ def web_search(query: str) -> str:
     return response.json()["organic_results"][0]["snippet"]
 ```
 
-Đăng ký công cụ trong crew:
-
-```python
+Đăng ký công cụ trong crew: ```python
 # Trong crew.py, import và gắn kết
 from research_crew.tools.custom_tool import web_search
 
 @agent
-def researcher(self) -> Agent:
-    return Agent(
+def researcher(self) -> Agent: return Agent(
         config=self.agents_config["researcher"],
         tools=[web_search],  # Gắn công cụ tùy chỉnh
         allow_delegation=False,
@@ -447,8 +389,7 @@ def researcher(self) -> Agent:
 
 ```python
 @crew
-def crew(self) -> Crew:
-    return Crew(
+def crew(self) -> Crew: return Crew(
         agents=self.agents,
         tasks=self.tasks,
         process=Process.hierarchical,
@@ -469,12 +410,10 @@ import uuid
 app = FastAPI(title="CrewAI Research API")
 jobs: dict = {}
 
-class CrewRequest(BaseModel):
-    topic: str
+class CrewRequest(BaseModel): topic: str
 
 @app.post("/research")
-async def start_research(request: CrewRequest, background: BackgroundTasks):
-    job_id = str(uuid.uuid4())
+async def start_research(request: CrewRequest, background: BackgroundTasks): job_id = str(uuid.uuid4())
     jobs[job_id] = {"status": "queued", "topic": request.topic}
     background.add_task(
         lambda: run_crew(job_id, request.topic)
@@ -482,11 +421,9 @@ async def start_research(request: CrewRequest, background: BackgroundTasks):
     return {"job_id": job_id, "status": "queued"}
 
 @app.get("/status/{job_id}")
-async def get_status(job_id: str):
-    return jobs.get(job_id, {"error": "Job not found"})
+async def get_status(job_id: str): return jobs.get(job_id, {"error": "Job not found"})
 
-def run_crew(job_id: str, topic: str):
-    jobs[job_id]["status"] = "running"
+def run_crew(job_id: str, topic: str): jobs[job_id]["status"] = "running"
     result = ResearchCrew().crew().kickoff(inputs={"topic": topic})
     jobs[job_id]["status"] = "completed"
     jobs[job_id]["result"] = result.raw
@@ -500,9 +437,7 @@ def run_crew(job_id: str, topic: str):
 
 ![Biểu đồ benchmark CrewAI — so sánh hiệu quả token giữa các framework multi-agent, dữ liệu từ benchmark cộng đồng tháng 5/2026](https://docs.crewai.com/images/crewai-performance-chart.png)
 
-So sánh CrewAI với các framework khác trên tác vụ nghiên cứu multi-agent tiêu chuẩn:
-
-| Chỉ số | CrewAI | AutoGen | LangGraph | Agno |
+So sánh CrewAI với các framework khác trên tác vụ nghiên cứu multi-agent tiêu chuẩn: | Chỉ số | CrewAI | AutoGen | LangGraph | Agno |
 |--------|--------|---------|-----------|------|
 | Thờ gian đến lần chạy đầu tiên | ~15 phút | ~30 phút | ~60 phút | ~20 phút |
 | Chi phí token (chuẩn hóa) | 1.5–2x | 5–6x | 1x cơ sở | 1.2x |
@@ -524,12 +459,9 @@ So sánh CrewAI với các framework khác trên tác vụ nghiên cứu multi-a
 
 ### OpenAI / Anthropic / Google Gemini
 
-CrewAI sử dụng LiteLLM để định tuyến model độc lập nhà cung cấp:
-
-```yaml
+CrewAI sử dụng LiteLLM để định tuyến model độc lập nhà cung cấp: ```yaml
 # agents.yaml — chọn model cho mỗi agent
-researcher:
-  role: Research Analyst
+researcher: role: Research Analyst
   llm: anthropic/claude-sonnet-4-20250514
   # hoặc: openai/gpt-4o
   # hoặc: gemini/gemini-2.0-flash
@@ -538,8 +470,7 @@ researcher:
 ### Ollama (LLM cục bộ)
 
 ```yaml
-researcher:
-  role: Research Analyst
+researcher: role: Research Analyst
   llm: ollama/llama3.1
   # Yêu cầu: ollama pull llama3.1
 ```
@@ -569,8 +500,7 @@ from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
 from crewai.tools import tool
 
 @tool("Document Search")
-def document_search(query: str) -> str:
-    """Search internal documents for relevant information."""
+def document_search(query: str) -> str: """Search internal documents for relevant information."""
     documents = SimpleDirectoryReader("./docs").load_data()
     index = VectorStoreIndex.from_documents(documents)
     query_engine = index.as_query_engine()
@@ -598,14 +528,10 @@ CMD ["crewai", "run"]
 ```yaml
 # docker-compose.yml
 version: "3.8"
-services:
-  crewai:
-    build: .
+services: crewai: build: .
     env_file: .env
-    volumes:
-      - ./output:/app/output
-    ports:
-      - "8000:8000"
+    volumes: - ./output:/app/output
+    ports: - "8000:8000"
 ```
 
 ## So sánh với các giải pháp thay thế
@@ -676,9 +602,7 @@ Tham gia thảo luận trên Telegram: [Tham gia cộng đồng dibi8.com](https
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -697,7 +621,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 *Tiết lộ: Bài viết này chứa liên kết affiliate. Nếu bạn nhấp vào liên kết và thực hiện giao dịch mua, chúng tôi có thể nhận được hoa hồng mà không phát sinh thêm chi phí cho bạn. Điều này giúp hỗ trợ nghiên cứu kỹ thuật độc lập, thử nghiệm và tạo nội dung giáo dục miễn phí của chúng tôi. Tất cả các khuyến nghị đều dựa trên đánh giá riêng của chúng tôi về các công cụ.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

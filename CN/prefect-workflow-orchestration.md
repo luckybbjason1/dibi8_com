@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/prefect-workflow-orchestration" />
 title: 'Prefect 2026: The Modern Workflow Orchestration Engine f...
 description: 'A hands-on guide to Prefect 3.x — the Python-native workflow orchestrator with async execution, built-in retries, and self-hosted server. Deploy your data pipelines in under 5 minutes.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: []
-aliases:
-- /posts/prefect-workflow-orchestration/
+aliases: - /posts/prefect-workflow-orchestration/-
 ---
-
 {{</* resource-info */>}}
 
 ## Introduction: Your Cron Jobs Are a Ticking Time Bomb
@@ -55,23 +51,20 @@ A **Flow** is a decorated Python function that defines a workflow. A **Task** is
 from prefect import flow, task
 
 @task(retries=3, retry_delay_seconds=5)
-def fetch_data(url: str) -> dict:
-    """Fetch data from an API with automatic retry."""
+def fetch_data(url: str) -> dict: """Fetch data from an API with automatic retry."""
     import requests
     response = requests.get(url, timeout=30)
     response.raise_for_status()
     return response.json()
 
 @flow(name="data-ingestion-pipeline")
-def main_flow():
-    """Main pipeline orchestrating multiple tasks."""
+def main_flow(): """Main pipeline orchestrating multiple tasks."""
     raw_data = fetch_data("https://api.example.com/data")
     # ... more tasks
 ```
 
 ### The Prefect Server
-The **Prefect server** is a lightweight, self-hostable control plane that provides:
-- A **REST API** for flow registration, scheduling, and execution tracking
+The **Prefect server** is a lightweight, self-hostable control plane that provides: - A **REST API** for flow registration, scheduling, and execution tracking
 - A **WebSocket layer** for real-time task state updates
 - A **React-based dashboard** for monitoring, filtering, and debugging runs
 - **Webhook integrations** for Slack, PagerDuty, and custom endpoints
@@ -79,15 +72,12 @@ The **Prefect server** is a lightweight, self-hostable control plane that provid
 The server can run on a single machine with SQLite (for small teams) or scale to PostgreSQL + Redis for production workloads.
 
 ### Work Pools and Workers
-**Work pools** decouple flow submission from execution. You submit a flow run to a pool, and **workers** (lightweight Python processes) pick up and execute them. This enables:
-- Multiple execution environments (local, Docker, Kubernetes, serverless)
+**Work pools** decouple flow submission from execution. You submit a flow run to a pool, and **workers** (lightweight Python processes) pick up and execute them. This enables: - Multiple execution environments (local, Docker, Kubernetes, serverless)
 - Dynamic scaling of workers based on queue depth
 - Separation of orchestration from compute
 
 ### States and State Transitions
-Every task and flow run transitions through a well-defined state machine:
-
-```
+Every task and flow run transitions through a well-defined state machine: ```
 Scheduled → Pending → Running → Completed
                               → Failed → Retrying → Running
                               → Cancelled
@@ -127,49 +117,32 @@ prefect server start
 # Open the dashboard in your browser
 ```
 
-For team deployment with PostgreSQL:
-
-```bash
+For team deployment with PostgreSQL: ```bash
 # Option B: Docker Compose with PostgreSQL
 cat > docker-compose.yml << EOF
-services:
-  prefect-server:
-    image: prefecthq/prefect:3.3.0-python3.12
-    ports:
-      - "4200:4200"
-    environment:
-      - PREFECT_API_DATABASE_CONNECTION_URL=postgresql+asyncpg://prefect:prefect@postgres:5432/prefect
+services: prefect-server: image: prefecthq/prefect:3.3.0-python3.12
+    ports: - "4200:4200"
+    environment: - PREFECT_API_DATABASE_CONNECTION_URL=postgresql+asyncpg://prefect:prefect@postgres:5432/prefect
       - PREFECT_HOME=/home/prefect
     command: prefect server start --host 0.0.0.0
-    depends_on:
-      - postgres
+    depends_on: - postgres
 
-  postgres:
-    image: postgres:16-alpine
-    environment:
-      POSTGRES_USER: prefect
+  postgres: image: postgres:16-alpine
+    environment: POSTGRES_USER: prefect
       POSTGRES_PASSWORD: prefect
       POSTGRES_DB: prefect
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
+    volumes: - postgres_data:/var/lib/postgresql/data
+    ports: - "5432:5432"
 
-  redis:
-    image: redis:7-alpine
-    ports:
-      - "6379:6379"
+  redis: image: redis:7-alpine
+    ports: - "6379:6379"
 
-volumes:
-  postgres_data:
-EOF
+volumes: postgres_data: EOF
 
 docker-compose up -d
 ```
 
-Configure the Prefect client to connect:
-
-```bash
+Configure the Prefect client to connect: ```bash
 # Point Prefect CLI to your server
 prefect config set PREFECT_API_URL=http://localhost:4200/api
 
@@ -180,9 +153,7 @@ prefect version
 
 ### Step 3: Build Your First Flow
 
-Create `etl_pipeline.py`:
-
-```python
+Create `etl_pipeline.py`: ```python
 from prefect import flow, task
 from prefect.tasks import task_input_hash
 from prefect.artifacts import create_table_artifact
@@ -191,8 +162,7 @@ import pandas as pd
 from datetime import timedelta
 
 @task(retries=3, retry_delay_seconds=[10, 30, 60], cache_key_fn=task_input_hash, cache_expiration=timedelta(hours=1))
-def extract_api_data(endpoint: str, api_key: str) -> list[dict]:
-    """Extract data from REST API with retry and caching."""
+def extract_api_data(endpoint: str, api_key: str) -> list[dict]: """Extract data from REST API with retry and caching."""
     headers = {"Authorization": f"Bearer {api_key}"}
     response = requests.get(endpoint, headers=headers, timeout=30)
     response.raise_for_status()
@@ -201,8 +171,7 @@ def extract_api_data(endpoint: str, api_key: str) -> list[dict]:
     return data
 
 @task(retries=2)
-def transform_validate(raw_data: list[dict]) -> pd.DataFrame:
-    """Transform and validate raw API data."""
+def transform_validate(raw_data: list[dict]) -> pd.DataFrame: """Transform and validate raw API data."""
     df = pd.DataFrame(raw_data)
     
     # Data quality checks
@@ -220,8 +189,7 @@ def transform_validate(raw_data: list[dict]) -> pd.DataFrame:
     return df
 
 @task
-def load_to_database(df: pd.DataFrame, table_name: str) -> int:
-    """Load cleaned data to PostgreSQL."""
+def load_to_database(df: pd.DataFrame, table_name: str) -> int: """Load cleaned data to PostgreSQL."""
     from sqlalchemy import create_engine
     
     engine = create_engine("postgresql://user:pass@localhost:5432/analytics")
@@ -231,8 +199,7 @@ def load_to_database(df: pd.DataFrame, table_name: str) -> int:
     return rows_inserted
 
 @task
-def generate_summary_report(df: pd.DataFrame) -> None:
-    """Create a summary artifact visible in the dashboard."""
+def generate_summary_report(df: pd.DataFrame) -> None: """Create a summary artifact visible in the dashboard."""
     summary = df.groupby("category").agg({
         "amount": ["sum", "mean", "count"]
     }).round(2).to_dict()
@@ -247,8 +214,7 @@ def generate_summary_report(df: pd.DataFrame) -> None:
     )
 
 @flow(name="daily-etl-pipeline", log_prints=True)
-def etl_pipeline(endpoint: str = "https://api.example.com/transactions", api_key: str = "demo-key"):
-    """End-to-end ETL pipeline with full observability."""
+def etl_pipeline(endpoint: str = "https://api.example.com/transactions", api_key: str = "demo-key"): """End-to-end ETL pipeline with full observability."""
     # Extract
     raw_data = extract_api_data(endpoint, api_key)
     
@@ -263,14 +229,11 @@ def etl_pipeline(endpoint: str = "https://api.example.com/transactions", api_key
     
     return {"rows_processed": rows_loaded, "categories": cleaned_data["category"].nunique()}
 
-if __name__ == "__main__":
-    result = etl_pipeline()
+if __name__ == "__main__": result = etl_pipeline()
     print(f"Pipeline completed: {result}")
 ```
 
-Run it:
-
-```bash
+Run it: ```bash
 python etl_pipeline.py
 ```
 
@@ -291,9 +254,7 @@ etl_pipeline.serve(
 )
 ```
 
-Or use cron syntax:
-
-```bash
+Or use cron syntax: ```bash
 # Deploy with cron schedule
 prefect deployment build etl_pipeline.py:etl_pipeline \
   --name "daily-etl-cron" \
@@ -307,14 +268,11 @@ Prefect integrates natively with the modern data ecosystem. Here are the most cr
 
 ### Docker and Kubernetes Execution
 
-Run flows in isolated Docker containers:
-
-```python
+Run flows in isolated Docker containers: ```python
 from prefect.docker import DockerImage
 
 @flow
-def containerized_flow():
-    """Run tasks inside Docker containers."""
+def containerized_flow(): """Run tasks inside Docker containers."""
     pass
 
 # Deploy with Docker
@@ -325,9 +283,7 @@ containerized_flow.deploy(
 )
 ```
 
-Configure a Docker work pool:
-
-```bash
+Configure a Docker work pool: ```bash
 # Create a Docker work pool
 prefect work-pool create docker-pool --type docker
 
@@ -335,9 +291,7 @@ prefect work-pool create docker-pool --type docker
 prefect worker start --pool docker-pool
 ```
 
-For Kubernetes:
-
-```bash
+For Kubernetes: ```bash
 # Create a Kubernetes work pool
 prefect work-pool create k8s-pool --type kubernetes
 
@@ -351,16 +305,13 @@ prefect deployment build etl_pipeline.py:etl_pipeline \
 
 ### dbt Integration
 
-Orchestrate your dbt models directly from Prefect:
-
-```python
+Orchestrate your dbt models directly from Prefect: ```python
 from prefect import flow
 from prefect_dbt.cli.commands import trigger_dbt_cli_command
 from prefect_dbt.cli.configs import TargetConfigs
 
 @flow(name="dbt-transform-pipeline")
-def run_dbt_models():
-    """Run dbt models with Prefect orchestration."""
+def run_dbt_models(): """Run dbt models with Prefect orchestration."""
     # Run dbt deps
     trigger_dbt_cli_command("dbt deps")
     
@@ -377,9 +328,7 @@ def run_dbt_models():
 run_dbt_models.serve(name="dbt-daily")
 ```
 
-Install the integration:
-
-```bash
+Install the integration: ```bash
 pip install prefect-dbt[cli]
 ```
 
@@ -391,28 +340,23 @@ from prefect_aws import AwsCredentials
 from prefect_aws.s3 import S3Bucket
 
 @task
-def download_from_s3(bucket: str, key: str) -> str:
-    """Download file from S3."""
+def download_from_s3(bucket: str, key: str) -> str: """Download file from S3."""
     s3 = S3Bucket.load("my-s3-block")
     return s3.read_path(f"{bucket}/{key}")
 
 @task
-def upload_to_s3(local_path: str, bucket: str, key: str) -> None:
-    """Upload file to S3."""
+def upload_to_s3(local_path: str, bucket: str, key: str) -> None: """Upload file to S3."""
     s3 = S3Bucket.load("my-s3-block")
     s3.upload_from_path(local_path, f"{bucket}/{key}")
 
 @flow(name="s3-data-pipeline")
-def s3_pipeline():
-    """Pipeline moving data through S3."""
+def s3_pipeline(): """Pipeline moving data through S3."""
     data = download_from_s3("raw-data", "input.csv")
     # ... process ...
     upload_to_s3("processed.csv", "processed-data", "output.csv")
 ```
 
-Configure AWS credentials:
-
-```bash
+Configure AWS credentials: ```bash
 pip install prefect-aws
 
 # Register AWS credentials block
@@ -426,12 +370,10 @@ from prefect import flow
 from prefect.blocks.notifications import SlackWebhook
 
 @flow(on_failure=[send_slack_alert], on_crashed=[send_slack_alert])
-def monitored_flow():
-    """Flow with automatic Slack alerting on failure."""
+def monitored_flow(): """Flow with automatic Slack alerting on failure."""
     pass
 
-def send_slack_alert(flow, flow_run, state):
-    """Send alert to Slack when flow fails."""
+def send_slack_alert(flow, flow_run, state): """Send alert to Slack when flow fails."""
     slack = SlackWebhook.load("alerts-webhook")
     slack.notify(
         body=f"Flow {flow.name} failed with state {state.name}. "
@@ -441,15 +383,12 @@ def send_slack_alert(flow, flow_run, state):
 
 ### Custom Event-Based Triggers
 
-React to external events without polling:
-
-```python
+React to external events without polling: ```python
 from prefect.events import emit_event
 from prefect import flow
 
 @flow
-def on_file_uploaded(file_path: str):
-    """Process file when S3 upload event fires."""
+def on_file_uploaded(file_path: str): """Process file when S3 upload event fires."""
     result = process_file(file_path)
     
     # Emit custom event for downstream flows
@@ -465,23 +404,18 @@ def on_file_uploaded(file_path: str):
 
 ### Async and Concurrent Execution
 
-Prefect's async support allows massive concurrency:
-
-```python
+Prefect's async support allows massive concurrency: ```python
 import asyncio
 from prefect import flow, task
 
 @task
-async def fetch_async(url: str) -> dict:
-    """Async HTTP fetch."""
+async def fetch_async(url: str) -> dict: """Async HTTP fetch."""
     import httpx
-    async with httpx.AsyncClient() as client:
-        response = await client.get(url)
+    async with httpx.AsyncClient() as client: response = await client.get(url)
         return response.json()
 
 @flow
-async def concurrent_fetch_flow(urls: list[str]):
-    """Fetch all URLs concurrently."""
+async def concurrent_fetch_flow(urls: list[str]): """Fetch all URLs concurrently."""
     tasks = [fetch_async.submit(url) for url in urls]
     results = [t.result() for t in tasks]
     return results
@@ -498,7 +432,17 @@ Prefect powers data pipelines at organizations ranging from startups to Fortune 
 ### Company Profiles
 
 | Company | Industry | Scale | Use Case | Results |
-|---------|----------|-------|----------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Canva | Design SaaS | **10,000+ daily runs** | ML feature pipelines | 95% reduction in pipeline MTTR |
 | FuboTV | Streaming | 50TB/day processing | Real-time analytics | Sub-minute latency for KPI dashboards |
 | TripAdvisor | Travel | 200+ workflows | Data quality checks | 40 hours/week saved on manual monitoring |
@@ -506,10 +450,16 @@ Prefect powers data pipelines at organizations ranging from startups to Fortune 
 
 ### Performance Benchmarks
 
-We benchmarked Prefect 3.3.0 against common orchestration patterns on a **DigitalOcean 8 vCPU / 32GB RAM droplet** (see [DigitalOcean](https://m.do.co/c/eca87ac14ee0) for $200 free credit):
-
-| Metric | Prefect 3.x | Airflow 2.10 | Dagster 1.9 |
-|--------|-------------|--------------|-------------|
+We benchmarked Prefect 3.3.0 against common orchestration patterns on a **DigitalOcean 8 vCPU / 32GB RAM droplet** (see [DigitalOcean](https://m.do.co/c/eca87ac14ee0) for $200 free credit): | Metric | Prefect 3.x | Airflow 2.10 | Dagster 1.9 |
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Cold start (single task) | **0.8s** | 3.2s | 2.1s |
 | 100 concurrent tasks | **1.2s** | 8.5s | 4.3s |
 | Task scheduling latency | **<100ms** | 1-5s | 200-500ms |
@@ -526,7 +476,11 @@ Key finding: Prefect's asyncio-based engine achieves **sub-100ms task scheduling
 # DigitalOcean 8 vCPU / 32GB droplet
 
 Concurrent tasks | Throughput (tasks/sec) | Avg latency (ms)
------------------|----------------------|-----------------
+
+---
+|
+---
+|---
        1         |        1.25          |      800
       10         |       8.33           |      120
       50         |       41.7           |       24
@@ -549,8 +503,7 @@ from datetime import timedelta
     retry_delay_seconds=[1, 2, 4, 8, 16],  # Exponential backoff
     retry_jitter=True  # Add randomness to prevent thundering herd
 )
-def call_external_api(endpoint: str) -> dict:
-    """Call external API with smart retry logic."""
+def call_external_api(endpoint: str) -> dict: """Call external API with smart retry logic."""
     import requests
     response = requests.get(endpoint, timeout=10)
     response.raise_for_status()
@@ -559,30 +512,23 @@ def call_external_api(endpoint: str) -> dict:
 
 ### Task Concurrency Limits
 
-Prevent resource exhaustion with global concurrency limits:
-
-```python
+Prevent resource exhaustion with global concurrency limits: ```python
 from prefect import flow, task
 from prefect.concurrency.sync import concurrency
 
 @task
-def process_with_resource_limit(item_id: str) -> dict:
-    """Process item with controlled concurrency."""
-    with concurrency("database-slots", occupy=1):
-        # Only N tasks can execute this block simultaneously
+def process_with_resource_limit(item_id: str) -> dict: """Process item with controlled concurrency."""
+    with concurrency("database-slots", occupy=1): # Only N tasks can execute this block simultaneously
         return query_database(item_id)
 
 @flow
-def limited_processing_flow(item_ids: list[str]):
-    """Process items with max 10 concurrent database queries."""
+def limited_processing_flow(item_ids: list[str]): """Process items with max 10 concurrent database queries."""
     from prefect.tasks import map
     results = map(process_with_resource_limit, item_ids)
     return results
 ```
 
-Configure the limit:
-
-```bash
+Configure the limit: ```bash
 # Create a concurrency limit via CLI
 prefect concurrency-limit create database-slots 10
 ```
@@ -594,27 +540,23 @@ from prefect import flow, task
 from pydantic import BaseModel, Field
 from typing import List
 
-class Transaction(BaseModel):
-    """Validated transaction model."""
+class Transaction(BaseModel): """Validated transaction model."""
     id: str
     amount: float = Field(gt=0, description="Must be positive")
     currency: str = Field(pattern="^(USD|EUR|GBP)$")
     created_at: str
 
-class PipelineOutput(BaseModel):
-    """Validated pipeline output."""
+class PipelineOutput(BaseModel): """Validated pipeline output."""
     total_amount: float
     transaction_count: int
     currency: str
 
 @task
-def validate_transactions(raw_data: List[dict]) -> List[Transaction]:
-    """Validate and parse raw transaction data."""
+def validate_transactions(raw_data: List[dict]) -> List[Transaction]: """Validate and parse raw transaction data."""
     return [Transaction(**item) for item in raw_data]
 
 @flow
-def validated_pipeline(raw_data: List[dict]) -> PipelineOutput:
-    """Pipeline with full input/output validation."""
+def validated_pipeline(raw_data: List[dict]) -> PipelineOutput: """Pipeline with full input/output validation."""
     transactions = validate_transactions(raw_data)
     
     return PipelineOutput(
@@ -629,20 +571,14 @@ def validated_pipeline(raw_data: List[dict]) -> PipelineOutput:
 ```yaml
 # .github/workflows/prefect-deploy.yml
 name: Deploy Prefect Flows
-on:
-  push:
-    branches: [main]
+on: push: branches: [main]
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: deploy: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       
       - name: Setup Python
         uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
+        with: python-version: "3.12"
       
       - name: Install dependencies
         run: |
@@ -670,41 +606,29 @@ jobs:
 name: production-pipelines
 prefect-version: 3.3.0
 
-build:
-  - prefect_docker.deployments.steps.build_docker_image:
-      requires: prefect-docker
+build: - prefect_docker.deployments.steps.build_docker_image: requires: prefect-docker
       image_name: my-pipeline
       tag: "{{ sha }}"
       dockerfile: Dockerfile
 
-push:
-  - prefect_docker.deployments.steps.push_docker_image:
-      requires: prefect-docker
+push: - prefect_docker.deployments.steps.push_docker_image: requires: prefect-docker
       image_name: my-pipeline
       tag: "{{ sha }}"
       credentials: "{{ prefect.blocks.docker-registry-credentials.prod-registry }}"
 
-pull:
-  - prefect.deployments.steps.set_working_directory:
-      directory: /opt/prefect
+pull: - prefect.deployments.steps.set_working_directory: directory: /opt/prefect
 
-deployments:
-  - name: daily-etl
+deployments: - name: daily-etl
     entrypoint: etl_pipeline.py:etl_pipeline
-    work_pool:
-      name: docker-pool
-    schedule:
-      cron: "0 6 * * *"
-    parameters:
-      endpoint: "https://api.production.example.com/v1/data"
+    work_pool: name: docker-pool
+    schedule: cron: "0 6 * * *"
+    parameters: endpoint: "https://api.production.example.com/v1/data"
     tags: ["production", "etl", "daily"]
     
   - name: hourly-analytics
     entrypoint: analytics_pipeline.py:hourly_flow
-    work_pool:
-      name: k8s-pool
-    schedule:
-      interval: 3600
+    work_pool: name: k8s-pool
+    schedule: interval: 3600
     tags: ["production", "analytics"]
 ```
 
@@ -720,20 +644,17 @@ from datetime import timedelta
     on_failure=[notify_team],
     on_crashed=[notify_team, escalate_to_pagerduty]
 )
-def critical_revenue_pipeline():
-    """Revenue pipeline with full monitoring."""
+def critical_revenue_pipeline(): """Revenue pipeline with full monitoring."""
     # Pipeline logic here
     pass
 
-def notify_team(flow, flow_run, state):
-    """Send notification on failure."""
+def notify_team(flow, flow_run, state): """Send notification on failure."""
     webhook = Webhook.load("slack-alerts")
     webhook.notify(
         body=f"CRITICAL: {flow.name} failed after {flow_run.total_run_time}s"
     )
 
-def escalate_to_pagerduty(flow, flow_run, state):
-    """Escalate to PagerDuty for crashed flows."""
+def escalate_to_pagerduty(flow, flow_run, state): """Escalate to PagerDuty for crashed flows."""
     webhook = Webhook.load("pagerduty-integration")
     webhook.notify(
         body=json.dumps({
@@ -750,7 +671,17 @@ def escalate_to_pagerduty(flow, flow_run, state):
 ## Comparison with Alternatives
 
 | Feature | Prefect 3.x | Apache Airflow 2.10 | Dagster 1.9 | Temporal |
-|---------|-------------|---------------------|-------------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Learning Curve** | **Low** (pure Python) | **Medium** (DAG + operators) | **Medium** (asset-based) | High (custom SDK) |
 | **Self-hosted UI** | **Yes — single binary** | Yes (complex) | Yes (moderate) | Yes (complex) |
 | **Task Scheduling Latency** | **<100ms** | 1-5s | 200-500ms | <50ms |
@@ -769,9 +700,7 @@ def escalate_to_pagerduty(flow, flow_run, state):
 
 ## Limitations: An Honest Assessment
 
-Prefect is not the right tool for every workflow. Understand these trade-offs:
-
-1. **Plugin ecosystem maturity**: Airflow has 500+ provider packages. Prefect's integration library is smaller but growing rapidly. Custom integrations require writing your own task wrappers.
+Prefect is not the right tool for every workflow. Understand these trade-offs: 1. **Plugin ecosystem maturity**: Airflow has 500+ provider packages. Prefect's integration library is smaller but growing rapidly. Custom integrations require writing your own task wrappers.
 
 2. **Long-running workflows**: Prefect's default timeout is 1 hour per flow. For multi-day workflows (common in ML training), you need to configure `timeout_seconds=None` and ensure your worker processes survive restarts.
 
@@ -806,14 +735,12 @@ from prefect import flow, task
 from prefect.tasks import map
 
 @task
-def process_file(filename: str) -> dict:
-    """Process a single file."""
+def process_file(filename: str) -> dict: """Process a single file."""
     # ... processing logic ...
     return {"file": filename, "rows": 1000}
 
 @flow
-def dynamic_processing_flow(directory: str):
-    """Dynamically process all files in a directory."""
+def dynamic_processing_flow(directory: str): """Dynamically process all files in a directory."""
     import os
     files = [f for f in os.listdir(directory) if f.endswith(".csv")]
     results = map(process_file, files)
@@ -841,9 +768,7 @@ Start with the 5-minute setup in this guide. Connect your existing data tools. D
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -853,7 +778,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 This article contains affiliate links. If you sign up for services through links marked in this article, dibi8.com may receive a commission at no additional cost to you. We only recommend tools we have personally evaluated and believe provide genuine value. Opinions expressed are our own.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -878,3 +802,4 @@ This article contains affiliate links. If you sign up for services through links
   }
 }
 </script>
+---

@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/hello-agents-ai-agent-building-tutorial" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hello-agents-ai-agent-building-tutorial" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hello-agents-ai-agent-building-tutorial" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hello-agents-ai-agent-building-tutorial" />
 title: "Hello-Agents: Cách Hướng Dẫn AI Agent Mã Nguồn Mở Của Da...
 description: "Datawhale Hello-Agents là hướng dẫn AI agent mã nguồn mở phổ biến nhất trên GitHub, bao gồm 16 chương đầy đủ về ReAct, AutoGen, LangGraph, MCP, Agentic RL và hơn 45,600 Stars."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Go
+tech_stack: - Go
   - JavaScript
   - Python
 application_domain: "Llm Frameworks"
@@ -26,8 +20,7 @@ maintainer: "datawhalechina"
 last_maintained: "2026-05-14"
 featureImage: ""
 draft: false
-faqs:
-  - q: 'Datawhale Hello-Agents là gì?'
+faqs: - q: 'Datawhale Hello-Agents là gì?'
     a: 'Hello-Agents là một hướng dẫn mã nguồn mở miễn phí từ cộng đồng Datawhale của Trung Quốc, dạy cách xây dựng AI agent từ đầu. Nó cung cấp chương trình học gồm 16 chương kèm code chạy được, có sẵn dưới dạng sách trực tuyến, tài liệu cục bộ và file PDF tải về được.'
   - q: 'Chương trình 16 chương của Hello-Agents bao gồm những chủ đề nào?'
     a: 'Nó bao quát nền tảng về agent và LLM, các mô hình kinh điển (ReAct, Plan-and-Solve, Reflection), các nền tảng low-code (Coze, Dify, n8n), các framework chuyên nghiệp (AutoGen, AgentScope, LangGraph), bộ nhớ và RAG, kỹ thuật ngữ cảnh, các giao thức giao tiếp (MCP, A2A, ANP), Agentic RL (SFT, RLHF, GRPO), đánh giá, và ba nghiên cứu tình huống capstone toàn diện.'
@@ -39,7 +32,6 @@ faqs:
     a: 'Hướng dẫn này bao gồm ba nghiên cứu tình huống toàn diện: một Trợ lý Du lịch Thông minh điều phối nhiều agent chuyên biệt thông qua việc gọi công cụ MCP, một agent Nghiên cứu Chuyên sâu Tự động tìm kiếm và tổng hợp các phát hiện trên web thành một báo cáo, và một mô phỏng Cyber Town được lấp đầy bởi các AI agent với tính cách và thói quen riêng biệt.'
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/hello-agents-ai-agent-building-tutorial/ -->
 {</* resource-info */>}
 
 ## Hello-Agents Là Gì?
@@ -163,21 +155,17 @@ messages = [
     {"role": "user", "content": "Dân số Tokyo chia cho 1000 là bao nhiêu?"}
 ]
 
-for step in range(5):
-    response = openai.chat.completions.create(
+for step in range(5): response = openai.chat.completions.create(
         model="gpt-4", messages=messages, tools=tools, tool_choice="auto"
     )
     message = response.choices[0].message
     messages.append(message)
     
-    if message.tool_calls:
-        for tc in message.tool_calls:
-            name = tc.function.name
+    if message.tool_calls: for tc in message.tool_calls: name = tc.function.name
             args = json.loads(tc.function.arguments)
             result = search_web(**args) if name == "search_web" else calculate(**args)
             messages.append({"role": "tool", "tool_call_id": tc.id, "content": result})
-    else:
-        print("Câu trả lời cuối cùng:", message.content)
+    else: print("Câu trả lời cuối cùng:", message.content)
         break
 ```
 
@@ -208,9 +196,7 @@ Cuộc cách mạng agent không phải sắp đến — nó đã ở đây. Hel
 
 ## Hạ Tầng Đề Xuất Cho Tự Lưu Trữ
 
-Để chạy stack này 24/7 ổn định, lựa chọn hạ tầng rất quan trọng:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu. Lựa chọn mặc định cho developer độc lập.
+Để chạy stack này 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu. Lựa chọn mặc định cho developer độc lập.
 - **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — VPS Hong Kong, độ trễ thấp với người dùng Việt Nam. dibi8.com cũng được host ở đây.
 - **{{< aff "hostinger" "footer-cta-legacy" "Hostinger" >}}** — Lựa chọn VPS giá tốt cho thị trường Việt Nam, giảm 60% gói đầu tiên.
 
@@ -218,7 +204,6 @@ Cuộc cách mạng agent không phải sắp đến — nó đã ở đây. Hel
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -246,25 +231,20 @@ Cuộc cách mạng agent không phải sắp đến — nó đã ở đây. Hel
 
 ## Why This Matters
 
-Understanding hello-agents: cách hướng dẫn ai agent mã nguồn mở của datawhale giúp bạn xây dựng agent cấp sản xuất từ con số 0 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding hello-agents: cách hướng dẫn ai agent mã nguồn mở của datawhale giúp bạn xây dựng agent cấp sản xuất từ con số 0 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

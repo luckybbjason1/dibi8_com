@@ -1,19 +1,14 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/oh-my-pi" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/oh-my-pi" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/oh-my-pi" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/oh-my-pi" />
 title: "오 마이 파이(Raspberry Pi): 라즈베리 파이를 스마트 기기로 변환 — 1만2천 스타 프로젝...
 description: "오 마이 파이(12,554 스타)는 원클릭 설정과 자동 구성으로 라즈베리 파이를 스마트 홈 허브, 미디어 센터, 개발 작업공간으로 변환합니다.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-15
-lastmod:  2026-06-15slug: oh-my-pi
+lastmod: 2026-06-15
+slug: oh-my-pi
 category: dev-utils
 tags: ['raspberry pi', '스마트 홈', 'iot', '엣지 컴퓨팅', '홈 오토메이션', 'linux', '자동화']
 github_repo: "https://github.com/can1357/oh-my-pi"
 license: MIT
-images:
-  - url: "https://opengraph.github.com/github/can1357/oh-my-pi"
+images: - url: "https://opengraph.github.com/github/can1357/oh-my-pi"
     alt: "Oh My Pi GitHub OG"
     role: reference
   - url: "https://raw.githubusercontent.com/can1357/oh-my-pi/main/assets/pi-setup.png"
@@ -26,8 +21,6 @@ lang: kr
 featureImage: /images/articles/oh-my-pi-turn-any-raspberry-pi-into-a-smart-device-12k-star-.jpg
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/oh-my-pi/ -->
-
 ## TL;DR
 
 오 마이 파이는 자동 설정, 사전 구성된 대시보드, 원클릭 서비스 배포로 라즈베리 파이를 완전히 구성된 스마트 기기로 변환합니다. 12,554 스타를 달성하며 GitHub에서 가장 인기 있는 라즈베리 파이 자동화 프레임워크입니다.
@@ -38,9 +31,7 @@ featureImage: /images/articles/oh-my-pi-turn-any-raspberry-pi-into-a-smart-devic
 
 오 마이 파이는 라즈베리 파이 기기를 위한 자동 설정 프레임워크입니다. 네트워킹 수동 구성, 서비스 설치, 서비스 연결을 직접 하는 대신, 오 마이 파이는 빈 SD 카드부터 완전히 작동하는 스마트 기기까지 전 과정을 30분 이내에 처리합니다.
 
-이 프로젝트는 모듈형 서비스 카탈로그를 제공합니다:
-
-- **Home Assistant** — 2,000개 이상 통합을 갖춘 전체 홈 오토메이션 허브
+이 프로젝트는 모듈형 서비스 카탈로그를 제공합니다: - **Home Assistant** — 2,000개 이상 통합을 갖춘 전체 홈 오토메이션 허브
 - **AdGuard Home** — 네트워크 전체 광고 차단 및 DNS 필터링
 - **Pi-hole** — 경량 DNS 기반 광고 차단기
 - **Grafana + Prometheus** — 인프라 모니터링 대시보드
@@ -63,9 +54,7 @@ sudo ./install.sh
 
 ## 오 마이 파이의 작동 방식
 
-오 마이 파이는 3단계 배포 모델을 따릅니다:
-
-1. **시스템 프로비저닝** — OS, 네트워킹, 사용자, 보안 강화 구성
+오 마이 파이는 3단계 배포 모델을 따릅니다: 1. **시스템 프로비저닝** — OS, 네트워킹, 사용자, 보안 강화 구성
 2. **서비스 설치** — 합리적인 기본값으로 Docker Compose를 통해 선택한 서비스 배포
 3. **대시보드 조립** — 모든 서비스를 관리하기 위한 통합 웹 대시보드 생성
 
@@ -103,53 +92,34 @@ curl -sSL https://ohmypi.sh/install | sudo bash
 
 ### Docker 구성
 
-오 마이 파이는 모든 서비스 배포에 Docker Compose를 사용합니다:
-
-```yaml
+오 마이 파이는 모든 서비스 배포에 Docker Compose를 사용합니다: ```yaml
 # 서비스 설치 후 생성된 docker-compose.yaml
 version: "3.9"
-services:
-  homeassistant:
-    image: ghcr.io/home-assistant/home-assistant:stable
-    volumes:
-      - ha-data:/config
+services: homeassistant: image: ghcr.io/home-assistant/home-assistant:stable
+    volumes: - ha-data:/config
       - /etc/localtime:/etc/localtime:ro
-    ports:
-      - "8123:8123"
+    ports: - "8123:8123"
     restart: unless-stopped
 
-  adguard:
-    image: adguard/adguardhome:latest
-    volumes:
-      - adguard-conf:/opt/adguardhome/conf
+  adguard: image: adguard/adguardhome:latest
+    volumes: - adguard-conf:/opt/adguardhome/conf
       - adguard-work:/opt/adguardhome/work
-    ports:
-      - "53:53/tcp"
+    ports: - "53:53/tcp"
       - "53:53/udp"
       - "3000:3000"
       - "80:80/tcp"
     restart: unless-stopped
 
-  vaultwarden:
-    image: vaultwarden/server:latest
-    volumes:
-      - vw-data:/data
-    environment:
-      SIGNUPS_ALLOWED: "false"
+  vaultwarden: image: vaultwarden/server:latest
+    volumes: - vw-data:/data
+    environment: SIGNUPS_ALLOWED: "false"
     restart: unless-stopped
 
-volumes:
-  ha-data:
-  adguard-conf:
-  adguard-work:
-  vw-data:
-```
+volumes: ha-data: adguard-conf: adguard-work: vw-data: ```
 
 ### 네트워크 구성
 
-자동 네트워크 설정은 DHCP 예약, DNS 포워딩, 방화벽 규칙을 처리합니다:
-
-```bash
+자동 네트워크 설정은 DHCP 예약, DNS 포워딩, 방화벽 규칙을 처리합니다: ```bash
 # 정적 IP 구성
 sudo omp network static --ip 192.168.1.100 --gateway 192.168.1.1 --dns 8.8.8.8
 
@@ -162,9 +132,7 @@ sudo omp firewall enable --allow 22 --allow 80 --allow 443 --allow 8123
 
 ## 서비스 카탈로그: 상세 분석
 
-오 마이 파이는 6개 카테고리에 걸쳐 20개 이상의 서비스를 지원합니다:
-
-|| 카테고리 | 서비스 | 설치 시간 | 리소스 사용량 |
+오 마이 파이는 6개 카테고리에 걸쳐 20개 이상의 서비스를 지원합니다: || 카테고리 | 서비스 | 설치 시간 | 리소스 사용량 |
 ||----------|----------|-----------|--------------|
 || **홈 오토메이션** | Home Assistant, Zigbee2MQTT | 5분 | 512MB RAM |
 || **네트워킹** | AdGuard, Pi-hole, PiVPN | 3분 | 128MB RAM |
@@ -184,9 +152,7 @@ sudo omp install homeassistant zigbee2mqtt adguard grafana vaultwarden
 
 ## 대체재와의 비교
 
-여러 라즈베리 파이 자동화 프로젝트가 존재하지만, 오 마이 파이는 돋보입니다:
-
-|| 기능 | 오 마이 파이 | CasaOS | Raspberry Pi Imager | OSMC |
+여러 라즈베리 파이 자동화 프로젝트가 존재하지만, 오 마이 파이는 돋보입니다: || 기능 | 오 마이 파이 | CasaOS | Raspberry Pi Imager | OSMC |
 ||---------|----------|--------|-------------------|------|
 || 스타 | 12,554 | 18K+ | N/A | 3.2K |
 || 서비스 수 | 20+ | 15+ | N/A | 1 (미디어 전용) |
@@ -201,48 +167,35 @@ sudo omp install homeassistant zigbee2mqtt adguard grafana vaultwarden
 
 ## 고급 사용: 사용자 지정 서비스 배포
 
-오 마이 파이의 확장 시스템을 통해 사용자 지정 서비스 배포:
-
-### 사용자 지정 서비스 정의 작성
+오 마이 파이의 확장 시스템을 통해 사용자 지정 서비스 배포: ### 사용자 지정 서비스 정의 작성
 
 ```yaml
 # my-service.yaml — 사용자 지정 서비스 정의
-service:
-  name: my-custom-app
+service: name: my-custom-app
   version: "1.0"
   description: "사용자 지정 애플리케이션 배포"
   
-  docker:
-    image: "myapp:latest"
-    ports:
-      - "8080:8080"
-    volumes:
-      - myapp-data:/data
-    environment:
-      APP_ENV: production
+  docker: image: "myapp:latest"
+    ports: - "8080:8080"
+    volumes: - myapp-data:/data
+    environment: APP_ENV: production
       LOG_LEVEL: info
   
-  health_check:
-    url: "http://localhost:8080/health"
+  health_check: url: "http://localhost:8080/health"
     interval: "30s"
     retries: 3
   
-  resources:
-    cpu_limit: "0.5"
+  resources: cpu_limit: "0.5"
     memory_limit: "256M"
   
-  backup:
-    enabled: true
+  backup: enabled: true
     schedule: "0 2 * * *"  # 매일 오전 2시
-    volumes:
-      - myapp-data
+    volumes: - myapp-data
 ```
 
 ### 자동 백업
 
-오 마이 파이에는 암호화 저장 기능이 포함된 내장 백업 시스템이 있습니다:
-
-```bash
+오 마이 파이에는 암호화 저장 기능이 포함된 내장 백업 시스템이 있습니다: ```bash
 # 백업 대상 구성
 sudo omp backup configure --remote s3 --bucket ohmypi-backups --region us-east-1
 
@@ -258,9 +211,7 @@ sudo omp backup schedule --frequency daily --retention 30
 
 ### 원격 접근 및 터널링
 
-자동 HTTPS 터널링으로 어디서나 Pi 서비스에 접근:
-
-```bash
+자동 HTTPS 터널링으로 어디서나 Pi 서비스에 접근: ```bash
 # Cloudflare Tunnel 설정 (무료, 포트 포워딩 불필요)
 sudo omp tunnel cloudflare --token <cloudflare-token>
 
@@ -273,9 +224,7 @@ sudo omp proxy caddy --domain mypi.local --ssl auto
 
 ### 멀티파이 클러스터 관리
 
-단일 대시보드에서 여러 Pi 관리:
-
-```bash
+단일 대시보드에서 여러 Pi 관리: ```bash
 # 클러스터에 두 번째 Pi 추가
 sudo omp cluster add --host pi2.local --user pi --key ~/.ssh/id_ed25519
 
@@ -288,9 +237,7 @@ sudo omp cluster health
 
 ### SD 카드 상태 모니터링
 
-라즈베리 파이 SD 카드는 경고 없이 고장날 수 있습니다. 오 마이 파이에는 내장 SMART 유사 모니터링이 있습니다:
-
-```bash
+라즈베리 파이 SD 카드는 경고 없이 고장날 수 있습니다. 오 마이 파이에는 내장 SMART 유사 모니터링이 있습니다: ```bash
 # SD 카드 상태 확인
 sudo omp storage health
 
@@ -303,9 +250,7 @@ sudo omp storage schedule --interval hourly
 
 ### 전원 모니터링 및 UPS 통합
 
-중단 없는 운전을 위해 오 마이 파이는 UPS 하드웨어 모니터링과 정상 종료 지원을 제공합니다:
-
-```bash
+중단 없는 운전을 위해 오 마이 파이는 UPS 하드웨어 모니터링과 정상 종료 지원을 제공합니다: ```bash
 # UPS 모니터링 구성
 sudo omp ups configure --driver usb --shutdown-delay 300
 
@@ -402,14 +347,12 @@ curl -sSL https://ohmypi.sh/install | sudo bash
 
 ---
 
-**소스 및 추가 읽을거리**:
-- GitHub 레포지토리: https://github.com/can1357/oh-my-pi
+**소스 및 추가 읽을거리**: - GitHub 레포지토리: https://github.com/can1357/oh-my-pi
 - Raspberry Pi 문서: https://www.raspberrypi.com/documentation/
 - Docker 문서: https://docs.docker.com/
 
 
-**Sources & Further Reading**:
-- GitHub 저장소: https://github.com/can1357/oh-my-pi
+**Sources & Further Reading**: - GitHub 저장소: https://github.com/can1357/oh-my-pi
 - Raspberry Pi docs: https://www.raspberrypi.com/documentation/
 - Docker docs: https://docs.docker.com/
 **CTA**: Telegram에서 DIBI8 IoT 커뮤니티에 가입하세요 — [t.me/DIBI8_Group](https://t.me/DIBI8_Group)
@@ -417,7 +360,6 @@ curl -sSL https://ohmypi.sh/install | sudo bash
 **고지사항**: 이 기사에는 제휴 링크가 포함되어 있습니다. 링크를 통해 가입하시면 추가 비용 없이 저희가 커미션을 받을 수 있습니다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

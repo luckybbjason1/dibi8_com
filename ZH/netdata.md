@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/netdata" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/netdata" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/netdata" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/netdata" />
 title: 'Netdata: 78K+ Star 的实时监控 — 2026 性能调优指南'
 description: 'Netdata (ND) 是一款高性能实时监控 Agent，支持每秒指标采集与可视化。兼容 Docker、Kubernetes、Prometheus 和 Grafana。涵盖 netdata 教程、netdata 安装配置、实时监控、netdata vs prometheus、netdata 性能调优。'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [netdata, 监控, 可观测性, 性能调优, docker, kubernetes, 实时指标]
-aliases:
-- /zh/posts/netdata/
+aliases: - /zh/posts/netdata/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/netdata/ -->
 
 {{</* resource-info */>}}
 
@@ -95,36 +87,25 @@ docker run -d --name=netdata \
 
 ```yaml
 version: '3.8'
-services:
-  netdata:
-    image: netdata/netdata:v2.5.0
+services: netdata: image: netdata/netdata:v2.5.0
     container_name: netdata
     hostname: "netdata-${HOSTNAME}"
-    ports:
-      - "19999:19999"
+    ports: - "19999:19999"
     restart: unless-stopped
-    cap_add:
-      - SYS_PTRACE
+    cap_add: - SYS_PTRACE
       - SYS_ADMIN
-    security_opt:
-      - apparmor:unconfined
-    volumes:
-      - /proc:/host/proc:ro
+    security_opt: - apparmor:unconfined
+    volumes: - /proc:/host/proc:ro
       - /sys:/host/sys:ro
       - /etc/os-release:/host/etc/os-release:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - netdata-config:/etc/netdata
       - netdata-lib:/var/lib/netdata
       - netdata-cache:/var/cache/netdata
-    environment:
-      - NETDATA_CLAIM_TOKEN=${NETDATA_CLAIM_TOKEN}
+    environment: - NETDATA_CLAIM_TOKEN=${NETDATA_CLAIM_TOKEN}
       - NETDATA_CLAIM_URL=https://app.netdata.cloud
       - NETDATA_CLAIM_ROOMS=${NETDATA_CLAIM_ROOMS}
-volumes:
-  netdata-config:
-  netdata-lib:
-  netdata-cache:
-```
+volumes: netdata-config: netdata-lib: netdata-cache: ```
 
 ![Netdata 系统监控界面](https://hackmag.com/wp-content/uploads/2025/07/10244_02-16-39.png)
 
@@ -195,14 +176,12 @@ sudo systemctl restart netdata
 ```yaml
 # Grafana 中的 datasource.yaml
 apiVersion: 1
-datasources:
-  - name: Netdata-Prometheus
+datasources: - name: Netdata-Prometheus
     type: prometheus
     url: http://netdata:19999/api/v1/allmetrics?format=prometheus
     access: proxy
     isDefault: false
-    jsonData:
-      timeInterval: "1s"
+    jsonData: timeInterval: "1s"
 ```
 
 ### Kubernetes DaemonSet (高级)
@@ -212,31 +191,18 @@ datasources:
 ```yaml
 apiVersion: apps/v1
 kind: DaemonSet
-metadata:
-  name: netdata
+metadata: name: netdata
   namespace: monitoring
-spec:
-  selector:
-    matchLabels:
-      app: netdata
-  template:
-    metadata:
-      labels:
-        app: netdata
-    spec:
-      hostNetwork: true
+spec: selector: matchLabels: app: netdata
+  template: metadata: labels: app: netdata
+    spec: hostNetwork: true
       hostPID: true
-      containers:
-        - name: netdata
+      containers: - name: netdata
           image: netdata/netdata:v2.5.0
-          ports:
-            - containerPort: 19999
+          ports: - containerPort: 19999
               hostPort: 19999
-          securityContext:
-            capabilities:
-              add: [SYS_PTRACE, SYS_ADMIN]
-          volumeMounts:
-            - name: proc
+          securityContext: capabilities: add: [SYS_PTRACE, SYS_ADMIN]
+          volumeMounts: - name: proc
               mountPath: /host/proc
               readOnly: true
             - name: sys
@@ -245,16 +211,12 @@ spec:
             - name: docker-sock
               mountPath: /var/run/docker.sock
               readOnly: true
-      volumes:
-        - name: proc
-          hostPath:
-            path: /proc
+      volumes: - name: proc
+          hostPath: path: /proc
         - name: sys
-          hostPath:
-            path: /sys
+          hostPath: path: /sys
         - name: docker-sock
-          hostPath:
-            path: /var/run/docker.sock
+          hostPath: path: /var/run/docker.sock
 ```
 
 ### PostgreSQL 监控
@@ -262,11 +224,9 @@ spec:
 在 `go.d/postgres.conf` 中启用 PostgreSQL 采集器：
 
 ```yaml
-jobs:
-  - name: local
+jobs: - name: local
     dsn: 'postgres://netdata_monitor:password@localhost:5432/postgres'
-    collect:
-      - database_statistics
+    collect: - database_statistics
       - table_statistics
       - index_statistics
       - replication_statistics
@@ -287,14 +247,12 @@ sudo systemctl restart netdata
 
 ```yaml
 # /etc/netdata/go.d/nginx.conf
-jobs:
-  - name: local
+jobs: - name: local
     url: http://localhost/stub_status
 
   - name: access_log
     path: /var/log/nginx/access.log
-    parser:
-      type: ltsv
+    parser: type: ltsv
 ```
 
 ## 基准测试 / 实际应用场景
@@ -304,7 +262,15 @@ jobs:
 阿姆斯特丹大学发表了同行评审研究 (ICSOC 2023)，将 Netdata 评为 Docker 系统中最节能的监控工具。独立基准测试确认：
 
 | 场景 | Netdata | Prometheus + Node Exporter | Zabbix Agent |
-|------|---------|---------------------------|--------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | CPU 开销 (%) | 1–5% | 5–15% | 10–20% |
 | 每节点内存 | 100–150 MB | 200–500 MB | 150–300 MB |
 | 采集间隔 | 1 秒 | 15–60 秒 | 30–60 秒 |
@@ -475,7 +441,17 @@ curl -s http://localhost:19999/api/v1/data?chart=netdata.dbengine_main_page_stat
 ## 与替代方案对比
 
 | 特性 | Netdata | Prometheus | Datadog | Zabbix |
-|------|---------|------------|---------|--------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 采集间隔 | 1 秒 | 15–60 秒 | 15 秒 | 30–60 秒 |
 | Agent 内存 | 100–150 MB | 200–500 MB | 200–400 MB | 150–300 MB |
 | Agent CPU | 1–5% | 5–15% | 3–8% | 10–20% |
@@ -571,7 +547,6 @@ Netdata 兑现了大多数监控工具未能实现的承诺：即时、每秒粒
 - [发布说明与变更日志](https://github.com/netdata/netdata/releases)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -597,8 +572,8 @@ Netdata 兑现了大多数监控工具未能实现的承诺：即时、每秒粒
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [trivy-production-security-scanner-2026](netdata)
@@ -607,8 +582,8 @@ Netdata 兑现了大多数监控工具未能实现的承诺：即时、每秒粒
 - [apple-container](netdata)
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](netdata)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

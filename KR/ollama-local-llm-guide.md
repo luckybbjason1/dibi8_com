@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ollama-local-llm-guide" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ollama-local-llm-guide" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ollama-local-llm-guide" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ollama-local-llm-guide" />
 title: 'Ollama 완벽 가이드 2025: 로컬에서 LLM 실행하기 - 모든 하드웨어 가이드'
 description: 'Ollama로 로컬에서 대규모 언어 모델을 실행하는 완벽 가이드. 설치, 모델 관리, REST API, LangChain 통합, 하드웨어 요구사항, Docker 배포까지 상세히 다룬다.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/ollama-local-llm-guide/
+aliases: - /posts/ollama-local-llm-guide/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/ollama-local-llm-guide/ -->
 
 {</* resource-info */>}
 
@@ -330,28 +322,17 @@ OLLAMA_NUM_PARALLEL=4 ollama serve
 
 ```yaml
 version: "3.8"
-services:
-  ollama:
-    image: ollama/ollama:latest
+services: ollama: image: ollama/ollama:latest
     container_name: ollama
-    volumes:
-      - ollama-data:/root/.ollama
-    ports:
-      - "11434:11434"
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+    volumes: - ollama-data:/root/.ollama
+    ports: - "11434:11434"
+    deploy: resources: reservations: devices: - driver: nvidia
               count: 1
               capabilities: [gpu]
-    environment:
-      - OLLAMA_NUM_PARALLEL=4
+    environment: - OLLAMA_NUM_PARALLEL=4
       - OLLAMA_MAX_LOADED_MODELS=2
 
-volumes:
-  ollama-data:
-```
+volumes: ollama-data: ```
 
 ### 로드 밸런싱
 
@@ -452,16 +433,13 @@ ollama pull llama3.1
 
 ## 추천 인프라
 
-위 도구들을 24/7 안정 운영하려면 인프라가 중요하다:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전.
+위 도구들을 24/7 안정 운영하려면 인프라가 중요하다: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연. dibi8.com 자체 호스팅 IDC.
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

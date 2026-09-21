@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mcp-server-registry-comprehensive-guide-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mcp-server-registry-comprehensive-guide-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mcp-server-registry-comprehensive-guide-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mcp-server-registry-comprehensive-guide-2026" />
 title: 'MCP Server 레지스트리 가이드 2026: 19,700+ 서버, 7개 공식 픽, 60초 안에 맞...
 description: '2026년 MCP server 발견 완전 가이드. Anthropic 7개 reference 서버, 87.3k star awesome list, Smithery vs mcp.so 레지스트리 비교, 카테고리별 top 서버, 그리고 선택 결정 트리 — MCP가 뭔지가 아니라 당신의 MCP host에 꽂을 수 있는 게 뭔지에 대한 가이드.'
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
-tech_stack:
-  - TypeScript
+tech_stack: - TypeScript
   - Python
   - Docker
 application_domain: Llm Frameworks
@@ -28,11 +22,9 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [mcp, 'model context protocol', 레지스트리, 'hub 글']
-aliases:
-  - /posts/mcp-server-registry-comprehensive-guide-2026/
+aliases: - /posts/mcp-server-registry-comprehensive-guide-2026/
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/mcp-server-registry-comprehensive-guide-2026/ -->
 # MCP Server 레지스트리 가이드 2026: 19,700+ 서버, 7개 공식 픽, 60초 안에 맞는 거 찾는 법
 
 
@@ -42,9 +34,7 @@ aliases:
 
 ## 1. 왜 MCP server 수가 6개월 만에 100배 폭증했나
 
-세 가지가 복합:
-
-1. **크로스 플랫폼 채택**: 2026년 초까지 Anthropic, OpenAI, Google DeepMind 모두 MCP 지원. 한 번 작성한 server가 Claude Desktop, ChatGPT, Gemini에서 다 됨
+세 가지가 복합: 1. **크로스 플랫폼 채택**: 2026년 초까지 Anthropic, OpenAI, Google DeepMind 모두 MCP 지원. 한 번 작성한 server가 Claude Desktop, ChatGPT, Gemini에서 다 됨
 2. **툴링 성숙**: TypeScript, Python, Go, Rust, Swift SDK — server 만드는 건 50줄 오후 프로젝트
 3. **2026 로드맵 착륙**: 트랜스포트 확장성(server가 세션 상태 안 들고 수평 확장 가능), 엔터프라이즈 인증(SSO/감사 트레일), MCP Apps(SEP-1865 UI 확장)로 프로덕션 레디
 
@@ -65,9 +55,7 @@ aliases:
 
 ## 3. Anthropic 7개 Reference Server — 베이스라인
 
-공식 [modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers) 저장소(GitHub 86k star)는 7개 reference 구현을 유지합니다. Anthropic 내부에서 쓰는 + 프로토콜의 "해피 패스" 도장이 찍힌 server들:
-
-| Server | 하는 일 | 전형적 사용 |
+공식 [modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers) 저장소(GitHub 86k star)는 7개 reference 구현을 유지합니다. Anthropic 내부에서 쓰는 + 프로토콜의 "해피 패스" 도장이 찍힌 server들: | Server | 하는 일 | 전형적 사용 |
 |---|---|---|
 | **Everything** | 모든 MCP primitive(tool/resource/prompt) 노출하는 데모 server | 프로토콜 작성자의 reference 읽기 |
 | **Fetch** | HTTP/HTTPS 페처 + html→markdown 변환 | LLM이 임의 URL 요청 시 읽음 |
@@ -77,18 +65,14 @@ aliases:
 | **Sequential Thinking** | 다단계 추론 스캐폴드 (chain-of-thought를 도구로) | 복잡한 계획 작업 |
 | **Time** | 타임존 인식 날짜/시간 연산 | 스케줄링 에이전트, 캘린더 봇 |
 
-은퇴한 reference 두 개:
-
-- **Brave Search** — Brave 본인이 관리하는 [brave/brave-search-mcp-server](https://github.com/brave/brave-search-mcp-server)로 이전
+은퇴한 reference 두 개: - **Brave Search** — Brave 본인이 관리하는 [brave/brave-search-mcp-server](https://github.com/brave/brave-search-mcp-server)로 이전
 - **Slack** — 이제 Zencoder 커뮤니티 관리
 
 오늘 시작한다면 **Filesystem + Fetch + Memory** 포함 config 복사 — 그게 "자율 코딩 에이전트 최소 유용 세트".
 
 ## 4. awesome-mcp-servers — 87.3k Star 커뮤니티 색인
 
-[punkpeye/awesome-mcp-servers](https://github.com/punkpeye/awesome-mcp-servers)는 사실상 커뮤니티 카탈로그: **87.3k star, 10.5k fork, 1.6k PR**. 서버는 ~40 카테고리로 그룹화. 2026 AI 개발 워크플로우에서 가장 중요한 카테고리:
-
-- **Aggregators** — 여러 MCP server를 한 엔드포인트 뒤에 묶음 (`1mcp/agent`, `a2asearch-mcp`)
+[punkpeye/awesome-mcp-servers](https://github.com/punkpeye/awesome-mcp-servers)는 사실상 커뮤니티 카탈로그: **87.3k star, 10.5k fork, 1.6k PR**. 서버는 ~40 카테고리로 그룹화. 2026 AI 개발 워크플로우에서 가장 중요한 카테고리: - **Aggregators** — 여러 MCP server를 한 엔드포인트 뒤에 묶음 (`1mcp/agent`, `a2asearch-mcp`)
 - **Browser Automation** — `playwright-mcp`, `browsermcp/mcp`, `real-browser-mcp`
 - **Cloud Platforms** — `terraform-mcp-server`, `aws-mcp-server`, `k8s-mcp-server`, `localstack-mcp-server`
 - **Code Execution** — `e2b-sandbox-mcp` (클라우드 샌드박스), `piston-mcp` (멀티랭 러너), `pydantic-ai/mcp-run-python`
@@ -128,9 +112,7 @@ awesome-list가 2026년 1월 500개 server를 넘기자, "JSON config 복사 붙
 
 ## 6. 카테고리별 Top MCP Server (2026년 5월)
 
-커뮤니티 star 카운트, 통합 커버리지, 최근 커밋 활동 기준:
-
-**Filesystem & Code**
+커뮤니티 star 카운트, 통합 커버리지, 최근 커밋 활동 기준: **Filesystem & Code**
 - `modelcontextprotocol/server-filesystem` (공식) — 샌드박스 FS
 - `cyanheads/git-mcp-server` — 공식 Git server 범위 넘는 Git 작업
 - `tools-mcp/codemap-mcp` — 시맨틱 코드 내비게이션
@@ -179,9 +161,7 @@ awesome-list가 2026년 1월 500개 server를 넘기자, "JSON config 복사 붙
 
 ## 8. 고르는 법 + 직접 만드는 곳
 
-**픽 체크리스트 (후보당 30초)**:
-
-1. **Star > 500** + **마지막 커밋 < 90일** = 활성 프로젝트 (아니면 다른 거)
+**픽 체크리스트 (후보당 30초)**: 1. **Star > 500** + **마지막 커밋 < 90일** = 활성 프로젝트 (아니면 다른 거)
 2. **"good first issue" 라벨 open issue 존재** = 유지자가 컨트리뷰션 환영 (건강)
 3. **License = MIT/Apache 2.0** = 상업 사용 안전
 4. **README에 `claude_desktop_config.json` 스니펫 있음** = 작성자가 설치 경로 테스트함
@@ -193,9 +173,7 @@ awesome-list가 2026년 1월 500개 server를 넘기자, "JSON config 복사 붙
 
 ## TL;DR
 
-2026 MCP server 생태계는 알아둘 4 레이어:
-
-1. **Anthropic 7 reference server** — 베이스라인 (Filesystem + Fetch + Memory 최소)
+2026 MCP server 생태계는 알아둘 4 레이어: 1. **Anthropic 7 reference server** — 베이스라인 (Filesystem + Fetch + Memory 최소)
 2. **awesome-mcp-servers (87.3k star)** — 정전 커뮤니티 색인, 카테고리로 탐색
 3. **Smithery + mcp.so** — 레지스트리 플랫폼 (Smithery CLI 설치용, mcp.so 폭 넓음)
 4. **셀프호스트 vs 클라우드 호스트** — 컴플라이언스/레이턴시는 셀프호스트, 프로토타입/컴퓨트 헤비는 클라우드
@@ -207,7 +185,6 @@ awesome-list가 2026년 1월 500개 server를 넘기자, "JSON config 복사 붙
 *5+ MCP server (postgres + filesystem + git + memory + tavily-search)를 클라우드 청구서 안 태우고 셀프호스트하고 싶으신가요? $6/월 {{< aff "digitalocean" "footer-cta" "DigitalOcean droplet" >}} 하나 띄우고, 슈퍼바이저(systemd 또는 PM2) 아래 돌리고, Claude Desktop `claude_desktop_config.json`을 호스트로 가리키세요. 오후에 완료.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -235,25 +212,20 @@ awesome-list가 2026년 1월 500개 server를 넘기자, "JSON config 복사 붙
 
 ## Why This Matters
 
-Understanding mcp server 레지스트리 가이드 2026: 19,700+ 서버, 7개 공식 픽, 60초 안에 맞는 거 찾는 법 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding mcp server 레지스트리 가이드 2026: 19,700+ 서버, 7개 공식 픽, 60초 안에 맞는 거 찾는 법 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

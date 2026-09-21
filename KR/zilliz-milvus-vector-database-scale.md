@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/zilliz-milvus-vector-database-scale" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/zilliz-milvus-vector-database-scale" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/zilliz-milvus-vector-database-scale" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/zilliz-milvus-vector-database-scale" />
 title: 'Milvus/Zilliz 2026: 100억 벡터를 밀리초 지연으로 처리하는 벡터 데이터베이스 — 배...
 description: 'Milvus 2.5 프로덕션 가이드: 10억 규모 벡터 검색, GPU 가속 인덱싱, Kubernetes 배포, 하이브리드 검색, Zilliz Cloud 설정.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: [milvus, zilliz, '벡터-데이터베이스', ann, '유사도-검색', kubernetes, 'gpu-인덱싱', 'ai-인프라']
-aliases:
-- /kr/posts/zilliz-milvus-vector-database-scale/
+aliases: - /kr/posts/zilliz-milvus-vector-database-scale/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/zilliz-milvus-vector-database-scale/ -->
 
 {{</* resource-info */>}}
 
@@ -60,9 +52,7 @@ Zilliz가 유지보수하는 CNCF 졸업 오픈소스 벡터 데이터베이스�
 
 ## Milvus 작동 방식: 아키텍처 심층 분석
 
-Milvus 2.5는 **클우드 네이티브 마이크로서비스 아키텍처**를 따륩며, 다섯 개의 핵심 컴포넌트로 구성된다:
-
-1. **Proxy** — 클라이언트 요청 처리, 로드 밸런싱, 쿼리 노드로 전달.
+Milvus 2.5는 **클우드 네이티브 마이크로서비스 아키텍처**를 따륩며, 다섯 개의 핵심 컴포넌트로 구성된다: 1. **Proxy** — 클라이언트 요청 처리, 로드 밸런싱, 쿼리 노드로 전달.
 2. **Query Node** — 로드된 인덱스 세그먼트에 대해 ANN 검색 실행.
 3. **Data Node** — 데이터 삽입, 플러시, 컴팩션 관리.
 4. **Index Node** — 벡터 인덱스 구축 (HNSW, IVF, DiskANN, GPU 기반).
@@ -81,12 +71,8 @@ Milvus 2.5는 **클우드 네이티브 마이크로서비스 아키텍처**를 �
 
 ```yaml
 # Milvus index node용 GPU 리소스 할당 (Helm values)
-indexNode:
-  resources:
-    limits:
-      nvidia.com/gpu: 1  # 인덱스 빌딩을 위해 1개 GPU 요청
-    requests:
-      memory: "16Gi"
+indexNode: resources: limits: nvidia.com/gpu: 1  # 인덱스 빌딩을 위해 1개 GPU 요청
+    requests: memory: "16Gi"
       cpu: "8"
 ```
 
@@ -206,8 +192,7 @@ import numpy as np
 batch_size = 10000
 total_vectors = 100000
 
-for i in range(0, total_vectors, batch_size):
-    embeddings = np.random.randn(batch_size, 1536).tolist()
+for i in range(0, total_vectors, batch_size): embeddings = np.random.randn(batch_size, 1536).tolist()
     texts = [f"document_{i+j}" for j in range(batch_size)]
     categories = ["tech" if j % 2 == 0 else "finance" for j in range(batch_size)]
     
@@ -231,8 +216,7 @@ results = collection.search(
     output_fields=["text", "category"]
 )
 
-for hit in results[0]:
-    print(f"ID: {hit.id}, 거리: {hit.distance:.4f}, 텍스트: {hit.entity.text}")
+for hit in results[0]: print(f"ID: {hit.id}, 거리: {hit.distance:.4f}, 텍스트: {hit.entity.text}")
 ```
 
 ```python
@@ -255,9 +239,7 @@ print(f"{len(results[0])}개 필터링된 결과 발견")
 
 ## 벤치마크: 실제 데이터
 
-2026년 4월 독립 벤치마크, `dbpedia-openai-1M` 데이터셋 사용 (100만 벡터, 1536 차원, AWS c6i.8xlarge, 명시되지 않은 경우):
-
-| 지표 | Milvus (CPU) | Milvus (GPU T4) | Pinecone | Weaviate | Qdrant |
+2026년 4월 독립 벤치마크, `dbpedia-openai-1M` 데이터셋 사용 (100만 벡터, 1536 차원, AWS c6i.8xlarge, 명시되지 않은 경우): | 지표 | Milvus (CPU) | Milvus (GPU T4) | Pinecone | Weaviate | Qdrant |
 |--------|-------------|-----------------|----------|----------|--------|
 | **p99 쿼리 지연시간** | 18 ms | **8 ms** | 28 ms | 19 ms | 12 ms |
 | **Recall@10** | **0.99** | **0.99** | 0.94 | 0.97 | 0.99 |
@@ -323,8 +305,7 @@ vector_store.add_documents(docs)
 
 # 유사도 검색
 results = vector_store.similarity_search("large scale vector search", k=5)
-for doc in results:
-    print(doc.page_content)
+for doc in results: print(doc.page_content)
 ```
 
 ### LlamaIndex 통합
@@ -362,8 +343,7 @@ import numpy as np
 
 client = OpenAI()
 
-def get_embedding(text: str) -> list[float]:
-    resp = client.embeddings.create(
+def get_embedding(text: str) -> list[float]: resp = client.embeddings.create(
         model="text-embedding-3-large",
         input=text,
         dimensions=1536
@@ -379,25 +359,17 @@ collection.insert([[embedding], ["milvus_overview"]])
 
 ### 계층화 스토리지 구성
 
-Milvus 2.5는 대규모 데이터셋 비용 절감을 위해 계층화 스토리지를 지원한다:
-
-```yaml
+Milvus 2.5는 대규모 데이터셋 비용 절감을 위해 계층화 스토리지를 지원한다: ```yaml
 # 계층화 스토리지용 Helm values
-extraConfigFiles:
-  user.yaml: |+
-    common:
-      storageType: remote
-    minio:
-      address: minio.milvus.svc:9000
+extraConfigFiles: user.yaml: |+
+    common: storageType: remote
+    minio: address: minio.milvus.svc:9000
       bucketName: milvus-bucket
       rootPath: files
     # 계층화 스토리지 활성화
-    queryNode:
-      cache:
-        warmUp: async
+    queryNode: cache: warmUp: async
         memoryLimit: 8GB  # 메모리의 핫 데이터
-      disk:
-        enabled: true     # 로컬 디스크의 웜 데이터
+      disk: enabled: true     # 로컬 디스크의 웜 데이터
         capacity: 100GB
 ```
 
@@ -420,10 +392,8 @@ make
 
 ```yaml
 # Helm values의 Milvus 모니터링 구성
-metrics:
-  enabled: true
-  serviceMonitor:
-    enabled: true
+metrics: enabled: true
+  serviceMonitor: enabled: true
     interval: 30s
 
 # Grafana 대시보드: https://github.com/zilliztech/milvus-insight
@@ -524,9 +494,7 @@ Milvus 2.5는 NVIDIA RAFT와 통합하여 GPU 가속 HNSW 및 IVF 인덱스 구�
 
 ### Milvus는 어떤 백업 전략을 지원하나요?
 
-Milvus Backup (공식 도구)은 S3 호환 스토리지에 대한 전체 클러스터 스냅샷을 지원한다. 프로덕션의 경우 cron을 통해 일일 백업을 예약하라:
-
-```bash
+Milvus Backup (공식 도구)은 S3 호환 스토리지에 대한 전체 클러스터 스냅샷을 지원한다. 프로덕션의 경우 cron을 통해 일일 백업을 예약하라: ```bash
 0 2 * * * /usr/local/bin/milvus-backup create -n "auto_$(date +\%Y\%m\%d)"
 ```
 
@@ -559,9 +527,7 @@ Milvus 배포 경험을 공유하고 동료 엔지니어로부터 도움을 받�
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -571,7 +537,6 @@ Milvus 배포 경험을 공유하고 동료 엔지니어로부터 도움을 받�
 이 문서에는 클라우드 호스팅을 위한 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 제휴 링크가 포함되어 있다. 우리 링크를 통해 가입하면 추가 비용 없이 커미션을 받는다. 우리는 자체 프로덕션 환경에서 사용하는 서비스만 추천한다. 제휴 링크는 dibi8.com 오픈소스 콘텐츠 개발에 자금을 지원한다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

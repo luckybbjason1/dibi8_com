@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/alpaca-trading-api-stock-broker" />
 title: 'Alpaca Trading API 2026: The Commission-Free Stock Broke...
 description: 'Complete guide to the Alpaca Trading API for commission-free algorithmic trading. Learn setup, order placement, WebSocket streaming, fractional shares, and paper trading with Python code examples.'
 date: 2026-05-20 00:00:00+08:00
@@ -22,22 +20,20 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: ['alpaca trading api']
-aliases:
-- /posts/alpaca-trading-api-stock-broker/
+aliases: - /posts/alpaca-trading-api-stock-broker/-
 ---
-
 {{</* resource-info */>}}
 
 > 📌 **Affiliate Disclosure**: This article contains affiliate links. We may earn a commission if you sign up through our link — at no extra cost to you. Our reviews are independent and based on thorough research.
 > 
 > 🚀 **Try Minara for AI-Powered Trading**: [Sign up with Minara](https://minara.ai/r/OSXG4X) — the AI trading platform that helps you build, backtest, and deploy automated strategies with zero coding required.
 
----
 
+---
 **Published:** 2026-05-19 | **Category:** AI Trading | **Reading Time:** 15 min
 
----
 
+---
 ## What Is the Alpaca Trading API?
 
 The **Alpaca Trading API** is a commission-free, API-first brokerage platform designed specifically for developers and algorithmic traders. Founded in 2015 and headquartered in Silicon Valley, Alpaca has rapidly become one of the most popular choices for building automated trading systems, with over **7 million API-connected accounts** and recognition as the #1 Best Broker by BrokerChooser as of January 2026.
@@ -47,7 +43,11 @@ Unlike traditional brokerages that offer clunky, outdated APIs as an afterthough
 What truly sets Alpaca apart is its **commission-free model**. You pay zero commissions on U.S. stock and ETF trades, making it exceptionally cost-effective for high-frequency strategies that execute dozens or hundreds of trades per day. The API is free to use, including the full paper trading environment, which means you can develop, test, and deploy strategies without ever paying platform fees.
 
 | Feature | Specification |
-|---------|--------------|
+|
+---
+|
+---
+|
 | **API Types** | REST API, WebSocket Streaming, FIX API |
 | **Supported Assets** | U.S. Stocks, ETFs, Options, Crypto |
 | **SDK Languages** | Python, JavaScript/Node.js, Go, C# |
@@ -87,11 +87,8 @@ Sign up at [alpaca.markets](https://alpaca.markets) and complete the identity ve
 
 ### Step 2: Generate API Keys
 
-Once your account is approved, navigate to the Paper Trading section to generate your first API keys:
-
-```python
-# Your API credentials will look like this:
-API_KEY = PKABCDEF1234567890EXAMPLE
+Once your account is approved, navigate to the Paper Trading section to generate your first API keys: ```python
+# Your API credentials will look like this: API_KEY = PKABCDEF1234567890EXAMPLE
 API_SECRET = abcdefghijklmnopqrstuvwxyz1234567890example
 BASE_URL = 'https://paper-api.alpaca.markets'  # Paper trading endpoint
 ```
@@ -103,9 +100,7 @@ const API_SECRET = abcdefghijklmnopqrstuvwxyz1234567890example;
 const BASE_URL = 'https://paper-api.alpaca.markets';
 ```
 
-Keep your secret key secure — never commit it to version control. Use environment variables or a secrets manager:
-
-```python
+Keep your secret key secure — never commit it to version control. Use environment variables or a secrets manager: ```python
 # Secure credential management with environment variables
 import os
 from alpaca_trade_api import REST
@@ -142,9 +137,7 @@ go get github.com/alpacahq/alpaca-trade-api-go/v3/alpaca
 
 ### Placing Your First Order
 
-Alpaca supports multiple order types including market, limit, stop, stop-limit, and trailing stop orders. Here's how to place each:
-
-```python
+Alpaca supports multiple order types including market, limit, stop, stop-limit, and trailing stop orders. Here's how to place each: ```python
 from alpaca_trade_api import REST
 import os
 
@@ -217,9 +210,7 @@ trailing_stop = api.submit_order(
 
 ### Fractional Share Trading
 
-One of Alpaca's standout features is **fractional share trading**, which allows you to invest precise dollar amounts rather than whole shares:
-
-```python
+One of Alpaca's standout features is **fractional share trading**, which allows you to invest precise dollar amounts rather than whole shares: ```python
 # Buy $500 worth of Apple — regardless of share price
 fractional_order = api.submit_order(
     symbol=AAPL,
@@ -239,8 +230,7 @@ portfolio = {
     VNQ: 500.00     # Real estate
 }
 
-for symbol, amount in portfolio.items():
-    order = api.submit_order(
+for symbol, amount in portfolio.items(): order = api.submit_order(
         symbol=symbol,
         notional=amount,
         side=buy,
@@ -252,9 +242,7 @@ for symbol, amount in portfolio.items():
 
 ### Extended Hours Trading (24/5)
 
-Alpaca supports **24/5 trading**, allowing you to trade outside regular market hours (9:30 AM – 4:00 PM ET):
-
-```python
+Alpaca supports **24/5 trading**, allowing you to trade outside regular market hours (9:30 AM – 4:00 PM ET): ```python
 # Place an order for extended hours execution
 extended_hours_order = api.submit_order(
     symbol=SPY,
@@ -285,21 +273,16 @@ print(f"Next close: {clock.next_close}")
 
 ### Setting Up WebSocket Data Streams
 
-Alpaca's WebSocket API provides real-time streaming of trades, quotes, and minute bars. This is essential for strategies that react to market events in real time:
-
-```python
+Alpaca's WebSocket API provides real-time streaming of trades, quotes, and minute bars. This is essential for strategies that react to market events in real time: ```python
 import asyncio
 from alpaca_trade_api.stream import Stream
 
 # WebSocket streaming for real-time data
-async def handle_trade(t):
-    print(f"Trade: {t.symbol} @ ${t.price} x {t.size}")
+async def handle_trade(t): print(f"Trade: {t.symbol} @ ${t.price} x {t.size}")
 
-async def handle_quote(q):
-    print(f"Quote: {q.symbol} Bid: ${q.bid_price} Ask: ${q.ask_price}")
+async def handle_quote(q): print(f"Quote: {q.symbol} Bid: ${q.bid_price} Ask: ${q.ask_price}")
 
-async def handle_bar(bar):
-    print(f"Bar: {bar.symbol} O:{bar.open} H:{bar.high} L:{bar.low} C:{bar.close}")
+async def handle_bar(bar): print(f"Bar: {bar.symbol} O:{bar.open} H:{bar.high} L:{bar.low} C:{bar.close}")
 
 # Initialize stream
 stream = Stream(
@@ -324,17 +307,14 @@ stream.run()
 import asyncio
 from alpaca_trade_api.stream import Stream
 
-async def run_streaming_strategy():
-    stream = Stream(
+async def run_streaming_strategy(): stream = Stream(
         key_id=YOUR_API_KEY,
         secret_key=YOUR_SECRET_KEY,
         data_feed=iex
     )
     
-    async def on_bar(bar):
-        # Your strategy logic here
-        if bar.close > bar.vwap * 1.02:
-            print(f"Potential breakout: {bar.symbol} at ${bar.close}")
+    async def on_bar(bar): # Your strategy logic here
+        if bar.close > bar.vwap * 1.02: print(f"Potential breakout: {bar.symbol} at ${bar.close}")
     
     stream.subscribe_bars(on_bar, AAPL, MSFT, GOOGL, AMZN)
     
@@ -395,8 +375,7 @@ print(f"Day Trade Count: {account.daytrade_count}")
 positions = api.list_positions()
 print(f"Number of positions: {len(positions)}")
 
-for pos in positions:
-    print(f"{pos.symbol}: {pos.qty} shares @ ${pos.avg_entry_price}")
+for pos in positions: print(f"{pos.symbol}: {pos.qty} shares @ ${pos.avg_entry_price}")
     print(f"  Current: ${pos.current_price} | P&L: ${pos.unrealized_pl} ({pos.unrealized_plpc}%)")
 ```
 
@@ -413,8 +392,7 @@ print(f"Unrealized P&L: ${aapl_position.unrealized_pl}")
 ```python
 # List all open orders
 open_orders = api.list_orders(status=open)
-for order in open_orders:
-    print(f"Order {order.id}: {order.side} {order.qty} {order.symbol} @ {order.type}")
+for order in open_orders: print(f"Order {order.id}: {order.side} {order.qty} {order.symbol} @ {order.type}")
 ```
 
 ```python
@@ -437,8 +415,7 @@ closed_orders = api.list_orders(
     after='2026-05-01T00:00:00Z'
 )
 
-for order in closed_orders:
-    print(f"{order.symbol}: {order.side} {order.filled_qty}/{order.qty} @ ${order.filled_avg_price}")
+for order in closed_orders: print(f"{order.symbol}: {order.side} {order.filled_qty}/{order.qty} @ ${order.filled_avg_price}")
 ```
 
 ---
@@ -498,8 +475,7 @@ import pandas as pd
 symbols = [AAPL, MSFT, GOOGL, AMZN, META]
 all_bars = {}
 
-for symbol in symbols:
-    bars = api.get_bars(
+for symbol in symbols: bars = api.get_bars(
         symbol,
         timeframe=1Day,
         start='2026-01-01T00:00:00Z',
@@ -522,9 +498,7 @@ print(returns.head())
 
 ## Building a Complete Trading Strategy
 
-Here's a complete **momentum-based trading bot** that combines everything we've covered:
-
-```python
+Here's a complete **momentum-based trading bot** that combines everything we've covered: ```python
 """
 Alpaca Momentum Trading Bot
 Strategy: Buy when price crosses above 20-period SMA with volume confirmation
@@ -543,46 +517,33 @@ WATCHLIST = [AAPL, MSFT, GOOGL, AMZN, NVDA]
 POSITION_SIZE = 1000  # Dollar amount per trade
 SMA_PERIOD = 20
 
-class MomentumTrader:
-    def __init__(self):
-        self.api = REST(key_id=API_KEY, secret_key=API_SECRET, base_url=BASE_URL)
+class MomentumTrader: def __init__(self): self.api = REST(key_id=API_KEY, secret_key=API_SECRET, base_url=BASE_URL)
         self.price_history = {s: [] for s in WATCHLIST}
         self.positions_held = set()
     
-    def get_sma(self, prices, period):
-        """Calculate Simple Moving Average"""
-        if len(prices) < period:
-            return None
+    def get_sma(self, prices, period): """Calculate Simple Moving Average"""
+        if len(prices) < period: return None
         return sum(prices[-period:]) / period
     
-    def check_for_signal(self, symbol, current_price):
-        """Generate buy/sell signals based on SMA crossover"""
+    def check_for_signal(self, symbol, current_price): """Generate buy/sell signals based on SMA crossover"""
         self.price_history[symbol].append(current_price)
         
-        if len(self.price_history[symbol]) < SMA_PERIOD + 5:
-            return None
+        if len(self.price_history[symbol]) < SMA_PERIOD + 5: return None
         
         sma = self.get_sma(self.price_history[symbol], SMA_PERIOD)
         prev_price = self.price_history[symbol][-2]
         prev_sma = self.get_sma(self.price_history[symbol][:-1], SMA_PERIOD)
         
         # Buy signal: price crosses above SMA
-        if prev_price <= prev_sma and current_price > sma:
-            if symbol not in self.positions_held:
-                return buy
+        if prev_price <= prev_sma and current_price > sma: if symbol not in self.positions_held: return buy
         
         # Sell signal: price crosses below SMA
-        if prev_price >= prev_sma and current_price < sma:
-            if symbol in self.positions_held:
-                return sell
+        if prev_price >= prev_sma and current_price < sma: if symbol in self.positions_held: return sell
         
         return None
     
-    def execute_trade(self, symbol, signal):
-        """Execute a trade based on signal"""
-        try:
-            if signal == buy:
-                order = self.api.submit_order(
+    def execute_trade(self, symbol, signal): """Execute a trade based on signal"""
+        try: if signal == buy: order = self.api.submit_order(
                     symbol=symbol,
                     notional=POSITION_SIZE,
                     side=buy,
@@ -592,8 +553,7 @@ class MomentumTrader:
                 self.positions_held.add(symbol)
                 print(f"BUY {symbol}: ${POSITION_SIZE} | Order ID: {order.id}")
             
-            elif signal == sell:
-                position = self.api.get_position(symbol)
+            elif signal == sell: position = self.api.get_position(symbol)
                 order = self.api.submit_order(
                     symbol=symbol,
                     qty=position.qty,
@@ -604,37 +564,28 @@ class MomentumTrader:
                 self.positions_held.discard(symbol)
                 print(f"SELL {symbol}: {position.qty} shares | Order ID: {order.id}")
         
-        except Exception as e:
-            print(f"Trade error for {symbol}: {e}")
+        except Exception as e: print(f"Trade error for {symbol}: {e}")
     
-    def run(self):
-        """Main trading loop using polling"""
+    def run(self): """Main trading loop using polling"""
         print("Momentum Trader starting...")
         
-        while True:
-            try:
-                clock = self.api.get_clock()
-                if not clock.is_open:
-                    print(f"Market closed. Next open: {clock.next_open}")
+        while True: try: clock = self.api.get_clock()
+                if not clock.is_open: print(f"Market closed. Next open: {clock.next_open}")
                     time.sleep(60)
                     continue
                 
-                for symbol in WATCHLIST:
-                    # Get latest price
+                for symbol in WATCHLIST: # Get latest price
                     bars = self.api.get_latest_bar(symbol)
                     signal = self.check_for_signal(symbol, bars.c)
                     
-                    if signal:
-                        self.execute_trade(symbol, signal)
+                    if signal: self.execute_trade(symbol, signal)
                 
                 time.sleep(60)  # Check every minute
                 
-            except Exception as e:
-                print(f"Error in main loop: {e}")
+            except Exception as e: print(f"Error in main loop: {e}")
                 time.sleep(60)
 
-if __name__ == __main__:
-    trader = MomentumTrader()
+if __name__ == __main__: trader = MomentumTrader()
     trader.run()
 ```
 
@@ -644,9 +595,7 @@ if __name__ == __main__:
 
 ### Using Advanced Order Types (OCO, IOC)
 
-With Alpaca Elite, you can access sophisticated order types:
-
-```python
+With Alpaca Elite, you can access sophisticated order types: ```python
 # One-Cancels-Other (OCO) bracket order
 bracket_order = api.submit_order(
     symbol=TSLA,
@@ -684,13 +633,11 @@ app = Flask(__name__)
 api = REST(key_id=YOUR_KEY, secret_key=YOUR_SECRET)
 
 @app.route('/webhook/trading-signal', methods=[POST])
-def handle_trading_signal():
-    data = request.json
+def handle_trading_signal(): data = request.json
     symbol = data.get(symbol)
     signal = data.get(signal)  # buy or sell
     
-    if signal == buy:
-        order = api.submit_order(
+    if signal == buy: order = api.submit_order(
             symbol=symbol,
             notional=1000,
             side=buy,
@@ -699,8 +646,7 @@ def handle_trading_signal():
         )
         return jsonify({status: success, order_id: order.id})
     
-    elif signal == sell:
-        position = api.get_position(symbol)
+    elif signal == sell: position = api.get_position(symbol)
         order = api.submit_order(
             symbol=symbol,
             qty=position.qty,
@@ -712,8 +658,7 @@ def handle_trading_signal():
     
     return jsonify({status: unknown_signal}), 400
 
-if __name__ == __main__:
-    app.run(host='0.0.0.0', port=5000)
+if __name__ == __main__: app.run(host='0.0.0.0', port=5000)
 ```
 
 ---
@@ -750,9 +695,7 @@ Alpaca and Interactive Brokers serve different use cases. Alpaca is ideal for de
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -770,7 +713,6 @@ For traders who want to accelerate their journey into automated trading without 
 *Last updated: 2026-05-19 | Alpaca API version: v2*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

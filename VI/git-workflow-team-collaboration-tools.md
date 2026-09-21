@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/git-workflow-team-collaboration-tools" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/git-workflow-team-collaboration-tools" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/git-workflow-team-collaboration-tools" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/git-workflow-team-collaboration-tools" />
 title: 'Quy Trình Git và Công Cụ Hợp Tác Nhóm: Hướng Dẫn Đầy Đủ ...
 description: 'Tìm hiểu các chiến lược branching Git (GitFlow, GitHub Flow, Trunk-Based), công cụ hợp tác nhóm, và thực tiễn code review tốt nhất năm 2025.'
 date: 2026-05-18 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/git-workflow-team-collaboration-tools/
+aliases: - /posts/git-workflow-team-collaboration-tools/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/git-workflow-team-collaboration-tools/ -->
 
 {</* resource-info */>}
 
@@ -61,9 +53,7 @@ Nhóm nhỏ (2-5 ngườ) thường cần ít quy tắc hơn và ưu tiên tốc
 
 ### Các Nhánh Chính trong GitFlow
 
-GitFlow, được đề xuất bởi Vincent Driessen năm 2010, định nghĩa 5 loại branch chính:
-
-- **`main`**: Chứa code production-ready
+GitFlow, được đề xuất bởi Vincent Driessen năm 2010, định nghĩa 5 loại branch chính: - **`main`**: Chứa code production-ready
 - **`develop`**: Tích hợp tính năng đang phát triển
 - **`feature/*`**: Branch cho từng tính năng mới (tách từ develop, merge vào develop)
 - **`release/*`**: Chuẩn bị cho release mới (tách từ develop, merge vào main và develop)
@@ -75,9 +65,7 @@ GitFlow phù hợp với phần mềm có version cố định (ví dụ: deskto
 
 ### Công Cụ: git-flow CLI Extension
 
-Cài đặt git-flow giúp tự động hóa việc tạo và merge các branch:
-
-```bash
+Cài đặt git-flow giúp tự động hóa việc tạo và merge các branch: ```bash
 # macOS
 brew install git-flow-avh
 
@@ -96,13 +84,10 @@ GitFlow lý tưởng cho các dự án cần duy trì nhiều version song song,
 
 ### Quy Trình Branch-per-Feature
 
-GitHub Flow là chiến lược đơn giản nhất, chỉ sử dụng 2 branch chính:
-
-1. `main` — luôn ở trạng thái deployable
+GitHub Flow là chiến lược đơn giản nhất, chỉ sử dụng 2 branch chính: 1. `main` — luôn ở trạng thái deployable
 2. `feature-*` hoặc `username/feature-name` — branch cho từng tính năng
 
-Quy trình làm việc:
-1. Tạo branch từ `main`
+Quy trình làm việc: 1. Tạo branch từ `main`
 2. Commit code
 3. Mở Pull Request
 4. Review và discuss
@@ -111,16 +96,14 @@ Quy trình làm việc:
 
 ### Quy Trình Pull Request
 
-Pull Request (PR) là trung tâm của GitHub Flow. Mỗi thay đổi phải thông qua PR trước khi merge. PR cho phép:
-- Code review từ teammates
+Pull Request (PR) là trung tâm của GitHub Flow. Mỗi thay đổi phải thông qua PR trước khi merge. PR cho phép: - Code review từ teammates
 - Chạy CI/CD checks tự động
 - Discussion về implementation
 - Liên kết với issues
 
 ### Required Reviews và Branch Protection
 
-Nên cấu hình branch protection rules cho `main`:
-- Require pull request reviews (ít nhất 1 reviewer)
+Nên cấu hình branch protection rules cho `main`: - Require pull request reviews (ít nhất 1 reviewer)
 - Require status checks to pass (CI/tests)
 - Require branches to be up to date before merging
 - Restrict pushes that create files larger than 100MB
@@ -131,11 +114,8 @@ Nên cấu hình branch protection rules cho `main`:
 # .github/workflows/ci.yml
 name: CI
 on: pull_request
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: test: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - name: Run tests
         run: npm test
       - name: Lint check
@@ -154,13 +134,9 @@ Trunk-Based Development (TBD) là chiến lược mà tất cả developers comm
 
 ### Feature Flags Thay vì Feature Branches
 
-Thay vì tách branch cho tính năng mới, TBD sử dụng feature flags (hay feature toggles) để ẩn/hiện tính năng trong code:
-
-```python
-if feature_flags.is_enabled("new_payment_gateway"):
-    process_with_new_gateway()
-else:
-    process_with_old_gateway()
+Thay vì tách branch cho tính năng mới, TBD sử dụng feature flags (hay feature toggles) để ẩn/hiện tính năng trong code: ```python
+if feature_flags.is_enabled("new_payment_gateway"): process_with_new_gateway()
+else: process_with_old_gateway()
 ```
 
 Các công cụ feature flags phổ biến: LaunchDarkly, Unleash (open-source), Flagsmith, và PostHog.
@@ -177,9 +153,7 @@ TBD đòi hỏi team có CI/CD pipeline mạnh, comprehensive automated tests, v
 
 ### Pull Request Templates và Checklists
 
-Tạo file `pull_request_template.md` trong repository để đảm bảo mỗi PR đều có thông tin đầy đủ:
-
-```markdown
+Tạo file `pull_request_template.md` trong repository để đảm bảo mỗi PR đều có thông tin đầy đủ: ```markdown
 ## Mô tả
 - [ ] Mô tả rõ ràng thay đổi
 - [ ] Liên kết đến issue liên quan
@@ -204,16 +178,14 @@ Tạo file `pull_request_template.md` trong repository để đảm bảo mỗi 
 
 ### Automated Checks: Linting, Tests, Security
 
-Mỗi PR nên chạy ít nhất:
-- **Lint check**: Đảm bảo code tuân thủ style guide
+Mỗi PR nên chạy ít nhất: - **Lint check**: Đảm bảo code tuân thủ style guide
 - **Unit tests**: Tất cả tests phải pass
 - **Security scan**: Snyk, SonarQube, hay GitHub Advanced Security
 - **Build check**: Đảm bảo project build thành công
 
 ### Xây Dựng Văn Hóa Review Tích Cực
 
-Code review không chỉ là tìm lỗi — đây là cơ hội học hỏi và chia sẻ kiến thức. Các nguyên tắc:
-- Hỏi thay vì chỉ trích ("Tại sao ta không thử...?" thay vì "Cách này sai.")
+Code review không chỉ là tìm lỗi — đây là cơ hội học hỏi và chia sẻ kiến thức. Các nguyên tắc: - Hỏi thay vì chỉ trích ("Tại sao ta không thử...?" thay vì "Cách này sai.")
 - Giải thích lý do đằng sau suggestion
 - Khen ngợi code tốt, không chỉ chỉ ra vấn đề
 - Respond trong vòng 24 giờ
@@ -244,9 +216,7 @@ Bitbucket là lựa chọn tự nhiên cho các team đã sử dụng Jira và C
 
 ### Quy Cách Conventional Commits
 
-Conventional Commits là quy ước định dạng commit message giúp tự động hóa changelog và versioning:
-
-```
+Conventional Commits là quy ước định dạng commit message giúp tự động hóa changelog và versioning: ```
 <type>(<scope>): <subject>
 
 <body>
@@ -254,8 +224,7 @@ Conventional Commits là quy ước định dạng commit message giúp tự đ�
 <footer>
 ```
 
-Các type phổ biến:
-- `feat`: Tính năng mới
+Các type phổ biến: - `feat`: Tính năng mới
 - `fix`: Sửa lỗi
 - `docs`: Thay đổi documentation
 - `style`: Formatting, không ảnh hưởng logic
@@ -267,9 +236,7 @@ Ví dụ: `feat(auth): add OAuth2 login with Google`
 
 ### Pre-Commit Hooks
 
-Husky (cho JS/TS) và pre-commit (cho Python) giúp chạy checks trước mỗi lần commit:
-
-```json
+Husky (cho JS/TS) và pre-commit (cho Python) giúp chạy checks trước mỗi lần commit: ```json
 // package.json
 {
   "husky": {
@@ -309,8 +276,7 @@ Sử dụng tools như `standard-version` hay `semantic-release` để tự đ�
 # Gộp 3 commits cuối thành 1
 git rebase -i HEAD~3
 
-# Trong editor, thay đổi:
-# pick → squash (hoặc s) cho commits muốn gộp
+# Trong editor, thay đổi: # pick → squash (hoặc s) cho commits muốn gộp
 # pick → reword (hoặc r) để sửa message
 ```
 
@@ -348,17 +314,13 @@ GitKraken nổi bật với giao diện graph trực quan, hỗ trợ GitHub/Git
 
 ### Công Cụ: Nx, Turborepo, Bazel
 
-Monorepo — lưu nhiều project trong một repository — ngày càng phổ biến:
-
-- **Nx**: Smart build system cho monorepo, hỗ trợ React, Angular, Node.js
+Monorepo — lưu nhiều project trong một repository — ngày càng phổ biến: - **Nx**: Smart build system cho monorepo, hỗ trợ React, Angular, Node.js
 - **Turborepo**: High-performance build system của Vercel, remote caching
 - **Bazel**: Google's build system, scalable cho codebase cực lớn
 
 ### Sparse Checkout và Partial Clone
 
-Git 2.25+ hỗ trợ sparse checkout cho phép chỉ checkout một phần repository:
-
-```bash
+Git 2.25+ hỗ trợ sparse checkout cho phép chỉ checkout một phần repository: ```bash
 git sparse-checkout set packages/frontend packages/shared
 ```
 
@@ -388,16 +350,14 @@ Audit workflow hiện tại: thờigian merge trung bình, tần suất conflict
 
 ### Bước 3: Thiết Lập Branch Protection Rules
 
-Trên GitHub: Settings → Branches → Add rule cho `main`:
-- Require a pull request before merging
+Trên GitHub: Settings → Branches → Add rule cho `main`: - Require a pull request before merging
 - Require approvals: 1-2
 - Require status checks to pass
 - Include administrators
 
 ### Bước 4: Cấu Hình CI/CD Pipeline
 
-Pipeline tối thiểu cho mỗi PR:
-1. Checkout code
+Pipeline tối thiểu cho mỗi PR: 1. Checkout code
 2. Install dependencies
 3. Run linter
 4. Run tests
@@ -416,13 +376,11 @@ Với nhóm 2-5 ngườ, **GitHub Flow** là lựa chọn tốt nhất. Đơn gi
 
 ### Nên Dùng GitFlow hay GitHub Flow?
 
-Dùng **GitFlow** nếu:
-- Bạn phát triển phần mềm có version releases (desktop app, mobile app, library)
+Dùng **GitFlow** nếu: - Bạn phát triển phần mềm có version releases (desktop app, mobile app, library)
 - Cần hỗ trợ hotfix song song với development
 - Team có release cycle cố định
 
-Dùng **GitHub Flow** nếu:
-- Bạn phát triển web application/SaaS với continuous deployment
+Dùng **GitHub Flow** nếu: - Bạn phát triển web application/SaaS với continuous deployment
 - Team nhỏ đến vừa
 - Muốn quy trình đơn giản, dễ hiểu
 
@@ -432,8 +390,7 @@ Bước 1: Pull latest changes từ main: `git fetch origin`
 
 Bước 2: Rebase feature branch: `git rebase origin/main`
 
-Bước 3: Khi gặp conflict, Git sẽ đánh dấu các file cần resolve:
-```
+Bước 3: Khi gặp conflict, Git sẽ đánh dấu các file cần resolve: ```
 <<<<<<< HEAD
 // Code từ main
 =======
@@ -457,8 +414,7 @@ Sử dụng Git GUI như Fork hay GitKraken giúp resolve conflict trực quan h
 
 ### Trunk-Based Development Có Tốt Hơn Feature Branches Không?
 
-Không có câu trả lờituyệt đối. Trunk-Based Development phù hợp với team có:
-- CI/CD pipeline mạnh với comprehensive automated tests
+Không có câu trả lờituyệt đối. Trunk-Based Development phù hợp với team có: - CI/CD pipeline mạnh với comprehensive automated tests
 - Feature flag infrastructure
 - Culture của frequent, small commits
 - Kinh nghiệm với pair programming
@@ -477,9 +433,7 @@ Tài nguyên tham khảo thêm: [git-scm.com](https://git-scm.com), [docs.github
 
 ## Hạ Tầng Đề Xuất
 
-Để chạy các công cụ trên 24/7 ổn định, lựa chọn hạ tầng rất quan trọng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu.
+Để chạy các công cụ trên 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp. dibi8.com cũng host ở đây.
 - **[Hostinger](https://www.hostinger.com/vn?REFERRALCODE=22RPIAOJIYJN)** — VPS giá tốt cho thị trường Việt Nam.
 
@@ -487,7 +441,6 @@ Tài nguyên tham khảo thêm: [git-scm.com](https://git-scm.com), [docs.github
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-code-subagent-patterns-multi-agent-workflows-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-subagent-patterns-multi-agent-workflows-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-subagent-patterns-multi-agent-workflows-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-subagent-patterns-multi-agent-workflows-2026" />
 title: 'Claude Code 子智能体（Subagent）实战：5 个每天省下数小时的多智能体工作流（2026）'
 description: '5 个生产环境实测过的 Claude Code subagent 模式 —— 并行调研、worktree 隔离、专家委派、上下文保护、流水线编排，含真实 prompt 和取舍说明。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-28 00:00:00+08:00
@@ -25,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['claude-code', subagents, 'multi-agent', 'ai-coding-agents', 'llm-frameworks', 'developer-tools', 'agent-sdk']
-aliases:
-- /posts/claude-code-subagent-patterns/
-faq:
-  - q: "Claude Code 的 subagent 到底是什么？跟另开一个 CLI 进程有什么区别？"
+aliases: - /posts/claude-code-subagent-patterns/
+faq: - q: "Claude Code 的 subagent 到底是什么？跟另开一个 CLI 进程有什么区别？"
     a: "Subagent 是在当前 Claude 会话里通过 Agent (Task) 工具派生出来的沙箱化 Claude 对话。父会话只看到 subagent 最终的报告 —— 看不到中间的工具调用、文件读取或思考过程。这正是它和另开 CLI 的关键区别：父会话的上下文窗口不会被 subagent 的探索噪音污染。Subagent 适合并行调研、深度代码探索、隔离实验 —— 这些场景里你不想让父的工作记忆被搞乱。"
   - q: "什么时候不应该用 subagent，就在父会话里干就行？"
     a: "琐碎查找（父会话已经把文件打开或上下文已经在了）、需要看到每一步中间状态的串行编辑、需要反复来回交互的紧耦合改动（subagent 是一次性的 —— 只返回单个报告）—— 这些都跳过 subagent。经验法则：如果你从当前状态出发 3 次工具调用以内能完成，就直接做。"
@@ -41,8 +34,6 @@ faq:
   - q: "Claude Code subagent 怎么计费 —— 每个都单独收费吗？"
     a: "每次 subagent 调用都和其他 Claude 对话一样消耗 token。成本约等于 subagent 的完整上下文（系统 prompt + 工具 schema + 任务 prompt + 思考 + 最终报告）。Pro 和 Max 套餐里，subagent 使用计入父会话同一个用量额度。API 用户就是按 token 直接计费。省钱点在于把会膨胀父上下文的探索工作卸载出去 —— 你付 subagent 的钱，换主会话保持轻快聚焦。"
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/claude-code-subagent-patterns-multi-agent-workflows-2026/ -->
 # Claude Code 子智能体（Subagent）实战：5 个每天省下数小时的多智能体工作流（2026）
 
 
@@ -79,7 +70,7 @@ faq:
 
 ```
 Agent({
-  description: "尝试 controller 级别重构",
+  description: "尝试 controller 级别重构"
   isolation: "worktree",
   prompt: "重构 controllers/orders.rb 提取校验逻辑..."
 })
@@ -97,7 +88,7 @@ Agent({
 
 ```
 Agent({
-  description: "独立代码审查",
+  description: "独立代码审查"
   subagent_type: "code-reviewer",
   prompt: "审查 feat/payment-gateway 分支上的改动。我想要个对重试逻辑的
    第二意见 —— 我已经检查过幂等性但想要独立验证。报告：并发失败
@@ -172,7 +163,6 @@ Agent({
 "就继续在主会话里输入"的本能死得艰难。压制它。派出 subagent。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -200,25 +190,20 @@ Agent({
 
 ## Why This Matters
 
-Understanding claude code 子智能体（subagent）实战：5 个每天省下数小时的多智能体工作流（2026） is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding claude code 子智能体（subagent）实战：5 个每天省下数小时的多智能体工作流（2026） is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -239,13 +224,13 @@ Claude Code 子智能体（Subagent）实战：5 个每天省下数小时的多�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
 
+---
 ## Related Articles
 
 - [claude-code-vs-cline](claude-code-subagent-patterns-multi-agent-workflows-2026)
@@ -284,7 +269,17 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

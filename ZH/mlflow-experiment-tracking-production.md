@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mlflow-experiment-tracking-production" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mlflow-experiment-tracking-production" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mlflow-experiment-tracking-production" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mlflow-experiment-tracking-production" />
 title: 'MLflow 2026: 追踪 10,000+ 实验的开源 ML 全生命周期平台 — 部署指南'
 description: 'MLflow 在 ML 实验追踪、模型注册表和模型服务方面的完整指南。涵盖设置、Python SDK、生产部署和 10,000+ 实验的基准测试。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: [mlflow, 机器学习, mlops, 实验追踪, 模型注册表, 模型服务, python, 开源, 数据科学]
-aliases:
-- /zh/posts/mlflow-experiment-tracking-production/
+aliases: - /zh/posts/mlflow-experiment-tracking-production/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/mlflow-experiment-tracking-production/ -->
 
 {{</* resource-info */>}}
 
@@ -62,8 +54,7 @@ MLflow 由四个组件组成，分别针对 ML 生命周期的不同阶段：
 **MLflow Projects** 以可复现的格式打包 ML 代码，并通过 `MLproject` 文件定义入口点、参数、依赖和执行环境。
 
 ```python
-# 完整的 MLflow 架构一览:
-# 1. Tracking Server (REST API + UI)
+# 完整的 MLflow 架构一览: # 1. Tracking Server (REST API + UI)
 #    ├── Backend Store: PostgreSQL / MySQL / SQLite
 #    └── Artifact Store: S3 / GCS / Azure / Local
 #
@@ -104,8 +95,7 @@ import mlflow
 mlflow.set_tracking_uri('http://localhost:5000')
 mlflow.set_experiment('quick-start')
 
-with mlflow.start_run():
-    mlflow.log_param(learning_rate, 0.01)
+with mlflow.start_run(): mlflow.log_param(learning_rate, 0.01)
     mlflow.log_param(epochs, 10)
     mlflow.log_metric(accuracy, 0.94)
     mlflow.log_metric(f1_score, 0.93)
@@ -140,32 +130,23 @@ mlflow server \
 ```bash
 # docker-compose.yml — 完整的 MLflow 堆栈
 version: '3.8'
-services:
-  postgres:
-    image: postgres:16
-    environment:
-      POSTGRES_USER: mlflow
+services: postgres: image: postgres:16
+    environment: POSTGRES_USER: mlflow
       POSTGRES_PASSWORD: mlflow_password
       POSTGRES_DB: mlflowdb
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+    volumes: - pgdata:/var/lib/postgresql/data
 
-  mlflow:
-    image: python:3.11-slim
+  mlflow: image: python:3.11-slim
     command: >
       bash -c "pip install mlflow==2.22.0 psycopg2-binary boto3 &&
                mlflow server
                --backend-store-uri postgresql://mlflow:mlflow_password@postgres:5432/mlflowdb
                --default-artifact-root s3://my-bucket/mlflow
                --host 0.0.0.0 --port 5000"
-    ports:
-      - "5000:5000"
-    depends_on:
-      - postgres
+    ports: - "5000:5000"
+    depends_on: - postgres
 
-volumes:
-  pgdata:
-```
+volumes: pgdata: ```
 
 ```bash
 # 启动完整堆栈
@@ -226,9 +207,7 @@ warnings.filterwarnings(ignore)
 mlflow.set_tracking_uri('http://localhost:5000')
 mlflow.set_experiment('wine-classification')
 
-def run_experiment(n_estimators, max_depth, min_samples_split):
-    with mlflow.start_run():
-        # 记录参数
+def run_experiment(n_estimators, max_depth, min_samples_split): with mlflow.start_run(): # 记录参数
         mlflow.log_param(n_estimators, n_estimators)
         mlflow.log_param(max_depth, max_depth)
         mlflow.log_param(min_samples_split, min_samples_split)
@@ -267,16 +246,14 @@ def run_experiment(n_estimators, max_depth, min_samples_split):
         print(f'Run completed: accuracy={accuracy:.4f}, f1={f1:.4f}')
 
 # 运行多个实验
-if __name__ == __main__:
-    configs = [
+if __name__ == __main__: configs = [
         (50, 5, 0.01),
         (100, 10, 0.02),
         (200, 15, 0.05),
         (300, 20, 0.10),
         (500, None, 0.02),
     ]
-    for n_est, depth, min_split in configs:
-        run_experiment(n_est, depth, min_split)
+    for n_est, depth, min_split in configs: run_experiment(n_est, depth, min_split)
 ```
 
 ```bash
@@ -302,8 +279,7 @@ mlflow.sklearn.autolog()
 X, y = load_wine(return_X_y=True)
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
-with mlflow.start_run():
-    clf = RandomForestClassifier(n_estimators=100, random_state=42)
+with mlflow.start_run(): clf = RandomForestClassifier(n_estimators=100, random_state=42)
     clf.fit(X_train, y_train)
     # 无需手动记录 — autolog 自动捕获所有内容
 ```
@@ -324,9 +300,7 @@ mlflow.set_experiment('pytorch-cifar10')
 # 启用 PyTorch autologging
 mlflow.pytorch.autolog()
 
-def train_model(epochs, lr, batch_size):
-    with mlflow.start_run():
-        mlflow.log_param(epochs, epochs)
+def train_model(epochs, lr, batch_size): with mlflow.start_run(): mlflow.log_param(epochs, epochs)
         mlflow.log_param(learning_rate, lr)
         mlflow.log_param(batch_size, batch_size)
 
@@ -354,10 +328,8 @@ def train_model(epochs, lr, batch_size):
 
         # 训练循环
         model.train()
-        for epoch in range(epochs):
-            total_loss = 0
-            for batch_idx, (data, target) in enumerate(train_loader):
-                data, target = data.to(device), target.to(device)
+        for epoch in range(epochs): total_loss = 0
+            for batch_idx, (data, target) in enumerate(train_loader): data, target = data.to(device), target.to(device)
                 optimizer.zero_grad()
                 output = model(data)
                 loss = criterion(output, target)
@@ -372,8 +344,7 @@ def train_model(epochs, lr, batch_size):
         # 记录最终模型
         mlflow.pytorch.log_model(model, model)
 
-if __name__ == __main__:
-    train_model(epochs=5, lr=0.001, batch_size=64)
+if __name__ == __main__: train_model(epochs=5, lr=0.001, batch_size=64)
 ```
 
 ## 模型注册表: 管理模型生命周期
@@ -420,8 +391,7 @@ client.set_model_version_tag(
 # 列出模型的所有版本
 mlflow models list-versions -m wine-classifier
 
-# 预期输出:
-#   Version  Stage       Description
+# 预期输出: #   Version  Stage       Description
 #   1        Production  Initial production model
 #   2        Staging     Wine classifier with 94.4% accuracy...
 #   3        None        Experimental architecture
@@ -524,7 +494,15 @@ mlflow.azureml.deploy(
 我们在一台 **8 vCPU / 32 GB RAM** 的实例上，使用 PostgreSQL 后端和 S3 制品存储对 MLflow 追踪服务器 (v2.22.0) 进行了基准测试：
 
 | 指标 | SQLite (本地) | PostgreSQL (本地) | PostgreSQL + S3 |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 每秒记录的运行数 | **~180** | **~350** | **~320** |
 | 并发客户端 (稳定) | 5 | 50 | 40 |
 | UI 加载时间 (10K 运行) | 2.1 秒 | 0.8 秒 | 0.9 秒 |
@@ -535,7 +513,11 @@ mlflow.azureml.deploy(
 ### 模型注册表延迟
 
 | 操作 | 延迟 (毫秒) |
-|---|---|
+|
+---
+|
+---
+|
 | 创建实验 | 12 |
 | 开始运行 | 25 |
 | 记录参数 | 8 |
@@ -547,7 +529,15 @@ mlflow.azureml.deploy(
 ### 存储增长预测
 
 | 规模 | 每月实验数 | 存储增长 | 推荐后端 |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 小团队 (5 用户) | 500 | ~5 GB | SQLite + 本地磁盘 |
 | 中团队 (20 用户) | 5,000 | ~50 GB | PostgreSQL + S3 |
 | 企业 (100+ 用户) | 50,000+ | ~500 GB | PostgreSQL + S3 + 清理策略 |
@@ -569,16 +559,12 @@ VALID_CREDENTIALS = {
     'ml-engineer': engineer_pass_456
 }
 
-def check_auth():
-    auth = request.authorization
-    if not auth or not auth.password:
-        return False
+def check_auth(): auth = request.authorization
+    if not auth or not auth.password: return False
     return VALID_CREDENTIALS.get(auth.username) == auth.password
 
 @app.before_request
-def require_auth():
-    if not check_auth():
-        return Response('Authentication required', 401,
+def require_auth(): if not check_auth(): return Response('Authentication required', 401,
                        {'WWW-Authenticate': 'Basic realm="MLflow"'})
 
 # 在认证代理后挂载 MLflow
@@ -614,14 +600,11 @@ client = MlflowClient('http://localhost:5000')
 cutoff = datetime.now() - timedelta(days=90)
 experiments = client.search_experiments()
 
-for exp in experiments:
-    runs = client.search_runs(
+for exp in experiments: runs = client.search_runs(
         experiment_ids=[exp.experiment_id],
         filter_string=f"attributes.start_time < {int(cutoff.timestamp() * 1000)}"
     )
-    for run in runs:
-        if run.info.status == FINISHED:
-            client.delete_run(run.info.run_id)
+    for run in runs: if run.info.status == FINISHED: client.delete_run(run.info.run_id)
             print(f'Deleted run {run.info.run_id} from {exp.name}')
 
 print(f'Cleanup completed. Deleted {len(runs)} old runs.')
@@ -638,27 +621,20 @@ crontab -e
 ```yaml
 # .github/workflows/ml-pipeline.yml
 name: ML Training Pipeline
-on:
-  push:
-    branches: [main]
+on: push: branches: [main]
 
-jobs:
-  train:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: train: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
 
       - name: Setup Python
         uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
+        with: python-version: '3.11'
 
       - name: Install dependencies
         run: pip install mlflow==2.22.0 scikit-learn pandas
 
       - name: Train and register model
-        env:
-          MLFLOW_TRACKING_URI: ${{ secrets.MLFLOW_TRACKING_URI }}
+        env: MLFLOW_TRACKING_URI: ${{ secrets.MLFLOW_TRACKING_URI }}
         run: |
           python train.py --register-model --stage Staging
 
@@ -670,7 +646,17 @@ jobs:
 ## 与替代方案对比
 
 | 特性 | MLflow | Weights & Biases | Neptune.ai | TensorBoard |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 开源 | **是 (Apache-2.0)** | 否 (专有) | 否 (专有) | 是 (Apache-2.0) |
 | 自托管 | **是 (免费)** | 否 (仅云) | 否 (仅云) | 是 |
 | 模型注册表 | **是 (内置)** | 是 | 是 | 否 |
@@ -759,7 +745,6 @@ MLflow 仍然是 ML 生命周期管理最实用的开源解决方案。其零摩
 *联盟营销披露: 本文包含 DigitalOcean 的联盟链接。如果你通过这些链接注册，dibi8.com 会获得佣金，而你无需支付额外费用。我们只推荐用于自己基础设施的服务。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -785,8 +770,8 @@ MLflow 仍然是 ML 生命周期管理最实用的开源解决方案。其零摩
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [ai-engineering-from-scratch](mlflow-experiment-tracking-production)
@@ -795,6 +780,6 @@ MLflow 仍然是 ML 生命周期管理最实用的开源解决方案。其零摩
 - [ray-distributed-ai-framework-complete-guide](mlflow-experiment-tracking-production)
 - [cleanlab-11k-star-ai-data-cleaning](mlflow-experiment-tracking-production)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

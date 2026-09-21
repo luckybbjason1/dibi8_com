@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/grafana" />
 title: 'Grafana: 73,876 GitHub Stars — Docker Deployment Guide 2...
 description: 'Grafana is the open-source visualization and analytics platform for monitoring. Covers Prometheus, Loki, InfluxDB, Elasticsearch integration. Includes Docker setup, production hardening, and comparison with Datadog, Kibana, New Relic.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [grafana, docker, monitoring, prometheus, observability, dashboard, devops]
-aliases:
-- /posts/grafana/
+aliases: - /posts/grafana/-
 ---
-
 {{</* resource-info */>}}
 
 Every production incident starts with a question: "What changed?" Without a centralized view of your metrics, logs, and traces, that question takes minutes — sometimes hours — to answer. Grafana, the open-source visualization platform with 73,876 GitHub stars, turns that question into a glanceable dashboard. This guide walks through production-grade Docker deployment, data source integration, and the hardening decisions that separate a proof-of-concept from a production-ready monitoring stack.
@@ -58,9 +54,7 @@ A typical production Grafana dashboard combines multiple panel types — time-se
 
 ### Docker CLI — Single Container (30 Seconds)
 
-The fastest way to get Grafana running for local exploration:
-
-```bash
+The fastest way to get Grafana running for local exploration: ```bash
 # Create a persistent volume for Grafana data
 docker volume create grafana-storage
 
@@ -76,9 +70,7 @@ Navigate to `http://localhost:3000`. Default credentials are `admin` / `admin`. 
 
 ### Docker Compose — Production-Ready Stack
 
-For a production-grade monitoring stack, combine Grafana with Prometheus and Loki. Create the following directory structure:
-
-```bash
+For a production-grade monitoring stack, combine Grafana with Prometheus and Loki. Create the following directory structure: ```bash
 mkdir -p ~/grafana-stack/{prometheus,loki,grafana/provisioning/datasources,grafana/provisioning/dashboards,grafana/dashboards}
 cd ~/grafana-stack
 ```
@@ -88,99 +80,68 @@ cd ~/grafana-stack
 ```yaml
 version: "3.8"
 
-services:
-  grafana:
-    image: grafana/grafana-enterprise:11.6.0
+services: grafana: image: grafana/grafana-enterprise:11.6.0
     container_name: grafana
     restart: unless-stopped
-    ports:
-      - "3000:3000"
-    environment:
-      - GF_SECURITY_ADMIN_USER=${GRAFANA_ADMIN_USER:-admin}
+    ports: - "3000:3000"
+    environment: - GF_SECURITY_ADMIN_USER=${GRAFANA_ADMIN_USER:-admin}
       - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD:-admin}
       - GF_USERS_ALLOW_SIGN_UP=false
       - GF_SERVER_ROOT_URL=https://grafana.yourdomain.com
       - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-piechart-panel
-    volumes:
-      - grafana-data:/var/lib/grafana
+    volumes: - grafana-data:/var/lib/grafana
       - ./grafana/provisioning:/etc/grafana/provisioning
       - ./grafana/dashboards:/var/lib/grafana/dashboards
-    networks:
-      - monitoring
-    depends_on:
-      - prometheus
+    networks: - monitoring
+    depends_on: - prometheus
       - loki
 
-  prometheus:
-    image: prom/prometheus:v3.2.0
+  prometheus: image: prom/prometheus:v3.2.0
     container_name: prometheus
     restart: unless-stopped
-    ports:
-      - "9090:9090"
-    volumes:
-      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports: - "9090:9090"
+    volumes: - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus-data:/prometheus
-    command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
+    command: - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
       - '--storage.tsdb.retention.time=30d'
       - '--web.enable-lifecycle'
-    networks:
-      - monitoring
+    networks: - monitoring
 
-  loki:
-    image: grafana/loki:3.4.0
+  loki: image: grafana/loki:3.4.0
     container_name: loki
     restart: unless-stopped
-    ports:
-      - "3100:3100"
-    volumes:
-      - ./loki/loki-config.yml:/etc/loki/local-config.yaml
+    ports: - "3100:3100"
+    volumes: - ./loki/loki-config.yml:/etc/loki/local-config.yaml
       - loki-data:/loki
     command: -config.file=/etc/loki/local-config.yaml
-    networks:
-      - monitoring
+    networks: - monitoring
 
-  promtail:
-    image: grafana/promtail:3.4.0
+  promtail: image: grafana/promtail:3.4.0
     container_name: promtail
     restart: unless-stopped
-    volumes:
-      - /var/log:/var/log:ro
+    volumes: - /var/log:/var/log:ro
       - ./loki/promtail-config.yml:/etc/promtail/config.yml
     command: -config.file=/etc/promtail/config.yml
-    networks:
-      - monitoring
+    networks: - monitoring
 
-volumes:
-  grafana-data:
-  prometheus-data:
-  loki-data:
-
-networks:
-  monitoring:
-    driver: bridge
+volumes: grafana-data: prometheus-data: loki-data: networks: monitoring: driver: bridge
 ```
 
 **prometheus/prometheus.yml:**
 
 ```yaml
-global:
-  scrape_interval: 15s
+global: scrape_interval: 15s
   evaluation_interval: 15s
 
-scrape_configs:
-  - job_name: prometheus
-    static_configs:
-      - targets: ['localhost:9090']
+scrape_configs: - job_name: prometheus
+    static_configs: - targets: ['localhost:9090']
 
   - job_name: 'node-exporter'
-    static_configs:
-      - targets: ['node-exporter:9100']
+    static_configs: - targets: ['node-exporter:9100']
 
   - job_name: grafana
-    static_configs:
-      - targets: ['grafana:3000']
+    static_configs: - targets: ['grafana:3000']
 ```
 
 **loki/loki-config.yml:**
@@ -188,76 +149,53 @@ scrape_configs:
 ```yaml
 auth_enabled: false
 
-server:
-  http_listen_port: 3100
+server: http_listen_port: 3100
   grpc_listen_port: 9096
 
-ingester:
-  wal:
-    enabled: true
+ingester: wal: enabled: true
     dir: /loki/wal
-  lifecycler:
-    address: 127.0.0.1
-    ring:
-      kvstore:
-        store: inmemory
+  lifecycler: address: 127.0.0.1
+    ring: kvstore: store: inmemory
       replication_factor: 1
     final_sleep: 0s
   chunk_idle_period: 5m
   chunk_retain_period: 30s
 
-schema_config:
-  configs:
-    - from: 2020-05-15
+schema_config: configs: - from: 2020-05-15
       store: tsdb
       object_store: filesystem
       schema: v13
-      index:
-        prefix: index_
+      index: prefix: index_
         period: 24h
 
-storage_config:
-  tsdb_shipper:
-    active_index_directory: /loki/index
+storage_config: tsdb_shipper: active_index_directory: /loki/index
     cache_location: /loki/cache
-  filesystem:
-    directory: /loki/chunks
+  filesystem: directory: /loki/chunks
 
-compactor:
-  working_directory: /loki/compactor
+compactor: working_directory: /loki/compactor
   retention_enabled: true
   retention_delete_delay: 2h
 
-limits_config:
-  retention_period: 720h
+limits_config: retention_period: 720h
 ```
 
 **loki/promtail-config.yml:**
 
 ```yaml
-server:
-  http_listen_port: 9080
+server: http_listen_port: 9080
   grpc_listen_port: 0
 
-positions:
-  filename: /tmp/positions.yaml
+positions: filename: /tmp/positions.yaml
 
-clients:
-  - url: http://loki:3100/loki/api/v1/push
+clients: - url: http://loki:3100/loki/api/v1/push
 
-scrape_configs:
-  - job_name: system-logs
-    static_configs:
-      - targets:
-          - localhost
-        labels:
-          job: system-logs
+scrape_configs: - job_name: system-logs
+    static_configs: - targets: - localhost
+        labels: job: system-logs
           __path__: /var/log/*.log
 ```
 
-Start the stack:
-
-```bash
+Start the stack: ```bash
 docker compose up -d
 ```
 
@@ -265,13 +203,10 @@ Access Grafana at `http://your-server-ip:3000`. Prometheus is available on port 
 
 ### Provisioning Data Sources Automatically
 
-Instead of manually clicking through the UI to add data sources, use Grafana's provisioning system. Create `grafana/provisioning/datasources/datasources.yml`:
-
-```yaml
+Instead of manually clicking through the UI to add data sources, use Grafana's provisioning system. Create `grafana/provisioning/datasources/datasources.yml`: ```yaml
 apiVersion: 1
 
-datasources:
-  - name: Prometheus
+datasources: - name: Prometheus
     type: prometheus
     access: proxy
     url: http://prometheus:9090
@@ -291,9 +226,7 @@ datasources:
     editable: false
 ```
 
-Restart Grafana and the data sources will appear pre-configured:
-
-```bash
+Restart Grafana and the data sources will appear pre-configured: ```bash
 docker compose restart grafana
 ```
 
@@ -301,9 +234,7 @@ docker compose restart grafana
 
 ### Prometheus — Metrics Dashboard
 
-Prometheus is the de facto metrics source for Grafana. A typical CPU monitoring panel uses PromQL:
-
-```promql
+Prometheus is the de facto metrics source for Grafana. A typical CPU monitoring panel uses PromQL: ```promql
 # CPU usage percentage
 100 - (avg by(instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100)
 
@@ -318,9 +249,7 @@ Import the official Node Exporter Full dashboard (ID: `1860`) from the Grafana d
 
 ### Loki — Log Aggregation
 
-Loki integrates log lines alongside metrics in the same dashboard. A LogQL query to find error lines:
-
-```logql
+Loki integrates log lines alongside metrics in the same dashboard. A LogQL query to find error lines: ```logql
 # Count error logs per application
 sum by(app) (rate({job="system-logs"} |= "ERROR" [5m]))
 
@@ -330,18 +259,14 @@ sum by(app) (rate({job="system-logs"} |= "ERROR" [5m]))
 
 ### InfluxDB — Time-Series Data
 
-For IoT and high-cardinality metrics workloads, InfluxDB pairs well with Grafana:
-
-```sql
+For IoT and high-cardinality metrics workloads, InfluxDB pairs well with Grafana: ```sql
 -- InfluxQL example: average temperature per sensor
 SELECT mean("temperature") FROM "sensors" WHERE $timeFilter GROUP BY "sensor_id", time($__interval) fill(null)
 ```
 
 ### Elasticsearch — Log Search
 
-For teams already invested in the Elastic Stack, Grafana can query Elasticsearch indices directly:
-
-```json
+For teams already invested in the Elastic Stack, Grafana can query Elasticsearch indices directly: ```json
 {
   "query": {
     "bool": {
@@ -359,7 +284,13 @@ For teams already invested in the Elastic Stack, Grafana can query Elasticsearch
 **Performance Characteristics at Scale:**
 
 | Metric | Single Instance (Docker) | HA Pair (K8s) |
-|--------|-------------------------|---------------|
+|
+---
+|
+---
+|
+---
+|
 | Dashboard load time | 50-200ms | 30-100ms |
 | Concurrent users | 50-100 | 500+ |
 | Max data points per panel | 10,000-50,000 | 100,000+ |
@@ -368,9 +299,7 @@ For teams already invested in the Elastic Stack, Grafana can query Elasticsearch
 
 **Netflix** runs Grafana at massive scale across thousands of microservices, using custom data source plugins to correlate metrics from multiple internal systems. **PayPal** uses Grafana with Prometheus to monitor 200,000+ containers. **eBay** replaced a legacy commercial monitoring tool with Grafana, reducing dashboard creation time from days to hours.
 
-A mid-size e-commerce platform (50 hosts, 2M active series) running self-hosted Grafana with Prometheus and Loki typically sees:
-
-- Monthly infrastructure cost: $200-500 (compute + storage)
+A mid-size e-commerce platform (50 hosts, 2M active series) running self-hosted Grafana with Prometheus and Loki typically sees: - Monthly infrastructure cost: $200-500 (compute + storage)
 - Equivalent Datadog cost: $9,500+/month
 - Dashboard creation time: 30 minutes vs. 2+ hours with custom UIs
 - Mean time to detection (MTTD): Reduced by 40-60% after Grafana adoption
@@ -379,57 +308,42 @@ A mid-size e-commerce platform (50 hosts, 2M active series) running self-hosted 
 
 ### SSL/TLS Termination with Reverse Proxy
 
-Never expose Grafana directly to the internet. Use Traefik or Nginx as a reverse proxy:
-
-```yaml
+Never expose Grafana directly to the internet. Use Traefik or Nginx as a reverse proxy: ```yaml
 # docker-compose.yml addition
-  traefik:
-    image: traefik:v3.3
-    command:
-      - "--api.insecure=true"
+  traefik: image: traefik:v3.3
+    command: - "--api.insecure=true"
       - "--providers.docker=true"
       - "--entrypoints.websecure.address=:443"
       - "--certificatesresolvers.letsencrypt.acme.tlschallenge=true"
       - "--certificatesresolvers.letsencrypt.acme.email=admin@yourdomain.com"
       - "--certificatesresolvers.letsencrypt.acme.storage=/letsencrypt/acme.json"
-    ports:
-      - "443:443"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+    ports: - "443:443"
+    volumes: - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./letsencrypt:/letsencrypt
-    networks:
-      - monitoring
+    networks: - monitoring
 ```
 
 ### High Availability Setup
 
-For production environments requiring zero downtime:
-
-```yaml
+For production environments requiring zero downtime: ```yaml
 # Grafana HA requires a shared database (PostgreSQL or MySQL)
 # and multiple Grafana instances behind a load balancer
 
-  postgres:
-    image: postgres:17-alpine
-    environment:
-      POSTGRES_DB: grafana
+  postgres: image: postgres:17-alpine
+    environment: POSTGRES_DB: grafana
       POSTGRES_USER: grafana
       POSTGRES_PASSWORD: ${DB_PASSWORD}
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
+    volumes: - postgres-data:/var/lib/postgresql/data
 
-  grafana-1:
-    image: grafana/grafana-enterprise:11.6.0
-    environment:
-      - GF_DATABASE_TYPE=postgres
+  grafana-1: image: grafana/grafana-enterprise:11.6.0
+    environment: - GF_DATABASE_TYPE=postgres
       - GF_DATABASE_HOST=postgres:5432
       - GF_DATABASE_NAME=grafana
       - GF_DATABASE_USER=grafana
       - GF_DATABASE_PASSWORD=${DB_PASSWORD}
       - GF_REMOTE_CACHE_TYPE=redis
       - GF_REMOTE_CACHE_CONNSTR=redis:6379
-    depends_on:
-      - postgres
+    depends_on: - postgres
 ```
 
 ![Grafana Alerts Timeline Dashboard](https://grafana.com/mw/_next/image/?url=https%3A%2F%2Fs3.amazonaws.com%2Fa-us.storyblok.com%2Ff%2F1022730%2F2c26adbc90%2Fgrafana-dashboards-alerts-analysis.png&w=3840&q=75)
@@ -438,53 +352,41 @@ Grafana's alerting timeline dashboard visualizes alert firing patterns over time
 
 ### Alerting Configuration as Code
 
-Define alert rules via provisioning:
-
-```yaml
+Define alert rules via provisioning: ```yaml
 # grafana/provisioning/alerting/alert-rules.yml
 apiVersion: 1
-groups:
-  - orgId: 1
+groups: - orgId: 1
     name: infrastructure
     folder: Infrastructure
     interval: 60s
-    rules:
-      - uid: high-cpu-usage
+    rules: - uid: high-cpu-usage
         title: CPU Usage Above 80%
         condition: B
-        data:
-          - refId: A
-            relativeTimeRange:
-              from: 300
+        data: - refId: A
+            relativeTimeRange: from: 300
               to: 0
             datasourceUid: prometheus
-            model:
-              expr: 100 - (avg by(instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 80
+            model: expr: 100 - (avg by(instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 80
         noDataState: NoData
         execErrState: Error
         for: 5m
-        annotations:
-          summary: "High CPU usage on {{ $labels.instance }}"
+        annotations: summary: "High CPU usage on {{ $labels.instance }}"
 ```
 
 ### Dashboard Provisioning from Git
 
-Store dashboards as JSON in your repository and provision them automatically:
-
-```yaml
+Store dashboards as JSON in your repository and provision them automatically: ```yaml
 # grafana/provisioning/dashboards/dashboards.yml
 apiVersion: 1
 
-providers:
-  - name: default
+providers: - name: default
     orgId: 1
     folder: ''
     type: file
     disableDeletion: false
     editable: false
     updateIntervalSeconds: 30
-    options:
-      path: /var/lib/grafana/dashboards
+    options: path: /var/lib/grafana/dashboards
       foldersFromFilesStructure: true
 ```
 
@@ -502,7 +404,17 @@ providers:
 ## Comparison with Alternatives
 
 | Feature | Grafana | Datadog | Kibana | New Relic |
-|---------|---------|---------|--------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Open Source** | Yes (AGPL-3.0) | No | Yes (SSPL) | No |
 | **Self-Hosted Option** | Yes, free | No | Yes | No |
 | **Data Sources** | 100+ native | 750+ integrations | Elasticsearch only | 100+ |
@@ -524,9 +436,7 @@ providers:
 
 ## Limitations / Honest Assessment
 
-Grafana is not a silver bullet. Understand these limitations before committing:
-
-1. **No built-in data collection** — Grafana visualizes data; it does not collect it. You still need Prometheus, Loki, or another backend. This adds operational overhead compared to all-in-one SaaS platforms.
+Grafana is not a silver bullet. Understand these limitations before committing: 1. **No built-in data collection** — Grafana visualizes data; it does not collect it. You still need Prometheus, Loki, or another backend. This adds operational overhead compared to all-in-one SaaS platforms.
 
 2. **Log search is not Lucene** — Loki uses label-based filtering with regex, not full-text search like Elasticsearch. Complex log queries can be slower and less intuitive.
 
@@ -584,9 +494,7 @@ Grafana earns its 73,876 GitHub stars by solving a concrete problem — unifying
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -605,7 +513,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [HTStack — Managed Cloud Servers](https://htstack.com/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -631,8 +538,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [apple-container](grafana)
@@ -641,6 +548,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [12-factor-agents](grafana)
 - [12-factor-agents](grafana)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

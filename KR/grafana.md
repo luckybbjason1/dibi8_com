@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/grafana" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/grafana" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/grafana" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/grafana" />
 title: 'Grafana: 73,876 GitHub Stars — Docker 배포 가이드 2026'
 description: 'Grafana는 모니터링과 관측 가능성을 위한 오픈소스 시각화 및 분석 플랫폼이다. Prometheus, Loki, InfluxDB, Elasticsearch 통합 포함. Docker 설정, 프로덕션 강화, Datadog, Kibana, New Relic과의 비교 포함.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [grafana, docker, 모니터링, prometheus, 관측가능성, 대시보드, 데브옵스]
-aliases:
-- /kr/posts/grafana/
+aliases: - /kr/posts/grafana/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/grafana/ -->
 
 {{</* resource-info */>}}
 
@@ -63,9 +55,7 @@ Grafana는 데이터 소스와 운영 팀 사이에서 상태 비저장(stateles
 
 ### Docker CLI — 단일 컨테이너 (30초)
 
-로컬 탐색을 위해 Grafana를 가장 빠르게 실행하는 방법:
-
-```bash
+로컬 탐색을 위해 Grafana를 가장 빠르게 실행하는 방법: ```bash
 # Grafana 데이터를 위한 지속 볼륨 생성
 docker volume create grafana-storage
 
@@ -81,9 +71,7 @@ docker run -d \
 
 ### Docker Compose — 프로덕션 준비 스택
 
-프로덕션급 모니터링 스택을 위해 Grafana와 Prometheus, Loki를 함께 구성한다. 다음 디렉터리 구조를 생성한다:
-
-```bash
+프로덕션급 모니터링 스택을 위해 Grafana와 Prometheus, Loki를 함께 구성한다. 다음 디렉터리 구조를 생성한다: ```bash
 mkdir -p ~/grafana-stack/{prometheus,loki,grafana/provisioning/datasources,grafana/provisioning/dashboards,grafana/dashboards}
 cd ~/grafana-stack
 ```
@@ -93,99 +81,68 @@ cd ~/grafana-stack
 ```yaml
 version: "3.8"
 
-services:
-  grafana:
-    image: grafana/grafana-enterprise:11.6.0
+services: grafana: image: grafana/grafana-enterprise:11.6.0
     container_name: grafana
     restart: unless-stopped
-    ports:
-      - "3000:3000"
-    environment:
-      - GF_SECURITY_ADMIN_USER=${GRAFANA_ADMIN_USER:-admin}
+    ports: - "3000:3000"
+    environment: - GF_SECURITY_ADMIN_USER=${GRAFANA_ADMIN_USER:-admin}
       - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD:-admin}
       - GF_USERS_ALLOW_SIGN_UP=false
       - GF_SERVER_ROOT_URL=https://grafana.yourdomain.com
       - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-piechart-panel
-    volumes:
-      - grafana-data:/var/lib/grafana
+    volumes: - grafana-data:/var/lib/grafana
       - ./grafana/provisioning:/etc/grafana/provisioning
       - ./grafana/dashboards:/var/lib/grafana/dashboards
-    networks:
-      - monitoring
-    depends_on:
-      - prometheus
+    networks: - monitoring
+    depends_on: - prometheus
       - loki
 
-  prometheus:
-    image: prom/prometheus:v3.2.0
+  prometheus: image: prom/prometheus:v3.2.0
     container_name: prometheus
     restart: unless-stopped
-    ports:
-      - "9090:9090"
-    volumes:
-      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports: - "9090:9090"
+    volumes: - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus-data:/prometheus
-    command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
+    command: - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
       - '--storage.tsdb.retention.time=30d'
       - '--web.enable-lifecycle'
-    networks:
-      - monitoring
+    networks: - monitoring
 
-  loki:
-    image: grafana/loki:3.4.0
+  loki: image: grafana/loki:3.4.0
     container_name: loki
     restart: unless-stopped
-    ports:
-      - "3100:3100"
-    volumes:
-      - ./loki/loki-config.yml:/etc/loki/local-config.yaml
+    ports: - "3100:3100"
+    volumes: - ./loki/loki-config.yml:/etc/loki/local-config.yaml
       - loki-data:/loki
     command: -config.file=/etc/loki/local-config.yaml
-    networks:
-      - monitoring
+    networks: - monitoring
 
-  promtail:
-    image: grafana/promtail:3.4.0
+  promtail: image: grafana/promtail:3.4.0
     container_name: promtail
     restart: unless-stopped
-    volumes:
-      - /var/log:/var/log:ro
+    volumes: - /var/log:/var/log:ro
       - ./loki/promtail-config.yml:/etc/promtail/config.yml
     command: -config.file=/etc/promtail/config.yml
-    networks:
-      - monitoring
+    networks: - monitoring
 
-volumes:
-  grafana-data:
-  prometheus-data:
-  loki-data:
-
-networks:
-  monitoring:
-    driver: bridge
+volumes: grafana-data: prometheus-data: loki-data: networks: monitoring: driver: bridge
 ```
 
 **prometheus/prometheus.yml:**
 
 ```yaml
-global:
-  scrape_interval: 15s
+global: scrape_interval: 15s
   evaluation_interval: 15s
 
-scrape_configs:
-  - job_name: prometheus
-    static_configs:
-      - targets: ['localhost:9090']
+scrape_configs: - job_name: prometheus
+    static_configs: - targets: ['localhost:9090']
 
   - job_name: 'node-exporter'
-    static_configs:
-      - targets: ['node-exporter:9100']
+    static_configs: - targets: ['node-exporter:9100']
 
   - job_name: grafana
-    static_configs:
-      - targets: ['grafana:3000']
+    static_configs: - targets: ['grafana:3000']
 ```
 
 **loki/loki-config.yml:**
@@ -193,76 +150,53 @@ scrape_configs:
 ```yaml
 auth_enabled: false
 
-server:
-  http_listen_port: 3100
+server: http_listen_port: 3100
   grpc_listen_port: 9096
 
-ingester:
-  wal:
-    enabled: true
+ingester: wal: enabled: true
     dir: /loki/wal
-  lifecycler:
-    address: 127.0.0.1
-    ring:
-      kvstore:
-        store: inmemory
+  lifecycler: address: 127.0.0.1
+    ring: kvstore: store: inmemory
       replication_factor: 1
     final_sleep: 0s
   chunk_idle_period: 5m
   chunk_retain_period: 30s
 
-schema_config:
-  configs:
-    - from: 2020-05-15
+schema_config: configs: - from: 2020-05-15
       store: tsdb
       object_store: filesystem
       schema: v13
-      index:
-        prefix: index_
+      index: prefix: index_
         period: 24h
 
-storage_config:
-  tsdb_shipper:
-    active_index_directory: /loki/index
+storage_config: tsdb_shipper: active_index_directory: /loki/index
     cache_location: /loki/cache
-  filesystem:
-    directory: /loki/chunks
+  filesystem: directory: /loki/chunks
 
-compactor:
-  working_directory: /loki/compactor
+compactor: working_directory: /loki/compactor
   retention_enabled: true
   retention_delete_delay: 2h
 
-limits_config:
-  retention_period: 720h
+limits_config: retention_period: 720h
 ```
 
 **loki/promtail-config.yml:**
 
 ```yaml
-server:
-  http_listen_port: 9080
+server: http_listen_port: 9080
   grpc_listen_port: 0
 
-positions:
-  filename: /tmp/positions.yaml
+positions: filename: /tmp/positions.yaml
 
-clients:
-  - url: http://loki:3100/loki/api/v1/push
+clients: - url: http://loki:3100/loki/api/v1/push
 
-scrape_configs:
-  - job_name: system-logs
-    static_configs:
-      - targets:
-          - localhost
-        labels:
-          job: system-logs
+scrape_configs: - job_name: system-logs
+    static_configs: - targets: - localhost
+        labels: job: system-logs
           __path__: /var/log/*.log
 ```
 
-스택 시작:
-
-```bash
+스택 시작: ```bash
 docker compose up -d
 ```
 
@@ -270,13 +204,10 @@ docker compose up -d
 
 ### 데이터 소스 자동 프로비저닝
 
-UI를 수동으로 클릭하여 데이터 소스를 추가하는 대신 Grafana의 프로비저닝 시스템을 사용한다. `grafana/provisioning/datasources/datasources.yml`을 생성한다:
-
-```yaml
+UI를 수동으로 클릭하여 데이터 소스를 추가하는 대신 Grafana의 프로비저닝 시스템을 사용한다. `grafana/provisioning/datasources/datasources.yml`을 생성한다: ```yaml
 apiVersion: 1
 
-datasources:
-  - name: Prometheus
+datasources: - name: Prometheus
     type: prometheus
     access: proxy
     url: http://prometheus:9090
@@ -296,9 +227,7 @@ datasources:
     editable: false
 ```
 
-Grafana를 재시작하면 데이터 소스가 미리 구성된 상태로 나타난다:
-
-```bash
+Grafana를 재시작하면 데이터 소스가 미리 구성된 상태로 나타난다: ```bash
 docker compose restart grafana
 ```
 
@@ -306,9 +235,7 @@ docker compose restart grafana
 
 ### Prometheus — 메트릭 대시보드
 
-Prometheus는 Grafana의 사실상 표준 메트릭 소스이다. 전형적인 CPU 모니터링 패널은 PromQL을 사용한다:
-
-```promql
+Prometheus는 Grafana의 사실상 표준 메트릭 소스이다. 전형적인 CPU 모니터링 패널은 PromQL을 사용한다: ```promql
 # CPU 사용률 백분율
 100 - (avg by(instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100)
 
@@ -323,9 +250,7 @@ Grafana 대시보드 라이브러리에서 공식 Node Exporter Full 대시보�
 
 ### Loki — 로그 집계
 
-Loki는 동일한 대시보드에서 로그 라인을 메트릭과 나란히 표시한다. 오류 라인을 찾는 LogQL 쿼리:
-
-```logql
+Loki는 동일한 대시보드에서 로그 라인을 메트릭과 나란히 표시한다. 오류 라인을 찾는 LogQL 쿼리: ```logql
 # 애플리케이션별 오류 로그 수 집계
 sum by(app) (rate({job="system-logs"} |= "ERROR" [5m]))
 
@@ -335,18 +260,14 @@ sum by(app) (rate({job="system-logs"} |= "ERROR" [5m]))
 
 ### InfluxDB — 시계열 데이터
 
-IoT 및 고기수(cardinality) 메트릭 워크로드의 경우 InfluxDB가 Grafana와 잘 어울린다:
-
-```sql
+IoT 및 고기수(cardinality) 메트릭 워크로드의 경우 InfluxDB가 Grafana와 잘 어울린다: ```sql
 -- InfluxQL 예제: 센서별 평균 온도
 SELECT mean("temperature") FROM "sensors" WHERE $timeFilter GROUP BY "sensor_id", time($__interval) fill(null)
 ```
 
 ### Elasticsearch — 로그 검색
 
-이미 Elastic Stack에 투자한 팀을 위해 Grafana는 Elasticsearch 인덱스를 직접 쿼리할 수 있다:
-
-```json
+이미 Elastic Stack에 투자한 팀을 위해 Grafana는 Elasticsearch 인덱스를 직접 쿼리할 수 있다: ```json
 {
   "query": {
     "bool": {
@@ -373,9 +294,7 @@ SELECT mean("temperature") FROM "sensors" WHERE $timeFilter GROUP BY "sensor_id"
 
 **Netflix**는 수천 개의 마이크로서비스에서 Grafana를 대규모로 실행하며 여러 낮부 시스템의 메트릭을 연관시키기 위해 커스텀 데이터 소스 플러그인을 사용한다.**PayPal**은 Prometheus와 함께 Grafana를 사용하여 200,000개 이상의 컨테이너를 모니터링한다. **eBay**는 레거시 상용 모니터링 도구를 Grafana로 교체하여 대시보드 생성 시간을 며칠에서 몇 시간으로 단축했다.
 
-중형 이커머스 플랫폼(50대 호스트, 200만 개 활성 시리즈)에서 자체 호스팅 Grafana와 Prometheus, Loki를 실행하면 일반적으로 다음과 같은 결과를 볼 수 있다:
-
-- 월간 인프라 비용: $200-500 (컴퓨팅 + 스토리지)
+중형 이커머스 플랫폼(50대 호스트, 200만 개 활성 시리즈)에서 자체 호스팅 Grafana와 Prometheus, Loki를 실행하면 일반적으로 다음과 같은 결과를 볼 수 있다: - 월간 인프라 비용: $200-500 (컴퓨팅 + 스토리지)
 - 동등한 Datadog 비용: $9,500+/월
 - 대시보드 생성 시간: 30분 vs. 커스텀 UI로 2시간 이상
 - 평균 탐지 시간(MTTD): Grafana 도입 후 40-60% 감소
@@ -388,108 +307,81 @@ Grafana의 알림 타임라인 대시보드는 시간에 따른 알림 발동 �
 
 ### SSL/TLS 종료 및 리버스 프록시
 
-Grafana를 인터넷에 직접 노출하지 마라. Traefik이나 Nginx를 리버스 프록시로 사용한다:
-
-```yaml
+Grafana를 인터넷에 직접 노출하지 마라. Traefik이나 Nginx를 리버스 프록시로 사용한다: ```yaml
 # docker-compose.yml 추가 구성
-  traefik:
-    image: traefik:v3.3
-    command:
-      - "--api.insecure=true"
+  traefik: image: traefik:v3.3
+    command: - "--api.insecure=true"
       - "--providers.docker=true"
       - "--entrypoints.websecure.address=:443"
       - "--certificatesresolvers.letsencrypt.acme.tlschallenge=true"
       - "--certificatesresolvers.letsencrypt.acme.email=admin@yourdomain.com"
       - "--certificatesresolvers.letsencrypt.acme.storage=/letsencrypt/acme.json"
-    ports:
-      - "443:443"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+    ports: - "443:443"
+    volumes: - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./letsencrypt:/letsencrypt
-    networks:
-      - monitoring
+    networks: - monitoring
 ```
 
 ### 고가용성 설정
 
-제로 다운타임이 필요한 프로덕션 환경을 위해:
-
-```yaml
+제로 다운타임이 필요한 프로덕션 환경을 위해: ```yaml
 # Grafana HA에는 공유 데이터베이스(PostgreSQL 또는 MySQL)와
 # 로드 밸런서 뒤의 여러 Grafana 인스턴스가 필요하다
 
-  postgres:
-    image: postgres:17-alpine
-    environment:
-      POSTGRES_DB: grafana
+  postgres: image: postgres:17-alpine
+    environment: POSTGRES_DB: grafana
       POSTGRES_USER: grafana
       POSTGRES_PASSWORD: ${DB_PASSWORD}
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
+    volumes: - postgres-data:/var/lib/postgresql/data
 
-  grafana-1:
-    image: grafana/grafana-enterprise:11.6.0
-    environment:
-      - GF_DATABASE_TYPE=postgres
+  grafana-1: image: grafana/grafana-enterprise:11.6.0
+    environment: - GF_DATABASE_TYPE=postgres
       - GF_DATABASE_HOST=postgres:5432
       - GF_DATABASE_NAME=grafana
       - GF_DATABASE_USER=grafana
       - GF_DATABASE_PASSWORD=${DB_PASSWORD}
       - GF_REMOTE_CACHE_TYPE=redis
       - GF_REMOTE_CACHE_CONNSTR=redis:6379
-    depends_on:
-      - postgres
+    depends_on: - postgres
 ```
 
 ### 코드로서의 알림 구성
 
-프로비저닝을 통해 알림 규칙을 정의한다:
-
-```yaml
+프로비저닝을 통해 알림 규칙을 정의한다: ```yaml
 # grafana/provisioning/alerting/alert-rules.yml
 apiVersion: 1
-groups:
-  - orgId: 1
+groups: - orgId: 1
     name: infrastructure
     folder: Infrastructure
     interval: 60s
-    rules:
-      - uid: high-cpu-usage
+    rules: - uid: high-cpu-usage
         title: CPU 사용률 80% 초과
         condition: B
-        data:
-          - refId: A
-            relativeTimeRange:
-              from: 300
+        data: - refId: A
+            relativeTimeRange: from: 300
               to: 0
             datasourceUid: prometheus
-            model:
-              expr: 100 - (avg by(instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 80
+            model: expr: 100 - (avg by(instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 80
         noDataState: NoData
         execErrState: Error
         for: 5m
-        annotations:
-          summary: "{{ $labels.instance }}에서 CPU 사용률이 높습니다"
+        annotations: summary: "{{ $labels.instance }}에서 CPU 사용률이 높습니다"
 ```
 
 ### Git에서 대시보드 프로비저닝
 
-대시보드를 JSON으로 저장소에 저장하고 자동으로 프로비저닝한다:
-
-```yaml
+대시보드를 JSON으로 저장소에 저장하고 자동으로 프로비저닝한다: ```yaml
 # grafana/provisioning/dashboards/dashboards.yml
 apiVersion: 1
 
-providers:
-  - name: default
+providers: - name: default
     orgId: 1
     folder: ''
     type: file
     disableDeletion: false
     editable: false
     updateIntervalSeconds: 30
-    options:
-      path: /var/lib/grafana/dashboards
+    options: path: /var/lib/grafana/dashboards
       foldersFromFilesStructure: true
 ```
 
@@ -529,9 +421,7 @@ providers:
 
 ## 한계 / 솔직한 평가
 
-Grafana는 만능이 아니다. 투입하기 전에 다음 한계를 이해하라:
-
-1. **내장 데이터 수집 기능 부재** — Grafana는 데이터를 시각화하지만 수집하지는 않는다. 여전히 Prometheus, Loki 또는 다른 백엔드가 필요하다. 이는 올인원 SaaS 플랫폼에 비해 운영 오버헤드를 추가한다.
+Grafana는 만능이 아니다. 투입하기 전에 다음 한계를 이해하라: 1. **내장 데이터 수집 기능 부재** — Grafana는 데이터를 시각화하지만 수집하지는 않는다. 여전히 Prometheus, Loki 또는 다른 백엔드가 필요하다. 이는 올인원 SaaS 플랫폼에 비해 운영 오버헤드를 추가한다.
 
 2. **로그 검색이 Lucene이 아님** — Loki는 Elasticsearch와 같은 전문 검색 대신 레이블 기반 필터링과 정규식을 사용한다. 복잡한 로그 쿼리는 더 느리고 덜 직관적일 수 있다.
 
@@ -589,9 +479,7 @@ Grafana는 구체적인 문제를 해결함으로써 73,876개의 GitHub Star를
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -610,7 +498,6 @@ Grafana는 구체적인 문제를 해결함으로써 73,876개의 GitHub Star를
 - [HTStack — 관리형 클라우드 서버](https://htstack.com/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

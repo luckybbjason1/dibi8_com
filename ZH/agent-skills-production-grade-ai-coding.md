@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/agent-skills-production-grade-ai-coding" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/agent-skills-production-grade-ai-coding" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/agent-skills-production-grade-ai-coding" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/agent-skills-production-grade-ai-coding" />
 title: Agent Skills：开发团队如何以5倍速度交付生产级代码
 description: Addy Osmani的Agent Skills提供20个生产级工程技能和7个斜杠命令，将AI编码智能体转变为高级软件工程师。. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
-tech_stack:
-- Go
+tech_stack: - Go
 - JavaScript
 - TypeScript
 application_domain: Llm Frameworks
@@ -26,11 +20,9 @@ maintainer: ''
 last_maintained: '2026-05-15'
 featureImage: ''
 draft: false
-aliases:
-- /zh/posts/addy-osmani-agent-skills-production-grade-ai-coding-agents.zh/
+aliases: - /zh/posts/addy-osmani-agent-skills-production-grade-ai-coding-agents.zh/
 - /zh/posts/agent-skills-production-grade-ai-coding/
-faqs:
-  - q: 'Addy Osmani 开发的 Agent Skills 是什么？'
+faqs: - q: 'Addy Osmani 开发的 Agent Skills 是什么？'
     a: 'Agent Skills 是一个开源合集，包含 20 项生产级工程技能和 7 个斜杠命令，把资深工程师的工作流、质量门禁和最佳实践编码固化下来，供 AI 编码智能体使用。它由 Addy Osmani 打造，覆盖完整的软件开发生命周期：DEFINE、PLAN、BUILD、VERIFY、REVIEW、SHIP。'
   - q: 'Agent Skills 能配合哪些 AI 编码智能体使用？'
     a: 'Agent Skills 可配合 Claude Code、Cursor、Gemini CLI、Windsurf、OpenCode、GitHub Copilot、Kiro 和 Codex 使用。每个智能体都有专属目录存放技能清单（manifest），技能会根据文件类型和上下文自动激活。'
@@ -39,10 +31,7 @@ faqs:
   - q: '如何为 Claude Code 安装 Agent Skills？'
     a: '对于 Claude Code，你可以用 `gh repo clone addyosmani/agent-skills .claude/skills` 把仓库克隆到你的项目中，或者用 `claude plugin install addyosmani/agent-skills` 作为插件安装。'
   - q: 'Agent Skills 中的反合理化表（anti-rationalization table）是什么？'
-    a: '反合理化表是嵌入每项技能中的一个功能，它会提前标记开发者和 AI 智能体用来偷工减料的常见借口（例如"我稍后再加测试"），并给出对应的反驳论据。这些表格源自 Google 规模组织中真实的事后复盘（post-mortem）和代码评审反馈。'
----
-
-<!-- canonical: https://dibi8.com/zh/tools/agent-skills-production-grade-ai-coding/ -->
+    a: '反合理化表是嵌入每项技能中的一个功能，它会提前标记开发者和 AI 智能体用来偷工减料的常见借口（例如"我稍后再加测试"），并给出对应的反驳论据。这些表格源自 Google 规模组织中真实的事后复盘（post-mortem）和代码评审反馈。'---
 
 {</* resource-info */>}
 
@@ -64,7 +53,13 @@ Agent Skills 是一套**20个生产级工程技能**和**7个斜杠命令**，�
 ## 7个斜杠命令
 
 | 你在做什么 | 命令 | 核心原则 |
-|-----------|------|---------|
+|
+---
+|
+---
+|
+---
+|
 | 定义要构建的内容 | `/spec` | 规范先于代码 |
 | 规划如何构建 | `/plan` | 小而原子的任务 |
 | 增量构建 | `/build` | 一次一个切片 |
@@ -190,7 +185,17 @@ gemini install skills addyosmani/agent-skills
 ## 与竞品对比
 
 | 功能 | Agent Skills | GitHub Copilot | Cursor Rules | 通用提示 |
-|------|--------------|----------------|--------------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **开源** | ✅ 是 | ❌ 否 | ❌ 否 | N/A |
 | **20个结构化技能** | ✅ 是 | ❌ 通用 | ❌ 基础 | ❌ 临时 |
 | **多智能体支持** | ✅ 7+智能体 | ❌ 仅Copilot | ❌ 仅Cursor | ❌ N/A |
@@ -243,7 +248,13 @@ Agent Skills 使用上下文感知激活引擎，根据多个信号确定加载�
 Agent Skills 最具创新性的功能之一是嵌入在每个技能中的**反合理化表**。高级工程师知道初级开发人员（和 AI 智能体）经常为走捷径辩护。这些表先发制人地标记常见的合理化并提供反驳：
 
 | 常见合理化 | 反驳 | 技能 |
-|-----------|------|------|
+|
+---
+|
+---
+|
+---
+|
 | "我稍后添加测试" | "稍后永远不会到来。未经测试的代码会进入生产环境。" | test-driven-development |
 | "API 仅供内部使用" | "内部 API 会变成公共的。从第一天起就为外部使用者设计。" | api-and-interface-design |
 | "这只是一个快速修复" | "快速修复会积累技术债务。遵循完整的分类流程。" | debugging-and-error-recovery |
@@ -283,7 +294,15 @@ Agent Skills 最具创新性的功能之一是嵌入在每个技能中的**反�
 使用 Agent Skills 的团队应跟踪以下指标：
 
 | 指标 | 基线（无技能） | 使用 Agent Skills | 变化 |
-|------|--------------|-------------------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 从规范到首次提交的时间 | 4 小时 | 45 分钟 | -81% |
 | PR 审查轮次 | 平均 3.2 | 平均 1.4 | -56% |
 | 每月生产事故 | 2.1 | 0.3 | -86% |
@@ -314,7 +333,13 @@ Agent Skills 最具创新性的功能之一是嵌入在每个技能中的**反�
 Agent Skills 有效地压缩了高级工程实践的学习曲线：
 
 | 高级工程实践 | 掌握所需年限 | Agent Skills 等效 |
-|-------------|-------------|------------------|
+|
+---
+|
+---
+|
+---
+|
 | 编写全面的规范 | 2-3 年 | `/spec` 命令 |
 | 分解复杂项目 | 1-2 年 | `/plan` 命令 |
 | 测试驱动开发纪律 | 2-4 年 | `/test` + 技能 |
@@ -334,12 +359,12 @@ Agent Skills 有效地压缩了高级工程实践的学习曲线：
 
 Agent Skills 是"AI能编码"和"AI能交付生产软件"之间缺失的环节。通过将高级工程判断编码为结构化、可验证的工作流，Addy Osmani 为任何开发团队创造了一个力量倍增器。无论您是独立创始人、创业工程师还是企业负责人，这些技能都将使您的 AI 智能体编写您实际想要部署的代码。
 
----
 
+---
 *哪个 Agent Skill 对您的工作流改善最大？在评论中告诉我们。*
 
----
 
+---
 ## 推荐自托管基础设施
 
 要 7×24 稳定跑这套，服务器选择很关键：
@@ -351,7 +376,6 @@ Agent Skills 是"AI能编码"和"AI能交付生产软件"之间缺失的环节�
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -379,25 +403,20 @@ Agent Skills 是"AI能编码"和"AI能交付生产软件"之间缺失的环节�
 
 ## Why This Matters
 
-Understanding agent skills：开发团队如何以5倍速度交付生产级代码 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding agent skills：开发团队如何以5倍速度交付生产级代码 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -449,7 +468,17 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

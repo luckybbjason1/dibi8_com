@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/invokeai" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/invokeai" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/invokeai" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/invokeai" />
 title: 'InvokeAI: 27.2K+ Stars — Hướng Dẫn Cài Đặt Đầy Đủ 2026'
 description: 'InvokeAI (Invoke) là công cụ sáng tạo hàng đầu cho mô hình Stable Diffusion với WebUI dẫn đầu ngành. Tương thích với SD 1.5, SDXL, FLUX và ControlNet. Bao gồm cài đặt Docker, thiết lập workflow, so sánh benchmark với AUTOMATIC1111 và ComfyUI, và hardening production.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [invokeai, 'stable diffusion', 'tạo ảnh ai', docker, flux, sdxl, webui, 'mã nguồn mở']
-aliases:
-- /vi/posts/invokeai/
+aliases: - /vi/posts/invokeai/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/invokeai/ -->
 
 {{</* resource-info */>}}
 
@@ -81,9 +73,7 @@ cd InvokeAI/docker
 cp .env.sample .env
 ```
 
-Chỉnh sửa file `.env`:
-
-```bash
+Chỉnh sửa file `.env`: ```bash
 # Cấu hình cốt lõi
 INVOKEAI_ROOT=/opt/invokeai-data
 INVOKEAI_PORT=9090
@@ -98,9 +88,7 @@ HUGGINGFACE_TOKEN=hf_your_token_here
 ./run.sh
 ```
 
-Hoặc dùng `docker compose` trực tiếp:
-
-```bash
+Hoặc dùng `docker compose` trực tiếp: ```bash
 docker compose up -d
 ```
 
@@ -108,9 +96,7 @@ Truy cập UI tại `http://localhost:9090`.
 
 ### Chạy Docker Nhanh (Không cần Compose)
 
-Để test nhanh không cần lưu trữ dữ liệu:
-
-```bash
+Để test nhanh không cần lưu trữ dữ liệu: ```bash
 # NVIDIA GPU
 docker run --runtime=nvidia --gpus=all \
   --publish 9090:9090 \
@@ -185,59 +171,40 @@ sudo docker compose up -d
 
 x-invokeai: &invokeai
     image: "ghcr.io/invoke-ai/invokeai:latest"
-    build:
-      context: ..
+    build: context: ..
       dockerfile: docker/Dockerfile
-    env_file:
-      - .env
-    environment:
-      - INVOKEAI_ROOT=${CONTAINER_INVOKEAI_ROOT:-/invokeai}
+    env_file: - .env
+    environment: - INVOKEAI_ROOT=${CONTAINER_INVOKEAI_ROOT:-/invokeai}
       - HF_HOME
-    ports:
-      - "${INVOKEAI_PORT:-9090}:${INVOKEAI_PORT:-9090}"
-    volumes:
-      - type: bind
+    ports: - "${INVOKEAI_PORT:-9090}:${INVOKEAI_PORT:-9090}"
+    volumes: - type: bind
         source: ${HOST_INVOKEAI_ROOT:-${INVOKEAI_ROOT:-~/invokeai}}
         target: ${CONTAINER_INVOKEAI_ROOT:-/invokeai}
-        bind:
-          create_host_path: true
+        bind: create_host_path: true
       - ${HF_HOME:-~/.cache/huggingface}:${HF_HOME:-/invokeai/.cache/huggingface}
     tty: true
     stdin_open: true
 
-services:
-  invokeai-cuda:
-    <<: *invokeai
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+services: invokeai-cuda: <<: *invokeai
+    deploy: resources: reservations: devices: - driver: nvidia
               count: 1
               capabilities: [gpu]
 
-  invokeai-cpu:
-    <<: *invokeai
-    profiles:
-      - cpu
+  invokeai-cpu: <<: *invokeai
+    profiles: - cpu
 
-  invokeai-rocm:
-    <<: *invokeai
-    environment:
-      - AMD_VISIBLE_DEVICES=all
+  invokeai-rocm: <<: *invokeai
+    environment: - AMD_VISIBLE_DEVICES=all
       - RENDER_GROUP_ID=${RENDER_GROUP_ID}
     runtime: amd
-    profiles:
-      - rocm
+    profiles: - rocm
 ```
 
 ## Tích hợp với Stable Diffusion, ComfyUI và ControlNet
 
 ### Sử dụng mô hình Stable Diffusion
 
-InvokeAI hỗ trợ nhiều họ mô hình ngay từ đầu:
-
-- **SD 1.5** — Các mô hình cổ điển, hệ sinh thái LoRA rộng lớn
+InvokeAI hỗ trợ nhiều họ mô hình ngay từ đầu: - **SD 1.5** — Các mô hình cổ điển, hệ sinh thái LoRA rộng lớn
 - **SDXL** — Độ phân giải cao hơn, tuân thủ prompt tốt hơn
 - **FLUX / FLUX.2** — Chất lượng tiên tiến nhất (2025-2026)
 - **Z-Image** — Các mô hình undistilled thân thiện với fine-tuning
@@ -273,9 +240,7 @@ InvokeAI có hỗ trợ ControlNet gốc thông qua node workspace. Các bộ x�
 
 ### Nhập workflow ComfyUI
 
-Mặc dù InvokeAI và ComfyUI sử dụng định dạng workflow khác nhau, bạn có thể tái tạo các pipeline ComfyUI trong trình chỉnh sửa node của InvokeAI. Thư viện node bao gồm:
-
-- KSampler / Sampler nodes
+Mặc dù InvokeAI và ComfyUI sử dụng định dạng workflow khác nhau, bạn có thể tái tạo các pipeline ComfyUI trong trình chỉnh sửa node của InvokeAI. Thư viện node bao gồm: - KSampler / Sampler nodes
 - CLIP Text Encode
 - VAELoader / VAEDecode
 - Image Scale nodes
@@ -347,15 +312,12 @@ print(response.json()["session_id"])
 
 ### Chế độ đa ngườ dùng (v6.12.0+)
 
-InvokeAI hiện hỗ trợ nhiều tài khoản riêng biệt trên một backend:
-
-```bash
+InvokeAI hiện hỗ trợ nhiều tài khoản riêng biệt trên một backend: ```bash
 # Bật chế độ đa ngườ dùng trong .env
 INVOKEAI_ENABLE_MULTIUSER=true
 ```
 
-Mỗi ngườ dùng có:
-- Board ảnh và gallery riêng
+Mỗi ngườ dùng có: - Board ảnh và gallery riêng
 - Trạng thái canvas độc lập
 - Tùy chỉnh UI riêng
 - Phân quyền dựa trên vai trò (admin vs ngườ dùng thường)
@@ -408,9 +370,7 @@ TimeoutStartSec=0
 WantedBy=multi-user.target
 ```
 
-Kích hoạt và khởi động:
-
-```bash
+Kích hoạt và khởi động: ```bash
 sudo systemctl daemon-reload
 sudo systemctl enable --now invokeai
 ```
@@ -419,19 +379,13 @@ sudo systemctl enable --now invokeai
 
 ```yaml
 # docker-compose.monitoring.yml
-services:
-  prometheus:
-    image: prom/prometheus:latest
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
-    ports:
-      - "9091:9090"
+services: prometheus: image: prom/prometheus:latest
+    volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports: - "9091:9090"
 
-  dcgm-exporter:
-    image: nvcr.io/nvidia/k8s/dcgm-exporter:latest
+  dcgm-exporter: image: nvcr.io/nvidia/k8s/dcgm-exporter:latest
     runtime: nvidia
-    ports:
-      - "9400:9400"
+    ports: - "9400:9400"
 ```
 
 ### Sao lưu tự động
@@ -450,9 +404,7 @@ tar czf "$BACKUP_DIR/models-$DATE.tar.gz" /opt/invokeai-data/models
 find "$BACKUP_DIR" -name "*.tar.gz" -mtime +7 -delete
 ```
 
-Thêm vào crontab:
-
-```bash
+Thêm vào crontab: ```bash
 0 2 * * * /opt/invokeai-backup/backup.sh
 ```
 
@@ -506,17 +458,13 @@ InvokeAI có giấy phép Apache-2.0. Các model bạn tải xuống (SD 1.5, SD
 
 ### Làm sao cập nhật InvokeAI lên phiên bản mới?
 
-Với cài đặt Docker, pull image mới nhất và khởi động lại:
-
-```bash
+Với cài đặt Docker, pull image mới nhất và khởi động lại: ```bash
 cd InvokeAI/docker
 docker compose pull
 docker compose up -d
 ```
 
-Với cài đặt bare metal, dùng launcher:
-
-```bash
+Với cài đặt bare metal, dùng launcher: ```bash
 invokeai-update
 ```
 
@@ -546,9 +494,7 @@ Theo dõi kênh Telegram của chúng tôi để cập nhật công cụ AI mã 
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -570,7 +516,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 *Bài viết này chứa liên kết liên kết đến DigitalOcean. Nếu bạn đăng ký qua các liên kết này, chúng tôi nhận được hoa hồng mà không phát sinh chi phí thêm cho bạn. Điều này giúp hỗ trợ trang web và nội dung mã nguồn mở của chúng tôi. Tất cả ý kiến và benchmark đều được sản xuất độc lập.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

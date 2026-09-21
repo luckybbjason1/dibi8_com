@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/coqui-tts" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/coqui-tts" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/coqui-tts" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/coqui-tts" />
 title: 'Coqui TTS: 45.3K+ Stars — 深度学习语音合成工具包，对比 ChatTTS、MeloTTS...
 description: 'Coqui TTS 是开源深度学习文本转语音工具包。支持 1100+ 种语言、XTTS v2 语音克隆、VITS 端到端合成。与 ChatTTS、MeloTTS、Bark 的真实 RTF 性能基准对比，含 Docker 部署方案和生产环境配置。'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: ['coqui tts', 文本转语音, 语音克隆, xtts, vits, 深度学习, docker, python]
-aliases:
-- /zh/posts/coqui-tts/
+aliases: - /zh/posts/coqui-tts/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/coqui-tts/ -->
 
 {{</* resource-info */>}}
 
@@ -61,7 +53,13 @@ Coqui TTS 将合成流水线分离为三个可互换阶段：**文本到频谱�
 **可用模型类别：**
 
 | 类别 | 模型 | 适用场景 |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | 频谱图 | Tacotron2, Glow-TTS, FastSpeech2, FastPitch, OverFlow | 单说话人、资源受限部署 |
 | 端到端 | VITS, YourTTS, XTTS v2, Bark, Tortoise | 高质量、多说话人、语音克隆 |
 | 声码器 | HiFi-GAN, MelGAN, UnivNet, WaveRNN | 从频谱图生成波形 |
@@ -226,8 +224,7 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 tts = TTS("tts_models/multilingual/multi-dataset/xtts_v2").to(device)
 
 @app.route("/synthesize", methods=["POST"])
-def synthesize():
-    data = request.get_json()
+def synthesize(): data = request.get_json()
     text = data.get("text", "")
     language = data.get("language", "en")
     speaker_wav = data.get("speaker_wav", None)
@@ -241,8 +238,7 @@ def synthesize():
     
     return send_file(buffer, mimetype="audio/wav")
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+if __name__ == "__main__": app.run(host="0.0.0.0", port=5000)
 ```
 
 ### Docker Compose 生产部署
@@ -251,40 +247,27 @@ if __name__ == "__main__":
 # docker-compose.yml
 version: '3.8'
 
-services:
-  coqui-tts:
-    build: .
+services: coqui-tts: build: .
     container_name: coqui-tts-service
     restart: unless-stopped
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+    deploy: resources: reservations: devices: - driver: nvidia
               count: 1
               capabilities: [gpu]
-    ports:
-      - "5002:5002"
-    volumes:
-      - ./tts_models:/home/appuser/.local/share/tts
+    ports: - "5002:5002"
+    volumes: - ./tts_models:/home/appuser/.local/share/tts
       - ./config:/app/config
       - ./audio_output:/app/audio_output
-    environment:
-      - CUDA_VISIBLE_DEVICES=0
+    environment: - CUDA_VISIBLE_DEVICES=0
       - PYTHONUNBUFFERED=1
       - TTS_HOME=/home/appuser/.local/share/tts
     shm_size: 2gb
     command: >
       sh -c "python3 /app/config/server.py"
 
-  nginx:
-    image: nginx:alpine
-    ports:
-      - "80:80"
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
-    depends_on:
-      - coqui-tts
+  nginx: image: nginx:alpine
+    ports: - "80:80"
+    volumes: - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on: - coqui-tts
 ```
 
 ### Dockerfile for Coqui TTS
@@ -334,7 +317,19 @@ tts.voice_conversion_to_file(
 ![XTTS v2 Model](https://raw.githubusercontent.com/coqui-ai/TTS/dev/images/xtts2.png)
 
 | 模型 | RTF（越低越好） | 峰值显存占用 | MOS 评分 | 语音克隆 | 支持语言 |
-|---|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Coqui XTTS v2 | 0.15 | 4.1 GB | 4.2 | 是（3 秒参考） | 17 |
 | Coqui VITS | 0.08 | 2.1 GB | 4.1 | 否 | 每模型 1 种 |
 | Coqui FastSpeech2 | 0.054 | 1.4 GB | 3.9 | 否 | 每模型 1 种 |
@@ -352,13 +347,13 @@ tts.voice_conversion_to_file(
 **实际生产部署指标（生产 API 每日处理 5000 次请求）：**
 
 ```
-硬件:            2x NVIDIA A10G（AWS g5.2xlarge）
-负载均衡:        nginx 轮询
-容器:            Docker + gunicorn（每 GPU 4 个工作进程）
-平均延迟:        P50 420 毫秒, P95 890 毫秒
-吞吐量:          每 GPU 12 请求/秒
-错误率:          0.03%（>500 字符输入导致 OOM）
-正常运行时间:    30 天内 99.7%
+硬件: 2x NVIDIA A10G（AWS g5.2xlarge）
+负载均衡: nginx 轮询
+容器: Docker + gunicorn（每 GPU 4 个工作进程）
+平均延迟: P50 420 毫秒, P95 890 毫秒
+吞吐量: 每 GPU 12 请求/秒
+错误率: 0.03%（>500 字符输入导致 OOM）
+正常运行时间: 30 天内 99.7%
 ```
 
 ## 高级用法 / 生产环境加固
@@ -374,8 +369,7 @@ from TTS.api import TTS
 
 MODEL = os.getenv("TTS_MODEL", "tts_models/multilingual/multi-dataset/xtts_v2")
 tts = TTS(MODEL)
-if torch.cuda.is_available():
-    tts = tts.to("cuda")
+if torch.cuda.is_available(): tts = tts.to("cuda")
 
 # 触发 JIT 编译
 _ = tts.tts(text="warm up", speaker_wav=None, language="en")
@@ -405,31 +399,23 @@ torch.backends.cudnn.benchmark = True
 from concurrent.futures import ThreadPoolExecutor
 import queue
 
-def batch_worker(text_queue, result_queue):
-    """以批处理方式处理文本以最大化 GPU 利用率。"""
+def batch_worker(text_queue, result_queue): """以批处理方式处理文本以最大化 GPU 利用率。"""
     tts = TTS("tts_models/multilingual/multi-dataset/xtts_v2").to("cuda")
     batch = []
     
-    while True:
-        try:
-            item = text_queue.get(timeout=0.5)
+    while True: try: item = text_queue.get(timeout=0.5)
             batch.append(item)
             
-            if len(batch) >= 8:  # 批大小为 8
-                for b in batch:
-                    wav = tts.tts(text=b["text"], language=b["lang"])
+            if len(batch) >= 8: # 批大小为 8
+                for b in batch: wav = tts.tts(text=b["text"], language=b["lang"])
                     result_queue.put({"id": b["id"], "wav": wav})
                 batch = []
-        except queue.Empty:
-            if batch:
-                for b in batch:
-                    wav = tts.tts(text=b["text"], language=b["lang"])
+        except queue.Empty: if batch: for b in batch: wav = tts.tts(text=b["text"], language=b["lang"])
                     result_queue.put({"id": b["id"], "wav": wav})
                 batch = []
 
 # 使用
-with ThreadPoolExecutor(max_workers=2) as executor:
-    executor.submit(batch_worker, text_q, result_q)
+with ThreadPoolExecutor(max_workers=2) as executor: executor.submit(batch_worker, text_q, result_q)
 ```
 
 ### XTTS v2 自定义数据微调
@@ -463,24 +449,29 @@ TTS_LATENCY = Histogram(tts_latency_seconds, 请求延迟)
 TTS_ERRORS = Counter(tts_errors_total, 总错误数, [error_type])
 
 @app.route("/metrics")
-def metrics():
-    return generate_latest()
+def metrics(): return generate_latest()
 
 @app.route("/synthesize", methods=["POST"])
-def synthesize():
-    with TTS_LATENCY.time():
-        try:
-            # ... 合成逻辑
+def synthesize(): with TTS_LATENCY.time(): try: # ... 合成逻辑
             TTS_REQUESTS.labels(language=lang).inc()
-        except Exception as e:
-            TTS_ERRORS.labels(error_type=type(e).__name__).inc()
+        except Exception as e: TTS_ERRORS.labels(error_type=type(e).__name__).inc()
             raise
 ```
 
 ## 与竞品对比
 
 | 特性 | Coqui TTS | ChatTTS | MeloTTS | Bark (Suno) |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **GitHub Stars** | 45,300 | 33,400 | 5,100 | 37,200 |
 | **许可证** | MPL-2.0 | AGPL-3.0 | MIT | MIT |
 | **支持语言** | 17 (XTTS) / 1100+ (Fairseq) | 2 (中、英) | 6 | 13+ |
@@ -587,7 +578,6 @@ Coqui TTS 在 2026 年仍然是最通用的开源 TTS 工具包。拥有 45,300 
 *本文仅供信息参考。部署前请在自己的硬件上验证基准数据。Coqui TTS 许可条款可能会变更——商用前请查看当前许可证。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -613,8 +603,8 @@ Coqui TTS 在 2026 年仍然是最通用的开源 TTS 工具包。拥有 45,300 
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [apple-container](coqui-tts)
@@ -623,6 +613,6 @@ Coqui TTS 在 2026 年仍然是最通用的开源 TTS 工具包。拥有 45,300 
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](coqui-tts)
 - [moneyprinterturbo-one-click-ai-video-generator](coqui-tts)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

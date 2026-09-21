@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/axolotl-llm-fine-tuning-framework-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/axolotl-llm-fine-tuning-framework-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/axolotl-llm-fine-tuning-framework-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/axolotl-llm-fine-tuning-framework-2026" />
 title: 'Axolotl 2026：12k 星 YAML 驱动的 LLM 微调框架完整指南'
 description: 'Axolotl 是开源 LLM 微调框架，单 YAML 配置覆盖 full / LoRA / QLoRA / DPO / GRPO。GitHub 12k 星，Apache 2.0。支持 Llama / Mistral / Qwen / GLM / 10+ 家族。完整 2026 安装指南 + 何时 Axolotl 胜过 Unsloth 和原生 HF TRL。'
 date: 2026-05-21 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [axolotl, 微调, lora, qlora, dpo, 开源]
-aliases:
-  - /posts/axolotl-llm-fine-tuning-framework-2026/
+aliases: - /posts/axolotl-llm-fine-tuning-framework-2026/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/axolotl-llm-fine-tuning-framework-2026/ -->
 
 你试过微调 Llama 模型，最后写了 300 行 PyTorch + DeepSpeed config + Hugging Face Trainer 包装，那你感受到了 **Axolotl** 填的坑。一个 YAML 文件描述整个微调跑 —— 模型、数据集、LoRA 配置、超参、分布式策略 —— Axolotl 处理其余。
 
@@ -59,7 +51,11 @@ Axolotl 给你"云平台" UX（一份 config 文件 / 一条命令），同时�
 ## 2. 硬件现实
 
 | 配置 | 能微调的模型 |
-|---|---|
+|
+---
+|
+---
+|
 | 24 GB GPU（RTX 4090 / 3090）| Llama 3.2 8B QLoRA, Mistral 7B QLoRA |
 | 48 GB GPU（A6000）| Llama 3.2 8B LoRA, Mistral 7B full fine-tune |
 | 80 GB GPU（A100 / H100）| Llama 3.3 70B QLoRA, Mistral 8x7B QLoRA |
@@ -81,8 +77,7 @@ pip install -e '.[flash-attn,deepspeed]'
 ```yaml
 # config.yml
 base_model: meta-llama/Llama-3.2-8B
-datasets:
-  - path: tatsu-lab/alpaca
+datasets: - path: tatsu-lab/alpaca
     type: alpaca
 adapter: qlora
 lora_r: 16
@@ -112,7 +107,13 @@ YAML 在这里真正正确的抽象：
 ## 5. 微调方法速查表
 
 | 方法 | 何时用 | VRAM（8B 模型）|
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | **Full** fine-tune | 算力多，要最佳质量 | ~80 GB |
 | **LoRA** | 多数情况，平衡成本/质量 | ~24-32 GB |
 | **QLoRA** | 便宜实验，VRAM 紧 | ~12-16 GB |
@@ -152,7 +153,11 @@ YAML 在这里真正正确的抽象：
 ## 7. Axolotl vs Unsloth vs HuggingFace TRL
 
 | 挑 | 何时 |
-|---|---|
+|
+---
+|
+---
+|
 | **Axolotl** | 生产微调管线，多节点，广方法支持（DPO/GRPO/KTO/ORPO），YAML-config-as-code 工作流 |
 | **Unsloth** | 单 GPU，要 2× 速度 + 70% VRAM 节省，专门 RL 微调。看 [Unsloth 深度文](/zh/resources/llm-frameworks/unsloth-fast-llm-fine-tuning-2026/) |
 | **HuggingFace TRL** | 低层控制，自定义循环，研究 paper。多数生产代码现在通过 Axolotl 或 Unsloth 包 TRL |
@@ -183,12 +188,11 @@ Axolotl = **YAML 驱动的 LLM 微调框架，2026 生产多 GPU 默认**。12k 
 
 开个 H100 实例，写第 3 节 20 行 YAML，15 分钟后你有微调跑起来。
 
----
 
+---
 *dibi8 Fine-Tuning Stack 的一部分 —— 配 [Unsloth 单 GPU 快速迭代](/zh/resources/llm-frameworks/unsloth-fast-llm-fine-tuning-2026/)。完整 LLM ops 图景见即将上线的 Fine-Tuning Stack 合集。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -216,25 +220,20 @@ Axolotl = **YAML 驱动的 LLM 微调框架，2026 生产多 GPU 默认**。12k 
 
 ## Why This Matters
 
-Understanding axolotl 2026：12k 星 yaml 驱动的 llm 微调框架完整指南 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding axolotl 2026：12k 星 yaml 驱动的 llm 微调框架完整指南 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -255,8 +254,8 @@ Axolotl 2026：12k 星 YAML 驱动的 LLM 微调框架完整指南 represents an
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 

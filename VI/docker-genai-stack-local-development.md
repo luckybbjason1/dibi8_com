@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/docker-genai-stack-local-development" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/docker-genai-stack-local-development" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/docker-genai-stack-local-development" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/docker-genai-stack-local-development" />
 title: 'Docker GenAI Stack: Chạy LangChain, Vector DB & LLM tron...
 description: 'Thiết lập môi trường phát triển GenAI local hoàn chỉnh với Docker GenAI Stack. Bao gồm LangChain, Neo4j, Ollama và vector database trong một file docker-compose duy nhất. Hướng dẫn production-ready cho 2026.'
 date: 2026-05-20 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: ['docker genai stack']
-aliases:
-- /vi/posts/docker-genai-stack-local-development/
+aliases: - /vi/posts/docker-genai-stack-local-development/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/docker-genai-stack-local-development/ -->
 
 {{</* resource-info */>}}
 
@@ -47,14 +39,11 @@ Trong hướng dẫn này, bạn sẽ đi từ con số không đến một pipe
 
 ## Docker GenAI Stack hoạt động như thế nào?
 
-Kiến trúc theo mô hình pipeline module. Mỗi service là một container độc lập, giao tiếp qua mạng nội bộ của Docker:
-
-```yaml
-services:
-  llm:          # Ollama — local LLM inference
-  database:     # Neo4j — knowledge graph + vector search
-  loader:       # Pipeline ingest document
-  bot:          # Giao diện chat powered by LangChain
+Kiến trúc theo mô hình pipeline module. Mỗi service là một container độc lập, giao tiếp qua mạng nội bộ của Docker: ```yaml
+services: llm: # Ollama — local LLM inference
+  database: # Neo4j — knowledge graph + vector search
+  loader: # Pipeline ingest document
+  bot: # Giao diện chat powered by LangChain
   pdf-frontend: # UI tùy chọn cho tương tác PDF
 ```
 
@@ -84,9 +73,7 @@ cd genai-stack
 cp .env.example .env
 ```
 
-Chỉnh sửa `.env` để chọn model LLM và embedding:
-
-```bash
+Chỉnh sửa `.env` để chọn model LLM và embedding: ```bash
 # .env —— cấu hình tối thiểu cho Ollama local
 LLM=ollama
 EMBEDDING_MODEL=sentence_transformer
@@ -101,9 +88,7 @@ NEO4J_PASSWORD=password
 docker compose up --build
 ```
 
-Lần pull đầu tiên sẽ build tất cả images và tải models. Pha cà phê đi —— mất **3–5 phút** trên kết nối hiện đại. Bạn sẽ thấy Ollama đang pull model mặc định (thường là Llama 3.2 7B):
-
-```
+Lần pull đầu tiên sẽ build tất cả images và tải models. Pha cà phê đi —— mất **3–5 phút** trên kết nối hiện đại. Bạn sẽ thấy Ollama đang pull model mặc định (thường là Llama 3.2 7B): ```
 [+] Running 6/6
  ⠿ Network genai-stack_default       Created
  ⠿ Container genai-stack-database-1  Started
@@ -133,9 +118,7 @@ Truy cập `http://localhost:8501` cho Streamlit chat UI, hoặc `http://localho
 
 ### Tích hợp LangChain
 
-Stack sử dụng `Neo4jVector` và `GraphCypherQAChain` của LangChain cho retrieval-augmented generation trên knowledge graph:
-
-```python
+Stack sử dụng `Neo4jVector` và `GraphCypherQAChain` của LangChain cho retrieval-augmented generation trên knowledge graph: ```python
 # Ví dụ: Query knowledge graph với LangChain
 from langchain_community.graphs import Neo4jGraph
 from langchain.chains import GraphCypherQAChain
@@ -161,9 +144,7 @@ print(result[result])
 
 ### Thiết lập Neo4j Knowledge Graph
 
-Stack tự động tạo vector indexes khi Neo4j khởi động. Bạn có thể kiểm tra và mở rộng graph schema:
-
-```bash
+Stack tự động tạo vector indexes khi Neo4j khởi động. Bạn có thể kiểm tra và mở rộng graph schema: ```bash
 # Truy cập Neo4j Browser tại http://localhost:7474
 # Login: neo4j / password
 
@@ -184,9 +165,7 @@ OPTIONS {indexConfig: {
 
 ### Quản lý Ollama Models
 
-Chuyển đổi giữa các models mà không cần restart stack:
-
-```bash
+Chuyển đổi giữa các models mà không cần restart stack: ```bash
 # Pull một model khác
 docker compose exec llm ollama pull mistral:7b
 
@@ -197,18 +176,14 @@ docker compose exec llm ollama list
 docker compose exec llm ollama run llama3.2 "Explain Docker containers"
 ```
 
-Ghi đè model mặc định qua biến môi trường:
-
-```bash
+Ghi đè model mặc định qua biến môi trường: ```bash
 # Trong .env hoặc docker-compose.override.yml
 OLLAMA_MODEL=mistral:7b docker compose up
 ```
 
 ### Kết nối Vector Database bên ngoài
 
-Mặc dù Neo4j xử lý vectors natively, bạn có thể thay thế bằng Pinecone, Weaviate, hoặc pgvector bằng cách sửa đổi khởi tạo LangChain vector store:
-
-```python
+Mặc dù Neo4j xử lý vectors natively, bạn có thể thay thế bằng Pinecone, Weaviate, hoặc pgvector bằng cách sửa đổi khởi tạo LangChain vector store: ```python
 # Thay Neo4jVector bằng Pinecone (cần PINECONE_API_KEY trong .env)
 from langchain_pinecone import PineconeVectorStore
 
@@ -260,17 +235,9 @@ vectorstore = PineconeVectorStore.from_documents(
 
 ### GPU Acceleration cho Ollama
 
-Bật hỗ trợ NVIDIA GPU để inference nhanh hơn 5–10 lần:
-
-```yaml
+Bật hỗ trợ NVIDIA GPU để inference nhanh hơn 5–10 lần: ```yaml
 # docker-compose.override.yml
-services:
-  llm:
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+services: llm: deploy: resources: reservations: devices: - driver: nvidia
               count: 1
               capabilities: [gpu]
 ```
@@ -283,27 +250,19 @@ nvidia-smi
 
 ### Persistent Data Volumes
 
-Theo mặc định, dữ liệu Neo4j lưu trong Docker volume. Để persistence production-grade:
-
-```yaml
-services:
-  database:
-    volumes:
-      - ./neo4j-data:/data
+Theo mặc định, dữ liệu Neo4j lưu trong Docker volume. Để persistence production-grade: ```yaml
+services: database: volumes: - ./neo4j-data:/data
       - ./neo4j-logs:/logs
       - ./neo4j-plugins:/plugins
 ```
 
 ### Custom Document Loaders
 
-Mở rộng loader service để ingest từ nguồn dữ liệu của bạn:
-
-```python
+Mở rộng loader service để ingest từ nguồn dữ liệu của bạn: ```python
 # loader/custom_loader.py
 from langchain_community.document_loaders import ConfluenceLoader
 
-def load_confluence():
-    loader = ConfluenceLoader(
+def load_confluence(): loader = ConfluenceLoader(
         url="https://your-domain.atlassian.net",
         username="email@example.com",
         api_key="your-api-key"
@@ -318,8 +277,7 @@ def load_confluence():
 openssl rand -base64 32
 
 # Bật Neo4j auth (mặc định đã bật)
-# Trong .env:
-NEO4J_AUTH=neo4j/YOUR_SECURE_PASSWORD_HERE
+# Trong .env: NEO4J_AUTH=neo4j/YOUR_SECURE_PASSWORD_HERE
 
 # Hạn chế Ollama chỉ trong mạng nội bộ
 # Xóa port 11434 khỏi docker-compose.yml
@@ -328,18 +286,14 @@ NEO4J_AUTH=neo4j/YOUR_SECURE_PASSWORD_HERE
 
 ### Triển khai lên [DigitalOcean](https://m.do.co/c/eca87ac14ee0)
 
-Cho instance chia sẻ nhóm hoặc demo khách hàng, stack chạy tốt trên **4 vCPU / 8GB RAM Droplet** (~$48/tháng):
-
-```bash
+Cho instance chia sẻ nhóm hoặc demo khách hàng, stack chạy tốt trên **4 vCPU / 8GB RAM Droplet** (~$48/tháng): ```bash
 # Trên DigitalOcean Droplet (Ubuntu 24.04)
 sudo apt update && sudo apt install -y docker.io docker-compose-plugin
 git clone https://github.com/docker/genai-stack.git
 cd genai-stack && docker compose up -d
 ```
 
-Thêm reverse proxy với HTTPS:
-
-```nginx
+Thêm reverse proxy với HTTPS: ```nginx
 # /etc/nginx/sites-available/genai
 server {
     listen 443 ssl;
@@ -457,7 +411,6 @@ Tham gia cộng đồng developer Telegram: **@dibi8dev** —— chia sẻ cấu
 Bài viết này chứa liên kết affiliate. Nếu bạn đăng ký DigitalOcean qua liên kết giới thiệu của chúng tôi, chúng tôi nhận được hoa hồng mà không phát sinh chi phí cho bạn. Chúng tôi chỉ giới thiệu các dịch vụ mà chính chúng tôi sử dụng cho hạ tầng. Docker GenAI Stack là open-source (giấy phép MIT) và miễn phí sử dụng —— không cần mua hàng.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

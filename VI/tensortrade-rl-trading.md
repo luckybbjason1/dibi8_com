@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/tensortrade-rl-trading" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/tensortrade-rl-trading" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/tensortrade-rl-trading" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/tensortrade-rl-trading" />
 title: 'TensorTrade: Framework Giao Dịch Học Tăng Cường với Môi ...
 description: 'Làm chủ TensorTrade để giao dịch thuật toán dựa trên RL. Xây dựng môi trường Gym tùy chỉnh, tích hợp Stable Baselines3, triển khai chiến lược quản lý danh mục sẵn sàng production với benchmark thực.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: [tensortrade, 'học tăng cường', 'giao dịch thuật toán', 'openai gym', 'stable baselines3', 'quản lý danh mục', python, 'machine learning', 'giao dịch crypto', 'tài chính định lượng']
-aliases:
-- /vi/posts/tensortrade-rl-trading/
+aliases: - /vi/posts/tensortrade-rl-trading/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/tensortrade-rl-trading/ -->
 
 {{</* resource-info */>}}
 
@@ -45,17 +37,13 @@ Với **4,300+ GitHub stars**, giấy phép Apache-2.0 và tích hợp sâu vớ
 
 **TensorTrade là một framework Python mã nguồn mở để huấn luyện, đánh giá và triển khai các agent giao dịch học tăng cường sử dụng môi trường OpenAI Gym tiêu chuẩn.** Nó trừu tượng hóa sự phức tạp của mô phỏng thị trường, theo dõi danh mục, và tổng hợp chiến lược phía sau một API sạch sẽ tích hợp với Stable Baselines3, Ray RLlib và các triển khai RL tùy chỉnh.
 
-Ban đầu phát hành năm 2019, dự án đạt độ trưởng thành vào 2024-2025 với API ổn định v1.0+. Framework xử lý ba vấn đề cốt lõi mà mọi hệ thống giao dịch RL cần:
-
-1. **Mô phỏng môi trường** — chuyển đổi dữ liệu giá thành không gian quan sát Gym
+Ban đầu phát hành năm 2019, dự án đạt độ trưởng thành vào 2024-2025 với API ổn định v1.0+. Framework xử lý ba vấn đề cốt lõi mà mọi hệ thống giao dịch RL cần: 1. **Mô phỏng môi trường** — chuyển đổi dữ liệu giá thành không gian quan sát Gym
 2. **Theo dõi danh mục** — quản lý vị thế, số dư tiền mặt, và PnL trên nhiều công cụ
 3. **Tổng hợp chiến lược** — kết hợp các hành động từ nhiều agent hoặc thành phần dựa trên quy tắc
 
 ## TensorTrade Hoạt Động Như Thế Nào: Kiến Trúc & Khái Niệm Cốt Lõi
 
-Kiến trúc của TensorTrade tuân theo thiết kế module xây dựng xung quanh năm khái niệm trừu tượng cốt lõi:
-
-### Instrument
+Kiến trúc của TensorTrade tuân theo thiết kế module xây dựng xung quanh năm khái niệm trừu tượng cốt lõi: ### Instrument
 Đại diện cho một tài sản có thể giao dịch (ví dụ: BTC, ETH, AAPL). Mỗi instrument có ký hiệu, độ chính xác, và đơn vị tính.
 
 ### Exchange
@@ -115,8 +103,7 @@ print(f"Gymnasium version: {gym.__version__}")
 print(f"Stable Baselines3 version: {stable_baselines3.__version__}")
 ```
 
-Output mong đợi:
-```
+Output mong đợi: ```
 TensorTrade version: 1.2.0
 Gymnasium version: 1.0.0
 Stable Baselines3 version: 2.5.0
@@ -178,9 +165,7 @@ Tại thờii điểm này bạn đã có một môi trường giao dịch đầ
 
 ## Tích Hợp Với Stable Baselines3 và Hệ Sinh Thái ML
 
-Sức mạnh thực sự của TensorTrade đến từ việc kết nối với các thư viện RL đã được kiểm chứng. Dưới đây là cách huấn luyện một agent PPO:
-
-### Huấn Luyện Agent PPO
+Sức mạnh thực sự của TensorTrade đến từ việc kết nối với các thư viện RL đã được kiểm chứng. Dưới đây là cách huấn luyện một agent PPO: ### Huấn Luyện Agent PPO
 
 ```python
 from stable_baselines3 import PPO
@@ -210,9 +195,7 @@ agent.save("ppo_btc_trader_v1")
 
 ### Feature Engineering Tùy Chỉnh Với Stream
 
-Các agent giao dịch thực cần nhiều hơn chỉ giá thô. API `Stream` của TensorTrade cho phép bạn tính toán các chỉ báo kỹ thuật:
-
-```python
+Các agent giao dịch thực cần nhiều hơn chỉ giá thô. API `Stream` của TensorTrade cho phép bạn tính toán các chỉ báo kỹ thuật: ```python
 import ta  # technical analysis library
 
 # Compute RSI
@@ -235,9 +218,7 @@ feed = DataFeed([
 
 ### Tích Hợp Với Ray RLlib
 
-Để huấn luyện phân tán trên nhiều môi trường:
-
-```python
+Để huấn luyện phân tán trên nhiều môi trường: ```python
 import ray
 from ray import tune
 from ray.rllib.algorithms.ppo import PPOConfig
@@ -286,9 +267,7 @@ ohlcv_df = pd.DataFrame(
 
 ## Benchmark / Use Case Thực Tế: Kết Quả Q1 2026
 
-Chúng tôi đã benchmark TensorTrade so với ba baseline phổ biến sử dụng dữ liệu BTC-USD khung giờ từ tháng 1/2025 đến tháng 3/2026:
-
-| Chiến Lược | Tổng Lợi Nhuận | Tỷ Lệ Sharpe | Drawdown Tối Đa | Tỷ Lệ Thắng | Giao Dịch/Tháng |
+Chúng tôi đã benchmark TensorTrade so với ba baseline phổ biến sử dụng dữ liệu BTC-USD khung giờ từ tháng 1/2025 đến tháng 3/2026: | Chiến Lược | Tổng Lợi Nhuận | Tỷ Lệ Sharpe | Drawdown Tối Đa | Tỷ Lệ Thắng | Giao Dịch/Tháng |
 |-----------|---------------|-------------|----------------|------------|----------------|
 | Mua & Nắm Giữ BTC | **+68.4%** | 1.42 | -22.1% | — | 0 |
 | PPO (features mặc định) | **+54.2%** | 1.89 | -14.3% | 52% | 45 |
@@ -306,9 +285,7 @@ Chúng tôi đã benchmark TensorTrade so với ba baseline phổ biến sử d�
 
 ### Kết Quả Danh Mục Đa Tài Sản
 
-Thử nghiệm trên BTC, ETH, và SOL (danh mục đồng trọng số):
-
-| Cấu Hình | Lợi Nhuận Chuẩn Hóa Hàng Năm | Sharpe | Sortino |
+Thử nghiệm trên BTC, ETH, và SOL (danh mục đồng trọng số): | Cấu Hình | Lợi Nhuận Chuẩn Hóa Hàng Năm | Sharpe | Sortino |
 |---------|------------------------------|--------|---------|
 | Đồng trọng số mua & nắm giữ | +45.2% | 1.28 | 1.84 |
 | PPO đa tài sản (TensorTrade) | **+58.7%** | **1.97** | **2.71** |
@@ -319,22 +296,16 @@ Khả năng rebalance động của agent RL dựa trên tín hiệu momentum đ
 
 ### Hàm Phần Thưởng Tùy Chỉnh
 
-Các reward scheme mặc định có thể không khớp với mục tiêu của quỹ. Dưới đây là reward dựa trên tỷ lệ Sortino:
-
-```python
+Các reward scheme mặc định có thể không khớp với mục tiêu của quỹ. Dưới đây là reward dựa trên tỷ lệ Sortino: ```python
 import numpy as np
 
-class SortinoRewardScheme:
-    def __init__(self, risk_free_rate=0.02, window=30):
-        self.risk_free_rate = risk_free_rate
+class SortinoRewardScheme: def __init__(self, risk_free_rate=0.02, window=30): self.risk_free_rate = risk_free_rate
         self.window = window
         self.returns = []
 
-    def get_reward(self, portfolio: "Portfolio") -> float:
-        profit_loss = portfolio.profit_loss
+    def get_reward(self, portfolio: "Portfolio") -> float: profit_loss = portfolio.profit_loss
         self.returns.append(profit_loss)
-        if len(self.returns) < self.window:
-            return 0.0
+        if len(self.returns) < self.window: return 0.0
         recent_returns = np.array(self.returns[-self.window:])
         excess = recent_returns - self.risk_free_rate / 365
         downside = recent_returns[recent_returns < 0]
@@ -381,16 +352,13 @@ multi_portfolio = Portfolio(USD, [
 ### Quản Lý Rủi Ro: Định Cỡ Vị Thế Với Tiêu Chí Kelly
 
 ```python
-class KellyCriterionActionScheme:
-    """Sizes bets using fractional Kelly criterion."""
-    def __init__(self, kelly_fraction=0.3):
-        self.kelly_fraction = kelly_fraction
+class KellyCriterionActionScheme: """Sizes bets using fractional Kelly criterion."""
+    def __init__(self, kelly_fraction=0.3): self.kelly_fraction = kelly_fraction
         self.win_rate = 0.5
         self.avg_win = 0.02
         self.avg_loss = 0.01
 
-    def compute_size(self, action, portfolio):
-        # Update statistics from trade history
+    def compute_size(self, action, portfolio): # Update statistics from trade history
         kelly = (self.win_rate / self.avg_loss -
                  (1 - self.win_rate) / self.avg_win) if self.avg_win > 0 else 0
         kelly = max(0, min(kelly, 0.5))  # Cap at 50%
@@ -399,30 +367,21 @@ class KellyCriterionActionScheme:
 
 ### Checklist Triển Khai Production
 
-Trước khi giao dịch live với vốn thực:
-
-```python
+Trước khi giao dịch live với vốn thực: ```python
 # 1. Paper trading wrapper
-class PaperTradingExchange:
-    """Logs orders without executing."""
-    def execute(self, order):
-        print(f"[PAPER] {order.side} {order.quantity} @ {order.price}")
+class PaperTradingExchange: """Logs orders without executing."""
+    def execute(self, order): print(f"[PAPER] {order.side} {order.quantity} @ {order.price}")
         return {"status": "filled", "price": order.price}
 
 # 2. Circuit breaker
-class CircuitBreaker:
-    def __init__(self, max_drawdown=0.05, daily_loss_limit=0.03):
-        self.max_drawdown = max_drawdown
+class CircuitBreaker: def __init__(self, max_drawdown=0.05, daily_loss_limit=0.03): self.max_drawdown = max_drawdown
         self.daily_loss_limit = daily_loss_limit
         self.daily_pnl = 0
         self.peak = 0
 
-    def check(self, portfolio):
-        if portfolio.net_worth > self.peak:
-            self.peak = portfolio.net_worth
+    def check(self, portfolio): if portfolio.net_worth > self.peak: self.peak = portfolio.net_worth
         drawdown = (self.peak - portfolio.net_worth) / self.peak
-        if drawdown > self.max_drawdown:
-            raise RuntimeError(f"Circuit breaker: drawdown {drawdown:.2%}")
+        if drawdown > self.max_drawdown: raise RuntimeError(f"Circuit breaker: drawdown {drawdown:.2%}")
 
 # 3. Model versioning
 import datetime
@@ -455,9 +414,7 @@ agent.save(f"models/ppo_prod_{model_version}.zip")
 
 ## Hạn Chế / Đánh Giá Trung Thực
 
-TensorTrade là một framework có khả năng, nhưng nó không phải là một cỗ máy kiếm tiền thần kỳ. Dưới đây là những hạn chế thực tế:
-
-1. **Khoảng cách mô phỏng**: Sàn giao dịch mô phỏng khớp lệnh ở giá mid không có trượt giá. Thị trường thực có spread, độ trễ, và khớp một phần. Luôn stress-test với giả định trượt giá bảo thủ (`slippage=0.001` tối thiểu).
+TensorTrade là một framework có khả năng, nhưng nó không phải là một cỗ máy kiếm tiền thần kỳ. Dưới đây là những hạn chế thực tế: 1. **Khoảng cách mô phỏng**: Sàn giao dịch mô phỏng khớp lệnh ở giá mid không có trượt giá. Thị trường thực có spread, độ trễ, và khớp một phần. Luôn stress-test với giả định trượt giá bảo thủ (`slippage=0.001` tối thiểu).
 
 2. **Rủi ro overfitting**: RL agents có thể ghi nhớ đường đi giá. Sử dụng walk-forward validation — train trên 2024, validate trên 2025, test trên 2026. Không bao giờ tối ưu trên test set.
 
@@ -520,9 +477,7 @@ Tham gia nhóm Telegram cho nhà phát triển quant: **t.me/dibi8quant** — ch
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -532,7 +487,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 Bài viết này chứa các liên kết affiliate đến Binance và OKX. Nếu bạn đăng ký và giao dịch qua các liên kết này, chúng tôi có thể nhận được hoa hồng mà không có chi phí thêm cho bạn. Các khoản hoa hồng này giúp tài trợ phát triển các công cụ giao dịch mã nguồn mở và nội dung giáo dục. Chúng tôi chỉ giới thiệu các sàn giao dịch mà chúng tôi đã cá nhân kiểm tra và xác minh. Luôn tự nghiên cứu trước khi nạp tiền vào bất kỳ sàn giao dịch nào.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/terminal-command-line-tools-tmux-zsh-fzf-ripgrep" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/terminal-command-line-tools-tmux-zsh-fzf-ripgrep" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/terminal-command-line-tools-tmux-zsh-fzf-ripgrep" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/terminal-command-line-tools-tmux-zsh-fzf-ripgrep" />
 title: '终端命令行效率工具：tmux、zsh、fzf、ripgrep等生产力提升指南'
 description: '从zsh到tmux，从fzf到ripgrep，打造现代化终端工作流。2025年开发者必备的CLI效率工具完整配置指南。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/terminal-command-line-tools-tmux-zsh-fzf-ripgrep/
+aliases: - /posts/terminal-command-line-tools-tmux-zsh-fzf-ripgrep/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/terminal-command-line-tools-tmux-zsh-fzf-ripgrep/ -->
 
 {</* resource-info */>}
 
@@ -61,7 +53,11 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 Oh My Zsh本身是一个zsh配置管理框架，自带200+插件和100+主题。以下是开发者最应该启用的插件：
 
 | 插件 | 功能 |
-|------|------|
+|
+---
+|
+---
+|
 | `git` | Git命令别名（ga=git add, gc=git commit, gco=git checkout等） |
 | `z` | 目录智能跳转，按频率自动补全路径 |
 | `zsh-autosuggestions` | 根据历史自动建议命令（灰色显示，右箭头接受） |
@@ -190,7 +186,13 @@ sudo apt install fzf
 ### 为什么ripgrep比grep更适合搜索代码？
 
 | 特性 | grep | ripgrep |
-|------|------|---------|
+|
+---
+|
+---
+|
+---
+|
 | 递归搜索 | 需`-r`参数，默认不递归 | 默认递归 |
 | .gitignore | 不遵守 | 自动遵守，跳过忽略文件 |
 | 隐藏文件 | 不排除 | 默认排除（可加`-.`包含） |
@@ -228,7 +230,13 @@ ripgrep的`.ripgreprc`配置文件可以存放常用选项，避免每次输入�
 除了zsh、tmux、fzf和ripgrep，以下工具也值得替换进你的工作流：
 
 | 传统工具 | 现代替代品 | 核心优势 |
-|----------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
 | `ls` | [eza](https://github.com/eza-community/eza) | 彩色输出、Git状态图标、树形视图 |
 | `cat` | [bat](https://github.com/sharkdp/bat) | 语法高亮、Git集成、行号显示、分页 |
 | `find` | [fd](https://github.com/sharkdp/fd) | 直觉语法、默认忽略.gitignore、彩色输出 |
@@ -342,8 +350,8 @@ tmux的默认配置更现代，支持鼠标、UTF-8和256色无额外配置。�
 
 最推荐的方案是WSL2（Windows Subsystem for Linux），在WSL2内安装这些Linux原生工具，体验与Linux完全一致。Windows Terminal作为终端模拟器效果很好。如果不想用WSL，部分工具有Windows原生版本（如ripgrep、fd、Starship），但zsh和tmux在WSL内运行会更稳定。
 
----
 
+---
 ## 推荐基础设施
 
 要 7×24 稳跑上述工具，服务器选择关键：
@@ -355,7 +363,6 @@ tmux的默认配置更现代，支持鼠标、UTF-8和256色无额外配置。�
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -383,25 +390,20 @@ tmux的默认配置更现代，支持鼠标、UTF-8和256色无额外配置。�
 
 ## Why This Matters
 
-Understanding 终端命令行效率工具：tmux、zsh、fzf、ripgrep等生产力提升指南 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding 终端命令行效率工具：tmux、zsh、fzf、ripgrep等生产力提升指南 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -422,7 +424,7 @@ To implement this in your workflow:
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

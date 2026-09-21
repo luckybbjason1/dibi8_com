@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/scrapling-python-stealthy-web-scraping-review" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/scrapling-python-stealthy-web-scraping-review" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/scrapling-python-stealthy-web-scraping-review" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/scrapling-python-stealthy-web-scraping-review" />
 title: Scrapling 实测:更快、更隐蔽的 Python 爬虫框架
 description: Scrapling评测：Python隐形网页抓取库。绕过反爬虫机制，处理动态内容，轻松实现大规模数据抓取。. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
-tech_stack:
-- Java
+tech_stack: - Java
 - JavaScript
 - Python
 application_domain: Dev Utils
@@ -26,10 +20,8 @@ maintainer: "D4Vinci"
 last_maintained: "2026-05-16"
 featureImage: ''
 draft: false
-aliases:
-- /zh/posts/scrapling-python-stealthy-web-scraping-review/
-faqs:
-  - q: 'Python 中的 Scrapling 是什么？'
+aliases: - /zh/posts/scrapling-python-stealthy-web-scraping-review/
+faqs: - q: 'Python 中的 Scrapling 是什么？'
     a: 'Scrapling 是一个 Python 3.10+ 网页抓取框架，通过统一的选择器 API 封装了三种抓取后端：带 TLS 指纹模拟的普通 HTTP、隐身模式反检测浏览器，以及完整的 Playwright 驱动浏览器。它将 Scrapy 风格的爬虫、curl_cffi 风格的 TLS 指纹伪造，以及免检测 Playwright 整合进一个 import 中。'
   - q: 'Scrapling 的三种 fetcher 分别是什么？各在什么场景下使用？'
     a: 'Fetcher 使用带 TLS 指纹模拟的普通 HTTP，适用于快速抓取静态 HTML。StealthyFetcher 使用带反检测补丁的无头浏览器，适用于 Cloudflare 或有 JS 保护的页面。DynamicFetcher 使用 Playwright/Chromium 进行完整自动化，适用于有复杂认证或点击流程的 SPA 应用。单个 Spider 类可以按请求混用不同层级。'
@@ -38,10 +30,7 @@ faqs:
   - q: '如何为 Cloudflare 页面安装 Scrapling 的 StealthyFetcher？'
     a: '先运行 pip install "scrapling[fetchers]"，再运行 scrapling install。scrapling install 步骤会下载经过补丁的 Chromium 二进制文件，依赖包大小有几百 MB，在小型 VM 上安装前请注意这一点。'
   - q: 'Scrapling 默认遵守 robots.txt 吗？'
-    a: '不遵守。robots_txt_obey 设置是可选启用的，默认不开启，因此你必须主动启用它。这是为了照顾拥有被抓取站点的用户而做出的有意设计，但在抓取第三方站点时忘记开启可能带来法律风险。'
----
-
-<!-- canonical: https://dibi8.com/zh/tools/scrapling-python-stealthy-web-scraping-review/ -->
+    a: '不遵守。robots_txt_obey 设置是可选启用的，默认不开启，因此你必须主动启用它。这是为了照顾拥有被抓取站点的用户而做出的有意设计，但在抓取第三方站点时忘记开启可能带来法律风险。'---
 # Scrapling 实测:更快、更隐蔽的 Python 爬虫框架
 
 {</* resource-info */>}
@@ -80,24 +69,16 @@ TLS 指纹模拟 + 一个反检测 Playwright,合并成一个 import。**
 这是我觉得这个项目里**真正下了功夫**的部分。大多数爬虫项目最
 后都会变成一坨缝合怪:`requests` 处理快页面,`Selenium` 或
 `Playwright` 处理 JS 重的页面,再加上一些自己写的 CDN 绕过逻辑。
-Scrapling 把这些拆成三档,而且响应对象长得一样:
-
-| Fetcher | 后端 | 什么时候用 |
+Scrapling 把这些拆成三档,而且响应对象长得一样: | Fetcher | 后端 | 什么时候用 |
 | --- | --- | --- |
 | `Fetcher` | 纯 HTTP,带 TLS 指纹模拟 | 静态 HTML;不需要真浏览器;你想要它够快 |
 | `StealthyFetcher` | 带反检测补丁的 headless 浏览器 | Cloudflare / JS 保护页面,必须用真浏览器 |
 | `DynamicFetcher` | Playwright/Chromium 完整自动化 | SPA、复杂登录流程、JS 渲染数据 |
 
 在同一个 Spider 类里你可以给不同请求打不同的档位标记。README
-里的例子:
-
-```python
-async def parse(self, response: Response):
-    for link in response.css('a::attr(href)').getall():
-        if "protected" in link:
-            yield Request(link, sid="stealth")
-        else:
-            yield Request(link, sid="fast", callback=self.parse)
+里的例子: ```python
+async def parse(self, response: Response): for link in response.css('a::attr(href)').getall(): if "protected" in link: yield Request(link, sid="stealth")
+        else: yield Request(link, sid="fast", callback=self.parse)
 ```
 
 为什么这事重要:在真实的爬取任务里,只有一小部分页面真正需要
@@ -106,18 +87,14 @@ async def parse(self, response: Response):
 
 ## Benchmark,带保留意见
 
-README 里贴的是解析 5,000 个嵌套元素的数据:
-
-| 库 | 时间 | 相对值 |
+README 里贴的是解析 5,000 个嵌套元素的数据: | 库 | 时间 | 相对值 |
 | --- | --- | --- |
 | Scrapling | 2.02 ms | 1.0× |
 | Parsel / Scrapy | 2.04 ms | 1.01× |
 | Raw lxml | 2.54 ms | 1.26× |
 | BeautifulSoup4 + lxml | 1584.31 ms | ~784× |
 
-两点诚实的解读:
-
-**是的,BeautifulSoup 真的就是这么慢。** 那个数字不是打错了。
+两点诚实的解读: **是的,BeautifulSoup 真的就是这么慢。** 那个数字不是打错了。
 BS4 是个易用性优先的库;在大量文档的紧密循环里,基于 lxml 的
 解析器(Scrapling、Parsel、raw lxml 都是)能快上几个数量级。
 这是一个**已知结果**,不是 Scrapling 独有的发现。
@@ -150,13 +127,10 @@ class 名爬起来改代码"的功能,不要当成"你的爬虫从此自我维�
 
 ## 最简单能跑的写法
 
-直接照搬文档,绝对最小是这样:
-
-```python
+直接照搬文档,绝对最小是这样: ```python
 from scrapling.fetchers import Fetcher, FetcherSession
 
-with FetcherSession(impersonate='chrome') as session:
-    page = session.get('https://quotes.toscrape.com/', stealthy_headers=True)
+with FetcherSession(impersonate='chrome') as session: page = session.get('https://quotes.toscrape.com/', stealthy_headers=True)
     quotes = page.css('.quote .text::text').getall()
 ```
 
@@ -164,18 +138,14 @@ with FetcherSession(impersonate='chrome') as session:
 `impersonate='chrome'` 是 curl_cffi 风格的指纹欺骗 —— 在目标
 站点用基础指纹检测时很有用。
 
-针对 Cloudflare 保护的页面:
-
-```python
+针对 Cloudflare 保护的页面: ```python
 from scrapling.fetchers import StealthyFetcher
 
 page = StealthyFetcher.fetch('https://nopecha.com/demo/cloudflare')
 data = page.css('#padded_content a').getall()
 ```
 
-注意 `StealthyFetcher` 要单独装浏览器:
-
-```bash
+注意 `StealthyFetcher` 要单独装浏览器: ```bash
 pip install "scrapling[fetchers]"
 scrapling install
 ```
@@ -215,9 +185,7 @@ Cloudflare Turnstile —— 你也要预期"今天能用的下个季度未必能
 但意思就是你必须**自觉打开**。在第三方站点上忘了打开,你会先
 在法庭上后悔,再在技术上后悔。
 
-**隐蔽 ≠ 授权。** 库本身有一份免责声明,值得引用一下:
-
-> "本库仅供教育与研究用途。使用本库即表示您同意遵守当地及国
+**隐蔽 ≠ 授权。** 库本身有一份免责声明,值得引用一下: > "本库仅供教育与研究用途。使用本库即表示您同意遵守当地及国
 > 际数据抓取与隐私法律。"
 
 反检测能力对**合法场景**有用 —— 学术研究、网站存档、无障碍辅
@@ -229,9 +197,7 @@ ToS** 用的。库本身不在乎你在干哪种;法院和监管机构在乎。�
 
 ## 我会在什么情况下真的用它
 
-三种我觉得 Scrapling 合适的具体场景:
-
-1. **个人数据导出。** 某个服务持有你自己的数据但不给真正的
+三种我觉得 Scrapling 合适的具体场景: 1. **个人数据导出。** 某个服务持有你自己的数据但不给真正的
    导出 API。你要慢慢地、尊重对方限速地、用真浏览器爬你自己
    的账号 —— Scrapling 的 `DynamicSession` 干这个挺合适。
 
@@ -263,8 +229,8 @@ Scrapling 是一个真实存在、设计认真的库 —— 不是噱头,不是�
 完整源码和文档在
 [github.com/D4Vinci/Scrapling](https://github.com/D4Vinci/Scrapling)。
 
----
 
+---
 ## 推荐工具
 
 跑或部署开源 AI 工具时，推荐：
@@ -276,7 +242,6 @@ Scrapling 是一个真实存在、设计认真的库 —— 不是噱头,不是�
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -304,25 +269,20 @@ Scrapling 是一个真实存在、设计认真的库 —— 不是噱头,不是�
 
 ## Why This Matters
 
-Understanding scrapling 实测:更快、更隐蔽的 python 爬虫框架 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding scrapling 实测:更快、更隐蔽的 python 爬虫框架 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -343,7 +303,7 @@ Scrapling 实测:更快、更隐蔽的 Python 爬虫框架 represents an importa
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

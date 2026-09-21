@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/unstructured-data-preprocessing-llm" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/unstructured-data-preprocessing-llm" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/unstructured-data-preprocessing-llm" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/unstructured-data-preprocessing-llm" />
 title: 'Unstructured.io: 어떤 문서든 LLM 준비 데이터 청크로 변환하는 데이터 전처리 파이프라...
 description: 'Unstructured.io 실용 2026 가이드 — 이 오픈소스 문서 전처리 라이브러리가 PDF, DOCX, PPTX, 이미지를 깨끗하고 구조화된 텍스트 청크로 변환하여 LLM 및 RAG 파이프라인을 위해 준비합니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: [unstructured, 문서파싱, llm, rag, 데이터전처리, pdf, 청킹, 오픈소스]
-aliases:
-- /kr/posts/unstructured-data-preprocessing-llm/
+aliases: - /kr/posts/unstructured-data-preprocessing-llm/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/unstructured-data-preprocessing-llm/ -->
 
 {{</* resource-info */>}}
 
@@ -53,9 +45,7 @@ Unstructured의 파이프라인은 세 가지 명확한 단계로 구성됩니�
 
 ### 파티셔닝: 문서를 요소로 분해
 
-`partition` 함수는 Unstructured의 핵심입니다. 파일 유형을 자동으로 감지하고 이를 전문 파서로 라우팅합니다:
-
-| 파티셔닝 전략 | 속도 | 정확도 | 최적 사용처 |
+`partition` 함수는 Unstructured의 핵심입니다. 파일 유형을 자동으로 감지하고 이를 전문 파서로 라우팅합니다: | 파티셔닝 전략 | 속도 | 정확도 | 최적 사용처 |
 |-------------|------|--------|------------|
 | `auto` | 중간 | 높음 | 일반 사용, 혼합 문서 유형 |
 | `fast` | 빠름 | 중간 | 단순 텍스트 PDF, 대량 처리 |
@@ -66,9 +56,7 @@ Unstructured의 파이프라인은 세 가지 명확한 단계로 구성됩니�
 
 ### 요소 유형: 구조 보존
 
-Unstructured는 20+ 요소 유형을 출력합니다. LLM 작업에 가장 중요한 것들:
-
-- `NarrativeText` — 본문 단락
+Unstructured는 20+ 요소 유형을 출력합니다. LLM 작업에 가장 중요한 것들: - `NarrativeText` — 본문 단락
 - `Title` — 문서 및 섹션 제목
 - `ListItem` — 글머리 및 번호 목록
 - `Table` — 테이블 데이터(HTML로 낳출 가능)
@@ -80,9 +68,7 @@ Unstructured는 20+ 요소 유형을 출력합니다. LLM 작업에 가장 중�
 
 ### 청킹: 요소에서 LLM 준비 조각으로
 
-원시 요소는 너무 작거나(단어 하나) 너무 큽니다(전체 페이지). Unstructured의 청킹 전략은 요소를 지능적으로 결합하고 분할합니다:
-
-| 청킹 전략 | 동작 | 최적 사용처 |
+원시 요소는 너무 작거나(단어 하나) 너무 큽니다(전체 페이지). Unstructured의 청킹 전략은 요소를 지능적으로 결합하고 분할합니다: | 청킹 전략 | 동작 | 최적 사용처 |
 |----------|------|------------|
 | `basic` | 고정 크기 오버랩 | 단순 파이프라인, 예측 가능한 토큰 수 |
 | `by_title` | 섹션 경계 존중 | 의미적 일관성 보존 |
@@ -107,15 +93,12 @@ pip install "unstructured[all-docs]==0.17.0"
 
 `[pdf]` extra는 `pdf2image`, `pdfplumber`, `pikepdf`를 설치합니다. `[all-docs]` extra는 DOCX, PPTX, XLSX, MSG, EML, EPUB 및 OCR 의존성(`tesseract` 바인딩 포함)을 추가합니다.
 
-설치 확인:
-
-```python
+설치 확인: ```python
 from unstructured.partition.auto import partition
 
 elements = partition(filename="test.pdf")
 print(f"추출된 요소 수: {len(elements)}")
-for el in elements[:5]:
-    print(f"  {el.category}: {str(el)[:60]}...")
+for el in elements[:5]: print(f"  {el.category}: {str(el)[:60]}...")
 ```
 
 ### 옵션 B: Docker로 자체 호스팅 API(프로덕션)
@@ -135,9 +118,7 @@ docker run -d \
 curl http://localhost:8000/healthcheck
 ```
 
-CPU 전용 환경(더 저렴, 복잡한 PDF에서 느림):
-
-```bash
+CPU 전용 환경(더 저렴, 복잡한 PDF에서 느림): ```bash
 docker run -d \
   --name unstructured-api-cpu \
   -p 8000:8000 \
@@ -151,8 +132,7 @@ docker run -d \
 ```python
 import requests
 
-with open("annual_report.pdf", "rb") as f:
-    response = requests.post(
+with open("annual_report.pdf", "rb") as f: response = requests.post(
         "http://localhost:8000/general/v0/general",
         files={"files": ("annual_report.pdf", f)},
         data={
@@ -250,8 +230,7 @@ client = chromadb.PersistentClient(path="./chroma_db")
 collection = client.get_or_create_collection("contracts")
 
 model = SentenceTransformer("all-MiniLM-L6-v2")
-for i, chunk in enumerate(chunks):
-    embedding = model.encode(str(chunk)).tolist()
+for i, chunk in enumerate(chunks): embedding = model.encode(str(chunk)).tolist()
     collection.add(
         ids=[f"chunk_{i}"],
         embeddings=[embedding],
@@ -268,9 +247,7 @@ for i, chunk in enumerate(chunks):
 
 ### 문서 유형 커버리지
 
-Unstructured v0.17.0은 **25+ 파일 포맷**을 지원합니다:
-
-| 포맷 | 읽기 | 테이블 | OCR | 비고 |
+Unstructured v0.17.0은 **25+ 파일 포맷**을 지원합니다: | 포맷 | 읽기 | 테이블 | OCR | 비고 |
 |------|------|--------|-----|------|
 | PDF (텍스트 기반) | 예 | 예 | 해당 없음 | 가장 잘 지원되는 포맷 |
 | PDF (스캔/이미지) | 예 | 부분 | 예 | tesseract 필요 |
@@ -285,9 +262,7 @@ Unstructured v0.17.0은 **25+ 파일 포맷**을 지원합니다:
 
 ### 처리 성능
 
-**8코어 Intel i7, 32GB RAM, GPU 없음**에서의 벤치마크:
-
-| 문서 | 크기 | 전략 | 소요 시간 | 요소 수 |
+**8코어 Intel i7, 32GB RAM, GPU 없음**에서의 벤치마크: | 문서 | 크기 | 전략 | 소요 시간 | 요소 수 |
 |------|------|------|----------|--------|
 | 10페이지 텍스트 PDF | 2.1 MB | fast | 1.2초 | 47 |
 | 10페이지 텍스트 PDF | 2.1 MB | hi_res | 8.4초 | 52 |
@@ -299,9 +274,7 @@ Unstructured v0.17.0은 **25+ 파일 포맷**을 지원합니다:
 
 ### RAG에 대한 청킹 품질 영향
 
-50건의 법률 계약서(평균 15페이지)에 대한 대조 테스트, top-3 검색 정확도 측정:
-
-| 전처리 방법 | 평균 청크 품질 | RAG Top-3 정확도 |
+50건의 법률 계약서(평균 15페이지)에 대한 대조 테스트, top-3 검색 정확도 측정: | 전처리 방법 | 평균 청크 품질 | RAG Top-3 정확도 |
 |-----------|--------------|-----------------|
 | 원시 `pdftotext` + 분할 | 0.31 | 34% |
 | PyPDF2 + 문자 분할 | 0.38 | 41% |
@@ -341,8 +314,7 @@ filtered = [
 ]
 
 # 3단계: 텍스트 콘텐츠 정리
-for el in filtered:
-    el.text = clean(
+for el in filtered: el.text = clean(
         el.text,
         extra_whitespace=True,
         dashes=True,           # em 대시 정규화
@@ -368,9 +340,7 @@ import concurrent.futures
 from pathlib import Path
 from unstructured.partition.auto import partition
 
-def process_file(path: Path) -> dict:
-    try:
-        elements = partition(
+def process_file(path: Path) -> dict: try: elements = partition(
             filename=str(path),
             strategy="fast",
         )
@@ -379,8 +349,7 @@ def process_file(path: Path) -> dict:
             "elements": len(elements),
             "status": "success",
         }
-    except Exception as e:
-        return {
+    except Exception as e: return {
             "file": path.name,
             "elements": 0,
             "status": "error",
@@ -391,8 +360,7 @@ def process_file(path: Path) -> dict:
 pdf_dir = Path("./documents")
 pdf_files = list(pdf_dir.glob("*.pdf"))
 
-with concurrent.futures.ThreadPoolExecutor(max_workers=8) as executor:
-    results = list(executor.map(process_file, pdf_files))
+with concurrent.futures.ThreadPoolExecutor(max_workers=8) as executor: results = list(executor.map(process_file, pdf_files))
 
 success = sum(1 for r in results if r["status"] == "success")
 print(f"성공적으로 처리: {success}/{len(results)} 파일")
@@ -400,21 +368,17 @@ print(f"성공적으로 처리: {success}/{len(results)} 파일")
 
 ### 재처리를 위한 캐싱 전략
 
-반복적 RAG 개발을 위해 한 번 파티셔닝하고 캐시:
-
-```python
+반복적 RAG 개발을 위해 한 번 파티셔닝하고 캐시: ```python
 import json
 import hashlib
 from pathlib import Path
 from unstructured.staging.base import elements_to_dicts, dicts_to_elements
 
-def partition_with_cache(file_path: str, strategy: str = "hi_res"):
-    file_hash = hashlib.md5(open(file_path, "rb").read()).hexdigest()
+def partition_with_cache(file_path: str, strategy: str = "hi_res"): file_hash = hashlib.md5(open(file_path, "rb").read()).hexdigest()
     cache_path = Path(f"./cache/{file_hash}_{strategy}.json")
     cache_path.parent.mkdir(exist_ok=True)
 
-    if cache_path.exists():
-        return dicts_to_elements(json.load(open(cache_path)))
+    if cache_path.exists(): return dicts_to_elements(json.load(open(cache_path)))
 
     elements = partition_pdf(file_path, strategy=strategy)
     cache_path.write_text(json.dumps(elements_to_dicts(elements), indent=2))
@@ -427,39 +391,22 @@ def partition_with_cache(file_path: str, strategy: str = "hi_res"):
 # unstructured-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
-metadata:
-  name: unstructured-api
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: unstructured-api
-  template:
-    metadata:
-      labels:
-        app: unstructured-api
-    spec:
-      containers:
-      - name: api
+metadata: name: unstructured-api
+spec: replicas: 3
+  selector: matchLabels: app: unstructured-api
+  template: metadata: labels: app: unstructured-api
+    spec: containers: - name: api
         image: downloads.unstructured.io/unstructured-io/unstructured-api:latest
-        ports:
-        - containerPort: 8000
-        resources:
-          limits:
-            nvidia.com/gpu: 1
+        ports: - containerPort: 8000
+        resources: limits: nvidia.com/gpu: 1
             memory: "8Gi"
-          requests:
-            memory: "4Gi"
+          requests: memory: "4Gi"
 ---
 apiVersion: v1
 kind: Service
-metadata:
-  name: unstructured-api
-spec:
-  selector:
-    app: unstructured-api
-  ports:
-  - port: 80
+metadata: name: unstructured-api
+spec: selector: app: unstructured-api
+  ports: - port: 80
     targetPort: 8000
 ```
 
@@ -494,9 +441,7 @@ spec:
 
 ## 한계: 정직한 평가
 
-Unstructured는 만능이 아닙니다. 프로덕션에서 문제가 되는 부분:
-
-**1. OCR 품질은 입력 품질에 의존합니다.** 저해상도 스캔 문서(150 DPI 미만)는 어떤 파이프라인도 깨진 텍스트를 생산합니다. 소스 자료가 부실하면 이미지 강화로 사전 처리하세요.
+Unstructured는 만능이 아닙니다. 프로덕션에서 문제가 되는 부분: **1. OCR 품질은 입력 품질에 의존합니다.** 저해상도 스캔 문서(150 DPI 미만)는 어떤 파이프라인도 깨진 텍스트를 생산합니다. 소스 자료가 부실하면 이미지 강화로 사전 처리하세요.
 
 **2. GPU 없이 `hi_res`는 느립니다.** 기본 `detectron2` 모델이 CPU에서 복잡한 레이아웃을 분당 3-5페이지 처리합니다. GPU 가속을 예산에 포함하거나 대량 텍스트 PDF에는 `fast` 전략을 사용하세요.
 
@@ -552,9 +497,7 @@ Telegram 개발자 커뮤니티에 참여하세요: **t.me/dibi8en** — 전처�
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -576,7 +519,6 @@ Telegram 개발자 커뮤니티에 참여하세요: **t.me/dibi8en** — 전처�
 *제휴 마케팅 공개: 본문에는 DigitalOcean의 제휴 링크가 포함되어 있습니다. 이 링크를 통해 가입하면 추가 비용 없이 커미션을 받습니다. Unstructured.io는 오픈소스이자 묶인 사용 가능합니다; Unstructured-IO와 상업적 관계는 없습니다. 의견은 실제 테스트를 기반으로 합니다.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

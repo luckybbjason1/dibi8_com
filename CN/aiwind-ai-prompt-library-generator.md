@@ -1,13 +1,10 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/aiwind-ai-prompt-library-generator" />
 title: AiWind：1000+ AI 绘画提示词宝库，让 GPT-Image 2 和 Nanobanana 产出惊艳作品
 description: AiWind 是一个免费 AI 提示词库，收录 1000+ 针对 GPT-Image 2、Nanobanana、Stable Diffusion、Midjourney. Comprehensive guide covering features, pricing, and best practices for 2026.
   等主流模型的专业提示词，覆盖写实肖像、赛博朋克、3D 渲染等多种风格。
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
-tech_stack:
-- Go
+tech_stack: - Go
 application_domain: Ai Tools
 source_version: ''
 licensing_model: Open Source
@@ -22,10 +19,8 @@ maintainer: ''
 last_maintained: '2026-05-15'
 featureImage: ''
 draft: false
-aliases:
-- /posts/aiwind-ai-prompt-library/
-faqs:
-  - q: 'Is AiWind free to use?'
+aliases: - /posts/aiwind-ai-prompt-library/
+faqs: - q: 'Is AiWind free to use?'
     a: 'Yes, AiWind is a completely free AI prompt library at aiwind.org with no paid tiers. It offers over 1000 professional prompts and is continuously updated.'
   - q: 'Which AI image models does AiWind support prompts for?'
     a: 'AiWind covers 10+ models including GPT-Image 2, Nanobanana, Stable Diffusion, Midjourney, Flux-Kontext, Tencent Hunyuan, Google Imagen, and ByteDance Seedream. Each prompt entry recommends which models it works best with.'
@@ -36,7 +31,6 @@ faqs:
   - q: 'How does AiWind compare to PromptHero, Lexica, and Civitai?'
     a: 'AiWind stands out for fully free access, strong Chinese-language support, and coverage of 10+ models, whereas Lexica covers about 3 models and Civitai focuses mainly on Stable Diffusion. AiWind, PromptHero, and Civitai all support community prompt submissions, while Lexica does not.'
 ---
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -90,7 +84,13 @@ faqs:
 ### 支持的模型
 
 | 模型 | 类型 | 特点 |
-|------|------|------|
+|
+---
+|
+---
+|
+---
+|
 | **GPT-Image 2** | OpenAI | 语义理解强，文字渲染好 |
 | **Nanobanana** | 国产 | 中文支持优秀，速度快 |
 | **Stable Diffusion** | 开源 | 可定制性强，生态丰富 |
@@ -223,8 +223,7 @@ best quality, masterpiece
 ```
 [主体] + [风格] + [光线] + [构图] + [质量词]
 
-示例:
-主体: 金发超模站在迪拜夜景前
+示例: 主体: 金发超模站在迪拜夜景前
 风格: 时尚摄影，Vogue 编辑风格
 光线: 金色时刻，城市灯光背景光
 构图: 中景，三分法
@@ -250,7 +249,13 @@ best quality, masterpiece
 ### 4. 参数调优
 
 | 参数 | 作用 | 推荐值 |
-|------|------|--------|
+|
+---
+|
+---
+|
+---
+|
 | **CFG Scale** | 提示词遵循度 | 7-12 |
 | **Steps** | 迭代步数 | 20-50 |
 | **Sampler** | 采样器 | DPM++ 2M Karras |
@@ -259,7 +264,17 @@ best quality, masterpiece
 ## 与同类工具对比
 
 | 特性 | AiWind | PromptHero | Lexica | Civitai |
-|------|--------|-----------|--------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **免费** | ✅ 完全 | ⚠️ 部分 | ✅ 是 | ✅ 是 |
 | **中文支持** | ✅ 优秀 | ❌ 弱 | ❌ 弱 | ⚠️ 一般 |
 | **模型覆盖** | 10+ 模型 | 5+ 模型 | 3 模型 | 主要是 SD |
@@ -288,20 +303,19 @@ AiWind 是**中文用户最好的 AI 绘画提示词库**。
 - [TabPFN: Foundation Model for Tabular Data](/resources/ai-tools/tabpfn-foundation-model-tabular-data/)
 - [Hermes Agent: Self-Improving AI Agent](/resources/llm-frameworks/hermes-agent-self-improving-ai-agent/)
 
----
 
+---
 ## Recommended Tools
 
-For developers building or deploying open-source AI tools, we recommend:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
+For developers building or deploying open-source AI tools, we recommend: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
 - **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Anthropic Claude / OpenAI / DeepSeek API proxy. Most AI tools above (chatbots, code gen, translation, search, etc) need an LLM API key — this proxy delivers stable access to top models at ~30% of official pricing.
 
 *Affiliate link — supports dibi8.com at no cost to you.*
 
-<!--auto-references-->
 ## References & Sources
 
 - [Stable Diffusion](https://github.com/Stability-AI/generative-models)
 - [Flux](https://github.com/black-forest-labs/flux)
 - [Civitai](https://github.com/civitai/civitai)
+
+---

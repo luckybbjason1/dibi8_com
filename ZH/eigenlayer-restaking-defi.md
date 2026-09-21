@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/eigenlayer-restaking-defi" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/eigenlayer-restaking-defi" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/eigenlayer-restaking-defi" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/eigenlayer-restaking-defi" />
 title: 'eigenlayer-restaking-defi'
 description: ''. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
@@ -25,18 +20,15 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: [eigenlayer]
-aliases:
-- /zh/posts/eigenlayer-restaking-defi/
+aliases: - /zh/posts/eigenlayer-restaking-defi/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/eigenlayer-restaking-defi/ -->
 
 {{</* resource-info */>}}
 
 > **联盟营销披露**：本文包含 [Binance](https://www.bsmkweb.cc/register?ref=DIBI8) 和 [Minara](https://minara.ai/r/OSXG4X) 的联盟链接。您通过这些链接注册时，我们可能会赚取佣金 —— 对您不产生额外费用。
 
----
 
+---
 ## 什么是EigenLayer？为什么它如此重要？
 
 EigenLayer是自以太坊转向权益证明（Proof-of-Stake）以来，质押经济领域最重要的创新。作为部署在以太坊主网上的再质押协议，EigenLayer使ETH质押者能够将其已质押的ETH重新用于保护额外的去中心化服务 —— 这些服务被称为**主动验证服务（AVS）** —— 而不仅仅局限于以太坊共识本身。截至2026年5月，EigenLayer的**总锁仓价值（TVL）已超过200亿美元**，按担保资本计算已成为规模最大的DeFi协议之一。
@@ -161,9 +153,9 @@ func disperseBlob(data []byte) (*disperser.BlobStatus, error) {
         Data: data,
         SecurityParams: []*disperser.SecurityParam{
             {
-                QuorumId:           0,
+                QuorumId: 0,
                 AdversaryThreshold: 25,
-                QuorumThreshold:    50,
+                QuorumThreshold: 50,
             },
         },
     })
@@ -181,9 +173,7 @@ import asyncio
 import grpc
 from eigenda.api import retriever_pb2, retriever_pb2_grpc
 
-async def retrieve_blob(batch_header_hash bytes, blob_index int):
-    async with grpc.aio.insecure_channel('retriever.eigenda.io:443') as channel:
-        stub = retriever_pb2_grpc.RetrieverStub(channel)
+async def retrieve_blob(batch_header_hash bytes, blob_index int): async with grpc.aio.insecure_channel('retriever.eigenda.io:443') as channel: stub = retriever_pb2_grpc.RetrieverStub(channel)
         
         request = retriever_pb2.RetrieveBlobRequest(
             batch_header_hash=batch_header_hash,
@@ -333,9 +323,9 @@ func NewPriceTaskGenerator(
     aggregatorRpcUrl string,
 ) *PriceTaskGenerator {
     return &PriceTaskGenerator{
-        logger:           logger,
-        ethClient:        ethClient,
-        blsKeypair:       blsKeypair,
+        logger: logger,
+        ethClient: ethClient,
+        blsKeypair: blsKeypair,
         aggregatorRpcUrl: aggregatorRpcUrl,
     }
 }
@@ -359,13 +349,13 @@ func (g *PriceTaskGenerator) ProcessNewTask(
     signature := g.blsKeypair.Sign(responseDigest)
     
     signedResponse := &SignedPriceResponse{
-        TaskId:        task.TaskId,
-        AssetId:       task.AssetId,
-        Price:         price,
-        BlockNumber:   task.CreationBlockNumber,
-        Signature:     signature,
-        PubkeyG1:      g.blsKeypair.GetPubKeyG1(),
-        PubkeyG2:      g.blsKeypair.GetPubKeyG2(),
+        TaskId: task.TaskId,
+        AssetId: task.AssetId,
+        Price: price,
+        BlockNumber: task.CreationBlockNumber,
+        Signature: signature,
+        PubkeyG1: g.blsKeypair.GetPubKeyG1(),
+        PubkeyG2: g.blsKeypair.GetPubKeyG2(),
     }
     
     g.logger.Info("已签名价格响应",
@@ -610,10 +600,8 @@ func (m *SlashMonitor) StartMonitoring(ctx context.Context) {
     
     for {
         select {
-        case <-ctx.Done():
-            return
-        case <-ticker.C:
-            m.checkForSlashableEvents(ctx)
+        case <-ctx.Done(): return
+        case <-ticker.C: m.checkForSlashableEvents(ctx)
         }
     }
 }
@@ -756,8 +744,6 @@ A：质押者在DelegationManager中浏览已注册的运营商，并将他们�
 
 ---
 
-
-
 ## 推荐部署与基础设施
 
 上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：
@@ -808,7 +794,6 @@ make telemetry
 *© 2026 dibi8.com | 为DeFi开发者、交易者和研究人员而建。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/chattts-dialogue-tts-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/chattts-dialogue-tts-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/chattts-dialogue-tts-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/chattts-dialogue-tts-2026" />
 title: 'ChatTTS 2026：39.3k 星开源对话式 TTS，带笑声、停顿和 token 级 prosody 控制'
 description: 'ChatTTS 是专为对话（不是朗读）打造的开源 TTS。GitHub 39.3k 星，最低 4 GB VRAM，RTX 4090 上 RTF 0.3，含笑声 / 停顿的精细 prosody 控制。2026 完整安装 + 生产设置指南。'
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
-tech_stack:
-  - Python
+tech_stack: - Python
   - PyTorch
   - CUDA
 application_domain: Ai Tools
@@ -28,11 +22,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [chattts, tts, 语音, 对话, 开源]
-aliases:
-  - /posts/chattts-dialogue-tts-2026/
+aliases: - /posts/chattts-dialogue-tts-2026/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/chattts-dialogue-tts-2026/ -->
 
 2026 多数开源 TTS 还是"90 年代 GPS 旁白加点混响"的味道。**ChatTTS** 是第一个被广泛采用的例外 —— 39.3k 星的生成式语音模型，专为**对话**（不是朗读）训练，含 token 级笑声 / 停顿 / 插入语 / prosody 控制，终于跨过"听了不让人皱眉"的门槛。
 
@@ -61,7 +52,13 @@ ChatTTS 处于第 4 类新坑：**带显式 prosody 控制 token 的自回归生
 ## 2. 硬件要求（真实数字）
 
 | 硬件 | 30 秒片段生成时间 | 实际用途 |
-|---|---|---|
+|
+---
+|
+---
+|
+---
+|
 | 4 GB GPU（GTX 1650 / 3050）| ~25 秒 | 玩票，单片段 |
 | 8 GB GPU（RTX 3060 / 4060）| ~10 秒 | 单干 dev，批量任务 |
 | 12 GB GPU（RTX 3060 12GB / 4070）| ~5 秒 | 生产，低并发 |
@@ -76,8 +73,7 @@ ChatTTS 处于第 4 类新坑：**带显式 prosody 控制 token 的自回归生
 git clone https://github.com/2noise/ChatTTS
 cd ChatTTS
 pip install -r requirements.txt
-# 或 pip:
-pip install ChatTTS
+# 或 pip: pip install ChatTTS
 ```
 
 Hello world：
@@ -102,7 +98,11 @@ torchaudio.save("out.wav", torch.from_numpy(wavs[0]), 24000)
 ChatTTS 听起来有生命的原因 —— 这些标签在文本中间生效：
 
 | 标签 | 效果 |
-|---|---|
+|
+---
+|
+---
+|
 | `[laugh]` | 插入笑声 |
 | `[laugh_0]` 到 `[laugh_2]` | 笑声强度 |
 | `[uv_break]` | 嗯式填充停顿 |
@@ -173,7 +173,11 @@ agent 语音 / 播客管线：
 ## 8. 何时用 ChatTTS vs 替代品
 
 | 场景 | 挑 |
-|---|---|
+|
+---
+|
+---
+|
 | 对话 / 多角色 / agent 语音 | **ChatTTS** |
 | 有声书旁白（单声 / 长篇）| Coqui XTTS-v2 或商业 |
 | 30 秒样本语音克隆 | OpenVoice 或 Coqui XTTS-v2 |
@@ -194,12 +198,11 @@ ChatTTS = **第一个把对话处理得有说服力的开源 TTS**。39.3k 星�
 
 开个 GPU 实例，跑第 3 节 10 行安装，5 分钟内你就听到为啥它取代了讨论里所有其他开源 TTS。
 
----
 
+---
 *dibi8 多模态内容 stack 的一部分 —— 看即将上线的多模态内容 Pipeline 合集，ChatTTS + Whisper + Stable Diffusion + ComfyUI 完整音视频创作管线。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -227,25 +230,20 @@ ChatTTS = **第一个把对话处理得有说服力的开源 TTS**。39.3k 星�
 
 ## Why This Matters
 
-Understanding chattts 2026：39.3k 星开源对话式 tts，带笑声、停顿和 token 级 prosody 控制 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding chattts 2026：39.3k 星开源对话式 tts，带笑声、停顿和 token 级 prosody 控制 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -266,8 +264,8 @@ ChatTTS 2026：39.3k 星开源对话式 TTS，带笑声、停顿和 token 级 pr
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 

@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/tabby" />
 title: 'Tabby: Self-Hosted AI Coding Assistant with 33K+ Stars —...
 description: 'Tabby is a self-hosted AI coding assistant. VS Code, JetBrains, Vim, Neovim, Ollama, DeepSeek. Docker setup, IDE integration, benchmarks, and production hardening.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [tabby, 'ai-coding-assistant', 'self-hosted', 'github-copilot-alternative', 'code-completion', docker, 'open-source']
-aliases:
-- /posts/tabby/
+aliases: - /posts/tabby/-
 ---
-
 {{</* resource-info */>}}
 
 GitHub Copilot sends your proprietary code to Microsoft's cloud. For teams handling sensitive IP — fintech, healthcare, defense, enterprise SaaS — that is a non-starter. Tabby is the open-source answer: a self-hosted AI coding assistant that runs entirely on your own hardware, with zero external data leakage. With 33,530+ GitHub stars and an active release cadence (v0.32.0 shipped January 2026), Tabby has matured from an experimental project into a production-grade alternative to Copilot. This **tabby tutorial** walks through a complete Tabby setup, from Docker deployment to IDE integration and production hardening. If you are specifically comparing **tabby vs copilot**, the comparison table in Section 8 breaks down feature parity and trade-offs.
@@ -36,9 +32,7 @@ Tabby is a self-hosted AI coding assistant and an open-source GitHub Copilot alt
 
 ## How Tabby Works
 
-Tabby consists of three core components:
-
-1. **Inference Server**: A Rust-based HTTP server that loads coding LLMs and serves completions via an OpenAPI-compatible endpoint. It handles model inference, prompt templating, and streaming responses.
+Tabby consists of three core components: 1. **Inference Server**: A Rust-based HTTP server that loads coding LLMs and serves completions via an OpenAPI-compatible endpoint. It handles model inference, prompt templating, and streaming responses.
 
 2. **IDE Extensions**: Native extensions for VS Code, JetBrains IDEs, Vim/Neovim, and Emacs that capture editor context and forward completion requests to the inference server.
 
@@ -81,9 +75,7 @@ docker run -d \
   --device cuda
 ```
 
-For systems with SELinux enabled, add the `:Z` flag to the volume mount:
-
-```bash
+For systems with SELinux enabled, add the `:Z` flag to the volume mount: ```bash
 docker run -d \
   --name tabby \
   --gpus all \
@@ -155,26 +147,15 @@ On first boot, Tabby downloads the specified model weights to `$HOME/.tabby`. De
 
 ### Docker Compose (Production-Ready)
 
-For persistent deployments, use Docker Compose:
-
-```yaml
+For persistent deployments, use Docker Compose: ```yaml
 version: '3.8'
-services:
-  tabby:
-    image: registry.tabbyml.com/tabbyml/tabby
+services: tabby: image: registry.tabbyml.com/tabbyml/tabby
     container_name: tabby
     restart: unless-stopped
-    ports:
-      - "8080:8080"
-    volumes:
-      - $HOME/.tabby:/data
-    environment:
-      - TABBY_WEBSERVER_JWT_TOKEN_SECRET=CHANGE_ME_TO_RANDOM_STRING
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
+    ports: - "8080:8080"
+    volumes: - $HOME/.tabby:/data
+    environment: - TABBY_WEBSERVER_JWT_TOKEN_SECRET=CHANGE_ME_TO_RANDOM_STRING
+    deploy: resources: reservations: devices: - driver: nvidia
               count: all
               capabilities: [gpu]
     command: >
@@ -185,23 +166,17 @@ services:
       --parallelism 4
 ```
 
-Generate a secure JWT secret:
-
-```bash
+Generate a secure JWT secret: ```bash
 openssl rand -hex 32
 ```
 
-Deploy:
-
-```bash
+Deploy: ```bash
 docker compose up -d
 ```
 
 ### Homebrew (macOS Native)
 
-If you prefer not to use Docker on macOS:
-
-```bash
+If you prefer not to use Docker on macOS: ```bash
 # Install via Homebrew
 brew install tabbyml/tabby/tabby
 
@@ -236,9 +211,7 @@ Tabby's IDE extensions connect your editor to the local inference server via HTT
 
 ### Vim / Neovim
 
-For Neovim with `nvim-cmp` and `cmp-tabby`:
-
-```lua
+For Neovim with `nvim-cmp` and `cmp-tabby`: ```lua
 -- In your Neovim config (e.g., init.lua)
 require(cmp).setup({
   sources = {
@@ -252,9 +225,7 @@ vim.g.tabby_server_url = 'http://localhost:8080'
 
 ### Using Ollama as a Backend
 
-Tabby can delegate inference to Ollama, which enables dynamic model switching and multi-model management:
-
-```toml
+Tabby can delegate inference to Ollama, which enables dynamic model switching and multi-model management: ```toml
 # ~/.tabby/config.toml
 [model.completion.http]
 kind = "ollama/completion"
@@ -268,17 +239,13 @@ model_name = "qwen2.5-coder:7b"
 api_endpoint = "http://localhost:11434/v1"
 ```
 
-Start Ollama with the required models:
-
-```bash
+Start Ollama with the required models: ```bash
 ollama pull deepseek-coder:6.7b
 ollama pull qwen2.5-coder:7b
 ollama serve
 ```
 
-Then start Tabby without specifying `--model` (it reads from `config.toml`):
-
-```bash
+Then start Tabby without specifying `--model` (it reads from `config.toml`): ```bash
 tabby serve --device cuda
 ```
 
@@ -288,10 +255,20 @@ This setup is ideal when you want to run multiple models on a single GPU with li
 
 This section provides hard numbers for anyone running a **self-hosted coding assistant** in production. Tabby's throughput and latency vary by model size and GPU generation. All figures below assume a warm model cache (second request onward).
 
-Tabby's performance depends heavily on model size and hardware. The following numbers were collected from community benchmarks and internal testing:
-
-| Model | Size | GPU VRAM | Avg Latency | Accept Rate | Best For |
-|---|---|---|---|---|---|
+Tabby's performance depends heavily on model size and hardware. The following numbers were collected from community benchmarks and internal testing: | Model | Size | GPU VRAM | Avg Latency | Accept Rate | Best For |
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Qwen2.5-Coder-0.5B | 0.5B | 2 GB | ~200ms | 18% | CPU-only setups, rapid testing |
 | StarCoder-1B | 1B | 3 GB | ~180ms | 22% | Low-resource deployments |
 | StarCoder2-3B | 3B | 6 GB | ~250ms | 28% | Balanced quality/speed |
@@ -303,7 +280,15 @@ Tabby's performance depends heavily on model size and hardware. The following nu
 ### Deployment Scenarios
 
 | Scenario | Hardware | Recommended Model | Monthly Cost |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Solo developer, laptop | M2/M3 MacBook 16GB | StarCoder2-3B | $0 |
 | Small team (5–10 devs) | RTX 4070 Ti, 16GB VRAM | Qwen2.5-Coder-7B | ~$50 (power) |
 | Enterprise (50+ devs) | 2× A100 80GB | Qwen2.5-Coder-7B + chat | ~$500 (hosting) |
@@ -319,16 +304,12 @@ For hosting the server infrastructure, consider providers like [DigitalOcean](ht
 
 Tabby's killer feature for teams is repository-level context indexing. It clones and indexes your Git repositories, then uses RAG (Retrieval-Augmented Generation) to surface relevant internal code snippets during completion.
 
-Add repositories via the admin dashboard:
-
-```bash
+Add repositories via the admin dashboard: ```bash
 # Navigate to Repositories → Add Git URL
 # Supports GitHub, GitLab, and self-hosted Git instances
 ```
 
-Or configure via the scheduler CLI:
-
-```bash
+Or configure via the scheduler CLI: ```bash
 docker exec tabby /opt/tabby/bin/tabby-cpu scheduler --now
 ```
 
@@ -336,9 +317,7 @@ docker exec tabby /opt/tabby/bin/tabby-cpu scheduler --now
 
 1. **Change the default JWT secret**: Set `TABBY_WEBSERVER_JWT_TOKEN_SECRET` to a cryptographically random 32-byte hex string.
 
-2. **Run behind a reverse proxy** with TLS termination:
-
-```nginx
+2. **Run behind a reverse proxy** with TLS termination: ```nginx
 # Nginx example
 server {
     listen 443 ssl;
@@ -357,9 +336,7 @@ server {
 
 3. **Enable LDAP/SSO authentication** (Enterprise feature) for team-wide access control.
 
-4. **Set resource limits** on the Docker container:
-
-```bash
+4. **Set resource limits** on the Docker container: ```bash
 docker run -d \
   --memory=24g \
   --cpus=8 \
@@ -398,7 +375,17 @@ docker logs tabby 2>&1 | grep ERROR
 ## Comparison with Alternatives
 
 | Feature | Tabby | GitHub Copilot | Cursor | Codeium |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Self-hosted** | Yes | No | No | Partial (Enterprise) |
 | **License** | Apache-2.0 | Proprietary | Proprietary | Proprietary |
 | **Price (individual)** | Free | $10/month | $20/month | Free tier |
@@ -415,9 +402,7 @@ Tabby is the only option in this group that keeps 100% of your code on-premises.
 
 ## Limitations / Honest Assessment
 
-Tabby is not a drop-in replacement for every Copilot use case. Be aware of the following trade-offs:
-
-- **Smaller models lag on complex reasoning**: A 3B parameter model will not match GPT-4 on multi-file refactoring or architectural suggestions. For those tasks, you may still want a cloud-based chat tool.
+Tabby is not a drop-in replacement for every Copilot use case. Be aware of the following trade-offs: - **Smaller models lag on complex reasoning**: A 3B parameter model will not match GPT-4 on multi-file refactoring or architectural suggestions. For those tasks, you may still want a cloud-based chat tool.
 
 - **Infrastructure burden**: You are responsible for GPU maintenance, model updates, and server uptime. There is no SaaS fallback if your server goes down.
 
@@ -480,9 +465,7 @@ Tabby fills a critical gap in the AI coding assistant market: a fully open-sourc
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -502,7 +485,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [HTStack GPU Cloud](https://www.htstack.com/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -528,8 +510,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [2026-06-15-trending-ai-agents](tabby)
@@ -538,8 +520,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [paddleocr-81k-star-ocr-engine](tabby)
 - [markitdown-universal-file-to-markdown-converter](tabby)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/hello-agents-ai-agent-building-tutorial" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hello-agents-ai-agent-building-tutorial" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hello-agents-ai-agent-building-tutorial" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hello-agents-ai-agent-building-tutorial" />
 title: "Hello-Agents: Datawhale의 오픈소스 AI 에이전트 튜토리얼이 제로에서 프로덕션급 에...
 description: "Datawhale Hello-Agents는 GitHub에서 가장 인기 있는 AI 에이전트 오픈소스 튜토리얼로, ReAct, AutoGen, LangGraph, MCP, Agentic RL 등 16장의 완전한 과정을 다루며 45,600+ Stars를 보유하고 있습니다."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - JavaScript
+tech_stack: - JavaScript
   - Python
 application_domain: "Llm Frameworks"
 source_version: ""
@@ -25,8 +19,7 @@ maintainer: "datawhalechina"
 last_maintained: "2026-05-14"
 featureImage: ""
 draft: false
-faqs:
-  - q: 'Datawhale Hello-Agents란 무엇인가요?'
+faqs: - q: 'Datawhale Hello-Agents란 무엇인가요?'
     a: 'Hello-Agents는 중국 Datawhale 커뮤니티에서 만든 무료 오픈소스 튜토리얼로, AI 에이전트를 처음부터 만드는 법을 가르칩니다. 실행 가능한 코드가 포함된 16개 챕터 커리큘럼을 제공하며, 온라인 도서, 로컬 문서, 다운로드 가능한 PDF 형태로 이용할 수 있습니다.'
   - q: 'Hello-Agents의 16개 챕터 커리큘럼은 어떤 주제를 다루나요?'
     a: '에이전트와 LLM 기초, 고전 패러다임(ReAct, Plan-and-Solve, Reflection), 로우코드 플랫폼(Coze, Dify, n8n), 전문 프레임워크(AutoGen, AgentScope, LangGraph), 메모리와 RAG, 컨텍스트 엔지니어링, 통신 프로토콜(MCP, A2A, ANP), Agentic RL(SFT, RLHF, GRPO), 평가, 그리고 세 가지 종합 캡스톤 사례 연구를 아우릅니다.'
@@ -38,7 +31,6 @@ faqs:
     a: '이 튜토리얼에는 세 가지 종합 사례 연구가 포함되어 있습니다. MCP 도구 호출을 통해 여러 전문 에이전트를 조율하는 스마트 여행 어시스턴트, 웹 검색 결과를 찾아 보고서로 종합하는 자동화된 딥 리서치 에이전트, 그리고 각기 다른 성격과 일과를 가진 AI 에이전트들로 채워진 사이버 타운 시뮬레이션입니다.'
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/hello-agents-ai-agent-building-tutorial/ -->
 {</* resource-info */>}
 
 ## Hello-Agents란?
@@ -162,21 +154,17 @@ messages = [
     {"role": "user", "content": "도쿄 인구를 1000으로 나눈 값은?"}
 ]
 
-for step in range(5):
-    response = openai.chat.completions.create(
+for step in range(5): response = openai.chat.completions.create(
         model="gpt-4", messages=messages, tools=tools, tool_choice="auto"
     )
     message = response.choices[0].message
     messages.append(message)
     
-    if message.tool_calls:
-        for tc in message.tool_calls:
-            name = tc.function.name
+    if message.tool_calls: for tc in message.tool_calls: name = tc.function.name
             args = json.loads(tc.function.arguments)
             result = search_web(**args) if name == "search_web" else calculate(**args)
             messages.append({"role": "tool", "tool_call_id": tc.id, "content": result})
-    else:
-        print("최종 답변:", message.content)
+    else: print("최종 답변:", message.content)
         break
 ```
 
@@ -207,16 +195,13 @@ Hello-Agents는 오늘날 가장 포괄적이고 이해하기 쉬우며 커뮤�
 
 ## 자체 호스팅 추천 인프라
 
-24/7 안정 운영을 위해 인프라 선택이 중요하다:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 60일 $200 크레딧, 글로벌 14+ 리전. 오픈소스 AI 도구 자체 호스팅에 적합.
+24/7 안정 운영을 위해 인프라 선택이 중요하다: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 60일 $200 크레딧, 글로벌 14+ 리전. 오픈소스 AI 도구 자체 호스팅에 적합.
 - **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — 홍콩 VPS, 중국 본토 접근 시 저지연. dibi8.com 자체가 호스팅된 검증된 IDC.
 
 *추천 링크입니다. 추가 비용 없이 dibi8.com 운영에 도움이 됩니다.*
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -244,25 +229,20 @@ Hello-Agents는 오늘날 가장 포괄적이고 이해하기 쉬우며 커뮤�
 
 ## Why This Matters
 
-Understanding hello-agents: datawhale의 오픈소스 ai 에이전트 튜토리얼이 제로에서 프로덕션급 에이전트 구축을 돕는 방법 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding hello-agents: datawhale의 오픈소스 ai 에이전트 튜토리얼이 제로에서 프로덕션급 에이전트 구축을 돕는 방법 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

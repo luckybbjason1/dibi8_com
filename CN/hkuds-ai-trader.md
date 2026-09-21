@@ -1,10 +1,9 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/hkuds-ai-trader" />
 title: "AI-Trader: The Agent-Native Trading Platform from HKUDS"
 description: "AI-Trader is an agent-native trading platform from HKUDS that enables AI coding agents like Claude Code, Codex, Cursor, and OpenClaw to autonomously execute trades, manage portfolios, and optimize strategies."
 date: 2026-06-10
-lastmod:  2026-06-10slug: hkuds-ai-trader
+lastmod: 2026-06-10
+slug: hkuds-ai-trader
 category: ai-trading
 tags: [ai-trader, HKUDS, ai-trading, agent-native, autonomous trading, portfolio management, AI agents]
 github_repo: https://github.com/HKUDS/AI-Trader
@@ -12,9 +11,7 @@ stars: 19464
 maintainer: HKUDS
 license: MIT
 featureImage: https://raw.githubusercontent.com/HKUDS/AI-Trader/main/assets/ai-trader-hero-banner.png
-lang: en
 ---
-
 ## Introduction
 
 The convergence of AI agents and financial markets is one of the most consequential trends in technology. Autonomous trading systems powered by machine learning have existed for years, but they have always been tightly coupled to specific frameworks and required deep expertise to configure and maintain. The barrier to entry has been high: you need to understand both finance and machine learning infrastructure.
@@ -42,9 +39,7 @@ The platform is developed by the Hong Kong University of Science and Data Scienc
 
 ## Core Architecture
 
-AI-Trader's architecture is built around three principal components:
-
-### Agent Operator
+AI-Trader's architecture is built around three principal components: ### Agent Operator
 
 Each AI coding agent (Claude Code, Codex, Cursor, OpenClaw, nanobot) acts as an "operator" that controls one or more trading accounts. The operator reads market data, evaluates strategies, generates trade signals, and executes orders. The operator maintains its own memory and context, learning from past trades and adapting its strategies over time.
 
@@ -56,8 +51,7 @@ The trading engine handles order execution, portfolio management, and risk contr
 # Register your AI agent as a trader
 # Read https://ai4trade.ai/SKILL.md and register
 
-# The registration process involves:
-# 1. Setting up your AI agent's profile
+# The registration process involves: # 1. Setting up your AI agent's profile
 # 2. Connecting a trading account
 # 3. Defining your risk parameters
 # 4. Selecting your strategies
@@ -80,10 +74,14 @@ ai-trader data stream --symbols AAPL,TSLA,MSFT --output websocket
 
 ## Supported AI Agents
 
-AI-Trader supports a growing list of AI coding agents as operators:
-
-| Agent | Support Level | Configuration |
-|-------|--------------|---------------|
+AI-Trader supports a growing list of AI coding agents as operators: | Agent | Support Level | Configuration |
+|
+---
+|
+---
+|
+---
+|
 | Claude Code | Full | SKILL.md integration |
 | Codex | Full | API key + context config |
 | Cursor | Full | Cursor plugin |
@@ -96,13 +94,9 @@ This broad support means that teams can choose the AI agent that best fits their
 
 ## How It Works
 
-The typical workflow for AI-Trader involves these steps:
+The typical workflow for AI-Trader involves these steps: ### 1. Registration and Setup
 
-### 1. Registration and Setup
-
-Agents register with the platform by reading the SKILL.md documentation and following the registration process:
-
-```bash
+Agents register with the platform by reading the SKILL.md documentation and following the registration process: ```bash
 # Agent registration process
 # Step 1: Read the skill documentation
 # Command: "Read https://ai4trade.ai/SKILL.md and register"
@@ -110,8 +104,7 @@ Agents register with the platform by reading the SKILL.md documentation and foll
 # Step 2: The agent reads the documentation and extracts
 # registration parameters, API endpoints, and required fields
 
-# Step 3: The agent submits registration with required parameters:
-registration = {
+# Step 3: The agent submits registration with required parameters: registration = {
     "agent_type": "claude_code",
     "api_key": "sk-....",
     "trading_accounts": ["account_1"],
@@ -124,36 +117,26 @@ registration = {
 
 ### 2. Strategy Configuration
 
-Agents configure trading strategies based on their objectives. AI-Trader provides both built-in strategies and the ability to define custom strategies:
-
-```python
+Agents configure trading strategies based on their objectives. AI-Trader provides both built-in strategies and the ability to define custom strategies: ```python
 # Define a custom trading strategy
 from ai_trader import Strategy
 
-class MomentumReversalStrategy(Strategy):
-    def __init__(self, lookback=20, threshold=0.05):
-        self.lookback = lookback
+class MomentumReversalStrategy(Strategy): def __init__(self, lookback=20, threshold=0.05): self.lookback = lookback
         self.threshold = threshold
     
-    def analyze(self, market_data):
-        # Calculate momentum
+    def analyze(self, market_data): # Calculate momentum
         returns = market_data.close.pct_change(self.lookback)
         
         # Identify reversal signals
-        if returns.iloc[-1] > self.threshold:
-            return "SELL"
-        elif returns.iloc[-1] < -self.threshold:
-            return "BUY"
+        if returns.iloc[-1] > self.threshold: return "SELL"
+        elif returns.iloc[-1] < -self.threshold: return "BUY"
         return "HOLD"
     
-    def generate_order(self, signal, current_position):
-        if signal == "BUY":
-            return self.create_buy_order(
+    def generate_order(self, signal, current_position): if signal == "BUY": return self.create_buy_order(
                 symbol=current_position.symbol,
                 size=current_position.size * 0.5
             )
-        elif signal == "SELL":
-            return self.create_sell_order(
+        elif signal == "SELL": return self.create_sell_order(
                 symbol=current_position.symbol,
                 size=current_position.size
             )
@@ -162,9 +145,7 @@ class MomentumReversalStrategy(Strategy):
 
 ### 3. Execution and Monitoring
 
-Once strategies are configured, agents execute trades and monitor performance:
-
-```bash
+Once strategies are configured, agents execute trades and monitor performance: ```bash
 # Start the trading agent
 ai-trader start --agent claude_code --strategy momentum_reversal
 
@@ -180,9 +161,7 @@ ai-trader trades --agent claude_code --limit 20
 
 ## Installation and Getting Started
 
-AI-Trader is accessed through a combination of the GitHub repository, the platform website, and agent-specific SKILL.md integration:
-
-```bash
+AI-Trader is accessed through a combination of the GitHub repository, the platform website, and agent-specific SKILL.md integration: ```bash
 # Clone the repository
 git clone https://github.com/HKUDS/AI-Trader.git
 cd AI-Trader
@@ -196,32 +175,23 @@ ai-trader --version
 
 ### Agent Registration
 
-Each AI agent registers differently:
+Each AI agent registers differently: ```bash
+# For Claude Code: # Read https://ai4trade.ai/SKILL.md and register
 
-```bash
-# For Claude Code:
-# Read https://ai4trade.ai/SKILL.md and register
+# For Codex: ai-trader register --agent codex --api-key $OPENAI_API_KEY
 
-# For Codex:
-ai-trader register --agent codex --api-key $OPENAI_API_KEY
+# For Cursor: ai-trader register --agent cursor --cursor-config ~/.cursor/config.json
 
-# For Cursor:
-ai-trader register --agent cursor --cursor-config ~/.cursor/config.json
+# For OpenClaw: ai-trader register --agent openclaw --config ~/.openclaw/ai-trader.yaml
 
-# For OpenClaw:
-ai-trader register --agent openclaw --config ~/.openclaw/ai-trader.yaml
-
-# For nanobot:
-ai-trader register --agent nanobot --config ~/.nanobot/trading.yaml
+# For nanobot: ai-trader register --agent nanobot --config ~/.nanobot/trading.yaml
 ```
 
 ## Integration Patterns
 
 ### Exchange Integration
 
-AI-Trader supports multiple exchanges out of the box:
-
-```python
+AI-Trader supports multiple exchanges out of the box: ```python
 # Configure exchange connections
 exchanges = {
     "binance": {
@@ -240,15 +210,12 @@ exchanges = {
     }
 }
 
-for name, config in exchanges.items():
-    ai_trader.connect_exchange(name, config)
+for name, config in exchanges.items(): ai_trader.connect_exchange(name, config)
 ```
 
 ### Strategy Library Integration
 
-The platform includes a rich strategy library:
-
-```python
+The platform includes a rich strategy library: ```python
 from ai_trader.strategies import (
     MomentumReversal,
     MeanReversion,
@@ -276,9 +243,7 @@ portfolio = ai_trader.create_portfolio(
 
 ### Backtesting Engine
 
-AI-Trader includes a powerful backtesting engine for evaluating strategies:
-
-```python
+AI-Trader includes a powerful backtesting engine for evaluating strategies: ```python
 # Run a backtest
 results = ai_trader.backtest(
     strategy="momentum_reversal",
@@ -306,10 +271,18 @@ results.plot_equity_curve(save_path="equity_curve.png")
 
 ### Trading Performance
 
-AI-Trader has demonstrated strong performance across multiple markets:
-
-| Market | Strategy | Annual Return | Sharpe Ratio | Max Drawdown |
-|--------|----------|--------------|-------------|-------------|
+AI-Trader has demonstrated strong performance across multiple markets: | Market | Strategy | Annual Return | Sharpe Ratio | Max Drawdown |
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | US Stocks | Momentum + ML | 34.2% | 1.85 | -12.3% |
 | Crypto | Mean Reversion | 28.7% | 1.42 | -18.5% |
 | Forex | Pairs Trading | 19.5% | 2.10 | -8.7% |
@@ -318,7 +291,11 @@ AI-Trader has demonstrated strong performance across multiple markets:
 ### Execution Speed
 
 | Operation | Latency |
-|-----------|---------|
+|
+---
+|
+---
+|
 | Order placement (crypto) | 45ms |
 | Order placement (stocks) | 120ms |
 | Market data update | 15ms |
@@ -327,10 +304,16 @@ AI-Trader has demonstrated strong performance across multiple markets:
 
 ### Multi-Agent Performance
 
-When multiple AI agents operate simultaneously:
-
-| Agents | Portfolio Size | Avg. Latency | Trade Success Rate |
-|--------|---------------|-------------|-------------------|
+When multiple AI agents operate simultaneously: | Agents | Portfolio Size | Avg. Latency | Trade Success Rate |
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 1 | 1 | 45ms | 99.2% |
 | 3 | 3 | 52ms | 98.9% |
 | 5 | 5 | 58ms | 98.5% |
@@ -340,9 +323,7 @@ When multiple AI agents operate simultaneously:
 
 ### Multi-Agent Coordination
 
-Advanced users can set up multi-agent coordination where different agents specialize in different tasks:
-
-```python
+Advanced users can set up multi-agent coordination where different agents specialize in different tasks: ```python
 # Set up a multi-agent trading team
 trading_team = ai_trader.create_team(
     name="Alpha Team",
@@ -375,9 +356,7 @@ trading_team.start()
 
 ### Custom Data Sources
 
-AI-Trader supports custom data sources for alternative data:
-
-```python
+AI-Trader supports custom data sources for alternative data: ```python
 # Add custom data source
 ai_trader.add_data_source(
     name="news_sentiment",
@@ -401,9 +380,7 @@ strategy = SentimentAnalysis(
 
 ### Risk Management Rules
 
-Configure comprehensive risk management:
-
-```python
+Configure comprehensive risk management: ```python
 # Set risk management rules
 ai_trader.configure_risk(
     global_limits={
@@ -434,7 +411,17 @@ ai_trader.configure_risk(
 How does AI-Trader compare to other AI trading platforms?
 
 | Feature | AI-Trader | QuantConnect | MetaTrader | Backtrader |
-|---------|-----------|-------------|------------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Agent-Native | Yes | No | No | No |
 | Agent Support | 5+ agents | API only | No | No |
 | Open Source | Yes (MIT) | Partial | No | Yes |
@@ -450,9 +437,7 @@ AI-Trader is unique in being truly agent-native. While QuantConnect and Backtrad
 
 ## Limitations
 
-While AI-Trader is a powerful platform, some limitations are worth noting:
-
-**Learning Curve for Strategy Development.** While the platform is agent-native, developing effective trading strategies requires a solid understanding of financial markets and quantitative analysis.
+While AI-Trader is a powerful platform, some limitations are worth noting: **Learning Curve for Strategy Development.** While the platform is agent-native, developing effective trading strategies requires a solid understanding of financial markets and quantitative analysis.
 
 **Market Risk.** As with any trading system, AI-Trader does not guarantee profits. Trading involves risk of loss, and past performance does not guarantee future results.
 
@@ -519,10 +504,9 @@ The SKILL.md-based registration is a clever design choice that puts the AI agent
 
 
 
----
 
-**Sources & Further Reading**:
-- Official docs: https://ai-trader.dev (check official repo)
+---
+**Sources & Further Reading**: - Official docs: https://ai-trader.dev (check official repo)
 - GitHub repository: https://github.com/ai-trader/11/ai/trader
 - Community discussion: https://github.com/ai-trader/discussions
 
@@ -530,18 +514,16 @@ The SKILL.md-based registration is a clever design choice that puts the AI agent
 
 Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss this article and get help from the community.
 
-Read related articles:
-- [dibi8 English Telegram group](dibi8-internal-link)
+Read related articles: - [dibi8 English Telegram group](dibi8-internal-link)
 - [Related tool comparison](dibi8-internal-link)
 
 Try the tool discussed above. If it's a paid service, check for affiliate offers.
 
----
 
+---
 *Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

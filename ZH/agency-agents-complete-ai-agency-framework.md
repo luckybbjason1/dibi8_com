@@ -1,8 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/agency-agents-complete-ai-agency-framework" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/agency-agents-complete-ai-agency-framework" />
-lang: zh
 description: 'Agency Agents is a complete open-source AI agency framework with 12+ specialized agents — from frontend designers to Reddit moderators. Learn how to deploy a full AI team for $0.'
 date: 2026-07-03T09:00:00+09:00
 lastmod: 2026-07-03T09:00:00+09:00
@@ -12,14 +8,10 @@ category: dev-utils
 tags: ['ai-agents', 'open-source', 'automation', 'multi-agent', 'agency']
 github_repo: 'https://github.com/msitarzewski/agency-agents'
 license: 'MIT'
-tech_stack:
-  - Bash
+tech_stack: - Bash
   - Python
   - Shell
-featureImage: /images/articles/polymarket-agents-polymarket-예측-시장용-ai-자.jpg
----
-
-<!-- canonical: https://dibi8.com/zh/tools/agency-agents-complete-ai-agency-framework/ -->
+featureImage: /images/articles/polymarket-agents-polymarket-예측-시장용-ai-자.jpg---
 
 
 
@@ -180,21 +172,16 @@ python -m Agency_agents init --project"我的 SaaS 仪表板"
 编辑"config.yaml"以指定要激活的代理：
 
 ```yaml
-team:
-  frontend:
-    model: claude-sonnet-4-20250514
+team: frontend: model: claude-sonnet-4-20250514
     temperature: 0.3
     max_tokens: 4096
-  backend:
-    model: claude-sonnet-4-20250514
+  backend: model: claude-sonnet-4-20250514
     temperature: 0.2
     max_tokens: 4096
-  devops:
-    model: claude-sonnet-4-20250514
+  devops: model: claude-sonnet-4-20250514
     temperature: 0.1
     max_tokens: 2048
-  qa:
-    model: claude-sonnet-4-20250514
+  qa: model: claude-sonnet-4-20250514
     temperature: 0.2
     max_tokens: 2048
 ```
@@ -204,14 +191,11 @@ team:
 创建一个描述您的项目需求的"tasks.yaml"文件：
 
 ```yaml
-project:
-tech_stack:
-    - React
+project: tech_stack: - React
     - Node.js
     - PostgreSQL
     - Redis
-  milestones:
-    - name: "UI Design"
+  milestones: - name: "UI Design"
       agent: frontend
       deadline: "Day 1-2"
     - name: "API Development"
@@ -262,14 +246,11 @@ cd 输出 && npm 测试
 任务路由器是代理机构的大脑。它结合使用关键字匹配和语义分析来确定哪个代理应该处理给定的任务。
 
 ```python
-class TaskRouter:
-    def __init__(self, agents):
-        self.agents = agents
+class TaskRouter: def __init__(self, agents): self.agents = agents
         self.keywords = self._build_keyword_index()
 <<<<<<< HEAD
     
-    def _build_keyword_index(self):
-        return {
+    def _build_keyword_index(self): return {
             'frontend': ['ui', 'css', 'html', 'react', 'vue', 'component'],
             'backend': ['api', 'database', 'server', 'route', 'endpoint'],
             'devops': ['docker', 'ci-cd', 'deploy', 'pipeline', 'kubernetes'],
@@ -277,17 +258,14 @@ class TaskRouter:
             # ... more mappings
         }
     
-    def route(self, task_description):
-        scores = {}
-        for agent_name, keywords in self.keywords.items():
-            score = sum(1 for kw in keywords if kw in task_description.lower())
+    def route(self, task_description): scores = {}
+        for agent_name, keywords in self.keywords.items(): score = sum(1 for kw in keywords if kw in task_description.lower())
             scores[agent_name] = score
         
         return max(scores, key=scores.get)
 =======
 
-def _build_keyword_index(自身):
-返回 {
+def _build_keyword_index(自身): 返回 {
 '前端'：['ui'，'css'，'html'，'react'，'vue'，'组件']，
 '后端': ['api', '数据库', '服务器', '路由', '端点'],
 'devops': ['docker', 'ci-cd', '部署', '管道', 'kubernetes'],
@@ -314,25 +292,20 @@ from queue import Queue
 import threading
 
 <<<<<<< HEAD
-class AgentQueue:
-    def __init__(self):
-        self.tasks = Queue()
+class AgentQueue: def __init__(self): self.tasks = Queue()
         self.results = {}
     
-    def add_task(self, task, agent_type, priority=0):
-        self.tasks.put({
+    def add_task(self, task, agent_type, priority=0): self.tasks.put({
             'task': task,
             'agent': agent_type,
             'priority': priority,
             'timestamp': datetime.now()
         })
     
-    def get_next_task(self):
-        return self.tasks.get(block=False)
+    def get_next_task(self): return self.tasks.get(block=False)
 =======
 代理队列类：
-def __init__(自身):
-self.tasks = 队列()
+def __init__(自身): self.tasks = 队列()
 自我结果 = {}
 
 def add_task（自身，任务，agent_type，优先级= 0）：
@@ -343,8 +316,7 @@ self.tasks.put({
 '时间戳': datetime.now()
 })
 
-def get_next_task(自身):
-返回 self.tasks.get(block=False)
+def get_next_task(自身): 返回 self.tasks.get(block=False)
 >>>>>>> 0f428019e6f21508f05fc402fc21585e618ed533
 ```
 
@@ -353,8 +325,7 @@ def get_next_task(自身):
 每个代理的输出在被接受之前都会经过质量检查。
 
 ```python
-def quality_check(agent_output, task_requirements):
-    checks = [
+def quality_check(agent_output, task_requirements): checks = [
         ('syntax', check_syntax(agent_output)),
         ('completeness', check_completeness(agent_output, task_requirements)),
         ('security', check_security(agent_output)),
@@ -382,15 +353,17 @@ def quality_check(agent_output, task_requirements):
 ## 与替代方案的比较
 
 |特色 |代理代理| AutoGPT |船员人工智能 |郎图|
-|--------
+|---
 
-|--------------
+|-
+---
 
-|---------
+|---
 
-|--------
+|-
+---
 
-|------------
+|---
 
 |
 |代理人数 | 12+ | 1-2 | 1-2 3-5 | 3-5定制|
@@ -473,8 +446,8 @@ docker exec -it agency-agents python agency.py --project "Build a web app"
 - [GitHub API — 星数验证](https://api.github.com/repos/msitarzewski/agency-agents)
 - [代理机构自述文件](https://github.com/msitarzewski/agency-agents/blob/main/README.md)
 
----
 
+---
 <<<<<<< HEAD
 *本文由Dibi8编辑团队独立研究撰写。我们可能会从附属链接中赚取佣金，但这并不影响我们的编辑独立性。*
 =======
@@ -482,7 +455,6 @@ docker exec -it agency-agents python agency.py --project "Build a web app"
 >>>>>>> 0f428019e6f21508f05fc402fc21585e618ed533
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -510,25 +482,20 @@ docker exec -it agency-agents python agency.py --project "Build a web app"
 
 ## Why This Matters
 
-Understanding 代理代理：125k+星开源人工智能代理框架 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding 代理代理：125k+星开源人工智能代理框架 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -549,8 +516,8 @@ To implement this in your workflow:
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -571,7 +538,17 @@ For the latest updates and community discussions, join our Telegram channel: htt
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

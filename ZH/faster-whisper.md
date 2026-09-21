@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/faster-whisper" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/faster-whisper" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/faster-whisper" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/faster-whisper" />
 title: 'faster-whisper: 4 倍速语音转文本，23K+ Stars — 2026 年对比 WhisperX...
 description: 'faster-whisper（SYSTRAN）通过 CTranslate2 重新实现 OpenAI Whisper，提速 4 倍。涵盖 faster whisper 教程、基准数据、Docker 部署、Python API、VAD 过滤器、批处理，以及与 WhisperX 和 whisper.cpp 的生产级集成。'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: ['faster-whisper', 语音转文本, ctranslate2, 'openai whisper', 语音识别, python, docker, asr]
-aliases:
-- /zh/posts/faster-whisper/
+aliases: - /zh/posts/faster-whisper/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/faster-whisper/ -->
 
 {{</* resource-info */>}}
 
@@ -137,8 +129,7 @@ segments, info = model.transcribe("audio.mp3", beam_size=5)
 
 print(f"检测语言: {info.language} (概率: {info.language_probability:.2f})")
 
-for segment in segments:
-    print(f"[{segment.start:.2f}s -> {segment.end:.2f}s] {segment.text}")
+for segment in segments: print(f"[{segment.start:.2f}s -> {segment.end:.2f}s] {segment.text}")
 ```
 
 ## 与流行工具集成
@@ -176,8 +167,7 @@ diarize_model = whisperx.DiarizationPipeline(
 diarize_segments = diarize_model(audio)
 result = whisperx.assign_word_speakers(diarize_segments, result)
 
-for segment in result["segments"]:
-    speaker = segment.get("speaker", "UNKNOWN")
+for segment in result["segments"]: speaker = segment.get("speaker", "UNKNOWN")
     print(f"[{segment[start]:.2f}s -> {segment[end]:.2f}s] "
           f"{speaker}: {segment[text]}")
 ```
@@ -198,8 +188,7 @@ docker run -d --gpus all \
 ```python
 import requests
 
-with open("audio.mp3", "rb") as f:
-    response = requests.post(
+with open("audio.mp3", "rb") as f: response = requests.post(
         "http://localhost:9000/asr",
         files={"audio_file": f},
         data={"language": "en", "output": "json"}
@@ -222,8 +211,7 @@ from openai import OpenAI
 
 client = OpenAI(base_url="http://localhost:8000/v1", api_key="dummy")
 
-with open("audio.mp3", "rb") as f:
-    transcript = client.audio.transcriptions.create(model="large-v3", file=f)
+with open("audio.mp3", "rb") as f: transcript = client.audio.transcriptions.create(model="large-v3", file=f)
 print(transcript.text)
 ```
 
@@ -254,7 +242,17 @@ print(response.json()["translatedText"])
 ### GPU 基准测试：13 分钟音频，large-v2 模型
 
 | 实现方案 | 精度 | Beam Size | 耗时 | 显存占用 |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | openai/whisper | fp16 | 5 | 2分23秒 | 4708 MB |
 | whisper.cpp (Flash Attention) | fp16 | 5 | 1分05秒 | 4127 MB |
 | transformers (SDPA) | fp16 | 5 | 1分52秒 | 4960 MB |
@@ -268,7 +266,17 @@ print(response.json()["translatedText"])
 ### CPU 基准测试：13 分钟音频，small 模型
 
 | 实现方案 | 精度 | Beam Size | 耗时 | 内存占用 |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | openai/whisper | fp32 | 5 | 6分58秒 | 2335 MB |
 | whisper.cpp | fp32 | 5 | 2分05秒 | 1049 MB |
 | whisper.cpp (OpenVINO) | fp32 | 5 | 1分45秒 | 1642 MB |
@@ -280,7 +288,15 @@ print(response.json()["translatedText"])
 ### 生产用例
 
 | 用例 | 模型 | 硬件 | 性能 |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **会议转录**（1小时音频） | large-v3 int8 | RTX 4070 | ~3 分钟处理 |
 | **播客批量处理**（100 文件） | large-v3 int8 batch=8 | A100 40GB | 100 小时约 20 分钟 |
 | **实时字幕** | small int8 | RTX 3060 | ~200ms 延迟 |
@@ -317,8 +333,7 @@ model = WhisperModel("large-v3", device="cuda", compute_type="int8")
 audio_files = glob.glob("podcasts/*.mp3")
 
 start = time.time()
-for file_path in audio_files:
-    segments, _ = model.transcribe(file_path, batch_size=8, beam_size=5)
+for file_path in audio_files: segments, _ = model.transcribe(file_path, batch_size=8, beam_size=5)
     text = " ".join([s.text for s in segments])
     print(f"{file_path}: {len(text)} 字符")
 print(f"总耗时: {time.time() - start:.1f}秒，处理 {len(audio_files)} 个文件")
@@ -328,9 +343,7 @@ print(f"总耗时: {time.time() - start:.1f}秒，处理 {len(audio_files)} 个�
 
 ```python
 segments, _ = model.transcribe("audio.mp3", word_timestamps=True)
-for segment in segments:
-    for word in segment.words:
-        print(f"[{word.start:.2f}s -> {word.end:.2f}s] {word.word}")
+for segment in segments: for word in segment.words: print(f"[{word.start:.2f}s -> {word.end:.2f}s] {word.word}")
 ```
 
 ### 自定义模型转换
@@ -357,8 +370,7 @@ REQUEST_DURATION = Histogram("transcription_duration_seconds", "请求耗时")
 model = WhisperModel("large-v3", device="cuda", compute_type="int8")
 
 @REQUEST_DURATION.time()
-def transcribe(audio_path):
-    REQUEST_COUNT.inc()
+def transcribe(audio_path): REQUEST_COUNT.inc()
     return model.transcribe(audio_path, beam_size=5)
 
 start_http_server(8000)
@@ -369,15 +381,11 @@ start_http_server(8000)
 ```python
 from faster_whisper import WhisperModel
 
-def safe_transcribe(audio_path, device="cuda"):
-    compute_types = ["int8", "int8_float16", "float16", "float32"]
-    for compute_type in compute_types:
-        try:
-            model = WhisperModel("large-v3", device=device, compute_type=compute_type)
+def safe_transcribe(audio_path, device="cuda"): compute_types = ["int8", "int8_float16", "float16", "float32"]
+    for compute_type in compute_types: try: model = WhisperModel("large-v3", device=device, compute_type=compute_type)
             segments, info = model.transcribe(audio_path, beam_size=5)
             return segments, info, compute_type
-        except RuntimeError as e:
-            print(f"{compute_type} 失败: {e}，重试中...")
+        except RuntimeError as e: print(f"{compute_type} 失败: {e}，重试中...")
             continue
     raise RuntimeError("所有计算类型均失败")
 ```
@@ -385,7 +393,17 @@ def safe_transcribe(audio_path, device="cuda"):
 ## 与替代方案对比
 
 | 特性 | faster-whisper | OpenAI Whisper | WhisperX | whisper.cpp |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **GPU 速度 (large-v3)** | ~12 倍实时 | ~3 倍实时 | ~12 倍实时 | ~8 倍实时 |
 | **显存占用 (large-v3)** | ~2.5 GB (int8) | ~11 GB (fp16) | ~3 GB | ~3 GB |
 | **Python API** | 原生支持 | 原生支持 | 原生支持 | 仅支持包装器 |
@@ -495,7 +513,6 @@ faster-whisper 是 Python 环境中 OpenAI Whisper 的生产级运行时选择�
 - Silero VAD：https://github.com/snakers4/silero-vad
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -521,8 +538,8 @@ faster-whisper 是 Python 环境中 OpenAI Whisper 的生产级运行时选择�
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [ray-distributed-ai-framework-complete-guide](faster-whisper)
@@ -531,6 +548,6 @@ faster-whisper 是 Python 环境中 OpenAI Whisper 的生产级运行时选择�
 - [agent-reach-internet-access-ai-agents](faster-whisper)
 - [microsoft-markitdown-file-to-markdown-converter-cli](faster-whisper)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

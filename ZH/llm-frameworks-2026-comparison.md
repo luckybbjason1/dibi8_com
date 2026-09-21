@@ -6,7 +6,6 @@ tags: [llm-framework, langchain, llamaindex, langgraph, crewai]
 categories: [llm-frameworks, ai-tools]
 image: "https://picsum.photos/seed/llm-frameworks/1200x630"
 ---
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -45,7 +44,15 @@ Your one-stop resource for LLM framework selection in 2026.
 ## Framework Overview
 
 | Framework | Best For | Learning Curve | Community Size |
-|-----------|----------|----------------|----------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **LangChain** | General purpose | Medium | Large |
 | **LlamaIndex** | RAG systems | Low | Growing |
 | **LangGraph** | Stateful agents | High | Growing |
@@ -68,6 +75,8 @@ Your one-stop resource for LLM framework selection in 2026.
 - [LlamaIndex Docs](https://docs.llamaindex.ai/)
 - [LangGraph Guide](https://langchain-ai.github.io/langgraph/)
 
----
 
+---
 *Last Updated: September 20, 2026*
+
+---

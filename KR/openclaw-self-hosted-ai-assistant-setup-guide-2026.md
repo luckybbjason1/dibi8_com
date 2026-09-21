@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/openclaw-self-hosted-ai-assistant-setup-guide-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/openclaw-self-hosted-ai-assistant-setup-guide-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/openclaw-self-hosted-ai-assistant-setup-guide-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/openclaw-self-hosted-ai-assistant-setup-guide-2026" />
 title: 'OpenClaw 완벽 가이드: 2026년 최고의 오픈소스 AI 어시스턴트 자체 호스팅 설치 방법｜무료...
 description: 'GitHub 362K+ Star을 기록한 OpenClaw의 폭발적 성장 비결을 파헤친다. 오픈소스 AI 어시스턴트 OpenClaw의 아키텍처, 자체 호스팅 배포 전 과정, 다중 플랫폼 연동 실전 팁, 그리고 구독료 없는 로컬 AI 비서 구축 노하우를 상세히 설명한다.'
 date: 2026-05-18 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: 'steipete'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/openclaw-self-hosted-ai-assistant-setup-guide-2026/
+aliases: - /posts/openclaw-self-hosted-ai-assistant-setup-guide-2026/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/openclaw-self-hosted-ai-assistant-setup-guide-2026/ -->
 
 {</* resource-info */>}
 
@@ -164,9 +156,7 @@ openclaw onboard
 
 #### 단계 3: 로컬 모델 구성(선택)
 
-Ollama를 로컬 추론 백엔드로 사용하는 경우:
-
-```bash
+Ollama를 로컬 추론 백엔드로 사용하는 경우: ```bash
 # Ollama 설치
 curl -fsSL https://ollama.com/install.sh | sh
 
@@ -177,9 +167,7 @@ ollama pull llama3:8b
 ollama run llama3:8b "안녕, 자기소개 해줘"
 ```
 
-`~/.openclaw/openclaw.json`에서 모델 라우팅 구성:
-
-```json
+`~/.openclaw/openclaw.json`에서 모델 라우팅 구성: ```json
 {
   "models": {
     "default": {
@@ -199,9 +187,7 @@ ollama run llama3:8b "안녕, 자기소개 해줘"
 ### 3.3 Telegram 연동(디버깅용 최적 채널)
 
 1. [@BotFather](https://t.me/botfather)에서 새로운 Bot을 생성하고 API Token을 복사한다.
-2. `~/.openclaw/channels/telegram.json` 편집:
-
-```json
+2. `~/.openclaw/channels/telegram.json` 편집: ```json
 {
   "enabled": true,
   "botToken": "YOUR_BOT_TOKEN_HERE",
@@ -231,7 +217,6 @@ ollama run llama3:8b "안녕, 자기소개 해줘"
 하트비트 작업을 구성하여 2시간마다 라크 / Gmail 수신함을 점검한다.
 
 ```markdown
-<!-- HEARTBEAT.md -->
 - 읽지 않은 메일 확인, 우선순위 태깅(높음/중간/낮음)
 - 높은 우선순위 → 즉시 Telegram에 요약 푸시
 - 중간 우선순위 → 오늘의 할 일에 추가
@@ -242,9 +227,7 @@ ollama run llama3:8b "안녕, 자기소개 해줘"
 
 ### 4.2 코드 리뷰 자동화
 
-GitHub PR이 제출되면 에이전트가 자동으로:
-
-1. PR 브랜치 코드를 풀한다.
+GitHub PR이 제출되면 에이전트가 자동으로: 1. PR 브랜치 코드를 풀한다.
 2. 코드 스타일을 점검한다(ESLint / Prettier / Black).
 3. 단위 테스트를 실행한다.
 4. 잠재적 보안 취약점을 분석한다(SQL 인젝션, XSS, 하드코딩된 시크릿).
@@ -324,9 +307,7 @@ Llama 3 8B / Mistral 7B 수준의 모델은 이미 80% 이상의 일상 Q&A 및 
 
 ## OpenClaw 자체 호스팅 추천 인프라
 
-OpenClaw를 24/7 운영하려면 안정적인 호스팅이 필요하다. dibi8 독자에게 가장 적합한 두 가지 옵션:
-
-- **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 접근 시 저지연. dibi8.com 자체가 이 IDC에서 호스팅되며, OpenClaw 프로덕션 배포에 검증된 환경.
+OpenClaw를 24/7 운영하려면 안정적인 호스팅이 필요하다. dibi8 독자에게 가장 적합한 두 가지 옵션: - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 접근 시 저지연. dibi8.com 자체가 이 IDC에서 호스팅되며, OpenClaw 프로덕션 배포에 검증된 환경.
 - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 신규 가입 시 60일 $200 크레딧, 글로벌 14+ 리전, 깔끔한 대시보드. 아시아 외 지역 개발자에게 추천.
 
 권장 사양(4 vCPU / 8GB RAM) 기준 두 업체 모두 월 $24–40 수준 — API 구독료 절감을 감안하면 "구독 제로" 명제는 여전히 성립한다.
@@ -343,13 +324,11 @@ OpenClaw의 폭발은 또 하나의 덧없는 'AI 하이프'가 아니다. '통�
 
 *본 문서는 2026년 5월 18일에 마지막으로 업데이트되었다. 기술적 세부사항은 버전 업데이트에 따라 변할 수 있으므로, [OpenClaw 공식 문서](https://docs.openclaw.ai)를 참고하라.*
 
-**추천 읽을거리**:
-- [Ollama 로컬 LLM 배포 완벽 가이드](https://ollama.com/blog)
+**추천 읽을거리**: - [Ollama 로컬 LLM 배포 완벽 가이드](https://ollama.com/blog)
 - [MCP 프로토콜: AI 에이전트 도구 호출의 새로운 표준](https://modelcontextprotocol.io)
 - [2026년 주간 오픈소스 AI 도구 다이제스트](https://buildmvpfast.com/blog)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

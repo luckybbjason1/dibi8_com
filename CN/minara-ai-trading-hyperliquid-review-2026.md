@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/minara-ai-trading-hyperliquid-review-2026" />
 title: 'Minara Review 2026: The AI Trading Platform on Hyperliqu...
 description: 'Minara is the AI-native trading platform built on Hyperliquid that lets you ask questions, get real-time market analysis, and execute crypto / stocks / commodities trades in a single chat interface. Hands-on review: setup walkthrough, five real use cases, honest pricing breakdown, and how Spark token rebates stack with the 10% referral commission.'
 date: 2026-05-17 00:00:00+08:00
@@ -20,10 +18,8 @@ maintainer: 'Minara'
 last_maintained: '2026-05-17'
 featureImage: ''
 draft: false
-aliases:
-- /posts/minara-ai-trading-hyperliquid-review-2026/
+aliases: - /posts/minara-ai-trading-hyperliquid-review-2026/-
 ---
-
 {{</* resource-info */>}}
 
 # Minara Review 2026: The AI Trading Platform on Hyperliquid That Compresses Your Bloomberg Terminal Into One Chat Box
@@ -50,22 +46,18 @@ This is a hands-on review after two weeks of real use: what it does, who it's fo
 10. [Frequently Asked Questions](#frequently-asked-questions)
 11. [Final Verdict: Who Should Use Minara?](#final-verdict-who-should-use-minara)
 
----
 
+---
 ## What Minara Actually Is
 
-Strip the marketing copy and Minara is **one chat interface that does four things at once**:
-
-- **Asks questions** about any market in plain English (or Chinese, Korean, or Vietnamese — the model handles them all)
+Strip the marketing copy and Minara is **one chat interface that does four things at once**: - **Asks questions** about any market in plain English (or Chinese, Korean, or Vietnamese — the model handles them all)
 - **Returns real-time analysis** grounded in current orderbook, on-chain, and news data
 - **Executes trades** on crypto, stocks, and commodities — all through the same prompt
 - **Manages risk** with conversational position sizing and exit conditions
 
 Think of it as ChatGPT with a brokerage license and a Hyperliquid wallet stapled to its side.
 
-The "AI trading platform" category is crowded — TradeGPT, Numerai, Composer, Stoic — but Minara is unusual in two ways:
-
-1. **It's chat-first, not dashboard-first.** Everything happens through natural language. No charts to configure, no JSON strategies to write.
+The "AI trading platform" category is crowded — TradeGPT, Numerai, Composer, Stoic — but Minara is unusual in two ways: 1. **It's chat-first, not dashboard-first.** Everything happens through natural language. No charts to configure, no JSON strategies to write.
 2. **It runs on Hyperliquid.** Which means execution is on-chain, transparent, with sub-second finality.
 
 If you've never traded crypto perps before, that second point won't mean much yet. Read on.
@@ -74,10 +66,14 @@ If you've never traded crypto perps before, that second point won't mean much ye
 
 You can have the smartest AI in the world wired to a bad execution layer and still lose money to slippage, downtime, or hidden fees. Hyperliquid is the part that makes Minara's AI worth using.
 
-A 30-second primer for non-DeFi readers:
-
-| Feature | Traditional CEX (Binance, OKX) | Hyperliquid |
-|---|---|---|
+A 30-second primer for non-DeFi readers: | Feature | Traditional CEX (Binance, OKX) | Hyperliquid |
+|
+---
+|
+---
+|
+---
+|
 | Custody | Exchange holds your funds | You hold your own funds |
 | Orderbook | Hidden, off-chain | Fully on-chain, visible |
 | Withdrawals | Can be paused / frozen | Permissionless |
@@ -117,9 +113,7 @@ The wallet is **non-custodial**. Minara never holds your funds — every trade i
 
 ### Step 3: Ask your first question
 
-Open the chat and type:
-
-```
+Open the chat and type: ```
 What's the open interest on HYPE right now and how does that compare to last week?
 ```
 
@@ -139,13 +133,9 @@ Total time from signup to first trade: **about three minutes** if you already ha
 
 ### Natural Language Trade Execution
 
-This is the headline feature and the one that actually changes your behavior. Instead of:
+This is the headline feature and the one that actually changes your behavior. Instead of: > Open Hyperliquid → search HYPE → click perp → set leverage → calculate position size → set stop loss → set take profit → review → confirm
 
-> Open Hyperliquid → search HYPE → click perp → set leverage → calculate position size → set stop loss → set take profit → review → confirm
-
-You type:
-
-```
+You type: ```
 Long HYPE 3x, $500 position, stop at $40, take profit at $55
 ```
 
@@ -153,9 +143,7 @@ That's it. Minara parses the intent, calculates the size in contracts, sets the 
 
 ### Real-Time AI Analysis
 
-The AI grounds its analysis in live data, not pre-trained 2024 knowledge. Ask:
-
-```
+The AI grounds its analysis in live data, not pre-trained 2024 knowledge. Ask: ```
 Why did BTC just spike 3% in the last 10 minutes?
 ```
 
@@ -177,9 +165,7 @@ Note: stock and commodity execution routes through partner brokers, not Hyperliq
 
 ### Spark Token Economy
 
-Every trade you place earns Spark tokens (the platform's native rewards token). Spark can be:
-
-- Redeemed for fee discounts (up to 50% off)
+Every trade you place earns Spark tokens (the platform's native rewards token). Spark can be: - Redeemed for fee discounts (up to 50% off)
 - Staked for additional discounts and platform governance
 - Held speculatively (it has a market price)
 
@@ -202,9 +188,7 @@ Minara pulls the data, shows the chart, and proposes a paired long copper / shor
 
 ### Use case 2: "I want a Telegram-bot-style trade but on-chain"
 
-If you've used Maestro, BananaGun, or Trojan bots, you know the workflow: see token, click button, get filled. Minara does the same but on Hyperliquid (so on-chain, with proper limit orders, no honeypot risk):
-
-```
+If you've used Maestro, BananaGun, or Trojan bots, you know the workflow: see token, click button, get filled. Minara does the same but on Hyperliquid (so on-chain, with proper limit orders, no honeypot risk): ```
 Buy 100 USDC of $TOKEN_TICKER at market
 ```
 
@@ -220,9 +204,7 @@ Minara suggests: an out-of-the-money put on the closest correlated asset that ha
 
 ### Use case 4: "What's the news affecting my open position?"
 
-You're long ETH. ETH drops 4% out of nowhere. You ask:
-
-```
+You're long ETH. ETH drops 4% out of nowhere. You ask: ```
 Why did ETH just drop?
 ```
 
@@ -230,9 +212,7 @@ Minara checks news, Twitter sentiment, on-chain flows, ETF inflows/outflows, and
 
 ### Use case 5: "Daily portfolio review"
 
-Every morning at 9am:
-
-```
+Every morning at 9am: ```
 Show me my P&L overnight, the macro events that moved my positions,
 and any positions that crossed my pre-set risk thresholds.
 ```
@@ -248,7 +228,17 @@ Use a direct Hyperliquid API client for that.
 ## Minara vs Manual Trading vs Classical Bots
 
 | Dimension | Manual Trading | Classical Bot (3Commas / Stoic) | Telegram Bot (Maestro) | Minara |
-|---|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Setup time | 0 | ~1 hour | 5 min | 3 min |
 | Strategy flexibility | Unlimited | Limited to bot's strategies | Limited to chains supported | Conversational, very flexible |
 | Custody | Self / Exchange | Exchange (API key) | Self (signing per trade) | Self (Hyperliquid wallet) |
@@ -262,9 +252,7 @@ Minara doesn't try to replace any of these completely. It compresses **the analy
 
 There's a free tier with rate limits (~50 chat messages per day, no advanced features). Paid tiers start around the cost of a Spotify subscription and scale up to "I treat this as my main trading desk" enterprise tier.
 
-But the smarter way to think about cost is:
-
-1. **You pay nothing extra over native Hyperliquid fees** for execution. Minara doesn't take an execution markup.
+But the smarter way to think about cost is: 1. **You pay nothing extra over native Hyperliquid fees** for execution. Minara doesn't take an execution markup.
 2. **Spark tokens you earn from trading** can offset the subscription cost. Heavy users effectively trade for free.
 3. **Referral rebates** compound: when you onboard friends, you get 20% of their Spark earnings indefinitely.
 
@@ -274,9 +262,7 @@ The economics make sense if you trade regularly. They don't make sense if you pl
 
 This is the part where I take off the review hat and tell you straight.
 
-**AI trading platforms do not have superpowers.** They have:
-
-- Faster data synthesis than you
+**AI trading platforms do not have superpowers.** They have: - Faster data synthesis than you
 - Better recall of historical comparisons than you
 - No edge over the market on average
 
@@ -324,9 +310,7 @@ Honest answer: it's a thin LLM wrapper for the trade-execution layer and a moder
 
 ### How does the Spark referral system work for content creators?
 
-If you write content, run a YouTube channel, or have a trading community, the [Minara referral link](https://minara.ai/r/OSXG4X) gives you:
-
-- **10% commission** on the trading fees your referrals pay (paid in USDC)
+If you write content, run a YouTube channel, or have a trading community, the [Minara referral link](https://minara.ai/r/OSXG4X) gives you: - **10% commission** on the trading fees your referrals pay (paid in USDC)
 - **20% Spark rebate** — you receive 20% of your referrals' Spark token earnings for a set period
 
 Spark has a market price and is tradable, so the rebate has real cashable value beyond just fee discounts. This is materially better than typical exchange referral programs (Binance gives you ~20% of fees but no token rebate).
@@ -356,8 +340,8 @@ For everyone in the first bucket, [sign up here](https://minara.ai/r/OSXG4X) —
 
 If you're going to ignore the rest of this review, at least remember this: **the AI doesn't have superpowers. Your discipline is still the edge.** Minara just removes the friction so you can spend more of your day on the part that actually matters — thinking.
 
----
 
+---
 **Related reads on dibi8:**
 
 - [MCP Deep Dive — The Definitive 2026 Guide](/resources/llm-frameworks/mcp-deep-dive-definitive-2026-guide/)
@@ -367,7 +351,6 @@ If you're going to ignore the rest of this review, at least remember this: **the
 *Last updated: 2026-05-17. Affiliate disclosure: this article contains referral links to Minara. If you sign up via these links, dibi8 earns a commission at no extra cost to you. We only review tools we'd recommend regardless of the commission.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

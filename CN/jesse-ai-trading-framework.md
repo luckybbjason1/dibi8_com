@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/jesse-ai-trading-framework" />
 title: 'Jesse: The Advanced Python Crypto Trading Framework with...
 description: 'A production-ready guide to Jesse AI trading framework — install, backtest with 30+ indicators, build custom strategies, and deploy live crypto trading bots in Python.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: [jesse, 'crypto trading', python, backtesting, 'technical indicators', 'algorithmic trading', 'ai trading', 'quantitative trading']
-aliases:
-- /posts/jesse-ai-trading-framework/
+aliases: - /posts/jesse-ai-trading-framework/-
 ---
-
 {{</* resource-info */>}}
 
 ## Introduction: Why Most Trading Bots Fail in Production
@@ -42,9 +38,7 @@ In this guide, you will install Jesse in under 5 minutes, write your first strat
 
 Jesse is an **advanced Python crypto trading framework** focused on quantitative strategy development, backtesting, and live execution. Unlike lightweight wrapper libraries, Jesse provides a full research-to-production pipeline: data ingestion, indicator calculation, strategy logic, portfolio tracking, and trade execution — all within a unified, extensible architecture.
 
-Key facts as of May 2026:
-
-- **GitHub stars**: 6,200+
+Key facts as of May 2026: - **GitHub stars**: 6,200+
 - **License**: MIT
 - **Latest stable**: v1.7.2 (released 2026-04-28)
 - **Python support**: 3.10–3.12
@@ -72,9 +66,7 @@ Jesse's backtest engine simulates trades using historical data with realistic as
 ### 5. Live Trading Module
 The live module connects to exchange APIs via WebSocket for real-time price feeds and REST for order execution. It includes a notification system (Telegram, Discord, Slack), a portfolio tracker, and automatic reconnection handling.
 
-Here is the high-level data flow:
-
-```
+Here is the high-level data flow: ```
 Exchange API → Data Module → Strategy Logic → Risk Manager → Order Executor → Exchange API
                                     ↑
                               Indicator Module
@@ -104,9 +96,7 @@ mkdir my-trading-bot && cd my-trading-bot
 jesse init
 ```
 
-After running `jesse init`, your project structure looks like this:
-
-```
+After running `jesse init`, your project structure looks like this: ```
 my-trading-bot/
 ├── config.py          # Exchange API keys, database, notifications
 ├── routes.py          # Trading pairs and timeframes
@@ -118,9 +108,7 @@ my-trading-bot/
 
 ### Step 3: Configure Database
 
-Edit `config.py` to set your database connection:
-
-```python
+Edit `config.py` to set your database connection: ```python
 # config.py — database configuration
 DATABASES = {
     default: {
@@ -134,9 +122,7 @@ DATABASES = {
 }
 ```
 
-For quick testing with SQLite:
-
-```python
+For quick testing with SQLite: ```python
 DATABASES = {
     default: {
         driver: sqlite,
@@ -147,9 +133,7 @@ DATABASES = {
 
 ### Step 4: Define Trading Routes
 
-Edit `routes.py` to specify which pairs and timeframes your bot will trade:
-
-```python
+Edit `routes.py` to specify which pairs and timeframes your bot will trade: ```python
 # routes.py — define trading pairs
 from jesse.enums import timeframes
 
@@ -172,38 +156,28 @@ jesse import-candles Binance BTC-USDT 2025-01-01
 
 ### Step 6: Create Your First Strategy
 
-Create `strategies/SimpleMA/__init__.py`:
-
-```python
+Create `strategies/SimpleMA/__init__.py`: ```python
 # strategies/SimpleMA/__init__.py
 from jesse.strategies import Strategy
 import jesse.indicators as ta
 
-class SimpleMA(Strategy):
-    def __init__(self):
-        super().__init__()
+class SimpleMA(Strategy): def __init__(self): super().__init__()
         self.period = 20
 
-    def should_long(self) -> bool:
-        # Go long when price crosses above 20-period SMA
+    def should_long(self) -> bool: # Go long when price crosses above 20-period SMA
         sma = ta.sma(self.candles, self.period)
         return self.close > sma and self.close[-2] <= sma[-2]
 
-    def should_short(self) -> bool:
-        return False  # No shorting for this simple example
+    def should_short(self) -> bool: return False  # No shorting for this simple example
 
-    def go_long(self):
-        qty = self.capital / self.close
+    def go_long(self): qty = self.capital / self.close
         self.buy = qty, self.close
 
-    def go_short(self):
-        pass
+    def go_short(self): pass
 
-    def update_position(self):
-        # Exit when price drops below SMA
+    def update_position(self): # Exit when price drops below SMA
         sma = ta.sma(self.candles, self.period)
-        if self.close < sma:
-            self.liquidate()
+        if self.close < sma: self.liquidate()
 ```
 
 ### Step 7: Run Backtest
@@ -213,9 +187,7 @@ class SimpleMA(Strategy):
 jesse backtest 2025-01-01 2025-12-31
 ```
 
-You will see output like this:
-
-```
+You will see output like this: ```
 Loading candles...
 Executing backtest...
 =====================================
@@ -238,13 +210,10 @@ Jesse integrates cleanly with the Python quantitative trading ecosystem. Here ar
 import numpy as np
 import jesse.indicators as ta
 
-def custom_zscore(candles, period=20):
-    closes = np.array([c[2] for c in candles[-period:]])
+def custom_zscore(candles, period=20): closes = np.array([c[2] for c in candles[-period:]])
     return (closes[-1] - closes.mean()) / closes.std()
 
-class ZScoreStrategy(Strategy):
-    def should_long(self):
-        z = custom_zscore(self.candles, 20)
+class ZScoreStrategy(Strategy): def should_long(self): z = custom_zscore(self.candles, 20)
         return z < -2.0  # Buy when price is 2 std dev below mean
 ```
 
@@ -255,15 +224,12 @@ class ZScoreStrategy(Strategy):
 from sklearn.ensemble import RandomForestClassifier
 import numpy as np
 
-class MLStrategy(Strategy):
-    def __init__(self):
-        super().__init__()
+class MLStrategy(Strategy): def __init__(self): super().__init__()
         self.model = RandomForestClassifier(n_estimators=100)
         self.features = []
         self.labels = []
 
-    def should_long(self):
-        rsi = ta.rsi(self.candles, 14)
+    def should_long(self): rsi = ta.rsi(self.candles, 14)
         sma20 = ta.sma(self.candles, 20)
         sma50 = ta.sma(self.candles, 50)
         atr = ta.atr(self.candles, 14)
@@ -303,30 +269,20 @@ CMD ["jesse", "run"]
 ```yaml
 # docker-compose.yml
 version: '3.8'
-services:
-  postgres:
-    image: postgres:16
-    environment:
-      POSTGRES_DB: jesse_db
+services: postgres: image: postgres:16
+    environment: POSTGRES_DB: jesse_db
       POSTGRES_USER: jesse_user
       POSTGRES_PASSWORD: your_password
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+    volumes: - pgdata:/var/lib/postgresql/data
 
-  jesse:
-    build: .
-    depends_on:
-      - postgres
-    environment:
-      DATABASE_URL: postgres://jesse_user:your_password@postgres:5432/jesse_db
-    volumes:
-      - ./strategies:/app/strategies
+  jesse: build: .
+    depends_on: - postgres
+    environment: DATABASE_URL: postgres://jesse_user:your_password@postgres:5432/jesse_db
+    volumes: - ./strategies:/app/strategies
       - ./config.py:/app/config.py
       - ./routes.py:/app/routes.py
 
-volumes:
-  pgdata:
-```
+volumes: pgdata: ```
 
 ### 5. Prometheus & Grafana Monitoring
 
@@ -349,7 +305,15 @@ Jesse has been used in production by individual traders and small quant funds si
 ### Backtest Performance: Moving Average Crossover (BTC-USDT, 1H)
 
 | Metric | SMA(20/50) | EMA(12/26) | SMA + RSI Filter |
-|--------|-----------|-----------|----------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Total Trades | 142 | 189 | 98 |
 | Win Rate | 58.5% | 54.0% | 67.3% |
 | Net Profit | 23.7% | 19.4% | 31.2% |
@@ -360,7 +324,13 @@ Jesse has been used in production by individual traders and small quant funds si
 ### Execution Speed Benchmarks
 
 | Operation | 1 Year 1H Candles | 3 Years 1H Candles |
-|-----------|-------------------|--------------------|
+|
+---
+|
+---
+|
+---
+|
 | Data import | 8s | 22s |
 | Backtest (simple MA) | 1.2s | 3.8s |
 | Backtest (ML strategy) | 4.5s | 14.2s |
@@ -370,9 +340,7 @@ Hardware: AMD Ryzen 7 5800X, 32GB RAM, SSD. PostgreSQL 16.
 
 ### Case Study: Community Fund (Anonymous, 2024–2025)
 
-A small quant collective reported running **8 strategies across 4 pairs** (BTC, ETH, SOL, AVAX) using Jesse with the following annual results:
-
-- **Starting capital**: $50,000
+A small quant collective reported running **8 strategies across 4 pairs** (BTC, ETH, SOL, AVAX) using Jesse with the following annual results: - **Starting capital**: $50,000
 - **Ending capital**: $71,400
 - **Total return**: **42.8%**
 - **Max drawdown**: -11.3%
@@ -399,13 +367,10 @@ RISK_MANAGEMENT = {
 
 ```python
 # Multi-timeframe strategy example
-class MultiTFStrategy(Strategy):
-    def prepare(self):
-        # Access 4h candles for trend bias
+class MultiTFStrategy(Strategy): def prepare(self): # Access 4h candles for trend bias
         self.h4_candles = self.get_candles(Binance, 'BTC-USDT', 4h)
 
-    def should_long(self):
-        h4_sma50 = ta.sma(self.h4_candles, 50)
+    def should_long(self): h4_sma50 = ta.sma(self.h4_candles, 50)
         h1_sma20 = ta.sma(self.candles, 20)
 
         # Only long if 4h trend is up AND 1h shows momentum
@@ -416,9 +381,7 @@ class MultiTFStrategy(Strategy):
 
 ```python
 # Advanced exit logic
-class RiskManagedStrategy(Strategy):
-    def go_long(self):
-        entry = self.close
+class RiskManagedStrategy(Strategy): def go_long(self): entry = self.close
         stop_loss = entry * 0.97       # 3% stop
         take_profit = entry * 1.06     # 6% target
         qty = (self.capital * 0.02) / (entry - stop_loss)
@@ -448,7 +411,17 @@ tail -f storage/logs/live-trading.log
 ## Comparison with Alternatives
 
 | Feature | Jesse | Freqtrade | Hummingbot | TradingView |
-|---------|-------|-----------|------------|-------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **License** | MIT | GPLv3 | Apache 2.0 | Proprietary |
 | **Language** | Python | Python | Python | Pine Script |
 | **Built-in Indicators** | **30+** | 15+ | Limited | 100+ |
@@ -469,9 +442,7 @@ tail -f storage/logs/live-trading.log
 
 ## Limitations: An Honest Assessment
 
-No framework is perfect. Here are Jesse's real limitations as of v1.7.2:
-
-1. **Limited exchange support**: Only 4 exchanges (Binance, Bitfinex, Coinbase Pro, Bybit) compared to Freqtrade's 10+. If you need smaller exchanges, you will need to write custom drivers.
+No framework is perfect. Here are Jesse's real limitations as of v1.7.2: 1. **Limited exchange support**: Only 4 exchanges (Binance, Bitfinex, Coinbase Pro, Bybit) compared to Freqtrade's 10+. If you need smaller exchanges, you will need to write custom drivers.
 
 2. **Smaller community**: At 6,200 stars, Jesse's community is roughly one-fifth the size of Freqtrade's. Finding pre-built plugins or strategy templates requires more effort.
 
@@ -505,9 +476,7 @@ No. Jesse is designed for swing and position trading on 1h–1d timeframes. The 
 
 ### How do I handle API key security in production?
 
-Never commit API keys to version control. Use environment variables:
-
-```python
+Never commit API keys to version control. Use environment variables: ```python
 # config.py — secure API key handling
 import os
 
@@ -536,9 +505,7 @@ Ready to start? Grab your [Binance API keys](https://www.bsmkweb.cc/register?ref
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -552,12 +519,11 @@ Before you deploy any of the tools above into production, you'll need solid infr
 5. Related: [Best Python Crypto Trading Libraries 2026](dibi8-internal-link)
 6. Binance API documentation: https://binance-docs.github.io/apidocs/
 
----
 
+---
 *Affiliate Disclosure: This article contains affiliate links to Binance, OKX, Minara, DigitalOcean, and HTStack. If you sign up through these links, dibi8.com may receive a commission at no additional cost to you. We only recommend tools we have tested or thoroughly researched.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -583,8 +549,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [hkuds-ai-trader](jesse-ai-trading-framework)

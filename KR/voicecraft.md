@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/voicecraft" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/voicecraft" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/voicecraft" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/voicecraft" />
 title: 'VoiceCraft: 8.5K+ Stars — GPT-SoVITS, XTTS 대비 제로샷 음성 편집 ...
 description: 'VoiceCraft는 신경 코덱 언어 모델 기반의 제로샷 음성 편집 및 TTS 모델로, GPT-SoVITS, Coqui TTS, RVC와 호환됩니다. 설치 튜토리얼, 벤치마크, Docker 배포, 비교표를 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [voicecraft, '제로샷-tts', 음성편집, 신경코덱, 보이스클론, 'ai-오디오', docker, python]
-aliases:
-- /kr/posts/voicecraft/
+aliases: - /kr/posts/voicecraft/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/voicecraft/ -->
 
 {{</* resource-info */>}}
 
@@ -48,12 +40,9 @@ aliases:
 
 ### 아키텍처 개요
 
-모델 파이프라인은 세 단계로 구성된다:
+모델 파이프라인은 세 단계로 구성된다: 1. **EnCodec 양자화**: 원시 오디오 파형은 Meta의 EnCodec 신경 코덱을 사용하여 이산 토큰으로 양자화된다. 각 오디오 프레임은 K개의 코드북 인덱스 벡터(잔차 벡터 양자화, RVQ)로 표현된다.
 
-1. **EnCodec 양자화**: 원시 오디오 파형은 Meta의 EnCodec 신경 코덱을 사용하여 이산 토큰으로 양자화된다. 각 오디오 프레임은 K개의 코드북 인덱스 벡터(잔차 벡터 양자화, RVQ)로 표현된다.
-
-2. **토큰 재배열**: 이것이 VoiceCraft의 핵심 혁신이다. 두 단계 절차는 편집/인필링 문제를 표준적인 왼쪽에서 오른쪽으로의 언어 모델링 작업으로 변환한다:
-   - **인과적 마스킹**: 토큰의 무작위 구간이 마스킹되어 시퀀스 끝으로 이동되며, 모델이 자기회귀 생성 중 양방향 문맥에 주목할 수 있게 한다.
+2. **토큰 재배열**: 이것이 VoiceCraft의 핵심 혁신이다. 두 단계 절차는 편집/인필링 문제를 표준적인 왼쪽에서 오른쪽으로의 언어 모델링 작업으로 변환한다: - **인과적 마스킹**: 토큰의 무작위 구간이 마스킹되어 시퀀스 끝으로 이동되며, 모델이 자기회귀 생성 중 양방향 문맥에 주목할 수 있게 한다.
    - **지연 스태킹**: 벡터가 대각선으로 이동하여 시간 t에서 코드북 k를 예측할 때 코드북 k-1을 조건으로 삼을 수 있게 하여 효율적인 다중 코드북 모델링을 가능하게 한다.
 
 3. **Transformer 디코더**: 재배엸된 토큰 시퀀스가 Transformer 디코더에 의해 자기회귀적으로 모델링된다. 텍스트 음소와 음성 토큰이 조건 입력으로 연결된다.
@@ -89,8 +78,7 @@ docker build --tag "voicecraft" .
 
 # 3. 컨테이너 시작 (Linux)
 ./start-jupyter.sh
-# Windows:
-# start-jupyter.bat
+# Windows: # start-jupyter.bat
 
 # 4. 로그에서 Jupyter 접속 URL 가져오기
 docker logs jupyter | grep "127.0.0.1:8888"
@@ -142,9 +130,7 @@ conda install -n voicecraft ipykernel --no-deps --force-reinstall
 
 ### 옵션 3: Gradio 로컬 UI
 
-노트북 없이 브라우저 기반 인터페이스를 사용하려면:
-
-```bash
+노트북 없이 브라우저 기반 인터페이스를 사용하려면: ```bash
 # Gradio 추가 시스템 의존성
 apt-get install -y espeak espeak-data libespeak1 libespeak-dev
 apt-get install -y festival build-essential flac libasound2-dev libsndfile1-dev
@@ -172,9 +158,7 @@ python gradio_app.py
 
 ### VoiceCraft + Gradio Web UI
 
-내장 Gradio 인터페이스는 실험에 가장 쉬운 방법이다:
-
-```bash
+내장 Gradio 인터페이스는 실험에 가장 쉬운 방법이다: ```bash
 # 기본 설정으로 Gradio 실행
 python gradio_app.py --model-name "giga330M" --device "cuda"
 
@@ -189,9 +173,7 @@ Gradio UI는 세 가지 모드를 지원한다: **TTS 모드** (제로샷 보이
 
 ### VoiceCraft + Jupyter 노트북
 
-프로그래밍 방식 접근을 위해 Jupyter 노트북을 사용한다:
-
-```python
+프로그래밍 방식 접근을 위해 Jupyter 노트북을 사용한다: ```python
 # inference_tts.ipynb — 제로샷 TTS 예제
 from voicecraft import VoiceCraft
 
@@ -218,9 +200,7 @@ output.save("output_tts.wav")
 
 ### VoiceCraft + 명령줄
 
-배치 처리 및 스크립팅:
-
-```bash
+배치 처리 및 스크립팅: ```bash
 # CLI를 통한 TTS 추론
 python tts_demo.py \
   --audio_path "demo/pam.wav" \
@@ -241,9 +221,7 @@ python speech_editing_demo.py \
 
 ### VoiceCraft + Docker API
 
-프로덕션 배포를 위해 VoiceCraft를 REST API로 감싼다:
-
-```dockerfile
+프로덕션 배포를 위해 VoiceCraft를 REST API로 감싼다: ```dockerfile
 # Dockerfile.api — 프로덕션 API 래퍼
 FROM voicecraft:latest
 
@@ -272,8 +250,7 @@ async def tts(
     audio: UploadFile = File(...),
     reference_text: str = "",
     target_text: str = ""
-):
-    """제로샷 TTS 엔드포인트."""
+): """제로샷 TTS 엔드포인트."""
     ref_audio, sr = torchaudio.load(audio.file)
     output = model.tts(
         target_text=target_text,
@@ -286,9 +263,7 @@ async def tts(
 
 ### VoiceCraft + HuggingFace Hub
 
-HuggingFace에서 사전 훈련된 모델을 직접 다운로드:
-
-```python
+HuggingFace에서 사전 훈련된 모델을 직접 다운로드: ```python
 from huggingface_hub import hf_hub_download
 
 # 모델 가중치 다운로드
@@ -308,9 +283,7 @@ model_dir = snapshot_download('AI-ModelScope/VoiceCraft')
 
 ### 제로샷 TTS 벤치마크
 
-ACL 2024 논문의 인간 평가 결과는 250개 테스트 발화(LibriTTS + YouTube)에서 VoiceCraft를 VALL-E, XTTS v2, FluentSpeech, YourTTS와 비교한다:
-
-| 모델 | WER | SIM | 명료성 MOS | 자연스러움 MOS | 화자 유사도 MOS |
+ACL 2024 논문의 인간 평가 결과는 250개 테스트 발화(LibriTTS + YouTube)에서 VoiceCraft를 VALL-E, XTTS v2, FluentSpeech, YourTTS와 비교한다: | 모델 | WER | SIM | 명료성 MOS | 자연스러움 MOS | 화자 유사도 MOS |
 |------|-----|-----|-----------|-------------|---------------|
 | **VoiceCraft** | **4.5** | **0.55** | **4.23** | **4.17** | **4.34** |
 | XTTS v2 | 3.6 | 0.47 | 4.13 | 3.96 | 3.44 |
@@ -323,9 +296,7 @@ VoiceCraft는 화자 유사도(SIM 0.55)와 모든 인간 평가 MOS 지표에�
 
 ### 음성 편집 벤치마크
 
-RealEdit 데이터셋(310개 실제 편집 예제)에서 VoiceCraft는 FluentSpeech를 능가한다:
-
-| 모델 | WER | 명료성 MOS | 자연스러움 MOS |
+RealEdit 데이터셋(310개 실제 편집 예제)에서 VoiceCraft는 FluentSpeech를 능가한다: | 모델 | WER | 명료성 MOS | 자연스러움 MOS |
 |------|-----|-----------|-------------|
 | **VoiceCraft** | 6.1 | **4.11** | **4.03** |
 | FluentSpeech | 4.5 | 3.97 | 3.81 |
@@ -349,9 +320,7 @@ RealEdit 데이터셋(310개 실제 편집 예제)에서 VoiceCraft는 FluentSpe
 
 ### KV Cache를 사용한 메모리 최적화
 
-VRAM이 제한된 GPU의 경우 키-값 캐시를 활성화:
-
-```python
+VRAM이 제한된 GPU의 경우 키-값 캐시를 활성화: ```python
 # 8GB GPU용 kvcache 활성화
 output = model.tts(
     target_text=target_text,
@@ -365,9 +334,7 @@ output = model.tts(
 
 ### Top-k 샘플링 (2025년 3월 업데이트)
 
-기본 샘플링 전략이 top-p=1.0에서 top-k=40으로 업데이트되어 출력 품질이 크게 향상:
-
-```python
+기본 샘플링 전략이 top-p=1.0에서 top-k=40으로 업데이트되어 출력 품질이 크게 향상: ```python
 # 권장: top-k=40 최고 품질
 output = model.tts(
     target_text=target_text,
@@ -380,9 +347,7 @@ output = model.tts(
 
 ### 사용자 정의 데이터 미세조정
 
-특정 도메인 목소리의 경우 사전 훈련된 모델을 미세조정:
-
-```bash
+특정 도메인 목소리의 경우 사전 훈련된 모델을 미세조정: ```bash
 # 데이터셋 준비
 conda activate voicecraft
 cd ./data
@@ -418,9 +383,7 @@ writer.add_scalar("mos/validation", val_mos, global_step)
 
 ### 보안 및 윤리적 고려사항
 
-VoiceCraft의 라이선스(코드 CC BY-NC-SA 4.0, 가중치 Coqui Public Model License)는 동의 없이 타인의 음성을 생성하거나 편집하는 것을 금지하는 윤리적 면책 조항을 포함한다. 프로덕션 배포의 경우:
-
-- 클론 전 화자 확인 구현
+VoiceCraft의 라이선스(코드 CC BY-NC-SA 4.0, 가중치 Coqui Public Model License)는 동의 없이 타인의 음성을 생성하거나 편집하는 것을 금지하는 윤리적 면책 조항을 포함한다. 프로덕션 배포의 경우: - 클론 전 화자 확인 구현
 - 모든 합성 요청에 대한 감사 추적 기록
 - 합성 음성 워터마킹 추가
 - 남용 방지를 위한 API 속도 제한
@@ -463,9 +426,7 @@ VoiceCraft의 라이선스(코드 CC BY-NC-SA 4.0, 가중치 Coqui Public Model 
 
 ## 한계 / 정직한 평가
 
-VoiceCraft는 모든 오디오 작업에 적합한 도구가 아니다. 유지 관리자와 논문이 인정하는 한계는 다음과 같다:
-
-1. **영어만 지원**: 릴리스된 모델은 영어 음소만 지원한다. 후속 VoiceCraft-X(2024년 11월)는 11개 언어로 확장되지만 별도의 모델이다.
+VoiceCraft는 모든 오디오 작업에 적합한 도구가 아니다. 유지 관리자와 논문이 인정하는 한계는 다음과 같다: 1. **영어만 지원**: 릴리스된 모델은 영어 음소만 지원한다. 후속 VoiceCraft-X(2024년 11월)는 11개 언어로 확장되지만 별도의 모델이다.
 
 2. **비상업적 라이선스**: 코드(CC BY-NC-SA 4.0)와 모델 가중치(Coqui Public Model License) 모두 추가 계약 없이는 상업적 사용을 제한한다.
 
@@ -519,9 +480,7 @@ VoiceCraft 배포 패턴을 논의하고, 미세조정 설정을 공유하고, �
 
 ## 추천 호스팅 및 인프라
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
+위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
@@ -544,7 +503,6 @@ VoiceCraft 배포 패턴을 논의하고, 미세조정 설정을 공유하고, �
 *이 가이드는 dibi8 기술팀이 독립적으로 작성했다. VoiceCraft는 Puyuan Peng, Po-Yao Huang, Shang-Wen Li, Abdelrahman Mohamed, David Harwath가 개발했다. dibi8과 VoiceCraft 프로젝트 사이에는 상업적 관련이 없다.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

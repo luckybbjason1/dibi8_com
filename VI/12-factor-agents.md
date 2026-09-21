@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/12-factor-agents" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/12-factor-agents" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/12-factor-agents" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/12-factor-agents" />
 title: "12-Factor Agents: Khung nguyên tắc để xây dựng ứng dụng ...
 description: "Khung 12-Factor Agents điều chỉnh phương pháp 12-Factor App đã qua kiểm chứng cho các ứng dụng do LLM hỗ trợ, cung cấp cách tiếp cận có nguyên tắc để xây dựng các agent AI đáng tin cậy, có thể mở rộng và quan sát được."
 date: 2026-06-10
-lastmod:  2026-06-10slug: 12-factor-agents
+lastmod: 2026-06-10
+slug: 12-factor-agents
 category: llm-frameworks
 tags: [12-factor-agents, LLM, AI agents, observability, reliability, human-layer, framework]
 github_repo: https://github.com/humanlayer/12-factor-agents
@@ -17,8 +13,6 @@ license: Apache-2.0
 featureImage: https://raw.githubusercontent.com/humanlayer/12-factor-agents/main/docs/assets/12factor-agents-banner.png
 lang: vi
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/12-factor-agents/ -->
 
 ## Giới thiệu
 
@@ -136,9 +130,7 @@ npx create-12-factor-agent admin:export-audit-log --since 2026-01-01 --format cs
 
 Khung 12-Factor Agents hoạt động qua sự kết hợp của CLI tooling và architectural convention. Entry point chính là CLI `create-12-factor-agent`, scaffold một project với directory structure được khuyến nghị, configuration management và observability hook.
 
-Sau đây là workflow điển hình:
-
-```bash
+Sau đây là workflow điển hình: ```bash
 # Bước 1: Scaffold một dự án agent mới
 npx create-12-factor-agent finance-bot
 
@@ -146,8 +138,7 @@ npx create-12-factor-agent finance-bot
 cd finance-bot
 
 # Bước 3: Xem cấu trúc được generate
-# Scaffold bao gồm:
-# - config/        (cấu hình dựa trên environment)
+# Scaffold bao gồm: # - config/        (cấu hình dựa trên environment)
 # - prompts/       (prompt template version-controlled)
 # - tools/         (định nghĩa và implementation tool)
 # - services/      (tích hợp backing service)
@@ -161,9 +152,7 @@ Project được generate sử dụng kiến trúc phân lớp. Ở lớp bottom
 
 ## Cài đặt và Thiết lập
 
-Là một khung dựa trên nguyên tắc, 12-Factor Agents không yêu cầu `pip install` hoặc `npm install` truyền thống. Thay vào đó, bạn sử dụng một trong hai CLI tool để generate project scaffold:
-
-```bash
+Là một khung dựa trên nguyên tắc, 12-Factor Agents không yêu cầu `pip install` hoặc `npm install` truyền thống. Thay vào đó, bạn sử dụng một trong hai CLI tool để generate project scaffold: ```bash
 # Phương pháp 1: Sử dụng npx (Node.js)
 npx create-12-factor-agent
 
@@ -181,9 +170,7 @@ pip install uv
 uvx create-12-factor-agent --name my-agent --template production
 ```
 
-Đối với team muốn bắt đầu từ đầu mà không có scaffold, tài liệu framework cung cấp một checklist hoàn chỉnh về những gì cần có trong bất kỳ implementation agent cấp độ sản xuất nào:
-
-```bash
+Đối với team muốn bắt đầu từ đầu mà không có scaffold, tài liệu framework cung cấp một checklist hoàn chỉnh về những gì cần có trong bất kỳ implementation agent cấp độ sản xuất nào: ```bash
 # Script xác minh checklist
 # Xác nhận agent của bạn tuân thủ nguyên tắc 12-factor
 cat > verify-12factor.sh << 'EOF'
@@ -218,9 +205,7 @@ npx create-12-factor-agent run --enable-hil
 
 ### Observability Integration
 
-Mỗi agent process emit structured log, metrics và trace. Khung tích hợp với standard observability backend:
-
-```bash
+Mỗi agent process emit structured log, metrics và trace. Khung tích hợp với standard observability backend: ```bash
 # Cấu hình OpenTelemetry cho distributed tracing
 export OTEL_SERVICE_NAME="finance-bot"
 export OTEL_EXPORTER_OTLP_ENDPOINT="http://jaeger:4317"
@@ -237,11 +222,9 @@ npx create-12-factor-agent run --telemetry enabled
 ```bash
 # Định nghĩa cấu hình multi-agent
 cat > agents.yaml << 'EOF'
-supervisor:
-  model: gpt-4o
+supervisor: model: gpt-4o
   tools: [delegate, synthesize]
-workers:
-  - name: research
+workers: - name: research
     model: claude-sonnet-4-20250514
     tools: [web_search, read_file]
   - name: analyst
@@ -256,9 +239,7 @@ Trong khi 12-Factor Agents là một khung nguyên tắc hơn là một product 
 
 ### Cải thiện Production Stability
 
-Team adopting các nguyên tắc 12-factor báo cáo measurable improvements:
-
-| Metric | Trước 12-Factor | Sau 12-Factor | Cải thiện |
+Team adopting các nguyên tắc 12-factor báo cáo measurable improvements: | Metric | Trước 12-Factor | Sau 12-Factor | Cải thiện |
 |--------|-----------------|---------------|-----------|
 | Mean Time to Recovery (MTTR) | 4.2 giờ | 47 phút | Giảm 81% |
 | Agent failure rate | 18,5% | 3,2% | Giảm 83% |
@@ -274,9 +255,7 @@ Khung đã được adopt bởi hàng trăm team xây dựng production LLM appl
 
 ### Custom Tool Registry
 
-12-Factor Agents hỗ trợ custom tool registry cho phép team version, test và deploy tool độc lập với mã agent:
-
-```bash
+12-Factor Agents hỗ trợ custom tool registry cho phép team version, test và deploy tool độc lập với mã agent: ```bash
 # Register custom tool
 npx create-12-factor-agent tools:register \
   --source ./tools/custom \
@@ -290,9 +269,7 @@ npx create-12-factor-agent tools:test \
 
 ### Prompt Template Versioning
 
-Prompt template được xem như first-class artifact nên được version-controlled và test. Khung khuyến nghị một prompt versioning scheme:
-
-```bash
+Prompt template được xem như first-class artifact nên được version-controlled và test. Khung khuyến nghị một prompt versioning scheme: ```bash
 # Version prompt template
 npx create-12-factor-agent prompts:version \
   --name "finance-summary" \
@@ -307,18 +284,13 @@ npx create-12-factor-agent prompts:rollback \
 
 ### Rate Limiting và Guardrail
 
-Agent production cần robust rate limiting để prevent cost overrun và abuse. Khung bao gồm built-in rate limiting:
-
-```bash
+Agent production cần robust rate limiting để prevent cost overrun và abuse. Khung bao gồm built-in rate limiting: ```bash
 # Cấu hình rate limit
 cat > rate-limits.yaml << 'EOF'
-global:
-  requests_per_minute: 60
+global: requests_per_minute: 60
   tokens_per_day: 1000000
   max_cost_per_day: 50.00
-per_agent:
-  finance-bot:
-    requests_per_minute: 30
+per_agent: finance-bot: requests_per_minute: 30
     max_cost_per_day: 25.00
 EOF
 
@@ -328,9 +300,7 @@ npx create-12-factor-agent run --rate-limits rate-limits.yaml
 
 ### Audit Logging
 
-Đối với regulated industry, audit log tracking mọi decision agent đưa ra:
-
-```bash
+Đối với regulated industry, audit log tracking mọi decision agent đưa ra: ```bash
 # Enable comprehensive audit logging
 export AUDIT_LOG_PATH="/var/log/agents/finance-bot/audit.jsonl"
 export AUDIT_LOG_RETENTION_DAYS="365"
@@ -360,9 +330,7 @@ DSPy采取 một approach hoàn toàn khác, tập trung vào programmatic optim
 
 ## Giới hạn
 
-Không có framework nào hoàn hảo, và 12-Factor Agents có một số limitation đáng chú ý:
-
-**Không phải là Code Library.** Đây là strength lớn nhất và cũng là challenge lớn nhất của framework. Vì nó cung cấp principle thay vì code, team cần invest trong việc implement mỗi principle. Không có package duy nhất "làm 12-factor."
+Không có framework nào hoàn hảo, và 12-Factor Agents có một số limitation đáng chú ý: **Không phải là Code Library.** Đây là strength lớn nhất và cũng là challenge lớn nhất của framework. Vì nó cung cấp principle thay vì code, team cần invest trong việc implement mỗi principle. Không có package duy nhất "làm 12-factor."
 
 **Học curve khái niệm dốc.** Hiểu tại sao mỗi trong mười hai factors matter trong LLM context yêu cầu reading và reflection. Team mới có thể thấy overwhelming để adopt tất cả mười hai factors cùng lúc. Method đề nghị là bắt đầu với factors 1, 2, 3 và 10 (Codebase, Dependencies, Config và Dev/Prod Parity) và layer in còn lại theo thời gian.
 
@@ -421,7 +389,6 @@ Cho dù bạn mới bắt đầu với LLM agent hay scaling một hệ thống 
 7. [WebShare - Dịch vụ Proxy cho Pipeline Dữ liệu](https://webshare.io/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/pageindex-vectorless-reasoning-rag" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/pageindex-vectorless-reasoning-rag" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/pageindex-vectorless-reasoning-rag" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/pageindex-vectorless-reasoning-rag" />
 title: "PageIndex：29K⭐革命性 RAG 系统，不用向量数据库也能做文档检索"
-description: "PageIndex 是 VectifyAI Open Source的向量无关、推理驱动 RAG 系统。29K+ Stars，通过构建文档树结构实现人类般的检索，在 FinanceBench 达到 98.7% 准确率。". Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "PageIndex 是 VectifyAI Open Source的向量无关、推理驱动 RAG 系统。29K+ Stars，通过构建文档树结构实现人类般的检索，在 FinanceBench 达到 98.7% 准确率。"
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - Go
+tech_stack: - Go
   - Python
 application_domain: "Llm Frameworks"
 source_version: ""
@@ -25,10 +19,8 @@ maintainer: "VectifyAI"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases:
-- /zh/posts/pageindex-vectorless-reasoning-rag/
-faqs:
-  - q: 'PageIndex 是什么？它和传统 RAG 有何不同？'
+aliases: - /zh/posts/pageindex-vectorless-reasoning-rag/
+faqs: - q: 'PageIndex 是什么？它和传统 RAG 有何不同？'
     a: 'PageIndex 是 VectifyAI 开源的 RAG 系统，无需向量数据库即可检索信息。它不对文档做嵌入和分块，而是为每篇文档构建一棵层级树结构，并利用 LLM 推理来遍历这棵树，模拟人类专家阅读目录、定位相关章节的方式。'
   - q: 'PageIndex 需要向量数据库或文档分块吗？'
     a: '不需要。PageIndex 把两者都省掉了。它不存储向量嵌入，从而避免了高昂的向量存储成本；它也不对文档分块，因此能保留文档天然的逻辑结构，而不是把它切碎。'
@@ -37,10 +29,7 @@ faqs:
   - q: '我该如何安装 PageIndex 并运行一次基础查询？'
     a: '用 `pip install pageindex` 安装。然后用 `pi = PageIndex()` 初始化，通过 `pi.load_pdf("file.pdf")` 加载文档，再用 `result = pi.query("your question")` 进行查询。返回结果中既包含答案，也包含页码、章节等引用来源。'
   - q: 'PageIndex 最适合处理哪类文档？'
-    a: 'PageIndex 专为那些结构很重要、且需要可解释引用的长篇专业文档而设计，例如财报和招股说明书、法律合同和判例法、医学文献和临床试验报告，以及 API 参考、操作手册等技术文档。'
----
-
-<!-- canonical: https://dibi8.com/zh/tools/pageindex-vectorless-reasoning-rag/ -->
+    a: 'PageIndex 专为那些结构很重要、且需要可解释引用的长篇专业文档而设计，例如财报和招股说明书、法律合同和判例法、医学文献和临床试验报告，以及 API 参考、操作手册等技术文档。'---
 {</* resource-info */>}
 
 ![PageIndex 官方 hero banner](/images/articles/pageindex-vectorless-reasoning-rag/banner.png)
@@ -59,14 +48,18 @@ faqs:
 GitHub: https://github.com/VectifyAI/PageIndex  
 Stars: **29,202+** | 语言: Python | 协议: Apache-2.0
 
----
 
+---
 ## 为什么传统 RAG 不够好？
 
 ### 传统向量 RAG 的问题
 
 | 问题 | 说明 |
-|------|------|
+|
+---
+|
+---
+|
 | **相似度 ≠ 相关性** | 向量搜索找语义相似的，但不一定是真正相关的 |
 | **分块破坏结构** | 强制分块会切断文档逻辑结构 |
 | **黑盒检索** | 向量搜索不可解释，无法追溯为什么返回这个结果 |
@@ -80,8 +73,8 @@ PageIndex 模拟**人类专家**阅读文档的方式：
 2. 根据问题推理应该去哪个章节
 3. 在相关章节中深入查找
 
----
 
+---
 ## 核心技术原理
 
 ### 1. 文档树结构生成
@@ -225,7 +218,17 @@ result = pi.query(
 ## 与竞品对比
 
 | 特性 | PageIndex | 传统向量 RAG | LlamaIndex | LangChain |
-|------|-----------|--------------|------------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 向量数据库 | ❌ 不需要 | ✅ 必需 | ✅ 必需 | ✅ 必需 |
 | 分块 | ❌ 不需要 | ✅ 必需 | ✅ 必需 | ✅ 必需 |
 | 推理驱动 | ✅ | ❌ | ❌ | ❌ |
@@ -268,7 +271,11 @@ PageIndex 的 Apache-2.0 协议允许商业使用：
 ### FinanceBench 测试结果
 
 | 系统 | 准确率 |
-|------|--------|
+|
+---
+|
+---
+|
 | **PageIndex (Mafin 2.5)** | **98.7%** |
 | 传统向量 RAG | ~75% |
 | 其他商业方案 | ~80% |
@@ -346,6 +353,7 @@ PageIndex 是 RAG 技术的下一代演进：
 ---
 
 
+-
 ---
 
 ## 推荐自托管基础设施
@@ -360,7 +368,6 @@ PageIndex 是 RAG 技术的下一代演进：
 *Last updated: 2026-05-07*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -388,25 +395,20 @@ PageIndex 是 RAG 技术的下一代演进：
 
 ## Why This Matters
 
-Understanding pageindex：29k⭐革命性 rag 系统，不用向量数据库也能做文档检索 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding pageindex：29k⭐革命性 rag 系统，不用向量数据库也能做文档检索 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -458,7 +460,17 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 ## Framework Comparison
 
 | Framework | Primary Use | Learning Curve | Community | Production Ready |
-|-----------|-------------|----------------|-----------|------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **LangChain** | General-purpose | Medium | Large | ✅ Yes |
 | **LlamaIndex** | RAG/Retrieval | Low | Growing | ✅ Yes |
 | **Haystack** | Document processing | Medium | Medium | ✅ Yes |

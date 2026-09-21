@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/libretranslate" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/libretranslate" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/libretranslate" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/libretranslate" />
 title: 'LibreTranslate: API Dịch Thuật Tự Host 14.4K+ Stars — Hư...
 description: 'LibreTranslate (LT) là API dịch máy mã nguồn mở miễn phí dựa trên Argos Translate. Hỗ trợ Docker, CUDA GPU, 30+ ngôn ngữ và triển khai offline. Bao gồm cài đặt, benchmark hiệu suất, giám sát và tích hợp với OpenAI Whisper, Coqui TTS, Argos Translate.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [libretranslate, 'dịch máy', 'tự host', docker, api, 'mã nguồn mở', 'argos translate', 'xử lý ngôn ngữ tự nhiên']
-aliases:
-- /vi/posts/libretranslate/
+aliases: - /vi/posts/libretranslate/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/libretranslate/ -->
 
 {{</* resource-info */>}}
 
@@ -89,9 +81,7 @@ LibreTranslate cung cấp nhiều đường dẫn triển khai. Đường dẫn 
 
 ### Docker Khởi Động Nhanh
 
-Cách nhanh nhất để chạy LibreTranslate cục bộ:
-
-```bash
+Cách nhanh nhất để chạy LibreTranslate cục bộ: ```bash
 # Chạy bằng Docker
 docker run -ti --rm -p 5000:5000 \
   -v lt-models:/home/libretranslate/.local \
@@ -103,49 +93,32 @@ Sau khi khởi động, mở http://localhost:5000 trong trình duyệt. Lần c
 
 ### Docker Compose Production
 
-Để triển khai production, sử dụng `docker-compose.yml` với volume lâu dài, kiểm tra sức khỏe và giới hạn tài nguyên:
-
-```yaml
+Để triển khai production, sử dụng `docker-compose.yml` với volume lâu dài, kiểm tra sức khỏe và giới hạn tài nguyên: ```yaml
 # docker-compose.yml - Cấu hình Production
 version: '3.8'
 
-services:
-  libretranslate:
-    container_name: libretranslate
+services: libretranslate: container_name: libretranslate
     image: libretranslate/libretranslate:v1.9.5
     restart: unless-stopped
-    ports:
-      - "5000:5000"
-    environment:
-      - LT_LOAD_ONLY=en,es,fr,de,it,zh,ja,ru,pt,pl,nl
+    ports: - "5000:5000"
+    environment: - LT_LOAD_ONLY=en,es,fr,de,it,zh,ja,ru,pt,pl,nl
       - LT_API_KEYS=true
       - LT_REQ_LIMIT=60
       - LT_THREADS=4
       - LT_UPDATE_MODELS=true
-    volumes:
-      - lt-models:/home/libretranslate/.local
+    volumes: - lt-models:/home/libretranslate/.local
       - lt-db:/app/db
-    healthcheck:
-      test: ['CMD-SHELL', './venv/bin/python scripts/healthcheck.py']
+    healthcheck: test: ['CMD-SHELL', './venv/bin/python scripts/healthcheck.py']
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 60s
-    deploy:
-      resources:
-        limits:
-          memory: 4G
-        reservations:
-          memory: 2G
+    deploy: resources: limits: memory: 4G
+        reservations: memory: 2G
 
-volumes:
-  lt-models:
-  lt-db:
-```
+volumes: lt-models: lt-db: ```
 
-Triển khai:
-
-```bash
+Triển khai: ```bash
 docker compose up -d
 ```
 
@@ -162,17 +135,13 @@ cd LibreTranslate
 docker compose -f docker-compose.cuda.yml up -d --build
 ```
 
-Xác minh GPU đang sử dụng:
-
-```bash
+Xác minh GPU đang sử dụng: ```bash
 nvidia-smi
 ```
 
 ### Cài Đặt Python Native
 
-Cho môi trường phát triển hoặc môi trường không có Docker:
-
-```bash
+Cho môi trường phát triển hoặc môi trường không có Docker: ```bash
 # Cài đặt qua pip
 pip install libretranslate==1.9.5
 
@@ -183,9 +152,7 @@ libretranslate --host 0.0.0.0 --port 5000 \
   --threads 4
 ```
 
-Hoặc build từ source:
-
-```bash
+Hoặc build từ source: ```bash
 git clone https://github.com/LibreTranslate/LibreTranslate.git
 cd LibreTranslate
 pip install -e .
@@ -194,9 +161,7 @@ python main.py --host 0.0.0.0 --port 5000
 
 ### Triển Khai trên DigitalOcean (Production Cloud)
 
-Cho instance production trên cloud, DigitalOcean cung cấp đường dẫn dễ dàng qua App Platform hoặc Droplets. Triển khai bằng Docker image 1-Click:
-
-```bash
+Cho instance production trên cloud, DigitalOcean cung cấp đường dẫn dễ dàng qua App Platform hoặc Droplets. Triển khai bằng Docker image 1-Click: ```bash
 # Trên Ubuntu 24.04 Droplet mới
 curl -fsSL https://get.docker.com | sh
 mkdir -p ~/libretranslate && cd ~/libretranslate
@@ -204,19 +169,14 @@ mkdir -p ~/libretranslate && cd ~/libretranslate
 # Tạo file compose production
 cat > docker-compose.yml << EOF
 version: '3.8'
-services:
-  libretranslate:
-    image: libretranslate/libretranslate:v1.9.5
+services: libretranslate: image: libretranslate/libretranslate:v1.9.5
     restart: always
-    ports:
-      - "5000:5000"
-    environment:
-      - LT_LOAD_ONLY=en,es,fr,de,it,zh,ja,ru,pt
+    ports: - "5000:5000"
+    environment: - LT_LOAD_ONLY=en,es,fr,de,it,zh,ja,ru,pt
       - LT_API_KEYS=true
       - LT_REQ_LIMIT=120
       - LT_THREADS=4
-    volumes:
-      - ./models:/home/libretranslate/.local
+    volumes: - ./models:/home/libretranslate/.local
       - ./db:/app/db
 EOF
 
@@ -237,8 +197,7 @@ import requests
 
 LIBRETRANSLATE_URL = "http://localhost:5000/translate"
 
-def translate_text(text: str, source: str = "en", target: str = "es") -> str:
-    payload = {
+def translate_text(text: str, source: str = "en", target: str = "es") -> str: payload = {
         "q": text,
         "source": source,
         "target": target,
@@ -252,8 +211,7 @@ def translate_text(text: str, source: str = "en", target: str = "es") -> str:
     return response.json()["translatedText"]
 
 # Ví dụ sử dụng
-if __name__ == "__main__":
-    result = translate_text("Hello, production deployment!", "en", "de")
+if __name__ == "__main__": result = translate_text("Hello, production deployment!", "en", "de")
     print(f"Đã dịch: {result}")
 ```
 
@@ -308,9 +266,7 @@ console.log(result); // "Déployer en production"
 
 ### Pipeline OpenAI Whisper: Audio Sang Văn Bản Dịch
 
-Một pattern phổ biến là kết hợp nhận diện giọng nói với dịch thuật. Dưới đây là pipeline hoàn chỉnh sử dụng Whisper để phiên âm và LibreTranslate để dịch:
-
-```python
+Một pattern phổ biến là kết hợp nhận diện giọng nói với dịch thuật. Dưới đây là pipeline hoàn chỉnh sử dụng Whisper để phiên âm và LibreTranslate để dịch: ```python
 # whisper_translate_pipeline.py
 import whisper
 import requests
@@ -318,8 +274,7 @@ import requests
 WHISPER_MODEL = whisper.load_model("base")
 LIBRE_URL = "http://localhost:5000/translate"
 
-def transcribe_and_translate(audio_path: str, target_lang: str = "en") -> dict:
-    # Bước 1: Phiên âm audio bằng Whisper
+def transcribe_and_translate(audio_path: str, target_lang: str = "en") -> dict: # Bước 1: Phiên âm audio bằng Whisper
     result = WHISPER_MODEL.transcribe(audio_path)
     source_text = result["text"]
     detected_lang = result.get("language", "auto")
@@ -348,9 +303,7 @@ print(f"ES: {output[translated]}")
 
 ### Tích Hợp Coqui TTS (Dịch + Tổng Hợp Giọng Nói)
 
-Dịch văn bản và tổng hợp giọng nói bằng ngôn ngữ đích:
-
-```python
+Dịch văn bản và tổng hợp giọng nói bằng ngôn ngữ đích: ```python
 # translate_and_speak.py
 import requests
 from TTS.api import TTS
@@ -358,8 +311,7 @@ from TTS.api import TTS
 # Khởi tạo TTS
 tts = TTS("tts_models/multilingual/multi-dataset/xtts_v2", gpu=False)
 
-def translate_and_speak(text: str, target_lang: str, speaker_wav: str):
-    # Dịch
+def translate_and_speak(text: str, target_lang: str, speaker_wav: str): # Dịch
     payload = {"q": text, "source": "en", "target": target_lang, "format": "text"}
     response = requests.post("http://localhost:5000/translate", json=payload)
     translated = response.json()["translatedText"]
@@ -375,8 +327,7 @@ def translate_and_speak(text: str, target_lang: str, speaker_wav: str):
     return output_path
 
 # Tạo audio đa ngôn ngữ
-for lang in ["es", "fr", "de"]:
-    translate_and_speak("Welcome to our service", lang, "reference.wav")
+for lang in ["es", "fr", "de"]: translate_and_speak("Welcome to our service", lang, "reference.wav")
 ```
 
 ### Ví Dụ API cURL
@@ -416,9 +367,7 @@ curl -X POST http://localhost:5000/translate \
 
 ### Cấu Hình Nginx Reverse Proxy
 
-Cho các triển khai production với domain và HTTPS:
-
-```nginx
+Cho các triển khai production với domain và HTTPS: ```nginx
 # /etc/nginx/sites-available/libretranslate
 server {
     listen 443 ssl http2;
@@ -447,9 +396,7 @@ server {
 }
 ```
 
-Kích hoạt cấu hình:
-
-```bash
+Kích hoạt cấu hình: ```bash
 sudo ln -s /etc/nginx/sites-available/libretranslate /etc/nginx/sites-enabled/
 sudo nginx -t && sudo systemctl reload nginx
 ```
@@ -472,9 +419,7 @@ Hiệu suất của LibreTranslate thay đổi đáng kể dựa trên cấu hì
 
 ### So Sánh Chất Lượng Dịch Thuật
 
-Điểm BLEU trên tập kiểm tra WMT14 Anh-Đức (càng cao càng tốt):
-
-| Hệ thống | Điểm BLEU | Tỷ lệ lỗi từ | Thờii gian inference |
+Điểm BLEU trên tập kiểm tra WMT14 Anh-Đức (càng cao càng tốt): | Hệ thống | Điểm BLEU | Tỷ lệ lỗi từ | Thờii gian inference |
 |---------|----------|-------------|---------------------|
 | LibreTranslate (Argos) | 22.4 | 62% | 120ms |
 | Google Translate API | 26.8 | 51% | 85ms |
@@ -509,19 +454,13 @@ Chạy LibreTranslate trong production đòi hỏi sự chú ý đến bảo m�
 
 ### Quản Lý API Key
 
-Bật xác thực API key để kiểm soát truy cập và ngăn chặn lạm dụng:
-
-```yaml
+Bật xác thực API key để kiểm soát truy cập và ngăn chặn lạm dụng: ```yaml
 # docker-compose.yml với API keys
-services:
-  libretranslate:
-    image: libretranslate/libretranslate:v1.9.5
-    environment:
-      - LT_API_KEYS=true
+services: libretranslate: image: libretranslate/libretranslate:v1.9.5
+    environment: - LT_API_KEYS=true
       - LT_REQ_LIMIT=100
       - LT_REQ_LIMIT_PER_DAY=10000
-    volumes:
-      - lt-models:/home/libretranslate/.local
+    volumes: - lt-models:/home/libretranslate/.local
       - lt-db:/app/db
 ```
 
@@ -529,9 +468,7 @@ Tạo và quản lý API key qua database hoặc giao diện quản trị.
 
 ### Tải Mô Hình Tùy Chỉnh
 
-Kiểm soát việc sử dụng bộ nhớ bằng cách chỉ tải các ngôn ngữ cần thiết:
-
-```bash
+Kiểm soát việc sử dụng bộ nhớ bằng cách chỉ tải các ngôn ngữ cần thiết: ```bash
 # Chỉ tải ngôn ngữ châu Âu
 LT_LOAD_ONLY=en,es,fr,de,it,pt,nl,pl,ru docker compose up -d
 
@@ -541,18 +478,14 @@ LT_LOAD_ONLY=en,ja,zh,ko,es,fr,de docker compose up -d
 
 ### Giám Sát Sức Khỏe
 
-LibreTranslate bao gồm endpoint kiểm tra sức khỏe tích hợp:
-
-```bash
+LibreTranslate bao gồm endpoint kiểm tra sức khỏe tích hợp: ```bash
 # Kiểm tra sức khỏe dịch vụ
 curl http://localhost:5000/health
 
 # Phản hồi mong đợi: {"status": "ok"}
 ```
 
-Cho giám sát dựa trên Prometheus, thêm một exporter đơn giản:
-
-```python
+Cho giám sát dựa trên Prometheus, thêm một exporter đơn giản: ```python
 # prometheus_exporter.py
 from prometheus_client import start_http_server, Counter, Histogram
 import requests
@@ -561,95 +494,64 @@ import time
 TRANSLATION_COUNTER = Counter(libretranslate_requests_total, 'Tổng số bản dịch')
 LATENCY_HISTOGRAM = Histogram(libretranslate_latency_seconds, 'Độ trễ dịch')
 
-def monitor():
-    start_http_server(9090)
-    while True:
-        start = time.time()
+def monitor(): start_http_server(9090)
+    while True: start = time.time()
         requests.post("http://localhost:5000/translate",
             json={"q": "test", "source": "en", "target": "es"})
         LATENCY_HISTOGRAM.observe(time.time() - start)
         TRANSLATION_COUNTER.inc()
         time.sleep(30)
 
-if __name__ == "__main__":
-    monitor()
+if __name__ == "__main__": monitor()
 ```
 
 ### Tự Động Mở Rộng Với Kubernetes
 
-Cho các triển khai high-availability, sử dụng Kubernetes với Horizontal Pod Autoscaler:
-
-```yaml
+Cho các triển khai high-availability, sử dụng Kubernetes với Horizontal Pod Autoscaler: ```yaml
 # libretranslate-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
-metadata:
-  name: libretranslate
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: libretranslate
-  template:
-    metadata:
-      labels:
-        app: libretranslate
-    spec:
-      containers:
-      - name: libretranslate
+metadata: name: libretranslate
+spec: replicas: 2
+  selector: matchLabels: app: libretranslate
+  template: metadata: labels: app: libretranslate
+    spec: containers: - name: libretranslate
         image: libretranslate/libretranslate:v1.9.5
-        ports:
-        - containerPort: 5000
-        env:
-        - name: LT_LOAD_ONLY
+        ports: - containerPort: 5000
+        env: - name: LT_LOAD_ONLY
           value: "en,es,fr,de,it"
         - name: LT_THREADS
           value: "4"
-        resources:
-          requests:
-            memory: "2Gi"
+        resources: requests: memory: "2Gi"
             cpu: "1000m"
-          limits:
-            memory: "4Gi"
+          limits: memory: "4Gi"
             cpu: "2000m"
-        livenessProbe:
-          httpGet:
-            path: /health
+        livenessProbe: httpGet: path: /health
             port: 5000
           initialDelaySeconds: 60
           periodSeconds: 30
 ---
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
-metadata:
-  name: libretranslate-hpa
-spec:
-  scaleTargetRef:
-    apiVersion: apps/v1
+metadata: name: libretranslate-hpa
+spec: scaleTargetRef: apiVersion: apps/v1
     kind: Deployment
     name: libretranslate
   minReplicas: 2
   maxReplicas: 10
-  metrics:
-  - type: Resource
-    resource:
-      name: cpu
-      target:
-        type: Utilization
+  metrics: - type: Resource
+    resource: name: cpu
+      target: type: Utilization
         averageUtilization: 70
 ```
 
-Triển khai:
-
-```bash
+Triển khai: ```bash
 kubectl apply -f libretranslate-deployment.yaml
 ```
 
 ### Chiến Lược Sao Lưu
 
-Mô hình ngôn ngữ có thể tải lại, nhưng SQLite database chứa API key và log nên được sao lưu:
-
-```bash
+Mô hình ngôn ngữ có thể tải lại, nhưng SQLite database chứa API key và log nên được sao lưu: ```bash
 #!/bin/bash
 # backup.sh - Cron job sao lưu hàng ngày
 BACKUP_DIR="/backups/libretranslate"
@@ -665,9 +567,7 @@ rsync -av /var/lib/docker/volumes/lt-models/_data/ "$BACKUP_DIR/models/"
 find "$BACKUP_DIR" -name "db_*.sqlite" -mtime +7 -delete
 ```
 
-Thêm vào crontab:
-
-```bash
+Thêm vào crontab: ```bash
 0 2 * * * /path/to/backup.sh
 ```
 
@@ -734,9 +634,7 @@ LibreTranslate hỗ trợ mô hình ở định dạng Argos Translate (mô hìn
 
 ### Tôi có thể dùng LibreTranslate với framework frontend như React hoặc Vue không?
 
-Có. Endpoint `/translate` chấp nhận JSON và hỗ trợ CORS khi được cấu hình. Ví dụ React hook:
-
-```typescript
+Có. Endpoint `/translate` chấp nhận JSON và hỗ trợ CORS khi được cấu hình. Ví dụ React hook: ```typescript
 // useTranslation.ts
 import { useState, useCallback } from "react";
 
@@ -782,9 +680,7 @@ Tham gia [nhóm Telegram LibreTranslate](https://t.me/libretranslate) để đư
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -806,7 +702,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 > **Tuyên bố**: Bài viết này chứa liên kết affiliate. Nếu bạn đăng ký DigitalOcean qua liên kết giớii thiệu trong hướng dẫn này, chúng tôi có thể nhận được hoa hồng mà không phát sinh chi phí thêm cho bạn. Liên kết affiliate giúp hỗ trợ việc duy trì liên tục các dự án tài liệu mã nguồn mở như thế này.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

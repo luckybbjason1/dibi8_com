@@ -1,12 +1,9 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/justhireme-ai-job-search-workbench" />
 title: "JustHireMe：AI 帮你自动找工作，从投递到拿到 Offer"
-description: "JustHireMe 开源 AI 求职工作台评测。本地优先的求职情报系统，自动抓取职位、AI 匹配度评分、生成定制简历和求职信。". Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "JustHireMe 开源 AI 求职工作台评测。本地优先的求职情报系统，自动抓取职位、AI 匹配度评分、生成定制简历和求职信。"
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - JavaScript
+tech_stack: - JavaScript
   - Python
   - TypeScript
 application_domain: "Ai Tools"
@@ -23,10 +20,8 @@ maintainer: "vasu-devs"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases:
-- /posts/justhireme-ai-job-search-workbench/
-faqs:
-  - q: 'Is JustHireMe free and open source?'
+aliases: - /posts/justhireme-ai-job-search-workbench/
+faqs: - q: 'Is JustHireMe free and open source?'
     a: 'Yes. JustHireMe is open source under the MIT license, with no subscription fees or hidden costs. You own your resume and data, and the scoring algorithm is transparent.'
   - q: 'Does JustHireMe require an AI API key or send my data to the cloud?'
     a: 'No. JustHireMe is local-first: all AI computation runs locally with no API key required, and your data is stored on your machine in a local SQLite database rather than uploaded to the cloud.'
@@ -113,7 +108,11 @@ HR 看得出来是模板还是用心写的。
 ## 技术架构
 
 | 层级 | 技术 |
-|------|------|
+|
+---
+|
+---
+|
 | 桌面端 | Tauri 2 + React 19 + TypeScript |
 | 后端 | Python 3.13 + FastAPI + WebSockets |
 | 数据库 | SQLite + Kuzu 图数据库 + LanceDB 向量库 |
@@ -170,24 +169,21 @@ npm run tauri dev
 - [Free Claude Code：不花一分钱，让顶级 AI 帮你写代码](/resources/ai-tools/free-claude-code-open-source-proxy/)
 - [OpenClaw 42 个真实用例：AI 代理已经这样改变我们的生活](/resources/llm-frameworks/awesome-openclaw-usecases-ai-agent-daily-life/)
 
----
 
+---
 **项目地址**：[github.com/vasu-devs/JustHireMe](https://github.com/vasu-devs/JustHireMe)
 
 **Stars**：471 ⭐ | **Forks**：91 | **语言**：Python 47.3%, TypeScript 27.5%
 
----
 
+---
 ## Recommended Tools
 
-For developers building or deploying open-source AI tools, we recommend:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
+For developers building or deploying open-source AI tools, we recommend: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
 - **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Anthropic Claude / OpenAI / DeepSeek API proxy. Most AI tools above (chatbots, code gen, translation, search, etc) need an LLM API key — this proxy delivers stable access to top models at ~30% of official pricing.
 
 *Affiliate link — supports dibi8.com at no cost to you.*
 
-<!--auto-references-->
 ## References & Sources
 
 - [JustHireMe](https://github.com/vasu-devs/JustHireMe)
@@ -200,7 +196,6 @@ For developers building or deploying open-source AI tools, we recommend:
 - [SQLite](https://www.sqlite.org/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -228,25 +223,20 @@ For developers building or deploying open-source AI tools, we recommend:
 
 ## Why This Matters
 
-Understanding justhireme：ai 帮你自动找工作，从投递到拿到 offer is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding justhireme：ai 帮你自动找工作，从投递到拿到 offer is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

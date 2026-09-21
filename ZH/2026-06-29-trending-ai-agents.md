@@ -1,33 +1,22 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/2026-06-29-trending-ai-agents" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/2026-06-29-trending-ai-agents" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/2026-06-29-trending-ai-agents" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/2026-06-29-trending-ai-agents" />
 title: "本周开源人工智能代理——GitHub 最热门仓库（2026 年 6 月 29 日当周）"
-description: "人工编辑的每周精选，汇总 GitHub 上最热门的开源 AI 代理、LLM 和 MCP 项目——数据由 Dibi8 部落情报自动收集，分析由 Dibi8 编辑团队完成。". Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "人工编辑的每周精选，汇总 GitHub 上最热门的开源 AI 代理、LLM 和 MCP 项目——数据由 Dibi8 部落情报自动收集，分析由 Dibi8 编辑团队完成。"
 tags: ["ai-agent", "automation", "ci-cd", "github", "open-source", "self-hosted", "trending", "weekly"]
 date: 2026-06-29 00:00:00+09:00
-lastmod:  2026-06-29 00:00:00+09:00categories: ["llm-frameworks"]
+lastmod: 2026-06-29 00:00:00+09:00categories: ["llm-frameworks"]
 slug: this-week-ai-agents-2026-w26
 author: "Dibi8 Tribe Intel (data collection) + Dibi8 editorial team (analysis & edit)"
 showAuthor: true
 showSummary: true
-sources:
-  - name: "GitHub Trending"
+sources: - name: "GitHub Trending"
     url: "https://github.com/trending"
     type: "data"
 methodology: "Open-source script at home-hermes/服务器hermes/scripts/tribe-os-intel.sh"
 review_status: "AWAITING_EDITOR_REVIEW"
-featureImage: /images/articles/b62165fb-this-week-open-source-agents.png
----
-
-<!-- canonical: https://dibi8.com/zh/tools/2026-06-29-trending-ai-agents/ -->
+featureImage: /images/articles/b62165fb-this-week-open-source-agents.png---
 # 本周开源人工智能代理——GitHub 最热门仓库（2026 年 6 月 29 日当周）
+
 ---
-
-<!-- Dibi8 Tribe Intel — Weekly Trending Report | Week 26 (June 29, 2026) -->
-
 > **TL;DR**: This week's trending repos span AI video editing, cybersecurity skills for agents, open-source design tools, AI website cloning, and privacy-first messaging. Palmier Pro leads with 6,126 stars/week as the first AI-native macOS video editor.
 
 ## Why We Watch This Week
@@ -37,6 +26,7 @@ Open-source AI moves fast. This week's trending repos show a clear pattern: **AI
 What makes W26 particularly interesting is the diversity of domains represented. We have a macOS-native video editor (Palmier Pro), a massive cybersecurity skill library (Anthropic Skills), a mature open-source design platform (Penpot), an AI-powered website cloning tool, and a privacy-first messaging protocol (SimpleX). Together, these repos paint a picture of an ecosystem maturing from experimental prototypes to production-ready tools.
 
 Here are the 5 most noteworthy repos from GitHub Trending (weekly) that haven't been covered in previous editions. from GitHub Trending (weekly) that haven't been covered in previous editions.
+
 
 ---
 lang: zh
@@ -84,9 +74,7 @@ Palmier Pro 是首款专为 AI 代理构建的视频编辑器。与将 AI 功能
 
 ### Why It Matters
 
-这代表了安全专业人员使用人工智能工作方式的范式转变。具备这些技能的代理人可以替代手动运行安全工具，来:
-
-- **自主扫描**基础设施以发现漏洞
+这代表了安全专业人员使用人工智能工作方式的范式转变。具备这些技能的代理人可以替代手动运行安全工具，来: - **自主扫描**基础设施以发现漏洞
 - **执行结构化渗透测试**，使用与MITRE映射的技术
 - **根据预定义流程手册进行事件响应**
 - **从原始数据生成威胁情报**报告
@@ -139,20 +127,13 @@ Penpot 提供了用于自托管的 Docker Compose 设置：
 
 ```yaml
 version: "3.6"
-services:
-  penpot-backend:
-    image: penpotapp/backend:latest
-    ports:
-      - 9001:9001
-    environment:
-      - PENPET_PUBLIC_URI=http://localhost:9000
+services: penpot-backend: image: penpotapp/backend:latest
+    ports: - 9001:9001
+    environment: - PENPET_PUBLIC_URI=http://localhost:9000
       - PENPET_SECRET_KEY=penpot-secrets-change-me
-  penpot-frontend:
-    image: penpotapp/frontend:latest
-    ports:
-      - 9000:80
-    environment:
-      - PENPET_PUBLIC_URI=http://localhost:9000
+  penpot-frontend: image: penpotapp/frontend:latest
+    ports: - 9000:80
+    environment: - PENPET_PUBLIC_URI=http://localhost:9000
       - PENPET_BACKEND_URI=http://localhost:9001
 ```
 
@@ -176,9 +157,7 @@ services:
 
 ### Why It Matters
 
-Website cloning has a reputation for being used for phishing and copyright infringement. However, the legitimate use cases are substantial:
-
-- **设计灵感分析** — 研究竞争对手如何构建他们的网站
+Website cloning has a reputation for being used for phishing and copyright infringement. However, the legitimate use cases are substantial: - **设计灵感分析** — 研究竞争对手如何构建他们的网站
 - **遗留系统迁移** — 使用 AI 生成的干净代码来现代化旧网站
 - **教育用途** — 通过研究真实案例学习网页开发
 - **作品集重建** — 重建你自己的归档网站
@@ -237,9 +216,7 @@ SimpleX 使用 Haskell 构建，利用函数式编程在形式验证和数学正
 
 ## Looking Ahead
 
-Next week, we'll be watching for:
-
-- **人工智能视频工具** — Palmier Pro 的增长表明，在 AI 原生视频编辑领域可能会出现更多竞争者
+Next week, we'll be watching for: - **人工智能视频工具** — Palmier Pro 的增长表明，在 AI 原生视频编辑领域可能会出现更多竞争者
 - **安全技能库** — 817 网络安全技能的成功表明对特定领域代理能力有需求
 - **隐私基础设施** — SimpleX 的方法对消息中用户身份的传统认知提出了挑战
 
@@ -283,10 +260,8 @@ A：不。Dibi8 保持严格的编辑独立性。所有链接都指向官方 Git
 
 *本周开源人工智能代理由 Dibi8 部落情报每周发布。数据收集日期：2026 年 6 月 29 日。下期刊登日期：2026 年 7 月 6 日。*
 
-<!-- Disclosure: This article contains no affiliate links. Dibi8 maintains editorial independence. -->
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -314,25 +289,20 @@ A：不。Dibi8 保持严格的编辑独立性。所有链接都指向官方 Git
 
 ## Why This Matters
 
-Understanding 本周开源人工智能代理——github 最热门仓库（2026 年 6 月 29 日当周） is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding 本周开源人工智能代理——github 最热门仓库（2026 年 6 月 29 日当周） is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -398,7 +368,17 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

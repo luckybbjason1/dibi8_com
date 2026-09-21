@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/ai-coding-agent-landscape-2026-skills-mcp-opensource" />
 title: 'The 2026 AI Coding Agent Landscape: Why Skills, MCP, and...
 description: 'The AI coding assistant market hit an inflection point in 2026. Claude Code''s skills ecosystem crossed 3,000 public skills, MCP became the universal tool interface, and open-source alternatives like OpenCode and Hermes Agent are gaining serious traction. Here''s what developers need to know—and how to avoid vendor lock-in.'
 date: 2026-05-18 00:00:00+08:00
@@ -20,10 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/ai-coding-agent-landscape-2026-skills-mcp-opensource/
+aliases: - /posts/ai-coding-agent-landscape-2026-skills-mcp-opensource/-
 ---
-
 {</* resource-info */>}
 
 ## Introduction: This Is Not Just Another Tool Upgrade
@@ -38,8 +34,8 @@ For developers, this creates two simultaneous realities: **the capability ceilin
 
 This post unpacks the ecosystem shift, teaches you how to plug into it practically, and shows you how to maintain technical sovereignty while riding the wave.
 
----
 
+---
 ## Part 1: Claude Code Skills—From Toy to Infrastructure
 
 ### 1.1 How the Skills Market Exploded
@@ -68,8 +64,7 @@ claude
 > run the profiling skill on this Go module
 ```
 
-A skill file is structured markdown with four sections:
-- **Triggers** — natural language patterns that activate the skill
+A skill file is structured markdown with four sections: - **Triggers** — natural language patterns that activate the skill
 - **Context injection** — files, env vars, or data to load
 - **Execution steps** — chain-of-thought reasoning + tool call sequence
 - **Validation rules** — output format enforcement and boundary checks
@@ -78,17 +73,15 @@ A skill file is structured markdown with four sections:
 
 Raw prompts are ephemeral. They're lost after the conversation ends, prone to context window truncation, and impossible to version control.
 
-Skills encode best practices into reusable modules—muscle memory for your AI assistant. A production-grade team skill might contain:
-
-- **Code conventions** — naming standards, error handling patterns, import organization
+Skills encode best practices into reusable modules—muscle memory for your AI assistant. A production-grade team skill might contain: - **Code conventions** — naming standards, error handling patterns, import organization
 - **Framework scaffolds** — Next.js App Router + Prisma + tRPC boilerplate
 - **Internal API wrappers** — automatic auth, pagination, and retry logic
 - **CI/CD playbooks** — build → test → deploy sequences with verification gates
 
 **The implication:** A new engineer installs your team's skill pack, and Claude immediately writes code to your standards. Documentation becomes executable.
 
----
 
+---
 ## Part 2: MCP—The USB-C of AI Tooling
 
 ### 2.1 What Model Context Protocol Actually Does
@@ -101,10 +94,14 @@ The MCP world: tools self-describe their capabilities (like USB-C—plug in, neg
 
 ### 2.2 The Three MCP Primitives
 
-An MCP server—running locally or remotely—exposes three interaction primitives to the AI:
-
-| Primitive | Purpose | Example |
-|-----------|---------|---------|
+An MCP server—running locally or remotely—exposes three interaction primitives to the AI: | Primitive | Purpose | Example |
+|
+---
+|
+---
+|
+---
+|
 | **Resources** | Read-only data the AI can reference | Database schemas, API docs, design files |
 | **Tools** | Functions the AI can invoke | Run shell commands, call APIs, read/write files |
 | **Prompts** | Pre-defined workflow templates | "Code review checklist", "Bug report format" |
@@ -113,9 +110,7 @@ Communication happens over JSON-RPC 2.0. The AI doesn't care whether the MCP ser
 
 ### 2.3 The MCP Ecosystem in May 2026
 
-As of this writing, official and community-maintained MCP servers cover:
-
-- **Development environments:** GitHub, GitLab, VS Code, JetBrains, Neovim
+As of this writing, official and community-maintained MCP servers cover: - **Development environments:** GitHub, GitLab, VS Code, JetBrains, Neovim
 - **Data layer:** PostgreSQL, MongoDB, Redis, SQLite, Supabase
 - **Infrastructure:** Docker, Kubernetes, AWS, Vercel, Cloudflare
 - **Collaboration:** Slack, Discord, Notion, Linear, Figma
@@ -129,9 +124,7 @@ As of this writing, official and community-maintained MCP servers cover:
 
 ### 3.1 Why Developers Are Shopping for Exits
 
-April and May 2026 saw a palpable shift in developer sentiment on Hacker News and Reddit:
-
-- **Uber reportedly burned its entire 2026 AI budget in four months**—mostly on Claude Code—sparking panic about runaway AI spending
+April and May 2026 saw a palpable shift in developer sentiment on Hacker News and Reddit: - **Uber reportedly burned its entire 2026 AI budget in four months**—mostly on Claude Code—sparking panic about runaway AI spending
 - **Anthropic changed subscription tiers and restricted programmatic access**, with multiple projects losing access after unsubscribing from Claude Design
 - **Telemetry concerns** surfaced around Claude Code's Vercel plugin, fueling privacy debates
 
@@ -174,7 +167,13 @@ Switching from Claude to GPT to a local 70B parameter model is a one-line config
 ### 3.4 Closed vs. Open Source: A Decision Matrix
 
 | Dimension | Claude Code / Codex | OpenCode / Hermes |
-|-----------|---------------------|---------------------|
+|
+---
+|
+---
+|
+---
+|
 | Model choice | Vendor-locked | Any model, including local |
 | Data privacy | Code sent to cloud | Fully local execution |
 | Skills ecosystem | Thousands of public skills | Growing rapidly, MCP-compatible |
@@ -229,9 +228,7 @@ mcp server add fs --command npx -y @modelcontextprotocol/server-filesystem
 
 **Step 3: Configure your agent to use MCP**
 
-For Claude Code, edit `~/.claude/config.json`:
-
-```json
+For Claude Code, edit `~/.claude/config.json`: ```json
 {
   "mcpServers": {
     "github": {
@@ -246,12 +243,8 @@ For Claude Code, edit `~/.claude/config.json`:
 }
 ```
 
-For OpenCode, in `opencode.yaml`:
-
-```yaml
-mcp:
-  servers:
-    - name: github
+For OpenCode, in `opencode.yaml`: ```yaml
+mcp: servers: - name: github
       command: npx -y @modelcontextprotocol/server-github
     - name: postgres
       command: uvx mcp-server-postgres postgresql://localhost/mydb
@@ -259,9 +252,7 @@ mcp:
 
 **Step 4: Write a team skill**
 
-Create `team-standard.md`:
-
-```markdown
+Create `team-standard.md`: ```markdown
 ---
 skill: team-standard
 version: "1.0"
@@ -275,9 +266,7 @@ version: "1.0"
 - Types/Interfaces: PascalCase
 
 ## Error handling pattern
-All async functions must use try/catch with requestId tracing:
-
-```typescript
+All async functions must use try/catch with requestId tracing: ```typescript
 const requestId = crypto.randomUUID();
 try {
   await riskyOperation();
@@ -318,8 +307,7 @@ The "use open source as a principled stance" narrative is being replaced by "use
 
 When AI agents have real execution power over production systems, "what did it do?" becomes a compliance question, not a curiosity.
 
-Expect to see:
-- Skills execution logging with tamper-proof audit trails
+Expect to see: - Skills execution logging with tamper-proof audit trails
 - MCP call approval workflows (four-eyes principle for agent actions)
 - Agent behavior replay and forensic analysis
 - Insurance products covering "AI agent errors"
@@ -348,13 +336,12 @@ Expect to see:
 
 ---
 
+-
 ---
 
 ## Recommended Self-Hosting Infrastructure
 
-If you're following Part 3's lock-in-resistant strategy and want to self-host Hermes Agent, OpenCode, or your own MCP gateway, the right server stack matters:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days, 14+ global regions, one-click droplets ready for AI workloads. Battle-tested for indie developers running open-source agents.
+If you're following Part 3's lock-in-resistant strategy and want to self-host Hermes Agent, OpenCode, or your own MCP gateway, the right server stack matters: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days, 14+ global regions, one-click droplets ready for AI workloads. Battle-tested for indie developers running open-source agents.
 
 This affiliate link helps support dibi8.com at no cost to you.
 
@@ -384,7 +371,6 @@ The real lock-in isn't technical—it's habit. The teams that thrive will be the
 *Keywords intentionally placed: AI coding agent comparison 2026, Claude Code skills marketplace, Model Context Protocol tutorial, open source AI code assistant, OpenCode setup guide, Hermes Agent vs Claude Code, avoid AI vendor lock-in, local LLM coding assistant, MCP server configuration, AI developer productivity tools*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

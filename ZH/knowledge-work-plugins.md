@@ -1,19 +1,14 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/knowledge-work-plugins" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/knowledge-work-plugins" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/knowledge-work-plugins" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/knowledge-work-plugins" />
 title: "知识工作插件：Anthropic 的插件生态系统，赋能 AI 生产力 2026"
-description: "Knowledge Work Plugins（20,728 颗星）由 Anthropic 打造，为 Claude 扩展了强大的文档编辑、代码分析、网页浏览和文件操作工具。为你的工作流构建自定义插件。". Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "Knowledge Work Plugins（20,728 颗星）由 Anthropic 打造，为 Claude 扩展了强大的文档编辑、代码分析、网页浏览和文件操作工具。为你的工作流构建自定义插件。"
 date: 2026-06-15
-lastmod:  2026-06-15slug: knowledge-work-plugins
+lastmod: 2026-06-15
+slug: knowledge-work-plugins
 category: dev-utils
 tags: ['anthropic', 'claude', '插件', '生产力', '文档编辑', '代码分析', '网页浏览', '工具调用']
 github_repo: "https://github.com/anthropics/knowledge-work-plugins"
 license: Apache-2.0
-images:
-  - url: "https://opengraph.github.com/github/anthropics/knowledge-work-plugins"
+images: - url: "https://opengraph.github.com/github/anthropics/knowledge-work-plugins"
     alt: "Knowledge Work Plugins GitHub OG"
     role: reference
   - url: "https://raw.githubusercontent.com/anthropics/knowledge-work-plugins/main/assets/plugin-diagram.png"
@@ -22,12 +17,11 @@ images:
   - url: "https://raw.githubusercontent.com/anthropics/knowledge-work-plugins/main/assets/tool-use-example.png"
     alt: "工具使用示例"
     role: example
-lang: zh
-featureImage: /images/articles/ai-trading-stack-2026--7-th-nh-ph-n-workflow-quant-m--ngu-n-m--cho-crypto---th--.png
+featureImage: /images/articles/ai-trading-stack-2026--7-th-nh-ph-n-workflow-quant-m--ngu-n-m--cho-crypto
 ---
+th--.png
 
-<!-- canonical: https://dibi8.com/zh/tools/knowledge-work-plugins/ -->
-
+---
 ## 快速概览
 
 Knowledge Work Plugins 是 Anthropic 官方的插件生态系统，通过结构化的工具调用来扩展 Claude 的能力，涵盖文档编辑、代码分析、网页浏览和文件操作。拥有 20,728 颗星，它代表了 AI Agent 工具集成的黄金标准。
@@ -108,12 +102,9 @@ cp plugins.config.example.yaml plugins.config.yaml
 每个插件在 `plugins.config.yaml` 中独立配置：
 
 ```yaml
-plugins:
-  document-edit:
-    enabled: true
+plugins: document-edit: enabled: true
     max_file_size: 1048576  # 1MB
-    allowed_extensions:
-      - .md
+    allowed_extensions: - .md
       - .txt
       - .json
       - .yaml
@@ -121,19 +112,15 @@ plugins:
       - .js
       - .ts
 
-  code-analysis:
-    enabled: true
-    linters:
-      - pylint
+  code-analysis: enabled: true
+    linters: - pylint
       - eslint
       - tsc
-    test_frameworks:
-      - pytest
+    test_frameworks: - pytest
       - jest
       - vitest
 
-  web-browse:
-    enabled: true
+  web-browse: enabled: true
     max_results: 20
     timeout: 30
     user_agent: "Knowledge-Work-Plugins/1.0"
@@ -152,7 +139,13 @@ docker run -v $(pwd)/plugins.config.yaml:/app/config.yaml knowledge-work-plugins
 知识工作插件与所有主流开发环境集成：
 
 | 环境 | 集成方式 | 推荐插件 |
-|------|---------|---------|
+|
+---
+|
+---
+|
+---
+|
 | **Claude Code** | 内置插件加载器 | document-edit |
 | **Cursor** | 插件 SDK + VS Code 扩展 | code-analysis |
 | **VS Code** | 扩展市场 | web-browse |
@@ -166,14 +159,10 @@ docker run -v $(pwd)/plugins.config.yaml:/app/config.yaml knowledge-work-plugins
 # .github/workflows/plugin-audit.yml
 name: 插件审计
 on: [pull_request]
-jobs:
-  audit:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: audit: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - uses: anthropics/knowledge-work-plugins@v1
-        with:
-          plugins: "code-analysis,docker-lint"
+        with: plugins: "code-analysis,docker-lint"
           config: plugins.config.yaml
 ```
 
@@ -183,7 +172,13 @@ jobs:
 
 ```
 任务                          | 标准 AI    | 插件增强     | 提升幅度
-------------------------------|-----------|-------------|---------
+
+---
+|
+---
+|
+---
+|---
 在 1 万行代码库中修复 Bug     | 2.3 小时   | 18 分钟      | 7.7 倍
 更新文档                     | 45 分钟    | 3 分钟       | 15 倍
 编写集成测试                 | 1.5 小时   | 12 分钟      | 7.5 倍
@@ -197,7 +192,11 @@ jobs:
 
 ```
 指标              | 标准 AI    | 插件增强
-------------------|-----------|----------
+
+---
+|
+---
+|---
 代码生成错误      | 34%       | 8%
 遗漏边缘情况      | 41%       | 12%
 需要重写          | 67%       | 15%
@@ -216,13 +215,11 @@ jobs:
 # 自定义插件：PR 审查自动化
 from knowledge_work_plugins import PluginBase, PluginResult
 
-class PRReviewPlugin(PluginBase):
-    name = "pr-review"
+class PRReviewPlugin(PluginBase): name = "pr-review"
     version = "1.0.0"
     description = "带严重性评分的自动化 PR 审查"
 
-    async def execute(self, params):
-        pr_url = params.get("pr_url")
+    async def execute(self, params): pr_url = params.get("pr_url")
         review_depth = params.get("depth", "standard")  # standard | deep
 
         # 获取 PR 差异
@@ -241,12 +238,10 @@ class PRReviewPlugin(PluginBase):
             recommendations=review["recommendations"]
         )
 
-    def analyze_diff(self, diff, depth="standard"):
-        # 实现细节...
+    def analyze_diff(self, diff, depth="standard"): # 实现细节...
         pass
 
-    def generate_review(self, issues):
-        # 生成结构化审查意见...
+    def generate_review(self, issues): # 生成结构化审查意见...
         pass
 ```
 
@@ -280,18 +275,14 @@ from knowledge_work_plugins import Pipeline, PluginError
 
 pipeline = Pipeline(["document-edit", "code-analysis"])
 
-try:
-    result = pipeline.execute(task="重构认证模块")
-except PluginError.TimeoutError as e:
-    print(f"插件超时：{e.timeout}秒")
+try: result = pipeline.execute(task="重构认证模块")
+except PluginError.TimeoutError as e: print(f"插件超时：{e.timeout}秒")
     # 增加超时后重试
     result = pipeline.execute(task="重构认证模块", timeout=600)
-except PluginError.PermissionDenied as e:
-    print(f"权限被拒绝：{e.plugin}")
+except PluginError.PermissionDenied as e: print(f"权限被拒绝：{e.plugin}")
     # 请求提升权限
     result = pipeline.execute(task="重构认证模块", elevated=True)
-except PluginError.ValidationError as e:
-    print(f"验证失败：{e.message}")
+except PluginError.ValidationError as e: print(f"验证失败：{e.message}")
     # 修复并重试
     result = pipeline.execute(task=f"修复：{e.suggestion}")
 ```
@@ -340,7 +331,17 @@ pipeline.set_budget(
 知识工作插件在与竞争工具使用框架的对比中独树一帜：
 
 | 特性 | 知识工作插件 | LangChain Tools | AutoGPT Tools | OpenAI Tools |
-|------|------------|-----------------|---------------|--------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 星标数 | 20,728 | 50K+ | 140K+ | N/A |
 | 开发者 | Anthropic | LangChain | AutoGPT | OpenAI |
 | 许可证 | Apache 2.0 | MIT | MIT | 专有 |
@@ -417,16 +418,15 @@ npx skills add https://github.com/anthropics/knowledge-work-plugins
 
 **相关文章**：[构建生产级 AI 系统](https://dibi8.com/llm-frameworks/ai-engineering-from-scratch) · [自动化研究](https://dibi8.com/dev-utils/academic-research-skills)
 
----
 
+---
 **来源与延伸阅读**：
 - GitHub 仓库：https://github.com/anthropics/knowledge-work-plugins
 - 插件 SDK 文档：https://github.com/anthropics/knowledge-work-plugins/blob/main/docs/sdk.md
 - Claude API 参考：https://docs.anthropic.com/claude/reference/
 
 
-**Sources & Further Reading**:
-- GitHub仓库: https://github.com/anthropics/knowledge-work-plugins
+**Sources & Further Reading**: - GitHub仓库: https://github.com/anthropics/knowledge-work-plugins
 - Plugin SDK文档: https://github.com/anthropics/knowledge-work-plugins/blob/main/docs/sdk.md
 - Claude API参考: https://docs.anthropic.com/claude/reference/
 **行动号召**：加入 DIBI8 开发者社区 Telegram —— [t.me/DIBI8_Group](https://t.me/DIBI8_Group)
@@ -434,7 +434,6 @@ npx skills add https://github.com/anthropics/knowledge-work-plugins
 **披露**：本文包含联盟链接。如果你通过我们的链接注册，我们可能会获得佣金，这不会给你增加额外费用。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -462,25 +461,20 @@ npx skills add https://github.com/anthropics/knowledge-work-plugins
 
 ## Why This Matters
 
-Understanding 知识工作插件：anthropic 的插件生态系统，赋能 ai 生产力 2026 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding 知识工作插件：anthropic 的插件生态系统，赋能 ai 生产力 2026 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -546,7 +540,17 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 ## Tool Comparison
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |

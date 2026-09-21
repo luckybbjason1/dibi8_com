@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/autogen" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/autogen" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/autogen" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/autogen" />
 title: 'AutoGen: 58K+ Stars — 多智能体框架深度对比 CrewAI、LangGraph 2026'
 description: 'AutoGen（微软）是一个用于构建多智能体 AI 系统的事件驱动编程框架。兼容 OpenAI、Azure、Ollama、Docker 和 VS Code。涵盖安装、群聊设置、生产加固及与替代方案的诚实对比。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,12 +20,9 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [autogen, 多智能体, 微软, llm框架, 智能体ai, python, crewai替代品, langgraph替代品]
-aliases:
-- /zh/posts/autogen/
-- /zh/resources/llm-frameworks/autogen-multi-agent-framework/
+aliases: - /zh/posts/autogen/
+- /zh/resources/llm-frameworks/autogen-multi-agent-framework/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/autogen/ -->
 
 {{</* resource-info */>}}
 
@@ -47,7 +39,13 @@ AutoGen 是一个用于构建多智能体 AI 应用的开源编程框架。它�
 AutoGen 的架构分为四个层级：
 
 | 层级 | 用途 | 入口点 |
-|------|------|--------|
+|
+---
+|
+---
+|
+---
+|
 | **Core** | 智能体消息传递和状态的事件驱动运行时 | `autogen-core` |
 | **AgentChat** | 基于 Core 构建的高级对话智能体 | `autogen-agentchat` |
 | **Extensions** | 与 OpenAI、Docker、MCP、gRPC 的集成 | `autogen-ext` |
@@ -106,8 +104,7 @@ import asyncio
 from autogen_agentchat.agents import AssistantAgent
 from autogen_ext.models.openai import OpenAIChatCompletionClient
 
-async def main() -> None:
-    agent = AssistantAgent(
+async def main() -> None: agent = AssistantAgent(
         name="assistant",
         model_client=OpenAIChatCompletionClient(
             model="gpt-4o",
@@ -234,7 +231,17 @@ workbench = McpWorkbench(
 2026 年独立研究的基准测试显示 AutoGen 在标准智能体任务上的表现：
 
 | 基准测试 | AutoGen | CrewAI | LangGraph | 说明 |
-|----------|---------|--------|-----------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | SimpleQA Verified (F1) | 0.62 | **0.71** | 0.68 | CrewAI 最高但慢 55-140% |
 | BIRD-SQL (执行 %) | 54.1 | 54.3 | **55.9** | LangGraph 在 NL2SQL 上领先 |
 | GAIA (任务完成 %) | 38.0 | N/A | N/A | 通过 Magnetic-One 多智能体团队 |
@@ -252,7 +259,15 @@ workbench = McpWorkbench(
 **每年 10,000 次决策**工作负载的生产成本估算（2026 年社区报告）：
 
 | 框架 | 年预估成本 | 平均延迟（简单） | 平均延迟（复杂） |
-|------|-----------|-----------------|-----------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | LangGraph | $220–$365 | 180ms | 1.2s |
 | CrewAI | $220–$365 | 220ms | 1.5s |
 | AutoGen | $1,200–$1,460 | 2.1s | 5.8s |
@@ -278,8 +293,7 @@ from autogen_agentchat.teams import GroupChat, RoundRobinGroupChat
 from autogen_agentchat.conditions import MaxMessageTermination, TextMentionTermination
 from autogen_ext.models.openai import OpenAIChatCompletionClient
 
-async def main():
-    model_client = OpenAIChatCompletionClient(model="gpt-4o")
+async def main(): model_client = OpenAIChatCompletionClient(model="gpt-4o")
 
     # 定义专业智能体
     researcher = AssistantAgent(
@@ -311,8 +325,7 @@ async def main():
     )
 
     result = await team.run(task="Write a one-paragraph summary of quantum computing.")
-    for msg in result.messages:
-        print(f"[{msg.source}]: {msg.content[:100]}...")
+    for msg in result.messages: print(f"[{msg.source}]: {msg.content[:100]}...")
 
 asyncio.run(main())
 ```
@@ -338,8 +351,7 @@ team = SelectorGroupChat(
 from autogen_core.tools import FunctionTool
 from autogen_agentchat.agents import AssistantAgent
 
-def search_knowledge_base(query: str) -> str:
-    """Search internal knowledge base."""
+def search_knowledge_base(query: str) -> str: """Search internal knowledge base."""
     # 您的搜索逻辑
     return f"Results for '{query}': ..."
 
@@ -364,12 +376,10 @@ state = await team.save_state()
 
 # 保存到 Redis / 数据库
 import json
-with open("team_state.json", "w") as f:
-    json.dump(state, f)
+with open("team_state.json", "w") as f: json.dump(state, f)
 
 # 之后：恢复并继续
-with open("team_state.json") as f:
-    state = json.load(f)
+with open("team_state.json") as f: state = json.load(f)
 await team.load_state(state)
 result = await team.run(task="Continue from where we left off.")
 ```
@@ -381,8 +391,7 @@ from autogen_ext.code_executors.docker import DockerCommandLineCodeExecutor
 import tempfile
 
 # 始终对不受信任的代码使用 Docker
-with tempfile.TemporaryDirectory() as work_dir:
-    executor = DockerCommandLineCodeExecutor(
+with tempfile.TemporaryDirectory() as work_dir: executor = DockerCommandLineCodeExecutor(
         image="python:3.12-slim",
         work_dir=work_dir,
         timeout=30,
@@ -415,7 +424,17 @@ tracer = trace.get_tracer("autogen.production")
 ## 与替代方案对比
 
 | 特性 | AutoGen | CrewAI | LangGraph | OpenAI Agents SDK |
-|------|---------|--------|-----------|-------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **GitHub Stars** | 58,196 | ~47,700 | ~30,700 | ~25,500 |
 | **架构** | 消息传递 / 对话 | 基于角色的团队 | 有向状态图 | 显式交接 |
 | **学习曲线** | 中等 | 低 | 高 | 低 |
@@ -478,9 +497,7 @@ Microsoft Agent Framework (MAF) 是 AutoGen 的下一代演进，于 2026 年 4 
 是的，AgentChat 通过 `run_stream()` 支持流式：
 
 ```python
-async for message in team.run_stream(task="Explain Kubernetes"):
-    if message.source == "assistant":
-        print(message.content, end="", flush=True)
+async for message in team.run_stream(task="Explain Kubernetes"): if message.source == "assistant": print(message.content, end="", flush=True)
 ```
 
 流式是每消息级别（非每令牌），所以粒度比原始 OpenAI 流式更粗。
@@ -496,8 +513,7 @@ team = RoundRobinGroupChat(
     termination_condition=termination
 )
 result = await team.run(task="Debug task", max_turns=10)
-for msg in result.messages:
-    print(f"{msg.source} -> {msg.content[:200]}")
+for msg in result.messages: print(f"{msg.source} -> {msg.content[:200]}")
 ```
 
 ## 结论
@@ -539,7 +555,6 @@ AutoGen 通过解决一个难题赢得了 58,196 颗星：使多个 AI 智能体
 - [AutoGen vs CrewAI：2026 基准指南](https://dev.to/kunpeng-ai-2026/autogen-vs-crewai-a-comprehensive-benchmark-and-selection-guide-for-2026-2nh1)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -567,25 +582,20 @@ AutoGen 通过解决一个难题赢得了 58,196 颗星：使多个 AI 智能体
 
 ## Why This Matters
 
-Understanding autogen: 58k+ stars — 多智能体框架深度对比 crewai、langgraph 2026 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding autogen: 58k+ stars — 多智能体框架深度对比 crewai、langgraph 2026 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -606,13 +616,13 @@ AutoGen: 58K+ Stars — 多智能体框架深度对比 CrewAI、LangGraph 2026 r
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*
 
----
 
+---
 ## Related Articles
 
 - [tradingagents-llm-multi-agent-trading-framework-2026](autogen)

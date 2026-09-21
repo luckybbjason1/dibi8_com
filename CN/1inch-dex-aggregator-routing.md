@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/1inch-dex-aggregator-routing" />
 title: '1inch-dex-aggregator-routing'
 description: '{'en': ''Master 1inch DEX aggregator in 2026. Learn how Pathfinder routes trades across 300+ liquidity sources, implement Fusion+ gasless swaps, limit orders, and portfolio tracking with the TypeScript SDK.'', 'zh': ''掌握 2026 年 1inch DEX 聚合器。了解 Pathfinder 如何跨 300+ 流动性来源路由交易，使用 TypeScript SDK 实现 Fusion+ 无 Gas 兑换、限价单和 portfolio 追踪。'', 'ko': ''2026년 1inch DEX 집계기를 마스터하세요. Pathfinder가 300개 이상의 유동성 소스에서 거래를 라우팅하는 방법, Fusion+ 가스 없는 스왑, 한도 주문 및 TypeScript SDK를 사용한 포트폴리오 추적을 구현하세요.'', 'vi': ''Làm chủ trình tổng hợp DEX 1inch năm 2026. Tìm hiểu cách Pathfinder định tuyến giao dịch qua 300+ nguồn thanh khoản, triển khai hoán đổi không gas Fusion+, lệnh giới hạn và theo dõi danh mục với SDK TypeScript.''}'
 date: 2026-05-20 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-trading']
 tags: [1inch]
-aliases:
-- /posts/1inch-dex-aggregator-routing/
+aliases: - /posts/1inch-dex-aggregator-routing/-
 ---
-
 ![Hero Image](https://picsum.photos/seed/ai/1200x800)
 
 
@@ -42,10 +38,14 @@ This guide provides a comprehensive technical deep-dive into 1inch's aggregation
 
 DEX aggregators solve one of DeFi's most persistent challenges: **liquidity fragmentation**. With hundreds of decentralized exchanges operating across multiple chains — Uniswap, Curve, Balancer, PancakeSwap, SushiSwap, and countless others — liquidity exists in silos. A single token pair might have deep pools on one DEX and shallow pools on another. Without aggregation, traders face suboptimal prices, excessive slippage, and missed opportunities.
 
-1inch addresses this by functioning as a **meta-layer** above individual DEXes. Rather than executing a swap on a single exchange, 1inch's Pathfinder algorithm examines all available liquidity sources simultaneously, constructing complex multi-hop routes that can split a single trade across multiple protocols and even multiple blockchains. In 2026, this network spans:
-
-| Chain | Primary DEX Sources | Approximate Liquidity |
-|-------|-------------------|----------------------|
+1inch addresses this by functioning as a **meta-layer** above individual DEXes. Rather than executing a swap on a single exchange, 1inch's Pathfinder algorithm examines all available liquidity sources simultaneously, constructing complex multi-hop routes that can split a single trade across multiple protocols and even multiple blockchains. In 2026, this network spans: | Chain | Primary DEX Sources | Approximate Liquidity |
+|
+---
+|
+---
+|
+---
+|
 | Ethereum | Uniswap v3, Curve, Balancer, SushiSwap | $2.8B+ |
 | Arbitrum | Camelot, Uniswap v3, SushiSwap | $890M+ |
 | Optimism | Velodrome, Uniswap v3, Curve | $420M+ |
@@ -63,8 +63,7 @@ The heart of 1inch's aggregation capability is **Pathfinder** — a proprietary 
 
 When you request a quote for swapping Token A to Token B, Pathfinder must solve: *Given N liquidity sources with varying depths, fees, and prices, what sequence of hops and splits minimizes the total cost of filling the order?*
 
-This is computationally intensive because:
-- **300+ sources** must be queried for current reserves and fees
+This is computationally intensive because: - **300+ sources** must be queried for current reserves and fees
 - **Multi-hop paths** (A → C → D → B) often yield better prices than direct pairs
 - **Split routing** — dividing one order across multiple paths — reduces slippage
 - **Gas costs** vary by route complexity; more hops mean higher execution costs
@@ -72,12 +71,9 @@ This is computationally intensive because:
 
 ### 2.2 The Discovery and Assembly Phases
 
-Pathfinder operates in two distinct phases:
+Pathfinder operates in two distinct phases: **Phase 1 — Route Discovery**: The algorithm explores all possible paths between source and destination tokens up to a configurable depth (typically 4-6 hops). It uses a modified Bellman-Ford approach to discover negative cycles in price space, effectively finding arbitrage-adjacent routes that indicate price inefficiencies.
 
-**Phase 1 — Route Discovery**: The algorithm explores all possible paths between source and destination tokens up to a configurable depth (typically 4-6 hops). It uses a modified Bellman-Ford approach to discover negative cycles in price space, effectively finding arbitrage-adjacent routes that indicate price inefficiencies.
-
-**Phase 2 — Route Assembly**: Discovered paths are scored using a multi-objective function that balances:
-- Expected output amount (primary objective)
+**Phase 2 — Route Assembly**: Discovered paths are scored using a multi-objective function that balances: - Expected output amount (primary objective)
 - Gas cost estimation (secondary)
 - Success probability based on historical fill rates
 - MEV protection requirements
@@ -125,17 +121,13 @@ yarn add @1inch/sdk
 npm install ethers axios dotenv
 ```
 
-Create a `.env` file for your API credentials:
-
-```bash
+Create a `.env` file for your API credentials: ```bash
 ONEINCH_API_KEY=your_api_key_here
 PRIVATE_KEY=your_wallet_private_key
 RPC_URL=https://mainnet.infura.io/v3/your_project_id
 ```
 
-Initialize the SDK with your configuration:
-
-```typescript
+Initialize the SDK with your configuration: ```typescript
 import { OneInchSdk } from '@1inch/sdk';
 import { ethers } from ethers;
 import * as dotenv from dotenv;
@@ -158,9 +150,7 @@ console.log('1inch SDK initialized for', wallet.address);
 
 ### 3.2 SDK Architecture Overview
 
-The SDK is organized into namespaces that mirror 1inch's API structure:
-
-```typescript
+The SDK is organized into namespaces that mirror 1inch's API structure: ```typescript
 // SDK module structure
 import {
   SwapApi,        // Token swaps and quotes
@@ -240,9 +230,7 @@ executeSwap().catch(console.error);
 
 ### 4.2 Handling Slippage and Partial Fills
 
-Slippage tolerance is critical in volatile markets. The SDK provides granular control:
-
-```typescript
+Slippage tolerance is critical in volatile markets. The SDK provides granular control: ```typescript
 // Conservative settings for large trades
 const largeTradeParams = {
   src: 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE,
@@ -269,9 +257,7 @@ const quickTradeParams = {
 
 ### 4.3 Cross-Chain Swaps via the Bridge API
 
-1inch's aggregation extends beyond single chains. The Bridge API finds optimal routes across chains:
-
-```typescript
+1inch's aggregation extends beyond single chains. The Bridge API finds optimal routes across chains: ```typescript
 // Bridge from Ethereum USDC to Arbitrum ETH
 const bridgeQuote = await sdk.crossChain.getQuote({
   srcChain: 1,        // Ethereum
@@ -306,9 +292,7 @@ One of 1inch's most innovative features is **Fusion+** — a gasless swapping me
 
 ### 5.1 How Fusion+ Works
 
-Traditional swaps require users to pay gas fees in the native token (ETH on Ethereum). Fusion+ eliminates this barrier:
-
-1. **User signs an intent** to swap at a minimum acceptable rate
+Traditional swaps require users to pay gas fees in the native token (ETH on Ethereum). Fusion+ eliminates this barrier: 1. **User signs an intent** to swap at a minimum acceptable rate
 2. **Resolvers compete** in a Dutch auction to fill the order
 3. **The winning resolver** executes the transaction, paying gas on behalf of the user
 4. **The resolver's fee** is embedded in the swap rate, invisible to the user
@@ -376,7 +360,15 @@ async function executeFusionSwap() {
 ### 5.2 Fusion+ Presets Explained
 
 | Preset | Auction Duration | Priority | Best For |
-|--------|-----------------|----------|----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | `fast` | 60 seconds | High | Time-sensitive swaps, higher resolver fee |
 | `medium` | 180 seconds | Medium | Balanced speed and cost |
 | `slow` | 600 seconds | Low | Maximum savings, patient execution |
@@ -728,9 +720,7 @@ Yes — the MIT-licensed SDK explicitly permits this. Common integration pattern
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -752,7 +742,6 @@ For traders seeking a reliable centralized exchange companion to their DeFi acti
 Start building with 1inch today and give your users the best price execution DeFi has to offer.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -781,13 +770,11 @@ Start building with 1inch today and give your users the best price execution DeF
 
 ## Related Articles
 
-Explore more articles in this category:
-
-1. [Aave V4 Defi Lending Protocol](/cn/aave-v4-defi-lending-protocol)
+Explore more articles in this category: 1. [Aave V4 Defi Lending Protocol](/cn/aave-v4-defi-lending-protocol)
 2. [Alpaca Trading Api Stock Broker](/cn/alpaca-trading-api-stock-broker)
 
----
 
+---
 ## Frequently Asked Questions (FAQ)
 
 **问：量化交易的风险有多大？**
@@ -810,3 +797,5 @@ Explore more articles in this category:
 
 包括服务器费用、数据订阅、算法更新、以及监控维护时间。
 
+
+---

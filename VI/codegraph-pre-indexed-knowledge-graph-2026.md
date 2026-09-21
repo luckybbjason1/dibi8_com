@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/codegraph-pre-indexed-knowledge-graph-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/codegraph-pre-indexed-knowledge-graph-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/codegraph-pre-indexed-knowledge-graph-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/codegraph-pre-indexed-knowledge-graph-2026" />
 title: 'Đánh giá CodeGraph: Đồ thị mã được pre-index giúp Claude...
 description: 'CodeGraph (20.2K+ stars trên GitHub) là công cụ open-source pre-index đồ thị tri thức mã nguồn cho Claude Code, Cursor, Codex CLI, OpenCode và Hermes Agent. Lưu cục bộ SQLite, 19 ngôn ngữ, nhận diện 14 framework routing, không cần API ngoài. Giảm ~35% token và ~70% lượng tool call so với grep/glob/Read thô. Phân tích tính năng, hướng dẫn cài đặt, workflow thực tế, so sánh với LSP và dịch vụ MCP.'
 date: 2026-05-23 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [codegraph, 'claude-code', 'ai-coding-agent', 'code-graph', 'token-savings', mcp, 'hermes-agent', cursor, 'codex-cli', opencode, 'developer-productivity']
-aliases:
-- /vi/posts/codegraph-pre-indexed-knowledge-graph-2026/
+aliases: - /vi/posts/codegraph-pre-indexed-knowledge-graph-2026/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/codegraph-pre-indexed-knowledge-graph-2026/ -->
 
 ## Vấn đề: AI coding agent đang đốt token vào `grep`
 
@@ -47,9 +39,7 @@ Số liệu công bố: **rẻ hơn ~35% mỗi session, ít hơn ~70% tool call,
 
 ## CodeGraph thực sự là gì
 
-Bản chất là ba thứ gộp lại:
-
-1. **Trình index** — đi qua repo, phân tích mọi file được hỗ trợ, trích xuất symbol (function, class, type, export), quan hệ gọi ("function A gọi function B"), framework route ("`/api/users` được xử lý bởi `UserController.list`"). Toàn bộ lưu vào SQLite cục bộ.
+Bản chất là ba thứ gộp lại: 1. **Trình index** — đi qua repo, phân tích mọi file được hỗ trợ, trích xuất symbol (function, class, type, export), quan hệ gọi ("function A gọi function B"), framework route ("`/api/users` được xử lý bởi `UserController.list`"). Toàn bộ lưu vào SQLite cục bộ.
 
 2. **CLI query** — `codegraph query`, `codegraph callers`, `codegraph impact`. Trả về JSON cấu trúc trong vài mili giây — không tốn token, không vòng LLM.
 
@@ -66,9 +56,7 @@ Toàn bộ dự án ~92% TypeScript với lớp shim mỏng cho từng nền t�
 
 ## Số liệu đằng sau
 
-Các chỉ số headline của CodeGraph đến từ benchmark nội bộ so sánh Claude Code có và không có đồ thị:
-
-| Chỉ số | Không CodeGraph | Có CodeGraph |
+Các chỉ số headline của CodeGraph đến từ benchmark nội bộ so sánh Claude Code có và không có đồ thị: | Chỉ số | Không CodeGraph | Có CodeGraph |
 |---|---|---|
 | Trung bình tool call mỗi câu hỏi "hiểu X" | ~22 | ~6.5 |
 | Trung bình token mỗi session (repo trung bình) | 11,400 | 7,400 |
@@ -80,9 +68,7 @@ Cải thiện wall-clock thậm chí thú vị hơn. Dù bạn không quan tâm 
 
 ## Các AI coding tool được hỗ trợ
 
-CodeGraph tích hợp qua MCP (Model Context Protocol) cho tool đã hỗ trợ MCP, và qua CLI trực tiếp cho tool chưa hỗ trợ:
-
-- **[Claude Code](https://dibi8.com/vi/vs/claude-code-vs-aider/)** — đăng ký MCP server. Sau khi cấu hình, agent Explore của Claude Code tự ưu tiên CodeGraph thay vì `grep`/`glob` thô.
+CodeGraph tích hợp qua MCP (Model Context Protocol) cho tool đã hỗ trợ MCP, và qua CLI trực tiếp cho tool chưa hỗ trợ: - **[Claude Code](https://dibi8.com/vi/vs/claude-code-vs-aider/)** — đăng ký MCP server. Sau khi cấu hình, agent Explore của Claude Code tự ưu tiên CodeGraph thay vì `grep`/`glob` thô.
 - **[Cursor](https://dibi8.com/vi/vs/claude-code-vs-aider/)** — cùng kiểu MCP server.
 - **[Codex CLI](https://dibi8.com/vi/resources/llm-frameworks/openai-codex-cli-terminal-ai-coding-agent-2026/)** — tích hợp CLI qua shell alias hoặc wrapper script.
 - **[OpenCode](https://dibi8.com/vi/resources/llm-frameworks/opencode-open-source-claude-code-alternative-2026/)** — tương thích MCP.
@@ -94,9 +80,7 @@ Trong mọi trường hợp cách tích hợp đại khái giống nhau: index r
 
 ## Cài đặt nhanh
 
-CodeGraph có ba cách cài đặt, chọn cái phù hợp với stack:
-
-```bash
+CodeGraph có ba cách cài đặt, chọn cái phù hợp với stack: ```bash
 # macOS / Linux — script cài chính thức
 curl -fsSL https://raw.githubusercontent.com/colbymchenry/codegraph/main/install.sh | sh
 
@@ -107,9 +91,7 @@ irm https://raw.githubusercontent.com/colbymchenry/codegraph/main/install.ps1 | 
 npx @colbymchenry/codegraph
 ```
 
-Sau khi cài, tại thư mục gốc repo:
-
-```bash
+Sau khi cài, tại thư mục gốc repo: ```bash
 # Index lần đầu — một lần duy nhất, ~10 giây cho repo 50K dòng
 codegraph init -i
 
@@ -129,9 +111,7 @@ Watcher chạy nền và giữ đồng bộ khi bạn chỉnh sửa. Không daem
 
 ## Cắm vào Claude Code
 
-Workflow phổ biến nhất. Trong `~/.claude/mcp_servers.json`:
-
-```json
+Workflow phổ biến nhất. Trong `~/.claude/mcp_servers.json`: ```json
 {
   "mcpServers": {
     "codegraph": {
@@ -149,14 +129,11 @@ Vậy thôi. Khởi động lại Claude Code, lần tới bạn hỏi "tìm m�
 
 ## So sánh
 
-Có ba cách tiếp cận hiện có mà CodeGraph cạnh tranh:
-
-### So với `grep`/`glob`/`Read` thô
+Có ba cách tiếp cận hiện có mà CodeGraph cạnh tranh: ### So với `grep`/`glob`/`Read` thô
 Đây là hành vi mặc định của Claude Code / Cursor. Cài đặt rẻ (không cần install), nhưng mỗi session đều quét lại. Một khi repo đã được CodeGraph index, nó thắng áp đảo về chi phí và độ trễ.
 
 ### So với Language Server (LSP)
-LSP (TypeScript Server, gopls, rust-analyzer) cung cấp trí tuệ symbol tương tự. Khác biệt:
-- LSP theo ngôn ngữ; CodeGraph là polyglot trong một binary duy nhất.
+LSP (TypeScript Server, gopls, rust-analyzer) cung cấp trí tuệ symbol tương tự. Khác biệt: - LSP theo ngôn ngữ; CodeGraph là polyglot trong một binary duy nhất.
 - LSP thiết kế cho editor, không phải cho headless agent query — gọi từ CLI agent rất vụng.
 - CodeGraph lưu đồ thị; LSP tính lại mỗi lần.
 
@@ -169,9 +146,7 @@ Sourcegraph và Continue cũng cung cấp MCP server trí tuệ mã, nhưng dự
 
 ## Điều CodeGraph không làm
 
-Để đặt kỳ vọng đúng:
-
-- **Không tìm kiếm ngữ nghĩa** — đây là cấu trúc, không dựa embedding. "Tìm mã làm X về mặt khái niệm" không phải việc của nó. Nếu cần, kết hợp vector store (`agentmemory` hoặc Qdrant local).
+Để đặt kỳ vọng đúng: - **Không tìm kiếm ngữ nghĩa** — đây là cấu trúc, không dựa embedding. "Tìm mã làm X về mặt khái niệm" không phải việc của nó. Nếu cần, kết hợp vector store (`agentmemory` hoặc Qdrant local).
 - **Không join đa repo** — index một repo mỗi lần. Polyrepo monorepo cần index riêng từng cái.
 - **Phân giải macro/generic giới hạn** — Rust trait dispatch, C++ template, TS conditional types được phân giải một phần. Đôi khi nhận "tham khảo" thay vì câu trả lời dứt khoát.
 - **Không lịch sử git** — `codegraph` về cây hiện tại, không phải "function này đổi khi nào". Dùng `git log` hoặc [Sourcegraph](https://about.sourcegraph.com).
@@ -205,7 +180,6 @@ Kết hợp với [trung tâm điều khiển CLI AI hợp nhất như CC Switch
 **GitHub**: [colbymchenry/codegraph](https://github.com/colbymchenry/codegraph) · **License**: MIT · **Mới nhất**: v0.9.3 (22/5/2026) · **Stars**: 20.2K+
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

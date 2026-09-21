@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-code-mcp-advanced-10-server-stack-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-mcp-advanced-10-server-stack-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-mcp-advanced-10-server-stack-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-mcp-advanced-10-server-stack-2026" />
 title: 'Claude Code MCP 고급 2026: 프로덕션급 10 서버 스택'
 description: '다양한 MCP 서버 조합으로 Claude Code를 운영해본 끝에, 성능·보안·시작 시간의 균형을 맞춘 10 서버 프로덕션 스택으로 정착했습니다. 각 서버가 왜 포함되었는지, 무엇을 하는지, 그리고 1인 사용자와 팀 환경에서 어떻게 구성할지 정리합니다.'
 date: 2026-05-25 00:00:00+08:00
@@ -21,10 +16,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['claude-code', mcp, configuration, production, 2026]
-aliases:
-- /kr/posts/claude-code-mcp-advanced-10-server-stack-2026/
-faq:
-  - q: "MCP 서버는 몇 개부터 너무 많은가요?"
+aliases: - /kr/posts/claude-code-mcp-advanced-10-server-stack-2026/
+faq: - q: "MCP 서버는 몇 개부터 너무 많은가요?"
     a: "10개를 넘어가면 시작 지연이 눈에 띄게 늘어납니다. 서버 하나당 Claude Code 초기화에 100~300ms가 추가됩니다. 아래 10 서버 스택이 최적점이며, 시작이 느려졌다고 느끼지 않으면서 90%의 워크플로를 커버합니다."
   - q: "글로벌 설정과 프로젝트별 MCP 설정 중 어느 쪽을 써야 하나요?"
     a: "프로젝트 전용 서버(이 앱 전용 postgres, 이 리포지토리에 한정된 GitHub PAT 등)는 프로젝트별(.claude/mcp.json 또는 .cursor/mcp.json)로 두세요. 개인용 범용 도구(홈 디렉터리로 한정된 filesystem, sequentialthinking)는 글로벌(~/.claude/mcp.json)로 두세요."
@@ -33,8 +26,6 @@ faq:
   - q: "HTTP/SSE 서버와 stdio의 트레이드오프는 무엇인가요?"
     a: "HTTP: 영속 상태, 자격 증명 중앙화, 서버 가동 시간에 의존. stdio: 지연 없음, 자격 증명 노출 없음, 세션 종료 시 함께 종료. 기본은 stdio. HTTP는 (a) 세션 간 영속 상태가 필요하거나, (b) 로컬 대체가 없는 SaaS와 통합해야 할 때만 사용하세요."
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/claude-code-mcp-advanced-10-server-stack-2026/ -->
 
 {{</* resource-info */>}}
 
@@ -112,9 +103,7 @@ faq:
 
 ## 구성
 
-`~/.claude/mcp.json` (글로벌, 범용 도구):
-
-```json
+`~/.claude/mcp.json` (글로벌, 범용 도구): ```json
 {
   "mcpServers": {
     "filesystem": {"command": "npx", "args": ["-y", "@modelcontextprotocol/server-filesystem", "/Users/me/work"]},
@@ -128,9 +117,7 @@ faq:
 }
 ```
 
-`.claude/mcp.json` (프로젝트별, 민감한 도구):
-
-```json
+`.claude/mcp.json` (프로젝트별, 민감한 도구): ```json
 {
   "mcpServers": {
     "github": {"command": "...", "env": {"GITHUB_PAT": "${PROJECT_GITHUB_PAT}"}},
@@ -158,8 +145,7 @@ Slack과 동일—유용하지만 대부분 사용자에게 매일 돌아오는 
 
 서버 하나당 약 100~300ms 추가. 서버 10개: 합계 약 1.5초. 15개 이상: 눈에 띄게 느려짐.
 
-팁:
-- 동일 기능이 stdio(로컬)와 HTTP 모두에 있으면 stdio 우선
+팁: - 동일 기능이 stdio(로컬)와 HTTP 모두에 있으면 stdio 우선
 - 각 서버의 시작 시간 감사—`time npx <server>`로 측정
 - Anthropic 공식 대체가 있을 때 느린 커뮤니티 서버를 교체
 
@@ -173,8 +159,7 @@ Slack과 동일—유용하지만 대부분 사용자에게 매일 돌아오는 
 
 ## 권장 인프라
 
-자체 호스팅 MCP 서버(팀 공유용):
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — 200달러 크레딧
+자체 호스팅 MCP 서버(팀 공유용): - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — 200달러 크레딧
 - **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 홍콩 VPS, 아시아 저지연
 
 *제휴 링크—가격은 동일하며 dibi8.com을 후원합니다.*
@@ -190,7 +175,6 @@ MCP 서버 10개가 최적점입니다. 위 스택은 코드, 검색, 프로젝�
 **관련 글**: [MCP 서버 2026 순위](https://dibi8.com/kr/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/) · [MCP 서버 보안 감사 2026](https://dibi8.com/kr/resources/llm-frameworks/mcp-server-security-audit-2026-real-cases/) · [Claude Code 설정 가이드](https://dibi8.com/kr/resources/llm-frameworks/claude-code/)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -218,25 +202,20 @@ MCP 서버 10개가 최적점입니다. 위 스택은 코드, 검색, 프로젝�
 
 ## Why This Matters
 
-Understanding claude code mcp 고급 2026: 프로덕션급 10 서버 스택 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding claude code mcp 고급 2026: 프로덕션급 10 서버 스택 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

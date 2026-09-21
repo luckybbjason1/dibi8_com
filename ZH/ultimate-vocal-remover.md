@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ultimate-vocal-remover" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ultimate-vocal-remover" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ultimate-vocal-remover" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ultimate-vocal-remover" />
 title: 'Ultimate Vocal Remover: 24.7K+ Stars — 2026 完整安装配置指南'
 description: 'Ultimate Vocal Remover (UVR) 是一个基于深度神经网络的人声分离 GUI 工具。兼容 demucs、RVC、GPT-SoVITS。涵盖 Windows、macOS、Linux 安装、模型选择、批量处理和生产级配置。'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [人声移除, 音频分离, 深度学习, pytorch, demucs, 'mdx-net', ai音频, 卡拉ok, 音乐制作]
-aliases:
-- /zh/posts/ultimate-vocal-remover/
+aliases: - /zh/posts/ultimate-vocal-remover/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/ultimate-vocal-remover/ -->
 
 {{</* resource-info */>}}
 
@@ -130,11 +122,9 @@ UVR 支持 macOS Big Sur 及以上版本，兼容 Intel 和 Apple Silicon Mac。
 
 ```bash
 # 第一步：为你的架构下载 DMG
-# Apple Silicon (M1/M2/M3):
-# https://github.com/Anjok07/ultimatevocalremovergui/releases/download/v5.6/Ultimate_Vocal_Remover_v5_6_MacOS_arm64.dmg
+# Apple Silicon (M1/M2/M3): # https://github.com/Anjok07/ultimatevocalremovergui/releases/download/v5.6/Ultimate_Vocal_Remover_v5_6_MacOS_arm64.dmg
 
-# Intel Mac:
-# https://github.com/Anjok07/ultimatevocalremovergui/releases/download/v5.6/Ultimate_Vocal_Remover_v5_6_MacOS_x86_64.dmg
+# Intel Mac: # https://github.com/Anjok07/ultimatevocalremovergui/releases/download/v5.6/Ultimate_Vocal_Remover_v5_6_MacOS_x86_64.dmg
 
 # 第二步：挂载 DMG 并将 UVR 拖入 Applications
 
@@ -266,7 +256,17 @@ UVR 内置了数十个预训练模型。选择合适的模型取决于你的输�
 ### 内置模型
 
 | 模型 | 架构 | 适用场景 | 速度 | 显存 |
-|------|------|---------|------|------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | `MDX-Net Main` | MDX-Net | 通用人声移除 | 中等 | 6GB |
 | `MDX23C` | MDX23C | 复杂混音、高质量 | 慢 | 8GB |
 | `VR-DeEcho` | VR-Net | 去噪+人声移除 | 快 | 4GB |
@@ -415,7 +415,17 @@ done
 所有测试使用 4 分钟 44.1kHz 立体声 WAV 文件：
 
 | 硬件 | MDX-Net | MDX23C | Demucs v4 | VR-DeEcho |
-|------|---------|--------|-----------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | RTX 4090 (24GB) | 18秒 | 42秒 | 55秒 | 12秒 |
 | RTX 3060 (12GB) | 35秒 | 85秒 | 110秒 | 22秒 |
 | GTX 1060 (6GB) | 72秒 | 180秒 | 240秒 | 45秒 |
@@ -427,7 +437,15 @@ done
 SDR 越高 = 分离质量越好，在 MUSDB18 基准上测试：
 
 | 模型 | 人声 SDR | 伴奏 SDR | 伪影程度 |
-|------|---------|---------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | MDX23C | 9.42 | 14.8 | 低 |
 | Demucs v4 | 9.28 | 14.2 | 低 |
 | MDX-Net Main | 8.85 | 13.6 | 中 |
@@ -502,8 +520,7 @@ MODEL = "MDX-Net Main"
 INPUT_DIR = "./input"
 OUTPUT_DIR = "./output"
 
-def process_file(input_path: str, output_dir: str) -> dict:
-    """通过 UVR 处理单个音频文件。"""
+def process_file(input_path: str, output_dir: str) -> dict: """通过 UVR 处理单个音频文件。"""
     cmd = [
         "python", UVR_PATH,
         "--input", input_path,
@@ -521,25 +538,20 @@ def process_file(input_path: str, output_dir: str) -> dict:
         "stderr": result.stderr if result.returncode != 0 else None
     }
 
-def main():
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
+def main(): os.makedirs(OUTPUT_DIR, exist_ok=True)
     results = []
 
-    for file in Path(INPUT_DIR).glob("*"):
-        if file.suffix.lower() in {".mp3", ".wav", ".flac", ".m4a"}:
-            logger.info(f"正在处理: {file.name}")
+    for file in Path(INPUT_DIR).glob("*"): if file.suffix.lower() in {".mp3", ".wav", ".flac", ".m4a"}: logger.info(f"正在处理: {file.name}")
             result = process_file(str(file), OUTPUT_DIR)
             results.append(result)
 
     # 保存批量处理报告
-    with open(f"{OUTPUT_DIR}/batch_report.json", "w") as f:
-        json.dump(results, f, indent=2)
+    with open(f"{OUTPUT_DIR}/batch_report.json", "w") as f: json.dump(results, f, indent=2)
 
     success_count = sum(1 for r in results if r["success"])
     logger.info(f"完成: {success_count}/{len(results)} 个文件已处理")
 
-if __name__ == "__main__":
-    main()
+if __name__ == "__main__": main()
 ```
 
 ### 监控与日志
@@ -570,7 +582,17 @@ watch -n 1 nvidia-smi
 ## 与替代方案对比
 
 | 特性 | Ultimate Vocal Remover | demucs | Spleeter | Open-Unmix |
-|------|----------------------|--------|----------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **GitHub Stars** | 24,700 | 10,100 | 28,200 | 1,500 |
 | **GUI 界面** | 原生 Tkinter GUI | 无（仅 CLI） | 无（仅 CLI） | 无（仅 CLI） |
 | **预训练模型** | 20+ 内置 | 5 种变体 | 2轨、4轨、5轨 | 仅 4轨 |
@@ -661,7 +683,6 @@ Ultimate Vocal Remover 填补了纯 CLI 库无法覆盖的空白：通过可视�
 - Rubber Band 音频库: https://breakfastquay.com/rubberband/
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -687,13 +708,13 @@ Ultimate Vocal Remover 填补了纯 CLI 库无法覆盖的空白：通过可视�
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [wandb-ml-experiment-tracking-platform-2026](ultimate-vocal-remover)
 - [wandb-ml-experiment-tracking-platform-2026](ultimate-vocal-remover)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

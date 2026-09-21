@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/pgvector-postgres-vector-extension" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/pgvector-postgres-vector-extension" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/pgvector-postgres-vector-extension" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/pgvector-postgres-vector-extension" />
 title: 'pgvector 2026：将 PostgreSQL 转变为高性能向量数据库——配置、调优与 RAG 集成指南'
 description: 'pgvector 0.8.2 生产指南：HNSW/IVFFlat 索引、向量相似性搜索、性能调优，以及与 LangChain 和 LlamaIndex 的 RAG 集成。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['data-science']
 tags: [pgvector, postgresql, 向量数据库, hnsw, ann, rag, 相似性搜索, 全文搜索]
-aliases:
-- /zh/posts/pgvector-postgres-vector-extension/
+aliases: - /zh/posts/pgvector-postgres-vector-extension/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/pgvector-postgres-vector-extension/ -->
 
 {{</* resource-info */>}}
 
@@ -50,7 +42,11 @@ aliases:
 **核心数据（2026 年 5 月）：**
 
 | 指标 | 数值 |
-|--------|-------|
+|
+---
+|
+---
+|
 | 当前版本 | **0.8.2** |
 | PostgreSQL 兼容性 | **14 至 18** |
 | GitHub Stars | **15,000+** |
@@ -98,7 +94,13 @@ CREATE INDEX ON documents
 pgvector 提供三种距离算子：
 
 | 算子 | 说明 | 使用场景 |
-|----------|-------------|----------|
+|
+---
+|
+---
+|
+---
+|
 | `<->` | 欧几里得（L2）距离 | 通用相似性（默认） |
 | `<#>` | 负内积 | OpenAI embedding |
 | `<=>` | 余弦距离 | 语义相似性（归一化向量） |
@@ -364,7 +366,17 @@ reserve_pool_size = 10
 ### 基准对比：调优前后
 
 | 配置 | 查询延迟 (p99) | Recall@10 | 索引大小 | 构建时间 |
-|-------------|---------------|-----------|------------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 无索引（顺序扫描） | 47,000 ms | 1.00 | N/A | N/A |
 | HNSW 默认 (m=16, ef_construction=64) | 4.2 ms | 0.91 | 450 MB | 45s |
 | HNSW 调优 (m=24, ef_construction=128) | 3.8 ms | 0.95 | 680 MB | 82s |
@@ -406,8 +418,7 @@ results = vector_store.similarity_search(
     k=5,
     filter={"source": "blog"}
 )
-for doc in results:
-    print(f"Content: {doc.page_content}")
+for doc in results: print(f"Content: {doc.page_content}")
 ```
 
 ### LlamaIndex + pgvector
@@ -457,14 +468,12 @@ import numpy as np
 client = OpenAI()
 conn = psycopg2.connect("dbname=vectordb user=postgres password=mysecretpassword host=localhost")
 
-def get_embedding(text: str) -> list[float]:
-    resp = client.embeddings.create(
+def get_embedding(text: str) -> list[float]: resp = client.embeddings.create(
         model="text-embedding-3-large", input=text, dimensions=1536
     )
     return resp.data[0].embedding
 
-def retrieve_documents(query: str, top_k: int = 5, tenant_id: int = 1):
-    query_vec = get_embedding(query)
+def retrieve_documents(query: str, top_k: int = 5, tenant_id: int = 1): query_vec = get_embedding(query)
     cur = conn.cursor()
     cur.execute("""
         SELECT title, content, embedding <=> %s::vector AS distance
@@ -476,8 +485,7 @@ def retrieve_documents(query: str, top_k: int = 5, tenant_id: int = 1):
     return cur.fetchall()
 
 # 完整 RAG 管道
-def rag_query(user_question: str) -> str:
-    docs = retrieve_documents(user_question, top_k=5)
+def rag_query(user_question: str) -> str: docs = retrieve_documents(user_question, top_k=5)
     context = "\n\n".join([f"Title: {d[0]}\n{d[1]}" for d in docs])
     
     response = client.chat.completions.create(
@@ -559,23 +567,32 @@ conn_pool = pool.ThreadedConnectionPool(
     password="mysecretpassword"
 )
 
-def search_with_pool(query_vec, limit=10):
-    conn = conn_pool.getconn()
-    try:
-        cur = conn.cursor()
+def search_with_pool(query_vec, limit=10): conn = conn_pool.getconn()
+    try: cur = conn.cursor()
         cur.execute(
             "SELECT id, title FROM documents ORDER BY embedding <-> %s::vector LIMIT %s",
             (query_vec, limit)
         )
         return cur.fetchall()
-    finally:
-        conn_pool.putconn(conn)
+    finally: conn_pool.putconn(conn)
 ```
 
 ## 与竞品对比
 
 | 特性 | pgvector 0.8.2 | Pinecone | Weaviate 1.25 | Qdrant 1.11 | Milvus 2.5 |
-|---------|---------------|----------|---------------|-------------|------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **开源协议** | PostgreSQL License | 否 | BSD-3 | Apache-2.0 | Apache-2.0 |
 | **最大规模** | ~5000 万向量 | 无限 | 200M/节点 | 500M/节点 | **10B+** |
 | **p99 延迟** | 25-40 ms | 28 ms | 19 ms | **12 ms** | 8 ms (GPU) |
@@ -711,7 +728,6 @@ pgvector 0.8.2 是已经在运行 PostgreSQL 的团队最务实的向量数据�
 本文包含 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 云托管和 [Supabase](https://supabase.com) 托管 PostgreSQL 的附属链接。如果你通过我们的链接注册，我们会获得佣金，不会增加你的额外成本。我们只推荐在自己的生产环境中使用过的服务。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -737,8 +753,8 @@ pgvector 0.8.2 是已经在运行 PostgreSQL 的团队最务实的向量数据�
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [alpaca-trading-api-stock-broker](pgvector-postgres-vector-extension)
@@ -747,8 +763,8 @@ pgvector 0.8.2 是已经在运行 PostgreSQL 的团队最务实的向量数据�
 - [cognee-ai-memory-platform](pgvector-postgres-vector-extension)
 - [flowise](pgvector-postgres-vector-extension)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

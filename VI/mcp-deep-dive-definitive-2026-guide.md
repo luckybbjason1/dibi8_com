@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mcp-deep-dive-definitive-2026-guide" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mcp-deep-dive-definitive-2026-guide" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mcp-deep-dive-definitive-2026-guide" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mcp-deep-dive-definitive-2026-guide" />
 title: 'MCP (Model Context Protocol) Hướng Dẫn Thực Chiến Toàn D...
 description: 'Xây dựng MCP server từ con số không với hướng dẫn chi tiết. Nắm vững Model Context Protocol của Anthropic để AI Agent kết nối ngay lập tức với database, GitHub, Slack và hàng nghìn công cụ khác — không còn code tích hợp lặp đi lặp lại.'
 date: 2026-05-15 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: ''
 last_maintained: '2026-05-15'
 featureImage: ''
 draft: false
-aliases:
-- /vi/posts/mcp-deep-dive-definitive-2026-guide/
+aliases: - /vi/posts/mcp-deep-dive-definitive-2026-guide/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/mcp-deep-dive-definitive-2026-guide/ -->
 
 {</* resource-info */>}
 
@@ -61,15 +53,11 @@ Bài viết này không phải giới thiệu khái niệm. Tôi sẽ dẫn bạ
 
 ## 1. Bản chất của MCP: Cổng USB-C trong thế giới AI
 
-Trước khi MCP xuất hiện, lập trình viên đối mặt với bài toán kinh điển **M×N**:
-
-- **M** mô hình ngôn ngữ lớn (GPT-4, Claude, Gemini, Llama...)
+Trước khi MCP xuất hiện, lập trình viên đối mặt với bài toán kinh điển **M×N**: - **M** mô hình ngôn ngữ lớn (GPT-4, Claude, Gemini, Llama...)
 - **N** công cụ bên ngoài (GitHub API, database, Slack, trình duyệt, hệ thống file...)
 - Mỗi khi thêm công cụ mới, phải viết code tích hợp riêng cho từng mô hình
 
-MCP đã rút gọn độ phức tạp này xuống còn **M+N**:
-
-- Nhà phát triển công cụ expose một lần theo chuẩn MCP (Server)
+MCP đã rút gọn độ phức tạp này xuống còn **M+N**: - Nhà phát triển công cụ expose một lần theo chuẩn MCP (Server)
 - Nhà cung cấp mô hình triển khai một MCP Client
 - Cả hai tự động tương thích, không cần code nối ghép thêm
 
@@ -159,9 +147,7 @@ mcp-site-monitor/
 
 ## 4. Thực chiến: Xây dựng MCP server giám sát website
 
-Chúng ta sẽ tạo một MCP server tên **SiteMonitor**, expose hai công cụ:
-
-- `check_site_status`: Kiểm tra website online và đo thời gian phản hồi
+Chúng ta sẽ tạo một MCP server tên **SiteMonitor**, expose hai công cụ: - `check_site_status`: Kiểm tra website online và đo thời gian phản hồi
 - `check_ssl_expiry`: Kiểm tra số ngày còn lại của chứng chỉ SSL
 
 ### Code hoàn chỉnh (server.py)
@@ -180,16 +166,12 @@ mcp = FastMCP("SiteMonitor")
 
 
 @mcp.tool()
-async def check_site_status(url: str, timeout: int = 10) -> str:
-    """Kiểm tra tính khả dụng của website chỉ định.
+async def check_site_status(url: str, timeout: int = 10) -> str: """Kiểm tra tính khả dụng của website chỉ định.
 
-    Args:
-        url: Địa chỉ website cần kiểm tra, ví dụ: https://example.com
+    Args: url: Địa chỉ website cần kiểm tra, ví dụ: https://example.com
         timeout: Thời gian chờ yêu cầu (giây), mặc định 10 giây
     """
-    try:
-        async with httpx.AsyncClient(follow_redirects=True, timeout=timeout) as client:
-            start = asyncio.get_event_loop().time()
+    try: async with httpx.AsyncClient(follow_redirects=True, timeout=timeout) as client: start = asyncio.get_event_loop().time()
             response = await client.get(url)
             elapsed = asyncio.get_event_loop().time() - start
 
@@ -201,25 +183,18 @@ async def check_site_status(url: str, timeout: int = 10) -> str:
                 f"• Thời gian phản hồi: {elapsed:.2f} giây\n"
                 f"• Máy chủ: {response.headers.get('server', 'không rõ')}\n"
             )
-    except httpx.TimeoutException:
-        return f"❌ Hết thời gian: {url} không phản hồi trong {timeout} giây"
-    except Exception as e:
-        return f"❌ Lỗi: {type(e).__name__}: {str(e)}"
+    except httpx.TimeoutException: return f"❌ Hết thời gian: {url} không phản hồi trong {timeout} giây"
+    except Exception as e: return f"❌ Lỗi: {type(e).__name__}: {str(e)}"
 
 
 @mcp.tool()
-async def check_ssl_expiry(hostname: str, port: int = 443) -> str:
-    """Kiểm tra thời hạn còn lại của chứng chỉ SSL tên miền.
+async def check_ssl_expiry(hostname: str, port: int = 443) -> str: """Kiểm tra thời hạn còn lại của chứng chỉ SSL tên miền.
 
-    Args:
-        hostname: Tên miền, ví dụ: example.com
+    Args: hostname: Tên miền, ví dụ: example.com
         port: Cổng HTTPS, mặc định 443
     """
-    try:
-        context = ssl.create_default_context()
-        with socket.create_connection((hostname, port), timeout=10) as sock:
-            with context.wrap_socket(sock, server_hostname=hostname) as ssock:
-                cert = ssock.getpeercert()
+    try: context = ssl.create_default_context()
+        with socket.create_connection((hostname, port), timeout=10) as sock: with context.wrap_socket(sock, server_hostname=hostname) as ssock: cert = ssock.getpeercert()
                 expiry = datetime.strptime(cert["notAfter"], "%b %d %H:%M:%S %Y %Z")
                 days_left = (expiry - datetime.utcnow()).days
 
@@ -231,12 +206,10 @@ async def check_ssl_expiry(hostname: str, port: int = 443) -> str:
                     f"• Thời điểm hết hạn: {expiry.strftime('%Y-%m-%d %H:%M UTC')}\n"
                     f"• Số ngày còn lại: {days_left} ngày\n"
                 )
-    except Exception as e:
-        return f"❌ Kiểm tra SSL thất bại: {type(e).__name__}: {str(e)}"
+    except Exception as e: return f"❌ Kiểm tra SSL thất bại: {type(e).__name__}: {str(e)}"
 
 
-if __name__ == "__main__":
-    mcp.run(transport="stdio")
+if __name__ == "__main__": mcp.run(transport="stdio")
 ```
 
 ### Giải thích điểm then chốt trong code
@@ -259,15 +232,11 @@ uv run server.py
 
 ### Claude Desktop (macOS)
 
-Chỉnh sửa file cấu hình:
-
-```bash
+Chỉnh sửa file cấu hình: ```bash
 ~/Library/Application\ Support/Claude/claude_desktop_config.json
 ```
 
-Thêm cấu hình Server:
-
-```json
+Thêm cấu hình Server: ```json
 {
   "mcpServers": {
     "site-monitor": {
@@ -283,17 +252,13 @@ Thêm cấu hình Server:
 }
 ```
 
-**Khởi động lại Claude Desktop**, sau đó dùng trong hội thoại:
-
-> "Kiểm tra giúp tôi trạng thái https://github.com, và cho biết chứng chỉ SSL còn bao lâu nữa hết hạn."
+**Khởi động lại Claude Desktop**, sau đó dùng trong hội thoại: > "Kiểm tra giúp tôi trạng thái https://github.com, và cho biết chứng chỉ SSL còn bao lâu nữa hết hạn."
 
 Claude sẽ tự động gọi `check_site_status` và `check_ssl_expiry`, sau đó tổng hợp kết quả trả lời bạn.
 
 ### Cursor
 
-Tạo file `.cursor/mcp.json` ở thư mục gốc dự án:
-
-```json
+Tạo file `.cursor/mcp.json` ở thư mục gốc dự án: ```json
 {
   "mcpServers": {
     "site-monitor": {
@@ -313,9 +278,7 @@ AI Chat của Cursor sẽ tự nhận diện và sử dụng các công cụ nà
 
 ### VS Code Copilot Agent Mode
 
-VS Code v1.99+ hỗ trợ MCP native ở Copilot Agent Mode. Cấu hình trong `settings.json`:
-
-```json
+VS Code v1.99+ hỗ trợ MCP native ở Copilot Agent Mode. Cấu hình trong `settings.json`: ```json
 {
   "github.copilot.chat.mcpServers": {
     "site-monitor": {
@@ -333,18 +296,14 @@ VS Code v1.99+ hỗ trợ MCP native ở Copilot Agent Mode. Cấu hình trong `
 
 ### Expose Resources (Dữ liệu chỉ đọc)
 
-Cho phép AI đọc file cấu hình hoặc log trên server:
-
-```python
+Cho phép AI đọc file cấu hình hoặc log trên server: ```python
 @mcp.resource("config://app")
-def get_app_config() -> str:
-    """Lấy cấu hình ứng dụng hiện tại."""
+def get_app_config() -> str: """Lấy cấu hình ứng dụng hiện tại."""
     import json
     return json.dumps({"version": "1.0.0", "check_interval": 300})
 
 @mcp.resource("log://latest")
-def get_latest_log() -> str:
-    """Đọc bản ghi log giám sát mới nhất."""
+def get_latest_log() -> str: """Đọc bản ghi log giám sát mới nhất."""
     return "[2026-05-15 08:00:00] github.com: OK (23ms)"
 ```
 
@@ -352,10 +311,8 @@ def get_latest_log() -> str:
 
 ```python
 @mcp.prompt()
-def debug_site_issue(url: str, error_code: int) -> str:
-    """Sinh prompt chẩn đoán sự cố website."""
-    return f"""Website {url} đang trả về HTTP {error_code}. Hãy điều tra theo các bước sau:
-1. Kiểm tra phân giải DNS có bình thường không
+def debug_site_issue(url: str, error_code: int) -> str: """Sinh prompt chẩn đoán sự cố website."""
+    return f"""Website {url} đang trả về HTTP {error_code}. Hãy điều tra theo các bước sau: 1. Kiểm tra phân giải DNS có bình thường không
 2. Xác nhận tiến trình server còn hoạt động
 3. Xem log ứng dụng 10 phút gần nhất
 4. Phân tích xem có đợt tăng traffic đột biến từ CDN không
@@ -371,9 +328,7 @@ from starlette.routing import Route
 
 sse = SseServerTransport("/messages/")
 
-async def handle_sse(request):
-    async with sse.connect_sse(request.scope, request.receive, request._send) as streams:
-        await mcp.run(streams[0], streams[1], mcp.create_initialization_options())
+async def handle_sse(request): async with sse.connect_sse(request.scope, request.receive, request._send) as streams: await mcp.run(streams[0], streams[1], mcp.create_initialization_options())
 
 app = Starlette(routes=[Route("/sse", endpoint=handle_sse)])
 ```
@@ -454,9 +409,7 @@ LangChain là **framework** cung cấp chaining, memory management, agent orches
 
 MCP không phải công nghệ tương lai. Nó là **tiêu chuẩn đang hoạt động** cho việc tích hợp công cụ AI trong năm 2026. Nếu bạn chưa biết cách xây dựng MCP Server, bạn đang thiếu kỹ năng nền tảng mà mọi đội ngũ phát triển AI-native sẽ yêu cầu ngày mai.
 
-Code trong bài viết này có thể copy chạy ngay. Đề xuất các bước tiếp theo:
-
-1. Chạy SiteMonitor bằng `uv` ngay bây giờ
+Code trong bài viết này có thể copy chạy ngay. Đề xuất các bước tiếp theo: 1. Chạy SiteMonitor bằng `uv` ngay bây giờ
 2. Kết nối Claude Desktop, trải nghiệm truy vấn vận hành bằng ngôn ngữ tự nhiên
 3. Đóng gói API nội bộ hay dùng nhất của team thành MCP Server
 4. Open source lên GitHub, gia nhập hệ sinh thái 10.000+ MCP server
@@ -483,9 +436,7 @@ Viết JSON Schema bằng tay cho mỗi tool là phần tẻ nhạt nhất khi p
 
 ## Hạ Tầng Đề Xuất Cho Tự Lưu Trữ
 
-Để chạy stack này 24/7 ổn định, lựa chọn hạ tầng rất quan trọng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu. Lựa chọn mặc định cho developer độc lập.
+Để chạy stack này 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu. Lựa chọn mặc định cho developer độc lập.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp với người dùng Việt Nam. dibi8.com cũng được host ở đây.
 - **[Hostinger](https://www.hostinger.com/vn?REFERRALCODE=22RPIAOJIYJN)** — Lựa chọn VPS giá tốt cho thị trường Việt Nam, giảm 60% gói đầu tiên.
 
@@ -493,7 +444,6 @@ Viết JSON Schema bằng tay cho mỗi tool là phần tẻ nhạt nhất khi p
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

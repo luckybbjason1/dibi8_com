@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/langchain" />
 title: 'LangChain: 3 Ways to Deploy Production-Ready AI Agents w...
 description: 'LangChain (LC) is a Python/JS framework for building LLM-powered applications with 700+ integrations. Learn how to install LangChain, deploy with Docker, integrate with OpenAI, Anthropic, Ollama, and scale to production with LangSmith observability, LangGraph agents, and Kubernetes.'
 date: 2026-05-19 00:00:00+08:00
@@ -22,11 +20,9 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: [langchain, llm, 'ai-agents', rag, 'production-deployment', docker, python, openai, langsmith, langgraph]
-aliases:
-- /posts/langchain/
-- /resources/llm-frameworks/langchain-complete-guide/
+aliases: - /posts/langchain/
+- /resources/llm-frameworks/langchain-complete-guide/-
 ---
-
 {{</* resource-info */>}}
 
 ![LangChain Logo](https://raw.githubusercontent.com/langchain-ai/langchain/master/docs/static/img/brand/wordmark.png)
@@ -45,9 +41,7 @@ LangChain is an open-source Python and TypeScript framework for building applica
 
 ### Architecture Overview
 
-LangChain's architecture separates concerns into five layers:
-
-1. **Model I/O** — Standardized interfaces for chat models, LLMs, and embeddings. Switch from OpenAI GPT-4o to Anthropic Claude 3.5 Sonnet by changing one import.
+LangChain's architecture separates concerns into five layers: 1. **Model I/O** — Standardized interfaces for chat models, LLMs, and embeddings. Switch from OpenAI GPT-4o to Anthropic Claude 3.5 Sonnet by changing one import.
 2. **Retrieval** — Document loaders, text splitters, embedding models, and vector stores form the RAG pipeline. Load PDFs, HTML, or Notion pages, chunk them, embed, and query semantically.
 3. **Agents** — The `create_agent` API (LangChain 1.0+) orchestrates tool selection, reasoning loops, and human-in-the-loop approvals. Agents decide which tools to call, in what order, and when to stop.
 4. **Chains** — Composable workflows that link components sequentially. A RetrievalQA chain connects a retriever to an LLM for question-answering over documents.
@@ -176,38 +170,26 @@ httpx==0.28.0
 # docker-compose.yml
 version: '3.8'
 
-services:
-  app:
-    build: .
-    ports:
-      - "8000:8000"
-    environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
+services: app: build: .
+    ports: - "8000:8000"
+    environment: - OPENAI_API_KEY=${OPENAI_API_KEY}
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
       - LANGSMITH_API_KEY=${LANGSMITH_API_KEY}
       - LANGSMITH_TRACING=true
       - REDIS_URL=redis://redis:6379
-    depends_on:
-      - redis
+    depends_on: - redis
       - chroma
     restart: unless-stopped
 
-  redis:
-    image: redis:7-alpine
-    volumes:
-      - redis_data:/data
+  redis: image: redis:7-alpine
+    volumes: - redis_data:/data
     restart: unless-stopped
 
-  chroma:
-    image: chromadb/chroma:latest
-    volumes:
-      - chroma_data:/chroma/chroma
+  chroma: image: chromadb/chroma:latest
+    volumes: - chroma_data:/chroma/chroma
     restart: unless-stopped
 
-volumes:
-  redis_data:
-  chroma_data:
-```
+volumes: redis_data: chroma_data: ```
 
 ### Build and Run
 
@@ -342,18 +324,14 @@ from langchain_openai import ChatOpenAI
 
 # Define custom tools
 @tool
-def search_knowledge_base(query: str) -> str:
-    """Search internal knowledge base for technical documentation."""
+def search_knowledge_base(query: str) -> str: """Search internal knowledge base for technical documentation."""
     return f"Results for '{query}': Found 3 relevant documents."
 
 @tool
-def calculate(expression: str) -> str:
-    """Evaluate a mathematical expression."""
-    try:
-        result = eval(expression)
+def calculate(expression: str) -> str: """Evaluate a mathematical expression."""
+    try: result = eval(expression)
         return str(result)
-    except Exception as e:
-        return f"Error: {str(e)}"
+    except Exception as e: return f"Error: {str(e)}"
 
 # Create agent
 tools = [search_knowledge_base, calculate]
@@ -373,10 +351,18 @@ print(result["output"])
 
 ### Performance Benchmarks
 
-Benchmark data collected on AWS c5.4xlarge (16 vCPU, 32GB RAM) with gpt-3.5-turbo and sentence-transformers/all-mpnet-base-v2:
-
-| Metric | LangChain | LlamaIndex | Haystack | Semantic Kernel |
-|--------|-----------|------------|----------|-----------------|
+Benchmark data collected on AWS c5.4xlarge (16 vCPU, 32GB RAM) with gpt-3.5-turbo and sentence-transformers/all-mpnet-base-v2: | Metric | LangChain | LlamaIndex | Haystack | Semantic Kernel |
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | QPS (queries/sec) | 78.2 | 85.4 | 102.5 | 65.4 |
 | Memory Peak (MB) | 1,203 | 980 | 856 | 987 |
 | First-Byte Latency (ms) | 210 | 165 | 92 | 185 |
@@ -409,28 +395,22 @@ from langchain_openai import ChatOpenAI
 import operator
 
 # Define state
-class AgentState(TypedDict):
-    messages: Annotated[Sequence[BaseMessage], operator.add]
+class AgentState(TypedDict): messages: Annotated[Sequence[BaseMessage], operator.add]
     next_step: str
 
 # Define nodes
-def agent_node(state: AgentState):
-    model = ChatOpenAI(model="gpt-4o")
+def agent_node(state: AgentState): model = ChatOpenAI(model="gpt-4o")
     response = model.invoke(state["messages"])
     return {"messages": [response], "next_step": "human_review"}
 
-def human_review(state: AgentState):
-    # In production, this pauses for human approval
+def human_review(state: AgentState): # In production, this pauses for human approval
     last_msg = state["messages"][-1].content
-    if "DELETE" in last_msg.upper() or "DROP" in last_msg.upper():
-        return {"next_step": "reject"}
+    if "DELETE" in last_msg.upper() or "DROP" in last_msg.upper(): return {"next_step": "reject"}
     return {"next_step": "execute"}
 
-def execute_tool(state: AgentState):
-    return {"messages": [AIMessage(content="Action executed successfully.")], "next_step": END}
+def execute_tool(state: AgentState): return {"messages": [AIMessage(content="Action executed successfully.")], "next_step": END}
 
-def reject_action(state: AgentState):
-    return {"messages": [AIMessage(content="Action rejected by policy.")], "next_step": END}
+def reject_action(state: AgentState): return {"messages": [AIMessage(content="Action rejected by policy.")], "next_step": END}
 
 # Build graph
 workflow = StateGraph(AgentState)
@@ -467,11 +447,8 @@ from tenacity import retry, stop_after_attempt, wait_exponential
     wait=wait_exponential(multiplier=1, min=2, max=10),
     reraise=True
 )
-def invoke_with_retry(chain, inputs, config: RunnableConfig = None):
-    try:
-        return chain.invoke(inputs, config=config)
-    except Exception as e:
-        # Log to LangSmith for analysis
+def invoke_with_retry(chain, inputs, config: RunnableConfig = None): try: return chain.invoke(inputs, config=config)
+    except Exception as e: # Log to LangSmith for analysis
         print(f"Invocation failed: {e}. Retrying...")
         raise
 
@@ -502,8 +479,7 @@ model = ChatOpenAI(
 # Track costs per request
 from langchain.callbacks import get_openai_callback
 
-with get_openai_callback() as cb:
-    response = model.invoke("Summarize this 50-page report.")
+with get_openai_callback() as cb: response = model.invoke("Summarize this 50-page report.")
     print(f"Tokens: {cb.total_tokens}, Cost: ${cb.total_cost:.4f}")
 ```
 
@@ -523,8 +499,7 @@ client = Client()
 # Programmatic evaluation
 from langsmith.evaluation import evaluate
 
-def accuracy_evaluator(run, example):
-    prediction = run.outputs["output"]
+def accuracy_evaluator(run, example): prediction = run.outputs["output"]
     expected = example.outputs["expected_answer"]
     score = 1.0 if expected.lower() in prediction.lower() else 0.0
     return {"key": "accuracy", "score": score}
@@ -542,65 +517,39 @@ results = evaluate(
 # k8s-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
-metadata:
-  name: langchain-app
-  labels:
-    app: langchain-app
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: langchain-app
-  template:
-    metadata:
-      labels:
-        app: langchain-app
-    spec:
-      containers:
-      - name: app
+metadata: name: langchain-app
+  labels: app: langchain-app
+spec: replicas: 3
+  selector: matchLabels: app: langchain-app
+  template: metadata: labels: app: langchain-app
+    spec: containers: - name: app
         image: langchain-production-app:latest
-        ports:
-        - containerPort: 8000
-        env:
-        - name: OPENAI_API_KEY
-          valueFrom:
-            secretKeyRef:
-              name: api-secrets
+        ports: - containerPort: 8000
+        env: - name: OPENAI_API_KEY
+          valueFrom: secretKeyRef: name: api-secrets
               key: openai-key
         - name: LANGSMITH_API_KEY
-          valueFrom:
-            secretKeyRef:
-              name: api-secrets
+          valueFrom: secretKeyRef: name: api-secrets
               key: langsmith-key
-        resources:
-          requests:
-            memory: "512Mi"
+        resources: requests: memory: "512Mi"
             cpu: "500m"
-          limits:
-            memory: "2Gi"
+          limits: memory: "2Gi"
             cpu: "2000m"
-        livenessProbe:
-          httpGet:
-            path: /health
+        livenessProbe: httpGet: path: /health
             port: 8000
           initialDelaySeconds: 10
           periodSeconds: 30
-        readinessProbe:
-          httpGet:
-            path: /ready
+        readinessProbe: httpGet: path: /ready
             port: 8000
           initialDelaySeconds: 5
           periodSeconds: 10
+
 ---
 apiVersion: v1
 kind: Service
-metadata:
-  name: langchain-service
-spec:
-  selector:
-    app: langchain-app
-  ports:
-    - protocol: TCP
+metadata: name: langchain-service
+spec: selector: app: langchain-app
+  ports: - protocol: TCP
       port: 80
       targetPort: 8000
   type: ClusterIP
@@ -627,16 +576,13 @@ redis_client = redis.Redis.from_url("redis://localhost:6379")
 set_llm_cache(RedisCache(redis_client=redis_client))
 
 # Cache key based on input hash
-def get_cache_key(prefix: str, text: str) -> str:
-    hash_val = hashlib.md5(text.encode()).hexdigest()
+def get_cache_key(prefix: str, text: str) -> str: hash_val = hashlib.md5(text.encode()).hexdigest()
     return f"{prefix}:{hash_val}"
 
 # Check cache before expensive LLM call
-def cached_invoke(chain, inputs: dict, ttl: int = 3600):
-    cache_key = get_cache_key("llm", json.dumps(inputs, sort_keys=True))
+def cached_invoke(chain, inputs: dict, ttl: int = 3600): cache_key = get_cache_key("llm", json.dumps(inputs, sort_keys=True))
     cached = redis_client.get(cache_key)
-    if cached:
-        return json.loads(cached)
+    if cached: return json.loads(cached)
 
     result = chain.invoke(inputs)
     redis_client.setex(cache_key, ttl, json.dumps({"output": result.content}))
@@ -646,7 +592,17 @@ def cached_invoke(chain, inputs: dict, ttl: int = 3600):
 ## Comparison with Alternatives
 
 | Feature | LangChain | LlamaIndex | Haystack | Semantic Kernel |
-|---------|-----------|------------|----------|-----------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Primary Focus** | Multi-step workflows, agent orchestration | Document indexing, retrieval optimization | Semantic search, RAG pipelines | Enterprise integration, Microsoft ecosystem |
 | **Language Support** | Python, TypeScript | Python, TypeScript | Python | C#, Python, Java |
 | **GitHub Stars** | 137,165 | 39,200 | 17,900 | 26,300 |
@@ -723,9 +679,7 @@ LangChain's 137,000 GitHub stars reflect its position as the default framework f
 
 ## Recommended Hosting & Infrastructure
 
-Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
@@ -745,7 +699,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [LangChain Pricing — CheckThat.ai](https://checkthat.ai/brands/langchain/pricing)
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -771,8 +724,8 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [12-factor-agents-production-llm-software-2026](langchain)
@@ -782,7 +735,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [ai-engineering-from-scratch](langchain)
 
 ---
-
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

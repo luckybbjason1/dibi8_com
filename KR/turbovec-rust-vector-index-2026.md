@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/turbovec-rust-vector-index-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/turbovec-rust-vector-index-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/turbovec-rust-vector-index-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/turbovec-rust-vector-index-2026" />
 title: 'TurboVec: Rust 기반 벡터 인덱스가 FAISS 보다 10 배 빠름 — AI 검색 가이드 2...
 description: 'TurboVec (RyanCodrai/turbovec)은 TurboQuant 위에 구축된 벡터 인덱스이며, Python 바인딩과 함께 Rust 로 작성되었습니다. LangChain, LlamaIndex, Haystack, Agno 에 대한 드롭인 대체품입니다. 양자화와 함께 10 배 속도를 제공합니다. Python 통합, 벤치마크, 프로덕션 배포를 다룹니다.'
 date: 2026-06-09
-lastmod:  2026-06-09slug: 'turbovec-rust-vector-index-2026'
+lastmod: 2026-06-09
+slug: 'turbovec-rust-vector-index-2026'
 category: 'ai-tools'
 tags: ['vector-search', 'rust', 'quantization', 'langchain', 'llamaindex', 'RAG', 'embeddings', 'turboquant']
 github_repo: 'https://github.com/RyanCodrai/turbovec'
@@ -17,8 +13,6 @@ license: MIT
 featureImage: 'https://raw.githubusercontent.com/RyanCodrai/turbovec/main/assets/hero.png'
 lang: ko
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/turbovec-rust-vector-index-2026/ -->
 
 ![TurboVec Vector Index](https://opengraph.github.com/github/RyanCodrai/turbovec)
 
@@ -189,9 +183,7 @@ TurboVec 의 성능 이점은 TurboQuant 의 4 비트 압축과 Rust 의 제로�
 | 정확도 (양자화됨) | 99.2% | 97.8% | 99.5% | 99.1% |
 | 인덱스당 최대 벡터 | 1억 | 1억 | 200만 | 1천만 |
 
-실제 벤치마크 명령어:
-
-```bash
+실제 벤치마크 명령어: ```bash
 # Run TurboVec's built-in benchmark suite
 cargo test --release benchmarks
 
@@ -220,8 +212,7 @@ index = turbovec.Index(
 )
 
 # Add vectors over time
-for batch in document_batches:
-    embeddings = embed(batch)
+for batch in document_batches: embeddings = embed(batch)
     index.add(embeddings)
 
 # Save checkpoint to disk
@@ -254,8 +245,7 @@ import time
 
 # Benchmark current index throughput
 start = time.perf_counter()
-for _ in range(1000):
-    index.search(query_emb, k=10)
+for _ in range(1000): index.search(query_emb, k=10)
 elapsed = time.perf_counter() - start
 print(f"Throughput: {1000/elapsed:.0f} queries/sec")
 print(f"Average latency: {elapsed/1000*1000:.2f} ms per query")
@@ -287,10 +277,8 @@ from transformers import AutoTokenizer, AutoModel
 tokenizer = AutoTokenizer.from_pretrained("sentence-transformers/all-MiniLM-L6-v2")
 model = AutoModel.from_pretrained("sentence-transformers/all-MiniLM-L6-v2")
 
-def embed_texts(texts):
-    inputs = tokenizer(texts, padding=True, truncation=True, return_tensors="pt")
-    with torch.no_grad():
-        outputs = model(**inputs)
+def embed_texts(texts): inputs = tokenizer(texts, padding=True, truncation=True, return_tensors="pt")
+    with torch.no_grad(): outputs = model(**inputs)
     return outputs.last_hidden_state.mean(dim=1).numpy()
 
 # Build index
@@ -300,23 +288,17 @@ index.add(embed_texts(document_chunks))
 # Query pipeline
 query_emb = embed_texts(["What is machine learning?"])[0]
 results = index.search(query_emb, k=5)
-for i, (idx, score) in enumerate(results):
-    print(f"  [{i}] score={score:.4f} chunk={document_chunks[idx][:100]}")
+for i, (idx, score) in enumerate(results): print(f"  [{i}] score={score:.4f} chunk={document_chunks[idx][:100]}")
 ```
 
 **프로덕션 서빙을 위한 Docker Compose**
 
 ```yaml
 version: '3.8'
-services:
-  turbovec:
-    image: ryan-codrai/turbovec:latest
-    ports:
-      - "8000:8000"
-    volumes:
-      - ./index:/data
-    environment:
-      - TURBOVEC_CAPACITY=10000000
+services: turbovec: image: ryan-codrai/turbovec:latest
+    ports: - "8000:8000"
+    volumes: - ./index:/data
+    environment: - TURBOVEC_CAPACITY=10000000
       - TURBOVEC_DIM=1536
       - TURBOVEC_METRIC=cosine
 ```
@@ -340,9 +322,7 @@ services:
 
 ## 한계 / 정직한 평가
 
-TurboVec 은 성능 프로필로 인해 인상적이지만 고려해야 할 정직한 한계가 있습니다:
-
-1. **새로운 라이브러리**: 10,500 개의 stars vs FAISS 의 60,000+, TurboVec 은 커뮤니티 문서와 서드파티 튜토리얼이 적습니다. 프로덕션 팀은 시험 실수를 위한 시간을 예산에 반영해야 합니다.
+TurboVec 은 성능 프로필로 인해 인상적이지만 고려해야 할 정직한 한계가 있습니다: 1. **새로운 라이브러리**: 10,500 개의 stars vs FAISS 의 60,000+, TurboVec 은 커뮤니티 문서와 서드파티 튜토리얼이 적습니다. 프로덕션 팀은 시험 실수를 위한 시간을 예산에 반영해야 합니다.
 2. **Rust 의존성**: 소스에서 빌드하려면 `cargo` 와 Rust toolchain 이 필요합니다. pip install 경로는 이를 피하지만, 커스텀 빌드에는 Rust 1.70+ 가 필요합니다.
 3. **싱글 노드만**: Weaviate 나 Qdrant 과 달리 TurboVec 은 내장된 수평 확장 기능이 없습니다. 1 억 개 이상의 벡터가 있는 인덱스의 경우 여러 인스턴스 간에 sharding 해야 합니다.
 4. **제한된 벡터 유형**: 현재 밀집 벡터 검색만 지원합니다. 희소 벡터, 하이브리드 검색 및 그래프 기반 인덱싱은 아직 사용할 수 없습니다.
@@ -392,8 +372,7 @@ AI 도구, Rust 및 개발자 인프라스트럭처에 대한 토론을 위해 D
 
 ---
 
-**소스 및 추가 읽을 거리**:
-- 공식 저장소: https://github.com/RyanCodrai/turbovec
+**소스 및 추가 읽을 거리**: - 공식 저장소: https://github.com/RyanCodrai/turbovec
 - TurboQuant 논문: https://github.com/RyanCodrai/turbovec/blob/main/docs/turboquant.md
 - LangChain 통합 문서: https://github.com/RyanCodrai/turbovec/blob/main/docs/integrations/langchain.md
 - LlamaIndex 통합 문서: https://github.com/RyanCodrai/turbovec/blob/main/docs/integrations/llama_index.md
@@ -403,7 +382,6 @@ AI 도구, Rust 및 개발자 인프라스트럭처에 대한 토론을 위해 D
 **공개**: 본 기고에는 제휴 링크가 포함되어 있습니다. our 링크를 통해 가입하면 추가 비용 없이 소액의 커미션을 받을 수 있습니다. 이는 독립 기술 저널리즘을 지원하고 dibi8.com 과 같은 리소스를 무료이고 광고 없이 유지하는 데 도움이 됩니다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

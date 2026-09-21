@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/code-quality-tools-eslint-prettier-black-ruff" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/code-quality-tools-eslint-prettier-black-ruff" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/code-quality-tools-eslint-prettier-black-ruff" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/code-quality-tools-eslint-prettier-black-ruff" />
 title: 'Hướng Dẫn Công Cụ Chất Lượng Mã: ESLint, Prettier, Black...
 description: 'Hướng dẫn cấu hình chi tiết ESLint, Prettier, Black, Ruff cho JavaScript, TypeScript và Python. Tìm hiểu pre-commit hooks và CI/CD integration năm 2025.'
 date: 2026-05-18 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: 'dibi8'
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
-aliases:
-- /posts/code-quality-tools-eslint-prettier-black-ruff/
+aliases: - /posts/code-quality-tools-eslint-prettier-black-ruff/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/code-quality-tools-eslint-prettier-black-ruff/ -->
 
 {</* resource-info */>}
 
@@ -41,9 +33,7 @@ Codebase không nhất quán về style và conventions tạo ra "cognitive over
 
 ### Sự Khác Biệt Giữa Linting và Formatting
 
-Hai khái niệm thường bị nhầm lẫn nhưng có mục đích khác nhau:
-
-| Khía cạnh | Linting | Formatting |
+Hai khái niệm thường bị nhầm lẫn nhưng có mục đích khác nhau: | Khía cạnh | Linting | Formatting |
 |-----------|---------|------------|
 | **Mục đích** | Phát hiện lỗi logic, anti-patterns | Đảm bảo style nhất quán |
 | **Ví dụ lỗi** | Biến không sử dụng, lỗi bảo mật | Indentation, dấu chấm phẩy, dấu nháy |
@@ -63,9 +53,7 @@ ESLint là linter phổ biến nhất cho JavaScript và TypeScript, với hơn 
 
 ### Thiết Lập ESLint 9 với Flat Config (eslint.config.js)
 
-ESLint 9, ra mắt tháng 4 năm 2024, giới thiệu flat config thay thế `.eslintrc` file. Cấu hình mới sử dụng JavaScript thuần thay vì JSON/YAML:
-
-```javascript
+ESLint 9, ra mắt tháng 4 năm 2024, giới thiệu flat config thay thế `.eslintrc` file. Cấu hình mới sử dụng JavaScript thuần thay vì JSON/YAML: ```javascript
 // eslint.config.js
 import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
@@ -96,9 +84,7 @@ export default [
 
 ### ESLint Stylistic cho Formatting Rules
 
-Từ ESLint 9, hầu hết formatting rules đã bị deprecate. Thay vào đó, sử dụng **@stylistic/eslint-plugin** — một dự án community-driven duy trì các stylistic rules:
-
-```javascript
+Từ ESLint 9, hầu hết formatting rules đã bị deprecate. Thay vào đó, sử dụng **@stylistic/eslint-plugin** — một dự án community-driven duy trì các stylistic rules: ```javascript
 import stylistic from '@stylistic/eslint-plugin'
 
 export default [
@@ -140,8 +126,7 @@ Prettier xử lý formatting (dấu cách, dấu xuống dòng, dấu phẩy), E
 
 ### Tích Hợp Editor (VS Code, Vim, JetBrains)
 
-**VS Code**: Cài đặt extension Prettier, bật "Format On Save" trong settings:
-```json
+**VS Code**: Cài đặt extension Prettier, bật "Format On Save" trong settings: ```json
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true
@@ -186,8 +171,7 @@ npm install -D eslint @eslint/js typescript-eslint prettier eslint-config-pretti
 # Cài đặt @eslint/migrate-config
 npx @eslint/migrate-config .eslintrc.json
 
-# Hoặc chuyển đổi thủ công theo checklist:
-# 1. Đổi tên file thành eslint.config.js
+# Hoặc chuyển đổi thủ công theo checklist: # 1. Đổi tên file thành eslint.config.js
 # 2. Chuyển extends → import và spread
 # 3. Chuyển parserOptions → languageOptions.parserOptions
 # 4. Chuyển env → languageOptions.globals
@@ -199,14 +183,10 @@ npx @eslint/migrate-config .eslintrc.json
 # .github/workflows/quality.yml
 name: Code Quality
 on: [push, pull_request]
-jobs:
-  lint-and-format:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: lint-and-format: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
+        with: node-version: '20'
           cache: 'npm'
       - run: npm ci
       - run: npm run lint
@@ -252,8 +232,7 @@ extend-exclude = '''
 
 ### Black với Jupyter Notebooks
 
-Black hỗ trợ format `.ipynb` files:
-```bash
+Black hỗ trợ format `.ipynb` files: ```bash
 pip install black[jupyter]
 black notebook.ipynb
 ```
@@ -266,9 +245,7 @@ Black có ít tùy chọn cấu hình — đây vừa là điểm mạnh vừa l
 
 ### Tại Sao Ruff Đang Thay Thế Flake8, Pylint và isort?
 
-Ruff, phát triển bởi Astral (công ty đằng sau uv package manager), là linter Python viết bằng Rust. Kết quả? Tốc độ nhanh hơn 10-100 lần so với Flake8 và Pylint:
-
-| Công cụ | Thờigian lint 1000 files | Ngôn ngữ |
+Ruff, phát triển bởi Astral (công ty đằng sau uv package manager), là linter Python viết bằng Rust. Kết quả? Tốc độ nhanh hơn 10-100 lần so với Flake8 và Pylint: | Công cụ | Thờigian lint 1000 files | Ngôn ngữ |
 |---------|--------------------------|----------|
 | Flake8 | ~45 giây | Python |
 | Pylint | ~2 phút | Python |
@@ -331,9 +308,7 @@ pip install ruff
 
 ### Format Tích Hợp với gofmt
 
-Go có lợi thế lớn: `gofmt` được tích hợp sẵn trong toolchain. Không cần cài đặt thêm, không cần cấu hình:
-
-```bash
+Go có lợi thế lớn: `gofmt` được tích hợp sẵn trong toolchain. Không cần cài đặt thêm, không cần cấu hình: ```bash
 gofmt -w .        # Format tất cả files
 gofmt -l .        # Liệt kê files cần format
 go fmt ./...      # gofmt + goimports
@@ -341,9 +316,7 @@ go fmt ./...      # gofmt + goimports
 
 ### golangci-lint cho Linting Toàn Diện
 
-`gofmt` chỉ xử lý formatting. Để linting, sử dụng **golangci-lint** — aggregator chạy 50+ linters khác nhau:
-
-```bash
+`gofmt` chỉ xử lý formatting. Để linting, sử dụng **golangci-lint** — aggregator chạy 50+ linters khác nhau: ```bash
 # Cài đặt
 curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.61.0
 
@@ -357,16 +330,13 @@ Cấu hình trong `.golangci.yml` cho phép chọn linters phù hợp với proj
 
 ### rustfmt cho Format Nhất Quán
 
-Tương tự Go, Rust có `rustfmt` — formatter chính thức, được tích hợp qua `rustup`:
-
-```bash
+Tương tự Go, Rust có `rustfmt` — formatter chính thức, được tích hợp qua `rustup`: ```bash
 rustup component add rustfmt
 cargo fmt           # Format toàn bộ project
 cargo fmt -- --check # Kiểm tra (CI mode)
 ```
 
-Cấu hình trong `rustfmt.toml`:
-```toml
+Cấu hình trong `rustfmt.toml`: ```toml
 max_width = 100
 hard_tabs = false
 tab_spaces = 4
@@ -374,9 +344,7 @@ tab_spaces = 4
 
 ### Clippy Linting và Gợi Ý Code
 
-Clippy là "linter collection" cho Rust, cung cấp hơn 650 lint rules. Không chỉ phát hiện lỗi, Clippy còn đề xuất cách viết code tối ưu hơn:
-
-```bash
+Clippy là "linter collection" cho Rust, cung cấp hơn 650 lint rules. Không chỉ phát hiện lỗi, Clippy còn đề xuất cách viết code tối ưu hơn: ```bash
 rustup component add clippy
 cargo clippy        # Chạy clippy
 cargo clippy -- -D warnings  # Treat warnings as errors
@@ -392,11 +360,9 @@ Pre-commit hooks chạy kiểm tra trước mỗi lần `git commit`. Nếu chec
 
 ```yaml
 # .pre-commit-config.yaml
-repos:
-  - repo: https://github.com/pre-commit/pre-commit-hooks
+repos: - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.6.0
-    hooks:
-      - id: trailing-whitespace
+    hooks: - id: trailing-whitespace
       - id: end-of-file-fixer
       - id: check-yaml
       - id: check-added-large-files
@@ -404,21 +370,18 @@ repos:
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.6.9
-    hooks:
-      - id: ruff
+    hooks: - id: ruff
         args: [--fix]
       - id: ruff-format
 
   - repo: https://github.com/pre-commit/mirrors-prettier
     rev: v3.1.0
-    hooks:
-      - id: prettier
+    hooks: - id: prettier
         types_or: [javascript, jsx, ts, tsx, json, yaml, markdown]
 
   - repo: https://github.com/pre-commit/mirrors-eslint
     rev: v9.12.0
-    hooks:
-      - id: eslint
+    hooks: - id: eslint
         files: \.[jt]sx?$
         types: [file]
 ```
@@ -435,9 +398,7 @@ repos:
 
 ### Husky cho Dự Án JavaScript/TypeScript
 
-Husky là cách phổ biến nhất để quản lý Git hooks trong JS/TS projects:
-
-```bash
+Husky là cách phổ biến nhất để quản lý Git hooks trong JS/TS projects: ```bash
 # Cài đặt Husky v9
 npx husky@latest init
 
@@ -452,25 +413,18 @@ npx husky add .husky/pre-commit "npx lint-staged"
 ```yaml
 name: Code Quality
 on: [push, pull_request]
-jobs:
-  python:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: python: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
+        with: python-version: '3.12'
       - run: pip install ruff
       - run: ruff check .
       - run: ruff format --check .
 
-  javascript:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+  javascript: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
+        with: node-version: '20'
       - run: npm ci
       - run: npm run lint
       - run: npm run format:check
@@ -480,22 +434,17 @@ jobs:
 
 ```yaml
 # .gitlab-ci.yml
-stages:
-  - quality
+stages: - quality
 
-lint-python:
-  stage: quality
+lint-python: stage: quality
   image: python:3.12-slim
-  script:
-    - pip install ruff
+  script: - pip install ruff
     - ruff check .
     - ruff format --check .
 
-lint-js:
-  stage: quality
+lint-js: stage: quality
   image: node:20-slim
-  script:
-    - npm ci
+  script: - npm ci
     - npm run lint
     - npm run format:check
 ```
@@ -547,8 +496,7 @@ Prettier hỗ trợ nhiều ngôn ngữ: JavaScript, TypeScript, Python (thông 
 
 ### Làm Thế Nào Để Áp Dụng Chất Lượng Mã trong CI/CD?
 
-Quy trình tối thiểu:
-1. Thêm lint/format check vào CI pipeline
+Quy trình tối thiểu: 1. Thêm lint/format check vào CI pipeline
 2. Cấu hình để build fail khi check không pass
 3. Bắt buộc PR phải pass CI trước khi merge
 4. Sử dụng pre-commit hooks để phát hiện lỗi sớm (trước khi push)
@@ -558,9 +506,7 @@ Ví dụ workflow đầy đủ có thể tìm thấy tại tài liệu của [Gi
 
 ## Kết Luận
 
-Công cụ chất lượng mã không phải là optional — chúng là investment mang lại lợi tức dài hạn thông qua code dễ bảo trì, ít bug, và onboarding nhanh hơn. Năm 2025, lựa chọn tối ưu cho từng stack:
-
-- **JavaScript/TypeScript**: ESLint 9 + Prettier
+Công cụ chất lượng mã không phải là optional — chúng là investment mang lại lợi tức dài hạn thông qua code dễ bảo trì, ít bug, và onboarding nhanh hơn. Năm 2025, lựa chọn tối ưu cho từng stack: - **JavaScript/TypeScript**: ESLint 9 + Prettier
 - **Python**: Ruff (format + lint trong một)
 - **Go**: gofmt + golangci-lint
 - **Rust**: rustfmt + Clippy
@@ -573,9 +519,7 @@ Tài nguyên tham khảo: [eslint.org](https://eslint.org), [prettier.io](https:
 
 ## Hạ Tầng Đề Xuất
 
-Để chạy các công cụ trên 24/7 ổn định, lựa chọn hạ tầng rất quan trọng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu.
+Để chạy các công cụ trên 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp. dibi8.com cũng host ở đây.
 - **[Hostinger](https://www.hostinger.com/vn?REFERRALCODE=22RPIAOJIYJN)** — VPS giá tốt cho thị trường Việt Nam.
 
@@ -583,7 +527,6 @@ Tài nguyên tham khảo: [eslint.org](https://eslint.org), [prettier.io](https:
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

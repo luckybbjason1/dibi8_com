@@ -5,10 +5,7 @@ category: llm-frameworks
 tags: ['ray', 'distributed-computing', 'ai-scaling', 'machine-learning', 'python', 'parallel-processing']
 slug: ray-distributed-ai-framework-complete-guide
 date: 2026-07-17 00:00:00+00:00
-lastmod:  2026-07-17 00:00:00+00:00featureImage: /images/articles/ray-distributed-computing-ai.jpg
----
-
-<!-- canonical: https://dibi8.com/cn/tools/ray-distributed-ai-framework-complete-guide/ -->
+lastmod: 2026-07-17 00:00:00+00:00featureImage: /images/articles/ray-distributed-computing-ai.jpg---
 
 ## TL;DR
 
@@ -21,7 +18,17 @@ Ray is a unified framework that provides a simple, universal API for building an
 ### Why Choose Ray Over Alternatives?
 
 | Feature | Ray | Apache Spark | Dask | Celery |
-|---------|-----|-------------|------|--------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | Python Native | ✅ | Partial | ✅ | ✅ |
 | ML Training | ✅ (Ray Train) | ❌ | Basic | ❌ |
 | Model Serving | ✅ (Ray Serve) | ❌ | ❌ | ❌ |
@@ -32,9 +39,7 @@ Ray is a unified framework that provides a simple, universal API for building an
 
 #### Ray Core: The Foundation
 
-Ray Core provides two fundamental abstractions:
-
-1. **Remote Functions**: Regular Python functions that execute on remote workers
+Ray Core provides two fundamental abstractions: 1. **Remote Functions**: Regular Python functions that execute on remote workers
 2. **Actors**: Stateful worker processes that maintain internal state across calls
 
 ```python
@@ -49,8 +54,7 @@ ray.init(
 )
 
 @ray.remote
-def compute_heavy_task(x):
-    time.sleep(1)
+def compute_heavy_task(x): time.sleep(1)
     return x ** 2
 
 # Execute tasks in parallel across available CPUs
@@ -62,9 +66,7 @@ print(results)  # [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
 
 #### Ray Serve: Model Serving Infrastructure
 
-Ray Serve provides production-grade model serving with features like:
-
-- Automatic batching for improved throughput
+Ray Serve provides production-grade model serving with features like: - Automatic batching for improved throughput
 - Multi-model deployment with shared resources
 - A/B testing and canary deployments
 - HTTP/gRPC endpoints with OpenAPI specification
@@ -76,17 +78,14 @@ import torch
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 
 @serve.deployment(num_replicas=3, ray_actor_options={"num_cpus": 2})
-class SentimentClassifier:
-    def __init__(self):
-        self.tokenizer = AutoTokenizer.from_pretrained(
+class SentimentClassifier: def __init__(self): self.tokenizer = AutoTokenizer.from_pretrained(
             "distilbert-base-uncased-finetuned-sst-2-english"
         )
         self.model = AutoModelForSequenceClassification.from_pretrained(
             "distilbert-base-uncased-finetuned-sst-2-english"
         )
     
-    async def __call__(self, request):
-        data = await request.json()
+    async def __call__(self, request): data = await request.json()
         text = data["text"]
         
         inputs = self.tokenizer(text, return_tensors="pt")
@@ -101,14 +100,11 @@ SentimentClassifier.deploy()
 
 #### Ray Train: Distributed Training
 
-Ray Train provides a scalable interface for distributed deep learning:
-
-```python
+Ray Train provides a scalable interface for distributed deep learning: ```python
 from ray.train import scaling_config, RunConfig
 from ray.train.torch import TorchTrainer
 
-def training_func(config):
-    import torch
+def training_func(config): import torch
     from torch.utils.data import DataLoader
     
     backend = "gloo"
@@ -118,9 +114,7 @@ def training_func(config):
     model = torch.nn.parallel.DistributedDataParallel(model)
     
     optimizer = torch.optim.Adam(model.parameters(), lr=config["lr"])
-    for epoch in range(config["epochs"]):
-        for batch_x, batch_y in dataloader:
-            optimizer.zero_grad()
+    for epoch in range(config["epochs"]): for batch_x, batch_y in dataloader: optimizer.zero_grad()
             output = model(batch_x)
             loss = torch.nn.functional.mse_loss(output, batch_y)
             loss.backward()
@@ -138,9 +132,7 @@ print(result.metrics)
 
 #### Ray Data: Scalable Data Loading
 
-Ray Data handles petabyte-scale data processing:
-
-```python
+Ray Data handles petabyte-scale data processing: ```python
 import ray.data
 
 # Load from cloud storage
@@ -165,23 +157,18 @@ processed.write_parquet("output/")
 pip install ray[default]
 ```
 
-For GPU support:
-
-```bash
+For GPU support: ```bash
 pip install ray[default] pytorch
 ```
 
-Verify installation:
-
-```python
+Verify installation: ```python
 import ray
 
 # Initialize Ray
 ray.init()
 
 @ray.remote
-def hello():
-    return "Hello from Ray!"
+def hello(): return "Hello from Ray!"
 
 result = ray.get(hello.remote())
 print(result)  # Hello from Ray!
@@ -205,24 +192,14 @@ CMD ["ray", "start", "--head", "--port=6379"]
 ```yaml
 apiVersion: apps/v1
 kind: StatefulSet
-metadata:
-  name: ray-cluster
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: ray
-  template:
-    spec:
-      containers:
-      - name: ray
+metadata: name: ray-cluster
+spec: replicas: 3
+  selector: matchLabels: app: ray
+  template: spec: containers: - name: ray
         image: rayproject/ray:latest
         command: ["bash", "-c", "ray start --head --node-ip-address=$MY_POD_IP && python app.py"]
-        env:
-        - name: MY_POD_IP
-          valueFrom:
-            fieldRef:
-              fieldPath: status.podIP
+        env: - name: MY_POD_IP
+          valueFrom: fieldRef: fieldPath: status.podIP
 ```
 
 ## Ray Core Deep Dive
@@ -236,8 +213,7 @@ import time
 ray.init()
 
 @ray.remote
-def slow_computation(x):
-    time.sleep(1)
+def slow_computation(x): time.sleep(1)
     return x * 2
 
 # Run in parallel
@@ -250,23 +226,18 @@ print(results)  # [0, 2, 4, 6, 8, 10, 12, 14, 16, 18]
 
 ```python
 @ray.remote
-class Counter:
-    def __init__(self):
-        self.value = 0
+class Counter: def __init__(self): self.value = 0
     
-    def increment(self):
-        self.value += 1
+    def increment(self): self.value += 1
         return self.value
     
-    def get_value(self):
-        return self.value
+    def get_value(self): return self.value
 
 # Create actor instance
 counter = Counter.remote()
 
 # Call methods remotely
-for _ in range(5):
-    ray.get(counter.increment.remote())
+for _ in range(5): ray.get(counter.increment.remote())
 
 print(ray.get(counter.get_value.remote()))  # 5
 ```
@@ -275,16 +246,13 @@ print(ray.get(counter.get_value.remote()))  # 5
 
 ```python
 @ray.remote
-def step_1():
-    return [1, 2, 3]
+def step_1(): return [1, 2, 3]
 
 @ray.remote
-def step_2(data):
-    return sum(data)
+def step_2(data): return sum(data)
 
 @ray.remote
-def step_3(value):
-    return value ** 2
+def step_3(value): return value ** 2
 
 # Chain dependencies
 data = ray.get(step_1.remote())
@@ -297,21 +265,16 @@ print(final)  # 36
 
 ```python
 @ray.remote(num_cpus=1)
-class BatchProcessor:
-    def __init__(self):
-        self.buffer = []
+class BatchProcessor: def __init__(self): self.buffer = []
         self.batch_size = 10
     
-    async def add_item(self, item):
-        self.buffer.append(item)
-        if len(self.buffer) >= self.batch_size:
-            result = self.process_batch(self.buffer)
+    async def add_item(self, item): self.buffer.append(item)
+        if len(self.buffer) >= self.batch_size: result = self.process_batch(self.buffer)
             self.buffer = []
             return result
         return None
     
-    def process_batch(self, items):
-        # Process batch of items
+    def process_batch(self, items): # Process batch of items
         return [item * 2 for item in items]
 
 processor = BatchProcessor.remote()
@@ -331,9 +294,7 @@ import torch
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 
 @serve.deployment()
-class TextClassifier:
-    def __init__(self):
-        self.model = AutoModelForSequenceClassification.from_pretrained(
+class TextClassifier: def __init__(self): self.model = AutoModelForSequenceClassification.from_pretrained(
             "distilbert-base-uncased-finetuned-sst-2-english"
         )
         self.tokenizer = AutoTokenizer.from_pretrained(
@@ -341,8 +302,7 @@ class TextClassifier:
         )
     
     @torch.no_grad()
-    def predict(self, text: str) -> dict:
-        inputs = self.tokenizer(text, return_tensors="pt")
+    def predict(self, text: str) -> dict: inputs = self.tokenizer(text, return_tensors="pt")
         outputs = self.model(**inputs)
         prediction = torch.argmax(outputs.logits).item()
         return {"label": "positive" if prediction == 1 else "negative"}
@@ -363,18 +323,13 @@ print(response.json())  # {"label": "positive"}
 
 ```python
 @serve.deployment()
-class Router:
-    def __init__(self):
-        self.classifier = TextClassifier.bind()
+class Router: def __init__(self): self.classifier = TextClassifier.bind()
         self.summarizer = Summarizer.bind()
     
-    async def __call__(self, request: Request) -> dict:
-        data = await request.json()
+    async def __call__(self, request: Request) -> dict: data = await request.json()
         
-        if "summary" in data.get("task", ""):
-            return await self.summarizer.call.remote(data["text"])
-        else:
-            return await self.classifier.call.remote(data["text"])
+        if "summary" in data.get("task", ""): return await self.summarizer.call.remote(data["text"])
+        else: return await self.classifier.call.remote(data["text"])
 
 Router.deploy()
 ```
@@ -387,16 +342,13 @@ Router.deploy()
     ray_actor_options={"num_cpus": 2, "num_gpus": 1},
     autoscaling_config={"min_replicas": 1, "max_replicas": 20}
 )
-class ImageGenerator:
-    def __init__(self):
-        from diffusers import StableDiffusionPipeline
+class ImageGenerator: def __init__(self): from diffusers import StableDiffusionPipeline
         self.pipeline = StableDiffusionPipeline.from_pretrained(
             "stabilityai/stable-diffusion-xl-base-1.0"
         )
         self.pipeline.to("cuda")
     
-    async def generate(self, prompt: str) -> bytes:
-        image = self.pipeline(prompt).images[0]
+    async def generate(self, prompt: str) -> bytes: image = self.pipeline(prompt).images[0]
         import io
         buf = io.BytesIO()
         image.save(buf, format="PNG")
@@ -409,15 +361,11 @@ ImageGenerator.deploy()
 
 ```python
 @serve.deployment(route_prefix="/v1/")
-class ModelV1:
-    async def __call__(self, request):
-        data = await request.json()
+class ModelV1: async def __call__(self, request): data = await request.json()
         return {"version": "v1", "prediction": predict_v1(data["input"])}
 
 @serve.deployment(route_prefix="/v2/")
-class ModelV2:
-    async def __call__(self, request):
-        data = await request.json()
+class ModelV2: async def __call__(self, request): data = await request.json()
         return {"version": "v2", "prediction": predict_v2(data["input"])}
 
 # Deploy with traffic split
@@ -439,8 +387,7 @@ serve.set_traffic(
 from ray.train import scaling_config, RunConfig
 from ray.train.torch import TorchTrainer
 
-def training_func(config):
-    import torch
+def training_func(config): import torch
     from torch.utils.data import DataLoader
     
     # Setup distributed training
@@ -452,9 +399,7 @@ def training_func(config):
     
     # Train loop
     optimizer = torch.optim.Adam(model.parameters(), lr=config["lr"])
-    for epoch in range(config["epochs"]):
-        for batch_x, batch_y in dataloader:
-            optimizer.zero_grad()
+    for epoch in range(config["epochs"]): for batch_x, batch_y in dataloader: optimizer.zero_grad()
             output = model(batch_x)
             loss = torch.nn.functional.mse_loss(output, batch_y)
             loss.backward()
@@ -476,8 +421,7 @@ print(result.metrics)
 from ray import tune
 from ray.tune.schedulers import ASHAScheduler
 
-def train_model(config):
-    import torch
+def train_model(config): import torch
     import numpy as np
     
     # Simulate training with config hyperparameters
@@ -519,9 +463,7 @@ print(f"Best config: {best_result.config}")
 ```python
 from ray.train.huggingface.transformers import TrainerCallback
 
-class RayTrainCallback(TrainerCallback):
-    def on_step_end(self, args, state, control, **kwargs):
-        # Report progress to Ray
+class RayTrainCallback(TrainerCallback): def on_step_end(self, args, state, control, **kwargs): # Report progress to Ray
         from ray.train import report
         report({
             "step": state.global_step,
@@ -567,8 +509,7 @@ dataset.write_parquet("output/")
 
 ```python
 @ray.remote
-def generate_data_batch(batch_id):
-    import numpy as np
+def generate_data_batch(batch_id): import numpy as np
     return {
         "batch_id": batch_id,
         "features": np.random.rand(100, 10).tolist(),
@@ -597,8 +538,7 @@ import ray.data
 from PIL import Image
 import numpy as np
 
-def preprocess_image(row):
-    img = Image.open(row["image_path"]).convert("RGB")
+def preprocess_image(row): img = Image.open(row["image_path"]).convert("RGB")
     img = img.resize((224, 224))
     return {
         "image": np.array(img).tobytes(),
@@ -618,12 +558,10 @@ preprocessed.write_parquet("preprocessed/")
 
 ```python
 @ray.remote(num_cpus=2, num_gpus=0.5)
-def gpu_light_task():
-    pass
+def gpu_light_task(): pass
 
 @ray.remote(num_cpus=4, num_gpus=1)
-def gpu_heavy_task():
-    pass
+def gpu_heavy_task(): pass
 
 # Ray automatically schedules based on resource availability
 ray.get(gpu_light_task.remote())
@@ -656,8 +594,7 @@ ray.init(logging_level="DEBUG")
 
 # Profile a remote function
 @ray.remote
-def profiled_function():
-    import time
+def profiled_function(): import time
     time.sleep(1)
     return "done"
 
@@ -670,15 +607,11 @@ print(profile)
 
 ```python
 @ray.remote(num_gpus=1)
-class GpuWorker:
-    def __init__(self):
-        import torch
+class GpuWorker: def __init__(self): import torch
         self.device = torch.device("cuda:0")
         self.model = load_model().to(self.device)
     
-    def predict(self, data):
-        with torch.no_grad():
-            return self.model(data.to(self.device))
+    def predict(self, data): with torch.no_grad(): return self.model(data.to(self.device))
 ```
 
 ## Production Checklist
@@ -693,16 +626,13 @@ class GpuWorker:
 
 ### GPU-Aware Scheduling
 
-Ray automatically detects and schedules tasks based on GPU availability:
-
-```python
+Ray automatically detects and schedules tasks based on GPU availability: ```python
 import ray
 
 ray.init(num_gpus=4)
 
 @ray.remote(num_gpus=1)
-def gpu_task():
-    import torch
+def gpu_task(): import torch
     return torch.cuda.get_device_name(0)
 
 # Each task gets its own GPU
@@ -712,16 +642,13 @@ print(results)  # [A100, A100, A100, A100]
 
 ### Distributed Data Parallel Training
 
-Train models across multiple GPUs efficiently:
-
-```python
+Train models across multiple GPUs efficiently: ```python
 import ray.train.torch
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
 
-def train_func(config):
-    from ray.train import get_context
+def train_func(config): from ray.train import get_context
     backend = get_context().get_backend()
     
     model = nn.Linear(100, 10)
@@ -729,9 +656,7 @@ def train_func(config):
     
     optimizer = torch.optim.Adam(model.parameters(), lr=config["lr"])
     
-    for epoch in range(config["epochs"]):
-        for batch_x, batch_y in dataloader:
-            optimizer.zero_grad()
+    for epoch in range(config["epochs"]): for batch_x, batch_y in dataloader: optimizer.zero_grad()
             output = model(batch_x)
             loss = nn.functional.cross_entropy(output, batch_y)
             loss.backward()
@@ -753,17 +678,14 @@ result = trainer.fit()
 
 ### Ray Client for Remote Clusters
 
-Connect to a remote Ray cluster from your local machine:
-
-```python
+Connect to a remote Ray cluster from your local machine: ```python
 import ray
 
 # Connect to remote cluster
 ray.init(address="auto", runtime_env={"py_modules": ["./my_module"]})
 
 @ray.remote
-def remote_function(x):
-    return x ** 2
+def remote_function(x): return x ** 2
 
 # Runs on remote cluster, returns results locally
 result = ray.get(remote_function.remote(5))
@@ -774,26 +696,20 @@ print(result)  # 25
 
 ### Dynamic Model Loading
 
-Load and swap models at runtime without restarting:
-
-```python
+Load and swap models at runtime without restarting: ```python
 from ray import serve
 
 @serve.deployment()
-class DynamicClassifier:
-    def __init__(self):
-        self.models = {}
+class DynamicClassifier: def __init__(self): self.models = {}
         self.current_model = None
     
-    async def load_model(self, model_name: str):
-        from transformers import AutoModelForSequenceClassification
+    async def load_model(self, model_name: str): from transformers import AutoModelForSequenceClassification
         self.models[model_name] = AutoModelForSequenceClassification.from_pretrained(
             f"model/{model_name}"
         )
         self.current_model = model_name
     
-    async def predict(self, text: str) -> dict:
-        model = self.models[self.current_model]
+    async def predict(self, text: str) -> dict: model = self.models[self.current_model]
         # ... inference logic
         return {"prediction": result}
 
@@ -802,49 +718,36 @@ DynamicClassifier.deploy()
 
 ### Health Checks and Readiness Probes
 
-Configure health checks for production deployments:
-
-```python
+Configure health checks for production deployments: ```python
 @serve.deployment(
     ray_actor_options={"num_cpus": 2, "num_gpus": 1},
     max_concurrent_queries=100
 )
-class RobustService:
-    def __init__(self):
-        self.ready = False
+class RobustService: def __init__(self): self.ready = False
         self.load_model()
         self.ready = True
     
-    async def health_check(self):
-        if not self.ready:
-            raise RuntimeError("Service not ready")
+    async def health_check(self): if not self.ready: raise RuntimeError("Service not ready")
         return {"status": "healthy"}
     
-    async def __call__(self, request):
-        await self.health_check()
+    async def __call__(self, request): await self.health_check()
         data = await request.json()
         return {"result": self.predict(data["input"])}
 ```
 
 ### Request Batching for Throughput
 
-Automatically batch incoming requests for efficient GPU utilization:
-
-```python
+Automatically batch incoming requests for efficient GPU utilization: ```python
 @serve.deployment(
     ray_actor_options={"num_cpus": 1, "num_gpus": 1},
     autoscaling_config={"min_replicas": 1, "max_replicas": 10}
 )
-class Batcher:
-    def __init__(self):
-        self.buffer = []
+class Batcher: def __init__(self): self.buffer = []
         self.batch_size = 16
     
-    async def add_request(self, request_data):
-        self.buffer.append(request_data)
+    async def add_request(self, request_data): self.buffer.append(request_data)
         
-        if len(self.buffer) >= self.batch_size:
-            results = self.process_batch(self.buffer)
+        if len(self.buffer) >= self.batch_size: results = self.process_batch(self.buffer)
             self.buffer = []
             return results
         
@@ -852,8 +755,7 @@ class Batcher:
         await asyncio.sleep(0.1)
         return self.process_batch(self.buffer)
     
-    def process_batch(self, batch):
-        # Process entire batch at once
+    def process_batch(self, batch): # Process entire batch at once
         inputs = preprocess_batch(batch)
         outputs = self.model(inputs)
         return postprocess_outputs(outputs)
@@ -863,15 +765,12 @@ class Batcher:
 
 ### Image Processing Pipeline
 
-Process millions of images efficiently:
-
-```python
+Process millions of images efficiently: ```python
 import ray.data
 from PIL import Image
 import numpy as np
 
-def resize_and_normalize(row):
-    img = Image.open(row["path"]).convert("RGB")
+def resize_and_normalize(row): img = Image.open(row["path"]).convert("RGB")
     img = img.resize((224, 224))
     arr = np.array(img).astype(np.float32) / 255.0
     return {"image": arr.tobytes(), "label": row["label"]}
@@ -883,12 +782,9 @@ processed.write_parquet("s3://bucket/processed/")
 
 ### Streaming Transformations
 
-Apply transformations in a streaming fashion for real-time data:
-
-```python
+Apply transformations in a streaming fashion for real-time data: ```python
 @ray.remote
-def stream_processor():
-    import ray.data
+def stream_processor(): import ray.data
     
     stream = ray.data.from_items(
         [generate_data.remote(i) for i in range(1000)]
@@ -906,18 +802,14 @@ def stream_processor():
 
 ### Ray Dashboard
 
-Access the built-in dashboard for real-time monitoring:
-
-```bash
+Access the built-in dashboard for real-time monitoring: ```bash
 # Start Ray with dashboard enabled
 ray start --head --dashboard-port=8265
 
 # Access at http://localhost:8265
 ```
 
-The dashboard provides:
-
-- CPU/GPU/memory utilization per node
+The dashboard provides: - CPU/GPU/memory utilization per node
 - Task scheduling and execution timelines
 - Actor lifecycle management
 - Object store usage and eviction
@@ -925,9 +817,7 @@ The dashboard provides:
 
 ### Prometheus Metrics Integration
 
-Export Ray metrics to Prometheus for custom dashboards:
-
-```python
+Export Ray metrics to Prometheus for custom dashboards: ```python
 import ray
 from prometheus_client import start_http_server, Counter, Histogram
 
@@ -939,8 +829,7 @@ REQUEST_COUNT = Counter("ray_requests_total", "Total requests")
 REQUEST_LATENCY = Histogram("ray_request_latency_seconds", "Request latency")
 
 @ray.remote
-def tracked_function(data):
-    REQUEST_COUNT.inc()
+def tracked_function(data): REQUEST_COUNT.inc()
     start = time.time()
     result = process(data)
     REQUEST_LATENCY.observe(time.time() - start)
@@ -1038,7 +927,6 @@ Access the Ray Dashboard at `http://<head-node>:8265` for real-time metrics on C
 Scale your AI workloads with Ray's unified framework. [Start building](https://dibi8.com/auth/) today with our comprehensive tutorials and production-ready templates.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -1064,8 +952,8 @@ Scale your AI workloads with Ray's unified framework. [Start building](https://d
 }
 </script>
 
----
 
+---
 ## Related Articles
 
 - [google-jax-complete-guide](ray-distributed-ai-framework-complete-guide)
@@ -1074,6 +962,6 @@ Scale your AI workloads with Ray's unified framework. [Start building](https://d
 - [cleanlab-11k-star-ai-data-cleaning](ray-distributed-ai-framework-complete-guide)
 - [temporal-ai-workflow-orchestration](ray-distributed-ai-framework-complete-guide)
 
----
 
+---
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

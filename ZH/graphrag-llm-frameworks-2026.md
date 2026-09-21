@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/graphrag-llm-frameworks-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/graphrag-llm-frameworks-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/graphrag-llm-frameworks-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/graphrag-llm-frameworks-2026" />
 title: 'GraphRAG：微软基于知识图谱的 RAG，让大模型答得更准（33K Stars）——2026 实战指南'
 description: 'GraphRAG 是微软推出的模块化、基于知识图谱的 RAG 系统（33,403 个 GitHub star，MIT 协议）。本指南讲解安装、init/index/query 工作流、真实 CLI 示例，以及与 LangChain、Haystack 的诚实对比。'
 date: 2026-06-02 00:00:00+08:00
@@ -25,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: []
-aliases:
-- /posts/graphrag-llm-frameworks-2026/
-faqs:
-  - q: '怎么安装 graphrag？'
+aliases: - /posts/graphrag-llm-frameworks-2026/
+faqs: - q: '怎么安装 graphrag？'
     a: '从 PyPI 一条命令搞定（Python 3.10–3.12）： ```bash pip install graphrag ```'
   - q: '运行 graphrag 的系统要求是什么？'
     a: 'GraphRAG 需要 Python 3.10–3.12，以及通过 API key 访问一个语言模型（OpenAI、Azure OpenAI 或其他受支持的供应商）。任何支持 Python 的现代操作系统都能运行。'
@@ -37,10 +30,7 @@ faqs:
   - q: '怎么报告问题或 bug？'
     a: '用仓库的 GitHub Issues 页面。请尽量提供详细信息——错误消息、你的配置，以及复现问题的步骤。'
   - q: 'GraphRAG 和普通的向量 RAG 有什么区别？'
-    a: '普通 RAG 取回几个相似文本块再据此作答。GraphRAG 在此之外，还会从你的文档中构建知识图谱和社区摘要，因此它既能回答宽泛的、语料库级的问题（全局搜索），也能回答聚焦实体的问题（局部搜索）。'
----
-
-<!-- canonical: https://dibi8.com/zh/tools/graphrag-llm-frameworks-2026/ -->
+    a: '普通 RAG 取回几个相似文本块再据此作答。GraphRAG 在此之外，还会从你的文档中构建知识图谱和社区摘要，因此它既能回答宽泛的、语料库级的问题（全局搜索），也能回答聚焦实体的问题（局部搜索）。'---
 
 {{< resource-info >}}
 
@@ -156,20 +146,15 @@ print(community_reports[["title", "summary"]].head())
 GraphRAG 的行为由 `init` 创建的 `settings.yaml` 文件控制。在里面你可以选择对话模型和嵌入模型、设置切块大小、调节并发，并指定输入数据。一段简化后的片段如下：
 
 ```yaml
-models:
-  default_chat_model:
-    type: openai_chat
+models: default_chat_model: type: openai_chat
     model: gpt-4o-mini
-  default_embedding_model:
-    type: openai_embedding
+  default_embedding_model: type: openai_embedding
     model: text-embedding-3-small
 
-chunks:
-  size: 1200
+chunks: size: 1200
   overlap: 100
 
-input:
-  type: file
+input: type: file
   file_type: text
   base_dir: "input"
 ```
@@ -195,7 +180,15 @@ GraphRAG 由微软研究院开发、采用 MIT 协议，已被用于知识库、
 GraphRAG、LangChain 和 Haystack 解决的问题有重叠，但侧重不同。GraphRAG 是一套专注、有明确取向的图谱 RAG 流水线；LangChain 和 Haystack 则是用于构建各类 LLM 应用和 RAG 流水线的通用框架。下表只是一个大致的方位参考，并非正面跑分——star 数和 issue 数会随时间变化，请当作近似值看待。
 
 | 特性 | **GraphRAG** | **LangChain** | **Haystack** |
-|---|---|---|---|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 主要定位 | 基于图谱的 RAG 流水线 | 通用 LLM 应用框架 | RAG / 搜索框架 |
 | 语言 | Python | Python | Python |
 | 协议 | MIT | MIT | Apache-2.0 |
@@ -234,21 +227,18 @@ GraphRAG 是微软研究院出品的一套维护良好、模块化、基于图�
 - 加入 [dibi8 英文 Telegram 群](https://t.me/DIBI8_Group/2)，获取开源 AI 工具速递。
 - 接着读：[dibi8 上的相关指南](dibi8-internal-link)。
 
----
 
+---
 **来源与延伸阅读**：
 - GitHub 仓库：https://github.com/microsoft/graphrag
 - 官方文档 / README：https://github.com/microsoft/graphrag#readme
 
 *以上部分链接为联盟（affiliate）链接。如果你通过它们注册，dibi8.com 可能获得一笔佣金，你无需额外付费。这有助于维持网站运转、让内容保持免费。*
 
-<!-- internal-link-candidates:
   related open-source tools -> ai-tools-directory
   related guides on dibi8 -> ai-coding-agent-landscape-2026-skills-mcp-opensource
--->
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -276,25 +266,20 @@ GraphRAG 是微软研究院出品的一套维护良好、模块化、基于图�
 
 ## Why This Matters
 
-Understanding graphrag：微软基于知识图谱的 rag，让大模型答得更准（33k stars）——2026 实战指南 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding graphrag：微软基于知识图谱的 rag，让大模型答得更准（33k stars）——2026 实战指南 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -315,8 +300,8 @@ GraphRAG：微软基于知识图谱的 RAG，让大模型答得更准（33K Star
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 

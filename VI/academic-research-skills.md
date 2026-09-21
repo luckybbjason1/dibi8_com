@@ -1,19 +1,14 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/academic-research-skills" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/academic-research-skills" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/academic-research-skills" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/academic-research-skills" />
 title: "Kỹ Năng Nghiên Cứu Học Thuật: Tự Động Hóa Tổng Quan Tài ...
 description: "Academic Research Skills (31.628 sao) tự động hóa quy trình nghiên cứu: tìm kiếm bài báo, trích xuất thông tin, tổng hợp kết quả và viết tổng quan tài liệu. Được xây dựng cho Claude Code với kiến trúc kỹ thuật mô-đun."
 date: 2026-06-15
-lastmod:  2026-06-15slug: academic-research-skills
+lastmod: 2026-06-15
+slug: academic-research-skills
 category: dev-utils
 tags: ['nghiên cứu học thuật', 'tổng quan tài liệu', 'nghiên cứu AI', 'phân tích bài báo', 'tổng hợp', 'claude code', 'tự động hóa nghiên cứu']
 github_repo: "https://github.com/Imbad0202/academic-research-skills"
 license: Other
-images:
-  - url: "https://opengraph.github.com/github/Imbad0202/academic-research-skills"
+images: - url: "https://opengraph.github.com/github/Imbad0202/academic-research-skills"
     alt: "Academic Research Skills GitHub OG"
     role: reference
   - url: "https://raw.githubusercontent.com/Imbad0202/academic-research-skills/main/assets/research-pipeline.png"
@@ -26,8 +21,6 @@ lang: vi
 featureImage: /images/articles/academic-research-skills-automate-literature-reviews-with-ai.jpg
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/academic-research-skills/ -->
-
 ## TL;DR
 
 Academic Research Skills biến Claude Code thành một trợ lý nghiên cứu có thể tìm kiếm bài báo, trích xuất kết quả chính, tổng hợp tài liệu và tạo bản tổng quan toàn diện. Với 31.628 sao, nó tự động hóa những phần tốn thời gian nhất của nghiên cứu học thuật.
@@ -38,9 +31,7 @@ Academic Research Skills biến Claude Code thành một trợ lý nghiên cứu
 
 Academic Research Skills là một hệ thống kỹ năng mô-đun được thiết kế đặc biệt cho Claude Code, tự động hóa quy trình nghiên cứu trọn gói. Thay vì phải manually tìm kiếm PubMed, arXiv và Google Scholar, sau đó đọc từng bài báo, rồi tổng hợp kết quả thành một bản tổng quan mạch lạc, framework này kết nối các kỹ năng chuyên biệt xử lý từng bước.
 
-Bộ kỹ năng bao gồm:
-
-- **Tìm kiếm Bài báo** — Truy vấn các cơ sở dữ liệu học thuật (PubMed, arXiv, Semantic Scholar) với bộ lọc thông minh
+Bộ kỹ năng bao gồm: - **Tìm kiếm Bài báo** — Truy vấn các cơ sở dữ liệu học thuật (PubMed, arXiv, Semantic Scholar) với bộ lọc thông minh
 - **Trích xuất PDF** — Phân tích bài báo PDF, trích xuất hình ảnh, bảng biểu và đoạn văn bản chính bằng cách kết hợp phân tích PDF và OCR cho tài liệu quét
 - **Phân tích Trích dẫn** — Theo dõi mạng lưới trích dẫn, xác định các bài báo có ảnh hưởng
 - **Công cụ Tổng hợp** — Kết hợp kết quả từ nhiều bài báo thành tóm tắt có cấu trúc
@@ -56,9 +47,7 @@ npx skills list | grep research
 
 ## Quy trình Nghiên cứu Hoạt động Như thế nào
 
-Quy trình nghiên cứu hoạt động như một đồ thị có hướng không chu trình (DAG), trong đó đầu ra của mỗi kỹ năng truyền vào kỹ năng tiếp theo:
-
-```
+Quy trình nghiên cứu hoạt động như một đồ thị có hướng không chu trình (DAG), trong đó đầu ra của mỗi kỹ năng truyền vào kỹ năng tiếp theo: ```
 Truy vấn → Tìm kiếm → Lọc → Trích xuất → Phân tích → Tổng hợp → Viết
 ```
 
@@ -87,9 +76,7 @@ python3 scripts/synthesize.py --extractions extractions.json --output synthesis.
 
 ## Cài đặt & Thiết lập
 
-Cài đặt Academic Research Skills yêu cầu Python 3.10+ và quyền truy cập API vào các cơ sở dữ liệu học thuật:
-
-```bash
+Cài đặt Academic Research Skills yêu cầu Python 3.10+ và quyền truy cập API vào các cơ sở dữ liệu học thuật: ```bash
 # Sao chép kho lưu trữ
 curl -sL "https://github.com/Imbad0202/academic-research-skills/archive/refs/heads/main.zip" -o /tmp/research-skills.zip
 unzip -q /tmp/research-skills.zip -d /tmp
@@ -151,9 +138,7 @@ Image Docker bao gồm tesseract-ocr cho xử lý tài liệu quét và poppler-
 
 ## Tích hợp với Công cụ Nghiên cứu
 
-Academic Research Skills tích hợp với các công cụ nghiên cứu và viết phổ biến:
-
-| Công cụ | Phương thức Tích hợp | Trường hợp sử dụng |
+Academic Research Skills tích hợp với các công cụ nghiên cứu và viết phổ biến: | Công cụ | Phương thức Tích hợp | Trường hợp sử dụng |
 |---------|-------------------|-------------------|
 | **Zotero** | Xuất/nhập CSV | Quản lý tài liệu tham khảo |
 | **Notion** | Nhập Markdown | Ghi chú nghiên cứu |
@@ -171,9 +156,7 @@ python3 scripts/export.py --format latex --input synthesis.json --output bibliog
 
 ## Đánh giá Hiệu năng: Nghiên cứu Thủ công vs Tự động
 
-Thời gian tiết kiệm được từ việc tự động hóa tổng quan tài liệu là đáng kể:
-
-```
+Thời gian tiết kiệm được từ việc tự động hóa tổng quan tài liệu là đáng kể: ```
 Nhiệm vụ Nghiên cứu             | Thủ công | Tự động   | Tốc độ
 ------------------------------- | -------- | -------- | ------
 Tìm 50 bài báo liên quan        | 8 giờ    | 15 phút   | 32x
@@ -199,9 +182,7 @@ metrics = {
 
 ## Sử dụng Nâng cao: Quy trình Nghiên cứu Tùy chỉnh
 
-Các nhà nghiên cứu giàu kinh nghiệm mở rộng các kỹ năng cơ sở với quy trình tùy chỉnh:
-
-### Chiến lược Tìm kiếm Đa Cơ sở Dữ liệu
+Các nhà nghiên cứu giàu kinh nghiệm mở rộng các kỹ năng cơ sở với quy trình tùy chỉnh: ### Chiến lược Tìm kiếm Đa Cơ sở Dữ liệu
 
 ```python
 # Tìm kiếm qua nhiều cơ sở dữ liệu với kết quả thống nhất
@@ -229,8 +210,7 @@ graph.compute_centrality()  # PageRank, H-index, số lượng trích dẫn
 
 # Xác định các bài báo tiên phong
 seminal = graph.get_top_cited(k=10)
-for paper in seminal:
-    print(f"{paper.title} — {paper.citation_count} citations")
+for paper in seminal: print(f"{paper.title} — {paper.citation_count} citations")
 ```
 
 ### Mẫu Tổng hợp Tùy chỉnh
@@ -258,9 +238,7 @@ templates = {
 
 ### Định dạng Trích dẫn Tự động
 
-Định dạng trích dẫn đúng chuẩn là yếu tố quan trọng đối với công việc học thuật. Bộ kỹ năng bao gồm một trình định dạng trích dẫn hỗ trợ các phong cách APA, IEEE, Chicago và Vancouver:
-
-```python
+Định dạng trích dẫn đúng chuẩn là yếu tố quan trọng đối với công việc học thuật. Bộ kỹ năng bao gồm một trình định dạng trích dẫn hỗ trợ các phong cách APA, IEEE, Chicago và Vancouver: ```python
 from citation_formatter import CitationFormatter
 
 formatter = CitationFormatter(style="APA", version="7th")
@@ -274,9 +252,7 @@ formatted.export("references_ris.ris")
 
 ## So sánh với Các Giải pháp Thay thế
 
-Nhiều công cụ tự động hóa một phần quy trình nghiên cứu, nhưng Academic Research Skills độc đáo ở cách tiếp cận trọn gói:
-
-| Tính năng | Academic Research Skills | ResearchRabbit | Elicit | Consensus | Litmaps |
+Nhiều công cụ tự động hóa một phần quy trình nghiên cứu, nhưng Academic Research Skills độc đáo ở cách tiếp cận trọn gói: | Tính năng | Academic Research Skills | ResearchRabbit | Elicit | Consensus | Litmaps |
 |---------|-------------------------|----------------|--------|-----------|---------|
 | Sao | 31.628 | 5.200 | 12.000 | 3.800 | 2.100 |
 | Tìm kiếm Đa CSDL | 4 cơ sở dữ liệu | Chỉ Semantic Scholar | Semantic Scholar | Semantic Scholar | Chỉ Crossref |
@@ -291,9 +267,7 @@ Nhiều công cụ tự động hóa một phần quy trình nghiên cứu, như
 
 ## Hạn chế: Khi Nghiên cứu Thủ công Vẫn Tốt hơn
 
-Bất chấp các khả năng của nó, quy trình tự động có những hạn chế:
-
-1. **Yêu cầu chuyên môn lĩnh vực** — Hệ thống có thể tìm và tổng hợp bài báo, nhưng diễn giải kết quả trong ngữ cảnh câu hỏi nghiên cứu cụ thể của bạn đòi hỏi kiến thức chuyên môn.
+Bất chấp các khả năng của nó, quy trình tự động có những hạn chế: 1. **Yêu cầu chuyên môn lĩnh vực** — Hệ thống có thể tìm và tổng hợp bài báo, nhưng diễn giải kết quả trong ngữ cảnh câu hỏi nghiên cứu cụ thể của bạn đòi hỏi kiến thức chuyên môn.
 
 2. **Nội dung trả phí** — Bài báo đằng sau paywall không thể trích xuất đầy đủ. Hệ thống hoạt động tốt nhất với bài báo truy cập mở hoặc preprint.
 
@@ -356,15 +330,13 @@ npx skills add https://github.com/Imbad0202/academic-research-skills
 
 ---
 
-**Nguồn & Đọc thêm**:
-- Kho lưu trữ GitHub: https://github.com/Imbad0202/academic-research-skills
+**Nguồn & Đọc thêm**: - Kho lưu trữ GitHub: https://github.com/Imbad0202/academic-research-skills
 - API Semantic Scholar: https://api.semanticscholar.org/
 - API arXiv: https://info.arxiv.org/help/api/index.html
 - API PubMed: https://www.ncbi.nlm.nih.gov/books/NBK25500/
 
 
-**Sources & Further Reading**:
-- GitHub repository: https://github.com/Imbad0202/academic-research-skills
+**Sources & Further Reading**: - GitHub repository: https://github.com/Imbad0202/academic-research-skills
 - Semantic Scholar API: https://api.semanticscholar.org/
 - arXiv API: https://info.arxiv.org/help/api/index.html
 - PubMed API: https://www.ncbi.nlm.nih.gov/books/NBK25500/
@@ -373,7 +345,6 @@ npx skills add https://github.com/Imbad0202/academic-research-skills
 **Disclosure**: Bài viết này chứa các liên kết tiếp thị liên kết. Nếu bạn đăng ký qua các liên kết của chúng tôi, chúng tôi có thể kiếm được hoa hồng mà không phát sinh chi phí bổ sung cho bạn.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

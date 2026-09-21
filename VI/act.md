@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/act" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/act" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/act" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/act" />
 title: 'act: 70,410 GitHub Stars — Chạy GitHub Actions Local, Hư...
 description: 'act (nektos/act) là công cụ CLI chạy GitHub Actions workflow local bằng Docker container. Tương thích với Docker, GitHub Actions, Go và VS Code. Bao gồm cài đặt, thiết lập, quản lý secrets, runner images và production hardening.'
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [act, 'github-actions', 'ci-cd', docker, 'phat-trien-local', devops, 'kiem-tra', 'tu-dong-hoa']
-aliases:
-- /vi/posts/act/
+aliases: - /vi/posts/act/
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/act/ -->
 
 {{</* resource-info */>}}
 
@@ -45,9 +37,7 @@ act là công cụ CLI đọc file workflow GitHub Actions từ `.github/workflo
 
 ## act hoạt động như thế nào
 
-act hoạt động như một trình mô phỏng runner GitHub Actions local. Khi bạn chạy `act` trong một repository, nó thực hiện các bước sau:
-
-1. **Khám phá Workflow**: Quét `.github/workflows/` để tìm file workflow YAML
+act hoạt động như một trình mô phỏng runner GitHub Actions local. Khi bạn chạy `act` trong một repository, nó thực hiện các bước sau: 1. **Khám phá Workflow**: Quét `.github/workflows/` để tìm file workflow YAML
 2. **Phân tích Sự kiện**: Xác định workflow nào cần kích hoạt dựa trên loại sự kiện (push, pull_request, v.v.)
 3. **Giải quyết Phụ thuộc**: Xây dựng đồ thị không chu trình có hướng (DAG) của các phụ thuộc job
 4. **Chuẩn bị Image**: Pull hoặc build image Docker cho các runner được chỉ định
@@ -60,9 +50,7 @@ Công cụ sử dụng Docker Engine API trực tiếp, nghĩa là mọi runtime
 
 ### Kích thước Image Runner
 
-act cung cấp ba cấp image để cân bằng giữa độ chính xác và dung lượng đĩa:
-
-| Kích thước Image | Tải xuống | Dung lượng Đĩa | Trường hợp sử dụng |
+act cung cấp ba cấp image để cân bằng giữa độ chính xác và dung lượng đĩa: | Kích thước Image | Tải xuống | Dung lượng Đĩa | Trường hợp sử dụng |
 |---|---|---|---|
 | Micro | ~50 MB | <200 MB | Chỉ Node.js, kiểm thử smoke nhanh |
 | Medium | ~200 MB | ~500 MB | Bao gồm công cụ thiết yếu, phù hợp hầu hết workflow |
@@ -72,9 +60,7 @@ Image Medium mặc định (`catthehacker/ubuntu:act-latest`) bao gồm Python, 
 
 ## Cài đặt & Thiết lập
 
-act cài đặt trong vòng dưới 60 giây trên mọi nền tảng có Docker. Chọn phương pháp của bạn:
-
-### macOS (Homebrew)
+act cài đặt trong vòng dưới 60 giây trên mọi nền tảng có Docker. Chọn phương pháp của bạn: ### macOS (Homebrew)
 
 ```bash
 # Cài đặt act qua Homebrew
@@ -131,20 +117,15 @@ sudo make install
 
 ### Thiết lập Sau cài đặt
 
-Khi chạy lần đầu, act sẽ hỏi bạn chọn kích thước image mặc định:
-
-```bash
+Khi chạy lần đầu, act sẽ hỏi bạn chọn kích thước image mặc định: ```bash
 # Lần chạy đầu — chọn image runner mặc định
 act
-? Please choose the default image you want to use with act:
-  - Large size image: ~17GB download, ~75GB disk space, closest to GitHub runners
+? Please choose the default image you want to use with act: - Large size image: ~17GB download, ~75GB disk space, closest to GitHub runners
   - Medium size image: ~500MB, includes essential tools (RECOMMENDED)
   - Micro size image: <200MB, Node.js only
 ```
 
-Điều này tạo ra `~/.actrc` với cấu hình mặc định của bạn:
-
-```bash
+Điều này tạo ra `~/.actrc` với cấu hình mặc định của bạn: ```bash
 # ~/.actrc — cấu hình mặc định
 cat ~/.actrc
 -P ubuntu-latest=catthehacker/ubuntu:act-latest
@@ -152,9 +133,7 @@ cat ~/.actrc
 
 ### Yêu cầu Docker
 
-act yêu cầu Docker Engine API. Trước khi chạy:
-
-```bash
+act yêu cầu Docker Engine API. Trước khi chạy: ```bash
 # Xác minh Docker đang chạy
 docker info
 
@@ -168,9 +147,7 @@ docker version
 
 ### Tích hợp Docker
 
-act sử dụng Docker làm công cụ thực thi. Mọi job workflow chạy trong container cách ly:
-
-```bash
+act sử dụng Docker làm công cụ thực thi. Mọi job workflow chạy trong container cách ly: ```bash
 # Chạy với image runner tùy chỉnh
 act -P ubuntu-latest=node:20-slim
 
@@ -182,32 +159,24 @@ act
 act --container-architecture linux/amd64
 ```
 
-Workflow Docker-in-Docker (DinD) được hỗ trợ bằng cách mount Docker socket của host:
-
-```yaml
+Workflow Docker-in-Docker (DinD) được hỗ trợ bằng cách mount Docker socket của host: ```yaml
 # .github/workflows/dind-test.yml
 name: Docker Build Test
 on: push
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: build: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - name: Build Docker image
         run: docker build -t myapp:latest .
 ```
 
 ### Tiện ích VS Code (GitHub Local Actions)
 
-Tiện ích [GitHub Local Actions](https://marketplace.visualstudio.com/items?itemName=SanjulaGanepola.github-local-actions) cho VS Code cung cấp GUI cho act:
-
-```bash
+Tiện ích [GitHub Local Actions](https://marketplace.visualstudio.com/items?itemName=SanjulaGanepola.github-local-actions) cho VS Code cung cấp GUI cho act: ```bash
 # Cài đặt tiện ích từ VS Code marketplace
 # Nhấn Cmd+Shift+P → "Extensions: Install Extensions" → Tìm "GitHub Local Actions"
 ```
 
-Sau khi cài đặt tiện ích:
-- Mở panel Act từ thanh bên
+Sau khi cài đặt tiện ích: - Mở panel Act từ thanh bên
 - Xem tất cả workflow trong `.github/workflows/`
 - Nhấp vào bất kỳ workflow nào để chạy local
 - Xem log thởi gian thực trong terminal tích hợp
@@ -216,9 +185,7 @@ Sau khi cài đặt tiện ích:
 
 ### Hỗ trợ GitHub Enterprise
 
-act hỗ trợ các phiên bản GitHub Enterprise Server riêng tư:
-
-```bash
+act hỗ trợ các phiên bản GitHub Enterprise Server riêng tư: ```bash
 # Chạy với GitHub Enterprise Server
 act --github-instance github.company.com
 
@@ -228,29 +195,20 @@ act --github-instance github.company.com -s GITHUB_TOKEN=ghp_xxxxxxxx
 
 ### Thay thế Make bằng act
 
-Nhiều team sử dụng act như một task runner local, thay thế Makefile bằng workflow GitHub Actions:
-
-```yaml
+Nhiều team sử dụng act như một task runner local, thay thế Makefile bằng workflow GitHub Actions: ```yaml
 # .github/workflows/tasks.yml
 name: Local Tasks
 on: workflow_dispatch
-jobs:
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+jobs: lint: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - name: Run linter
         run: npm run lint
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+  test: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - name: Run tests
         run: npm test
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+  build: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
       - name: Build
         run: npm run build
 ```
@@ -276,9 +234,7 @@ act -j build
 
 ### Nghiên cứu: Giảm phút CI
 
-Một team kỹ sư quy mô vừa (25 lập trình viên) chạy 200 lần push workflow mỗi ngày:
-
-- **Trước act**: ~600 lần chạy CI thất bại/ngày, tiêu thụ ~3.000 phút GitHub Actions
+Một team kỹ sư quy mô vừa (25 lập trình viên) chạy 200 lần push workflow mỗi ngày: - **Trước act**: ~600 lần chạy CI thất bại/ngày, tiêu thụ ~3.000 phút GitHub Actions
 - **Sau act**: Lập trình viên xác thực local trước; lần chạy CI thất bại giảm xuống ~80/ngày
 - **Tiết kiệm hàng tháng**: ~66.000 phút GitHub Actions = khoảng $400-1.300/tháng tùy loại runner
 
@@ -294,9 +250,7 @@ Một team kỹ sư quy mô vừa (25 lập trình viên) chạy 200 lần push 
 
 ### Quản lý Secrets
 
-Không bao giờ commit secrets để test. act cung cấp nhiều pattern bảo mật:
-
-```bash
+Không bao giờ commit secrets để test. act cung cấp nhiều pattern bảo mật: ```bash
 # Tùy chọn 1: Prompt tương tác (khuyến nghị cho chạy thủ công)
 act -s MY_SECRET
 
@@ -316,18 +270,14 @@ act --secret-file .secrets
 act -s GITHUB_TOKEN=ghp_xxxxxxxxxxxx
 ```
 
-Thêm `.secrets` vào `.gitignore` ngay lập tức:
-
-```bash
+Thêm `.secrets` vào `.gitignore` ngay lập tức: ```bash
 echo ".secrets" >> .gitignore
 echo "*.secrets" >> .gitignore
 ```
 
 ### Biến Repository (vars context)
 
-Context `vars` của GitHub được hỗ trợ cho cấu hình cấp repository:
-
-```bash
+Context `vars` của GitHub được hỗ trợ cho cấu hình cấp repository: ```bash
 # Đặt biến
 act --var DEPLOY_ENV=staging --var API_VERSION=v2
 
@@ -341,9 +291,7 @@ act --var-file .variables
 
 ### Mô phỏng Sự kiện với File Payload
 
-Test các workflow phụ thuộc vào dữ liệu sự kiện bằng cách cung cấp file payload JSON:
-
-```bash
+Test các workflow phụ thuộc vào dữ liệu sự kiện bằng cách cung cấp file payload JSON: ```bash
 # Mô phỏng sự kiện pull_request
 cat > pull-request.json << EOF
 {
@@ -380,9 +328,7 @@ act workflow_dispatch -e workflow-inputs.json
 
 ### Chế độ Dry-Run
 
-Xác thực cú pháp workflow và xem kế hoạch thực thi mà không cần chạy thực tế:
-
-```bash
+Xác thực cú pháp workflow và xem kế hoạch thực thi mà không cần chạy thực tế: ```bash
 # Liệt kê tất cả job sẽ chạy
 act -l
 
@@ -395,9 +341,7 @@ act -n -v
 
 ### File Cấu hình (.actrc)
 
-Cấu hình riêng cho dự án qua `.actrc`:
-
-```bash
+Cấu hình riêng cho dự án qua `.actrc`: ```bash
 # .actrc trong thư mục gốc dự án
 cat > .actrc << EOF
 --container-architecture linux/amd64
@@ -408,38 +352,28 @@ cat > .actrc << EOF
 EOF
 ```
 
-Thứ tự ưu tiên cấu hình (cao đến thấp):
-1. Tham số CLI
+Thứ tự ưu tiên cấu hình (cao đến thấp): 1. Tham số CLI
 2. `./.actrc` (thư mục gốc dự án)
 3. `~/.actrc` (thư mục home)
 4. `$XDG_CONFIG_HOME/act/actrc`
 
 ### Bỏ qua Job/Step cho Chạy Local
 
-Đánh dấu các step không nên chạy local:
-
-```yaml
+Đánh dấu các step không nên chạy local: ```yaml
 # Trong file workflow của bạn
-jobs:
-  deploy:
-    if: ${{ !github.event.act }}  # Bỏ qua job deploy khi chạy local
+jobs: deploy: if: ${{ !github.event.act }}  # Bỏ qua job deploy khi chạy local
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+    steps: - uses: actions/checkout@v4
 
-  notify:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Bỏ qua Slack notification khi chạy local
+  notify: runs-on: ubuntu-latest
+    steps: - name: Bỏ qua Slack notification khi chạy local
         if: ${{ !env.ACT }}
         run: |
           curl -X POST -H 'Content-type: application/json' \
             --data '{"text":"Deployment complete"}' ${{ secrets.SLACK_WEBHOOK }}
 ```
 
-Truyền cờ act qua sự kiện:
-
-```bash
+Truyền cờ act qua sự kiện: ```bash
 cat > event.json << EOF
 { "act": true }
 EOF
@@ -448,9 +382,7 @@ act -e event.json
 
 ### Thu thập Artifact
 
-Thu thập workflow artifact local:
-
-```bash
+Thu thập workflow artifact local: ```bash
 # Chỉ định đường dẫn artifact server
 act --artifact-server-path /tmp/artifacts
 
@@ -460,9 +392,7 @@ ls -la /tmp/artifacts/
 
 ### Chế độ Offline
 
-Cho môi trường cách ly hoặc băng thông thấp:
-
-```bash
+Cho môi trường cách ly hoặc băng thông thấp: ```bash
 # Pull image trước
 act --action-offline-mode
 
@@ -493,9 +423,7 @@ act --action-offline-mode
 
 ## Hạn chế / Đánh giá Trung thực
 
-act là công cụ phát triển và debug, không phải thay thế CI/CD production. Hiểu các ràng buộc này trước khi áp dụng:
-
-1. **Chỉ hỗ trợ Linux runner**: Windows (`windows-latest`) và macOS (`macos-latest`) runner không được hỗ trợ cho thực thi container hóa. Cờ `-self-hosted` có thể chạy job trực tiếp trên máy chủ macOS/Windows, nhưng điều này bỏ qua cách ly container và không khớp với môi trường runner của GitHub.
+act là công cụ phát triển và debug, không phải thay thế CI/CD production. Hiểu các ràng buộc này trước khi áp dụng: 1. **Chỉ hỗ trợ Linux runner**: Windows (`windows-latest`) và macOS (`macos-latest`) runner không được hỗ trợ cho thực thi container hóa. Cờ `-self-hosted` có thể chạy job trực tiếp trên máy chủ macOS/Windows, nhưng điều này bỏ qua cách ly container và không khớp với môi trường runner của GitHub.
 
 2. **Image mặc định không đầy đủ**: Image runner Medium không bao gồm mọi công cụ được cài đặt sẵn trên runner được lưu trữ của GitHub. Phần mềm như `swift`, `gcloud`, hoặc các thành phần Android SDK cụ thể có thể cần bước cài đặt thủ công trong workflow của bạn.
 
@@ -517,9 +445,7 @@ Cho lần chạy đầu tiên, có — act cần pull image Docker và clone act
 
 ### Q2: Làm thế nào chỉ chạy một job cụ thể từ workflow?
 
-Sử dụng cờ `-j` theo sau là job ID được định nghĩa trong file workflow YAML:
-
-```bash
+Sử dụng cờ `-j` theo sau là job ID được định nghĩa trong file workflow YAML: ```bash
 # Chỉ chạy job "test"
 act -j test
 
@@ -529,9 +455,7 @@ act -j lint -W .github/workflows/checks.yml
 
 ### Q3: act có thể dùng với repository GitHub riêng tư hoặc GitHub Enterprise không?
 
-Có. Cho repo riêng tư, cung cấp personal access token qua `-s GITHUB_TOKEN`. Cho GitHub Enterprise Server, dùng `--github-instance`:
-
-```bash
+Có. Cho repo riêng tư, cung cấp personal access token qua `-s GITHUB_TOKEN`. Cho GitHub Enterprise Server, dùng `--github-instance`: ```bash
 act --github-instance github.mycompany.com -s GITHUB_TOKEN=ghp_xxx
 ```
 
@@ -541,9 +465,7 @@ Lỗi này xảy ra khi dùng local action (ví dụ: `uses: ./`) mà không che
 
 ### Q5: Làm thế nào debug một step thất bại?
 
-Chạy act với verbose logging (`-v`) và giữ container để kiểm tra:
-
-```bash
+Chạy act với verbose logging (`-v`) và giữ container để kiểm tra: ```bash
 # Output chi tiết
 act -v
 
@@ -560,9 +482,7 @@ Không. act được thiết kế cho phát triển và debug local. Cho CI/CD p
 
 ### Q7: Làm thế nào cập nhật act lên phiên bản mới nhất?
 
-Dùng cùng package manager bạn đã cài đặt:
-
-```bash
+Dùng cùng package manager bạn đã cài đặt: ```bash
 # Homebrew
 brew upgrade act
 
@@ -593,9 +513,7 @@ Tham gia [cộng đồng lập trình viên dibi8 trên Telegram](https://t.me/d
 
 ## Hosting Và Hạ Tầng Được Đề Xuất
 
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
@@ -612,7 +530,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [catthehacker/docker_images](https://github.com/catthehacker/docker_images) — Community runner images mà act sử dụng
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

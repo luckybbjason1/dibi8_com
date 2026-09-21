@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/egonex-understand-anything-interactive-knowledge-graph-ai" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/egonex-understand-anything-interactive-knowledge-graph-ai" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/egonex-understand-anything-interactive-knowledge-graph-ai" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/egonex-understand-anything-interactive-knowledge-graph-ai" />
 title: "Egonex Understand-Anything：任何主题的交互式知识图谱——AI 驱动、开源、零配置"
-description: "了解如何使用 Egonex 的 Understand-Anything 通过 AI 从任何主题生成交互式知识图谱。包含逐步安装、多源综合、实时搜索和与替代方案的比较。". Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "了解如何使用 Egonex 的 Understand-Anything 通过 AI 从任何主题生成交互式知识图谱。包含逐步安装、多源综合、实时搜索和与替代方案的比较。"
 date: 2026-06-10
-lastmod:  2026-06-10slug: "egonex-understand-anything-interactive-knowledge-graph-ai"
+lastmod: 2026-06-10
+slug: "egonex-understand-anything-interactive-knowledge-graph-ai"
 category: llm-frameworks
 tags: [egonex, understand-anything, 知识图谱, AI, 交互式, 开源, 研究, 可视化, llm]
 github_repo: "https://github.com/Egonex-AI/Understand-Anything"
@@ -15,10 +11,7 @@ stars: 55799
 maintainer: Egonex-AI
 license: MIT
 featureImage: "https://raw.githubusercontent.com/Egonex-AI/Understand-Anything/main/assets/hero.png"
-lang: zh
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/egonex-understand-anything-interactive-knowledge-graph-ai/ -->
 
 ## 简介
 
@@ -208,13 +201,11 @@ graph.export("dl_graph.png", format="png")
 # 查询图谱
 nodes = graph.get_nodes()
 edges = graph.get_edges()
-for node in nodes:
-    print(f"概念: {node['label']}, 置信度: {node['confidence']:.2f}")
+for node in nodes: print(f"概念: {node['label']}, 置信度: {node['confidence']:.2f}")
 
 # 查找相关概念
 related = graph.get_related("神经网络", depth=2)
-for concept in related:
-    print(f"  相关: {concept['label']} ({concept['relation']})")
+for concept in related: print(f"  相关: {concept['label']} ({concept['relation']})")
 ```
 
 ### REST API 服务器
@@ -273,9 +264,7 @@ understand-anything vscode --install
 from understand_anything import KnowledgeGraph
 
 # 创建具有特定源自定义研究 Agent
-class CustomResearchAgent:
-    def research_topic(self, topic):
-        # 使用特定学术数据库的自定义研究逻辑
+class CustomResearchAgent: def research_topic(self, topic): # 使用特定学术数据库的自定义研究逻辑
         results = self.custom_search(topic)
         return results
 
@@ -289,7 +278,15 @@ graph.generate("自定义研究主题")
 ### 按领域的研究质量
 
 | 主题类别 | 生成的概念 | 使用的来源 | 平均置信度 |
-|---------|-----------|-----------|-----------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 科学（物理） | 145 | 28 | 0.87 |
 | 计算机科学 | 178 | 35 | 0.82 |
 | 历史 | 120 | 22 | 0.91 |
@@ -300,7 +297,15 @@ graph.generate("自定义研究主题")
 ### 生成速度
 
 | 深度 | 节点 | 平均时间 | 网络搜索 |
-|------|------|---------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 1 | 50 | 约 15 秒 | 10 |
 | 2 | 150 | 约 45 秒 | 30 |
 | 3 | 300 | 约 2 分钟 | 60 |
@@ -309,7 +314,15 @@ graph.generate("自定义研究主题")
 ### 与手动研究的比较
 
 | 任务 | 手动时间 | AI 时间 | 质量评分 |
-|------|---------|---------|---------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 主题概述 | 2 小时 | 30 秒 | 0.85 |
 | 详细概念图 | 8 小时 | 5 分钟 | 0.88 |
 | 交叉引用分析 | 4 小时 | 1 分钟 | 0.92 |
@@ -362,9 +375,7 @@ understand-anything generate "神经网络" \
 
 ```yaml
 # understand-anything-config.yaml
-search:
-  sources:
-    - name: wikipedia
+search: sources: - name: wikipedia
       enabled: true
       weight: 1.0
     - name: arxiv
@@ -377,18 +388,15 @@ search:
       enabled: true
       weight: 0.9
 
-visualization:
-  layout: force-directed
+visualization: layout: force-directed
   max_nodes: 500
   node_size: medium
   edge_width: thin
-  colors:
-    parent: "#4A90D9"
+  colors: parent: "#4A90D9"
     child: "#7BC67E"
     related: "#F5A623"
 
-research:
-  max_searches_per_topic: 20
+research: max_searches_per_topic: 20
   min_sources_per_concept: 2
   confidence_threshold: 0.7
 ```
@@ -469,7 +477,17 @@ docker run -v $(pwd)/output:/app/output \
 ## 与替代方案比较
 
 | 功能 | Understand-Anything | 维基百科 API | Semantic Scholar | MindMeister |
-|------|-------------------|------------|-----------------|-------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 安装方式 | `pip install` / `npm install` | API 密钥 | API 密钥 | Web 应用 |
 | AI 驱动 | 是（LLM + 搜索） | 否 | 部分 | 否 |
 | 多源 | 是（维基百科、arXiv、网页、PubMed） | 否 | 有限（仅限学术） | 否 |
@@ -550,7 +568,6 @@ AI 研究、网络搜索集成和交互式可视化的组合使 Understand-Anyth
 以上链接中包含联盟链接。dibi8.com 可能会在你注册时赚取佣金，而无需你支付额外费用。这有助于保持网站运行和内容免费。
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -578,25 +595,20 @@ AI 研究、网络搜索集成和交互式可视化的组合使 Understand-Anyth
 
 ## Why This Matters
 
-Understanding egonex understand-anything：任何主题的交互式知识图谱——ai 驱动、开源、零配置 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding egonex understand-anything：任何主题的交互式知识图谱——ai 驱动、开源、零配置 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -617,13 +629,13 @@ Egonex Understand-Anything：任何主题的交互式知识图谱——AI 驱动
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
 
+---
 ## Related Articles
 
 - [academic-research-skills](egonex-understand-anything-interactive-knowledge-graph-ai)

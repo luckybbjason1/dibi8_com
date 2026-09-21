@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-code-custom-agent-authoring-guide-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-custom-agent-authoring-guide-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-custom-agent-authoring-guide-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-custom-agent-authoring-guide-2026" />
 title: 'Claude Code 커스텀 에이전트 작성 가이드: 팀 표준을 강제하는 재사용 가능한 서브에이전트 만...
 description: 'Claude Code 커스텀 서브에이전트를 작성하는 완벽 가이드 — frontmatter 필드, 시스템 프롬프트 설계, 도구 화이트리스트, 그리고 바로 투입 가능한 두 가지 예제(마이그레이션 리뷰어, 보안 게이트)와 피해야 할 실수까지.'
 date: 2026-05-28 00:00:00+08:00
@@ -25,10 +20,8 @@ featureImage: ''
 draft: false
 categories: ['llm-frameworks']
 tags: ['claude-code', subagents, 'custom-agents', 'agent-sdk', 'ai-coding-agents', 'llm-frameworks', 'developer-tools']
-aliases:
-- /posts/claude-code-custom-agent-authoring/
-faq:
-  - q: "커스텀 에이전트 정의 파일은 어디에 두며, 어떤 형식인가요?"
+aliases: - /posts/claude-code-custom-agent-authoring/
+faq: - q: "커스텀 에이전트 정의 파일은 어디에 두며, 어떤 형식인가요?"
     a: "커스텀 에이전트는 YAML frontmatter가 붙은 Markdown 파일로, 프로젝트의 .claude/agents/ 디렉터리(또는 모든 프로젝트에서 쓰고 싶다면 ~/.claude/agents/)에 저장합니다. 파일명에서 .md 확장자를 뗀 것이 에이전트의 정체성은 아닙니다 — frontmatter의 name 필드가 정체성입니다. frontmatter는 name, description, 선택적 tools 화이트리스트, 선택적 model을 선언하며, 닫는 --- 아래의 모든 내용이 에이전트의 시스템 프롬프트입니다."
   - q: "description 필드와 시스템 프롬프트 본문은 어떻게 다른가요?"
     a: "description은 라우팅 신호입니다. 부모 에이전트가 이 서브에이전트에게 위임할지 결정할 때 읽는 것이 바로 이것이므로, 단순히 무엇인지가 아니라 『언제』 이 에이전트를 써야 하는지를 말해야 합니다. 시스템 프롬프트 본문은 에이전트가 호출된 뒤 그 아래에서 실행하는 지시 집합입니다 — 역할, 방법, 출력 계약이죠. 훌륭한 description에 모호한 본문이면 올바른 시점에 호출되지만 평범한 일을 하고, 훌륭한 본문에 모호한 description이면 뛰어난 일을 하지만 결코 트리거되지 않습니다."
@@ -42,7 +35,6 @@ faq:
     a: "둘 다에서 동작합니다. 동일한 .claude/agents/ 정의가 Claude Code를 비대화형으로 실행할 때(CI에서 쓰는 -p / print 모드)도 인식됩니다. 저장소에 버전 관리되는 파일이므로 모든 동료와 모든 CI 작업이 완전히 동일한 에이전트 정의를 봅니다 — 리뷰 체크리스트를 아무도 열어보지 않는 위키 페이지가 아니라 에이전트로 코드화하는 것의 핵심이 바로 이것입니다."
 ---
 
-<!-- canonical: https://dibi8.com/kr/tools/claude-code-custom-agent-authoring-guide-2026/ -->
 # Claude Code 커스텀 에이전트 작성 가이드: 팀 표준을 강제하는 재사용 가능한 서브에이전트 만들기 (2026)
 
 
@@ -56,14 +48,10 @@ faq:
 
 ## 커스텀 에이전트의 해부 구조
 
-커스텀 에이전트는 YAML frontmatter가 붙은 단일 Markdown 파일입니다. 두 위치 중 하나에 둡니다:
-
-- `.claude/agents/<name>.md` — 프로젝트 범위, 버전 관리, 팀 전체와 공유
+커스텀 에이전트는 YAML frontmatter가 붙은 단일 Markdown 파일입니다. 두 위치 중 하나에 둡니다: - `.claude/agents/<name>.md` — 프로젝트 범위, 버전 관리, 팀 전체와 공유
 - `~/.claude/agents/<name>.md` — 사용자 범위, 내 머신의 모든 프로젝트에서 사용 가능
 
-구조는 무척 단순합니다:
-
-```markdown
+구조는 무척 단순합니다: ```markdown
 ---
 name: migration-reviewer
 description: Reviews database migrations for safety. Use when a PR touches db/migrate/, schema files, or any SQL DDL.
@@ -87,9 +75,7 @@ migrations before they reach production...
 
 ### `description` (필수 — 그리고 사람들이 가장 과소평가하는 것)
 
-이것이 **라우팅 신호**입니다. 부모 에이전트가 위임할지 결정할 때 읽는 것은 시스템 프롬프트가 아니라 description입니다. 그래서 description은 구체적인 트리거 조건으로 *언제* 이 에이전트를 찾아야 하는지를 담아야 합니다:
-
-> ❌ `description: A code reviewer.`
+이것이 **라우팅 신호**입니다. 부모 에이전트가 위임할지 결정할 때 읽는 것은 시스템 프롬프트가 아니라 description입니다. 그래서 description은 구체적인 트리거 조건으로 *언제* 이 에이전트를 찾아야 하는지를 담아야 합니다: > ❌ `description: A code reviewer.`
 > ✅ `description: Reviews code changes for correctness and security. Use proactively after writing a non-trivial diff, before committing, especially for auth, payments, or concurrency-sensitive code.`
 
 "proactively"(능동적으로)라는 단어가 하중을 떠받칩니다 — 명시적 요청 없이도 부모가 알아서 호출하도록 부추기죠. 에이전트가 도무지 트리거되지 않는 것 같다면, 거의 항상 description이 원인입니다.
@@ -104,15 +90,10 @@ migrations before they reach production...
 
 ## 시스템 프롬프트 작성하기
 
-본문은 대부분의 에이전트가 성패가 갈리는 곳입니다. 세 가지 규칙이 신뢰할 만한 작업자를 만들어냅니다:
+본문은 대부분의 에이전트가 성패가 갈리는 곳입니다. 세 가지 규칙이 신뢰할 만한 작업자를 만들어냅니다: **1. 첫 문장에서 역할과 경계를 밝히세요.** "You are a migration reviewer. You do not write code or apply fixes — you report findings." 에이전트에게 *하지 말아야 할* 것을 알려주는 일은 일 자체를 알려주는 것만큼 중요합니다.
 
-**1. 첫 문장에서 역할과 경계를 밝히세요.** "You are a migration reviewer. You do not write code or apply fixes — you report findings." 에이전트에게 *하지 말아야 할* 것을 알려주는 일은 일 자체를 알려주는 것만큼 중요합니다.
-
-**2. 출력 계약을 명시하세요.** 모호한 프롬프트는 산문을 낳습니다. 여러분이 원하는 건 구조죠. 못 박아 두세요:
-
-```markdown
-Report your findings as a list. For each issue:
-- SEVERITY: blocker | warning | nit
+**2. 출력 계약을 명시하세요.** 모호한 프롬프트는 산문을 낳습니다. 여러분이 원하는 건 구조죠. 못 박아 두세요: ```markdown
+Report your findings as a list. For each issue: - SEVERITY: blocker | warning | nit
 - LOCATION: file:line
 - PROBLEM: one sentence
 - FIX: the concrete change
@@ -125,9 +106,7 @@ End with a one-line VERDICT: SAFE TO MERGE or NEEDS CHANGES.
 
 여기 함정이 있습니다. `tools`를 비워두면 여러분의 "리뷰어"가 `Write`, `Edit`, `Bash`를 상속받습니다. 문제를 처음 발견하는 순간 그것을 "친절하게" 고쳐버릴 수 있습니다 — 작업 트리를 변경하고, 명령을 실행하고, 이 리뷰를 요청할 가치를 만들어준 그 독립성을 파괴하면서요.
 
-해법은 최소 권한입니다. 도구를 직무에 맞추세요:
-
-| 에이전트 유형 | 도구 |
+해법은 최소 권한입니다. 도구를 직무에 맞추세요: | 에이전트 유형 | 도구 |
 | --- | --- |
 | 리뷰어 / 감사기 | `Read, Grep, Glob` |
 | 조사원 / 탐색기 | `Read, Grep, Glob, WebSearch, WebFetch` |
@@ -149,15 +128,13 @@ model: sonnet
 You are a database migration reviewer. You do NOT edit files or run
 migrations — you read the proposed migration and report risks.
 
-Check every migration against this list:
-1. Adding a column with a NOT NULL constraint and no default on a large table (locks).
+Check every migration against this list: 1. Adding a column with a NOT NULL constraint and no default on a large table (locks).
 2. Adding an index without CONCURRENTLY (blocks writes).
 3. Renaming or dropping a column still referenced by application code.
 4. A data backfill running inside the same transaction as the schema change.
 5. Missing a corresponding rollback / down path.
 
-Report findings as:
-- SEVERITY: blocker | warning | nit
+Report findings as: - SEVERITY: blocker | warning | nit
 - LOCATION: file:line
 - PROBLEM / FIX
 End with VERDICT: SAFE TO MERGE or NEEDS CHANGES.
@@ -178,8 +155,7 @@ model: opus
 You are a security reviewer with a threat-modeling mindset. Assume the
 input is hostile. You report only — you never modify code.
 
-For the diff, check:
-- Authn/authz: can this path be reached without the expected check?
+For the diff, check: - Authn/authz: can this path be reached without the expected check?
 - Injection: is user input concatenated into SQL, shell, or HTML?
 - Secrets: any key, token, or password added to code or logs?
 - IDOR: are object references scoped to the authenticated user?
@@ -195,9 +171,7 @@ cheap, a missed auth hole is not.
 
 속여보지도 않은 에이전트를 출시하지 마세요. [git worktree](/kr/resources/llm-frameworks/claude-code-subagent-patterns-multi-agent-workflows-2026/)나 일회용 브랜치를 띄우고 그 안에 *심어둔* 문제 — `CONCURRENTLY`가 빠진 마이그레이션, 소유권 검사가 빠진 엔드포인트 — 를 넣은 뒤 에이전트를 호출하세요.
 
-서로 독립적인 두 가지를 테스트하는 겁니다:
-
-- **자연스러운 요청에 트리거됐나요?** 안 됐으면 `description`을 고치세요.
+서로 독립적인 두 가지를 테스트하는 겁니다: - **자연스러운 요청에 트리거됐나요?** 안 됐으면 `description`을 고치세요.
 - **심어둔 버그를 잡았나요?** 안 잡았으면 시스템 프롬프트의 체크리스트를 고치세요.
 
 이 둘은 실패 원인이 다르므로 따로 반복 개선하세요. 흔한 의외의 상황: 명시적으로 이름을 부르면 완벽하게 동작하는데 스스로는 결코 발동하지 않는 경우 — 그건 언제나 description 문제이지 본문 문제가 아닙니다.
@@ -216,9 +190,7 @@ cheap, a missed auth hole is not.
 
 ## 프로덕션 수준의 Claude Code 구성하기
 
-커스텀 에이전트 파이프라인을 대규모로 돌리려면 안정적인 인프라가 필요합니다:
-
-1. **장시간 세션과 CI 세션을 위한 믿을 만한 호스트.** 커스텀 에이전트는 모든 PR을 지키는 CI에서 가장 빛납니다. 작업을 떨어뜨리지 않는 머신이 필요합니다. **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 중국 본토에서 저지연으로 접속되고 BGP 라우팅이 안정적인 홍콩 VPS입니다. dibi8.com을 호스팅하는 바로 그 IDC라서, 우리 자신의 에이전트 파이프라인도 그 위에서 돌립니다. 가성비 등급은 월 $5-12입니다.
+커스텀 에이전트 파이프라인을 대규모로 돌리려면 안정적인 인프라가 필요합니다: 1. **장시간 세션과 CI 세션을 위한 믿을 만한 호스트.** 커스텀 에이전트는 모든 PR을 지키는 CI에서 가장 빛납니다. 작업을 떨어뜨리지 않는 머신이 필요합니다. **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 중국 본토에서 저지연으로 접속되고 BGP 라우팅이 안정적인 홍콩 VPS입니다. dibi8.com을 호스팅하는 바로 그 IDC라서, 우리 자신의 에이전트 파이프라인도 그 위에서 돌립니다. 가성비 등급은 월 $5-12입니다.
 
 2. **병렬 게이트를 위한 클라우드 여유.** 오케스트레이터가 migration-reviewer + security-gate + perf-checker로 한꺼번에 팬아웃할 때는 여분의 CPU가 필요합니다. **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — 14개 이상 리전에 걸쳐 60일간 $200 무료 크레딧, 앱 옆에 CI 러너를 두기에 좋습니다.
 
@@ -238,7 +210,6 @@ cheap, a missed auth hole is not.
 하나로 시작하세요 — 위의 마이그레이션 리뷰어가 대부분의 팀에 가장 레버리지가 높은 첫 에이전트입니다. 버그를 심고, 그것을 잡아내는지 확인한 뒤, 파일을 커밋하세요. 그 순간부터 모든 동료는 결코 지치지 않고 결코 단계를 건너뛰지 않는 리뷰어를 갖게 됩니다.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

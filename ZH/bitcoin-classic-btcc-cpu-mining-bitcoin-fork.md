@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/bitcoin-classic-btcc-cpu-mining-bitcoin-fork" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/bitcoin-classic-btcc-cpu-mining-bitcoin-fork" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/bitcoin-classic-btcc-cpu-mining-bitcoin-fork" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/bitcoin-classic-btcc-cpu-mining-bitcoin-fork" />
 title: "Bitcoin-Classic (BTCC): 让普通人也能 CPU 挖矿的比特币复刻版"
-description: "Bitcoin-Classic (BTCC) 是一个基于 Bitcoin Core v28.1 重建的去中心化数字货币，支持 CPU 挖矿，自带图形界面和内置矿机，让普通人也能体验早期比特币挖矿的乐趣。". Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "Bitcoin-Classic (BTCC) 是一个基于 Bitcoin Core v28.1 重建的去中心化数字货币，支持 CPU 挖矿，自带图形界面和内置矿机，让普通人也能体验早期比特币挖矿的乐趣。"
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - C++
+tech_stack: - C++
 application_domain: "Ai Tools"
 source_version: ""
 licensing_model: "Open Source"
@@ -24,10 +18,8 @@ maintainer: "Marcus-Vane"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases:
-- /zh/posts/bitcoin-classic-btcc-cpu-mining-bitcoin-fork/
-faqs:
-  - q: '普通 CPU 可以挖 Bitcoin-Classic（BTCC）吗？'
+aliases: - /zh/posts/bitcoin-classic-btcc-cpu-mining-bitcoin-fork/
+faqs: - q: '普通 CPU 可以挖 Bitcoin-Classic（BTCC）吗？'
     a: '可以。BTCC 的设计初衷就是让普通家用电脑的 CPU 也能参与挖矿，无需 ASIC 矿机或专用 GPU。由于网络算力极低，普通 CPU 确实可以赚取区块奖励。'
   - q: 'Bitcoin-Classic（BTCC）的总供应量和区块奖励是多少？'
     a: 'BTCC 总供应量为 21,000,000 枚，与比特币完全相同。初始区块奖励为 50 BTCC，每 210,000 个区块（约 4 年）减半一次，出块时间为 10 分钟。'
@@ -36,10 +28,7 @@ faqs:
   - q: '如何开始挖 Bitcoin-Classic？'
     a: '从 GitHub releases 页面下载 Bitcoin-Classic-Setup.exe 并安装，首次启动时等待区块链同步完成，创建新钱包，然后点击「Start Mining」使用内置图形化矿工即可。无需命令行操作。'
   - q: 'Bitcoin-Classic（BTCC）是个好的投资标的吗？'
-    a: '不是。BTCC 目前市值和流动性几乎为零，没有主流交易所支持，社区规模极小（GitHub 仅约 18-23 个 star）。它最适合作为教育和实验性项目，而非投资标的。'
----
-
-<!-- canonical: https://dibi8.com/zh/tools/bitcoin-classic-btcc-cpu-mining-bitcoin-fork/ -->
+    a: '不是。BTCC 目前市值和流动性几乎为零，没有主流交易所支持，社区规模极小（GitHub 仅约 18-23 个 star）。它最适合作为教育和实验性项目，而非投资标的。'---
 # Bitcoin-Classic (BTCC): 让普通人也能 CPU 挖矿的比特币复刻版
 
 {</* resource-info */>}
@@ -54,8 +43,8 @@ faqs:
 **协议**: MIT
 **官网/浏览器**: https://explorer.bitcoin-classic.net/
 
----
 
+---
 ## 项目愿景：让每个人都能挖矿
 
 > "今天几乎所有人都听说过比特币，但真正通过挖矿获得比特币的人却寥寥无几。"
@@ -64,14 +53,18 @@ Bitcoin-Classic 的核心理念是**还原早期比特币的挖矿体验**。在
 
 BTCC 试图通过**降低难度、支持 CPU 挖矿、提供图形化界面**，让普通人重新体验挖矿的乐趣和成就感。
 
----
 
+---
 ## 核心技术参数
 
 ### 共识机制
 
 | 参数 | 说明 |
-|------|------|
+|
+---
+|
+---
+|
 | **共识算法** | SHA-256 工作量证明 (PoW) |
 | **挖矿方式** | CPU / GPU（低难度友好） |
 | **安全模型** | 最长链规则 |
@@ -80,7 +73,11 @@ BTCC 试图通过**降低难度、支持 CPU 挖矿、提供图形化界面**，
 ### 区块与经济模型
 
 | 参数 | 数值 |
-|------|------|
+|
+---
+|
+---
+|
 | **总量** | 21,000,000 BTCC |
 | **区块时间** | 10 分钟 / 区块 |
 | **难度调整** | 每 2016 个区块（约 14 天） |
@@ -91,7 +88,11 @@ BTCC 试图通过**降低难度、支持 CPU 挖矿、提供图形化界面**，
 ### 减半时间表
 
 | 区块高度 | 区块奖励 |
-|---------|---------|
+|
+---
+|
+---
+|
 | 0 ~ 209,999 | 50 BTCC |
 | 210,000 ~ 419,999 | 25 BTCC |
 | 420,000 ~ 629,999 | 12.5 BTCC |
@@ -149,7 +150,13 @@ BTCC 试图通过**降低难度、支持 CPU 挖矿、提供图形化界面**，
 ## 与比特币对比
 
 | 维度 | Bitcoin (BTC) | Bitcoin-Classic (BTCC) |
-|------|--------------|------------------------|
+|
+---
+|
+---
+|
+---
+|
 | 发布时间 | 2009 | 2026 |
 | 共识算法 | SHA-256 PoW | SHA-256 PoW |
 | 总量 | 2100 万 | 2100 万 |
@@ -192,7 +199,6 @@ Bitcoin-Classic 是一个**教育性质和体验性质**很强的项目。它让
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -220,25 +226,20 @@ Bitcoin-Classic 是一个**教育性质和体验性质**很强的项目。它让
 
 ## Why This Matters
 
-Understanding bitcoin-classic (btcc): 让普通人也能 cpu 挖矿的比特币复刻版 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding bitcoin-classic (btcc): 让普通人也能 cpu 挖矿的比特币复刻版 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -264,9 +265,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
-Understanding these core concepts will help you master the topic:
-
-1. **Abstraction**: Hide complexity behind simple interfaces
+Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces
 2. **Composition**: Build complex systems from simple parts
 3. **Immutability**: Prefer immutable data structures
 4. **Error Handling**: Handle failures gracefully

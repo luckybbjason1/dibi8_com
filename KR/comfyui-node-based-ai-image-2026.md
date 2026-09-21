@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/comfyui-node-based-ai-image-2026" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/comfyui-node-based-ai-image-2026" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/comfyui-node-based-ai-image-2026" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/comfyui-node-based-ai-image-2026" />
 title: 'ComfyUI 2026: 114k 별 노드 기반 AI 이미지/비디오/오디오 워크플로우 엔진 완전 가이드'
 description: 'ComfyUI는 SD/SDXL/Flux/Wan/Hunyuan 등을 지원하는 114k 별 노드 기반 시각 워크플로우 엔진. 이미지, 비디오, 오디오, 3D 생성 지원. 2026 완전 설치 가이드: 노드 기초, workflow JSON 임포트, ComfyUI Manager, ComfyUI가 AUTOMATIC1111을 이기는 때.'
 date: 2026-05-21 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['ai-tools']
 tags: [comfyui, '이미지 생성', '비디오 생성', '노드 기반', 워크플로우, 오픈소스]
-aliases:
-  - /posts/comfyui-node-based-ai-image-2026/
+aliases: - /posts/comfyui-node-based-ai-image-2026/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/comfyui-node-based-ai-image-2026/ -->
 
 [AUTOMATIC1111](/kr/resources/ai-tools/stable-diffusion-webui-2026/)이 "AI 이미지 생성의 Photoshop"이라면 (타이핑하면 이미지 나옴), **ComfyUI**는 **"생성형 AI를 위한 Blender 노드 에디터"** — 워크플로우를 노드의 방향성 그래프로 구축, 모든 모델, 샘플러, 조건화 단계, 후처리에 명시적 제어. 114k GitHub 별, GPL-3.0, 2024-2026 출시된 거의 모든 생성형 AI 모델 패밀리 지원: SD 1.x, SDXL, SD3/3.5, Flux (1 & 2), Wan, Hunyuan (이미지/비디오/3D), PixArt, AuraFlow, LTX-Video.
 
@@ -46,8 +38,7 @@ aliases:
 
 ## 1. 복잡 작업에서 왜 노드 기반이 선형 UI를 이기는가
 
-A1111 UI는 입력 1개 → 출력 1개 가정. ComfyUI는 "원할 수 있는 것" 가정:
-- 다른 sampler로 한 번에 후보 이미지 4장 생성
+A1111 UI는 입력 1개 → 출력 1개 가정. ComfyUI는 "원할 수 있는 것" 가정: - 다른 sampler로 한 번에 후보 이미지 4장 생성
 - SDXL 출력을 Flux refiner로 파이프
 - 한 모델을 subject에, 다른 모델을 배경에, ControlNet으로 composite
 - 비디오 생성 루프와 프레임 간 일관성
@@ -59,9 +50,7 @@ A1111 UI는 입력 1개 → 출력 1개 가정. ComfyUI는 "원할 수 있는 �
 
 ## 2. 하드웨어 (현실적 2026 수치)
 
-ComfyUI의 스마트 메모리 관리가 A1111보다 훨씬 좋음. 같은 GPU로 ComfyUI에서 더 많은 일:
-
-| GPU | SDXL | Flux dev | Hunyuan 비디오 (5s) |
+ComfyUI의 스마트 메모리 관리가 A1111보다 훨씬 좋음. 같은 GPU로 ComfyUI에서 더 많은 일: | GPU | SDXL | Flux dev | Hunyuan 비디오 (5s) |
 |---|---|---|---|
 | 4 GB (offload 포함) | ~30초 | 가능하지만 느림 | 아니오 |
 | 8 GB | ~6초 | ~25초 | ~4분 |
@@ -83,8 +72,7 @@ python main.py
 
 또는 단독 Windows 휴대용 빌드 사용 (원클릭 런처).
 
-설치 후 첫 작업: **ComfyUI Manager** 설치 ("확장 스토어"에 가장 가까운 것):
-```bash
+설치 후 첫 작업: **ComfyUI Manager** 설치 ("확장 스토어"에 가장 가까운 것): ```bash
 cd custom_nodes
 git clone https://github.com/ltdrdata/ComfyUI-Manager
 ```
@@ -93,9 +81,7 @@ ComfyUI 재시작. Manager가 모델 다운로드, 커스텀 노드 설치, 워�
 
 ## 4. 80% 시간 사용하는 5 노드
 
-ComfyUI는 수백 노드 타입 있지만 핵심 5개가 대부분 워크플로우 커버:
-
-1. **Load Checkpoint** — 기본 모델 (SDXL, Flux 등) 로드
+ComfyUI는 수백 노드 타입 있지만 핵심 5개가 대부분 워크플로우 커버: 1. **Load Checkpoint** — 기본 모델 (SDXL, Flux 등) 로드
 2. **CLIP Text Encode** — 긍정과 부정 프롬프트 인코딩
 3. **KSampler** — 실제 디퓨전 샘플링 단계 (마법 일어나는 곳)
 4. **VAE Decode** — 잠재 표현을 픽셀 이미지로 변환
@@ -107,8 +93,7 @@ ComfyUI는 수백 노드 타입 있지만 핵심 5개가 대부분 워크플로�
 
 모든 ComfyUI 워크플로우는 JSON으로 export 가능. JSON을 캔버스에 떨어뜨리면 전체 워크플로우 로드 — 노드, 와이어링, 파라미터 모두.
 
-이건 거대:
-- Reddit / Civitai / OpenArt는 떨어뜨려 사용 가능한 커뮤니티 공유 워크플로우 가득
+이건 거대: - Reddit / Civitai / OpenArt는 떨어뜨려 사용 가능한 커뮤니티 공유 워크플로우 가득
 - 누군가 3일 걸려 구축한 "비디오 생성 파이프라인" 또는 "제어 가능 얼굴 스왑" 워크플로우가 이제 당신 시작점
 - 재현성: 같은 워크플로우 JSON + 같은 모델 파일 = 비트 단위 동일 출력
 
@@ -116,8 +101,7 @@ ComfyUI는 수백 노드 타입 있지만 핵심 5개가 대부분 워크플로�
 
 ## 6. ComfyUI Manager (누락된 앱 스토어)
 
-가장 중요한 커스텀 노드 1개. ComfyUI Manager 제공:
-- 500+ 커뮤니티 커스텀 노드 원클릭 설치
+가장 중요한 커스텀 노드 1개. ComfyUI Manager 제공: - 500+ 커뮤니티 커스텀 노드 원클릭 설치
 - 모델 다운로더 (Civitai / HuggingFace), 올바른 폴더에 자동 배치
 - 워크플로우 스냅샷과 복원
 - ComfyUI 코어 + 모든 커스텀 노드 업데이트 체크
@@ -127,9 +111,7 @@ Manager 없으면 ComfyUI 유용성 크게 감소. 항상 ComfyUI 자체 후 단
 
 ## 7. 비디오 / 오디오 / 3D 생성 (2026 슈퍼파워)
 
-ComfyUI는 최신 비디오와 3D 모델이 day-1 작동하는 유일한 주류 UI:
-
-- **Wan 2.1 / 2.2** — 오픈소스 비디오 생성 (이미지-비디오, 텍스트-비디오)
+ComfyUI는 최신 비디오와 3D 모델이 day-1 작동하는 유일한 주류 UI: - **Wan 2.1 / 2.2** — 오픈소스 비디오 생성 (이미지-비디오, 텍스트-비디오)
 - **Hunyuan Video** — 16 GB VRAM에서 720p 5초 클립
 - **LTX-Video** — 빠른 비디오 생성, 12 GB VRAM에서 720p/24fps ~30초
 - **Hunyuan3D** — 이미지에서 3D 메시 생성
@@ -140,17 +122,14 @@ ComfyUI는 최신 비디오와 3D 모델이 day-1 작동하는 유일한 주류 
 
 ## 8. 프로덕션 셀프호스트 패턴
 
-"AI 미디어 생성 API" 배포:
-
-```
+"AI 미디어 생성 API" 배포: ```
    GPU 인스턴스 (24 GB VRAM 권장)
             │  Vast.ai / RunPod / {{< aff "digitalocean" "comfyui-droplet" "DigitalOcean GPU" >}}에
             ▼
    --listen 0.0.0.0 있는 ComfyUI (HTTP API 노출)
             │
             ▼
-   래퍼 서비스:
-   - POST /run로 워크플로우 JSON + 오버라이드 params
+   래퍼 서비스: - POST /run로 워크플로우 JSON + 오버라이드 params
    - job_id 반환, WebSocket으로 진행 스트림
    - 최종 출력 S3에 저장
 ```
@@ -186,7 +165,6 @@ ComfyUI + ComfyUI Manager 설치 (총 ~15분), OpenArt 커뮤니티 워크플로
 *dibi8의 멀티모달 콘텐츠 스택 일부 — [캐주얼 사용용 Stable Diffusion WebUI](/kr/resources/ai-tools/stable-diffusion-webui-2026/)와 [음성용 ChatTTS](/kr/resources/ai-tools/chattts-dialogue-tts-2026/) 페어. 전체 크리에이터 스택은 다가오는 멀티모달 콘텐츠 파이프라인 컬렉션 참조.*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -214,25 +192,20 @@ ComfyUI + ComfyUI Manager 설치 (총 ~15분), OpenArt 커뮤니티 워크플로
 
 ## Why This Matters
 
-Understanding comfyui 2026: 114k 별 노드 기반 ai 이미지/비디오/오디오 워크플로우 엔진 완전 가이드 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding comfyui 2026: 114k 별 노드 기반 ai 이미지/비디오/오디오 워크플로우 엔진 완전 가이드 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

@@ -1,6 +1,4 @@
 ---
-<!-- Canonical URL -->
-<link rel="canonical" href="https://dibi8.com/en/skyvern-dev-utils-2026" />
 title: 'Skyvern: Automate Browser Workflows with AI Agents (21K ...
 description: 'Skyvern automates browser-based workflows using LLMs and computer vision (21,803 GitHub stars, AGPL-3.0). Covers installation, the real Python API, working code examples, and an honest comparison with Selenium and Playwright.'
 date: 2026-06-02 00:00:00+08:00
@@ -22,10 +20,8 @@ featureImage: 'https://raw.githubusercontent.com/Skyvern-AI/skyvern/main/fern/im
 draft: false
 categories: ['dev-utils']
 tags: []
-aliases:
-- /posts/skyvern-dev-utils-2026/
-faqs:
-  - q: 'How do I install Skyvern-AI/skyvern?'
+aliases: - /posts/skyvern-dev-utils-2026/
+faqs: - q: 'How do I install Skyvern-AI/skyvern?'
     a: 'Install with pip and run the quickstart: ```bash pip install "skyvern[all]" skyvern quickstart ``` The quickstart helps you configure an LLM provider and launches the local server and UI.'
   - q: 'What are the system requirements for running Skyvern-AI/skyvern?'
     a: 'Skyvern needs Python 3.11+ and at least one LLM API key (OpenAI, Anthropic, Gemini, Bedrock, or a local model via Ollama). A modern machine with a few GB of RAM is enough for local use; production scheduling is best run on an always-on server.'
@@ -34,9 +30,7 @@ faqs:
   - q: 'How do I contribute to the Skyvern-AI/skyvern project?'
     a: 'Contributions are welcome. You can report issues or open pull requests on GitHub; the community is active and responsive to bug fixes and new features.'
   - q: 'Where can I find more information about using Skyvern-AI/skyvern?'
-    a: 'See the official site at <https://www.skyvern.com> and the GitHub README, which both cover installation, the API, and example workflows in depth.'
----
-
+    a: 'See the official site at  and the GitHub README, which both cover installation, the API, and example workflows in depth.'---
 {{< resource-info >}}
 
 ## Introduction
@@ -57,9 +51,7 @@ With a strong community backing — over 21,803 stars on GitHub — Skyvern has 
 
 ## How Skyvern Works
 
-Skyvern combines several pieces to turn a plain-language instruction into reliable browser actions:
-
-1. **LLM-driven planning**: You provide a prompt describing the goal. A large language model breaks it down into the concrete steps needed to reach it. Skyvern is model-agnostic and supports OpenAI, Anthropic Claude, Google Gemini, AWS Bedrock, and local models via Ollama, among others.
+Skyvern combines several pieces to turn a plain-language instruction into reliable browser actions: 1. **LLM-driven planning**: You provide a prompt describing the goal. A large language model breaks it down into the concrete steps needed to reach it. Skyvern is model-agnostic and supports OpenAI, Anthropic Claude, Google Gemini, AWS Bedrock, and local models via Ollama, among others.
 2. **Computer vision for element recognition**: Rather than depending on fixed selectors, Skyvern feeds the rendered page (DOM plus a screenshot) to a vision-capable LLM to identify the right elements to click, type into, or read from. This is what makes it robust to layout changes.
 3. **Playwright for browser control**: The actual clicking, typing, and navigation runs on Playwright, a mature browser-automation framework, so Skyvern inherits solid support for modern web apps.
 
@@ -77,44 +69,32 @@ Installing Skyvern is straightforward if you're familiar with Python. You'll nee
 
 ### Using `pip`
 
-Install the full package, which includes the local UI and server:
-
-```bash
+Install the full package, which includes the local UI and server: ```bash
 pip install "skyvern[all]"
 ```
 
-If you only need the SDK to call Skyvern from your own code, the lighter install is enough:
-
-```bash
+If you only need the SDK to call Skyvern from your own code, the lighter install is enough: ```bash
 pip install skyvern
 ```
 
 ### Quickstart
 
-After installing, the fastest way to get a working environment is the bundled quickstart command. It walks you through configuring an LLM provider, then launches the local server and web UI backed by SQLite:
-
-```bash
+After installing, the fastest way to get a working environment is the bundled quickstart command. It walks you through configuring an LLM provider, then launches the local server and web UI backed by SQLite: ```bash
 skyvern quickstart
 ```
 
-If you prefer a Postgres-backed setup, pass the flag:
-
-```bash
+If you prefer a Postgres-backed setup, pass the flag: ```bash
 skyvern quickstart --postgres
 ```
 
-You can also start the pieces independently:
-
-```bash
+You can also start the pieces independently: ```bash
 skyvern run server   # API server only
 skyvern run ui       # web UI only
 ```
 
 ### Configuration
 
-Skyvern needs at least one LLM API key, which it reads from a `.env` file in your project. A minimal example using OpenAI looks like this:
-
-```bash
+Skyvern needs at least one LLM API key, which it reads from a `.env` file in your project. A minimal example using OpenAI looks like this: ```bash
 # .env
 ENABLE_OPENAI=true
 OPENAI_API_KEY=sk-your-key-here
@@ -124,9 +104,7 @@ The quickstart command can generate this file for you interactively. By default 
 
 ### Common Error and Fix
 
-A frequent first-run problem is the server starting but every task failing because no LLM provider is enabled. If you see errors about a missing or disabled model, confirm that the matching `ENABLE_*` flag and API key are both present in your `.env`, for example:
-
-```bash
+A frequent first-run problem is the server starting but every task failing because no LLM provider is enabled. If you see errors about a missing or disabled model, confirm that the matching `ENABLE_*` flag and API key are both present in your `.env`, for example: ```bash
 ENABLE_ANTHROPIC=true
 ANTHROPIC_API_KEY=sk-ant-your-key-here
 ```
@@ -139,14 +117,11 @@ Skyvern is built around running agentic tasks from a natural-language prompt. Le
 
 ### Example 1: Running a Task
 
-The simplest workflow initializes a local Skyvern client and calls `run_task` with a prompt. The agent opens a browser, completes the goal, and returns the result:
-
-```python
+The simplest workflow initializes a local Skyvern client and calls `run_task` with a prompt. The agent opens a browser, completes the goal, and returns the result: ```python
 import asyncio
 from skyvern import Skyvern
 
-async def main():
-    skyvern = Skyvern.local()
+async def main(): skyvern = Skyvern.local()
     task = await skyvern.run_task(
         prompt="Go to news.ycombinator.com and find the title of the top post today",
     )
@@ -157,14 +132,11 @@ asyncio.run(main())
 
 ### Example 2: Structured Data Extraction
 
-When you want clean structured output instead of free text, pass a `data_extraction_schema`. Skyvern returns the extracted fields matching your schema:
-
-```python
+When you want clean structured output instead of free text, pass a `data_extraction_schema`. Skyvern returns the extracted fields matching your schema: ```python
 import asyncio
 from skyvern import Skyvern
 
-async def main():
-    skyvern = Skyvern.local()
+async def main(): skyvern = Skyvern.local()
     task = await skyvern.run_task(
         prompt="Extract the top 3 posts on Hacker News",
         data_extraction_schema={
@@ -190,14 +162,11 @@ asyncio.run(main())
 
 ### Example 3: Page-Level Commands
 
-For finer control you can drive a browser directly and issue individual AI commands — `act` to do something, `extract` to read data, and `validate` to check a condition:
-
-```python
+For finer control you can drive a browser directly and issue individual AI commands — `act` to do something, `extract` to read data, and `validate` to check a condition: ```python
 import asyncio
 from skyvern import Skyvern
 
-async def main():
-    skyvern = Skyvern.local()
+async def main(): skyvern = Skyvern.local()
     browser = await skyvern.launch_cloud_browser()
     page = await browser.get_working_page()
 
@@ -224,9 +193,7 @@ Skyvern fits into an existing Python codebase without much ceremony, since the S
 
 ### Calling Skyvern from a Web Service
 
-Because `run_task` is async, it slots naturally into an async web framework. Here it is wired into a FastAPI endpoint that kicks off a task on demand:
-
-```python
+Because `run_task` is async, it slots naturally into an async web framework. Here it is wired into a FastAPI endpoint that kicks off a task on demand: ```python
 from fastapi import FastAPI
 from skyvern import Skyvern
 
@@ -234,8 +201,7 @@ app = FastAPI()
 skyvern = Skyvern.local()
 
 @app.get("/automate")
-async def automate():
-    task = await skyvern.run_task(
+async def automate(): task = await skyvern.run_task(
         prompt="Go to example.com and click the Submit button",
     )
     return {"result": task}
@@ -243,9 +209,7 @@ async def automate():
 
 ### Configuring via Environment Variables
 
-For production it's cleaner to keep credentials and provider choices in environment variables rather than in code. Skyvern reads these on startup, so a `.env` file is the natural place to manage them:
-
-```bash
+For production it's cleaner to keep credentials and provider choices in environment variables rather than in code. Skyvern reads these on startup, so a `.env` file is the natural place to manage them: ```bash
 # .env
 ENABLE_OPENAI=true
 OPENAI_API_KEY=your_api_key_here
@@ -265,9 +229,7 @@ By keeping configuration in the environment, you can move the same code between 
 
 ## Benchmarks & Real-World Use
 
-Skyvern is aimed at tasks where reliability across many different sites matters more than raw speed. A few areas where it has proven useful:
-
-### Real-World Use Cases
+Skyvern is aimed at tasks where reliability across many different sites matters more than raw speed. A few areas where it has proven useful: ### Real-World Use Cases
 
 1. **Form filling at scale**: Completing applications, onboarding flows, and data-entry forms across sites that don't share a common layout — the visual approach means one prompt can handle many variations.
 2. **Web scraping of dynamic content**: Extracting structured data from JavaScript-heavy pages where selectors would otherwise be fragile.
@@ -277,9 +239,7 @@ Because Skyvern reasons about each page at run time, it trades some latency and 
 
 ### System Diagram
 
-The project's system diagram shows how a prompt flows through LLM planning and vision-based element recognition into Playwright browser actions:
-
-![Skyvern 2.0 System Diagram](https://raw.githubusercontent.com/Skyvern-AI/skyvern/main/fern/images/skyvern_2_0_system_diagram.png)
+The project's system diagram shows how a prompt flows through LLM planning and vision-based element recognition into Playwright browser actions: ![Skyvern 2.0 System Diagram](https://raw.githubusercontent.com/Skyvern-AI/skyvern/main/fern/images/skyvern_2_0_system_diagram.png)
 
 ### Summary
 
@@ -292,7 +252,15 @@ See also our [related open-source tools](dibi8-internal-link) coverage.
 When choosing a browser-automation tool it helps to compare options on community size, approach, ease of use, and maintenance. Below is a comparison of Skyvern with two widely used alternatives, Selenium WebDriver and Playwright. Note that Skyvern is a higher-level AI agent built on top of a framework like Playwright — they solve overlapping but not identical problems.
 
 | Feature                  | Skyvern-AI/skyvern             | Selenium WebDriver        | Playwright                  |
-|--------------------------|--------------------------------|---------------------------|-----------------------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | **Stars**                | 21,803                         | ~31,000                   | ~75,000                     |
 | **Approach**             | AI agent (LLM + vision)        | Selector-based scripting  | Selector-based scripting    |
 | **Programming Language** | Python                         | Java/Python/JS and more   | JavaScript/Python/.NET/Java |
@@ -312,9 +280,7 @@ When choosing a browser-automation tool it helps to compare options on community
 
 ## Limitations & Honest Assessment
 
-While Skyvern is a strong tool for resilient browser automation, it has real trade-offs worth understanding:
-
-1. **LLM cost and latency**: Every action involves at least one LLM call, so Skyvern is slower and more expensive per step than a hand-written script. For high-volume, well-defined tasks on a stable site, a traditional Playwright script may be the better economic choice.
+While Skyvern is a strong tool for resilient browser automation, it has real trade-offs worth understanding: 1. **LLM cost and latency**: Every action involves at least one LLM call, so Skyvern is slower and more expensive per step than a hand-written script. For high-volume, well-defined tasks on a stable site, a traditional Playwright script may be the better economic choice.
 
 2. **AGPL-3.0 license**: The AGPL-3.0 license requires that modifications be released under the same license if you distribute the software or offer it as a network service. This can be a meaningful constraint for organizations that prefer permissive or proprietary licensing. (Skyvern also offers a hosted cloud version for teams who don't want to self-host.)
 
@@ -333,21 +299,17 @@ Skyvern-AI/skyvern is a capable tool for automating browser-based workflows with
 - Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) for open-source AI tool drops.
 - Read next: [related guides on dibi8](dibi8-internal-link).
 
----
 
-**Sources & Further Reading**:
-- GitHub repository: https://github.com/Skyvern-AI/skyvern
+---
+**Sources & Further Reading**: - GitHub repository: https://github.com/Skyvern-AI/skyvern
 - Official docs / README: https://github.com/Skyvern-AI/skyvern#readme
 
 *Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.*
 
-<!-- internal-link-candidates:
   related open-source tools -> ai-tools-directory
   related guides on dibi8 -> ai-coding-agent-landscape-2026-skills-mcp-opensource
--->
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -394,3 +356,5 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
 
+
+---

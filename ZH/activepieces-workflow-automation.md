@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/activepieces-workflow-automation" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/activepieces-workflow-automation" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/activepieces-workflow-automation" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/activepieces-workflow-automation" />
 title: 'Activepieces：拥有200+应用集成和AI操作的开源Zapier替代品 —— 2026年自托管指南'
 description: '5分钟内部署 Activepieces。这款开源工作流自动化平台拥有200+应用集成、AI操作和可视化构建器，成本仅为Zapier的一小部分。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
@@ -25,11 +20,8 @@ featureImage: ''
 draft: false
 categories: ['dev-utils']
 tags: [activepieces, 工作流自动化, zapier替代品, 自托管, docker, 无代码, 开源, typescript, ai操作, webhook]
-aliases:
-- /zh/posts/activepieces-workflow-automation/
+aliases: - /zh/posts/activepieces-workflow-automation/-
 ---
-
-<!-- canonical: https://dibi8.com/zh/tools/activepieces-workflow-automation/ -->
 
 {{</* resource-info */>}}
 
@@ -138,15 +130,11 @@ curl -sSL https://cdn.activepieces.com/install.sh | bash
 ```bash
 # 用于生产环境的 docker-compose.yml
 version: "3.8"
-services:
-  activepieces:
-    image: activepieces/activepieces:0.46.0
+services: activepieces: image: activepieces/activepieces:0.46.0
     container_name: activepieces
     restart: unless-stopped
-    ports:
-      - "8080:80"
-    environment:
-      - AP_API_KEY=${AP_API_KEY}
+    ports: - "8080:80"
+    environment: - AP_API_KEY=${AP_API_KEY}
       - AP_ENCRYPTION_KEY=${AP_ENCRYPTION_KEY}
       - AP_JWT_SECRET=${AP_JWT_SECRET}
       - AP_FRONTEND_URL=https://automation.yourdomain.com
@@ -157,37 +145,34 @@ services:
       - AP_POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - AP_REDIS_URL=redis://redis:6379
       - AP_TELEMETRY=false
-    depends_on:
-      - postgres
+    depends_on: - postgres
       - redis
 
-  postgres:
-    image: postgres:15-alpine
+  postgres: image: postgres:15-alpine
     restart: unless-stopped
-    environment:
-      POSTGRES_USER: postgres
+    environment: POSTGRES_USER: postgres
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: activepieces
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+    volumes: - pgdata:/var/lib/postgresql/data
 
-  redis:
-    image: redis:7-alpine
+  redis: image: redis:7-alpine
     restart: unless-stopped
-    volumes:
-      - redisdata:/data
+    volumes: - redisdata:/data
 
-volumes:
-  pgdata:
-  redisdata:
-```
+volumes: pgdata: redisdata: ```
 
 使用`docker compose up -d`部署。平台约60秒后准备就绪。
 
 ### 环境变量参考
 
 | 变量 | 必填 | 说明 |
-|------|------|------|
+|
+---
+|
+---
+|
+---
+|
 | `AP_ENCRYPTION_KEY` | 是 | AES-256密钥，用于加密凭证 |
 | `AP_JWT_SECRET` | 是 | 签名认证令牌的密钥 |
 | `AP_POSTGRES_*` | 是 | PostgreSQL连接详情 |
@@ -288,7 +273,15 @@ Activepieces使用基于BullMQ的作业调度器，由Redis支持，确保即使
 ### 成本对比：Activepieces自托管 vs. Zapier
 
 | 指标 | Activepieces（自托管） | Zapier（Professional） | Make（Core） |
-|------|----------------------|----------------------|-------------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 月费 | $5–$12（VPS） | $49–$195 | $9–$16 |
 | 每月任务数 | 无限 | 2,000–50,000 | 10,000–40,000 |
 | AI操作 | 包含（自带API密钥） | 额外$20–$100 | 非原生支持 |
@@ -304,7 +297,15 @@ Activepieces使用基于BullMQ的作业调度器，由Redis支持，确保即使
 在4 vCPU / 8 GB RAM VPS（Ubuntu 24.04）上测试：
 
 | 工作负载 | 流程数 | 执行时间 | 吞吐量 |
-|----------|--------|----------|--------|
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 简单HTTP → Slack | 1,000 | 平均245ms | ~240流程/分钟 |
 | GPT-4.1-mini文本生成 | 500 | 平均1,800ms | ~33流程/分钟 |
 | DB查询 → 邮件 → 日志 | 1,000 | 平均520ms | ~115流程/分钟 |
@@ -367,9 +368,7 @@ find "$BACKUP_DIR" -name "*.rdb" -mtime +14 -delete
 
 ```bash
 # 添加到docker-compose.yml
-  activepieces:
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:80/api/v1/health"]
+  activepieces: healthcheck: test: ["CMD", "curl", "-f", "http://localhost:80/api/v1/health"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -389,7 +388,6 @@ export const myApiPiece = createPiece({
     displayName: "API Key",
     required: true,
     description: "Your internal API authentication key"
-  }),
   minimumSupportedRelease: '0.46.0',
   actions: [sendNotification],
   triggers: [],
@@ -403,8 +401,7 @@ export const myApiPiece = createPiece({
 默认情况下，流程执行在隔离的沙箱容器中运行。为了生产环境的最高安全性：
 
 ```yaml
-environment:
-  - AP_EXECUTION_MODE=SANDBOXED
+environment: - AP_EXECUTION_MODE=SANDBOXED
   - AP_SANDBOX_MEMORY_LIMIT=256  # 每次执行的MB限制
   - AP_SANDBOX_TIMEOUT_SECONDS=120
 ```
@@ -414,7 +411,17 @@ environment:
 ## 与替代方案对比
 
 | 功能 | Activepieces | Zapier | Make（Integromat） | n8n |
-|------|-------------|--------|-------------------|-----|
+|
+---
+|
+---
+|
+---
+|
+---
+|
+---
+|
 | 开源 | MIT许可证 | 专有 | 专有 | Fair-code |
 | 自托管 | 完整Docker | 否 | 否 | 是 |
 | GitHub星标 | 13,000+ | 不适用 | 不适用 | 66,000+ |
@@ -510,12 +517,11 @@ Activepieces提供了工程团队真正需要的东西：**一个运行在你基
 - [n8n](dibi8-internal-link) — 另一款开源工作流自动化工具
 - [自托管指南](dibi8-internal-link) — dibi8.com上的通用自托管最佳实践
 
----
 
+---
 *联盟营销披露：本文包含DigitalOcean、HTStack和AppSumo的联盟链接。如果你通过这些链接购买服务，dibi8.com将获得佣金，不会额外增加你的成本。所有推荐均基于实践测试，而非联盟可用性。*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -543,25 +549,20 @@ Activepieces提供了工程团队真正需要的东西：**一个运行在你基
 
 ## Why This Matters
 
-Understanding activepieces：拥有200+应用集成和ai操作的开源zapier替代品 —— 2026年自托管指南 is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding activepieces：拥有200+应用集成和ai操作的开源zapier替代品 —— 2026年自托管指南 is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics
@@ -582,8 +583,8 @@ Activepieces：拥有200+应用集成和AI操作的开源Zapier替代品 —— 
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
 
+---
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 

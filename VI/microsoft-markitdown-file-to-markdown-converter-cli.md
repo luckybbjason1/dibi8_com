@@ -1,13 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/microsoft-markitdown-file-to-markdown-converter-cli" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/microsoft-markitdown-file-to-markdown-converter-cli" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/microsoft-markitdown-file-to-markdown-converter-cli" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/microsoft-markitdown-file-to-markdown-converter-cli" />
 title: "Microsoft MarkItDown: Hướng dẫn toàn diện để chuyển đổi ...
 description: "Tìm hiểu cách sử dụng MarkItDown của Microsoft để chuyển đổi PDF, tài liệu Word, hình ảnh, HTML, PPTX và nhiều định dạng khác sang Markdown sạch sẽ. Hướng dẫn cài đặt từng bước, ví dụ sử dụng, Python API, tích hợp AI pipeline, benchmark và so sánh với Pandoc, Calibre và LibreOffice."
 date: 2026-06-10
-lastmod:  2026-06-10slug: "microsoft-markitdown-file-to-markdown-converter-cli"
+lastmod: 2026-06-10
+slug: "microsoft-markitdown-file-to-markdown-converter-cli"
 category: dev-utils
 tags: [microsoft, markitdown, markdown, python, cli, pdf-converter, document-processing, AI, open-source]
 github_repo: "https://github.com/microsoft/markitdown"
@@ -17,8 +13,6 @@ license: MIT
 featureImage: "https://raw.githubusercontent.com/microsoft/markitdown/main/docs/assets/logo.png"
 lang: vi
 ---
-
-<!-- canonical: https://dibi8.com/vi/tools/microsoft-markitdown-file-to-markdown-converter-cli/ -->
 
 ## Giới thiệu
 
@@ -32,9 +26,7 @@ MarkItDown được phát triển và duy trì bởi Microsoft, phân phối dư
 
 MarkItDown là một công cụ dòng lệnh và thư viện dựa trên Python do Microsoft phát triển, chuyển đổi các tệp hầu hết mọi định dạng phổ biến sang văn bản Markdown. Nó được thiết kế để là cách đơn giản nhất để có được Markdown sạch sẽ, có cấu trúc từ bất kỳ tài liệu nào — không cần cấu hình phức tạp, không cần thiết lập nhiều trình phân tích, không phụ thuộc vào phần mềm độc quyền.
 
-Các khả năng chính bao gồm:
-
-- **Hỗ trợ đa định dạng** — Chuyển đổi PDF, DOCX, PPTX, XLSX, HTML, XML, EPUB, JPEG, PNG, BMP, TIFF, WAV, MP3, kho lưu trữ ZIP và nhiều hơn nữa
+Các khả năng chính bao gồm: - **Hỗ trợ đa định dạng** — Chuyển đổi PDF, DOCX, PPTX, XLSX, HTML, XML, EPUB, JPEG, PNG, BMP, TIFF, WAV, MP3, kho lưu trữ ZIP và nhiều hơn nữa
 - **Không cấu hình** — Không cần cài đặt; hoạt động ngay lập tức
 - **CLI và Python API** — Sử dụng như công cụ dòng lệnh hoặc tích hợp vào ứng dụng Python
 - **Xử lý hàng loạt** — Xử lý toàn bộ thư mục hoặc kho lưu trữ ZIP trong một lệnh
@@ -50,9 +42,7 @@ MarkItDown hoạt động trên một nguyên tắc đơn giản: phát hiện l
 
 Đối với các tệp PDF, MarkItDown trích xuất văn bản trong khi vẫn giữ cấu trúc trực quan của tài liệu — tiêu đề trở thành tiêu đề `#`, danh sách trở thành dấu đầu dòng `-`, bảng được chuyển đổi sang cú pháp bảng Markdown và các siêu liên kết được giữ nguyên. Đối với tài liệu Word, nó giữ nguyên định dạng bao gồm in đậm, in nghiêng, tiêu đề và hình ảnh nhúng. Đối với bản trình bày PowerPoint, mỗi slide được chuyển đổi thành một phần Markdown có cấu trúc.
 
-Công cụ cũng xử lý các tệp hình ảnh thông qua OCR. Khi bạn cung cấp hình ảnh tài liệu quét, MarkItDown có thể sử dụng Tesseract OCR để trích xuất văn bản. Đối với kho lưu trữ ZIP, nó tự động xử lý từng tệp chứa bên trong và kết hợp kết quả. Pipeline chuyển đổi hoạt động như sau:
-
-1. **Phát hiện tệp** — Công cụ xác định loại tệp bằng phần mở rộng và MIME type
+Công cụ cũng xử lý các tệp hình ảnh thông qua OCR. Khi bạn cung cấp hình ảnh tài liệu quét, MarkItDown có thể sử dụng Tesseract OCR để trích xuất văn bản. Đối với kho lưu trữ ZIP, nó tự động xử lý từng tệp chứa bên trong và kết hợp kết quả. Pipeline chuyển đổi hoạt động như sau: 1. **Phát hiện tệp** — Công cụ xác định loại tệp bằng phần mở rộng và MIME type
 2. **Chọn trình phân tích** — Plugin chuyển đổi phù hợp được chọn dựa trên loại tệp
 3. **Trích xuất nội dung** — Văn bản thô và metadata được trích xuất từ tệp
 4. **Định dạng Markdown** — Nội dung được trích xuất được định dạng thành Markdown sạch sẽ, nhất quán
@@ -80,9 +70,7 @@ Cài đặt thành công sẽ in số phiên bản hiện tại, chẳng hạn n
 
 ### Cài đặt phụ thuộc tùy chọn
 
-Đối với các môi trường nơi bạn chỉ cần hỗ trợ định dạng cụ thể:
-
-```bash
+Đối với các môi trường nơi bạn chỉ cần hỗ trợ định dạng cụ thể: ```bash
 pip install 'markitdown[pdf, docx, pptx]'
 ```
 
@@ -90,22 +78,16 @@ pip install 'markitdown[pdf, docx, pptx]'
 
 ### Cài đặt plugin
 
-MarkItDown hỗ trợ các mở rộng plugin cho chức năng bổ sung:
-
-```bash
+MarkItDown hỗ trợ các mở rộng plugin cho chức năng bổ sung: ```bash
 markitdown --list-plugins
 markitdown --use-plugins path-to-file.pdf
 ```
 
-Đối với hỗ trợ OCR trên hình ảnh quét:
-
-```bash
+Đối với hỗ trợ OCR trên hình ảnh quét: ```bash
 pip install markitdown-ocr
 ```
 
-Đối với tích hợp Azure Content Understanding:
-
-```bash
+Đối với tích hợp Azure Content Understanding: ```bash
 pip install 'markitdown[az-content-under standing]'
 ```
 
@@ -143,9 +125,7 @@ Sử dụng cờ `-o`, bạn chỉ định tệp đầu ra trực tiếp mà kh�
 cat path-to-file.pdf | markitdown
 ```
 
-MarkItDown có thể đọc từ stdin, cho phép kết hợp pipeline sáng tạo. Ví dụ, bạn có thể tải xuống và chuyển đổi một tệp trong một lệnh duy nhất:
-
-```bash
+MarkItDown có thể đọc từ stdin, cho phép kết hợp pipeline sáng tạo. Ví dụ, bạn có thể tải xuống và chuyển đổi một tệp trong một lệnh duy nhất: ```bash
 curl -sL https://example.com/document.pdf | markitdown
 ```
 
@@ -179,9 +159,7 @@ Các bảng trong bảng tính được chuyển đổi sang định dạng bả
 markitdown scan.png > scan.md
 ```
 
-Để OCR hoạt động, bạn cần cài đặt Tesseract trên hệ thống và plugin `markitdown-ocr`:
-
-```bash
+Để OCR hoạt động, bạn cần cài đặt Tesseract trên hệ thống và plugin `markitdown-ocr`: ```bash
 sudo apt-get install tesseract-ocr
 pip install markitdown-ocr
 ```
@@ -214,8 +192,7 @@ print(result.text_content)
 import markitdown
 
 md = markitdown.MarkItDown()
-with open("report.docx", "rb") as f:
-    result = md.convert(f)
+with open("report.docx", "rb") as f: result = md.convert(f)
     print(result.text_content)
 ```
 
@@ -239,11 +216,9 @@ import os
 
 md = markitdown.MarkItDown()
 files = glob.glob("docs/**/*.pdf", recursive=True)
-for filepath in files:
-    result = md.convert(filepath)
+for filepath in files: result = md.convert(filepath)
     output_path = os.path.splitext(filepath)[0] + ".md"
-    with open(output_path, "w") as f:
-        f.write(result.text_content)
+    with open(output_path, "w") as f: f.write(result.text_content)
     print(f"Converted: {filepath} -> {output_path}")
 ```
 
@@ -264,26 +239,19 @@ print(result.text_content)
 
 ### Tích hợp RAG Pipeline
 
-Một trong những use case mạnh mẽ nhất của MarkItDown là chuẩn bị tài liệu cho các pipeline Retrieval-Augmented Generation. Dưới đây là một ví dụ đầy đủ:
-
-```python
+Một trong những use case mạnh mẽ nhất của MarkItDown là chuẩn bị tài liệu cho các pipeline Retrieval-Augmented Generation. Dưới đây là một ví dụ đầy đủ: ```python
 import markitdown
 import os
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
-def ingest_documents(directory):
-    md = markitdown.MarkItDown()
+def ingest_documents(directory): md = markitdown.MarkItDown()
     splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
 
     documents = []
-    for filename in os.listdir(directory):
-        filepath = os.path.join(directory, filename)
-        if os.path.isfile(filepath):
-            result = md.convert(filepath)
-            if result:
-                chunks = splitter.split_text(result.text_content)
-                for i, chunk in enumerate(chunks):
-                    documents.append({
+    for filename in os.listdir(directory): filepath = os.path.join(directory, filename)
+        if os.path.isfile(filepath): result = md.convert(filepath)
+            if result: chunks = splitter.split_text(result.text_content)
+                for i, chunk in enumerate(chunks): documents.append({
                         "source": filename,
                         "chunk_index": i,
                         "content": chunk
@@ -318,12 +286,10 @@ done
 ```python
 import markitdown
 
-def prepare_document_for_llm(filepath, max_tokens=4000):
-    md = markitdown.MarkItDown()
+def prepare_document_for_llm(filepath, max_tokens=4000): md = markitdown.MarkItDown()
     result = md.convert(filepath)
 
-    if result:
-        content = result.text_content[:max_tokens * 4]
+    if result: content = result.text_content[:max_tokens * 4]
         return {
             "status": "success",
             "content": content,
@@ -348,9 +314,7 @@ def prepare_document_for_llm(filepath, max_tokens=4000):
 
 ### Benchmark xử lý hàng loạt
 
-Xử lý 100 tệp PDF (trung bình 50 trang mỗi tệp) trên một laptop tiêu chuẩn:
-
-```bash
+Xử lý 100 tệp PDF (trung bình 50 trang mỗi tệp) trên một laptop tiêu chuẩn: ```bash
 time markitdown ./batch_docs/ -o ./batch_output/
 real 0m14m32s
 user 0m11m18s
@@ -369,9 +333,7 @@ Tổng thời gian xử lý hàng loạt: khoảng 15 phút cho 100 PDF. Thời 
 
 ### Use case thực tế: Xử lý tài liệu pháp lý
 
-Một công ty luật cỡ trung xử lý khoảng 500 tài liệu pháp lý mỗi tháng, chủ yếu là PDF và Word. Sử dụng MarkItDown trong một pipeline tự động:
-
-```bash
+Một công ty luật cỡ trung xử lý khoảng 500 tài liệu pháp lý mỗi tháng, chủ yếu là PDF và Word. Sử dụng MarkItDown trong một pipeline tự động: ```bash
 #!/bin/bash
 # Daily legal doc processing
 for doc in /var/legal/pending/*.pdf; do
@@ -383,17 +345,13 @@ Công ty này chuyển đổi trung bình 17 tài liệu trên mỗi ngày làm 
 
 ### Use case thực tế: Nhập cơ sở kiến thức AI
 
-Một nhóm data science sử dụng MarkItDown để populate cơ sở kiến thức AI với các bài nghiên cứu:
-
-```python
+Một nhóm data science sử dụng MarkItDown để populate cơ sở kiến thức AI với các bài nghiên cứu: ```python
 import markitdown
 import os
 
 md = markitdown.MarkItDown()
 papers_dir = "./research_papers/"
-for fname in os.listdir(papers_dir):
-    if fname.endswith(".pdf"):
-        result = md.convert(os.path.join(papers_dir, fname))
+for fname in os.listdir(papers_dir): if fname.endswith(".pdf"): result = md.convert(os.path.join(papers_dir, fname))
         # Feed result.text_content into embedding pipeline
         print(f"Ingested: {fname}")
 ```
@@ -433,11 +391,9 @@ deactivate
 ```python
 import markitdown
 
-class CustomParser(markitdown.ConversionPlugin):
-    SUPPORTED_EXTENSIONS = [".myformat"]
+class CustomParser(markitdown.ConversionPlugin): SUPPORTED_EXTENSIONS = [".myformat"]
 
-    def convert(self, filepath, **kwargs):
-        text = my_custom_parser(filepath)
+    def convert(self, filepath, **kwargs): text = my_custom_parser(filepath)
         return markitdown.ConvertResult(text_content=text)
 
 md = markitdown.MarkItDown()
@@ -451,9 +407,7 @@ result = md.convert("file.myformat")
 docker run --rm -v $(pwd):/data python:3.11-slim pip install 'markitdown[all]' && python -m markitdown /data/input.pdf
 ```
 
-Đối với các deploy Docker production, tạo Dockerfile tùy chỉnh:
-
-```dockerfile
+Đối với các deploy Docker production, tạo Dockerfile tùy chỉnh: ```dockerfile
 FROM python:3.11-slim
 
 RUN apt-get update && apt-get install -y tesseract-ocr && rm -rf /var/lib/apt/lists/*
@@ -484,9 +438,7 @@ Lợi thế chính của MarkItDown là sự đơn giản và tích hợp Python
 
 ## Hạn chế / Đánh giá khách quan
 
-Mặc dù MarkItDown rất mạnh, hãy lưu ý những hạn chế sau:
-
-1. **Bố cục PDF phức tạp** — Các bố cục PDF bất thường hoặc tùy chỉnh cao có thể không chuyển đổi hoàn hảo. Công cụ hoạt động tốt nhất với các PDF dựa trên văn bản tiêu chuẩn.
+Mặc dù MarkItDown rất mạnh, hãy lưu ý những hạn chế sau: 1. **Bố cục PDF phức tạp** — Các bố cục PDF bất thường hoặc tùy chỉnh cao có thể không chuyển đổi hoàn hảo. Công cụ hoạt động tốt nhất với các PDF dựa trên văn bản tiêu chuẩn.
 2. **Chất lượng OCR** — Chuyển đổi Image-to-Text phụ thuộc vào độ chính xác của Tesseract. Các bản quét chất lượng thấp hoặc văn bản viết tay có thể tạo ra kết quả không hoàn hảo.
 3. **Bộ nhớ file lớn** — Các file rất lớn (trên 100 MB) có thể tiêu tốn đáng kể RAM trong quá trình chuyển đổi.
 4. **Định dạng tùy chỉnh** — Các định dạng không được hỗ trợ native yêu cầu viết một custom parser extension.
@@ -543,7 +495,6 @@ Tham gia [nhóm Telegram tiếng Anh của dibi8](https://t.me/DIBI8_Group/2) đ
 Một số liên kết trên là affiliate links. dibi8.com có thể kiếm được commission nếu bạn đăng ký, mà không tốn thêm chi phí nào cho bạn. Giúp giữ cho trang web hoạt động và nội dung miễn phí.
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",

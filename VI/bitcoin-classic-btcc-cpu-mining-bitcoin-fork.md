@@ -1,15 +1,9 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/bitcoin-classic-btcc-cpu-mining-bitcoin-fork" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/bitcoin-classic-btcc-cpu-mining-bitcoin-fork" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/bitcoin-classic-btcc-cpu-mining-bitcoin-fork" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/bitcoin-classic-btcc-cpu-mining-bitcoin-fork" />
 title: "Bitcoin-Classic (BTCC): Bản Sao Bitcoin Cho Phép Ngườith...
 description: "Bitcoin-Classic (BTCC) là đồng tiền số phi tập trung được xây dựng lại từ Bitcoin Core v28.1. Hỗ trợ đào bằng CPU với giao diện đồ họa tích hợp, giúp ngườithường trải nghiệm đào coin thờikỳ đầu của Bitcoin."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack:
-  - C++
+tech_stack: - C++
 application_domain: "Ai Tools"
 source_version: ""
 licensing_model: "Open Source"
@@ -24,10 +18,8 @@ maintainer: "Marcus-Vane"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases:
-- /vi/posts/bitcoin-classic-btcc-cpu-mining-bitcoin-fork/
-faqs:
-  - q: 'Bạn có thể đào Bitcoin-Classic (BTCC) bằng CPU thông thường không?'
+aliases: - /vi/posts/bitcoin-classic-btcc-cpu-mining-bitcoin-fork/
+faqs: - q: 'Bạn có thể đào Bitcoin-Classic (BTCC) bằng CPU thông thường không?'
     a: 'Có. BTCC được thiết kế để CPU của máy tính gia đình thông thường cũng có thể tham gia đào, không cần thiết bị ASIC hay GPU chuyên dụng. Do hashrate mạng lưới rất thấp, CPU thông thường hoàn toàn có thể kiếm được phần thưởng khối.'
   - q: 'Tổng cung và phần thưởng khối của Bitcoin-Classic (BTCC) là bao nhiêu?'
     a: 'BTCC có tổng cung 21,000,000 coin, giống hệt Bitcoin. Phần thưởng khối ban đầu là 50 BTCC, giảm một nửa sau mỗi 210,000 khối (khoảng 4 năm), với thời gian tạo khối là 10 phút.'
@@ -39,7 +31,6 @@ faqs:
     a: 'Không. BTCC hiện có vốn hóa thị trường và thanh khoản gần như bằng không, không được hỗ trợ bởi các sàn giao dịch lớn, và cộng đồng rất nhỏ (chỉ khoảng 18-23 GitHub stars). Dự án này phù hợp nhất cho mục đích học tập và thử nghiệm, không nên coi là khoản đầu tư.'
 ---
 
-<!-- canonical: https://dibi8.com/vi/tools/bitcoin-classic-btcc-cpu-mining-bitcoin-fork/ -->
 # Bitcoin-Classic (BTCC): Bản Sao Bitcoin Cho Phép Ngườithường Đào Bằng CPU
 
 {</* resource-info */>}
@@ -162,13 +153,11 @@ https://explorer.bitcoin-classic.net/ — tra cứu khối, giao dịch, số d�
 
 Bitcoin-Classic là một dự án mang tính **giáo dục và trải nghiệm** rất cao. Ngườidùng không có nền tảng kỹ thuật cũng có thể "đào được một khối" và cảm nhận được thành tựu.
 
-Tuy nhiên nó cũng đối mặt với thách thức thực tế:
-- Chỉ 18 GitHub Stars (cộng đồng cực kỳ nhỏ)
+Tuy nhiên nó cũng đối mặt với thách thức thực tế: - Chỉ 18 GitHub Stars (cộng đồng cực kỳ nhỏ)
 - Không có hỗ trợ từ sàn giao dịch lớn
 - Tính bền vững dài hạn chưa chắc chắn
 
-**Phù hợp với**:
-- Ngườiyêu thích công nghệ muốn tìm hiểu nền tảng blockchain
+**Phù hợp với**: - Ngườiyêu thích công nghệ muốn tìm hiểu nền tảng blockchain
 - Ngườimuốn trải nghiệm không khí đào Bitcoin thờikỳ đầu
 - Sinh viên nghiên cứu tiền mã hóa và cơ chế đồng thuận PoW
 
@@ -180,9 +169,7 @@ Tuy nhiên nó cũng đối mặt với thách thức thực tế:
 
 ## Công Cụ Đề Xuất
 
-Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
-
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
+Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
 - **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Proxy Anthropic Claude / OpenAI / DeepSeek API. Hầu hết AI tool ở trên (chatbot, code gen, translation, search, v.v.) cần LLM API key — proxy này cho access ổn định top model với ~30% giá chính thức.
 - **{{< aff "hostinger" "footer-cta-legacy" "Hostinger" >}}** — Lựa chọn VPS giá tốt cho thị trường Việt Nam.
 
@@ -190,7 +177,6 @@ Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
 
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -218,25 +204,20 @@ Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
 
 ## Why This Matters
 
-Understanding bitcoin-classic (btcc): bản sao bitcoin cho phép ngườithường đào bằng cpu is crucial for modern AI development. Here's why:
-
-### Key Benefits
+Understanding bitcoin-classic (btcc): bản sao bitcoin cho phép ngườithường đào bằng cpu is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
 - **Cost**: Reduce operational expenses
 
 ### Real-World Applications
-Organizations are using similar approaches to:
-1. Automate code review processes
+Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
 4. Streamline deployment pipelines
 
 ### Getting Started
-To implement this in your workflow:
-
-1. **Assess Your Needs**
+To implement this in your workflow: 1. **Assess Your Needs**
    - Identify repetitive tasks
    - Measure current time costs
    - Define success metrics

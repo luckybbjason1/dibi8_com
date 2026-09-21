@@ -1,9 +1,4 @@
 ---
-<!-- Hreflang Alternate URLs -->
-<link rel="alternate" hreflang="en" href="https://dibi8.com/en/rtk-rust-cli-proxy-ai-token-saver" />
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/rtk-rust-cli-proxy-ai-token-saver" />
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/rtk-rust-cli-proxy-ai-token-saver" />
-<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/rtk-rust-cli-proxy-ai-token-saver" />
 title: 'RTK: AI 코딩 에이전트 토큰 비용을 60-90% 절감하는 오픈소스 Rust CLI 프록시 — 설...
 description: 'RTK(Rust Token Killer)는 Claude Code, Cursor, Copilot, Codex, Gemini CLI 등 AI 코딩 에이전트의 LLM 토큰 소비를 60-90% 줄여주는 Rust 기반 오픈소스 CLI 프록시입니다. 단일 바이너리, 제로 의존성, 한 줄 설치. 아키텍처 분석과 실측 벤치마크 포함.'
 date: 2026-05-14 00:00:00+08:00
@@ -23,11 +18,8 @@ maintainer: ''
 last_maintained: '2026-05-14'
 featureImage: ''
 draft: false
-aliases:
-- /posts/rtk-rust-cli-proxy-ai-token-saver/
+aliases: - /posts/rtk-rust-cli-proxy-ai-token-saver/
 ---
-
-<!-- canonical: https://dibi8.com/kr/tools/rtk-rust-cli-proxy-ai-token-saver/ -->
 
 {</* resource-info */>}
 
@@ -69,22 +61,19 @@ RTK는 단순한 관찰에 기반합니다: **명령 출력의 약 80%는 AI 모
 
 **시나리오 1: `git status` 출력**
 
-원시 출력은 50개 수정 파일의 전체 경로와 상태 마커를 나열할 수 있습니다. RTK는:
-- 핵심 요약 유지(수정/추가/삭제 파일 수)
+원시 출력은 50개 수정 파일의 전체 경로와 상태 마커를 나열할 수 있습니다. RTK는: - 핵심 요약 유지(수정/추가/삭제 파일 수)
 - 반복 경로 접두사 축소
 - 현재 작업과 무관한 상세 diff 마커 제거
 
 **시나리오 2: 테스트 러너 출력**
 
-`pytest`나 `cargo test` 실행 시:
-- 통과 테스트는 단일 통계로 압축("47 passed")
+`pytest`나 `cargo test` 실행 시: - 통과 테스트는 단일 통계로 압축("47 passed")
 - 실패 테스트만 전체 에러 트레이스와 로그 유지
 - 대량의 성공 테스트 노이즈는 LLM 컨텍스트에 진입하지 않음
 
 **시나리오 3: 빌드 및 컴파일 로그**
 
-`npm run build`나 `go build` 출력에서:
-- 진행 바와 타이밍 메타데이터 제거
+`npm run build`나 `go build` 출력에서: - 진행 바와 타이밍 메타데이터 제거
 - 에러와 경고를 제외한 모든 것 제거
 - 성공 빌드는 확인 신호로 축소
 
@@ -119,9 +108,7 @@ cd rtk && cargo install --path .
 
 ### 2단계: 셸 후크 활성화
 
-RTK는 셸 후크를 통해 AI 에이전트 명령을 가로챕니다. 셸에 맞게 선택하세요:
-
-**Bash / Zsh:**
+RTK는 셸 후크를 통해 AI 에이전트 명령을 가로챕니다. 셸에 맞게 선택하세요: **Bash / Zsh:**
 ```bash
 echo 'eval "$(rtk hook bash)"' >> ~/.bashrc
 echo 'eval "$(rtk hook zsh)"' >> ~/.zshrc
@@ -199,9 +186,7 @@ rtk gain --session=last
 
 ### 커스텀 필터 작성
 
-RTK는 프로젝트별 및 명령별 압축 정책을 지원합니다:
-
-```bash
+RTK는 프로젝트별 및 명령별 압축 정책을 지원합니다: ```bash
 # 전용 명령에 대한 커스텀 규칙 추가
 rtk rule add "my-custom-command" --keep-pattern="ERROR|WARN" --discard-pattern="INFO|DEBUG"
 
@@ -214,16 +199,13 @@ rtk bypass --command="git log"
 
 ### 팀 레벨 배포
 
-AI 비용을 중앙에서 관리하려는 조직은 RTK를 공유 프록시 레이어로 배포할 수 있습니다:
-
-1. **공유 설정**: `.rtk.yml`을 저장소에 커밋하여 모든 팀원이 동일한 필터링 정책 사용
+AI 비용을 중앙에서 관리하려는 조직은 RTK를 공유 프록시 레이어로 배포할 수 있습니다: 1. **공유 설정**: `.rtk.yml`을 저장소에 커밋하여 모든 팀원이 동일한 필터링 정책 사용
 2. **CI/CD 통합**: 빌드 파이프라인에서 RTK 활성화로 자동화 테스트 단계 토큰 소모 감소
 3. **사용량 리포팅**: `rtk gain` 출력을 팀 대시보드로 파이프하여 프로젝트 간 토큰 가시성 확보
 
 ```yaml
 # .rtk.yml 예시 (프로젝트 레벨 설정)
-rules:
-  - command: "pytest"
+rules: - command: "pytest"
     keep: "FAILED|ERROR|skipped summary"
     compress_passed: true
   - command: "docker compose logs"
@@ -295,7 +277,6 @@ GitHub Star 45,000개 이상. Apache-2.0. 단일 바이너리, 제로 의존성.
 *Tags: RTK, AI 코딩 에이전트, LLM 토큰 최적화, Rust CLI 도구, 오픈소스 개발 도구, Claude Code, Cursor IDE, GitHub Copilot, OpenAI Codex, 토큰 비용 절감, 개발자 생산성 2026*
 
 
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
