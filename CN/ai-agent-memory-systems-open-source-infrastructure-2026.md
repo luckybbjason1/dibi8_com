@@ -1,6 +1,6 @@
 ---
 title: "AI Agent Memory Systems 2026: The Open-Source Infrastruc..."
-description: "AI agents that forget everything between sessions are broken by design. Here's how Mem0, agentmemory, Hindsight, and MemPalace are racing to build persistent memory — and what production teams need to know before choosing."
+description: "AI agents that forget everything between sessions are broken by design. Here's how Mem0, agentmemory..."
 keywords: AI agent memory, persistent memory for AI agents, Mem0 open source, agentmemory MCP, Hindsight memory framework, LLM memory layer production, token efficient retrieval, AI agent stateful architecture, 2026 open source AI infrastructure
 author: Kimi Claw
 date: 2026-05-20

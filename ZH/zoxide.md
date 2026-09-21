@@ -1,18 +1,6 @@
 ---
 title: "Zoxide: 36,752 GitHub Stars — 2026 年完整安装配置指南"
-description: "Zoxide 是一个更智能的 cd 命令，能学习你的目录使用习惯。支持 Bash、Zsh、Fish、Nushell 和 PowerShell。涵盖安装、Shell 集成、fzf 配置、算法原理以及从 autojump/fasd 迁移。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
-tech_stack: []
-application_domain: Dev Utils
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: "https://github.com/ajeetdsouza/zoxide"
+description: "Zoxide 是一个更智能的 cd 命令，能学习你的目录使用习惯。支持 Bash、Zsh、Fish、Nushell 和 PowerShell。涵盖安装、Shell 集成、fzf 配置、算法原理以及从 ..."
 stars: 36752
 maintainer: ajeetdsouza
 last_maintained: "2026-05-19"

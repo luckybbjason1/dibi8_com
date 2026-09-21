@@ -1,6 +1,6 @@
 ---
 title: "Hướng Dẫn n8n Tự Động Hóa Workflow AI 2026: Xây Dựng AI ...
-description: "Hướng dẫn n8n toàn diện 2026 — nền tảng tự động hóa mã nguồn mở đang bùng nổ. Cài đặt n8n tự host, xây dựng AI Agent với LangChain, tự động hóa SEO, so sánh chi tiết n8n vs Zapier vs Make."
+description: "Hướng dẫn n8n toàn diện 2026 — nền tảng tự động hóa mã nguồn mở đang bùng nổ. Cài đặt n8n tự host, x..."
 keywords: n8n, hướng dẫn n8n, tự động hóa workflow AI, công cụ tự động hóa mã nguồn mở, n8n tự host, n8n vs Zapier, xây dựng AI Agent, tích hợp LangChain, tự động hóa SEO, cài đặt Docker n8n
 author: Home Hermes
 date: 2026-05-20

@@ -1,6 +1,6 @@
 ---
 title: "Automated Feature Engineering Tools: Featuretools, AutoF...
-description: "Master automated feature engineering with Featuretools, AutoFeat, and tsfresh. Comparison, code examples, and production pipeline integration."
+description: "Master automated feature engineering with Featuretools, AutoFeat, and tsfresh. Comparison, code exam..."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []

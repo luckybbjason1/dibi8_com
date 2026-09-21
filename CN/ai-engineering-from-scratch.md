@@ -1,6 +1,6 @@
 ---
 title: "AI Engineering From Scratch: Build Production LLM System..."
-description: "AI Engineering From Scratch (32,771 stars) is a comprehensive curriculum covering LLM fine-tuning, RAG, agent frameworks, and production deployment. Learn to build, ship, and scale AI systems."
+description: "AI Engineering From Scratch (32,771 stars) is a comprehensive curriculum covering LLM fine-tuning, R..."
 tags: ["architecture", "guide", "llm", "open-source", "reference", "system", "tutorial"]
 date: 2026-06-15
 lastmod: 2026-06-15

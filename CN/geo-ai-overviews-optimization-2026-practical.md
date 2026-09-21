@@ -1,6 +1,6 @@
 ---
 title: "GEO / AI Overviews Optimization 2026: A Practical Guide ...
-description: "Generative Engine Optimization (GEO) is the new SEO. How to optimize for Google AI Overviews, ChatGPT Search, and Perplexity citations. Real techniques from running optimization on dibi8.com — FAQ schema, citability scoring, llms.txt."
+description: "Generative Engine Optimization (GEO) is the new SEO. How to optimize for Google AI Overviews, ChatGP..."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [SEO, GEO, 'Schema.org', 'JSON-LD', 'llms.txt']

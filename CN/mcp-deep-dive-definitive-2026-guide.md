@@ -1,21 +1,6 @@
 ---
 title: "Model Context Protocol (MCP) Deep Dive: The Definitive 2...
-description: "Build your first MCP server from scratch. Learn Anthropic"'s Model Context Protocol with hands-on Python & TypeScript examples. Connect AI agents to real APIs, databases, and tools using the open standard adopted by OpenAI, Google, and Microsoft.'
-date: 2026-05-15 00:00:00+08:00
-lastmod: 2026-05-15 00:00:00+08:00
-tech_stack: []
-application_domain: Llm Frameworks
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: ''
-stars: 0
-maintainer: ''
-last_maintained: "2026-05-15"
+description: "Build your first MCP server from scratch. Learn Anthropic"'s Model Context Protocol with hands-on Py..."
 featureImage: ''
 draft: false
 aliases:

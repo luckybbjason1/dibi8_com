@@ -1,6 +1,6 @@
 ---
 title: "paperclip: 69.700 sao GitHub nơi làm việc AI agent mã ng...
-description: "paperclip (69.700 sao GitHub) là ứng dụng nơi làm việc AI agent mã nguồn mở. Phối hợp nhiều agent, quản lý task, triển khai workflow tự host. Bao gồm hướng dẫn cài đặt, phân tích kiến trúc và benchmark thực tế."
+description: "paperclip (69.700 sao GitHub) là ứng dụng nơi làm việc AI agent mã nguồn mở. Phối hợp nhiều agent, q..."
 date: 2026-06-08
 lastmod: 2026-06-08
 slug: 'paperclip-open-source-agent-workplace-managing-ai-agents-at-scale'

@@ -1,6 +1,6 @@
 ---
 title: "Axolotl 2026：12k 星 YAML 驱动的 LLM 微调框架完整指南"
-description: "Axolotl 是开源 LLM 微调框架，单 YAML 配置覆盖 full / LoRA / QLoRA / DPO / GRPO。GitHub 12k 星，Apache 2.0。支持 Llama / Mistral / Qwen / GLM / 10+ 家族。完整 2026 安装指南 + 何时 Axolotl 胜过 Unsloth 和原生 HF TRL。"
+description: "Axolotl 是开源 LLM 微调框架，单 YAML 配置覆盖 full / LoRA / QLoRA / DPO / GRPO。GitHub 12k 星，Apache 2.0。支持 Llama /..."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: [Python, PyTorch, CUDA, YAML]

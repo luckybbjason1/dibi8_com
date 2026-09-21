@@ -474,7 +474,6 @@ groups: - name: payment_service_alerts
         labels: severity: warning
         annotations: summary: "检测到日志错误峰值"
           description: "{{ $value }} 错误/分钟"
-
 在SigNoz UI的设置 → 告警通道中配置告警通道（Slack、PagerDuty、邮件）。
 
 ### Kubernetes自动埋点

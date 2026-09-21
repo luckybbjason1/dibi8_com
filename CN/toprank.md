@@ -1,6 +1,6 @@
 ---
 title: "Toprank: Open-Source Claude Code Skills That Automate SE..."
-description: "Toprank is a trending open-source Claude Code skills suite for SEO audits, GEO optimization, Google Ads management, and Meta Ads automation. Install once, get automatic updates, and let AI handle your marketing stack."
+description: "Toprank is a trending open-source Claude Code skills suite for SEO audits, GEO optimization, Google ..."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go

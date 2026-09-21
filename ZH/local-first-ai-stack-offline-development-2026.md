@@ -1,11 +1,6 @@
 ---
 title: "本地优先 AI 技术栈 2026：完全离线的 AI 开发环境"
-description: "2026 年搭建完全离线的 AI 编码环境：Ollama 跑 LLM、Aider 做编码代理、ChromaDB 做 RAG，全部本地化。包含安装指南、硬件实情，以及离线方案的真正适用场景（隐私、合规、物理隔离、出差）。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: [Ollama, Aider, ChromaDB, 'Llama 3.3', 'Local-first AI']
-application_domain: LLM Frameworks
-source_version: "2026 Q2"
+description: "2026 年搭建完全离线的 AI 编码环境：Ollama 跑 LLM、Aider 做编码代理、ChromaDB 做 RAG，全部本地化。包含安装指南、硬件实情，以及离线方案的真正适用场景（隐私、合规、..."
 licensing_model: Open Source
 license_type: 'MIT / Apache-2.0'
 github_repo: ''

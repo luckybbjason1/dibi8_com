@@ -1,18 +1,6 @@
 ---
 title: "AFFiNE 2026: AI 기반 지식 관리를 위한 오픈소스 Notion+Miro 하이브리드 — 설치...
-description: "Docker로 AFFiNE v0.26.3을 Notion+Miro 대체제로 자체 호스팅하세요. 로컬 우선 CRDT 협업, 에지리스 화이트보드, AI 글쓰기 도우미, 5분 Docker 설치.". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
-tech_stack: []
-application_domain: Dev Utils
-source_version: ''
-licensing_model: Open Source
-license_type: MPL-2.0
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: "toeverything/AFFiNE"
+description: "Docker로 AFFiNE v0.26.3을 Notion+Miro 대체제로 자체 호스팅하세요. 로컬 우선 CRDT 협업, 에지리스 화이트보드, AI 글쓰기 도우미, 5분 Docker..."
 stars: 47000
 maintainer: toeverything
 last_maintained: "2026-05-19"

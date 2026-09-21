@@ -1,6 +1,6 @@
 ---
 title: "PaddleOCR: Công cụ OCR mã nguồn 81K sao vượt trội so với...
-description: "PaddleOCR là bộ công cụ OCR mã nguồn đa ngôn ngữ với độ chính xác hơn 96.3% cho phát hiện và nhận dạng văn bản. Hỗ trợ hơn 80 ngôn ngữ, AI tài liệu, nhận dạng bảng và phân tích bố cục. Hơn 81K sao GitHub. Bao gồm hướng dẫn cài đặt, benchmark và triển khai production."
+description: "PaddleOCR là bộ công cụ OCR mã nguồn đa ngôn ngữ với độ chính xác hơn 96.3% cho phát hiện và nhận dạ..."
 date: 2026-06-10
 lastmod: 2026-06-10
 slug: 'paddleocr-81k-star-ocr-engine'

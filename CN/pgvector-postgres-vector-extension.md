@@ -1,6 +1,6 @@
 ---
 title: "pgvector 2026: Turn PostgreSQL into a High-Performance V...
-description: "Production guide for pgvector 0.8.2: HNSW/IVFFlat indexes, vector similarity search, performance tuning, and RAG integration with LangChain and LlamaIndex."
+description: "Production guide for pgvector 0.8.2: HNSW/IVFFlat indexes, vector similarity search, performance tun..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

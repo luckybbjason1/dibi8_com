@@ -1,6 +1,6 @@
 ---
 title: "Tabby: Self-Hosted AI Coding Assistant with 33K+ Stars —...
-description: "Tabby is a self-hosted AI coding assistant. VS Code, JetBrains, Vim, Neovim, Ollama, DeepSeek. Docker setup, IDE integration, benchmarks, and production hardening."
+description: "Tabby is a self-hosted AI coding assistant. VS Code, JetBrains, Vim, Neovim, Ollama, DeepSeek. Docke..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

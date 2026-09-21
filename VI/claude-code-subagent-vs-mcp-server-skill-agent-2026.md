@@ -1,6 +1,6 @@
 ---
 title: "Subagent vs MCP Server vs Skill: Khi nào nên xây từng lo...
-description: "Claude Code có ba điểm mở rộng — skill, subagent và MCP server — và chúng giải quyết những bài toán khác nhau. Một khung quyết định để chọn đúng loại, kèm các kịch bản thực tế và những anti-pattern khiến bạn mất thời gian vô ích."
+description: "Claude Code có ba điểm mở rộng — skill, subagent và MCP server — và chúng giải quyết những bài toán ..."
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', MCP, CLI]

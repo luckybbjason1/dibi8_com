@@ -1,6 +1,6 @@
 ---
 title: "OpenClaw Hướng Dẫn Chi Tiết: Cách Tự Lưu Trữ Trợ Lý AI M...
-description: "GitHub 362K+ Star — OpenClaw là dự án AI mã nguồn mở tăng trưởng nhanh nhất lịch sử. Hướng dẫn chi tiết kiến trúc, cài đặt tự lưu trữ, tích hợp đa nền tảng, và cách xây dựng trợ lý AI cục bộ miễn phí với OpenClaw."
+description: "GitHub 362K+ Star — OpenClaw là dự án AI mã nguồn mở tăng trưởng nhanh nhất lịch sử. Hướng dẫn chi t..."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []

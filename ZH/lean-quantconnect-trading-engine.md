@@ -1,18 +1,6 @@
 ---
 title: "Lean: 驱动 QuantConnect 的开源算法交易引擎 — C# & Python 设置 2026 指南"
-description: "2026 年 Lean 完整指南，QuantConnect 背后的算法交易引擎。多资产回测、实盘交易、C# 和 Python API 以及生产部署教程。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
-tech_stack: []
-application_domain: Ai Trading
-source_version: ''
-licensing_model: Open Source
-license_type: Apache-2.0
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: "QuantConnect/Lean"
+description: "2026 年 Lean 完整指南，QuantConnect 背后的算法交易引擎。多资产回测、实盘交易、C# 和 Python API 以及生产部署教程。". Comprehensive guide c..."
 stars: 10500
 maintainer: QuantConnect
 last_maintained: "2026-05-19"

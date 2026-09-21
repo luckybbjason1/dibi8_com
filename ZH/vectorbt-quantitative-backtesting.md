@@ -1,18 +1,6 @@
 ---
 title: "VectorBT: 每秒处理 100 万+笔交易的极速 Python 量化回测库 — 2026 量化交易指南"
-description: "掌握 VectorBT Python 量化回测。使用向量化 Numba 加速模拟构建、测试和优化交易策略。2026 完整指南含代码示例。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
-tech_stack: []
-application_domain: Ai Trading
-source_version: ''
-licensing_model: Open Source
-license_type: Apache-2.0
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: "polakowo/vectorbt"
+description: "掌握 VectorBT Python 量化回测。使用向量化 Numba 加速模拟构建、测试和优化交易策略。2026 完整指南含代码示例。". Comprehensive guide covering ..."
 stars: 8900
 maintainer: polakowo
 last_maintained: "2026-05-19"

@@ -1,6 +1,6 @@
 ---
 title: "AI Agent Tool Chain 2026: Stack 6 Thành Phần Để Xây Agen...
-description: "Stack AI agent production hoàn chỉnh: LangGraph cho orchestration có trạng thái + MCP servers cho tool + mem0 cho memory + OpenClaw cho phối hợp multi-agent + Hermes Agent cho tự cải thiện + e2b cho thực thi code sandboxed. $20-60/tháng self-host. Lắp ráp thực tế với deep dive đã link nội bộ."
+description: "Stack AI agent production hoàn chỉnh: LangGraph cho orchestration có trạng thái + MCP servers cho to..."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: - Python

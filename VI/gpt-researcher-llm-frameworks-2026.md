@@ -1,6 +1,6 @@
 ---
 title: "GPT Researcher: Tác nhân tự động tạo báo cáo nghiên cứu ...
-description: "GPT Researcher là một tác nhân nghiên cứu chuyên sâu mã nguồn mở, thực hiện nghiên cứu trên web và cục bộ cho mọi tác vụ rồi viết báo cáo có trích dẫn. 27.473 sao GitHub, giấy phép Apache-2.0. Bao gồm cài đặt, API Python bất đồng bộ, Docker và ví dụ mã thực tế."
+description: "GPT Researcher là một tác nhân nghiên cứu chuyên sâu mã nguồn mở, thực hiện nghiên cứu trên web và c..."
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
 tech_stack: []

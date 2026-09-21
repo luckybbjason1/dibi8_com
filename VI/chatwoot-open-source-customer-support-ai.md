@@ -1,6 +1,6 @@
 ---
 title: "Chatwoot 2026: Nền Tảng Hỗ Trợ Khách Hàng Mã Nguồn Mở vớ...
-description: "Hướng dẫn đầy đủ về Chatwoot v4 — nền tảng hỗ trợ khách hàng mã nguồn mở. Tự host bằng Docker, tích hợp AI agent, kết nối đa kênh. Benchmark thực tế và cấu hình production."
+description: "Hướng dẫn đầy đủ về Chatwoot v4 — nền tảng hỗ trợ khách hàng mã nguồn mở. Tự host bằng Docker, tích ..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

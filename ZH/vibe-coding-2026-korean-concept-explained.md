@@ -1,11 +1,6 @@
 ---
 title: "氛围编程 2026：韩国开发者概念，写给我们所有人"
-description: "氛围编程（바이브 코딩 / vibe coding）是韩国开发者的术语，指以自然语言为先、由 AI 处理语法的编程方式。Toss 与 Kakao 的工程师每天都在用。本文讲清它的含义、工作流，以及为什么它在韩国之外同样重要。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['Claude Code', Cursor, 'AI 驱动开发', 自然语言编程]
-application_domain: 开发工具
-source_version: "2026 Q2"
+description: "氛围编程（바이브 코딩 / vibe coding）是韩国开发者的术语，指以自然语言为先、由 AI 处理语法的编程方式。Toss 与 Kakao 的工程师每天都在用。本文讲清它的含义、工作流，以及为什..."
 licensing_model: 混合
 license_type: '不适用（工作流）'
 github_repo: ''

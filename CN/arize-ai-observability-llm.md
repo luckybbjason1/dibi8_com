@@ -1,6 +1,6 @@
 ---
 title: "Arize AI Phoenix: The Open-Source LLM Observability Tool...
-description: "Complete 2026 guide to Arize Phoenix: open-source LLM observability, RAG tracing, prompt versioning, token tracking, and production deployment with LangChain & LlamaIndex."
+description: "Complete 2026 guide to Arize Phoenix: open-source LLM observability, RAG tracing, prompt versioning,..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

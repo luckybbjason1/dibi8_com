@@ -1,6 +1,6 @@
 ---
 title: "AutoGen: 58K+ Stars — Khám Phá Sâu Framework Multi-Agent...
-description: "AutoGen (Microsoft) là framework lập trình hướng sự kiện để xây dựng hệ thống AI multi-agent. Tương thích với OpenAI, Azure, Ollama, Docker, và VS Code. Bao gồm cài đặt, thiết lập group chat, production hardening và so sánh trung thực với các lựa chọn thay thế."
+description: "AutoGen (Microsoft) là framework lập trình hướng sự kiện để xây dựng hệ thống AI multi-agent. Tương ..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

@@ -1,6 +1,6 @@
 ---
 title: "robots.txt Generator — With AI Crawler Controls (GPTBot,..."
-description: "Generate a clean robots.txt with one click — set sitemap, disallow paths, and block AI crawlers like GPTBot, ChatGPT-User, ClaudeBot, PerplexityBot, CCBot, and Google-Extended. Copy-paste ready for your site root."
+description: "Generate a clean robots.txt with one click — set sitemap, disallow paths, and block AI crawlers like..."
 date: 2026-05-18
 lastmod: 2026-05-19
 layout: "tool-robots-txt-generator"

@@ -1,5 +1,5 @@
 ---
-description: "Strix AI is an open-source penetration testing framework powered by AI agents. Automate vulnerability discovery, exploit development, and security reporting with state-of-the-art AI."
+description: "Strix AI is an open-source penetration testing framework powered by AI agents. Automate vulnerabilit..."
 date: 2026-07-03T09:00:00+09:00
 lastmod: 2026-07-03T09:00:00+09:00
 slug: strix-ai-open-source-penetration-testing
@@ -341,10 +341,7 @@ def过滤器（自我，发现）：
 
 ```yaml
 # custom-rules.yaml
-rules: description: "Detects exposed environment variables in responses" pattern: "(?i)(password|api_key|secret)\s*[:=]\s*[\w-]+" severity: high endpoints: - "/api/v1/config" - "/debug" ======='
-
-- 名称：《信息披露》
-description: "检测响应中暴露的环境变量"
+rules: description: "Detects exposed environment variables in responses" pattern: "(?i)(password|api_key|secret)\s*[:=]\s..."
 模式："(?i)(密码|api_key|秘密)\s*[:=]\s*[\w-]+"
 严重程度：高
 端点：

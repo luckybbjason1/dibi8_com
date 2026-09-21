@@ -1,6 +1,6 @@
 ---
 title: "Promptfoo: Kiểm thử, Đánh giá & Red-Team Prompt LLM của ...
-description: "Promptfoo là một CLI và thư viện mã nguồn mở để đánh giá và red-team các ứng dụng LLM. Chỉ với cấu hình khai báo đơn giản, bạn có thể so sánh GPT, Claude, Gemini, DeepSeek và tích hợp mượt mà vào CLI lẫn CI/CD. Hướng dẫn 2026 này bao quát cài đặt, promptfooconfig.yaml, assertion và kiểm thử red-team."
+description: "Promptfoo là một CLI và thư viện mã nguồn mở để đánh giá và red-team các ứng dụng LLM. Chỉ với cấu h..."
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
 tech_stack: []
@@ -62,7 +62,6 @@ Quy trình ưu tiên cấu hình: 1. **Cấu hình khai báo** — một tệp `
 Dưới đây là một `promptfooconfig.yaml` tối giản: ```yaml
 # promptfooconfig.yaml
 description: "GPT vs Claude on a couple of prompts"
-
 prompts: - "What is the capital of {{country}}?"
   - "Explain quantum mechanics in one sentence."
 
@@ -134,7 +133,6 @@ promptfoo view
 Tạo cấu hình kiểm tra một chuỗi con kỳ vọng: ```yaml
 # promptfooconfig.yaml
 description: "Basic prompt test"
-
 prompts: - "What is the capital of {{country}}?"
 
 providers: - openai:gpt-4o-mini
@@ -155,7 +153,6 @@ Promptfoo thực thi test case và báo cáo assertion có vượt qua hay khôn
 Bạn có thể liệt kê nhiều provider và phối hợp nhiều loại assertion — chính xác, ngữ nghĩa và chấm bằng LLM: ```yaml
 # promptfooconfig.yaml
 description: "GPT vs Claude comparison"
-
 prompts: - "Answer concisely: {{question}}"
 
 providers: - openai:gpt-4o

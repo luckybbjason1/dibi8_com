@@ -1,6 +1,6 @@
 ---
 title: "Claude Code Custom Agent Authoring: Build Reusable Subag...
-description: "A complete guide to authoring custom Claude Code subagents — frontmatter fields, system prompt design, tool allowlists, and two production-ready examples (migration reviewer, security gate) with the mistakes to avoid."
+description: "A complete guide to authoring custom Claude Code subagents — frontmatter fields, system prompt desig..."
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', CLI, Markdown, YAML]

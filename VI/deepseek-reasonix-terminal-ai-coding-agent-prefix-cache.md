@@ -1,6 +1,6 @@
 ---
 title: "DeepSeek-Reasonix: Động cơ Đại lý Lập trình AI Terminal ...
-description: "Một tác nhân lập trình AI gốc của DeepSeek với độ ổn định bộ nhớ đệm tiền tố được thiết kế — tỷ lệ trúng bộ nhớ đệm 99,82%, ~12 USD/ngày cho sử dụng nặng so với ~61 USD nếu không dùng bộ nhớ đệm. Được cấp phép MIT. Lựa chọn thay thế Claude Code sử dụng các mô hình DeepSeek."
+description: "Một tác nhân lập trình AI gốc của DeepSeek với độ ổn định bộ nhớ đệm tiền tố được thiết kế — tỷ lệ t..."
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false
@@ -18,7 +18,7 @@ sources: - name: GitHub
 ---
 
 title: 'DeepSeek-Reasonix: Terminal AI Coding Agent Engineered for DeepSeek Prefix-Cache Stability'
-description: "A DeepSeek-native AI coding agent with engineered prefix-cache stability — 99.82% cache hit rate, ~$12/day for heavy usage vs ~$61 without cache. MIT licensed. Claude Code alternative using DeepSeek models."
+description: "A DeepSeek-native AI coding agent with engineered prefix-cache stability — 99.82% cache hit rate, ~$..."
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false

@@ -1,6 +1,6 @@
 ---
 title: "Ruv Pi: The Self-Extensible Coding Agent CLI with Multi-..."
-description: "Ruv Pi is a self-extensible coding agent CLI from Earendil Works that provides a unified multi-provider LLM API, enabling developers to build, run, and extend AI-powered coding agents with support for Claude, OpenAI, Gemini, and more."
+description: "Ruv Pi is a self-extensible coding agent CLI from Earendil Works that provides a unified multi-provi..."
 date: 2026-06-10
 lastmod: 2026-06-10
 slug: ruv-pi

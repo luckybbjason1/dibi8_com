@@ -1,6 +1,6 @@
 ---
 title: "This Week in Open-Source AI Agents — Top Trending GitHub..."
-description: "Hand-edited weekly roundup of top trending open-source AI agent, LLM, and MCP projects on GitHub — data auto-collected by Dibi8 Tribe Intel, analysis by Dibi8 editorial team."
+description: "Hand-edited weekly roundup of top trending open-source AI agent, LLM, and MCP projects on GitHub — d..."
 tags: ["ai-agent", "automation", "ci-cd", "github", "open-source", "self-hosted", "trending", "weekly"]
 date: 2026-06-22T00:00:00+09:00
 lastmod: 2026-06-22T00:00:00+09:00categories: ["llm-frameworks"]

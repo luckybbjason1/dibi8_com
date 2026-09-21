@@ -1,12 +1,5 @@
 title: "LangChain vs CrewAI vs AutoGen vs LlamaIndex vs LangGrap...
-description: "2026년 상위 5개 오픈 소스 AI 에이전트 프레임워크를 나란히 비교합니다. 실제 별 개수, 코드 예제, 성능 벤치마크 및 프로젝트에 적합한 프레임워크를 선택하기 위한 실용적인 지침입니다.". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-06-30T00:00:00+09:00
-lastmod: 2026-06-30T00:00:00+09:00lang: ko
-draft: false
-tags: ["ai-agents", "frameworks", "comparison", "langchain", "crewai", "autogen", "llamaindex", "langgraph"]
-categories: ["llm-frameworks"]
-slug: ai-agent-frameworks-comparison-2026
-author: "디비8 편집팀"
+description: "2026년 상위 5개 오픈 소스 AI 에이전트 프레임워크를 나란히 비교합니다. 실제 별 개수, 코드 예제, 성능 벤치마크 및 프로젝트에 적합한 프레임워크를 선택하기 위한 실용적인 ..."
 showAuthor: true
 showSummary: true
 featureImage: /images/articles/b62165fb-ai-agent-frameworks-comparison.png

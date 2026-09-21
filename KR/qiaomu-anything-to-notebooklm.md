@@ -1,6 +1,6 @@
 ---
 title: "Qiaomu Anything to NotebookLM：任意コンテンツソースを Google Noteboo...
-description: "Qiaomu Anything to NotebookLM は、YouTube ビデオ、ポッドキャスト、記事、PDF など 15 種類以上のコンテンツソースを Google NotebookLM のナレッジベースに変換する Claude Code スキルおよび Python ツールキットで、ペイウォール回避機能も備えています。"
+description: "Qiaomu Anything to NotebookLM は、YouTube ビデオ、ポッドキャスト、記事、PDF など 15 種類以上のコンテンツソースを Google NotebookLM のナ..."
 date: 2026-06-10
 lastmod: 2026-06-10
 slug: qiaomu-anything-to-notebooklm

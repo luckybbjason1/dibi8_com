@@ -1,6 +1,6 @@
 ---
 title: "ByteDance UI-TARS Desktop: Đại Diện AI Ngôn Ngữ-Thị Giác...
-description: "Tìm hiểu cách triển khai UI-TARS Desktop của ByteDance, một đại diện AI ngôn ngữ-thị giác có thể xem màn hình của bạn và điều khiển ứng dụng thông qua ngôn ngữ tự nhiên. Cài đặt từng bước, benchmark thực tế và so sánh với các giải pháp thay thế."
+description: "Tìm hiểu cách triển khai UI-TARS Desktop của ByteDance, một đại diện AI ngôn ngữ-thị giác có thể xem..."
 date: 2026-06-10
 lastmod: 2026-06-10
 slug: "bytedance-ui-tars-desktop-ai-agent-guide"

@@ -1,6 +1,6 @@
 ---
 title: 'Codebase-Memory-MCP: Trí tuệ mã nguồn hiệu suất cao cho ...
-description: "Khám phá codebase-memory-mcp — máy chủ MCP thông minh về mã nhanh nhất, có khả năng lập chỉ mục toàn bộ kho lưu trữ chỉ trong vài mili giây."
+description: "Khám phá codebase-memory-mcp — máy chủ MCP thông minh về mã nhanh nhất, có khả năng lập chỉ mục toàn..."
 date: 2026-06-19
 lastmod: 2026-06-19tags: []
 category: "dev-utils"

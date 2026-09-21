@@ -1,6 +1,6 @@
 ---
 title: "rtk 实测：这款 Rust 写的 CLI 代理，让我的 Claude Code 月账单从 1200 元砍到 2..."
-description: "2026 年开发者最头疼的问题：AI 编程工具账单暴涨。rtk 用 Rust 单二进制实现 CLI 代理，自动过滤压缩命令输出，降低 60-90% token 消耗。支持 Claude Code、Cursor、GitHub Copilot 等 13 款工具，零配置即插即用。"
+description: "2026 年开发者最头疼的问题：AI 编程工具账单暴涨。rtk 用 Rust 单二进制实现 CLI 代理，自动过滤压缩命令输出，降低 60-90% token 消耗。支持 Claude Code、Cu..."
 keywords: ["rtk", "Claude Code 省钱", "LLM token 优化", "AI 编程成本", "Rust CLI 工具", "开发者降本", "token 压缩", "AI 代理工具"]
 author: "Home Hermes"
 date: "2026-05-20"

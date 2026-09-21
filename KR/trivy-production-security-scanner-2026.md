@@ -1,6 +1,6 @@
 ---
 title: "Trivy: 프로덕션에 취약한 컨테이너를 보내는 것 멈추기 — 2026 보안 스캔 가이드"
-description: "Trivy(aquasecurity/trivy)는 컨테이너, IaC, 코드를 위한 오픈소스 보안 스캐너입니다. Kubernetes, Docker, GitHub Actions, CI 파이프라인과 연동됩니다. 60만 개 이상의 CVE, 시크릿, 오설정 스캔. 설치, 정책-as-코드, 프로덕션 하드닝을 다룹니다."
+description: "Trivy(aquasecurity/trivy)는 컨테이너, IaC, 코드를 위한 오픈소스 보안 스캐너입니다. Kubernetes, Docker, GitHub Actions, CI ..."
 date: 2026-06-09
 lastmod: 2026-06-09
 slug: 'trivy-production-security-scanner-2026'

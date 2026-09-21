@@ -1,6 +1,6 @@
 ---
 title: "테이스트 스킬: AI가 범용적인 저질을 생성하는 것을 막아라 — 에이전트 스킬 프레임워크 2026"
-description: "테이스트 스킬(Taste Skill)은 AI가 구축한 인터페이스의 레이아웃, 타이포그래피, 모션, 여백을 강화하는 포트폴리오형 에이전트 스킬 프레임워크입니다. Codex, Cursor, Claude Code, ChatGPT Images와 함께 작동합니다."
+description: "테이스트 스킬(Taste Skill)은 AI가 구축한 인터페이스의 레이아웃, 타이포그래피, 모션, 여백을 강화하는 포트폴리오형 에이전트 스킬 프레임워크입니다. Codex, Curs..."
 date: 2026-06-15
 lastmod: 2026-06-15
 slug: taste-skill

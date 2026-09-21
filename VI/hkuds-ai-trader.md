@@ -1,6 +1,6 @@
 ---
 title: "AI-Trader: Nền tảng giao dịch Agent-Native từ HKUDS"
-description: "AI-Trader là một nền tảng giao dịch agent-native từ HKUDS cho phép các tác nhân lập trình AI như Claude Code, Codex, Cursor và OpenClaw tự động thực hiện giao dịch, quản lý danh mục và tối ưu hóa chiến lược."
+description: "AI-Trader là một nền tảng giao dịch agent-native từ HKUDS cho phép các tác nhân lập trình AI như Cla..."
 date: 2026-06-10
 lastmod: 2026-06-10
 slug: hkuds-ai-trader

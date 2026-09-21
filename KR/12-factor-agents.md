@@ -1,6 +1,6 @@
 ---
 title: "12-Factor Agents: 신뢰할 수 있는 LLM 애플리케이션 빌드를 위한 원칙 기반 프레임워크"
-description: "12-Factor Agents 프레임워크는 검증된 12-Factor App 방법을 LLM 기반 애플리케이션에 맞게 조정하여, 신뢰할 수 있고 확장 가능하며 관찰 가능한 AI 에이전트를 빌드하기 위한 원칙적인 접근 방식을 제공합니다."
+description: "12-Factor Agents 프레임워크는 검증된 12-Factor App 방법을 LLM 기반 애플리케이션에 맞게 조정하여, 신뢰할 수 있고 확장 가능하며 관찰 가능한 AI 에이전..."
 date: 2026-06-10
 lastmod: 2026-06-10
 slug: 12-factor-agents

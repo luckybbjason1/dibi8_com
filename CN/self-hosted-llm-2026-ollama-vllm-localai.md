@@ -1,6 +1,6 @@
 ---
 title: "Self-Hosted LLM 2026: Ollama vs vLLM vs LocalAI — Tested...
-description: "Tested Ollama, vLLM, and LocalAI on the same RTX 4090 with Llama 3.3 70B. Real tokens/sec, memory usage, setup time, and which is right for hobby vs production self-hosted deployment."
+description: "Tested Ollama, vLLM, and LocalAI on the same RTX 4090 with Llama 3.3 70B. Real tokens/sec, memory us..."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [Ollama, vLLM, LocalAI, 'Llama 3.3', CUDA]

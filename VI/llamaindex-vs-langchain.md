@@ -1,6 +1,6 @@
 ---
 title: "So Sánh LlamaIndex và LangChain 2025: Chọn Framework LLM...
-description: "So sánh chi tiết LlamaIndex vs LangChain 2025: kiến trúc, hiệu suất RAG, hệ sinh thái, và hướng dẫn chọn framework phù hợp cho dự án AI của bạn."
+description: "So sánh chi tiết LlamaIndex vs LangChain 2025: kiến trúc, hiệu suất RAG, hệ sinh thái, và hướng dẫn ..."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []

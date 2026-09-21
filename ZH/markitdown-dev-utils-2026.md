@@ -1,6 +1,6 @@
 ---
 title: "markitdown：把文件和 Office 文档转成 Markdown（141K Stars）——2026 实...
-description: "markitdown 是微软出品的 Python 工具，用于把各类文件和 Office 文档转换成 Markdown。141,153 个 GitHub star，MIT 协议。涵盖安装、核心命令行与 Python 用法、真实代码示例，以及与 pandoc、docx2txt 的客观对比。"
+description: "markitdown 是微软出品的 Python 工具，用于把各类文件和 Office 文档转换成 Markdown。141,153 个 GitHub star，MIT 协议。涵盖安装、核心命令行与 ..."
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
 tech_stack: []

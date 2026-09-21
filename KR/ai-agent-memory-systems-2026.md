@@ -1,6 +1,6 @@
 ---
 title: "2026 AI 에이전트 메모리 시스템 완벽 비교: Mem0 / agentmemory / Hindsig...
-description: "세션마다 모든 것을 잊는 AI 에이전트는 2026 프로덕션에선 치명적 결함. 4대 오픈소스 메모리 레이어 심층 비교: Mem0 (48K+ stars, 21개 프레임워크 통합), agentmemory (MCP 네이티브, Claude Code/Cursor 최적), Hindsight (생체모방 3계층 + 4전략 검색), MemPalace (52K+ stars 커뮤니티 리더). 벤치마크/함정/결정 트리 포함."
+description: "세션마다 모든 것을 잊는 AI 에이전트는 2026 프로덕션에선 치명적 결함. 4대 오픈소스 메모리 레이어 심층 비교: Mem0 (48K+ stars, 21개 프레임워크 통합), a..."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00
 tech_stack: [Python, TypeScript, PostgreSQL, 'Vector databases', MCP]

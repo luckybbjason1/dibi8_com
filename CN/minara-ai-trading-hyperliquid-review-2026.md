@@ -1,6 +1,6 @@
 ---
 title: "Minara Review 2026: The AI Trading Platform on Hyperliqu...
-description: "Minara is the AI-native trading platform built on Hyperliquid that lets you ask questions, get real-time market analysis, and execute crypto / stocks / commodities trades in a single chat interface. Hands-on review: setup walkthrough, five real use cases, honest pricing breakdown, and how Spark token rebates stack with the 10% referral commission."
+description: "Minara is the AI-native trading platform built on Hyperliquid that lets you ask questions, get real-..."
 date: 2026-05-17 00:00:00+08:00
 lastmod: 2026-05-17 00:00:00+08:00
 tech_stack: []

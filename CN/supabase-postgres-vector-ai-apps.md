@@ -1,6 +1,6 @@
 ---
 title: "Supabase 2026: The Open-Source Firebase Alternative Powe...
-description: "Complete guide to Supabase: the open-source Firebase alternative with Postgres + pgvector for AI apps. Auth, storage, realtime, edge functions, RAG pipeline integration, self-hosted Docker deployment, and Row Level Security."
+description: "Complete guide to Supabase: the open-source Firebase alternative with Postgres + pgvector for AI app..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

@@ -1,6 +1,6 @@
 ---
 title: "Ollama vs LM Studio in 2026: Which Local LLM Runner Wins?"
-description: "Side-by-side breakdown of Ollama and LM Studio — CLI vs GUI, model library, GPU support, OpenAI-compatible API, quantization, self-hosting. Updated 2026."
+description: "Side-by-side breakdown of Ollama and LM Studio — CLI vs GUI, model library, GPU support, OpenAI-comp..."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
 tags: ["ollama", "lm-studio", "local-llm", "gguf", "self-hosting", "comparison"]

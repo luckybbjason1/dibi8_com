@@ -1,6 +1,6 @@
 ---
 title: "LangChain: 3 Cach Trien Khai AI Agent San Sang Productio...
-description: "LangChain (LC) la framework Python/JS de xay dung ung dung LLM voi 700+ tich hop. Hoc cach cai dat LangChain, trien khai voi Docker, tich hop voi OpenAI, Anthropic, Ollama, va mo rong production voi LangSmith, LangGraph agents, va Kubernetes."
+description: "LangChain (LC) la framework Python/JS de xay dung ung dung LLM voi 700+ tich hop. Hoc cach cai dat L..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

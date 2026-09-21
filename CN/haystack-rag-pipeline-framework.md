@@ -1,6 +1,6 @@
 ---
 title: "Haystack 2026: The End-to-End NLP Framework for Producti...
-description: "Complete 2026 guide to Haystack: open-source NLP framework for production RAG pipelines, document stores, retrievers, agents, evaluation tools, and Docker deployment."
+description: "Complete 2026 guide to Haystack: open-source NLP framework for production RAG pipelines, document st..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

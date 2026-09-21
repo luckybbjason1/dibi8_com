@@ -1,6 +1,6 @@
 ---
 title: "PaddleOCR: The 81K-Star Open-Source OCR Engine That Outp...
-description: "PaddleOCR is a multi-language open-source OCR toolkit with 96.3%+ accuracy for text detection and recognition. Supports 80+ languages, document AI, table recognition, and layout analysis. 81K+ GitHub stars. Includes setup guide, benchmarks, and production deployment."
+description: "PaddleOCR is a multi-language open-source OCR toolkit with 96.3%+ accuracy for text detection and re..."
 tags: ["ocr", "open-source", "paddlepaddle", "self-hosted", "text-detection"]
 date: 2026-06-10
 lastmod: 2026-06-10

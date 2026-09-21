@@ -1,6 +1,6 @@
 ---
 title: "WhisperX: 22K+ Stars — 프로덕션 ASR 배포 가이드 2026"
-description: "WhisperX는 단어 수준 타임스탬프와 화자 분리를 제공하는 오픈소스 ASR 툴킷입니다. faster-whisper, pyannote.audio, OpenAI Whisper 모델과 호환됩니다. Docker 배포, Python API, 벤치마크, 프로덕션 하드닝을 다룹니다."
+description: "WhisperX는 단어 수준 타임스탬프와 화자 분리를 제공하는 오픈소스 ASR 툴킷입니다. faster-whisper, pyannote.audio, OpenAI Whisper 모델..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

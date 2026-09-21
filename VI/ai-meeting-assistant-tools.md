@@ -1,6 +1,6 @@
 ---
 title: "Các Công Cụ Trợ Lý Họp AI Tốt Nhất 2025: So Sánh Otter.a...
-description: "Tổng hợp các công cụ trợ lý họp AI hàng đầu năm 2025. So sánh chi tiết Otter.ai, Fireflies, Fathom, Notion AI, Microsoft Copilot cho Teams về phiên âm, tóm tắt, tích hợp và giá cả."
+description: "Tổng hợp các công cụ trợ lý họp AI hàng đầu năm 2025. So sánh chi tiết Otter.ai, Fireflies, Fathom, ..."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []

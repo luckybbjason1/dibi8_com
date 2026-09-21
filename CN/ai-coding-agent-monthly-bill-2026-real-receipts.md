@@ -1,6 +1,6 @@
 ---
 title: "AI Coding Agent Monthly Bill 2026: Real 30-Day Receipts ...
-description: "Tracked 30 days of actual usage and billing across Claude Max ($200), ChatGPT Plus + Codex CLI API ($165 effective), and Cursor Pro + API overflow ($87). Per-task cost breakdown, when each pays off, and the threshold where switching makes sense."
+description: "Tracked 30 days of actual usage and billing across Claude Max ($200), ChatGPT Plus + Codex CLI API (..."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: ['Claude Code', Cursor, 'Codex CLI', 'OpenAI API', 'Anthropic API']

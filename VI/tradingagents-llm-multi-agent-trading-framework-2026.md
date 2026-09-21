@@ -1,6 +1,6 @@
 ---
 title: "TradingAgents: Framework Giao Dịch Đa Tác Tử LLM 82.000 ...
-description: "TradingAgents là framework đa tác tử LLM mã nguồn mở (82,254 GitHub stars, Apache-2.0) mô phỏng một công ty giao dịch: các tác tử phân tích, nghiên cứu, trader và quản trị rủi ro tranh luận ra quyết định BUY/SELL/HOLD. Dựa trên LangGraph. Bao gồm cài đặt, pipeline tác tử, CLI + Python API, và so sánh thẳng thắn với Qlib và bot đơn tác tử."
+description: "TradingAgents là framework đa tác tử LLM mã nguồn mở (82,254 GitHub stars, Apache-2.0) mô phỏng một ..."
 date: 2026-06-02
 lastmod: 2026-06-02
 slug: 'tradingagents-llm-multi-agent-trading-framework-2026'

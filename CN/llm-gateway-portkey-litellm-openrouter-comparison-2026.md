@@ -1,6 +1,6 @@
 ---
 title: "Portkey vs LiteLLM vs OpenRouter 2026: The Honest LLM Ga...
-description: "Direct comparison of the three biggest LLM gateways in 2026. Real numbers: Portkey adds <1ms latency, LiteLLM 8ms P95, OpenRouter 100-150ms. Decision tree by use case, cost breakdown at $1K/mo spend, and when 9Router beats all three."
+description: "Direct comparison of the three biggest LLM gateways in 2026. Real numbers: Portkey adds <1ms latency..."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: - Python

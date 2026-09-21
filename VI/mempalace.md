@@ -1,6 +1,6 @@
 ---
 title: "MemPalace vs Mem0: Benchmark Recall 96.6% & Framework Bộ...
-description: "Khám phá MemPalace — hệ thống trí nhớ AI mã nguồn mở được đánh giá cao nhất với 51,745 sao GitHub. Giúp AI assistant ghi nhớ lịch sử hội thoại dài hạn, sở thích người dùng và ngữ cảnh một cách thông minh."
+description: "Khám phá MemPalace — hệ thống trí nhớ AI mã nguồn mở được đánh giá cao nhất với 51,745 sao GitHub. G..."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Docker

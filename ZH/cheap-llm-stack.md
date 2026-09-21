@@ -1,24 +1,6 @@
 ---
 title: "便宜跑大模型 Stack 2026：用免费层 + Token 压缩把生产 AI 月成本压到 $0-15"
-description: "5 组件 stack 跑真实 AI 负载月成本 $0-15：Ollama 本地 + DeepSeek API + Gemini 免费层 + RTK 压缩 + 9Router 编排。真实成本数学、按任务类型的模型选择、组装顺序。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-21 00:00:00+08:00
-lastmod: 2026-05-21 00:00:00+08:00
-tech_stack: - Python
-  - Docker
-  - Go
-  - Rust
-application_domain: Collections
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: ''
-stars: 0
-maintainer: dibi8
-last_maintained: "2026-05-21"
+description: "5 组件 stack 跑真实 AI 负载月成本 $0-15：Ollama 本地 + DeepSeek API + Gemini 免费层 + RTK 压缩 + 9Router 编排。真实成本数学、按任务..."
 featureImage: ''
 draft: false
 categories: ["collections"]

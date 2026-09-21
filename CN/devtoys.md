@@ -1,6 +1,6 @@
 ---
 title: "DevToys: 31,533 GitHub Stars — Complete Setup Guide for ...
-description: "DevToys is a free, open-source, offline Swiss Army knife for developers. Cross-platform utilities for JSON, Base64, JWT, regex, and 30+ tools on Windows, macOS, and Linux with Smart Detection and CLI support."
+description: "DevToys is a free, open-source, offline Swiss Army knife for developers. Cross-platform utilities fo..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

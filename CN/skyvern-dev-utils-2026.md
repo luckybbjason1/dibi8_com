@@ -1,6 +1,6 @@
 ---
 title: "Skyvern: Automate Browser Workflows with AI Agents (21K ...
-description: "Skyvern automates browser-based workflows using LLMs and computer vision (21,803 GitHub stars, AGPL-3.0). Covers installation, the real Python API, working code examples, and an honest comparison with Selenium and Playwright."
+description: "Skyvern automates browser-based workflows using LLMs and computer vision (21,803 GitHub stars, AGPL-..."
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
 tech_stack: []

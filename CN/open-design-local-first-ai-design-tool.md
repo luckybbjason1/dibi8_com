@@ -1,6 +1,6 @@
 ---
 title: "Open Design: The Ultimate Local-First AI Design Tool Rep..."
-description: "Discover Open Design, the open-source local-first alternative to Claude Design with 19 AI skills, 71 design systems, and multi-format export. Build prototypes, slides, videos & more."
+description: "Discover Open Design, the open-source local-first alternative to Claude Design with 19 AI skills, 71..."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go

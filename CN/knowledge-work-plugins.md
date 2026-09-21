@@ -1,6 +1,6 @@
 ---
 title: "Knowledge Work Plugins: Anthropic's Plugin Ecosystem for..."
-description: "Knowledge Work Plugins (20,728 stars) by Anthropic extends Claude with powerful tools for document editing, code analysis, web browsing, and file operations. Build custom plugins for your workflow."
+description: "Knowledge Work Plugins (20,728 stars) by Anthropic extends Claude with powerful tools for document e..."
 tags: ["architecture", "llm", "open-source", "system"]
 date: 2026-06-15
 lastmod: 2026-06-15

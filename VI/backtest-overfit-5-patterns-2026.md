@@ -1,6 +1,6 @@
 ---
 title: "Backtest OVERFIT: 5 Mẫu Hình Điển Hình với Số Liệu PF/Sh...
-description: "Sau hơn 50 giao dịch live từ kết quả optimizer, chúng tôi tổng hợp 5 mẫu hình overfit rõ rệt: phân kỳ walk-forward, lật chế độ thị trường, vách đá tham số, chồng chỉ báo và thiên lệch sống sót. Mỗi mẫu hình có ví dụ tổng hợp có thể tái tạo + tín hiệu phát hiện."
+description: "Sau hơn 50 giao dịch live từ kết quả optimizer, chúng tôi tổng hợp 5 mẫu hình overfit rõ rệt: phân k..."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [Python, pandas, numpy, vectorbt, backtrader]

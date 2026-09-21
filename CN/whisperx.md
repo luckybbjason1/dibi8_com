@@ -1,6 +1,6 @@
 ---
 title: "WhisperX: 22K+ Stars — Production ASR Setup Guide 2026"
-description: "WhisperX is an open-source ASR toolkit with word-level timestamps and speaker diarization. Compatible with faster-whisper, pyannote.audio, and OpenAI Whisper models. Covers Docker deployment, Python API, benchmarks, and production hardening."
+description: "WhisperX is an open-source ASR toolkit with word-level timestamps and speaker diarization. Compatibl..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

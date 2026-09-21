@@ -1,6 +1,6 @@
 ---
 title: "OpenAI Codex CLI: The Definitive 2026 Guide to Terminal-...
-description: "Master OpenAI Codex CLI—the fastest-growing open-source AI coding agent of 2026. This complete guide covers zero-to-hero installation, AGENTS.md configuration, multi-agent parallel development, MCP integration, sandbox security, and head-to-head comparison with Claude Code. Boost your developer productivity today."
+description: "Master OpenAI Codex CLI—the fastest-growing open-source AI coding agent of 2026. This complete guide..."
 date: 2026-05-17 00:00:00+08:00
 lastmod: 2026-05-17 00:00:00+08:00
 tech_stack: []

@@ -1,6 +1,6 @@
 ---
 title: "HowToCook: 297 Recipes for Programmers - The Open Source..."
-description: "Discover HowToCook - an open-source cookbook with 297 recipes designed for programmers. Clear, precise cooking instructions like code."
+description: "Discover HowToCook - an open-source cookbook with 297 recipes designed for programmers. Clear, preci..."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Docker

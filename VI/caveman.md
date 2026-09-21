@@ -1,6 +1,6 @@
 ---
 title: "Caveman: Giảm 65% Token Claude Code — Tiết Kiệm Chi Phí ...
-description: "Hướng dẫn cài đặt và sử dụng Caveman skill cho Claude Code. Công cụ nén prompt thông minh giúp giảm 65% token usage, tiết kiệm chi phí API và tăng tốc độ phản hồi AI mà không làm giảm chất lượng kỹ thuật."
+description: "Hướng dẫn cài đặt và sử dụng Caveman skill cho Claude Code. Công cụ nén prompt thông minh giúp giảm ..."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Docker

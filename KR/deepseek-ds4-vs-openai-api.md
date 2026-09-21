@@ -1,10 +1,6 @@
 ---
 title: "OpenAI 요금제 해지: DeepSeek(DS4) 로컬 추론으로 토큰 비용 박살내기"
-description: "OpenAI 요금제 해지: DeepSeek(DS4) 로컬 추론으로 토큰 비용 박살내기". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-15T04:20:25+09:00
-lastmod: 2026-05-15T04:20:25+09:00
-tech_stack: - AI
-application_domain: "Llm Frameworks"
+description: "OpenAI 요금제 해지: DeepSeek(DS4) 로컬 추론으로 토큰 비용 박살내기". Comprehensive guide covering features, pricing, an..."
 source_version: ""
 licensing_model: "Open Source"
 license_type: "MIT"

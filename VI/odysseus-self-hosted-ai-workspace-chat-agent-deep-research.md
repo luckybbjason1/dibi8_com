@@ -1,6 +1,6 @@
 ---
 title: "Odysseus: Không gian AI tự lưu trữ với 10+ Công cụ Tích ...
-description: "Odysseus (65.243 sao GitHub) là một không gian AI tự lưu trữ kết hợp trò chuyện, tự động hóa tác nhân, nghiên cứu chuyên sâu, chỉnh sửa tài liệu, phân loại email, lịch và hơn nữa. Hỗ trợ vLLM, llama.cpp, Ollama, OpenRouter, OpenAI và GitHub Copilot. Có sẵn cài đặt Docker và native Linux/macOS."
+description: "Odysseus (65.243 sao GitHub) là một không gian AI tự lưu trữ kết hợp trò chuyện, tự động hóa tác nhâ..."
 date: 2026-06-09
 lastmod: 2026-06-09
 slug: odysseus-self-hosted-ai-workspace-chat-agent-deep-research

@@ -1,6 +1,6 @@
 ---
 title: "Prometheus: 64,094 GitHub Stars — Hướng Dẫn Triển Khai D...
-description: "Prometheus (Prom) là hệ thống giám sát và cơ sở dữ liệu chuỗi thờ gian mã nguồn mở. Tương thích với Docker, Kubernetes, Grafana và Alertmanager. Bao gồm hướng dẫn cài đặt, truy vấn PromQL, cung cố hóa sản xuất và điểm chuẩn hiệu suất."
+description: "Prometheus (Prom) là hệ thống giám sát và cơ sở dữ liệu chuỗi thờ gian mã nguồn mở. Tương thích với ..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -234,28 +234,24 @@ groups: - name: node-alerts
         labels: severity: warning
         annotations: summary: "{{ $labels.instance }} sử dụng bộ nhớ cao"
           description: "Mức sử dụng bộ nhớ trên 85% (giá trị hiện tại: {{ $value }}%)"
-
       - alert: HighCPUUsage
         expr: 100 - (avg by(instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 80
         for: 5m
         labels: severity: critical
         annotations: summary: "{{ $labels.instance }} sử dụng CPU cao"
           description: "Mức sử dụng CPU trên 80% (giá trị hiện tại: {{ $value }}%)"
-
       - alert: DiskSpaceLow
         expr: (node_filesystem_avail_bytes / node_filesystem_size_bytes) * 100 < 10
         for: 5m
         labels: severity: warning
         annotations: summary: "{{ $labels.instance }} dung lượng đĩa thấp"
           description: "Dung lượng đĩa dưới 10% (mountpoint: {{ $labels.mountpoint }})"
-
       - alert: InstanceDown
         expr: up == 0
         for: 3m
         labels: severity: critical
         annotations: summary: "Instance {{ $labels.instance }} đã down"
           description: "Target không thể truy cập trong hơn 3 phút"
-
       - alert: HighRequestLatency
         expr: histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m])) > 0.5
         for: 5m

@@ -1,11 +1,6 @@
 ---
 title: "왜 전설적인 Roop은 결국 죽음을 맞이했는가?"
-description: "왜 전설적인 Roop은 결국 죽음을 맞이했는가?". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-15T04:20:25+09:00
-lastmod: 2026-05-15T04:20:25+09:00
-tech_stack: - C++
-  - Python
-application_domain: "Ai Tools"
+description: "왜 전설적인 Roop은 결국 죽음을 맞이했는가?". Comprehensive guide covering features, pricing, and best practices for ..."
 source_version: ""
 licensing_model: "Open Source"
 license_type: "MIT"

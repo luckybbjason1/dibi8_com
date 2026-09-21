@@ -1,6 +1,6 @@
 ---
 title: "OpenHands: 74K+ Stars — AI Software Engineer That Writes...
-description: "OpenHands is an AI-driven development platform that acts as a software engineering agent. Compatible with VS Code, Docker, GitHub, GitLab, Claude, and OpenAI. Covers Docker setup, model configuration, headless CI/CD mode, and production hardening."
+description: "OpenHands is an AI-driven development platform that acts as a software engineering agent. Compatible..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

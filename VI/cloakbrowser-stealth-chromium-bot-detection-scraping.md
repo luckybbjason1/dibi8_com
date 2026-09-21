@@ -1,6 +1,6 @@
 ---
 title: "CloakBrowser: Chromium Ẩn Danh Vượt Qua Mọi Bài Kiểm Tra...
-description: "CloakBrowser (25.077 sao GitHub) là Chromium ẩn danh vượt qua mọi bài kiểm tra bot. Thay thế Playwright trực tiếp với vá cấp nguồn gốc. 30/30 bài kiểm tra vượt qua. Bao gồm hướng dẫn cài đặt, phân tích chống phát hiện và benchmark."
+description: "CloakBrowser (25.077 sao GitHub) là Chromium ẩn danh vượt qua mọi bài kiểm tra bot. Thay thế Playwri..."
 date: 2026-06-08
 lastmod: 2026-06-08
 slug: 'cloakbrowser-stealth-chromium-bot-detection-scraping'

@@ -1,6 +1,6 @@
 ---
 title: "OpenCode: The Open-Source AI Coding Agent That Overtook ...
-description: "OpenCode hit 160K+ GitHub stars in 2026, surpassing Claude Code as the most popular open-source AI coding agent. This guide covers installation, multi-model routing, LSP integration, and real-world workflows for professional developers."
+description: "OpenCode hit 160K+ GitHub stars in 2026, surpassing Claude Code as the most popular open-source AI c..."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []

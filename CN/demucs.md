@@ -1,6 +1,6 @@
 ---
 title: "Demucs: Music Source Separation with 10K+ Stars — Compar...
-description: "Demucs is a hybrid spectrogram and waveform source separation model by Meta AI. Compatible with Ultimate Vocal Remover, RVC, GPT-SoVITS. Covers demucs tutorial, demucs vs uvr, demucs docker setup, and production benchmarks."
+description: "Demucs is a hybrid spectrogram and waveform source separation model by Meta AI. Compatible with Ulti..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

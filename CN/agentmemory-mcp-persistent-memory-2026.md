@@ -1,6 +1,6 @@
 ---
 title: "Persistent Memory for AI Coding Agents in 2026: A Comple...
-description: "Stop re-teaching Claude Code your project conventions. Learn how agentmemory and the Model Context Protocol (MCP) give AI coding agents persistent cross-session memory, with setup tutorials and team sharing strategies."
+description: "Stop re-teaching Claude Code your project conventions. Learn how agentmemory and the Model Context P..."
 date: 2026-05-17 00:00:00+08:00
 lastmod: 2026-05-17 00:00:00+08:00
 tech_stack: []

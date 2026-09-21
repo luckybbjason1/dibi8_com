@@ -1,6 +1,6 @@
 ---
 title: "Supermemory：构建具有全持久记忆能力的 LLM 应用的最快开源 AI 记忆 API"
-description: "Supermemory 是一款面向 AI 应用的开源记忆引擎和应用程序。提供带有向量搜索、图搜索和会话管理的快速可扩展记忆 API。可与 LangChain、LlamaIndex、CrewAI 及任何 Python/JS 应用集成。支持自托管，零外部依赖。附带设置指南、基准测试和生产部署方案。"
+description: "Supermemory 是一款面向 AI 应用的开源记忆引擎和应用程序。提供带有向量搜索、图搜索和会话管理的快速可扩展记忆 API。可与 LangChain、LlamaIndex、CrewAI 及任何..."
 date: 2026-06-10
 lastmod: 2026-06-10
 slug: 'supermemory-open-source-ai-memory-api'

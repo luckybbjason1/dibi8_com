@@ -1,18 +1,6 @@
 ---
 title: "Auto-GPT 2026 复兴：原创自主智能体框架如何将设置时间缩短 80% — 全新安装指南"
-description: "2026 年 Auto-GPT 自主智能体的完整指南。全新安装流程、智能体协议、网页浏览、多智能体编排、Docker 部署、与新代理框架的基准对比，以及诚实的局限性评估。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
-tech_stack: []
-application_domain: Llm Frameworks
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: "Significant-Gravitas/AutoGPT"
+description: "2026 年 Auto-GPT 自主智能体的完整指南。全新安装流程、智能体协议、网页浏览、多智能体编排、Docker 部署、与新代理框架的基准对比，以及诚实的局限性评估。". Comprehensiv..."
 stars: 172000
 maintainer: 'Significant-Gravitas'
 last_maintained: "2026-05-19"

@@ -1,21 +1,6 @@
 ---
 title: "AI图像生成工具完全指南：Midjourney、DALL-E、Stable Diffusion等"
-description: "2025年AI图像生成工具完全指南，详解Midjourney v7、DALL-E 3、Stable Diffusion 3.5、Adobe Firefly等主流工具的技术原理、功能对比与使用场景。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
-tech_stack: []
-application_domain: Ai Tools
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: ''
-stars: 0
-maintainer: 'dibi8'
-last_maintained: "2026-05-18"
+description: "2025年AI图像生成工具完全指南，详解Midjourney v7、DALL-E 3、Stable Diffusion 3.5、Adobe Firefly等主流工具的技术原理、功能对比与使用场景。"...."
 featureImage: ''
 draft: false
 aliases:

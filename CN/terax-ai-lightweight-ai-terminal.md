@@ -1,6 +1,6 @@
 ---
 title: "Terax AI: The Lightweight AI Terminal Emulator That Unde..."
-description: "Discover Terax AI, a 7 MB AI-native terminal emulator built on Tauri 2 + Rust. Features natural language commands, inline AI assistance, smart autocomplete, and cross-shell support for bash, zsh, fish, and PowerShell."
+description: "Discover Terax AI, a 7 MB AI-native terminal emulator built on Tauri 2 + Rust. Features natural lang..."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Docker

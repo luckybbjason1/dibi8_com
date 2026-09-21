@@ -1,6 +1,6 @@
 ---
 title: "WhisperX: 22K+ Stars — Hướng Dẫn Triển Khai ASR Producti...
-description: "WhisperX là bộ công cụ ASR mã nguồn mở với timestamp cấp từ và phân tách ngưới nói. Tương thích với faster-whisper, pyannote.audio và OpenAI Whisper. Bao gồm Docker, Python API, benchmark và production hardening."
+description: "WhisperX là bộ công cụ ASR mã nguồn mở với timestamp cấp từ và phân tách ngưới nói. Tương thích với ..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

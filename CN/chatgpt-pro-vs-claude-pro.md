@@ -1,6 +1,6 @@
 ---
 title: "ChatGPT Pro vs Claude Pro in 2026: Which $20 (or $200) A...
-description: "Full breakdown of ChatGPT Plus/Pro vs Claude Pro/Max — model lineup, context window, Projects, Artifacts, image gen, voice mode, pricing. Updated 2026."
+description: "Full breakdown of ChatGPT Plus/Pro vs Claude Pro/Max — model lineup, context window, Projects, Artif..."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
 tags: ["chatgpt", "claude", "openai", "anthropic", "ai-subscription", "comparison"]

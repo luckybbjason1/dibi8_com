@@ -1,6 +1,6 @@
 ---
 title: "Bitcoin-Classic (BTCC): 일반인도 CPU로 채굴할 수 있는 비트코인 복제판"
-description: "Bitcoin-Classic (BTCC)는 Bitcoin Core v28.1을 기반으로 재구축된 탈중앙화 디지털 통화입니다. CPU 채굴을 지원하며 내장 그래픽 채굴기를 제공하여 일반 사용자도 초기 비트코인 채굴을 경험할 수 있습니다."
+description: "Bitcoin-Classic (BTCC)는 Bitcoin Core v28.1을 기반으로 재구축된 탈중앙화 디지털 통화입니다. CPU 채굴을 지원하며 내장 그래픽 채굴기를 제공하여 ..."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - C++

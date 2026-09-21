@@ -1,6 +1,6 @@
 ---
 title: "AI 트레이딩 스택 2026: 암호화폐 + 예측 시장용 7컴포넌트 오픈소스 퀀트 워크플로우"
-description: "셀프호스트 AI 트레이딩 스택: ta-lib (신호) + vectorbt (백테스트) + freqtrade (실행) + AI Trader (AI 전략 레이어) + Hyperliquid (perp DEX) + Polymarket Agents (예측 시장) + Minara (AI+crypto 허브). $30-150/월 인프라, 진짜 프로덕션급 퀀트 파이프라인, 장난감 아님."
+description: "셀프호스트 AI 트레이딩 스택: ta-lib (신호) + vectorbt (백테스트) + freqtrade (실행) + AI Trader (AI 전략 레이어) + Hyperliqu..."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: [Python, Docker, PostgreSQL, WebSocket]

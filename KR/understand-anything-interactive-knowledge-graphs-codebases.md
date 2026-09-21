@@ -1,6 +1,6 @@
 ---
 title: "언더스탠드-에니씽: 코드베이스를 위한 상호작용 지식 그래프 — 60K+ 스타 2026"
-description: "Understand-Anything은 모든 코드베이스를 탐색하고 검색하며 쿼리할 수 있는 인터랙티브 지식 그래프로 바꿉니다. Claude Code, Codex, Cursor, Copilot, Gemini CLI와 함께 작동합니다. GitHub 스타 60,339개."
+description: "Understand-Anything은 모든 코드베이스를 탐색하고 검색하며 쿼리할 수 있는 인터랙티브 지식 그래프로 바꿉니다. Claude Code, Codex, Cursor, Co..."
 date: 2026-06-15
 lastmod: 2026-06-15
 slug: understand-anything-interactive-knowledge-graphs-codebases

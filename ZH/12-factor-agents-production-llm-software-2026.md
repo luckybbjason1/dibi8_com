@@ -1,6 +1,6 @@
 ---
 title: "12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）"
-description: "HumanLayer 出品的 12-Factor Agents（22K+ GitHub stars）定义了 demo 级 LLM 原型与真实用户依赖的生产级 agent 之间的设计模式分水岭。完整拆解 12 条原则——拥有自己的 prompt、拥有自己的上下文窗口、stateless reducer 模型、控制流自主、人在环 via tool call、紧凑错误、聚焦小 agent 等。附 Claude Code / Codex / OpenCode / MCP 栈实战应用指引。"
+description: "HumanLayer 出品的 12-Factor Agents（22K+ GitHub stars）定义了 demo 级 LLM 原型与真实用户依赖的生产级 agent 之间的设计模式分水岭。完整拆解..."
 date: 2026-05-23 00:00:00+08:00
 lastmod: 2026-05-23 00:00:00+08:00
 tech_stack: []

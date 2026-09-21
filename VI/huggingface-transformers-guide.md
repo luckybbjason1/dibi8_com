@@ -1,6 +1,6 @@
 ---
 title: "Hướng Dẫn Sử Dụng Hugging Face Transformers 2025: Dành C...
-description: "Hướng dẫn chi tiết thư viện Hugging Face Transformers 2025: Pipeline API, fine-tuning BERT/GPT, tokenization, tối ưu model và triển khai production."
+description: "Hướng dẫn chi tiết thư viện Hugging Face Transformers 2025: Pipeline API, fine-tuning BERT/GPT, toke..."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []

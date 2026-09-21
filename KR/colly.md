@@ -1,6 +1,6 @@
 ---
 title: "Colly: 25,302 GitHub Stars — 벤치마크 Go 웹 스크래핑 프레임워크 2026"
-description: "Colly는 1,000+ req/sec 처리량을 제공하는 빠르고 우아한 Go 웹 스크래핑 프레임워크입니다. colly 튜토리얼, colly vs scrapy 벤치마크, Docker 설정, Redis 캐싱, 프록시 로테이션, 대규모 데이터 추출을 위한 프로덕션 배포 패턴을 다룹니다."
+description: "Colly는 1,000+ req/sec 처리량을 제공하는 빠르고 우아한 Go 웹 스크래핑 프레임워크입니다. colly 튜토리얼, colly vs scrapy 벤치마크, Docker..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

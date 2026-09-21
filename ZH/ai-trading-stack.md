@@ -1,6 +1,6 @@
 ---
 title: "AI 量化交易 Stack 2026：7 组件开源量化工作流（加密 + 预测市场）"
-description: "自托管 AI 交易 stack：ta-lib（信号）+ vectorbt（回测）+ freqtrade（执行）+ AI Trader（AI 策略层）+ Hyperliquid（perp DEX 场所）+ Polymarket Agents（预测市场）+ Minara（AI+crypto hub）。$30-150/月基础设施，真生产级量化管线，不是玩具。"
+description: "自托管 AI 交易 stack：ta-lib（信号）+ vectorbt（回测）+ freqtrade（执行）+ AI Trader（AI 策略层）+ Hyperliquid（perp DEX 场所）..."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: [Python, Docker, PostgreSQL, WebSocket]

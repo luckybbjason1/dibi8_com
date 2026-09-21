@@ -1,6 +1,6 @@
 ---
 title: "Outline Hướng Dẫn Đầy Đủ: Wiki & Knowledge Base Mã Nguồn...
-description: "Triển khai Outline với Docker trong 10 phút. Xây dựng wiki cộng tác real-time cho team kỹ sư với Markdown editor, Slack integration, full-text search và phân quyền chi tiết."
+description: "Triển khai Outline với Docker trong 10 phút. Xây dựng wiki cộng tác real-time cho team kỹ sư với Mar..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

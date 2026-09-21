@@ -1,6 +1,6 @@
 ---
 title: "CrewAI: 51K+ Star로 멀티 에이전트 AI 팀 구축 — 2026 완전 설정 가이드"
-description: "CrewAI(crewAIInc/crewAI)는 역할 기반의 자율 AI 에이전트를 오케스트레이션하는 Python 프레임워크입니다. OpenAI, Anthropic, Ollama, LangChain, LlamaIndex와 호환됩니다. 설치, 에이전트 역할, 태스크 워크플로우, 프로덕션 배포 및 벤치마크를 다룹니다."
+description: "CrewAI(crewAIInc/crewAI)는 역할 기반의 자율 AI 에이전트를 오케스트레이션하는 Python 프레임워크입니다. OpenAI, Anthropic, Ollama, L..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

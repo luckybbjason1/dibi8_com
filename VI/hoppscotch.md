@@ -1,6 +1,6 @@
 ---
 title: "Hoppscotch: 79,200 GitHub Stars — Nền tảng phát triển AP...
-description: "Hoppscotch (HOPP) là hệ sinh thái phát triển API mã nguồn mở. Tương thích Docker, GitHub Actions, Node.js, Vue.js. Hướng dẫn hoppscotch, tự lưu trữ, CLI tự động hóa và so sánh với các giải pháp thay thế."
+description: "Hoppscotch (HOPP) là hệ sinh thái phát triển API mã nguồn mở. Tương thích Docker, GitHub Actions, No..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

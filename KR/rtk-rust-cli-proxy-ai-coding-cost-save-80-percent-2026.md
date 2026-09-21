@@ -1,6 +1,6 @@
 ---
 title: "개발자 월 20만원 AI 비용을 4만원으로 줄인 Rust 도구: rtk 완벽 가이드 | LLM 토큰 ...
-description: "2026년 개발자들의 가장 큰 고민은 AI 코딩 도구 비용. Rust로 작성된 단일 바이너리 CLI 프록시 rtk는 명령어 출력을 압축하여 LLM 토큰 소비를 60-90% 절감한다. Claude Code, Cursor, GitHub Copilot, Gemini CLI 등 13개 도구를 지원하며 설치는 30초, 설정은 0개."
+description: "2026년 개발자들의 가장 큰 고민은 AI 코딩 도구 비용. Rust로 작성된 단일 바이너리 CLI 프록시 rtk는 명령어 출력을 압축하여 LLM 토큰 소비를 60-90% 절감한다..."
 keywords: ["rtk", "LLM 토큰 최적화", "AI 코딩 비용 절감", "Claude Code 비용", "Rust CLI 도구", "개발자 생산성", "토큰 압축", "AI 에이전트 최적화"]
 author: "Home Hermes"
 date: "2026-05-20"

@@ -1,6 +1,6 @@
 ---
 title: "Coqui TTS: 45.3K+ Stars — ChatTTS, MeloTTS, Bark 성능 비교 벤...
-description: "Coqui TTS는 오픈소스 딥러닝 텍스트 음성 변환 툴킷입니다. 1100개 이상 언어 지원, XTTS v2 음성 복제, VITS 엔드투엔드 합성. ChatTTS, MeloTTS, Bark와의 실제 RTF 성능 비교 및 Docker 배포 방법 제공."
+description: "Coqui TTS는 오픈소스 딥러닝 텍스트 음성 변환 툴킷입니다. 1100개 이상 언어 지원, XTTS v2 음성 복제, VITS 엔드투엔드 합성. ChatTTS, MeloTTS,..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

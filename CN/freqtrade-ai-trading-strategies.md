@@ -1,6 +1,6 @@
 ---
 title: "Freqtrade 2026: Build AI-Powered Crypto Trading Strategi...
-description: "A hands-on guide to deploying Freqtrade with FreqAI, the open-source Python crypto trading bot with ML integration. Covers Docker setup, hyperparameter optimization, backtesting, Telegram integration, and production deployment."
+description: "A hands-on guide to deploying Freqtrade with FreqAI, the open-source Python crypto trading bot with ..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

@@ -1,6 +1,6 @@
 ---
 title: "DeepSeek TUI + Anthropic Financial AI: 3 Dự Án GitHub Tr...
-description: "Phân tích chuyên sâu 3 dự án GitHub trending hot nhất tháng 5/2026: DeepSeek-TUI tăng 5.800 stars trong một ngày, bộ công cụ Claude cho tài chính của Anthropic, và nền tảng giao dịch AI hoàn toàn tự động."
+description: "Phân tích chuyên sâu 3 dự án GitHub trending hot nhất tháng 5/2026: DeepSeek-TUI tăng 5.800 stars tr..."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - C++

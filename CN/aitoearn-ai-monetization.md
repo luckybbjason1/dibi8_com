@@ -1,6 +1,6 @@
 ---
 title: "AiToEarn: Open-Source AI Content Monetization — Turn You..."
-description: "AiToEarn is an open-source AI content monetization platform that helps creators turn AI-generated content into profitable products. Supports multi-platform distribution, subscription payments, and ad monetization."
+description: "AiToEarn is an open-source AI content monetization platform that helps creators turn AI-generated co..."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go

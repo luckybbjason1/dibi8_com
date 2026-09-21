@@ -1,18 +1,6 @@
 ---
 title: "Docmost 2026: 실시간 팀 협업을 위한 오픈소스 Notion 대안 — 셀프 호스팅 가이드"
-description: "Docmost 완벽 셀프 호스팅 가이드. 실시간 편집, Notion 스타일 블록 편집기, 중첩 페이지, PostgreSQL 백엔드를 갖춘 오픈소스 협업 Wiki. 5분 안에 배포.". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
-tech_stack: []
-application_domain: Dev Utils
-source_version: ''
-licensing_model: Open Source
-license_type: AGPL-3.0
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: "docmost/docmost"
+description: "Docmost 완벽 셀프 호스팅 가이드. 실시간 편집, Notion 스타일 블록 편집기, 중첩 페이지, PostgreSQL 백엔드를 갖춘 오픈소스 협업 Wiki. 5분 안에 배포...."
 stars: 20100
 maintainer: docmost
 last_maintained: "2026-05-19"

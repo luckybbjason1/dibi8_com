@@ -1,6 +1,6 @@
 ---
 title: "Bitcoin-Classic (BTCC): Bản Sao Bitcoin Cho Phép Ngườith...
-description: "Bitcoin-Classic (BTCC) là đồng tiền số phi tập trung được xây dựng lại từ Bitcoin Core v28.1. Hỗ trợ đào bằng CPU với giao diện đồ họa tích hợp, giúp ngườithường trải nghiệm đào coin thờikỳ đầu của Bitcoin."
+description: "Bitcoin-Classic (BTCC) là đồng tiền số phi tập trung được xây dựng lại từ Bitcoin Core v28.1. Hỗ trợ..."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - C++

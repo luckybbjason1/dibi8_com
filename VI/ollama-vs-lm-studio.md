@@ -1,6 +1,6 @@
 ---
 title: "Ollama vs LM Studio 2026: Trình chạy LLM cục bộ nào tốt ...
-description: "So sánh trực tiếp Ollama và LM Studio — CLI vs GUI, thư viện mô hình, hỗ trợ GPU, API tương thích OpenAI, lượng tử hóa, tự host. Cập nhật 2026."
+description: "So sánh trực tiếp Ollama và LM Studio — CLI vs GUI, thư viện mô hình, hỗ trợ GPU, API tương thích Op..."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
 tags: ["ollama", "lm-studio", "local-llm", "gguf", "self-hosting", "comparison"]

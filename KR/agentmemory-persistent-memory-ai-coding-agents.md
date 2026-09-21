@@ -1,6 +1,6 @@
 ---
 title: "AgentMemory: AI 코딩 에이전트를 위한 persistente 메모리 시스템 1위 — 22,...
-description: "AgentMemory (22,038 GitHub stars)는 실제 벤치마크를 기반으로 AI 코딩 에이전트에 persistent 메모리를 제공합니다. 과거 세션 기억, 며칠 간 컨텍스트 유지, 이전 상호작용에서 학습. Claude Code, Codex CLI, OpenCode 등 지원. 설정 튜토리얼, 아키텍처 분석, 벤치마크 포함."
+description: "AgentMemory (22,038 GitHub stars)는 실제 벤치마크를 기반으로 AI 코딩 에이전트에 persistent 메모리를 제공합니다. 과거 세션 기억, 며칠 간 컨..."
 date: 2026-06-08
 lastmod: 2026-06-08
 slug: 'agentmemory-persistent-memory-ai-coding-agents'

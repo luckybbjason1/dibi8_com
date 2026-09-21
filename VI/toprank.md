@@ -1,6 +1,6 @@
 ---
 title: "Toprank: Tăng Trưởng Doanh Thu 300% với Claude Code + SE...
-description: "Khám phá Toprank - nền tảng tăng trưởng doanh thu tự động kết hợp Claude Code AI, SEO thông minh và Geo-Ads địa phương. Giải pháp toàn diện cho doanh nghiệp Việt Nam."
+description: "Khám phá Toprank - nền tảng tăng trưởng doanh thu tự động kết hợp Claude Code AI, SEO thông minh và ..."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - AI

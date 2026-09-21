@@ -1,6 +1,6 @@
 ---
 title: "So Sánh Vector Database 2025: Pinecone vs Weaviate vs Ch...
-description: "So sánh chi tiết 4 vector database hàng đầu 2025: Pinecone, Weaviate, Chroma, Milvus. Bảng benchmark, tính năng và hướng dẫn chọn database phù hợp cho RAG."
+description: "So sánh chi tiết 4 vector database hàng đầu 2025: Pinecone, Weaviate, Chroma, Milvus. Bảng benchmark..."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []

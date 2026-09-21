@@ -1,10 +1,6 @@
 ---
 title: "Mã Nguồn Mở Thay Thế Buffer Tốt Nhất 2026: Đánh Giá AiTo...
-description: "Mã Nguồn Mở Thay Thế Buffer Tốt Nhất 2026: Đánh Giá AiToEarn vs Hootsuite". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-15T04:20:25+09:00
-lastmod: 2026-05-15T04:20:25+09:00
-tech_stack: - Docker
-application_domain: "Ai Tools"
+description: "Mã Nguồn Mở Thay Thế Buffer Tốt Nhất 2026: Đánh Giá AiToEarn vs Hootsuite". Comprehensive guide cove..."
 source_version: ""
 licensing_model: "Open Source"
 license_type: "MIT"

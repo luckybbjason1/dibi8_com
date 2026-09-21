@@ -1,18 +1,6 @@
 ---
 title: "GraphRAG: Microsoft'"
-description: "GraphRAG is Microsoft"'''s modular, knowledge-graph-based RAG system (33,403 GitHub stars, MIT license). This guide covers installation, the init/index/query workflow, real CLI examples, and an honest comparison with LangChain and Haystack.'
-date: 2026-06-02 00:00:00+08:00
-lastmod: 2026-06-02 00:00:00+08:00
-tech_stack: []
-application_domain: Llm Frameworks
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: "microsoft/graphrag"
+description: "GraphRAG is Microsoft"'''s modular, knowledge-graph-based RAG system (33,403 GitHub stars, MIT licen..."
 stars: 33403
 maintainer: microsoft
 last_maintained: "2026-06-02"

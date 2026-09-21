@@ -1,6 +1,6 @@
 ---
 title: "Compound Engineering: Claude Code, Codex, Cursor를 함께 오케스...
-description: "Compound Engineering(스타 2만 개)는 Claude Code, Codex, Cursor를 위한 멀티 에이전트 오케스트레이션 플러그인입니다. 아이디어 탐색, 계획, 검토, 디버깅, 지식 축적을 위한 9개의 명령어. 80% 계획, 20% 실행 워크플로우."
+description: "Compound Engineering(스타 2만 개)는 Claude Code, Codex, Cursor를 위한 멀티 에이전트 오케스트레이션 플러그인입니다. 아이디어 탐색, 계획, ..."
 date: 2026-06-13
 lastmod: 2026-06-13
 slug: 'compound-engineering-multi-agent-coding-claude-codex-cursor'

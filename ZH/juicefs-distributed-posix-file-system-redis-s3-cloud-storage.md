@@ -1,12 +1,6 @@
 ---
 title: "JuiceFS (14K⭐): 将云存储转化为本地存储的分布式 POSIX 文件系统"
-description: "JuiceFS（13,900+ 星标）将任何 S3 兼容的对象存储转换为符合 POSIX 标准的分布式文件系统。由 Redis 驱动元数据，它提供了具有本地文件系统语义的云原生性能——完美适用于 AI 训练、大数据和云工作负载。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-06-15
-lastmod: 2026-06-15
-slug: 'juicefs-distributed-posix-file-system-redis-s3-cloud-storage'
-category: dev-utils
-tags: ["juicefs", "distributed-file-system", "cloud-storage", "s3", "redis", "posix", "ai-training", "big-data", "go", "cloud-native"]
-github_repo: "https://github.com/juicedata/juicefs"
+description: "JuiceFS（13,900+ 星标）将任何 S3 兼容的对象存储转换为符合 POSIX 标准的分布式文件系统。由 Redis 驱动元数据，它提供了具有本地文件系统语义的云原生性能——完美适用于 AI..."
 license: 'Apache-2.0'
 featureImage: /articles/docker-compose-37-393-github-stars-multi-a62205.png/images/articles/docker-compose-37-393-github-stars-multi-a62205.png---
 # JuiceFS：云存储，本地速度

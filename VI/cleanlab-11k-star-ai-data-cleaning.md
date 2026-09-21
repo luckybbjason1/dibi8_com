@@ -1,6 +1,6 @@
 ---
 title: "Cleanlab: Bộ công cụ AI 11K+ sao giúp giảm 80% chi phí c...
-description: "Cleanlab là một bộ công cụ AI nguồn mở với hơn 11K+ sao trên GitHub, giúp tìm và khắc phục các vấn đề chất lượng dữ liệu trong tập dữ liệu ML. Phát hiện lỗi nhãn tự động, điền giá trị thiếu và làm sạch dữ liệu cho các tác vụ phân loại, hồi quy và cụm. Bao gồm hướng dẫn cài đặt, benchmarks và triển khai sản xuất."
+description: "Cleanlab là một bộ công cụ AI nguồn mở với hơn 11K+ sao trên GitHub, giúp tìm và khắc phục các vấn đ..."
 date: 2026-06-10
 lastmod: 2026-06-10
 slug: 'cleanlab-11k-star-ai-data-cleaning'

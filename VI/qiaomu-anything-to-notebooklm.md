@@ -1,6 +1,6 @@
 ---
 title: "Qiaomu Anything to NotebookLM：Chuyển đổi bất kỳ nguồn nộ...
-description: "Qiaomu Anything to NotebookLM là một kỹ năng Claude Code và bộ công cụ Python chuyển đổi hơn 15 nguồn nội dung -- video YouTube, podcast, bài viết, PDF -- thành các thư viện kiến thức Google NotebookLM, với khả năng vượt tường lửa."
+description: "Qiaomu Anything to NotebookLM là một kỹ năng Claude Code và bộ công cụ Python chuyển đổi hơn 15 nguồ..."
 date: 2026-06-10
 lastmod: 2026-06-10
 slug: qiaomu-anything-to-notebooklm

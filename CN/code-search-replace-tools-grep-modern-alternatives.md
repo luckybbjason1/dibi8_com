@@ -1,6 +1,6 @@
 ---
 title: "Code Search & Replace Tools: From grep to ripgrep, sd, a...
-description: "Explore modern code search tools from grep to ripgrep, fzf, sd, and Sourcegraph. Benchmarks, workflows, and setup guide for developer search in 2025."
+description: "Explore modern code search tools from grep to ripgrep, fzf, sd, and Sourcegraph. Benchmarks, workflo..."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []

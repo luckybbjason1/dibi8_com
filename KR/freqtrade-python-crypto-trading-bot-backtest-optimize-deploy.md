@@ -1,6 +1,6 @@
 ---
 title: "Freqtrade: Python 기반 암호화폐 트레이딩 봇 51,300 스타 — 백테스트, 최적화, ...
-description: "Freqtrade (51,300 GitHub stars)는 Python으로 작성된 오픈소스 암호화폐 트레이딩 봇입니다. 전략 백테스트, hyperopt 최적화, 20+ 거래소 API 배포. 설정 가이드, 전략 개발, 실제 백테스트 벤치마크 포함."
+description: "Freqtrade (51,300 GitHub stars)는 Python으로 작성된 오픈소스 암호화폐 트레이딩 봇입니다. 전략 백테스트, hyperopt 최적화, 20+ 거래소 AP..."
 date: 2026-06-08
 lastmod: 2026-06-08
 slug: 'freqtrade-python-crypto-trading-bot-backtest-optimize-deploy'

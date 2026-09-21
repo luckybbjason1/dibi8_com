@@ -1,6 +1,6 @@
 ---
 title: "Hướng Dẫn AutoGen 2025: Xây Dựng Hệ Thống AI Đa Agent Dễ...
-description: "Hướng dẫn chi tiết Microsoft AutoGen 2025: kiến trúc multi-agent, ConversableAgent, GroupChat, code execution và triển khai production systems."
+description: "Hướng dẫn chi tiết Microsoft AutoGen 2025: kiến trúc multi-agent, ConversableAgent, GroupChat, code ..."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []

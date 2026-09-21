@@ -1,6 +1,6 @@
 ---
 title: "Claude Code Skill Authoring: How to Package Procedures C...
-description: "A complete guide to authoring Claude Code skills — SKILL.md structure, the trigger description that controls loading, progressive disclosure, and when a skill beats CLAUDE.md or a subagent. With worked examples and the mistakes to avoid."
+description: "A complete guide to authoring Claude Code skills — SKILL.md structure, the trigger description that ..."
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', Markdown, YAML]

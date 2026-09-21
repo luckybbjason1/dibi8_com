@@ -1,6 +1,6 @@
 ---
 title: "DeepSeek 终端编程智能体 + Anthropic金融AI：2026年5月GitHub最值得关注的开源项目"
-description: "深度解析GitHub 2026年5月三大热门趋势项目：一夜暴涨5800星的DeepSeek-TUI终端编程智能体、Anthropic首个垂直金融领域Claude智能体套件，以及完全本地化的加密AI研究工具。"
+description: "深度解析GitHub 2026年5月三大热门趋势项目：一夜暴涨5800星的DeepSeek-TUI终端编程智能体、Anthropic首个垂直金融领域Claude智能体套件，以及完全本地化的加密AI研究..."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - C++

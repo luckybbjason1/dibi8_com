@@ -1,18 +1,6 @@
 ---
 title: "Meilisearch: 번개처럼 빠른 오픈소스 오타 허용 검색 엔진 — 2026 설정 및 벤치마크"
-description: "Meilisearch 1.12를 배포하여 50ms 미만의 오타 허용 고속 검색을 구현하세요. Docker 설정, SDK 통합, 프로덕션 벤치마크 및 대안과의 정직한 비교를 포함합니다.". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
-tech_stack: []
-application_domain: Dev Utils
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: "meilisearch/meilisearch"
+description: "Meilisearch 1.12를 배포하여 50ms 미만의 오타 허용 고속 검색을 구현하세요. Docker 설정, SDK 통합, 프로덕션 벤치마크 및 대안과의 정직한 비교를 포함합니..."
 stars: 51300
 maintainer: meilisearch
 last_maintained: "2026-05-19"

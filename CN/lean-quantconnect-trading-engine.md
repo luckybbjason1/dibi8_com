@@ -1,6 +1,6 @@
 ---
 title: "Lean: The Open-Source Algorithmic Trading Engine Powerin...
-description: "Complete 2026 guide to Lean, the algorithmic trading engine behind QuantConnect. Multi-asset backtesting, live trading, C# & Python APIs, and production deployment walkthrough."
+description: "Complete 2026 guide to Lean, the algorithmic trading engine behind QuantConnect. Multi-asset backtes..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

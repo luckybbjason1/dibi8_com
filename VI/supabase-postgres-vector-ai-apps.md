@@ -1,6 +1,6 @@
 ---
 title: "Supabase 2026: Giải pháp thay thế Firebase mã nguồn mở v...
-description: "Hướng dẫn đầy đủ về Supabase: giải pháp thay thế Firebase mã nguồn mở với Postgres + pgvector cho ứng dụng AI. Xác thực, lưu trữ, realtime, edge functions, tích hợp RAG, triển khai Docker tự host, Row Level Security."
+description: "Hướng dẫn đầy đủ về Supabase: giải pháp thay thế Firebase mã nguồn mở với Postgres + pgvector cho ứn..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

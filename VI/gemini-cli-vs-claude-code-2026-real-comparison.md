@@ -1,6 +1,6 @@
 ---
 title: "Gemini CLI vs Claude Code 2026: So sánh thực tế trên 5 q...
-description: "Google ra mắt Gemini CLI để cạnh tranh với Claude Code. Đã thử nghiệm cả hai trên cùng 5 quy trình: nơi Gemini thắng (gói miễn phí, ngữ cảnh 1M), nơi Claude Code thắng (độ tin cậy khi dùng công cụ, vòng lặp agentic) và khi nào nên dùng cái nào."
+description: "Google ra mắt Gemini CLI để cạnh tranh với Claude Code. Đã thử nghiệm cả hai trên cùng 5 quy trình: ..."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: ['Gemini CLI', 'Claude Code', Google, Anthropic]

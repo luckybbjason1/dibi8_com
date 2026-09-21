@@ -1,6 +1,6 @@
 ---
 title: "Prometheus: 64,094 GitHub Stars — Docker 배포 가이드 2026"
-description: "Prometheus(Prom)는 오픈소스 모니터링 시스템 및 시계열 데이터베이스입니다. Docker, Kubernetes, Grafana, Alertmanager와 호환됩니다. 설치 튜토리얼, PromQL 쿼리, 프로덕션 하드닝, 성능 벤치마크를 다룹니다."
+description: "Prometheus(Prom)는 오픈소스 모니터링 시스템 및 시계열 데이터베이스입니다. Docker, Kubernetes, Grafana, Alertmanager와 호환됩니다. 설..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -234,28 +234,24 @@ groups: - name: node-alerts
         labels: severity: warning
         annotations: summary: "{{ $labels.instance }} 메모리 사용률 과다"
           description: "메모리 사용률이 85%를 초과함 (현재값: {{ $value }}%)"
-
       - alert: HighCPUUsage
         expr: 100 - (avg by(instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 80
         for: 5m
         labels: severity: critical
         annotations: summary: "{{ $labels.instance }} CPU 사용률 과다"
           description: "CPU 사용률이 80%를 초과함 (현재값: {{ $value }}%)"
-
       - alert: DiskSpaceLow
         expr: (node_filesystem_avail_bytes / node_filesystem_size_bytes) * 100 < 10
         for: 5m
         labels: severity: warning
         annotations: summary: "{{ $labels.instance }} 디스크 공간 부족"
           description: "디스크 공간이 10% 미만 (마운트 포인트: {{ $labels.mountpoint }})"
-
       - alert: InstanceDown
         expr: up == 0
         for: 3m
         labels: severity: critical
         annotations: summary: "인스턴스 {{ $labels.instance }} 다운"
           description: "대상에 3분 이상 접근 불가"
-
       - alert: HighRequestLatency
         expr: histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m])) > 0.5
         for: 5m

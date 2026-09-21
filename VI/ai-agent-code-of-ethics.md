@@ -1,6 +1,6 @@
 ---
 title: "Bộ Quy Tắc Đạo Đức cho AI Agent (2026): Khung Quản Trị T...
-description: "Một bộ quy tắc đạo đức thực tiễn cho các AI agent tự hành dành cho kỹ sư — không phải khẩu hiệu trừu tượng, mà là bảy quy tắc bắt buộc, mỗi quy tắc đi kèm một biện pháp kiểm soát kỹ thuật cụ thể: cấp quyền tối thiểu, khả năng kiểm toán đầy đủ, tính đảo ngược có con người trong vòng lặp, tự chủ có giới hạn, chuỗi trách nhiệm không gián đoạn, mặc định an toàn khi lỗi, và thiết kế ưu tiên quyền riêng tư. Kèm danh sách kiểm tra trước khi triển khai dành cho lập trình viên năm 2026."
+description: "Một bộ quy tắc đạo đức thực tiễn cho các AI agent tự hành dành cho kỹ sư — không phải khẩu hiệu trừu..."
 date: 2026-06-04 00:00:00+08:00
 lastmod: 2026-06-04 00:00:00+08:00
 tech_stack: - AI Agents

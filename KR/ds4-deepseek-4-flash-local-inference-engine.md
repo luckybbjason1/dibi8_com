@@ -1,6 +1,6 @@
 ---
 title: "ds4: 2026년 개발자들이 전환하는 오픈소스 도구 — 완전 가이드"
-description: "ds4 is DeepSeek 4 Flash local inference engine for Metal and CUDA. Compatible with Claude Code, Cursor, GitHub Copilot, and VS Code. Includes installation tutor"
+description: "ds4 is DeepSeek 4 Flash local inference engine for Metal and CUDA. Compatible with Claude Code, Curs..."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: ["Unknown"]

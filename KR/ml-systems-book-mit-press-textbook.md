@@ -1,6 +1,6 @@
 ---
 title: "ML Systems Book：MIT 무료 머신러닝 시스템 교과서"
-description: "Machine Learning Systems는 MIT Press에서 출판한 무료 오픈소스 교재로, 데이터 엔지니어링, 모델 최적화, 하드웨어 인식 훈련, 추론 가속 등 ML 시스템 엔지니어링 핵심 지식을 다룹니다."
+description: "Machine Learning Systems는 MIT Press에서 출판한 무료 오픈소스 교재로, 데이터 엔지니어링, 모델 최적화, 하드웨어 인식 훈련, 추론 가속 등 ML 시스템..."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - C++

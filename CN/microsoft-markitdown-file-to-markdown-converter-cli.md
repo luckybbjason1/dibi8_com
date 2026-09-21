@@ -1,6 +1,6 @@
 ---
 title: "Microsoft MarkItDown: The Complete Guide to Converting A..."
-description: "Learn how to use Microsoft's MarkItDown to convert PDFs, Word docs, images, HTML, PPTX, and more into clean Markdown. Step-by-step installation, usage examples, Python API, AI pipeline integration, benchmarks, and comparisons with Pandoc, Calibre, and LibreOffice."
+description: "Learn how to use Microsoft's MarkItDown to convert PDFs, Word docs, images, HTML, PPTX, and more int..."
 date: 2026-06-10
 lastmod: 2026-06-10
 slug: "microsoft-markitdown-file-to-markdown-converter-cli"

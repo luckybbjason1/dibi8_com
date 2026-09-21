@@ -1,6 +1,6 @@
 ---
 title: "Aider: 45K+ Stars — Terminal AI Pair Programming vs Clau...
-description: "Aider is AI pair programming in your terminal that edits code in your local git repository. Supports OpenAI, Claude, DeepSeek, Gemini, Ollama. Learn aider setup, aider tutorial, git integration, benchmarks, and comparison with Claude Code, Cursor, Codex CLI."
+description: "Aider is AI pair programming in your terminal that edits code in your local git repository. Supports..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

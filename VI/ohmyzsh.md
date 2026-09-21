@@ -1,6 +1,6 @@
 ---
 title: "Oh My Zsh: 7 Bước để Có Quy Trình Phát Triển Nhanh Hơn t...
-description: "Làm chủ Oh My Zsh với các benchmark thực tế, cấu hình plugin và hướng dẫn cài đặt. So sánh với Starship, Prezto và các thiết lập Zsh thuần. Hơn 187k sao."
+description: "Làm chủ Oh My Zsh với các benchmark thực tế, cấu hình plugin và hướng dẫn cài đặt. So sánh với Stars..."
 date: 2026-06-11
 lastmod: 2026-06-11
 slug: 'ohmyzsh'

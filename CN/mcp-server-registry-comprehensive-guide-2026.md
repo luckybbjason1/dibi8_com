@@ -1,6 +1,6 @@
 ---
 title: "The MCP Server Registry Guide 2026: 19,700+ Servers, 7 O...
-description: "Complete guide to discovering MCP servers in 2026. The 7 Anthropic reference servers, the 87.3k-star awesome list, Smithery vs mcp.so registry comparison, top servers per category, and a decision tree for picking one — not what MCP is, but what you can plug into yours."
+description: "Complete guide to discovering MCP servers in 2026. The 7 Anthropic reference servers, the 87.3k-star..."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: - TypeScript

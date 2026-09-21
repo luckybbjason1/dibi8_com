@@ -1,18 +1,7 @@
 ---
 title: "Portkey AI Gateway 2026: The LLM Gateway Managing 200+ M...
 description: "'. Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-20 00:00:00+08:00
-lastmod: 2026-05-20 00:00:00+08:00
-tech_stack: []
-application_domain: Llm Frameworks
-source_version: "'
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: "https://github.com/Portkey-AI/gateway"
+date: 2026-05-20 00:..."
 stars: 14000
 maintainer: 'Portkey-AI'
 last_maintained: "2026-05-20"

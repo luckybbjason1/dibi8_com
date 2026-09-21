@@ -1,6 +1,6 @@
 ---
 title: "Aider vs Cline vs OpenHands 2026: Honest 3-Way OSS Codin...
-description: "Tested all three open-source AI coding agents on the same 5K-LOC TypeScript codebase. Concrete benchmark numbers, where each wins, where each falls short, and the BYO-API-key cost reality vs commercial alternatives."
+description: "Tested all three open-source AI coding agents on the same 5K-LOC TypeScript codebase. Concrete bench..."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [Aider, Cline, OpenHands, Python, TypeScript]

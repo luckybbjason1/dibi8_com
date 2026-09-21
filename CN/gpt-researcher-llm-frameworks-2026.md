@@ -1,6 +1,6 @@
 ---
 title: "GPT Researcher: Autonomous Agent for Deep Research Repor...
-description: "GPT Researcher is an open deep-research agent that runs web and local research on any task and writes cited reports. 27,473 GitHub stars, Apache-2.0. Covers installation, the async Python API, Docker, and real code examples."
+description: "GPT Researcher is an open deep-research agent that runs web and local research on any task and write..."
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
 tech_stack: []

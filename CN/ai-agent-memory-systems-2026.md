@@ -1,6 +1,6 @@
 ---
 title: "AI Agent Memory Systems 2026: Mem0 vs agentmemory vs Hin...
-description: "Stateless AI agents forget everything between sessions — fatal for production use. Compare the 4 leading open-source memory layers in May 2026: Mem0 (48K+ stars, 21 framework integrations), agentmemory (MCP-native for coding agents), Hindsight (research-grade biomimetic retrieval), MemPalace (52K+ stars community leader). Includes benchmarks (LoCoMo 92.5%, LongMemEval 94.4%), production pitfalls, and decision framework."
+description: "Stateless AI agents forget everything between sessions — fatal for production use. Compare the 4 lea..."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00
 tech_stack: [Python, TypeScript, PostgreSQL, 'Vector databases', MCP]

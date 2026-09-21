@@ -1,21 +1,6 @@
 ---
 title: "2025년 최고의 AI 비디오 생성 도구: Sora, Runway, Pika 등 비교"
-description: "2025년 최신 AI 비디오 생성 도구를 비교합니다. OpenAI Sora, Runway Gen-3, Pika 2.0, Kling AI의 기능, 가격, 품질을 상세 분석하고 용도별 추천 가이드를 제공합니다.". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
-tech_stack: []
-application_domain: Ai Tools
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: ''
-stars: 0
-maintainer: 'dibi8'
-last_maintained: "2026-05-18"
+description: "2025년 최신 AI 비디오 생성 도구를 비교합니다. OpenAI Sora, Runway Gen-3, Pika 2.0, Kling AI의 기능, 가격, 품질을 상세 분석하고 용도별..."
 featureImage: ''
 draft: false
 aliases:

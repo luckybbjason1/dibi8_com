@@ -1,10 +1,6 @@
 ---
 title: "Kẻ Hủy Diệt Midjourney (2026): Vì Sao ComfyUI Là Vua Mã ...
-description: "Kẻ Hủy Diệt Midjourney (2026): Vì Sao ComfyUI Là Vua Mã Nguồn Mở Miễn Phí". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-15T04:20:25+09:00
-lastmod: 2026-05-15T04:20:25+09:00
-tech_stack: - Python
-application_domain: "Ai Tools"
+description: "Kẻ Hủy Diệt Midjourney (2026): Vì Sao ComfyUI Là Vua Mã Nguồn Mở Miễn Phí". Comprehensive guide cove..."
 source_version: ""
 licensing_model: "Open Source"
 license_type: "MIT"

@@ -1,18 +1,6 @@
 ---
 title: "Activepieces: The Open-Source Zapier Alternative with 20...
-description: "Deploy Activepieces in 5 minutes. The open-source workflow automation platform with 200+ app integrations, AI actions, and a visual builder — at a fraction of Zapier"'s cost.'
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
-tech_stack: []
-application_domain: Dev Utils
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: "activepieces/activepieces"
+description: "Deploy Activepieces in 5 minutes. The open-source workflow automation platform with 200+ app integra..."
 stars: 13000
 maintainer: activepieces
 last_maintained: "2026-05-19"

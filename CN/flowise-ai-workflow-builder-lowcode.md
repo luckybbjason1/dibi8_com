@@ -1,6 +1,6 @@
 ---
 title: "Flowise: The Low-Code AI Workflow Builder Deploying Lang...
-description: "Complete 2026 guide to Flowise — the open-source low-code AI workflow builder with 100+ integrations. Visual LangChain agent creation, Docker deployment, API endpoints, and real-world benchmarks."
+description: "Complete 2026 guide to Flowise — the open-source low-code AI workflow builder with 100+ integrations..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

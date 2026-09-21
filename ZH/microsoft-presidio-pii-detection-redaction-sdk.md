@@ -1,7 +1,7 @@
 ---
 slug: microsoft-presidio-pii-detection-redaction-sdk
 title: Presidio 评论：微软的开源个人身份信息检测和数据脱敏框架（9.4K 星）
-description: "Presidio（在 GitHub 上有 9.4K+ 星）由微软开发，是一个开源框架，用于检测、编辑、掩码和匿名化文本、图像及结构化数据中的敏感数据（PII）。支持自然语言处理（NLP）、正则表达式、基于规则的识别、DICOM 图像编辑以及可自定义的处理流程。采用 MIT 许可证，获得 OpenSSF 最佳实践认证。"
+description: "Presidio（在 GitHub 上有 9.4K+ 星）由微软开发，是一个开源框架，用于检测、编辑、掩码和匿名化文本、图像及结构化数据中的敏感数据（PII）。支持自然语言处理（NLP）、正则表达式、..."
 date: 2026-06-22 00:00:00+08:00
 lastmod: 2026-06-22 00:00:00+08:00
 tech_stack: - Python 3.8+

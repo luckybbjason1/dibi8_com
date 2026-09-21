@@ -1,6 +1,6 @@
 ---
 title: "Scrapy: Benchmark 61K+ Star Web Crawler — Performance vs...
-description: "Scrapy là một framework web crawling và scraping cấp cao, nhanh chóng cho Python. Tương thích với Python, Docker, Redis, PostgreSQL. Bao gồm benchmark, kiến trúc, triển khai production và so sánh với BeautifulSoup, Selenium, Playwright."
+description: "Scrapy là một framework web crawling và scraping cấp cao, nhanh chóng cho Python. Tương thích với Py..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

@@ -1,6 +1,6 @@
 ---
 title: "exo: Run Frontier AI Across Your Own Devices (45K Stars)...
-description: "exo turns your Macs, PCs and phones into a single cluster that runs frontier AI models locally. 45,088 GitHub stars, Apache-2.0. Covers installation, the dashboard, the OpenAI/Claude/Ollama-compatible API, real commands, and an honest comparison."
+description: "exo turns your Macs, PCs and phones into a single cluster that runs frontier AI models locally. 45,0..."
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
 tech_stack: []

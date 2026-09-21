@@ -1,6 +1,6 @@
 ---
 title: "CogVideo: 12.7K Stars — 2026 완전한 텍스트-비디오 설정 가이드"
-description: "CogVideo(CogVideoX)는 Zhipu AI가 개발한 텍스트 및 이미지-비디오 생성 모델입니다. ComfyUI, Diffusers, SAT 및 Wan/HunyuanVideo/Open-Sora 통합을 지원합니다. 설치, Docker, 추론, 미세 조정, 벤치마크를 다룹니다."
+description: "CogVideo(CogVideoX)는 Zhipu AI가 개발한 텍스트 및 이미지-비디오 생성 모델입니다. ComfyUI, Diffusers, SAT 및 Wan/HunyuanVide..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

@@ -1,6 +1,6 @@
 ---
 title: "Axolotl 2026: 12k 별 YAML 주도 LLM 파인튜닝 프레임워크 완전 가이드"
-description: "Axolotl은 단일 YAML 구성으로 full / LoRA / QLoRA / DPO / GRPO 커버하는 오픈소스 LLM 파인튜닝 프레임워크. 12k GitHub 별, Apache 2.0. Llama / Mistral / Qwen / GLM / 10+ 패밀리 지원. 2026 완전 설치 가이드 + Axolotl이 Unsloth와 원시 HuggingFace TRL을 이기는 때."
+description: "Axolotl은 단일 YAML 구성으로 full / LoRA / QLoRA / DPO / GRPO 커버하는 오픈소스 LLM 파인튜닝 프레임워크. 12k GitHub 별, Apach..."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: [Python, PyTorch, CUDA, YAML]

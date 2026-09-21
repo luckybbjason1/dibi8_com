@@ -1,6 +1,6 @@
 ---
 title: "Matt Pocock의 Skills: AI 에이전트에 진정한 슈퍼파워를 부여하는 CLI 프레임워크 —...
-description: "Claude Code, Cursor, Gemini CLI와 같은 AI 코딩 에이전트에 코드 이상의 진짜 기능을 부여하는 Matt Pocock의 Skills 프레임워크 사용법을 배워보세요. 데이터베이스, 파일시스템, CI/CD 등. 단계별 npx 설치 가이드, 아키텍처 분석 및 실제 벤치마크."
+description: "Claude Code, Cursor, Gemini CLI와 같은 AI 코딩 에이전트에 코드 이상의 진짜 기능을 부여하는 Matt Pocock의 Skills 프레임워크 사용법을 배워..."
 date: 2026-06-10
 lastmod: 2026-06-10
 slug: "mattpocock-skills-ai-agent-framework-guide"

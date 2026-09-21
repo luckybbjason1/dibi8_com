@@ -1,18 +1,6 @@
 ---
 title: "TA-Lib: 200개 이상의 지표를 가진 업계 표준 기술 분석 라이브러리 — Python 트레이딩 ...
-description: "TA-Lib Python 래퍼 완벽 가이드. 200개 이상의 기술적 지표 설치, 벤치마크, SMA/EMA/RSI/MACD/볼린저 밴드 알고리즘 트레이딩 배포 방법을 2026년 기준으로 상세히 설명.". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
-tech_stack: []
-application_domain: Ai Trading
-source_version: ''
-licensing_model: Open Source
-license_type: BSD
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: "TA-Lib/ta-lib-python"
+description: "TA-Lib Python 래퍼 완벽 가이드. 200개 이상의 기술적 지표 설치, 벤치마크, SMA/EMA/RSI/MACD/볼린저 밴드 알고리즘 트레이딩 배포 방법을 2026년 기준..."
 stars: 11800
 maintainer: 'TA-Lib'
 last_maintained: "2026-05-19"

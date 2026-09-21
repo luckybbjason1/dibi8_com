@@ -1,11 +1,6 @@
 ---
 title: "Aider vs Cline vs OpenHands 2026：开源编程 Agent 三方诚实对比"
-description: "在同一个 5K 行 TypeScript 代码库上实测三款开源 AI 编程 Agent。给出具体基准数据、各自胜出场景、各自短板，以及自带 API Key 模式的真实成本与商业方案的对比。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: [Aider, Cline, OpenHands, Python, TypeScript]
-application_domain: Dev Utils
-source_version: "Aider 0.78 / Cline 3.4 / OpenHands 0.42"
+description: "在同一个 5K 行 TypeScript 代码库上实测三款开源 AI 编程 Agent。给出具体基准数据、各自胜出场景、各自短板，以及自带 API Key 模式的真实成本与商业方案的对比。". Com..."
 licensing_model: Open Source
 license_type: 'MIT / Apache-2.0'
 github_repo: ''

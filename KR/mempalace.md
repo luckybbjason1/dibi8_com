@@ -1,6 +1,6 @@
 ---
 title: "MemPalace vs Mem0: 96.6% 리콜 벤치마크 및 2026년 최강 AI 메모리 프레임워크"
-description: "GitHub 51,745 Star를 받은 MemPalace는 무료 오픈소스 AI 메모리 시스템입니다. AI 어시스턴트가 장기 대화 기록, 사용자 취향, 문맥을 기억하도록 구현하는 방법을 코드와 함께 상세히 설명합니다."
+description: "GitHub 51,745 Star를 받은 MemPalace는 무료 오픈소스 AI 메모리 시스템입니다. AI 어시스턴트가 장기 대화 기록, 사용자 취향, 문맥을 기억하도록 구현하는 ..."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go

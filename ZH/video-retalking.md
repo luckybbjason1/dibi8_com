@@ -1,6 +1,6 @@
 ---
 title: "VideoReTalking: 7.2K+ Stars — AI 唇形同步视频编辑完整搭建指南 2026"
-description: "VideoReTalking (VRT) 是一款基于音频的唇形同步系统，用于说话人脸视频编辑。兼容 RVC、GPT-SoVITS 和 Coqui TTS。涵盖安装、推理、Gradio WebUI、生产部署，以及与 Wav2Lip 和 SadTalker 的对比测试。"
+description: "VideoReTalking (VRT) 是一款基于音频的唇形同步系统，用于说话人脸视频编辑。兼容 RVC、GPT-SoVITS 和 Coqui TTS。涵盖安装、推理、Gradio WebUI、生产..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

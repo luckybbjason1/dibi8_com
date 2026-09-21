@@ -1,12 +1,6 @@
 ---
 title: "학술 연구 스킬: AI로 문헌 검토 자동화 — 3만1천 스타 프레임워크 2026"
-description: "학술 연구 스킬(31,628 스타)은 논문 검색, 통찰 추출, 결과 종합, 문헌 검토 작성을 자동화합니다. Claude Code용으로 모듈형 스킬 아키텍처로 구축되었습니다.". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-06-15
-lastmod: 2026-06-15
-slug: academic-research-skills
-category: dev-utils
-tags: ["학술 연구", "문헌 검토", "AI 연구", "논문 분석", "종합", "claude code", "연구 자동화"]
-github_repo: "https://github.com/Imbad0202/academic-research-skills"
+description: "학술 연구 스킬(31,628 스타)은 논문 검색, 통찰 추출, 결과 종합, 문헌 검토 작성을 자동화합니다. Claude Code용으로 모듈형 스킬 아키텍처로 구축되었습니다.". C..."
 license: Other
 images: - url: "https://opengraph.github.com/github/Imbad0202/academic-research-skills"
     alt: "학술 연구 스킬 GitHub OG"

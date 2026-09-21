@@ -1,6 +1,6 @@
 ---
 title: "Fine-Tuning Stack 2026：从数据集到生产部署 LLM 的 5 组件管线"
-description: "完整 LLM 微调 stack：Unsloth（单 GPU 快速实验）+ Axolotl（生产多 GPU）+ HuggingFace datasets/Hub + Weights & Biases（eval 跟踪）+ vLLM（serving）。$50-300/月训练基础设施。完整管线：数据集准备 → 实验 → 生产微调 → eval → 部署。"
+description: "完整 LLM 微调 stack：Unsloth（单 GPU 快速实验）+ Axolotl（生产多 GPU）+ HuggingFace datasets/Hub + Weights & Biases（e..."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: [Python, PyTorch, CUDA, YAML]

@@ -1,6 +1,6 @@
 ---
 title: "Weights & Biases (W&B): Track Every Experiment Like a Pr...
-description: "Weights & Biases (wandb/wandb) is the AI developer platform for tracking, comparing, and deploying ML experiments. Supports PyTorch, TensorFlow, Hugging Face, and LLM fine-tuning. Covers experiment tracking, dataset versioning, model registry, and production monitoring."
+description: "Weights & Biases (wandb/wandb) is the AI developer platform for tracking, comparing, and deploying M..."
 date: 2026-06-09
 lastmod: 2026-06-09
 slug: 'wandb-ml-experiment-tracking-platform-2026'

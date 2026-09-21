@@ -1,6 +1,6 @@
 ---
 title: "Using LLMs for Data Analysis: Complete Workflow with Pan...
-description: "Master LLM-powered data analysis with PandasAI, ChatGPT Code Interpreter, and OpenAI API. Build complete workflows for conversational data science."
+description: "Master LLM-powered data analysis with PandasAI, ChatGPT Code Interpreter, and OpenAI API. Build comp..."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []

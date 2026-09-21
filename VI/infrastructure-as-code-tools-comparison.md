@@ -1,6 +1,6 @@
 ---
 title: "Công Cụ Infrastructure as Code 2025: So Sánh Terraform, ...
-description: "So sánh chi tiết các công cụ Infrastructure as Code hàng đầu năm 2025. Tìm hiểu Terraform, Pulumi, AWS CDK, Crossplane, Puppet và Ansible để chọn công cụ phù hợp nhất cho hạ tầng của bạn."
+description: "So sánh chi tiết các công cụ Infrastructure as Code hàng đầu năm 2025. Tìm hiểu Terraform, Pulumi, A..."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []

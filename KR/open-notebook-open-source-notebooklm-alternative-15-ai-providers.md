@@ -1,12 +1,6 @@
 ---
 title: "open-notebook: 15+ AI 제공자 지원 오픈소스 Notebook LM 대안 — 셀프호스팅...
-description: "open-notebook (28,200 GitHub star)은 15+ AI 제공자를 지원하는 Google NotebookLM 오픈소스 대안입니다. 셀프호스팅 RAG 지식베이스, 멀티모달 오디오 에피소드 포함.". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-06-08
-lastmod: 2026-06-08
-slug: 'open-notebook-open-source-notebooklm-alternative-15-ai-providers'
-category: 'data-science'
-tags: ["open notebook", "notebook lm 대안", "셀프호스팅 RAG", "지식베이스 AI", "멀티모달 RAG", "오픈소스 노트북", "AI 팟캐스트 생성기", "셀프호스팅 LLM"]
-github_repo: "https://github.com/lfnovo/open-notebook"
+description: "open-notebook (28,200 GitHub star)은 15+ AI 제공자를 지원하는 Google NotebookLM 오픈소스 대안입니다. 셀프호스팅 RAG 지식베이스, ..."
 stars: 28200
 maintainer: 'lfnovo'
 license: MIT

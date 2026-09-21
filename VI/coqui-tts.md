@@ -1,6 +1,6 @@
 ---
 title: "Coqui TTS: 45.3K+ Stars — Bộ Công Cụ TTS Học Sâu, So Sán...
-description: "Coqui TTS là bộ công cụ tổng hợp giọng nói học sâu mã nguồn mở. Hỗ trợ 1100+ ngôn ngữ, nhân bản giọng nói XTTS v2, tổng hợp VITS. So sánh hiệu suất thực tế RTF với ChatTTS, MeloTTS, Bark và hướng dẫn triển khai Docker."
+description: "Coqui TTS là bộ công cụ tổng hợp giọng nói học sâu mã nguồn mở. Hỗ trợ 1100+ ngôn ngữ, nhân bản giọn..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

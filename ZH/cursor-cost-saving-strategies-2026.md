@@ -1,11 +1,6 @@
 ---
 title: "Cursor 省钱策略 2026：信用点计费改版后的应对方案"
-description: "Cursor 在 2025 年改了定价 —— Pro 用户同样的价格实际可用量缩水约 55%。这里整理了 7 条 2026 年真正有效的省钱策略：模型选择、上下文纪律、混合工具栈，以及何时该撤退。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: [Cursor, 'Claude Code', 'OpenAI API', 'Anthropic API']
-application_domain: Dev Utils
-source_version: "Cursor 2026.05 / 信用点计费后"
+description: "Cursor 在 2025 年改了定价 —— Pro 用户同样的价格实际可用量缩水约 55%。这里整理了 7 条 2026 年真正有效的省钱策略：模型选择、上下文纪律、混合工具栈，以及何时该撤退。"...."
 licensing_model: Commercial
 license_type: Proprietary
 github_repo: ''

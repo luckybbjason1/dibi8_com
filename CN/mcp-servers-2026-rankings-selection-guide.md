@@ -1,6 +1,6 @@
 ---
 title: "MCP Servers 2026: The 100+ Server Ecosystem Map and a De...
-description: "The Model Context Protocol ecosystem crossed 1000+ public servers in mid-2026. This guide ranks the top 30 by category, explains the architectural trade-offs between local stdio, HTTP/SSE, and OAuth-bridged servers, and gives you a decision tree for selecting MCP servers without drowning in registries."
+description: "The Model Context Protocol ecosystem crossed 1000+ public servers in mid-2026. This guide ranks the ..."
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00
 tech_stack: [MCP, 'Claude Code', Cursor, TypeScript, Python]

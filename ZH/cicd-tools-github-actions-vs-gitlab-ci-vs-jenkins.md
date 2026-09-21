@@ -1,21 +1,6 @@
 ---
 title: "CI/CD工具对比：GitHub Actions vs GitLab CI vs Jenkins 2025年全面评测"
-description: "GitHub Actions、GitLab CI与Jenkins全方位对比，覆盖定价、性能、安全性与扩展性，帮你选出最适合团队的CI/CD平台。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
-tech_stack: []
-application_domain: Dev Utils
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: ''
-stars: 0
-maintainer: 'dibi8'
-last_maintained: "2026-05-18"
+description: "GitHub Actions、GitLab CI与Jenkins全方位对比，覆盖定价、性能、安全性与扩展性，帮你选出最适合团队的CI/CD平台。". Comprehensive guide cover..."
 featureImage: ''
 draft: false
 aliases:

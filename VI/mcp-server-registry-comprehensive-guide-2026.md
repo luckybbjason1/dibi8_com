@@ -1,6 +1,6 @@
 ---
 title: "Hướng Dẫn MCP Server Registry 2026: 19,700+ Server, 7 Cá...
-description: "Hướng dẫn toàn diện khám phá MCP server 2026. 7 server reference Anthropic, awesome list 87.3k star, so sánh registry Smithery vs mcp.so, top server từng category, và cây quyết định lựa chọn — không phải MCP là gì, mà là cái gì bạn có thể cắm vào MCP host của mình."
+description: "Hướng dẫn toàn diện khám phá MCP server 2026. 7 server reference Anthropic, awesome list 87.3k star,..."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: - TypeScript

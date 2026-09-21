@@ -1,6 +1,6 @@
 ---
 title: "2025년 LLM 평가 및 벤치마킹 프레임워크 비교: EleutherAI LM Eval, OpenCo...
-description: "2025년 최신 LLM 평가 및 벤치마킹 프레임워크를 벤치마크 범위, 사용 편의성, 커뮤니티 지원 중심으로 비교합니다. EleutherAI LM Eval, OpenCompass, BIG-bench, HELM 등 주요 프레임워크를 확인하세요."
+description: "2025년 최신 LLM 평가 및 벤치마킹 프레임워크를 벤치마크 범위, 사용 편의성, 커뮤니티 지원 중심으로 비교합니다. EleutherAI LM Eval, OpenCompass, ..."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []

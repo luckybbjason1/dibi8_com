@@ -1,6 +1,6 @@
 ---
 title: "Egonex Understand-Anything: Interactive Knowledge Graphs..."
-description: "Learn how to use Egonex's Understand-Anything to generate interactive knowledge graphs from any topic using AI. Step-by-step installation, multi-source synthesis, real-time search, and comparisons with alternatives."
+description: "Learn how to use Egonex's Understand-Anything to generate interactive knowledge graphs from any topi..."
 date: 2026-06-10
 lastmod: 2026-06-10
 slug: "egonex-understand-anything-interactive-knowledge-graph-ai"

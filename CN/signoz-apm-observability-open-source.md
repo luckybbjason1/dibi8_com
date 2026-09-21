@@ -1,6 +1,6 @@
 ---
 title: "SigNoz: The Open-Source APM Replacing Datadog at 10% Cos...
-description: "Deploy SigNoz in 5 minutes. The open-source APM with distributed tracing, metrics, and logs that replaces Datadog at 10% the cost — built on OpenTelemetry."
+description: "Deploy SigNoz in 5 minutes. The open-source APM with distributed tracing, metrics, and logs that rep..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -454,7 +454,6 @@ groups: - name: payment_service_alerts
         labels: severity: warning
         annotations: summary: "Log error spike detected"
           description: "{{ $value }} errors/minute in logs"
-
 Configure alert channels (Slack, PagerDuty, email) in the SigNoz UI under Settings → Alert Channels.
 
 ### Kubernetes Auto-Instrumentation

@@ -1,10 +1,6 @@
 ---
 title: "Thêm Trí Nhớ Cho Claude Code: Tích Hợp MemPalace Đạt 96....
-description: "Thêm Trí Nhớ Cho Claude Code: Tích Hợp MemPalace Đạt 96.6% Recall (Hướng Dẫn 2026)". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-15T04:20:25+09:00
-lastmod: 2026-05-15T04:20:25+09:00
-tech_stack: - AI
-application_domain: "Ai Tools"
+description: "Thêm Trí Nhớ Cho Claude Code: Tích Hợp MemPalace Đạt 96.6% Recall (Hướng Dẫn 2026)". Comprehensive g..."
 source_version: ""
 licensing_model: "Open Source"
 license_type: "MIT"

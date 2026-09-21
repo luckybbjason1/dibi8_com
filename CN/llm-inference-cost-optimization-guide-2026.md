@@ -1,6 +1,6 @@
 ---
 title: "LLM Inference Cost Optimization: Run Any Model for Penni...
-description: "LLM inference cost optimization guide. Compare Ollama, vLLM, llama.cpp quantization. Reduce API costs by 90%+. 3 benchmarks, 6 deployment methods."
+description: "LLM inference cost optimization guide. Compare Ollama, vLLM, llama.cpp quantization. Reduce API cost..."
 tags: ["guide", "open-source", "reference", "tutorial"]
 date: 2026-06-16
 lastmod: 2026-06-16

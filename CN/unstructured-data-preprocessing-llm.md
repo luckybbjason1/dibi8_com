@@ -1,6 +1,6 @@
 ---
 title: "Unstructured.io: The Data Preprocessing Pipeline Convert...
-description: "A practical 2026 guide to Unstructured.io — the open-source document preprocessing library that converts PDFs, DOCX, PPTX, and images into clean, structured text chunks ready for LLM and RAG pipelines."
+description: "A practical 2026 guide to Unstructured.io — the open-source document preprocessing library that conv..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

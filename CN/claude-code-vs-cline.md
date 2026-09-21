@@ -1,6 +1,6 @@
 ---
 title: "Claude Code vs Cline in 2026: Autonomy or Control?"
-description: "Side-by-side breakdown of Claude Code and Cline — terminal autonomy vs VS Code step-by-step approval, model support, pricing, and when to pick each. The control-vs-autonomy decision for agentic coding. Updated 2026."
+description: "Side-by-side breakdown of Claude Code and Cline — terminal autonomy vs VS Code step-by-step approval..."
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00draft: false
 tags: ["claude-code", "cline", "ai-coding", "agentic", "comparison", "dev-tools"]

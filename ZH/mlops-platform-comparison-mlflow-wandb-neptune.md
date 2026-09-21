@@ -1,21 +1,6 @@
 ---
 title: "MLflow vs Weights & Biases vs Neptune：MLOps实验追踪平台全面对比（20...
-description: "深度对比MLflow、W&B、Neptune三大MLOps实验追踪平台，从定价、部署、协作、LLM支持等维度帮你选出最适合的ML实验管理方案。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
-tech_stack: []
-application_domain: Data Science
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: ''
-stars: 0
-maintainer: 'dibi8'
-last_maintained: "2026-05-18"
+description: "深度对比MLflow、W&B、Neptune三大MLOps实验追踪平台，从定价、部署、协作、LLM支持等维度帮你选出最适合的ML实验管理方案。". Comprehensive guide coveri..."
 featureImage: ''
 draft: false
 aliases:

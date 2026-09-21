@@ -1,6 +1,6 @@
 ---
 title: "Agno: 40K+ Stars — 轻量级 AI Agent 框架深度解析 vs CrewAI, AutoGe...
-description: "Agno 是开源 Python SDK，用于构建 AI Agent 平台，GitHub 40K+ Star。支持 OpenAI、Anthropic、Ollama、Docker、AWS。涵盖安装、多 Agent 系统、基准测试、生产加固，以及与 CrewAI、AutoGen、LangChain 的对比。"
+description: "Agno 是开源 Python SDK，用于构建 AI Agent 平台，GitHub 40K+ Star。支持 OpenAI、Anthropic、Ollama、Docker、AWS。涵盖安装、多 A..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

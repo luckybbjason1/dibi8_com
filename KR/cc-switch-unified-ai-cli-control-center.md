@@ -1,6 +1,6 @@
 ---
 title: "cc-switch: 6개 이상의 AI 코딩 에이전트를 통합하는 크로스 플랫폼 데스크톱 CLI 제어 센...
-description: "cc-switch는 (95,900 GitHub star) Claude Code, Codex, OpenCode, Gemini CLI, OpenClaw, Hermes Agent를 하나의 제어 센터로 통합하는 크로스 플랫폼 데스크톱 도구입니다. 단일 바이너리, 의존성 없음. 설정 튜토리얼, 아키텍처 분석, 실제 벤치마크 포함."
+description: "cc-switch는 (95,900 GitHub star) Claude Code, Codex, OpenCode, Gemini CLI, OpenClaw, Hermes Agent를 하나..."
 date: 2026-06-08
 lastmod: 2026-06-08
 slug: 'cc-switch-unified-ai-cli-control-center'

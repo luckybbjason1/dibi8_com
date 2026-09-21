@@ -1,6 +1,6 @@
 ---
 title: "Các Công Cụ Xử Lý Dữ Liệu Truyền Phát ThờI Gian Thực Tốt...
-description: "So sánh chi tiết các công cụ xử lý dữ liệu truyền phát thờI gian thực hàng đầu năm 2025. Tìm hiểu Apache Kafka, Flink, Spark Streaming, Redpanda, Pulsar và ksqlDB để xây dựng pipeline xử lý luồng hiệu quả."
+description: "So sánh chi tiết các công cụ xử lý dữ liệu truyền phát thờI gian thực hàng đầu năm 2025. Tìm hiểu Ap..."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []

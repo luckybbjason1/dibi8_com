@@ -1,6 +1,6 @@
 ---
 title: "Roboflow Supervision: The Python Computer Vision Annotat..."
-description: "Supervision by Roboflow is a comprehensive computer vision toolkit that simplifies CV annotation, data processing, and model evaluation. pip install supervision to access reusable computer vision tools for your projects."
+description: "Supervision by Roboflow is a comprehensive computer vision toolkit that simplifies CV annotation, da..."
 date: 2026-06-10
 lastmod: 2026-06-10
 slug: roboflow-supervision

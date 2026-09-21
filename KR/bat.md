@@ -1,18 +1,6 @@
 ---
 title: "bat: 58K+ Stars 구문 강조 cat 클론 — 2026년 cat, less, ccat 비교"
-description: "bat은 구문 강조와 Git 통합을 갖춘 cat(1) 클론. Rust, Git, Homebrew, Cargo와 호환. 설치 튜토리얼, 성능 벤치마크, 설정 파일 및 cat, less, ccat과의 비교를 다룸.". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
-tech_stack: []
-application_domain: Dev Utils
-source_version: ''
-licensing_model: Open Source
-license_type: Apache-2.0
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: "https://github.com/sharkdp/bat"
+description: "bat은 구문 강조와 Git 통합을 갖춘 cat(1) 클론. Rust, Git, Homebrew, Cargo와 호환. 설치 튜토리얼, 성능 벤치마크, 설정 파일 및 cat, les..."
 stars: 58940
 maintainer: sharkdp
 last_maintained: "2026-05-19"

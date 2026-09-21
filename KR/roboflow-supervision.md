@@ -1,6 +1,6 @@
 ---
 title: "Roboflow Supervision: Python 컴퓨터 비전 주석 도구 모음"
-description: "Roboflow의 Supervision은 CV 주석, 데이터 처리 및 모델 평가를 간소화하는 포괄적인 컴퓨터 비전 도구 모음입니다. pip install supervision을 사용하여 프로젝트에 재사용 가능한 컴퓨터 비전 도구에 액세스하세요."
+description: "Roboflow의 Supervision은 CV 주석, 데이터 처리 및 모델 평가를 간소화하는 포괄적인 컴퓨터 비전 도구 모음입니다. pip install supervision을 사..."
 date: 2026-06-10
 lastmod: 2026-06-10
 slug: roboflow-supervision

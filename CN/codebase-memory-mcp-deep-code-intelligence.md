@@ -1,6 +1,6 @@
 ---
 title: "Codebase Memory MCP: 24K+ Star AI Code Intelligence Server"
-description: "Codebase Memory MCP is a high-performance code intelligence server that indexes entire codebases into persistent memory for AI agents. Transform any LLM into a codebase-aware assistant."
+description: "Codebase Memory MCP is a high-performance code intelligence server that indexes entire codebases int..."
 date: 2026-07-03 09:00:00+09:00
 lastmod: 2026-07-03 09:00:00+09:00
 slug: codebase-memory-mcp-deep-code-intelligence

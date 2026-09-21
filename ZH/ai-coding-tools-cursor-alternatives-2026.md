@@ -1,6 +1,6 @@
 ---
 title: "2026 AI 编程工具大洗牌：Cursor 不再唯一选择 — 7 大替代品深度对比"
-description: "Cursor 2025 中转 credit 定价后用户信任崩塌。2026 年 7 个最强替代品全对比：Claude Code (80.8% SWE-bench)、Cline (5M+ 安装免费)、GitHub Copilot ($10/月)、Windsurf ($15/月)、Continue.dev、Zed。覆盖价格、性能、agent 模式、迁移策略。"
+description: "Cursor 2025 中转 credit 定价后用户信任崩塌。2026 年 7 个最强替代品全对比：Claude Code (80.8% SWE-bench)、Cline (5M+ 安装免费)、Gi..."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00
 tech_stack: ['VS Code', JetBrains, 'Terminal CLI', 'Native editors']

@@ -1,6 +1,6 @@
 ---
 title: "ComfyUI: 87K+ Stars — Hướng Dẫn Thiết Lập Stable Diffusi...
-description: "ComfyUI (COMFY) là GUI Stable Diffusion dạng node mạnh nhất. Hỗ trợ SD 1.5, SDXL, Flux, Wan, LTXV. Triển khai Docker production, node tùy chỉnh, tích hợp API, so sánh hiệu năng với AUTOMATIC1111 và InvokeAI."
+description: "ComfyUI (COMFY) là GUI Stable Diffusion dạng node mạnh nhất. Hỗ trợ SD 1.5, SDXL, Flux, Wan, LTXV. T..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

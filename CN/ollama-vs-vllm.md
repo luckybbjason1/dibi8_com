@@ -1,6 +1,6 @@
 ---
 title: "Ollama vs vLLM in 2026: Local Dev Simplicity vs Producti...
-description: "Side-by-side breakdown of Ollama (easy local LLM runner) and vLLM (high-throughput production inference engine) — ease of use, throughput, hardware, concurrency, cost at scale. Updated 2026."
+description: "Side-by-side breakdown of Ollama (easy local LLM runner) and vLLM (high-throughput production infere..."
 date: 2026-06-06 00:00:00+08:00
 lastmod: 2026-06-06 00:00:00+08:00draft: false
 tags: ["ollama", "vllm", "local-llm", "inference", "llm-serving", "comparison", "dev-tools", "self-hosted"]

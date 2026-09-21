@@ -1,6 +1,6 @@
 ---
 title: "Superpowers: 200000+ Stars -- Agentic Skills Framework &...
-description: "Superpowers, 200k+ 스타를 보유한 agentic skills framework를 살펴보세요. 몇 분 만에 설정하고, 벤치마킹했으며, 프로덕션에 바로 사용할 수 있습니다. LangChain, LlamaIndex, AutoGen과 비교해 보세요."
+description: "Superpowers, 200k+ 스타를 보유한 agentic skills framework를 살펴보세요. 몇 분 만에 설정하고, 벤치마킹했으며, 프로덕션에 바로 사용할 수 있습니..."
 date: 2026-05-23
 lastmod: 2026-05-23
 slug: 'superpowers'

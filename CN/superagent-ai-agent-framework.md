@@ -1,6 +1,6 @@
 ---
 title: "Superagent: Deploy AI Agents to Production with 1 CLI Co...
-description: "A hands-on guide to deploying AI agents with Superagent. One CLI command, multiple LLM support, RAG workflows, vector DB integration, and REST API deployment. Backed by real benchmarks."
+description: "A hands-on guide to deploying AI agents with Superagent. One CLI command, multiple LLM support, RAG ..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

@@ -1,6 +1,6 @@
 ---
 title: "Unsloth 2026: 64.9k 별 빠른 LLM 파인튜닝 — 2× 속도, 70% 적은 VRAM, ...
-description: "Unsloth는 HuggingFace TRL 베이스라인보다 2× 빠르고 70% 적은 VRAM으로 LLM 파인튜닝. 64.9k GitHub 별, 듀얼 Apache 2.0 + AGPL-3.0 라이선스. Llama 3, Mistral, Qwen 3, Gemma, DeepSeek 지원 LoRA / QLoRA / DPO / GRPO. 2026 완전 단일 GPU 파인튜닝 가이드."
+description: "Unsloth는 HuggingFace TRL 베이스라인보다 2× 빠르고 70% 적은 VRAM으로 LLM 파인튜닝. 64.9k GitHub 별, 듀얼 Apache 2.0 + AGPL..."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: [Python, PyTorch, CUDA, Triton]

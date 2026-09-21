@@ -1,18 +1,6 @@
 ---
 title: "MLflow 2026: 10,000+ 실험을 추적하는 오픈소스 ML 라이프사이클 플랫폼 — 설정 가이드"
-description: "MLflow를 활용한 ML 실험 추적, 모델 레지스트리, 모델 서빙에 대한 완전한 가이드. 설치, Python SDK, 프로덕션 배포, 10,000+ 실험에 대한 벤치마크를 다룹니다.". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
-tech_stack: []
-application_domain: Data Science
-source_version: ''
-licensing_model: Open Source
-license_type: Apache-2.0
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: "mlflow/mlflow"
+description: "MLflow를 활용한 ML 실험 추적, 모델 레지스트리, 모델 서빙에 대한 완전한 가이드. 설치, Python SDK, 프로덕션 배포, 10,000+ 실험에 대한 벤치마크를 다룹니..."
 stars: 21000
 maintainer: mlflow
 last_maintained: "2026-05-19"

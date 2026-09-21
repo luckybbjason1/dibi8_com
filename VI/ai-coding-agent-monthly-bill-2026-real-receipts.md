@@ -1,6 +1,6 @@
 ---
 title: "Hóa đơn hàng tháng AI Coding Agent 2026: Biên lai thực 3...
-description: "Theo dõi 30 ngày sử dụng và hóa đơn thực tế của Claude Max ($200), ChatGPT Plus + Codex CLI API ($165 hiệu dụng) và Cursor Pro + API tràn ($87). Bóc tách chi phí theo tác vụ, mỗi công cụ hoàn vốn khi nào và ngưỡng để chuyển đổi."
+description: "Theo dõi 30 ngày sử dụng và hóa đơn thực tế của Claude Max ($200), ChatGPT Plus + Codex CLI API ($16..."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: ['Claude Code', Cursor, 'Codex CLI', 'OpenAI API', 'Anthropic API']

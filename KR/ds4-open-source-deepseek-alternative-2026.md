@@ -1,6 +1,6 @@
 ---
 title: "ds4 리뷰 2026: 개발자들이 전환하는 오픈소스 DeepSeek"
-description: "ds4는 2026년 가장 빠르게 성장하는 오픈소스 DeepSeek 호환 LLM 런타임. Apache-2.0 라이선스, OpenAI API 호환, vLLM 대비 40% 낮은 지연으로 DeepSeek V3 / V3.1 / V4 weights 실행. 완전한 셋업 가이드, vLLM/Ollama/TGI 벤치마크 비교, 프로덕션 강화, 도구 통합(Claude Code, Cursor, LangChain, Continue.dev) 포함."
+description: "ds4는 2026년 가장 빠르게 성장하는 오픈소스 DeepSeek 호환 LLM 런타임. Apache-2.0 라이선스, OpenAI API 호환, vLLM 대비 40% 낮은 지연으로..."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00
 tech_stack: []

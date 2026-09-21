@@ -1,18 +1,6 @@
 ---
 title: "PancakeSwap 交易机器人 2026：使用 Python 在 BSC 上构建自动化 DeFi 策略 — ...
-description: "在币安智能链上构建生产级 PancakeSwap 交易机器人。Web3.py 集成、自动化策略、流动性池监控、MEV 保护以及 Python 机器人框架 — 附带 2026 年真实基准测试。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
-tech_stack: []
-application_domain: Ai Trading
-source_version: ''
-licensing_model: Open Source
-license_type: GPL-3.0
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: "pancakeswap/pancake-swap-core"
+description: "在币安智能链上构建生产级 PancakeSwap 交易机器人。Web3.py 集成、自动化策略、流动性池监控、MEV 保护以及 Python 机器人框架 — 附带 2026 年真实基准测试。". Co..."
 stars: 2500
 maintainer: pancakeswap
 last_maintained: "2026-05-19"

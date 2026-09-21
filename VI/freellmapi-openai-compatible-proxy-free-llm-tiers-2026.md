@@ -1,6 +1,6 @@
 ---
 title: "FreeLLMAPI: Kết hợp 16 cấp LLM miễn phí phía sau một điể...
-description: "Tổng hợp các gói miễn phí của Google, Groq, Cerebras, Mistral, NVIDIA, OpenRouter và nhiều hơn nữa thành một proxy duy nhất. ~1,7 tỷ token/tháng. Cài đặt Docker, tích hợp Claude Code, gọi công cụ, phát trực tiếp, chuỗi dự phòng."
+description: "Tổng hợp các gói miễn phí của Google, Groq, Cerebras, Mistral, NVIDIA, OpenRouter và nhiều hơn nữa t..."
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false
@@ -16,7 +16,7 @@ sources: - name: GitHub
 ---
 
 title: 'FreeLLMAPI: Stack 16 Free LLM Tiers Behind One OpenAI-Compatible Endpoint'
-description: "Aggregate Google, Groq, Cerebras, Mistral, NVIDIA, OpenRouter and more free tiers into a single proxy. ~1.7B tokens/month. Docker install, Claude Code integration, tool calling, streaming, fallback chains."
+description: "Aggregate Google, Groq, Cerebras, Mistral, NVIDIA, OpenRouter and more free tiers into a single prox..."
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false

@@ -1,6 +1,6 @@
 ---
 title: "Zoxide: 36,752 GitHub Stars — Complete Setup Guide 2026"
-description: "Zoxide is a smarter cd command that learns your directory habits. Supports Bash, Zsh, Fish, Nushell, and PowerShell. Covers installation, shell integration, fzf setup, algorithm internals, and migration from autojump/fasd."
+description: "Zoxide is a smarter cd command that learns your directory habits. Supports Bash, Zsh, Fish, Nushell,..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

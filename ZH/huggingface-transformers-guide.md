@@ -1,21 +1,6 @@
 ---
 title: "Hugging Face Transformers库使用指南2025：开发者完整教程"
-description: "Hugging Face Transformers 2025完整指南：Pipeline API、模型微调、Tokenization、量化部署，覆盖NLP开发全流程。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
-tech_stack: []
-application_domain: Llm Frameworks
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: ''
-stars: 0
-maintainer: 'dibi8'
-last_maintained: "2026-05-18"
+description: "Hugging Face Transformers 2025完整指南：Pipeline API、模型微调、Tokenization、量化部署，覆盖NLP开发全流程。". Comprehensive g..."
 featureImage: ''
 draft: false
 aliases:

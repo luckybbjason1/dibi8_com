@@ -1,6 +1,6 @@
 ---
 title: "Hello-Agents: Datawhale의 오픈소스 AI 에이전트 튜토리얼이 제로에서 프로덕션급 에...
-description: "Datawhale Hello-Agents는 GitHub에서 가장 인기 있는 AI 에이전트 오픈소스 튜토리얼로, ReAct, AutoGen, LangGraph, MCP, Agentic RL 등 16장의 완전한 과정을 다루며 45,600+ Stars를 보유하고 있습니다."
+description: "Datawhale Hello-Agents는 GitHub에서 가장 인기 있는 AI 에이전트 오픈소스 튜토리얼로, ReAct, AutoGen, LangGraph, MCP, Agenti..."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - JavaScript

@@ -1,10 +1,6 @@
 ---
 title: "Ngưng Cúng Tiền Cho OpenAI: Dùng DS4 Chạy DeepSeek Local...
-description: "Ngưng Cúng Tiền Cho OpenAI: Dùng DS4 Chạy DeepSeek Local Xóa Sổ Hóa Đơn API". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-15T04:20:25+09:00
-lastmod: 2026-05-15T04:20:25+09:00
-tech_stack: - AI
-application_domain: "Llm Frameworks"
+description: "Ngưng Cúng Tiền Cho OpenAI: Dùng DS4 Chạy DeepSeek Local Xóa Sổ Hóa Đơn API". Comprehensive guide co..."
 source_version: ""
 licensing_model: "Open Source"
 license_type: "MIT"

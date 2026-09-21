@@ -1,6 +1,6 @@
 ---
 title: "Ollama vs vLLM 2026: Đơn Giản Cho Dev Local vs Throughpu...
-description: "So sánh chi tiết Ollama (trình chạy LLM local đơn giản) và vLLM (engine suy luận production throughput cao) — dễ dùng, throughput, phần cứng, đồng thời, chi phí ở quy mô. Cập nhật 2026."
+description: "So sánh chi tiết Ollama (trình chạy LLM local đơn giản) và vLLM (engine suy luận production throughp..."
 date: 2026-06-06 00:00:00+08:00
 lastmod: 2026-06-06 00:00:00+08:00draft: false
 tags: ["ollama", "vllm", "local-llm", "inference", "llm-serving", "comparison", "dev-tools", "self-hosted"]

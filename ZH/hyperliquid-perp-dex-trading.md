@@ -1,18 +1,6 @@
 ---
 title: "Hyperliquid 2026：日交易量超20亿美元的链上永续合约DEX — 交易机器人集成指南"
-description: "Hyperliquid综合指南：完全链上永续合约DEX，日交易量超20亿美元，100多个交易对，最高50倍杠杆，HyperEVM智能合约及Python SDK机器人集成。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-20 00:00:00+08:00
-lastmod: 2026-05-20 00:00:00+08:00
-tech_stack: []
-application_domain: Ai Trading
-source_version: ''
-licensing_model: Open Source
-license_type: Proprietary
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: "https://github.com/hyperliquid-dex"
+description: "Hyperliquid综合指南：完全链上永续合约DEX，日交易量超20亿美元，100多个交易对，最高50倍杠杆，HyperEVM智能合约及Python SDK机器人集成。". Comprehensiv..."
 stars: 0
 maintainer: hyperliquid
 last_maintained: "2026-05-20"

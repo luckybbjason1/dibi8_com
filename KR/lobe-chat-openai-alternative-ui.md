@@ -1,18 +1,6 @@
 ---
 title: "Lobe Chat: 20+ LLM 제공업체와 플러그인 시스템을 갖춘 오픈소스 ChatGPT UI 대안...
-description: "Lobe Chat을 자체 호스팅 ChatGPT 대안으로 배포하세요. 20+ LLM 제공업체, 플러그인 시스템, PWA, 다국어 UI 지원. 벤치마크와 비교가 포함된 완전한 Docker 설치 가이드.". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
-tech_stack: []
-application_domain: Ai Tools
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: "lobehub/lobe-chat"
+description: "Lobe Chat을 자체 호스팅 ChatGPT 대안으로 배포하세요. 20+ LLM 제공업체, 플러그인 시스템, PWA, 다국어 UI 지원. 벤치마크와 비교가 포함된 완전한 Dock..."
 stars: 60000
 maintainer: lobehub
 last_maintained: "2026-05-19"

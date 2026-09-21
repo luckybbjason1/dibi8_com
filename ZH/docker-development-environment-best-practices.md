@@ -1,21 +1,6 @@
 ---
 title: "Docker开发环境最佳实践：2025年完整指南"
-description: "2025年Docker开发环境完整配置指南，涵盖Dev Containers、热重载、多阶段构建、数据库管理等10大最佳实践，附带完整docker-compose配置示例。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
-tech_stack: []
-application_domain: Dev Utils
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: ''
-stars: 0
-maintainer: 'dibi8'
-last_maintained: "2026-05-18"
+description: "2025年Docker开发环境完整配置指南，涵盖Dev Containers、热重载、多阶段构建、数据库管理等10大最佳实践，附带完整docker-compose配置示例。". Comprehensi..."
 featureImage: ''
 draft: false
 aliases:

@@ -1,6 +1,6 @@
 ---
 title: "Ruv Pi: CLI Đại diện Mã tự mở rộng với API LLM Đa nhà cu...
-description: "Ruv Pi là CLI đại diện mã tự mở rộng từ Earendil Works, cung cấp API LLM đa nhà cung cấp thống nhất, cho phép nhà phát triển xây dựng, chạy và mở rộng đại diện mã hóa AI với hỗ trợ cho Claude, OpenAI, Gemini và nhiều hơn nữa."
+description: "Ruv Pi là CLI đại diện mã tự mở rộng từ Earendil Works, cung cấp API LLM đa nhà cung cấp thống nhất,..."
 date: 2026-06-10
 lastmod: 2026-06-10
 slug: ruv-pi

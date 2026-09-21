@@ -1,21 +1,6 @@
 ---
 title: "The 2026 AI Coding Agent Landscape: Why Skills, MCP, and...
-description: "The AI coding assistant market hit an inflection point in 2026. Claude Code"'s skills ecosystem crossed 3,000 public skills, MCP became the universal tool interface, and open-source alternatives like OpenCode and Hermes Agent are gaining serious traction. Here''s what developers need to know—and how to avoid vendor lock-in.'
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
-tech_stack: []
-application_domain: Llm Frameworks
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: ''
-stars: 0
-maintainer: 'dibi8'
-last_maintained: "2026-05-18"
+description: "The AI coding assistant market hit an inflection point in 2026. Claude Code"'s skills ecosystem cros..."
 featureImage: ''
 draft: false
 aliases:

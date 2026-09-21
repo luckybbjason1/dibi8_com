@@ -1,6 +1,6 @@
 ---
 title: "cc-switch: 统一 6+ AI 编码代理的跨平台桌面 CLI 控制中心 — 2026 实战指南"
-description: "cc-switch（95,900 GitHub 星标）是一款跨平台桌面工具，将 Claude Code、Codex、OpenCode、Gemini CLI、OpenClaw 和 Hermes Agent 统一为一个控制中心。单二进制文件，零依赖。包含安装教程、架构分析和真实基准测试。"
+description: "cc-switch（95,900 GitHub 星标）是一款跨平台桌面工具，将 Claude Code、Codex、OpenCode、Gemini CLI、OpenClaw 和 Hermes Agen..."
 date: 2026-06-08
 lastmod: 2026-06-08
 slug: 'cc-switch-unified-ai-cli-control-center'

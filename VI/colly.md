@@ -1,6 +1,6 @@
 ---
 title: "Colly: 25,302 GitHub Stars — Framework Crawl Web Go Tốc ...
-description: "Colly là framework web scraping nhanh và thanh lịch cho Go với thông lượng 1,000+ req/sec. Bao gồm hướng dẫn colly, so sánh benchmark colly vs scrapy, thiết lập Docker, Redis caching, proxy rotation và mô hình triển khai production cho trích xuất dữ liệu quy mô lớn."
+description: "Colly là framework web scraping nhanh và thanh lịch cho Go với thông lượng 1,000+ req/sec. Bao gồm h..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

@@ -1,21 +1,6 @@
 ---
 title: "Ollama 완벽 가이드 2025: 로컬에서 LLM 실행하기 - 모든 하드웨어 가이드"
-description: "Ollama로 로컬에서 대규모 언어 모델을 실행하는 완벽 가이드. 설치, 모델 관리, REST API, LangChain 통합, 하드웨어 요구사항, Docker 배포까지 상세히 다룬다.". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
-tech_stack: []
-application_domain: Llm Frameworks
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: ''
-stars: 0
-maintainer: 'dibi8'
-last_maintained: "2026-05-18"
+description: "Ollama로 로컬에서 대규모 언어 모델을 실행하는 완벽 가이드. 설치, 모델 관리, REST API, LangChain 통합, 하드웨어 요구사항, Docker 배포까지 상세히 다..."
 featureImage: ''
 draft: false
 aliases:

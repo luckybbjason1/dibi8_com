@@ -1,18 +1,6 @@
 ---
 title: "CoW Protocol 2026：MEV保护型DEX聚合器为交易者节省超1亿美元滑点 — 设置指南"
-description: "CoW Protocol综合指南：使用批量拍卖和求解器竞争来保护交易者免受MEV攻击的DEX聚合器，节省超1亿美元滑点。包含SDK集成、交易机器人设置和最佳实践。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-20 00:00:00+08:00
-lastmod: 2026-05-20 00:00:00+08:00
-tech_stack: []
-application_domain: Ai Trading
-source_version: ''
-licensing_model: Open Source
-license_type: GPL-3.0
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: "https://github.com/cowprotocol/contracts"
+description: "CoW Protocol综合指南：使用批量拍卖和求解器竞争来保护交易者免受MEV攻击的DEX聚合器，节省超1亿美元滑点。包含SDK集成、交易机器人设置和最佳实践。". Comprehensive gu..."
 stars: 700
 maintainer: cowprotocol
 last_maintained: "2026-05-20"

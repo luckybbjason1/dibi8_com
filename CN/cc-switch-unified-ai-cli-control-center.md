@@ -1,6 +1,6 @@
 ---
 title: "cc-switch: The Cross-Platform Desktop CLI Control Center...
-description: "cc-switch (95,900 GitHub stars) is a cross-platform desktop tool that unifies Claude Code, Codex, OpenCode, Gemini CLI, OpenClaw, and Hermes Agent into one control center. Single binary, zero dependencies. Includes setup tutorial, architecture breakdown, and real benchmarks."
+description: "cc-switch (95,900 GitHub stars) is a cross-platform desktop tool that unifies Claude Code, Codex, Op..."
 date: 2026-06-08
 lastmod: 2026-06-08
 slug: 'cc-switch-unified-ai-cli-control-center'

@@ -1,6 +1,6 @@
 ---
 title: "Stable Diffusion WebUI 2026 (AUTOMATIC1111): Hướng Dẫn Đ...
-description: "AUTOMATIC1111 stable-diffusion-webui là UI self-host tiêu chuẩn de-facto 163k sao cho sinh ảnh SD/SDXL. Hướng dẫn cài đặt + production 2026 đầy đủ: txt2img / img2img / inpainting / outpainting / LoRA / ControlNet, yêu cầu phần cứng, lựa chọn thay thế (Forge, SD.Next)."
+description: "AUTOMATIC1111 stable-diffusion-webui là UI self-host tiêu chuẩn de-facto 163k sao cho sinh ảnh SD/SD..."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: [Python, PyTorch, Gradio, CUDA]

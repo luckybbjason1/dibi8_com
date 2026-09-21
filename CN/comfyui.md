@@ -1,6 +1,6 @@
 ---
 title: "ComfyUI: 87K+ Stars — Node-Based Stable Diffusion Setup ...
-description: "ComfyUI tutorial and setup guide for node-based image generation. ComfyUI Docker deployment, custom nodes, API integration, comfyui vs automatic1111 benchmarks for 2026."
+description: "ComfyUI tutorial and setup guide for node-based image generation. ComfyUI Docker deployment, custom ..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

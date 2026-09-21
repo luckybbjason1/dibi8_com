@@ -1,6 +1,6 @@
 ---
 title: "LibreTranslate: Self-Hosted Translation API with 14.4K+ ...
-description: "LibreTranslate (LT) is a free, open-source machine translation API powered by Argos Translate. Supports Docker, CUDA GPU, 30+ languages, and offline deployment. Covers setup, benchmarks, monitoring, and integration with OpenAI Whisper, Coqui TTS, and Argos Translate."
+description: "LibreTranslate (LT) is a free, open-source machine translation API powered by Argos Translate. Suppo..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

@@ -1,6 +1,6 @@
 ---
 title: "LangChain vs LlamaIndex vs LangGraph 2026: Guia de Compa...
-description: "Comparação profunda dos três principais frameworks LLM em 2026. De RAG a orquestração de agentes, escolha o framework ideal para o seu projeto."
+description: "Comparação profunda dos três principais frameworks LLM em 2026. De RAG a orquestração de agentes, es..."
 date: 2026-09-20
 lastmod: 2026-09-20
 tags: ["langchain", "llamaindex", "langgraph", "rag", "frameworks-ia", "2026"]

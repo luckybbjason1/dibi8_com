@@ -1,6 +1,6 @@
 ---
 title: "MarkItDown: Universal File-to-Markdown Converter — Micro..."
-description: "MarkItDown by Microsoft AutoGen team converts 20+ file types to Markdown for LLM consumption. pip install markitdown[all], Python API, LangChain integration, RAG pipelines, and batch processing."
+description: "MarkItDown by Microsoft AutoGen team converts 20+ file types to Markdown for LLM consumption. pip in..."
 tags: ["converter", "file", "markdown", "open-source", "self-hosted"]
 date: 2026-06-15
 lastmod: 2026-06-15

@@ -1,6 +1,6 @@
 ---
 title: "Spec Kit: GitHub's Revolutionary Spec-Driven Development..."
-description: "Complete guide to Spec Kit by GitHub - the open-source toolkit that transforms how developers build software through spec-driven development. Installation, workflow, and real-world examples."
+description: "Complete guide to Spec Kit by GitHub - the open-source toolkit that transforms how developers build ..."
 date: 2026-06-20
 lastmod: 2026-06-20tags: [ai, copilot, development, engineering, prd, spec, spec-driven]
 category: "dev-utils"

@@ -1,6 +1,6 @@
 ---
 title: "CopilotKit: 31K+ Stars — 为任何 React 或 Angular 应用添加 AI Cop...
-description: "CopilotKit 是用于应用内 AI Copilot 和生成式 UI 的开源前端框架。使用预构建组件、useCopilotAction Hooks 和生产级部署构建 React Angular AI 助手。涵盖安装、LangChain 集成、自托管和与 Vercel AI SDK 的性能对比。"
+description: "CopilotKit 是用于应用内 AI Copilot 和生成式 UI 的开源前端框架。使用预构建组件、useCopilotAction Hooks 和生产级部署构建 React Angular A..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

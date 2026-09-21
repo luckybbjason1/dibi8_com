@@ -1,18 +1,6 @@
 ---
 title: "Outline 완벽 가이드: 엔지니어링 팀을 위한 오픈소스 Wiki 및 지식 베이스 — 2026 셀프...
-description: "Docker로 10분 만에 Outline 배포. Markdown 편집기, Slack 통합, 전문 검색, 세분화된 권한 제어로 팀을 위한 실시간 협업 Wiki를 구축하세요.". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
-tech_stack: []
-application_domain: Dev Utils
-source_version: ''
-licensing_model: Open Source
-license_type: BSL-1.1
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: "outline/outline"
+description: "Docker로 10분 만에 Outline 배포. Markdown 편집기, Slack 통합, 전문 검색, 세분화된 권한 제어로 팀을 위한 실시간 협업 Wiki를 구축하세요.". Co..."
 stars: 32000
 maintainer: outline
 last_maintained: "2026-05-19"

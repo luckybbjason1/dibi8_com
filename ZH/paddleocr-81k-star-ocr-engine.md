@@ -1,6 +1,6 @@
 ---
 title: "PaddleOCR：81K星开源OCR引擎，零成本超越云服务"
-description: "PaddleOCR是一个多语言开源OCR工具包，文本检测和识别准确率超过96.3%。支持80多种语言，文档AI、表格识别和版面分析。拥有81K+ GitHub stars。包含设置指南、基准测试和生产部署。"
+description: "PaddleOCR是一个多语言开源OCR工具包，文本检测和识别准确率超过96.3%。支持80多种语言，文档AI、表格识别和版面分析。拥有81K+ GitHub stars。包含设置指南、基准测试和生产..."
 date: 2026-06-10
 lastmod: 2026-06-10
 slug: 'paddleocr-81k-star-ocr-engine'

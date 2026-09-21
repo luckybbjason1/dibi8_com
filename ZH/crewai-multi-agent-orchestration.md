@@ -1,18 +1,6 @@
 ---
 title: "CrewAI: 构建自主协作的多智能体AI团队 — 生产环境配置与模式 2026"
-description: "CrewAI 实操 2026 指南 — 用于构建基于角色的智能体、任务委托、记忆共享和自主协作模式的多智能体AI系统的 Python 框架。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
-tech_stack: []
-application_domain: Llm Frameworks
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: "joaomdmoura/crewAI"
+description: "CrewAI 实操 2026 指南 — 用于构建基于角色的智能体、任务委托、记忆共享和自主协作模式的多智能体AI系统的 Python 框架。". Comprehensive guide coverin..."
 stars: 28000
 maintainer: joaomdmoura
 last_maintained: "2026-05-19"

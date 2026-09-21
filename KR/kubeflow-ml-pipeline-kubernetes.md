@@ -1,18 +1,6 @@
 ---
 title: "Kubeflow 2026: Kubernetes에서 완전한 ML 파이프라인 실행 — 훈련부터 프로덕션 ...
-description: "Kubernetes에 Kubeflow를 배포하여 ML 파이프라인을 구축하는 완전한 가이드. 설치, 컴포넌트, 벤치마크, 프로덕션 강화 및 실제 배포 패턴을 다룹니다.". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
-tech_stack: []
-application_domain: Data Science
-source_version: ''
-licensing_model: Open Source
-license_type: Apache-2.0
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: "kubeflow/kubeflow"
+description: "Kubernetes에 Kubeflow를 배포하여 ML 파이프라인을 구축하는 완전한 가이드. 설치, 컴포넌트, 벤치마크, 프로덕션 강화 및 실제 배포 패턴을 다룹니다.". Compr..."
 stars: 14000
 maintainer: kubeflow
 last_maintained: "2026-05-19"

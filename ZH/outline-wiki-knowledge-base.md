@@ -1,18 +1,6 @@
 ---
 title: "Outline 完整指南：专为工程团队打造的开源 Wiki 与知识库 —— 2026 自托管部署"
-description: "使用 Docker 在 10 分钟内部署 Outline。为工程团队构建实时协作 Wiki，支持 Markdown 编辑器、Slack 集成、全文搜索和细粒度权限控制。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
-tech_stack: []
-application_domain: Dev Utils
-source_version: ''
-licensing_model: Open Source
-license_type: BSL-1.1
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: "outline/outline"
+description: "使用 Docker 在 10 分钟内部署 Outline。为工程团队构建实时协作 Wiki，支持 Markdown 编辑器、Slack 集成、全文搜索和细粒度权限控制。". Comprehensive..."
 stars: 32000
 maintainer: outline
 last_maintained: "2026-05-19"

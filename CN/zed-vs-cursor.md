@@ -1,6 +1,6 @@
 ---
 title: "Zed vs Cursor in 2026: Native Speed vs AI Depth — Honest...
-description: "Side-by-side breakdown of Zed (Rust-native, GPU-accelerated, open-source) and Cursor (VS Code fork, AI-first) — speed, AI features, pricing, ecosystem, platforms. Updated 2026."
+description: "Side-by-side breakdown of Zed (Rust-native, GPU-accelerated, open-source) and Cursor (VS Code fork, ..."
 date: 2026-06-06 00:00:00+08:00
 lastmod: 2026-06-06 00:00:00+08:00draft: false
 tags: ["zed", "cursor", "ai-editor", "code-editor", "ai-coding", "comparison", "dev-tools", "rust"]

@@ -1,18 +1,6 @@
 ---
 title: "Milvus/Zilliz 2026: 100억 벡터를 밀리초 지연으로 처리하는 벡터 데이터베이스 — 배...
-description: "Milvus 2.5 프로덕션 가이드: 10억 규모 벡터 검색, GPU 가속 인덱싱, Kubernetes 배포, 하이브리드 검색, Zilliz Cloud 설정.". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
-tech_stack: []
-application_domain: Data Science
-source_version: ''
-licensing_model: Open Source
-license_type: Apache-2.0
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: "milvus-io/milvus"
+description: "Milvus 2.5 프로덕션 가이드: 10억 규모 벡터 검색, GPU 가속 인덱싱, Kubernetes 배포, 하이브리드 검색, Zilliz Cloud 설정.". Comprehen..."
 stars: 32000
 maintainer: 'milvus-io'
 last_maintained: "2026-05-19"

@@ -1,6 +1,6 @@
 ---
 title: "2026년 AI 에이전트 메모리 시스템 완벽 가이드: Mem0·agentmemory·Hindsight...
-description: "세션만 끝나면 모든 것을 잊는 AI 에이전트는 이제 그만. 2026년 가장 주목받는 4대 오픈소스 메모리 시스템 Mem0, agentmemory, Hindsight, MemPalace를 기능·성능·도입 난이도 관점에서 심층 분석하고, 한국 개발자 환경에 최적화된 선택 가이드를 제시한다."
+description: "세션만 끝나면 모든 것을 잊는 AI 에이전트는 이제 그만. 2026년 가장 주목받는 4대 오픈소스 메모리 시스템 Mem0, agentmemory, Hindsight, MemPala..."
 keywords: AI 에이전트 메모리 시스템, Mem0 오픈소스, agentmemory MCP, 지속적 기억 LLM, AI 에이전트 기억层, 2026 오픈소스 AI 도구, 토큰 효율적 검색, 에이전트 메모리 벤치마크
 author: Kimi Claw
 date: 2026-05-20

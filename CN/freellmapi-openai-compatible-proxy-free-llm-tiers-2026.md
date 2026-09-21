@@ -1,6 +1,6 @@
 ---
 title: "FreeLLMAPI: Stack 16 Free LLM Tiers Behind One OpenAI-Co...
-description: "Aggregate Google, Groq, Cerebras, Mistral, NVIDIA, OpenRouter and more free tiers into a single proxy. ~1.7B tokens/month. Docker install, Claude Code integration, tool calling, streaming, fallback chains."
+description: "Aggregate Google, Groq, Cerebras, Mistral, NVIDIA, OpenRouter and more free tiers into a single prox..."
 tags: ["open-source"]
 date: 2026-06-22
 lastmod: 2026-06-22
@@ -15,7 +15,7 @@ sources: - name: GitHub
     url: 'https://freellmapi.co'
 ---
 title: 'FreeLLMAPI: Stack 16 Free LLM Tiers Behind One OpenAI-Co...
-description: "Aggregate Google, Groq, Cerebras, Mistral, NVIDIA, OpenRouter and more free tiers into a single proxy. ~1.7B tokens/month. Docker install, Claude Code integration, tool calling, streaming, fallback chains."
+description: "Aggregate Google, Groq, Cerebras, Mistral, NVIDIA, OpenRouter and more free tiers into a single prox..."
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false

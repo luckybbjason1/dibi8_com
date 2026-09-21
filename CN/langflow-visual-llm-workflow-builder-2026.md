@@ -1,6 +1,6 @@
 ---
 title: "Langflow: 148k Stars for Visual LLM Workflows -- Technic...
-description: "Langflow (LF) simplifies AI agent and workflow building. Integrates with LangChain, OpenAI, Hugging Face, Anthropic. Covers setup, integrations, benchmarks, and production hardening."
+description: "Langflow (LF) simplifies AI agent and workflow building. Integrates with LangChain, OpenAI, Hugging ..."
 date: 2026-05-23
 lastmod: 2026-05-23
 slug: 'langflow'

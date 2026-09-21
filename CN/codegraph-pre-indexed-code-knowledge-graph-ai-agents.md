@@ -1,6 +1,6 @@
 ---
 title: "Codegraph: The Code Knowledge Graph That Slashes LLM Tok...
-description: "Codegraph (45,555 GitHub stars) creates pre-indexed code knowledge graphs for Claude Code, Codex, Gemini, Cursor, OpenCode, AntiGravity, Kiro, and Hermes Agent — fewer tokens, fewer tool calls, 100% local. Includes setup tutorial, architecture breakdown, and real benchmarks."
+description: "Codegraph (45,555 GitHub stars) creates pre-indexed code knowledge graphs for Claude Code, Codex, Ge..."
 date: 2026-06-08
 lastmod: 2026-06-08
 slug: 'codegraph-pre-indexed-code-knowledge-graph-ai-agents'

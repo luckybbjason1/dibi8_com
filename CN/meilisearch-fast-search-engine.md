@@ -1,6 +1,6 @@
 ---
 title: "Meilisearch: The Lightning-Fast Open-Source Search Engin...
-description: "Deploy Meilisearch 1.12 for lightning-fast typo-tolerant search with sub-50ms latency. Docker setup, SDK integrations, production benchmarks, and honest comparison."
+description: "Deploy Meilisearch 1.12 for lightning-fast typo-tolerant search with sub-50ms latency. Docker setup,..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

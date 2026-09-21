@@ -1,11 +1,6 @@
 ---
 title: "RAG 还是微调 2026：基于真实成本数据的决策框架"
-description: "何时用 RAG、何时微调、何时两者结合。结合 2026 年当前模型价格的现实情况：单次任务成本、延迟、数据新鲜度，以及基于数据量、查询延迟预算和更新频率的清晰决策树。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: [RAG, 'Fine-Tuning', LangChain, LlamaIndex, OpenAI, Anthropic]
-application_domain: LLM Frameworks
-source_version: "2026 Q2 pricing"
+description: "何时用 RAG、何时微调、何时两者结合。结合 2026 年当前模型价格的现实情况：单次任务成本、延迟、数据新鲜度，以及基于数据量、查询延迟预算和更新频率的清晰决策树。". Comprehensive ..."
 licensing_model: Mixed
 license_type: 'Open-source frameworks + commercial APIs'
 github_repo: ''

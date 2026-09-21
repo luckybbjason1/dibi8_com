@@ -1,6 +1,6 @@
 ---
 title: "Bộ công cụ đặc biệt: GitHub"
-description: "Hướng dẫn đầy đủ về Spec Kit của GitHub - bộ công cụ nguồn mở thay đổi cách các nhà phát triển xây dựng phần mềm thông qua phát triển theo đặc tả. Cài đặt, quy trình làm việc và các ví dụ thực tế."
+description: "Hướng dẫn đầy đủ về Spec Kit của GitHub - bộ công cụ nguồn mở thay đổi cách các nhà phát triển xây d..."
 date: 2026-06-20
 lastmod: 2026-06-20tags: [ai-tools, coding-agents, desktop-app, tauri, rust]
 category: "dev-utils"

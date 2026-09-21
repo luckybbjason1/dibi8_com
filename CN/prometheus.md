@@ -1,6 +1,6 @@
 ---
 title: "Prometheus: 64,094 GitHub Stars — Docker Deployment Guid...
-description: "Prometheus (Prom) is an open-source monitoring system and time series database. Compatible with Docker, Kubernetes, Grafana, and Alertmanager. Covers installation, PromQL queries, production hardening, and performance benchmarks."
+description: "Prometheus (Prom) is an open-source monitoring system and time series database. Compatible with Dock..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -266,7 +266,6 @@ groups: - name: node-alerts
         labels: severity: warning
         annotations: summary: "High request latency on {{ $labels.instance }}"
           description: "95th percentile latency is {{ $value }}s"
-
 Reference the rules in `prometheus.yml`: ```yaml
 rule_files: - '/etc/prometheus/alert-rules.yml'
 

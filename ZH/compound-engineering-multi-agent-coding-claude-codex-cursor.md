@@ -1,12 +1,6 @@
 ---
 title: "Compound Engineering：联合编排 Claude Code、Codex 和 Cursor — 多...
-description: "Compound Engineering（2 万星标）是用于 Claude Code、Codex 和 Cursor 的多代理插件。9 个命令用于头脑风暴、规划、审查和复合学习。80% 规划、20% 执行的工作流。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-06-13
-lastmod: 2026-06-13
-slug: 'compound-engineering-multi-agent-coding-claude-codex-cursor'
-category: llm-frameworks
-tags: ["compound-engineering", "multi-agent", "claude-code", "codex", "cursor", "planning", "review"]
-github_repo: "https://github.com/EveryInc/compound-engineering-plugin"
+description: "Compound Engineering（2 万星标）是用于 Claude Code、Codex 和 Cursor 的多代理插件。9 个命令用于头脑风暴、规划、审查和复合学习。80% 规划、20% 执..."
 license: 'MIT'
 featureImage: /articles/multi-agent-f22f19.jpg/images/articles/multi-agent-f22f19.jpg---
 

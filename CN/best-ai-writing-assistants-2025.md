@@ -1,6 +1,6 @@
 ---
 title: "Best AI Writing Assistants 2025: Jasper, Copy.ai, Writes...
-description: "Compare the best AI writing assistants of 2025: Jasper, Copy.ai, Writesonic, ChatGPT, Claude, and Notion AI. Find the right tool for your content needs with pricing and features."
+description: "Compare the best AI writing assistants of 2025: Jasper, Copy.ai, Writesonic, ChatGPT, Claude, and No..."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []

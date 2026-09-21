@@ -1,6 +1,6 @@
 ---
 title: "PancakeSwap Trading Bot 2026: Build Automated DeFi Strat...
-description: "Build production-ready PancakeSwap trading bots on Binance Smart Chain. Web3.py integration, automated strategies, liquidity pool monitoring, MEV protection, and Python bot framework — with real 2026 benchmarks."
+description: "Build production-ready PancakeSwap trading bots on Binance Smart Chain. Web3.py integration, automat..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

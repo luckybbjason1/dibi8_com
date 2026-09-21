@@ -1,6 +1,6 @@
 ---
 title: "Ollama vs LM Studio vs llama.cpp vs vLLM 2026: Hướng Dẫn...
-description: "So sánh trực tiếp 4 local LLM runner quan trọng năm 2026. Số liệu thực: Ollama (137k sao) dễ nhất, LM Studio UI đẹp nhất, llama.cpp (112k) engine bên dưới, vLLM (80.7k) vua throughput production. Cây quyết định 30 giây theo use case."
+description: "So sánh trực tiếp 4 local LLM runner quan trọng năm 2026. Số liệu thực: Ollama (137k sao) dễ nhất, L..."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: [Python, C++, CUDA, Metal]

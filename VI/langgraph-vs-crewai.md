@@ -1,6 +1,6 @@
 ---
 title: "LangGraph vs CrewAI năm 2026: Đồ Thị Trạng Thái Ưu Tiên ...
-description: "So sánh trực tiếp LangGraph (đồ thị agent có trạng thái, cấp thấp) và CrewAI (nhóm đa agent theo vai trò, cấp cao) — kiểm soát, đường cong học tập, trạng thái, thiết kế đa agent và độ bền khi chạy production. Cập nhật 2026."
+description: "So sánh trực tiếp LangGraph (đồ thị agent có trạng thái, cấp thấp) và CrewAI (nhóm đa agent theo vai..."
 date: 2026-06-06 00:00:00+08:00
 lastmod: 2026-06-06 00:00:00+08:00draft: false
 tags: ["langgraph", "crewai", "ai-agents", "multi-agent", "agent-framework", "orchestration", "llm", "comparison"]

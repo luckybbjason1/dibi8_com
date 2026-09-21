@@ -1,6 +1,6 @@
 ---
 title: "Stack Knowledge Base 2026: Xây "Bộ Não Thứ Hai" Với Anyt...
-description: "Stack knowledge base self-host 5 thành phần cho cá nhân hoặc team. AnythingLLM (UI + RAG) + RAGFlow (phân tích doc sâu) + mem0 (memory agent) + AgentMemory MCP (expose MCP) + pick vector DB. Thay $50-200/tháng SaaS (Notion AI + Mem + Glean) bằng $10-25/tháng self-host."
+description: "Stack knowledge base self-host 5 thành phần cho cá nhân hoặc team. AnythingLLM (UI + RAG) + RAGFlow ..."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: - Docker

@@ -1,6 +1,6 @@
 ---
 title: "PM技能：68项产品管理技能和42个AI代理工作流程"
-description: "用于更好产品决策的人工智能操作系统。9 个插件覆盖发现、策略、执行、研究、分析、市场进入（GTM）、营销、工具包和 AI 发布。兼容 Claude Code、Codex、Cursor 以及 50 多个 AI 助手。"
+description: "用于更好产品决策的人工智能操作系统。9 个插件覆盖发现、策略、执行、研究、分析、市场进入（GTM）、营销、工具包和 AI 发布。兼容 Claude Code、Codex、Cursor 以及 50 多个..."
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false

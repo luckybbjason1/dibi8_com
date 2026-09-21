@@ -1,6 +1,6 @@
 ---
 title: "SigNoz: APM mã nguồn mở thay thế Datadog với 10% chi phí...
-description: "Triển khai SigNoz trong 5 phút. APM mã nguồn mở dựa trên OpenTelemetry với distributed tracing, metrics và log management — chi phí chỉ bằng 10% của Datadog."
+description: "Triển khai SigNoz trong 5 phút. APM mã nguồn mở dựa trên OpenTelemetry với distributed tracing, metr..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -431,14 +431,12 @@ groups: - name: payment_service_alerts
         labels: severity: critical
         annotations: summary: "Payment service error rate > 5%"
           description: "Error rate is {{ $value }}"
-
       - alert: HighP95Latency
         expr: histogramQuantile(0.95)(rate(signoz_latency_bucket{service_name="payment-service"}[5m])) > 500000000
         for: 5m
         labels: severity: warning
         annotations: summary: "Payment service P95 latency > 500ms"
           description: "P95 latency is {{ $value }}ns"
-
       - alert: LogErrorSpike
         expr: rate(signoz_logs_total{severity="ERROR"}[5m]) > 100
         for: 2m

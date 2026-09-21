@@ -1,7 +1,7 @@
 ---
 slug: microsoft-presidio-pii-detection-redaction-sdk
 title: "프레시디오 리뷰: 마이크로소프트의 오픈 소스 PII 감지 및 데이터 삭제 프레임워크 (9.4K 스타)"
-description: "Microsoft의 Presidio(9.4K+ GitHub 스타)는 텍스트, 이미지 및 구조화된 데이터 전반에서 민감한 데이터(PII)를 탐지, 삭제, 마스킹 및 익명화하기 위한 오픈 소스 프레임워크입니다. NLP, 정규 표현식, 규칙 기반 인식, DICOM 이미지 삭제 및 맞춤형 파이프라인을 지원합니다. MIT 라이선스이며, OpenSSF 최선 실천 인증을 받았습니다."
+description: "Microsoft의 Presidio(9.4K+ GitHub 스타)는 텍스트, 이미지 및 구조화된 데이터 전반에서 민감한 데이터(PII)를 탐지, 삭제, 마스킹 및 익명화하기 위한 ..."
 date: "2026-06-22 00:00:00+08:00"
 lastmod: "2026-06-22 00:00:00+08:00"
 tech_stack: - Python 3.8+

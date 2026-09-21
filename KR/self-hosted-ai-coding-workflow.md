@@ -1,6 +1,6 @@
 ---
 title: "셀프호스트 AI 코딩 워크플로우: 2026년 $6/월 완전 스택"
-description: "7개 컴포넌트 셀프호스트 AI 코딩 스택 — $290/월 SaaS 구독(Cursor + Claude Code Pro + Copilot + Replit)을 $6/월 인프라로 대체. 실제 수치, 실제 config, 전체 단계별 조립 가이드."
+description: "7개 컴포넌트 셀프호스트 AI 코딩 스택 — $290/월 SaaS 구독(Cursor + Claude Code Pro + Copilot + Replit)을 $6/월 인프라로 대체. ..."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: - Docker

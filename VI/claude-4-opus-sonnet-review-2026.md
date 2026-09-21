@@ -1,6 +1,6 @@
 ---
 title: "Đánh Giá Claude 4 2026: Opus 4, Sonnet 4, Haiku 4 Test T...
-description: "Đánh giá toàn diện Claude 4 — Opus 4, Sonnet 4, Haiku 4: lập trình, suy luận, context, giá cả và so sánh với GPT-4o, Gemini 1.5 Pro. Cập nhật tháng 6/2026."
+description: "Đánh giá toàn diện Claude 4 — Opus 4, Sonnet 4, Haiku 4: lập trình, suy luận, context, giá cả và so ..."
 date: 2026-06-06 00:00:00+08:00
 lastmod: 2026-06-06 00:00:00+08:00draft: false
 tags: ["claude-4", "claude-opus-4", "claude-sonnet-4", "anthropic", "đánh-giá-llm", "ai-lập-trình", "mô-hình-suy-luận"]

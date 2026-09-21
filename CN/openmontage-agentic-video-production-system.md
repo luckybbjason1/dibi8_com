@@ -1,7 +1,7 @@
 ---
 slug: openmontage-agentic-video-production-system
 title: "OpenMontage Review: The World's First Open-Source Agenti..."
-description: "OpenMontage (8.3K+ GitHub stars) is the world's first open-source, agentic video production system. 12 production pipelines, 52 tools, 500+ agent skills. Turn any AI coding assistant into a full video studio — from animated explainers to cinematic trailers to real-footage documentaries. Zero API keys needed for basic output."
+description: "OpenMontage (8.3K+ GitHub stars) is the world's first open-source, agentic video production system. ..."
 tags: ["ai-agent", "ai-tools", "architecture", "automation", "llm", "open-source", "self-hosted", "system", "video-generation"]
 date: "2026-06-22 00:00:00+08:00"
 lastmod: "2026-06-22 00:00:00+08:00"

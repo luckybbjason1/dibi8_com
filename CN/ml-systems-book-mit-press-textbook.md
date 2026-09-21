@@ -1,6 +1,6 @@
 ---
 title: "ML Systems Book: MIT Press Textbook on Machine Learning ..."
-description: "The ML Systems Book is an MIT Press textbook covering distributed training, model serving, hardware acceleration, and ML infrastructure. Essential reading for ML engineers."
+description: "The ML Systems Book is an MIT Press textbook covering distributed training, model serving, hardware ..."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go

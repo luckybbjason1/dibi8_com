@@ -1,6 +1,6 @@
 ---
 title: "OpenRouter: The Unified LLM API Gateway Connecting 300+ ...
-description: "Complete guide to OpenRouter: the unified LLM API gateway for 300+ models from 60+ providers. Learn setup, integration, benchmarks, and production deployment in 5 minutes."
+description: "Complete guide to OpenRouter: the unified LLM API gateway for 300+ models from 60+ providers. Learn ..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

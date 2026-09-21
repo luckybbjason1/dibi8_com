@@ -1,18 +1,6 @@
 ---
 title: "VoiceCraft: 8.5K+ Stars — 零样本语音编辑对比 GPT-SoVITS、XTTS 2026"
-description: "VoiceCraft 是基于神经编解码器的零样本语音编辑和 TTS 模型，可与 GPT-SoVITS、Coqui TTS 和 RVC 配合使用。涵盖安装教程、基准测试、Docker 部署和对比表。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
-tech_stack: []
-application_domain: Ai Tools
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: "https://github.com/jasonppy/VoiceCraft"
+description: "VoiceCraft 是基于神经编解码器的零样本语音编辑和 TTS 模型，可与 GPT-SoVITS、Coqui TTS 和 RVC 配合使用。涵盖安装教程、基准测试、Docker 部署和对比表。"...."
 stars: 8500
 maintainer: jasonppy
 last_maintained: "2026-05-19"

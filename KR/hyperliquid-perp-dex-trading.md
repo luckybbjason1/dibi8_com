@@ -1,6 +1,6 @@
 ---
 title: "Hyperliquid 2026: 일일 거래량 $2B+ 처리하는 온체인 영구 DEX — 트레이딩 봇 통...
-description: "일일 거래량 $2B+, 100개 이상 거래 페어, 최대 50배 레버리지, HyperEVM 스마트 컨트랙트 및 봇 통합용 Python SDK를 갖춘 완전 온체인 영구 DEX Hyperliquid에 대한 종합 가이드."
+description: "일일 거래량 $2B+, 100개 이상 거래 페어, 최대 50배 레버리지, HyperEVM 스마트 컨트랙트 및 봇 통합용 Python SDK를 갖춘 완전 온체인 영구 DEX Hype..."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []

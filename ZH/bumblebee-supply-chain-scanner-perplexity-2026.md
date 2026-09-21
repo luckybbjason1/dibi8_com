@@ -1,11 +1,6 @@
 ---
 title: "Bumblebee 2026：Perplexity AI 开源内部供应链扫描器，覆盖 MCP 配置与编辑器扩展"
-description: "Bumblebee 是 Perplexity AI 的开源只读供应链扫描器，检查 npm、PyPI、Go 模块、MCP 配置、编辑器扩展和浏览器扩展中的已知受损包——不会执行您代码的任何一行。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-06-09 00:00:00+08:00
-lastmod: 2026-06-09 00:00:00+08:00
-tech_stack: [Go, Security, CLI]
-application_domain: Dev Utils
-source_version: "0.1.1"
+description: "Bumblebee 是 Perplexity AI 的开源只读供应链扫描器，检查 npm、PyPI、Go 模块、MCP 配置、编辑器扩展和浏览器扩展中的已知受损包——不会执行您代码的任何一行。". C..."
 licensing_model: Open Source
 license_type: Apache-2.0
 file_size: ''

@@ -1,6 +1,6 @@
 ---
 title: "WiFi-Forge — A Safe, Legal Sandbox for Learning WiFi Hac..."
-description: "WiFi Forge: safe WiFi hacking lab for security research. Learn penetration testing, wireless security and ethical hacking in a controlled environment."
+description: "WiFi Forge: safe WiFi hacking lab for security research. Learn penetration testing, wireless securit..."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Python

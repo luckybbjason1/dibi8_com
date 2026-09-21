@@ -1,6 +1,6 @@
 ---
 title: "AI-Trader：HKUDS のエージェントネイティブ取引プラットフォーム"
-description: "AI-Trader は HKUDS 由来のエージェントネイティブ取引プラットフォームで、Claude Code、Codex、Cursor、OpenClaw などの AI コーディングエージェントが自律的に取引を実行し、ポートフォリオを管理し、戦略を最適化できるようにします。"
+description: "AI-Trader は HKUDS 由来のエージェントネイティブ取引プラットフォームで、Claude Code、Codex、Cursor、OpenClaw などの AI コーディングエージェントが自律..."
 date: 2026-06-10
 lastmod: 2026-06-10
 slug: hkuds-ai-trader

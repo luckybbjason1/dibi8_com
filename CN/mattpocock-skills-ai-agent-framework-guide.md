@@ -1,6 +1,6 @@
 ---
 title: "Matt Pocock's Skills: The CLI Framework That Gives AI Ag..."
-description: "Learn how to use Matt Pocock's Skills framework to give AI coding agents like Claude Code, Cursor, and Gemini CLI real capabilities beyond code — databases, filesystem, CI/CD, and more. Step-by-step npx install guide, architecture breakdown, and real benchmarks."
+description: "Learn how to use Matt Pocock's Skills framework to give AI coding agents like Claude Code, Cursor, a..."
 date: 2026-06-10
 lastmod: 2026-06-10
 slug: "mattpocock-skills-ai-agent-framework-guide"

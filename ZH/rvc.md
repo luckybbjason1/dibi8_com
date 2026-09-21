@@ -1,6 +1,6 @@
 ---
 title: "RVC: 35K+ Stars 部署 AI 语音转换 — 2026 年 10 分钟训练指南"
-description: "RVC (Retrieval-based Voice Conversion) 是基于 VITS 的语音转换框架，兼容 GPT-SoVITS、Coqui TTS 和 demucs。本教程涵盖 Docker 部署、训练流程、API 集成和生产级加固。"
+description: "RVC (Retrieval-based Voice Conversion) 是基于 VITS 的语音转换框架，兼容 GPT-SoVITS、Coqui TTS 和 demucs。本教程涵盖 Docke..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

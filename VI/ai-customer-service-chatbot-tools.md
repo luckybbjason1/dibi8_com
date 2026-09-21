@@ -1,6 +1,6 @@
 ---
 title: "Các Công Cụ Chatbot Chăm Sóc Khách Hàng AI Tốt Nhất 2025...
-description: "So sánh 6 nền tảng chatbot AI hàng đầu 2025: Intercom Fin, Zendesk AI, Freshworks Freddy, ChatGPT Enterprise, Drift và Tidio Lyro. Tính năng, giá cả và lựa chọn theo loại hình kinh doanh."
+description: "So sánh 6 nền tảng chatbot AI hàng đầu 2025: Intercom Fin, Zendesk AI, Freshworks Freddy, ChatGPT En..."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []

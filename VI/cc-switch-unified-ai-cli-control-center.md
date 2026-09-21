@@ -1,6 +1,6 @@
 ---
 title: "cc-switch: Trung tâm CLI Desktop đa nền tảng thống nhất ...
-description: "cc-switch (95.900 sao GitHub) là công cụ desktop đa nền tảng thống nhất Claude Code, Codex, OpenCode, Gemini CLI, OpenClaw và Hermes Agent vào một trung tâm điều khiển. Một binary duy nhất, không phụ thuộc. Bao gồm hướng dẫn cài đặt, phân tích kiến trúc và benchmark thực tế."
+description: "cc-switch (95.900 sao GitHub) là công cụ desktop đa nền tảng thống nhất Claude Code, Codex, OpenCode..."
 date: 2026-06-08
 lastmod: 2026-06-08
 slug: 'cc-switch-unified-ai-cli-control-center'

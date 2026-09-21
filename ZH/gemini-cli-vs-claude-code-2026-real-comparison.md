@@ -1,6 +1,6 @@
 ---
 title: "Gemini CLI vs Claude Code 2026：5 个工作流的真实对比"
-description: "Google 发布了 Gemini CLI 来对标 Claude Code。在同样的 5 个工作流上实测两者：Gemini 胜在哪里（免费额度、1M 上下文），Claude Code 胜在哪里（工具调用可靠性、智能体循环），以及什么场景该用谁。"
+description: "Google 发布了 Gemini CLI 来对标 Claude Code。在同样的 5 个工作流上实测两者：Gemini 胜在哪里（免费额度、1M 上下文），Claude Code 胜在哪里（工具调..."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: ['Gemini CLI', 'Claude Code', Google, Anthropic]

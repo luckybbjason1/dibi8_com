@@ -1,12 +1,6 @@
 ---
 title: "챗봇을 넘어: 2026년 자율 AI 시스템의 4가지 기둥"
-description: "로컬 딥 리서치, InsForge, 에이전트 스킬스, 그리고 카프티 원칙이 심층 연구부터 프로덕션 배포까지 진정한 자율 AI 에이전트를 위한 완전한 스택을 어떻게 형성하는지 알아봅니다.". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-15T04:20:25+09:00
-lastmod: 2026-05-15T04:20:25+09:00
-tech_stack: - Docker
-  - Go
-  - JavaScript
-application_domain: "Llm Frameworks"
+description: "로컬 딥 리서치, InsForge, 에이전트 스킬스, 그리고 카프티 원칙이 심층 연구부터 프로덕션 배포까지 진정한 자율 AI 에이전트를 위한 완전한 스택을 어떻게 형성하는지 알아봅..."
 source_version: ""
 licensing_model: "Open Source"
 license_type: "MIT"

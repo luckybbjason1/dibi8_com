@@ -1,6 +1,6 @@
 ---
 title: "LangChain: 3 Ways to Deploy Production-Ready AI Agents w...
-description: "LangChain (LC) is a Python/JS framework for building LLM-powered applications with 700+ integrations. Learn how to install LangChain, deploy with Docker, integrate with OpenAI, Anthropic, Ollama, and scale to production with LangSmith observability, LangGraph agents, and Kubernetes."
+description: "LangChain (LC) is a Python/JS framework for building LLM-powered applications with 700+ integrations..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

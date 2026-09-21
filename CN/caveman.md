@@ -1,6 +1,6 @@
 ---
 title: "Cut Claude Code Token Usage by 65% With Caveman — Same Q..."
-description: "Learn how Caveman, a Claude Code skill with 57K GitHub stars, reduces token usage by 65% without losing quality. Includes installation, usage, real benchmarks, and code examples."
+description: "Learn how Caveman, a Claude Code skill with 57K GitHub stars, reduces token usage by 65% without los..."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Docker

@@ -1,12 +1,6 @@
 ---
 title: "Claude Code 토큰 비용 65% 절감: Caveman 스킬 완벽 가이드"
-description: "GitHub 57K Star Claude Code 스킬 Caveman으로 AI 코딩 비용 절반 이상 줄이는 방법. 설치, 사용법, 벤치마크, MCP 미들웨어까지 상세 정리.". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-15T04:20:25+09:00
-lastmod: 2026-05-15T04:20:25+09:00
-tech_stack: - Docker
-  - Go
-  - JavaScript
-application_domain: "Ai Tools"
+description: "GitHub 57K Star Claude Code 스킬 Caveman으로 AI 코딩 비용 절반 이상 줄이는 방법. 설치, 사용법, 벤치마크, MCP 미들웨어까지 상세 정리.". C..."
 source_version: ""
 licensing_model: "Open Source"
 license_type: "MIT"

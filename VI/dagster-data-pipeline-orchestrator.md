@@ -1,6 +1,6 @@
 ---
 title: "Dagster: Trình Điều Phối Pipeline Dữ Liệu Dựa Trên Asset...
-description: "Hướng dẫn production đầy đủ cho Dagster 1.13: điều phối dựa trên asset, lập lịch nhận thức dữ liệu, phân vùng, backfill và triển khai tự host với Docker Compose."
+description: "Hướng dẫn production đầy đủ cho Dagster 1.13: điều phối dựa trên asset, lập lịch nhận thức dữ liệu, ..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

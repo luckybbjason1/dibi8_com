@@ -1,12 +1,6 @@
 ---
 title: "Langflow：148k 星标的视觉化 LLM 工作流——2026 技术深度解析"
-description: "Langflow (LF) 简化了 AI 代理和工作流的构建。它集成了 LangChain、OpenAI、Hugging Face 和 Anthropic。本文涵盖了其设置、集成、基准测试和生产环境强化。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-23
-lastmod: 2026-05-23
-slug: 'langflow'
-category: 'llm-frameworks'
-tags: ["Langflow", "LLM 工作流", "可视化编程", "AI 代理", "LangChain", "流式编程", "提示工程", "部署", "低代码 AI"]
-github_repo: "https://github.com/langflow-ai/langflow"
+description: "Langflow (LF) 简化了 AI 代理和工作流的构建。它集成了 LangChain、OpenAI、Hugging Face 和 Anthropic。本文涵盖了其设置、集成、基准测试和生产环境强..."
 stars: 148710
 maintainer: 'langflow-ai'
 license: MIT

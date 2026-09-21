@@ -1,6 +1,6 @@
 ---
 title: "Đánh giá Supertonic: TTS đa ngôn ngữ chạy on-device 99M ...
-description: "Supertonic (9.9K+ stars trên GitHub) của Supertone Inc. là model text-to-speech đa ngôn ngữ siêu nhanh chạy local trên CPU qua ONNX Runtime — không cloud, không API, không cần GPU. 99M tham số, 31 ngôn ngữ bao gồm tiếng Hàn/Nhật/Việt/Trung, audio chất lượng studio 44.1kHz, 10 expression tag, runtime cho Python, Node.js, browser (WebGPU/WASM), iOS, Android, Rust, Flutter. Phân tích đầy đủ tính năng, hướng dẫn cài đặt, ví dụ code và so sánh bối cảnh TTS on-device 2026."
+description: "Supertonic (9.9K+ stars trên GitHub) của Supertone Inc. là model text-to-speech đa ngôn ngữ siêu nha..."
 date: 2026-05-23 00:00:00+08:00
 lastmod: 2026-05-23 00:00:00+08:00
 tech_stack: []

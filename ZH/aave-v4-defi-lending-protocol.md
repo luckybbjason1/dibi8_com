@@ -1,18 +1,6 @@
 ---
 title: "AAVE v4 2026：管理150亿美元以上存款的DeFi借贷协议 — 智能合约集成指南"
-description: "2026年AAVE v4 DeFi借贷协议集成完整指南。学习如何存入和借入30多种加密资产、使用闪电贷、实施隔离模式，以及在您的DApp中集成GHO稳定币。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-20 00:00:00+08:00
-lastmod: 2026-05-20 00:00:00+08:00
-tech_stack: []
-application_domain: Ai Trading
-source_version: ''
-licensing_model: Open Source
-license_type: AGPL-3.0
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: "https://github.com/aave/aave-v3-core"
+description: "2026年AAVE v4 DeFi借贷协议集成完整指南。学习如何存入和借入30多种加密资产、使用闪电贷、实施隔离模式，以及在您的DApp中集成GHO稳定币。". Comprehensive guide..."
 stars: 2100
 maintainer: aave
 last_maintained: "2026-05-20"

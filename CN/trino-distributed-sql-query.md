@@ -1,6 +1,6 @@
 ---
 title: "Trino 2026: The Distributed SQL Query Engine Analyzing P...
-description: "Set up Trino 464+ for petabyte-scale distributed SQL analytics. Step-by-step cluster deployment, 40+ connector configuration, performance tuning, and real-world benchmarks."
+description: "Set up Trino 464+ for petabyte-scale distributed SQL analytics. Step-by-step cluster deployment, 40+..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

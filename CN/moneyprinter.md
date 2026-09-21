@@ -1,6 +1,6 @@
 ---
 title: "MoneyPrinterTurbo: Generate HD Short Videos with AI in O...
-description: "MoneyPrinterTurbo (83,031 GitHub stars) generates HD short videos with one click using AI LLM. Script, voice, subtitles, background music — all automated. Includes setup tutorial, pipeline breakdown, and real video benchmarks."
+description: "MoneyPrinterTurbo (83,031 GitHub stars) generates HD short videos with one click using AI LLM. Scrip..."
 date: 2026-06-08
 lastmod: 2026-06-08
 slug: 'moneyprinter-turbo-ai-video-generation-one-command'

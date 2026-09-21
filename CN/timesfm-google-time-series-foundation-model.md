@@ -1,6 +1,6 @@
 ---
 title: "TimesFM 2.5: Google Revolutionary Time Series Foundation...
-description: "Complete guide to TimesFM 2.5 - Google Research decoder-only foundation model for time series forecasting. Covers installation, fine-tuning, benchmarks, and real-world applications."
+description: "Complete guide to TimesFM 2.5 - Google Research decoder-only foundation model for time series foreca..."
 tags: ["open-source"]
 date: 2026-06-19
 lastmod: 2026-06-19layout: article

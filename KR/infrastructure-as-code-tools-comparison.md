@@ -1,21 +1,6 @@
 ---
 title: "2025년 인프라스트럭처 as 코드 도구 비교: Terraform, Pulumi, AWS CDK, C...
-description: "IaC 도구를 비교합니다. Terraform, Pulumi, AWS CDK, Crossplane, Ansible의 특징과 장단점을 알아보고 프로젝트에 맞는 인프라 관리 도구를 선택하세요.". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
-tech_stack: []
-application_domain: Dev Utils
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: ''
-stars: 0
-maintainer: dibi8
-last_maintained: "2026-05-18"
+description: "IaC 도구를 비교합니다. Terraform, Pulumi, AWS CDK, Crossplane, Ansible의 특징과 장단점을 알아보고 프로젝트에 맞는 인프라 관리 도구를 선택..."
 featureImage: ''
 draft: false
 categories: ["dev-utils"]

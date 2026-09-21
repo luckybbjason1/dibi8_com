@@ -1,10 +1,6 @@
 ---
 title: "Bí Kíp Tối Ưu GEO: Ép ChatGPT Trích Dẫn Web Của Bạn Bằng...
-description: "Bí Kíp Tối Ưu GEO: Ép ChatGPT Trích Dẫn Web Của Bạn Bằng Toprank (Miễn Phí)". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-15T04:20:25+09:00
-lastmod: 2026-05-15T04:20:25+09:00
-tech_stack: - Go
-application_domain: "Llm Frameworks"
+description: "Bí Kíp Tối Ưu GEO: Ép ChatGPT Trích Dẫn Web Của Bạn Bằng Toprank (Miễn Phí)". Comprehensive guide co..."
 source_version: ""
 licensing_model: "Open Source"
 license_type: "MIT"

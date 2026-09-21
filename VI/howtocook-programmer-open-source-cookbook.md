@@ -1,6 +1,6 @@
 ---
 title: "HowToCook Hướng Dẫn Nấu Ăn Cho Lập Trình Viên: 297 Công ...
-description: "Khám phá HowToCook Hướng Dẫn Nấu Ăn Cho Lập Trình Viên — 297 công thức nấu ăn mã nguồn mở, nấu ăn chính xác như viết code. Từ trứng xào cà chua đến vịt quay Bắc Kinh, phân loại độ khó, các bước rõ ràng."
+description: "Khám phá HowToCook Hướng Dẫn Nấu Ăn Cho Lập Trình Viên — 297 công thức nấu ăn mã nguồn mở, nấu ăn ch..."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Docker

@@ -1,6 +1,6 @@
 ---
 title: "AgentMemory: The #1 Persistent Memory System for AI Codi...
-description: "AgentMemory (22,038 GitHub stars) provides persistent memory for AI coding agents based on real-world benchmarks. Remember past sessions, maintain context across days, learn from previous interactions. Works with Claude Code, Codex CLI, OpenCode, and more. Includes setup tutorial, architecture breakdown, and benchmarks."
+description: "AgentMemory (22,038 GitHub stars) provides persistent memory for AI coding agents based on real-worl..."
 date: 2026-06-08
 lastmod: 2026-06-08
 slug: 'agentmemory-persistent-memory-ai-coding-agents'

@@ -1,18 +1,6 @@
 ---
 title: "pgvector 2026：将 PostgreSQL 转变为高性能向量数据库——配置、调优与 RAG 集成指南"
-description: "pgvector 0.8.2 生产指南：HNSW/IVFFlat 索引、向量相似性搜索、性能调优，以及与 LangChain 和 LlamaIndex 的 RAG 集成。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
-tech_stack: []
-application_domain: Data Science
-source_version: ''
-licensing_model: Open Source
-license_type: PostgreSQL License
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: "pgvector/pgvector"
+description: "pgvector 0.8.2 生产指南：HNSW/IVFFlat 索引、向量相似性搜索、性能调优，以及与 LangChain 和 LlamaIndex 的 RAG 集成。". Comprehensiv..."
 stars: 15000
 maintainer: pgvector
 last_maintained: "2026-05-19"

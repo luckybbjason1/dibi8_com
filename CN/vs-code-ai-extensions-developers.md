@@ -1,6 +1,6 @@
 ---
 title: "Best VS Code AI Extensions for Developers in 2025: Boost...
-description: "Discover the best VS Code AI extensions for 2025. Compare GitHub Copilot, Codeium, Tabnine, Cody, and more with pricing, features, and privacy breakdowns."
+description: "Discover the best VS Code AI extensions for 2025. Compare GitHub Copilot, Codeium, Tabnine, Cody, an..."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []

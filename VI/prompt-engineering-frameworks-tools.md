@@ -1,6 +1,6 @@
 ---
 title: "Các Framework Và Công Cụ Kỹ Thuật Prompt Tốt Nhất 2025: ...
-description: "Khám phá các framework và công cụ quản lý prompt hàng đầu năm 2025. So sánh chi tiết LangSmith, PromptLayer, Weights & Biases Prompts, Pezzo, Prompt Flow và Helicone cho kỹ thuật prompt quy mô lớn."
+description: "Khám phá các framework và công cụ quản lý prompt hàng đầu năm 2025. So sánh chi tiết LangSmith, Prom..."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []

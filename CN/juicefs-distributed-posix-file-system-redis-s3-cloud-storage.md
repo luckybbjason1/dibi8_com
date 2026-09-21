@@ -1,6 +1,6 @@
 ---
 title: "JuiceFS (14K⭐): The Distributed POSIX File System That T...
-description: "JuiceFS (13,900+ stars) transforms any S3-compatible object storage into a POSIX-compliant distributed file system. Powered by Redis for metadata, it delivers cloud-native performance with local filesystem semantics — perfect for AI training, big data, and cloud workloads."
+description: "JuiceFS (13,900+ stars) transforms any S3-compatible object storage into a POSIX-compliant distribut..."
 tags: ["architecture", "distributed", "filesystem", "knowledge-base", "llm", "local", "offline", "open-source", "privacy", "rag", "retrieval", "storage", "system"]
 date: 2026-06-15
 lastmod: 2026-06-15

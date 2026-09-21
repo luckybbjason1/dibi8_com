@@ -1,6 +1,6 @@
 ---
 title: "12-Factor Agents: A Principles-Based Framework for Build..."
-description: "The 12-Factor Agents framework adapts the battle-tested 12-Factor App methodology for LLM-powered applications, providing a principled approach to building reliable, scalable, and observable AI agents."
+description: "The 12-Factor Agents framework adapts the battle-tested 12-Factor App methodology for LLM-powered ap..."
 date: 2026-06-10
 lastmod: 2026-06-10
 slug: 12-factor-agents

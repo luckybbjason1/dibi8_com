@@ -1,6 +1,6 @@
 ---
 title: "MCP Server 레지스트리 가이드 2026: 19,700+ 서버, 7개 공식 픽, 60초 안에 맞...
-description: "2026년 MCP server 발견 완전 가이드. Anthropic 7개 reference 서버, 87.3k star awesome list, Smithery vs mcp.so 레지스트리 비교, 카테고리별 top 서버, 그리고 선택 결정 트리 — MCP가 뭔지가 아니라 당신의 MCP host에 꽂을 수 있는 게 뭔지에 대한 가이드."
+description: "2026년 MCP server 발견 완전 가이드. Anthropic 7개 reference 서버, 87.3k star awesome list, Smithery vs mcp.so 레..."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: - TypeScript

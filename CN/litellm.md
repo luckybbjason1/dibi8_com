@@ -1,6 +1,6 @@
 ---
 title: "LiteLLM: 22,500 Stars — Deploy One API for 100+ LLMs wit...
-description: "LiteLLM (litellm) is an open-source AI gateway providing a single API for 100+ LLMs. Compatible with OpenAI, Anthropic, Ollama, Cohere, Gemini, Bedrock. Covers Docker deployment, virtual keys, load balancing, caching, and production hardening."
+description: "LiteLLM (litellm) is an open-source AI gateway providing a single API for 100+ LLMs. Compatible with..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

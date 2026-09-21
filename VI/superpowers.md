@@ -1,6 +1,6 @@
 ---
 title: "Superpowers: Hơn 200000 Stars -- Khung & Phương pháp luậ...
-description: "Khám phá Superpowers, framework kỹ năng tác nhân với hơn 200k stars. Thiết lập trong vài phút, có benchmark và sẵn sàng cho sản xuất. So sánh với LangChain, LlamaIndex và AutoGen."
+description: "Khám phá Superpowers, framework kỹ năng tác nhân với hơn 200k stars. Thiết lập trong vài phút, có be..."
 date: 2026-05-23
 lastmod: 2026-05-23
 slug: 'superpowers'

@@ -1,6 +1,6 @@
 ---
 title: "TurboVec：Rust 驱动的向量索引比 FAISS 快 10 倍 — AI 搜索指南 2026"
-description: "TurboVec (RyanCodrai/turbovec) 是一个基于 TurboQuant 的向量索引，用 Rust 编写并提供 Python 绑定。可无缝替换 LangChain、LlamaIndex、Haystack 和 Agno。通过量化技术实现 10 倍加速。涵盖 Python 集成、基准测试和生产部署。"
+description: "TurboVec (RyanCodrai/turbovec) 是一个基于 TurboQuant 的向量索引，用 Rust 编写并提供 Python 绑定。可无缝替换 LangChain、LlamaIn..."
 date: 2026-06-09
 lastmod: 2026-06-09
 slug: 'turbovec-rust-vector-index-2026'

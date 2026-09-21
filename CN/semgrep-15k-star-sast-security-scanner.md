@@ -1,6 +1,6 @@
 ---
 title: "Semgrep: The 15K-Star SAST Tool That Finds 500+ Vulnerab...
-description: "Semgrep is an open-source static analysis tool with 15K+ GitHub stars that finds 500+ vulnerability patterns in Python, JavaScript, TypeScript, Go, Java, and more. Fast, lightweight, CI/CD integration. Includes setup guide, benchmarks, and production deployment."
+description: "Semgrep is an open-source static analysis tool with 15K+ GitHub stars that finds 500+ vulnerability ..."
 tags: ["open-source", "sast", "scanner", "security"]
 date: 2026-06-10
 lastmod: 2026-06-10

@@ -1,18 +1,6 @@
 ---
 title: "Appwrite 2026: Auth, DB, Storage를 갖춘 오픈소스 Firebase 대안 — ...
-description: "Appwrite 1.6 완벽 가이드 — 인증, 데이터베이스, 스토리지, 클라우드 함수, 실시간 구독 기능을 갖춘 셀프호스팅 오픈소스 백엔드. Docker 설치, SDK 통합, 벤치마크, 프로덕션 하드닝.". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
-tech_stack: []
-application_domain: Dev Utils
-source_version: ''
-licensing_model: Open Source
-license_type: BSD-3-Clause
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: "appwrite/appwrite"
+description: "Appwrite 1.6 완벽 가이드 — 인증, 데이터베이스, 스토리지, 클라우드 함수, 실시간 구독 기능을 갖춘 셀프호스팅 오픈소스 백엔드. Docker 설치, SDK 통합, 벤치..."
 stars: 47200
 maintainer: appwrite
 last_maintained: "2026-05-19"

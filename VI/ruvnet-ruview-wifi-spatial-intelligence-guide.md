@@ -1,6 +1,6 @@
 ---
 title: "RuView: Trí tuệ không gian WiFi cho Smart Buildings — Py...
-description: "Tìm hiểu cách sử dụng RuView, nền tảng trí tuệ không gian WiFi dựa trên Python theo dõi vị trí thời gian thực, lập bản đồ layout tòa nhà và tối ưu hóa WiFi mesh networks. Hướng dẫn cài đặt pip từng bước, theo dõi thời gian thực và cấu hình mesh network."
+description: "Tìm hiểu cách sử dụng RuView, nền tảng trí tuệ không gian WiFi dựa trên Python theo dõi vị trí thời ..."
 date: 2026-06-10
 lastmod: 2026-06-10
 slug: "ruvnet-ruview-wifi-spatial-intelligence-guide"

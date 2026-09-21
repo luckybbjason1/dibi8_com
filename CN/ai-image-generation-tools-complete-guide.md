@@ -1,6 +1,6 @@
 ---
 title: "AI Image Generation Tools: Complete Guide to Midjourney,...
-description: "Complete guide to AI image generation tools in 2025. Compare Midjourney v7, DALL-E 3, Stable Diffusion 3.5, Adobe Firefly, FLUX, and Leonardo.ai with features and pricing."
+description: "Complete guide to AI image generation tools in 2025. Compare Midjourney v7, DALL-E 3, Stable Diffusi..."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []

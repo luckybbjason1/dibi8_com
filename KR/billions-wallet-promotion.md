@@ -1,10 +1,6 @@
 ---
 title: "Billions 지갑 발견 - 귀하의 궁극적인 암호화폐 동반자"
-description: "Billions Wallet 프로모션: 고급 기능을 갖춘 안전한 암호화폐 지갑. 비트코인, 이더리움 및 100개 이상의 암호화폐를 안전하게 관리하세요.". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-15T04:20:25+09:00
-lastmod: 2026-05-15T04:20:25+09:00
-tech_stack: - AI
-application_domain: "Data Science"
+description: "Billions Wallet 프로모션: 고급 기능을 갖춘 안전한 암호화폐 지갑. 비트코인, 이더리움 및 100개 이상의 암호화폐를 안전하게 관리하세요.". Comprehensive..."
 source_version: ""
 licensing_model: "Open Source"
 license_type: "MIT"

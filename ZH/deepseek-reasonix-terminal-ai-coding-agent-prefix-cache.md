@@ -1,6 +1,6 @@
 ---
 title: "DeepSeek-Reasonix：为 DeepSeek 前缀缓存稳定性设计的终端 AI 编码代理"
-description: "一个 DeepSeek 原生的 AI 编程代理，具有工程化的前缀缓存稳定性 —— 缓存命中率 99.82%，重度使用约 $12/天，而无缓存约 $61/天。MIT 许可。使用 DeepSeek 模型的 Claude Code 替代方案。"
+description: "一个 DeepSeek 原生的 AI 编程代理，具有工程化的前缀缓存稳定性 —— 缓存命中率 99.82%，重度使用约 $12/天，而无缓存约 $61/天。MIT 许可。使用 DeepSeek 模型的..."
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false
@@ -17,7 +17,7 @@ sources: - name: GitHub
     url: 'https://discord.gg/XF78rEME2D'
 ---
 title: "DeepSeek-Reasonix: Terminal AI Coding Agent Engineered for DeepSeek Prefix-Cache Stability'
-description: "A DeepSeek-native AI coding agent with engineered prefix-cache stability — 99.82% cache hit rate, ~$12/day for heavy usage vs ~$61 without cache. MIT licensed. Claude Code alternative using DeepSeek models."
+description: "A DeepSeek-native AI coding agent with engineered prefix-cache stability — 99.82% cache hit rate, ~$..."
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false

@@ -1,6 +1,6 @@
 ---
 title: "VoiceBox: Studio Giọng Nói AI Mã Nguồn Mở Để Nhân Bản, C...
-description: "Một studio giọng nói AI mã nguồn mở toàndiện cho phép bạn nhân bản mọi giọng, tạo giọng nói và chép vào bất kỳ ứng dụng nào. 33K sao. Chạy cục bộ trên máy của bạn với hỗ trợ CUDA hoặc Apple Silicon."
+description: "Một studio giọng nói AI mã nguồn mở toàndiện cho phép bạn nhân bản mọi giọng, tạo giọng nói và chép ..."
 date: 2026-06-25
 lastmod: 2026-06-25
 draft: false

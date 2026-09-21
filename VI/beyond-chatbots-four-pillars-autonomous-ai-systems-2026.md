@@ -1,6 +1,6 @@
 ---
 title: "Vượt Qua Chatbot: 4 Trụ Cột Của Hệ Thống AI Tự Động Năm ...
-description: "Cách Local Deep Research, InsForge, Agent Skills và Nguyên tắc Karpathy tạo thành stack hoàn chỉnh cho AI agent tự động thực sự — từ nghiên cứu sâu đến triển khai sản xuất."
+description: "Cách Local Deep Research, InsForge, Agent Skills và Nguyên tắc Karpathy tạo thành stack hoàn chỉnh c..."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Docker

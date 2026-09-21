@@ -1,18 +1,6 @@
 ---
 title: "Claude Code Skill 编写指南：如何把流程打包成 Claude 只在相关时才加载的能力（2026）"
-description: "一份完整的 Claude Code skill 编写指南——SKILL.md 结构、决定加载时机的触发 description、渐进式披露，以及何时该用 skill 而非 CLAUDE.md 或子代理。附实战范例与应避免的坑。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-28 00:00:00+08:00
-lastmod: 2026-05-29 00:00:00+08:00
-tech_stack: ['Claude Code', 'Agent SDK', Markdown, YAML]
-application_domain: LLM Frameworks
-source_version: ''
-licensing_model: Commercial (Anthropic)
-license_type: Proprietary
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: "https://github.com/anthropics/claude-code"
+description: "一份完整的 Claude Code skill 编写指南——SKILL.md 结构、决定加载时机的触发 description、渐进式披露，以及何时该用 skill 而非 CLAUDE.md 或子代理..."
 stars: 0
 maintainer: Anthropic
 last_maintained: "2026-05-28"

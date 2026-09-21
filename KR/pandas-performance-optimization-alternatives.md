@@ -1,21 +1,6 @@
 ---
 title: "Pandas 성능 최적화 가이드: 2024년 Polars 또는 DuckDB로 전환해야 할 시점과 방법"
-description: "Pandas 성능 한계를 분석하고 최적화 기법을 소개합니다. Polars와 DuckDB의 특징, 벤치마크 비교, 전환 시점과 마이그레이션 전략을 상세히 설명합니다.". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
-tech_stack: []
-application_domain: Data Science
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: ''
-stars: 0
-maintainer: 'dibi8'
-last_maintained: "2026-05-18"
+description: "Pandas 성능 한계를 분석하고 최적화 기법을 소개합니다. Polars와 DuckDB의 특징, 벤치마크 비교, 전환 시점과 마이그레이션 전략을 상세히 설명합니다.". Compre..."
 featureImage: ''
 draft: false
 aliases:

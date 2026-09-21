@@ -1,6 +1,6 @@
 ---
 title: "Claude Agent SDK vs OpenAI Agents SDK in 2026: Which to ...
-description: "Side-by-side breakdown of the two leading agent SDKs — architecture (hooks+subagents vs handoffs+guardrails), built-in tools, OS access, voice, lock-in, and when to pick each. Updated 2026."
+description: "Side-by-side breakdown of the two leading agent SDKs — architecture (hooks+subagents vs handoffs+gua..."
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00draft: false
 tags: ["claude-agent-sdk", "openai-agents-sdk", "ai-agents", "comparison", "agent-sdk"]

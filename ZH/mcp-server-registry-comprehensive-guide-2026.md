@@ -1,6 +1,6 @@
 ---
 title: "MCP Server 全目录指南 2026：19,700+ 服务器、7 个官方款、以及 60 秒挑对那一个"
-description: "2026 MCP server 发现完全指南。Anthropic 7 个 reference 服务器、87.3k star 的 awesome list、Smithery vs mcp.so 两大注册中心对比、各类别 top 服务器、以及挑选决策树 —— 不讲 MCP 是什么，只讲市面上有什么可以插进你的 MCP host。"
+description: "2026 MCP server 发现完全指南。Anthropic 7 个 reference 服务器、87.3k star 的 awesome list、Smithery vs mcp.so 两大注册..."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: - TypeScript

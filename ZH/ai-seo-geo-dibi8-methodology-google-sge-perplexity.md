@@ -1,12 +1,6 @@
 ---
 title: "AI SEO 与 GEO：dibi8 如何让 Google SGE、Perplexity 和 ChatGPT 引...
-description: "我们不再为点击率写作，我们为引用率写作。72 篇文章、4 种语言之后，这是 dibi8 总结出的 AI SEO 五层方法论。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-06-15
-lastmod: 2026-06-15
-slug: ai-seo-geo-dibi8-methodology-google-sge-perplexity
-category: dev-utils
-tags: ["AI SEO", "GEO", "AI 搜索", "Google SGE", "结构化数据", "schema.org", "多语言", "E-E-A-T", "Perplexity", "ChatGPT"]
-github_repo: "https://github.com/dibi8-com/dibi8"
+description: "我们不再为点击率写作，我们为引用率写作。72 篇文章、4 种语言之后，这是 dibi8 总结出的 AI SEO 五层方法论。". Comprehensive guide covering featur..."
 license: 'MIT'
 featureImage: /images/articles/ai-seo
 ---

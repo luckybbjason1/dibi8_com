@@ -1,6 +1,6 @@
 ---
 title: "Promptfoo: Test, Evaluate & Red-Team Your LLM Prompts — ...
-description: "Promptfoo is an open-source CLI and library for evaluating and red-teaming LLM apps. Compare GPT, Claude, Gemini, and DeepSeek with simple declarative configs that plug into your CLI and CI/CD. This 2026 guide covers install, promptfooconfig.yaml, assertions, and red teaming."
+description: "Promptfoo is an open-source CLI and library for evaluating and red-teaming LLM apps. Compare GPT, Cl..."
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
 tech_stack: []

@@ -1,6 +1,6 @@
 ---
 title: "Weaviate 2026: The AI-Native Vector Search Engine Handli...
-description: "Enterprise guide to deploying Weaviate vector search at scale. Covers Kubernetes deployment, hybrid search, multi-modal support, RBAC, monitoring, and benchmarks for 10B+ object collections."
+description: "Enterprise guide to deploying Weaviate vector search at scale. Covers Kubernetes deployment, hybrid ..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

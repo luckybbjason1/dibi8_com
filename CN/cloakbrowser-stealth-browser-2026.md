@@ -1,6 +1,6 @@
 ---
 title: "CloakBrowser Review 2026: The Open-Source Stealth Browse...
-description: "CloakBrowser is the fastest-growing GitHub repo of May 2026: 49 C++ source-level patches, reCAPTCHA v3 score 0.9, passes 30+ detection services. Free, open-source replacement for $299/month anti-detect browsers."
+description: "CloakBrowser is the fastest-growing GitHub repo of May 2026: 49 C++ source-level patches, reCAPTCHA ..."
 date: 2026-05-14 00:00:00+08:00
 lastmod: 2026-05-14 00:00:00+08:00
 tech_stack: []

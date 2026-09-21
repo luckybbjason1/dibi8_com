@@ -1,11 +1,6 @@
 ---
 title: "Vercel v0의 완벽한 오픈소스 대체재: Open Codesign으로 로컬에서 UI 찍어내기"
-description: "Vercel v0의 완벽한 오픈소스 대체재: Open Codesign으로 로컬에서 UI 찍어내기". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-15T04:20:25+09:00
-lastmod: 2026-05-15T04:20:25+09:00
-tech_stack: - JavaScript
-  - TypeScript
-application_domain: "Llm Frameworks"
+description: "Vercel v0의 완벽한 오픈소스 대체재: Open Codesign으로 로컬에서 UI 찍어내기". Comprehensive guide covering features, prici..."
 source_version: ""
 licensing_model: "Open Source"
 license_type: "MIT"

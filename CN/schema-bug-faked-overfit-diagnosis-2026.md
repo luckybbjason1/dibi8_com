@@ -1,6 +1,6 @@
 ---
 title: "Schema Bug Faked My Overfit Diagnosis: The Backtest Post...
-description: "Ran 7 quant experiments, found "textbook overfit" (Train PF 2.08 → OOS 0.94, ratio 2.21). Then discovered the diagnosis itself was wrong — silent schema field mismatch made the optimizer run with default 10x leverage instead of the evolved 2x. The corrected version is healthy (ratio 1.01). The meta-lesson is uglier than the original."
+description: "Ran 7 quant experiments, found "textbook overfit" (Train PF 2.08 → OOS 0.94, ratio 2.21). Then disco..."
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00
 tech_stack: [Python, pandas, numpy, vectorbt, backtrader, pydantic]

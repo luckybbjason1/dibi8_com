@@ -1,6 +1,6 @@
 ---
 title: "bat: Bản sao cat với Syntax Highlighting 58K+ Stars — So...
-description: "bat là bản sao cat(1) với syntax highlighting và tích hợp Git. Tương thích với Rust, Git, Homebrew, Cargo. Hướng dẫn cài đặt, benchmark hiệu năng, file cấu hình và so sánh với cat, less, ccat."
+description: "bat là bản sao cat(1) với syntax highlighting và tích hợp Git. Tương thích với Rust, Git, Homebrew, ..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

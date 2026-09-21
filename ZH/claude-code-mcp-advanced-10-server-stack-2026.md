@@ -1,11 +1,6 @@
 ---
 title: "Claude Code MCP 进阶 2026：10 服务器生产级技术栈"
-description: "在使用 Claude Code 搭配各种 MCP 服务器组合后，最终敲定了一套 10 服务器的生产级技术栈，在能力、安全性与启动时间之间取得平衡。本文逐一说明每个服务器、为何入选、它能做什么，以及如何针对个人 vs 团队场景进行配置。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['Claude Code', MCP, TypeScript, Python, Docker]
-application_domain: LLM 框架
-source_version: "MCP 2025-06 / Claude Code 1.0"
+description: "在使用 Claude Code 搭配各种 MCP 服务器组合后，最终敲定了一套 10 服务器的生产级技术栈，在能力、安全性与启动时间之间取得平衡。本文逐一说明每个服务器、为何入选、它能做什么，以及如何..."
 licensing_model: 混合
 license_type: 多种
 github_repo: "https://github.com/modelcontextprotocol/servers"

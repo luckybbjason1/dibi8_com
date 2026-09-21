@@ -1,6 +1,6 @@
 ---
 title: "Git Workflow & Team Collaboration Tools: A Developer'"
-description: "Master Git workflow best practices for teams. Compare GitHub Flow, GitFlow, and trunk-based development with code review tools and collaboration platforms."
+description: "Master Git workflow best practices for teams. Compare GitHub Flow, GitFlow, and trunk-based developm..."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []

@@ -1,6 +1,6 @@
 ---
 title: "Cursor vs Windsurf in 2026: Which AI IDE Wins?"
-description: "Side-by-side breakdown of Cursor and Windsurf (Codeium) — Composer vs Cascade, pricing, performance, migration tips. Updated 2026."
+description: "Side-by-side breakdown of Cursor and Windsurf (Codeium) — Composer vs Cascade, pricing, performance,..."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
 tags: ["cursor", "windsurf", "codeium", "ai-coding", "comparison", "dev-tools"]

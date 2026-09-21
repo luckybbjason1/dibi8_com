@@ -1,6 +1,6 @@
 ---
 title: "Best Open-Source LLMs 2025: Llama, Mistral, Qwen, DeepSe...
-description: "Discover the best open-source LLMs of 2025. Compare Llama 3, Mistral, Qwen, DeepSeek, Gemma, and Phi with benchmarks, hardware requirements, and use cases."
+description: "Discover the best open-source LLMs of 2025. Compare Llama 3, Mistral, Qwen, DeepSeek, Gemma, and Phi..."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []

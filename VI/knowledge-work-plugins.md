@@ -1,6 +1,6 @@
 ---
 title: "Plugin Làm việc Tri thức: Hệ sinh thái Plugin của Anthro...
-description: "Knowledge Work Plugins (20.728 sao) của Anthropic mở rộng Claude với các công cụ mạnh mẽ cho chỉnh sửa tài liệu, phân tích mã, duyệt web và thao tác tệp. Xây dựng plugin tùy chỉnh cho quy trình làm việc của bạn."
+description: "Knowledge Work Plugins (20.728 sao) của Anthropic mở rộng Claude với các công cụ mạnh mẽ cho chỉnh s..."
 date: 2026-06-15
 lastmod: 2026-06-15
 slug: knowledge-work-plugins

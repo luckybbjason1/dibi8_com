@@ -1,6 +1,6 @@
 ---
 title: "VectorBT: The Lightning-Fast Python Backtesting Library ...
-description: "Master VectorBT for quantitative backtesting in Python. Build, test, and optimize trading strategies with vectorized Numba-accelerated simulations. Complete 2026 guide with code examples."
+description: "Master VectorBT for quantitative backtesting in Python. Build, test, and optimize trading strategies..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

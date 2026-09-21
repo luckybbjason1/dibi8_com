@@ -1,6 +1,6 @@
 ---
 title: "Terax AI: Trình Giả Lập Terminal AI Nhẹ Hiểu Bạn"
-description: "Khám phá Terax AI, trình giả lập terminal AI native 7 MB được xây dựng trên Tauri 2 + Rust. Tính năng chuyển đổi ngôn ngữ tự nhiên thành lệnh Shell, hỗ trợ AI nội tuyến, tự động hoàn thành thông minh, hỗ trợ bash, zsh, fish và PowerShell."
+description: "Khám phá Terax AI, trình giả lập terminal AI native 7 MB được xây dựng trên Tauri 2 + Rust. Tính năn..."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Docker

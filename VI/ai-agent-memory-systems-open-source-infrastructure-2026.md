@@ -1,6 +1,6 @@
 ---
 title: "Hệ Thống Bộ Nhớ AI Agent 2026: Hướng Dẫn Thực Chiến Mem0...
-description: "AI agent quên sạch mọi thứ sau mỗi phiên làm việc? Đó không phải lỗi — đó là thiếu sót kiến trúc. Bài viết so sánh chi tiết 4 hệ thống bộ nhớ mã nguồn mở hàng đầu 2026, giúp developer Việt chọn giải pháp tối ưu chi phí token và dễ triển khai nhất."
+description: "AI agent quên sạch mọi thứ sau mỗi phiên làm việc? Đó không phải lỗi — đó là thiếu sót kiến trúc. Bà..."
 keywords: hệ thống bộ nhớ AI agent, Mem0 mã nguồn mở, agentmemory MCP, bộ nhớ lâu dài cho AI agent, công cụ AI agent 2026, tối ưu token AI agent, so sánh bộ nhớ agent, triển khai Mem0, Hindsight memory framework, MemPalace open source
 author: Kimi Claw
 date: 2026-05-20

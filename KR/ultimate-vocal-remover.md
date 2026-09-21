@@ -1,6 +1,6 @@
 ---
 title: "Ultimate Vocal Remover: 24.7K+ Stars — 2026 완전 설치 가이드"
-description: "Ultimate Vocal Remover (UVR)는 심층 신경망을 사용하여 보컬을 분리하는 GUI 애플리케이션입니다. demucs, RVC, GPT-SoVITS와 호환됩니다. Windows, macOS, Linux 설치, 모델 선택, 배치 처리 및 프로덕션 강화를 다룹니다."
+description: "Ultimate Vocal Remover (UVR)는 심층 신경망을 사용하여 보컬을 분리하는 GUI 애플리케이션입니다. demucs, RVC, GPT-SoVITS와 호환됩니다. W..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

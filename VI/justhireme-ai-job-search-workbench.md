@@ -1,6 +1,6 @@
 ---
 title: "JustHireMe：AI Giúp Bạn Tự Động Tìm Việc, Từ Gửi Hồ Sơ Đế...
-description: "Đánh giá JustHireMe - bàn làm việc thông minh AI mã nguồn mở cho việc tìm kiếm việc làm. Hệ thống tình báo việc làm ưu tiên cục bộ, tự động thu thập vị trí, đánh giá mức độ phù hợp AI, tạo hồ sơ và thư xin việc tùy chỉnh."
+description: "Đánh giá JustHireMe - bàn làm việc thông minh AI mã nguồn mở cho việc tìm kiếm việc làm. Hệ thống tì..."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - JavaScript

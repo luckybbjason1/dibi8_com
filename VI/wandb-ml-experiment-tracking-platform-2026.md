@@ -1,6 +1,6 @@
 ---
 title: "Weights & Biases (W&B): Theo Dõi Mọi Thực Nghiệm Như Chu...
-description: "Weights & Biases (wandb/wandb) là nền tảng nhà phát triển AI để theo dõi, so sánh và triển khai các thực nghiệm ML. Hỗ trợ PyTorch, TensorFlow, Hugging Face và tinh chỉnh LLM. Bao gồm theo dõi thực nghiệm, versioning tập dữ liệu, model registry và giám sát sản xuất."
+description: "Weights & Biases (wandb/wandb) là nền tảng nhà phát triển AI để theo dõi, so sánh và triển khai các ..."
 date: 2026-06-09
 lastmod: 2026-06-09
 slug: 'wandb-ml-experiment-tracking-platform-2026'

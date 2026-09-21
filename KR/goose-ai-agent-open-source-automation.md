@@ -1,6 +1,6 @@
 ---
 title: "Goose AI Agent：44K⭐오픈소스 AI 에이전트, 코딩부터 자동화까지 전부 처리"
-description: "Goose는 Linux Foundation이 지원하는 오픈소스 AI Agent로, 15개 이상의 LLM 제공업체와 70개 이상의 MCP 확장 기능을 지원합니다. 데스크톱 앱 + CLI + API를 Rust로 구축하여 성능이 뛰어납니다."
+description: "Goose는 Linux Foundation이 지원하는 오픈소스 AI Agent로, 15개 이상의 LLM 제공업체와 70개 이상의 MCP 확장 기능을 지원합니다. 데스크톱 앱 + C..."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go

@@ -1,6 +1,6 @@
 ---
 title: "VS Code Copilot vs Cursor in 2026: Which AI Coding Tool ...
-description: "Side-by-side breakdown of GitHub Copilot in VS Code (Microsoft) and Cursor — pricing $10 vs $20/mo, autocomplete vs agentic, enterprise integration. Updated 2026."
+description: "Side-by-side breakdown of GitHub Copilot in VS Code (Microsoft) and Cursor — pricing $10 vs $20/mo, ..."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
 tags: ["vscode", "copilot", "cursor", "ai-coding", "comparison", "dev-tools", "github"]

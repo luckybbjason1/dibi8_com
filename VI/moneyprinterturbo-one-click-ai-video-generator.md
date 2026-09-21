@@ -1,6 +1,6 @@
 ---
 title: "MoneyPrinterTurbo: Trình Tạo Video AI Chỉ Với Một Nhấp C...
-description: "Đưa cho MoneyPrinterTurbo một chủ đề video hoặc từ khóa và nó tự động tạo kịch bản, video có sẵn, phụ đề, nhạc nền và video ngắn HD. Hỗ trợ TikTok, YouTube Shorts, Instagram Reels. Hơn 90.000 sao trên GitHub."
+description: "Đưa cho MoneyPrinterTurbo một chủ đề video hoặc từ khóa và nó tự động tạo kịch bản, video có sẵn, ph..."
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false
@@ -46,7 +46,7 @@ sources: - name: GitHub
 
 
 title: 'MoneyPrinterTurbo: One-Click AI Video Generator with 90K+ Stars'
-description: "Give MoneyPrinterTurbo a video topic or keyword and it auto-generates scripts, stock footage, subtitles, background music, and HD short videos. Supports TikTok, YouTube Shorts, Instagram Reels. 90K+ GitHub stars."
+description: "Give MoneyPrinterTurbo a video topic or keyword and it auto-generates scripts, stock footage, subtit..."
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false

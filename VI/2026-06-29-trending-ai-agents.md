@@ -1,6 +1,6 @@
 ---
 title: "Tuần Này trong Các Tác Nhân AI Mã Nguồn Mở — Các Repo Gi...
-description: "Tổng hợp hàng tuần được chỉnh sửa thủ công về các dự án AI agent, LLM và MCP mã nguồn mở đang thịnh hành trên GitHub — dữ liệu được tự động thu thập bởi Dibi8 Tribe Intel, phân tích bởi đội ngũ biên tập Dibi8."
+description: "Tổng hợp hàng tuần được chỉnh sửa thủ công về các dự án AI agent, LLM và MCP mã nguồn mở đang thịnh ..."
 tags: ["ai-agent", "automation", "ci-cd", "github", "open-source", "self-hosted", "trending", "weekly"]
 date: 2026-06-29 00:00:00+09:00
 lastmod: 2026-06-29 00:00:00+09:00categories: ["llm-frameworks"]

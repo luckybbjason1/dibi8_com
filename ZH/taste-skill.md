@@ -1,6 +1,6 @@
 ---
 title: "品味技能：让 AI 告别平庸输出——Agent 技能框架 2026"
-description: "Taste Skill 是一个可移植的 Agent 技能框架，通过更强的布局、排版、动效和间距设计，全面提升 AI 生成的前端界面。兼容 Codex、Cursor、Claude Code 和 ChatGPT Images。"
+description: "Taste Skill 是一个可移植的 Agent 技能框架，通过更强的布局、排版、动效和间距设计，全面提升 AI 生成的前端界面。兼容 Codex、Cursor、Claude Code 和 Chat..."
 date: 2026-06-15
 lastmod: 2026-06-15
 slug: taste-skill

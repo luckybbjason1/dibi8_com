@@ -1,6 +1,6 @@
 ---
 title: "Công Cụ RAG Hàng Đầu Cho Kho Tri Thức AI"
-description: "Những công cụ RAG (Retrieval-Augmented Generation) tốt nhất để xây dựng kho tri thức AI — từ LangChain đến LlamaIndex, ChromaDB đến Weaviate."
+description: "Những công cụ RAG (Retrieval-Augmented Generation) tốt nhất để xây dựng kho tri thức AI — từ LangCha..."
 layout: simple
 date: 2026-06-28 00:00:00+08:00
 lastmod: 2026-06-28 00:00:00+08:00

@@ -1,6 +1,6 @@
 ---
 title: "Hiểu Mọi Thứ: Đồ Thị Kiến Thức Tương Tác cho Các Cơ Sở M...
-description: "Understand-Anything biến bất kỳ cơ sở mã nào thành đồ thị tri thức tương tác mà bạn có thể khám phá, tìm kiếm và truy vấn. Hoạt động với Claude Code, Codex, Cursor, Copilot, Gemini CLI. 60.339 sao trên GitHub."
+description: "Understand-Anything biến bất kỳ cơ sở mã nào thành đồ thị tri thức tương tác mà bạn có thể khám phá,..."
 date: 2026-06-17
 lastmod: 2026-06-17
 slug: understand-anything-interactive-knowledge-graphs-codebases

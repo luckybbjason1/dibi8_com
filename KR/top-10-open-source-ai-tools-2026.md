@@ -1,22 +1,6 @@
 ---
 title: "2026년 대세: 개발자가 꼭 알아야 할 무료 오픈소스 AI 툴 Top 10"
-description: "2026년 대세: 개발자가 꼭 알아야 할 무료 오픈소스 AI 툴 Top 10". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
-tech_stack: - Docker
-- JavaScript
-application_domain: Llm Frameworks
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: ''
-stars: 0
-maintainer: ''
-last_maintained: "2026-05-15"
+description: "2026년 대세: 개발자가 꼭 알아야 할 무료 오픈소스 AI 툴 Top 10". Comprehensive guide covering features, pricing, and bes..."
 featureImage: ''
 draft: false
 aliases:

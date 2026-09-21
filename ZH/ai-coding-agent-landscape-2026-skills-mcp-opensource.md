@@ -1,6 +1,6 @@
 ---
 title: "2026年AI编程助手格局剧变：Claude Code Skills生态爆发、MCP协议成标准，开发者如何避免被...
-description: "2026年AI编程助手市场迎来分水岭。Claude Code skills数量破3000，MCP协议统一工具接口，开源替代方案OpenCode与Hermes Agent快速崛起。本文深度解析生态演变、实操接入方法，以及开发者保持技术自主权的策略。"
+description: "2026年AI编程助手市场迎来分水岭。Claude Code skills数量破3000，MCP协议统一工具接口，开源替代方案OpenCode与Hermes Agent快速崛起。本文深度解析生态演变、..."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []

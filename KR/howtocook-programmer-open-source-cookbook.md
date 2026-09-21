@@ -1,11 +1,6 @@
 ---
 title: "HowToCook 프로그래머 요리 가이드: 코딩을 더 향기롭게 하는 297개 오픈소스 레시피"
-description: "HowToCook 프로그래머 요리 가이드를 탐색하세요 — 코드처럼 정확하게 요리하는 297개 오픈소스 레시피. 토마토 계란볶음부터 베이징 덕까지, 난이도 분류, 명확한 단계.". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-15T04:20:25+09:00
-lastmod: 2026-05-15T04:20:25+09:00
-tech_stack: - Docker
-  - JavaScript
-application_domain: "Ai Tools"
+description: "HowToCook 프로그래머 요리 가이드를 탐색하세요 — 코드처럼 정확하게 요리하는 297개 오픈소스 레시피. 토마토 계란볶음부터 베이징 덕까지, 난이도 분류, 명확한 단계.". ..."
 source_version: ""
 licensing_model: "Open Source"
 license_type: "MIT"

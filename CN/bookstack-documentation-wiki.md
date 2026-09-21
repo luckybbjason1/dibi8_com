@@ -1,6 +1,6 @@
 ---
 title: "BookStack: The Developer-Friendly Documentation Wiki wit...
-description: "A complete guide to installing and running BookStack, the open-source documentation wiki with WYSIWYG + Markdown editing, book/chapter/page structure, and LDAP/SSO support. Self-hosted in under 5 minutes."
+description: "A complete guide to installing and running BookStack, the open-source documentation wiki with WYSIWY..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

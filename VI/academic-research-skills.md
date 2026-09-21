@@ -1,6 +1,6 @@
 ---
 title: "Kỹ Năng Nghiên Cứu Học Thuật: Tự Động Hóa Tổng Quan Tài ...
-description: "Academic Research Skills (31.628 sao) tự động hóa quy trình nghiên cứu: tìm kiếm bài báo, trích xuất thông tin, tổng hợp kết quả và viết tổng quan tài liệu. Được xây dựng cho Claude Code với kiến trúc kỹ thuật mô-đun."
+description: "Academic Research Skills (31.628 sao) tự động hóa quy trình nghiên cứu: tìm kiếm bài báo, trích xuất..."
 date: 2026-06-15
 lastmod: 2026-06-15
 slug: academic-research-skills

@@ -1,6 +1,6 @@
 ---
 title: "TurboVec: Chỉ Số Vector Được Đưa Mạnh Bởi Rust Nhanh Gấp...
-description: "TurboVec (RyanCodrai/turbovec) là chỉ số vector được xây dựng trên TurboQuant, viết bằng Rust với Python bindings. Thay thế trực tiếp cho LangChain, LlamaIndex, Haystack và Agno. Tăng tốc 10 lần với quantization. Bao gồm tích hợp Python, benchmark và triển khai sản xuất."
+description: "TurboVec (RyanCodrai/turbovec) là chỉ số vector được xây dựng trên TurboQuant, viết bằng Rust với Py..."
 date: 2026-06-09
 lastmod: 2026-06-09
 slug: 'turbovec-rust-vector-index-2026'

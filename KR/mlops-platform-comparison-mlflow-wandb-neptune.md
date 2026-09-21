@@ -1,21 +1,6 @@
 ---
 title: "MLflow vs Weights & Biases vs Neptune: 2024년 MLOps 실험 추적...
-description: "MLflow, Weights & Biases, Neptune을 기능, 가격, 배포 옵션 관점에서 비교합니다. MLOps 실험 추적 플랫폼 선택과 도입 전략을 상세히 설명합니다.". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
-tech_stack: []
-application_domain: Data Science
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: ''
-stars: 0
-maintainer: 'dibi8'
-last_maintained: "2026-05-18"
+description: "MLflow, Weights & Biases, Neptune을 기능, 가격, 배포 옵션 관점에서 비교합니다. MLOps 실험 추적 플랫폼 선택과 도입 전략을 상세히 설명합니다."...."
 featureImage: ''
 draft: false
 aliases:

@@ -1,6 +1,6 @@
 ---
 title: "Plausible Analytics: The Privacy-First Google Analytics ...
-description: "Complete self-hosted setup guide for Plausible Analytics. Privacy-first, GDPR-compliant, <1KB tracking script. 45x faster than Google Analytics. Real benchmarks and Docker deployment."
+description: "Complete self-hosted setup guide for Plausible Analytics. Privacy-first, GDPR-compliant, <1KB tracki..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

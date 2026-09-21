@@ -1,18 +1,6 @@
 ---
 title: "markitdown: Convert Files & Office Docs to Markdown (141...
-description: "markitdown is Microsoft"'''s Python tool for converting files and office documents to Markdown. 141,153 GitHub stars, MIT license. Covers installation, core CLI and Python usage, real code examples, and an honest comparison with pandoc and docx2txt.'
-date: 2026-06-02 00:00:00+08:00
-lastmod: 2026-06-02 00:00:00+08:00
-tech_stack: []
-application_domain: Dev Utils
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: "microsoft/markitdown"
+description: "markitdown is Microsoft"'''s Python tool for converting files and office documents to Markdown. 141,..."
 stars: 141153
 maintainer: microsoft
 last_maintained: "2026-06-02"

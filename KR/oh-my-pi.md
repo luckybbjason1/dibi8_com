@@ -1,12 +1,6 @@
 ---
 title: "오 마이 파이(Raspberry Pi): 라즈베리 파이를 스마트 기기로 변환 — 1만2천 스타 프로젝...
-description: "오 마이 파이(12,554 스타)는 원클릭 설정과 자동 구성으로 라즈베리 파이를 스마트 홈 허브, 미디어 센터, 개발 작업공간으로 변환합니다.". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-06-15
-lastmod: 2026-06-15
-slug: oh-my-pi
-category: dev-utils
-tags: ["raspberry pi", "스마트 홈", "iot", "엣지 컴퓨팅", "홈 오토메이션", "linux", "자동화"]
-github_repo: "https://github.com/can1357/oh-my-pi"
+description: "오 마이 파이(12,554 스타)는 원클릭 설정과 자동 구성으로 라즈베리 파이를 스마트 홈 허브, 미디어 센터, 개발 작업공간으로 변환합니다.". Comprehensive guid..."
 license: MIT
 images: - url: "https://opengraph.github.com/github/can1357/oh-my-pi"
     alt: "Oh My Pi GitHub OG"
@@ -173,7 +167,6 @@ sudo omp install homeassistant zigbee2mqtt adguard grafana vaultwarden
 service: name: my-custom-app
   version: "1.0"
   description: "사용자 지정 애플리케이션 배포"
-  
   docker: image: "myapp:latest"
     ports: - "8080:8080"
     volumes: - myapp-data:/data

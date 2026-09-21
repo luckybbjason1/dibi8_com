@@ -1,6 +1,6 @@
 ---
 title: "Addy Osmani Agent Skills: 96K-Star Framework For Product...
-description: "Learn how Addy Osmani built a skills system that transforms Claude Code, Cursor, and other AI editors into powerful, composable workspaces. Complete guide to implementation, deployment, and advanced patterns."
+description: "Learn how Addy Osmani built a skills system that transforms Claude Code, Cursor, and other AI editor..."
 date: 2026-09-19
 lastmod: 2026-09-19
 slug: 'addy-osmani-agent-skills-production-guide-2026'

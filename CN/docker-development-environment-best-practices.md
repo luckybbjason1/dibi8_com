@@ -1,6 +1,6 @@
 ---
 title: "Docker Development Environment Best Practices: A Complet...
-description: "Master Docker development environment best practices in 2025. Learn dev containers, hot reload, multi-stage builds, and real-world docker-compose setups."
+description: "Master Docker development environment best practices in 2025. Learn dev containers, hot reload, mult..."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []

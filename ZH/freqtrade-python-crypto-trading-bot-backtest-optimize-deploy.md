@@ -1,12 +1,6 @@
 ---
 title: "Freqtrade：51,300 Stars 的 Python 加密货币交易机器人 — 回测、优化、部署 — 2...
-description: "Freqtrade（51,300 GitHub Stars）是一款用 Python 编写的开源加密货币交易机器人。支持策略回测、hyperopt 参数优化、对接交易所 API 实盘交易。包含安装指南、策略开发实战和真实回测基准数据。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-06-08
-lastmod: 2026-06-08
-slug: 'freqtrade-python-crypto-trading-bot-backtest-optimize-deploy'
-category: 'ai-trading'
-tags: ["freqtrade", "加密货币交易机器人", "Python 交易", "策略回测", "hyperopt 优化", "加密货币 API", "自托管交易", "量化交易"]
-github_repo: "https://github.com/freqtrade/freqtrade"
+description: "Freqtrade（51,300 GitHub Stars）是一款用 Python 编写的开源加密货币交易机器人。支持策略回测、hyperopt 参数优化、对接交易所 API 实盘交易。包含安装指南、..."
 stars: 51300
 maintainer: 'xmatthias'
 license: GPL-3.0

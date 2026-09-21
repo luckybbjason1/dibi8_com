@@ -1,6 +1,6 @@
 ---
 title: "TensorTrade: Framework Giao Dịch Học Tăng Cường với Môi ...
-description: "Làm chủ TensorTrade để giao dịch thuật toán dựa trên RL. Xây dựng môi trường Gym tùy chỉnh, tích hợp Stable Baselines3, triển khai chiến lược quản lý danh mục sẵn sàng production với benchmark thực."
+description: "Làm chủ TensorTrade để giao dịch thuật toán dựa trên RL. Xây dựng môi trường Gym tùy chỉnh, tích hợp..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

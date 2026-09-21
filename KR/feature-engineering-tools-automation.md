@@ -1,21 +1,6 @@
 ---
 title: "자동화 특성 엔지니어링 도구 가이드: Featuretools, AutoFeat, tsfresh 완벽 ...
-description: "Featuretools, AutoFeat, tsfresh의 특징과 사용법을 비교합니다. 자동화 특성 엔지니어링 도구 선택과 ML 파이프라인 통합 전략을 상세히 설명합니다.". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
-tech_stack: []
-application_domain: Data Science
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: ''
-stars: 0
-maintainer: 'dibi8'
-last_maintained: "2026-05-18"
+description: "Featuretools, AutoFeat, tsfresh의 특징과 사용법을 비교합니다. 자동화 특성 엔지니어링 도구 선택과 ML 파이프라인 통합 전략을 상세히 설명합니다.". Co..."
 featureImage: ''
 draft: false
 aliases:

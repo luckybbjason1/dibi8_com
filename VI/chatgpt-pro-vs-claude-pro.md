@@ -1,6 +1,6 @@
 ---
 title: "ChatGPT Pro vs Claude Pro năm 2026: Gói AI $20 (hay $200...
-description: "So sánh đầy đủ ChatGPT Plus/Pro với Claude Pro/Max — dòng mô hình, cửa sổ ngữ cảnh, Projects, Artifacts, tạo ảnh, chế độ giọng nói, giá. Cập nhật 2026."
+description: "So sánh đầy đủ ChatGPT Plus/Pro với Claude Pro/Max — dòng mô hình, cửa sổ ngữ cảnh, Projects, Artifa..."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
 tags: ["chatgpt", "claude", "openai", "anthropic", "ai-subscription", "comparison"]

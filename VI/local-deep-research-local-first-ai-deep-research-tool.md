@@ -1,6 +1,6 @@
 ---
 title: "Local Deep Research: Công Cụ Nghiên Cứu Sâu AI Ưu Tiên L...
-description: "Làm chủ Local Deep Research (LDR) — trợ lý nghiên cứu AI ưu tiên local. Tìm hiểu cách thực hiện nghiên cứu sâu, lặp lại với Ollama và SearXNG trong khi duy trì quyền riêng tư 100%."
+description: "Làm chủ Local Deep Research (LDR) — trợ lý nghiên cứu AI ưu tiên local. Tìm hiểu cách thực hiện nghi..."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Docker

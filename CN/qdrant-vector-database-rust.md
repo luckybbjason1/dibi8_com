@@ -1,6 +1,6 @@
 ---
 title: "Qdrant: The Rust-Powered Vector Database Handling 1M+ Ve...
-description: "Deploy Qdrant vector database for production similarity search. Complete guide to HNSW indexing, payload filtering, multi-tenancy, Docker deployment, and Python/Go/JS clients with real benchmarks."
+description: "Deploy Qdrant vector database for production similarity search. Complete guide to HNSW indexing, pay..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

@@ -1,6 +1,6 @@
 ---
 title: "HunyuanVideo: 12.1K+ Stars — Production Deployment Guide...
-description: "HunyuanVideo (HYV) is an open-source video generation framework by Tencent with 13B parameters. Supports ComfyUI, Diffusers, Gradio API. Covers Docker setup, FP8 quantization, multi-GPU inference, and production hardening."
+description: "HunyuanVideo (HYV) is an open-source video generation framework by Tencent with 13B parameters. Supp..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

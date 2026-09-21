@@ -1,6 +1,6 @@
 ---
 title: "Crawl4AI Tutorial 2026: Build LLM-Ready Web Scrapers and...
-description: "Crawl4AI is the #1 trending GitHub repository in 2026 with 63k+ stars. Learn how to build LLM-friendly web scrapers, RAG data pipelines, and AI Agent tools with this open-source Python crawler. Includes installation guide, LLM extraction strategies, deep crawl configs, and comparison with Firecrawl and ScrapeGraphAI."
+description: "Crawl4AI is the #1 trending GitHub repository in 2026 with 63k+ stars. Learn how to build LLM-friend..."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []

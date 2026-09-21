@@ -1,6 +1,6 @@
 ---
 title: "Matt Pocock's Skills: Framework CLI mang đến Siêu năng l...
-description: "Tìm hiểu cách sử dụng framework Skills của Matt Pocock để trang bị cho các AI coding agents như Claude Code, Cursor và Gemini CLI các khả năng thực sự vượt xa code — cơ sở dữ liệu, filesystem, CI/CD và hơn nữa. Hướng dẫn cài đặt npx từng bước, phân tích kiến trúc và benchmark thực tế."
+description: "Tìm hiểu cách sử dụng framework Skills của Matt Pocock để trang bị cho các AI coding agents như Clau..."
 date: 2026-06-10
 lastmod: 2026-06-10
 slug: "mattpocock-skills-ai-agent-framework-guide"

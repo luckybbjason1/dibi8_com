@@ -1,6 +1,6 @@
 ---
 title: "Agency Agents: 125K+ Star Open-Source AI Agency Framework"
-description: "Agency Agents is a complete open-source AI agency framework with 12+ specialized agents — from frontend designers to Reddit moderators. Learn how to deploy a full AI team for $0."
+description: "Agency Agents is a complete open-source AI agency framework with 12+ specialized agents — from front..."
 date: 2026-07-03 09:00:00+09:00
 lastmod: 2026-07-03 09:00:00+09:00
 slug: agency-agents-complete-ai-agency-framework

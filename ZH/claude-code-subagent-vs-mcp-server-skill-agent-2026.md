@@ -1,18 +1,6 @@
 ---
 title: "Subagent、MCP Server 与 Skill 对比：何时该为 Claude Code 构建哪种扩展（2...
-description: "Claude Code 有三个扩展点——skill、subagent 和 MCP server——它们解决的是不同的问题。本文给出选型决策框架，配有完整的实战场景，以及那些会浪费你时间的反模式。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-28 00:00:00+08:00
-lastmod: 2026-05-29 00:00:00+08:00
-tech_stack: ['Claude Code', 'Agent SDK', MCP, CLI]
-application_domain: LLM Frameworks
-source_version: ''
-licensing_model: Commercial (Anthropic)
-license_type: Proprietary
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: "https://github.com/anthropics/claude-code"
+description: "Claude Code 有三个扩展点——skill、subagent 和 MCP server——它们解决的是不同的问题。本文给出选型决策框架，配有完整的实战场景，以及那些会浪费你时间的反模式。". ..."
 stars: 0
 maintainer: Anthropic
 last_maintained: "2026-05-28"

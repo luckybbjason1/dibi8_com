@@ -1,18 +1,6 @@
 ---
 title: "Claude Code 서브에이전트(Subagent) 실전: 매일 몇 시간을 아껴주는 5가지 멀티에이전...
-description: "프로덕션에서 검증된 5가지 Claude Code subagent 패턴 — 병렬 리서치, worktree 격리, 전문가 위임, 컨텍스트 보호, 파이프라인 오케스트레이션. 실제 프롬프트와 트레이드오프 포함.". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-28 00:00:00+08:00
-lastmod: 2026-05-29 00:00:00+08:00
-tech_stack: ['Claude Code', 'Agent SDK', CLI, Bash]
-application_domain: LLM Frameworks
-source_version: ''
-licensing_model: 상용 (Anthropic)
-license_type: Proprietary
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: "https://github.com/anthropics/claude-code"
+description: "프로덕션에서 검증된 5가지 Claude Code subagent 패턴 — 병렬 리서치, worktree 격리, 전문가 위임, 컨텍스트 보호, 파이프라인 오케스트레이션. 실제 프롬프..."
 stars: 0
 maintainer: Anthropic
 last_maintained: "2026-05-28"
@@ -92,8 +80,7 @@ Agent({
   description: "독립 코드 리뷰",
   subagent_type: "code-reviewer",
   prompt: "feat/payment-gateway 브랜치의 변경 사항 리뷰. 재시도 로직에
-   대한 두 번째 의견 원함 — 멱등성은 확인했지만 독립 검증 원함.
-   보고: 동시 실패 하에서 안전한가?"
+..."
 })
 ```
 

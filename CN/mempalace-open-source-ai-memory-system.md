@@ -1,6 +1,6 @@
 ---
 title: "MemPalace: The Best-Benchmarked Open-Source AI Memory Sy...
-description: "MemPalace is a local-first AI memory system that stores verbatim conversation history and retrieves it with semantic search. Integrates with Claude Code, Cursor, Windsurf, and any MCP-compatible agent. ChromaDB backend, pluggable storage, 0 external API calls. Includes setup guide, benchmarks, and architecture breakdown."
+description: "MemPalace is a local-first AI memory system that stores verbatim conversation history and retrieves ..."
 date: 2026-06-10
 lastmod: 2026-06-10
 slug: 'mempalace-open-source-ai-memory-system'

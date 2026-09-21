@@ -1,6 +1,6 @@
 ---
 title: "ByteDance UI-TARS Desktop: The Vision-Language AI Agent ..."
-description: "Learn how to deploy ByteDance's UI-TARS Desktop, a vision-language AI agent that sees your screen and controls applications through natural language. Step-by-step installation, real-world benchmarks, and comparisons with alternatives."
+description: "Learn how to deploy ByteDance's UI-TARS Desktop, a vision-language AI agent that sees your screen an..."
 date: 2026-06-10
 lastmod: 2026-06-10
 slug: "bytedance-ui-tars-desktop-ai-agent-guide"

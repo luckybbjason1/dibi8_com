@@ -1,11 +1,6 @@
 ---
 title: "Bumblebee 2026: Perplexity AI Open-Sources Its Internal ...
-description: "Bumblebee is Perplexity AI"'s open-source, read-only supply-chain scanner that checks npm, PyPI, Go modules, MCP configs, editor extensions, and browser extensions for known compromised packages — without executing a single line of your code.'
-date: 2026-06-09 00:00:00+08:00
-lastmod: 2026-06-09 00:00:00+08:00
-tech_stack: [Go, Security, CLI]
-application_domain: Dev Utils
-source_version: "0.1.1"
+description: "Bumblebee is Perplexity AI"'s open-source, read-only supply-chain scanner that checks npm, PyPI, Go ..."
 licensing_model: Open Source
 license_type: Apache-2.0
 file_size: ''

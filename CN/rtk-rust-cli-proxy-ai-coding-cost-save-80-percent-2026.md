@@ -1,6 +1,6 @@
 ---
 title: "I Cut My AI Coding Bill by 80% With This Rust CLI Proxy ..."
-description: "Developers are burning $500–2000/month on AI coding tools. rtk is a zero-dependency Rust binary that intercepts and compresses CLI output before it hits your LLM context, slashing token consumption by 60–90% across Claude Code, Cursor, Copilot, Codex, and 8 other agents."
+description: "Developers are burning $500–2000/month on AI coding tools. rtk is a zero-dependency Rust binary that..."
 keywords: ["rtk", "LLM token optimization", "reduce Claude Code costs", "AI coding cost reduction", "Rust CLI proxy", "developer productivity 2026", "token compression tool", "AI agent efficiency"]
 author: "Home Hermes"
 date: "2026-05-20"

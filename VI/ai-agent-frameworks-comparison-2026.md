@@ -1,5 +1,5 @@
 title: "LangChain vs CrewAI vs AutoGen vs LlamaIndex vs LangGrap...
-description: "So sánh song song 5 khung tác nhân AI nguồn mở hàng đầu vào năm 2026. Số lượng sao thực, ví dụ mã, điểm chuẩn hiệu suất và hướng dẫn thực tế để chọn khung phù hợp cho dự án của bạn."
+description: "So sánh song song 5 khung tác nhân AI nguồn mở hàng đầu vào năm 2026. Số lượng sao thực, ví dụ mã, đ..."
 date: 2026-06-30T00:00:00+09:00
 lastmod: 2026-06-30T00:00:00+09:00lang: vi
 draft: false

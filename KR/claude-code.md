@@ -1,6 +1,6 @@
 ---
 title: "Claude Code: 125K+ Stars — 터미널 AI 코딩 에이전트 대안과의 완전 비교 2026"
-description: "Claude Code는 Anthropic의 터미널 코딩 에이전트 도구로, VS Code, Cursor, GitHub, GitLab을 지원합니다. 설치 튜토리얼, 벤치마크, Aider, OpenHands, Codex CLI와의 비교 분석을 다룹니다."
+description: "Claude Code는 Anthropic의 터미널 코딩 에이전트 도구로, VS Code, Cursor, GitHub, GitLab을 지원합니다. 설치 튜토리얼, 벤치마크, Aide..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

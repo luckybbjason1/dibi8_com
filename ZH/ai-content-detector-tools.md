@@ -1,21 +1,6 @@
 ---
 title: "2025年最佳AI内容检测工具对比：GPTZero、Turnitin AI、Copyleaks等全面评测"
-description: "深入对比GPTZero、Turnitin AI、Copyleaks、Originality.ai等主流AI内容检测工具，涵盖检测原理、准确率、定价及适用场景，助你选出最合适的AI文本检测器。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
-tech_stack: []
-application_domain: Ai Tools
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: ''
-stars: 0
-maintainer: dibi8
-last_maintained: "2026-05-18"
+description: "深入对比GPTZero、Turnitin AI、Copyleaks、Originality.ai等主流AI内容检测工具，涵盖检测原理、准确率、定价及适用场景，助你选出最合适的AI文本检测器。". Co..."
 featureImage: ''
 draft: false
 categories: ["ai-tools"]

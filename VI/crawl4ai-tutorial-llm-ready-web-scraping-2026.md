@@ -1,6 +1,6 @@
 ---
 title: "Crawl4AI Hướng Dẫn Toàn Diện 2026: Công Cụ Crawl Web Mã ...
-description: "Crawl4AI là công cụ crawl web mã nguồn mở đứng đầu GitHub Trending 2026 với 63k+ stars. Hướng dẫn tiếng Việt chi tiết về cài đặt, trích xuất dữ liệu bằng LLM (GPT-4o, Claude, DeepSeek), crawl sâu toàn site, so sánh với Firecrawl và ScrapeGraphAI, triển khai Docker production."
+description: "Crawl4AI là công cụ crawl web mã nguồn mở đứng đầu GitHub Trending 2026 với 63k+ stars. Hướng dẫn ti..."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []

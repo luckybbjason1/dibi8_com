@@ -1,6 +1,6 @@
 ---
 title: "Last30Days-Skill: AI Agent Search Engine That Scores Soc...
-description: "Search Reddit, X, YouTube, TikTok, Polymarket, GitHub and more in parallel. Scores results by upvotes, likes, and real money — not editors. Works with Claude Code, Codex, Cursor, and 50+ agent hosts."
+description: "Search Reddit, X, YouTube, TikTok, Polymarket, GitHub and more in parallel. Scores results by upvote..."
 tags: ["ai-agent", "automation", "dev-tools", "engine", "open-source", "search"]
 date: 2026-06-22
 lastmod: 2026-06-22
@@ -15,7 +15,7 @@ sources: - name: GitHub
     url: 'https://agentskills.io'
 ---
 title: 'Last30Days-Skill: AI Agent Search Engine That Scores Soc...
-description: "Search Reddit, X, YouTube, TikTok, Polymarket, GitHub and more in parallel. Scores results by upvotes, likes, and real money — not editors. Works with Claude Code, Codex, Cursor, and 50+ agent hosts."
+description: "Search Reddit, X, YouTube, TikTok, Polymarket, GitHub and more in parallel. Scores results by upvote..."
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false

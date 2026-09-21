@@ -1,6 +1,6 @@
 ---
 title: "Qiaomu Anything to NotebookLM: Convert Any Content Sourc..."
-description: "Qiaomu Anything to NotebookLM is a Claude Code Skill and Python toolkit that converts 15+ content sources — YouTube videos, podcasts, articles, PDFs — into Google NotebookLM knowledge bases, with paywall bypass capabilities."
+description: "Qiaomu Anything to NotebookLM is a Claude Code Skill and Python toolkit that converts 15+ content so..."
 date: 2026-06-10
 lastmod: 2026-06-10
 slug: qiaomu-anything-to-notebooklm

@@ -1,6 +1,6 @@
 ---
 title: "2026年AI Agent记忆系统爆发：Mem0、AgentMemory、Hindsight三大开源方案实战选型指南"
-description: "AI Agent记忆系统成为2026年最热门开源赛道。本文深度对比Mem0、agentmemory、Hindsight、MemPalace四大主流方案，从基准测试、架构设计到生产部署，为开发者提供完整的AI代理持久记忆选型与落地指南。"
+description: "AI Agent记忆系统成为2026年最热门开源赛道。本文深度对比Mem0、agentmemory、Hindsight、MemPalace四大主流方案，从基准测试、架构设计到生产部署，为开发者提供完整..."
 keywords: AI Agent记忆系统, Mem0开源, agentmemory持久记忆, Hindsight记忆框架, AI代理记忆选型, 2026开源AI工具, LLM记忆系统部署, 向量数据库记忆
 author: Kimi Claw
 date: 2026-05-20

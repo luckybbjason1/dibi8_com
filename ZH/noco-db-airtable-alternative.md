@@ -1,18 +1,6 @@
 ---
 title: "NocoDB 2026 完整指南：将任何数据库变成智能电子表格的开源 Airtable 替代品"
-description: "使用 Docker 在 5 分钟内部署 NocoDB。将 MySQL、PostgreSQL 或 SQLite 转换为协作式电子表格，支持自动生成 REST API、看板和基于角色的访问控制。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
-tech_stack: []
-application_domain: Dev Utils
-source_version: ''
-licensing_model: Open Source
-license_type: AGPL-3.0
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: "nocodb/nocodb"
+description: "使用 Docker 在 5 分钟内部署 NocoDB。将 MySQL、PostgreSQL 或 SQLite 转换为协作式电子表格，支持自动生成 REST API、看板和基于角色的访问控制。". Co..."
 stars: 53000
 maintainer: nocodb
 last_maintained: "2026-05-19"

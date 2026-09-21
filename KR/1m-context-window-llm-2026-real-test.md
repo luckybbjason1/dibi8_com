@@ -1,6 +1,34 @@
 ---
-title: "1M 컨텍스트 윈도우 LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4....
-description: "두 모델 모두 1M 토큰 컨텍스트를 표방한다. 950K 토큰 코드베이스를 각각 로드해 측정했다: 검색 품질, 지연 시간, 비용, 그리고 1M 약속을 실제로 지키는 쪽과 롱테일 구간에서 무너지는 쪽.". Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "1M 컨텍스트 윈도우 LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 실전 테스트"
+description: "두 모델 모두 1M 토큰 컨텍스트를 표방한다. 950K 토큰 코드베이스를 각각 로드해 측정했다: 검색 품질, 지연 시간, 비용, 그리고 1M 약속을 실제로 지키는 쪽과 롱테일 구간에서 무너지는 쪽."
+date: 2026-05-25 00:00:00+08:00
+lastmod: 2026-05-25 00:00:00+08:00
+tech_stack: [Gemini, Claude, Long-context LLM]
+application_domain: LLM Frameworks
+source_version: "2026 Q2"
+licensing_model: Commercial
+license_type: "Proprietary API"
+github_repo: ""
+stars: 0
+maintainer: "Google / Anthropic"
+last_maintained: "2026-05-25"
+featureImage: ""
+draft: false
+categories: ["llm-frameworks"]
+tags: ["gemini", "claude", "long-context", "llm", "2026"]
+aliases:
+  - /kr/posts/1m-context-window-llm-2026-real-test/
+faq:
+  - q: "Gemini 2.5 Pro와 Claude Sonnet 4.6 모두 정말로 1M 토큰을 처리할 수 있나요?"
+    a: "기술적으로는 둘 다 1M+ 토큰 입력을 받습니다. 다만 롱엔드의 품질이 다릅니다: Gemini는 전체 윈도우에서 일관된 품질을 유지하고, Claude는 약 700K 토큰 이후 검색 작업에서 degrada­tion이 시작됩니다. 실용적인 관점에서는 각자 다른 시나리오에서 승리합니다 - Gemini는 거대 컨텍스트의 단순 회상에, Claude는 중대형 컨텍스트의 추론 품질에 강점이 있습니다."
+  - q: "1M 토큰에서 비용 차이는 얼마나 나나요?"
+    a: "Gemini 2.5 Pro: 1M 입력 토큰당 약 $1.25. Claude Sonnet 4.6의 1M 티어: 1M 입력 토큰당 약 $3.50 (프리미엄 가격). 출력 품질은 비슷합니다. 순수 컨텍스트 적재 워크로드에서는 Gemini가 약 3배 더 저렴합니다."
+  - q: "1M 컨텍스트를 쓸 가치가 있나요, 아니면 여전히 RAG를 해야 하나요?"
+    a: "약 200K 토큰 이하 코퍼스에서는 컨텍스트 스터핑이 승리합니다 (더 단순하고, 검색 오류 없음). 200K-1M 구간은 업데이트 빈도와 코퍼스 안정성에 따라 다릅니다. 1M 초과 (수백만 토큰) thì bắt buộc phải làm RAG — ngay cả mô hình 1M token cũng không thể chứa mọi thứ."
+  - q: "전체 코드베이스를 읽는 데는 어느 쪽이 더 좋나요?"
+    a: "수집 + 요약용: 둘 다 잘 작동합니다. 파일들 사이에서 특정 버그를 찾는 데는: Gemini의 '건초더미 속 바늘' 성능이 더 일관적입니다. 파일들에 걸친 다단계 추론에는: Claude가 유효 컨텍스트가 짧음에도 불구하고 더 낫습니다."
+---
+
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [Gemini, Claude, 'Long-context LLM']

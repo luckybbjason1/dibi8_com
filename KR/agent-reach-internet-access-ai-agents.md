@@ -1,6 +1,6 @@
 ---
 title: "Agent-Reach: 83K-Star 인터넷 접근 도구 (제로 API 비용)"
-description: "Agent-Reach는 Python CLI 도구로, AI 에이전트가 Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu 등을 API 비용 없이 검색하고 스크래핑할 수 있게 합니다. 2026년 워크플로우 통합 가이드."
+description: "Agent-Reach는 Python CLI 도구로, AI 에이전트가 Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu 등을 API..."
 date: 2026-09-19
 lastmod: 2026-09-19
 slug: 'agent-reach-internet-access-for-ai-agents-2026'

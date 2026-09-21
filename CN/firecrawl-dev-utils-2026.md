@@ -1,6 +1,6 @@
 ---
 title: "Firecrawl: Turn Any Website into LLM-Ready Data (127K St...
-description: "Firecrawl is the open-source web data API that scrapes, crawls, maps, and searches the web into clean, LLM-ready markdown or structured JSON. 127,747 GitHub stars, AGPL-3.0. Covers install, the official SDKs, real code, self-hosting, and an honest comparison with Puppeteer, Scrapy, and Axios."
+description: "Firecrawl is the open-source web data API that scrapes, crawls, maps, and searches the web into clea..."
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
 tech_stack: []

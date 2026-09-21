@@ -1,6 +1,6 @@
 ---
 title: "Hướng Dẫn Toàn Diện LangChain 2025: Từ Zero Đến Ứng Dụng...
-description: "Hướng dẫn chi tiết LangChain 2025 từ cơ bản đến nâng cao: kiến trúc core, components, LangGraph, LangSmith, và triển khai production-ready AI apps."
+description: "Hướng dẫn chi tiết LangChain 2025 từ cơ bản đến nâng cao: kiến trúc core, components, LangGraph, Lan..."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []

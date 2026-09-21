@@ -1,6 +1,6 @@
 ---
 title: "30 Ngày Qua-Kỹ Năng: Công Cụ Tìm Kiếm Đại Lý AI Đánh Giá...
-description: "Tìm kiếm Reddit, X, YouTube, TikTok, Polymarket, GitHub và nhiều nền tảng khác cùng lúc. Đánh giá kết quả bằng lượt upvote, lượt thích và tiền thật — không phải biên tập viên. Hoạt động với Claude Code, Codex, Cursor và hơn 50 máy chủ tác nhân."
+description: "Tìm kiếm Reddit, X, YouTube, TikTok, Polymarket, GitHub và nhiều nền tảng khác cùng lúc. Đánh giá kế..."
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false
@@ -16,7 +16,7 @@ sources: - name: GitHub
 ---
 
 title: 'Last30Days-Skill: AI Agent Search Engine That Scores Social Media by Real Engagement'
-description: "Search Reddit, X, YouTube, TikTok, Polymarket, GitHub and more in parallel. Scores results by upvotes, likes, and real money — not editors. Works with Claude Code, Codex, Cursor, and 50+ agent hosts."
+description: "Search Reddit, X, YouTube, TikTok, Polymarket, GitHub and more in parallel. Scores results by upvote..."
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false

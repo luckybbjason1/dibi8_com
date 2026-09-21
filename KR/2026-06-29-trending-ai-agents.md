@@ -1,11 +1,6 @@
 ---
 title: "이번 주 오픈소스 AI 에이전트 소식 — 인기 GitHub 저장소 순위 (2026년 6월 29일 주)"
-description: "GitHub에서 인기 있는 오픈소스 AI 에이전트, LLM, MCP 프로젝트의 주간 편집 요약 — 데이터는 Dibi8 Tribe Intel이 자동 수집하고, 분석은 Dibi8 편집팀이 수행.". Comprehensive guide covering features, pricing, and best practices for 2026.
-tags: ["ai-agent", "automation", "ci-cd", "github", "open-source", "self-hosted", "trending", "weekly"]
-date: 2026-06-29 00:00:00+09:00
-lastmod: 2026-06-29 00:00:00+09:00categories: ["llm-frameworks"]
-slug: this-week-ai-agents-2026-w26
-author: "Dibi8 Tribe Intel (data collection) + Dibi8 editorial team (analysis & edit)"
+description: "GitHub에서 인기 있는 오픈소스 AI 에이전트, LLM, MCP 프로젝트의 주간 편집 요약 — 데이터는 Dibi8 Tribe Intel이 자동 수집하고, 분석은 Dibi8 편집..."
 showAuthor: true
 showSummary: true
 sources: - name: "GitHub Trending"

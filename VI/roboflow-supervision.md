@@ -1,6 +1,6 @@
 ---
 title: "Roboflow Supervision: Bộ công cụ chú thích thị giác máy ...
-description: "Supervision của Roboflow là một bộ công cụ thị giác máy tính toàn diện giúp đơn giản hóa chú thích CV, xử lý dữ liệu và đánh giá mô hình. pip install supervision để truy cập các công cụ thị giác máy tính tái sử dụng cho dự án của bạn."
+description: "Supervision của Roboflow là một bộ công cụ thị giác máy tính toàn diện giúp đơn giản hóa chú thích C..."
 date: 2026-06-10
 lastmod: 2026-06-10
 slug: roboflow-supervision

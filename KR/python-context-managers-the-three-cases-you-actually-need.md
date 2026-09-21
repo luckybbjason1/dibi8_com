@@ -1,7 +1,6 @@
 ---
 title: "파이썬 컨텍스트 매니저: 실제로 필요한 세 가지 경우"
-description: "파이썬 컨텍스트 매니저: 실제로 필요한 세 가지 경우. with 문, contextlib 및 커스텀 컨텍스트 매니저를 마스터하여. Comprehensive guide covering features, pricing, and best practices for 2026.
-  더 나은 리소스 관리를 구현하세요."
+description: "파이썬 컨텍스트 매니저: 실제로 필요한 세 가지 경우. with 문, contextlib 및 커스텀 컨텍스트 매니저를 마스터하여. Comprehensive guide coverin..."
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
 tech_stack: - Go

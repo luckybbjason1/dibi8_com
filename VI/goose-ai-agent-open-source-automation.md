@@ -1,6 +1,6 @@
 ---
 title: "Goose AI Agent：44K⭐Công cụ AI mã nguồn mở, tự động hóa m...
-description: "Goose là AI Agent mã nguồn mở được Linux Foundation hỗ trợ, 44K+ Stars, hỗ trợ 15+ nhà cung cấp LLM và 70+ tiện ích mở rộng MCP. Ứng dụng desktop + CLI + API được xây dựng bằng Rust, hiệu suất vượt trội."
+description: "Goose là AI Agent mã nguồn mở được Linux Foundation hỗ trợ, 44K+ Stars, hỗ trợ 15+ nhà cung cấp LLM ..."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go

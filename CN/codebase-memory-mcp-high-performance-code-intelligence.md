@@ -1,6 +1,6 @@
 ---
 title: "Codebase-Memory-MCP: High-Performance Code Intelligence ...
-description: "Deep dive into codebase-memory-mcp — the fastest code intelligence MCP server that indexes entire repositories in milliseconds. Full installation guide, comparison with alternatives, and real-world usage."
+description: "Deep dive into codebase-memory-mcp — the fastest code intelligence MCP server that indexes entire re..."
 tags: ["ai-agent", "ai-tools", "automation", "coding", "development", "mcp", "memory", "model-context-protocol", "open-source", "persistence"]
 date: 2026-06-19
 lastmod: 2026-06-19layout: article

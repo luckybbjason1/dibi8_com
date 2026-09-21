@@ -1,6 +1,6 @@
 ---
 title: "Grafana: 73,876 GitHub Stars — Docker 部署指南 2026"
-description: "Grafana 是开源的可视化与分析平台，用于监控和可观测性。支持 Prometheus、Loki、InfluxDB、Elasticsearch 集成。包含 Docker 部署、生产环境加固、与 Datadog、Kibana、New Relic 的对比。"
+description: "Grafana 是开源的可视化与分析平台，用于监控和可观测性。支持 Prometheus、Loki、InfluxDB、Elasticsearch 集成。包含 Docker 部署、生产环境加固、与 Da..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

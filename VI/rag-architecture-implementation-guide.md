@@ -1,6 +1,6 @@
 ---
 title: "Hướng Dẫn Triển Khai Kiến Trúc RAG 2025: Xây Dựng Hệ Thố...
-description: "Hướng dẫn triển khai kiến trúc RAG production 2025: từ Naive RAG đến Agentic RAG. So sánh framework, chiến lược chunking và đánh giá hiệu suất."
+description: "Hướng dẫn triển khai kiến trúc RAG production 2025: từ Naive RAG đến Agentic RAG. So sánh framework,..."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []

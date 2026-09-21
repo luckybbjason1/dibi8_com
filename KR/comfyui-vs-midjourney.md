@@ -1,10 +1,6 @@
 ---
 title: "미드저니 완벽 대체 (2026): 전문가들이 ComfyUI로 갈아타는 진짜 이유"
-description: "미드저니 완벽 대체 (2026): 전문가들이 ComfyUI로 갈아타는 진짜 이유". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-15T04:20:25+09:00
-lastmod: 2026-05-15T04:20:25+09:00
-tech_stack: - Python
-application_domain: "Ai Tools"
+description: "미드저니 완벽 대체 (2026): 전문가들이 ComfyUI로 갈아타는 진짜 이유". Comprehensive guide covering features, pricing, and b..."
 source_version: ""
 licensing_model: "Open Source"
 license_type: "MIT"

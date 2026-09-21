@@ -1,6 +1,6 @@
 ---
 title: "faster-whisper: 23K+ Stars로 4배 빠른 음성-텍스트 변환 — 2026년 Whis...
-description: "faster-whisper(SYSTRAN)는 CTranslate2로 OpenAI Whisper를 재구현하여 4배 속도 향상을 달성합니다. faster whisper 튜토리얼, 벤치마크 데이터, Docker 설정, Python API, VAD 필터, 배치 처리, WhisperX 및 whisper.cpp과의 프로덕션 통합을 다룹니다."
+description: "faster-whisper(SYSTRAN)는 CTranslate2로 OpenAI Whisper를 재구현하여 4배 속도 향상을 달성합니다. faster whisper 튜토리얼, 벤치..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

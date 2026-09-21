@@ -1,6 +1,6 @@
 ---
 title: "CC 스위치: 다중 플랫폼 개발을 위한 궁극의 AI 코딩 에이전트 관리자"
-description: "CC 스위치에 대한 완벽한 가이드 — Claude Code, Codex, Gemini CLI, OpenCode, OpenClaw, Hermes Agent를 하나의 통합된 인터페이스에서 관리하는 크로스플랫폼 데스크톱 앱. 설치, 구성 및 실제 사용법."
+description: "CC 스위치에 대한 완벽한 가이드 — Claude Code, Codex, Gemini CLI, OpenCode, OpenClaw, Hermes Agent를 하나의 통합된 인터페이스..."
 date: 2026-06-20
 lastmod: 2026-06-20tags: [ai-tools, coding-agents, desktop-app, tauri, rust]
 category: "dev-utils"

@@ -1,6 +1,6 @@
 ---
 title: "DS4 vs Ollama vs llama.cpp: Benchmark Chạy DeepSeek V4 F...
-description: "Khám phá DS4 của antirez (người tạo Redis) — một engine suy luận bản địa cho DeepSeek V4 Flash. Tìm hiểu cách cài đặt, so sánh benchmark với Ollama/llama.cpp, ví dụ mã và cách chạy LLM 1M context local trên macOS và Linux."
+description: "Khám phá DS4 của antirez (người tạo Redis) — một engine suy luận bản địa cho DeepSeek V4 Flash. Tìm ..."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - C++

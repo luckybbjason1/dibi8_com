@@ -1,6 +1,6 @@
 ---
 title: "OG Card Preview — Facebook / Twitter / LinkedIn Social S..."
-description: "Live preview how your link looks when shared on Facebook, Twitter, LinkedIn, and Slack. Paste a URL or fill in OG meta fields manually. See exact rendering for all major platforms before you publish."
+description: "Live preview how your link looks when shared on Facebook, Twitter, LinkedIn, and Slack. Paste a URL ..."
 date: 2026-05-18
 lastmod: 2026-05-19
 layout: "tool-og-card-preview"

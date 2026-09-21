@@ -1,18 +1,6 @@
 ---
 title: "Caddy: Web Server Production 72K+ Stars — Hướng Dẫn Triể...
-description: "Caddy (Caddyserver) là web server HTTP/1-2-3 đa nền tảng nhanh và mở rộng với HTTPS tự động. Tương thích Docker, Let"'''s Encrypt, Prometheus, Grafana. Bao gồm hướng dẫn Caddyfile, cài đặt Docker, production hardening và giám sát.'
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
-tech_stack: []
-application_domain: Dev Utils
-source_version: ''
-licensing_model: Open Source
-license_type: Apache-2.0
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: "https://github.com/caddyserver/caddy"
+description: "Caddy (Caddyserver) là web server HTTP/1-2-3 đa nền tảng nhanh và mở rộng với HTTPS tự động. Tương t..."
 stars: 72595
 maintainer: caddyserver
 last_maintained: "2026-05-19"

@@ -1,18 +1,6 @@
 ---
 title: "CoW Protocol 2026: 트레이더에게 $100M+ 슬리피지 절약하는 MEV 보호 DEX 애그...
-description: "배치 옥션과 솔버 경쟁을 사용하여 트레이더가 $100M+ 슬리피지를 절약할 수 있게 하는 MEV 보호 DEX 애그리게이터 CoW Protocol에 대한 종합 가이드. SDK 통합, 트레이딩 봇 설정 포함.". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-20 00:00:00+08:00
-lastmod: 2026-05-20 00:00:00+08:00
-tech_stack: []
-application_domain: Ai Trading
-source_version: ''
-licensing_model: Open Source
-license_type: GPL-3.0
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: "https://github.com/cowprotocol/contracts"
+description: "배치 옥션과 솔버 경쟁을 사용하여 트레이더가 $100M+ 슬리피지를 절약할 수 있게 하는 MEV 보호 DEX 애그리게이터 CoW Protocol에 대한 종합 가이드. SDK 통합,..."
 stars: 700
 maintainer: cowprotocol
 last_maintained: "2026-05-20"

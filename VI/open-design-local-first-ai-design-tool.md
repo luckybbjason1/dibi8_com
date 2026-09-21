@@ -1,6 +1,6 @@
 ---
 title: "Open Design: Công Cụ Thiết Kế AI Ưu Tiên Local Thay Thế ...
-description: "Khám phá Open Design, giải pháp thay thế Claude Design mã nguồn mở ưu tiên local với 19 kỹ năng AI, 71 hệ thống thiết kế, hỗ trợ tạo prototype, slide, video và xuất đa định dạng."
+description: "Khám phá Open Design, giải pháp thay thế Claude Design mã nguồn mở ưu tiên local với 19 kỹ năng AI, ..."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go

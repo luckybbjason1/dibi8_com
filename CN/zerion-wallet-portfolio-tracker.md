@@ -1,18 +1,7 @@
 ---
 title: "zerion-wallet-portfolio-tracker"
 description: "'. Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-20 00:00:00+08:00
-lastmod: 2026-05-20 00:00:00+08:00
-tech_stack: []
-application_domain: Ai Trading
-source_version: "'
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: "https://github.com/zeriontech"
+date: 2026-05-20 00:..."
 stars: 200
 maintainer: zeriontech
 last_maintained: "2026-05-20"

@@ -1,6 +1,6 @@
 ---
 title: "Công Cụ Năng Suất Terminal & CLI: tmux, zsh, fzf, ripgre...
-description: "Hướng dẫn thiết lập terminal tối ưu với zsh, tmux, fzf, ripgrep và các công cụ CLI hiện đại. Tăng gấp đôi năng suất lập trình với terminal workflow chuyên nghiệp."
+description: "Hướng dẫn thiết lập terminal tối ưu với zsh, tmux, fzf, ripgrep và các công cụ CLI hiện đại. Tăng gấ..."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []

@@ -1,6 +1,6 @@
 ---
 title: "nanochat 2026: Andrej Karpathy''s Open-Source "ChatGPT f...
-description: "nanochat by Andrej Karpathy is a single-file, full-stack LLM training pipeline — tokenizer, pretraining, finetuning, evaluation, inference, and chat UI — designed to train a GPT-2-level chatbot from scratch for under $100 on a single 8×H100 node."
+description: "nanochat by Andrej Karpathy is a single-file, full-stack LLM training pipeline — tokenizer, pretrain..."
 date: 2026-06-09 00:00:00+08:00
 lastmod: 2026-06-09 00:00:00+08:00
 tech_stack: [Python, PyTorch, Rust, 'LLM Training']

@@ -1,18 +1,6 @@
 ---
 title: "DVC: 面向数据的 Git — ML 流水线数据版本控制与可复现实验 2026 完整指南"
-description: "DVC (Data Version Control) 完整指南 — 使用类 Git 工作流对数据集、模型和 ML 流水线进行版本管理。涵盖安装、S3/GCS/Azure 后端、CI/CD 集成、基准测试和生产加固。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
-tech_stack: []
-application_domain: Data Science
-source_version: ''
-licensing_model: Open Source
-license_type: Apache-2.0
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: "https://github.com/iterative/dvc"
+description: "DVC (Data Version Control) 完整指南 — 使用类 Git 工作流对数据集、模型和 ML 流水线进行版本管理。涵盖安装、S3/GCS/Azure 后端、CI/CD 集成、基准测..."
 stars: 15600
 maintainer: Iterative
 last_maintained: "2026-05-19"

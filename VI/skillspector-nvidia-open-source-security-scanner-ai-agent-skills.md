@@ -1,6 +1,6 @@
 ---
 title: "SkillSpector: Công cụ quét bảo mật mã nguồn mở cho kỹ nă...
-description: "Một công cụ quét bảo mật dành riêng cho kỹ năng AI Agent, phát hiện lỗ hổng, mẫu độc hại và rủi ro bảo mật trước khi cài đặt kỹ năng. Đạt 10K sao từ NVIDIA. Bảo vệ Claude Code, Codex CLI và các khung tác nhân khác."
+description: "Một công cụ quét bảo mật dành riêng cho kỹ năng AI Agent, phát hiện lỗ hổng, mẫu độc hại và rủi ro b..."
 date: 2026-06-25
 lastmod: 2026-06-25
 draft: false

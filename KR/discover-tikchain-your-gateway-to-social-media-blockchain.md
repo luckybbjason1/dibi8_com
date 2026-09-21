@@ -1,10 +1,6 @@
 ---
 title: "TikChain 발견 - 귀하의 소셜 미디어 블록체인 게이트웨이"
-description: "TikChain을 발견하세요: 소셜 미디어 블록체인의 관문. 콘텐츠를 생성하고 탈중앙화된 소셜 네트워크에 참여하여 보상을 획득하세요.". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-15T04:20:25+09:00
-lastmod: 2026-05-15T04:20:25+09:00
-tech_stack: - AI
-application_domain: "Data Science"
+description: "TikChain을 발견하세요: 소셜 미디어 블록체인의 관문. 콘텐츠를 생성하고 탈중앙화된 소셜 네트워크에 참여하여 보상을 획득하세요.". Comprehensive guide cov..."
 source_version: ""
 licensing_model: "Open Source"
 license_type: "MIT"

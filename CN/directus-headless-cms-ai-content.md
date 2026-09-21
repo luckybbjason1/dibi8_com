@@ -1,6 +1,6 @@
 ---
 title: "Directus: The Open-Source Headless CMS Powering AI Conte...
-description: "Complete guide to Directus 11.x — the open-source headless CMS with dynamic API generation, content versioning, AI content workflows, and self-hosted Docker deployment. REST and GraphQL API benchmarks."
+description: "Complete guide to Directus 11.x — the open-source headless CMS with dynamic API generation, content ..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

@@ -1,6 +1,6 @@
 ---
 title: "Các Công Cụ Dịch AI Tốt Nhất 2025: So Sánh Google Transl...
-description: "So sánh chi tiết 6 công cụ dịch AI hàng đầu 2025: Google Translate, DeepL, ChatGPT, Microsoft Translator, Smartcat và Reverso. Đánh giá chất lượng dịch, ngôn ngữ hỗ trợ và giá cả."
+description: "So sánh chi tiết 6 công cụ dịch AI hàng đầu 2025: Google Translate, DeepL, ChatGPT, Microsoft Transl..."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []

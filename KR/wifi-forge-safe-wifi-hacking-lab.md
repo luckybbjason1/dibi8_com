@@ -1,10 +1,6 @@
 ---
 title: "WiFi-Forge — WiFi 해킹을 안전하고 합법적으로 배우는 샌드박스"
-description: "WiFi Forge: 보안 연구를 위한 안전한 WiFi 해킹 연구소. 통제된 환경에서 침투 테스트, 무선 보안 및 윤리적 해킹을 배우세요.". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-15T04:20:25+09:00
-lastmod: 2026-05-15T04:20:25+09:00
-tech_stack: - Python
-application_domain: "Ai Tools"
+description: "WiFi Forge: 보안 연구를 위한 안전한 WiFi 해킹 연구소. 통제된 환경에서 침투 테스트, 무선 보안 및 윤리적 해킹을 배우세요.". Comprehensive guide ..."
 source_version: ""
 licensing_model: "Open Source"
 license_type: "MIT"

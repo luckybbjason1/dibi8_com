@@ -1,6 +1,6 @@
 ---
 title: "Oh My Zsh: 7 Steps to a Faster Dev Workflow in 2026"
-description: "Master Oh My Zsh with real benchmarks, plugin configs, and setup guides. Compare with Starship, Prezto, and Zsh-native setups. 187k+ stars."
+description: "Master Oh My Zsh with real benchmarks, plugin configs, and setup guides. Compare with Starship, Prez..."
 tags: ["open-source"]
 date: 2026-06-11
 lastmod: 2026-06-11

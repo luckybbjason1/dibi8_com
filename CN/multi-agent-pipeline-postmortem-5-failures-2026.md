@@ -1,6 +1,6 @@
 ---
 title: "Multi-Agent Pipeline Postmortem: 5 Ways Subagent Orchest...
-description: "Five real failure modes of Claude Code multi-agent pipelines — trusting unverified reports, context bleed, runaway fan-out, silent truncation, and orphaned worktrees — each with the symptom, the root cause, and the fix."
+description: "Five real failure modes of Claude Code multi-agent pipelines — trusting unverified reports, context ..."
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', Git, CLI]

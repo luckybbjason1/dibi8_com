@@ -1,18 +1,6 @@
 ---
 title: "NocoDB 2026 완벽 가이드: 모든 데이터베이스를 스마트 스프레드시트로 만드는 오픈소스 Airt...
-description: "Docker로 5분 만에 NocoDB 배포. MySQL, PostgreSQL, SQLite를 협업형 스프레드시트로 변환하고 REST API, 칸반 보드, 역할 기반 접근 제어를 자동 생성하세요.". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
-tech_stack: []
-application_domain: Dev Utils
-source_version: ''
-licensing_model: Open Source
-license_type: AGPL-3.0
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: "nocodb/nocodb"
+description: "Docker로 5분 만에 NocoDB 배포. MySQL, PostgreSQL, SQLite를 협업형 스프레드시트로 변환하고 REST API, 칸반 보드, 역할 기반 접근 제어를 자..."
 stars: 53000
 maintainer: nocodb
 last_maintained: "2026-05-19"

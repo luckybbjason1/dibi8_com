@@ -1,6 +1,6 @@
 ---
 title: "WorldMonitor: Bảng Điều Khiển Thông Tình Báo Toàn Cầu Th...
-description: "Một bảng điều khiển thông tình báo toàn cầu theo thời gian thực do AI hỗ trợ, tổng hợp tin tức, sự kiện địa chính trị và giám sát cơ sở hạ tầng. 59K sao. Giải pháp mã nguồn mở thay thế Palantir Gotham."
+description: "Một bảng điều khiển thông tình báo toàn cầu theo thời gian thực do AI hỗ trợ, tổng hợp tin tức, sự k..."
 date: 2026-06-25
 lastmod: 2026-06-25
 draft: false

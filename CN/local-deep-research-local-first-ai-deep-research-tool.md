@@ -1,6 +1,6 @@
 ---
 title: "Local Deep Research: The Ultimate Local-First AI Deep Re..."
-description: "Master Local Deep Research (LDR) — the local-first AI research assistant. Learn how to perform deep, iterative research with Ollama and SearXNG while maintaining 100% privacy."
+description: "Master Local Deep Research (LDR) — the local-first AI research assistant. Learn how to perform deep,..."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Docker

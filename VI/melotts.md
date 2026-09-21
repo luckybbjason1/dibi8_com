@@ -1,6 +1,6 @@
 ---
 title: "MeloTTS: 7.4K+ Stars — TTS Đa Ngôn Ngữ So Sánh với Coqui...
-description: "MeloTTS là thư viện chuyển văn bản thành giọng nói đa ngôn ngữ chất lượng cao với 7.4K+ Stars. So sánh hiệu năng với Coqui TTS, ChatTTS và Bark. Hướng dẫn cài đặt Python, triển khai Docker, suy luận thờ gian thực và cứng hóa production."
+description: "MeloTTS là thư viện chuyển văn bản thành giọng nói đa ngôn ngữ chất lượng cao với 7.4K+ Stars. So sá..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

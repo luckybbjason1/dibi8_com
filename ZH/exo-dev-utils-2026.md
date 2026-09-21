@@ -1,6 +1,6 @@
 ---
 title: "exo：把自己的多台设备组成集群跑前沿大模型（45K Stars）——2026 实战指南"
-description: "exo 把你的 Mac、PC 乃至手机组成一个集群，在本地运行前沿 AI 大模型。45,088 个 GitHub star，Apache-2.0 协议。涵盖安装、控制台、兼容 OpenAI/Claude/Ollama 的 API、真实命令以及一份诚实的横向对比。"
+description: "exo 把你的 Mac、PC 乃至手机组成一个集群，在本地运行前沿 AI 大模型。45,088 个 GitHub star，Apache-2.0 协议。涵盖安装、控制台、兼容 OpenAI/Claud..."
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
 tech_stack: []

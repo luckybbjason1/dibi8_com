@@ -1,6 +1,6 @@
 ---
 title: "repomix 2026: Pack Your Entire Codebase into One LLM-Rea...
-description: "repomix (formerly repopack) turns any Git repository into a single, structured plain-text file optimized for LLM context windows — supporting Claude, ChatGPT, Gemini, and Cursor. 14k+ stars, zero config, runs in seconds with npx."
+description: "repomix (formerly repopack) turns any Git repository into a single, structured plain-text file optim..."
 date: 2026-06-09 00:00:00+08:00
 lastmod: 2026-06-09 00:00:00+08:00
 tech_stack: ['Node.js', TypeScript, CLI]

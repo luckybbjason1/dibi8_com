@@ -1,6 +1,6 @@
 ---
 title: "9Router: Proxy LLM Thông Minh — Tiết Kiệm 60% Token, Khô...
-description: "Khám phá 9Router — proxy mã nguồn mở thông minh, tiết kiệm 20-40% token qua RTK, tự động chuyển đổi giữa 40+ nhà cung cấp, kết hợp lập trình chi phí bằng 0."
+description: "Khám phá 9Router — proxy mã nguồn mở thông minh, tiết kiệm 20-40% token qua RTK, tự động chuyển đổi ..."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Docker

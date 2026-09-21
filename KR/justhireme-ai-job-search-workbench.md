@@ -1,12 +1,6 @@
 ---
 title: "JustHireMe：AI가 당신의 취업을 자동화합니다"
-description: "JustHireMe 오픈소스 AI 취업 워크벤치 리뷰. 로컬 우선 구직 인텔리전스 시스템, 자동 포지션 크롤링, AI 매칭도 평가, 맞춤형 이력서 및 자기소개서 생성.". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-15T04:20:25+09:00
-lastmod: 2026-05-15T04:20:25+09:00
-tech_stack: - JavaScript
-  - Python
-  - TypeScript
-application_domain: "Ai Tools"
+description: "JustHireMe 오픈소스 AI 취업 워크벤치 리뷰. 로컬 우선 구직 인텔리전스 시스템, 자동 포지션 크롤링, AI 매칭도 평가, 맞춤형 이력서 및 자기소개서 생성.". Comp..."
 source_version: ""
 licensing_model: "Open Source"
 license_type: "MIT"

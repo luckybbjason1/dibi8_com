@@ -1,6 +1,6 @@
 ---
 title: "Dify vs Flowise 2026: Nền Tảng AI App Toàn Diện vs Canva...
-description: "So sánh chi tiết Dify (RAG doanh nghiệp, đa mô hình, quản lý prompt, tự host) và Flowise (xây dựng LangChain trực quan, nhẹ, mã nguồn mở) — tính năng, tự host, pipeline AI và lựa chọn phù hợp năm 2026."
+description: "So sánh chi tiết Dify (RAG doanh nghiệp, đa mô hình, quản lý prompt, tự host) và Flowise (xây dựng L..."
 date: 2026-06-07 00:00:00+08:00
 lastmod: 2026-06-07 00:00:00+08:00draft: false
 tags: ["dify", "flowise", "langchain", "llm-apps", "no-code-ai", "rag", "ai-builder", "comparison", "self-hosted"]

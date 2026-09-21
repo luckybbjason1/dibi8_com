@@ -1,6 +1,6 @@
 ---
 title: "Công Cụ Kỹ Thuật Đặc Trưng Tự Động: Hướng Dẫn Featuretoo...
-description: "Hướng dẫn sử dụng Featuretools, AutoFeat và tsfresh cho kỹ thuật đặc trưng tự động. So sánh tính năng, ví dụ code, chiến lược kết hợp với ML pipeline."
+description: "Hướng dẫn sử dụng Featuretools, AutoFeat và tsfresh cho kỹ thuật đặc trưng tự động. So sánh tính năn..."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []

@@ -1,6 +1,6 @@
 ---
 title: "Oh My Pi: Biến Bất kỳ Raspberry Pi Nào Thành Thiết bị Th...
-description: "Oh My Pi (12.554 sao) biến thiết bị Raspberry Pi thành hub nhà thông minh, trung tâm media và workstation phát triển với cài đặt một-click và cấu hình tự động."
+description: "Oh My Pi (12.554 sao) biến thiết bị Raspberry Pi thành hub nhà thông minh, trung tâm media và workst..."
 date: 2026-06-15
 lastmod: 2026-06-15
 slug: oh-my-pi
@@ -173,7 +173,6 @@ Triển khai dịch vụ tùy chỉnh với hệ thống mở rộng của Oh My
 service: name: my-custom-app
   version: "1.0"
   description: "Triển khai ứng dụng tùy chỉnh"
-  
   docker: image: "myapp:latest"
     ports: - "8080:8080"
     volumes: - myapp-data:/data

@@ -1,6 +1,6 @@
 ---
 title: "PageIndex：29K⭐Vectorless RAG System — Document Retrieval..."
-description: "PageIndex is a vectorless, reasoning-driven RAG system open-sourced by VectifyAI. 29K+ Stars, achieves human-like retrieval through document tree structures, reaching 98.7% accuracy on FinanceBench."
+description: "PageIndex is a vectorless, reasoning-driven RAG system open-sourced by VectifyAI. 29K+ Stars, achiev..."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Python

@@ -1,6 +1,6 @@
 ---
 title: "Các Công Cụ Trình Chiếu AI Tốt Nhất 2025: So Sánh Gamma,...
-description: "Tổng hợp các công cụ tạo slide AI hàng đầu năm 2025. So sánh chi tiết Gamma, Beautiful.ai, Tome, SlidesAI, Canva Magic Design và Microsoft Copilot cho PowerPoint về tính năng, giá cả và khả năng tương thích."
+description: "Tổng hợp các công cụ tạo slide AI hàng đầu năm 2025. So sánh chi tiết Gamma, Beautiful.ai, Tome, Sli..."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []

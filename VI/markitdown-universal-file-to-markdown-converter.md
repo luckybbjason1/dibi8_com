@@ -1,6 +1,6 @@
 ---
 title: "MarkItDown: Bộ Chuyển Đổi Tệp Sang Markdown Toàn Diện — ...
-description: "MarkItDown của nhóm Microsoft AutoGen chuyển đổi hơn 20 loại tệp sang Markdown để LLM sử dụng. pip install markitdown[all], API Python, tích hợp LangChain, các pipeline RAG và xử lý theo lô."
+description: "MarkItDown của nhóm Microsoft AutoGen chuyển đổi hơn 20 loại tệp sang Markdown để LLM sử dụng. pip i..."
 date: 2026-06-17
 lastmod: 2026-06-17
 slug: markitdown-universal-file-to-markdown-converter

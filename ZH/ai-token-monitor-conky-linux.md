@@ -1,11 +1,6 @@
 ---
 title: "AI Token Monitor：在Linux桌面实时监控Claude、Gemini、Grok、Kimi配额"
-description: "开源Linux桌面小工具，在Conky中以血条进度条实时显示AI Token使用量。支持Claude、Gemini、Grok、Kimi真实API轮询，显示剩余配额和重置倒计时。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-06-06 00:00:00+08:00
-lastmod: 2026-06-06 00:00:00+08:00
-tech_stack: [Python, Conky, Linux]
-application_domain: Dev Utils
-source_version: "1.0.0"
+description: "开源Linux桌面小工具，在Conky中以血条进度条实时显示AI Token使用量。支持Claude、Gemini、Grok、Kimi真实API轮询，显示剩余配额和重置倒计时。". Comprehen..."
 licensing_model: Open Source
 license_type: MIT
 file_size: ''

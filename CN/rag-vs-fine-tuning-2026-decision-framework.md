@@ -1,6 +1,6 @@
 ---
 title: "RAG vs Fine-Tuning 2026: A Data-Driven Decision Framewor...
-description: "When to RAG, when to fine-tune, when to do both. 2026 reality with current model prices: cost-per-task, latency, data freshness, and a clear decision tree based on data volume, query latency budget, and update frequency."
+description: "When to RAG, when to fine-tune, when to do both. 2026 reality with current model prices: cost-per-ta..."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [RAG, 'Fine-Tuning', LangChain, LlamaIndex, OpenAI, Anthropic]

@@ -1,6 +1,6 @@
 ---
 title: "Đánh giá CodeGraph: Đồ thị mã được pre-index giúp Claude...
-description: "CodeGraph (20.2K+ stars trên GitHub) là công cụ open-source pre-index đồ thị tri thức mã nguồn cho Claude Code, Cursor, Codex CLI, OpenCode và Hermes Agent. Lưu cục bộ SQLite, 19 ngôn ngữ, nhận diện 14 framework routing, không cần API ngoài. Giảm ~35% token và ~70% lượng tool call so với grep/glob/Read thô. Phân tích tính năng, hướng dẫn cài đặt, workflow thực tế, so sánh với LSP và dịch vụ MCP."
+description: "CodeGraph (20.2K+ stars trên GitHub) là công cụ open-source pre-index đồ thị tri thức mã nguồn cho C..."
 date: 2026-05-23 00:00:00+08:00
 lastmod: 2026-05-23 00:00:00+08:00
 tech_stack: []

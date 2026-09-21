@@ -1,18 +1,6 @@
 ---
 title: "AgentMemory + MCP：2026 年 AI 编码代理持久化记忆的实战指南"
-description: "解决 Claude Code、Cursor 每次关闭后记忆清零的问题。详解 agentmemory 开源框架与 MCP 协议如何实现 AI 编码代理的跨会话持久化记忆，附部署教程与团队共享记忆方案。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-17 00:00:00+08:00
-lastmod: 2026-05-17 00:00:00+08:00
-tech_stack: []
-application_domain: Llm Frameworks
-source_version: ''
-licensing_model: Open Source
-license_type: Apache-2.0
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: "https://github.com/rohitg00/agentmemory"
+description: "解决 Claude Code、Cursor 每次关闭后记忆清零的问题。详解 agentmemory 开源框架与 MCP 协议如何实现 AI 编码代理的跨会话持久化记忆，附部署教程与团队共享记忆方案。"..."
 stars: 0
 maintainer: 'rohitg00'
 last_maintained: "2026-05-17"

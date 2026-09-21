@@ -1,6 +1,6 @@
 ---
 title: "Pandas Performance Optimization Guide: When to Switch to...
-description: "Optimize Pandas performance or switch to Polars or DuckDB. Benchmarks, migration strategies, and decision frameworks for faster data processing in Python."
+description: "Optimize Pandas performance or switch to Polars or DuckDB. Benchmarks, migration strategies, and dec..."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []

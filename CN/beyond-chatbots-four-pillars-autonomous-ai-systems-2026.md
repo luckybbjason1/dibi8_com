@@ -1,6 +1,6 @@
 ---
 title: "Beyond Chatbots: The 4 Pillars of Autonomous AI Systems ..."
-description: "How Local Deep Research, InsForge, Agent Skills, and Karpathy Principles form the complete stack for truly autonomous AI agents — from deep research to production deployment."
+description: "How Local Deep Research, InsForge, Agent Skills, and Karpathy Principles form the complete stack for..."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Docker

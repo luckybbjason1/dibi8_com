@@ -1,6 +1,6 @@
 ---
 title: "Open Codesign: Giải Pháp Thay Thế Claude Design Mã Nguồn...
-description: "Khám phá Open Codesign, giải pháp thay thế Claude Design được cấp phép MIT. Công cụ thiết kế AI đa mô hình với BYOK, kiến trúc local-first và tạo nguyên mẫu tức thì từ prompt ngôn ngữ tự nhiên."
+description: "Khám phá Open Codesign, giải pháp thay thế Claude Design được cấp phép MIT. Công cụ thiết kế AI đa m..."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go

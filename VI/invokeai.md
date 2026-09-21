@@ -1,6 +1,6 @@
 ---
 title: "InvokeAI: 27.2K+ Stars — Hướng Dẫn Cài Đặt Đầy Đủ 2026"
-description: "InvokeAI (Invoke) là công cụ sáng tạo hàng đầu cho mô hình Stable Diffusion với WebUI dẫn đầu ngành. Tương thích với SD 1.5, SDXL, FLUX và ControlNet. Bao gồm cài đặt Docker, thiết lập workflow, so sánh benchmark với AUTOMATIC1111 và ComfyUI, và hardening production."
+description: "InvokeAI (Invoke) là công cụ sáng tạo hàng đầu cho mô hình Stable Diffusion với WebUI dẫn đầu ngành...."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

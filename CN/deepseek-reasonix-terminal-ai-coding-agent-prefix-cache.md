@@ -1,6 +1,6 @@
 ---
 title: "DeepSeek-Reasonix: Terminal AI Coding Agent Engineered f...
-description: "A DeepSeek-native AI coding agent with engineered prefix-cache stability — 99.82% cache hit rate, ~$12/day for heavy usage vs ~$61 without cache. MIT licensed. Claude Code alternative using DeepSeek models."
+description: "A DeepSeek-native AI coding agent with engineered prefix-cache stability — 99.82% cache hit rate, ~$..."
 tags: ["ai-agent", "automation", "cli", "coding", "dev-tools", "development", "open-source", "terminal"]
 date: 2026-06-22
 lastmod: 2026-06-22
@@ -17,7 +17,7 @@ sources: - name: GitHub
     url: 'https://discord.gg/XF78rEME2D'
 ---
 title: 'DeepSeek-Reasonix: Terminal AI Coding Agent Engineered f...
-description: "A DeepSeek-native AI coding agent with engineered prefix-cache stability — 99.82% cache hit rate, ~$12/day for heavy usage vs ~$61 without cache. MIT licensed. Claude Code alternative using DeepSeek models."
+description: "A DeepSeek-native AI coding agent with engineered prefix-cache stability — 99.82% cache hit rate, ~$..."
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false

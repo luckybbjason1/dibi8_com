@@ -1,6 +1,6 @@
 ---
 title: "Gemini CLI vs Claude Code 2026: Real Comparison on 5 Wor...
-description: "Google released Gemini CLI competing with Claude Code. Tested both on the same 5 workflows: where Gemini wins (free tier, 1M context), where Claude Code wins (tool-use reliability, agentic loops), and which to use when."
+description: "Google released Gemini CLI competing with Claude Code. Tested both on the same 5 workflows: where Ge..."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: ['Gemini CLI', 'Claude Code', Google, Anthropic]

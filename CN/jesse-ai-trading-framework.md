@@ -1,6 +1,6 @@
 ---
 title: "Jesse: The Advanced Python Crypto Trading Framework with...
-description: "A production-ready guide to Jesse AI trading framework — install, backtest with 30+ indicators, build custom strategies, and deploy live crypto trading bots in Python."
+description: "A production-ready guide to Jesse AI trading framework — install, backtest with 30+ indicators, buil..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

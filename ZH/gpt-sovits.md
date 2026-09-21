@@ -1,18 +1,6 @@
 ---
 title: "GPT-SoVITS: 57.5K+ Stars — AI声音克隆生产部署指南 2026"
-description: "GPT-SoVITS (GSV) 是一款少样本语音克隆和TTS工具，支持零样本推理。兼容ComfyUI、RVC和MeloTTS。涵盖Docker部署、语音训练、API配置和生产环境加固。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
-tech_stack: []
-application_domain: Ai Tools
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: "https://github.com/RVC-Boss/GPT-SoVITS"
+description: "GPT-SoVITS (GSV) 是一款少样本语音克隆和TTS工具，支持零样本推理。兼容ComfyUI、RVC和MeloTTS。涵盖Docker部署、语音训练、API配置和生产环境加固。". Comp..."
 stars: 57500
 maintainer: 'RVC-Boss'
 last_maintained: "2026-05-19"

@@ -1,6 +1,6 @@
 ---
 title: "NVIDIA Cosmos：面向物理AI的开源世界模型（10K+星标）"
-description: "NVIDIA Cosmos 是一个开源的世界模型平台，包含数据集和工具，用于构建物理AI——机器人、自动驾驶汽车、智能基础设施。Cosmos 3 采用混合Transformer架构，统一支持语言、图像、视频、音频和行动生成。提供16B和64B两种模型。"
+description: "NVIDIA Cosmos 是一个开源的世界模型平台，包含数据集和工具，用于构建物理AI——机器人、自动驾驶汽车、智能基础设施。Cosmos 3 采用混合Transformer架构，统一支持语言、图像..."
 date: 2026-06-13
 lastmod: 2026-06-13
 slug: 'nvidia-cosmos-world-models-platform-2026'

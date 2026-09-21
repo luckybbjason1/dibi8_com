@@ -1,11 +1,6 @@
 ---
 title: "AiToEarn: 오픈소스 AI 콘텐츠 수익화 도구 — GPT 대화를 수동 소득으로 전환"
-description: "AiToEarn은 AI 생성 콘텐츠를 수익성 있는 제품으로 전환하는 오픈소스 AI 콘텐츠 수익화 플랫폼입니다. 다중 플랫폼 배포, 구독 결제 및 광고 수익화를 지원합니다.". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-15T04:20:25+09:00
-lastmod: 2026-05-15T04:20:25+09:00
-tech_stack: - JavaScript
-  - TypeScript
-application_domain: "Llm Frameworks"
+description: "AiToEarn은 AI 생성 콘텐츠를 수익성 있는 제품으로 전환하는 오픈소스 AI 콘텐츠 수익화 플랫폼입니다. 다중 플랫폼 배포, 구독 결제 및 광고 수익화를 지원합니다.". Co..."
 source_version: ""
 licensing_model: "Open Source"
 license_type: "MIT"

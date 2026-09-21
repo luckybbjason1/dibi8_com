@@ -1,18 +1,6 @@
 ---
 title: "Metabase 2026: 라이선스 비용 제로로 Tableau를 대체하는 오픈소스 BI 도구 — 구축...
-description: "Metabase v60.2 완벽 가이드: 시각적 쿼리 빌더, 대시보드, SQL 에디터, 알림, 임베딩, Docker 자체 호스팅. 41,000+ GitHub 스타.". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
-tech_stack: []
-application_domain: Data Science
-source_version: ''
-licensing_model: Open Source
-license_type: AGPL-3.0
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: "metabase/metabase"
+description: "Metabase v60.2 완벽 가이드: 시각적 쿼리 빌더, 대시보드, SQL 에디터, 알림, 임베딩, Docker 자체 호스팅. 41,000+ GitHub 스타.". Compre..."
 stars: 41000
 maintainer: metabase
 last_maintained: "2026-05-19"

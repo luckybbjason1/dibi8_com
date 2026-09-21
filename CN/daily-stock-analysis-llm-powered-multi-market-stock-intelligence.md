@@ -1,6 +1,6 @@
 ---
 title: "Daily Stock Analysis: LLM-Powered Multi-Market Stock Int...
-  description: "An LLM-driven multi-market stock analysis system with real-time news, decision dashboards, and automated notifications. 48K stars. Supports zero-cost scheduled runs."
+  description: "An LLM-driven multi-market stock analysis system with real-time news, decision dashboards, and autom..."
   date: 2026-06-25
   lastmod: 2026-06-25
   draft: false

@@ -1,6 +1,6 @@
 ---
 title: "Feast: The Open-Source Feature Store Serving ML Features...
-description: "Complete guide to Feast — the leading open-source feature store. Covers feature registry, online/offline stores, sub-second serving, Redis/BigQuery backends, batch & real-time features, and production deployment."
+description: "Complete guide to Feast — the leading open-source feature store. Covers feature registry, online/off..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

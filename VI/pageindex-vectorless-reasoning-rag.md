@@ -1,6 +1,6 @@
 ---
 title: "PageIndex：29K⭐Hệ thống RAG cách mạng, tìm kiếm tài liệu ...
-description: "PageIndex là hệ thống RAG mã nguồn mở không dùng vector của VectifyAI. 29K+ Stars, xây dựng cấu trúc cây tài liệu để tìm kiếm như con người, đạt 98.7% độ chính xác trên FinanceBench."
+description: "PageIndex là hệ thống RAG mã nguồn mở không dùng vector của VectifyAI. 29K+ Stars, xây dựng cấu trúc..."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go

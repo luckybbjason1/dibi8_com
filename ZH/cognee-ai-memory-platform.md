@@ -1,5 +1,5 @@
 ---
-description: "Cognee is the open-source AI memory platform that gives agents persistent knowledge. Build intelligent agents that remember, reason, and evolve over time."
+description: "Cognee is the open-source AI memory platform that gives agents persistent knowledge. Build intellige..."
 date: 2026-07-03T09:00:00+09:00
 lastmod: 2026-07-03T09:00:00+09:00
 slug: cognee-ai-memory-platform

@@ -1,6 +1,6 @@
 ---
 title: "Bộ nhớ bền vững cho AI Agent 2026: So sánh thực chiến Le...
-description: "Agent không có bộ nhớ bền vững sẽ khởi động lại từ con số không mỗi phiên. Đã kiểm thử Letta, Mem0, A-MEM trên cùng một workload đa phiên: ai thực sự giữ được ngữ cảnh, ai rẻ hơn, khi nào nên tự viết."
+description: "Agent không có bộ nhớ bền vững sẽ khởi động lại từ con số không mỗi phiên. Đã kiểm thử Letta, Mem0, ..."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [Letta, Mem0, 'A-MEM', 'Vector DB', Python]

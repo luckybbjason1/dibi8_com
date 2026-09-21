@@ -1,21 +1,6 @@
 ---
 title: "Matplotlib vs Seaborn vs Plotly vs Observable：2026数据可视化工...
-description: "全面对比Matplotlib、Seaborn、Plotly、Observable四大数据可视化工具，附代码示例和场景推荐，帮你快速选出最适合的Python绘图方案。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
-tech_stack: []
-application_domain: Data Science
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: ''
-stars: 0
-maintainer: 'dibi8'
-last_maintained: "2026-05-18"
+description: "全面对比Matplotlib、Seaborn、Plotly、Observable四大数据可视化工具，附代码示例和场景推荐，帮你快速选出最适合的Python绘图方案。". Comprehensive g..."
 featureImage: ''
 draft: false
 aliases:

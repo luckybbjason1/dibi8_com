@@ -1,6 +1,6 @@
 ---
 title: "Claude Code MCP 고급 2026: 프로덕션급 10 서버 스택"
-description: "다양한 MCP 서버 조합으로 Claude Code를 운영해본 끝에, 성능·보안·시작 시간의 균형을 맞춘 10 서버 프로덕션 스택으로 정착했습니다. 각 서버가 왜 포함되었는지, 무엇을 하는지, 그리고 1인 사용자와 팀 환경에서 어떻게 구성할지 정리합니다."
+description: "다양한 MCP 서버 조합으로 Claude Code를 운영해본 끝에, 성능·보안·시작 시간의 균형을 맞춘 10 서버 프로덕션 스택으로 정착했습니다. 각 서버가 왜 포함되었는지, 무엇..."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: ['Claude Code', MCP, TypeScript, Python, Docker]

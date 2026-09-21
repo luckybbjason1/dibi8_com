@@ -1,13 +1,6 @@
 ---
 title: "기업들은 왜 ChatGPT를 두려워하는가?"
-description: "기업들은 왜 ChatGPT를 두려워하는가?". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-15T04:20:25+09:00
-lastmod: 2026-05-15T04:20:25+09:00
-tech_stack: - Docker
-  - Go
-  - JavaScript
-  - Python
-application_domain: "Llm Frameworks"
+description: "기업들은 왜 ChatGPT를 두려워하는가?". Comprehensive guide covering features, pricing, and best practices for 202..."
 source_version: ""
 licensing_model: "Open Source"
 license_type: "MIT"

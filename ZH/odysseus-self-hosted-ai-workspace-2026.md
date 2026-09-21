@@ -1,6 +1,6 @@
 ---
 title: "Odysseus：9天涨6.3万 GitHub Star 的自部署 AI 工作台 — 2026 完整安装指南"
-description: "Odysseus 是开源、隐私优先的 AI 工作台（9天6.3万 star，MIT 协议）。一条 Docker 命令即可获得聊天、AI 智能体、深度调研、邮件自动分类、日历、笔记和模型 Cookbook——全部运行在自己的硬件上。本文详解安装步骤、核心功能及与 ChatGPT Plus 的对比。"
+description: "Odysseus 是开源、隐私优先的 AI 工作台（9天6.3万 star，MIT 协议）。一条 Docker 命令即可获得聊天、AI 智能体、深度调研、邮件自动分类、日历、笔记和模型 Cookboo..."
 date: 2026-06-09 00:00:00+08:00
 lastmod: 2026-06-09 00:00:00+08:00
 tech_stack: []

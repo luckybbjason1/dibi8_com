@@ -1,6 +1,6 @@
 ---
 title: "Typesense 2026: The Open-Source Instant Search API Handl...
-description: "Set up Typesense 27.1 for typo-tolerant instant search with sub-50ms response times. Step-by-step Docker deployment, SDK integration, and production benchmarks."
+description: "Set up Typesense 27.1 for typo-tolerant instant search with sub-50ms response times. Step-by-step Do..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

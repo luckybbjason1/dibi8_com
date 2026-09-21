@@ -1,21 +1,6 @@
 ---
 title: "AI Agent Skills Explained: The 2026 Developer'"
-description: "AI Agent Skills Explained: The 2026 Developer"'''s Guide to Production-Grade Agent Workflows'. Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-16 00:00:00+08:00
-lastmod: 2026-05-16 00:00:00+08:00
-tech_stack: []
-application_domain: Llm Frameworks
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: ''
-stars: 0
-maintainer: ''
-last_maintained: "2026-05-16"
+description: "AI Agent Skills Explained: The 2026 Developer"'''s Guide to Production-Grade Agent Workflows'. Compr..."
 featureImage: ''
 draft: false
 aliases:

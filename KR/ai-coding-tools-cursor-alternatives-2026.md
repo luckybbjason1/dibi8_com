@@ -1,6 +1,6 @@
 ---
 title: "2026 AI 코딩 도구 대전: Cursor 독주 종료 — 7가지 최고 대안 완벽 비교"
-description: "Cursor의 2025년 credit 가격 전환으로 신뢰가 무너졌다. 2026년 7가지 최강 대안 비교: Claude Code (80.8% SWE-bench), Cline (5M+ 설치 무료), GitHub Copilot ($10/월), Windsurf ($15/월), Continue.dev, Zed. 가격, 성능, 에이전트 모드, 마이그레이션 전략까지."
+description: "Cursor의 2025년 credit 가격 전환으로 신뢰가 무너졌다. 2026년 7가지 최강 대안 비교: Claude Code (80.8% SWE-bench), Cline (5M+..."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00
 tech_stack: ['VS Code', JetBrains, 'Terminal CLI', 'Native editors']

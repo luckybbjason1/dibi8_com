@@ -1,18 +1,6 @@
 ---
 title: "Superagent: 一条 CLI 命令将 AI Agent 部署到生产环境 — 2026 最小化部署指南"
-description: "使用 Superagent 部署 AI Agent 的实战指南。一条 CLI 命令，多 LLM 支持，RAG 工作流，向量数据库集成，REST API 部署。附真实基准数据。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
-tech_stack: []
-application_domain: Llm Frameworks
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: "superagent-ai/superagent"
+description: "使用 Superagent 部署 AI Agent 的实战指南。一条 CLI 命令，多 LLM 支持，RAG 工作流，向量数据库集成，REST API 部署。附真实基准数据。". Comprehens..."
 stars: 6100
 maintainer: 'superagent-ai'
 last_maintained: "2026-05-19"

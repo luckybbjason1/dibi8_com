@@ -1,6 +1,6 @@
 ---
 title: "CoW Protocol 2026: The MEV-Protected DEX Aggregator Savi...
-description: "Comprehensive guide to CoW Protocol, the MEV-protected DEX aggregator using batch auctions and solver competition to save traders $100M+ in slippage. Includes SDK integration, trading bot setup, and best practices."
+description: "Comprehensive guide to CoW Protocol, the MEV-protected DEX aggregator using batch auctions and solve..."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []

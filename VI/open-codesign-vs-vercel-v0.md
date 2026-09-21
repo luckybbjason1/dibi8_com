@@ -1,11 +1,6 @@
 ---
 title: "Mã Nguồn Mở Thay Thế Vercel v0: Dựng UI Miễn Phí Tại Nhà...
-description: "Mã Nguồn Mở Thay Thế Vercel v0: Dựng UI Miễn Phí Tại Nhà Bằng Open Codesign". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-15T04:20:25+09:00
-lastmod: 2026-05-15T04:20:25+09:00
-tech_stack: - JavaScript
-  - TypeScript
-application_domain: "Llm Frameworks"
+description: "Mã Nguồn Mở Thay Thế Vercel v0: Dựng UI Miễn Phí Tại Nhà Bằng Open Codesign". Comprehensive guide co..."
 source_version: ""
 licensing_model: "Open Source"
 license_type: "MIT"

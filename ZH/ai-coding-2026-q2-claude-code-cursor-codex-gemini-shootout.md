@@ -1,6 +1,6 @@
 ---
 title: "AI 编程 2026 Q2 终极对决: Claude Code 1.0 vs Cursor Pro vs Cod...
-description: "2026 年中四大主流 AI 编程 agent 横评：Claude Code 1.0、Cursor Pro、OpenAI Codex CLI、Google Gemini CLI。同一 50K 行 TypeScript 代码库 5 工作流实测、MCP 支持、上下文窗口经济学、定价分析、各自真正胜出场景。"
+description: "2026 年中四大主流 AI 编程 agent 横评：Claude Code 1.0、Cursor Pro、OpenAI Codex CLI、Google Gemini CLI。同一 50K 行 Ty..."
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00
 tech_stack: ['Claude Code', Cursor, 'Codex CLI', 'Gemini CLI', MCP]

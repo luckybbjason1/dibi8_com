@@ -1,21 +1,6 @@
 ---
 title: "2025년 최고의 AI 고객 서비스 챗봇 도구: Intercom, Zendesk AI 등"
-description: "2025년 최고의 AI 고객 서비스 챗봇을 비교합니다. Intercom Fin, Zendesk AI, Freshworks Freddy AI, ChatGPT Enterprise의 기능과 가격을 분석합니다.". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
-tech_stack: []
-application_domain: Ai Tools
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: ''
-stars: 0
-maintainer: 'dibi8'
-last_maintained: "2026-05-18"
+description: "2025년 최고의 AI 고객 서비스 챗봇을 비교합니다. Intercom Fin, Zendesk AI, Freshworks Freddy AI, ChatGPT Enterprise의 기..."
 featureImage: ''
 draft: false
 aliases:

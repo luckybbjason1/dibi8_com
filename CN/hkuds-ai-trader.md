@@ -1,6 +1,6 @@
 ---
 title: "AI-Trader: The Agent-Native Trading Platform from HKUDS"
-description: "AI-Trader is an agent-native trading platform from HKUDS that enables AI coding agents like Claude Code, Codex, Cursor, and OpenClaw to autonomously execute trades, manage portfolios, and optimize strategies."
+description: "AI-Trader is an agent-native trading platform from HKUDS that enables AI coding agents like Claude C..."
 date: 2026-06-10
 lastmod: 2026-06-10
 slug: hkuds-ai-trader

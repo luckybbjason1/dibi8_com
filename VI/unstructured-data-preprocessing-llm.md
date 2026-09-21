@@ -1,6 +1,6 @@
 ---
 title: "Unstructured.io: Pipeline Tiền Xử Lý Dữ Liệu Chuyển Đổi ...
-description: "Hướng dẫn thực tiễn 2026 về Unstructured.io — thư viện tiền xử lý tài liệu mã nguồn mở chuyển đổi PDF, DOCX, PPTX và hình ảnh thành các đoạn văn bản sạch, có cấu trúc sẵn sàng cho pipeline LLM và RAG."
+description: "Hướng dẫn thực tiễn 2026 về Unstructured.io — thư viện tiền xử lý tài liệu mã nguồn mở chuyển đổi PD..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

@@ -1,6 +1,6 @@
 ---
 title: "Open Design: Claude Design을 대체하는 궁극의 로컬 우선 AI 디자인 도구"
-description: "39K+ Star를 보유한 오픈소스 로컬 우선 Claude Design 대안 Open Design을 알아보세요. 19가지 AI 스킬, 71개 디자인 시스템, 프로토타입/슬라이드/영상 생성 및 다중 포맷 내보내기를 지원합니다."
+description: "39K+ Star를 보유한 오픈소스 로컬 우선 Claude Design 대안 Open Design을 알아보세요. 19가지 AI 스킬, 71개 디자인 시스템, 프로토타입/슬라이드/영..."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go

@@ -1,11 +1,6 @@
 ---
 title: "ComfyUI 工作流 2026：新手搭建指南 + 5 套生产级模板"
-description: "ComfyUI 在 2026 年突破 10.6 万 GitHub stars。新手友好的搭建指南、2026 年模型推荐，以及 5 套可直接投产的工作流模板（文生图、局部重绘、放大、视频、角色一致性）。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: [ComfyUI, 'Stable Diffusion', Python, CUDA]
-application_domain: AI 工具
-source_version: "ComfyUI 2026.05"
+description: "ComfyUI 在 2026 年突破 10.6 万 GitHub stars。新手友好的搭建指南、2026 年模型推荐，以及 5 套可直接投产的工作流模板（文生图、局部重绘、放大、视频、角色一致性）。..."
 licensing_model: 开源
 license_type: 'GPL-3.0'
 github_repo: "https://github.com/comfyanonymous/ComfyUI"

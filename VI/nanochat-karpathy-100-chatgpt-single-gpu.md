@@ -1,6 +1,6 @@
 ---
 title: "nanochat: $100 ChatGPT của Karpathy — Xây dựng ứng dụng ...
-description: "nanochat (54.800 sao GitHub) là bản clone ChatGPT mã nguồn mở của Andrej Karpathy, chạy trên một GPU $100 duy nhất. Huấn luyện từ đầu bằng SGLang hoặc phục vụ mô hình đã huấn luyện trước qua vLLM. Bao gồm hướng dẫn cài đặt, benchmark huấn luyện và ví dụ triển khai."
+description: "nanochat (54.800 sao GitHub) là bản clone ChatGPT mã nguồn mở của Andrej Karpathy, chạy trên một GPU..."
 date: 2026-06-08
 lastmod: 2026-06-08
 slug: 'nanochat-karpathy-100-chatgpt-single-gpu'

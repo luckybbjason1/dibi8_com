@@ -1,6 +1,6 @@
 ---
 title: "Hello-Agents: Cách Hướng Dẫn AI Agent Mã Nguồn Mở Của Da...
-description: "Datawhale Hello-Agents là hướng dẫn AI agent mã nguồn mở phổ biến nhất trên GitHub, bao gồm 16 chương đầy đủ về ReAct, AutoGen, LangGraph, MCP, Agentic RL và hơn 45,600 Stars."
+description: "Datawhale Hello-Agents là hướng dẫn AI agent mã nguồn mở phổ biến nhất trên GitHub, bao gồm 16 chươn..."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go

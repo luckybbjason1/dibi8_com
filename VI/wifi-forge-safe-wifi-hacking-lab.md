@@ -1,6 +1,6 @@
 ---
 title: "WiFi-Forge — Sandbox An Toàn và Hợp Pháp Để Học Hack WiFi"
-description: "WiFi Forge: phòng thí nghiệm hack WiFi an toàn cho nghiên cứu bảo mật. Học kiểm thử xâm nhập, bảo mật không dây và hack đạo đức trong môi trường được kiểm soát."
+description: "WiFi Forge: phòng thí nghiệm hack WiFi an toàn cho nghiên cứu bảo mật. Học kiểm thử xâm nhập, bảo mậ..."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Python

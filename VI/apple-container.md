@@ -8,7 +8,7 @@ lastmod: 2026-06-15tags: - apple
   - virtualization
   - swift
 slug: apple-container-mac-vm-tool-2026
-description: "Apple released container, a Swift-based tool for running Linux containers on Mac using lightweight VMs. 37K stars, OCI-compatible, macOS 26 required."
+description: "Apple released container, a Swift-based tool for running Linux containers on Mac using lightweight V..."
 categories: ["ai-tools"]
 faqs: - q: "Does container work on Intel Macs?"
     a: "No. container requires Apple Silicon (M1/M2/M3/M4). It uses the macOS Virtualization framework which is optimized for Apple Silicon."
@@ -36,7 +36,7 @@ lastmod: 2026-06-15tags: - apple
   - virtualization
   - swift
 slug: apple-container-mac-vm-tool-2026
-description: "Apple phát hành container, một công cụ viết bằng Swift để chạy container Linux trên Mac sử dụng máy ảo nhẹ. 37K sao, tương thích OCI, yêu cầu macOS 26."
+description: "Apple phát hành container, một công cụ viết bằng Swift để chạy container Linux trên Mac sử dụng máy ..."
 image: ""
 
 

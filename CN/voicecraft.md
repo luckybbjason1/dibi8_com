@@ -1,6 +1,6 @@
 ---
 title: "VoiceCraft: 8.5K+ Stars — Zero-Shot Speech Editing vs GP...
-description: "VoiceCraft is a token infilling neural codec language model for zero-shot speech editing and TTS. Compatible with GPT-SoVITS, Coqui TTS, and RVC. Covers setup, benchmarks, Docker deployment, and comparison tables."
+description: "VoiceCraft is a token infilling neural codec language model for zero-shot speech editing and TTS. Co..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

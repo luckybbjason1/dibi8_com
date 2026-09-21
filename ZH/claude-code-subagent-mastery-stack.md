@@ -1,25 +1,6 @@
 ---
 title: "Claude Code 子智能体精通栈 2026：从单次对话到协调的智能体议会"
-description: "掌握 Claude Code 多智能体工作流的完整学习 + 工具栈：5 种子智能体模式 + 自定义智能体编写 + 技能/子智能体/MCP 决策框架 + 编排失败模式 + 技能编写。从单线程编码到可靠智能体流水线的完整路径。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-29 00:00:00+08:00
-lastmod: 2026-05-30 00:00:00+08:00
-tech_stack: - Claude Code
-  - Agent SDK
-  - MCP
-  - Bash
-  - Markdown
-application_domain: Collections
-source_version: ''
-licensing_model: Commercial (Anthropic)
-license_type: Proprietary
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: ''
-stars: 0
-maintainer: dibi8
-last_maintained: "2026-05-30"
+description: "掌握 Claude Code 多智能体工作流的完整学习 + 工具栈：5 种子智能体模式 + 自定义智能体编写 + 技能/子智能体/MCP 决策框架 + 编排失败模式 + 技能编写。从单线程编码到可靠智..."
 featureImage: ''
 draft: false
 categories: ["collections"]

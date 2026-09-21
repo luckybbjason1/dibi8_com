@@ -1,21 +1,6 @@
 ---
 title: "Ollama vs LM Studio vs llama.cpp vs vLLM 2026：诚实的本地 LLM ...
-description: "2026 四家本地 LLM 运行器直接对比。真实数字：Ollama（137k 星）最易、LM Studio UI 最美、llama.cpp（112k）是底下的引擎、vLLM（80.7k）是生产吞吐之王。30 秒决策树按场景。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-21 00:00:00+08:00
-lastmod: 2026-05-21 00:00:00+08:00
-tech_stack: [Python, C++, CUDA, Metal]
-application_domain: Llm Frameworks
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: ''
-stars: 0
-maintainer: dibi8
-last_maintained: "2026-05-21"
+description: "2026 四家本地 LLM 运行器直接对比。真实数字：Ollama（137k 星）最易、LM Studio UI 最美、llama.cpp（112k）是底下的引擎、vLLM（80.7k）是生产吞吐之王..."
 featureImage: ''
 draft: false
 categories: ["llm-frameworks"]

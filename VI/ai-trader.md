@@ -1,6 +1,6 @@
 ---
 title: "AI-Trader: 14K⭐ Hệ thống Giao dịch AI Tự động Hoàn toàn,...
-description: "AI-Trader là hệ thống đại lý giao dịch AI tự động hoàn toàn mã nguồn mở do HKUDS phát triển, 14K+ Stars, hỗ trợ giao dịch tự động đa thị trường chứng khoán, tiền điện tử, ngoại hối."
+description: "AI-Trader là hệ thống đại lý giao dịch AI tự động hoàn toàn mã nguồn mở do HKUDS phát triển, 14K+ St..."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Python

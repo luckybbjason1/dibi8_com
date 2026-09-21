@@ -1,6 +1,6 @@
 ---
 title: "Oh My Pi: Turn Any Raspberry Pi Into a Smart Device — 12..."
-description: "Oh My Pi (12,554 stars) transforms Raspberry Pi devices into smart home hubs, media centers, and development workstations with one-click setup and automated configuration."
+description: "Oh My Pi (12,554 stars) transforms Raspberry Pi devices into smart home hubs, media centers, and dev..."
 tags: ["open-source"]
 date: 2026-06-15
 lastmod: 2026-06-15

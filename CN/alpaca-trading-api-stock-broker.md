@@ -1,6 +1,6 @@
 ---
 title: "Alpaca Trading API 2026: The Commission-Free Stock Broke...
-description: "Complete guide to the Alpaca Trading API for commission-free algorithmic trading. Learn setup, order placement, WebSocket streaming, fractional shares, and paper trading with Python code examples."
+description: "Complete guide to the Alpaca Trading API for commission-free algorithmic trading. Learn setup, order..."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []

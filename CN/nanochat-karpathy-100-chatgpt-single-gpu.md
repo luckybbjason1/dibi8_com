@@ -1,12 +1,6 @@
 ---
 title: "nanochat: Karpathy'"
-description: "nanochat (54,800 GitHub stars) is Andrej Karpathy"'s open-source ChatGPT clone that runs on a single $100 GPU. Train from scratch using SGLang or run pre-trained via vLLM. Includes setup guide, training benchmarks, and deployment examples.'
-date: 2026-06-08
-lastmod: 2026-06-08
-slug: 'nanochat-karpathy-100-chatgpt-single-gpu'
-category: 'ai-tools'
-tags: ["karpathy nanochat", "train LLM from scratch", "single GPU chat", "open source ChatGPT", "SGLang", "vLLM", "local LLM", "AI chat app"]
-github_repo: "https://github.com/karpathy/nanochat"
+description: "nanochat (54,800 GitHub stars) is Andrej Karpathy"'s open-source ChatGPT clone that runs on a single..."
 stars: 54800
 maintainer: 'karpathy'
 license: MIT

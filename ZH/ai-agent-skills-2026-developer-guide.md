@@ -1,21 +1,6 @@
 ---
 title: "2026年AI Agent Skills完全指南：Claude Code技能包实战教程与热门仓库盘点"
-description: "2026年AI Agent Skills完全指南：Claude Code技能包实战教程与热门仓库盘点". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-16 00:00:00+08:00
-lastmod: 2026-05-16 00:00:00+08:00
-tech_stack: []
-application_domain: Llm Frameworks
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: ''
-stars: 0
-maintainer: ''
-last_maintained: "2026-05-16"
+description: "2026年AI Agent Skills完全指南：Claude Code技能包实战教程与热门仓库盘点". Comprehensive guide covering features, pricing,..."
 featureImage: ''
 draft: false
 aliases:

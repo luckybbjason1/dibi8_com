@@ -1,6 +1,6 @@
 ---
 title: "Vector DB 2026 Selection: Qdrant vs Weaviate vs Milvus (...
-description: "Tested Qdrant, Weaviate, Milvus on the same 5M-vector workload. Latency, throughput, memory, setup pain. Which is right for prototype vs production, and when to skip vector DB entirely for SQLite FTS5."
+description: "Tested Qdrant, Weaviate, Milvus on the same 5M-vector workload. Latency, throughput, memory, setup p..."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [Qdrant, Weaviate, Milvus, 'Vector Search', Embeddings]

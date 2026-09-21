@@ -1,6 +1,6 @@
 ---
 title: "Hướng Dẫn OpenCode 2026: Công Cụ AI Lập Trình Mã Nguồn M...
-description: "OpenCode đạt 160K+ stars trên GitHub năm 2026, hỗ trợ 75+ nhà cung cấp LLM, miễn phí 100%. Hướng dẫn này dành cho lập trình viên Việt Nam: cài đặt từ zero, tối ưu chi phí API, chạy model local và tích hợp MCP."
+description: "OpenCode đạt 160K+ stars trên GitHub năm 2026, hỗ trợ 75+ nhà cung cấp LLM, miễn phí 100%. Hướng dẫn..."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []

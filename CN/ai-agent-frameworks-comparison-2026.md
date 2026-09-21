@@ -1,6 +1,6 @@
 ---
 title: "LangChain vs CrewAI vs AutoGen vs LlamaIndex vs LangGrap..."
-description: "Side-by-side comparison of the top 5 open-source AI agent frameworks in 2026. Real star counts, code examples, performance benchmarks, and practical guidance for choosing the right framework for your project."
+description: "Side-by-side comparison of the top 5 open-source AI agent frameworks in 2026. Real star counts, code..."
 date: 2026-06-30T00:00:00+09:00
 lastmod: 2026-06-30T00:00:00+09:00draft: false
 tags: ["ai-agents", "frameworks", "comparison", "langchain", "crewai", "autogen", "llamaindex", "langgraph"]

@@ -1,6 +1,6 @@
 ---
 title: "微软 MarkItDown：将任何文件转换为 Markdown 的完整指南——免费、开源、CLI 工具"
-description: "学习如何使用微软的 MarkItDown 将 PDF、Word 文档、图片、HTML、PPTX 等转换为干净的 Markdown。包含逐步安装、使用示例、Python API、AI 管道集成、基准测试以及与 Pandoc、Calibre 和 LibreOffice 的比较。"
+description: "学习如何使用微软的 MarkItDown 将 PDF、Word 文档、图片、HTML、PPTX 等转换为干净的 Markdown。包含逐步安装、使用示例、Python API、AI 管道集成、基准测试..."
 date: 2026-06-10
 lastmod: 2026-06-10
 slug: "microsoft-markitdown-file-to-markdown-converter-cli"

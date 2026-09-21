@@ -1,6 +1,6 @@
 ---
 title: "Supermemory: API Bộ nhớ AI Mã nguồn Mở Nhanh nhất để Xây...
-description: "Supermemory là một công cụ và ứng dụng bộ nhớ mã nguồn mở cho ứng dụng AI. API bộ nhớ nhanh, mở rộng được với tìm kiếm vector, tìm kiếm đồ thị và quản lý phiên. Tích hợp với LangChain, LlamaIndex, CrewAI và mọi ứng dụng Python/JS. Tự lưu trữ, không phụ thuộc bên ngoài. Bao gồm hướng dẫn cài đặt, benchmark và triển khai production."
+description: "Supermemory là một công cụ và ứng dụng bộ nhớ mã nguồn mở cho ứng dụng AI. API bộ nhớ nhanh, mở rộng..."
 date: 2026-06-10
 lastmod: 2026-06-10
 slug: 'supermemory-open-source-ai-memory-api'

@@ -1,18 +1,6 @@
 ---
 title: "Alpaca交易API 2026：面向算法交易的零佣金股票经纪API — 设置指南"
-description: "零佣金算法交易的Alpaca交易API完整指南。学习设置、下单、WebSocket实时流、碎股交易和模拟交易，附Python代码示例。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-20 00:00:00+08:00
-lastmod: 2026-05-20 00:00:00+08:00
-tech_stack: []
-application_domain: Ai Trading
-source_version: ''
-licensing_model: Open Source
-license_type: Apache-2.0
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: "https://github.com/alpacahq/alpaca-trade-api-python"
+description: "零佣金算法交易的Alpaca交易API完整指南。学习设置、下单、WebSocket实时流、碎股交易和模拟交易，附Python代码示例。". Comprehensive guide covering f..."
 stars: 4500
 maintainer: alpacahq
 last_maintained: "2026-05-20"

@@ -1,18 +1,6 @@
 ---
 title: "ZenML 2026: 20개 이상의 도구를 프로덕션 파이프라인으로 연결하는 MLOps 프레임워크 — ...
-description: "20개 이상의 도구를 통합된 재현 가능한 ML 파이프라인으로 연결하는 오픈소스 MLOps 프레임워크인 ZenML에 대한 종합 가이드. 셀프 호스팅, 실제 벤치마크, 프로덕션 배포.". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
-tech_stack: []
-application_domain: Data Science
-source_version: ''
-licensing_model: Open Source
-license_type: Apache-2.0
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: "zenml-io/zenml"
+description: "20개 이상의 도구를 통합된 재현 가능한 ML 파이프라인으로 연결하는 오픈소스 MLOps 프레임워크인 ZenML에 대한 종합 가이드. 셀프 호스팅, 실제 벤치마크, 프로덕션 배포...."
 stars: 4500
 maintainer: 'zenml-io'
 last_maintained: "2026-05-19"

@@ -1,6 +1,6 @@
 ---
 title: "DVC: 데이터를 위한 Git — ML 파이프라인 데이터 버전 관리와 재현 가능한 실험 2026 완벽...
-description: "DVC (Data Version Control) 완벽 가이드 — Git 방식 워크플로우로 데이터셋, 모델, ML 파이프라인을 버전 관리합니다. 설치, S3/GCS/Azure 백엔드, CI/CD 통합, 벤치마크, 프로덕션 하드닝을 다룹니다."
+description: "DVC (Data Version Control) 완벽 가이드 — Git 방식 워크플로우로 데이터셋, 모델, ML 파이프라인을 버전 관리합니다. 설치, S3/GCS/Azure 백엔드..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

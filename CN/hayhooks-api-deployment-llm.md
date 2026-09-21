@@ -1,6 +1,6 @@
 ---
 title: "Hayhooks: Deploy Haystack Pipelines as REST APIs with On...
-description: "A complete guide to deploying Haystack NLP pipelines as production REST APIs using Hayhooks. Covers one-command deployment, container support, auto-generated OpenAPI docs, and production patterns with real benchmarks."
+description: "A complete guide to deploying Haystack NLP pipelines as production REST APIs using Hayhooks. Covers ..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

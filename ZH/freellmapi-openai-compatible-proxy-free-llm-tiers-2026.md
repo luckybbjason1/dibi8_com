@@ -1,6 +1,6 @@
 ---
 title: "FreeLLMAPI：在一个兼容 OpenAI 的端点后堆叠 16 个免费 LLM 层"
-description: "将 Google、Groq、Cerebras、Mistral、NVIDIA、OpenRouter 以及更多免费层聚合到单一代理中。~1.7B 令牌/月。支持 Docker 安装，Claude Code 集成，工具调用，流式传输，回退链。"
+description: "将 Google、Groq、Cerebras、Mistral、NVIDIA、OpenRouter 以及更多免费层聚合到单一代理中。~1.7B 令牌/月。支持 Docker 安装，Claude Code..."
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false
@@ -15,7 +15,7 @@ sources: - name: GitHub
     url: 'https://freellmapi.co'
 ---
 title: "FreeLLMAPI: Stack 16 Free LLM Tiers Behind One OpenAI-Compatible Endpoint'
-description: "Aggregate Google, Groq, Cerebras, Mistral, NVIDIA, OpenRouter and more free tiers into a single proxy. ~1.7B tokens/month. Docker install, Claude Code integration, tool calling, streaming, fallback chains."
+description: "Aggregate Google, Groq, Cerebras, Mistral, NVIDIA, OpenRouter and more free tiers into a single prox..."
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false

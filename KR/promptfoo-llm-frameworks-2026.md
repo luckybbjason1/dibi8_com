@@ -1,6 +1,6 @@
 ---
 title: "Promptfoo: LLM 프롬프트를 테스트·평가·레드팀하기 — 2026 실전 가이드"
-description: "Promptfoo는 LLM 앱을 평가하고 레드팀하기 위한 오픈소스 CLI이자 라이브러리입니다. 간단한 선언형 설정만으로 GPT, Claude, Gemini, DeepSeek를 비교하고 CLI와 CI/CD에 매끄럽게 연동할 수 있습니다. 이 2026 가이드에서는 설치, promptfooconfig.yaml, 어서션, 레드팀 테스트를 다룹니다."
+description: "Promptfoo는 LLM 앱을 평가하고 레드팀하기 위한 오픈소스 CLI이자 라이브러리입니다. 간단한 선언형 설정만으로 GPT, Claude, Gemini, DeepSeek를 비교..."
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
 tech_stack: []
@@ -68,7 +68,6 @@ Promptfoo는 LLM 앱을 평가하고 레드팀하기 위한 CLI이자 라이브�
 ```yaml
 # promptfooconfig.yaml
 description: "GPT vs Claude on a couple of prompts"
-
 prompts: - "What is the capital of {{country}}?"
   - "Explain quantum mechanics in one sentence."
 
@@ -150,7 +149,6 @@ promptfoo view
 ```yaml
 # promptfooconfig.yaml
 description: "Basic prompt test"
-
 prompts: - "What is the capital of {{country}}?"
 
 providers: - openai:gpt-4o-mini
@@ -173,7 +171,6 @@ Promptfoo가 해당 테스트 케이스를 실행하고 어서션 통과 여부�
 ```yaml
 # promptfooconfig.yaml
 description: "GPT vs Claude comparison"
-
 prompts: - "Answer concisely: {{question}}"
 
 providers: - openai:gpt-4o

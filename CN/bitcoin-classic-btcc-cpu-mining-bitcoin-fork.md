@@ -1,6 +1,6 @@
 ---
 title: "Bitcoin-Classic (BTCC): A Bitcoin Fork That Lets Ordinar..."
-description: "Bitcoin-Classic (BTCC) is a decentralized digital currency rebuilt from Bitcoin Core v28.1. It supports CPU mining with a built-in graphical miner, letting ordinary users experience early Bitcoin mining."
+description: "Bitcoin-Classic (BTCC) is a decentralized digital currency rebuilt from Bitcoin Core v28.1. It suppo..."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - C++

@@ -1,6 +1,6 @@
 ---
 title: "ML Systems Book：Giáo trình miễn phí về Hệ thống Machine ...
-description: "Machine Learning Systems là giáo trình mã nguồn mở miễn phí do MIT Press xuất bản, bao gồm kỹ thuật dữ liệu, tối ưu mô hình, huấn luyện nhận biết phần cứng, tăng tốc suy luận và các kiến thức cốt lõi về kỹ thuật hệ thống ML."
+description: "Machine Learning Systems là giáo trình mã nguồn mở miễn phí do MIT Press xuất bản, bao gồm kỹ thuật ..."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - C++

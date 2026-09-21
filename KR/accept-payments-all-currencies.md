@@ -1,10 +1,6 @@
 ---
 title: "모든 통화로 결제 수락 - NowPayments"
-description: "모든 통화로 결제 수락 - NowPayments. 100개 이상의 암호화폐와 법정 화폐 지원, 낮은 수수료와 즉시 정산.". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-15T04:20:25+09:00
-lastmod: 2026-05-15T04:20:25+09:00
-tech_stack: - AI
-application_domain: "Data Science"
+description: "모든 통화로 결제 수락 - NowPayments. 100개 이상의 암호화폐와 법정 화폐 지원, 낮은 수수료와 즉시 정산.". Comprehensive guide covering f..."
 source_version: ""
 licensing_model: "Open Source"
 license_type: "MIT"

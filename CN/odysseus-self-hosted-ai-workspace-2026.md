@@ -1,6 +1,6 @@
 ---
 title: "Odysseus: The Self-Hosted AI Workspace That Hit 63,000 G...
-description: "Odysseus is an open-source, privacy-first AI workspace (63 k GitHub stars in 9 days, MIT). One Docker command gives you chat, agents, deep research, email triage, calendar, notes, and a model cookbook — all on your own hardware. This guide covers installation, key features, and how it stacks up against ChatGPT Plus and Claude.ai."
+description: "Odysseus is an open-source, privacy-first AI workspace (63 k GitHub stars in 9 days, MIT). One Docke..."
 date: 2026-06-09 00:00:00+08:00
 lastmod: 2026-06-09 00:00:00+08:00
 tech_stack: []

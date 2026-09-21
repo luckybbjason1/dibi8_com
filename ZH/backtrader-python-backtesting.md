@@ -1,18 +1,6 @@
 ---
 title: "Backtrader 2026: Python回测引擎以100倍速度验证交易策略 —— 完整指南"
-description: "Backtrader事件驱动回测引擎完整指南。使用Python构建、测试和优化交易策略。集成方案、基准测试和实盘交易部署2026。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
-tech_stack: []
-application_domain: Ai Trading
-source_version: ''
-licensing_model: Open Source
-license_type: GPL-3.0
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: "mementum/backtrader"
+description: "Backtrader事件驱动回测引擎完整指南。使用Python构建、测试和优化交易策略。集成方案、基准测试和实盘交易部署2026。". Comprehensive guide covering fea..."
 stars: 15600
 maintainer: mementum
 last_maintained: "2026-05-19"

@@ -1,18 +1,6 @@
 ---
 title: "Superagent: 1개의 CLI 명령으로 AI 에이전트를 프로덕션에 배포하기 — 2026 최소 설...
-description: "Superagent로 AI 에이전트를 배포하는 실전 가이드. 하나의 CLI 명령, 다중 LLM 지원, RAG 워크플로우, 벡터 DB 통합, REST API 배포. 실제 벤치마크 데이터 포함.". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
-tech_stack: []
-application_domain: Llm Frameworks
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: "superagent-ai/superagent"
+description: "Superagent로 AI 에이전트를 배포하는 실전 가이드. 하나의 CLI 명령, 다중 LLM 지원, RAG 워크플로우, 벡터 DB 통합, REST API 배포. 실제 벤치마크 데..."
 stars: 6100
 maintainer: 'superagent-ai'
 last_maintained: "2026-05-19"

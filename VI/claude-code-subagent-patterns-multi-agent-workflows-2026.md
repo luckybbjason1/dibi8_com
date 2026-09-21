@@ -1,6 +1,6 @@
 ---
 title: "Mẫu Subagent Claude Code: 5 Quy Trình Multi-Agent Tiết K...
-description: "5 mẫu Claude Code subagent đã kiểm chứng trong production — nghiên cứu song song, cô lập worktree, ủy thác chuyên gia, bảo vệ context, điều phối pipeline. Kèm prompt thực và đánh đổi."
+description: "5 mẫu Claude Code subagent đã kiểm chứng trong production — nghiên cứu song song, cô lập worktree, ủ..."
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', CLI, Bash]
@@ -73,7 +73,7 @@ Một thông điệp → 3 lời gọi Agent: - Agent("Tìm handler auth", subag
 Agent({
   description: "Thử refactor cấp controller",
   isolation: "worktree",
-  prompt: "Refactor controllers/orders.rb để trích logic xác thực..."
+  prompt: "Refactor controllers/orders.rb để ..."
 })
 ```
 
@@ -91,9 +91,7 @@ Agent({
 Agent({
   description: "Code review độc lập",
   subagent_type: "code-reviewer",
-  prompt: "Review thay đổi trên branch feat/payment-gateway. Muốn ý kiến
-   thứ hai về logic retry — đã check idempotency nhưng muốn xác minh
-   độc lập. Báo cáo: có an toàn dưới failure đồng thời không?"
+  prompt: "Review thay đổi trên branch feat/..."
 })
 ```
 

@@ -1,6 +1,6 @@
 ---
 title: "OpenAI Whisper: 99.8K+ Stars — Complete ASR Setup Tutori...
-description: "OpenAI Whisper (ASR) robust speech recognition via large-scale weak supervision. Compatible with WhisperX, faster-whisper, LibreTranslate. Covers whisper tutorial, whisper vs whisperx, speech recognition setup, whisper python, whisper docker."
+description: "OpenAI Whisper (ASR) robust speech recognition via large-scale weak supervision. Compatible with Whi..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

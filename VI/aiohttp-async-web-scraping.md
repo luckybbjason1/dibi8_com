@@ -1,6 +1,6 @@
 ---
 title: "aiohttp 2026: Xây dựng Web Scraper Bất đồng bộ Hiệu suất...
-description: "Làm chủ aiohttp 3.11 để xây dựng web scraper bất đồng bộ hiệu suất cao trong Python. Hỗ trợ connection pooling, session management, rate limiting và triển khai production."
+description: "Làm chủ aiohttp 3.11 để xây dựng web scraper bất đồng bộ hiệu suất cao trong Python. Hỗ trợ connecti..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

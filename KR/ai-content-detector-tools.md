@@ -1,6 +1,6 @@
 ---
 title: "2025년 최고의 AI 콘텐츠 탐지 도구 비교: GPTZero, Turnitin AI, Copylea...
-description: "2025년 최신 AI 콘텐츠 탐지 도구를 정확도, 속도, 가격 중심으로 비교합니다. GPTZero, Turnitin AI, Copyleaks, Originality.ai 등 주요 도구의 특징과 용도별 추천 가이드를 확인하세요."
+description: "2025년 최신 AI 콘텐츠 탐지 도구를 정확도, 속도, 가격 중심으로 비교합니다. GPTZero, Turnitin AI, Copyleaks, Originality.ai 등 주요 ..."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []

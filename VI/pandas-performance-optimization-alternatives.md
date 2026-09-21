@@ -1,6 +1,6 @@
 ---
 title: "Hướng Dẫn Tối Ưu Hiệu Suất Pandas: Khi Nào Chuyển Sang P...
-description: "Hướng dẫn tối ưu hiệu suất Pandas và so sánh chi tiết với Polars, DuckDB. Bảng benchmark, kỹ thuật tối ưu code, chiến lược di chuyển cho xử lý dữ liệu lớn."
+description: "Hướng dẫn tối ưu hiệu suất Pandas và so sánh chi tiết với Polars, DuckDB. Bảng benchmark, kỹ thuật t..."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []

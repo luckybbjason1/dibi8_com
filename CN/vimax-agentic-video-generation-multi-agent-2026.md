@@ -1,6 +1,6 @@
 ---
 title: "ViMax 评测：HKUDS 出品的智能体多场景视频生成框架（导演·编剧·制片·生成器，2026）"
-description: "ViMax（GitHub 7.1K+ stars）由香港大学数据科学实验室推出，是首个被广泛采纳的开源智能体视频生成框架。不再像 Sora、Runway 那样一句 prompt 直出短片，它把四个 AI 角色——导演、编剧、制片、视频生成器——编排起来，从一个想法生成长篇多场景视频。完整拆解智能体流水线、支持的后端（Gemini Flash、MiniMax、Google Veo）、安装步骤、idea-to-video 与 script-to-video 工作流，并诚实对比 Sora、OpenSora、Runway。"
+description: "ViMax（GitHub 7.1K+ stars）由香港大学数据科学实验室推出，是首个被广泛采纳的开源智能体视频生成框架。不再像 Sora、Runway 那样一句 prompt 直出短片，它把四个 A..."
 date: 2026-05-23 00:00:00+08:00
 lastmod: 2026-05-23 00:00:00+08:00
 tech_stack: []

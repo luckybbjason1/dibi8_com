@@ -1,6 +1,6 @@
 ---
 title: "PageIndex：29K⭐벡터 없는 RAG 시스템, 문서 검색의 혁명"
-description: "PageIndex는 VectifyAI가 개발한 오픈소스 벡터 없는 RAG 시스템입니다. 29K+ Stars, 문서 트리 구조를 통해 인간과 같은 검색을 구현하며 FinanceBench에서 98.7% 정확도를 달성했습니다."
+description: "PageIndex는 VectifyAI가 개발한 오픈소스 벡터 없는 RAG 시스템입니다. 29K+ Stars, 문서 트리 구조를 통해 인간과 같은 검색을 구현하며 FinanceBen..."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go

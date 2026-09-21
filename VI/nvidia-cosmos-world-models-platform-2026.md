@@ -1,6 +1,6 @@
 ---
 title: "NVIDIA Cosmos: Các mô hình thế giới mã nguồn mở cho Phys...
-description: "NVIDIA Cosmos là một nền tảng mã nguồn mở của các mô hình thế giới, tập dữ liệu và công cụ để xây dựng Physical AI — robot, xe tự hành, cơ sở hạ tầng thông minh. Cosmos 3 sử dụng Mixture-of-Transformers để tạo ngôn ngữ, hình ảnh, video, âm thanh và hành động đồng thời. Có sẵn mô hình 16B và 64B."
+description: "NVIDIA Cosmos là một nền tảng mã nguồn mở của các mô hình thế giới, tập dữ liệu và công cụ để xây dự..."
 date: 2026-06-13
 lastmod: 2026-06-13
 slug: 'nvidia-cosmos-world-models-platform-2026'

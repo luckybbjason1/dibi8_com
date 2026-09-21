@@ -1,6 +1,6 @@
 ---
 title: "Skyvern: AI 에이전트로 브라우저 워크플로 자동화 (21K 스타) — 2026 실전 가이드"
-description: "Skyvern은 대규모 언어 모델과 컴퓨터 비전으로 브라우저 기반 워크플로를 자동화합니다 (GitHub 스타 21,803개, AGPL-3.0). 설치, 실제 Python API, 동작하는 코드 예제, 그리고 Selenium·Playwright와의 솔직한 비교를 다룹니다."
+description: "Skyvern은 대규모 언어 모델과 컴퓨터 비전으로 브라우저 기반 워크플로를 자동화합니다 (GitHub 스타 21,803개, AGPL-3.0). 설치, 실제 Python API, ..."
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
 tech_stack: []

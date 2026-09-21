@@ -1,6 +1,6 @@
 ---
 title: "Hệ Thống Bộ Nhớ AI Agent 2026: So Sánh Mem0 / agentmemor...
-description: "AI agent quên hết sau mỗi phiên là lỗi kiến trúc chí mạng trong production 2026. So sánh chuyên sâu 4 hệ thống memory layer mã nguồn mở hàng đầu: Mem0 (48K+ stars, 21 framework integration, LoCoMo 92.5%), agentmemory (MCP native cho Claude Code/Cursor, giảm 60% giải thích lặp), Hindsight (3 loại bộ nhớ sinh học + 4 chiến lược truy xuất), MemPalace (52K+ stars community leader). Bao gồm benchmark, pitfall, decision tree."
+description: "AI agent quên hết sau mỗi phiên là lỗi kiến trúc chí mạng trong production 2026. So sánh chuyên sâu ..."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00
 tech_stack: [Python, TypeScript, PostgreSQL, 'Vector databases', MCP]

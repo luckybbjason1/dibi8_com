@@ -1,6 +1,6 @@
 ---
 title: "Compound Engineering: Điều phối Claude Code, Codex và Cu...
-description: "Compound Engineering (20K sao) là một plugin đa agent cho Claude Code, Codex và Cursor. 9 lệnh để động não, lập kế hoạch, rà soát, gỡ lỗi và tích lũy kiến thức. Quy trình 80% lập kế hoạch, 20% thực thi."
+description: "Compound Engineering (20K sao) là một plugin đa agent cho Claude Code, Codex và Cursor. 9 lệnh để độ..."
 date: 2026-06-13
 lastmod: 2026-06-13
 slug: 'compound-engineering-multi-agent-coding-claude-codex-cursor'

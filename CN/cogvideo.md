@@ -1,6 +1,6 @@
 ---
 title: "CogVideo: 12.7K Stars — Complete Text-to-Video Setup Gui...
-description: "CogVideo (CogVideoX) is a text and image-to-video generation model from Zhipu AI. Supports ComfyUI, Diffusers, SAT, and Wan/HunyuanVideo/Open-Sora integration. Covers installation, Docker, inference, fine-tuning, and benchmarks."
+description: "CogVideo (CogVideoX) is a text and image-to-video generation model from Zhipu AI. Supports ComfyUI, ..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

@@ -1,6 +1,6 @@
 ---
 title: "LLM Fine-Tuning Frameworks Compared: LoRA, QLoRA, PEFT &...
-description: "Compare LLM fine-tuning frameworks: LoRA, QLoRA, PEFT, and Unsloth. Learn parameter-efficient fine-tuning with benchmarks, VRAM requirements, and step-by-step tutorials."
+description: "Compare LLM fine-tuning frameworks: LoRA, QLoRA, PEFT, and Unsloth. Learn parameter-efficient fine-t..."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []

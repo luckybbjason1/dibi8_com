@@ -1,6 +1,6 @@
 ---
 title: "Claude Code Subagent so với LangGraph, CrewAI và AutoGen...
-description: "Bạn đã điều phối subagent ngay trong Claude Code. Liệu bạn có thực sự cần LangGraph, CrewAI hay AutoGen? Một hướng dẫn ra quyết định cho năm 2026 với benchmark thực tế, bức tranh thật về số sao GitHub, và ranh giới trung thực giữa "tính năng tích hợp sẵn là đủ" và "đã đến lúc tốt nghiệp"."
+description: "Bạn đã điều phối subagent ngay trong Claude Code. Liệu bạn có thực sự cần LangGraph, CrewAI hay Auto..."
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-30 00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', LangGraph, CrewAI, AutoGen, Python]

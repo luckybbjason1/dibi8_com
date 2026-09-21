@@ -1,18 +1,6 @@
 ---
 title: "Dagster: 基于资产的数据管道编排器 —— 2026生产环境部署指南"
-description: "Dagster 1.13完整生产指南：基于资产的编排、数据感知调度、分区、回填以及使用Docker Compose自托管部署。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
-tech_stack: []
-application_domain: Data Science
-source_version: ''
-licensing_model: Open Source
-license_type: Apache-2.0
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: "dagster-io/dagster"
+description: "Dagster 1.13完整生产指南：基于资产的编排、数据感知调度、分区、回填以及使用Docker Compose自托管部署。". Comprehensive guide covering featu..."
 stars: 14000
 maintainer: 'dagster-io'
 last_maintained: "2026-05-19"

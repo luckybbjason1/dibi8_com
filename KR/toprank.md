@@ -1,11 +1,6 @@
 ---
 title: "Toprank: Claude Code로 SEO·GEO·광고 자동화 — 검색 순위 3배 상승하는 AI ...
-description: "Toprank는 Claude Code 기반 AI 마케팅 도구로 SEO, GEO, 광고 자동화를 한 번에 해결합니다. 검색 순위 상승, 트래픽 증가, 전환율 개선을 원한다면 지금 확인하세요.". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-15T04:20:25+09:00
-lastmod: 2026-05-15T04:20:25+09:00
-tech_stack: - Go
-  - Rust
-application_domain: "Ai Tools"
+description: "Toprank는 Claude Code 기반 AI 마케팅 도구로 SEO, GEO, 광고 자동화를 한 번에 해결합니다. 검색 순위 상승, 트래픽 증가, 전환율 개선을 원한다면 지금 확..."
 source_version: ""
 licensing_model: "Open Source"
 license_type: "MIT"

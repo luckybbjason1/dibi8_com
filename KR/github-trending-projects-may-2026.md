@@ -1,13 +1,6 @@
 ---
 title: "DeepSeek TUI + Anthropic 금융 AI: 2026년 5월 GitHub에서 실제로 수익...
-description: "하루 만에 5,800스타를 기록한 터미널 기반 코딩 에이전트와 Anthropic의 첫 수직형 금융 서비스 프레임워크 — 현재 GitHub에서 실제 상용 가치가 있는 핫한 오픈소스 프로젝트 3선을 분석합니다.". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-15T04:20:25+09:00
-lastmod: 2026-05-15T04:20:25+09:00
-tech_stack: - C++
-  - Docker
-  - Go
-  - JavaScript
-application_domain: "Llm Frameworks"
+description: "하루 만에 5,800스타를 기록한 터미널 기반 코딩 에이전트와 Anthropic의 첫 수직형 금융 서비스 프레임워크 — 현재 GitHub에서 실제 상용 가치가 있는 핫한 오픈소스 ..."
 source_version: ""
 licensing_model: "Open Source"
 license_type: "MIT"

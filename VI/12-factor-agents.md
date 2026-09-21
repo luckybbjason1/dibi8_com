@@ -1,6 +1,6 @@
 ---
 title: "12-Factor Agents: Khung nguyên tắc để xây dựng ứng dụng AI đáng tin cậy"
-description: "Khung 12-Factor Agents điều chỉnh phương pháp 12-Factor App đã qua kiểm chứng cho các ứng dụng do LLM hỗ trợ, cung cấp cách tiếp cận có nguyên tắc để xây dựng các agent AI đáng tin cậy, có thể mở rộng và quan sát được."
+description: "Khung 12-Factor Agents điều chỉnh phương pháp 12-Factor App đã qua kiểm chứng cho các ứng dụng do LL..."
 date: 2026-06-10
 lastmod: 2026-06-10
 slug: 12-factor-agents

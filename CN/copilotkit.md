@@ -1,6 +1,6 @@
 ---
 title: "CopilotKit: 31K+ Stars — Add AI Copilots to Any React or...
-description: "CopilotKit is the open-source frontend stack for in-app AI copilots and generative UI. Build React Angular AI assistants with prebuilt components, useCopilotAction hooks, and production-ready deployment. Covers installation, LangChain integration, self-hosting, and benchmarks vs Vercel AI SDK."
+description: "CopilotKit is the open-source frontend stack for in-app AI copilots and generative UI. Build React A..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

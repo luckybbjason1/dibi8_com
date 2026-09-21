@@ -1,6 +1,6 @@
 ---
 title: "HunyuanVideo: 12.1K+ Stars — 2026 프로덕션 배포 가이드"
-description: "HunyuanVideo (HYV)은 텐센트가 개발한 130억 파라미터 오픈소스 비디오 생성 프레임워크. ComfyUI, Diffusers, Gradio API 지원. Docker 설치, FP8 양자화, 다중 GPU 추론, 프로덕션 하드닝 포함."
+description: "HunyuanVideo (HYV)은 텐센트가 개발한 130억 파라미터 오픈소스 비디오 생성 프레임워크. ComfyUI, Diffusers, Gradio API 지원. Docker ..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

@@ -1,21 +1,6 @@
 ---
 title: "AutoML自动机器学习工具全面对比：AutoGluon、H2O、TPOT、Auto-sklearn与Googl...
-description: "全面对比5大AutoML工具：AutoGluon、H2O、TPOT、Auto-sklearn与Google AutoML，覆盖性能、易用性、定价与适用场景，附带选型决策树。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
-tech_stack: []
-application_domain: Data Science
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: ''
-stars: 0
-maintainer: 'dibi8'
-last_maintained: "2026-05-18"
+description: "全面对比5大AutoML工具：AutoGluon、H2O、TPOT、Auto-sklearn与Google AutoML，覆盖性能、易用性、定价与适用场景，附带选型决策树。". Comprehensi..."
 featureImage: ''
 draft: false
 aliases:

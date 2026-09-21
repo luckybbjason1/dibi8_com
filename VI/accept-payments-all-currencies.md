@@ -1,6 +1,6 @@
 ---
 title: "Chấp nhận thanh toán bằng tất cả các loại tiền tệ với No...
-description: "Chấp nhận thanh toán bằng tất cả các loại tiền tệ với NowPayments. Hỗ trợ 100+ loại tiền điện tử và tiền pháp định, phí thấp và thanh toán tức thì."
+description: "Chấp nhận thanh toán bằng tất cả các loại tiền tệ với NowPayments. Hỗ trợ 100+ loại tiền điện tử và ..."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - AI

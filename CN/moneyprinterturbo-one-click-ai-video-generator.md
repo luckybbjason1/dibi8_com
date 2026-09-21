@@ -1,6 +1,6 @@
 ---
 title: "MoneyPrinterTurbo: One-Click AI Video Generator with 90K...
-description: "Give MoneyPrinterTurbo a video topic or keyword and it auto-generates scripts, stock footage, subtitles, background music, and HD short videos. Supports TikTok, YouTube Shorts, Instagram Reels. 90K+ GitHub stars."
+description: "Give MoneyPrinterTurbo a video topic or keyword and it auto-generates scripts, stock footage, subtit..."
 tags: ["ai-tools", "automation", "generator", "open-source", "video-generation"]
 date: 2026-06-22
 lastmod: 2026-06-22
@@ -48,7 +48,7 @@ sources: - name: GitHub
 
 ---
 title: 'MoneyPrinterTurbo: One-Click AI Video Generator with 90K...
-description: "Give MoneyPrinterTurbo a video topic or keyword and it auto-generates scripts, stock footage, subtitles, background music, and HD short videos. Supports TikTok, YouTube Shorts, Instagram Reels. 90K+ GitHub stars."
+description: "Give MoneyPrinterTurbo a video topic or keyword and it auto-generates scripts, stock footage, subtit..."
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false

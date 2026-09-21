@@ -1,6 +1,6 @@
 ---
 title: "Sử Dụng LLM Để Phân Tích Dữ Liệu: Hướng Dẫn Toàn Diện Vớ...
-description: "Khám phá cách sử dụng LLM để phân tích dữ liệu hiệu quả với PandasAI, ChatGPT Code Interpreter và OpenAI API. So sánh ưu nhược điểm và hướng dẫn thực hành chi tiết."
+description: "Khám phá cách sử dụng LLM để phân tích dữ liệu hiệu quả với PandasAI, ChatGPT Code Interpreter và Op..."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []

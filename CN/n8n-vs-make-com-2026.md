@@ -1,6 +1,6 @@
 ---
 title: "n8n vs Make.com in 2026: Open-Source Control vs Visual S...
-description: "Side-by-side breakdown of n8n (self-hosted, developer-friendly workflow automation) and Make.com (cloud-first visual scenarios) — pricing, integrations, AI features, self-hosting, and who wins for your use case in 2026."
+description: "Side-by-side breakdown of n8n (self-hosted, developer-friendly workflow automation) and Make.com (cl..."
 date: 2026-06-07 00:00:00+08:00
 lastmod: 2026-06-07 00:00:00+08:00draft: false
 tags: ["n8n", "make.com", "integromat", "workflow-automation", "zapier-alternative", "no-code", "comparison", "ai-automation"]

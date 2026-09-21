@@ -1,6 +1,6 @@
 ---
 title: "Odysseus: Self-Hosted AI Workspace with 10+ Built-in Too...
-description: "Odysseus (65,243 GitHub stars) is a self-hosted AI workspace combining chat, agent automation, deep research, document editing, email triage, calendar, and more. Supports vLLM, llama.cpp, Ollama, OpenRouter, OpenAI, and GitHub Copilot. Docker and native Linux/macOS installs available."
+description: "Odysseus (65,243 GitHub stars) is a self-hosted AI workspace combining chat, agent automation, deep ..."
 date: 2026-06-09
 lastmod: 2026-06-09
 slug: 'odysseus-self-hosted-ai-workspace-chat-agent-deep-research'

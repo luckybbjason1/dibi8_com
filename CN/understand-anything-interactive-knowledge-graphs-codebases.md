@@ -1,6 +1,6 @@
 ---
 title: "Understand-Anything: Interactive Knowledge Graphs for Co..."
-description: "Understand-Anything turns any codebase into an interactive knowledge graph you can explore, search, and query. Works with Claude Code, Codex, Cursor, Copilot, Gemini CLI. 60,339 GitHub stars."
+description: "Understand-Anything turns any codebase into an interactive knowledge graph you can explore, search, ..."
 tags: ["open-source"]
 date: 2026-06-15
 lastmod: 2026-06-15

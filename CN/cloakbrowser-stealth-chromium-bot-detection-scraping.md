@@ -1,6 +1,6 @@
 ---
 title: "CloakBrowser: Stealth Chromium That Passes Every Bot Det...
-description: "CloakBrowser (25,077 GitHub stars) is a stealth Chromium that passes every bot detection test. Drop-in Playwright replacement with source-level fingerprint patches. 30/30 tests passed. Includes setup tutorial, anti-detection breakdown, and benchmarks."
+description: "CloakBrowser (25,077 GitHub stars) is a stealth Chromium that passes every bot detection test. Drop-..."
 date: 2026-06-08
 lastmod: 2026-06-08
 slug: 'cloakbrowser-stealth-chromium-bot-detection-scraping'

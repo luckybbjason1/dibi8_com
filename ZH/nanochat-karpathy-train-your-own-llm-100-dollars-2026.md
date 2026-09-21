@@ -1,18 +1,6 @@
 ---
 title: "nanochat 2026：Andrej Karpathy 开源「百元 ChatGPT」——8000 行全栈 L...
-description: "由 Andrej Karpathy 开发的 nanochat 是完整的 LLM 训练管道——分词器、预训练、微调、评估、推理和聊天 UI，设计目标：在单节点 8×H100 上用不到 100 美元从零训练一个 GPT-2 级聊天机器人。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-06-09 00:00:00+08:00
-lastmod: 2026-06-09 00:00:00+08:00
-tech_stack: [Python, PyTorch, Rust, 'LLM Training']
-application_domain: LLM Frameworks
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: 'https://github.com/karpathy/nanochat'
-backup_url: ''
-github_repo: "karpathy/nanochat"
+description: "由 Andrej Karpathy 开发的 nanochat 是完整的 LLM 训练管道——分词器、预训练、微调、评估、推理和聊天 UI，设计目标：在单节点 8×H100 上用不到 100 美元从零训..."
 stars: 54700
 maintainer: karpathy
 last_maintained: "2026-06-01"

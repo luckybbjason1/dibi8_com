@@ -1,6 +1,6 @@
 ---
 title: "Dify: Xây dựng AI Agent cấp sản xuất bằng giao diện trực...
-description: "Dify là nền tảng phát triển ứng dụng LLM mã nguồn mở với trình xây dựng workflow trực quan, pipeline RAG, và điều phối agent. Tương thích với OpenAI, Anthropic, Ollama, Qdrant, và Weaviate. Bao gồm triển khai Docker, tích hợp API, hardening sản xuất, và so sánh với Flowise, n8n, LangChain."
+description: "Dify là nền tảng phát triển ứng dụng LLM mã nguồn mở với trình xây dựng workflow trực quan, pipeline..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

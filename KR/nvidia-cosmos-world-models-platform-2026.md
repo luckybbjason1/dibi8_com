@@ -1,6 +1,6 @@
 ---
 title: "NVIDIA Cosmos: 물리적 AI를 위한 오픈소스 월드 모델 (1만 스타)"
-description: "NVIDIA Cosmos는 물리 AI(로봇, 자율주행차, 스마트 인프라)를 구축하기 위한 월드 모델, 데이터세트, 도구의 오픈 플랫폼입니다. Cosmos 3는 Mixture-of-Transformers를 사용하여 언어, 이미지, 비디오, 오디오, 액션을 통합 생성합니다. 16B 및 64B 모델 제공."
+description: "NVIDIA Cosmos는 물리 AI(로봇, 자율주행차, 스마트 인프라)를 구축하기 위한 월드 모델, 데이터세트, 도구의 오픈 플랫폼입니다. Cosmos 3는 Mixture-of-..."
 date: 2026-06-13
 lastmod: 2026-06-13
 slug: 'nvidia-cosmos-world-models-platform-2026'

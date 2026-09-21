@@ -1,6 +1,6 @@
 ---
 title: "PM-Skills: 68 Product Management Skills and 42 Workflows...
-description: "The AI operating system for better product decisions. 9 plugins covering discovery, strategy, execution, research, analytics, GTM, marketing, toolkit, and AI shipping. Works with Claude Code, Codex, Cursor, and 50+ AI assistants."
+description: "The AI operating system for better product decisions. 9 plugins covering discovery, strategy, execut..."
 tags: ["ai-agent", "automation", "open-source"]
 date: 2026-06-22
 lastmod: 2026-06-22
@@ -15,7 +15,7 @@ sources: - name: GitHub
     url: 'https://www.productcompass.pm'
 ---
 title: 'PM-Skills: 68 Product Management Skills and 42 Workflows...
-description: "The AI operating system for better product decisions. 9 plugins covering discovery, strategy, execution, research, analytics, GTM, marketing, toolkit, and AI shipping. Works with Claude Code, Codex, Cursor, and 50+ AI assistants."
+description: "The AI operating system for better product decisions. 9 plugins covering discovery, strategy, execut..."
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false

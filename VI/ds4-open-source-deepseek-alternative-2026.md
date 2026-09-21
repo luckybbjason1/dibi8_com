@@ -1,6 +1,6 @@
 ---
 title: "Đánh Giá ds4 2026: DeepSeek Mã Nguồn Mở Mà Developer Đan...
-description: "ds4 là runtime LLM mã nguồn mở tương thích DeepSeek phát triển nhanh nhất năm 2026. Giấy phép Apache-2.0, tương thích OpenAI API, chạy weights DeepSeek V3 / V3.1 / V4 với độ trễ thấp hơn vLLM 40%. Hướng dẫn setup đầy đủ, so sánh benchmark với vLLM/Ollama/TGI, củng cố production, tích hợp công cụ (Claude Code, Cursor, LangChain, Continue.dev)."
+description: "ds4 là runtime LLM mã nguồn mở tương thích DeepSeek phát triển nhanh nhất năm 2026. Giấy phép Apache..."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00
 tech_stack: []

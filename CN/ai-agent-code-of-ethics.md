@@ -1,6 +1,6 @@
 ---
 title: "The AI Agent Code of Ethics (2026): A Practical Governan...
-description: "A working code of ethics for autonomous AI agents — not abstract principles, but seven enforceable rules with engineering controls: least-privilege authorization, full auditability, human-in-the-loop reversibility, bounded autonomy, an unbroken accountability chain, fail-safe defaults, and privacy by design. Includes a pre-deployment checklist for developers shipping agents in 2026."
+description: "A working code of ethics for autonomous AI agents — not abstract principles, but seven enforceable r..."
 date: 2026-06-04 00:00:00+08:00
 lastmod: 2026-06-04 00:00:00+08:00
 tech_stack: - AI Agents

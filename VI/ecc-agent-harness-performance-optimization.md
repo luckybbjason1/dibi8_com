@@ -1,6 +1,6 @@
 ---
 title: "ECC: Tối ưu hiệu suất Claude Code, Codex và Cursor bằng ...
-description: "ECC (Tối ưu hiệu suất Agent Harness) giảm sử dụng context window và tăng tốc phản hồi của AI coding agent. Tương thích với Claude Code, Codex, Opencode, Cursor và nhiều hơn nữa. Bao gồm điều chỉnh hiệu suất, hệ thống skill và cấu hình MCP server."
+description: "ECC (Tối ưu hiệu suất Agent Harness) giảm sử dụng context window và tăng tốc phản hồi của AI coding ..."
 date: 2026-06-13
 lastmod: 2026-06-13
 slug: 'ecc-agent-harness-performance-optimization'

@@ -1,6 +1,6 @@
 ---
 title: "DeepSeek TUI + Anthropic Financial Agents: Top Trending ..."
-description: "Discover the hottest open-source AI projects on GitHub right now — a terminal-based coding agent that grew 5,800 stars overnight and Anthropic's first vertical-specific financial services framework."
+description: "Discover the hottest open-source AI projects on GitHub right now — a terminal-based coding agent tha..."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - C++

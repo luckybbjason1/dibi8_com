@@ -1,9 +1,6 @@
 ---
 title: "ByteDance UI-TARS Desktop: 화면을 보고 컴퓨터를 제어하는 비전-언어 AI 에이전...
-description: "화면을 보고 자연어로 애플리케이션을 제어하는 비전-언어 AI 에이전트인 ByteDance의 UI-TARS Desktop 배포 방법을 배워보세요. 단계별 설치, 실제 벤치마크 및 대안과 비교.". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-06-10
-lastmod: 2026-06-10
-slug: "bytedance-ui-tars-desktop-ai-agent-guide"
+description: "화면을 보고 자연어로 애플리케이션을 제어하는 비전-언어 AI 에이전트인 ByteDance의 UI-TARS Desktop 배포 방법을 배워보세요. 단계별 설치, 실제 벤치마크 및 대..."
 category: ai-tools
 tags: ["바이트댄스", "ui-tars", "비전-언어모델", "AI에이전트", "데스크톱자동화", "GUI에이전트", "오픈소스", "멀티모달AI"]
 github_repo: "https://github.com/bytedance/UI-TARS-desktop"

@@ -1,6 +1,6 @@
 ---
 title: "Matplotlib vs Seaborn vs Plotly vs Observable: Data Visu...
-description: "Compare Matplotlib, Seaborn, Plotly, and Observable Plot for Python data visualization. Features, code examples, and use-case recommendations."
+description: "Compare Matplotlib, Seaborn, Plotly, and Observable Plot for Python data visualization. Features, co..."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []

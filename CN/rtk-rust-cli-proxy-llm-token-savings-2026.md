@@ -1,6 +1,6 @@
 ---
 title: "rtk Review: The Rust CLI Proxy That Cuts AI Coding Bills...
-description: "rtk is a zero-dependency Rust binary that intercepts and compresses CLI output before it hits your LLM context. 60–90% token savings across 100+ commands and 13 AI coding tools (Claude Code, Cursor, Copilot, Codex, Gemini CLI). MIT licensed, <10ms overhead, 30-second install."
+description: "rtk is a zero-dependency Rust binary that intercepts and compresses CLI output before it hits your L..."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00
 tech_stack: [Rust, CLI, 'Shell hooks']

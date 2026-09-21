@@ -1,10 +1,6 @@
 ---
 title: "Open Codesign: GitHub 5,790+ Star 오픈소스 Claude Design 대안"
-description: "MIT 라이선스 오픈소스 Claude Design 대안 Open Codesign을 소개합니다. 다중 모델, BYOK 자체 키, 로컬 우선 아키텍처로 자연어 프롬프트에서 프로토타입과 슬라이드를 즉시 생성합니다.". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-15T04:20:25+09:00
-lastmod: 2026-05-15T04:20:25+09:00
-tech_stack: - JavaScript
-application_domain: "Dev Utils"
+description: "MIT 라이선스 오픈소스 Claude Design 대안 Open Codesign을 소개합니다. 다중 모델, BYOK 자체 키, 로컬 우선 아키텍처로 자연어 프롬프트에서 프로토타입과..."
 source_version: ""
 licensing_model: "Open Source"
 license_type: "MIT"

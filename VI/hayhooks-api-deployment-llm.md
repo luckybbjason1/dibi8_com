@@ -1,6 +1,6 @@
 ---
 title: "Hayhooks: Triển khai Haystack Pipeline thành REST API ch...
-description: "Hướng dẫn đầy đủ về việc triển khai Haystack NLP pipeline thành REST API production bằng Hayhooks. Bao gồm triển khai một lệnh, hỗ trợ container, tài liệu OpenAPI tự động và benchmark thực tế."
+description: "Hướng dẫn đầy đủ về việc triển khai Haystack NLP pipeline thành REST API production bằng Hayhooks. B..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

@@ -1,6 +1,6 @@
 ---
 title: "Stable Diffusion WebUI: 159K+ Stars — The Complete Setup...
-description: "Stable Diffusion WebUI (AUTOMATIC1111) is the most popular web interface for local AI image generation. Compatible with ControlNet, LoRA, ComfyUI workflows. Covers Windows, Linux, Docker install, extension setup, production hardening, and GPU benchmarks."
+description: "Stable Diffusion WebUI (AUTOMATIC1111) is the most popular web interface for local AI image generati..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

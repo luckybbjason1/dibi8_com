@@ -1,6 +1,6 @@
 ---
 title: "开源 AI 智能体框架 Top 10（2026）：按生产采用率排名"
-description: "按 2026 年生产采用率排名的十大开源 AI 智能体框架：LangGraph、CrewAI、AutoGen、Mastra、Agno、Superagent、OpenHands、Smol Agents、Phidata、OpenAI Swarm。优势、坑点及按使用场景的选型建议。"
+description: "按 2026 年生产采用率排名的十大开源 AI 智能体框架：LangGraph、CrewAI、AutoGen、Mastra、Agno、Superagent、OpenHands、Smol Agents、..."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [LangGraph, CrewAI, AutoGen, Python, TypeScript]

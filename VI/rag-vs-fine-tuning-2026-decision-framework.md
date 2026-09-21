@@ -1,6 +1,6 @@
 ---
 title: "RAG vs Fine-Tuning 2026: Khung Quyết Định Dựa Trên Dữ Li...
-description: "Khi nào dùng RAG, khi nào fine-tune, khi nào kết hợp cả hai. Thực tế 2026 với giá mô hình hiện tại: chi phí mỗi tác vụ, độ trễ, độ tươi của dữ liệu, và cây quyết định rõ ràng dựa trên khối lượng dữ liệu, ngân sách độ trễ truy vấn và tần suất cập nhật."
+description: "Khi nào dùng RAG, khi nào fine-tune, khi nào kết hợp cả hai. Thực tế 2026 với giá mô hình hiện tại: ..."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [RAG, 'Fine-Tuning', LangChain, LlamaIndex, OpenAI, Anthropic]

@@ -1,10 +1,6 @@
 ---
 title: "Buffer를 대체할 2026년 최강 오픈소스: AiToEarn vs Hootsuite 전격 비교"
-description: "Buffer를 대체할 2026년 최강 오픈소스: AiToEarn vs Hootsuite 전격 비교". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-15T04:20:25+09:00
-lastmod: 2026-05-15T04:20:25+09:00
-tech_stack: - Docker
-application_domain: "Ai Tools"
+description: "Buffer를 대체할 2026년 최강 오픈소스: AiToEarn vs Hootsuite 전격 비교". Comprehensive guide covering features, pric..."
 source_version: ""
 licensing_model: "Open Source"
 license_type: "MIT"

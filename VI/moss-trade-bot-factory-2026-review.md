@@ -1,6 +1,6 @@
 ---
 title: "Moss Trade Bot Factory 2026 Review: AI Agent Workbench Q...
-description: "Moss-trade-bot-skills v1.0.26 review thực chiến: AI agent builder ngôn ngữ tự nhiên cho Hyperliquid perpetuals. Engine backtest cấp công nghiệp với độ chính xác Decimal — nhưng có bug Sharpe annualization và trap OVERFIT giáo khoa khi bật evolution. Quy trình setup, fix bug, so sánh 5 chiến lược, và validation 70/30 train/OOS."
+description: "Moss-trade-bot-skills v1.0.26 review thực chiến: AI agent builder ngôn ngữ tự nhiên cho Hyperliquid ..."
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00
 tech_stack: [Python, pandas, numpy, ccxt, Hyperliquid]

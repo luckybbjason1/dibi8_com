@@ -1,6 +1,6 @@
 ---
 title: "Langflow: 148k sao cho các quy trình làm việc LLM trực q...
-description: "Langflow (LF) đơn giản hóa việc xây dựng tác nhân AI và quy trình làm việc. Tích hợp với LangChain, OpenAI, Hugging Face, Anthropic. Bao gồm thiết lập, tích hợp, điểm chuẩn và củng cố sản xuất."
+description: "Langflow (LF) đơn giản hóa việc xây dựng tác nhân AI và quy trình làm việc. Tích hợp với LangChain, ..."
 date: 2026-05-23
 lastmod: 2026-05-23
 slug: 'langflow'

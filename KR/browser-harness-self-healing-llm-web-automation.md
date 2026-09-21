@@ -1,11 +1,6 @@
 ---
 title: "Browser Harness：让 LLM 自主操控浏览器的自愈型神器"
-description: "Browser Harness는 LLM이 인간처럼 웹을 탐색하고 양식을 작성하고 버튼을 클릭하며 실패한 작업을 자동으로 복구하여 복잡한 작업을 완료할 수 있는 자가 치유형 브라우저 제어 프레임워크입니다.". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-15T04:20:25+09:00
-lastmod: 2026-05-15T04:20:25+09:00
-tech_stack: - Go
-  - Python
-application_domain: "Llm Frameworks"
+description: "Browser Harness는 LLM이 인간처럼 웹을 탐색하고 양식을 작성하고 버튼을 클릭하며 실패한 작업을 자동으로 복구하여 복잡한 작업을 완료할 수 있는 자가 치유형 브라우저 ..."
 source_version: ""
 licensing_model: "Open Source"
 license_type: "MIT"

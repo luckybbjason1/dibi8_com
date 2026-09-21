@@ -1,6 +1,6 @@
 ---
 title: "Playwright 2026: The Cross-Browser Automation Tool Testi...
-description: "Master Playwright 1.51 for cross-browser automation. Chrome, Firefox, WebKit support. Auto-wait, tracing, codegen, and parallel testing. 3x faster than Selenium with complete setup guide."
+description: "Master Playwright 1.51 for cross-browser automation. Chrome, Firefox, WebKit support. Auto-wait, tra..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

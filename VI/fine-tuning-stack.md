@@ -1,6 +1,6 @@
 ---
 title: "Fine-Tuning Stack 2026: Pipeline 5 Thành Phần Từ Dataset...
-description: "Stack fine-tuning LLM đầy đủ: Unsloth (experiment single-GPU nhanh) + Axolotl (production multi-GPU) + HuggingFace datasets/Hub + Weights & Biases (theo dõi eval) + vLLM (serving). $50-300/tháng hạ tầng training. Pipeline đầy đủ: chuẩn bị dataset → experiment → fine-tune production → eval → deploy."
+description: "Stack fine-tuning LLM đầy đủ: Unsloth (experiment single-GPU nhanh) + Axolotl (production multi-GPU)..."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: [Python, PyTorch, CUDA, YAML]

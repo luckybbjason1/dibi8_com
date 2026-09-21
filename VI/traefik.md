@@ -1,6 +1,6 @@
 ---
 title: "Traefik: 63,229 GitHub Stars — Cloud-Native Edge Router ...
-description: "Traefik là proxy ứng dụng cloud-native và edge router hỗ trợ tự động phát hiện dịch vụ. Tương thích với Docker, Kubernetes, Consul và Docker Compose. Bao gồm cài đặt, middleware, TLS, giám sát và production hardening."
+description: "Traefik là proxy ứng dụng cloud-native và edge router hỗ trợ tự động phát hiện dịch vụ. Tương thích ..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

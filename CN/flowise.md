@@ -1,6 +1,6 @@
 ---
 title: "Flowise: Build AI Agents Visually with 52K+ Stars — 5-Mi...
-description: "Flowise is an open-source visual builder for LLM workflows and AI agents. Integrates with LangChain, Ollama, OpenAI, Qdrant, Weaviate, Chroma. Covers Docker install, production hardening, API deployment, and honest limitations."
+description: "Flowise is an open-source visual builder for LLM workflows and AI agents. Integrates with LangChain,..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

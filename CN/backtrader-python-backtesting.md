@@ -1,6 +1,6 @@
 ---
 title: "Backtrader 2026: The Python Backtesting Engine Validatin...
-description: "Full guide to Backtrader event-driven backtesting engine. Build, test, and optimize trading strategies in Python. Integrations, benchmarks, and live trading deployment 2026."
+description: "Full guide to Backtrader event-driven backtesting engine. Build, test, and optimize trading strategi..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

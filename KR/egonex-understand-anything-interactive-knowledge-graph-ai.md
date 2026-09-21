@@ -1,9 +1,6 @@
 ---
 title: "Egonex Understand-Anything: 어떤 주제라도 상호작용 가능한 지식 그래프 — AI...
-description: "Egonex의 Understand-Anything를 사용하여 AI로 어떤 주제라도 상호작용 가능한 지식 그래프를 생성하는 방법을 배워보세요. 단계별 설치, 다중 출처 통합, 실시간 검색 및 대안과 비교.". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-06-10
-lastmod: 2026-06-10
-slug: "egonex-understand-anything-interactive-knowledge-graph-ai"
+description: "Egonex의 Understand-Anything를 사용하여 AI로 어떤 주제라도 상호작용 가능한 지식 그래프를 생성하는 방법을 배워보세요. 단계별 설치, 다중 출처 통합, 실시간..."
 category: llm-frameworks
 tags: ["egonex", "understand-anything", "지식그래프", "AI", "상호작용", "오픈소스", "연구", "시각화", "llm"]
 github_repo: "https://github.com/Egonex-AI/Understand-Anything"

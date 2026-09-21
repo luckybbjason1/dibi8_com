@@ -1,6 +1,6 @@
 ---
 title: "Bảng Xếp Hạng LLM Mã Nguồn Mở 2025: Llama, Mistral, Qwen...
-description: "Bảng xếp hạng và hướng dẫn chọn LLM mã nguồn mở tốt nhất 2025. So sánh Llama 3, Mistral, Qwen, DeepSeek qua các benchmark MMLU, HumanEval, MT-Bench."
+description: "Bảng xếp hạng và hướng dẫn chọn LLM mã nguồn mở tốt nhất 2025. So sánh Llama 3, Mistral, Qwen, DeepS..."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []

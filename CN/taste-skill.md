@@ -1,6 +1,6 @@
 ---
 title: "Taste Skill: Stop AI From Generating Generic Slop — Agen..."
-description: "Taste Skill is a portable agent skill framework that upgrades AI-built interfaces with stronger layout, typography, motion, and spacing. Works with Codex, Cursor, Claude Code, and ChatGPT Images."
+description: "Taste Skill is a portable agent skill framework that upgrades AI-built interfaces with stronger layo..."
 tags: ["ai-agent", "automation", "open-source"]
 date: 2026-06-15
 lastmod: 2026-06-15

@@ -1,6 +1,6 @@
 ---
 title: "Prometheus: 64,094 GitHub Stars — Docker 部署指南 2026"
-description: "Prometheus（Prom）是一个开源监控系统和时间序列数据库。兼容 Docker、Kubernetes、Grafana 和 Alertmanager。涵盖安装教程、PromQL 查询、生产加固和性能基准测试。"
+description: "Prometheus（Prom）是一个开源监控系统和时间序列数据库。兼容 Docker、Kubernetes、Grafana 和 Alertmanager。涵盖安装教程、PromQL 查询、生产加固和..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -276,7 +276,6 @@ groups: - name: node-alerts
         labels: severity: warning
         annotations: summary: "{{ $labels.instance }} 请求延迟过高"
           description: "95 分位延迟为 {{ $value }} 秒"
-
 ### Alertmanager Slack 通知配置
 
 创建 `alertmanager.yml`：

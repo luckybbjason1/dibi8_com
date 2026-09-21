@@ -1,6 +1,6 @@
 ---
 title: "Kiểm Toán Bảo Mật MCP Server 2026: Đánh Giá 5 Server Cộn...
-description: "Đã kiểm toán 5 MCP server cộng đồng phổ biến trong môi trường production: GitHub, Slack, Postgres, Brave Search, Fetch. Lỗ hổng cụ thể, hướng dẫn khai thác, và checklist 8 điểm kiểm tra trước khi cài đặt, mỗi server chỉ mất 5 phút."
+description: "Đã kiểm toán 5 MCP server cộng đồng phổ biến trong môi trường production: GitHub, Slack, Postgres, B..."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [MCP, Security, 'Claude Code', TypeScript, Python]

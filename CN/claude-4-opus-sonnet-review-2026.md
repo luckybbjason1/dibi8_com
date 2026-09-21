@@ -1,6 +1,6 @@
 ---
 title: "Claude 4 Review 2026: Opus 4, Sonnet 4, Haiku 4 Tested"
-description: "Hands-on Claude 4 review covering Opus 4, Sonnet 4, and Haiku 4 — coding, reasoning, context, pricing, and how Claude 4 compares to GPT-4o and Gemini 1.5 Pro. Updated June 2026."
+description: "Hands-on Claude 4 review covering Opus 4, Sonnet 4, and Haiku 4 — coding, reasoning, context, pricin..."
 date: 2026-06-06 00:00:00+08:00
 lastmod: 2026-06-06 00:00:00+08:00draft: false
 tags: ["claude-4", "claude-opus-4", "claude-sonnet-4", "anthropic", "llm-review", "ai-coding", "reasoning"]

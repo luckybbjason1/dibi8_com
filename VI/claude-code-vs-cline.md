@@ -1,6 +1,6 @@
 ---
 title: "Claude Code và Cline năm 2026: Tự chủ hay Kiểm soát?"
-description: "So sánh trực tiếp Claude Code và Cline — tính tự chủ trên terminal so với cách phê duyệt từng bước trong VS Code, hỗ trợ mô hình, giá cả và khi nào nên chọn cái nào. Quyết định kiểm soát-hay-tự chủ cho lập trình agentic. Cập nhật 2026."
+description: "So sánh trực tiếp Claude Code và Cline — tính tự chủ trên terminal so với cách phê duyệt từng bước t..."
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00draft: false
 tags: ["claude-code", "cline", "ai-coding", "agentic", "comparison", "dev-tools"]

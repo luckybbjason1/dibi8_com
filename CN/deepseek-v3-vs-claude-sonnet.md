@@ -1,6 +1,6 @@
 ---
 title: "DeepSeek V3.5 vs Claude Sonnet 4.6 in 2026: Open Weights...
-description: "Side-by-side breakdown of DeepSeek V3.5 (685B MoE, open weights) and Claude Sonnet 4.6 — pricing per MTok, context window, SWE-bench, multilingual, API availability. Updated 2026."
+description: "Side-by-side breakdown of DeepSeek V3.5 (685B MoE, open weights) and Claude Sonnet 4.6 — pricing per..."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
 tags: ["deepseek", "claude-sonnet", "anthropic", "llm", "comparison", "open-source", "ai-coding"]

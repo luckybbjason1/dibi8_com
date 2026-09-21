@@ -1,6 +1,6 @@
 ---
 title: "TurboVec: Rust-Powered Vector Index 10x Faster Than FAIS...
-description: "TurboVec (RyanCodrai/turbovec) is a vector index built on TurboQuant, written in Rust with Python bindings. Drop-in replacements for LangChain, LlamaIndex, Haystack, and Agno. Delivers 10x speedup with quantization. Covers Python integration, benchmarks, and production deployment."
+description: "TurboVec (RyanCodrai/turbovec) is a vector index built on TurboQuant, written in Rust with Python bi..."
 date: 2026-06-09
 lastmod: 2026-06-09
 slug: 'turbovec-rust-vector-index-2026'

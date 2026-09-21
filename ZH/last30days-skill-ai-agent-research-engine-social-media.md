@@ -1,21 +1,6 @@
 ---
 title: "过去30天技能：AI代理搜索引擎，通过真实互动评分社交媒体"
-description: "并行搜索 Reddit、X、YouTube、TikTok、Polymarket、GitHub 等。根据点赞数、喜欢数和真钱评分结果——而不是编辑评分。支持 Claude Code、Codex、Cursor 及 50 多种代理主机。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-06-22
-lastmod: 2026-06-22
-draft: false
-tags: ["ai tools", "research", "social media", "agent skill", "open source"]
-categories: ["ai-tools"]
-slug: last30days-skill-ai-agent-research-engine-social-media
-featureImage: 'https://images.pexels.com/photos/5468134/pexels-photo-5468134.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
-aliases: ['/last30days-skill']
-sources: - name: GitHub
-    url: 'https://github.com/mvanhorn/last30days-skill'
-  - name: 'Agent Skills'
-    url: 'https://agentskills.io'
----
-title: "Last30Days-Skill: AI Agent Search Engine That Scores Social Media by Real Engagement'
-description: "Search Reddit, X, YouTube, TikTok, Polymarket, GitHub and more in parallel. Scores results by upvotes, likes, and real money — not editors. Works with Claude Code, Codex, Cursor, and 50+ agent hosts."
+description: "并行搜索 Reddit、X、YouTube、TikTok、Polymarket、GitHub 等。根据点赞数、喜欢数和真钱评分结果——而不是编辑评分。支持 Claude Code、Codex、Curs..."
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false

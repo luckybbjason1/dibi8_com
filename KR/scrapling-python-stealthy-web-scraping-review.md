@@ -1,7 +1,6 @@
 ---
 title: "Scrapling 리뷰: 더 빠르고 더 은밀한 Python 스크래핑"
-description: "Scrapling 리뷰: Python 스텔스 웹 스크래핑 라이브러리. 안티봇 조치를 우회하고, 동적 콘텐츠를 처리하며, 대규모로. Comprehensive guide covering features, pricing, and best practices for 2026.
-  쉽게 스크래핑하세요."
+description: "Scrapling 리뷰: Python 스텔스 웹 스크래핑 라이브러리. 안티봇 조치를 우회하고, 동적 콘텐츠를 처리하며, 대규모로. Comprehensive guide coverin..."
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
 tech_stack: - Java

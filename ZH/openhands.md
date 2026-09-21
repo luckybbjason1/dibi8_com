@@ -1,6 +1,6 @@
 ---
 title: "OpenHands: 74K+ Stars — 能写代码能运行的 AI 软件工程师 (2026 安装教程)"
-description: "OpenHands 是一款 AI 驱动的软件开发平台，可作为软件工程智能体。兼容 VS Code、Docker、GitHub、GitLab、Claude 和 OpenAI。涵盖 Docker 安装、模型配置、无头 CI/CD 模式和生产环境加固。"
+description: "OpenHands 是一款 AI 驱动的软件开发平台，可作为软件工程智能体。兼容 VS Code、Docker、GitHub、GitLab、Claude 和 OpenAI。涵盖 Docker 安装、模..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

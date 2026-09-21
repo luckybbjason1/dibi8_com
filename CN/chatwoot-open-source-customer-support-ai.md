@@ -1,6 +1,6 @@
 ---
 title: "Chatwoot 2026: The Open-Source Customer Support Platform...
-description: "Complete guide to Chatwoot v4 — open-source customer support platform. Self-host with Docker, integrate AI agents, connect multi-channels. Real benchmarks and production setup."
+description: "Complete guide to Chatwoot v4 — open-source customer support platform. Self-host with Docker, integr..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

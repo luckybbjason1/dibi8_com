@@ -1,6 +1,6 @@
 ---
 title: "PM-스킬: AI 에이전트를 위한 68가지 제품 관리 스킬과 42가지 워크플로우"
-description: "더 나은 제품 결정을 위한 AI 운영 체제. 발견, 전략, 실행, 연구, 분석, GTM, 마케팅, 도구 키트, AI 배포를 포함한 9가지 플러그인. Claude Code, Codex, Cursor 및 50개 이상의 AI 어시스턴트와 함께 작동합니다."
+description: "더 나은 제품 결정을 위한 AI 운영 체제. 발견, 전략, 실행, 연구, 분석, GTM, 마케팅, 도구 키트, AI 배포를 포함한 9가지 플러그인. Claude Code, Code..."
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false
@@ -16,7 +16,7 @@ sources: - name: GitHub
 ---
 
 title: "PM-Skills: 68 Product Management Skills and 42 Workflows for AI Agents'
-description: "The AI operating system for better product decisions. 9 plugins covering discovery, strategy, execution, research, analytics, GTM, marketing, toolkit, and AI shipping. Works with Claude Code, Codex, Cursor, and 50+ AI assistants."
+description: "The AI operating system for better product decisions. 9 plugins covering discovery, strategy, execut..."
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false

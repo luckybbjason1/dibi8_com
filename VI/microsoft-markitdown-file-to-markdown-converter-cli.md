@@ -1,6 +1,6 @@
 ---
 title: "Microsoft MarkItDown: Hướng dẫn toàn diện để chuyển đổi ...
-description: "Tìm hiểu cách sử dụng MarkItDown của Microsoft để chuyển đổi PDF, tài liệu Word, hình ảnh, HTML, PPTX và nhiều định dạng khác sang Markdown sạch sẽ. Hướng dẫn cài đặt từng bước, ví dụ sử dụng, Python API, tích hợp AI pipeline, benchmark và so sánh với Pandoc, Calibre và LibreOffice."
+description: "Tìm hiểu cách sử dụng MarkItDown của Microsoft để chuyển đổi PDF, tài liệu Word, hình ảnh, HTML, PPT..."
 date: 2026-06-10
 lastmod: 2026-06-10
 slug: "microsoft-markitdown-file-to-markdown-converter-cli"

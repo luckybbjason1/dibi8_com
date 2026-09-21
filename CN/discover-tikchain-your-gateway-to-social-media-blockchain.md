@@ -1,6 +1,6 @@
 ---
 title: "Discover TikChain - Your Gateway to Social Media Blockch..."
-description: "Discover TikChain: your gateway to social media blockchain. Earn rewards by creating content and engaging with the decentralized social network."
+description: "Discover TikChain: your gateway to social media blockchain. Earn rewards by creating content and eng..."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go

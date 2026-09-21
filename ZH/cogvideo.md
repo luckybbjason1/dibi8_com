@@ -1,6 +1,6 @@
 ---
 title: "CogVideo: 12.7K Stars — 2026 完整文本生成视频安装教程"
-description: "CogVideo (CogVideoX) 是智谱 AI 开发的文本及图像生成视频模型。支持 ComfyUI、Diffusers、SAT，以及 Wan/HunyuanVideo/Open-Sora 集成。涵盖安装、Docker、推理、微调和基准测试。"
+description: "CogVideo (CogVideoX) 是智谱 AI 开发的文本及图像生成视频模型。支持 ComfyUI、Diffusers、SAT，以及 Wan/HunyuanVideo/Open-Sora 集成..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

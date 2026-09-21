@@ -1,6 +1,6 @@
 ---
 title: "InvokeAI: 27.2K+ Stars — Complete Setup Guide for 2026"
-description: "InvokeAI (Invoke) is the leading creative engine for Stable Diffusion models with an industry-leading WebUI. Compatible with SD 1.5, SDXL, FLUX, and ControlNet. Covers Docker install, workflow setup, benchmarks vs AUTOMATIC1111 and ComfyUI, and production hardening."
+description: "InvokeAI (Invoke) is the leading creative engine for Stable Diffusion models with an industry-leadin..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

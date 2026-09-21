@@ -1,6 +1,6 @@
 ---
 title: "Claude Code MCP Advanced 2026: The 10-Server Production ...
-description: "After running Claude Code with various MCP server combinations, settled on a 10-server production stack that balances power, security, and startup time. Each server, why it is in, what it does, and how to configure for solo vs team use."
+description: "After running Claude Code with various MCP server combinations, settled on a 10-server production st..."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: ['Claude Code', MCP, TypeScript, Python, Docker]

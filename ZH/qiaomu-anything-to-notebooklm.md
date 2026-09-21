@@ -1,6 +1,6 @@
 ---
 title: "Qiaomu 万物转 NotebookLM：将任意内容源转换为 Google NotebookLM"
-description: "Qiaomu 万物转 NotebookLM 是一个 Claude Code 技能和 Python 工具包，可将 15 多种内容源——YouTube 视频、播客、文章、PDF——转换为 Google NotebookLM 知识库，并具有绕过付费墙的能力。"
+description: "Qiaomu 万物转 NotebookLM 是一个 Claude Code 技能和 Python 工具包，可将 15 多种内容源——YouTube 视频、播客、文章、PDF——转换为 Google N..."
 date: 2026-06-10
 lastmod: 2026-06-10
 slug: qiaomu-anything-to-notebooklm

@@ -1,6 +1,6 @@
 ---
 title: "CloakBrowser 2026: Trình Duyệt Ẩn Danh Miễn Phí Vượt Qua...
-description: "CloakBrowser là dự án GitHub hot nhất tháng 5/2026: 49 bản vá C++ cấp nguồn, điểm reCAPTCHA v3 là 0.9, vượt qua 30+ dịch vụ bot detection. Miễn phí 100%, thay thế hoàn hảo cho công cụ thương mại $299/tháng."
+description: "CloakBrowser là dự án GitHub hot nhất tháng 5/2026: 49 bản vá C++ cấp nguồn, điểm reCAPTCHA v3 là 0...."
 date: 2026-05-14 00:00:00+08:00
 lastmod: 2026-05-14 00:00:00+08:00
 tech_stack: []

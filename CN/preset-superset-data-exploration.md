@@ -1,6 +1,6 @@
 ---
 title: "Apache Superset 2026: The Open-Source Data Exploration P...
-description: "Complete guide to Apache Superset 2026 — install via Docker in 5 minutes, connect 30+ data sources, build 50+ chart types, and deploy production-ready dashboards with role-based access control."
+description: "Complete guide to Apache Superset 2026 — install via Docker in 5 minutes, connect 30+ data sources, ..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

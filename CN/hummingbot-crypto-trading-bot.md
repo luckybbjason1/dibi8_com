@@ -1,6 +1,6 @@
 ---
 title: "Hummingbot 2026: The Open-Source Crypto Trading Bot Runn...
-description: "A hands-on guide to deploying Hummingbot v2, the open-source crypto trading bot with 50+ exchange connectors. Covers Docker setup, custom strategies, backtesting, DEX gateway, and production hardening."
+description: "A hands-on guide to deploying Hummingbot v2, the open-source crypto trading bot with 50+ exchange co..."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []

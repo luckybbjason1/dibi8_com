@@ -1,11 +1,6 @@
 ---
 title: "回测过拟合：5 种典型模式与真实 PF/Sharpe 数据 (2026)"
-description: "基于 50+ 笔优化器输出的实盘交易，我们梳理出 5 种典型的过拟合模式：walk-forward 背离、市场状态翻转、参数悬崖、指标堆叠和幸存者偏差。每种模式均附可复现的合成示例与检测信号。". Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: [Python, pandas, numpy, vectorbt, backtrader]
-application_domain: AI Trading
-source_version: "pandas 2.2+ / vectorbt 0.27+"
+description: "基于 50+ 笔优化器输出的实盘交易，我们梳理出 5 种典型的过拟合模式：walk-forward 背离、市场状态翻转、参数悬崖、指标堆叠和幸存者偏差。每种模式均附可复现的合成示例与检测信号。". C..."
 licensing_model: Open Source
 license_type: MIT
 github_repo: ''

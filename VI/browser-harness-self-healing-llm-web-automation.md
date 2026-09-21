@@ -1,6 +1,6 @@
 ---
 title: "Browser Harness：让 LLM 自主操控浏览器的自愈型神器"
-description: "Browser Harness là framework điều khiển trình duyệt tự phục hồi, cho phép LLM tự động hoàn thành mọi tác vụ web. 11K+ Stars, viết bằng Python, hỗ trợ Playwright và Selenium."
+description: "Browser Harness là framework điều khiển trình duyệt tự phục hồi, cho phép LLM tự động hoàn thành mọi..."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go
